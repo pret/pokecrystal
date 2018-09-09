@@ -32,7 +32,7 @@ CelebiShrineEvent:
 	inc d
 	push de
 	ld a, 36 * SPRITEOAMSTRUCT_LENGTH
-	ld [wCurrSpriteOAMAddr], a
+	ld [wCurSpriteOAMAddr], a
 	farcall DoNextFrameForAllSprites
 	call CelebiEvent_CountDown
 	ld c, 2

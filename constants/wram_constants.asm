@@ -1,7 +1,7 @@
 ; wInputType:: ; c2c7
 AUTO_INPUT EQU $ff
 
-; wCurrentDexMode:: ; c7d4
+; wCurDexMode:: ; c7d4
 	const_def
 	const DEXMODE_NEW
 	const DEXMODE_OLD

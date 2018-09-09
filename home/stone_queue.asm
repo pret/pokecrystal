@@ -56,11 +56,11 @@ HandleStoneQueue::
 	ret
 
 .check_on_warp
-	ld hl, wCurrMapWarpsPointer
+	ld hl, wCurMapWarpsPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wCurrMapWarpCount]
+	ld a, [wCurMapWarpCount]
 	and a
 	jr z, .nope2
 
@@ -94,7 +94,7 @@ HandleStoneQueue::
 .found_warp
 	pop af
 	ld d, a
-	ld a, [wCurrMapWarpCount]
+	ld a, [wCurMapWarpCount]
 	sub d
 	inc a
 	scf

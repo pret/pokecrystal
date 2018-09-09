@@ -738,14 +738,14 @@ JumpRoamMon:
 	ret
 
 _BackUpMapIndices:
-	ld a, [wRoamMons_CurrentMapNumber]
+	ld a, [wRoamMons_CurMapNumber]
 	ld [wRoamMons_LastMapNumber], a
-	ld a, [wRoamMons_CurrentMapGroup]
+	ld a, [wRoamMons_CurMapGroup]
 	ld [wRoamMons_LastMapGroup], a
 	ld a, [wMapNumber]
-	ld [wRoamMons_CurrentMapNumber], a
+	ld [wRoamMons_CurMapNumber], a
 	ld a, [wMapGroup]
-	ld [wRoamMons_CurrentMapGroup], a
+	ld [wRoamMons_CurMapGroup], a
 	ret
 
 INCLUDE "data/wild/roammon_maps.asm"

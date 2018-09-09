@@ -156,7 +156,7 @@ wPrinterOpcode:: db
 wPrevDexEntry:: db
 wDisableTextAcceleration:: db
 wPreviousLandmark:: db
-wCurrentLandmark:: db
+wCurLandmark:: db
 wLandmarkSignTimer:: dw
 
 wLinkMode::
@@ -256,20 +256,20 @@ wc3ac:: ds 8
 ENDU ; c3b4
 
 wSpriteAnimCount:: db
-wCurrSpriteOAMAddr:: db
+wCurSpriteOAMAddr:: db
 
 wCurIcon:: db ; c3b6
 
 wCurIconTile:: db
 wSpriteAnimAddrBackup::
 wSpriteAnimIDBuffer::
-wCurrSpriteAddSubFlags::
+wCurSpriteAddSubFlags::
 	dw
-wCurrAnimVTile:: db
-wCurrAnimXCoord:: db
-wCurrAnimYCoord:: db
-wCurrAnimXOffset:: db
-wCurrAnimYOffset:: db
+wCurAnimVTile:: db
+wCurAnimXCoord:: db
+wCurAnimYCoord:: db
+wCurAnimXOffset:: db
+wCurAnimYOffset:: db
 wGlobalAnimYOffset:: db
 wGlobalAnimXOffset:: db
 wSpriteAnimsEnd::
@@ -757,7 +757,7 @@ wLinkTradeGetmonSpecies::  db
 NEXTU ; c6d0
 ; naming screen
 wNamingScreenDestinationPointer:: dw ; c6d0
-wNamingScreenCurrNameLength:: db ; c6d2
+wNamingScreenCurNameLength:: db ; c6d2
 wNamingScreenMaxNameLength:: db ; c6d3
 wNamingScreenType:: db ; c6d4
 wNamingScreenCursorObjectPointer:: dw ; c6d5
@@ -793,10 +793,10 @@ wSlotBet:: db
 wFirstTwoReelsMatching:: db
 wFirstTwoReelsMatchingSevens:: db
 wSlotMatched:: db
-wCurrReelStopped:: ds 3
+wCurReelStopped:: ds 3
 wPayout:: dw
-wCurrReelXCoord:: db
-wCurrReelYCoord:: db
+wCurReelXCoord:: db
+wCurReelYCoord:: db
 	ds 2
 wSlotBuildingMatch:: db
 wSlotsDataEnd::
@@ -846,7 +846,7 @@ wDexListingScrollOffset:: db ; offset of the first displayed entry from the star
 wDexListingCursor:: db ; Dex cursor
 wDexListingEnd:: db ; Last mon to display
 wDexListingHeight:: db ; number of entries displayed at once in the dex listing
-wCurrentDexMode:: db ; Pokedex Mode
+wCurDexMode:: db ; Pokedex Mode
 wDexSearchMonType1:: db ; first type to search
 wDexSearchMonType2:: db ; second type to search
 wDexSearchResultCount:: db
@@ -855,14 +855,14 @@ wDexArrowCursorDelayCounter:: db
 wDexArrowCursorBlinkCounter:: db
 wDexSearchSlowpokeFrame:: db
 wUnlockedUnownMode:: db
-wDexCurrentUnownIndex:: db
+wDexCurUnownIndex:: db
 wDexUnownCount:: db
 wDexConvertedMonType:: db ; mon type converted from dex search mon type
 wDexListingScrollOffsetBackup:: db
 wDexListingCursorBackup:: db
 wBackupDexListingCursor:: db
 wBackupDexListingPage:: db
-wDexCurrentLocation:: db
+wDexCurLocation:: db
 if DEF(_CRYSTAL11)
 wPokedexStatus:: db
 wPokedexDataEnd::
@@ -1366,7 +1366,7 @@ wPokegearMapRegion:: db
 NEXTU ; cf64
 ; pack
 wPackJumptableIndex:: db
-wCurrPocket:: db
+wCurPocket:: db
 wPackUsedItem:: db
 
 NEXTU ; cf64
@@ -1494,7 +1494,7 @@ w2DMenuDataEnd::
 wMenuCursorY:: db ; cfa9
 wMenuCursorX:: db ; cfaa
 wCursorOffCharacter:: db ; cfab
-wCursorCurrentTile:: dw ; cfac
+wCursorCurTile:: dw ; cfac
 
 	ds 3
 
@@ -1659,7 +1659,7 @@ wPhoneCaller:: dw
 
 NEXTU ; d002
 ; radio data
-wCurrentRadioLine:: db
+wCurRadioLine:: db
 wNextRadioLine:: db
 wRadioTextDelay:: db
 wNumRadioLinesPrinted:: db
@@ -2677,21 +2677,21 @@ wBikeFlags:: ; dbf5
 	db
 	ds 1 ; cleared along with wBikeFlags by ResetBikeFlags
 
-wCurrMapSceneScriptPointer:: dw ; dbf7
+wCurMapSceneScriptPointer:: dw ; dbf7
 
-wCurrentCaller:: dw ; dbf9
-wCurrMapWarpCount:: db ; dbfb
-wCurrMapWarpsPointer:: dw ; dbfc
-wCurrMapCoordEventCount:: db ; dbfe
-wCurrMapCoordEventsPointer:: dw ; dbff
-wCurrMapBGEventCount:: db ; dc01
-wCurrMapBGEventsPointer:: dw ; dc02
-wCurrMapObjectEventCount:: db ; dc04
-wCurrMapObjectEventsPointer:: dw ; dc05
-wCurrMapSceneScriptCount:: db ; dc07
-wCurrMapSceneScriptsPointer:: dw ; dc08
-wCurrMapCallbackCount:: db ; dc0a
-wCurrMapCallbacksPointer:: dw ; dc0b
+wCurCaller:: dw ; dbf9
+wCurMapWarpCount:: db ; dbfb
+wCurMapWarpsPointer:: dw ; dbfc
+wCurMapCoordEventCount:: db ; dbfe
+wCurMapCoordEventsPointer:: dw ; dbff
+wCurMapBGEventCount:: db ; dc01
+wCurMapBGEventsPointer:: dw ; dc02
+wCurMapObjectEventCount:: db ; dc04
+wCurMapObjectEventsPointer:: dw ; dc05
+wCurMapSceneScriptCount:: db ; dc07
+wCurMapSceneScriptsPointer:: dw ; dc08
+wCurMapCallbackCount:: db ; dc0a
+wCurMapCallbacksPointer:: dw ; dc0b
 
 	ds 2
 
@@ -2770,7 +2770,7 @@ wKurtApricornQuantity:: db
 
 wPlayerDataEnd::
 
-wCurrMapData::
+wCurMapData::
 
 wVisitedSpawns:: flag_array NUM_SPAWNS ; dca5
 
@@ -2796,7 +2796,7 @@ wYCoord:: db ; dcb7 ; current y coordinate relative to top-left corner of curren
 wXCoord:: db ; dcb8 ; current x coordinate relative to top-left corner of current map
 wScreenSave:: ds SCREEN_META_WIDTH * SCREEN_META_HEIGHT
 
-wCurrMapDataEnd::
+wCurMapDataEnd::
 
 
 SECTION "Party", WRAMX
@@ -2876,8 +2876,8 @@ wRoamMon1:: roam_struct wRoamMon1 ; dfcf
 wRoamMon2:: roam_struct wRoamMon2 ; dfd6
 wRoamMon3:: roam_struct wRoamMon3 ; dfdd
 
-wRoamMons_CurrentMapNumber:: db
-wRoamMons_CurrentMapGroup:: db
+wRoamMons_CurMapNumber:: db
+wRoamMons_CurMapGroup:: db
 wRoamMons_LastMapNumber:: db
 wRoamMons_LastMapGroup:: db
 

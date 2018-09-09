@@ -58,7 +58,7 @@ Pokedex:
 	call PlaySFX
 	call WaitSFX
 	call ClearSprites
-	ld a, [wCurrentDexMode]
+	ld a, [wCurDexMode]
 	ld [wLastDexMode], a
 
 	pop af
@@ -96,7 +96,7 @@ InitPokedex:
 	call Pokedex_CheckUnlockedUnownMode
 
 	ld a, [wLastDexMode]
-	ld [wCurrentDexMode], a
+	ld [wCurDexMode], a
 
 	call Pokedex_OrderMonsByMode
 	call Pokedex_InitCursorPosition
@@ -178,7 +178,7 @@ Pokedex_GetLandmark:
 	call GetWorldMapLocation
 
 .load
-	ld [wDexCurrentLocation], a
+	ld [wDexCurLocation], a
 	ret
 
 Pokedex_RunJumptable:
@@ -235,7 +235,7 @@ Pokedex_InitMainScreen:
 	ld a, POKEDEX_SCX
 	ldh [hSCX], a
 
-	ld a, [wCurrentDexMode]
+	ld a, [wCurDexMode]
 	cp DEXMODE_OLD
 	ld a, $4a
 	jr z, .okay
@@ -442,7 +442,7 @@ DexEntryScreen_MenuActionJumptable:
 	ld a, $90
 	ldh [hWY], a
 	call Pokedex_GetSelectedMon
-	ld a, [wDexCurrentLocation]
+	ld a, [wDexCurLocation]
 	ld e, a
 	predef Pokedex_GetArea
 	call Pokedex_BlackOutBG
@@ -513,7 +513,7 @@ Pokedex_InitOptionScreen:
 	call ClearSprites
 	call Pokedex_DrawOptionScreenBG
 	call Pokedex_InitArrowCursor
-	ld a, [wCurrentDexMode] ; Index of the topmost visible item in a scrolling menu ???
+	ld a, [wCurDexMode] ; Index of the topmost visible item in a scrolling menu ???
 	ld [wDexArrowCursorPosIndex], a
 	call Pokedex_DisplayModeDescription
 	call WaitBGMap
@@ -585,12 +585,12 @@ Pokedex_UpdateOptionScreen:
 	ld b, DEXMODE_ABC
 
 .ChangeMode:
-	ld a, [wCurrentDexMode]
+	ld a, [wCurDexMode]
 	cp b
 	jr z, .skip_changing_mode ; Skip if new mode is same as current.
 
 	ld a, b
-	ld [wCurrentDexMode], a
+	ld [wCurDexMode], a
 	call Pokedex_OrderMonsByMode
 	call Pokedex_DisplayChangingModesMessage
 	xor a
@@ -799,7 +799,7 @@ Pokedex_InitUnownMode:
 	call Pokedex_LoadUnownFont
 	call Pokedex_DrawUnownModeBG
 	xor a
-	ld [wDexCurrentUnownIndex], a
+	ld [wDexCurUnownIndex], a
 	call Pokedex_LoadUnownFrontpicTiles
 	call Pokedex_UnownModePlaceCursor
 	farcall PrintUnownWord
@@ -849,7 +849,7 @@ Pokedex_UnownModeHandleDPadInput:
 .right
 	ld a, [wDexUnownCount]
 	ld e, a
-	ld hl, wDexCurrentUnownIndex
+	ld hl, wDexCurUnownIndex
 	ld a, [hl]
 	inc a
 	cp e
@@ -859,7 +859,7 @@ Pokedex_UnownModeHandleDPadInput:
 	jr .update
 
 .left
-	ld hl, wDexCurrentUnownIndex
+	ld hl, wDexCurUnownIndex
 	ld a, [hl]
 	and a
 	ret z
@@ -886,7 +886,7 @@ Pokedex_UnownModeEraseCursor:
 	jr Pokedex_UnownModeUpdateCursorGfx
 
 Pokedex_UnownModePlaceCursor:
-	ld a, [wDexCurrentUnownIndex]
+	ld a, [wDexCurUnownIndex]
 	ld c, $5a ; diamond cursor
 
 Pokedex_UnownModeUpdateCursorGfx:
@@ -1460,7 +1460,7 @@ Pokedex_PrintListing:
 ; Prints the list of Pokémon on the main Pokédex screen.
 
 ; This check is completely useless.
-	ld a, [wCurrentDexMode]
+	ld a, [wCurDexMode]
 	cp DEXMODE_OLD
 	jr z, .okay
 	ld c, 11
@@ -1522,7 +1522,7 @@ Pokedex_PrintListing:
 	ret
 
 Pokedex_PrintNumberIfOldMode:
-	ld a, [wCurrentDexMode]
+	ld a, [wCurDexMode]
 	cp DEXMODE_OLD
 	jr z, .printnum
 	ret
@@ -1613,7 +1613,7 @@ Pokedex_OrderMonsByMode:
 	ld bc, wPokedexOrderEnd - wPokedexOrder
 	xor a
 	call ByteFill
-	ld a, [wCurrentDexMode]
+	ld a, [wCurDexMode]
 	ld hl, .Jumptable
 	call Pokedex_LoadPointer
 	jp hl
@@ -1968,7 +1968,7 @@ Pokedex_DisplayTypeNotFoundMessage:
 	next "was not found.@"
 
 Pokedex_UpdateCursorOAM:
-	ld a, [wCurrentDexMode]
+	ld a, [wCurDexMode]
 	cp DEXMODE_OLD
 	jp z, Pokedex_PutOldModeCursorOAM
 	call Pokedex_PutNewModeABCModeCursorOAM
@@ -2070,7 +2070,7 @@ Pokedex_PutNewModeABCModeCursorOAM:
 	db -1
 
 Pokedex_UpdateSearchResultsCursorOAM:
-	ld a, [wCurrentDexMode]
+	ld a, [wCurDexMode]
 	cp DEXMODE_OLD
 	jp z, Pokedex_PutOldModeCursorOAM
 	ld hl, .CursorOAM
@@ -2498,7 +2498,7 @@ Pokedex_LoadUnownFont:
 Pokedex_LoadUnownFrontpicTiles:
 	ld a, [wUnownLetter]
 	push af
-	ld a, [wDexCurrentUnownIndex]
+	ld a, [wDexCurUnownIndex]
 	ld e, a
 	ld d, 0
 	ld hl, wUnownDex

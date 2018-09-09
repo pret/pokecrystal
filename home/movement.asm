@@ -176,7 +176,7 @@ GetMenuJoypad::
 	ret
 
 PlaceHollowCursor::
-	ld hl, wCursorCurrentTile
+	ld hl, wCursorCurTile
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -184,7 +184,7 @@ PlaceHollowCursor::
 	ret
 
 HideCursor::
-	ld hl, wCursorCurrentTile
+	ld hl, wCursorCurTile
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

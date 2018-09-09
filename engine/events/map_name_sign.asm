@@ -13,7 +13,7 @@ ReturnFromMapSetupScript::
 	ld a, [wMapNumber]
 	ld c, a
 	call GetWorldMapLocation
-	ld [wCurrentLandmark], a
+	ld [wCurLandmark], a
 	call .CheckNationalParkGate
 	jr z, .nationalparkgate
 
@@ -23,7 +23,7 @@ ReturnFromMapSetupScript::
 
 .nationalparkgate
 	ld a, -1
-	ld [wCurrentLandmark], a
+	ld [wCurLandmark], a
 
 .not_gate
 	ld hl, wEnteredMapFromContinue
@@ -33,7 +33,7 @@ ReturnFromMapSetupScript::
 
 	call .CheckMovingWithinLandmark
 	jr z, .dont_do_map_sign
-	ld a, [wCurrentLandmark]
+	ld a, [wCurLandmark]
 	ld [wPreviousLandmark], a
 
 	call .CheckSpecialMap
@@ -48,7 +48,7 @@ ReturnFromMapSetupScript::
 	ret
 
 .dont_do_map_sign
-	ld a, [wCurrentLandmark]
+	ld a, [wCurLandmark]
 	ld [wPreviousLandmark], a
 	ld a, $90
 	ldh [rWY], a
@@ -58,7 +58,7 @@ ReturnFromMapSetupScript::
 	ret
 
 .CheckMovingWithinLandmark:
-	ld a, [wCurrentLandmark]
+	ld a, [wCurLandmark]
 	ld c, a
 	ld a, [wPreviousLandmark]
 	cp c
@@ -140,7 +140,7 @@ InitMapNameFrame:
 	ret
 
 PlaceMapNameCenterAlign:
-	ld a, [wCurrentLandmark]
+	ld a, [wCurLandmark]
 	ld e, a
 	farcall GetLandmarkName
 	call .GetNameLength

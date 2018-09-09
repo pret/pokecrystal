@@ -416,7 +416,7 @@ Function1143b7:
 	pop hl
 	push af
 	ld a, [hli]
-	ld [wCurrMapBGEventCount], a
+	ld [wCurMapBGEventCount], a
 	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
@@ -658,7 +658,7 @@ Function1144d1:
 .asm_11451c
 	pop hl
 	ld a, [hli]
-	ld [wCurrMapBGEventCount], a
+	ld [wCurMapBGEventCount], a
 	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
@@ -675,7 +675,7 @@ Function1144d1:
 .asm_114537
 	ld hl, $dc06
 	ld a, [hl]
-	ld [wCurrMapBGEventCount], a
+	ld [wCurMapBGEventCount], a
 	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld hl, $dc09
@@ -686,7 +686,7 @@ Function1144d1:
 	ld a, d
 	or e
 	jr z, .asm_114559
-	ld hl, wCurrMapSceneScriptCount
+	ld hl, wCurMapSceneScriptCount
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1229,7 +1229,7 @@ Function114843:
 Function114867:
 	ld hl, $dc06
 	ld a, [hli]
-	ld [wCurrMapBGEventCount], a
+	ld [wCurMapBGEventCount], a
 	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
@@ -1257,7 +1257,7 @@ Function114867:
 	inc e
 	call z, Function1148b9
 	ld hl, $dc06
-	ld a, [wCurrMapBGEventCount]
+	ld a, [wCurMapBGEventCount]
 	ld [hli], a
 	ld [hl], e
 	inc hl
@@ -1286,7 +1286,7 @@ Function114867:
 
 Function1148b9:
 	push bc
-	ld bc, wCurrMapBGEventCount
+	ld bc, wCurMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
@@ -1294,7 +1294,7 @@ Function1148b9:
 Function1148c2:
 	ld hl, $dc06
 	ld a, [hli]
-	ld [wCurrMapBGEventCount], a
+	ld [wCurMapBGEventCount], a
 	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
@@ -1347,7 +1347,7 @@ Function1148c2:
 	inc e
 	call z, Function114944
 	ld hl, $dc06
-	ld a, [wCurrMapBGEventCount]
+	ld a, [wCurMapBGEventCount]
 	ld [hli], a
 	ld [hl], e
 	inc hl
@@ -1384,7 +1384,7 @@ Function1148c2:
 
 Function114944:
 	push bc
-	ld bc, wCurrMapBGEventCount
+	ld bc, wCurMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
@@ -1392,7 +1392,7 @@ Function114944:
 Function11494d:
 	ld hl, $dc06
 	ld a, [hli]
-	ld [wCurrMapBGEventCount], a
+	ld [wCurMapBGEventCount], a
 	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
@@ -1437,7 +1437,7 @@ Function11494d:
 	inc e
 	call z, Function1149c3
 	ld hl, $dc06
-	ld a, [wCurrMapBGEventCount]
+	ld a, [wCurMapBGEventCount]
 	ld [hli], a
 	ld [hl], e
 	inc hl
@@ -1474,7 +1474,7 @@ Function11494d:
 
 Function1149c3:
 	push bc
-	ld bc, wCurrMapBGEventCount
+	ld bc, wCurMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
@@ -1482,7 +1482,7 @@ Function1149c3:
 Function1149cc:
 	ld hl, $dc06
 	ld a, [hl]
-	ld [wCurrMapBGEventCount], a
+	ld [wCurMapBGEventCount], a
 	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	push de
@@ -1501,7 +1501,7 @@ Function1149cc:
 	ld [hl], d
 	dec hl
 	ld [hl], e
-	ld hl, wCurrMapSceneScriptCount
+	ld hl, wCurMapSceneScriptCount
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1514,7 +1514,7 @@ Function1149cc:
 	inc e
 	call z, Function114a0f
 	ld hl, $dc06
-	ld a, [wCurrMapBGEventCount]
+	ld a, [wCurMapBGEventCount]
 	ld [hli], a
 	ld [hl], e
 	inc hl
@@ -1530,7 +1530,7 @@ Function1149cc:
 
 Function114a0f:
 	push bc
-	ld bc, wCurrMapBGEventCount
+	ld bc, wCurMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
@@ -1829,7 +1829,7 @@ endr
 .asm_114b96
 	ld hl, $dc06
 	ld a, [hli]
-	ld [wCurrMapBGEventCount], a
+	ld [wCurMapBGEventCount], a
 	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
@@ -1878,7 +1878,7 @@ Function114bbc:
 	jr z, .asm_114bff
 	pop hl
 	ld a, [hli]
-	ld [wCurrMapBGEventCount], a
+	ld [wCurMapBGEventCount], a
 	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
@@ -2103,7 +2103,7 @@ endr
 .asm_114d11
 	pop hl
 	ld a, [hli]
-	ld [wCurrMapBGEventCount], a
+	ld [wCurMapBGEventCount], a
 	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
@@ -2401,7 +2401,7 @@ Function114e62:
 Function114ea0:
 	ld hl, $dc06
 	ld a, [hli]
-	ld [wCurrMapBGEventCount], a
+	ld [wCurMapBGEventCount], a
 	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
@@ -2426,7 +2426,7 @@ Function114ea0:
 	inc e
 	call z, Function114ee0
 	ld hl, $dc06
-	ld a, [wCurrMapBGEventCount]
+	ld a, [wCurMapBGEventCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -2446,7 +2446,7 @@ Function114ea0:
 
 Function114ee0:
 	push bc
-	ld bc, wCurrMapBGEventCount
+	ld bc, wCurMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
@@ -2679,7 +2679,7 @@ Function115020:
 	push hl
 	ld hl, $dc06
 	ld a, [hli]
-	ld [wCurrMapBGEventCount], a
+	ld [wCurMapBGEventCount], a
 	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
@@ -2706,7 +2706,7 @@ Function115020:
 
 .asm_115046
 	ld hl, $dc06
-	ld a, [wCurrMapBGEventCount]
+	ld a, [wCurMapBGEventCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -2724,7 +2724,7 @@ Function115020:
 
 Function115059:
 	push bc
-	ld bc, wCurrMapBGEventCount
+	ld bc, wCurMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
@@ -2887,7 +2887,7 @@ Function1150b3:
 Function115136:
 	ld hl, $dc06
 	ld a, [hli]
-	ld [wCurrMapBGEventCount], a
+	ld [wCurMapBGEventCount], a
 	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
@@ -2914,7 +2914,7 @@ Function115136:
 
 .asm_11515d
 	ld hl, $dc06
-	ld a, [wCurrMapBGEventCount]
+	ld a, [wCurMapBGEventCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -2932,7 +2932,7 @@ Function115136:
 
 Function115170:
 	push bc
-	ld bc, wCurrMapBGEventCount
+	ld bc, wCurMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
@@ -2940,7 +2940,7 @@ Function115170:
 Function115179:
 	ld hl, $dc06
 	ld a, [hli]
-	ld [wCurrMapBGEventCount], a
+	ld [wCurMapBGEventCount], a
 	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
@@ -3035,7 +3035,7 @@ Function115179:
 	inc e
 	call z, Function11520e
 	ld hl, $dc06
-	ld a, [wCurrMapBGEventCount]
+	ld a, [wCurMapBGEventCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -3049,7 +3049,7 @@ Function115179:
 
 Function11520e:
 	push bc
-	ld bc, wCurrMapBGEventCount
+	ld bc, wCurMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
@@ -3058,7 +3058,7 @@ Function115217:
 	push hl
 	ld hl, $dc06
 	ld a, [hli]
-	ld [wCurrMapBGEventCount], a
+	ld [wCurMapBGEventCount], a
 	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
@@ -3097,7 +3097,7 @@ Function115217:
 
 .asm_115252
 	ld hl, $dc06
-	ld a, [wCurrMapBGEventCount]
+	ld a, [wCurMapBGEventCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -3141,7 +3141,7 @@ Function115217:
 
 Function115286:
 	push bc
-	ld bc, wCurrMapBGEventCount
+	ld bc, wCurMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
@@ -3534,7 +3534,7 @@ Function1153d2:
 	ld [de], a
 	ld hl, wDecoRightOrnament
 	ld a, [hli]
-	ld [wCurrMapBGEventCount], a
+	ld [wCurMapBGEventCount], a
 	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
@@ -3543,7 +3543,7 @@ Function1153d2:
 	ld hl, $ddc8
 	call Function115d6a
 	ld hl, wDecoRightOrnament
-	ld a, [wCurrMapBGEventCount]
+	ld a, [wCurMapBGEventCount]
 	ld [hli], a
 	ld [hl], e
 	inc hl
@@ -3765,7 +3765,7 @@ Function1155d1:
 
 Function11560a:
 	ld a, [$dc06]
-	ld [wCurrMapBGEventCount], a
+	ld [wCurMapBGEventCount], a
 	ld a, [$dc17]
 	ld [$dc00], a
 	ldh [hFF8C], a
@@ -3774,7 +3774,7 @@ Function11560a:
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
-	ld a, [wCurrMapCallbackCount]
+	ld a, [wCurMapCallbackCount]
 	cp b
 	jp c, .asm_1156b1
 	jr nz, .asm_115631
@@ -3788,7 +3788,7 @@ Function11560a:
 	jr z, .asm_1156a9
 	ld a, [$dc09]
 	ld l, a
-	ld a, [wCurrMapCallbackCount]
+	ld a, [wCurMapCallbackCount]
 	ld h, a
 	ld a, c
 	cpl
@@ -3801,7 +3801,7 @@ Function11560a:
 	ld a, l
 	ld [$dc09], a
 	ld a, h
-	ld [wCurrMapCallbackCount], a
+	ld [wCurMapCallbackCount], a
 .asm_11564d
 	ld a, $3
 	cp b
@@ -3840,16 +3840,16 @@ Function11560a:
 	inc hl
 	ld [hl], d
 	pop bc
-	ld a, [wCurrMapBGEventCount]
+	ld a, [wCurMapBGEventCount]
 	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
-	ld hl, wCurrMapSceneScriptCount
+	ld hl, wCurMapSceneScriptCount
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	ld hl, $dc24
 	call Function115d6a
-	ld hl, wCurrMapSceneScriptCount
+	ld hl, wCurMapSceneScriptCount
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -3862,7 +3862,7 @@ Function11560a:
 	jr nz, .asm_11564d
 
 .asm_1156a9
-	ld a, [wCurrMapBGEventCount]
+	ld a, [wCurMapBGEventCount]
 	ld [$dc06], a
 	xor a
 	ret
@@ -3930,7 +3930,7 @@ Function1156cc:
 	jp Function11425c
 
 .asm_115716
-	ld hl, wCurrMapCallbackCount
+	ld hl, wCurMapCallbackCount
 	ld a, [hli]
 	cpl
 	ld e, a
@@ -4171,9 +4171,9 @@ Function11581e:
 	ld b, [hl]
 	inc hl
 	push hl
-	ld a, [wCurrMapCallbackCount]
+	ld a, [wCurMapCallbackCount]
 	ld l, a
-	ld a, [wCurrMapCallbacksPointer]
+	ld a, [wCurMapCallbacksPointer]
 	ld h, a
 	cp b
 	jr c, .asm_1158bb
@@ -4193,14 +4193,14 @@ Function11581e:
 	inc bc
 	add hl, bc
 	ld a, l
-	ld [wCurrMapCallbackCount], a
+	ld [wCurMapCallbackCount], a
 	ld a, h
-	ld [wCurrMapCallbacksPointer], a
+	ld [wCurMapCallbacksPointer], a
 	pop bc
 	pop hl
-	ld hl, wCurrMapSceneScriptCount
+	ld hl, wCurMapSceneScriptCount
 	ld a, [hli]
-	ld [wCurrMapBGEventCount], a
+	ld [wCurMapBGEventCount], a
 	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
@@ -4208,8 +4208,8 @@ Function11581e:
 	ld d, [hl]
 	ld hl, wPartyMon5Speed
 	call Function115d6a
-	ld hl, wCurrMapSceneScriptCount
-	ld a, [wCurrMapBGEventCount]
+	ld hl, wCurMapSceneScriptCount
+	ld a, [wCurMapBGEventCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -4519,7 +4519,7 @@ Function1159fb:
 	jp Function11425c
 
 .asm_115a45
-	ld hl, wCurrMapCallbackCount
+	ld hl, wCurMapCallbackCount
 	ld a, [hli]
 	cpl
 	ld e, a
@@ -4726,9 +4726,9 @@ Function115b00:
 	ld b, [hl]
 	inc hl
 	push hl
-	ld a, [wCurrMapCallbackCount]
+	ld a, [wCurMapCallbackCount]
 	ld l, a
-	ld a, [wCurrMapCallbacksPointer]
+	ld a, [wCurMapCallbacksPointer]
 	ld h, a
 	cp b
 	jr c, .asm_115b36
@@ -4748,14 +4748,14 @@ Function115b00:
 	inc bc
 	add hl, bc
 	ld a, l
-	ld [wCurrMapCallbackCount], a
+	ld [wCurMapCallbackCount], a
 	ld a, h
-	ld [wCurrMapCallbacksPointer], a
+	ld [wCurMapCallbacksPointer], a
 	pop bc
 	pop hl
-	ld hl, wCurrMapSceneScriptCount
+	ld hl, wCurMapSceneScriptCount
 	ld a, [hli]
-	ld [wCurrMapBGEventCount], a
+	ld [wCurMapBGEventCount], a
 	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
@@ -4763,8 +4763,8 @@ Function115b00:
 	ld d, [hl]
 	ld hl, $dc26
 	call Function115d6a
-	ld hl, wCurrMapSceneScriptCount
-	ld a, [wCurrMapBGEventCount]
+	ld hl, wCurMapSceneScriptCount
+	ld a, [wCurMapBGEventCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -5130,7 +5130,7 @@ Function115d6a:
 
 Function115d77:
 	push bc
-	ld bc, wCurrMapBGEventCount
+	ld bc, wCurMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
