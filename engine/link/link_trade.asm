@@ -250,7 +250,7 @@ LinkTradeMenu:
 	ret
 
 .UpdateCursor:
-	ld hl, wCursorCurTile
+	ld hl, wCursorCurrentTile
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -320,9 +320,9 @@ LinkTradeMenu:
 	pop hl
 .cursor_already_there
 	ld a, l
-	ld [wCursorCurTile], a
+	ld [wCursorCurrentTile], a
 	ld a, h
-	ld [wCursorCurTile + 1], a
+	ld [wCursorCurrentTile + 1], a
 	ret
 
 .TryAnims:

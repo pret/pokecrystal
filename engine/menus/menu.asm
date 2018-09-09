@@ -208,8 +208,8 @@ Init2DMenuCursorPosition:
 	ld [wMenuCursorY], a
 	xor a
 	ld [wCursorOffCharacter], a
-	ld [wCursorCurTile], a
-	ld [wCursorCurTile + 1], a
+	ld [wCursorCurrentTile], a
+	ld [wCursorCurrentTile + 1], a
 	ret
 
 .InitFlags_a:
@@ -493,7 +493,7 @@ _2DMenuInterpretJoypad:
 	ret
 
 Move2DMenuCursor:
-	ld hl, wCursorCurTile
+	ld hl, wCursorCurrentTile
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -549,9 +549,9 @@ Place2DMenuCursor:
 
 .cursor_on
 	ld a, l
-	ld [wCursorCurTile], a
+	ld [wCursorCurrentTile], a
 	ld a, h
-	ld [wCursorCurTile + 1], a
+	ld [wCursorCurrentTile + 1], a
 	ret
 
 _PushWindow::
@@ -797,7 +797,7 @@ _InitVerticalMenuCursor::
 ; wMenuCursorX
 	ld a, 1
 	ld [hli], a
-; wCursorOffCharacter, wCursorCurTile
+; wCursorOffCharacter, wCursorCurrentTile
 	xor a
 	ld [hli], a
 	ld [hli], a

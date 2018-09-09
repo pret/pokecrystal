@@ -322,8 +322,8 @@ ScrollingMenu_InitFlags:
 	ld a, 1
 	ld [wMenuCursorX], a
 	xor a
-	ld [wCursorCurTile], a
-	ld [wCursorCurTile + 1], a
+	ld [wCursorCurrentTile], a
+	ld [wCursorCurrentTile + 1], a
 	ld [wCursorOffCharacter], a
 	ret
 

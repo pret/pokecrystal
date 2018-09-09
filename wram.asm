@@ -1494,7 +1494,7 @@ w2DMenuDataEnd::
 wMenuCursorY:: db ; cfa9
 wMenuCursorX:: db ; cfaa
 wCursorOffCharacter:: db ; cfab
-wCursorCurTile:: dw ; cfac
+wCursorCurrentTile:: dw ; cfac
 
 	ds 3
 
