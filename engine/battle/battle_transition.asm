@@ -713,27 +713,25 @@ INCLUDE "gfx/overworld/trainer_battle_nite.pal"
 	ret
 
 PokeBallTransition:
-transition_row: MACRO
-	db HIGH(\1), LOW(\1)
-ENDM
+; 16x16 overlay of a Poke Ball
 pusho
 opt b.X ; . = 0, X = 1
-	transition_row %......XXXX......
-	transition_row %....XXXXXXXX....
-	transition_row %..XXXX....XXXX..
-	transition_row %..XX........XX..
-	transition_row %.XX..........XX.
-	transition_row %.XX...XXXX...XX.
-	transition_row %XX...XX..XX...XX
-	transition_row %XXXXXX....XXXXXX
-	transition_row %XXXXXX....XXXXXX
-	transition_row %XX...XX..XX...XX
-	transition_row %.XX...XXXX...XX.
-	transition_row %.XX..........XX.
-	transition_row %..XX........XX..
-	transition_row %..XXXX....XXXX..
-	transition_row %....XXXXXXXX....
-	transition_row %......XXXX......
+	bigdw %......XXXX......
+	bigdw %....XXXXXXXX....
+	bigdw %..XXXX....XXXX..
+	bigdw %..XX........XX..
+	bigdw %.XX..........XX.
+	bigdw %.XX...XXXX...XX.
+	bigdw %XX...XX..XX...XX
+	bigdw %XXXXXX....XXXXXX
+	bigdw %XXXXXX....XXXXXX
+	bigdw %XX...XX..XX...XX
+	bigdw %.XX...XXXX...XX.
+	bigdw %.XX..........XX.
+	bigdw %..XX........XX..
+	bigdw %..XXXX....XXXX..
+	bigdw %....XXXXXXXX....
+	bigdw %......XXXX......
 popo
 
 WipeLYOverrides:

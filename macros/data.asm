@@ -64,7 +64,7 @@ dd: MACRO ; four-byte (big-endian)
 ENDM
 
 bigdw: MACRO ; big-endian word
-	dx 2, \1
+	dx 2, \1 ; db HIGH(\1), LOW(\1)
 ENDM
 
 dba: MACRO ; dbw bank, address
