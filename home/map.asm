@@ -489,9 +489,9 @@ GetMapConnection::
 ReadMapSceneScripts::
 	ld a, [hli] ; scene script count
 	ld c, a
-	ld [wCurMapSceneScriptCount], a ; current map scene script count
+	ld [wCurMapSceneScriptCount], a
 	ld a, l
-	ld [wCurMapSceneScriptsPointer], a ; map scene script pointer
+	ld [wCurMapSceneScriptsPointer], a
 	ld a, h
 	ld [wCurMapSceneScriptsPointer + 1], a
 	ld a, c
