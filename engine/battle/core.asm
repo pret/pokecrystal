@@ -2371,8 +2371,8 @@ WinTrainerBattle:
 	jr nz, .skip_heal
 	predef HealParty
 .skip_heal
-	ld a, [wMonStatusFlags]
-	bit 0, a
+	ld a, [wDebugFlags]
+	bit DEBUG_BATTLE_F, a
 	jr nz, .skip_win_loss_text
 	call PrintWinLossText
 
@@ -2921,8 +2921,8 @@ LostBattle:
 	ld c, 40
 	call DelayFrames
 
-	ld a, [wMonStatusFlags]
-	bit 0, a
+	ld a, [wDebugFlags]
+	bit DEBUG_BATTLE_F, a
 	jr nz, .skip_win_loss_text
 	call PrintWinLossText
 .skip_win_loss_text

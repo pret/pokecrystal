@@ -56,9 +56,11 @@ INCLUDE "home/predef.asm"
 INCLUDE "home/window.asm"
 INCLUDE "home/flag.asm"
 
-Unreferenced_Function2ebb::
-	ld a, [wMonStatusFlags]
-	bit 1, a
+Unreferenced_CheckBPressedDebug::
+; Used in debug ROMs to walk through walls and avoid encounters.
+
+	ld a, [wDebugFlags]
+	bit DEBUG_FIELD_F, a
 	ret z
 
 	ldh a, [hJoyDown]
@@ -74,10 +76,10 @@ xor_a_dec_a::
 	dec a
 	ret
 
-Unreferenced_Function2ecb::
+Unreferenced_CheckFieldDebug::
 	push hl
-	ld hl, wMonStatusFlags
-	bit 1, [hl]
+	ld hl, wDebugFlags
+	bit DEBUG_FIELD_F, [hl]
 	pop hl
 	ret
 

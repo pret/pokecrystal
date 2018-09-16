@@ -1,6 +1,11 @@
 ; wInputType:: ; c2c7
 AUTO_INPUT EQU $ff
 
+; wDebugFlags:: ; c2cc
+	const_def
+	const DEBUG_BATTLE_F
+	const DEBUG_FIELD_F
+
 ; wCurDexMode:: ; c7d4
 	const_def
 	const DEXMODE_NEW
