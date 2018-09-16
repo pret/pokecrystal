@@ -123,7 +123,7 @@ LoadMansionPalette:
 	call FarCopyWRAM
 	ld a, BANK(wBGPals1)
 	ld de, wBGPals1 palette PAL_BG_WATER
-	ld hl, MansionPalette1 palette PAL_BG_ROOF
+	ld hl, MansionPalette1 palette 6
 	ld bc, 1 palettes
 	call FarCopyWRAM
 	ld a, BANK(wBGPals1)
