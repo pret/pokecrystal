@@ -141,7 +141,7 @@ wAutoInputAddress:: dw ; c2c8
 wAutoInputBank::    db ; c2ca
 wAutoInputLength::  db ; c2cb
 
-wMonStatusFlags:: db
+wDebugFlags:: db
 wGameLogicPaused:: db ; c2cd
 wSpriteUpdatesEnabled:: db
 
