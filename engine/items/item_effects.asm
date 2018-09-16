@@ -584,7 +584,7 @@ PokeBallEffect:
 	push de
 	xor a ; PARTYMON
 	ld [wMonType], a
-	ld b, 0
+	ld b, NAME_MON
 	farcall NamingScreen
 
 	call RotateThreePalettesRight
@@ -637,7 +637,7 @@ PokeBallEffect:
 	ld a, BOXMON
 	ld [wMonType], a
 	ld de, wMonOrItemNameBuffer
-	ld b, $0
+	ld b, NAME_MON
 	farcall NamingScreen
 
 	ld a, BANK(sBoxMonNicknames)
