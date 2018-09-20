@@ -42,8 +42,10 @@ all: crystal
 crystal: pokecrystal.gbc
 crystal11: pokecrystal11.gbc
 
+# TODO: clean bitmask.asm and frames.asm for all mons except unown
 clean:
 	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
+	find . \( -iname '*.1bpp' -o -iname '*.2bpp' -o -iname '*.lz' -o -iname '*.gbcpal' -o -iname '*.dimensions' -o -iname '*.animated.tilemap' \) -exec rm {} +
 	$(MAKE) clean -C tools/
 
 compare: $(roms)
