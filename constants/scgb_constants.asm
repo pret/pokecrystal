@@ -115,8 +115,8 @@ SCGB_RAM EQU -1
 	const PREDEFPAL_GS_TITLE_SCREEN_2
 	const PREDEFPAL_GS_TITLE_SCREEN_3
 	const PREDEFPAL_UNOWN_PUZZLE
-	const PREDEFPAL_4D
-	const PREDEFPAL_GAMEFREAK_LOGO
+	const PREDEFPAL_GAMEFREAK_LOGO_OB
+	const PREDEFPAL_GAMEFREAK_LOGO_BG
 
 ; SGB system command codes
 ; http://gbdev.gg8.se/wiki/articles/SGB_Functions#SGB_System_Command_Table
