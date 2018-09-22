@@ -747,7 +747,7 @@ NamePlayer:
 	ret
 
 .NewName:
-	ld b, 1
+	ld b, NAME_PLAYER
 	ld de, wPlayerName
 	farcall NamingScreen
 

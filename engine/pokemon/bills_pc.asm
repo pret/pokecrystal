@@ -2454,7 +2454,7 @@ BillsPC_ChangeBoxSubmenu:
 	ret
 
 .Name:
-	ld b, $4 ; box
+	ld b, NAME_BOX
 	ld de, wd002
 	farcall NamingScreen
 	call ClearTileMap

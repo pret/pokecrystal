@@ -32,7 +32,7 @@ _NameRater:
 	ld [wNamedObjectIndexBuffer], a
 	ld [wCurSpecies], a
 	call GetBaseData
-	ld b, 0
+	ld b, NAME_MON
 	ld de, wStringBuffer2
 	farcall _NamingScreen
 ; If the new name is empty, treat it as unchanged.

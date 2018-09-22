@@ -28,7 +28,7 @@ LoadSGBLayout:
 	dw .SGB_StatsScreenHPPals
 	dw .SGB_Pokedex
 	dw .SGB_SlotMachine
-	dw .SGB06
+	dw .SGB_BetaTitleScreen
 	dw .SGB_GSIntro
 	dw .SGB_Diploma
 	dw .SGB_MapPals
@@ -40,8 +40,8 @@ LoadSGBLayout:
 	dw .SGB_BetaPikachuMinigame
 	dw .SGB_PokedexSearchOption
 	dw .SGB_BetaPoker
-	dw .SGB12
-	dw .SGB13
+	dw .SGB_Pokepic
+	dw .SGB_MagnetTrain
 	dw .SGB_PackPals
 	dw .SGB_TrainerCard
 	dw .SGB_PokedexUnownMode
@@ -283,9 +283,9 @@ LoadSGBLayout:
 	ld de, BlkPacket_SlotMachine
 	ret
 
-.SGB06:
-	ld hl, PalPacket_SCGB_06
-	ld de, BlkPacket_SCGB_06
+.SGB_BetaTitleScreen:
+	ld hl, PalPacket_BetaTitleScreen
+	ld de, BlkPacket_BetaTitleScreen
 	ret
 
 .SGB_Diploma:
@@ -321,9 +321,9 @@ endr
 	ld [wSGBPredef], a
 	ret
 
-.SGB13:
-	ld hl, PalPacket_SCGB_13
-	ld de, BlkPacket_SCGB_13
+.SGB_MagnetTrain:
+	ld hl, PalPacket_MagnetTrain
+	ld de, BlkPacket_MagnetTrain
 	ret
 
 .SGB_BetaPikachuMinigame:
@@ -408,7 +408,7 @@ endr
 	ld de, BlkPacket_9a86
 	ret
 
-.SGB12:
+.SGB_Pokepic:
 	ld hl, PalPacket_9bd6
 	ld de, wSGBPals
 	ld bc, PALPACKET_LENGTH
@@ -535,7 +535,7 @@ endr
 	cp DUNGEON
 	jr z, .cave
 	cp ENVIRONMENT_5
-	jr z, .perm5
+	jr z, .env5
 	cp GATE
 	jr z, .gate
 	ld a, [wMapGroup]
@@ -554,7 +554,7 @@ endr
 	ld a, PREDEFPAL_DUNGEONS
 	ret
 
-.perm5
+.env5
 	ld a, PREDEFPAL_VERMILION
 	ret
 

@@ -36,7 +36,7 @@ LoadSGBLayoutCGB:
 	dw _CGB_StatsScreenHPPals
 	dw _CGB_Pokedex
 	dw _CGB_SlotMachine
-	dw _CGB06
+	dw _CGB_BetaTitleScreen
 	dw _CGB_GSIntro
 	dw _CGB_Diploma
 	dw _CGB_MapPals
@@ -47,9 +47,9 @@ LoadSGBLayoutCGB:
 	dw _CGB_MoveList
 	dw _CGB_BetaPikachuMinigame
 	dw _CGB_PokedexSearchOption
-	dw _CGB11
+	dw _CGB_BetaPoker
 	dw _CGB_Pokepic
-	dw _CGB13
+	dw _CGB_MagnetTrain
 	dw _CGB_PackPals
 	dw _CGB_TrainerCard
 	dw _CGB_PokedexUnownMode
@@ -419,8 +419,8 @@ _CGB_SlotMachine:
 	ldh [hCGBPalUpdate], a
 	ret
 
-_CGB06:
-	ld hl, PalPacket_SCGB_06 + 1
+_CGB_BetaTitleScreen:
+	ld hl, PalPacket_BetaTitleScreen + 1
 	call CopyFourPalettes
 	call WipeAttrMap
 	ld de, wOBPals1
@@ -504,7 +504,7 @@ _CGB_GSIntro:
 	call WipeAttrMap
 	ret
 
-_CGB11:
+_CGB_BetaPoker:
 	ld hl, BetaPokerPals
 	ld de, wBGPals1
 	ld bc, 5 palettes
@@ -863,8 +863,8 @@ _CGB_Pokepic:
 	call ApplyAttrMap
 	ret
 
-_CGB13:
-	ld hl, PalPacket_SCGB_13 + 1
+_CGB_MagnetTrain:
+	ld hl, PalPacket_MagnetTrain + 1
 	call CopyFourPalettes
 	call WipeAttrMap
 	hlcoord 0, 4, wAttrMap

@@ -61,7 +61,7 @@ NamingScreen:
 
 .GetNamingScreenSetup:
 	ld a, [wNamingScreenType]
-	and 7
+	maskbits NUM_NAME_TYPES
 	ld e, a
 	ld d, 0
 	ld hl, .Jumptable
@@ -73,6 +73,7 @@ NamingScreen:
 	jp hl
 
 .Jumptable:
+; entries correspond to NAME_* constants
 	dw .Pokemon
 	dw .Player
 	dw .Rival

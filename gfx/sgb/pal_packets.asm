@@ -19,7 +19,7 @@ ENDM
 PalPacket_GSTitleScreen:
 	sgb_pal_set GS_TITLE_SCREEN_0, GS_TITLE_SCREEN_1, GS_TITLE_SCREEN_2, GS_TITLE_SCREEN_3
 
-PalPacket_SCGB_13:
+PalPacket_MagnetTrain:
 	sgb_pal_set BETA_SHINY_GREENMON, CGB_BADGE, RB_BROWNMON, 00
 
 PalPacket_BetaPoker:
@@ -67,7 +67,7 @@ UnreferencedPalPacket_9c86:
 PalPacket_SlotMachine:
 	sgb_pal_set SLOT_MACHINE_0, SLOT_MACHINE_1, SLOT_MACHINE_2, SLOT_MACHINE_3
 
-PalPacket_SCGB_06:
+PalPacket_BetaTitleScreen:
 	sgb_pal_set BETA_LOGO_1, BETA_LOGO_2, DIPLOMA, RB_PURPLEMON
 
 PalPacket_Diploma:
