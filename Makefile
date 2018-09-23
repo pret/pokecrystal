@@ -33,7 +33,7 @@ crystal11_obj := $(crystal_obj:.o=11.o)
 ### Build targets
 
 .SUFFIXES:
-.PHONY: all crystal crystal11 clean compare tools
+.PHONY: all crystal crystal11 clean compare tools tidy
 .SECONDEXPANSION:
 .PRECIOUS:
 .SECONDARY:
@@ -42,10 +42,14 @@ all: crystal
 crystal: pokecrystal.gbc
 crystal11: pokecrystal11.gbc
 
-# TODO: clean bitmask.asm and frames.asm for all mons except unown
 clean:
 	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
-	find . \( -iname '*.1bpp' -o -iname '*.2bpp' -o -iname '*.lz' -o -iname '*.gbcpal' -o -iname '*.dimensions' -o -iname '*.animated.tilemap' \) -exec rm {} +
+	find gfx \( -name "*.[12]bpp" -o -name "*.lz" -o -name "*.gbcpal" \) -delete
+	find gfx/pokemon -mindepth 1 ! -path "gfx/pokemon/unown/*" \( -name "bitmask.asm" -o -name "frames.asm" -o -name "front.animated.tilemap" -o -name "front.dimensions" \) -delete
+	$(MAKE) clean -C tools/
+
+tidy:
+	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
 	$(MAKE) clean -C tools/
 
 compare: $(roms)
