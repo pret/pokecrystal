@@ -14,7 +14,7 @@
 *.awk text
 *.c text
 *.h text
-*.MD text
+*.md text
 *.py text
 *.sh text
 *.sha1 text
