@@ -1,16 +1,16 @@
-CheckTrainerBattle2::
+CheckTrainerBattle::
 	ldh a, [hROMBank]
 	push af
 
 	call SwitchToMapScriptsBank
-	call CheckTrainerBattle
+	call _CheckTrainerBattle
 
 	pop bc
 	ld a, b
 	rst Bankswitch
 	ret
 
-CheckTrainerBattle::
+_CheckTrainerBattle::
 ; Check if any trainer on the map sees the player and wants to battle.
 
 ; Skip the player object.
@@ -35,7 +35,7 @@ CheckTrainerBattle::
 	add hl, de
 	ld a, [hl]
 	and $f
-	cp $2
+	cp OBJECTTYPE_TRAINER
 	jr nz, .next
 
 ; Is visible on the map

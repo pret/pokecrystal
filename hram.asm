@@ -126,9 +126,7 @@ hWY::            db ; ffd2
 hTilesPerCycle:: db ; ffd3
 hBGMapMode::     db ; ffd4
 hBGMapThird::    db ; ffd5
-hBGMapAddress::  db ; ffd6
-
-	ds 1
+hBGMapAddress::  dw ; ffd6
 
 hOAMUpdate:: db ; ffd8
 
