@@ -18,6 +18,8 @@
 *.sav
 *.rtc
 *.sn*
+*.sa*
+*.sg1
 
 # rgbds extras
 *.map
