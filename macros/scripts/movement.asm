@@ -1,5 +1,5 @@
 ; MovementPointers indexes (see engine/overworld/movement.asm)
-	enum_start
+	enum_start 0, +4
 
 ; Directional movements
 
@@ -8,98 +8,72 @@ turn_head: MACRO
 	db movement_turn_head | \1
 ENDM
 
-__enum__ = __enum__ + 3
-
 	enum movement_turn_step ; $04
 turn_step: MACRO
 	db movement_turn_step | \1
 ENDM
-
-__enum__ = __enum__ + 3
 
 	enum movement_slow_step ; $08
 slow_step: MACRO
 	db movement_slow_step | \1
 ENDM
 
-__enum__ = __enum__ + 3
-
 	enum movement_step ; $0c
 step: MACRO
 	db movement_step | \1
 ENDM
-
-__enum__ = __enum__ + 3
 
 	enum movement_big_step ; $10
 big_step: MACRO
 	db movement_big_step | \1
 ENDM
 
-__enum__ = __enum__ + 3
-
 	enum movement_slow_slide_step ; $14
 slow_slide_step: MACRO
 	db movement_slow_slide_step | \1
 ENDM
-
-__enum__ = __enum__ + 3
 
 	enum movement_slide_step ; $18
 slide_step: MACRO
 	db movement_slide_step | \1
 ENDM
 
-__enum__ = __enum__ + 3
-
 	enum movement_fast_slide_step ; $1c
 fast_slide_step: MACRO
 	db movement_fast_slide_step | \1
 ENDM
-
-__enum__ = __enum__ + 3
 
 	enum movement_turn_away ; $20
 turn_away: MACRO
 	db movement_turn_away | \1
 ENDM
 
-__enum__ = __enum__ + 3
-
 	enum movement_turn_in ; $24
 turn_in: MACRO
 	db movement_turn_in | \1
 ENDM
-
-__enum__ = __enum__ + 3
 
 	enum movement_turn_waterfall ; $28
 turn_waterfall: MACRO
 	db movement_turn_waterfall | \1
 ENDM
 
-__enum__ = __enum__ + 3
-
 	enum movement_slow_jump_step ; $2c
 slow_jump_step: MACRO
 	db movement_slow_jump_step | \1
 ENDM
-
-__enum__ = __enum__ + 3
 
 	enum movement_jump_step ; $30
 jump_step: MACRO
 	db movement_jump_step | \1
 ENDM
 
-__enum__ = __enum__ + 3
-
 	enum movement_fast_jump_step ; $34
 fast_jump_step: MACRO
 	db movement_fast_jump_step | \1
 ENDM
 
-__enum__ = __enum__ + 3
+__enumdir__ = +1
 
 ; Control
 	enum movement_remove_sliding ; $38
