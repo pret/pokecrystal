@@ -248,7 +248,7 @@ PlayerEvents:
 
 	call Dummy_CheckScriptFlags3Bit5 ; This is a waste of time
 
-	call CheckTrainerBattle3
+	call CheckTrainerBattle_GetPlayerEvent
 	jr c, .ok
 
 	call CheckTileEvent
@@ -289,10 +289,10 @@ PlayerEvents:
 	scf
 	ret
 
-CheckTrainerBattle3:
+CheckTrainerBattle_GetPlayerEvent:
 	nop
 	nop
-	call CheckTrainerBattle2
+	call CheckTrainerBattle
 	jr nc, .nope
 
 	ld a, PLAYEREVENT_SEENBYTRAINER

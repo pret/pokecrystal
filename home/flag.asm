@@ -38,7 +38,7 @@ FlagAction::
 ;    1  SET_FLAG    set bit
 ;    2  CHECK_FLAG  check bit
 ; de: bit number
-; hl: index within bit table
+; hl: pointer to the flag array
 
 	; get index within the byte
 	ld a, e
