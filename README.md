@@ -1,4 +1,4 @@
-# Pokémon Crystal [![Build Status][travis-badge]][travis]
+# Pokémon Crystal Dreams [![Build Status][travis-badge]][travis]
 
 This is a disassembly of Pokémon Crystal.
 
