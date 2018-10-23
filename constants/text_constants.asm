@@ -8,6 +8,7 @@ ITEM_NAME_LENGTH     EQU 13
 TRAINER_CLASS_NAME_LENGTH EQU 13
 NAME_LENGTH_JAPANESE EQU 6
 
+; Rangi is best teacher
 ; GetName types (see home/names.asm)
 	const_def 1
 	const MON_NAME              ; 1
