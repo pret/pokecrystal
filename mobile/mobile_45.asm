@@ -5534,8 +5534,7 @@ Function1167a6:
 	ld hl, wc312
 	inc [hl]
 
-asm_1167af
-.asm_1167af
+asm_1167af:
 	ld a, [wc311]
 	cp $ff
 	ret z
@@ -5562,7 +5561,7 @@ asm_1167af
 	jr nz, .asm_1167e3
 	xor a
 	ld [wc312], a
-	jr .asm_1167af
+	jr asm_1167af
 
 .asm_1167dc
 	ld a, $ff

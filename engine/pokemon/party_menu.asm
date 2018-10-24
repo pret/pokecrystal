@@ -84,7 +84,7 @@ PlacePartyNicknames:
 	and a
 	jr z, .end
 	ld c, a
-	ld b, $0
+	ld b, 0
 .loop
 	push bc
 	push hl
@@ -119,7 +119,7 @@ PlacePartyHPBar:
 	and a
 	ret z
 	ld c, a
-	ld b, $0
+	ld b, 0
 	hlcoord 11, 2
 .loop
 	push bc
@@ -185,7 +185,7 @@ PlacePartyMenuHPDigits:
 	and a
 	ret z
 	ld c, a
-	ld b, $0
+	ld b, 0
 	hlcoord 13, 1
 .loop
 	push bc

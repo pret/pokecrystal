@@ -1183,7 +1183,7 @@ Function10895e:
 
 Function108963:
 	ld de, vTiles2 tile $31
-asm_108966
+asm_108966:
 	call DelayFrame
 	ld hl, vTiles2
 	lb bc, $a, $31 ; $a is the bank of ?????
