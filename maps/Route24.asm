@@ -13,7 +13,7 @@ Route24RocketScript:
 	writetext Route24RocketSeenText
 	waitbutton
 	closetext
-	winlosstext Route24RocketBeatenText, -1
+	winlosstext UnknownText_0x1add67, 0
 	loadtrainer GRUNTM, GRUNTM_31
 	startbattle
 	dontrestartmapmusic
