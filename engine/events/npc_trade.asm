@@ -432,12 +432,12 @@ TradeTexts:
 
 ConnectLinkCableText:
 	; OK, connect the Game Link Cable.
-	text_jump UnknownText_0x1bd407
+	text_far UnknownText_0x1bd407
 	db "@"
 
 TradedForText:
 	; traded givemon for getmon
-	text_jump UnknownText_0x1bd429
+	text_far UnknownText_0x1bd429
 	start_asm
 	ld de, MUSIC_NONE
 	call PlayMusic
@@ -448,93 +448,93 @@ TradedForText:
 .done
 	; sound_dex_fanfare_80_109
 	; interpret_data
-	text_jump UnknownText_0x1bd445
+	text_far UnknownText_0x1bd445
 	db "@"
 
 TradeIntroText1:
 	; I collect #MON. Do you have @ ? Want to trade it for my @ ?
-	text_jump UnknownText_0x1bd449
+	text_far UnknownText_0x1bd449
 	db "@"
 
 TradeCancelText1:
 	; You don't want to trade? Aww…
-	text_jump UnknownText_0x1bd48c
+	text_far UnknownText_0x1bd48c
 	db "@"
 
 TradeWrongText1:
 	; Huh? That's not @ .  What a letdown…
-	text_jump UnknownText_0x1bd4aa
+	text_far UnknownText_0x1bd4aa
 	db "@"
 
 TradeCompleteText1:
 	; Yay! I got myself @ ! Thanks!
-	text_jump UnknownText_0x1bd4d2
+	text_far UnknownText_0x1bd4d2
 	db "@"
 
 TradeAfterText1:
 	; Hi, how's my old @  doing?
-	text_jump UnknownText_0x1bd4f4
+	text_far UnknownText_0x1bd4f4
 	db "@"
 
 TradeIntroText2:
 TradeIntroText3:
 	; Hi, I'm looking for this #MON. If you have @ , would you trade it for my @ ?
-	text_jump UnknownText_0x1bd512
+	text_far UnknownText_0x1bd512
 	db "@"
 
 TradeCancelText2:
 TradeCancelText3:
 	; You don't have one either? Gee, that's really disappointing…
-	text_jump UnknownText_0x1bd565
+	text_far UnknownText_0x1bd565
 	db "@"
 
 TradeWrongText2:
 TradeWrongText3:
 	; You don't have @ ? That's too bad, then.
-	text_jump UnknownText_0x1bd5a1
+	text_far UnknownText_0x1bd5a1
 	db "@"
 
 TradeCompleteText2:
 	; Great! Thank you! I finally got @ .
-	text_jump UnknownText_0x1bd5cc
+	text_far UnknownText_0x1bd5cc
 	db "@"
 
 TradeAfterText2:
 	; Hi! The @ you traded me is doing great!
-	text_jump UnknownText_0x1bd5f4
+	text_far UnknownText_0x1bd5f4
 	db "@"
 
 TradeIntroText4:
 	; 's cute, but I don't have it. Do you have @ ? Want to trade it for my @ ?
-	text_jump UnknownText_0x1bd621
+	text_far UnknownText_0x1bd621
 	db "@"
 
 TradeCancelText4:
 	; You don't want to trade? Oh, darn…
-	text_jump UnknownText_0x1bd673
+	text_far UnknownText_0x1bd673
 	db "@"
 
 TradeWrongText4:
 	; That's not @ . Please trade with me if you get one.
-	text_jump UnknownText_0x1bd696
+	text_far UnknownText_0x1bd696
 	db "@"
 
 TradeCompleteText4:
 	; Wow! Thank you! I always wanted @ !
-	text_jump UnknownText_0x1bd6cd
+	text_far UnknownText_0x1bd6cd
 	db "@"
 
 TradeAfterText4:
 	; How is that @  I traded you doing? Your @ 's so cute!
-	text_jump UnknownText_0x1bd6f5
+	text_far UnknownText_0x1bd6f5
 	db "@"
 
 TradeCompleteText3:
 	; Uh? What happened?
-	text_jump UnknownText_0x1bd731
+	text_far UnknownText_0x1bd731
 	db "@"
 
 TradeAfterText3:
 	; Trading is so odd… I still have a lot to learn about it.
-	text_jump UnknownText_0x1bd745
+	text_far UnknownText_0x1bd745
 	db "@"

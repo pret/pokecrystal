@@ -6,7 +6,7 @@ DisplayUsedMoveText:
 
 UsedMoveText:
 ; this is a stream of text and asm from 105db9 to 105ef6
-	text_jump _ActorNameText
+	text_far _ActorNameText
 	start_asm
 	ldh a, [hBattleTurn]
 	and a
@@ -58,12 +58,12 @@ UsedMoveText:
 	ret
 
 UsedMove1Text:
-	text_jump _UsedMove1Text
+	text_far _UsedMove1Text
 	start_asm
 	jr UsedMoveText_CheckObedience
 
 UsedMove2Text:
-	text_jump _UsedMove2Text
+	text_far _UsedMove2Text
 	start_asm
 UsedMoveText_CheckObedience:
 ; check obedience
@@ -75,14 +75,14 @@ UsedMoveText_CheckObedience:
 	ret
 
 .UsedInsteadText:
-	text_jump _UsedInsteadText
+	text_far _UsedInsteadText
 	start_asm
 .GetMoveNameText:
 	ld hl, MoveNameText
 	ret
 
 MoveNameText:
-	text_jump _MoveNameText
+	text_far _MoveNameText
 	start_asm
 ; get start address
 	ld hl, .endusedmovetexts
@@ -115,19 +115,19 @@ MoveNameText:
 	dw EndUsedMove5Text
 
 EndUsedMove1Text:
-	text_jump _EndUsedMove1Text
+	text_far _EndUsedMove1Text
 	db "@"
 EndUsedMove2Text:
-	text_jump _EndUsedMove2Text
+	text_far _EndUsedMove2Text
 	db "@"
 EndUsedMove3Text:
-	text_jump _EndUsedMove3Text
+	text_far _EndUsedMove3Text
 	db "@"
 EndUsedMove4Text:
-	text_jump _EndUsedMove4Text
+	text_far _EndUsedMove4Text
 	db "@"
 EndUsedMove5Text:
-	text_jump _EndUsedMove5Text
+	text_far _EndUsedMove5Text
 	db "@"
 
 GetMoveGrammar:

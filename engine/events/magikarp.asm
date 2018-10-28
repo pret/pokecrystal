@@ -73,7 +73,7 @@ CheckMagikarpLength:
 
 .MeasureItText:
 	; Let me measure that MAGIKARP. …Hm, it measures @ .
-	text_jump UnknownText_0x1c1203
+	text_far UnknownText_0x1c1203
 	db "@"
 
 Magikarp_LoadFeetInchesChars:
@@ -313,5 +313,5 @@ MagikarpHouseSign:
 
 .CurrentRecordtext:
 	; "CURRENT RECORD"
-	text_jump UnknownText_0x1c123a
+	text_far UnknownText_0x1c123a
 	db "@"

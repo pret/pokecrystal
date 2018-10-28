@@ -703,11 +703,11 @@ OakSpeech:
 	ret
 
 OakText1:
-	text_jump _OakText1
+	text_far _OakText1
 	db "@"
 
 OakText2:
-	text_jump _OakText2
+	text_far _OakText2
 	start_asm
 	ld a, WOOPER
 	call PlayMonCry
@@ -716,23 +716,23 @@ OakText2:
 	ret
 
 OakText3:
-	text_jump _OakText3
+	text_far _OakText3
 	db "@"
 
 OakText4:
-	text_jump _OakText4
+	text_far _OakText4
 	db "@"
 
 OakText5:
-	text_jump _OakText5
+	text_far _OakText5
 	db "@"
 
 OakText6:
-	text_jump _OakText6
+	text_far _OakText6
 	db "@"
 
 OakText7:
-	text_jump _OakText7
+	text_far _OakText7
 	db "@"
 
 NamePlayer:

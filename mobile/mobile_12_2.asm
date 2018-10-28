@@ -241,7 +241,7 @@ Function4a94e:
 
 UnknownText_0x4a9be:
 	; Pick three #MON for battle.
-	text_jump UnknownText_0x1c51d7
+	text_far UnknownText_0x1c51d7
 	db "@"
 
 Function4a9c3:
@@ -294,7 +294,7 @@ Function4a9d7:
 
 UnknownText_0x4aa1d:
 	; , @  and @ . Use these three?
-	text_jump UnknownText_0x1c51f4
+	text_far UnknownText_0x1c51f4
 	db "@"
 
 Function4aa22:
@@ -794,7 +794,7 @@ Function4ad17:
 
 UnknownText_0x4ad51:
 	; Only three #MON may enter.
-	text_jump UnknownText_0x1c521c
+	text_far UnknownText_0x1c521c
 	db "@"
 
 Function4ad56:

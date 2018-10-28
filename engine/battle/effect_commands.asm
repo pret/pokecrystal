@@ -4542,7 +4542,7 @@ BattleCommand_StatUpMessage:
 	jp BattleTextBox
 
 .stat
-	text_jump UnknownText_0x1c0cc6
+	text_far UnknownText_0x1c0cc6
 	start_asm
 	ld hl, .up
 	ld a, [wLoweredStat]
@@ -4552,11 +4552,11 @@ BattleCommand_StatUpMessage:
 	ret
 
 .wayup
-	text_jump UnknownText_0x1c0cd0
+	text_far UnknownText_0x1c0cd0
 	db "@"
 
 .up
-	text_jump UnknownText_0x1c0ce0
+	text_far UnknownText_0x1c0ce0
 	db "@"
 
 BattleCommand_StatDownMessage:
@@ -4572,7 +4572,7 @@ BattleCommand_StatDownMessage:
 	jp BattleTextBox
 
 .stat
-	text_jump UnknownText_0x1c0ceb
+	text_far UnknownText_0x1c0ceb
 	start_asm
 	ld hl, .fell
 	ld a, [wLoweredStat]
@@ -4582,10 +4582,10 @@ BattleCommand_StatDownMessage:
 	ret
 
 .sharplyfell
-	text_jump UnknownText_0x1c0cf5
+	text_far UnknownText_0x1c0cf5
 	db "@"
 .fell
-	text_jump UnknownText_0x1c0d06
+	text_far UnknownText_0x1c0d06
 	db "@"
 
 TryLowerStat:
@@ -5636,7 +5636,7 @@ BattleCommand_Charge:
 	jp EndMoveEffect
 
 .UsedText:
-	text_jump UnknownText_0x1c0d0e ; "<USER>"
+	text_far UnknownText_0x1c0d0e ; "<USER>"
 	start_asm
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
@@ -5668,32 +5668,32 @@ BattleCommand_Charge:
 
 .RazorWind:
 ; 'made a whirlwind!'
-	text_jump UnknownText_0x1c0d12
+	text_far UnknownText_0x1c0d12
 	db "@"
 
 .Solarbeam:
 ; 'took in sunlight!'
-	text_jump UnknownText_0x1c0d26
+	text_far UnknownText_0x1c0d26
 	db "@"
 
 .SkullBash:
 ; 'lowered its head!'
-	text_jump UnknownText_0x1c0d3a
+	text_far UnknownText_0x1c0d3a
 	db "@"
 
 .SkyAttack:
 ; 'is glowing!'
-	text_jump UnknownText_0x1c0d4e
+	text_far UnknownText_0x1c0d4e
 	db "@"
 
 .Fly:
 ; 'flew up high!'
-	text_jump UnknownText_0x1c0d5c
+	text_far UnknownText_0x1c0d5c
 	db "@"
 
 .Dig:
 ; 'dug a hole!'
-	text_jump UnknownText_0x1c0d6c
+	text_far UnknownText_0x1c0d6c
 	db "@"
 
 BattleCommand3c:

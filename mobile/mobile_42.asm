@@ -1550,15 +1550,15 @@ Function108bec:
 	ret
 
 .PlayerWillTradeMon:
-	text_jump UnknownText_0x1bc787
+	text_far UnknownText_0x1bc787
 	db "@"
 
 .ForPartnersMon:
-	text_jump UnknownText_0x1bc79d
+	text_far UnknownText_0x1bc79d
 	db "@"
 
 .UnusedTextPlayersMonTrade:
-	text_jump UnknownText_0x1bc7b0
+	text_far UnknownText_0x1bc7b0
 	db "@"
 
 Function108c16:
@@ -1571,7 +1571,7 @@ Function108c16:
 	ret
 
 .TakeGoodCareOfMon:
-	text_jump UnknownText_0x1bc7c3
+	text_far UnknownText_0x1bc7c3
 	db "@"
 
 Function108c2b:
@@ -1584,7 +1584,7 @@ Function108c2b:
 	ret
 
 .PlayersMonTrade:
-	text_jump UnknownText_0x1bc7dd
+	text_far UnknownText_0x1bc7dd
 	db "@"
 
 Function108c40:
@@ -1607,11 +1607,11 @@ Function108c40:
 	ret
 
 .TakeGoodCareOf:
-	text_jump UnknownText_0x1bc7f0
+	text_far UnknownText_0x1bc7f0
 	db "@"
 
 .CameBack:
-	text_jump UnknownText_0x1bc80a
+	text_far UnknownText_0x1bc80a
 	db "@"
 
 Function108c6d:

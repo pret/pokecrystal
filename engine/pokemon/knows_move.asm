@@ -21,5 +21,5 @@ KnowsMove:
 
 .Text_knows:
 	; knows @ .
-	text_jump UnknownText_0x1c5ea8
+	text_far UnknownText_0x1c5ea8
 	db "@"

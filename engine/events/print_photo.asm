@@ -31,25 +31,25 @@ PhotoStudio:
 
 .Text_AskWhichMon:
 	; Which #MON should I photo- graph?
-	text_jump UnknownText_0x1be024
+	text_far UnknownText_0x1be024
 	db "@"
 
 .Text_HoldStill:
 	; All righty. Hold still for a bit.
-	text_jump UnknownText_0x1be047
+	text_far UnknownText_0x1be047
 	db "@"
 
 .Text_Presto:
 	; Presto! All done. Come again, OK?
-	text_jump UnknownText_0x1be06a
+	text_far UnknownText_0x1be06a
 	db "@"
 
 .Text_NoPicture:
 	; Oh, no picture? Come again, OK?
-	text_jump UnknownText_0x1c0000
+	text_far UnknownText_0x1c0000
 	db "@"
 
 .Text_Egg:
 	; An EGG? My talent is worth more…
-	text_jump UnknownText_0x1c0021
+	text_far UnknownText_0x1c0021
 	db "@"

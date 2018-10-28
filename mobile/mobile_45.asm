@@ -7424,11 +7424,11 @@ YesNo117ccc:
 	next "いいえ@"
 
 MobileStadiumEntryText:
-	text_jump _MobileStadiumEntryText
+	text_far _MobileStadiumEntryText
 	db "@"
 
 MobileStadiumSuccessText:
-	text_jump _MobileStadiumSuccessText
+	text_far _MobileStadiumSuccessText
 	db "@"
 
 MobileStudium_JumptableIncrement:

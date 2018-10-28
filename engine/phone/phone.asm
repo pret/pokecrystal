@@ -416,7 +416,7 @@ WrongNumber:
 	end
 .text
 	; Huh? Sorry, wrong number!
-	text_jump UnknownText_0x1c5565
+	text_far UnknownText_0x1c5565
 	db "@"
 
 Script_ReceivePhoneCall:
@@ -541,7 +541,7 @@ HangUp_Beep:
 	ret
 
 UnknownText_0x9032a:
-	text_jump UnknownText_0x1c5580
+	text_far UnknownText_0x1c5580
 	db "@"
 
 HangUp_BoopOn:
@@ -550,7 +550,7 @@ HangUp_BoopOn:
 	ret
 
 UnknownText_0x90336:
-	text_jump UnknownText_0x1c5588
+	text_far UnknownText_0x1c5588
 	db "@"
 
 HangUp_BoopOff:
@@ -710,7 +710,7 @@ UnknownScript_0x90657:
 
 UnknownText_0x9065b:
 	; That number is out of the area.
-	text_jump UnknownText_0x1c558b
+	text_far UnknownText_0x1c558b
 	db "@"
 
 PhoneScript_JustTalkToThem:
@@ -719,7 +719,7 @@ PhoneScript_JustTalkToThem:
 
 UnknownText_0x90664:
 	; Just go talk to that person!
-	text_jump UnknownText_0x1c55ac
+	text_far UnknownText_0x1c55ac
 	db "@"
 
 UnknownScript_0x90669:
@@ -728,5 +728,5 @@ UnknownScript_0x90669:
 
 UnknownText_0x9066d:
 	; Thank you!
-	text_jump UnknownText_0x1c55ca
+	text_far UnknownText_0x1c55ca
 	db "@"

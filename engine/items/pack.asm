@@ -616,7 +616,7 @@ GiveItem:
 	ret
 .Egg:
 	; An EGG can't hold an item.
-	text_jump Text_AnEGGCantHoldAnItem
+	text_far Text_AnEGGCantHoldAnItem
 	db "@"
 
 QuitItemSubmenu:
@@ -1548,58 +1548,58 @@ PC_Mart_BallsPocketMenuHeader:
 
 Text_PackNoItems:
 	; No items.
-	text_jump UnknownText_0x1c0b9a
+	text_far UnknownText_0x1c0b9a
 	db "@"
 
 Text_ThrowAwayHowMany:
 	; Throw away how many?
-	text_jump UnknownText_0x1c0ba5
+	text_far UnknownText_0x1c0ba5
 	db "@"
 
 Text_ConfirmThrowAway:
 	; Throw away @ @ (S)?
-	text_jump UnknownText_0x1c0bbb
+	text_far UnknownText_0x1c0bbb
 	db "@"
 
 Text_ThrewAway:
 	; Threw away @ (S).
-	text_jump UnknownText_0x1c0bd8
+	text_far UnknownText_0x1c0bd8
 	db "@"
 
 Text_ThisIsntTheTime:
 	; OAK:  ! This isn't the time to use that!
-	text_jump UnknownText_0x1c0bee
+	text_far UnknownText_0x1c0bee
 	db "@"
 
 TextJump_YouDontHaveAMon:
 	; You don't have a #MON!
-	text_jump Text_YouDontHaveAMon
+	text_far Text_YouDontHaveAMon
 	db "@"
 
 Text_RegisteredItem:
 	; Registered the @ .
-	text_jump UnknownText_0x1c0c2e
+	text_far UnknownText_0x1c0c2e
 	db "@"
 
 Text_CantRegister:
 	; You can't register that item.
-	text_jump UnknownText_0x1c0c45
+	text_far UnknownText_0x1c0c45
 	db "@"
 
 Text_MoveItemWhere:
 	; Where should this be moved to?
-	text_jump UnknownText_0x1c0c63
+	text_far UnknownText_0x1c0c63
 	db "@"
 
 Text_PackEmptyString:
 	;
-	text_jump UnknownText_0x1c0c83
+	text_far UnknownText_0x1c0c83
 	db "@"
 
 TextJump_YouCantUseItInABattle:
 	; Doesn't seem to be used anywhere
 	; "You can't use it in a battle."
-	text_jump Text_YouCantUseItInABattle
+	text_far Text_YouCantUseItInABattle
 	db "@"
 
 PackMenuGFX:

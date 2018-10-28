@@ -61,42 +61,42 @@ MoveDeletion:
 
 .OnlyOneMoveText:
 	; That #MON knows only one move.
-	text_jump UnknownText_0x1c5eba
+	text_far UnknownText_0x1c5eba
 	db "@"
 
 .ConfirmDeleteText:
 	; Oh, make it forget @ ?
-	text_jump UnknownText_0x1c5eda
+	text_far UnknownText_0x1c5eda
 	db "@"
 
 .MoveDeletedText:
 	; Done! Your #MON forgot the move.
-	text_jump UnknownText_0x1c5ef5
+	text_far UnknownText_0x1c5ef5
 	db "@"
 
 .EggText:
 	; An EGG doesn't know any moves!
-	text_jump UnknownText_0x1c5f17
+	text_far UnknownText_0x1c5f17
 	db "@"
 
 .DeclinedDeletionText:
 	; No? Come visit me again.
-	text_jump UnknownText_0x1c5f36
+	text_far UnknownText_0x1c5f36
 	db "@"
 
 .AskWhichMoveText:
 	; Which move should it forget, then?
-	text_jump UnknownText_0x1c5f50
+	text_far UnknownText_0x1c5f50
 	db "@"
 
 .IntroText:
 	; Um… Oh, yes, I'm the MOVE DELETER. I can make #MON forget moves. Shall I make a #MON forget?
-	text_jump UnknownText_0x1c5f74
+	text_far UnknownText_0x1c5f74
 	db "@"
 
 .AskWhichMonText:
 	; Which #MON?
-	text_jump UnknownText_0x1c5fd1
+	text_far UnknownText_0x1c5fd1
 	db "@"
 
 .DeleteMove:

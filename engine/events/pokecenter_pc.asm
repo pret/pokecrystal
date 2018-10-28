@@ -111,7 +111,7 @@ PC_CheckPartyForPokemon:
 
 .MustHavePokemonToUse:
 	; Bzzzzt! You must have a #MON to use this!
-	text_jump UnknownText_0x1c1328
+	text_far UnknownText_0x1c1328
 	db "@"
 
 BillsPC:
@@ -201,7 +201,7 @@ _PlayersHousePC:
 
 UnknownText_0x156ff:
 	; turned on the PC.
-	text_jump UnknownText_0x1c1353
+	text_far UnknownText_0x1c1353
 	db "@"
 
 _PlayersPC:
@@ -305,7 +305,7 @@ PC_DisplayTextWaitMenu:
 
 UnknownText_0x157cc:
 	; What do you want to do?
-	text_jump UnknownText_0x1c1368
+	text_far UnknownText_0x1c1368
 	db "@"
 
 PlayerWithdrawItemMenu:
@@ -373,15 +373,15 @@ PlayerWithdrawItemMenu:
 	ret
 
 .HowManyText:
-	text_jump _PlayersPCHowManyWithdrawText
+	text_far _PlayersPCHowManyWithdrawText
 	db "@"
 
 .WithdrewText:
-	text_jump _PlayersPCWithdrewItemsText
+	text_far _PlayersPCWithdrewItemsText
 	db "@"
 
 .NoRoomText:
-	text_jump _PlayersPCNoRoomWithdrawText
+	text_far _PlayersPCNoRoomWithdrawText
 	db "@"
 
 PlayerTossItemMenu:
@@ -444,7 +444,7 @@ PlayerDepositItemMenu:
 
 .NoItemsInBag:
 	; No items here!
-	text_jump UnknownText_0x1c13df
+	text_far UnknownText_0x1c13df
 	db "@"
 
 .TryDepositItem:
@@ -533,15 +533,15 @@ PlayerDepositItemMenu:
 	ret
 
 .HowManyText:
-	text_jump _PlayersPCHowManyDepositText
+	text_far _PlayersPCHowManyDepositText
 	db "@"
 
 .DepositText:
-	text_jump _PlayersPCDepositItemsText
+	text_far _PlayersPCDepositItemsText
 	db "@"
 
 .NoRoomText:
-	text_jump _PlayersPCNoRoomDepositText
+	text_far _PlayersPCNoRoomDepositText
 	db "@"
 
 PlayerMailBoxMenu:
@@ -640,30 +640,30 @@ PC_DisplayText:
 
 PokecenterPCText_BootedUpPC:
 	; turned on the PC.
-	text_jump UnknownText_0x1c144d
+	text_far UnknownText_0x1c144d
 	db "@"
 
 PokecenterPCText_AccessWhosePC:
 	; Access whose PC?
-	text_jump UnknownText_0x1c1462
+	text_far UnknownText_0x1c1462
 	db "@"
 
 PokecenterPCText_AccessedBillsPC:
 	; BILL's PC accessed. #MON Storage System opened.
-	text_jump UnknownText_0x1c1474
+	text_far UnknownText_0x1c1474
 	db "@"
 
 PokecenterPCText_AccessedOwnPC:
 	; Accessed own PC. Item Storage System opened.
-	text_jump UnknownText_0x1c14a4
+	text_far UnknownText_0x1c14a4
 	db "@"
 
 PokecenterPCText_AccessedOaksPC:
 	; PROF.OAK's PC accessed. #DEX Rating System opened.
-	text_jump UnknownText_0x1c14d2
+	text_far UnknownText_0x1c14d2
 	db "@"
 
 PokecenterPCText_LinkClosed:
 	; … Link closed…
-	text_jump UnknownText_0x1c1505
+	text_far UnknownText_0x1c1505
 	db "@"

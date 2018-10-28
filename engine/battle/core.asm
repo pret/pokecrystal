@@ -7398,7 +7398,7 @@ BoostExp:
 	ret
 
 Text_MonGainedExpPoint:
-	text_jump Text_Gained
+	text_far Text_Gained
 	start_asm
 	ld hl, TextJump_StringBuffer2ExpPoints
 	ld a, [wStringBuffer2 + 2] ; IsTradedMon
@@ -7409,11 +7409,11 @@ Text_MonGainedExpPoint:
 	ret
 
 TextJump_ABoostedStringBuffer2ExpPoints:
-	text_jump Text_ABoostedStringBuffer2ExpPoints
+	text_far Text_ABoostedStringBuffer2ExpPoints
 	db "@"
 
 TextJump_StringBuffer2ExpPoints:
-	text_jump Text_StringBuffer2ExpPoints
+	text_far Text_StringBuffer2ExpPoints
 	db "@"
 
 AnimateExpBar:
@@ -7664,29 +7664,29 @@ SendOutMonText:
 	jp BattleTextBox
 
 JumpText_GoMon:
-	text_jump Text_GoMon
+	text_far Text_GoMon
 	start_asm
 	jr Function_TextJump_BattleMonNick01
 
 JumpText_DoItMon:
-	text_jump Text_DoItMon
+	text_far Text_DoItMon
 	start_asm
 	jr Function_TextJump_BattleMonNick01
 
 JumpText_GoForItMon:
-	text_jump Text_GoForItMon
+	text_far Text_GoForItMon
 	start_asm
 	jr Function_TextJump_BattleMonNick01
 
 JumpText_YourFoesWeakGetmMon:
-	text_jump Text_YourFoesWeakGetmMon
+	text_far Text_YourFoesWeakGetmMon
 	start_asm
 Function_TextJump_BattleMonNick01:
 	ld hl, TextJump_BattleMonNick01
 	ret
 
 TextJump_BattleMonNick01:
-	text_jump Text_BattleMonNick01
+	text_far Text_BattleMonNick01
 	db "@"
 
 WithdrawMonText:
@@ -7694,7 +7694,7 @@ WithdrawMonText:
 	jp BattleTextBox
 
 .WithdrawMonText:
-	text_jump Text_BattleMonNickComma
+	text_far Text_BattleMonNickComma
 	start_asm
 ; Print text to withdraw mon
 ; depending on HP the message is different
@@ -7745,15 +7745,15 @@ WithdrawMonText:
 	ret
 
 TextJump_ThatsEnoughComeBack:
-	text_jump Text_ThatsEnoughComeBack
+	text_far Text_ThatsEnoughComeBack
 	db "@"
 
 TextJump_OKComeBack:
-	text_jump Text_OKComeBack
+	text_far Text_OKComeBack
 	db "@"
 
 TextJump_GoodComeBack:
-	text_jump Text_GoodComeBack
+	text_far Text_GoodComeBack
 	db "@"
 
 Unreferenced_TextJump_ComeBack:
@@ -7762,7 +7762,7 @@ Unreferenced_TextJump_ComeBack:
 	ret
 
 TextJump_ComeBack:
-	text_jump Text_ComeBack
+	text_far Text_ComeBack
 	db "@"
 
 Unreferenced_HandleSafariAngerEatingStatus:

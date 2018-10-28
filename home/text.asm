@@ -739,7 +739,7 @@ TextCommand_RAM::
 	ret
 
 TextCommand_FAR::
-; text_jump
+; text_far
 ; write text from a different bank
 ; little endian
 ; [$16][addr][bank]

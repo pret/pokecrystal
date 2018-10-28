@@ -208,12 +208,12 @@ CheckForLuckyNumberWinners:
 
 .FoundPartymonText:
 	; Congratulations! We have a match with the ID number of @  in your party.
-	text_jump UnknownText_0x1c1261
+	text_far UnknownText_0x1c1261
 	db "@"
 
 .FoundBoxmonText:
 	; Congratulations! We have a match with the ID number of @  in your PC BOX.
-	text_jump UnknownText_0x1c12ae
+	text_far UnknownText_0x1c12ae
 	db "@"
 
 PrintTodaysLuckyNumber:
