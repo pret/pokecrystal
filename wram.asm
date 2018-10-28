@@ -2004,7 +2004,7 @@ wPlayerStepDirection::  ; d151
 wBGMapAnchor:: dw ; d152
 
 UNION ; d154
-wUsedSprites:: ds 64
+wUsedSprites:: ds SPRITE_GFX_LIST_CAPACITY * 2
 wUsedSpritesEnd::
 
 NEXTU ; d154
