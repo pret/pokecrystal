@@ -41,6 +41,8 @@ HP_RED    EQU 2
 SPRITEOAMSTRUCT_LENGTH EQU const_value
 NUM_SPRITE_OAM_STRUCTS EQU 40 ; see wVirtualOAM
 
+SPRITE_GFX_LIST_CAPACITY EQU 32 ; see wUsedSprites
+
 ; PokeAnims indexes (see engine/gfx/pic_animation.asm)
 	const_def
 	const ANIM_MON_SLOW
