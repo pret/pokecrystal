@@ -39,8 +39,8 @@ MapGroupRoofs:
 
 Roofs:
 ; entries correspond to ROOF_* constants
-INCBIN "gfx/tilesets/roofs/0.2bpp"
-INCBIN "gfx/tilesets/roofs/1.2bpp"
-INCBIN "gfx/tilesets/roofs/2.2bpp"
-INCBIN "gfx/tilesets/roofs/3.2bpp"
-INCBIN "gfx/tilesets/roofs/4.2bpp"
+INCBIN "gfx/tilesets/roofs/new_bark.2bpp"
+INCBIN "gfx/tilesets/roofs/violet.2bpp"
+INCBIN "gfx/tilesets/roofs/azalea.2bpp"
+INCBIN "gfx/tilesets/roofs/olivine.2bpp"
+INCBIN "gfx/tilesets/roofs/goldenrod.2bpp"
