@@ -84,7 +84,7 @@ Open **Terminal** and enter the following commands, depending on which distro yo
 To install the software required for **pokecrystal**:
 
 ```bash
-sudo apt-get install make gcc git
+sudo apt-get install make gcc git flex pkg-config
 ```
 
 To install **rgbds**:
@@ -94,6 +94,7 @@ sudo apt-get install bison libpng-dev
 git clone --depth=1 https://github.com/rednex/rgbds
 sudo make -C rgbds CFLAGS=-O2 install
 ```
+
 
 ### OpenSUSE
 
