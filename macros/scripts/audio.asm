@@ -71,7 +71,7 @@ sound_duty: MACRO
 	if _NARG == 4
 	db \1 | (\2 << 2) | (\3 << 4) | (\4 << 6) ; duty sequence
 	else
-	db \1 ; one-byte duty value for legacy support
+	db \1 ; LEGACY: Support for one-byte duty value
 	endc
 ENDM
 

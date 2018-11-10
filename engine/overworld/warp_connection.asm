@@ -18,7 +18,7 @@ InitCommandQueue:
 EnterMapConnection:
 ; Return carry if a connection has been entered.
 	ld a, [wPlayerStepDirection]
-	and a
+	and a ; DOWN
 	jp z, .south
 	cp UP
 	jp z, .north
