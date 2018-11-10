@@ -17,81 +17,78 @@ CURRENT_MAP_HEIGHT = \2_HEIGHT
 ENDM
 
 ; Connections go in order: north, south, west, east
-_connection: MACRO
-;\1: direction
-;\2: map name
-;\3: map id
-;\4: x offset for east/west, y offset for north/south
-;\5: distance offset?
-;\6: strip length
-if "\1" == "north"
-	map_id \3
-	dw \2_Blocks + \3_WIDTH * (\3_HEIGHT - 3) + \5
-	dw wOverworldMapBlocks + \4 + 3
-	db \6
-	db \3_WIDTH
-	db \3_HEIGHT * 2 - 1
-	db (\4 - \5) * -2
-	dw wOverworldMapBlocks + \3_HEIGHT * (\3_WIDTH + 6) + 1
-elif "\1" == "south"
-	map_id \3
-	dw \2_Blocks + \5
-	dw wOverworldMapBlocks + (CURRENT_MAP_HEIGHT + 3) * (CURRENT_MAP_WIDTH + 6) + \4 + 3
-	db \6
-	db \3_WIDTH
-	db 0
-	db (\4 - \5) * -2
-	dw wOverworldMapBlocks + \3_WIDTH + 7
-elif "\1" == "west"
-	map_id \3
-	dw \2_Blocks + (\3_WIDTH * \5) + \3_WIDTH - 3
-	dw wOverworldMapBlocks + (CURRENT_MAP_WIDTH + 6) * (\4 + 3)
-	db \6
-	db \3_WIDTH
-	db (\4 - \5) * -2
-	db \3_WIDTH * 2 - 1
-	dw wOverworldMapBlocks + \3_WIDTH * 2 + 6
-elif "\1" == "east"
-	map_id \3
-	dw \2_Blocks + (\3_WIDTH * \5)
-	dw wOverworldMapBlocks + (CURRENT_MAP_WIDTH + 6) * (\4 + 3 + 1) - 3
-	db \6
-	db \3_WIDTH
-	db (\4 - \5) * -2
-	db 0
-	dw wOverworldMapBlocks + \3_WIDTH + 7
-endc
-ENDM
-
 connection: MACRO
 ;\1: direction
 ;\2: map name
 ;\3: map id
-;\4: x offset for east/west, y offset for north/south
+;\4: x offset for east/west, y offset for north/south, of the target map
+;    relative to the current map.
 
-if (\4) < -3
-_f = -3
-_s = -((\4) + 3)
-else
-_f = (\4)
+; Figure out target and source offsets
+; Target meaning the offset where the tiles will be placed
+; Source meaning the offset where the tiles are fetched from
 _s = 0
+_t = (\4) + 3
+if _t < 0
+_s = -_t
+_t = 0
 endc
 
+; Figure out whether we're using the width or the height as maximum size
+_st = 0
+_ss = 0
 if ("\1" == "north") || ("\1" == "south")
-if ((\4) + \3_WIDTH) > (CURRENT_MAP_WIDTH + 3)
-_l = CURRENT_MAP_WIDTH + 3 - (\4) - _s
-else
-_l = \3_WIDTH - _s
-endc
+_st = \3_WIDTH
+_ss = CURRENT_MAP_WIDTH
 elif ("\1" == "west") || ("\1" == "east")
-if ((\4) + \3_HEIGHT) > (CURRENT_MAP_HEIGHT + 3)
-_l = CURRENT_MAP_HEIGHT + 3 - (\4) - _s
-else
-_l = \3_HEIGHT - _s
-endc
+_st = \3_HEIGHT
+_ss = CURRENT_MAP_HEIGHT
 endc
 
-	_connection \1, \2, \3, _f, _s, _l
+; Figure out the length of the strip to connect
+if ((\4) + _st) > (_ss + 3)
+_l = _ss + 3 - (\4) - _s
+else
+_l = _st - _s
+endc
+
+if "\1" == "north"
+	map_id \3
+	dw \2_Blocks + \3_WIDTH * (\3_HEIGHT + -3) + _s
+	dw wOverworldMapBlocks + _t
+	db _l
+	db \3_WIDTH
+	db \3_HEIGHT * 2 - 1
+	db (\4) * -2
+	dw wOverworldMapBlocks + (\3_WIDTH + 6) * \3_HEIGHT + 1
+elif "\1" == "south"
+	map_id \3
+	dw \2_Blocks + _s
+	dw wOverworldMapBlocks + (CURRENT_MAP_WIDTH + 6) * (CURRENT_MAP_HEIGHT + 3) + _t
+	db _l
+	db \3_WIDTH
+	db 0
+	db (\4) * -2
+	dw wOverworldMapBlocks + \3_WIDTH + 7
+elif "\1" == "west"
+	map_id \3
+	dw \2_Blocks + (\3_WIDTH * _s) + \3_WIDTH + -3
+	dw wOverworldMapBlocks + (CURRENT_MAP_WIDTH + 6) * _t
+	db _l
+	db \3_WIDTH
+	db (\4) * -2
+	db \3_WIDTH * 2 - 1
+	dw wOverworldMapBlocks + (\3_WIDTH + 6) * 2 + -6
+elif "\1" == "east"
+	map_id \3
+	dw \2_Blocks + (\3_WIDTH * _s)
+	dw wOverworldMapBlocks + (CURRENT_MAP_WIDTH + 6) * _t + CURRENT_MAP_WIDTH + 3
+	db _l
+	db \3_WIDTH
+	db (\4) * -2
+	db 0
+	dw wOverworldMapBlocks + \3_WIDTH + 7
+endc
 ENDM
 
 
