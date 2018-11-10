@@ -1,5 +1,6 @@
-; Legacy support for pre-2018 pokecrystal.
+; Legacy support for old pokecrystal.
 ; Allows porting scripts with as few edits as possible.
+; Legacy support not in this file can be found by looking for the keyword: "LEGACY"
 
 ; macros/rst.asm
 callba EQUS "farcall"
