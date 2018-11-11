@@ -536,7 +536,7 @@ GiveItemScript:
 	end
 
 ReceivedItemText:
-	text_jump UnknownText_0x1c4719
+	text_far UnknownText_0x1c4719
 	db "@"
 
 Script_verbosegiveitem2:
@@ -628,11 +628,11 @@ CurItemName:
 	ret
 
 PutItemInPocketText:
-	text_jump UnknownText_0x1c472c
+	text_far UnknownText_0x1c472c
 	db "@"
 
 PocketIsFullText:
-	text_jump UnknownText_0x1c474b
+	text_far UnknownText_0x1c474b
 	db "@"
 
 Script_pokemart:

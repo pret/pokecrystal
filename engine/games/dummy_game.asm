@@ -322,12 +322,12 @@ DummyGame_CheckMatch:
 
 DummyGameText_Yeah:
 	; , yeah!
-	text_jump UnknownText_0x1c1a5b
+	text_far UnknownText_0x1c1a5b
 	db "@"
 
 DummyGameText_Darn:
 	; Darn…
-	text_jump UnknownText_0x1c1a65
+	text_far UnknownText_0x1c1a65
 	db "@"
 
 DummyGame_InitBoard:

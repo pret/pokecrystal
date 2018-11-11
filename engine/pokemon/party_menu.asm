@@ -84,7 +84,7 @@ PlacePartyNicknames:
 	and a
 	jr z, .end
 	ld c, a
-	ld b, $0
+	ld b, 0
 .loop
 	push bc
 	push hl
@@ -119,7 +119,7 @@ PlacePartyHPBar:
 	and a
 	ret z
 	ld c, a
-	ld b, $0
+	ld b, 0
 	hlcoord 11, 2
 .loop
 	push bc
@@ -185,7 +185,7 @@ PlacePartyMenuHPDigits:
 	and a
 	ret z
 	ld c, a
-	ld b, $0
+	ld b, 0
 	hlcoord 13, 1
 .loop
 	push bc
@@ -805,52 +805,52 @@ PrintPartyMenuActionText:
 
 .Text_RecoveredSomeHP:
 	; recovered @ HP!
-	text_jump UnknownText_0x1bc0a2
+	text_far UnknownText_0x1bc0a2
 	db "@"
 
 .Text_CuredOfPoison:
 	; 's cured of poison.
-	text_jump UnknownText_0x1bc0bb
+	text_far UnknownText_0x1bc0bb
 	db "@"
 
 .Text_RidOfParalysis:
 	; 's rid of paralysis.
-	text_jump UnknownText_0x1bc0d2
+	text_far UnknownText_0x1bc0d2
 	db "@"
 
 .Text_BurnWasHealed:
 	; 's burn was healed.
-	text_jump UnknownText_0x1bc0ea
+	text_far UnknownText_0x1bc0ea
 	db "@"
 
 .Text_Defrosted:
 	; was defrosted.
-	text_jump UnknownText_0x1bc101
+	text_far UnknownText_0x1bc101
 	db "@"
 
 .Text_WokeUp:
 	; woke up.
-	text_jump UnknownText_0x1bc115
+	text_far UnknownText_0x1bc115
 	db "@"
 
 .Text_HealthReturned:
 	; 's health returned.
-	text_jump UnknownText_0x1bc123
+	text_far UnknownText_0x1bc123
 	db "@"
 
 .Text_Revitalized:
 	; is revitalized.
-	text_jump UnknownText_0x1bc13a
+	text_far UnknownText_0x1bc13a
 	db "@"
 
 .Text_GrewToLevel:
 	; grew to level @ !@ @
-	text_jump UnknownText_0x1bc14f
+	text_far UnknownText_0x1bc14f
 	db "@"
 
 .Text_CameToItsSenses:
 	; came to its senses.
-	text_jump UnknownText_0x1bc16e
+	text_far UnknownText_0x1bc16e
 	db "@"
 
 .PrintText:

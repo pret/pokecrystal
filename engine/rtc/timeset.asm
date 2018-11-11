@@ -291,12 +291,12 @@ PrintTwoDigitNumberRightAlign:
 
 Text_WokeUpOak:
 	; Zzz… Hm? Wha…? You woke me up! Will you check the clock for me?
-	text_jump UnknownText_0x1bc29c
+	text_far UnknownText_0x1bc29c
 	db "@"
 
 Text_WhatTimeIsIt:
 	; What time is it?
-	text_jump UnknownText_0x1bc2eb
+	text_far UnknownText_0x1bc2eb
 	db "@"
 
 String_oclock:
@@ -304,7 +304,7 @@ String_oclock:
 
 Text_WhatHrs:
 	; What?@ @
-	text_jump UnknownText_0x1bc2fd
+	text_far UnknownText_0x1bc2fd
 	start_asm
 	hlcoord 1, 16
 	call DisplayHourOClock
@@ -313,12 +313,12 @@ Text_WhatHrs:
 
 .QuestionMark:
 	; ?
-	text_jump UnknownText_0x1bc305
+	text_far UnknownText_0x1bc305
 	db "@"
 
 Text_HowManyMinutes:
 	; How many minutes?
-	text_jump UnknownText_0x1bc308
+	text_far UnknownText_0x1bc308
 	db "@"
 
 String_min:
@@ -326,7 +326,7 @@ String_min:
 
 Text_WhoaMins:
 	; Whoa!@ @
-	text_jump UnknownText_0x1bc31b
+	text_far UnknownText_0x1bc31b
 	start_asm
 	hlcoord 7, 14
 	call DisplayMinutesWithMinString
@@ -335,7 +335,7 @@ Text_WhoaMins:
 
 .QuestionMark:
 	; ?
-	text_jump UnknownText_0x1bc323
+	text_far UnknownText_0x1bc323
 	db "@"
 
 OakText_ResponseToSetTime:
@@ -370,17 +370,17 @@ OakText_ResponseToSetTime:
 
 .overslept
 	; ! I overslept!
-	text_jump UnknownText_0x1bc326
+	text_far UnknownText_0x1bc326
 	db "@"
 
 .yikes
 	; ! Yikes! I over- slept!
-	text_jump UnknownText_0x1bc336
+	text_far UnknownText_0x1bc336
 	db "@"
 
 .sodark
 	; ! No wonder it's so dark!
-	text_jump UnknownText_0x1bc34f
+	text_far UnknownText_0x1bc34f
 	db "@"
 
 TimeSetBackgroundGFX:
@@ -534,7 +534,7 @@ SetDayOfWeek:
 
 .WhatDayIsItText:
 	; What day is it?
-	text_jump UnknownText_0x1bc369
+	text_far UnknownText_0x1bc369
 	db "@"
 
 .ConfirmWeekdayText:
@@ -546,7 +546,7 @@ SetDayOfWeek:
 
 .IsIt:
 	; , is it?
-	text_jump UnknownText_0x1bc37a
+	text_far UnknownText_0x1bc37a
 	db "@"
 
 InitialSetDSTFlag:
@@ -574,7 +574,7 @@ InitialSetDSTFlag:
 
 .DSTIsThatOK:
 	; DST, is that OK?
-	text_jump Text_DSTIsThatOK
+	text_far Text_DSTIsThatOK
 	db "@"
 
 InitialClearDSTFlag:
@@ -602,7 +602,7 @@ InitialClearDSTFlag:
 
 .IsThatOK:
 	; , is that OK?
-	text_jump UnknownText_0x1c5ff1
+	text_far UnknownText_0x1c5ff1
 	db "@"
 
 DebugDisplayTime:

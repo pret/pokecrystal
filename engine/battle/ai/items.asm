@@ -708,7 +708,7 @@ AI_Switch:
 	ret
 
 TextJump_EnemyWithdrew:
-	text_jump Text_EnemyWithdrew
+	text_far Text_EnemyWithdrew
 	db "@"
 
 Function384d5: ; This appears to be unused
@@ -828,5 +828,5 @@ PrintText_UsedItemOn:
 	jp PrintText
 
 TextJump_EnemyUsedOn:
-	text_jump Text_EnemyUsedOn
+	text_far Text_EnemyUsedOn
 	db "@"

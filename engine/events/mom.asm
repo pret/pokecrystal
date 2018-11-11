@@ -391,33 +391,33 @@ DSTChecks:
 
 .Text_AdjustClock:
 	; Do you want to adjust your clock for Daylight Saving Time?
-	text_jump UnknownText_0x1c6095
+	text_far UnknownText_0x1c6095
 	db "@"
 
 .Text_LostInstructionBooklet:
 	; I lost the instruction booklet for the POKéGEAR.
 	; Come back again in a while.
-	text_jump UnknownText_0x1c60d1
+	text_far UnknownText_0x1c60d1
 	db "@"
 
 .Text_SwitchToDST:
 	; Do you want to switch to Daylight Saving Time?
-	text_jump UnknownText_0x1c6000
+	text_far UnknownText_0x1c6000
 	db "@"
 
 .Text_SetClockForward:
 	; I set the clock forward by one hour.
-	text_jump UnknownText_0x1c6030
+	text_far UnknownText_0x1c6030
 	db "@"
 
 .Text_IsDSTOver:
 	; Is Daylight Saving Time over?
-	text_jump UnknownText_0x1c6056
+	text_far UnknownText_0x1c6056
 	db "@"
 
 .Text_SetClockBack:
 	; I put the clock back one hour.
-	text_jump UnknownText_0x1c6075
+	text_far UnknownText_0x1c6075
 	db "@"
 
 Mom_SetUpWithdrawMenu:
@@ -592,82 +592,82 @@ Mom_WithdrawDepositMenuJoypad:
 
 UnknownText_0x16649:
 	; Wow, that's a cute #MON. Where did you get it? … So, you're leaving on an adventure… OK! I'll help too. But what can I do for you? I know! I'll save money for you. On a long journey, money's important. Do you want me to save your money?
-	text_jump UnknownText_0x1bd77f
+	text_far UnknownText_0x1bd77f
 	db "@"
 
 UnknownText_0x1664e:
 	; OK, I'll take care of your money.
-	text_jump UnknownText_0x1bd868
+	text_far UnknownText_0x1bd868
 	db "@"
 
 UnknownText_0x16653:
 	; Be careful. #MON are your friends. You need to work as a team. Now, go on!
-	text_jump UnknownText_0x1bd88e
+	text_far UnknownText_0x1bd88e
 	db "@"
 
 UnknownText_0x16658:
 	; Hi! Welcome home! You're trying very hard, I see. I've kept your room tidy. Or is this about your money?
-	text_jump UnknownText_0x1bd8da
+	text_far UnknownText_0x1bd8da
 	db "@"
 
 UnknownText_0x1665d:
 	; What do you want to do?
-	text_jump UnknownText_0x1bd942
+	text_far UnknownText_0x1bd942
 	db "@"
 
 UnknownText_0x16662:
 	; How much do you want to save?
-	text_jump UnknownText_0x1bd95b
+	text_far UnknownText_0x1bd95b
 	db "@"
 
 UnknownText_0x16667:
 	; How much do you want to take?
-	text_jump UnknownText_0x1bd97a
+	text_far UnknownText_0x1bd97a
 	db "@"
 
 UnknownText_0x1666c:
 	; Do you want to save some money?
-	text_jump UnknownText_0x1bd999
+	text_far UnknownText_0x1bd999
 	db "@"
 
 UnknownText_0x16671:
 	; You haven't saved that much.
-	text_jump UnknownText_0x1bd9ba
+	text_far UnknownText_0x1bd9ba
 	db "@"
 
 UnknownText_0x16676:
 	; You can't take that much.
-	text_jump UnknownText_0x1bd9d7
+	text_far UnknownText_0x1bd9d7
 	db "@"
 
 UnknownText_0x1667b:
 	; You don't have that much.
-	text_jump UnknownText_0x1bd9f1
+	text_far UnknownText_0x1bd9f1
 	db "@"
 
 UnknownText_0x16680:
 	; You can't save that much.
-	text_jump UnknownText_0x1bda0b
+	text_far UnknownText_0x1bda0b
 	db "@"
 
 UnknownText_0x16685:
 	; OK, I'll save your money. Trust me! , stick with it!
-	text_jump UnknownText_0x1bda25
+	text_far UnknownText_0x1bda25
 	db "@"
 
 UnknownText_0x1668a:
 	; Your money's safe here! Get going!
-	text_jump UnknownText_0x1bda5b
+	text_far UnknownText_0x1bda5b
 	db "@"
 
 UnknownText_0x1668f:
 	; , don't give up!
-	text_jump UnknownText_0x1bda7e
+	text_far UnknownText_0x1bda7e
 	db "@"
 
 UnknownText_0x16694:
 	; Just do what you can.
-	text_jump UnknownText_0x1bda90
+	text_far UnknownText_0x1bda90
 	db "@"
 
 Mom_SavedString:

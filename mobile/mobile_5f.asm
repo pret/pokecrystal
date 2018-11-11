@@ -1109,7 +1109,7 @@ Function17d711:
 	ld l, a
 	jp hl
 
-asm_17d721
+asm_17d721:
 	call Function17e5af
 	ld a, $2
 	ld [wcd77], a
@@ -2571,7 +2571,7 @@ Function17e026:
 	ld bc, $1a
 	add hl, bc
 
-asm_17e0ee
+asm_17e0ee:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

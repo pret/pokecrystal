@@ -128,35 +128,35 @@ DoMysteryGift:
 	db   "@"
 
 .Text_LinkCanceled:
-	text_jump UnknownText_0x1c0436
+	text_far UnknownText_0x1c0436
 	db "@"
 
 .Text_CommunicationError:
-	text_jump UnknownText_0x1c0454
+	text_far UnknownText_0x1c0454
 	db "@"
 
 .Text_ReceiveGiftAtCounter:
-	text_jump UnknownText_0x1c046a
+	text_far UnknownText_0x1c046a
 	db "@"
 
 .Text_FriendNotReady:
-	text_jump UnknownText_0x1c048e
+	text_far UnknownText_0x1c048e
 	db "@"
 
 .Text_MaxFiveGifts:
-	text_jump UnknownText_0x1c04a7
+	text_far UnknownText_0x1c04a7
 	db "@"
 
 .Text_MaxOneGiftPerPerson:
-	text_jump UnknownText_0x1c04c6
+	text_far UnknownText_0x1c04c6
 	db "@"
 
 .Text_Sent:
-	text_jump UnknownText_0x1c04e9
+	text_far UnknownText_0x1c04e9
 	db "@"
 
 .Text_SentToHome:
-	text_jump UnknownText_0x1c04fa
+	text_far UnknownText_0x1c04fa
 	db "@"
 
 .CheckAlreadyGotFiveGiftsToday:
@@ -1490,23 +1490,23 @@ String_PressAToLink_BToCancel_JP:
 	db   "@"
 
 Text_ReceivedCard:
-	text_jump UnknownText_0x1c051a
+	text_far UnknownText_0x1c051a
 	db "@"
 
 Text_ListedCardAsNumber:
-	text_jump UnknownText_0x1c0531
+	text_far UnknownText_0x1c0531
 	db "@"
 
 Text_CardNotRegistered:
-	text_jump UnknownText_0x1c0555
+	text_far UnknownText_0x1c0555
 	db "@"
 
 Text_MGLinkCanceled:
-	text_jump UnknownText_0x1c0573
+	text_far UnknownText_0x1c0573
 	db "@"
 
 Text_MGCommError:
-	text_jump UnknownText_0x1c0591
+	text_far UnknownText_0x1c0591
 	db "@"
 
 Function105777:

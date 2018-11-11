@@ -164,3 +164,6 @@ step_sleep_5 EQUS "step_sleep 5"
 step_sleep_6 EQUS "step_sleep 6"
 step_sleep_7 EQUS "step_sleep 7"
 step_sleep_8 EQUS "step_sleep 8"
+
+; macros/scripts/text.asm
+text_jump EQUS "text_far"

@@ -101,93 +101,93 @@ endr
 INCLUDE "data/events/pokedex_ratings.asm"
 
 OakPCText1:
-	text_jump _OakPCText1
+	text_far _OakPCText1
 	db "@"
 
 OakPCText2:
-	text_jump _OakPCText2
+	text_far _OakPCText2
 	db "@"
 
 OakPCText3:
-	text_jump _OakPCText3
+	text_far _OakPCText3
 	db "@"
 
 OakRating01:
-	text_jump _OakRating01
+	text_far _OakRating01
 	db "@"
 
 OakRating02:
-	text_jump _OakRating02
+	text_far _OakRating02
 	db "@"
 
 OakRating03:
-	text_jump _OakRating03
+	text_far _OakRating03
 	db "@"
 
 OakRating04:
-	text_jump _OakRating04
+	text_far _OakRating04
 	db "@"
 
 OakRating05:
-	text_jump _OakRating05
+	text_far _OakRating05
 	db "@"
 
 OakRating06:
-	text_jump _OakRating06
+	text_far _OakRating06
 	db "@"
 
 OakRating07:
-	text_jump _OakRating07
+	text_far _OakRating07
 	db "@"
 
 OakRating08:
-	text_jump _OakRating08
+	text_far _OakRating08
 	db "@"
 
 OakRating09:
-	text_jump _OakRating09
+	text_far _OakRating09
 	db "@"
 
 OakRating10:
-	text_jump _OakRating10
+	text_far _OakRating10
 	db "@"
 
 OakRating11:
-	text_jump _OakRating11
+	text_far _OakRating11
 	db "@"
 
 OakRating12:
-	text_jump _OakRating12
+	text_far _OakRating12
 	db "@"
 
 OakRating13:
-	text_jump _OakRating13
+	text_far _OakRating13
 	db "@"
 
 OakRating14:
-	text_jump _OakRating14
+	text_far _OakRating14
 	db "@"
 
 OakRating15:
-	text_jump _OakRating15
+	text_far _OakRating15
 	db "@"
 
 OakRating16:
-	text_jump _OakRating16
+	text_far _OakRating16
 	db "@"
 
 OakRating17:
-	text_jump _OakRating17
+	text_far _OakRating17
 	db "@"
 
 OakRating18:
-	text_jump _OakRating18
+	text_far _OakRating18
 	db "@"
 
 OakRating19:
-	text_jump _OakRating19
+	text_far _OakRating19
 	db "@"
 
 OakPCText4:
-	text_jump _OakPCText4
+	text_far _OakPCText4
 	db "@"

@@ -22,7 +22,7 @@ CheckForMobileBattleRules:
 
 .ExcuseMeText:
 	; Excuse me!
-	text_jump UnknownText_0x1c5937
+	text_far UnknownText_0x1c5937
 	db "@"
 
 _CheckForBattleTowerRules:
@@ -57,7 +57,7 @@ _CheckForBattleTowerRules:
 
 JumpText_ExcuseMeYoureNotReady:
 	; Excuse me. You're not ready.
-	text_jump Text_ExcuseMeYoureNotReady
+	text_far Text_ExcuseMeYoureNotReady
 	db "@"
 
 BattleTower_PleaseReturnWhenReady:
@@ -67,37 +67,37 @@ BattleTower_PleaseReturnWhenReady:
 
 .PleaseReturnWhenReady:
 	; Please return when you're ready.
-	text_jump UnknownText_0x1c5962
+	text_far UnknownText_0x1c5962
 	db "@"
 
 JumpText_NeedAtLeastThreeMon:
 	; You need at least three #MON.
-	text_jump UnknownText_0x1c5983
+	text_far UnknownText_0x1c5983
 	db "@"
 
 JumpText_EggDoesNotQualify:
 	; Sorry, an EGG doesn't qualify.
-	text_jump UnknownText_0x1c59a3
+	text_far UnknownText_0x1c59a3
 	db "@"
 
 JumpText_OnlyThreeMonMayBeEntered:
 	; Only three #MON may be entered.
-	text_jump Text_OnlyThreeMonMayBeEntered
+	text_far Text_OnlyThreeMonMayBeEntered
 	db "@"
 
 JumpText_TheMonMustAllBeDifferentKinds:
 	; The @  #MON must all be different kinds.
-	text_jump Text_TheMonMustAllBeDifferentKinds
+	text_far Text_TheMonMustAllBeDifferentKinds
 	db "@"
 
 JumpText_TheMonMustNotHoldTheSameItems:
 	; The @  #MON must not hold the same items.
-	text_jump Text_TheMonMustNotHoldTheSameItems
+	text_far Text_TheMonMustNotHoldTheSameItems
 	db "@"
 
 JumpText_YouCantTakeAnEgg:
 	; You can't take an EGG!
-	text_jump Text_YouCantTakeAnEgg
+	text_far Text_YouCantTakeAnEgg
 	db "@"
 
 BattleTower_ExecuteJumptable:

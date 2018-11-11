@@ -425,7 +425,7 @@ StartMenu_Quit:
 	ret
 
 .EndTheContestText:
-	text_jump UnknownText_0x1c1a6c
+	text_far UnknownText_0x1c1a6c
 	db "@"
 
 StartMenu_Save:

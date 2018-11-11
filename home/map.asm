@@ -1107,21 +1107,21 @@ ObjectEvent::
 	jumptextfaceplayer ObjectEventText
 
 ObjectEventText::
-	text_jump _ObjectEventText
+	text_far _ObjectEventText
 	db "@"
 
 BGEvent::
 	jumptext BGEventText
 
 BGEventText::
-	text_jump UnknownText_0x1c46fc
+	text_far UnknownText_0x1c46fc
 	db "@"
 
 CoordinatesEvent::
 	jumptext CoordinatesEventText
 
 CoordinatesEventText::
-	text_jump UnknownText_0x1c4706
+	text_far UnknownText_0x1c4706
 	db "@"
 
 CheckObjectMask::

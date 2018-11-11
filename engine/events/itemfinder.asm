@@ -43,10 +43,10 @@ ItemFinder:
 
 .Text_FoundSomething:
 	; Yes! ITEMFINDER indicates there's an item nearby.
-	text_jump UnknownText_0x1c0a77
+	text_far UnknownText_0x1c0a77
 	db "@"
 
 .Text_FoundNothing:
 	; Nope! ITEMFINDER isn't responding.
-	text_jump UnknownText_0x1c0aa9
+	text_far UnknownText_0x1c0aa9
 	db "@"

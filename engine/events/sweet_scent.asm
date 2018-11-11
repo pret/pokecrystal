@@ -59,10 +59,10 @@ SweetScentEncounter:
 
 UnknownText_0x50726:
 	; used SWEET SCENT!
-	text_jump UnknownText_0x1c0b03
+	text_far UnknownText_0x1c0b03
 	db "@"
 
 UnknownText_0x5072b:
 	; Looks like there's nothing here…
-	text_jump UnknownText_0x1c0b1a
+	text_far UnknownText_0x1c0b1a
 	db "@"

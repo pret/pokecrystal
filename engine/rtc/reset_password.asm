@@ -33,17 +33,17 @@ _ResetClock:
 
 .text_okay
 	; Password OK. Select CONTINUE & reset settings.
-	text_jump UnknownText_0x1c55db
+	text_far UnknownText_0x1c55db
 	db "@"
 
 .text_wrong
 	; Wrong password!
-	text_jump UnknownText_0x1c560b
+	text_far UnknownText_0x1c560b
 	db "@"
 
 .text_askreset
 	; Reset the clock?
-	text_jump UnknownText_0x1c561c
+	text_far UnknownText_0x1c561c
 	db "@"
 
 .NoYes_MenuHeader:
@@ -103,7 +103,7 @@ ClockResetPassword:
 
 .pleaseenterpasswordtext
 	; Please enter the password.
-	text_jump UnknownText_0x1c562e
+	text_far UnknownText_0x1c562e
 	db "@"
 
 .updateIDdisplay

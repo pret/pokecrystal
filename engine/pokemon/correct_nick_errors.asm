@@ -64,7 +64,7 @@ CorrectNickErrors::
 ; table defining which characters are actually text commands
 ; format:
 	;      ≥           <
-	db TX_START,   TX_BOX    + 1
+	db "<NULL>",   "ガ"
 	db "<PLAY_G>", "<JP_18>" + 1
 	db "<NI>",     "<NO>"    + 1
 	db "<ROUTE>",  "<GREEN>" + 1

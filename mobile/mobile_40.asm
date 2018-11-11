@@ -686,7 +686,7 @@ Function100493:
 Function100495:
 	jr asm_100497
 
-asm_100497
+asm_100497:
 	call Function100337
 	ret c
 	ret z
@@ -2987,7 +2987,7 @@ Function101406:
 	and a
 	ret
 
-asm_101416
+asm_101416:
 	scf
 	ret
 
@@ -4802,15 +4802,15 @@ Function1021b8:
 	ret
 
 UnknownText_0x1021d1:
-	text_jump UnknownText_0x1bd19a
+	text_far UnknownText_0x1bd19a
 	db "@"
 
 UnknownText_0x1021d6:
-	text_jump UnknownText_0x1bd1ba
+	text_far UnknownText_0x1bd1ba
 	db "@"
 
 UnknownText_0x1021db:
-	text_jump UnknownText_0x1bd1dd
+	text_far UnknownText_0x1bd1dd
 	db "@"
 
 Function1021e0:
@@ -4820,15 +4820,15 @@ Function1021e0:
 	ret
 
 UnknownText_0x1021ea:
-	text_jump UnknownText_0x1bd201
+	text_far UnknownText_0x1bd201
 	db "@"
 
 UnknownText_0x1021ef:
-	text_jump UnknownText_0x1bd211
+	text_far UnknownText_0x1bd211
 	db "@"
 
 UnknownText_0x1021f4:
-	text_jump UnknownText_0x1bd223
+	text_far UnknownText_0x1bd223
 	db "@"
 
 Function1021f9:
@@ -6577,7 +6577,7 @@ Function102ea8:
 	ret
 
 UnknownText_0x102ee2:
-	text_jump UnknownText_0x1bd286
+	text_far UnknownText_0x1bd286
 	db "@"
 
 Function102ee7:
@@ -7496,25 +7496,25 @@ MenuData_10374f:
 	db "せつめい@"
 
 UnknownText_0x10375d:
-	text_jump UnknownText_0x1c422a
+	text_far UnknownText_0x1c422a
 	db "@"
 UnknownText_0x103762:
-	text_jump UnknownText_0x1c4275
+	text_far UnknownText_0x1c4275
 	db "@"
 UnknownText_0x103767:
-	text_jump UnknownText_0x1c4298
+	text_far UnknownText_0x1c4298
 	db "@"
 UnknownText_0x10376c:
-	text_jump UnknownText_0x1c439c
+	text_far UnknownText_0x1c439c
 	db "@"
 UnknownText_0x103771:
-	text_jump UnknownText_0x1c43dc
+	text_far UnknownText_0x1c43dc
 	db "@"
 UnknownText_0x103776:
-	text_jump UnknownText_0x1c4419
+	text_far UnknownText_0x1c4419
 	db "@"
 UnknownText_0x10377b:
-	text_jump UnknownText_0x1c445a
+	text_far UnknownText_0x1c445a
 	db "@"
 
 Function103780:
@@ -7578,7 +7578,7 @@ Function1037c2:
 	ret
 
 UnknownText_0x1037e6:
-	text_jump UnknownText_0x1c449c
+	text_far UnknownText_0x1c449c
 	db "@"
 
 Function1037eb:
@@ -7608,11 +7608,11 @@ Function1037eb:
 	ret
 
 UnknownText_0x103819:
-	text_jump UnknownText_0x1c44c0
+	text_far UnknownText_0x1c44c0
 	db "@"
 
 UnknownText_0x10381e:
-	text_jump UnknownText_0x1c44e7
+	text_far UnknownText_0x1c44e7
 	db "@"
 
 Function103823:
@@ -7660,7 +7660,7 @@ Function10383c:
 	ret
 
 UnknownText_0x103876:
-	text_jump UnknownText_0x1c4508
+	text_far UnknownText_0x1c4508
 	db "@"
 
 Function10387b:
@@ -7676,5 +7676,5 @@ Function10387b:
 	ret
 
 UnknownText_0x103898:
-	text_jump UnknownText_0x1c4525
+	text_far UnknownText_0x1c4525
 	db "@"

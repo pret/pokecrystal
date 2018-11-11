@@ -63,17 +63,17 @@ TossItemFromPC:
 
 .TossHowMany:
 	; Toss out how many @ (S)?
-	text_jump UnknownText_0x1c1a90
+	text_far UnknownText_0x1c1a90
 	db "@"
 
 .ConfirmToss:
 	; Throw away @ @ (S)?
-	text_jump UnknownText_0x1c1aad
+	text_far UnknownText_0x1c1aad
 	db "@"
 
 .TossedThisMany:
 	; Discarded @ (S).
-	text_jump UnknownText_0x1c1aca
+	text_far UnknownText_0x1c1aca
 	db "@"
 
 .CantToss:
@@ -83,7 +83,7 @@ TossItemFromPC:
 
 .TooImportantToToss:
 	; That's too impor- tant to toss out!
-	text_jump UnknownText_0x1c1adf
+	text_far UnknownText_0x1c1adf
 	db "@"
 
 CantUseItem:
@@ -92,7 +92,7 @@ CantUseItem:
 	ret
 
 CantUseItemText:
-	text_jump UnknownText_0x1c1b03
+	text_far UnknownText_0x1c1b03
 	db "@"
 
 PartyMonItemName:
@@ -391,35 +391,35 @@ GiveTakeItemMenuData:
 	db "TAKE@"
 
 TookAndMadeHoldText:
-	text_jump UnknownText_0x1c1b2c
+	text_far UnknownText_0x1c1b2c
 	db "@"
 
 MadeHoldText:
-	text_jump UnknownText_0x1c1b57
+	text_far UnknownText_0x1c1b57
 	db "@"
 
 PleaseRemoveMailText:
-	text_jump UnknownText_0x1c1b6f
+	text_far UnknownText_0x1c1b6f
 	db "@"
 
 IsntHoldingAnythingText:
-	text_jump UnknownText_0x1c1b8e
+	text_far UnknownText_0x1c1b8e
 	db "@"
 
 ItemStorageIsFullText:
-	text_jump UnknownText_0x1c1baa
+	text_far UnknownText_0x1c1baa
 	db "@"
 
 TookFromText:
-	text_jump UnknownText_0x1c1bc4
+	text_far UnknownText_0x1c1bc4
 	db "@"
 
 SwitchAlreadyHoldingText:
-	text_jump UnknownText_0x1c1bdc
+	text_far UnknownText_0x1c1bdc
 	db "@"
 
 CantBeHeldText:
-	text_jump UnknownText_0x1c1c09
+	text_far UnknownText_0x1c1c09
 	db "@"
 
 GetPartyItemLocation:
@@ -562,32 +562,32 @@ MonMailAction:
 
 .mailwilllosemessagetext
 ; The MAIL will lose its message. OK?
-	text_jump UnknownText_0x1c1c22
+	text_far UnknownText_0x1c1c22
 	db "@"
 
 .tookmailfrommontext
 ; MAIL detached from <POKEMON>.
-	text_jump UnknownText_0x1c1c47
+	text_far UnknownText_0x1c1c47
 	db "@"
 
 .bagfulltext
 ; There's no space for removing MAIL.
-	text_jump UnknownText_0x1c1c62
+	text_far UnknownText_0x1c1c62
 	db "@"
 
 .sendmailtopctext
 ; Send the removed MAIL to your PC?
-	text_jump UnknownText_0x1c1c86
+	text_far UnknownText_0x1c1c86
 	db "@"
 
 .mailboxfulltext
 ; Your PC's MAILBOX is full.
-	text_jump UnknownText_0x1c1ca9
+	text_far UnknownText_0x1c1ca9
 	db "@"
 
 .sentmailtopctext
 ; The MAIL was sent to your PC.
-	text_jump UnknownText_0x1c1cc4
+	text_far UnknownText_0x1c1cc4
 	db "@"
 
 OpenPartyStats:
@@ -749,7 +749,7 @@ MonMenu_Softboiled_MilkDrink:
 
 .Text_NotEnoughHP:
 	; Not enough HP!
-	text_jump UnknownText_0x1c1ce3
+	text_far UnknownText_0x1c1ce3
 	db "@"
 
 .CheckMonHasEnoughHP:

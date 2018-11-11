@@ -117,7 +117,7 @@ _CardFlip:
 
 .PlayWithThreeCoinsText:
 	; Play with three coins?
-	text_jump UnknownText_0x1c5793
+	text_far UnknownText_0x1c5793
 	db "@"
 
 .DeductCoins:
@@ -157,7 +157,7 @@ _CardFlip:
 
 .NotEnoughCoinsText:
 	; Not enough coins…
-	text_jump UnknownText_0x1c57ab
+	text_far UnknownText_0x1c57ab
 	db "@"
 
 .ChooseACard:
@@ -234,7 +234,7 @@ _CardFlip:
 
 .ChooseACardText:
 	; Choose a card.
-	text_jump UnknownText_0x1c57be
+	text_far UnknownText_0x1c57be
 	db "@"
 
 .PlaceYourBet:
@@ -256,7 +256,7 @@ _CardFlip:
 
 .PlaceYourBetText:
 	; Place your bet.
-	text_jump UnknownText_0x1c57ce
+	text_far UnknownText_0x1c57ce
 	db "@"
 
 .CheckTheCard:
@@ -327,12 +327,12 @@ _CardFlip:
 
 .PlayAgainText:
 	; Want to play again?
-	text_jump UnknownText_0x1c57df
+	text_far UnknownText_0x1c57df
 	db "@"
 
 .CardsShuffledText:
 	; The cards have been shuffled.
-	text_jump UnknownText_0x1c57f4
+	text_far UnknownText_0x1c57f4
 	db "@"
 
 .Quit:
@@ -1114,12 +1114,12 @@ CardFlip_CheckWinCondition:
 
 .Text_Yeah:
 	; Yeah!
-	text_jump UnknownText_0x1c5813
+	text_far UnknownText_0x1c5813
 	db "@"
 
 .Text_Darn:
 	; Darn…
-	text_jump UnknownText_0x1c581a
+	text_far UnknownText_0x1c581a
 	db "@"
 
 .AddCoinPlaySFX:

@@ -131,7 +131,7 @@ current_day: MACRO
 ENDM
 
 	enum TX_FAR ; $16
-text_jump: MACRO
+text_far: MACRO
 	db TX_FAR
 	dw \1
 	db BANK(\1)

@@ -356,7 +356,7 @@ HatchEggs:
 
 .Text_HatchEgg:
 	; Huh? @ @
-	text_jump UnknownText_0x1c0db0
+	text_far UnknownText_0x1c0db0
 	start_asm
 	ld hl, wVramState
 	res 0, [hl]
@@ -378,17 +378,17 @@ HatchEggs:
 
 .ClearTextbox:
 	;
-	text_jump UnknownText_0x1c0db8
+	text_far UnknownText_0x1c0db8
 	db "@"
 
 .CameOutOfItsEgg:
 	; came out of its EGG!@ @
-	text_jump UnknownText_0x1c0dba
+	text_far UnknownText_0x1c0dba
 	db "@"
 
 .Text_NicknameHatchling:
 	; Give a nickname to @ ?
-	text_jump UnknownText_0x1c0dd8
+	text_far UnknownText_0x1c0dd8
 	db "@"
 
 InitEggMoves:
@@ -895,12 +895,12 @@ DayCareMonCursor:
 
 DayCareMon2Text:
 	; It's @ that was left with the DAY-CARE LADY.
-	text_jump UnknownText_0x1c0df3
+	text_far UnknownText_0x1c0df3
 	db "@"
 
 DayCareMon1Text:
 	; It's @ that was left with the DAY-CARE MAN.
-	text_jump UnknownText_0x1c0e24
+	text_far UnknownText_0x1c0e24
 	db "@"
 
 DayCareMonCompatibilityText:
@@ -930,27 +930,27 @@ DayCareMonCompatibilityText:
 
 .AllAlone:
 	; It's brimming with energy.
-	text_jump UnknownText_0x1c0e54
+	text_far UnknownText_0x1c0e54
 	db "@"
 
 .Incompatible:
 	; It has no interest in @ .
-	text_jump UnknownText_0x1c0e6f
+	text_far UnknownText_0x1c0e6f
 	db "@"
 
 .HighCompatibility:
 	; It appears to care for @ .
-	text_jump UnknownText_0x1c0e8d
+	text_far UnknownText_0x1c0e8d
 	db "@"
 
 .ModerateCompatibility:
 	; It's friendly with @ .
-	text_jump UnknownText_0x1c0eac
+	text_far UnknownText_0x1c0eac
 	db "@"
 
 .SlightCompatibility:
 	; It shows interest in @ .
-	text_jump UnknownText_0x1c0ec6
+	text_far UnknownText_0x1c0ec6
 	db "@"
 
 Unreferenced_DayCareMonPrintEmptyString:

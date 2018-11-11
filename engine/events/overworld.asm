@@ -60,7 +60,7 @@ CheckBadge:
 .BadgeRequiredText:
 	; Sorry! A new BADGE
 	; is required.
-	text_jump _BadgeRequiredText
+	text_far _BadgeRequiredText
 	db "@"
 
 CheckPartyMove:
@@ -114,7 +114,7 @@ FieldMoveFailed:
 
 .CantUseHere:
 	; Can't use that here.
-	text_jump UnknownText_0x1c05c8
+	text_far UnknownText_0x1c05c8
 	db "@"
 
 CutFunction:
@@ -163,12 +163,12 @@ CutFunction:
 
 Text_UsedCut:
 	; used CUT!
-	text_jump UnknownText_0x1c05dd
+	text_far UnknownText_0x1c05dd
 	db "@"
 
 Text_NothingToCut:
 	; There's nothing to CUT here.
-	text_jump UnknownText_0x1c05ec
+	text_far UnknownText_0x1c05ec
 	db "@"
 
 CheckMapForSomethingToCut:
@@ -323,7 +323,7 @@ Script_UseFlash:
 	end
 
 UnknownText_0xc8f3:
-	text_jump UnknownText_0x1c0609
+	text_far UnknownText_0x1c0609
 	start_asm
 	call WaitSFX
 	ld de, SFX_FLASH
@@ -429,15 +429,15 @@ UsedSurfScript:
 	ret
 
 UsedSurfText:
-	text_jump _UsedSurfText
+	text_far _UsedSurfText
 	db "@"
 
 CantSurfText:
-	text_jump _CantSurfText
+	text_far _CantSurfText
 	db "@"
 
 AlreadySurfingText:
-	text_jump _AlreadySurfingText
+	text_far _AlreadySurfingText
 	db "@"
 
 GetSurfType:
@@ -545,7 +545,7 @@ AskSurfScript:
 	end
 
 AskSurfText:
-	text_jump _AskSurfText ; The water is calm.
+	text_far _AskSurfText ; The water is calm.
 	db "@"              ; Want to SURF?
 
 FlyFunction:
@@ -709,7 +709,7 @@ Script_UsedWaterfall:
 
 .Text_UsedWaterfall:
 	; used WATERFALL!
-	text_jump UnknownText_0x1c068e
+	text_far UnknownText_0x1c068e
 	db "@"
 
 TryWaterfallOW::
@@ -739,7 +739,7 @@ Script_CantDoWaterfall:
 
 .Text_CantDoWaterfall:
 	; Wow, it's a huge waterfall.
-	text_jump UnknownText_0x1c06a3
+	text_far UnknownText_0x1c06a3
 	db "@"
 
 Script_AskWaterfall:
@@ -752,7 +752,7 @@ Script_AskWaterfall:
 
 .AskUseWaterfall:
 	; Do you want to use WATERFALL?
-	text_jump UnknownText_0x1c06bf
+	text_far UnknownText_0x1c06bf
 	db "@"
 
 EscapeRopeFunction:
@@ -839,17 +839,17 @@ dig_incave
 
 .Text_UsedDig:
 	; used DIG!
-	text_jump UnknownText_0x1c06de
+	text_far UnknownText_0x1c06de
 	db "@"
 
 .Text_UsedEscapeRope:
 	; used an ESCAPE ROPE.
-	text_jump UnknownText_0x1c06ed
+	text_far UnknownText_0x1c06ed
 	db "@"
 
 .Text_CantUseHere:
 	; Can't use that here.
-	text_jump UnknownText_0x1c0705
+	text_far UnknownText_0x1c0705
 	db "@"
 
 .UsedEscapeRopeScript:
@@ -938,12 +938,12 @@ TeleportFunction:
 
 .Text_ReturnToLastMonCenter:
 	; Return to the last #MON CENTER.
-	text_jump UnknownText_0x1c071a
+	text_far UnknownText_0x1c071a
 	db "@"
 
 .Text_CantUseHere:
 	; Can't use that here.
-	text_jump UnknownText_0x1c073b
+	text_far UnknownText_0x1c073b
 	db "@"
 
 .TeleportScript:
@@ -991,7 +991,7 @@ StrengthFunction:
 	ret
 
 .JumpText:
-	text_jump UnknownText_0x1c0751
+	text_far UnknownText_0x1c0751
 	db "@"
 
 .Failed:
@@ -1032,11 +1032,11 @@ Script_UsedStrength:
 	end
 
 .UsedStrength:
-	text_jump UnknownText_0x1c0774
+	text_far UnknownText_0x1c0774
 	db "@"
 
 .StrengthAllowedItToMoveBoulders:
-	text_jump UnknownText_0x1c0788
+	text_far UnknownText_0x1c0788
 	db "@"
 
 AskStrengthScript:
@@ -1061,17 +1061,17 @@ AskStrengthScript:
 
 UnknownText_0xcd69:
 	; A #MON may be able to move this. Want to use STRENGTH?
-	text_jump UnknownText_0x1c07a0
+	text_far UnknownText_0x1c07a0
 	db "@"
 
 UnknownText_0xcd6e:
 	; Boulders may now be moved!
-	text_jump UnknownText_0x1c07d8
+	text_far UnknownText_0x1c07d8
 	db "@"
 
 UnknownText_0xcd73:
 	; A #MON may be able to move this.
-	text_jump UnknownText_0x1c07f4
+	text_far UnknownText_0x1c07f4
 	db "@"
 
 TryStrengthOW:
@@ -1147,7 +1147,7 @@ Jumptable_cdae:
 
 Text_UsedWhirlpool:
 	; used WHIRLPOOL!
-	text_jump UnknownText_0x1c0816
+	text_far UnknownText_0x1c0816
 	db "@"
 
 TryWhirlpoolMenu:
@@ -1234,7 +1234,7 @@ Script_MightyWhirlpool:
 	jumptext .MightyWhirlpoolText
 
 .MightyWhirlpoolText:
-	text_jump UnknownText_0x1c082b
+	text_far UnknownText_0x1c082b
 	db "@"
 
 Script_AskWhirlpoolOW:
@@ -1246,7 +1246,7 @@ Script_AskWhirlpoolOW:
 	end
 
 UnknownText_0xce78:
-	text_jump UnknownText_0x1c0864
+	text_far UnknownText_0x1c0864
 	db "@"
 
 HeadbuttFunction:
@@ -1272,12 +1272,12 @@ TryHeadbuttFromMenu:
 
 UnknownText_0xce9d:
 	; did a HEADBUTT!
-	text_jump UnknownText_0x1c0897
+	text_far UnknownText_0x1c0897
 	db "@"
 
 UnknownText_0xcea2:
 	; Nope. Nothing…
-	text_jump UnknownText_0x1c08ac
+	text_far UnknownText_0x1c08ac
 	db "@"
 
 HeadbuttFromMenuScript:
@@ -1330,7 +1330,7 @@ AskHeadbuttScript:
 
 UnknownText_0xcee6:
 	; A #MON could be in this tree. Want to HEADBUTT it?
-	text_jump UnknownText_0x1c08bc
+	text_far UnknownText_0x1c08bc
 	db "@"
 
 RockSmashFunction:
@@ -1406,7 +1406,7 @@ MovementData_0xcf55:
 	step_end
 
 UnknownText_0xcf58:
-	text_jump UnknownText_0x1c08f0
+	text_far UnknownText_0x1c08f0
 	db "@"
 
 AskRockSmashScript:
@@ -1424,12 +1424,12 @@ AskRockSmashScript:
 
 UnknownText_0xcf72:
 	; Maybe a #MON can break this.
-	text_jump UnknownText_0x1c0906
+	text_far UnknownText_0x1c0906
 	db "@"
 
 UnknownText_0xcf77:
 	; This rock looks breakable. Want to use ROCK SMASH?
-	text_jump UnknownText_0x1c0924
+	text_far UnknownText_0x1c0924
 	db "@"
 
 HasRockSmash:
@@ -1632,17 +1632,17 @@ PutTheRodAway:
 
 UnknownText_0xd0a4:
 	; Oh! A bite!
-	text_jump UnknownText_0x1c0958
+	text_far UnknownText_0x1c0958
 	db "@"
 
 UnknownText_0xd0a9:
 	; Not even a nibble!
-	text_jump UnknownText_0x1c0965
+	text_far UnknownText_0x1c0965
 	db "@"
 
 UnknownText_0xd0ae: ; unused
 	; Looks like there's nothing here.
-	text_jump UnknownText_0x1c0979
+	text_far UnknownText_0x1c0979
 	db "@"
 
 BikeFunction:
@@ -1776,17 +1776,17 @@ Script_CantGetOffBike:
 
 .CantGetOffBikeText:
 	; You can't get off here!
-	text_jump UnknownText_0x1c099a
+	text_far UnknownText_0x1c099a
 	db "@"
 
 GotOnTheBikeText:
 	; got on the @ .
-	text_jump UnknownText_0x1c09b2
+	text_far UnknownText_0x1c09b2
 	db "@"
 
 GotOffTheBikeText:
 	; got off the @ .
-	text_jump UnknownText_0x1c09c7
+	text_far UnknownText_0x1c09c7
 	db "@"
 
 TryCutOW::
@@ -1832,12 +1832,12 @@ AskCutScript:
 	ret
 
 UnknownText_0xd1c8:
-	text_jump UnknownText_0x1c09dd
+	text_far UnknownText_0x1c09dd
 	db "@"
 
 CantCutScript:
 	jumptext UnknownText_0xd1d0
 
 UnknownText_0xd1d0:
-	text_jump UnknownText_0x1c0a05
+	text_far UnknownText_0x1c0a05
 	db "@"

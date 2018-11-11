@@ -26,7 +26,7 @@ _BugContestJudging:
 	jp BugContest_GetPlayersResult
 
 BugContest_FirstPlaceText:
-	text_jump ContestJudging_FirstPlaceText
+	text_far ContestJudging_FirstPlaceText
 	start_asm
 	ld de, SFX_1ST_PLACE
 	call PlaySFX
@@ -36,12 +36,12 @@ BugContest_FirstPlaceText:
 
 BugContest_FirstPlaceScoreText:
 	; The winning score was @  points!
-	text_jump ContestJudging_FirstPlaceScoreText
+	text_far ContestJudging_FirstPlaceScoreText
 	db "@"
 
 BugContest_SecondPlaceText:
 	; Placing second was @ , who caught a @ !@ @
-	text_jump ContestJudging_SecondPlaceText
+	text_far ContestJudging_SecondPlaceText
 	start_asm
 	ld de, SFX_2ND_PLACE
 	call PlaySFX
@@ -51,12 +51,12 @@ BugContest_SecondPlaceText:
 
 BugContest_SecondPlaceScoreText:
 	; The score was @  points!
-	text_jump ContestJudging_SecondPlaceScoreText
+	text_far ContestJudging_SecondPlaceScoreText
 	db "@"
 
 BugContest_ThirdPlaceText:
 	; Placing third was @ , who caught a @ !@ @
-	text_jump ContestJudging_ThirdPlaceText
+	text_far ContestJudging_ThirdPlaceText
 	start_asm
 	ld de, SFX_3RD_PLACE
 	call PlaySFX
@@ -66,7 +66,7 @@ BugContest_ThirdPlaceText:
 
 BugContest_ThirdPlaceScoreText:
 	; The score was @  points!
-	text_jump ContestJudging_ThirdPlaceScoreText
+	text_far ContestJudging_ThirdPlaceScoreText
 	db "@"
 
 LoadContestantName:
