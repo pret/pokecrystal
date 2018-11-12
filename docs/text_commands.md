@@ -159,7 +159,7 @@ Write text from one of the following addresses (listed in [data/text_buffers.asm
 Print the weekday.
 
 
-## `$16`: <code>text_jump <i>address</i></code>
+## `$16`: <code>text_far <i>address</i></code>
 
 Write text from a different bank.
 
