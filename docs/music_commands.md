@@ -120,7 +120,7 @@ Second byte, low nibble is the pitch depth. Half of this value will alternate be
 Ex: normal pitch of 405, if pitch depth = 3, it will alternate between 407 and 404. Speed timer does NOT reset when a new note is played. only when the song stops or changes. (Also, because a timer counts 0, a timer of 5 will take 6 frames to change.)
 
 
-## `$E2`: <code>unknownmusic0xe2 <i>unknown</i></code>
+## `$E2`: Unused
 
 
 ## `$E3`: <code>togglenoise <i>id</i></code>
@@ -144,10 +144,10 @@ It makes notes sound better if multiple channels play the same note simultaneous
 A lot of GSC songs set the main melody channel with a value of 1, and the secondary channel (not bass) as 2.
 
 
-## `$E7`: <code>unknownmusic0xe7 <i>unknown</i></code>
+## `$E7`: Unused
 
 
-## `$E8`: <code>unknownmusic0xe8 <i>unknown</i></code>
+## `$E8`: Unused
 
 
 ## `$E9`: <code>tempo_relative <i>value</i></code>
@@ -165,7 +165,7 @@ A lot of GSC songs set the main melody channel with a value of 1, and the second
 ## `$ED`: <code>sfxpriorityoff</i></code>
 
 
-## `$EE`: <code>unknownmusic0xee <i>address</i></code>
+## `$EE`: <code>Unused</code>
 
 
 ## `$EF`: <code>stereopanning <i>tracks</i></code>
@@ -198,7 +198,7 @@ A lot of GSC songs set the main melody channel with a value of 1, and the second
 ## `$F8`: `music0xf8`
 
 
-## `$F9`: `unknownmusic0xf9`
+## `$F9`: Unused
 
 
 ## `$FA`: <code>setcondition <i>condition</i></code>
