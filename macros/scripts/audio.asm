@@ -94,12 +94,6 @@ vibrato: MACRO
 	db \2 ; extent
 ENDM
 
-	enum unknownmusic0xe2_cmd ; $e2
-unknownmusic0xe2: MACRO
-	db unknownmusic0xe2_cmd
-	db \1 ; unknown
-ENDM
-
 	enum togglenoise_cmd ; $e3
 togglenoise: MACRO
 	db togglenoise_cmd
@@ -122,18 +116,6 @@ ENDM
 tone: MACRO
 	db tone_cmd
 	bigdw \1 ; tone
-ENDM
-
-	enum unknownmusic0xe7_cmd ; $e7
-unknownmusic0xe7: MACRO
-	db unknownmusic0xe7_cmd
-	db \1 ; unknown
-ENDM
-
-	enum unknownmusic0xe8_cmd ; $e8
-unknownmusic0xe8: MACRO
-	db unknownmusic0xe8_cmd
-	db \1 ; unknown
 ENDM
 
 	enum tempo_relative_cmd ; $e9
@@ -162,12 +144,6 @@ ENDM
 	enum sfxpriorityoff_cmd ; $ed
 sfxpriorityoff: MACRO
 	db sfxpriorityoff_cmd
-ENDM
-
-	enum unknownmusic0xee_cmd ; $ee
-unknownmusic0xee: MACRO
-	db unknownmusic0xee_cmd
-	dw \1 ; address
 ENDM
 
 	enum stereopanning_cmd ; $ef
@@ -220,11 +196,6 @@ ENDM
 	enum music0xf8_cmd ; $f8
 music0xf8: MACRO
 	db music0xf8_cmd
-ENDM
-
-	enum unknownmusic0xf9_cmd ; $f9
-unknownmusic0xf9: MACRO
-	db unknownmusic0xf9_cmd
 ENDM
 
 	enum setcondition_cmd ; $fa
