@@ -165,7 +165,7 @@ A lot of GSC songs set the main melody channel with a value of 1, and the second
 ## `$ED`: <code>sfxpriorityoff</i></code>
 
 
-## `$EE`: <code>Unused</code>
+## `$EE`: Unused
 
 
 ## `$EF`: <code>stereopanning <i>tracks</i></code>
