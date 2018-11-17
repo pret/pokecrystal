@@ -119,7 +119,7 @@ TrainerHouseB1FIntroText:
 	done
 
 TrainerHouseB1FYourOpponentIsText:
-	text_from_ram wStringBuffer3
+	text_ram wStringBuffer3
 	text " is your"
 	line "opponent today."
 	done

@@ -733,7 +733,7 @@ Error_Cant_ExitMenu:
 
 .Text_NoWindowsAvailableForPopping:
 	text_far UnknownText_0x1c46b7
-	db "@"
+	text_end
 
 _InitVerticalMenuCursor::
 	ld a, [wMenuDataFlags]

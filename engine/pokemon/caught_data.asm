@@ -159,7 +159,7 @@ GiveANickname_YesNo:
 TextJump_GiveANickname:
 	; Give a nickname to the @  you received?
 	text_far UnknownText_0x1c12fc
-	db "@"
+	text_end
 
 SetCaughtData:
 	ld a, [wPartyCount]

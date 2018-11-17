@@ -166,4 +166,11 @@ step_sleep_7 EQUS "step_sleep 7"
 step_sleep_8 EQUS "step_sleep 8"
 
 ; macros/scripts/text.asm
-text_jump EQUS "text_far"
+text_from_ram          EQUS "text_ram"
+start_asm              EQUS "text_asm"
+deciram                EQUS "text_decimal"
+interpret_data         EQUS "text_pause"
+limited_interpret_data EQUS "text_dots"
+link_wait_button       EQUS "text_linkwaitbutton"
+current_day            EQUS "text_today"
+text_jump              EQUS "text_far"

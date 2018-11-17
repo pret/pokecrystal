@@ -13,7 +13,7 @@ SelectMenu::
 
 ItemMayBeRegisteredText:
 	text_far UnknownText_0x1c1cf3
-	db "@"
+	text_end
 
 CheckRegisteredItem:
 	ld a, [wWhichRegisteredItem]

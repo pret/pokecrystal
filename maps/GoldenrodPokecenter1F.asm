@@ -180,10 +180,10 @@ UnknownText_0x6113b:
 	line "to trade your"
 
 	para "@"
-	text_from_ram wStringBuffer3
+	text_ram wStringBuffer3
 	text " for"
 	line "@"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text "."
 
 	para "We'll have to hold"
@@ -200,7 +200,7 @@ UnknownText_0x611c9:
 	line "to trade your"
 
 	para "@"
-	text_from_ram wStringBuffer3
+	text_ram wStringBuffer3
 	text " for a"
 	line "#MON that you"
 	cont "have never seen."

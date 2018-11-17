@@ -704,11 +704,11 @@ OakSpeech:
 
 OakText1:
 	text_far _OakText1
-	db "@"
+	text_end
 
 OakText2:
 	text_far _OakText2
-	start_asm
+	text_asm
 	ld a, WOOPER
 	call PlayMonCry
 	call WaitSFX
@@ -717,23 +717,23 @@ OakText2:
 
 OakText3:
 	text_far _OakText3
-	db "@"
+	text_end
 
 OakText4:
 	text_far _OakText4
-	db "@"
+	text_end
 
 OakText5:
 	text_far _OakText5
-	db "@"
+	text_end
 
 OakText6:
 	text_far _OakText6
-	db "@"
+	text_end
 
 OakText7:
 	text_far _OakText7
-	db "@"
+	text_end
 
 NamePlayer:
 	farcall MovePlayerPicRight

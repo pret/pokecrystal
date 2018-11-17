@@ -292,12 +292,12 @@ PrintTwoDigitNumberRightAlign:
 Text_WokeUpOak:
 	; Zzz… Hm? Wha…? You woke me up! Will you check the clock for me?
 	text_far UnknownText_0x1bc29c
-	db "@"
+	text_end
 
 Text_WhatTimeIsIt:
 	; What time is it?
 	text_far UnknownText_0x1bc2eb
-	db "@"
+	text_end
 
 String_oclock:
 	db "o'clock@"
@@ -305,7 +305,7 @@ String_oclock:
 Text_WhatHrs:
 	; What?@ @
 	text_far UnknownText_0x1bc2fd
-	start_asm
+	text_asm
 	hlcoord 1, 16
 	call DisplayHourOClock
 	ld hl, .QuestionMark
@@ -314,12 +314,12 @@ Text_WhatHrs:
 .QuestionMark:
 	; ?
 	text_far UnknownText_0x1bc305
-	db "@"
+	text_end
 
 Text_HowManyMinutes:
 	; How many minutes?
 	text_far UnknownText_0x1bc308
-	db "@"
+	text_end
 
 String_min:
 	db "min.@"
@@ -327,7 +327,7 @@ String_min:
 Text_WhoaMins:
 	; Whoa!@ @
 	text_far UnknownText_0x1bc31b
-	start_asm
+	text_asm
 	hlcoord 7, 14
 	call DisplayMinutesWithMinString
 	ld hl, .QuestionMark
@@ -336,10 +336,10 @@ Text_WhoaMins:
 .QuestionMark:
 	; ?
 	text_far UnknownText_0x1bc323
-	db "@"
+	text_end
 
 OakText_ResponseToSetTime:
-	start_asm
+	text_asm
 	decoord 1, 14
 	ld a, [wInitHourBuffer]
 	ld c, a
@@ -371,17 +371,17 @@ OakText_ResponseToSetTime:
 .overslept
 	; ! I overslept!
 	text_far UnknownText_0x1bc326
-	db "@"
+	text_end
 
 .yikes
 	; ! Yikes! I over- slept!
 	text_far UnknownText_0x1bc336
-	db "@"
+	text_end
 
 .sodark
 	; ! No wonder it's so dark!
 	text_far UnknownText_0x1bc34f
-	db "@"
+	text_end
 
 TimeSetBackgroundGFX:
 INCBIN "gfx/new_game/timeset_bg.1bpp"
@@ -535,10 +535,10 @@ SetDayOfWeek:
 .WhatDayIsItText:
 	; What day is it?
 	text_far UnknownText_0x1bc369
-	db "@"
+	text_end
 
 .ConfirmWeekdayText:
-	start_asm
+	text_asm
 	hlcoord 1, 14
 	call .PlaceWeekdayString
 	ld hl, .IsIt
@@ -547,7 +547,7 @@ SetDayOfWeek:
 .IsIt:
 	; , is it?
 	text_far UnknownText_0x1bc37a
-	db "@"
+	text_end
 
 InitialSetDSTFlag:
 	ld a, [wDST]
@@ -561,7 +561,7 @@ InitialSetDSTFlag:
 	ret
 
 .Text:
-	start_asm
+	text_asm
 	call UpdateTime
 	ldh a, [hHours]
 	ld b, a
@@ -575,7 +575,7 @@ InitialSetDSTFlag:
 .DSTIsThatOK:
 	; DST, is that OK?
 	text_far Text_DSTIsThatOK
-	db "@"
+	text_end
 
 InitialClearDSTFlag:
 	ld a, [wDST]
@@ -589,7 +589,7 @@ InitialClearDSTFlag:
 	ret
 
 .Text:
-	start_asm
+	text_asm
 	call UpdateTime
 	ldh a, [hHours]
 	ld b, a
@@ -603,7 +603,7 @@ InitialClearDSTFlag:
 .IsThatOK:
 	; , is that OK?
 	text_far UnknownText_0x1c5ff1
-	db "@"
+	text_end
 
 DebugDisplayTime:
 	hlcoord 1, 14
@@ -614,7 +614,7 @@ DebugDisplayTime:
 	ret
 
 .Text:
-	start_asm
+	text_asm
 	call UpdateTime
 
 	hlcoord 1, 14

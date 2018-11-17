@@ -98,20 +98,20 @@ INCLUDE "data/items/fruit_trees.asm"
 
 FruitBearingTreeText:
 	text_far _FruitBearingTreeText
-	db "@"
+	text_end
 
 HeyItsFruitText:
 	text_far _HeyItsFruitText
-	db "@"
+	text_end
 
 ObtainedFruitText:
 	text_far _ObtainedFruitText
-	db "@"
+	text_end
 
 FruitPackIsFullText:
 	text_far _FruitPackIsFullText
-	db "@"
+	text_end
 
 NothingHereText:
 	text_far _NothingHereText
-	db "@"
+	text_end

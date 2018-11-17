@@ -27,7 +27,7 @@ Script_Whiteout:
 .WhitedOutText:
 	; is out of useable #MON!  whited out!
 	text_far UnknownText_0x1c0a4e
-	db "@"
+	text_end
 
 OverworldBGMap:
 	call ClearPalettes

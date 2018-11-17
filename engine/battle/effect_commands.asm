@@ -4543,7 +4543,7 @@ BattleCommand_StatUpMessage:
 
 .stat
 	text_far UnknownText_0x1c0cc6
-	start_asm
+	text_asm
 	ld hl, .up
 	ld a, [wLoweredStat]
 	and $f0
@@ -4553,11 +4553,11 @@ BattleCommand_StatUpMessage:
 
 .wayup
 	text_far UnknownText_0x1c0cd0
-	db "@"
+	text_end
 
 .up
 	text_far UnknownText_0x1c0ce0
-	db "@"
+	text_end
 
 BattleCommand_StatDownMessage:
 	ld a, [wFailedMessage]
@@ -4573,7 +4573,7 @@ BattleCommand_StatDownMessage:
 
 .stat
 	text_far UnknownText_0x1c0ceb
-	start_asm
+	text_asm
 	ld hl, .fell
 	ld a, [wLoweredStat]
 	and $f0
@@ -4583,10 +4583,11 @@ BattleCommand_StatDownMessage:
 
 .sharplyfell
 	text_far UnknownText_0x1c0cf5
-	db "@"
+	text_end
+
 .fell
 	text_far UnknownText_0x1c0d06
-	db "@"
+	text_end
 
 TryLowerStat:
 ; Lower stat c from stat struct hl (buffer de).
@@ -5637,7 +5638,7 @@ BattleCommand_Charge:
 
 .UsedText:
 	text_far UnknownText_0x1c0d0e ; "<USER>"
-	start_asm
+	text_asm
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	cp RAZOR_WIND
@@ -5669,32 +5670,32 @@ BattleCommand_Charge:
 .RazorWind:
 ; 'made a whirlwind!'
 	text_far UnknownText_0x1c0d12
-	db "@"
+	text_end
 
 .Solarbeam:
 ; 'took in sunlight!'
 	text_far UnknownText_0x1c0d26
-	db "@"
+	text_end
 
 .SkullBash:
 ; 'lowered its head!'
 	text_far UnknownText_0x1c0d3a
-	db "@"
+	text_end
 
 .SkyAttack:
 ; 'is glowing!'
 	text_far UnknownText_0x1c0d4e
-	db "@"
+	text_end
 
 .Fly:
 ; 'flew up high!'
 	text_far UnknownText_0x1c0d5c
-	db "@"
+	text_end
 
 .Dig:
 ; 'dug a hole!'
 	text_far UnknownText_0x1c0d6c
-	db "@"
+	text_end
 
 BattleCommand3c:
 ; unused
@@ -6857,8 +6858,8 @@ BattleCommand_ClearText:
 	ld hl, .text
 	jp BattleTextBox
 
-.text
-	db "@"
+.text:
+	text_end
 
 SkipToBattleCommand:
 ; Skip over commands until reaching command b.

@@ -1064,37 +1064,37 @@ LevelBallMultiplier:
 Text_RBY_CatchMarowak:
 	; It dodged the thrown BALL! This #MON can't be caught!
 	text_far UnknownText_0x1c5a5a
-	db "@"
+	text_end
 
 Text_RBY_NoShake:
 	; You missed the #MON!
 	text_far UnknownText_0x1c5a90
-	db "@"
+	text_end
 
 Text_NoShake:
 	; Oh no! The #MON broke free!
 	text_far UnknownText_0x1c5aa6
-	db "@"
+	text_end
 
 Text_OneShake:
 	; Aww! It appeared to be caught!
 	text_far UnknownText_0x1c5ac3
-	db "@"
+	text_end
 
 Text_TwoShakes:
 	; Aargh! Almost had it!
 	text_far UnknownText_0x1c5ae3
-	db "@"
+	text_end
 
 Text_ThreeShakes:
 	; Shoot! It was so close too!
 	text_far UnknownText_0x1c5afa
-	db "@"
+	text_end
 
 Text_GotchaMonWasCaught:
 	; Gotcha! @ was caught!@ @
 	text_far UnknownText_0x1c5b17
-	start_asm
+	text_asm
 	call WaitSFX
 	push bc
 	ld de, MUSIC_NONE
@@ -1109,22 +1109,22 @@ Text_GotchaMonWasCaught:
 TextJump_Waitbutton:
 	; @
 	text_far Text_Waitbutton_2
-	db "@"
+	text_end
 
 Text_SentToBillsPC:
 	; was sent to BILL's PC.
 	text_far UnknownText_0x1c5b38
-	db "@"
+	text_end
 
 Text_AddedToPokedex:
 	; 's data was newly added to the #DEX.@ @
 	text_far UnknownText_0x1c5b53
-	db "@"
+	text_end
 
 Text_AskNicknameNewlyCaughtMon:
 	; Give a nickname to @ ?
 	text_far UnknownText_0x1c5b7f
-	db "@"
+	text_end
 
 ReturnToBattle_UseBall:
 	farcall _ReturnToBattle_UseBall
@@ -1235,7 +1235,7 @@ RareCandy_StatBooster_ExitMenu:
 Text_StatRose:
 	; 's @  rose.
 	text_far UnknownText_0x1c5b9a
-	db "@"
+	text_end
 
 StatStrings:
 	dw .health
@@ -2063,7 +2063,7 @@ Softboiled_MilkDrinkFunction:
 .Text_CantBeUsed:
 	; That can't be used on this #MON.
 	text_far UnknownText_0x1c5bac
-	db "@"
+	text_end
 
 EscapeRopeEffect:
 	xor a
@@ -2099,7 +2099,7 @@ UseRepel:
 TextJump_RepelUsedEarlierIsStillInEffect:
 	; The REPEL used earlier is still in effect.
 	text_far Text_RepelUsedEarlierIsStillInEffect
-	db "@"
+	text_end
 
 XAccuracyEffect:
 	ld hl, wPlayerSubStatus4
@@ -2240,17 +2240,17 @@ PokeFluteEffect:
 .CatchyTune:
 	; Played the # FLUTE. Now, that's a catchy tune!
 	text_far UnknownText_0x1c5bf9
-	db "@"
+	text_end
 
 .AllSleepingMonWokeUp:
 	; All sleeping #MON woke up.
 	text_far UnknownText_0x1c5c28
-	db "@"
+	text_end
 
 .PlayedTheFlute:
 	; played the # FLUTE.@ @
 	text_far UnknownText_0x1c5c44
-	start_asm
+	text_asm
 	ld a, [wBattleMode]
 	and a
 	jr nz, .battle
@@ -2270,7 +2270,7 @@ BlueCardEffect:
 
 .bluecardtext
 	text_far UnknownText_0x1c5c5e
-	db "@"
+	text_end
 
 CoinCaseEffect:
 	ld hl, .coincasetext
@@ -2278,7 +2278,7 @@ CoinCaseEffect:
 
 .coincasetext
 	text_far UnknownText_0x1c5c7b
-	db "@"
+	text_end
 
 OldRodEffect:
 	ld e, $0
@@ -2533,27 +2533,27 @@ RestorePP:
 TextJump_RaiseThePPOfWhichMove:
 	; Raise the PP of which move?
 	text_far Text_RaiseThePPOfWhichMove
-	db "@"
+	text_end
 
 TextJump_RestoreThePPOfWhichMove:
 	; Restore the PP of which move?
 	text_far Text_RestoreThePPOfWhichMove
-	db "@"
+	text_end
 
 TextJump_PPIsMaxedOut:
 	; 's PP is maxed out.
 	text_far Text_PPIsMaxedOut
-	db "@"
+	text_end
 
 TextJump_PPsIncreased:
 	; 's PP increased.
 	text_far Text_PPsIncreased
-	db "@"
+	text_end
 
 UnknownText_0xf739:
 	; PP was restored.
 	text_far UnknownText_0x1c5cf1
-	db "@"
+	text_end
 
 SquirtbottleEffect:
 	farcall _Squirtbottle
@@ -2592,7 +2592,7 @@ OpenBox:
 .text
 	; There was a trophy inside!
 	text_far UnknownText_0x1c5d03
-	db "@"
+	text_end
 
 NoEffect:
 	jp IsntTheTimeMessage
@@ -2687,67 +2687,67 @@ CantUseItemMessage:
 LooksBitterText:
 	; It looks bitter…
 	text_far UnknownText_0x1c5d3e
-	db "@"
+	text_end
 
 CantUseOnEggText:
 	; That can't be used on an EGG.
 	text_far UnknownText_0x1c5d50
-	db "@"
+	text_end
 
 IsntTheTimeText:
 	; OAK:  ! This isn't the time to use that!
 	text_far UnknownText_0x1c5d6e
-	db "@"
+	text_end
 
 BelongsToSomeoneElseText:
 	; That belongs to someone else!
 	text_far UnknownText_0x1c5d97
-	db "@"
+	text_end
 
 WontHaveAnyEffectText:
 	; It won't have any effect.
 	text_far UnknownText_0x1c5db6
-	db "@"
+	text_end
 
 BlockedTheBallText:
 	; The trainer blocked the BALL!
 	text_far UnknownText_0x1c5dd0
-	db "@"
+	text_end
 
 DontBeAThiefText:
 	; Don't be a thief!
 	text_far UnknownText_0x1c5def
-	db "@"
+	text_end
 
 CyclingIsntAllowedText:
 	; Cycling isn't allowed here.
 	text_far UnknownText_0x1c5e01
-	db "@"
+	text_end
 
 CantGetOnYourBikeText:
 	; Can't get on your @  now.
 	text_far UnknownText_0x1c5e1d
-	db "@"
+	text_end
 
 Ball_BoxIsFullText:
 	; The #MON BOX is full. That can't be used now.
 	text_far UnknownText_0x1c5e3a
-	db "@"
+	text_end
 
 UsedItemText:
 	; used the@ .
 	text_far UnknownText_0x1c5e68
-	db "@"
+	text_end
 
 GotOnTheItemText:
 	; got on the@ .
 	text_far UnknownText_0x1c5e7b
-	db "@"
+	text_end
 
 GotOffTheItemText:
 	; got off@ the @ .
 	text_far UnknownText_0x1c5e90
-	db "@"
+	text_end
 
 ApplyPPUp:
 	ld a, MON_MOVES

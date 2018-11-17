@@ -426,7 +426,7 @@ StartMenu_Quit:
 
 .EndTheContestText:
 	text_far UnknownText_0x1c1a6c
-	db "@"
+	text_end
 
 StartMenu_Save:
 ; Save the game.

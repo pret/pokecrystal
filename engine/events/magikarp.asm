@@ -74,7 +74,7 @@ CheckMagikarpLength:
 .MeasureItText:
 	; Let me measure that MAGIKARP. …Hm, it measures @ .
 	text_far UnknownText_0x1c1203
-	db "@"
+	text_end
 
 Magikarp_LoadFeetInchesChars:
 	ld hl, vTiles2 tile "′" ; $6e
@@ -314,4 +314,4 @@ MagikarpHouseSign:
 .CurrentRecordtext:
 	; "CURRENT RECORD"
 	text_far UnknownText_0x1c123a
-	db "@"
+	text_end

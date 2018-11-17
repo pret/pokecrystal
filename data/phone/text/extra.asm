@@ -292,7 +292,7 @@ UnknownText_0x648dc:
 ArnieLovesTheCuteText:
 	text "I'm always with my"
 	line "@"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text "!"
 
 	para "It's so cute!"
@@ -304,7 +304,7 @@ UnknownText_0x64a13:
 	line "here, I saw this"
 
 	para "@"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text " for the"
 	line "first time."
 
@@ -316,7 +316,7 @@ UnknownText_0x64a71:
 	text "I was wondering,"
 	line "do you happen to"
 	cont "have @"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text "?"
 
 	para "I can't seem to"
@@ -338,7 +338,7 @@ UnknownText_0x64ada:
 
 	para "I'll be here on"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "!"
 	done
 
@@ -353,12 +353,12 @@ UnknownText_0x64b5f:
 
 	para "A whole bunch of"
 	line "@"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text " have"
 
 	para "appeared around"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "!"
 
 	para "You have to see"
@@ -381,7 +381,7 @@ UnknownText_0x64c13:
 	para "Let's battle. I'll"
 	line "be waiting for you"
 	cont "on @"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "!"
 	done
 
@@ -398,7 +398,7 @@ UnknownText_0x64c5a:
 
 AlanGettingStrongerText:
 	text "My @"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text "'s"
 	line "getting stronger,"
 
@@ -411,7 +411,7 @@ UnknownText_0x64cf3:
 	line "knocked out a wild"
 
 	para "@"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text " just"
 	line "the other day."
 
@@ -422,7 +422,7 @@ UnknownText_0x64cf3:
 UnknownText_0x64d4f:
 	text "By the way, a wild"
 	line "@"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text " escaped"
 	cont "on me yesterday."
 
@@ -439,7 +439,7 @@ UnknownText_0x64da4:
 
 	para "I'm hanging out on"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "."
 
 	para "Can you come down"
@@ -458,7 +458,7 @@ UnknownText_0x64e2f:
 	line "Why don't you come"
 
 	para "to @"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text_start
 	line "and pick it up?"
 	done
@@ -478,7 +478,7 @@ UnknownText_0x64ed4:
 
 	para "I'm waiting on"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "!"
 	done
 
@@ -491,13 +491,13 @@ UnknownText_0x64f1a:
 
 	para "I'm waiting on"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "!"
 	done
 
 UnknownText_0x64f74:
 	text "My @"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text " is"
 	line "getting prettier!"
 
@@ -509,7 +509,7 @@ UnknownText_0x64fb2:
 	text "It took only an"
 	line "instant to KO a"
 	cont "wild @"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text "."
 
 	para "It must be because"
@@ -522,7 +522,7 @@ UnknownText_0x64fb2:
 UnknownText_0x6501c:
 	text "You know what?"
 	line "A wild @"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text_start
 	para "got away from me"
 	line "again."
@@ -537,7 +537,7 @@ UnknownText_0x6501c:
 UnknownText_0x65091:
 	text "Right now, I'm on"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "."
 
 	para "If you're close"
@@ -563,7 +563,7 @@ UnknownText_0x650ec:
 
 	para "it! I'm waiting on"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "!"
 	done
 
@@ -587,7 +587,7 @@ UnknownText_0x651bf:
 
 	para "I'm waiting on"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "!"
 	done
 
@@ -602,7 +602,7 @@ UnknownText_0x6520f:
 
 	para "I'm waiting on"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "!"
 	done
 
@@ -610,7 +610,7 @@ ChadObservingWildText:
 	text "I recently began"
 	line "observing wild"
 	cont "@"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text "."
 
 	para "I've been learning"
@@ -631,7 +631,7 @@ UnknownText_0x65318:
 	line "to knock out a"
 
 	para "wild @"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text " a"
 	line "while back."
 
@@ -647,7 +647,7 @@ UnknownText_0x65399:
 	line "close to catching"
 
 	para "a wild @"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text ","
 	line "but it got away."
 
@@ -656,7 +656,7 @@ UnknownText_0x65399:
 
 	para "wanting to observe"
 	line "@"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text ". Rats…"
 	done
 
@@ -669,7 +669,7 @@ UnknownText_0x65419:
 
 	para "I'll be on"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "!"
 	done
 
@@ -845,7 +845,7 @@ UnknownText_0x65a63:
 
 	para "The place is"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "."
 
 	para "Hurry over--I'm"
@@ -855,7 +855,7 @@ UnknownText_0x65a63:
 DerekCheekPincherText:
 	text "Listen to this."
 	line "My @"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text_start
 	para "grins happily when"
 	line "I pinch its cheek."
@@ -870,11 +870,11 @@ UnknownText_0x65b29:
 	text "Oh, and recently,"
 	line "my PIKACHU beat a"
 	cont "wild @"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text "!"
 
 	para "A wild @"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text ","
 	line "I tell you!"
 
@@ -891,7 +891,7 @@ UnknownText_0x65b29:
 UnknownText_0x65bc8:
 	text "Oh, and I saw a"
 	line "wild @"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text " a"
 	cont "little while ago."
 
@@ -951,7 +951,7 @@ UnknownText_0x65da6:
 
 	para "I'm waiting on"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "."
 
 	para "Come pick this up"
@@ -960,7 +960,7 @@ UnknownText_0x65da6:
 
 TullyGrownText:
 	text "My @"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text " has"
 	line "grown again."
 
@@ -974,7 +974,7 @@ TullyGrownText:
 UnknownText_0x65e42:
 	text "Oh yeah, I KO'd a"
 	line "wild @"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text "."
 
 	para "It was huge, like"
@@ -988,7 +988,7 @@ UnknownText_0x65e42:
 UnknownText_0x65eac:
 	text "Oh yeah, I lost a"
 	line "wild @"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text "."
 
 	para "It was huge, like"
@@ -1005,7 +1005,7 @@ UnknownText_0x65f17:
 
 	para "I'll be fishing on"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "."
 
 	para "Swing by if you"
@@ -1027,7 +1027,7 @@ UnknownText_0x65f88:
 
 	para "I'll be waiting on"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "."
 	done
 
@@ -1049,7 +1049,7 @@ UnknownText_0x66043:
 
 	para "Our battle will be"
 	line "on @"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "."
 	done
 
@@ -1059,7 +1059,7 @@ UnknownText_0x66087:
 
 	para "Hustle over to"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "."
 	done
 
@@ -1082,7 +1082,7 @@ UnknownText_0x6613c:
 	line "down this wild"
 
 	para "@"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text "."
 	line "It wasn't rare"
 
@@ -1120,7 +1120,7 @@ UnknownText_0x66214:
 
 	para "You know where--"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "."
 	done
 
@@ -1223,13 +1223,13 @@ UnknownText_0x66579:
 
 	para "Hurry over to"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "."
 	done
 
 UnknownText_0x665ad:
 	text "My @"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text "'s"
 	line "adorable, don't"
 
@@ -1245,7 +1245,7 @@ UnknownText_0x66605:
 	line "battle a wild"
 
 	para "@"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text " a while"
 	line "ago…"
 
@@ -1256,7 +1256,7 @@ UnknownText_0x66605:
 
 	para "I hate those nasty"
 	line "@"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text "!"
 	done
 
@@ -1265,7 +1265,7 @@ UnknownText_0x66688:
 	line "battle a wild"
 
 	para "@"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text " a while"
 	line "ago…"
 
@@ -1290,12 +1290,12 @@ UnknownText_0x66730:
 	para "I'll be waiting"
 	line "with CLEFAIRY on"
 	cont "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "."
 	done
 
 TiffanyItsAwfulText:
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text "!"
 
 	para "It's awful."
@@ -1326,7 +1326,7 @@ UnknownText_0x66801:
 
 	para "Come collect it on"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "."
 	done
 
@@ -1347,7 +1347,7 @@ UnknownText_0x668a3:
 
 	para "Please hurry to"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "!"
 	done
 
@@ -1361,13 +1361,13 @@ UnknownText_0x6691d:
 
 	para "Please hurry to"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "!"
 	done
 
 VanceLiftoffText:
 	text "My @"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text "'s"
 	line "become tougher."
 
@@ -1378,7 +1378,7 @@ VanceLiftoffText:
 UnknownText_0x669b2:
 	text "We can easily beat"
 	line "@"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text "!"
 
 	para "…Huh? You too?"
@@ -1388,7 +1388,7 @@ UnknownText_0x669b2:
 UnknownText_0x669ed:
 	text "But get this, a"
 	line "wild @"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text_start
 	para "just barely eluded"
 	line "us."
@@ -1400,7 +1400,7 @@ UnknownText_0x669ed:
 UnknownText_0x66a3a:
 	text "Right now, I'm on"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "."
 
 	para "You know, where I"
@@ -1425,14 +1425,14 @@ VanceHurryHurryText:
 	line "Hurry, hurry!"
 
 	para "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "!"
 	line "FLY over now!"
 	done
 
 WiltonGrownText:
 	text "My @"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text "'s"
 	line "grown impressive!"
 
@@ -1443,7 +1443,7 @@ WiltonGrownText:
 UnknownText_0x66b3e:
 	text "We beat a wild"
 	line "@"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text "…"
 
 	para "You know, I have"
@@ -1459,7 +1459,7 @@ UnknownText_0x66b8f:
 
 	para "to landing a wild"
 	line "@"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text "."
 
 	para "I tell you, it was"
@@ -1469,7 +1469,7 @@ UnknownText_0x66b8f:
 UnknownText_0x66bf3:
 	text "I'm fishing on"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text ","
 
 	para "but nothing's"
@@ -1490,7 +1490,7 @@ UnknownText_0x66c6b:
 
 	para "Come pick it up on"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "."
 	done
 
@@ -1511,7 +1511,7 @@ WiltonNotBitingText:
 
 	para "like before on"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "…"
 
 	para "You have to come"
@@ -1526,7 +1526,7 @@ WiltonWantThisText:
 	line "know where?"
 
 	para "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "…"
 	line "Just head from"
 
@@ -1601,14 +1601,14 @@ UnknownText_0x66f52:
 ParryNoMatchText:
 	text "Nothing can match"
 	line "my @"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text " now."
 	done
 
 UnknownText_0x66fc0:
 	text "Yeah, we KO'd a"
 	line "wild @"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text "!"
 
 	para "That was OK, but I"
@@ -1620,7 +1620,7 @@ UnknownText_0x67001:
 	line "spotted a wild"
 
 	para "@"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text "."
 	line "We were debating"
 
@@ -1643,7 +1643,7 @@ UnknownText_0x67096:
 
 	para "Yep! We'll meet on"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "!"
 	done
 
@@ -1660,7 +1660,7 @@ ParryBattleWithMeText:
 ParryHaventYouGottenToText:
 	text "Haven't you gotten"
 	line "to @"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "?"
 
 	para "Waiting here isn't"
@@ -1669,9 +1669,9 @@ ParryHaventYouGottenToText:
 	done
 
 UnknownText_0x6717a:
-	text_from_ram wStringBuffer3
+	text_ram wStringBuffer3
 	text "'s @"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text_start
 	line "is much stronger"
 	cont "than before!"
@@ -1681,7 +1681,7 @@ UnknownText_0x671a4:
 	text "And, and…"
 	line "I just battled and"
 	cont "beat @"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text "!"
 
 	para "I've raised my"
@@ -1692,7 +1692,7 @@ UnknownText_0x671eb:
 	text "But, but…"
 
 	para "A wild @"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text_start
 	line "got away from me"
 
@@ -1709,7 +1709,7 @@ UnknownText_0x6722e:
 
 	para "I'll be waiting on"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "!"
 	done
 
@@ -1732,6 +1732,6 @@ ErinComeBattleText:
 
 	para "I'll be waiting on"
 	line "@"
-	text_from_ram wStringBuffer5
+	text_ram wStringBuffer5
 	text "!"
 	done

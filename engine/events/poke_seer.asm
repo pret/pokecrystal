@@ -299,42 +299,42 @@ SeerTexts:
 SeerIntroText:
 	; I see all. I know all… Certainly, I know of your #MON!
 	text_far UnknownText_0x1c475f
-	db "@"
+	text_end
 
 SeerCantTellText:
 	; Whaaaat? I can't tell a thing! How could I not know of this?
 	text_far UnknownText_0x1c4797
-	db "@"
+	text_end
 
 SeerMetAtText:
 	; Hm… I see you met @  here: @ !
 	text_far UnknownText_0x1c47d4
-	db "@"
+	text_end
 
 SeerTimeLevelText:
 	; The time was @ ! Its level was @ ! Am I good or what?
 	text_far UnknownText_0x1c47fa
-	db "@"
+	text_end
 
 SeerTradedText:
 	; Hm… @ came from @ in a trade? @ was where @ met @ !
 	text_far UnknownText_0x1c4837
-	db "@"
+	text_end
 
 SeerLevelOnlyText:
 	; What!? Incredible! I don't understand how, but it is incredible! You are special. I can't tell where you met it, but it was at level @ . Am I good or what?
 	text_far UnknownText_0x1c487f
-	db "@"
+	text_end
 
 SeerEggText:
 	; Hey! That's an EGG! You can't say that you've met it yet…
 	text_far UnknownText_0x1c491d
-	db "@"
+	text_end
 
 SeerCancelText:
 	; Fufufu! I saw that you'd do nothing!
 	text_far UnknownText_0x1c4955
-	db "@"
+	text_end
 
 SeerAdvice:
 	ld a, MON_LEVEL
@@ -374,27 +374,27 @@ SeerAdviceTexts:
 SeerAdvice1:
 	; Incidentally… It would be wise to raise your #MON with a little more care.
 	text_far UnknownText_0x1c497a
-	db "@"
+	text_end
 
 SeerAdvice2:
 	; Incidentally… It seems to have grown a little. @  seems to be becoming more confident.
 	text_far UnknownText_0x1c49c6
-	db "@"
+	text_end
 
 SeerAdvice3:
 	; Incidentally… @  has grown. It's gained much strength.
 	text_far UnknownText_0x1c4a21
-	db "@"
+	text_end
 
 SeerAdvice4:
 	; Incidentally… It certainly has grown mighty! This @ must have come through numerous #MON battles. It looks brimming with confidence.
 	text_far UnknownText_0x1c4a5b
-	db "@"
+	text_end
 
 SeerAdvice5:
 	; Incidentally… I'm impressed by your dedication. It's been a long time since I've seen a #MON as mighty as this @ . I'm sure that seeing @ in battle would excite anyone.
 	text_far UnknownText_0x1c4ae5
-	db "@"
+	text_end
 
 GetCaughtGender:
 	ld hl, MON_CAUGHTGENDER

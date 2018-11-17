@@ -100,7 +100,7 @@ GoldenrodVendingText:
 GoldenrodClangText:
 	text "Clang! A can of"
 	line "@"
-	text_from_ram wStringBuffer3
+	text_ram wStringBuffer3
 	text_start
 	cont "popped out!"
 	done

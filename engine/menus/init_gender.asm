@@ -56,7 +56,7 @@ InitGender:
 TextJump_AreYouABoyOrAreYouAGirl:
 	; Are you a boy? Or are you a girl?
 	text_far Text_AreYouABoyOrAreYouAGirl
-	db "@"
+	text_end
 
 InitGenderScreen:
 	ld a, $10

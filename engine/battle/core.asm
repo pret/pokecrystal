@@ -6864,8 +6864,9 @@ Unreferenced_LoadHPExpBarGFX:
 EmptyBattleTextBox:
 	ld hl, .empty
 	jp BattleTextBox
-.empty
-	db "@"
+
+.empty:
+	text_end
 
 _BattleRandom::
 ; If the normal RNG is used in a link battle it'll desync.
@@ -7399,7 +7400,7 @@ BoostExp:
 
 Text_MonGainedExpPoint:
 	text_far Text_Gained
-	start_asm
+	text_asm
 	ld hl, TextJump_StringBuffer2ExpPoints
 	ld a, [wStringBuffer2 + 2] ; IsTradedMon
 	and a
@@ -7410,11 +7411,11 @@ Text_MonGainedExpPoint:
 
 TextJump_ABoostedStringBuffer2ExpPoints:
 	text_far Text_ABoostedStringBuffer2ExpPoints
-	db "@"
+	text_end
 
 TextJump_StringBuffer2ExpPoints:
 	text_far Text_StringBuffer2ExpPoints
-	db "@"
+	text_end
 
 AnimateExpBar:
 	push bc
@@ -7665,29 +7666,29 @@ SendOutMonText:
 
 JumpText_GoMon:
 	text_far Text_GoMon
-	start_asm
+	text_asm
 	jr Function_TextJump_BattleMonNick01
 
 JumpText_DoItMon:
 	text_far Text_DoItMon
-	start_asm
+	text_asm
 	jr Function_TextJump_BattleMonNick01
 
 JumpText_GoForItMon:
 	text_far Text_GoForItMon
-	start_asm
+	text_asm
 	jr Function_TextJump_BattleMonNick01
 
 JumpText_YourFoesWeakGetmMon:
 	text_far Text_YourFoesWeakGetmMon
-	start_asm
+	text_asm
 Function_TextJump_BattleMonNick01:
 	ld hl, TextJump_BattleMonNick01
 	ret
 
 TextJump_BattleMonNick01:
 	text_far Text_BattleMonNick01
-	db "@"
+	text_end
 
 WithdrawMonText:
 	ld hl, .WithdrawMonText
@@ -7695,7 +7696,7 @@ WithdrawMonText:
 
 .WithdrawMonText:
 	text_far Text_BattleMonNickComma
-	start_asm
+	text_asm
 ; Print text to withdraw mon
 ; depending on HP the message is different
 	push de
@@ -7746,15 +7747,15 @@ WithdrawMonText:
 
 TextJump_ThatsEnoughComeBack:
 	text_far Text_ThatsEnoughComeBack
-	db "@"
+	text_end
 
 TextJump_OKComeBack:
 	text_far Text_OKComeBack
-	db "@"
+	text_end
 
 TextJump_GoodComeBack:
 	text_far Text_GoodComeBack
-	db "@"
+	text_end
 
 Unreferenced_TextJump_ComeBack:
 ; this function doesn't seem to be used
@@ -7763,7 +7764,7 @@ Unreferenced_TextJump_ComeBack:
 
 TextJump_ComeBack:
 	text_far Text_ComeBack
-	db "@"
+	text_end
 
 Unreferenced_HandleSafariAngerEatingStatus:
 	ld hl, wSafariMonEating

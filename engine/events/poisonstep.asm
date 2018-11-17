@@ -147,8 +147,8 @@ DoPoisonStep::
 
 .PoisonFaintText:
 	text_far UnknownText_0x1c0acc
-	db "@"
+	text_end
 
 .PoisonWhiteOutText:
 	text_far UnknownText_0x1c0ada
-	db "@"
+	text_end

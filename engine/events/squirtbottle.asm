@@ -18,7 +18,7 @@ _Squirtbottle:
 .NothingHappenedText:
 	; sprinkled water. But nothing happened…
 	text_far UnknownText_0x1c0b3b
-	db "@"
+	text_end
 
 .CheckCanUseSquirtbottle:
 	ld a, [wMapGroup]
