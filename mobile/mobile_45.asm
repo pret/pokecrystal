@@ -7425,11 +7425,11 @@ YesNo117ccc:
 
 MobileStadiumEntryText:
 	text_far _MobileStadiumEntryText
-	db "@"
+	text_end
 
 MobileStadiumSuccessText:
 	text_far _MobileStadiumSuccessText
-	db "@"
+	text_end
 
 MobileStudium_JumptableIncrement:
 	ld hl, wJumptableIndex

@@ -1551,15 +1551,15 @@ Function108bec:
 
 .PlayerWillTradeMon:
 	text_far UnknownText_0x1bc787
-	db "@"
+	text_end
 
 .ForPartnersMon:
 	text_far UnknownText_0x1bc79d
-	db "@"
+	text_end
 
 .UnusedTextPlayersMonTrade:
 	text_far UnknownText_0x1bc7b0
-	db "@"
+	text_end
 
 Function108c16:
 	ld a, $90
@@ -1572,7 +1572,7 @@ Function108c16:
 
 .TakeGoodCareOfMon:
 	text_far UnknownText_0x1bc7c3
-	db "@"
+	text_end
 
 Function108c2b:
 	ld a, $90
@@ -1585,7 +1585,7 @@ Function108c2b:
 
 .PlayersMonTrade:
 	text_far UnknownText_0x1bc7dd
-	db "@"
+	text_end
 
 Function108c40:
 	ld a, $90
@@ -1608,11 +1608,11 @@ Function108c40:
 
 .TakeGoodCareOf:
 	text_far UnknownText_0x1bc7f0
-	db "@"
+	text_end
 
 .CameBack:
 	text_far UnknownText_0x1bc80a
-	db "@"
+	text_end
 
 Function108c6d:
 	ld hl, LZ_108fe7

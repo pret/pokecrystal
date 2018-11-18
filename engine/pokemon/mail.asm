@@ -311,7 +311,7 @@ _PlayerMailBoxMenu:
 
 .EmptyMailboxText:
 	text_far _EmptyMailboxText
-	db "@"
+	text_end
 
 InitMail:
 ; initialize wMailboxCount and beyond with incrementing values, one per mail
@@ -454,15 +454,15 @@ MailboxPC:
 
 .PutAwayText:
 	text_far ClearedMailPutAwayText
-	db "@"
+	text_end
 
 .PackFullText:
 	text_far MailPackFullText
-	db "@"
+	text_end
 
 .MessageLostText:
 	text_far MailMessageLostText
-	db "@"
+	text_end
 
 .GetMailType:
 	push af
@@ -522,15 +522,15 @@ MailboxPC:
 
 .HoldingMailText:
 	text_far MailAlreadyHoldingItemText
-	db "@"
+	text_end
 
 .EggText:
 	text_far MailEggText
-	db "@"
+	text_end
 
 .MailMovedText:
 	text_far MailMovedFromBoxText
-	db "@"
+	text_end
 
 .Cancel:
 	ret

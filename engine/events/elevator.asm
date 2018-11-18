@@ -140,7 +140,7 @@ Elevator_AskWhichFloor:
 Elevator_WhichFloorText:
 	; Which floor?
 	text_far UnknownText_0x1bd2bc
-	db "@"
+	text_end
 
 Elevator_GetCurrentFloorText:
 	ld hl, wOptions

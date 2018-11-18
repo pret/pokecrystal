@@ -169,7 +169,7 @@ DayCareAskDepositPokemon:
 .DummyText:
 	;
 	text_far UnknownText_0x1bdaa7
-	db "@"
+	text_end
 
 DayCare_DepositPokemonText:
 	ld a, DAYCARETEXT_DEPOSIT
@@ -298,102 +298,102 @@ PrintDayCareText:
 .DayCareManIntro:
 	; I'm the DAY-CARE MAN. Want me to raise a #MON?
 	text_far UnknownText_0x1bdaa9
-	db "@"
+	text_end
 
 .DayCareManOddEgg:
 	; I'm the DAY-CARE MAN. Do you know about EGGS? I was raising #MON with my wife, you see. We were shocked to find an EGG! How incredible is that? So, want me to raise a #MON?
 	text_far UnknownText_0x1bdad8
-	db "@"
+	text_end
 
 .DayCareLadyIntro:
 	; I'm the DAY-CARE LADY. Should I raise a #MON for you?
 	text_far UnknownText_0x1bdb85
-	db "@"
+	text_end
 
 .DayCareLadyOddEgg:
 	; I'm the DAY-CARE LADY. Do you know about EGGS? My husband and I were raising some #MON, you see. We were shocked to find an EGG! How incredible could that be? Should I raise a #MON for you?
 	text_far UnknownText_0x1bdbbb
-	db "@"
+	text_end
 
 .WhichOne:
 	; What should I raise for you?
 	text_far UnknownText_0x1bdc79
-	db "@"
+	text_end
 
 .JustOneMon:
 	; Oh? But you have just one #MON.
 	text_far UnknownText_0x1bdc97
-	db "@"
+	text_end
 
 .CantAcceptEgg:
 	; Sorry, but I can't accept an EGG.
 	text_far UnknownText_0x1bdcb8
-	db "@"
+	text_end
 
 .RemoveMail:
 	; Remove MAIL before you come see me.
 	text_far UnknownText_0x1bdcda
-	db "@"
+	text_end
 
 .LastHealthyMon:
 	; If you give me that, what will you battle with?
 	text_far UnknownText_0x1bdcff
-	db "@"
+	text_end
 
 .OkayIllRaiseYourMon:
 	; OK. I'll raise your @ .
 	text_far UnknownText_0x1bdd30
-	db "@"
+	text_end
 
 .ComeBackForItLater:
 	; Come back for it later.
 	text_far UnknownText_0x1bdd4b
-	db "@"
+	text_end
 
 .AreWeGeniusesOrWhat:
 	; Are we geniuses or what? Want to see your @ ?
 	text_far UnknownText_0x1bdd64
-	db "@"
+	text_end
 
 .AskRetrieveMon:
 	; Your @ has grown a lot. By level, it's grown by @ . If you want your #MON back, it will cost ¥@ .
 	text_far UnknownText_0x1bdd96
-	db "@"
+	text_end
 
 .PerfectHeresYourMon:
 	; Perfect! Here's your #MON.
 	text_far UnknownText_0x1bde04
-	db "@"
+	text_end
 
 .GotBackMon:
 	; got back @ .
 	text_far UnknownText_0x1bde1f
-	db "@"
+	text_end
 
 .ImmediatelyWithdrawMon:
 	; Huh? Back already? Your @ needs a little more time with us. If you want your #MON back, it will cost ¥100.
 	text_far UnknownText_0x1bde32
-	db "@"
+	text_end
 
 .PartyFull:
 	; You have no room for it.
 	text_far UnknownText_0x1bdea2
-	db "@"
+	text_end
 
 .NotEnoughMoney:
 	; You don't have enough money.
 	text_far UnknownText_0x1bdebc
-	db "@"
+	text_end
 
 .OhFineThen:
 	; Oh, fine then.
 	text_far UnknownText_0x1bded9
-	db "@"
+	text_end
 
 .ComeAgain:
 	; Come again.
 	text_far UnknownText_0x1bdee9
-	db "@"
+	text_end
 
 DayCareManOutside:
 	ld hl, wDayCareMan
@@ -406,7 +406,7 @@ DayCareManOutside:
 .NotYet:
 	; Not yet…
 	text_far UnknownText_0x1bdef6
-	db "@"
+	text_end
 
 .AskGiveEgg:
 	ld hl, .IntroText
@@ -448,27 +448,27 @@ DayCareManOutside:
 .IntroText:
 	; Ah, it's you! We were raising your #MON, and my goodness, were we surprised! Your #MON had an EGG! We don't know how it got there, but your #MON had it. You want it?
 	text_far UnknownText_0x1bdf00
-	db "@"
+	text_end
 
 .GotEggText:
 	; received the EGG!
 	text_far UnknownText_0x1bdfa5
-	db "@"
+	text_end
 
 .TakeGoodCareOfItText:
 	; Take good care of it.
 	text_far UnknownText_0x1bdfba
-	db "@"
+	text_end
 
 .IllKeepItThanksText:
 	; Well then, I'll keep it. Thanks!
 	text_far UnknownText_0x1bdfd1
-	db "@"
+	text_end
 
 .PartyFullText:
 	; You have no room in your party. Come back later.
 	text_far UnknownText_0x1bdff2
-	db "@"
+	text_end
 
 DayCare_GiveEgg:
 	ld a, [wEggMonLevel]

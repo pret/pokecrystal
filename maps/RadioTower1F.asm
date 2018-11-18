@@ -237,7 +237,7 @@ UnknownText_0x5ceba:
 UnknownText_0x5cf3a:
 	text "This week's ID"
 	line "number is @"
-	text_from_ram wStringBuffer3
+	text_ram wStringBuffer3
 	text "."
 	done
 

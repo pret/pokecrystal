@@ -806,52 +806,52 @@ PrintPartyMenuActionText:
 .Text_RecoveredSomeHP:
 	; recovered @ HP!
 	text_far UnknownText_0x1bc0a2
-	db "@"
+	text_end
 
 .Text_CuredOfPoison:
 	; 's cured of poison.
 	text_far UnknownText_0x1bc0bb
-	db "@"
+	text_end
 
 .Text_RidOfParalysis:
 	; 's rid of paralysis.
 	text_far UnknownText_0x1bc0d2
-	db "@"
+	text_end
 
 .Text_BurnWasHealed:
 	; 's burn was healed.
 	text_far UnknownText_0x1bc0ea
-	db "@"
+	text_end
 
 .Text_Defrosted:
 	; was defrosted.
 	text_far UnknownText_0x1bc101
-	db "@"
+	text_end
 
 .Text_WokeUp:
 	; woke up.
 	text_far UnknownText_0x1bc115
-	db "@"
+	text_end
 
 .Text_HealthReturned:
 	; 's health returned.
 	text_far UnknownText_0x1bc123
-	db "@"
+	text_end
 
 .Text_Revitalized:
 	; is revitalized.
 	text_far UnknownText_0x1bc13a
-	db "@"
+	text_end
 
 .Text_GrewToLevel:
 	; grew to level @ !@ @
 	text_far UnknownText_0x1bc14f
-	db "@"
+	text_end
 
 .Text_CameToItsSenses:
 	; came to its senses.
 	text_far UnknownText_0x1bc16e
-	db "@"
+	text_end
 
 .PrintText:
 	ld e, a

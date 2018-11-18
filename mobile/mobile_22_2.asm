@@ -460,27 +460,27 @@ Function8b555:
 UnknownText_0x8b5ce:
 	; Please enter any four-digit number.
 	text_far UnknownText_0x1bc187
-	db "@"
+	text_end
 
 UnknownText_0x8b5d3:
 	; Enter the same number to confirm.
 	text_far UnknownText_0x1bc1ac
-	db "@"
+	text_end
 
 UnknownText_0x8b5d8:
 	; That's not the same number.
 	text_far UnknownText_0x1bc1cf
-	db "@"
+	text_end
 
 UnknownText_0x8b5dd:
 	; Your PASSCODE has been set. Enter this number next time to open the CARD FOLDER.
 	text_far UnknownText_0x1bc1eb
-	db "@"
+	text_end
 
 UnknownText_0x8b5e2:
 	; 0000 is invalid!
 	text_far UnknownText_0x1bc23e
-	db "@"
+	text_end
 
 Function8b5e7:
 	ld bc, wd013
@@ -525,17 +525,17 @@ Function8b5e7:
 UnknownText_0x8b642:
 	; Enter the CARD FOLDER PASSCODE.
 	text_far UnknownText_0x1bc251
-	db "@"
+	text_end
 
 UnknownText_0x8b647:
 	; Incorrect PASSCODE!
 	text_far UnknownText_0x1bc272
-	db "@"
+	text_end
 
 UnknownText_0x8b64c:
 	; CARD FOLDER open.@ @
 	text_far UnknownText_0x1bc288
-	start_asm
+	text_asm
 	ld de, SFX_TWINKLE
 	call PlaySFX
 	call WaitSFX
@@ -543,8 +543,9 @@ UnknownText_0x8b64c:
 	call DelayFrames
 	ld hl, .string_8b663
 	ret
+
 .string_8b663
-	db "@"
+	text_end
 
 Function8b664:
 	push bc

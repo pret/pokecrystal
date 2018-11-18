@@ -34,17 +34,17 @@ _ResetClock:
 .text_okay
 	; Password OK. Select CONTINUE & reset settings.
 	text_far UnknownText_0x1c55db
-	db "@"
+	text_end
 
 .text_wrong
 	; Wrong password!
 	text_far UnknownText_0x1c560b
-	db "@"
+	text_end
 
 .text_askreset
 	; Reset the clock?
 	text_far UnknownText_0x1c561c
-	db "@"
+	text_end
 
 .NoYes_MenuHeader:
 	db 0 ; flags
@@ -104,7 +104,7 @@ ClockResetPassword:
 .pleaseenterpasswordtext
 	; Please enter the password.
 	text_far UnknownText_0x1c562e
-	db "@"
+	text_end
 
 .updateIDdisplay
 	hlcoord 14, 15

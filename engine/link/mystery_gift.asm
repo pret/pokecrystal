@@ -129,35 +129,35 @@ DoMysteryGift:
 
 .Text_LinkCanceled:
 	text_far UnknownText_0x1c0436
-	db "@"
+	text_end
 
 .Text_CommunicationError:
 	text_far UnknownText_0x1c0454
-	db "@"
+	text_end
 
 .Text_ReceiveGiftAtCounter:
 	text_far UnknownText_0x1c046a
-	db "@"
+	text_end
 
 .Text_FriendNotReady:
 	text_far UnknownText_0x1c048e
-	db "@"
+	text_end
 
 .Text_MaxFiveGifts:
 	text_far UnknownText_0x1c04a7
-	db "@"
+	text_end
 
 .Text_MaxOneGiftPerPerson:
 	text_far UnknownText_0x1c04c6
-	db "@"
+	text_end
 
 .Text_Sent:
 	text_far UnknownText_0x1c04e9
-	db "@"
+	text_end
 
 .Text_SentToHome:
 	text_far UnknownText_0x1c04fa
-	db "@"
+	text_end
 
 .CheckAlreadyGotFiveGiftsToday:
 	call GetMysteryGiftBank
@@ -1491,23 +1491,23 @@ String_PressAToLink_BToCancel_JP:
 
 Text_ReceivedCard:
 	text_far UnknownText_0x1c051a
-	db "@"
+	text_end
 
 Text_ListedCardAsNumber:
 	text_far UnknownText_0x1c0531
-	db "@"
+	text_end
 
 Text_CardNotRegistered:
 	text_far UnknownText_0x1c0555
-	db "@"
+	text_end
 
 Text_MGLinkCanceled:
 	text_far UnknownText_0x1c0573
-	db "@"
+	text_end
 
 Text_MGCommError:
 	text_far UnknownText_0x1c0591
-	db "@"
+	text_end
 
 Function105777:
 	call ClearSprites

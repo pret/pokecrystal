@@ -32,24 +32,24 @@ PhotoStudio:
 .Text_AskWhichMon:
 	; Which #MON should I photo- graph?
 	text_far UnknownText_0x1be024
-	db "@"
+	text_end
 
 .Text_HoldStill:
 	; All righty. Hold still for a bit.
 	text_far UnknownText_0x1be047
-	db "@"
+	text_end
 
 .Text_Presto:
 	; Presto! All done. Come again, OK?
 	text_far UnknownText_0x1be06a
-	db "@"
+	text_end
 
 .Text_NoPicture:
 	; Oh, no picture? Come again, OK?
 	text_far UnknownText_0x1c0000
-	db "@"
+	text_end
 
 .Text_Egg:
 	; An EGG? My talent is worth more…
 	text_far UnknownText_0x1c0021
-	db "@"
+	text_end

@@ -283,7 +283,7 @@ MainMenu_PrintCurrentTimeAndDay:
 .UnusedText:
 	; Clock time unknown
 	text_far UnknownText_0x1c5182
-	db "@"
+	text_end
 
 .PlaceCurrentDay:
 	push de

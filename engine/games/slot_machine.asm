@@ -1750,17 +1750,17 @@ Slots_AskBet:
 .Text_BetHowManyCoins:
 	; Bet how many coins?
 	text_far UnknownText_0x1c5049
-	db "@"
+	text_end
 
 .Text_Start:
 	; Start!
 	text_far UnknownText_0x1c505e
-	db "@"
+	text_end
 
 .Text_NotEnoughCoins:
 	; Not enough coins.
 	text_far UnknownText_0x1c5066
-	db "@"
+	text_end
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
@@ -1806,11 +1806,11 @@ Slots_AskPlayAgain:
 
 .Text_OutOfCoins:
 	text_far UnknownText_0x1c5079
-	db "@"
+	text_end
 
 .Text_PlayAgain:
 	text_far UnknownText_0x1c5092
-	db "@"
+	text_end
 
 Slots_GetPayout:
 	ld a, [wSlotMatched]
@@ -1887,7 +1887,7 @@ Slots_PayoutText:
 	dbw "15@@", .LinedUpMonOrCherry
 
 .Text_PrintPayout:
-	start_asm
+	text_asm
 	ld a, [wSlotMatched]
 	add $25
 	ldcoord_a 2, 13
@@ -1908,12 +1908,12 @@ endr
 .Text_LinedUpWonCoins:
 	; lined up! Won @  coins!
 	text_far UnknownText_0x1c509f
-	db "@"
+	text_end
 
 .Text_Darn:
 	; Darn!
 	text_far UnknownText_0x1c50bb
-	db "@"
+	text_end
 
 .LinedUpSevens:
 	ld a, SFX_2ND_PLACE

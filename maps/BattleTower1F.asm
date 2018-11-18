@@ -525,11 +525,11 @@ Text_AskRegisterRecord_Mobile:
 Text_PlayerGotFive:
 	text "<PLAYER> got five"
 	line "@"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text "!@"
 	sound_item
 	text_waitbutton
-	db "@"
+	text_end
 
 Text_YourPackIsStuffedFull:
 	text "Oops, your PACK is"
@@ -635,7 +635,7 @@ Text_YourMonWillBeHealedToFullHealth:
 Text_NextUpOpponentNo:
 	text "Next up, opponent"
 	line "no.@"
-	text_from_ram wStringBuffer3
+	text_ram wStringBuffer3
 	text ". Ready?"
 	done
 
@@ -734,19 +734,19 @@ Text_AMonLevelExceeds:
 	text "One or more of"
 	line "your #MON's"
 	cont "levels exceeds @"
-	deciram wScriptVar, 1, 3
+	text_decimal wScriptVar, 1, 3
 	text "."
 	done
 
 Text_MayNotEnterABattleRoomUnderL70:
-	text_from_ram wcd49
+	text_ram wcd49
 	text " may not"
 	line "enter a BATTLE"
 	cont "ROOM under L70."
 
 	para "This BATTLE ROOM"
 	line "is for L@"
-	deciram wScriptVar, 1, 3
+	text_decimal wScriptVar, 1, 3
 	text "."
 	done
 

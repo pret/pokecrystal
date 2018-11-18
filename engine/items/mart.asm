@@ -582,12 +582,12 @@ RooftopSaleAskPurchaseQuantity:
 Text_Mart_HowMany:
 	; How many?
 	text_far UnknownText_0x1c4bfd
-	db "@"
+	text_end
 
 Text_Mart_CostsThisMuch:
 	; @ (S) will be ¥@ .
 	text_far UnknownText_0x1c4c08
-	db "@"
+	text_end
 
 MenuHeader_Buy:
 	db MENU_BACKUP_TILES ; flags
@@ -625,107 +625,107 @@ MenuHeader_Buy:
 Text_HerbShop_Intro:
 	; Hello, dear. I sell inexpensive herbal medicine. They're good, but a trifle bitter. Your #MON may not like them. Hehehehe…
 	text_far UnknownText_0x1c4c28
-	db "@"
+	text_end
 
 Text_HerbShop_HowMany:
 	; How many?
 	text_far UnknownText_0x1c4ca3
-	db "@"
+	text_end
 
 Text_HerbShop_CostsThisMuch:
 	; @ (S) will be ¥@ .
 	text_far UnknownText_0x1c4cae
-	db "@"
+	text_end
 
 Text_HerbShop_HereYouGo:
 	; Thank you, dear. Hehehehe…
 	text_far UnknownText_0x1c4cce
-	db "@"
+	text_end
 
 Text_HerbShop_BagFull:
 	; Oh? Your PACK is full, dear.
 	text_far UnknownText_0x1c4cea
-	db "@"
+	text_end
 
 Text_HerbShop_InsufficientFunds:
 	; Hehehe… You don't have the money.
 	text_far UnknownText_0x1c4d08
-	db "@"
+	text_end
 
 Text_HerbShop_ComeAgain:
 	; Come again, dear. Hehehehe…
 	text_far UnknownText_0x1c4d2a
-	db "@"
+	text_end
 
 Text_BargainShop_Intro:
 	; Hiya! Care to see some bargains? I sell rare items that nobody else carries--but only one of each item.
 	text_far UnknownText_0x1c4d47
-	db "@"
+	text_end
 
 Text_BargainShop_CostsThisMuch:
 	; costs ¥@ . Want it?
 	text_far UnknownText_0x1c4db0
-	db "@"
+	text_end
 
 Text_BargainShop_HereYouGo:
 	; Thanks.
 	text_far UnknownText_0x1c4dcd
-	db "@"
+	text_end
 
 Text_BargainShop_BagFull:
 	; Uh-oh, your PACK is chock-full.
 	text_far UnknownText_0x1c4dd6
-	db "@"
+	text_end
 
 Text_BargainShop_SoldOut:
 	; You bought that already. I'm all sold out of it.
 	text_far UnknownText_0x1c4df7
-	db "@"
+	text_end
 
 Text_BargainShop_InsufficientFunds:
 	; Uh-oh, you're short on funds.
 	text_far UnknownText_0x1c4e28
-	db "@"
+	text_end
 
 Text_BargainShop_ComeAgain:
 	; Come by again sometime.
 	text_far UnknownText_0x1c4e46
-	db "@"
+	text_end
 
 Text_Pharmacist_Intro:
 	; What's up? Need some medicine?
 	text_far UnknownText_0x1c4e5f
-	db "@"
+	text_end
 
 Text_Pharmacy_HowMany:
 	; How many?
 	text_far UnknownText_0x1c4e7e
-	db "@"
+	text_end
 
 Text_Pharmacy_CostsThisMuch:
 	; @ (S) will cost ¥@ .
 	text_far UnknownText_0x1c4e89
-	db "@"
+	text_end
 
 Text_Pharmacy_HereYouGo:
 	; Thanks much!
 	text_far UnknownText_0x1c4eab
-	db "@"
+	text_end
 
 Text_Pharmacy_BagFull:
 	; You don't have any more space.
 	text_far UnknownText_0x1c4eb9
-	db "@"
+	text_end
 
 Text_Pharmacy_InsufficientFunds:
 	; Huh? That's not enough money.
 	text_far UnknownText_0x1c4ed8
-	db "@"
+	text_end
 
 Text_Pharmacist_ComeAgain:
 	; All right. See you around.
 	text_far UnknownText_0x1c4ef6
-	db "@"
+	text_end
 
 SellMenu:
 	call DisableSpriteUpdates
@@ -752,7 +752,7 @@ SellMenu:
 .NothingToSellText:
 	; You don't have anything to sell.
 	text_far UnknownText_0x1c4f12
-	db "@"
+	text_end
 
 .TryToSellItem:
 	farcall CheckItemMenu
@@ -821,12 +821,12 @@ SellMenu:
 Text_Mart_SellHowMany:
 	; How many?
 	text_far UnknownText_0x1c4f33
-	db "@"
+	text_end
 
 Text_Mart_ICanPayThisMuch:
 	; I can pay you ¥@ . Is that OK?
 	text_far UnknownText_0x1c4f3e
-	db "@"
+	text_end
 
 .UnusedString15f7d:
 	db "！ダミー！@"
@@ -834,7 +834,7 @@ Text_Mart_ICanPayThisMuch:
 Text_Mart_HowMayIHelpYou:
 	; Welcome! How may I help you?
 	text_far UnknownText_0x1c4f62
-	db "@"
+	text_end
 
 MenuHeader_BuySell:
 	db MENU_BACKUP_TILES ; flags
@@ -852,35 +852,35 @@ MenuHeader_BuySell:
 Text_Mart_HereYouGo:
 	; Here you are. Thank you!
 	text_far UnknownText_0x1c4f80
-	db "@"
+	text_end
 
 Text_Mart_InsufficientFunds:
 	; You don't have enough money.
 	text_far UnknownText_0x1c4f9a
-	db "@"
+	text_end
 
 Text_Mart_BagFull:
 	; You can't carry any more items.
 	text_far UnknownText_0x1c4fb7
-	db "@"
+	text_end
 
 TextMart_CantBuyFromYou:
 	; Sorry, I can't buy that from you.
 	text_far UnknownText_0x1c4fd7
-	db "@"
+	text_end
 
 Text_Mart_ComeAgain:
 	; Please come again!
 	text_far UnknownText_0x1c4ff9
-	db "@"
+	text_end
 
 Text_Mart_AnythingElse:
 	text_far UnknownText_0x1c500d
-	db "@"
+	text_end
 
 Text_Mart_SoldForAmount:
 	text_far UnknownText_0x1c502e
-	db "@"
+	text_end
 
 PlayTransactionSound:
 	call WaitSFX

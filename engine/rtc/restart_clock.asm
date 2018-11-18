@@ -50,12 +50,12 @@ RestartClock:
 .Text_ClockTimeMayBeWrong:
 	; The clock's time may be wrong. Please reset the time.
 	text_far UnknownText_0x1c40e6
-	db "@"
+	text_end
 
 .Text_SetWithControlPad:
 	; Set with the Control Pad. Confirm: A Button Cancel:  B Button
 	text_far UnknownText_0x1c411c
-	db "@"
+	text_end
 
 .SetClock:
 	ld a, 1
@@ -104,12 +104,12 @@ RestartClock:
 .Text_IsThisOK:
 	; Is this OK?
 	text_far UnknownText_0x1c415b
-	db "@"
+	text_end
 
 .Text_ClockReset:
 	; The clock has been reset.
 	text_far UnknownText_0x1c4168
-	db "@"
+	text_end
 
 .joy_loop
 	call JoyTextDelay_ForcehJoyDown

@@ -232,480 +232,480 @@ BTFemaleTrainerTexts:
 
 BTGreetingM1:
 	text_far BattleTowerText_0x1ec000
-	db "@"
+	text_end
 
 BTLossM1:
 	text_far BattleTowerText_0x1ec03b
-	db "@"
+	text_end
 
 BTWinM1:
 	text_far UnknownText_0x1ec060
-	db "@"
+	text_end
 
 BTGreetingM2:
 	text_far BattleTowerText_0x1ec080
-	db "@"
+	text_end
 
 BTLossM2:
 	text_far UnknownText_0x1ec0a3
-	db "@"
+	text_end
 
 BTWinM2:
 	text_far UnknownText_0x1ec0c4
-	db "@"
+	text_end
 
 BTGreetingM3:
 	text_far UnknownText_0x1ec0e1
-	db "@"
+	text_end
 
 BTLossM3:
 	text_far UnknownText_0x1ec108
-	db "@"
+	text_end
 
 BTWinM3:
 	text_far UnknownText_0x1ec12a
-	db "@"
+	text_end
 
 BTGreetingM4:
 	text_far UnknownText_0x1ec14d
-	db "@"
+	text_end
 
 BTLossM4:
 	text_far UnknownText_0x1ec16f
-	db "@"
+	text_end
 
 BTWinM4:
 	text_far UnknownText_0x1ec190
-	db "@"
+	text_end
 
 BTGreetingM5:
 	text_far UnknownText_0x1ec1ae
-	db "@"
+	text_end
 
 BTLossM5:
 	text_far UnknownText_0x1ec1d0
-	db "@"
+	text_end
 
 BTWinM5:
 	text_far UnknownText_0x1ec1f4
-	db "@"
+	text_end
 
 BTGreetingM6:
 	text_far UnknownText_0x1ec216
-	db "@"
+	text_end
 
 BTLossM6:
 	text_far UnknownText_0x1ec238
-	db "@"
+	text_end
 
 BTWinM6:
 	text_far UnknownText_0x1ec259
-	db "@"
+	text_end
 
 BTGreetingM7:
 	text_far UnknownText_0x1ec27b
-	db "@"
+	text_end
 
 BTLossM7:
 	text_far UnknownText_0x1ec2a0
-	db "@"
+	text_end
 
 BTWinM7:
 	text_far UnknownText_0x1ec2c0
-	db "@"
+	text_end
 
 BTGreetingM8:
 	text_far UnknownText_0x1ec2d9
-	db "@"
+	text_end
 
 BTLossM8:
 	text_far UnknownText_0x1ec2fe
-	db "@"
+	text_end
 
 BTWinM8:
 	text_far UnknownText_0x1ec320
-	db "@"
+	text_end
 
 BTGreetingM9:
 	text_far UnknownText_0x1ec33f
-	db "@"
+	text_end
 
 BTLossM9:
 	text_far UnknownText_0x1ec36c
-	db "@"
+	text_end
 
 BTWinM9:
 	text_far UnknownText_0x1ec389
-	db "@"
+	text_end
 
 BTGreetingM10:
 	text_far UnknownText_0x1ec3ad
-	db "@"
+	text_end
 
 BTLossM10:
 	text_far UnknownText_0x1ec3c5
-	db "@"
+	text_end
 
 BTWinM10:
 	text_far UnknownText_0x1ec3e5
-	db "@"
+	text_end
 
 BTGreetingM11:
 	text_far UnknownText_0x1ec402
-	db "@"
+	text_end
 
 BTLossM11:
 	text_far UnknownText_0x1ec411
-	db "@"
+	text_end
 
 BTWinM11:
 	text_far UnknownText_0x1ec41f
-	db "@"
+	text_end
 
 BTGreetingM12:
 	text_far UnknownText_0x1ec42e
-	db "@"
+	text_end
 
 BTLossM12:
 	text_far UnknownText_0x1ec461
-	db "@"
+	text_end
 
 BTWinM12:
 	text_far UnknownText_0x1ec4a0
-	db "@"
+	text_end
 
 BTGreetingM13:
 	text_far UnknownText_0x1ec4d6
-	db "@"
+	text_end
 
 BTLossM13:
 	text_far UnknownText_0x1ec4f5
-	db "@"
+	text_end
 
 BTWinM13:
 	text_far UnknownText_0x1ec512
-	db "@"
+	text_end
 
 BTGreetingM14:
 	text_far UnknownText_0x1ec532
-	db "@"
+	text_end
 
 BTLossM14:
 	text_far UnknownText_0x1ec54b
-	db "@"
+	text_end
 
 BTWinM14:
 	text_far UnknownText_0x1ec565
-	db "@"
+	text_end
 
 BTGreetingM15:
 	text_far UnknownText_0x1ec580
-	db "@"
+	text_end
 
 BTLossM15:
 	text_far UnknownText_0x1ec59d
-	db "@"
+	text_end
 
 BTWinM15:
 	text_far UnknownText_0x1ec5b5
-	db "@"
+	text_end
 
 BTGreetingM16:
 	text_far UnknownText_0x1ec5d3
-	db "@"
+	text_end
 
 BTLossM16:
 	text_far UnknownText_0x1ec5ee
-	db "@"
+	text_end
 
 BTWinM16:
 	text_far UnknownText_0x1ec60d
-	db "@"
+	text_end
 
 BTGreetingM17:
 	text_far UnknownText_0x1ec631
-	db "@"
+	text_end
 
 BTLossM17:
 	text_far UnknownText_0x1ec651
-	db "@"
+	text_end
 
 BTWinM17:
 	text_far UnknownText_0x1ec68f
-	db "@"
+	text_end
 
 BTGreetingM18:
 	text_far UnknownText_0x1ec6b1
-	db "@"
+	text_end
 
 BTLossM18:
 	text_far UnknownText_0x1ec6d0
-	db "@"
+	text_end
 
 BTWinM18:
 	text_far UnknownText_0x1ec708
-	db "@"
+	text_end
 
 BTGreetingM19:
 	text_far UnknownText_0x1ec720
-	db "@"
+	text_end
 
 BTLossM19:
 	text_far UnknownText_0x1ec73e
-	db "@"
+	text_end
 
 BTWinM19:
 	text_far UnknownText_0x1ec75b
-	db "@"
+	text_end
 
 BTGreetingM20:
 	text_far UnknownText_0x1ec77f
-	db "@"
+	text_end
 
 BTLossM20:
 	text_far UnknownText_0x1ec798
-	db "@"
+	text_end
 
 BTWinM20:
 	text_far UnknownText_0x1ec7bb
-	db "@"
+	text_end
 
 BTGreetingM21:
 	text_far UnknownText_0x1ec7d8
-	db "@"
+	text_end
 
 BTLossM21:
 	text_far UnknownText_0x1ec818
-	db "@"
+	text_end
 
 BTWinM21:
 	text_far UnknownText_0x1ec837
-	db "@"
+	text_end
 
 BTGreetingM22:
 	text_far UnknownText_0x1ec858
-	db "@"
+	text_end
 
 BTLossM22:
 	text_far UnknownText_0x1ec876
-	db "@"
+	text_end
 
 BTWinM22:
 	text_far UnknownText_0x1ec898
-	db "@"
+	text_end
 
 BTGreetingM23:
 	text_far UnknownText_0x1ec8b1
-	db "@"
+	text_end
 
 BTLossM23:
 	text_far UnknownText_0x1ec8d5
-	db "@"
+	text_end
 
 BTWinM23:
 	text_far UnknownText_0x1ec8f0
-	db "@"
+	text_end
 
 BTGreetingM24:
 	text_far UnknownText_0x1ec911
-	db "@"
+	text_end
 
 BTLossM24:
 	text_far UnknownText_0x1ec928
-	db "@"
+	text_end
 
 BTWinM24:
 	text_far UnknownText_0x1ec949
-	db "@"
+	text_end
 
 BTGreetingM25:
 	text_far UnknownText_0x1ec969
-	db "@"
+	text_end
 
 BTLossM25:
 	text_far UnknownText_0x1ec986
-	db "@"
+	text_end
 
 BTWinM25:
 	text_far UnknownText_0x1ec99b
-	db "@"
+	text_end
 
 BTGreetingF1:
 	text_far UnknownText_0x1ec9bd
-	db "@"
+	text_end
 
 BTLossF1:
 	text_far UnknownText_0x1ec9d9
-	db "@"
+	text_end
 
 BTWinF1:
 	text_far UnknownText_0x1ec9f7
-	db "@"
+	text_end
 
 BTGreetingF2:
 	text_far UnknownText_0x1eca0a
-	db "@"
+	text_end
 
 BTLossF2:
 	text_far UnknownText_0x1eca2a
-	db "@"
+	text_end
 
 BTWinF2:
 	text_far UnknownText_0x1eca47
-	db "@"
+	text_end
 
 BTGreetingF3:
 	text_far UnknownText_0x1eca64
-	db "@"
+	text_end
 
 BTLossF3:
 	text_far UnknownText_0x1eca82
-	db "@"
+	text_end
 
 BTWinF3:
 	text_far UnknownText_0x1eca9d
-	db "@"
+	text_end
 
 BTGreetingF4:
 	text_far UnknownText_0x1ecabf
-	db "@"
+	text_end
 
 BTLossF4:
 	text_far UnknownText_0x1ecade
-	db "@"
+	text_end
 
 BTWinF4:
 	text_far UnknownText_0x1ecafa
-	db "@"
+	text_end
 
 BTGreetingF5:
 	text_far UnknownText_0x1ecb19
-	db "@"
+	text_end
 
 BTLossF5:
 	text_far UnknownText_0x1ecb37
-	db "@"
+	text_end
 
 BTWinF5:
 	text_far UnknownText_0x1ecb55
-	db "@"
+	text_end
 
 BTGreetingF6:
 	text_far UnknownText_0x1ecb70
-	db "@"
+	text_end
 
 BTLossF6:
 	text_far UnknownText_0x1ecb92
-	db "@"
+	text_end
 
 BTWinF6:
 	text_far UnknownText_0x1ecbb6
-	db "@"
+	text_end
 
 BTGreetingF7:
 	text_far UnknownText_0x1ecbd9
-	db "@"
+	text_end
 
 BTLossF7:
 	text_far UnknownText_0x1ecbf3
-	db "@"
+	text_end
 
 BTWinF7:
 	text_far UnknownText_0x1ecc15
-	db "@"
+	text_end
 
 BTGreetingF8:
 	text_far UnknownText_0x1ecc39
-	db "@"
+	text_end
 
 BTLossF8:
 	text_far UnknownText_0x1ecc55
-	db "@"
+	text_end
 
 BTWinF8:
 	text_far UnknownText_0x1ecc75
-	db "@"
+	text_end
 
 BTGreetingF9:
 	text_far UnknownText_0x1ecc92
-	db "@"
+	text_end
 
 BTLossF9:
 	text_far UnknownText_0x1ecca7
-	db "@"
+	text_end
 
 BTWinF9:
 	text_far UnknownText_0x1eccc1
-	db "@"
+	text_end
 
 BTGreetingF10:
 	text_far UnknownText_0x1eccd7
-	db "@"
+	text_end
 
 BTLossF10:
 	text_far UnknownText_0x1eccef
-	db "@"
+	text_end
 
 BTWinF10:
 	text_far UnknownText_0x1ecd0e
-	db "@"
+	text_end
 
 BTGreetingF11:
 	text_far UnknownText_0x1ecd2b
-	db "@"
+	text_end
 
 BTLossF11:
 	text_far UnknownText_0x1ecd4d
-	db "@"
+	text_end
 
 BTWinF11:
 	text_far UnknownText_0x1ecd6b
-	db "@"
+	text_end
 
 BTGreetingF12:
 	text_far UnknownText_0x1ecd8d
-	db "@"
+	text_end
 
 BTLossF12:
 	text_far UnknownText_0x1ecdaf
-	db "@"
+	text_end
 
 BTWinF12:
 	text_far UnknownText_0x1ecdcf
-	db "@"
+	text_end
 
 BTGreetingF13:
 	text_far UnknownText_0x1ecded
-	db "@"
+	text_end
 
 BTLossF13:
 	text_far UnknownText_0x1ece0d
-	db "@"
+	text_end
 
 BTWinF13:
 	text_far UnknownText_0x1ece2a
-	db "@"
+	text_end
 
 BTGreetingF14:
 	text_far UnknownText_0x1ece4b
-	db "@"
+	text_end
 
 BTLossF14:
 	text_far UnknownText_0x1ece70
-	db "@"
+	text_end
 
 BTWinF14:
 	text_far UnknownText_0x1ece8a
-	db "@"
+	text_end
 
 BTGreetingF15:
 	text_far UnknownText_0x1ecea8
-	db "@"
+	text_end
 
 BTLossF15:
 	text_far UnknownText_0x1ecec9
-	db "@"
+	text_end
 
 BTWinF15:
 	text_far UnknownText_0x1ecee8
-	db "@"
+	text_end

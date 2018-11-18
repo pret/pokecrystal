@@ -4803,15 +4803,15 @@ Function1021b8:
 
 UnknownText_0x1021d1:
 	text_far UnknownText_0x1bd19a
-	db "@"
+	text_end
 
 UnknownText_0x1021d6:
 	text_far UnknownText_0x1bd1ba
-	db "@"
+	text_end
 
 UnknownText_0x1021db:
 	text_far UnknownText_0x1bd1dd
-	db "@"
+	text_end
 
 Function1021e0:
 	call MenuTextBox
@@ -4821,15 +4821,15 @@ Function1021e0:
 
 UnknownText_0x1021ea:
 	text_far UnknownText_0x1bd201
-	db "@"
+	text_end
 
 UnknownText_0x1021ef:
 	text_far UnknownText_0x1bd211
-	db "@"
+	text_end
 
 UnknownText_0x1021f4:
 	text_far UnknownText_0x1bd223
-	db "@"
+	text_end
 
 Function1021f9:
 	call Function102233
@@ -6578,7 +6578,7 @@ Function102ea8:
 
 UnknownText_0x102ee2:
 	text_far UnknownText_0x1bd286
-	db "@"
+	text_end
 
 Function102ee7:
 	call Function102dc3
@@ -7497,25 +7497,31 @@ MenuData_10374f:
 
 UnknownText_0x10375d:
 	text_far UnknownText_0x1c422a
-	db "@"
+	text_end
+
 UnknownText_0x103762:
 	text_far UnknownText_0x1c4275
-	db "@"
+	text_end
+
 UnknownText_0x103767:
 	text_far UnknownText_0x1c4298
-	db "@"
+	text_end
+
 UnknownText_0x10376c:
 	text_far UnknownText_0x1c439c
-	db "@"
+	text_end
+
 UnknownText_0x103771:
 	text_far UnknownText_0x1c43dc
-	db "@"
+	text_end
+
 UnknownText_0x103776:
 	text_far UnknownText_0x1c4419
-	db "@"
+	text_end
+
 UnknownText_0x10377b:
 	text_far UnknownText_0x1c445a
-	db "@"
+	text_end
 
 Function103780:
 	ld a, [wChosenCableClubRoom]
@@ -7579,7 +7585,7 @@ Function1037c2:
 
 UnknownText_0x1037e6:
 	text_far UnknownText_0x1c449c
-	db "@"
+	text_end
 
 Function1037eb:
 	call Function103823
@@ -7609,11 +7615,11 @@ Function1037eb:
 
 UnknownText_0x103819:
 	text_far UnknownText_0x1c44c0
-	db "@"
+	text_end
 
 UnknownText_0x10381e:
 	text_far UnknownText_0x1c44e7
-	db "@"
+	text_end
 
 Function103823:
 	farcall Mobile_AlwaysReturnNotCarry
@@ -7661,7 +7667,7 @@ Function10383c:
 
 UnknownText_0x103876:
 	text_far UnknownText_0x1c4508
-	db "@"
+	text_end
 
 Function10387b:
 	farcall Mobile_AlwaysReturnNotCarry
@@ -7677,4 +7683,4 @@ Function10387b:
 
 UnknownText_0x103898:
 	text_far UnknownText_0x1c4525
-	db "@"
+	text_end

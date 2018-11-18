@@ -35,4 +35,4 @@ BugContest_SetCaughtContestMon:
 .caughttext
 	; Caught @ !
 	text_far UnknownText_0x1c10c0
-	db "@"
+	text_end

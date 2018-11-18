@@ -1108,21 +1108,21 @@ ObjectEvent::
 
 ObjectEventText::
 	text_far _ObjectEventText
-	db "@"
+	text_end
 
 BGEvent::
 	jumptext BGEventText
 
 BGEventText::
 	text_far UnknownText_0x1c46fc
-	db "@"
+	text_end
 
 CoordinatesEvent::
 	jumptext CoordinatesEventText
 
 CoordinatesEventText::
 	text_far UnknownText_0x1c4706
-	db "@"
+	text_end
 
 CheckObjectMask::
 	ldh a, [hMapObjectIndexBuffer]

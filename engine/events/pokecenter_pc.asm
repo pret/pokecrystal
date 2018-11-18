@@ -112,7 +112,7 @@ PC_CheckPartyForPokemon:
 .MustHavePokemonToUse:
 	; Bzzzzt! You must have a #MON to use this!
 	text_far UnknownText_0x1c1328
-	db "@"
+	text_end
 
 BillsPC:
 	call PC_PlayChoosePCSound
@@ -202,7 +202,7 @@ _PlayersHousePC:
 UnknownText_0x156ff:
 	; turned on the PC.
 	text_far UnknownText_0x1c1353
-	db "@"
+	text_end
 
 _PlayersPC:
 	ld a, b
@@ -306,7 +306,7 @@ PC_DisplayTextWaitMenu:
 UnknownText_0x157cc:
 	; What do you want to do?
 	text_far UnknownText_0x1c1368
-	db "@"
+	text_end
 
 PlayerWithdrawItemMenu:
 	call LoadStandardMenuHeader
@@ -374,15 +374,15 @@ PlayerWithdrawItemMenu:
 
 .HowManyText:
 	text_far _PlayersPCHowManyWithdrawText
-	db "@"
+	text_end
 
 .WithdrewText:
 	text_far _PlayersPCWithdrewItemsText
-	db "@"
+	text_end
 
 .NoRoomText:
 	text_far _PlayersPCNoRoomWithdrawText
-	db "@"
+	text_end
 
 PlayerTossItemMenu:
 	call LoadStandardMenuHeader
@@ -445,7 +445,7 @@ PlayerDepositItemMenu:
 .NoItemsInBag:
 	; No items here!
 	text_far UnknownText_0x1c13df
-	db "@"
+	text_end
 
 .TryDepositItem:
 	ld a, [wSpriteUpdatesEnabled]
@@ -534,15 +534,15 @@ PlayerDepositItemMenu:
 
 .HowManyText:
 	text_far _PlayersPCHowManyDepositText
-	db "@"
+	text_end
 
 .DepositText:
 	text_far _PlayersPCDepositItemsText
-	db "@"
+	text_end
 
 .NoRoomText:
 	text_far _PlayersPCNoRoomDepositText
-	db "@"
+	text_end
 
 PlayerMailBoxMenu:
 	farcall _PlayerMailBoxMenu
@@ -641,29 +641,29 @@ PC_DisplayText:
 PokecenterPCText_BootedUpPC:
 	; turned on the PC.
 	text_far UnknownText_0x1c144d
-	db "@"
+	text_end
 
 PokecenterPCText_AccessWhosePC:
 	; Access whose PC?
 	text_far UnknownText_0x1c1462
-	db "@"
+	text_end
 
 PokecenterPCText_AccessedBillsPC:
 	; BILL's PC accessed. #MON Storage System opened.
 	text_far UnknownText_0x1c1474
-	db "@"
+	text_end
 
 PokecenterPCText_AccessedOwnPC:
 	; Accessed own PC. Item Storage System opened.
 	text_far UnknownText_0x1c14a4
-	db "@"
+	text_end
 
 PokecenterPCText_AccessedOaksPC:
 	; PROF.OAK's PC accessed. #DEX Rating System opened.
 	text_far UnknownText_0x1c14d2
-	db "@"
+	text_end
 
 PokecenterPCText_LinkClosed:
 	; … Link closed…
 	text_far UnknownText_0x1c1505
-	db "@"
+	text_end

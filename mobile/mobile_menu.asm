@@ -458,12 +458,12 @@ String_4a34b:
 UnknownText_0x4a358:
 	; Delete the saved LOG-IN PASSWORD?
 	text_far UnknownText_0x1c5196
-	db "@"
+	text_end
 
 UnknownText_0x4a35d:
 	; Deleted the LOG-IN PASSWORD.
 	text_far UnknownText_0x1c51b9
-	db "@"
+	text_end
 
 DeletePassword_YesNo_MenuHeader:
 	db MENU_BACKUP_TILES ; flags

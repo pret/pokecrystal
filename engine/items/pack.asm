@@ -617,7 +617,7 @@ GiveItem:
 .Egg:
 	; An EGG can't hold an item.
 	text_far Text_AnEGGCantHoldAnItem
-	db "@"
+	text_end
 
 QuitItemSubmenu:
 	ret
@@ -1549,58 +1549,58 @@ PC_Mart_BallsPocketMenuHeader:
 Text_PackNoItems:
 	; No items.
 	text_far UnknownText_0x1c0b9a
-	db "@"
+	text_end
 
 Text_ThrowAwayHowMany:
 	; Throw away how many?
 	text_far UnknownText_0x1c0ba5
-	db "@"
+	text_end
 
 Text_ConfirmThrowAway:
 	; Throw away @ @ (S)?
 	text_far UnknownText_0x1c0bbb
-	db "@"
+	text_end
 
 Text_ThrewAway:
 	; Threw away @ (S).
 	text_far UnknownText_0x1c0bd8
-	db "@"
+	text_end
 
 Text_ThisIsntTheTime:
 	; OAK:  ! This isn't the time to use that!
 	text_far UnknownText_0x1c0bee
-	db "@"
+	text_end
 
 TextJump_YouDontHaveAMon:
 	; You don't have a #MON!
 	text_far Text_YouDontHaveAMon
-	db "@"
+	text_end
 
 Text_RegisteredItem:
 	; Registered the @ .
 	text_far UnknownText_0x1c0c2e
-	db "@"
+	text_end
 
 Text_CantRegister:
 	; You can't register that item.
 	text_far UnknownText_0x1c0c45
-	db "@"
+	text_end
 
 Text_MoveItemWhere:
 	; Where should this be moved to?
 	text_far UnknownText_0x1c0c63
-	db "@"
+	text_end
 
 Text_PackEmptyString:
 	;
 	text_far UnknownText_0x1c0c83
-	db "@"
+	text_end
 
 TextJump_YouCantUseItInABattle:
 	; Doesn't seem to be used anywhere
 	; "You can't use it in a battle."
 	text_far Text_YouCantUseItInABattle
-	db "@"
+	text_end
 
 PackMenuGFX:
 INCBIN "gfx/pack/pack_menu.2bpp"

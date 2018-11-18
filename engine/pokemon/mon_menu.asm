@@ -64,17 +64,17 @@ TossItemFromPC:
 .TossHowMany:
 	; Toss out how many @ (S)?
 	text_far UnknownText_0x1c1a90
-	db "@"
+	text_end
 
 .ConfirmToss:
 	; Throw away @ @ (S)?
 	text_far UnknownText_0x1c1aad
-	db "@"
+	text_end
 
 .TossedThisMany:
 	; Discarded @ (S).
 	text_far UnknownText_0x1c1aca
-	db "@"
+	text_end
 
 .CantToss:
 	ld hl, .TooImportantToToss
@@ -84,7 +84,7 @@ TossItemFromPC:
 .TooImportantToToss:
 	; That's too impor- tant to toss out!
 	text_far UnknownText_0x1c1adf
-	db "@"
+	text_end
 
 CantUseItem:
 	ld hl, CantUseItemText
@@ -93,7 +93,7 @@ CantUseItem:
 
 CantUseItemText:
 	text_far UnknownText_0x1c1b03
-	db "@"
+	text_end
 
 PartyMonItemName:
 	ld a, [wCurItem]
@@ -392,35 +392,35 @@ GiveTakeItemMenuData:
 
 TookAndMadeHoldText:
 	text_far UnknownText_0x1c1b2c
-	db "@"
+	text_end
 
 MadeHoldText:
 	text_far UnknownText_0x1c1b57
-	db "@"
+	text_end
 
 PleaseRemoveMailText:
 	text_far UnknownText_0x1c1b6f
-	db "@"
+	text_end
 
 IsntHoldingAnythingText:
 	text_far UnknownText_0x1c1b8e
-	db "@"
+	text_end
 
 ItemStorageIsFullText:
 	text_far UnknownText_0x1c1baa
-	db "@"
+	text_end
 
 TookFromText:
 	text_far UnknownText_0x1c1bc4
-	db "@"
+	text_end
 
 SwitchAlreadyHoldingText:
 	text_far UnknownText_0x1c1bdc
-	db "@"
+	text_end
 
 CantBeHeldText:
 	text_far UnknownText_0x1c1c09
-	db "@"
+	text_end
 
 GetPartyItemLocation:
 	push af
@@ -563,32 +563,32 @@ MonMailAction:
 .mailwilllosemessagetext
 ; The MAIL will lose its message. OK?
 	text_far UnknownText_0x1c1c22
-	db "@"
+	text_end
 
 .tookmailfrommontext
 ; MAIL detached from <POKEMON>.
 	text_far UnknownText_0x1c1c47
-	db "@"
+	text_end
 
 .bagfulltext
 ; There's no space for removing MAIL.
 	text_far UnknownText_0x1c1c62
-	db "@"
+	text_end
 
 .sendmailtopctext
 ; Send the removed MAIL to your PC?
 	text_far UnknownText_0x1c1c86
-	db "@"
+	text_end
 
 .mailboxfulltext
 ; Your PC's MAILBOX is full.
 	text_far UnknownText_0x1c1ca9
-	db "@"
+	text_end
 
 .sentmailtopctext
 ; The MAIL was sent to your PC.
 	text_far UnknownText_0x1c1cc4
-	db "@"
+	text_end
 
 OpenPartyStats:
 	call LoadStandardMenuHeader
@@ -750,7 +750,7 @@ MonMenu_Softboiled_MilkDrink:
 .Text_NotEnoughHP:
 	; Not enough HP!
 	text_far UnknownText_0x1c1ce3
-	db "@"
+	text_end
 
 .CheckMonHasEnoughHP:
 ; Need to have at least (MaxHP / 5) HP left.

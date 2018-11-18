@@ -209,12 +209,12 @@ CheckForLuckyNumberWinners:
 .FoundPartymonText:
 	; Congratulations! We have a match with the ID number of @  in your party.
 	text_far UnknownText_0x1c1261
-	db "@"
+	text_end
 
 .FoundBoxmonText:
 	; Congratulations! We have a match with the ID number of @  in your PC BOX.
 	text_far UnknownText_0x1c12ae
-	db "@"
+	text_end
 
 PrintTodaysLuckyNumber:
 	ld hl, wStringBuffer3

@@ -5451,7 +5451,7 @@ Text_PartyMonTopsThisLevel:
 	done
 
 Text_UberRestriction:
-	text_from_ram wcd49
+	text_ram wcd49
 	text " may go"
 	line "only to BATTLE"
 
@@ -5494,10 +5494,10 @@ Text_WhichBattleRoom:
 	done
 
 Text_ThisBattleRoomPleaseWait:
-	text_from_ram wStringBuffer3
+	text_ram wStringBuffer3
 	text "'s ROOM"
 	line "@"
-	text_from_ram wStringBuffer4
+	text_ram wStringBuffer4
 	text "?"
 	cont "Please wait…"
 	done

@@ -16,7 +16,7 @@ text_start: MACRO
 ENDM
 
 	enum TX_RAM ; $01
-text_from_ram: MACRO
+text_ram: MACRO
 	db TX_RAM
 	dw \1
 ENDM
@@ -57,20 +57,20 @@ text_scroll: MACRO
 ENDM
 
 	enum TX_START_ASM ; $08
-start_asm: MACRO
+text_asm: MACRO
 	db TX_START_ASM
 ENDM
 
 	enum TX_NUM ; $09
-deciram: MACRO
+text_decimal: MACRO
 	db TX_NUM
 	dw \1 ; address
 	dn \2, \3 ; bytes, digits
 ENDM
 
-	enum TX_EXIT ; $0a
-interpret_data: MACRO
-	db TX_EXIT
+	enum TX_PAUSE ; $0a
+text_pause: MACRO
+	db TX_PAUSE
 ENDM
 
 	enum TX_SOUND_DEX_FANFARE_50_79 ; $0b
@@ -79,13 +79,13 @@ sound_dex_fanfare_50_79: MACRO
 ENDM
 
 	enum TX_DOTS ; $0c
-limited_interpret_data: MACRO
+text_dots: MACRO
 	db TX_DOTS
 	db \1
 ENDM
 
 	enum TX_LINK_WAIT_BUTTON ; $0d
-link_wait_button: MACRO
+text_linkwaitbutton: MACRO
 	db TX_LINK_WAIT_BUTTON
 ENDM
 
@@ -126,7 +126,7 @@ text_buffer: MACRO
 ENDM
 
 	enum TX_DAY ; $15
-current_day: MACRO
+text_today: MACRO
 	db TX_DAY
 ENDM
 
@@ -135,4 +135,11 @@ text_far: MACRO
 	db TX_FAR
 	dw \1
 	db BANK(\1)
+ENDM
+
+	enum_set $50
+
+	enum TX_END ; $50
+text_end: MACRO
+	db TX_END
 ENDM
