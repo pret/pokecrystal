@@ -90,7 +90,7 @@ sudo apt-get install make gcc git
 To install **rgbds**:
 
 ```bash
-sudo apt-get install bison libpng-dev
+sudo apt-get install pkg-config flex bison libpng-dev
 git clone --depth=1 https://github.com/rednex/rgbds
 sudo make -C rgbds CFLAGS=-O2 install
 ```
@@ -106,7 +106,7 @@ sudo zypper install make gcc git
 To install **rgbds**:
 
 ```bash
-sudo zypper install bison libpng16-devel
+sudo zypper install pkg-config flex bison libpng16-devel
 git clone --depth=1 https://github.com/rednex/rgbds
 sudo make -C rgbds CFLAGS=-O2 install
 ```
@@ -122,7 +122,7 @@ sudo pacman -S make gcc git
 To install **rgbds**:
 
 ```bash
-sudo pacman -S bison libpng
+sudo pacman -S pkg-config flex bison libpng
 git clone --depth=1 https://github.com/rednex/rgbds
 sudo make -C rgbds CFLAGS=-O2 install
 ```
@@ -152,6 +152,8 @@ If your distro is not listed here, try to find the required software in its repo
 
 If `rgbds` is not available, you'll also need these:
 
+- `pkg-config`
+- `flex`
 - `bison`
 - `libpng` (and the development headers)
 
