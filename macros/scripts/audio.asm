@@ -68,11 +68,11 @@ ENDM
 	enum sound_duty_cmd ; $de
 sound_duty: MACRO
 	db sound_duty_cmd
-	if _NARG == 4
+if _NARG == 4
 	db \1 | (\2 << 2) | (\3 << 4) | (\4 << 6) ; duty sequence
-	else
+else
 	db \1 ; LEGACY: Support for one-byte duty value
-	endc
+endc
 ENDM
 
 	enum togglesfx_cmd ; $df
