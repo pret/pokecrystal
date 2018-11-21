@@ -97,7 +97,7 @@ endc
 ENDM
 
 dsprite: MACRO
-; y tile, y pxl, x tile, x pxl, vtile offset, flags, attributes
+; y tile, y pxl, x tile, x pxl, vtile offset, attributes
 	db (\1 * 8) % $100 + \2, (\3 * 8) % $100 + \4, \5, \6
 ENDM
 
