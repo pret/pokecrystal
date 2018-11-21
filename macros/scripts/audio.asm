@@ -21,12 +21,13 @@ ENDM
 
 ; MusicCommands indexes (see audio/engine.asm)
 	enum_start $d8
+first_music_cmd EQU __enum__ + -8
 
-	enum notetype_cmd ; $d8
 octave: MACRO
-	db notetype_cmd - (\1)
+	db first_music_cmd + 8 - (\1)
 ENDM
 
+	enum notetype_cmd ; $d8
 notetype: MACRO
 	db notetype_cmd
 	db \1 ; note_length

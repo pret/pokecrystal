@@ -1136,9 +1136,9 @@ ReadNoiseSample:
 ParseMusic:
 ; parses until a note is read or the song is ended
 	call GetMusicByte ; store next byte in a
-	cp endchannel_cmd ; is the song over?
+	cp endchannel_cmd
 	jr z, .endchannel
-	cp $d0 ; is it a note?
+	cp first_music_cmd
 	jr c, .readnote
 	; then it's a command
 .readcommand
@@ -1350,7 +1350,7 @@ ParseMusicCommand:
 	; reload command
 	ld a, [wCurMusicByte]
 	; get command #
-	sub $d0 ; first command
+	sub first_music_cmd
 	ld e, a
 	ld d, 0
 	; seek command pointer
