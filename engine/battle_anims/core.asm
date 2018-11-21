@@ -147,7 +147,7 @@ BattleAnimOAMUpdate:
 	inc hl
 	inc de
 	ld a, [wBattleAnimTempTileID]
-	add $31
+	add BATTLEANIM_BASE_TILE
 	add [hl]
 	ld [de], a
 	inc hl

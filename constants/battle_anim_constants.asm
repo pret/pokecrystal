@@ -26,6 +26,9 @@
 	const BATTLEANIMSTRUCT_17
 BATTLEANIMSTRUCT_LENGTH EQU const_value
 
+; Start tile for battle animation graphics
+BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
+
 ; BattleAnimObjects indexes (see data/battle_anims/objects.asm)
 	const_def
 	const ANIM_OBJ_00
@@ -804,6 +807,8 @@ BATTLEANIMSTRUCT_LENGTH EQU const_value
 	const ANIM_GFX_ANGELS
 	const ANIM_GFX_WAVE
 	const ANIM_GFX_AEROBLAST
+	const ANIM_GFX_PLAYER
+	const ANIM_GFX_ENEMY
 
 ; battle_bg_effect struct members (see macros/wram.asm)
 	const_def
