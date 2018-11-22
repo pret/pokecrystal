@@ -595,13 +595,13 @@ BattleAnimCmd_IfParamAnd:
 BattleAnimCmd_Obj:
 ; index, x, y, param
 	call GetBattleAnimByte
-	ld [wBattleAnimTemp0], a
+	ld [wBattleObjectTempID], a
 	call GetBattleAnimByte
-	ld [wBattleAnimTemp1], a
+	ld [wBattleObjectTempXCoord], a
 	call GetBattleAnimByte
-	ld [wBattleAnimTemp2], a
+	ld [wBattleObjectTempYCoord], a
 	call GetBattleAnimByte
-	ld [wBattleAnimTemp3], a
+	ld [wBattleObjectTemp0b], a
 	call QueueBattleAnimation
 	ret
 

@@ -427,20 +427,20 @@ BattleBGEffect_FeetFollow:
 	call BGEffect_CheckBattleTurn
 	jr nz, .player_turn
 	ld a, ANIM_OBJ_PLAYERFEETFOLLOW
-	ld [wBattleAnimTemp0], a
-	ld a, 16 * 8 + 4
+	ld [wBattleObjectTempID], a
+	ld a, 16 * TILE_WIDTH + 4
 	jr .okay
 
 .player_turn
 	ld a, ANIM_OBJ_ENEMYFEETFOLLOW
-	ld [wBattleAnimTemp0], a
-	ld a, 6 * 8
+	ld [wBattleObjectTempID], a
+	ld a, 6 * TILE_WIDTH
 .okay
-	ld [wBattleAnimTemp1], a
-	ld a, 8 * 8
-	ld [wBattleAnimTemp2], a
+	ld [wBattleObjectTempXCoord], a
+	ld a, 8 * TILE_WIDTH
+	ld [wBattleObjectTempYCoord], a
 	xor a
-	ld [wBattleAnimTemp3], a
+	ld [wBattleObjectTemp0b], a
 	call _QueueBattleAnimation
 	pop bc
 	ret
@@ -494,20 +494,20 @@ BattleBGEffect_HeadFollow:
 	call BGEffect_CheckBattleTurn
 	jr nz, .player_turn
 	ld a, ANIM_OBJ_PLAYERHEADFOLLOW
-	ld [wBattleAnimTemp0], a
-	ld a, 16 * 8 + 4
+	ld [wBattleObjectTempID], a
+	ld a, 16 * TILE_WIDTH + 4
 	jr .okay
 
 .player_turn
 	ld a, ANIM_OBJ_ENEMYHEADFOLLOW
-	ld [wBattleAnimTemp0], a
-	ld a, 6 * 8
+	ld [wBattleObjectTempID], a
+	ld a, 6 * TILE_WIDTH
 .okay
-	ld [wBattleAnimTemp1], a
-	ld a, 8 * 8
-	ld [wBattleAnimTemp2], a
+	ld [wBattleObjectTempXCoord], a
+	ld a, 8 * TILE_WIDTH
+	ld [wBattleObjectTempYCoord], a
 	xor a
-	ld [wBattleAnimTemp3], a
+	ld [wBattleObjectTemp0b], a
 	call _QueueBattleAnimation
 	pop bc
 	ret

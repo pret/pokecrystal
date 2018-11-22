@@ -3058,6 +3058,12 @@ wBattleAnimTemp2:: db
 wBattleAnimTemp3:: db
 
 NEXTU ; d419
+wBattleObjectTempID:: db
+wBattleObjectTempXCoord:: db
+wBattleObjectTempYCoord:: db
+wBattleObjectTemp0b:: db
+
+NEXTU ; d419
 wBattleAnimTempOAMFlags:: db
 wBattleAnimTempField02:: db
 wBattleAnimTempTileID:: db
