@@ -4853,7 +4853,7 @@ CalcPlayerStats:
 	ld bc, wBattleMonAttack
 
 	ld a, 5
-	call CalcStats
+	call CalcBattleStats
 
 	ld hl, BadgeStatBoosts
 	call CallBattleCore
@@ -4874,7 +4874,7 @@ CalcEnemyStats:
 	ld bc, wEnemyMonAttack
 
 	ld a, 5
-	call CalcStats
+	call CalcBattleStats
 
 	call BattleCommand_SwitchTurn
 
@@ -4886,7 +4886,7 @@ CalcEnemyStats:
 
 	jp BattleCommand_SwitchTurn
 
-CalcStats:
+CalcBattleStats:
 .loop
 	push af
 	ld a, [hli]
