@@ -215,10 +215,10 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const ANIM_OBJ_ROCK_SMASH
 	const ANIM_OBJ_FLOWER
 	const ANIM_OBJ_COTTON
-	const ANIM_OBJ_PLAYERFEETFOLLOW
-	const ANIM_OBJ_ENEMYFEETFOLLOW
-	const ANIM_OBJ_PLAYERHEADFOLLOW
-	const ANIM_OBJ_ENEMYHEADFOLLOW
+	const ANIM_OBJ_ENEMYFEET_1ROW
+	const ANIM_OBJ_PLAYERHEAD_1ROW
+	const ANIM_OBJ_ENEMYFEET_2ROW
+	const ANIM_OBJ_PLAYERHEAD_2ROW
 
 ; DoBattleAnimFrame arguments (see engine/battle_anims/functions.asm)
 	const_def
@@ -728,8 +728,8 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const ANIM_BG_WHIRLPOOL
 	const ANIM_BG_TELEPORT
 	const ANIM_BG_NIGHT_SHADE
-	const ANIM_BG_FEET_FOLLOW
-	const ANIM_BG_HEAD_FOLLOW
+	const ANIM_BG_BATTLEROBJ_1ROW
+	const ANIM_BG_BATTLEROBJ_2ROW
 	const ANIM_BG_DOUBLE_TEAM
 	const ANIM_BG_ACID_ARMOR
 	const ANIM_BG_RAPID_FLASH
@@ -807,8 +807,8 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const ANIM_GFX_ANGELS
 	const ANIM_GFX_WAVE
 	const ANIM_GFX_AEROBLAST
-	const ANIM_GFX_PLAYER
-	const ANIM_GFX_ENEMY
+	const ANIM_GFX_PLAYERHEAD
+	const ANIM_GFX_ENEMYFEET
 
 ; battle_bg_effect struct members (see macros/wram.asm)
 	const_def

@@ -85,12 +85,12 @@ anim_incbgeffect: MACRO
 ENDM
 
 	enum anim_enemyfeetobj_command ; $d9
-anim_enemyfeetobj: MACRO
+anim_battlergfx_2row: MACRO
 	db anim_enemyfeetobj_command
 ENDM
 
 	enum anim_playerheadobj_command ; $da
-anim_playerheadobj: MACRO
+anim_battlergfx_1row: MACRO
 	db anim_playerheadobj_command
 ENDM
 

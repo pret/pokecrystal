@@ -100,7 +100,7 @@ GetBattleAnimOAMPointer:
 	add hl, de
 	ret
 
-LoadBattleAnimObj:
+LoadBattleAnimGFX:
 	push hl
 	ld l, a
 	ld h, 0
