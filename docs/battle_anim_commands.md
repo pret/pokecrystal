@@ -47,6 +47,9 @@ Loads 1-5 sets of graphics. Will overwrite any previously loaded sets.
 
 - *gfx*: `ANIM_GFX` constants (see [constants/battle_anim_constants.asm](/constants/battle_anim_constants.asm))
 
+Caveats:
+- These will override any currently-loaded GFX.
+
 
 ## `$D6`: <code>anim_incobj <i>object_id</i></code>
 
@@ -76,15 +79,17 @@ Increments a bg effect's state.
 Since there can't be two of the same bg effect, the effect type is used. This is distinct from `anim_incobj`.
 
 
-## `$D9`: `anim_enemyfeetobj`
-
-Temporarily creates sprites from the bottom row of the enemy frontpic, so that the player backpic can be moved around without corrupting the enemy frontpic.
+## `$D9`: `anim_battlergfx_2row`
 
 
-## `$DA`: `anim_playerheadobj`
+## `$DA`: `anim_battlergfx_1row`
 
-Temporarily creates sprites from the top row of the player backpic, so that the enemy frontpic can be moved around without corrupting the player backpic.
+Loads animation graphics for the bottom one or two rows of the enemy pokemon and the top one or two rows of the player's.  
+These graphics are identified through `ANIM_GFX_ENEMYFEET` and `ANIM_GFX_PLAYERHEAD`.
 
+Caveats:
+- Doesn't work with `anim_4gfx` and `anim_5gfx`.
+- This overwrites previously loaded animation graphics if you've loaded more than 53 tiles (2row) or 66 tiles (1row).
 
 ## `$DB`: `anim_checkpokeball`
 
