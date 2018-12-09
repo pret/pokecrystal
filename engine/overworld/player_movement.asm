@@ -469,6 +469,7 @@ DoPlayerMovement::
 	ret
 
 .Steps:
+; entries correspond to STEP_* constants
 	dw .SlowStep
 	dw .NormalStep
 	dw .FastStep
@@ -514,10 +515,10 @@ DoPlayerMovement::
 	turn_step LEFT
 	turn_step RIGHT
 .FinishFacing:
-	db $80 + DOWN
-	db $80 + UP
-	db $80 + LEFT
-	db $80 + RIGHT
+	db $80 | DOWN
+	db $80 | UP
+	db $80 | LEFT
+	db $80 | RIGHT
 
 .StandInPlace:
 	ld a, 0
