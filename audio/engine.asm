@@ -1138,7 +1138,7 @@ ParseMusic:
 	call GetMusicByte ; store next byte in a
 	cp endchannel_cmd
 	jr z, .endchannel
-	cp first_music_cmd
+	cp FIRST_MUSIC_CMD
 	jr c, .readnote
 	; then it's a command
 .readcommand
@@ -1350,7 +1350,7 @@ ParseMusicCommand:
 	; reload command
 	ld a, [wCurMusicByte]
 	; get command #
-	sub first_music_cmd
+	sub FIRST_MUSIC_CMD
 	ld e, a
 	ld d, 0
 	; seek command pointer
