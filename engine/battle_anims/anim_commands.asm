@@ -334,8 +334,8 @@ BattleAnimCommands::
 	dw BattleAnimCmd_IncObj
 	dw BattleAnimCmd_SetObj
 	dw BattleAnimCmd_IncBGEffect
-	dw BattleAnimCmd_EnemyFeetObj
-	dw BattleAnimCmd_PlayerHeadObj
+	dw BattleAnimCmd_BattlerGFX_1Row
+	dw BattleAnimCmd_BattlerGFX_2Row
 	dw BattleAnimCmd_CheckPokeball
 	dw BattleAnimCmd_Transform
 	dw BattleAnimCmd_RaiseSub
@@ -595,13 +595,13 @@ BattleAnimCmd_IfParamAnd:
 BattleAnimCmd_Obj:
 ; index, x, y, param
 	call GetBattleAnimByte
-	ld [wBattleAnimTemp0], a
+	ld [wBattleObjectTempID], a
 	call GetBattleAnimByte
-	ld [wBattleAnimTemp1], a
+	ld [wBattleObjectTempXCoord], a
 	call GetBattleAnimByte
-	ld [wBattleAnimTemp2], a
+	ld [wBattleObjectTempYCoord], a
 	call GetBattleAnimByte
-	ld [wBattleAnimTemp3], a
+	ld [wBattleObjectTemp0b], a
 	call QueueBattleAnimation
 	ret
 
@@ -665,7 +665,7 @@ BattleAnimCmd_5GFX:
 	ld [wBattleAnimTemp0], a
 .loop
 	ld a, [wBattleAnimTemp0]
-	cp (vTiles1 - vTiles0) / $10 - $31
+	cp (vTiles1 - vTiles0) / LEN_2BPP_TILE - BATTLEANIM_BASE_TILE
 	ret nc
 	call GetBattleAnimByte
 	ld [hli], a
@@ -678,10 +678,10 @@ BattleAnimCmd_5GFX:
 rept 4
 	add hl, hl
 endr
-	ld de, vTiles0 tile $31
+	ld de, vTiles0 tile BATTLEANIM_BASE_TILE
 	add hl, de
 	ld a, [wBattleAnimByte]
-	call LoadBattleAnimObj
+	call LoadBattleAnimGFX
 	ld a, [wBattleAnimTemp0]
 	add c
 	ld [wBattleAnimTemp0], a
@@ -767,7 +767,7 @@ BattleAnimCmd_SetObj:
 	ld [hl], a
 	ret
 
-BattleAnimCmd_EnemyFeetObj:
+BattleAnimCmd_BattlerGFX_1Row:
 	ld hl, wBattleAnimTileDict
 .loop
 	ld a, [hl]
@@ -778,33 +778,33 @@ BattleAnimCmd_EnemyFeetObj:
 	jr .loop
 
 .okay
-	ld a, $28
+	ld a, ANIM_GFX_PLAYERHEAD
 	ld [hli], a
-	ld a, $42
+	ld a, ($80 - 6 - 7) - BATTLEANIM_BASE_TILE
 	ld [hli], a
-	ld a, $29
+	ld a, ANIM_GFX_ENEMYFEET
 	ld [hli], a
-	ld a, $49
+	ld a, ($80 - 6) - BATTLEANIM_BASE_TILE
 	ld [hl], a
 
-	ld hl, vTiles0 tile $73
-	ld de, vTiles2 tile $06
-	ld a, $70
+	ld hl, vTiles0 tile ($80 - 6 - 7)
+	ld de, vTiles2 tile $06 ; Enemy feet start tile
+	ld a, 7 tiles ; Enemy pic height
 	ld [wBattleAnimTemp0], a
-	ld a, $7
-	call .LoadFootprint
-	ld de, vTiles2 tile $31
-	ld a, $60
+	ld a, 7 ; Copy 7x1 tiles
+	call .LoadFeet
+	ld de, vTiles2 tile $31 ; Player head start tile
+	ld a, 6 tiles ; Player pic height
 	ld [wBattleAnimTemp0], a
-	ld a, $6
-	call .LoadFootprint
+	ld a, 6 ; Copy 6x1 tiles
+	call .LoadFeet
 	ret
 
-.LoadFootprint:
+.LoadFeet:
 	push af
 	push hl
 	push de
-	lb bc, BANK(BattleAnimCmd_EnemyFeetObj), 1
+	lb bc, BANK(@), 1
 	call Request2bpp
 	pop de
 	ld a, [wBattleAnimTemp0]
@@ -818,10 +818,10 @@ BattleAnimCmd_EnemyFeetObj:
 	add hl, bc
 	pop af
 	dec a
-	jr nz, .LoadFootprint
+	jr nz, .LoadFeet
 	ret
 
-BattleAnimCmd_PlayerHeadObj:
+BattleAnimCmd_BattlerGFX_2Row:
 	ld hl, wBattleAnimTileDict
 .loop
 	ld a, [hl]
@@ -832,25 +832,25 @@ BattleAnimCmd_PlayerHeadObj:
 	jr .loop
 
 .okay
-	ld a, $28
+	ld a, ANIM_GFX_PLAYERHEAD
 	ld [hli], a
-	ld a, $35
+	ld a, ($80 - 6 * 2 - 7 * 2) - BATTLEANIM_BASE_TILE
 	ld [hli], a
-	ld a, $29
+	ld a, ANIM_GFX_ENEMYFEET
 	ld [hli], a
-	ld a, $43
+	ld a, ($80 - 6 * 2) - BATTLEANIM_BASE_TILE
 	ld [hl], a
 
-	ld hl, vTiles0 tile $66
-	ld de, vTiles2 tile $05
-	ld a, $70
+	ld hl, vTiles0 tile ($80 - 6 * 2 - 7 * 2)
+	ld de, vTiles2 tile $05 ; Enemy feet start tile
+	ld a, 7 tiles ; Enemy pic height
 	ld [wBattleAnimTemp0], a
-	ld a, $7
+	ld a, 7 ; Copy 7x2 tiles
 	call .LoadHead
-	ld de, vTiles2 tile $31
-	ld a, $60
+	ld de, vTiles2 tile $31 ; Player head start tile
+	ld a, 6 tiles ; Player pic height
 	ld [wBattleAnimTemp0], a
-	ld a, $6
+	ld a, 6 ; Copy 6x2 tiles
 	call .LoadHead
 	ret
 
@@ -858,7 +858,7 @@ BattleAnimCmd_PlayerHeadObj:
 	push af
 	push hl
 	push de
-	lb bc, BANK(BattleAnimCmd_EnemyFeetObj), 2
+	lb bc, BANK(@), 2
 	call Request2bpp
 	pop de
 	ld a, [wBattleAnimTemp0]
@@ -927,14 +927,14 @@ BattleAnimCmd_UpdateActorPic:
 
 	ld hl, vTiles2 tile $00
 	ld b, 0
-	ld c, $31
+	ld c, 7 * 7
 	call Request2bpp
 	ret
 
 .player
 	ld hl, vTiles2 tile $31
 	ld b, 0
-	ld c, $24
+	ld c, 6 * 6
 	call Request2bpp
 	ret
 
@@ -1028,7 +1028,7 @@ BattleAnimCmd_MinimizeOpp:
 
 GetMinimizePic:
 	ld hl, sScratch
-	ld bc, $31 tiles
+	ld bc, (7 * 7) tiles
 .loop
 	xor a
 	ld [hli], a

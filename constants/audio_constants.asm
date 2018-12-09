@@ -24,11 +24,11 @@
 	const CHAN3 ; 2
 	const CHAN4 ; 3
 NUM_MUSIC_CHANS EQU const_value
-NUM_NOISE_CHANS EQU const_value
 	const CHAN5 ; 4
 	const CHAN6 ; 5
 	const CHAN7 ; 6
 	const CHAN8 ; 7
+NUM_NOISE_CHANS EQU const_value - NUM_MUSIC_CHANS
 NUM_CHANNELS EQU const_value
 
 ; channel_struct members (see macros/wram.asm)

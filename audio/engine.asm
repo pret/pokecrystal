@@ -1105,7 +1105,7 @@ ReadNoiseSample:
 	ld a, [de]
 	inc de
 
-	cp $ff
+	cp endchannel_cmd
 	jr z, .quit
 
 	and $f
@@ -1136,9 +1136,9 @@ ReadNoiseSample:
 ParseMusic:
 ; parses until a note is read or the song is ended
 	call GetMusicByte ; store next byte in a
-	cp $ff ; is the song over?
+	cp endchannel_cmd
 	jr z, .endchannel
-	cp $d0 ; is it a note?
+	cp first_music_cmd
 	jr c, .readnote
 	; then it's a command
 .readcommand
@@ -1350,7 +1350,7 @@ ParseMusicCommand:
 	; reload command
 	ld a, [wCurMusicByte]
 	; get command #
-	sub $d0 ; first command
+	sub first_music_cmd
 	ld e, a
 	ld d, 0
 	; seek command pointer
@@ -1613,7 +1613,7 @@ Music_JumpIf:
 	ld [hl], d
 	ret
 
-MusicEE
+MusicEE:
 ; conditional jump
 ; checks a byte in ram corresponding to the current channel
 ; doesn't seem to be set by any commands

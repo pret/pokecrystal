@@ -2,7 +2,7 @@
 ; (except accuracy, see data/battle/accuracy_multipliers.asm).
 
 ; This table is identical to data/battle/stat_multipliers_2.asm.
-; This one is used by CalcStats.
+; This one is used by CalcBattleStats.
 
 StatLevelMultipliers:
 	db  25, 100 ; -6 =  25%

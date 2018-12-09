@@ -96,8 +96,8 @@ BattleBGEffects:
 	dw BattleBGEffect_Whirlpool
 	dw BattleBGEffect_Teleport
 	dw BattleBGEffect_NightShade
-	dw BattleBGEffect_FeetFollow
-	dw BattleBGEffect_HeadFollow
+	dw BattleBGEffect_BattlerObj_1Row
+	dw BattleBGEffect_BattlerObj_2Row
 	dw BattleBGEffect_DoubleTeam
 	dw BattleBGEffect_AcidArmor
 	dw BattleBGEffect_RapidFlash
@@ -403,7 +403,7 @@ BattleBGEffect_ShowMon:
 	db  3, $00, 3
 	db -1
 
-BattleBGEffect_FeetFollow:
+BattleBGEffect_BattlerObj_1Row:
 	call BattleBGEffects_AnonJumptable
 .anon_dw
 	dw .zero
@@ -425,22 +425,22 @@ BattleBGEffect_FeetFollow:
 	call BattleBGEffects_IncrementJumptable
 	push bc
 	call BGEffect_CheckBattleTurn
-	jr nz, .player_turn
-	ld a, ANIM_OBJ_PLAYERFEETFOLLOW
-	ld [wBattleAnimTemp0], a
-	ld a, 16 * 8 + 4
+	jr nz, .player_side
+	ld a, ANIM_OBJ_ENEMYFEET_1ROW
+	ld [wBattleObjectTempID], a
+	ld a, 16 * TILE_WIDTH + 4
 	jr .okay
 
-.player_turn
-	ld a, ANIM_OBJ_ENEMYFEETFOLLOW
-	ld [wBattleAnimTemp0], a
-	ld a, 6 * 8
+.player_side
+	ld a, ANIM_OBJ_PLAYERHEAD_1ROW
+	ld [wBattleObjectTempID], a
+	ld a, 6 * TILE_WIDTH
 .okay
-	ld [wBattleAnimTemp1], a
-	ld a, 8 * 8
-	ld [wBattleAnimTemp2], a
+	ld [wBattleObjectTempXCoord], a
+	ld a, 8 * TILE_WIDTH
+	ld [wBattleObjectTempYCoord], a
 	xor a
-	ld [wBattleAnimTemp3], a
+	ld [wBattleObjectTemp0b], a
 	call _QueueBattleAnimation
 	pop bc
 	ret
@@ -449,12 +449,12 @@ BattleBGEffect_FeetFollow:
 	call BattleBGEffects_IncrementJumptable
 	push bc
 	call BGEffect_CheckBattleTurn
-	jr nz, .player_turn_2
+	jr nz, .player_side_2
 	hlcoord 12, 6
 	lb bc, 1, 7
 	jr .okay2
 
-.player_turn_2
+.player_side_2
 	hlcoord 2, 6
 	lb bc, 1, 6
 .okay2
@@ -470,7 +470,7 @@ BattleBGEffect_FeetFollow:
 	call EndBattleBGEffect
 	ret
 
-BattleBGEffect_HeadFollow:
+BattleBGEffect_BattlerObj_2Row:
 	call BattleBGEffects_AnonJumptable
 .anon_dw
 	dw .zero
@@ -492,22 +492,22 @@ BattleBGEffect_HeadFollow:
 	call BattleBGEffects_IncrementJumptable
 	push bc
 	call BGEffect_CheckBattleTurn
-	jr nz, .player_turn
-	ld a, ANIM_OBJ_PLAYERHEADFOLLOW
-	ld [wBattleAnimTemp0], a
-	ld a, 16 * 8 + 4
+	jr nz, .player_side
+	ld a, ANIM_OBJ_ENEMYFEET_2ROW
+	ld [wBattleObjectTempID], a
+	ld a, 16 * TILE_WIDTH + 4
 	jr .okay
 
-.player_turn
-	ld a, ANIM_OBJ_ENEMYHEADFOLLOW
-	ld [wBattleAnimTemp0], a
-	ld a, 6 * 8
+.player_side
+	ld a, ANIM_OBJ_PLAYERHEAD_2ROW
+	ld [wBattleObjectTempID], a
+	ld a, 6 * TILE_WIDTH
 .okay
-	ld [wBattleAnimTemp1], a
-	ld a, 8 * 8
-	ld [wBattleAnimTemp2], a
+	ld [wBattleObjectTempXCoord], a
+	ld a, 8 * TILE_WIDTH
+	ld [wBattleObjectTempYCoord], a
 	xor a
-	ld [wBattleAnimTemp3], a
+	ld [wBattleObjectTemp0b], a
 	call _QueueBattleAnimation
 	pop bc
 	ret
@@ -516,12 +516,12 @@ BattleBGEffect_HeadFollow:
 	call BattleBGEffects_IncrementJumptable
 	push bc
 	call BGEffect_CheckBattleTurn
-	jr nz, .player_turn_2
+	jr nz, .player_side_2
 	hlcoord 12, 5
 	lb bc, 2, 7
 	jr .okay2
 
-.player_turn_2
+.player_side_2
 	hlcoord 2, 6
 	lb bc, 2, 6
 .okay2

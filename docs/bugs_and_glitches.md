@@ -183,7 +183,9 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
  	callfar CheckUserHasEnoughHP
  	jr nc, .failed
 +
++	push bc
 +	call BattleCommand_AttackUp2
++	pop bc
 +	ld a, [wAttackMissed]
 +	and a
 +	jr nz, .failed

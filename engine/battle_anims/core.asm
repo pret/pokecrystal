@@ -27,7 +27,7 @@ DeinitBattleAnimation:
 	ret
 
 InitBattleAnimation:
-	ld a, [wBattleAnimTemp0]
+	ld a, [wBattleObjectTempID]
 	ld e, a
 	ld d, 0
 	ld hl, BattleAnimObjects
@@ -58,14 +58,14 @@ endr
 	ld a, [de]
 	call GetBattleAnimTileOffset
 	ld [hli], a ; Tile ID
-	ld a, [wBattleAnimTemp1]
+	ld a, [wBattleObjectTempXCoord]
 	ld [hli], a ; X Coord
-	ld a, [wBattleAnimTemp2]
+	ld a, [wBattleObjectTempYCoord]
 	ld [hli], a ; Y Coord
 	xor a
 	ld [hli], a ; X Offset
 	ld [hli], a ; Y Offset
-	ld a, [wBattleAnimTemp3]
+	ld a, [wBattleObjectTemp0b]
 	ld [hli], a ; 0b
 	xor a
 	ld [hli], a ; 0c
@@ -147,7 +147,7 @@ BattleAnimOAMUpdate:
 	inc hl
 	inc de
 	ld a, [wBattleAnimTempTileID]
-	add $31
+	add BATTLEANIM_BASE_TILE
 	add [hl]
 	ld [de], a
 	inc hl

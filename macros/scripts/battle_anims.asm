@@ -17,6 +17,7 @@ if _NARG <= 4
 	db \3 ; y
 	db \4 ; param
 else
+; LEGACY: Support the tile+offset format
 	db \1 ; object
 	db (\2) * 8 + (\3) ; x_tile, x
 	db (\4) * 8 + (\5) ; y_tile, y
@@ -84,12 +85,12 @@ anim_incbgeffect: MACRO
 ENDM
 
 	enum anim_enemyfeetobj_command ; $d9
-anim_enemyfeetobj: MACRO
+anim_battlergfx_2row: MACRO
 	db anim_enemyfeetobj_command
 ENDM
 
 	enum anim_playerheadobj_command ; $da
-anim_playerheadobj: MACRO
+anim_battlergfx_1row: MACRO
 	db anim_playerheadobj_command
 ENDM
 

@@ -7,9 +7,10 @@ MALE   EQU 0
 FEMALE EQU 1
 
 ; FlagAction arguments (see home/flag.asm)
-RESET_FLAG EQU 0
-SET_FLAG   EQU 1
-CHECK_FLAG EQU 2
+	const_def
+	const RESET_FLAG
+	const SET_FLAG
+	const CHECK_FLAG
 
 ; G/S version ID: 0 = Gold, 1 = Silver (used by checkver)
 GS_VERSION EQU 0

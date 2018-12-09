@@ -4854,7 +4854,7 @@ CalcPlayerStats:
 	ld bc, wBattleMonAttack
 
 	ld a, 5
-	call CalcStats
+	call CalcBattleStats
 
 	ld hl, BadgeStatBoosts
 	call CallBattleCore
@@ -4875,7 +4875,7 @@ CalcEnemyStats:
 	ld bc, wEnemyMonAttack
 
 	ld a, 5
-	call CalcStats
+	call CalcBattleStats
 
 	call BattleCommand_SwitchTurn
 
@@ -4887,7 +4887,7 @@ CalcEnemyStats:
 
 	jp BattleCommand_SwitchTurn
 
-CalcStats:
+CalcBattleStats:
 .loop
 	push af
 	ld a, [hli]
@@ -6220,21 +6220,6 @@ BattleCommand_Heal:
 	jp StdBattleTextBox
 
 INCLUDE "engine/battle/move_effects/transform.asm"
-
-BattleSideCopy:
-; Copy bc bytes from hl to de if it's the player's turn.
-; Copy bc bytes from de to hl if it's the enemy's turn.
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .copy
-
-; Swap hl and de
-	push hl
-	ld h, d
-	ld l, e
-	pop de
-.copy
-	jp CopyBytes
 
 BattleEffect_ButItFailed:
 	call AnimateFailedMove
