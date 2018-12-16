@@ -20,20 +20,23 @@ noise: MACRO
 ENDM
 
 ; MusicCommands indexes (see audio/engine.asm)
-	enum_start $d8
-first_music_cmd EQU __enum__ + -8
+	enum_start $d0, +8
+FIRST_MUSIC_CMD EQU __enum__
 
+	enum octave_cmd ; $d0
 octave: MACRO
-	db first_music_cmd + 8 - (\1)
+	db octave_cmd | 8 - (\1)
 ENDM
+
+__enumdir__ = +1
 
 	enum notetype_cmd ; $d8
 notetype: MACRO
 	db notetype_cmd
 	db \1 ; note_length
-	if _NARG >= 2
+if _NARG >= 2
 	db \2 ; intensity
-	endc
+endc
 ENDM
 
 	enum pitchoffset_cmd ; $d9

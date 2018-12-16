@@ -1822,6 +1822,7 @@ UpdateJumpPosition:
 .y
 	db  -4,  -6,  -8, -10, -11, -12, -12, -12
 	db -11, -10,  -9,  -8,  -6,  -4,   0,   0
+
 Function5000: ; unscripted?
 ; copy [wPlayerNextMovement] to [wPlayerMovement]
 	ld a, [wPlayerNextMovement]
