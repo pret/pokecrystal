@@ -6986,7 +6986,7 @@ GiveExperiencePoints:
 	add hl, bc
 	ld a, [hli]
 	or [hl]
-	jp z, .skip_stats ; fainted
+	jp z, .next_mon ; fainted
 
 	push bc
 	ld hl, wBattleParticipantsNotFainted
@@ -6998,7 +6998,7 @@ GiveExperiencePoints:
 	ld a, c
 	and a
 	pop bc
-	jp z, .skip_stats
+	jp z, .next_mon
 
 ; give stat exp
 	ld hl, MON_STAT_EXP + 1
@@ -7008,20 +7008,20 @@ GiveExperiencePoints:
 	ld hl, wEnemyMonBaseStats - 1
 	push bc
 	ld c, NUM_EXP_STATS
-.loop1
+.stat_exp_loop
 	inc hl
 	ld a, [de]
 	add [hl]
 	ld [de], a
-	jr nc, .okay1
+	jr nc, .no_carry_stat_exp
 	dec de
 	ld a, [de]
 	inc a
-	jr z, .next
+	jr z, .stat_exp_maxed_out
 	ld [de], a
 	inc de
 
-.okay1
+.no_carry_stat_exp
 	push hl
 	push bc
 	ld a, MON_PKRUS
@@ -7030,30 +7030,30 @@ GiveExperiencePoints:
 	and a
 	pop bc
 	pop hl
-	jr z, .skip
+	jr z, .stat_exp_awarded
 	ld a, [de]
 	add [hl]
 	ld [de], a
-	jr nc, .skip
+	jr nc, .stat_exp_awarded
 	dec de
 	ld a, [de]
 	inc a
-	jr z, .next
+	jr z, .stat_exp_maxed_out
 	ld [de], a
 	inc de
-	jr .skip
+	jr .stat_exp_awarded
 
-.next
+.stat_exp_maxed_out
 	ld a, $ff
 	ld [de], a
 	inc de
 	ld [de], a
 
-.skip
+.stat_exp_awarded
 	inc de
 	inc de
 	dec c
-	jr nz, .loop1
+	jr nz, .stat_exp_loop
 	xor a
 	ldh [hMultiplicand + 0], a
 	ldh [hMultiplicand + 1], a
@@ -7076,12 +7076,12 @@ GiveExperiencePoints:
 	inc hl
 	ld a, [wPlayerID + 1]
 	cp [hl]
-	ld a, $0
+	ld a, 0
 	jr z, .no_boost
 
 .boosted
 	call BoostExp
-	ld a, $1
+	ld a, 1
 
 .no_boost
 ; Boost experience for a Trainer Battle
@@ -7124,19 +7124,19 @@ GiveExperiencePoints:
 	ldh a, [hQuotient + 2]
 	adc d
 	ld [hl], a
-	jr nc, .skip2
+	jr nc, .no_exp_overflow
 	dec hl
 	inc [hl]
-	jr nz, .skip2
+	jr nz, .no_exp_overflow
 	ld a, $ff
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
 
-.skip2
+.no_exp_overflow
 	ld a, [wCurPartyMon]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, wPartySpecies
 	add hl, de
 	ld a, [hl]
@@ -7170,6 +7170,7 @@ GiveExperiencePoints:
 	ld [hld], a
 
 .not_max_exp
+; Check if the mon leveled up
 	xor a ; PARTYMON
 	ld [wMonType], a
 	predef CopyMonToTempMon
@@ -7179,9 +7180,9 @@ GiveExperiencePoints:
 	add hl, bc
 	ld a, [hl]
 	cp MAX_LEVEL
-	jp nc, .skip_stats
+	jp nc, .next_mon
 	cp d
-	jp z, .skip_stats
+	jp z, .next_mon
 ; <NICKNAME> grew to level ##!
 	ld [wTempLevel], a
 	ld a, [wCurPartyLevel]
@@ -7231,7 +7232,7 @@ GiveExperiencePoints:
 	ld d, a
 	ld a, [wCurPartyMon]
 	cp d
-	jr nz, .skip_animation
+	jr nz, .skip_active_mon_update
 	ld de, wBattleMonHP
 	ld a, [hli]
 	ld [de], a
@@ -7268,13 +7269,13 @@ GiveExperiencePoints:
 	ld a, $1
 	ldh [hBGMapMode], a
 
-.skip_animation
+.skip_active_mon_update
 	farcall LevelUpHappinessMod
 	ld a, [wCurBattleMon]
 	ld b, a
 	ld a, [wCurPartyMon]
 	cp b
-	jr z, .skip_animation2
+	jr z, .skip_exp_bar_animation
 	ld de, SFX_HIT_END_OF_EXP_BAR
 	call PlaySFX
 	call WaitSFX
@@ -7282,7 +7283,7 @@ GiveExperiencePoints:
 	call StdBattleTextBox
 	call LoadTileMapToTempTileMap
 
-.skip_animation2
+.skip_exp_bar_animation
 	xor a ; PARTYMON
 	ld [wMonType], a
 	predef CopyMonToTempMon
@@ -7327,7 +7328,7 @@ GiveExperiencePoints:
 	pop af
 	ld [wCurPartyLevel], a
 
-.skip_stats
+.next_mon
 	ld a, [wPartyCount]
 	ld b, a
 	ld a, [wCurPartyMon]
@@ -7363,7 +7364,7 @@ GiveExperiencePoints:
 	ld [wTempByteValue], a
 	ld hl, wEnemyMonBaseStats
 	ld c, wEnemyMonEnd - wEnemyMonBaseStats
-.count_loop2
+.base_stat_division_loop
 	xor a
 	ldh [hDividend + 0], a
 	ld a, [hl]
@@ -7375,7 +7376,7 @@ GiveExperiencePoints:
 	ldh a, [hQuotient + 3]
 	ld [hli], a
 	dec c
-	jr nz, .count_loop2
+	jr nz, .base_stat_division_loop
 	ret
 
 BoostExp:
