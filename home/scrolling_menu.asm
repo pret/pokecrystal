@@ -3,7 +3,7 @@ ScrollingMenu::
 	ldh a, [hROMBank]
 	push af
 
-	ld a, BANK(_ScrollingMenu)
+	ld a, BANK(_ScrollingMenu) ; and BANK(_InitScrollingMenu)
 	rst Bankswitch
 
 	call _InitScrollingMenu

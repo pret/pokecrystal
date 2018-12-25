@@ -19,7 +19,7 @@ _UnownPrinter:
 
 	ld de, UnownDexATile
 	ld hl, vTiles0 tile UNOWNSTAMP_BOLD_A
-	lb bc, BANK(UnownDexBTile), 1
+	lb bc, BANK(UnownDexATile), 1
 	call Request1bpp
 
 	ld de, UnownDexBTile
