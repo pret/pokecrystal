@@ -4,7 +4,7 @@ else
 SHA1 := sha1sum
 endif
 
-RGBDS_DIR ?= 
+RGBDS ?= 
 RGBASM ?= $(RGBDS_DIR)rgbasm
 RGBFIX ?= $(RGBDS_DIR)rgbfix
 RGBGFX ?= $(RGBDS_DIR)rgbgfx
