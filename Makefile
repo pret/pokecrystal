@@ -4,10 +4,11 @@ else
 SHA1 := sha1sum
 endif
 
-RGBASM ?= rgbasm
-RGBFIX ?= rgbfix
-RGBGFX ?= rgbgfx
-RGBLINK ?= rgblink
+RGBDS_DIR ?= 
+RGBASM ?= $(RGBDS_DIR)rgbasm
+RGBFIX ?= $(RGBDS_DIR)rgbfix
+RGBGFX ?= $(RGBDS_DIR)rgbgfx
+RGBLINK ?= $(RGBDS_DIR)rgblink
 
 roms := pokecrystal.gbc pokecrystal11.gbc
 
