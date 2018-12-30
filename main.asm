@@ -269,7 +269,7 @@ INCBIN "gfx/unknown/unknown_egg.2bpp.lz"
 
 SECTION "Crystal Phone Text", ROMX
 
-INCLUDE "data/phone/text/extra.asm"
+INCLUDE "data/phone/text/generic_caller.asm"
 
 
 SECTION "bank20", ROMX
@@ -323,7 +323,7 @@ INCLUDE "engine/games/slot_machine.asm"
 
 SECTION "Phone Engine", ROMX
 
-INCLUDE "engine/phone/scripts/callers.asm"
+INCLUDE "engine/phone/scripts/generic_caller.asm"
 INCLUDE "engine/phone/scripts/jack_gossip.asm"
 INCLUDE "engine/phone/scripts/liz_gossip.asm"
 INCLUDE "engine/phone/scripts/chad_gossip.asm"
@@ -403,7 +403,7 @@ INCLUDE "engine/phone/scripts/wilton.asm"
 INCLUDE "engine/phone/scripts/kenji.asm"
 INCLUDE "engine/phone/scripts/parry.asm"
 INCLUDE "engine/phone/scripts/erin.asm"
-INCLUDE "engine/phone/scripts/generic.asm"
+INCLUDE "engine/phone/scripts/generic_called.asm"
 INCLUDE "engine/events/trainer_scripts.asm"
 
 
@@ -560,7 +560,7 @@ INCLUDE "mobile/mobile_5c.asm"
 
 SECTION "Crystal Phone Text 2", ROMX
 
-INCLUDE "data/phone/text/extra2.asm"
+INCLUDE "data/phone/text/generic_caller_2.asm"
 
 
 SECTION "UpdateBattleHUDs", ROMX
@@ -599,7 +599,7 @@ SECTION "Special Phone Text", ROMX
 INCLUDE "data/phone/text/mom.asm"
 INCLUDE "data/phone/text/bill.asm"
 INCLUDE "data/phone/text/elm.asm"
-INCLUDE "data/phone/text/trainers.asm"
+INCLUDE "data/phone/text/generic_called.asm"
 
 
 SECTION "Miscellaneous Text", ROMX
