@@ -97,7 +97,7 @@ Init::
 	call ClearSprites
 	call ClearsScratch
 
-	ld a, BANK(WriteOAMDMACodeToHRAM)
+	ld a, BANK(GameInit) ; and BANK(WriteOAMDMACodeToHRAM)
 	rst Bankswitch
 
 	call WriteOAMDMACodeToHRAM

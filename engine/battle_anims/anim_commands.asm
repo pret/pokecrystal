@@ -1340,7 +1340,7 @@ BattleAnimAssignPals:
 	call DmgToCgbObjPals
 	ret
 
-ClearBattleAnims:
+ClearBattleAnims::
 ; Clear animation block
 	ld hl, wLYOverrides
 	ld bc, wBattleAnimEnd - wLYOverrides

@@ -190,7 +190,8 @@ GetBattleAnimPointer::
 	ld a, [hl]
 	ld [wBattleAnimAddress + 1], a
 
-	ld a, BANK(BattleAnimCommands)
+	; ClearBattleAnims is the only function that calls this...
+	ld a, BANK(ClearBattleAnims)
 	rst Bankswitch
 
 	ret

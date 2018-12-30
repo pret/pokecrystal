@@ -4154,7 +4154,7 @@ PursuitSwitch:
 	ld a, [wLastPlayerMon]
 	ld [wCurBattleMon], a
 .do_turn
-	ld a, BANK(DoPlayerTurn)
+	ld a, BANK(DoPlayerTurn) ; and BANK(DoEnemyTurn)
 	rst FarCall
 
 	ld a, BATTLE_VARS_MOVE
@@ -4404,7 +4404,7 @@ UseHeldStatusHealingItem:
 
 .got_pointer
 	call SwitchTurnCore
-	ld a, BANK(CalcEnemyStats)
+	ld a, BANK(CalcPlayerStats) ; and BANK(CalcEnemyStats)
 	rst FarCall
 	call SwitchTurnCore
 	call ItemRecoveryAnim
