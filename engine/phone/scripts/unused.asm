@@ -1,0 +1,3 @@
+UnusedPhoneScript:
+	farwritetext UnusedPhoneText
+	end
