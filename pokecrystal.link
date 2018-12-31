@@ -113,7 +113,7 @@ ROMX $26
 ROMX $27
 	"Map Scripts 12"
 ROMX $28
-	"Phone Engine"
+	"Phone Scripts 1"
 ROMX $29
 	"Phone Text"
 ROMX $2a
@@ -127,7 +127,7 @@ ROMX $2d
 ROMX $2e
 	"bank2E"
 ROMX $2f
-	"bank2F"
+	"Phone Scripts 2"
 ROMX $30
 	"Sprites 1"
 ROMX $31
