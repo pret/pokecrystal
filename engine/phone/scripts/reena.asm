@@ -1,4 +1,4 @@
-ReenaPhoneScript1:
+ReenaPhoneCalleeScript:
 	trainertotext COOLTRAINERF, REENA1, MEM_BUFFER_0
 	checkflag ENGINE_REENA
 	iftrue .WantsBattle
@@ -17,7 +17,7 @@ ReenaPhoneScript1:
 	landmarktotext ROUTE_27, MEM_BUFFER_2
 	farjump UnknownScript_0xa0a46
 
-ReenaPhoneScript2:
+ReenaPhoneCallerScript:
 	trainertotext COOLTRAINERF, REENA1, MEM_BUFFER_0
 	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_REENA

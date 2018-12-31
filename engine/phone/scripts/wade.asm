@@ -1,4 +1,4 @@
-WadePhoneScript1:
+WadePhoneCalleeScript:
 	trainertotext BUG_CATCHER, WADE1, MEM_BUFFER_0
 	checkflag ENGINE_WADE
 	iftrue .WantsBattle
@@ -36,7 +36,7 @@ WadePhoneScript1:
 	landmarktotext ROUTE_31, MEM_BUFFER_2
 	farjump UnknownScript_0xa0ab5
 
-WadePhoneScript2:
+WadePhoneCallerScript:
 	trainertotext BUG_CATCHER, WADE1, MEM_BUFFER_0
 	farscall PhoneScript_GreetPhone_Male
 	farscall PhoneScript_Random2

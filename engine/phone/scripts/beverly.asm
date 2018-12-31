@@ -1,4 +1,4 @@
-BeverlyPhoneScript1:
+BeverlyPhoneCalleeScript:
 	trainertotext POKEFANF, BEVERLY1, MEM_BUFFER_0
 	farscall PhoneScript_AnswerPhone_Female
 	checkflag ENGINE_BEVERLY_HAS_NUGGET
@@ -9,7 +9,7 @@ BeverlyPhoneScript1:
 	landmarktotext NATIONAL_PARK, MEM_BUFFER_2
 	farjump UnknownScript_0xa0aa5
 
-BeverlyPhoneScript2:
+BeverlyPhoneCallerScript:
 	trainertotext POKEFANF, BEVERLY1, MEM_BUFFER_0
 	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_BEVERLY_HAS_NUGGET

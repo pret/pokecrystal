@@ -1,4 +1,4 @@
-HueyPhoneScript1:
+HueyPhoneCalleeScript:
 	trainertotext SAILOR, HUEY1, MEM_BUFFER_0
 	checkflag ENGINE_HUEY
 	iftrue .WantsBattle
@@ -18,7 +18,7 @@ HueyPhoneScript1:
 	landmarktotext LIGHTHOUSE, MEM_BUFFER_2
 	farjump HueyWantsBattleScript
 
-HueyPhoneScript2:
+HueyPhoneCallerScript:
 	trainertotext SAILOR, HUEY1, MEM_BUFFER_0
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_HUEY

@@ -1,4 +1,4 @@
-JoeyPhoneScript1:
+JoeyPhoneCalleeScript:
 	trainertotext YOUNGSTER, JOEY1, MEM_BUFFER_0
 	checkflag ENGINE_JOEY
 	iftrue .WantsBattle
@@ -18,7 +18,7 @@ JoeyPhoneScript1:
 	landmarktotext ROUTE_30, MEM_BUFFER_2
 	farjump UnknownScript_0xa0a4b
 
-JoeyPhoneScript2:
+JoeyPhoneCallerScript:
 	trainertotext YOUNGSTER, JOEY1, MEM_BUFFER_0
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_JOEY

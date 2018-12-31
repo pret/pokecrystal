@@ -1,4 +1,4 @@
-WiltonPhoneScript1:
+WiltonPhoneCalleeScript:
 	trainertotext FISHER, WILTON1, MEM_BUFFER_0
 	checkflag ENGINE_WILTON
 	iftrue .WantsBattle
@@ -23,7 +23,7 @@ WiltonPhoneScript1:
 	landmarktotext ROUTE_44, MEM_BUFFER_2
 	farjump WiltonWantThis
 
-WiltonPhoneScript2:
+WiltonPhoneCallerScript:
 	trainertotext FISHER, WILTON1, MEM_BUFFER_0
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_WILTON

@@ -1,4 +1,4 @@
-ErinPhoneScript1:
+ErinPhoneCalleeScript:
 	trainertotext PICNICKER, ERIN1, MEM_BUFFER_0
 	checkflag ENGINE_ERIN
 	iftrue .WantsBattle
@@ -17,7 +17,7 @@ ErinPhoneScript1:
 	landmarktotext ROUTE_46, MEM_BUFFER_2
 	farjump ErinComeBattleScript
 
-ErinPhoneScript2:
+ErinPhoneCallerScript:
 	trainertotext PICNICKER, ERIN1, MEM_BUFFER_0
 	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_ERIN

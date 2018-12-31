@@ -1,4 +1,4 @@
-JosePhoneScript1:
+JosePhoneCalleeScript:
 	trainertotext BIRD_KEEPER, JOSE2, MEM_BUFFER_0
 	checkflag ENGINE_JOSE
 	iftrue .WantsBattle
@@ -23,7 +23,7 @@ JosePhoneScript1:
 	landmarktotext ROUTE_27, MEM_BUFFER_2
 	farjump UnknownScript_0xa0a41
 
-JosePhoneScript2:
+JosePhoneCallerScript:
 	trainertotext BIRD_KEEPER, JOSE2, MEM_BUFFER_0
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_JOSE

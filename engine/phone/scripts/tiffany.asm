@@ -1,4 +1,4 @@
-TiffanyPhoneScript1:
+TiffanyPhoneCalleeScript:
 	trainertotext PICNICKER, TIFFANY3, MEM_BUFFER_0
 	checkflag ENGINE_TIFFANY
 	iftrue .WantsBattle
@@ -23,7 +23,7 @@ TiffanyPhoneScript1:
 	landmarktotext ROUTE_43, MEM_BUFFER_2
 	farjump UnknownScript_0xa0ae5
 
-TiffanyPhoneScript2:
+TiffanyPhoneCallerScript:
 	trainertotext PICNICKER, TIFFANY3, MEM_BUFFER_0
 	farscall PhoneScript_Random4
 	ifequal 0, TiffanysFamilyMembers

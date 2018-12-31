@@ -1,4 +1,4 @@
-IrwinPhoneScript1:
+IrwinPhoneCalleeScript:
 	trainertotext JUGGLER, IRWIN1, MEM_BUFFER_0
 	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
@@ -8,7 +8,7 @@ IrwinPhoneScript1:
 .Rockets:
 	farjump IrwinRocketRumor
 
-IrwinPhoneScript2:
+IrwinPhoneCallerScript:
 	trainertotext JUGGLER, IRWIN1, MEM_BUFFER_0
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER

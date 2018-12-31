@@ -1,4 +1,4 @@
-DerekPhoneScript1:
+DerekPhoneCalleeScript:
 	trainertotext POKEFANM, DEREK1, MEM_BUFFER_0
 	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_DEREK_HAS_NUGGET
@@ -22,7 +22,7 @@ DerekPhoneScript1:
 	landmarktotext ROUTE_39, MEM_BUFFER_2
 	farjump UnknownScript_0xa0ad5
 
-DerekPhoneScript2:
+DerekPhoneCallerScript:
 	trainertotext POKEFANM, DEREK1, MEM_BUFFER_0
 	farscall PhoneScript_GreetPhone_Male
 	farscall PhoneScript_Random2

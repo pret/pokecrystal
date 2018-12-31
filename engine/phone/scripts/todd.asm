@@ -1,4 +1,4 @@
-ToddPhoneScript1:
+ToddPhoneCalleeScript:
 	trainertotext CAMPER, TODD1, MEM_BUFFER_0
 	checkflag ENGINE_TODD
 	iftrue .WantsBattle
@@ -22,7 +22,7 @@ ToddPhoneScript1:
 .SaleOn:
 	farjump UnknownScript_0xa0b04
 
-ToddPhoneScript2:
+ToddPhoneCallerScript:
 	trainertotext CAMPER, TODD1, MEM_BUFFER_0
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_TODD

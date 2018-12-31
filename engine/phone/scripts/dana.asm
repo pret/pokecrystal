@@ -1,4 +1,4 @@
-DanaPhoneScript1:
+DanaPhoneCalleeScript:
 	trainertotext LASS, DANA1, MEM_BUFFER_0
 	checkflag ENGINE_DANA
 	iftrue .WantsBattle
@@ -23,7 +23,7 @@ DanaPhoneScript1:
 	landmarktotext ROUTE_38, MEM_BUFFER_2
 	farjump UnknownScript_0xa0acd
 
-DanaPhoneScript2:
+DanaPhoneCallerScript:
 	trainertotext LASS, DANA1, MEM_BUFFER_0
 	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_DANA

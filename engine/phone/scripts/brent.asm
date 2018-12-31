@@ -1,4 +1,4 @@
-BrentPhoneScript1:
+BrentPhoneCalleeScript:
 	trainertotext POKEMANIAC, BRENT1, MEM_BUFFER_0
 	checkflag ENGINE_BRENT
 	iftrue .WantsBattle
@@ -17,7 +17,7 @@ BrentPhoneScript1:
 	landmarktotext ROUTE_43, MEM_BUFFER_2
 	farjump UnknownScript_0xa0a87
 
-BrentPhoneScript2:
+BrentPhoneCallerScript:
 	trainertotext POKEMANIAC, BRENT1, MEM_BUFFER_0
 	farscall PhoneScript_GreetPhone_Male
 	farscall PhoneScript_Random2

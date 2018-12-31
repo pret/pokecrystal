@@ -1,4 +1,4 @@
-ParryPhoneScript1:
+ParryPhoneCalleeScript:
 	trainertotext HIKER, PARRY1, MEM_BUFFER_0
 	checkflag ENGINE_PARRY
 	iftrue .WantsBattle
@@ -17,7 +17,7 @@ ParryPhoneScript1:
 	landmarktotext ROUTE_45, MEM_BUFFER_2
 	farjump ParryHaventYouGottenTo
 
-ParryPhoneScript2:
+ParryPhoneCallerScript:
 	trainertotext HIKER, PARRY1, MEM_BUFFER_0
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_PARRY

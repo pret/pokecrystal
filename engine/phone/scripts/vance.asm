@@ -1,4 +1,4 @@
-VancePhoneScript1:
+VancePhoneCalleeScript:
 	trainertotext BIRD_KEEPER, VANCE1, MEM_BUFFER_0
 	checkflag ENGINE_VANCE
 	iftrue .WantsBattle
@@ -17,7 +17,7 @@ VancePhoneScript1:
 	landmarktotext ROUTE_44, MEM_BUFFER_2
 	farjump VanceHurryHurry
 
-VancePhoneScript2:
+VancePhoneCallerScript:
 	trainertotext BIRD_KEEPER, VANCE1, MEM_BUFFER_0
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_VANCE

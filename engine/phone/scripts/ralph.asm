@@ -1,4 +1,4 @@
-RalphPhoneScript1:
+RalphPhoneCalleeScript:
 	trainertotext FISHER, RALPH1, MEM_BUFFER_0
 	checkflag ENGINE_RALPH
 	iftrue .Rematch
@@ -22,7 +22,7 @@ RalphPhoneScript1:
 	landmarktotext ROUTE_32, MEM_BUFFER_2
 	farjump UnknownScript_0xa0af5
 
-RalphPhoneScript2:
+RalphPhoneCallerScript:
 	trainertotext FISHER, RALPH1, MEM_BUFFER_0
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_FLYPOINT_GOLDENROD

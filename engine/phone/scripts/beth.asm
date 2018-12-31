@@ -1,4 +1,4 @@
-BethPhoneScript1:
+BethPhoneCalleeScript:
 	trainertotext COOLTRAINERF, BETH1, MEM_BUFFER_0
 	checkflag ENGINE_BETH
 	iftrue .WantsBattle
@@ -17,7 +17,7 @@ BethPhoneScript1:
 	landmarktotext ROUTE_26, MEM_BUFFER_2
 	farjump BethBattleReminderScript
 
-BethPhoneScript2:
+BethPhoneCallerScript:
 	trainertotext COOLTRAINERF, BETH1, MEM_BUFFER_0
 	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_BETH

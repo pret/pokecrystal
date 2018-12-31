@@ -1,4 +1,4 @@
-ChadPhoneScript1:
+ChadPhoneCalleeScript:
 	trainertotext SCHOOLBOY, CHAD1, MEM_BUFFER_0
 	checkflag ENGINE_CHAD
 	iftrue .WantsBattle
@@ -17,7 +17,7 @@ ChadPhoneScript1:
 	landmarktotext ROUTE_38, MEM_BUFFER_2
 	farjump UnknownScript_0xa0a7d
 
-ChadPhoneScript2:
+ChadPhoneCallerScript:
 	trainertotext SCHOOLBOY, CHAD1, MEM_BUFFER_0
 	farscall PhoneScript_GreetPhone_Male
 	farscall PhoneScript_Random2

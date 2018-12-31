@@ -1,4 +1,4 @@
-AnthonyPhoneScript1:
+AnthonyPhoneCalleeScript:
 	trainertotext HIKER, ANTHONY2, MEM_BUFFER_0
 	checkflag ENGINE_ANTHONY
 	iftrue .WantsBattle
@@ -23,7 +23,7 @@ AnthonyPhoneScript1:
 	landmarktotext ROUTE_33, MEM_BUFFER_2
 	farjump UnknownScript_0xa0afa
 
-AnthonyPhoneScript2:
+AnthonyPhoneCallerScript:
 	trainertotext HIKER, ANTHONY2, MEM_BUFFER_0
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_FLYPOINT_GOLDENROD

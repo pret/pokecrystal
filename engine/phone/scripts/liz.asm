@@ -1,4 +1,4 @@
-LizPhoneScript1:
+LizPhoneCalleeScript:
 	trainertotext PICNICKER, LIZ1, MEM_BUFFER_0
 	checkflag ENGINE_LIZ
 	iftrue .WantsBattle
@@ -18,7 +18,7 @@ LizPhoneScript1:
 	landmarktotext ROUTE_32, MEM_BUFFER_2
 	farjump UnknownScript_0xa0a5a
 
-LizPhoneScript2:
+LizPhoneCallerScript:
 	trainertotext PICNICKER, LIZ1, MEM_BUFFER_0
 	farscall PhoneScript_Random4
 	ifequal 0, LizWrongNumber

@@ -1,4 +1,4 @@
-BillPhoneScript1:
+BillPhoneCalleeScript:
 	checktime DAY
 	iftrue .daygreet
 	checktime NITE
@@ -35,7 +35,7 @@ BillPhoneScript1:
 	farwritetext BillPhoneFullText
 	end
 
-BillPhoneScript2:
+BillPhoneCallerScript:
 	farwritetext BillPhoneNewlyFullText
 	waitbutton
 	end

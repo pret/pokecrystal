@@ -1,4 +1,4 @@
-BuenaPhoneScript1:
+BuenaPhoneCalleeScript:
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue BuenaPhoneScript_Rocket
 	checkcode VAR_HOUR
@@ -6,7 +6,7 @@ BuenaPhoneScript1:
 	scall BuenaPhoneScript_CheckTimeOfDay1
 	jump BuenaPhoneScript_Random1
 
-BuenaPhoneScript2:
+BuenaPhoneCallerScript:
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue BuenaPhoneScript_Rocket
 	scall BuenaPhoneScript_CheckTimeOfDay2

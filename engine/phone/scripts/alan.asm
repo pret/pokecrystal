@@ -1,4 +1,4 @@
-AlanPhoneScript1:
+AlanPhoneCalleeScript:
 	trainertotext SCHOOLBOY, ALAN1, MEM_BUFFER_0
 	checkflag ENGINE_ALAN
 	iftrue .WantsBattle
@@ -23,7 +23,7 @@ AlanPhoneScript1:
 	landmarktotext ROUTE_36, MEM_BUFFER_2
 	farjump UnknownScript_0xa0ac5
 
-AlanPhoneScript2:
+AlanPhoneCallerScript:
 	trainertotext SCHOOLBOY, ALAN1, MEM_BUFFER_0
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_ALAN

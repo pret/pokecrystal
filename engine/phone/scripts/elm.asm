@@ -1,4 +1,4 @@
-ElmPhoneScript1:
+ElmPhoneCalleeScript:
 	checkcode VAR_SPECIALPHONECALL
 	ifequal SPECIALCALL_POKERUS, .pokerus
 	checkevent EVENT_SHOWED_TOGEPI_TO_ELM
@@ -61,7 +61,7 @@ ElmPhoneScript1:
 	specialphonecall SPECIALCALL_NONE
 	end
 
-ElmPhoneScript2:
+ElmPhoneCallerScript:
 	checkcode VAR_SPECIALPHONECALL
 	ifequal SPECIALCALL_ROBBED, .disaster
 	ifequal SPECIALCALL_ASSISTANT, .assistant

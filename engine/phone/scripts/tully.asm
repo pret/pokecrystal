@@ -1,4 +1,4 @@
-TullyPhoneScript1:
+TullyPhoneCalleeScript:
 	trainertotext FISHER, TULLY1, MEM_BUFFER_0
 	checkflag ENGINE_TULLY
 	iftrue .WantsBattle
@@ -23,7 +23,7 @@ TullyPhoneScript1:
 	landmarktotext ROUTE_42, MEM_BUFFER_2
 	farjump UnknownScript_0xa0add
 
-TullyPhoneScript2:
+TullyPhoneCallerScript:
 	trainertotext FISHER, TULLY1, MEM_BUFFER_0
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_TULLY

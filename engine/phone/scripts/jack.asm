@@ -1,4 +1,4 @@
-JackPhoneScript1:
+JackPhoneCalleeScript:
 	trainertotext SCHOOLBOY, JACK1, MEM_BUFFER_0
 	checkflag ENGINE_JACK
 	iftrue .WantsBattle
@@ -17,7 +17,7 @@ JackPhoneScript1:
 	landmarktotext NATIONAL_PARK, MEM_BUFFER_2
 	farjump JackWantsBattleScript
 
-JackPhoneScript2:
+JackPhoneCallerScript:
 	trainertotext SCHOOLBOY, JACK1, MEM_BUFFER_0
 	farscall PhoneScript_GreetPhone_Male
 	farscall PhoneScript_Random2

@@ -1,4 +1,4 @@
-ArniePhoneScript1:
+ArniePhoneCalleeScript:
 	trainertotext BUG_CATCHER, ARNIE1, MEM_BUFFER_0
 	checkflag ENGINE_ARNIE
 	iftrue .WantsBattle
@@ -23,7 +23,7 @@ ArniePhoneScript1:
 	landmarktotext ROUTE_35, MEM_BUFFER_2
 	farjump UnknownScript_0xa0aff
 
-ArniePhoneScript2:
+ArniePhoneCallerScript:
 	trainertotext BUG_CATCHER, ARNIE1, MEM_BUFFER_0
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_ARNIE

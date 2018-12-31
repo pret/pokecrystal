@@ -1,4 +1,4 @@
-GavenPhoneScript1:
+GavenPhoneCalleeScript:
 	trainertotext COOLTRAINERM, GAVEN3, MEM_BUFFER_0
 	checkflag ENGINE_GAVEN
 	iftrue .WantsBattle
@@ -17,7 +17,7 @@ GavenPhoneScript1:
 	landmarktotext ROUTE_26, MEM_BUFFER_2
 	farjump UnknownScript_0xa0a37
 
-GavenPhoneScript2:
+GavenPhoneCallerScript:
 	trainertotext COOLTRAINERM, GAVEN3, MEM_BUFFER_0
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_GAVEN

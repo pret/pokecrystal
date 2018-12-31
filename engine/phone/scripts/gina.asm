@@ -1,4 +1,4 @@
-GinaPhoneScript1:
+GinaPhoneCalleeScript:
 	trainertotext PICNICKER, GINA1, MEM_BUFFER_0
 	checkflag ENGINE_GINA
 	iftrue .WantsBattle
@@ -28,7 +28,7 @@ GinaPhoneScript1:
 	landmarktotext ROUTE_34, MEM_BUFFER_2
 	farjump UnknownScript_0xa0abd
 
-GinaPhoneScript2:
+GinaPhoneCallerScript:
 	trainertotext PICNICKER, GINA1, MEM_BUFFER_0
 	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER

@@ -1,4 +1,4 @@
-MomPhoneScript:
+MomPhoneCalleeScript:
 	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	iftrue .bcec5
 	checkevent EVENT_DUDE_TALKED_TO_YOU
