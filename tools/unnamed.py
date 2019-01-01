@@ -47,6 +47,7 @@ if args.rootdir:
         exit(1)
 
 # Scan all unnamed symbols from the symfile
+symbols_total = 0
 symbols = set()
 for line in args.symfile:
     line = line.split(";")[0].strip()
@@ -54,12 +55,15 @@ for line in args.symfile:
     if len(split) < 2:
         continue
 
+    symbols_total += 1
+
     symbol = " ".join(split[1:]).strip()
     if symbol[-3:].lower() == split[0][-3:].lower():
         symbols.add(symbol)
 
 # If no object files were provided, just print what we know and exit
-print("Unnamed symbols: %d" % len(symbols))
+print("Unnamed symbols: %d (%.2f%% complete)" % (len(symbols),
+        (symbols_total - len(symbols)) / symbols_total * 100))
 if not objects:
     for sym in symbols:
         print(sym)
