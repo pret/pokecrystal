@@ -45,7 +45,7 @@ _GiveOddEgg:
 	; Writes to wOddEgg, wOddEggName, and wOddEggOTName,
 	; even though OddEggs does not have data for wOddEggOTName
 	ld de, wOddEgg
-	ld bc, NICKNAMED_MON_STRUCT_LENGTH + MON_NAME_LENGTH
+	ld bc, NICKNAMED_MON_STRUCT_LENGTH + NAME_LENGTH
 	call CopyBytes
 
 	ld a, EGG_TICKET
