@@ -480,7 +480,7 @@ endr
 	ld a, [hl]
 	ld [de], a
 	pop hl
-	ld bc, PARTYMON_STRUCT_LENGTH + MON_NAME_LENGTH
+	ld bc, NICKNAMED_MON_STRUCT_LENGTH
 	add hl, bc
 	pop de
 	dec d

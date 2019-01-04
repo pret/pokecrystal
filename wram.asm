@@ -379,7 +379,7 @@ NEXTU ; c608
 ; odd egg
 wOddEgg:: party_struct wOddEgg
 wOddEggName:: ds MON_NAME_LENGTH
-wOddEggOTName:: ds MON_NAME_LENGTH
+wOddEggOTName:: ds NAME_LENGTH
 
 NEXTU ; c608
 ; battle tower temp struct

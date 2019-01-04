@@ -39,11 +39,13 @@ _GiveOddEgg:
 .done
 
 	ld hl, OddEggs
-	ld a, OddEgg1End - OddEgg1
+	ld a, NICKNAMED_MON_STRUCT_LENGTH
 	call AddNTimes
 
-	ld de, wOddEggSpecies
-	ld bc, PARTYMON_STRUCT_LENGTH + 2 * MON_NAME_LENGTH
+	; Writes to wOddEgg, wOddEggName, and wOddEggOTName,
+	; even though OddEggs does not have data for wOddEggOTName
+	ld de, wOddEgg
+	ld bc, NICKNAMED_MON_STRUCT_LENGTH + NAME_LENGTH
 	call CopyBytes
 
 	ld a, EGG_TICKET
@@ -64,10 +66,10 @@ _GiveOddEgg:
 	ld [wMobileMonSpeciesPointerBuffer], a
 	ld a, HIGH(wMobileMonSpeciesBuffer - 1)
 	ld [wMobileMonSpeciesPointerBuffer + 1], a
-	; load pointer to wOddEggSpecies in wMobileMonStructurePointerBuffer
-	ld a, LOW(wOddEggSpecies)
+	; load pointer to wOddEgg in wMobileMonStructurePointerBuffer
+	ld a, LOW(wOddEgg)
 	ld [wMobileMonStructurePointerBuffer], a
-	ld a, HIGH(wOddEggSpecies)
+	ld a, HIGH(wOddEgg)
 	ld [wMobileMonStructurePointerBuffer + 1], a
 
 	; load Odd Egg Name in wTempOddEggNickname
