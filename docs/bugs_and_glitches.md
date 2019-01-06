@@ -16,6 +16,7 @@ Fixes are written in the `diff` format. If you've used Git before, this should l
 - [Thick Club and Light Ball can make (Special) Attack wrap around above 1024](#thick-club-and-light-ball-can-make-special-attack-wrap-around-above-1024)
 - [Metal Powder can increase damage taken with boosted (Special) Defense](#metal-powder-can-increase-damage-taken-with-boosted-special-defense)
 - [Reflect and Light Screen can make (Special) Defense wrap around above 1024](#reflect-and-light-screen-can-make-special-defense-wrap-around-above-1024)
+- [Moves with a 100% secondary effect chance will not trigger it in 1/256 uses](#moves-with-a-100-secondary-effect-chance-will-not-trigger-it-in-1256-uses)
 - [Belly Drum sharply boosts Attack even with under 50% HP](#belly-drum-sharply-boosts-attack-even-with-under-50-hp)
 - [Confusion damage is affected by type-boosting items and Explosion/Self-Destruct doubling](#confusion-damage-is-affected-by-type-boosting-items-and-explosionself-destruct-doubling)
 - [Moves that lower Defense can do so after breaking a Substitute](#moves-that-lower-defense-can-do-so-after-breaking-a-substitute)
@@ -160,6 +161,35 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 (This fix also affects Thick Club, Light Ball, and Metal Powder, as described above, but their specific fixes in the above bugs allow more accurate damage calculations.)
 
+
+## Moves with a 100% secondary effect chance will not trigger it in 1/256 uses
+
+*Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
+
+([Video](https://www.youtube.com/watch?v=mHkyO5T5wZU&t=206))
+
+**Fix:** Edit `BattleCommand_EffectChance` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
+
+```diff
+-	; BUG: 1/256 chance to fail even for a 100% effect chance,
+-	; since carry is not set if BattleRandom == [hl] == 255
++	ld a, [hl]
++	cp 100 percent
++	jr z, .ok
+ 	call BattleRandom
+ 	cp [hl]
+-	pop hl
+-	ret c
++	jr c, .ok
+
+ .failed
+ 	ld a, 1
+ 	ld [wEffectFailed], a
+ 	and a
++.ok
++	pop hl
+ 	ret
+```
 
 ## Belly Drum sharply boosts Attack even with under 50% HP
 
