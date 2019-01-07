@@ -1422,42 +1422,45 @@ This supports up to six entries.
 
 ## `ScriptCall` can overflow `wScriptStack` and crash
 
-In [engine/overworld/scripting.asm](/engine/overworld/scripting.asm):
+**Fix:** Edit `ScriptCall` in [engine/overworld/scripting.asm](/engine/overworld/scripting.asm):
 
-```asm
-ScriptCall:
-; Bug: The script stack has a capacity of 5 scripts, yet there is
-; nothing to stop you from pushing a sixth script.  The high part
-; of the script address can then be overwritten by modifications
-; to wScriptDelay, causing the script to return to the rst/interrupt
-; space.
-
-	push de
-	ld hl, wScriptStackSize
-	ld e, [hl]
-	inc [hl]
-	ld d, $0
-	ld hl, wScriptStack
-	add hl, de
-	add hl, de
-	add hl, de
-	pop de
-	ld a, [wScriptBank]
-	ld [hli], a
-	ld a, [wScriptPos]
-	ld [hli], a
-	ld a, [wScriptPos + 1]
-	ld [hl], a
-	ld a, b
-	ld [wScriptBank], a
-	ld a, e
-	ld [wScriptPos], a
-	ld a, d
-	ld [wScriptPos + 1], a
-	ret
+```diff
+ ScriptCall:
+-; Bug: The script stack has a capacity of 5 scripts, yet there is
+-; nothing to stop you from pushing a sixth script.  The high part
+-; of the script address can then be overwritten by modifications
+-; to wScriptDelay, causing the script to return to the rst/interrupt
+-; space.
+-
++	ld hl, wScriptStackSize
++	ld a, [hl]
++	cp 5
++	ret nc
+ 	push de
+-	ld hl, wScriptStackSize
+-	ld e, [hl]
+ 	inc [hl]
++	ld e, a
+ 	ld d, 0
+ 	ld hl, wScriptStack
+ 	add hl, de
+ 	add hl, de
+ 	add hl, de
+ 	pop de
+ 	ld a, [wScriptBank]
+ 	ld [hli], a
+ 	ld a, [wScriptPos]
+ 	ld [hli], a
+ 	ld a, [wScriptPos + 1]
+ 	ld [hl], a
+ 	ld a, b
+ 	ld [wScriptBank], a
+ 	ld a, e
+ 	ld [wScriptPos], a
+ 	ld a, d
+ 	ld [wScriptPos + 1], a
+ 	ret
 ```
-
-*To do:* Fix this bug.
 
 
 ## `LoadSpriteGFX` does not limit the capacity of `UsedSprites`

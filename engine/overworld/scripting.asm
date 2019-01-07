@@ -1454,7 +1454,7 @@ ScriptCall:
 	ld hl, wScriptStackSize
 	ld e, [hl]
 	inc [hl]
-	ld d, $0
+	ld d, 0
 	ld hl, wScriptStack
 	add hl, de
 	add hl, de
