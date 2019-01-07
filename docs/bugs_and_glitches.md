@@ -513,31 +513,32 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ## AI makes a false assumption about `CheckTypeMatchup`
 
-In [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm).
+**Fix:** Edit `BattleCheckTypeMatchup` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
 
-```asm
-BattleCheckTypeMatchup:
-	ld hl, wEnemyMonType1
-	ldh a, [hBattleTurn]
-	and a
-	jr z, CheckTypeMatchup
-	ld hl, wBattleMonType1
-CheckTypeMatchup:
-; There is an incorrect assumption about this function made in the AI related code: when
-; the AI calls CheckTypeMatchup (not BattleCheckTypeMatchup), it assumes that placing the
-; offensive type in a will make this function do the right thing. Since a is overwritten,
-; this assumption is incorrect. A simple fix would be to load the move type for the
-; current move into a in BattleCheckTypeMatchup, before falling through, which is
-; consistent with how the rest of the code assumes this code works like.
-	push hl
-	push de
-	push bc
-	ld a, BATTLE_VARS_MOVE_TYPE
-	call GetBattleVar
-	ld d, a
+```diff
+ BattleCheckTypeMatchup:
+ 	ld hl, wEnemyMonType1
+ 	ldh a, [hBattleTurn]
+ 	and a
+ 	jr z, CheckTypeMatchup
+ 	ld hl, wBattleMonType1
++	ld a, BATTLE_VARS_MOVE_TYPE
++	call GetBattleVar ; preserves hl, de, and bc
+ CheckTypeMatchup:
+-; There is an incorrect assumption about this function made in the AI related code: when
+-; the AI calls CheckTypeMatchup (not BattleCheckTypeMatchup), it assumes that placing the
+-; offensive type in a will make this function do the right thing. Since a is overwritten,
+-; this assumption is incorrect. A simple fix would be to load the move type for the
+-; current move into a in BattleCheckTypeMatchup, before falling through, which is
+-; consistent with how the rest of the code assumes this code works like.
+ 	push hl
+ 	push de
+ 	push bc
+-	ld a, BATTLE_VARS_MOVE_TYPE
+-	call GetBattleVar
+ 	ld d, a
+ 	...
 ```
-
-*To do:* Fix this bug.
 
 
 ## NPC use of Full Heal or Full Restore does not cure Nightmare status
