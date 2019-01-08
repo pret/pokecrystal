@@ -644,7 +644,7 @@ This can bring Pokémon straight from level 1 to 100 by gaining just a few exper
 +	ld [hl], a
 +	ret
 +
- +.UseExpFormula
++.UseExpFormula
  	ld a, [wBaseGrowthRate]
  	add a
  	add a
