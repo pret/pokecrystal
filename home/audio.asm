@@ -71,7 +71,7 @@ PlayMusic::
 
 	ldh a, [hROMBank]
 	push af
-	ld a, BANK(_PlayMusic) ; and BANK(_MapSetup_Sound_Off)
+	ld a, BANK(_PlayMusic) ; aka BANK(_MapSetup_Sound_Off)
 	ldh [hROMBank], a
 	ld [MBC3RomBank], a
 

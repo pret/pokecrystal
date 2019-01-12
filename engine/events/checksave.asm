@@ -1,5 +1,5 @@
 CheckSave::
-	ld a, BANK(sCheckValue1) ; BANK(sCheckValue2)
+	ld a, BANK(sCheckValue1) ; aka BANK(sCheckValue2)
 	call GetSRAMBank
 	ld a, [sCheckValue1]
 	ld b, a

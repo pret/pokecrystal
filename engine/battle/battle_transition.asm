@@ -138,7 +138,7 @@ ConvertTrainerBattlePokeballTilesTo2bpp:
 
 	pop hl
 	ld de, wDecompressScratch
-	ld b, BANK(ConvertTrainerBattlePokeballTilesTo2bpp) ; BANK(@)
+	ld b, BANK(@)
 	ld c, $28
 	call Request2bpp
 	pop af

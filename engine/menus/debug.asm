@@ -101,22 +101,22 @@ Function81911:
 	ret
 
 Function81928:
-	ld a, BANK(PokemonPalettes) ; BANK(TrainerPalettes)
+	ld a, BANK(PokemonPalettes) ; aka BANK(TrainerPalettes)
 	call GetFarByte
 	ld [de], a
 	inc de
 	inc hl
-	ld a, BANK(PokemonPalettes) ; BANK(TrainerPalettes)
+	ld a, BANK(PokemonPalettes) ; aka BANK(TrainerPalettes)
 	call GetFarByte
 	ld [de], a
 	inc de
 	inc hl
-	ld a, BANK(PokemonPalettes) ; BANK(TrainerPalettes)
+	ld a, BANK(PokemonPalettes) ; aka BANK(TrainerPalettes)
 	call GetFarByte
 	ld [de], a
 	inc de
 	inc hl
-	ld a, BANK(PokemonPalettes) ; BANK(TrainerPalettes)
+	ld a, BANK(PokemonPalettes) ; aka BANK(TrainerPalettes)
 	call GetFarByte
 	ld [de], a
 	inc de

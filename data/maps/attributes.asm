@@ -10,7 +10,7 @@ CURRENT_MAP_HEIGHT = \2_HEIGHT
 	db CURRENT_MAP_HEIGHT, CURRENT_MAP_WIDTH
 	db BANK(\1_Blocks)
 	dw \1_Blocks
-	db BANK(\1_MapScripts) ; BANK(\1_MapEvents)
+	db BANK(\1_MapScripts) ; aka BANK(\1_MapEvents)
 	dw \1_MapScripts
 	dw \1_MapEvents
 	db \4

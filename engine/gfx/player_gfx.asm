@@ -111,7 +111,7 @@ GetCardPic:
 .GotClass:
 	ld de, vTiles2 tile $00
 	ld bc, $23 tiles
-	ld a, BANK(ChrisCardPic) ; BANK(KrisCardPic)
+	ld a, BANK(ChrisCardPic) ; aka BANK(KrisCardPic)
 	call FarCopyBytes
 	ld hl, CardGFX
 	ld de, vTiles2 tile $23
@@ -165,7 +165,7 @@ HOF_LoadTrainerFrontpic:
 
 .GotPic:
 	ld hl, vTiles2
-	ld b, BANK(ChrisPic) ; BANK(KrisPic)
+	ld b, BANK(ChrisPic) ; aka BANK(KrisPic)
 	ld c, 7 * 7
 	call Get2bpp
 	call WaitBGMap
@@ -194,7 +194,7 @@ DrawIntroPlayerPic:
 	ld de, KrisPic
 .GotPic:
 	ld hl, vTiles2
-	ld b, BANK(ChrisPic) ; BANK(KrisPic)
+	ld b, BANK(ChrisPic) ; aka BANK(KrisPic)
 	ld c, 7 * 7 ; dimensions
 	call Get2bpp
 
