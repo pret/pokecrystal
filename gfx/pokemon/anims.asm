@@ -1,5 +1,3 @@
-PicAnimations: ; used only for BANK(PicAnimations)
-
 BulbasaurAnimation:  INCLUDE "gfx/pokemon/bulbasaur/anim.asm"
 IvysaurAnimation:    INCLUDE "gfx/pokemon/ivysaur/anim.asm"
 VenusaurAnimation:   INCLUDE "gfx/pokemon/venusaur/anim.asm"
