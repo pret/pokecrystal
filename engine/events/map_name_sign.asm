@@ -242,7 +242,7 @@ PlaceMapNameFrame:
 	ret
 
 .FillTopBottom:
-	ld c, 5
+	ld c, ((SCREEN_WIDTH - 2) - 2) / 4 + 1
 	jr .enterloop
 
 .continueloop
