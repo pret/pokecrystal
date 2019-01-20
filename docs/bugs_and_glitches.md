@@ -785,7 +785,17 @@ This can bring Pokémon straight from level 1 to 100 by gaining just a few exper
 
 ([Video](https://www.youtube.com/watch?v=8BvBjqxmyOk))
 
-*To do:* Identify specific code causing this bug and fix it.
+**Fix:** Edit `DragonsDen1F_MapScripts` in [maps/DragonsDen1F.asm](/maps/DragonsDen1F.asm):
+
+```diff
+-	db 0 ; callbacks
++	db 1 ; callbacks
++	callback MAPCALLBACK_NEWMAP, .UnsetClairScene
++
++.UnsetClairScene:
++	setmapscene DRAGONS_DEN_B1F, SCENE_DRAGONSDENB1F_NOTHING
++	end
+```
 
 
 ## Daisy's grooming doesn't always increase happiness
