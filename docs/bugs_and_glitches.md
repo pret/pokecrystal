@@ -41,6 +41,7 @@ Fixes are written in the `diff` format. If you've used Git before, this should l
 - [Love Ball boosts catch rate for the wrong gender](#love-ball-boosts-catch-rate-for-the-wrong-gender)
 - [Fast Ball only boosts catch rate for three Pokémon](#fast-ball-only-boosts-catch-rate-for-three-pokémon)
 - [Dragon Scale, not Dragon Fang, boosts Dragon-type moves](#dragon-scale-not-dragon-fang-boosts-dragon-type-moves)
+- [Clair can give TM24 Dragonbreath twice](#clair-can-give-tm24-dragonbreath-twice)
 - [Daisy's grooming doesn't always increase happiness](#daisys-grooming-doesnt-always-increase-happiness)
 - [Magikarp in Lake of Rage are shorter, not longer](#magikarp-in-lake-of-rage-are-shorter-not-longer)
 - [Magikarp length limits have a unit conversion error](#magikarp-length-limits-have-a-unit-conversion-error)
@@ -90,8 +91,7 @@ Fixes are written in the `diff` format. If you've used Git before, this should l
 +	ret nc
 +
 +.cap
-+	ld h, HIGH(MAX_STAT_VALUE)
-+	ld l, LOW(MAX_STAT_VALUE)
++	ld hl, MAX_STAT_VALUE
  	ret
 ```
 
@@ -128,8 +128,7 @@ Fixes are written in the `diff` format. If you've used Git before, this should l
 +	ret nc
 +
 +.cap
-+	ld b, HIGH(MAX_STAT_VALUE)
-+	ld c, LOW(MAX_STAT_VALUE)
++	ld bc, MAX_STAT_VALUE
  	ret
 ```
 
@@ -780,6 +779,13 @@ This can bring Pokémon straight from level 1 to 100 by gaining just a few exper
 -	item_attribute 2100, HELD_DRAGON_BOOST, 10, CANT_SELECT, ITEM, ITEMMENU_NOUSE, ITEMMENU_NOUSE
 +	item_attribute 2100, HELD_NONE, 10, CANT_SELECT, ITEM, ITEMMENU_NOUSE, ITEMMENU_NOUSE
 ```
+
+
+## Clair can give TM24 Dragonbreath twice
+
+([Video](https://www.youtube.com/watch?v=8BvBjqxmyOk))
+
+*To do:* Identify specific code causing this bug and fix it.
 
 
 ## Daisy's grooming doesn't always increase happiness
