@@ -4,19 +4,20 @@ INCLUDE "constants.asm"
 SECTION "Events", ROMX
 
 OverworldLoop::
-	xor a
+	xor a ; MAPSTATUS_START
 	ld [wMapStatus], a
 .loop
 	ld a, [wMapStatus]
 	ld hl, .jumps
 	rst JumpTable
 	ld a, [wMapStatus]
-	cp 3 ; done
+	cp MAPSTATUS_DONE
 	jr nz, .loop
 .done
 	ret
 
 .jumps
+; entries correspond to MAPSTATUS_* constants
 	dw StartMap
 	dw EnterMap
 	dw HandleMap
@@ -130,7 +131,7 @@ EnterMap:
 
 	xor a ; end map entry
 	ldh [hMapEntryMethod], a
-	ld a, 2 ; HandleMap
+	ld a, MAPSTATUS_HANDLE
 	ld [wMapStatus], a
 	ret
 
@@ -147,7 +148,7 @@ HandleMap:
 
 ; Not immediately entering a connected map will cause problems.
 	ld a, [wMapStatus]
-	cp 2 ; HandleMap
+	cp MAPSTATUS_HANDLE
 	ret nz
 
 	call HandleMapObjects
@@ -163,6 +164,7 @@ MapEvents:
 	ret
 
 .jumps
+; entries correspond to MAPEVENTS_* constants
 	dw .events
 	dw .no_events
 
@@ -193,7 +195,7 @@ NextOverworldFrame:
 
 HandleMapTimeAndJoypad:
 	ld a, [wMapEventStatus]
-	cp 1 ; no events
+	cp MAPEVENTS_OFF
 	ret z
 
 	call UpdateTime
@@ -215,26 +217,26 @@ HandleMapBackground:
 
 CheckPlayerState:
 	ld a, [wPlayerStepFlags]
-	bit 5, a ; in the middle of step
+	bit PLAYERSTEP_CONTINUE_F, a
 	jr z, .events
-	bit 6, a ; stopping step
+	bit PLAYERSTEP_STOP_F, a
 	jr z, .noevents
-	bit 4, a ; in midair
+	bit PLAYERSTEP_MIDAIR_F, a
 	jr nz, .noevents
 	call EnableEvents
 .events
-	ld a, 0 ; events
+	ld a, MAPEVENTS_ON
 	ld [wMapEventStatus], a
 	ret
 
 .noevents
-	ld a, 1 ; no events
+	ld a, MAPEVENTS_OFF
 	ld [wMapEventStatus], a
 	ret
 
 _CheckObjectEnteringVisibleRange:
 	ld hl, wPlayerStepFlags
-	bit 6, [hl]
+	bit PLAYERSTEP_STOP_F, [hl]
 	ret z
 	farcall CheckObjectEnteringVisibleRange
 	ret

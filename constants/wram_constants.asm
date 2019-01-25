@@ -94,6 +94,13 @@ REMOVE_BOX        EQU 1
 DAY_CARE_WITHDRAW EQU 2
 DAY_CARE_DEPOSIT  EQU 3
 
+; wPlayerStepFlags:: ; d150
+	const_def 4
+	const PLAYERSTEP_MIDAIR_F   ; 4
+	const PLAYERSTEP_CONTINUE_F ; 5
+	const PLAYERSTEP_STOP_F     ; 6
+	const PLAYERSTEP_START_F    ; 7
+
 ; wInitListType:: ; d263
 INIT_ENEMYOT_LIST    EQU 1
 INIT_BAG_ITEM_LIST   EQU 2
@@ -126,14 +133,27 @@ PLAYERSPRITESETUP_RESET_ACTION_F    EQU 7
 ; wPlayerGender:: ; d472
 PLAYERGENDER_FEMALE_F EQU 0
 
+; wMapStatus:: ; d432
+	const_def
+	const MAPSTATUS_START  ; 0
+	const MAPSTATUS_ENTER  ; 1
+	const MAPSTATUS_HANDLE ; 2
+	const MAPSTATUS_DONE   ; 3
+
+; wMapEventStatus:: ; d433
+	const_def
+	const MAPEVENTS_ON  ; 0
+	const MAPEVENTS_OFF ; 1
+
 ; wScriptFlags:: ; d434
 SCRIPT_RUNNING EQU 2
 
 ; wScriptMode:: ; d437
-SCRIPT_OFF EQU 0
-SCRIPT_READ EQU 1
-SCRIPT_WAIT_MOVEMENT EQU 2
-SCRIPT_WAIT EQU 3
+	const_def
+	const SCRIPT_OFF
+	const SCRIPT_READ
+	const SCRIPT_WAIT_MOVEMENT
+	const SCRIPT_WAIT
 
 ; wSpawnAfterChampion:: ; d4b5
 SPAWN_LANCE EQU 1

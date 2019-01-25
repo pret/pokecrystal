@@ -1399,7 +1399,7 @@ Script_reloadmap:
 	ld [wBattleScriptFlags], a
 	ld a, MAPSETUP_RELOADMAP
 	ldh [hMapEntryMethod], a
-	ld a, $1
+	ld a, MAPSTATUS_ENTER
 	call LoadMapStatus
 	call StopScript
 	ret
@@ -2473,11 +2473,11 @@ Script_warp:
 	ld [wXCoord], a
 	call GetScriptByte
 	ld [wYCoord], a
-	ld a, -1
+	ld a, SPAWN_N_A
 	ld [wDefaultSpawnpoint], a
 	ld a, MAPSETUP_WARP
 	ldh [hMapEntryMethod], a
-	ld a, 1
+	ld a, MAPSTATUS_ENTER
 	call LoadMapStatus
 	call StopScript
 	ret
@@ -2486,11 +2486,11 @@ Script_warp:
 	call GetScriptByte
 	call GetScriptByte
 	call GetScriptByte
-	ld a, -1
+	ld a, SPAWN_N_A
 	ld [wDefaultSpawnpoint], a
 	ld a, MAPSETUP_BADWARP
 	ldh [hMapEntryMethod], a
-	ld a, 1
+	ld a, MAPSTATUS_ENTER
 	call LoadMapStatus
 	call StopScript
 	ret
@@ -2611,7 +2611,7 @@ Script_newloadmap:
 
 	call GetScriptByte
 	ldh [hMapEntryMethod], a
-	ld a, 1
+	ld a, MAPSTATUS_ENTER
 	call LoadMapStatus
 	call StopScript
 	ret
@@ -2793,7 +2793,7 @@ Script_credits:
 	farcall RedCredits
 ReturnFromCredits:
 	call Script_endall
-	ld a, $3
+	ld a, MAPSTATUS_DONE
 	call LoadMapStatus
 	call StopScript
 	ret

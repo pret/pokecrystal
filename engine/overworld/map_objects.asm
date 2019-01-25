@@ -36,7 +36,7 @@ Function437b:
 .CheckObjectStillVisible:
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	res 6, [hl]
+	res OBJ_FLAGS2_6, [hl]
 	ld a, [wXCoord]
 	ld e, a
 	ld hl, OBJECT_NEXT_MAP_X
@@ -62,7 +62,7 @@ Function437b:
 .ok
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	set 6, [hl]
+	set OBJ_FLAGS2_6, [hl]
 	ld a, [wXCoord]
 	ld e, a
 	ld hl, OBJECT_INIT_X
@@ -99,7 +99,7 @@ Function437b:
 .yes2
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	set 6, [hl]
+	set OBJ_FLAGS2_6, [hl]
 	and a
 	ret
 
@@ -111,7 +111,7 @@ Function437b:
 	jr z, .zero
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	bit 5, [hl]
+	bit OBJ_FLAGS2_5, [hl]
 	jr nz, .bit5
 	cp STEP_TYPE_SLEEP
 	jr z, .one
@@ -121,7 +121,7 @@ Function437b:
 	call ObjectMovementReset
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	bit 5, [hl]
+	bit OBJ_FLAGS2_5, [hl]
 	jr nz, .bit5
 .one
 	call MapObjectMovementPattern
@@ -147,9 +147,9 @@ Function437b:
 	jr nz, SetFacingStanding
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	bit 6, [hl]
+	bit OBJ_FLAGS2_6, [hl]
 	jr nz, SetFacingStanding
-	bit 5, [hl]
+	bit OBJ_FLAGS2_5, [hl]
 	jr nz, asm_4448
 	ld de, ObjectActionPairPointers ; use first column
 	jr _HandleObjectAction
@@ -399,7 +399,7 @@ UpdatePlayerStep:
 	add e
 	ld [wPlayerStepVectorY], a
 	ld hl, wPlayerStepFlags
-	set 5, [hl]
+	set PLAYERSTEP_CONTINUE_F, [hl]
 	ret
 
 Unreferenced_Function4759:
@@ -657,8 +657,8 @@ MapObjectMovementPattern:
 	jr z, .on_pit
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	bit 2, [hl]
-	res 2, [hl]
+	bit OBJ_FLAGS2_2, [hl]
+	res OBJ_FLAGS2_2, [hl]
 	jr z, .ok
 	ld hl, OBJECT_RANGE
 	add hl, bc
@@ -1124,7 +1124,7 @@ NPCJump:
 	call GetNextTile
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	res 3, [hl]
+	res OVERHEAD_F, [hl]
 	call IncrementObjectStructField1c
 	ret
 
@@ -1151,7 +1151,7 @@ PlayerJump:
 
 .initjump
 	ld hl, wPlayerStepFlags
-	set 7, [hl]
+	set PLAYERSTEP_START_F, [hl]
 	call IncrementObjectStructField1c
 .stepjump
 	call UpdateJumpPosition
@@ -1163,17 +1163,17 @@ PlayerJump:
 	call CopyNextCoordsTileToStandingCoordsTile
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	res 3, [hl]
+	res OVERHEAD_F, [hl]
 	ld hl, wPlayerStepFlags
-	set 6, [hl]
-	set 4, [hl]
+	set PLAYERSTEP_STOP_F, [hl]
+	set PLAYERSTEP_MIDAIR_F, [hl]
 	call IncrementObjectStructField1c
 	ret
 
 .initland
 	call GetNextTile
 	ld hl, wPlayerStepFlags
-	set 7, [hl]
+	set PLAYERSTEP_START_F, [hl]
 	call IncrementObjectStructField1c
 .stepland
 	call UpdateJumpPosition
@@ -1183,7 +1183,7 @@ PlayerJump:
 	dec [hl]
 	ret nz
 	ld hl, wPlayerStepFlags
-	set 6, [hl]
+	set PLAYERSTEP_STOP_F, [hl]
 	call CopyNextCoordsTileToStandingCoordsTile
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
@@ -1229,7 +1229,7 @@ TeleportFrom:
 	ld [hl], 16
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	res 3, [hl]
+	res OVERHEAD_F, [hl]
 	call IncrementObjectStructField1c
 .DoSpinRise:
 	ld hl, OBJECT_ACTION
@@ -1559,7 +1559,7 @@ PlayerStep:
 
 .init
 	ld hl, wPlayerStepFlags
-	set 7, [hl]
+	set PLAYERSTEP_START_F, [hl]
 	call IncrementObjectStructField1c
 .step
 	call UpdatePlayerStep
@@ -1568,7 +1568,7 @@ PlayerStep:
 	dec [hl]
 	ret nz
 	ld hl, wPlayerStepFlags
-	set 6, [hl]
+	set PLAYERSTEP_STOP_F, [hl]
 	call CopyNextCoordsTileToStandingCoordsTile
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
@@ -1646,7 +1646,7 @@ StepType0f:
 	pop bc
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	res 2, [hl]
+	res OBJ_FLAGS2_2, [hl]
 	call CopyNextCoordsTileToStandingCoordsTile
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
@@ -2408,7 +2408,7 @@ HandleNPCStep::
 	ld [wPlayerStepVectorX], a
 	ld [wPlayerStepVectorY], a
 	ld [wPlayerStepFlags], a
-	ld a, -1
+	ld a, STANDING
 	ld [wPlayerStepDirection], a
 	ret
 
@@ -2558,7 +2558,7 @@ SetFlagsForMovement_1::
 	pop bc
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	res 5, [hl]
+	res OBJ_FLAGS2_5, [hl]
 	xor a
 	ret
 
@@ -2567,7 +2567,7 @@ Function586e:
 	ret c
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	set 5, [hl]
+	set OBJ_FLAGS2_5, [hl]
 	xor a
 	ret
 
@@ -2580,7 +2580,7 @@ Function587a:
 	jr z, .next
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	set 5, [hl]
+	set OBJ_FLAGS2_5, [hl]
 .next
 	ld hl, OBJECT_STRUCT_LENGTH
 	add hl, bc
@@ -2610,7 +2610,7 @@ _SetFlagsForMovement_2::
 	call GetObjectStruct
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	res 5, [hl]
+	res OBJ_FLAGS2_5, [hl]
 	ret
 
 Function58b9::
@@ -2623,7 +2623,7 @@ Function58b9::
 	jr z, .next
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	res 5, [hl]
+	res OBJ_FLAGS2_5, [hl]
 .next
 	ld hl, OBJECT_STRUCT_LENGTH
 	add hl, bc
@@ -2641,7 +2641,7 @@ Function58d8:
 	ret c
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	res 5, [hl]
+	res OBJ_FLAGS2_5, [hl]
 	ret
 
 Function58e3:
@@ -2865,7 +2865,7 @@ InitSprites:
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	ld e, [hl]
-	bit 7, e
+	bit OBJ_FLAGS2_7, e
 	jr z, .skip2
 	or PRIORITY
 .skip2

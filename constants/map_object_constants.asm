@@ -70,6 +70,9 @@ EMOTE_OBJECT  EQU 1 << EMOTE_OBJECT_F
 	const OBJ_FLAGS2_2    ; 2
 	const OVERHEAD_F      ; 3
 	const USE_OBP1_F      ; 4
+	const OBJ_FLAGS2_5    ; 5
+	const OBJ_FLAGS2_6    ; 6
+	const OBJ_FLAGS2_7    ; 7
 
 LOW_PRIORITY  EQU 1 << LOW_PRIORITY_F
 HIGH_PRIORITY EQU 1 << HIGH_PRIORITY_F
