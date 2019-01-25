@@ -633,13 +633,13 @@ AnimateFlowerTile:
 ; Alternate tile graphic every other frame
 	ld a, [wTileAnimationTimer]
 	and %10
-	ld e, a
 
 ; CGB has different color mappings for flowers.
+	ld e, a
 	ldh a, [hCGB]
 	and 1
-
 	add e
+
 	swap a
 	ld e, a
 	ld d, 0
