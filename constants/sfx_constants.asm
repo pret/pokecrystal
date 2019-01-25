@@ -189,10 +189,10 @@
 	const SFX_TRAIN_ARRIVED               ; b9
 	const SFX_STOP_SLOT                   ; ba
 	const SFX_2_BOOPS                     ; bb
-	const SFX_GLASS_TING                  ; bc
-	const SFX_GLASS_TING_2                ; bd
 
 ; new to Crystal
+	const SFX_GLASS_TING                  ; bc
+	const SFX_GLASS_TING_2                ; bd
 	const SFX_INTRO_UNOWN_1               ; be
 	const SFX_INTRO_UNOWN_2               ; bf
 	const SFX_INTRO_UNOWN_3               ; c0

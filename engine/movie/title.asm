@@ -208,7 +208,7 @@ _TitleScreen:
 	ldh [hBGMapMode], a
 
 	xor a
-	ld [wd002], a
+	ld [wSuicuneFrame], a
 
 ; Play starting sound effect
 	call SFXChannelsOff
@@ -218,7 +218,7 @@ _TitleScreen:
 	ret
 
 SuicuneFrameIterator:
-	ld hl, wd002
+	ld hl, wSuicuneFrame
 	ld a, [hl]
 	ld c, a
 	inc [hl]

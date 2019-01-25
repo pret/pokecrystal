@@ -1,5 +1,3 @@
-UnownAnimations: ; used only for BANK(UnownAnimations)
-
 UnownAAnimation: INCLUDE "gfx/pokemon/unown_a/anim.asm"
 UnownBAnimation: INCLUDE "gfx/pokemon/unown_b/anim.asm"
 UnownCAnimation: INCLUDE "gfx/pokemon/unown_c/anim.asm"

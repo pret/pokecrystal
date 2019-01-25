@@ -87,7 +87,7 @@ RedGyarados:
 	loadwildmon GYARADOS, 30
 	writecode VAR_BATTLETYPE, BATTLETYPE_SHINY
 	startbattle
-	ifequal $1, .NotBeaten
+	ifequal LOSE, .NotBeaten
 	disappear LAKEOFRAGE_GYARADOS
 .NotBeaten:
 	reloadmapafterbattle

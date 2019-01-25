@@ -892,12 +892,12 @@ GetMonAnimPointer:
 	call PokeAnim_IsEgg
 	jr z, .egg
 
-	ld c, BANK(UnownAnimations)
+	ld c, BANK(UnownAnimationPointers) ; aka BANK(UnownAnimationIdlePointers)
 	ld hl, UnownAnimationPointers
 	ld de, UnownAnimationIdlePointers
 	call PokeAnim_IsUnown
 	jr z, .unown
-	ld c, BANK(PicAnimations)
+	ld c, BANK(AnimationPointers) ; aka BANK(AnimationIdlePointers)
 	ld hl, AnimationPointers
 	ld de, AnimationIdlePointers
 .unown
