@@ -246,6 +246,7 @@ NUM_SPRITEMOVEDATA EQU const_value
 	const OBJECT_ACTION_BOULDER_DUST  ; 0e
 	const OBJECT_ACTION_GRASS_SHAKE   ; 0f
 	const OBJECT_ACTION_SKYFALL       ; 10
+	const OBJECT_ACTION_RUN           ; 11
 
 ; Facings indexes (see data/sprites/facings.asm)
 	const_def
@@ -292,3 +293,4 @@ NUM_SPRITEMOVEDATA EQU const_value
 	const STEP_TURN          ; 5
 	const STEP_BACK_LEDGE    ; 6
 	const STEP_WALK_IN_PLACE ; 7
+	const STEP_RUN
