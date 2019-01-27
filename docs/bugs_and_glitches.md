@@ -281,7 +281,7 @@ This bug affects Acid, Iron Tail, and Rock Smash.
  	ld a, [hli]
  	or [hl]
 -	ret z
-+	jp z, .failed
++	jr z, .failed
 ```
 
 Add this to the end of each file:
@@ -712,7 +712,7 @@ This can bring Pokémon straight from level 1 to 100 by gaining just a few exper
 
 ## Moon Ball does not boost catch rate
 
-**Fix:** Edit `MoonBallMultiplier` in [items/item_effects.asm](/items/item_effects.asm):
+**Fix:** Edit `MoonBallMultiplier` in [items/item_effects.asm](/engine/items/item_effects.asm):
 
 ```diff
 -; Moon Stone's constant from Pokémon Red is used.
@@ -730,7 +730,7 @@ This can bring Pokémon straight from level 1 to 100 by gaining just a few exper
 
 ## Love Ball boosts catch rate for the wrong gender
 
-**Fix:** Edit `LoveBallMultiplier` in [items/item_effects.asm](/items/item_effects.asm):
+**Fix:** Edit `LoveBallMultiplier` in [items/item_effects.asm](/engine/items/item_effects.asm):
 
 ```diff
  .wildmale
@@ -746,7 +746,7 @@ This can bring Pokémon straight from level 1 to 100 by gaining just a few exper
 
 ## Fast Ball only boosts catch rate for three Pokémon
 
-**Fix:** Edit `FastBallMultiplier` in [items/item_effects.asm](/items/item_effects.asm):
+**Fix:** Edit `FastBallMultiplier` in [items/item_effects.asm](/engine/items/item_effects.asm):
 
 ```diff
  .loop
@@ -972,7 +972,7 @@ First, edit [engine/battle/battle_transition.asm](/engine/battle/battle_transiti
 +	jr nz, .loop
 +
 +.okay
-+	ld de, MON_LEVEL - MON_HP
++	ld de, MON_LEVEL - MON_HP - 1
 +	add hl, de
 	ld de, 0
 -	ld a, [wBattleMonLevel]
@@ -1067,10 +1067,10 @@ Finally, edit [engine/battle/read_trainer_party.asm](/engine/battle/read_trainer
 +.skip_trainer
 +	dec b
 +	jr z, .got_trainer
-+.loop1
++.skip_party
 +	ld a, [hli]
 +	cp $ff
-+	jr nz, .loop1
++	jr nz, .skip_party
 +	jr .skip_trainer
 +.got_trainer
 +
