@@ -354,7 +354,7 @@ wTileMap:: ; c4a0
 wTileMapEnd::
 
 
-SECTION "Battle", WRAM0
+SECTION "Miscellaneous", WRAM0
 
 UNION ; c608
 ; unidentified uses
@@ -578,9 +578,6 @@ wPlayerAtkLevel:: db ; c6cc
 wPlayerDefLevel:: db ; c6cd
 wPlayerSpdLevel:: db ; c6ce
 wPlayerSAtkLevel:: db ; c6cf
-
-UNION ; c6d0
-; finish battle RAM
 wPlayerSDefLevel:: db ; c6d0
 wPlayerAccLevel:: db ; c6d1
 wPlayerEvaLevel:: db ; c6d2
@@ -739,12 +736,11 @@ wSomeoneIsRampaging:: db ; c73b
 wPlayerJustGotFrozen:: db ; c73c
 wEnemyJustGotFrozen:: db ; c73d
 wBattleEnd::
-; Battle RAM
-; c741
 
-NEXTU ; c6d0
+NEXTU ; c608
 ; trade
-wTrademons::
+	ds 200
+wTrademons:: ; c6d0
 wPlayerTrademon:: trademon wPlayerTrademon
 wOTTrademon::     trademon wOTTrademon
 wTrademonsEnd::
@@ -754,8 +750,9 @@ wLinkPlayer2Name:: ds NAME_LENGTH
 wLinkTradeSendmonSpecies:: db
 wLinkTradeGetmonSpecies::  db
 
-NEXTU ; c6d0
+NEXTU ; c608
 ; naming screen
+	ds 200
 wNamingScreenDestinationPointer:: dw ; c6d0
 wNamingScreenCurNameLength:: db ; c6d2
 wNamingScreenMaxNameLength:: db ; c6d3
@@ -764,8 +761,9 @@ wNamingScreenCursorObjectPointer:: dw ; c6d5
 wNamingScreenLastCharacter:: db ; c6d7
 wNamingScreenStringEntryCoord:: dw ; c6d8
 
-NEXTU ; c6d0
+NEXTU ; c608
 ; pokegear
+	ds 200
 wPokegearPhoneLoadNameBuffer:: db ; c6d0
 wPokegearPhoneCursorPosition:: db ; c6d1
 wPokegearPhoneScrollPosition:: db ; c6d2
@@ -778,9 +776,10 @@ wPokegearRadioChannelBank:: db ; c6d9
 wPokegearRadioChannelAddr:: dw ; c6da
 wPokegearRadioMusicPlaying:: db ; c6dc
 
-NEXTU ; c6d0
+NEXTU ; c608
 ; slot machine
-wSlots::
+	ds 200
+wSlots:: ; c6d0
 wReel1:: slot_reel wReel1
 wReel2:: slot_reel wReel2
 wReel3:: slot_reel wReel3
@@ -803,9 +802,10 @@ wSlotsDataEnd::
 	ds 28
 wSlotsEnd::
 
-NEXTU ; c6d0
+NEXTU ; c608
 ; card flip
-wCardFlip::
+	ds 200
+wCardFlip:: ; c6d0
 wDeck:: ds 24
 wDeckEnd::
 ; c6e8
@@ -815,9 +815,10 @@ wDiscardPile:: ds 24
 wDiscardPileEnd::
 wCardFlipEnd::
 
-NEXTU ; c6d0
+NEXTU ; c608
 ; dummy game
-wDummyGame::
+	ds 200
+wDummyGame:: ; c6d0
 wDummyGameCards:: ds 9 * 5
 wDummyGameCardsEnd::
 wDummyGameLastCardPicked:: db ; c6fd
@@ -831,15 +832,18 @@ wDummyGameCounter:: db ; c708
 wDummyGameNumCardsMatched:: db ; c709
 wDummyGameEnd::
 
-NEXTU ; c6d0
+NEXTU ; c608
 ; unown puzzle
-wUnownPuzzle::
+wUnownPuzzle:: ; c608
+	ds 200
 wPuzzlePieces:: ds 6 * 6
-wUnownPuzzleEnd::
+	ds 244
+wUnownPuzzleEnd:: ; c7e8
 
-NEXTU ; c6d0
+NEXTU ; c608
 ; pokedex
-wPokedexDataStart::
+	ds 200
+wPokedexDataStart:: ; c6d0
 wPokedexOrder:: ds $100 ; >= NUM_POKEMON
 wPokedexOrderEnd::
 wDexListingScrollOffset:: db ; offset of the first displayed entry from the start
@@ -871,8 +875,9 @@ wPokedexDataEnd:: ds 1
 endc
 	ds 2
 
-NEXTU ; c6d0
+NEXTU ; c608
 ; mobile data
+	ds 200
 wc6d0:: ds 56
 wc708:: db
 wc709:: db
@@ -895,7 +900,6 @@ wc7d1:: ds 1
 wc7d2:: ds 1
 wc7d3:: ds 1
 wc7d4:: ds 1
-ENDU ; c7e8
 ENDU ; c7e8
 
 wc7e8:: ds 24

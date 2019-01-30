@@ -319,7 +319,7 @@ WRAM0
 	align 8
 	"Sprites"
 	"Tilemap"
-	"Battle"
+	"Miscellaneous"
 	"Overworld Map"
 	"Video"
 WRAMX 1
