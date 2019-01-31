@@ -364,14 +364,18 @@ wc642:: ds 5
 wc647:: ds 33
 wc668:: ds 32
 wc688:: ds 2
-wc68a:: ds 350
+wc68a:: ds 4
 
 NEXTU ; c608
 ; surrounding tiles
+; This buffer determines the size for the rest of the union;
+; it uses exactly 480 bytes.
 wSurroundingTiles:: ds SURROUNDING_WIDTH * SURROUNDING_HEIGHT
 
 NEXTU ; c608
 ; box save buffer
+; SaveBoxAddress uses this buffer in three steps because it
+; needs more space than is available.
 wBoxPartialData:: ds 480
 wBoxPartialDataEnd::
 
