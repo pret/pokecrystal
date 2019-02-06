@@ -3055,7 +3055,7 @@ NEXTU ; d419
 wBattleObjectTempID:: db
 wBattleObjectTempXCoord:: db
 wBattleObjectTempYCoord:: db
-wBattleObjectTemp0b:: db
+wBattleObjectTempParam:: db
 
 NEXTU ; d419
 wBattleAnimTempOAMFlags:: db

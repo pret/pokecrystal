@@ -440,7 +440,7 @@ BattleBGEffect_BattlerObj_1Row:
 	ld a, 8 * TILE_WIDTH
 	ld [wBattleObjectTempYCoord], a
 	xor a
-	ld [wBattleObjectTemp0b], a
+	ld [wBattleObjectTempParam], a
 	call _QueueBattleAnimation
 	pop bc
 	ret
@@ -507,7 +507,7 @@ BattleBGEffect_BattlerObj_2Row:
 	ld a, 8 * TILE_WIDTH
 	ld [wBattleObjectTempYCoord], a
 	xor a
-	ld [wBattleObjectTemp0b], a
+	ld [wBattleObjectTempParam], a
 	call _QueueBattleAnimation
 	pop bc
 	ret

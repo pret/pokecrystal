@@ -601,7 +601,7 @@ BattleAnimCmd_Obj:
 	call GetBattleAnimByte
 	ld [wBattleObjectTempYCoord], a
 	call GetBattleAnimByte
-	ld [wBattleObjectTemp0b], a
+	ld [wBattleObjectTempParam], a
 	call QueueBattleAnimation
 	ret
 
