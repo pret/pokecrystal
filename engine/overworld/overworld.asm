@@ -594,7 +594,7 @@ endr
 	jr c, .done
 
 	ld a, h
-	add $8
+	add HIGH(vTiles1 - vTiles0)
 	ld h, a
 	call .CopyToVram
 
