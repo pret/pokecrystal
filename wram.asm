@@ -356,6 +356,7 @@ wTileMapEnd::
 
 SECTION "Miscellaneous", WRAM0
 
+; This union spans 480 bytes from c608 to c7e8.
 UNION ; c608
 ; surrounding tiles
 ; This buffer determines the size for the rest of the union;
