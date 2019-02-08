@@ -357,16 +357,6 @@ wTileMapEnd::
 SECTION "Miscellaneous", WRAM0
 
 UNION ; c608
-; unidentified uses
-wc608:: ds 53
-wc63d:: ds 5
-wc642:: ds 5
-wc647:: ds 33
-wc668:: ds 32
-wc688:: ds 2
-wc68a:: ds 4
-
-NEXTU ; c608
 ; surrounding tiles
 ; This buffer determines the size for the rest of the union;
 ; it uses exactly 480 bytes.
@@ -375,36 +365,13 @@ wSurroundingTiles:: ds SURROUNDING_WIDTH * SURROUNDING_HEIGHT
 NEXTU ; c608
 ; box save buffer
 ; SaveBoxAddress uses this buffer in three steps because it
-; needs more space than is available.
+; needs more space than the buffer can hold.
 wBoxPartialData:: ds 480
 wBoxPartialDataEnd::
 
 NEXTU ; c608
-; odd egg
-wOddEgg:: party_struct wOddEgg
-wOddEggName:: ds MON_NAME_LENGTH
-wOddEggOTName:: ds NAME_LENGTH
-
-NEXTU ; c608
 ; battle tower temp struct
 wBT_OTTemp:: battle_tower_struct wBT_OTTemp
-
-NEXTU ; c608
-; hall of fame temp struct
-wHallOfFameTemp:: hall_of_fame wHallOfFameTemp
-
-NEXTU ; c608
-; timeset temp storage
-wTimeSetBuffer::
-	ds 20
-wInitHourBuffer:: db ; c61c
-	ds 9
-wInitMinuteBuffer:: db ; c626
-
-NEXTU ; c608
-; link engine data
-wLink_c608:: ds 10
-wc612:: ds 10
 
 NEXTU ; c608
 ; battle data
@@ -742,111 +709,57 @@ wEnemyJustGotFrozen:: db ; c73d
 wBattleEnd::
 
 NEXTU ; c608
-; trade
-	ds 200
-wTrademons:: ; c6d0
-wPlayerTrademon:: trademon wPlayerTrademon
-wOTTrademon::     trademon wOTTrademon
-wTrademonsEnd::
-wTradeAnimAddress:: dw
-wLinkPlayer1Name:: ds NAME_LENGTH
-wLinkPlayer2Name:: ds NAME_LENGTH
-wLinkTradeSendmonSpecies:: db
-wLinkTradeGetmonSpecies::  db
-
-NEXTU ; c608
-; naming screen
-	ds 200
-wNamingScreenDestinationPointer:: dw ; c6d0
-wNamingScreenCurNameLength:: db ; c6d2
-wNamingScreenMaxNameLength:: db ; c6d3
-wNamingScreenType:: db ; c6d4
-wNamingScreenCursorObjectPointer:: dw ; c6d5
-wNamingScreenLastCharacter:: db ; c6d7
-wNamingScreenStringEntryCoord:: dw ; c6d8
-
-NEXTU ; c608
-; pokegear
-	ds 200
-wPokegearPhoneLoadNameBuffer:: db ; c6d0
-wPokegearPhoneCursorPosition:: db ; c6d1
-wPokegearPhoneScrollPosition:: db ; c6d2
-wPokegearPhoneSelectedPerson:: db ; c6d3
-wPokegearPhoneSubmenuCursor:: db ; c6d4
-wPokegearMapCursorObjectPointer:: dw ; c6d5
-wPokegearMapCursorLandmark:: db ; c6d7
-wPokegearMapPlayerIconLandmark:: db ; c6d8
-wPokegearRadioChannelBank:: db ; c6d9
-wPokegearRadioChannelAddr:: dw ; c6da
-wPokegearRadioMusicPlaying:: db ; c6dc
-
-NEXTU ; c608
-; slot machine
-	ds 200
-wSlots:: ; c6d0
-wReel1:: slot_reel wReel1
-wReel2:: slot_reel wReel2
-wReel3:: slot_reel wReel3
-; c700
-wReel1Stopped:: ds 3
-wReel2Stopped:: ds 3
-wReel3Stopped:: ds 3
-wSlotBias:: db
-wSlotBet:: db
-wFirstTwoReelsMatching:: db
-wFirstTwoReelsMatchingSevens:: db
-wSlotMatched:: db
-wCurReelStopped:: ds 3
-wPayout:: dw
-wCurReelXCoord:: db
-wCurReelYCoord:: db
-	ds 2
-wSlotBuildingMatch:: db
-wSlotsDataEnd::
-	ds 28
-wSlotsEnd::
-
-NEXTU ; c608
-; card flip
-	ds 200
-wCardFlip:: ; c6d0
-wDeck:: ds 24
-wDeckEnd::
-; c6e8
-wCardFlipNumCardsPlayed:: db
-wCardFlipFaceUpCard:: db
-wDiscardPile:: ds 24
-wDiscardPileEnd::
-wCardFlipEnd::
-
-NEXTU ; c608
-; dummy game
-	ds 200
-wDummyGame:: ; c6d0
-wDummyGameCards:: ds 9 * 5
-wDummyGameCardsEnd::
-wDummyGameLastCardPicked:: db ; c6fd
-wDummyGameCard1:: db ; c6fe
-wDummyGameCard2:: db ; c6ff
-wDummyGameCard1Location:: db ; c700
-wDummyGameCard2Location:: db ; c701
-wDummyGameNumberTriesRemaining:: db ; c702
-wDummyGameLastMatches:: ds 5 ; c703
-wDummyGameCounter:: db ; c708
-wDummyGameNumCardsMatched:: db ; c709
-wDummyGameEnd::
-
-NEXTU ; c608
 ; unown puzzle
-wUnownPuzzle:: ; c608
+wUnownPuzzle::
 	ds 200
 wPuzzlePieces:: ds 6 * 6
 	ds 244
-wUnownPuzzleEnd:: ; c7e8
+wUnownPuzzleEnd::
 
 NEXTU ; c608
+
+; This union spans 200 bytes from c608 to c6d0.
+UNION ; c608
+; timeset temp storage
+wTimeSetBuffer::
+	ds 20
+wInitHourBuffer:: db ; c61c
+	ds 9
+wInitMinuteBuffer:: db ; c626
+	ds 19
+wTimeSetBufferEnd::
+
+NEXTU ; c608
+; hall of fame temp struct
+wHallOfFameTemp:: hall_of_fame wHallOfFameTemp
+
+NEXTU ; c608
+; link engine data
+wLink_c608:: ds 10
+wc612:: ds 10
+
+NEXTU ; c608
+; odd egg
+wOddEgg:: party_struct wOddEgg
+wOddEggName:: ds MON_NAME_LENGTH
+wOddEggOTName:: ds NAME_LENGTH
+
+NEXTU ; c608
+; mobile data
+wc608:: ds 53
+wc63d:: ds 5
+wc642:: ds 5
+wc647:: ds 33
+wc668:: ds 32
+wc688:: ds 2
+wc68a:: ds 4
+	ds 66
+
+ENDU ; c6d0
+
+; This union spans 280 bytes from c6d0 to c7e8.
+UNION ; c6d0
 ; pokedex
-	ds 200
 wPokedexDataStart:: ; c6d0
 wPokedexOrder:: ds $100 ; >= NUM_POKEMON
 wPokedexOrderEnd::
@@ -879,9 +792,97 @@ wPokedexDataEnd:: ds 1
 endc
 	ds 2
 
-NEXTU ; c608
+NEXTU ; c6d0
+; pokegear
+wPokegearPhoneLoadNameBuffer:: db ; c6d0
+wPokegearPhoneCursorPosition:: db ; c6d1
+wPokegearPhoneScrollPosition:: db ; c6d2
+wPokegearPhoneSelectedPerson:: db ; c6d3
+wPokegearPhoneSubmenuCursor:: db ; c6d4
+wPokegearMapCursorObjectPointer:: dw ; c6d5
+wPokegearMapCursorLandmark:: db ; c6d7
+wPokegearMapPlayerIconLandmark:: db ; c6d8
+wPokegearRadioChannelBank:: db ; c6d9
+wPokegearRadioChannelAddr:: dw ; c6da
+wPokegearRadioMusicPlaying:: db ; c6dc
+
+NEXTU ; c6d0
+; trade
+wTrademons:: ; c6d0
+wPlayerTrademon:: trademon wPlayerTrademon
+wOTTrademon::     trademon wOTTrademon
+wTrademonsEnd::
+wTradeAnimAddress:: dw
+wLinkPlayer1Name:: ds NAME_LENGTH
+wLinkPlayer2Name:: ds NAME_LENGTH
+wLinkTradeSendmonSpecies:: db
+wLinkTradeGetmonSpecies::  db
+
+NEXTU ; c6d0
+; naming screen
+wNamingScreenDestinationPointer:: dw ; c6d0
+wNamingScreenCurNameLength:: db ; c6d2
+wNamingScreenMaxNameLength:: db ; c6d3
+wNamingScreenType:: db ; c6d4
+wNamingScreenCursorObjectPointer:: dw ; c6d5
+wNamingScreenLastCharacter:: db ; c6d7
+wNamingScreenStringEntryCoord:: dw ; c6d8
+
+NEXTU ; c6d0
+; slot machine
+wSlots:: ; c6d0
+wReel1:: slot_reel wReel1
+wReel2:: slot_reel wReel2
+wReel3:: slot_reel wReel3
+; c700
+wReel1Stopped:: ds 3
+wReel2Stopped:: ds 3
+wReel3Stopped:: ds 3
+wSlotBias:: db
+wSlotBet:: db
+wFirstTwoReelsMatching:: db
+wFirstTwoReelsMatchingSevens:: db
+wSlotMatched:: db
+wCurReelStopped:: ds 3
+wPayout:: dw
+wCurReelXCoord:: db
+wCurReelYCoord:: db
+	ds 2
+wSlotBuildingMatch:: db
+wSlotsDataEnd::
+	ds 28
+wSlotsEnd::
+
+NEXTU ; c6d0
+; card flip
+wCardFlip:: ; c6d0
+wDeck:: ds 24
+wDeckEnd::
+; c6e8
+wCardFlipNumCardsPlayed:: db
+wCardFlipFaceUpCard:: db
+wDiscardPile:: ds 24
+wDiscardPileEnd::
+wCardFlipEnd::
+
+NEXTU ; c6d0
+; dummy game
+wDummyGame:: ; c6d0
+wDummyGameCards:: ds 9 * 5
+wDummyGameCardsEnd::
+wDummyGameLastCardPicked:: db ; c6fd
+wDummyGameCard1:: db ; c6fe
+wDummyGameCard2:: db ; c6ff
+wDummyGameCard1Location:: db ; c700
+wDummyGameCard2Location:: db ; c701
+wDummyGameNumberTriesRemaining:: db ; c702
+wDummyGameLastMatches:: ds 5 ; c703
+wDummyGameCounter:: db ; c708
+wDummyGameNumCardsMatched:: db ; c709
+wDummyGameEnd::
+
+NEXTU ; c6d0
 ; mobile data
-	ds 200
 wc6d0:: ds 56
 wc708:: db
 wc709:: db
@@ -904,6 +905,8 @@ wc7d1:: ds 1
 wc7d2:: ds 1
 wc7d3:: ds 1
 wc7d4:: ds 1
+ENDU ; c7e8
+
 ENDU ; c7e8
 
 wUnusedC7E8:: ds 24
