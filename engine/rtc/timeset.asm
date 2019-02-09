@@ -44,7 +44,7 @@ InitClock:
 	ld hl, Text_WokeUpOak
 	call PrintText
 	ld hl, wTimeSetBuffer
-	ld bc, 50
+	ld bc, wTimeSetBufferEnd - wTimeSetBuffer
 	xor a
 	call ByteFill
 	ld a, 10 ; default hour = 10 AM

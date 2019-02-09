@@ -1,8 +1,8 @@
 ; Functions dealing with rendering and interacting with maps.
 
-Clearwc7e8::
-	ld hl, wc7e8
-	ld bc, wc7e8_End - wc7e8
+ClearUnusedC7E8::
+	ld hl, wUnusedC7E8
+	ld bc, wUnusedC7E8End - wUnusedC7E8
 	ld a, 0
 	call ByteFill
 	ret

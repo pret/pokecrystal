@@ -14,8 +14,8 @@ _UnownPuzzle:
 	xor a
 	ldh [hBGMapMode], a
 	call DisableLCD
-	ld hl, wc608 ; includes wPuzzlePieces
-	ld bc, wc7e8 - wc608
+	ld hl, wUnownPuzzle ; includes wPuzzlePieces
+	ld bc, wUnownPuzzleEnd - wUnownPuzzle
 	xor a
 	call ByteFill
 	ld hl, UnownPuzzleCursorGFX
