@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from sys import stderr, exit
-from subprocess import run
+from subprocess import Popen, PIPE
 from struct import unpack, calcsize
 from enum import Enum
 
@@ -37,8 +37,8 @@ args = parser.parse_args()
 # Get list of object files
 objects = None
 if args.rootdir:
-    for line in run(["make", "-C", args.rootdir, "-s", "-p"],
-            capture_output=True).stdout.decode().split("\n"):
+    for line in Popen(["make", "-C", args.rootdir, "-s", "-p"],
+            stdout=PIPE).stdout.read().decode().split("\n"):
         if line.startswith("crystal_obj := "):
             objects = line[15:].strip().split()
             break
