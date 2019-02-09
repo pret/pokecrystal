@@ -65,8 +65,8 @@ endr
 	xor a
 	ld [hli], a ; X Offset
 	ld [hli], a ; Y Offset
-	ld a, [wBattleObjectTemp0b]
-	ld [hli], a ; 0b
+	ld a, [wBattleObjectTempParam]
+	ld [hli], a ; Param
 	xor a
 	ld [hli], a ; 0c
 	dec a
