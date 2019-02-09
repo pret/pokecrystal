@@ -23,3 +23,5 @@ before_script:
 script:
   - make -j2 compare
   - check_status
+after_success:
+  - .travis/webhook.sh
