@@ -4,13 +4,11 @@ os:
   - osx
 install:
   - |-
-    path="$(pwd)"; cd;
-    git clone https://github.com/rednex/rgbds &&
-    cd rgbds &&
-    sudo make install && 
-    cd - && 
-    rm -rf rgbds && 
-    cd "$path"
+    ( cd
+        git clone --depth=1 https://github.com/rednex/rgbds
+        sudo make -C rgbds CFLAGS=-O2 install
+        rm -rf rgbds
+    )
 before_script:
   - |-
     function check_status() {
@@ -24,4 +22,7 @@ script:
   - make -j2 compare
   - check_status
 after_success:
-  - .travis/webhook.sh
+  - |-
+    if [ "$TRAVIS_BRANCH" = master -a "$TRAVIS_PULL_REQUEST" = false -a "$TRAVIS_OS_NAME" = linux ]; then
+        ./.travis/webhook.sh
+    fi
