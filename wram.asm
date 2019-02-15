@@ -3049,7 +3049,7 @@ wNumActiveBattleAnims:: db ; d40e
 
 wBattleAnimFlags:: db ; d40f
 wBattleAnimAddress:: dw ; d410
-wBattleAnimDuration:: db ; d412
+wBattleAnimDelay:: db ; d412
 wBattleAnimParent:: dw ; d413
 wBattleAnimLoops:: db ; d415
 wBattleAnimVar:: db ; d416
@@ -3077,7 +3077,7 @@ wBattleAnimTempXCoord:: db
 wBattleAnimTempYCoord:: db
 wBattleAnimTempXOffset:: db
 wBattleAnimTempYOffset:: db
-wBattleAnimTempAddSubFlags:: db
+wBattleAnimTempFrameOAMFlags:: db
 wBattleAnimTempPalette:: db
 ENDU ; d422
 

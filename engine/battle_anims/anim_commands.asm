@@ -267,12 +267,12 @@ RunBattleAnimCommand:
 	ret
 
 .CheckTimer:
-	ld a, [wBattleAnimDuration]
+	ld a, [wBattleAnimDelay]
 	and a
 	jr z, .done
 
 	dec a
-	ld [wBattleAnimDuration], a
+	ld [wBattleAnimDelay], a
 	and a
 	ret
 
@@ -296,10 +296,10 @@ RunBattleAnimCommand:
 	ret
 
 .not_done_with_anim
-	cp $d0
+	cp anim_obj_command
 	jr nc, .do_anim
 
-	ld [wBattleAnimDuration], a
+	ld [wBattleAnimDelay], a
 	ret
 
 .do_anim
@@ -310,7 +310,7 @@ RunBattleAnimCommand:
 .DoCommand:
 ; Execute battle animation command in [wBattleAnimByte].
 	ld a, [wBattleAnimByte]
-	sub $d0
+	sub anim_obj_command
 
 	ld e, a
 	ld d, 0
