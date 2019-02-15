@@ -416,7 +416,7 @@ BattleBGEffect_BattlerObj_1Row:
 .zero
 	call BGEffect_CheckFlyDigStatus
 	jr z, .not_flying_digging
-	ld hl, wNumActiveBattleAnims
+	ld hl, wLastAnimObjectIndex
 	inc [hl]
 	call EndBattleBGEffect
 	ret
@@ -483,7 +483,7 @@ BattleBGEffect_BattlerObj_2Row:
 .zero
 	call BGEffect_CheckFlyDigStatus
 	jr z, .not_flying_digging
-	ld hl, wNumActiveBattleAnims
+	ld hl, wLastAnimObjectIndex
 	inc [hl]
 	call EndBattleBGEffect
 	ret

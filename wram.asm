@@ -3045,7 +3045,7 @@ wBGEffect4:: battle_bg_effect wBGEffect4
 wBGEffect5:: battle_bg_effect wBGEffect5
 wActiveBGEffectsEnd::
 
-wNumActiveBattleAnims:: db ; d40e
+wLastAnimObjectIndex:: db ; d40e
 
 wBattleAnimFlags:: db ; d40f
 wBattleAnimAddress:: dw ; d410
