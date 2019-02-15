@@ -15,20 +15,20 @@ ENDM
 	enum_start $fc
 
 	enum delanim_command ; $fc
-delanim: MACRO ; used for oam
+delanim: MACRO
+; Removes the object from the screen, as opposed to `endanim` which just stops all motion
 	db delanim_command
 ENDM
 
-	enum dorepeat_command ; $fd
-dorepeat: MACRO
-	db dorepeat_command
-	db \1 ; #
+	enum dowait_command ; $fd
+dowait: MACRO
+	db dowait_command
+	db \1 ; frames
 ENDM
 
-	enum setrepeat_command ; $fe
-setrepeat: MACRO
-	db setrepeat_command
-	db \1 ; #
+	enum dorestart_command ; $fe
+dorestart: MACRO
+	db dorestart_command
 ENDM
 
 	enum endanim_command ; $ff
@@ -36,9 +36,18 @@ endanim: MACRO
 	db endanim_command
 ENDM
 
-__enum__ = $fe
 
-	enum dorestart_command ; $fe
-dorestart: MACRO ; used for oam
-	db dorestart_command
+; Used for pic animations
+__enum__ = $fd
+
+	enum dorepeat_command ; $fd
+dorepeat: MACRO
+	db dorepeat_command
+	db \1 ; command offset to jump to
+ENDM
+
+	enum setrepeat_command ; $fe
+setrepeat: MACRO
+	db setrepeat_command
+	db \1 ; amount of times to repeat
 ENDM
