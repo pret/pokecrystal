@@ -90,9 +90,9 @@ HDMATransfer_FillBGMap0WithBlack:
 	ldh [rHDMA1], a
 	ld a, LOW(wDecompressScratch)
 	ldh [rHDMA2], a
-	ld a, HIGH(vBGMap0 % $8000)
+	ld a, HIGH(vBGMap0 - VRAM_Begin)
 	ldh [rHDMA3], a
-	ld a, LOW(vBGMap0 % $8000)
+	ld a, LOW(vBGMap0 - VRAM_Begin)
 	ldh [rHDMA4], a
 	ld a, $3f
 	ldh [hDMATransfer], a

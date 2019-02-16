@@ -2514,7 +2514,7 @@ BattleAnimFunction_25:
 	ld hl, BATTLEANIMSTRUCT_10
 	add hl, bc
 	ld e, [hl]
-	ld hl, $ffa0
+	lb hl, -1, $a0
 	add hl, de
 	ld e, l
 	ld d, h

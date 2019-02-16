@@ -46,9 +46,9 @@ _CardFlip:
 	call CardFlip_InitAttrPals
 	call EnableLCD
 	call WaitBGMap2
-	ld a, $e4
+	ld a, %11100100
 	call DmgToCgbBGPals
-	ld de, $e4e4
+	lb de, %11100100, %11100100
 	call DmgToCgbObjPals
 	call DelayFrame
 	xor a
