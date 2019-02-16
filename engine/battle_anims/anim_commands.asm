@@ -112,10 +112,10 @@ RunBattleAnimScript:
 	cp ROLLOUT
 	jr nz, .not_rollout
 
-	ld a, $2e
-	ld b, 5
-	ld de, 4
-	ld hl, wActiveBGEffects
+	ld a, ANIM_BG_2E
+	ld b, NUM_BG_EFFECTS
+	ld de, BG_EFFECT_STRUCT_LENGTH
+	ld hl, wBGEffect1Function
 .find
 	cp [hl]
 	jr z, .done
@@ -643,10 +643,13 @@ BattleAnimCmd_ResetObp0:
 	ret
 
 BattleAnimCmd_ClearObjs:
+; BUG: This function only clears the first 6+(2/3) objects
+
 	ld hl, wActiveAnimObjects
 	ld a, $a0
+	; ld a, wActiveAnimObjectsEnd - wActiveAnimObjects
 .loop
-	ld [hl], $0
+	ld [hl], 0
 	inc hl
 	dec a
 	jr nz, .loop
@@ -693,7 +696,7 @@ endr
 
 BattleAnimCmd_IncObj:
 	call GetBattleAnimByte
-	ld e, 10
+	ld e, NUM_ANIM_OBJECTS
 	ld bc, wActiveAnimObjects
 .loop
 	ld hl, BATTLEANIMSTRUCT_INDEX
@@ -718,8 +721,8 @@ BattleAnimCmd_IncObj:
 
 BattleAnimCmd_IncBGEffect:
 	call GetBattleAnimByte
-	ld e, 5
-	ld bc, wActiveBGEffects
+	ld e, NUM_BG_EFFECTS
+	ld bc, wBGEffect1Function
 .loop
 	ld hl, $0
 	add hl, bc
@@ -743,7 +746,7 @@ BattleAnimCmd_IncBGEffect:
 
 BattleAnimCmd_SetObj:
 	call GetBattleAnimByte
-	ld e, 10
+	ld e, NUM_ANIM_OBJECTS
 	ld bc, wActiveAnimObjects
 .loop
 	ld hl, BATTLEANIMSTRUCT_INDEX
@@ -1430,10 +1433,10 @@ BattleAnim_SetOBPals:
 	ret
 
 BattleAnim_UpdateOAM_All:
-	ld a, $0
+	ld a, 0
 	ld [wBattleAnimOAMPointerLo], a
 	ld hl, wActiveAnimObjects
-	ld e, 10
+	ld e, NUM_ANIM_OBJECTS
 .loop
 	ld a, [hl]
 	and a

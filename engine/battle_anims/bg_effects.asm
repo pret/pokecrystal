@@ -10,7 +10,7 @@
 
 ExecuteBGEffects:
 	ld hl, wActiveBGEffects
-	ld e, 5
+	ld e, NUM_BG_EFFECTS
 .loop
 	ld a, [hl]
 	and a
@@ -23,7 +23,7 @@ ExecuteBGEffects:
 	pop de
 	pop hl
 .next
-	ld bc, 4
+	ld bc, BG_EFFECT_STRUCT_LENGTH
 	add hl, bc
 	dec e
 	jr nz, .loop
@@ -31,12 +31,12 @@ ExecuteBGEffects:
 
 QueueBGEffect:
 	ld hl, wActiveBGEffects
-	ld e, 5
+	ld e, NUM_BG_EFFECTS
 .loop
 	ld a, [hl]
 	and a
 	jr z, .load
-	ld bc, 4
+	ld bc, BG_EFFECT_STRUCT_LENGTH
 	add hl, bc
 	dec e
 	jr nz, .loop
