@@ -4,7 +4,7 @@ WriteOAMDMACodeToHRAM::
 	ld hl, .PushOAM
 .loop
 	ld a, [hli]
-	ld [$ff00+c], a
+	ldh [c], a
 	inc c
 	dec b
 	jr nz, .loop

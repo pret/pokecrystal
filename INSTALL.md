@@ -38,7 +38,7 @@ Click once on the text that says "**Skip**" next to each package to select the m
 
 Then download [**rgbds**](https://github.com/rednex/rgbds/releases/): the latest **win64.zip** or **win32.zip** release. Extract it and put all the `exe` and `dll` files individually in **C:\cygwin64\usr\local\bin**.
 
-**Note: If you already have an older rgbds, you will need to update to 0.3.7.** Ignore this if you have never installed rgbds before. If a version newer than 0.3.7 does not work, try downloading 0.3.7.
+**Note: If you already have an older rgbds, you will need to update to 0.3.8.** Ignore this if you have never installed rgbds before. If a version newer than 0.3.8 does not work, try downloading 0.3.8.
 
 Now open the **Cygwin terminal** and enter the following commands.
 

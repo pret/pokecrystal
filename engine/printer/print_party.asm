@@ -1,4 +1,4 @@
-PRINTPARTY_HP EQUS "\"◀\"" ; $71
+PRINTPARTY_HP EQU "◀" ; $71
 
 PrintPage1:
 	hlcoord 0, 0
