@@ -128,7 +128,7 @@ void write_commands_to_textfile (const char * file, const struct command * comma
 
 void write_command_to_textfile (FILE * fp, struct command command, const unsigned char * input_stream) {
   if ((!command.count) || (command.count > 1024)) error_exit(2, "invalid command in output stream");
-  int rv, pos;
+  int rv = -1, pos;
   const char * kind;
   switch (command.command) {
     case 0:
