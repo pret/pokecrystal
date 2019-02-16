@@ -263,7 +263,7 @@ wCurIcon:: db ; c3b6
 wCurIconTile:: db
 wSpriteAnimAddrBackup::
 wSpriteAnimIDBuffer::
-wCurSpriteAddSubFlags::
+wCurSpriteOAMFlags::
 	dw
 wCurAnimVTile:: db
 wCurAnimXCoord:: db
@@ -3045,11 +3045,11 @@ wBGEffect4:: battle_bg_effect wBGEffect4
 wBGEffect5:: battle_bg_effect wBGEffect5
 wActiveBGEffectsEnd::
 
-wNumActiveBattleAnims:: db ; d40e
+wLastAnimObjectIndex:: db ; d40e
 
 wBattleAnimFlags:: db ; d40f
 wBattleAnimAddress:: dw ; d410
-wBattleAnimDuration:: db ; d412
+wBattleAnimDelay:: db ; d412
 wBattleAnimParent:: dw ; d413
 wBattleAnimLoops:: db ; d415
 wBattleAnimVar:: db ; d416
@@ -3077,7 +3077,7 @@ wBattleAnimTempXCoord:: db
 wBattleAnimTempYCoord:: db
 wBattleAnimTempXOffset:: db
 wBattleAnimTempYOffset:: db
-wBattleAnimTempAddSubFlags:: db
+wBattleAnimTempFrameOAMFlags:: db
 wBattleAnimTempPalette:: db
 ENDU ; d422
 

@@ -233,7 +233,7 @@ anim_obp1: MACRO
 ENDM
 
 	enum anim_clearsprites_command ; $f4
-anim_clearsprites: MACRO
+anim_keepsprites: MACRO
 	db anim_clearsprites_command
 ENDM
 

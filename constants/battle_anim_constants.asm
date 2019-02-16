@@ -25,6 +25,7 @@
 	const BATTLEANIMSTRUCT_16
 	const BATTLEANIMSTRUCT_17
 BATTLEANIMSTRUCT_LENGTH EQU const_value
+NUM_ANIM_OBJECTS EQU 10 ; see wActiveAnimObjects
 
 ; Start tile for battle animation graphics
 BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
@@ -816,6 +817,8 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BG_EFFECT_STRUCT_JT_INDEX
 	const BG_EFFECT_STRUCT_BATTLE_TURN
 	const BG_EFFECT_STRUCT_03
+BG_EFFECT_STRUCT_LENGTH EQU const_value
+NUM_BG_EFFECTS EQU 5 ; see wActiveBGEffects
 
 ; battle palettes
 	const_def

@@ -91,6 +91,7 @@ Caveats:
 - Doesn't work with `anim_4gfx` and `anim_5gfx`.
 - This overwrites previously loaded animation graphics if you've loaded more than 53 tiles (2row) or 66 tiles (1row).
 
+
 ## `$DB`: `anim_checkpokeball`
 
 Sets `BattleAnimVar` to the result of [GetPokeBallWobble](/engine/battle_anims/pokeball_wobble.asm).
@@ -196,7 +197,11 @@ Sets `rOBP0` to *colors*.
 Sets `rOBP1` to *colors*.
 
 
-## `$F4`: `anim_clearsprites`
+## `$F4`: `anim_keepsprites`
+
+Causes only the palettes to be cleared from the OAM memory when the animation ends, instead of clearing all of the OAM memory. This causes all objects to start using palette 0 (monochrome) when the animation script ends, and whatever objects were on the screen before the last `anim_ret` will stay on the screen.
+
+This is only used for the Poke Ball animation.
 
 
 ## `$F5`: `anim_0xf5`

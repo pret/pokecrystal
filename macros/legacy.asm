@@ -174,3 +174,6 @@ limited_interpret_data EQUS "text_dots"
 link_wait_button       EQUS "text_linkwaitbutton"
 current_day            EQUS "text_today"
 text_jump              EQUS "text_far"
+
+; macros/scripts/battle_anims.asm
+anim_clearsprites EQUS "anim_keepsprites"
