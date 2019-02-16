@@ -1,3 +1,5 @@
+MAHOGANYTOWN_RAGECANDYBAR_PRICE EQU 300
+
 	const_def 2 ; object constants
 	const MAHOGANYTOWN_POKEFAN_M
 	const MAHOGANYTOWN_GRAMPS
@@ -54,13 +56,13 @@ RageCandyBarMerchantScript:
 	special PlaceMoneyTopRight
 	yesorno
 	iffalse .Refused
-	checkmoney YOUR_MONEY, 300
+	checkmoney YOUR_MONEY, MAHOGANYTOWN_RAGECANDYBAR_PRICE
 	ifequal HAVE_LESS, .NotEnoughMoney
 	giveitem RAGECANDYBAR
 	iffalse .NoRoom
 	waitsfx
 	playsound SFX_TRANSACTION
-	takemoney YOUR_MONEY, 300
+	takemoney YOUR_MONEY, MAHOGANYTOWN_RAGECANDYBAR_PRICE
 	special PlaceMoneyTopRight
 	writetext RageCandyBarMerchantSavorItText
 	waitbutton

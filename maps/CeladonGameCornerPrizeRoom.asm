@@ -1,3 +1,10 @@
+CELADONGAMECORNERPRIZEROOM_TM32_COINS EQU 1500
+CELADONGAMECORNERPRIZEROOM_TM29_COINS EQU 3500
+CELADONGAMECORNERPRIZEROOM_TM15_COINS EQU 7500
+CELADONGAMECORNERPRIZEROOM_PIKACHU_COINS  EQU 2222
+CELADONGAMECORNERPRIZEROOM_PORYGON_COINS  EQU 5555
+CELADONGAMECORNERPRIZEROOM_LARVITAR_COINS EQU 8888
+
 	const_def 2 ; object constants
 	const CELADONGAMECORNERPRIZEROOM_GENTLEMAN
 	const CELADONGAMECORNERPRIZEROOM_PHARMACIST
@@ -26,42 +33,42 @@ CeladonPrizeRoom_tmcounterloop:
 	loadmenu CeladonPrizeRoom_TMMenuHeader
 	verticalmenu
 	closewindow
-	ifequal 1, .doubleteam
-	ifequal 2, .psychic
-	ifequal 3, .hyperbeam
-	jump CeladonPrizeRoom_cancel
+	ifequal 1, .DoubleTeam
+	ifequal 2, .Psychic
+	ifequal 3, .HyperBeam
+	jump CeladonPrizeRoom_CancelPurchaseScript
 
-.doubleteam
-	checkcoins 1500
+.DoubleTeam:
+	checkcoins CELADONGAMECORNERPRIZEROOM_TM32_COINS
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
 	itemtotext TM_DOUBLE_TEAM, MEM_BUFFER_0
 	scall CeladonPrizeRoom_askbuy
-	iffalse CeladonPrizeRoom_cancel
+	iffalse CeladonPrizeRoom_CancelPurchaseScript
 	giveitem TM_DOUBLE_TEAM
 	iffalse CeladonPrizeRoom_notenoughroom
-	takecoins 1500
+	takecoins CELADONGAMECORNERPRIZEROOM_TM32_COINS
 	jump CeladonPrizeRoom_purchased
 
-.psychic
-	checkcoins 3500
+.Psychic:
+	checkcoins CELADONGAMECORNERPRIZEROOM_TM29_COINS
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
 	itemtotext TM_PSYCHIC_M, MEM_BUFFER_0
 	scall CeladonPrizeRoom_askbuy
-	iffalse CeladonPrizeRoom_cancel
+	iffalse CeladonPrizeRoom_CancelPurchaseScript
 	giveitem TM_PSYCHIC_M
 	iffalse CeladonPrizeRoom_notenoughroom
-	takecoins 3500
+	takecoins CELADONGAMECORNERPRIZEROOM_TM29_COINS
 	jump CeladonPrizeRoom_purchased
 
-.hyperbeam
-	checkcoins 7500
+.HyperBeam:
+	checkcoins CELADONGAMECORNERPRIZEROOM_TM15_COINS
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
 	itemtotext TM_HYPER_BEAM, MEM_BUFFER_0
 	scall CeladonPrizeRoom_askbuy
-	iffalse CeladonPrizeRoom_cancel
+	iffalse CeladonPrizeRoom_CancelPurchaseScript
 	giveitem TM_HYPER_BEAM
 	iffalse CeladonPrizeRoom_notenoughroom
-	takecoins 7500
+	takecoins CELADONGAMECORNERPRIZEROOM_TM15_COINS
 	jump CeladonPrizeRoom_purchased
 
 CeladonPrizeRoom_askbuy:
@@ -88,7 +95,7 @@ CeladonPrizeRoom_notenoughroom:
 	closetext
 	end
 
-CeladonPrizeRoom_cancel:
+CeladonPrizeRoom_CancelPurchaseScript:
 	writetext CeladonPrizeRoom_ComeAgainText
 	waitbutton
 	closetext
@@ -127,19 +134,19 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 	loadmenu .MenuHeader
 	verticalmenu
 	closewindow
-	ifequal 1, .pikachu
-	ifequal 2, .porygon
-	ifequal 3, .larvitar
-	jump CeladonPrizeRoom_cancel
+	ifequal 1, .Pikachu
+	ifequal 2, .Porygon
+	ifequal 3, .Larvitar
+	jump CeladonPrizeRoom_CancelPurchaseScript
 
-.pikachu
-	checkcoins 2222
+.Pikachu:
+	checkcoins CELADONGAMECORNERPRIZEROOM_PIKACHU_COINS
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
 	checkcode VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, CeladonPrizeRoom_notenoughroom
 	pokenamemem PIKACHU, MEM_BUFFER_0
 	scall CeladonPrizeRoom_askbuy
-	iffalse CeladonPrizeRoom_cancel
+	iffalse CeladonPrizeRoom_CancelPurchaseScript
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext CeladonPrizeRoom_HereYouGoText
@@ -147,17 +154,17 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 	writebyte PIKACHU
 	special GameCornerPrizeMonCheckDex
 	givepoke PIKACHU, 25
-	takecoins 2222
+	takecoins CELADONGAMECORNERPRIZEROOM_PIKACHU_COINS
 	jump .loop
 
-.porygon
-	checkcoins 5555
+.Porygon:
+	checkcoins CELADONGAMECORNERPRIZEROOM_PORYGON_COINS
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
 	checkcode VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, CeladonPrizeRoom_notenoughroom
 	pokenamemem PORYGON, MEM_BUFFER_0
 	scall CeladonPrizeRoom_askbuy
-	iffalse CeladonPrizeRoom_cancel
+	iffalse CeladonPrizeRoom_CancelPurchaseScript
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext CeladonPrizeRoom_HereYouGoText
@@ -165,17 +172,17 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 	writebyte PORYGON
 	special GameCornerPrizeMonCheckDex
 	givepoke PORYGON, 15
-	takecoins 5555
+	takecoins CELADONGAMECORNERPRIZEROOM_PORYGON_COINS
 	jump .loop
 
-.larvitar
-	checkcoins 8888
+.Larvitar:
+	checkcoins CELADONGAMECORNERPRIZEROOM_LARVITAR_COINS
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
 	checkcode VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, CeladonPrizeRoom_notenoughroom
 	pokenamemem LARVITAR, MEM_BUFFER_0
 	scall CeladonPrizeRoom_askbuy
-	iffalse CeladonPrizeRoom_cancel
+	iffalse CeladonPrizeRoom_CancelPurchaseScript
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext CeladonPrizeRoom_HereYouGoText
@@ -183,7 +190,7 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 	writebyte LARVITAR
 	special GameCornerPrizeMonCheckDex
 	givepoke LARVITAR, 40
-	takecoins 8888
+	takecoins CELADONGAMECORNERPRIZEROOM_LARVITAR_COINS
 	jump .loop
 
 .MenuHeader:

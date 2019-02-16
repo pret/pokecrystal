@@ -1,3 +1,7 @@
+CELADONDEPTSTORE6F_FRESH_WATER_PRICE EQU 200
+CELADONDEPTSTORE6F_SODA_POP_PRICE    EQU 300
+CELADONDEPTSTORE6F_LEMONADE_PRICE    EQU 350
+
 	const_def 2 ; object constants
 	const CELADONDEPTSTORE6F_SUPER_NERD
 	const CELADONDEPTSTORE6F_YOUNGSTER
@@ -33,29 +37,29 @@ CeladonDeptStore6FVendingMachine:
 	end
 
 .FreshWater:
-	checkmoney YOUR_MONEY, 200
+	checkmoney YOUR_MONEY, CELADONDEPTSTORE6F_FRESH_WATER_PRICE
 	ifequal HAVE_LESS, .NotEnoughMoney
 	giveitem FRESH_WATER
 	iffalse .NotEnoughSpace
-	takemoney YOUR_MONEY, 200
+	takemoney YOUR_MONEY, CELADONDEPTSTORE6F_FRESH_WATER_PRICE
 	itemtotext FRESH_WATER, MEM_BUFFER_0
 	jump .VendItem
 
 .SodaPop:
-	checkmoney YOUR_MONEY, 300
+	checkmoney YOUR_MONEY, CELADONDEPTSTORE6F_SODA_POP_PRICE
 	ifequal HAVE_LESS, .NotEnoughMoney
 	giveitem SODA_POP
 	iffalse .NotEnoughSpace
-	takemoney YOUR_MONEY, 300
+	takemoney YOUR_MONEY, CELADONDEPTSTORE6F_SODA_POP_PRICE
 	itemtotext SODA_POP, MEM_BUFFER_0
 	jump .VendItem
 
 .Lemonade:
-	checkmoney YOUR_MONEY, 350
+	checkmoney YOUR_MONEY, CELADONDEPTSTORE6F_LEMONADE_PRICE
 	ifequal HAVE_LESS, .NotEnoughMoney
 	giveitem LEMONADE
 	iffalse .NotEnoughSpace
-	takemoney YOUR_MONEY, 350
+	takemoney YOUR_MONEY, CELADONDEPTSTORE6F_LEMONADE_PRICE
 	itemtotext LEMONADE, MEM_BUFFER_0
 	jump .VendItem
 

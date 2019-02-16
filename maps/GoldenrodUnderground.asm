@@ -1,3 +1,6 @@
+GOLDENRODUNDERGROUND_OLDER_HAIRCUT_PRICE   EQU 500
+GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_PRICE EQU 300
+
 	const_def 2 ; object constants
 	const GOLDENRODUNDERGROUND_SUPER_NERD1
 	const GOLDENRODUNDERGROUND_SUPER_NERD2
@@ -194,7 +197,7 @@ OlderHaircutBrotherScript:
 	writetext UnknownText_0x7c5f9
 	yesorno
 	iffalse .Refused
-	checkmoney YOUR_MONEY, 500
+	checkmoney YOUR_MONEY, GOLDENRODUNDERGROUND_OLDER_HAIRCUT_PRICE
 	ifequal HAVE_LESS, .NotEnoughMoney
 	writetext UnknownText_0x7c69a
 	buttonsound
@@ -225,7 +228,7 @@ OlderHaircutBrotherScript:
 	jump .then
 
 .then
-	takemoney YOUR_MONEY, 500
+	takemoney YOUR_MONEY, GOLDENRODUNDERGROUND_OLDER_HAIRCUT_PRICE
 	special PlaceMoneyTopRight
 	writetext UnknownText_0x7c6b8
 	waitbutton
@@ -277,7 +280,7 @@ YoungerHaircutBrotherScript:
 	writetext UnknownText_0x7c75c
 	yesorno
 	iffalse .Refused
-	checkmoney YOUR_MONEY, 300
+	checkmoney YOUR_MONEY, GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_PRICE
 	ifequal HAVE_LESS, .NotEnoughMoney
 	writetext UnknownText_0x7c7f1
 	buttonsound
@@ -308,7 +311,7 @@ YoungerHaircutBrotherScript:
 	jump .then
 
 .then
-	takemoney YOUR_MONEY, 300
+	takemoney YOUR_MONEY, GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_PRICE
 	special PlaceMoneyTopRight
 	writetext UnknownText_0x7c80e
 	waitbutton

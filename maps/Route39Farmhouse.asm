@@ -1,3 +1,5 @@
+ROUTE39FARMHOUSE_MILK_PRICE EQU 500
+
 	const_def 2 ; object constants
 	const ROUTE39FARMHOUSE_POKEFAN_M
 	const ROUTE39FARMHOUSE_POKEFAN_F
@@ -25,11 +27,11 @@ FarmerMScript_SellMilk:
 	special PlaceMoneyTopRight
 	yesorno
 	iffalse FarmerMScript_NoSale
-	checkmoney YOUR_MONEY, 500
+	checkmoney YOUR_MONEY, ROUTE39FARMHOUSE_MILK_PRICE
 	ifequal HAVE_LESS, FarmerMScript_NoMoney
 	giveitem MOOMOO_MILK
 	iffalse FarmerMScript_NoRoom
-	takemoney YOUR_MONEY, 500
+	takemoney YOUR_MONEY, ROUTE39FARMHOUSE_MILK_PRICE
 	special PlaceMoneyTopRight
 	waitsfx
 	playsound SFX_TRANSACTION

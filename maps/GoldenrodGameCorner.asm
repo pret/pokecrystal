@@ -1,3 +1,10 @@
+GOLDENRODGAMECORNER_TM25_COINS EQU 5500
+GOLDENRODGAMECORNER_TM14_COINS EQU 5500
+GOLDENRODGAMECORNER_TM38_COINS EQU 5500
+GOLDENRODGAMECORNER_ABRA_COINS      EQU 100
+GOLDENRODGAMECORNER_CUBONE_COINS    EQU 800
+GOLDENRODGAMECORNER_WOBBUFFET_COINS EQU 1500
+
 	const_def 2 ; object constants
 	const GOLDENRODGAMECORNER_CLERK
 	const GOLDENRODGAMECORNER_RECEPTIONIST1
@@ -68,36 +75,36 @@ GoldenrodGameCornerTMVendor_LoopScript:
 	jump GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 
 .Thunder:
-	checkcoins 5500
+	checkcoins GOLDENRODGAMECORNER_TM25_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	itemtotext TM_THUNDER, MEM_BUFFER_0
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	giveitem TM_THUNDER
 	iffalse GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
-	takecoins 5500
+	takecoins GOLDENRODGAMECORNER_TM25_COINS
 	jump GoldenrodGameCornerTMVendor_FinishScript
 
 .Blizzard:
-	checkcoins 5500
+	checkcoins GOLDENRODGAMECORNER_TM14_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	itemtotext TM_BLIZZARD, MEM_BUFFER_0
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	giveitem TM_BLIZZARD
 	iffalse GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
-	takecoins 5500
+	takecoins GOLDENRODGAMECORNER_TM14_COINS
 	jump GoldenrodGameCornerTMVendor_FinishScript
 
 .FireBlast:
-	checkcoins 5500
+	checkcoins GOLDENRODGAMECORNER_TM38_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	itemtotext TM_FIRE_BLAST, MEM_BUFFER_0
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	giveitem TM_FIRE_BLAST
 	iffalse GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
-	takecoins 5500
+	takecoins GOLDENRODGAMECORNER_TM38_COINS
 	jump GoldenrodGameCornerTMVendor_FinishScript
 
 GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript:
@@ -163,13 +170,13 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	loadmenu .MenuHeader
 	verticalmenu
 	closewindow
-	ifequal 1, .abra
-	ifequal 2, .cubone
-	ifequal 3, .wobbuffet
+	ifequal 1, .Abra
+	ifequal 2, .Cubone
+	ifequal 3, .Wobbuffet
 	jump GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 
-.abra
-	checkcoins 100
+.Abra:
+	checkcoins GOLDENRODGAMECORNER_ABRA_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	checkcode VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
@@ -183,11 +190,11 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	writebyte ABRA
 	special GameCornerPrizeMonCheckDex
 	givepoke ABRA, 5
-	takecoins 100
+	takecoins GOLDENRODGAMECORNER_ABRA_COINS
 	jump .loop
 
-.cubone
-	checkcoins 800
+.Cubone:
+	checkcoins GOLDENRODGAMECORNER_CUBONE_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	checkcode VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
@@ -201,11 +208,11 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	writebyte CUBONE
 	special GameCornerPrizeMonCheckDex
 	givepoke CUBONE, 15
-	takecoins 800
+	takecoins GOLDENRODGAMECORNER_CUBONE_COINS
 	jump .loop
 
-.wobbuffet
-	checkcoins 1500
+.Wobbuffet:
+	checkcoins GOLDENRODGAMECORNER_WOBBUFFET_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	checkcode VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
@@ -219,7 +226,7 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	writebyte WOBBUFFET
 	special GameCornerPrizeMonCheckDex
 	givepoke WOBBUFFET, 15
-	takecoins 1500
+	takecoins GOLDENRODGAMECORNER_WOBBUFFET_COINS
 	jump .loop
 
 .MenuHeader:
