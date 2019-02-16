@@ -128,10 +128,10 @@ RunBattleAnimScript:
 
 .done
 	ld a, [wBattleAnimFlags]
-	bit 0, a
+	bit BATTLEANIM_STOP_F, a
 	jr z, .playframe
 
-	call BattleAnim_ClearCGB_OAMFlags
+	call BattleAnim_ClearOAM
 	ret
 
 BattleAnimClearHud:
@@ -232,16 +232,17 @@ Unreferenced_Functioncc220:
 	call BattleAnimDelayFrame
 	ret
 
-BattleAnim_ClearCGB_OAMFlags:
+BattleAnim_ClearOAM:
 	ld a, [wBattleAnimFlags]
-	bit 3, a
+	bit BATTLEANIM_KEEPSPRITES_F, a
 	jr z, .delete
 
+	; Instead of deleting the sprites, make them all use palette 0 (monochrome)
 	ld hl, wVirtualOAMSprite00Attributes
 	ld c, NUM_SPRITE_OAM_STRUCTS
 .loop
 	ld a, [hl]
-	and $f0
+	and ~PALETTE_MASK & ~VRAM_BANK_1
 	ld [hli], a
 rept SPRITEOAMSTRUCT_LENGTH + -1
 	inc hl
@@ -289,10 +290,10 @@ RunBattleAnimCommand:
 
 ; Return from a subroutine.
 	ld hl, wBattleAnimFlags
-	bit 1, [hl]
+	bit BATTLEANIM_IN_SUBROUTINE_F, [hl]
 	jr nz, .do_anim
 
-	set 0, [hl]
+	set BATTLEANIM_STOP_F, [hl]
 	ret
 
 .not_done_with_anim
@@ -361,7 +362,7 @@ BattleAnimCommands::
 	dw BattleAnimCmd_BGP
 	dw BattleAnimCmd_OBP0
 	dw BattleAnimCmd_OBP1
-	dw BattleAnimCmd_ClearSprites
+	dw BattleAnimCmd_KeepSprites
 	dw BattleAnimCmd_F5
 	dw BattleAnimCmd_F6
 	dw BattleAnimCmd_F7
@@ -382,7 +383,7 @@ BattleAnimCmd_ED:
 
 BattleAnimCmd_Ret:
 	ld hl, wBattleAnimFlags
-	res 1, [hl]
+	res BATTLEANIM_IN_SUBROUTINE_F, [hl]
 	ld hl, wBattleAnimParent
 	ld e, [hl]
 	inc hl
@@ -413,7 +414,7 @@ BattleAnimCmd_Call:
 	inc hl
 	ld [hl], d
 	ld hl, wBattleAnimFlags
-	set 1, [hl]
+	set BATTLEANIM_IN_SUBROUTINE_F, [hl]
 	ret
 
 BattleAnimCmd_Jump:
@@ -430,12 +431,12 @@ BattleAnimCmd_Jump:
 BattleAnimCmd_Loop:
 	call GetBattleAnimByte
 	ld hl, wBattleAnimFlags
-	bit 2, [hl]
+	bit BATTLEANIM_IN_LOOP_F, [hl]
 	jr nz, .continue_loop
 	and a
 	jr z, .perpetual
 	dec a
-	set 2, [hl]
+	set BATTLEANIM_IN_LOOP_F, [hl]
 	ld [wBattleAnimLoops], a
 .continue_loop
 	ld hl, wBattleAnimLoops
@@ -456,7 +457,7 @@ BattleAnimCmd_Loop:
 
 .return_from_loop
 	ld hl, wBattleAnimFlags
-	res 2, [hl]
+	res BATTLEANIM_IN_LOOP_F, [hl]
 	ld hl, wBattleAnimAddress
 	ld e, [hl]
 	inc hl
@@ -1155,9 +1156,9 @@ BattleAnimCmd_OAMOff:
 	ldh [hOAMUpdate], a
 	ret
 
-BattleAnimCmd_ClearSprites:
+BattleAnimCmd_KeepSprites:
 	ld hl, wBattleAnimFlags
-	set 3, [hl]
+	set BATTLEANIM_KEEPSPRITES_F, [hl]
 	ret
 
 BattleAnimCmd_F5:
