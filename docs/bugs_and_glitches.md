@@ -68,6 +68,7 @@ Fixes are written in the `diff` format. If you've used Git before, this should l
 - [`ChooseWildEncounter` doesn't really validate the wild Pokémon species](#choosewildencounter-doesnt-really-validate-the-wild-pokémon-species)
 - [`TryObjectEvent` arbitrary code execution](#tryobjectevent-arbitrary-code-execution)
 - [`ClearWRAM` only clears WRAM bank 1](#clearwram-only-clears-wram-bank-1)
+- [`BattleAnimCmd_ClearObjs` only clears the first 6⅔ objects](#battleanimcmd_clearobjs-only-clears-the-first-6⅔-objects)
 
 
 ## Thick Club and Light Ball can make (Special) Attack wrap around above 1024
@@ -1583,5 +1584,24 @@ This supports up to six entries.
  	cp 8
 -	jr nc, .bank_loop ; Should be jr c
 +	jr c, .bank_loop
+ 	ret
+```
+
+
+## `BattleAnimCmd_ClearObjs` only clears the first 6⅔ objects
+
+**Fix:** Edit `BattleAnimCmd_ClearObjs` in [engine/battle_anims/anim_commands.asm](/engine/battle_anims/anim_commands.asm):
+
+```diff
+ BattleAnimCmd_ClearObjs:
+-; BUG: This function only clears the first 6⅔ objects
+ 	ld hl, wActiveAnimObjects
+-	ld a, $a0 ; should be NUM_ANIM_OBJECTS * BATTLEANIMSTRUCT_LENGTH
+-	ld a, NUM_ANIM_OBJECTS * BATTLEANIMSTRUCT_LENGTH
+ .loop
+ 	ld [hl], 0
+ 	inc hl
+ 	dec a
+ 	jr nz, .loop
  	ret
 ```
