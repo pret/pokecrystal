@@ -279,7 +279,7 @@ Until this document is filled out, the [G/S Scripting Compendium](https://hax.ii
 
 ## `$88`: `specialsound`
 
-## `$89`: <code>passtoengine <i>data_pointer</i></code>
+## `$89`: <code>autoinput <i>input_pointer</i></code>
 
 ## `$8A`: <code>newloadmap <i>which_method</i></code>
 

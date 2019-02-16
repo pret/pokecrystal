@@ -202,7 +202,7 @@ endc
 	dw Script_waitsfx                    ; 86
 	dw Script_warpsound                  ; 87
 	dw Script_specialsound               ; 88
-	dw Script_passtoengine               ; 89
+	dw Script_autoinput                  ; 89
 	dw Script_newloadmap                 ; 8a
 	dw Script_pause                      ; 8b
 	dw Script_deactivatefacing           ; 8c
@@ -2653,9 +2653,9 @@ Script_closetext:
 	call CloseText
 	ret
 
-Script_passtoengine:
+Script_autoinput:
 ; script command 0x89
-; parameters: data_pointer
+; parameters: input_pointer
 
 	call GetScriptByte
 	push af

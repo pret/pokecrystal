@@ -53,6 +53,7 @@ storetext         EQUS "battletowertext"
 displaylocation   EQUS "landmarktotext"
 givepokeitem      EQUS "givepokemail"
 checkpokeitem     EQUS "checkpokemail"
+passtoengine      EQUS "autoinput"
 
 ; macros/scripts/maps.asm
 

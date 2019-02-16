@@ -857,10 +857,11 @@ specialsound: MACRO
 	db specialsound_command
 ENDM
 
-	enum passtoengine_command ; $89
-passtoengine: MACRO
-	db passtoengine_command
-	db \1 ; data_pointer
+	enum autoinput_command ; $89
+autoinput: MACRO
+	db autoinput_command
+	db BANK(\1) ; input_bank
+	dw \1 ; input_pointer
 ENDM
 
 	enum newloadmap_command ; $8a
