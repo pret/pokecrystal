@@ -1289,12 +1289,12 @@ Then edit `SurfStartStep` in [engine/overworld/player_object.asm](/engine/overwo
 -	ret
 -
 -.GetMovementData:
-	ld a, [wPlayerDirection]
-	srl a
-	srl a
-	maskbits NUM_DIRECTIONS
-	ld e, a
-	ld d, 0
+ 	ld a, [wPlayerDirection]
+ 	srl a
+ 	srl a
+ 	maskbits NUM_DIRECTIONS
+ 	ld e, a
+ 	ld d, 0
  	ld hl, .movement_data
  	add hl, de
 -	ld a, [hl]
