@@ -56,7 +56,7 @@ PhoneRing_CopyTilemapAtOnce:
 rept SCREEN_WIDTH / 2
 	pop de
 .loop\@
-	ld a, [$ff00+c]
+	ldh a, [c]
 	and b
 	jr nz, .loop\@
 	ld [hl], e

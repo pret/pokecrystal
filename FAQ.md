@@ -32,7 +32,7 @@ You need to install `gcc`. If you're using Cygwin, re-run its setup, and at "Sel
 
 ### "ERROR: `UNION` already defined"
 
-Download [**rgbds 0.3.7**][rgbds]. Older versions will not work.
+Download [**rgbds 0.3.8**][rgbds]. Older versions will not work.
 
 ### "Segmentation fault" from `rgbgfx`
 

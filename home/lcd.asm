@@ -6,7 +6,7 @@ Unreferenced_Function547::
 	ret nz
 	ld c, a
 	ld a, [wLYOverrides]
-	ld [$ff00+c], a
+	ldh [c], a
 	ret
 
 LCD::
@@ -25,7 +25,7 @@ LCD::
 	ldh a, [hLCDCPointer]
 	ld c, a
 	ld a, b
-	ld [$ff00+c], a
+	ldh [c], a
 	pop bc
 
 .done

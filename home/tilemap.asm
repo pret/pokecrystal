@@ -119,7 +119,7 @@ rept SCREEN_WIDTH / 2
 	pop de
 ; if in v/hblank, wait until not in v/hblank
 .loop\@
-	ld a, [$ff00+c]
+	ldh a, [c]
 	and b
 	jr nz, .loop\@
 ; load BGMap0

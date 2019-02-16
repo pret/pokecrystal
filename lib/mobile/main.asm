@@ -215,9 +215,9 @@ Function1100dc:
 	ld [$c815], a
 	ld c, $7
 	ld a, $2
-	ld [$ff00+c], a
+	ldh [c], a
 	ld a, $6
-	ld [$ff00+c], a
+	ldh [c], a
 	ret
 
 Function110115:
@@ -604,9 +604,9 @@ Function11032c:
 
 Function110393:
 	ld c, LOW(rIE)
-	ld a, [$ff00+c]
+	ldh a, [c]
 	or $c
-	ld [$ff00+c], a
+	ldh [c], a
 	ret
 
 Function11039a:
@@ -3416,9 +3416,9 @@ Function111686:
 	xor a
 	ldh [rTAC], a
 	ld c, $ff
-	ld a, [$ff00+c]
+	ldh a, [c]
 	and $f3
-	ld [$ff00+c], a
+	ldh [c], a
 	ld a, [$cb48]
 	ld [$c86a], a
 	ld a, [$cb47]
