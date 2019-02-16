@@ -1254,7 +1254,66 @@ This bug prevents you from using blocksets with more than 128 blocks.
 
 ([Video](https://www.youtube.com/watch?v=XFOWvMNG-zw))
 
-*To do:* Identify specific code causing this bug and fix it.
+**Fix:**
+
+First, edit `UsedSurfScript` in [engine/events/overworld.asm](/engine/events/overworld.asm):
+
+```diff
+ UsedSurfScript:
+ 	writetext UsedSurfText ; "used SURF!"
+ 	waitbutton
+ 	closetext
+ 
+ 	callasm .empty_fn ; empty function
+ 
+ 	copybytetovar wBuffer2
+ 	writevarcode VAR_MOVEMENT
+ 
+ 	special ReplaceKrisSprite
+ 	special PlayMapMusic
+-; step into the water (slow_step DIR, step_end)
+ 	special SurfStartStep
+-	applymovement PLAYER, wMovementBuffer
+ 	end
+```
+
+Then edit `SurfStartStep` in [engine/overworld/player_object.asm](/engine/overworld/player_object.asm):
+
+```diff
+ SurfStartStep:
+-	call InitMovementBuffer
+-	call .GetMovementData
+-	call AppendToMovementBuffer
+-	ld a, movement_step_end
+-	call AppendToMovementBuffer
+-	ret
+-
+-.GetMovementData:
+	ld a, [wPlayerDirection]
+	srl a
+	srl a
+	maskbits NUM_DIRECTIONS
+	ld e, a
+	ld d, 0
+ 	ld hl, .movement_data
+ 	add hl, de
+-	ld a, [hl]
+-	ret
++	add hl, de
++	add hl, de
++	ld a, BANK(.movement_data)
++	jp StartAutoInput
+
+ .movement_data
+-	slow_step DOWN
+-	slow_step UP
+-	slow_step LEFT
+-	slow_step RIGHT
++	db D_DOWN,  0, -1
++	db D_UP,    0, -1
++	db D_LEFT,  0, -1
++	db D_RIGHT, 0, -1
+```
 
 
 ## Swimming NPCs aren't limited by their movement radius

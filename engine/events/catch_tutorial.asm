@@ -35,8 +35,8 @@ CatchTutorial::
 	ldh [hJoyPressed], a
 	ld a, [wOptions]
 	push af
-	and $f8
-	add $3
+	and $ff ^ TEXT_DELAY_MASK
+	add TEXT_DELAY_MED
 	ld [wOptions], a
 	ld hl, .AutoInput
 	ld a, BANK(.AutoInput)
