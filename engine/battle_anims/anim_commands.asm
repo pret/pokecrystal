@@ -242,7 +242,7 @@ BattleAnim_ClearOAM:
 	ld c, NUM_SPRITE_OAM_STRUCTS
 .loop
 	ld a, [hl]
-	and ~PALETTE_MASK & ~VRAM_BANK_1
+	and $ff ^ (PALETTE_MASK | VRAM_BANK_1)
 	ld [hli], a
 rept SPRITEOAMSTRUCT_LENGTH + -1
 	inc hl

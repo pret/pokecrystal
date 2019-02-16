@@ -171,7 +171,7 @@ BattleAnimOAMUpdate:
 	or b
 	ld b, a
 	ld a, [wBattleAnimTempPalette]
-	and (PRIORITY | Y_FLIP | X_FLIP | OBP_NUM) ^ $ff
+	and PALETTE_MASK | VRAM_BANK_1
 	or b
 	ld [de], a
 

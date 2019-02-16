@@ -350,7 +350,7 @@ GetSpriteOAMAttr:
 	and PRIORITY | Y_FLIP | X_FLIP
 	ld b, a
 	ld a, [hl]
-	and (PRIORITY | Y_FLIP | X_FLIP) ^ $ff
+	and $ff ^ (PRIORITY | Y_FLIP | X_FLIP)
 	or b
 	ret
 
@@ -436,7 +436,7 @@ GetSpriteAnimFrame:
 	push af
 	ld a, [hl]
 	push hl
-	and (Y_FLIP << 1 | X_FLIP << 1) ^ $ff
+	and $ff ^ (Y_FLIP << 1 | X_FLIP << 1)
 	ld hl, SPRITEANIMSTRUCT_DURATIONOFFSET
 	add hl, bc
 	add [hl]

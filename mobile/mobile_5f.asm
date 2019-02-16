@@ -1610,7 +1610,7 @@ endr
 Unknown_17da94:
 x = 0
 rept 8
-	db (1 << x) ^ $ff
+	db $ff ^ (1 << x)
 x = x + 1
 endr
 
