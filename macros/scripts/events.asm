@@ -860,8 +860,7 @@ ENDM
 	enum autoinput_command ; $89
 autoinput: MACRO
 	db autoinput_command
-	db BANK(\1) ; input_bank
-	dw \1 ; input_pointer
+	dba \1
 ENDM
 
 	enum newloadmap_command ; $8a
