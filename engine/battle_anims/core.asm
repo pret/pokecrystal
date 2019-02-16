@@ -89,7 +89,7 @@ BattleAnimOAMUpdate:
 	ld hl, wBattleAnimTempOAMFlags
 	ld a, [wBattleAnimTempFrameOAMFlags]
 	xor [hl]
-	and $e0 ; Keep priority, x flip and y flip flags.
+	and PRIORITY | Y_FLIP | X_FLIP
 	ld [hl], a
 	pop af
 
@@ -171,7 +171,7 @@ BattleAnimOAMUpdate:
 	or b
 	ld b, a
 	ld a, [wBattleAnimTempPalette]
-	and $f
+	and (PRIORITY | Y_FLIP | X_FLIP | OBP_NUM) ^ $ff
 	or b
 	ld [de], a
 
@@ -203,7 +203,7 @@ InitBattleAnimBuffer:
 	add hl, bc
 	ld a, [hl]
 
-	and %10000000
+	and PRIORITY
 	ld [wBattleAnimTempOAMFlags], a
 	xor a
 	ld [wBattleAnimTempFrameOAMFlags], a

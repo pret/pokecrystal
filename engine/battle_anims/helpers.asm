@@ -37,7 +37,7 @@ GetBattleAnimFrame:
 	push af
 	ld a, [hl]
 	push hl
-	and %00111111
+	and (Y_FLIP << 1 | X_FLIP << 1) ^ $ff
 	ld hl, BATTLEANIMSTRUCT_DURATION
 	add hl, bc
 	ld [hl], a
@@ -55,6 +55,7 @@ GetBattleAnimFrame:
 	ld hl, BATTLEANIMSTRUCT_DURATION
 	add hl, bc
 	ld [hl], a
+
 	ld hl, BATTLEANIMSTRUCT_FRAME
 	add hl, bc
 	dec [hl]
