@@ -630,40 +630,36 @@ ENDM
 
 ## `GetForestTreeFrame` works, but it's still bad
 
-In [engine/tilesets/tileset_anims.asm](/engine/tilesets/tileset_anims.asm):
-
-```asm
-GetForestTreeFrame:
-; Return 0 if a is even, or 2 if odd.
-	and a
-	jr z, .even
-	cp 1
-	jr z, .odd
-	cp 2
-	jr z, .even
-	cp 3
-	jr z, .odd
-	cp 4
-	jr z, .even
-	cp 5
-	jr z, .odd
-	cp 6
-	jr z, .even
-.odd
-	ld a, 2
-	scf
-	ret
-.even
-	xor a
-	ret
-```
+The routine `GetForestTreeFrame` in [engine/tilesets/tileset_anims.asm](/engine/tilesets/tileset_anims.asm) is hilariously inefficient.
 
 **Fix:**
 
+Edit `GetForestTreeFrame`:
+
 ```asm
-GetForestTreeFrame:
-; Return 0 if a is even, or 2 if odd.
-	and 1
-	add a
+ GetForestTreeFrame:
+ ; Return 0 if a is even, or 2 if odd.
+-	and a
+-	jr z, .even
+-	cp 1
+-	jr z, .odd
+-	cp 2
+-	jr z, .even
+-	cp 3
+-	jr z, .odd
+-	cp 4
+-	jr z, .even
+-	cp 5
+-	jr z, .odd
+-	cp 6
+-	jr z, .even
+-.odd
+-	ld a, 2
+-	scf
+-	ret
+-.even
+-	xor a
++	and 1
++	add a
 	ret
 ```
