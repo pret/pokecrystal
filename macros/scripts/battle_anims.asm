@@ -84,14 +84,14 @@ anim_incbgeffect: MACRO
 	db \1 ; effect
 ENDM
 
-	enum anim_enemyfeetobj_command ; $d9
+	enum anim_battlergfx_2row_command ; $d9
 anim_battlergfx_2row: MACRO
-	db anim_enemyfeetobj_command
+	db anim_battlergfx_2row_command
 ENDM
 
-	enum anim_playerheadobj_command ; $da
+	enum anim_battlergfx_1row_command ; $da
 anim_battlergfx_1row: MACRO
-	db anim_playerheadobj_command
+	db anim_battlergfx_1row_command
 ENDM
 
 	enum anim_checkpokeball_command ; $db
@@ -232,9 +232,9 @@ anim_obp1: MACRO
 	db \1 ; colors
 ENDM
 
-	enum anim_clearsprites_command ; $f4
+	enum anim_keepsprites_command ; $f4
 anim_keepsprites: MACRO
-	db anim_clearsprites_command
+	db anim_keepsprites_command
 ENDM
 
 	enum anim_0xf5_command ; $f5

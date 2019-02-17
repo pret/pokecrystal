@@ -177,4 +177,6 @@ current_day            EQUS "text_today"
 text_jump              EQUS "text_far"
 
 ; macros/scripts/battle_anims.asm
-anim_clearsprites EQUS "anim_keepsprites"
+anim_enemyfeetobj  EQUS "anim_battlergfx_2row"
+anim_playerheadobj EQUS "anim_battlergfx_1row"
+anim_clearsprites  EQUS "anim_keepsprites"
