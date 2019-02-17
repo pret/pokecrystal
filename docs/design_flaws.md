@@ -636,7 +636,7 @@ The routine `GetForestTreeFrame` in [engine/tilesets/tileset_anims.asm](/engine/
 
 Edit `GetForestTreeFrame`:
 
-```asm
+```diff
  GetForestTreeFrame:
  ; Return 0 if a is even, or 2 if odd.
 -	and a
@@ -661,5 +661,5 @@ Edit `GetForestTreeFrame`:
 -	xor a
 +	and 1
 +	add a
-	ret
+ 	ret
 ```
