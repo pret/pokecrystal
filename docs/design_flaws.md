@@ -357,13 +357,13 @@ NUM_TMS = const_value - TM01 - 2 ; discount ITEM_C3 and ITEM_DC
 > - Wild Dragonair's catch rate became 27 = $1B for `PROTEIN`
 > - Wild Dragonite's catch rate became 9 = $09 for `ANTIDOTE`
 >
-> Most catch rates were left as gaps in the item list, and transformed into held items via the `TimeCapsule_CatchRateItems` table in [data/items/catch_rate_items.asm](/data/items/catch_rate_items.asm). For example, the 52 Pokémon with catch rate 45 would hold the gap `ITEM_2D`, except that gets transformed into Bitter Berry.
+> Most catch rates were left as gaps in the item list, and transformed into held items via the `TimeCapsule_CatchRateItems` table in [data/items/catch_rate_items.asm](/data/items/catch_rate_items.asm). For example, the 52 Pokémon with catch rate 45 would hold the gap `ITEM_2D`, except that gets transformed into `BITTER_BERRY`.
 >
 > But a few Pokémon end up with weird items. Abra has a catch rate of 200, or $C8; and Krabby, Horsea, Goldeen, and Staryu have a catch rate of 225, or $E1. Those indexes correspond to the items `TM_PSYCH_UP` and `TM_ICE_PUNCH`, which seem like random choices—because they are.
 >
 > The TMs and HMs span from indexes $BF to $F9. However, as we can see in [pokegold-spaceworld](https://github.com/pret/pokegold-spaceworld/blob/master/constants/item_constants.asm), they *originally* spanned $C4 to $FF. For some reason they were shifted down by 5 during development.
 >
-> Before the index shift, the gap `ITEM_C3` would have been at index $C8, and `ITEM_DC` at $E1. In other words, they would have neatly corresponded to the catch rates for those five Pokémon! Then they would have held Berries instead of random TMs when traded (since the gap items get transformed via `TimeCapsule_CatchRateItems`).
+> Before the index shift, the gap `ITEM_C3` would have been at index $C8, and `ITEM_DC` at $E1. In other words, they would have neatly corresponded to the catch rates for those five Pokémon! Then they would have held `BERRY` when traded through the Time Capsule (since the gap items get transformed via `TimeCapsule_CatchRateItems`).
 
 **Fix:**
 
