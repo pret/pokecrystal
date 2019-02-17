@@ -79,6 +79,8 @@ GLOBAL PICS_FIX
 
 ## `PokemonPicPointers` and `UnownPicPointers` are assumed to start at the same address
 
+`GetFrontpicPointer` and `GetMonBackpic` in [engine/gfx/load_pics.asm](/engine/gfx/load_pics.asm) make this assumption, which has to be accounted for in the data files.
+
 In [gfx/pics.asm](/gfx/pics.asm):
 
 ```asm
@@ -107,44 +109,6 @@ ROMX $49
 	org $4000
 	"Unown Pic Pointers"
 	"Pics 2"
-```
-
-Two routines in [engine/gfx/load_pics.asm](/engine/gfx/load_pics.asm) make this assumption; `GetFrontpicPointer`:
-
-```asm
-	ld a, [wCurPartySpecies]
-	cp UNOWN
-	jr z, .unown
-	ld a, [wCurPartySpecies]
-	ld d, BANK(PokemonPicPointers)
-	jr .ok
-
-.unown
-	ld a, [wUnownLetter]
-	ld d, BANK(UnownPicPointers)
-
-.ok
-	ld hl, PokemonPicPointers ; UnownPicPointers
-	dec a
-	ld bc, 6
-	call AddNTimes
-```
-
-And `GetMonBackpic`:
-
-```asm
-	; These are assumed to be at the same address in their respective banks.
-	ld hl, PokemonPicPointers ; UnownPicPointers
-	ld a, b
-	ld d, BANK(PokemonPicPointers)
-	cp UNOWN
-	jr nz, .ok
-	ld a, c
-	ld d, BANK(UnownPicPointers)
-.ok
-	dec a
-	ld bc, 6
-	call AddNTimes
 ```
 
 **Fix:**
@@ -231,28 +195,7 @@ INCBIN "gfx/footprints/wartortle.1bpp",  footprint_bottom
 ...
 ```
 
-`Pokedex_LoadAnyFootprint` in [engine/pokedex/pokedex.asm](/engine/pokedex/pokedex.asm):
-
-```asm
-	push hl
-	ld e, l
-	ld d, h
-	ld hl, vTiles2 tile $62
-	lb bc, BANK(Footprints), 2
-	call Request1bpp
-	pop hl
-
-	; Whoever was editing footprints forgot to fix their
-	; tile editor. Now each bottom half is 8 tiles off.
-	ld de, 8 tiles
-	add hl, de
-
-	ld e, l
-	ld d, h
-	ld hl, vTiles2 tile $64
-	lb bc, BANK(Footprints), 2
-	call Request1bpp
-```
+`Pokedex_LoadAnyFootprint` in [engine/pokedex/pokedex.asm](/engine/pokedex/pokedex.asm) has to load the halves separately.
 
 **Fix:**
 
@@ -297,55 +240,7 @@ Edit `Pokedex_LoadAnyFootprint`:
 
 ## Music IDs $64 and $80 or above have special behavior
 
-If a map's music ID in [data/maps/maps.asm](/master/data/maps/maps.asm) is $64 (the value of `MUSIC_MAHOGANY_MART` or `MUSIC_SUICUNE_BATTLE`) it will play either `MUSIC_ROCKET_HIDEOUT` or `MUSIC_CHERRYGROVE_CITY`. Moreover, if a map's music ID is $80 or above (the value of `RADIO_TOWER_MUSIC`) it might play `MUSIC_ROCKET_OVERTURE` or something else.
-
-This is caused by `GetMapMusic` in [home/map.asm](/master/home/map.asm):
-
-```asm
-GetMapMusic::
-	push hl
-	push bc
-	ld de, MAP_MUSIC
-	call GetMapField
-	ld a, c
-	cp MUSIC_MAHOGANY_MART
-	jr z, .mahoganymart
-	bit RADIO_TOWER_MUSIC_F, c
-	jr nz, .radiotower
-	farcall Function8b342
-	ld e, c
-	ld d, 0
-.done
-	pop bc
-	pop hl
-	ret
-
-.radiotower
-	ld a, [wStatusFlags2]
-	bit STATUSFLAGS2_ROCKETS_IN_RADIO_TOWER_F, a
-	jr z, .clearedradiotower
-	ld de, MUSIC_ROCKET_OVERTURE
-	jr .done
-
-.clearedradiotower
-	; the rest of the byte
-	ld a, c
-	and RADIO_TOWER_MUSIC - 1
-	ld e, a
-	ld d, 0
-	jr .done
-
-.mahoganymart
-	ld a, [wStatusFlags2]
-	bit STATUSFLAGS2_ROCKETS_IN_MAHOGANY_F, a
-	jr z, .clearedmahogany
-	ld de, MUSIC_ROCKET_HIDEOUT
-	jr .done
-
-.clearedmahogany
-	ld de, MUSIC_CHERRYGROVE_CITY
-	jr .done
-```
+If a map's music ID in [data/maps/maps.asm](/master/data/maps/maps.asm) is $64 (the value of `MUSIC_MAHOGANY_MART` or `MUSIC_SUICUNE_BATTLE`) it will play either `MUSIC_ROCKET_HIDEOUT` or `MUSIC_CHERRYGROVE_CITY`. Moreover, if a map's music ID is $80 or above (the value of `RADIO_TOWER_MUSIC`) it might play `MUSIC_ROCKET_OVERTURE` or something else. This is caused by `GetMapMusic` in [home/map.asm](/master/home/map.asm).
 
 **Fix:**
 
@@ -369,7 +264,7 @@ Redefine the special music constants in [constants/music_constants.asm](/master/
 -RADIO_TOWER_MUSIC EQU 1 << RADIO_TOWER_MUSIC_F
 ```
 
-And then edit `GetMapMusic`:
+Edit `GetMapMusic`:
 
 ```diff
  GetMapMusic::
@@ -440,44 +335,7 @@ And then edit `GetMapMusic`:
 NUM_TMS = const_value - TM01 - 2 ; discount ITEM_C3 and ITEM_DC
 ```
 
-`GetTMHMNumber` and `GetNumberedTMHM` in [engine/items/items.asm](/engine/items/items.asm) have to compensate for this:
-
-```asm
-GetTMHMNumber::
-; Return the number of a TM/HM by item id c.
-	ld a, c
-; Skip any dummy items.
-	cp ITEM_C3 ; TM04-05
-	jr c, .done
-	cp ITEM_DC ; TM28-29
-	jr c, .skip
-	dec a
-.skip
-	dec a
-.done
-	sub TM01
-	inc a
-	ld c, a
-	ret
-
-GetNumberedTMHM:
-; Return the item id of a TM/HM by number c.
-	ld a, c
-; Skip any gaps.
-	cp ITEM_C3 - (TM01 - 1)
-	jr c, .done
-	cp ITEM_DC - (TM01 - 1) - 1
-	jr c, .skip_one
-.skip_two
-	inc a
-.skip_one
-	inc a
-.done
-	add TM01
-	dec a
-	ld c, a
-	ret
-```
+`GetTMHMNumber` and `GetNumberedTMHM` in [engine/items/items.asm](/engine/items/items.asm) have to compensate for this.
 
 > There was originally a good reason for these two gaps!
 >
@@ -501,11 +359,11 @@ GetNumberedTMHM:
 >
 > Most catch rates were left as gaps in the item list, and transformed into held items via the `TimeCapsule_CatchRateItems` table in [data/items/catch_rate_items.asm](/data/items/catch_rate_items.asm). For example, the 52 Pokémon with catch rate 45 would hold the gap `ITEM_2D`, except that gets transformed into Bitter Berry.
 >
-> But a few Pokémon end up with weird items. Abra has a catch rate of 200, or $C8; and Krabby, Horsea, Goldeen, and Staryu have a catch rate of 225, or $E1. Those indexes correspond to the items TM09 Psych Up and TM33 Ice Punch, which seem like random choices—because they are.
+> But a few Pokémon end up with weird items. Abra has a catch rate of 200, or $C8; and Krabby, Horsea, Goldeen, and Staryu have a catch rate of 225, or $E1. Those indexes correspond to the items `TM_PSYCH_UP` and `TM_ICE_PUNCH`, which seem like random choices—because they are.
 >
 > The TMs and HMs span from indexes $BF to $F9. However, as we can see in [pokegold-spaceworld](https://github.com/pret/pokegold-spaceworld/blob/master/constants/item_constants.asm), they *originally* spanned $C4 to $FF. For some reason they were shifted down by 5 during development.
 >
-> Before the index shift, the gap `ITEM_C3` would have been at index $C8, and `ITEM_DC` at $E1. In other words, they would have neatly corresponded to the catch rates for Abra, Krabby, Horsea, Goldeen, and Staryu! Then those Pokémon would have held Berries instead of random TMs.
+> Before the index shift, the gap `ITEM_C3` would have been at index $C8, and `ITEM_DC` at $E1. In other words, they would have neatly corresponded to the catch rates for those five Pokémon! Then they would have held Berries instead of random TMs when traded (since the gap items get transformed via `TimeCapsule_CatchRateItems`).
 
 **Fix:**
 
