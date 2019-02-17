@@ -71,7 +71,7 @@ It really depends on what image you're trying to change the colors of, where the
 
 ## How do I write new features?
 
-There are a number of special-purpose scripting languages, as described in [docs](docs/). For more general features, you'll need to code directly in assembly language. See [docs/assembly_programming.md](docs/assembly_programming.md). Some of the [tutorials][tutorials] may also be helpful.
+There are a number of special-purpose scripting languages, as described in [docs](docs/). For more general features, you'll need to code directly in [assembly language][asm]. Some of the [tutorials][tutorials] for specific features may also be helpful.
 
 
 ## I need more help!
@@ -83,3 +83,4 @@ Try asking on IRC or Discord (see [README.md](README.md)).
 [polished-map]: https://github.com/Rangi42/polished-map
 [crowdmap]: https://github.com/yenatch/crowdmap/
 [tutorials]: https://github.com/pret/pokecrystal/wiki/Tutorials
+[asm]: https://github.com/pret/pokecrystal/wiki/Assembly-programming

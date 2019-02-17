@@ -8,6 +8,7 @@ These are parts of the code that do not work *incorrectly*, like [bugs and glitc
 - [Pic banks are offset by `PICS_FIX`](#pic-banks-are-offset-by-pics_fix)
 - [`PokemonPicPointers` and `UnownPicPointers` are assumed to start at the same address](#pokemonpicpointers-and-unownpicpointers-are-assumed-to-start-at-the-same-address)
 - [Footprints are split into top and bottom halves](#footprints-are-split-into-top-and-bottom-halves)
+- [Music IDs $64 and $80 or above have special behavior](#music-ids-64-and-80-or-above-have-special-behavior)
 - [`ITEM_C3` and `ITEM_DC` break up the continuous sequence of TM items](#item_c3-and-item_dc-break-up-the-continuous-sequence-of-tm-items)
 - [Pokédex entry banks are derived from their species IDs](#pokédex-entry-banks-are-derived-from-their-species-ids)
 - [Identical sine wave code and data is repeated five times](#identical-sine-wave-code-and-data-is-repeated-five-times)
@@ -73,7 +74,7 @@ GLOBAL PICS_FIX
 	db BANK("Pics 24") ; BANK("Pics 1") + 23
 ```
 
-**Fix:** Use `dba` instead of `dba_pic`, delete `FixPicBank`, and remove all four calls to `FixPicBank`.
+**Fix:** Delete `FixPicBank` and remove all four calls to `FixPicBank` in [engine/gfx/load_pics.asm](/engine/gfx/load_pics.asm). Then use `dba` instead of `dba_pic` everywhere.
 
 
 ## `PokemonPicPointers` and `UnownPicPointers` are assumed to start at the same address
@@ -148,9 +149,9 @@ And `GetMonBackpic`:
 
 **Fix:**
 
-Don't enforce `org $4000` in pokecrystal.link.
+Don't enforce `org $4000` in [pokecrystal.link](/pokecrystal.link).
 
-Modify `GetFrontpicPointer`:
+Edit `GetFrontpicPointer`:
 
 ```diff
  	ld a, [wCurPartySpecies]
@@ -269,7 +270,7 @@ INCBIN "gfx/footprints/wartortle.1bpp"
 ...
 ```
 
-Modify `Pokedex_LoadAnyFootprint`:
+Edit `Pokedex_LoadAnyFootprint`:
 
 ```diff
 -	push hl
@@ -291,6 +292,132 @@ Modify `Pokedex_LoadAnyFootprint`:
 -	ld hl, vTiles2 tile $64
 -	lb bc, BANK(Footprints), 2
 -	call Request1bpp
+```
+
+
+## Music IDs $64 and $80 or above have special behavior
+
+If a map's music ID in [data/maps/maps.asm](/master/data/maps/maps.asm) is $64 (the value of `MUSIC_MAHOGANY_MART` or `MUSIC_SUICUNE_BATTLE`) it will play either `MUSIC_ROCKET_HIDEOUT` or `MUSIC_CHERRYGROVE_CITY`. Moreover, if a map's music ID is $80 or above (the value of `RADIO_TOWER_MUSIC`) it might play `MUSIC_ROCKET_OVERTURE` or something else.
+
+This is caused by `GetMapMusic` in [home/map.asm](/master/home/map.asm):
+
+```asm
+GetMapMusic::
+	push hl
+	push bc
+	ld de, MAP_MUSIC
+	call GetMapField
+	ld a, c
+	cp MUSIC_MAHOGANY_MART
+	jr z, .mahoganymart
+	bit RADIO_TOWER_MUSIC_F, c
+	jr nz, .radiotower
+	farcall Function8b342
+	ld e, c
+	ld d, 0
+.done
+	pop bc
+	pop hl
+	ret
+
+.radiotower
+	ld a, [wStatusFlags2]
+	bit STATUSFLAGS2_ROCKETS_IN_RADIO_TOWER_F, a
+	jr z, .clearedradiotower
+	ld de, MUSIC_ROCKET_OVERTURE
+	jr .done
+
+.clearedradiotower
+	; the rest of the byte
+	ld a, c
+	and RADIO_TOWER_MUSIC - 1
+	ld e, a
+	ld d, 0
+	jr .done
+
+.mahoganymart
+	ld a, [wStatusFlags2]
+	bit STATUSFLAGS2_ROCKETS_IN_MAHOGANY_F, a
+	jr z, .clearedmahogany
+	ld de, MUSIC_ROCKET_HIDEOUT
+	jr .done
+
+.clearedmahogany
+	ld de, MUSIC_CHERRYGROVE_CITY
+	jr .done
+```
+
+**Fix:**
+
+Replace `RADIO_TOWER_MUSIC | MUSIC_GOLDENROD_CITY` with `MUSIC_RADIO_TOWER` in [data/maps/maps.asm](/master/data/maps/maps.asm).
+
+Redefine the special music constants in [constants/music_constants.asm](/master/constants/music_constants.asm):
+
+```diff
+-; GetMapMusic picks music for this value (see home/map.asm)
+-MUSIC_MAHOGANY_MART EQU $64
++; GetMapMusic picks music for these values (see home/map.asm)
++MUSIC_MAHOGANY_MART EQU $fc
++MUSIC_RADIO_TOWER   EQU $fd
+
+ ; ExitPokegearRadio_HandleMusic uses these values
+ RESTART_MAP_MUSIC EQU $fe
+ ENTER_MAP_MUSIC   EQU $ff
+-
+-; GetMapMusic picks music for this bit flag
+-RADIO_TOWER_MUSIC_F EQU 7
+-RADIO_TOWER_MUSIC EQU 1 << RADIO_TOWER_MUSIC_F
+```
+
+And then edit `GetMapMusic`:
+
+```diff
+ GetMapMusic::
+ 	push hl
+ 	push bc
+ 	ld de, MAP_MUSIC
+ 	call GetMapField
+ 	ld a, c
+ 	cp MUSIC_MAHOGANY_MART
+ 	jr z, .mahoganymart
+-	bit RADIO_TOWER_MUSIC_F, c
+-	jr nz, .radiotower
++	cp MUSIC_RADIO_TOWER
++	jr z, .radiotower
+ 	farcall Function8b342
+ 	ld e, c
+ 	ld d, 0
+ .done
+ 	pop bc
+ 	pop hl
+ 	ret
+
+ .radiotower
+ 	ld a, [wStatusFlags2]
+ 	bit STATUSFLAGS2_ROCKETS_IN_RADIO_TOWER_F, a
+ 	jr z, .clearedradiotower
+ 	ld de, MUSIC_ROCKET_OVERTURE
+ 	jr .done
+
+ .clearedradiotower
+-	; the rest of the byte
+-	ld a, c
+-	and RADIO_TOWER_MUSIC - 1
+-	ld e, a
+-	ld d, 0
++	ld de, MUSIC_GOLDENROD_CITY
+ 	jr .done
+
+ .mahoganymart
+ 	ld a, [wStatusFlags2]
+ 	bit STATUSFLAGS2_ROCKETS_IN_MAHOGANY_F, a
+ 	jr z, .clearedmahogany
+ 	ld de, MUSIC_ROCKET_HIDEOUT
+ 	jr .done
+
+ .clearedmahogany
+ 	ld de, MUSIC_CHERRYGROVE_CITY
+ 	jr .done
 ```
 
 
@@ -352,11 +479,39 @@ GetNumberedTMHM:
 	ret
 ```
 
+> There was originally a good reason for these two gaps!
+>
+> Pokémon traded from RBY to GSC have their catch rate interpreted as their new held item. This was planned early on in development, so some items were given indexes corresponding to appropriate Gen 1 catch rates:
+>
+> - $03 = 3: `BRIGHTPOWDER` is for Articuno, Zapdos, Moltres, and Mewtwo
+> - $1E = 30: `LUCKY_PUNCH` is for Chansey
+> - $23 = 35: `METAL_POWDER` is for Ditto
+> - $3C = 60: `SILVER_LEAF` is for 10 Pokémon
+> - $4B = 75: `GOLD_LEAF` is for 13 Pokémon
+> - $96 = 150: `MYSTERYBERRY` is for Clefairy
+> - $AA = 170: `POLKADOT_BOW` is for Jigglypuff
+> - $B4 = 180: `BRICK_PIECE` is for Machop
+>
+> Yellow was also being developed then, and it did the reverse, altering some catch rates to correspond to appropriate Gen 2 items:
+>
+> - Starter Pikachu's catch rate became 163 = $A3 for `LIGHT_BALL`
+> - Wild Kadabra's catch rate became 96 = $60 for `TWISTEDSPOON`
+> - Wild Dragonair's catch rate became 27 = $1B for `PROTEIN`
+> - Wild Dragonite's catch rate became 9 = $09 for `ANTIDOTE`
+>
+> Most catch rates were left as gaps in the item list, and transformed into held items via the `TimeCapsule_CatchRateItems` table in [data/items/catch_rate_items.asm](/data/items/catch_rate_items.asm). For example, the 52 Pokémon with catch rate 45 would hold the gap `ITEM_2D`, except that gets transformed into Bitter Berry.
+>
+> But a few Pokémon end up with weird items. Abra has a catch rate of 200, or $C8; and Krabby, Horsea, Goldeen, and Staryu have a catch rate of 225, or $E1. Those indexes correspond to the items TM09 Psych Up and TM33 Ice Punch, which seem like random choices—because they are.
+>
+> The TMs and HMs span from indexes $BF to $F9. However, as we can see in [pokegold-spaceworld](https://github.com/pret/pokegold-spaceworld/blob/master/constants/item_constants.asm), they *originally* spanned $C4 to $FF. For some reason they were shifted down by 5 during development.
+>
+> Before the index shift, the gap `ITEM_C3` would have been at index $C8, and `ITEM_DC` at $E1. In other words, they would have neatly corresponded to the catch rates for Abra, Krabby, Horsea, Goldeen, and Staryu! Then those Pokémon would have held Berries instead of random TMs.
+
 **Fix:**
 
 Move `ITEM_C3` and `ITEM_DC` above all the TMs in every table of item data.
 
-Modify engine/items/items.asm:
+Edit [engine/items/items.asm](/engine/items/items.asm):
 
 ```diff
  GetTMHMNumber::
@@ -489,7 +644,7 @@ PokedexShow_GetDexEntryBank:
 	db BANK("Pokedex Entries 193-251")
 ```
 
-**Fix:** Use `dba` instead of `dw` in `PokedexDataPointerTable`, and modify the code that accesses it to match.
+**Fix:** Use `dba` instead of `dw` in `PokedexDataPointerTable`. Then edit [home.asm](/home.asm) to contain a single copy of the `PokedexDataPointerTable` lookup code, updated to work with 3-byte `dba` entries and get the bank from the first entry byte. Delete the three separate lookup routines and use the new one (placed in [home.asm](/home.asm) so it can be called from any bank.)
 
 
 ## Identical sine wave code and data is repeated five times

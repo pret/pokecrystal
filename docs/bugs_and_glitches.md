@@ -10,6 +10,8 @@ Fixes are written in the `diff` format. If you've used Git before, this should l
 +add green + lines
 ```
 
+Some fixes are mentioned as breaking compatibility with link battles. This can be avoided by writing more complicated fixes that only apply if the value at `[wLinkMode]` is not `LINK_COLOSSEUM`. That's how Crystal itself fixed two bugs in Gold and Silver regarding the moves [Reflect and Light Screen](#reflect-and-light-screen-can-make-special-defense-wrap-around-above-1024) and [Present](#present-damage-is-incorrect-in-link-battles).
+
 
 ## Contents
 
@@ -898,22 +900,24 @@ CopyPokemonName_Buffer1_Buffer3:
  	call Random
  	cp 5 percent
  	jr c, .CheckMagikarpArea
- ; Try again if length >= 1616 mm (i.e. if LOW(length) >= 3 inches)
+ ; Try again if length >= 1616 mm (i.e. if LOW(length) >= 4 inches)
  	ld a, [wMagikarpLength + 1]
--	cp LOW(1616) ; should be "cp 3", since 1616 mm = 5'3", but LOW(1616) = 80
-+	cp 3
+-	cp LOW(1616) ; should be "cp 4", since 1616 mm = 5'4", but LOW(1616) = 80
++	cp 4
  	jr nc, .GenerateDVs
 
  ; 20% chance of skipping this check
  	call Random
  	cp 20 percent - 1
  	jr c, .CheckMagikarpArea
- ; Try again if length >= 1600 mm (i.e. if LOW(length) >= 2 inches)
+ ; Try again if length >= 1600 mm (i.e. if LOW(length) >= 3 inches)
  	ld a, [wMagikarpLength + 1]
--	cp LOW(1600) ; should be "cp 2", since 1600 mm = 5'2", but LOW(1600) = 64
-+	cp 2
+-	cp LOW(1600) ; should be "cp 3", since 1600 mm = 5'3", but LOW(1600) = 64
++	cp 3
  	jr nc, .GenerateDVs
 ```
+
+**Better fix:** Rewrite the whole system to use millimeters instead of feet and inches, since they have better precision (1 in = 25.4 mm); and only convert from metric to imperial units for display purposes (or don't, of course). 
 
 
 ## Magikarp lengths can be miscalculated
@@ -1205,22 +1209,22 @@ The exact cause of this bug is unknown.
 
 This is a mistake with the “`…`” tile in [gfx/battle/hp_exp_bar_border.png](/gfx/battle/hp_exp_bar_border.png):
 
-![image](/docs/images/hp_exp_bar_border.png)
+![image](/gfx/battle/hp_exp_bar_border.png)
 
 **Fix:** Lower the ellipsis by two pixels:
 
-![image](/docs/images/hp_exp_bar_border_fix.png)
+![image](/docs/images/hp_exp_bar_border.png)
 
 
 ## Two tiles in the `port` tileset are drawn incorrectly
 
 This is a mistake with the left-hand warp carpet corner tiles in [gfx/tilesets/port.png](/gfx/tilesets/port.png):
 
-![image](/docs/images/port.png)
+![image](/gfx/tilesets/port.png)
 
 **Fix:** Adjust them to match the right-hand corner tiles:
 
-![image](/docs/images/port_fix.png)
+![image](/docs/images/port.png)
 
 
 ## `LoadMetatiles` wraps around past 128 blocks
