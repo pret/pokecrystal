@@ -41,7 +41,7 @@ _CardFlip:
 	ld bc, 1 tiles
 	call CopyBytes
 
-	call CardFlip_ShiftDigitsLeftTwoPixels
+	call CardFlip_ShiftDigitsUpOnePixel
 	call CardFlip_InitTilemap
 	call CardFlip_InitAttrPals
 	call EnableLCD
@@ -594,7 +594,9 @@ CardFlip_CopyOAM:
 	jr nz, .loop
 	ret
 
-CardFlip_ShiftDigitsLeftTwoPixels:
+CardFlip_ShiftDigitsUpOnePixel:
+; The top rows of digits 1-9 become the bottom rows of 0-8,
+; so this routine relies on the top rows being blank.
 	ld de, vTiles0 tile "0"
 	ld hl, vTiles0 tile "0" + 2
 	ld bc, 10 tiles - 2
