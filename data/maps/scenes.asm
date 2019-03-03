@@ -84,4 +84,4 @@ MapScenes::
 	scene_var MOUNT_MOON_SQUARE,                           wMountMoonSquareSceneID
 	scene_var MOBILE_TRADE_ROOM,                           wMobileTradeRoomSceneID
 	scene_var MOBILE_BATTLE_ROOM,                          wMobileBattleRoomSceneID
-	db -1
+	db -1 ; end

@@ -418,7 +418,7 @@ RunSceneScript:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-rept 4
+rept SCENE_SCRIPT_SIZE
 	add hl, de
 endr
 

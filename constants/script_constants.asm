@@ -86,6 +86,14 @@ RETVAR_EXECUTE EQU (2 << 6)
 	const PLAYEREVENT_JOYCHANGEFACING
 NUM_PLAYER_EVENTS EQU const_value
 
+; script data sizes (see macros/scripts/maps.asm)
+SCENE_SCRIPT_SIZE EQU 4 ; scene_script
+CALLBACK_SIZE     EQU 3 ; callback
+WARP_EVENT_SIZE   EQU 5 ; warp_event
+COORD_EVENT_SIZE  EQU 8 ; coord_event
+BG_EVENT_SIZE     EQU 5 ; bg_event
+OBJECT_EVENT_SIZE EQU 13 ; object_event
+
 ; bg_event types
 ; TryBGEvent arguments (see engine/overworld/events.asm)
 	const_def

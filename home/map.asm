@@ -46,8 +46,8 @@ GetCurrentMapSceneID::
 	ret
 
 GetMapSceneID::
-; Searches the scene script table for the map group and number loaded in bc, and returns the wram pointer in de.
-; If the map is not in the scene script table, returns carry.
+; Searches the scene_var table for the map group and number loaded in bc, and returns the wram pointer in de.
+; If the map is not in the scene_var table, returns carry.
 	push bc
 	ldh a, [hROMBank]
 	push af
@@ -59,7 +59,7 @@ GetMapSceneID::
 	push hl
 	ld a, [hli] ; map group, or terminator
 	cp -1
-	jr z, .end ; the current map is not in the scene script table
+	jr z, .end ; the current map is not in the scene_var table
 	cp b
 	jr nz, .next ; map group did not match
 	ld a, [hli] ; map number
@@ -69,7 +69,7 @@ GetMapSceneID::
 
 .next
 	pop hl
-	ld de, 4 ; scene_script size
+	ld de, 4 ; scene_var size
 	add hl, de
 	jr .loop
 
@@ -275,7 +275,7 @@ GetDestinationWarpNumber::
 
 .next
 	pop hl
-	ld a, 5
+	ld a, WARP_EVENT_SIZE
 	add l
 	ld l, a
 	jr nc, .okay
@@ -325,9 +325,9 @@ CopyWarpData::
 	ld l, a
 	ld a, c
 	dec a
-	ld bc, $5 ; warp size
+	ld bc, WARP_EVENT_SIZE
 	call AddNTimes
-	ld bc, $2 ; warp number
+	ld bc, 2 ; warp number
 	add hl, bc
 	ld a, [hli]
 	cp $ff
@@ -487,7 +487,7 @@ GetMapConnection::
 	ret
 
 ReadMapSceneScripts::
-	ld a, [hli] ; scene script count
+	ld a, [hli] ; scene_script count
 	ld c, a
 	ld [wCurMapSceneScriptCount], a
 	ld a, l
@@ -498,7 +498,7 @@ ReadMapSceneScripts::
 	and a
 	ret z
 
-	ld bc, 4 ; scene_script size
+	ld bc, SCENE_SCRIPT_SIZE
 	call AddNTimes
 	ret
 
@@ -514,7 +514,7 @@ ReadMapCallbacks::
 	and a
 	ret z
 
-	ld bc, 3
+	ld bc, CALLBACK_SIZE
 	call AddNTimes
 	ret
 
@@ -529,7 +529,7 @@ ReadWarps::
 	ld a, c
 	and a
 	ret z
-	ld bc, 5
+	ld bc, WARP_EVENT_SIZE
 	call AddNTimes
 	ret
 
@@ -546,7 +546,7 @@ ReadCoordEvents::
 	and a
 	ret z
 
-	ld bc, 8
+	ld bc, COORD_EVENT_SIZE
 	call AddNTimes
 	ret
 
@@ -563,7 +563,7 @@ ReadBGEvents::
 	and a
 	ret z
 
-	ld bc, 5
+	ld bc, BG_EVENT_SIZE
 	call AddNTimes
 	ret
 
@@ -622,7 +622,7 @@ CopyMapObjectEvents::
 	push hl
 	ld a, $ff
 	ld [hli], a
-	ld b, MAPOBJECT_E - MAPOBJECT_SPRITE
+	ld b, OBJECT_EVENT_SIZE
 .loop2
 	ld a, [de]
 	inc de
@@ -664,14 +664,14 @@ RestoreFacingAfterWarp::
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	inc hl ; get to the warp coords
-	inc hl ; get to the warp coords
-	inc hl ; get to the warp coords
+rept 3 ; get to the warp coords
+	inc hl
+endr
 	ld a, [wWarpNumber]
 	dec a
 	ld c, a
 	ld b, 0
-	ld a, $5 ; warp size
+	ld a, WARP_EVENT_SIZE
 	call AddNTimes
 	ld a, [hli]
 	ld [wYCoord], a
@@ -981,7 +981,7 @@ RunMapCallback::
 	ld l, a
 	or h
 	ret z
-	ld de, 3
+	ld de, CALLBACK_SIZE
 .loop
 	ld a, [hl]
 	cp b
@@ -1799,7 +1799,7 @@ CheckIfFacingTileCoordIsBGEvent::
 
 .next
 	pop hl
-	ld a, 5 ; BG event event length
+	ld a, BG_EVENT_SIZE
 	add l
 	ld l, a
 	jr nc, .nocarry
@@ -1814,7 +1814,7 @@ CheckIfFacingTileCoordIsBGEvent::
 .copysign
 	pop hl
 	ld de, wCurBGEventYCoord
-	ld bc, 5 ; BG event event length
+	ld bc, BG_EVENT_SIZE
 	call CopyBytes
 	scf
 	ret
@@ -1871,7 +1871,7 @@ CheckCurrentMapCoordEvents::
 
 .next
 	pop hl
-	ld a, $8 ; coord event size
+	ld a, COORD_EVENT_SIZE
 	add l
 	ld l, a
 	jr nc, .nocarry
@@ -1886,7 +1886,7 @@ CheckCurrentMapCoordEvents::
 .copy_coord_event
 	pop hl
 	ld de, wCurCoordEventSceneID
-	ld bc, 8 ; coord event size
+	ld bc, COORD_EVENT_SIZE
 	call CopyBytes
 	scf
 	ret
