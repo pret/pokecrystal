@@ -89,6 +89,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 +	ld a, HIGH(MAX_STAT_VALUE)
 +	cp h
 +	jr c, .cap
++	ret nz
 +	ld a, LOW(MAX_STAT_VALUE)
 +	cp l
 +	ret nc
