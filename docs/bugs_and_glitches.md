@@ -15,6 +15,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 
 ## Contents
 
+- [Mobile Stadium typo](#mobile-stadium-typo)
 - [Thick Club and Light Ball can make (Special) Attack wrap around above 1024](#thick-club-and-light-ball-can-make-special-attack-wrap-around-above-1024)
 - [Metal Powder can increase damage taken with boosted (Special) Defense](#metal-powder-can-increase-damage-taken-with-boosted-special-defense)
 - [Reflect and Light Screen can make (Special) Defense wrap around above 1024](#reflect-and-light-screen-can-make-special-defense-wrap-around-above-1024)
@@ -72,6 +73,46 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 - [`ClearWRAM` only clears WRAM bank 1](#clearwram-only-clears-wram-bank-1)
 - [`BattleAnimCmd_ClearObjs` only clears the first 6⅔ objects](#battleanimcmd_clearobjs-only-clears-the-first-6-objects)
 
+## Mobile Stadium typo
+
+*Fixing the Mobile Stadium typo*
+
+([Photo](https://tcrf.net/File:Pokemon_Crystal_(English_1.0)_Mobile_Stadium_1.png))
+
+**NOTE:** This function is disabled in non-Japanese version and can be enabled with GameShark code **010576CF**
+
+**Fix:** Edit all references in [engine/menus/main_menu.asm](/engine/menus/main_menu.asm)
+
+```diff
+-	db "MOBILE STUDIUM@"
++	db "MOBILE STADIUM@"
+
+-	dw MainMenu_MobileStudium
++	dw MainMenu_MobileStadium
+```
+
+and [engine/mobile/mobile_menu.asm](/engine/mobile/mobile_menu.asm)
+
+```diff
+-MainMenu_MobileStudium:
++MainMenu_MobileStadium:
+
+-	farcall MobileStudium
++	farcall MobileStadium
+```
+
+and [engine/mobile/mobile_45.asm](/engine/mobile/mobile_45.asm)
+
+```diff
+-MobileStudium:
++MobileStadium:
+
+-	jp MobileStudium_JumptableIncrement
++	jp MobileStadium_JumptableIncrement
+
+-MobileStudium_JumptableIncrement:
++MobileStadium_JumptableIncrement:
+```
 
 ## Thick Club and Light Ball can make (Special) Attack wrap around above 1024
 
