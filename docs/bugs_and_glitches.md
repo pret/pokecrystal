@@ -297,6 +297,19 @@ Add this to the end of each file:
 +	ret
 ```
 
+If you wish to retain compatibility with standard Pokémon Crystal, you can disable the fix during link battles by editing **both** `.failed` like so:
+
+```diff
+.failed
++	ld a, [wLinkMode]
++	cp LINK_COLOSSEUM
++	ret z
+	ld a, 1
+	ld [wEffectFailed], a
+	and a
+	ret
+```
+
 
 ## A Disabled but PP Up–enhanced move may not trigger Struggle
 
