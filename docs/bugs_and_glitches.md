@@ -387,7 +387,28 @@ Add this to the end of each file:
 
 ([Video](https://www.youtube.com/watch?v=tiRvw-Nb2ME))
 
-*To do:* Identify specific code causing this bug and fix it.
+**Fix:** Edit `PursuitSwitch` in [engine/battle/core.asm](/engine/battle/core.asm)
+
+```diff
+ 	ld a, $f0
+ 	ld [wCryTracks], a
+ 	ld a, [wBattleMonSpecies]
+ 	call PlayStereoCry
++    ld a, [wCurBattleMon]
++    push af
+ 	ld a, [wLastPlayerMon]
++    ld [wCurBattleMon], a
++    call UpdateFaintedPlayerMon
++    pop af
++    ld [wCurBattleMon], a
+-    ld c, a
+-    ld hl, wBattleParticipantsNotFainted
+-    ld b, RESET_FLAG
+-    predef SmallFarFlagAction
+ 	call PlayerMonFaintedAnimation
+ 	ld hl, BattleText_MonFainted
+ 	jr .done_fainted
+```
 
 
 ## Lock-On and Mind Reader don't always bypass Fly and Dig
