@@ -394,17 +394,17 @@ Add this to the end of each file:
  	ld [wCryTracks], a
  	ld a, [wBattleMonSpecies]
  	call PlayStereoCry
-+    ld a, [wCurBattleMon]
-+    push af
++	ld a, [wCurBattleMon]
++	push af
  	ld a, [wLastPlayerMon]
-+    ld [wCurBattleMon], a
-+    call UpdateFaintedPlayerMon
-+    pop af
-+    ld [wCurBattleMon], a
--    ld c, a
--    ld hl, wBattleParticipantsNotFainted
--    ld b, RESET_FLAG
--    predef SmallFarFlagAction
++	ld [wCurBattleMon], a
++	call UpdateFaintedPlayerMon
++	pop af
++	ld [wCurBattleMon], a
+-	ld c, a
+-	ld hl, wBattleParticipantsNotFainted
+-	ld b, RESET_FLAG
+-	predef SmallFarFlagAction
  	call PlayerMonFaintedAnimation
  	ld hl, BattleText_MonFainted
  	jr .done_fainted
