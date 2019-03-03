@@ -168,7 +168,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ## Moves with a 100% secondary effect chance will not trigger it in 1/256 uses
 
-*Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
+*Fixing this bug **may** break compatibility with standard Pokémon Crystal for link battles.*
 
 ([Video](https://www.youtube.com/watch?v=mHkyO5T5wZU&t=206))
 
@@ -194,7 +194,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
  	ret
 ```
 
-If you wish to keep compatibility with standard Pokémon Crystal, you can disable the fix during link battles by also applying the following edit in the same place:
+**Compatibility preservation:** If you wish to keep compatibility with standard Pokémon Crystal, you can disable the fix during link battles by also applying the following edit in the same place:
 
 ```diff
 +	ld a, [wLinkMode]
