@@ -325,9 +325,9 @@ CopyWarpData::
 	ld l, a
 	ld a, c
 	dec a
-	ld bc, 5 ; warp size
+	ld bc, $5 ; warp size
 	call AddNTimes
-	ld bc, 2 ; warp number
+	ld bc, $2 ; warp number
 	add hl, bc
 	ld a, [hli]
 	cp $ff
@@ -671,7 +671,7 @@ RestoreFacingAfterWarp::
 	dec a
 	ld c, a
 	ld b, 0
-	ld a, 5
+	ld a, $5 ; warp size
 	call AddNTimes
 	ld a, [hli]
 	ld [wYCoord], a
@@ -1261,7 +1261,7 @@ UpdateBGMapRow::
 	push de
 	call .iteration
 	pop de
-	ld a, $20
+	ld a, BG_MAP_WIDTH
 	add e
 	ld e, a
 
@@ -1295,7 +1295,7 @@ UpdateBGMapColumn::
 	ld [hli], a
 	ld a, d
 	ld [hli], a
-	ld a, $20
+	ld a, BG_MAP_WIDTH
 	add e
 	ld e, a
 	jr nc, .skip
@@ -1344,11 +1344,11 @@ LoadTilesetGFX::
 
 	ldh a, [rVBK]
 	push af
-	ld a, $1
+	ld a, BANK(vTiles5)
 	ldh [rVBK], a
 
 	ld hl, wDecompressScratch + $60 tiles
-	ld de, vTiles2
+	ld de, vTiles5
 	ld bc, $60 tiles
 	call CopyBytes
 
@@ -1573,12 +1573,12 @@ GetMovementPermissions::
 	call .CheckHiNybble
 	ret nz
 	ld a, [wTileDown]
-	and 7
-	cp $2
+	and %111
+	cp COLL_UP_WALL & %111 ; COLL_UP_BUOY & %111
 	jr z, .ok_down
-	cp $6
+	cp COLL_UP_RIGHT_WALL & %111 ; COLL_UP_RIGHT_BUOY & %111
 	jr z, .ok_down
-	cp $7
+	cp COLL_UP_LEFT_WALL & %111 ; COLL_UP_LEFT_BUOY & %111
 	ret nz
 
 .ok_down
@@ -1591,12 +1591,12 @@ GetMovementPermissions::
 	call .CheckHiNybble
 	ret nz
 	ld a, [wTileUp]
-	and 7
-	cp $3
+	and %111
+	cp COLL_DOWN_WALL & %111 ; COLL_DOWN_BUOY & %111
 	jr z, .ok_up
-	cp $4
+	cp COLL_DOWN_RIGHT_WALL & %111 ; COLL_DOWN_RIGHT_BUOY & %111
 	jr z, .ok_up
-	cp $5
+	cp COLL_DOWN_LEFT_WALL & %111 ; COLL_DOWN_LEFT_BUOY & %111
 	ret nz
 
 .ok_up
@@ -1609,12 +1609,12 @@ GetMovementPermissions::
 	call .CheckHiNybble
 	ret nz
 	ld a, [wTileRight]
-	and 7
-	cp $1
+	and %111
+	cp COLL_LEFT_WALL & %111 ; COLL_LEFT_BUOY & %111
 	jr z, .ok_right
-	cp $5
+	cp COLL_DOWN_LEFT_WALL & %111 ; COLL_DOWN_LEFT_BUOY & %111
 	jr z, .ok_right
-	cp $7
+	cp COLL_UP_LEFT_WALL & %111 ; COLL_UP_LEFT_BUOY & %111
 	ret nz
 
 .ok_right
@@ -1627,12 +1627,12 @@ GetMovementPermissions::
 	call .CheckHiNybble
 	ret nz
 	ld a, [wTileLeft]
-	and 7
-	cp $0
+	and %111
+	cp COLL_RIGHT_WALL & %111 ; COLL_RIGHT_BUOY & %111
 	jr z, .ok_left
-	cp $4
+	cp COLL_DOWN_RIGHT_WALL & %111 ; COLL_DOWN_RIGHT_BUOY & %111
 	jr z, .ok_left
-	cp $6
+	cp COLL_UP_RIGHT_WALL & %111 ; COLL_UP_RIGHT_BUOY & %111
 	ret nz
 
 .ok_left
@@ -1645,7 +1645,7 @@ GetMovementPermissions::
 	and $f0
 	cp HI_NYBBLE_SIDE_WALLS
 	ret z
-	cp HI_NYBBLE_UNUSED_C0
+	cp HI_NYBBLE_SIDE_BUOYS
 	ret
 
 GetFacingTileCoord::
