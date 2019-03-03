@@ -2,7 +2,7 @@
 ; indexes for:
 ; - RadioChannelSongs (see data/radio/channel_music.asm)
 ; - PlayRadioShow/RadioJumptable (see engine/pokegear/radio.asm)
-; - RadioChannels (see engine/pokegear/radio.asm)
+; - RadioChannels (see engine/pokegear/pokegear.asm)
 	const_def
 	const OAKS_POKEMON_TALK      ; 00
 	const POKEDEX_SHOW           ; 01
