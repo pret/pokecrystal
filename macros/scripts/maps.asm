@@ -32,7 +32,7 @@ coord_event: MACRO
 	db \3, \2, \1
 	db 0 ; filler
 	dw \4
-	db 0, 0 ; filler
+	dw 0 ; filler
 ENDM
 
 bg_event: MACRO

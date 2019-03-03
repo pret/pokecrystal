@@ -60,7 +60,7 @@ CheckForHiddenItems:
 .next
 ; Restore the bg_event pointer and increment it by the length of a bg_event.
 	pop hl
-	ld bc, 5
+	ld bc, BG_EVENT_SIZE
 	add hl, bc
 ; Restore the BG event counter and decrement it.  If it hits zero, there are no hidden items in range.
 	ld a, [wBuffer2]

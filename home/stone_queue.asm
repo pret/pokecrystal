@@ -76,7 +76,7 @@ HandleStoneQueue::
 	jr .found_warp
 
 .not_on_warp
-	ld a, 5
+	ld a, WARP_EVENT_SIZE
 	add l
 	ld l, a
 	jr nc, .no_carry
