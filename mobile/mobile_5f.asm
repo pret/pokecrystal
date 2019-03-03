@@ -3286,7 +3286,7 @@ Function17e5af:
 	ld h, a
 	bccoord 0, 0
 	add hl, bc
-	ld bc, hFFEC
+	ld bc, $ffec
 	add hl, bc
 	ld a, [wMobileInactivityTimerSeconds]
 	ld c, a
