@@ -89,6 +89,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 +	ld a, HIGH(MAX_STAT_VALUE)
 +	cp h
 +	jr c, .cap
++	ret nz
 +	ld a, LOW(MAX_STAT_VALUE)
 +	cp l
 +	ret nc
@@ -126,6 +127,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 +	ld a, HIGH(MAX_STAT_VALUE)
 +	cp b
 +	jr c, .cap
++	ret nz
 +	ld a, LOW(MAX_STAT_VALUE)
 +	cp c
 +	ret nc
@@ -166,7 +168,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ## Moves with a 100% secondary effect chance will not trigger it in 1/256 uses
 
-*Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
+*Fixing this bug **may** break compatibility with standard Pokémon Crystal for link battles.*
 
 ([Video](https://www.youtube.com/watch?v=mHkyO5T5wZU&t=206))
 
@@ -175,22 +177,36 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 ```diff
 -	; BUG: 1/256 chance to fail even for a 100% effect chance,
 -	; since carry is not set if BattleRandom == [hl] == 255
+- 	call BattleRandom
 +	ld a, [hl]
-+	cp 100 percent
-+	jr z, .ok
- 	call BattleRandom
++	sub 100 percent
++	; If chance was 100%, RNG won't be called (carry not set)
++	; Thus chance will be subtracted from 0, guaranteeing a carry
++	call c, BattleRandom
  	cp [hl]
--	pop hl
--	ret c
-+	jr c, .ok
+ 	pop hl
+ 	ret c
 
  .failed
  	ld a, 1
  	ld [wEffectFailed], a
  	and a
-+.ok
-+	pop hl
  	ret
+```
+
+**Compatibility preservation:** If you wish to keep compatibility with standard Pokémon Crystal, you can disable the fix during link battles by also applying the following edit in the same place:
+
+```diff
++	ld a, [wLinkMode]
++	cp LINK_COLOSSEUM
++	scf ; Force RNG to be called
++	jr z, .nofix ; Don't apply fix in link battles, for compatibility
+ 	ld a, [hl]
+ 	sub 100 percent
+ 	; If chance was 100%, RNG won't be called (carry not set)
+ 	; Thus chance will be subtracted from 0, guaranteeing a carry
++.nofix
+ 	call c, BattleRandom
 ```
 
 ## Belly Drum sharply boosts Attack even with under 50% HP
