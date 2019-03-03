@@ -182,8 +182,8 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 +	; Thus chance will be subtracted from 0, guaranteeing a carry
 +	call c, BattleRandom
  	cp [hl]
-	pop hl
-	ret c
+ 	pop hl
+ 	ret c
 
  .failed
  	ld a, 1
@@ -199,12 +199,12 @@ If you wish to keep compatibility with standard Pokémon Crystal, you can disabl
 +	cp LINK_COLOSSEUM
 +	scf ; Force RNG to be called
 +	jr z, .nofix ; Don't apply fix in link battles, for compatibility
-	ld a, [hl]
-	sub 100 percent
-	; If chance was 100%, RNG won't be called (carry not set)
-	; Thus chance will be subtracted from 0, guaranteeing a carry
-+ .nofix
-	call c, BattleRandom
+ 	ld a, [hl]
+ 	sub 100 percent
+ 	; If chance was 100%, RNG won't be called (carry not set)
+ 	; Thus chance will be subtracted from 0, guaranteeing a carry
++.nofix
+ 	call c, BattleRandom
 ```
 
 ## Belly Drum sharply boosts Attack even with under 50% HP
