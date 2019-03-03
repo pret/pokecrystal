@@ -304,10 +304,10 @@ If you wish to retain compatibility with standard Pokémon Crystal, you can disa
 +	ld a, [wLinkMode]
 +	cp LINK_COLOSSEUM
 +	ret z
-	ld a, 1
-	ld [wEffectFailed], a
-	and a
-	ret
+ 	ld a, 1
+ 	ld [wEffectFailed], a
+ 	and a
+ 	ret
 ```
 
 
