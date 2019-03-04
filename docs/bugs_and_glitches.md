@@ -247,30 +247,37 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ([Video](https://twitter.com/crystal_rby/status/874626362287562752))
 
-**Fix:** Edit the end of [hram.asm](/hram.asm) to create a new temporary variable:
+**Fix:**
+
+First, edit [hram.asm](/hram.asm):
 
 ```diff
  hClockResetTrigger:: db ; ffeb
 +hIsConfusionDamage:: db ; ffec
 ```
 
-Then edit `HitSelfInConfusion` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
+Then edit four routines in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
 
 ```diff
+ HitSelfInConfusion:
+ 	...
+ 	call TruncateHL_BC
+ 	ld d, 40
  	pop af
  	ld e, a
-+	ld a, 1
++	ld a, TRUE
 +	ldh [hIsConfusionDamage], a
  	ret
 ```
 
-Then, in the same file, edit `BattleCommand_DamageCalc`:
-
 ```diff
+ BattleCommand_DamageCalc:
+ ; damagecalc
+ 	...
  .skip_zero_damage_check
-
 +	xor a ; Not confusion damage
 +	ldh [hIsConfusionDamage], a
++	; fallthrough
 +
 +ConfusionDamageCalc:
  ; Minimum defense value is 1.
@@ -279,28 +286,44 @@ Then, in the same file, edit `BattleCommand_DamageCalc`:
  	jr nz, .not_dividing_by_zero
  	ld c, 1
  .not_dividing_by_zero
-```
 
-```diff
+ 	...
+
  ; Item boosts
++
++; Item boosts don't apply to confusion damage
 +	ldh a, [hIsConfusionDamage]
 +	and a
-+	jr nz, .DoneItem ; Item boosts don't apply to confusion damage
++	jr nz, .DoneItem
++
  	call GetUserItem
+
+ 	...
 ```
 
-Finally, replace the calls in `CheckEnemyTurn` and `HitConfusion`, still in the same file:
-
 ```diff
+ CheckEnemyTurn:
+ 	...
+
  	ld hl, HurtItselfText
  	call StdBattleTextBox
  	call HitSelfInConfusion
+
 -	call BattleCommand_DamageCalc
 +	call ConfusionDamageCalc
  	call BattleCommand_LowerSub
+
+ 	...
 ```
 
 ```diff
+ HitConfusion:
+ 	ld hl, HurtItselfText
+ 	call StdBattleTextBox
+
+ 	xor a
+ 	ld [wCriticalHit], a
+
  	call HitSelfInConfusion
 -	call BattleCommand_DamageCalc
 +	call ConfusionDamageCalc
