@@ -2131,7 +2131,7 @@ UpdateBattleStateAndExperienceAfterEnemyFaint:
 	ld a, [wWhichMonFaintedFirst]
 	and a
 	jr nz, .player_mon_did_not_faint
-	call PlayerMonFaintHappinessMod
+	call UpdateFaintedPlayerMon
 
 .player_mon_did_not_faint
 	call CheckPlayerPartyForFitMon
@@ -2601,7 +2601,7 @@ HandlePlayerMonFaint:
 	call z, FaintEnemyPokemon
 	ld a, $1
 	ld [wWhichMonFaintedFirst], a
-	call PlayerMonFaintHappinessMod
+	call UpdateFaintedPlayerMon
 	call CheckPlayerPartyForFitMon
 	ld a, d
 	and a
@@ -2642,7 +2642,7 @@ HandlePlayerMonFaint:
 	jp z, WildFled_EnemyFled_LinkBattleCanceled
 	jp DoubleSwitch
 
-PlayerMonFaintHappinessMod:
+UpdateFaintedPlayerMon:
 	ld a, [wCurBattleMon]
 	ld c, a
 	ld hl, wBattleParticipantsNotFainted

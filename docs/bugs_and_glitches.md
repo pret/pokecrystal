@@ -247,7 +247,65 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ([Video](https://twitter.com/crystal_rby/status/874626362287562752))
 
-*To do:* Identify specific code causing this bug and fix it.
+**Fix:** Edit the end of [hram.asm](/hram.asm) to create a new temporary variable:
+
+```diff
+ hClockResetTrigger:: db ; ffeb
++hIsConfusionDamage:: db ; ffec
+```
+
+Then edit `HitSelfInConfusion` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
+
+```diff
+ 	pop af
+ 	ld e, a
++	ld a, 1
++	ldh [hIsConfusionDamage], a
+ 	ret
+```
+
+Then, in the same file, edit `BattleCommand_DamageCalc`:
+
+```diff
+ .skip_zero_damage_check
+
++	xor a ; Not confusion damage
++	ldh [hIsConfusionDamage], a
++
++ConfusionDamageCalc:
+ ; Minimum defense value is 1.
+ 	ld a, c
+ 	and a
+ 	jr nz, .not_dividing_by_zero
+ 	ld c, 1
+ .not_dividing_by_zero
+```
+
+```diff
+ ; Item boosts
++	ldh a, [hIsConfusionDamage]
++	and a
++	jr nz, .DoneItem ; Item boosts don't apply to confusion damage
+ 	call GetUserItem
+```
+
+Finally, replace the calls in `CheckEnemyTurn` and `HitConfusion`, still in the same file:
+
+```diff
+ 	ld hl, HurtItselfText
+ 	call StdBattleTextBox
+ 	call HitSelfInConfusion
+-	call BattleCommand_DamageCalc
++	call ConfusionDamageCalc
+ 	call BattleCommand_LowerSub
+```
+
+```diff
+ 	call HitSelfInConfusion
+-	call BattleCommand_DamageCalc
++	call ConfusionDamageCalc
+ 	call BattleCommand_LowerSub
+```
 
 
 ## Moves that lower Defense can do so after breaking a Substitute
@@ -345,7 +403,28 @@ Add this to the end of each file:
 
 ([Video](https://www.youtube.com/watch?v=tiRvw-Nb2ME))
 
-*To do:* Identify specific code causing this bug and fix it.
+**Fix:** Edit `PursuitSwitch` in [engine/battle/core.asm](/engine/battle/core.asm)
+
+```diff
+ 	ld a, $f0
+ 	ld [wCryTracks], a
+ 	ld a, [wBattleMonSpecies]
+ 	call PlayStereoCry
++	ld a, [wCurBattleMon]
++	push af
+ 	ld a, [wLastPlayerMon]
++	ld [wCurBattleMon], a
++	call UpdateFaintedPlayerMon
++	pop af
++	ld [wCurBattleMon], a
+-	ld c, a
+-	ld hl, wBattleParticipantsNotFainted
+-	ld b, RESET_FLAG
+-	predef SmallFarFlagAction
+ 	call PlayerMonFaintedAnimation
+ 	ld hl, BattleText_MonFainted
+ 	jr .done_fainted
+```
 
 
 ## Lock-On and Mind Reader don't always bypass Fly and Dig
