@@ -25,34 +25,7 @@ GoldenrodDeptStore5F_MapScripts:
 GoldenrodDeptStore5FClerkScript:
 	faceplayer
 	opentext
-	checkevent EVENT_GOT_TM02_HEADBUTT
-	iftrue .headbutt
-	checkevent EVENT_GOT_TM08_ROCK_SMASH
-	iftrue .onlyrocksmash
-	jump .neither
-
-.headbutt
-	checkevent EVENT_GOT_TM08_ROCK_SMASH
-	iftrue .both
-	jump .onlyheadbutt
-
-.neither
-	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_5F_1
-	closetext
-	end
-
-.onlyheadbutt
-	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_5F_2
-	closetext
-	end
-
-.onlyrocksmash
-	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_5F_3
-	closetext
-	end
-
-.both
-	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_5F_4
+	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_5F
 	closetext
 	end
 
@@ -73,8 +46,9 @@ GoldenrodDeptStore5FReceptionistScript:
 .VeryHappy:
 	writetext UnknownText_0x5615a
 	buttonsound
+	checkitem TM_RETURN
+	iftrue .AlreadyGotTM
 	verbosegiveitem TM_RETURN
-	iffalse .Done
 	setflag ENGINE_GOLDENROD_DEPT_STORE_TM27_RETURN
 	closetext
 	end
@@ -88,9 +62,16 @@ GoldenrodDeptStore5FReceptionistScript:
 .NotVeryHappy:
 	writetext UnknownText_0x561d8
 	buttonsound
+	checkitem TM_FRUSTRATION
+	iftrue .AlreadyGotTM
 	verbosegiveitem TM_FRUSTRATION
-	iffalse .Done
 	setflag ENGINE_GOLDENROD_DEPT_STORE_TM27_RETURN
+	closetext
+	end
+
+.AlreadyGotTM:
+	writetext GoldenrodDeptStore5FAlreadyGotTMText
+	waitbutton
 	closetext
 	end
 
@@ -171,6 +152,11 @@ UnknownText_0x56202:
 
 	para "just perfect for"
 	line "your #MON."
+	done
+
+GoldenrodDeptStore5FAlreadyGotTMText:
+	text "Oh, you already"
+	line "have this TM…"
 	done
 
 UnknownText_0x56241:
