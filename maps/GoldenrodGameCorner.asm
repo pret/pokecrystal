@@ -75,6 +75,8 @@ GoldenrodGameCornerTMVendor_LoopScript:
 	jump GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 
 .Thunder:
+  checkitem TM_THUNDER
+  iftrue GoldenrodGameCornerPrizeVendor_AlreadyHaveTMScript
 	checkcoins GOLDENRODGAMECORNER_TM25_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	itemtotext TM_THUNDER, MEM_BUFFER_0
@@ -86,6 +88,8 @@ GoldenrodGameCornerTMVendor_LoopScript:
 	jump GoldenrodGameCornerTMVendor_FinishScript
 
 .Blizzard:
+  checkitem TM_BLIZZARD
+  iftrue GoldenrodGameCornerPrizeVendor_AlreadyHaveTMScript
 	checkcoins GOLDENRODGAMECORNER_TM14_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	itemtotext TM_BLIZZARD, MEM_BUFFER_0
@@ -97,6 +101,8 @@ GoldenrodGameCornerTMVendor_LoopScript:
 	jump GoldenrodGameCornerTMVendor_FinishScript
 
 .FireBlast:
+  checkitem TM_FIRE_BLAST
+  iftrue GoldenrodGameCornerPrizeVendor_AlreadyHaveTMScript
 	checkcoins GOLDENRODGAMECORNER_TM38_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	itemtotext TM_FIRE_BLAST, MEM_BUFFER_0
@@ -118,6 +124,11 @@ GoldenrodGameCornerTMVendor_FinishScript:
 	writetext GoldenrodGameCornerPrizeVendorHereYouGoText
 	waitbutton
 	jump GoldenrodGameCornerTMVendor_LoopScript
+
+GoldenrodGameCornerPrizeVendor_AlreadyHaveTMScript:
+  writetext GoldenrodGameCornerPrizeVendorAlreadyHaveTMText
+  waitbutton
+  jump GoldenrodGameCornerTMVendor_LoopScript
 
 GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript:
 	writetext GoldenrodGameCornerPrizeVendorNeedMoreCoinsText
@@ -340,6 +351,11 @@ GoldenrodGameCornerPrizeVendorConfirmPrizeText:
 
 GoldenrodGameCornerPrizeVendorHereYouGoText:
 	text "Here you go!"
+	done
+
+GoldenrodGameCornerPrizeVendorAlreadyHaveTMText:
+  text "But you already"
+	line "have that TM!"
 	done
 
 GoldenrodGameCornerPrizeVendorNeedMoreCoinsText:
