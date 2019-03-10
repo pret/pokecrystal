@@ -29,4 +29,4 @@ _BasementKey:
 
 .BasementKeyScript:
 	closetext
-	farjump BasementDoorScript
+	farsjump BasementDoorScript

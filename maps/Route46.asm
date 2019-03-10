@@ -39,7 +39,7 @@ TrainerPicnickerErin1:
 	buttonsound
 	setevent EVENT_ERIN_ASKED_FOR_PHONE_NUMBER
 	scall Route46AskNumber1F
-	jump .AskForNumber
+	sjump .AskForNumber
 
 .AskedAlready:
 	scall Route46AskNumber2F
@@ -49,7 +49,7 @@ TrainerPicnickerErin1:
 	ifequal PHONE_CONTACT_REFUSED, Route46NumberDeclinedF
 	gettrainername STRING_BUFFER_3, PICNICKER, ERIN1
 	scall Route46RegisteredNumberF
-	jump Route46NumberAcceptedF
+	sjump Route46NumberAcceptedF
 
 .WantsBattle:
 	scall Route46RematchF
@@ -93,7 +93,7 @@ TrainerPicnickerErin1:
 	verbosegiveitem CALCIUM
 	iffalse ErinNoRoomForCalcium
 	setevent EVENT_GOT_CALCIUM_FROM_ERIN
-	jump Route46NumberAcceptedF
+	sjump Route46NumberAcceptedF
 
 .GotCalciumAlready:
 	end
@@ -106,7 +106,7 @@ TrainerPicnickerErin1:
 	iffalse ErinNoRoomForCalcium
 	clearevent EVENT_ERIN_CALCIUM
 	setevent EVENT_GOT_CALCIUM_FROM_ERIN
-	jump Route46NumberAcceptedF
+	sjump Route46NumberAcceptedF
 
 Route46AskNumber1F:
 	jumpstd asknumber1f

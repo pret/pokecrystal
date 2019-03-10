@@ -76,7 +76,7 @@ LakeOfRageLanceScript:
 	writetext UnknownText_0x703a5
 	yesorno
 	iffalse .RefusedToHelp
-	jump .AgreedToHelp
+	sjump .AgreedToHelp
 
 RedGyarados:
 	opentext

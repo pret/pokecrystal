@@ -11,11 +11,11 @@ ErinPhoneCalleeScript:
 	iftrue ErinSaturdayNight
 
 .NotSaturday:
-	farjump ErinWorkingHardScript
+	farsjump ErinWorkingHardScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_46
-	farjump ErinComeBattleScript
+	farsjump ErinComeBattleScript
 
 ErinPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, PICNICKER, ERIN1
@@ -29,7 +29,7 @@ ErinPhoneCallerScript:
 	ifequal 1, ErinWantsBattle
 
 .GenericCall:
-	farjump Phone_GenericCall_Female
+	farsjump Phone_GenericCall_Female
 
 ErinSaturdayNight:
 	setflag ENGINE_ERIN_SATURDAY_NIGHT
@@ -37,4 +37,4 @@ ErinSaturdayNight:
 ErinWantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_46
 	setflag ENGINE_ERIN
-	farjump PhoneScript_WantsToBattle_Female
+	farsjump PhoneScript_WantsToBattle_Female

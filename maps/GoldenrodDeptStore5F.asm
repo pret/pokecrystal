@@ -29,12 +29,12 @@ GoldenrodDeptStore5FClerkScript:
 	iftrue .headbutt
 	checkevent EVENT_GOT_TM08_ROCK_SMASH
 	iftrue .onlyrocksmash
-	jump .neither
+	sjump .neither
 
 .headbutt
 	checkevent EVENT_GOT_TM08_ROCK_SMASH
 	iftrue .both
-	jump .onlyheadbutt
+	sjump .onlyheadbutt
 
 .neither
 	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_5F_1
@@ -68,7 +68,7 @@ GoldenrodDeptStore5FReceptionistScript:
 	buttonsound
 	ifgreater 150 - 1, .VeryHappy
 	ifgreater 50 - 1, .SomewhatHappy
-	jump .NotVeryHappy
+	sjump .NotVeryHappy
 
 .VeryHappy:
 	writetext UnknownText_0x5615a

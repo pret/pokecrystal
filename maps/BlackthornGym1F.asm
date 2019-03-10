@@ -76,7 +76,7 @@ BlackthornGymClairScript:
 	setevent EVENT_GOT_TM24_DRAGONBREATH
 	writetext BlackthornGymClairText_DescribeTM24
 	buttonsound
-	jump .GotTM24
+	sjump .GotTM24
 
 .BagFull:
 	writetext BlackthornGymClairText_BagFull

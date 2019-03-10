@@ -176,7 +176,7 @@ UndergroundSilverBattleScript:
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
-	jump .FinishRivalBattle
+	sjump .FinishRivalBattle
 
 .Totodile:
 	winlosstext UndergroundSilverWinText, UndergroundSilverLossText
@@ -185,7 +185,7 @@ UndergroundSilverBattleScript:
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
-	jump .FinishRivalBattle
+	sjump .FinishRivalBattle
 
 .Chikorita:
 	winlosstext UndergroundSilverWinText, UndergroundSilverLossText
@@ -194,7 +194,7 @@ UndergroundSilverBattleScript:
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
-	jump .FinishRivalBattle
+	sjump .FinishRivalBattle
 
 .FinishRivalBattle:
 	playmusic MUSIC_RIVAL_AFTER
@@ -283,7 +283,7 @@ Switch1Script:
 	addval 1
 	writemem wUndergroundSwitchPositions
 	setevent EVENT_SWITCH_1
-	jump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
+	sjump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
 .On:
 	writetext SwitchRoomText_OnTurnOff
@@ -293,7 +293,7 @@ Switch1Script:
 	addval -1
 	writemem wUndergroundSwitchPositions
 	clearevent EVENT_SWITCH_1
-	jump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
+	sjump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
 Switch2Script:
 	opentext
@@ -308,7 +308,7 @@ Switch2Script:
 	addval 2
 	writemem wUndergroundSwitchPositions
 	setevent EVENT_SWITCH_2
-	jump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
+	sjump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
 .On:
 	writetext SwitchRoomText_OnTurnOff
@@ -318,7 +318,7 @@ Switch2Script:
 	addval -2
 	writemem wUndergroundSwitchPositions
 	clearevent EVENT_SWITCH_2
-	jump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
+	sjump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
 Switch3Script:
 	opentext
@@ -333,7 +333,7 @@ Switch3Script:
 	addval 3
 	writemem wUndergroundSwitchPositions
 	setevent EVENT_SWITCH_3
-	jump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
+	sjump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
 .On:
 	writetext SwitchRoomText_OnTurnOff
@@ -343,7 +343,7 @@ Switch3Script:
 	addval -3
 	writemem wUndergroundSwitchPositions
 	clearevent EVENT_SWITCH_3
-	jump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
+	sjump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
 EmergencySwitchScript:
 	opentext
@@ -360,7 +360,7 @@ EmergencySwitchScript:
 	setevent EVENT_SWITCH_1
 	setevent EVENT_SWITCH_2
 	setevent EVENT_SWITCH_3
-	jump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
+	sjump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
 .On:
 	writetext SwitchRoomText_OnTurnOff
@@ -372,7 +372,7 @@ EmergencySwitchScript:
 	clearevent EVENT_SWITCH_1
 	clearevent EVENT_SWITCH_2
 	clearevent EVENT_SWITCH_3
-	jump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
+	sjump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
 GoldenrodUndergroundSwitchRoomEntrances_DontToggle:
 	closetext

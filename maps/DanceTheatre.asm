@@ -86,7 +86,7 @@ DanceTheaterSurfGuy:
 	iffalse .KimonoGirlsUndefeated
 	checkevent EVENT_BEAT_KIMONO_GIRL_MIKI
 	iffalse .KimonoGirlsUndefeated
-	jump .GetSurf
+	sjump .GetSurf
 
 .KimonoGirlsUndefeated:
 	checkflag ENGINE_PLAYER_IS_FEMALE

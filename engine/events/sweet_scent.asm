@@ -21,7 +21,7 @@ SweetScentFromMenu:
 	end
 
 .BugCatchingContest:
-	farjump BugCatchingContestBattleScript
+	farsjump BugCatchingContestBattleScript
 
 SweetScentNothing:
 	writetext UnknownText_0x5072b

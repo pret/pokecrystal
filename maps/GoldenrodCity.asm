@@ -69,28 +69,28 @@ MoveTutorScript:
 	ifequal MOVETUTOR_FLAMETHROWER, .Flamethrower
 	ifequal MOVETUTOR_THUNDERBOLT, .Thunderbolt
 	ifequal MOVETUTOR_ICE_BEAM, .IceBeam
-	jump .Incompatible
+	sjump .Incompatible
 
 .Flamethrower:
 	setval MOVETUTOR_FLAMETHROWER
 	writetext UnknownText_0x1991cf
 	special MoveTutor
 	ifequal FALSE, .TeachMove
-	jump .Incompatible
+	sjump .Incompatible
 
 .Thunderbolt:
 	setval MOVETUTOR_THUNDERBOLT
 	writetext UnknownText_0x1991cf
 	special MoveTutor
 	ifequal FALSE, .TeachMove
-	jump .Incompatible
+	sjump .Incompatible
 
 .IceBeam:
 	setval MOVETUTOR_ICE_BEAM
 	writetext UnknownText_0x1991cf
 	special MoveTutor
 	ifequal FALSE, .TeachMove
-	jump .Incompatible
+	sjump .Incompatible
 
 .MoveMenuHeader:
 	db MENU_BACKUP_TILES ; flags
@@ -131,7 +131,7 @@ MoveTutorScript:
 	readvar VAR_FACING
 	ifequal LEFT, .WalkAroundPlayer
 	applymovement GOLDENRODCITY_MOVETUTOR, MovementData_0x198a5f
-	jump .GoInside
+	sjump .GoInside
 
 .WalkAroundPlayer:
 	applymovement GOLDENRODCITY_MOVETUTOR, MovementData_0x198a63

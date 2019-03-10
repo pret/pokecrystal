@@ -33,7 +33,7 @@ TrainerSailorHuey:
 	iftrue .AskedBefore
 	setevent EVENT_HUEY_ASKED_FOR_PHONE_NUMBER
 	scall .AskNumber1
-	jump .AskForNumber
+	sjump .AskForNumber
 
 .AskedBefore:
 	scall .AskNumber2
@@ -43,7 +43,7 @@ TrainerSailorHuey:
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	gettrainername STRING_BUFFER_3, SAILOR, HUEY1
 	scall .RegisteredNumber
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .WantsBattle:
 	scall .Rematch
@@ -99,7 +99,7 @@ TrainerSailorHuey:
 	verbosegiveitem PROTEIN
 	iffalse .PackFull
 	setevent EVENT_GOT_PROTEIN_FROM_HUEY
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .SkipGift:
 	end
@@ -112,7 +112,7 @@ TrainerSailorHuey:
 	iffalse .PackFull
 	clearevent EVENT_HUEY_PROTEIN
 	setevent EVENT_GOT_PROTEIN_FROM_HUEY
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .AskNumber1:
 	jumpstd asknumber1m

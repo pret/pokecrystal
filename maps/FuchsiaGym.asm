@@ -39,7 +39,7 @@ FuchsiaGymJanineScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_SOULBADGE
-	jump .AfterBattle
+	sjump .AfterBattle
 .FightDone:
 	faceplayer
 	opentext

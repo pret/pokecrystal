@@ -11,11 +11,11 @@ ChadPhoneCalleeScript:
 	iftrue ChadFridayMorning
 
 .NotFriday:
-	farjump UnknownScript_0xa0980
+	farsjump UnknownScript_0xa0980
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_38
-	farjump UnknownScript_0xa0a7d
+	farsjump UnknownScript_0xa0a7d
 
 ChadPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, SCHOOLBOY, CHAD1
@@ -32,7 +32,7 @@ ChadPhoneCallerScript:
 .Generic:
 	farscall PhoneScript_Random3
 	ifequal 0, ChadFoundRare
-	farjump Phone_GenericCall_Male
+	farsjump Phone_GenericCall_Male
 
 ChadFridayMorning:
 	setflag ENGINE_CHAD_FRIDAY_MORNING
@@ -40,10 +40,10 @@ ChadFridayMorning:
 ChadWantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_38
 	setflag ENGINE_CHAD
-	farjump PhoneScript_WantsToBattle_Male
+	farsjump PhoneScript_WantsToBattle_Male
 
 ChadFoundRare:
-	farjump Phone_CheckIfUnseenRare_Male
+	farsjump Phone_CheckIfUnseenRare_Male
 
 ChadOakGossip:
-	farjump ChadOakGossipScript
+	farsjump ChadOakGossipScript

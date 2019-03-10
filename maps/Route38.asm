@@ -53,7 +53,7 @@ TrainerLassDana1:
 	buttonsound
 	setevent EVENT_DANA_ASKED_FOR_PHONE_NUMBER
 	scall .AskNumber1F
-	jump .AskForPhoneNumber
+	sjump .AskForPhoneNumber
 
 .SecondTimeAsking:
 	scall .AskNumber2F
@@ -63,7 +63,7 @@ TrainerLassDana1:
 	ifequal PHONE_CONTACT_REFUSED, .DeclinedPhoneNumber
 	gettrainername STRING_BUFFER_3, LASS, DANA1
 	scall .RegisteredPhoneNumber
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .DanaRematch:
 	scall .Rematch
@@ -131,10 +131,10 @@ TrainerLassDana1:
 	iffalse .NoRoomForThunderstone
 	clearflag ENGINE_DANA_HAS_THUNDERSTONE
 	setevent EVENT_DANA_GAVE_THUNDERSTONE
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .NoRoomForThunderstone:
-	jump .PackFull
+	sjump .PackFull
 
 .AskNumber1F:
 	jumpstd asknumber1f
@@ -189,7 +189,7 @@ TrainerSchoolboyChad1:
 	buttonsound
 	setevent EVENT_CHAD_ASKED_FOR_PHONE_NUMBER
 	scall .AskPhoneNumber1
-	jump .AskToRegisterNumber
+	sjump .AskToRegisterNumber
 
 .SecondTimeAsking:
 	scall .AskPhoneNumber2
@@ -199,7 +199,7 @@ TrainerSchoolboyChad1:
 	ifequal PHONE_CONTACT_REFUSED, .SaidNo
 	gettrainername STRING_BUFFER_3, SCHOOLBOY, CHAD1
 	scall .RegisteredChad
-	jump .HaveChadsNumber
+	sjump .HaveChadsNumber
 
 .ChadRematch:
 	scall .Rematch

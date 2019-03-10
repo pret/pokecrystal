@@ -34,7 +34,7 @@ TrainerBlackbeltKenji:
 	waitbutton
 	setevent EVENT_KENJI_ASKED_FOR_PHONE_NUMBER
 	scall Route45AskNumber1M
-	jump .AskForNumber
+	sjump .AskForNumber
 
 .AskedAlready:
 	scall Route45AskNumber2M
@@ -44,7 +44,7 @@ TrainerBlackbeltKenji:
 	ifequal PHONE_CONTACT_REFUSED, Route45NumberDeclinedM
 	gettrainername STRING_BUFFER_3, BLACKBELT_T, KENJI3
 	scall Route45RegisteredNumberM
-	jump Route45NumberAcceptedM
+	sjump Route45NumberAcceptedM
 
 .Registered:
 	readvar VAR_KENJI_BREAK
@@ -60,7 +60,7 @@ TrainerBlackbeltKenji:
 	iffalse .NoRoom
 	clearevent EVENT_KENJI_ON_BREAK
 	special SampleKenjiBreakCountdown
-	jump Route45NumberAcceptedM
+	sjump Route45NumberAcceptedM
 
 .Morning:
 	writetext BlackbeltKenjiMorningText
@@ -75,7 +75,7 @@ TrainerBlackbeltKenji:
 	end
 
 .NoRoom:
-	jump Route45PackFullM
+	sjump Route45PackFullM
 
 Route45AskNumber1M:
 	jumpstd asknumber1m
@@ -161,7 +161,7 @@ TrainerHikerParry:
 	buttonsound
 	setevent EVENT_PARRY_ASKED_FOR_PHONE_NUMBER
 	scall Route45AskNumber1M
-	jump .AskForNumber
+	sjump .AskForNumber
 
 .AskedAlready:
 	scall Route45AskNumber2M
@@ -171,7 +171,7 @@ TrainerHikerParry:
 	ifequal PHONE_CONTACT_REFUSED, Route45NumberDeclinedM
 	gettrainername STRING_BUFFER_3, HIKER, PARRY1
 	scall Route45RegisteredNumberM
-	jump Route45NumberAcceptedM
+	sjump Route45NumberAcceptedM
 
 .WantsBattle:
 	scall Route45RematchM
@@ -215,7 +215,7 @@ TrainerHikerParry:
 	verbosegiveitem IRON
 	iffalse HikerParryHasIron
 	setevent EVENT_GOT_IRON_FROM_PARRY
-	jump Route45NumberAcceptedM
+	sjump Route45NumberAcceptedM
 
 .GotIron:
 	end
@@ -228,7 +228,7 @@ TrainerHikerParry:
 	iffalse HikerParryHasIron
 	clearevent EVENT_PARRY_IRON
 	setevent EVENT_GOT_IRON_FROM_PARRY
-	jump Route45NumberAcceptedM
+	sjump Route45NumberAcceptedM
 
 TrainerHikerTimothy:
 	trainer HIKER, TIMOTHY, EVENT_BEAT_HIKER_TIMOTHY, HikerTimothySeenText, HikerTimothyBeatenText, 0, .Script

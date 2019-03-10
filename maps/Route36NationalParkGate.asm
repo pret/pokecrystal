@@ -29,7 +29,7 @@ Route36NationalParkGate_MapScripts:
 	end
 
 .LeaveContestEarly:
-	priorityjump .LeavingContestEarly
+	prioritysjump .LeavingContestEarly
 	end
 
 .CheckIfContestRunning:
@@ -198,7 +198,7 @@ Route36OfficerScriptContest:
 	playsound SFX_GOT_SAFARI_BALLS
 	waitsfx
 	buttonsound
-	jump .ResumeStartingContest
+	sjump .ResumeStartingContest
 
 .DecidedNotToJoinContest:
 	writetext UnknownText_0x6b0c6

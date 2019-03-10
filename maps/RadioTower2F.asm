@@ -273,7 +273,7 @@ Buena:
 	setevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER
 	opentext
 	writetext UnknownText_0x5e1ee
-	jump .AskForNumber
+	sjump .AskForNumber
 
 .OfferedNumberBefore:
 	opentext

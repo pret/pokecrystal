@@ -13,15 +13,15 @@ TullyPhoneCalleeScript:
 	iftrue TullySundayNight
 
 .NotSunday:
-	farjump UnknownScript_0xa0990
+	farsjump UnknownScript_0xa0990
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_42
-	farjump UnknownScript_0xa0a82
+	farsjump UnknownScript_0xa0a82
 
 .WaterStone:
 	getlandmarkname STRING_BUFFER_5, ROUTE_42
-	farjump UnknownScript_0xa0add
+	farsjump UnknownScript_0xa0add
 
 TullyPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, FISHER, TULLY1
@@ -44,7 +44,7 @@ TullyPhoneCallerScript:
 	ifequal 0, TullyFoundWaterStone
 
 .Generic:
-	farjump Phone_GenericCall_Male
+	farsjump Phone_GenericCall_Male
 
 TullySundayNight:
 	setflag ENGINE_TULLY_SUNDAY_NIGHT
@@ -52,9 +52,9 @@ TullySundayNight:
 TullyWantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_42
 	setflag ENGINE_TULLY
-	farjump PhoneScript_WantsToBattle_Male
+	farsjump PhoneScript_WantsToBattle_Male
 
 TullyFoundWaterStone:
 	setflag ENGINE_TULLY_HAS_WATER_STONE
 	getlandmarkname STRING_BUFFER_5, ROUTE_42
-	farjump PhoneScript_FoundItem_Male
+	farsjump PhoneScript_FoundItem_Male

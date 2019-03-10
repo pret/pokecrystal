@@ -15,7 +15,7 @@ VermilionPort_MapScripts:
 	end
 
 .LeaveFastShip:
-	priorityjump .LeaveFastShipScript
+	prioritysjump .LeaveFastShipScript
 	end
 
 .FlyPoint:
@@ -102,7 +102,7 @@ VermilionPortWalkUpToShipScript:
 	closetext
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	applymovement PLAYER, MovementData_0x74ef8
-	jump VermilionPortSailorAtGangwayScript
+	sjump VermilionPortSailorAtGangwayScript
 
 .NoTicket:
 	writetext UnknownText_0x74ff2
@@ -164,7 +164,7 @@ VermilionPortSailorScript:
 	closetext
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	applymovement PLAYER, MovementData_0x74efe
-	jump VermilionPortSailorAtGangwayScript
+	sjump VermilionPortSailorAtGangwayScript
 
 .NoTicket:
 	writetext UnknownText_0x74ff2

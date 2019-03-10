@@ -6,7 +6,7 @@ MobileTradeRoom_MapScripts:
 	db 0 ; callbacks
 
 .InitializeMobileTradeRoom:
-	priorityjump .InitializeAndPreparePokecenter2F
+	prioritysjump .InitializeAndPreparePokecenter2F
 	end
 
 .DummyScene:

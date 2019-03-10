@@ -841,11 +841,11 @@ CheckMenuOW:
 
 StartMenuScript:
 	callasm StartMenu
-	jump StartMenuCallback
+	sjump StartMenuCallback
 
 SelectMenuScript:
 	callasm SelectMenu
-	jump SelectMenuCallback
+	sjump SelectMenuCallback
 
 StartMenuCallback:
 SelectMenuCallback:
@@ -855,10 +855,10 @@ SelectMenuCallback:
 	end
 
 .Script:
-	ptjump wQueuedScriptBank
+	memjump wQueuedScriptBank
 
 .Asm:
-	ptcallasm wQueuedScriptBank
+	memcallasm wQueuedScriptBank
 	end
 
 CountStep:

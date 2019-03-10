@@ -29,15 +29,15 @@ BlackthornGym2F_MapScripts:
 
 .Boulder1:
 	disappear BLACKTHORNGYM2F_BOULDER1
-	jump .Fall
+	sjump .Fall
 
 .Boulder2:
 	disappear BLACKTHORNGYM2F_BOULDER2
-	jump .Fall
+	sjump .Fall
 
 .Boulder3:
 	disappear BLACKTHORNGYM2F_BOULDER3
-	jump .Fall
+	sjump .Fall
 
 .Fall:
 	pause 30

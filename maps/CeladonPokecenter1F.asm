@@ -45,7 +45,7 @@ CeladonEusine:
 	readvar VAR_FACING
 	ifequal UP, .Location1
 	applymovement CELADONPOKECENTER1F_EUSINE, .Movement1
-	jump .Continue
+	sjump .Continue
 
 .Location1:
 	applymovement CELADONPOKECENTER1F_EUSINE, .Movement2

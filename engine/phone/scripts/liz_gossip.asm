@@ -14,49 +14,49 @@ UnknownScript_0xa06da:
 .RuinsOfAlph:
 	farwritetext UnknownText_0x176223
 	buttonsound
-	jump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangupText_Female
 
 .Falkner:
 	farwritetext UnknownText_0x1762c3
 	buttonsound
-	jump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangupText_Female
 
 .Earl:
 	farwritetext UnknownText_0x17638a
 	buttonsound
-	jump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangupText_Female
 
 .SurfPikachu:
 	farwritetext UnknownText_0x176424
 	buttonsound
-	jump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangupText_Female
 
 .MooMooMilk:
 	farwritetext UnknownText_0x1764eb
 	buttonsound
-	jump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangupText_Female
 
 .Salon:
 	farwritetext UnknownText_0x176599
 	buttonsound
-	jump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangupText_Female
 
 .Whitney:
 	farwritetext UnknownText_0x1766ac
 	buttonsound
-	jump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangupText_Female
 
 .BugCatchingContest:
 	farwritetext UnknownText_0x17674f
 	buttonsound
-	jump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangupText_Female
 
 .BeautifulMon:
 	farwritetext UnknownText_0x176816
 	buttonsound
-	jump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangupText_Female
 
 .Forgot:
 	farwritetext UnknownText_0x17686d
 	buttonsound
-	jump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangupText_Female

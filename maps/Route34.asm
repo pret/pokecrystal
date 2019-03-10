@@ -24,22 +24,22 @@ Route34_MapScripts:
 	iftrue .PutDayCareManOutside
 	clearevent EVENT_DAY_CARE_MAN_IN_DAY_CARE
 	setevent EVENT_DAY_CARE_MAN_ON_ROUTE_34
-	jump .CheckMon1
+	sjump .CheckMon1
 
 .PutDayCareManOutside:
 	setevent EVENT_DAY_CARE_MAN_IN_DAY_CARE
 	clearevent EVENT_DAY_CARE_MAN_ON_ROUTE_34
-	jump .CheckMon1
+	sjump .CheckMon1
 
 .CheckMon1:
 	checkflag ENGINE_DAY_CARE_MAN_HAS_MON
 	iffalse .HideMon1
 	clearevent EVENT_DAY_CARE_MON_1
-	jump .CheckMon2
+	sjump .CheckMon2
 
 .HideMon1:
 	setevent EVENT_DAY_CARE_MON_1
-	jump .CheckMon2
+	sjump .CheckMon2
 
 .CheckMon2:
 	checkflag ENGINE_DAY_CARE_LADY_HAS_MON
@@ -104,7 +104,7 @@ TrainerCamperTodd1:
 	buttonsound
 	setevent EVENT_TODD_ASKED_FOR_PHONE_NUMBER
 	scall .AskNumber
-	jump .FinishAsk
+	sjump .FinishAsk
 
 .AskAgain:
 	scall .AskNumber2
@@ -114,7 +114,7 @@ TrainerCamperTodd1:
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	gettrainername STRING_BUFFER_3, CAMPER, TODD1
 	scall .RegisteredNumber
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .Rematch:
 	scall .RematchStd
@@ -229,7 +229,7 @@ TrainerPicnickerGina1:
 	buttonsound
 	setevent EVENT_GINA_ASKED_FOR_PHONE_NUMBER
 	scall .AskNumber1
-	jump .FinishAsk
+	sjump .FinishAsk
 
 .AskAgain:
 	scall .AskNumber2
@@ -239,7 +239,7 @@ TrainerPicnickerGina1:
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	gettrainername STRING_BUFFER_3, PICNICKER, GINA1
 	scall .RegisteredNumber
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .Rematch:
 	scall .RematchStd
@@ -307,10 +307,10 @@ TrainerPicnickerGina1:
 	iffalse .BagFull
 	clearflag ENGINE_GINA_HAS_LEAF_STONE
 	setevent EVENT_GINA_GAVE_LEAF_STONE
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .BagFull:
-	jump .PackFull
+	sjump .PackFull
 
 .AskNumber1:
 	jumpstd asknumber1f

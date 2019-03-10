@@ -4,7 +4,7 @@ TalkToTrainerScript::
 	iftrue AlreadyBeatenTrainerScript
 	loadtemptrainer
 	encountermusic
-	jump StartBattleWithMapTrainerScript
+	sjump StartBattleWithMapTrainerScript
 
 SeenByTrainerScript::
 	loadtemptrainer
@@ -14,7 +14,7 @@ SeenByTrainerScript::
 	applymovementlasttalked wMovementBuffer
 	writeobjectxy LAST_TALKED
 	faceobject PLAYER, LAST_TALKED
-	jump StartBattleWithMapTrainerScript
+	sjump StartBattleWithMapTrainerScript
 
 StartBattleWithMapTrainerScript:
 	opentext

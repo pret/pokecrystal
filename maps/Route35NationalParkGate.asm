@@ -20,7 +20,7 @@ Route35NationalParkGate_MapScripts:
 	end
 
 .LeaveContestEarly:
-	priorityjump .LeavingContestEarly
+	prioritysjump .LeavingContestEarly
 	end
 
 .CheckIfContestRunning:
@@ -146,7 +146,7 @@ Route35NationalParkGate_LessThanFullParty:
 	playsound SFX_GOT_SAFARI_BALLS
 	waitsfx
 	buttonsound
-	jump Route35NationalParkGate_OkayToProceed
+	sjump Route35NationalParkGate_OkayToProceed
 
 Route35NationalParkGate_DeclinedToParticipate:
 	writetext UnknownText_0x6a5dc

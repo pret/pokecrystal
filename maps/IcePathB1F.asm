@@ -28,22 +28,22 @@ IcePathB1F_MapScripts:
 .Boulder1:
 	disappear ICEPATHB1F_BOULDER1
 	clearevent EVENT_BOULDER_IN_ICE_PATH_1A
-	jump .FinishBoulder
+	sjump .FinishBoulder
 
 .Boulder2:
 	disappear ICEPATHB1F_BOULDER2
 	clearevent EVENT_BOULDER_IN_ICE_PATH_2A
-	jump .FinishBoulder
+	sjump .FinishBoulder
 
 .Boulder3:
 	disappear ICEPATHB1F_BOULDER3
 	clearevent EVENT_BOULDER_IN_ICE_PATH_3A
-	jump .FinishBoulder
+	sjump .FinishBoulder
 
 .Boulder4:
 	disappear ICEPATHB1F_BOULDER4
 	clearevent EVENT_BOULDER_IN_ICE_PATH_4A
-	jump .FinishBoulder
+	sjump .FinishBoulder
 
 .FinishBoulder:
 	pause 30

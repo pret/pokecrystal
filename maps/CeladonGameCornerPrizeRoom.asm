@@ -36,7 +36,7 @@ CeladonPrizeRoom_tmcounterloop:
 	ifequal 1, .DoubleTeam
 	ifequal 2, .Psychic
 	ifequal 3, .HyperBeam
-	jump CeladonPrizeRoom_CancelPurchaseScript
+	sjump CeladonPrizeRoom_CancelPurchaseScript
 
 .DoubleTeam:
 	checkcoins CELADONGAMECORNERPRIZEROOM_TM32_COINS
@@ -47,7 +47,7 @@ CeladonPrizeRoom_tmcounterloop:
 	giveitem TM_DOUBLE_TEAM
 	iffalse CeladonPrizeRoom_notenoughroom
 	takecoins CELADONGAMECORNERPRIZEROOM_TM32_COINS
-	jump CeladonPrizeRoom_purchased
+	sjump CeladonPrizeRoom_purchased
 
 .Psychic:
 	checkcoins CELADONGAMECORNERPRIZEROOM_TM29_COINS
@@ -58,7 +58,7 @@ CeladonPrizeRoom_tmcounterloop:
 	giveitem TM_PSYCHIC_M
 	iffalse CeladonPrizeRoom_notenoughroom
 	takecoins CELADONGAMECORNERPRIZEROOM_TM29_COINS
-	jump CeladonPrizeRoom_purchased
+	sjump CeladonPrizeRoom_purchased
 
 .HyperBeam:
 	checkcoins CELADONGAMECORNERPRIZEROOM_TM15_COINS
@@ -69,7 +69,7 @@ CeladonPrizeRoom_tmcounterloop:
 	giveitem TM_HYPER_BEAM
 	iffalse CeladonPrizeRoom_notenoughroom
 	takecoins CELADONGAMECORNERPRIZEROOM_TM15_COINS
-	jump CeladonPrizeRoom_purchased
+	sjump CeladonPrizeRoom_purchased
 
 CeladonPrizeRoom_askbuy:
 	writetext CeladonPrizeRoom_ConfirmPurchaseText
@@ -81,7 +81,7 @@ CeladonPrizeRoom_purchased:
 	playsound SFX_TRANSACTION
 	writetext CeladonPrizeRoom_HereYouGoText
 	waitbutton
-	jump CeladonPrizeRoom_tmcounterloop
+	sjump CeladonPrizeRoom_tmcounterloop
 
 CeladonPrizeRoom_notenoughcoins:
 	writetext CeladonPrizeRoom_NotEnoughCoinsText
@@ -137,7 +137,7 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 	ifequal 1, .Pikachu
 	ifequal 2, .Porygon
 	ifequal 3, .Larvitar
-	jump CeladonPrizeRoom_CancelPurchaseScript
+	sjump CeladonPrizeRoom_CancelPurchaseScript
 
 .Pikachu:
 	checkcoins CELADONGAMECORNERPRIZEROOM_PIKACHU_COINS
@@ -155,7 +155,7 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 	special GameCornerPrizeMonCheckDex
 	givepoke PIKACHU, 25
 	takecoins CELADONGAMECORNERPRIZEROOM_PIKACHU_COINS
-	jump .loop
+	sjump .loop
 
 .Porygon:
 	checkcoins CELADONGAMECORNERPRIZEROOM_PORYGON_COINS
@@ -173,7 +173,7 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 	special GameCornerPrizeMonCheckDex
 	givepoke PORYGON, 15
 	takecoins CELADONGAMECORNERPRIZEROOM_PORYGON_COINS
-	jump .loop
+	sjump .loop
 
 .Larvitar:
 	checkcoins CELADONGAMECORNERPRIZEROOM_LARVITAR_COINS
@@ -191,7 +191,7 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 	special GameCornerPrizeMonCheckDex
 	givepoke LARVITAR, 40
 	takecoins CELADONGAMECORNERPRIZEROOM_LARVITAR_COINS
-	jump .loop
+	sjump .loop
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags

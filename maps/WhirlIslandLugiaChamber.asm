@@ -12,7 +12,7 @@ WhirlIslandLugiaChamber_MapScripts:
 	iftrue .NoAppear
 	checkitem SILVER_WING
 	iftrue .Appear
-	jump .NoAppear
+	sjump .NoAppear
 
 .Appear:
 	appear WHIRLISLANDLUGIACHAMBER_LUGIA

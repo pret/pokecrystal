@@ -26,7 +26,7 @@ FirstStepIntoKantoLeftScene:
 	turnobject ROUTE27_FISHER, LEFT
 	showemote EMOTE_SHOCK, ROUTE27_FISHER, 15
 	applymovement ROUTE27_FISHER, MovementData_0x1a0a66
-	jump FirstStepIntoKantoScene_Continue
+	sjump FirstStepIntoKantoScene_Continue
 
 FirstStepIntoKantoRightScene:
 	turnobject ROUTE27_FISHER, LEFT
@@ -76,7 +76,7 @@ TrainerBirdKeeperJose2:
 	buttonsound
 	setevent EVENT_JOSE_ASKED_FOR_PHONE_NUMBER
 	scall .AskNumber1
-	jump .AskForNumber
+	sjump .AskForNumber
 
 .AskedAlready:
 	scall .AskNumber2
@@ -86,7 +86,7 @@ TrainerBirdKeeperJose2:
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	gettrainername STRING_BUFFER_3, BIRD_KEEPER, JOSE2
 	scall .RegisteredNumber
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .WantsBattle:
 	scall .Rematch
@@ -129,10 +129,10 @@ TrainerBirdKeeperJose2:
 	verbosegiveitem STAR_PIECE
 	iffalse .NoRoom
 	clearflag ENGINE_JOSE_HAS_STAR_PIECE
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .NoRoom:
-	jump .PackFull
+	sjump .PackFull
 
 .AskNumber1:
 	jumpstd asknumber1m
@@ -209,7 +209,7 @@ TrainerCooltrainerfReena:
 	buttonsound
 	setevent EVENT_REENA_ASKED_FOR_PHONE_NUMBER
 	scall .AskNumber1
-	jump .AskForNumber
+	sjump .AskForNumber
 
 .AskedAlready:
 	scall .AskNumber2
@@ -219,7 +219,7 @@ TrainerCooltrainerfReena:
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	gettrainername STRING_BUFFER_3, COOLTRAINERF, REENA1
 	scall .RegisteredNumber
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .WantsBattle:
 	scall .Rematch

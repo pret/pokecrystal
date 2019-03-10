@@ -11,11 +11,11 @@ ParryPhoneCalleeScript:
 	iftrue ParryFridayDay
 
 .WantsRematch:
-	farjump ParryBattleWithMe
+	farsjump ParryBattleWithMe
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_45
-	farjump ParryHaventYouGottenTo
+	farsjump ParryHaventYouGottenTo
 
 ParryPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, HIKER, PARRY1
@@ -29,7 +29,7 @@ ParryPhoneCallerScript:
 	ifequal 1, ParryWantsBattle
 
 .GenericCall:
-	farjump Phone_GenericCall_Male
+	farsjump Phone_GenericCall_Male
 
 ParryFridayDay:
 	setflag ENGINE_PARRY_FRIDAY_AFTERNOON
@@ -37,4 +37,4 @@ ParryFridayDay:
 ParryWantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_45
 	setflag ENGINE_PARRY
-	farjump PhoneScript_WantsToBattle_Male
+	farsjump PhoneScript_WantsToBattle_Male

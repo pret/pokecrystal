@@ -12,11 +12,11 @@ LizPhoneCalleeScript:
 
 .NotThursday:
 	special RandomPhoneMon
-	farjump UnknownScript_0xa0948
+	farsjump UnknownScript_0xa0948
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_32
-	farjump UnknownScript_0xa0a5a
+	farsjump UnknownScript_0xa0a5a
 
 LizPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, PICNICKER, LIZ1
@@ -37,7 +37,7 @@ LizPhoneCallerScript:
 	ifequal 0, LizWantsBattle
 
 .Generic:
-	farjump Phone_GenericCall_Female
+	farsjump Phone_GenericCall_Female
 
 LizThursdayAfternoon:
 	setflag ENGINE_LIZ_THURSDAY_AFTERNOON
@@ -45,10 +45,10 @@ LizThursdayAfternoon:
 LizWantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_32
 	setflag ENGINE_LIZ
-	farjump PhoneScript_WantsToBattle_Female
+	farsjump PhoneScript_WantsToBattle_Female
 
 LizWrongNumber:
-	farjump LizWrongNumberScript
+	farsjump LizWrongNumberScript
 
 LizGossip:
 	random 9
@@ -64,39 +64,39 @@ LizGossip:
 
 .CoolTrainerM:
 	gettrainerclassname STRING_BUFFER_4, COOLTRAINERM
-	jump LizGossipScript
+	sjump LizGossipScript
 
 .Beauty:
 	gettrainerclassname STRING_BUFFER_4, BEAUTY
-	jump LizGossipScript
+	sjump LizGossipScript
 
 .Grunt:
 	gettrainerclassname STRING_BUFFER_4, GRUNTM
-	jump LizGossipScript
+	sjump LizGossipScript
 
 .Teacher:
 	gettrainerclassname STRING_BUFFER_4, TEACHER
-	jump LizGossipScript
+	sjump LizGossipScript
 
 .SwimmerF:
 	gettrainerclassname STRING_BUFFER_4, SWIMMERF
-	jump LizGossipScript
+	sjump LizGossipScript
 
 .KimonoGirl:
 	gettrainerclassname STRING_BUFFER_4, KIMONO_GIRL
-	jump LizGossipScript
+	sjump LizGossipScript
 
 .Skier:
 	gettrainerclassname STRING_BUFFER_4, SKIER
-	jump LizGossipScript
+	sjump LizGossipScript
 
 .Medium:
 	gettrainerclassname STRING_BUFFER_4, MEDIUM
-	jump LizGossipScript
+	sjump LizGossipScript
 
 .PokefanM:
 	gettrainerclassname STRING_BUFFER_4, POKEFANM
-	jump LizGossipScript
+	sjump LizGossipScript
 
 LizGossipScript:
-	farjump UnknownScript_0xa06da
+	farsjump UnknownScript_0xa06da

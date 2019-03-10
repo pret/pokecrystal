@@ -10,7 +10,7 @@ FruitTreeScript::
 	iffalse .fruit
 	writetext NothingHereText
 	waitbutton
-	jump .end
+	sjump .end
 
 .fruit
 	writetext HeyItsFruitText
@@ -22,7 +22,7 @@ FruitTreeScript::
 	callasm PickedFruitTree
 	specialsound
 	itemnotify
-	jump .end
+	sjump .end
 
 .packisfull
 	buttonsound

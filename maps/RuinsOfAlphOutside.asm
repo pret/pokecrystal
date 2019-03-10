@@ -24,12 +24,12 @@ RuinsOfAlphOutside_MapScripts:
 	iftrue .NoScientist
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	iftrue .MaybeScientist
-	jump .NoScientist
+	sjump .NoScientist
 
 .MaybeScientist:
 	readvar VAR_UNOWNCOUNT
 	ifgreater 2, .YesScientist
-	jump .NoScientist
+	sjump .NoScientist
 
 .YesScientist:
 	appear RUINSOFALPHOUTSIDE_SCIENTIST
@@ -44,12 +44,12 @@ RuinsOfAlphOutside_MapScripts:
 RuinsOfAlphOutsideScientistScene1:
 	turnobject RUINSOFALPHOUTSIDE_SCIENTIST, UP
 	turnobject PLAYER, DOWN
-	jump RuinsOfAlphOutsideScientistSceneContinue
+	sjump RuinsOfAlphOutsideScientistSceneContinue
 
 RuinsOfAlphOutsideScientistScene2:
 	turnobject RUINSOFALPHOUTSIDE_SCIENTIST, LEFT
 	turnobject PLAYER, RIGHT
-	jump RuinsOfAlphOutsideScientistSceneContinue
+	sjump RuinsOfAlphOutsideScientistSceneContinue
 
 RuinsOfAlphOutsideScientistScript:
 	faceplayer

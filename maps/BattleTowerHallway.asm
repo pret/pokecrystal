@@ -9,7 +9,7 @@ BattleTowerHallway_MapScripts:
 	db 0 ; callbacks
 
 .Scene0:
-	priorityjump .ChooseBattleRoom
+	prioritysjump .ChooseBattleRoom
 	setscene SCENE_FINISHED
 .Scene1:
 	end
@@ -17,7 +17,7 @@ BattleTowerHallway_MapScripts:
 .ChooseBattleRoom:
 	follow BATTLETOWERHALLWAY_RECEPTIONIST, PLAYER
 	callasm .asm_load_battle_room
-	jump .WalkToChosenBattleRoom
+	sjump .WalkToChosenBattleRoom
 
 .asm_load_battle_room
 	ldh a, [rSVBK]
@@ -45,23 +45,23 @@ BattleTowerHallway_MapScripts:
 	ifequal 9, .L90L100
 	ifequal 10, .L90L100
 	applymovement BATTLETOWERHALLWAY_RECEPTIONIST, MovementData_BattleTowerHallwayWalkTo1020Room
-	jump .EnterBattleRoom
+	sjump .EnterBattleRoom
 
 .L30L40:
 	applymovement BATTLETOWERHALLWAY_RECEPTIONIST, MovementData_BattleTowerHallwayWalkTo3040Room
-	jump .EnterBattleRoom
+	sjump .EnterBattleRoom
 
 .L50L60:
 	applymovement BATTLETOWERHALLWAY_RECEPTIONIST, MovementData_BattleTowerHallwayWalkTo5060Room
-	jump .EnterBattleRoom
+	sjump .EnterBattleRoom
 
 .L70L80:
 	applymovement BATTLETOWERHALLWAY_RECEPTIONIST, MovementData_BattleTowerHallwayWalkTo7080Room
-	jump .EnterBattleRoom
+	sjump .EnterBattleRoom
 
 .L90L100:
 	applymovement BATTLETOWERHALLWAY_RECEPTIONIST, MovementData_BattleTowerHallwayWalkTo90100Room
-	jump .EnterBattleRoom
+	sjump .EnterBattleRoom
 
 .EnterBattleRoom:
 	faceobject PLAYER, BATTLETOWERHALLWAY_RECEPTIONIST

@@ -30,7 +30,7 @@ TrainerHikerAnthony:
 	buttonsound
 	setevent EVENT_ANTHONY_ASKED_FOR_PHONE_NUMBER
 	scall .AskNumber1
-	jump .AskForPhoneNumber
+	sjump .AskForPhoneNumber
 
 .AskAgain:
 	scall .AskNumber2
@@ -40,7 +40,7 @@ TrainerHikerAnthony:
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	gettrainername STRING_BUFFER_3, HIKER, ANTHONY2
 	scall .RegisteredNumber
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .Rematch:
 	scall .RematchStd

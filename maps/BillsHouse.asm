@@ -40,7 +40,7 @@ BillsGrandpa:
 	ifnotequal LICKITUNG, .WrongPokemon
 	scall .CorrectPokemon
 	setevent EVENT_SHOWED_LICKITUNG_TO_BILLS_GRANDPA
-	jump .ShowedLickitung
+	sjump .ShowedLickitung
 
 .GotEverstone:
 	writetext BillsGrandpaOddishText
@@ -54,7 +54,7 @@ BillsGrandpa:
 	ifnotequal ODDISH, .WrongPokemon
 	scall .CorrectPokemon
 	setevent EVENT_SHOWED_ODDISH_TO_BILLS_GRANDPA
-	jump .ShowedOddish
+	sjump .ShowedOddish
 
 .GotLeafStone:
 	writetext BillsGrandpaStaryuText
@@ -68,7 +68,7 @@ BillsGrandpa:
 	ifnotequal STARYU, .WrongPokemon
 	scall .CorrectPokemon
 	setevent EVENT_SHOWED_STARYU_TO_BILLS_GRANDPA
-	jump .ShowedStaryu
+	sjump .ShowedStaryu
 
 .GotWaterStone:
 	checkver
@@ -84,7 +84,7 @@ BillsGrandpa:
 	ifnotequal GROWLITHE, .WrongPokemon
 	scall .CorrectPokemon
 	setevent EVENT_SHOWED_GROWLITHE_VULPIX_TO_BILLS_GRANDPA
-	jump .ShowedGrowlitheVulpix
+	sjump .ShowedGrowlitheVulpix
 
 .AskVulpix:
 	writetext BillsGrandpaVulpixText
@@ -98,7 +98,7 @@ BillsGrandpa:
 	ifnotequal VULPIX, .WrongPokemon
 	scall .CorrectPokemon
 	setevent EVENT_SHOWED_GROWLITHE_VULPIX_TO_BILLS_GRANDPA
-	jump .ShowedGrowlitheVulpix
+	sjump .ShowedGrowlitheVulpix
 
 .GotFireStone:
 	writetext BillsGrandpaPichuText
@@ -112,7 +112,7 @@ BillsGrandpa:
 	ifnotequal PICHU, .WrongPokemon
 	scall .CorrectPokemon
 	setevent EVENT_SHOWED_PICHU_TO_BILLS_GRANDPA
-	jump .ShowedPichu
+	sjump .ShowedPichu
 
 .ShowedLickitung:
 	checkevent EVENT_GOT_EVERSTONE_FROM_BILLS_GRANDPA

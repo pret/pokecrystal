@@ -430,7 +430,7 @@ IlexForestSignpost:
 IlexForestShrineScript:
 	checkevent EVENT_FOREST_IS_RESTLESS
 	iftrue .ForestIsRestless
-	jump .DontDoCelebiEvent
+	sjump .DontDoCelebiEvent
 
 .ForestIsRestless:
 	checkitem GS_BALL

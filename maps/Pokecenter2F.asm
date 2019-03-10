@@ -21,29 +21,29 @@ Pokecenter2F_MapScripts:
 	clearevent EVENT_MYSTERY_GIFT_DELIVERY_GUY
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	iftrue .Scene0Done
-	priorityjump Pokecenter2F_AppearMysteryGiftDeliveryGuy
+	prioritysjump Pokecenter2F_AppearMysteryGiftDeliveryGuy
 
 .Scene0Done:
 	end
 
 .Scene1:
-	priorityjump Script_LeftCableTradeCenter
+	prioritysjump Script_LeftCableTradeCenter
 	end
 
 .Scene2:
-	priorityjump Script_LeftCableColosseum
+	prioritysjump Script_LeftCableColosseum
 	end
 
 .Scene3:
-	priorityjump Script_LeftTimeCapsule
+	prioritysjump Script_LeftTimeCapsule
 	end
 
 .Scene4:
-	priorityjump Script_LeftMobileTradeRoom
+	prioritysjump Script_LeftMobileTradeRoom
 	end
 
 .Scene5:
-	priorityjump Script_LeftMobileBattleRoom
+	prioritysjump Script_LeftMobileBattleRoom
 	end
 
 Pokecenter2F_AppearMysteryGiftDeliveryGuy:
@@ -125,7 +125,7 @@ LinkReceptionistScript_Trade:
 
 .LinkTimedOut:
 	writetext Text_LinkTimedOut
-	jump .AbortLink
+	sjump .AbortLink
 
 .DidNotSave:
 	writetext Text_PleaseComeAgain
@@ -227,7 +227,7 @@ LinkReceptionistScript_Battle:
 
 .LinkTimedOut:
 	writetext Text_LinkTimedOut
-	jump .AbortLink
+	sjump .AbortLink
 
 .DidNotSave:
 	writetext Text_PleaseComeAgain
@@ -274,7 +274,7 @@ LinkReceptionistScript_Battle:
 	ifequal $1, .Mobile_OK
 	ifequal $2, .Mobile_OK
 	ifequal $3, .Mobile_InvalidParty
-	jump .Mobile_DidNotSelect
+	sjump .Mobile_DidNotSelect
 
 .Mobile_InvalidParty:
 	writetext Text_BrokeStadiumRules
@@ -347,7 +347,7 @@ LinkReceptionistScript_TimeCapsule:
 
 .LinkTimedOut:
 	writetext Text_LinkTimedOut
-	jump .Cancel
+	sjump .Cancel
 
 .DidNotSave:
 	writetext Text_PleaseComeAgain
@@ -516,12 +516,12 @@ TimeCapsuleScript_CheckPlayerGender:
 	ifequal LEFT, .FemaleFacingLeft
 	applymovementlasttalked Pokecenter2FMovementData_ReceptionistStepsLeftLooksRight_2
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerTakesOneStepUp_2
-	jump .FemaleContinue
+	sjump .FemaleContinue
 
 .FemaleFacingRight:
 	applymovementlasttalked Pokecenter2FMovementData_ReceptionistStepsRightLooksLeft_2
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerTakesOneStepRight
-	jump .FemaleContinue
+	sjump .FemaleContinue
 
 .FemaleFacingLeft:
 	applymovementlasttalked Pokecenter2FMovementData_ReceptionistStepsLeftLooksRight_2
@@ -562,7 +562,7 @@ Script_LeftTimeCapsule:
 	applymovement POKECENTER2F_TIME_CAPSULE_RECEPTIONIST, Pokecenter2FMovementData_ReceptionistStepsLeftLooksRight
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerTakesTwoStepsDown
 	applymovement POKECENTER2F_TIME_CAPSULE_RECEPTIONIST, Pokecenter2FMovementData_ReceptionistStepsRightLooksDown_2
-	jump .Done
+	sjump .Done
 
 .Female:
 	applymovement POKECENTER2F_TIME_CAPSULE_RECEPTIONIST, Pokecenter2FMovementData_ReceptionistStepsLeftLooksRight

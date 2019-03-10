@@ -29,7 +29,7 @@ CherrygroveCityGuideGent:
 	writetext GuideGentIntroText
 	yesorno
 	iffalse .No
-	jump .Yes
+	sjump .Yes
 .Yes:
 	writetext GuideGentTourText1
 	waitbutton
@@ -125,7 +125,7 @@ CherrygroveSilverSceneNorth:
 	dontrestartmapmusic
 	reloadmap
 	iftrue .AfterVictorious
-	jump .AfterYourDefeat
+	sjump .AfterYourDefeat
 
 .Totodile:
 	winlosstext SilverCherrygroveWinText, SilverCherrygroveLossText
@@ -136,7 +136,7 @@ CherrygroveSilverSceneNorth:
 	dontrestartmapmusic
 	reloadmap
 	iftrue .AfterVictorious
-	jump .AfterYourDefeat
+	sjump .AfterYourDefeat
 
 .Chikorita:
 	winlosstext SilverCherrygroveWinText, SilverCherrygroveLossText
@@ -147,7 +147,7 @@ CherrygroveSilverSceneNorth:
 	dontrestartmapmusic
 	reloadmap
 	iftrue .AfterVictorious
-	jump .AfterYourDefeat
+	sjump .AfterYourDefeat
 
 .AfterVictorious:
 	playmusic MUSIC_RIVAL_AFTER
@@ -155,7 +155,7 @@ CherrygroveSilverSceneNorth:
 	writetext CherrygroveRivalText_YouWon
 	waitbutton
 	closetext
-	jump .FinishRival
+	sjump .FinishRival
 
 .AfterYourDefeat:
 	playmusic MUSIC_RIVAL_AFTER

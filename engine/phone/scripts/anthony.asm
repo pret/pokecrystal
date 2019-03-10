@@ -13,15 +13,15 @@ AnthonyPhoneCalleeScript:
 .NotFriday:
 	checkflag ENGINE_DUNSPARCE_SWARM
 	iftrue .AlreadySwarming
-	farjump UnknownScript_0xa0950
+	farsjump UnknownScript_0xa0950
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_33
-	farjump UnknownScript_0xa0a5f
+	farsjump UnknownScript_0xa0a5f
 
 .AlreadySwarming:
 	getlandmarkname STRING_BUFFER_5, ROUTE_33
-	farjump UnknownScript_0xa0afa
+	farsjump UnknownScript_0xa0afa
 
 AnthonyPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, HIKER, ANTHONY2
@@ -38,7 +38,7 @@ AnthonyPhoneCallerScript:
 .TriesSwarm:
 	farscall PhoneScript_Random5
 	ifequal 0, AnthonyTriesDunsparceSwarm
-	farjump Phone_GenericCall_Male
+	farsjump Phone_GenericCall_Male
 
 AnthonyFridayNight:
 	setflag ENGINE_ANTHONY_FRIDAY_NIGHT
@@ -46,7 +46,7 @@ AnthonyFridayNight:
 AnthonyWantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_33
 	setflag ENGINE_ANTHONY
-	farjump PhoneScript_WantsToBattle_Male
+	farsjump PhoneScript_WantsToBattle_Male
 
 AnthonyTriesDunsparceSwarm:
 	checkflag ENGINE_DUNSPARCE_SWARM
@@ -55,7 +55,7 @@ AnthonyTriesDunsparceSwarm:
 	getmonname STRING_BUFFER_4, DUNSPARCE
 	swarm SWARM_DUNSPARCE, DARK_CAVE_VIOLET_ENTRANCE
 	getlandmarkname STRING_BUFFER_5, DARK_CAVE
-	farjump UnknownScript_0xa05de
+	farsjump UnknownScript_0xa05de
 
 .Generic:
-	farjump Phone_GenericCall_Male
+	farsjump Phone_GenericCall_Male

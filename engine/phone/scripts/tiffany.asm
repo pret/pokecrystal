@@ -13,15 +13,15 @@ TiffanyPhoneCalleeScript:
 	iftrue TiffanyTuesdayAfternoon
 
 .NotTuesday:
-	farjump UnknownScript_0xa09a0
+	farsjump UnknownScript_0xa09a0
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_43
-	farjump UnknownScript_0xa0a8c
+	farsjump UnknownScript_0xa0a8c
 
 .HasItem:
 	getlandmarkname STRING_BUFFER_5, ROUTE_43
-	farjump UnknownScript_0xa0ae5
+	farsjump UnknownScript_0xa0ae5
 
 TiffanyPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, PICNICKER, TIFFANY3
@@ -46,7 +46,7 @@ TiffanyPhoneCallerScript:
 	ifequal 0, TiffanyHasPinkBow
 
 .Generic:
-	farjump Phone_GenericCall_Female
+	farsjump Phone_GenericCall_Female
 
 TiffanyTuesdayAfternoon:
 	setflag ENGINE_TIFFANY_TUESDAY_AFTERNOON
@@ -54,7 +54,7 @@ TiffanyTuesdayAfternoon:
 TiffanyWantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_43
 	setflag ENGINE_TIFFANY
-	farjump PhoneScript_WantsToBattle_Female
+	farsjump PhoneScript_WantsToBattle_Female
 
 TiffanysFamilyMembers:
 	random 6
@@ -67,32 +67,32 @@ TiffanysFamilyMembers:
 
 .Grandma:
 	getstring STRING_BUFFER_4, GrandmaString
-	jump .PoorClefairy
+	sjump .PoorClefairy
 
 .Grandpa:
 	getstring STRING_BUFFER_4, GrandpaString
-	jump .PoorClefairy
+	sjump .PoorClefairy
 
 .Mom:
 	getstring STRING_BUFFER_4, MomString
-	jump .PoorClefairy
+	sjump .PoorClefairy
 
 .Dad:
 	getstring STRING_BUFFER_4, DadString
-	jump .PoorClefairy
+	sjump .PoorClefairy
 
 .Sister:
 	getstring STRING_BUFFER_4, SisterString
-	jump .PoorClefairy
+	sjump .PoorClefairy
 
 .Brother:
 	getstring STRING_BUFFER_4, BrotherString
-	jump .PoorClefairy
+	sjump .PoorClefairy
 
 .PoorClefairy:
-	farjump TiffanyItsAwful
+	farsjump TiffanyItsAwful
 
 TiffanyHasPinkBow:
 	setflag ENGINE_TIFFANY_HAS_PINK_BOW
 	getlandmarkname STRING_BUFFER_5, ROUTE_43
-	farjump PhoneScript_FoundItem_Female
+	farsjump PhoneScript_FoundItem_Female

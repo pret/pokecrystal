@@ -47,7 +47,7 @@ TeamRocketBaseB2F_MapScripts:
 
 RocketBaseBossFLeft:
 	moveobject TEAMROCKETBASEB2F_LANCE, 9, 13
-	jump RocketBaseBossFScript
+	sjump RocketBaseBossFScript
 
 RocketBaseBossFRight:
 	moveobject TEAMROCKETBASEB2F_ROCKET_GIRL, 21, 16
@@ -154,7 +154,7 @@ RocketBaseLancesSideScript:
 
 LanceHealsScript1:
 	turnobject PLAYER, UP
-	jump LanceHealsCommon
+	sjump LanceHealsCommon
 
 LanceHealsScript2:
 	turnobject PLAYER, RIGHT
@@ -235,7 +235,7 @@ RocketElectrode1:
 	reloadmapafterbattle
 	special PlayMapMusic
 	applymovement PLAYER, MovementData_0x6d28c
-	jump RocketBaseElectrodeScript
+	sjump RocketBaseElectrodeScript
 
 RocketElectrode2:
 	cry ELECTRODE
@@ -253,7 +253,7 @@ RocketElectrode2:
 	reloadmapafterbattle
 	special PlayMapMusic
 	applymovement PLAYER, MovementData_0x6d299
-	jump RocketBaseElectrodeScript
+	sjump RocketBaseElectrodeScript
 
 RocketElectrode3:
 	cry ELECTRODE
@@ -271,7 +271,7 @@ RocketElectrode3:
 	reloadmapafterbattle
 	special PlayMapMusic
 	applymovement PLAYER, MovementData_0x6d2a4
-	jump RocketBaseElectrodeScript
+	sjump RocketBaseElectrodeScript
 
 TeamRocketBaseB2FReloadMap:
 	reloadmapafterbattle

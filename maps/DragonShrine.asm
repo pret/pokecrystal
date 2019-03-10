@@ -12,7 +12,7 @@ DragonShrine_MapScripts:
 	db 0 ; callbacks
 
 .DragonShrineTest:
-	priorityjump .DragonShrineTestScript
+	prioritysjump .DragonShrineTestScript
 	end
 
 .DummyScene:

@@ -183,7 +183,7 @@ TrainerSchoolboyAlan1:
 	buttonsound
 	setevent EVENT_ALAN_ASKED_FOR_PHONE_NUMBER
 	scall .AskNumber1
-	jump .ContinueAskForPhoneNumber
+	sjump .ContinueAskForPhoneNumber
 
 .AskAgainForPhoneNumber:
 	scall .AskNumber2
@@ -193,7 +193,7 @@ TrainerSchoolboyAlan1:
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	gettrainername STRING_BUFFER_3, SCHOOLBOY, ALAN1
 	scall .RegisteredNumber
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .ChooseRematch:
 	scall .Rematch
@@ -261,10 +261,10 @@ TrainerSchoolboyAlan1:
 	iffalse .BagFull
 	clearflag ENGINE_ALAN_HAS_FIRE_STONE
 	setevent EVENT_ALAN_GAVE_FIRE_STONE
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .BagFull:
-	jump .PackFull
+	sjump .PackFull
 
 .AskNumber1:
 	jumpstd asknumber1m

@@ -74,7 +74,7 @@ VioletPokecenter1F_ElmsAideScript:
 
 .SecondTimeAsking:
 	writetext UnknownText_0x69712
-	jump .AskTakeEgg
+	sjump .AskTakeEgg
 
 VioletPokecenter1FGameboyKidScript:
 	jumptextfaceplayer VioletPokecenter1FGameboyKidText

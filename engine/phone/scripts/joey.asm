@@ -12,11 +12,11 @@ JoeyPhoneCalleeScript:
 
 .NotMonday:
 	special RandomPhoneMon
-	farjump UnknownScript_0xa0930
+	farsjump UnknownScript_0xa0930
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_30
-	farjump UnknownScript_0xa0a4b
+	farsjump UnknownScript_0xa0a4b
 
 JoeyPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, YOUNGSTER, JOEY1
@@ -30,7 +30,7 @@ JoeyPhoneCallerScript:
 	ifequal 1, JoeyWantsBattle
 
 .Generic:
-	farjump Phone_GenericCall_Male
+	farsjump Phone_GenericCall_Male
 
 JoeyMondayAfternoon:
 	setflag ENGINE_JOEY_MONDAY_AFTERNOON
@@ -38,4 +38,4 @@ JoeyMondayAfternoon:
 JoeyWantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_30
 	setflag ENGINE_JOEY
-	farjump PhoneScript_WantsToBattle_Male
+	farsjump PhoneScript_WantsToBattle_Male

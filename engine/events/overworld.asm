@@ -857,7 +857,7 @@ dig_incave
 	reloadmappart
 	special UpdateTimePals
 	writetext .Text_UsedEscapeRope
-	jump .UsedDigOrEscapeRopeScript
+	sjump .UsedDigOrEscapeRopeScript
 
 .UsedDigScript:
 	reloadmappart
@@ -1044,7 +1044,7 @@ AskStrengthScript:
 	callasm TryStrengthOW
 	iffalse .AskStrength
 	ifequal $1, .DontMeetRequirements
-	jump .AlreadyUsedStrength
+	sjump .AlreadyUsedStrength
 
 .DontMeetRequirements:
 	jumptext UnknownText_0xcd73
@@ -1540,7 +1540,7 @@ FishFunction:
 Script_NotEvenANibble:
 	scall Script_FishCastRod
 	writetext UnknownText_0xd0a9
-	jump Script_NotEvenANibble_FallThrough
+	sjump Script_NotEvenANibble_FallThrough
 
 Script_NotEvenANibble2:
 	scall Script_FishCastRod
@@ -1557,7 +1557,7 @@ Script_GotABite:
 	callasm Fishing_CheckFacingUp
 	iffalse .NotFacingUp
 	applymovement PLAYER, .Movement_FacingUp
-	jump .FightTheHookedPokemon
+	sjump .FightTheHookedPokemon
 
 .NotFacingUp:
 	applymovement PLAYER, .Movement_NotFacingUp
@@ -1767,7 +1767,7 @@ FinishGettingOffBike:
 
 Script_GetOffBike_Register:
 	loadvar VAR_MOVEMENT, PLAYER_NORMAL
-	jump FinishGettingOffBike
+	sjump FinishGettingOffBike
 
 Script_CantGetOffBike:
 	writetext .CantGetOffBikeText

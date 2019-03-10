@@ -15,7 +15,7 @@ EcruteakGym_MapScripts:
 	db 0 ; callbacks
 
 .ForcedToLeave:
-	priorityjump EcruteakGymClosed
+	prioritysjump EcruteakGymClosed
 	end
 
 .DummyScene:

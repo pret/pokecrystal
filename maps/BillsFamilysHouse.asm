@@ -95,7 +95,7 @@ BillsSisterScript:
 .NoRoom:
 	writetext BillsSisterPhoneFullText
 	buttonsound
-	jump .Refused
+	sjump .Refused
 
 BillsHouseBookshelf1:
 	jumpstd picturebookshelf

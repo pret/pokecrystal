@@ -4,13 +4,13 @@ BuenaPhoneCalleeScript:
 	readvar VAR_HOUR
 	ifgreater 17, BuenaPhoneScript_AfterMidnight1
 	scall BuenaPhoneScript_CheckTimeOfDay1
-	jump BuenaPhoneScript_Random1
+	sjump BuenaPhoneScript_Random1
 
 BuenaPhoneCallerScript:
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue BuenaPhoneScript_Rocket
 	scall BuenaPhoneScript_CheckTimeOfDay2
-	jump BuenaPhoneScript_Random2
+	sjump BuenaPhoneScript_Random2
 
 BuenaPhoneScript_CheckTimeOfDay1:
 	checktime MORN
@@ -69,7 +69,7 @@ BuenaPhoneScript_Random2:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .PostE4
 	random 11
-	jump .Jumptable
+	sjump .Jumptable
 
 .PostE4:
 	random 14
@@ -92,55 +92,55 @@ BuenaPhoneScript_Random2:
 
 .zero
 	writetext UnknownText_0xa0efb
-	jump .finish
+	sjump .finish
 
 .one
 	writetext UnknownText_0xa0fcf
-	jump .finish
+	sjump .finish
 
 .two
 	writetext UnknownText_0xa109d
-	jump .finish
+	sjump .finish
 
 .three
 	writetext UnknownText_0xa1143
-	jump .finish
+	sjump .finish
 
 .four
 	writetext UnknownText_0xa1244
-	jump .finish
+	sjump .finish
 
 .five
 	writetext UnknownText_0xa1318
-	jump .finish
+	sjump .finish
 
 .six
 	writetext UnknownText_0xa13d8
-	jump .finish
+	sjump .finish
 
 .seven
 	writetext UnknownText_0xa1488
-	jump .finish
+	sjump .finish
 
 .eight
 	writetext UnknownText_0xa15de
-	jump .finish
+	sjump .finish
 
 .nine
 	writetext UnknownText_0xa1717
-	jump .finish
+	sjump .finish
 
 .ten
 	writetext UnknownText_0xa183d
-	jump .finish
+	sjump .finish
 
 .eleven
 	writetext UnknownText_0xa19b1
-	jump .finish
+	sjump .finish
 
 .twelve
 	writetext UnknownText_0xa1ac0
-	jump .finish
+	sjump .finish
 
 .thirteen
 	writetext UnknownText_0xa1bed

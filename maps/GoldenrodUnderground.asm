@@ -160,7 +160,7 @@ BitterMerchantScript:
 	readvar VAR_WEEKDAY
 	ifequal SUNDAY, .Open
 	ifequal SATURDAY, .Open
-	jump GoldenrodUndergroundScript_ShopClosed
+	sjump GoldenrodUndergroundScript_ShopClosed
 
 .Open:
 	pokemart MARTTYPE_BITTER, MART_UNDERGROUND
@@ -173,7 +173,7 @@ BargainMerchantScript:
 	iftrue GoldenrodUndergroundScript_ShopClosed
 	readvar VAR_WEEKDAY
 	ifequal MONDAY, .CheckMorn
-	jump GoldenrodUndergroundScript_ShopClosed
+	sjump GoldenrodUndergroundScript_ShopClosed
 
 .CheckMorn:
 	checktime MORN
@@ -188,7 +188,7 @@ OlderHaircutBrotherScript:
 	ifequal TUESDAY, .DoHaircut
 	ifequal THURSDAY, .DoHaircut
 	ifequal SATURDAY, .DoHaircut
-	jump GoldenrodUndergroundScript_ShopClosed
+	sjump GoldenrodUndergroundScript_ShopClosed
 
 .DoHaircut:
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
@@ -207,25 +207,25 @@ OlderHaircutBrotherScript:
 	setflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
 	ifequal $2, .two
 	ifequal $3, .three
-	jump .else
+	sjump .else
 
 .two
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	clearevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	clearevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
-	jump .then
+	sjump .then
 
 .three
 	clearevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	clearevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
-	jump .then
+	sjump .then
 
 .else
 	clearevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	clearevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
-	jump .then
+	sjump .then
 
 .then
 	takemoney YOUR_MONEY, GOLDENRODUNDERGROUND_OLDER_HAIRCUT_PRICE
@@ -245,7 +245,7 @@ OlderHaircutBrotherScript:
 	iftrue EitherHaircutBrotherScript_SlightlyHappier
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	iftrue EitherHaircutBrotherScript_Happier
-	jump EitherHaircutBrotherScript_MuchHappier
+	sjump EitherHaircutBrotherScript_MuchHappier
 
 .Refused:
 	writetext UnknownText_0x7c6ea
@@ -271,7 +271,7 @@ YoungerHaircutBrotherScript:
 	ifequal SUNDAY, .DoHaircut
 	ifequal WEDNESDAY, .DoHaircut
 	ifequal FRIDAY, .DoHaircut
-	jump GoldenrodUndergroundScript_ShopClosed
+	sjump GoldenrodUndergroundScript_ShopClosed
 
 .DoHaircut:
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
@@ -290,25 +290,25 @@ YoungerHaircutBrotherScript:
 	setflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
 	ifequal $2, .two
 	ifequal $3, .three
-	jump .else
+	sjump .else
 
 .two
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	clearevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	clearevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
-	jump .then
+	sjump .then
 
 .three
 	clearevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	clearevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
-	jump .then
+	sjump .then
 
 .else
 	clearevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	clearevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
-	jump .then
+	sjump .then
 
 .then
 	takemoney YOUR_MONEY, GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_PRICE
@@ -328,7 +328,7 @@ YoungerHaircutBrotherScript:
 	iftrue EitherHaircutBrotherScript_SlightlyHappier
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	iftrue EitherHaircutBrotherScript_Happier
-	jump EitherHaircutBrotherScript_MuchHappier
+	sjump EitherHaircutBrotherScript_MuchHappier
 
 .Refused:
 	writetext UnknownText_0x7c842

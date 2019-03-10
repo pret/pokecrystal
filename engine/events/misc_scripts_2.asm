@@ -20,7 +20,7 @@ HiddenItemScript::
 	callasm SetMemEvent
 	specialsound
 	itemnotify
-	jump .finish
+	sjump .finish
 
 .bag_full
 	buttonsound

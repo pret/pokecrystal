@@ -66,7 +66,7 @@ DragonsDenB1F_ClairScene:
 	writetext ClairText_WhatsTheMatterDragonDen
 	waitbutton
 	closetext
-	jump .FinishClair
+	sjump .FinishClair
 
 .BagFull:
 	writetext ClairText_NoRoom

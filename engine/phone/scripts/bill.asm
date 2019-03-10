@@ -5,17 +5,17 @@ BillPhoneCalleeScript:
 	iftrue .nitegreet
 	farwritetext BillPhoneMornGreetingText
 	buttonsound
-	jump .main
+	sjump .main
 
 .daygreet
 	farwritetext BillPhoneDayGreetingText
 	buttonsound
-	jump .main
+	sjump .main
 
 .nitegreet
 	farwritetext BillPhoneNiteGreetingText
 	buttonsound
-	jump .main
+	sjump .main
 
 .main
 	farwritetext BillPhoneGenericText

@@ -86,7 +86,7 @@ TrainerSchoolboyJack1:
 	buttonsound
 	setevent EVENT_JACK_ASKED_FOR_PHONE_NUMBER
 	scall .AskNumber1
-	jump .RequestNumber
+	sjump .RequestNumber
 
 .AskAgain:
 	scall .AskNumber2
@@ -96,7 +96,7 @@ TrainerSchoolboyJack1:
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	gettrainername STRING_BUFFER_3, SCHOOLBOY, JACK1
 	scall .RegisteredNumber
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .Rematch:
 	scall .RematchStd
@@ -216,7 +216,7 @@ TrainerPokefanfBeverly1:
 	buttonsound
 	setevent EVENT_BEVERLY_ASKED_FOR_PHONE_NUMBER
 	scall .AskNumber1
-	jump .RequestNumber
+	sjump .RequestNumber
 
 .AskAgain:
 	scall .AskNumber2
@@ -226,17 +226,17 @@ TrainerPokefanfBeverly1:
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	gettrainername STRING_BUFFER_3, POKEFANF, BEVERLY1
 	scall .RegisteredNumber
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .GiveNugget:
 	scall .Gift
 	verbosegiveitem NUGGET
 	iffalse .NoRoom
 	clearflag ENGINE_BEVERLY_HAS_NUGGET
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .NoRoom:
-	jump .PackFull
+	sjump .PackFull
 
 .NoMarill:
 	writetext UnknownText_0x5c68a

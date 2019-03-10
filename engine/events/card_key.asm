@@ -34,4 +34,4 @@ _CardKey:
 
 .CardKeyScript:
 	closetext
-	farjump CardKeySlotScript
+	farsjump CardKeySlotScript

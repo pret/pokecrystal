@@ -18,11 +18,11 @@ GoldenrodDeptStoreB1F_MapScripts:
 .ClearBoxes:
 	checkevent EVENT_RECEIVED_CARD_KEY
 	iftrue .GotCardKey
-	jump .Continue
+	sjump .Continue
 
 .GotCardKey:
 	changeblock 16, 4, $0d ; floor
-	jump .Continue
+	sjump .Continue
 
 .Continue:
 	checkevent EVENT_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2

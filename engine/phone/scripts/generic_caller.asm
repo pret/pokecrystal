@@ -3,56 +3,56 @@ Phone_GenericCall_Male:
 	farscall PhoneScript_Random2
 	ifequal 0, .Bragging
 	farscall PhoneScript_Generic_Male
-	farjump Phone_FoundAMon_Male
+	farsjump Phone_FoundAMon_Male
 
 .Bragging:
-	farjump Phone_BraggingCall_Male
+	farsjump Phone_BraggingCall_Male
 
 Phone_GenericCall_Female:
 	special RandomPhoneMon
 	farscall PhoneScript_Random2
 	ifequal 0, .Bragging
 	farscall PhoneScript_Generic_Female
-	farjump Phone_FoundAMon_Female
+	farsjump Phone_FoundAMon_Female
 
 .Bragging:
-	farjump Phone_BraggingCall_Female
+	farsjump Phone_BraggingCall_Female
 
 Phone_BraggingCall_Male:
 	farscall Phone_WhosBragging_Male
-	farjump Phone_FoundAMon_Male
+	farsjump Phone_FoundAMon_Male
 
 Phone_BraggingCall_Female:
 	farscall Phone_WhosBragging_Female
-	farjump Phone_FoundAMon_Female
+	farsjump Phone_FoundAMon_Female
 
 Phone_FoundAMon_Male:
 	special RandomPhoneWildMon
 	farscall PhoneScript_Random2
 	ifequal 0, .GotAway
 	farscall Phone_WhoDefeatedMon_Male
-	farjump PhoneScript_HangupText_Male
+	farsjump PhoneScript_HangupText_Male
 
 .GotAway:
-	farjump Phone_GotAwayCall_Male
+	farsjump Phone_GotAwayCall_Male
 
 Phone_FoundAMon_Female:
 	special RandomPhoneWildMon
 	farscall PhoneScript_Random2
 	ifequal 0, .GotAway
 	farscall Phone_WhoDefeatedMon_Female
-	farjump PhoneScript_HangupText_Female
+	farsjump PhoneScript_HangupText_Female
 
 .GotAway:
-	farjump Phone_GotAwayCall_Female
+	farsjump Phone_GotAwayCall_Female
 
 Phone_GotAwayCall_Male:
 	farscall Phone_WhoLostAMon_Male
-	farjump PhoneScript_HangupText_Male
+	farsjump PhoneScript_HangupText_Male
 
 Phone_GotAwayCall_Female:
 	farscall Phone_WhoLostAMon_Female
-	farjump PhoneScript_HangupText_Female
+	farsjump PhoneScript_HangupText_Female
 
 Phone_WhosBragging_Male:
 	readvar VAR_CALLERID
@@ -524,11 +524,11 @@ Phone_WhoLostAMon_Female:
 
 PhoneScript_WantsToBattle_Male:
 	farscall PhoneScript_RematchText_Male
-	farjump PhoneScript_HangupText_Male
+	farsjump PhoneScript_HangupText_Male
 
 PhoneScript_WantsToBattle_Female:
 	farscall PhoneScript_RematchText_Female
-	farjump PhoneScript_HangupText_Female
+	farsjump PhoneScript_HangupText_Female
 
 PhoneScript_RematchText_Male:
 	readvar VAR_CALLERID
@@ -837,18 +837,18 @@ PhoneScript_HangupText_Female:
 Phone_CheckIfUnseenRare_Male:
 	scall PhoneScriptRareWildMon
 	iffalse .HangUp
-	farjump Phone_GenericCall_Male
+	farsjump Phone_GenericCall_Male
 
 .HangUp:
-	farjump PhoneScript_HangupText_Male
+	farsjump PhoneScript_HangupText_Male
 
 Phone_CheckIfUnseenRare_Female:
 	scall PhoneScriptRareWildMon
 	iffalse .HangUp
-	farjump Phone_GenericCall_Female
+	farsjump Phone_GenericCall_Female
 
 .HangUp:
-	farjump PhoneScript_HangupText_Female
+	farsjump PhoneScript_HangupText_Female
 
 PhoneScriptRareWildMon:
 	special RandomUnseenWildMon
@@ -862,37 +862,37 @@ PhoneScript_BugCatchingContest:
 .Wade:
 	farwritetext WadeBugCatchingContestText
 	buttonsound
-	jump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangupText_Male
 
 .Derek:
 	farwritetext DerekBugCatchingContestText
 	buttonsound
-	jump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangupText_Male
 
 IrwinRocketRumor:
 	farwritetext UnknownText_0x64032
 	buttonsound
-	jump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa05c6:
 	farwritetext UnknownText_0x177378
 	buttonsound
-	jump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangupText_Female
 
 UnknownScript_0xa05ce:
 	farwritetext UnknownText_0x64b5f
 	buttonsound
-	jump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa05d6:
 	farwritetext UnknownText_0x175dd9
 	buttonsound
-	jump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa05de:
 	farwritetext UnknownText_0x176c61
 	buttonsound
-	jump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangupText_Male
 
 PhoneScript_FoundItem_Male:
 	readvar VAR_CALLERID
@@ -953,9 +953,9 @@ PhoneScript_FoundItem_Female:
 UnknownScript_0xa0644:
 	farwritetext UnknownText_0x176feb
 	buttonsound
-	jump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangupText_Male
 
 KenjiCallingPhoneScript:
 	farwritetext UnknownText_0x66dc5
 	buttonsound
-	jump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangupText_Male

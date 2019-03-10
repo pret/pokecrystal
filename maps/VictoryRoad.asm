@@ -66,7 +66,7 @@ VictoryRoadRivalNext:
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
-	jump .AfterBattle
+	sjump .AfterBattle
 
 .GotTotodile:
 	winlosstext VictoryRoadRivalDefeatText, VictoryRoadRivalVictoryText
@@ -75,7 +75,7 @@ VictoryRoadRivalNext:
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
-	jump .AfterBattle
+	sjump .AfterBattle
 
 .GotChikorita:
 	winlosstext VictoryRoadRivalDefeatText, VictoryRoadRivalVictoryText
@@ -84,7 +84,7 @@ VictoryRoadRivalNext:
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
-	jump .AfterBattle
+	sjump .AfterBattle
 
 .AfterBattle:
 	playmusic MUSIC_RIVAL_AFTER

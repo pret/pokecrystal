@@ -33,7 +33,7 @@ TrainerBirdKeeperVance1:
 	buttonsound
 	setevent EVENT_VANCE_ASKED_FOR_PHONE_NUMBER
 	scall Route44AskNumber1M
-	jump .AskForNumber
+	sjump .AskForNumber
 
 .AskedAlready:
 	scall Route44AskNumber2M
@@ -43,7 +43,7 @@ TrainerBirdKeeperVance1:
 	ifequal PHONE_CONTACT_REFUSED, Route44NumberDeclinedM
 	gettrainername STRING_BUFFER_3, BIRD_KEEPER, VANCE1
 	scall Route44RegisteredNumberM
-	jump Route44NumberAcceptedM
+	sjump Route44NumberAcceptedM
 
 .WantsBattle:
 	scall Route44RematchM
@@ -87,7 +87,7 @@ TrainerBirdKeeperVance1:
 	verbosegiveitem CARBOS
 	iffalse VancePackFull
 	setevent EVENT_GOT_CARBOS_FROM_VANCE
-	jump Route44NumberAcceptedM
+	sjump Route44NumberAcceptedM
 
 .ReceivedCarbosBefore:
 	end
@@ -100,7 +100,7 @@ TrainerBirdKeeperVance1:
 	iffalse VancePackFull
 	clearevent EVENT_VANCE_CARBOS
 	setevent EVENT_GOT_CARBOS_FROM_VANCE
-	jump Route44NumberAcceptedM
+	sjump Route44NumberAcceptedM
 
 Route44AskNumber1M:
 	jumpstd asknumber1m
@@ -177,7 +177,7 @@ TrainerFisherWilton1:
 	buttonsound
 	setevent EVENT_WILTON_ASKED_FOR_PHONE_NUMBER
 	scall Route44AskNumber1M
-	jump .AskForNumber
+	sjump .AskForNumber
 
 .AskedAlready:
 	scall Route44AskNumber2M
@@ -187,7 +187,7 @@ TrainerFisherWilton1:
 	ifequal PHONE_CONTACT_REFUSED, Route44NumberDeclinedM
 	gettrainername STRING_BUFFER_3, FISHER, WILTON1
 	scall Route44RegisteredNumberM
-	jump Route44NumberAcceptedM
+	sjump Route44NumberAcceptedM
 
 .WantsBattle:
 	scall Route44RematchM
@@ -236,22 +236,22 @@ TrainerFisherWilton1:
 .UltraBall:
 	verbosegiveitem ULTRA_BALL
 	iffalse .Route44PackFullM
-	jump .ItemReceived
+	sjump .ItemReceived
 
 .GreatBall:
 	verbosegiveitem GREAT_BALL
 	iffalse .Route44PackFullM
-	jump .ItemReceived
+	sjump .ItemReceived
 
 .PokeBall:
 	verbosegiveitem POKE_BALL
 	iffalse .Route44PackFullM
 .ItemReceived:
 	clearflag ENGINE_WILTON_HAS_ITEM
-	jump Route44NumberAcceptedM
+	sjump Route44NumberAcceptedM
 
 .Route44PackFullM:
-	jump Route44PackFullM
+	sjump Route44PackFullM
 
 TrainerFisherEdgar:
 	trainer FISHER, EDGAR, EVENT_BEAT_FISHER_EDGAR, FisherEdgarSeenText, FisherEdgarBeatenText, 0, .Script

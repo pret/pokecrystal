@@ -13,27 +13,27 @@ farscall: MACRO
 	dba \1
 ENDM
 
-	enum ptcall_command ; $02
-ptcall: MACRO
-	db ptcall_command
+	enum memcall_command ; $02
+memcall: MACRO
+	db memcall_command
 	dw \1 ; pointer
 ENDM
 
-	enum jump_command ; $03
-jump: MACRO
-	db jump_command
+	enum sjump_command ; $03
+sjump: MACRO
+	db sjump_command
 	dw \1 ; pointer
 ENDM
 
-	enum farjump_command ; $04
-farjump: MACRO
-	db farjump_command
+	enum farsjump_command ; $04
+farsjump: MACRO
+	db farsjump_command
 	dba \1
 ENDM
 
-	enum ptjump_command ; $05
-ptjump: MACRO
-	db ptjump_command
+	enum memjump_command ; $05
+memjump: MACRO
+	db memjump_command
 	dw \1 ; pointer
 ENDM
 
@@ -101,9 +101,9 @@ special: MACRO
 	dw (\1Special - SpecialsPointers) / 3
 ENDM
 
-	enum ptcallasm_command ; $10
-ptcallasm: MACRO
-	db ptcallasm_command
+	enum memcallasm_command ; $10
+memcallasm: MACRO
+	db memcallasm_command
 	dw \1 ; asm
 ENDM
 
@@ -885,9 +885,9 @@ deactivatefacing: MACRO
 	db \1 ; time
 ENDM
 
-	enum priorityjump_command ; $8d
-priorityjump: MACRO
-	db priorityjump_command
+	enum prioritysjump_command ; $8d
+prioritysjump: MACRO
+	db prioritysjump_command
 	dw \1 ; pointer
 ENDM
 
@@ -896,9 +896,9 @@ warpcheck: MACRO
 	db warpcheck_command
 ENDM
 
-	enum ptpriorityjump_command ; $8f
-ptpriorityjump: MACRO
-	db ptpriorityjump_command
+	enum stopandsjump_command ; $8f
+stopandsjump: MACRO
+	db stopandsjump_command
 	dw \1 ; pointer
 ENDM
 

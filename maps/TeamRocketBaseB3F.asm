@@ -25,7 +25,7 @@ TeamRocketBaseB3F_MapScripts:
 	callback MAPCALLBACK_TILES, .CheckGiovanniDoor
 
 .LanceGetsPassword:
-	priorityjump LanceGetPasswordScript
+	prioritysjump LanceGetPasswordScript
 	end
 
 .DummyScene1:
@@ -86,7 +86,7 @@ TeamRocketBaseB3FRocketScript:
 
 RocketBaseBossLeft:
 	applymovement PLAYER, MovementData_0x6e133
-	jump RocketBaseBoss
+	sjump RocketBaseBoss
 
 RocketBaseBossRight:
 	applymovement PLAYER, MovementData_0x6e13a
@@ -180,7 +180,7 @@ TeamRocketBaseB3FLockedDoor:
 	iffalse .NeedsPassword
 	checkevent EVENT_LEARNED_RATICATE_TAIL
 	iffalse .NeedsPassword
-	jump .OpenSesame
+	sjump .OpenSesame
 
 .NeedsPassword:
 	writetext TeamRocketBaseB3FLockedDoorNeedsPasswordText

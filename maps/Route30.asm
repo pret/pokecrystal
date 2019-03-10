@@ -53,7 +53,7 @@ TrainerYoungsterJoey:
 	buttonsound
 	setevent EVENT_JOEY_ASKED_FOR_PHONE_NUMBER
 	scall .AskNumber1
-	jump .RequestNumber
+	sjump .RequestNumber
 
 .AskAgain:
 	scall .AskNumber2
@@ -63,7 +63,7 @@ TrainerYoungsterJoey:
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	gettrainername STRING_BUFFER_3, YOUNGSTER, JOEY1
 	scall .RegisteredNumber
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .Rematch:
 	scall .RematchStd
@@ -131,7 +131,7 @@ TrainerYoungsterJoey:
 	verbosegiveitem HP_UP
 	iffalse .PackFull
 	setevent EVENT_GOT_HP_UP_FROM_JOEY
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .done
 	end
@@ -144,7 +144,7 @@ TrainerYoungsterJoey:
 	iffalse .PackFull
 	clearevent EVENT_JOEY_HP_UP
 	setevent EVENT_GOT_HP_UP_FROM_JOEY
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .AskNumber1:
 	jumpstd asknumber1m

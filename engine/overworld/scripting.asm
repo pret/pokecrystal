@@ -65,10 +65,10 @@ ScriptCommandTable:
 ; entries correspond to macros/scripts/events.asm enumeration
 	dw Script_scall                      ; 00
 	dw Script_farscall                   ; 01
-	dw Script_ptcall                     ; 02
-	dw Script_jump                       ; 03
-	dw Script_farjump                    ; 04
-	dw Script_ptjump                     ; 05
+	dw Script_memcall                    ; 02
+	dw Script_sjump                      ; 03
+	dw Script_farsjump                   ; 04
+	dw Script_memjump                    ; 05
 	dw Script_ifequal                    ; 06
 	dw Script_ifnotequal                 ; 07
 	dw Script_iffalse                    ; 08
@@ -79,7 +79,7 @@ ScriptCommandTable:
 	dw Script_callstd                    ; 0d
 	dw Script_callasm                    ; 0e
 	dw Script_special                    ; 0f
-	dw Script_ptcallasm                  ; 10
+	dw Script_memcallasm                 ; 10
 	dw Script_checkmapscene              ; 11
 	dw Script_setmapscene                ; 12
 	dw Script_checkscene                 ; 13
@@ -206,9 +206,9 @@ endc
 	dw Script_newloadmap                 ; 8a
 	dw Script_pause                      ; 8b
 	dw Script_deactivatefacing           ; 8c
-	dw Script_priorityjump               ; 8d
+	dw Script_prioritysjump              ; 8d
 	dw Script_warpcheck                  ; 8e
-	dw Script_ptpriorityjump             ; 8f
+	dw Script_stopandsjump               ; 8f
 	dw Script_return                     ; 90
 	dw Script_end                        ; 91
 	dw Script_reloadandreturn            ; 92
@@ -276,7 +276,7 @@ Script_special:
 	farcall Special
 	ret
 
-Script_ptcallasm:
+Script_memcallasm:
 ; script command 0x10
 ; parameters: asm
 
@@ -1428,7 +1428,7 @@ Script_farscall:
 	ld d, a
 	jr ScriptCall
 
-Script_ptcall:
+Script_memcall:
 ; script command 0x2
 ; parameters: pointer
 
@@ -1480,7 +1480,7 @@ CallCallback::
 	ld [wScriptBank], a
 	jp ScriptCall
 
-Script_jump:
+Script_sjump:
 ; script command 0x3
 ; parameters: pointer
 
@@ -1492,7 +1492,7 @@ Script_jump:
 	ld b, a
 	jp ScriptJump
 
-Script_farjump:
+Script_farsjump:
 ; script command 0x4
 ; parameters: pointer
 
@@ -1504,7 +1504,7 @@ Script_farjump:
 	ld h, a
 	jp ScriptJump
 
-Script_ptjump:
+Script_memjump:
 ; script command 0x5
 ; parameters: pointer
 
@@ -1526,7 +1526,7 @@ Script_iffalse:
 	ld a, [wScriptVar]
 	and a
 	jp nz, SkipTwoScriptBytes
-	jp Script_jump
+	jp Script_sjump
 
 Script_iftrue:
 ; script command 0x9
@@ -1534,7 +1534,7 @@ Script_iftrue:
 
 	ld a, [wScriptVar]
 	and a
-	jp nz, Script_jump
+	jp nz, Script_sjump
 	jp SkipTwoScriptBytes
 
 Script_ifequal:
@@ -1544,7 +1544,7 @@ Script_ifequal:
 	call GetScriptByte
 	ld hl, wScriptVar
 	cp [hl]
-	jr z, Script_jump
+	jr z, Script_sjump
 	jr SkipTwoScriptBytes
 
 Script_ifnotequal:
@@ -1554,7 +1554,7 @@ Script_ifnotequal:
 	call GetScriptByte
 	ld hl, wScriptVar
 	cp [hl]
-	jr nz, Script_jump
+	jr nz, Script_sjump
 	jr SkipTwoScriptBytes
 
 Script_ifgreater:
@@ -1565,7 +1565,7 @@ Script_ifgreater:
 	ld b, a
 	call GetScriptByte
 	cp b
-	jr c, Script_jump
+	jr c, Script_sjump
 	jr SkipTwoScriptBytes
 
 Script_ifless:
@@ -1576,7 +1576,7 @@ Script_ifless:
 	ld b, a
 	ld a, [wScriptVar]
 	cp b
-	jr c, Script_jump
+	jr c, Script_sjump
 	jr SkipTwoScriptBytes
 
 Script_jumpstd:
@@ -1626,7 +1626,7 @@ ScriptJump:
 	ld [wScriptPos + 1], a
 	ret
 
-Script_priorityjump:
+Script_prioritysjump:
 ; script command 0x8d
 ; parameters: pointer
 
@@ -2697,12 +2697,12 @@ Script_deactivatefacing:
 	call StopScript
 	ret
 
-Script_ptpriorityjump:
+Script_stopandsjump:
 ; script command 0x8f
 ; parameters: pointer
 
 	call StopScript
-	jp Script_jump
+	jp Script_sjump
 
 Script_end:
 ; script command 0x91

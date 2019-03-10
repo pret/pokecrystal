@@ -139,31 +139,31 @@ Kurt1:
 	ifequal PNK_APRICORN, .Pnk
 ; .Red
 	setevent EVENT_GAVE_KURT_RED_APRICORN
-	jump .GaveKurtApricorns
+	sjump .GaveKurtApricorns
 
 .Blu:
 	setevent EVENT_GAVE_KURT_BLU_APRICORN
-	jump .GaveKurtApricorns
+	sjump .GaveKurtApricorns
 
 .Ylw:
 	setevent EVENT_GAVE_KURT_YLW_APRICORN
-	jump .GaveKurtApricorns
+	sjump .GaveKurtApricorns
 
 .Grn:
 	setevent EVENT_GAVE_KURT_GRN_APRICORN
-	jump .GaveKurtApricorns
+	sjump .GaveKurtApricorns
 
 .Wht:
 	setevent EVENT_GAVE_KURT_WHT_APRICORN
-	jump .GaveKurtApricorns
+	sjump .GaveKurtApricorns
 
 .Blk:
 	setevent EVENT_GAVE_KURT_BLK_APRICORN
-	jump .GaveKurtApricorns
+	sjump .GaveKurtApricorns
 
 .Pnk:
 	setevent EVENT_GAVE_KURT_PNK_APRICORN
-	jump .GaveKurtApricorns
+	sjump .GaveKurtApricorns
 
 .GaveKurtApricorns:
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
@@ -197,7 +197,7 @@ Kurt1:
 	verbosegiveitemvar LEVEL_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_RED_APRICORN
-	jump ._ThatTurnedOutGreat
+	sjump ._ThatTurnedOutGreat
 
 .GiveLureBall:
 	checkflag ENGINE_KURT_MAKING_BALLS
@@ -207,7 +207,7 @@ Kurt1:
 	verbosegiveitemvar LURE_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_BLU_APRICORN
-	jump ._ThatTurnedOutGreat
+	sjump ._ThatTurnedOutGreat
 
 .GiveMoonBall:
 	checkflag ENGINE_KURT_MAKING_BALLS
@@ -217,7 +217,7 @@ Kurt1:
 	verbosegiveitemvar MOON_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_YLW_APRICORN
-	jump ._ThatTurnedOutGreat
+	sjump ._ThatTurnedOutGreat
 
 .GiveFriendBall:
 	checkflag ENGINE_KURT_MAKING_BALLS
@@ -227,7 +227,7 @@ Kurt1:
 	verbosegiveitemvar FRIEND_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_GRN_APRICORN
-	jump ._ThatTurnedOutGreat
+	sjump ._ThatTurnedOutGreat
 
 .GiveFastBall:
 	checkflag ENGINE_KURT_MAKING_BALLS
@@ -237,7 +237,7 @@ Kurt1:
 	verbosegiveitemvar FAST_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_WHT_APRICORN
-	jump ._ThatTurnedOutGreat
+	sjump ._ThatTurnedOutGreat
 
 .GiveHeavyBall:
 	checkflag ENGINE_KURT_MAKING_BALLS
@@ -247,7 +247,7 @@ Kurt1:
 	verbosegiveitemvar HEAVY_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_BLK_APRICORN
-	jump ._ThatTurnedOutGreat
+	sjump ._ThatTurnedOutGreat
 
 .GiveLoveBall:
 	checkflag ENGINE_KURT_MAKING_BALLS
@@ -257,7 +257,7 @@ Kurt1:
 	verbosegiveitemvar LOVE_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_PNK_APRICORN
-	jump ._ThatTurnedOutGreat
+	sjump ._ThatTurnedOutGreat
 
 .CanGiveGSBallToKurt:
 	checkevent EVENT_GAVE_GS_BALL_TO_KURT
@@ -297,7 +297,7 @@ Kurt1:
 	turnobject PLAYER, DOWN
 	playsound SFX_FLY
 	applymovement KURTSHOUSE_KURT1, MovementData_0x18e466
-	jump .KurtHasLeftTheBuilding
+	sjump .KurtHasLeftTheBuilding
 
 .GSBallRunAround:
 	turnobject PLAYER, DOWN

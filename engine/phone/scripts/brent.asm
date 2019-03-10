@@ -11,11 +11,11 @@ BrentPhoneCalleeScript:
 	iftrue BrentMondayMorning
 
 .NotMonday:
-	farjump UnknownScript_0xa0998
+	farsjump UnknownScript_0xa0998
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_43
-	farjump UnknownScript_0xa0a87
+	farsjump UnknownScript_0xa0a87
 
 BrentPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, POKEMANIAC, BRENT1
@@ -30,7 +30,7 @@ BrentPhoneCallerScript:
 	ifequal 0, BrentWantsBattle
 
 .Generic:
-	farjump Phone_GenericCall_Male
+	farsjump Phone_GenericCall_Male
 
 BrentMondayMorning:
 	setflag ENGINE_BRENT_MONDAY_MORNING
@@ -38,7 +38,7 @@ BrentMondayMorning:
 BrentWantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_43
 	setflag ENGINE_BRENT
-	farjump PhoneScript_WantsToBattle_Male
+	farsjump PhoneScript_WantsToBattle_Male
 
 BrentBillTrivia:
-	farjump BrentBillTriviaScript
+	farsjump BrentBillTriviaScript

@@ -17,7 +17,7 @@ MahoganyMart1F_MapScripts:
 	end
 
 .LanceUncoversStaircase:
-	priorityjump MahoganyMart1FLanceUncoversStaircaseScript
+	prioritysjump MahoganyMart1FLanceUncoversStaircaseScript
 	end
 
 .MahoganyMart1FStaircase:

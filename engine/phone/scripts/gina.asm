@@ -15,18 +15,18 @@ GinaPhoneCalleeScript:
 .NotSunday:
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue .Rockets
-	farjump UnknownScript_0xa0960
+	farsjump UnknownScript_0xa0960
 
 .Rockets:
-	farjump UnknownScript_0xa05c6
+	farsjump UnknownScript_0xa05c6
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_34
-	farjump UnknownScript_0xa0a69
+	farsjump UnknownScript_0xa0a69
 
 .HasLeafStone:
 	getlandmarkname STRING_BUFFER_5, ROUTE_34
-	farjump UnknownScript_0xa0abd
+	farsjump UnknownScript_0xa0abd
 
 GinaPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, PICNICKER, GINA1
@@ -53,7 +53,7 @@ GinaPhoneCallerScript:
 	ifequal 0, GinaWantsBattle
 
 .Generic:
-	farjump Phone_GenericCall_Female
+	farsjump Phone_GenericCall_Female
 
 GinaSundayDay:
 	setflag ENGINE_GINA_SUNDAY_AFTERNOON
@@ -61,12 +61,12 @@ GinaSundayDay:
 GinaWantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_34
 	setflag ENGINE_GINA
-	farjump PhoneScript_WantsToBattle_Female
+	farsjump PhoneScript_WantsToBattle_Female
 
 GinaRockets:
-	farjump UnknownScript_0xa05c6
+	farsjump UnknownScript_0xa05c6
 
 GinaHasLeafStone:
 	setflag ENGINE_GINA_HAS_LEAF_STONE
 	getlandmarkname STRING_BUFFER_5, ROUTE_34
-	farjump PhoneScript_FoundItem_Female
+	farsjump PhoneScript_FoundItem_Female

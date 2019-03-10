@@ -21,7 +21,7 @@ TrainerHouseReceptionistScript:
 	special TrainerHouse
 	iffalse .GetCal3Name
 	gettrainername STRING_BUFFER_3, CAL, CAL2
-	jump .GotName
+	sjump .GotName
 
 .GetCal3Name:
 	gettrainername STRING_BUFFER_3, CAL, CAL3

@@ -7,7 +7,7 @@ MomPhoneCalleeScript:
 	iftrue MomPhoneNoGymQuestScript
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue MomPhoneNoPokedexScript
-	jump MomPhoneNoPokemonScript
+	sjump MomPhoneNoPokemonScript
 
 .bcec5
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_8
@@ -18,12 +18,12 @@ MomPhoneCalleeScript:
 	readvar VAR_ROOFPALETTE
 	ifequal 1, MomPhonePalette1
 	ifequal 2, MomPhonePalette2
-	jump MomPhoneOther
+	sjump MomPhoneOther
 
 MomPhoneLandmark:
 	farwritetext MomPhoneLandmarkText
 	buttonsound
-	jump MomSavingMoney
+	sjump MomSavingMoney
 
 MomPhonePalette1:
 	readvar VAR_MAPGROUP
@@ -34,87 +34,87 @@ MomPhonePalette1:
 	ifequal GROUP_GOLDENROD_CITY, .goldenrod
 	farwritetext MomPhoneGenericAreaText
 	buttonsound
-	jump MomSavingMoney
+	sjump MomSavingMoney
 
 .newbark
 	farwritetext MomPhoneNewBarkText
 	buttonsound
-	jump MomSavingMoney
+	sjump MomSavingMoney
 
 .cherrygrove
 	farwritetext MomPhoneCherrygroveText
 	buttonsound
-	jump MomSavingMoney
+	sjump MomSavingMoney
 
 .violet
 	getlandmarkname STRING_BUFFER_4, SPROUT_TOWER
-	jump MomPhoneLandmark
+	sjump MomPhoneLandmark
 .azalea
 	getlandmarkname STRING_BUFFER_4, SLOWPOKE_WELL
-	jump MomPhoneLandmark
+	sjump MomPhoneLandmark
 .goldenrod
 	getlandmarkname STRING_BUFFER_4, RADIO_TOWER
-	jump MomPhoneLandmark
+	sjump MomPhoneLandmark
 
 MomPhonePalette2:
 	farwritetext MomOtherAreaText
 	buttonsound
-	jump MomSavingMoney
+	sjump MomSavingMoney
 
 MomPhoneOther:
 	farwritetext MomDeterminedText
 	buttonsound
-	jump MomSavingMoney
+	sjump MomSavingMoney
 
 MomSavingMoney:
 	checkflag ENGINE_MOM_SAVING_MONEY
 	iffalse .NotSaving
 	checkmoney MOMS_MONEY, 0
 	ifequal HAVE_MORE, .SavingHasMoney
-	jump .SavingNoMoney
+	sjump .SavingNoMoney
 
 .NotSaving:
 	checkmoney MOMS_MONEY, 0
 	ifequal HAVE_MORE, .HasMoney
-	jump .NoMoney
+	sjump .NoMoney
 
 .SavingHasMoney:
 	getmoney STRING_BUFFER_3, MOMS_MONEY
 	farwritetext MomCheckBalanceText
 	yesorno
 	iftrue MomPhoneSaveMoneyScript
-	jump MomPhoneWontSaveMoneyScript
+	sjump MomPhoneWontSaveMoneyScript
 
 .SavingNoMoney:
 	farwritetext MomImportantToSaveText
 	yesorno
 	iftrue MomPhoneSaveMoneyScript
-	jump MomPhoneWontSaveMoneyScript
+	sjump MomPhoneWontSaveMoneyScript
 
 .NoMoney:
 	farwritetext MomYoureNotSavingText
 	yesorno
 	iftrue MomPhoneSaveMoneyScript
-	jump MomPhoneWontSaveMoneyScript
+	sjump MomPhoneWontSaveMoneyScript
 
 .HasMoney:
 	getmoney STRING_BUFFER_3, MOMS_MONEY
 	farwritetext MomYouveSavedText
 	yesorno
 	iftrue MomPhoneSaveMoneyScript
-	jump MomPhoneWontSaveMoneyScript
+	sjump MomPhoneWontSaveMoneyScript
 
 MomPhoneSaveMoneyScript:
 	setflag ENGINE_MOM_SAVING_MONEY
 	farwritetext MomOKIllSaveText
 	buttonsound
-	jump MomPhoneHangUpScript
+	sjump MomPhoneHangUpScript
 
 MomPhoneWontSaveMoneyScript:
 	clearflag ENGINE_MOM_SAVING_MONEY
 	farwritetext MomPhoneWontSaveMoneyText
 	buttonsound
-	jump MomPhoneHangUpScript
+	sjump MomPhoneHangUpScript
 
 MomPhoneHangUpScript:
 	farwritetext MomPhoneHangUpText
@@ -139,4 +139,4 @@ MomPhoneLectureScript:
 	farwritetext MomPhoneLectureText
 	yesorno
 	iftrue MomPhoneSaveMoneyScript
-	jump MomPhoneWontSaveMoneyScript
+	sjump MomPhoneWontSaveMoneyScript

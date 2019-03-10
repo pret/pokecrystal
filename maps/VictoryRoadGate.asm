@@ -18,7 +18,7 @@ VictoryRoadGate_MapScripts:
 
 VictoryRoadGateBadgeCheckScene:
 	turnobject PLAYER, LEFT
-	jump VictoryRoadGateBadgeCheckScript
+	sjump VictoryRoadGateBadgeCheckScript
 
 VictoryRoadGateOfficerScript:
 	faceplayer

@@ -26,7 +26,7 @@ Oak:
 	readvar VAR_BADGES
 	ifequal NUM_BADGES, .OpenMtSilver
 	ifequal NUM_JOHTO_BADGES, .Complain
-	jump .AhGood
+	sjump .AhGood
 
 .CheckPokedex:
 	writetext OakLabDexCheckText
@@ -41,17 +41,17 @@ Oak:
 	writetext OakOpenMtSilverText
 	buttonsound
 	setevent EVENT_OPENED_MT_SILVER
-	jump .CheckPokedex
+	sjump .CheckPokedex
 
 .Complain:
 	writetext OakNoKantoBadgesText
 	buttonsound
-	jump .CheckPokedex
+	sjump .CheckPokedex
 
 .AhGood:
 	writetext OakYesKantoBadgesText
 	buttonsound
-	jump .CheckPokedex
+	sjump .CheckPokedex
 
 OaksAssistant1Script:
 	jumptextfaceplayer OaksAssistant1Text

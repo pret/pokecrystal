@@ -19,7 +19,7 @@ GoldenrodHappinessRaterTeacherScript:
 	ifgreater 150 - 1, .SortOfHappy
 	ifgreater 100 - 1, .QuiteCute
 	ifgreater  50 - 1, .NotUsedToYou
-	jump .LooksMean
+	sjump .LooksMean
 
 .LovesYouALot:
 	writetext GoldenrodHappinessRatingText_LovesYouALot

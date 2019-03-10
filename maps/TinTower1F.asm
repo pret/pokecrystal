@@ -20,7 +20,7 @@ TinTower1F_MapScripts:
 	callback MAPCALLBACK_TILES, .StairsCallback
 
 .FaceSuicune:
-	priorityjump .SuicuneBattle
+	prioritysjump .SuicuneBattle
 	end
 
 .DummyScene:
@@ -50,7 +50,7 @@ TinTower1F_MapScripts:
 	special MonCheck
 	iftrue .NoRaikou
 	appear TINTOWER1F_RAIKOU
-	jump .CheckEntei
+	sjump .CheckEntei
 
 .NoRaikou:
 	disappear TINTOWER1F_RAIKOU
@@ -59,7 +59,7 @@ TinTower1F_MapScripts:
 	special MonCheck
 	iftrue .NoEntei
 	appear TINTOWER1F_ENTEI
-	jump .BeastsDone
+	sjump .BeastsDone
 
 .NoEntei:
 	disappear TINTOWER1F_ENTEI

@@ -20,7 +20,7 @@ BugCatchingContestOverScript::
 	opentext
 	writetext BugCatchingContestText_BeeepTimesUp
 	waitbutton
-	jump BugCatchingContestReturnToGateScript
+	sjump BugCatchingContestReturnToGateScript
 
 BugCatchingContestOutOfBallsScript:
 	playsound SFX_ELEVATOR_END

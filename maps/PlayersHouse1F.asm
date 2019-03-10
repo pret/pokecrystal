@@ -28,7 +28,7 @@ MeetMomRightScript:
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iffalse .OnRight
 	applymovement PLAYERSHOUSE1F_MOM1, MomTurnsTowardPlayerMovement
-	jump MeetMomScript
+	sjump MeetMomScript
 
 .OnRight:
 	applymovement PLAYERSHOUSE1F_MOM1, MomWalksToPlayerMovement
@@ -54,7 +54,7 @@ MeetMomScript:
 	special InitialSetDSTFlag
 	yesorno
 	iffalse .SetDayOfWeek
-	jump .DayOfWeekDone
+	sjump .DayOfWeekDone
 
 .WrongDay:
 	special InitialClearDSTFlag
@@ -64,17 +64,17 @@ MeetMomScript:
 	writetext ComeHomeForDSTText
 	yesorno
 	iffalse .ExplainPhone
-	jump .KnowPhone
+	sjump .KnowPhone
 
 .KnowPhone:
 	writetext KnowTheInstructionsText
 	buttonsound
-	jump .FinishPhone
+	sjump .FinishPhone
 
 .ExplainPhone:
 	writetext DontKnowTheInstructionsText
 	buttonsound
-	jump .FinishPhone
+	sjump .FinishPhone
 
 .FinishPhone:
 	writetext InstructionsNextText
@@ -84,15 +84,15 @@ MeetMomScript:
 	iftrue .FromRight
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	iffalse .FromLeft
-	jump .Finish
+	sjump .Finish
 
 .FromRight:
 	applymovement PLAYERSHOUSE1F_MOM1, MomTurnsBackMovement
-	jump .Finish
+	sjump .Finish
 
 .FromLeft:
 	applymovement PLAYERSHOUSE1F_MOM1, MomWalksBackMovement
-	jump .Finish
+	sjump .Finish
 
 .Finish:
 	special RestartMapMusic
@@ -101,7 +101,7 @@ MeetMomScript:
 
 MeetMomTalkedScript:
 	playmusic MUSIC_MOM
-	jump MeetMomScript
+	sjump MeetMomScript
 
 GearName:
 	db "#GEAR@"
@@ -163,17 +163,17 @@ NeighborScript:
 .MornScript:
 	writetext NeighborMornIntroText
 	buttonsound
-	jump .Main
+	sjump .Main
 
 .DayScript:
 	writetext NeighborDayIntroText
 	buttonsound
-	jump .Main
+	sjump .Main
 
 .NiteScript:
 	writetext NeighborNiteIntroText
 	buttonsound
-	jump .Main
+	sjump .Main
 
 .Main:
 	writetext NeighborText

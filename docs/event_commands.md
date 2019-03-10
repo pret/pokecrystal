@@ -11,16 +11,16 @@ Until this document is filled out, the [G/S Scripting Compendium](https://hax.ii
 ## `$01`: <code>farscall <i>script</i></code>
 
 
-## `$02`: <code>ptcall <i>script</i></code>
+## `$02`: <code>memcall <i>script</i></code>
 
 
-## `$03`: <code>jump <i>script</i></code>
+## `$03`: <code>sjump <i>script</i></code>
 
 
-## `$04`: <code>farjump <i>script</i></code>
+## `$04`: <code>farsjump <i>script</i></code>
 
 
-## `$05`: <code>ptjump <i>script</i></code>
+## `$05`: <code>memjump <i>script</i></code>
 
 
 ## `$06`: <code>ifequal <i>byte</i>, <i>script</i></code>
@@ -53,7 +53,7 @@ Until this document is filled out, the [G/S Scripting Compendium](https://hax.ii
 ## `$0F`: <code>special <i>special_pointer</i></code>
 
 
-## `$10`: <code>ptcallasm <i>asm</i></code>
+## `$10`: <code>memcallasm <i>asm</i></code>
 
 
 ## `$11`: <code>checkmapscene <i>map</i></code>
@@ -468,13 +468,13 @@ If <code><i>item_id</i></code> = `USE_SCRIPT_VAR`, then it uses `[wScriptVar]` i
 ## `$8C`: <code>deactivatefacing <i>length</i></code>
 
 
-## `$8D`: <code>priorityjump <i>script</i></code>
+## `$8D`: <code>prioritysjump <i>script</i></code>
 
 
 ## `$8E`: `warpcheck`
 
 
-## `$8F`: <code>ptpriorityjump <i>script</i></code>
+## `$8F`: <code>stopandsjump <i>script</i></code>
 
 
 ## `$90`: `return`

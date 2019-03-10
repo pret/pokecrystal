@@ -10,7 +10,7 @@ KarensRoom_MapScripts:
 	callback MAPCALLBACK_TILES, .KarensRoomDoors
 
 .LockDoor:
-	priorityjump .KarensDoorLocksBehindYou
+	prioritysjump .KarensDoorLocksBehindYou
 	end
 
 .DummyScene:

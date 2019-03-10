@@ -69,7 +69,7 @@ Route32CooltrainerMContinueScene:
 	verbosegiveitem MIRACLE_SEED
 	iffalse .BagFull
 	setevent EVENT_GOT_MIRACLE_SEED_IN_ROUTE_32
-	jump .GotMiracleSeed
+	sjump .GotMiracleSeed
 
 .DontHaveZephyrBadge:
 	writetext Route32CooltrainerMText_VioletGym
@@ -120,7 +120,7 @@ Route32RoarTMGuyScript:
 Route32WannaBuyASlowpokeTailScript:
 	turnobject ROUTE32_FISHER4, DOWN
 	turnobject PLAYER, UP
-	jump _OfferToSellSlowpokeTail
+	sjump _OfferToSellSlowpokeTail
 
 SlowpokeTailSalesmanScript:
 	faceplayer
@@ -182,7 +182,7 @@ TrainerFisherRalph1:
 	buttonsound
 	setevent EVENT_RALPH_ASKED_FOR_PHONE_NUMBER
 	scall .AskNumber1
-	jump .AskForNumber
+	sjump .AskForNumber
 
 .AskAgain:
 	scall .AskNumber2
@@ -192,7 +192,7 @@ TrainerFisherRalph1:
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	gettrainername STRING_BUFFER_3, FISHER, RALPH1
 	scall .RegisteredNumber
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .Rematch:
 	scall .RematchStd
@@ -316,7 +316,7 @@ TrainerPicnickerLiz1:
 	buttonsound
 	setevent EVENT_LIZ_ASKED_FOR_PHONE_NUMBER
 	scall .AskNumber1
-	jump .AskForNumber
+	sjump .AskForNumber
 
 .AskAgain:
 	scall .AskNumber2
@@ -326,7 +326,7 @@ TrainerPicnickerLiz1:
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	gettrainername STRING_BUFFER_3, PICNICKER, LIZ1
 	scall .RegisteredNumber
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .Rematch:
 	scall .RematchStd

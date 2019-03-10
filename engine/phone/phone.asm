@@ -281,7 +281,7 @@ CheckSpecialPhoneCall::
 
 .script
 	pause 30
-	jump Script_ReceivePhoneCall
+	sjump Script_ReceivePhoneCall
 
 .DoSpecialPhoneCall:
 	ld a, [wSpecialPhoneCallID]
@@ -378,7 +378,7 @@ Function90199:
 	ret
 
 UnknownScript_0x90205:
-	ptcall wd002
+	memcall wPhoneScriptBank
 	return
 
 UnknownScript_0x90209:
@@ -422,7 +422,7 @@ WrongNumber:
 Script_ReceivePhoneCall:
 	refreshscreen
 	callasm RingTwice_StartCall
-	ptcall wPhoneScriptPointer
+	memcall wPhoneScriptPointer
 	waitbutton
 	callasm HangUp
 	closetext
@@ -431,7 +431,7 @@ Script_ReceivePhoneCall:
 
 Script_SpecialBillCall::
 	callasm .LoadBillScript
-	jump Script_ReceivePhoneCall
+	sjump Script_ReceivePhoneCall
 
 .LoadBillScript:
 	ld e, PHONE_BILL
@@ -440,7 +440,7 @@ Script_SpecialBillCall::
 UnknownScript_0x90261:
 	callasm .LoadElmScript
 	pause 30
-	jump Script_ReceivePhoneCall
+	sjump Script_ReceivePhoneCall
 
 .LoadElmScript:
 	ld e, PHONE_ELM

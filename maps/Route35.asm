@@ -42,7 +42,7 @@ TrainerJugglerIrwin:
 	buttonsound
 	setevent EVENT_IRWIN_ASKED_FOR_PHONE_NUMBER
 	scall Route35AskNumber1M
-	jump .AskForNumber
+	sjump .AskForNumber
 
 .AskedAlready:
 	scall Route35AskNumber2M
@@ -52,7 +52,7 @@ TrainerJugglerIrwin:
 	ifequal PHONE_CONTACT_REFUSED, Route35NumberDeclinedM
 	gettrainername STRING_BUFFER_3, JUGGLER, IRWIN1
 	scall Route35RegisteredNumberM
-	jump Route35NumberAcceptedM
+	sjump Route35NumberAcceptedM
 
 Route35AskNumber1M:
 	jumpstd asknumber1m
@@ -145,7 +145,7 @@ TrainerBugCatcherArnie:
 	buttonsound
 	setevent EVENT_ARNIE_ASKED_FOR_PHONE_NUMBER
 	scall Route35AskNumber1M
-	jump .AskForNumber
+	sjump .AskForNumber
 
 .AskedAlready:
 	scall Route35AskNumber2M
@@ -155,7 +155,7 @@ TrainerBugCatcherArnie:
 	ifequal PHONE_CONTACT_REFUSED, Route35NumberDeclinedM
 	gettrainername STRING_BUFFER_3, BUG_CATCHER, ARNIE1
 	scall Route35RegisteredNumberM
-	jump Route35NumberAcceptedM
+	sjump Route35NumberAcceptedM
 
 .WantsBattle:
 	scall Route35RematchM

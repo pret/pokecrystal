@@ -13,15 +13,15 @@ DanaPhoneCalleeScript:
 	iftrue DanaThursdayNight
 
 .NotThursday:
-	farjump UnknownScript_0xa0978
+	farsjump UnknownScript_0xa0978
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_38
-	farjump UnknownScript_0xa0a78
+	farsjump UnknownScript_0xa0a78
 
 .HasThunderstone:
 	getlandmarkname STRING_BUFFER_5, ROUTE_38
-	farjump UnknownScript_0xa0acd
+	farsjump UnknownScript_0xa0acd
 
 DanaPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, LASS, DANA1
@@ -46,7 +46,7 @@ DanaPhoneCallerScript:
 .Generic:
 	farscall PhoneScript_Random3
 	ifequal 0, DanaFoundRare
-	farjump Phone_GenericCall_Female
+	farsjump Phone_GenericCall_Female
 
 DanaThursdayNight:
 	setflag ENGINE_DANA_THURSDAY_NIGHT
@@ -54,12 +54,12 @@ DanaThursdayNight:
 DanaWantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_38
 	setflag ENGINE_DANA
-	farjump PhoneScript_WantsToBattle_Female
+	farsjump PhoneScript_WantsToBattle_Female
 
 DanaFoundRare:
-	farjump Phone_CheckIfUnseenRare_Female
+	farsjump Phone_CheckIfUnseenRare_Female
 
 DanaHasThunderstone:
 	setflag ENGINE_DANA_HAS_THUNDERSTONE
 	getlandmarkname STRING_BUFFER_5, ROUTE_38
-	farjump PhoneScript_FoundItem_Female
+	farsjump PhoneScript_FoundItem_Female

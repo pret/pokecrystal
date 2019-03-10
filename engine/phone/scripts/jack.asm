@@ -11,11 +11,11 @@ JackPhoneCalleeScript:
 	iftrue JackMondayMorning
 
 .NotMonday:
-	farjump JackPhoneTips
+	farsjump JackPhoneTips
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, NATIONAL_PARK
-	farjump JackWantsBattleScript
+	farsjump JackWantsBattleScript
 
 JackPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, SCHOOLBOY, JACK1
@@ -32,7 +32,7 @@ JackPhoneCallerScript:
 .WaitingForBattle:
 	farscall PhoneScript_Random3
 	ifequal 0, JackFindsRare
-	farjump Phone_GenericCall_Male
+	farsjump Phone_GenericCall_Male
 
 JackMondayMorning:
 	setflag ENGINE_JACK_MONDAY_MORNING
@@ -40,10 +40,10 @@ JackMondayMorning:
 JackWantsToBattle:
 	getlandmarkname STRING_BUFFER_5, NATIONAL_PARK
 	setflag ENGINE_JACK
-	farjump PhoneScript_WantsToBattle_Male
+	farsjump PhoneScript_WantsToBattle_Male
 
 JackFindsRare:
-	farjump Phone_CheckIfUnseenRare_Male
+	farsjump Phone_CheckIfUnseenRare_Male
 
 JackBattleTrivia:
-	farjump JackTriviaScript
+	farsjump JackTriviaScript

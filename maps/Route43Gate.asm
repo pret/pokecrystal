@@ -14,7 +14,7 @@ Route43Gate_MapScripts:
 	callback MAPCALLBACK_NEWMAP, .CheckIfRockets
 
 .RocketShakedown:
-	priorityjump .RocketTakeover
+	prioritysjump .RocketTakeover
 	end
 
 .DummyScene:
@@ -50,17 +50,17 @@ RocketScript_Southbound:
 	buttonsound
 	checkmoney YOUR_MONEY, ROUTE43GATE_TOLL - 1
 	ifequal HAVE_MORE, RocketScript_TollSouth
-	jump RocketScript_YoureBrokeSouth
+	sjump RocketScript_YoureBrokeSouth
 
 RocketScript_TollSouth:
 	takemoney YOUR_MONEY, ROUTE43GATE_TOLL
 	writetext RocketText_ThankYou
-	jump RocketScript_ShakeDownSouth
+	sjump RocketScript_ShakeDownSouth
 
 RocketScript_YoureBrokeSouth:
 	takemoney YOUR_MONEY, ROUTE43GATE_TOLL
 	writetext RocketText_AllYouGot
-	jump RocketScript_ShakeDownSouth
+	sjump RocketScript_ShakeDownSouth
 
 RocketScript_ShakeDownSouth:
 	buttonsound
@@ -82,17 +82,17 @@ RocketScript_Northbound:
 	buttonsound
 	checkmoney YOUR_MONEY, ROUTE43GATE_TOLL - 1
 	ifequal HAVE_MORE, RocketScript_TollNorth
-	jump RocketScript_YoureBrokeNorth
+	sjump RocketScript_YoureBrokeNorth
 
 RocketScript_TollNorth:
 	takemoney YOUR_MONEY, ROUTE43GATE_TOLL
 	writetext RocketText_ThankYou
-	jump RocketScript_ShakeDownNorth
+	sjump RocketScript_ShakeDownNorth
 
 RocketScript_YoureBrokeNorth:
 	takemoney YOUR_MONEY, ROUTE43GATE_TOLL
 	writetext RocketText_AllYouGot
-	jump RocketScript_ShakeDownNorth
+	sjump RocketScript_ShakeDownNorth
 
 RocketScript_ShakeDownNorth:
 	buttonsound

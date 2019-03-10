@@ -42,7 +42,7 @@ TrainerPokefanmDerek:
 	buttonsound
 	setevent EVENT_DEREK_ASKED_FOR_PHONE_NUMBER
 	scall .AskNumber1
-	jump .AskForNumber
+	sjump .AskForNumber
 
 .AskedAlready:
 	scall .AskNumber2
@@ -52,17 +52,17 @@ TrainerPokefanmDerek:
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	gettrainername STRING_BUFFER_3, POKEFANM, DEREK1
 	scall .RegisteredNumber
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .HasNugget:
 	scall .Gift
 	verbosegiveitem NUGGET
 	iffalse .NoRoom
 	clearflag ENGINE_DEREK_HAS_NUGGET
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .NoRoom:
-	jump .PackFull
+	sjump .PackFull
 
 .WantsPikachu:
 	writetext PokefanMDerekPikachuIsItText

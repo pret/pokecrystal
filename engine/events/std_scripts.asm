@@ -63,40 +63,40 @@ PokecenterNurseScript:
 	iftrue .day
 	checktime NITE
 	iftrue .nite
-	jump .ok
+	sjump .ok
 
 .morn
 	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
 	iftrue .morn_comcenter
 	farwritetext NurseMornText
 	buttonsound
-	jump .ok
+	sjump .ok
 .morn_comcenter
 	farwritetext PokeComNurseMornText
 	buttonsound
-	jump .ok
+	sjump .ok
 
 .day
 	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
 	iftrue .day_comcenter
 	farwritetext NurseDayText
 	buttonsound
-	jump .ok
+	sjump .ok
 .day_comcenter
 	farwritetext PokeComNurseDayText
 	buttonsound
-	jump .ok
+	sjump .ok
 
 .nite
 	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
 	iftrue .nite_comcenter
 	farwritetext NurseNiteText
 	buttonsound
-	jump .ok
+	sjump .ok
 .nite_comcenter
 	farwritetext PokeComNurseNiteText
 	buttonsound
-	jump .ok
+	sjump .ok
 
 .ok
 	; only do this once
@@ -150,7 +150,7 @@ PokecenterNurseScript:
 	farwritetext NursePokerusText
 	waitbutton
 	closetext
-	jump .pokerus_done
+	sjump .pokerus_done
 
 .pokerus_comcenter
 	farwritetext PokeComNursePokerusText
@@ -232,10 +232,10 @@ ElevatorButtonScript:
 	end
 
 StrengthBoulderScript:
-	farjump AskStrengthScript
+	farsjump AskStrengthScript
 
 SmashRockScript:
-	farjump AskRockSmashScript
+	farsjump AskRockSmashScript
 
 PokecenterSignScript:
 	farjumptext PokecenterSignText
@@ -334,7 +334,7 @@ BugContestResultsScript:
 BugContestResults_DidNotWin:
 	farwritetext ContestResults_DidNotWinText
 	buttonsound
-	jump BugContestResults_FinishUp
+	sjump BugContestResults_FinishUp
 
 BugContestResults_ReturnAfterWinnersPrize:
 	farwritetext ContestResults_JoinUsNextTimeText
@@ -388,7 +388,7 @@ BugContestResults_FirstPlace:
 	waitbutton
 	verbosegiveitem SUN_STONE
 	iffalse BugContestResults_NoRoomForSunStone
-	jump BugContestResults_ReturnAfterWinnersPrize
+	sjump BugContestResults_ReturnAfterWinnersPrize
 
 BugContestResults_SecondPlace:
 	getitemname STRING_BUFFER_4, EVERSTONE
@@ -396,7 +396,7 @@ BugContestResults_SecondPlace:
 	waitbutton
 	verbosegiveitem EVERSTONE
 	iffalse BugContestResults_NoRoomForEverstone
-	jump BugContestResults_ReturnAfterWinnersPrize
+	sjump BugContestResults_ReturnAfterWinnersPrize
 
 BugContestResults_ThirdPlace:
 	getitemname STRING_BUFFER_4, GOLD_BERRY
@@ -404,31 +404,31 @@ BugContestResults_ThirdPlace:
 	waitbutton
 	verbosegiveitem GOLD_BERRY
 	iffalse BugContestResults_NoRoomForGoldBerry
-	jump BugContestResults_ReturnAfterWinnersPrize
+	sjump BugContestResults_ReturnAfterWinnersPrize
 
 BugContestResults_NoRoomForSunStone:
 	farwritetext BugContestPrizeNoRoomText
 	buttonsound
 	setevent EVENT_CONTEST_OFFICER_HAS_SUN_STONE
-	jump BugContestResults_ReturnAfterWinnersPrize
+	sjump BugContestResults_ReturnAfterWinnersPrize
 
 BugContestResults_NoRoomForEverstone:
 	farwritetext BugContestPrizeNoRoomText
 	buttonsound
 	setevent EVENT_CONTEST_OFFICER_HAS_EVERSTONE
-	jump BugContestResults_ReturnAfterWinnersPrize
+	sjump BugContestResults_ReturnAfterWinnersPrize
 
 BugContestResults_NoRoomForGoldBerry:
 	farwritetext BugContestPrizeNoRoomText
 	buttonsound
 	setevent EVENT_CONTEST_OFFICER_HAS_GOLD_BERRY
-	jump BugContestResults_ReturnAfterWinnersPrize
+	sjump BugContestResults_ReturnAfterWinnersPrize
 
 BugContestResults_NoRoomForBerry:
 	farwritetext BugContestPrizeNoRoomText
 	buttonsound
 	setevent EVENT_CONTEST_OFFICER_HAS_BERRY
-	jump BugContestResults_DidNotWin
+	sjump BugContestResults_DidNotWin
 
 BugContestResults_CopyContestantsToResults:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_1A
@@ -1804,7 +1804,7 @@ CoinVendor_IntroScript:
 	closewindow
 	ifequal 1, .Buy50
 	ifequal 2, .Buy500
-	jump .Cancel
+	sjump .Cancel
 
 .Buy50:
 	checkcoins MAX_COINS - 50
@@ -1817,7 +1817,7 @@ CoinVendor_IntroScript:
 	playsound SFX_TRANSACTION
 	farwritetext CoinVendor_Buy50CoinsText
 	waitbutton
-	jump .loop
+	sjump .loop
 
 .Buy500:
 	checkcoins MAX_COINS - 500
@@ -1830,7 +1830,7 @@ CoinVendor_IntroScript:
 	playsound SFX_TRANSACTION
 	farwritetext CoinVendor_Buy500CoinsText
 	waitbutton
-	jump .loop
+	sjump .loop
 
 .NotEnoughMoney:
 	farwritetext CoinVendor_NotEnoughMoneyText

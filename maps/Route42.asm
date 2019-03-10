@@ -53,7 +53,7 @@ TrainerFisherTully:
 	buttonsound
 	setevent EVENT_TULLY_ASKED_FOR_PHONE_NUMBER
 	scall .AskNumber1
-	jump .AskForNumber
+	sjump .AskForNumber
 
 .AskedAlready:
 	scall .AskNumber2
@@ -63,7 +63,7 @@ TrainerFisherTully:
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	gettrainername STRING_BUFFER_3, FISHER, TULLY1
 	scall .RegisteredNumber
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .WantsBattle:
 	scall .Rematch
@@ -119,10 +119,10 @@ TrainerFisherTully:
 	iffalse .NoRoom
 	clearflag ENGINE_TULLY_HAS_WATER_STONE
 	setevent EVENT_TULLY_GAVE_WATER_STONE
-	jump .NumberAccepted
+	sjump .NumberAccepted
 
 .NoRoom:
-	jump .PackFull
+	sjump .PackFull
 
 .AskNumber1:
 	jumpstd asknumber1m

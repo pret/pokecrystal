@@ -41,7 +41,7 @@ TrainerBugCatcherWade1:
 	waitbutton
 	setevent EVENT_WADE_ASKED_FOR_PHONE_NUMBER
 	scall .AskPhoneNumberSTD
-	jump .Continue
+	sjump .Continue
 
 .AskAgain:
 	scall .AskAgainSTD
@@ -51,7 +51,7 @@ TrainerBugCatcherWade1:
 	ifequal PHONE_CONTACT_REFUSED, .DeclinedNumberSTD
 	gettrainername STRING_BUFFER_3, BUG_CATCHER, WADE1
 	scall .RegisterNumberSTD
-	jump .AcceptedNumberSTD
+	sjump .AcceptedNumberSTD
 
 .WadeRematch:
 	scall .RematchSTD
@@ -126,23 +126,23 @@ TrainerBugCatcherWade1:
 .Berry:
 	verbosegiveitem BERRY
 	iffalse .PackFull
-	jump .Done
+	sjump .Done
 .Psncureberry:
 	verbosegiveitem PSNCUREBERRY
 	iffalse .PackFull
-	jump .Done
+	sjump .Done
 .Przcureberry:
 	verbosegiveitem PRZCUREBERRY
 	iffalse .PackFull
-	jump .Done
+	sjump .Done
 .BitterBerry:
 	verbosegiveitem BITTER_BERRY
 	iffalse .PackFull
 .Done:
 	clearflag ENGINE_WADE_HAS_ITEM
-	jump .AcceptedNumberSTD
+	sjump .AcceptedNumberSTD
 .PackFull:
-	jump .PackFullSTD
+	sjump .PackFullSTD
 
 .AskPhoneNumberSTD:
 	jumpstd asknumber1m

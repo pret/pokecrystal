@@ -10,7 +10,7 @@ BrunosRoom_MapScripts:
 	callback MAPCALLBACK_TILES, .BrunosRoomDoors
 
 .LockDoor:
-	priorityjump .BrunosDoorLocksBehindYou
+	prioritysjump .BrunosDoorLocksBehindYou
 	end
 
 .DummyScene:

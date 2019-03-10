@@ -73,7 +73,7 @@ SunnyScript:
 	iftrue .Kris
 	writetext SunnyGivesGiftText1
 	buttonsound
-	jump .next
+	sjump .next
 .Kris:
 	writetext SunnyGivesGiftText2
 	buttonsound

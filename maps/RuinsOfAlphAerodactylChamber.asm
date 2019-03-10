@@ -12,7 +12,7 @@ RuinsOfAlphAerodactylChamber_MapScripts:
 	end
 
 .OpenWall:
-	priorityjump .WallOpenScript
+	prioritysjump .WallOpenScript
 	end
 
 .DummyScene:

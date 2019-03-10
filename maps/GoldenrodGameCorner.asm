@@ -72,7 +72,7 @@ GoldenrodGameCornerTMVendor_LoopScript:
 	ifequal 1, .Thunder
 	ifequal 2, .Blizzard
 	ifequal 3, .FireBlast
-	jump GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
+	sjump GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 
 .Thunder:
 	checkcoins GOLDENRODGAMECORNER_TM25_COINS
@@ -83,7 +83,7 @@ GoldenrodGameCornerTMVendor_LoopScript:
 	giveitem TM_THUNDER
 	iffalse GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
 	takecoins GOLDENRODGAMECORNER_TM25_COINS
-	jump GoldenrodGameCornerTMVendor_FinishScript
+	sjump GoldenrodGameCornerTMVendor_FinishScript
 
 .Blizzard:
 	checkcoins GOLDENRODGAMECORNER_TM14_COINS
@@ -94,7 +94,7 @@ GoldenrodGameCornerTMVendor_LoopScript:
 	giveitem TM_BLIZZARD
 	iffalse GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
 	takecoins GOLDENRODGAMECORNER_TM14_COINS
-	jump GoldenrodGameCornerTMVendor_FinishScript
+	sjump GoldenrodGameCornerTMVendor_FinishScript
 
 .FireBlast:
 	checkcoins GOLDENRODGAMECORNER_TM38_COINS
@@ -105,7 +105,7 @@ GoldenrodGameCornerTMVendor_LoopScript:
 	giveitem TM_FIRE_BLAST
 	iffalse GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
 	takecoins GOLDENRODGAMECORNER_TM38_COINS
-	jump GoldenrodGameCornerTMVendor_FinishScript
+	sjump GoldenrodGameCornerTMVendor_FinishScript
 
 GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript:
 	writetext GoldenrodGameCornerPrizeVendorConfirmPrizeText
@@ -117,7 +117,7 @@ GoldenrodGameCornerTMVendor_FinishScript:
 	playsound SFX_TRANSACTION
 	writetext GoldenrodGameCornerPrizeVendorHereYouGoText
 	waitbutton
-	jump GoldenrodGameCornerTMVendor_LoopScript
+	sjump GoldenrodGameCornerTMVendor_LoopScript
 
 GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript:
 	writetext GoldenrodGameCornerPrizeVendorNeedMoreCoinsText
@@ -173,7 +173,7 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	ifequal 1, .Abra
 	ifequal 2, .Cubone
 	ifequal 3, .Wobbuffet
-	jump GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
+	sjump GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 
 .Abra:
 	checkcoins GOLDENRODGAMECORNER_ABRA_COINS
@@ -191,7 +191,7 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	special GameCornerPrizeMonCheckDex
 	givepoke ABRA, 5
 	takecoins GOLDENRODGAMECORNER_ABRA_COINS
-	jump .loop
+	sjump .loop
 
 .Cubone:
 	checkcoins GOLDENRODGAMECORNER_CUBONE_COINS
@@ -209,7 +209,7 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	special GameCornerPrizeMonCheckDex
 	givepoke CUBONE, 15
 	takecoins GOLDENRODGAMECORNER_CUBONE_COINS
-	jump .loop
+	sjump .loop
 
 .Wobbuffet:
 	checkcoins GOLDENRODGAMECORNER_WOBBUFFET_COINS
@@ -227,7 +227,7 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	special GameCornerPrizeMonCheckDex
 	givepoke WOBBUFFET, 15
 	takecoins GOLDENRODGAMECORNER_WOBBUFFET_COINS
-	jump .loop
+	sjump .loop
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags

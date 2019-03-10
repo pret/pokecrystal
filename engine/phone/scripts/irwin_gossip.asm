@@ -25,64 +25,64 @@ IrwinRumorScript:
 	iftrue .PlainBadge
 	farwritetext IrwinCalledRightAwayText
 	buttonsound
-	jump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangupText_Male
 
 .PlainBadge:
 	farwritetext UnknownText_0x64099
 	buttonsound
-	jump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangupText_Male
 
 .JasmineReturned:
 	farwritetext UnknownText_0x640e6
 	buttonsound
-	jump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangupText_Male
 
 .RocketHideout:
 	farwritetext UnknownText_0x6416d
 	buttonsound
-	jump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangupText_Male
 
 .RadioTower:
 	farwritetext UnknownText_0x641e8
 	buttonsound
-	jump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangupText_Male
 
 .RisingBadge:
 	farwritetext UnknownText_0x64247
 	buttonsound
-	jump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangupText_Male
 
 .EliteFour:
 	farwritetext UnknownText_0x642bb
 	buttonsound
-	jump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangupText_Male
 
 .VermilionCity:
 	farwritetext UnknownText_0x643d4
 	buttonsound
-	jump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangupText_Male
 
 .TrainPass:
 	farwritetext UnknownText_0x64448
 	buttonsound
-	jump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangupText_Male
 
 .Snorlax:
 	farwritetext UnknownText_0x6455b
 	buttonsound
-	jump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangupText_Male
 
 .MtSilver:
 	farwritetext UnknownText_0x645ff
 	buttonsound
-	jump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangupText_Male
 
 .FogBadge:
 	farwritetext UnknownText_0x646df
 	buttonsound
-	jump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangupText_Male
 
 .MarshBadge:
 	farwritetext UnknownText_0x647d8
 	buttonsound
-	jump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangupText_Male

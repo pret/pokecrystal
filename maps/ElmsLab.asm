@@ -19,7 +19,7 @@ ElmsLab_MapScripts:
 	callback MAPCALLBACK_OBJECTS, .MoveElmCallback
 
 .MeetElm:
-	priorityjump .WalkUpToElm
+	prioritysjump .WalkUpToElm
 	end
 
 .DummyScene1:
@@ -54,7 +54,7 @@ ElmsLab_MapScripts:
 	yesorno
 	iftrue .ElmGetsEmail
 	writetext ElmText_Refused
-	jump .MustSayYes
+	sjump .MustSayYes
 
 .ElmGetsEmail:
 	writetext ElmText_Accepted
@@ -123,7 +123,7 @@ ElmEggHatchedScript:
 	setval TOGETIC
 	special FindPartyMonThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
-	jump ElmCheckGotEggAgain
+	sjump ElmCheckGotEggAgain
 
 ElmCheckTogepiEgg:
 	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
@@ -183,7 +183,7 @@ CyndaquilPokeBallScript:
 	readvar VAR_FACING
 	ifequal RIGHT, ElmDirectionsScript
 	applymovement PLAYER, AfterCyndaquilMovement
-	jump ElmDirectionsScript
+	sjump ElmDirectionsScript
 
 TotodilePokeBallScript:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
@@ -211,7 +211,7 @@ TotodilePokeBallScript:
 	givepoke TOTODILE, 5, BERRY
 	closetext
 	applymovement PLAYER, AfterTotodileMovement
-	jump ElmDirectionsScript
+	sjump ElmDirectionsScript
 
 ChikoritaPokeBallScript:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
@@ -239,7 +239,7 @@ ChikoritaPokeBallScript:
 	givepoke CHIKORITA, 5, BERRY
 	closetext
 	applymovement PLAYER, AfterChikoritaMovement
-	jump ElmDirectionsScript
+	sjump ElmDirectionsScript
 
 DidntChooseStarterScript:
 	writetext DidntChooseStarterText
@@ -569,7 +569,7 @@ ElmsLabWindow:
 	iftrue .Normal
 	checkevent EVENT_ELM_CALLED_ABOUT_STOLEN_POKEMON
 	iftrue .BreakIn
-	jump .Normal
+	sjump .Normal
 
 .BreakIn:
 	writetext ElmsLabWindowText2

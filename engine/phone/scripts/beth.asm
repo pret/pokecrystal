@@ -11,11 +11,11 @@ BethPhoneCalleeScript:
 	iftrue BethFridayAfternoon
 
 .NotFriday:
-	farjump UnknownScript_0xa0918
+	farsjump UnknownScript_0xa0918
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_26
-	farjump BethBattleReminderScript
+	farsjump BethBattleReminderScript
 
 BethPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, COOLTRAINERF, BETH1
@@ -28,7 +28,7 @@ BethPhoneCallerScript:
 	ifequal 0, BethWantsBattle
 
 .Generic:
-	farjump Phone_GenericCall_Female
+	farsjump Phone_GenericCall_Female
 
 BethFridayAfternoon:
 	setflag ENGINE_BETH_FRIDAY_AFTERNOON
@@ -36,4 +36,4 @@ BethFridayAfternoon:
 BethWantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_26
 	setflag ENGINE_BETH
-	farjump PhoneScript_WantsToBattle_Female
+	farsjump PhoneScript_WantsToBattle_Female
