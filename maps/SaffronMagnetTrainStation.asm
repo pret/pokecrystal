@@ -34,7 +34,7 @@ SaffronMagnetTrainStationOfficerScript:
 	closetext
 	applymovement SAFFRONMAGNETTRAINSTATION_OFFICER, MovementData_0x18a88f
 	applymovement PLAYER, MovementData_0x18a898
-	writebyte TRUE
+	setval TRUE
 	special MagnetTrain
 	warpcheck
 	newloadmap MAPSETUP_TRAIN

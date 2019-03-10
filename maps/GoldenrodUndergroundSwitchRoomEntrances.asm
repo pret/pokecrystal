@@ -279,9 +279,9 @@ Switch1Script:
 	writetext SwitchRoomText_OffTurnOn
 	yesorno
 	iffalse GoldenrodUndergroundSwitchRoomEntrances_DontToggle
-	copybytetovar wUndergroundSwitchPositions
-	addvar 1
-	copyvartobyte wUndergroundSwitchPositions
+	readmem wUndergroundSwitchPositions
+	addval 1
+	writemem wUndergroundSwitchPositions
 	setevent EVENT_SWITCH_1
 	jump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
@@ -289,9 +289,9 @@ Switch1Script:
 	writetext SwitchRoomText_OnTurnOff
 	yesorno
 	iffalse GoldenrodUndergroundSwitchRoomEntrances_DontToggle
-	copybytetovar wUndergroundSwitchPositions
-	addvar -1
-	copyvartobyte wUndergroundSwitchPositions
+	readmem wUndergroundSwitchPositions
+	addval -1
+	writemem wUndergroundSwitchPositions
 	clearevent EVENT_SWITCH_1
 	jump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
@@ -304,9 +304,9 @@ Switch2Script:
 	writetext SwitchRoomText_OffTurnOn
 	yesorno
 	iffalse GoldenrodUndergroundSwitchRoomEntrances_DontToggle
-	copybytetovar wUndergroundSwitchPositions
-	addvar 2
-	copyvartobyte wUndergroundSwitchPositions
+	readmem wUndergroundSwitchPositions
+	addval 2
+	writemem wUndergroundSwitchPositions
 	setevent EVENT_SWITCH_2
 	jump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
@@ -314,9 +314,9 @@ Switch2Script:
 	writetext SwitchRoomText_OnTurnOff
 	yesorno
 	iffalse GoldenrodUndergroundSwitchRoomEntrances_DontToggle
-	copybytetovar wUndergroundSwitchPositions
-	addvar -2
-	copyvartobyte wUndergroundSwitchPositions
+	readmem wUndergroundSwitchPositions
+	addval -2
+	writemem wUndergroundSwitchPositions
 	clearevent EVENT_SWITCH_2
 	jump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
@@ -329,9 +329,9 @@ Switch3Script:
 	writetext SwitchRoomText_OffTurnOn
 	yesorno
 	iffalse GoldenrodUndergroundSwitchRoomEntrances_DontToggle
-	copybytetovar wUndergroundSwitchPositions
-	addvar 3
-	copyvartobyte wUndergroundSwitchPositions
+	readmem wUndergroundSwitchPositions
+	addval 3
+	writemem wUndergroundSwitchPositions
 	setevent EVENT_SWITCH_3
 	jump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
@@ -339,9 +339,9 @@ Switch3Script:
 	writetext SwitchRoomText_OnTurnOff
 	yesorno
 	iffalse GoldenrodUndergroundSwitchRoomEntrances_DontToggle
-	copybytetovar wUndergroundSwitchPositions
-	addvar -3
-	copyvartobyte wUndergroundSwitchPositions
+	readmem wUndergroundSwitchPositions
+	addval -3
+	writemem wUndergroundSwitchPositions
 	clearevent EVENT_SWITCH_3
 	jump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
@@ -354,8 +354,8 @@ EmergencySwitchScript:
 	writetext SwitchRoomText_OffTurnOn
 	yesorno
 	iffalse GoldenrodUndergroundSwitchRoomEntrances_DontToggle
-	writebyte 7
-	copyvartobyte wUndergroundSwitchPositions
+	setval 7
+	writemem wUndergroundSwitchPositions
 	setevent EVENT_EMERGENCY_SWITCH
 	setevent EVENT_SWITCH_1
 	setevent EVENT_SWITCH_2
@@ -366,8 +366,8 @@ EmergencySwitchScript:
 	writetext SwitchRoomText_OnTurnOff
 	yesorno
 	iffalse GoldenrodUndergroundSwitchRoomEntrances_DontToggle
-	writebyte 0
-	copyvartobyte wUndergroundSwitchPositions
+	setval 0
+	writemem wUndergroundSwitchPositions
 	clearevent EVENT_EMERGENCY_SWITCH
 	clearevent EVENT_SWITCH_1
 	clearevent EVENT_SWITCH_2
@@ -379,7 +379,7 @@ GoldenrodUndergroundSwitchRoomEntrances_DontToggle:
 	end
 
 GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors:
-	copybytetovar wUndergroundSwitchPositions
+	readmem wUndergroundSwitchPositions
 	ifequal 0, .Position0
 	ifequal 1, .Position1
 	ifequal 2, .Position2
@@ -498,8 +498,8 @@ GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors:
 	scall .Set14
 	reloadmappart
 	closetext
-	writebyte 6
-	copyvartobyte wUndergroundSwitchPositions
+	setval 6
+	writemem wUndergroundSwitchPositions
 	end
 
 .Set4:

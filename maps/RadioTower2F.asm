@@ -106,13 +106,13 @@ Buena:
 	iffalse .Introduction
 	checkflag ENGINE_BUENAS_PASSWORD_2
 	iftrue .PlayedAlready
-	checkcode VAR_HOUR
+	readvar VAR_HOUR
 	ifless 18, .TooEarly
 	checkflag ENGINE_BUENAS_PASSWORD
 	iffalse .TuneIn
 	checkitem BLUE_CARD
 	iffalse .NoBlueCard
-	checkcode VAR_BLUECARDBALANCE
+	readvar VAR_BLUECARDBALANCE
 	ifequal 30, .BlueCardCapped0
 	playmusic MUSIC_BUENAS_PASSWORD
 	writetext UnknownText_0x5de35
@@ -122,7 +122,7 @@ Buena:
 	waitbutton
 	closetext
 	turnobject RADIOTOWER2F_BUENA, RIGHT
-	checkcode VAR_FACING
+	readvar VAR_FACING
 	ifnotequal RIGHT, .DontNeedToMove
 	applymovement PLAYER, MovementData_0x5d921
 .DontNeedToMove:
@@ -140,9 +140,9 @@ Buena:
 	writetext UnknownText_0x5dfc1
 	waitbutton
 	closetext
-	checkcode VAR_BLUECARDBALANCE
-	addvar 1
-	writevarcode VAR_BLUECARDBALANCE
+	readvar VAR_BLUECARDBALANCE
+	addval 1
+	writevar VAR_BLUECARDBALANCE
 	waitsfx
 	playsound SFX_TRANSACTION
 	setflag ENGINE_BUENAS_PASSWORD_2
@@ -155,7 +155,7 @@ Buena:
 	special FadeOutMusic
 	pause 20
 	special RestartMapMusic
-	checkcode VAR_BLUECARDBALANCE
+	readvar VAR_BLUECARDBALANCE
 	ifequal 30, .BlueCardCapped1
 	end
 

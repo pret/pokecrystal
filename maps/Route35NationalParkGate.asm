@@ -34,7 +34,7 @@ Route35NationalParkGate_MapScripts:
 	return
 
 .CheckIfContestAvailable:
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifequal TUESDAY, .SetContestOfficer
 	ifequal THURSDAY, .SetContestOfficer
 	ifequal SATURDAY, .SetContestOfficer
@@ -55,9 +55,9 @@ Route35NationalParkGate_MapScripts:
 	applymovement PLAYER, MovementData_0x6a2e2
 	turnobject ROUTE35NATIONALPARKGATE_OFFICER1, RIGHT
 	opentext
-	checkcode VAR_CONTESTMINUTES
-	addvar 1
-	vartomem MEM_BUFFER_0
+	readvar VAR_CONTESTMINUTES
+	addval 1
+	getnum STRING_BUFFER_3
 	writetext UnknownText_0x6a79a
 	yesorno
 	iffalse .GoBackToContest
@@ -78,7 +78,7 @@ Route35NationalParkGate_MapScripts:
 	end
 
 Route35OfficerScriptContest:
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifequal SUNDAY, Route35NationalParkGate_NoContestToday
 	ifequal MONDAY, Route35NationalParkGate_NoContestToday
 	ifequal WEDNESDAY, Route35NationalParkGate_NoContestToday
@@ -91,7 +91,7 @@ Route35OfficerScriptContest:
 	writetext UnknownText_0x6a2eb
 	yesorno
 	iffalse Route35NationalParkGate_DeclinedToParticipate
-	checkcode VAR_PARTYCOUNT
+	readvar VAR_PARTYCOUNT
 	ifgreater 1, Route35NationalParkGate_LeaveTheRestBehind
 	special ContestDropOffMons
 	clearevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
@@ -116,7 +116,7 @@ Route35NationalParkGate_OkayToProceed:
 	end
 
 Route35NationalParkGate_EnterContest:
-	checkcode VAR_FACING
+	readvar VAR_FACING
 	ifequal LEFT, Route35NationalParkGate_FacingLeft
 	applymovement PLAYER, MovementData_0x6a2e5
 	end
@@ -126,9 +126,9 @@ Route35NationalParkGate_FacingLeft:
 	end
 
 Route35NationalParkGate_LeaveTheRestBehind:
-	checkcode VAR_PARTYCOUNT
+	readvar VAR_PARTYCOUNT
 	ifless PARTY_LENGTH, Route35NationalParkGate_LessThanFullParty
-	checkcode VAR_BOXSPACE
+	readvar VAR_BOXSPACE
 	ifequal 0, Route35NationalParkGate_NoRoomInBox
 
 Route35NationalParkGate_LessThanFullParty:

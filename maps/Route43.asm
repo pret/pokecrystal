@@ -50,7 +50,7 @@ TrainerPokemaniacBrent:
 	trainer POKEMANIAC, BRENT1, EVENT_BEAT_POKEMANIAC_BRENT, PokemaniacBrentSeenText, PokemaniacBrentBeatenText, 0, .Script
 
 .Script:
-	writecode VAR_CALLERID, PHONE_POKEMANIAC_BRENT
+	loadvar VAR_CALLERID, PHONE_POKEMANIAC_BRENT
 	endifjustbattled
 	opentext
 	checkflag ENGINE_BRENT
@@ -71,14 +71,14 @@ TrainerPokemaniacBrent:
 	askforphonenumber PHONE_POKEMANIAC_BRENT
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
-	trainertotext POKEMANIAC, BRENT1, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, POKEMANIAC, BRENT1
 	scall .RegisteredNumber
 	jump .NumberAccepted
 
 .WantsBattle:
 	scall .Rematch
 	winlosstext PokemaniacBrentBeatenText, 0
-	copybytetovar wBrentFightCount
+	readmem wBrentFightCount
 	ifequal 3, .Fight3
 	ifequal 2, .Fight2
 	ifequal 1, .Fight1
@@ -96,7 +96,7 @@ TrainerPokemaniacBrent:
 	loadtrainer POKEMANIAC, BRENT1
 	startbattle
 	reloadmapafterbattle
-	loadvar wBrentFightCount, 1
+	loadmem wBrentFightCount, 1
 	clearflag ENGINE_BRENT
 	end
 
@@ -104,7 +104,7 @@ TrainerPokemaniacBrent:
 	loadtrainer POKEMANIAC, BRENT2
 	startbattle
 	reloadmapafterbattle
-	loadvar wBrentFightCount, 2
+	loadmem wBrentFightCount, 2
 	clearflag ENGINE_BRENT
 	end
 
@@ -112,7 +112,7 @@ TrainerPokemaniacBrent:
 	loadtrainer POKEMANIAC, BRENT3
 	startbattle
 	reloadmapafterbattle
-	loadvar wBrentFightCount, 3
+	loadmem wBrentFightCount, 3
 	clearflag ENGINE_BRENT
 	end
 
@@ -177,7 +177,7 @@ TrainerPicnickerTiffany:
 	trainer PICNICKER, TIFFANY3, EVENT_BEAT_PICNICKER_TIFFANY, PicnickerTiffanySeenText, PicnickerTiffanyBeatenText, 0, .Script
 
 .Script:
-	writecode VAR_CALLERID, PHONE_PICNICKER_TIFFANY
+	loadvar VAR_CALLERID, PHONE_PICNICKER_TIFFANY
 	endifjustbattled
 	opentext
 	checkflag ENGINE_TIFFANY
@@ -202,14 +202,14 @@ TrainerPicnickerTiffany:
 	askforphonenumber PHONE_PICNICKER_TIFFANY
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
-	trainertotext PICNICKER, TIFFANY3, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, PICNICKER, TIFFANY3
 	scall .RegisteredNumber
 	jump .NumberAccepted
 
 .WantsBattle:
 	scall .Rematch
 	winlosstext PicnickerTiffanyBeatenText, 0
-	copybytetovar wTiffanyFightCount
+	readmem wTiffanyFightCount
 	ifequal 3, .Fight3
 	ifequal 2, .Fight2
 	ifequal 1, .Fight1
@@ -227,7 +227,7 @@ TrainerPicnickerTiffany:
 	loadtrainer PICNICKER, TIFFANY3
 	startbattle
 	reloadmapafterbattle
-	loadvar wTiffanyFightCount, 1
+	loadmem wTiffanyFightCount, 1
 	clearflag ENGINE_TIFFANY
 	end
 
@@ -235,7 +235,7 @@ TrainerPicnickerTiffany:
 	loadtrainer PICNICKER, TIFFANY1
 	startbattle
 	reloadmapafterbattle
-	loadvar wTiffanyFightCount, 2
+	loadmem wTiffanyFightCount, 2
 	clearflag ENGINE_TIFFANY
 	end
 
@@ -243,7 +243,7 @@ TrainerPicnickerTiffany:
 	loadtrainer PICNICKER, TIFFANY2
 	startbattle
 	reloadmapafterbattle
-	loadvar wTiffanyFightCount, 3
+	loadmem wTiffanyFightCount, 3
 	clearflag ENGINE_TIFFANY
 	end
 

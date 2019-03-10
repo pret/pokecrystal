@@ -28,7 +28,7 @@ TrainerCooltrainermGaven3:
 	trainer COOLTRAINERM, GAVEN3, EVENT_BEAT_COOLTRAINERM_GAVEN, CooltrainermGaven3SeenText, CooltrainermGaven3BeatenText, 0, .Script
 
 .Script:
-	writecode VAR_CALLERID, PHONE_COOLTRAINERM_GAVEN
+	loadvar VAR_CALLERID, PHONE_COOLTRAINERM_GAVEN
 	endifjustbattled
 	opentext
 	checkflag ENGINE_GAVEN
@@ -49,14 +49,14 @@ TrainerCooltrainermGaven3:
 	askforphonenumber PHONE_COOLTRAINERM_GAVEN
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
-	trainertotext COOLTRAINERM, GAVEN3, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, COOLTRAINERM, GAVEN3
 	scall .RegisteredNumber
 	jump .NumberAccepted
 
 .WantsBattle:
 	scall .Rematch
 	winlosstext CooltrainermGaven3BeatenText, 0
-	copybytetovar wGavenFightCount
+	readmem wGavenFightCount
 	ifequal 2, .Fight2
 	ifequal 1, .Fight1
 	ifequal 0, .LoadFight0
@@ -70,7 +70,7 @@ TrainerCooltrainermGaven3:
 	loadtrainer COOLTRAINERM, GAVEN3
 	startbattle
 	reloadmapafterbattle
-	loadvar wGavenFightCount, 1
+	loadmem wGavenFightCount, 1
 	clearflag ENGINE_GAVEN
 	end
 
@@ -78,7 +78,7 @@ TrainerCooltrainermGaven3:
 	loadtrainer COOLTRAINERM, GAVEN1
 	startbattle
 	reloadmapafterbattle
-	loadvar wGavenFightCount, 2
+	loadmem wGavenFightCount, 2
 	clearflag ENGINE_GAVEN
 	end
 
@@ -132,7 +132,7 @@ TrainerCooltrainerfBeth1:
 	trainer COOLTRAINERF, BETH1, EVENT_BEAT_COOLTRAINERF_BETH, CooltrainerfBeth1SeenText, CooltrainerfBeth1BeatenText, 0, .Script
 
 .Script:
-	writecode VAR_CALLERID, PHONE_COOLTRAINERF_BETH
+	loadvar VAR_CALLERID, PHONE_COOLTRAINERF_BETH
 	endifjustbattled
 	opentext
 	checkflag ENGINE_BETH
@@ -153,14 +153,14 @@ TrainerCooltrainerfBeth1:
 	askforphonenumber PHONE_COOLTRAINERF_BETH
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
-	trainertotext COOLTRAINERF, BETH1, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, COOLTRAINERF, BETH1
 	scall .RegisteredNumber
 	jump .NumberAccepted
 
 .WantsBattle:
 	scall .Rematch
 	winlosstext CooltrainerfBeth1BeatenText, 0
-	copybytetovar wBethFightCount
+	readmem wBethFightCount
 	ifequal 2, .Fight2
 	ifequal 1, .Fight1
 	ifequal 0, .LoadFight0
@@ -174,7 +174,7 @@ TrainerCooltrainerfBeth1:
 	loadtrainer COOLTRAINERF, BETH1
 	startbattle
 	reloadmapafterbattle
-	loadvar wBethFightCount, 1
+	loadmem wBethFightCount, 1
 	clearflag ENGINE_BETH
 	end
 
@@ -182,7 +182,7 @@ TrainerCooltrainerfBeth1:
 	loadtrainer COOLTRAINERF, BETH2
 	startbattle
 	reloadmapafterbattle
-	loadvar wBethFightCount, 2
+	loadmem wBethFightCount, 2
 	clearflag ENGINE_BETH
 	end
 

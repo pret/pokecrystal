@@ -13,7 +13,7 @@ GameFreakGameDesignerScript:
 	faceplayer
 	opentext
 	writetext GameFreakGameDesignerText
-	checkcode VAR_DEXCAUGHT
+	readvar VAR_DEXCAUGHT
 	ifgreater NUM_POKEMON - 2 - 1, .CompletedPokedex ; ignore Mew and Celebi
 	waitbutton
 	closetext

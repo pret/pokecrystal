@@ -32,7 +32,7 @@ MountMortarB1FKiyoScript:
 	writetext UnknownText_0x7e2c0
 	buttonsound
 	waitsfx
-	checkcode VAR_PARTYCOUNT
+	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, .NoRoom
 	writetext UnknownText_0x7e355
 	playsound SFX_CAUGHT_MON

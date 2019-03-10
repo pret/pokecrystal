@@ -67,7 +67,7 @@ CherrygroveCityGuideGent:
 	opentext
 	writetext GuideGentGiftText
 	buttonsound
-	stringtotext .mapcardname, MEM_BUFFER_1
+	getstring STRING_BUFFER_4, .mapcardname
 	scall .JumpstdReceiveItem
 	setflag ENGINE_MAP_CARD
 	writetext GotMapCardText
@@ -120,7 +120,7 @@ CherrygroveSilverSceneNorth:
 	winlosstext SilverCherrygroveWinText, SilverCherrygroveLossText
 	setlasttalked CHERRYGROVECITY_SILVER
 	loadtrainer RIVAL1, RIVAL1_1_TOTODILE
-	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
+	loadvar VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	dontrestartmapmusic
 	reloadmap
@@ -131,7 +131,7 @@ CherrygroveSilverSceneNorth:
 	winlosstext SilverCherrygroveWinText, SilverCherrygroveLossText
 	setlasttalked CHERRYGROVECITY_SILVER
 	loadtrainer RIVAL1, RIVAL1_1_CHIKORITA
-	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
+	loadvar VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	dontrestartmapmusic
 	reloadmap
@@ -142,7 +142,7 @@ CherrygroveSilverSceneNorth:
 	winlosstext SilverCherrygroveWinText, SilverCherrygroveLossText
 	setlasttalked CHERRYGROVECITY_SILVER
 	loadtrainer RIVAL1, RIVAL1_1_CYNDAQUIL
-	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
+	loadvar VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	dontrestartmapmusic
 	reloadmap

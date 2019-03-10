@@ -1,5 +1,5 @@
 GinaPhoneCalleeScript:
-	trainertotext PICNICKER, GINA1, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, PICNICKER, GINA1
 	checkflag ENGINE_GINA
 	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Female
@@ -7,7 +7,7 @@ GinaPhoneCalleeScript:
 	iftrue .NotSunday
 	checkflag ENGINE_GINA_HAS_LEAF_STONE
 	iftrue .HasLeafStone
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifnotequal SUNDAY, .NotSunday
 	checktime DAY
 	iftrue GinaSundayDay
@@ -21,15 +21,15 @@ GinaPhoneCalleeScript:
 	farjump UnknownScript_0xa05c6
 
 .WantsBattle:
-	landmarktotext ROUTE_34, MEM_BUFFER_2
+	getlandmarkname STRING_BUFFER_5, ROUTE_34
 	farjump UnknownScript_0xa0a69
 
 .HasLeafStone:
-	landmarktotext ROUTE_34, MEM_BUFFER_2
+	getlandmarkname STRING_BUFFER_5, ROUTE_34
 	farjump UnknownScript_0xa0abd
 
 GinaPhoneCallerScript:
-	trainertotext PICNICKER, GINA1, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, PICNICKER, GINA1
 	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue GinaRockets
@@ -59,7 +59,7 @@ GinaSundayDay:
 	setflag ENGINE_GINA_SUNDAY_AFTERNOON
 
 GinaWantsBattle:
-	landmarktotext ROUTE_34, MEM_BUFFER_2
+	getlandmarkname STRING_BUFFER_5, ROUTE_34
 	setflag ENGINE_GINA
 	farjump PhoneScript_WantsToBattle_Female
 
@@ -68,5 +68,5 @@ GinaRockets:
 
 GinaHasLeafStone:
 	setflag ENGINE_GINA_HAS_LEAF_STONE
-	landmarktotext ROUTE_34, MEM_BUFFER_2
+	getlandmarkname STRING_BUFFER_5, ROUTE_34
 	farjump PhoneScript_FoundItem_Female

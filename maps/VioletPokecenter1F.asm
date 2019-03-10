@@ -22,10 +22,10 @@ VioletPokecenter1F_ElmsAideScript:
 .AskTakeEgg:
 	yesorno
 	iffalse .RefusedEgg
-	checkcode VAR_PARTYCOUNT
+	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, .PartyFull
 	giveegg TOGEPI, 5
-	stringtotext .eggname, MEM_BUFFER_1
+	getstring STRING_BUFFER_4, .eggname
 	scall .AideGivesEgg
 	setevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
 	clearevent EVENT_ELMS_AIDE_IN_LAB
@@ -34,7 +34,7 @@ VioletPokecenter1F_ElmsAideScript:
 	writetext UnknownText_0x695c5
 	waitbutton
 	closetext
-	checkcode VAR_FACING
+	readvar VAR_FACING
 	ifequal UP, .AideWalksAroundPlayer
 	turnobject PLAYER, DOWN
 	applymovement VIOLETPOKECENTER1F_SCIENTIST, MovementData_AideWalksStraightOutOfPokecenter

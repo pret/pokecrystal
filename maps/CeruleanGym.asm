@@ -158,7 +158,7 @@ CeruleanGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext MISTY, MISTY1, MEM_BUFFER_1
+	gettrainername STRING_BUFFER_4, MISTY, MISTY1
 	jumpstd gymstatue2
 
 CeruleanGymGruntRunsDownMovement:

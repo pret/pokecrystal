@@ -55,7 +55,7 @@ Phone_GotAwayCall_Female:
 	farjump PhoneScript_HangupText_Female
 
 Phone_WhosBragging_Male:
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_SCHOOLBOY_JACK, .Jack
 	ifequal PHONE_COOLTRAINERM_GAVEN, .Gaven
 	ifequal PHONE_BIRDKEEPER_JOSE, .Jose
@@ -160,7 +160,7 @@ Phone_WhosBragging_Male:
 	end
 
 Phone_WhosBragging_Female:
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_POKEFAN_BEVERLY, .Beverly
 	ifequal PHONE_COOLTRAINERF_BETH, .Beth
 	ifequal PHONE_COOLTRAINERF_REENA, .Reena
@@ -211,7 +211,7 @@ Phone_WhosBragging_Female:
 	end
 
 Phone_WhoDefeatedMon_Male:
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_SCHOOLBOY_JACK, .Jack
 	ifequal PHONE_COOLTRAINERM_GAVEN, .Gaven
 	ifequal PHONE_BIRDKEEPER_JOSE, .Jose
@@ -316,7 +316,7 @@ Phone_WhoDefeatedMon_Male:
 	end
 
 Phone_WhoDefeatedMon_Female:
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_POKEFAN_BEVERLY, .Beverly
 	ifequal PHONE_COOLTRAINERF_BETH, .Beth
 	ifequal PHONE_COOLTRAINERF_REENA, .Reena
@@ -367,7 +367,7 @@ Phone_WhoDefeatedMon_Female:
 	end
 
 Phone_WhoLostAMon_Male:
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_SCHOOLBOY_JACK, .Jack
 	ifequal PHONE_COOLTRAINERM_GAVEN, .Gaven
 	ifequal PHONE_BIRDKEEPER_JOSE, .Jose
@@ -472,7 +472,7 @@ Phone_WhoLostAMon_Male:
 	end
 
 Phone_WhoLostAMon_Female:
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_POKEFAN_BEVERLY, .Beverly
 	ifequal PHONE_COOLTRAINERF_BETH, .Beth
 	ifequal PHONE_COOLTRAINERF_REENA, .Reena
@@ -531,7 +531,7 @@ PhoneScript_WantsToBattle_Female:
 	farjump PhoneScript_HangupText_Female
 
 PhoneScript_RematchText_Male:
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_SCHOOLBOY_JACK, .Jack
 	ifequal PHONE_SAILOR_HUEY, .Huey
 	ifequal PHONE_COOLTRAINERM_GAVEN, .Gaven
@@ -636,7 +636,7 @@ PhoneScript_RematchText_Male:
 	end
 
 PhoneScript_RematchText_Female:
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_COOLTRAINERF_BETH, .Beth
 	ifequal PHONE_COOLTRAINERF_REENA, .Reena
 	ifequal PHONE_PICNICKER_LIZ, .Liz
@@ -689,7 +689,7 @@ TiffanyItsAwful:
 	end
 
 PhoneScript_HangupText_Male:
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_SCHOOLBOY_JACK, .Jack
 	ifequal PHONE_SAILOR_HUEY, .Huey
 	ifequal PHONE_COOLTRAINERM_GAVEN, .Gaven
@@ -792,7 +792,7 @@ PhoneScript_HangupText_Male:
 	end
 
 PhoneScript_HangupText_Female:
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_POKEFAN_BEVERLY, .Beverly
 	ifequal PHONE_COOLTRAINERF_BETH, .Beth
 	ifequal PHONE_COOLTRAINERF_REENA, .Reena
@@ -855,7 +855,7 @@ PhoneScriptRareWildMon:
 	end
 
 PhoneScript_BugCatchingContest:
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_BUG_CATCHER_WADE, .Wade
 	ifequal PHONE_POKEFANM_DEREK, .Derek
 
@@ -895,7 +895,7 @@ UnknownScript_0xa05de:
 	jump PhoneScript_HangupText_Male
 
 PhoneScript_FoundItem_Male:
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_BIRDKEEPER_JOSE, .Jose
 	ifequal PHONE_BUG_CATCHER_WADE, .Wade
 	ifequal PHONE_SCHOOLBOY_ALAN, .Alan
@@ -928,7 +928,7 @@ PhoneScript_FoundItem_Male:
 	end
 
 PhoneScript_FoundItem_Female:
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_POKEFAN_BEVERLY, .Beverly
 	ifequal PHONE_PICNICKER_GINA, .Gina
 	ifequal PHONE_LASS_DANA, .Dana

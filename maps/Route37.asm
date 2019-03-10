@@ -14,7 +14,7 @@ Route37_MapScripts:
 	callback MAPCALLBACK_OBJECTS, .Sunny
 
 .Sunny:
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifequal SUNDAY, .SunnyAppears
 	disappear ROUTE37_SUNNY
 	return
@@ -61,7 +61,7 @@ SunnyScript:
 	opentext
 	checkevent EVENT_GOT_MAGNET_FROM_SUNNY
 	iftrue SunnySundayScript
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifnotequal SUNDAY, SunnyNotSundayScript
 	checkevent EVENT_MET_SUNNY_OF_SUNDAY
 	iftrue .MetSunny

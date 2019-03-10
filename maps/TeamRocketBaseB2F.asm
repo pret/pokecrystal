@@ -175,7 +175,7 @@ LanceHealsCommon:
 	closetext
 	setscene SCENE_TEAMROCKETBASEB2F_ROCKET_BOSS
 	setevent EVENT_LANCE_HEALED_YOU_IN_TEAM_ROCKET_BASE
-	checkcode VAR_FACING
+	readvar VAR_FACING
 	ifequal RIGHT, .FacingRight
 	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d212
 	disappear TEAMROCKETBASEB2F_LANCE

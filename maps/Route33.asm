@@ -15,7 +15,7 @@ TrainerHikerAnthony:
 	trainer HIKER, ANTHONY2, EVENT_BEAT_HIKER_ANTHONY, HikerAnthony2SeenText, HikerAnthony2BeatenText, 0, .Script
 
 .Script:
-	writecode VAR_CALLERID, PHONE_HIKER_ANTHONY
+	loadvar VAR_CALLERID, PHONE_HIKER_ANTHONY
 	endifjustbattled
 	opentext
 	checkflag ENGINE_ANTHONY
@@ -38,14 +38,14 @@ TrainerHikerAnthony:
 	askforphonenumber PHONE_HIKER_ANTHONY
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
-	trainertotext HIKER, ANTHONY2, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, HIKER, ANTHONY2
 	scall .RegisteredNumber
 	jump .NumberAccepted
 
 .Rematch:
 	scall .RematchStd
 	winlosstext HikerAnthony2BeatenText, 0
-	copybytetovar wAnthonyFightCount
+	readmem wAnthonyFightCount
 	ifequal 4, .Fight4
 	ifequal 3, .Fight3
 	ifequal 2, .Fight2
@@ -67,7 +67,7 @@ TrainerHikerAnthony:
 	loadtrainer HIKER, ANTHONY2
 	startbattle
 	reloadmapafterbattle
-	loadvar wAnthonyFightCount, 1
+	loadmem wAnthonyFightCount, 1
 	clearflag ENGINE_ANTHONY
 	end
 
@@ -75,7 +75,7 @@ TrainerHikerAnthony:
 	loadtrainer HIKER, ANTHONY1
 	startbattle
 	reloadmapafterbattle
-	loadvar wAnthonyFightCount, 2
+	loadmem wAnthonyFightCount, 2
 	clearflag ENGINE_ANTHONY
 	end
 
@@ -83,7 +83,7 @@ TrainerHikerAnthony:
 	loadtrainer HIKER, ANTHONY3
 	startbattle
 	reloadmapafterbattle
-	loadvar wAnthonyFightCount, 3
+	loadmem wAnthonyFightCount, 3
 	clearflag ENGINE_ANTHONY
 	end
 
@@ -91,7 +91,7 @@ TrainerHikerAnthony:
 	loadtrainer HIKER, ANTHONY4
 	startbattle
 	reloadmapafterbattle
-	loadvar wAnthonyFightCount, 4
+	loadmem wAnthonyFightCount, 4
 	clearflag ENGINE_ANTHONY
 	end
 

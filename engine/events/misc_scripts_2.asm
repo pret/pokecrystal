@@ -12,8 +12,8 @@ RepelWoreOffScript::
 
 HiddenItemScript::
 	opentext
-	copybytetovar wEngineBuffer3
-	itemtotext USE_SCRIPT_VAR, MEM_BUFFER_0
+	readmem wEngineBuffer3
+	getitemname STRING_BUFFER_3, USE_SCRIPT_VAR
 	writetext .found_text
 	giveitem ITEM_FROM_MEM
 	iffalse .bag_full

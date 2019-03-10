@@ -23,7 +23,7 @@ Oak:
 	buttonsound
 	setevent EVENT_TALKED_TO_OAK_IN_KANTO
 .CheckBadges:
-	checkcode VAR_BADGES
+	readvar VAR_BADGES
 	ifequal NUM_BADGES, .OpenMtSilver
 	ifequal NUM_JOHTO_BADGES, .Complain
 	jump .AhGood

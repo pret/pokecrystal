@@ -97,7 +97,7 @@ FastShipLazySailorScript:
 	closetext
 	setevent EVENT_FAST_SHIP_LAZY_SAILOR
 	setmapscene FAST_SHIP_B1F, SCENE_FINISHED
-	checkcode VAR_FACING
+	readvar VAR_FACING
 	ifequal RIGHT, .Movement2
 	applymovement FASTSHIPCABINS_NNW_NNE_NE_SAILOR, FastShipLazySailorLeavesMovement1
 	playsound SFX_EXIT_BUILDING

@@ -48,7 +48,7 @@ RuinsOfAlphHoOhChamber_MapScripts:
 
 RuinsOfAlphHoOhChamberPuzzle:
 	refreshscreen
-	writebyte UNOWNPUZZLE_HO_OH
+	setval UNOWNPUZZLE_HO_OH
 	special UnownPuzzle
 	closetext
 	iftrue .PuzzleComplete
@@ -82,7 +82,7 @@ RuinsOfAlphHoOhChamberDescriptionSign:
 RuinsOfAlphHoOhChamberWallPatternLeft:
 	opentext
 	writetext RuinsOfAlphHoOhChamberWallPatternLeftText
-	writebyte UNOWNWORDS_HO_OH
+	setval UNOWNWORDS_HO_OH
 	special DisplayUnownWords
 	closetext
 	end
@@ -92,7 +92,7 @@ RuinsOfAlphHoOhChamberWallPatternRight:
 	iftrue .WallOpen
 	opentext
 	writetext RuinsOfAlphHoOhChamberWallPatternRightText
-	writebyte UNOWNWORDS_HO_OH
+	setval UNOWNWORDS_HO_OH
 	special DisplayUnownWords
 	closetext
 	end

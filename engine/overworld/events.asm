@@ -849,7 +849,7 @@ SelectMenuScript:
 
 StartMenuCallback:
 SelectMenuCallback:
-	copybytetovar hMenuReturn
+	readmem hMenuReturn
 	ifequal HMENURETURN_SCRIPT, .Script
 	ifequal HMENURETURN_ASM, .Asm
 	end

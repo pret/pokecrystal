@@ -38,7 +38,7 @@ TrainerFisherTully:
 	trainer FISHER, TULLY1, EVENT_BEAT_FISHER_TULLY, FisherTullySeenText, FisherTullyBeatenText, 0, .Script
 
 .Script:
-	writecode VAR_CALLERID, PHONE_FISHER_TULLY
+	loadvar VAR_CALLERID, PHONE_FISHER_TULLY
 	endifjustbattled
 	opentext
 	checkflag ENGINE_TULLY
@@ -61,14 +61,14 @@ TrainerFisherTully:
 	askforphonenumber PHONE_FISHER_TULLY
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
-	trainertotext FISHER, TULLY1, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, FISHER, TULLY1
 	scall .RegisteredNumber
 	jump .NumberAccepted
 
 .WantsBattle:
 	scall .Rematch
 	winlosstext FisherTullyBeatenText, 0
-	copybytetovar wTullyFightCount
+	readmem wTullyFightCount
 	ifequal 3, .Fight3
 	ifequal 2, .Fight2
 	ifequal 1, .Fight1
@@ -86,7 +86,7 @@ TrainerFisherTully:
 	loadtrainer FISHER, TULLY1
 	startbattle
 	reloadmapafterbattle
-	loadvar wTullyFightCount, 1
+	loadmem wTullyFightCount, 1
 	clearflag ENGINE_TULLY
 	end
 
@@ -94,7 +94,7 @@ TrainerFisherTully:
 	loadtrainer FISHER, TULLY2
 	startbattle
 	reloadmapafterbattle
-	loadvar wTullyFightCount, 2
+	loadmem wTullyFightCount, 2
 	clearflag ENGINE_TULLY
 	end
 
@@ -102,7 +102,7 @@ TrainerFisherTully:
 	loadtrainer FISHER, TULLY3
 	startbattle
 	reloadmapafterbattle
-	loadvar wTullyFightCount, 3
+	loadmem wTullyFightCount, 3
 	clearflag ENGINE_TULLY
 	end
 

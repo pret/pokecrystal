@@ -30,7 +30,7 @@ MahoganyGymPryceScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_GLACIERBADGE
-	checkcode VAR_BADGES
+	readvar VAR_BADGES
 	scall MahoganyGymActivateRockets
 .FightDone:
 	checkevent EVENT_GOT_TM16_ICY_WIND
@@ -144,7 +144,7 @@ MahoganyGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext PRYCE, PRYCE1, MEM_BUFFER_1
+	gettrainername STRING_BUFFER_4, PRYCE, PRYCE1
 	jumpstd gymstatue2
 
 PryceText_Intro:

@@ -31,7 +31,7 @@ GoldenrodVendingMachine:
 	giveitem FRESH_WATER
 	iffalse .NotEnoughSpace
 	takemoney YOUR_MONEY, GOLDENRODDEPTSTORE6F_FRESH_WATER_PRICE
-	itemtotext FRESH_WATER, MEM_BUFFER_0
+	getitemname STRING_BUFFER_3, FRESH_WATER
 	jump .VendItem
 
 .SodaPop:
@@ -40,7 +40,7 @@ GoldenrodVendingMachine:
 	giveitem SODA_POP
 	iffalse .NotEnoughSpace
 	takemoney YOUR_MONEY, GOLDENRODDEPTSTORE6F_SODA_POP_PRICE
-	itemtotext SODA_POP, MEM_BUFFER_0
+	getitemname STRING_BUFFER_3, SODA_POP
 	jump .VendItem
 
 .Lemonade:
@@ -49,7 +49,7 @@ GoldenrodVendingMachine:
 	giveitem LEMONADE
 	iffalse .NotEnoughSpace
 	takemoney YOUR_MONEY, GOLDENRODDEPTSTORE6F_LEMONADE_PRICE
-	itemtotext LEMONADE, MEM_BUFFER_0
+	getitemname STRING_BUFFER_3, LEMONADE
 	jump .VendItem
 
 .VendItem:

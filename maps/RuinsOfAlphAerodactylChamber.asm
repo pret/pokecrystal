@@ -47,7 +47,7 @@ RuinsOfAlphAerodactylChamber_MapScripts:
 
 RuinsOfAlphAerodactylChamberPuzzle:
 	refreshscreen
-	writebyte UNOWNPUZZLE_AERODACTYL
+	setval UNOWNPUZZLE_AERODACTYL
 	special UnownPuzzle
 	closetext
 	iftrue .PuzzleComplete
@@ -81,7 +81,7 @@ RuinsOfAlphAerodactylChamberDescriptionSign:
 RuinsOfAlphAerodactylChamberWallPatternLeft:
 	opentext
 	writetext RuinsOfAlphAerodactylChamberWallPatternLeftText
-	writebyte UNOWNWORDS_LIGHT
+	setval UNOWNWORDS_LIGHT
 	special DisplayUnownWords
 	closetext
 	end
@@ -91,7 +91,7 @@ RuinsOfAlphAerodactylChamberWallPatternRight:
 	iftrue .WallOpen
 	opentext
 	writetext RuinsOfAlphAerodactylChamberWallPatternRightText
-	writebyte UNOWNWORDS_LIGHT
+	setval UNOWNWORDS_LIGHT
 	special DisplayUnownWords
 	closetext
 	end

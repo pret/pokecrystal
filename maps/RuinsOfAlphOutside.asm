@@ -27,7 +27,7 @@ RuinsOfAlphOutside_MapScripts:
 	jump .NoScientist
 
 .MaybeScientist:
-	checkcode VAR_UNOWNCOUNT
+	readvar VAR_UNOWNCOUNT
 	ifgreater 2, .YesScientist
 	jump .NoScientist
 

@@ -73,7 +73,7 @@ TrainerSchoolboyJack1:
 	trainer SCHOOLBOY, JACK1, EVENT_BEAT_SCHOOLBOY_JACK, SchoolboyJack1SeenText, SchoolboyJack1BeatenText, 0, .Script
 
 .Script:
-	writecode VAR_CALLERID, PHONE_SCHOOLBOY_JACK
+	loadvar VAR_CALLERID, PHONE_SCHOOLBOY_JACK
 	endifjustbattled
 	opentext
 	checkflag ENGINE_JACK
@@ -94,14 +94,14 @@ TrainerSchoolboyJack1:
 	askforphonenumber PHONE_SCHOOLBOY_JACK
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
-	trainertotext SCHOOLBOY, JACK1, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, SCHOOLBOY, JACK1
 	scall .RegisteredNumber
 	jump .NumberAccepted
 
 .Rematch:
 	scall .RematchStd
 	winlosstext SchoolboyJack1BeatenText, 0
-	copybytetovar wJackFightCount
+	readmem wJackFightCount
 	ifequal 4, .Fight4
 	ifequal 3, .Fight3
 	ifequal 2, .Fight2
@@ -123,7 +123,7 @@ TrainerSchoolboyJack1:
 	loadtrainer SCHOOLBOY, JACK1
 	startbattle
 	reloadmapafterbattle
-	loadvar wJackFightCount, 1
+	loadmem wJackFightCount, 1
 	clearflag ENGINE_JACK
 	end
 
@@ -131,7 +131,7 @@ TrainerSchoolboyJack1:
 	loadtrainer SCHOOLBOY, JACK2
 	startbattle
 	reloadmapafterbattle
-	loadvar wJackFightCount, 2
+	loadmem wJackFightCount, 2
 	clearflag ENGINE_JACK
 	end
 
@@ -139,7 +139,7 @@ TrainerSchoolboyJack1:
 	loadtrainer SCHOOLBOY, JACK3
 	startbattle
 	reloadmapafterbattle
-	loadvar wJackFightCount, 3
+	loadmem wJackFightCount, 3
 	clearflag ENGINE_JACK
 	end
 
@@ -147,7 +147,7 @@ TrainerSchoolboyJack1:
 	loadtrainer SCHOOLBOY, JACK4
 	startbattle
 	reloadmapafterbattle
-	loadvar wJackFightCount, 4
+	loadmem wJackFightCount, 4
 	clearflag ENGINE_JACK
 	end
 
@@ -201,7 +201,7 @@ TrainerPokefanfBeverly1:
 	trainer POKEFANF, BEVERLY1, EVENT_BEAT_POKEFANF_BEVERLY, PokefanfBeverly1SeenText, PokefanfBeverly1BeatenText, 0, .Script
 
 .Script:
-	writecode VAR_CALLERID, PHONE_POKEFAN_BEVERLY
+	loadvar VAR_CALLERID, PHONE_POKEFAN_BEVERLY
 	endifjustbattled
 	opentext
 	checkflag ENGINE_BEVERLY_HAS_NUGGET
@@ -224,7 +224,7 @@ TrainerPokefanfBeverly1:
 	askforphonenumber PHONE_POKEFAN_BEVERLY
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
-	trainertotext POKEFANF, BEVERLY1, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, POKEFANF, BEVERLY1
 	scall .RegisteredNumber
 	jump .NumberAccepted
 

@@ -54,7 +54,7 @@ RuinsOfAlphKabutoChamberReceptionistScript:
 
 RuinsOfAlphKabutoChamberPuzzle:
 	refreshscreen
-	writebyte UNOWNPUZZLE_KABUTO
+	setval UNOWNPUZZLE_KABUTO
 	special UnownPuzzle
 	closetext
 	iftrue .PuzzleComplete
@@ -83,7 +83,7 @@ RuinsOfAlphKabutoChamberPuzzle:
 RuinsOfAlphKabutoChamberScientistScript:
 	faceplayer
 	opentext
-	checkcode VAR_UNOWNCOUNT
+	readvar VAR_UNOWNCOUNT
 	ifequal NUM_UNOWN, .AllUnownCaught
 	checkevent EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
 	iftrue .WallOpen
@@ -119,7 +119,7 @@ RuinsOfAlphKabutoChamberDescriptionSign:
 RuinsOfAlphKabutoChamberWallPatternLeft:
 	opentext
 	writetext RuinsOfAlphKabutoChamberWallPatternLeftText
-	writebyte UNOWNWORDS_ESCAPE
+	setval UNOWNWORDS_ESCAPE
 	special DisplayUnownWords
 	closetext
 	end
@@ -129,7 +129,7 @@ RuinsOfAlphKabutoChamberWallPatternRight:
 	iftrue .WallOpen
 	opentext
 	writetext RuinsOfAlphKabutoChamberWallPatternRightText
-	writebyte UNOWNWORDS_ESCAPE
+	setval UNOWNWORDS_ESCAPE
 	special DisplayUnownWords
 	closetext
 	end

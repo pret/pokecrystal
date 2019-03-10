@@ -26,13 +26,62 @@ domaptrigger     EQUS "setmapscene"
 checktriggers    EQUS "checkscene"
 dotrigger        EQUS "setscene"
 
-faceperson       EQUS "faceobject"
-moveperson       EQUS "moveobject"
-writepersonxy    EQUS "writeobjectxy"
-spriteface       EQUS "turnobject"
-objectface       EQUS "turnobject"
+faceperson     EQUS "faceobject"
+moveperson     EQUS "moveobject"
+writepersonxy  EQUS "writeobjectxy"
+spriteface     EQUS "turnobject"
+objectface     EQUS "turnobject"
+applymovement2 EQUS "applymovementlasttalked"
 
-RAM2MEM           EQUS "vartomem"
+writebyte     EQUS "setval"
+addvar        EQUS "addval"
+copybytetovar EQUS "readmem"
+copyvartobyte EQUS "writemem"
+checkcode     EQUS "readvar"
+writevarcode  EQUS "writevar"
+writecode     EQUS "loadvar"
+
+MEM_BUFFER_0 EQUS "STRING_BUFFER_3"
+MEM_BUFFER_1 EQUS "STRING_BUFFER_4"
+MEM_BUFFER_2 EQUS "STRING_BUFFER_5"
+
+vartomem      EQUS "getnum"
+mapnametotext EQUS "getcurlandmarkname"
+readcoins     EQUS "getcoins"
+
+pokenamemem: MACRO
+	getmonname \2, \1
+ENDM
+
+itemtotext: MACRO
+	getitemname \2, \1
+ENDM
+
+landmarktotext: MACRO
+	getlandmarkname \2, \1
+ENDM
+
+trainertotext: MACRO
+	gettrainername \3, \1, \2
+ENDM
+
+trainerclassname: MACRO
+	gettrainerclassname \2, \1
+ENDM
+
+name: MACRO
+	getname \3, \1, \2
+ENDM
+
+stringtotext: MACRO
+	getstring \2, \1
+ENDM
+
+readmoney: MACRO
+	getmoney \2, \1
+ENDM
+
+RAM2MEM           EQUS "getnum"
 loadfont          EQUS "opentext"
 loadmenudata      EQUS "loadmenu"
 loadmenuheader    EQUS "loadmenu"
@@ -40,7 +89,7 @@ writebackup       EQUS "closewindow"
 interpretmenu     EQUS "_2dmenu"
 interpretmenu2    EQUS "verticalmenu"
 battlecheck       EQUS "randomwildmon"
-loadtrainerdata   EQUS "loadmemtrainer"
+loadtrainerdata   EQUS "loadtemptrainer"
 loadpokedata      EQUS "loadwildmon"
 returnafterbattle EQUS "reloadmapafterbattle"
 trainerstatus     EQUS "trainerflagaction"
@@ -54,6 +103,7 @@ displaylocation   EQUS "landmarktotext"
 givepokeitem      EQUS "givepokemail"
 checkpokeitem     EQUS "checkpokemail"
 passtoengine      EQUS "autoinput"
+verbosegiveitem2  EQUS "verbosegiveitemvar"
 
 ; macros/scripts/maps.asm
 

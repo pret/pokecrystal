@@ -103,7 +103,7 @@ BurnedTowerB1FEusine:
 	writetext BurnedTowerB1FEusineText
 	waitbutton
 	closetext
-	checkcode VAR_FACING
+	readvar VAR_FACING
 	ifequal UP, .Movement2
 	applymovement BURNEDTOWERB1F_EUSINE, BurnedTowerB1FEusineMovement1
 	jump .Finish

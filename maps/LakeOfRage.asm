@@ -32,7 +32,7 @@ LakeOfRage_MapScripts:
 	return
 
 .Wesley:
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifequal WEDNESDAY, .WesleyAppears
 	disappear LAKEOFRAGE_WESLEY
 	return
@@ -85,7 +85,7 @@ RedGyarados:
 	cry GYARADOS
 	closetext
 	loadwildmon GYARADOS, 30
-	writecode VAR_BATTLETYPE, BATTLETYPE_SHINY
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SHINY
 	startbattle
 	ifequal LOSE, .NotBeaten
 	disappear LAKEOFRAGE_GYARADOS
@@ -192,7 +192,7 @@ WesleyScript:
 	opentext
 	checkevent EVENT_GOT_BLACKBELT_FROM_WESLEY
 	iftrue WesleyWednesdayScript
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifnotequal WEDNESDAY, WesleyNotWednesdayScript
 	checkevent EVENT_MET_WESLEY_OF_WEDNESDAY
 	iftrue .MetWesley

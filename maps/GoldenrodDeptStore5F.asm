@@ -13,7 +13,7 @@ GoldenrodDeptStore5F_MapScripts:
 	callback MAPCALLBACK_OBJECTS, .CheckIfSunday
 
 .CheckIfSunday:
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifequal SUNDAY, .yes
 	disappear GOLDENRODDEPTSTORE5F_RECEPTIONIST
 	return
@@ -59,7 +59,7 @@ GoldenrodDeptStore5FClerkScript:
 GoldenrodDeptStore5FReceptionistScript:
 	faceplayer
 	opentext
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifnotequal SUNDAY, .EventIsOver
 	checkflag ENGINE_GOLDENROD_DEPT_STORE_TM27_RETURN
 	iftrue .EventIsOver

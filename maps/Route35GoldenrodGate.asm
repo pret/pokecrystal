@@ -23,7 +23,7 @@ RandyScript:
 	writetext UnknownText_0x69e48
 	buttonsound
 	waitsfx
-	checkcode VAR_PARTYCOUNT
+	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, .partyfull
 	writetext UnknownText_0x69eb8
 	playsound SFX_KEY_ITEM

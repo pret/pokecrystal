@@ -36,7 +36,7 @@ MeetMomScript:
 	opentext
 	writetext ElmsLookingForYouText
 	buttonsound
-	stringtotext GearName, MEM_BUFFER_1
+	getstring STRING_BUFFER_4, GearName
 	scall PlayersHouse1FReceiveItemStd
 	setflag ENGINE_POKEGEAR
 	setflag ENGINE_PHONE_CARD

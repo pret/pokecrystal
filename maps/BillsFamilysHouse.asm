@@ -19,7 +19,7 @@ BillScript:
 	writetext BillImCountingOnYouText
 	buttonsound
 	waitsfx
-	checkcode VAR_PARTYCOUNT
+	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, .NoRoom
 	writetext ReceivedEeveeText
 	playsound SFX_CAUGHT_MON

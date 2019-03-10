@@ -22,7 +22,7 @@ TrainerBlackbeltKenji:
 	trainer BLACKBELT_T, KENJI3, EVENT_BEAT_BLACKBELT_KENJI, BlackbeltKenji3SeenText, BlackbeltKenji3BeatenText, 0, .Script
 
 .Script:
-	writecode VAR_CALLERID, PHONE_BLACKBELT_KENJI
+	loadvar VAR_CALLERID, PHONE_BLACKBELT_KENJI
 	endifjustbattled
 	opentext
 	checkcellnum PHONE_BLACKBELT_KENJI
@@ -42,12 +42,12 @@ TrainerBlackbeltKenji:
 	askforphonenumber PHONE_BLACKBELT_KENJI
 	ifequal PHONE_CONTACTS_FULL, Route45PhoneFullM
 	ifequal PHONE_CONTACT_REFUSED, Route45NumberDeclinedM
-	trainertotext BLACKBELT_T, KENJI3, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, BLACKBELT_T, KENJI3
 	scall Route45RegisteredNumberM
 	jump Route45NumberAcceptedM
 
 .Registered:
-	checkcode VAR_KENJI_BREAK
+	readvar VAR_KENJI_BREAK
 	ifnotequal 1, Route45NumberAcceptedM
 	checktime MORN
 	iftrue .Morning
@@ -148,7 +148,7 @@ TrainerHikerParry:
 	trainer HIKER, PARRY3, EVENT_BEAT_HIKER_PARRY, HikerParry3SeenText, HikerParry3BeatenText, 0, .Script
 
 .Script:
-	writecode VAR_CALLERID, PHONE_HIKER_PARRY
+	loadvar VAR_CALLERID, PHONE_HIKER_PARRY
 	endifjustbattled
 	opentext
 	checkflag ENGINE_PARRY
@@ -169,14 +169,14 @@ TrainerHikerParry:
 	askforphonenumber PHONE_HIKER_PARRY
 	ifequal PHONE_CONTACTS_FULL, Route45PhoneFullM
 	ifequal PHONE_CONTACT_REFUSED, Route45NumberDeclinedM
-	trainertotext HIKER, PARRY1, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, HIKER, PARRY1
 	scall Route45RegisteredNumberM
 	jump Route45NumberAcceptedM
 
 .WantsBattle:
 	scall Route45RematchM
 	winlosstext HikerParry3BeatenText, 0
-	copybytetovar wParryFightCount
+	readmem wParryFightCount
 	ifequal 2, .Fight2
 	ifequal 1, .Fight1
 	ifequal 0, .LoadFight0
@@ -190,7 +190,7 @@ TrainerHikerParry:
 	loadtrainer HIKER, PARRY3
 	startbattle
 	reloadmapafterbattle
-	loadvar wParryFightCount, 1
+	loadmem wParryFightCount, 1
 	clearflag ENGINE_PARRY
 	end
 
@@ -198,7 +198,7 @@ TrainerHikerParry:
 	loadtrainer HIKER, PARRY1
 	startbattle
 	reloadmapafterbattle
-	loadvar wParryFightCount, 2
+	loadmem wParryFightCount, 2
 	clearflag ENGINE_PARRY
 	end
 

@@ -52,7 +52,7 @@ VermilionSnorlax:
 	pause 15
 	cry SNORLAX
 	closetext
-	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
+	loadvar VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
 	loadwildmon SNORLAX, 50
 	startbattle
 	disappear VERMILIONCITY_BIG_SNORLAX
@@ -65,7 +65,7 @@ VermilionGymBadgeGuy:
 	opentext
 	checkevent EVENT_GOT_HP_UP_FROM_VERMILION_GUY
 	iftrue .AlreadyGotItem
-	checkcode VAR_BADGES
+	readvar VAR_BADGES
 	ifequal NUM_BADGES, .AllBadges
 	ifgreater 13, .MostBadges
 	ifgreater 9, .SomeBadges

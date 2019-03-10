@@ -49,7 +49,7 @@ MoomooScript:
 	checkevent EVENT_HEALED_MOOMOO
 	iftrue .HappyCow
 	writetext MoomooWeakMooText
-	writebyte MILTANK
+	setval MILTANK
 	special PlaySlowCry
 	buttonsound
 	writetext Route39BarnItsCryIsWeakText
@@ -67,9 +67,9 @@ MoomooScript:
 	checkitem BERRY
 	iffalse .NoBerriesInBag
 	takeitem BERRY
-	copybytetovar wMooMooBerries
-	addvar 1
-	copyvartobyte wMooMooBerries
+	readmem wMooMooBerries
+	addval 1
+	writemem wMooMooBerries
 	ifequal 3, .ThreeBerries
 	ifequal 5, .FiveBerries
 	ifequal 7, .SevenBerries

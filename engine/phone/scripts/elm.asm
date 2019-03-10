@@ -1,5 +1,5 @@
 ElmPhoneCalleeScript:
-	checkcode VAR_SPECIALPHONECALL
+	readvar VAR_SPECIALPHONECALL
 	ifequal SPECIALCALL_POKERUS, .pokerus
 	checkevent EVENT_SHOWED_TOGEPI_TO_ELM
 	iftrue .discovery
@@ -62,7 +62,7 @@ ElmPhoneCalleeScript:
 	end
 
 ElmPhoneCallerScript:
-	checkcode VAR_SPECIALPHONECALL
+	readvar VAR_SPECIALPHONECALL
 	ifequal SPECIALCALL_ROBBED, .disaster
 	ifequal SPECIALCALL_ASSISTANT, .assistant
 	ifequal SPECIALCALL_WEIRDBROADCAST, .rocket

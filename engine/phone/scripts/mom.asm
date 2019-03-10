@@ -14,8 +14,8 @@ MomPhoneCalleeScript:
 	iftrue MomPhoneHangUpScript
 	farwritetext MomPhoneGreetingText
 	buttonsound
-	mapnametotext MEM_BUFFER_0
-	checkcode VAR_ROOFPALETTE
+	getcurlandmarkname STRING_BUFFER_3
+	readvar VAR_ROOFPALETTE
 	ifequal 1, MomPhonePalette1
 	ifequal 2, MomPhonePalette2
 	jump MomPhoneOther
@@ -26,7 +26,7 @@ MomPhoneLandmark:
 	jump MomSavingMoney
 
 MomPhonePalette1:
-	checkcode VAR_MAPGROUP
+	readvar VAR_MAPGROUP
 	ifequal GROUP_NEW_BARK_TOWN, .newbark
 	ifequal GROUP_CHERRYGROVE_CITY, .cherrygrove
 	ifequal GROUP_VIOLET_CITY, .violet
@@ -47,13 +47,13 @@ MomPhonePalette1:
 	jump MomSavingMoney
 
 .violet
-	landmarktotext SPROUT_TOWER, MEM_BUFFER_1
+	getlandmarkname STRING_BUFFER_4, SPROUT_TOWER
 	jump MomPhoneLandmark
 .azalea
-	landmarktotext SLOWPOKE_WELL, MEM_BUFFER_1
+	getlandmarkname STRING_BUFFER_4, SLOWPOKE_WELL
 	jump MomPhoneLandmark
 .goldenrod
-	landmarktotext RADIO_TOWER, MEM_BUFFER_1
+	getlandmarkname STRING_BUFFER_4, RADIO_TOWER
 	jump MomPhoneLandmark
 
 MomPhonePalette2:
@@ -79,7 +79,7 @@ MomSavingMoney:
 	jump .NoMoney
 
 .SavingHasMoney:
-	readmoney MOMS_MONEY, MEM_BUFFER_0
+	getmoney STRING_BUFFER_3, MOMS_MONEY
 	farwritetext MomCheckBalanceText
 	yesorno
 	iftrue MomPhoneSaveMoneyScript
@@ -98,7 +98,7 @@ MomSavingMoney:
 	jump MomPhoneWontSaveMoneyScript
 
 .HasMoney:
-	readmoney MOMS_MONEY, MEM_BUFFER_0
+	getmoney STRING_BUFFER_3, MOMS_MONEY
 	farwritetext MomYouveSavedText
 	yesorno
 	iftrue MomPhoneSaveMoneyScript

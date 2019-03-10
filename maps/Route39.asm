@@ -27,7 +27,7 @@ TrainerPokefanmDerek:
 	trainer POKEFANM, DEREK1, EVENT_BEAT_POKEFANM_DEREK, PokefanmDerekSeenText, PokefanmDerekBeatenText, 0, .Script
 
 .Script:
-	writecode VAR_CALLERID, PHONE_POKEFANM_DEREK
+	loadvar VAR_CALLERID, PHONE_POKEFANM_DEREK
 	endifjustbattled
 	opentext
 	checkflag ENGINE_DEREK_HAS_NUGGET
@@ -50,7 +50,7 @@ TrainerPokefanmDerek:
 	askforphonenumber PHONE_POKEFANM_DEREK
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
-	trainertotext POKEFANM, DEREK1, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, POKEFANM, DEREK1
 	scall .RegisteredNumber
 	jump .NumberAccepted
 

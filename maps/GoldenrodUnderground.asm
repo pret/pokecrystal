@@ -36,8 +36,8 @@ GoldenrodUnderground_MapScripts:
 	clearevent EVENT_SWITCH_12
 	clearevent EVENT_SWITCH_13
 	clearevent EVENT_SWITCH_14
-	writebyte 0
-	copyvartobyte wUndergroundSwitchPositions
+	setval 0
+	writemem wUndergroundSwitchPositions
 	return
 
 .CheckBasementKey:
@@ -50,7 +50,7 @@ GoldenrodUnderground_MapScripts:
 	return
 
 .CheckDayOfWeek:
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifequal MONDAY, .Monday
 	ifequal TUESDAY, .Tuesday
 	ifequal WEDNESDAY, .Wednesday
@@ -157,7 +157,7 @@ TrainerPokemaniacDonald:
 
 BitterMerchantScript:
 	opentext
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifequal SUNDAY, .Open
 	ifequal SATURDAY, .Open
 	jump GoldenrodUndergroundScript_ShopClosed
@@ -171,7 +171,7 @@ BargainMerchantScript:
 	opentext
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_MERCHANT_CLOSED
 	iftrue GoldenrodUndergroundScript_ShopClosed
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifequal MONDAY, .CheckMorn
 	jump GoldenrodUndergroundScript_ShopClosed
 
@@ -184,7 +184,7 @@ BargainMerchantScript:
 
 OlderHaircutBrotherScript:
 	opentext
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifequal TUESDAY, .DoHaircut
 	ifequal THURSDAY, .DoHaircut
 	ifequal SATURDAY, .DoHaircut
@@ -267,7 +267,7 @@ OlderHaircutBrotherScript:
 
 YoungerHaircutBrotherScript:
 	opentext
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifequal SUNDAY, .DoHaircut
 	ifequal WEDNESDAY, .DoHaircut
 	ifequal FRIDAY, .DoHaircut

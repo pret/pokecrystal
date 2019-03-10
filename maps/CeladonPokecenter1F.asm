@@ -27,7 +27,7 @@ CeladonEusine:
 	opentext
 	writetext CeladonEusineText1
 	buttonsound
-	writebyte SUICUNE
+	setval SUICUNE
 	special MonCheck
 	iffalse .NoSuicune
 	special BeastsCheck
@@ -42,7 +42,7 @@ CeladonEusine:
 	writetext EusineLeavesCeladonText
 	waitbutton
 	closetext
-	checkcode VAR_FACING
+	readvar VAR_FACING
 	ifequal UP, .Location1
 	applymovement CELADONPOKECENTER1F_EUSINE, .Movement1
 	jump .Continue

@@ -44,7 +44,7 @@ Kurt1:
 	closetext
 	special FadeOutMusic
 	setevent EVENT_AZALEA_TOWN_SLOWPOKETAIL_ROCKET
-	checkcode VAR_FACING
+	readvar VAR_FACING
 	ifequal UP, .RunAround
 	turnobject PLAYER, DOWN
 	playsound SFX_FLY
@@ -194,7 +194,7 @@ Kurt1:
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
 	buttonsound
-	verbosegiveitem2 LEVEL_BALL, VAR_KURT_APRICORNS
+	verbosegiveitemvar LEVEL_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_RED_APRICORN
 	jump ._ThatTurnedOutGreat
@@ -204,7 +204,7 @@ Kurt1:
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
 	buttonsound
-	verbosegiveitem2 LURE_BALL, VAR_KURT_APRICORNS
+	verbosegiveitemvar LURE_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_BLU_APRICORN
 	jump ._ThatTurnedOutGreat
@@ -214,7 +214,7 @@ Kurt1:
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
 	buttonsound
-	verbosegiveitem2 MOON_BALL, VAR_KURT_APRICORNS
+	verbosegiveitemvar MOON_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_YLW_APRICORN
 	jump ._ThatTurnedOutGreat
@@ -224,7 +224,7 @@ Kurt1:
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
 	buttonsound
-	verbosegiveitem2 FRIEND_BALL, VAR_KURT_APRICORNS
+	verbosegiveitemvar FRIEND_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_GRN_APRICORN
 	jump ._ThatTurnedOutGreat
@@ -234,7 +234,7 @@ Kurt1:
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
 	buttonsound
-	verbosegiveitem2 FAST_BALL, VAR_KURT_APRICORNS
+	verbosegiveitemvar FAST_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_WHT_APRICORN
 	jump ._ThatTurnedOutGreat
@@ -244,7 +244,7 @@ Kurt1:
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
 	buttonsound
-	verbosegiveitem2 HEAVY_BALL, VAR_KURT_APRICORNS
+	verbosegiveitemvar HEAVY_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_BLK_APRICORN
 	jump ._ThatTurnedOutGreat
@@ -254,7 +254,7 @@ Kurt1:
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
 	buttonsound
-	verbosegiveitem2 LOVE_BALL, VAR_KURT_APRICORNS
+	verbosegiveitemvar LOVE_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_PNK_APRICORN
 	jump ._ThatTurnedOutGreat
@@ -292,7 +292,7 @@ Kurt1:
 	special FadeOutMusic
 	pause 20
 	showemote EMOTE_SHOCK, KURTSHOUSE_KURT1, 30
-	checkcode VAR_FACING
+	readvar VAR_FACING
 	ifequal UP, .GSBallRunAround
 	turnobject PLAYER, DOWN
 	playsound SFX_FLY

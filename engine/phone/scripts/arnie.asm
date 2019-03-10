@@ -1,11 +1,11 @@
 ArniePhoneCalleeScript:
-	trainertotext BUG_CATCHER, ARNIE1, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, BUG_CATCHER, ARNIE1
 	checkflag ENGINE_ARNIE
 	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_ARNIE_TUESDAY_MORNING
 	iftrue .NotTuesday
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifnotequal TUESDAY, .NotTuesday
 	checktime MORN
 	iftrue ArnieTuesdayMorning
@@ -16,15 +16,15 @@ ArniePhoneCalleeScript:
 	farjump UnknownScript_0xa0968
 
 .WantsBattle:
-	landmarktotext ROUTE_35, MEM_BUFFER_2
+	getlandmarkname STRING_BUFFER_5, ROUTE_35
 	farjump UnknownScript_0xa0a6e
 
 .AlreadySwarming:
-	landmarktotext ROUTE_35, MEM_BUFFER_2
+	getlandmarkname STRING_BUFFER_5, ROUTE_35
 	farjump UnknownScript_0xa0aff
 
 ArniePhoneCallerScript:
-	trainertotext BUG_CATCHER, ARNIE1, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, BUG_CATCHER, ARNIE1
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_ARNIE
 	iftrue .Swarm
@@ -44,7 +44,7 @@ ArnieTuesdayMorning:
 	setflag ENGINE_ARNIE_TUESDAY_MORNING
 
 ArnieWantsBattle:
-	landmarktotext ROUTE_35, MEM_BUFFER_2
+	getlandmarkname STRING_BUFFER_5, ROUTE_35
 	setflag ENGINE_ARNIE
 	farjump PhoneScript_WantsToBattle_Male
 
@@ -52,9 +52,9 @@ ArnieYanmaSwarm: ; start swarm
 	checkflag ENGINE_YANMA_SWARM
 	iftrue ArnieYanmaAlreadySwarming
 	setflag ENGINE_YANMA_SWARM
-	pokenamemem YANMA, MEM_BUFFER_1
+	getmonname STRING_BUFFER_4, YANMA
 	swarm SWARM_YANMA, ROUTE_35
-	landmarktotext ROUTE_35, MEM_BUFFER_2
+	getlandmarkname STRING_BUFFER_5, ROUTE_35
 	farjump UnknownScript_0xa05ce
 
 ArnieFoundRare:

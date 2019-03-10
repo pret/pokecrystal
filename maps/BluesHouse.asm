@@ -9,7 +9,7 @@ BluesHouse_MapScripts:
 DaisyScript:
 	faceplayer
 	opentext
-	checkcode VAR_HOUR
+	readvar VAR_HOUR
 	ifequal 15, .ThreePM
 	writetext DaisyHelloText
 	waitbutton

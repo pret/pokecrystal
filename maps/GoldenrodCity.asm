@@ -36,7 +36,7 @@ GoldenrodCity_MapScripts:
 	iffalse .MoveTutorDone
 	checkitem COIN_CASE
 	iffalse .MoveTutorDisappear
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifequal WEDNESDAY, .MoveTutorAppear
 	ifequal SATURDAY, .MoveTutorAppear
 .MoveTutorDisappear:
@@ -72,21 +72,21 @@ MoveTutorScript:
 	jump .Incompatible
 
 .Flamethrower:
-	writebyte MOVETUTOR_FLAMETHROWER
+	setval MOVETUTOR_FLAMETHROWER
 	writetext UnknownText_0x1991cf
 	special MoveTutor
 	ifequal FALSE, .TeachMove
 	jump .Incompatible
 
 .Thunderbolt:
-	writebyte MOVETUTOR_THUNDERBOLT
+	setval MOVETUTOR_THUNDERBOLT
 	writetext UnknownText_0x1991cf
 	special MoveTutor
 	ifequal FALSE, .TeachMove
 	jump .Incompatible
 
 .IceBeam:
-	writebyte MOVETUTOR_ICE_BEAM
+	setval MOVETUTOR_ICE_BEAM
 	writetext UnknownText_0x1991cf
 	special MoveTutor
 	ifequal FALSE, .TeachMove
@@ -128,7 +128,7 @@ MoveTutorScript:
 	writetext UnknownText_0x19918b
 	waitbutton
 	closetext
-	checkcode VAR_FACING
+	readvar VAR_FACING
 	ifequal LEFT, .WalkAroundPlayer
 	applymovement GOLDENRODCITY_MOVETUTOR, MovementData_0x198a5f
 	jump .GoInside

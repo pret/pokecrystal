@@ -1,5 +1,5 @@
 WiltonPhoneCalleeScript:
-	trainertotext FISHER, WILTON1, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, FISHER, WILTON1
 	checkflag ENGINE_WILTON
 	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Male
@@ -7,7 +7,7 @@ WiltonPhoneCalleeScript:
 	iftrue .NotThursday
 	checkflag ENGINE_WILTON_HAS_ITEM
 	iftrue .HasItem
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifnotequal THURSDAY, .NotThursday
 	checktime MORN
 	iftrue WiltonThursdayMorning
@@ -16,15 +16,15 @@ WiltonPhoneCalleeScript:
 	farjump WiltonHaventFoundAnything
 
 .WantsBattle:
-	landmarktotext ROUTE_44, MEM_BUFFER_2
+	getlandmarkname STRING_BUFFER_5, ROUTE_44
 	farjump WiltonNotBiting
 
 .HasItem:
-	landmarktotext ROUTE_44, MEM_BUFFER_2
+	getlandmarkname STRING_BUFFER_5, ROUTE_44
 	farjump WiltonWantThis
 
 WiltonPhoneCallerScript:
-	trainertotext FISHER, WILTON1, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, FISHER, WILTON1
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_WILTON
 	iftrue .GenericCall
@@ -44,13 +44,13 @@ WiltonThursdayMorning:
 	setflag ENGINE_WILTON_THURSDAY_MORNING
 
 WiltonWantsBattle:
-	landmarktotext ROUTE_44, MEM_BUFFER_2
+	getlandmarkname STRING_BUFFER_5, ROUTE_44
 	setflag ENGINE_WILTON
 	farjump PhoneScript_WantsToBattle_Male
 
 WiltonHasItem:
 	setflag ENGINE_WILTON_HAS_ITEM
-	landmarktotext ROUTE_44, MEM_BUFFER_2
+	getlandmarkname STRING_BUFFER_5, ROUTE_44
 	clearevent EVENT_WILTON_HAS_ULTRA_BALL
 	clearevent EVENT_WILTON_HAS_GREAT_BALL
 	clearevent EVENT_WILTON_HAS_POKE_BALL

@@ -1,7 +1,7 @@
 BuenaPhoneCalleeScript:
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue BuenaPhoneScript_Rocket
-	checkcode VAR_HOUR
+	readvar VAR_HOUR
 	ifgreater 17, BuenaPhoneScript_AfterMidnight1
 	scall BuenaPhoneScript_CheckTimeOfDay1
 	jump BuenaPhoneScript_Random1
@@ -36,7 +36,7 @@ BuenaPhoneScript_AfterMidnight1:
 	end
 
 BuenaPhoneScript_CheckTimeOfDay2:
-	checkcode VAR_HOUR
+	readvar VAR_HOUR
 	ifgreater 17, BuenaPhoneScript_AfterMidnight2
 	checktime MORN
 	iftrue .morn

@@ -109,7 +109,7 @@ SaffronGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext SABRINA, SABRINA1, MEM_BUFFER_1
+	gettrainername STRING_BUFFER_4, SABRINA, SABRINA1
 	jumpstd gymstatue2
 
 SabrinaIntroText:

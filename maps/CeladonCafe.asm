@@ -94,7 +94,7 @@ CeladonCafeTrashcan:
 	giveitem LEFTOVERS
 	iffalse .PackFull
 	opentext
-	itemtotext LEFTOVERS, MEM_BUFFER_0
+	getitemname STRING_BUFFER_3, LEFTOVERS
 	writetext FoundLeftoversText
 	playsound SFX_ITEM
 	waitsfx
@@ -105,7 +105,7 @@ CeladonCafeTrashcan:
 
 .PackFull:
 	opentext
-	itemtotext LEFTOVERS, MEM_BUFFER_0
+	getitemname STRING_BUFFER_3, LEFTOVERS
 	writetext FoundLeftoversText
 	buttonsound
 	writetext NoRoomForLeftoversText

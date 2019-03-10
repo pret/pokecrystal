@@ -84,7 +84,7 @@ VermilionPortWalkUpToShipScript:
 	iftrue .skip
 	turnobject PLAYER, LEFT
 	opentext
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifequal MONDAY, .NextShipWednesday
 	ifequal TUESDAY, .NextShipWednesday
 	ifequal THURSDAY, .NextShipSunday
@@ -146,7 +146,7 @@ VermilionPortSailorScript:
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iftrue VermilionPortAlreadyRodeScript
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifequal MONDAY, .NextShipWednesday
 	ifequal TUESDAY, .NextShipWednesday
 	ifequal THURSDAY, .NextShipSunday

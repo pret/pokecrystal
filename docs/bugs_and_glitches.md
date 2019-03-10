@@ -1388,8 +1388,8 @@ First, edit `UsedSurfScript` in [engine/events/overworld.asm](/engine/events/ove
  
  	callasm .empty_fn ; empty function
  
- 	copybytetovar wBuffer2
- 	writevarcode VAR_MOVEMENT
+ 	readmem wBuffer2
+ 	writevar VAR_MOVEMENT
  
  	special ReplaceKrisSprite
  	special PlayMapMusic

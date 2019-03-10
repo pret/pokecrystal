@@ -23,7 +23,7 @@ PhoneScript_AnswerPhone_Male:
 	iftrue PhoneScript_AnswerPhone_Male_Day
 	checktime NITE
 	iftrue PhoneScript_AnswerPhone_Male_Nite
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_SCHOOLBOY_JACK, .Jack
 	ifequal PHONE_SAILOR_HUEY, .Huey
 	ifequal PHONE_COOLTRAINERM_GAVEN, .Gaven
@@ -146,7 +146,7 @@ PhoneScript_AnswerPhone_Male:
 	end
 
 PhoneScript_AnswerPhone_Male_Day:
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_SCHOOLBOY_JACK, .Jack
 	ifequal PHONE_SAILOR_HUEY, .Huey
 	ifequal PHONE_COOLTRAINERM_GAVEN, .Gaven
@@ -269,7 +269,7 @@ PhoneScript_AnswerPhone_Male_Day:
 	end
 
 PhoneScript_AnswerPhone_Male_Nite:
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_SCHOOLBOY_JACK, .Jack
 	ifequal PHONE_SAILOR_HUEY, .Huey
 	ifequal PHONE_COOLTRAINERM_GAVEN, .Gaven
@@ -396,7 +396,7 @@ PhoneScript_AnswerPhone_Female:
 	iftrue PhoneScript_AnswerPhone_Female_Day
 	checktime NITE
 	iftrue PhoneScript_AnswerPhone_Female_Nite
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_POKEFAN_BEVERLY, .Beverly
 	ifequal PHONE_COOLTRAINERF_BETH, .Beth
 	ifequal PHONE_COOLTRAINERF_REENA, .Reena
@@ -447,7 +447,7 @@ PhoneScript_AnswerPhone_Female:
 	end
 
 PhoneScript_AnswerPhone_Female_Day:
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_POKEFAN_BEVERLY, .Beverly
 	ifequal PHONE_COOLTRAINERF_BETH, .Beth
 	ifequal PHONE_COOLTRAINERF_REENA, .Reena
@@ -498,7 +498,7 @@ PhoneScript_AnswerPhone_Female_Day:
 	end
 
 PhoneScript_AnswerPhone_Female_Nite:
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_POKEFAN_BEVERLY, .Beverly
 	ifequal PHONE_COOLTRAINERF_BETH, .Beth
 	ifequal PHONE_COOLTRAINERF_REENA, .Reena
@@ -553,7 +553,7 @@ PhoneScript_GreetPhone_Male:
 	iftrue PhoneScript_GreetPhone_Male_Day
 	checktime NITE
 	iftrue PhoneScript_GreetPhone_Male_Nite
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_SCHOOLBOY_JACK, .Jack
 	ifequal PHONE_SAILOR_HUEY, .Huey
 	ifequal PHONE_COOLTRAINERM_GAVEN, .Gaven
@@ -676,7 +676,7 @@ PhoneScript_GreetPhone_Male:
 	end
 
 PhoneScript_GreetPhone_Male_Day:
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_SCHOOLBOY_JACK, .Jack
 	ifequal PHONE_SAILOR_HUEY, .Huey
 	ifequal PHONE_COOLTRAINERM_GAVEN, .Gaven
@@ -799,7 +799,7 @@ PhoneScript_GreetPhone_Male_Day:
 	end
 
 PhoneScript_GreetPhone_Male_Nite:
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_SCHOOLBOY_JACK, .Jack
 	ifequal PHONE_SAILOR_HUEY, .Huey
 	ifequal PHONE_COOLTRAINERM_GAVEN, .Gaven
@@ -926,7 +926,7 @@ PhoneScript_GreetPhone_Female:
 	iftrue PhoneScript_GreetPhone_Female_Day
 	checktime NITE
 	iftrue PhoneScript_GreetPhone_Female_Nite
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_POKEFAN_BEVERLY, .Beverly
 	ifequal PHONE_COOLTRAINERF_BETH, .Beth
 	ifequal PHONE_COOLTRAINERF_REENA, .Reena
@@ -977,7 +977,7 @@ PhoneScript_GreetPhone_Female:
 	end
 
 PhoneScript_GreetPhone_Female_Day:
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_POKEFAN_BEVERLY, .Beverly
 	ifequal PHONE_COOLTRAINERF_BETH, .Beth
 	ifequal PHONE_COOLTRAINERF_REENA, .Reena
@@ -1028,7 +1028,7 @@ PhoneScript_GreetPhone_Female_Day:
 	end
 
 PhoneScript_GreetPhone_Female_Nite:
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_POKEFAN_BEVERLY, .Beverly
 	ifequal PHONE_COOLTRAINERF_BETH, .Beth
 	ifequal PHONE_COOLTRAINERF_REENA, .Reena
@@ -1079,7 +1079,7 @@ PhoneScript_GreetPhone_Female_Nite:
 	end
 
 PhoneScript_Generic_Male:
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_SCHOOLBOY_JACK, .Jack
 	ifequal PHONE_COOLTRAINERM_GAVEN, .Gaven
 	ifequal PHONE_BIRDKEEPER_JOSE, .Jose
@@ -1189,7 +1189,7 @@ PhoneScript_Generic_Male:
 	end
 
 PhoneScript_Generic_Female:
-	checkcode VAR_CALLERID
+	readvar VAR_CALLERID
 	ifequal PHONE_POKEFAN_BEVERLY, .Beverly
 	ifequal PHONE_COOLTRAINERF_BETH, .Beth
 	ifequal PHONE_COOLTRAINERF_REENA, .Reena

@@ -60,7 +60,7 @@ RuinsOfAlphResearchCenter_MapScripts:
 RuinsOfAlphResearchCenterScientist3Script:
 	faceplayer
 	opentext
-	checkcode VAR_UNOWNCOUNT
+	readvar VAR_UNOWNCOUNT
 	ifequal NUM_UNOWN, .PrinterAvailable
 	writetext RuinsOfAlphResearchCenterScientist3Text
 	waitbutton
@@ -76,7 +76,7 @@ RuinsOfAlphResearchCenterScientist3Script:
 RuinsOfAlphResearchCenterScientist1Script:
 	faceplayer
 	opentext
-	checkcode VAR_UNOWNCOUNT
+	readvar VAR_UNOWNCOUNT
 	ifequal NUM_UNOWN, .GotAllUnown
 	checkflag ENGINE_UNOWN_DEX
 	iftrue .GotUnownDex
@@ -109,7 +109,7 @@ RuinsOfAlphResearchCenterScientist1Script:
 RuinsOfAlphResearchCenterScientist2Script:
 	faceplayer
 	opentext
-	checkcode VAR_UNOWNCOUNT
+	readvar VAR_UNOWNCOUNT
 	ifequal NUM_UNOWN, .GotAllUnown
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	iftrue .UnownAppeared
@@ -134,7 +134,7 @@ RuinsOfAlphResearchCenterComputer:
 	opentext
 	checkevent EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	iftrue .SkipChecking
-	checkcode VAR_UNOWNCOUNT
+	readvar VAR_UNOWNCOUNT
 	ifequal NUM_UNOWN, .GotAllUnown
 .SkipChecking:
 	writetext RuinsOfAlphResearchCenterComputerText
@@ -152,7 +152,7 @@ RuinsOfAlphResearchCenterPrinter:
 	opentext
 	checkevent EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	iftrue .SkipChecking
-	checkcode VAR_UNOWNCOUNT
+	readvar VAR_UNOWNCOUNT
 	ifequal NUM_UNOWN, .PrinterAvailable
 .SkipChecking:
 	writetext RuinsOfAlphResearchCenterPrinterText_DoesntWork

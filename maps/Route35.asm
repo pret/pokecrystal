@@ -31,7 +31,7 @@ TrainerJugglerIrwin:
 	trainer JUGGLER, IRWIN1, EVENT_BEAT_JUGGLER_IRWIN, JugglerIrwin1SeenText, JugglerIrwin1BeatenText, 0, .Script
 
 .Script:
-	writecode VAR_CALLERID, PHONE_JUGGLER_IRWIN
+	loadvar VAR_CALLERID, PHONE_JUGGLER_IRWIN
 	endifjustbattled
 	opentext
 	checkcellnum PHONE_JUGGLER_IRWIN
@@ -50,7 +50,7 @@ TrainerJugglerIrwin:
 	askforphonenumber PHONE_JUGGLER_IRWIN
 	ifequal PHONE_CONTACTS_FULL, Route35PhoneFullM
 	ifequal PHONE_CONTACT_REFUSED, Route35NumberDeclinedM
-	trainertotext JUGGLER, IRWIN1, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, JUGGLER, IRWIN1
 	scall Route35RegisteredNumberM
 	jump Route35NumberAcceptedM
 
@@ -130,7 +130,7 @@ TrainerBugCatcherArnie:
 	trainer BUG_CATCHER, ARNIE1, EVENT_BEAT_BUG_CATCHER_ARNIE, BugCatcherArnieSeenText, BugCatcherArnieBeatenText, 0, .Script
 
 .Script:
-	writecode VAR_CALLERID, PHONE_BUG_CATCHER_ARNIE
+	loadvar VAR_CALLERID, PHONE_BUG_CATCHER_ARNIE
 	endifjustbattled
 	opentext
 	checkflag ENGINE_ARNIE
@@ -153,14 +153,14 @@ TrainerBugCatcherArnie:
 	askforphonenumber PHONE_BUG_CATCHER_ARNIE
 	ifequal PHONE_CONTACTS_FULL, Route35PhoneFullM
 	ifequal PHONE_CONTACT_REFUSED, Route35NumberDeclinedM
-	trainertotext BUG_CATCHER, ARNIE1, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, BUG_CATCHER, ARNIE1
 	scall Route35RegisteredNumberM
 	jump Route35NumberAcceptedM
 
 .WantsBattle:
 	scall Route35RematchM
 	winlosstext BugCatcherArnieBeatenText, 0
-	copybytetovar wArnieFightCount
+	readmem wArnieFightCount
 	ifequal 4, .Fight4
 	ifequal 3, .Fight3
 	ifequal 2, .Fight2
@@ -182,7 +182,7 @@ TrainerBugCatcherArnie:
 	loadtrainer BUG_CATCHER, ARNIE1
 	startbattle
 	reloadmapafterbattle
-	loadvar wArnieFightCount, 1
+	loadmem wArnieFightCount, 1
 	clearflag ENGINE_ARNIE
 	end
 
@@ -190,7 +190,7 @@ TrainerBugCatcherArnie:
 	loadtrainer BUG_CATCHER, ARNIE2
 	startbattle
 	reloadmapafterbattle
-	loadvar wArnieFightCount, 2
+	loadmem wArnieFightCount, 2
 	clearflag ENGINE_ARNIE
 	end
 
@@ -198,7 +198,7 @@ TrainerBugCatcherArnie:
 	loadtrainer BUG_CATCHER, ARNIE3
 	startbattle
 	reloadmapafterbattle
-	loadvar wArnieFightCount, 3
+	loadmem wArnieFightCount, 3
 	clearflag ENGINE_ARNIE
 	end
 
@@ -206,7 +206,7 @@ TrainerBugCatcherArnie:
 	loadtrainer BUG_CATCHER, ARNIE4
 	startbattle
 	reloadmapafterbattle
-	loadvar wArnieFightCount, 4
+	loadmem wArnieFightCount, 4
 	clearflag ENGINE_ARNIE
 	end
 

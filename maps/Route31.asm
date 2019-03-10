@@ -26,7 +26,7 @@ TrainerBugCatcherWade1:
 	trainer BUG_CATCHER, WADE1, EVENT_BEAT_BUG_CATCHER_WADE, BugCatcherWade1SeenText, BugCatcherWade1BeatenText, 0, .Script
 
 .Script:
-	writecode VAR_CALLERID, PHONE_BUG_CATCHER_WADE
+	loadvar VAR_CALLERID, PHONE_BUG_CATCHER_WADE
 	endifjustbattled
 	opentext
 	checkflag ENGINE_WADE
@@ -49,14 +49,14 @@ TrainerBugCatcherWade1:
 	askforphonenumber PHONE_BUG_CATCHER_WADE
 	ifequal PHONE_CONTACTS_FULL, .PhoneFullSTD
 	ifequal PHONE_CONTACT_REFUSED, .DeclinedNumberSTD
-	trainertotext BUG_CATCHER, WADE1, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, BUG_CATCHER, WADE1
 	scall .RegisterNumberSTD
 	jump .AcceptedNumberSTD
 
 .WadeRematch:
 	scall .RematchSTD
 	winlosstext BugCatcherWade1BeatenText, 0
-	copybytetovar wWadeFightCount
+	readmem wWadeFightCount
 	ifequal 4, .Fight4
 	ifequal 3, .Fight3
 	ifequal 2, .Fight2
@@ -78,7 +78,7 @@ TrainerBugCatcherWade1:
 	loadtrainer BUG_CATCHER, WADE1
 	startbattle
 	reloadmapafterbattle
-	loadvar wWadeFightCount, 1
+	loadmem wWadeFightCount, 1
 	clearflag ENGINE_WADE
 	end
 
@@ -86,7 +86,7 @@ TrainerBugCatcherWade1:
 	loadtrainer BUG_CATCHER, WADE2
 	startbattle
 	reloadmapafterbattle
-	loadvar wWadeFightCount, 2
+	loadmem wWadeFightCount, 2
 	clearflag ENGINE_WADE
 	end
 
@@ -94,7 +94,7 @@ TrainerBugCatcherWade1:
 	loadtrainer BUG_CATCHER, WADE3
 	startbattle
 	reloadmapafterbattle
-	loadvar wWadeFightCount, 3
+	loadmem wWadeFightCount, 3
 	clearflag ENGINE_WADE
 	end
 
@@ -102,7 +102,7 @@ TrainerBugCatcherWade1:
 	loadtrainer BUG_CATCHER, WADE4
 	startbattle
 	reloadmapafterbattle
-	loadvar wWadeFightCount, 4
+	loadmem wWadeFightCount, 4
 	clearflag ENGINE_WADE
 	end
 

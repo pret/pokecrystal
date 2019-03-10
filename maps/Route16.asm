@@ -5,9 +5,9 @@ Route16_MapScripts:
 	callback MAPCALLBACK_NEWMAP, .AlwaysOnBike
 
 .AlwaysOnBike:
-	checkcode VAR_YCOORD
+	readvar VAR_YCOORD
 	ifless 5, .CanWalk
-	checkcode VAR_XCOORD
+	readvar VAR_XCOORD
 	ifgreater 13, .CanWalk
 	setflag ENGINE_ALWAYS_ON_BIKE
 	return

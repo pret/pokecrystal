@@ -37,7 +37,7 @@ MagikarpLengthRaterScript:
 	end
 
 .AskedForMagikarp:
-	writebyte MAGIKARP
+	setval MAGIKARP
 	special FindPartyMonThatSpecies
 	iffalse .ClearedRocketHideout
 	writetext MagikarpLengthRaterText_YouHaveAMagikarp

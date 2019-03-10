@@ -46,7 +46,7 @@ PlateauRivalBattle1:
 	iffalse PlateauRivalScriptDone
 	checkflag ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT
 	iftrue PlateauRivalScriptDone
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifequal SUNDAY, PlateauRivalScriptDone
 	ifequal TUESDAY, PlateauRivalScriptDone
 	ifequal THURSDAY, PlateauRivalScriptDone
@@ -68,7 +68,7 @@ PlateauRivalBattle2:
 	iffalse PlateauRivalScriptDone
 	checkflag ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT
 	iftrue PlateauRivalScriptDone
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifequal SUNDAY, PlateauRivalScriptDone
 	ifequal TUESDAY, PlateauRivalScriptDone
 	ifequal THURSDAY, PlateauRivalScriptDone

@@ -46,7 +46,7 @@ TinTower1F_MapScripts:
 	checkevent EVENT_FOUGHT_SUICUNE
 	iftrue .FoughtSuicune
 	appear TINTOWER1F_SUICUNE
-	writebyte RAIKOU
+	setval RAIKOU
 	special MonCheck
 	iftrue .NoRaikou
 	appear TINTOWER1F_RAIKOU
@@ -55,7 +55,7 @@ TinTower1F_MapScripts:
 .NoRaikou:
 	disappear TINTOWER1F_RAIKOU
 .CheckEntei:
-	writebyte ENTEI
+	setval ENTEI
 	special MonCheck
 	iftrue .NoEntei
 	appear TINTOWER1F_ENTEI
@@ -84,7 +84,7 @@ TinTower1F_MapScripts:
 .SuicuneBattle:
 	applymovement PLAYER, TinTowerPlayerMovement1
 	pause 15
-	writebyte RAIKOU
+	setval RAIKOU
 	special MonCheck
 	iftrue .Next1 ; if player caught Raikou, he doesn't appear in Tin Tower
 	applymovement TINTOWER1F_RAIKOU, TinTowerRaikouMovement1
@@ -97,7 +97,7 @@ TinTower1F_MapScripts:
 	playsound SFX_EXIT_BUILDING
 	waitsfx
 .Next1:
-	writebyte ENTEI
+	setval ENTEI
 	special MonCheck
 	iftrue .Next2 ; if player caught Entei, he doesn't appear in Tin Tower
 	applymovement TINTOWER1F_ENTEI, TinTowerEnteiMovement1
@@ -117,7 +117,7 @@ TinTower1F_MapScripts:
 	cry SUICUNE
 	pause 20
 	loadwildmon SUICUNE, 40
-	writecode VAR_BATTLETYPE, BATTLETYPE_SUICUNE
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SUICUNE
 	startbattle
 	dontrestartmapmusic
 	disappear TINTOWER1F_SUICUNE

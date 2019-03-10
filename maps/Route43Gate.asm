@@ -32,7 +32,7 @@ Route43Gate_MapScripts:
 
 .RocketTakeover:
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	checkcode VAR_FACING
+	readvar VAR_FACING
 	ifequal DOWN, RocketScript_Southbound
 	ifequal UP, RocketScript_Northbound
 	setscene SCENE_FINISHED

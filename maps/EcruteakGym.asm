@@ -39,7 +39,7 @@ EcruteakGymMortyScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_FOGBADGE
-	checkcode VAR_BADGES
+	readvar VAR_BADGES
 	scall EcruteakGymActivateRockets
 	setmapscene ECRUTEAK_TIN_TOWER_ENTRANCE, SCENE_FINISHED
 	setevent EVENT_RANG_CLEAR_BELL_1
@@ -160,7 +160,7 @@ EcruteakGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext MORTY, MORTY1, MEM_BUFFER_1
+	gettrainername STRING_BUFFER_4, MORTY, MORTY1
 	jumpstd gymstatue2
 
 EcruteakGymPlayerStepUpMovement:

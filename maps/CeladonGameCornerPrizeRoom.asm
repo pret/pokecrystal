@@ -41,7 +41,7 @@ CeladonPrizeRoom_tmcounterloop:
 .DoubleTeam:
 	checkcoins CELADONGAMECORNERPRIZEROOM_TM32_COINS
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
-	itemtotext TM_DOUBLE_TEAM, MEM_BUFFER_0
+	getitemname STRING_BUFFER_3, TM_DOUBLE_TEAM
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_CancelPurchaseScript
 	giveitem TM_DOUBLE_TEAM
@@ -52,7 +52,7 @@ CeladonPrizeRoom_tmcounterloop:
 .Psychic:
 	checkcoins CELADONGAMECORNERPRIZEROOM_TM29_COINS
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
-	itemtotext TM_PSYCHIC_M, MEM_BUFFER_0
+	getitemname STRING_BUFFER_3, TM_PSYCHIC_M
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_CancelPurchaseScript
 	giveitem TM_PSYCHIC_M
@@ -63,7 +63,7 @@ CeladonPrizeRoom_tmcounterloop:
 .HyperBeam:
 	checkcoins CELADONGAMECORNERPRIZEROOM_TM15_COINS
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
-	itemtotext TM_HYPER_BEAM, MEM_BUFFER_0
+	getitemname STRING_BUFFER_3, TM_HYPER_BEAM
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_CancelPurchaseScript
 	giveitem TM_HYPER_BEAM
@@ -142,16 +142,16 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 .Pikachu:
 	checkcoins CELADONGAMECORNERPRIZEROOM_PIKACHU_COINS
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
-	checkcode VAR_PARTYCOUNT
+	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, CeladonPrizeRoom_notenoughroom
-	pokenamemem PIKACHU, MEM_BUFFER_0
+	getmonname STRING_BUFFER_3, PIKACHU
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_CancelPurchaseScript
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext CeladonPrizeRoom_HereYouGoText
 	waitbutton
-	writebyte PIKACHU
+	setval PIKACHU
 	special GameCornerPrizeMonCheckDex
 	givepoke PIKACHU, 25
 	takecoins CELADONGAMECORNERPRIZEROOM_PIKACHU_COINS
@@ -160,16 +160,16 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 .Porygon:
 	checkcoins CELADONGAMECORNERPRIZEROOM_PORYGON_COINS
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
-	checkcode VAR_PARTYCOUNT
+	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, CeladonPrizeRoom_notenoughroom
-	pokenamemem PORYGON, MEM_BUFFER_0
+	getmonname STRING_BUFFER_3, PORYGON
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_CancelPurchaseScript
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext CeladonPrizeRoom_HereYouGoText
 	waitbutton
-	writebyte PORYGON
+	setval PORYGON
 	special GameCornerPrizeMonCheckDex
 	givepoke PORYGON, 15
 	takecoins CELADONGAMECORNERPRIZEROOM_PORYGON_COINS
@@ -178,16 +178,16 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 .Larvitar:
 	checkcoins CELADONGAMECORNERPRIZEROOM_LARVITAR_COINS
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
-	checkcode VAR_PARTYCOUNT
+	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, CeladonPrizeRoom_notenoughroom
-	pokenamemem LARVITAR, MEM_BUFFER_0
+	getmonname STRING_BUFFER_3, LARVITAR
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_CancelPurchaseScript
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext CeladonPrizeRoom_HereYouGoText
 	waitbutton
-	writebyte LARVITAR
+	setval LARVITAR
 	special GameCornerPrizeMonCheckDex
 	givepoke LARVITAR, 40
 	takecoins CELADONGAMECORNERPRIZEROOM_LARVITAR_COINS

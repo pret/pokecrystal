@@ -7,11 +7,11 @@ GiveParkBalls:
 	ret
 
 BugCatchingContestBattleScript::
-	writecode VAR_BATTLETYPE, BATTLETYPE_CONTEST
+	loadvar VAR_BATTLETYPE, BATTLETYPE_CONTEST
 	randomwildmon
 	startbattle
 	reloadmapafterbattle
-	copybytetovar wParkBallsRemaining
+	readmem wParkBallsRemaining
 	iffalse BugCatchingContestOutOfBallsScript
 	end
 

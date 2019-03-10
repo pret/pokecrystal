@@ -7,7 +7,7 @@ BATTLETOWER_NUM_UNIQUE_TRAINERS EQU 70
 BATTLETOWER_TRAINERDATALENGTH EQU $24
 BATTLE_TOWER_STRUCT_LENGTH EQUS "(NAME_LENGTH + BATTLETOWER_PARTY_LENGTH * NICKNAMED_MON_STRUCT_LENGTH + BATTLETOWER_TRAINERDATALENGTH)"
 
-; BattleTowerAction writebyte arguments (see engine/events/battle_tower/battle_tower.asm)
+; BattleTowerAction setval arguments (see engine/events/battle_tower/battle_tower.asm)
 	const_def
 	const BATTLETOWERACTION_CHECK_EXPLANATION_READ
 	const BATTLETOWERACTION_SET_EXPLANATION_READ

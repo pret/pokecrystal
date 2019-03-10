@@ -150,7 +150,7 @@ UnknownScript_0xa09e6:
 	jump PhoneScript_HangupText_Male
 
 KenjiAnswerPhoneScript:
-	checkcode VAR_KENJI_BREAK
+	readvar VAR_KENJI_BREAK
 	ifequal 2, .Training
 	ifequal 1, .OnBreak
 	farwritetext UnknownText_0x66e17

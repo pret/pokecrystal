@@ -25,7 +25,7 @@ MountMoonSquare_MapScripts:
 ClefairyDance:
 	checkflag ENGINE_MT_MOON_SQUARE_CLEFAIRY
 	iftrue .NoDancing
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifnotequal MONDAY, .NoDancing
 	checktime NITE
 	iffalse .NoDancing

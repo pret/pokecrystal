@@ -131,15 +131,15 @@ setscene: MACRO
 	db \1 ; scene_id
 ENDM
 
-	enum writebyte_command ; $15
-writebyte: MACRO
-	db writebyte_command
+	enum setval_command ; $15
+setval: MACRO
+	db setval_command
 	db \1 ; value
 ENDM
 
-	enum addvar_command ; $16
-addvar: MACRO
-	db addvar_command
+	enum addval_command ; $16
+addval: MACRO
+	db addval_command
 	db \1 ; value
 ENDM
 
@@ -154,42 +154,47 @@ checkver: MACRO
 	db checkver_command
 ENDM
 
-	enum copybytetovar_command ; $19
-copybytetovar: MACRO
-	db copybytetovar_command
+	enum readmem_command ; $19
+readmem: MACRO
+	db readmem_command
 	dw \1 ; address
 ENDM
 
-	enum copyvartobyte_command ; $1a
-copyvartobyte: MACRO
-	db copyvartobyte_command
+	enum writemem_command ; $1a
+writemem: MACRO
+	db writemem_command
 	dw \1 ; address
 ENDM
 
-	enum loadvar_command ; $1b
+	enum loadmem_command ; $1b
+loadmem: MACRO
+	db loadmem_command
+	dw \1 ; address
+	db \2 ; value
+ENDM
+
+	enum readvar_command ; $1c
+readvar: MACRO
+	db readvar_command
+	db \1 ; variable_id
+ENDM
+
+	enum writevar_command ; $1d
+writevar: MACRO
+	db writevar_command
+	db \1 ; variable_id
+ENDM
+
+	enum loadvar_command ; $1e
 loadvar: MACRO
+if STRIN("\1", "VAR_") != 1
+; LEGACY: Support for the old name of "loadmem"
+	loadmem \1, \2
+else
 	db loadvar_command
-	dw \1 ; address
-	db \2 ; value
-ENDM
-
-	enum checkcode_command ; $1c
-checkcode: MACRO
-	db checkcode_command
-	db \1 ; variable_id
-ENDM
-
-	enum writevarcode_command ; $1d
-writevarcode: MACRO
-	db writevarcode_command
-	db \1 ; variable_id
-ENDM
-
-	enum writecode_command ; $1e
-writecode: MACRO
-	db writecode_command
 	db \1 ; variable_id
 	db \2 ; value
+endc
 ENDM
 
 	enum giveitem_command ; $1f
@@ -400,58 +405,58 @@ warp: MACRO
 	db \3 ; y
 ENDM
 
-	enum readmoney_command ; $3d
-readmoney: MACRO
-	db readmoney_command
-	db \1 ; account
-	db \2 ; memory
+	enum getmoney_command ; $3d
+getmoney: MACRO
+	db getmoney_command
+	db \2 ; account
+	db \1 ; string_buffer
 ENDM
 
-	enum readcoins_command ; $3e
-readcoins: MACRO
-	db readcoins_command
-	db \1 ; memory
+	enum getcoins_command ; $3e
+getcoins: MACRO
+	db getcoins_command
+	db \1 ; string_buffer
 ENDM
 
-	enum vartomem_command ; $3f
-vartomem: MACRO
-	db vartomem_command
-	db \1 ; memory
+	enum getnum_command ; $3f
+getnum: MACRO
+	db getnum_command
+	db \1 ; string_buffer
 ENDM
 
-	enum pokenamemem_command ; $40
-pokenamemem: MACRO
-	db pokenamemem_command
-	db \1 ; pokemon
-	db \2 ; memory
+	enum getmonname_command ; $40
+getmonname: MACRO
+	db getmonname_command
+	db \2 ; pokemon
+	db \1 ; string_buffer
 ENDM
 
-	enum itemtotext_command ; $41
-itemtotext: MACRO
-	db itemtotext_command
-	db \1 ; item
-	db \2 ; memory
+	enum getitemname_command ; $41
+getitemname: MACRO
+	db getitemname_command
+	db \2 ; item
+	db \1 ; string_buffer
 ENDM
 
-	enum mapnametotext_command ; $42
-mapnametotext: MACRO
-	db mapnametotext_command
-	db \1 ; memory
+	enum getcurlandmarkname_command ; $42
+getcurlandmarkname: MACRO
+	db getcurlandmarkname_command
+	db \1 ; string_buffer
 ENDM
 
-	enum trainertotext_command ; $43
-trainertotext: MACRO
-	db trainertotext_command
-	db \1 ; trainer_id
+	enum gettrainername_command ; $43
+gettrainername: MACRO
+	db gettrainername_command
 	db \2 ; trainer_group
-	db \3 ; memory
+	db \3 ; trainer_id
+	db \1 ; string_buffer
 ENDM
 
-	enum stringtotext_command ; $44
-stringtotext: MACRO
-	db stringtotext_command
-	dw \1 ; text_pointer
-	db \2 ; memory
+	enum getstring_command ; $44
+getstring: MACRO
+	db getstring_command
+	dw \2 ; text_pointer
+	db \1 ; string_buffer
 ENDM
 
 	enum itemnotify_command ; $45
@@ -586,9 +591,9 @@ randomwildmon: MACRO
 	db randomwildmon_command
 ENDM
 
-	enum loadmemtrainer_command ; $5c
-loadmemtrainer: MACRO
-	db loadmemtrainer_command
+	enum loadtemptrainer_command ; $5c
+loadtemptrainer: MACRO
+	db loadtemptrainer_command
 ENDM
 
 	enum loadwildmon_command ; $5d
@@ -624,7 +629,7 @@ ENDM
 	enum trainertext_command ; $62
 trainertext: MACRO
 	db trainertext_command
-	db \1 ; which_text
+	db \1 ; text_id
 ENDM
 
 	enum trainerflagaction_command ; $63
@@ -668,9 +673,9 @@ applymovement: MACRO
 	dw \2 ; data
 ENDM
 
-	enum applymovement2_command ; $6a
-applymovement2: MACRO
-	db applymovement2_command
+	enum applymovementlasttalked_command ; $6a
+applymovementlasttalked: MACRO
+	db applymovementlasttalked_command
 	dw \1 ; data
 ENDM
 
@@ -765,11 +770,10 @@ earthquake: MACRO
 	db \1 ; param
 ENDM
 
-	enum changemap_command ; $79
-changemap: MACRO
-	db changemap_command
-	db \1 ; map_bank
-	dw \2 ; map_data_pointer
+	enum changemapblocks_command ; $79
+changemapblocks: MACRO
+	db changemapblocks_command
+	dba \1 ; map_data_pointer
 ENDM
 
 	enum changeblock_command ; $7a
@@ -989,9 +993,9 @@ else
 endc
 ENDM
 
-	enum verbosegiveitem2_command ; $9f
-verbosegiveitem2: MACRO
-	db verbosegiveitem2_command
+	enum verbosegiveitemvar_command ; $9f
+verbosegiveitemvar: MACRO
+	db verbosegiveitemvar_command
 	db \1 ; item
 	db \2 ; var
 ENDM
@@ -1025,29 +1029,29 @@ ENDM
 	enum battletowertext_command ; $a4
 battletowertext: MACRO
 	db battletowertext_command
+	db \1 ; bttext_id
+ENDM
+
+	enum getlandmarkname_command ; $a5
+getlandmarkname: MACRO
+	db getlandmarkname_command
+	db \2 ; landmark_id
+	db \1 ; string_buffer
+ENDM
+
+	enum gettrainerclassname_command ; $a6
+gettrainerclassname: MACRO
+	db gettrainerclassname_command
+	db \2 ; trainer_group
+	db \1 ; string_buffer
+ENDM
+
+	enum getname_command ; $a7
+getname: MACRO
+	db getname_command
+	db \2 ; type
+	db \3 ; id
 	db \1 ; memory
-ENDM
-
-	enum landmarktotext_command ; $a5
-landmarktotext: MACRO
-	db landmarktotext_command
-	db \1 ; id
-	db \2 ; memory
-ENDM
-
-	enum trainerclassname_command ; $a6
-trainerclassname: MACRO
-	db trainerclassname_command
-	db \1 ; id
-	db \2 ; memory
-ENDM
-
-	enum name_command ; $a7
-name: MACRO
-	db name_command
-	db \1 ; type
-	db \2 ; id
-	db \3 ; memory
 ENDM
 
 	enum wait_command ; $a8

@@ -30,7 +30,7 @@ DragonsDenB1F_MapScripts:
 	return
 
 .CheckDay:
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifequal TUESDAY, .AppearSilver
 	ifequal THURSDAY, .AppearSilver
 	disappear DRAGONSDENB1F_SILVER
@@ -55,7 +55,7 @@ DragonsDenB1F_ClairScene:
 	buttonsound
 	giveitem TM_DRAGONBREATH
 	iffalse .BagFull
-	itemtotext TM_DRAGONBREATH, MEM_BUFFER_0
+	getitemname STRING_BUFFER_3, TM_DRAGONBREATH
 	writetext NotifyReceiveDragonbreath
 	playsound SFX_ITEM
 	waitsfx
@@ -132,7 +132,7 @@ DragonsDenB1FDragonFangScript:
 	iffalse .BagFull
 	disappear DRAGONSDENB1F_POKE_BALL1
 	opentext
-	itemtotext DRAGON_FANG, MEM_BUFFER_0
+	getitemname STRING_BUFFER_3, DRAGON_FANG
 	writetext Text_FoundDragonFang
 	playsound SFX_ITEM
 	waitsfx
@@ -142,7 +142,7 @@ DragonsDenB1FDragonFangScript:
 
 .BagFull:
 	opentext
-	itemtotext DRAGON_FANG, MEM_BUFFER_0
+	getitemname STRING_BUFFER_3, DRAGON_FANG
 	writetext Text_FoundDragonFang
 	buttonsound
 	writetext Text_NoRoomForDragonFang

@@ -1,11 +1,11 @@
 LizPhoneCalleeScript:
-	trainertotext PICNICKER, LIZ1, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, PICNICKER, LIZ1
 	checkflag ENGINE_LIZ
 	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Female
 	checkflag ENGINE_LIZ_THURSDAY_AFTERNOON
 	iftrue .NotThursday
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifnotequal THURSDAY, .NotThursday
 	checktime DAY
 	iftrue LizThursdayAfternoon
@@ -15,11 +15,11 @@ LizPhoneCalleeScript:
 	farjump UnknownScript_0xa0948
 
 .WantsBattle:
-	landmarktotext ROUTE_32, MEM_BUFFER_2
+	getlandmarkname STRING_BUFFER_5, ROUTE_32
 	farjump UnknownScript_0xa0a5a
 
 LizPhoneCallerScript:
-	trainertotext PICNICKER, LIZ1, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, PICNICKER, LIZ1
 	farscall PhoneScript_Random4
 	ifequal 0, LizWrongNumber
 	farscall PhoneScript_GreetPhone_Female
@@ -43,7 +43,7 @@ LizThursdayAfternoon:
 	setflag ENGINE_LIZ_THURSDAY_AFTERNOON
 
 LizWantsBattle:
-	landmarktotext ROUTE_32, MEM_BUFFER_2
+	getlandmarkname STRING_BUFFER_5, ROUTE_32
 	setflag ENGINE_LIZ
 	farjump PhoneScript_WantsToBattle_Female
 
@@ -63,39 +63,39 @@ LizGossip:
 	ifequal 8, .PokefanM
 
 .CoolTrainerM:
-	trainerclassname COOLTRAINERM, NICK
+	gettrainerclassname STRING_BUFFER_4, COOLTRAINERM
 	jump LizGossipScript
 
 .Beauty:
-	trainerclassname BEAUTY, VICTORIA
+	gettrainerclassname STRING_BUFFER_4, BEAUTY
 	jump LizGossipScript
 
 .Grunt:
-	trainerclassname GRUNTM, GRUNTM_1
+	gettrainerclassname STRING_BUFFER_4, GRUNTM
 	jump LizGossipScript
 
 .Teacher:
-	trainerclassname TEACHER, COLETTE
+	gettrainerclassname STRING_BUFFER_4, TEACHER
 	jump LizGossipScript
 
 .SwimmerF:
-	trainerclassname SWIMMERF, ELAINE
+	gettrainerclassname STRING_BUFFER_4, SWIMMERF
 	jump LizGossipScript
 
 .KimonoGirl:
-	trainerclassname KIMONO_GIRL, NAOKO1
+	gettrainerclassname STRING_BUFFER_4, KIMONO_GIRL
 	jump LizGossipScript
 
 .Skier:
-	trainerclassname SKIER, ROXANNE
+	gettrainerclassname STRING_BUFFER_4, SKIER
 	jump LizGossipScript
 
 .Medium:
-	trainerclassname MEDIUM, MARTHA
+	gettrainerclassname STRING_BUFFER_4, MEDIUM
 	jump LizGossipScript
 
 .PokefanM:
-	trainerclassname POKEFANM, WILLIAM
+	gettrainerclassname STRING_BUFFER_4, POKEFANM
 	jump LizGossipScript
 
 LizGossipScript:

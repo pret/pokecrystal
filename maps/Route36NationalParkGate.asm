@@ -45,7 +45,7 @@ Route36NationalParkGate_MapScripts:
 .CheckIfContestAvailable:
 	checkevent EVENT_WARPED_FROM_ROUTE_35_NATIONAL_PARK_GATE
 	iftrue .Return
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifequal TUESDAY, .SetContestOfficer
 	ifequal THURSDAY, .SetContestOfficer
 	ifequal SATURDAY, .SetContestOfficer
@@ -64,9 +64,9 @@ Route36NationalParkGate_MapScripts:
 .LeavingContestEarly:
 	turnobject PLAYER, UP
 	opentext
-	checkcode VAR_CONTESTMINUTES
-	addvar 1
-	vartomem MEM_BUFFER_0
+	readvar VAR_CONTESTMINUTES
+	addval 1
+	getnum STRING_BUFFER_3
 	writetext UnknownText_0x6b284
 	yesorno
 	iffalse .GoBackToContest
@@ -139,7 +139,7 @@ Route36NationalParkGate_MapScripts:
 	end
 
 Route36OfficerScriptContest:
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifequal SUNDAY, _ContestNotOn
 	ifequal MONDAY, _ContestNotOn
 	ifequal WEDNESDAY, _ContestNotOn
@@ -152,7 +152,7 @@ Route36OfficerScriptContest:
 	writetext UnknownText_0x6add5
 	yesorno
 	iffalse .DecidedNotToJoinContest
-	checkcode VAR_PARTYCOUNT
+	readvar VAR_PARTYCOUNT
 	ifgreater 1, .LeaveMonsWithOfficer
 	special ContestDropOffMons
 	clearevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
@@ -179,9 +179,9 @@ Route36OfficerScriptContest:
 	end
 
 .LeaveMonsWithOfficer:
-	checkcode VAR_PARTYCOUNT
+	readvar VAR_PARTYCOUNT
 	ifless PARTY_LENGTH, .ContinueLeavingMons
-	checkcode VAR_BOXSPACE
+	readvar VAR_BOXSPACE
 	ifequal 0, .BoxFull
 .ContinueLeavingMons:
 	special CheckFirstMonIsEgg

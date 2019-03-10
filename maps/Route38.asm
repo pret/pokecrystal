@@ -38,7 +38,7 @@ TrainerLassDana1:
 	trainer LASS, DANA1, EVENT_BEAT_LASS_DANA, LassDana1SeenText, LassDana1BeatenText, 0, .Script
 
 .Script
-	writecode VAR_CALLERID, PHONE_LASS_DANA
+	loadvar VAR_CALLERID, PHONE_LASS_DANA
 	endifjustbattled
 	opentext
 	checkflag ENGINE_DANA
@@ -61,14 +61,14 @@ TrainerLassDana1:
 	askforphonenumber PHONE_LASS_DANA
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .DeclinedPhoneNumber
-	trainertotext LASS, DANA1, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, LASS, DANA1
 	scall .RegisteredPhoneNumber
 	jump .NumberAccepted
 
 .DanaRematch:
 	scall .Rematch
 	winlosstext LassDana1BeatenText, 0
-	copybytetovar wDanaFightCount
+	readmem wDanaFightCount
 	ifequal 4, .Fight4
 	ifequal 3, .Fight3
 	ifequal 2, .Fight2
@@ -90,7 +90,7 @@ TrainerLassDana1:
 	loadtrainer LASS, DANA1
 	startbattle
 	reloadmapafterbattle
-	loadvar wDanaFightCount, 1
+	loadmem wDanaFightCount, 1
 	clearflag ENGINE_DANA
 	end
 
@@ -98,7 +98,7 @@ TrainerLassDana1:
 	loadtrainer LASS, DANA2
 	startbattle
 	reloadmapafterbattle
-	loadvar wDanaFightCount, 2
+	loadmem wDanaFightCount, 2
 	clearflag ENGINE_DANA
 	end
 
@@ -106,7 +106,7 @@ TrainerLassDana1:
 	loadtrainer LASS, DANA3
 	startbattle
 	reloadmapafterbattle
-	loadvar wDanaFightCount, 3
+	loadmem wDanaFightCount, 3
 	clearflag ENGINE_DANA
 	end
 
@@ -114,7 +114,7 @@ TrainerLassDana1:
 	loadtrainer LASS, DANA4
 	startbattle
 	reloadmapafterbattle
-	loadvar wDanaFightCount, 4
+	loadmem wDanaFightCount, 4
 	clearflag ENGINE_DANA
 	end
 
@@ -176,7 +176,7 @@ TrainerSchoolboyChad1:
 	trainer SCHOOLBOY, CHAD1, EVENT_BEAT_SCHOOLBOY_CHAD, SchoolboyChad1SeenText, SchoolboyChad1BeatenText, 0, .Script
 
 .Script
-	writecode VAR_CALLERID, PHONE_SCHOOLBOY_CHAD
+	loadvar VAR_CALLERID, PHONE_SCHOOLBOY_CHAD
 	endifjustbattled
 	opentext
 	checkflag ENGINE_CHAD
@@ -197,14 +197,14 @@ TrainerSchoolboyChad1:
 	askforphonenumber PHONE_SCHOOLBOY_CHAD
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .SaidNo
-	trainertotext SCHOOLBOY, CHAD1, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, SCHOOLBOY, CHAD1
 	scall .RegisteredChad
 	jump .HaveChadsNumber
 
 .ChadRematch:
 	scall .Rematch
 	winlosstext SchoolboyChad1BeatenText, 0
-	copybytetovar wChadFightCount
+	readmem wChadFightCount
 	ifequal 4, .Fight4
 	ifequal 3, .Fight3
 	ifequal 2, .Fight2
@@ -226,7 +226,7 @@ TrainerSchoolboyChad1:
 	loadtrainer SCHOOLBOY, CHAD1
 	startbattle
 	reloadmapafterbattle
-	loadvar wChadFightCount, 1
+	loadmem wChadFightCount, 1
 	clearflag ENGINE_CHAD
 	end
 
@@ -234,7 +234,7 @@ TrainerSchoolboyChad1:
 	loadtrainer SCHOOLBOY, CHAD2
 	startbattle
 	reloadmapafterbattle
-	loadvar wChadFightCount, 2
+	loadmem wChadFightCount, 2
 	clearflag ENGINE_CHAD
 	end
 
@@ -242,7 +242,7 @@ TrainerSchoolboyChad1:
 	loadtrainer SCHOOLBOY, CHAD3
 	startbattle
 	reloadmapafterbattle
-	loadvar wChadFightCount, 3
+	loadmem wChadFightCount, 3
 	clearflag ENGINE_CHAD
 	end
 
@@ -250,7 +250,7 @@ TrainerSchoolboyChad1:
 	loadtrainer SCHOOLBOY, CHAD4
 	startbattle
 	reloadmapafterbattle
-	loadvar wChadFightCount, 4
+	loadmem wChadFightCount, 4
 	clearflag ENGINE_CHAD
 	end
 

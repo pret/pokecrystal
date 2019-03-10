@@ -84,16 +84,16 @@ ScriptCommandTable:
 	dw Script_setmapscene                ; 12
 	dw Script_checkscene                 ; 13
 	dw Script_setscene                   ; 14
-	dw Script_writebyte                  ; 15
-	dw Script_addvar                     ; 16
+	dw Script_setval                     ; 15
+	dw Script_addval                     ; 16
 	dw Script_random                     ; 17
 	dw Script_checkver                   ; 18
-	dw Script_copybytetovar              ; 19
-	dw Script_copyvartobyte              ; 1a
-	dw Script_loadvar                    ; 1b
-	dw Script_checkcode                  ; 1c
-	dw Script_writevarcode               ; 1d
-	dw Script_writecode                  ; 1e
+	dw Script_readmem                    ; 19
+	dw Script_writemem                   ; 1a
+	dw Script_loadmem                    ; 1b
+	dw Script_readvar                    ; 1c
+	dw Script_writevar                   ; 1d
+	dw Script_loadvar                    ; 1e
 	dw Script_giveitem                   ; 1f
 	dw Script_takeitem                   ; 20
 	dw Script_checkitem                  ; 21
@@ -124,14 +124,14 @@ ScriptCommandTable:
 	dw Script_warpmod                    ; 3a
 	dw Script_blackoutmod                ; 3b
 	dw Script_warp                       ; 3c
-	dw Script_readmoney                  ; 3d
-	dw Script_readcoins                  ; 3e
-	dw Script_vartomem                   ; 3f
-	dw Script_pokenamemem                ; 40
-	dw Script_itemtotext                 ; 41
-	dw Script_mapnametotext              ; 42
-	dw Script_trainertotext              ; 43
-	dw Script_stringtotext               ; 44
+	dw Script_getmoney                   ; 3d
+	dw Script_getcoins                   ; 3e
+	dw Script_getnum                     ; 3f
+	dw Script_getmonname                 ; 40
+	dw Script_getitemname                ; 41
+	dw Script_getcurlandmarkname         ; 42
+	dw Script_gettrainername             ; 43
+	dw Script_getstring                  ; 44
 	dw Script_itemnotify                 ; 45
 	dw Script_pocketisfull               ; 46
 	dw Script_opentext                   ; 47
@@ -157,7 +157,7 @@ endc
 	dw Script_verticalmenu               ; 59
 	dw Script_loadpikachudata            ; 5a
 	dw Script_randomwildmon              ; 5b
-	dw Script_loadmemtrainer             ; 5c
+	dw Script_loadtemptrainer            ; 5c
 	dw Script_loadwildmon                ; 5d
 	dw Script_loadtrainer                ; 5e
 	dw Script_startbattle                ; 5f
@@ -171,7 +171,7 @@ endc
 	dw Script_checkjustbattled           ; 67
 	dw Script_setlasttalked              ; 68
 	dw Script_applymovement              ; 69
-	dw Script_applymovement2             ; 6a
+	dw Script_applymovementlasttalked    ; 6a
 	dw Script_faceplayer                 ; 6b
 	dw Script_faceobject                 ; 6c
 	dw Script_variablesprite             ; 6d
@@ -186,7 +186,7 @@ endc
 	dw Script_turnobject                 ; 76
 	dw Script_follownotexact             ; 77
 	dw Script_earthquake                 ; 78
-	dw Script_changemap                  ; 79
+	dw Script_changemapblocks            ; 79
 	dw Script_changeblock                ; 7a
 	dw Script_reloadmap                  ; 7b
 	dw Script_reloadmappart              ; 7c
@@ -224,15 +224,15 @@ endc
 	dw Script_specialphonecall           ; 9c
 	dw Script_checkphonecall             ; 9d
 	dw Script_verbosegiveitem            ; 9e
-	dw Script_verbosegiveitem2           ; 9f
+	dw Script_verbosegiveitemvar         ; 9f
 	dw Script_swarm                      ; a0
 	dw Script_halloffame                 ; a1
 	dw Script_credits                    ; a2
 	dw Script_warpfacing                 ; a3
 	dw Script_battletowertext            ; a4
-	dw Script_landmarktotext             ; a5
-	dw Script_trainerclassname           ; a6
-	dw Script_name                       ; a7
+	dw Script_getlandmarkname            ; a5
+	dw Script_gettrainerclassname        ; a6
+	dw Script_getname                    ; a7
 	dw Script_wait                       ; a8
 	dw Script_checksave                  ; a9
 
@@ -496,7 +496,7 @@ Script__2dmenu:
 
 Script_battletowertext:
 ; script command 0xa4
-; parameters: pointer, memory
+; parameters: bttext_id
 
 	call SetUpTextBox
 	call GetScriptByte
@@ -511,7 +511,7 @@ Script_verbosegiveitem:
 	call Script_giveitem
 	call CurItemName
 	ld de, wStringBuffer1
-	ld a, MEM_BUFFER_1
+	ld a, STRING_BUFFER_4
 	call CopyConvertedText
 	ld b, BANK(GiveItemScript)
 	ld de, GiveItemScript
@@ -539,7 +539,7 @@ ReceivedItemText:
 	text_far UnknownText_0x1c4719
 	text_end
 
-Script_verbosegiveitem2:
+Script_verbosegiveitemvar:
 ; script command 0x9f
 ; parameters: item, var
 
@@ -562,7 +562,7 @@ Script_verbosegiveitem2:
 	ld [wScriptVar], a
 	call CurItemName
 	ld de, wStringBuffer1
-	ld a, MEM_BUFFER_1
+	ld a, STRING_BUFFER_4
 	call CopyConvertedText
 	ld b, BANK(GiveItemScript)
 	ld de, GiveItemScript
@@ -754,12 +754,12 @@ Script_swarm:
 
 Script_trainertext:
 ; script command 0x62
-; parameters: which_text
+; parameters: text_id
 
 	call GetScriptByte
 	ld c, a
 	ld b, 0
-	ld hl, wWalkingX
+	ld hl, wSeenTextPointer
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -972,7 +972,7 @@ SetFlagsForMovement_2:
 	farcall _SetFlagsForMovement_2
 	ret
 
-Script_applymovement2:
+Script_applymovementlasttalked:
 ; script command 0x6a
 ; parameters: data
 ; apply movement to last talked
@@ -1250,9 +1250,9 @@ Script_showemote:
 
 ShowEmoteScript:
 	loademote EMOTE_FROM_MEM
-	applymovement2 .Show
+	applymovementlasttalked .Show
 	pause 0
-	applymovement2 .Hide
+	applymovementlasttalked .Hide
 	end
 
 .Show:
@@ -1307,7 +1307,7 @@ Script_randomwildmon:
 	ld [wBattleScriptFlags], a
 	ret
 
-Script_loadmemtrainer:
+Script_loadtemptrainer:
 ; script command 0x5c
 
 	ld a, (1 << 7) | 1
@@ -1702,7 +1702,7 @@ DoScene:
 .no_scene
 	ret
 
-Script_copybytetovar:
+Script_readmem:
 ; script command 0x19
 ; parameters: address
 
@@ -1714,7 +1714,7 @@ Script_copybytetovar:
 	ld [wScriptVar], a
 	ret
 
-Script_copyvartobyte:
+Script_writemem:
 ; script command 0x1a
 ; parameters: address
 
@@ -1726,7 +1726,7 @@ Script_copyvartobyte:
 	ld [hl], a
 	ret
 
-Script_loadvar:
+Script_loadmem:
 ; script command 0x1b
 ; parameters: address, value
 
@@ -1738,7 +1738,7 @@ Script_loadvar:
 	ld [hl], a
 	ret
 
-Script_writebyte:
+Script_setval:
 ; script command 0x15
 ; parameters: value
 
@@ -1746,7 +1746,7 @@ Script_writebyte:
 	ld [wScriptVar], a
 	ret
 
-Script_addvar:
+Script_addval:
 ; script command 0x16
 ; parameters: value
 
@@ -1809,7 +1809,7 @@ Script_random:
 	add c
 	ret
 
-Script_checkcode:
+Script_readvar:
 ; script command 0x1c
 ; parameters: variable_id
 
@@ -1819,7 +1819,7 @@ Script_checkcode:
 	ld [wScriptVar], a
 	ret
 
-Script_writevarcode:
+Script_writevar:
 ; script command 0x1d
 ; parameters: variable_id
 
@@ -1829,7 +1829,7 @@ Script_writevarcode:
 	ld [de], a
 	ret
 
-Script_writecode:
+Script_loadvar:
 ; script command 0x1e
 ; parameters: variable_id, value
 
@@ -1854,9 +1854,9 @@ Script_checkver:
 .gs_version:
 	db GS_VERSION
 
-Script_pokenamemem:
+Script_getmonname:
 ; script command 0x40
-; parameters: pokemon (0 aka USE_SCRIPT_VAR to use wScriptVar), memory
+; parameters: string_buffer, mon_id (0 aka USE_SCRIPT_VAR to use wScriptVar)
 
 	call GetScriptByte
 	and a
@@ -1867,9 +1867,9 @@ Script_pokenamemem:
 	call GetPokemonName
 	ld de, wStringBuffer1
 
-ConvertMemToText:
+GetStringBuffer:
 	call GetScriptByte
-	cp NUM_MEM_BUFFERS
+	cp NUM_STRING_BUFFERS
 	jr c, .ok
 	xor a
 .ok
@@ -1881,9 +1881,9 @@ CopyConvertedText:
 	call CopyName2
 	ret
 
-Script_itemtotext:
+Script_getitemname:
 ; script command 0x41
-; parameters: item (0 aka USE_SCRIPT_VAR to use wScriptVar), memory
+; parameters: string_buffer, item_id (0 aka USE_SCRIPT_VAR to use wScriptVar)
 
 	call GetScriptByte
 	and a ; USE_SCRIPT_VAR
@@ -1893,11 +1893,11 @@ Script_itemtotext:
 	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
 	ld de, wStringBuffer1
-	jr ConvertMemToText
+	jr GetStringBuffer
 
-Script_mapnametotext:
+Script_getcurlandmarkname:
 ; script command 0x42
-; parameters: memory
+; parameters: string_buffer
 
 	ld a, [wMapGroup]
 	ld b, a
@@ -1909,29 +1909,29 @@ ConvertLandmarkToText:
 	ld e, a
 	farcall GetLandmarkName
 	ld de, wStringBuffer1
-	jp ConvertMemToText
+	jp GetStringBuffer
 
-Script_landmarktotext:
+Script_getlandmarkname:
 ; script command 0xa5
-; parameters: id, memory
+; parameters: string_buffer, landmark_id
 
 	call GetScriptByte
 	jr ConvertLandmarkToText
 
-Script_trainertotext:
+Script_gettrainername:
 ; script command 0x43
-; parameters: trainer_id, trainer_group, memory
+; parameters: string_buffer, trainer_group, trainer_id
 
 	call GetScriptByte
 	ld c, a
 	call GetScriptByte
 	ld b, a
 	farcall GetTrainerName
-	jr ConvertMemToText
+	jr GetStringBuffer
 
-Script_name:
+Script_getname:
 ; script command 0xa7
-; parameters: type, id, memory
+; parameters: string_buffer, type, id
 
 	call GetScriptByte
 	ld [wNamedObjectTypeBuffer], a
@@ -1941,19 +1941,19 @@ ContinueToGetName:
 	ld [wCurSpecies], a
 	call GetName
 	ld de, wStringBuffer1
-	jp ConvertMemToText
+	jp GetStringBuffer
 
-Script_trainerclassname:
+Script_gettrainerclassname:
 ; script command 0xa6
-; parameters: id, memory
+; parameters: string_buffer, trainer_group
 
 	ld a, TRAINER_NAME
 	ld [wNamedObjectTypeBuffer], a
 	jr ContinueToGetName
 
-Script_readmoney:
+Script_getmoney:
 ; script command 0x3d
-; parameters: account, memory
+; parameters: string_buffer, account
 
 	call ResetStringBuffer1
 	call GetMoneyAccount
@@ -1961,11 +1961,11 @@ Script_readmoney:
 	lb bc, PRINTNUM_RIGHTALIGN | 3, 6
 	call PrintNum
 	ld de, wStringBuffer1
-	jp ConvertMemToText
+	jp GetStringBuffer
 
-Script_readcoins:
+Script_getcoins:
 ; script command 0x3e
-; parameters: memory
+; parameters: string_buffer
 
 	call ResetStringBuffer1
 	ld hl, wStringBuffer1
@@ -1973,11 +1973,11 @@ Script_readcoins:
 	lb bc, PRINTNUM_RIGHTALIGN | 2, 6
 	call PrintNum
 	ld de, wStringBuffer1
-	jp ConvertMemToText
+	jp GetStringBuffer
 
-Script_vartomem:
+Script_getnum:
 ; script command 0x3f
-; parameters: memory
+; parameters: string_buffer
 
 	call ResetStringBuffer1
 	ld de, wScriptVar
@@ -1985,7 +1985,7 @@ Script_vartomem:
 	lb bc, PRINTNUM_RIGHTALIGN | 1, 3
 	call PrintNum
 	ld de, wStringBuffer1
-	jp ConvertMemToText
+	jp GetStringBuffer
 
 ResetStringBuffer1:
 	ld hl, wStringBuffer1
@@ -1994,9 +1994,9 @@ ResetStringBuffer1:
 	call ByteFill
 	ret
 
-Script_stringtotext:
+Script_getstring:
 ; script command 0x44
-; parameters: text_pointer, memory
+; parameters: string_buffer, text_pointer
 
 	call GetScriptByte
 	ld e, a
@@ -2006,7 +2006,7 @@ Script_stringtotext:
 	ld hl, CopyName1
 	rst FarCall
 	ld de, wStringBuffer2
-	jp ConvertMemToText
+	jp GetStringBuffer
 
 Script_givepokemail:
 ; script command 0x2f
@@ -2551,7 +2551,7 @@ Script_delcmdqueue:
 	ld [wScriptVar], a
 	ret
 
-Script_changemap:
+Script_changemapblocks:
 ; script command 0x79
 ; parameters: map_data_pointer
 

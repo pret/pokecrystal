@@ -105,10 +105,10 @@ ElmCheckEverstone:
 	iftrue ElmGiveEverstoneScript
 	checkevent EVENT_TOLD_ELM_ABOUT_TOGEPI_OVER_THE_PHONE
 	iffalse ElmCheckTogepiEgg
-	writebyte TOGEPI
+	setval TOGEPI
 	special FindPartyMonThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
-	writebyte TOGETIC
+	setval TOGETIC
 	special FindPartyMonThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
 	writetext ElmThoughtEggHatchedText
@@ -117,10 +117,10 @@ ElmCheckEverstone:
 	end
 
 ElmEggHatchedScript:
-	writebyte TOGEPI
+	setval TOGEPI
 	special FindPartyMonThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
-	writebyte TOGETIC
+	setval TOGETIC
 	special FindPartyMonThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
 	jump ElmCheckGotEggAgain
@@ -173,14 +173,14 @@ CyndaquilPokeBallScript:
 	writetext ChoseStarterText
 	buttonsound
 	waitsfx
-	pokenamemem CYNDAQUIL, MEM_BUFFER_0
+	getmonname STRING_BUFFER_3, CYNDAQUIL
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
 	waitsfx
 	buttonsound
 	givepoke CYNDAQUIL, 5, BERRY
 	closetext
-	checkcode VAR_FACING
+	readvar VAR_FACING
 	ifequal RIGHT, ElmDirectionsScript
 	applymovement PLAYER, AfterCyndaquilMovement
 	jump ElmDirectionsScript
@@ -203,7 +203,7 @@ TotodilePokeBallScript:
 	writetext ChoseStarterText
 	buttonsound
 	waitsfx
-	pokenamemem TOTODILE, MEM_BUFFER_0
+	getmonname STRING_BUFFER_3, TOTODILE
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
 	waitsfx
@@ -231,7 +231,7 @@ ChikoritaPokeBallScript:
 	writetext ChoseStarterText
 	buttonsound
 	waitsfx
-	pokenamemem CHIKORITA, MEM_BUFFER_0
+	getmonname STRING_BUFFER_3, CHIKORITA
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
 	waitsfx
@@ -309,7 +309,7 @@ ElmsLabHealingMachine_HealParty:
 	special StubbedTrainerRankings_Healings
 	special HealParty
 	playmusic MUSIC_NONE
-	writebyte HEALMACHINE_ELMS_LAB
+	setval HEALMACHINE_ELMS_LAB
 	special HealMachineAnim
 	pause 30
 	special RestartMapMusic
@@ -419,7 +419,7 @@ ElmGiveTicketScript:
 
 ElmJumpBackScript1:
 	closetext
-	checkcode VAR_FACING
+	readvar VAR_FACING
 	ifequal DOWN, ElmJumpDownScript
 	ifequal UP, ElmJumpUpScript
 	ifequal LEFT, ElmJumpLeftScript
@@ -428,7 +428,7 @@ ElmJumpBackScript1:
 
 ElmJumpBackScript2:
 	closetext
-	checkcode VAR_FACING
+	readvar VAR_FACING
 	ifequal DOWN, ElmJumpUpScript
 	ifequal UP, ElmJumpDownScript
 	ifequal LEFT, ElmJumpRightScript
@@ -498,7 +498,7 @@ AideScript_GiveYouBalls:
 	opentext
 	writetext AideText_GiveYouBalls
 	buttonsound
-	itemtotext POKE_BALL, MEM_BUFFER_1
+	getitemname STRING_BUFFER_4, POKE_BALL
 	scall AideScript_ReceiveTheBalls
 	giveitem POKE_BALL, 5
 	writetext AideText_ExplainBalls

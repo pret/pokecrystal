@@ -30,7 +30,7 @@ GoldenrodGameCorner_MapScripts:
 	iffalse .finish
 	checkitem COIN_CASE
 	iffalse .move_tutor_inside
-	checkcode VAR_WEEKDAY
+	readvar VAR_WEEKDAY
 	ifequal WEDNESDAY, .move_tutor_outside
 	ifequal SATURDAY, .move_tutor_outside
 .move_tutor_inside
@@ -77,7 +77,7 @@ GoldenrodGameCornerTMVendor_LoopScript:
 .Thunder:
 	checkcoins GOLDENRODGAMECORNER_TM25_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
-	itemtotext TM_THUNDER, MEM_BUFFER_0
+	getitemname STRING_BUFFER_3, TM_THUNDER
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	giveitem TM_THUNDER
@@ -88,7 +88,7 @@ GoldenrodGameCornerTMVendor_LoopScript:
 .Blizzard:
 	checkcoins GOLDENRODGAMECORNER_TM14_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
-	itemtotext TM_BLIZZARD, MEM_BUFFER_0
+	getitemname STRING_BUFFER_3, TM_BLIZZARD
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	giveitem TM_BLIZZARD
@@ -99,7 +99,7 @@ GoldenrodGameCornerTMVendor_LoopScript:
 .FireBlast:
 	checkcoins GOLDENRODGAMECORNER_TM38_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
-	itemtotext TM_FIRE_BLAST, MEM_BUFFER_0
+	getitemname STRING_BUFFER_3, TM_FIRE_BLAST
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	giveitem TM_FIRE_BLAST
@@ -178,16 +178,16 @@ GoldenrodGameCornerPrizeMonVendorScript:
 .Abra:
 	checkcoins GOLDENRODGAMECORNER_ABRA_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
-	checkcode VAR_PARTYCOUNT
+	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
-	pokenamemem ABRA, MEM_BUFFER_0
+	getmonname STRING_BUFFER_3, ABRA
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext GoldenrodGameCornerPrizeVendorHereYouGoText
 	waitbutton
-	writebyte ABRA
+	setval ABRA
 	special GameCornerPrizeMonCheckDex
 	givepoke ABRA, 5
 	takecoins GOLDENRODGAMECORNER_ABRA_COINS
@@ -196,16 +196,16 @@ GoldenrodGameCornerPrizeMonVendorScript:
 .Cubone:
 	checkcoins GOLDENRODGAMECORNER_CUBONE_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
-	checkcode VAR_PARTYCOUNT
+	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
-	pokenamemem CUBONE, MEM_BUFFER_0
+	getmonname STRING_BUFFER_3, CUBONE
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext GoldenrodGameCornerPrizeVendorHereYouGoText
 	waitbutton
-	writebyte CUBONE
+	setval CUBONE
 	special GameCornerPrizeMonCheckDex
 	givepoke CUBONE, 15
 	takecoins GOLDENRODGAMECORNER_CUBONE_COINS
@@ -214,16 +214,16 @@ GoldenrodGameCornerPrizeMonVendorScript:
 .Wobbuffet:
 	checkcoins GOLDENRODGAMECORNER_WOBBUFFET_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
-	checkcode VAR_PARTYCOUNT
+	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
-	pokenamemem WOBBUFFET, MEM_BUFFER_0
+	getmonname STRING_BUFFER_3, WOBBUFFET
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext GoldenrodGameCornerPrizeVendorHereYouGoText
 	waitbutton
-	writebyte WOBBUFFET
+	setval WOBBUFFET
 	special GameCornerPrizeMonCheckDex
 	givepoke WOBBUFFET, 15
 	takecoins GOLDENRODGAMECORNER_WOBBUFFET_COINS
@@ -301,14 +301,14 @@ GoldenrodGameCornerSlotsMachineScript:
 	random 6
 	ifequal 0, GoldenrodGameCornerLuckySlotsMachineScript
 	refreshscreen
-	writebyte FALSE
+	setval FALSE
 	special SlotMachine
 	closetext
 	end
 
 GoldenrodGameCornerLuckySlotsMachineScript:
 	refreshscreen
-	writebyte TRUE
+	setval TRUE
 	special SlotMachine
 	closetext
 	end

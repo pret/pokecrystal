@@ -61,7 +61,7 @@ TrainerBirdKeeperJose2:
 	trainer BIRD_KEEPER, JOSE2, EVENT_BEAT_BIRD_KEEPER_JOSE2, BirdKeeperJose2SeenText, BirdKeeperJose2BeatenText, 0, .Script
 
 .Script:
-	writecode VAR_CALLERID, PHONE_BIRDKEEPER_JOSE
+	loadvar VAR_CALLERID, PHONE_BIRDKEEPER_JOSE
 	endifjustbattled
 	opentext
 	checkflag ENGINE_JOSE
@@ -84,14 +84,14 @@ TrainerBirdKeeperJose2:
 	askforphonenumber PHONE_BIRDKEEPER_JOSE
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
-	trainertotext BIRD_KEEPER, JOSE2, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, BIRD_KEEPER, JOSE2
 	scall .RegisteredNumber
 	jump .NumberAccepted
 
 .WantsBattle:
 	scall .Rematch
 	winlosstext BirdKeeperJose2BeatenText, 0
-	copybytetovar wJoseFightCount
+	readmem wJoseFightCount
 	ifequal 2, .Fight2
 	ifequal 1, .Fight1
 	ifequal 0, .LoadFight0
@@ -105,7 +105,7 @@ TrainerBirdKeeperJose2:
 	loadtrainer BIRD_KEEPER, JOSE2
 	startbattle
 	reloadmapafterbattle
-	loadvar wJoseFightCount, 1
+	loadmem wJoseFightCount, 1
 	clearflag ENGINE_JOSE
 	end
 
@@ -113,7 +113,7 @@ TrainerBirdKeeperJose2:
 	loadtrainer BIRD_KEEPER, JOSE1
 	startbattle
 	reloadmapafterbattle
-	loadvar wJoseFightCount, 2
+	loadmem wJoseFightCount, 2
 	clearflag ENGINE_JOSE
 	end
 
@@ -196,7 +196,7 @@ TrainerCooltrainerfReena:
 	trainer COOLTRAINERF, REENA1, EVENT_BEAT_COOLTRAINERF_REENA, CooltrainerfReenaSeenText, CooltrainerfReenaBeatenText, 0, .Script
 
 .Script:
-	writecode VAR_CALLERID, PHONE_COOLTRAINERF_REENA
+	loadvar VAR_CALLERID, PHONE_COOLTRAINERF_REENA
 	endifjustbattled
 	opentext
 	checkflag ENGINE_REENA
@@ -217,14 +217,14 @@ TrainerCooltrainerfReena:
 	askforphonenumber PHONE_COOLTRAINERF_REENA
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
-	trainertotext COOLTRAINERF, REENA1, MEM_BUFFER_0
+	gettrainername STRING_BUFFER_3, COOLTRAINERF, REENA1
 	scall .RegisteredNumber
 	jump .NumberAccepted
 
 .WantsBattle:
 	scall .Rematch
 	winlosstext CooltrainerfReenaBeatenText, 0
-	copybytetovar wReenaFightCount
+	readmem wReenaFightCount
 	ifequal 2, .Fight2
 	ifequal 1, .Fight1
 	ifequal 0, .LoadFight0
@@ -238,7 +238,7 @@ TrainerCooltrainerfReena:
 	loadtrainer COOLTRAINERF, REENA1
 	startbattle
 	reloadmapafterbattle
-	loadvar wReenaFightCount, 1
+	loadmem wReenaFightCount, 1
 	clearflag ENGINE_REENA
 	end
 
@@ -246,7 +246,7 @@ TrainerCooltrainerfReena:
 	loadtrainer COOLTRAINERF, REENA2
 	startbattle
 	reloadmapafterbattle
-	loadvar wReenaFightCount, 2
+	loadmem wReenaFightCount, 2
 	clearflag ENGINE_REENA
 	end
 

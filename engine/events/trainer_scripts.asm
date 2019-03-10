@@ -2,30 +2,30 @@ TalkToTrainerScript::
 	faceplayer
 	trainerflagaction CHECK_FLAG
 	iftrue AlreadyBeatenTrainerScript
-	loadmemtrainer
+	loadtemptrainer
 	encountermusic
 	jump StartBattleWithMapTrainerScript
 
 SeenByTrainerScript::
-	loadmemtrainer
+	loadtemptrainer
 	encountermusic
 	showemote EMOTE_SHOCK, LAST_TALKED, 30
 	callasm TrainerWalkToPlayer
-	applymovement2 wMovementBuffer
+	applymovementlasttalked wMovementBuffer
 	writeobjectxy LAST_TALKED
 	faceobject PLAYER, LAST_TALKED
 	jump StartBattleWithMapTrainerScript
 
 StartBattleWithMapTrainerScript:
 	opentext
-	trainertext $0
+	trainertext TRAINERTEXT_SEEN
 	waitbutton
 	closetext
-	loadmemtrainer
+	loadtemptrainer
 	startbattle
 	reloadmapafterbattle
 	trainerflagaction SET_FLAG
-	loadvar wRunningTrainerBattleScript, -1
+	loadmem wRunningTrainerBattleScript, -1
 
 AlreadyBeatenTrainerScript:
 	scripttalkafter

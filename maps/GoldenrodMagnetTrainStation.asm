@@ -32,7 +32,7 @@ GoldenrodMagnetTrainStationOfficerScript:
 	closetext
 	applymovement GOLDENRODMAGNETTRAINSTATION_OFFICER, MovementData_0x55146
 	applymovement PLAYER, MovementData_0x5514f
-	writebyte FALSE
+	setval FALSE
 	special MagnetTrain
 	warpcheck
 	newloadmap MAPSETUP_TRAIN
