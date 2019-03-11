@@ -1,6 +1,6 @@
 # Pic Animations
 
-Defined in [macros/scripts/gfx_anims.asm](/macros/scripts/gfx_anims.asm).
+Defined in [macros/scripts/gfx_anims.asm](https://github.com/pret/pokecrystal/macros/scripts/gfx_anims.asm).
 
 Pic animations are assembled in 3 parts:
 
@@ -19,12 +19,12 @@ Pic animations are assembled in 3 parts:
 
 Animation data is in these files:
 
-- [gfx/pokemon/anims.asm](/gfx/pokemon/anims.asm):
+- [gfx/pokemon/anims.asm](https://github.com/pret/pokecrystal/gfx/pokemon/anims.asm):
   Main animations (played everywhere)
 
-- [gfx/pokemon/idles.asm](/gfx/pokemon/idles.asm):
+- [gfx/pokemon/idles.asm](https://github.com/pret/pokecrystal/gfx/pokemon/idles.asm):
   Idle animations, appended to the main animation.  
   Used in the status screen (blinking, tail wags etc.)
 
-- [gfx/pokemon/unown_anims.asm](/gfx/pokemon/unown_anims.asm) and [gfx/pokemon/unown_idles.asm](/gfx/pokemon/unown_idles.asm):
+- [gfx/pokemon/unown_anims.asm](https://github.com/pret/pokecrystal/gfx/pokemon/unown_anims.asm) and [gfx/pokemon/unown_idles.asm](https://github.com/pret/pokecrystal/gfx/pokemon/unown_idles.asm):
   Unown has its own animation data despite having an entry in the main tables.

@@ -1,6 +1,6 @@
 # Text Commands
 
-Defined in [macros/scripts/text.asm](/macros/scripts/text.asm) and [home/text.asm:TextCommands](/home/text.asm).
+Defined in [macros/scripts/text.asm](https://github.com/pret/pokecrystal/macros/scripts/text.asm) and [home/text.asm:TextCommands](https://github.com/pret/pokecrystal/home/text.asm).
 
 
 ## `$00`: `text_start`
@@ -108,7 +108,7 @@ Play `SFX_SLOT_MACHINE_START`.
 
 ## `$14`: <code>text_buffer <i>id</i></code>
 
-Write text from one of the following addresses (listed in [data/text_buffers.asm](/data/text_buffers.asm)):
+Write text from one of the following addresses (listed in [data/text_buffers.asm](https://github.com/pret/pokecrystal/data/text_buffers.asm)):
 
 0. `StringBuffer3`
 1. `StringBuffer4`
