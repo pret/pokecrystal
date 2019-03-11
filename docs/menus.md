@@ -1,6 +1,4 @@
-# Everything you've ever wanted to know about menus*
-
-**\* but were afraid to ask**
+# Menu Data
 
 
 ## Contents
