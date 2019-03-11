@@ -7,6 +7,7 @@
 - [I can't build the ROM, `make` just prints an error!](#i-cant-build-the-rom-make-just-prints-an-error)
   - [`gcc`: command not found](#gcc-command-not-found)
   - ["ERROR: `UNION` already defined"](#error-union-already-defined)
+  - ["Expression must be 8-bit"](#expression-must-be-8-bit)
   - ["Segmentation fault" from `rgbgfx`](#segmentation-fault-from-rgbgfx)
   - ["Section is too big" or "Unable to place section in bank"](#section-is-too-big-or-unable-to-place-section-in-bank)
   - ["Invalid file or object file version"](#invalid-file-or-object-file-version)
@@ -31,6 +32,10 @@ Reread [INSTALL.md](INSTALL.md) carefully, and make sure you're following all it
 You need to install `gcc`. If you're using Cygwin, re-run its setup, and at "Select Packages", choose to install `gcc-core`.
 
 ### "ERROR: `UNION` already defined"
+
+Download [**rgbds 0.3.8**][rgbds]. Older versions will not work.
+
+### "Expression must be 8-bit"
 
 Download [**rgbds 0.3.8**][rgbds]. Older versions will not work.
 
