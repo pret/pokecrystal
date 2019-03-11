@@ -592,82 +592,82 @@ Mom_WithdrawDepositMenuJoypad:
 
 UnknownText_0x16649:
 	; Wow, that's a cute #MON. Where did you get it? … So, you're leaving on an adventure… OK! I'll help too. But what can I do for you? I know! I'll save money for you. On a long journey, money's important. Do you want me to save your money?
-	text_far UnknownText_0x1bd77f
+	text_far _MomLeavingText1
 	text_end
 
 UnknownText_0x1664e:
 	; OK, I'll take care of your money.
-	text_far UnknownText_0x1bd868
+	text_far _MomLeavingText2
 	text_end
 
 UnknownText_0x16653:
 	; Be careful. #MON are your friends. You need to work as a team. Now, go on!
-	text_far UnknownText_0x1bd88e
+	text_far _MomLeavingText3
 	text_end
 
 UnknownText_0x16658:
 	; Hi! Welcome home! You're trying very hard, I see. I've kept your room tidy. Or is this about your money?
-	text_far UnknownText_0x1bd8da
+	text_far _MomVisitingText1
 	text_end
 
 UnknownText_0x1665d:
 	; What do you want to do?
-	text_far UnknownText_0x1bd942
+	text_far _MomVisitingText2
 	text_end
 
 UnknownText_0x16662:
 	; How much do you want to save?
-	text_far UnknownText_0x1bd95b
+	text_far _MomVisitingText3
 	text_end
 
 UnknownText_0x16667:
 	; How much do you want to take?
-	text_far UnknownText_0x1bd97a
+	text_far _MomVisitingText4
 	text_end
 
 UnknownText_0x1666c:
 	; Do you want to save some money?
-	text_far UnknownText_0x1bd999
+	text_far _MomVisitingText5
 	text_end
 
 UnknownText_0x16671:
 	; You haven't saved that much.
-	text_far UnknownText_0x1bd9ba
+	text_far _MomVisitingText6
 	text_end
 
 UnknownText_0x16676:
 	; You can't take that much.
-	text_far UnknownText_0x1bd9d7
+	text_far _MomVisitingText7
 	text_end
 
 UnknownText_0x1667b:
 	; You don't have that much.
-	text_far UnknownText_0x1bd9f1
+	text_far _MomVisitingText8
 	text_end
 
 UnknownText_0x16680:
 	; You can't save that much.
-	text_far UnknownText_0x1bda0b
+	text_far _MomVisitingText9
 	text_end
 
 UnknownText_0x16685:
 	; OK, I'll save your money. Trust me! , stick with it!
-	text_far UnknownText_0x1bda25
+	text_far _MomVisitingText10
 	text_end
 
 UnknownText_0x1668a:
 	; Your money's safe here! Get going!
-	text_far UnknownText_0x1bda5b
+	text_far _MomVisitingText11
 	text_end
 
 UnknownText_0x1668f:
 	; , don't give up!
-	text_far UnknownText_0x1bda7e
+	text_far _MomVisitingText12
 	text_end
 
 UnknownText_0x16694:
 	; Just do what you can.
-	text_far UnknownText_0x1bda90
+	text_far _MomVisitingText13
 	text_end
 
 Mom_SavedString:

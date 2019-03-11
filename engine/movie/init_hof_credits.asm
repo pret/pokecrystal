@@ -25,7 +25,7 @@ InitDisplayForHallOfFame:
 
 .SavingRecordDontTurnOff:
 	; SAVING RECORD… DON'T TURN OFF!
-	text_far UnknownText_0x1bd39e
+	text_far _SavingRecordText
 	text_end
 
 InitDisplayForRedCredits:
