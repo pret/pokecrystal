@@ -57,7 +57,7 @@ If you added or changed any code, you've made a mistake while writing some of it
 
 ## How do I edit maps?
 
-For `asm` scripts, read [docs/map_event_scripts.md](docs/map_event_scripts.md). For `blk` layouts, use [Polished Map][polished-map].
+For `asm` scripts, read [docs/map_event_scripts.md](https://pret.github.io/pokecrystal/map_event_scripts). For `blk` layouts, use [Polished Map][polished-map].
 
 
 ## How do I edit the colors of an image?
@@ -71,7 +71,7 @@ It really depends on what image you're trying to change the colors of, where the
 
 ## How do I write new features?
 
-There are a number of special-purpose scripting languages, as described in [docs](docs/). For more general features, you'll need to code directly in [assembly language][asm]. Some of the [tutorials][tutorials] for specific features may also be helpful.
+There are a number of special-purpose scripting languages, as described in [docs](https://pret.github.io/pokecrystal/). For more general features, you'll need to code directly in [assembly language][asm]. Some of the [tutorials][tutorials] for specific features may also be helpful.
 
 
 ## I need more help!

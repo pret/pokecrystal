@@ -12,7 +12,7 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 ## See also
 
 - [**FAQ**](FAQ.md)
-- [**Documentation**](docs/)
+- [**Documentation**][docs]
 - [**Wiki**][wiki] (includes [tutorials][tutorials])
 - **Discord:** [pret][discord]
 - **IRC:** [freenode#pret][irc]
@@ -36,6 +36,7 @@ Other disassembly projects:
 [pokeruby]: https://github.com/pret/pokeruby
 [pokefirered]: https://github.com/pret/pokefirered
 [pokeemerald]: https://github.com/pret/pokeemerald
+[docs]: https://pret.github.io/pokecrystal/
 [wiki]: https://github.com/pret/pokecrystal/wiki
 [tutorials]: https://github.com/pret/pokecrystal/wiki/Tutorials
 [discord]: https://discord.gg/6EuWgX9
