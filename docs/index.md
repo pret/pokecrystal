@@ -3,26 +3,26 @@ These pages are for documenting pieces of the [pokecrystal](https://github.com/p
 
 ## Issues with the source code
 
-- [bugs_and_glitches.md](https://pret.github.io/pokecrystal/bugs_and_glitches)
-- [design_flaws.md](https://pret.github.io/pokecrystal/design_flaws)
+- [bugs_and_glitches.md](bugs_and_glitches.md)
+- [design_flaws.md](design_flaws.md)
 
 
 ## Map event scripts
 
-- [map_event_scripts.md](https://pret.github.io/pokecrystal/map_event_scripts)
-- [event_commands.md](https://pret.github.io/pokecrystal/event_commands)
-- [movement_commands.md](https://pret.github.io/pokecrystal/movement_commands)
-- [text_commands.md](https://pret.github.io/pokecrystal/text_commands)
+- [map_event_scripts.md](map_event_scripts.md)
+- [event_commands.md](event_commands.md)
+- [movement_commands.md](movement_commands.md)
+- [text_commands.md](text_commands.md)
 
 
 ## Other types of scripts
 
-- [battle_anim_commands.md](https://pret.github.io/pokecrystal/battle_anim_commands)
-- [move_effect_commands.md](https://pret.github.io/pokecrystal/move_effect_commands)
-- [music_commands.md](https://pret.github.io/pokecrystal/music_commands)
+- [battle_anim_commands.md](battle_anim_commands.md)
+- [move_effect_commands.md](move_effect_commands.md)
+- [music_commands.md](music_commands.md)
 
 
 ## Other subsystems
 
-- [pic_animations.md](https://pret.github.io/pokecrystal/pic_animations)
-- [menus.md](https://pret.github.io/pokecrystal/menus)
+- [pic_animations.md](pic_animations.md)
+- [menus.md](menus.md)
