@@ -307,8 +307,8 @@ Then edit four routines in [engine/battle/effect_commands.asm](https://github.co
 
  	ld hl, HurtItselfText
  	call StdBattleTextBox
- 	call HitSelfInConfusion
 
+ 	call HitSelfInConfusion
 -	call BattleCommand_DamageCalc
 +	call ConfusionDamageCalc
  	call BattleCommand_LowerSub
