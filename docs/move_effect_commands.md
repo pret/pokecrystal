@@ -1,6 +1,6 @@
 # Move Effect Commands
 
-Defined in [macros/scripts/battle_commands.asm](https://github.com/pret/pokecrystal/macros/scripts/battle_commands.asm) and [data/battle/effect_command_pointers.asm:BattleCommandPointers](https://github.com/pret/pokecrystal/data/battle/effect_command_pointers.asm).
+Defined in [macros/scripts/battle_commands.asm](https://github.com/pret/pokecrystal/blob/master/macros/scripts/battle_commands.asm) and [data/battle/effect_command_pointers.asm:BattleCommandPointers](https://github.com/pret/pokecrystal/blob/master/data/battle/effect_command_pointers.asm).
 
 
 ## `$01`: `checkturn`

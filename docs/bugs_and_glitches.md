@@ -79,7 +79,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 
 ([Video](https://www.youtube.com/watch?v=rGqu3d3pdok&t=450))
 
-**Fix:** Edit `SpeciesItemBoost` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/engine/battle/effect_commands.asm)
+**Fix:** Edit `SpeciesItemBoost` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm)
 
 ```diff
  ; Double the stat
@@ -106,7 +106,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 
 ([Video](https://www.youtube.com/watch?v=rGqu3d3pdok&t=450))
 
-**Fix:** Edit `DittoMetalPowder` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/engine/battle/effect_commands.asm):
+**Fix:** Edit `DittoMetalPowder` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm):
 
 ```diff
  	ld a, c
@@ -144,7 +144,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 
 This bug existed for all battles in Gold and Silver, and was only fixed for single-player battles in Crystal to preserve link compatibility.
 
-**Fix:** Edit `TruncateHL_BC` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/engine/battle/effect_commands.asm)
+**Fix:** Edit `TruncateHL_BC` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm)
 
 ```diff
  .finish
@@ -172,7 +172,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ([Video](https://www.youtube.com/watch?v=mHkyO5T5wZU&t=206))
 
-**Fix:** Edit `BattleCommand_EffectChance` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/engine/battle/effect_commands.asm):
+**Fix:** Edit `BattleCommand_EffectChance` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm):
 
 ```diff
 -	; BUG: 1/256 chance to fail even for a 100% effect chance,
@@ -215,7 +215,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ([Video](https://www.youtube.com/watch?v=zuCLMikWo4Y))
 
-**Fix:** Edit `BattleCommand_BellyDrum` in [engine/battle/move_effects/belly_drum.asm](https://github.com/pret/pokecrystal/engine/battle/move_effects/belly_drum.asm):
+**Fix:** Edit `BattleCommand_BellyDrum` in [engine/battle/move_effects/belly_drum.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/belly_drum.asm):
 
 ```diff
  BattleCommand_BellyDrum:
@@ -249,14 +249,14 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 **Fix:**
 
-First, edit [hram.asm](https://github.com/pret/pokecrystal/hram.asm):
+First, edit [hram.asm](https://github.com/pret/pokecrystal/blob/master/hram.asm):
 
 ```diff
  hClockResetTrigger:: db ; ffeb
 +hIsConfusionDamage:: db ; ffec
 ```
 
-Then edit four routines in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/engine/battle/effect_commands.asm):
+Then edit four routines in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm):
 
 ```diff
  HitSelfInConfusion:
@@ -339,7 +339,7 @@ Then edit four routines in [engine/battle/effect_commands.asm](https://github.co
 
 This bug affects Acid, Iron Tail, and Rock Smash.
 
-**Fix:** Edit `DefenseDownHit` in [data/moves/effects.asm](https://github.com/pret/pokecrystal/data/moves/effects.asm):
+**Fix:** Edit `DefenseDownHit` in [data/moves/effects.asm](https://github.com/pret/pokecrystal/blob/master/data/moves/effects.asm):
 
 ```diff
  DefenseDownHit:
@@ -373,7 +373,7 @@ This bug affects Acid, Iron Tail, and Rock Smash.
 
 ([Video](https://www.youtube.com/watch?v=uRYyzKRatFk))
 
-**Fix:** Edit `BattleCommand_Counter` in [engine/battle/move_effects/counter.asm](https://github.com/pret/pokecrystal/engine/battle/move_effects/counter.asm) and `BattleCommand_MirrorCoat` in [engine/battle/move_effects/mirror_coat.asm](https://github.com/pret/pokecrystal/engine/battle/move_effects/mirror_coat.asm):
+**Fix:** Edit `BattleCommand_Counter` in [engine/battle/move_effects/counter.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/counter.asm) and `BattleCommand_MirrorCoat` in [engine/battle/move_effects/mirror_coat.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/mirror_coat.asm):
 
 ```diff
 -	; BUG: Move should fail with all non-damaging battle actions
@@ -401,7 +401,7 @@ Add this to the end of each file:
 
 ([Video](https://www.youtube.com/watch?v=1v9x4SgMggs))
 
-**Fix:** Edit `CheckPlayerHasUsableMoves` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/engine/battle/core.asm):
+**Fix:** Edit `CheckPlayerHasUsableMoves` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
 
 ```diff
  .done
@@ -426,7 +426,7 @@ Add this to the end of each file:
 
 ([Video](https://www.youtube.com/watch?v=tiRvw-Nb2ME))
 
-**Fix:** Edit `PursuitSwitch` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/engine/battle/core.asm)
+**Fix:** Edit `PursuitSwitch` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm)
 
 ```diff
  	ld a, $f0
@@ -456,7 +456,7 @@ Add this to the end of each file:
 
 This bug affects Attract, Curse, Foresight, Mean Look, Mimic, Nightmare, Spider Web, Transform, and stat-lowering effects of moves like String Shot or Bubble during the semi-invulnerable turn of Fly or Dig.
 
-**Fix:** Edit `CheckHiddenOpponent` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/engine/battle/effect_commands.asm):
+**Fix:** Edit `CheckHiddenOpponent` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm):
 
 ```diff
  CheckHiddenOpponent:
@@ -475,7 +475,7 @@ This bug affects Attract, Curse, Foresight, Mean Look, Mimic, Nightmare, Spider 
 
 ([Video](https://www.youtube.com/watch?v=202-iAsrIa8))
 
-**Fix:** Edit `BattleCommand_BeatUp` in [engine/battle/move_effects/beat_up.asm](https://github.com/pret/pokecrystal/engine/battle/move_effects/beat_up.asm):
+**Fix:** Edit `BattleCommand_BeatUp` in [engine/battle/move_effects/beat_up.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/beat_up.asm):
 
 ```diff
  .got_mon
@@ -511,7 +511,7 @@ This bug affects Attract, Curse, Foresight, Mean Look, Mimic, Nightmare, Spider 
 
 This bug prevents the rest of Beat Up's effect from being executed if the player or enemy only has one Pokémon in their party while using it. It prevents Substitute from being raised and King's Rock from working.
 
-**Fix:** Edit `BattleCommand_EndLoop` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/engine/battle/effect_commands.asm):
+**Fix:** Edit `BattleCommand_EndLoop` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm):
 
 ```diff
  .only_one_beatup
@@ -540,7 +540,7 @@ This bug prevents the rest of Beat Up's effect from being executed if the player
 
 This bug prevents Substitute from being raised if Beat Up was blocked by Protect or Detect.
 
-**Fix:** Edit `BattleCommand_FailureText` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/engine/battle/effect_commands.asm).
+**Fix:** Edit `BattleCommand_FailureText` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm).
 
 ```diff
  	cp EFFECT_MULTI_HIT
@@ -565,7 +565,7 @@ This bug prevents Substitute from being raised if Beat Up was blocked by Protect
 
 This bug is caused because Beat Up never sets `wAttackMissed`, even when no Pokémon was able to attack (due to being fainted or having a status condition).
 
-**Fix:** Edit `BattleCommand_BeatUpFailText` in [engine/battle/move_effects/beat_up.asm](https://github.com/pret/pokecrystal/engine/battle/move_effects/beat_up.asm):
+**Fix:** Edit `BattleCommand_BeatUpFailText` in [engine/battle/move_effects/beat_up.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/beat_up.asm):
 
 ```diff
  BattleCommand_BeatUpFailText:
@@ -590,7 +590,7 @@ This bug is caused because Beat Up never sets `wAttackMissed`, even when no Pok�
 
 This bug existed for all battles in Gold and Silver, and was only fixed for single-player battles in Crystal to preserve link compatibility.
 
-**Fix:** Edit `BattleCommand_Present` in [engine/battle/move_effects/present.asm](https://github.com/pret/pokecrystal/engine/battle/move_effects/present.asm):
+**Fix:** Edit `BattleCommand_Present` in [engine/battle/move_effects/present.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/present.asm):
 
 ```diff
  BattleCommand_Present:
@@ -618,7 +618,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ([Video](https://www.youtube.com/watch?v=cygMO-zHTls))
 
-**Fix:** Edit `AI_Smart_MeanLook` in [engine/battle/ai/scoring.asm](https://github.com/pret/pokecrystal/engine/battle/ai/scoring.asm):
+**Fix:** Edit `AI_Smart_MeanLook` in [engine/battle/ai/scoring.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/scoring.asm):
 
 ```diff
 -; 80% chance to greatly encourage this move if the enemy is badly poisoned (buggy).
@@ -633,7 +633,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ## AI makes a false assumption about `CheckTypeMatchup`
 
-**Fix:** Edit `BattleCheckTypeMatchup` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/engine/battle/effect_commands.asm):
+**Fix:** Edit `BattleCheckTypeMatchup` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm):
 
 ```diff
  BattleCheckTypeMatchup:
@@ -665,7 +665,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ([Video](https://www.youtube.com/watch?v=rGqu3d3pdok&t=322))
 
-**Fix:** Edit `AI_HealStatus` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/engine/battle/ai/items.asm):
+**Fix:** Edit `AI_HealStatus` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/items.asm):
 
 ```diff
  AI_HealStatus:
@@ -692,7 +692,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ([Video](https://www.youtube.com/watch?v=SE-BfsFgZVM))
 
-**Fix:** Edit `LongAnim_UpdateVariables` in [engine/battle/anim_hp_bar.asm](https://github.com/pret/pokecrystal/engine/battle/anim_hp_bar.asm):
+**Fix:** Edit `LongAnim_UpdateVariables` in [engine/battle/anim_hp_bar.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/anim_hp_bar.asm):
 
 ```diff
 -	; This routine is buggy. The result from ComputeHPBarPixels is stored
@@ -719,7 +719,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ([Video](https://www.youtube.com/watch?v=9KyNVIZxJvI))
 
-**Fix:** Edit `ShortHPBar_CalcPixelFrame` in [engine/battle/anim_hp_bar.asm](https://github.com/pret/pokecrystal/engine/battle/anim_hp_bar.asm):
+**Fix:** Edit `ShortHPBar_CalcPixelFrame` in [engine/battle/anim_hp_bar.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/anim_hp_bar.asm):
 
 ```diff
  	ld b, 0
@@ -747,7 +747,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 This can bring Pokémon straight from level 1 to 100 by gaining just a few experience points.
 
-**Fix:** Edit `CalcExpAtLevel` in [engine/pokemon/experience.asm](https://github.com/pret/pokecrystal/engine/pokemon/experience.asm):
+**Fix:** Edit `CalcExpAtLevel` in [engine/pokemon/experience.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/experience.asm):
 
 ```diff
  CalcExpAtLevel:
@@ -779,7 +779,7 @@ This can bring Pokémon straight from level 1 to 100 by gaining just a few exper
 
 ([Video](https://www.youtube.com/watch?v=o54VjpAEoO8))
 
-**Fix:** Edit `Text_ABoostedStringBuffer2ExpPoints` and `Text_StringBuffer2ExpPoints` in [data/text/common_2.asm](https://github.com/pret/pokecrystal/data/text/common_2.asm):
+**Fix:** Edit `Text_ABoostedStringBuffer2ExpPoints` and `Text_StringBuffer2ExpPoints` in [data/text/common_2.asm](https://github.com/pret/pokecrystal/blob/master/data/text/common_2.asm):
 
 ```diff
  Text_ABoostedStringBuffer2ExpPoints::
@@ -803,7 +803,7 @@ This can bring Pokémon straight from level 1 to 100 by gaining just a few exper
 
 ## BRN/PSN/PAR do not affect catch rate
 
-**Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/engine/items/item_effects.asm):
+**Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
 
 ```diff
 -; This routine is buggy. It was intended that SLP and FRZ provide a higher
@@ -833,7 +833,7 @@ This can bring Pokémon straight from level 1 to 100 by gaining just a few exper
 
 ## Moon Ball does not boost catch rate
 
-**Fix:** Edit `MoonBallMultiplier` in [items/item_effects.asm](https://github.com/pret/pokecrystal/engine/items/item_effects.asm):
+**Fix:** Edit `MoonBallMultiplier` in [items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
 
 ```diff
 -; Moon Stone's constant from Pokémon Red is used.
@@ -851,7 +851,7 @@ This can bring Pokémon straight from level 1 to 100 by gaining just a few exper
 
 ## Love Ball boosts catch rate for the wrong gender
 
-**Fix:** Edit `LoveBallMultiplier` in [items/item_effects.asm](https://github.com/pret/pokecrystal/engine/items/item_effects.asm):
+**Fix:** Edit `LoveBallMultiplier` in [items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
 
 ```diff
  .wildmale
@@ -867,7 +867,7 @@ This can bring Pokémon straight from level 1 to 100 by gaining just a few exper
 
 ## Fast Ball only boosts catch rate for three Pokémon
 
-**Fix:** Edit `FastBallMultiplier` in [items/item_effects.asm](https://github.com/pret/pokecrystal/engine/items/item_effects.asm):
+**Fix:** Edit `FastBallMultiplier` in [items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
 
 ```diff
  .loop
@@ -889,7 +889,7 @@ This can bring Pokémon straight from level 1 to 100 by gaining just a few exper
 
 *Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
 
-**Fix:** Edit `ItemAttributes` in [data/items/attributes.asm](https://github.com/pret/pokecrystal/data/items/attributes.asm):
+**Fix:** Edit `ItemAttributes` in [data/items/attributes.asm](https://github.com/pret/pokecrystal/blob/master/data/items/attributes.asm):
 
 ```diff
  ; DRAGON_FANG
@@ -906,7 +906,7 @@ This can bring Pokémon straight from level 1 to 100 by gaining just a few exper
 
 ([Video](https://www.youtube.com/watch?v=8BvBjqxmyOk))
 
-**Fix:** Edit `DragonsDen1F_MapScripts` in [maps/DragonsDen1F.asm](https://github.com/pret/pokecrystal/maps/DragonsDen1F.asm):
+**Fix:** Edit `DragonsDen1F_MapScripts` in [maps/DragonsDen1F.asm](https://github.com/pret/pokecrystal/blob/master/maps/DragonsDen1F.asm):
 
 ```diff
 -	db 0 ; callbacks
@@ -921,7 +921,7 @@ This can bring Pokémon straight from level 1 to 100 by gaining just a few exper
 
 ## Daisy's grooming doesn't always increase happiness
 
-This is a bug with `HaircutOrGrooming` in [engine/events/haircut.asm](https://github.com/pret/pokecrystal/engine/events/haircut.asm):
+This is a bug with `HaircutOrGrooming` in [engine/events/haircut.asm](https://github.com/pret/pokecrystal/blob/master/engine/events/haircut.asm):
 
 ```asm
 ; Bug: Subtracting $ff from $ff fails to set c.
@@ -958,7 +958,7 @@ CopyPokemonName_Buffer1_Buffer3:
 	jp CopyBytes
 ```
 
-**Fix:** Edit  [data/events/happiness_probabilities.asm](https://github.com/pret/pokecrystal/data/events/happiness_probabilities.asm):
+**Fix:** Edit  [data/events/happiness_probabilities.asm](https://github.com/pret/pokecrystal/blob/master/data/events/happiness_probabilities.asm):
 
 ```diff
  HappinessData_DaisysGrooming:
@@ -970,7 +970,7 @@ CopyPokemonName_Buffer1_Buffer3:
 
 ## Magikarp in Lake of Rage are shorter, not longer
 
-**Fix:** Edit `LoadEnemyMon.CheckMagikarpArea` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/engine/battle/core.asm):
+**Fix:** Edit `LoadEnemyMon.CheckMagikarpArea` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
 
 ```diff
  .CheckMagikarpArea:
@@ -1000,7 +1000,7 @@ CopyPokemonName_Buffer1_Buffer3:
 
 ## Magikarp length limits have a unit conversion error
 
-**Fix:** Edit `LoadEnemyMon.CheckMagikarpArea` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/engine/battle/core.asm):
+**Fix:** Edit `LoadEnemyMon.CheckMagikarpArea` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
 
 ```diff
  ; Get Magikarp's length
@@ -1040,7 +1040,7 @@ CopyPokemonName_Buffer1_Buffer3:
 
 ## Magikarp lengths can be miscalculated
 
-**Fix:** Edit `CalcMagikarpLength.BCLessThanDE` in [engine/events/magikarp.asm](https://github.com/pret/pokecrystal/engine/events/magikarp.asm):
+**Fix:** Edit `CalcMagikarpLength.BCLessThanDE` in [engine/events/magikarp.asm](https://github.com/pret/pokecrystal/blob/master/engine/events/magikarp.asm):
 
 ```diff
  .BCLessThanDE:
@@ -1068,7 +1068,7 @@ There are three things wrong here:
 
 **Fix:**
 
-First, edit [engine/battle/battle_transition.asm](https://github.com/pret/pokecrystal/engine/battle/battle_transition.asm):
+First, edit [engine/battle/battle_transition.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/battle_transition.asm):
 
 ```diff
  StartTrainerBattle_DetermineWhichAnimation:
@@ -1130,7 +1130,7 @@ First, edit [engine/battle/battle_transition.asm](https://github.com/pret/pokecr
  	db BATTLETRANSITION_NO_CAVE_STRONGER
 ```
 
-Then edit [engine/battle/start_battle.asm](https://github.com/pret/pokecrystal/engine/battle/start_battle.asm):
+Then edit [engine/battle/start_battle.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/start_battle.asm):
 
 ```diff
  FindFirstAliveMonAndStartBattle:
@@ -1157,7 +1157,7 @@ Then edit [engine/battle/start_battle.asm](https://github.com/pret/pokecrystal/e
  	predef DoBattleTransition
 ```
 
-Finally, edit [engine/battle/read_trainer_party.asm](https://github.com/pret/pokecrystal/engine/battle/read_trainer_party.asm):
+Finally, edit [engine/battle/read_trainer_party.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/read_trainer_party.asm):
 
 ```diff
  INCLUDE "data/trainers/parties.asm"
@@ -1213,7 +1213,7 @@ Finally, edit [engine/battle/read_trainer_party.asm](https://github.com/pret/pok
 
 ([Video](https://www.youtube.com/watch?v=iHkWubvxmSg))
 
-**Fix:** Edit `_HallOfFamePC.DisplayMonAndStrings` in [engine/events/halloffame.asm](https://github.com/pret/pokecrystal/engine/events/halloffame.asm):
+**Fix:** Edit `_HallOfFamePC.DisplayMonAndStrings` in [engine/events/halloffame.asm](https://github.com/pret/pokecrystal/blob/master/engine/events/halloffame.asm):
 
 ```diff
  	ld a, [wHallOfFameTempWinCount]
@@ -1232,7 +1232,7 @@ Finally, edit [engine/battle/read_trainer_party.asm](https://github.com/pret/pok
 
 ([Video](https://www.youtube.com/watch?v=ojq3xqfRF6I))
 
-**Fix:** Edit `Slots_PayoutAnim` in [engine/games/slot_machine.asm](https://github.com/pret/pokecrystal/engine/games/slot_machine.asm):
+**Fix:** Edit `Slots_PayoutAnim` in [engine/games/slot_machine.asm](https://github.com/pret/pokecrystal/blob/master/engine/games/slot_machine.asm):
 
 ```diff
  .okay
@@ -1251,7 +1251,7 @@ Finally, edit [engine/battle/read_trainer_party.asm](https://github.com/pret/pok
 
 ## Team Rocket battle music is not used for Executives or Scientists
 
-**Fix:** Edit `PlayBattleMusic` in [engine/battle/start_battle.asm](https://github.com/pret/pokecrystal/engine/battle/start_battle.asm):
+**Fix:** Edit `PlayBattleMusic` in [engine/battle/start_battle.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/start_battle.asm):
 
 ```diff
  	ld de, MUSIC_ROCKET_BATTLE
@@ -1270,7 +1270,7 @@ Finally, edit [engine/battle/read_trainer_party.asm](https://github.com/pret/pok
 
 ## No bump noise if standing on tile `$3E`
 
-**Fix:** Edit `DoPlayerMovement.CheckWarp` in [engine/overworld/player_movement.asm](https://github.com/pret/pokecrystal/engine/overworld/player_movement.asm):
+**Fix:** Edit `DoPlayerMovement.CheckWarp` in [engine/overworld/player_movement.asm](https://github.com/pret/pokecrystal/blob/master/engine/overworld/player_movement.asm):
 
 ```diff
  .CheckWarp:
@@ -1307,7 +1307,7 @@ Finally, edit [engine/battle/read_trainer_party.asm](https://github.com/pret/pok
 
 The exact cause of this bug is unknown.
 
-**Workaround:** Edit `DexEntryScreen_MenuActionJumptable.Cry` in [engine/pokedex/pokedex.asm](https://github.com/pret/pokecrystal/engine/pokedex/pokedex.asm):
+**Workaround:** Edit `DexEntryScreen_MenuActionJumptable.Cry` in [engine/pokedex/pokedex.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokedex/pokedex.asm):
 
 ```diff
  .Cry:
@@ -1325,31 +1325,31 @@ The exact cause of this bug is unknown.
 
 ## In-battle “`…`” ellipsis is too high
 
-This is a mistake with the “`…`” tile in [gfx/battle/hp_exp_bar_border.png](https://github.com/pret/pokecrystal/gfx/battle/hp_exp_bar_border.png):
+This is a mistake with the “`…`” tile in [gfx/battle/hp_exp_bar_border.png](https://github.com/pret/pokecrystal/blob/master/gfx/battle/hp_exp_bar_border.png):
 
-![image](https://github.com/pret/pokecrystal/gfx/battle/hp_exp_bar_border.png)
+![image](https://raw.githubusercontent.com/pret/pokecrystal/blob/master/gfx/battle/hp_exp_bar_border.png)
 
 **Fix:** Lower the ellipsis by two pixels:
 
-![image](https://github.com/pret/pokecrystal/docs/images/hp_exp_bar_border.png)
+![image](https://raw.githubusercontent.com/pret/pokecrystal/blob/master/docs/images/hp_exp_bar_border.png)
 
 
 ## Two tiles in the `port` tileset are drawn incorrectly
 
-This is a mistake with the left-hand warp carpet corner tiles in [gfx/tilesets/port.png](https://github.com/pret/pokecrystal/gfx/tilesets/port.png):
+This is a mistake with the left-hand warp carpet corner tiles in [gfx/tilesets/port.png](https://github.com/pret/pokecrystal/blob/master/gfx/tilesets/port.png):
 
-![image](https://github.com/pret/pokecrystal/gfx/tilesets/port.png)
+![image](https://raw.githubusercontent.com/pret/pokecrystal/blob/master/gfx/tilesets/port.png)
 
 **Fix:** Adjust them to match the right-hand corner tiles:
 
-![image](https://github.com/pret/pokecrystal/docs/images/port.png)
+![image](https://raw.githubusercontent.com/pret/pokecrystal/blob/master/docs/images/port.png)
 
 
 ## `LoadMetatiles` wraps around past 128 blocks
 
 This bug prevents you from using blocksets with more than 128 blocks.
 
-**Fix:** Edit `LoadMetatiles` in [home/map.asm](https://github.com/pret/pokecrystal/home/map.asm):
+**Fix:** Edit `LoadMetatiles` in [home/map.asm](https://github.com/pret/pokecrystal/blob/master/home/map.asm):
 
 ```diff
  	; Set hl to the address of the current metatile data ([wTilesetBlocksAddress] + (a) tiles).
@@ -1378,7 +1378,7 @@ This bug prevents you from using blocksets with more than 128 blocks.
 
 **Fix:**
 
-First, edit `UsedSurfScript` in [engine/events/overworld.asm](https://github.com/pret/pokecrystal/engine/events/overworld.asm):
+First, edit `UsedSurfScript` in [engine/events/overworld.asm](https://github.com/pret/pokecrystal/blob/master/engine/events/overworld.asm):
 
 ```diff
  UsedSurfScript:
@@ -1399,7 +1399,7 @@ First, edit `UsedSurfScript` in [engine/events/overworld.asm](https://github.com
  	end
 ```
 
-Then edit `SurfStartStep` in [engine/overworld/player_object.asm](https://github.com/pret/pokecrystal/engine/overworld/player_object.asm):
+Then edit `SurfStartStep` in [engine/overworld/player_object.asm](https://github.com/pret/pokecrystal/blob/master/engine/overworld/player_object.asm):
 
 ```diff
  SurfStartStep:
@@ -1440,9 +1440,9 @@ Then edit `SurfStartStep` in [engine/overworld/player_object.asm](https://github
 
 ## Swimming NPCs aren't limited by their movement radius
 
-This bug is why the Lapras in [maps/UnionCaveB2F.asm](https://github.com/pret/pokecrystal/maps/UnionCaveB2F.asm), which uses `SPRITEMOVEDATA_SWIM_WANDER`, is not restricted by its `1, 1` movement radius.
+This bug is why the Lapras in [maps/UnionCaveB2F.asm](https://github.com/pret/pokecrystal/blob/master/maps/UnionCaveB2F.asm), which uses `SPRITEMOVEDATA_SWIM_WANDER`, is not restricted by its `1, 1` movement radius.
 
-**Fix:** Edit `CanObjectMoveInDirection` in [engine/overworld/npc_movement.asm](https://github.com/pret/pokecrystal/engine/overworld/npc_movement.asm):
+**Fix:** Edit `CanObjectMoveInDirection` in [engine/overworld/npc_movement.asm](https://github.com/pret/pokecrystal/blob/master/engine/overworld/npc_movement.asm):
 
 ```diff
  	ld hl, OBJECT_FLAGS1
@@ -1459,7 +1459,7 @@ This bug is why the Lapras in [maps/UnionCaveB2F.asm](https://github.com/pret/po
 
 This bug can allow you to talk to Eusine in Celadon City and encounter Ho-Oh with only traded legendary beasts.
 
-**Fix:** Edit `CheckOwnMon` in [engine/pokemon/search.asm](https://github.com/pret/pokecrystal/engine/pokemon/search.asm):
+**Fix:** Edit `CheckOwnMon` in [engine/pokemon/search.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/search.asm):
 
 ```diff
  ; check OT
@@ -1489,7 +1489,7 @@ This bug can allow you to talk to Eusine in Celadon City and encounter Ho-Oh wit
 
 This bug can affect Mew or Pokémon other than Ditto that used Transform via Mirror Move or Sketch.
 
-**Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/engine/items/item_effects.asm):
+**Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
 
 ```diff
  	ld hl, wEnemySubStatus5
@@ -1534,7 +1534,7 @@ This bug can affect Mew or Pokémon other than Ditto that used Transform via Mir
 
 ([Video](https://www.youtube.com/watch?v=v1ErZdLCIyU))
 
-**Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/engine/items/item_effects.asm):
+**Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
 
 ```diff
  .room_in_party
@@ -1550,7 +1550,7 @@ This bug can affect Mew or Pokémon other than Ditto that used Transform via Mir
 
 ## `HELD_CATCH_CHANCE` has no effect
 
-**Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/engine/items/item_effects.asm):
+**Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
 
 ```diff
 -	; BUG: farcall overwrites a, and GetItemHeldEffect takes b anyway.
@@ -1576,7 +1576,7 @@ This bug can affect Mew or Pokémon other than Ditto that used Transform via Mir
 
 ## Only the first three evolution entries can have Stone compatibility reported correctly
 
-**Workaround:** Edit `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` in [engine/pokemon/party_menu.asm](https://github.com/pret/pokecrystal/engine/pokemon/party_menu.asm):
+**Workaround:** Edit `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` in [engine/pokemon/party_menu.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/party_menu.asm):
 
 ```diff
  .DetermineCompatibility:
@@ -1600,7 +1600,7 @@ This supports up to six entries.
 
 ## `EVOLVE_STAT` can break Stone compatibility reporting
 
-**Fix:** Edit `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` in [engine/pokemon/party_menu.asm](https://github.com/pret/pokecrystal/engine/pokemon/party_menu.asm):
+**Fix:** Edit `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` in [engine/pokemon/party_menu.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/party_menu.asm):
 
 ```diff
  .loop2
@@ -1620,7 +1620,7 @@ This supports up to six entries.
 
 ## `ScriptCall` can overflow `wScriptStack` and crash
 
-**Fix:** Edit `ScriptCall` in [engine/overworld/scripting.asm](https://github.com/pret/pokecrystal/engine/overworld/scripting.asm):
+**Fix:** Edit `ScriptCall` in [engine/overworld/scripting.asm](https://github.com/pret/pokecrystal/blob/master/engine/overworld/scripting.asm):
 
 ```diff
  ScriptCall:
@@ -1663,7 +1663,7 @@ This supports up to six entries.
 
 ## `LoadSpriteGFX` does not limit the capacity of `UsedSprites`
 
-**Fix:** Edit `LoadSpriteGFX` in [engine/overworld/overworld.asm](https://github.com/pret/pokecrystal/engine/overworld/overworld.asm):
+**Fix:** Edit `LoadSpriteGFX` in [engine/overworld/overworld.asm](https://github.com/pret/pokecrystal/blob/master/engine/overworld/overworld.asm):
 
 ```diff
  LoadSpriteGFX:
@@ -1699,7 +1699,7 @@ This supports up to six entries.
 
 ## `ChooseWildEncounter` doesn't really validate the wild Pokémon species
 
-**Fix:** Edit `ChooseWildEncounter` in [engine/overworld/wildmons.asm](https://github.com/pret/pokecrystal/engine/overworld/wildmons.asm):
+**Fix:** Edit `ChooseWildEncounter` in [engine/overworld/wildmons.asm](https://github.com/pret/pokecrystal/blob/master/engine/overworld/wildmons.asm):
 
 ```diff
  .ok
@@ -1718,7 +1718,7 @@ This supports up to six entries.
 
 ## `TryObjectEvent` arbitrary code execution
 
-**Fix:** Edit `TryObjectEvent` in [engine/overworld/events.asm](https://github.com/pret/pokecrystal/engine/overworld/events.asm):
+**Fix:** Edit `TryObjectEvent` in [engine/overworld/events.asm](https://github.com/pret/pokecrystal/blob/master/engine/overworld/events.asm):
 
 ```diff
 -; Bug: If IsInArray returns nc, data at bc will be executed as code.
@@ -1745,7 +1745,7 @@ This supports up to six entries.
 
 ## `ClearWRAM` only clears WRAM bank 1
 
-**Fix:** Edit `ClearWRAM` in [home/init.asm](https://github.com/pret/pokecrystal/home/init.asm):
+**Fix:** Edit `ClearWRAM` in [home/init.asm](https://github.com/pret/pokecrystal/blob/master/home/init.asm):
 
 ```diff
  ClearWRAM::
@@ -1771,7 +1771,7 @@ This supports up to six entries.
 
 ## `BattleAnimCmd_ClearObjs` only clears the first 6⅔ objects
 
-**Fix:** Edit `BattleAnimCmd_ClearObjs` in [engine/battle_anims/anim_commands.asm](https://github.com/pret/pokecrystal/engine/battle_anims/anim_commands.asm):
+**Fix:** Edit `BattleAnimCmd_ClearObjs` in [engine/battle_anims/anim_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle_anims/anim_commands.asm):
 
 ```diff
  BattleAnimCmd_ClearObjs:
