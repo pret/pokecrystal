@@ -1137,7 +1137,7 @@ Then edit [engine/battle/start_battle.asm](https://github.com/pret/pokecrystal/b
  	xor a
  	ldh [hMapAnims], a
  	call DelayFrame
--	ld b, 6
+-	ld b, PARTY_LENGTH
 -	ld hl, wPartyMon1HP
 -	ld de, PARTYMON_STRUCT_LENGTH - 1
 -

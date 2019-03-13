@@ -1091,7 +1091,7 @@ SGBBorder_MorePalPushing:
 	jr nz, .loop
 	ld bc, $140
 	call CopyData
-	ld bc, Start
+	ld bc, $100
 	call ClearBytes
 	ld bc, 16 palettes
 	call CopyData
