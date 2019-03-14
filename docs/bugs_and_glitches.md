@@ -307,8 +307,8 @@ Then edit four routines in [engine/battle/effect_commands.asm](https://github.co
 
  	ld hl, HurtItselfText
  	call StdBattleTextBox
- 	call HitSelfInConfusion
 
+ 	call HitSelfInConfusion
 -	call BattleCommand_DamageCalc
 +	call ConfusionDamageCalc
  	call BattleCommand_LowerSub
@@ -1327,22 +1327,22 @@ The exact cause of this bug is unknown.
 
 This is a mistake with the “`…`” tile in [gfx/battle/hp_exp_bar_border.png](https://github.com/pret/pokecrystal/blob/master/gfx/battle/hp_exp_bar_border.png):
 
-![image](https://raw.githubusercontent.com/pret/pokecrystal/blob/master/gfx/battle/hp_exp_bar_border.png)
+![image](https://raw.githubusercontent.com/pret/pokecrystal/master/gfx/battle/hp_exp_bar_border.png)
 
 **Fix:** Lower the ellipsis by two pixels:
 
-![image](https://raw.githubusercontent.com/pret/pokecrystal/blob/master/docs/images/hp_exp_bar_border.png)
+![image](https://raw.githubusercontent.com/pret/pokecrystal/master/docs/images/hp_exp_bar_border.png)
 
 
 ## Two tiles in the `port` tileset are drawn incorrectly
 
 This is a mistake with the left-hand warp carpet corner tiles in [gfx/tilesets/port.png](https://github.com/pret/pokecrystal/blob/master/gfx/tilesets/port.png):
 
-![image](https://raw.githubusercontent.com/pret/pokecrystal/blob/master/gfx/tilesets/port.png)
+![image](https://raw.githubusercontent.com/pret/pokecrystal/master/gfx/tilesets/port.png)
 
 **Fix:** Adjust them to match the right-hand corner tiles:
 
-![image](https://raw.githubusercontent.com/pret/pokecrystal/blob/master/docs/images/port.png)
+![image](https://raw.githubusercontent.com/pret/pokecrystal/master/docs/images/port.png)
 
 
 ## `LoadMetatiles` wraps around past 128 blocks
