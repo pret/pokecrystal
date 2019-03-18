@@ -2664,7 +2664,7 @@ Function17e165:
 	pop hl
 	jr c, .asm_17e195
 	push hl
-	ld hl, wPCItems
+	ld hl, wNumPCItems
 	call CheckItem
 	pop hl
 	jr c, .asm_17e195

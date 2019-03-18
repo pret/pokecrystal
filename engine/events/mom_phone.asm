@@ -147,7 +147,7 @@ Mom_GiveItemOrDoll:
 	ld [wCurItem], a
 	ld a, 1
 	ld [wItemQuantityChangeBuffer], a
-	ld hl, wPCItems
+	ld hl, wNumPCItems
 	call ReceiveItem
 	ret
 

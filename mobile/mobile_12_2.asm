@@ -158,7 +158,7 @@ MobileCheckOwnMonAnywhere:
 UnusedFindItemInPCOrBag:
 	ld a, [wScriptVar]
 	ld [wCurItem], a
-	ld hl, wPCItems
+	ld hl, wNumPCItems
 	call CheckItem
 	jr c, .found
 

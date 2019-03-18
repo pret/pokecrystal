@@ -354,7 +354,7 @@ PlayerWithdrawItemMenu:
 	ld [wItemQuantityChangeBuffer], a
 	ld a, [wBuffer2]
 	ld [wCurItemQuantity], a
-	ld hl, wPCItems
+	ld hl, wNumPCItems
 	call TossItem
 	predef PartyMonItemName
 	ld hl, .WithdrewText
@@ -390,7 +390,7 @@ PlayerTossItemMenu:
 .loop
 	call PCItemsJoypad
 	jr c, .quit
-	ld de, wPCItems
+	ld de, wNumPCItems
 	farcall TossItemFromPC
 	jr .loop
 
@@ -509,7 +509,7 @@ PlayerDepositItemMenu:
 	ld [wBuffer1], a
 	ld a, [wCurItemQuantity]
 	ld [wBuffer2], a
-	ld hl, wPCItems
+	ld hl, wNumPCItems
 	call ReceiveItem
 	jr nc, .NoRoomInPC
 	ld a, [wBuffer1]
@@ -628,7 +628,7 @@ PCItemsJoypad:
 	db SCROLLINGMENU_ENABLE_SELECT | SCROLLINGMENU_ENABLE_FUNCTION3 | SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 8 ; rows/cols?
 	db 2 ; horizontal spacing?
-	dbw 0, wPCItems
+	dbw 0, wNumPCItems
 	dba PlaceMenuItemName
 	dba PlaceMenuItemQuantity
 	dba UpdateItemDescription
