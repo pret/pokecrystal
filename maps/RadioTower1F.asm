@@ -22,7 +22,7 @@ RadioTower1FReceptionistScript:
 	end
 
 .Rockets:
-	writetext RadioTower1FReceptionistNotOfferingToursText
+	writetext RadioTower1FReceptionistNoToursText
 	waitbutton
 	closetext
 	end
@@ -30,7 +30,7 @@ RadioTower1FReceptionistScript:
 RadioTower1FLuckyNumberManScript:
 	faceplayer
 	opentext
-	writetext RadioTower1FLuckyNumberManAskToPlayLuckyNumberShowText
+	writetext RadioTower1FLuckyNumberManAskToPlayText
 	buttonsound
 	special CheckLuckyNumberShowFlag
 	iffalse .skip
@@ -39,7 +39,7 @@ RadioTower1FLuckyNumberManScript:
 	special PrintTodaysLuckyNumber
 	checkflag ENGINE_LUCKY_NUMBER_SHOW
 	iftrue .GameOver
-	writetext RadioTower1FLuckyNumberManThisWeeksIDNumberIsText
+	writetext RadioTower1FLuckyNumberManThisWeeksIdIsText
 	buttonsound
 	closetext
 	applymovement RADIOTOWER1F_GENTLEMAN, MovementData_0x5ce71
@@ -61,13 +61,13 @@ RadioTower1FLuckyNumberManScript:
 	sjump .NoPrize
 
 .GameOver:
-	writetext RadioTower1FLuckyNumberManComeBackNextWeekText
+	writetext RadioTower1FLuckyNumberManComeAgainText
 	waitbutton
 	closetext
 	end
 
 .FirstPlace:
-	writetext RadioTower1FLuckyNumberManYouHaveAPerfectMatchText
+	writetext RadioTower1FLuckyNumberManPerfectMatchText
 	playsound SFX_1ST_PLACE
 	waitsfx
 	buttonsound
@@ -78,7 +78,7 @@ RadioTower1FLuckyNumberManScript:
 	sjump .GameOver
 
 .SecondPlace:
-	writetext RadioTower1FLuckyNumberManYouMatchedTheLastThreeNumbersText
+	writetext RadioTower1FLuckyNumberManOkayMatchText
 	playsound SFX_2ND_PLACE
 	waitsfx
 	buttonsound
@@ -89,7 +89,7 @@ RadioTower1FLuckyNumberManScript:
 	sjump .GameOver
 
 .ThirdPlace:
-	writetext RadioTower1FLuckyNumberManYouMatchedTheLastTwoNumbersText
+	writetext RadioTower1FLuckyNumberManWeakMatchText
 	playsound SFX_3RD_PLACE
 	waitsfx
 	buttonsound
@@ -214,14 +214,14 @@ RadioTower1FReceptionistWelcomeText:
 	text "Welcome!"
 	done
 
-RadioTower1FReceptionistNotOfferingToursText:
+RadioTower1FReceptionistNoToursText:
 	text "Hello. I'm sorry,"
 	line "but we're not"
 	cont "offering any tours"
 	cont "today."
 	done
 
-RadioTower1FLuckyNumberManAskToPlayLuckyNumberShowText:
+RadioTower1FLuckyNumberManAskToPlayText:
 	text "Hi, are you here"
 	line "for the LUCKY NUM-"
 	cont "BER SHOW?"
@@ -234,7 +234,7 @@ RadioTower1FLuckyNumberManAskToPlayLuckyNumberShowText:
 	line "you win a prize."
 	done
 
-RadioTower1FLuckyNumberManThisWeeksIDNumberIsText:
+RadioTower1FLuckyNumberManThisWeeksIdIsText:
 	text "This week's ID"
 	line "number is @"
 	text_ram wStringBuffer3
@@ -251,13 +251,13 @@ RadioTower1FLuckyNumberManDotDotDotText:
 	line "<……>"
 	done
 
-RadioTower1FLuckyNumberManComeBackNextWeekText:
+RadioTower1FLuckyNumberManComeAgainText:
 	text "Please come back"
 	line "next week for the"
 	cont "next LUCKY NUMBER."
 	done
 
-RadioTower1FLuckyNumberManYouHaveAPerfectMatchText:
+RadioTower1FLuckyNumberManPerfectMatchText:
 	text "Wow! You have a"
 	line "perfect match of"
 	cont "all five numbers!"
@@ -269,7 +269,7 @@ RadioTower1FLuckyNumberManYouHaveAPerfectMatchText:
 	line "MASTER BALL!"
 	done
 
-RadioTower1FLuckyNumberManYouMatchedTheLastThreeNumbersText:
+RadioTower1FLuckyNumberManOkayMatchText:
 	text "Hey! You've"
 	line "matched the last"
 	cont "three numbers!"
@@ -279,7 +279,7 @@ RadioTower1FLuckyNumberManYouMatchedTheLastThreeNumbersText:
 	cont "SHARE!"
 	done
 
-RadioTower1FLuckyNumberManYouMatchedTheLastTwoNumbersText:
+RadioTower1FLuckyNumberManWeakMatchText:
 	text "Ooh, you've"
 	line "matched the last"
 	cont "two numbers."
