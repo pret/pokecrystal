@@ -3,8 +3,8 @@
 	const RADIOTOWER1F_LASS
 	const RADIOTOWER1F_YOUNGSTER
 	const RADIOTOWER1F_ROCKET
-	const RADIOTOWER1F_GENTLEMAN
-	const RADIOTOWER1F_COOLTRAINER_F
+	const RADIOTOWER1F_LUCKYNUMBERMAN
+	const RADIOTOWER1F_CARD_WOMAN
 
 RadioTower1F_MapScripts:
 	db 0 ; scene scripts
@@ -42,7 +42,7 @@ RadioTower1FLuckyNumberManScript:
 	writetext RadioTower1FLuckyNumberManThisWeeksIdIsText
 	buttonsound
 	closetext
-	applymovement RADIOTOWER1F_GENTLEMAN, MovementData_0x5ce71
+	applymovement RADIOTOWER1F_LUCKYNUMBERMAN, MovementData_0x5ce71
 	opentext
 	writetext RadioTower1FLuckyNumberManCheckIfMatchText
 	buttonsound
@@ -53,7 +53,7 @@ RadioTower1FLuckyNumberManScript:
 	buttonsound
 	special CheckForLuckyNumberWinners
 	closetext
-	applymovement RADIOTOWER1F_GENTLEMAN, MovementData_0x5ce74
+	applymovement RADIOTOWER1F_LUCKYNUMBERMAN, MovementData_0x5ce74
 	opentext
 	ifequal 1, .FirstPlace
 	ifequal 2, .SecondPlace
