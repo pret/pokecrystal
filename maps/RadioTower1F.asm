@@ -42,7 +42,7 @@ RadioTower1FLuckyNumberManScript:
 	writetext RadioTower1FLuckyNumberManThisWeeksIdIsText
 	buttonsound
 	closetext
-	applymovement RADIOTOWER1F_LUCKYNUMBERMAN, MovementData_0x5ce71
+	applymovement RADIOTOWER1F_LUCKYNUMBERMAN, RadioTower1FLuckyNumberManGoToPCMovement
 	opentext
 	writetext RadioTower1FLuckyNumberManCheckIfMatchText
 	buttonsound
@@ -53,7 +53,7 @@ RadioTower1FLuckyNumberManScript:
 	buttonsound
 	special CheckForLuckyNumberWinners
 	closetext
-	applymovement RADIOTOWER1F_LUCKYNUMBERMAN, MovementData_0x5ce74
+	applymovement RADIOTOWER1F_LUCKYNUMBERMAN, RadioTower1FLuckyNumberManReturnToPlayerMovement
 	opentext
 	ifequal 1, .FirstPlace
 	ifequal 2, .SecondPlace
@@ -200,12 +200,12 @@ RadioTower1FDirectory:
 RadioTower1FLuckyChannelSign:
 	jumptext RadioTower1FLuckyChannelSignText
 
-MovementData_0x5ce71:
+RadioTower1FLuckyNumberManGoToPCMovement:
 	step RIGHT
 	turn_head UP
 	step_end
 
-MovementData_0x5ce74:
+RadioTower1FLuckyNumberManReturnToPlayerMovement:
 	step LEFT
 	turn_head UP
 	step_end
