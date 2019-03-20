@@ -115,20 +115,20 @@ Buena:
 	readvar VAR_BLUECARDBALANCE
 	ifequal 30, .BlueCardCapped0
 	playmusic MUSIC_BUENAS_PASSWORD
-	writetext UnknownText_0x5de35
+	writetext RadioTower2FBuenaDoYouKnowPasswordText
 	special AskRememberPassword
 	iffalse .ForgotPassword
-	writetext UnknownText_0x5de84
+	writetext RadioTower2FBuenaJoinTheShowText
 	waitbutton
 	closetext
 	turnobject RADIOTOWER2F_BUENA, RIGHT
 	readvar VAR_FACING
 	ifnotequal RIGHT, .DontNeedToMove
-	applymovement PLAYER, MovementData_0x5d921
+	applymovement PLAYER, RadioTower2FPlayerWalksToMicrophoneMovement
 .DontNeedToMove:
 	turnobject PLAYER, RIGHT
 	opentext
-	writetext UnknownText_0x5dedd
+	writetext RadioTower2FBuenaEveryoneSayPasswordText
 	waitbutton
 	closetext
 	turnobject RADIOTOWER2F_BUENA, DOWN
@@ -137,7 +137,7 @@ Buena:
 	closetext
 	iffalse .WrongAnswer
 	opentext
-	writetext UnknownText_0x5dfc1
+	writetext RadioTower2FBuenaCorrectAnswerText
 	waitbutton
 	closetext
 	readvar VAR_BLUECARDBALANCE
@@ -149,7 +149,7 @@ Buena:
 	pause 20
 	turnobject RADIOTOWER2F_BUENA, RIGHT
 	opentext
-	writetext UnknownText_0x5e054
+	writetext RadioTower2FBuenaThanksForComingText
 	waitbutton
 	closetext
 	special FadeOutMusic
@@ -160,12 +160,12 @@ Buena:
 	end
 
 .Introduction:
-	writetext UnknownText_0x5dcf4
+	writetext RadioTower2FBuenaShowIntroductionText
 	buttonsound
 	setevent EVENT_MET_BUENA
 	verbosegiveitem BLUE_CARD
 .TuneIn:
-	writetext UnknownText_0x5de10
+	writetext RadioTower2FBuenaTuneInToMyShowText
 	waitbutton
 	closetext
 	checkcellnum PHONE_BUENA
@@ -177,7 +177,7 @@ Buena:
 	end
 
 .ForgotPassword:
-	writetext UnknownText_0x5df29
+	writetext RadioTower2FBuenaComeBackAfterListeningText
 	waitbutton
 	closetext
 	turnobject RADIOTOWER2F_BUENA, RIGHT
@@ -187,7 +187,7 @@ Buena:
 	end
 
 .PlayedAlready:
-	writetext UnknownText_0x5df6c
+	writetext RadioTower2FBuenaAlreadyPlayedText
 	waitbutton
 	closetext
 	checkcellnum PHONE_BUENA
@@ -202,13 +202,13 @@ Buena:
 .WrongAnswer:
 	setflag ENGINE_BUENAS_PASSWORD_2
 	opentext
-	writetext UnknownText_0x5e01c
+	writetext RadioTower2FBuenaDidYouForgetText
 	waitbutton
 	closetext
 	turnobject RADIOTOWER2F_BUENA, RIGHT
 	pause 20
 	opentext
-	writetext UnknownText_0x5e054
+	writetext RadioTower2FBuenaThanksForComingText
 	waitbutton
 	closetext
 	turnobject RADIOTOWER2F_BUENA, RIGHT
@@ -218,13 +218,13 @@ Buena:
 	end
 
 .MidRocketTakeover:
-	writetext UnknownText_0x5e0c2
+	writetext RadioTower2FBuenaPasswordIsHelpText
 	waitbutton
 	closetext
 	end
 
 .NoBlueCard:
-	writetext UnknownText_0x5e192
+	writetext RadioTower2FBuenaNoBlueCardText
 	waitbutton
 	closetext
 	checkcellnum PHONE_BUENA
@@ -236,7 +236,7 @@ Buena:
 	end
 
 .BlueCardCapped0:
-	writetext UnknownText_0x5e0f1
+	writetext RadioTower2FBuenaCardIsFullText
 	waitbutton
 	closetext
 	checkcellnum PHONE_BUENA
@@ -248,7 +248,7 @@ Buena:
 	end
 
 .TooEarly:
-	writetext UnknownText_0x5e131
+	writetext RadioTower2FBuenaTuneInAfterSixText
 	waitbutton
 	closetext
 	checkcellnum PHONE_BUENA
@@ -272,21 +272,21 @@ Buena:
 	setevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
 	setevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER
 	opentext
-	writetext UnknownText_0x5e1ee
+	writetext RadioTower2FBuenaOfferPhoneNumberText
 	sjump .AskForNumber
 
 .OfferedNumberBefore:
 	opentext
-	writetext UnknownText_0x5e2bf
+	writetext RadioTower2FBuenaOfferNumberAgainText
 .AskForNumber:
 	askforphonenumber PHONE_BUENA
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
-	writetext UnknownText_0x5e2f3
+	writetext RadioTower2FRegisteredBuenasNumberText
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitsfx
 	buttonsound
-	writetext UnknownText_0x5e310
+	writetext RadioTower2FBuenaCallMeText
 	waitbutton
 	closetext
 	turnobject RADIOTOWER2F_BUENA, RIGHT
@@ -294,14 +294,14 @@ Buena:
 	end
 
 .NumberDeclined:
-	writetext UnknownText_0x5e33c
+	writetext RadioTower2FBuenaSadRejectedText
 	waitbutton
 	closetext
 	turnobject RADIOTOWER2F_BUENA, RIGHT
 	end
 
 .PhoneFull:
-	writetext UnknownText_0x5e35e
+	writetext RadioTower2FBuenaYourPhoneIsFullText
 	waitbutton
 	closetext
 	turnobject RADIOTOWER2F_BUENA, RIGHT
@@ -313,14 +313,14 @@ RadioTowerBuenaPrizeReceptionist:
 	opentext
 	checkitem BLUE_CARD
 	iffalse .NoCard
-	writetext UnknownText_0x5e392
+	writetext RadioTower2FBuenaReceptionistPointsForPrizesText
 	buttonsound
 	special BuenaPrize
 	closetext
 	end
 
 .NoCard:
-	writetext UnknownText_0x5e3d8
+	writetext RadioTower2FBuenaReceptionistNoCardText
 	buttonsound
 	closetext
 	end
@@ -337,7 +337,7 @@ RadioTower2FPokemonRadioSign:
 RadioTower2FBookshelf:
 	jumpstd magazinebookshelf
 
-MovementData_0x5d921:
+RadioTower2FPlayerWalksToMicrophoneMovement:
 	slow_step DOWN
 	slow_step RIGHT
 	step_end
@@ -468,7 +468,7 @@ GruntF2AfterBattleText:
 	line "I won't forget it!"
 	done
 
-UnknownText_0x5dcf4:
+RadioTower2FBuenaShowIntroductionText:
 	text "BUENA: Hi! I'm"
 	line "BUENA!"
 
@@ -497,12 +497,12 @@ UnknownText_0x5dcf4:
 	line "point card!"
 	done
 
-UnknownText_0x5de10:
+RadioTower2FBuenaTuneInToMyShowText:
 	text "BUENA: Tune in to"
 	line "my PASSWORD SHOW!"
 	done
 
-UnknownText_0x5de35:
+RadioTower2FBuenaDoYouKnowPasswordText:
 	text "BUENA: Hi!"
 	line "Did you tune in to"
 	cont "my radio show?"
@@ -511,7 +511,7 @@ UnknownText_0x5de35:
 	line "today's password?"
 	done
 
-UnknownText_0x5de84:
+RadioTower2FBuenaJoinTheShowText:
 	text "BUENA: Oh, wow!"
 	line "Thank you!"
 
@@ -524,7 +524,7 @@ UnknownText_0x5de84:
 	line "Join the show."
 	done
 
-UnknownText_0x5dedd:
+RadioTower2FBuenaEveryoneSayPasswordText:
 	text "BUENA: Everyone"
 	line "ready?"
 
@@ -535,7 +535,7 @@ UnknownText_0x5dedd:
 	line "<PLAY_G>!"
 	done
 
-UnknownText_0x5df29:
+RadioTower2FBuenaComeBackAfterListeningText:
 	text "BUENA: Come back"
 	line "after you listen"
 
@@ -543,7 +543,7 @@ UnknownText_0x5df29:
 	line "Catch ya later!"
 	done
 
-UnknownText_0x5df6c:
+RadioTower2FBuenaAlreadyPlayedText:
 	text "BUENA: Sorry…"
 
 	para "You get just one"
@@ -553,7 +553,7 @@ UnknownText_0x5df6c:
 	line "for another try!"
 	done
 
-UnknownText_0x5dfc1:
+RadioTower2FBuenaCorrectAnswerText:
 	text "BUENA: YIPPEE!"
 	line "That's right!"
 
@@ -564,7 +564,7 @@ UnknownText_0x5dfc1:
 	line "point! Congrats!"
 	done
 
-UnknownText_0x5e01c:
+RadioTower2FBuenaDidYouForgetText:
 	text "BUENA: Aww…"
 	line "That's not it…"
 
@@ -572,7 +572,7 @@ UnknownText_0x5e01c:
 	line "password?"
 	done
 
-UnknownText_0x5e054:
+RadioTower2FBuenaThanksForComingText:
 	text "BUENA: Yup! Our"
 	line "contestant was"
 
@@ -586,14 +586,14 @@ UnknownText_0x5e054:
 	line "I'll be waiting!"
 	done
 
-UnknownText_0x5e0c2:
+RadioTower2FBuenaPasswordIsHelpText:
 	text "BUENA: Huh?"
 	line "Today's password?"
 
 	para "HELP, of course!"
 	done
 
-UnknownText_0x5e0f1:
+RadioTower2FBuenaCardIsFullText:
 	text "BUENA: Your BLUE"
 	line "CARD's full."
 
@@ -601,7 +601,7 @@ UnknownText_0x5e0f1:
 	line "fabulous prize!"
 	done
 
-UnknownText_0x5e131:
+RadioTower2FBuenaTuneInAfterSixText:
 	text "BUENA: Tune in to"
 	line "PASSWORD every"
 
@@ -612,7 +612,7 @@ UnknownText_0x5e131:
 	line "in for a visit!"
 	done
 
-UnknownText_0x5e192:
+RadioTower2FBuenaNoBlueCardText:
 	text "BUENA: Oh? You"
 	line "forgot to bring"
 	cont "your BLUE CARD?"
@@ -622,7 +622,7 @@ UnknownText_0x5e192:
 	cont "don't have it."
 	done
 
-UnknownText_0x5e1ee:
+RadioTower2FBuenaOfferPhoneNumberText:
 	text "BUENA: Oh! Your"
 	line "BLUE CARD reached"
 
@@ -643,7 +643,7 @@ UnknownText_0x5e1ee:
 	line "my phone number?"
 	done
 
-UnknownText_0x5e2bf:
+RadioTower2FBuenaOfferNumberAgainText:
 	text "BUENA: <PLAY_G>,"
 	line "do you want to"
 
@@ -651,23 +651,23 @@ UnknownText_0x5e2bf:
 	line "number?"
 	done
 
-UnknownText_0x5e2f3:
+RadioTower2FRegisteredBuenasNumberText:
 	text "<PLAYER> registered"
 	line "BUENA's number."
 	done
 
-UnknownText_0x5e310:
+RadioTower2FBuenaCallMeText:
 	text "BUENA: I look"
 	line "forward to hearing"
 	cont "from you!"
 	done
 
-UnknownText_0x5e33c:
+RadioTower2FBuenaSadRejectedText:
 	text "BUENA: Aww… It's a"
 	line "special prize…"
 	done
 
-UnknownText_0x5e35e:
+RadioTower2FBuenaYourPhoneIsFullText:
 	text "BUENA: <PLAY_G>,"
 	line "your phone list"
 
@@ -675,7 +675,7 @@ UnknownText_0x5e35e:
 	line "for me…"
 	done
 
-UnknownText_0x5e392:
+RadioTower2FBuenaReceptionistPointsForPrizesText:
 	text "You can cash in"
 	line "your saved points"
 
@@ -683,7 +683,7 @@ UnknownText_0x5e392:
 	line "of your choice!"
 	done
 
-UnknownText_0x5e3d8:
+RadioTower2FBuenaReceptionistNoCardText:
 	text "You can't trade in"
 	line "points without"
 	cont "your BLUE CARD."
