@@ -52,7 +52,7 @@ Route35NationalParkGate_MapScripts:
 	return
 
 .LeavingContestEarly:
-	applymovement PLAYER, MovementData_0x6a2e2
+	applymovement PLAYER, Route35NationalParkGatePlayerApproachOfficer1Movement
 	turnobject ROUTE35NATIONALPARKGATE_OFFICER1, RIGHT
 	opentext
 	readvar VAR_CONTESTMINUTES
@@ -118,11 +118,11 @@ Route35NationalParkGate_OkayToProceed:
 Route35NationalParkGate_EnterContest:
 	readvar VAR_FACING
 	ifequal LEFT, Route35NationalParkGate_FacingLeft
-	applymovement PLAYER, MovementData_0x6a2e5
+	applymovement PLAYER, Route35NationalParkGatePlayerGoAroundOfficerAndEnterParkMovement
 	end
 
 Route35NationalParkGate_FacingLeft:
-	applymovement PLAYER, MovementData_0x6a2e9
+	applymovement PLAYER, Route35NationalParkGatePlayerEnterParkMovement
 	end
 
 Route35NationalParkGate_LeaveTheRestBehind:
@@ -207,18 +207,18 @@ Route35NationalParkGate_GetDayOfWeek:
 	jumpstd daytotext
 	end
 
-MovementData_0x6a2e2:
+Route35NationalParkGatePlayerApproachOfficer1Movement:
 	step DOWN
 	turn_head LEFT
 	step_end
 
-MovementData_0x6a2e5:
+Route35NationalParkGatePlayerGoAroundOfficerAndEnterParkMovement:
 	step RIGHT
 	step UP
 	step UP
 	step_end
 
-MovementData_0x6a2e9:
+Route35NationalParkGatePlayerEnterParkMovement:
 	step UP
 	step_end
 

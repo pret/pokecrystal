@@ -78,7 +78,7 @@ Route36NationalParkGate_MapScripts:
 	scall .CopyContestants
 	disappear ROUTE36NATIONALPARKGATE_OFFICER1
 	appear ROUTE36NATIONALPARKGATE_OFFICER2
-	applymovement PLAYER, MovementData_0x6add1
+	applymovement PLAYER, Route36NationalParkGatePlayerWaitWithContestantsMovement
 	pause 15
 	special FadeInQuickly
 	jumpstd bugcontestresults
@@ -467,7 +467,7 @@ UnusedBugCatchingContestExplanationSign:
 ; duplicate of BugCatchingContestExplanationSign in Route35NationalParkGate.asm
 	jumptext UnusedBugCatchingContestExplanationText
 
-MovementData_0x6add1:
+Route36NationalParkGatePlayerWaitWithContestantsMovement:
 	big_step DOWN
 	big_step RIGHT
 	turn_head UP
