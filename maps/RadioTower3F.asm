@@ -51,30 +51,30 @@ RadioTower3FCooltrainerFScript:
 	iftrue .NoRockets
 	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	iftrue .UsedCardKey
-	writetext UnknownText_0x5e754
+	writetext RadioTower3FCooltrainerFPleaseSaveDirectorText
 	waitbutton
 	closetext
 	end
 
 .UsedCardKey:
-	writetext UnknownText_0x5e7cb
+	writetext RadioTower3FCooltrainerFIsDirectorSafeText
 	waitbutton
 	closetext
 	end
 
 .NoRockets:
-	writetext UnknownText_0x5e7e2
+	writetext RadioTower3FCooltrainerFYoureMyHeroText
 	buttonsound
 	verbosegiveitem TM_SUNNY_DAY
 	iffalse .NoRoom
-	writetext UnknownText_0x5e821
+	writetext RadioTower3FCooltrainerFItsSunnyDayText
 	waitbutton
 	closetext
 	setevent EVENT_GOT_SUNNY_DAY_FROM_RADIO_TOWER
 	end
 
 .GotSunnyDay:
-	writetext UnknownText_0x5e85c
+	writetext RadioTower3FCooltrainerFYouWereMarvelousText
 	waitbutton
 .NoRoom:
 	closetext
@@ -189,7 +189,7 @@ RadioTower3FGymGuyText:
 	cont "clock too!"
 	done
 
-UnknownText_0x5e754:
+RadioTower3FCooltrainerFPleaseSaveDirectorText:
 	text "The TEAM ROCKET"
 	line "boss has locked"
 	cont "himself in."
@@ -203,12 +203,12 @@ UnknownText_0x5e754:
 	para "Please save him!"
 	done
 
-UnknownText_0x5e7cb:
+RadioTower3FCooltrainerFIsDirectorSafeText:
 	text "Is the DIRECTOR"
 	line "safe?"
 	done
 
-UnknownText_0x5e7e2:
+RadioTower3FCooltrainerFYoureMyHeroText:
 	text "Thank you!"
 	line "You're my hero!"
 
@@ -216,14 +216,14 @@ UnknownText_0x5e7e2:
 	line "my appreciation."
 	done
 
-UnknownText_0x5e821:
+RadioTower3FCooltrainerFItsSunnyDayText:
 	text "It's SUNNY DAY."
 	line "It powers up fire-"
 	cont "type moves for a"
 	cont "while."
 	done
 
-UnknownText_0x5e85c:
+RadioTower3FCooltrainerFYouWereMarvelousText:
 	text "You were simply"
 	line "marvelous!"
 	done
