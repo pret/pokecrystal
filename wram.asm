@@ -2513,10 +2513,9 @@ wNumBalls:: db ; d8d7
 wBalls:: ds MAX_BALLS * 2 + 1 ; d8d8
 wBallsEnd::
 
+wNumPCItems:: db
 wPCItems:: ds MAX_PC_ITEMS * 2 + 1 ; d8f1
 wPCItemsEnd::
-
-	ds 1
 
 wPokegearFlags::
 ; bit 0: map
