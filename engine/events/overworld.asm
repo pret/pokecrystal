@@ -500,7 +500,7 @@ TrySurfOW::
 	jr z, .quit
 
 ; Must be facing water.
-	ld a, [wEngineBuffer1]
+	ld a, [wFacingTileID]
 	call GetTileCollision
 	cp WATERTILE
 	jr nz, .quit

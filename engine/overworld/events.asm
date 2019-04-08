@@ -602,8 +602,8 @@ TryObjectEvent:
 	ld h, [hl]
 	ld l, a
 	call GetMapScriptsBank
-	ld de, wEngineBuffer1
-	ld bc, 2
+	ld de, wItemBallData
+	ld bc, wItemBallDataEnd - wItemBallData
 	call FarCopyBytes
 	ld a, PLAYEREVENT_ITEMBALL
 	scf
@@ -638,7 +638,7 @@ TryBGEvent:
 	ret
 
 .is_bg_event:
-	ld a, [wEngineBuffer3]
+	ld a, [wCurBGEventType]
 	ld hl, .bg_events
 	rst JumpTable
 	ret
@@ -675,7 +675,7 @@ TryBGEvent:
 
 .read
 	call PlayTalkObject
-	ld hl, wEngineBuffer4
+	ld hl, wCurBGEventScriptAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -689,8 +689,8 @@ TryBGEvent:
 	jp nz, .dontread
 	call PlayTalkObject
 	call GetMapScriptsBank
-	ld de, wEngineBuffer1
-	ld bc, 3
+	ld de, wHiddenItemData
+	ld bc, wHiddenItemDataEnd - wHiddenItemData
 	call FarCopyBytes
 	ld a, BANK(HiddenItemScript)
 	ld hl, HiddenItemScript
@@ -702,8 +702,8 @@ TryBGEvent:
 	call CheckBGEventFlag
 	jr nz, .dontread
 	call GetMapScriptsBank
-	ld de, wEngineBuffer1
-	ld bc, 3
+	ld de, wHiddenItemData
+	ld bc, wHiddenItemDataEnd - wHiddenItemData
 	call FarCopyBytes
 	jr .dontread
 
@@ -734,7 +734,7 @@ TryBGEvent:
 	ret
 
 CheckBGEventFlag:
-	ld hl, wEngineBuffer4
+	ld hl, wCurBGEventScriptAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1076,7 +1076,7 @@ LoadScriptBDE::
 
 TryTileCollisionEvent::
 	call GetFacingTileCoord
-	ld [wEngineBuffer1], a
+	ld [wFacingTileID], a
 	ld c, a
 	farcall CheckFacingTileForStdScript
 	jr c, .done
@@ -1087,21 +1087,21 @@ TryTileCollisionEvent::
 	jr .done
 
 .whirlpool
-	ld a, [wEngineBuffer1]
+	ld a, [wFacingTileID]
 	call CheckWhirlpoolTile
 	jr nz, .waterfall
 	farcall TryWhirlpoolOW
 	jr .done
 
 .waterfall
-	ld a, [wEngineBuffer1]
+	ld a, [wFacingTileID]
 	call CheckWaterfallTile
 	jr nz, .headbutt
 	farcall TryWaterfallOW
 	jr .done
 
 .headbutt
-	ld a, [wEngineBuffer1]
+	ld a, [wFacingTileID]
 	call CheckHeadbuttTreeTile
 	jr nz, .surf
 	farcall TryHeadbuttOW

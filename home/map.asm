@@ -1782,7 +1782,7 @@ CheckFacingBGEvent::
 	ret
 
 CheckIfFacingTileCoordIsBGEvent::
-; Checks to see if you are facing a BG event.  If so, copies it into wEngineBuffer1 and sets carry.
+; Checks to see if you are facing a BG event.  If so, copies it into wCurBGEvent and sets carry.
 	ld hl, wCurMapBGEventsPointer
 	ld a, [hli]
 	ld h, [hl]
@@ -1813,7 +1813,7 @@ CheckIfFacingTileCoordIsBGEvent::
 
 .copysign
 	pop hl
-	ld de, wCurBGEventYCoord
+	ld de, wCurBGEvent
 	ld bc, BG_EVENT_SIZE
 	call CopyBytes
 	scf
@@ -1836,7 +1836,7 @@ CheckCurrentMapCoordEvents::
 	ret
 
 .CoordEventCheck:
-; Checks to see if you are standing on a coord event.  If yes, copies the event to wEngineBuffer1 and sets carry.
+; Checks to see if you are standing on a coord event.  If yes, copies the event to wCurCoordEvent and sets carry.
 	ld hl, wCurMapCoordEventsPointer
 	ld a, [hli]
 	ld h, [hl]
@@ -1885,7 +1885,7 @@ CheckCurrentMapCoordEvents::
 
 .copy_coord_event
 	pop hl
-	ld de, wCurCoordEventSceneID
+	ld de, wCurCoordEvent
 	ld bc, COORD_EVENT_SIZE
 	call CopyBytes
 	scf

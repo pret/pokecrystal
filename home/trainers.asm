@@ -95,31 +95,31 @@ _CheckTrainerBattle::
 	pop af
 	ldh [hLastTalked], a
 	ld a, b
-	ld [wEngineBuffer2], a
+	ld [wSeenTrainerDistance], a
 	ld a, c
-	ld [wEngineBuffer3], a
+	ld [wSeenTrainerDirection], a
 	jr LoadTrainer_continue
 
 TalkToTrainer::
 	ld a, 1
-	ld [wEngineBuffer2], a
+	ld [wSeenTrainerDistance], a
 	ld a, -1
-	ld [wEngineBuffer3], a
+	ld [wSeenTrainerDirection], a
 
 LoadTrainer_continue::
 	call GetMapScriptsBank
-	ld [wEngineBuffer1], a
+	ld [wSeenTrainerBank], a
 
 	ldh a, [hLastTalked]
 	call GetMapObject
 
 	ld hl, MAPOBJECT_SCRIPT_POINTER
 	add hl, bc
-	ld a, [wEngineBuffer1]
+	ld a, [wSeenTrainerBank]
 	call GetFarHalfword
 	ld de, wTempTrainer
 	ld bc, wTempTrainerEnd - wTempTrainer
-	ld a, [wEngineBuffer1]
+	ld a, [wSeenTrainerBank]
 	call FarCopyBytes
 	xor a
 	ld [wRunningTrainerBattleScript], a
@@ -136,7 +136,7 @@ FacingPlayerDistance_bc::
 
 FacingPlayerDistance::
 ; Return carry if the sprite at bc is facing the player,
-; and its distance in d.
+; its distance in d, and its direction in e.
 
 	ld hl, OBJECT_NEXT_MAP_X ; x
 	add hl, bc

@@ -489,7 +489,7 @@ If <code><i>item_id</i></code> = `USE_SCRIPT_VAR`, then it uses `[wScriptVar]` i
 ## `$93`: `endall`
 
 
-## `$94`: <code>pokemart <i>dialog_id</i>, <i>mart_id</i></code>
+## `$94`: <code>pokemart <i>mart_type</i>, <i>mart_id</i></code>
 
 
 ## `$95`: <code>elevator <i>floor_list</i></code>

@@ -12,7 +12,7 @@ RepelWoreOffScript::
 
 HiddenItemScript::
 	opentext
-	readmem wEngineBuffer3
+	readmem wHiddenItemID
 	getitemname STRING_BUFFER_3, USE_SCRIPT_VAR
 	writetext .found_text
 	giveitem ITEM_FROM_MEM
@@ -42,7 +42,7 @@ HiddenItemScript::
 	text_end
 
 SetMemEvent:
-	ld hl, wEngineBuffer1
+	ld hl, wHiddenItemEvent
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a

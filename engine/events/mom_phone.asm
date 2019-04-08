@@ -39,13 +39,13 @@ MomTriesToBuySomething::
 .ok
 	ld a, PHONE_MOM
 	ld [wCurCaller], a
-	ld bc, wEngineBuffer2
-	ld hl, 0
+	ld bc, wCallerContact
+	ld hl, PHONE_CONTACT_TRAINER_CLASS
 	add hl, bc
-	ld [hl], 0
+	ld [hl], TRAINER_NONE
 	inc hl
-	ld [hl], 1
-	ld hl, wPhoneScriptPointer - wEngineBuffer2
+	ld [hl], PHONE_MOM
+	ld hl, PHONE_CONTACT_SCRIPT2_BANK
 	add hl, bc
 	ld a, BANK(Mom_GetScriptPointer)
 	ld [hli], a

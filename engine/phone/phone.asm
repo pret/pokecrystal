@@ -163,12 +163,13 @@ CheckPhoneContactTimeOfDay:
 
 ChooseRandomCaller:
 ; If no one is available to call, don't return anything.
-	ld a, [wEngineBuffer3]
+	ld a, [wNumAvailableCallers]
 	and a
 	jr z, .NothingToSample
 
-; Sample a random number between 0 and 31.
+; Store the number of available callers in c.
 	ld c, a
+; Sample a random number between 0 and 31.
 	call Random
 	ldh a, [hRandomAdd]
 	swap a
@@ -178,7 +179,7 @@ ChooseRandomCaller:
 ; Return the caller ID you just sampled.
 	ld c, a
 	ld b, 0
-	ld hl, wEngineBuffer4
+	ld hl, wAvailableCallers
 	add hl, bc
 	ld a, [hl]
 	scf
@@ -191,23 +192,23 @@ ChooseRandomCaller:
 GetAvailableCallers:
 	farcall CheckTime
 	ld a, c
-	ld [wEngineBuffer1], a
-	ld hl, wEngineBuffer3
-	ld bc, 11
+	ld [wCheckedTime], a
+	ld hl, wNumAvailableCallers
+	ld bc, CONTACT_LIST_SIZE + 1
 	xor a
 	call ByteFill
 	ld de, wPhoneList
 	ld a, CONTACT_LIST_SIZE
 
 .loop
-	ld [wEngineBuffer2], a
+	ld [wPhoneListIndex], a
 	ld a, [de]
 	and a
 	jr z, .not_good_for_call
 	ld hl, PhoneContacts + PHONE_CONTACT_SCRIPT2_TIME
-	ld bc, PHONE_TABLE_WIDTH
+	ld bc, PHONE_CONTACT_SIZE
 	call AddNTimes
-	ld a, [wEngineBuffer1]
+	ld a, [wCheckedTime]
 	and [hl]
 	jr z, .not_good_for_call
 	ld bc, PHONE_CONTACT_MAP_GROUP - PHONE_CONTACT_SCRIPT2_TIME
@@ -220,18 +221,18 @@ GetAvailableCallers:
 	cp [hl]
 	jr z, .not_good_for_call
 .different_map
-	ld a, [wEngineBuffer3]
+	ld a, [wNumAvailableCallers]
 	ld c, a
 	ld b, $0
 	inc a
-	ld [wEngineBuffer3], a
-	ld hl, wEngineBuffer4
+	ld [wNumAvailableCallers], a
+	ld hl, wAvailableCallers
 	add hl, bc
 	ld a, [de]
 	ld [hl], a
 .not_good_for_call
 	inc de
-	ld a, [wEngineBuffer2]
+	ld a, [wPhoneListIndex]
 	dec a
 	jr nz, .loop
 	ret
@@ -261,7 +262,7 @@ CheckSpecialPhoneCall::
 	push hl
 	call LoadCallerScript
 	pop hl
-	ld de, wPhoneScriptPointer
+	ld de, wCallerContact + PHONE_CONTACT_SCRIPT2_BANK
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -323,7 +324,7 @@ Function90199:
 	ld a, b
 	ld [wCurCaller], a
 	ld hl, PhoneContacts
-	ld bc, PHONE_TABLE_WIDTH
+	ld bc, PHONE_CONTACT_SIZE
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -398,13 +399,13 @@ LoadCallerScript:
 
 .actualcaller
 	ld hl, PhoneContacts
-	ld bc, 12
+	ld bc, PHONE_CONTACT_SIZE
 	ld a, e
 	call AddNTimes
 	ld a, BANK(PhoneContacts)
 .proceed
-	ld de, wEngineBuffer2
-	ld bc, 12
+	ld de, wCallerContact
+	ld bc, PHONE_CONTACT_SIZE
 	call FarCopyBytes
 	ret
 
@@ -422,7 +423,7 @@ WrongNumber:
 Script_ReceivePhoneCall:
 	refreshscreen
 	callasm RingTwice_StartCall
-	memcall wPhoneScriptPointer
+	memcall wCallerContact + PHONE_CONTACT_SCRIPT2_BANK
 	waitbutton
 	callasm HangUp
 	closetext
@@ -620,7 +621,7 @@ CheckCanDeletePhoneNumber:
 GetCallerTrainerClass:
 	push hl
 	ld hl, PhoneContacts + PHONE_CONTACT_TRAINER_CLASS
-	ld bc, PHONE_TABLE_WIDTH
+	ld bc, PHONE_CONTACT_SIZE
 	call AddNTimes
 	ld a, [hli]
 	ld b, [hl]
@@ -687,7 +688,7 @@ GetCallerLocation:
 	push de
 	ld a, [wCurCaller]
 	ld hl, PhoneContacts + PHONE_CONTACT_MAP_GROUP
-	ld bc, PHONE_TABLE_WIDTH
+	ld bc, PHONE_CONTACT_SIZE
 	call AddNTimes
 	ld b, [hl]
 	inc hl

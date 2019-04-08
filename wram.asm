@@ -755,7 +755,6 @@ wc668:: ds 32
 wc688:: ds 2
 wc68a:: ds 4
 	ds 66
-
 ENDU ; c6d0
 
 ; This union spans 280 bytes from c6d0 to c7e8.
@@ -1765,55 +1764,10 @@ wd036:: ds 2
 	ds 6
 
 UNION ; d03e
-; engine buffers
-wEngineBuffer1:: db
-wEngineBuffer2:: db
-wEngineBuffer3:: db
-wEngineBuffer4:: db
-wEngineBuffer5:: db
-
-NEXTU ; d03e
-; menu items list
-wMenuItemsList:: ds 16
-wMenuItemsListEnd::
-
-NEXTU ; d03e
-; fruit tree data
-wCurFruitTree:: db
-wCurFruit:: db
-
-NEXTU ; d03e
-; elevator data
-wElevatorPointerBank:: db
-wElevatorPointer:: dw
-wElevatorOriginFloor:: db
-
-NEXTU ; d03e
-; coord event data
-wCurCoordEventSceneID:: db
-wCurCoordEventMapY:: db
-wCurCoordEventMapX:: db
-	ds 1
-wCurCoordEventScriptAddr:: dw
-
-NEXTU ; d03e
-; BG event data
-wCurBGEventYCoord:: db
-wCurBGEventXCoord:: db
-wCurBGEventType:: db
-wCurBGEventScriptAddr:: dw
-
-NEXTU ; d03e
-; mart data
-	ds 1
-wMartPointerBank:: db
-wMartPointer:: dw
-	ds 1
-wBargainShopFlags:: db
-
-NEXTU ; d03e
 ; trainer data
-	ds 3
+wSeenTrainerBank:: db
+wSeenTrainerDistance:: db
+wSeenTrainerDirection:: db
 wTempTrainer::
 wTempTrainerEventFlag:: dw
 wTempTrainerClass:: db
@@ -1826,11 +1780,69 @@ wRunningTrainerBattleScript:: db
 wTempTrainerEnd::
 
 NEXTU ; d03e
+; menu items list
+wMenuItemsList:: ds 16
+wMenuItemsListEnd::
+
+NEXTU ; d03e
+; fruit tree data
+wCurFruitTree:: db
+wCurFruit:: db
+
+NEXTU ; d03e
+; item ball data
+wItemBallData::
+wItemBallItemID:: db
+wItemBallQuantity:: db
+wItemBallDataEnd::
+
+NEXTU ; d03e
+; hidden item data
+wHiddenItemData::
+wHiddenItemEvent:: dw
+wHiddenItemID:: db
+wHiddenItemDataEnd::
+
+NEXTU ; d03e
+; elevator data
+wElevatorData::
+wElevatorPointerBank:: db
+wElevatorPointer:: dw
+wElevatorOriginFloor:: db
+wElevatorDataEnd::
+
+NEXTU ; d03e
+; coord event data
+wCurCoordEvent::
+wCurCoordEventSceneID:: db
+wCurCoordEventMapY:: db
+wCurCoordEventMapX:: db
+	ds 1
+wCurCoordEventScriptAddr:: dw
+
+NEXTU ; d03e
+; BG event data
+wCurBGEvent::
+wCurBGEventYCoord:: db
+wCurBGEventXCoord:: db
+wCurBGEventType:: db
+wCurBGEventScriptAddr:: dw
+
+NEXTU ; d03e
+; mart data
+wMartType:: db
+wMartPointerBank:: db
+wMartPointer:: dw
+wMartJumptableIndex:: db
+wBargainShopFlags:: db
+
+NEXTU ; d03e
 ; player movement data
-wCurInput:: db
-wd03f:: db
-wd040:: db
-wd041:: db
+wCurInput::
+wFacingTileID:: db
+wWalkingIntoNPC:: db
+wWalkingIntoLand:: db
+wWalkingIntoEdgeWarp:: db
 wMovementAnimation:: db
 wWalkingDirection:: db
 wFacingDirection:: db
@@ -1846,17 +1858,32 @@ NEXTU ; d03e
 wJumpStdScriptBuffer:: ds 3
 
 NEXTU ; d03e
-; phone script pointer
-	ds 10
-wPhoneScriptPointer:: dw
+; phone script data
+wCheckedTime:: db
+wPhoneListIndex:: db
+wNumAvailableCallers:: db
+wAvailableCallers:: ds CONTACT_LIST_SIZE
+
+NEXTU ; d03e
+; phone caller contact
+	ds 1
+wCallerContact:: ds PHONE_CONTACT_SIZE
 
 NEXTU ; d03e
 ; backup menu data
 	ds 7
 wMenuCursorBufferBackup:: db
 wMenuScrollPositionBackup:: db
-	ds 31
-ENDU ; d066
+
+NEXTU ; d03e
+; poison step data
+wPoisonStepData::
+wPoisonStepFlagSum:: db
+wPoisonStepPartyFlags:: ds PARTY_LENGTH
+wPoisonStepDataEnd::
+ENDU ; d04f
+
+	ds 23
 ENDU ; d066
 
 wTMHMMoveNameBackup:: ds MOVE_NAME_LENGTH ; d066

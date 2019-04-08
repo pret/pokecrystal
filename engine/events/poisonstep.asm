@@ -4,29 +4,29 @@ DoPoisonStep::
 	jr z, .no_faint
 
 	xor a
-	ld c, 7
-	ld hl, wEngineBuffer1
-.loop_clearEngineBuffer1
+	ld c, wPoisonStepDataEnd - wPoisonStepData
+	ld hl, wPoisonStepData
+.loop_clearPoisonStepData
 	ld [hli], a
 	dec c
-	jr nz, .loop_clearEngineBuffer1
+	jr nz, .loop_clearPoisonStepData
 
 	xor a
 	ld [wCurPartyMon], a
 .loop_check_poison
 	call .DamageMonIfPoisoned
 	jr nc, .not_poisoned
-; the output flag is stored in c, copy it to the ([wCurPartyMon] + 2)nd EngineBuffer
-; and set the corresponding flag in wEngineBuffer1
+; the output flag is stored in c, copy it to [wPoisonStepPartyFlags + [wCurPartyMon]]
+; and set the corresponding flag in wPoisonStepFlagSum
 	ld a, [wCurPartyMon]
 	ld e, a
 	ld d, 0
-	ld hl, wEngineBuffer2
+	ld hl, wPoisonStepPartyFlags
 	add hl, de
 	ld [hl], c
-	ld a, [wEngineBuffer1]
+	ld a, [wPoisonStepFlagSum]
 	or c
-	ld [wEngineBuffer1], a
+	ld [wPoisonStepFlagSum], a
 
 .not_poisoned
 	ld a, [wPartyCount]
@@ -35,10 +35,10 @@ DoPoisonStep::
 	cp [hl]
 	jr nz, .loop_check_poison
 
-	ld a, [wEngineBuffer1]
+	ld a, [wPoisonStepFlagSum]
 	and %10
 	jr nz, .someone_has_fainted
-	ld a, [wEngineBuffer1]
+	ld a, [wPoisonStepFlagSum]
 	and %01
 	jr z, .no_faint
 	call .PlayPoisonSFX
@@ -120,7 +120,7 @@ DoPoisonStep::
 .CheckWhitedOut:
 	xor a
 	ld [wCurPartyMon], a
-	ld de, wEngineBuffer2
+	ld de, wPoisonStepPartyFlags
 .party_loop
 	push de
 	ld a, [de]

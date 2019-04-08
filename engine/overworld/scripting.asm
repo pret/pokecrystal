@@ -637,7 +637,7 @@ PocketIsFullText:
 
 Script_pokemart:
 ; script command 0x94
-; parameters: dialog_id, mart_id
+; parameters: mart_type, mart_id
 
 	call GetScriptByte
 	ld c, a
@@ -765,7 +765,7 @@ Script_trainertext:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wEngineBuffer1]
+	ld a, [wSeenTrainerBank]
 	ld b, a
 	call MapTextbox
 	ret
@@ -777,7 +777,7 @@ Script_scripttalkafter:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wEngineBuffer1]
+	ld a, [wSeenTrainerBank]
 	ld b, a
 	jp ScriptJump
 
@@ -787,7 +787,7 @@ Script_trainerflagaction:
 
 	xor a
 	ld [wScriptVar], a
-	ld hl, wd041
+	ld hl, wTempTrainerEventFlag
 	ld e, [hl]
 	inc hl
 	ld d, [hl]

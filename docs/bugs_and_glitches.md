@@ -1276,7 +1276,7 @@ Finally, edit [engine/battle/read_trainer_party.asm](https://github.com/pret/pok
  .CheckWarp:
 -; Bug: Since no case is made for STANDING here, it will check
 -; [.edgewarps + $ff]. This resolves to $3e at $8035a.
--; This causes wd041 to be nonzero when standing on tile $3e,
+-; This causes wWalkingIntoEdgeWarp to be nonzero when standing on tile $3e,
 -; making bumps silent.
 -
  	ld a, [wWalkingDirection]
@@ -1292,8 +1292,8 @@ Finally, edit [engine/battle/read_trainer_party.asm](https://github.com/pret/pok
  	cp [hl]
  	jr nz, .not_warp
 
- 	ld a, 1
- 	ld [wd041], a
+ 	ld a, TRUE
+ 	ld [wWalkingIntoEdgeWarp], a
  	ld a, [wWalkingDirection]
 -	; This is in the wrong place.
 -	cp STANDING

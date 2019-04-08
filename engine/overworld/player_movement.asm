@@ -4,7 +4,7 @@ DoPlayerMovement::
 	ld a, movement_step_sleep
 	ld [wMovementAnimation], a
 	xor a
-	ld [wd041], a
+	ld [wWalkingIntoEdgeWarp], a
 	call .TranslateIntoMovement
 	ld c, a
 	ld a, [wMovementAnimation]
@@ -98,7 +98,7 @@ DoPlayerMovement::
 	jr z, .Standing
 
 ; Walking into an edge warp won't bump.
-	ld a, [wEngineBuffer4]
+	ld a, [wWalkingIntoEdgeWarp]
 	and a
 	jr nz, .CantMove
 	call .BumpSound
@@ -321,17 +321,17 @@ DoPlayerMovement::
 
 .TrySurf:
 	call .CheckSurfPerms
-	ld [wd040], a
+	ld [wWalkingIntoLand], a
 	jr c, .surf_bump
 
 	call .CheckNPC
-	ld [wd03f], a
+	ld [wWalkingIntoNPC], a
 	and a
 	jr z, .surf_bump
 	cp 2
 	jr z, .surf_bump
 
-	ld a, [wd040]
+	ld a, [wWalkingIntoLand]
 	and a
 	jr nz, .ExitWater
 
@@ -395,7 +395,7 @@ DoPlayerMovement::
 .CheckWarp:
 ; Bug: Since no case is made for STANDING here, it will check
 ; [.edgewarps + $ff]. This resolves to $3e at $8035a.
-; This causes wd041 to be nonzero when standing on tile $3e,
+; This causes wWalkingIntoEdgeWarp to be nonzero when standing on tile $3e,
 ; making bumps silent.
 
 	ld a, [wWalkingDirection]
@@ -409,8 +409,8 @@ DoPlayerMovement::
 	cp [hl]
 	jr nz, .not_warp
 
-	ld a, 1
-	ld [wd041], a
+	ld a, TRUE
+	ld [wWalkingIntoEdgeWarp], a
 	ld a, [wWalkingDirection]
 	; This is in the wrong place.
 	cp STANDING
