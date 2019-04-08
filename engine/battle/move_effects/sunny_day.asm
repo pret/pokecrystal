@@ -6,4 +6,4 @@ BattleCommand_StartSun:
 	ld [wWeatherCount], a
 	call AnimateCurrentMove
 	ld hl, SunGotBrightText
-	jp StdBattleTextBox
+	jp StdBattleTextbox

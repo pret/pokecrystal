@@ -1029,7 +1029,7 @@ Function106464::
 	ret
 
 Function10649b:
-	ld a, [wTextBoxFrame]
+	ld a, [wTextboxFrame]
 	maskbits NUM_FRAMES
 	ld bc, 6 * LEN_1BPP_TILE
 	ld hl, Frames
@@ -1041,9 +1041,9 @@ Function10649b:
 	ld b, BANK(Frames)
 	call Function1064c3
 	ld hl, vTiles2 tile " " ; $7f
-	ld de, TextBoxSpaceGFX
+	ld de, TextboxSpaceGFX
 	ld c, 1
-	ld b, BANK(TextBoxSpaceGFX)
+	ld b, BANK(TextboxSpaceGFX)
 	call Function1064c3
 	ret
 

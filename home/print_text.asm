@@ -6,15 +6,15 @@ PrintLetterDelay::
 ; 	mid:  3 frames
 ; 	slow: 5 frames
 
-; wTextBoxFlags[!0] and A or B override text speed with a one-frame delay.
-; wOptions[4] and wTextBoxFlags[!1] disable the delay.
+; wTextboxFlags[!0] and A or B override text speed with a one-frame delay.
+; wOptions[4] and wTextboxFlags[!1] disable the delay.
 
 	ld a, [wOptions]
 	bit NO_TEXT_SCROLL, a
 	ret nz
 
 ; non-scrolling text?
-	ld a, [wTextBoxFlags]
+	ld a, [wTextboxFlags]
 	bit NO_TEXT_DELAY_F, a
 	ret z
 
@@ -31,7 +31,7 @@ PrintLetterDelay::
 	ld [hl], a
 
 ; force fast scroll?
-	ld a, [wTextBoxFlags]
+	ld a, [wTextboxFlags]
 	bit FAST_TEXT_DELAY_F, a
 	jr z, .fast
 

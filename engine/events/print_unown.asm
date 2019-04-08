@@ -29,15 +29,15 @@ _UnownPrinter:
 
 	hlcoord 0, 0
 	lb bc, 3, 18
-	call TextBox
+	call Textbox
 
 	hlcoord 0, 5
 	lb bc, 7, 7
-	call TextBox
+	call Textbox
 
 	hlcoord 0, 14
 	lb bc, 2, 18
-	call TextBox
+	call Textbox
 
 	hlcoord 1, 2
 	ld de, AlphRuinsStampString

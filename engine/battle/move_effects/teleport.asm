@@ -86,4 +86,4 @@ BattleCommand_Teleport:
 	call SetBattleDraw
 
 	ld hl, FledFromBattleText
-	jp StdBattleTextBox
+	jp StdBattleTextbox

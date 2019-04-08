@@ -816,7 +816,7 @@ Function17ac46:
 	ld a, [$d088]
 	bit 4, a
 	jr nz, .bit_4_set
-	call TextBox
+	call Textbox
 	ret
 
 .bit_4_set

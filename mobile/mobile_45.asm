@@ -7015,7 +7015,7 @@ Function1178e8:
 	jp MobilePassword_IncrementJumptable
 
 Function117942:
-	call SpeechTextBox
+	call SpeechTextbox
 	hlcoord 1, 14
 	ld de, SavedPasswordString
 	call PlaceString

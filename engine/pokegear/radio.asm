@@ -142,7 +142,7 @@ PrintRadioLine:
 	call PlaceHLTextAtBC
 	jr .skip
 .print
-	call PrintTextBoxText
+	call PrintTextboxText
 .skip
 	ld a, RADIO_SCROLL
 	ld [wCurRadioLine], a

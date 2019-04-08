@@ -17,16 +17,16 @@ StoreTo_wMenuCursorBuffer::
 	ld [wMenuCursorBuffer], a
 	ret
 
-MenuTextBox::
+MenuTextbox::
 	push hl
-	call LoadMenuTextBox
+	call LoadMenuTextbox
 	pop hl
 	jp PrintText
 
 ; unused
 	ret
 
-LoadMenuTextBox::
+LoadMenuTextbox::
 	ld hl, .MenuHeader
 	call LoadMenuHeader
 	ret
@@ -37,8 +37,8 @@ LoadMenuTextBox::
 	dw vTiles0
 	db 0 ; default option
 
-MenuTextBoxBackup::
-	call MenuTextBox
+MenuTextboxBackup::
+	call MenuTextbox
 	call CloseWindow
 	ret
 
@@ -498,8 +498,8 @@ PlayClickSFX::
 	pop de
 	ret
 
-MenuTextBoxWaitButton::
-	call MenuTextBox
+MenuTextboxWaitButton::
+	call MenuTextbox
 	call WaitButton
 	call ExitMenu
 	ret

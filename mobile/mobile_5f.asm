@@ -289,7 +289,7 @@ Function17d0f3:
 	farcall GetCaughtGender
 	ld a, c
 	ld [wOTTrademonCaughtData], a
-	call SpeechTextBox
+	call SpeechTextbox
 	call FadeToMenu
 	farcall Function10804d
 	farcall Function17d1f1
@@ -520,7 +520,7 @@ Function17d2ce:
 .asm_17d2e2
 	call Function17d314
 	ret c
-	call SpeechTextBox
+	call SpeechTextbox
 	call FadeToMenu
 	ldh a, [rSVBK]
 	push af

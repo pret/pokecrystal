@@ -1396,7 +1396,7 @@ Function100902:
 	hlcoord 3, 10
 	ld b, $01
 	ld c, $0b
-	call TextBox
+	call Textbox
 	ld a, [wcd6d]
 	ld c, a
 	ld a, $0a
@@ -1860,7 +1860,7 @@ MobileMoveSelectionScreen:
 	ld hl, BattleText_TheresNoPPLeftForThisMove
 
 .print_text
-	call StdBattleTextBox
+	call StdBattleTextbox
 	call Call_LoadTempTileMapToTileMap
 	jp .GetMoveSelection
 
@@ -1868,7 +1868,7 @@ Function100c74:
 	hlcoord 0, 8
 	ld b, 8
 	ld c, 8
-	call TextBox
+	call Textbox
 	ld hl, wBattleMonMoves
 	ld de, wListMoves_MoveIndicesBuffer
 	ld bc, NUM_MOVES
@@ -3788,7 +3788,7 @@ _StartMobileBattle:
 	ld [wdc5f], a
 	ld [wdc60], a
 	farcall BlankScreen
-	call SpeechTextBox
+	call SpeechTextbox
 	farcall Function100846
 	ld c, 120
 	call DelayFrames
@@ -4741,14 +4741,14 @@ Function102142:
 	call Function10218d
 	call Function102180
 	ld hl, UnknownText_0x1021d1
-	call MenuTextBox
+	call MenuTextbox
 	ld de, SFX_LEVEL_UP
 	call PlaySFX
 	call JoyWaitAorB
 	call ExitMenu
 	call Function10219f
 	ld hl, UnknownText_0x1021d6
-	call MenuTextBox
+	call MenuTextbox
 	call YesNoBox
 	call ExitMenu
 	jr c, .asm_10217c
@@ -4814,7 +4814,7 @@ UnknownText_0x1021db:
 	text_end
 
 Function1021e0:
-	call MenuTextBox
+	call MenuTextbox
 	call JoyWaitAorB
 	call ExitMenu
 	ret
@@ -6472,7 +6472,7 @@ Function102e07:
 	ld a, [wBattleMode]
 	and a
 	jr z, .link_battle
-	call TextBox
+	call Textbox
 	jr .okay
 
 .link_battle
@@ -6573,7 +6573,7 @@ Function102ea8:
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, UnknownText_0x102ee2
-	call PrintTextBoxText
+	call PrintTextboxText
 	ret
 
 UnknownText_0x102ee2:

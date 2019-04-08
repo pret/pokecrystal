@@ -1744,7 +1744,7 @@ Function118eb0:
 
 Function118ec6:
 	call Function118440
-	call SpeechTextBox
+	call SpeechTextbox
 	ld hl, $d80e
 	ld de, $c320
 	ld bc, $0026
@@ -5253,7 +5253,7 @@ BattleTowerRoomMenu_WriteMessage:
 Function11a90f:
 	ld a, $1
 	ldh [rSVBK], a
-	call SpeechTextBox
+	call SpeechTextbox
 	ld a, $50
 	ld hl, $c320
 	ld bc, $008c
@@ -5503,7 +5503,7 @@ Text_ThisBattleRoomPleaseWait:
 	done
 
 Function11ac3e:
-	call SpeechTextBox
+	call SpeechTextbox
 	call FadeToMenu
 	callfar ClearSpriteAnims2
 	call Function11ac51
@@ -7316,7 +7316,7 @@ Function11b7e5:
 	farcall GetCaughtGender
 	ld a, c
 	ld [wOTTrademonCaughtData], a
-	call SpeechTextBox
+	call SpeechTextbox
 	call FadeToMenu
 	farcall MobileTradeAnimation_ReceiveGetmonFromGTS
 	farcall Function17d1f1

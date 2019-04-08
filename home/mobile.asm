@@ -159,7 +159,7 @@ Unreferenced_Function3efd::
 	ld c, 18
 	call .fill_attr
 	pop hl
-	call PrintTextBoxText
+	call PrintTextboxText
 	ret
 
 .fill_attr
@@ -174,7 +174,7 @@ Unreferenced_Function3efd::
 	call Function3f35
 	pop bc
 	pop hl
-	call TextBoxBorder
+	call TextboxBorder
 	ret
 
 Function3f20::

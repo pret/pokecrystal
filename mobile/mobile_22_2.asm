@@ -284,7 +284,7 @@ Function8b4a4:
 	push bc
 	push de
 	call Function8b4d8
-	call TextBox
+	call Textbox
 	pop de
 	pop bc
 	call Function8b4cc
@@ -940,7 +940,7 @@ Function8b8c8:
 	hlcoord 0, 14
 	ld b, $2
 	ld c, $12
-	call TextBox
+	call Textbox
 	ld a, [wd033]
 	ld b, 0
 	ld c, a

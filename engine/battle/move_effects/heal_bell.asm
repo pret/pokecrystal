@@ -26,7 +26,7 @@ BattleCommand_HealBell:
 	call AnimateCurrentMove
 
 	ld hl, BellChimedText
-	call StdBattleTextBox
+	call StdBattleTextbox
 
 	ldh a, [hBattleTurn]
 	and a

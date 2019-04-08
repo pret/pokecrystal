@@ -671,7 +671,7 @@ Function4ac58:
 	hlcoord 11, 13
 	ld b, $3
 	ld c, $7
-	call TextBox
+	call Textbox
 	hlcoord 13, 14
 	ld de, String_4ada7
 	call PlaceString
@@ -681,7 +681,7 @@ Function4ac58:
 	hlcoord 11, 9
 	ld b, $7
 	ld c, $7
-	call TextBox
+	call Textbox
 	call Function4ad68
 
 .asm_4ac96

@@ -306,7 +306,7 @@ Then edit four routines in [engine/battle/effect_commands.asm](https://github.co
  	...
 
  	ld hl, HurtItselfText
- 	call StdBattleTextBox
+ 	call StdBattleTextbox
 
  	call HitSelfInConfusion
 -	call BattleCommand_DamageCalc
@@ -319,7 +319,7 @@ Then edit four routines in [engine/battle/effect_commands.asm](https://github.co
 ```diff
  HitConfusion:
  	ld hl, HurtItselfText
- 	call StdBattleTextBox
+ 	call StdBattleTextbox
 
  	xor a
  	ld [wCriticalHit], a
@@ -412,7 +412,7 @@ Add this to the end of each file:
 
  .force_struggle
  	ld hl, BattleText_MonHasNoMovesLeft
- 	call StdBattleTextBox
+ 	call StdBattleTextbox
  	ld c, 60
  	call DelayFrames
  	xor a

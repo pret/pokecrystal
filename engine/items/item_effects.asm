@@ -1357,7 +1357,7 @@ RareCandyEffect:
 	hlcoord 9, 0
 	ld b, 10
 	ld c, 9
-	call TextBox
+	call Textbox
 
 	hlcoord 11, 1
 	ld bc, 4
@@ -1632,7 +1632,7 @@ BitterBerryEffect:
 	call UseItemText
 
 	ld hl, ConfusedNoMoreText
-	call StdBattleTextBox
+	call StdBattleTextbox
 
 	ld a, 0
 
@@ -2056,7 +2056,7 @@ Softboiled_MilkDrinkFunction:
 .cant_use
 	push bc
 	ld hl, .Text_CantBeUsed
-	call MenuTextBoxBackup
+	call MenuTextboxBackup
 	pop bc
 	jr .loop
 
@@ -2266,7 +2266,7 @@ PokeFluteEffect:
 
 BlueCardEffect:
 	ld hl, .bluecardtext
-	jp MenuTextBoxWaitButton
+	jp MenuTextboxWaitButton
 
 .bluecardtext
 	text_far UnknownText_0x1c5c5e
@@ -2274,7 +2274,7 @@ BlueCardEffect:
 
 CoinCaseEffect:
 	ld hl, .coincasetext
-	jp MenuTextBoxWaitButton
+	jp MenuTextboxWaitButton
 
 .coincasetext
 	text_far UnknownText_0x1c5c7b

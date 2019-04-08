@@ -35,10 +35,10 @@ HerbShop:
 	call FarReadMart
 	call LoadStandardMenuHeader
 	ld hl, Text_HerbShop_Intro
-	call MartTextBox
+	call MartTextbox
 	call BuyMenu
 	ld hl, Text_HerbShop_ComeAgain
-	call MartTextBox
+	call MartTextbox
 	ret
 
 BargainShop:
@@ -48,7 +48,7 @@ BargainShop:
 	call ReadMart
 	call LoadStandardMenuHeader
 	ld hl, Text_BargainShop_Intro
-	call MartTextBox
+	call MartTextbox
 	call BuyMenu
 	ld hl, wBargainShopFlags
 	ld a, [hli]
@@ -59,17 +59,17 @@ BargainShop:
 
 .skip_set
 	ld hl, Text_BargainShop_ComeAgain
-	call MartTextBox
+	call MartTextbox
 	ret
 
 Pharmacist:
 	call FarReadMart
 	call LoadStandardMenuHeader
 	ld hl, Text_Pharmacist_Intro
-	call MartTextBox
+	call MartTextbox
 	call BuyMenu
 	ld hl, Text_Pharmacist_ComeAgain
-	call MartTextBox
+	call MartTextbox
 	ret
 
 RooftopSale:
@@ -86,10 +86,10 @@ RooftopSale:
 	call ReadMart
 	call LoadStandardMenuHeader
 	ld hl, Text_Mart_HowMayIHelpYou
-	call MartTextBox
+	call MartTextbox
 	call BuyMenu
 	ld hl, Text_Mart_ComeAgain
-	call MartTextBox
+	call MartTextbox
 	ret
 
 INCLUDE "data/items/rooftop_sale.asm"
@@ -203,7 +203,7 @@ StandardMart:
 .Quit:
 	call ExitMenu
 	ld hl, Text_Mart_ComeAgain
-	call MartTextBox
+	call MartTextbox
 	ld a, STANDARDMART_EXIT
 	ret
 
@@ -440,7 +440,7 @@ BuyMenuLoop:
 	ld [wMenuScrollPositionBackup], a
 	ld a, [wMenuCursorY]
 	ld [wMenuCursorBufferBackup], a
-	call SpeechTextBox
+	call SpeechTextbox
 	ld a, [wMenuJoypad]
 	cp B_BUTTON
 	jr z, .set_carry
@@ -475,7 +475,7 @@ BuyMenuLoop:
 	call JoyWaitAorB
 
 .cancel
-	call SpeechTextBox
+	call SpeechTextbox
 	and a
 	ret
 
@@ -747,7 +747,7 @@ SellMenu:
 
 .Unreferenced_NothingToSell:
 	ld hl, .NothingToSellText
-	call MenuTextBoxBackup
+	call MenuTextboxBackup
 	and a
 	ret
 
@@ -796,7 +796,7 @@ SellMenu:
 	lb bc, 3, 18
 	call ClearBox
 	ld hl, Text_Mart_ICanPayThisMuch
-	call PrintTextBoxText
+	call PrintTextboxText
 	call YesNoBox
 	jr c, .declined
 	ld de, wMoney
@@ -810,7 +810,7 @@ SellMenu:
 	lb bc, 3, 18
 	call ClearBox
 	ld hl, Text_Mart_SoldForAmount
-	call PrintTextBoxText
+	call PrintTextboxText
 	call PlayTransactionSound
 	farcall PlaceMoneyBottomLeft
 	call JoyWaitAorB
@@ -890,8 +890,8 @@ PlayTransactionSound:
 	call PlaySFX
 	ret
 
-MartTextBox:
-	call MenuTextBox
+MartTextbox:
+	call MenuTextbox
 	call JoyWaitAorB
 	call ExitMenu
 	ret

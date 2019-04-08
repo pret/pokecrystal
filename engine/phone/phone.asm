@@ -555,7 +555,7 @@ UnknownText_0x90336:
 	text_end
 
 HangUp_BoopOff:
-	call SpeechTextBox
+	call SpeechTextbox
 	ret
 
 Phone_StartRinging:
@@ -593,7 +593,7 @@ Phone_CallerTextbox:
 	hlcoord 0, 0
 	ld b, 2
 	ld c, SCREEN_WIDTH - 2
-	call TextBox
+	call Textbox
 	ret
 
 Function90380:

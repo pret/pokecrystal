@@ -107,7 +107,7 @@ InitMobileProfile:
 	hlcoord 0, 14
 	ld b, $2
 	ld c, $12
-	call TextBox
+	call Textbox
 	hlcoord 1, 16
 	ld de, MobileString_PersonalInfo
 	call PlaceString

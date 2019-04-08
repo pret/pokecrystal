@@ -1542,7 +1542,7 @@ Function89a2e:
 	hlcoord 11, 12
 	ld b, $2
 	ld c, $6
-	call TextBox
+	call Textbox
 	hlcoord 13, 13
 	ld de, String_89a4e
 	call PlaceString
@@ -2737,7 +2737,7 @@ Function8a1b0:
 	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
-	call TextBox
+	call Textbox
 	hlcoord 1, 14
 	ld a, [wMenuCursorY]
 	ld de, Strings_8a1cc
@@ -3057,7 +3057,7 @@ Function8a453:
 	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
-	call TextBox
+	call Textbox
 	hlcoord 1, 14
 	ld de, String_8a476
 	ld a, [wMenuSelection]
@@ -4035,7 +4035,7 @@ Function8aba9:
 	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
-	call TextBox
+	call Textbox
 	hlcoord 1, 14
 	ld de, String_8ac3b
 	call PlaceString
@@ -4188,7 +4188,7 @@ Function8ad0b:
 	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
-	call TextBox
+	call Textbox
 	ld de, String_8ad89
 	hlcoord 1, 14
 	call PlaceString
@@ -4199,7 +4199,7 @@ Function8ad0b:
 	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
-	call TextBox
+	call Textbox
 	ld de, String_8ad9c
 	hlcoord 1, 14
 	call PlaceString

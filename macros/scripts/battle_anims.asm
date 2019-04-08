@@ -209,8 +209,8 @@ ENDM
 anim_bgeffect: MACRO
 	db anim_bgeffect_command
 	db \1 ; effect
-	db \2 ; unknown
-	db \3 ; unknown
+	db \2 ; jumptable index
+	db \3 ; battle turn
 	db \4 ; unknown
 ENDM
 

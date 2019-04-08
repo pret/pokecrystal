@@ -12,7 +12,7 @@
 
 ## `ScrollingMenu`
 
-This is the only menu that does scrolling. It doesn't draw any `TextBox` around the menu.
+This is the only menu that does scrolling. It doesn't draw any `Textbox` around the menu.
 
 Structure:
 

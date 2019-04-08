@@ -379,7 +379,7 @@ PopulateDecoCategoryMenu:
 
 .empty
 	ld hl, .Text_nothing_to_choose
-	call MenuTextBoxBackup
+	call MenuTextboxBackup
 	ret
 
 .Text_nothing_to_choose:
@@ -675,7 +675,7 @@ DecoAction_SetItUp:
 	ld hl, wStringBuffer3
 	call GetDecorationName
 	ld hl, DecoText_PutAwayAndSetUp
-	call MenuTextBoxBackup
+	call MenuTextboxBackup
 	xor a
 	ret
 
@@ -684,13 +684,13 @@ DecoAction_SetItUp:
 	ld hl, wStringBuffer3
 	call GetDecorationName
 	ld hl, DecoText_SetUpTheDeco
-	call MenuTextBoxBackup
+	call MenuTextboxBackup
 	xor a
 	ret
 
 .alreadythere
 	ld hl, DecoText_AlreadySetUp
-	call MenuTextBoxBackup
+	call MenuTextboxBackup
 	scf
 	ret
 
@@ -711,13 +711,13 @@ DecoAction_TryPutItAway:
 	ld hl, wStringBuffer3
 	call GetDecorationName
 	ld hl, DecoText_PutAwayTheDeco
-	call MenuTextBoxBackup
+	call MenuTextboxBackup
 	xor a
 	ret
 
 .nothingthere
 	ld hl, DecoText_NothingToPutAway
-	call MenuTextBoxBackup
+	call MenuTextboxBackup
 	xor a
 	ret
 
@@ -772,7 +772,7 @@ DecoAction_SetItUp_Ornament:
 	ld [wSelectedDecoration], a
 	call .getwhichside
 	ld hl, DecoText_PutAwayAndSetUp
-	call MenuTextBoxBackup
+	call MenuTextboxBackup
 	xor a
 	ret
 
@@ -784,13 +784,13 @@ DecoAction_SetItUp_Ornament:
 	ld hl, wStringBuffer3
 	call GetDecorationName
 	ld hl, DecoText_SetUpTheDeco
-	call MenuTextBoxBackup
+	call MenuTextboxBackup
 	xor a
 	ret
 
 .failed
 	ld hl, DecoText_AlreadySetUp
-	call MenuTextBoxBackup
+	call MenuTextboxBackup
 	scf
 	ret
 
@@ -820,13 +820,13 @@ DecoAction_PutItAway_Ornament:
 	xor a
 	ld [wSelectedDecoration], a
 	ld hl, DecoText_PutAwayTheDeco
-	call MenuTextBoxBackup
+	call MenuTextboxBackup
 	xor a
 	ret
 
 .nothingthere
 	ld hl, DecoText_NothingToPutAway
-	call MenuTextBoxBackup
+	call MenuTextboxBackup
 	xor a
 	ret
 
@@ -836,7 +836,7 @@ DecoText_WhichSide:
 	text_end
 
 DecoAction_AskWhichSide:
-	call MenuTextBox
+	call MenuTextbox
 	ld hl, MenuHeader_0x26eab
 	call GetMenu2
 	call ExitMenu

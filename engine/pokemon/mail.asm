@@ -307,7 +307,7 @@ _PlayerMailBoxMenu:
 
 .nomail
 	ld hl, .EmptyMailboxText
-	jp MenuTextBoxBackup
+	jp MenuTextboxBackup
 
 .EmptyMailboxText:
 	text_far _EmptyMailboxText
@@ -429,7 +429,7 @@ MailboxPC:
 
 .PutInPack:
 	ld hl, .MessageLostText
-	call MenuTextBox
+	call MenuTextbox
 	call YesNoBox
 	call ExitMenu
 	ret c
@@ -442,7 +442,7 @@ MailboxPC:
 	call ReceiveItem
 	jr c, .put_in_bag
 	ld hl, .PackFullText
-	jp MenuTextBoxBackup
+	jp MenuTextboxBackup
 
 .put_in_bag
 	ld a, [wMenuSelection]
@@ -450,7 +450,7 @@ MailboxPC:
 	ld b, a
 	call DeleteMailFromPC
 	ld hl, .PutAwayText
-	jp MenuTextBoxBackup
+	jp MenuTextboxBackup
 
 .PutAwayText:
 	text_far ClearedMailPutAwayText

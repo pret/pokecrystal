@@ -432,7 +432,7 @@ Mom_ContinueMenuSetup:
 	ldh [hBGMapMode], a
 	hlcoord 0, 0
 	lb bc, 6, 18
-	call TextBox
+	call Textbox
 	hlcoord 1, 2
 	ld de, Mom_SavedString
 	call PlaceString

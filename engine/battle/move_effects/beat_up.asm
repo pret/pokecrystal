@@ -52,7 +52,7 @@ BattleCommand_BeatUp:
 	ld a, $1
 	ld [wBeatUpHitAtLeastOnce], a
 	ld hl, BeatUpAttackText
-	call StdBattleTextBox
+	call StdBattleTextbox
 
 	ld a, [wEnemyMonSpecies]
 	ld [wCurSpecies], a
@@ -159,12 +159,12 @@ BattleCommand_BeatUp:
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, BeatUpAttackText
-	call StdBattleTextBox
+	call StdBattleTextbox
 	jp EnemyAttackDamage
 
 .finish_beatup
 	ld hl, BeatUpAttackText
-	call StdBattleTextBox
+	call StdBattleTextbox
 
 	ld a, [wBattleMonSpecies]
 	ld [wCurSpecies], a

@@ -1569,10 +1569,10 @@ wOptions:: ; cfcc
 ; bit 7: battle scene off/on
 	db
 wSaveFileExists:: db
-wTextBoxFrame:: ; cfce
+wTextboxFrame:: ; cfce
 ; bits 0-2: textbox frame 0-7
 	db
-wTextBoxFlags::
+wTextboxFlags::
 ; bit 0: 1-frame text delay
 ; bit 4: no text delay
 	db

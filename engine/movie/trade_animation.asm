@@ -931,7 +931,7 @@ TrademonStats_MonTemplate:
 	hlcoord 3, 0
 	ld b, $6
 	ld c, $d
-	call TextBox
+	call Textbox
 	hlcoord 4, 0
 	ld de, .OTMonData
 	call PlaceString
@@ -951,7 +951,7 @@ TrademonStats_Egg:
 	hlcoord 3, 0
 	ld b, 6
 	ld c, 13
-	call TextBox
+	call Textbox
 	hlcoord 4, 2
 	ld de, .EggData
 	call PlaceString

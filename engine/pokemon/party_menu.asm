@@ -712,7 +712,7 @@ PartyMenuSelect:
 PrintPartyMenuText:
 	hlcoord 0, 14
 	lb bc, 2, 18
-	call TextBox
+	call Textbox
 	ld a, [wPartyCount]
 	and a
 	jr nz, .haspokemon
