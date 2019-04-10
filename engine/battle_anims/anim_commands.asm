@@ -152,7 +152,7 @@ BattleAnimRestoreHuds:
 
 	ldh a, [rSVBK]
 	push af
-	ld a, BANK(wCurBattleMon) ; alternatively: BANK(wTempMon), BANK(wPartyMon1), several others
+	ld a, BANK(wCurBattleMon) ; aka BANK(wTempMon) and BANK(wPartyMon1) and several others
 	ldh [rSVBK], a
 
 	ld hl, UpdateBattleHuds

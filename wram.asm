@@ -2409,7 +2409,10 @@ wStartHour:: db ; d4b7
 wStartMinute:: db ; d4b8
 wStartSecond:: db ; d4b9
 
-wRTC:: ds 8 ; d4ba
+wRTC:: ds 4 ; d4ba
+	
+	ds 4
+
 wDST:: ; d4c2
 ; bit 7: dst
 	db

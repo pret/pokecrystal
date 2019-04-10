@@ -239,8 +239,13 @@ sBox12:: box sBox12
 sBox13:: box sBox13
 sBox14:: box sBox14
 
+SECTION "SRAM Mobile 1", SRAM
 
-SECTION "SRAM Mobile", SRAM, BANK [5]
+	ds $13
+
+s4_a013:: ds 36 ; a013
+
+SECTION "SRAM Mobile 2", SRAM
 
 	ds 1 ; former location for sMobileEventIndex, moved to 1:BE3C in English
 
@@ -292,9 +297,64 @@ sTrainerRankingsEnd:: ; a083
 
 	ds 1 ; Former location for sMobileEventIndexBackup, moved to 1:BE44 in English
 
-sTrainerRankingsBackup:: ds sTrainerRankingsEnd - sTrainerRankings
+sTrainerRankingsBackup:: ds sTrainerRankingsEnd - sTrainerRankings ; a084
 
-	ds $945
-; aa4b
+	ds $6fa
 
-sMobileLoginPassword:: ds MOBILE_LOGIN_PASSWORD_LENGTH
+s5_a800:: db ; a800
+
+	ds $24
+
+s5_a825:: db ; a825
+s5_a826:: db ; a826
+
+	ds $6d
+
+s5_a894:: ds NAME_LENGTH_JAPANESE ; a894
+
+	ds $2
+
+s5_a89c:: ds 22 ; a89c
+s5_a8b2:: ds 150 ; a8b2
+
+s5_a948:: ds 246 ; a948
+
+	ds $3
+
+s5_aa41:: ds 4 ; aa41
+
+	ds $2
+
+s5_aa47:: db ; aa47
+s5_aa48:: db ; aa48
+
+	ds $2
+
+sMobileLoginPassword:: ds MOBILE_LOGIN_PASSWORD_LENGTH ; aa4b
+
+	ds $1
+
+s5_aa5d:: ds MOBILE_LOGIN_PASSWORD_LENGTH ; aa5d
+
+	ds $1d
+
+s5_aa8b:: db ; aa8b
+s5_aa8c:: db ; aa8c
+s5_aa8d:: db ; aa8d
+s5_aa8e:: ds 7 * $cc ; aa8e
+
+	ds $1
+
+s5_b023:: ds 105 ; b023
+s5_b08c:: ds 4 ; b08c
+
+	ds $269
+
+s5_b2f9:: db ; b2f9
+s5_b2fa:: db ; b2fa
+s5_b2fb:: db ; b2fb
+
+	ds $b49
+
+s5_be45:: db ; be45
+s5_be46:: db ; be46
