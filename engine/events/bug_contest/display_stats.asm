@@ -12,12 +12,12 @@ DisplayCaughtContestMonStats:
 	hlcoord 0, 0
 	ld b, 4
 	ld c, 13
-	call TextBox
+	call Textbox
 
 	hlcoord 0, 6
 	ld b, 4
 	ld c, 13
-	call TextBox
+	call Textbox
 
 	hlcoord 2, 0
 	ld de, .Stock

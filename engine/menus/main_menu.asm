@@ -237,11 +237,11 @@ MainMenu_PrintCurrentTimeAndDay:
 	hlcoord 0, 14
 	ld b, 2
 	ld c, 18
-	call TextBox
+	call Textbox
 	ret
 
 .TimeFail:
-	call SpeechTextBox
+	call SpeechTextbox
 	ret
 
 .PlaceTime:

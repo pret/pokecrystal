@@ -30,7 +30,7 @@ BattleCommand_Nightmare:
 	set SUBSTATUS_NIGHTMARE, [hl]
 	call AnimateCurrentMove
 	ld hl, StartedNightmareText
-	jp StdBattleTextBox
+	jp StdBattleTextbox
 
 .failed
 	call AnimateFailedMove

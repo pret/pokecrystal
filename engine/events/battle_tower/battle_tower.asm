@@ -599,7 +599,7 @@ Unreferenced_Function1704ca:
 	ret
 
 Function1704e1:
-	call SpeechTextBox
+	call SpeechTextbox
 	call FadeToMenu
 	call InitBattleTowerChallengeRAM
 	call .JumptableLoop

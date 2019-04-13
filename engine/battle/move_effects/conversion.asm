@@ -93,4 +93,4 @@ BattleCommand_Conversion:
 	farcall GetTypeName
 	call AnimateCurrentMove
 	ld hl, TransformedTypeText
-	jp StdBattleTextBox
+	jp StdBattleTextbox

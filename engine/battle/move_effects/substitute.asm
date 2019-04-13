@@ -71,7 +71,7 @@ BattleCommand_Substitute:
 	call BattleCommand_RaiseSubNoAnim
 .finish
 	ld hl, MadeSubstituteText
-	call StdBattleTextBox
+	call StdBattleTextbox
 	jp RefreshBattleHuds
 
 .already_has_sub
@@ -85,4 +85,4 @@ BattleCommand_Substitute:
 	call nz, BattleCommand_RaiseSub
 	ld hl, TooWeakSubText
 .jp_stdbattletextbox
-	jp StdBattleTextBox
+	jp StdBattleTextbox

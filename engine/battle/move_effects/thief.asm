@@ -93,7 +93,7 @@ BattleCommand_Thief:
 .stole
 	call GetItemName
 	ld hl, StoleText
-	jp StdBattleTextBox
+	jp StdBattleTextbox
 
 .playeritem
 	ld a, 1

@@ -40,18 +40,18 @@ ClearScreen::
 	call ByteFill
 	jr ClearTileMap
 
-TextBox::
+Textbox::
 ; Draw a text box at hl with room for b lines of c characters each.
 ; Places a border around the textbox, then switches the palette to the
 ; text black-and-white scheme.
 	push bc
 	push hl
-	call TextBoxBorder
+	call TextboxBorder
 	pop hl
 	pop bc
-	jr TextBoxPalette
+	jr TextboxPalette
 
-TextBoxBorder::
+TextboxBorder::
 	; Top
 	push hl
 	ld a, "┌"
@@ -97,7 +97,7 @@ TextBoxBorder::
 	jr nz, .loop
 	ret
 
-TextBoxPalette::
+TextboxPalette::
 ; Fill text box width c height b at hl with pal 7
 	ld de, wAttrMap - wTileMap
 	add hl, de
@@ -121,12 +121,12 @@ TextBoxPalette::
 	jr nz, .col
 	ret
 
-SpeechTextBox::
+SpeechTextbox::
 ; Standard textbox.
 	hlcoord TEXTBOX_X, TEXTBOX_Y
 	ld b, TEXTBOX_INNERH
 	ld c, TEXTBOX_INNERW
-	jp TextBox
+	jp Textbox
 
 TestText::
 	text "ゲームフりーク！"
@@ -140,7 +140,7 @@ RadioTerminator::
 	text_end
 
 PrintText::
-	call SetUpTextBox
+	call SetUpTextbox
 BuenaPrintText::
 	push hl
 	hlcoord TEXTBOX_INNERX, TEXTBOX_INNERY
@@ -148,14 +148,14 @@ BuenaPrintText::
 	call ClearBox
 	pop hl
 
-PrintTextBoxText::
+PrintTextboxText::
 	bccoord TEXTBOX_INNERX, TEXTBOX_INNERY
 	call PlaceHLTextAtBC
 	ret
 
-SetUpTextBox::
+SetUpTextbox::
 	push hl
-	call SpeechTextBox
+	call SpeechTextbox
 	call UpdateSprites
 	call ApplyTilemap
 	pop hl
@@ -648,15 +648,15 @@ PokeFluteTerminatorCharacter::
 	text_end
 
 PlaceHLTextAtBC::
-	ld a, [wTextBoxFlags]
+	ld a, [wTextboxFlags]
 	push af
 	set NO_TEXT_DELAY_F, a
-	ld [wTextBoxFlags], a
+	ld [wTextboxFlags], a
 
 	call DoTextUntilTerminator
 
 	pop af
-	ld [wTextBoxFlags], a
+	ld [wTextboxFlags], a
 	ret
 
 DoTextUntilTerminator::
@@ -822,7 +822,7 @@ TextCommand_BOX::
 	push hl
 	ld h, d
 	ld l, e
-	call TextBox
+	call Textbox
 	pop hl
 	ret
 

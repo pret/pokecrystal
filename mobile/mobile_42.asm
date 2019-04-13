@@ -1255,7 +1255,7 @@ MobileTradeAnim_DisplayEggData:
 	hlcoord 5, 0
 	ld b, 6
 	ld c, 9
-	call TextBox
+	call Textbox
 	hlcoord 6, 2
 	ld de, .EggTemplate
 	call PlaceString
@@ -1276,7 +1276,7 @@ Function108a33:
 	hlcoord 5, 0
 	ld b, 6
 	ld c, 9
-	call TextBox
+	call Textbox
 	hlcoord 7, 4
 	ld de, .OddEgg
 	call PlaceString
@@ -1294,7 +1294,7 @@ MobileTradeAnim_LoadMonTemplate:
 	hlcoord 4, 0
 	ld b,  6
 	ld c, 10
-	call TextBox
+	call Textbox
 	hlcoord 5, 0
 	ld de, .MonTemplate
 	call PlaceString

@@ -27,7 +27,7 @@ BattleCommand_BellyDrum:
 	jr nz, .max_attack_loop
 
 	ld hl, BellyDrumText
-	jp StdBattleTextBox
+	jp StdBattleTextbox
 
 .failed
 	call AnimateFailedMove

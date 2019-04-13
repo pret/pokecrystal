@@ -498,7 +498,7 @@ Script_battletowertext:
 ; script command 0xa4
 ; parameters: bttext_id
 
-	call SetUpTextBox
+	call SetUpTextbox
 	call GetScriptByte
 	ld c, a
 	farcall BattleTowerText

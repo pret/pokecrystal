@@ -155,18 +155,18 @@ MobileTextBorder::
 	ld [hl], $5f ; bottom
 	ret
 
-BattleTextBox::
+BattleTextbox::
 ; Open a textbox and print text at hl.
 	push hl
-	call SpeechTextBox
+	call SpeechTextbox
 	call MobileTextBorder
 	call UpdateSprites
 	call ApplyTilemap
 	pop hl
-	call PrintTextBoxText
+	call PrintTextboxText
 	ret
 
-StdBattleTextBox::
+StdBattleTextbox::
 ; Open a textbox and print battle text at 20:hl.
 
 	ldh a, [hROMBank]
@@ -175,7 +175,7 @@ StdBattleTextBox::
 	ld a, BANK(BattleText)
 	rst Bankswitch
 
-	call BattleTextBox
+	call BattleTextbox
 
 	pop af
 	rst Bankswitch

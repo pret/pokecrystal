@@ -1,7 +1,7 @@
 DisplayUsedMoveText:
 ; battle command 03
 	ld hl, UsedMoveText
-	call BattleTextBox
+	call BattleTextbox
 	jp WaitBGMap
 
 UsedMoveText:

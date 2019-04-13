@@ -10,7 +10,7 @@ _BillsPC:
 	and a
 	ret nz
 	ld hl, .Text_GottaHavePokemon
-	call MenuTextBoxBackup
+	call MenuTextboxBackup
 	scf
 	ret
 
@@ -153,13 +153,13 @@ Unreferenced_Functione512:
 
 .no_mon
 	ld hl, .Text_NoMon
-	call MenuTextBoxBackup
+	call MenuTextboxBackup
 	scf
 	ret
 
 .only_one_mon
 	ld hl, .Text_ItsYourLastMon
-	call MenuTextBoxBackup
+	call MenuTextboxBackup
 	scf
 	ret
 
@@ -220,7 +220,7 @@ Unreferenced_Functione56d:
 
 .asm_e576
 	ld hl, UnknownText_0xe57e
-	call MenuTextBoxBackup
+	call MenuTextboxBackup
 	scf
 	ret
 
@@ -246,10 +246,10 @@ ClearPCItemScreen:
 	call ByteFill
 	hlcoord 0, 0
 	lb bc, 10, 18
-	call TextBox
+	call Textbox
 	hlcoord 0, 12
 	lb bc, 4, 18
-	call TextBox
+	call Textbox
 	call WaitBGMap2
 	call SetPalettes ; load regular palettes?
 	ret

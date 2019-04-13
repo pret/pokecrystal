@@ -37,7 +37,7 @@ TEXT_DELAY_FAST EQU %001 ; 1
 TEXT_DELAY_MED  EQU %011 ; 3
 TEXT_DELAY_SLOW EQU %101 ; 5
 
-; wTextBoxFrame:: ; cfce
+; wTextboxFrame:: ; cfce
 	const_def
 	const FRAME_1 ; 0
 	const FRAME_2 ; 1
@@ -49,7 +49,7 @@ TEXT_DELAY_SLOW EQU %101 ; 5
 	const FRAME_8 ; 7
 NUM_FRAMES EQU const_value
 
-; wTextBoxFlags:: ; cfcf
+; wTextboxFlags:: ; cfcf
 	const_def
 	const FAST_TEXT_DELAY_F ; 0
 	const NO_TEXT_DELAY_F   ; 1

@@ -18,7 +18,7 @@ BattleCommand_MirrorMove:
 	call AnimateFailedMove
 
 	ld hl, MirrorMoveFailedText
-	call StdBattleTextBox
+	call StdBattleTextbox
 	jp EndMoveEffect
 
 .use

@@ -484,7 +484,7 @@ TossMenu:
 	jr c, .finish
 	call Pack_GetItemName
 	ld hl, Text_ConfirmThrowAway
-	call MenuTextBox
+	call MenuTextbox
 	call YesNoBox
 	push af
 	call ExitMenu
@@ -1358,7 +1358,7 @@ Pack_InitGFX:
 ; Place the textbox for displaying the item description
 	hlcoord 0, SCREEN_HEIGHT - 4 - 2
 	lb bc, 4, SCREEN_WIDTH - 2
-	call TextBox
+	call Textbox
 	call EnableLCD
 	call DrawPackGFX
 	ret

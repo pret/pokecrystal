@@ -139,7 +139,7 @@ ForgetMove:
 	hlcoord 5, 2
 	ld b, NUM_MOVES * 2
 	ld c, MOVE_NAME_LENGTH
-	call TextBox
+	call Textbox
 	hlcoord 5 + 2, 2 + 2
 	ld a, SCREEN_WIDTH * 2
 	ld [wBuffer1], a

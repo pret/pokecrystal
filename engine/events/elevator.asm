@@ -150,7 +150,7 @@ Elevator_GetCurrentFloorText:
 	hlcoord 0, 0
 	ld b, 4
 	ld c, 8
-	call TextBox
+	call Textbox
 	hlcoord 1, 2
 	ld de, Elevator_CurrentFloorText
 	call PlaceString

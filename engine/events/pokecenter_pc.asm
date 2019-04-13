@@ -298,7 +298,7 @@ PC_DisplayTextWaitMenu:
 	push af
 	set NO_TEXT_SCROLL, a
 	ld [wOptions], a
-	call MenuTextBox
+	call MenuTextbox
 	pop af
 	ld [wOptions], a
 	ret
@@ -336,7 +336,7 @@ PlayerWithdrawItemMenu:
 
 .askquantity
 	ld hl, .HowManyText
-	call MenuTextBox
+	call MenuTextbox
 	farcall SelectQuantityToToss
 	call ExitMenu
 	call ExitMenu
@@ -358,7 +358,7 @@ PlayerWithdrawItemMenu:
 	call TossItem
 	predef PartyMonItemName
 	ld hl, .WithdrewText
-	call MenuTextBox
+	call MenuTextbox
 	xor a
 	ldh [hBGMapMode], a
 	call ExitMenu
@@ -366,7 +366,7 @@ PlayerWithdrawItemMenu:
 
 .PackFull:
 	ld hl, .NoRoomText
-	call MenuTextBoxBackup
+	call MenuTextboxBackup
 	ret
 
 .done
@@ -438,7 +438,7 @@ PlayerDepositItemMenu:
 	farcall HasNoItems
 	ret nc
 	ld hl, .NoItemsInBag
-	call MenuTextBoxBackup
+	call MenuTextboxBackup
 	scf
 	ret
 
@@ -496,7 +496,7 @@ PlayerDepositItemMenu:
 
 .AskQuantity:
 	ld hl, .HowManyText
-	call MenuTextBox
+	call MenuTextbox
 	farcall SelectQuantityToToss
 	push af
 	call ExitMenu
@@ -562,7 +562,7 @@ PCItemsJoypad:
 	hlcoord 0, 0
 	ld b, 10
 	ld c, 18
-	call TextBox
+	call Textbox
 	ld a, [wPCItemsCursor]
 	ld [wMenuCursorBuffer], a
 	ld a, [wPCItemsScrollPosition]
@@ -634,7 +634,7 @@ PCItemsJoypad:
 	dba UpdateItemDescription
 
 PC_DisplayText:
-	call MenuTextBox
+	call MenuTextbox
 	call ExitMenu
 	ret
 

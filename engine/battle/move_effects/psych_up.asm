@@ -46,4 +46,4 @@ BattleCommand_PsychUp:
 .merge
 	call AnimateCurrentMove
 	ld hl, CopiedStatsText
-	jp StdBattleTextBox
+	jp StdBattleTextbox

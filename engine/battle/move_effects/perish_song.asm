@@ -31,7 +31,7 @@ BattleCommand_PerishSong:
 .done
 	call AnimateCurrentMove
 	ld hl, StartPerishText
-	jp StdBattleTextBox
+	jp StdBattleTextbox
 
 .failed
 	call AnimateFailedMove

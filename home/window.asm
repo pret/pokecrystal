@@ -51,7 +51,7 @@ OpenText::
 	rst Bankswitch
 
 	call ReanchorBGMap_NoOAMUpdate ; clear bgmap
-	call SpeechTextBox
+	call SpeechTextbox
 	call _OpenAndCloseMenu_HDMATransferTileMapAndAttrMap ; anchor bgmap
 	call LoadFonts_NoOAMUpdate ; load font
 	pop af

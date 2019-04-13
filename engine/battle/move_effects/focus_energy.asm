@@ -8,7 +8,7 @@ BattleCommand_FocusEnergy:
 	set SUBSTATUS_FOCUS_ENERGY, [hl]
 	call AnimateCurrentMove
 	ld hl, GettingPumpedText
-	jp StdBattleTextBox
+	jp StdBattleTextbox
 
 .already_pumped
 	call AnimateFailedMove

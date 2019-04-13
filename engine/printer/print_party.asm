@@ -159,7 +159,7 @@ PrintPartyMonPage1:
 	hlcoord 0, 7
 	ld b, 9
 	ld c, 18
-	call TextBox
+	call Textbox
 	hlcoord 8, 2
 	ld a, [wTempMonLevel]
 	call PrintLevel_Force3Digits
@@ -242,7 +242,7 @@ PrintPartyMonPage2:
 	hlcoord 0, 0
 	ld b, 15
 	ld c, 18
-	call TextBox
+	call Textbox
 	ld bc, SCREEN_WIDTH
 	decoord 0, 0
 	hlcoord 0, 1

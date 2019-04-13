@@ -6,4 +6,4 @@ BattleCommand_DestinyBond:
 	set SUBSTATUS_DESTINY_BOND, [hl]
 	call AnimateCurrentMove
 	ld hl, DestinyBondEffectText
-	jp StdBattleTextBox
+	jp StdBattleTextbox

@@ -1,7 +1,7 @@
 SaveMenu:
 	call LoadStandardMenuHeader
 	farcall DisplaySaveInfoOnSave
-	call SpeechTextBox
+	call SpeechTextbox
 	call UpdateSprites
 	farcall SaveMenu_CopyTilemapAtOnce
 	ld hl, Text_WouldYouLikeToSaveTheGame
@@ -39,7 +39,7 @@ SaveAfterLinkTrade:
 ChangeBoxSaveGame:
 	push de
 	ld hl, Text_SaveOnBoxSwitch
-	call MenuTextBox
+	call MenuTextbox
 	call YesNoBox
 	call ExitMenu
 	jr c, .refused
@@ -116,7 +116,7 @@ MoveMonWOMail_InsertMon_SaveGame:
 
 StartMoveMonWOMail_SaveGame:
 	ld hl, Text_SaveOnMoveMonWOMail
-	call MenuTextBox
+	call MenuTextbox
 	call YesNoBox
 	call ExitMenu
 	jr c, .refused
@@ -198,7 +198,7 @@ AskOverwriteSaveFile:
 SaveTheGame_yesorno:
 	ld b, BANK(Text_WouldYouLikeToSaveTheGame)
 	call MapTextbox
-	call LoadMenuTextBox
+	call LoadMenuTextbox
 	lb bc, 0, 7
 	call PlaceYesNoBox
 	ld a, [wMenuCursorY]

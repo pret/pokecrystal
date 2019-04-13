@@ -30,19 +30,19 @@ PlaceMenuItemQuantity:
 PlaceMoneyTopRight:
 	ld hl, MenuHeader_0x24b15
 	call CopyMenuHeader
-	jr PlaceMoneyTextBox
+	jr PlaceMoneyTextbox
 
 PlaceMoneyBottomLeft:
 	ld hl, MenuHeader_0x24b1d
 	call CopyMenuHeader
-	jr PlaceMoneyTextBox
+	jr PlaceMoneyTextbox
 
 PlaceMoneyAtTopLeftOfTextbox:
 	ld hl, MenuHeader_0x24b15
 	lb de, 0, 11
 	call OffsetMenuHeader
 
-PlaceMoneyTextBox:
+PlaceMoneyTextbox:
 	call MenuBox
 	call MenuBoxCoord2Tile
 	ld de, SCREEN_WIDTH + 1
@@ -69,7 +69,7 @@ DisplayCoinCaseBalance:
 	hlcoord 11, 0
 	ld b, 1
 	ld c, 7
-	call TextBox
+	call Textbox
 	hlcoord 12, 0
 	ld de, CoinString
 	call PlaceString
@@ -86,7 +86,7 @@ DisplayMoneyAndCoinBalance:
 	hlcoord 5, 0
 	ld b, 3
 	ld c, 13
-	call TextBox
+	call Textbox
 	hlcoord 6, 1
 	ld de, MoneyString
 	call PlaceString
@@ -119,7 +119,7 @@ Unreferenced_Function24b8f:
 	hlcoord 0, 0
 	ld b, 3
 	ld c, 7
-	call TextBox
+	call Textbox
 	hlcoord 1, 1
 	ld de, wSafariTimeRemaining
 	lb bc, 2, 3
@@ -147,7 +147,7 @@ StartMenu_DrawBugContestStatusBox:
 	hlcoord 0, 0
 	ld b, 5
 	ld c, 17
-	call TextBox
+	call Textbox
 	ret
 
 StartMenu_PrintBugContestStatus:

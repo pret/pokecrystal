@@ -23,7 +23,7 @@ Function49f16:
 	hlcoord 0, 12
 	ld b, 4
 	ld c, SCREEN_HEIGHT
-	call TextBox
+	call Textbox
 	xor a
 	ld de, String_0x49fe9
 	hlcoord 1, 14
@@ -258,7 +258,7 @@ Function4a149:
 	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
-	call TextBox
+	call Textbox
 	ld a, [wMenuCursorY]
 	dec a
 	ld hl, Strings_4a23d
@@ -418,7 +418,7 @@ Function4a28a:
 	hlcoord 14, 7
 	ld b, 3
 	ld c, 4
-	call TextBox
+	call Textbox
 	farcall Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 	ld hl, DeletePassword_YesNo_MenuHeader
 	call LoadMenuHeader
@@ -667,7 +667,7 @@ Function4a4c4:
 	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
-	call TextBox
+	call Textbox
 	xor a
 	ld hl, Strings_4a5f6
 	ld d, h

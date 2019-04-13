@@ -1789,7 +1789,7 @@ Slots_AskPlayAgain:
 .you_have_coins
 	ld hl, .Text_PlayAgain
 	call PrintText
-	call LoadMenuTextBox
+	call LoadMenuTextbox
 	lb bc, 14, 12
 	call PlaceYesNoBox
 	ld a, [wMenuCursorY]

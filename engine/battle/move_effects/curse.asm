@@ -76,7 +76,7 @@ BattleCommand_Curse:
 	call CallBattleCore
 	call UpdateUserInParty
 	ld hl, PutACurseText
-	jp StdBattleTextBox
+	jp StdBattleTextbox
 
 .failed
 	call AnimateFailedMove
@@ -90,4 +90,4 @@ BattleCommand_Curse:
 	call GetStatName
 	call AnimateFailedMove
 	ld hl, WontRiseAnymoreText
-	jp StdBattleTextBox
+	jp StdBattleTextbox
