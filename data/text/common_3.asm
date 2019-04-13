@@ -1133,28 +1133,28 @@ UnknownText_0x1c5962::
 	line "you're ready."
 	done
 
-UnknownText_0x1c5983::
+_NeedAtLeastThreeMonText::
 	text "You need at least"
 	line "three #MON."
 
 	para ""
 	done
 
-UnknownText_0x1c59a3::
+_EggDoesNotQualifyText::
 	text "Sorry, an EGG"
 	line "doesn't qualify."
 
 	para ""
 	done
 
-Text_OnlyThreeMonMayBeEntered::
+_OnlyThreeMonMayBeEnteredText::
 	text "Only three #MON"
 	line "may be entered."
 
 	para ""
 	done
 
-Text_TheMonMustAllBeDifferentKinds::
+_TheMonMustAllBeDifferentKindsText::
 	text "The @"
 	text_ram wStringBuffer2
 	text " #MON"
@@ -1164,7 +1164,7 @@ Text_TheMonMustAllBeDifferentKinds::
 	para ""
 	done
 
-Text_TheMonMustNotHoldTheSameItems::
+_TheMonMustNotHoldTheSameItemsText::
 	text "The @"
 	text_ram wStringBuffer2
 	text " #MON"
@@ -1174,7 +1174,7 @@ Text_TheMonMustNotHoldTheSameItems::
 	para ""
 	done
 
-Text_YouCantTakeAnEgg::
+_YouCantTakeAnEggText::
 	text "You can't take an"
 	line "EGG!"
 
