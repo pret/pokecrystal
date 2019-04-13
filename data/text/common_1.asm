@@ -27,17 +27,17 @@ _NothingHereText::
 	line "here…"
 	done
 
-UnknownText_0x1bc06b::
+_WhichApricornText::
 	text "Which APRICORN"
 	line "should I use?"
 	done
 
-UnknownText_0x1bc089::
+_HowManyShouldIMakeText::
 	text "How many should I"
 	line "make?"
 	done
 
-UnknownText_0x1bc0a2::
+_RecoveredSomeHPText::
 	text_ram wStringBuffer1
 	text_start
 	line "recovered @"
@@ -45,49 +45,49 @@ UnknownText_0x1bc0a2::
 	text "HP!"
 	done
 
-UnknownText_0x1bc0bb::
+_CuredOfPoisonText::
 	text_ram wStringBuffer1
 	text "'s"
 	line "cured of poison."
 	done
 
-UnknownText_0x1bc0d2::
+_RidOfParalysisText::
 	text_ram wStringBuffer1
 	text "'s"
 	line "rid of paralysis."
 	done
 
-UnknownText_0x1bc0ea::
+_BurnWasHealedText::
 	text_ram wStringBuffer1
 	text "'s"
 	line "burn was healed."
 	done
 
-UnknownText_0x1bc101::
+_WasDefrostedText::
 	text_ram wStringBuffer1
 	text_start
 	line "was defrosted."
 	done
 
-UnknownText_0x1bc115::
+_WokeUpText::
 	text_ram wStringBuffer1
 	text_start
 	line "woke up."
 	done
 
-UnknownText_0x1bc123::
+_HealthReturnedText::
 	text_ram wStringBuffer1
 	text "'s"
 	line "health returned."
 	done
 
-UnknownText_0x1bc13a::
+_RevitalizedText::
 	text_ram wStringBuffer1
 	text_start
 	line "is revitalized."
 	done
 
-UnknownText_0x1bc14f::
+_GrewToLevelText::
 	text_ram wStringBuffer1
 	text " grew to"
 	line "level @"
@@ -99,28 +99,28 @@ UnknownText_0x1bc14f::
 
 	text_end ; unused
 
-UnknownText_0x1bc16e::
+_CameToItsSensesText::
 	text_ram wStringBuffer1
 	text " came"
 	line "to its senses."
 	done
 
-UnknownText_0x1bc187::
+_EnterNewPasscodeText::
 	text "Please enter any"
 	line "four-digit number."
 	done
 
-UnknownText_0x1bc1ac::
+_ConfirmPasscodeText::
 	text "Enter the same"
 	line "number to confirm."
 	done
 
-UnknownText_0x1bc1cf::
+_PasscodesNotSameText::
 	text "That's not the"
 	line "same number."
 	done
 
-UnknownText_0x1bc1eb::
+_PasscodeSetText::
 	text "Your PASSCODE has"
 	line "been set."
 
@@ -131,29 +131,29 @@ UnknownText_0x1bc1eb::
 	para ""
 	done
 
-UnknownText_0x1bc23e::
+_FourZerosInvalidText::
 	text "0000 is invalid!"
 
 	para ""
 	done
 
-UnknownText_0x1bc251::
+_EnterPasscodeText::
 	text "Enter the CARD"
 	next "FOLDER PASSCODE."
 	done
 
-UnknownText_0x1bc272::
+_IncorrectPasscodeText::
 	text "Incorrect"
 	line "PASSCODE!"
 
 	para ""
 	done
 
-UnknownText_0x1bc288::
+_CardFolderOpenText::
 	text "CARD FOLDER open.@"
 	text_end
 
-UnknownText_0x1bc29c::
+_OakTimeText1::
 	text "<……><……><……><……><……><……>"
 	line "<……><……><……><……><……><……>"
 
@@ -164,52 +164,52 @@ UnknownText_0x1bc29c::
 	line "clock for me?"
 	prompt
 
-UnknownText_0x1bc2eb::
+_OakTimeText2::
 	text "What time is it?"
 	done
 
-UnknownText_0x1bc2fd::
+_OakTimeText3::
 	text "What?@"
 	text_end
 
-UnknownText_0x1bc305::
+_OakTimeText4::
 	text "?"
 	done
 
-UnknownText_0x1bc308::
+_OakTimeText5::
 	text "How many minutes?"
 	done
 
-UnknownText_0x1bc31b::
+_OakTimeText6::
 	text "Whoa!@"
 	text_end
 
-UnknownText_0x1bc323::
+_OakTimeText7::
 	text "?"
 	done
 
-UnknownText_0x1bc326::
+_OakTimeText8::
 	text "!"
 	line "I overslept!"
 	done
 
-UnknownText_0x1bc336::
+_OakTimeText11::
 	text "!"
 	line "Yikes! I over-"
 	cont "slept!"
 	done
 
-UnknownText_0x1bc34f::
+_OakTimeText12::
 	text "!"
 	line "No wonder it's so"
 	cont "dark!"
 	done
 
-UnknownText_0x1bc369::
+_OakTimeText13::
 	text "What day is it?"
 	done
 
-UnknownText_0x1bc37a::
+_OakTimeText14::
 	text ", is it?"
 	done
 
@@ -263,41 +263,41 @@ UnknownText_0x1bc45e::
 	line "amount."
 	done
 
-UnknownText_0x1bc471::
+_NothingToChooseText::
 	text "There's nothing to"
 	line "choose."
 	prompt
 
-UnknownText_0x1bc48c::
+_WhichSidePutOnText::
 	text "Which side do you"
 	line "want to put it on?"
 	done
 
-UnknownText_0x1bc4b2::
+_WhichSidePutAwayText::
 	text "Which side do you"
 	line "want to put away?"
 	done
 
-UnknownText_0x1bc4d7::
+_PutAwayTheDecoText::
 	text "Put away the"
 	line "@"
 	text_ram wStringBuffer3
 	text "."
 	prompt
 
-UnknownText_0x1bc4ec::
+_NothingToPutAwayText::
 	text "There's nothing to"
 	line "put away."
 	prompt
 
-UnknownText_0x1bc509::
+_SetUpTheDecoText::
 	text "Set up the"
 	line "@"
 	text_ram wStringBuffer3
 	text "."
 	prompt
 
-UnknownText_0x1bc51c::
+_PutAwayAndSetUpText::
 	text "Put away the"
 	line "@"
 	text_ram wStringBuffer3
@@ -309,74 +309,74 @@ UnknownText_0x1bc51c::
 	text "."
 	prompt
 
-UnknownText_0x1bc546::
+_AlreadySetUpText::
 	text "That's already set"
 	line "up."
 	prompt
 
-UnknownText_0x1bc55d::
+_LookTownMapText::
 	text "It's the TOWN MAP."
 	done
 
-UnknownText_0x1bc570::
+_LookPikachuPosterText::
 	text "It's a poster of a"
 	line "cute PIKACHU."
 	done
 
-UnknownText_0x1bc591::
+_LookClefairyPosterText::
 	text "It's a poster of a"
 	line "cute CLEFAIRY."
 	done
 
-UnknownText_0x1bc5b3::
+_LookJigglypuffPosterText::
 	text "It's a poster of a"
 	line "cute JIGGLYPUFF."
 	done
 
-UnknownText_0x1bc5d7::
+_LookAdorableDecoText::
 	text "It's an adorable"
 	line "@"
 	text_ram wStringBuffer3
 	text "."
 	done
 
-UnknownText_0x1bc5ef::
+_LookGiantDecoText::
 	text "A giant doll! It's"
 	line "fluffy and cuddly."
 	done
 
-UnknownText_0x1bc615::
+_MomShoppingText1::
 	text "Hi, <PLAYER>!"
 	line "How are you?"
 	prompt
 
-UnknownText_0x1bc62a::
+_MomShoppingText2::
 	text "I found a useful"
 	line "item shopping, so"
 	prompt
 
-UnknownText_0x1bc64e::
+_MomShoppingText3::
 	text "I bought it with"
 	line "your money. Sorry!"
 	prompt
 
-UnknownText_0x1bc673::
+_MomShoppingText4::
 	text "It's in your PC."
 	line "You'll like it!"
 	done
 
-UnknownText_0x1bc693::
+_MomShoppingText5::
 	text "While shopping"
 	line "today, I saw this"
 	cont "adorable doll, so"
 	prompt
 
-UnknownText_0x1bc6c7::
+_MomShoppingText6::
 	text "It's in your room."
 	line "You'll love it!"
 	done
 
-UnknownText_0x1bc6e9::
+_TradingText1::
 	text_ram wPlayerTrademonSpeciesName
 	text " was"
 	line "sent to @"
@@ -384,29 +384,29 @@ UnknownText_0x1bc6e9::
 	text "."
 	done
 
-UnknownText_0x1bc701::
+_TradingText2::
 	text_start
 	done
 
-UnknownText_0x1bc703::
+_TradingText3::
 	text_ram wOTTrademonSenderName
 	text " bids"
 	line "farewell to"
 	done
 
-UnknownText_0x1bc719::
+_TradingText4::
 	text_ram wOTTrademonSpeciesName
 	text "."
 	done
 
-UnknownText_0x1bc71f::
+_TradingText5::
 	text "Take good care of"
 	line "@"
 	text_ram wOTTrademonSpeciesName
 	text "."
 	done
 
-UnknownText_0x1bc739::
+_TradingText6::
 	text "For @"
 	text_ram wPlayerTrademonSenderName
 	text "'s"
@@ -415,7 +415,7 @@ UnknownText_0x1bc739::
 	text ","
 	done
 
-UnknownText_0x1bc74c::
+_TradingText7::
 	text_ram wOTTrademonSenderName
 	text " sends"
 	line "@"
@@ -423,7 +423,7 @@ UnknownText_0x1bc74c::
 	text "."
 	done
 
-UnknownText_0x1bc75e::
+_TradingText8::
 	text_ram wOTTrademonSenderName
 	text " will"
 	line "trade @"
@@ -432,7 +432,7 @@ UnknownText_0x1bc75e::
 
 	text_end ; unused
 
-UnknownText_0x1bc774::
+_TradingText9::
 	text "for @"
 	text_ram wPlayerTrademonSenderName
 	text "'s"
@@ -441,7 +441,7 @@ UnknownText_0x1bc774::
 	text "."
 	done
 
-UnknownText_0x1bc787::
+_TradingText10::
 	text_ram wPlayerTrademonSenderName
 	text " will"
 	line "trade @"
@@ -450,7 +450,7 @@ UnknownText_0x1bc787::
 
 	text_end ; unused
 
-UnknownText_0x1bc79d::
+_TradingText11::
 	text "for @"
 	text_ram wOTTrademonSenderName
 	text "'s"
@@ -459,7 +459,7 @@ UnknownText_0x1bc79d::
 	text "."
 	done
 
-UnknownText_0x1bc7b0::
+_TradingText12::
 	text_ram wPlayerTrademonSenderName
 	text "'s"
 	line "@"
@@ -467,14 +467,14 @@ UnknownText_0x1bc7b0::
 	text " trade…"
 	done
 
-UnknownText_0x1bc7c3::
+_TradingText13::
 	text "Take good care of"
 	line "@"
 	text_ram wOTTrademonSpeciesName
 	text "."
 	done
 
-UnknownText_0x1bc7dd::
+_TradingText14::
 	text_ram wPlayerTrademonSenderName
 	text "'s"
 	line "@"
@@ -482,14 +482,14 @@ UnknownText_0x1bc7dd::
 	text " trade…"
 	done
 
-UnknownText_0x1bc7f0::
+_TradingText15::
 	text "Take good care of"
 	line "@"
 	text_ram wOTTrademonSpeciesName
 	text "."
 	done
 
-UnknownText_0x1bc80a::
+_TradingText16::
 	text_ram wOTTrademonSpeciesName
 	text " came"
 	line "back!"
@@ -1295,24 +1295,24 @@ UnknownText_0x1bd2e7::
 	line "Contest is over!"
 	done
 
-UnknownText_0x1bd308::
+_RepelWoreOffText::
 	text "REPEL's effect"
 	line "wore off."
 	done
 
-UnknownText_0x1bd321::
+_PlayerFoundItemText::
 	text "<PLAYER> found"
 	line "@"
 	text_ram wStringBuffer3
 	text "!"
 	done
 
-UnknownText_0x1bd331::
+_ButNoSpaceText::
 	text "But <PLAYER> has"
 	line "no space left…"
 	done
 
-UnknownText_0x1bd34b::
+_JustSawSomeRareMonText::
 	text "I just saw some"
 	line "rare @"
 	text_ram wStringBuffer1
@@ -1326,12 +1326,12 @@ UnknownText_0x1bd34b::
 	cont "#MON, OK?"
 	prompt
 
-UnknownText_0x1bd39e::
+_SavingRecordText::
 	text "SAVING RECORD…"
 	line "DON'T TURN OFF!"
 	done
 
-UnknownText_0x1bd3be::
+_ReceiveItemText::
 	text_ram wPlayerName
 	text " received"
 	line "@"
@@ -1343,11 +1343,11 @@ UnknownText_0x1bd3be::
 
 	text_end ; unused
 
-UnknownText_0x1bd3d7::
+_NoCoinsText::
 	text "You have no coins."
 	prompt
 
-UnknownText_0x1bd3eb::
+_NoCoinCaseText::
 	text "You don't have a"
 	line "COIN CASE."
 	prompt
@@ -1374,7 +1374,7 @@ UnknownText_0x1bd445::
 
 	text_end ; unused
 
-UnknownText_0x1bd449::
+_NPCTradeIntroText1::
 	text "I collect #MON."
 	line "Do you have"
 	cont "@"
@@ -1387,12 +1387,12 @@ UnknownText_0x1bd449::
 	text "?"
 	done
 
-UnknownText_0x1bd48c::
+_NPCTradeCancelText1::
 	text "You don't want to"
 	line "trade? Aww…"
 	done
 
-UnknownText_0x1bd4aa::
+_NPCTradeWrongText1::
 	text "Huh? That's not"
 	line "@"
 	text_ram wStringBuffer1
@@ -1400,7 +1400,7 @@ UnknownText_0x1bd4aa::
 	cont "What a letdown…"
 	done
 
-UnknownText_0x1bd4d2::
+_NPCTradeCompleteText1::
 	text "Yay! I got myself"
 	line "@"
 	text_ram wStringBuffer1
@@ -1408,14 +1408,14 @@ UnknownText_0x1bd4d2::
 	cont "Thanks!"
 	done
 
-UnknownText_0x1bd4f4::
+_NPCTradeAFterText1::
 	text "Hi, how's my old"
 	line "@"
 	text_ram wStringBuffer2
 	text " doing?"
 	done
 
-UnknownText_0x1bd512::
+_NPCTradeIntroText2::
 	text "Hi, I'm looking"
 	line "for this #MON."
 
@@ -1430,7 +1430,7 @@ UnknownText_0x1bd512::
 	text "?"
 	done
 
-UnknownText_0x1bd565::
+_NPCTradeCancelText2::
 	text "You don't have"
 	line "one either?"
 
@@ -1438,7 +1438,7 @@ UnknownText_0x1bd565::
 	line "disappointing…"
 	done
 
-UnknownText_0x1bd5a1::
+_NPCTradeWrongText2::
 	text "You don't have"
 	line "@"
 	text_ram wStringBuffer1
@@ -1446,7 +1446,7 @@ UnknownText_0x1bd5a1::
 	cont "too bad, then."
 	done
 
-UnknownText_0x1bd5cc::
+_NPCTradeCompleteText2::
 	text "Great! Thank you!"
 
 	para "I finally got"
@@ -1455,7 +1455,7 @@ UnknownText_0x1bd5cc::
 	text "."
 	done
 
-UnknownText_0x1bd5f4::
+_NPCTradeAfterText2::
 	text "Hi! The @"
 	text_ram wMonOrItemNameBuffer
 	text_start
@@ -1463,7 +1463,7 @@ UnknownText_0x1bd5f4::
 	cont "doing great!"
 	done
 
-UnknownText_0x1bd621::
+_NPCTradeIntroText3::
 	text_ram wMonOrItemNameBuffer
 	text "'s cute,"
 	line "but I don't have"
@@ -1479,12 +1479,12 @@ UnknownText_0x1bd621::
 	text "?"
 	done
 
-UnknownText_0x1bd673::
+_NPCTradeCancelText3::
 	text "You don't want to"
 	line "trade? Oh, darn…"
 	done
 
-UnknownText_0x1bd696::
+_NPCTradeWrongText3::
 	text "That's not"
 	line "@"
 	text_ram wStringBuffer1
@@ -1494,7 +1494,7 @@ UnknownText_0x1bd696::
 	line "me if you get one."
 	done
 
-UnknownText_0x1bd6cd::
+_NPCTradeCompleteText3::
 	text "Wow! Thank you!"
 	line "I always wanted"
 	cont "@"
@@ -1502,7 +1502,7 @@ UnknownText_0x1bd6cd::
 	text "!"
 	done
 
-UnknownText_0x1bd6f5::
+_NPCTradeAfterText3::
 	text "How is that"
 	line "@"
 	text_ram wStringBuffer2
@@ -1515,18 +1515,18 @@ UnknownText_0x1bd6f5::
 	line "so cute!"
 	done
 
-UnknownText_0x1bd731::
+_NPCTradeCompleteText4::
 	text "Uh? What happened?"
 	done
 
-UnknownText_0x1bd745::
+_NPCTradeAfterText4::
 	text "Trading is so odd…"
 
 	para "I still have a lot"
 	line "to learn about it."
 	done
 
-UnknownText_0x1bd77f::
+_MomLeavingText1::
 	text "Wow, that's a cute"
 	line "#MON."
 
@@ -1554,14 +1554,14 @@ UnknownText_0x1bd77f::
 	line "save your money?"
 	done
 
-UnknownText_0x1bd868::
+_MomLeavingText2::
 	text "OK, I'll take care"
 	line "of your money."
 
 	para "<……><……><……>"
 	prompt
 
-UnknownText_0x1bd88e::
+_MomLeavingText3::
 	text "Be careful."
 
 	para "#MON are your"
@@ -1571,7 +1571,7 @@ UnknownText_0x1bd88e::
 	para "Now, go on!"
 	done
 
-UnknownText_0x1bd8da::
+_MomVisitingText1::
 	text "Hi! Welcome home!"
 	line "You're trying very"
 	cont "hard, I see."
@@ -1583,47 +1583,47 @@ UnknownText_0x1bd8da::
 	line "your money?"
 	done
 
-UnknownText_0x1bd942::
+_MomVisitingText2::
 	text "What do you want"
 	line "to do?"
 	done
 
-UnknownText_0x1bd95b::
+_MomVisitingText3::
 	text "How much do you"
 	line "want to save?"
 	done
 
-UnknownText_0x1bd97a::
+_MomVisitingText4::
 	text "How much do you"
 	line "want to take?"
 	done
 
-UnknownText_0x1bd999::
+_MomVisitingText5::
 	text "Do you want to"
 	line "save some money?"
 	done
 
-UnknownText_0x1bd9ba::
+_MomVisitingText6::
 	text "You haven't saved"
 	line "that much."
 	prompt
 
-UnknownText_0x1bd9d7::
+_MomVisitingText7::
 	text "You can't take"
 	line "that much."
 	prompt
 
-UnknownText_0x1bd9f1::
+_MomVisitingText8::
 	text "You don't have"
 	line "that much."
 	prompt
 
-UnknownText_0x1bda0b::
+_MomVisitingText9::
 	text "You can't save"
 	line "that much."
 	prompt
 
-UnknownText_0x1bda25::
+_MomVisitingText10::
 	text "OK, I'll save your"
 	line "money. Trust me!"
 
@@ -1631,32 +1631,32 @@ UnknownText_0x1bda25::
 	line "with it!"
 	done
 
-UnknownText_0x1bda5b::
+_MomVisitingText11::
 	text "Your money's safe"
 	line "here! Get going!"
 	done
 
-UnknownText_0x1bda7e::
+_MomVisitingText12::
 	text "<PLAYER>, don't"
 	line "give up!"
 	done
 
-UnknownText_0x1bda90::
+_MomVisitingText13::
 	text "Just do what"
 	line "you can."
 	done
 
-UnknownText_0x1bdaa7::
+_DaycareDummyText::
 	text_start
 	done
 
-UnknownText_0x1bdaa9::
+_DayCareManIntroText::
 	text "I'm the DAY-CARE"
 	line "MAN. Want me to"
 	cont "raise a #MON?"
 	done
 
-UnknownText_0x1bdad8::
+_DayCareManOddEggText::
 	text "I'm the DAY-CARE"
 	line "MAN. Do you know"
 	cont "about EGGS?"
@@ -1675,7 +1675,7 @@ UnknownText_0x1bdad8::
 	line "raise a #MON?"
 	done
 
-UnknownText_0x1bdb85::
+_DayCareLadyIntroText::
 	text "I'm the DAY-CARE"
 	line "LADY."
 
@@ -1683,7 +1683,7 @@ UnknownText_0x1bdb85::
 	line "#MON for you?"
 	done
 
-UnknownText_0x1bdbbb::
+_DayCareLadyOddEggText::
 	text "I'm the DAY-CARE"
 	line "LADY. Do you know"
 	cont "about EGGS?"
@@ -1702,45 +1702,45 @@ UnknownText_0x1bdbbb::
 	line "#MON for you?"
 	done
 
-UnknownText_0x1bdc79::
+_WhatShouldIRaiseText::
 	text "What should I"
 	line "raise for you?"
 	prompt
 
-UnknownText_0x1bdc97::
+_OnlyOneMonText::
 	text "Oh? But you have"
 	line "just one #MON."
 	prompt
 
-UnknownText_0x1bdcb8::
+_CantRaiseEggText::
 	text "Sorry, but I can't"
 	line "accept an EGG."
 	prompt
 
-UnknownText_0x1bdcda::
+_RemoveMailText::
 	text "Remove MAIL before"
 	line "you come see me."
 	prompt
 
-UnknownText_0x1bdcff::
+_LastHealthyMonText::
 	text "If you give me"
 	line "that, what will"
 	cont "you battle with?"
 	prompt
 
-UnknownText_0x1bdd30::
+_IllRaiseYourMonText::
 	text "OK. I'll raise"
 	line "your @"
 	text_ram wStringBuffer1
 	text "."
 	prompt
 
-UnknownText_0x1bdd4b::
+_ComeBackLaterText::
 	text "Come back for it"
 	line "later."
 	done
 
-UnknownText_0x1bdd64::
+_AreWeGeniusesText::
 	text "Are we geniuses or"
 	line "what? Want to see"
 	cont "your @"
@@ -1748,7 +1748,7 @@ UnknownText_0x1bdd64::
 	text "?"
 	done
 
-UnknownText_0x1bdd96::
+_YourMonHasGrownText::
 	text "Your @"
 	text_ram wStringBuffer1
 	text_start
@@ -1766,19 +1766,19 @@ UnknownText_0x1bdd96::
 	text "."
 	done
 
-UnknownText_0x1bde04::
+_PerfectHeresYourMonText::
 	text "Perfect! Here's"
 	line "your #MON."
 	prompt
 
-UnknownText_0x1bde1f::
+_GotBackMonText::
 	text "<PLAYER> got back"
 	line "@"
 	text_ram wStringBuffer1
 	text "."
 	prompt
 
-UnknownText_0x1bde32::
+_BackAlreadyText::
 	text "Huh? Back already?"
 	line "Your @"
 	text_ram wStringBuffer1
@@ -1791,29 +1791,29 @@ UnknownText_0x1bde32::
 	cont "will cost ¥100."
 	done
 
-UnknownText_0x1bdea2::
+_HaveNoRoomText::
 	text "You have no room"
 	line "for it."
 	prompt
 
-UnknownText_0x1bdebc::
+_DCNotEnoughMoneyText::
 	text "You don't have"
 	line "enough money."
 	prompt
 
-UnknownText_0x1bded9::
+_OhFineThenText::
 	text "Oh, fine then."
 	prompt
 
-UnknownText_0x1bdee9::
+_ComeAgainText::
 	text "Come again."
 	done
 
-UnknownText_0x1bdef6::
+_NotYetText::
 	text "Not yet…"
 	done
 
-UnknownText_0x1bdf00::
+_FoundAnEggText::
 	text "Ah, it's you!"
 
 	para "We were raising"
@@ -1832,39 +1832,39 @@ UnknownText_0x1bdf00::
 	line "it. You want it?"
 	done
 
-UnknownText_0x1bdfa5::
+_ReceivedEggText::
 	text "<PLAYER> received"
 	line "the EGG!"
 	done
 
-UnknownText_0x1bdfba::
+_TakeGoodCareOfEggText::
 	text "Take good care of"
 	line "it."
 	done
 
-UnknownText_0x1bdfd1::
+_RefuseEggText::
 	text "Well then, I'll"
 	line "keep it. Thanks!"
 	done
 
-UnknownText_0x1bdff2::
+_NoRoomForEggText::
 	text "You have no room"
 	line "in your party."
 	cont "Come back later."
 	done
 
-UnknownText_0x1be024::
+_WhichMonPhotoText::
 	text "Which #MON"
 	line "should I photo-"
 	cont "graph?"
 	prompt
 
-UnknownText_0x1be047::
+_HoldOnText::
 	text "All righty. Hold"
 	line "still for a bit."
 	prompt
 
-UnknownText_0x1be06a::
+_PrestoAllDoneText::
 	text "Presto! All done."
 	line "Come again, OK?"
 	done

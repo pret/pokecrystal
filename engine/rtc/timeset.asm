@@ -291,12 +291,12 @@ PrintTwoDigitNumberRightAlign:
 
 Text_WokeUpOak:
 	; Zzz… Hm? Wha…? You woke me up! Will you check the clock for me?
-	text_far UnknownText_0x1bc29c
+	text_far _OakTimeText1
 	text_end
 
 Text_WhatTimeIsIt:
 	; What time is it?
-	text_far UnknownText_0x1bc2eb
+	text_far _OakTimeText2
 	text_end
 
 String_oclock:
@@ -304,7 +304,7 @@ String_oclock:
 
 Text_WhatHrs:
 	; What?@ @
-	text_far UnknownText_0x1bc2fd
+	text_far _OakTimeText3
 	text_asm
 	hlcoord 1, 16
 	call DisplayHourOClock
@@ -313,12 +313,12 @@ Text_WhatHrs:
 
 .QuestionMark:
 	; ?
-	text_far UnknownText_0x1bc305
+	text_far _OakTimeText4
 	text_end
 
 Text_HowManyMinutes:
 	; How many minutes?
-	text_far UnknownText_0x1bc308
+	text_far _OakTimeText5
 	text_end
 
 String_min:
@@ -326,7 +326,7 @@ String_min:
 
 Text_WhoaMins:
 	; Whoa!@ @
-	text_far UnknownText_0x1bc31b
+	text_far _OakTimeText6
 	text_asm
 	hlcoord 7, 14
 	call DisplayMinutesWithMinString
@@ -335,7 +335,7 @@ Text_WhoaMins:
 
 .QuestionMark:
 	; ?
-	text_far UnknownText_0x1bc323
+	text_far _OakTimeText7
 	text_end
 
 OakText_ResponseToSetTime:
@@ -370,17 +370,17 @@ OakText_ResponseToSetTime:
 
 .overslept
 	; ! I overslept!
-	text_far UnknownText_0x1bc326
+	text_far _OakTimeText8
 	text_end
 
 .yikes
 	; ! Yikes! I over- slept!
-	text_far UnknownText_0x1bc336
+	text_far _OakTimeText11
 	text_end
 
 .sodark
 	; ! No wonder it's so dark!
-	text_far UnknownText_0x1bc34f
+	text_far _OakTimeText12
 	text_end
 
 TimeSetBackgroundGFX:
@@ -534,7 +534,7 @@ SetDayOfWeek:
 
 .WhatDayIsItText:
 	; What day is it?
-	text_far UnknownText_0x1bc369
+	text_far _OakTimeText13
 	text_end
 
 .ConfirmWeekdayText:
@@ -546,7 +546,7 @@ SetDayOfWeek:
 
 .IsIt:
 	; , is it?
-	text_far UnknownText_0x1bc37a
+	text_far _OakTimeText14
 	text_end
 
 InitialSetDSTFlag:

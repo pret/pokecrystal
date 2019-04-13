@@ -7,7 +7,7 @@ RepelWoreOffScript::
 
 .text
 	; REPEL's effect wore off.
-	text_far UnknownText_0x1bd308
+	text_far _RepelWoreOffText
 	text_end
 
 HiddenItemScript::
@@ -33,12 +33,12 @@ HiddenItemScript::
 
 .found_text
 	; found @ !
-	text_far UnknownText_0x1bd321
+	text_far _PlayerFoundItemText
 	text_end
 
 .no_room_text
 	; But   has no space left…
-	text_far UnknownText_0x1bd331
+	text_far _ButNoSpaceText
 	text_end
 
 SetMemEvent:

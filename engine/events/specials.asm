@@ -169,7 +169,7 @@ GetMysteryGiftItem:
 
 .ReceiveItemText:
 	; received item
-	text_far UnknownText_0x1bd3be
+	text_far _ReceiveItemText
 	text_end
 
 BugContestJudging:
@@ -257,12 +257,12 @@ CheckCoinsAndCoinCase:
 
 .NoCoinsText:
 	; You have no coins.
-	text_far UnknownText_0x1bd3d7
+	text_far _NoCoinsText
 	text_end
 
 .NoCoinCaseText:
 	; You don't have a COIN CASE.
-	text_far UnknownText_0x1bd3eb
+	text_far _NoCoinCaseText
 	text_end
 
 ClearBGPalettesBufferScreen:

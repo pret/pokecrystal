@@ -31,17 +31,17 @@ PhotoStudio:
 
 .Text_AskWhichMon:
 	; Which #MON should I photo- graph?
-	text_far UnknownText_0x1be024
+	text_far _WhichMonPhotoText
 	text_end
 
 .Text_HoldStill:
 	; All righty. Hold still for a bit.
-	text_far UnknownText_0x1be047
+	text_far _HoldOnText
 	text_end
 
 .Text_Presto:
 	; Presto! All done. Come again, OK?
-	text_far UnknownText_0x1be06a
+	text_far _PrestoAllDoneText
 	text_end
 
 .Text_NoPicture:
