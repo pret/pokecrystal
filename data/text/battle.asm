@@ -1,3 +1,5 @@
+SECTION "BattleText_PlayerPickedUpPayDayMoney - BattleText_0x8188e", ROMX
+
 BattleText:: ; used only for BANK(BattleText)
 
 BattleText_PlayerPickedUpPayDayMoney:

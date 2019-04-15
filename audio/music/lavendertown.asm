@@ -1,3 +1,5 @@
+SECTION "Music_LavenderTown", ROMX
+
 Music_LavenderTown:
 	musicheader 3, 1, Music_LavenderTown_Ch1
 	musicheader 1, 2, Music_LavenderTown_Ch2

@@ -13,6 +13,9 @@
 	const ROUTE34_COOLTRAINER_F3
 	const ROUTE34_POKE_BALL
 
+
+SECTION "Route34_MapScripts", ROMX
+
 Route34_MapScripts:
 	db 0 ; scene scripts
 

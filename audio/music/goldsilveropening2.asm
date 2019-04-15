@@ -1,3 +1,5 @@
+SECTION "Music_GoldSilverOpening2", ROMX
+
 Music_GoldSilverOpening2:
 	musicheader 4, 1, Music_GoldSilverOpening2_Ch1
 	musicheader 1, 2, Music_GoldSilverOpening2_Ch2

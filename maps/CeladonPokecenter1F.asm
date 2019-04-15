@@ -5,6 +5,9 @@
 	const CELADONPOKECENTER1F_COOLTRAINER_F
 	const CELADONPOKECENTER1F_EUSINE
 
+
+SECTION "CeladonPokecenter1F_MapScripts", ROMX
+
 CeladonPokecenter1F_MapScripts:
 	db 0 ; scene scripts
 

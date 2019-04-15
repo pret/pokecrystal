@@ -1,3 +1,5 @@
+SECTION "BillPhoneMornGreetingText - BillPhoneNewlyFullText", ROMX
+
 BillPhoneMornGreetingText:
 	text "Good morning!"
 

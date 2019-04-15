@@ -11,6 +11,9 @@
 	const ROUTE25_COOLTRAINER_M2
 	const ROUTE25_POKE_BALL
 
+
+SECTION "Route25_MapScripts", ROMX
+
 Route25_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_ROUTE25_NOTHING

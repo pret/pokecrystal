@@ -1,3 +1,5 @@
+SECTION "CheckForLuckyNumberWinners", ROMX
+
 CheckForLuckyNumberWinners:
 	xor a
 	ld [wScriptVar], a
@@ -215,6 +217,9 @@ CheckForLuckyNumberWinners:
 	; Congratulations! We have a match with the ID number of @  in your PC BOX.
 	text_far UnknownText_0x1c12ae
 	text_end
+
+
+SECTION "PrintTodaysLuckyNumber", ROMX
 
 PrintTodaysLuckyNumber:
 	ld hl, wStringBuffer3

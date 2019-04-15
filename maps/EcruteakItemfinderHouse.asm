@@ -2,6 +2,9 @@
 	const ECRUTEAKITEMFINDERHOUSE_COOLTRAINER_M
 	const ECRUTEAKITEMFINDERHOUSE_POKEDEX
 
+
+SECTION "EcruteakItemfinderHouse_MapScripts", ROMX
+
 EcruteakItemfinderHouse_MapScripts:
 	db 0 ; scene scripts
 

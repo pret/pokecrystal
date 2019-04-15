@@ -2,6 +2,9 @@
 	const SILVERCAVEPOKECENTER1F_NURSE
 	const SILVERCAVEPOKECENTER1F_GRANNY
 
+
+SECTION "SilverCavePokecenter1F_MapScripts", ROMX
+
 SilverCavePokecenter1F_MapScripts:
 	db 0 ; scene scripts
 

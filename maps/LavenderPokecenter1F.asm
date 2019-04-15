@@ -4,6 +4,9 @@
 	const LAVENDERPOKECENTER1F_TEACHER
 	const LAVENDERPOKECENTER1F_YOUNGSTER
 
+
+SECTION "LavenderPokecenter1F_MapScripts", ROMX
+
 LavenderPokecenter1F_MapScripts:
 	db 0 ; scene scripts
 

@@ -1,3 +1,5 @@
+SECTION "BuenaPhoneCalleeScript - UnknownText_0xa1e2f", ROMX
+
 BuenaPhoneCalleeScript:
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue BuenaPhoneScript_Rocket

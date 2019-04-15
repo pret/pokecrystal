@@ -1,3 +1,5 @@
+SECTION "ReadTrainerParty - MysticalmanGroup", ROMX
+
 ReadTrainerParty:
 	ld a, [wInBattleTowerBattle]
 	bit 0, a

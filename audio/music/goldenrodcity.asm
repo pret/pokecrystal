@@ -1,3 +1,5 @@
+SECTION "Music_GoldenrodCity", ROMX
+
 Music_GoldenrodCity:
 	musicheader 4, 1, Music_GoldenrodCity_Ch1
 	musicheader 1, 2, Music_GoldenrodCity_Ch2

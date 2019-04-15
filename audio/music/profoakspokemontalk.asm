@@ -1,3 +1,5 @@
+SECTION "Music_ProfOaksPokemonTalk", ROMX
+
 Music_ProfOaksPokemonTalk:
 	musicheader 3, 1, Music_ProfOaksPokemonTalk_Ch1
 	musicheader 1, 2, Music_ProfOaksPokemonTalk_Ch2

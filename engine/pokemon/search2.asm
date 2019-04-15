@@ -1,3 +1,5 @@
+SECTION "_FindPartyMonAboveLevel - RetroactivelyIgnoreEggs", ROMX
+
 _FindPartyMonAboveLevel:
 	ld hl, wPartyMon1Level
 	call FindAboveLevel

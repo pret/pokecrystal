@@ -2,6 +2,9 @@
 	const ROUTE28STEELWINGHOUSE_CELEBRITY
 	const ROUTE28STEELWINGHOUSE_FEAROW
 
+
+SECTION "Route28SteelWingHouse_MapScripts", ROMX
+
 Route28SteelWingHouse_MapScripts:
 	db 1 ; scene scripts
 	scene_script .DummyScene

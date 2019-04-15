@@ -3,6 +3,9 @@
 	const CINNABARPOKECENTER1F_COOLTRAINER_F
 	const CINNABARPOKECENTER1F_FISHER
 
+
+SECTION "CinnabarPokecenter1F_MapScripts", ROMX
+
 CinnabarPokecenter1F_MapScripts:
 	db 0 ; scene scripts
 

@@ -3,6 +3,9 @@
 	const ROUTE1_COOLTRAINER_F
 	const ROUTE1_FRUIT_TREE
 
+
+SECTION "Route1_MapScripts", ROMX
+
 Route1_MapScripts:
 	db 0 ; scene scripts
 

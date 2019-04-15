@@ -5,6 +5,9 @@
 	const ICEPATHB1F_BOULDER4
 	const ICEPATHB1F_POKE_BALL
 
+
+SECTION "IcePathB1F_MapScripts", ROMX
+
 IcePathB1F_MapScripts:
 	db 0 ; scene scripts
 

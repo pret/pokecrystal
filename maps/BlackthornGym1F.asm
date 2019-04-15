@@ -5,6 +5,9 @@
 	const BLACKTHORNGYM1F_COOLTRAINER_F
 	const BLACKTHORNGYM1F_GYM_GUY
 
+
+SECTION "BlackthornGym1F_MapScripts", ROMX
+
 BlackthornGym1F_MapScripts:
 	db 0 ; scene scripts
 

@@ -4,6 +4,9 @@
 	const GOLDENRODDEPTSTORE4F_BUG_CATCHER
 	const GOLDENRODDEPTSTORE4F_GAMEBOY_KID
 
+
+SECTION "GoldenrodDeptStore4F_MapScripts", ROMX
+
 GoldenrodDeptStore4F_MapScripts:
 	db 0 ; scene scripts
 

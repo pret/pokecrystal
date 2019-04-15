@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const POKESEERSHOUSE_GRANNY
 
+
+SECTION "PokeSeersHouse_MapScripts", ROMX
+
 PokeSeersHouse_MapScripts:
 	db 0 ; scene scripts
 

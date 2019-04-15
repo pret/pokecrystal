@@ -9,6 +9,9 @@
 	const CELADONGAMECORNER_GYM_GUY
 	const CELADONGAMECORNER_GRAMPS
 
+
+SECTION "CeladonGameCorner_MapScripts", ROMX
+
 CeladonGameCorner_MapScripts:
 	db 0 ; scene scripts
 

@@ -6,6 +6,9 @@
 	const INDIGOPLATEAUPOKECENTER1F_GRAMPS
 	const INDIGOPLATEAUPOKECENTER1F_ABRA
 
+
+SECTION "IndigoPlateauPokecenter1F_MapScripts", ROMX
+
 IndigoPlateauPokecenter1F_MapScripts:
 	db 1 ; scene scripts
 	scene_script .DummyScene ; SCENE_DEFAULT

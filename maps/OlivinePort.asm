@@ -7,6 +7,9 @@
 	const OLIVINEPORT_YOUNGSTER
 	const OLIVINEPORT_COOLTRAINER_F
 
+
+SECTION "OlivinePort_MapScripts", ROMX
+
 OlivinePort_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT

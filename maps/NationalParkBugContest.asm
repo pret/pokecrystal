@@ -12,6 +12,9 @@
 	const NATIONALPARKBUGCONTEST_POKE_BALL1
 	const NATIONALPARKBUGCONTEST_POKE_BALL2
 
+
+SECTION "NationalParkBugContest_MapScripts", ROMX
+
 NationalParkBugContest_MapScripts:
 	db 0 ; scene scripts
 

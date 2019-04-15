@@ -3,6 +3,9 @@
 	const GOLDENRODDEPTSTORE3F_SUPER_NERD
 	const GOLDENRODDEPTSTORE3F_ROCKER
 
+
+SECTION "GoldenrodDeptStore3F_MapScripts", ROMX
+
 GoldenrodDeptStore3F_MapScripts:
 	db 0 ; scene scripts
 

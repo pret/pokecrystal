@@ -1,3 +1,5 @@
+SECTION "Music_BattleTowerTheme", ROMX
+
 Music_BattleTowerTheme:
 	musicheader 4, 1, Music_BattleTowerTheme_Ch1
 	musicheader 1, 2, Music_BattleTowerTheme_Ch2

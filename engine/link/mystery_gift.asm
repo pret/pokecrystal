@@ -1,3 +1,5 @@
+SECTION "DoMysteryGift - Function1057d7", ROMX
+
 DoMysteryGift:
 	call ClearTileMap
 	call ClearSprites
@@ -1705,6 +1707,9 @@ Function1057d7:
 	dsprite  1, 1, 12, 4, $05, 0
 	dsprite  1, 1, 13, 4, $06, 0
 	dsprite  1, 1, 14, 4, $07, 0
+
+
+SECTION "MysteryGiftJP_GFX", ROMX
 
 ; japanese mystery gift gfx
 MysteryGiftJP_GFX:

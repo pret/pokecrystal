@@ -2,6 +2,9 @@
 	const ILEXFORESTAZALEAGATE_OFFICER
 	const ILEXFORESTAZALEAGATE_GRANNY
 
+
+SECTION "IlexForestAzaleaGate_MapScripts", ROMX
+
 IlexForestAzaleaGate_MapScripts:
 	db 0 ; scene scripts
 

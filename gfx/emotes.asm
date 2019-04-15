@@ -1,3 +1,5 @@
+SECTION "ShockEmote - GrassRustleGFX", ROMX
+
 ShockEmote:     INCBIN "gfx/emotes/shock.2bpp"
 QuestionEmote:  INCBIN "gfx/emotes/question.2bpp"
 HappyEmote:     INCBIN "gfx/emotes/happy.2bpp"

@@ -1,5 +1,8 @@
 ; Pics are defined in gfx/pics.asm
 
+
+SECTION "TrainerPicPointers", ROMX
+
 TrainerPicPointers::
 ; entries correspond to trainer classes (see constants/trainer_constants.asm)
 	dba_pic FalknerPic

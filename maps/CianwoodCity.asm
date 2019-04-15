@@ -12,6 +12,9 @@
 	const CIANWOODCITY_EUSINE
 	const CIANWOODCITY_SUICUNE
 
+
+SECTION "CianwoodCity_MapScripts", ROMX
+
 CianwoodCity_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_CIANWOODCITY_NOTHING

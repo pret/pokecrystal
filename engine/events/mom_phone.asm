@@ -5,6 +5,9 @@ NUM_MOM_ITEMS_2 EQUS "((MomItems_2.End - MomItems_2) / 8)"
 	const MOM_ITEM
 	const MOM_DOLL
 
+
+SECTION "MomTriesToBuySomething - _MomText_ItsInRoom", ROMX
+
 MomTriesToBuySomething::
 	ld a, [wMapReentryScriptQueueFlag]
 	and a
@@ -237,6 +240,9 @@ _MomText_ItsInRoom:
 	text_end
 
 	db 0 ; unused
+
+
+SECTION "DummyPredef3A", ROMX
 
 DummyPredef3A:
 	ret

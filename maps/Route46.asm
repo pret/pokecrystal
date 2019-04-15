@@ -6,6 +6,9 @@
 	const ROUTE46_FRUIT_TREE2
 	const ROUTE46_POKE_BALL
 
+
+SECTION "Route46_MapScripts", ROMX
+
 Route46_MapScripts:
 	db 0 ; scene scripts
 

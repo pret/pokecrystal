@@ -1,3 +1,5 @@
+SECTION "JoeyAskNumber1Text - JoeyRematchGiftText", ROMX
+
 JoeyAskNumber1Text:
 	text "Listen, can I get"
 	line "your phone number?"

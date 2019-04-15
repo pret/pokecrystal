@@ -1,3 +1,5 @@
+SECTION "UnknownText_0x1771fd - UnknownText_0x17750e", ROMX
+
 UnknownText_0x1771fd:
 	text "My @"
 	text_ram wStringBuffer4

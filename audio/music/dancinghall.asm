@@ -1,3 +1,5 @@
+SECTION "Music_DancingHall", ROMX
+
 Music_DancingHall:
 	musicheader 3, 1, Music_DancingHall_Ch1
 	musicheader 1, 2, Music_DancingHall_Ch2

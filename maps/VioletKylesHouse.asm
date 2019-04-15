@@ -2,6 +2,9 @@
 	const VIOLETKYLESHOUSE_POKEFAN_M
 	const VIOLETKYLESHOUSE_KYLE
 
+
+SECTION "VioletKylesHouse_MapScripts", ROMX
+
 VioletKylesHouse_MapScripts:
 	db 0 ; scene scripts
 

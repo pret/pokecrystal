@@ -1,3 +1,5 @@
+SECTION "AnimateDexSearchSlowpoke - DoDexSearchSlowpokeFrame", ROMX
+
 AnimateDexSearchSlowpoke:
 	ld hl, .FrameIDs
 	ld b, 25
@@ -75,6 +77,9 @@ DoDexSearchSlowpokeFrame:
 	dsprite 13, 0, 10, 0, $21, 0
 	dsprite 13, 0, 11, 0, $22, 0
 	db -1
+
+
+SECTION "DisplayDexEntry - PokedexDataPointerTable", ROMX
 
 DisplayDexEntry:
 	call GetPokemonName

@@ -1,3 +1,5 @@
+SECTION "MobileTradeAnimation_SendGivemonToGTS - Palette_1093c7", ROMX
+
 MobileTradeAnimation_SendGivemonToGTS:
 	ld a, $80
 	ld [wcf65], a

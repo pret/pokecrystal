@@ -1,3 +1,5 @@
+SECTION "BattleAnimations - BattleAnim_ShowMon_1", ROMX
+
 BattleAnimations::
 ; entries correspond to constants/move_constants.asm
 	dw BattleAnim_0

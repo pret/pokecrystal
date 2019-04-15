@@ -1,3 +1,5 @@
+SECTION "ShowLinkBattleParticipants", ROMX
+
 ShowLinkBattleParticipants:
 ; If we're not in a communications room,
 ; we don't need to be here.
@@ -11,6 +13,9 @@ ShowLinkBattleParticipants:
 	call ClearTileMap
 	call ClearSprites
 	ret
+
+
+SECTION "FindFirstAliveMonAndStartBattle", ROMX
 
 FindFirstAliveMonAndStartBattle:
 	xor a
@@ -45,6 +50,9 @@ FindFirstAliveMonAndStartBattle:
 	ldh [rWY], a
 	ldh [hMapAnims], a
 	ret
+
+
+SECTION "PlayBattleMusic", ROMX
 
 PlayBattleMusic:
 	push hl
@@ -147,6 +155,9 @@ PlayBattleMusic:
 	pop de
 	pop hl
 	ret
+
+
+SECTION "ClearBattleRAM", ROMX
 
 ClearBattleRAM:
 	xor a

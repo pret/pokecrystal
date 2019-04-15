@@ -2,6 +2,9 @@
 	const VERMILIONMAGNETTRAINSPEECHHOUSE_POKEFAN_F
 	const VERMILIONMAGNETTRAINSPEECHHOUSE_YOUNGSTER
 
+
+SECTION "VermilionMagnetTrainSpeechHouse_MapScripts", ROMX
+
 VermilionMagnetTrainSpeechHouse_MapScripts:
 	db 0 ; scene scripts
 

@@ -2,6 +2,9 @@
 	const MAHOGANYREDGYARADOSSPEECHHOUSE_BLACK_BELT
 	const MAHOGANYREDGYARADOSSPEECHHOUSE_TEACHER
 
+
+SECTION "MahoganyRedGyaradosSpeechHouse_MapScripts", ROMX
+
 MahoganyRedGyaradosSpeechHouse_MapScripts:
 	db 0 ; scene scripts
 

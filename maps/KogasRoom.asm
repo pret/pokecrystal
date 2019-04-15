@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const KOGASROOM_KOGA
 
+
+SECTION "KogasRoom_MapScripts", ROMX
+
 KogasRoom_MapScripts:
 	db 2 ; scene scripts
 	scene_script .LockDoor ; SCENE_DEFAULT

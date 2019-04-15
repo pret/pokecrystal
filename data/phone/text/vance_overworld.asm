@@ -1,3 +1,5 @@
+SECTION "VanceAskNumber1Text - VanceRematchGiftText", ROMX
+
 VanceAskNumber1Text:
 	text "You know, you are"
 	line "really strong."

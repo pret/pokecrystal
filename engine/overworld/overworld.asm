@@ -1,3 +1,5 @@
+SECTION "GetEmote2bpp - OverworldSprites", ROMX
+
 GetEmote2bpp:
 	ld a, $1
 	ldh [rVBK], a

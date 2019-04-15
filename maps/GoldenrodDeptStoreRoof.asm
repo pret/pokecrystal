@@ -8,6 +8,9 @@
 	const GOLDENRODDEPTSTOREROOF_TEACHER
 	const GOLDENRODDEPTSTOREROOF_BUG_CATCHER
 
+
+SECTION "GoldenrodDeptStoreRoof_MapScripts", ROMX
+
 GoldenrodDeptStoreRoof_MapScripts:
 	db 0 ; scene scripts
 

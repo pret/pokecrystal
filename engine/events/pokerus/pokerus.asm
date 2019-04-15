@@ -1,3 +1,5 @@
+SECTION "GivePokerusAndConvertBerries - ConvertBerriesToBerryJuice", ROMX
+
 GivePokerusAndConvertBerries:
 	call ConvertBerriesToBerryJuice
 	ld hl, wPartyMon1PokerusStatus

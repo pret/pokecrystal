@@ -74,6 +74,9 @@ SLOTS_END_LOOP_F EQU 7
 	const REEL_ACTION_WAIT_EGG
 	const REEL_ACTION_DROP_REEL
 
+
+SECTION "_SlotMachine - Slots3LZ", ROMX
+
 _SlotMachine:
 	ld hl, wOptions
 	set NO_TEXT_SCROLL, [hl]

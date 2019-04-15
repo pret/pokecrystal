@@ -1,3 +1,5 @@
+SECTION "Pokepic - PokepicMenuHeader", ROMX
+
 Pokepic::
 	ld hl, PokepicMenuHeader
 	call CopyMenuHeader

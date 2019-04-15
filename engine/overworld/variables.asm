@@ -1,3 +1,5 @@
+SECTION "_GetVarAction", ROMX
+
 _GetVarAction::
 	ld a, c
 	cp NUM_VARS

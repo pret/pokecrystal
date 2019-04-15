@@ -1,3 +1,5 @@
+SECTION "_DepositPKMN - PCString_NoReleasingEGGS", ROMX
+
 _DepositPKMN:
 	ld hl, wOptions
 	ld a, [hl]
@@ -2226,6 +2228,9 @@ PCString_Non: db "Non.@"
 PCString_BoxFull: db "The BOX is full.@"
 PCString_PartyFull: db "The party's full!@"
 PCString_NoReleasingEGGS: db "No releasing EGGS!@"
+
+
+SECTION "_ChangeBox - BillsPC_PlaceChangeBoxString", ROMX
 
 _ChangeBox:
 	call LoadStandardMenuHeader

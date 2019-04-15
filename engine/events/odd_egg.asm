@@ -1,3 +1,5 @@
+SECTION "_GiveOddEgg - OddEgg1End", ROMX
+
 _GiveOddEgg:
 	; Figure out which egg to give.
 

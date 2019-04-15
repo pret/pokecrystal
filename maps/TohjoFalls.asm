@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const TOHJOFALLS_POKE_BALL
 
+
+SECTION "TohjoFalls_MapScripts", ROMX
+
 TohjoFalls_MapScripts:
 	db 0 ; scene scripts
 

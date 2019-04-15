@@ -96,6 +96,8 @@ endc
 ENDM
 
 
+SECTION "NewBarkTown_MapAttributes - Route31VioletGate_MapAttributes", ROMX
+
 	map_attributes NewBarkTown, NEW_BARK_TOWN, $05, WEST | EAST
 	connection west, Route29, ROUTE_29, 0
 	connection east, Route27, ROUTE_27, 0

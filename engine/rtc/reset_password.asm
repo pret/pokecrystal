@@ -1,3 +1,5 @@
+SECTION "_ResetClock - ClockResetPassword", ROMX
+
 _ResetClock:
 	farcall BlankScreen
 	ld b, SCGB_DIPLOMA

@@ -1,3 +1,5 @@
+SECTION "UnknownText_0x1b6b39 - UnknownText_0x1b6c56", ROMX
+
 UnknownText_0x1b6b39:
 	text "Hello, this is"
 	line "@"

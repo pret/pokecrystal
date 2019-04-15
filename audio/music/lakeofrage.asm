@@ -1,3 +1,5 @@
+SECTION "Music_LakeOfRage", ROMX
+
 Music_LakeOfRage:
 	musicheader 4, 1, Music_LakeOfRage_Ch1
 	musicheader 1, 2, Music_LakeOfRage_Ch2

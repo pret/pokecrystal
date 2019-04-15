@@ -1,3 +1,6 @@
+
+SECTION "SafariZoneMainOffice_MapScripts", ROMX
+
 SafariZoneMainOffice_MapScripts:
 	db 0 ; scene scripts
 

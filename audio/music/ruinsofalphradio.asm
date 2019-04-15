@@ -1,3 +1,5 @@
+SECTION "Music_RuinsOfAlphRadio", ROMX
+
 Music_RuinsOfAlphRadio:
 	musicheader 3, 1, Music_RuinsOfAlphRadio_Ch1
 	musicheader 1, 2, Music_RuinsOfAlphRadio_Ch2

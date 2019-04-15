@@ -1,3 +1,5 @@
+SECTION "ClearSpriteAnims", ROMX
+
 ClearSpriteAnims:
 	ld hl, wSpriteAnimDict
 	ld bc, wSpriteAnimsEnd - wSpriteAnimDict
@@ -9,6 +11,9 @@ ClearSpriteAnims:
 	or b
 	jr nz, .loop
 	ret
+
+
+SECTION "PlaySpriteAnimationsAndDelayFrame - BigmonIcon", ROMX
 
 PlaySpriteAnimationsAndDelayFrame:
 	call PlaySpriteAnimations

@@ -1,3 +1,5 @@
+SECTION "Music_TinTower", ROMX
+
 Music_TinTower:
 	musicheader 4, 1, Music_TinTower_Ch1
 	musicheader 1, 2, Music_TinTower_Ch2

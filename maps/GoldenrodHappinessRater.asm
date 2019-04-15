@@ -3,6 +3,9 @@
 	const GOLDENRODHAPPINESSRATER_POKEFAN_M
 	const GOLDENRODHAPPINESSRATER_TWIN
 
+
+SECTION "GoldenrodHappinessRater_MapScripts", ROMX
+
 GoldenrodHappinessRater_MapScripts:
 	db 0 ; scene scripts
 

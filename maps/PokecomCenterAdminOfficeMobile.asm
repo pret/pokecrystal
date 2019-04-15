@@ -3,6 +3,9 @@
 	const POKECOMCENTERADMINOFFICEMOBILE_SCIENTIST2
 	const POKECOMCENTERADMINOFFICEMOBILE_SCIENTIST3
 
+
+SECTION "PokecomCenterAdminOfficeMobile_MapScripts", ROMX
+
 PokecomCenterAdminOfficeMobile_MapScripts:
 	db 0 ; scene scripts
 

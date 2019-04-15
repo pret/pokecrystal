@@ -1,3 +1,6 @@
+
+SECTION "Route23_MapScripts", ROMX
+
 Route23_MapScripts:
 	db 0 ; scene scripts
 

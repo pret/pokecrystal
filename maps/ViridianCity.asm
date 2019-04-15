@@ -4,6 +4,9 @@
 	const VIRIDIANCITY_FISHER
 	const VIRIDIANCITY_YOUNGSTER
 
+
+SECTION "ViridianCity_MapScripts", ROMX
+
 ViridianCity_MapScripts:
 	db 0 ; scene scripts
 

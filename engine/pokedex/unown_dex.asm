@@ -1,3 +1,5 @@
+SECTION "UpdateUnownDex", ROMX
+
 UpdateUnownDex:
 	ld a, [wUnownLetter]
 	ld c, a
@@ -17,6 +19,9 @@ UpdateUnownDex:
 	dec hl
 	ld [hl], c
 	ret
+
+
+SECTION "PrintUnownWord - UnownWordZ", ROMX
 
 PrintUnownWord:
 	hlcoord 4, 15

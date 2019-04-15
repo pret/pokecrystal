@@ -2,6 +2,9 @@
 	const DAYCARE_GRAMPS
 	const DAYCARE_GRANNY
 
+
+SECTION "DayCare_MapScripts", ROMX
+
 DayCare_MapScripts:
 	db 0 ; scene scripts
 

@@ -5,6 +5,9 @@
 	const VIOLETPOKECENTER1F_YOUNGSTER
 	const VIOLETPOKECENTER1F_SCIENTIST
 
+
+SECTION "VioletPokecenter1F_MapScripts", ROMX
+
 VioletPokecenter1F_MapScripts:
 	db 0 ; scene scripts
 

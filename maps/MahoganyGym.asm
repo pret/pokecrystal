@@ -7,6 +7,9 @@
 	const MAHOGANYGYM_ROCKER3
 	const MAHOGANYGYM_GYM_GUY
 
+
+SECTION "MahoganyGym_MapScripts", ROMX
+
 MahoganyGym_MapScripts:
 	db 0 ; scene scripts
 

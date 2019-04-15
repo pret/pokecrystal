@@ -1,3 +1,6 @@
+
+SECTION "MobileBattleRoom_MapScripts", ROMX
+
 MobileBattleRoom_MapScripts:
 	db 2 ; scene scripts
 	scene_script .InitializeMobileBattleRoom ; SCENE_DEFAULT

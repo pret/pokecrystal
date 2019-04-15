@@ -4,6 +4,9 @@
 	const ECRUTEAKTINTOWERENTRANCE_SAGE3
 	const ECRUTEAKTINTOWERENTRANCE_GRAMPS
 
+
+SECTION "EcruteakTinTowerEntrance_MapScripts", ROMX
+
 EcruteakTinTowerEntrance_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT

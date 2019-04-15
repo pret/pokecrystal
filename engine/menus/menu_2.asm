@@ -1,3 +1,5 @@
+SECTION "PlaceMenuItemName", ROMX
+
 PlaceMenuItemName:
 	push de
 	ld a, [wMenuSelection]
@@ -6,6 +8,9 @@ PlaceMenuItemName:
 	pop hl
 	call PlaceString
 	ret
+
+
+SECTION "PlaceMenuItemQuantity", ROMX
 
 PlaceMenuItemQuantity:
 	push de
@@ -26,6 +31,9 @@ PlaceMenuItemQuantity:
 
 .done
 	ret
+
+
+SECTION "PlaceMoneyTopRight - MenuHeader_0x24b1d", ROMX
 
 PlaceMoneyTopRight:
 	ld hl, MenuHeader_0x24b15
@@ -63,6 +71,9 @@ MenuHeader_0x24b1d:
 	menu_coords 0, 11, 8, 13
 	dw NULL
 	db 1 ; default option
+
+
+SECTION "DisplayCoinCaseBalance - ShowMoney_TerminatorString", ROMX
 
 DisplayCoinCaseBalance:
 	; Place a text box of size 1x7 at 11, 0.
@@ -110,6 +121,9 @@ CoinString:
 ShowMoney_TerminatorString:
 	db "@"
 
+
+SECTION "Unreferenced_Function24b8f", ROMX
+
 Unreferenced_Function24b8f:
 ; related to safari?
 	ld hl, wOptions
@@ -142,6 +156,9 @@ Unreferenced_Function24b8f:
 	db "／５００@"
 .booru_ko
 	db "ボール　　　こ@"
+
+
+SECTION "StartMenu_DrawBugContestStatusBox - StartMenu_PrintBugContestStatus", ROMX
 
 StartMenu_DrawBugContestStatusBox:
 	hlcoord 0, 0
@@ -204,6 +221,9 @@ StartMenu_PrintBugContestStatus:
 	db "None@"
 .LEVEL:
 	db "LEVEL@"
+
+
+SECTION "FindApricornsInBag - ApricornBalls", ROMX
 
 FindApricornsInBag:
 ; Checks the bag for Apricorns.

@@ -1,3 +1,5 @@
+SECTION "SaveMenu_CopyTilemapAtOnce", ROMX
+
 SaveMenu_CopyTilemapAtOnce:
 	ldh a, [hCGB]
 	and a

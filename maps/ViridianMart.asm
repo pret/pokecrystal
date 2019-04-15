@@ -3,6 +3,9 @@
 	const VIRIDIANMART_LASS
 	const VIRIDIANMART_COOLTRAINER_M
 
+
+SECTION "ViridianMart_MapScripts", ROMX
+
 ViridianMart_MapScripts:
 	db 0 ; scene scripts
 

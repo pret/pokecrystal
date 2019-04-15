@@ -7,6 +7,9 @@
 	const FASTSHIPCABINS_NNW_NNE_NE_GENTLEMAN
 	const FASTSHIPCABINS_NNW_NNE_NE_PHARMACIST
 
+
+SECTION "FastShipCabins_NNW_NNE_NE_MapScripts", ROMX
+
 FastShipCabins_NNW_NNE_NE_MapScripts:
 	db 0 ; scene scripts
 

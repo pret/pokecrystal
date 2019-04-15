@@ -4,6 +4,9 @@
 	const OLIVINEPOKECENTER1F_FISHER
 	const OLIVINEPOKECENTER1F_TEACHER
 
+
+SECTION "OlivinePokecenter1F_MapScripts", ROMX
+
 OlivinePokecenter1F_MapScripts:
 	db 0 ; scene scripts
 

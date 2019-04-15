@@ -1,3 +1,5 @@
+SECTION "CheckWarpCollision", ROMX
+
 CheckWarpCollision::
 ; Is this tile a warp?
 	ld a, [wPlayerStandingTile]
@@ -14,6 +16,9 @@ CheckWarpCollision::
 .warp
 	scf
 	ret
+
+
+SECTION "CheckDirectionalWarp", ROMX
 
 CheckDirectionalWarp::
 ; If this is a directional warp, clear carry (press the designated button to warp).
@@ -34,6 +39,9 @@ CheckDirectionalWarp::
 	xor a
 	ret
 
+
+SECTION "CheckWarpFacingDown", ROMX
+
 CheckWarpFacingDown:
 	ld de, 1
 	ld hl, .blocks
@@ -52,6 +60,9 @@ CheckWarpFacingDown:
 	db COLL_DOOR_75
 	db COLL_DOOR_7D
 	db -1
+
+
+SECTION "CheckGrassCollision", ROMX
 
 CheckGrassCollision::
 	ld a, [wPlayerStandingTile]
@@ -73,6 +84,9 @@ CheckGrassCollision::
 	db COLL_GRASS_4C
 	db -1
 
+
+SECTION "CheckCutCollision", ROMX
+
 CheckCutCollision:
 	ld a, c
 	ld hl, .blocks
@@ -88,6 +102,9 @@ CheckCutCollision:
 	db COLL_LONG_GRASS
 	db COLL_LONG_GRASS_1C
 	db -1
+
+
+SECTION "GetWarpSFX", ROMX
 
 GetWarpSFX::
 	ld a, [wPlayerStandingTile]

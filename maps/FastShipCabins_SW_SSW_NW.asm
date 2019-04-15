@@ -4,6 +4,9 @@
 	const FASTSHIPCABINS_SW_SSW_NW_BUENA
 	const FASTSHIPCABINS_SW_SSW_NW_ROCKER
 
+
+SECTION "FastShipCabins_SW_SSW_NW_MapScripts", ROMX
+
 FastShipCabins_SW_SSW_NW_MapScripts:
 	db 0 ; scene scripts
 

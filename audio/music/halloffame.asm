@@ -1,3 +1,5 @@
+SECTION "Music_HallOfFame", ROMX
+
 Music_HallOfFame:
 	musicheader 4, 1, Music_HallOfFame_Ch1
 	musicheader 1, 2, Music_HallOfFame_Ch2

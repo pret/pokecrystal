@@ -1,3 +1,5 @@
+SECTION "CatchTutorial", ROMX
+
 CatchTutorial::
 	ld a, [wBattleType]
 	dec a

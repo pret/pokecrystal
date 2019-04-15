@@ -1,3 +1,5 @@
+SECTION "WiltonGrownText - WiltonWantThisText", ROMX
+
 WiltonGrownText:
 	text "My @"
 	text_ram wStringBuffer4

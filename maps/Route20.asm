@@ -3,6 +3,9 @@
 	const ROUTE20_SWIMMER_GIRL2
 	const ROUTE20_SWIMMER_GUY
 
+
+SECTION "Route20_MapScripts", ROMX
+
 Route20_MapScripts:
 	db 0 ; scene scripts
 

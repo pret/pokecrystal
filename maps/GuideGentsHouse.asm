@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const GUIDEGENTSHOUSE_GRAMPS
 
+
+SECTION "GuideGentsHouse_MapScripts", ROMX
+
 GuideGentsHouse_MapScripts:
 	db 0 ; scene scripts
 

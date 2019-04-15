@@ -1,3 +1,5 @@
+SECTION "NurseMornText - RegisteredNumber2Text", ROMX
+
 NurseMornText:
 	text "Good morning!"
 	line "Welcome to our"

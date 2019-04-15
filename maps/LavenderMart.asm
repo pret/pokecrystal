@@ -3,6 +3,9 @@
 	const LAVENDERMART_POKEFAN_M
 	const LAVENDERMART_ROCKER
 
+
+SECTION "LavenderMart_MapScripts", ROMX
+
 LavenderMart_MapScripts:
 	db 0 ; scene scripts
 

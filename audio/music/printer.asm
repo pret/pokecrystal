@@ -1,3 +1,5 @@
+SECTION "Music_Printer", ROMX
+
 Music_Printer:
 	musicheader 1, 3, Music_Printer_Ch3
 

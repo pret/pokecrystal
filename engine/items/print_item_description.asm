@@ -1,3 +1,5 @@
+SECTION "PrintItemDescription - TeruSama33Desc", ROMX
+
 PrintItemDescription:
 ; Print the description for item [wCurSpecies] at de.
 

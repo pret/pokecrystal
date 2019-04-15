@@ -1,3 +1,5 @@
+SECTION "TrainerClassNames", ROMX
+
 TrainerClassNames::
 ; entries correspond to trainer classes (see constants/trainer_constants.asm)
 	db "LEADER@"

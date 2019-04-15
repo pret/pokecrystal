@@ -1,3 +1,6 @@
+
+SECTION "WhirlIslandNW_MapScripts", ROMX
+
 WhirlIslandNW_MapScripts:
 	db 0 ; scene scripts
 

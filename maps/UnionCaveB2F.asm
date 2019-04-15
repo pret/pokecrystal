@@ -6,6 +6,9 @@
 	const UNIONCAVEB2F_POKE_BALL2
 	const UNIONCAVEB2F_LAPRAS
 
+
+SECTION "UnionCaveB2F_MapScripts", ROMX
+
 UnionCaveB2F_MapScripts:
 	db 0 ; scene scripts
 

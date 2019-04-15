@@ -1,3 +1,5 @@
+SECTION "LoadSGBPokedexGFX - SGBPokedexGFX_LZ", ROMX
+
 LoadSGBPokedexGFX:
 	ld hl, SGBPokedexGFX_LZ
 	ld de, vTiles2 tile $31
@@ -14,6 +16,9 @@ LoadSGBPokedexGFX2:
 SGBPokedexGFX_LZ:
 INCBIN "gfx/pokedex/sgb.2bpp.lz"
 
+
+SECTION "LoadQuestionMarkPic", ROMX
+
 LoadQuestionMarkPic:
 	ld hl, .QuestionMarkLZ
 	ld de, sScratch
@@ -22,6 +27,9 @@ LoadQuestionMarkPic:
 
 .QuestionMarkLZ:
 INCBIN "gfx/pokedex/question_mark.2bpp.lz"
+
+
+SECTION "DrawPokedexListWindow - Bank77_FillColumn", ROMX
 
 DrawPokedexListWindow:
 	ld a, $32

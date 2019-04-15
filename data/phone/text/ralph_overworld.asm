@@ -1,3 +1,5 @@
+SECTION "RalphAskNumber1Text - RalphRematchText", ROMX
+
 RalphAskNumber1Text:
 	text "Don't young people"
 	line "fish anymore?"

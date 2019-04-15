@@ -6,6 +6,9 @@
 	const ROUTE19_FISHER1
 	const ROUTE19_FISHER2
 
+
+SECTION "Route19_MapScripts", ROMX
+
 Route19_MapScripts:
 	db 0 ; scene scripts
 

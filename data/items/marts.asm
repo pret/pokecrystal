@@ -1,3 +1,5 @@
+SECTION "Marts - DefaultMart", ROMX
+
 Marts:
 ; entries correspond to MART_* constants
 	dw MartCherrygrove

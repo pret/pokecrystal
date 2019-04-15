@@ -4,6 +4,9 @@ scene_var: MACRO
 	dw \2
 ENDM
 
+
+SECTION "MapScenes", ROMX
+
 MapScenes::
 	scene_var POKECENTER_2F,                               wPokecenter2FSceneID
 	scene_var TRADE_CENTER,                                wTradeCenterSceneID

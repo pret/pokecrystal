@@ -15,6 +15,9 @@
 	const GOLDENRODCITY_ROCKET6
 	const GOLDENRODCITY_MOVETUTOR
 
+
+SECTION "GoldenrodCity_MapScripts", ROMX
+
 GoldenrodCity_MapScripts:
 	db 0 ; scene scripts
 

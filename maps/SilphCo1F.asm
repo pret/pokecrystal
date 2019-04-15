@@ -2,6 +2,9 @@
 	const SILPHCO1F_RECEPTIONIST
 	const SILPHCO1F_OFFICER
 
+
+SECTION "SilphCo1F_MapScripts", ROMX
+
 SilphCo1F_MapScripts:
 	db 0 ; scene scripts
 

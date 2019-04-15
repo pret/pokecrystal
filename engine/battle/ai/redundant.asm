@@ -1,3 +1,5 @@
+SECTION "AI_Redundant", ROMX
+
 AI_Redundant:
 ; Check if move effect c will fail because it's already been used.
 ; Return z if the move is a good choice.

@@ -1,3 +1,5 @@
+SECTION "Music_Clair", ROMX
+
 Music_Clair:
 	musicheader 4, 1, Music_Clair_Ch1
 	musicheader 1, 2, Music_Clair_Ch2

@@ -1,3 +1,5 @@
+SECTION "TiffanyAskNumber1Text - TiffanyPackFullText", ROMX
+
 TiffanyAskNumber1Text:
 	text "Hi! You like"
 	line "CLEFAIRY too?"

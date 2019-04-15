@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const WILLSROOM_WILL
 
+
+SECTION "WillsRoom_MapScripts", ROMX
+
 WillsRoom_MapScripts:
 	db 2 ; scene scripts
 	scene_script .LockDoor ; SCENE_DEFAULT

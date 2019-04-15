@@ -3,6 +3,9 @@
 	const VERMILIONPORT_SAILOR2
 	const VERMILIONPORT_SUPER_NERD
 
+
+SECTION "VermilionPort_MapScripts", ROMX
+
 VermilionPort_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT

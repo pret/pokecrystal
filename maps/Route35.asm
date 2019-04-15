@@ -11,6 +11,9 @@
 	const ROUTE35_FRUIT_TREE
 	const ROUTE35_POKE_BALL
 
+
+SECTION "Route35_MapScripts", ROMX
+
 Route35_MapScripts:
 	db 0 ; scene scripts
 

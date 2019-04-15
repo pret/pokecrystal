@@ -3,6 +3,9 @@
 	const ROUTE35GOLDENRODGATE_POKEFAN_F
 	const ROUTE35GOLDENRODGATE_FISHER
 
+
+SECTION "Route35GoldenrodGate_MapScripts", ROMX
+
 Route35GoldenrodGate_MapScripts:
 	db 0 ; scene scripts
 

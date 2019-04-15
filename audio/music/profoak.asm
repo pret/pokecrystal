@@ -1,3 +1,5 @@
+SECTION "Music_ProfOak", ROMX
+
 Music_ProfOak:
 	musicheader 3, 1, Music_ProfOak_Ch1
 	musicheader 1, 2, Music_ProfOak_Ch2

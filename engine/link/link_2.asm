@@ -1,3 +1,5 @@
+SECTION "LinkMonStatsScreen", ROMX
+
 LinkMonStatsScreen:
 	ld a, [wMenuCursorY]
 	dec a
@@ -17,10 +19,16 @@ LinkMonStatsScreen:
 	call WaitBGMap2
 	ret
 
+
+SECTION "Link_WaitBGMap", ROMX
+
 Link_WaitBGMap:
 	call WaitBGMap
 	call WaitBGMap2
 	ret
+
+
+SECTION "LinkTextbox2", ROMX
 
 LinkTextbox2:
 	ld h, d

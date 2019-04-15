@@ -1,3 +1,5 @@
+SECTION "KenjiAskNumber1Text - KenjiPackFullText", ROMX
+
 KenjiAskNumber1Text:
 	text "Our battle was"
 	line "remarkable!"

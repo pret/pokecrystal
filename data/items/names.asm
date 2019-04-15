@@ -1,3 +1,5 @@
+SECTION "ItemNames", ROMX
+
 ItemNames::
 	db "MASTER BALL@"
 	db "ULTRA BALL@"

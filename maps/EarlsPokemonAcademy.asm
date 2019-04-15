@@ -6,6 +6,9 @@
 	const EARLSPOKEMONACADEMY_YOUNGSTER2
 	const EARLSPOKEMONACADEMY_POKEDEX
 
+
+SECTION "EarlsPokemonAcademy_MapScripts", ROMX
+
 EarlsPokemonAcademy_MapScripts:
 	db 0 ; scene scripts
 

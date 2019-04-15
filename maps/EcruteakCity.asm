@@ -7,6 +7,9 @@
 	const ECRUTEAKCITY_YOUNGSTER
 	const ECRUTEAKCITY_GRAMPS3
 
+
+SECTION "EcruteakCity_MapScripts", ROMX
+
 EcruteakCity_MapScripts:
 	db 0 ; scene scripts
 

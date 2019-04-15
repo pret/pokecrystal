@@ -4,6 +4,9 @@
 	const ROUTE14_POKEFAN_M2
 	const ROUTE14_KIM
 
+
+SECTION "Route14_MapScripts", ROMX
+
 Route14_MapScripts:
 	db 0 ; scene scripts
 

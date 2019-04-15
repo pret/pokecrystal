@@ -1,3 +1,5 @@
+SECTION "BeverlyAskNumber1Text - BeverlyPackFullText", ROMX
+
 BeverlyAskNumber1Text:
 	text "Your MARILL is so"
 	line "cute and adorable!"

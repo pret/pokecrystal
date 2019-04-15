@@ -4,6 +4,9 @@
 	const VIRIDIANPOKECENTER1F_COOLTRAINER_F
 	const VIRIDIANPOKECENTER1F_BUG_CATCHER
 
+
+SECTION "ViridianPokecenter1F_MapScripts", ROMX
+
 ViridianPokecenter1F_MapScripts:
 	db 0 ; scene scripts
 

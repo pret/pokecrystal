@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const MRPSYCHICSHOUSE_FISHING_GURU
 
+
+SECTION "MrPsychicsHouse_MapScripts", ROMX
+
 MrPsychicsHouse_MapScripts:
 	db 0 ; scene scripts
 

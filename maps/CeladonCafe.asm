@@ -5,6 +5,9 @@
 	const CELADONCAFE_FISHER3
 	const CELADONCAFE_TEACHER
 
+
+SECTION "CeladonCafe_MapScripts", ROMX
+
 CeladonCafe_MapScripts:
 	db 0 ; scene scripts
 

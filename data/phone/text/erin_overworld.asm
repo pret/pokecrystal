@@ -1,3 +1,5 @@
+SECTION "ErinAskNumber1Text - ErinRematchGiftText", ROMX
+
 ErinAskNumber1Text:
 	text "It really made me"
 	line "angry to lose."

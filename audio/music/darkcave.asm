@@ -1,3 +1,5 @@
+SECTION "Music_DarkCave", ROMX
+
 Music_DarkCave:
 	musicheader 4, 1, Music_DarkCave_Ch1
 	musicheader 1, 2, Music_DarkCave_Ch2

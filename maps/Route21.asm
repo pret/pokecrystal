@@ -3,6 +3,9 @@
 	const ROUTE21_SWIMMER_GUY
 	const ROUTE21_FISHER
 
+
+SECTION "Route21_MapScripts", ROMX
+
 Route21_MapScripts:
 	db 0 ; scene scripts
 

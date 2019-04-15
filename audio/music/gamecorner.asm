@@ -1,3 +1,5 @@
+SECTION "Music_GameCorner", ROMX
+
 Music_GameCorner:
 	musicheader 4, 1, Music_GameCorner_Ch1
 	musicheader 1, 2, Music_GameCorner_Ch2

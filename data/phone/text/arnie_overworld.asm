@@ -1,3 +1,5 @@
+SECTION "ArnieAskNumber1Text - ArnieRematchText", ROMX
+
 ArnieAskNumber1Text:
 	text "Do you get the"
 	line "feeling that there"

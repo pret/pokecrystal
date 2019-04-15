@@ -2,6 +2,9 @@
 	const OLIVINEHOUSEBETA_TEACHER
 	const OLIVINEHOUSEBETA_RHYDON
 
+
+SECTION "OlivineHouseBeta_MapScripts", ROMX
+
 OlivineHouseBeta_MapScripts:
 	db 0 ; scene scripts
 

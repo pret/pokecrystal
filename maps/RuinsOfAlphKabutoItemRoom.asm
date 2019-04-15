@@ -4,6 +4,9 @@
 	const RUINSOFALPHKABUTOITEMROOM_POKE_BALL3
 	const RUINSOFALPHKABUTOITEMROOM_POKE_BALL4
 
+
+SECTION "RuinsOfAlphKabutoItemRoom_MapScripts", ROMX
+
 RuinsOfAlphKabutoItemRoom_MapScripts:
 	db 0 ; scene scripts
 

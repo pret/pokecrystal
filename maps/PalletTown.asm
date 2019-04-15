@@ -2,6 +2,9 @@
 	const PALLETTOWN_TEACHER
 	const PALLETTOWN_FISHER
 
+
+SECTION "PalletTown_MapScripts", ROMX
+
 PalletTown_MapScripts:
 	db 0 ; scene scripts
 

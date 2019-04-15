@@ -3,6 +3,9 @@
 	const FUCHSIAMART_FISHER
 	const FUCHSIAMART_COOLTRAINER_F
 
+
+SECTION "FuchsiaMart_MapScripts", ROMX
+
 FuchsiaMart_MapScripts:
 	db 0 ; scene scripts
 

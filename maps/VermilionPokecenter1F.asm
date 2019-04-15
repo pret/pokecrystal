@@ -4,6 +4,9 @@
 	const VERMILIONPOKECENTER1F_SAILOR
 	const VERMILIONPOKECENTER1F_BUG_CATCHER
 
+
+SECTION "VermilionPokecenter1F_MapScripts", ROMX
+
 VermilionPokecenter1F_MapScripts:
 	db 0 ; scene scripts
 

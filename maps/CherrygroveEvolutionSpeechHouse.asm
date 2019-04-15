@@ -2,6 +2,9 @@
 	const CHERRYGROVEEVOLUTIONSPEECHHOUSE_LASS
 	const CHERRYGROVEEVOLUTIONSPEECHHOUSE_YOUNGSTER
 
+
+SECTION "CherrygroveEvolutionSpeechHouse_MapScripts", ROMX
+
 CherrygroveEvolutionSpeechHouse_MapScripts:
 	db 0 ; scene scripts
 

@@ -1,5 +1,7 @@
 ; Pic animation arrangement.
 
+SECTION "Unused_AnimateMon_Slow_Normal - HOF_AnimateFrontpic", ROMX
+
 Unused_AnimateMon_Slow_Normal:
 	hlcoord 12, 0
 	ld a, [wBattleMode]

@@ -1,3 +1,5 @@
+SECTION "RalphNeglectingKidsText - UnknownText_0x175f70", ROMX
+
 RalphNeglectingKidsText:
 	text "I've been spending"
 	line "more time with my"

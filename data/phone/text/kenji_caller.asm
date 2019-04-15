@@ -1,3 +1,5 @@
+SECTION "UnknownText_0x66dab - UnknownText_0x66f52", ROMX
+
 UnknownText_0x66dab:
 	text "Anyway, we'll chat"
 	line "again!"

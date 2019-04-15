@@ -1,3 +1,5 @@
+SECTION "WiltonAskNumber1Text - WiltonPackFullText", ROMX
+
 WiltonAskNumber1Text:
 	text "Eh, our battle was"
 	line "fun, I'd say…"

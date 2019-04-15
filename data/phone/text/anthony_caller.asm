@@ -1,3 +1,5 @@
+SECTION "AnthonyAteBerriesText - UnknownText_0x176dd1", ROMX
+
 AnthonyAteBerriesText:
 	text "The other day, I"
 	line "was watching my"

@@ -5,6 +5,9 @@
 	const ECRUTEAKPOKECENTER1F_GYM_GUY
 	const ECRUTEAKPOKECENTER1F_BILL
 
+
+SECTION "EcruteakPokecenter1F_MapScripts", ROMX
+
 EcruteakPokecenter1F_MapScripts:
 	db 2 ; scene scripts
 	scene_script .MeetBill ; SCENE_DEFAULT

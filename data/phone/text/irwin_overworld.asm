@@ -1,3 +1,5 @@
+SECTION "IrwinAskNumber1Text - IrwinPhoneFullText", ROMX
+
 IrwinAskNumber1Text:
 	text "You're the best"
 	line "I've ever battled!"

@@ -12,6 +12,9 @@
 	const ROUTE40_LASS2
 	const ROUTE40_STANDING_YOUNGSTER
 
+
+SECTION "Route40_MapScripts", ROMX
+
 Route40_MapScripts:
 	db 0 ; scene scripts
 

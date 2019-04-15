@@ -3,6 +3,9 @@
 	const PEWTERMART_YOUNGSTER
 	const PEWTERMART_SUPER_NERD
 
+
+SECTION "PewterMart_MapScripts", ROMX
+
 PewterMart_MapScripts:
 	db 0 ; scene scripts
 

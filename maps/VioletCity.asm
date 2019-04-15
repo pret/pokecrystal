@@ -8,6 +8,9 @@
 	const VIOLETCITY_POKE_BALL1
 	const VIOLETCITY_POKE_BALL2
 
+
+SECTION "VioletCity_MapScripts", ROMX
+
 VioletCity_MapScripts:
 	db 0 ; scene scripts
 

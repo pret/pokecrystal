@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const LAKEOFRAGEHIDDENPOWERHOUSE_FISHER
 
+
+SECTION "LakeOfRageHiddenPowerHouse_MapScripts", ROMX
+
 LakeOfRageHiddenPowerHouse_MapScripts:
 	db 0 ; scene scripts
 

@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const CERULEANGYMBADGESPEECHHOUSE_POKEFAN_M
 
+
+SECTION "CeruleanGymBadgeSpeechHouse_MapScripts", ROMX
+
 CeruleanGymBadgeSpeechHouse_MapScripts:
 	db 0 ; scene scripts
 

@@ -1,3 +1,5 @@
+SECTION "Music_Evolution", ROMX
+
 Music_Evolution:
 	musicheader 4, 1, Music_Evolution_Ch1
 	musicheader 1, 2, Music_Evolution_Ch2

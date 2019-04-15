@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const BILLSHOUSE_GRAMPS
 
+
+SECTION "BillsHouse_MapScripts", ROMX
+
 BillsHouse_MapScripts:
 	db 0 ; scene scripts
 

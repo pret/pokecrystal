@@ -19,6 +19,9 @@ GOLDENRODGAMECORNER_WOBBUFFET_COINS EQU 1500
 	const GOLDENRODGAMECORNER_POKEFAN_M2
 	const GOLDENRODGAMECORNER_MOVETUTOR
 
+
+SECTION "GoldenrodGameCorner_MapScripts", ROMX
+
 GoldenrodGameCorner_MapScripts:
 	db 0 ; scene scripts
 

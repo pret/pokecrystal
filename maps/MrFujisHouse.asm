@@ -5,6 +5,9 @@
 	const MRFUJISHOUSE_NIDORINO
 	const MRFUJISHOUSE_PIDGEY
 
+
+SECTION "MrFujisHouse_MapScripts", ROMX
+
 MrFujisHouse_MapScripts:
 	db 0 ; scene scripts
 

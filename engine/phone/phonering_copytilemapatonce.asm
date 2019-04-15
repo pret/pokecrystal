@@ -1,3 +1,5 @@
+SECTION "PhoneRing_CopyTilemapAtOnce", ROMX
+
 PhoneRing_CopyTilemapAtOnce:
 	ldh a, [hCGB]
 	and a

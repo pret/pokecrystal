@@ -1,3 +1,5 @@
+SECTION "GetSquareRoot", ROMX
+
 NUM_SQUARE_ROOTS EQU 255
 
 GetSquareRoot:

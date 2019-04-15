@@ -3,6 +3,9 @@
 	const CERULEANPOKECENTER1F_SUPER_NERD
 	const CERULEANPOKECENTER1F_GYM_GUY
 
+
+SECTION "CeruleanPokecenter1F_MapScripts", ROMX
+
 CeruleanPokecenter1F_MapScripts:
 	db 0 ; scene scripts
 

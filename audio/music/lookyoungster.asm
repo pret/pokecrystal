@@ -1,3 +1,5 @@
+SECTION "Music_LookYoungster", ROMX
+
 Music_LookYoungster:
 	musicheader 3, 1, Music_LookYoungster_Ch1
 	musicheader 1, 2, Music_LookYoungster_Ch2

@@ -1,3 +1,5 @@
+SECTION "BattleIntroSlidingPics", ROMX
+
 BattleIntroSlidingPics:
 	ldh a, [rSVBK]
 	push af

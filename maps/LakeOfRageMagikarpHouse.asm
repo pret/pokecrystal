@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const LAKEOFRAGEMAGIKARPHOUSE_FISHING_GURU
 
+
+SECTION "LakeOfRageMagikarpHouse_MapScripts", ROMX
+
 LakeOfRageMagikarpHouse_MapScripts:
 	db 0 ; scene scripts
 

@@ -1,3 +1,5 @@
+SECTION "Music_NationalPark", ROMX
+
 Music_NationalPark:
 	musicheader 4, 1, Music_NationalPark_Ch1
 	musicheader 1, 2, Music_NationalPark_Ch2

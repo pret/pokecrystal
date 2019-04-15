@@ -1,3 +1,5 @@
+SECTION "Music_BugCatchingContest", ROMX
+
 Music_BugCatchingContest:
 	musicheader 4, 1, Music_BugCatchingContest_Ch1
 	musicheader 1, 2, Music_BugCatchingContest_Ch2

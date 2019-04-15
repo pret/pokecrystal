@@ -1,3 +1,5 @@
+SECTION "BrentRareTradeText - UnknownText_0x66579", ROMX
+
 BrentRareTradeText:
 	text "Oh yeah, I got an"
 	line "extremely rare"

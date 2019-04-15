@@ -1,3 +1,5 @@
+SECTION "RestartClock_GetWraparoundTime - RestartClock", ROMX
+
 RestartClock_GetWraparoundTime:
 	push hl
 	dec a
@@ -231,9 +233,15 @@ RestartClock:
 	ld [hl], e
 	ret
 
+
+SECTION "UnreferencedString_HourJP", ROMX
+
 UnreferencedString_HourJP:
 ; unused
 	db "じ@" ; HR
+
+
+SECTION "UnreferencedString_MinuteJP", ROMX
 
 UnreferencedString_MinuteJP:
 ; unused

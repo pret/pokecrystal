@@ -1,3 +1,5 @@
+SECTION "_DudeAutoInput_A - DudeAutoInput_DownA", ROMX
+
 _DudeAutoInput_A::
 	ld hl, DudeAutoInput_A
 	jr _DudeAutoInput

@@ -11,6 +11,9 @@
 	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_POKEFAN_F
 	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_SUPER_NERD2
 
+
+SECTION "FastShipCabins_SE_SSE_CaptainsCabin_MapScripts", ROMX
+
 FastShipCabins_SE_SSE_CaptainsCabin_MapScripts:
 	db 0 ; scene scripts
 

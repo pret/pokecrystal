@@ -1,3 +1,5 @@
+SECTION "DerekAskNumber1Text - DerekPackFullText", ROMX
+
 DerekAskNumber1Text:
 	text "Oh, wow! PIKACHU!"
 	line "It's so soft and"

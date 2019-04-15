@@ -1,3 +1,5 @@
+SECTION "Music_Credits", ROMX
+
 Music_Credits:
 	musicheader 4, 1, Music_Credits_Ch1
 	musicheader 1, 2, Music_Credits_Ch2

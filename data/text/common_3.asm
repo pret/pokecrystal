@@ -1,3 +1,5 @@
+SECTION "Text 3", ROMX
+
 _OakText6::
 	text "Now, what did you"
 	line "say your name was?"

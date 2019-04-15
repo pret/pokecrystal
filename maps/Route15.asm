@@ -7,6 +7,9 @@
 	const ROUTE15_TEACHER2
 	const ROUTE15_POKE_BALL
 
+
+SECTION "Route15_MapScripts", ROMX
+
 Route15_MapScripts:
 	db 0 ; scene scripts
 

@@ -1,3 +1,5 @@
+SECTION "IsMailEuropean", ROMX
+
 IsMailEuropean:
 ; return 1 if French
 ; return 2 if German
@@ -26,6 +28,9 @@ IsMailEuropean:
 	ld c, $0
 	ret
 
+
+SECTION "StandardEnglishFont - SpanishItalianFont", ROMX
+
 ; The regular font.
 StandardEnglishFont:
 INCBIN "gfx/font/english.1bpp"
@@ -37,6 +42,9 @@ INCBIN "gfx/font/french_german.1bpp"
 ; An even more extended font.
 SpanishItalianFont:
 INCBIN "gfx/font/spanish_italian.1bpp"
+
+
+SECTION "HandleFrenchGermanMail", ROMX
 
 HandleFrenchGermanMail:
 ; called if mail is french or german
@@ -66,6 +74,9 @@ HandleFrenchGermanMail:
 	dec b
 	jr nz, .loop
 	ret
+
+
+SECTION "DeutenEnglischenPost", ROMX
 
 LireLeCourrierAnglais:
 DeutenEnglischenPost:
@@ -98,6 +109,9 @@ DeutenEnglischenPost:
 	dec b
 	jr nz, .loop
 	ret
+
+
+SECTION "HandleSpanishItalianMail", ROMX
 
 HandleSpanishItalianMail:
 LeerCorreosIngleses:

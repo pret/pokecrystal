@@ -4,6 +4,9 @@
 	const CELADONMANSION1F_CLEFAIRY
 	const CELADONMANSION1F_GROWLITHE2
 
+
+SECTION "CeladonMansion1F_MapScripts", ROMX
+
 CeladonMansion1F_MapScripts:
 	db 0 ; scene scripts
 

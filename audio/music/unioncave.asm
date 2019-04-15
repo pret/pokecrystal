@@ -1,3 +1,5 @@
+SECTION "Music_UnionCave", ROMX
+
 Music_UnionCave:
 	musicheader 4, 1, Music_UnionCave_Ch1
 	musicheader 1, 2, Music_UnionCave_Ch2

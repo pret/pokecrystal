@@ -1,3 +1,5 @@
+SECTION "Function170000", ROMX
+
 Function170000:
 	ld a, [$c62b]
 	ld [wPlayerTrademonSpecies], a
@@ -35,6 +37,9 @@ Function170000:
 	call CopyBytes
 	ret
 
+
+SECTION "Function17005a", ROMX
+
 Function17005a:
 	ld a, $5
 	call GetSRAMBank
@@ -71,6 +76,7 @@ Function17005a:
 	call CloseSRAM
 	ret
 
+SECTION "BattleTowerRoomMenu - CheckBTMonMovesForErrors", ROMX
 INCLUDE "engine/events/battle_tower/battle_tower.asm"
 
 Function170be4:
@@ -248,6 +254,9 @@ CheckBTMonMovesForErrors:
 	jr nz, .loop
 	ret
 
+
+SECTION "Function170cc6 - ElectroBallMobileGFX", ROMX
+
 Function170cc6:
 	ldh a, [rSVBK]
 	push af
@@ -292,8 +301,14 @@ INCBIN "gfx/mobile/pichu_animated.2bpp.lz"
 ElectroBallMobileGFX:
 INCBIN "gfx/mobile/electro_ball.2bpp.lz"
 
+
+SECTION "GFX_171848", ROMX
+
 GFX_171848:
 INCBIN "gfx/unknown/171848.2bpp"
+
+
+SECTION "Function1719c8 - String_171c73", ROMX
 
 Function1719c8:
 	ldh a, [hInMenu]
@@ -657,6 +672,9 @@ String_171c73:
 	db   "モバイルセンターを　けってい"
 	next "しました@"
 
+
+SECTION "Function171c87 - String_172e5d", ROMX
+
 Function171c87:
 	call DisableLCD
 	ld hl, GFX_171db1
@@ -819,6 +837,9 @@ String_172e58:
 String_172e5d:
 	db "せつぞくする　モバイルセンターを"
 	next "えらんで　ください@"
+
+
+SECTION "Function172e78 - Attrmap_173517", ROMX
 
 Function172e78:
 	ld a, $7f

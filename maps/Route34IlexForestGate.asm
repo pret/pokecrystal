@@ -4,6 +4,9 @@
 	const ROUTE34ILEXFORESTGATE_LASS
 	const ROUTE34ILEXFORESTGATE_TEACHER2
 
+
+SECTION "Route34IlexForestGate_MapScripts", ROMX
+
 Route34IlexForestGate_MapScripts:
 	db 0 ; scene scripts
 

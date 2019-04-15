@@ -1,3 +1,5 @@
+SECTION "ReadPartyMonMail - PortraitMailBorderGFX", ROMX
+
 ReadPartyMonMail:
 	ld a, [wCurPartyMon]
 	ld hl, sPartyMail
@@ -910,6 +912,9 @@ LoadMailGFX_Color3:
 	ret
 
 INCLUDE "gfx/mail.asm"
+
+
+SECTION "ItemIsMail - MailItems", ROMX
 
 ItemIsMail:
 	ld a, d

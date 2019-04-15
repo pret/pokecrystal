@@ -1,3 +1,5 @@
+SECTION "_AnimateTileset - WhirlpoolTiles4", ROMX
+
 _AnimateTileset::
 ; Iterate over a given pointer array of
 ; animation functions (one per frame).

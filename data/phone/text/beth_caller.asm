@@ -1,3 +1,5 @@
+SECTION "UnknownText_0x174c7f - BethForgetDealText", ROMX
+
 UnknownText_0x174c7f:
 	text "Do you remember my"
 	line "sweet @"

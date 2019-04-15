@@ -15,6 +15,9 @@
 	const SEERACTION_CANT_TELL_2
 	const SEERACTION_LEVEL_ONLY
 
+
+SECTION "PokeSeer - SeerAdvice5", ROMX
+
 PokeSeer:
 	ld a, SEER_INTRO
 	call PrintSeerText
@@ -395,6 +398,9 @@ SeerAdvice5:
 	; Incidentally… I'm impressed by your dedication. It's been a long time since I've seen a #MON as mighty as this @ . I'm sure that seeing @ in battle would excite anyone.
 	text_far UnknownText_0x1c4ae5
 	text_end
+
+
+SECTION "GetCaughtGender", ROMX
 
 GetCaughtGender:
 	ld hl, MON_CAUGHTGENDER

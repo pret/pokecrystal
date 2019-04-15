@@ -4,6 +4,9 @@
 	const ROUTE17_BIKER3
 	const ROUTE17_BIKER4
 
+
+SECTION "Route17_MapScripts", ROMX
+
 Route17_MapScripts:
 	db 0 ; scene scripts
 

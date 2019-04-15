@@ -1,3 +1,5 @@
+SECTION "_LoadMapPart", ROMX
+
 _LoadMapPart::
 	ld hl, wSurroundingTiles
 	ld a, [wMetatileStandingY]

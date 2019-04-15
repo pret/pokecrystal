@@ -1,3 +1,6 @@
+
+SECTION "SaffronPokecenter2FBeta_MapScripts", ROMX
+
 SaffronPokecenter2FBeta_MapScripts:
 	db 0 ; scene scripts
 

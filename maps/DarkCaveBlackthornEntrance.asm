@@ -3,6 +3,9 @@
 	const DARKCAVEBLACKTHORNENTRANCE_POKE_BALL1
 	const DARKCAVEBLACKTHORNENTRANCE_POKE_BALL2
 
+
+SECTION "DarkCaveBlackthornEntrance_MapScripts", ROMX
+
 DarkCaveBlackthornEntrance_MapScripts:
 	db 0 ; scene scripts
 

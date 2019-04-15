@@ -1,3 +1,5 @@
+SECTION "Music_Bicycle", ROMX
+
 Music_Bicycle:
 	musicheader 4, 1, Music_Bicycle_Ch1
 	musicheader 1, 2, Music_Bicycle_Ch2

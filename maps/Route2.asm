@@ -8,6 +8,9 @@
 	const ROUTE2_POKE_BALL4
 	const ROUTE2_FRUIT_TREE
 
+
+SECTION "Route2_MapScripts", ROMX
+
 Route2_MapScripts:
 	db 0 ; scene scripts
 

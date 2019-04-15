@@ -1,3 +1,5 @@
+SECTION "_NameRater - NameRaterDoneText", ROMX
+
 _NameRater:
 ; Introduce himself
 	ld hl, NameRaterIntroText

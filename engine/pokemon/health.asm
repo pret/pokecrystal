@@ -1,3 +1,5 @@
+SECTION "HealParty - HealPartyMon", ROMX
+
 HealParty:
 	xor a
 	ld [wCurPartyMon], a
@@ -51,6 +53,9 @@ HealPartyMon:
 
 	farcall RestoreAllPP
 	ret
+
+
+SECTION "ComputeHPBarPixels - ShortHPBar_CalcPixelFrame", ROMX
 
 ComputeHPBarPixels:
 ; e = bc * (6 * 8) / de

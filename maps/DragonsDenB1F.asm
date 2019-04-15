@@ -9,6 +9,9 @@
 	const DRAGONSDENB1F_POKE_BALL2
 	const DRAGONSDENB1F_POKE_BALL3
 
+
+SECTION "DragonsDenB1F_MapScripts", ROMX
+
 DragonsDenB1F_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DRAGONSDENB1F_NOTHING

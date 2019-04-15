@@ -3,6 +3,9 @@
 	const BILLSFAMILYSHOUSE_POKEFAN_F
 	const BILLSFAMILYSHOUSE_TWIN
 
+
+SECTION "BillsFamilysHouse_MapScripts", ROMX
+
 BillsFamilysHouse_MapScripts:
 	db 0 ; scene scripts
 

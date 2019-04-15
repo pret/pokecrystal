@@ -1,3 +1,5 @@
+SECTION "Music_Lighthouse", ROMX
+
 Music_Lighthouse:
 	musicheader 4, 1, Music_Lighthouse_Ch1
 	musicheader 1, 2, Music_Lighthouse_Ch2

@@ -3,6 +3,9 @@
 	const OLIVINEMART_COOLTRAINER_F
 	const OLIVINEMART_LASS
 
+
+SECTION "OlivineMart_MapScripts", ROMX
+
 OlivineMart_MapScripts:
 	db 0 ; scene scripts
 

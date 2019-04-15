@@ -6,6 +6,9 @@
 	const SAFFRONGYM_YOUNGSTER2
 	const SAFFRONGYM_GYM_GUY
 
+
+SECTION "SaffronGym_MapScripts", ROMX
+
 SaffronGym_MapScripts:
 	db 0 ; scene scripts
 

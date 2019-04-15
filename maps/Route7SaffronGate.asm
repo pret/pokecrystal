@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const ROUTE7SAFFRONGATE_OFFICER
 
+
+SECTION "Route7SaffronGate_MapScripts", ROMX
+
 Route7SaffronGate_MapScripts:
 	db 0 ; scene scripts
 

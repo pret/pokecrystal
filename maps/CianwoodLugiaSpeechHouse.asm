@@ -3,6 +3,9 @@
 	const CIANWOODLUGIASPEECHHOUSE_LASS
 	const CIANWOODLUGIASPEECHHOUSE_TWIN
 
+
+SECTION "CianwoodLugiaSpeechHouse_MapScripts", ROMX
+
 CianwoodLugiaSpeechHouse_MapScripts:
 	db 0 ; scene scripts
 

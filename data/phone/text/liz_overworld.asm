@@ -1,3 +1,5 @@
+SECTION "LizAskNumber1Text - LizRematchText", ROMX
+
 LizAskNumber1Text:
 	text "Oh? You're on a"
 	line "big journey to see"

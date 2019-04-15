@@ -1,5 +1,8 @@
 INCLUDE "gfx/font.asm"
 
+
+SECTION "Unreferenced_fb434 - Unreferenced_Functionfb43f", ROMX
+
 ; This and the following two functions are unreferenced.
 ; Debug, perhaps?
 Unreferenced_fb434:
@@ -17,6 +20,9 @@ Unreferenced_Functionfb43f:
 	jp nz, Get2bpp_2
 	jp Get2bpp
 ; End unreferenced block
+
+
+SECTION "_LoadStandardFont", ROMX
 
 _LoadStandardFont::
 	ld de, Font
@@ -43,6 +49,9 @@ _LoadStandardFont::
 	lb bc, BANK(Font), 32 ; "'" to "9"
 	call Get1bpp_2
 	ret
+
+
+SECTION "_LoadFontsExtra1 - LoadStatsScreenPageTilesGFX", ROMX
 
 _LoadFontsExtra1::
 	ld de, FontsExtra_SolidBlackGFX

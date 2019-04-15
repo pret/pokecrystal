@@ -4,6 +4,9 @@
 	const MAHOGANYPOKECENTER1F_YOUNGSTER
 	const MAHOGANYPOKECENTER1F_COOLTRAINER_F
 
+
+SECTION "MahoganyPokecenter1F_MapScripts", ROMX
+
 MahoganyPokecenter1F_MapScripts:
 	db 0 ; scene scripts
 

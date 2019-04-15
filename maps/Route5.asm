@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const ROUTE5_POKEFAN_M
 
+
+SECTION "Route5_MapScripts", ROMX
+
 Route5_MapScripts:
 	db 0 ; scene scripts
 

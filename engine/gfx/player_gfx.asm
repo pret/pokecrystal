@@ -1,3 +1,5 @@
+SECTION "Unreferenced_Function88248", ROMX
+
 Unreferenced_Function88248:
 	ld c, CAL
 	ld a, [wPlayerGender]
@@ -9,6 +11,9 @@ Unreferenced_Function88248:
 	ld a, c
 	ld [wTrainerClass], a
 	ret
+
+
+SECTION "MovePlayerPicRight - MovePlayerPic", ROMX
 
 MovePlayerPicRight:
 	hlcoord 6, 4
@@ -55,6 +60,9 @@ MovePlayerPic:
 	pop hl
 	jr .loop
 
+
+SECTION "ShowPlayerNamingChoices - Unreferenced_GetPlayerNameArray", ROMX
+
 ShowPlayerNamingChoices:
 	ld hl, ChrisNameMenuHeader
 	ld a, [wPlayerGender]
@@ -84,6 +92,9 @@ Unreferenced_GetPlayerNameArray:
 	call InitName
 	ret
 
+
+SECTION "GetPlayerIcon", ROMX
+
 GetPlayerIcon:
 ; Get the player icon corresponding to gender
 
@@ -101,6 +112,9 @@ GetPlayerIcon:
 
 .done
 	ret
+
+
+SECTION "GetCardPic - KrisCardPic", ROMX
 
 GetCardPic:
 	ld hl, ChrisCardPic
@@ -126,8 +140,14 @@ INCBIN "gfx/trainer_card/chris_card.2bpp"
 KrisCardPic:
 INCBIN "gfx/trainer_card/kris_card.2bpp"
 
+
+SECTION "CardGFX", ROMX
+
 CardGFX:
 INCBIN "gfx/trainer_card/trainer_card.2bpp"
+
+
+SECTION "GetPlayerBackpic - GetKrisBackpic", ROMX
 
 GetPlayerBackpic:
 	ld a, [wPlayerGender]
@@ -219,6 +239,9 @@ GetKrisBackpic:
 	lb bc, BANK(KrisBackpic), 7 * 7 ; dimensions
 	call Get2bpp
 	ret
+
+
+SECTION "KrisBackpic", ROMX
 
 KrisBackpic:
 INCBIN "gfx/player/kris_back.2bpp"

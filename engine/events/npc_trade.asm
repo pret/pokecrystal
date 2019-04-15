@@ -1,3 +1,5 @@
+SECTION "NPCTrade - TradeAfterText3", ROMX
+
 NPCTrade::
 	ld a, e
 	ld [wJumptableIndex], a

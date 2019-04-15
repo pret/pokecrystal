@@ -3,6 +3,9 @@
 	const ECRUTEAKMART_SUPER_NERD
 	const ECRUTEAKMART_GRANNY
 
+
+SECTION "EcruteakMart_MapScripts", ROMX
+
 EcruteakMart_MapScripts:
 	db 0 ; scene scripts
 

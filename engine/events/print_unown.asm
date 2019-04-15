@@ -1,6 +1,9 @@
 UNOWNSTAMP_BOLD_A EQU "♂" ; $ef
 UNOWNSTAMP_BOLD_B EQU "♀" ; $f5
 
+
+SECTION "_UnownPrinter - UnownDexVacantString", ROMX
+
 _UnownPrinter:
 	ld a, [wUnownDex]
 	and a
@@ -212,10 +215,20 @@ UnownDexMenuString:
 UnownDexVacantString:
 	db "VACANT@"
 
+
+SECTION "UnownDexATile", ROMX
+
 UnownDexATile:
 INCBIN "gfx/printer/bold_a.1bpp"
+
+
+SECTION "UnownDexBTile", ROMX
+
 UnownDexBTile:
 INCBIN "gfx/printer/bold_b.1bpp"
+
+
+SECTION "PlaceUnownPrinterFrontpic", ROMX
 
 PlaceUnownPrinterFrontpic:
 	hlcoord 0, 0

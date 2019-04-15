@@ -1,3 +1,5 @@
+SECTION "VanceLiftoffText - VanceHurryHurryText", ROMX
+
 VanceLiftoffText:
 	text "My @"
 	text_ram wStringBuffer4

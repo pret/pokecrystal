@@ -1,3 +1,6 @@
+
+SECTION "DragonsDen1F_MapScripts", ROMX
+
 DragonsDen1F_MapScripts:
 	db 0 ; scene scripts
 

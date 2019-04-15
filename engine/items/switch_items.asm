@@ -1,3 +1,5 @@
+SECTION "SwitchItemsInBag - Function24aab", ROMX
+
 SwitchItemsInBag:
 	ld a, [wSwitchItem]
 	and a

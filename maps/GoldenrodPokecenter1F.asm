@@ -5,6 +5,9 @@
 	const GOLDENRODPOKECENTER1F_LASS
 	const GOLDENRODPOKECENTER1F_POKEFAN_F
 
+
+SECTION "GoldenrodPokecenter1F_MapScripts", ROMX
+
 GoldenrodPokecenter1F_MapScripts:
 	db 0 ; scene scripts
 

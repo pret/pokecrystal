@@ -3,6 +3,9 @@
 	const COPYCATSHOUSE1F_POKEFAN_F
 	const COPYCATSHOUSE1F_CLEFAIRY
 
+
+SECTION "CopycatsHouse1F_MapScripts", ROMX
+
 CopycatsHouse1F_MapScripts:
 	db 0 ; scene scripts
 

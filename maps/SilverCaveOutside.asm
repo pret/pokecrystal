@@ -1,3 +1,6 @@
+
+SECTION "SilverCaveOutside_MapScripts", ROMX
+
 SilverCaveOutside_MapScripts:
 	db 0 ; scene scripts
 

@@ -1,3 +1,5 @@
+SECTION "Music_PalletTown", ROMX
+
 Music_PalletTown:
 	musicheader 3, 1, Music_PalletTown_Ch1
 	musicheader 1, 2, Music_PalletTown_Ch2

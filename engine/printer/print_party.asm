@@ -1,5 +1,8 @@
 PRINTPARTY_HP EQU "◀" ; $71
 
+
+SECTION "PrintPage1", ROMX
+
 PrintPage1:
 	hlcoord 0, 0
 	decoord 0, 0, wPrinterTileMapBuffer
@@ -51,6 +54,9 @@ PrintPage1:
 	ld [hl], $3a
 	ret
 
+
+SECTION "PrintPage2", ROMX
+
 PrintPage2:
 	hlcoord 0, 0, wPrinterTileMapBuffer
 	ld bc, 8 * SCREEN_WIDTH
@@ -100,6 +106,9 @@ PrintPage2:
 	pop de
 	ret
 
+
+SECTION "GBPrinterString_Null - GBPrinterString_PrinterError4", ROMX
+
 GBPrinterStrings: ; used only for BANK(GBPrinterStrings)
 GBPrinterString_Null: db "@"
 GBPrinterString_CheckingLink: next " CHECKING LINK...@"
@@ -129,6 +138,9 @@ GBPrinterString_PrinterError4:
 	next "Check the Game Boy"
 	next "Printer Manual."
 	db   "@"
+
+
+SECTION "PrintPartyMonPage1 - String1dc584", ROMX
 
 PrintPartyMonPage1:
 	call ClearBGPalettes
@@ -346,8 +358,14 @@ String1dc55d:
 String1dc584:
 	db "------------@"
 
+
+SECTION "GBPrinterHPIcon", ROMX
+
 GBPrinterHPIcon:
 INCBIN "gfx/printer/hp.1bpp"
+
+
+SECTION "GBPrinterLvIcon", ROMX
 
 GBPrinterLvIcon:
 INCBIN "gfx/printer/lv.1bpp"

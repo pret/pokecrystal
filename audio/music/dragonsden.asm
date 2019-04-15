@@ -1,3 +1,5 @@
+SECTION "Music_DragonsDen", ROMX
+
 Music_DragonsDen:
 	musicheader 4, 1, Music_DragonsDen_Ch1
 	musicheader 1, 2, Music_DragonsDen_Ch2

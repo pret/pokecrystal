@@ -1,3 +1,5 @@
+SECTION "Music_MtMoonSquare", ROMX
+
 Music_MtMoonSquare:
 	musicheader 2, 1, Music_MtMoonSquare_Ch1
 	musicheader 1, 2, Music_MtMoonSquare_Ch2

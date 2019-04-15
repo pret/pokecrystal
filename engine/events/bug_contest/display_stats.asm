@@ -1,3 +1,5 @@
+SECTION "DisplayCaughtContestMonStats - SwitchMonText", ROMX
+
 DisplayCaughtContestMonStats:
 	call ClearBGPalettes
 	call ClearTileMap
@@ -91,6 +93,9 @@ SwitchMonText:
 	text_far UnknownText_0x1c10cf
 	text_end
 
+
+SECTION "DisplayAlreadyCaughtText", ROMX
+
 DisplayAlreadyCaughtText:
 	call GetPokemonName
 	ld hl, .AlreadyCaughtText
@@ -100,6 +105,9 @@ DisplayAlreadyCaughtText:
 	; You already caught a @ .
 	text_far UnknownText_0x1c10dd
 	text_end
+
+
+SECTION "DummyPredef2F", ROMX
 
 DummyPredef2F:
 DummyPredef38:

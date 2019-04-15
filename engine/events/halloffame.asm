@@ -1,5 +1,8 @@
 HALLOFFAME_COLON EQU $63
 
+
+SECTION "HallOfFame - HOF_AnimatePlayerPic", ROMX
+
 HallOfFame::
 	call HallOfFame_FadeOutMusic
 	ld a, [wStatusFlags]

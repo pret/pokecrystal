@@ -6,6 +6,9 @@
 	const COPYCATSHOUSE2F_BIRDDOLL
 	const COPYCATSHOUSE2F_COPYCAT2 ; if player is female
 
+
+SECTION "CopycatsHouse2F_MapScripts", ROMX
+
 CopycatsHouse2F_MapScripts:
 	db 0 ; scene scripts
 

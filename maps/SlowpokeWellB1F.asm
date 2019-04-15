@@ -9,6 +9,9 @@
 	const SLOWPOKEWELLB1F_BOULDER
 	const SLOWPOKEWELLB1F_POKE_BALL
 
+
+SECTION "SlowpokeWellB1F_MapScripts", ROMX
+
 SlowpokeWellB1F_MapScripts:
 	db 0 ; scene scripts
 

@@ -3,6 +3,9 @@
 	const CHARCOALKILN_YOUNGSTER
 	const CHARCOALKILN_MOLTRES
 
+
+SECTION "CharcoalKiln_MapScripts", ROMX
+
 CharcoalKiln_MapScripts:
 	db 0 ; scene scripts
 

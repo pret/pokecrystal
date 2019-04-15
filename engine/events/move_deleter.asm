@@ -1,3 +1,5 @@
+SECTION "MoveDeletion", ROMX
+
 MoveDeletion:
 	ld hl, .IntroText
 	call PrintText

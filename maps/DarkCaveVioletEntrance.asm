@@ -8,6 +8,9 @@
 	const DARKCAVEVIOLETENTRANCE_POKE_BALL3
 	const DARKCAVEVIOLETENTRANCE_POKE_BALL4
 
+
+SECTION "DarkCaveVioletEntrance_MapScripts", ROMX
+
 DarkCaveVioletEntrance_MapScripts:
 	db 0 ; scene scripts
 

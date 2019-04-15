@@ -7,6 +7,9 @@
 	const POWERPLANT_MANAGER
 	const POWERPLANT_FOREST
 
+
+SECTION "PowerPlant_MapScripts", ROMX
+
 PowerPlant_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_POWERPLANT_NOTHING

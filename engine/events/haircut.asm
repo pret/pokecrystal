@@ -78,5 +78,8 @@ CopyPokemonName_Buffer1_Buffer3:
 	ld bc, MON_NAME_LENGTH
 	jp CopyBytes
 
+
+SECTION "DummyPredef1", ROMX
+
 DummyPredef1:
 	ret

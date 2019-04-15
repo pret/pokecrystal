@@ -6,6 +6,9 @@
 	const VICTORYROAD_POKE_BALL4
 	const VICTORYROAD_POKE_BALL5
 
+
+SECTION "VictoryRoad_MapScripts", ROMX
+
 VictoryRoad_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT

@@ -5,6 +5,9 @@
 	const OLIVINELIGHTHOUSE5F_POKE_BALL2
 	const OLIVINELIGHTHOUSE5F_POKE_BALL3
 
+
+SECTION "OlivineLighthouse5F_MapScripts", ROMX
+
 OlivineLighthouse5F_MapScripts:
 	db 0 ; scene scripts
 

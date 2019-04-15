@@ -14,6 +14,9 @@ map: MACRO
 	db \8
 ENDM
 
+
+SECTION "MapGroupPointers - MapGroup_Cherrygrove", ROMX
+
 MapGroupPointers::
 ; pointers to the first map of each map group
 	dw MapGroup_Olivine     ;  1

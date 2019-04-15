@@ -4,6 +4,9 @@
 	const DRAGONSHRINE_ELDER3
 	const DRAGONSHRINE_CLAIR
 
+
+SECTION "DragonShrine_MapScripts", ROMX
+
 DragonShrine_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DragonShrineTest ; SCENE_DEFAULT

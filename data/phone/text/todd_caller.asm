@@ -1,3 +1,5 @@
+SECTION "ToddLooksCuteLikeMeText - UnknownText_0x17717c", ROMX
+
 ToddLooksCuteLikeMeText:
 	text "My @"
 	text_ram wStringBuffer4

@@ -1,3 +1,6 @@
+
+SECTION "CeladonMansion2F_MapScripts", ROMX
+
 CeladonMansion2F_MapScripts:
 	db 0 ; scene scripts
 

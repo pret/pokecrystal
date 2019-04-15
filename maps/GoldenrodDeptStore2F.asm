@@ -5,6 +5,9 @@
 	const GOLDENRODDEPTSTORE2F_COOLTRAINER_F
 	const GOLDENRODDEPTSTORE2F_GENTLEMAN
 
+
+SECTION "GoldenrodDeptStore2F_MapScripts", ROMX
+
 GoldenrodDeptStore2F_MapScripts:
 	db 0 ; scene scripts
 

@@ -2,6 +2,9 @@
 	const ROUTE29ROUTE46GATE_OFFICER
 	const ROUTE29ROUTE46GATE_YOUNGSTER
 
+
+SECTION "Route29Route46Gate_MapScripts", ROMX
+
 Route29Route46Gate_MapScripts:
 	db 0 ; scene scripts
 

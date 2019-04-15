@@ -14,6 +14,9 @@
 	const NATIONALPARK_GAMEBOY_KID
 	const NATIONALPARK_POKE_BALL2
 
+
+SECTION "NationalPark_MapScripts", ROMX
+
 NationalPark_MapScripts:
 	db 0 ; scene scripts
 

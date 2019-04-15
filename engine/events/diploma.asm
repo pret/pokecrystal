@@ -1,3 +1,5 @@
+SECTION "_Diploma - DiplomaPage2Tilemap", ROMX
+
 _Diploma:
 	call PlaceDiplomaOnScreen
 	call WaitPressAorB_BlinkCursor

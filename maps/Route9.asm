@@ -6,6 +6,9 @@
 	const ROUTE9_POKEFAN_M1
 	const ROUTE9_POKEFAN_M2
 
+
+SECTION "Route9_MapScripts", ROMX
+
 Route9_MapScripts:
 	db 0 ; scene scripts
 

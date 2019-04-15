@@ -6,6 +6,9 @@
 	const GOLDENRODGYM_BUENA2
 	const GOLDENRODGYM_GYM_GUY
 
+
+SECTION "GoldenrodGym_MapScripts", ROMX
+
 GoldenrodGym_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_GOLDENRODGYM_NOTHING

@@ -6,6 +6,9 @@
 	const WISETRIOSROOM_SAGE5
 	const WISETRIOSROOM_SAGE6
 
+
+SECTION "WiseTriosRoom_MapScripts", ROMX
+
 WiseTriosRoom_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT

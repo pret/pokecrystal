@@ -4,6 +4,9 @@
 	const CELADONMANSION3F_SUPER_NERD
 	const CELADONMANSION3F_FISHER
 
+
+SECTION "CeladonMansion3F_MapScripts", ROMX
+
 CeladonMansion3F_MapScripts:
 	db 0 ; scene scripts
 

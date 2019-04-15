@@ -1,3 +1,6 @@
+
+SECTION "RuinsOfAlphAerodactylWordRoom_MapScripts", ROMX
+
 RuinsOfAlphAerodactylWordRoom_MapScripts:
 	db 0 ; scene scripts
 

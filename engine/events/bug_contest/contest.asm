@@ -1,3 +1,5 @@
+SECTION "GiveParkBalls", ROMX
+
 GiveParkBalls:
 	xor a
 	ld [wContestMon], a
@@ -5,6 +7,9 @@ GiveParkBalls:
 	ld [wParkBallsRemaining], a
 	farcall StartBugContestTimer
 	ret
+
+
+SECTION "BugCatchingContestBattleScript - BugCatchingContestText_ContestIsOver", ROMX
 
 BugCatchingContestBattleScript::
 	loadvar VAR_BATTLETYPE, BATTLETYPE_CONTEST

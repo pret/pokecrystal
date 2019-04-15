@@ -1,3 +1,5 @@
+SECTION "BattleTowerText - BTWinF15", ROMX
+
 BattleTowerText::
 ; Print text c for trainer [wBT_OTTrainerClass]
 ; 1: Intro text

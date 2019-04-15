@@ -1,3 +1,5 @@
+SECTION "MoveNames", ROMX
+
 MoveNames::
 	db "POUND@"
 	db "KARATE CHOP@"

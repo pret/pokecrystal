@@ -9,6 +9,9 @@
 	const ROUTE42_POKE_BALL2
 	const ROUTE42_SUICUNE
 
+
+SECTION "Route42_MapScripts", ROMX
+
 Route42_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_ROUTE42_NOTHING

@@ -1,5 +1,8 @@
 ; These functions seem to be related to backwards compatibility
 
+
+SECTION "ValidateOTTrademon", ROMX
+
 ValidateOTTrademon:
 	ld a, [wd003]
 	ld hl, wOTPartyMon1Species
@@ -64,6 +67,9 @@ ValidateOTTrademon:
 	scf
 	ret
 
+
+SECTION "Functionfb5dd", ROMX
+
 Functionfb5dd:
 	ld a, [wd002]
 	ld d, a
@@ -99,6 +105,9 @@ Functionfb5dd:
 .done
 	and a
 	ret
+
+
+SECTION "PlaceTradePartnerNamesAndParty", ROMX
 
 PlaceTradePartnerNamesAndParty:
 	hlcoord 4, 0

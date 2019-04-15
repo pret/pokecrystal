@@ -22,6 +22,9 @@
 	const DEBUGTEST_E        ; $7e
 	const DEBUGTEST_F        ; $7f
 
+
+SECTION "ColorTest - Function823c7", ROMX
+
 ColorTest:
 ; A debug menu to test monster and trainer palettes at runtime.
 

@@ -1,3 +1,5 @@
+SECTION "KnowsMove", ROMX
+
 KnowsMove:
 	ld a, MON_MOVES
 	call GetPartyParamLocation

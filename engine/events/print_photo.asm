@@ -1,3 +1,5 @@
+SECTION "PhotoStudio", ROMX
+
 PhotoStudio:
 	ld hl, .Text_AskWhichMon
 	call PrintText

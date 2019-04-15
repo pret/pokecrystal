@@ -2,6 +2,9 @@
 	const SLOWPOKEWELLB2F_GYM_GUY
 	const SLOWPOKEWELLB2F_POKE_BALL
 
+
+SECTION "SlowpokeWellB2F_MapScripts", ROMX
+
 SlowpokeWellB2F_MapScripts:
 	db 0 ; scene scripts
 

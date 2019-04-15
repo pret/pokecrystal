@@ -1,3 +1,5 @@
+SECTION "Elevator - ElevatorFloorNames", ROMX
+
 Elevator::
 	call .LoadPointer
 	call .FindCurrentFloor

@@ -6,6 +6,9 @@ GOLDENRODDEPTSTORE6F_LEMONADE_PRICE    EQU 350
 	const GOLDENRODDEPTSTORE6F_LASS
 	const GOLDENRODDEPTSTORE6F_SUPER_NERD
 
+
+SECTION "GoldenrodDeptStore6F_MapScripts", ROMX
+
 GoldenrodDeptStore6F_MapScripts:
 	db 0 ; scene scripts
 

@@ -2,6 +2,9 @@
 	const ROUTE18_YOUNGSTER1
 	const ROUTE18_YOUNGSTER2
 
+
+SECTION "Route18_MapScripts", ROMX
+
 Route18_MapScripts:
 	db 0 ; scene scripts
 

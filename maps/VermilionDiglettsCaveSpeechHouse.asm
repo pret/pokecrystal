@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const VERMILIONDIGLETTSCAVESPEECHHOUSE_GENTLEMAN
 
+
+SECTION "VermilionDiglettsCaveSpeechHouse_MapScripts", ROMX
+
 VermilionDiglettsCaveSpeechHouse_MapScripts:
 	db 0 ; scene scripts
 

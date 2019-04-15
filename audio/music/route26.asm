@@ -1,3 +1,5 @@
+SECTION "Music_Route26", ROMX
+
 Music_Route26:
 	musicheader 4, 1, Music_Route26_Ch1
 	musicheader 1, 2, Music_Route26_Ch2

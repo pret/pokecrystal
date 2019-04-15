@@ -1,3 +1,6 @@
+
+SECTION "PewterPokecenter2FBeta_MapScripts", ROMX
+
 PewterPokecenter2FBeta_MapScripts:
 	db 0 ; scene scripts
 

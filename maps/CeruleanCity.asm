@@ -6,6 +6,9 @@
 	const CERULEANCITY_FISHER
 	const CERULEANCITY_YOUNGSTER
 
+
+SECTION "CeruleanCity_MapScripts", ROMX
+
 CeruleanCity_MapScripts:
 	db 0 ; scene scripts
 

@@ -1,3 +1,5 @@
+SECTION "Mobile_PrintOpponentBattleMessage", ROMX
+
 Mobile_PrintOpponentBattleMessage:
 	ld a, c
 	push af

@@ -1,5 +1,10 @@
+SECTION "LinkCommsBorderGFX", ROMX
+
 LinkCommsBorderGFX:
 INCBIN "gfx/trade/border_tiles.2bpp"
+
+
+SECTION "__LoadTradeScreenBorder - LinkTextbox", ROMX
 
 __LoadTradeScreenBorder:
 	ld de, LinkCommsBorderGFX
@@ -153,6 +158,9 @@ LinkTextbox:
 	call _LinkTextbox
 	ret
 
+
+SECTION "Function16d6ce - Function16d6e1", ROMX
+
 Function16d6ce:
 	call LoadStandardMenuHeader
 	call Function16d6e1
@@ -176,6 +184,9 @@ Function16d6e1:
 
 .Waiting:
 	db "WAITING..!@"
+
+
+SECTION "LinkTradeMenu", ROMX
 
 LinkTradeMenu:
 	call .MenuAction

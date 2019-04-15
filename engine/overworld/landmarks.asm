@@ -1,3 +1,5 @@
+SECTION "GetLandmarkCoords - SpecialMapName", ROMX
+
 GetLandmarkCoords:
 ; Return coordinates (d, e) of landmark e.
 	push hl
@@ -44,6 +46,9 @@ GetLandmarkName::
 	ret
 
 INCLUDE "data/maps/landmarks.asm"
+
+
+SECTION "RegionCheck", ROMX
 
 RegionCheck:
 ; Checks if the player is in Kanto or Johto.

@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const ROUTE30BERRYHOUSE_POKEFAN_M
 
+
+SECTION "Route30BerryHouse_MapScripts", ROMX
+
 Route30BerryHouse_MapScripts:
 	db 0 ; scene scripts
 

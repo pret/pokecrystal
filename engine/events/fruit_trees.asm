@@ -1,3 +1,5 @@
+SECTION "FruitTreeScript - NothingHereText", ROMX
+
 FruitTreeScript::
 	callasm GetCurTreeFruit
 	opentext

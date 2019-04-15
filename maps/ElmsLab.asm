@@ -6,6 +6,9 @@
 	const ELMSLAB_POKE_BALL3
 	const ELMSLAB_OFFICER
 
+
+SECTION "ElmsLab_MapScripts", ROMX
+
 ElmsLab_MapScripts:
 	db 6 ; scene scripts
 	scene_script .MeetElm ; SCENE_DEFAULT

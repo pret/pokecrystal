@@ -4,6 +4,9 @@
 	const BLUE_PAGE  ; 3
 NUM_STAT_PAGES EQU const_value + -1
 
+
+SECTION "BattleStatsScreenInit - CheckFaintedFrzSlp", ROMX
+
 BattleStatsScreenInit:
 	ld a, [wLinkMode]
 	cp LINK_MOBILE

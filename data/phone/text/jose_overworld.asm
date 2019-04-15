@@ -1,3 +1,5 @@
+SECTION "JoseAskNumber1Text - JosePackFullText", ROMX
+
 JoseAskNumber1Text:
 	text "If my @"
 	text_ram wStringBuffer4

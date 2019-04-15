@@ -9,6 +9,9 @@
 	const UNIONCAVE1F_POKE_BALL3
 	const UNIONCAVE1F_POKE_BALL4
 
+
+SECTION "UnionCave1F_MapScripts", ROMX
+
 UnionCave1F_MapScripts:
 	db 0 ; scene scripts
 

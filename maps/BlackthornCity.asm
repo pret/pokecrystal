@@ -9,6 +9,9 @@
 	const BLACKTHORNCITY_SANTOS
 	const BLACKTHORNCITY_COOLTRAINER_F2
 
+
+SECTION "BlackthornCity_MapScripts", ROMX
+
 BlackthornCity_MapScripts:
 	db 0 ; scene scripts
 

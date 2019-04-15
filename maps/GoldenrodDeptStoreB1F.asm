@@ -8,6 +8,9 @@
 	const GOLDENRODDEPTSTOREB1F_BLACK_BELT3
 	const GOLDENRODDEPTSTOREB1F_MACHOP
 
+
+SECTION "GoldenrodDeptStoreB1F_MapScripts", ROMX
+
 GoldenrodDeptStoreB1F_MapScripts:
 	db 0 ; scene scripts
 

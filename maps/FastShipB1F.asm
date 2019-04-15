@@ -12,6 +12,9 @@
 	const FASTSHIPB1F_YOUNGSTER1
 	const FASTSHIPB1F_YOUNGSTER2
 
+
+SECTION "FastShipB1F_MapScripts", ROMX
+
 FastShipB1F_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT

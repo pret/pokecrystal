@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const BRUNOSROOM_BRUNO
 
+
+SECTION "BrunosRoom_MapScripts", ROMX
+
 BrunosRoom_MapScripts:
 	db 2 ; scene scripts
 	scene_script .LockDoor ; SCENE_DEFAULT

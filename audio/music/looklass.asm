@@ -1,3 +1,5 @@
+SECTION "Music_LookLass", ROMX
+
 Music_LookLass:
 	musicheader 4, 1, Music_LookLass_Ch1
 	musicheader 1, 2, Music_LookLass_Ch2

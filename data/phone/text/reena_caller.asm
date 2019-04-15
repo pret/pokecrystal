@@ -1,3 +1,5 @@
+SECTION "UnknownText_0x1752f5 - UnknownText_0x1754e5", ROMX
+
 UnknownText_0x1752f5:
 	text "Listen, dear…"
 

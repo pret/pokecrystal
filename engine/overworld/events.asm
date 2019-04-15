@@ -1,7 +1,7 @@
 INCLUDE "constants.asm"
 
 
-SECTION "Events", ROMX
+SECTION "OverworldLoop - ContestMons", ROMX
 
 OverworldLoop::
 	xor a ; MAPSTATUS_START
@@ -1271,6 +1271,9 @@ TryWildEncounter_BugContest:
 
 INCLUDE "data/wild/bug_contest_mons.asm"
 
+
+SECTION "DoBikeStep", ROMX
+
 DoBikeStep::
 	nop
 	nop
@@ -1337,6 +1340,9 @@ DoBikeStep::
 	xor a
 	ret
 
+
+SECTION "ClearCmdQueue", ROMX
+
 ClearCmdQueue::
 	ld hl, wCmdQueue
 	ld de, CMDQUEUE_ENTRY_SIZE
@@ -1348,6 +1354,9 @@ ClearCmdQueue::
 	dec c
 	jr nz, .loop
 	ret
+
+
+SECTION "HandleCmdQueue - CmdQueue_Type3", ROMX
 
 HandleCmdQueue::
 	ld hl, wCmdQueue
@@ -1592,6 +1601,9 @@ CmdQueue_Type3:
 	and a
 	pop bc
 	ret
+
+
+SECTION "CmdQueue_StoneTable", ROMX
 
 CmdQueue_StoneTable:
 	ld de, wPlayerStruct

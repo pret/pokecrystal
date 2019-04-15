@@ -6,6 +6,9 @@
 	const POKEMONFANCLUB_FAIRY
 	const POKEMONFANCLUB_ODDISH
 
+
+SECTION "PokemonFanClub_MapScripts", ROMX
+
 PokemonFanClub_MapScripts:
 	db 0 ; scene scripts
 

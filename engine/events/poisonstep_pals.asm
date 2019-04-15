@@ -1,3 +1,5 @@
+SECTION "LoadPoisonBGPals", ROMX
+
 LoadPoisonBGPals:
 	call .LoadPals
 	ldh a, [hCGB]

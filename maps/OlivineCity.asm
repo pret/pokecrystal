@@ -4,6 +4,9 @@
 	const OLIVINECITY_SAILOR2
 	const OLIVINECITY_OLIVINE_RIVAL
 
+
+SECTION "OlivineCity_MapScripts", ROMX
+
 OlivineCity_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT

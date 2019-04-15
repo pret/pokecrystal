@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const ROUTE5UNDERGROUNDPATHENTRANCE_TEACHER
 
+
+SECTION "Route5UndergroundPathEntrance_MapScripts", ROMX
+
 Route5UndergroundPathEntrance_MapScripts:
 	db 0 ; scene scripts
 

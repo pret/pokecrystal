@@ -1,3 +1,5 @@
+SECTION "BethAskNumber1Text - BethRematchText", ROMX
+
 BethAskNumber1Text:
 	text "It's been a while"
 	line "since I lost…"

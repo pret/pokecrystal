@@ -1,3 +1,5 @@
+SECTION "Function17c000 - HaveWantPals", ROMX
+
 Function17c000:
 	call DisableLCD
 
@@ -172,6 +174,9 @@ HaveWantPals:
 	RGB  0,  0,  0
 	RGB  0,  0,  0
 
+
+SECTION "CheckStringForErrors", ROMX
+
 CheckStringForErrors:
 ; Valid character ranges:
 ; $0, $5 - $13, $19 - $1c, $26 - $34, $3a - $3e, $40 - $48, $60 - $ff
@@ -219,6 +224,9 @@ CheckStringForErrors:
 	and a
 	ret
 
+
+SECTION "CheckStringForErrors_IgnoreTerminator", ROMX
+
 CheckStringForErrors_IgnoreTerminator:
 ; Find control chars
 .loop
@@ -263,6 +271,9 @@ CheckStringForErrors_IgnoreTerminator:
 	jr nz, .loop
 	and a
 	ret
+
+
+SECTION "Function17d0f3", ROMX
 
 Function17d0f3:
 	ld a, [wc608 + 5]
@@ -322,6 +333,9 @@ Function17d0f3:
 	call RestartMapMusic
 	ret
 
+
+SECTION "Mobile_CopyDefaultOTName - Mobile_CopyDefaultMailAuthor", ROMX
+
 Mobile_CopyDefaultOTName:
 	ld hl, Mobile5F_PlayersName
 	ld de, wc63d
@@ -367,6 +381,9 @@ Mobile_CopyDefaultMailAuthor:
 	call CopyBytes
 	ret
 
+
+SECTION "CheckStringContainsLessThanBNextCharacters", ROMX
+
 CheckStringContainsLessThanBNextCharacters:
 .loop
 	ld a, [de]
@@ -385,6 +402,9 @@ CheckStringContainsLessThanBNextCharacters:
 .done
 	scf
 	ret
+
+
+SECTION "Function17d1f1", ROMX
 
 Function17d1f1:
 	ld a, [wCurPartySpecies]
@@ -411,6 +431,9 @@ Function17d1f1:
 
 .asm_17d223
 	ret
+
+
+SECTION "Menu_ChallengeExplanationCancel - MenuData_ChallengeExplanationCancel", ROMX
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Parameter: [wScriptVar] = 0..1
@@ -493,6 +516,9 @@ MenuData_ChallengeExplanationCancel:
 	db "Explanation@"
 	db "Cancel@"
 
+
+SECTION "Function17d2b6 - Function17d2c0", ROMX
+
 Function17d2b6:
 	call Function17d2c0
 	farcall Function1181da
@@ -505,6 +531,9 @@ Function17d2c0:
 	ld [wcf65], a
 	ld [wcf66], a
 	ret
+
+
+SECTION "Function17d2ce - Function17f524", ROMX
 
 Function17d2ce:
 	ld a, $5
@@ -4456,6 +4485,9 @@ Function17f524:
 .asm_17f53a
 	scf
 	jr .asm_17f536
+
+
+SECTION "BattleTowerMobileError - String_17ff68", ROMX
 
 BattleTowerMobileError:
 	call FadeToMenu

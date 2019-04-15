@@ -7,6 +7,9 @@
 	const RADIOTOWER3F_ROCKET3
 	const RADIOTOWER3F_SCIENTIST
 
+
+SECTION "RadioTower3F_MapScripts", ROMX
+
 RadioTower3F_MapScripts:
 	db 0 ; scene scripts
 

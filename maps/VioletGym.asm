@@ -4,6 +4,9 @@
 	const VIOLETGYM_YOUNGSTER2
 	const VIOLETGYM_GYM_GUY
 
+
+SECTION "VioletGym_MapScripts", ROMX
+
 VioletGym_MapScripts:
 	db 0 ; scene scripts
 

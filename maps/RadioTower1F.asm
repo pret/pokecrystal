@@ -6,6 +6,9 @@
 	const RADIOTOWER1F_LUCKYNUMBERMAN
 	const RADIOTOWER1F_CARD_WOMAN
 
+
+SECTION "RadioTower1F_MapScripts", ROMX
+
 RadioTower1F_MapScripts:
 	db 0 ; scene scripts
 

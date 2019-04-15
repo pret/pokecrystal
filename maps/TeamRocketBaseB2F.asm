@@ -14,6 +14,9 @@
 	const TEAMROCKETBASEB2F_ROCKET4
 	const TEAMROCKETBASEB2F_POKE_BALL
 
+
+SECTION "TeamRocketBaseB2F_MapScripts", ROMX
+
 TeamRocketBaseB2F_MapScripts:
 	db 4 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT

@@ -1,3 +1,5 @@
+SECTION "Battle Tower Trainer Data", ROMX
+
 BattleTowerTrainerData:: ; What exactly it is, I don't know
 ; Size is 70 (Nr of Trainers in BattleTower) * 0x24 (Nr of Bytes that are copied)
 ; Second argument points to an entry in Unknown_170470, to which the first argument is compared.

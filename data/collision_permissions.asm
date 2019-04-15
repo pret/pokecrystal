@@ -1,6 +1,9 @@
 NONTALKABLE EQUS "db"
 TALKABLE    EQUS "db TALK +"
 
+
+SECTION "TileCollisionTable", ROMX
+
 TileCollisionTable::
 ; entries correspond to COLL_* constants
 	NONTALKABLE  LANDTILE ; COLL_FLOOR

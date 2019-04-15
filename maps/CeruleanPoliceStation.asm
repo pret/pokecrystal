@@ -3,6 +3,9 @@
 	const CERULEANPOLICESTATION_POKEFAN_F
 	const CERULEANPOLICESTATION_DIGLETT
 
+
+SECTION "CeruleanPoliceStation_MapScripts", ROMX
+
 CeruleanPoliceStation_MapScripts:
 	db 0 ; scene scripts
 

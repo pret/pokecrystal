@@ -1,7 +1,6 @@
-INCLUDE "constants.asm"
+SECTION "EvolvePokemon - CelebiEvosAttacks", ROMX
 
-
-SECTION "Evolutions and Attacks", ROMX
+INCLUDE "engine/pokemon/evolve.asm"
 
 ; Evos+attacks data structure:
 ; - Evolution methods:

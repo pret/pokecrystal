@@ -7,6 +7,9 @@
 	const AZALEAGYM_TWIN2
 	const AZALEAGYM_GYM_GUY
 
+
+SECTION "AzaleaGym_MapScripts", ROMX
+
 AzaleaGym_MapScripts:
 	db 0 ; scene scripts
 

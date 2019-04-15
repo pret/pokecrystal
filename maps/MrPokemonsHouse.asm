@@ -2,6 +2,9 @@
 	const MRPOKEMONSHOUSE_GENTLEMAN
 	const MRPOKEMONSHOUSE_OAK
 
+
+SECTION "MrPokemonsHouse_MapScripts", ROMX
+
 MrPokemonsHouse_MapScripts:
 	db 2 ; scene scripts
 	scene_script .MeetMrPokemon ; SCENE_DEFAULT

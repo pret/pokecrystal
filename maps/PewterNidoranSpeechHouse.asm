@@ -2,6 +2,9 @@
 	const PEWTERNIDORANSPEECHHOUSE_SUPER_NERD
 	const PEWTERNIDORANSPEECHHOUSE_NIDORAN_M
 
+
+SECTION "PewterNidoranSpeechHouse_MapScripts", ROMX
+
 PewterNidoranSpeechHouse_MapScripts:
 	db 0 ; scene scripts
 

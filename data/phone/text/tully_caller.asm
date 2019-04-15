@@ -1,3 +1,5 @@
+SECTION "TullyGrownText - UnknownText_0x66087", ROMX
+
 TullyGrownText:
 	text "My @"
 	text_ram wStringBuffer4

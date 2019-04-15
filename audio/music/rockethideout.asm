@@ -1,3 +1,5 @@
+SECTION "Music_RocketHideout", ROMX
+
 Music_RocketHideout:
 	musicheader 4, 1, Music_RocketHideout_Ch1
 	musicheader 1, 2, Music_RocketHideout_Ch2

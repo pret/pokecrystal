@@ -4,6 +4,9 @@
 	const AZALEAPOKECENTER1F_FISHING_GURU
 	const AZALEAPOKECENTER1F_POKEFAN_F
 
+
+SECTION "AzaleaPokecenter1F_MapScripts", ROMX
+
 AzaleaPokecenter1F_MapScripts:
 	db 1 ; scene scripts
 	scene_script .DummyScene

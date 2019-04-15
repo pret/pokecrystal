@@ -1,3 +1,6 @@
+
+SECTION "SafariZoneFuchsiaGateBeta_MapScripts", ROMX
+
 SafariZoneFuchsiaGateBeta_MapScripts:
 	db 0 ; scene scripts
 

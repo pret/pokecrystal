@@ -1,3 +1,5 @@
+SECTION "LinkCommunications - Link_EnsureSync", ROMX
+
 LinkCommunications:
 	call ClearBGPalettes
 	ld c, 80
@@ -2496,6 +2498,9 @@ Link_EnsureSync:
 	and $f
 	ret
 
+
+SECTION "CableClubCheckWhichChris", ROMX
+
 CableClubCheckWhichChris:
 	ldh a, [hSerialConnectionStatus]
 	cp USING_EXTERNAL_CLOCK
@@ -2507,8 +2512,14 @@ CableClubCheckWhichChris:
 	ld [wScriptVar], a
 	ret
 
+
+SECTION "Unreferenced_Gen1LinkCommsBorderGFX", ROMX
+
 Unreferenced_Gen1LinkCommsBorderGFX:
 INCBIN "gfx/trade/unused_gen_1_border_tiles.2bpp"
+
+
+SECTION "Unreferenced_Function29fe4", ROMX
 
 Unreferenced_Function29fe4:
 	ld a, BANK(sPartyMail)

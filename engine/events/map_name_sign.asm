@@ -1,5 +1,8 @@
 MAP_NAME_SIGN_START EQU $60
 
+
+SECTION "ReturnFromMapSetupScript - PlaceMapNameFrame", ROMX
+
 ReturnFromMapSetupScript::
 	xor a
 	ldh [hBGMapMode], a

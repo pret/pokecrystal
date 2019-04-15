@@ -1,3 +1,5 @@
+SECTION "ChikoritaFrames - EggFrames", ROMX
+
 JohtoFrames: ; used only for BANK(JohtoFrames)
 
 ChikoritaFrames:  INCLUDE "gfx/pokemon/chikorita/frames.asm"

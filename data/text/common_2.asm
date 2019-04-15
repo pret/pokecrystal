@@ -1,3 +1,5 @@
+SECTION "Text 2", ROMX
+
 UnknownText_0x1c0000::
 	text "Oh, no picture?"
 	line "Come again, OK?"

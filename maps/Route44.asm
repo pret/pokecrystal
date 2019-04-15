@@ -11,6 +11,9 @@
 	const ROUTE44_POKE_BALL2
 	const ROUTE44_POKE_BALL3
 
+
+SECTION "Route44_MapScripts", ROMX
+
 Route44_MapScripts:
 	db 0 ; scene scripts
 

@@ -5,6 +5,9 @@
 	const PEWTERPOKECENTER1F_BUG_CATCHER
 	const PEWTERPOKECENTER1F_CHRIS
 
+
+SECTION "PewterPokecenter1F_MapScripts", ROMX
+
 PewterPokecenter1F_MapScripts:
 	db 0 ; scene scripts
 

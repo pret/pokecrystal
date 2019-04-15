@@ -4,6 +4,9 @@
 	const VIRIDIANNICKNAMESPEECHHOUSE_SPEARY
 	const VIRIDIANNICKNAMESPEECHHOUSE_RATTEY
 
+
+SECTION "ViridianNicknameSpeechHouse_MapScripts", ROMX
+
 ViridianNicknameSpeechHouse_MapScripts:
 	db 0 ; scene scripts
 

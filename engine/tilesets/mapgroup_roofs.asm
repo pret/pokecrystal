@@ -1,3 +1,5 @@
+SECTION "LoadMapGroupRoof - Roofs", ROMX
+
 LoadMapGroupRoof::
 	ld a, [wMapGroup]
 	ld e, a

@@ -6,6 +6,9 @@
 	const CERULEANGYM_SWIMMER_GUY
 	const CERULEANGYM_GYM_GUY
 
+
+SECTION "CeruleanGym_MapScripts", ROMX
+
 CeruleanGym_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_CERULEANGYM_NOTHING

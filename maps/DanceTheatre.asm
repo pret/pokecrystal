@@ -9,6 +9,9 @@
 	const DANCETHEATRE_COOLTRAINER_M
 	const DANCETHEATRE_GRANNY
 
+
+SECTION "DanceTheatre_MapScripts", ROMX
+
 DanceTheatre_MapScripts:
 	db 0 ; scene scripts
 

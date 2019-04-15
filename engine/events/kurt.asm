@@ -1,3 +1,5 @@
+SECTION "Kurt_PrintTextWhichApricorn - Kurt_GetRidOfItem", ROMX
+
 Kurt_PrintTextWhichApricorn:
 	ld hl, .Text
 	call PrintText

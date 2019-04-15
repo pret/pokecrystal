@@ -3,6 +3,9 @@
 	const VICTORYROADGATE_BLACK_BELT1
 	const VICTORYROADGATE_BLACK_BELT2
 
+
+SECTION "VictoryRoadGate_MapScripts", ROMX
+
 VictoryRoadGate_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT

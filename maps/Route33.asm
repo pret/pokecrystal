@@ -3,6 +3,9 @@
 	const ROUTE33_LASS
 	const ROUTE33_FRUIT_TREE
 
+
+SECTION "Route33_MapScripts", ROMX
+
 Route33_MapScripts:
 	db 0 ; scene scripts
 

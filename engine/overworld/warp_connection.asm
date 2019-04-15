@@ -1,3 +1,4 @@
+SECTION "HandleNewMap - InitCommandQueue", ROMX
 
 HandleNewMap:
 	call ClearUnusedMapBuffer
@@ -14,6 +15,9 @@ InitCommandQueue:
 	call GetMapTimeOfDay
 	ld [wMapTimeOfDay], a
 	ret
+
+
+SECTION "EnterMapConnection", ROMX
 
 EnterMapConnection:
 ; Return carry if a connection has been entered.
@@ -150,6 +154,9 @@ EnterMapConnection:
 	scf
 	ret
 
+
+SECTION "LoadWarpData", ROMX
+
 LoadWarpData:
 	call .SaveDigWarp
 	call .SetSpawn
@@ -225,6 +232,9 @@ LoadWarpData:
 	ld [wLastSpawnMapNumber], a
 	ret
 
+
+SECTION "LoadMapTimeOfDay", ROMX
+
 LoadMapTimeOfDay:
 	ld hl, wVramState
 	res 6, [hl]
@@ -296,6 +306,9 @@ LoadMapTimeOfDay:
 	ldh [rVBK], a
 	ret
 
+
+SECTION "LoadGraphics", ROMX
+
 LoadGraphics:
 	call LoadTileset
 	call LoadTilesetGFX
@@ -308,9 +321,15 @@ LoadGraphics:
 	farcall LoadOverworldFont
 	ret
 
+
+SECTION "LoadMapPalettes", ROMX
+
 LoadMapPalettes:
 	ld b, SCGB_MAPPALS
 	jp GetSGBLayout
+
+
+SECTION "RefreshMapSprites", ROMX
 
 RefreshMapSprites:
 	call ClearSprites
@@ -329,6 +348,9 @@ RefreshMapSprites:
 	and %00011100
 	ld [wPlayerSpriteSetupFlags], a
 	ret
+
+
+SECTION "CheckMovingOffEdgeOfMap", ROMX
 
 CheckMovingOffEdgeOfMap::
 	ld a, [wPlayerStepDirection]
@@ -386,6 +408,9 @@ CheckMovingOffEdgeOfMap::
 .ok
 	scf
 	ret
+
+
+SECTION "GetCoordOfUpperLeftCorner", ROMX
 
 GetCoordOfUpperLeftCorner::
 	ld hl, wOverworldMapBlocks

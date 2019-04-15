@@ -6,6 +6,9 @@
 	const CELADONGYM_TWIN1
 	const CELADONGYM_TWIN2
 
+
+SECTION "CeladonGym_MapScripts", ROMX
+
 CeladonGym_MapScripts:
 	db 0 ; scene scripts
 

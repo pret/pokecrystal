@@ -1,3 +1,5 @@
+SECTION "Music_KantoWildBattle", ROMX
+
 Music_KantoWildBattle:
 	musicheader 3, 1, Music_KantoWildBattle_Ch1
 	musicheader 1, 2, Music_KantoWildBattle_Ch2

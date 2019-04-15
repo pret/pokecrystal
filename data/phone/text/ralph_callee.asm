@@ -1,3 +1,5 @@
+SECTION "UnknownText_0x1b5c10 - UnknownText_0x1b5d51", ROMX
+
 UnknownText_0x1b5c10:
 	text "Yes? Ah, <PLAY_G>."
 

@@ -1,3 +1,6 @@
+
+SECTION "CeladonDeptStoreElevator_MapScripts", ROMX
+
 CeladonDeptStoreElevator_MapScripts:
 	db 0 ; scene scripts
 

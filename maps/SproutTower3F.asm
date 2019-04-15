@@ -7,6 +7,9 @@
 	const SPROUTTOWER3F_POKE_BALL2
 	const SPROUTTOWER3F_SILVER
 
+
+SECTION "SproutTower3F_MapScripts", ROMX
+
 SproutTower3F_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT

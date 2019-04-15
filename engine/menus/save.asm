@@ -1,3 +1,5 @@
+SECTION "SaveMenu - Text_SaveOnMoveMonWOMail", ROMX
+
 SaveMenu:
 	call LoadStandardMenuHeader
 	farcall DisplaySaveInfoOnSave

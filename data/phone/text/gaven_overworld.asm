@@ -1,3 +1,5 @@
+SECTION "GavenAskNumber1Text - GavenRematchText", ROMX
+
 GavenAskNumber1Text:
 	text "Wow, you're tough."
 	line "I haven't battled"

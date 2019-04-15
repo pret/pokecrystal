@@ -1,3 +1,5 @@
+SECTION "EmptyAllSRAMBanks", ROMX
+
 EmptyAllSRAMBanks:
 	ld a, 0
 	call .EmptyBank

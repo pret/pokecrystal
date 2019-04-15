@@ -4,6 +4,9 @@
 	const MOUNTMOONGIFTSHOP_LASS1 ; morning only
 	const MOUNTMOONGIFTSHOP_LASS2 ; day only
 
+
+SECTION "MountMoonGiftShop_MapScripts", ROMX
+
 MountMoonGiftShop_MapScripts:
 	db 0 ; scene scripts
 

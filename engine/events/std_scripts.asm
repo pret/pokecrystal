@@ -1,3 +1,5 @@
+SECTION "StdScripts - Movement_ContestResults_WalkAfterWarp", ROMX
+
 StdScripts::
 ; entries correspond to constants/std_constants.asm
 	dba PokecenterNurseScript

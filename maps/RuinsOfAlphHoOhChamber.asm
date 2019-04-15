@@ -1,3 +1,6 @@
+
+SECTION "RuinsOfAlphHoOhChamber_MapScripts", ROMX
+
 RuinsOfAlphHoOhChamber_MapScripts:
 	db 2 ; scene scripts
 	scene_script .CheckWall ; SCENE_DEFAULT

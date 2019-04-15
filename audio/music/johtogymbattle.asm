@@ -1,3 +1,5 @@
+SECTION "Music_JohtoGymBattle", ROMX
+
 Music_JohtoGymBattle:
 	musicheader 3, 1, Music_JohtoGymBattle_Ch1
 	musicheader 1, 2, Music_JohtoGymBattle_Ch2

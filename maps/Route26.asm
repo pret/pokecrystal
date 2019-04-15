@@ -8,6 +8,9 @@
 	const ROUTE26_FRUIT_TREE
 	const ROUTE26_POKE_BALL
 
+
+SECTION "Route26_MapScripts", ROMX
+
 Route26_MapScripts:
 	db 0 ; scene scripts
 

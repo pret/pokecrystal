@@ -3,6 +3,9 @@
 	const WHIRLISLANDB2F_POKE_BALL2
 	const WHIRLISLANDB2F_POKE_BALL3
 
+
+SECTION "WhirlIslandB2F_MapScripts", ROMX
+
 WhirlIslandB2F_MapScripts:
 	db 0 ; scene scripts
 

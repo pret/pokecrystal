@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const ROUTE42ECRUTEAKGATE_OFFICER
 
+
+SECTION "Route42EcruteakGate_MapScripts", ROMX
+
 Route42EcruteakGate_MapScripts:
 	db 0 ; scene scripts
 

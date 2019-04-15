@@ -1,3 +1,5 @@
+SECTION "PlaceWaitingText", ROMX
+
 PlaceWaitingText::
 	hlcoord 3, 10
 	ld b, 1

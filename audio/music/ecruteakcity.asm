@@ -1,3 +1,5 @@
+SECTION "Music_EcruteakCity", ROMX
+
 Music_EcruteakCity:
 	musicheader 3, 1, Music_EcruteakCity_Ch1
 	musicheader 1, 2, Music_EcruteakCity_Ch2

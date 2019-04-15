@@ -1,3 +1,5 @@
+SECTION "MonMenuOptionStrings - AddMonMenuItem", ROMX
+
 INCLUDE "data/mon_menu.asm"
 
 MonSubmenu:
@@ -243,6 +245,9 @@ AddMonMenuItem:
 	pop de
 	pop hl
 	ret
+
+
+SECTION "BattleMonMenu - MenuData_0x24edc", ROMX
 
 BattleMonMenu:
 	ld hl, MenuHeader_0x24ed4

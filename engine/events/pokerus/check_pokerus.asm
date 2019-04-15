@@ -1,3 +1,5 @@
+SECTION "_CheckPokerus", ROMX
+
 _CheckPokerus:
 ; Return carry if a monster in your party has Pokerus
 

@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const CELADONMANSIONROOF_FISHER
 
+
+SECTION "CeladonMansionRoof_MapScripts", ROMX
+
 CeladonMansionRoof_MapScripts:
 	db 0 ; scene scripts
 

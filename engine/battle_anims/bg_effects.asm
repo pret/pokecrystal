@@ -8,6 +8,8 @@
 
 ; BG effects for use in battle animations.
 
+SECTION "ExecuteBGEffects - BattleBGEffects_Cosine", ROMX
+
 ExecuteBGEffects:
 	ld hl, wActiveBGEffects
 	ld e, NUM_BG_EFFECTS

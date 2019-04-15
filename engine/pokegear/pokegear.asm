@@ -2025,6 +2025,9 @@ PlayRadio:
 .kanto
 	jp LoadStation_PlacesAndPeople
 
+
+SECTION "PokegearMap - Unreferenced_Function92311", ROMX
+
 PokegearMap:
 	ld a, e
 	and a

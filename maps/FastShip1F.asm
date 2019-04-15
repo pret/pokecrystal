@@ -4,6 +4,9 @@
 	const FASTSHIP1F_SAILOR3
 	const FASTSHIP1F_GENTLEMAN
 
+
+SECTION "FastShip1F_MapScripts", ROMX
+
 FastShip1F_MapScripts:
 	db 3 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT

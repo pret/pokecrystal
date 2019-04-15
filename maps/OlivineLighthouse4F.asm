@@ -2,6 +2,9 @@
 	const OLIVINELIGHTHOUSE4F_SAILOR
 	const OLIVINELIGHTHOUSE4F_LASS
 
+
+SECTION "OlivineLighthouse4F_MapScripts", ROMX
+
 OlivineLighthouse4F_MapScripts:
 	db 0 ; scene scripts
 

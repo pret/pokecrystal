@@ -1,3 +1,5 @@
+SECTION "DerekCheekPincherText - UnknownText_0x65da6", ROMX
+
 DerekCheekPincherText:
 	text "Listen to this."
 	line "My @"

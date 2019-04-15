@@ -5,6 +5,9 @@
 	const PLAYERSHOUSE1F_MOM4
 	const PLAYERSHOUSE1F_POKEFAN_F
 
+
+SECTION "PlayersHouse1F_MapScripts", ROMX
+
 PlayersHouse1F_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT

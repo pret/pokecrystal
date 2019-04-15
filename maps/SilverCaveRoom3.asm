@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const SILVERCAVEROOM3_RED
 
+
+SECTION "SilverCaveRoom3_MapScripts", ROMX
+
 SilverCaveRoom3_MapScripts:
 	db 0 ; scene scripts
 

@@ -10,6 +10,9 @@
 	const TINTOWER1F_SAGE5
 	const TINTOWER1F_SAGE6
 
+
+SECTION "TinTower1F_MapScripts", ROMX
+
 TinTower1F_MapScripts:
 	db 2 ; scene scripts
 	scene_script .FaceSuicune ; SCENE_DEFAULT

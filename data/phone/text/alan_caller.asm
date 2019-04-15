@@ -1,3 +1,5 @@
+SECTION "AlanGettingStrongerText - UnknownText_0x64f1a", ROMX
+
 AlanGettingStrongerText:
 	text "My @"
 	text_ram wStringBuffer4

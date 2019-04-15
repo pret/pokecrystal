@@ -7,6 +7,9 @@
 	const RADIOTOWER4F_ROCKET_GIRL
 	const RADIOTOWER4F_SCIENTIST
 
+
+SECTION "RadioTower4F_MapScripts", ROMX
+
 RadioTower4F_MapScripts:
 	db 0 ; scene scripts
 

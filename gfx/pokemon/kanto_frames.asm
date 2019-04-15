@@ -1,3 +1,5 @@
+SECTION "BulbasaurFrames - MewFrames", ROMX
+
 KantoFrames: ; used only for BANK(KantoFrames)
 
 BulbasaurFrames:  INCLUDE "gfx/pokemon/bulbasaur/frames.asm"

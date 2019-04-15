@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const ROUTE12SUPERRODHOUSE_FISHING_GURU
 
+
+SECTION "Route12SuperRodHouse_MapScripts", ROMX
+
 Route12SuperRodHouse_MapScripts:
 	db 0 ; scene scripts
 

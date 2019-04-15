@@ -1,3 +1,5 @@
+SECTION "Music_MobileAdapter", ROMX
+
 Music_MobileAdapter:
 	musicheader 4, 1, Music_MobileAdapter_Ch1
 	musicheader 1, 2, Music_MobileAdapter_Ch2

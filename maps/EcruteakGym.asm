@@ -7,6 +7,9 @@
 	const ECRUTEAKGYM_GYM_GUY
 	const ECRUTEAKGYM_GRAMPS
 
+
+SECTION "EcruteakGym_MapScripts", ROMX
+
 EcruteakGym_MapScripts:
 	db 2 ; scene scripts
 	scene_script .ForcedToLeave ; SCENE_DEFAULT

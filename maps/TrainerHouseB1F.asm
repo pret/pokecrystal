@@ -2,6 +2,9 @@
 	const TRAINERHOUSEB1F_RECEPTIONIST
 	const TRAINERHOUSEB1F_CHRIS
 
+
+SECTION "TrainerHouseB1F_MapScripts", ROMX
+
 TrainerHouseB1F_MapScripts:
 	db 1 ; scene scripts
 	scene_script .DummyScene ; SCENE_DEFAULT

@@ -1,3 +1,5 @@
+SECTION "WadeAreYouGrowingText - UnknownText_0x175b6d", ROMX
+
 WadeAreYouGrowingText:
 	text "Are your #MON"
 	line "growing?"

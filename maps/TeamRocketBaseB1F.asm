@@ -6,6 +6,9 @@
 	const TEAMROCKETBASEB1F_POKE_BALL2
 	const TEAMROCKETBASEB1F_POKE_BALL3
 
+
+SECTION "TeamRocketBaseB1F_MapScripts", ROMX
+
 TeamRocketBaseB1F_MapScripts:
 	db 1 ; scene scripts
 	scene_script .DummyScene ; SCENE_DEFAULT

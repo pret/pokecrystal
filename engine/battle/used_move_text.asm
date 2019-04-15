@@ -1,3 +1,5 @@
+SECTION "DisplayUsedMoveText - UpdateUsedMoves", ROMX
+
 DisplayUsedMoveText:
 ; battle command 03
 	ld hl, UsedMoveText

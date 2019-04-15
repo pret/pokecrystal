@@ -4,6 +4,9 @@
 	const LAVENDERTOWN_GRAMPS
 	const LAVENDERTOWN_YOUNGSTER
 
+
+SECTION "LavenderTown_MapScripts", ROMX
+
 LavenderTown_MapScripts:
 	db 0 ; scene scripts
 

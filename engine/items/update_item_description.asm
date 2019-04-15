@@ -1,3 +1,5 @@
+SECTION "UpdateItemDescription", ROMX
+
 UpdateItemDescription:
 	ld a, [wMenuSelection]
 	ld [wCurSpecies], a

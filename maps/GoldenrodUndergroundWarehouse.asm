@@ -7,6 +7,9 @@
 	const GOLDENRODUNDERGROUNDWAREHOUSE_POKE_BALL2
 	const GOLDENRODUNDERGROUNDWAREHOUSE_POKE_BALL3
 
+
+SECTION "GoldenrodUndergroundWarehouse_MapScripts", ROMX
+
 GoldenrodUndergroundWarehouse_MapScripts:
 	db 0 ; scene scripts
 

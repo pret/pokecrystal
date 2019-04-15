@@ -1,3 +1,5 @@
+SECTION "LoadObjectMasks - GetObjectTimeMask", ROMX
+
 LoadObjectMasks:
 	ld hl, wObjectMasks
 	xor a

@@ -1,3 +1,5 @@
+SECTION "Music_Gym", ROMX
+
 Music_Gym:
 	musicheader 4, 1, Music_Gym_Ch1
 	musicheader 1, 2, Music_Gym_Ch2

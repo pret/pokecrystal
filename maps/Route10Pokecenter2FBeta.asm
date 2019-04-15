@@ -1,3 +1,6 @@
+
+SECTION "Route10Pokecenter2FBeta_MapScripts", ROMX
+
 Route10Pokecenter2FBeta_MapScripts:
 	db 0 ; scene scripts
 

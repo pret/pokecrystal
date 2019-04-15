@@ -1,3 +1,5 @@
+SECTION "Music_LookKimonoGirl", ROMX
+
 Music_LookKimonoGirl:
 	musicheader 3, 1, Music_LookKimonoGirl_Ch1
 	musicheader 1, 2, Music_LookKimonoGirl_Ch2

@@ -1,3 +1,5 @@
+SECTION "JoseAromaText - UnknownText_0x17529c", ROMX
+
 JoseAromaText:
 	text "Hey listen, my"
 	line "@"

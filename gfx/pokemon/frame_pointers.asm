@@ -1,3 +1,5 @@
+SECTION "FramesPointers", ROMX
+
 FramesPointers:
 	dw BulbasaurFrames
 	dw IvysaurFrames

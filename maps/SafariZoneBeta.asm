@@ -1,3 +1,6 @@
+
+SECTION "SafariZoneBeta_MapScripts", ROMX
+
 SafariZoneBeta_MapScripts:
 	db 0 ; scene scripts
 

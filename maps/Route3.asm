@@ -4,6 +4,9 @@
 	const ROUTE3_YOUNGSTER2
 	const ROUTE3_FISHER2
 
+
+SECTION "Route3_MapScripts", ROMX
+
 Route3_MapScripts:
 	db 0 ; scene scripts
 

@@ -2,6 +2,9 @@
 	const BLACKTHORNDRAGONSPEECHHOUSE_GRANNY
 	const BLACKTHORNDRAGONSPEECHHOUSE_EKANS
 
+
+SECTION "BlackthornDragonSpeechHouse_MapScripts", ROMX
+
 BlackthornDragonSpeechHouse_MapScripts:
 	db 0 ; scene scripts
 

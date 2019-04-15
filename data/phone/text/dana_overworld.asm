@@ -1,3 +1,5 @@
+SECTION "DanaAskNumber1Text - DanaPackFullText", ROMX
+
 DanaAskNumber1Text:
 	text "You're really good"
 	line "at #MON!"

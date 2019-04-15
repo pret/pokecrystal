@@ -1,3 +1,6 @@
+
+SECTION "Route7_MapScripts", ROMX
+
 Route7_MapScripts:
 	db 0 ; scene scripts
 

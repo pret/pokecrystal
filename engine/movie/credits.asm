@@ -1,7 +1,7 @@
 INCLUDE "constants.asm"
 
 
-SECTION "Credits", ROMX
+SECTION "Credits - CreditsStrings", ROMX
 
 Credits::
 	bit 6, b ; Hall Of Fame

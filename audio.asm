@@ -1,17 +1,12 @@
 INCLUDE "constants.asm"
 
-
-SECTION "Audio", ROMX
-
+SECTION "_MapSetup_Sound_Off - SFX", ROMX
 INCLUDE "audio/engine.asm"
 INCLUDE "data/trainers/encounter_music.asm"
 INCLUDE "audio/music_pointers.asm"
 INCLUDE "audio/music/nothing.asm"
 INCLUDE "audio/cry_pointers.asm"
 INCLUDE "audio/sfx_pointers.asm"
-
-
-SECTION "Songs 1", ROMX
 
 INCLUDE "audio/music/route36.asm"
 INCLUDE "audio/music/rivalbattle.asm"
@@ -28,10 +23,6 @@ INCLUDE "audio/music/titlescreen.asm"
 INCLUDE "audio/music/ruinsofalphinterior.asm"
 INCLUDE "audio/music/lookpokemaniac.asm"
 INCLUDE "audio/music/trainervictory.asm"
-
-
-SECTION "Songs 2", ROMX
-
 INCLUDE "audio/music/route1.asm"
 INCLUDE "audio/music/route3.asm"
 INCLUDE "audio/music/route12.asm"
@@ -64,39 +55,40 @@ INCLUDE "audio/music/lavendertown.asm"
 INCLUDE "audio/music/dancinghall.asm"
 INCLUDE "audio/music/contestresults.asm"
 INCLUDE "audio/music/route30.asm"
-
-
-SECTION "Songs 3", ROMX
-
 INCLUDE "audio/music/violetcity.asm"
 INCLUDE "audio/music/route29.asm"
 INCLUDE "audio/music/halloffame.asm"
 INCLUDE "audio/music/healpokemon.asm"
 INCLUDE "audio/music/evolution.asm"
 INCLUDE "audio/music/printer.asm"
-
-
-SECTION "Songs 4", ROMX
-
 INCLUDE "audio/music/viridiancity.asm"
 INCLUDE "audio/music/celadoncity.asm"
+
+SECTION "Music_WildPokemonVictory - Music_SuccessfulCapture_Ch3", ROMX
 INCLUDE "audio/music/wildpokemonvictory.asm"
 INCLUDE "audio/music/successfulcapture.asm"
+
 INCLUDE "audio/music/gymleadervictory.asm"
 INCLUDE "audio/music/mtmoonsquare.asm"
 INCLUDE "audio/music/gym.asm"
 INCLUDE "audio/music/pallettown.asm"
 INCLUDE "audio/music/profoakspokemontalk.asm"
 INCLUDE "audio/music/profoak.asm"
+
+SECTION "Music_LookRival - Music_AfterTheRivalFight_Ch4", ROMX
 INCLUDE "audio/music/lookrival.asm"
 INCLUDE "audio/music/aftertherivalfight.asm"
+
 INCLUDE "audio/music/surf.asm"
 INCLUDE "audio/music/nationalpark.asm"
 INCLUDE "audio/music/azaleatown.asm"
 INCLUDE "audio/music/cherrygrovecity.asm"
 INCLUDE "audio/music/unioncave.asm"
+
+SECTION "Music_JohtoWildBattle - Music_JohtoWildBattleNight_Ch3", ROMX
 INCLUDE "audio/music/johtowildbattle.asm"
 INCLUDE "audio/music/johtowildbattlenight.asm"
+
 INCLUDE "audio/music/johtotrainerbattle.asm"
 INCLUDE "audio/music/lookyoungster.asm"
 INCLUDE "audio/music/tintower.asm"
@@ -109,16 +101,15 @@ INCLUDE "audio/music/pokemonmarch.asm"
 INCLUDE "audio/music/goldsilveropening.asm"
 INCLUDE "audio/music/goldsilveropening2.asm"
 INCLUDE "audio/music/lookhiker.asm"
+
+SECTION "Music_LookRocket - Music_RocketTheme_branch_f78de", ROMX
 INCLUDE "audio/music/lookrocket.asm"
 INCLUDE "audio/music/rockettheme.asm"
+
 INCLUDE "audio/music/mainmenu.asm"
 INCLUDE "audio/music/lookkimonogirl.asm"
 INCLUDE "audio/music/pokeflutechannel.asm"
 INCLUDE "audio/music/bugcatchingcontest.asm"
-
-
-SECTION "Songs 5", ROMX
-
 INCLUDE "audio/music/mobileadaptermenu.asm"
 INCLUDE "audio/music/buenaspassword.asm"
 INCLUDE "audio/music/lookmysticalman.asm"
@@ -127,22 +118,10 @@ INCLUDE "audio/music/battletowertheme.asm"
 INCLUDE "audio/music/suicunebattle.asm"
 INCLUDE "audio/music/battletowerlobby.asm"
 INCLUDE "audio/music/mobilecenter.asm"
-
-
-SECTION "Extra Songs 1", ROMX
-
 INCLUDE "audio/music/credits.asm"
 INCLUDE "audio/music/clair.asm"
 INCLUDE "audio/music/mobileadapter.asm"
-
-
-SECTION "Extra Songs 2", ROMX
-
 INCLUDE "audio/music/postcredits.asm"
-
-
-SECTION "Sound Effects", ROMX
-
 INCLUDE "audio/sfx.asm"
 
 
@@ -150,9 +129,6 @@ SECTION "Crystal Sound Effects", ROMX
 
 INCLUDE "audio/sfx_crystal.asm"
 
-
-SECTION "Cries", ROMX
-
+;SECTION independent
 INCLUDE "data/pokemon/cries.asm"
-
 INCLUDE "audio/cries.asm"

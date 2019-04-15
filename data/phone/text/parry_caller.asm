@@ -1,3 +1,5 @@
+SECTION "ParryNoMatchText - ParryHaventYouGottenToText", ROMX
+
 ParryNoMatchText:
 	text "Nothing can match"
 	line "my @"

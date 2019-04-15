@@ -1,3 +1,6 @@
+
+SECTION "GoldenrodDeptStoreElevator_MapScripts", ROMX
+
 GoldenrodDeptStoreElevator_MapScripts:
 	db 0 ; scene scripts
 

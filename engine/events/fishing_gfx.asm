@@ -1,3 +1,5 @@
+SECTION "LoadFishingGFX - KrisFishingGFX", ROMX
+
 LoadFishingGFX:
 	ldh a, [rVBK]
 	push af

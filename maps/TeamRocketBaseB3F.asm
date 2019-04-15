@@ -14,6 +14,9 @@
 	const TEAMROCKETBASEB3F_POKE_BALL4
 	const TEAMROCKETBASEB3F_POKE_BALL5
 
+
+SECTION "TeamRocketBaseB3F_MapScripts", ROMX
+
 TeamRocketBaseB3F_MapScripts:
 	db 4 ; scene scripts
 	scene_script .LanceGetsPassword ; SCENE_DEFAULT

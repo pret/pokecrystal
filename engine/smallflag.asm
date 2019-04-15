@@ -1,3 +1,5 @@
+SECTION "SmallFarFlagAction", ROMX
+
 SmallFarFlagAction:
 ; Perform action b on bit c in flag array hl.
 ; If checking a flag, check flag array d:hl unless d is 0.

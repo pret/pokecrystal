@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const GOLDENRODBIKESHOP_CLERK
 
+
+SECTION "GoldenrodBikeShop_MapScripts", ROMX
+
 GoldenrodBikeShop_MapScripts:
 	db 0 ; scene scripts
 

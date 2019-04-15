@@ -2,6 +2,9 @@
 	const GOLDENRODMAGNETTRAINSTATION_OFFICER
 	const GOLDENRODMAGNETTRAINSTATION_GENTLEMAN
 
+
+SECTION "GoldenrodMagnetTrainStation_MapScripts", ROMX
+
 GoldenrodMagnetTrainStation_MapScripts:
 	db 1 ; scene scripts
 	scene_script .DummyScene ; SCENE_DEFAULT

@@ -1,3 +1,5 @@
+SECTION "LoadOverworldFont", ROMX
+
 LoadOverworldFont::
 	ld de, .OverworldFontGFX
 	ld hl, vTiles1

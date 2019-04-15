@@ -1,5 +1,8 @@
 ; The original base Special stat for each Pokémon from Red/Blue
 
+
+SECTION "KantoMonSpecials", ROMX
+
 KantoMonSpecials:
 	db  65 ; BULBASAUR
 	db  80 ; IVYSAUR

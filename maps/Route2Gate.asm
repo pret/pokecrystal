@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const ROUTE2GATE_SCIENTIST
 
+
+SECTION "Route2Gate_MapScripts", ROMX
+
 Route2Gate_MapScripts:
 	db 0 ; scene scripts
 

@@ -1,3 +1,5 @@
+SECTION "Music_BurnedTower", ROMX
+
 Music_BurnedTower:
 	musicheader 4, 1, Music_BurnedTower_Ch1
 	musicheader 1, 2, Music_BurnedTower_Ch2

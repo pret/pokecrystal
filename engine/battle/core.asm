@@ -1,5 +1,7 @@
 ; Core components of the battle engine.
 
+SECTION "DoBattle - BattleStartMessage", ROMX
+
 DoBattle:
 	xor a
 	ld [wBattleParticipantsNotFainted], a

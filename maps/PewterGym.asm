@@ -3,6 +3,9 @@
 	const PEWTERGYM_YOUNGSTER
 	const PEWTERGYM_GYM_GUY
 
+
+SECTION "PewterGym_MapScripts", ROMX
+
 PewterGym_MapScripts:
 	db 0 ; scene scripts
 

@@ -5,6 +5,9 @@
 	const RADIOTOWER5F_ROCKER
 	const RADIOTOWER5F_POKE_BALL
 
+
+SECTION "RadioTower5F_MapScripts", ROMX
+
 RadioTower5F_MapScripts:
 	db 3 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT

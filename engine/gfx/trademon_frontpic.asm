@@ -1,3 +1,5 @@
+SECTION "GetTrademonFrontpic", ROMX
+
 GetTrademonFrontpic:
 	ld a, [wOTTrademonSpecies]
 	ld hl, wOTTrademonDVs
@@ -12,6 +14,9 @@ GetTrademonFrontpic:
 	pop de
 	predef GetAnimatedFrontpic
 	ret
+
+
+SECTION "AnimateTrademonFrontpic", ROMX
 
 AnimateTrademonFrontpic:
 	ld a, [wOTTrademonSpecies]

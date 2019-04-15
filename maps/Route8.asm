@@ -6,6 +6,9 @@
 	const ROUTE8_SUPER_NERD2
 	const ROUTE8_FRUIT_TREE
 
+
+SECTION "Route8_MapScripts", ROMX
+
 Route8_MapScripts:
 	db 0 ; scene scripts
 

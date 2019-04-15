@@ -9,6 +9,9 @@
 	const CELADONCITY_TEACHER2
 	const CELADONCITY_LASS
 
+
+SECTION "CeladonCity_MapScripts", ROMX
+
 CeladonCity_MapScripts:
 	db 0 ; scene scripts
 

@@ -1,3 +1,5 @@
+SECTION "Special - TrainerHouse", ROMX
+
 Special::
 ; Run script special de.
 	ld hl, SpecialsPointers

@@ -1,3 +1,5 @@
+SECTION "LoadSGBLayout - SlotMachinePals", ROMX
+
 INCLUDE "engine/gfx/sgb_layouts.asm"
 
 SHINY_ATK_BIT EQU 5

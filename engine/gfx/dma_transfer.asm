@@ -1,3 +1,5 @@
+SECTION "HDMATransferAttrMapAndTileMapToWRAMBank3 - HDMATransfer_OnlyTopFourRows", ROMX
+
 HDMATransferAttrMapAndTileMapToWRAMBank3::
 	ld hl, .Function
 	jp CallInSafeGFXMode

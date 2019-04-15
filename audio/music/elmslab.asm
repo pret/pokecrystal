@@ -1,3 +1,5 @@
+SECTION "Music_ElmsLab", ROMX
+
 Music_ElmsLab:
 	musicheader 4, 1, Music_ElmsLab_Ch1
 	musicheader 1, 2, Music_ElmsLab_Ch2

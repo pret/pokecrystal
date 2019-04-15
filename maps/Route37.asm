@@ -7,6 +7,9 @@
 	const ROUTE37_FRUIT_TREE2
 	const ROUTE37_FRUIT_TREE3
 
+
+SECTION "Route37_MapScripts", ROMX
+
 Route37_MapScripts:
 	db 0 ; scene scripts
 

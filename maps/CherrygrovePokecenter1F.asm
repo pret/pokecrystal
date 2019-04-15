@@ -4,6 +4,9 @@
 	const CHERRYGROVEPOKECENTER1F_GENTLEMAN
 	const CHERRYGROVEPOKECENTER1F_TEACHER
 
+
+SECTION "CherrygrovePokecenter1F_MapScripts", ROMX
+
 CherrygrovePokecenter1F_MapScripts:
 	db 0 ; scene scripts
 

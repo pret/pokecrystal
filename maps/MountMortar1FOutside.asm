@@ -2,6 +2,9 @@
 	const MOUNTMORTAR1FOUTSIDE_POKE_BALL1
 	const MOUNTMORTAR1FOUTSIDE_POKE_BALL2
 
+
+SECTION "MountMortar1FOutside_MapScripts", ROMX
+
 MountMortar1FOutside_MapScripts:
 	db 0 ; scene scripts
 

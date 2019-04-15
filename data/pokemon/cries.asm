@@ -3,6 +3,9 @@ mon_cry: MACRO
 	dw \1, \2, \3
 ENDM
 
+
+SECTION "PokemonCries", ROMX
+
 PokemonCries::
 ; entries correspond to constants/pokemon_constants.asm
 	mon_cry CRY_BULBASAUR,   $080,  $081 ; BULBASAUR

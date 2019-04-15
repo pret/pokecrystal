@@ -1,3 +1,5 @@
+SECTION "Music_TitleScreen", ROMX
+
 Music_TitleScreen:
 	musicheader 4, 1, Music_TitleScreen_Ch1
 	musicheader 1, 2, Music_TitleScreen_Ch2

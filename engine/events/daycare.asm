@@ -21,6 +21,9 @@
 	const DAYCARETEXT_OH_FINE
 	const DAYCARETEXT_COME_AGAIN
 
+
+SECTION "DayCareMan - DayCare_InitBreeding", ROMX
+
 DayCareMan:
 	ld hl, wDayCareMan
 	bit DAYCAREMAN_HAS_MON_F, [hl]

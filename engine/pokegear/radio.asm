@@ -1,3 +1,5 @@
+SECTION "PlayRadioShow - NextRadioLine", ROMX
+
 PlayRadioShow:
 ; If we're already in the radio program proper, we don't need to be here.
 	ld a, [wCurRadioLine]

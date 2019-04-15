@@ -5,6 +5,9 @@ tileset: MACRO
 	dw \1PalMap
 ENDM
 
+
+SECTION "Tilesets", ROMX
+
 ; Associated data:
 ; - The *GFX, *Meta, and *Coll are defined in gfx/tilesets.asm
 ; - The *PalMap are defined in gfx/tileset_palette_maps.asm

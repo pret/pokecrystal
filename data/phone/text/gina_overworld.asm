@@ -1,3 +1,5 @@
+SECTION "GinaAskNumber1Text - GinaPackFullText", ROMX
+
 GinaAskNumber1Text:
 	text "Whenever I see a"
 	line "strong trainer, I"

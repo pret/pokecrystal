@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const LAVENDERNAMERATER_NAME_RATER
 
+
+SECTION "LavenderNameRater_MapScripts", ROMX
+
 LavenderNameRater_MapScripts:
 	db 1 ; scene scripts
 	scene_script .DummyScene

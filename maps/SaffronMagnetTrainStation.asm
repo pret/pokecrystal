@@ -4,6 +4,9 @@
 	const SAFFRONMAGNETTRAINSTATION_TEACHER
 	const SAFFRONMAGNETTRAINSTATION_LASS
 
+
+SECTION "SaffronMagnetTrainStation_MapScripts", ROMX
+
 SaffronMagnetTrainStation_MapScripts:
 	db 1 ; scene scripts
 	scene_script .DummyScene ; SCENE_DEFAULT

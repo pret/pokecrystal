@@ -1,3 +1,5 @@
+SECTION "PokemonCenterPC - PokecenterPCText_LinkClosed", ROMX
+
 PokemonCenterPC:
 	call PC_CheckPartyForPokemon
 	ret c

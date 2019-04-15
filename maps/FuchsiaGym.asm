@@ -6,6 +6,9 @@
 	const FUCHSIAGYM_FUCHSIA_GYM_4
 	const FUCHSIAGYM_GYM_GUY
 
+
+SECTION "FuchsiaGym_MapScripts", ROMX
+
 FuchsiaGym_MapScripts:
 	db 0 ; scene scripts
 

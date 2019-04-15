@@ -1,3 +1,5 @@
+SECTION "PlaySlowCry", ROMX
+
 PlaySlowCry:
 	ld a, [wScriptVar]
 	call LoadCry

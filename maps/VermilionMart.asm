@@ -3,6 +3,9 @@
 	const VERMILIONMART_SUPER_NERD
 	const VERMILIONMART_BUENA
 
+
+SECTION "VermilionMart_MapScripts", ROMX
+
 VermilionMart_MapScripts:
 	db 0 ; scene scripts
 

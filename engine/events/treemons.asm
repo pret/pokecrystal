@@ -1,3 +1,5 @@
+SECTION "TreeMonEncounter - GetTreeScore", ROMX
+
 TreeMonEncounter:
 	farcall StubbedTrainerRankings_TreeEncounters
 

@@ -1,3 +1,5 @@
+SECTION "Music_LookBeauty", ROMX
+
 Music_LookBeauty:
 	musicheader 4, 1, Music_LookBeauty_Ch1
 	musicheader 1, 2, Music_LookBeauty_Ch2

@@ -1,3 +1,5 @@
+SECTION "Music_ContestResults", ROMX
+
 Music_ContestResults:
 	musicheader 4, 1, Music_ContestResults_Ch1
 	musicheader 1, 2, Music_ContestResults_Ch2

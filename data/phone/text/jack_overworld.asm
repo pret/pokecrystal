@@ -1,3 +1,5 @@
+SECTION "JackAskNumber1Text - JackRematchText", ROMX
+
 JackAskNumber1Text:
 	text "Your knowledge is"
 	line "impressive!"

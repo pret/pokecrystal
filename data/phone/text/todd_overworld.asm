@@ -1,3 +1,5 @@
+SECTION "ToddAskNumber1Text - UnusedText_0xa43ca", ROMX
+
 ToddAskNumber1Text:
 	text "From here, I can"
 	line "see GOLDENROD's"

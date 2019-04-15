@@ -5,6 +5,9 @@
 	const MAHOGANYMART1F_DRAGON
 	const MAHOGANYMART1F_GRANNY
 
+
+SECTION "MahoganyMart1F_MapScripts", ROMX
+
 MahoganyMart1F_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_MAHOGANYMART1F_NOTHING

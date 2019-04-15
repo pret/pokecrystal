@@ -72,6 +72,9 @@ CheckBugContestContestantFlag:
 
 INCLUDE "data/events/bug_contest_flags.asm"
 
+
+SECTION "ContestDropOffMons", ROMX
+
 ContestDropOffMons:
 	ld hl, wPartyMon1HP
 	ld a, [hli]
@@ -95,6 +98,9 @@ ContestDropOffMons:
 	ld a, $1
 	ld [wScriptVar], a
 	ret
+
+
+SECTION "ContestReturnMons", ROMX
 
 ContestReturnMons:
 ; Restore the species of the second mon.

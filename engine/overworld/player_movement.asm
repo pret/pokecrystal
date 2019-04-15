@@ -1,3 +1,5 @@
+SECTION "DoPlayerMovement - CheckStandingOnIce", ROMX
+
 DoPlayerMovement::
 
 	call .GetDPad
@@ -805,6 +807,9 @@ CheckStandingOnIce::
 .not_ice
 	and a
 	ret
+
+
+SECTION "StopPlayerForEvent", ROMX
 
 StopPlayerForEvent::
 	ld hl, wPlayerNextMovement

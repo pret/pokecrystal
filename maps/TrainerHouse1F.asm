@@ -5,6 +5,9 @@
 	const TRAINERHOUSE1F_YOUNGSTER
 	const TRAINERHOUSE1F_GENTLEMAN
 
+
+SECTION "TrainerHouse1F_MapScripts", ROMX
+
 TrainerHouse1F_MapScripts:
 	db 0 ; scene scripts
 

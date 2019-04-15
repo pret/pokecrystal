@@ -1,3 +1,5 @@
+SECTION "AnimObj00GFX - AnimObjAeroblastGFX", ROMX
+
 AnimObj00GFX:
 AnimObjHitGFX:       INCBIN "gfx/battle_anims/hit.2bpp.lz"
 AnimObjCutGFX:       INCBIN "gfx/battle_anims/cut.2bpp.lz"

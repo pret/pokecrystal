@@ -1,3 +1,5 @@
+SECTION "GavenGreaterText - UnknownText_0x174c49", ROMX
+
 GavenGreaterText:
 	text "My @"
 	text_ram wStringBuffer4

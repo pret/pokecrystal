@@ -9,6 +9,9 @@
 	const ROUTE27_POKE_BALL2
 	const ROUTE27_FISHER
 
+
+SECTION "Route27_MapScripts", ROMX
+
 Route27_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT

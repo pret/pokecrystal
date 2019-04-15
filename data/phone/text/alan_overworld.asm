@@ -1,3 +1,5 @@
+SECTION "AlanAskNumber1Text - AlanPackFullText", ROMX
+
 AlanAskNumber1Text:
 	text "Reading textbooks"
 	line "is worthwhile"

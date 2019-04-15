@@ -1,3 +1,6 @@
+
+SECTION "CeruleanPokecenter2FBeta_MapScripts", ROMX
+
 CeruleanPokecenter2FBeta_MapScripts:
 	db 0 ; scene scripts
 

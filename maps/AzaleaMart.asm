@@ -3,6 +3,9 @@
 	const AZALEAMART_COOLTRAINER_M
 	const AZALEAMART_BUG_CATCHER
 
+
+SECTION "AzaleaMart_MapScripts", ROMX
+
 AzaleaMart_MapScripts:
 	db 0 ; scene scripts
 

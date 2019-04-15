@@ -1,3 +1,5 @@
+SECTION "ElmPhoneStartText - ElmPhoneUnusedText", ROMX
+
 ElmPhoneStartText:
 	text "Hello, <PLAY_G>?"
 

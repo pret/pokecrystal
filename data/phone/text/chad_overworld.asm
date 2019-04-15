@@ -1,3 +1,5 @@
+SECTION "ChadAskNumber1Text - ChadRematchText", ROMX
+
 ChadAskNumber1Text:
 	text "Huh? Is that thing"
 	line "a #DEX? Have"

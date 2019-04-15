@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const MOVEDELETERSHOUSE_SUPER_NERD
 
+
+SECTION "MoveDeletersHouse_MapScripts", ROMX
+
 MoveDeletersHouse_MapScripts:
 	db 0 ; scene scripts
 

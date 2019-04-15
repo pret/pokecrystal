@@ -2,6 +2,9 @@
 	const ECRUTEAKLUGIASPEECHHOUSE_GRAMPS
 	const ECRUTEAKLUGIASPEECHHOUSE_YOUNGSTER
 
+
+SECTION "EcruteakLugiaSpeechHouse_MapScripts", ROMX
+
 EcruteakLugiaSpeechHouse_MapScripts:
 	db 0 ; scene scripts
 

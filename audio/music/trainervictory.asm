@@ -1,3 +1,5 @@
+SECTION "Music_TrainerVictory", ROMX
+
 Music_TrainerVictory:
 	musicheader 3, 1, Music_TrainerVictory_Ch1
 	musicheader 1, 2, Music_TrainerVictory_Ch2

@@ -1,3 +1,5 @@
+SECTION "GetMobileOTTrainerClass - FemaleTrainers", ROMX
+
 GetMobileOTTrainerClass: ; mobile function
 	ld h, b
 	ld l, c

@@ -1,7 +1,7 @@
 INCLUDE "constants.asm"
 
 
-SECTION "NULL", ROM0
+SECTION "NULL", ROM0[$0000]
 
 NULL::
 
@@ -10,11 +10,13 @@ INCLUDE "home/rst.asm"
 INCLUDE "home/interrupts.asm"
 
 
-SECTION "Header", ROM0
+SECTION "Header", ROM0[$0100]
 
 Start::
 	nop
 	jp _Start
+
+	ds $0150 - $0104
 
 
 SECTION "Home", ROM0

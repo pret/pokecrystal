@@ -1,3 +1,5 @@
+SECTION "Fish - TimeFishGroups", ROMX
+
 Fish:
 ; Using a fishing rod.
 ; Fish for monsters with rod e in encounter group d.

@@ -8,6 +8,9 @@
 	const ROUTE29_TUSCANY
 	const ROUTE29_POKE_BALL
 
+
+SECTION "Route29_MapScripts", ROMX
+
 Route29_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_ROUTE29_NOTHING

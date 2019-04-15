@@ -1,3 +1,5 @@
+SECTION "HueyAskNumber1Text - HueyRematchGiftText", ROMX
+
 HueyAskNumber1Text:
 	text "Cool! That's the"
 	line "first time I've"

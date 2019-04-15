@@ -1,3 +1,5 @@
+SECTION "Unreferenced_CorrectPartyErrors", ROMX
+
 Unreferenced_CorrectPartyErrors:
 	ld hl, wPartyCount
 	ld a, [hl]

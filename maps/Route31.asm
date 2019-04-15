@@ -7,6 +7,9 @@
 	const ROUTE31_POKE_BALL1
 	const ROUTE31_POKE_BALL2
 
+
+SECTION "Route31_MapScripts", ROMX
+
 Route31_MapScripts:
 	db 0 ; scene scripts
 

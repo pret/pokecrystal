@@ -4,6 +4,9 @@
 	const BATTLETOWEROUTSIDE_SAILOR
 	const BATTLETOWEROUTSIDE_LASS
 
+
+SECTION "BattleTowerOutside_MapScripts", ROMX
+
 BattleTowerOutside_MapScripts:
 	db 0 ; scene scripts
 

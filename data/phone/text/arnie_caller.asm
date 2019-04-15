@@ -1,3 +1,5 @@
+SECTION "ArnieLovesTheCuteText - UnknownText_0x64c5a", ROMX
+
 ArnieLovesTheCuteText:
 	text "I'm always with my"
 	line "@"

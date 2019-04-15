@@ -1,7 +1,7 @@
 INCLUDE "constants.asm"
 
 
-SECTION "Egg Moves", ROMX
+SECTION "EggMovePointers - NoEggMoves", ROMX
 
 ; All instances of Charm, Steel Wing, Sweet Scent, and Lovely Kiss were
 ; removed from egg move lists in Crystal.

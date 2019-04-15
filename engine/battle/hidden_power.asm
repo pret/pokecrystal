@@ -1,3 +1,5 @@
+SECTION "HiddenPowerDamage", ROMX
+
 HiddenPowerDamage:
 ; Override Hidden Power's type and power based on the user's DVs.
 

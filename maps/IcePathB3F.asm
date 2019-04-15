@@ -2,6 +2,9 @@
 	const ICEPATHB3F_POKE_BALL
 	const ICEPATHB3F_ROCK
 
+
+SECTION "IcePathB3F_MapScripts", ROMX
+
 IcePathB3F_MapScripts:
 	db 0 ; scene scripts
 

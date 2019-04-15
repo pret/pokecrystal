@@ -1,3 +1,5 @@
+SECTION "NewPokedexEntry", ROMX
+
 NewPokedexEntry:
 	ldh a, [hMapAnims]
 	push af

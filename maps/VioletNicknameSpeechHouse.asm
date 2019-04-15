@@ -3,6 +3,9 @@
 	const VIOLETNICKNAMESPEECHHOUSE_LASS
 	const VIOLETNICKNAMESPEECHHOUSE_BIRD
 
+
+SECTION "VioletNicknameSpeechHouse_MapScripts", ROMX
+
 VioletNicknameSpeechHouse_MapScripts:
 	db 0 ; scene scripts
 

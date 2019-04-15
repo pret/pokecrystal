@@ -1,3 +1,5 @@
+SECTION "_UpdateBattleHUDs", ROMX
+
 _UpdateBattleHUDs:
 	farcall DrawPlayerHUD
 	ld hl, wPlayerHPPal

@@ -3,6 +3,9 @@
 	const ROUTE32RUINSOFALPHGATE_POKEFAN_M
 	const ROUTE32RUINSOFALPHGATE_YOUNGSTER
 
+
+SECTION "Route32RuinsOfAlphGate_MapScripts", ROMX
+
 Route32RuinsOfAlphGate_MapScripts:
 	db 0 ; scene scripts
 

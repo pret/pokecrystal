@@ -4,6 +4,9 @@
 	const BLACKTHORNPOKECENTER1F_TWIN
 	const BLACKTHORNPOKECENTER1F_COOLTRAINER_M
 
+
+SECTION "BlackthornPokecenter1F_MapScripts", ROMX
+
 BlackthornPokecenter1F_MapScripts:
 	db 0 ; scene scripts
 

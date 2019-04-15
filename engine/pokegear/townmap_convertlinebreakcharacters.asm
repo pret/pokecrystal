@@ -1,3 +1,5 @@
+SECTION "TownMap_ConvertLineBreakCharacters", ROMX
+
 TownMap_ConvertLineBreakCharacters:
 	ld hl, wStringBuffer1
 .loop

@@ -9,6 +9,9 @@
 	const BURNEDTOWERB1F_POKE_BALL
 	const BURNEDTOWERB1F_EUSINE
 
+
+SECTION "BurnedTowerB1F_MapScripts", ROMX
+
 BurnedTowerB1F_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT

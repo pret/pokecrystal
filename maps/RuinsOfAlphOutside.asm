@@ -5,6 +5,9 @@
 	const RUINSOFALPHOUTSIDE_YOUNGSTER2
 	const RUINSOFALPHOUTSIDE_YOUNGSTER3
 
+
+SECTION "RuinsOfAlphOutside_MapScripts", ROMX
+
 RuinsOfAlphOutside_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_RUINSOFALPHOUTSIDE_NOTHING

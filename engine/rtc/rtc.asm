@@ -1,3 +1,5 @@
+SECTION "Unreferenced_StopRTC", ROMX
+
 Unreferenced_StopRTC:
 	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
@@ -9,6 +11,9 @@ Unreferenced_StopRTC:
 	ld [MBC3RTC], a
 	call CloseSRAM
 	ret
+
+
+SECTION "StartRTC - Function1409b", ROMX
 
 StartRTC:
 	ld a, SRAM_ENABLE
@@ -116,6 +121,9 @@ Function1409b:
 	call RecordRTCStatus ; set bit 7 on sRTCStatusFlags
 	ret
 
+
+SECTION "Function140ae", ROMX
+
 Function140ae:
 	call CheckRTCStatus
 	ld c, a
@@ -151,6 +159,9 @@ Function140ae:
 .dont_update
 	xor a
 	ret
+
+
+SECTION "_InitTime", ROMX
 
 _InitTime::
 	call GetClock

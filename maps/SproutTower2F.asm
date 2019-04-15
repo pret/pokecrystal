@@ -3,6 +3,9 @@
 	const SPROUTTOWER2F_SAGE2
 	const SPROUTTOWER2F_POKE_BALL
 
+
+SECTION "SproutTower2F_MapScripts", ROMX
+
 SproutTower2F_MapScripts:
 	db 0 ; scene scripts
 

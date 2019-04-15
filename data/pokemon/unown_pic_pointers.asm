@@ -1,3 +1,6 @@
+; FLOAT: Has to be at the same address as PokemonPicPointers
+SECTION "UnownPicPointers", ROMX[$4000]
+
 UnownPicPointers::
 ; entries correspond to Unown letters, two apiece
 	dba_pic UnownAFrontpic

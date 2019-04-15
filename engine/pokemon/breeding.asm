@@ -1,3 +1,5 @@
+SECTION "CheckBreedmonCompatibility - DayCareMonCompatibilityText", ROMX
+
 CheckBreedmonCompatibility:
 	call .CheckBreedingGroupCompatibility
 	ld c, $0
@@ -433,7 +435,7 @@ GetEggMove:
 	ld a, BANK(EggMovePointers)
 	call GetFarHalfword
 .loop
-	ld a, BANK("Egg Moves")
+	ld a, BANK(EggMovePointers) ; TODO: BANK("Egg Moves")
 	call GetFarByte
 	cp -1
 	jr z, .reached_end
@@ -467,18 +469,18 @@ GetEggMove:
 	ld a, BANK(EvosAttacksPointers)
 	call GetFarHalfword
 .loop3
-	ld a, BANK("Evolutions and Attacks")
+	ld a, BANK(EvosAttacksPointers) ; TODO: BANK("Evolutions and Attacks")
 	call GetFarByte
 	inc hl
 	and a
 	jr nz, .loop3
 .loop4
-	ld a, BANK("Evolutions and Attacks")
+	ld a, BANK(EvosAttacksPointers) ; TODO: BANK("Evolutions and Attacks")
 	call GetFarByte
 	and a
 	jr z, .inherit_tmhm
 	inc hl
-	ld a, BANK("Evolutions and Attacks")
+	ld a, BANK(EvosAttacksPointers) ; TODO: BANK("Evolutions and Attacks")
 	call GetFarByte
 	ld b, a
 	ld a, [de]
@@ -952,6 +954,9 @@ DayCareMonCompatibilityText:
 	; It shows interest in @ .
 	text_far UnknownText_0x1c0ec6
 	text_end
+
+
+SECTION "Unreferenced_DayCareMonPrintEmptyString", ROMX
 
 Unreferenced_DayCareMonPrintEmptyString:
 	ld hl, .string

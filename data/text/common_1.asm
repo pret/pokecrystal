@@ -1,3 +1,5 @@
+SECTION "Text 1", ROMX
+
 _FruitBearingTreeText::
 	text "It's a fruit-"
 	line "bearing tree."

@@ -44,6 +44,9 @@ ENDM
 	const GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_POKE_BALL2
 	const GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
 
+
+SECTION "GoldenrodUndergroundSwitchRoomEntrances_MapScripts", ROMX
+
 GoldenrodUndergroundSwitchRoomEntrances_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT

@@ -7,6 +7,9 @@
 	const MOUNTMORTAR2FINSIDE_POKE_BALL6
 	const MOUNTMORTAR2FINSIDE_SUPER_NERD
 
+
+SECTION "MountMortar2FInside_MapScripts", ROMX
+
 MountMortar2FInside_MapScripts:
 	db 0 ; scene scripts
 

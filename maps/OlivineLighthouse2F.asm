@@ -2,6 +2,9 @@
 	const OLIVINELIGHTHOUSE2F_SAILOR
 	const OLIVINELIGHTHOUSE2F_GENTLEMAN
 
+
+SECTION "OlivineLighthouse2F_MapScripts", ROMX
+
 OlivineLighthouse2F_MapScripts:
 	db 0 ; scene scripts
 

@@ -3,6 +3,9 @@
 	const NEWBARKTOWN_FISHER
 	const NEWBARKTOWN_SILVER
 
+
+SECTION "NewBarkTown_MapScripts", ROMX
+
 NewBarkTown_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT

@@ -2,6 +2,9 @@
 	const GOLDENRODFLOWERSHOP_TEACHER
 	const GOLDENRODFLOWERSHOP_FLORIA
 
+
+SECTION "GoldenrodFlowerShop_MapScripts", ROMX
+
 GoldenrodFlowerShop_MapScripts:
 	db 0 ; scene scripts
 

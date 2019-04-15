@@ -1,3 +1,5 @@
+SECTION "UnknownText_0x175fda - UnknownText_0x1769da", ROMX
+
 UnknownText_0x175fda:
 	text "Oh, you have to"
 	line "hear this."

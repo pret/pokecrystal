@@ -1,3 +1,5 @@
+SECTION "LoadWildMonData - SwarmWaterWildMons", ROMX
+
 LoadWildMonData:
 	call _GrassWildmonLookup
 	jr c, .copy

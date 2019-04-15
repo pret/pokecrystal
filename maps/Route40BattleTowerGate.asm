@@ -2,6 +2,9 @@
 	const ROUTE40BATTLETOWERGATE_ROCKER
 	const ROUTE40BATTLETOWERGATE_TWIN
 
+
+SECTION "Route40BattleTowerGate_MapScripts", ROMX
+
 Route40BattleTowerGate_MapScripts:
 	db 0 ; scene scripts
 

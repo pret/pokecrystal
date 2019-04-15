@@ -1,3 +1,6 @@
+
+SECTION "MobileTradeRoom_MapScripts", ROMX
+
 MobileTradeRoom_MapScripts:
 	db 2 ; scene scripts
 	scene_script .InitializeMobileTradeRoom ; SCENE_DEFAULT

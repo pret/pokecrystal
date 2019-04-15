@@ -1,3 +1,5 @@
+SECTION "Music_PokemonChannel", ROMX
+
 Music_PokemonChannel:
 	musicheader 4, 1, Music_PokemonChannel_Ch1
 	musicheader 1, 2, Music_PokemonChannel_Ch2

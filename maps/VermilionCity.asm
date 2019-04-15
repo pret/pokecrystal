@@ -6,6 +6,9 @@
 	const VERMILIONCITY_BIG_SNORLAX
 	const VERMILIONCITY_POKEFAN_M
 
+
+SECTION "VermilionCity_MapScripts", ROMX
+
 VermilionCity_MapScripts:
 	db 0 ; scene scripts
 

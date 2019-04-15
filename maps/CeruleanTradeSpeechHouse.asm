@@ -4,6 +4,9 @@
 	const CERULEANTRADESPEECHHOUSE_RHYDON
 	const CERULEANTRADESPEECHHOUSE_ZUBAT
 
+
+SECTION "CeruleanTradeSpeechHouse_MapScripts", ROMX
+
 CeruleanTradeSpeechHouse_MapScripts:
 	db 0 ; scene scripts
 

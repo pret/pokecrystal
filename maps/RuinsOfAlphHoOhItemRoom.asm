@@ -4,6 +4,9 @@
 	const RUINSOFALPHHOOHITEMROOM_POKE_BALL3
 	const RUINSOFALPHHOOHITEMROOM_POKE_BALL4
 
+
+SECTION "RuinsOfAlphHoOhItemRoom_MapScripts", ROMX
+
 RuinsOfAlphHoOhItemRoom_MapScripts:
 	db 0 ; scene scripts
 

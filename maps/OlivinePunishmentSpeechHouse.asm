@@ -2,6 +2,9 @@
 	const OLIVINEPUNISHMENTSPEECHHOUSE_POKEFAN_M
 	const OLIVINEPUNISHMENTSPEECHHOUSE_LASS
 
+
+SECTION "OlivinePunishmentSpeechHouse_MapScripts", ROMX
+
 OlivinePunishmentSpeechHouse_MapScripts:
 	db 0 ; scene scripts
 

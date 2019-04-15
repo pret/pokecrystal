@@ -1,3 +1,5 @@
+SECTION "AddPhoneNumber - PermanentNumbers", ROMX
+
 AddPhoneNumber::
 	call _CheckCellNum
 	jr c, .cant_add
@@ -92,6 +94,9 @@ GetRemainingSpaceInPhoneList:
 	ret
 
 INCLUDE "data/phone/permanent_numbers.asm"
+
+
+SECTION "FarPlaceString - PlayRadio", ROMX
 
 FarPlaceString:
 	ldh a, [hROMBank]

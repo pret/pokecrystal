@@ -1,3 +1,5 @@
+SECTION "Music_CrystalOpening", ROMX
+
 Music_CrystalOpening:
 	musicheader 4, 1, Music_CrystalOpening_Ch1
 	musicheader 1, 2, Music_CrystalOpening_Ch2

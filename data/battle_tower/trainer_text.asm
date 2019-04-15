@@ -1,3 +1,5 @@
+SECTION "Battle Tower Trainer Text", ROMX
+
 BattleTowerText_0x1ec000:
 	text "Hello, glad to"
 	line "meet you!"

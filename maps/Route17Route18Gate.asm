@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const ROUTE17ROUTE18GATE_OFFICER
 
+
+SECTION "Route17Route18Gate_MapScripts", ROMX
+
 Route17Route18Gate_MapScripts:
 	db 1 ; scene scripts
 	scene_script .DummyScene ; SCENE_DEFAULT

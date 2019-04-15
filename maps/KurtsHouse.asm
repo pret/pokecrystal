@@ -5,6 +5,9 @@
 	const KURTSHOUSE_KURT2
 	const KURTSHOUSE_TWIN2
 
+
+SECTION "KurtsHouse_MapScripts", ROMX
+
 KurtsHouse_MapScripts:
 	db 0 ; scene scripts
 

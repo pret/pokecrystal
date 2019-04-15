@@ -2,6 +2,9 @@
 	const ELMSHOUSE_ELMS_WIFE
 	const ELMSHOUSE_ELMS_SON
 
+
+SECTION "ElmsHouse_MapScripts", ROMX
+
 ElmsHouse_MapScripts:
 	db 0 ; scene scripts
 

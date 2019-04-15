@@ -1,3 +1,5 @@
+SECTION "BattleStart_TrainerHuds - LoadBallIconGFX", ROMX
+
 BattleStart_TrainerHuds:
 	ld a, $e4
 	ldh [rOBP0], a
@@ -230,6 +232,9 @@ LoadBallIconGFX:
 
 .gfx
 INCBIN "gfx/battle/balls.2bpp"
+
+
+SECTION "_ShowLinkBattleParticipants", ROMX
 
 _ShowLinkBattleParticipants:
 	call ClearBGPalettes

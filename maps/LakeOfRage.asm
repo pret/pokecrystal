@@ -12,6 +12,9 @@
 	const LAKEOFRAGE_POKE_BALL1
 	const LAKEOFRAGE_POKE_BALL2
 
+
+SECTION "LakeOfRage_MapScripts", ROMX
+
 LakeOfRage_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; unusable

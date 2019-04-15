@@ -1,3 +1,5 @@
+SECTION "Cry_Marill - Cry_Aipom_Ch8", ROMX
+
 Cry_Marill:
 	musicheader 3, 5, Cry_Marill_Ch5
 	musicheader 1, 6, Cry_Marill_Ch6
@@ -826,6 +828,9 @@ Cry_Aipom_Ch8:
 	noise __,  4, $b2, $4d
 	noise C_,  5, $a3, $4c
 	endchannel
+
+
+SECTION "Cry_Nidoran_M - Cry_Rattata_Ch8", ROMX
 
 Cry_Nidoran_M:
 	musicheader 3, 5, Cry_Nidoran_M_Ch5

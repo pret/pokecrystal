@@ -2,6 +2,9 @@
 	const TIMECAPSULE_CHRIS1
 	const TIMECAPSULE_CHRIS2
 
+
+SECTION "TimeCapsule_MapScripts", ROMX
+
 TimeCapsule_MapScripts:
 	db 2 ; scene scripts
 	scene_script .InitializeTimeCapsule ; SCENE_DEFAULT

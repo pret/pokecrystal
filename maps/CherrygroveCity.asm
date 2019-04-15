@@ -5,6 +5,9 @@
 	const CHERRYGROVECITY_YOUNGSTER
 	const CHERRYGROVECITY_FISHER
 
+
+SECTION "CherrygroveCity_MapScripts", ROMX
+
 CherrygroveCity_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_CHERRYGROVECITY_NOTHING

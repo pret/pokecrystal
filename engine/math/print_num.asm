@@ -1,3 +1,5 @@
+SECTION "_PrintNum", ROMX
+
 _PrintNum::
 ; Print c digits of the b-byte value from de to hl.
 ; Allows 2 to 7 digits. For 1-digit numbers, add

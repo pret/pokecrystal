@@ -1,3 +1,5 @@
+SECTION "_DoItemEffect - GetMthMoveOfCurrentMon", ROMX
+
 _DoItemEffect::
 	ld a, [wCurItem]
 	ld [wNamedObjectIndexBuffer], a
@@ -901,7 +903,7 @@ MoonBallMultiplier:
 	pop bc
 
 	push bc
-	ld a, BANK("Evolutions and Attacks")
+	ld a, BANK(EvosAttacksPointers) ; TODO: BANK("Evolutions and Attacks")
 	call GetFarByte
 	cp EVOLVE_ITEM
 	pop bc
@@ -915,7 +917,7 @@ MoonBallMultiplier:
 ; No Pokémon evolve with Burn Heal,
 ; so Moon Balls always have a catch rate of 1×.
 	push bc
-	ld a, BANK("Evolutions and Attacks")
+	ld a, BANK(EvosAttacksPointers) ; TODO: BANK("Evolutions and Attacks")
 	call GetFarByte
 	cp MOON_STONE_RED ; BURN_HEAL
 	pop bc

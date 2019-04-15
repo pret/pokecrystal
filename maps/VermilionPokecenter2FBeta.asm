@@ -1,3 +1,6 @@
+
+SECTION "VermilionPokecenter2FBeta_MapScripts", ROMX
+
 VermilionPokecenter2FBeta_MapScripts:
 	db 0 ; scene scripts
 

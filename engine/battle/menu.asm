@@ -1,3 +1,5 @@
+SECTION "LoadBattleMenu - MenuData_0x24f91", ROMX
+
 LoadBattleMenu:
 	ld hl, BattleMenuHeader
 	call LoadMenuHeader
@@ -86,11 +88,17 @@ MenuData_0x24f91:
 	dba Strings24f9a
 	dba Function24fb2
 
+
+SECTION "Strings24f9a", ROMX
+
 Strings24f9a:
 	db "FIGHT@"
 	db "<PKMN>@"
 	db "PARKBALL×  @"
 	db "RUN@"
+
+
+SECTION "Function24fb2", ROMX
 
 Function24fb2:
 	hlcoord 13, 16

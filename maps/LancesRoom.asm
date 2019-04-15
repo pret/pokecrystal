@@ -3,6 +3,9 @@
 	const LANCESROOM_MARY
 	const LANCESROOM_OAK
 
+
+SECTION "LancesRoom_MapScripts", ROMX
+
 LancesRoom_MapScripts:
 	db 2 ; scene scripts
 	scene_script .LockDoor ; SCENE_DEFAULT

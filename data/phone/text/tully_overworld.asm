@@ -1,3 +1,5 @@
+SECTION "TullyAskNumber1Text - TullyPackFullText", ROMX
+
 TullyAskNumber1Text:
 	text "Hey, you're trying"
 	line "to be the ultimate"

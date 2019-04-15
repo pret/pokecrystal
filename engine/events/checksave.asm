@@ -1,3 +1,5 @@
+SECTION "CheckSave", ROMX
+
 CheckSave::
 	ld a, BANK(sCheckValue1) ; aka BANK(sCheckValue2)
 	call GetSRAMBank

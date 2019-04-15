@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const GOLDENRODNAMERATER_NAME_RATER
 
+
+SECTION "GoldenrodNameRater_MapScripts", ROMX
+
 GoldenrodNameRater_MapScripts:
 	db 0 ; scene scripts
 

@@ -1,3 +1,5 @@
+SECTION "RotateUnownFrontpic - UnownPrinter_GBPrinterRectangle", ROMX
+
 RotateUnownFrontpic:
 ; something to do with Unown printer
 	push de

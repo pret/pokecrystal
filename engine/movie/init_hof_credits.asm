@@ -1,3 +1,5 @@
+SECTION "InitDisplayForHallOfFame", ROMX
+
 InitDisplayForHallOfFame:
 	call ClearBGPalettes
 	call ClearTileMap
@@ -27,6 +29,9 @@ InitDisplayForHallOfFame:
 	; SAVING RECORD… DON'T TURN OFF!
 	text_far _SavingRecordText
 	text_end
+
+
+SECTION "InitDisplayForRedCredits", ROMX
 
 InitDisplayForRedCredits:
 	call ClearBGPalettes
@@ -59,6 +64,9 @@ InitDisplayForRedCredits:
 	call WaitBGMap2
 	call SetPalettes
 	ret
+
+
+SECTION "ResetDisplayBetweenHallOfFameMons", ROMX
 
 ResetDisplayBetweenHallOfFameMons:
 	ldh a, [rSVBK]

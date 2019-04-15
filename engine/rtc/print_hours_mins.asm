@@ -1,3 +1,5 @@
+SECTION "Unreferenced_Function1dd6a9", ROMX
+
 Unreferenced_Function1dd6a9:
 	ld a, b
 	ld b, c
@@ -12,6 +14,9 @@ Unreferenced_Function1dd6a9:
 	call PrintNum
 	pop bc
 	ret
+
+
+SECTION "PrintHoursMins - String_PM", ROMX
 
 PrintHoursMins:
 ; Hours in b, minutes in c

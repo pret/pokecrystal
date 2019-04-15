@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const ROUTE16GATE_OFFICER
 
+
+SECTION "Route16Gate_MapScripts", ROMX
+
 Route16Gate_MapScripts:
 	db 1 ; scene scripts
 	scene_script .DummyScene ; SCENE_DEFAULT

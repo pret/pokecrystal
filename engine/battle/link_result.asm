@@ -1,3 +1,5 @@
+SECTION "DetermineLinkBattleResult", ROMX
+
 DetermineLinkBattleResult:
 	farcall UpdateEnemyMonInParty
 	ld hl, wPartyMon1HP

@@ -1,3 +1,5 @@
+SECTION "Unreferenced_Function16c000 - Unknown_16cfb9", ROMX
+
 Unreferenced_Function16c000:
 	; Only for CGB
 	ldh a, [hCGB]

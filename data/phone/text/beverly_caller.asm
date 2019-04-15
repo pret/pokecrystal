@@ -1,3 +1,5 @@
+SECTION "UnknownText_0x174688 - UnknownText_0x174895", ROMX
+
 UnknownText_0x174688:
 	text "I fancied up my"
 	line "@"

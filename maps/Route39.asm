@@ -10,6 +10,9 @@
 	const ROUTE39_FRUIT_TREE
 	const ROUTE39_POKEFAN_F2
 
+
+SECTION "Route39_MapScripts", ROMX
+
 Route39_MapScripts:
 	db 0 ; scene scripts
 

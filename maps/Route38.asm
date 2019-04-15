@@ -7,6 +7,9 @@
 	const ROUTE38_FRUIT_TREE
 	const ROUTE38_BUENA2
 
+
+SECTION "Route38_MapScripts", ROMX
+
 Route38_MapScripts:
 	db 0 ; scene scripts
 

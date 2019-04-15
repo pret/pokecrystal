@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const CELADONMANSIONROOFHOUSE_PHARMACIST
 
+
+SECTION "CeladonMansionRoofHouse_MapScripts", ROMX
+
 CeladonMansionRoofHouse_MapScripts:
 	db 0 ; scene scripts
 

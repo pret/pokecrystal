@@ -1,3 +1,5 @@
+SECTION "_OptionsMenu - Options_UpdateCursorPosition", ROMX
+
 _OptionsMenu:
 	ld hl, hInMenu
 	ld a, [hl]

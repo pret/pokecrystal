@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const ROUTE24_ROCKET
 
+
+SECTION "Route24_MapScripts", ROMX
+
 Route24_MapScripts:
 	db 0 ; scene scripts
 

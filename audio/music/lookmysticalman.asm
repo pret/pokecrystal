@@ -1,3 +1,5 @@
+SECTION "Music_LookMysticalMan", ROMX
+
 Music_LookMysticalMan:
 	musicheader 4, 1, Music_LookMysticalMan_Ch1
 	musicheader 1, 2, Music_LookMysticalMan_Ch2

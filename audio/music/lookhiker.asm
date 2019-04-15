@@ -1,3 +1,5 @@
+SECTION "Music_LookHiker", ROMX
+
 Music_LookHiker:
 	musicheader 4, 1, Music_LookHiker_Ch1
 	musicheader 1, 2, Music_LookHiker_Ch2

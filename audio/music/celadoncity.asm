@@ -1,3 +1,5 @@
+SECTION "Music_CeladonCity", ROMX
+
 Music_CeladonCity:
 	musicheader 3, 1, Music_CeladonCity_Ch1
 	musicheader 1, 2, Music_CeladonCity_Ch2

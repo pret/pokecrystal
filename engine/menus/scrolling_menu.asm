@@ -1,3 +1,5 @@
+SECTION "_InitScrollingMenu - ScrollingMenu_GetListItemCoordAndFunctionArgs", ROMX
+
 _InitScrollingMenu::
 	xor a
 	ld [wMenuJoypad], a

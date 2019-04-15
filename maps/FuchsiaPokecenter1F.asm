@@ -4,6 +4,9 @@
 	const FUCHSIAPOKECENTER1F_COOLTRAINER_F
 	const FUCHSIAPOKECENTER1F_JANINE_IMPERSONATOR
 
+
+SECTION "FuchsiaPokecenter1F_MapScripts", ROMX
+
 FuchsiaPokecenter1F_MapScripts:
 	db 1 ; scene scripts
 	scene_script .DummyScene

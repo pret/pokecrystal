@@ -1,3 +1,5 @@
+SECTION "ReenaAskNumber1Text - ReenaRematchText", ROMX
+
 ReenaAskNumber1Text:
 	text "Not bad…"
 	line "It's something to"

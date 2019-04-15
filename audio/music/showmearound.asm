@@ -1,3 +1,5 @@
+SECTION "Music_ShowMeAround", ROMX
+
 Music_ShowMeAround:
 	musicheader 4, 1, Music_ShowMeAround_Ch1
 	musicheader 1, 2, Music_ShowMeAround_Ch2

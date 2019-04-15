@@ -1,3 +1,6 @@
+
+SECTION "LavenderPokecenter2FBeta_MapScripts", ROMX
+
 LavenderPokecenter2FBeta_MapScripts:
 	db 0 ; scene scripts
 

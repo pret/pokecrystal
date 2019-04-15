@@ -4,6 +4,9 @@
 	const CIANWOODPOKECENTER1F_GYM_GUY
 	const CIANWOODPOKECENTER1F_SUPER_NERD
 
+
+SECTION "CianwoodPokecenter1F_MapScripts", ROMX
+
 CianwoodPokecenter1F_MapScripts:
 	db 0 ; scene scripts
 

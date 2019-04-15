@@ -4,6 +4,9 @@
 	const OAKSLAB_SCIENTIST2
 	const OAKSLAB_SCIENTIST3
 
+
+SECTION "OaksLab_MapScripts", ROMX
+
 OaksLab_MapScripts:
 	db 0 ; scene scripts
 

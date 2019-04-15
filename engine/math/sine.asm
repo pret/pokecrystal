@@ -1,3 +1,5 @@
+SECTION "_Sine", ROMX
+
 _Sine::
 ; a = d * sin(e * pi/32)
 	ld a, e

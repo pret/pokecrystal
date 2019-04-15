@@ -1,3 +1,6 @@
+
+SECTION "RuinsOfAlphKabutoWordRoom_MapScripts", ROMX
+
 RuinsOfAlphKabutoWordRoom_MapScripts:
 	db 0 ; scene scripts
 

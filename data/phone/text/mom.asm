@@ -1,3 +1,5 @@
+SECTION "MomPhoneGreetingText - MomPhoneLectureText", ROMX
+
 MomPhoneGreetingText:
 	text "Hello?"
 

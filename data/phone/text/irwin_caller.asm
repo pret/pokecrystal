@@ -1,3 +1,5 @@
+SECTION "UnknownText_0x64000 - UnknownText_0x648dc", ROMX
+
 UnknownText_0x64000:
 	text "I hate having to"
 	line "hang up on you!"

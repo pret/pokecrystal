@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const CIANWOODPHARMACY_PHARMACIST
 
+
+SECTION "CianwoodPharmacy_MapScripts", ROMX
+
 CianwoodPharmacy_MapScripts:
 	db 1 ; scene scripts
 	scene_script .DummyScene

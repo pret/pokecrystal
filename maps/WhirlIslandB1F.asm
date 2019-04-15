@@ -6,6 +6,9 @@
 	const WHIRLISLANDB1F_POKE_BALL5
 	const WHIRLISLANDB1F_BOULDER
 
+
+SECTION "WhirlIslandB1F_MapScripts", ROMX
+
 WhirlIslandB1F_MapScripts:
 	db 0 ; scene scripts
 

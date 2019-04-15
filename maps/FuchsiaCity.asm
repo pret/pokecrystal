@@ -4,6 +4,9 @@
 	const FUCHSIACITY_TEACHER
 	const FUCHSIACITY_FRUIT_TREE
 
+
+SECTION "FuchsiaCity_MapScripts", ROMX
+
 FuchsiaCity_MapScripts:
 	db 0 ; scene scripts
 

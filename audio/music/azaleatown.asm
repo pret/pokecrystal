@@ -1,3 +1,5 @@
+SECTION "Music_AzaleaTown", ROMX
+
 Music_AzaleaTown:
 	musicheader 4, 1, Music_AzaleaTown_Ch1
 	musicheader 1, 2, Music_AzaleaTown_Ch2

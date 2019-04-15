@@ -3,6 +3,9 @@
 	const TINTOWER8F_POKE_BALL2
 	const TINTOWER8F_POKE_BALL3
 
+
+SECTION "TinTower8F_MapScripts", ROMX
+
 TinTower8F_MapScripts:
 	db 0 ; scene scripts
 

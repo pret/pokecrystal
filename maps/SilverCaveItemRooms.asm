@@ -2,6 +2,9 @@
 	const SILVERCAVEITEMROOMS_POKE_BALL1
 	const SILVERCAVEITEMROOMS_POKE_BALL2
 
+
+SECTION "SilverCaveItemRooms_MapScripts", ROMX
+
 SilverCaveItemRooms_MapScripts:
 	db 0 ; scene scripts
 

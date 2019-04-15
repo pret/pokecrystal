@@ -2,6 +2,9 @@
 	const PLAYERSNEIGHBORSHOUSE_COOLTRAINER_F
 	const PLAYERSNEIGHBORSHOUSE_POKEFAN_F
 
+
+SECTION "PlayersNeighborsHouse_MapScripts", ROMX
+
 PlayersNeighborsHouse_MapScripts:
 	db 0 ; scene scripts
 

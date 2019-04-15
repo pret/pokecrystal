@@ -3,6 +3,9 @@
 	const ROUTE39BARN_TWIN2
 	const ROUTE39BARN_MOOMOO
 
+
+SECTION "Route39Barn_MapScripts", ROMX
+
 Route39Barn_MapScripts:
 	db 0 ; scene scripts
 

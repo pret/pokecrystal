@@ -1,3 +1,5 @@
+SECTION "BankOfMom - MenuData_0x166bd", ROMX
+
 BankOfMom:
 	ldh a, [hInMenu]
 	push af

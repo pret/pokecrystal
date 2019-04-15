@@ -1,3 +1,5 @@
+SECTION "ParryAskNumber1Text - ParryRematchGiftText", ROMX
+
 ParryAskNumber1Text:
 	text "Sheesh, the way"
 	line "you attacked! That"

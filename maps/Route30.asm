@@ -11,6 +11,9 @@
 	const ROUTE30_COOLTRAINER_F
 	const ROUTE30_POKE_BALL
 
+
+SECTION "Route30_MapScripts", ROMX
+
 Route30_MapScripts:
 	db 0 ; scene scripts
 

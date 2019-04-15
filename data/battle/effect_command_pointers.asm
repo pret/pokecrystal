@@ -1,5 +1,7 @@
 ; battle commands are defined in engine/battle/effect_commands.asm
 
+SECTION "BattleCommandPointers", ROMX
+
 	dw 0 ; padding
 
 BattleCommandPointers:

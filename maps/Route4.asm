@@ -4,6 +4,9 @@
 	const ROUTE4_LASS2
 	const ROUTE4_POKE_BALL
 
+
+SECTION "Route4_MapScripts", ROMX
+
 Route4_MapScripts:
 	db 0 ; scene scripts
 

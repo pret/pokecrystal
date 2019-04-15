@@ -1,3 +1,5 @@
+SECTION "UnknownText_0x1b5d9f - UnknownText_0x1b5ebe", ROMX
+
 UnknownText_0x1b5d9f:
 	text "Hello, @"
 	text_ram wStringBuffer3

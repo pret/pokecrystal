@@ -1,3 +1,5 @@
+SECTION "BeastsCheck - UpdateOTPointer", ROMX
+
 BeastsCheck:
 ; Check if the player owns all three legendary beasts.
 ; They must exist in either party or PC, and have the player's OT and ID.

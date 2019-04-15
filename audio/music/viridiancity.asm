@@ -1,3 +1,5 @@
+SECTION "Music_ViridianCity", ROMX
+
 Music_ViridianCity:
 	musicheader 4, 1, Music_ViridianCity_Ch1
 	musicheader 1, 2, Music_ViridianCity_Ch2

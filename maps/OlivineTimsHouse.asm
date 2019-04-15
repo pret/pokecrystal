@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const OLIVINETIMSHOUSE_TIM
 
+
+SECTION "OlivineTimsHouse_MapScripts", ROMX
+
 OlivineTimsHouse_MapScripts:
 	db 0 ; scene scripts
 

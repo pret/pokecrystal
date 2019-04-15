@@ -1,3 +1,6 @@
+
+SECTION "Route28_MapScripts", ROMX
+
 Route28_MapScripts:
 	db 0 ; scene scripts
 

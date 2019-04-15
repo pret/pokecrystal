@@ -11,6 +11,9 @@
 	const ILEXFOREST_POKE_BALL3
 	const ILEXFOREST_POKE_BALL4
 
+
+SECTION "IlexForest_MapScripts", ROMX
+
 IlexForest_MapScripts:
 	db 0 ; scene scripts
 

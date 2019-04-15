@@ -1,3 +1,5 @@
+SECTION "WadeAskNumber1Text - WadePackFullText", ROMX
+
 WadeAskNumber1Text:
 	text "You're awesome!"
 	line "I like you!"

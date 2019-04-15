@@ -9,6 +9,9 @@
 	const CIANWOODGYM_BOULDER3
 	const CIANWOODGYM_BOULDER4
 
+
+SECTION "CianwoodGym_MapScripts", ROMX
+
 CianwoodGym_MapScripts:
 	db 0 ; scene scripts
 

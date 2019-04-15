@@ -1,4 +1,4 @@
-SECTION "Mobile 46", ROMX
+SECTION "Function118000 - TilemapPack_11bb7d", ROMX, BANK[$46]
 
 Function118000:
 	ld a, $1
@@ -1484,6 +1484,7 @@ Function118b9a:
 	and a
 	ret
 
+PUSHS
 	charmap " ", $20 ; revert to ascii
 
 ExchangeDownloadURL:
@@ -2928,7 +2929,7 @@ Unknown_1196b8:
 	db "Sun"
 
 
-SECTION "Mobile 46 ASCII", ROMX
+SECTION "Function118000 - TilemapPack_11bb7d (2)", ROMX, BANK[$46]
 ; A hack to use ascii above.
 
 Function1196cd:

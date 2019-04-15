@@ -1,3 +1,5 @@
+SECTION "Function_LoadOpponentTrainerAndPokemons - BattleTowerMons10", ROMX
+
 Function_LoadOpponentTrainerAndPokemons:
 	ldh a, [rSVBK]
 	push af

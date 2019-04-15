@@ -4,6 +4,9 @@
 	const SOULHOUSE_LASS
 	const SOULHOUSE_GRANNY
 
+
+SECTION "SoulHouse_MapScripts", ROMX
+
 SoulHouse_MapScripts:
 	db 0 ; scene scripts
 

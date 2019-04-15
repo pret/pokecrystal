@@ -1,3 +1,5 @@
+SECTION "RunMapSetupScript - MapSetupCommands", ROMX
+
 RunMapSetupScript::
 	ldh a, [hMapEntryMethod]
 	and $f
@@ -107,20 +109,32 @@ MapSetupCommands:
 	dba DontScrollText ; 2c
 	dba ReturnFromMapSetupScript ; 2d
 
+
+SECTION "DontScrollText", ROMX
+
 DontScrollText:
 	xor a
 	ld [wDisableTextAcceleration], a
 	ret
+
+
+SECTION "ActivateMapAnims", ROMX
 
 ActivateMapAnims:
 	ld a, $1
 	ldh [hMapAnims], a
 	ret
 
+
+SECTION "SuspendMapAnims", ROMX
+
 SuspendMapAnims:
 	xor a
 	ldh [hMapAnims], a
 	ret
+
+
+SECTION "LoadObjectsRunCallback_02", ROMX
 
 LoadObjectsRunCallback_02:
 	ld a, MAPCALLBACK_OBJECTS
@@ -132,15 +146,24 @@ LoadObjectsRunCallback_02:
 ; unused
 	ret
 
+
+SECTION "DelayClearingOldSprites", ROMX
+
 DelayClearingOldSprites:
 	ld hl, wPlayerSpriteSetupFlags
 	set PLAYERSPRITESETUP_RESET_ACTION_F, [hl]
 	ret
 
+
+SECTION "DelayLoadingNewSprites", ROMX
+
 DelayLoadingNewSprites:
 	ld hl, wPlayerSpriteSetupFlags
 	set PLAYERSPRITESETUP_SKIP_RELOAD_GFX_F, [hl]
 	ret
+
+
+SECTION "CheckReplaceKrisSprite", ROMX
 
 CheckReplaceKrisSprite:
 	nop
@@ -215,14 +238,23 @@ CheckReplaceKrisSprite:
 	and a
 	ret
 
+
+SECTION "FadeOldMapMusic", ROMX
+
 FadeOldMapMusic:
 	ld a, 6
 	call SkipMusic
 	ret
 
+
+SECTION "RetainOldPalettes", ROMX
+
 RetainOldPalettes:
 	farcall _UpdateTimePals
 	ret
+
+
+SECTION "RotatePalettesRightMapAndMusic", ROMX
 
 RotatePalettesRightMapAndMusic:
 	ld e, 0
@@ -233,6 +265,9 @@ RotatePalettesRightMapAndMusic:
 	ld [wMusicFade], a
 	call RotateThreePalettesRight
 	ret
+
+
+SECTION "ForceMapMusic", ROMX
 
 ForceMapMusic:
 	ld a, [wPlayerState]

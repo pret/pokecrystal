@@ -11,6 +11,9 @@
 	const RADIOTOWER2F_BUENA
 	const RADIOTOWER2F_RECEPTIONIST
 
+
+SECTION "RadioTower2F_MapScripts", ROMX
+
 RadioTower2F_MapScripts:
 	db 0 ; scene scripts
 

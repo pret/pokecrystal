@@ -1,3 +1,5 @@
+SECTION "Music_IndigoPlateau", ROMX
+
 Music_IndigoPlateau:
 	musicheader 4, 1, Music_IndigoPlateau_Ch1
 	musicheader 1, 2, Music_IndigoPlateau_Ch2

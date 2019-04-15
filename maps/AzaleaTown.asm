@@ -12,6 +12,9 @@
 	const AZALEATOWN_AZALEA_ROCKET3
 	const AZALEATOWN_KURT_OUTSIDE
 
+
+SECTION "AzaleaTown_MapScripts", ROMX
+
 AzaleaTown_MapScripts:
 	db 3 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_AZALEATOWN_NOTHING

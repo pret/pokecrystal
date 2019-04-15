@@ -1,3 +1,5 @@
+SECTION "_DisappearUser - GetPlayerBackpicCoords", ROMX
+
 _DisappearUser:
 	xor a
 	ldh [hBGMapMode], a
@@ -48,6 +50,9 @@ GetPlayerBackpicCoords:
 	hlcoord 2, 6
 	lb bc, 6, 6
 	ret
+
+
+SECTION "DoWeatherModifiers - WeatherMoveModifiers", ROMX
 
 DoWeatherModifiers:
 	ld de, WeatherTypeModifiers
@@ -143,6 +148,9 @@ DoWeatherModifiers:
 	ret
 
 INCLUDE "data/battle/weather_modifiers.asm"
+
+
+SECTION "DoBadgeTypeBoosts - BadgeTypeBoosts", ROMX
 
 DoBadgeTypeBoosts:
 	ld a, [wLinkMode]

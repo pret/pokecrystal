@@ -1,3 +1,6 @@
+
+SECTION "TinTower2F_MapScripts", ROMX
+
 TinTower2F_MapScripts:
 	db 0 ; scene scripts
 

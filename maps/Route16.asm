@@ -1,3 +1,6 @@
+
+SECTION "Route16_MapScripts", ROMX
+
 Route16_MapScripts:
 	db 0 ; scene scripts
 

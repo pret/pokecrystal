@@ -1,3 +1,6 @@
+
+SECTION "RedsHouse2F_MapScripts", ROMX
+
 RedsHouse2F_MapScripts:
 	db 0 ; scene scripts
 

@@ -1,3 +1,5 @@
+SECTION "SendMailToPC - MailboxPC", ROMX
+
 SendMailToPC:
 	ld a, MON_ITEM
 	call GetPartyParamLocation

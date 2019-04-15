@@ -1,3 +1,5 @@
+SECTION "AskRememberPassword - Buena_ExitMenu", ROMX
+
 AskRememberPassword:
 	call .DoMenu
 	ld a, $0

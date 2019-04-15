@@ -1,3 +1,5 @@
+SECTION "JackIntelligenceText - UnknownText_0x174638", ROMX
+
 JackIntelligenceText:
 	text "My @"
 	text_ram wStringBuffer4

@@ -9,6 +9,9 @@
 	const ROUTE36_FLORIA
 	const ROUTE36_SUICUNE
 
+
+SECTION "Route36_MapScripts", ROMX
+
 Route36_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_ROUTE36_NOTHING

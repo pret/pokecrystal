@@ -1,3 +1,5 @@
+SECTION "Music_Surf", ROMX
+
 Music_Surf:
 	musicheader 3, 1, Music_Surf_Ch1
 	musicheader 1, 2, Music_Surf_Ch2

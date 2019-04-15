@@ -2,6 +2,9 @@
 	const OLIVINELIGHTHOUSE1F_SAILOR
 	const OLIVINELIGHTHOUSE1F_POKEFAN_F
 
+
+SECTION "OlivineLighthouse1F_MapScripts", ROMX
+
 OlivineLighthouse1F_MapScripts:
 	db 0 ; scene scripts
 

@@ -1,3 +1,5 @@
+SECTION "_DeleteSaveData", ROMX
+
 _DeleteSaveData:
 	farcall BlankScreen
 	ld b, SCGB_DIPLOMA

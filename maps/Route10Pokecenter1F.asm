@@ -4,6 +4,9 @@
 	const ROUTE10POKECENTER1F_GYM_GUY
 	const ROUTE10POKECENTER1F_COOLTRAINER_F
 
+
+SECTION "Route10Pokecenter1F_MapScripts", ROMX
+
 Route10Pokecenter1F_MapScripts:
 	db 0 ; scene scripts
 

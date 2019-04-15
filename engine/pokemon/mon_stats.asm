@@ -429,6 +429,9 @@ BrnString: db "BRN@"
 FrzString: db "FRZ@"
 ParString: db "PAR@"
 
+
+SECTION "ListMoves", ROMX
+
 ListMoves:
 ; List moves at hl, spaced every [wBuffer1] tiles.
 	ld de, wListMoves_MoveIndicesBuffer

@@ -1,3 +1,5 @@
+SECTION "BrentAskNumber1Text - BrentRematchText", ROMX
+
 BrentAskNumber1Text:
 	text "By the way, you're"
 	line "a #MANIAC…"

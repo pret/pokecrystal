@@ -1,3 +1,6 @@
+
+SECTION "Route10North_MapScripts", ROMX
+
 Route10North_MapScripts:
 	db 0 ; scene scripts
 

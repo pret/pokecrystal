@@ -1,3 +1,5 @@
+SECTION "EvolutionAnimation", ROMX
+
 EvolutionAnimation:
 	push hl
 	push de

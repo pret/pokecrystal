@@ -1,3 +1,5 @@
+SECTION "CheckTime", ROMX
+
 CheckTime::
 	ld a, [wTimeOfDay]
 	ld hl, .TimeOfDayTable

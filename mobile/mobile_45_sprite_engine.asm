@@ -1,3 +1,5 @@
+SECTION "Function115d99", ROMX
+
 Function115d99:
 	ld de, GFX_11601a
 	ld hl, vTiles0 tile $60
@@ -16,6 +18,9 @@ Function115d99:
 	ld [wc308], a
 	ret
 
+
+SECTION "Function115dc3", ROMX
+
 Function115dc3:
 	xor a
 	ld [wc305], a
@@ -24,6 +29,9 @@ Function115dc3:
 	ld bc, 8 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
 	ret
+
+
+SECTION "Function115dd3 - Unknown_116005", ROMX
 
 Function115dd3:
 	ld a, [wc305]
@@ -307,8 +315,14 @@ Unknown_116005:
 	dsprite   2, 0,   0, 0, $62, $01
 	dsprite   2, 0,   1, 0, $63, $01
 
+
+SECTION "GFX_11601a", ROMX
+
 GFX_11601a::
 INCBIN "gfx/unknown/11601a.2bpp"
+
+
+SECTION "Function11615a", ROMX
 
 Function11615a:
 	xor a
@@ -336,6 +350,9 @@ Function11615a:
 	ld [wc30f], a
 	ld [wc3f3], a
 	ret
+
+
+SECTION "Function11619d - Unknown_117356", ROMX
 
 Function11619d:
 	ld a, [wc30d]

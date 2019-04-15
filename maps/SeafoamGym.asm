@@ -2,6 +2,9 @@
 	const SEAFOAMGYM_BLAINE
 	const SEAFOAMGYM_GYM_GUY
 
+
+SECTION "SeafoamGym_MapScripts", ROMX
+
 SeafoamGym_MapScripts:
 	db 1 ; scene scripts
 	scene_script .DummyScene

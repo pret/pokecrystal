@@ -1,3 +1,5 @@
+SECTION "_2DMenu_ - Place2DMenuCursor", ROMX
+
 _2DMenu_::
 	ld hl, CopyMenuData
 	ld a, [wMenuData_2DMenuItemStringsBank]
@@ -554,6 +556,9 @@ Place2DMenuCursor:
 	ld [wCursorCurrentTile + 1], a
 	ret
 
+
+SECTION "_PushWindow", ROMX
+
 _PushWindow::
 	ldh a, [rSVBK]
 	push af
@@ -653,6 +658,9 @@ _PushWindow::
 .ret
 	ret
 
+
+SECTION "_ExitMenu - Error_Cant_ExitMenu", ROMX
+
 _ExitMenu::
 	xor a
 	ldh [hBGMapMode], a
@@ -734,6 +742,9 @@ Error_Cant_ExitMenu:
 .Text_NoWindowsAvailableForPopping:
 	text_far UnknownText_0x1c46b7
 	text_end
+
+
+SECTION "_InitVerticalMenuCursor", ROMX
 
 _InitVerticalMenuCursor::
 	ld a, [wMenuDataFlags]

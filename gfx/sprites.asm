@@ -1,4 +1,6 @@
-SECTION "Sprites 1", ROMX
+; FLOAT: LoadSpriteGFX breaks if this is placed in bank 1.
+; See docs/bugs_and_glitches.md for more information.
+SECTION "Sprites 1", ROMX, BANK[$30]
 
 ChrisSpriteGFX::               INCBIN "gfx/sprites/chris.2bpp"
 ChrisBikeSpriteGFX::           INCBIN "gfx/sprites/chris_bike.2bpp"
@@ -46,7 +48,9 @@ SuperNerdSpriteGFX::           INCBIN "gfx/sprites/super_nerd.2bpp"
 RockerSpriteGFX::              INCBIN "gfx/sprites/rocker.2bpp"
 
 
-SECTION "Sprites 2", ROMX
+; FLOAT: LoadSpriteGFX breaks if this is placed in bank 1.
+; See docs/bugs_and_glitches.md for more information.
+SECTION "Sprites 2", ROMX, BANK[$31]
 
 PokefanMSpriteGFX::            INCBIN "gfx/sprites/pokefan_m.2bpp"
 PokefanFSpriteGFX::            INCBIN "gfx/sprites/pokefan_f.2bpp"

@@ -3,6 +3,9 @@
 	const CHERRYGROVEMART_COOLTRAINER_M
 	const CHERRYGROVEMART_YOUNGSTER
 
+
+SECTION "CherrygroveMart_MapScripts", ROMX
+
 CherrygroveMart_MapScripts:
 	db 0 ; scene scripts
 

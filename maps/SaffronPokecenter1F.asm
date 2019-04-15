@@ -4,6 +4,9 @@
 	const SAFFRONPOKECENTER1F_FISHER
 	const SAFFRONPOKECENTER1F_YOUNGSTER
 
+
+SECTION "SaffronPokecenter1F_MapScripts", ROMX
+
 SaffronPokecenter1F_MapScripts:
 	db 0 ; scene scripts
 

@@ -3,6 +3,9 @@
 	const MOUNTMOONSQUARE_FAIRY2
 	const MOUNTMOONSQUARE_ROCK
 
+
+SECTION "MountMoonSquare_MapScripts", ROMX
+
 MountMoonSquare_MapScripts:
 	db 1 ; scene scripts
 	scene_script .DummyScene ; SCENE_DEFAULT

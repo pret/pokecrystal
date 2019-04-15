@@ -3,6 +3,9 @@
 	const VIOLETMART_GRANNY
 	const VIOLETMART_COOLTRAINER_M
 
+
+SECTION "VioletMart_MapScripts", ROMX
+
 VioletMart_MapScripts:
 	db 0 ; scene scripts
 

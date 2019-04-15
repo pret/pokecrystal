@@ -1,3 +1,5 @@
+SECTION "GetPredefPointer - PredefPointers", ROMX
+
 GetPredefPointer::
 ; Return the bank and address of wPredefID in a and wPredefAddress.
 

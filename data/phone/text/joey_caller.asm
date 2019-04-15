@@ -1,3 +1,5 @@
+SECTION "JoeySharperText - UnknownText_0x175786", ROMX
+
 JoeySharperText:
 	text "My @"
 	text_ram wStringBuffer4

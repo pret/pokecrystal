@@ -2,6 +2,9 @@
 	const VIRIDIANGYM_BLUE
 	const VIRIDIANGYM_GYM_GUY
 
+
+SECTION "ViridianGym_MapScripts", ROMX
+
 ViridianGym_MapScripts:
 	db 0 ; scene scripts
 

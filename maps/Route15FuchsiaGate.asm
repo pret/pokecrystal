@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const ROUTE15FUCHSIAGATE_OFFICER
 
+
+SECTION "Route15FuchsiaGate_MapScripts", ROMX
+
 Route15FuchsiaGate_MapScripts:
 	db 0 ; scene scripts
 

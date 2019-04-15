@@ -2,6 +2,9 @@
 	const FIGHTINGDOJO_BLACK_BELT
 	const FIGHTINGDOJO_POKE_BALL
 
+
+SECTION "FightingDojo_MapScripts", ROMX
+
 FightingDojo_MapScripts:
 	db 0 ; scene scripts
 

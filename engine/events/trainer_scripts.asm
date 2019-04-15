@@ -1,3 +1,5 @@
+SECTION "TalkToTrainerScript - AlreadyBeatenTrainerScript", ROMX
+
 TalkToTrainerScript::
 	faceplayer
 	trainerflagaction CHECK_FLAG

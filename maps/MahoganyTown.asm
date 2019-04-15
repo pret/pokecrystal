@@ -6,6 +6,9 @@ MAHOGANYTOWN_RAGECANDYBAR_PRICE EQU 300
 	const MAHOGANYTOWN_FISHER
 	const MAHOGANYTOWN_LASS
 
+
+SECTION "MahoganyTown_MapScripts", ROMX
+
 MahoganyTown_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT

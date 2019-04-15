@@ -13,6 +13,9 @@
 	const ROUTE45_POKE_BALL4
 	const ROUTE45_YOUNGSTER
 
+
+SECTION "Route45_MapScripts", ROMX
+
 Route45_MapScripts:
 	db 0 ; scene scripts
 

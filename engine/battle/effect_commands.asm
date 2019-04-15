@@ -1,3 +1,5 @@
+SECTION "DoPlayerTurn - _CheckBattleScene", ROMX
+
 DoPlayerTurn:
 	call SetPlayerTurn
 
@@ -6825,7 +6827,7 @@ PlayOpponentBattleAnim:
 	ret
 
 CallBattleCore:
-	ld a, BANK("Battle Core")
+	ld a, BANK(DoBattle) ; TODO: BANK("Battle Core")
 	rst FarCall
 	ret
 

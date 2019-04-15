@@ -2,6 +2,9 @@
 	const CHERRYGROVEGYMSPEECHHOUSE_POKEFAN_M
 	const CHERRYGROVEGYMSPEECHHOUSE_BUG_CATCHER
 
+
+SECTION "CherrygroveGymSpeechHouse_MapScripts", ROMX
+
 CherrygroveGymSpeechHouse_MapScripts:
 	db 0 ; scene scripts
 

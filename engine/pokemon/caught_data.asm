@@ -1,3 +1,5 @@
+SECTION "CheckPartyFullAfterContest - SetEggMonCaughtData", ROMX
+
 CheckPartyFullAfterContest:
 	ld a, [wContestMon]
 	and a

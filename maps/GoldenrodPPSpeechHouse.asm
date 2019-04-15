@@ -2,6 +2,9 @@
 	const GOLDENRODPPSPEECHHOUSE_FISHER
 	const GOLDENRODPPSPEECHHOUSE_LASS
 
+
+SECTION "GoldenrodPPSpeechHouse_MapScripts", ROMX
+
 GoldenrodPPSpeechHouse_MapScripts:
 	db 0 ; scene scripts
 

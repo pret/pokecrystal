@@ -2,6 +2,9 @@
 	const OLIVINEGYM_JASMINE
 	const OLIVINEGYM_GYM_GUY
 
+
+SECTION "OlivineGym_MapScripts", ROMX
+
 OlivineGym_MapScripts:
 	db 0 ; scene scripts
 

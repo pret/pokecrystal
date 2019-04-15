@@ -7,6 +7,9 @@
 	const UNIONCAVEB1F_BOULDER
 	const UNIONCAVEB1F_POKE_BALL2
 
+
+SECTION "UnionCaveB1F_MapScripts", ROMX
+
 UnionCaveB1F_MapScripts:
 	db 0 ; scene scripts
 

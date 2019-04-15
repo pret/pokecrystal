@@ -1,3 +1,5 @@
+SECTION "AnthonyAskNumber1Text - AnthonyRematchText", ROMX
+
 AnthonyAskNumber1Text:
 	text "By the way, I'm a"
 	line "HIKER, so I often"

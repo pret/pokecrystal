@@ -1,3 +1,5 @@
+SECTION "CheckBattleScene", ROMX
+
 CheckBattleScene:
 ; Return carry if battle scene is turned off.
 

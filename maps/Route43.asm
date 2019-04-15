@@ -8,6 +8,9 @@
 	const ROUTE43_FRUIT_TREE
 	const ROUTE43_POKE_BALL
 
+
+SECTION "Route43_MapScripts", ROMX
+
 Route43_MapScripts:
 	db 0 ; scene scripts
 

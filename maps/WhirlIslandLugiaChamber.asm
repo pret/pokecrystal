@@ -1,6 +1,9 @@
 	object_const_def ; object_event constants
 	const WHIRLISLANDLUGIACHAMBER_LUGIA
 
+
+SECTION "WhirlIslandLugiaChamber_MapScripts", ROMX
+
 WhirlIslandLugiaChamber_MapScripts:
 	db 0 ; scene scripts
 

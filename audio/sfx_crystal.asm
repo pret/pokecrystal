@@ -1,3 +1,5 @@
+SECTION "Sfx_IntroUnown1 - Sfx_IntroUnown1_Ch5", ROMX
+
 Sfx_IntroUnown1:
 	musicheader 1, 5, Sfx_IntroUnown1_Ch5
 
@@ -8,6 +10,9 @@ Sfx_IntroUnown1_Ch5:
 	sound C#,  1, $e2, $0705
 	endchannel
 
+
+SECTION "Sfx_IntroUnown2 - Sfx_IntroUnown2_Ch6", ROMX
+
 Sfx_IntroUnown2:
 	musicheader 1, 6, Sfx_IntroUnown2_Ch6
 
@@ -17,6 +22,9 @@ Sfx_IntroUnown2_Ch6:
 	sound __,  9, $39, $0758
 	sound C#,  1, $e2, $0758
 	endchannel
+
+
+SECTION "Sfx_IntroUnown3 - Sfx_IntroUnown3_Ch7", ROMX
 
 Sfx_IntroUnown3:
 	musicheader 1, 7, Sfx_IntroUnown3_Ch7
@@ -31,6 +39,9 @@ Sfx_IntroUnown3_Ch7:
 	sound __,  7, $32, $07c2
 	endchannel
 
+
+SECTION "Sfx_DittoPopUp - Sfx_DittoPopUp_Ch5", ROMX
+
 Sfx_DittoPopUp:
 	musicheader 1, 5, Sfx_DittoPopUp_Ch5
 
@@ -44,6 +55,9 @@ Sfx_DittoPopUp_Ch5:
 	sound C_,  1, $31, $0641
 	endchannel
 
+
+SECTION "Sfx_DittoTransform - Sfx_DittoTransform_Ch5", ROMX
+
 Sfx_DittoTransform:
 	musicheader 1, 5, Sfx_DittoTransform_Ch5
 
@@ -56,6 +70,9 @@ Sfx_DittoTransform_Ch5:
 	sound __,  5, $42, $04c2
 	endchannel
 
+
+SECTION "Sfx_IntroSuicune1 - Sfx_IntroSuicune1_Ch8", ROMX
+
 Sfx_IntroSuicune1:
 	musicheader 1, 8, Sfx_IntroSuicune1_Ch8
 
@@ -63,6 +80,9 @@ Sfx_IntroSuicune1_Ch8:
 	noise __,  2, $58, $59
 	noise __,  3, $91, $23
 	endchannel
+
+
+SECTION "Sfx_IntroPichu - Sfx_IntroPichu_Ch5", ROMX
 
 Sfx_IntroPichu:
 	musicheader 1, 5, Sfx_IntroPichu_Ch5
@@ -75,6 +95,9 @@ Sfx_IntroPichu_Ch5:
 	soundinput $17
 	sound __,  3, $88, $0776
 	endchannel
+
+
+SECTION "Sfx_IntroSuicune2 - Sfx_IntroSuicune2_Ch8", ROMX
 
 Sfx_IntroSuicune2:
 	musicheader 1, 8, Sfx_IntroSuicune2_Ch8
@@ -98,6 +121,9 @@ Sfx_IntroSuicune2_Ch8:
 	noise __,  2, $13, $10
 	endchannel
 
+
+SECTION "Sfx_IntroSuicune3 - Sfx_IntroSuicune3_Ch8", ROMX
+
 Sfx_IntroSuicune3:
 	musicheader 1, 8, Sfx_IntroSuicune3_Ch8
 
@@ -108,6 +134,9 @@ Sfx_IntroSuicune3_Ch8:
 	noise __,  5, $44, $10
 	noise __,  5, $24, $10
 	endchannel
+
+
+SECTION "Sfx_DittoBounce - Sfx_DittoBounce_Ch5", ROMX
 
 Sfx_DittoBounce:
 	musicheader 1, 5, Sfx_DittoBounce_Ch5
@@ -120,6 +149,9 @@ Sfx_DittoBounce_Ch5:
 	soundinput $34
 	sound C_,  1, $b1, $0420
 	endchannel
+
+
+SECTION "Sfx_IntroSuicune4 - Sfx_IntroSuicune4_Ch8", ROMX
 
 Sfx_IntroSuicune4:
 	musicheader 1, 8, Sfx_IntroSuicune4_Ch8
@@ -137,6 +169,9 @@ Sfx_IntroSuicune4_Ch8:
 	noise __,  1, $0, $0
 	noise C#,  1, $72, $0
 	endchannel
+
+
+SECTION "Sfx_GameFreakPresents - Sfx_GameFreakPresents_Ch5", ROMX
 
 Sfx_GameFreakPresents:
 	musicheader 1, 5, Sfx_GameFreakPresents_Ch5
@@ -163,6 +198,9 @@ Sfx_GameFreakPresents_Ch5:
 	note G_, 3
 	endchannel
 
+
+SECTION "Sfx_Tingle - Sfx_Tingle_Ch5", ROMX
+
 Sfx_Tingle:
 	musicheader 1, 5, Sfx_Tingle_Ch5
 
@@ -185,6 +223,9 @@ Sfx_Tingle_Ch5:
 	note G_, 13
 	endchannel
 
+
+SECTION "Sfx_TwoPcBeeps - Sfx_TwoPcBeeps_Ch5", ROMX
+
 Sfx_TwoPcBeeps:
 	musicheader 1, 5, Sfx_TwoPcBeeps_Ch5
 
@@ -195,6 +236,9 @@ Sfx_TwoPcBeeps_Ch5:
 	sound __,  3, $e8, $07c2
 	sound __,  3, $28, $07c2
 	endchannel
+
+
+SECTION "Sfx_4NoteDitty - Sfx_4NoteDitty_Ch7", ROMX
 
 Sfx_4NoteDitty:
 	musicheader 3, 5, Sfx_4NoteDitty_Ch5
@@ -239,6 +283,9 @@ Sfx_4NoteDitty_Ch7:
 	note __, 9
 	note __, 16
 	endchannel
+
+
+SECTION "Sfx_Twinkle - Sfx_Twinkle_Ch5", ROMX
 
 Sfx_Twinkle:
 	musicheader 1, 5, Sfx_Twinkle_Ch5

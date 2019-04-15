@@ -5,6 +5,9 @@
 	const ROUTE11_YOUNGSTER4
 	const ROUTE11_FRUIT_TREE
 
+
+SECTION "Route11_MapScripts", ROMX
+
 Route11_MapScripts:
 	db 0 ; scene scripts
 

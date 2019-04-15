@@ -3,6 +3,9 @@
 	const OLIVINECAFE_FISHING_GURU
 	const OLIVINECAFE_SAILOR2
 
+
+SECTION "OlivineCafe_MapScripts", ROMX
+
 OlivineCafe_MapScripts:
 	db 0 ; scene scripts
 

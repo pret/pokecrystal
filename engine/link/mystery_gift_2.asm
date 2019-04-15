@@ -1,3 +1,5 @@
+SECTION "PrepMysteryGiftDataToSend", ROMX
+
 PrepMysteryGiftDataToSend:
 	ld de, wMysteryGiftStaging
 	ld a, $1
@@ -120,6 +122,9 @@ PrepMysteryGiftDataToSend:
 .done
 	pop de
 	ret
+
+
+SECTION "MysteryGiftGetItemHeldEffect - MysteryGiftDecos", ROMX
 
 MysteryGiftGetItemHeldEffect:
 	ld a, c

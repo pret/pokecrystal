@@ -1,3 +1,5 @@
+SECTION "Music_BuenasPassword", ROMX
+
 Music_BuenasPassword:
 	musicheader 4, 1, Music_BuenasPassword_Ch1
 	musicheader 1, 2, Music_BuenasPassword_Ch2

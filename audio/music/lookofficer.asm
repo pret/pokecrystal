@@ -1,3 +1,5 @@
+SECTION "Music_LookOfficer", ROMX
+
 Music_LookOfficer:
 	musicheader 3, 1, Music_LookOfficer_Ch1
 	musicheader 1, 2, Music_LookOfficer_Ch2

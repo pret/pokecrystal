@@ -1,3 +1,5 @@
+SECTION "UnknownText_0x1b518b - UnknownText_0x1b522b", ROMX
+
 UnknownText_0x1b518b:
 	text "How are your"
 	line "#MON doing?"

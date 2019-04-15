@@ -8,6 +8,9 @@
 	const SAFFRONCITY_YOUNGSTER2
 	const SAFFRONCITY_LASS2
 
+
+SECTION "SaffronCity_MapScripts", ROMX
+
 SaffronCity_MapScripts:
 	db 0 ; scene scripts
 

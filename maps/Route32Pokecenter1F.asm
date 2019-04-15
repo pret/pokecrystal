@@ -3,6 +3,9 @@
 	const ROUTE32POKECENTER1F_FISHING_GURU
 	const ROUTE32POKECENTER1F_COOLTRAINER_F
 
+
+SECTION "Route32Pokecenter1F_MapScripts", ROMX
+
 Route32Pokecenter1F_MapScripts:
 	db 0 ; scene scripts
 

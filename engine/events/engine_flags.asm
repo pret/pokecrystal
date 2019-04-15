@@ -1,3 +1,5 @@
+SECTION "EngineFlagAction - EngineFlags", ROMX
+
 EngineFlagAction::
 ; Do action b on engine flag de
 ;

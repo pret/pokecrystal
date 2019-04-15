@@ -1,3 +1,5 @@
+SECTION "Music_SSAqua", ROMX
+
 Music_SSAqua:
 	musicheader 4, 1, Music_SSAqua_Ch1
 	musicheader 1, 2, Music_SSAqua_Ch2

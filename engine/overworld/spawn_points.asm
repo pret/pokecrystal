@@ -1,3 +1,5 @@
+SECTION "SpawnPoints - IsSpawnPoint", ROMX
+
 INCLUDE "data/maps/spawn_points.asm"
 
 LoadSpawnPoint:

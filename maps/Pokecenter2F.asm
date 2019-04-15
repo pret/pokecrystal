@@ -4,6 +4,9 @@
 	const POKECENTER2F_TIME_CAPSULE_RECEPTIONIST
 	const POKECENTER2F_OFFICER
 
+
+SECTION "Pokecenter2F_MapScripts", ROMX
+
 Pokecenter2F_MapScripts:
 	db 6 ; scene scripts
 	scene_script .Scene0 ; SCENE_DEFAULT

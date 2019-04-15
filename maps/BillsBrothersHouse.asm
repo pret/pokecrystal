@@ -2,6 +2,9 @@
 	const BILLSBROTHERSHOUSE_POKEFAN_F
 	const BILLSBROTHERSHOUSE_YOUNGSTER
 
+
+SECTION "BillsBrothersHouse_MapScripts", ROMX
+
 BillsBrothersHouse_MapScripts:
 	db 0 ; scene scripts
 

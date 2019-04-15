@@ -1,3 +1,5 @@
+SECTION "UnknownText_0x6717a - ErinComeBattleText", ROMX
+
 UnknownText_0x6717a:
 	text_ram wStringBuffer3
 	text "'s @"

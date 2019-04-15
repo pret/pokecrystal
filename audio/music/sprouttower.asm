@@ -1,3 +1,5 @@
+SECTION "Music_SproutTower", ROMX
+
 Music_SproutTower:
 	musicheader 4, 1, Music_SproutTower_Ch1
 	musicheader 1, 2, Music_SproutTower_Ch2

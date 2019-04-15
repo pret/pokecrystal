@@ -1,3 +1,5 @@
+SECTION "Sfx_PokeballsPlacedOnTable - Sfx_Elevator_Ch8", ROMX
+
 Sfx_PokeballsPlacedOnTable:
 	musicheader 1, 5, Sfx_PokeballsPlacedOnTable_Ch5
 
@@ -5004,6 +5006,9 @@ Sfx_Elevator_Ch8:
 	noise E_,  4, $0, $0
 	endchannel
 
+
+SECTION "Sfx_StopSlot - Sfx_StopSlot_Ch5", ROMX
+
 Sfx_StopSlot:
 	musicheader 1, 5, Sfx_StopSlot_Ch5
 
@@ -5013,6 +5018,9 @@ Sfx_StopSlot_Ch5:
 	sound __,  5, $82, $0760
 	endchannel
 
+
+SECTION "Sfx_GlassTing - Sfx_GlassTing_Ch5", ROMX
+
 Sfx_GlassTing:
 	musicheader 1, 5, Sfx_GlassTing_Ch5
 
@@ -5020,6 +5028,9 @@ Sfx_GlassTing_Ch5:
 	dutycycle $2
 	sound C#,  1, $d1, $07dc
 	endchannel
+
+
+SECTION "Sfx_GlassTing2 - Sfx_GlassTing2_Ch6", ROMX
 
 Sfx_GlassTing2:
 	musicheader 2, 5, Sfx_GlassTing2_Ch5

@@ -6,6 +6,9 @@
 	const GOLDENRODDEPTSTORE5F_CARRIE
 	const GOLDENRODDEPTSTORE5F_RECEPTIONIST
 
+
+SECTION "GoldenrodDeptStore5F_MapScripts", ROMX
+
 GoldenrodDeptStore5F_MapScripts:
 	db 0 ; scene scripts
 

@@ -1,3 +1,5 @@
+SECTION "CheckMagikarpLength - MagikarpHouseSign", ROMX
+
 CheckMagikarpLength:
 	; Returns 3 if you select a Magikarp that beats the previous record.
 	; Returns 2 if you select a Magikarp, but the current record is longer.

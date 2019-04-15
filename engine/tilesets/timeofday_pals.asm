@@ -1,6 +1,11 @@
+SECTION "DummyPredef35", ROMX
+
 DummyPredef35:
 DummyPredef36:
 	ret
+
+
+SECTION "UpdateTimeOfDayPal - GetTimePalFade", ROMX
 
 UpdateTimeOfDayPal::
 	call UpdateTime
