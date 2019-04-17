@@ -34,8 +34,9 @@ ROMX $01
 	"GetFirstPokemonHappiness - CopyPokemonName_Buffer1_Buffer3" ; main.asm
 	"DummyPredef1" ; engine/events/haircut.asm
 ROMX $02
+	"BlankScreen" ; engine/menus/blank_screen.asm
+
 	; engine/overworld/player_object.asm
-	"BlankScreen"
 	"SpawnPlayer - CopyTempObjectToObjectStruct"
 	"TrainerWalkToPlayer"
 	"SurfStartStep"

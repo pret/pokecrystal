@@ -20,13 +20,14 @@ INCLUDE "engine/events/shuckle.asm"
 INCLUDE "engine/events/haircut.asm"
 
 ;SECTION independent
-include "engine/overworld/player_object.asm"
-include "engine/math/sine.asm"
-include "engine/predef.asm"
-include "engine/gfx/color.asm"
-include "engine/events/checktime.asm"
-include "engine/events/specials.asm"
-include "engine/math/print_num.asm"
+INCLUDE "engine/menus/blank_screen.asm"
+INCLUDE "engine/overworld/player_object.asm"
+INCLUDE "engine/math/sine.asm"
+INCLUDE "engine/predef.asm"
+INCLUDE "engine/gfx/color.asm"
+INCLUDE "engine/events/checktime.asm"
+INCLUDE "engine/events/specials.asm"
+INCLUDE "engine/math/print_num.asm"
 
 ;SECTION "ComputeHPBarPixels - ShortHPBar_CalcPixelFrame", ROMX
 INCLUDE "engine/pokemon/health.asm"
