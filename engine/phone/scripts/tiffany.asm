@@ -1,3 +1,6 @@
+; FLOAT: Must be in the same bank as "GrandmaString - BrotherString"
+SECTION "TiffanyPhoneCalleeScript - TiffanyHasPinkBow", ROMX, BANK[$2f]
+
 TiffanyPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, PICNICKER, TIFFANY3
 	checkflag ENGINE_TIFFANY

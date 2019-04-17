@@ -1,3 +1,5 @@
+SECTION "IrwinPhoneCalleeScript - IrwinPhoneCallerScript", ROMX
+
 IrwinPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, JUGGLER, IRWIN1
 	farscall PhoneScript_AnswerPhone_Male

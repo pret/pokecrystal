@@ -1,3 +1,5 @@
+SECTION "GavenPhoneCalleeScript - GavenFoundRare", ROMX
+
 GavenPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, COOLTRAINERM, GAVEN3
 	checkflag ENGINE_GAVEN

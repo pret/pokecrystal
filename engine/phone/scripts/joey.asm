@@ -1,3 +1,5 @@
+SECTION "JoeyPhoneCalleeScript - JoeyWantsBattle", ROMX
+
 JoeyPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, YOUNGSTER, JOEY1
 	checkflag ENGINE_JOEY

@@ -1,3 +1,5 @@
+SECTION "BillPhoneCalleeScript - BillPhoneCallerScript", ROMX
+
 BillPhoneCalleeScript:
 	checktime DAY
 	iftrue .daygreet

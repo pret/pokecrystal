@@ -1,3 +1,5 @@
+SECTION "BeverlyPhoneCalleeScript - BeverlyPhoneCallerScript", ROMX
+
 BeverlyPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, POKEFANF, BEVERLY1
 	farscall PhoneScript_AnswerPhone_Female

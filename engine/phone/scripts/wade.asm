@@ -1,3 +1,5 @@
+SECTION "WadePhoneCalleeScript - WadeHasItem2", ROMX
+
 WadePhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, BUG_CATCHER, WADE1
 	checkflag ENGINE_WADE

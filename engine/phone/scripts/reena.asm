@@ -1,3 +1,5 @@
+SECTION "ReenaPhoneCalleeScript - ReenaWantsBattle", ROMX
+
 ReenaPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, COOLTRAINERF, REENA1
 	checkflag ENGINE_REENA

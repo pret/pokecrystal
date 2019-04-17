@@ -1,3 +1,5 @@
+SECTION "KenjiPhoneCalleeScript - KenjiPhoneCallerScript", ROMX
+
 KenjiPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, BLACKBELT_T, KENJI3
 	farscall PhoneScript_AnswerPhone_Male

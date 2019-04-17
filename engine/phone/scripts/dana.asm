@@ -1,3 +1,5 @@
+SECTION "DanaPhoneCalleeScript - DanaHasThunderstone", ROMX
+
 DanaPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, LASS, DANA1
 	checkflag ENGINE_DANA

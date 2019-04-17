@@ -1,3 +1,5 @@
+SECTION "BrentPhoneCalleeScript - BrentBillTrivia", ROMX
+
 BrentPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, POKEMANIAC, BRENT1
 	checkflag ENGINE_BRENT

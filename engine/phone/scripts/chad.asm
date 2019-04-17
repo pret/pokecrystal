@@ -1,3 +1,5 @@
+SECTION "ChadPhoneCalleeScript - ChadOakGossip", ROMX
+
 ChadPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, SCHOOLBOY, CHAD1
 	checkflag ENGINE_CHAD

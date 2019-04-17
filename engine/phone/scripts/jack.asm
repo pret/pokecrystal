@@ -1,3 +1,5 @@
+SECTION "JackPhoneCalleeScript - JackBattleTrivia", ROMX
+
 JackPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, SCHOOLBOY, JACK1
 	checkflag ENGINE_JACK

@@ -1,3 +1,5 @@
+SECTION "JosePhoneCalleeScript - JoseHasStarPiece", ROMX
+
 JosePhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, BIRD_KEEPER, JOSE2
 	checkflag ENGINE_JOSE

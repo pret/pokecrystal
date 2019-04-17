@@ -1,3 +1,5 @@
+SECTION "TullyPhoneCalleeScript - TullyFoundWaterStone", ROMX
+
 TullyPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, FISHER, TULLY1
 	checkflag ENGINE_TULLY

@@ -1,3 +1,5 @@
+SECTION "GinaPhoneCalleeScript - GinaHasLeafStone", ROMX
+
 GinaPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, PICNICKER, GINA1
 	checkflag ENGINE_GINA

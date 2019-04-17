@@ -1,3 +1,5 @@
+SECTION "VancePhoneCalleeScript - VanceWantsRematch", ROMX
+
 VancePhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, BIRD_KEEPER, VANCE1
 	checkflag ENGINE_VANCE

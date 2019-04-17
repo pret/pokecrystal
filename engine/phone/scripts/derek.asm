@@ -1,3 +1,5 @@
+SECTION "DerekPhoneCalleeScript - DerekPhoneCallerScript", ROMX
+
 DerekPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, POKEFANM, DEREK1
 	farscall PhoneScript_AnswerPhone_Male

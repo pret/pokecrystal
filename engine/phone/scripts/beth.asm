@@ -1,3 +1,5 @@
+SECTION "BethPhoneCalleeScript - BethWantsBattle", ROMX
+
 BethPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, COOLTRAINERF, BETH1
 	checkflag ENGINE_BETH

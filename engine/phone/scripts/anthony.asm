@@ -1,3 +1,5 @@
+SECTION "AnthonyPhoneCalleeScript - AnthonyTriesDunsparceSwarm", ROMX
+
 AnthonyPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, HIKER, ANTHONY2
 	checkflag ENGINE_ANTHONY

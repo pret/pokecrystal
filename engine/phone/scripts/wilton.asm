@@ -1,3 +1,5 @@
+SECTION "WiltonPhoneCalleeScript - WiltonHasItem", ROMX
+
 WiltonPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, FISHER, WILTON1
 	checkflag ENGINE_WILTON

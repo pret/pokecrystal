@@ -609,6 +609,42 @@ ROMX $2e
 ROMX $2f
 	"StdScripts - Movement_ContestResults_WalkAfterWarp" ; engine/events/std_scripts.asm
 	"UnusedPhoneScript - BrotherString" ; main.asm
+	"MomPhoneCalleeScript - MomPhoneLectureScript" ; engine/phone/scripts/mom.asm
+	"BillPhoneCalleeScript - BillPhoneCallerScript" ; engine/phone/scripts/bill.asm
+	"ElmPhoneCalleeScript - ElmPhoneCallerScript" ; engine/phone/scripts/elm.asm
+	"JackPhoneCalleeScript - JackBattleTrivia" ; engine/phone/scripts/jack.asm
+	"BeverlyPhoneCalleeScript - BeverlyPhoneCallerScript" ; engine/phone/scripts/beverly.asm
+	"HueyPhoneCalleeScript - HueyWantsBattle" ; engine/phone/scripts/huey.asm
+	"GavenPhoneCalleeScript - GavenFoundRare" ; engine/phone/scripts/gaven.asm
+	"BethPhoneCalleeScript - BethWantsBattle" ; engine/phone/scripts/beth.asm
+	"JosePhoneCalleeScript - JoseHasStarPiece" ; engine/phone/scripts/jose.asm
+	"ReenaPhoneCalleeScript - ReenaWantsBattle" ; engine/phone/scripts/reena.asm
+	"JoeyPhoneCalleeScript - JoeyWantsBattle" ; engine/phone/scripts/joey.asm
+	"WadePhoneCalleeScript - WadeHasItem2" ; engine/phone/scripts/wade.asm
+	"RalphPhoneCalleeScript - Ralph_SetUpSwarm" ; engine/phone/scripts/ralph.asm
+	"LizPhoneCalleeScript - LizGossipScript" ; engine/phone/scripts/liz.asm
+	"AnthonyPhoneCalleeScript - AnthonyTriesDunsparceSwarm" ; engine/phone/scripts/anthony.asm
+	"ToddPhoneCalleeScript - ToddDeptStoreSale" ; engine/phone/scripts/todd.asm
+	"GinaPhoneCalleeScript - GinaHasLeafStone" ; engine/phone/scripts/gina.asm
+	"IrwinPhoneCalleeScript - IrwinPhoneCallerScript" ; engine/phone/scripts/irwin.asm
+	"ArniePhoneCalleeScript - ArnieYanmaAlreadySwarming" ; engine/phone/scripts/arnie.asm
+	"AlanPhoneCalleeScript - AlanHasFireStone" ; engine/phone/scripts/alan.asm
+	"DanaPhoneCalleeScript - DanaHasThunderstone" ; engine/phone/scripts/dana.asm
+	"ChadPhoneCalleeScript - ChadOakGossip" ; engine/phone/scripts/chad.asm
+	"DerekPhoneCalleeScript - DerekPhoneCallerScript" ; engine/phone/scripts/derek.asm
+	"TullyPhoneCalleeScript - TullyFoundWaterStone" ; engine/phone/scripts/tully.asm
+	"BrentPhoneCalleeScript - BrentBillTrivia" ; engine/phone/scripts/brent.asm
+	"TiffanyPhoneCalleeScript - TiffanyHasPinkBow" ; engine/phone/scripts/tiffany.asm
+	"VancePhoneCalleeScript - VanceWantsRematch" ; engine/phone/scripts/vance.asm
+	"WiltonPhoneCalleeScript - WiltonHasItem" ; engine/phone/scripts/wilton.asm
+	"KenjiPhoneCalleeScript - KenjiPhoneCallerScript" ; engine/phone/scripts/kenji.asm
+	"ParryPhoneCalleeScript - ParryWantsBattle" ; engine/phone/scripts/parry.asm
+	"ErinPhoneCalleeScript - ErinWantsBattle" ; engine/phone/scripts/erin.asm
+
+	; engine/phone/scripts/generic_callee.asm
+	"PhoneScript_Random2 - PhoneScript_MonFlavorText"
+	"GrandmaString - BrotherString"
+
 	"TalkToTrainerScript - AlreadyBeatenTrainerScript" ; engine/events/trainer_scripts.asm
 ROMX $30
 	"Sprites 1" ; (not splitting) gfx/sprites.asm

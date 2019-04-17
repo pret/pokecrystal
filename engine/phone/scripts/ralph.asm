@@ -1,3 +1,5 @@
+SECTION "RalphPhoneCalleeScript - Ralph_SetUpSwarm", ROMX
+
 RalphPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, FISHER, RALPH1
 	checkflag ENGINE_RALPH

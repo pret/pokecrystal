@@ -1,3 +1,5 @@
+SECTION "PhoneScript_Random2 - PhoneScript_MonFlavorText", ROMX
+
 PhoneScript_Random2:
 	random 2
 	end
@@ -1254,6 +1256,10 @@ PhoneScript_MonFlavorText:
 	farwritetext UnknownText_0x1b522b
 	buttonsound
 	farsjump PhoneScript_HangupText_Male
+
+
+; FLOAT: Must be in the same bank as "TiffanyPhoneCalleeScript - TiffanyHasPinkBow"
+SECTION "GrandmaString - BrotherString", ROMX, BANK[$2f]
 
 GrandmaString: db "Grandma@"
 GrandpaString: db "Grandpa@"

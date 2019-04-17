@@ -1,3 +1,5 @@
+SECTION "ErinPhoneCalleeScript - ErinWantsBattle", ROMX
+
 ErinPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, PICNICKER, ERIN1
 	checkflag ENGINE_ERIN

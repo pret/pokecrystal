@@ -1,3 +1,5 @@
+SECTION "ArniePhoneCalleeScript - ArnieYanmaAlreadySwarming", ROMX
+
 ArniePhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, BUG_CATCHER, ARNIE1
 	checkflag ENGINE_ARNIE

@@ -1,3 +1,5 @@
+SECTION "AlanPhoneCalleeScript - AlanHasFireStone", ROMX
+
 AlanPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, SCHOOLBOY, ALAN1
 	checkflag ENGINE_ALAN

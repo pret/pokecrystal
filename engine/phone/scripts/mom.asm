@@ -1,3 +1,5 @@
+SECTION "MomPhoneCalleeScript - MomPhoneLectureScript", ROMX
+
 MomPhoneCalleeScript:
 	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	iftrue .bcec5

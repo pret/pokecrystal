@@ -1,3 +1,5 @@
+SECTION "ToddPhoneCalleeScript - ToddDeptStoreSale", ROMX
+
 ToddPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, CAMPER, TODD1
 	checkflag ENGINE_TODD

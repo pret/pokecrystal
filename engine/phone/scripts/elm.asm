@@ -1,3 +1,5 @@
+SECTION "ElmPhoneCalleeScript - ElmPhoneCallerScript", ROMX
+
 ElmPhoneCalleeScript:
 	readvar VAR_SPECIALPHONECALL
 	ifequal SPECIALCALL_POKERUS, .pokerus

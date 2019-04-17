@@ -1,3 +1,5 @@
+SECTION "HueyPhoneCalleeScript - HueyWantsBattle", ROMX
+
 HueyPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, SAILOR, HUEY1
 	checkflag ENGINE_HUEY

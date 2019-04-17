@@ -1,3 +1,5 @@
+SECTION "LizPhoneCalleeScript - LizGossipScript", ROMX
+
 LizPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, PICNICKER, LIZ1
 	checkflag ENGINE_LIZ

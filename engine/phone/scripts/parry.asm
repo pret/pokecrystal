@@ -1,3 +1,5 @@
+SECTION "ParryPhoneCalleeScript - ParryWantsBattle", ROMX
+
 ParryPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, HIKER, PARRY1
 	checkflag ENGINE_PARRY
