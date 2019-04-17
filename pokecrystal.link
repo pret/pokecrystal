@@ -35,15 +35,7 @@ ROMX $01
 	"DummyPredef1" ; engine/events/haircut.asm
 ROMX $02
 	"BlankScreen" ; engine/menus/blank_screen.asm
-
-	; engine/overworld/player_object.asm
-	"SpawnPlayer - CopyTempObjectToObjectStruct"
-	"TrainerWalkToPlayer"
-	"SurfStartStep"
-	"FollowNotExact"
-	"GetRelativeFacing"
-	"QueueFollowerFirstStep"
-
+	"SpawnPlayer - QueueFollowerFirstStep" ; engine/overworld/player_object.asm
 	"_Sine" ; engine/math/sine.asm
 	"GetPredefPointer - PredefPointers" ; engine/predef.asm
 	"LoadSGBLayout - SlotMachinePals" ; engine/gfx/color.asm

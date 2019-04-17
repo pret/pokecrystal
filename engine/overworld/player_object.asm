@@ -1,4 +1,4 @@
-SECTION "SpawnPlayer - CopyTempObjectToObjectStruct", ROMX
+SECTION "SpawnPlayer - QueueFollowerFirstStep", ROMX
 
 SpawnPlayer:
 	ld a, -1
@@ -497,9 +497,6 @@ CopyTempObjectToObjectStruct:
 	ld [hl], a
 	ret
 
-
-SECTION "TrainerWalkToPlayer", ROMX
-
 TrainerWalkToPlayer:
 	ldh a, [hLastTalked]
 	call InitMovementBuffer
@@ -564,9 +561,6 @@ TrainerWalkToPlayer:
 	call ComputePathToWalkToPlayer
 	ret
 
-
-SECTION "SurfStartStep", ROMX
-
 SurfStartStep:
 	call InitMovementBuffer
 	call .GetMovementData
@@ -592,9 +586,6 @@ SurfStartStep:
 	slow_step UP
 	slow_step LEFT
 	slow_step RIGHT
-
-
-SECTION "FollowNotExact", ROMX
 
 FollowNotExact::
 	push bc
@@ -682,9 +673,6 @@ FollowNotExact::
 	add hl, de
 	ld [hl], STEP_TYPE_00
 	ret
-
-
-SECTION "GetRelativeFacing", ROMX
 
 GetRelativeFacing::
 ; Determines which way map object e would have to turn to face map object d.  Returns carry if it's impossible for whatever reason.
@@ -791,9 +779,6 @@ GetRelativeFacing::
 .same_x_and_y
 	scf
 	ret
-
-
-SECTION "QueueFollowerFirstStep", ROMX
 
 QueueFollowerFirstStep:
 	call .QueueFirstStep
