@@ -123,12 +123,6 @@ INCLUDE "audio/music/clair.asm"
 INCLUDE "audio/music/mobileadapter.asm"
 INCLUDE "audio/music/postcredits.asm"
 INCLUDE "audio/sfx.asm"
-
-
-SECTION "Crystal Sound Effects", ROMX
-
 INCLUDE "audio/sfx_crystal.asm"
-
-;SECTION independent
 INCLUDE "data/pokemon/cries.asm"
 INCLUDE "audio/cries.asm"
