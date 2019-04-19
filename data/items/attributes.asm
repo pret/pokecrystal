@@ -5,6 +5,9 @@ item_attribute: MACRO
 	dn \6, \7
 ENDM
 
+
+SECTION "ItemAttributes", ROMX
+
 ItemAttributes:
 ; entries correspond to item ids
 ; MASTER_BALL

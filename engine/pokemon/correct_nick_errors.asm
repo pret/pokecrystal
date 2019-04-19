@@ -1,3 +1,5 @@
+SECTION "CorrectNickErrors", ROMX
+
 CorrectNickErrors::
 ; error-check monster nick before use
 ; must be a peace offering to gamesharkers

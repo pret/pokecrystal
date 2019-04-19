@@ -1,3 +1,6 @@
+; FLOAT: Must be in the same bank as GameInit
+SECTION "WriteOAMDMACodeToHRAM", ROMX, BANK[$01]
+
 WriteOAMDMACodeToHRAM::
 	ld c, LOW(hTransferVirtualOAM)
 	ld b, .PushOAMEnd - .PushOAM

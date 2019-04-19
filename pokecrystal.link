@@ -30,7 +30,19 @@ ROM0
 	"Home"
 ROMX $01
 	"PlaceWaitingText" ; engine/link/place_waiting_text.asm
-	"WriteOAMDMACodeToHRAM - Function7171" ; main.asm
+	"WriteOAMDMACodeToHRAM" ; engine/gfx/load_push_oam.asm
+	"Facings - InitSprites" ; engine/overworld/map_objects.asm
+	"_MainMenu - GameInit" ; engine/menus/intro_menu.asm
+	"ReanchorBGMap_NoOAMUpdate - HDMATransfer_FillBGMap0WithBlack" ; engine/overworld/init_map.asm
+	"LearnMove - Text_CantForgetHM" ; engine/pokemon/learn.asm
+	"CorrectNickErrors" ; engine/pokemon/correct_nick_errors.asm
+
+	; engine/math/math.asm
+	"_Multiply"
+	"_Divide"
+
+	"ItemAttributes" ; data/items/attributes.asm
+	"CanObjectMoveInDirection - Function7171" ; engine/overworld/npc_movement.asm
 	"GetFirstPokemonHappiness - CopyPokemonName_Buffer1_Buffer3" ; main.asm
 	"DummyPredef1" ; engine/events/haircut.asm
 ROMX $02
@@ -830,10 +842,10 @@ ROMX $3f
 ROMX $40
 	; mobile/mobile_40.asm
 	"Function100000 - UnknownText_0x1021f4"
-		"Function100000 - UnknownText_0x1021f4 (2)"
-		"Function100000 - UnknownText_0x1021f4 (3)"
-		"Function100000 - UnknownText_0x1021f4 (4)"
-		"Function100000 - UnknownText_0x1021f4 (5)"
+	"Function100000 - UnknownText_0x1021f4 (2)"
+	"Function100000 - UnknownText_0x1021f4 (3)"
+	"Function100000 - UnknownText_0x1021f4 (4)"
+	"Function100000 - UnknownText_0x1021f4 (5)"
 	"Function1021f9 - Palettes_1032e2"
 	"Function103302 - MenuData_103648"
 	"Function103654"
@@ -901,7 +913,7 @@ ROMX $45
 	"MobileStudium - MobileStudium_JumptableIncrement"
 ROMX $46
 	"Function118000 - TilemapPack_11bb7d"
-		"Function118000 - TilemapPack_11bb7d (2)"
+	"Function118000 - TilemapPack_11bb7d (2)"
 ROMX $47
 	"BattleTowerText - BTWinF15" ; engine/events/battle_tower/trainer_text.asm
 ROMX $48

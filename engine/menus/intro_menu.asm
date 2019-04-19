@@ -1,3 +1,6 @@
+; FLOAT: Must be in the same bank as WriteOAMDMACodeToHRAM
+SECTION "_MainMenu - GameInit", ROMX, BANK[$01]
+
 _MainMenu:
 	ld de, MUSIC_NONE
 	call PlayMusic

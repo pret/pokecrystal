@@ -1,3 +1,5 @@
+SECTION "_Multiply", ROMX
+
 _Multiply::
 ; hMultiplier is one byte.
 	ld a, 8
@@ -78,6 +80,9 @@ _Multiply::
 	ldh [hProduct + 0], a
 
 	ret
+
+
+SECTION "_Divide", ROMX
 
 _Divide::
 	xor a

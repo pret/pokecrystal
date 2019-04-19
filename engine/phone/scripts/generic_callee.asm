@@ -1258,7 +1258,7 @@ PhoneScript_MonFlavorText:
 	farsjump PhoneScript_HangupText_Male
 
 
-; FLOAT: Must be in the same bank as "TiffanyPhoneCalleeScript - TiffanyHasPinkBow"
+; FLOAT: Referred to by TiffanysFamilyMembers
 SECTION "GrandmaString - BrotherString", ROMX, BANK[$2f]
 
 GrandmaString: db "Grandma@"

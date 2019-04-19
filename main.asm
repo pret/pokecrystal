@@ -2,8 +2,6 @@ INCLUDE "constants.asm"
 
 ;SECTION independent
 INCLUDE "engine/link/place_waiting_text.asm"
-
-SECTION "WriteOAMDMACodeToHRAM - Function7171", ROMX
 INCLUDE "engine/gfx/load_push_oam.asm"
 INCLUDE "engine/overworld/map_objects.asm"
 INCLUDE "engine/menus/intro_menu.asm"

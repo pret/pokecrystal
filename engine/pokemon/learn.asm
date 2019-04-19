@@ -1,3 +1,5 @@
+SECTION "LearnMove - Text_CantForgetHM", ROMX
+
 LearnMove:
 	call LoadTileMapToTempTileMap
 	ld a, [wCurPartyMon]
