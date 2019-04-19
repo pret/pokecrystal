@@ -247,12 +247,12 @@ GiveTakePartyMonItem:
 .loop
 	farcall DepositSellPack
 
-	ld a, [wcf66]
+	ld a, [wPackUsedItem]
 	and a
 	jr z, .quit
 
-	ld a, [wcf65]
-	cp 2
+	ld a, [wCurPocket]
+	cp KEY_ITEM_POCKET
 	jr z, .next
 
 	call CheckTossableItem

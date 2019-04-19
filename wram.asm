@@ -964,9 +964,23 @@ wGameboyPrinterRAMEnd::
 
 NEXTU ; c800
 ; bill's pc data
+wBillsPCData::
 wBillsPCPokemonList::
 ; (species, box number, list index) x30
 	ds 3 * 30
+	ds 720
+wBillsPC_ScrollPosition:: db
+wBillsPC_CursorPosition:: db
+wBillsPC_NumMonsInBox:: db
+wBillsPC_NumMonsOnScreen:: db
+wBillsPC_LoadedBox:: db ; 0 if party, 1 - 14 if box, 15 if active box
+wBillsPC_BackupScrollPosition:: db
+wBillsPC_BackupCursorPosition:: db
+wBillsPC_BackupLoadedBox:: db
+wBillsPC_MonHasMail:: db
+	ds 5
+wBillsPCDataEnd::
+
 
 NEXTU ; c800
 ; Hall of Fame data
@@ -980,9 +994,9 @@ wLinkDataEnd::
 NEXTU ; c800
 ; link data members
 wLinkPlayerName:: ds NAME_LENGTH
-wLinkPartyCount::   db
+wLinkPartyCount:: db
 wLinkPartySpecies:: ds PARTY_LENGTH
-wLinkPartyEnd::     db ; older code doesn't check PartyCount
+wLinkPartyEnd:: db ; older code doesn't check PartyCount
 
 UNION ; c813
 ; time capsule party data
@@ -1095,22 +1109,12 @@ wca02:: db
 NEXTU ; ca00
 ; link data
 	ds 191
-wcabf:: ds 79
+wcabf:: ds 1
+ENDU ; cb00
+
+	ds 14
 wcb0e:: ds 5
-wcb13:: ds 23
-ENDU ; cb2a
-
-wBillsPC_ScrollPosition:: db
-wBillsPC_CursorPosition:: db
-wBillsPC_NumMonsInBox:: db
-wBillsPC_NumMonsOnScreen:: db
-wBillsPC_LoadedBox:: db ; 0 if party, 1 - 14 if box, 15 if active box
-wBillsPC_BackupScrollPosition:: db
-wBillsPC_BackupCursorPosition:: db
-wBillsPC_BackupLoadedBox:: db
-wBillsPC_MonHasMail:: db
-	ds 18
-
+wcb13:: ds 50
 wcb45:: ds 20
 wcb59:: ds 20
 wcb6d:: ds 1
@@ -1119,8 +1123,8 @@ wcb84:: ds 100
 wcbe8:: dw
 wLinkOTPartyMonTypes:: ds 2 * PARTY_LENGTH
 	ds 84
-
 wcc4a:: ds 22
+
 wcc60:: ds 1
 wcc61:: ds 1
 wcc62:: ds 2

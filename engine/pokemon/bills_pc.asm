@@ -776,8 +776,8 @@ BillsPC_InitRAM:
 	call ClearSprites
 	call ClearTileMap
 	call BillsPC_InitGFX
-	ld hl, wBillsPCPokemonList
-	ld bc, $338
+	ld hl, wBillsPCData
+	ld bc, wBillsPCDataEnd - wBillsPCData
 	xor a
 	call ByteFill
 	xor a
