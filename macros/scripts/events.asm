@@ -489,9 +489,9 @@ closetext: MACRO
 	db closetext_command
 ENDM
 
-	enum loadbytec2cf_command ; $4a
-loadbytec2cf: MACRO
-	db loadbytec2cf_command
+	enum writeunusedbytebuffer_command ; $4a
+writeunusedbytebuffer: MACRO
+	db writeunusedbytebuffer_command
 	db \1 ; byte
 ENDM
 

@@ -479,7 +479,7 @@ Unreferenced_Function3d9f::
 	xor a
 	ld [wVirtualOAMSprite38Attributes], a
 	ld [wVirtualOAMSprite39Attributes], a
-	ld a, [wc296]
+	ld a, [wUnusedBCDNumber]
 	cp 100
 	jr nc, .max
 	add 1

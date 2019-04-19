@@ -395,11 +395,11 @@ LoadMovementDataPointer::
 ; Load the movement data pointer for object a.
 	ld [wMovementObject], a
 	ldh a, [hROMBank]
-	ld [wMovementDataPointer], a
+	ld [wMovementDataBank], a
 	ld a, l
-	ld [wMovementDataPointer + 1], a
+	ld [wMovementDataAddress], a
 	ld a, h
-	ld [wMovementDataPointer + 2], a
+	ld [wMovementDataAddress + 1], a
 	ld a, [wMovementObject]
 	call CheckObjectVisibility
 	ret c

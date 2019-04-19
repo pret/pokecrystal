@@ -137,7 +137,7 @@ ScriptCommandTable:
 	dw Script_opentext                   ; 47
 	dw Script_refreshscreen              ; 48
 	dw Script_closetext                  ; 49
-	dw Script_loadbytec2cf               ; 4a
+	dw Script_writeunusedbytebuffer      ; 4a
 	dw Script_farwritetext               ; 4b
 	dw Script_writetext                  ; 4c
 	dw Script_repeattext                 ; 4d
@@ -2636,12 +2636,12 @@ Script_refreshscreen:
 	call GetScriptByte
 	ret
 
-Script_loadbytec2cf:
+Script_writeunusedbytebuffer:
 ; script command 0x4a
 ; parameters: byte
 
 	call GetScriptByte
-	ld [wc2cf], a
+	ld [wUnusedScriptByteBuffer], a
 	ret
 
 	db closetext_command ; unused
