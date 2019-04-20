@@ -1,3 +1,5 @@
+SECTION "_HandlePlayerStep - UpdateOverworldMap", ROMX
+
 _HandlePlayerStep::
 	ld a, [wPlayerStepFlags]
 	and a

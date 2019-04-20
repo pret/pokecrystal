@@ -1,3 +1,5 @@
+SECTION "FieldMoveJumptableReset - UnknownText_0xd1d0", ROMX
+
 FieldMoveJumptableReset:
 	xor a
 	ld hl, wBuffer1

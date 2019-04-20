@@ -55,8 +55,15 @@ ROMX $03
 	"CheckTime" ; engine/events/checktime.asm
 	"Special - TrainerHouse" ; engine/events/specials.asm
 	"_PrintNum" ; engine/math/print_num.asm
-	"HealParty - HealPartyMon" ; engine/pokemon/health.asm
-	"ComputeHPBarPixels - ShortHPBar_CalcPixelFrame" ; main.asm
+
+	; engine/pokemon/health.asm
+	"HealParty - HealPartyMon"
+	"ComputeHPBarPixels - AnimateHPBar"
+
+	"FieldMoveJumptableReset - UnknownText_0xd1d0" ; engine/events/overworld.asm
+	"_ReceiveItem - GetItemPrice" ; engine/items/items.asm
+	"_HandlePlayerStep - UpdateOverworldMap" ; engine/overworld/player_step.asm
+	"_AnimateHPBar - ShortHPBar_CalcPixelFrame" ; engine/battle/anim_hp_bar.asm
 	"TryAddMonToParty - BugContest_SetCaughtContestMon" ; main.asm
 	"_DoItemEffect - GetMthMoveOfCurrentMon" ; engine/items/item_effects.asm
 	"GetPokeBallWobble - WobbleProbabilities" ; engine/battle_anims/pokeball_wobble.asm

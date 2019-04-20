@@ -1,3 +1,5 @@
+SECTION "_ReceiveItem - GetItemPrice", ROMX
+
 _ReceiveItem::
 	call DoesHLEqualNumItems
 	jp nz, PutItemInPocket

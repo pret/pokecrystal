@@ -55,7 +55,8 @@ HealPartyMon:
 	ret
 
 
-SECTION "ComputeHPBarPixels - ShortHPBar_CalcPixelFrame", ROMX
+; FLOAT: Must be in the same bank as _AnimateHPBar
+SECTION "ComputeHPBarPixels - AnimateHPBar", ROMX, BANK[$03]
 
 ComputeHPBarPixels:
 ; e = bc * (6 * 8) / de

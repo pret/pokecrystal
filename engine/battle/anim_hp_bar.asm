@@ -1,3 +1,6 @@
+; FLOAT: Must be in the same bank as ComputeHPBarPixels
+SECTION "_AnimateHPBar - ShortHPBar_CalcPixelFrame", ROMX, BANK[$03]
+
 _AnimateHPBar:
 	call .IsMaximumMoreThan48Pixels
 	jr c, .MoreThan48Pixels
