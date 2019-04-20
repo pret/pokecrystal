@@ -208,7 +208,25 @@ ROMX $09
 	"Strings24f9a"
 	"Function24fb2"
 
-	"SelectQuantityToToss - Kurt_SelectQuantity_InterpretJoypad" ; main.asm
+	"SelectQuantityToToss - SellItem_MenuHeader" ; engine/items/buy_sell_toss.asm
+
+	; engine/menus/trainer_card.asm
+	"TrainerCard - TrainerCard_JohtoBadgesOAM"
+	"CardStatusGFX - CardRightCornerGFX"
+
+	"ProfOaksPC - OakPCText4" ; engine/events/prof_oaks_pc.asm
+
+	; engine/overworld/decorations.asm
+	"InitDecorations"
+	"_PlayerDecorationMenu - DecorationDesc_GiantOrnament"
+	"ToggleMaptileDecorations - PadCoords_de"
+
+	"LevelUpHappinessMod" ; engine/pokemon/level_up_happiness.asm
+	"GetTrainerDVs - TrainerClassDVs" ; engine/battle/read_trainer_dvs.asm
+	"_ReturnToBattle_UseBall" ; engine/battle/returntobattle_useball.asm
+	"ConsumeHeldItem - ConsumableEffects" ; engine/battle/consume_held_item.asm
+	"MoveEffectsPointers - DefenseCurl" ; data/moves/effects_pointers.asm
+	"Kurt_SelectQuantity_InterpretJoypad" ; engine/events/kurt_selectquantity_interpretjoypad.asm
 ROMX $0a
 	; engine/link/link.asm
 	"LinkCommunications - Link_EnsureSync"

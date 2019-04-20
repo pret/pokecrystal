@@ -1,3 +1,5 @@
+SECTION "LevelUpHappinessMod", ROMX
+
 LevelUpHappinessMod:
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1CaughtLocation

@@ -1,3 +1,5 @@
+SECTION "ConsumeHeldItem - ConsumableEffects", ROMX
+
 ConsumeHeldItem:
 	push hl
 	push de

@@ -1,3 +1,5 @@
+SECTION "ProfOaksPC - OakPCText4", ROMX
+
 ProfOaksPC:
 	ld hl, OakPCText1
 	call MenuTextbox

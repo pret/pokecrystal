@@ -1,3 +1,6 @@
+; FLOAT: Referred to by Kurt_SelectQuantity_InterpretJoypad
+SECTION "SelectQuantityToToss - SellItem_MenuHeader", ROMX, BANK[$09]
+
 SelectQuantityToToss:
 	ld hl, TossItem_MenuHeader
 	call LoadMenuHeader

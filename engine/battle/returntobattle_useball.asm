@@ -1,3 +1,5 @@
+SECTION "_ReturnToBattle_UseBall", ROMX
+
 _ReturnToBattle_UseBall:
 	call ClearBGPalettes
 	call ClearTileMap

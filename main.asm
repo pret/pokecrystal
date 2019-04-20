@@ -99,8 +99,6 @@ INCLUDE "engine/items/switch_items.asm"
 INCLUDE "engine/menus/menu_2.asm"
 INCLUDE "engine/pokemon/mon_submenu.asm"
 INCLUDE "engine/battle/menu.asm"
-
-SECTION "SelectQuantityToToss - Kurt_SelectQuantity_InterpretJoypad", ROMX
 INCLUDE "engine/items/buy_sell_toss.asm"
 INCLUDE "engine/menus/trainer_card.asm"
 INCLUDE "engine/events/prof_oaks_pc.asm"
@@ -111,8 +109,6 @@ INCLUDE "engine/battle/returntobattle_useball.asm"
 INCLUDE "engine/battle/consume_held_item.asm"
 INCLUDE "data/moves/effects.asm"
 INCLUDE "engine/events/kurt_selectquantity_interpretjoypad.asm"
-
-;SECTION independent
 INCLUDE "engine/link/link.asm"
 INCLUDE "engine/overworld/wildmons.asm"
 INCLUDE "engine/battle/link_result.asm"

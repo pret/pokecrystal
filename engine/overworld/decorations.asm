@@ -1,9 +1,14 @@
+SECTION "InitDecorations", ROMX
+
 InitDecorations:
 	ld a, DECO_FEATHERY_BED
 	ld [wDecoBed], a
 	ld a, DECO_TOWN_MAP
 	ld [wDecoPoster], a
 	ret
+
+
+SECTION "_PlayerDecorationMenu - DecorationDesc_GiantOrnament", ROMX
 
 _PlayerDecorationMenu:
 	ld a, [wWhichIndexSet]
@@ -1083,6 +1088,9 @@ DecorationDesc_GiantOrnament:
 	; A giant doll! It's fluffy and cuddly.
 	text_far _LookGiantDecoText
 	text_end
+
+
+SECTION "ToggleMaptileDecorations - PadCoords_de", ROMX
 
 ToggleMaptileDecorations:
 	; tile coordinates work the same way as for changeblock

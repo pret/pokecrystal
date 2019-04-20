@@ -1,3 +1,5 @@
+SECTION "GetTrainerDVs - TrainerClassDVs", ROMX
+
 GetTrainerDVs:
 ; Return the DVs of wOtherTrainerClass in bc
 
