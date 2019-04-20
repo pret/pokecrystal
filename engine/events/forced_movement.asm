@@ -1,3 +1,5 @@
+SECTION "Script_ForcedMovement", ROMX
+
 Script_ForcedMovement::
 	readvar VAR_FACING
 	ifequal DOWN, .down

@@ -1,3 +1,5 @@
+SECTION "_InitializeStartDay - CopyDayHourMinToHL", ROMX
+
 _InitializeStartDay:
 	call InitializeStartDay
 	ret

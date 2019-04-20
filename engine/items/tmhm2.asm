@@ -1,3 +1,5 @@
+SECTION "CanLearnTMHMMove - TMHMMoves", ROMX
+
 CanLearnTMHMMove:
 	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a

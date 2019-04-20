@@ -1,3 +1,6 @@
+; FLOAT: Must be in the same bank as CheckBugContestContestantFlag
+SECTION "_BugContestJudging - ContestScore", ROMX, BANK[$04]
+
 _BugContestJudging:
 	call ContestScore
 	farcall StubbedTrainerRankings_BugContestScore

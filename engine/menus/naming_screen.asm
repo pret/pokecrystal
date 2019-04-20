@@ -4,6 +4,9 @@ NAMINGSCREEN_BORDER     EQU "■" ; $60
 NAMINGSCREEN_MIDDLELINE EQU "→" ; $eb
 NAMINGSCREEN_UNDERLINE  EQU "<DOT>" ; $f2
 
+
+SECTION "_NamingScreen - MailEntry_Lowercase", ROMX
+
 _NamingScreen:
 	call DisableSpriteUpdates
 	call NamingScreen

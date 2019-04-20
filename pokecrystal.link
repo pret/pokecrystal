@@ -69,7 +69,20 @@ ROMX $03
 	"GetPokeBallWobble - WobbleProbabilities" ; engine/battle_anims/pokeball_wobble.asm
 	"KnowsMove" ; engine/pokemon/knows_move.asm
 ROMX $04
-	"Pack - UseRegisteredItem" ; main.asm
+	"Pack - PackGFX" ; engine/items/pack.asm
+	"_InitializeStartDay - CopyDayHourMinToHL" ; engine/overworld/time.asm
+	"CanLearnTMHMMove - TMHMMoves" ; engine/items/tmhm2.asm
+	"_NamingScreen - MailEntry_Lowercase" ; engine/menus/naming_screen.asm
+
+	; engine/events/misc_scripts.asm
+	"Script_AbortBugContest"
+	"FindItemInBallScript"
+	"HealMachineAnim"
+
+	"Script_BattleWhiteout - GetWhiteoutSpawn" ; engine/events/whiteout.asm
+	"Script_ForcedMovement" ; engine/events/forced_movement.asm
+	"ItemFinder" ; engine/events/itemfinder.asm
+	"StartMenu - UseRegisteredItem" ; engine/menus/start_menu.asm
 	"Elevator - ElevatorFloorNames" ; engine/events/elevator.asm
 
 	; engine/events/bug_contest/contest.asm
@@ -85,9 +98,11 @@ ROMX $04
 	"CheckFacingTileForStdScript - TileCollisionStdScripts"
 	"Script_JumpStdFromRAM"
 
-	"_BugContestJudging - BugCatchingContestantEventFlagTable" ; main.asm
+	"_BugContestJudging - ContestScore" ; engine/events/bug_contest/judging.asm
+	"ApplyPokerusTick" ; engine/events/pokerus/apply_pokerus_tick.asm
 
 	; engine/events/bug_contest/contest_2.asm
+	"SelectRandomBugContestContestants - BugCatchingContestantEventFlagTable"
 	"ContestDropOffMons"
 	"ContestReturnMons"
 

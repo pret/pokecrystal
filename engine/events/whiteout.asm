@@ -1,3 +1,5 @@
+SECTION "Script_BattleWhiteout - GetWhiteoutSpawn", ROMX
+
 Script_BattleWhiteout::
 	callasm BattleBGMap
 	sjump Script_Whiteout

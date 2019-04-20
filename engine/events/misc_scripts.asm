@@ -1,3 +1,5 @@
+SECTION "Script_AbortBugContest", ROMX
+
 Script_AbortBugContest:
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iffalse .finish
@@ -5,6 +7,9 @@ Script_AbortBugContest:
 	special ContestReturnMons
 .finish
 	end
+
+
+SECTION "FindItemInBallScript", ROMX
 
 FindItemInBallScript::
 	callasm .TryReceiveItem

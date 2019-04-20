@@ -26,8 +26,6 @@ INCLUDE "engine/gfx/color.asm"
 INCLUDE "engine/events/checktime.asm"
 INCLUDE "engine/events/specials.asm"
 INCLUDE "engine/math/print_num.asm"
-
-;SECTION "ComputeHPBarPixels - ShortHPBar_CalcPixelFrame", ROMX
 INCLUDE "engine/pokemon/health.asm"
 INCLUDE "engine/events/overworld.asm"
 INCLUDE "engine/items/items.asm"
@@ -44,8 +42,6 @@ INCLUDE "engine/events/bug_contest/caught_mon.asm"
 INCLUDE "engine/items/item_effects.asm"
 INCLUDE "engine/battle_anims/pokeball_wobble.asm"
 INCLUDE "engine/pokemon/knows_move.asm"
-
-SECTION "Pack - UseRegisteredItem", ROMX
 INCLUDE "engine/items/pack.asm"
 INCLUDE "engine/overworld/time.asm"
 INCLUDE "engine/items/tmhm2.asm"
@@ -55,6 +51,8 @@ INCLUDE "engine/events/heal_machine_anim.asm"
 INCLUDE "engine/events/whiteout.asm"
 INCLUDE "engine/events/forced_movement.asm"
 INCLUDE "engine/events/itemfinder.asm"
+
+SECTION "StartMenu - UseRegisteredItem", ROMX, BANK[$04]
 INCLUDE "engine/menus/start_menu.asm"
 INCLUDE "engine/pokemon/mon_menu.asm"
 INCLUDE "engine/overworld/select_menu.asm"
@@ -64,13 +62,9 @@ INCLUDE "engine/events/elevator.asm"
 INCLUDE "engine/events/bug_contest/contest.asm"
 INCLUDE "engine/events/misc_scripts_2.asm"
 INCLUDE "engine/events/std_collision.asm"
-
-SECTION "_BugContestJudging - BugCatchingContestantEventFlagTable", ROMX
 INCLUDE "engine/events/bug_contest/judging.asm"
 INCLUDE "engine/events/pokerus/apply_pokerus_tick.asm"
 INCLUDE "engine/events/bug_contest/contest_2.asm"
-
-;SECTION independent
 INCLUDE "engine/pokemon/correct_party_errors.asm"
 INCLUDE "engine/math/get_square_root.asm"
 INCLUDE "engine/rtc/rtc.asm"

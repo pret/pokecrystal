@@ -7,6 +7,9 @@
 	const HEALMACHINESTATE_HOFPLAYSFX
 	const HEALMACHINESTATE_FINISH
 
+
+SECTION "HealMachineAnim", ROMX
+
 HealMachineAnim:
 	; If you have no Pokemon, don't change the buffer.  This can lead to some glitchy effects if you have no Pokemon.
 	ld a, [wPartyCount]

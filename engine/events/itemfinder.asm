@@ -1,3 +1,5 @@
+SECTION "ItemFinder", ROMX
+
 ItemFinder:
 	farcall CheckForHiddenItems
 	jr c, .found_something

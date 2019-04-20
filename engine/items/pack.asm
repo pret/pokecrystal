@@ -12,6 +12,10 @@
 	const PACKSTATE_QUITNOSCRIPT       ;  9
 	const PACKSTATE_QUITRUNSCRIPT      ; 10
 
+
+; FLOAT: Must be in the same bank as TryGiveItemToPartymon
+SECTION "Pack - PackGFX", ROMX, BANK[$04]
+
 Pack:
 	ld hl, wOptions
 	set NO_TEXT_SCROLL, [hl]
