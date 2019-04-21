@@ -25,21 +25,21 @@ PowerPlantGuardPhoneScript:
 	showemote EMOTE_SHOCK, POWERPLANT_OFFICER1, 15
 	waitsfx
 	pause 30
-	applymovement POWERPLANT_OFFICER1, MovementData_0x188ed5
+	applymovement POWERPLANT_OFFICER1, PowerPlantOfficer1ApproachGymGuy2Movement
 	turnobject POWERPLANT_GYM_GUY1, DOWN
 	turnobject POWERPLANT_GYM_GUY2, DOWN
 	opentext
-	writetext UnknownText_0x188f22
+	writetext PowerPlantOfficer1CeruleanShadyCharacterText
 	waitbutton
 	closetext
 	turnobject POWERPLANT_OFFICER1, LEFT
 	turnobject PLAYER, RIGHT
 	opentext
-	writetext UnknownText_0x188f7f
+	writetext PowerPlantOfficer1CouldIAskForYourCooperationText
 	waitbutton
 	closetext
 	turnobject PLAYER, DOWN
-	applymovement POWERPLANT_OFFICER1, MovementData_0x188eda
+	applymovement POWERPLANT_OFFICER1, PowerPlantOfficer1ReturnToPostMovement
 	setscene SCENE_POWERPLANT_NOTHING
 	end
 
@@ -50,19 +50,19 @@ PowerPlantOfficerScript:
 	iftrue .ReturnedMachinePart
 	checkevent EVENT_MET_MANAGER_AT_POWER_PLANT
 	iftrue .MetManager
-	writetext UnknownText_0x188ee0
+	writetext PowerPlantOfficer1AThiefBrokeInText
 	waitbutton
 	closetext
 	end
 
 .MetManager:
-	writetext UnknownText_0x188f7f
+	writetext PowerPlantOfficer1CouldIAskForYourCooperationText
 	waitbutton
 	closetext
 	end
 
 .ReturnedMachinePart:
-	writetext UnknownText_0x188fa2
+	writetext PowerPlantOfficer1HaveToBeefUpSecurityText
 	waitbutton
 	closetext
 	end
@@ -72,13 +72,13 @@ PowerPlantGymGuy1Script:
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .ReturnedMachinePart
-	writetext UnknownText_0x188fcf
+	writetext PowerPlantGymGuy1SomeoneStoleAPartText
 	waitbutton
 	closetext
 	end
 
 .ReturnedMachinePart:
-	writetext UnknownText_0x189038
+	writetext PowerPlantGymGuy1GeneratorUpAndRunningText
 	waitbutton
 	closetext
 	end
@@ -88,13 +88,13 @@ PowerPlantGymGuy2Script:
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .ReturnedMachinePart
-	writetext UnknownText_0x189079
+	writetext PowerPlantGymGuy2PowerPlantUpAndRunningText
 	waitbutton
 	closetext
 	end
 
 .ReturnedMachinePart:
-	writetext UnknownText_0x1890ef
+	writetext PowerPlantGymGuy2GeneratorIsRunningAgainText
 	waitbutton
 	closetext
 	end
@@ -104,13 +104,13 @@ PowerPlantGymGuy3Script:
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .ReturnedMachinePart
-	writetext UnknownText_0x18910e
+	writetext PowerPlantGymGuy3ManagerHasBeenSadAndFuriousText
 	waitbutton
 	closetext
 	end
 
 .ReturnedMachinePart:
-	writetext UnknownText_0x18917f
+	writetext PowerPlantGymGuy3ManagerHasBeenCheerfulText
 	waitbutton
 	closetext
 	end
@@ -120,13 +120,13 @@ PowerPlantGymGuy4Script:
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .ReturnedMachinePart
-	writetext UnknownText_0x1891c2
+	writetext PowerPlantGymGuy4MagnetTrainConsumesElectricityText
 	waitbutton
 	closetext
 	end
 
 .ReturnedMachinePart:
-	writetext UnknownText_0x189225
+	writetext PowerPlantGymGuy4WeCanGetMagnetTrainRunningText
 	waitbutton
 	closetext
 	end
@@ -140,7 +140,7 @@ PowerPlantManager:
 	iftrue .FoundMachinePart
 	checkevent EVENT_MET_MANAGER_AT_POWER_PLANT
 	iftrue .MetManager
-	writetext UnknownText_0x189264
+	writetext PowerPlantManagerWhoWouldRuinMyGeneratorText
 	waitbutton
 	closetext
 	setevent EVENT_MET_MANAGER_AT_POWER_PLANT
@@ -151,13 +151,13 @@ PowerPlantManager:
 	end
 
 .MetManager:
-	writetext UnknownText_0x189308
+	writetext PowerPlantManagerIWontForgiveCulpritText
 	waitbutton
 	closetext
 	end
 
 .FoundMachinePart:
-	writetext UnknownText_0x18936e
+	writetext PowerPlantManagerThatsThePartText
 	buttonsound
 	takeitem MACHINE_PART
 	setevent EVENT_RETURNED_MACHINE_PART
@@ -169,19 +169,19 @@ PowerPlantManager:
 .ReturnedMachinePart:
 	checkevent EVENT_GOT_TM07_ZAP_CANNON
 	iftrue .GotZapCannon
-	writetext UnknownText_0x1893c4
+	writetext PowerPlantManagerTakeThisTMText
 	buttonsound
 	verbosegiveitem TM_ZAP_CANNON
 	iffalse .NoRoom
 	setevent EVENT_GOT_TM07_ZAP_CANNON
-	writetext UnknownText_0x1893f4
+	writetext PowerPlantManagerTM07IsZapCannonText
 	waitbutton
 .NoRoom:
 	closetext
 	end
 
 .GotZapCannon:
-	writetext UnknownText_0x189475
+	writetext PowerPlantManagerMyBelovedGeneratorText
 	waitbutton
 	closetext
 	end
@@ -197,14 +197,14 @@ Forest:
 PowerPlantBookshelf:
 	jumpstd difficultbookshelf
 
-MovementData_0x188ed5:
+PowerPlantOfficer1ApproachGymGuy2Movement:
 	step RIGHT
 	step RIGHT
 	step UP
 	step UP
 	step_end
 
-MovementData_0x188eda:
+PowerPlantOfficer1ReturnToPostMovement:
 	step DOWN
 	step DOWN
 	step LEFT
@@ -212,7 +212,7 @@ MovementData_0x188eda:
 	turn_head DOWN
 	step_end
 
-UnknownText_0x188ee0:
+PowerPlantOfficer1AThiefBrokeInText:
 	text "A thief broke into"
 	line "the POWER PLANT…"
 
@@ -220,7 +220,7 @@ UnknownText_0x188ee0:
 	line "coming to?"
 	done
 
-UnknownText_0x188f22:
+PowerPlantOfficer1CeruleanShadyCharacterText:
 	text "I just got word"
 	line "from CERULEAN."
 
@@ -231,18 +231,18 @@ UnknownText_0x188f22:
 	line "around."
 	done
 
-UnknownText_0x188f7f:
+PowerPlantOfficer1CouldIAskForYourCooperationText:
 	text "Could I ask for"
 	line "your cooperation?"
 	done
 
-UnknownText_0x188fa2:
+PowerPlantOfficer1HaveToBeefUpSecurityText:
 	text "We'll have to beef"
 	line "up our security"
 	cont "presence."
 	done
 
-UnknownText_0x188fcf:
+PowerPlantGymGuy1SomeoneStoleAPartText:
 	text "Someone made off"
 	line "with a part that's"
 
@@ -254,7 +254,7 @@ UnknownText_0x188fcf:
 	cont "useless!"
 	done
 
-UnknownText_0x189038:
+PowerPlantGymGuy1GeneratorUpAndRunningText:
 	text "The generator's up"
 	line "and running. It's"
 
@@ -262,7 +262,7 @@ UnknownText_0x189038:
 	line "to spare."
 	done
 
-UnknownText_0x189079:
+PowerPlantGymGuy2PowerPlantUpAndRunningText:
 	text "This POWER PLANT"
 	line "had been abandoned"
 	cont "in the past."
@@ -274,12 +274,12 @@ UnknownText_0x189079:
 	line "the MAGNET TRAIN."
 	done
 
-UnknownText_0x1890ef:
+PowerPlantGymGuy2GeneratorIsRunningAgainText:
 	text "The generator's"
 	line "running again!"
 	done
 
-UnknownText_0x18910e:
+PowerPlantGymGuy3ManagerHasBeenSadAndFuriousText:
 	text "The POWER PLANT's"
 	line "MANAGER is up"
 	cont "ahead."
@@ -291,7 +291,7 @@ UnknownText_0x18910e:
 	cont "furious…"
 	done
 
-UnknownText_0x18917f:
+PowerPlantGymGuy3ManagerHasBeenCheerfulText:
 	text "Since the gener-"
 	line "ator's been fixed,"
 
@@ -299,7 +299,7 @@ UnknownText_0x18917f:
 	line "been cheerful."
 	done
 
-UnknownText_0x1891c2:
+PowerPlantGymGuy4MagnetTrainConsumesElectricityText:
 	text "The MAGNET TRAIN"
 	line "consumes a lot of"
 	cont "electricity."
@@ -309,7 +309,7 @@ UnknownText_0x1891c2:
 	cont "isn't operating."
 	done
 
-UnknownText_0x189225:
+PowerPlantGymGuy4WeCanGetMagnetTrainRunningText:
 	text "All right! We can"
 	line "finally get the"
 
@@ -317,7 +317,7 @@ UnknownText_0x189225:
 	line "running again."
 	done
 
-UnknownText_0x189264:
+PowerPlantManagerWhoWouldRuinMyGeneratorText:
 	text "MANAGER: I, I, I'm"
 	line "ready to blast"
 	cont "someone!"
@@ -335,7 +335,7 @@ UnknownText_0x189264:
 	line "CANNON!"
 	done
 
-UnknownText_0x189308:
+PowerPlantManagerIWontForgiveCulpritText:
 	text "MANAGER: I won't"
 	line "forgive him!"
 
@@ -348,7 +348,7 @@ UnknownText_0x189308:
 	para "Gahahahah!"
 	done
 
-UnknownText_0x18936e:
+PowerPlantManagerThatsThePartText:
 	text "MANAGER: Ah! Yeah!"
 
 	para "That's the missing"
@@ -357,14 +357,14 @@ UnknownText_0x18936e:
 	cont "You found it?"
 	done
 
-UnknownText_0x1893c4:
+PowerPlantManagerTakeThisTMText:
 	text "Wahah! Thanks!"
 
 	para "Here! Take this TM"
 	line "as a reward!"
 	done
 
-UnknownText_0x1893f4:
+PowerPlantManagerTM07IsZapCannonText:
 	text "MANAGER: TM07 is"
 	line "my ZAP CANNON."
 
@@ -378,7 +378,7 @@ UnknownText_0x1893f4:
 	line "packs a wallop!"
 	done
 
-UnknownText_0x189475:
+PowerPlantManagerMyBelovedGeneratorText:
 	text "MANAGER: My be-"
 	line "loved generator!"
 
