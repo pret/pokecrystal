@@ -352,9 +352,41 @@ ROMX $13
 	"PokeSeer - SeerAdvice5"
 	"GetCaughtGender"
 ROMX $14
-	"SelectMonFromParty - ParString" ; main.asm
-	"ListMoves" ; engine/pokemon/mon_stats.asm
-	"InitList - PokemonNames" ; main.asm
+	; engine/pokemon/party_menu.asm
+	"SelectMonFromParty - YouHaveNoPKMNString"
+	"PrintPartyMenuActionText"
+
+	"DoPoisonStep" ; engine/events/poisonstep.asm
+	"SweetScentFromMenu - UnknownText_0x5072b" ; engine/events/sweet_scent.asm
+	"_Squirtbottle" ; engine/events/squirtbottle.asm
+	"_CardKey" ; engine/events/card_key.asm
+	"_BasementKey" ; engine/events/basement_key.asm
+	"_SacredAsh - UnknownText_0x50845" ; engine/events/sacred_ash.asm
+	"CopyMonToTempMon - GetMonSpecies" ; engine/pokemon/tempmon.asm
+	"PrintMonTypes - Dark" ; engine/pokemon/types.asm
+	"Unreferenced_GetGen1TrainerClassName - Gen1TrainerClassNames" ; engine/battle/unreferenced_getgen1trainerclassname.asm
+
+	; engine/pokemon/mon_stats.asm
+	"DrawPlayerHP - DrawHP"
+	"PrintTempMonStats"
+	"GetGender"
+	"ListMovePP"
+	"Unreferenced_Function50cd0"
+	"Unused_PlaceEnemyHPLevel"
+	"PlaceStatusString - ParString"
+	"ListMoves"
+
+	"InitList" ; engine/link/init_list.asm
+	"CalcLevel - GrowthRates" ; engine/pokemon/experience.asm
+	"_SwitchPartyMons" ; engine/pokemon/switchpartymons.asm
+
+	; engine/gfx/load_pics.asm
+	"GetUnownLetter"
+	"GetMonFrontpic - LoadOrientedFrontpic"
+
+	"InsertPokemonIntoBox - InsertDataIntoBoxOrParty" ; engine/pokemon/move_mon_wo_mail.asm
+	"BaseData" ; data/pokemon/base_stats.asm
+	"PokemonNames" ; data/pokemon/names.asm
 	"Unreferenced_MonPicBanks" ; data/pokemon/unused_pic_banks.asm
 	"UnknownEggPic" ; main.asm
 ROMX $15

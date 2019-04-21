@@ -1,3 +1,6 @@
+; FLOAT: Must be in the same bank as GetGender and PlaceStatusString
+SECTION "SelectMonFromParty - YouHaveNoPKMNString", ROMX, BANK[$14]
+
 SelectMonFromParty:
 	call DisableSpriteUpdates
 	xor a
@@ -779,6 +782,9 @@ ToWhichPKMNString:
 
 YouHaveNoPKMNString:
 	db "You have no <PK><MN>!@"
+
+
+SECTION "PrintPartyMenuActionText", ROMX
 
 PrintPartyMenuActionText:
 	ld a, [wCurPartyMon]

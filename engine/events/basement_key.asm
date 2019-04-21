@@ -1,3 +1,5 @@
+SECTION "_BasementKey", ROMX
+
 _BasementKey:
 ; Are we even in the right map to use this?
 	ld a, [wMapGroup]

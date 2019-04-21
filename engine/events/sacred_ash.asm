@@ -1,3 +1,4 @@
+SECTION "_SacredAsh - UnknownText_0x50845", ROMX
 
 _SacredAsh:
 	ld a, $0

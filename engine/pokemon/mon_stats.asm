@@ -1,3 +1,5 @@
+SECTION "DrawPlayerHP - DrawHP", ROMX
+
 DrawPlayerHP:
 	ld a, $1
 	jr DrawHP
@@ -82,6 +84,9 @@ DrawHP:
 	pop de
 	ret
 
+
+SECTION "PrintTempMonStats", ROMX
+
 PrintTempMonStats:
 ; Print wTempMon's stats at hl, with spacing bc.
 	push bc
@@ -120,6 +125,10 @@ PrintTempMonStats:
 	next "SPCL.DEF"
 	next "SPEED"
 	next "@"
+
+
+; FLOAT: Referred to by PlacePartyMonGender
+SECTION "GetGender", ROMX, BANK[$14]
 
 GetGender:
 ; Return the gender of a given monster (wCurPartyMon/wCurOTMon/wCurWildMon).
@@ -234,6 +243,9 @@ GetGender:
 	scf
 	ret
 
+
+SECTION "ListMovePP", ROMX
+
 ListMovePP:
 	ld a, [wNumMoves]
 	inc a
@@ -323,6 +335,9 @@ ListMovePP:
 	jr nz, .load_loop
 	ret
 
+
+SECTION "Unreferenced_Function50cd0", ROMX
+
 Unreferenced_Function50cd0:
 .loop
 	ld [hl], $32
@@ -333,6 +348,11 @@ Unreferenced_Function50cd0:
 	dec c
 	jr nz, .loop
 	ret
+
+
+; FLOAT: Must be in the same bank as CopyMonToTempMon and DrawEnemyHP.
+; Since this function is unused, this disassembly doesn't make sure that is the case.
+SECTION "Unused_PlaceEnemyHPLevel", ROMX
 
 Unused_PlaceEnemyHPLevel:
 	push hl
@@ -361,6 +381,10 @@ Unused_PlaceEnemyHPLevel:
 
 .egg
 	ret
+
+
+; FLOAT: Referred to by PlacePartyMonStatus
+SECTION "PlaceStatusString - ParString", ROMX, BANK[$14]
 
 PlaceStatusString:
 	push de

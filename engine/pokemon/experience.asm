@@ -1,3 +1,5 @@
+SECTION "CalcLevel - GrowthRates", ROMX
+
 CalcLevel:
 	ld a, [wTempMonSpecies]
 	ld [wCurSpecies], a

@@ -1,3 +1,5 @@
+SECTION "InitList", ROMX
+
 InitList:
 	ld a, [wInitListType]
 

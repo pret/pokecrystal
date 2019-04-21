@@ -1,3 +1,5 @@
+SECTION "_CardKey", ROMX
+
 _CardKey:
 ; Are we even in the right map to use this?
 	ld a, [wMapGroup]

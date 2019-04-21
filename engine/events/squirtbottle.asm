@@ -1,3 +1,5 @@
+SECTION "_Squirtbottle", ROMX
+
 _Squirtbottle:
 	ld hl, .SquirtbottleScript
 	call QueueScript

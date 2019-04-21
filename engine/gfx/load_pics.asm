@@ -1,3 +1,5 @@
+SECTION "GetUnownLetter", ROMX
+
 GetUnownLetter:
 ; Return Unown letter in wUnownLetter based on DVs at hl
 
@@ -47,6 +49,9 @@ GetUnownLetter:
 	inc a
 	ld [wUnownLetter], a
 	ret
+
+
+SECTION "GetMonFrontpic - LoadOrientedFrontpic", ROMX
 
 GetMonFrontpic:
 	ld a, [wCurPartySpecies]

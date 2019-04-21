@@ -1,3 +1,5 @@
+SECTION "InsertPokemonIntoBox - InsertDataIntoBoxOrParty", ROMX
+
 InsertPokemonIntoBox:
 	ld a, BANK(sBoxCount)
 	call GetSRAMBank

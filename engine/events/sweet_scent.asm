@@ -1,3 +1,5 @@
+SECTION "SweetScentFromMenu - UnknownText_0x5072b", ROMX
+
 SweetScentFromMenu:
 	ld hl, .SweetScent
 	call QueueScript

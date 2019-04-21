@@ -1,3 +1,5 @@
+SECTION "CopyMonToTempMon - GetMonSpecies", ROMX
+
 CopyMonToTempMon:
 ; gets the BaseData of a mon
 ; and copies the party_struct to wTempMon

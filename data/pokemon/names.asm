@@ -1,3 +1,5 @@
+SECTION "PokemonNames", ROMX
+
 PokemonNames::
 	db "BULBASAUR@"
 	db "IVYSAUR@@@"

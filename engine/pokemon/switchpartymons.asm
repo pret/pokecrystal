@@ -1,3 +1,5 @@
+SECTION "_SwitchPartyMons", ROMX
+
 _SwitchPartyMons:
 	ld a, [wSwitchMon]
 	dec a

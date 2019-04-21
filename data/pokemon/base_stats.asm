@@ -31,6 +31,9 @@ _tms3 = _tms3 >> 8
 endr
 ENDM
 
+
+SECTION "BaseData", ROMX
+
 BaseData::
 INCLUDE "data/pokemon/base_stats/bulbasaur.asm"
 INCLUDE "data/pokemon/base_stats/ivysaur.asm"

@@ -1,3 +1,5 @@
+SECTION "PrintMonTypes - Dark", ROMX
+
 PrintMonTypes:
 ; Print one or both types of [wCurSpecies]
 ; on the stats screen at hl.

@@ -1,3 +1,5 @@
+SECTION "DoPoisonStep", ROMX
+
 DoPoisonStep::
 	ld a, [wPartyCount]
 	and a
