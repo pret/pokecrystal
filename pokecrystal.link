@@ -266,7 +266,9 @@ ROMX $0c
 ROMX $0d
 	"DoPlayerTurn - _CheckBattleScene" ; engine/battle/effect_commands.asm
 ROMX $0e
-	"AI_SwitchOrTryItem - TrainerClassAttributes" ; main.asm
+	"AI_SwitchOrTryItem - TextJump_EnemyUsedOn" ; engine/battle/ai/items.asm
+	"AIScoring - AI_50_50" ; engine/battle/ai/scoring.asm
+	"GetTrainerClassName - TrainerClassAttributes" ; engine/battle/read_trainer_attributes.asm
 	"ReadTrainerParty - MysticalmanGroup" ; engine/battle/read_trainer_party.asm
 ROMX $0f
 	"DoBattle - BattleStartMessage" ; engine/battle/core.asm

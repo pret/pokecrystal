@@ -1,3 +1,6 @@
+; FLOAT: Referred to by "AI_SwitchOrTryItem - TextJump_EnemyUsedOn"
+SECTION "GetTrainerClassName - TrainerClassAttributes", ROMX, BANK[$0e]
+
 GetTrainerClassName:
 	ld hl, wRivalName
 	ld a, c

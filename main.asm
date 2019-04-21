@@ -138,13 +138,9 @@ INCLUDE "engine/events/pokerus/pokerus.asm"
 INCLUDE "engine/battle/start_battle.asm"
 INCLUDE "engine/gfx/place_graphic.asm"
 INCLUDE "engine/battle/effect_commands.asm"
-
-SECTION "AI_SwitchOrTryItem - TrainerClassAttributes", ROMX
 INCLUDE "engine/battle/ai/items.asm"
 INCLUDE "engine/battle/ai/scoring.asm"
 INCLUDE "engine/battle/read_trainer_attributes.asm"
-
-;SECTION independent
 INCLUDE "engine/battle/read_trainer_party.asm"
 INCLUDE "engine/battle/core.asm"
 INCLUDE "data/battle/effect_command_pointers.asm"
