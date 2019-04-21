@@ -1,6 +1,6 @@
 MAHOGANYTOWN_RAGECANDYBAR_PRICE EQU 300
 
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const MAHOGANYTOWN_POKEFAN_M
 	const MAHOGANYTOWN_GRAMPS
 	const MAHOGANYTOWN_FISHER

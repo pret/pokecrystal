@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const MAHOGANYGYM_PRYCE
 	const MAHOGANYGYM_BUENA1
 	const MAHOGANYGYM_ROCKER1

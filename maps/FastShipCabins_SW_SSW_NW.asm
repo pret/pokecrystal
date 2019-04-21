@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const FASTSHIPCABINS_SW_SSW_NW_FISHER
 	const FASTSHIPCABINS_SW_SSW_NW_BUG_CATCHER
 	const FASTSHIPCABINS_SW_SSW_NW_BUENA

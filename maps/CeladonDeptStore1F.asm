@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const CELADONDEPTSTORE1F_RECEPTIONIST
 	const CELADONDEPTSTORE1F_GENTLEMAN
 	const CELADONDEPTSTORE1F_TEACHER

@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const ROUTE6SAFFRONGATE_OFFICER
 
 Route6SaffronGate_MapScripts:

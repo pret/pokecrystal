@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const ROUTE14_POKEFAN_M1
 	const ROUTE14_YOUNGSTER
 	const ROUTE14_POKEFAN_M2

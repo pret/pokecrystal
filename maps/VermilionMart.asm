@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const VERMILIONMART_CLERK
 	const VERMILIONMART_SUPER_NERD
 	const VERMILIONMART_BUENA

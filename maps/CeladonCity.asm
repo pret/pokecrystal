@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const CELADONCITY_FISHER
 	const CELADONCITY_POLIWAG
 	const CELADONCITY_TEACHER1

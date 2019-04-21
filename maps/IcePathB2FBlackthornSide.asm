@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const ICEPATHB2FBLACKTHORNSIDE_POKE_BALL
 
 IcePathB2FBlackthornSide_MapScripts:

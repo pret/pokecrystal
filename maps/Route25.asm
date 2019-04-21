@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const ROUTE25_MISTY
 	const ROUTE25_COOLTRAINER_M1
 	const ROUTE25_YOUNGSTER1

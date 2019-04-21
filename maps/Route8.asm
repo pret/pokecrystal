@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const ROUTE8_BIKER1
 	const ROUTE8_BIKER2
 	const ROUTE8_BIKER3

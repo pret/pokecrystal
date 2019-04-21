@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const FUCHSIAPOKECENTER1F_NURSE
 	const FUCHSIAPOKECENTER1F_COOLTRAINER_M
 	const FUCHSIAPOKECENTER1F_COOLTRAINER_F

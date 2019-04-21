@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const RADIOTOWER2F_SUPER_NERD
 	const RADIOTOWER2F_TEACHER
 	const RADIOTOWER2F_ROCKET1

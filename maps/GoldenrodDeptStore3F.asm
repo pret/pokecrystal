@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const GOLDENRODDEPTSTORE3F_CLERK
 	const GOLDENRODDEPTSTORE3F_SUPER_NERD
 	const GOLDENRODDEPTSTORE3F_ROCKER

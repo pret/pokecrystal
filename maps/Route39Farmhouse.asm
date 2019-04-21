@@ -1,6 +1,6 @@
 ROUTE39FARMHOUSE_MILK_PRICE EQU 500
 
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const ROUTE39FARMHOUSE_POKEFAN_M
 	const ROUTE39FARMHOUSE_POKEFAN_F
 

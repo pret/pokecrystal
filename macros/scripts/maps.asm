@@ -3,6 +3,8 @@ map_id: MACRO
 	db GROUP_\1, MAP_\1
 ENDM
 
+object_const_def EQUS "const_def 2"
+
 scene_script: MACRO
 ;\1: script pointer
 	dw \1

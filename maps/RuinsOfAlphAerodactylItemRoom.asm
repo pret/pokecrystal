@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const RUINSOFALPHAERODACTYLITEMROOM_POKE_BALL1
 	const RUINSOFALPHAERODACTYLITEMROOM_POKE_BALL2
 	const RUINSOFALPHAERODACTYLITEMROOM_POKE_BALL3

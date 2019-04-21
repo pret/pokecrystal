@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const VIRIDIANMART_CLERK
 	const VIRIDIANMART_LASS
 	const VIRIDIANMART_COOLTRAINER_M

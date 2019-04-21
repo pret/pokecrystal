@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const CIANWOODGYM_CHUCK
 	const CIANWOODGYM_BLACK_BELT1
 	const CIANWOODGYM_BLACK_BELT2

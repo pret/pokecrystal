@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const ROUTE34ILEXFORESTGATE_TEACHER1
 	const ROUTE34ILEXFORESTGATE_BUTTERFREE
 	const ROUTE34ILEXFORESTGATE_LASS

@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const ROUTE9_YOUNGSTER1
 	const ROUTE9_LASS1
 	const ROUTE9_YOUNGSTER2

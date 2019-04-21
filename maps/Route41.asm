@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const ROUTE41_OLIVINE_RIVAL1
 	const ROUTE41_OLIVINE_RIVAL2
 	const ROUTE41_OLIVINE_RIVAL3

@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const CHERRYGROVEGYMSPEECHHOUSE_POKEFAN_M
 	const CHERRYGROVEGYMSPEECHHOUSE_BUG_CATCHER
 

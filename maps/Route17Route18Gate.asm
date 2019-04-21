@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const ROUTE17ROUTE18GATE_OFFICER
 
 Route17Route18Gate_MapScripts:

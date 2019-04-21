@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const SEAFOAMGYM_BLAINE
 	const SEAFOAMGYM_GYM_GUY
 

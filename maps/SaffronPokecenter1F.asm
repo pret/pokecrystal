@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const SAFFRONPOKECENTER1F_NURSE
 	const SAFFRONPOKECENTER1F_TEACHER
 	const SAFFRONPOKECENTER1F_FISHER

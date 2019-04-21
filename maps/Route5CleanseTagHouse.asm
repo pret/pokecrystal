@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const ROUTE5CLEANSETAGHOUSE_GRANNY
 	const ROUTE5CLEANSETAGHOUSE_TEACHER
 

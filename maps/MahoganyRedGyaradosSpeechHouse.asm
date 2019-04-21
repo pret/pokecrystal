@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const MAHOGANYREDGYARADOSSPEECHHOUSE_BLACK_BELT
 	const MAHOGANYREDGYARADOSSPEECHHOUSE_TEACHER
 

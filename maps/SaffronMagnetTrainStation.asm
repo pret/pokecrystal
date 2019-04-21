@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const SAFFRONMAGNETTRAINSTATION_OFFICER
 	const SAFFRONMAGNETTRAINSTATION_GYM_GUY
 	const SAFFRONMAGNETTRAINSTATION_TEACHER

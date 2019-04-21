@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const MOUNTMORTAR2FINSIDE_POKE_BALL1
 	const MOUNTMORTAR2FINSIDE_POKE_BALL2
 	const MOUNTMORTAR2FINSIDE_POKE_BALL3

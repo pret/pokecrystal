@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const LAKEOFRAGE_LANCE
 	const LAKEOFRAGE_GRAMPS
 	const LAKEOFRAGE_SUPER_NERD1

@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const NATIONALPARKBUGCONTEST_YOUNGSTER1
 	const NATIONALPARKBUGCONTEST_YOUNGSTER2
 	const NATIONALPARKBUGCONTEST_ROCKER

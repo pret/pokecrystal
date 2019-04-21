@@ -1,6 +1,6 @@
 ROUTE43GATE_TOLL EQU 1000
 
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const ROUTE43GATE_OFFICER
 	const ROUTE43GATE_ROCKET1
 	const ROUTE43GATE_ROCKET2

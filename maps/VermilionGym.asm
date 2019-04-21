@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const VERMILIONGYM_SURGE
 	const VERMILIONGYM_GENTLEMAN
 	const VERMILIONGYM_ROCKER

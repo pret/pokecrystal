@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const LAVRADIOTOWER1F_RECEPTIONIST
 	const LAVRADIOTOWER1F_OFFICER
 	const LAVRADIOTOWER1F_SUPER_NERD1

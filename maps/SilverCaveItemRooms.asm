@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const SILVERCAVEITEMROOMS_POKE_BALL1
 	const SILVERCAVEITEMROOMS_POKE_BALL2
 

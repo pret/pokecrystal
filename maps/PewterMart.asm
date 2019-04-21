@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const PEWTERMART_CLERK
 	const PEWTERMART_YOUNGSTER
 	const PEWTERMART_SUPER_NERD

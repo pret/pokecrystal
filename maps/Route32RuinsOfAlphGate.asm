@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const ROUTE32RUINSOFALPHGATE_OFFICER
 	const ROUTE32RUINSOFALPHGATE_POKEFAN_M
 	const ROUTE32RUINSOFALPHGATE_YOUNGSTER

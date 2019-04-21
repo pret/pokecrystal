@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const ROUTE30BERRYHOUSE_POKEFAN_M
 
 Route30BerryHouse_MapScripts:

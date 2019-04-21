@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const ROUTE21_SWIMMER_GIRL
 	const ROUTE21_SWIMMER_GUY
 	const ROUTE21_FISHER

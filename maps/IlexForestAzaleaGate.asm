@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const ILEXFORESTAZALEAGATE_OFFICER
 	const ILEXFORESTAZALEAGATE_GRANNY
 

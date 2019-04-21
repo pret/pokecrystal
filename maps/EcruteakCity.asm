@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const ECRUTEAKCITY_GRAMPS1
 	const ECRUTEAKCITY_GRAMPS2
 	const ECRUTEAKCITY_LASS1

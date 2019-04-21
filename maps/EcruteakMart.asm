@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const ECRUTEAKMART_CLERK
 	const ECRUTEAKMART_SUPER_NERD
 	const ECRUTEAKMART_GRANNY

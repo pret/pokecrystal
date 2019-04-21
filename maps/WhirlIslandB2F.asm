@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const WHIRLISLANDB2F_POKE_BALL1
 	const WHIRLISLANDB2F_POKE_BALL2
 	const WHIRLISLANDB2F_POKE_BALL3

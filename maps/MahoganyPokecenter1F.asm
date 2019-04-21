@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const MAHOGANYPOKECENTER1F_NURSE
 	const MAHOGANYPOKECENTER1F_POKEFAN_M
 	const MAHOGANYPOKECENTER1F_YOUNGSTER

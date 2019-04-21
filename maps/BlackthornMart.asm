@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const BLACKTHORNMART_CLERK
 	const BLACKTHORNMART_COOLTRAINER_M
 	const BLACKTHORNMART_BLACK_BELT

@@ -1,4 +1,4 @@
-	const_def 2 ; object constants
+	object_const_def ; object_event constants
 	const DARKCAVEVIOLETENTRANCE_POKE_BALL1
 	const DARKCAVEVIOLETENTRANCE_ROCK1
 	const DARKCAVEVIOLETENTRANCE_ROCK2
