@@ -1,3 +1,5 @@
+SECTION "CheckForMobileBattleRules - Function_HasPartyAnEgg", ROMX
+
 CheckForMobileBattleRules:
 	ld de, .PointerTables
 	call BattleTower_ExecuteJumptable

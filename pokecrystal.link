@@ -580,7 +580,27 @@ ROMX $22
 	"GetPlayerBackpic - GetKrisBackpic"
 	"KrisBackpic"
 
-	"String_89116 - Unknown_8ba1f" ; main.asm
+	"String_89116 - Function8adcc" ; mobile/mobile_22.asm
+
+	; engine/events/unown_walls.asm
+	"HoOhChamber"
+	"OmanyteChamber"
+	"SpecialAerodactylChamber"
+	"SpecialKabutoChamber"
+	"DisplayUnownWords - _DisplayUnownWords_CopyWord"
+
+	; engine/events/buena.asm
+	"BuenasPassword"
+	"BuenaPrize - BuenaPrizeItems"
+
+	"GiveDratini" ; engine/events/dratini.asm
+	"CheckForMobileBattleRules - Function_HasPartyAnEgg" ; engine/events/battle_tower/rules.asm
+
+	; mobile/mobile_22_2.asm
+	"Function8b342"
+	"Function8b35d"
+	"Function8b363"
+	"Function8b36c - Unknown_8ba1f"
 ROMX $23
 	; engine/tilesets/timeofday_pals.asm
 	"DummyPredef35"

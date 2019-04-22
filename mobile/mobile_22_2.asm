@@ -1,3 +1,5 @@
+SECTION "Function8b342", ROMX
+
 Function8b342::
 ; Loads the map data pointer, then runs through a
 ; dw with three dummy functions. Spends a lot of energy
@@ -32,6 +34,9 @@ Function8b342::
 .two
 	ret
 
+
+SECTION "Function8b35d", ROMX
+
 Function8b35d:
 	ld a, h
 	cp d
@@ -40,11 +45,18 @@ Function8b35d:
 	cp e
 	ret
 
+
+SECTION "Function8b363", ROMX
+
 Function8b363:
 	push bc
 	farcall Mobile_AlwaysReturnNotCarry
 	pop bc
 	ret
+
+
+; FLOAT: Must be in the same bank as "String_89116 - Function8adcc"
+SECTION "Function8b36c - Unknown_8ba1f", ROMX, BANK[$22]
 
 Function8b36c:
 	; [bc + (0:4)] = -1

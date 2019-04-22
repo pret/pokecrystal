@@ -1,3 +1,5 @@
+SECTION "HoOhChamber", ROMX
+
 HoOhChamber:
 	ld hl, wPartySpecies
 	ld a, [hl]
@@ -9,6 +11,9 @@ HoOhChamber:
 	call EventFlagAction
 .done
 	ret
+
+
+SECTION "OmanyteChamber", ROMX
 
 OmanyteChamber:
 	call GetMapAttributesPointer ; pointless?
@@ -51,6 +56,9 @@ OmanyteChamber:
 .nope
 	ret
 
+
+SECTION "SpecialAerodactylChamber", ROMX
+
 SpecialAerodactylChamber:
 	push de
 	push bc
@@ -78,6 +86,9 @@ SpecialAerodactylChamber:
 	pop de
 	ret
 
+
+SECTION "SpecialKabutoChamber", ROMX
+
 SpecialKabutoChamber:
 	push hl
 	push de
@@ -98,6 +109,9 @@ SpecialKabutoChamber:
 	pop de
 	pop hl
 	ret
+
+
+SECTION "DisplayUnownWords - _DisplayUnownWords_CopyWord", ROMX
 
 DisplayUnownWords:
 	ld a, [wScriptVar]

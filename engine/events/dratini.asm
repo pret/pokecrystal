@@ -1,3 +1,5 @@
+SECTION "GiveDratini", ROMX
+
 GiveDratini:
 ; if wScriptVar is 0 or 1, change the moveset of the last Dratini in the party.
 ;  0: give it a special moveset with Extremespeed.

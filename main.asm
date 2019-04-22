@@ -263,16 +263,12 @@ INCLUDE "gfx/battle_anims.asm"
 INCLUDE "engine/events/halloffame.asm"
 INCLUDE "engine/events/kurt.asm"
 INCLUDE "engine/gfx/player_gfx.asm"
-
-SECTION "String_89116 - Unknown_8ba1f", ROMX
 INCLUDE "mobile/mobile_22.asm"
 INCLUDE "engine/events/unown_walls.asm"
 INCLUDE "engine/events/buena.asm"
 INCLUDE "engine/events/dratini.asm"
 INCLUDE "engine/events/battle_tower/rules.asm"
 INCLUDE "mobile/mobile_22_2.asm"
-
-;SECTION independent
 INCLUDE "engine/tilesets/timeofday_pals.asm"
 
 SECTION "DoBattleTransition - BattleStart_CopyTilemapAtOnce", ROMX

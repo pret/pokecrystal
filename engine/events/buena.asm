@@ -1,3 +1,5 @@
+SECTION "BuenasPassword", ROMX
+
 BuenasPassword:
 	xor a
 	ld [wWhichIndexSet], a
@@ -62,6 +64,9 @@ endr
 	pop hl
 	call PlaceString
 	ret
+
+
+SECTION "BuenaPrize - BuenaPrizeItems", ROMX
 
 BuenaPrize:
 	xor a
