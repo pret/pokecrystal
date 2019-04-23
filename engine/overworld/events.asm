@@ -560,7 +560,7 @@ TryObjectEvent:
 	ld de, 3
 	ld hl, .pointers
 	call IsInArray
-	jr nc, .nope_bugged
+	jr nc, .nope
 	pop bc
 
 	inc hl
@@ -569,7 +569,7 @@ TryObjectEvent:
 	ld l, a
 	jp hl
 
-.nope_bugged
+.nope
 	; pop bc
 	xor a
 	ret

@@ -1711,6 +1711,7 @@ This supports up to six entries.
  	call ValidateTempWildMonSpecies
  	jr c, .nowildbattle
 
+-	ld a, b ; This is in the wrong place.
  	cp UNOWN
  	jr nz, .done
 ```
@@ -1726,7 +1727,7 @@ This supports up to six entries.
  	ld de, 3
  	ld hl, .pointers
  	call IsInArray
- 	jr nc, .nope_bugged
+ 	jr nc, .nope
  	pop bc
 
  	inc hl
@@ -1735,7 +1736,7 @@ This supports up to six entries.
  	ld l, a
  	jp hl
 
- .nope_bugged
+ .nope
 -	; pop bc
 +	pop bc
  	xor a
