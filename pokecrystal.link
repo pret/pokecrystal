@@ -606,7 +606,18 @@ ROMX $23
 	"DummyPredef35"
 	"UpdateTimeOfDayPal - GetTimePalFade"
 
-	"DoBattleTransition - BattleStart_CopyTilemapAtOnce" ; main.asm
+	; engine/battle/battle_transition.asm
+	"DoBattleTransition - StartTrainerBattle_ZoomToBlack"
+	"Unreferenced_Function8c7c9"
+
+	; engine/events/field_moves.asm
+	"PlayWhirlpoolSound"
+	"BlindingFlash"
+	"ShakeHeadbuttTree - Cut_Headbutt_GetPixelFacing"
+	"FlyFromAnim - FlyFunction_FrameTimer"
+
+	"MagnetTrain - MagnetTrainTilemap4" ; engine/events/magnet_train.asm
+	"BattleStart_CopyTilemapAtOnce" ; engine/battle/battlestart_copytilemapatonce.asm
 	"ClearSpriteAnims" ; engine/gfx/sprites.asm
 	"PlaySpriteAnimationsAndDelayFrame - BigmonIcon" ; main.asm
 ROMX $24

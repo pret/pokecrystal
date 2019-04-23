@@ -270,8 +270,6 @@ INCLUDE "engine/events/dratini.asm"
 INCLUDE "engine/events/battle_tower/rules.asm"
 INCLUDE "mobile/mobile_22_2.asm"
 INCLUDE "engine/tilesets/timeofday_pals.asm"
-
-SECTION "DoBattleTransition - BattleStart_CopyTilemapAtOnce", ROMX
 INCLUDE "engine/battle/battle_transition.asm"
 INCLUDE "engine/events/field_moves.asm"
 INCLUDE "engine/events/magnet_train.asm"

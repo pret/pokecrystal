@@ -2,12 +2,18 @@ FIELDMOVE_GRASS EQU $80
 FIELDMOVE_TREE EQU $84
 FIELDMOVE_FLY EQU $84
 
+
+SECTION "PlayWhirlpoolSound", ROMX
+
 PlayWhirlpoolSound:
 	call WaitSFX
 	ld de, SFX_SURF
 	call PlaySFX
 	call WaitSFX
 	ret
+
+
+SECTION "BlindingFlash", ROMX
 
 BlindingFlash:
 	farcall FadeOutPalettes
@@ -20,6 +26,9 @@ BlindingFlash:
 	farcall LoadOW_BGPal7
 	farcall FadeInPalettes
 	ret
+
+
+SECTION "ShakeHeadbuttTree - Cut_Headbutt_GetPixelFacing", ROMX
 
 ShakeHeadbuttTree:
 	farcall ClearSpriteAnims
@@ -304,6 +313,9 @@ Cut_Headbutt_GetPixelFacing:
 	dbpixel 10,  9
 	dbpixel  8, 11
 	dbpixel 12, 11
+
+
+SECTION "FlyFromAnim - FlyFunction_FrameTimer", ROMX
 
 FlyFromAnim:
 	call DelayFrame

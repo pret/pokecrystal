@@ -1,3 +1,5 @@
+SECTION "MagnetTrain - MagnetTrainTilemap4", ROMX
+
 MagnetTrain:
 	ld a, [wScriptVar]
 	and a
