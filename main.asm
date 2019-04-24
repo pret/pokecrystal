@@ -327,8 +327,6 @@ INCLUDE "engine/events/fishing_gfx.asm"
 INCLUDE "engine/pokegear/radio.asm"
 INCLUDE "engine/pokemon/mail_2.asm"
 INCLUDE "engine/events/std_scripts.asm"
-
-SECTION "UnusedPhoneScript - BrotherString", ROMX
 INCLUDE "engine/phone/scripts/unused.asm"
 INCLUDE "engine/phone/scripts/mom.asm"
 INCLUDE "engine/phone/scripts/bill.asm"
@@ -362,8 +360,6 @@ INCLUDE "engine/phone/scripts/kenji.asm"
 INCLUDE "engine/phone/scripts/parry.asm"
 INCLUDE "engine/phone/scripts/erin.asm"
 INCLUDE "engine/phone/scripts/generic_callee.asm"
-
-;SECTION independent
 INCLUDE "engine/events/trainer_scripts.asm"
 INCLUDE "engine/battle_anims/bg_effects.asm"
 INCLUDE "data/moves/animations.asm"
@@ -424,13 +420,9 @@ INCLUDE "gfx/pokemon/unown_frames.asm"
 
 ;SECTION independent
 INCLUDE "engine/events/print_unown_2.asm"
-
-SECTION "Unknown_e00ed - LZ_e2221", ROMX
 INCLUDE "engine/games/card_flip.asm"
 INCLUDE "engine/games/unown_puzzle.asm"
 INCLUDE "engine/games/dummy_game.asm"
-
-;SECTION independent
 INCLUDE "engine/pokemon/bills_pc.asm"
 
 SECTION "CopyrightGFX", ROMX

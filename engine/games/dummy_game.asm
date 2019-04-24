@@ -1,3 +1,6 @@
+; FLOAT: Must be in the same bank as ret_e00ed
+SECTION "_DummyGame - LZ_e2221", ROMX, BANK[$38]
+
 _DummyGame:
 	call .LoadGFXAndPals
 	call DelayFrame

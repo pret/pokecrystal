@@ -718,7 +718,7 @@ ROMX $2e
 	"ItemIsMail - MailItems"
 ROMX $2f
 	"StdScripts - Movement_ContestResults_WalkAfterWarp" ; engine/events/std_scripts.asm
-	"UnusedPhoneScript - BrotherString" ; main.asm
+	"UnusedPhoneScript" ; engine/phone/scripts/unused.asm
 	"MomPhoneCalleeScript - MomPhoneLectureScript" ; engine/phone/scripts/mom.asm
 	"BillPhoneCalleeScript - BillPhoneCallerScript" ; engine/phone/scripts/bill.asm
 	"ElmPhoneCalleeScript - ElmPhoneCallerScript" ; engine/phone/scripts/elm.asm
@@ -790,7 +790,13 @@ ROMX $37
 	"Tileset Data 6" ; (not splitting) gfx/tilesets.asm
 ROMX $38
 	"RotateUnownFrontpic - UnownPrinter_GBPrinterRectangle" ; engine/events/print_unown_2.asm
-	"Unknown_e00ed - LZ_e2221" ; main.asm
+
+	; engine/games/card_flip.asm
+	"Unknown_e00ed"
+	"_CardFlip - CardFlipTilemap"
+
+	"_UnownPuzzle - OmanytePuzzleLZ" ; engine/games/unown_puzzle.asm
+	"_DummyGame - LZ_e2221" ; engine/games/dummy_game.asm
 
 	; engine/pokemon/bills_pc.asm
 	"_DepositPKMN - PCString_NoReleasingEGGS"

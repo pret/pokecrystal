@@ -3,6 +3,9 @@ PUZZLE_VOID   EQU $ef
 
 puzcoord EQUS "* 6 +"
 
+
+SECTION "_UnownPuzzle - OmanytePuzzleLZ", ROMX
+
 _UnownPuzzle:
 	ldh a, [hInMenu]
 	push af
