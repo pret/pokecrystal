@@ -1,4 +1,4 @@
-SECTION "StdScripts - Movement_ContestResults_WalkAfterWarp", ROMX
+SECTION "StdScripts", ROMX
 
 StdScripts::
 ; entries correspond to constants/std_constants.asm
@@ -54,6 +54,9 @@ StdScripts::
 	dba PCScript
 	dba GameCornerCoinVendorScript
 	dba HappinessCheckScript
+
+
+SECTION "PokecenterNurseScript", ROMX
 
 PokecenterNurseScript:
 ; EVENT_WELCOMED_TO_POKECOM_CENTER is never set
@@ -164,23 +167,44 @@ PokecenterNurseScript:
 	specialphonecall SPECIALCALL_POKERUS
 	end
 
+
+SECTION "DifficultBookshelfScript", ROMX
+
 DifficultBookshelfScript:
 	farjumptext DifficultBookshelfText
+
+
+SECTION "PictureBookshelfScript", ROMX
 
 PictureBookshelfScript:
 	farjumptext PictureBookshelfText
 
+
+SECTION "MagazineBookshelfScript", ROMX
+
 MagazineBookshelfScript:
 	farjumptext MagazineBookshelfText
+
+
+SECTION "TeamRocketOathScript", ROMX
 
 TeamRocketOathScript:
 	farjumptext TeamRocketOathText
 
+
+SECTION "IncenseBurnerScript", ROMX
+
 IncenseBurnerScript:
 	farjumptext IncenseBurnerText
 
+
+SECTION "MerchandiseShelfScript", ROMX
+
 MerchandiseShelfScript:
 	farjumptext MerchandiseShelfText
+
+
+SECTION "TownMapScript", ROMX
 
 TownMapScript:
 	opentext
@@ -190,8 +214,14 @@ TownMapScript:
 	closetext
 	end
 
+
+SECTION "WindowScript", ROMX
+
 WindowScript:
 	farjumptext WindowText
+
+
+SECTION "TVScript", ROMX
 
 TVScript:
 	opentext
@@ -200,8 +230,14 @@ TVScript:
 	closetext
 	end
 
+
+SECTION "HomepageScript", ROMX
+
 HomepageScript:
 	farjumptext HomepageText
+
+
+SECTION "Radio1Script", ROMX
 
 Radio1Script:
 	opentext
@@ -209,6 +245,9 @@ Radio1Script:
 	special MapRadio
 	closetext
 	end
+
+
+SECTION "Radio2Script", ROMX
 
 Radio2Script:
 ; Lucky Channel
@@ -218,8 +257,14 @@ Radio2Script:
 	closetext
 	end
 
+
+SECTION "TrashCanScript", ROMX
+
 TrashCanScript:
 	farjumptext TrashCanText
+
+
+SECTION "PCScript", ROMX
 
 PCScript:
 	opentext
@@ -227,23 +272,41 @@ PCScript:
 	closetext
 	end
 
+
+SECTION "ElevatorButtonScript", ROMX
+
 ElevatorButtonScript:
 	playsound SFX_READ_TEXT_2
 	pause 15
 	playsound SFX_ELEVATOR_END
 	end
 
+
+SECTION "StrengthBoulderScript", ROMX
+
 StrengthBoulderScript:
 	farsjump AskStrengthScript
+
+
+SECTION "SmashRockScript", ROMX
 
 SmashRockScript:
 	farsjump AskRockSmashScript
 
+
+SECTION "PokecenterSignScript", ROMX
+
 PokecenterSignScript:
 	farjumptext PokecenterSignText
 
+
+SECTION "MartSignScript", ROMX
+
 MartSignScript:
 	farjumptext MartSignText
+
+
+SECTION "DayToTextScript", ROMX
 
 DayToTextScript:
 	readvar VAR_WEEKDAY
@@ -288,9 +351,15 @@ DayToTextScript:
 .SaturdayText:
 	db "SATURDAY@"
 
+
+SECTION "GoldenrodRocketsScript", ROMX
+
 GoldenrodRocketsScript:
 	clearevent EVENT_GOLDENROD_CITY_ROCKET_TAKEOVER
 	end
+
+
+SECTION "RadioTowerRocketsScript", ROMX
 
 RadioTowerRocketsScript:
 	setflag ENGINE_ROCKETS_IN_RADIO_TOWER
@@ -302,6 +371,10 @@ RadioTowerRocketsScript:
 	specialphonecall SPECIALCALL_WEIRDBROADCAST
 	setmapscene MAHOGANY_TOWN, SCENE_FINISHED
 	end
+
+
+; FLOAT: Must be in the same bank as Movement_ContestResults_WalkAfterWarp
+SECTION "BugContestResultsWarpScript - BugContestResults_CopyContestantsToResults", ROMX, BANK[$2f]
 
 BugContestResultsWarpScript:
 	special ClearBGPalettes
@@ -475,6 +548,9 @@ BugContestResults_CopyContestantsToResults:
 .skip10
 	end
 
+
+SECTION "InitializeEventsScript", ROMX
+
 InitializeEventsScript:
 	setevent EVENT_EARLS_ACADEMY_EARL
 	setevent EVENT_RADIO_TOWER_ROCKET_TAKEOVER
@@ -614,6 +690,9 @@ InitializeEventsScript:
 	setevent EVENT_INITIALIZED_EVENTS
 	return
 
+
+SECTION "AskNumber1MScript", ROMX
+
 AskNumber1MScript:
 	special RandomPhoneMon
 	readvar VAR_CALLERID
@@ -698,6 +777,9 @@ AskNumber1MScript:
 .Parry:
 	farwritetext ParryAskNumber1Text
 	end
+
+
+SECTION "AskNumber2MScript", ROMX
 
 AskNumber2MScript:
 	special RandomPhoneMon
@@ -784,12 +866,18 @@ AskNumber2MScript:
 	farwritetext ParryAskNumber2Text
 	end
 
+
+SECTION "RegisteredNumberMScript", ROMX
+
 RegisteredNumberMScript:
 	farwritetext RegisteredNumber1Text
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitsfx
 	buttonsound
 	end
+
+
+SECTION "NumberAcceptedMScript", ROMX
 
 NumberAcceptedMScript:
 	readvar VAR_CALLERID
@@ -915,6 +1003,9 @@ NumberAcceptedMScript:
 	closetext
 	end
 
+
+SECTION "NumberDeclinedMScript", ROMX
+
 NumberDeclinedMScript:
 	readvar VAR_CALLERID
 	ifequal PHONE_SCHOOLBOY_JACK, .Jack
@@ -1038,6 +1129,9 @@ NumberDeclinedMScript:
 	waitbutton
 	closetext
 	end
+
+
+SECTION "PhoneFullMScript", ROMX
 
 PhoneFullMScript:
 	readvar VAR_CALLERID
@@ -1163,6 +1257,9 @@ PhoneFullMScript:
 	closetext
 	end
 
+
+SECTION "RematchMScript", ROMX
+
 RematchMScript:
 	readvar VAR_CALLERID
 	ifequal PHONE_SCHOOLBOY_JACK, .Jack
@@ -1269,6 +1366,9 @@ RematchMScript:
 	closetext
 	end
 
+
+SECTION "GiftMScript", ROMX
+
 GiftMScript:
 	readvar VAR_CALLERID
 	ifequal PHONE_BIRDKEEPER_JOSE, .Jose
@@ -1307,6 +1407,9 @@ GiftMScript:
 	farwritetext KenjiGiftText
 	buttonsound
 	end
+
+
+SECTION "PackFullMScript", ROMX
 
 PackFullMScript:
 	readvar VAR_CALLERID
@@ -1378,6 +1481,9 @@ PackFullMScript:
 	closetext
 	end
 
+
+SECTION "RematchGiftMScript", ROMX
+
 RematchGiftMScript:
 	opentext
 	readvar VAR_CALLERID
@@ -1402,6 +1508,9 @@ RematchGiftMScript:
 	farwritetext ParryRematchGiftText
 	buttonsound
 	end
+
+
+SECTION "AskNumber1FScript", ROMX
 
 AskNumber1FScript:
 	readvar VAR_CALLERID
@@ -1439,6 +1548,9 @@ AskNumber1FScript:
 	farwritetext ErinAskNumber1Text
 	end
 
+
+SECTION "AskNumber2FScript", ROMX
+
 AskNumber2FScript:
 	readvar VAR_CALLERID
 	ifequal PHONE_POKEFAN_BEVERLY, .Beverly
@@ -1475,12 +1587,18 @@ AskNumber2FScript:
 	farwritetext ErinAskNumber2Text
 	end
 
+
+SECTION "RegisteredNumberFScript", ROMX
+
 RegisteredNumberFScript:
 	farwritetext RegisteredNumber2Text
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitsfx
 	buttonsound
 	end
+
+
+SECTION "NumberAcceptedFScript", ROMX
 
 NumberAcceptedFScript:
 	readvar VAR_CALLERID
@@ -1534,6 +1652,9 @@ NumberAcceptedFScript:
 	closetext
 	end
 
+
+SECTION "NumberDeclinedFScript", ROMX
+
 NumberDeclinedFScript:
 	readvar VAR_CALLERID
 	ifequal PHONE_POKEFAN_BEVERLY, .Beverly
@@ -1585,6 +1706,9 @@ NumberDeclinedFScript:
 	waitbutton
 	closetext
 	end
+
+
+SECTION "PhoneFullFScript", ROMX
 
 PhoneFullFScript:
 	readvar VAR_CALLERID
@@ -1638,6 +1762,9 @@ PhoneFullFScript:
 	closetext
 	end
 
+
+SECTION "RematchFScript", ROMX
+
 RematchFScript:
 	readvar VAR_CALLERID
 	ifequal PHONE_COOLTRAINERF_BETH, .Beth
@@ -1684,6 +1811,9 @@ RematchFScript:
 	closetext
 	end
 
+
+SECTION "GiftFScript", ROMX
+
 GiftFScript:
 	readvar VAR_CALLERID
 	ifequal PHONE_POKEFAN_BEVERLY, .Beverly
@@ -1707,6 +1837,9 @@ GiftFScript:
 	farwritetext TiffanyGiftText
 	buttonsound
 	end
+
+
+SECTION "PackFullFScript", ROMX
 
 PackFullFScript:
 	readvar VAR_CALLERID
@@ -1742,6 +1875,9 @@ PackFullFScript:
 	closetext
 	end
 
+
+SECTION "RematchGiftFScript", ROMX
+
 RematchGiftFScript:
 	readvar VAR_CALLERID
 	ifequal PHONE_PICNICKER_ERIN, .Erin
@@ -1752,6 +1888,9 @@ RematchGiftFScript:
 	buttonsound
 	end
 
+
+SECTION "GymStatue1Script", ROMX
+
 GymStatue1Script:
 	getcurlandmarkname STRING_BUFFER_3
 	opentext
@@ -1759,6 +1898,9 @@ GymStatue1Script:
 	waitbutton
 	closetext
 	end
+
+
+SECTION "GymStatue2Script", ROMX
 
 GymStatue2Script:
 	getcurlandmarkname STRING_BUFFER_3
@@ -1770,6 +1912,9 @@ GymStatue2Script:
 	closetext
 	end
 
+
+SECTION "ReceiveItemScript", ROMX
+
 ReceiveItemScript:
 	waitsfx
 	farwritetext ReceivedItemText
@@ -1777,12 +1922,18 @@ ReceiveItemScript:
 	waitsfx
 	end
 
+
+SECTION "ReceiveTogepiEggScript", ROMX
+
 ReceiveTogepiEggScript:
 	waitsfx
 	farwritetext ReceivedItemText
 	playsound SFX_GET_EGG_FROM_DAY_CARE_LADY
 	waitsfx
 	end
+
+
+SECTION "GameCornerCoinVendorScript - CoinVendor_IntroScript", ROMX
 
 GameCornerCoinVendorScript:
 	faceplayer
@@ -1865,6 +2016,9 @@ CoinVendor_IntroScript:
 	db "500 : ¥10000@"
 	db "CANCEL@"
 
+
+SECTION "HappinessCheckScript", ROMX
+
 HappinessCheckScript:
 	faceplayer
 	opentext
@@ -1887,6 +2041,10 @@ HappinessCheckScript:
 	waitbutton
 	closetext
 	end
+
+
+; FLOAT: Referred to by BugContestResultsWarpScript
+SECTION "Movement_ContestResults_WalkAfterWarp", ROMX, BANK[$2f]
 
 Movement_ContestResults_WalkAfterWarp:
 	step RIGHT

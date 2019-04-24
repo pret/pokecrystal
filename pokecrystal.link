@@ -47,13 +47,50 @@ ROMX $01
 	"DummyPredef1" ; engine/events/haircut.asm
 ROMX $02
 	"BlankScreen" ; engine/menus/blank_screen.asm
-	"SpawnPlayer - QueueFollowerFirstStep" ; engine/overworld/player_object.asm
+
+	; engine/overworld/player_object.asm
+	"SpawnPlayer - CopyTempObjectToObjectStruct"
+	"TrainerWalkToPlayer"
+	"SurfStartStep"
+	"FollowNotExact"
+	"GetRelativeFacing"
+	"QueueFollowerFirstStep"
+
 	"_Sine" ; engine/math/sine.asm
 	"GetPredefPointer - PredefPointers" ; engine/predef.asm
 	"LoadSGBLayout - SlotMachinePals" ; engine/gfx/color.asm
 ROMX $03
 	"CheckTime" ; engine/events/checktime.asm
-	"Special - TrainerHouse" ; engine/events/specials.asm
+
+	; engine/events/specials.asm
+	"Special - SpecialsPointers"
+	"DummySpecial_c224"
+	"SetPlayerPalette"
+	"GameCornerPrizeMonCheckDex"
+	"UnusedSetSeenMon"
+	"FindPartyMonAboveLevel - FoundNone"
+	"NameRival"
+	"NameRater"
+	"OverworldTownMap"
+	"UnownPrinter"
+	"DisplayLinkRecord"
+	"PlayersHousePC"
+	"CheckMysteryGift"
+	"GetMysteryGiftItem"
+	"BugContestJudging"
+	"MapRadio"
+	"UnownPuzzle"
+	"SlotMachine - CheckCoinsAndCoinCase"
+	"ClearBGPalettesBufferScreen"
+	"ScriptReturnCarry - CheckLuckyNumberShowFlag"
+	"SnorlaxAwake"
+	"PlayCurMonCry"
+	"GameboyCheck"
+	"FadeOutMusic"
+	"Diploma"
+	"PrintDiploma"
+	"TrainerHouse"
+
 	"_PrintNum" ; engine/math/print_num.asm
 
 	; engine/pokemon/health.asm
@@ -717,7 +754,61 @@ ROMX $2e
 	"ReadPartyMonMail - PortraitMailBorderGFX"
 	"ItemIsMail - MailItems"
 ROMX $2f
-	"StdScripts - Movement_ContestResults_WalkAfterWarp" ; engine/events/std_scripts.asm
+	; engine/events/std_scripts.asm
+	"StdScripts"
+	"PokecenterNurseScript"
+	"DifficultBookshelfScript"
+	"PictureBookshelfScript"
+	"MagazineBookshelfScript"
+	"TeamRocketOathScript"
+	"IncenseBurnerScript"
+	"MerchandiseShelfScript"
+	"TownMapScript"
+	"WindowScript"
+	"TVScript"
+	"HomepageScript"
+	"Radio1Script"
+	"Radio2Script"
+	"TrashCanScript"
+	"PCScript"
+	"ElevatorButtonScript"
+	"StrengthBoulderScript"
+	"SmashRockScript"
+	"PokecenterSignScript"
+	"MartSignScript"
+	"DayToTextScript"
+	"GoldenrodRocketsScript"
+	"RadioTowerRocketsScript"
+	"BugContestResultsWarpScript - BugContestResults_CopyContestantsToResults"
+	"InitializeEventsScript"
+	"AskNumber1MScript"
+	"AskNumber2MScript"
+	"RegisteredNumberMScript"
+	"NumberAcceptedMScript"
+	"NumberDeclinedMScript"
+	"PhoneFullMScript"
+	"RematchMScript"
+	"GiftMScript"
+	"PackFullMScript"
+	"RematchGiftMScript"
+	"AskNumber1FScript"
+	"AskNumber2FScript"
+	"RegisteredNumberFScript"
+	"NumberAcceptedFScript"
+	"NumberDeclinedFScript"
+	"PhoneFullFScript"
+	"RematchFScript"
+	"GiftFScript"
+	"PackFullFScript"
+	"RematchGiftFScript"
+	"GymStatue1Script"
+	"GymStatue2Script"
+	"ReceiveItemScript"
+	"ReceiveTogepiEggScript"
+	"GameCornerCoinVendorScript - CoinVendor_IntroScript"
+	"HappinessCheckScript"
+	"Movement_ContestResults_WalkAfterWarp"
+
 	"UnusedPhoneScript" ; engine/phone/scripts/unused.asm
 	"MomPhoneCalleeScript - MomPhoneLectureScript" ; engine/phone/scripts/mom.asm
 	"BillPhoneCalleeScript - BillPhoneCallerScript" ; engine/phone/scripts/bill.asm

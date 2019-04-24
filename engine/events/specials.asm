@@ -1,4 +1,4 @@
-SECTION "Special - TrainerHouse", ROMX
+SECTION "Special - SpecialsPointers", ROMX
 
 Special::
 ; Run script special de.
@@ -17,14 +17,23 @@ Special::
 
 INCLUDE "data/special_pointers.asm"
 
+
+SECTION "DummySpecial_c224", ROMX
+
 DummySpecial_c224:
 	ret
+
+
+SECTION "SetPlayerPalette", ROMX
 
 SetPlayerPalette:
 	ld a, [wScriptVar]
 	ld d, a
 	farcall _SetPlayerPalette
 	ret
+
+
+SECTION "GameCornerPrizeMonCheckDex", ROMX
 
 GameCornerPrizeMonCheckDex:
 	ld a, [wScriptVar]
@@ -41,11 +50,17 @@ GameCornerPrizeMonCheckDex:
 	call ExitAllMenus
 	ret
 
+
+SECTION "UnusedSetSeenMon", ROMX
+
 UnusedSetSeenMon:
 	ld a, [wScriptVar]
 	dec a
 	call SetSeenMon
 	ret
+
+
+SECTION "FindPartyMonAboveLevel - FoundNone", ROMX
 
 FindPartyMonAboveLevel:
 	ld a, [wScriptVar]
@@ -85,6 +100,9 @@ FoundNone:
 	ld [wScriptVar], a
 	ret
 
+
+SECTION "NameRival", ROMX
+
 NameRival:
 	ld b, NAME_RIVAL
 	ld de, wRivalName
@@ -98,9 +116,15 @@ NameRival:
 .default
 	db "SILVER@"
 
+
+SECTION "NameRater", ROMX
+
 NameRater:
 	farcall _NameRater
 	ret
+
+
+SECTION "OverworldTownMap", ROMX
 
 OverworldTownMap:
 	call FadeToMenu
@@ -108,17 +132,26 @@ OverworldTownMap:
 	call ExitAllMenus
 	ret
 
+
+SECTION "UnownPrinter", ROMX
+
 UnownPrinter:
 	call FadeToMenu
 	farcall _UnownPrinter
 	call ExitAllMenus
 	ret
 
+
+SECTION "DisplayLinkRecord", ROMX
+
 DisplayLinkRecord:
 	call FadeToMenu
 	farcall _DisplayLinkRecord
 	call ExitAllMenus
 	ret
+
+
+SECTION "PlayersHousePC", ROMX
 
 PlayersHousePC:
 	xor a
@@ -127,6 +160,9 @@ PlayersHousePC:
 	ld a, c
 	ld [wScriptVar], a
 	ret
+
+
+SECTION "CheckMysteryGift", ROMX
 
 CheckMysteryGift:
 	ld a, BANK(sMysteryGiftItem)
@@ -140,6 +176,9 @@ CheckMysteryGift:
 	ld [wScriptVar], a
 	call CloseSRAM
 	ret
+
+
+SECTION "GetMysteryGiftItem", ROMX
 
 GetMysteryGiftItem:
 	ld a, BANK(sMysteryGiftItem)
@@ -174,17 +213,26 @@ GetMysteryGiftItem:
 	text_far _ReceiveItemText
 	text_end
 
+
+SECTION "BugContestJudging", ROMX
+
 BugContestJudging:
 	farcall _BugContestJudging
 	ld a, b
 	ld [wScriptVar], a
 	ret
 
+
+SECTION "MapRadio", ROMX
+
 MapRadio:
 	ld a, [wScriptVar]
 	ld e, a
 	farcall PlayRadio
 	ret
+
+
+SECTION "UnownPuzzle", ROMX
 
 UnownPuzzle:
 	call FadeToMenu
@@ -193,6 +241,9 @@ UnownPuzzle:
 	ld [wScriptVar], a
 	call ExitAllMenus
 	ret
+
+
+SECTION "SlotMachine - CheckCoinsAndCoinCase", ROMX
 
 SlotMachine:
 	call CheckCoinsAndCoinCase
@@ -267,10 +318,16 @@ CheckCoinsAndCoinCase:
 	text_far _NoCoinCaseText
 	text_end
 
+
+SECTION "ClearBGPalettesBufferScreen", ROMX
+
 ClearBGPalettesBufferScreen:
 	call ClearBGPalettes
 	call BufferScreen
 	ret
+
+
+SECTION "ScriptReturnCarry - CheckLuckyNumberShowFlag", ROMX
 
 ScriptReturnCarry:
 	jr c, .carry
@@ -327,6 +384,9 @@ CheckLuckyNumberShowFlag:
 	farcall _CheckLuckyNumberShowFlag
 	jp ScriptReturnCarry
 
+
+SECTION "SnorlaxAwake", ROMX
+
 SnorlaxAwake:
 ; Check if the Poké Flute channel is playing, and if the player is standing
 ; next to Snorlax.
@@ -377,9 +437,15 @@ SnorlaxAwake:
 	db 36,  9 ; right
 	db -1
 
+
+SECTION "PlayCurMonCry", ROMX
+
 PlayCurMonCry:
 	ld a, [wCurPartySpecies]
 	jp PlayMonCry
+
+
+SECTION "GameboyCheck", ROMX
 
 GameboyCheck:
 	ldh a, [hCGB]
@@ -402,6 +468,9 @@ GameboyCheck:
 	ld [wScriptVar], a
 	ret
 
+
+SECTION "FadeOutMusic", ROMX
+
 FadeOutMusic:
 	ld a, LOW(MUSIC_NONE)
 	ld [wMusicFadeID], a
@@ -411,17 +480,26 @@ FadeOutMusic:
 	ld [wMusicFade], a
 	ret
 
+
+SECTION "Diploma", ROMX
+
 Diploma:
 	call FadeToMenu
 	farcall _Diploma
 	call ExitAllMenus
 	ret
 
+
+SECTION "PrintDiploma", ROMX
+
 PrintDiploma:
 	call FadeToMenu
 	farcall _PrintDiploma
 	call ExitAllMenus
 	ret
+
+
+SECTION "TrainerHouse", ROMX
 
 TrainerHouse:
 	ld a, BANK(sMysteryGiftTrainerHouseFlag)

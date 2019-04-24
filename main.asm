@@ -563,6 +563,8 @@ INCLUDE "engine/events/battle_tower/load_trainer.asm"
 INCLUDE "engine/events/odd_egg.asm"
 
 
+; This section is read by external programs/tools,
+;   and is as such expected to be at the end of the ROM.
 SECTION "Mobile Stadium 2", ROMX[$7de0], BANK[$7f]
 
 if DEF(_CRYSTAL_AU)
