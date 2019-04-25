@@ -96,7 +96,8 @@ GetRemainingSpaceInPhoneList:
 INCLUDE "data/phone/permanent_numbers.asm"
 
 
-SECTION "FarPlaceString - PlayRadio", ROMX
+; FLOAT: Referred to by PokegearPhone_MakePhoneCall and PokegearPhone_UpdateDisplayList
+SECTION "FarPlaceString - UnknownText_0x9066d", ROMX, BANK[$24]
 
 FarPlaceString:
 	ldh a, [hROMBank]

@@ -1,3 +1,6 @@
+; FLOAT: Must be in the same bank as "BillsGrandfather - CopyPokemonName_Buffer1_Buffer3"
+SECTION "GetFirstPokemonHappiness - HappinessChanges", ROMX, BANK[$01]
+
 GetFirstPokemonHappiness:
 	ld hl, wPartyMon1Happiness
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -104,6 +107,9 @@ ChangeHappiness:
 
 INCLUDE "data/events/happiness_changes.asm"
 
+
+SECTION "StepHappiness", ROMX
+
 StepHappiness::
 ; Raise the party's happiness by 1 point every other step cycle.
 
@@ -138,6 +144,9 @@ StepHappiness::
 	dec c
 	jr nz, .loop
 	ret
+
+
+SECTION "DayCareStep", ROMX
 
 DayCareStep::
 ; Raise the experience of Day-Care Pokémon every step cycle.

@@ -11,13 +11,9 @@ INCLUDE "engine/pokemon/correct_nick_errors.asm"
 INCLUDE "engine/math/math.asm"
 INCLUDE "data/items/attributes.asm"
 INCLUDE "engine/overworld/npc_movement.asm"
-
-SECTION "GetFirstPokemonHappiness - CopyPokemonName_Buffer1_Buffer3", ROMX
 INCLUDE "engine/events/happiness_egg.asm"
 INCLUDE "engine/events/shuckle.asm"
 INCLUDE "engine/events/haircut.asm"
-
-;SECTION independent
 INCLUDE "engine/menus/blank_screen.asm"
 INCLUDE "engine/overworld/player_object.asm"
 INCLUDE "engine/math/sine.asm"
@@ -31,14 +27,10 @@ INCLUDE "engine/events/overworld.asm"
 INCLUDE "engine/items/items.asm"
 INCLUDE "engine/overworld/player_step.asm"
 INCLUDE "engine/battle/anim_hp_bar.asm"
-
-SECTION "TryAddMonToParty - BugContest_SetCaughtContestMon", ROMX
 INCLUDE "engine/pokemon/move_mon.asm"
 INCLUDE "engine/pokemon/bills_pc_top.asm"
 INCLUDE "engine/pokemon/breedmon_level_growth.asm"
 INCLUDE "engine/events/bug_contest/caught_mon.asm"
-
-;SECTION independent
 INCLUDE "engine/items/item_effects.asm"
 INCLUDE "engine/battle_anims/pokeball_wobble.asm"
 INCLUDE "engine/pokemon/knows_move.asm"
@@ -279,12 +271,10 @@ INCLUDE "engine/battle/battlestart_copytilemapatonce.asm"
 INCLUDE "engine/gfx/sprites.asm"
 INCLUDE "engine/gfx/mon_icons.asm"
 
-;SECTION "FarPlaceString - PlayRadio", ROMX
+;SECTION independent
 INCLUDE "engine/phone/phone.asm"
 INCLUDE "engine/rtc/timeset.asm"
 INCLUDE "engine/pokegear/pokegear.asm"
-
-;SECTION independent
 INCLUDE "engine/events/fish.asm"
 INCLUDE "engine/games/slot_machine.asm"
 
@@ -381,6 +371,8 @@ INCLUDE "engine/battle_anims/helpers.asm"
 INCLUDE "data/battle_anims/framesets.asm"
 INCLUDE "data/battle_anims/oam.asm"
 INCLUDE "data/battle_anims/object_gfx.asm"
+
+;SECTION independent
 INCLUDE "engine/gfx/pic_animation.asm"
 
 SECTION "AnimationPointers - EggAnimationIdle", ROMX

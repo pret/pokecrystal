@@ -1,5 +1,10 @@
 RANDY_OT_ID EQU 01001
 
+
+; FLOAT: Must be in the same bank as GetBreedMon1LevelGrowth and GetBreedMon2LevelGrowth
+;        Referred to by BugContest_SetCaughtContestMon.
+SECTION "TryAddMonToParty - InitNickname", ROMX, BANK[$03]
+
 TryAddMonToParty:
 ; Check if to copy wild mon or generate a new one
 	; Whose is it?

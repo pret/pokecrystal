@@ -1,5 +1,8 @@
 MANIA_OT_ID EQU 00518
 
+
+SECTION "GiveShuckle - ReturnShuckle", ROMX
+
 GiveShuckle:
 ; Adding to the party.
 	xor a

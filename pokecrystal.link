@@ -43,8 +43,17 @@ ROMX $01
 
 	"ItemAttributes" ; data/items/attributes.asm
 	"CanObjectMoveInDirection - Function7171" ; engine/overworld/npc_movement.asm
-	"GetFirstPokemonHappiness - CopyPokemonName_Buffer1_Buffer3" ; main.asm
-	"DummyPredef1" ; engine/events/haircut.asm
+
+	; engine/events/happiness_egg.asm
+	"GetFirstPokemonHappiness - HappinessChanges"
+	"StepHappiness"
+	"DayCareStep"
+
+	"GiveShuckle - ReturnShuckle" ; engine/events/shuckle.asm
+
+	; engine/events/haircut.asm
+	"BillsGrandfather - CopyPokemonName_Buffer1_Buffer3"
+	"DummyPredef1"
 ROMX $02
 	"BlankScreen" ; engine/menus/blank_screen.asm
 
@@ -101,7 +110,16 @@ ROMX $03
 	"_ReceiveItem - GetItemPrice" ; engine/items/items.asm
 	"_HandlePlayerStep - UpdateOverworldMap" ; engine/overworld/player_step.asm
 	"_AnimateHPBar - ShortHPBar_CalcPixelFrame" ; engine/battle/anim_hp_bar.asm
-	"TryAddMonToParty - BugContest_SetCaughtContestMon" ; main.asm
+
+	"TryAddMonToParty - InitNickname" ; engine/pokemon/move_mon.asm
+
+	; engine/pokemon/bills_pc_top.asm
+	"_BillsPC - ClearPCItemScreen"
+	"CopyBoxmonToTempMon"
+	"Unreferenced_Functione5d9"
+
+	"GetBreedMon1LevelGrowth - GetBreedMon2LevelGrowth" ; engine/pokemon/breedmon_level_growth.asm
+	"BugContest_SetCaughtContestMon" ; engine/events/bug_contest/caught_mon.asm
 	"_DoItemEffect - GetMthMoveOfCurrentMon" ; engine/items/item_effects.asm
 	"GetPokeBallWobble - WobbleProbabilities" ; engine/battle_anims/pokeball_wobble.asm
 	"KnowsMove" ; engine/pokemon/knows_move.asm
@@ -658,9 +676,16 @@ ROMX $23
 	"ClearSpriteAnims" ; engine/gfx/sprites.asm
 	"PlaySpriteAnimationsAndDelayFrame - BigmonIcon" ; main.asm
 ROMX $24
-	"AddPhoneNumber - PermanentNumbers" ; engine/phone/phone.asm
-	"FarPlaceString - PlayRadio" ; main.asm
-	"PokegearMap - Unreferenced_Function92311" ; engine/pokegear/pokegear.asm
+	; engine/phone/phone.asm
+	"AddPhoneNumber - PermanentNumbers"
+	"FarPlaceString - UnknownText_0x9066d"
+
+	"InitClock - AdjustHourForAMorPM" ; engine/rtc/timeset.asm
+
+	; engine/pokgear/pokegear.asm
+	"PokeGear - PlayRadio"
+	"PokegearMap - Unreferenced_Function92311"
+
 	"Fish - TimeFishGroups" ; engine/events/fish.asm
 	"_SlotMachine - Slots3LZ" ; engine/games/slot_machine.asm
 ROMX $25

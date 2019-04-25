@@ -1,3 +1,5 @@
+SECTION "_BillsPC - ClearPCItemScreen", ROMX
+
 _BillsPC:
 	call .CheckCanUsePC
 	ret c
@@ -254,6 +256,9 @@ ClearPCItemScreen:
 	call SetPalettes ; load regular palettes?
 	ret
 
+
+SECTION "CopyBoxmonToTempMon", ROMX
+
 CopyBoxmonToTempMon:
 	ld a, [wCurPartyMon]
 	ld hl, sBoxMon1Species
@@ -266,6 +271,9 @@ CopyBoxmonToTempMon:
 	call CopyBytes
 	call CloseSRAM
 	ret
+
+
+SECTION "Unreferenced_Functione5d9", ROMX
 
 Unreferenced_Functione5d9:
 	ld a, [wCurBox]
