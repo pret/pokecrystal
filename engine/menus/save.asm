@@ -391,11 +391,10 @@ EraseHallOfFame:
 	jp CloseSRAM
 
 Unreferenced_Function14d18:
-; copy .Data to SRA4:a007
-	ld a, 4 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
+	ld a, BANK(s4_a007)
 	call GetSRAMBank
 	ld hl, .Data
-	ld de, $a007 ; address of MBC30 bank
+	ld de, s4_a007
 	ld bc, .DataEnd - .Data
 	call CopyBytes
 	jp CloseSRAM
@@ -833,9 +832,9 @@ _SaveData:
 
 	ld hl, wd479
 	ld a, [hli]
-	ld [$a60e + 0], a
+	ld [s4_a60e + 0], a
 	ld a, [hli]
-	ld [$a60e + 1], a
+	ld [s4_a60e + 1], a
 
 	jp CloseSRAM
 
@@ -851,9 +850,9 @@ _LoadData:
 	; (harmlessly) writes the aforementioned wEventFlags to the unused wd479.
 
 	ld hl, wd479
-	ld a, [$a60e + 0]
+	ld a, [s4_a60e + 0]
 	ld [hli], a
-	ld a, [$a60e + 1]
+	ld a, [s4_a60e + 1]
 	ld [hli], a
 
 	jp CloseSRAM

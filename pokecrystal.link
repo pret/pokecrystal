@@ -331,6 +331,7 @@ WRAMX 2
 WRAMX 3
 	"Battle Tower RAM"
 WRAMX 5
+	align 8
 	"GBC Video"
 	org $d300
 	"Battle Animations"
@@ -365,5 +366,7 @@ SRAM $04
 	"SRAM Mobile 1"
 SRAM $05
 	"SRAM Mobile 2"
+SRAM $06
+	"SRAM Mobile 3"
 HRAM
 	"HRAM"
