@@ -2657,9 +2657,9 @@ LoadSelectedPartiesForColosseum:
 	ret
 
 Function1011f1:
-	ld a, $04
+	ld a, BANK(s4_a60c)
 	call GetSRAMBank
-	ld a, [$a60c]
+	ld a, [s4_a60c]
 	ld [wdc41], a
 	call CloseSRAM
 	ld hl, wdc41
@@ -3456,7 +3456,7 @@ Function10174c:
 	ld a, e
 	ld [wcd3b], a
 	ld a, d
-	ld [wcd3c], a
+	ld [wBattleTowerRoomMenu2JumptableIndex], a
 	ld a, c
 	ld [wcd40], a
 	ld a, b
@@ -6933,10 +6933,10 @@ Function103309:
 	ld bc, 10
 	xor a
 	call ByteFill
-	ld a, $04
+	ld a, BANK(s4_a60c)
 	call GetSRAMBank
 	ld a, [wdc41]
-	ld [$a60c], a
+	ld [s4_a60c], a
 	ld [wBuffer1], a
 	call CloseSRAM
 	call Function1035c6
@@ -6985,10 +6985,10 @@ Function103362:
 	ld hl, wBuffer2
 	bit 6, [hl]
 	jr z, .asm_103398
-	ld a, $04
+	ld a, BANK(s4_a60c)
 	call GetSRAMBank
 	ld a, [wBuffer1]
-	ld [$a60c], a
+	ld [s4_a60c], a
 	ld [wdc41], a
 	call CloseSRAM
 	xor a

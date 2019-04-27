@@ -255,7 +255,16 @@ wc310:: ds 1
 wc311:: ds 1
 wc312:: ds 1
 wc313:: ds 1
-wc314:: ds 152
+wc314:: ds 5
+wc319:: db
+wc31a:: db
+wc31b:: db
+wc31c:: db
+wc31d:: db
+wc31e:: db
+wc31f:: db
+wc320:: ds 38
+wc346:: ds 102
 wc3ac:: ds 8
 ENDU ; c3b4
 
@@ -898,7 +907,8 @@ wc70e:: db
 wc70f:: db
 wc710:: db
 wc711:: db
-wc712:: ds 60
+wc712:: ds 7
+wc719:: ds 53
 wc74e:: ds 107
 wc7b9:: ds 1
 wc7ba:: ds 1
@@ -1206,7 +1216,7 @@ wcd38:: db ; secs
 wcd39:: ds 1
 wcd3a:: ds 1
 wcd3b:: ds 1
-wcd3c:: ds 1
+wBattleTowerRoomMenu2JumptableIndex:: ds 1
 wcd3d:: ds 1
 wcd3e:: ds 1
 wcd3f:: ds 1
@@ -1417,6 +1427,11 @@ NEXTU ; cf64
 wHoldingUnownPuzzlePiece:: db
 wUnownPuzzleCursorPosition:: db
 wUnownPuzzleHeldPiece:: db
+
+NEXTU ; cf64
+; battle tower
+	ds $2
+wBattleTowerRoomMenuJumptableIndex:: db
 
 NEXTU ; cf64
 ; miscellaneous
@@ -3013,33 +3028,46 @@ w3_d800:: ds BG_MAP_WIDTH * SCREEN_HEIGHT
 
 NEXTU ; d742
 	ds $be
-wBTChoiceOfLvlGroup:: db
-	ds $68
-w3_d869:: ds $17
-w3_d880:: ds 1
-w3_d881:: ds 9
-w3_d88a:: ds 5
-w3_d88f:: ds 5
-w3_d894:: ds 1
-w3_d895:: ds 11
-w3_d8a0:: ds 1
-w3_d8a1:: ds 1
-w3_d8a2:: ds 1
-w3_d8a3:: ds 1
+wBTChoiceOfLvlGroup:: db ; d800
+	ds $1
+w3_d802:: ds 12 ; d802
+w3_d80e:: db ; d80e
+	ds $1
+w3_d810:: ; d810
+	ds $59
+w3_d869:: ds $17 ; d869
+w3_d880:: ds 1 ; d880
+w3_d881:: ds 8 ; d881
+w3_d889:: ds 1 ; d889
+w3_d88a:: ds 4 ; d88a
+w3_d88e:: ds 1 ; d88e
+w3_d88f:: ds 4 ; d88f
+w3_d893:: ds 1 ; d893
+w3_d894:: ds 1 ; d894
+w3_d895:: ds 11 ; d895
+w3_d8a0:: ds 1 ; d8a0
+w3_d8a1:: ds 1 ; d8a1
+w3_d8a2:: ds 1 ; d8a2
+w3_d8a3:: ds 1 ; d8a3
 ENDU ; d8a4
 
 	ds $1c0
 
 w3_dc00:: ds SCREEN_WIDTH * SCREEN_HEIGHT
+UNION ; dd68
 w3_dd68:: ds SCREEN_WIDTH * SCREEN_HEIGHT
 
 	ds $11c
 
 w3_dfec:: ds $10
 w3_dffc:: ds 4
+NEXTU ; dd68
+	ds $98
+w3_de00:: ds $200
+ENDU ; e000
 
-
-SECTION "GBC Video", WRAMX
+SECTION "GBC Video", WRAMX, ALIGN[8]
+; LCD expects wLYOverrides to have an alignment of $100
 
 ; eight 4-color palettes each
 wGBCPalettes:: ; used only for BANK(wGBCPalettes)
@@ -3159,6 +3187,10 @@ wScratchAttrMap:: ds BG_MAP_WIDTH * BG_MAP_HEIGHT
 NEXTU ; d000
 wDecompressScratch:: ds $80 tiles
 wDecompressEnemyFrontpic:: ds $80 tiles
+
+NEXTU ; d000
+; unidentified uses
+w6_d000:: ds $1000
 ENDU ; e000
 
 
