@@ -1,3 +1,7 @@
+SECTION "UnownAnimationPointers - UnownZAnimationIdle", ROMX
+
+INCLUDE "gfx/pokemon/unown_anim_pointers.asm"
+
 UnownAAnimation: INCLUDE "gfx/pokemon/unown_a/anim.asm"
 UnownBAnimation: INCLUDE "gfx/pokemon/unown_b/anim.asm"
 UnownCAnimation: INCLUDE "gfx/pokemon/unown_c/anim.asm"
@@ -24,3 +28,5 @@ UnownWAnimation: INCLUDE "gfx/pokemon/unown_w/anim.asm"
 UnownXAnimation: INCLUDE "gfx/pokemon/unown_x/anim.asm"
 UnownYAnimation: INCLUDE "gfx/pokemon/unown_y/anim.asm"
 UnownZAnimation: INCLUDE "gfx/pokemon/unown_z/anim.asm"
+
+INCLUDE "gfx/pokemon/unown_idles.asm"

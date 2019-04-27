@@ -1,3 +1,19 @@
+SECTION "Function10ed51 - TitleScreenPalettes", ROMX
+
+Function10ed51:
+	call _TitleScreen
+.loop
+	call JoyTextDelay
+	ldh a, [hJoyLast]
+	ld b, a
+	and 1
+	jr nz, .done
+	call SuicuneFrameIterator
+	call DelayFrame
+	jr .loop
+.done
+	ret
+
 _TitleScreen:
 	call ClearBGPalettes
 	call ClearSprites

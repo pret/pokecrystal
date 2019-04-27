@@ -1,3 +1,5 @@
+INCLUDE "gfx/pokemon/idle_pointers.asm"
+
 BulbasaurAnimationIdle:  INCLUDE "gfx/pokemon/bulbasaur/anim_idle.asm"
 IvysaurAnimationIdle:    INCLUDE "gfx/pokemon/ivysaur/anim_idle.asm"
 VenusaurAnimationIdle:   INCLUDE "gfx/pokemon/venusaur/anim_idle.asm"

@@ -1,3 +1,7 @@
+SECTION "UnownFramesPointers - UnownZFrames", ROMX
+
+INCLUDE "gfx/pokemon/unown_frame_pointers.asm"
+
 UnownsFrames: ; used only for BANK(UnownsFrames)
 
 UnownAFrames: INCLUDE "gfx/pokemon/unown_a/frames.asm"

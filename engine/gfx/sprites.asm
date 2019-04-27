@@ -652,3 +652,5 @@ ClearSpriteAnims2:
 	pop de
 	pop hl
 	ret
+
+INCLUDE "engine/gfx/mon_icons.asm"

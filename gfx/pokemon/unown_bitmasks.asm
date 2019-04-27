@@ -1,3 +1,7 @@
+SECTION "UnownBitmasksPointers - UnownZBitmasks", ROMX
+
+INCLUDE "gfx/pokemon/unown_bitmask_pointers.asm"
+
 UnownABitmasks: INCLUDE "gfx/pokemon/unown_a/bitmask.asm"
 UnownBBitmasks: INCLUDE "gfx/pokemon/unown_b/bitmask.asm"
 UnownCBitmasks: INCLUDE "gfx/pokemon/unown_c/bitmask.asm"

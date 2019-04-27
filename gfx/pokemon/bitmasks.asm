@@ -1,3 +1,7 @@
+SECTION "BitmasksPointers - EggBitmasks", ROMX
+
+INCLUDE "gfx/pokemon/bitmask_pointers.asm"
+
 BulbasaurBitmasks:  INCLUDE "gfx/pokemon/bulbasaur/bitmask.asm"
 IvysaurBitmasks:    INCLUDE "gfx/pokemon/ivysaur/bitmask.asm"
 VenusaurBitmasks:   INCLUDE "gfx/pokemon/venusaur/bitmask.asm"

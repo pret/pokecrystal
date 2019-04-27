@@ -1,3 +1,5 @@
+INCLUDE "gfx/pokemon/unown_idle_pointers.asm"
+
 UnownAAnimationIdle: INCLUDE "gfx/pokemon/unown_a/anim_idle.asm"
 UnownBAnimationIdle: INCLUDE "gfx/pokemon/unown_b/anim_idle.asm"
 UnownCAnimationIdle: INCLUDE "gfx/pokemon/unown_c/anim_idle.asm"

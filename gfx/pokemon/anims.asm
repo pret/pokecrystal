@@ -1,3 +1,7 @@
+SECTION "AnimationPointers - EggAnimationIdle", ROMX
+
+INCLUDE "gfx/pokemon/anim_pointers.asm"
+
 BulbasaurAnimation:  INCLUDE "gfx/pokemon/bulbasaur/anim.asm"
 IvysaurAnimation:    INCLUDE "gfx/pokemon/ivysaur/anim.asm"
 VenusaurAnimation:   INCLUDE "gfx/pokemon/venusaur/anim.asm"
@@ -250,3 +254,5 @@ LugiaAnimation:      INCLUDE "gfx/pokemon/lugia/anim.asm"
 HoOhAnimation:       INCLUDE "gfx/pokemon/ho_oh/anim.asm"
 CelebiAnimation:     INCLUDE "gfx/pokemon/celebi/anim.asm"
 EggAnimation:        INCLUDE "gfx/pokemon/egg/anim.asm"
+
+INCLUDE "gfx/pokemon/idles.asm"

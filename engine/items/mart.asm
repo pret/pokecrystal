@@ -6,6 +6,9 @@
 	const MARTTEXT_HERE_YOU_GO
 	const MARTTEXT_SOLD_OUT
 
+
+SECTION "OpenMartDialog - CheckCoins", ROMX
+
 OpenMartDialog::
 	call GetMart
 	ld a, c
@@ -895,3 +898,5 @@ MartTextbox:
 	call JoyWaitAorB
 	call ExitMenu
 	ret
+
+INCLUDE "engine/events/money.asm"

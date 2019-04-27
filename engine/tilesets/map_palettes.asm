@@ -1,3 +1,5 @@
+SECTION "SwapTextboxPalettes - TilesetBattleTowerOutsidePalMap", ROMX
+
 SwapTextboxPalettes::
 	hlcoord 0, 0
 	decoord 0, 0, wAttrMap
@@ -84,3 +86,5 @@ ScrollBGMapPalettes::
 	dec c
 	jr nz, .loop
 	ret
+
+INCLUDE "gfx/tileset_palette_maps.asm"

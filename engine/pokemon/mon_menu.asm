@@ -1225,7 +1225,7 @@ PlaceMoveData:
 
 .description
 	hlcoord 1, 14
-	predef PrintMoveDesc
+	predef PrintMoveDescription
 	ld a, $1
 	ldh [hBGMapMode], a
 	ret

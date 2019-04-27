@@ -1,3 +1,7 @@
+SECTION "Printer_StartTransmission - String84a25", ROMX
+
+INCLUDE "engine/printer/printer_serial.asm"
+
 SendScreenToPrinter:
 .loop
 	call JoyTextDelay

@@ -155,20 +155,3 @@ UnusedTitleFG_OAM:
 	dsprite 11,  0, 12,  0, $4a, 1
 	dsprite 11,  0, 13,  0, $4c, 1
 	dsprite 11,  0, 14,  0, $4e, 1
-
-
-SECTION "Function10ed51 - TitleScreenPalettes", ROMX
-
-Function10ed51:
-	call _TitleScreen
-.loop
-	call JoyTextDelay
-	ldh a, [hJoyLast]
-	ld b, a
-	and 1
-	jr nz, .done
-	call SuicuneFrameIterator
-	call DelayFrame
-	jr .loop
-.done
-	ret

@@ -66,12 +66,7 @@ INCLUDE "engine/menus/save.asm"
 INCLUDE "engine/overworld/spawn_points.asm"
 INCLUDE "engine/overworld/map_setup.asm"
 INCLUDE "engine/events/pokecenter_pc.asm"
-
-SECTION "OpenMartDialog - CheckCoins", ROMX
 INCLUDE "engine/items/mart.asm"
-INCLUDE "engine/events/money.asm"
-
-;SECTION independent
 INCLUDE "data/items/marts.asm"
 INCLUDE "engine/events/mom.asm"
 INCLUDE "engine/events/daycare.asm"
@@ -119,13 +114,7 @@ INCLUDE "data/trainers/class_names.asm"
 INCLUDE "engine/battle/ai/redundant.asm"
 INCLUDE "engine/events/move_deleter.asm"
 INCLUDE "engine/link/mystery_gift_2.asm"
-
-SECTION "TMHMPocket - BeatUpDescription", ROMX
 INCLUDE "engine/items/tmhm.asm"
-INCLUDE "engine/pokemon/print_move_description.asm"
-INCLUDE "data/moves/descriptions.asm"
-
-;SECTION independent
 INCLUDE "engine/events/pokerus/pokerus.asm"
 INCLUDE "engine/battle/start_battle.asm"
 INCLUDE "engine/gfx/place_graphic.asm"
@@ -143,26 +132,11 @@ INCLUDE "engine/events/fruit_trees.asm"
 INCLUDE "engine/battle/ai/move.asm"
 INCLUDE "engine/pokedex/pokedex_2.asm"
 INCLUDE "engine/pokemon/mail.asm"
-
-SECTION "InitCrystalData - Function4a6d8", ROMX
-INCLUDE "engine/menus/init_gender.asm"
-INCLUDE "engine/items/pack_kris.asm"
-INCLUDE "engine/events/move_tutor.asm"
-INCLUDE "engine/gfx/crystal_layouts.asm"
-INCLUDE "engine/events/celebi.asm"
-INCLUDE "engine/menus/main_menu.asm"
-INCLUDE "mobile/mobile_menu.asm"
-
-;SECTION independent
+INCLUDE "engine/crystal.asm"
 INCLUDE "engine/pokemon/search.asm"
 INCLUDE "mobile/mobile_12_2.asm"
 INCLUDE "engine/events/buena_menu.asm"
-
-SECTION "SwapTextboxPalettes - TilesetBattleTowerOutsidePalMap", ROMX
 INCLUDE "engine/tilesets/map_palettes.asm"
-INCLUDE "gfx/tileset_palette_maps.asm"
-
-;SECTION independent
 INCLUDE "data/collision_permissions.asm"
 INCLUDE "engine/menus/empty_sram.asm"
 INCLUDE "engine/menus/savemenu_copytilemapatonce.asm"
@@ -245,12 +219,7 @@ INCLUDE "engine/events/engine_flags.asm"
 INCLUDE "engine/overworld/variables.asm"
 INCLUDE "data/text/battle.asm"
 INCLUDE "engine/menus/debug.asm"
-
-SECTION "Printer_StartTransmission - String84a25", ROMX
-INCLUDE "engine/printer/printer_serial.asm"
 INCLUDE "engine/printer/printer.asm"
-
-;SECTION independent
 INCLUDE "gfx/battle_anims.asm"
 INCLUDE "engine/events/halloffame.asm"
 INCLUDE "engine/events/kurt.asm"
@@ -266,32 +235,13 @@ INCLUDE "engine/battle/battle_transition.asm"
 INCLUDE "engine/events/field_moves.asm"
 INCLUDE "engine/events/magnet_train.asm"
 INCLUDE "engine/battle/battlestart_copytilemapatonce.asm"
-
-;SECTION "PlaySpriteAnimationsAndDelayFrame - BigmonIcon", ROMX
 INCLUDE "engine/gfx/sprites.asm"
-INCLUDE "engine/gfx/mon_icons.asm"
-
-;SECTION independent
 INCLUDE "engine/phone/phone.asm"
 INCLUDE "engine/rtc/timeset.asm"
 INCLUDE "engine/pokegear/pokegear.asm"
 INCLUDE "engine/events/fish.asm"
 INCLUDE "engine/games/slot_machine.asm"
-
-SECTION "Phone_GenericCall_Male - BikeShopPhoneCallerScript", ROMX
-INCLUDE "engine/phone/scripts/generic_caller.asm"
-INCLUDE "engine/phone/scripts/jack_gossip.asm"
-INCLUDE "engine/phone/scripts/liz_gossip.asm"
-INCLUDE "engine/phone/scripts/chad_gossip.asm"
-INCLUDE "engine/phone/scripts/brent_gossip.asm"
-INCLUDE "engine/phone/scripts/irwin_gossip.asm"
-INCLUDE "engine/phone/scripts/hangups.asm"
-INCLUDE "engine/phone/scripts/reminders.asm"
-INCLUDE "engine/phone/scripts/hangups_2.asm"
-INCLUDE "engine/phone/scripts/reminders_2.asm"
-INCLUDE "engine/phone/scripts/bike_shop.asm"
-
-;SECTION independent
+INCLUDE "engine/phone/caller_scripts.asm"
 INCLUDE "engine/phone/scripts/buena.asm"
 INCLUDE "data/phone/text/anthony_overworld.asm"
 INCLUDE "data/phone/text/todd_overworld.asm"
@@ -368,34 +318,13 @@ INCLUDE "engine/battle_anims/core.asm"
 INCLUDE "data/battle_anims/objects.asm"
 INCLUDE "engine/battle_anims/functions.asm"
 INCLUDE "engine/battle_anims/helpers.asm"
-INCLUDE "data/battle_anims/framesets.asm"
-INCLUDE "data/battle_anims/oam.asm"
-INCLUDE "data/battle_anims/object_gfx.asm"
 
 ;SECTION independent
 INCLUDE "engine/gfx/pic_animation.asm"
-
-SECTION "AnimationPointers - EggAnimationIdle", ROMX
-INCLUDE "gfx/pokemon/anim_pointers.asm"
 INCLUDE "gfx/pokemon/anims.asm"
-INCLUDE "gfx/pokemon/idle_pointers.asm"
-INCLUDE "gfx/pokemon/idles.asm"
-
-SECTION "UnownAnimationPointers - UnownZAnimationIdle", ROMX
-INCLUDE "gfx/pokemon/unown_anim_pointers.asm"
 INCLUDE "gfx/pokemon/unown_anims.asm"
-INCLUDE "gfx/pokemon/unown_idle_pointers.asm"
-INCLUDE "gfx/pokemon/unown_idles.asm"
-
-SECTION "BitmasksPointers - EggBitmasks", ROMX
-INCLUDE "gfx/pokemon/bitmask_pointers.asm"
 INCLUDE "gfx/pokemon/bitmasks.asm"
-
-SECTION "UnownBitmasksPointers - UnownZBitmasks", ROMX
-INCLUDE "gfx/pokemon/unown_bitmask_pointers.asm"
 INCLUDE "gfx/pokemon/unown_bitmasks.asm"
-
-;SECTION independent
 INCLUDE "gfx/pokemon/frame_pointers.asm"
 INCLUDE "gfx/pokemon/kanto_frames.asm"
 
@@ -405,12 +334,7 @@ INCBIN "gfx/font/font_inversed.1bpp"
 
 ;SECTION independent
 INCLUDE "gfx/pokemon/johto_frames.asm"
-
-SECTION "UnownFramesPointers - UnownZFrames", ROMX
-INCLUDE "gfx/pokemon/unown_frame_pointers.asm"
 INCLUDE "gfx/pokemon/unown_frames.asm"
-
-;SECTION independent
 INCLUDE "engine/events/print_unown_2.asm"
 INCLUDE "engine/games/card_flip.asm"
 INCLUDE "engine/games/unown_puzzle.asm"
@@ -451,11 +375,8 @@ SECTION "IntroLogoGFX", ROMX
 IntroLogoGFX:
 INCBIN "gfx/intro/logo.2bpp.lz"
 
-;SECTION "Function10ed51 - TitleScreenPalettes", ROMX
 INCLUDE "engine/movie/unused_title.asm"
 INCLUDE "engine/movie/title.asm"
-
-;SECTION independent
 INCLUDE "mobile/mobile_45.asm"
 INCLUDE "mobile/mobile_46.asm"
 INCLUDE "engine/events/battle_tower/trainer_text.asm"
