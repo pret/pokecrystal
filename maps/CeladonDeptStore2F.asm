@@ -4,6 +4,9 @@
 	const CELADONDEPTSTORE2F_POKEFAN_M
 	const CELADONDEPTSTORE2F_YOUNGSTER
 
+
+SECTION "CeladonDeptStore2F_MapScripts", ROMX
+
 CeladonDeptStore2F_MapScripts:
 	db 0 ; scene scripts
 

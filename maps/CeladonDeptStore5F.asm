@@ -5,6 +5,9 @@
 	const CELADONDEPTSTORE5F_SAILOR
 	const CELADONDEPTSTORE5F_TEACHER
 
+
+SECTION "CeladonDeptStore5F_MapScripts", ROMX
+
 CeladonDeptStore5F_MapScripts:
 	db 0 ; scene scripts
 

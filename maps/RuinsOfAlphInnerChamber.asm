@@ -3,6 +3,9 @@
 	const RUINSOFALPHINNERCHAMBER_TEACHER
 	const RUINSOFALPHINNERCHAMBER_GRAMPS
 
+
+SECTION "RuinsOfAlphInnerChamber_MapScripts", ROMX
+
 RuinsOfAlphInnerChamber_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_RUINSOFALPHINNERCHAMBER_NOTHING

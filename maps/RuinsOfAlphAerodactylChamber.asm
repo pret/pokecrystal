@@ -1,3 +1,5 @@
+SECTION "RuinsOfAlphAerodactylChamber_MapScripts", ROMX
+
 RuinsOfAlphAerodactylChamber_MapScripts:
 	db 2 ; scene scripts
 	scene_script .CheckWall ; SCENE_DEFAULT

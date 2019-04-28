@@ -3,6 +3,10 @@
 	const RUINSOFALPHRESEARCHCENTER_SCIENTIST2
 	const RUINSOFALPHRESEARCHCENTER_SCIENTIST3
 
+
+; FLOAT: Referred to by RuinsOfAlphKabutoChamberScientistScript
+SECTION "RuinsOfAlphResearchCenter_MapScripts", ROMX, BANK[$16]
+
 RuinsOfAlphResearchCenter_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_RUINSOFALPHRESEARCHCENTER_NOTHING

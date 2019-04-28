@@ -17,14 +17,11 @@ INCLUDE "maps/GoldenrodDeptStoreRoof.asm"
 INCLUDE "maps/GoldenrodGameCorner.asm"
 INCLUDE "maps/RuinsOfAlphOutside.asm"
 INCLUDE "maps/RuinsOfAlphHoOhChamber.asm"
-
-SECTION "RuinsOfAlphKabutoChamber_MapScripts - RuinsOfAlphResearchCenter_MapEvents", ROMX
 INCLUDE "maps/RuinsOfAlphKabutoChamber.asm"
 INCLUDE "maps/RuinsOfAlphOmanyteChamber.asm"
 INCLUDE "maps/RuinsOfAlphAerodactylChamber.asm"
 INCLUDE "maps/RuinsOfAlphInnerChamber.asm"
 INCLUDE "maps/RuinsOfAlphResearchCenter.asm"
-
 INCLUDE "maps/RuinsOfAlphHoOhItemRoom.asm"
 INCLUDE "maps/RuinsOfAlphKabutoItemRoom.asm"
 INCLUDE "maps/RuinsOfAlphOmanyteItemRoom.asm"
@@ -66,12 +63,9 @@ INCLUDE "maps/VioletKylesHouse.asm"
 INCLUDE "maps/Route32RuinsOfAlphGate.asm"
 INCLUDE "maps/Route32Pokecenter1F.asm"
 INCLUDE "maps/Route35GoldenrodGate.asm"
-
-SECTION "Route35NationalParkGate_MapScripts - Route36NationalParkGate_MapEvents", ROMX
 INCLUDE "maps/Route35NationalParkGate.asm"
 INCLUDE "maps/Route36RuinsOfAlphGate.asm"
 INCLUDE "maps/Route36NationalParkGate.asm"
-
 INCLUDE "maps/Route8.asm"
 INCLUDE "maps/MahoganyMart1F.asm"
 INCLUDE "maps/TeamRocketBaseB1F.asm"
@@ -79,15 +73,12 @@ INCLUDE "maps/TeamRocketBaseB2F.asm"
 INCLUDE "maps/TeamRocketBaseB3F.asm"
 INCLUDE "maps/IlexForest.asm"
 INCLUDE "maps/LakeOfRage.asm"
-
-SECTION "CeladonDeptStore1F_MapScripts - CeladonDeptStore6F_MapEvents", ROMX
 INCLUDE "maps/CeladonDeptStore1F.asm"
 INCLUDE "maps/CeladonDeptStore2F.asm"
 INCLUDE "maps/CeladonDeptStore3F.asm"
 INCLUDE "maps/CeladonDeptStore4F.asm"
 INCLUDE "maps/CeladonDeptStore5F.asm"
 INCLUDE "maps/CeladonDeptStore6F.asm"
-
 INCLUDE "maps/CeladonDeptStoreElevator.asm"
 INCLUDE "maps/CeladonMansion1F.asm"
 INCLUDE "maps/CeladonMansion2F.asm"

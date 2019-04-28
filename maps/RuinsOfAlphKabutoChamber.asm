@@ -2,6 +2,10 @@
 	const RUINSOFALPHKABUTOCHAMBER_RECEPTIONIST
 	const RUINSOFALPHKABUTOCHAMBER_SCIENTIST
 
+
+; FLOAT: Must be in the same bank as RuinsOfAlphResearchCenterScientist1Text_GotAllUnown
+SECTION "RuinsOfAlphKabutoChamber_MapScripts", ROMX, BANK[$16]
+
 RuinsOfAlphKabutoChamber_MapScripts:
 	db 2 ; scene scripts
 	scene_script .CheckWall ; SCENE_DEFAULT

@@ -5,6 +5,9 @@
 	const CELADONDEPTSTORE3F_GAMEBOY_KID2
 	const CELADONDEPTSTORE3F_SUPER_NERD
 
+
+SECTION "CeladonDeptStore3F_MapScripts", ROMX
+
 CeladonDeptStore3F_MapScripts:
 	db 0 ; scene scripts
 

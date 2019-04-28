@@ -3,6 +3,10 @@
 	const ROUTE35NATIONALPARKGATE_YOUNGSTER
 	const ROUTE35NATIONALPARKGATE_OFFICER2
 
+
+; FLOAT: Referred to by Route36NationalParkGate_MapEvents
+SECTION "Route35NationalParkGate_MapScripts", ROMX, BANK[$1a]
+
 Route35NationalParkGate_MapScripts:
 	db 3 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_ROUTE35NATIONALPARKGATE_NOTHING

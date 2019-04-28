@@ -465,7 +465,11 @@ ROMX $15
 ROMX $16
 	"RuinsOfAlphOutside_MapScripts" ; maps/RuinsOfAlphOutside.asm
 	"RuinsOfAlphHoOhChamber_MapScripts" ; maps/RuinsOfAlphHoOhChamber.asm
-	"RuinsOfAlphKabutoChamber_MapScripts - RuinsOfAlphResearchCenter_MapEvents" ; data/maps/scripts.asm
+	"RuinsOfAlphKabutoChamber_MapScripts" ; maps/RuinsOfAlphKabutoChamber.asm
+	"RuinsOfAlphOmanyteChamber_MapScripts" ; maps/RuinsOfAlphOmanyteChamber.asm
+	"RuinsOfAlphAerodactylChamber_MapScripts" ; maps/RuinsOfAlphAerodactylChamber.asm
+	"RuinsOfAlphInnerChamber_MapScripts" ; maps/RuinsOfAlphInnerChamber.asm
+	"RuinsOfAlphResearchCenter_MapScripts" ; maps/RuinsOfAlphResearchCenter.asm
 	"RuinsOfAlphHoOhItemRoom_MapScripts" ; maps/RuinsOfAlphHoOhItemRoom.asm
 	"RuinsOfAlphKabutoItemRoom_MapScripts" ; maps/RuinsOfAlphKabutoItemRoom.asm
 	"RuinsOfAlphOmanyteItemRoom_MapScripts" ; maps/RuinsOfAlphOmanyteItemRoom.asm
@@ -525,7 +529,9 @@ ROMX $1a
 	"Route32RuinsOfAlphGate_MapScripts" ; maps/Route32RuinsOfAlphGate.asm
 	"Route32Pokecenter1F_MapScripts" ; maps/Route32Pokecenter1F.asm
 	"Route35GoldenrodGate_MapScripts" ; maps/Route35GoldenrodGate.asm
-	"Route35NationalParkGate_MapScripts - Route36NationalParkGate_MapEvents" ; data/maps/scripts.asm
+	"Route35NationalParkGate_MapScripts" ; maps/Route35NationalParkGate.asm
+	"Route36RuinsOfAlphGate_MapScripts" ; maps/Route36RuinsOfAlphGate.asm
+	"Route36NationalParkGate_MapScripts" ; maps/Route36NationalParkGate.asm
 ROMX $1b
 	"Route8_MapScripts" ; maps/Route8.asm
 	"MahoganyMart1F_MapScripts" ; maps/MahoganyMart1F.asm
@@ -535,7 +541,12 @@ ROMX $1b
 	"IlexForest_MapScripts" ; maps/IlexForest.asm
 ROMX $1c
 	"LakeOfRage_MapScripts" ; maps/LakeOfRage.asm
-	"CeladonDeptStore1F_MapScripts - CeladonDeptStore6F_MapEvents" ; data/maps/scripts.asm
+	"CeladonDeptStore1F_MapScripts" ; maps/CeladonDeptStore1F.asm
+	"CeladonDeptStore2F_MapScripts" ; maps/CeladonDeptStore2F.asm
+	"CeladonDeptStore3F_MapScripts" ; maps/CeladonDeptStore3F.asm
+	"CeladonDeptStore4F_MapScripts" ; maps/CeladonDeptStore4F.asm
+	"CeladonDeptStore5F_MapScripts" ; maps/CeladonDeptStore5F.asm
+	"CeladonDeptStore6F_MapScripts" ; maps/CeladonDeptStore6F.asm
 	"CeladonDeptStoreElevator_MapScripts" ; maps/CeladonDeptStoreElevator.asm
 	"CeladonMansion1F_MapScripts" ; maps/CeladonMansion1F.asm
 	"CeladonMansion2F_MapScripts" ; maps/CeladonMansion2F.asm

@@ -12,6 +12,10 @@
 	const ROUTE36NATIONALPARKGATE_YOUNGSTER7
 	const ROUTE36NATIONALPARKGATE_OFFICER2
 
+
+; FLOAT: Must be in the same bank as BugCatchingContestExplanationSign
+SECTION "Route36NationalParkGate_MapScripts", ROMX, BANK[$1a]
+
 Route36NationalParkGate_MapScripts:
 	db 3 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_ROUTE36NATIONALPARKGATE_NOTHING

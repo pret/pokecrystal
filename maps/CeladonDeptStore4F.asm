@@ -3,6 +3,9 @@
 	const CELADONDEPTSTORE4F_SUPER_NERD
 	const CELADONDEPTSTORE4F_YOUNGSTER
 
+
+SECTION "CeladonDeptStore4F_MapScripts", ROMX
+
 CeladonDeptStore4F_MapScripts:
 	db 0 ; scene scripts
 

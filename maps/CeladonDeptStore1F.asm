@@ -3,6 +3,10 @@
 	const CELADONDEPTSTORE1F_GENTLEMAN
 	const CELADONDEPTSTORE1F_TEACHER
 
+
+; FLOAT: Referred to by CeladonDeptStore6F_MapEvents
+SECTION "CeladonDeptStore1F_MapScripts", ROMX, BANK[$1c]
+
 CeladonDeptStore1F_MapScripts:
 	db 0 ; scene scripts
 

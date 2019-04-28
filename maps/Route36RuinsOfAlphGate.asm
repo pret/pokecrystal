@@ -2,6 +2,9 @@
 	const ROUTE36RUINSOFALPHGATE_OFFICER
 	const ROUTE36RUINSOFALPHGATE_GRAMPS
 
+
+SECTION "Route36RuinsOfAlphGate_MapScripts", ROMX
+
 Route36RuinsOfAlphGate_MapScripts:
 	db 0 ; scene scripts
 
