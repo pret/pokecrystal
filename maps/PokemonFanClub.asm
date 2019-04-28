@@ -18,30 +18,30 @@ PokemonFanClubPresidentScript:
 	iftrue .HeardSpeech
 	checkevent EVENT_LISTENED_TO_FAN_CLUB_PRESIDENT_BUT_BAG_WAS_FULL
 	iftrue .HeardSpeechButBagFull
-	writetext UnknownText_0x191881
+	writetext PokemonFanClubPresidentDidYouVisitToHearAboutMyMonText
 	yesorno
 	iffalse .NotListening
-	writetext UnknownText_0x191911
+	writetext PokemonFanClubPresidentRapidashText
 	buttonsound
 .HeardSpeechButBagFull:
-	writetext UnknownText_0x191a3d
+	writetext PokemonFanClubPresidentIWantYouToHaveThisText
 	buttonsound
 	verbosegiveitem RARE_CANDY
 	iffalse .BagFull
 	setevent EVENT_LISTENED_TO_FAN_CLUB_PRESIDENT
-	writetext UnknownText_0x191a72
+	writetext PokemonFanClubPresidentItsARareCandyText
 	waitbutton
 	closetext
 	end
 
 .HeardSpeech:
-	writetext UnknownText_0x191ae0
+	writetext PokemonFanClubPresidentMoreTalesToTellText
 	waitbutton
 	closetext
 	end
 
 .NotListening:
-	writetext UnknownText_0x191b38
+	writetext PokemonFanClubPresidentHowDisappointingText
 	waitbutton
 .BagFull:
 	closetext
@@ -57,13 +57,13 @@ PokemonFanClubClefairyGuyScript:
 	iftrue .GotLostItem
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .FoundClefairyDoll
-	writetext UnknownText_0x191ba0
+	writetext PokemonFanClubClefairyGuyClefairyIsSoAdorableText
 	waitbutton
 	closetext
 	end
 
 .FoundClefairyDoll:
-	writetext UnknownText_0x191bff
+	writetext PokemonFanClubClefairyGuyMakingDoWithADollIFoundText
 	checkevent EVENT_MET_COPYCAT_FOUND_OUT_ABOUT_LOST_ITEM
 	iftrue .MetCopycat
 	waitbutton
@@ -72,13 +72,13 @@ PokemonFanClubClefairyGuyScript:
 
 .MetCopycat:
 	buttonsound
-	writetext UnknownText_0x191c5a
+	writetext PokemonFanClubClefairyGuyTakeThisDollBackToGirlText
 	buttonsound
 	waitsfx
 	giveitem LOST_ITEM
 	iffalse .NoRoom
 	disappear POKEMONFANCLUB_FAIRY
-	writetext UnknownText_0x191d0a
+	writetext PokemonFanClubPlayerReceivedDollText
 	playsound SFX_KEY_ITEM
 	waitsfx
 	itemnotify
@@ -87,13 +87,13 @@ PokemonFanClubClefairyGuyScript:
 	end
 
 .GotLostItem:
-	writetext UnknownText_0x191d1e
+	writetext PokemonFanClubClefairyGuyGoingToGetARealClefairyText
 	waitbutton
 	closetext
 	end
 
 .NoRoom:
-	writetext UnknownText_0x191d58
+	writetext PokemonFanClubClefairyGuyPackIsJammedFullText
 	waitbutton
 	closetext
 	end
@@ -118,7 +118,7 @@ PokemonFanClubListenSign:
 PokemonFanClubBraggingSign:
 	jumptext PokemonFanClubBraggingSignText
 
-UnknownText_0x191881:
+PokemonFanClubPresidentDidYouVisitToHearAboutMyMonText:
 	text "I'm the CHAIRMAN"
 	line "of the #MON FAN"
 	cont "CLUB."
@@ -135,7 +135,7 @@ UnknownText_0x191881:
 	cont "#MON?"
 	done
 
-UnknownText_0x191911:
+PokemonFanClubPresidentRapidashText:
 	text "Good!"
 	line "Then listen up!"
 
@@ -161,13 +161,13 @@ UnknownText_0x191911:
 	cont "you too long!"
 	done
 
-UnknownText_0x191a3d:
+PokemonFanClubPresidentIWantYouToHaveThisText:
 	text "Thanks for hearing"
 	line "me out. I want you"
 	cont "to have this!"
 	done
 
-UnknownText_0x191a72:
+PokemonFanClubPresidentItsARareCandyText:
 	text "It's a RARE CANDY"
 	line "that makes #MON"
 	cont "stronger."
@@ -179,7 +179,7 @@ UnknownText_0x191a72:
 	line "you can have it."
 	done
 
-UnknownText_0x191ae0:
+PokemonFanClubPresidentMoreTalesToTellText:
 	text "Hello, <PLAY_G>!"
 
 	para "Did you come see"
@@ -190,7 +190,7 @@ UnknownText_0x191ae0:
 	line "tales to tell…"
 	done
 
-UnknownText_0x191b38:
+PokemonFanClubPresidentHowDisappointingText:
 	text "How disappointing…"
 
 	para "Come back if you"
@@ -203,7 +203,7 @@ PokemonFanClubReceptionistText:
 	cont "comes to #MON…"
 	done
 
-UnknownText_0x191ba0:
+PokemonFanClubClefairyGuyClefairyIsSoAdorableText:
 	text "I love the way"
 	line "CLEFAIRY waggles"
 
@@ -214,7 +214,7 @@ UnknownText_0x191ba0:
 	line "It's so adorable!"
 	done
 
-UnknownText_0x191bff:
+PokemonFanClubClefairyGuyMakingDoWithADollIFoundText:
 	text "I love CLEFAIRY,"
 	line "but I could never"
 
@@ -225,7 +225,7 @@ UnknownText_0x191bff:
 	line "found."
 	done
 
-UnknownText_0x191c5a:
+PokemonFanClubClefairyGuyTakeThisDollBackToGirlText:
 	text "Oh, I see now. The"
 	line "girl who lost this"
 
@@ -244,12 +244,12 @@ UnknownText_0x191c5a:
 	line "No worries!"
 	done
 
-UnknownText_0x191d0a:
+PokemonFanClubPlayerReceivedDollText:
 	text "<PLAYER> received"
 	line "# DOLL."
 	done
 
-UnknownText_0x191d1e:
+PokemonFanClubClefairyGuyGoingToGetARealClefairyText:
 	text "You watch. I'm"
 	line "going to get a"
 
@@ -257,7 +257,7 @@ UnknownText_0x191d1e:
 	line "my friend."
 	done
 
-UnknownText_0x191d58:
+PokemonFanClubClefairyGuyPackIsJammedFullText:
 	text "Your PACK is"
 	line "jammed full."
 	done
