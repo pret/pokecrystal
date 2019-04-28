@@ -1,7 +1,7 @@
 	object_const_def ; object_event constants
-	const POKEMONFANCLUB_GENTLEMAN
+	const POKEMONFANCLUB_CHAIRMAN
 	const POKEMONFANCLUB_RECEPTIONIST
-	const POKEMONFANCLUB_FISHER
+	const POKEMONFANCLUB_CLEFAIRY_GUY
 	const POKEMONFANCLUB_TEACHER
 	const POKEMONFANCLUB_FAIRY
 	const POKEMONFANCLUB_ODDISH
@@ -11,37 +11,37 @@ PokemonFanClub_MapScripts:
 
 	db 0 ; callbacks
 
-PokemonFanClubPresidentScript:
+PokemonFanClubChairmanScript:
 	faceplayer
 	opentext
 	checkevent EVENT_LISTENED_TO_FAN_CLUB_PRESIDENT
 	iftrue .HeardSpeech
 	checkevent EVENT_LISTENED_TO_FAN_CLUB_PRESIDENT_BUT_BAG_WAS_FULL
 	iftrue .HeardSpeechButBagFull
-	writetext PokemonFanClubPresidentDidYouVisitToHearAboutMyMonText
+	writetext PokemonFanClubChairmanDidYouVisitToHearAboutMyMonText
 	yesorno
 	iffalse .NotListening
-	writetext PokemonFanClubPresidentRapidashText
+	writetext PokemonFanClubChairmanRapidashText
 	buttonsound
 .HeardSpeechButBagFull:
-	writetext PokemonFanClubPresidentIWantYouToHaveThisText
+	writetext PokemonFanClubChairmanIWantYouToHaveThisText
 	buttonsound
 	verbosegiveitem RARE_CANDY
 	iffalse .BagFull
 	setevent EVENT_LISTENED_TO_FAN_CLUB_PRESIDENT
-	writetext PokemonFanClubPresidentItsARareCandyText
+	writetext PokemonFanClubChairmanItsARareCandyText
 	waitbutton
 	closetext
 	end
 
 .HeardSpeech:
-	writetext PokemonFanClubPresidentMoreTalesToTellText
+	writetext PokemonFanClubChairmanMoreTalesToTellText
 	waitbutton
 	closetext
 	end
 
 .NotListening:
-	writetext PokemonFanClubPresidentHowDisappointingText
+	writetext PokemonFanClubChairmanHowDisappointingText
 	waitbutton
 .BagFull:
 	closetext
@@ -102,11 +102,11 @@ PokemonFanClubTeacherScript:
 	jumptextfaceplayer PokemonFanClubTeacherText
 
 PokemonFanClubClefairyDollScript:
-	jumptext ClefairyDollText
+	jumptext PokemonFanClubClefairyDollText
 
 PokemonFanClubBayleefScript:
 	opentext
-	writetext FanClubBayleefText
+	writetext PokemonFanClubBayleefText
 	cry BAYLEEF
 	waitbutton
 	closetext
@@ -118,7 +118,7 @@ PokemonFanClubListenSign:
 PokemonFanClubBraggingSign:
 	jumptext PokemonFanClubBraggingSignText
 
-PokemonFanClubPresidentDidYouVisitToHearAboutMyMonText:
+PokemonFanClubChairmanDidYouVisitToHearAboutMyMonText:
 	text "I'm the CHAIRMAN"
 	line "of the #MON FAN"
 	cont "CLUB."
@@ -135,7 +135,7 @@ PokemonFanClubPresidentDidYouVisitToHearAboutMyMonText:
 	cont "#MON?"
 	done
 
-PokemonFanClubPresidentRapidashText:
+PokemonFanClubChairmanRapidashText:
 	text "Good!"
 	line "Then listen up!"
 
@@ -161,13 +161,13 @@ PokemonFanClubPresidentRapidashText:
 	cont "you too long!"
 	done
 
-PokemonFanClubPresidentIWantYouToHaveThisText:
+PokemonFanClubChairmanIWantYouToHaveThisText:
 	text "Thanks for hearing"
 	line "me out. I want you"
 	cont "to have this!"
 	done
 
-PokemonFanClubPresidentItsARareCandyText:
+PokemonFanClubChairmanItsARareCandyText:
 	text "It's a RARE CANDY"
 	line "that makes #MON"
 	cont "stronger."
@@ -179,7 +179,7 @@ PokemonFanClubPresidentItsARareCandyText:
 	line "you can have it."
 	done
 
-PokemonFanClubPresidentMoreTalesToTellText:
+PokemonFanClubChairmanMoreTalesToTellText:
 	text "Hello, <PLAY_G>!"
 
 	para "Did you come see"
@@ -190,7 +190,7 @@ PokemonFanClubPresidentMoreTalesToTellText:
 	line "tales to tell…"
 	done
 
-PokemonFanClubPresidentHowDisappointingText:
+PokemonFanClubChairmanHowDisappointingText:
 	text "How disappointing…"
 
 	para "Come back if you"
@@ -270,7 +270,7 @@ PokemonFanClubTeacherText:
 	line "head is so cute!"
 	done
 
-ClefairyDollText:
+PokemonFanClubClefairyDollText:
 	text "It's a CLEFAIRY!"
 	line "Huh?"
 
@@ -279,7 +279,7 @@ ClefairyDollText:
 	cont "DOLL."
 	done
 
-FanClubBayleefText:
+PokemonFanClubBayleefText:
 	text "BAYLEEF: Li liif!"
 	done
 
@@ -308,7 +308,7 @@ PokemonFanClub_MapEvents:
 	bg_event  9,  0, BGEVENT_READ, PokemonFanClubBraggingSign
 
 	db 6 ; object events
-	object_event  3,  1, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PokemonFanClubPresidentScript, -1
+	object_event  3,  1, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PokemonFanClubChairmanScript, -1
 	object_event  4,  1, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PokemonFanClubReceptionistScript, -1
 	object_event  2,  3, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PokemonFanClubClefairyGuyScript, -1
 	object_event  7,  2, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PokemonFanClubTeacherScript, -1
