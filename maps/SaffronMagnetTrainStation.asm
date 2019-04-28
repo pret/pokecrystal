@@ -18,22 +18,22 @@ SaffronMagnetTrainStationOfficerScript:
 	opentext
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .MagnetTrainToGoldenrod
-	writetext UnknownText_0x18a8a9
+	writetext SaffronMagnetTrainStationOfficerTrainIsntOperatingText
 	waitbutton
 	closetext
 	end
 
 .MagnetTrainToGoldenrod:
-	writetext UnknownText_0x18a8dd
+	writetext SaffronMagnetTrainStationOfficerAreYouComingOnBoardText
 	yesorno
 	iffalse .DecidedNotToRide
 	checkitem PASS
 	iffalse .PassNotInBag
-	writetext UnknownText_0x18a917
+	writetext SaffronMagnetTrainStationOfficerRightThisWayText
 	waitbutton
 	closetext
-	applymovement SAFFRONMAGNETTRAINSTATION_OFFICER, MovementData_0x18a88f
-	applymovement PLAYER, MovementData_0x18a898
+	applymovement SAFFRONMAGNETTRAINSTATION_OFFICER, SaffronMagnetTrainStationOfficerApproachTrainDoorMovement
+	applymovement PLAYER, SaffronMagnetTrainStationPlayerApproachAndEnterTrainMovement
 	setval TRUE
 	special MagnetTrain
 	warpcheck
@@ -47,23 +47,23 @@ SaffronMagnetTrainStationOfficerScript:
 	step_end
 
 .PassNotInBag:
-	writetext UnknownText_0x18a956
+	writetext SaffronMagnetTrainStationOfficerYouDontHaveAPassText
 	waitbutton
 	closetext
 	end
 
 .DecidedNotToRide:
-	writetext UnknownText_0x18a978
+	writetext SaffronMagnetTrainStationOfficerHopeToSeeYouAgainText
 	waitbutton
 	closetext
 	end
 
 Script_ArriveFromGoldenrod:
-	applymovement SAFFRONMAGNETTRAINSTATION_OFFICER, MovementData_0x18a88f
-	applymovement PLAYER, MovementData_0x18a8a1
-	applymovement SAFFRONMAGNETTRAINSTATION_OFFICER, MovementData_0x18a894
+	applymovement SAFFRONMAGNETTRAINSTATION_OFFICER, SaffronMagnetTrainStationOfficerApproachTrainDoorMovement
+	applymovement PLAYER, SaffronMagnetTrainStationPlayerLeaveTrainAndEnterStationMovement
+	applymovement SAFFRONMAGNETTRAINSTATION_OFFICER, SaffronMagnetTrainStationOfficerReturnToBoardingGateMovement
 	opentext
-	writetext UnknownText_0x18a993
+	writetext SaffronMagnetTrainStationOfficerArrivedInSaffronText
 	waitbutton
 	closetext
 	end
@@ -90,20 +90,20 @@ SaffronMagnetTrainStationTeacherScript:
 SaffronMagnetTrainStationLassScript:
 	jumptextfaceplayer SaffronMagnetTrainStationLassText
 
-MovementData_0x18a88f:
+SaffronMagnetTrainStationOfficerApproachTrainDoorMovement:
 	step UP
 	step UP
 	step RIGHT
 	turn_head LEFT
 	step_end
 
-MovementData_0x18a894:
+SaffronMagnetTrainStationOfficerReturnToBoardingGateMovement:
 	step LEFT
 	step DOWN
 	step DOWN
 	step_end
 
-MovementData_0x18a898:
+SaffronMagnetTrainStationPlayerApproachAndEnterTrainMovement:
 	step UP
 	step UP
 	step UP
@@ -114,7 +114,7 @@ MovementData_0x18a898:
 	step UP
 	step_end
 
-MovementData_0x18a8a1:
+SaffronMagnetTrainStationPlayerLeaveTrainAndEnterStationMovement:
 	step LEFT
 	step LEFT
 	step DOWN
@@ -124,13 +124,13 @@ MovementData_0x18a8a1:
 	turn_head UP
 	step_end
 
-UnknownText_0x18a8a9:
+SaffronMagnetTrainStationOfficerTrainIsntOperatingText:
 	text "I'm sorry, but the"
 	line "MAGNET TRAIN isn't"
 	cont "operating now."
 	done
 
-UnknownText_0x18a8dd:
+SaffronMagnetTrainStationOfficerAreYouComingOnBoardText:
 	text "We'll soon depart"
 	line "for GOLDENROD."
 
@@ -138,7 +138,7 @@ UnknownText_0x18a8dd:
 	line "board?"
 	done
 
-UnknownText_0x18a917:
+SaffronMagnetTrainStationOfficerRightThisWayText:
 	text "May I see your"
 	line "rail PASS, please?"
 
@@ -146,17 +146,17 @@ UnknownText_0x18a917:
 	line "way, please."
 	done
 
-UnknownText_0x18a956:
+SaffronMagnetTrainStationOfficerYouDontHaveAPassText:
 	text "Sorry, but you"
 	line "don't have a PASS."
 	done
 
-UnknownText_0x18a978:
+SaffronMagnetTrainStationOfficerHopeToSeeYouAgainText:
 	text "We hope to see you"
 	line "again."
 	done
 
-UnknownText_0x18a993:
+SaffronMagnetTrainStationOfficerArrivedInSaffronText:
 	text "We have arrived in"
 	line "SAFFRON."
 
