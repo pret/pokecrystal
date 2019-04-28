@@ -44,6 +44,7 @@ INCLUDE "engine/events/whiteout.asm"
 INCLUDE "engine/events/forced_movement.asm"
 INCLUDE "engine/events/itemfinder.asm"
 
+; FLOAT: Referred to by GiveItem
 SECTION "StartMenu - UseRegisteredItem", ROMX, BANK[$04]
 INCLUDE "engine/menus/start_menu.asm"
 INCLUDE "engine/pokemon/mon_menu.asm"
@@ -311,15 +312,7 @@ INCBIN "gfx/credits/theend.2bpp"
 
 ;SECTION independent
 INCLUDE "engine/events/bug_contest/display_stats.asm"
-
-SECTION "PlayBattleAnim - AnimObjGFX", ROMX
-INCLUDE "engine/battle_anims/anim_commands.asm"
 INCLUDE "engine/battle_anims/core.asm"
-INCLUDE "data/battle_anims/objects.asm"
-INCLUDE "engine/battle_anims/functions.asm"
-INCLUDE "engine/battle_anims/helpers.asm"
-
-;SECTION independent
 INCLUDE "engine/gfx/pic_animation.asm"
 INCLUDE "gfx/pokemon/anims.asm"
 INCLUDE "gfx/pokemon/unown_anims.asm"
@@ -375,6 +368,7 @@ SECTION "IntroLogoGFX", ROMX
 IntroLogoGFX:
 INCBIN "gfx/intro/logo.2bpp.lz"
 
+;SECTION independent
 INCLUDE "engine/movie/unused_title.asm"
 INCLUDE "engine/movie/title.asm"
 INCLUDE "mobile/mobile_45.asm"
