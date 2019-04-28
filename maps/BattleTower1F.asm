@@ -5,6 +5,10 @@
 	const BATTLETOWER1F_BUG_CATCHER
 	const BATTLETOWER1F_GRANNY
 
+
+; FLOAT: Must be in the same bank as "BattleTowerBattleRoom_MapScripts", "BattleTowerElevator_MapScripts" and "BattleTowerHallway_MapScripts"
+SECTION "BattleTower1F_MapScripts", ROMX, BANK[$27]
+
 BattleTower1F_MapScripts:
 	db 2 ; scene scripts
 	scene_script .Scene0 ; SCENE_DEFAULT

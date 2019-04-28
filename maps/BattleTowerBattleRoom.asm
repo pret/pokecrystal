@@ -2,6 +2,10 @@
 	const BATTLETOWERBATTLEROOM_YOUNGSTER
 	const BATTLETOWERBATTLEROOM_RECEPTIONIST
 
+
+; FLOAT: Must be in the same bank as "BattleTower1F_MapScripts"
+SECTION "BattleTowerBattleRoom_MapScripts", ROMX, BANK[$27]
+
 BattleTowerBattleRoom_MapScripts:
 	db 2 ; scene scripts
 	scene_script .EnterBattleRoom ; SCENE_DEFAULT

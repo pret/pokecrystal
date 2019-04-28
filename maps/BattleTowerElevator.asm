@@ -1,6 +1,10 @@
 	object_const_def ; object_event constants
 	const BATTLETOWERELEVATOR_RECEPTIONIST
 
+
+; FLOAT: Must be in the same bank as "BattleTower1F_MapScripts"
+SECTION "BattleTowerElevator_MapScripts", ROMX, BANK[$27]
+
 BattleTowerElevator_MapScripts:
 	db 2 ; scene scripts
 	scene_script .Scene0 ; SCENE_DEFAULT

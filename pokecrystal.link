@@ -747,7 +747,10 @@ ROMX $27
 	"CianwoodPhotoStudio_MapScripts" ; maps/CianwoodPhotoStudio.asm
 	"CianwoodLugiaSpeechHouse_MapScripts" ; maps/CianwoodLugiaSpeechHouse.asm
 	"PokeSeersHouse_MapScripts" ; maps/PokeSeersHouse.asm
-	"BattleTower1F_MapScripts - BattleTowerHallway_MapEvents" ; data/maps/scripts.asm
+	"BattleTower1F_MapScripts" ; maps/BattleTower1F.asm
+	"BattleTowerBattleRoom_MapScripts" ; maps/BattleTowerBattleRoom.asm
+	"BattleTowerElevator_MapScripts" ; maps/BattleTowerElevator.asm
+	"BattleTowerHallway_MapScripts" ; maps/BattleTowerHallway.asm
 	"Route40BattleTowerGate_MapScripts" ; maps/Route40BattleTowerGate.asm
 	"BattleTowerOutside_MapScripts" ; maps/BattleTowerOutside.asm
 ROMX $28
