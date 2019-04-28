@@ -2,6 +2,10 @@
 	const TRADECENTER_CHRIS1
 	const TRADECENTER_CHRIS2
 
+
+; FLOAT: Must be in the same bank as CableClubFriendScript
+SECTION "TradeCenter_MapScripts", ROMX, BANK[$64]
+
 TradeCenter_MapScripts:
 	db 2 ; scene scripts
 	scene_script .InitializeTradeCenter ; SCENE_DEFAULT

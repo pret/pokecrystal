@@ -274,11 +274,8 @@ INCLUDE "maps/VermilionGym.asm"
 INCLUDE "maps/Route6SaffronGate.asm"
 INCLUDE "maps/Route6UndergroundPathEntrance.asm"
 INCLUDE "maps/Pokecenter2F.asm"
-
-SECTION "TradeCenter_MapScripts - Colosseum_MapEvents", ROMX
 INCLUDE "maps/TradeCenter.asm"
 INCLUDE "maps/Colosseum.asm"
-
 INCLUDE "maps/TimeCapsule.asm"
 INCLUDE "maps/MobileTradeRoom.asm"
 INCLUDE "maps/MobileBattleRoom.asm"

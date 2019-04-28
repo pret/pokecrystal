@@ -2,6 +2,10 @@
 	const COLOSSEUM_CHRIS1
 	const COLOSSEUM_CHRIS2
 
+
+; FLOAT: Referred to by TradeCenter_MapEvents
+SECTION "Colosseum_MapScripts", ROMX, BANK[$64]
+
 Colosseum_MapScripts:
 	db 3 ; scene scripts
 	scene_script .InitializeColosseum ; SCENE_DEFAULT

@@ -1381,7 +1381,8 @@ ROMX $64
 	"Route6SaffronGate_MapScripts" ; maps/Route6SaffronGate.asm
 	"Route6UndergroundPathEntrance_MapScripts" ; maps/Route6UndergroundPathEntrance.asm
 	"Pokecenter2F_MapScripts" ; maps/Pokecenter2F.asm
-	"TradeCenter_MapScripts - Colosseum_MapEvents" ; data/maps/scripts.asm
+	"TradeCenter_MapScripts" ; maps/TradeCenter.asm
+	"Colosseum_MapScripts" ; maps/Colosseum.asm
 	"TimeCapsule_MapScripts" ; maps/TimeCapsule.asm
 	"MobileTradeRoom_MapScripts" ; maps/MobileTradeRoom.asm
 	"MobileBattleRoom_MapScripts" ; maps/MobileBattleRoom.asm
