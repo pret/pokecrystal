@@ -10,6 +10,9 @@
 	const STARTMENUITEM_POKEGEAR ; 7
 	const STARTMENUITEM_QUIT     ; 8
 
+; FLOAT: Referred to by GiveItem
+SECTION "StartMenu - UseRegisteredItem", ROMX, BANK[$04]
+
 StartMenu::
 	call ClearWindowData
 
@@ -539,3 +542,7 @@ StartMenu_Pokemon:
 	call ExitAllMenus
 	pop af
 	ret
+
+INCLUDE "engine/pokemon/mon_menu.asm"
+
+INCLUDE "engine/overworld/select_menu.asm"

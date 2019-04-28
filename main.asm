@@ -43,14 +43,7 @@ INCLUDE "engine/events/heal_machine_anim.asm"
 INCLUDE "engine/events/whiteout.asm"
 INCLUDE "engine/events/forced_movement.asm"
 INCLUDE "engine/events/itemfinder.asm"
-
-; FLOAT: Referred to by GiveItem
-SECTION "StartMenu - UseRegisteredItem", ROMX, BANK[$04]
 INCLUDE "engine/menus/start_menu.asm"
-INCLUDE "engine/pokemon/mon_menu.asm"
-INCLUDE "engine/overworld/select_menu.asm"
-
-;SECTION independent
 INCLUDE "engine/events/elevator.asm"
 INCLUDE "engine/events/bug_contest/contest.asm"
 INCLUDE "engine/events/misc_scripts_2.asm"
