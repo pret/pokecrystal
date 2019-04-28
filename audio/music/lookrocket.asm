@@ -1,3 +1,6 @@
+; FLOAT: Referred to by "Music_RocketTheme"
+SECTION "Music_LookRocket", ROMX, BANK[$3d]
+
 Music_LookRocket:
 	musicheader 4, 1, Music_LookRocket_Ch1
 	musicheader 1, 2, Music_LookRocket_Ch2

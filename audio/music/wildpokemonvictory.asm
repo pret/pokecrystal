@@ -1,3 +1,6 @@
+; FLOAT: Referred to by "Music_SuccessfulCapture"
+SECTION "Music_WildPokemonVictory", ROMX, BANK[$3d]
+
 Music_WildPokemonVictory:
 	musicheader 3, 1, Music_WildPokemonVictory_Ch1
 	musicheader 1, 2, Music_WildPokemonVictory_Ch2

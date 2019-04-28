@@ -1,3 +1,6 @@
+; FLOAT: Must be in the same bank as "Music_LookRival"
+SECTION "Music_AfterTheRivalFight", ROMX, BANK[$3d]
+
 Music_AfterTheRivalFight:
 	musicheader 4, 1, Music_AfterTheRivalFight_Ch1
 	musicheader 1, 2, Music_AfterTheRivalFight_Ch2

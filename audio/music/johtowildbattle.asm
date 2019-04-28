@@ -1,3 +1,6 @@
+; FLOAT: Referred to by "Music_JohtoWildBattleNight"
+SECTION "Music_JohtoWildBattle", ROMX, BANK[$3d]
+
 Music_JohtoWildBattle:
 	musicheader 3, 1, Music_JohtoWildBattle_Ch1
 	musicheader 1, 2, Music_JohtoWildBattle_Ch2

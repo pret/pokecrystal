@@ -6,6 +6,9 @@
 ; 	FadeMusic
 ; 	PlayStereoSFX
 
+
+SECTION "_MapSetup_Sound_Off - SFX", ROMX
+
 _MapSetup_Sound_Off::
 ; restart sound operation
 ; clear all relevant hardware registers & wram
@@ -2848,3 +2851,13 @@ PlayTrainerEncounterMusic::
 	ld e, [hl]
 	call PlayMusic
 	ret
+
+INCLUDE "data/trainers/encounter_music.asm"
+
+INCLUDE "audio/music_pointers.asm"
+
+INCLUDE "audio/music/nothing.asm"
+
+INCLUDE "audio/cry_pointers.asm"
+
+INCLUDE "audio/sfx_pointers.asm"

@@ -1,3 +1,6 @@
+; FLOAT: Referred to by "Music_AfterTheRivalFight"
+SECTION "Music_LookRival", ROMX, BANK[$3d]
+
 Music_LookRival:
 	musicheader 4, 1, Music_LookRival_Ch1
 	musicheader 1, 2, Music_LookRival_Ch2

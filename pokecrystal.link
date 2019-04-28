@@ -1012,20 +1012,23 @@ ROMX $3c
 ROMX $3d
 	"Music_ViridianCity" ; audio/music/ViridianCity.asm
 	"Music_CeladonCity" ; audio/music/CeladonCity.asm
-	"Music_WildPokemonVictory - Music_SuccessfulCapture_Ch3" ; audio.asm
+	"Music_WildPokemonVictory" ; audio/music/WildPokemonVictory.asm
+	"Music_SuccessfulCapture" ; audio/music/SuccessfulCapture.asm
 	"Music_GymLeaderVictory" ; audio/music/GymLeaderVictory.asm
 	"Music_MtMoonSquare" ; audio/music/MtMoonSquare.asm
 	"Music_Gym" ; audio/music/Gym.asm
 	"Music_PalletTown" ; audio/music/PalletTown.asm
 	"Music_ProfOaksPokemonTalk" ; audio/music/ProfOaksPokemonTalk.asm
 	"Music_ProfOak" ; audio/music/ProfOak.asm
-	"Music_LookRival - Music_AfterTheRivalFight_Ch4" ; audio.asm
+	"Music_LookRival" ; audio/music/LookRival.asm
+	"Music_AfterTheRivalFight" ; audio/music/AfterTheRivalFight.asm
 	"Music_Surf" ; audio/music/Surf.asm
 	"Music_NationalPark" ; audio/music/NationalPark.asm
 	"Music_AzaleaTown" ; audio/music/AzaleaTown.asm
 	"Music_CherrygroveCity" ; audio/music/CherrygroveCity.asm
 	"Music_UnionCave" ; audio/music/UnionCave.asm
-	"Music_JohtoWildBattle - Music_JohtoWildBattleNight_Ch3" ; audio.asm
+	"Music_JohtoWildBattle" ; audio/music/JohtoWildBattle.asm
+	"Music_JohtoWildBattleNight" ; audio/music/JohtoWildBattleNight.asm
 	"Music_JohtoTrainerBattle" ; audio/music/JohtoTrainerBattle.asm
 	"Music_LookYoungster" ; audio/music/LookYoungster.asm
 	"Music_TinTower" ; audio/music/TinTower.asm
@@ -1038,7 +1041,8 @@ ROMX $3d
 	"Music_GoldSilverOpening" ; audio/music/GoldSilverOpening.asm
 	"Music_GoldSilverOpening2" ; audio/music/GoldSilverOpening2.asm
 	"Music_LookHiker" ; audio/music/LookHiker.asm
-	"Music_LookRocket - Music_RocketTheme_branch_f78de" ; audio.asm
+	"Music_LookRocket" ; audio/music/LookRocket.asm
+	"Music_RocketTheme" ; audio/music/RocketTheme.asm
 	"Music_MainMenu" ; audio/music/MainMenu.asm
 	"Music_LookKimonoGirl" ; audio/music/LookKimonoGirl.asm
 	"Music_PokeFluteChannel" ; audio/music/PokeFluteChannel.asm

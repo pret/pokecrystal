@@ -1,13 +1,5 @@
 INCLUDE "constants.asm"
-
-SECTION "_MapSetup_Sound_Off - SFX", ROMX
 INCLUDE "audio/engine.asm"
-INCLUDE "data/trainers/encounter_music.asm"
-INCLUDE "audio/music_pointers.asm"
-INCLUDE "audio/music/nothing.asm"
-INCLUDE "audio/cry_pointers.asm"
-INCLUDE "audio/sfx_pointers.asm"
-
 INCLUDE "audio/music/route36.asm"
 INCLUDE "audio/music/rivalbattle.asm"
 INCLUDE "audio/music/rocketbattle.asm"
@@ -63,32 +55,23 @@ INCLUDE "audio/music/evolution.asm"
 INCLUDE "audio/music/printer.asm"
 INCLUDE "audio/music/viridiancity.asm"
 INCLUDE "audio/music/celadoncity.asm"
-
-SECTION "Music_WildPokemonVictory - Music_SuccessfulCapture_Ch3", ROMX
 INCLUDE "audio/music/wildpokemonvictory.asm"
 INCLUDE "audio/music/successfulcapture.asm"
-
 INCLUDE "audio/music/gymleadervictory.asm"
 INCLUDE "audio/music/mtmoonsquare.asm"
 INCLUDE "audio/music/gym.asm"
 INCLUDE "audio/music/pallettown.asm"
 INCLUDE "audio/music/profoakspokemontalk.asm"
 INCLUDE "audio/music/profoak.asm"
-
-SECTION "Music_LookRival - Music_AfterTheRivalFight_Ch4", ROMX
 INCLUDE "audio/music/lookrival.asm"
 INCLUDE "audio/music/aftertherivalfight.asm"
-
 INCLUDE "audio/music/surf.asm"
 INCLUDE "audio/music/nationalpark.asm"
 INCLUDE "audio/music/azaleatown.asm"
 INCLUDE "audio/music/cherrygrovecity.asm"
 INCLUDE "audio/music/unioncave.asm"
-
-SECTION "Music_JohtoWildBattle - Music_JohtoWildBattleNight_Ch3", ROMX
 INCLUDE "audio/music/johtowildbattle.asm"
 INCLUDE "audio/music/johtowildbattlenight.asm"
-
 INCLUDE "audio/music/johtotrainerbattle.asm"
 INCLUDE "audio/music/lookyoungster.asm"
 INCLUDE "audio/music/tintower.asm"
@@ -101,11 +84,8 @@ INCLUDE "audio/music/pokemonmarch.asm"
 INCLUDE "audio/music/goldsilveropening.asm"
 INCLUDE "audio/music/goldsilveropening2.asm"
 INCLUDE "audio/music/lookhiker.asm"
-
-SECTION "Music_LookRocket - Music_RocketTheme_branch_f78de", ROMX
 INCLUDE "audio/music/lookrocket.asm"
 INCLUDE "audio/music/rockettheme.asm"
-
 INCLUDE "audio/music/mainmenu.asm"
 INCLUDE "audio/music/lookkimonogirl.asm"
 INCLUDE "audio/music/pokeflutechannel.asm"
