@@ -1,4 +1,4 @@
-SECTION "GBCOnlyScreen - GBCOnlyString", ROMX
+SECTION "GBCOnlyScreen - GBCOnlyGFX", ROMX
 
 GBCOnlyScreen:
 	ldh a, [hCGB]
@@ -130,9 +130,6 @@ GBCOnlyString:
 	next "designed only for"
 	next "use on the"
 	next "Game Boy Color.@"
-
-
-SECTION "GBCOnlyGFX", ROMX
 
 GBCOnlyGFX:
 INCBIN "gfx/sgb/gbc_only.2bpp.lz"

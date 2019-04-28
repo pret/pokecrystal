@@ -114,7 +114,7 @@ GetPlayerIcon:
 	ret
 
 
-SECTION "GetCardPic - KrisCardPic", ROMX
+SECTION "GetCardPic - CardGFX", ROMX
 
 GetCardPic:
 	ld hl, ChrisCardPic
@@ -139,9 +139,6 @@ INCBIN "gfx/trainer_card/chris_card.2bpp"
 
 KrisCardPic:
 INCBIN "gfx/trainer_card/kris_card.2bpp"
-
-
-SECTION "CardGFX", ROMX
 
 CardGFX:
 INCBIN "gfx/trainer_card/trainer_card.2bpp"

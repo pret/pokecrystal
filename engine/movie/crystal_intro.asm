@@ -1,4 +1,4 @@
-SECTION "Copyright_GFPresents - GameFreakLogoPalettes", ROMX
+SECTION "Copyright_GFPresents - GameFreakLogo", ROMX
 
 Copyright_GFPresents:
 	ld de, MUSIC_NONE
@@ -331,15 +331,12 @@ GameFreakLogoScene5:
 GameFreakLogoPalettes:
 INCLUDE "gfx/intro/gamefreak_logo.pal"
 
-
-SECTION "GameFreakLogo", ROMX
-
 GameFreakLogo:
 INCBIN "gfx/splash/logo1.1bpp"
 INCBIN "gfx/splash/logo2.1bpp"
 
 
-SECTION "CrystalIntro - IntroGrass3GFX", ROMX
+SECTION "CrystalIntro - IntroGrass4GFX", ROMX
 
 CrystalIntro:
 	ldh a, [rSVBK]
@@ -2136,9 +2133,5 @@ IntroGrass2GFX:
 INCBIN "gfx/intro/grass2.2bpp"
 IntroGrass3GFX:
 INCBIN "gfx/intro/grass3.2bpp"
-
-
-SECTION "IntroGrass4GFX", ROMX
-
 IntroGrass4GFX:
 INCBIN "gfx/intro/grass4.2bpp"

@@ -1,19 +1,4 @@
-SECTION "RepelWoreOffScript", ROMX
-
-RepelWoreOffScript::
-	opentext
-	writetext .text
-	waitbutton
-	closetext
-	end
-
-.text
-	; REPEL's effect wore off.
-	text_far _RepelWoreOffText
-	text_end
-
-
-SECTION "HiddenItemScript", ROMX
+SECTION "HiddenItemScript - SetMemEvent", ROMX
 
 HiddenItemScript::
 	opentext
@@ -45,9 +30,6 @@ HiddenItemScript::
 	; But   has no space left…
 	text_far _ButNoSpaceText
 	text_end
-
-
-SECTION "SetMemEvent", ROMX
 
 SetMemEvent:
 	ld hl, wHiddenItemEvent

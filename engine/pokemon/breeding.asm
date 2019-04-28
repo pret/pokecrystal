@@ -956,9 +956,9 @@ DayCareMonCompatibilityText:
 	text_end
 
 
-SECTION "Unreferenced_DayCareMonPrintEmptyString", ROMX
+SECTION "Unreferenced_GetEmptyString", ROMX
 
-Unreferenced_DayCareMonPrintEmptyString:
+Unreferenced_GetEmptyString:
 	ld hl, .string
 	ret
 

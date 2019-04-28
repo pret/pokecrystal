@@ -1,10 +1,7 @@
-SECTION "LinkCommsBorderGFX", ROMX
+SECTION "LinkCommsBorderGFX - LinkTextbox", ROMX
 
 LinkCommsBorderGFX:
 INCBIN "gfx/trade/border_tiles.2bpp"
-
-
-SECTION "__LoadTradeScreenBorder - LinkTextbox", ROMX
 
 __LoadTradeScreenBorder:
 	ld de, LinkCommsBorderGFX

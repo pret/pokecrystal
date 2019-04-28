@@ -1,4 +1,4 @@
-SECTION "DummyPredef35", ROMX
+SECTION "DummyPredef35 - DummyPredef36", ROMX
 
 DummyPredef35:
 DummyPredef36:

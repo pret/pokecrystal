@@ -9,7 +9,7 @@
 	const TRAINERCARDSTATE_QUIT          ; 6
 
 
-SECTION "TrainerCard - TrainerCard_JohtoBadgesOAM", ROMX
+SECTION "TrainerCard - CardRightCornerGFX", ROMX
 
 TrainerCard:
 	ld a, [wVramState]
@@ -605,9 +605,6 @@ TrainerCard_JohtoBadgesOAM:
 	db $80, $78, 0
 	db $1c,            $20, $24, $20 | (1 << 7)
 	db $1c | (1 << 7), $20, $24, $20 | (1 << 7)
-
-
-SECTION "CardStatusGFX - CardRightCornerGFX", ROMX
 
 CardStatusGFX: INCBIN "gfx/trainer_card/card_status.2bpp"
 

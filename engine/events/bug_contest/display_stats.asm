@@ -107,7 +107,7 @@ DisplayAlreadyCaughtText:
 	text_end
 
 
-SECTION "DummyPredef2F", ROMX
+SECTION "DummyPredef2F - DummyPredef39", ROMX
 
 DummyPredef2F:
 DummyPredef38:

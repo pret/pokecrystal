@@ -1,4 +1,4 @@
-SECTION "CheckFacingTileForStdScript - TileCollisionStdScripts", ROMX
+SECTION "CheckFacingTileForStdScript - Script_JumpStdFromRAM", ROMX
 
 CheckFacingTileForStdScript::
 ; Checks to see if the tile you're facing has a std script associated with it.  If so, executes the script and returns carry.
@@ -26,9 +26,6 @@ CheckFacingTileForStdScript::
 	ret
 
 INCLUDE "data/events/collision_stdscripts.asm"
-
-
-SECTION "Script_JumpStdFromRAM", ROMX
 
 Script_JumpStdFromRAM:
 	sjump wJumpStdScriptBuffer

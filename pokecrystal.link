@@ -38,11 +38,8 @@ ROMX $01
 	"ReanchorBGMap_NoOAMUpdate - HDMATransfer_FillBGMap0WithBlack" ; engine/overworld/init_map.asm
 	"LearnMove - Text_CantForgetHM" ; engine/pokemon/learn.asm
 	"CorrectNickErrors" ; engine/pokemon/correct_nick_errors.asm
-
-	; engine/math/math.asm
-	"_Multiply"
-	"_Divide"
-
+	"_Multiply" ; engine/math/multiply.asm
+	"_Divide" ; engine/math/divide.asm
 	"ItemAttributes" ; data/items/attributes.asm
 	"CanObjectMoveInDirection - Function7171" ; engine/overworld/npc_movement.asm
 
@@ -130,12 +127,9 @@ ROMX $04
 	"_InitializeStartDay - CopyDayHourMinToHL" ; engine/overworld/time.asm
 	"CanLearnTMHMMove - TMHMMoves" ; engine/items/tmhm2.asm
 	"_NamingScreen - MailEntry_Lowercase" ; engine/menus/naming_screen.asm
-
-	; engine/events/misc_scripts.asm
-	"Script_AbortBugContest"
-	"FindItemInBallScript"
-	"HealMachineAnim"
-
+	"Script_AbortBugContest" ; engine/events/bug_contest/abort.asm
+	"FindItemInBallScript" ; engine/events/item_ball.asm
+	"HealMachineAnim" ; engine/events/heal_machine_anim.asm
 	"Script_BattleWhiteout - GetWhiteoutSpawn" ; engine/events/whiteout.asm
 	"Script_ForcedMovement" ; engine/events/forced_movement.asm
 	"ItemFinder" ; engine/events/itemfinder.asm
@@ -146,15 +140,9 @@ ROMX $04
 	"GiveParkBalls"
 	"BugCatchingContestBattleScript - BugCatchingContestText_ContestIsOver"
 
-	; engine/events/misc_scripts_2.asm
-	"RepelWoreOffScript"
-	"HiddenItemScript"
-	"SetMemEvent"
-
-	; engine/events/std_collision.asm
-	"CheckFacingTileForStdScript - TileCollisionStdScripts"
-	"Script_JumpStdFromRAM"
-
+	"RepelWoreOffScript" ; engine/events/repel.asm
+	"HiddenItemScript - SetMemEvent" ; engine/events/hidden_item.asm
+	"CheckFacingTileForStdScript - Script_JumpStdFromRAM" ; engine/events/std_collision.asm
 	"_BugContestJudging - ContestScore" ; engine/events/bug_contest/judging.asm
 	"ApplyPokerusTick" ; engine/events/pokerus/apply_pokerus_tick.asm
 
@@ -200,22 +188,20 @@ ROMX $05
 	"ForceMapMusic"
 
 	"PokemonCenterPC - PokecenterPCText_LinkClosed" ; engine/events/pokecenter_pc.asm
-	"OpenMartDialog - CheckCoins" ; main.asm
+	"OpenMartDialog - CheckCoins" ; engine/items/mart.asm
 	"Marts - DefaultMart" ; data/items/marts.asm
 	"BankOfMom - MenuData_0x166bd" ; engine/events/mom.asm
 	"DayCareMan - DayCare_InitBreeding" ; engine/events/daycare.asm
 
 	; engine/events/print_unown.asm
-	"_UnownPrinter - UnownDexVacantString"
-	"UnownDexATile"
-	"UnownDexBTile"
+	"_UnownPrinter - UnownDexBTile"
 	"PlaceUnownPrinterFrontpic"
 
 	"PhotoStudio" ; engine/events/print_photo.asm
 
 	; engine/pokemon/breeding.asm
 	"CheckBreedmonCompatibility - DayCareMonCompatibilityText"
-	"Unreferenced_DayCareMonPrintEmptyString"
+	"Unreferenced_GetEmptyString"
 ROMX $06
 	"Tileset Data 1" ; (not splitting) gfx/tilesets.asm
 ROMX $07
@@ -260,17 +246,9 @@ ROMX $09
 	"MonMenuOptionStrings - AddMonMenuItem"
 	"BattleMonMenu - MenuData_0x24edc"
 
-	; engine/battle/menu.asm
-	"LoadBattleMenu - MenuData_0x24f91"
-	"Strings24f9a"
-	"Function24fb2"
-
+	"LoadBattleMenu - Function24fb2" ; engine/battle/menu.asm
 	"SelectQuantityToToss - SellItem_MenuHeader" ; engine/items/buy_sell_toss.asm
-
-	; engine/menus/trainer_card.asm
-	"TrainerCard - TrainerCard_JohtoBadgesOAM"
-	"CardStatusGFX - CardRightCornerGFX"
-
+	"TrainerCard - CardRightCornerGFX" ; engine/menus/trainer_card.asm
 	"ProfOaksPC - OakPCText4" ; engine/events/prof_oaks_pc.asm
 
 	; engine/overworld/decorations.asm
@@ -308,7 +286,7 @@ ROMX $0b
 	"PrepMysteryGiftDataToSend"
 	"MysteryGiftGetItemHeldEffect - MysteryGiftDecos"
 
-	"TMHMPocket - BeatUpDescription" ; main.asm
+	"TMHMPocket - BeatUpDescription" ; engine/items/tmhm.asm
 	"GivePokerusAndConvertBerries - ConvertBerriesToBerryJuice" ; engine/events/pokerus/pokerus.asm
 
 	; engine/battle/start_battle.asm
@@ -337,14 +315,11 @@ ROMX $10
 ROMX $11
 	"FruitTreeScript - NothingHereText" ; engine/events/fruit_trees.asm
 	"AIChooseMove - AIScoringPointers" ; engine/battle/ai/move.asm
-
-	; engine/pokedex/pokedex_2.asm
-	"AnimateDexSearchSlowpoke - DoDexSearchSlowpokeFrame"
-	"DisplayDexEntry - PokedexDataPointerTable"
-
+	"AnimateDexSearchSlowpoke - DoDexSearchSlowpokeFrame" ; engine/pokedex/slowpoke_anim.asm
+	"DisplayDexEntry - PokedexDataPointerTable" ; engine/pokedex/dex_entry.asm
 	"SendMailToPC - MailboxPC" ; engine/pokemon/mail.asm
 ROMX $12
-	"InitCrystalData - Function4a6d8" ; main.asm
+	"InitCrystalData - Function4a6d8" ; engine/crystal.asm
 	"BeastsCheck - UpdateOTPointer" ; engine/pokemon/search.asm
 
 	; mobile/mobile_12_2.asm
@@ -354,7 +329,7 @@ ROMX $12
 
 	"AskRememberPassword - Buena_ExitMenu" ; engine/events/buena_menu.asm
 ROMX $13
-	"SwapTextboxPalettes - TilesetBattleTowerOutsidePalMap" ; main.asm
+	"SwapTextboxPalettes - TilesetBattleTowerOutsidePalMap" ; engine/tilesets/map_palettes.asm
 	"TileCollisionTable" ; data/collision_permissions.asm
 	"EmptyAllSRAMBanks" ; engine/menus/empty_sram.asm
 	"SaveMenu_CopyTilemapAtOnce" ; engine/menus/savemenu_copytilemapatonce.asm
@@ -400,10 +375,7 @@ ROMX $13
 	"BattleIntroSlidingPics" ; engine/battle/sliding_intro.asm
 	"Mobile_PrintOpponentBattleMessage" ; mobile/print_opp_message.asm
 	"CheckBattleScene" ; engine/battle/check_battle_scene.asm
-
-	; engine/movie/gbc_only.asm
-	"GBCOnlyScreen - GBCOnlyString"
-	"GBCOnlyGFX"
+	"GBCOnlyScreen - GBCOnlyGFX" ; engine/movie/gbc_only.asm
 
 	; engine/events/poke_seer.asm
 	"PokeSeer - SeerAdvice5"
@@ -632,7 +604,7 @@ ROMX $20
 	"BattleText_PlayerPickedUpPayDayMoney - BattleText_0x8188e" ; data/text/battle.asm
 	"ColorTest - Function823c7" ; engine/menus/debug.asm
 ROMX $21
-	"Printer_StartTransmission - String84a25" ; main.asm
+	"Printer_StartTransmission - String84a25" ; engine/printer/printer.asm
 	"AnimObj00GFX - AnimObjAeroblastGFX" ; gfx/battle_anims.asm
 	"HallOfFame - HOF_AnimatePlayerPic" ; engine/events/halloffame.asm
 ROMX $22
@@ -643,8 +615,7 @@ ROMX $22
 	"MovePlayerPicRight - MovePlayerPic"
 	"ShowPlayerNamingChoices - Unreferenced_GetPlayerNameArray"
 	"GetPlayerIcon"
-	"GetCardPic - KrisCardPic"
-	"CardGFX"
+	"GetCardPic - CardGFX"
 	"GetPlayerBackpic - GetKrisBackpic"
 	"KrisBackpic"
 
@@ -671,7 +642,7 @@ ROMX $22
 	"Function8b36c - Unknown_8ba1f"
 ROMX $23
 	; engine/tilesets/timeofday_pals.asm
-	"DummyPredef35"
+	"DummyPredef35 - DummyPredef36"
 	"UpdateTimeOfDayPal - GetTimePalFade"
 
 	; engine/battle/battle_transition.asm
@@ -687,18 +658,13 @@ ROMX $23
 	"MagnetTrain - MagnetTrainTilemap4" ; engine/events/magnet_train.asm
 	"BattleStart_CopyTilemapAtOnce" ; engine/battle/battlestart_copytilemapatonce.asm
 	"ClearSpriteAnims" ; engine/gfx/sprites.asm
-	"PlaySpriteAnimationsAndDelayFrame - BigmonIcon" ; main.asm
+	"PlaySpriteAnimationsAndDelayFrame - BigmonIcon" ; engine/gfx/sprites.asm
 ROMX $24
-	; engine/phone/phone.asm
-	"AddPhoneNumber - PermanentNumbers"
-	"FarPlaceString - UnknownText_0x9066d"
-
+	"AddPhoneNumber - PermanentNumbers" ; engine/phone/numbers.asm
+	"FarPlaceString - UnknownText_0x9066d" ; engine/phone/phone.asm
 	"InitClock - AdjustHourForAMorPM" ; engine/rtc/timeset.asm
-
-	; engine/pokgear/pokegear.asm
-	"PokeGear - PlayRadio"
-	"PokegearMap - Unreferenced_Function92311"
-
+	"PokeGear - PlayRadio" ; engine/pokegear/pokegear.asm
+	"PokegearMap - Unreferenced_Function92311" ; engine/pokegear/map.asm
 	"Fish - TimeFishGroups" ; engine/events/fish.asm
 	"_SlotMachine - Slots3LZ" ; engine/games/slot_machine.asm
 ROMX $25
@@ -756,7 +722,7 @@ ROMX $27
 	"Route40BattleTowerGate_MapScripts" ; maps/Route40BattleTowerGate.asm
 	"BattleTowerOutside_MapScripts" ; maps/BattleTowerOutside.asm
 ROMX $28
-	"Phone_GenericCall_Male - BikeShopPhoneCallerScript" ; main.asm
+	"Phone_GenericCall_Male - BikeShopPhoneCallerScript" ; engine/phone/scripts/generic_caller.asm
 	"BuenaPhoneCalleeScript - UnknownText_0xa1e2f" ; engine/phone/buenas_password.asm
 ROMX $29
 	"AnthonyAskNumber1Text - AnthonyRematchText" ; data/phone/text/anthony_overworld.asm
@@ -901,23 +867,23 @@ ROMX $33
 	; engine/events/bug_contest/display_stats.asm
 	"DisplayCaughtContestMonStats - SwitchMonText"
 	"DisplayAlreadyCaughtText"
-	"DummyPredef2F"
+	"DummyPredef2F - DummyPredef39"
 
-	"PlayBattleAnim - AnimObjGFX" ; main.asm
+	"PlayBattleAnim - AnimObjGFX" ; engine/battle_anims/core.asm
 	"Music_PostCredits" ; audio/music/PostCredits.asm
 ROMX $34
 	"Unused_AnimateMon_Slow_Normal - HOF_AnimateFrontpic" ; engine/gfx/pic_animation.asm
-	"AnimationPointers - EggAnimationIdle" ; main.asm
-	"UnownAnimationPointers - UnownZAnimationIdle" ; main.asm
-	"BitmasksPointers - EggBitmasks" ; main.asm
-	"UnownBitmasksPointers - UnownZBitmasks" ; main.asm
+	"AnimationPointers - EggAnimationIdle" ; gfx/pokemon/anims.asm
+	"UnownAnimationPointers - UnownZAnimationIdle" ; gfx/pokemon/unown_anims.asm
+	"BitmasksPointers - EggBitmasks" ; gfx/bitmasks.asm
+	"UnownBitmasksPointers - UnownZBitmasks" ; gfx/pokemon/unown_bitmasks.asm
 ROMX $35
 	"FramesPointers" ; gfx/pokemon/frame_pointers.asm
 	"BulbasaurFrames - MewFrames" ; gfx/pokemon/kanto_frames.asm
 ROMX $36
 	"FontInversed" ; main.asm
 	"ChikoritaFrames - EggFrames" ; gfx/pokemon/johto_frames.asm
-	"UnownFramesPointers - UnownZFrames" ; main.asm
+	"UnownFramesPointers - UnownZFrames" ; gfx/pokemon/unown_frames.asm
 ROMX $37
 	"Tileset Data 6" ; (not splitting) gfx/tilesets.asm
 ROMX $38
@@ -938,12 +904,10 @@ ROMX $39
 	"_OptionsMenu - Options_UpdateCursorPosition" ; engine/menus/options_menu.asm
 
 	; engine/movie/crystal_intro.asm
-	"Copyright_GFPresents - GameFreakLogoPalettes"
-	"GameFreakLogo"
-	"CrystalIntro - IntroGrass3GFX"
-	"IntroGrass4GFX"
+	"Copyright_GFPresents - GameFreakLogo"
+	"CrystalIntro - IntroGrass4GFX"
 ROMX $3a
-	"_MapSetup_Sound_Off - SFX" ; audio.asm
+	"_MapSetup_Sound_Off - SFX" ; audio/engine.asm
 	"Music_Route36" ; audio/music/Route36.asm
 	"Music_RivalBattle" ; audio/music/RivalBattle.asm
 	"Music_RocketBattle" ; audio/music/RocketBattle.asm
@@ -1116,10 +1080,7 @@ ROMX $41
 	"CheckMovingOffEdgeOfMap"
 	"GetCoordOfUpperLeftCorner"
 
-	; engine/link/mystery_gift.asm
-	"DoMysteryGift - Function1057d7"
-	"MysteryGiftJP_GFX"
-
+	"DoMysteryGift - MysteryGiftJP_GFX" ; engine/link/mystery_gift.asm
 	"DisplayUsedMoveText - UpdateUsedMoves" ; engine/battle/used_move_text.asm
 
 	; mobile/mobile_41.asm
@@ -1140,7 +1101,7 @@ ROMX $42
 	"Credits - CreditsStrings" ; engine/movie/credits.asm
 ROMX $43
 	"UnusedTitleScreen - UnusedTitleFG_OAM" ; engine/movie/unused_title.asm
-	"Function10ed51 - TitleScreenPalettes" ; main.asm
+	"Function10ed51 - TitleScreenPalettes" ; engine/movie/title.asm
 ROMX $44
 	"Mobile Adapter SDK" ; (not splitting) lib/mobile/main.asm
 ROMX $45
@@ -1152,9 +1113,9 @@ ROMX $45
 	"Function115dd3 - Unknown_116005"
 	"GFX_11601a"
 	"Function11615a"
+	"Function11619d - Unknown_117356"
 
 	; mobile/mobile_45.asm (cont.)
-	"Function11619d - Unknown_117356"
 	"GiveOddEgg"
 	"Function11765d - Unknown_117a47"
 	"MobileStudium - MobileStudium_JumptableIncrement"
@@ -1210,8 +1171,7 @@ ROMX $5b
 	"Unreferenced_Function16c000 - Unknown_16cfb9" ; mobile/mobile_5b.asm
 
 	; engine/link/link_trade.asm
-	"LinkCommsBorderGFX"
-	"__LoadTradeScreenBorder - LinkTextbox"
+	"LinkCommsBorderGFX - LinkTextbox"
 	"Function16d6ce - Function16d6e1"
 	"LinkTradeMenu"
 
@@ -1221,8 +1181,7 @@ ROMX $5c
 	"Function170000"
 	"Function17005a"
 	"BattleTowerRoomMenu - CheckBTMonMovesForErrors"
-	"Function170cc6 - ElectroBallMobileGFX"
-	"GFX_171848"
+	"Function170cc6 - GFX_171848"
 	"Function1719c8 - String_171c73"
 	"Function171c87 - String_172e5d"
 	"Function172e78 - Attrmap_173517"
@@ -1576,9 +1535,7 @@ ROMX $77
 	"PrintPage1"
 	"PrintPage2"
 	"GBPrinterString_Null - GBPrinterString_PrinterError4"
-	"PrintPartyMonPage1 - String1dc584"
-	"GBPrinterHPIcon"
-	"GBPrinterLvIcon"
+	"PrintPartyMonPage1 - GBPrinterLvIcon"
 
 	"Tileset Data 7" ; (not splitting) gfx/tilesets.asm
 

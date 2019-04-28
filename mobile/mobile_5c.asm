@@ -255,7 +255,7 @@ CheckBTMonMovesForErrors:
 	ret
 
 
-SECTION "Function170cc6 - ElectroBallMobileGFX", ROMX
+SECTION "Function170cc6 - GFX_171848", ROMX
 
 Function170cc6:
 	ldh a, [rSVBK]
@@ -300,9 +300,6 @@ INCBIN "gfx/mobile/pichu_animated.2bpp.lz"
 
 ElectroBallMobileGFX:
 INCBIN "gfx/mobile/electro_ball.2bpp.lz"
-
-
-SECTION "GFX_171848", ROMX
 
 GFX_171848:
 INCBIN "gfx/unknown/171848.2bpp"

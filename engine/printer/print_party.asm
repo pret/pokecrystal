@@ -140,7 +140,7 @@ GBPrinterString_PrinterError4:
 	db   "@"
 
 
-SECTION "PrintPartyMonPage1 - String1dc584", ROMX
+SECTION "PrintPartyMonPage1 - GBPrinterLvIcon", ROMX
 
 PrintPartyMonPage1:
 	call ClearBGPalettes
@@ -358,14 +358,8 @@ String1dc55d:
 String1dc584:
 	db "------------@"
 
-
-SECTION "GBPrinterHPIcon", ROMX
-
 GBPrinterHPIcon:
 INCBIN "gfx/printer/hp.1bpp"
-
-
-SECTION "GBPrinterLvIcon", ROMX
 
 GBPrinterLvIcon:
 INCBIN "gfx/printer/lv.1bpp"
