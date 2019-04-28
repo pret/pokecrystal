@@ -1,5 +1,4 @@
-; FLOAT: Must be in the same bank as "Music_WildPokemonVictory"
-SECTION "Music_SuccessfulCapture", ROMX, BANK[$3d]
+SECTION "Music_SuccessfulCapture", ROMX, BANK[BANK_MUSIC_WILD_VICTORY]
 
 Music_SuccessfulCapture:
 	musicheader 3, 1, Music_SuccessfulCapture_Ch1

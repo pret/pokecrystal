@@ -55,8 +55,7 @@ Function8b363:
 	ret
 
 
-; FLOAT: Must be in the same bank as "String_89116 - Function8adcc"
-SECTION "Function8b36c - Unknown_8ba1f", ROMX, BANK[$22]
+SECTION "Function8b36c - Unknown_8ba1f", ROMX, BANK[BANK_MOBILE_22]
 
 Function8b36c:
 	; [bc + (0:4)] = -1

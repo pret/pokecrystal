@@ -13,8 +13,7 @@
 	const PACKSTATE_QUITRUNSCRIPT      ; 10
 
 
-; FLOAT: Must be in the same bank as TryGiveItemToPartymon
-SECTION "Pack - PackGFX", ROMX, BANK[$04]
+SECTION "Pack - PackGFX", ROMX, BANK[BANK_PACK]
 
 Pack:
 	ld hl, wOptions

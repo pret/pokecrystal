@@ -23,8 +23,7 @@ NUM_POKEGEAR_CARDS EQU const_value
 	const POKEGEARSTATE_RADIOJOYPAD     ; c
 
 
-; FLOAT: Must be in the same bank as Function90199 and Function90380
-SECTION "PokeGear - PlayRadio", ROMX, BANK[$24]
+SECTION "PokeGear - PlayRadio", ROMX, BANK[BANK_PHONE_CALL]
 
 PokeGear:
 	ld hl, wOptions

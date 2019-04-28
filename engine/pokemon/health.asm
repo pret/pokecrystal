@@ -55,8 +55,7 @@ HealPartyMon:
 	ret
 
 
-; FLOAT: Must be in the same bank as _AnimateHPBar
-SECTION "ComputeHPBarPixels - AnimateHPBar", ROMX, BANK[$03]
+SECTION "ComputeHPBarPixels - AnimateHPBar", ROMX, BANK[BANK_ANIMATE_HP_BAR]
 
 ComputeHPBarPixels:
 ; e = bc * (6 * 8) / de

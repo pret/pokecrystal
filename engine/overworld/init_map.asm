@@ -1,5 +1,4 @@
-; FLOAT: Must be in the same bank as ApplyBGMapAnchorToObjects
-SECTION "ReanchorBGMap_NoOAMUpdate - HDMATransfer_FillBGMap0WithBlack", ROMX, BANK[$01]
+SECTION "ReanchorBGMap_NoOAMUpdate - HDMATransfer_FillBGMap0WithBlack", ROMX, BANK[BANK_MAP_OBJECTS]
 
 ReanchorBGMap_NoOAMUpdate::
 	call DelayFrame

@@ -1258,8 +1258,7 @@ PhoneScript_MonFlavorText:
 	farsjump PhoneScript_HangupText_Male
 
 
-; FLOAT: Referred to by TiffanysFamilyMembers
-SECTION "GrandmaString - BrotherString", ROMX, BANK[$2f]
+SECTION "GrandmaString - BrotherString", ROMX, BANK[BANK_PHONE_TIFFANY]
 
 GrandmaString: db "Grandma@"
 GrandpaString: db "Grandpa@"

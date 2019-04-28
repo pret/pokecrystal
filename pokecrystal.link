@@ -1,3 +1,5 @@
+; See also: constants/floating_constants.asm
+
 ROM0
 	org $0000
 	"NULL"

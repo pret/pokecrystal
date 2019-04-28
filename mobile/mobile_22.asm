@@ -1,5 +1,4 @@
-; FLOAT: Must be in the same bank as "Function8b36c - Unknown_8ba1f"
-SECTION "String_89116 - Function8adcc", ROMX, BANK[$22]
+SECTION "String_89116 - Function8adcc", ROMX, BANK[BANK_MOBILE_22]
 
 String_89116:
 	db "-----@"

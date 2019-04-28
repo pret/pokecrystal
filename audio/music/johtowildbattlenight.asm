@@ -1,5 +1,4 @@
-; FLOAT: Must be in the same bank as "Music_JohtoWildBattle"
-SECTION "Music_JohtoWildBattleNight", ROMX, BANK[$3d]
+SECTION "Music_JohtoWildBattleNight", ROMX, BANK[BANK_MUSIC_JOHTO_WILD_BATTLE]
 
 Music_JohtoWildBattleNight:
 	musicheader 3, 1, Music_JohtoWildBattleNight_Ch1

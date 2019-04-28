@@ -1,4 +1,4 @@
-SECTION "Function118000 - TilemapPack_11bb7d", ROMX, BANK[$46]
+SECTION "Function118000 - TilemapPack_11bb7d", ROMX, BANK[BANK_MOBILE_46]
 
 Function118000:
 	ld a, $1
@@ -2929,7 +2929,7 @@ Unknown_1196b8:
 	db "Sun"
 
 
-SECTION "Function118000 - TilemapPack_11bb7d (2)", ROMX, BANK[$46]
+SECTION "Function118000 - TilemapPack_11bb7d (2)", ROMX, BANK[BANK_MOBILE_46]
 ; A hack to use ascii above.
 
 Function1196cd:

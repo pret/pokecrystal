@@ -1,5 +1,4 @@
-; FLOAT: Must be in the same bank as "Music_LookRocket"
-SECTION "Music_RocketTheme", ROMX, BANK[$3d]
+SECTION "Music_RocketTheme", ROMX, BANK[BANK_MUSIC_ROCKET_ENCOUNTER]
 
 Music_RocketTheme:
 	musicheader 4, 1, Music_RocketTheme_Ch1

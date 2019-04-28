@@ -3,8 +3,7 @@
 	const COLOSSEUM_CHRIS2
 
 
-; FLOAT: Referred to by TradeCenter_MapEvents
-SECTION "Colosseum_MapScripts", ROMX, BANK[$64]
+SECTION "Colosseum_MapScripts", ROMX, BANK[BANK_MAP_COLOSSEUM]
 
 Colosseum_MapScripts:
 	db 3 ; scene scripts

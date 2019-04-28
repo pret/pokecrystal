@@ -1,5 +1,4 @@
-; FLOAT: Must be in the same bank as BuySellToss_InterpretJoypad
-SECTION "Kurt_SelectQuantity_InterpretJoypad", ROMX, BANK[$09]
+SECTION "Kurt_SelectQuantity_InterpretJoypad", ROMX, BANK[BANK_BUY_SELL_TOSS]
 
 Kurt_SelectQuantity_InterpretJoypad:
 	call BuySellToss_InterpretJoypad

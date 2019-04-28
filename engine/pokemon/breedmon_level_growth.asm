@@ -1,5 +1,4 @@
-; FLOAT: Referred to by RetrieveMonFromDayCareMan and RetrieveMonFromDayCareLady
-SECTION "GetBreedMon1LevelGrowth - GetBreedMon2LevelGrowth", ROMX, BANK[$03]
+SECTION "GetBreedMon1LevelGrowth - GetBreedMon2LevelGrowth", ROMX, BANK[BANK_MOVE_MON]
 
 GetBreedMon1LevelGrowth:
 	ld hl, wBreedMon1Stats

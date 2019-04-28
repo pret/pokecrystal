@@ -4,8 +4,7 @@ CARDFLIP_LIGHT_ON  EQU "♀" ; $f5
 CARDFLIP_DECK_SIZE EQU 4 * 6
 
 
-; FLOAT: Referred to by _DummyGame
-SECTION "Unknown_e00ed", ROMX, BANK[$38]
+SECTION "Unknown_e00ed", ROMX, BANK[BANK_DUMMY_GAME]
 
 ; two labels below called from inside ./dummy_game.asm
 Unknown_e00ed:

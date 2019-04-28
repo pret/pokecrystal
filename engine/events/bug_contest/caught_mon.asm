@@ -1,5 +1,4 @@
-; FLOAT: Must be in the same bank as GeneratePartyMonStats
-SECTION "BugContest_SetCaughtContestMon", ROMX, BANK[$03]
+SECTION "BugContest_SetCaughtContestMon", ROMX, BANK[BANK_MOVE_MON]
 
 BugContest_SetCaughtContestMon:
 	ld a, [wContestMon]

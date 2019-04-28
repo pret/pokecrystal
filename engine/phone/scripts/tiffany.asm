@@ -1,5 +1,4 @@
-; FLOAT: Must be in the same bank as "GrandmaString - BrotherString"
-SECTION "TiffanyPhoneCalleeScript - TiffanyHasPinkBow", ROMX, BANK[$2f]
+SECTION "TiffanyPhoneCalleeScript - TiffanyHasPinkBow", ROMX, BANK[BANK_PHONE_TIFFANY]
 
 TiffanyPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, PICNICKER, TIFFANY3

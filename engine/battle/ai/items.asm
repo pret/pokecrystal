@@ -1,5 +1,4 @@
-; FLOAT: Must be in the same bank as TrainerClassAttributes
-SECTION "AI_SwitchOrTryItem - TextJump_EnemyUsedOn", ROMX, BANK[$0e]
+SECTION "AI_SwitchOrTryItem - TextJump_EnemyUsedOn", ROMX, BANK[BANK_TRAINER_ATTRIBUTES]
 
 AI_SwitchOrTryItem:
 	and a

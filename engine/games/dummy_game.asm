@@ -1,5 +1,4 @@
-; FLOAT: Must be in the same bank as ret_e00ed
-SECTION "_DummyGame - LZ_e2221", ROMX, BANK[$38]
+SECTION "_DummyGame - LZ_e2221", ROMX, BANK[BANK_DUMMY_GAME]
 
 _DummyGame:
 	call .LoadGFXAndPals

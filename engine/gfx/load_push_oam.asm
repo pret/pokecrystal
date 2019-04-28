@@ -1,5 +1,4 @@
-; FLOAT: Must be in the same bank as GameInit
-SECTION "WriteOAMDMACodeToHRAM", ROMX, BANK[$01]
+SECTION "WriteOAMDMACodeToHRAM", ROMX, BANK[BANK_GAME_INIT]
 
 WriteOAMDMACodeToHRAM::
 	ld c, LOW(hTransferVirtualOAM)

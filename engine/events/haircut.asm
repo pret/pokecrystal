@@ -1,5 +1,4 @@
-; FLOAT: Must be in the same bank as "GetFirstPokemonHappiness - HappinessChanges"
-SECTION "BillsGrandfather - CopyPokemonName_Buffer1_Buffer3", ROMX, BANK[$01]
+SECTION "BillsGrandfather - CopyPokemonName_Buffer1_Buffer3", ROMX, BANK[BANK_HAPPINESS]
 
 BillsGrandfather:
 	farcall SelectMonFromParty

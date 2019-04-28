@@ -13,8 +13,7 @@
 	const ROUTE36NATIONALPARKGATE_OFFICER2
 
 
-; FLOAT: Must be in the same bank as BugCatchingContestExplanationSign
-SECTION "Route36NationalParkGate_MapScripts", ROMX, BANK[$1a]
+SECTION "Route36NationalParkGate_MapScripts", ROMX, BANK[BANK_MAP_ROUTE_35_NATIONAL_PARK_GATE]
 
 Route36NationalParkGate_MapScripts:
 	db 3 ; scene scripts

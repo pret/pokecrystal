@@ -10,8 +10,7 @@
 	const STARTMENUITEM_POKEGEAR ; 7
 	const STARTMENUITEM_QUIT     ; 8
 
-; FLOAT: Referred to by GiveItem
-SECTION "StartMenu - UseRegisteredItem", ROMX, BANK[$04]
+SECTION "StartMenu - UseRegisteredItem", ROMX, BANK[BANK_PACK]
 
 StartMenu::
 	call ClearWindowData

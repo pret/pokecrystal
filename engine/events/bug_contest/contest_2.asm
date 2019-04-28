@@ -1,5 +1,4 @@
-; FLOAT: Referred to by ComputeAIContestantScores
-SECTION "SelectRandomBugContestContestants - BugCatchingContestantEventFlagTable", ROMX, BANK[$04]
+SECTION "SelectRandomBugContestContestants - BugCatchingContestantEventFlagTable", ROMX, BANK[BANK_BUG_CONTEST_JUDGING]
 
 SelectRandomBugContestContestants:
 ; Select five random people to participate in the current contest.

@@ -4,8 +4,7 @@
 	const ROUTE35NATIONALPARKGATE_OFFICER2
 
 
-; FLOAT: Referred to by Route36NationalParkGate_MapEvents
-SECTION "Route35NationalParkGate_MapScripts", ROMX, BANK[$1a]
+SECTION "Route35NationalParkGate_MapScripts", ROMX, BANK[BANK_MAP_ROUTE_35_NATIONAL_PARK_GATE]
 
 Route35NationalParkGate_MapScripts:
 	db 3 ; scene scripts

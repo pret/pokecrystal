@@ -4,8 +4,7 @@
 	const CELADONDEPTSTORE1F_TEACHER
 
 
-; FLOAT: Referred to by CeladonDeptStore6F_MapEvents
-SECTION "CeladonDeptStore1F_MapScripts", ROMX, BANK[$1c]
+SECTION "CeladonDeptStore1F_MapScripts", ROMX, BANK[BANK_MAP_CELADON_DEPT_STORE_1F]
 
 CeladonDeptStore1F_MapScripts:
 	db 0 ; scene scripts

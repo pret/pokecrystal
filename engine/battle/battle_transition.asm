@@ -9,8 +9,7 @@ BATTLETRANSITION_END              EQU $80
 BATTLETRANSITION_SQUARE EQU "8" ; $fe
 
 
-; FLOAT: Must be in the same bank as BattleStart_CopyTilemapAtOnce
-SECTION "DoBattleTransition - StartTrainerBattle_ZoomToBlack", ROMX, BANK[$23]
+SECTION "DoBattleTransition - StartTrainerBattle_ZoomToBlack", ROMX, BANK[BANK_BATTLE_TRANSITION]
 
 DoBattleTransition:
 	call .InitGFX

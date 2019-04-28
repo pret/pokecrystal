@@ -1,5 +1,4 @@
-; FLOAT: Must be in the same bank as GetGender and PlaceStatusString
-SECTION "SelectMonFromParty - YouHaveNoPKMNString", ROMX, BANK[$14]
+SECTION "SelectMonFromParty - YouHaveNoPKMNString", ROMX, BANK[BANK_PARTY_MENU]
 
 SelectMonFromParty:
 	call DisableSpriteUpdates

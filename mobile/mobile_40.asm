@@ -1,4 +1,4 @@
-SECTION "Function100000 - UnknownText_0x1021f4", ROMX, BANK[$40]
+SECTION "Function100000 - UnknownText_0x1021f4", ROMX, BANK[BANK_MOBILE_40]
 
 Function100000:
 ; d: 1 or 2
@@ -1683,7 +1683,7 @@ Function100ae7:
 	ret
 
 
-SECTION "Function100000 - UnknownText_0x1021f4 (2)", ROMX, BANK[$40]
+SECTION "Function100000 - UnknownText_0x1021f4 (2)", ROMX, BANK[BANK_MOBILE_40]
 
 	charmap " ", $20 ; revert to ascii
 
@@ -1691,7 +1691,7 @@ Unknown_100b0a:
 	db "tetsuji", 0
 
 
-SECTION "Function100000 - UnknownText_0x1021f4 (3)", ROMX, BANK[$40]
+SECTION "Function100000 - UnknownText_0x1021f4 (3)", ROMX, BANK[BANK_MOBILE_40]
 
 Function100b12:
 	call Function100dd8
@@ -3617,7 +3617,7 @@ Function101826:
 	ret
 
 
-SECTION "Function100000 - UnknownText_0x1021f4 (4)", ROMX, BANK[$40]
+SECTION "Function100000 - UnknownText_0x1021f4 (4)", ROMX, BANK[BANK_MOBILE_40]
 
 	charmap " ", $20 ; revert to ascii
 
@@ -3637,7 +3637,7 @@ Unknown_101895:
 .end	db 0
 
 
-SECTION "Function100000 - UnknownText_0x1021f4 (5)", ROMX, BANK[$40]
+SECTION "Function100000 - UnknownText_0x1021f4 (5)", ROMX, BANK[BANK_MOBILE_40]
 
 Function1018a8:
 	ld hl, wccb5

@@ -127,8 +127,7 @@ PrintTempMonStats:
 	next "@"
 
 
-; FLOAT: Referred to by PlacePartyMonGender
-SECTION "GetGender", ROMX, BANK[$14]
+SECTION "GetGender", ROMX, BANK[BANK_PARTY_MENU]
 
 GetGender:
 ; Return the gender of a given monster (wCurPartyMon/wCurOTMon/wCurWildMon).
@@ -383,8 +382,7 @@ Unused_PlaceEnemyHPLevel:
 	ret
 
 
-; FLOAT: Referred to by PlacePartyMonStatus
-SECTION "PlaceStatusString - ParString", ROMX, BANK[$14]
+SECTION "PlaceStatusString - ParString", ROMX, BANK[BANK_PARTY_MENU]
 
 PlaceStatusString:
 	push de

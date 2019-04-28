@@ -6,8 +6,7 @@
 	const BATTLETOWER1F_GRANNY
 
 
-; FLOAT: Must be in the same bank as "BattleTowerBattleRoom_MapScripts", "BattleTowerElevator_MapScripts" and "BattleTowerHallway_MapScripts"
-SECTION "BattleTower1F_MapScripts", ROMX, BANK[$27]
+SECTION "BattleTower1F_MapScripts", ROMX, BANK[BANK_MAP_BATTLE_TOWER]
 
 BattleTower1F_MapScripts:
 	db 2 ; scene scripts

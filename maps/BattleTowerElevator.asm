@@ -2,8 +2,7 @@
 	const BATTLETOWERELEVATOR_RECEPTIONIST
 
 
-; FLOAT: Must be in the same bank as "BattleTower1F_MapScripts"
-SECTION "BattleTowerElevator_MapScripts", ROMX, BANK[$27]
+SECTION "BattleTowerElevator_MapScripts", ROMX, BANK[BANK_MAP_BATTLE_TOWER]
 
 BattleTowerElevator_MapScripts:
 	db 2 ; scene scripts

@@ -373,8 +373,7 @@ RadioTowerRocketsScript:
 	end
 
 
-; FLOAT: Must be in the same bank as Movement_ContestResults_WalkAfterWarp
-SECTION "BugContestResultsWarpScript - BugContestResults_CopyContestantsToResults", ROMX, BANK[$2f]
+SECTION "BugContestResultsWarpScript - BugContestResults_CopyContestantsToResults", ROMX, BANK[BANK_BUG_CONTEST_RESULTS]
 
 BugContestResultsWarpScript:
 	special ClearBGPalettes
@@ -2043,8 +2042,7 @@ HappinessCheckScript:
 	end
 
 
-; FLOAT: Referred to by BugContestResultsWarpScript
-SECTION "Movement_ContestResults_WalkAfterWarp", ROMX, BANK[$2f]
+SECTION "Movement_ContestResults_WalkAfterWarp", ROMX, BANK[BANK_BUG_CONTEST_RESULTS]
 
 Movement_ContestResults_WalkAfterWarp:
 	step RIGHT

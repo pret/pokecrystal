@@ -3,8 +3,7 @@
 	const RUINSOFALPHKABUTOCHAMBER_SCIENTIST
 
 
-; FLOAT: Must be in the same bank as RuinsOfAlphResearchCenterScientist1Text_GotAllUnown
-SECTION "RuinsOfAlphKabutoChamber_MapScripts", ROMX, BANK[$16]
+SECTION "RuinsOfAlphKabutoChamber_MapScripts", ROMX, BANK[BANK_MAP_RUINS_OF_ALPH_RESEARCH_CENTER]
 
 RuinsOfAlphKabutoChamber_MapScripts:
 	db 2 ; scene scripts

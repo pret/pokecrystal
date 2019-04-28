@@ -1,6 +1,4 @@
-; FLOAT: Referred to by ReanchorBGMap_NoOAMUpdate
-; FLOAT: Must be in the same bank as CanObjectMoveInDirection
-SECTION "Facings - InitSprites", ROMX, BANK[$01]
+SECTION "Facings - InitSprites", ROMX, BANK[BANK_MAP_OBJECTS]
 
 INCLUDE "data/sprites/facings.asm"
 

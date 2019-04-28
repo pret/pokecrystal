@@ -7,8 +7,7 @@ CELADONDEPTSTORE6F_LEMONADE_PRICE    EQU 350
 	const CELADONDEPTSTORE6F_YOUNGSTER
 
 
-; FLOAT: Must be in the same bank as CeladonDeptStore1FElevatorButton
-SECTION "CeladonDeptStore6F_MapScripts", ROMX, BANK[$1c]
+SECTION "CeladonDeptStore6F_MapScripts", ROMX, BANK[BANK_MAP_CELADON_DEPT_STORE_1F]
 
 CeladonDeptStore6F_MapScripts:
 	db 0 ; scene scripts

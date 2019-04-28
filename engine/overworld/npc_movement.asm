@@ -1,5 +1,4 @@
-; FLOAT: Referred to by MapObjectMovementPattern
-SECTION "CanObjectMoveInDirection - Function7171", ROMX, BANK[$01]
+SECTION "CanObjectMoveInDirection - Function7171", ROMX, BANK[BANK_MAP_OBJECTS]
 
 CanObjectMoveInDirection:
 	ld hl, OBJECT_PALETTE
