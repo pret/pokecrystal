@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/battle/read_trainer_dvs.asm", ROMX
 
 GetTrainerDVs:
@@ -20,4 +23,4 @@ GetTrainerDVs:
 	pop hl
 	ret
 
-INCLUDE "data/trainers/dvs.asm"
+INCLUDE "data/trainers/dvs.inc"

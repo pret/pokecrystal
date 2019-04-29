@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/gina_caller.asm", ROMX
 
 UnknownText_0x1771fd:

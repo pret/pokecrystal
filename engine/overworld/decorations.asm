@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/overworld/decorations.asm@InitDecorations", ROMX
 
 InitDecorations:
@@ -495,9 +498,9 @@ GetDecorationSprite:
 	ld c, a
 	ret
 
-INCLUDE "data/decorations/attributes.asm"
+INCLUDE "data/decorations/attributes.inc"
 
-INCLUDE "data/decorations/names.asm"
+INCLUDE "data/decorations/names.inc"
 
 GetDecoName:
 	ld a, [hli]
@@ -967,7 +970,7 @@ SetAllDecorationFlags:
 .done
 	ret
 
-INCLUDE "data/decorations/decorations.asm"
+INCLUDE "data/decorations/decorations.inc"
 
 DescribeDecoration::
 	ld a, b

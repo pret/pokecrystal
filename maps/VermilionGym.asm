@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const VERMILIONGYM_SURGE
 	const VERMILIONGYM_GENTLEMAN

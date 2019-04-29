@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/overworld/npc_movement.asm", ROMX, BANK[BANK_MAP_OBJECTS]
 
 CanObjectMoveInDirection:

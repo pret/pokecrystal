@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/pokepic.asm", ROMX
 
 Pokepic::

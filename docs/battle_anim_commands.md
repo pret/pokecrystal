@@ -1,6 +1,6 @@
 # Battle Animation Commands
 
-Defined in [macros/scripts/battle_anims.asm](https://github.com/pret/pokecrystal/blob/master/macros/scripts/battle_anims.asm) and [engine/battle_anims/anim_commands.asm:BattleAnimCommands](https://github.com/pret/pokecrystal/blob/master/engine/battle_anims/anim_commands.asm).
+Defined in [macros/scripts/battle_anims.inc](https://github.com/pret/pokecrystal/blob/master/macros/scripts/battle_anims.asm) and [engine/battle_anims/anim_commands.inc:BattleAnimCommands](https://github.com/pret/pokecrystal/blob/master/engine/battle_anims/anim_commands.asm).
 
 
 ## `$00`−`$CF`: <code>anim_wait <i>length</i></code>
@@ -14,7 +14,7 @@ Defined in [macros/scripts/battle_anims.asm](https://github.com/pret/pokecrystal
 
 Spawns an *object* at coordinate (*x*, *y*).
 
-- *object*: `ANIM_OBJ` constants (see [constants/battle_anim_constants.asm](https://github.com/pret/pokecrystal/blob/master/constants/battle_anim_constants.asm))
+- *object*: `ANIM_OBJ` constants (see [constants/battle_anim_constants.inc](https://github.com/pret/pokecrystal/blob/master/constants/battle_anim_constants.inc))
 - *x*: the x position in pixels
 - *y*: the y position in pixels
 - *x_tile*: an added x position in tiles (8 pixels)
@@ -45,7 +45,7 @@ The y position also depends on the y offset defined by the object.
 
 Loads 1-5 sets of graphics. Will overwrite any previously loaded sets.
 
-- *gfx*: `ANIM_GFX` constants (see [constants/battle_anim_constants.asm](https://github.com/pret/pokecrystal/blob/master/constants/battle_anim_constants.asm))
+- *gfx*: `ANIM_GFX` constants (see [constants/battle_anim_constants.inc](https://github.com/pret/pokecrystal/blob/master/constants/battle_anim_constants.inc))
 
 Caveats:
 - These will override any currently-loaded GFX.
@@ -74,7 +74,7 @@ Objects are state machines. `anim_setobj` changes the state of an object.
 
 Increments a bg effect's state.
 
-- *bg_effect*: `ANIM_BG` constants (see [constants/battle_anim_constants.asm](https://github.com/pret/pokecrystal/blob/master/constants/battle_anim_constants.asm))
+- *bg_effect*: `ANIM_BG` constants (see [constants/battle_anim_constants.inc](https://github.com/pret/pokecrystal/blob/master/constants/battle_anim_constants.inc))
 
 Since there can't be two of the same bg effect, the effect type is used. This is distinct from `anim_incobj`.
 
@@ -179,7 +179,7 @@ Jumps to another script and decrements `param` until it reaches 0. Similar to `a
 
 ## `$F0`: <code>anim_bgeffect <i>bg_effect</i>, <i>unknown1</i>, <i>unknown2</i>, <i>unknown3</i></code>
 
-- *bg_effect*: `ANIM_BG` constants (see [constants/battle_anim_constants.asm](https://github.com/pret/pokecrystal/blob/master/constants/battle_anim_constants.asm))
+- *bg_effect*: `ANIM_BG` constants (see [constants/battle_anim_constants.inc](https://github.com/pret/pokecrystal/blob/master/constants/battle_anim_constants.inc))
 
 
 ## `$F1`: <code>anim_bgp <i>colors</i></code>

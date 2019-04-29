@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 ; TrainerCard.Jumptable indexes
 	const_def
 	const TRAINERCARDSTATE_PAGE1_LOADGFX ; 0

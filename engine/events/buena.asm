@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/buena.asm@BuenasPassword", ROMX
 
 BuenasPassword:
@@ -314,4 +317,4 @@ Buena_getprize:
 	add hl, bc
 	ret
 
-INCLUDE "data/items/buena_prizes.asm"
+INCLUDE "data/items/buena_prizes.inc"

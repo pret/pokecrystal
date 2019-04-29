@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/phone/phone.asm", ROMX, BANK[BANK_PHONE_CALL]
 
 FarPlaceString:
@@ -569,7 +572,7 @@ GetCallerName:
 	call PlaceString
 	ret
 
-INCLUDE "data/phone/non_trainer_names.asm"
+INCLUDE "data/phone/non_trainer_names.inc"
 
 Phone_GetTrainerName:
 	push hl
@@ -608,9 +611,9 @@ GetCallerLocation:
 	pop de
 	ret
 
-INCLUDE "data/phone/phone_contacts.asm"
+INCLUDE "data/phone/phone_contacts.inc"
 
-INCLUDE "data/phone/special_calls.asm"
+INCLUDE "data/phone/special_calls.inc"
 
 UnknownScript_0x90657:
 	writetext UnknownText_0x9065b

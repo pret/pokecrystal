@@ -1,6 +1,9 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/moves/effects.asm", ROMX
 
-INCLUDE "data/moves/effects_pointers.asm"
+INCLUDE "data/moves/effects_pointers.inc"
 
 MoveEffects: ; used only for BANK(MoveEffects)
 

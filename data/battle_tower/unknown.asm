@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/battle_tower/unknown.asm", ROMX
 
 BattleTowerTrainerData:: ; What exactly it is, I don't know

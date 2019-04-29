@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/phone/scripts/parry.asm", ROMX
 
 ParryPhoneCalleeScript:

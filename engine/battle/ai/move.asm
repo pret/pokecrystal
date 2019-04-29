@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/battle/ai/move.asm", ROMX
 
 AIChooseMove:

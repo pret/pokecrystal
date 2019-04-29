@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/profoak.asm", ROMX
 
 Music_ProfOak:

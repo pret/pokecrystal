@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 tileset: MACRO
 	dba \1GFX, \1Meta, \1Coll
 	dw \1Anim
@@ -10,7 +12,7 @@ SECTION "data/tilesets.asm", ROMX
 
 ; Associated data:
 ; - The *GFX, *Meta, and *Coll are defined in gfx/tilesets.asm
-; - The *PalMap are defined in gfx/tileset_palette_maps.asm
+; - The *PalMap are defined in gfx/tileset_palette_maps.inc
 ; - The *Anim are defined in engine/tilesets/tileset_anims.asm
 
 Tilesets::

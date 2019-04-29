@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/rocketbattle.asm", ROMX
 
 Music_RocketBattle:

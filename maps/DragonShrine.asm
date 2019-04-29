@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const DRAGONSHRINE_ELDER1
 	const DRAGONSHRINE_ELDER2

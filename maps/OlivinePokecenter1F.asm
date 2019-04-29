@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const OLIVINEPOKECENTER1F_NURSE
 	const OLIVINEPOKECENTER1F_FISHING_GURU

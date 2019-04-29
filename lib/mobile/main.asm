@@ -2,7 +2,7 @@
 
 charmap "<CR>", $d
 
-INCLUDE "constants/hardware_constants.asm"
+INCLUDE "constants/hardware_constants.inc"
 
 
 SECTION "Mobile Adapter SDK", ROMX

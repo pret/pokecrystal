@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/wilton_overworld.asm", ROMX
 
 WiltonAskNumber1Text:

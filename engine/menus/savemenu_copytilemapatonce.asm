@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/menus/savemenu_copytilemapatonce.asm", ROMX
 
 SaveMenu_CopyTilemapAtOnce:

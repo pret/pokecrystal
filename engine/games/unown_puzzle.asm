@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 PUZZLE_BORDER EQU $ee
 PUZZLE_VOID   EQU $ef
 

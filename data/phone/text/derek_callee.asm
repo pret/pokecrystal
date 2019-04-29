@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/derek_callee.asm", ROMX
 
 UnknownText_0x1b69a8:

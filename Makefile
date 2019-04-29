@@ -1,19 +1,7 @@
-roms := pokecrystal.gbc pokecrystal11.gbc pokecrystal-au.gbc
+roms := pokecrystal.gbc pokecrystal11.gbc pokecrystal_au.gbc
 
-crystal_obj := \
-audio.o \
-home.o \
-main.o \
-wram.o \
-data/text/common.o \
-data/maps/map_data.o \
-data/pokemon/dex_entries.o \
-data/pokemon/egg_moves.o \
-engine/movie/credits.o \
-engine/overworld/events.o \
-gfx/pics.o \
-gfx/sprites.o \
-lib/mobile/main.o
+rwildcard = $(foreach d, $(wildcard $1*), $(filter $(subst *, %, $2), $d) $(call rwildcard, $d/, $2))
+crystal_obj := $(patsubst %.asm, %.o, $(call rwildcard, audio data engine gfx lib maps mobile, *.asm)) home.o main.o wram.o
 
 crystal11_obj := $(crystal_obj:.o=11.o)
 crystal_au_obj := $(crystal_obj:.o=_au.o)
@@ -28,7 +16,7 @@ SHA1 := sha1sum
 endif
 
 RGBDS ?=
-RGBASM  ?= $(RGBDS)rgbasm
+RGBASM  ?= $(RGBDS)rgbasm -E
 RGBFIX  ?= $(RGBDS)rgbfix
 RGBGFX  ?= $(RGBDS)rgbgfx
 RGBLINK ?= $(RGBDS)rgblink
@@ -45,12 +33,12 @@ RGBLINK ?= $(RGBDS)rgblink
 all: crystal
 crystal: pokecrystal.gbc
 crystal11: pokecrystal11.gbc
-crystal-au: pokecrystal-au.gbc
+crystal_au: pokecrystal_au.gbc
 
 clean:
 	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(crystal_au_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
 	find gfx \( -name "*.[12]bpp" -o -name "*.lz" -o -name "*.gbcpal" \) -delete
-	find gfx/pokemon -mindepth 1 ! -path "gfx/pokemon/unown/*" \( -name "bitmask.asm" -o -name "frames.asm" -o -name "front.animated.tilemap" -o -name "front.dimensions" \) -delete
+	find gfx/pokemon -mindepth 1 ! -path "gfx/pokemon/unown/*" \( -name "bitmask.inc" -o -name "frames.inc" -o -name "front.animated.tilemap" -o -name "front.dimensions" \) -delete
 	$(MAKE) clean -C tools/
 
 tidy:
@@ -82,27 +70,18 @@ ifeq (,$(filter clean tools,$(MAKECMDGOALS)))
 
 $(info $(shell $(MAKE) -C tools))
 
-$(foreach obj, $(crystal_au_obj), $(eval $(call DEP,$(obj),$(obj:_au.o=.asm))))
-$(foreach obj, $(crystal11_obj), $(eval $(call DEP,$(obj),$(obj:11.o=.asm))))
-$(foreach obj, $(crystal_obj), $(eval $(call DEP,$(obj),$(obj:.o=.asm))))
+$(foreach obj, $(crystal_obj), $(eval $(call DEP,$(obj) $(obj:.o=11.o) $(obj:.o=_au.o),$(obj:.o=.asm))))
 
 endif
 
 
-pokecrystal.gbc: $(crystal_obj) pokecrystal.link
-	$(RGBLINK) -n pokecrystal.sym -m pokecrystal.map -l pokecrystal.link -o $@ $(crystal_obj)
-	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
-	tools/sort_symfile.sh pokecrystal.sym
-
-pokecrystal11.gbc: $(crystal11_obj) pokecrystal.link
-	$(RGBLINK) -n pokecrystal11.sym -m pokecrystal11.map -l pokecrystal.link -o $@ $(crystal11_obj)
-	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 3 -t PM_CRYSTAL $@
-	tools/sort_symfile.sh pokecrystal11.sym
-
-pokecrystal-au.gbc: $(crystal_au_obj) pokecrystal.link
-	$(RGBLINK) -n pokecrystal-au.sym -m pokecrystal-au.map -l pokecrystal.link -o $@ $(crystal_au_obj)
-	$(RGBFIX) -Cjv -i BYTU -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
-	tools/sort_symfile.sh pokecrystal-au.sym
+pokecrystal11.gbc: RGBFIXFLAGS := -n 1
+pokecrystal_au.gbc: RGBFIXFLAGS := -i BYTU
+poke%.gbc: pokecrystal.link $$($$*_obj)
+	@$(RGBLINK) -n $(@F:.gbc=.sym) -m $(@F:.gbc=.map) -l $< -o $@ $(filter-out $<, $^)
+	@echo $(RGBLINK) -n $(@F:.gbc=.sym) -m $(@F:.gbc=.map) -l $< -o $@
+	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $(RGBFIXFLAGS) $@
+	tools/sort_symfile.sh $(@F:.gbc=.sym)
 
 
 # For files that the compressor can't match, there will be a .lz file suffixed with the md5 hash of the correct uncompressed file.
@@ -123,21 +102,21 @@ gfx/pokemon/%/front.animated.2bpp: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.
 	tools/pokemon_animation_graphics -o $@ $^
 gfx/pokemon/%/front.animated.tilemap: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions
 	tools/pokemon_animation_graphics -t $@ $^
-gfx/pokemon/%/bitmask.asm: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions
+gfx/pokemon/%/bitmask.inc: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions
 	tools/pokemon_animation -b $^ > $@
-gfx/pokemon/%/frames.asm: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions
+gfx/pokemon/%/frames.inc: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions
 	tools/pokemon_animation -f $^ > $@
 
 
 ### Terrible hacks to match animations. Delete these rules if you don't care about matching.
 
 # Dewgong has an unused tile id in its last frame. The tile itself is missing.
-gfx/pokemon/dewgong/frames.asm: gfx/pokemon/dewgong/front.animated.tilemap gfx/pokemon/dewgong/front.dimensions
+gfx/pokemon/dewgong/frames.inc: gfx/pokemon/dewgong/front.animated.tilemap gfx/pokemon/dewgong/front.dimensions
 	tools/pokemon_animation -f $^ > $@
 	echo "	db \$$4d" >> $@
 
 # Lugia has two unused tile ids in its last frame. The tiles themselves are missing.
-gfx/pokemon/lugia/frames.asm: gfx/pokemon/lugia/front.animated.tilemap gfx/pokemon/lugia/front.dimensions
+gfx/pokemon/lugia/frames.inc: gfx/pokemon/lugia/front.animated.tilemap gfx/pokemon/lugia/front.dimensions
 	tools/pokemon_animation -f $^ > $@
 	echo "	db \$$5e, \$$59" >> $@
 

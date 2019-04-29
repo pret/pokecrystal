@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/gaven_callee.asm", ROMX
 
 UnknownText_0x1b5270:

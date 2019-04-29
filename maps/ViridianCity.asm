@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const VIRIDIANCITY_GRAMPS1
 	const VIRIDIANCITY_GRAMPS2

@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 ; These functions seem to be related to backwards compatibility
 
 
@@ -149,5 +151,3 @@ PlaceTradePartnerNamesAndParty:
 	pop bc
 	inc c
 	jr .loop
-
-INCLUDE "data/pokemon/gen1_base_special.asm"

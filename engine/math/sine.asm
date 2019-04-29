@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/math/sine.asm", ROMX
 
 _Sine::

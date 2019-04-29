@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 item_attribute: MACRO
 ; price, held effect, parameter, property, pocket, field menu, battle menu
 	dw \1

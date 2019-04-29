@@ -1,6 +1,9 @@
-; Core components of the battle engine.
+INCLUDE "constants.inc"
+
 
 SECTION "engine/battle/core.asm", ROMX
+
+; Core components of the battle engine.
 
 DoBattle:
 	xor a
@@ -807,7 +810,7 @@ TryEnemyFlee:
 	scf
 	ret
 
-INCLUDE "data/wild/flee_mons.asm"
+INCLUDE "data/wild/flee_mons.inc"
 
 CompareMovePriority:
 ; Compare the priority of the player and enemy's moves.
@@ -850,7 +853,7 @@ GetMovePriority:
 	ld a, [hl]
 	ret
 
-INCLUDE "data/moves/effects_priorities.asm"
+INCLUDE "data/moves/effects_priorities.inc"
 
 GetMoveEffect:
 	ld a, b
@@ -2593,7 +2596,7 @@ IsGymLeaderCommon:
 	pop de
 	ret
 
-INCLUDE "data/trainers/leaders.asm"
+INCLUDE "data/trainers/leaders.inc"
 
 HandlePlayerMonFaint:
 	call FaintYourPokemon
@@ -4418,7 +4421,7 @@ UseHeldStatusHealingItem:
 	and a
 	ret
 
-INCLUDE "data/battle/held_heal_status.asm"
+INCLUDE "data/battle/held_heal_status.inc"
 
 UseConfusionHealingItem:
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
@@ -4529,7 +4532,7 @@ HandleStatBoostingHeldItems:
 	pop de
 	ret
 
-INCLUDE "data/battle/held_stat_up.asm"
+INCLUDE "data/battle/held_stat_up.inc"
 
 GetPartymonItem:
 	ld hl, wPartyMon1Item
@@ -6439,7 +6442,7 @@ CheckSleepingTreeMon:
 	and a
 	ret
 
-INCLUDE "data/wild/treemons_asleep.asm"
+INCLUDE "data/wild/treemons_asleep.inc"
 
 CheckUnownLetter:
 ; Return carry if the Unown letter hasn't been unlocked yet
@@ -6488,7 +6491,7 @@ CheckUnownLetter:
 	and a
 	ret
 
-INCLUDE "data/wild/unlocked_unowns.asm"
+INCLUDE "data/wild/unlocked_unowns.inc"
 
 Unreferenced_SwapBattlerLevels:
 	push bc
@@ -6753,7 +6756,7 @@ ApplyStatLevelMultiplier:
 	pop bc
 	ret
 
-INCLUDE "data/battle/stat_multipliers_2.asm"
+INCLUDE "data/battle/stat_multipliers_2.inc"
 
 BadgeStatBoosts:
 ; Raise the stats of the battle mon in wBattleMon

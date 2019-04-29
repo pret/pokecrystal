@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/reena_caller.asm", ROMX
 
 UnknownText_0x1752f5:

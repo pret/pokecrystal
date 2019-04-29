@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/titlescreen.asm", ROMX
 
 Music_TitleScreen:

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/clair.asm", ROMX
 
 Music_Clair:

@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 MAP_NAME_SIGN_START EQU $60
 
 

@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const LANCESROOM_LANCE
 	const LANCESROOM_MARY

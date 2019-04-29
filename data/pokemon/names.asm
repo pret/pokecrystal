@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/pokemon/names.asm", ROMX
 
 PokemonNames::

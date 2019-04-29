@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/prof_oaks_pc.asm", ROMX
 
 ProfOaksPC:
@@ -100,7 +103,7 @@ endr
 	ld l, a
 	ret
 
-INCLUDE "data/events/pokedex_ratings.asm"
+INCLUDE "data/events/pokedex_ratings.inc"
 
 OakPCText1:
 	text_far _OakPCText1

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/pokemonlullaby.asm", ROMX
 
 Music_PokemonLullaby:

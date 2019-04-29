@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/specials.asm", ROMX
 
 Special::
@@ -15,7 +18,7 @@ Special::
 	rst FarCall
 	ret
 
-INCLUDE "data/special_pointers.asm"
+INCLUDE "data/special_pointers.inc"
 
 
 SECTION "engine/events/specials.asm@DummySpecial_c224", ROMX

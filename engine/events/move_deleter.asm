@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/move_deleter.asm", ROMX
 
 MoveDeletion:

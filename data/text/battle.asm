@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/text/battle.asm", ROMX
 
 BattleText:: ; used only for BANK(BattleText)

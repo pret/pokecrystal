@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/gfx/load_pics.asm@GetUnownLetter", ROMX
 
 GetUnownLetter:

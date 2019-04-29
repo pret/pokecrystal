@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/npc_trade.asm", ROMX
 
 NPCTrade::
@@ -385,7 +388,7 @@ GetTradeMonNames:
 	ld [hl], "@"
 	ret
 
-INCLUDE "data/events/npc_trades.asm"
+INCLUDE "data/events/npc_trades.inc"
 
 PrintTradeText:
 	push af

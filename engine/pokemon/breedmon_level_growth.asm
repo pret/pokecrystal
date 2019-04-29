@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/pokemon/breedmon_level_growth.asm", ROMX, BANK[BANK_MOVE_MON]
 
 GetBreedMon1LevelGrowth:

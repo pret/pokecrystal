@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/odd_egg.asm", ROMX
 
 _GiveOddEgg:
@@ -96,4 +99,4 @@ _GiveOddEgg:
 .Odd:
 	db "ODD@@@@@@@@@"
 
-INCLUDE "data/events/odd_eggs.asm"
+INCLUDE "data/events/odd_eggs.inc"

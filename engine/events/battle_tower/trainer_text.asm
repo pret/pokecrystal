@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/battle_tower/trainer_text.asm", ROMX
 
 BattleTowerText::
@@ -86,9 +89,9 @@ endc
 	call PlaceHLTextAtBC
 	ret
 
-INCLUDE "mobile/fixed_words.asm"
+INCLUDE "mobile/fixed_words.inc"
 
-INCLUDE "data/trainers/genders.asm"
+INCLUDE "data/trainers/genders.inc"
 
 BTMaleTrainerTexts:
 	dw .Greetings

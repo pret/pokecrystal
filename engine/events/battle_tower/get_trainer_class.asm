@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/battle_tower/get_trainer_class.asm", ROMX
 
 GetMobileOTTrainerClass: ; mobile function
@@ -45,4 +48,4 @@ GetMobileOTTrainerClass: ; mobile function
 	ld a, [hl]
 	ret
 
-INCLUDE "data/trainers/gendered_trainers.asm"
+INCLUDE "data/trainers/gendered_trainers.inc"

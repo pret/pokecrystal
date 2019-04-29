@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/wilton_callee.asm", ROMX
 
 UnknownText_0x1b71d5:

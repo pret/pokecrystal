@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 
 SECTION "maps/CinnabarPokecenter2FBeta.asm", ROMX
 

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/mtmoon.asm", ROMX
 
 Music_MtMoon:

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/goldsilveropening2.asm", ROMX
 
 Music_GoldSilverOpening2:

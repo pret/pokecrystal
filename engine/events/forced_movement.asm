@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/forced_movement.asm", ROMX
 
 Script_ForcedMovement::

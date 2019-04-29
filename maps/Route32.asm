@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const ROUTE32_FISHER1
 	const ROUTE32_FISHER2

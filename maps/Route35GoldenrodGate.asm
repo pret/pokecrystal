@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const ROUTE35GOLDENRODGATE_RANDY
 	const ROUTE35GOLDENRODGATE_POKEFAN_F

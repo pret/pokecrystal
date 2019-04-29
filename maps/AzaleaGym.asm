@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const AZALEAGYM_BUGSY
 	const AZALEAGYM_BUG_CATCHER1

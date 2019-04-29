@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/battletowerlobby.asm", ROMX
 
 Music_BattleTowerLobby:

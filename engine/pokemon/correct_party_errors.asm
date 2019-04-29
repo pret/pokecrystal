@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/pokemon/correct_party_errors.asm", ROMX
 
 Unreferenced_CorrectPartyErrors:

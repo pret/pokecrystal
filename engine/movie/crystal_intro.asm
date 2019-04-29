@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/movie/crystal_intro.asm@Copyright_GFPresents", ROMX
 
 Copyright_GFPresents:

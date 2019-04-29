@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/play_slow_cry.asm", ROMX
 
 PlaySlowCry:

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/predef.asm", ROMX
 
 GetPredefPointer::
@@ -27,4 +30,4 @@ GetPredefPointer::
 
 	ret
 
-INCLUDE "data/predef_pointers.asm"
+INCLUDE "data/predef_pointers.inc"

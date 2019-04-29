@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/kantogymbattle.asm", ROMX
 
 Music_KantoGymBattle:

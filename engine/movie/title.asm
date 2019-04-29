@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/movie/title.asm", ROMX
 
 Function10ed51:

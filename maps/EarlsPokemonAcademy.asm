@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const EARLSPOKEMONACADEMY_EARL
 	const EARLSPOKEMONACADEMY_YOUNGSTER1

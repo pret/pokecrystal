@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/happiness_egg.asm@ChangeHappiness", ROMX, BANK[BANK_HAPPINESS]
 
 GetFirstPokemonHappiness:
@@ -104,7 +107,7 @@ ChangeHappiness:
 	ld [wBattleMonHappiness], a
 	ret
 
-INCLUDE "data/events/happiness_changes.asm"
+INCLUDE "data/events/happiness_changes.inc"
 
 
 SECTION "engine/events/happiness_egg.asm@StepHappiness", ROMX

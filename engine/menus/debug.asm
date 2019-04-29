@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	const_def $6a
 	const DEBUGTEST_UP_ARROW ; $6a
 	const DEBUGTEST_TICKS    ; $6b

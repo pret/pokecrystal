@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const SILPHCO1F_RECEPTIONIST
 	const SILPHCO1F_OFFICER

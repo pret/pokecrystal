@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const BILLSFAMILYSHOUSE_BILL
 	const BILLSFAMILYSHOUSE_POKEFAN_F

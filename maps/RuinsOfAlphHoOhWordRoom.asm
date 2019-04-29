@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 
 SECTION "maps/RuinsOfAlphHoOhWordRoom.asm", ROMX
 

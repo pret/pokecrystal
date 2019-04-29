@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/basement_key.asm", ROMX
 
 _BasementKey:

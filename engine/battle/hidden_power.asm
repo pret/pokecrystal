@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/battle/hidden_power.asm", ROMX
 
 HiddenPowerDamage:

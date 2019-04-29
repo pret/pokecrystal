@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 TIMESET_UP_ARROW   EQU "♂" ; $ef
 TIMESET_DOWN_ARROW EQU "♀" ; $f5
 
@@ -517,7 +519,7 @@ SetDayOfWeek:
 	ret
 
 .WeekdayStrings:
-; entries correspond to wCurDay constants (see constants/wram_constants.asm)
+; entries correspond to wCurDay constants (see constants/wram_constants.inc)
 	dw .Sunday
 	dw .Monday
 	dw .Tuesday

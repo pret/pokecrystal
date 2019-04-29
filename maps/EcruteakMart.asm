@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const ECRUTEAKMART_CLERK
 	const ECRUTEAKMART_SUPER_NERD

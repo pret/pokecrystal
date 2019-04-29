@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/pokemon/correct_nick_errors.asm", ROMX
 
 CorrectNickErrors::

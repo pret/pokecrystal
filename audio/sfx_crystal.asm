@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/sfx_crystal.asm@Sfx_IntroUnown1", ROMX
 
 Sfx_IntroUnown1:

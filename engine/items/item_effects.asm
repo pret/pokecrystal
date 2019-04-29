@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/items/item_effects.asm", ROMX
 
 _DoItemEffect::
@@ -1503,7 +1506,7 @@ GetItemHealingAction:
 	pop hl
 	ret
 
-INCLUDE "data/items/heal_status.asm"
+INCLUDE "data/items/heal_status.inc"
 
 StatusHealer_Jumptable:
 	ld hl, .dw
@@ -1996,7 +1999,7 @@ GetHealingItemAmount:
 	pop hl
 	ret
 
-INCLUDE "data/items/heal_hp.asm"
+INCLUDE "data/items/heal_hp.inc"
 
 Softboiled_MilkDrinkFunction:
 ; Softboiled/Milk Drink in the field
@@ -2173,7 +2176,7 @@ XItemEffect:
 	farcall ChangeHappiness
 	ret
 
-INCLUDE "data/items/x_stats.asm"
+INCLUDE "data/items/x_stats.inc"
 
 PokeFluteEffect:
 	ld a, [wBattleMode]

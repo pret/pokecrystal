@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const GOLDENRODCITY_POKEFAN_M1
 	const GOLDENRODCITY_YOUNGSTER1

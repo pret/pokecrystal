@@ -1,13 +1,13 @@
-INCLUDE "constants.asm"
+INCLUDE "constants.inc"
 
 
 SECTION "home.asm@NULL", ROM0[$0000]
 
 NULL::
 
-INCLUDE "home/rst.asm"
+INCLUDE "home/rst.inc"
 
-INCLUDE "home/interrupts.asm"
+INCLUDE "home/interrupts.inc"
 
 
 SECTION "home.asm@Header", ROM0[$0100]
@@ -21,28 +21,28 @@ Start::
 
 SECTION "home.asm@Home", ROM0
 
-INCLUDE "home/init.asm"
-INCLUDE "home/vblank.asm"
-INCLUDE "home/delay.asm"
-INCLUDE "home/rtc.asm"
-INCLUDE "home/fade.asm"
-INCLUDE "home/lcd.asm"
-INCLUDE "home/time.asm"
-INCLUDE "home/serial.asm"
-INCLUDE "home/joypad.asm"
-INCLUDE "home/decompress.asm"
-INCLUDE "home/palettes.asm"
-INCLUDE "home/copy.asm"
-INCLUDE "home/text.asm"
-INCLUDE "home/video.asm"
-INCLUDE "home/map_objects.asm"
-INCLUDE "home/sine.asm"
-INCLUDE "home/movement.asm"
-INCLUDE "home/menu_window.asm"
-INCLUDE "home/menu.asm"
-INCLUDE "home/handshake.asm"
-INCLUDE "home/game_time.asm"
-INCLUDE "home/map.asm"
+INCLUDE "home/init.inc"
+INCLUDE "home/vblank.inc"
+INCLUDE "home/delay.inc"
+INCLUDE "home/rtc.inc"
+INCLUDE "home/fade.inc"
+INCLUDE "home/lcd.inc"
+INCLUDE "home/time.inc"
+INCLUDE "home/serial.inc"
+INCLUDE "home/joypad.inc"
+INCLUDE "home/decompress.inc"
+INCLUDE "home/palettes.inc"
+INCLUDE "home/copy.inc"
+INCLUDE "home/text.inc"
+INCLUDE "home/video.inc"
+INCLUDE "home/map_objects.inc"
+INCLUDE "home/sine.inc"
+INCLUDE "home/movement.inc"
+INCLUDE "home/menu_window.inc"
+INCLUDE "home/menu.inc"
+INCLUDE "home/handshake.inc"
+INCLUDE "home/game_time.inc"
+INCLUDE "home/map.inc"
 
 InexplicablyEmptyFunction::
 ; unused
@@ -53,10 +53,10 @@ rept 16
 endr
 	ret
 
-INCLUDE "home/farcall.asm"
-INCLUDE "home/predef.asm"
-INCLUDE "home/window.asm"
-INCLUDE "home/flag.asm"
+INCLUDE "home/farcall.inc"
+INCLUDE "home/predef.inc"
+INCLUDE "home/window.inc"
+INCLUDE "home/flag.inc"
 
 Unreferenced_CheckBPressedDebug::
 ; Used in debug ROMs to walk through walls and avoid encounters.
@@ -85,16 +85,16 @@ Unreferenced_CheckFieldDebug::
 	pop hl
 	ret
 
-INCLUDE "home/sprite_updates.asm"
-INCLUDE "home/string.asm"
-INCLUDE "home/region.asm"
+INCLUDE "home/sprite_updates.inc"
+INCLUDE "home/string.inc"
+INCLUDE "home/region.inc"
 
 ret_2f3e::
 	ret
 
-INCLUDE "home/item.asm"
-INCLUDE "home/random.asm"
-INCLUDE "home/sram.asm"
+INCLUDE "home/item.inc"
+INCLUDE "home/random.inc"
+INCLUDE "home/sram.inc"
 
 ; Register aliases
 
@@ -105,11 +105,11 @@ _de_::
 	push de
 	ret
 
-INCLUDE "home/double_speed.asm"
-INCLUDE "home/clear_sprites.asm"
-INCLUDE "home/copy2.asm"
-INCLUDE "home/copy_tilemap.asm"
-INCLUDE "home/copy_name.asm"
+INCLUDE "home/double_speed.inc"
+INCLUDE "home/clear_sprites.inc"
+INCLUDE "home/copy2.inc"
+INCLUDE "home/copy_tilemap.inc"
+INCLUDE "home/copy_name.inc"
 
 IsInArray::
 ; Find value a for every de bytes in array hl.
@@ -146,8 +146,8 @@ SkipNames::
 	jr nz, .loop
 	ret
 
-INCLUDE "home/math.asm"
-INCLUDE "home/print_text.asm"
+INCLUDE "home/math.inc"
+INCLUDE "home/print_text.inc"
 
 CallPointerAt::
 	ldh a, [hROMBank]
@@ -166,10 +166,10 @@ CallPointerAt::
 	rst Bankswitch
 	ret
 
-INCLUDE "home/queue_script.asm"
-INCLUDE "home/compare.asm"
-INCLUDE "home/tilemap.asm"
-INCLUDE "home/hp_pals.asm"
+INCLUDE "home/queue_script.inc"
+INCLUDE "home/compare.inc"
+INCLUDE "home/tilemap.inc"
+INCLUDE "home/hp_pals.inc"
 
 CountSetBits::
 ; Count the number of set bits in b bytes starting from hl.
@@ -203,18 +203,18 @@ GetWeekday::
 	add 7
 	ret
 
-INCLUDE "home/pokedex_flags.asm"
-INCLUDE "home/names.asm"
-INCLUDE "home/scrolling_menu.asm"
-INCLUDE "home/stone_queue.asm"
-INCLUDE "home/trainers.asm"
-INCLUDE "home/mon_stats.asm"
-INCLUDE "home/cry.asm"
-INCLUDE "home/print_level.asm"
-INCLUDE "home/mon_data.asm"
-INCLUDE "home/print_bcd.asm"
-INCLUDE "home/mon_data_2.asm"
-INCLUDE "home/battle.asm"
-INCLUDE "home/sprite_anims.asm"
-INCLUDE "home/audio.asm"
-INCLUDE "home/mobile.asm"
+INCLUDE "home/pokedex_flags.inc"
+INCLUDE "home/names.inc"
+INCLUDE "home/scrolling_menu.inc"
+INCLUDE "home/stone_queue.inc"
+INCLUDE "home/trainers.inc"
+INCLUDE "home/mon_stats.inc"
+INCLUDE "home/cry.inc"
+INCLUDE "home/print_level.inc"
+INCLUDE "home/mon_data.inc"
+INCLUDE "home/print_bcd.inc"
+INCLUDE "home/mon_data_2.inc"
+INCLUDE "home/battle.inc"
+INCLUDE "home/sprite_anims.inc"
+INCLUDE "home/audio.inc"
+INCLUDE "home/mobile.inc"

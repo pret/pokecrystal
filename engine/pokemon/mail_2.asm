@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/pokemon/mail_2.asm@ReadAnyMail", ROMX
 
 ReadPartyMonMail:
@@ -911,7 +914,7 @@ LoadMailGFX_Color3:
 	jr nz, .loop
 	ret
 
-INCLUDE "gfx/mail.asm"
+INCLUDE "gfx/mail.inc"
 
 
 SECTION "engine/pokemon/mail_2.asm@ItemIsMail", ROMX
@@ -922,4 +925,4 @@ ItemIsMail:
 	ld de, 1
 	jp IsInArray
 
-INCLUDE "data/items/mail_items.asm"
+INCLUDE "data/items/mail_items.inc"

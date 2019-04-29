@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/mainmenu.asm", ROMX
 
 Music_MainMenu:

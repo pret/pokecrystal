@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/battle/read_trainer_party.asm", ROMX
 
 ReadTrainerParty:
@@ -390,4 +393,4 @@ Function39990:
 	pop de
 	ret
 
-INCLUDE "data/trainers/parties.asm"
+INCLUDE "data/trainers/parties.inc"

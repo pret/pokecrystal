@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_CAPTAIN
 	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_GENTLEMAN

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/trainer_scripts.asm", ROMX
 
 TalkToTrainerScript::

@@ -1,6 +1,9 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/overworld/spawn_points.asm", ROMX
 
-INCLUDE "data/maps/spawn_points.asm"
+INCLUDE "data/maps/spawn_points.inc"
 
 LoadSpawnPoint:
 	; loads the spawn point in wDefaultSpawnpoint

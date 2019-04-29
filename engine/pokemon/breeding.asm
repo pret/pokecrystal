@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/pokemon/breeding.asm", ROMX
 
 CheckBreedmonCompatibility:

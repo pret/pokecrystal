@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/items/tmhm.asm", ROMX
 
 TMHMPocket:
@@ -560,4 +563,4 @@ CountTMsHMs:
 	ld [wTempTMHM], a
 	ret
 
-INCLUDE "engine/pokemon/print_move_description.asm"
+INCLUDE "engine/pokemon/print_move_description.inc"

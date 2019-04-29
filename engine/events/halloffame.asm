@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 HALLOFFAME_COLON EQU $63
 
 

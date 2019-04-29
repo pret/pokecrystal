@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const VIOLETCITY_EARL
 	const VIOLETCITY_LASS

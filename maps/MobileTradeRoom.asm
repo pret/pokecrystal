@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 
 SECTION "maps/MobileTradeRoom.asm", ROMX
 

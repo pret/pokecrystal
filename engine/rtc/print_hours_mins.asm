@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/rtc/print_hours_mins.asm@Unreferenced_Function1dd6a9", ROMX
 
 Unreferenced_Function1dd6a9:

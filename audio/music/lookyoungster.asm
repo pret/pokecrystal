@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/lookyoungster.asm", ROMX
 
 Music_LookYoungster:

@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const ROUTE10POKECENTER1F_NURSE
 	const ROUTE10POKECENTER1F_GENTLEMAN

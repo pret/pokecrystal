@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const SOULHOUSE_MRFUJI
 	const SOULHOUSE_TEACHER

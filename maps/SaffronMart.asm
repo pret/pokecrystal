@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const SAFFRONMART_CLERK
 	const SAFFRONMART_COOLTRAINER_M

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/cries.asm@Johto", ROMX
 
 Cry_Marill:

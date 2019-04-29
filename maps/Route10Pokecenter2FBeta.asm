@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 
 SECTION "maps/Route10Pokecenter2FBeta.asm", ROMX
 

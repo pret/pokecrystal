@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/overworld/landmarks.asm", ROMX
 
 GetLandmarkCoords:
@@ -45,7 +48,7 @@ GetLandmarkName::
 	pop hl
 	ret
 
-INCLUDE "data/maps/landmarks.asm"
+INCLUDE "data/maps/landmarks.inc"
 
 
 SECTION "engine/overworld/landmarks.asm@RegionCheck", ROMX

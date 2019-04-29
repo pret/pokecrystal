@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/parry_overworld.asm", ROMX
 
 ParryAskNumber1Text:

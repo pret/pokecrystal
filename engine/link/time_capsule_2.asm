@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/link/time_capsule_2.asm", ROMX
 
 ConvertMon_2to1:
@@ -38,4 +41,4 @@ ConvertMon_1to2:
 	pop bc
 	ret
 
-INCLUDE "data/pokemon/gen1_order.asm"
+INCLUDE "data/pokemon/gen1_order.inc"

@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const MOUNTMOONSQUARE_FAIRY1
 	const MOUNTMOONSQUARE_FAIRY2

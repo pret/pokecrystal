@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const ROUTE12SUPERRODHOUSE_FISHING_GURU
 

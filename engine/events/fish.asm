@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/fish.asm", ROMX
 
 Fish:
@@ -126,4 +129,4 @@ GetFishGroupIndex:
 	ld d, FISHGROUP_REMORAID_SWARM
 	jr .done
 
-INCLUDE "data/wild/fish.asm"
+INCLUDE "data/wild/fish.inc"

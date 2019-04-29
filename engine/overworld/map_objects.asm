@@ -1,8 +1,11 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/overworld/map_objects.asm", ROMX, BANK[BANK_MAP_OBJECTS]
 
-INCLUDE "data/sprites/facings.asm"
+INCLUDE "data/sprites/facings.inc"
 
-INCLUDE "data/sprites/map_objects.asm"
+INCLUDE "data/sprites/map_objects.inc"
 
 DeleteMapObject::
 	push bc
@@ -181,7 +184,7 @@ _HandleObjectAction:
 	call _hl_
 	ret
 
-INCLUDE "engine/overworld/map_object_action.asm"
+INCLUDE "engine/overworld/map_object_action.inc"
 
 CopyNextCoordsTileToStandingCoordsTile:
 	ld hl, OBJECT_NEXT_MAP_X
@@ -1917,7 +1920,7 @@ DoMovementFunction:
 	rst JumpTable
 	ret
 
-INCLUDE "engine/overworld/movement.asm"
+INCLUDE "engine/overworld/movement.inc"
 
 ApplyMovementToFollower:
 	ld e, a

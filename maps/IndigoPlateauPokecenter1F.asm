@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const INDIGOPLATEAUPOKECENTER1F_NURSE
 	const INDIGOPLATEAUPOKECENTER1F_CLERK

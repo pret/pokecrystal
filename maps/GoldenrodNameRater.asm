@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const GOLDENRODNAMERATER_NAME_RATER
 
@@ -23,7 +25,7 @@ GoldenrodNameRaterBookshelf:
 GoldenrodNameRaterRadio:
 	jumpstd radio2
 
-INCLUDE "data/text/unused_sweet_honey.asm"
+INCLUDE "data/text/unused_sweet_honey.inc"
 
 GoldenrodNameRater_MapEvents:
 	db 0, 0 ; filler

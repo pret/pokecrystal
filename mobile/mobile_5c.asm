@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "mobile/mobile_5c.asm@Function170000", ROMX
 
 Function170000:
@@ -79,7 +82,7 @@ Function17005a:
 
 SECTION "mobile/mobile_5c.asm@BattleTowerRoomMenu", ROMX
 
-INCLUDE "engine/events/battle_tower/battle_tower.asm"
+INCLUDE "engine/events/battle_tower/battle_tower.inc"
 
 Function170be4:
 	ld a, $5

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/magikarp.asm", ROMX
 
 CheckMagikarpLength:
@@ -301,7 +304,7 @@ CalcMagikarpLength:
 	ld b, a
 	ret
 
-INCLUDE "data/events/magikarp_lengths.asm"
+INCLUDE "data/events/magikarp_lengths.inc"
 
 MagikarpHouseSign:
 	ld a, [wBestMagikarpLengthFeet]

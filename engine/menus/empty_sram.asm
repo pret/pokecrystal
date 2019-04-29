@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/menus/empty_sram.asm", ROMX
 
 EmptyAllSRAMBanks:

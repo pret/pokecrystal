@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const ROUTE36_YOUNGSTER1
 	const ROUTE36_YOUNGSTER2

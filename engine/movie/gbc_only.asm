@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/movie/gbc_only.asm", ROMX
 
 GBCOnlyScreen:

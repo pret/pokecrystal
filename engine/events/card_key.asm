@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/card_key.asm", ROMX
 
 _CardKey:

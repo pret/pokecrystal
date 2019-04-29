@@ -1,32 +1,32 @@
-; See also: constants/floating_constants.asm
+; See also: constants/floating_constants.inc
 
 ROM0
 	org $0000
 	"home.asm@NULL"
 	org $0000
-	"home/rst.asm@rst0"
+	"home/rst.inc@rst0"
 	org $0008
-	"home/rst.asm@rst8"
+	"home/rst.inc@rst8"
 	org $0010
-	"home/rst.asm@rst10"
+	"home/rst.inc@rst10"
 	org $0018
-	"home/rst.asm@rst18"
+	"home/rst.inc@rst18"
 	org $0020
-	"home/rst.asm@rst20"
+	"home/rst.inc@rst20"
 	org $0028
-	"home/rst.asm@rst28"
+	"home/rst.inc@rst28"
 	org $0038
-	"home/rst.asm@rst38"
+	"home/rst.inc@rst38"
 	org $0040
-	"home/interrupts.asm@vblank"
+	"home/interrupts.inc@vblank"
 	org $0048
-	"home/interrupts.asm@lcd"
+	"home/interrupts.inc@lcd"
 	org $0050
-	"home/interrupts.asm@timer"
+	"home/interrupts.inc@timer"
 	org $0058
-	"home/interrupts.asm@serial"
+	"home/interrupts.inc@serial"
 	org $0060
-	"home/interrupts.asm@joypad"
+	"home/interrupts.inc@joypad"
 	org $0100
 	"home.asm@Header"
 	"home.asm@Home"

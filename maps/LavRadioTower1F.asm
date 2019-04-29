@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const LAVRADIOTOWER1F_RECEPTIONIST
 	const LAVRADIOTOWER1F_OFFICER

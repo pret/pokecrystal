@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/violetcity.asm", ROMX
 
 Music_VioletCity:

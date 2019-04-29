@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const UNIONCAVE1F_POKEFAN_M1
 	const UNIONCAVE1F_SUPER_NERD

@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const SLOWPOKEWELLB2F_GYM_GUY
 	const SLOWPOKEWELLB2F_POKE_BALL

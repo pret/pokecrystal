@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/battle/ai/scoring.asm", ROMX
 
 AIScoring: ; used only for BANK(AIScoring)
@@ -64,7 +67,7 @@ AI_Basic:
 	call AIDiscourageMove
 	jr .checkmove
 
-INCLUDE "data/battle/ai/status_only_effects.asm"
+INCLUDE "data/battle/ai/status_only_effects.inc"
 
 
 AI_Setup:
@@ -1441,7 +1444,7 @@ AI_Smart_Encore:
 	inc [hl]
 	ret
 
-INCLUDE "data/battle/ai/encore_moves.asm"
+INCLUDE "data/battle/ai/encore_moves.inc"
 
 AI_Smart_PainSplit:
 ; Discourage this move if [enemy's current HP * 2 > player's current HP].
@@ -2341,7 +2344,7 @@ AI_Smart_RainDance:
 	ld hl, RainDanceMoves
 	jr AI_Smart_WeatherMove
 
-INCLUDE "data/battle/ai/rain_dance_moves.asm"
+INCLUDE "data/battle/ai/rain_dance_moves.inc"
 
 AI_Smart_SunnyDay:
 ; Greatly discourage this move if it would favour the player type-wise.
@@ -2412,7 +2415,7 @@ AIGoodWeatherType:
 	dec [hl]
 	ret
 
-INCLUDE "data/battle/ai/sunny_day_moves.asm"
+INCLUDE "data/battle/ai/sunny_day_moves.inc"
 
 AI_Smart_BellyDrum:
 ; Dismiss this move if enemy's attack is higher than +2 or if enemy's HP is below 50%.
@@ -2854,7 +2857,7 @@ AIHasMoveInArray:
 	pop hl
 	ret
 
-INCLUDE "data/battle/ai/useful_moves.asm"
+INCLUDE "data/battle/ai/useful_moves.inc"
 
 AI_Opportunist:
 ; Discourage stall moves when the enemy's HP is low.
@@ -2903,7 +2906,7 @@ AI_Opportunist:
 .asm_39347
 	ret
 
-INCLUDE "data/battle/ai/stall_moves.asm"
+INCLUDE "data/battle/ai/stall_moves.inc"
 
 
 AI_Aggressive:
@@ -3011,7 +3014,7 @@ AI_Aggressive:
 .done
 	ret
 
-INCLUDE "data/battle/ai/reckless_moves.asm"
+INCLUDE "data/battle/ai/reckless_moves.inc"
 
 AIDamageCalc:
 	ld a, 1
@@ -3030,7 +3033,7 @@ AIDamageCalc:
 	callfar BattleCommand_Stab
 	ret
 
-INCLUDE "data/battle/ai/constant_damage_effects.asm"
+INCLUDE "data/battle/ai/constant_damage_effects.inc"
 
 AI_Cautious:
 ; 90% chance to discourage moves with residual effects after the first turn.
@@ -3071,7 +3074,7 @@ AI_Cautious:
 	inc [hl]
 	jr .asm_39425
 
-INCLUDE "data/battle/ai/residual_moves.asm"
+INCLUDE "data/battle/ai/residual_moves.inc"
 
 
 AI_Status:
@@ -3202,7 +3205,7 @@ endr
 	pop de
 	jr .checkmove
 
-INCLUDE "data/battle/ai/risky_effects.asm"
+INCLUDE "data/battle/ai/risky_effects.inc"
 
 
 AI_None:

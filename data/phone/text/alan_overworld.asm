@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/alan_overworld.asm", ROMX
 
 AlanAskNumber1Text:

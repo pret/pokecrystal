@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const SAFFRONMAGNETTRAINSTATION_OFFICER
 	const SAFFRONMAGNETTRAINSTATION_GYM_GUY

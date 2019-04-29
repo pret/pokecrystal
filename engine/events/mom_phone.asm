@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 NUM_MOM_ITEMS_1 EQUS "((MomItems_1.End - MomItems_1) / 8)"
 NUM_MOM_ITEMS_2 EQUS "((MomItems_2.End - MomItems_2) / 8)"
 
@@ -205,7 +207,7 @@ endr
 	add hl, de
 	ret
 
-INCLUDE "data/items/mom_phone.asm"
+INCLUDE "data/items/mom_phone.inc"
 
 	db 0, 0, 0 ; unused
 

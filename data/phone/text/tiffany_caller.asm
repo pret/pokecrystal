@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/tiffany_caller.asm", ROMX
 
 UnknownText_0x665ad:

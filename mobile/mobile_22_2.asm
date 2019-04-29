@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "mobile/mobile_22_2.asm@Function8b342", ROMX
 
 Function8b342::

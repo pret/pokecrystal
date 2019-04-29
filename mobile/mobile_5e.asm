@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "mobile/mobile_5e.asm@MobileAdapterGFX", ROMX
 
 MobileAdapterGFX::

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/johtotrainerbattle.asm", ROMX
 
 Music_JohtoTrainerBattle:

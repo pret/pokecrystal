@@ -1,4 +1,4 @@
-INCLUDE "gfx/font.asm"
+INCLUDE "constants.inc"
 
 
 SECTION "engine/gfx/load_font.asm@Unreferenced", ROMX

@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const ROUTE32POKECENTER1F_NURSE
 	const ROUTE32POKECENTER1F_FISHING_GURU

@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 PRINTPARTY_HP EQU "◀" ; $71
 
 

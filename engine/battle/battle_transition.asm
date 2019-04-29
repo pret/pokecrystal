@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 ; BattleTransitionJumptable.Jumptable indexes
 BATTLETRANSITION_CAVE             EQU $01
 BATTLETRANSITION_CAVE_STRONGER    EQU $09

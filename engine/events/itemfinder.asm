@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/itemfinder.asm", ROMX
 
 ItemFinder:

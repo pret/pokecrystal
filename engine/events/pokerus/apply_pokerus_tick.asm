@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/pokerus/apply_pokerus_tick.asm", ROMX
 
 ApplyPokerusTick:

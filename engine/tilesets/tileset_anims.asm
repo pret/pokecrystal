@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/tilesets/tileset_anims.asm", ROMX
 
 _AnimateTileset::

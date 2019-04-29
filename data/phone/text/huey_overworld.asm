@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/huey_overworld.asm", ROMX
 
 HueyAskNumber1Text:

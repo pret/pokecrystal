@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/overworld/player_movement.asm", ROMX
 
 DoPlayerMovement::

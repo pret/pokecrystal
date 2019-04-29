@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 ; Characteristics of each move.
 
 move: MACRO
@@ -14,7 +16,7 @@ ENDM
 SECTION "data/moves/moves.asm", ROMX
 
 Moves:
-; entries correspond to constants/move_constants.asm
+; entries correspond to constants/move_constants.inc
 	move POUND,        EFFECT_NORMAL_HIT,         40, NORMAL,   100, 35,   0
 	move KARATE_CHOP,  EFFECT_NORMAL_HIT,         50, FIGHTING, 100, 25,   0
 	move DOUBLESLAP,   EFFECT_MULTI_HIT,          15, NORMAL,    85, 10,   0

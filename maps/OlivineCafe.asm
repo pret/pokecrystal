@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const OLIVINECAFE_SAILOR1
 	const OLIVINECAFE_FISHING_GURU

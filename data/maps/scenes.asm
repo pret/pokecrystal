@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 scene_var: MACRO
 ; map, variable
 	map_id \1

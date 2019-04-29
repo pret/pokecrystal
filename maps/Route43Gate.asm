@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 ROUTE43GATE_TOLL EQU 1000
 
 	object_const_def ; object_event constants

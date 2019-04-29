@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 ; FLOAT: Has to be at the same address as PokemonPicPointers
 SECTION "data/pokemon/unown_pic_pointers.asm", ROMX[$4000]
 

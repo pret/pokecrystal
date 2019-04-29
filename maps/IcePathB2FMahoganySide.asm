@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const ICEPATHB2FMAHOGANYSIDE_BOULDER1
 	const ICEPATHB2FMAHOGANYSIDE_BOULDER2

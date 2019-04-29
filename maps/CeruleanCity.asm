@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const CERULEANCITY_COOLTRAINER_M
 	const CERULEANCITY_SUPER_NERD

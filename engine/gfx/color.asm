@@ -1,6 +1,9 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/gfx/color.asm", ROMX
 
-INCLUDE "engine/gfx/sgb_layouts.asm"
+INCLUDE "engine/gfx/sgb_layouts.inc"
 
 SHINY_ATK_BIT EQU 5
 SHINY_DEF_VAL EQU 10
@@ -446,7 +449,7 @@ LoadMailPalettes:
 .MailPals:
 INCLUDE "gfx/mail/mail.pal"
 
-INCLUDE "engine/gfx/cgb_layouts.asm"
+INCLUDE "engine/gfx/cgb_layouts.inc"
 
 Unreferenced_Function95f0:
 	ld hl, .Palette
@@ -1185,9 +1188,9 @@ SGBDelayCycles:
 	jr nz, .wait
 	ret
 
-INCLUDE "gfx/sgb/blk_packets.asm"
-INCLUDE "gfx/sgb/pal_packets.asm"
-INCLUDE "data/sgb_ctrl_packets.asm"
+INCLUDE "gfx/sgb/blk_packets.inc"
+INCLUDE "gfx/sgb/pal_packets.inc"
+INCLUDE "data/sgb_ctrl_packets.inc"
 
 PredefPals:
 INCLUDE "gfx/sgb/predef.pal"
@@ -1208,9 +1211,9 @@ INCLUDE "gfx/battle/hp_bar.pal"
 ExpBarPalette:
 INCLUDE "gfx/battle/exp_bar.pal"
 
-INCLUDE "data/pokemon/palettes.asm"
+INCLUDE "data/pokemon/palettes.inc"
 
-INCLUDE "data/trainers/palettes.asm"
+INCLUDE "data/trainers/palettes.inc"
 
 LoadMapPals:
 	farcall LoadSpecialMapPalette
@@ -1312,7 +1315,7 @@ endr
 	call FarCopyWRAM
 	ret
 
-INCLUDE "data/maps/environment_colors.asm"
+INCLUDE "data/maps/environment_colors.inc"
 
 PartyMenuBGMobilePalette:
 INCLUDE "gfx/stats/party_menu_bg_mobile.pal"

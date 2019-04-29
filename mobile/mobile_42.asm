@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "mobile/mobile_42.asm", ROMX
 
 MobileTradeAnimation_SendGivemonToGTS:

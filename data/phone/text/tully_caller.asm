@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/tully_caller.asm", ROMX
 
 TullyGrownText:

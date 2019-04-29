@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const ROUTE37_WEIRD_TREE1
 	const ROUTE37_WEIRD_TREE2

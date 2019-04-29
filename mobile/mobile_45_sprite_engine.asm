@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "mobile/mobile_45_sprite_engine.asm@Function115d99", ROMX
 
 Function115d99:

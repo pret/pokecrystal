@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const DANCETHEATRE_KIMONO_GIRL1
 	const DANCETHEATRE_KIMONO_GIRL2

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/rockethideout.asm", ROMX
 
 Music_RocketHideout:

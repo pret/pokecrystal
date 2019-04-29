@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/ssaqua.asm", ROMX
 
 Music_SSAqua:

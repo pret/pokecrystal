@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/lookmysticalman.asm", ROMX
 
 Music_LookMysticalMan:

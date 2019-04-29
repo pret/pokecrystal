@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/liz_caller.asm", ROMX
 
 UnknownText_0x175fda:

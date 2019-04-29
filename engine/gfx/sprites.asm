@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/gfx/sprites.asm@ClearSpriteAnims", ROMX
 
 ClearSpriteAnims:
@@ -534,13 +537,13 @@ Unreferenced_BrokenGetStdGraphics:
 	pop bc
 	ret
 
-INCLUDE "data/sprite_anims/sequences.asm"
+INCLUDE "data/sprite_anims/sequences.inc"
 
-INCLUDE "engine/gfx/sprite_anims.asm"
+INCLUDE "engine/gfx/sprite_anims.inc"
 
-INCLUDE "data/sprite_anims/framesets.asm"
+INCLUDE "data/sprite_anims/framesets.inc"
 
-INCLUDE "data/sprite_anims/oam.asm"
+INCLUDE "data/sprite_anims/oam.inc"
 
 BrokenStdGFXPointers:
 	; tile count, bank, pointer
@@ -653,4 +656,4 @@ ClearSpriteAnims2:
 	pop hl
 	ret
 
-INCLUDE "engine/gfx/mon_icons.asm"
+INCLUDE "engine/gfx/mon_icons.inc"

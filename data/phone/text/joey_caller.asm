@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/joey_caller.asm", ROMX
 
 JoeySharperText:

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/mom.asm", ROMX
 
 MomPhoneGreetingText:

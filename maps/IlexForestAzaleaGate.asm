@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const ILEXFORESTAZALEAGATE_OFFICER
 	const ILEXFORESTAZALEAGATE_GRANNY

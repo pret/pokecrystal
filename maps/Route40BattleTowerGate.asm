@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const ROUTE40BATTLETOWERGATE_ROCKER
 	const ROUTE40BATTLETOWERGATE_TWIN

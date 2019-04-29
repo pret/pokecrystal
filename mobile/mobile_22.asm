@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "mobile/mobile_22.asm", ROMX, BANK[BANK_MOBILE_22]
 
 String_89116:

@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const BATTLETOWEROUTSIDE_STANDING_YOUNGSTER
 	const BATTLETOWEROUTSIDE_BUENA

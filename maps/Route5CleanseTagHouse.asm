@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const ROUTE5CLEANSETAGHOUSE_GRANNY
 	const ROUTE5CLEANSETAGHOUSE_TEACHER

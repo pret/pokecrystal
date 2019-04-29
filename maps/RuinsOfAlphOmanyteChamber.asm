@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "maps/RuinsOfAlphOmanyteChamber.asm", ROMX
 
 RuinsOfAlphOmanyteChamber_MapScripts:

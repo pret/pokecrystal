@@ -1,4 +1,4 @@
-INCLUDE "constants.asm"
+INCLUDE "constants.inc"
 
 
 SECTION "data/pokemon/egg_moves.asm", ROMX
@@ -11,7 +11,7 @@ SECTION "data/pokemon/egg_moves.asm", ROMX
 ; Staryu's egg moves were removed in Crystal, because Staryu is genderless
 ; and can only breed with Ditto.
 
-INCLUDE "data/pokemon/egg_move_pointers.asm"
+INCLUDE "data/pokemon/egg_move_pointers.inc"
 
 BulbasaurEggMoves:
 	db LIGHT_SCREEN

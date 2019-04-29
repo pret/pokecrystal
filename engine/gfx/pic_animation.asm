@@ -1,6 +1,9 @@
-; Pic animation arrangement.
+INCLUDE "constants.inc"
+
 
 SECTION "engine/gfx/pic_animation.asm", ROMX
+
+; Pic animation arrangement.
 
 Unused_AnimateMon_Slow_Normal:
 	hlcoord 12, 0

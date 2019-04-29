@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/pokemon/move_mon_wo_mail.asm", ROMX
 
 InsertPokemonIntoBox:

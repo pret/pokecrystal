@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/derek_caller.asm", ROMX
 
 DerekCheekPincherText:

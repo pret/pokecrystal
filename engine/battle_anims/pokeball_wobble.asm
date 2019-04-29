@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/battle_anims/pokeball_wobble.asm", ROMX
 
 GetPokeBallWobble:
@@ -61,4 +64,4 @@ GetPokeBallWobble:
 	pop de
 	ret
 
-INCLUDE "data/battle/wobble_probabilities.asm"
+INCLUDE "data/battle/wobble_probabilities.inc"

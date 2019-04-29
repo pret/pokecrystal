@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const RUINSOFALPHAERODACTYLITEMROOM_POKE_BALL1
 	const RUINSOFALPHAERODACTYLITEMROOM_POKE_BALL2

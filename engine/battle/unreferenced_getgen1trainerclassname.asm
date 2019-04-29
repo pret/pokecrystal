@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/battle/unreferenced_getgen1trainerclassname.asm", ROMX
 
 Unreferenced_GetGen1TrainerClassName:
@@ -20,4 +23,4 @@ Unreferenced_GetGen1TrainerClassName:
 	jr nz, .copy
 	ret
 
-INCLUDE "data/text/unused_gen1_trainer_names.asm"
+INCLUDE "data/text/unused_gen1_trainer_names.inc"

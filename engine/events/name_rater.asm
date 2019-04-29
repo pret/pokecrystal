@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/name_rater.asm", ROMX
 
 _NameRater:

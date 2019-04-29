@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const CERULEANTRADESPEECHHOUSE_GRANNY
 	const CERULEANTRADESPEECHHOUSE_GRAMPS

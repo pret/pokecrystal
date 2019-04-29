@@ -1,6 +1,9 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/printer/printer.asm", ROMX
 
-INCLUDE "engine/printer/printer_serial.asm"
+INCLUDE "engine/printer/printer_serial.inc"
 
 SendScreenToPrinter:
 .loop

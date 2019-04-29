@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/tiffany_overworld.asm", ROMX
 
 TiffanyAskNumber1Text:

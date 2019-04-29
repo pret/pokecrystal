@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/hidden_item.asm", ROMX
 
 HiddenItemScript::

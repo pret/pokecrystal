@@ -17,7 +17,7 @@ These are parts of the code that do not work *incorrectly*, like [bugs and glitc
 
 ## Pic banks are offset by `PICS_FIX`
 
-[data/pokemon/pic_pointers.asm](https://github.com/pret/pokecrystal/blob/master/data/pokemon/pic_pointers.asm), [data/pokemon/unown_pic_pointers.asm](https://github.com/pret/pokecrystal/blob/master/data/pokemon/unown_pic_pointers.asm), and [data/trainers/pic_pointers.asm](https://github.com/pret/pokecrystal/blob/master/data/trainers/pic_pointers.asm) all have to use `dba_pic` instead of `dba`. This is a macro in [macros/data.asm](https://github.com/pret/pokecrystal/blob/master/macros/data.asm) that offsets banks by `PICS_FIX`:
+[data/pokemon/pic_pointers.inc](https://github.com/pret/pokecrystal/blob/master/data/pokemon/pic_pointers.asm), [data/pokemon/unown_pic_pointers.inc](https://github.com/pret/pokecrystal/blob/master/data/pokemon/unown_pic_pointers.asm), and [data/trainers/pic_pointers.inc](https://github.com/pret/pokecrystal/blob/master/data/trainers/pic_pointers.asm) all have to use `dba_pic` instead of `dba`. This is a macro in [macros/data.inc](https://github.com/pret/pokecrystal/blob/master/macros/data.asm) that offsets banks by `PICS_FIX`:
 
 ```asm
 dba_pic: MACRO ; dbw bank, address
@@ -90,12 +90,12 @@ In [gfx/pics.asm](https://github.com/pret/pokecrystal/blob/master/gfx/pics.asm):
 
 SECTION "Pic Pointers", ROMX
 
-INCLUDE "data/pokemon/pic_pointers.asm"
+INCLUDE "data/pokemon/pic_pointers.inc"
 
 
 SECTION "Unown Pic Pointers", ROMX
 
-INCLUDE "data/pokemon/unown_pic_pointers.asm"
+INCLUDE "data/pokemon/unown_pic_pointers.inc"
 ```
 
 In [pokecrystal.link](https://github.com/pret/pokecrystal/blob/master/pokecrystal.link):
@@ -160,7 +160,7 @@ And `GetMonBackpic`:
 
 ## Footprints are split into top and bottom halves
 
-In [gfx/footprints.asm](https://github.com/pret/pokecrystal/blob/master/gfx/footprints.asm):
+In [gfx/footprints.inc](https://github.com/pret/pokecrystal/blob/master/gfx/footprints.asm):
 
 ```asm
 ; Footprints are 2x2 tiles each, but are stored as a 16x64-tile image
@@ -240,18 +240,18 @@ Edit `Pokedex_LoadAnyFootprint`:
 
 ## Music IDs $64 and $80 or above have special behavior
 
-If a map's music ID in [data/maps/maps.asm](https://github.com/pret/pokecrystal/blob/master/master/data/maps/maps.asm) is $64 (the value of `MUSIC_MAHOGANY_MART` or `MUSIC_SUICUNE_BATTLE`) it will play either `MUSIC_ROCKET_HIDEOUT` or `MUSIC_CHERRYGROVE_CITY`. Moreover, if a map's music ID is $80 or above (the value of `RADIO_TOWER_MUSIC`) it might play `MUSIC_ROCKET_OVERTURE` or something else. This is caused by `GetMapMusic` in [home/map.asm](https://github.com/pret/pokecrystal/blob/master/master/home/map.asm).
+If a map's music ID in [data/maps/maps.asm](https://github.com/pret/pokecrystal/blob/master/master/data/maps/maps.asm) is $64 (the value of `MUSIC_MAHOGANY_MART` or `MUSIC_SUICUNE_BATTLE`) it will play either `MUSIC_ROCKET_HIDEOUT` or `MUSIC_CHERRYGROVE_CITY`. Moreover, if a map's music ID is $80 or above (the value of `RADIO_TOWER_MUSIC`) it might play `MUSIC_ROCKET_OVERTURE` or something else. This is caused by `GetMapMusic` in [home/map.inc](https://github.com/pret/pokecrystal/blob/master/master/home/map.asm).
 
 **Fix:**
 
 Replace `RADIO_TOWER_MUSIC | MUSIC_GOLDENROD_CITY` with `MUSIC_RADIO_TOWER` in [data/maps/maps.asm](https://github.com/pret/pokecrystal/blob/master/master/data/maps/maps.asm).
 
-Redefine the special music constants in [constants/music_constants.asm](https://github.com/pret/pokecrystal/blob/master/master/constants/music_constants.asm):
+Redefine the special music constants in [constants/music_constants.inc](https://github.com/pret/pokecrystal/blob/master/master/constants/music_constants.inc):
 
 ```diff
--; GetMapMusic picks music for this value (see home/map.asm)
+-; GetMapMusic picks music for this value (see home/map.inc)
 -MUSIC_MAHOGANY_MART EQU $64
-+; GetMapMusic picks music for these values (see home/map.asm)
++; GetMapMusic picks music for these values (see home/map.inc)
 +MUSIC_MAHOGANY_MART EQU $fc
 +MUSIC_RADIO_TOWER   EQU $fd
 
@@ -318,7 +318,7 @@ Edit `GetMapMusic`:
 
 ## `ITEM_C3` and `ITEM_DC` break up the continuous sequence of TM items
 
-[constants/item_constants.asm](https://github.com/pret/pokecrystal/blob/master/constants/item_constants.asm) defined the 50 TMs in order with `add_tm`, but `ITEM_C3` and `ITEM_DC` break up that sequence.
+[constants/item_constants.inc](https://github.com/pret/pokecrystal/blob/master/constants/item_constants.inc) defined the 50 TMs in order with `add_tm`, but `ITEM_C3` and `ITEM_DC` break up that sequence.
 
 ```asm
 	add_tm DYNAMICPUNCH ; bf
@@ -357,11 +357,11 @@ NUM_TMS EQU const_value - TM01 - 2 ; discount ITEM_C3 and ITEM_DC
 > - Wild Dragonair's catch rate became 27 = $1B for `PROTEIN`
 > - Wild Dragonite's catch rate became 9 = $09 for `ANTIDOTE`
 >
-> Most catch rates were left as gaps in the item list, and transformed into held items via the `TimeCapsule_CatchRateItems` table in [data/items/catch_rate_items.asm](https://github.com/pret/pokecrystal/blob/master/data/items/catch_rate_items.asm). For example, the 52 Pokémon with catch rate 45 would hold the gap `ITEM_2D`, except that gets transformed into `BITTER_BERRY`.
+> Most catch rates were left as gaps in the item list, and transformed into held items via the `TimeCapsule_CatchRateItems` table in [data/items/catch_rate_items.inc](https://github.com/pret/pokecrystal/blob/master/data/items/catch_rate_items.inc). For example, the 52 Pokémon with catch rate 45 would hold the gap `ITEM_2D`, except that gets transformed into `BITTER_BERRY`.
 >
 > But a few Pokémon end up with weird items. Abra has a catch rate of 200, or $C8; and Krabby, Horsea, Goldeen, and Staryu have a catch rate of 225, or $E1. Those indexes correspond to the items `TM_PSYCH_UP` and `TM_ICE_PUNCH`, which seem like random choices—because they are.
 >
-> The TMs and HMs span from indexes $BF to $F9. However, as we can see in [pokegold-spaceworld](https://github.com/pret/pokegold-spaceworld/blob/master/constants/item_constants.asm), they *originally* spanned $C4 to $FF. For some reason they were shifted down by 5 during development.
+> The TMs and HMs span from indexes $BF to $F9. However, as we can see in [pokegold-spaceworld](https://github.com/pret/pokegold-spaceworld/blob/master/constants/item_constants.inc), they *originally* spanned $C4 to $FF. For some reason they were shifted down by 5 during development.
 >
 > Before the index shift, the gap `ITEM_C3` would have been at index $C8, and `ITEM_DC` at $E1. In other words, they would have neatly corresponded to the catch rates for those five Pokémon! Then they would have held `BERRY` when traded through the Time Capsule (since the gap items get transformed via `TimeCapsule_CatchRateItems`).
 
@@ -411,7 +411,7 @@ Edit [engine/items/items.asm](https://github.com/pret/pokecrystal/blob/master/en
 
 ## Pokédex entry banks are derived from their species IDs
 
-`PokedexDataPointerTable` in [data/pokemon/dex_entry_pointers.asm](https://github.com/pret/pokecrystal/blob/master/data/pokemon/dex_entry_pointers.asm) is a table of `dw`, not `dba`, yet there are four banks used for Pokédex entries. The correct bank is derived from the species ID at the beginning of each Pokémon's base stats. (This is the only use the base stat species ID has.)
+`PokedexDataPointerTable` in [data/pokemon/dex_entry_pointers.inc](https://github.com/pret/pokecrystal/blob/master/data/pokemon/dex_entry_pointers.asm) is a table of `dw`, not `dba`, yet there are four banks used for Pokédex entries. The correct bank is derived from the species ID at the beginning of each Pokémon's base stats. (This is the only use the base stat species ID has.)
 
 Three separate routines do the same derivation; `GetDexEntryPointer` in [engine/pokedex/pokedex_2.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokedex/pokedex_2.asm):
 
@@ -528,7 +528,7 @@ Sprites_Sine:
 	calc_sine_wave
 ```
 
-`BattleAnim_Cosine` and `BattleAnim_Sine` in [engine/battle_anims/functions.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle_anims/functions.asm):
+`BattleAnim_Cosine` and `BattleAnim_Sine` in [engine/battle_anims/functions.inc](https://github.com/pret/pokecrystal/blob/master/engine/battle_anims/functions.asm):
 
 ```asm
 BattleAnim_Cosine:
@@ -552,7 +552,7 @@ StartTrainerBattle_DrawSineWave:
 	calc_sine_wave
 ```
 
-And `CelebiEvent_Cosine` in [engine/events/celebi.asm](https://github.com/pret/pokecrystal/blob/master/engine/events/celebi.asm):
+And `CelebiEvent_Cosine` in [engine/events/celebi.inc](https://github.com/pret/pokecrystal/blob/master/engine/events/celebi.asm):
 
 ```asm
 CelebiEvent_Cosine:
@@ -561,7 +561,7 @@ CelebiEvent_Cosine:
 	calc_sine_wave
 ```
 
-They all rely on `calc_sine_wave` in [macros/code.asm](https://github.com/pret/pokecrystal/blob/master/macros/code.asm):
+They all rely on `calc_sine_wave` in [macros/code.inc](https://github.com/pret/pokecrystal/blob/master/macros/code.asm):
 
 ```asm
 calc_sine_wave: MACRO
@@ -612,7 +612,7 @@ endc
 ENDM
 ```
 
-And on `sine_table` in [macros/data.asm](https://github.com/pret/pokecrystal/blob/master/macros/data.asm):
+And on `sine_table` in [macros/data.inc](https://github.com/pret/pokecrystal/blob/master/macros/data.asm):
 
 ```asm
 sine_table: MACRO
@@ -625,7 +625,7 @@ endr
 ENDM
 ```
 
-**Fix:** Edit [home/sine.asm](https://github.com/pret/pokecrystal/blob/master/home/sine.asm) to contain a single copy of the (co)sine code in bank 0, and call it from those five sites.
+**Fix:** Edit [home/sine.inc](https://github.com/pret/pokecrystal/blob/master/home/sine.asm) to contain a single copy of the (co)sine code in bank 0, and call it from those five sites.
 
 
 ## `GetForestTreeFrame` works, but it's still bad

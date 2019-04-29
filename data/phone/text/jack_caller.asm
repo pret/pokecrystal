@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/jack_caller.asm", ROMX
 
 JackIntelligenceText:

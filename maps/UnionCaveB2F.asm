@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const UNIONCAVEB2F_ROCKER
 	const UNIONCAVEB2F_COOLTRAINER_F1

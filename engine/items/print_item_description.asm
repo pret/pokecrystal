@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/items/print_item_description.asm", ROMX
 
 PrintItemDescription:
@@ -31,4 +34,4 @@ PrintItemDescription:
 	pop hl
 	jp PlaceString
 
-INCLUDE "data/items/descriptions.asm"
+INCLUDE "data/items/descriptions.inc"

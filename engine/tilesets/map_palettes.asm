@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/tilesets/map_palettes.asm", ROMX
 
 SwapTextboxPalettes::
@@ -87,4 +90,4 @@ ScrollBGMapPalettes::
 	jr nz, .loop
 	ret
 
-INCLUDE "gfx/tileset_palette_maps.asm"
+INCLUDE "gfx/tileset_palette_maps.inc"

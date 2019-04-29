@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 ROUTE39FARMHOUSE_MILK_PRICE EQU 500
 
 	object_const_def ; object_event constants

@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 SLOTS_NO_BIAS  EQU -1
 SLOTS_NO_MATCH EQU -1
 
@@ -10,7 +12,7 @@ SLOTS_STARYU   EQU $14
 
 REEL_SIZE EQU 15
 
-; Constants for slot_reel offsets (see macros/wram.asm)
+; Constants for slot_reel offsets (see macros/wram.inc)
 REEL_ACTION        EQUS "(wReel1ReelAction - wReel1)"
 REEL_TILEMAP_ADDR  EQUS "(wReel1TilemapAddr - wReel1)"
 REEL_POSITION      EQUS "(wReel1Position - wReel1)"

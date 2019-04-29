@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/overworld/map_setup.asm@RunMapSetupScript", ROMX
 
 RunMapSetupScript::
@@ -15,7 +18,7 @@ RunMapSetupScript::
 	call ReadMapSetupScript
 	ret
 
-INCLUDE "data/maps/setup_scripts.asm"
+INCLUDE "data/maps/setup_scripts.inc"
 
 ReadMapSetupScript:
 .loop
@@ -61,7 +64,7 @@ ReadMapSetupScript:
 	jr .loop
 
 MapSetupCommands:
-; entries correspond to command indexes in constants/map_setup_constants.asm
+; entries correspond to command indexes in constants/map_setup_constants.inc
 	dba EnableLCD ; 00
 	dba DisableLCD ; 01
 	dba MapSetup_Sound_Off ; 02

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/overworld/map_objects_2.asm", ROMX
 
 LoadObjectMasks:

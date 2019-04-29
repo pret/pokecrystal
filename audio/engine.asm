@@ -1,3 +1,8 @@
+INCLUDE "constants.inc"
+
+
+SECTION "audio/engine.asm", ROMX
+
 ; The entire sound engine. Uses section "audio" in WRAM.
 
 ; Interfaces are in bank 0.
@@ -5,9 +10,6 @@
 ; Notable functions:
 ; 	FadeMusic
 ; 	PlayStereoSFX
-
-
-SECTION "audio/engine.asm", ROMX
 
 _MapSetup_Sound_Off::
 ; restart sound operation
@@ -2755,11 +2757,11 @@ LoadMusicByte::
 	ld a, [wCurMusicByte]
 	ret
 
-INCLUDE "audio/notes.asm"
+INCLUDE "audio/notes.inc"
 
-INCLUDE "audio/wave_samples.asm"
+INCLUDE "audio/wave_samples.inc"
 
-INCLUDE "audio/drumkits.asm"
+INCLUDE "audio/drumkits.inc"
 
 GetLRTracks:
 ; gets the default sound l/r channels
@@ -2852,12 +2854,12 @@ PlayTrainerEncounterMusic::
 	call PlayMusic
 	ret
 
-INCLUDE "data/trainers/encounter_music.asm"
+INCLUDE "data/trainers/encounter_music.inc"
 
-INCLUDE "audio/music_pointers.asm"
+INCLUDE "audio/music_pointers.inc"
 
-INCLUDE "audio/music/nothing.asm"
+INCLUDE "audio/music/nothing.inc"
 
-INCLUDE "audio/cry_pointers.asm"
+INCLUDE "audio/cry_pointers.inc"
 
-INCLUDE "audio/sfx_pointers.asm"
+INCLUDE "audio/sfx_pointers.inc"

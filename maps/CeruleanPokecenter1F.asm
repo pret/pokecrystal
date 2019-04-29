@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const CERULEANPOKECENTER1F_NURSE
 	const CERULEANPOKECENTER1F_SUPER_NERD

@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const WISETRIOSROOM_SAGE1
 	const WISETRIOSROOM_SAGE2

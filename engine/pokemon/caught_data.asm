@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/pokemon/caught_data.asm", ROMX
 
 CheckPartyFullAfterContest:

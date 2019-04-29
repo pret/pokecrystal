@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const MOUNTMOONGIFTSHOP_GRAMPS1 ; morning only
 	const MOUNTMOONGIFTSHOP_GRAMPS2 ; day only

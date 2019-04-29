@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/pokemon/bills_pc.asm", ROMX
 
 _DepositPKMN:

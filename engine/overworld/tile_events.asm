@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/overworld/tile_events.asm@CheckWarpCollision", ROMX
 
 CheckWarpCollision::

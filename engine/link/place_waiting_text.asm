@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/link/place_waiting_text.asm", ROMX
 
 PlaceWaitingText::

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/vance_overworld.asm", ROMX
 
 VanceAskNumber1Text:

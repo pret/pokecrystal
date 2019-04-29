@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 ; PrintDayCareText.TextTable indexes
 	const_def
 	const DAYCARETEXT_MAN_INTRO

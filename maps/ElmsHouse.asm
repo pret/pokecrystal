@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const ELMSHOUSE_ELMS_WIFE
 	const ELMSHOUSE_ELMS_SON

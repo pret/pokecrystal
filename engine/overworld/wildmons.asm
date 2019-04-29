@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/overworld/wildmons.asm", ROMX
 
 LoadWildMonData:
@@ -346,7 +349,7 @@ ChooseWildEncounter:
 	xor a
 	ret
 
-INCLUDE "data/wild/probabilities.asm"
+INCLUDE "data/wild/probabilities.inc"
 
 CheckRepelEffect::
 ; If there is no active Repel, there's no need to be here.
@@ -750,7 +753,7 @@ _BackUpMapIndices:
 	ld [wRoamMons_CurMapGroup], a
 	ret
 
-INCLUDE "data/wild/roammon_maps.asm"
+INCLUDE "data/wild/roammon_maps.inc"
 
 ValidateTempWildMonSpecies:
 ; Due to a development oversight, this function is called with the wild Pokemon's level, not its species, in a.
@@ -961,9 +964,9 @@ RandomPhoneMon:
 	ld bc, MON_NAME_LENGTH
 	jp CopyBytes
 
-INCLUDE "data/wild/johto_grass.asm"
-INCLUDE "data/wild/johto_water.asm"
-INCLUDE "data/wild/kanto_grass.asm"
-INCLUDE "data/wild/kanto_water.asm"
-INCLUDE "data/wild/swarm_grass.asm"
-INCLUDE "data/wild/swarm_water.asm"
+INCLUDE "data/wild/johto_grass.inc"
+INCLUDE "data/wild/johto_water.inc"
+INCLUDE "data/wild/kanto_grass.inc"
+INCLUDE "data/wild/kanto_water.inc"
+INCLUDE "data/wild/swarm_grass.inc"
+INCLUDE "data/wild/swarm_water.inc"

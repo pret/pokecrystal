@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/kenji_overworld.asm", ROMX
 
 KenjiAskNumber1Text:

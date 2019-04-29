@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	const_def
 	const MARTTEXT_HOW_MANY
 	const MARTTEXT_COSTS_THIS_MUCH
@@ -95,7 +97,7 @@ RooftopSale:
 	call MartTextbox
 	ret
 
-INCLUDE "data/items/rooftop_sale.asm"
+INCLUDE "data/items/rooftop_sale.inc"
 
 LoadMartPointer:
 	ld a, b
@@ -334,7 +336,7 @@ ReadMart:
 	ld [wCurMart], a
 	ret
 
-INCLUDE "data/items/bargain_shop.asm"
+INCLUDE "data/items/bargain_shop.inc"
 
 BuyMenu:
 	call FadeToMenu
@@ -899,4 +901,4 @@ MartTextbox:
 	call ExitMenu
 	ret
 
-INCLUDE "engine/events/money.asm"
+INCLUDE "engine/events/money.inc"

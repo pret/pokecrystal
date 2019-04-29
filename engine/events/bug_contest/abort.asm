@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/bug_contest/abort.asm", ROMX
 
 Script_AbortBugContest:

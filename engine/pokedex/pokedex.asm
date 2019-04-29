@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 ; Pokedex_RunJumptable.Jumptable indexes
 	const_def
 	const DEXSTATE_MAIN_SCR
@@ -1704,9 +1706,9 @@ Pokedex_ABCMode:
 .doneabc
 	ret
 
-INCLUDE "data/pokemon/dex_order_alpha.asm"
+INCLUDE "data/pokemon/dex_order_alpha.inc"
 
-INCLUDE "data/pokemon/dex_order_new.asm"
+INCLUDE "data/pokemon/dex_order_new.inc"
 
 Pokedex_DisplayModeDescription:
 	xor a
@@ -1872,7 +1874,7 @@ endr
 	call PlaceString
 	ret
 
-INCLUDE "data/types/search_strings.asm"
+INCLUDE "data/types/search_strings.inc"
 
 Pokedex_SearchForMons:
 	ld a, [wDexSearchMonType2]
@@ -1949,7 +1951,7 @@ Pokedex_SearchForMons:
 .done
 	ret
 
-INCLUDE "data/types/search_types.asm"
+INCLUDE "data/types/search_types.inc"
 
 Pokedex_DisplayTypeNotFoundMessage:
 	xor a

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/battle_anims/core.asm", ROMX
 
 PlayBattleAnim:
@@ -261,7 +264,7 @@ endr
 	jr nz, .loop2
 	ret
 
-INCLUDE "engine/battle_anims/anim_commands.asm"
+INCLUDE "engine/battle_anims/anim_commands.inc"
 
 PlayHitSound:
 	ld a, [wNumHits]
@@ -760,8 +763,8 @@ _QueueBGEffect:
 	callfar QueueBGEffect
 	ret
 
-INCLUDE "data/battle_anims/objects.asm"
+INCLUDE "data/battle_anims/objects.inc"
 
-INCLUDE "engine/battle_anims/functions.asm"
+INCLUDE "engine/battle_anims/functions.inc"
 
-INCLUDE "engine/battle_anims/helpers.asm"
+INCLUDE "engine/battle_anims/helpers.inc"

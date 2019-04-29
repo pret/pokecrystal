@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/irwin_caller.asm", ROMX
 
 UnknownText_0x64000:

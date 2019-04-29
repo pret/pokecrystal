@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const GOLDENRODDEPTSTOREROOF_CLERK
 	const GOLDENRODDEPTSTOREROOF_POKEFAN_F

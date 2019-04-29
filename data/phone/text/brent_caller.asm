@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/brent_caller.asm", ROMX
 
 BrentRareTradeText:

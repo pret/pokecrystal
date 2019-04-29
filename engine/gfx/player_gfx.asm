@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/gfx/player_gfx.asm@Unreferenced_Function88248", ROMX
 
 Unreferenced_Function88248:
@@ -78,7 +81,7 @@ ShowPlayerNamingChoices:
 	call CloseWindow
 	ret
 
-INCLUDE "data/player_names.asm"
+INCLUDE "data/player_names.inc"
 
 Unreferenced_GetPlayerNameArray:
 	ld hl, wPlayerName

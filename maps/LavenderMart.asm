@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const LAVENDERMART_CLERK
 	const LAVENDERMART_POKEFAN_M

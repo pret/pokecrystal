@@ -1,9 +1,10 @@
-; Pics are defined in gfx/pics.asm
+INCLUDE "constants.inc"
 
 
 ; FLOAT: Has to be at the same address as UnownPicPointers
 SECTION "data/pokemon/pic_pointers.asm", ROMX[$4000]
 
+; Pics are defined in gfx/pics.asm
 PokemonPicPointers::
 ; entries correspond to Pokémon species, two apiece
 	dba_pic BulbasaurFrontpic

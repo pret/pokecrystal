@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/battle/trainer_huds.asm", ROMX
 
 BattleStart_TrainerHuds:

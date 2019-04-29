@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/link/mystery_gift.asm", ROMX
 
 DoMysteryGift:

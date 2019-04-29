@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/credits.asm", ROMX
 
 Music_Credits:

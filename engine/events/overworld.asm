@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/overworld.asm", ROMX
 
 FieldMoveJumptableReset:
@@ -278,7 +281,7 @@ CheckOverworldTileArrays:
 	xor a
 	ret
 
-INCLUDE "data/events/field_move_blocks.asm"
+INCLUDE "data/events/field_move_blocks.inc"
 
 OWFlash:
 	call .CheckUseFlash

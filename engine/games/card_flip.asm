@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 CARDFLIP_LIGHT_OFF EQU "♂" ; $ef
 CARDFLIP_LIGHT_ON  EQU "♀" ; $f5
 

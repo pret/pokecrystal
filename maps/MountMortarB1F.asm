@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const MOUNTMORTARB1F_POKE_BALL1
 	const MOUNTMORTARB1F_POKE_BALL2

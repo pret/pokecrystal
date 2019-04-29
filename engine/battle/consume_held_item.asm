@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/battle/consume_held_item.asm", ROMX
 
 ConsumeHeldItem:
@@ -56,4 +59,4 @@ ConsumeHeldItem:
 	pop hl
 	ret
 
-INCLUDE "data/battle/held_consumables.asm"
+INCLUDE "data/battle/held_consumables.inc"

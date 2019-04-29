@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/kurt.asm", ROMX
 
 Kurt_PrintTextWhichApricorn:

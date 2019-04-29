@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/phone/scripts/tiffany.asm", ROMX, BANK[BANK_PHONE_TIFFANY]
 
 TiffanyPhoneCalleeScript:

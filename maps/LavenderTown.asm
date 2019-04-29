@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const LAVENDERTOWN_POKEFAN_M
 	const LAVENDERTOWN_TEACHER

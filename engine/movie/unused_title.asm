@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/movie/unused_title.asm", ROMX
 
 UnusedTitleScreen:

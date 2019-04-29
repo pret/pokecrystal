@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/menus/save.asm", ROMX
 
 SaveMenu:
@@ -676,7 +679,7 @@ TryLoadSaveData:
 	call PanicResetClock
 	ret
 
-INCLUDE "data/default_options.asm"
+INCLUDE "data/default_options.inc"
 
 CheckPrimarySaveFile:
 	ld a, BANK(sCheckValue1) ; aka BANK(sCheckValue2)

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/viridiancity.asm", ROMX
 
 Music_ViridianCity:

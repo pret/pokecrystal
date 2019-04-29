@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/gamecorner.asm", ROMX
 
 Music_GameCorner:

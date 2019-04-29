@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const RADIOTOWER3F_SUPER_NERD
 	const RADIOTOWER3F_GYM_GUY

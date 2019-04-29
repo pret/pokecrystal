@@ -1,4 +1,4 @@
-INCLUDE "constants.asm"
+INCLUDE "constants.inc"
 
 
 SECTION "engine/movie/credits.asm", ROMX
@@ -607,5 +607,5 @@ CreditsSmoochumGFX:  INCBIN "gfx/credits/smoochum.2bpp"
 CreditsDittoGFX:     INCBIN "gfx/credits/ditto.2bpp"
 CreditsIgglybuffGFX: INCBIN "gfx/credits/igglybuff.2bpp"
 
-INCLUDE "data/credits_script.asm"
-INCLUDE "data/credits_strings.asm"
+INCLUDE "data/credits_script.inc"
+INCLUDE "data/credits_strings.inc"

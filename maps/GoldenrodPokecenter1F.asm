@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const GOLDENRODPOKECENTER1F_NURSE
 	const GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST

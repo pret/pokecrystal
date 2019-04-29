@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/menus/delete_save.asm", ROMX
 
 _DeleteSaveData:

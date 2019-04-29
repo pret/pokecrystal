@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/pokedex/pokedex_3.asm@LoadSGBPokedexGFX", ROMX
 
 LoadSGBPokedexGFX:

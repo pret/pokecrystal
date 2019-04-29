@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 ; HealMachineAnim.Jumptable indexes
 	const_def
 	const HEALMACHINESTATE_LOADGFX

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/bug_contest/display_stats.asm@DisplayCaughtContestMonStats", ROMX
 
 DisplayCaughtContestMonStats:

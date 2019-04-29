@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/showmearound.asm", ROMX
 
 Music_ShowMeAround:

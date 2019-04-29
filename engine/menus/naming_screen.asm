@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 NAMINGSCREEN_CURSOR     EQU $7e
 
 NAMINGSCREEN_BORDER     EQU "■" ; $60
@@ -725,7 +727,7 @@ NamingScreen_AdvanceCursor_CheckEndOfString:
 	ld a, [hl]
 	jr NamingScreen_LoadNextCharacter
 
-INCLUDE "data/text/unused_dakutens.asm"
+INCLUDE "data/text/unused_dakutens.inc"
 
 NamingScreen_DeleteCharacter:
 	ld hl, wNamingScreenCurNameLength
@@ -889,7 +891,7 @@ INCBIN "gfx/naming_screen/border.2bpp"
 NamingScreenGFX_Cursor:
 INCBIN "gfx/naming_screen/cursor.2bpp"
 
-INCLUDE "data/text/name_input_chars.asm"
+INCLUDE "data/text/name_input_chars.inc"
 
 NamingScreenGFX_End: ; unused
 INCBIN "gfx/naming_screen/end.1bpp"
@@ -1387,4 +1389,4 @@ MailComposition_TryAddLastCharacter:
 	ld a, [hl]
 	jp NamingScreen_LoadNextCharacter
 
-INCLUDE "data/text/mail_input_chars.asm"
+INCLUDE "data/text/mail_input_chars.inc"

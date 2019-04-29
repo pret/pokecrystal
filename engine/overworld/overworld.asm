@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/overworld/overworld.asm", ROMX
 
 GetEmote2bpp:
@@ -91,7 +94,7 @@ GetPlayerSprite:
 	ld [wPlayerObjectSprite], a
 	ret
 
-INCLUDE "data/sprites/player_sprites.asm"
+INCLUDE "data/sprites/player_sprites.inc"
 
 AddMapSprites:
 	call GetMapEnvironment
@@ -664,10 +667,10 @@ LoadEmote::
 	call GetEmote2bpp
 	ret
 
-INCLUDE "data/sprites/emotes.asm"
+INCLUDE "data/sprites/emotes.inc"
 
-INCLUDE "data/sprites/sprite_mons.asm"
+INCLUDE "data/sprites/sprite_mons.inc"
 
-INCLUDE "data/maps/outdoor_sprites.asm"
+INCLUDE "data/maps/outdoor_sprites.inc"
 
-INCLUDE "data/sprites/sprites.asm"
+INCLUDE "data/sprites/sprites.inc"

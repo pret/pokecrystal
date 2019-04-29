@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/pokedex/new_pokedex_entry.asm", ROMX
 
 NewPokedexEntry:

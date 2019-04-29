@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/cherrygrovecity.asm", ROMX
 
 Music_CherrygroveCity:

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/gym.asm", ROMX
 
 Music_Gym:

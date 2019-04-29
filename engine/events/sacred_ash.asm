@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/sacred_ash.asm", ROMX
 
 _SacredAsh:

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/text/std_text.asm", ROMX
 
 NurseMornText:

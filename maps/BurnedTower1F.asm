@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const BURNEDTOWER1F_ROCK
 	const BURNEDTOWER1F_EUSINE

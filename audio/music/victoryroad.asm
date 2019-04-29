@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/victoryroad.asm", ROMX
 
 Music_VictoryRoad:

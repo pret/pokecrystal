@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "mobile/mobile_46.asm@Function118000 - TilemapPack_11bb7d (ASCII)", ROMX, BANK[BANK_MOBILE_46]
 
 Function118000:

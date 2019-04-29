@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "mobile/mobile_40.asm@Function100000 - UnknownText_0x1021f4 (1)", ROMX, BANK[BANK_MOBILE_40]
 
 Function100000:

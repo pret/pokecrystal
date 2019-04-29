@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/azaleatown.asm", ROMX
 
 Music_AzaleaTown:

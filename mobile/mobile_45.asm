@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "mobile/mobile_45.asm@String_114000 - Function115d80", ROMX
 
 	charmap " ", $20 ; revert to ascii
@@ -5155,9 +5158,6 @@ Function115d80:
 	ld d, $a0
 	ld e, $0
 	ret
-
-
-INCLUDE "mobile/mobile_45_sprite_engine.asm"
 
 
 SECTION "mobile/mobile_45.asm@GiveOddEgg", ROMX

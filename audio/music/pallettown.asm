@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/pallettown.asm", ROMX
 
 Music_PalletTown:

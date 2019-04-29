@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/printer.asm", ROMX
 
 Music_Printer:

@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const CELADONPOKECENTER1F_NURSE
 	const CELADONPOKECENTER1F_GENTLEMAN

@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const ELMSLAB_ELM
 	const ELMSLAB_ELMS_AIDE

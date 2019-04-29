@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const VIRIDIANPOKECENTER1F_NURSE
 	const VIRIDIANPOKECENTER1F_COOLTRAINER_M

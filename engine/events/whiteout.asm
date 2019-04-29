@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/whiteout.asm", ROMX
 
 Script_BattleWhiteout::

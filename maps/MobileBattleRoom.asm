@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 
 SECTION "maps/MobileBattleRoom.asm", ROMX
 

@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const BLACKTHORNCITY_SUPER_NERD1
 	const BLACKTHORNCITY_SUPER_NERD2

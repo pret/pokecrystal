@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/phone/scripts/generic_callee.asm", ROMX
 
 PhoneScript_Random2:

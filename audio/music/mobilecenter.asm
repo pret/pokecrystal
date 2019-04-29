@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/mobilecenter.asm", ROMX
 
 Music_MobileCenter:

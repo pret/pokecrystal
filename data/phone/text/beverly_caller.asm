@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/beverly_caller.asm", ROMX
 
 UnknownText_0x174688:

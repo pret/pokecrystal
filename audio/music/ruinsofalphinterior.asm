@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/ruinsofalphinterior.asm", ROMX
 
 Music_RuinsOfAlphInterior:

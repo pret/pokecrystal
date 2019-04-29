@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const MAHOGANYMART1F_PHARMACIST
 	const MAHOGANYMART1F_BLACK_BELT

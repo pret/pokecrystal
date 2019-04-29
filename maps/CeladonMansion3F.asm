@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const CELADONMANSION3F_COOLTRAINER_M
 	const CELADONMANSION3F_GYM_GUY

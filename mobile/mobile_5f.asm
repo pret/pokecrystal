@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "mobile/mobile_5f.asm@Function17c000 - HaveWantPals", ROMX
 
 Function17c000:

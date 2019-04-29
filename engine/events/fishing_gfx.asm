@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/fishing_gfx.asm", ROMX
 
 LoadFishingGFX:

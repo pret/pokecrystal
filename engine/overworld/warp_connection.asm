@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/overworld/warp_connection.asm@HandleNewMap", ROMX
 
 HandleNewMap:

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/lighthouse.asm", ROMX
 
 Music_Lighthouse:

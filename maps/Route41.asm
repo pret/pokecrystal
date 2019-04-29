@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const ROUTE41_OLIVINE_RIVAL1
 	const ROUTE41_OLIVINE_RIVAL2

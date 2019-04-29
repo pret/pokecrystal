@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 
 SECTION "maps/PewterPokecenter2FBeta.asm", ROMX
 

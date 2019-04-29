@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/pokemon/types.asm", ROMX
 
 PrintMonTypes:
@@ -91,4 +94,4 @@ GetTypeName:
 	ld bc, MOVE_NAME_LENGTH
 	jp CopyBytes
 
-INCLUDE "data/types/names.asm"
+INCLUDE "data/types/names.inc"

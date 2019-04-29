@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/bug_contest/contest_2.asm@SelectRandomBugContestContestants", ROMX, BANK[BANK_BUG_CONTEST_JUDGING]
 
 SelectRandomBugContestContestants:
@@ -72,7 +75,7 @@ CheckBugContestContestantFlag:
 	call EventFlagAction
 	ret
 
-INCLUDE "data/events/bug_contest_flags.asm"
+INCLUDE "data/events/bug_contest_flags.inc"
 
 
 SECTION "engine/events/bug_contest/contest_2.asm@ContestDropOffMons", ROMX

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/johtowildbattle.asm", ROMX, BANK[BANK_MUSIC_JOHTO_WILD_BATTLE]
 
 Music_JohtoWildBattle:

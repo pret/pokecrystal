@@ -1,11 +1,4 @@
-INCLUDE "constants.asm"
-
-
-; PokemonPicPointers and UnownPicPointers are assumed to start at the same
-; address, but in different banks. This is enforced in pokecrystal.link.
-INCLUDE "data/pokemon/pic_pointers.asm"
-INCLUDE "data/pokemon/unown_pic_pointers.asm"
-INCLUDE "data/trainers/pic_pointers.asm"
+INCLUDE "constants.inc"
 
 
 ; FLOAT: All pics sections must be in consecutive banks for dba_pic to work

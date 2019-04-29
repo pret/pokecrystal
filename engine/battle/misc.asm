@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/battle/misc.asm@AppearDisappearUser", ROMX
 
 _DisappearUser:
@@ -147,7 +150,7 @@ DoWeatherModifiers:
 .done
 	ret
 
-INCLUDE "data/battle/weather_modifiers.asm"
+INCLUDE "data/battle/weather_modifiers.inc"
 
 
 SECTION "engine/battle/misc.asm@DoBadgeTypeBoosts", ROMX
@@ -229,4 +232,4 @@ DoBadgeTypeBoosts:
 	pop de
 	ret
 
-INCLUDE "data/types/badge_type_boosts.asm"
+INCLUDE "data/types/badge_type_boosts.inc"

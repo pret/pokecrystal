@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/gina_overworld.asm", ROMX
 
 GinaAskNumber1Text:

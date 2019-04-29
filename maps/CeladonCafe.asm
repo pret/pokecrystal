@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const CELADONCAFE_SUPER_NERD
 	const CELADONCAFE_FISHER1

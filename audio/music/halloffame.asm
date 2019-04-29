@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/halloffame.asm", ROMX
 
 Music_HallOfFame:

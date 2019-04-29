@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/elevator.asm", ROMX
 
 Elevator::
@@ -215,4 +218,4 @@ FloorToString:
 	pop de
 	ret
 
-INCLUDE "data/events/elevator_floors.asm"
+INCLUDE "data/events/elevator_floors.inc"

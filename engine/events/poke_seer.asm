@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	const_def
 	const SEER_INTRO
 	const SEER_CANT_TELL

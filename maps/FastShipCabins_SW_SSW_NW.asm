@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const FASTSHIPCABINS_SW_SSW_NW_FISHER
 	const FASTSHIPCABINS_SW_SSW_NW_BUG_CATCHER

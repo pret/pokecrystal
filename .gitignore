@@ -43,7 +43,7 @@ pokecrystal.txt
 *.1bpp
 *.lz
 *.animated.tilemap
-gfx/pokemon/*/bitmask.asm
-gfx/pokemon/*/frames.asm
-!gfx/pokemon/unown/bitmask.asm
-!gfx/pokemon/unown/frames.asm
+gfx/pokemon/*/bitmask.inc
+gfx/pokemon/*/frames.inc
+!gfx/pokemon/unown/bitmask.inc
+!gfx/pokemon/unown/frames.inc

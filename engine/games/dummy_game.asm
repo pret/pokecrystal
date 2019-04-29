@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/games/dummy_game.asm", ROMX, BANK[BANK_DUMMY_GAME]
 
 _DummyGame:

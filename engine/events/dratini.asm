@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/dratini.asm", ROMX
 
 GiveDratini:

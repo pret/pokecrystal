@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/pokemon/evolve.asm", ROMX
 
 EvolvePokemon:
@@ -655,4 +658,4 @@ GetPreEvolution:
 	scf
 	ret
 
-INCLUDE "data/pokemon/evos_attacks.asm"
+INCLUDE "data/pokemon/evos_attacks.inc"

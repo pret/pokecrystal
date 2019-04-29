@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/dana_overworld.asm", ROMX
 
 DanaAskNumber1Text:

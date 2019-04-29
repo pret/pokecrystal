@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const TRADECENTER_CHRIS1
 	const TRADECENTER_CHRIS2

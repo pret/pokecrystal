@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/pokerus/check_pokerus.asm", ROMX
 
 _CheckPokerus:

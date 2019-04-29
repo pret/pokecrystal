@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/unown_walls.asm@HoOhChamber", ROMX
 
 HoOhChamber:
@@ -162,7 +165,7 @@ DisplayUnownWords:
 	call CloseWindow
 	ret
 
-INCLUDE "data/events/unown_walls.asm"
+INCLUDE "data/events/unown_walls.inc"
 
 _DisplayUnownWords_FillAttr:
 	ld a, [de]

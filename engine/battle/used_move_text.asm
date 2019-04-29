@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/battle/used_move_text.asm", ROMX
 
 DisplayUsedMoveText:
@@ -171,7 +174,7 @@ GetMoveGrammar:
 	pop bc
 	ret
 
-INCLUDE "data/moves/grammar.asm"
+INCLUDE "data/moves/grammar.inc"
 
 UpdateUsedMoves:
 ; append move a to wPlayerUsedMoves unless it has already been used

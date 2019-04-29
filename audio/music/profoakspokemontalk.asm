@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/profoakspokemontalk.asm", ROMX
 
 Music_ProfOaksPokemonTalk:

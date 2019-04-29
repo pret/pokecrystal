@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const SLOWPOKEWELLB1F_ROCKET1
 	const SLOWPOKEWELLB1F_ROCKET2

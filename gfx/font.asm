@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "gfx/font.asm", ROMX
 
 FontExtra:
@@ -65,4 +68,4 @@ FontsExtra2_UpArrowGFX:
 INCBIN "gfx/font/up_arrow.2bpp"
 
 Footprints:
-INCLUDE "gfx/footprints.asm"
+INCLUDE "gfx/footprints.inc"

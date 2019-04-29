@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const COLOSSEUM_CHRIS1
 	const COLOSSEUM_CHRIS2

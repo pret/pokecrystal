@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/menus/blank_screen.asm", ROMX
 
 BlankScreen:

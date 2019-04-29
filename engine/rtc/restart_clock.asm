@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/rtc/restart_clock.asm", ROMX
 
 RestartClock_GetWraparoundTime:

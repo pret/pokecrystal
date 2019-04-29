@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/battle/check_battle_scene.asm", ROMX
 
 CheckBattleScene:

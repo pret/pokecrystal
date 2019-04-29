@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/menus/intro_menu.asm", ROMX, BANK[BANK_GAME_INIT]
 
 _MainMenu:

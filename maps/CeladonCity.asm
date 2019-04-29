@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const CELADONCITY_FISHER
 	const CELADONCITY_POLIWAG

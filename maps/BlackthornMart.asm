@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const BLACKTHORNMART_CLERK
 	const BLACKTHORNMART_COOLTRAINER_M

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/lookhiker.asm", ROMX
 
 Music_LookHiker:

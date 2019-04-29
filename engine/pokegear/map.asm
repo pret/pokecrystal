@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/pokegear/map.asm", ROMX
 
 PokegearMap:
@@ -233,7 +236,7 @@ HasVisitedSpawn:
 	ld a, c
 	ret
 
-INCLUDE "data/maps/flypoints.asm"
+INCLUDE "data/maps/flypoints.inc"
 
 ret_91c8f:
 	ret
@@ -704,7 +707,7 @@ TownMapPals:
 	ret
 
 .PalMap:
-INCLUDE "gfx/pokegear/town_map_palette_map.asm"
+INCLUDE "gfx/pokegear/town_map_palette_map.inc"
 
 TownMapMon:
 ; Draw the FlyMon icon at town map location

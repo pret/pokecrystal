@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/overworld/variables.asm", ROMX
 
 _GetVarAction::

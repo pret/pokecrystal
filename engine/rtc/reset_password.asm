@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/rtc/reset_password.asm", ROMX
 
 _ResetClock:

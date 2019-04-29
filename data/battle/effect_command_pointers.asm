@@ -1,11 +1,14 @@
-; battle commands are defined in engine/battle/effect_commands.asm
+INCLUDE "constants.inc"
+
 
 SECTION "data/battle/effect_command_pointers.asm", ROMX
+
+; battle commands are defined in engine/battle/effect_commands.asm
 
 	dw 0 ; padding
 
 BattleCommandPointers:
-; entries correspond to macros/scripts/battle_commands.asm
+; entries correspond to macros/scripts/battle_commands.inc
 	dw BattleCommand_CheckTurn
 	dw BattleCommand_CheckObedience
 	dw BattleCommand_UsedMoveText

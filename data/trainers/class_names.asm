@@ -1,7 +1,10 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/trainers/class_names.asm", ROMX
 
 TrainerClassNames::
-; entries correspond to trainer classes (see constants/trainer_constants.asm)
+; entries correspond to trainer classes (see constants/trainer_constants.inc)
 	db "LEADER@"
 	db "LEADER@"
 	db "LEADER@"

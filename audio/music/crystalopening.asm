@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/crystalopening.asm", ROMX
 
 Music_CrystalOpening:

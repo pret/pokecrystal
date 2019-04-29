@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/menus/menu_2.asm@PlaceMenuItemName", ROMX
 
 PlaceMenuItemName:
@@ -270,4 +273,4 @@ FindApricornsInBag:
 	pop hl
 	ret
 
-INCLUDE "data/items/apricorn_balls.asm"
+INCLUDE "data/items/apricorn_balls.inc"

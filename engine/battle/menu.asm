@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/battle/menu.asm", ROMX
 
 LoadBattleMenu:

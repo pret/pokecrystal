@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/tilesets/mapgroup_roofs.asm", ROMX
 
 LoadMapGroupRoof::
@@ -17,4 +20,4 @@ LoadMapGroupRoof::
 	call CopyBytes
 	ret
 
-INCLUDE "data/maps/roofs.asm"
+INCLUDE "data/maps/roofs.inc"

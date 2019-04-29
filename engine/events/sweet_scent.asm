@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/sweet_scent.asm", ROMX
 
 SweetScentFromMenu:

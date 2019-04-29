@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const PEWTERCITY_COOLTRAINER_F
 	const PEWTERCITY_BUG_CATCHER

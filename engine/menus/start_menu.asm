@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 ; StartMenu.Items indexes
 	const_def
 	const STARTMENUITEM_POKEDEX  ; 0
@@ -9,6 +11,7 @@
 	const STARTMENUITEM_EXIT     ; 6
 	const STARTMENUITEM_POKEGEAR ; 7
 	const STARTMENUITEM_QUIT     ; 8
+
 
 SECTION "engine/menus/start_menu.asm", ROMX, BANK[BANK_PACK]
 
@@ -542,6 +545,6 @@ StartMenu_Pokemon:
 	pop af
 	ret
 
-INCLUDE "engine/pokemon/mon_menu.asm"
+INCLUDE "engine/pokemon/mon_menu.inc"
 
-INCLUDE "engine/overworld/select_menu.asm"
+INCLUDE "engine/overworld/select_menu.inc"

@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const CIANWOODGYM_CHUCK
 	const CIANWOODGYM_BLACK_BELT1

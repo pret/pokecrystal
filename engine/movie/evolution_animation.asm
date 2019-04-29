@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/movie/evolution_animation.asm", ROMX
 
 EvolutionAnimation:

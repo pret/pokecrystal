@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/bugcatchingcontest.asm", ROMX
 
 Music_BugCatchingContest:

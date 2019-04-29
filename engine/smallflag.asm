@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/smallflag.asm", ROMX
 
 SmallFarFlagAction:

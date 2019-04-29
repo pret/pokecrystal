@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/route2.asm", ROMX
 
 Music_Route2:

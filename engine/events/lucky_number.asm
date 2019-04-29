@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/lucky_number.asm@CheckForLuckyNumberWinners", ROMX
 
 CheckForLuckyNumberWinners:

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/link/link_2.asm@LinkMonStatsScreen", ROMX
 
 LinkMonStatsScreen:

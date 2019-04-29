@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const LAVENDERSPEECHHOUSE_POKEFAN_F
 

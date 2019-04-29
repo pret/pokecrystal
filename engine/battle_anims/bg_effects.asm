@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	const_def
 	const BGSQUARE_SIX
 	const BGSQUARE_FOUR
@@ -6,9 +8,10 @@
 	const BGSQUARE_FIVE
 	const BGSQUARE_THREE
 
-; BG effects for use in battle animations.
 
 SECTION "engine/battle_anims/bg_effects.asm", ROMX
+
+; BG effects for use in battle animations.
 
 ExecuteBGEffects:
 	ld hl, wActiveBGEffects

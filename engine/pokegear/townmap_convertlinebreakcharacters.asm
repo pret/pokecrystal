@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/pokegear/townmap_convertlinebreakcharacters.asm", ROMX
 
 TownMap_ConvertLineBreakCharacters:

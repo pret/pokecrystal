@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/burnedtower.asm", ROMX
 
 Music_BurnedTower:

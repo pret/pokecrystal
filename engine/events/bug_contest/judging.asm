@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/bug_contest/judging.asm", ROMX, BANK[BANK_BUG_CONTEST_JUDGING]
 
 _BugContestJudging:
@@ -127,7 +130,7 @@ LoadContestantName:
 	ld bc, NAME_LENGTH
 	jp CopyBytes
 
-INCLUDE "data/events/bug_contest_winners.asm"
+INCLUDE "data/events/bug_contest_winners.inc"
 
 BugContest_GetPlayersResult:
 	ld hl, wBugContestThirdPlaceWinnerID

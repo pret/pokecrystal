@@ -1,9 +1,9 @@
-INCLUDE "constants.asm"
+INCLUDE "constants.inc"
 
-INCLUDE "macros/wram.asm"
+INCLUDE "macros/wram.inc"
 
 
-INCLUDE "vram.asm"
+INCLUDE "./vram.inc"
 
 
 SECTION "Stack", WRAM0
@@ -3162,6 +3162,6 @@ wWindowStack:: ds $1000 - 1
 wWindowStackBottom:: ds 1
 
 
-INCLUDE "sram.asm"
+INCLUDE "./sram.inc"
 
-INCLUDE "hram.asm"
+INCLUDE "./hram.inc"

@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const VICTORYROAD_SILVER
 	const VICTORYROAD_POKE_BALL1

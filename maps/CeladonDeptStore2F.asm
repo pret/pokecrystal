@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const CELADONDEPTSTORE2F_CLERK1
 	const CELADONDEPTSTORE2F_CLERK2

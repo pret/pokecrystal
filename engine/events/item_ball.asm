@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/item_ball.asm", ROMX
 
 FindItemInBallScript::

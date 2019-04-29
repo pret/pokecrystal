@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/items/names.asm", ROMX
 
 ItemNames::

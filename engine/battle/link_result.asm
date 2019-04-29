@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/battle/link_result.asm", ROMX
 
 DetermineLinkBattleResult:

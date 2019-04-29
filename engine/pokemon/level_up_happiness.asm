@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/pokemon/level_up_happiness.asm", ROMX
 
 LevelUpHappinessMod:

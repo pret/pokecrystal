@@ -1,13 +1,16 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/phone/caller_scripts.asm", ROMX
 
-INCLUDE "engine/phone/scripts/generic_caller.asm"
-INCLUDE "engine/phone/scripts/jack_gossip.asm"
-INCLUDE "engine/phone/scripts/liz_gossip.asm"
-INCLUDE "engine/phone/scripts/chad_gossip.asm"
-INCLUDE "engine/phone/scripts/brent_gossip.asm"
-INCLUDE "engine/phone/scripts/irwin_gossip.asm"
-INCLUDE "engine/phone/scripts/hangups.asm"
-INCLUDE "engine/phone/scripts/reminders.asm"
-INCLUDE "engine/phone/scripts/hangups_2.asm"
-INCLUDE "engine/phone/scripts/reminders_2.asm"
-INCLUDE "engine/phone/scripts/bike_shop.asm"
+INCLUDE "engine/phone/scripts/generic_caller.inc"
+INCLUDE "engine/phone/scripts/jack_gossip.inc"
+INCLUDE "engine/phone/scripts/liz_gossip.inc"
+INCLUDE "engine/phone/scripts/chad_gossip.inc"
+INCLUDE "engine/phone/scripts/brent_gossip.inc"
+INCLUDE "engine/phone/scripts/irwin_gossip.inc"
+INCLUDE "engine/phone/scripts/hangups.inc"
+INCLUDE "engine/phone/scripts/reminders.inc"
+INCLUDE "engine/phone/scripts/hangups_2.inc"
+INCLUDE "engine/phone/scripts/reminders_2.inc"
+INCLUDE "engine/phone/scripts/bike_shop.inc"

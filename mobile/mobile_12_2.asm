@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "mobile/mobile_12_2.asm@MobileCheckOwnMonAnywhere", ROMX
 
 MobileCheckOwnMonAnywhere:

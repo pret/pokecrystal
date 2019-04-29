@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/evolution.asm", ROMX
 
 Music_Evolution:

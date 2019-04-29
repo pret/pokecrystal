@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 
 SECTION "maps/SaffronPokecenter2FBeta.asm", ROMX
 

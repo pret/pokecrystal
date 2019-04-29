@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const PEWTERGYM_BROCK
 	const PEWTERGYM_YOUNGSTER

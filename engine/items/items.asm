@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/items/items.asm", ROMX
 
 _ReceiveItem::

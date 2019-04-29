@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const ROUTE31VIOLETGATE_OFFICER
 	const ROUTE31VIOLETGATE_COOLTRAINER_F

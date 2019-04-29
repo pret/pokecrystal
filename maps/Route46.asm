@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const ROUTE46_POKEFAN_M
 	const ROUTE46_YOUNGSTER

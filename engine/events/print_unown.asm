@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 UNOWNSTAMP_BOLD_A EQU "♂" ; $ef
 UNOWNSTAMP_BOLD_B EQU "♀" ; $f5
 

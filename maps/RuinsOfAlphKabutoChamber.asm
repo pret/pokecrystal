@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const RUINSOFALPHKABUTOCHAMBER_RECEPTIONIST
 	const RUINSOFALPHKABUTOCHAMBER_SCIENTIST

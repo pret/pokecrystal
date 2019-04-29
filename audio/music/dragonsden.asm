@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/dragonsden.asm", ROMX
 
 Music_DragonsDen:

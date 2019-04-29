@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/celadoncity.asm", ROMX
 
 Music_CeladonCity:

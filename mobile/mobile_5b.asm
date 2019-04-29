@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "mobile/mobile_5b.asm", ROMX
 
 Unreferenced_Function16c000:

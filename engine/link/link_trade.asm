@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/link/link_trade.asm@_LoadTradeScreenBorder", ROMX
 
 LinkCommsBorderGFX:

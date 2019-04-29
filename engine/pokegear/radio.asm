@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/pokegear/radio.asm", ROMX
 
 PlayRadioShow:
@@ -30,7 +33,7 @@ PlayRadioShow:
 	jp hl
 
 RadioJumptable:
-; entries correspond to constants/radio_constants.asm
+; entries correspond to constants/radio_constants.inc
 	dw OaksPKMNTalk1  ; $00
 	dw PokedexShow1 ; $01
 	dw BenMonMusic1  ; $02
@@ -293,7 +296,7 @@ endr
 	ld a, OAKS_POKEMON_TALK
 	jp PrintRadioLine
 
-INCLUDE "data/radio/oaks_pkmn_talk_routes.asm"
+INCLUDE "data/radio/oaks_pkmn_talk_routes.inc"
 
 OaksPKMNTalk5:
 	ld hl, OPT_OakText2
@@ -1198,7 +1201,7 @@ PeoplePlaces4: ; People
 	ld a, PLACES_AND_PEOPLE_5
 	jp NextRadioLine
 
-INCLUDE "data/radio/pnp_hidden_people.asm"
+INCLUDE "data/radio/pnp_hidden_people.inc"
 
 PnP_Text4:
 	; @  @ @
@@ -1348,7 +1351,7 @@ PeoplePlaces6: ; Places
 	ld a, PLACES_AND_PEOPLE_7
 	jp NextRadioLine
 
-INCLUDE "data/radio/pnp_hidden_places.asm"
+INCLUDE "data/radio/pnp_hidden_places.inc"
 
 PnP_Text5:
 	; @ @
@@ -1682,7 +1685,7 @@ GetBuenasPassword:
 	ld de, wStringBuffer1
 	ret
 
-INCLUDE "data/radio/buenas_passwords.asm"
+INCLUDE "data/radio/buenas_passwords.inc"
 
 BuenasPassword5:
 	ld hl, BuenaRadioText5
@@ -1924,7 +1927,7 @@ StartRadioStation:
 	callfar RadioMusicRestartDE
 	ret
 
-INCLUDE "data/radio/channel_music.asm"
+INCLUDE "data/radio/channel_music.inc"
 
 NextRadioLine:
 	push af

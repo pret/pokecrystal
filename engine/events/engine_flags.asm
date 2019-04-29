@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/engine_flags.asm", ROMX
 
 EngineFlagAction::
@@ -82,4 +85,4 @@ EngineFlagAction::
 	ld [de], a
 	ret
 
-INCLUDE "data/engine_flags.asm"
+INCLUDE "data/engine_flags.inc"

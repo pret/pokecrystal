@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const OLIVINELIGHTHOUSE5F_SAILOR
 	const OLIVINELIGHTHOUSE5F_YOUNGSTER

@@ -1,8 +1,10 @@
-; These functions deal with miscellaneous statistics
-; which were used for Trainer Rankings in Pokémon News.
+INCLUDE "constants.inc"
 
 
 SECTION "mobile/mobile_41.asm@TrainerRankings", ROMX
+
+; These functions deal with miscellaneous statistics
+; which were used for Trainer Rankings in Pokémon News.
 
 ; Copies certain values at the time the player enters the Hall of Fame.
 StubbedTrainerRankings_HallOfFame2::

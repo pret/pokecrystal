@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/pokemon/mon_stats.asm@DrawHP", ROMX
 
 DrawPlayerHP:

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/menus/scrolling_menu.asm", ROMX
 
 _InitScrollingMenu::

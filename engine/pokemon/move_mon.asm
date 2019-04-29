@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 RANDY_OT_ID EQU 01001
 
 

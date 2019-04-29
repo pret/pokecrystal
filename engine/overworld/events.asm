@@ -1,4 +1,4 @@
-INCLUDE "constants.asm"
+INCLUDE "constants.inc"
 
 
 SECTION "engine/overworld/events.asm", ROMX
@@ -1026,7 +1026,7 @@ ChangeDirectionScript: ; 9
 	callasm EnableWildEncounters
 	end
 
-INCLUDE "engine/overworld/scripting.asm"
+INCLUDE "engine/overworld/scripting.inc"
 
 WarpToSpawnPoint::
 	ld hl, wStatusFlags2
@@ -1269,7 +1269,7 @@ TryWildEncounter_BugContest:
 	and a
 	ret
 
-INCLUDE "data/wild/bug_contest_mons.asm"
+INCLUDE "data/wild/bug_contest_mons.inc"
 
 
 SECTION "engine/overworld/events.asm@DoBikeStep", ROMX

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/text/common_3.asm", ROMX
 
 _OakText6::

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/battle/read_trainer_attributes.asm", ROMX, BANK[BANK_TRAINER_ATTRIBUTES]
 
 GetTrainerClassName:
@@ -65,4 +68,4 @@ GetTrainerAttributes:
 	ld [wEnemyTrainerBaseReward], a
 	ret
 
-INCLUDE "data/trainers/attributes.asm"
+INCLUDE "data/trainers/attributes.inc"

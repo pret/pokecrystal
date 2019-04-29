@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const CINNABARPOKECENTER1F_NURSE
 	const CINNABARPOKECENTER1F_COOLTRAINER_F

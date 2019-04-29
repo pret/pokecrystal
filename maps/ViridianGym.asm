@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const VIRIDIANGYM_BLUE
 	const VIRIDIANGYM_GYM_GUY

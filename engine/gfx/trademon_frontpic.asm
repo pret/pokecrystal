@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/gfx/trademon_frontpic.asm@GetTrademonFrontpic", ROMX
 
 GetTrademonFrontpic:

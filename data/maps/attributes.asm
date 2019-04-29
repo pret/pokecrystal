@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 map_attributes: MACRO
 ;\1: map name
 ;\2: map id

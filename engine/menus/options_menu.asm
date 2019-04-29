@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/menus/options_menu.asm", ROMX
 
 _OptionsMenu:

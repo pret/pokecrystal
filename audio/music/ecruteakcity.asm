@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/ecruteakcity.asm", ROMX
 
 Music_EcruteakCity:

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/elmslab.asm", ROMX
 
 Music_ElmsLab:

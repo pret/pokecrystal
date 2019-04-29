@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/bike_shop.asm", ROMX
 
 UnknownText_0x174000:

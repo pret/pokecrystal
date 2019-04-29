@@ -1,4 +1,5 @@
-INCLUDE "constants.asm"
+INCLUDE "constants.inc"
+
 
 ; FLOAT: The sprites sections break when placed in bank 1.
 ; See docs/bugs_and_glitches.md (the LoadSpriteGFX fix) for more information.

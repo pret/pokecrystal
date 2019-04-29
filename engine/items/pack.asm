@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 ; Pack.Jumptable and BattlePack.Jumptable indexes
 	const_def
 	const PACKSTATE_INITGFX            ;  0

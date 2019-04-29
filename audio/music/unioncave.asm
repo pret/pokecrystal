@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/unioncave.asm", ROMX
 
 Music_UnionCave:

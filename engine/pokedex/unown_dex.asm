@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/pokedex/unown_dex.asm@UpdateUnownDex", ROMX
 
 UpdateUnownDex:
@@ -51,4 +54,4 @@ PrintUnownWord:
 	ld [hli], a
 	jr .loop
 
-INCLUDE "data/pokemon/unown_words.asm"
+INCLUDE "data/pokemon/unown_words.inc"

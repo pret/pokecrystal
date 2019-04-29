@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/items/tmhm2.asm", ROMX
 
 CanLearnTMHMMove:
@@ -45,4 +48,4 @@ GetTMHMMove:
 	ld [wTempTMHM], a
 	ret
 
-INCLUDE "data/moves/tmhm_moves.asm"
+INCLUDE "data/moves/tmhm_moves.inc"

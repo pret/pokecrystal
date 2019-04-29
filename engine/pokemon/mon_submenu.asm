@@ -1,6 +1,9 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/pokemon/mon_submenu.asm", ROMX
 
-INCLUDE "data/mon_menu.asm"
+INCLUDE "data/mon_menu.inc"
 
 MonSubmenu:
 	xor a

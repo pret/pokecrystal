@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const GOLDENRODDEPTSTORE4F_CLERK
 	const GOLDENRODDEPTSTORE4F_COOLTRAINER_M

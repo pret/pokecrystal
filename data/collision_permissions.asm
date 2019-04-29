@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 NONTALKABLE EQUS "db"
 TALKABLE    EQUS "db TALK +"
 

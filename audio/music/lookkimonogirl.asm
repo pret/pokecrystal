@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/lookkimonogirl.asm", ROMX
 
 Music_LookKimonoGirl:

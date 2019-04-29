@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const DARKCAVEVIOLETENTRANCE_POKE_BALL1
 	const DARKCAVEVIOLETENTRANCE_ROCK1

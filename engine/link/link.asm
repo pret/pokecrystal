@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/link/link.asm", ROMX
 
 LinkCommunications:
@@ -1114,7 +1117,7 @@ TimeCapsule_ReplaceTeruSama:
 	pop hl
 	ret
 
-INCLUDE "data/items/catch_rate_items.asm"
+INCLUDE "data/items/catch_rate_items.inc"
 
 Link_CopyOTData:
 .loop
@@ -1989,7 +1992,7 @@ Unreferenced_Function28f09:
 	farcall PlaceTradePartnerNamesAndParty
 	ret
 
-INCLUDE "engine/movie/trade_animation.asm"
+INCLUDE "engine/movie/trade_animation.inc"
 
 CheckTimeCapsuleCompatibility:
 ; Checks to see if your party is compatible with the Gen 1 games.

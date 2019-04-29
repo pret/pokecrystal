@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/overworld/time.asm", ROMX
 
 _InitializeStartDay:

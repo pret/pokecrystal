@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/mom.asm", ROMX
 
 Music_Mom:

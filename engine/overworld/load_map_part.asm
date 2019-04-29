@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/overworld/load_map_part.asm", ROMX
 
 _LoadMapPart::

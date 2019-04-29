@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const ROUTE29ROUTE46GATE_OFFICER
 	const ROUTE29ROUTE46GATE_YOUNGSTER

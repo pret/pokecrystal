@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/movie/init_hof_credits.asm@InitDisplayForHallOfFame", ROMX
 
 InitDisplayForHallOfFame:

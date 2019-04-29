@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/catch_tutorial.asm", ROMX
 
 CatchTutorial::

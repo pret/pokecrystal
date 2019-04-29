@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/pokemoncenter.asm", ROMX
 
 Music_PokemonCenter:

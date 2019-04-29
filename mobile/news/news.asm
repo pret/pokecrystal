@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 ; http://forums.glitchcity.info/index.php?topic=7509.msg206449#msg206449
 
 

@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 
 SECTION "maps/ViridianPokecenter2FBeta.asm", ROMX
 

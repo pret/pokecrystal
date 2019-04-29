@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/math/multiply.asm", ROMX
 
 _Multiply::

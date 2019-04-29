@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const FASTSHIPCABINS_NNW_NNE_NE_COOLTRAINER_M
 	const FASTSHIPCABINS_NNW_NNE_NE_COOLTRAINER_F

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/beth_overworld.asm", ROMX
 
 BethAskNumber1Text:

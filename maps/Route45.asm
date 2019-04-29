@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const ROUTE45_POKEFAN_M1
 	const ROUTE45_POKEFAN_M2

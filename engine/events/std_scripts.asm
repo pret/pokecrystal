@@ -1,7 +1,10 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/std_scripts.asm", ROMX
 
 StdScripts::
-; entries correspond to constants/std_constants.asm
+; entries correspond to constants/std_constants.inc
 	dba PokecenterNurseScript
 	dba DifficultBookshelfScript
 	dba PictureBookshelfScript

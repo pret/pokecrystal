@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const RADIOTOWER1F_RECEPTIONIST
 	const RADIOTOWER1F_LASS

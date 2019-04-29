@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/bug_contest/contest.asm@GiveParkBalls", ROMX
 
 GiveParkBalls:

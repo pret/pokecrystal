@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/lookrival.asm", ROMX, BANK[BANK_MUSIC_RIVAL_ENCOUNTER]
 
 Music_LookRival:

@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const ROUTE39BARN_TWIN1
 	const ROUTE39BARN_TWIN2

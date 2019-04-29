@@ -1,7 +1,10 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/moves/animations.asm", ROMX
 
 BattleAnimations::
-; entries correspond to constants/move_constants.asm
+; entries correspond to constants/move_constants.inc
 	dw BattleAnim_0
 	dw BattleAnim_Pound
 	dw BattleAnim_KarateChop

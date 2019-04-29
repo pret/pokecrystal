@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/buenaspassword.asm", ROMX
 
 Music_BuenasPassword:

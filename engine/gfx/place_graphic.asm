@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/gfx/place_graphic.asm", ROMX
 
 PlaceGraphic:

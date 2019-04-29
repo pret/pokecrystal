@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/menus/menu.asm@_2DMenu_", ROMX
 
 _2DMenu_::

@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 ; Pokégear cards
 	const_def
 	const POKEGEARCARD_CLOCK ; 0
@@ -1468,7 +1470,7 @@ UpdateRadioStation:
 	ret
 
 RadioChannels:
-; entries correspond to constants/radio_constants.asm
+; entries correspond to constants/radio_constants.inc
 
 ; frequency value given here = 4 × ingame_frequency − 2
 	dbw 16, .PKMNTalkAndPokedexShow

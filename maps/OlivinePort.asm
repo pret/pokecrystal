@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const OLIVINEPORT_SAILOR1
 	const OLIVINEPORT_SAILOR2

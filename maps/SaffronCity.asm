@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const SAFFRONCITY_LASS1
 	const SAFFRONCITY_POKEFAN_M

@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 MANIA_OT_ID EQU 00518
 
 

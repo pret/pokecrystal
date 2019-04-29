@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/treemons.asm", ROMX
 
 TreeMonEncounter:
@@ -93,7 +96,7 @@ GetTreeMonSet:
 	scf
 	ret
 
-INCLUDE "data/wild/treemon_maps.asm"
+INCLUDE "data/wild/treemon_maps.inc"
 
 GetTreeMons:
 ; Return the address of TreeMon table a in hl.
@@ -122,7 +125,7 @@ GetTreeMons:
 	xor a
 	ret
 
-INCLUDE "data/wild/treemons.asm"
+INCLUDE "data/wild/treemons.inc"
 
 GetTreeMon:
 	push hl

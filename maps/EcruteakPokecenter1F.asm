@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const ECRUTEAKPOKECENTER1F_NURSE
 	const ECRUTEAKPOKECENTER1F_POKEFAN_M

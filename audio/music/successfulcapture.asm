@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/successfulcapture.asm", ROMX, BANK[BANK_MUSIC_WILD_VICTORY]
 
 Music_SuccessfulCapture:

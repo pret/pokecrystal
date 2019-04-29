@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/haircut.asm", ROMX, BANK[BANK_HAPPINESS]
 
 BillsGrandfather:
@@ -72,7 +75,7 @@ HaircutOrGrooming:
 	ld [wScriptVar], a
 	ret
 
-INCLUDE "data/events/happiness_probabilities.asm"
+INCLUDE "data/events/happiness_probabilities.inc"
 
 CopyPokemonName_Buffer1_Buffer3:
 	ld hl, wStringBuffer1

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/phone/numbers.asm", ROMX
 
 AddPhoneNumber::
@@ -93,4 +96,4 @@ GetRemainingSpaceInPhoneList:
 	sub [hl]
 	ret
 
-INCLUDE "data/phone/permanent_numbers.asm"
+INCLUDE "data/phone/permanent_numbers.inc"

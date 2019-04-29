@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/suicunebattle.asm", ROMX
 
 Music_SuicuneBattle:

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/phone/scripts/buena.asm", ROMX
 
 BuenaPhoneCalleeScript:
@@ -168,4 +171,4 @@ BuenaPhoneScript_Random1:
 	writetext UnknownText_0xa1e2f
 	end
 
-INCLUDE "data/phone/text/buena.asm"
+INCLUDE "data/phone/text/buena.inc"

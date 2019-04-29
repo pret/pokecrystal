@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/brent_overworld.asm", ROMX
 
 BrentAskNumber1Text:

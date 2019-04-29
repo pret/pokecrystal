@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const TRAINERHOUSEB1F_RECEPTIONIST
 	const TRAINERHOUSEB1F_CHRIS

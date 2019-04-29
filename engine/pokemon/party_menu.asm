@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/pokemon/party_menu.asm", ROMX, BANK[BANK_PARTY_MENU]
 
 SelectMonFromParty:
@@ -583,7 +586,7 @@ GetPartyMenuQualityIndexes:
 	ld hl, PartyMenuQualityPointers.Default
 	ret
 
-INCLUDE "data/party_menu_qualities.asm"
+INCLUDE "data/party_menu_qualities.inc"
 
 InitPartyMenuGFX:
 	ld hl, wPartyCount

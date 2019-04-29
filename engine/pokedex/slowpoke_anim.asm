@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/pokedex/slowpoke_anim.asm", ROMX
 
 AnimateDexSearchSlowpoke:

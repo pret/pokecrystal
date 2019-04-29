@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const TEAMROCKETBASEB2F_ROCKET1
 	const TEAMROCKETBASEB2F_ROCKET_GIRL

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/fruit_trees.asm", ROMX
 
 FruitTreeScript::
@@ -96,7 +99,7 @@ GetFruitTreeItem:
 	pop hl
 	ret
 
-INCLUDE "data/items/fruit_trees.asm"
+INCLUDE "data/items/fruit_trees.inc"
 
 FruitBearingTreeText:
 	text_far _FruitBearingTreeText

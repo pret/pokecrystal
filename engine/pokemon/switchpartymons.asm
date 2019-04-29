@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/pokemon/switchpartymons.asm", ROMX
 
 _SwitchPartyMons:

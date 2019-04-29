@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/dancinghall.asm", ROMX
 
 Music_DancingHall:

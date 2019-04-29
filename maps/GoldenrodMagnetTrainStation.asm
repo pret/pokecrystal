@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const GOLDENRODMAGNETTRAINSTATION_OFFICER
 	const GOLDENRODMAGNETTRAINSTATION_GENTLEMAN

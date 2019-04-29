@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/pokedex/dex_entry.asm", ROMX
 
 DisplayDexEntry:
@@ -204,4 +207,4 @@ endr
 	pop hl
 	ret
 
-INCLUDE "data/pokemon/dex_entry_pointers.asm"
+INCLUDE "data/pokemon/dex_entry_pointers.inc"

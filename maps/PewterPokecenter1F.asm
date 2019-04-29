@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const PEWTERPOKECENTER1F_NURSE
 	const PEWTERPOKECENTER1F_TEACHER

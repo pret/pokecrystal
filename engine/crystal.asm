@@ -1,9 +1,12 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/crystal.asm", ROMX
 
-INCLUDE "engine/menus/init_gender.asm"
-INCLUDE "engine/items/pack_kris.asm"
-INCLUDE "engine/events/move_tutor.asm"
-INCLUDE "engine/gfx/crystal_layouts.asm"
-INCLUDE "engine/events/celebi.asm"
-INCLUDE "engine/menus/main_menu.asm"
-INCLUDE "mobile/mobile_menu.asm"
+INCLUDE "engine/menus/init_gender.inc"
+INCLUDE "engine/items/pack_kris.inc"
+INCLUDE "engine/events/move_tutor.inc"
+INCLUDE "engine/gfx/crystal_layouts.inc"
+INCLUDE "engine/events/celebi.inc"
+INCLUDE "engine/menus/main_menu.inc"
+INCLUDE "mobile/mobile_menu.inc"

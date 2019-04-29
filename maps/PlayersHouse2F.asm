@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const PLAYERSHOUSE2F_CONSOLE
 	const PLAYERSHOUSE2F_DOLL_1

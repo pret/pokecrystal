@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/lookrocket.asm", ROMX, BANK[BANK_MUSIC_ROCKET_ENCOUNTER]
 
 Music_LookRocket:

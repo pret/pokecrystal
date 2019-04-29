@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const FUCHSIAGYM_JANINE
 	const FUCHSIAGYM_FUCHSIA_GYM_1

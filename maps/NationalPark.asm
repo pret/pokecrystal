@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const NATIONALPARK_LASS1
 	const NATIONALPARK_POKEFAN_F1

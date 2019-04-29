@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/battle/ai/items.asm", ROMX, BANK[BANK_TRAINER_ATTRIBUTES]
 
 AI_SwitchOrTryItem:

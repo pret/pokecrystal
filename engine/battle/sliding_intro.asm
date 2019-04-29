@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/battle/sliding_intro.asm", ROMX
 
 BattleIntroSlidingPics:

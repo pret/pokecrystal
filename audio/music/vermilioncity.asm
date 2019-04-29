@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/vermilioncity.asm", ROMX
 
 Music_VermilionCity:

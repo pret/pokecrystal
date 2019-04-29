@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/battle/effect_commands.asm", ROMX
 
 DoPlayerTurn:
@@ -1214,11 +1217,11 @@ BattleCommand_Critical:
 	ld [wCriticalHit], a
 	ret
 
-INCLUDE "data/moves/critical_hit_moves.asm"
+INCLUDE "data/moves/critical_hit_moves.inc"
 
-INCLUDE "data/battle/critical_hit_chances.asm"
+INCLUDE "data/battle/critical_hit_chances.inc"
 
-INCLUDE "engine/battle/move_effects/triple_kick.asm"
+INCLUDE "engine/battle/move_effects/triple_kick.inc"
 
 BattleCommand_Stab:
 ; STAB = Same Type Attack Bonus
@@ -1502,9 +1505,9 @@ BattleCommand_ResetTypeMatchup:
 	ld [wTypeMatchup], a
 	ret
 
-INCLUDE "engine/battle/ai/switch.asm"
+INCLUDE "engine/battle/ai/switch.inc"
 
-INCLUDE "data/types/type_matchups.asm"
+INCLUDE "data/types/type_matchups.inc"
 
 BattleCommand_DamageVariation:
 ; damagevariation
@@ -1863,7 +1866,7 @@ BattleCommand_CheckHit:
 	ld [hl], a
 	ret
 
-INCLUDE "data/battle/accuracy_multipliers.asm"
+INCLUDE "data/battle/accuracy_multipliers.inc"
 
 BattleCommand_EffectChance:
 ; effectchance
@@ -2894,7 +2897,7 @@ EnemyAttackDamage:
 	and a
 	ret
 
-INCLUDE "engine/battle/move_effects/beat_up.asm"
+INCLUDE "engine/battle/move_effects/beat_up.inc"
 
 BattleCommand_ClearMissDamage:
 ; clearmissdamage
@@ -3169,7 +3172,7 @@ BattleCommand_DamageCalc:
 
 	ret
 
-INCLUDE "data/types/type_boost_items.asm"
+INCLUDE "data/types/type_boost_items.inc"
 
 BattleCommand_ConstantDamage:
 ; constantdamage
@@ -3329,21 +3332,21 @@ BattleCommand_ConstantDamage:
 	ld [hl], 1
 	ret
 
-INCLUDE "data/moves/flail_reversal_power.asm"
+INCLUDE "data/moves/flail_reversal_power.inc"
 
-INCLUDE "engine/battle/move_effects/counter.asm"
+INCLUDE "engine/battle/move_effects/counter.inc"
 
-INCLUDE "engine/battle/move_effects/encore.asm"
+INCLUDE "engine/battle/move_effects/encore.inc"
 
-INCLUDE "engine/battle/move_effects/pain_split.asm"
+INCLUDE "engine/battle/move_effects/pain_split.inc"
 
-INCLUDE "engine/battle/move_effects/snore.asm"
+INCLUDE "engine/battle/move_effects/snore.inc"
 
-INCLUDE "engine/battle/move_effects/conversion2.asm"
+INCLUDE "engine/battle/move_effects/conversion2.inc"
 
-INCLUDE "engine/battle/move_effects/lock_on.asm"
+INCLUDE "engine/battle/move_effects/lock_on.inc"
 
-INCLUDE "engine/battle/move_effects/sketch.asm"
+INCLUDE "engine/battle/move_effects/sketch.inc"
 
 BattleCommand_DefrostOpponent:
 ; defrostopponent
@@ -3371,15 +3374,15 @@ BattleCommand_DefrostOpponent:
 	ld [hl], a
 	ret
 
-INCLUDE "engine/battle/move_effects/sleep_talk.asm"
+INCLUDE "engine/battle/move_effects/sleep_talk.inc"
 
-INCLUDE "engine/battle/move_effects/destiny_bond.asm"
+INCLUDE "engine/battle/move_effects/destiny_bond.inc"
 
-INCLUDE "engine/battle/move_effects/spite.asm"
+INCLUDE "engine/battle/move_effects/spite.inc"
 
-INCLUDE "engine/battle/move_effects/false_swipe.asm"
+INCLUDE "engine/battle/move_effects/false_swipe.inc"
 
-INCLUDE "engine/battle/move_effects/heal_bell.asm"
+INCLUDE "engine/battle/move_effects/heal_bell.inc"
 
 FarPlayBattleAnimation:
 ; play animation de
@@ -4694,9 +4697,9 @@ GetStatName:
 	ld bc, wStringBuffer3 - wStringBuffer2
 	jp CopyBytes
 
-INCLUDE "data/battle/stat_names.asm"
+INCLUDE "data/battle/stat_names.inc"
 
-INCLUDE "data/battle/stat_multipliers.asm"
+INCLUDE "data/battle/stat_multipliers.inc"
 
 BattleCommand_AllStatsUp:
 ; allstatsup
@@ -4962,7 +4965,7 @@ CalcBattleStats:
 
 	ret
 
-INCLUDE "engine/battle/move_effects/bide.asm"
+INCLUDE "engine/battle/move_effects/bide.inc"
 
 BattleCommand_CheckRampage:
 ; checkrampage
@@ -5028,7 +5031,7 @@ BattleCommand_Rampage:
 	ld [wSomeoneIsRampaging], a
 	ret
 
-INCLUDE "engine/battle/move_effects/teleport.asm"
+INCLUDE "engine/battle/move_effects/teleport.inc"
 
 SetBattleDraw:
 	ld a, [wBattleResult]
@@ -5763,9 +5766,9 @@ BattleCommand_TrapTarget:
 	dbw CLAMP,     ClampedByText     ; 'was CLAMPED by'
 	dbw WHIRLPOOL, WhirlpoolTrapText ; 'was trapped!'
 
-INCLUDE "engine/battle/move_effects/mist.asm"
+INCLUDE "engine/battle/move_effects/mist.inc"
 
-INCLUDE "engine/battle/move_effects/focus_energy.asm"
+INCLUDE "engine/battle/move_effects/focus_energy.inc"
 
 BattleCommand_Recoil:
 ; recoil
@@ -6049,7 +6052,7 @@ CheckMoveTypeMatchesTarget:
 	pop hl
 	ret
 
-INCLUDE "engine/battle/move_effects/substitute.asm"
+INCLUDE "engine/battle/move_effects/substitute.inc"
 
 BattleCommand_RechargeNextTurn:
 ; rechargenextturn
@@ -6066,7 +6069,7 @@ EndRechargeOpp:
 	pop hl
 	ret
 
-INCLUDE "engine/battle/move_effects/rage.asm"
+INCLUDE "engine/battle/move_effects/rage.inc"
 
 BattleCommand_DoubleFlyingDamage:
 ; doubleflyingdamage
@@ -6098,17 +6101,17 @@ DoubleDamage:
 .quit
 	ret
 
-INCLUDE "engine/battle/move_effects/mimic.asm"
+INCLUDE "engine/battle/move_effects/mimic.inc"
 
-INCLUDE "engine/battle/move_effects/leech_seed.asm"
+INCLUDE "engine/battle/move_effects/leech_seed.inc"
 
-INCLUDE "engine/battle/move_effects/splash.asm"
+INCLUDE "engine/battle/move_effects/splash.inc"
 
-INCLUDE "engine/battle/move_effects/disable.asm"
+INCLUDE "engine/battle/move_effects/disable.inc"
 
-INCLUDE "engine/battle/move_effects/pay_day.asm"
+INCLUDE "engine/battle/move_effects/pay_day.inc"
 
-INCLUDE "engine/battle/move_effects/conversion.asm"
+INCLUDE "engine/battle/move_effects/conversion.inc"
 
 BattleCommand_ResetStats:
 ; resetstats
@@ -6225,7 +6228,7 @@ BattleCommand_Heal:
 	ld hl, HPIsFullText
 	jp StdBattleTextbox
 
-INCLUDE "engine/battle/move_effects/transform.asm"
+INCLUDE "engine/battle/move_effects/transform.inc"
 
 BattleEffect_ButItFailed:
 	call AnimateFailedMove
@@ -6357,11 +6360,11 @@ CheckSubstituteOpp:
 	bit SUBSTATUS_SUBSTITUTE, a
 	ret
 
-INCLUDE "engine/battle/move_effects/selfdestruct.asm"
+INCLUDE "engine/battle/move_effects/selfdestruct.inc"
 
-INCLUDE "engine/battle/move_effects/mirror_move.asm"
+INCLUDE "engine/battle/move_effects/mirror_move.inc"
 
-INCLUDE "engine/battle/move_effects/metronome.asm"
+INCLUDE "engine/battle/move_effects/metronome.inc"
 
 CheckUserMove:
 ; Return z if the user has move a.
@@ -6401,7 +6404,7 @@ ResetTurn:
 	call DoMove
 	jp EndMoveEffect
 
-INCLUDE "engine/battle/move_effects/thief.asm"
+INCLUDE "engine/battle/move_effects/thief.inc"
 
 BattleCommand_ArenaTrap:
 ; arenatrap
@@ -6429,7 +6432,7 @@ BattleCommand_ArenaTrap:
 	call AnimateFailedMove
 	jp PrintButItFailed
 
-INCLUDE "engine/battle/move_effects/nightmare.asm"
+INCLUDE "engine/battle/move_effects/nightmare.inc"
 
 BattleCommand_Defrost:
 ; defrost
@@ -6462,37 +6465,37 @@ BattleCommand_Defrost:
 	ld hl, WasDefrostedText
 	jp StdBattleTextbox
 
-INCLUDE "engine/battle/move_effects/curse.asm"
+INCLUDE "engine/battle/move_effects/curse.inc"
 
-INCLUDE "engine/battle/move_effects/protect.asm"
+INCLUDE "engine/battle/move_effects/protect.inc"
 
-INCLUDE "engine/battle/move_effects/endure.asm"
+INCLUDE "engine/battle/move_effects/endure.inc"
 
-INCLUDE "engine/battle/move_effects/spikes.asm"
+INCLUDE "engine/battle/move_effects/spikes.inc"
 
-INCLUDE "engine/battle/move_effects/foresight.asm"
+INCLUDE "engine/battle/move_effects/foresight.inc"
 
-INCLUDE "engine/battle/move_effects/perish_song.asm"
+INCLUDE "engine/battle/move_effects/perish_song.inc"
 
-INCLUDE "engine/battle/move_effects/sandstorm.asm"
+INCLUDE "engine/battle/move_effects/sandstorm.inc"
 
-INCLUDE "engine/battle/move_effects/rollout.asm"
+INCLUDE "engine/battle/move_effects/rollout.inc"
 
 BattleCommand5d:
 ; unused
 	ret
 
-INCLUDE "engine/battle/move_effects/fury_cutter.asm"
+INCLUDE "engine/battle/move_effects/fury_cutter.inc"
 
-INCLUDE "engine/battle/move_effects/attract.asm"
+INCLUDE "engine/battle/move_effects/attract.inc"
 
-INCLUDE "engine/battle/move_effects/return.asm"
+INCLUDE "engine/battle/move_effects/return.inc"
 
-INCLUDE "engine/battle/move_effects/present.asm"
+INCLUDE "engine/battle/move_effects/present.inc"
 
-INCLUDE "engine/battle/move_effects/frustration.asm"
+INCLUDE "engine/battle/move_effects/frustration.inc"
 
-INCLUDE "engine/battle/move_effects/safeguard.asm"
+INCLUDE "engine/battle/move_effects/safeguard.inc"
 
 SafeCheckSafeguard:
 	push hl
@@ -6524,13 +6527,13 @@ BattleCommand_CheckSafeguard:
 	call StdBattleTextbox
 	jp EndMoveEffect
 
-INCLUDE "engine/battle/move_effects/magnitude.asm"
+INCLUDE "engine/battle/move_effects/magnitude.inc"
 
-INCLUDE "engine/battle/move_effects/baton_pass.asm"
+INCLUDE "engine/battle/move_effects/baton_pass.inc"
 
-INCLUDE "engine/battle/move_effects/pursuit.asm"
+INCLUDE "engine/battle/move_effects/pursuit.inc"
 
-INCLUDE "engine/battle/move_effects/rapid_spin.asm"
+INCLUDE "engine/battle/move_effects/rapid_spin.inc"
 
 BattleCommand_HealMorn:
 ; healmorn
@@ -6629,17 +6632,17 @@ BattleCommand_TimeBasedHealContinue:
 	dw GetHalfMaxHP
 	dw GetMaxHP
 
-INCLUDE "engine/battle/move_effects/hidden_power.asm"
+INCLUDE "engine/battle/move_effects/hidden_power.inc"
 
-INCLUDE "engine/battle/move_effects/rain_dance.asm"
+INCLUDE "engine/battle/move_effects/rain_dance.inc"
 
-INCLUDE "engine/battle/move_effects/sunny_day.asm"
+INCLUDE "engine/battle/move_effects/sunny_day.inc"
 
-INCLUDE "engine/battle/move_effects/belly_drum.asm"
+INCLUDE "engine/battle/move_effects/belly_drum.inc"
 
-INCLUDE "engine/battle/move_effects/psych_up.asm"
+INCLUDE "engine/battle/move_effects/psych_up.inc"
 
-INCLUDE "engine/battle/move_effects/mirror_coat.asm"
+INCLUDE "engine/battle/move_effects/mirror_coat.inc"
 
 BattleCommand_DoubleMinimizeDamage:
 ; doubleminimizedamage
@@ -6671,9 +6674,9 @@ BattleCommand_SkipSunCharge:
 	ld b, charge_command
 	jp SkipToBattleCommand
 
-INCLUDE "engine/battle/move_effects/future_sight.asm"
+INCLUDE "engine/battle/move_effects/future_sight.inc"
 
-INCLUDE "engine/battle/move_effects/thunder.asm"
+INCLUDE "engine/battle/move_effects/thunder.inc"
 
 CheckHiddenOpponent:
 ; BUG: This routine is completely redundant and introduces a bug, since BattleCommand_CheckHit does these checks properly.

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/pokemon/search2.asm", ROMX
 
 _FindPartyMonAboveLevel:

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/bicycle.asm", ROMX
 
 Music_Bicycle:

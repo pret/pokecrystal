@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/std_collision.asm", ROMX
 
 CheckFacingTileForStdScript::
@@ -25,7 +28,7 @@ CheckFacingTileForStdScript::
 	xor a
 	ret
 
-INCLUDE "data/events/collision_stdscripts.asm"
+INCLUDE "data/events/collision_stdscripts.inc"
 
 Script_JumpStdFromRAM:
 	sjump wJumpStdScriptBuffer

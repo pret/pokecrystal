@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const PLAYERSHOUSE1F_MOM1
 	const PLAYERSHOUSE1F_MOM2
@@ -185,8 +187,8 @@ NeighborScript:
 	turnobject PLAYERSHOUSE1F_POKEFAN_F, RIGHT
 	end
 
-TVScript:
-	jumptext TVText
+maps_PlayersHouse1F_asm_TVScript:
+	jumptext maps_PlayersHouse1F_asm_TVText
 
 StoveScript:
 	jumptext StoveText
@@ -375,7 +377,7 @@ FridgeText:
 	line "tasty LEMONADE!"
 	done
 
-TVText:
+maps_PlayersHouse1F_asm_TVText:
 	text "There's a movie on"
 	line "TV: Stars dot the"
 
@@ -402,7 +404,7 @@ PlayersHouse1F_MapEvents:
 	bg_event  0,  1, BGEVENT_READ, StoveScript
 	bg_event  1,  1, BGEVENT_READ, SinkScript
 	bg_event  2,  1, BGEVENT_READ, FridgeScript
-	bg_event  4,  1, BGEVENT_READ, TVScript
+	bg_event  4,  1, BGEVENT_READ, maps_PlayersHouse1F_asm_TVScript
 
 	db 5 ; object events
 	object_event  7,  4, SPRITE_MOM, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MomScript, EVENT_PLAYERS_HOUSE_MOM_1

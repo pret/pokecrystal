@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/looklass.asm", ROMX
 
 Music_LookLass:

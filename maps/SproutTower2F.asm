@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const SPROUTTOWER2F_SAGE1
 	const SPROUTTOWER2F_SAGE2

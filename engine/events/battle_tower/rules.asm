@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/battle_tower/rules.asm", ROMX
 
 CheckForMobileBattleRules:

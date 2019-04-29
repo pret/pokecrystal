@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/pokecenter_pc.asm", ROMX
 
 PokemonCenterPC:

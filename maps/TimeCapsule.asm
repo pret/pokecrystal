@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const TIMECAPSULE_CHRIS1
 	const TIMECAPSULE_CHRIS2

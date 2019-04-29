@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/rtc/rtc.asm@Unreferenced_StopRTC", ROMX
 
 Unreferenced_StopRTC:

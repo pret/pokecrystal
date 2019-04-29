@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/lavendertown.asm", ROMX
 
 Music_LavenderTown:

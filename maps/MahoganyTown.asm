@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 MAHOGANYTOWN_RAGECANDYBAR_PRICE EQU 300
 
 	object_const_def ; object_event constants

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/mobileadaptermenu.asm", ROMX
 
 Music_MobileAdapterMenu:

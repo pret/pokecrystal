@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/phone/text/erin_caller.asm", ROMX
 
 UnknownText_0x6717a:

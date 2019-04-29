@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/wildpokemonvictory.asm", ROMX, BANK[BANK_MUSIC_WILD_VICTORY]
 
 Music_WildPokemonVictory:

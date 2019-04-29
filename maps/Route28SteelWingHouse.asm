@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const ROUTE28STEELWINGHOUSE_CELEBRITY
 	const ROUTE28STEELWINGHOUSE_FEAROW

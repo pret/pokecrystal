@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/magnettrain.asm", ROMX
 
 Music_MagnetTrain:

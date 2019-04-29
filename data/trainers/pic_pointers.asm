@@ -1,10 +1,11 @@
-; Pics are defined in gfx/pics.asm
+INCLUDE "constants.inc"
 
 
 SECTION "data/trainers/pic_pointers.asm", ROMX
 
+; Pics are defined in gfx/pics.asm
 TrainerPicPointers::
-; entries correspond to trainer classes (see constants/trainer_constants.asm)
+; entries correspond to trainer classes (see constants/trainer_constants.inc)
 	dba_pic FalknerPic
 	dba_pic WhitneyPic
 	dba_pic BugsyPic

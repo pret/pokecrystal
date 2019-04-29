@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/indigoplateau.asm", ROMX
 
 Music_IndigoPlateau:

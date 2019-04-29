@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const DARKCAVEBLACKTHORNENTRANCE_PHARMACIST
 	const DARKCAVEBLACKTHORNENTRANCE_POKE_BALL1

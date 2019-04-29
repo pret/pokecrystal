@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const VERMILIONCITY_TEACHER
 	const VERMILIONCITY_GRAMPS

@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/gfx/load_overworld_font.asm", ROMX
 
 LoadOverworldFont::

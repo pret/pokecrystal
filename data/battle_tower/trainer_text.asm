@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "data/battle_tower/trainer_text.asm", ROMX
 
 BattleTowerText_0x1ec000:

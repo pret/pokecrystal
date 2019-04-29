@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/tilesets/timeofday_pals.asm@DummyPredef", ROMX
 
 DummyPredef35:

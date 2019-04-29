@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const ECRUTEAKITEMFINDERHOUSE_COOLTRAINER_M
 	const ECRUTEAKITEMFINDERHOUSE_POKEDEX

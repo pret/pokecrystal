@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "engine/events/battle_tower/load_trainer.asm", ROMX
 
 Function_LoadOpponentTrainerAndPokemons:
@@ -209,6 +212,6 @@ Function_LoadRandomBattleTowerMon:
 	call CloseSRAM
 	ret
 
-INCLUDE "data/battle_tower/classes.asm"
+INCLUDE "data/battle_tower/classes.inc"
 
-INCLUDE "data/battle_tower/parties.asm"
+INCLUDE "data/battle_tower/parties.inc"

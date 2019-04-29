@@ -1,3 +1,6 @@
+INCLUDE "constants.inc"
+
+
 SECTION "audio/music/nationalpark.asm", ROMX
 
 Music_NationalPark:

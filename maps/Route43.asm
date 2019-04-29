@@ -1,3 +1,5 @@
+INCLUDE "constants.inc"
+
 	object_const_def ; object_event constants
 	const ROUTE43_SUPER_NERD1
 	const ROUTE43_SUPER_NERD2
