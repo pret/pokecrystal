@@ -222,6 +222,12 @@ INCLUDE "gfx/battle_anims.asm"
 INCLUDE "engine/events/halloffame.asm"
 INCLUDE "engine/events/kurt.asm"
 INCLUDE "engine/gfx/player_gfx.asm"
+
+SECTION "main.asm@KrisBackpic", ROMX
+KrisBackpic:
+INCBIN "gfx/player/kris_back.2bpp"
+
+;SECTION independent
 INCLUDE "mobile/mobile_22.asm"
 INCLUDE "engine/events/unown_walls.asm"
 INCLUDE "engine/events/buena.asm"

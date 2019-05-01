@@ -236,6 +236,3 @@ GetKrisBackpic:
 	lb bc, BANK(KrisBackpic), 7 * 7 ; dimensions
 	call Get2bpp
 	ret
-
-KrisBackpic:
-INCBIN "gfx/player/kris_back.2bpp"

@@ -526,6 +526,7 @@ ROMX $22
 	"engine/gfx/player_gfx.asm@GetPlayerIcon"
 	"engine/gfx/player_gfx.asm@GetCardPic"
 	"engine/gfx/player_gfx.asm@GetPlayerPic"
+	"main.asm@KrisBackpic"
 	"mobile/mobile_22.asm"
 	"engine/events/unown_walls.asm@HoOhChamber"
 	"engine/events/unown_walls.asm@OmanyteChamber"
