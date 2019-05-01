@@ -1,4 +1,4 @@
-SECTION "DetermineLinkBattleResult", ROMX
+SECTION "engine/battle/link_result.asm", ROMX
 
 DetermineLinkBattleResult:
 	farcall UpdateEnemyMonInParty

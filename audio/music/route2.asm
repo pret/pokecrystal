@@ -1,4 +1,4 @@
-SECTION "Music_Route2", ROMX
+SECTION "audio/music/route2.asm", ROMX
 
 Music_Route2:
 	musicheader 4, 1, Music_Route2_Ch1

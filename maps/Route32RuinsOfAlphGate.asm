@@ -4,7 +4,7 @@
 	const ROUTE32RUINSOFALPHGATE_YOUNGSTER
 
 
-SECTION "Route32RuinsOfAlphGate_MapScripts", ROMX
+SECTION "maps/Route32RuinsOfAlphGate.asm", ROMX
 
 Route32RuinsOfAlphGate_MapScripts:
 	db 0 ; scene scripts

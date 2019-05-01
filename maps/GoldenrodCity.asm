@@ -16,7 +16,7 @@
 	const GOLDENRODCITY_MOVETUTOR
 
 
-SECTION "GoldenrodCity_MapScripts", ROMX
+SECTION "maps/GoldenrodCity.asm", ROMX
 
 GoldenrodCity_MapScripts:
 	db 0 ; scene scripts

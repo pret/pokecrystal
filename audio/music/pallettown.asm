@@ -1,4 +1,4 @@
-SECTION "Music_PalletTown", ROMX
+SECTION "audio/music/pallettown.asm", ROMX
 
 Music_PalletTown:
 	musicheader 3, 1, Music_PalletTown_Ch1

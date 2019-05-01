@@ -4,7 +4,7 @@
 	const GOLDENRODDEPTSTORE3F_ROCKER
 
 
-SECTION "GoldenrodDeptStore3F_MapScripts", ROMX
+SECTION "maps/GoldenrodDeptStore3F.asm", ROMX
 
 GoldenrodDeptStore3F_MapScripts:
 	db 0 ; scene scripts

@@ -1,4 +1,4 @@
-SECTION "JosePhoneCalleeScript - JoseHasStarPiece", ROMX
+SECTION "engine/phone/scripts/jose.asm", ROMX
 
 JosePhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, BIRD_KEEPER, JOSE2

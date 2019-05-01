@@ -4,7 +4,7 @@
 	const SPROUTTOWER2F_POKE_BALL
 
 
-SECTION "SproutTower2F_MapScripts", ROMX
+SECTION "maps/SproutTower2F.asm", ROMX
 
 SproutTower2F_MapScripts:
 	db 0 ; scene scripts

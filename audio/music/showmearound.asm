@@ -1,4 +1,4 @@
-SECTION "Music_ShowMeAround", ROMX
+SECTION "audio/music/showmearound.asm", ROMX
 
 Music_ShowMeAround:
 	musicheader 4, 1, Music_ShowMeAround_Ch1

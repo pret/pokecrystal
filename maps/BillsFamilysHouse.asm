@@ -4,7 +4,7 @@
 	const BILLSFAMILYSHOUSE_TWIN
 
 
-SECTION "BillsFamilysHouse_MapScripts", ROMX
+SECTION "maps/BillsFamilysHouse.asm", ROMX
 
 BillsFamilysHouse_MapScripts:
 	db 0 ; scene scripts

@@ -5,7 +5,7 @@
 	const CELADONMANSION3F_FISHER
 
 
-SECTION "CeladonMansion3F_MapScripts", ROMX
+SECTION "maps/CeladonMansion3F.asm", ROMX
 
 CeladonMansion3F_MapScripts:
 	db 0 ; scene scripts

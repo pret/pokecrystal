@@ -1,4 +1,4 @@
-SECTION "Music_LookHiker", ROMX
+SECTION "audio/music/lookhiker.asm", ROMX
 
 Music_LookHiker:
 	musicheader 4, 1, Music_LookHiker_Ch1

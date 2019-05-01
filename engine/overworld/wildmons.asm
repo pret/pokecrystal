@@ -1,4 +1,4 @@
-SECTION "LoadWildMonData - SwarmWaterWildMons", ROMX
+SECTION "engine/overworld/wildmons.asm", ROMX
 
 LoadWildMonData:
 	call _GrassWildmonLookup

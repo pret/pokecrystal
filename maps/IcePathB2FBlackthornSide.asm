@@ -2,7 +2,7 @@
 	const ICEPATHB2FBLACKTHORNSIDE_POKE_BALL
 
 
-SECTION "IcePathB2FBlackthornSide_MapScripts", ROMX
+SECTION "maps/IcePathB2FBlackthornSide.asm", ROMX
 
 IcePathB2FBlackthornSide_MapScripts:
 	db 0 ; scene scripts

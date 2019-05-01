@@ -1,4 +1,4 @@
-SECTION "_InitScrollingMenu - ScrollingMenu_GetListItemCoordAndFunctionArgs", ROMX
+SECTION "engine/menus/scrolling_menu.asm", ROMX
 
 _InitScrollingMenu::
 	xor a

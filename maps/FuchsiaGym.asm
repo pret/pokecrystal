@@ -7,7 +7,7 @@
 	const FUCHSIAGYM_GYM_GUY
 
 
-SECTION "FuchsiaGym_MapScripts", ROMX
+SECTION "maps/FuchsiaGym.asm", ROMX
 
 FuchsiaGym_MapScripts:
 	db 0 ; scene scripts

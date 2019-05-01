@@ -10,7 +10,7 @@
 	const CELADONCITY_LASS
 
 
-SECTION "CeladonCity_MapScripts", ROMX
+SECTION "maps/CeladonCity.asm", ROMX
 
 CeladonCity_MapScripts:
 	db 0 ; scene scripts

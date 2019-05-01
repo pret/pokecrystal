@@ -6,7 +6,7 @@
 	const RUINSOFALPHOUTSIDE_YOUNGSTER3
 
 
-SECTION "RuinsOfAlphOutside_MapScripts", ROMX
+SECTION "maps/RuinsOfAlphOutside.asm", ROMX
 
 RuinsOfAlphOutside_MapScripts:
 	db 2 ; scene scripts

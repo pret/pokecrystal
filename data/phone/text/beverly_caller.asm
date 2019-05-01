@@ -1,4 +1,4 @@
-SECTION "UnknownText_0x174688 - UnknownText_0x174895", ROMX
+SECTION "data/phone/text/beverly_caller.asm", ROMX
 
 UnknownText_0x174688:
 	text "I fancied up my"

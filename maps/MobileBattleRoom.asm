@@ -1,5 +1,5 @@
 
-SECTION "MobileBattleRoom_MapScripts", ROMX
+SECTION "maps/MobileBattleRoom.asm", ROMX
 
 MobileBattleRoom_MapScripts:
 	db 2 ; scene scripts

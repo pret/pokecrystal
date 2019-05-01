@@ -3,7 +3,7 @@
 	const BATTLETOWERBATTLEROOM_RECEPTIONIST
 
 
-SECTION "BattleTowerBattleRoom_MapScripts", ROMX, BANK[BANK_MAP_BATTLE_TOWER]
+SECTION "maps/BattleTowerBattleRoom.asm", ROMX, BANK[BANK_MAP_BATTLE_TOWER]
 
 BattleTowerBattleRoom_MapScripts:
 	db 2 ; scene scripts

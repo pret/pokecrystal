@@ -3,7 +3,7 @@
 	const ROCKTUNNEL1F_POKE_BALL2
 
 
-SECTION "RockTunnel1F_MapScripts", ROMX
+SECTION "maps/RockTunnel1F.asm", ROMX
 
 RockTunnel1F_MapScripts:
 	db 0 ; scene scripts

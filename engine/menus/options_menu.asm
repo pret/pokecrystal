@@ -1,4 +1,4 @@
-SECTION "_OptionsMenu - Options_UpdateCursorPosition", ROMX
+SECTION "engine/menus/options_menu.asm", ROMX
 
 _OptionsMenu:
 	ld hl, hInMenu

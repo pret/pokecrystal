@@ -2,7 +2,7 @@
 	const ROUTE43MAHOGANYGATE_OFFICER
 
 
-SECTION "Route43MahoganyGate_MapScripts", ROMX
+SECTION "maps/Route43MahoganyGate.asm", ROMX
 
 Route43MahoganyGate_MapScripts:
 	db 0 ; scene scripts

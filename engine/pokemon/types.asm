@@ -1,4 +1,4 @@
-SECTION "PrintMonTypes - Dark", ROMX
+SECTION "engine/pokemon/types.asm", ROMX
 
 PrintMonTypes:
 ; Print one or both types of [wCurSpecies]

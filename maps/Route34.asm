@@ -14,7 +14,7 @@
 	const ROUTE34_POKE_BALL
 
 
-SECTION "Route34_MapScripts", ROMX
+SECTION "maps/Route34.asm", ROMX
 
 Route34_MapScripts:
 	db 0 ; scene scripts

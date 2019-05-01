@@ -3,7 +3,7 @@
 	const SILVERCAVEPOKECENTER1F_GRANNY
 
 
-SECTION "SilverCavePokecenter1F_MapScripts", ROMX
+SECTION "maps/SilverCavePokecenter1F.asm", ROMX
 
 SilverCavePokecenter1F_MapScripts:
 	db 0 ; scene scripts

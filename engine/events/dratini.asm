@@ -1,4 +1,4 @@
-SECTION "GiveDratini", ROMX
+SECTION "engine/events/dratini.asm", ROMX
 
 GiveDratini:
 ; if wScriptVar is 0 or 1, change the moveset of the last Dratini in the party.

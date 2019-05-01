@@ -1,4 +1,4 @@
-SECTION "PlayRadioShow - NextRadioLine", ROMX
+SECTION "engine/pokegear/radio.asm", ROMX
 
 PlayRadioShow:
 ; If we're already in the radio program proper, we don't need to be here.
@@ -704,10 +704,10 @@ PokedexShow_GetDexEntryBank:
 	ret
 
 .PokedexEntryBanks:
-	db BANK("Pokedex Entries 001-064")
-	db BANK("Pokedex Entries 065-128")
-	db BANK("Pokedex Entries 129-192")
-	db BANK("Pokedex Entries 193-251")
+	db BANK("data/pokemon/dex_entries.asm@Pokedex Entries 001-064")
+	db BANK("data/pokemon/dex_entries.asm@Pokedex Entries 065-128")
+	db BANK("data/pokemon/dex_entries.asm@Pokedex Entries 129-192")
+	db BANK("data/pokemon/dex_entries.asm@Pokedex Entries 193-251")
 
 PokedexShow1:
 	call StartRadioStation

@@ -2,7 +2,7 @@
 	const OLIVINEGOODRODHOUSE_FISHING_GURU
 
 
-SECTION "OlivineGoodRodHouse_MapScripts", ROMX
+SECTION "maps/OlivineGoodRodHouse.asm", ROMX
 
 OlivineGoodRodHouse_MapScripts:
 	db 0 ; scene scripts

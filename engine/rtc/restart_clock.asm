@@ -1,4 +1,4 @@
-SECTION "RestartClock_GetWraparoundTime - RestartClock", ROMX
+SECTION "engine/rtc/restart_clock.asm", ROMX
 
 RestartClock_GetWraparoundTime:
 	push hl
@@ -233,15 +233,9 @@ RestartClock:
 	ld [hl], e
 	ret
 
-
-SECTION "UnreferencedString_HourJP", ROMX
-
 UnreferencedString_HourJP:
 ; unused
 	db "じ@" ; HR
-
-
-SECTION "UnreferencedString_MinuteJP", ROMX
 
 UnreferencedString_MinuteJP:
 ; unused

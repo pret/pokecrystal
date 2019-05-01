@@ -4,7 +4,7 @@
 	const COPYCATSHOUSE1F_CLEFAIRY
 
 
-SECTION "CopycatsHouse1F_MapScripts", ROMX
+SECTION "maps/CopycatsHouse1F.asm", ROMX
 
 CopycatsHouse1F_MapScripts:
 	db 0 ; scene scripts

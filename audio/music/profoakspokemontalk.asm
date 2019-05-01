@@ -1,4 +1,4 @@
-SECTION "Music_ProfOaksPokemonTalk", ROMX
+SECTION "audio/music/profoakspokemontalk.asm", ROMX
 
 Music_ProfOaksPokemonTalk:
 	musicheader 3, 1, Music_ProfOaksPokemonTalk_Ch1

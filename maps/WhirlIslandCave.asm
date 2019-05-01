@@ -1,5 +1,5 @@
 
-SECTION "WhirlIslandCave_MapScripts", ROMX
+SECTION "maps/WhirlIslandCave.asm", ROMX
 
 WhirlIslandCave_MapScripts:
 	db 0 ; scene scripts

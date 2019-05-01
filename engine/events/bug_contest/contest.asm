@@ -1,4 +1,4 @@
-SECTION "GiveParkBalls", ROMX
+SECTION "engine/events/bug_contest/contest.asm@GiveParkBalls", ROMX
 
 GiveParkBalls:
 	xor a
@@ -9,7 +9,7 @@ GiveParkBalls:
 	ret
 
 
-SECTION "BugCatchingContestBattleScript - BugCatchingContestText_ContestIsOver", ROMX
+SECTION "engine/events/bug_contest/contest.asm@BugCatchingContestBattleScript", ROMX
 
 BugCatchingContestBattleScript::
 	loadvar VAR_BATTLETYPE, BATTLETYPE_CONTEST

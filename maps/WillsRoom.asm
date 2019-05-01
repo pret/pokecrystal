@@ -2,7 +2,7 @@
 	const WILLSROOM_WILL
 
 
-SECTION "WillsRoom_MapScripts", ROMX
+SECTION "maps/WillsRoom.asm", ROMX
 
 WillsRoom_MapScripts:
 	db 2 ; scene scripts

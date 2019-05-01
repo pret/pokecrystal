@@ -1,4 +1,4 @@
-SECTION "DoPlayerMovement - CheckStandingOnIce", ROMX
+SECTION "engine/overworld/player_movement.asm", ROMX
 
 DoPlayerMovement::
 
@@ -809,7 +809,7 @@ CheckStandingOnIce::
 	ret
 
 
-SECTION "StopPlayerForEvent", ROMX
+SECTION "engine/overworld/player_movement.asm@StopPlayerForEvent", ROMX
 
 StopPlayerForEvent::
 	ld hl, wPlayerNextMovement

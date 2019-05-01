@@ -1,4 +1,4 @@
-SECTION "CheckPartyFullAfterContest - SetEggMonCaughtData", ROMX
+SECTION "engine/pokemon/caught_data.asm", ROMX
 
 CheckPartyFullAfterContest:
 	ld a, [wContestMon]

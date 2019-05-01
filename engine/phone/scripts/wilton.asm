@@ -1,4 +1,4 @@
-SECTION "WiltonPhoneCalleeScript - WiltonHasItem", ROMX
+SECTION "engine/phone/scripts/wilton.asm", ROMX
 
 WiltonPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, FISHER, WILTON1

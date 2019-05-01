@@ -1,4 +1,4 @@
-SECTION "Fish - TimeFishGroups", ROMX
+SECTION "engine/events/fish.asm", ROMX
 
 Fish:
 ; Using a fishing rod.

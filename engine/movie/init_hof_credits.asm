@@ -1,4 +1,4 @@
-SECTION "InitDisplayForHallOfFame", ROMX
+SECTION "engine/movie/init_hof_credits.asm@InitDisplayForHallOfFame", ROMX
 
 InitDisplayForHallOfFame:
 	call ClearBGPalettes
@@ -31,7 +31,7 @@ InitDisplayForHallOfFame:
 	text_end
 
 
-SECTION "InitDisplayForRedCredits", ROMX
+SECTION "engine/movie/init_hof_credits.asm@InitDisplayForRedCredits", ROMX
 
 InitDisplayForRedCredits:
 	call ClearBGPalettes
@@ -66,7 +66,7 @@ InitDisplayForRedCredits:
 	ret
 
 
-SECTION "ResetDisplayBetweenHallOfFameMons", ROMX
+SECTION "engine/movie/init_hof_credits.asm@ResetDisplayBetweenHallOfFameMons", ROMX
 
 ResetDisplayBetweenHallOfFameMons:
 	ldh a, [rSVBK]

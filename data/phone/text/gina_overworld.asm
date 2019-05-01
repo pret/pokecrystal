@@ -1,4 +1,4 @@
-SECTION "GinaAskNumber1Text - GinaPackFullText", ROMX
+SECTION "data/phone/text/gina_overworld.asm", ROMX
 
 GinaAskNumber1Text:
 	text "Whenever I see a"

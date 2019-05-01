@@ -1,4 +1,4 @@
-SECTION "Music_ProfOak", ROMX
+SECTION "audio/music/profoak.asm", ROMX
 
 Music_ProfOak:
 	musicheader 3, 1, Music_ProfOak_Ch1

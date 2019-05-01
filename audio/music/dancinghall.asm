@@ -1,4 +1,4 @@
-SECTION "Music_DancingHall", ROMX
+SECTION "audio/music/dancinghall.asm", ROMX
 
 Music_DancingHall:
 	musicheader 3, 1, Music_DancingHall_Ch1

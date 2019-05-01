@@ -1,4 +1,4 @@
-SECTION "Music_AfterTheRivalFight", ROMX, BANK[BANK_MUSIC_RIVAL_ENCOUNTER]
+SECTION "audio/music/aftertherivalfight.asm", ROMX, BANK[BANK_MUSIC_RIVAL_ENCOUNTER]
 
 Music_AfterTheRivalFight:
 	musicheader 4, 1, Music_AfterTheRivalFight_Ch1

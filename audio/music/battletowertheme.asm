@@ -1,4 +1,4 @@
-SECTION "Music_BattleTowerTheme", ROMX
+SECTION "audio/music/battletowertheme.asm", ROMX
 
 Music_BattleTowerTheme:
 	musicheader 4, 1, Music_BattleTowerTheme_Ch1

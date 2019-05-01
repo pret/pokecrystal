@@ -1,5 +1,5 @@
 
-SECTION "RuinsOfAlphAerodactylWordRoom_MapScripts", ROMX
+SECTION "maps/RuinsOfAlphAerodactylWordRoom.asm", ROMX
 
 RuinsOfAlphAerodactylWordRoom_MapScripts:
 	db 0 ; scene scripts

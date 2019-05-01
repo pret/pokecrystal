@@ -1,4 +1,4 @@
-SECTION "Music_VioletCity", ROMX
+SECTION "audio/music/violetcity.asm", ROMX
 
 Music_VioletCity:
 	musicheader 4, 1, Music_VioletCity_Ch1

@@ -11,7 +11,7 @@
 	const MOUNTMORTAR1FINSIDE_POKE_BALL7
 
 
-SECTION "MountMortar1FInside_MapScripts", ROMX
+SECTION "maps/MountMortar1FInside.asm", ROMX
 
 MountMortar1FInside_MapScripts:
 	db 0 ; scene scripts

@@ -6,7 +6,7 @@
 	const CHERRYGROVECITY_FISHER
 
 
-SECTION "CherrygroveCity_MapScripts", ROMX
+SECTION "maps/CherrygroveCity.asm", ROMX
 
 CherrygroveCity_MapScripts:
 	db 2 ; scene scripts

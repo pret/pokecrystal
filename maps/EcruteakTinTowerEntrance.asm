@@ -5,7 +5,7 @@
 	const ECRUTEAKTINTOWERENTRANCE_GRAMPS
 
 
-SECTION "EcruteakTinTowerEntrance_MapScripts", ROMX
+SECTION "maps/EcruteakTinTowerEntrance.asm", ROMX
 
 EcruteakTinTowerEntrance_MapScripts:
 	db 2 ; scene scripts

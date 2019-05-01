@@ -1,4 +1,4 @@
-SECTION "_ReturnToBattle_UseBall", ROMX
+SECTION "engine/battle/returntobattle_useball.asm", ROMX
 
 _ReturnToBattle_UseBall:
 	call ClearBGPalettes

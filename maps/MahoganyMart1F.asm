@@ -6,7 +6,7 @@
 	const MAHOGANYMART1F_GRANNY
 
 
-SECTION "MahoganyMart1F_MapScripts", ROMX
+SECTION "maps/MahoganyMart1F.asm", ROMX
 
 MahoganyMart1F_MapScripts:
 	db 2 ; scene scripts

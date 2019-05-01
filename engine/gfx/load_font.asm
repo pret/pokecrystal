@@ -1,7 +1,7 @@
 INCLUDE "gfx/font.asm"
 
 
-SECTION "Unreferenced_fb434 - Unreferenced_Functionfb43f", ROMX
+SECTION "engine/gfx/load_font.asm@Unreferenced", ROMX
 
 ; This and the following two functions are unreferenced.
 ; Debug, perhaps?
@@ -22,7 +22,7 @@ Unreferenced_Functionfb43f:
 ; End unreferenced block
 
 
-SECTION "_LoadStandardFont", ROMX
+SECTION "engine/gfx/load_font.asm@_LoadStandardFont", ROMX
 
 _LoadStandardFont::
 	ld de, Font
@@ -51,7 +51,7 @@ _LoadStandardFont::
 	ret
 
 
-SECTION "_LoadFontsExtra1 - LoadStatsScreenPageTilesGFX", ROMX
+SECTION "engine/gfx/load_font.asm", ROMX
 
 _LoadFontsExtra1::
 	ld de, FontsExtra_SolidBlackGFX

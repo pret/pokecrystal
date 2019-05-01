@@ -1,4 +1,4 @@
-SECTION "MobileCheckOwnMonAnywhere", ROMX
+SECTION "mobile/mobile_12_2.asm@MobileCheckOwnMonAnywhere", ROMX
 
 MobileCheckOwnMonAnywhere:
 ; Like CheckOwnMonAnywhere, but only check for species.
@@ -158,7 +158,7 @@ MobileCheckOwnMonAnywhere:
 	ret
 
 
-SECTION "UnusedFindItemInPCOrBag", ROMX
+SECTION "mobile/mobile_12_2.asm@UnusedFindItemInPCOrBag", ROMX
 
 UnusedFindItemInPCOrBag:
 	ld a, [wScriptVar]
@@ -183,7 +183,7 @@ UnusedFindItemInPCOrBag:
 	ret
 
 
-SECTION "Function4a94e - Function4adf7", ROMX
+SECTION "mobile/mobile_12_2.asm", ROMX
 
 Function4a94e:
 	call FadeToMenu

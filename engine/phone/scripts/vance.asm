@@ -1,4 +1,4 @@
-SECTION "VancePhoneCalleeScript - VanceWantsRematch", ROMX
+SECTION "engine/phone/scripts/vance.asm", ROMX
 
 VancePhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, BIRD_KEEPER, VANCE1

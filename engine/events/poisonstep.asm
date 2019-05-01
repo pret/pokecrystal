@@ -1,4 +1,4 @@
-SECTION "DoPoisonStep", ROMX
+SECTION "engine/events/poisonstep.asm", ROMX
 
 DoPoisonStep::
 	ld a, [wPartyCount]

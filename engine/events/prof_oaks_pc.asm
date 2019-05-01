@@ -1,4 +1,4 @@
-SECTION "ProfOaksPC - OakPCText4", ROMX
+SECTION "engine/events/prof_oaks_pc.asm", ROMX
 
 ProfOaksPC:
 	ld hl, OakPCText1

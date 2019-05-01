@@ -1,4 +1,4 @@
-SECTION "PhoneScript_Random2 - PhoneScript_MonFlavorText", ROMX
+SECTION "engine/phone/scripts/generic_callee.asm", ROMX
 
 PhoneScript_Random2:
 	random 2
@@ -1258,7 +1258,7 @@ PhoneScript_MonFlavorText:
 	farsjump PhoneScript_HangupText_Male
 
 
-SECTION "GrandmaString - BrotherString", ROMX, BANK[BANK_PHONE_TIFFANY]
+SECTION "engine/phone/scripts/generic_callee.asm@TiffanysFamilyMembers", ROMX, BANK[BANK_PHONE_TIFFANY]
 
 GrandmaString: db "Grandma@"
 GrandpaString: db "Grandpa@"

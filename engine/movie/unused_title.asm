@@ -1,4 +1,4 @@
-SECTION "UnusedTitleScreen - UnusedTitleFG_OAM", ROMX
+SECTION "engine/movie/unused_title.asm", ROMX
 
 UnusedTitleScreen:
 	call ClearBGPalettes

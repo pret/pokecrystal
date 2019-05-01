@@ -2,7 +2,7 @@
 	const DAYOFWEEKSIBLINGSHOUSE_POKEDEX
 
 
-SECTION "DayOfWeekSiblingsHouse_MapScripts", ROMX
+SECTION "maps/DayOfWeekSiblingsHouse.asm", ROMX
 
 DayOfWeekSiblingsHouse_MapScripts:
 	db 0 ; scene scripts

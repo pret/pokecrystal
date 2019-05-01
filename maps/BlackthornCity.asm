@@ -10,7 +10,7 @@
 	const BLACKTHORNCITY_COOLTRAINER_F2
 
 
-SECTION "BlackthornCity_MapScripts", ROMX
+SECTION "maps/BlackthornCity.asm", ROMX
 
 BlackthornCity_MapScripts:
 	db 0 ; scene scripts

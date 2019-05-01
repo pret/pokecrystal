@@ -1,4 +1,4 @@
-SECTION "Music_JohtoTrainerBattle", ROMX
+SECTION "audio/music/johtotrainerbattle.asm", ROMX
 
 Music_JohtoTrainerBattle:
 	musicheader 3, 1, Music_JohtoTrainerBattle_Ch1

@@ -1,4 +1,4 @@
-SECTION "AlanAskNumber1Text - AlanPackFullText", ROMX
+SECTION "data/phone/text/alan_overworld.asm", ROMX
 
 AlanAskNumber1Text:
 	text "Reading textbooks"

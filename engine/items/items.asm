@@ -1,4 +1,4 @@
-SECTION "_ReceiveItem - GetItemPrice", ROMX
+SECTION "engine/items/items.asm", ROMX
 
 _ReceiveItem::
 	call DoesHLEqualNumItems

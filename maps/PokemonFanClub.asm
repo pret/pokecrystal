@@ -7,7 +7,7 @@
 	const POKEMONFANCLUB_ODDISH
 
 
-SECTION "PokemonFanClub_MapScripts", ROMX
+SECTION "maps/PokemonFanClub.asm", ROMX
 
 PokemonFanClub_MapScripts:
 	db 0 ; scene scripts

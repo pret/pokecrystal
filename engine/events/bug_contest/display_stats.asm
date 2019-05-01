@@ -1,4 +1,4 @@
-SECTION "DisplayCaughtContestMonStats - SwitchMonText", ROMX
+SECTION "engine/events/bug_contest/display_stats.asm@DisplayCaughtContestMonStats", ROMX
 
 DisplayCaughtContestMonStats:
 	call ClearBGPalettes
@@ -94,7 +94,7 @@ SwitchMonText:
 	text_end
 
 
-SECTION "DisplayAlreadyCaughtText", ROMX
+SECTION "engine/events/bug_contest/display_stats.asm@DisplayAlreadyCaughtText", ROMX
 
 DisplayAlreadyCaughtText:
 	call GetPokemonName
@@ -107,7 +107,7 @@ DisplayAlreadyCaughtText:
 	text_end
 
 
-SECTION "DummyPredef2F - DummyPredef39", ROMX
+SECTION "engine/events/bug_contest/display_stats.asm@DummyPredef", ROMX
 
 DummyPredef2F:
 DummyPredef38:

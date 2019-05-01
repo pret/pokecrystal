@@ -4,7 +4,7 @@
 	const CHERRYGROVEMART_YOUNGSTER
 
 
-SECTION "CherrygroveMart_MapScripts", ROMX
+SECTION "maps/CherrygroveMart.asm", ROMX
 
 CherrygroveMart_MapScripts:
 	db 0 ; scene scripts

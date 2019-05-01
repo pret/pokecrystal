@@ -2,7 +2,7 @@
 	const LAVENDERNAMERATER_NAME_RATER
 
 
-SECTION "LavenderNameRater_MapScripts", ROMX
+SECTION "maps/LavenderNameRater.asm", ROMX
 
 LavenderNameRater_MapScripts:
 	db 1 ; scene scripts

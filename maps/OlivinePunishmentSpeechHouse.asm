@@ -3,7 +3,7 @@
 	const OLIVINEPUNISHMENTSPEECHHOUSE_LASS
 
 
-SECTION "OlivinePunishmentSpeechHouse_MapScripts", ROMX
+SECTION "maps/OlivinePunishmentSpeechHouse.asm", ROMX
 
 OlivinePunishmentSpeechHouse_MapScripts:
 	db 0 ; scene scripts

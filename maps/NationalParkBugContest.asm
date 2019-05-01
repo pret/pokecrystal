@@ -13,7 +13,7 @@
 	const NATIONALPARKBUGCONTEST_POKE_BALL2
 
 
-SECTION "NationalParkBugContest_MapScripts", ROMX
+SECTION "maps/NationalParkBugContest.asm", ROMX
 
 NationalParkBugContest_MapScripts:
 	db 0 ; scene scripts

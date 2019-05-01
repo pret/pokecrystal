@@ -32,7 +32,7 @@ endr
 ENDM
 
 
-SECTION "BaseData", ROMX
+SECTION "data/pokemon/base_stats.asm", ROMX
 
 BaseData::
 INCLUDE "data/pokemon/base_stats/bulbasaur.asm"

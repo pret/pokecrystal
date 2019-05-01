@@ -6,7 +6,7 @@ item_attribute: MACRO
 ENDM
 
 
-SECTION "ItemAttributes", ROMX
+SECTION "data/items/attributes.asm", ROMX
 
 ItemAttributes:
 ; entries correspond to item ids

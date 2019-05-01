@@ -3,7 +3,7 @@
 	const ROUTE5CLEANSETAGHOUSE_TEACHER
 
 
-SECTION "Route5CleanseTagHouse_MapScripts", ROMX
+SECTION "maps/Route5CleanseTagHouse.asm", ROMX
 
 Route5CleanseTagHouse_MapScripts:
 	db 0 ; scene scripts

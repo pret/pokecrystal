@@ -23,7 +23,7 @@ NUM_POKEGEAR_CARDS EQU const_value
 	const POKEGEARSTATE_RADIOJOYPAD     ; c
 
 
-SECTION "PokeGear - PlayRadio", ROMX, BANK[BANK_PHONE_CALL]
+SECTION "engine/pokegear/pokegear.asm", ROMX, BANK[BANK_PHONE_CALL]
 
 PokeGear:
 	ld hl, wOptions

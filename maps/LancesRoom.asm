@@ -4,7 +4,7 @@
 	const LANCESROOM_OAK
 
 
-SECTION "LancesRoom_MapScripts", ROMX
+SECTION "maps/LancesRoom.asm", ROMX
 
 LancesRoom_MapScripts:
 	db 2 ; scene scripts

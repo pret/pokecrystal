@@ -10,7 +10,7 @@
 	const ROUTE27_FISHER
 
 
-SECTION "Route27_MapScripts", ROMX
+SECTION "maps/Route27.asm", ROMX
 
 Route27_MapScripts:
 	db 2 ; scene scripts

@@ -1,4 +1,4 @@
-SECTION "CheckForMobileBattleRules - Function_HasPartyAnEgg", ROMX
+SECTION "engine/events/battle_tower/rules.asm", ROMX
 
 CheckForMobileBattleRules:
 	ld de, .PointerTables

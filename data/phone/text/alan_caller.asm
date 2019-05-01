@@ -1,4 +1,4 @@
-SECTION "AlanGettingStrongerText - UnknownText_0x64f1a", ROMX
+SECTION "data/phone/text/alan_caller.asm", ROMX
 
 AlanGettingStrongerText:
 	text "My @"

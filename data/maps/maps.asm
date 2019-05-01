@@ -15,7 +15,7 @@ map: MACRO
 ENDM
 
 
-SECTION "MapGroupPointers - MapGroup_Cherrygrove", ROMX
+SECTION "data/maps/maps.asm", ROMX
 
 MapGroupPointers::
 ; pointers to the first map of each map group

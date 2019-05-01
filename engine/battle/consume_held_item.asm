@@ -1,4 +1,4 @@
-SECTION "ConsumeHeldItem - ConsumableEffects", ROMX
+SECTION "engine/battle/consume_held_item.asm", ROMX
 
 ConsumeHeldItem:
 	push hl

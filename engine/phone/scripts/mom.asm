@@ -1,4 +1,4 @@
-SECTION "MomPhoneCalleeScript - MomPhoneLectureScript", ROMX
+SECTION "engine/phone/scripts/mom.asm", ROMX
 
 MomPhoneCalleeScript:
 	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST

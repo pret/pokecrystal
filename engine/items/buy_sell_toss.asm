@@ -1,4 +1,4 @@
-SECTION "SelectQuantityToToss - SellItem_MenuHeader", ROMX, BANK[BANK_BUY_SELL_TOSS]
+SECTION "engine/items/buy_sell_toss.asm", ROMX, BANK[BANK_BUY_SELL_TOSS]
 
 SelectQuantityToToss:
 	ld hl, TossItem_MenuHeader

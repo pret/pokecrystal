@@ -1,4 +1,4 @@
-SECTION "_DepositPKMN - PCString_NoReleasingEGGS", ROMX
+SECTION "engine/pokemon/bills_pc.asm", ROMX
 
 _DepositPKMN:
 	ld hl, wOptions
@@ -2230,7 +2230,7 @@ PCString_PartyFull: db "The party's full!@"
 PCString_NoReleasingEGGS: db "No releasing EGGS!@"
 
 
-SECTION "_ChangeBox - BillsPC_PlaceChangeBoxString", ROMX
+SECTION "engine/pokemon/bills_pc.asm@_ChangeBox", ROMX
 
 _ChangeBox:
 	call LoadStandardMenuHeader

@@ -1,4 +1,4 @@
-SECTION "PrepMysteryGiftDataToSend", ROMX
+SECTION "engine/link/mystery_gift_2.asm@PrepMysteryGiftDataToSend", ROMX
 
 PrepMysteryGiftDataToSend:
 	ld de, wMysteryGiftStaging
@@ -124,7 +124,7 @@ PrepMysteryGiftDataToSend:
 	ret
 
 
-SECTION "MysteryGiftGetItemHeldEffect - MysteryGiftDecos", ROMX
+SECTION "engine/link/mystery_gift_2.asm@MysteryGiftGetItemHeldEffect", ROMX
 
 MysteryGiftGetItemHeldEffect:
 	ld a, c

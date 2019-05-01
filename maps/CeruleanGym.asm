@@ -7,7 +7,7 @@
 	const CERULEANGYM_GYM_GUY
 
 
-SECTION "CeruleanGym_MapScripts", ROMX
+SECTION "maps/CeruleanGym.asm", ROMX
 
 CeruleanGym_MapScripts:
 	db 2 ; scene scripts

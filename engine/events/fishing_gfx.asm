@@ -1,4 +1,4 @@
-SECTION "LoadFishingGFX - KrisFishingGFX", ROMX
+SECTION "engine/events/fishing_gfx.asm", ROMX
 
 LoadFishingGFX:
 	ldh a, [rVBK]

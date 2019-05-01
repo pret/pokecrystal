@@ -1,4 +1,4 @@
-SECTION "ParryAskNumber1Text - ParryRematchGiftText", ROMX
+SECTION "data/phone/text/parry_overworld.asm", ROMX
 
 ParryAskNumber1Text:
 	text "Sheesh, the way"

@@ -1,4 +1,4 @@
-SECTION "KenjiPhoneCalleeScript - KenjiPhoneCallerScript", ROMX
+SECTION "engine/phone/scripts/kenji.asm", ROMX
 
 KenjiPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, BLACKBELT_T, KENJI3

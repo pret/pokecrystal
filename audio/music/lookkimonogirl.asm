@@ -1,4 +1,4 @@
-SECTION "Music_LookKimonoGirl", ROMX
+SECTION "audio/music/lookkimonogirl.asm", ROMX
 
 Music_LookKimonoGirl:
 	musicheader 3, 1, Music_LookKimonoGirl_Ch1

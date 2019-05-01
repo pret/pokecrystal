@@ -1,4 +1,4 @@
-SECTION "FruitTreeScript - NothingHereText", ROMX
+SECTION "engine/events/fruit_trees.asm", ROMX
 
 FruitTreeScript::
 	callasm GetCurTreeFruit

@@ -5,7 +5,7 @@
 	const MAHOGANYPOKECENTER1F_COOLTRAINER_F
 
 
-SECTION "MahoganyPokecenter1F_MapScripts", ROMX
+SECTION "maps/MahoganyPokecenter1F.asm", ROMX
 
 MahoganyPokecenter1F_MapScripts:
 	db 0 ; scene scripts

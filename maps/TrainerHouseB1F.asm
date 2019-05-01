@@ -3,7 +3,7 @@
 	const TRAINERHOUSEB1F_CHRIS
 
 
-SECTION "TrainerHouseB1F_MapScripts", ROMX
+SECTION "maps/TrainerHouseB1F.asm", ROMX
 
 TrainerHouseB1F_MapScripts:
 	db 1 ; scene scripts

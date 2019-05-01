@@ -1,4 +1,4 @@
-SECTION "AlanPhoneCalleeScript - AlanHasFireStone", ROMX
+SECTION "engine/phone/scripts/alan.asm", ROMX
 
 AlanPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, SCHOOLBOY, ALAN1

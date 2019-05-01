@@ -1,4 +1,4 @@
-SECTION "JoseAromaText - UnknownText_0x17529c", ROMX
+SECTION "data/phone/text/jose_caller.asm", ROMX
 
 JoseAromaText:
 	text "Hey listen, my"

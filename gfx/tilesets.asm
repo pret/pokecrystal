@@ -4,7 +4,7 @@ tilecoll: MACRO
 ENDM
 
 
-SECTION "Tileset Data 1", ROMX
+SECTION "gfx/tilesets.asm@Tileset Data 1", ROMX
 
 TilesetKantoGFX:
 INCBIN "gfx/tilesets/kanto.2bpp.lz"
@@ -46,7 +46,7 @@ TilesetPlayersRoomColl:
 INCLUDE "data/tilesets/players_room_collision.asm"
 
 
-SECTION "Tileset Data 2", ROMX
+SECTION "gfx/tilesets.asm@Tileset Data 2", ROMX
 
 TilesetPokecenterGFX:
 INCBIN "gfx/tilesets/pokecenter.2bpp.lz"
@@ -96,7 +96,7 @@ TilesetDarkCaveColl:
 INCLUDE "data/tilesets/cave_collision.asm"
 
 
-SECTION "Tileset Data 3", ROMX
+SECTION "gfx/tilesets.asm@Tileset Data 3", ROMX
 
 TilesetTowerGFX:
 INCBIN "gfx/tilesets/tower.2bpp.lz"
@@ -147,7 +147,7 @@ TilesetForestMeta:
 INCBIN "data/tilesets/forest_metatiles.bin"
 
 
-SECTION "Tileset Data 4", ROMX
+SECTION "gfx/tilesets.asm@Tileset Data 4", ROMX
 
 TilesetEliteFourRoomGFX:
 INCBIN "gfx/tilesets/elite_four_room.2bpp.lz"
@@ -195,7 +195,7 @@ UnusedTilesetDarkCaveColl:
 INCLUDE "data/tilesets/unused_dark_cave_collision.asm"
 
 
-SECTION "Tileset Data 5", ROMX
+SECTION "gfx/tilesets.asm@Tileset Data 5", ROMX
 
 TilesetPokeComCenterGFX:
 INCBIN "gfx/tilesets/pokecom_center.2bpp.lz"
@@ -244,7 +244,7 @@ TilesetTraditionalHouseColl:
 INCLUDE "data/tilesets/traditional_house_collision.asm"
 
 
-SECTION "Tileset Data 6", ROMX
+SECTION "gfx/tilesets.asm@Tileset Data 6", ROMX
 
 TilesetForestGFX:
 INCBIN "gfx/tilesets/forest.2bpp.lz"
@@ -305,7 +305,7 @@ TilesetAerodactylWordRoomColl:
 INCLUDE "data/tilesets/beta_word_room_collision.asm"
 
 
-SECTION "Tileset Data 7", ROMX
+SECTION "gfx/tilesets.asm@Tileset Data 7", ROMX
 
 TilesetRuinsOfAlphGFX:
 TilesetBetaWordRoomGFX:
@@ -322,7 +322,7 @@ TilesetRuinsOfAlphColl:
 INCLUDE "data/tilesets/ruins_of_alph_collision.asm"
 
 
-SECTION "Tileset Data 8", ROMX
+SECTION "gfx/tilesets.asm@Tileset Data 8", ROMX
 
 TilesetHoOhWordRoomMeta:
 INCBIN "data/tilesets/ho_oh_word_room_metatiles.bin"

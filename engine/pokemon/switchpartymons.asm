@@ -1,4 +1,4 @@
-SECTION "_SwitchPartyMons", ROMX
+SECTION "engine/pokemon/switchpartymons.asm", ROMX
 
 _SwitchPartyMons:
 	ld a, [wSwitchMon]

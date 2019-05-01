@@ -7,7 +7,7 @@
 	const VERMILIONCITY_POKEFAN_M
 
 
-SECTION "VermilionCity_MapScripts", ROMX
+SECTION "maps/VermilionCity.asm", ROMX
 
 VermilionCity_MapScripts:
 	db 0 ; scene scripts

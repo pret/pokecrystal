@@ -2,7 +2,7 @@
 	const MRPSYCHICSHOUSE_FISHING_GURU
 
 
-SECTION "MrPsychicsHouse_MapScripts", ROMX
+SECTION "maps/MrPsychicsHouse.asm", ROMX
 
 MrPsychicsHouse_MapScripts:
 	db 0 ; scene scripts

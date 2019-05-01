@@ -1,4 +1,4 @@
-SECTION "_Sine", ROMX
+SECTION "engine/math/sine.asm", ROMX
 
 _Sine::
 ; a = d * sin(e * pi/32)

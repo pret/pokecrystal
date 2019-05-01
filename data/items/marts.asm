@@ -1,4 +1,4 @@
-SECTION "Marts - DefaultMart", ROMX
+SECTION "data/items/marts.asm", ROMX
 
 Marts:
 ; entries correspond to MART_* constants

@@ -1,4 +1,4 @@
-SECTION "MagnetTrain - MagnetTrainTilemap4", ROMX
+SECTION "engine/events/magnet_train.asm", ROMX
 
 MagnetTrain:
 	ld a, [wScriptVar]

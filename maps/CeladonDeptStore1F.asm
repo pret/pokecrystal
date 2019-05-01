@@ -4,7 +4,7 @@
 	const CELADONDEPTSTORE1F_TEACHER
 
 
-SECTION "CeladonDeptStore1F_MapScripts", ROMX, BANK[BANK_MAP_CELADON_DEPT_STORE_1F]
+SECTION "maps/CeladonDeptStore1F.asm", ROMX, BANK[BANK_MAP_CELADON_DEPT_STORE_1F]
 
 CeladonDeptStore1F_MapScripts:
 	db 0 ; scene scripts

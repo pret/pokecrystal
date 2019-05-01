@@ -1,5 +1,5 @@
 
-SECTION "RedsHouse2F_MapScripts", ROMX
+SECTION "maps/RedsHouse2F.asm", ROMX
 
 RedsHouse2F_MapScripts:
 	db 0 ; scene scripts

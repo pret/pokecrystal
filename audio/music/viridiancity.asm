@@ -1,4 +1,4 @@
-SECTION "Music_ViridianCity", ROMX
+SECTION "audio/music/viridiancity.asm", ROMX
 
 Music_ViridianCity:
 	musicheader 4, 1, Music_ViridianCity_Ch1

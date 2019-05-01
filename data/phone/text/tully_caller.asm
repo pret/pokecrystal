@@ -1,4 +1,4 @@
-SECTION "TullyGrownText - UnknownText_0x66087", ROMX
+SECTION "data/phone/text/tully_caller.asm", ROMX
 
 TullyGrownText:
 	text "My @"

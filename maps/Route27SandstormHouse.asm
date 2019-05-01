@@ -2,7 +2,7 @@
 	const ROUTE27SANDSTORMHOUSE_GRANNY
 
 
-SECTION "Route27SandstormHouse_MapScripts", ROMX
+SECTION "maps/Route27SandstormHouse.asm", ROMX
 
 Route27SandstormHouse_MapScripts:
 	db 0 ; scene scripts

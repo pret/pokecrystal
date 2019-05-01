@@ -8,7 +8,7 @@
 	const UNIONCAVEB1F_POKE_BALL2
 
 
-SECTION "UnionCaveB1F_MapScripts", ROMX
+SECTION "maps/UnionCaveB1F.asm", ROMX
 
 UnionCaveB1F_MapScripts:
 	db 0 ; scene scripts

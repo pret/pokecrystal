@@ -1,4 +1,4 @@
-SECTION "JackAskNumber1Text - JackRematchText", ROMX
+SECTION "data/phone/text/jack_overworld.asm", ROMX
 
 JackAskNumber1Text:
 	text "Your knowledge is"

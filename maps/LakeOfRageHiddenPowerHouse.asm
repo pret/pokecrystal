@@ -2,7 +2,7 @@
 	const LAKEOFRAGEHIDDENPOWERHOUSE_FISHER
 
 
-SECTION "LakeOfRageHiddenPowerHouse_MapScripts", ROMX
+SECTION "maps/LakeOfRageHiddenPowerHouse.asm", ROMX
 
 LakeOfRageHiddenPowerHouse_MapScripts:
 	db 0 ; scene scripts

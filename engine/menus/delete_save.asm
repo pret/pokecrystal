@@ -1,4 +1,4 @@
-SECTION "_DeleteSaveData", ROMX
+SECTION "engine/menus/delete_save.asm", ROMX
 
 _DeleteSaveData:
 	farcall BlankScreen

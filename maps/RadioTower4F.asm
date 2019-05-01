@@ -8,7 +8,7 @@
 	const RADIOTOWER4F_SCIENTIST
 
 
-SECTION "RadioTower4F_MapScripts", ROMX
+SECTION "maps/RadioTower4F.asm", ROMX
 
 RadioTower4F_MapScripts:
 	db 0 ; scene scripts

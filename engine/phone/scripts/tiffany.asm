@@ -1,4 +1,4 @@
-SECTION "TiffanyPhoneCalleeScript - TiffanyHasPinkBow", ROMX, BANK[BANK_PHONE_TIFFANY]
+SECTION "engine/phone/scripts/tiffany.asm", ROMX, BANK[BANK_PHONE_TIFFANY]
 
 TiffanyPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, PICNICKER, TIFFANY3

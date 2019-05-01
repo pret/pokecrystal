@@ -1,4 +1,4 @@
-SECTION "ArnieLovesTheCuteText - UnknownText_0x64c5a", ROMX
+SECTION "data/phone/text/arnie_caller.asm", ROMX
 
 ArnieLovesTheCuteText:
 	text "I'm always with my"

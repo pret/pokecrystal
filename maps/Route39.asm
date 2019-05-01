@@ -11,7 +11,7 @@
 	const ROUTE39_POKEFAN_F2
 
 
-SECTION "Route39_MapScripts", ROMX
+SECTION "maps/Route39.asm", ROMX
 
 Route39_MapScripts:
 	db 0 ; scene scripts

@@ -7,7 +7,7 @@
 	const MARTTEXT_SOLD_OUT
 
 
-SECTION "OpenMartDialog - CheckCoins", ROMX
+SECTION "engine/items/mart.asm", ROMX
 
 OpenMartDialog::
 	call GetMart

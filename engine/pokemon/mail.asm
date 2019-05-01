@@ -1,4 +1,4 @@
-SECTION "SendMailToPC - MailboxPC", ROMX
+SECTION "engine/pokemon/mail.asm", ROMX
 
 SendMailToPC:
 	ld a, MON_ITEM

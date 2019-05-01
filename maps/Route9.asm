@@ -7,7 +7,7 @@
 	const ROUTE9_POKEFAN_M2
 
 
-SECTION "Route9_MapScripts", ROMX
+SECTION "maps/Route9.asm", ROMX
 
 Route9_MapScripts:
 	db 0 ; scene scripts

@@ -9,7 +9,7 @@
 	const ROUTE29_POKE_BALL
 
 
-SECTION "Route29_MapScripts", ROMX
+SECTION "maps/Route29.asm", ROMX
 
 Route29_MapScripts:
 	db 2 ; scene scripts

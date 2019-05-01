@@ -5,7 +5,7 @@
 	const BLACKTHORNPOKECENTER1F_COOLTRAINER_M
 
 
-SECTION "BlackthornPokecenter1F_MapScripts", ROMX
+SECTION "maps/BlackthornPokecenter1F.asm", ROMX
 
 BlackthornPokecenter1F_MapScripts:
 	db 0 ; scene scripts

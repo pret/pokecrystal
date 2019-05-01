@@ -1,4 +1,4 @@
-SECTION "LizAskNumber1Text - LizRematchText", ROMX
+SECTION "data/phone/text/liz_overworld.asm", ROMX
 
 LizAskNumber1Text:
 	text "Oh? You're on a"

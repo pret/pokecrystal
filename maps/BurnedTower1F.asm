@@ -6,7 +6,7 @@
 	const BURNEDTOWER1F_POKE_BALL
 
 
-SECTION "BurnedTower1F_MapScripts", ROMX
+SECTION "maps/BurnedTower1F.asm", ROMX
 
 BurnedTower1F_MapScripts:
 	db 3 ; scene scripts

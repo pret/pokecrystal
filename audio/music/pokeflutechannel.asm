@@ -1,4 +1,4 @@
-SECTION "Music_PokeFluteChannel", ROMX
+SECTION "audio/music/pokeflutechannel.asm", ROMX
 
 Music_PokeFluteChannel:
 	musicheader 3, 1, Music_PokeFluteChannel_Ch1

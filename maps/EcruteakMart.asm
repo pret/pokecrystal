@@ -4,7 +4,7 @@
 	const ECRUTEAKMART_GRANNY
 
 
-SECTION "EcruteakMart_MapScripts", ROMX
+SECTION "maps/EcruteakMart.asm", ROMX
 
 EcruteakMart_MapScripts:
 	db 0 ; scene scripts

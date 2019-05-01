@@ -8,7 +8,7 @@
 	const ROUTE15_POKE_BALL
 
 
-SECTION "Route15_MapScripts", ROMX
+SECTION "maps/Route15.asm", ROMX
 
 Route15_MapScripts:
 	db 0 ; scene scripts

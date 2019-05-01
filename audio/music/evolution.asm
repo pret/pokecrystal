@@ -1,4 +1,4 @@
-SECTION "Music_Evolution", ROMX
+SECTION "audio/music/evolution.asm", ROMX
 
 Music_Evolution:
 	musicheader 4, 1, Music_Evolution_Ch1

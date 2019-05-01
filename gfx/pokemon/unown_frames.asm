@@ -1,4 +1,4 @@
-SECTION "UnownFramesPointers - UnownZFrames", ROMX
+SECTION "gfx/pokemon/unown_frames.asm", ROMX
 
 INCLUDE "gfx/pokemon/unown_frame_pointers.asm"
 

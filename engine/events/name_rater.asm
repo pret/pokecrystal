@@ -1,4 +1,4 @@
-SECTION "_NameRater - NameRaterDoneText", ROMX
+SECTION "engine/events/name_rater.asm", ROMX
 
 _NameRater:
 ; Introduce himself

@@ -1,4 +1,4 @@
-SECTION "IsMailEuropean", ROMX
+SECTION "engine/pokemon/european_mail.asm@IsMailEuropean", ROMX
 
 IsMailEuropean:
 ; return 1 if French
@@ -29,7 +29,7 @@ IsMailEuropean:
 	ret
 
 
-SECTION "StandardEnglishFont - SpanishItalianFont", ROMX
+SECTION "engine/pokemon/european_mail.asm@Fonts", ROMX
 
 ; The regular font.
 StandardEnglishFont:
@@ -44,7 +44,7 @@ SpanishItalianFont:
 INCBIN "gfx/font/spanish_italian.1bpp"
 
 
-SECTION "HandleFrenchGermanMail", ROMX
+SECTION "engine/pokemon/european_mail.asm@FrenchGerman", ROMX
 
 HandleFrenchGermanMail:
 ; called if mail is french or german
@@ -76,7 +76,7 @@ HandleFrenchGermanMail:
 	ret
 
 
-SECTION "DeutenEnglischenPost", ROMX
+SECTION "engine/pokemon/european_mail.asm@English", ROMX
 
 LireLeCourrierAnglais:
 DeutenEnglischenPost:
@@ -111,7 +111,7 @@ DeutenEnglischenPost:
 	ret
 
 
-SECTION "HandleSpanishItalianMail", ROMX
+SECTION "engine/pokemon/european_mail.asm@SpanishItalian", ROMX
 
 HandleSpanishItalianMail:
 LeerCorreosIngleses:

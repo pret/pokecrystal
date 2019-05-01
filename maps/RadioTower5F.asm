@@ -6,7 +6,7 @@
 	const RADIOTOWER5F_POKE_BALL
 
 
-SECTION "RadioTower5F_MapScripts", ROMX
+SECTION "maps/RadioTower5F.asm", ROMX
 
 RadioTower5F_MapScripts:
 	db 3 ; scene scripts

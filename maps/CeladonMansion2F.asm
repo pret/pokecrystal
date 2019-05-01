@@ -1,5 +1,5 @@
 
-SECTION "CeladonMansion2F_MapScripts", ROMX
+SECTION "maps/CeladonMansion2F.asm", ROMX
 
 CeladonMansion2F_MapScripts:
 	db 0 ; scene scripts

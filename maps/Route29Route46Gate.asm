@@ -3,7 +3,7 @@
 	const ROUTE29ROUTE46GATE_YOUNGSTER
 
 
-SECTION "Route29Route46Gate_MapScripts", ROMX
+SECTION "maps/Route29Route46Gate.asm", ROMX
 
 Route29Route46Gate_MapScripts:
 	db 0 ; scene scripts

@@ -1,4 +1,4 @@
-SECTION "Script_ForcedMovement", ROMX
+SECTION "engine/events/forced_movement.asm", ROMX
 
 Script_ForcedMovement::
 	readvar VAR_FACING

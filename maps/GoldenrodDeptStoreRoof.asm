@@ -9,7 +9,7 @@
 	const GOLDENRODDEPTSTOREROOF_BUG_CATCHER
 
 
-SECTION "GoldenrodDeptStoreRoof_MapScripts", ROMX
+SECTION "maps/GoldenrodDeptStoreRoof.asm", ROMX
 
 GoldenrodDeptStoreRoof_MapScripts:
 	db 0 ; scene scripts

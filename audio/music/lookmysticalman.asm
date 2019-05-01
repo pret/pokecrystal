@@ -1,4 +1,4 @@
-SECTION "Music_LookMysticalMan", ROMX
+SECTION "audio/music/lookmysticalman.asm", ROMX
 
 Music_LookMysticalMan:
 	musicheader 4, 1, Music_LookMysticalMan_Ch1

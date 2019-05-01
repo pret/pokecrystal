@@ -1,4 +1,4 @@
-SECTION "Music_JohtoWildBattleNight", ROMX, BANK[BANK_MUSIC_JOHTO_WILD_BATTLE]
+SECTION "audio/music/johtowildbattlenight.asm", ROMX, BANK[BANK_MUSIC_JOHTO_WILD_BATTLE]
 
 Music_JohtoWildBattleNight:
 	musicheader 3, 1, Music_JohtoWildBattleNight_Ch1

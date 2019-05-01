@@ -1,4 +1,4 @@
-SECTION "Unreferenced_Function88248", ROMX
+SECTION "engine/gfx/player_gfx.asm@Unreferenced_Function88248", ROMX
 
 Unreferenced_Function88248:
 	ld c, CAL
@@ -13,7 +13,7 @@ Unreferenced_Function88248:
 	ret
 
 
-SECTION "MovePlayerPicRight - MovePlayerPic", ROMX
+SECTION "engine/gfx/player_gfx.asm@MovePlayerPic", ROMX
 
 MovePlayerPicRight:
 	hlcoord 6, 4
@@ -61,7 +61,7 @@ MovePlayerPic:
 	jr .loop
 
 
-SECTION "ShowPlayerNamingChoices - Unreferenced_GetPlayerNameArray", ROMX
+SECTION "engine/gfx/player_gfx.asm@ShowPlayerNamingChoices", ROMX
 
 ShowPlayerNamingChoices:
 	ld hl, ChrisNameMenuHeader
@@ -93,7 +93,7 @@ Unreferenced_GetPlayerNameArray:
 	ret
 
 
-SECTION "GetPlayerIcon", ROMX
+SECTION "engine/gfx/player_gfx.asm@GetPlayerIcon", ROMX
 
 GetPlayerIcon:
 ; Get the player icon corresponding to gender
@@ -114,7 +114,7 @@ GetPlayerIcon:
 	ret
 
 
-SECTION "GetCardPic - CardGFX", ROMX
+SECTION "engine/gfx/player_gfx.asm@GetCardPic", ROMX
 
 GetCardPic:
 	ld hl, ChrisCardPic
@@ -144,7 +144,7 @@ CardGFX:
 INCBIN "gfx/trainer_card/trainer_card.2bpp"
 
 
-SECTION "GetPlayerBackpic - GetKrisBackpic", ROMX
+SECTION "engine/gfx/player_gfx.asm@GetPlayerPic", ROMX
 
 GetPlayerBackpic:
 	ld a, [wPlayerGender]
@@ -236,9 +236,6 @@ GetKrisBackpic:
 	lb bc, BANK(KrisBackpic), 7 * 7 ; dimensions
 	call Get2bpp
 	ret
-
-
-SECTION "KrisBackpic", ROMX
 
 KrisBackpic:
 INCBIN "gfx/player/kris_back.2bpp"

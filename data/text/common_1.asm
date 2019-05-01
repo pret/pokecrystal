@@ -1,4 +1,4 @@
-SECTION "Text 1", ROMX
+SECTION "data/text/common_1.asm", ROMX
 
 _FruitBearingTreeText::
 	text "It's a fruit-"

@@ -1,4 +1,4 @@
-SECTION "Function10ed51 - TitleScreenPalettes", ROMX
+SECTION "engine/movie/title.asm", ROMX
 
 Function10ed51:
 	call _TitleScreen

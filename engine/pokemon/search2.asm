@@ -1,4 +1,4 @@
-SECTION "_FindPartyMonAboveLevel - RetroactivelyIgnoreEggs", ROMX
+SECTION "engine/pokemon/search2.asm", ROMX
 
 _FindPartyMonAboveLevel:
 	ld hl, wPartyMon1Level

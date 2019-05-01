@@ -1,4 +1,4 @@
-SECTION "NPCTrade - TradeAfterText3", ROMX
+SECTION "engine/events/npc_trade.asm", ROMX
 
 NPCTrade::
 	ld a, e

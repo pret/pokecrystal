@@ -6,7 +6,7 @@
 	const LAVRADIOTOWER1F_SUPER_NERD2
 
 
-SECTION "LavRadioTower1F_MapScripts", ROMX
+SECTION "maps/LavRadioTower1F.asm", ROMX
 
 LavRadioTower1F_MapScripts:
 	db 0 ; scene scripts

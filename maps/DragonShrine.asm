@@ -5,7 +5,7 @@
 	const DRAGONSHRINE_CLAIR
 
 
-SECTION "DragonShrine_MapScripts", ROMX
+SECTION "maps/DragonShrine.asm", ROMX
 
 DragonShrine_MapScripts:
 	db 2 ; scene scripts

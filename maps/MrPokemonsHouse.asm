@@ -3,7 +3,7 @@
 	const MRPOKEMONSHOUSE_OAK
 
 
-SECTION "MrPokemonsHouse_MapScripts", ROMX
+SECTION "maps/MrPokemonsHouse.asm", ROMX
 
 MrPokemonsHouse_MapScripts:
 	db 2 ; scene scripts

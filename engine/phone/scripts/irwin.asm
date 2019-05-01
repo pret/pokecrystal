@@ -1,4 +1,4 @@
-SECTION "IrwinPhoneCalleeScript - IrwinPhoneCallerScript", ROMX
+SECTION "engine/phone/scripts/irwin.asm", ROMX
 
 IrwinPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, JUGGLER, IRWIN1

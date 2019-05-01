@@ -2,7 +2,7 @@
 	const BLACKTHORNEMYSHOUSE_EMY
 
 
-SECTION "BlackthornEmysHouse_MapScripts", ROMX
+SECTION "maps/BlackthornEmysHouse.asm", ROMX
 
 BlackthornEmysHouse_MapScripts:
 	db 0 ; scene scripts

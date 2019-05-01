@@ -1,4 +1,4 @@
-SECTION "BuenasPassword", ROMX
+SECTION "engine/events/buena.asm@BuenasPassword", ROMX
 
 BuenasPassword:
 	xor a
@@ -66,7 +66,7 @@ endr
 	ret
 
 
-SECTION "BuenaPrize - BuenaPrizeItems", ROMX
+SECTION "engine/events/buena.asm@BuenaPrize", ROMX
 
 BuenaPrize:
 	xor a

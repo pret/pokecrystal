@@ -1,11 +1,11 @@
-SECTION "DummyPredef35 - DummyPredef36", ROMX
+SECTION "engine/tilesets/timeofday_pals.asm@DummyPredef", ROMX
 
 DummyPredef35:
 DummyPredef36:
 	ret
 
 
-SECTION "UpdateTimeOfDayPal - GetTimePalFade", ROMX
+SECTION "engine/tilesets/timeofday_pals.asm", ROMX
 
 UpdateTimeOfDayPal::
 	call UpdateTime

@@ -1,4 +1,4 @@
-SECTION "UnknownText_0x665ad - UnknownText_0x6691d", ROMX
+SECTION "data/phone/text/tiffany_caller.asm", ROMX
 
 UnknownText_0x665ad:
 	text "My @"

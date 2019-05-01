@@ -1,4 +1,4 @@
-SECTION "LizPhoneCalleeScript - LizGossipScript", ROMX
+SECTION "engine/phone/scripts/liz.asm", ROMX
 
 LizPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, PICNICKER, LIZ1

@@ -1,4 +1,4 @@
-SECTION "JackIntelligenceText - UnknownText_0x174638", ROMX
+SECTION "data/phone/text/jack_caller.asm", ROMX
 
 JackIntelligenceText:
 	text "My @"

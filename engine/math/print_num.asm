@@ -1,4 +1,4 @@
-SECTION "_PrintNum", ROMX
+SECTION "engine/math/print_num.asm", ROMX
 
 _PrintNum::
 ; Print c digits of the b-byte value from de to hl.

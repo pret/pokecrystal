@@ -1,4 +1,4 @@
-SECTION "Music_GoldenrodCity", ROMX
+SECTION "audio/music/goldenrodcity.asm", ROMX
 
 Music_GoldenrodCity:
 	musicheader 4, 1, Music_GoldenrodCity_Ch1

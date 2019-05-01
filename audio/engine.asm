@@ -7,7 +7,7 @@
 ; 	PlayStereoSFX
 
 
-SECTION "_MapSetup_Sound_Off - SFX", ROMX
+SECTION "audio/engine.asm", ROMX
 
 _MapSetup_Sound_Off::
 ; restart sound operation

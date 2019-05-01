@@ -1,4 +1,4 @@
-SECTION "ElmPhoneCalleeScript - ElmPhoneCallerScript", ROMX
+SECTION "engine/phone/scripts/elm.asm", ROMX
 
 ElmPhoneCalleeScript:
 	readvar VAR_SPECIALPHONECALL

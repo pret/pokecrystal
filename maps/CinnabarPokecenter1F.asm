@@ -4,7 +4,7 @@
 	const CINNABARPOKECENTER1F_FISHER
 
 
-SECTION "CinnabarPokecenter1F_MapScripts", ROMX
+SECTION "maps/CinnabarPokecenter1F.asm", ROMX
 
 CinnabarPokecenter1F_MapScripts:
 	db 0 ; scene scripts

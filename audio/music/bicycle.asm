@@ -1,4 +1,4 @@
-SECTION "Music_Bicycle", ROMX
+SECTION "audio/music/bicycle.asm", ROMX
 
 Music_Bicycle:
 	musicheader 4, 1, Music_Bicycle_Ch1

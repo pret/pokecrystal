@@ -1,7 +1,7 @@
 ; The original base Special stat for each Pokémon from Red/Blue
 
 
-SECTION "KantoMonSpecials", ROMX
+SECTION "data/pokemon/gen1_base_special.asm", ROMX
 
 KantoMonSpecials:
 	db  65 ; BULBASAUR

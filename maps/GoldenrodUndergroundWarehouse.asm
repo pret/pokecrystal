@@ -8,7 +8,7 @@
 	const GOLDENRODUNDERGROUNDWAREHOUSE_POKE_BALL3
 
 
-SECTION "GoldenrodUndergroundWarehouse_MapScripts", ROMX
+SECTION "maps/GoldenrodUndergroundWarehouse.asm", ROMX
 
 GoldenrodUndergroundWarehouse_MapScripts:
 	db 0 ; scene scripts

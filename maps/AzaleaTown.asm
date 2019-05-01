@@ -13,7 +13,7 @@
 	const AZALEATOWN_KURT_OUTSIDE
 
 
-SECTION "AzaleaTown_MapScripts", ROMX
+SECTION "maps/AzaleaTown.asm", ROMX
 
 AzaleaTown_MapScripts:
 	db 3 ; scene scripts

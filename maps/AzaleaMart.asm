@@ -4,7 +4,7 @@
 	const AZALEAMART_BUG_CATCHER
 
 
-SECTION "AzaleaMart_MapScripts", ROMX
+SECTION "maps/AzaleaMart.asm", ROMX
 
 AzaleaMart_MapScripts:
 	db 0 ; scene scripts

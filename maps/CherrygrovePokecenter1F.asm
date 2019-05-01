@@ -5,7 +5,7 @@
 	const CHERRYGROVEPOKECENTER1F_TEACHER
 
 
-SECTION "CherrygrovePokecenter1F_MapScripts", ROMX
+SECTION "maps/CherrygrovePokecenter1F.asm", ROMX
 
 CherrygrovePokecenter1F_MapScripts:
 	db 0 ; scene scripts

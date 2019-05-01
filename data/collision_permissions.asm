@@ -2,7 +2,7 @@ NONTALKABLE EQUS "db"
 TALKABLE    EQUS "db TALK +"
 
 
-SECTION "TileCollisionTable", ROMX
+SECTION "data/collision_permissions.asm", ROMX
 
 TileCollisionTable::
 ; entries correspond to COLL_* constants

@@ -1,5 +1,5 @@
 
-SECTION "CinnabarPokecenter2FBeta_MapScripts", ROMX
+SECTION "maps/CinnabarPokecenter2FBeta.asm", ROMX
 
 CinnabarPokecenter2FBeta_MapScripts:
 	db 0 ; scene scripts

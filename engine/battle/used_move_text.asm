@@ -1,4 +1,4 @@
-SECTION "DisplayUsedMoveText - UpdateUsedMoves", ROMX
+SECTION "engine/battle/used_move_text.asm", ROMX
 
 DisplayUsedMoveText:
 ; battle command 03

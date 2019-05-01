@@ -1,4 +1,4 @@
-SECTION "JoeyPhoneCalleeScript - JoeyWantsBattle", ROMX
+SECTION "engine/phone/scripts/joey.asm", ROMX
 
 JoeyPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, YOUNGSTER, JOEY1

@@ -1,4 +1,4 @@
-SECTION "ArniePhoneCalleeScript - ArnieYanmaAlreadySwarming", ROMX
+SECTION "engine/phone/scripts/arnie.asm", ROMX
 
 ArniePhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, BUG_CATCHER, ARNIE1

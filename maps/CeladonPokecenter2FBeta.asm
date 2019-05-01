@@ -1,5 +1,5 @@
 
-SECTION "CeladonPokecenter2FBeta_MapScripts", ROMX
+SECTION "maps/CeladonPokecenter2FBeta.asm", ROMX
 
 CeladonPokecenter2FBeta_MapScripts:
 	db 0 ; scene scripts

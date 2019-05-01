@@ -1,4 +1,4 @@
-SECTION "BulbasaurFrames - MewFrames", ROMX
+SECTION "gfx/pokemon/kanto_frames.asm", ROMX
 
 KantoFrames: ; used only for BANK(KantoFrames)
 

@@ -1,4 +1,4 @@
-SECTION "Phone_GenericCall_Male - BikeShopPhoneCallerScript", ROMX
+SECTION "engine/phone/caller_scripts.asm", ROMX
 
 INCLUDE "engine/phone/scripts/generic_caller.asm"
 INCLUDE "engine/phone/scripts/jack_gossip.asm"

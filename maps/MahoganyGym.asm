@@ -8,7 +8,7 @@
 	const MAHOGANYGYM_GYM_GUY
 
 
-SECTION "MahoganyGym_MapScripts", ROMX
+SECTION "maps/MahoganyGym.asm", ROMX
 
 MahoganyGym_MapScripts:
 	db 0 ; scene scripts

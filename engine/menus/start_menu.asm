@@ -10,7 +10,7 @@
 	const STARTMENUITEM_POKEGEAR ; 7
 	const STARTMENUITEM_QUIT     ; 8
 
-SECTION "StartMenu - UseRegisteredItem", ROMX, BANK[BANK_PACK]
+SECTION "engine/menus/start_menu.asm", ROMX, BANK[BANK_PACK]
 
 StartMenu::
 	call ClearWindowData

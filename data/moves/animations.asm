@@ -1,4 +1,4 @@
-SECTION "BattleAnimations - BattleAnim_ShowMon_1", ROMX
+SECTION "data/moves/animations.asm", ROMX
 
 BattleAnimations::
 ; entries correspond to constants/move_constants.asm

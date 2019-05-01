@@ -1,4 +1,4 @@
-SECTION "LoadSGBLayout - SlotMachinePals", ROMX
+SECTION "engine/gfx/color.asm", ROMX
 
 INCLUDE "engine/gfx/sgb_layouts.asm"
 

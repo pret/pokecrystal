@@ -3,7 +3,7 @@
 	const ELMSHOUSE_ELMS_SON
 
 
-SECTION "ElmsHouse_MapScripts", ROMX
+SECTION "maps/ElmsHouse.asm", ROMX
 
 ElmsHouse_MapScripts:
 	db 0 ; scene scripts

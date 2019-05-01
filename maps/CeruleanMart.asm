@@ -4,7 +4,7 @@
 	const CERULEANMART_COOLTRAINER_F
 
 
-SECTION "CeruleanMart_MapScripts", ROMX
+SECTION "maps/CeruleanMart.asm", ROMX
 
 CeruleanMart_MapScripts:
 	db 0 ; scene scripts

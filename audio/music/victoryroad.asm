@@ -1,4 +1,4 @@
-SECTION "Music_VictoryRoad", ROMX
+SECTION "audio/music/victoryroad.asm", ROMX
 
 Music_VictoryRoad:
 	musicheader 4, 1, Music_VictoryRoad_Ch1

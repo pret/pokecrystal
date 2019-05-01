@@ -7,7 +7,7 @@
 	const GOLDENRODGYM_GYM_GUY
 
 
-SECTION "GoldenrodGym_MapScripts", ROMX
+SECTION "maps/GoldenrodGym.asm", ROMX
 
 GoldenrodGym_MapScripts:
 	db 2 ; scene scripts

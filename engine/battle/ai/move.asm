@@ -1,4 +1,4 @@
-SECTION "AIChooseMove - AIScoringPointers", ROMX
+SECTION "engine/battle/ai/move.asm", ROMX
 
 AIChooseMove:
 ; Score each move in wEnemyMonMoves starting from wBuffer1. Lower is better.

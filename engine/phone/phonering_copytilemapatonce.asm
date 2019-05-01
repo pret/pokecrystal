@@ -1,4 +1,4 @@
-SECTION "PhoneRing_CopyTilemapAtOnce", ROMX
+SECTION "engine/phone/phonering_copytilemapatonce.asm", ROMX
 
 PhoneRing_CopyTilemapAtOnce:
 	ldh a, [hCGB]

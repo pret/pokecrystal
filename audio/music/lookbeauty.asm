@@ -1,4 +1,4 @@
-SECTION "Music_LookBeauty", ROMX
+SECTION "audio/music/lookbeauty.asm", ROMX
 
 Music_LookBeauty:
 	musicheader 4, 1, Music_LookBeauty_Ch1

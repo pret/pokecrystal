@@ -1,4 +1,4 @@
-SECTION "Script_BattleWhiteout - GetWhiteoutSpawn", ROMX
+SECTION "engine/events/whiteout.asm", ROMX
 
 Script_BattleWhiteout::
 	callasm BattleBGMap

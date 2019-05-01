@@ -12,7 +12,7 @@
 	const ILEXFOREST_POKE_BALL4
 
 
-SECTION "IlexForest_MapScripts", ROMX
+SECTION "maps/IlexForest.asm", ROMX
 
 IlexForest_MapScripts:
 	db 0 ; scene scripts

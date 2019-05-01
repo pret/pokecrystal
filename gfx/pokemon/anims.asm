@@ -1,4 +1,4 @@
-SECTION "AnimationPointers - EggAnimationIdle", ROMX
+SECTION "gfx/pokemon/anims.asm", ROMX
 
 INCLUDE "gfx/pokemon/anim_pointers.asm"
 

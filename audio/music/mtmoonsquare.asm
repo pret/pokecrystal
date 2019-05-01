@@ -1,4 +1,4 @@
-SECTION "Music_MtMoonSquare", ROMX
+SECTION "audio/music/mtmoonsquare.asm", ROMX
 
 Music_MtMoonSquare:
 	musicheader 2, 1, Music_MtMoonSquare_Ch1

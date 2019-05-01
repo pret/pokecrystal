@@ -1,4 +1,4 @@
-SECTION "JoeySharperText - UnknownText_0x175786", ROMX
+SECTION "data/phone/text/joey_caller.asm", ROMX
 
 JoeySharperText:
 	text "My @"

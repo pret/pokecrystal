@@ -1,4 +1,4 @@
-SECTION "LoadObjectMasks - GetObjectTimeMask", ROMX
+SECTION "engine/overworld/map_objects_2.asm", ROMX
 
 LoadObjectMasks:
 	ld hl, wObjectMasks

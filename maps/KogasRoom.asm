@@ -2,7 +2,7 @@
 	const KOGASROOM_KOGA
 
 
-SECTION "KogasRoom_MapScripts", ROMX
+SECTION "maps/KogasRoom.asm", ROMX
 
 KogasRoom_MapScripts:
 	db 2 ; scene scripts

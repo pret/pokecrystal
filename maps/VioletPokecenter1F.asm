@@ -6,7 +6,7 @@
 	const VIOLETPOKECENTER1F_SCIENTIST
 
 
-SECTION "VioletPokecenter1F_MapScripts", ROMX
+SECTION "maps/VioletPokecenter1F.asm", ROMX
 
 VioletPokecenter1F_MapScripts:
 	db 0 ; scene scripts

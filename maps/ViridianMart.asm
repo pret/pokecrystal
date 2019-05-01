@@ -4,7 +4,7 @@
 	const VIRIDIANMART_COOLTRAINER_M
 
 
-SECTION "ViridianMart_MapScripts", ROMX
+SECTION "maps/ViridianMart.asm", ROMX
 
 ViridianMart_MapScripts:
 	db 0 ; scene scripts

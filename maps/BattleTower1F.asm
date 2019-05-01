@@ -6,7 +6,7 @@
 	const BATTLETOWER1F_GRANNY
 
 
-SECTION "BattleTower1F_MapScripts", ROMX, BANK[BANK_MAP_BATTLE_TOWER]
+SECTION "maps/BattleTower1F.asm", ROMX, BANK[BANK_MAP_BATTLE_TOWER]
 
 BattleTower1F_MapScripts:
 	db 2 ; scene scripts

@@ -8,7 +8,7 @@
 	const ECRUTEAKCITY_GRAMPS3
 
 
-SECTION "EcruteakCity_MapScripts", ROMX
+SECTION "maps/EcruteakCity.asm", ROMX
 
 EcruteakCity_MapScripts:
 	db 0 ; scene scripts

@@ -7,7 +7,7 @@
 	const GOLDENRODDEPTSTORE5F_RECEPTIONIST
 
 
-SECTION "GoldenrodDeptStore5F_MapScripts", ROMX
+SECTION "maps/GoldenrodDeptStore5F.asm", ROMX
 
 GoldenrodDeptStore5F_MapScripts:
 	db 0 ; scene scripts

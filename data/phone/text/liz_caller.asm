@@ -1,4 +1,4 @@
-SECTION "UnknownText_0x175fda - UnknownText_0x1769da", ROMX
+SECTION "data/phone/text/liz_caller.asm", ROMX
 
 UnknownText_0x175fda:
 	text "Oh, you have to"

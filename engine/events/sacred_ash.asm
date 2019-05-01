@@ -1,4 +1,4 @@
-SECTION "_SacredAsh - UnknownText_0x50845", ROMX
+SECTION "engine/events/sacred_ash.asm", ROMX
 
 _SacredAsh:
 	ld a, $0

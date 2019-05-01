@@ -5,7 +5,7 @@
 	const ROUTE4_POKE_BALL
 
 
-SECTION "Route4_MapScripts", ROMX
+SECTION "maps/Route4.asm", ROMX
 
 Route4_MapScripts:
 	db 0 ; scene scripts

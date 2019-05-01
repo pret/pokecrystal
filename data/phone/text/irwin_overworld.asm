@@ -1,4 +1,4 @@
-SECTION "IrwinAskNumber1Text - IrwinPhoneFullText", ROMX
+SECTION "data/phone/text/irwin_overworld.asm", ROMX
 
 IrwinAskNumber1Text:
 	text "You're the best"

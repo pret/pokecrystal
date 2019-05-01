@@ -2,7 +2,7 @@
 	const ROUTE19FUCHSIAGATE_OFFICER
 
 
-SECTION "Route19FuchsiaGate_MapScripts", ROMX
+SECTION "maps/Route19FuchsiaGate.asm", ROMX
 
 Route19FuchsiaGate_MapScripts:
 	db 0 ; scene scripts

@@ -75,7 +75,7 @@ SLOTS_END_LOOP_F EQU 7
 	const REEL_ACTION_DROP_REEL
 
 
-SECTION "_SlotMachine - Slots3LZ", ROMX
+SECTION "engine/games/slot_machine.asm", ROMX
 
 _SlotMachine:
 	ld hl, wOptions

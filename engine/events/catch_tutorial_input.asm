@@ -1,4 +1,4 @@
-SECTION "_DudeAutoInput_A - DudeAutoInput_DownA", ROMX
+SECTION "engine/events/catch_tutorial_input.asm", ROMX
 
 _DudeAutoInput_A::
 	ld hl, DudeAutoInput_A

@@ -1,4 +1,4 @@
-SECTION "PokemonNames", ROMX
+SECTION "data/pokemon/names.asm", ROMX
 
 PokemonNames::
 	db "BULBASAUR@"

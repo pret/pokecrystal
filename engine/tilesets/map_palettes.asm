@@ -1,4 +1,4 @@
-SECTION "SwapTextboxPalettes - TilesetBattleTowerOutsidePalMap", ROMX
+SECTION "engine/tilesets/map_palettes.asm", ROMX
 
 SwapTextboxPalettes::
 	hlcoord 0, 0

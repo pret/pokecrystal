@@ -2,7 +2,7 @@
 	const BLUESHOUSE_DAISY
 
 
-SECTION "BluesHouse_MapScripts", ROMX
+SECTION "maps/BluesHouse.asm", ROMX
 
 BluesHouse_MapScripts:
 	db 0 ; scene scripts

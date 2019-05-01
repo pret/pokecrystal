@@ -5,7 +5,7 @@
 	const RUINSOFALPHHOOHITEMROOM_POKE_BALL4
 
 
-SECTION "RuinsOfAlphHoOhItemRoom_MapScripts", ROMX
+SECTION "maps/RuinsOfAlphHoOhItemRoom.asm", ROMX
 
 RuinsOfAlphHoOhItemRoom_MapScripts:
 	db 0 ; scene scripts

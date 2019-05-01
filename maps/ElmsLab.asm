@@ -7,7 +7,7 @@
 	const ELMSLAB_OFFICER
 
 
-SECTION "ElmsLab_MapScripts", ROMX
+SECTION "maps/ElmsLab.asm", ROMX
 
 ElmsLab_MapScripts:
 	db 6 ; scene scripts

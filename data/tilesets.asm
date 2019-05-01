@@ -6,7 +6,7 @@ tileset: MACRO
 ENDM
 
 
-SECTION "Tilesets", ROMX
+SECTION "data/tilesets.asm", ROMX
 
 ; Associated data:
 ; - The *GFX, *Meta, and *Coll are defined in gfx/tilesets.asm

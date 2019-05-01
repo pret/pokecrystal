@@ -1,4 +1,4 @@
-SECTION "StringBufferPointers", ROMX
+SECTION "data/text_buffers.asm", ROMX
 
 StringBufferPointers::
 ; entries correspond to arguments for text_buffer (TX_STRINGBUFFER)

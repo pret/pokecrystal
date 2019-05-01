@@ -2,7 +2,7 @@
 	const ROUTE6SAFFRONGATE_OFFICER
 
 
-SECTION "Route6SaffronGate_MapScripts", ROMX
+SECTION "maps/Route6SaffronGate.asm", ROMX
 
 Route6SaffronGate_MapScripts:
 	db 1 ; scene scripts

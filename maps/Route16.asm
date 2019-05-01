@@ -1,5 +1,5 @@
 
-SECTION "Route16_MapScripts", ROMX
+SECTION "maps/Route16.asm", ROMX
 
 Route16_MapScripts:
 	db 0 ; scene scripts

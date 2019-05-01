@@ -1,7 +1,7 @@
 PRINTPARTY_HP EQU "◀" ; $71
 
 
-SECTION "PrintPage1", ROMX
+SECTION "engine/printer/print_party.asm@PrintPage1", ROMX
 
 PrintPage1:
 	hlcoord 0, 0
@@ -55,7 +55,7 @@ PrintPage1:
 	ret
 
 
-SECTION "PrintPage2", ROMX
+SECTION "engine/printer/print_party.asm@PrintPage2", ROMX
 
 PrintPage2:
 	hlcoord 0, 0, wPrinterTileMapBuffer
@@ -107,7 +107,7 @@ PrintPage2:
 	ret
 
 
-SECTION "GBPrinterString_Null - GBPrinterString_PrinterError4", ROMX
+SECTION "engine/printer/print_party.asm@GBPrinterStrings", ROMX
 
 GBPrinterStrings: ; used only for BANK(GBPrinterStrings)
 GBPrinterString_Null: db "@"
@@ -140,7 +140,7 @@ GBPrinterString_PrinterError4:
 	db   "@"
 
 
-SECTION "PrintPartyMonPage1 - GBPrinterLvIcon", ROMX
+SECTION "engine/printer/print_party.asm@PrintPartyMon", ROMX
 
 PrintPartyMonPage1:
 	call ClearBGPalettes

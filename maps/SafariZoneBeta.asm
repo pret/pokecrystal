@@ -1,5 +1,5 @@
 
-SECTION "SafariZoneBeta_MapScripts", ROMX
+SECTION "maps/SafariZoneBeta.asm", ROMX
 
 SafariZoneBeta_MapScripts:
 	db 0 ; scene scripts

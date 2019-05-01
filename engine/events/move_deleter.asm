@@ -1,4 +1,4 @@
-SECTION "MoveDeletion", ROMX
+SECTION "engine/events/move_deleter.asm", ROMX
 
 MoveDeletion:
 	ld hl, .IntroText

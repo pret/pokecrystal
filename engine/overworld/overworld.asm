@@ -1,4 +1,4 @@
-SECTION "GetEmote2bpp - OverworldSprites", ROMX
+SECTION "engine/overworld/overworld.asm", ROMX
 
 GetEmote2bpp:
 	ld a, $1

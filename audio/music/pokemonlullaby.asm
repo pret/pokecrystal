@@ -1,4 +1,4 @@
-SECTION "Music_PokemonLullaby", ROMX
+SECTION "audio/music/pokemonlullaby.asm", ROMX
 
 Music_PokemonLullaby:
 	musicheader 3, 1, Music_PokemonLullaby_Ch1

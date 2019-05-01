@@ -1,4 +1,4 @@
-SECTION "ArnieAskNumber1Text - ArnieRematchText", ROMX
+SECTION "data/phone/text/arnie_overworld.asm", ROMX
 
 ArnieAskNumber1Text:
 	text "Do you get the"

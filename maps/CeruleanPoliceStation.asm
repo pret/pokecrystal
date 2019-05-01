@@ -4,7 +4,7 @@
 	const CERULEANPOLICESTATION_DIGLETT
 
 
-SECTION "CeruleanPoliceStation_MapScripts", ROMX
+SECTION "maps/CeruleanPoliceStation.asm", ROMX
 
 CeruleanPoliceStation_MapScripts:
 	db 0 ; scene scripts

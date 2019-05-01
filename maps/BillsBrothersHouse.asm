@@ -3,7 +3,7 @@
 	const BILLSBROTHERSHOUSE_YOUNGSTER
 
 
-SECTION "BillsBrothersHouse_MapScripts", ROMX
+SECTION "maps/BillsBrothersHouse.asm", ROMX
 
 BillsBrothersHouse_MapScripts:
 	db 0 ; scene scripts

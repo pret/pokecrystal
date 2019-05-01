@@ -2,7 +2,7 @@
 	const VERMILIONDIGLETTSCAVESPEECHHOUSE_GENTLEMAN
 
 
-SECTION "VermilionDiglettsCaveSpeechHouse_MapScripts", ROMX
+SECTION "maps/VermilionDiglettsCaveSpeechHouse.asm", ROMX
 
 VermilionDiglettsCaveSpeechHouse_MapScripts:
 	db 0 ; scene scripts

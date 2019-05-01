@@ -1,4 +1,4 @@
-SECTION "Music_GoldSilverOpening", ROMX
+SECTION "audio/music/goldsilveropening.asm", ROMX
 
 Music_GoldSilverOpening:
 	musicheader 3, 1, Music_GoldSilverOpening_Ch1

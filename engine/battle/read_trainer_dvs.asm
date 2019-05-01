@@ -1,4 +1,4 @@
-SECTION "GetTrainerDVs - TrainerClassDVs", ROMX
+SECTION "engine/battle/read_trainer_dvs.asm", ROMX
 
 GetTrainerDVs:
 ; Return the DVs of wOtherTrainerClass in bc

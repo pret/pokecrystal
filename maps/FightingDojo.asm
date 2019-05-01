@@ -3,7 +3,7 @@
 	const FIGHTINGDOJO_POKE_BALL
 
 
-SECTION "FightingDojo_MapScripts", ROMX
+SECTION "maps/FightingDojo.asm", ROMX
 
 FightingDojo_MapScripts:
 	db 0 ; scene scripts

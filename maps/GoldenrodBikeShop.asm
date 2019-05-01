@@ -2,7 +2,7 @@
 	const GOLDENRODBIKESHOP_CLERK
 
 
-SECTION "GoldenrodBikeShop_MapScripts", ROMX
+SECTION "maps/GoldenrodBikeShop.asm", ROMX
 
 GoldenrodBikeShop_MapScripts:
 	db 0 ; scene scripts

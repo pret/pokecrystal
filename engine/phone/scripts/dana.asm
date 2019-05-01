@@ -1,4 +1,4 @@
-SECTION "DanaPhoneCalleeScript - DanaHasThunderstone", ROMX
+SECTION "engine/phone/scripts/dana.asm", ROMX
 
 DanaPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, LASS, DANA1

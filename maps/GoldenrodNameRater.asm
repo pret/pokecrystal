@@ -2,7 +2,7 @@
 	const GOLDENRODNAMERATER_NAME_RATER
 
 
-SECTION "GoldenrodNameRater_MapScripts", ROMX
+SECTION "maps/GoldenrodNameRater.asm", ROMX
 
 GoldenrodNameRater_MapScripts:
 	db 0 ; scene scripts

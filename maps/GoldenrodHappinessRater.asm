@@ -4,7 +4,7 @@
 	const GOLDENRODHAPPINESSRATER_TWIN
 
 
-SECTION "GoldenrodHappinessRater_MapScripts", ROMX
+SECTION "maps/GoldenrodHappinessRater.asm", ROMX
 
 GoldenrodHappinessRater_MapScripts:
 	db 0 ; scene scripts

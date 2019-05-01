@@ -1,4 +1,4 @@
-SECTION "GetPokeBallWobble - WobbleProbabilities", ROMX
+SECTION "engine/battle_anims/pokeball_wobble.asm", ROMX
 
 GetPokeBallWobble:
 ; Returns whether a Poke Ball will wobble in the catch animation.

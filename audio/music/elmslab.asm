@@ -1,4 +1,4 @@
-SECTION "Music_ElmsLab", ROMX
+SECTION "audio/music/elmslab.asm", ROMX
 
 Music_ElmsLab:
 	musicheader 4, 1, Music_ElmsLab_Ch1

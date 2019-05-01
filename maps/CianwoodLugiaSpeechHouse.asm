@@ -4,7 +4,7 @@
 	const CIANWOODLUGIASPEECHHOUSE_TWIN
 
 
-SECTION "CianwoodLugiaSpeechHouse_MapScripts", ROMX
+SECTION "maps/CianwoodLugiaSpeechHouse.asm", ROMX
 
 CianwoodLugiaSpeechHouse_MapScripts:
 	db 0 ; scene scripts

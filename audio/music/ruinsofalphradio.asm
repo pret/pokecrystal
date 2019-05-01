@@ -1,4 +1,4 @@
-SECTION "Music_RuinsOfAlphRadio", ROMX
+SECTION "audio/music/ruinsofalphradio.asm", ROMX
 
 Music_RuinsOfAlphRadio:
 	musicheader 3, 1, Music_RuinsOfAlphRadio_Ch1

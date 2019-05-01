@@ -1,4 +1,4 @@
-SECTION "TreeMonEncounter - GetTreeScore", ROMX
+SECTION "engine/events/treemons.asm", ROMX
 
 TreeMonEncounter:
 	farcall StubbedTrainerRankings_TreeEncounters

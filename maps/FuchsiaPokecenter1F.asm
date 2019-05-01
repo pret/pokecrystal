@@ -5,7 +5,7 @@
 	const FUCHSIAPOKECENTER1F_JANINE_IMPERSONATOR
 
 
-SECTION "FuchsiaPokecenter1F_MapScripts", ROMX
+SECTION "maps/FuchsiaPokecenter1F.asm", ROMX
 
 FuchsiaPokecenter1F_MapScripts:
 	db 1 ; scene scripts

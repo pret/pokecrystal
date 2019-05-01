@@ -1,4 +1,4 @@
-SECTION "Music_LakeOfRageRocketRadio", ROMX
+SECTION "audio/music/lakeofragerocketradio.asm", ROMX
 
 Music_LakeOfRageRocketRadio:
 	musicheader 3, 1, Music_LakeOfRageRocketRadio_Ch1

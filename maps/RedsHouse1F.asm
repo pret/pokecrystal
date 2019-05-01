@@ -2,7 +2,7 @@
 	const REDSHOUSE1F_REDS_MOM
 
 
-SECTION "RedsHouse1F_MapScripts", ROMX
+SECTION "maps/RedsHouse1F.asm", ROMX
 
 RedsHouse1F_MapScripts:
 	db 1 ; scene scripts

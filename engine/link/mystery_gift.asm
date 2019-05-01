@@ -1,4 +1,4 @@
-SECTION "DoMysteryGift - MysteryGiftJP_GFX", ROMX
+SECTION "engine/link/mystery_gift.asm", ROMX
 
 DoMysteryGift:
 	call ClearTileMap

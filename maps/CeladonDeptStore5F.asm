@@ -6,7 +6,7 @@
 	const CELADONDEPTSTORE5F_TEACHER
 
 
-SECTION "CeladonDeptStore5F_MapScripts", ROMX
+SECTION "maps/CeladonDeptStore5F.asm", ROMX
 
 CeladonDeptStore5F_MapScripts:
 	db 0 ; scene scripts

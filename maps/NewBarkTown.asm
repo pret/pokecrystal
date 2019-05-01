@@ -4,7 +4,7 @@
 	const NEWBARKTOWN_SILVER
 
 
-SECTION "NewBarkTown_MapScripts", ROMX
+SECTION "maps/NewBarkTown.asm", ROMX
 
 NewBarkTown_MapScripts:
 	db 2 ; scene scripts

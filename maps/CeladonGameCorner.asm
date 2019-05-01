@@ -10,7 +10,7 @@
 	const CELADONGAMECORNER_GRAMPS
 
 
-SECTION "CeladonGameCorner_MapScripts", ROMX
+SECTION "maps/CeladonGameCorner.asm", ROMX
 
 CeladonGameCorner_MapScripts:
 	db 0 ; scene scripts

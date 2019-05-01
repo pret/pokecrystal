@@ -2,7 +2,7 @@
 	const ROUTE16GATE_OFFICER
 
 
-SECTION "Route16Gate_MapScripts", ROMX
+SECTION "maps/Route16Gate.asm", ROMX
 
 Route16Gate_MapScripts:
 	db 1 ; scene scripts

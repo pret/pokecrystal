@@ -3,7 +3,7 @@
 	const OLIVINELIGHTHOUSE4F_LASS
 
 
-SECTION "OlivineLighthouse4F_MapScripts", ROMX
+SECTION "maps/OlivineLighthouse4F.asm", ROMX
 
 OlivineLighthouse4F_MapScripts:
 	db 0 ; scene scripts

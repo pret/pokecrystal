@@ -3,7 +3,7 @@
 	const BLACKTHORNDRAGONSPEECHHOUSE_EKANS
 
 
-SECTION "BlackthornDragonSpeechHouse_MapScripts", ROMX
+SECTION "maps/BlackthornDragonSpeechHouse.asm", ROMX
 
 BlackthornDragonSpeechHouse_MapScripts:
 	db 0 ; scene scripts

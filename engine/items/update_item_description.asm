@@ -1,4 +1,4 @@
-SECTION "UpdateItemDescription", ROMX
+SECTION "engine/items/update_item_description.asm", ROMX
 
 UpdateItemDescription:
 	ld a, [wMenuSelection]

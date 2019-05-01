@@ -8,7 +8,7 @@
 	const SPROUTTOWER3F_SILVER
 
 
-SECTION "SproutTower3F_MapScripts", ROMX
+SECTION "maps/SproutTower3F.asm", ROMX
 
 SproutTower3F_MapScripts:
 	db 2 ; scene scripts

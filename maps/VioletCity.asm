@@ -9,7 +9,7 @@
 	const VIOLETCITY_POKE_BALL2
 
 
-SECTION "VioletCity_MapScripts", ROMX
+SECTION "maps/VioletCity.asm", ROMX
 
 VioletCity_MapScripts:
 	db 0 ; scene scripts

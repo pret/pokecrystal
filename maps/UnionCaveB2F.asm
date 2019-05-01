@@ -7,7 +7,7 @@
 	const UNIONCAVEB2F_LAPRAS
 
 
-SECTION "UnionCaveB2F_MapScripts", ROMX
+SECTION "maps/UnionCaveB2F.asm", ROMX
 
 UnionCaveB2F_MapScripts:
 	db 0 ; scene scripts

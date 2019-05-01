@@ -1,4 +1,4 @@
-SECTION "VanceAskNumber1Text - VanceRematchGiftText", ROMX
+SECTION "data/phone/text/vance_overworld.asm", ROMX
 
 VanceAskNumber1Text:
 	text "You know, you are"

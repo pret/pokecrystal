@@ -1,4 +1,4 @@
-SECTION "WadeAskNumber1Text - WadePackFullText", ROMX
+SECTION "data/phone/text/wade_overworld.asm", ROMX
 
 WadeAskNumber1Text:
 	text "You're awesome!"

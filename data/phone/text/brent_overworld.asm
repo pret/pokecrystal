@@ -1,4 +1,4 @@
-SECTION "BrentAskNumber1Text - BrentRematchText", ROMX
+SECTION "data/phone/text/brent_overworld.asm", ROMX
 
 BrentAskNumber1Text:
 	text "By the way, you're"

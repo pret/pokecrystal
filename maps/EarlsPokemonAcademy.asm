@@ -7,7 +7,7 @@
 	const EARLSPOKEMONACADEMY_POKEDEX
 
 
-SECTION "EarlsPokemonAcademy_MapScripts", ROMX
+SECTION "maps/EarlsPokemonAcademy.asm", ROMX
 
 EarlsPokemonAcademy_MapScripts:
 	db 0 ; scene scripts

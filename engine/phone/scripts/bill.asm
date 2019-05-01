@@ -1,4 +1,4 @@
-SECTION "BillPhoneCalleeScript - BillPhoneCallerScript", ROMX
+SECTION "engine/phone/scripts/bill.asm", ROMX
 
 BillPhoneCalleeScript:
 	checktime DAY

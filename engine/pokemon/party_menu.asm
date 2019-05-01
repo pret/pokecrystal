@@ -1,4 +1,4 @@
-SECTION "SelectMonFromParty - YouHaveNoPKMNString", ROMX, BANK[BANK_PARTY_MENU]
+SECTION "engine/pokemon/party_menu.asm", ROMX, BANK[BANK_PARTY_MENU]
 
 SelectMonFromParty:
 	call DisableSpriteUpdates
@@ -783,7 +783,7 @@ YouHaveNoPKMNString:
 	db "You have no <PK><MN>!@"
 
 
-SECTION "PrintPartyMenuActionText", ROMX
+SECTION "engine/pokemon/party_menu.asm@PrintPartyMenuActionText", ROMX
 
 PrintPartyMenuActionText:
 	ld a, [wCurPartyMon]

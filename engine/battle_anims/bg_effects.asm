@@ -8,7 +8,7 @@
 
 ; BG effects for use in battle animations.
 
-SECTION "ExecuteBGEffects - BattleBGEffects_Cosine", ROMX
+SECTION "engine/battle_anims/bg_effects.asm", ROMX
 
 ExecuteBGEffects:
 	ld hl, wActiveBGEffects

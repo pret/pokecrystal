@@ -7,7 +7,7 @@
 	const RADIOTOWER1F_CARD_WOMAN
 
 
-SECTION "RadioTower1F_MapScripts", ROMX
+SECTION "maps/RadioTower1F.asm", ROMX
 
 RadioTower1F_MapScripts:
 	db 0 ; scene scripts

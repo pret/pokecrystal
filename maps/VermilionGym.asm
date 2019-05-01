@@ -6,7 +6,7 @@
 	const VERMILIONGYM_GYM_GUY
 
 
-SECTION "VermilionGym_MapScripts", ROMX
+SECTION "maps/VermilionGym.asm", ROMX
 
 VermilionGym_MapScripts:
 	db 0 ; scene scripts

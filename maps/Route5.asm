@@ -2,7 +2,7 @@
 	const ROUTE5_POKEFAN_M
 
 
-SECTION "Route5_MapScripts", ROMX
+SECTION "maps/Route5.asm", ROMX
 
 Route5_MapScripts:
 	db 0 ; scene scripts

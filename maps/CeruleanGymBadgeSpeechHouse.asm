@@ -2,7 +2,7 @@
 	const CERULEANGYMBADGESPEECHHOUSE_POKEFAN_M
 
 
-SECTION "CeruleanGymBadgeSpeechHouse_MapScripts", ROMX
+SECTION "maps/CeruleanGymBadgeSpeechHouse.asm", ROMX
 
 CeruleanGymBadgeSpeechHouse_MapScripts:
 	db 0 ; scene scripts

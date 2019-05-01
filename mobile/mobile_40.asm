@@ -1,4 +1,4 @@
-SECTION "Function100000 - UnknownText_0x1021f4", ROMX, BANK[BANK_MOBILE_40]
+SECTION "mobile/mobile_40.asm@Function100000 - UnknownText_0x1021f4 (1)", ROMX, BANK[BANK_MOBILE_40]
 
 Function100000:
 ; d: 1 or 2
@@ -1683,7 +1683,7 @@ Function100ae7:
 	ret
 
 
-SECTION "Function100000 - UnknownText_0x1021f4 (2)", ROMX, BANK[BANK_MOBILE_40]
+SECTION "mobile/mobile_40.asm@Function100000 - UnknownText_0x1021f4 (ASCII 1)", ROMX, BANK[BANK_MOBILE_40]
 
 	charmap " ", $20 ; revert to ascii
 
@@ -1691,7 +1691,7 @@ Unknown_100b0a:
 	db "tetsuji", 0
 
 
-SECTION "Function100000 - UnknownText_0x1021f4 (3)", ROMX, BANK[BANK_MOBILE_40]
+SECTION "mobile/mobile_40.asm@Function100000 - UnknownText_0x1021f4 (2)", ROMX, BANK[BANK_MOBILE_40]
 
 Function100b12:
 	call Function100dd8
@@ -3617,7 +3617,7 @@ Function101826:
 	ret
 
 
-SECTION "Function100000 - UnknownText_0x1021f4 (4)", ROMX, BANK[BANK_MOBILE_40]
+SECTION "mobile/mobile_40.asm@Function100000 - UnknownText_0x1021f4 (ASCII 2)", ROMX, BANK[BANK_MOBILE_40]
 
 	charmap " ", $20 ; revert to ascii
 
@@ -3637,7 +3637,7 @@ Unknown_101895:
 .end	db 0
 
 
-SECTION "Function100000 - UnknownText_0x1021f4 (5)", ROMX, BANK[BANK_MOBILE_40]
+SECTION "mobile/mobile_40.asm@Function100000 - UnknownText_0x1021f4 (3)", ROMX, BANK[BANK_MOBILE_40]
 
 Function1018a8:
 	ld hl, wccb5
@@ -4832,7 +4832,7 @@ UnknownText_0x1021f4:
 	text_end
 
 
-SECTION "Function1021f9 - Palettes_1032e2", ROMX
+SECTION "mobile/mobile_40.asm@Function1021f9 - Palettes_1032e2", ROMX
 
 Function1021f9:
 	call Function102233
@@ -6925,7 +6925,7 @@ Palettes_1032e2:
 	RGB  0,  0,  0
 
 
-SECTION "Function103302 - MenuData_103648", ROMX
+SECTION "mobile/mobile_40.asm@Function103302 - MenuData_103648", ROMX
 
 Function103302:
 	call Function103309
@@ -7352,7 +7352,7 @@ MenuData_103648:
 	db "ケーブル@"
 
 
-SECTION "Function103654", ROMX
+SECTION "mobile/mobile_40.asm@Function103654", ROMX
 
 Function103654:
 	farcall Mobile_AlwaysReturnNotCarry
@@ -7370,7 +7370,7 @@ Function103654:
 	ret
 
 
-SECTION "Mobile_SelectThreeMons - UnknownText_0x10377b", ROMX
+SECTION "mobile/mobile_40.asm@Mobile_SelectThreeMons - UnknownText_0x10377b", ROMX
 
 Mobile_SelectThreeMons:
 	farcall Mobile_AlwaysReturnNotCarry
@@ -7536,7 +7536,7 @@ UnknownText_0x10377b:
 	text_end
 
 
-SECTION "Function103780 - Function10378c", ROMX
+SECTION "mobile/mobile_40.asm@Function103780 - Function10378c", ROMX
 
 Function103780:
 	ld a, [wChosenCableClubRoom]
@@ -7579,7 +7579,7 @@ Function10378c:
 	ret
 
 
-SECTION "Function1037c2 - Function103823", ROMX
+SECTION "mobile/mobile_40.asm@Function1037c2 - Function103823", ROMX
 
 Function1037c2:
 	call Function103823
@@ -7657,7 +7657,7 @@ Function103823:
 	ret
 
 
-SECTION "Function10383c - UnknownText_0x103876", ROMX
+SECTION "mobile/mobile_40.asm@Function10383c - UnknownText_0x103876", ROMX
 
 Function10383c:
 	ld a, $01
@@ -7691,7 +7691,7 @@ UnknownText_0x103876:
 	text_end
 
 
-SECTION "Function10387b - UnknownText_0x103898", ROMX
+SECTION "mobile/mobile_40.asm@Function10387b - UnknownText_0x103898", ROMX
 
 Function10387b:
 	farcall Mobile_AlwaysReturnNotCarry

@@ -5,7 +5,7 @@
 	const VIOLETGYM_GYM_GUY
 
 
-SECTION "VioletGym_MapScripts", ROMX
+SECTION "maps/VioletGym.asm", ROMX
 
 VioletGym_MapScripts:
 	db 0 ; scene scripts

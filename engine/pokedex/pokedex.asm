@@ -19,7 +19,7 @@ POKEDEX_SCX EQU 5
 GLOBAL POKEDEX_SCX
 
 
-SECTION "Pokedex - Pokedex_ResetBGMapMode", ROMX
+SECTION "engine/pokedex/pokedex.asm", ROMX
 
 Pokedex:
 	ldh a, [hWX]

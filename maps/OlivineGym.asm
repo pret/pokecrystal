@@ -3,7 +3,7 @@
 	const OLIVINEGYM_GYM_GUY
 
 
-SECTION "OlivineGym_MapScripts", ROMX
+SECTION "maps/OlivineGym.asm", ROMX
 
 OlivineGym_MapScripts:
 	db 0 ; scene scripts

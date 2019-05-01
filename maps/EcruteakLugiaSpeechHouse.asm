@@ -3,7 +3,7 @@
 	const ECRUTEAKLUGIASPEECHHOUSE_YOUNGSTER
 
 
-SECTION "EcruteakLugiaSpeechHouse_MapScripts", ROMX
+SECTION "maps/EcruteakLugiaSpeechHouse.asm", ROMX
 
 EcruteakLugiaSpeechHouse_MapScripts:
 	db 0 ; scene scripts

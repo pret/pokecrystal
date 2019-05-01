@@ -1,4 +1,4 @@
-SECTION "ReadTrainerParty - MysticalmanGroup", ROMX
+SECTION "engine/battle/read_trainer_party.asm", ROMX
 
 ReadTrainerParty:
 	ld a, [wInBattleTowerBattle]

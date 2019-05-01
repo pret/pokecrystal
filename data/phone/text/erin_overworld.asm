@@ -1,4 +1,4 @@
-SECTION "ErinAskNumber1Text - ErinRematchGiftText", ROMX
+SECTION "data/phone/text/erin_overworld.asm", ROMX
 
 ErinAskNumber1Text:
 	text "It really made me"

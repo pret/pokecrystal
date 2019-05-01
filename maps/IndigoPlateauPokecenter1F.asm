@@ -7,7 +7,7 @@
 	const INDIGOPLATEAUPOKECENTER1F_ABRA
 
 
-SECTION "IndigoPlateauPokecenter1F_MapScripts", ROMX
+SECTION "maps/IndigoPlateauPokecenter1F.asm", ROMX
 
 IndigoPlateauPokecenter1F_MapScripts:
 	db 1 ; scene scripts

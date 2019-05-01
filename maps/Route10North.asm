@@ -1,5 +1,5 @@
 
-SECTION "Route10North_MapScripts", ROMX
+SECTION "maps/Route10North.asm", ROMX
 
 Route10North_MapScripts:
 	db 0 ; scene scripts

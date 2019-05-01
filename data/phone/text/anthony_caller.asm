@@ -1,4 +1,4 @@
-SECTION "AnthonyAteBerriesText - UnknownText_0x176dd1", ROMX
+SECTION "data/phone/text/anthony_caller.asm", ROMX
 
 AnthonyAteBerriesText:
 	text "The other day, I"

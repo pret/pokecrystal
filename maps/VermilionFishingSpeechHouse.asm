@@ -2,7 +2,7 @@
 	const VERMILIONFISHINGSPEECHHOUSE_FISHING_GURU
 
 
-SECTION "VermilionFishingSpeechHouse_MapScripts", ROMX
+SECTION "maps/VermilionFishingSpeechHouse.asm", ROMX
 
 VermilionFishingSpeechHouse_MapScripts:
 	db 0 ; scene scripts

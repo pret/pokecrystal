@@ -8,7 +8,7 @@
 	const AZALEAGYM_GYM_GUY
 
 
-SECTION "AzaleaGym_MapScripts", ROMX
+SECTION "maps/AzaleaGym.asm", ROMX
 
 AzaleaGym_MapScripts:
 	db 0 ; scene scripts

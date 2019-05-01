@@ -1,4 +1,4 @@
-SECTION "BrentRareTradeText - UnknownText_0x66579", ROMX
+SECTION "data/phone/text/brent_caller.asm", ROMX
 
 BrentRareTradeText:
 	text "Oh yeah, I got an"

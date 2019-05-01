@@ -1,4 +1,4 @@
-SECTION "Music_UnionCave", ROMX
+SECTION "audio/music/unioncave.asm", ROMX
 
 Music_UnionCave:
 	musicheader 4, 1, Music_UnionCave_Ch1

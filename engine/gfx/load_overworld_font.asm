@@ -1,4 +1,4 @@
-SECTION "LoadOverworldFont", ROMX
+SECTION "engine/gfx/load_overworld_font.asm", ROMX
 
 LoadOverworldFont::
 	ld de, .OverworldFontGFX

@@ -1,5 +1,5 @@
 
-SECTION "SafariZoneFuchsiaGateBeta_MapScripts", ROMX
+SECTION "maps/SafariZoneFuchsiaGateBeta.asm", ROMX
 
 SafariZoneFuchsiaGateBeta_MapScripts:
 	db 0 ; scene scripts

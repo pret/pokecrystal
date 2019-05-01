@@ -1,4 +1,4 @@
-SECTION "Music_Lighthouse", ROMX
+SECTION "audio/music/lighthouse.asm", ROMX
 
 Music_Lighthouse:
 	musicheader 4, 1, Music_Lighthouse_Ch1

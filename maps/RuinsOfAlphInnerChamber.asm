@@ -4,7 +4,7 @@
 	const RUINSOFALPHINNERCHAMBER_GRAMPS
 
 
-SECTION "RuinsOfAlphInnerChamber_MapScripts", ROMX
+SECTION "maps/RuinsOfAlphInnerChamber.asm", ROMX
 
 RuinsOfAlphInnerChamber_MapScripts:
 	db 2 ; scene scripts

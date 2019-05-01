@@ -3,7 +3,7 @@
 	const TIMECAPSULE_CHRIS2
 
 
-SECTION "TimeCapsule_MapScripts", ROMX
+SECTION "maps/TimeCapsule.asm", ROMX
 
 TimeCapsule_MapScripts:
 	db 2 ; scene scripts

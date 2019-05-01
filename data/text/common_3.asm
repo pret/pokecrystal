@@ -1,4 +1,4 @@
-SECTION "Text 3", ROMX
+SECTION "data/text/common_3.asm", ROMX
 
 _OakText6::
 	text "Now, what did you"

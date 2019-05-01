@@ -1,4 +1,4 @@
-SECTION "_GetVarAction", ROMX
+SECTION "engine/overworld/variables.asm", ROMX
 
 _GetVarAction::
 	ld a, c

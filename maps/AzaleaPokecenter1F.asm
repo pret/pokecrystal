@@ -5,7 +5,7 @@
 	const AZALEAPOKECENTER1F_POKEFAN_F
 
 
-SECTION "AzaleaPokecenter1F_MapScripts", ROMX
+SECTION "maps/AzaleaPokecenter1F.asm", ROMX
 
 AzaleaPokecenter1F_MapScripts:
 	db 1 ; scene scripts

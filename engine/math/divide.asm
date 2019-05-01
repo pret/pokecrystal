@@ -1,4 +1,4 @@
-SECTION "_Divide", ROMX
+SECTION "engine/math/divide.asm", ROMX
 
 _Divide::
 	xor a

@@ -2,7 +2,7 @@
 	const MOVEDELETERSHOUSE_SUPER_NERD
 
 
-SECTION "MoveDeletersHouse_MapScripts", ROMX
+SECTION "maps/MoveDeletersHouse.asm", ROMX
 
 MoveDeletersHouse_MapScripts:
 	db 0 ; scene scripts

@@ -1,4 +1,4 @@
-SECTION "_LoadMapPart", ROMX
+SECTION "engine/overworld/load_map_part.asm", ROMX
 
 _LoadMapPart::
 	ld hl, wSurroundingTiles

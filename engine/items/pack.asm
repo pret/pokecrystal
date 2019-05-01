@@ -13,7 +13,7 @@
 	const PACKSTATE_QUITRUNSCRIPT      ; 10
 
 
-SECTION "Pack - PackGFX", ROMX, BANK[BANK_PACK]
+SECTION "engine/items/pack.asm", ROMX, BANK[BANK_PACK]
 
 Pack:
 	ld hl, wOptions

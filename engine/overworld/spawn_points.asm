@@ -1,4 +1,4 @@
-SECTION "SpawnPoints - IsSpawnPoint", ROMX
+SECTION "engine/overworld/spawn_points.asm", ROMX
 
 INCLUDE "data/maps/spawn_points.asm"
 

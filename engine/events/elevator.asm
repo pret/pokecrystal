@@ -1,4 +1,4 @@
-SECTION "Elevator - ElevatorFloorNames", ROMX
+SECTION "engine/events/elevator.asm", ROMX
 
 Elevator::
 	call .LoadPointer

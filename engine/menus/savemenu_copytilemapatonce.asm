@@ -1,4 +1,4 @@
-SECTION "SaveMenu_CopyTilemapAtOnce", ROMX
+SECTION "engine/menus/savemenu_copytilemapatonce.asm", ROMX
 
 SaveMenu_CopyTilemapAtOnce:
 	ldh a, [hCGB]

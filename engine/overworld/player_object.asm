@@ -1,4 +1,4 @@
-SECTION "SpawnPlayer - CopyTempObjectToObjectStruct", ROMX
+SECTION "engine/overworld/player_object.asm@SpawnPlayer", ROMX
 
 SpawnPlayer:
 	ld a, -1
@@ -498,7 +498,7 @@ CopyTempObjectToObjectStruct:
 	ret
 
 
-SECTION "TrainerWalkToPlayer", ROMX
+SECTION "engine/overworld/player_object.asm@TrainerWalkToPlayer", ROMX
 
 TrainerWalkToPlayer:
 	ldh a, [hLastTalked]
@@ -565,7 +565,7 @@ TrainerWalkToPlayer:
 	ret
 
 
-SECTION "SurfStartStep", ROMX
+SECTION "engine/overworld/player_object.asm@SurfStartStep", ROMX
 
 SurfStartStep:
 	call InitMovementBuffer
@@ -594,7 +594,7 @@ SurfStartStep:
 	slow_step RIGHT
 
 
-SECTION "FollowNotExact", ROMX
+SECTION "engine/overworld/player_object.asm@FollowNotExact", ROMX
 
 FollowNotExact::
 	push bc
@@ -684,7 +684,7 @@ FollowNotExact::
 	ret
 
 
-SECTION "GetRelativeFacing", ROMX
+SECTION "engine/overworld/player_object.asm@GetRelativeFacing", ROMX
 
 GetRelativeFacing::
 ; Determines which way map object e would have to turn to face map object d.  Returns carry if it's impossible for whatever reason.
@@ -793,7 +793,7 @@ GetRelativeFacing::
 	ret
 
 
-SECTION "QueueFollowerFirstStep", ROMX
+SECTION "engine/overworld/player_object.asm@QueueFollowerFirstStep", ROMX
 
 QueueFollowerFirstStep:
 	call .QueueFirstStep

@@ -2,1581 +2,1403 @@
 
 ROM0
 	org $0000
-	"NULL"
+	"home.asm@NULL"
 	org $0000
-	"rst0"
+	"home/rst.asm@rst0"
 	org $0008
-	"rst8"
+	"home/rst.asm@rst8"
 	org $0010
-	"rst10"
+	"home/rst.asm@rst10"
 	org $0018
-	"rst18"
+	"home/rst.asm@rst18"
 	org $0020
-	"rst20"
+	"home/rst.asm@rst20"
 	org $0028
-	"rst28"
+	"home/rst.asm@rst28"
 	org $0038
-	"rst38"
+	"home/rst.asm@rst38"
 	org $0040
-	"vblank"
+	"home/interrupts.asm@vblank"
 	org $0048
-	"lcd"
+	"home/interrupts.asm@lcd"
 	org $0050
-	"timer"
+	"home/interrupts.asm@timer"
 	org $0058
-	"serial"
+	"home/interrupts.asm@serial"
 	org $0060
-	"joypad"
+	"home/interrupts.asm@joypad"
 	org $0100
-	"Header"
-	"Home"
+	"home.asm@Header"
+	"home.asm@Home"
 ROMX $01
-	"PlaceWaitingText" ; engine/link/place_waiting_text.asm
-	"WriteOAMDMACodeToHRAM" ; engine/gfx/load_push_oam.asm
-	"Facings - InitSprites" ; engine/overworld/map_objects.asm
-	"_MainMenu - GameInit" ; engine/menus/intro_menu.asm
-	"ReanchorBGMap_NoOAMUpdate - HDMATransfer_FillBGMap0WithBlack" ; engine/overworld/init_map.asm
-	"LearnMove - Text_CantForgetHM" ; engine/pokemon/learn.asm
-	"CorrectNickErrors" ; engine/pokemon/correct_nick_errors.asm
-	"_Multiply" ; engine/math/multiply.asm
-	"_Divide" ; engine/math/divide.asm
-	"ItemAttributes" ; data/items/attributes.asm
-	"CanObjectMoveInDirection - Function7171" ; engine/overworld/npc_movement.asm
-
-	; engine/events/happiness_egg.asm
-	"GetFirstPokemonHappiness - HappinessChanges"
-	"StepHappiness"
-	"DayCareStep"
-
-	"GiveShuckle - ReturnShuckle" ; engine/events/shuckle.asm
-
-	; engine/events/haircut.asm
-	"BillsGrandfather - CopyPokemonName_Buffer1_Buffer3"
-	"DummyPredef1"
+	"engine/link/place_waiting_text.asm"
+	"engine/gfx/load_push_oam.asm"
+	"engine/overworld/map_objects.asm"
+	"engine/menus/intro_menu.asm"
+	"engine/overworld/init_map.asm"
+	"engine/pokemon/learn.asm"
+	"engine/pokemon/correct_nick_errors.asm"
+	"engine/math/multiply.asm"
+	"engine/math/divide.asm"
+	"data/items/attributes.asm"
+	"engine/overworld/npc_movement.asm"
+	"engine/events/happiness_egg.asm@ChangeHappiness"
+	"engine/events/happiness_egg.asm@StepHappiness"
+	"engine/events/happiness_egg.asm@DayCareStep"
+	"engine/events/shuckle.asm"
+	"engine/events/haircut.asm"
+	"engine/events/haircut.asm@DummyPredef1"
 ROMX $02
-	"BlankScreen" ; engine/menus/blank_screen.asm
-
-	; engine/overworld/player_object.asm
-	"SpawnPlayer - CopyTempObjectToObjectStruct"
-	"TrainerWalkToPlayer"
-	"SurfStartStep"
-	"FollowNotExact"
-	"GetRelativeFacing"
-	"QueueFollowerFirstStep"
-
-	"_Sine" ; engine/math/sine.asm
-	"GetPredefPointer - PredefPointers" ; engine/predef.asm
-	"LoadSGBLayout - SlotMachinePals" ; engine/gfx/color.asm
+	"engine/menus/blank_screen.asm"
+	"engine/overworld/player_object.asm@SpawnPlayer"
+	"engine/overworld/player_object.asm@TrainerWalkToPlayer"
+	"engine/overworld/player_object.asm@SurfStartStep"
+	"engine/overworld/player_object.asm@FollowNotExact"
+	"engine/overworld/player_object.asm@GetRelativeFacing"
+	"engine/overworld/player_object.asm@QueueFollowerFirstStep"
+	"engine/math/sine.asm"
+	"engine/predef.asm"
+	"engine/gfx/color.asm"
 ROMX $03
-	"CheckTime" ; engine/events/checktime.asm
-
-	; engine/events/specials.asm
-	"Special - SpecialsPointers"
-	"DummySpecial_c224"
-	"SetPlayerPalette"
-	"GameCornerPrizeMonCheckDex"
-	"UnusedSetSeenMon"
-	"FindPartyMonAboveLevel - FoundNone"
-	"NameRival"
-	"NameRater"
-	"OverworldTownMap"
-	"UnownPrinter"
-	"DisplayLinkRecord"
-	"PlayersHousePC"
-	"CheckMysteryGift"
-	"GetMysteryGiftItem"
-	"BugContestJudging"
-	"MapRadio"
-	"UnownPuzzle"
-	"SlotMachine - CheckCoinsAndCoinCase"
-	"ClearBGPalettesBufferScreen"
-	"ScriptReturnCarry - CheckLuckyNumberShowFlag"
-	"SnorlaxAwake"
-	"PlayCurMonCry"
-	"GameboyCheck"
-	"FadeOutMusic"
-	"Diploma"
-	"PrintDiploma"
-	"TrainerHouse"
-
-	"_PrintNum" ; engine/math/print_num.asm
-
-	; engine/pokemon/health.asm
-	"HealParty - HealPartyMon"
-	"ComputeHPBarPixels - AnimateHPBar"
-
-	"FieldMoveJumptableReset - UnknownText_0xd1d0" ; engine/events/overworld.asm
-	"_ReceiveItem - GetItemPrice" ; engine/items/items.asm
-	"_HandlePlayerStep - UpdateOverworldMap" ; engine/overworld/player_step.asm
-	"_AnimateHPBar - ShortHPBar_CalcPixelFrame" ; engine/battle/anim_hp_bar.asm
-
-	"TryAddMonToParty - InitNickname" ; engine/pokemon/move_mon.asm
-
-	; engine/pokemon/bills_pc_top.asm
-	"_BillsPC - ClearPCItemScreen"
-	"CopyBoxmonToTempMon"
-	"Unreferenced_Functione5d9"
-
-	"GetBreedMon1LevelGrowth - GetBreedMon2LevelGrowth" ; engine/pokemon/breedmon_level_growth.asm
-	"BugContest_SetCaughtContestMon" ; engine/events/bug_contest/caught_mon.asm
-	"_DoItemEffect - GetMthMoveOfCurrentMon" ; engine/items/item_effects.asm
-	"GetPokeBallWobble - WobbleProbabilities" ; engine/battle_anims/pokeball_wobble.asm
-	"KnowsMove" ; engine/pokemon/knows_move.asm
+	"engine/events/checktime.asm"
+	"engine/events/specials.asm"
+	"engine/events/specials.asm@DummySpecial_c224"
+	"engine/events/specials.asm@SetPlayerPalette"
+	"engine/events/specials.asm@GameCornerPrizeMonCheckDex"
+	"engine/events/specials.asm@UnusedSetSeenMon"
+	"engine/events/specials.asm@FindPartyMon"
+	"engine/events/specials.asm@NameRival"
+	"engine/events/specials.asm@NameRater"
+	"engine/events/specials.asm@OverworldTownMap"
+	"engine/events/specials.asm@UnownPrinter"
+	"engine/events/specials.asm@DisplayLinkRecord"
+	"engine/events/specials.asm@PlayersHousePC"
+	"engine/events/specials.asm@CheckMysteryGift"
+	"engine/events/specials.asm@GetMysteryGiftItem"
+	"engine/events/specials.asm@BugContestJudging"
+	"engine/events/specials.asm@MapRadio"
+	"engine/events/specials.asm@UnownPuzzle"
+	"engine/events/specials.asm@StartGameCornerGame"
+	"engine/events/specials.asm@ClearBGPalettesBufferScreen"
+	"engine/events/specials.asm@Misc"
+	"engine/events/specials.asm@SnorlaxAwake"
+	"engine/events/specials.asm@PlayCurMonCry"
+	"engine/events/specials.asm@GameboyCheck"
+	"engine/events/specials.asm@FadeOutMusic"
+	"engine/events/specials.asm@Diploma"
+	"engine/events/specials.asm@PrintDiploma"
+	"engine/events/specials.asm@TrainerHouse"
+	"engine/math/print_num.asm"
+	"engine/pokemon/health.asm"
+	"engine/pokemon/health.asm@AnimateHPBar"
+	"engine/events/overworld.asm"
+	"engine/items/items.asm"
+	"engine/overworld/player_step.asm"
+	"engine/battle/anim_hp_bar.asm"
+	"engine/pokemon/move_mon.asm"
+	"engine/pokemon/bills_pc_top.asm"
+	"engine/pokemon/bills_pc_top.asm@CopyBoxmonToTempMon"
+	"engine/pokemon/bills_pc_top.asm@Unreferenced_Functione5d9"
+	"engine/pokemon/breedmon_level_growth.asm"
+	"engine/events/bug_contest/caught_mon.asm"
+	"engine/items/item_effects.asm"
+	"engine/battle_anims/pokeball_wobble.asm"
+	"engine/pokemon/knows_move.asm"
 ROMX $04
-	"Pack - PackGFX" ; engine/items/pack.asm
-	"_InitializeStartDay - CopyDayHourMinToHL" ; engine/overworld/time.asm
-	"CanLearnTMHMMove - TMHMMoves" ; engine/items/tmhm2.asm
-	"_NamingScreen - MailEntry_Lowercase" ; engine/menus/naming_screen.asm
-	"Script_AbortBugContest" ; engine/events/bug_contest/abort.asm
-	"FindItemInBallScript" ; engine/events/item_ball.asm
-	"HealMachineAnim" ; engine/events/heal_machine_anim.asm
-	"Script_BattleWhiteout - GetWhiteoutSpawn" ; engine/events/whiteout.asm
-	"Script_ForcedMovement" ; engine/events/forced_movement.asm
-	"ItemFinder" ; engine/events/itemfinder.asm
-	"StartMenu - UseRegisteredItem" ; engine/menus/start_menu.asm
-	"Elevator - ElevatorFloorNames" ; engine/events/elevator.asm
-
-	; engine/events/bug_contest/contest.asm
-	"GiveParkBalls"
-	"BugCatchingContestBattleScript - BugCatchingContestText_ContestIsOver"
-
-	"RepelWoreOffScript" ; engine/events/repel.asm
-	"HiddenItemScript - SetMemEvent" ; engine/events/hidden_item.asm
-	"CheckFacingTileForStdScript - Script_JumpStdFromRAM" ; engine/events/std_collision.asm
-	"_BugContestJudging - ContestScore" ; engine/events/bug_contest/judging.asm
-	"ApplyPokerusTick" ; engine/events/pokerus/apply_pokerus_tick.asm
-
-	; engine/events/bug_contest/contest_2.asm
-	"SelectRandomBugContestContestants - BugCatchingContestantEventFlagTable"
-	"ContestDropOffMons"
-	"ContestReturnMons"
-
-	"Unreferenced_CorrectPartyErrors" ; engine/pokemon/correct_party_errors.asm
-	"GetSquareRoot" ; engine/math/get_square_root.asm
+	"engine/items/pack.asm"
+	"engine/overworld/time.asm"
+	"engine/items/tmhm2.asm"
+	"engine/menus/naming_screen.asm"
+	"engine/events/bug_contest/abort.asm"
+	"engine/events/item_ball.asm"
+	"engine/events/heal_machine_anim.asm"
+	"engine/events/whiteout.asm"
+	"engine/events/forced_movement.asm"
+	"engine/events/itemfinder.asm"
+	"engine/menus/start_menu.asm"
+	"engine/events/elevator.asm"
+	"engine/events/bug_contest/contest.asm@GiveParkBalls"
+	"engine/events/bug_contest/contest.asm@BugCatchingContestBattleScript"
+	"engine/events/repel.asm"
+	"engine/events/hidden_item.asm"
+	"engine/events/std_collision.asm"
+	"engine/events/bug_contest/judging.asm"
+	"engine/events/pokerus/apply_pokerus_tick.asm"
+	"engine/events/bug_contest/contest_2.asm@SelectRandomBugContestContestants"
+	"engine/events/bug_contest/contest_2.asm@ContestDropOffMons"
+	"engine/events/bug_contest/contest_2.asm@ContestReturnMons"
+	"engine/pokemon/correct_party_errors.asm"
+	"engine/math/get_square_root.asm"
 ROMX $05
-	; engine/rtc/rtc.asm
-	"Unreferenced_StopRTC"
-	"StartRTC - Function1409b"
-	"Function140ae"
-	"_InitTime"
-
-	"GetEmote2bpp - OverworldSprites" ; engine/overworld/overworld.asm
-
-	; engine/overworld/tile_events.asm
-	"CheckWarpCollision"
-	"CheckDirectionalWarp"
-	"CheckWarpFacingDown"
-	"CheckGrassCollision"
-	"CheckCutCollision"
-	"GetWarpSFX"
-
-	"SaveMenu - Text_SaveOnMoveMonWOMail" ; engine/menus/save.asm
-	"SpawnPoints - IsSpawnPoint" ; engine/overworld/spawn_points.asm
-
-	; engine/overworld/map_setup.asm
-	"RunMapSetupScript - MapSetupCommands"
-	"DontScrollText"
-	"ActivateMapAnims"
-	"SuspendMapAnims"
-	"LoadObjectsRunCallback_02"
-	"DelayClearingOldSprites"
-	"DelayLoadingNewSprites"
-	"CheckReplaceKrisSprite"
-	"FadeOldMapMusic"
-	"RetainOldPalettes"
-	"RotatePalettesRightMapAndMusic"
-	"ForceMapMusic"
-
-	"PokemonCenterPC - PokecenterPCText_LinkClosed" ; engine/events/pokecenter_pc.asm
-	"OpenMartDialog - CheckCoins" ; engine/items/mart.asm
-	"Marts - DefaultMart" ; data/items/marts.asm
-	"BankOfMom - MenuData_0x166bd" ; engine/events/mom.asm
-	"DayCareMan - DayCare_InitBreeding" ; engine/events/daycare.asm
-
-	; engine/events/print_unown.asm
-	"_UnownPrinter - UnownDexBTile"
-	"PlaceUnownPrinterFrontpic"
-
-	"PhotoStudio" ; engine/events/print_photo.asm
-
-	; engine/pokemon/breeding.asm
-	"CheckBreedmonCompatibility - DayCareMonCompatibilityText"
-	"Unreferenced_GetEmptyString"
+	"engine/rtc/rtc.asm@Unreferenced_StopRTC"
+	"engine/rtc/rtc.asm@StartRTC - Function1409b"
+	"engine/rtc/rtc.asm@Function140ae"
+	"engine/rtc/rtc.asm@_InitTime"
+	"engine/overworld/overworld.asm"
+	"engine/overworld/tile_events.asm@CheckWarpCollision"
+	"engine/overworld/tile_events.asm@CheckDirectionalWarp"
+	"engine/overworld/tile_events.asm@CheckWarpFacingDown"
+	"engine/overworld/tile_events.asm@CheckGrassCollision"
+	"engine/overworld/tile_events.asm@CheckCutCollision"
+	"engine/overworld/tile_events.asm@GetWarpSFX"
+	"engine/menus/save.asm"
+	"engine/overworld/spawn_points.asm"
+	"engine/overworld/map_setup.asm@RunMapSetupScript"
+	"engine/overworld/map_setup.asm@DontScrollText"
+	"engine/overworld/map_setup.asm@ActivateMapAnims"
+	"engine/overworld/map_setup.asm@SuspendMapAnims"
+	"engine/overworld/map_setup.asm@LoadObjectsRunCallback_02"
+	"engine/overworld/map_setup.asm@DelayClearingOldSprites"
+	"engine/overworld/map_setup.asm@DelayLoadingNewSprites"
+	"engine/overworld/map_setup.asm@CheckReplaceKrisSprite"
+	"engine/overworld/map_setup.asm@FadeOldMapMusic"
+	"engine/overworld/map_setup.asm@RetainOldPalettes"
+	"engine/overworld/map_setup.asm@RotatePalettesRightMapAndMusic"
+	"engine/overworld/map_setup.asm@ForceMapMusic"
+	"engine/events/pokecenter_pc.asm"
+	"engine/items/mart.asm"
+	"data/items/marts.asm"
+	"engine/events/mom.asm"
+	"engine/events/daycare.asm"
+	"engine/events/print_unown.asm"
+	"engine/events/print_unown.asm@PlaceUnownPrinterFrontpic"
+	"engine/events/print_photo.asm"
+	"engine/pokemon/breeding.asm"
+	"engine/pokemon/breeding.asm@Unreferenced_GetEmptyString"
 ROMX $06
-	"Tileset Data 1" ; (not splitting) gfx/tilesets.asm
+	"gfx/tilesets.asm@Tileset Data 1"
 ROMX $07
-	"LoadMapGroupRoof - Roofs" ; engine/tilesets/mapgroup_roofs.asm
-	"Tileset Data 2" ; (not splitting) gfx/tilesets.asm
-	"Music_Credits" ; audio/music/credits.asm
-	"Music_Clair" ; audio/music/clair.asm
-	"Music_MobileAdapter" ; audio/music/mobileadapter.asm
+	"engine/tilesets/mapgroup_roofs.asm"
+	"gfx/tilesets.asm@Tileset Data 2"
+	"audio/music/credits.asm"
+	"audio/music/clair.asm"
+	"audio/music/mobileadapter.asm"
 ROMX $08
-	; engine/rtc/restart_clock.asm
-	"RestartClock_GetWraparoundTime - RestartClock"
-	"UnreferencedString_HourJP"
-	"UnreferencedString_MinuteJP"
-
-	"Tileset Data 3" ; (not splitting) gfx/tilesets.asm
-	"EggMovePointers - NoEggMoves" ; data/pokemon/egg_moves.asm
+	"engine/rtc/restart_clock.asm"
+	"gfx/tilesets.asm@Tileset Data 3"
+	"data/pokemon/egg_moves.asm"
 ROMX $09
-	"StringBufferPointers" ; data/text_buffers.asm
-
-	; engine/menus/menu.asm
-	"_2DMenu_ - Place2DMenuCursor"
-	"_PushWindow"
-	"_ExitMenu - Error_Cant_ExitMenu"
-	"_InitVerticalMenuCursor"
-
-	"UpdateItemDescription" ; engine/items/update_item_description.asm
-	"Pokepic - PokepicMenuHeader" ; engine/events/pokepic.asm
-	"LoadObjectMasks - GetObjectTimeMask" ; engine/overworld/map_objects_2.asm
-	"_InitScrollingMenu - ScrollingMenu_GetListItemCoordAndFunctionArgs" ; engine/menus/scrolling_menu.asm
-	"SwitchItemsInBag - Function24aab" ; engine/items/switch_items.asm
-
-	; engine/menus/menu_2.asm
-	"PlaceMenuItemName"
-	"PlaceMenuItemQuantity"
-	"PlaceMoneyTopRight - MenuHeader_0x24b1d"
-	"DisplayCoinCaseBalance - ShowMoney_TerminatorString"
-	"Unreferenced_Function24b8f"
-	"StartMenu_DrawBugContestStatusBox - StartMenu_PrintBugContestStatus"
-	"FindApricornsInBag - ApricornBalls"
-
-	; engine/pokemon/mon_submenu.asm
-	"MonMenuOptionStrings - AddMonMenuItem"
-	"BattleMonMenu - MenuData_0x24edc"
-
-	"LoadBattleMenu - Function24fb2" ; engine/battle/menu.asm
-	"SelectQuantityToToss - SellItem_MenuHeader" ; engine/items/buy_sell_toss.asm
-	"TrainerCard - CardRightCornerGFX" ; engine/menus/trainer_card.asm
-	"ProfOaksPC - OakPCText4" ; engine/events/prof_oaks_pc.asm
-
-	; engine/overworld/decorations.asm
-	"InitDecorations"
-	"_PlayerDecorationMenu - DecorationDesc_GiantOrnament"
-	"ToggleMaptileDecorations - PadCoords_de"
-
-	"LevelUpHappinessMod" ; engine/pokemon/level_up_happiness.asm
-	"GetTrainerDVs - TrainerClassDVs" ; engine/battle/read_trainer_dvs.asm
-	"_ReturnToBattle_UseBall" ; engine/battle/returntobattle_useball.asm
-	"ConsumeHeldItem - ConsumableEffects" ; engine/battle/consume_held_item.asm
-	"MoveEffectsPointers - DefenseCurl" ; data/moves/effects_pointers.asm
-	"Kurt_SelectQuantity_InterpretJoypad" ; engine/events/kurt_selectquantity_interpretjoypad.asm
+	"data/text_buffers.asm"
+	"engine/menus/menu.asm@_2DMenu_"
+	"engine/menus/menu.asm@_PushWindow"
+	"engine/menus/menu.asm@_ExitMenu"
+	"engine/menus/menu.asm@_InitVerticalMenuCursor"
+	"engine/items/update_item_description.asm"
+	"engine/events/pokepic.asm"
+	"engine/overworld/map_objects_2.asm"
+	"engine/menus/scrolling_menu.asm"
+	"engine/items/switch_items.asm"
+	"engine/menus/menu_2.asm@PlaceMenuItemName"
+	"engine/menus/menu_2.asm@PlaceMenuItemQuantity"
+	"engine/menus/menu_2.asm@PlaceMoneyTextbox"
+	"engine/menus/menu_2.asm@DisplayCoinCaseBalance"
+	"engine/menus/menu_2.asm@Unreferenced_Function24b8f"
+	"engine/menus/menu_2.asm@StartMenu_PrintBugContestStatus"
+	"engine/menus/menu_2.asm@FindApricornsInBag"
+	"engine/pokemon/mon_submenu.asm"
+	"engine/pokemon/mon_submenu.asm@BattleMonMenu"
+	"engine/battle/menu.asm"
+	"engine/items/buy_sell_toss.asm"
+	"engine/menus/trainer_card.asm"
+	"engine/events/prof_oaks_pc.asm"
+	"engine/overworld/decorations.asm@InitDecorations"
+	"engine/overworld/decorations.asm"
+	"engine/overworld/decorations.asm@ToggleMaptileDecorations"
+	"engine/pokemon/level_up_happiness.asm"
+	"engine/battle/read_trainer_dvs.asm"
+	"engine/battle/returntobattle_useball.asm"
+	"engine/battle/consume_held_item.asm"
+	"data/moves/effects.asm"
+	"engine/events/kurt_selectquantity_interpretjoypad.asm"
 ROMX $0a
-	; engine/link/link.asm
-	"LinkCommunications - Link_EnsureSync"
-	"CableClubCheckWhichChris"
-	"Unreferenced_Gen1LinkCommsBorderGFX"
-	"Unreferenced_Function29fe4"
-
-	"LoadWildMonData - SwarmWaterWildMons" ; engine/overworld/wildmons.asm
-	"DetermineLinkBattleResult" ; engine/battle/link_result.asm
-	"ChrisBackpic" ; main.asm
-	"DudeBackpic" ; main.asm
+	"engine/link/link.asm"
+	"engine/link/link.asm@CableClubCheckWhichChris"
+	"engine/link/link.asm@Unreferenced_Gen1LinkCommsBorderGFX"
+	"engine/link/link.asm@Unreferenced_Function29fe4"
+	"engine/overworld/wildmons.asm"
+	"engine/battle/link_result.asm"
+	"main.asm@ChrisBackpic"
+	"main.asm@DudeBackpic"
 ROMX $0b
-	; engine/battle/trainer_huds.asm
-	"BattleStart_TrainerHuds - LoadBallIconGFX"
-	"_ShowLinkBattleParticipants"
-
-	"TrainerClassNames" ; data/trainers/class_names.asm
-	"AI_Redundant" ; engine/battle/ai/redundant.asm
-	"MoveDeletion" ; engine/events/move_deleter.asm
-
-	; engine/link/mystery_gift_2.asm
-	"PrepMysteryGiftDataToSend"
-	"MysteryGiftGetItemHeldEffect - MysteryGiftDecos"
-
-	"TMHMPocket - BeatUpDescription" ; engine/items/tmhm.asm
-	"GivePokerusAndConvertBerries - ConvertBerriesToBerryJuice" ; engine/events/pokerus/pokerus.asm
-
-	; engine/battle/start_battle.asm
-	"ShowLinkBattleParticipants"
-	"FindFirstAliveMonAndStartBattle"
-	"PlayBattleMusic"
-	"ClearBattleRAM"
-
-	"PlaceGraphic" ; engine/gfx/place_graphic.asm
+	"engine/battle/trainer_huds.asm"
+	"engine/battle/trainer_huds.asm@_ShowLinkBattleParticipants"
+	"data/trainers/class_names.asm"
+	"engine/battle/ai/redundant.asm"
+	"engine/events/move_deleter.asm"
+	"engine/link/mystery_gift_2.asm@PrepMysteryGiftDataToSend"
+	"engine/link/mystery_gift_2.asm@MysteryGiftGetItemHeldEffect"
+	"engine/items/tmhm.asm"
+	"engine/events/pokerus/pokerus.asm"
+	"engine/battle/start_battle.asm@ShowLinkBattleParticipants"
+	"engine/battle/start_battle.asm@FindFirstAliveMonAndStartBattle"
+	"engine/battle/start_battle.asm@PlayBattleMusic"
+	"engine/battle/start_battle.asm@ClearBattleRAM"
+	"engine/gfx/place_graphic.asm"
 ROMX $0c
-	"Tileset Data 4" ; (not splitting) gfx/tilesets.asm
+	"gfx/tilesets.asm@Tileset Data 4"
 ROMX $0d
-	"DoPlayerTurn - _CheckBattleScene" ; engine/battle/effect_commands.asm
+	"engine/battle/effect_commands.asm"
 ROMX $0e
-	"AI_SwitchOrTryItem - TextJump_EnemyUsedOn" ; engine/battle/ai/items.asm
-	"AIScoring - AI_50_50" ; engine/battle/ai/scoring.asm
-	"GetTrainerClassName - TrainerClassAttributes" ; engine/battle/read_trainer_attributes.asm
-	"ReadTrainerParty - MysticalmanGroup" ; engine/battle/read_trainer_party.asm
+	"engine/battle/ai/items.asm"
+	"engine/battle/ai/scoring.asm"
+	"engine/battle/read_trainer_attributes.asm"
+	"engine/battle/read_trainer_party.asm"
 ROMX $0f
-	"DoBattle - BattleStartMessage" ; engine/battle/core.asm
-	"BattleCommandPointers" ; data/battle/effect_command_pointers.asm
+	"engine/battle/core.asm"
+	"data/battle/effect_command_pointers.asm"
 ROMX $10
-	"Pokedex - Pokedex_ResetBGMapMode" ; engine/pokedex/pokedex.asm
-	"Moves" ; data/moves/moves.asm
-	"EvolvePokemon - CelebiEvosAttacks" ; data/pokemon/evos_attacks.asm
+	"engine/pokedex/pokedex.asm"
+	"data/moves/moves.asm"
+	"data/pokemon/evos_attacks.asm"
 ROMX $11
-	"FruitTreeScript - NothingHereText" ; engine/events/fruit_trees.asm
-	"AIChooseMove - AIScoringPointers" ; engine/battle/ai/move.asm
-	"AnimateDexSearchSlowpoke - DoDexSearchSlowpokeFrame" ; engine/pokedex/slowpoke_anim.asm
-	"DisplayDexEntry - PokedexDataPointerTable" ; engine/pokedex/dex_entry.asm
-	"SendMailToPC - MailboxPC" ; engine/pokemon/mail.asm
+	"engine/events/fruit_trees.asm"
+	"engine/battle/ai/move.asm"
+	"engine/pokedex/slowpoke_anim.asm"
+	"engine/pokedex/dex_entry.asm"
+	"engine/pokemon/mail.asm"
 ROMX $12
-	"InitCrystalData - Function4a6d8" ; engine/crystal.asm
-	"BeastsCheck - UpdateOTPointer" ; engine/pokemon/search.asm
-
-	; mobile/mobile_12_2.asm
-	"MobileCheckOwnMonAnywhere"
-	"UnusedFindItemInPCOrBag"
-	"Function4a94e - Function4adf7"
-
-	"AskRememberPassword - Buena_ExitMenu" ; engine/events/buena_menu.asm
+	"engine/crystal.asm"
+	"engine/pokemon/search.asm"
+	"mobile/mobile_12_2.asm@MobileCheckOwnMonAnywhere"
+	"mobile/mobile_12_2.asm@UnusedFindItemInPCOrBag"
+	"mobile/mobile_12_2.asm"
+	"engine/events/buena_menu.asm"
 ROMX $13
-	"SwapTextboxPalettes - TilesetBattleTowerOutsidePalMap" ; engine/tilesets/map_palettes.asm
-	"TileCollisionTable" ; data/collision_permissions.asm
-	"EmptyAllSRAMBanks" ; engine/menus/empty_sram.asm
-	"SaveMenu_CopyTilemapAtOnce" ; engine/menus/savemenu_copytilemapatonce.asm
-	"CheckSave" ; engine/events/checksave.asm
-	"MapScenes" ; data/maps/scenes.asm
-	"_LoadMapPart" ; engine/overworld/load_map_part.asm
-	"PhoneRing_CopyTilemapAtOnce" ; engine/phone/phonering_copytilemapatonce.asm
-	"Shrink1Pic" ; main.asm
-	"Shrink2Pic" ; main.asm
-
-	; engine/link/link_2.asm
-	"LinkMonStatsScreen"
-	"Link_WaitBGMap"
-	"LinkTextbox2"
-
-	"_ResetClock - ClockResetPassword" ; engine/rtc/reset_password.asm
-	"_DeleteSaveData" ; engine/menus/delete_save.asm
-	"Tilesets" ; data/tilesets.asm
-	"SmallFarFlagAction" ; engine/smallflag.asm
-
-	; engine/gfx/trademon_frontpic.asm
-	"GetTrademonFrontpic"
-	"AnimateTrademonFrontpic"
-
-	"_CheckPokerus" ; engine/events/pokerus/check_pokerus.asm
-
-	; engine/events/lucky_number.asm
-	"CheckForLuckyNumberWinners"
-	"PrintTodaysLuckyNumber"
-
-	"CheckPartyFullAfterContest - SetEggMonCaughtData" ; engine/pokemon/caught_data.asm
-	"_FindPartyMonAboveLevel - RetroactivelyIgnoreEggs" ; engine/pokemon/search2.asm
-	"BattleStatsScreenInit - CheckFaintedFrzSlp" ; engine/pokemon/stats_screen.asm
-	"CatchTutorial" ; engine/events/catch_tutorial.asm
-	"EvolutionAnimation" ; engine/movie/evolution_animation.asm
-
-	; engine/movie/init_hof_credits.asm
-	"InitDisplayForHallOfFame"
-	"InitDisplayForRedCredits"
-	"ResetDisplayBetweenHallOfFameMons"
-
-	"GetMobileOTTrainerClass - FemaleTrainers" ; engine/events/battle_tower/get_trainer_class.asm
-	"BattleIntroSlidingPics" ; engine/battle/sliding_intro.asm
-	"Mobile_PrintOpponentBattleMessage" ; mobile/print_opp_message.asm
-	"CheckBattleScene" ; engine/battle/check_battle_scene.asm
-	"GBCOnlyScreen - GBCOnlyGFX" ; engine/movie/gbc_only.asm
-
-	; engine/events/poke_seer.asm
-	"PokeSeer - SeerAdvice5"
-	"GetCaughtGender"
+	"engine/tilesets/map_palettes.asm"
+	"data/collision_permissions.asm"
+	"engine/menus/empty_sram.asm"
+	"engine/menus/savemenu_copytilemapatonce.asm"
+	"engine/events/checksave.asm"
+	"data/maps/scenes.asm"
+	"engine/overworld/load_map_part.asm"
+	"engine/phone/phonering_copytilemapatonce.asm"
+	"main.asm@Shrink1Pic"
+	"main.asm@Shrink2Pic"
+	"engine/link/link_2.asm@LinkMonStatsScreen"
+	"engine/link/link_2.asm@Link_WaitBGMap"
+	"engine/link/link_2.asm@LinkTextbox2"
+	"engine/rtc/reset_password.asm"
+	"engine/menus/delete_save.asm"
+	"data/tilesets.asm"
+	"engine/smallflag.asm"
+	"engine/gfx/trademon_frontpic.asm@GetTrademonFrontpic"
+	"engine/gfx/trademon_frontpic.asm@AnimateTrademonFrontpic"
+	"engine/events/pokerus/check_pokerus.asm"
+	"engine/events/lucky_number.asm@CheckForLuckyNumberWinners"
+	"engine/events/lucky_number.asm@PrintTodaysLuckyNumber"
+	"engine/pokemon/caught_data.asm"
+	"engine/pokemon/search2.asm"
+	"engine/pokemon/stats_screen.asm"
+	"engine/events/catch_tutorial.asm"
+	"engine/movie/evolution_animation.asm"
+	"engine/movie/init_hof_credits.asm@InitDisplayForHallOfFame"
+	"engine/movie/init_hof_credits.asm@InitDisplayForRedCredits"
+	"engine/movie/init_hof_credits.asm@ResetDisplayBetweenHallOfFameMons"
+	"engine/events/battle_tower/get_trainer_class.asm"
+	"engine/battle/sliding_intro.asm"
+	"mobile/print_opp_message.asm"
+	"engine/battle/check_battle_scene.asm"
+	"engine/movie/gbc_only.asm"
+	"engine/events/poke_seer.asm"
+	"engine/events/poke_seer.asm@GetCaughtGender"
 ROMX $14
-	; engine/pokemon/party_menu.asm
-	"SelectMonFromParty - YouHaveNoPKMNString"
-	"PrintPartyMenuActionText"
-
-	"DoPoisonStep" ; engine/events/poisonstep.asm
-	"SweetScentFromMenu - UnknownText_0x5072b" ; engine/events/sweet_scent.asm
-	"_Squirtbottle" ; engine/events/squirtbottle.asm
-	"_CardKey" ; engine/events/card_key.asm
-	"_BasementKey" ; engine/events/basement_key.asm
-	"_SacredAsh - UnknownText_0x50845" ; engine/events/sacred_ash.asm
-	"CopyMonToTempMon - GetMonSpecies" ; engine/pokemon/tempmon.asm
-	"PrintMonTypes - Dark" ; engine/pokemon/types.asm
-	"Unreferenced_GetGen1TrainerClassName - Gen1TrainerClassNames" ; engine/battle/unreferenced_getgen1trainerclassname.asm
-
-	; engine/pokemon/mon_stats.asm
-	"DrawPlayerHP - DrawHP"
-	"PrintTempMonStats"
-	"GetGender"
-	"ListMovePP"
-	"Unreferenced_Function50cd0"
-	"Unused_PlaceEnemyHPLevel"
-	"PlaceStatusString - ParString"
-	"ListMoves"
-
-	"InitList" ; engine/link/init_list.asm
-	"CalcLevel - GrowthRates" ; engine/pokemon/experience.asm
-	"_SwitchPartyMons" ; engine/pokemon/switchpartymons.asm
-
-	; engine/gfx/load_pics.asm
-	"GetUnownLetter"
-	"GetMonFrontpic - LoadOrientedFrontpic"
-
-	"InsertPokemonIntoBox - InsertDataIntoBoxOrParty" ; engine/pokemon/move_mon_wo_mail.asm
-	"BaseData" ; data/pokemon/base_stats.asm
-	"PokemonNames" ; data/pokemon/names.asm
-	"Unreferenced_MonPicBanks" ; data/pokemon/unused_pic_banks.asm
-	"UnknownEggPic" ; main.asm
+	"engine/pokemon/party_menu.asm"
+	"engine/pokemon/party_menu.asm@PrintPartyMenuActionText"
+	"engine/events/poisonstep.asm"
+	"engine/events/sweet_scent.asm"
+	"engine/events/squirtbottle.asm"
+	"engine/events/card_key.asm"
+	"engine/events/basement_key.asm"
+	"engine/events/sacred_ash.asm"
+	"engine/pokemon/tempmon.asm"
+	"engine/pokemon/types.asm"
+	"engine/battle/unreferenced_getgen1trainerclassname.asm"
+	"engine/pokemon/mon_stats.asm@DrawHP"
+	"engine/pokemon/mon_stats.asm@PrintTempMonStats"
+	"engine/pokemon/mon_stats.asm@GetGender"
+	"engine/pokemon/mon_stats.asm@ListMovePP"
+	"engine/pokemon/mon_stats.asm@Unreferenced_Function50cd0"
+	"engine/pokemon/mon_stats.asm@Unused_PlaceEnemyHPLevel"
+	"engine/pokemon/mon_stats.asm@PlaceStatusString"
+	"engine/pokemon/mon_stats.asm@ListMoves"
+	"engine/link/init_list.asm"
+	"engine/pokemon/experience.asm"
+	"engine/pokemon/switchpartymons.asm"
+	"engine/gfx/load_pics.asm@GetUnownLetter"
+	"engine/gfx/load_pics.asm"
+	"engine/pokemon/move_mon_wo_mail.asm"
+	"data/pokemon/base_stats.asm"
+	"data/pokemon/names.asm"
+	"data/pokemon/unused_pic_banks.asm"
+	"main.asm@UnknownEggPic"
 ROMX $15
-	"GoldenrodGym_MapScripts" ; maps/GoldenrodGym.asm
-	"GoldenrodBikeShop_MapScripts" ; maps/GoldenrodBikeShop.asm
-	"GoldenrodHappinessRater_MapScripts" ; maps/GoldenrodHappinessRater.asm
-	"BillsFamilysHouse_MapScripts" ; maps/BillsFamilysHouse.asm
-	"GoldenrodMagnetTrainStation_MapScripts" ; maps/GoldenrodMagnetTrainStation.asm
-	"GoldenrodFlowerShop_MapScripts" ; maps/GoldenrodFlowerShop.asm
-	"GoldenrodPPSpeechHouse_MapScripts" ; maps/GoldenrodPPSpeechHouse.asm
-	"GoldenrodNameRater_MapScripts" ; maps/GoldenrodNameRater.asm
-	"GoldenrodDeptStore1F_MapScripts" ; maps/GoldenrodDeptStore1F.asm
-	"GoldenrodDeptStore2F_MapScripts" ; maps/GoldenrodDeptStore2F.asm
-	"GoldenrodDeptStore3F_MapScripts" ; maps/GoldenrodDeptStore3F.asm
-	"GoldenrodDeptStore4F_MapScripts" ; maps/GoldenrodDeptStore4F.asm
-	"GoldenrodDeptStore5F_MapScripts" ; maps/GoldenrodDeptStore5F.asm
-	"GoldenrodDeptStore6F_MapScripts" ; maps/GoldenrodDeptStore6F.asm
-	"GoldenrodDeptStoreElevator_MapScripts" ; maps/GoldenrodDeptStoreElevator.asm
-	"GoldenrodDeptStoreRoof_MapScripts" ; maps/GoldenrodDeptStoreRoof.asm
-	"GoldenrodGameCorner_MapScripts" ; maps/GoldenrodGameCorner.asm
+	"maps/GoldenrodGym.asm"
+	"maps/GoldenrodBikeShop.asm"
+	"maps/GoldenrodHappinessRater.asm"
+	"maps/BillsFamilysHouse.asm"
+	"maps/GoldenrodMagnetTrainStation.asm"
+	"maps/GoldenrodFlowerShop.asm"
+	"maps/GoldenrodPPSpeechHouse.asm"
+	"maps/GoldenrodNameRater.asm"
+	"maps/GoldenrodDeptStore1F.asm"
+	"maps/GoldenrodDeptStore2F.asm"
+	"maps/GoldenrodDeptStore3F.asm"
+	"maps/GoldenrodDeptStore4F.asm"
+	"maps/GoldenrodDeptStore5F.asm"
+	"maps/GoldenrodDeptStore6F.asm"
+	"maps/GoldenrodDeptStoreElevator.asm"
+	"maps/GoldenrodDeptStoreRoof.asm"
+	"maps/GoldenrodGameCorner.asm"
 ROMX $16
-	"RuinsOfAlphOutside_MapScripts" ; maps/RuinsOfAlphOutside.asm
-	"RuinsOfAlphHoOhChamber_MapScripts" ; maps/RuinsOfAlphHoOhChamber.asm
-	"RuinsOfAlphKabutoChamber_MapScripts" ; maps/RuinsOfAlphKabutoChamber.asm
-	"RuinsOfAlphOmanyteChamber_MapScripts" ; maps/RuinsOfAlphOmanyteChamber.asm
-	"RuinsOfAlphAerodactylChamber_MapScripts" ; maps/RuinsOfAlphAerodactylChamber.asm
-	"RuinsOfAlphInnerChamber_MapScripts" ; maps/RuinsOfAlphInnerChamber.asm
-	"RuinsOfAlphResearchCenter_MapScripts" ; maps/RuinsOfAlphResearchCenter.asm
-	"RuinsOfAlphHoOhItemRoom_MapScripts" ; maps/RuinsOfAlphHoOhItemRoom.asm
-	"RuinsOfAlphKabutoItemRoom_MapScripts" ; maps/RuinsOfAlphKabutoItemRoom.asm
-	"RuinsOfAlphOmanyteItemRoom_MapScripts" ; maps/RuinsOfAlphOmanyteItemRoom.asm
-	"RuinsOfAlphAerodactylItemRoom_MapScripts" ; maps/RuinsOfAlphAerodactylItemRoom.asm
-	"RuinsOfAlphHoOhWordRoom_MapScripts" ; maps/RuinsOfAlphHoOhWordRoom.asm
-	"RuinsOfAlphKabutoWordRoom_MapScripts" ; maps/RuinsOfAlphKabutoWordRoom.asm
-	"RuinsOfAlphOmanyteWordRoom_MapScripts" ; maps/RuinsOfAlphOmanyteWordRoom.asm
-	"RuinsOfAlphAerodactylWordRoom_MapScripts" ; maps/RuinsOfAlphAerodactylWordRoom.asm
-	"UnionCave1F_MapScripts" ; maps/UnionCave1F.asm
-	"UnionCaveB1F_MapScripts" ; maps/UnionCaveB1F.asm
-	"UnionCaveB2F_MapScripts" ; maps/UnionCaveB2F.asm
-	"SlowpokeWellB1F_MapScripts" ; maps/SlowpokeWellB1F.asm
-	"SlowpokeWellB2F_MapScripts" ; maps/SlowpokeWellB2F.asm
-	"OlivineLighthouse1F_MapScripts" ; maps/OlivineLighthouse1F.asm
-	"OlivineLighthouse2F_MapScripts" ; maps/OlivineLighthouse2F.asm
-	"OlivineLighthouse3F_MapScripts" ; maps/OlivineLighthouse3F.asm
-	"OlivineLighthouse4F_MapScripts" ; maps/OlivineLighthouse4F.asm
+	"maps/RuinsOfAlphOutside.asm"
+	"maps/RuinsOfAlphHoOhChamber.asm"
+	"maps/RuinsOfAlphKabutoChamber.asm"
+	"maps/RuinsOfAlphOmanyteChamber.asm"
+	"maps/RuinsOfAlphAerodactylChamber.asm"
+	"maps/RuinsOfAlphInnerChamber.asm"
+	"maps/RuinsOfAlphResearchCenter.asm"
+	"maps/RuinsOfAlphHoOhItemRoom.asm"
+	"maps/RuinsOfAlphKabutoItemRoom.asm"
+	"maps/RuinsOfAlphOmanyteItemRoom.asm"
+	"maps/RuinsOfAlphAerodactylItemRoom.asm"
+	"maps/RuinsOfAlphHoOhWordRoom.asm"
+	"maps/RuinsOfAlphKabutoWordRoom.asm"
+	"maps/RuinsOfAlphOmanyteWordRoom.asm"
+	"maps/RuinsOfAlphAerodactylWordRoom.asm"
+	"maps/UnionCave1F.asm"
+	"maps/UnionCaveB1F.asm"
+	"maps/UnionCaveB2F.asm"
+	"maps/SlowpokeWellB1F.asm"
+	"maps/SlowpokeWellB2F.asm"
+	"maps/OlivineLighthouse1F.asm"
+	"maps/OlivineLighthouse2F.asm"
+	"maps/OlivineLighthouse3F.asm"
+	"maps/OlivineLighthouse4F.asm"
 ROMX $17
-	"NationalPark_MapScripts" ; maps/NationalPark.asm
-	"NationalParkBugContest_MapScripts" ; maps/NationalParkBugContest.asm
-	"RadioTower1F_MapScripts" ; maps/RadioTower1F.asm
-	"RadioTower2F_MapScripts" ; maps/RadioTower2F.asm
-	"RadioTower3F_MapScripts" ; maps/RadioTower3F.asm
-	"RadioTower4F_MapScripts" ; maps/RadioTower4F.asm
+	"maps/NationalPark.asm"
+	"maps/NationalParkBugContest.asm"
+	"maps/RadioTower1F.asm"
+	"maps/RadioTower2F.asm"
+	"maps/RadioTower3F.asm"
+	"maps/RadioTower4F.asm"
 ROMX $18
-	"RadioTower5F_MapScripts" ; maps/RadioTower5F.asm
-	"OlivineLighthouse5F_MapScripts" ; maps/OlivineLighthouse5F.asm
-	"OlivineLighthouse6F_MapScripts" ; maps/OlivineLighthouse6F.asm
-	"GoldenrodPokecenter1F_MapScripts" ; maps/GoldenrodPokecenter1F.asm
-	"PokecomCenterAdminOfficeMobile_MapScripts" ; maps/PokecomCenterAdminOfficeMobile.asm
-	"IlexForestAzaleaGate_MapScripts" ; maps/IlexForestAzaleaGate.asm
-	"Route34IlexForestGate_MapScripts" ; maps/Route34IlexForestGate.asm
-	"DayCare_MapScripts" ; maps/DayCare.asm
+	"maps/RadioTower5F.asm"
+	"maps/OlivineLighthouse5F.asm"
+	"maps/OlivineLighthouse6F.asm"
+	"maps/GoldenrodPokecenter1F.asm"
+	"maps/PokecomCenterAdminOfficeMobile.asm"
+	"maps/IlexForestAzaleaGate.asm"
+	"maps/Route34IlexForestGate.asm"
+	"maps/DayCare.asm"
 ROMX $19
-	"UnknownText_0x64000 - UnknownText_0x648dc" ; data/phone/text/irwin_caller.asm
-	"ArnieLovesTheCuteText - UnknownText_0x64c5a" ; data/phone/text/arnie_caller.asm
-	"AlanGettingStrongerText - UnknownText_0x64f1a" ; data/phone/text/alan_caller.asm
-	"UnknownText_0x64f74 - UnknownText_0x6520f" ; data/phone/text/dana_caller.asm
-	"ChadObservingWildText - UnknownText_0x65a63" ; data/phone/text/chad_caller.asm
-	"DerekCheekPincherText - UnknownText_0x65da6" ; data/phone/text/derek_caller.asm
-	"TullyGrownText - UnknownText_0x66087" ; data/phone/text/tully_caller.asm
-	"BrentRareTradeText - UnknownText_0x66579" ; data/phone/text/brent_caller.asm
-	"UnknownText_0x665ad - UnknownText_0x6691d" ; data/phone/text/tiffany_caller.asm
-	"VanceLiftoffText - VanceHurryHurryText" ; data/phone/text/vance_caller.asm
-	"WiltonGrownText - WiltonWantThisText" ; data/phone/text/wilton_caller.asm
-	"UnknownText_0x66dab - UnknownText_0x66f52" ; data/phone/text/kenji_caller.asm
-	"ParryNoMatchText - ParryHaventYouGottenToText" ; data/phone/text/parry_caller.asm
-	"UnknownText_0x6717a - ErinComeBattleText" ; data/phone/text/erin_caller.asm
+	"data/phone/text/irwin_caller.asm"
+	"data/phone/text/arnie_caller.asm"
+	"data/phone/text/alan_caller.asm"
+	"data/phone/text/dana_caller.asm"
+	"data/phone/text/chad_caller.asm"
+	"data/phone/text/derek_caller.asm"
+	"data/phone/text/tully_caller.asm"
+	"data/phone/text/brent_caller.asm"
+	"data/phone/text/tiffany_caller.asm"
+	"data/phone/text/vance_caller.asm"
+	"data/phone/text/wilton_caller.asm"
+	"data/phone/text/kenji_caller.asm"
+	"data/phone/text/parry_caller.asm"
+	"data/phone/text/erin_caller.asm"
 ROMX $1a
-	"Route11_MapScripts" ; maps/Route11.asm
-	"VioletMart_MapScripts" ; maps/VioletMart.asm
-	"VioletGym_MapScripts" ; maps/VioletGym.asm
-	"EarlsPokemonAcademy_MapScripts" ; maps/EarlsPokemonAcademy.asm
-	"VioletNicknameSpeechHouse_MapScripts" ; maps/VioletNicknameSpeechHouse.asm
-	"VioletPokecenter1F_MapScripts" ; maps/VioletPokecenter1F.asm
-	"VioletKylesHouse_MapScripts" ; maps/VioletKylesHouse.asm
-	"Route32RuinsOfAlphGate_MapScripts" ; maps/Route32RuinsOfAlphGate.asm
-	"Route32Pokecenter1F_MapScripts" ; maps/Route32Pokecenter1F.asm
-	"Route35GoldenrodGate_MapScripts" ; maps/Route35GoldenrodGate.asm
-	"Route35NationalParkGate_MapScripts" ; maps/Route35NationalParkGate.asm
-	"Route36RuinsOfAlphGate_MapScripts" ; maps/Route36RuinsOfAlphGate.asm
-	"Route36NationalParkGate_MapScripts" ; maps/Route36NationalParkGate.asm
+	"maps/Route11.asm"
+	"maps/VioletMart.asm"
+	"maps/VioletGym.asm"
+	"maps/EarlsPokemonAcademy.asm"
+	"maps/VioletNicknameSpeechHouse.asm"
+	"maps/VioletPokecenter1F.asm"
+	"maps/VioletKylesHouse.asm"
+	"maps/Route32RuinsOfAlphGate.asm"
+	"maps/Route32Pokecenter1F.asm"
+	"maps/Route35GoldenrodGate.asm"
+	"maps/Route35NationalParkGate.asm"
+	"maps/Route36RuinsOfAlphGate.asm"
+	"maps/Route36NationalParkGate.asm"
 ROMX $1b
-	"Route8_MapScripts" ; maps/Route8.asm
-	"MahoganyMart1F_MapScripts" ; maps/MahoganyMart1F.asm
-	"TeamRocketBaseB1F_MapScripts" ; maps/TeamRocketBaseB1F.asm
-	"TeamRocketBaseB2F_MapScripts" ; maps/TeamRocketBaseB2F.asm
-	"TeamRocketBaseB3F_MapScripts" ; maps/TeamRocketBaseB3F.asm
-	"IlexForest_MapScripts" ; maps/IlexForest.asm
+	"maps/Route8.asm"
+	"maps/MahoganyMart1F.asm"
+	"maps/TeamRocketBaseB1F.asm"
+	"maps/TeamRocketBaseB2F.asm"
+	"maps/TeamRocketBaseB3F.asm"
+	"maps/IlexForest.asm"
 ROMX $1c
-	"LakeOfRage_MapScripts" ; maps/LakeOfRage.asm
-	"CeladonDeptStore1F_MapScripts" ; maps/CeladonDeptStore1F.asm
-	"CeladonDeptStore2F_MapScripts" ; maps/CeladonDeptStore2F.asm
-	"CeladonDeptStore3F_MapScripts" ; maps/CeladonDeptStore3F.asm
-	"CeladonDeptStore4F_MapScripts" ; maps/CeladonDeptStore4F.asm
-	"CeladonDeptStore5F_MapScripts" ; maps/CeladonDeptStore5F.asm
-	"CeladonDeptStore6F_MapScripts" ; maps/CeladonDeptStore6F.asm
-	"CeladonDeptStoreElevator_MapScripts" ; maps/CeladonDeptStoreElevator.asm
-	"CeladonMansion1F_MapScripts" ; maps/CeladonMansion1F.asm
-	"CeladonMansion2F_MapScripts" ; maps/CeladonMansion2F.asm
-	"CeladonMansion3F_MapScripts" ; maps/CeladonMansion3F.asm
-	"CeladonMansionRoof_MapScripts" ; maps/CeladonMansionRoof.asm
-	"CeladonMansionRoofHouse_MapScripts" ; maps/CeladonMansionRoofHouse.asm
-	"CeladonPokecenter1F_MapScripts" ; maps/CeladonPokecenter1F.asm
-	"CeladonPokecenter2FBeta_MapScripts" ; maps/CeladonPokecenter2FBeta.asm
-	"CeladonGameCorner_MapScripts" ; maps/CeladonGameCorner.asm
-	"CeladonGameCornerPrizeRoom_MapScripts" ; maps/CeladonGameCornerPrizeRoom.asm
-	"CeladonGym_MapScripts" ; maps/CeladonGym.asm
-	"CeladonCafe_MapScripts" ; maps/CeladonCafe.asm
-	"Route16FuchsiaSpeechHouse_MapScripts" ; maps/Route16FuchsiaSpeechHouse.asm
-	"Route16Gate_MapScripts" ; maps/Route16Gate.asm
-	"Route7SaffronGate_MapScripts" ; maps/Route7SaffronGate.asm
-	"Route17Route18Gate_MapScripts" ; maps/Route17Route18Gate.asm
+	"maps/LakeOfRage.asm"
+	"maps/CeladonDeptStore1F.asm"
+	"maps/CeladonDeptStore2F.asm"
+	"maps/CeladonDeptStore3F.asm"
+	"maps/CeladonDeptStore4F.asm"
+	"maps/CeladonDeptStore5F.asm"
+	"maps/CeladonDeptStore6F.asm"
+	"maps/CeladonDeptStoreElevator.asm"
+	"maps/CeladonMansion1F.asm"
+	"maps/CeladonMansion2F.asm"
+	"maps/CeladonMansion3F.asm"
+	"maps/CeladonMansionRoof.asm"
+	"maps/CeladonMansionRoofHouse.asm"
+	"maps/CeladonPokecenter1F.asm"
+	"maps/CeladonPokecenter2FBeta.asm"
+	"maps/CeladonGameCorner.asm"
+	"maps/CeladonGameCornerPrizeRoom.asm"
+	"maps/CeladonGym.asm"
+	"maps/CeladonCafe.asm"
+	"maps/Route16FuchsiaSpeechHouse.asm"
+	"maps/Route16Gate.asm"
+	"maps/Route7SaffronGate.asm"
+	"maps/Route17Route18Gate.asm"
 ROMX $1d
-	"DiglettsCave_MapScripts" ; maps/DiglettsCave.asm
-	"MountMoon_MapScripts" ; maps/MountMoon.asm
-	"UndergroundPath_MapScripts" ; maps/UndergroundPath.asm
-	"RockTunnel1F_MapScripts" ; maps/RockTunnel1F.asm
-	"RockTunnelB1F_MapScripts" ; maps/RockTunnelB1F.asm
-	"SafariZoneFuchsiaGateBeta_MapScripts" ; maps/SafariZoneFuchsiaGateBeta.asm
-	"SafariZoneBeta_MapScripts" ; maps/SafariZoneBeta.asm
-	"VictoryRoad_MapScripts" ; maps/VictoryRoad.asm
-	"OlivinePort_MapScripts" ; maps/OlivinePort.asm
-	"VermilionPort_MapScripts" ; maps/VermilionPort.asm
-	"FastShip1F_MapScripts" ; maps/FastShip1F.asm
-	"FastShipCabins_NNW_NNE_NE_MapScripts" ; maps/FastShipCabins_NNW_NNE_NE.asm
-	"FastShipCabins_SW_SSW_NW_MapScripts" ; maps/FastShipCabins_SW_SSW_NW.asm
-	"FastShipCabins_SE_SSE_CaptainsCabin_MapScripts" ; maps/FastShipCabins_SE_SSE_CaptainsCabin.asm
-	"FastShipB1F_MapScripts" ; maps/FastShipB1F.asm
-	"OlivinePortPassage_MapScripts" ; maps/OlivinePortPassage.asm
-	"VermilionPortPassage_MapScripts" ; maps/VermilionPortPassage.asm
-	"MountMoonSquare_MapScripts" ; maps/MountMoonSquare.asm
-	"MountMoonGiftShop_MapScripts" ; maps/MountMoonGiftShop.asm
-	"TinTowerRoof_MapScripts" ; maps/TinTowerRoof.asm
+	"maps/DiglettsCave.asm"
+	"maps/MountMoon.asm"
+	"maps/UndergroundPath.asm"
+	"maps/RockTunnel1F.asm"
+	"maps/RockTunnelB1F.asm"
+	"maps/SafariZoneFuchsiaGateBeta.asm"
+	"maps/SafariZoneBeta.asm"
+	"maps/VictoryRoad.asm"
+	"maps/OlivinePort.asm"
+	"maps/VermilionPort.asm"
+	"maps/FastShip1F.asm"
+	"maps/FastShipCabins_NNW_NNE_NE.asm"
+	"maps/FastShipCabins_SW_SSW_NW.asm"
+	"maps/FastShipCabins_SE_SSE_CaptainsCabin.asm"
+	"maps/FastShipB1F.asm"
+	"maps/OlivinePortPassage.asm"
+	"maps/VermilionPortPassage.asm"
+	"maps/MountMoonSquare.asm"
+	"maps/MountMoonGiftShop.asm"
+	"maps/TinTowerRoof.asm"
 ROMX $1e
-	"Route34_MapScripts" ; maps/Route34.asm
-	"ElmsLab_MapScripts" ; maps/ElmsLab.asm
-	"PlayersHouse1F_MapScripts" ; maps/PlayersHouse1F.asm
-	"PlayersHouse2F_MapScripts" ; maps/PlayersHouse2F.asm
-	"PlayersNeighborsHouse_MapScripts" ; maps/PlayersNeighborsHouse.asm
-	"ElmsHouse_MapScripts" ; maps/ElmsHouse.asm
-	"Route26HealHouse_MapScripts" ; maps/Route26HealHouse.asm
-	"DayOfWeekSiblingsHouse_MapScripts" ; maps/DayOfWeekSiblingsHouse.asm
-	"Route27SandstormHouse_MapScripts" ; maps/Route27SandstormHouse.asm
-	"Route29Route46Gate_MapScripts" ; maps/Route29Route46Gate.asm
+	"maps/Route34.asm"
+	"maps/ElmsLab.asm"
+	"maps/PlayersHouse1F.asm"
+	"maps/PlayersHouse2F.asm"
+	"maps/PlayersNeighborsHouse.asm"
+	"maps/ElmsHouse.asm"
+	"maps/Route26HealHouse.asm"
+	"maps/DayOfWeekSiblingsHouse.asm"
+	"maps/Route27SandstormHouse.asm"
+	"maps/Route29Route46Gate.asm"
 ROMX $1f
-	"Route22_MapScripts" ; maps/Route22.asm
-	"GoldenrodUnderground_MapScripts" ; maps/GoldenrodUnderground.asm
-	"GoldenrodUndergroundSwitchRoomEntrances_MapScripts" ; maps/GoldenrodUndergroundSwitchRoomEntrances.asm
-	"GoldenrodDeptStoreB1F_MapScripts" ; maps/GoldenrodDeptStoreB1F.asm
-	"GoldenrodUndergroundWarehouse_MapScripts" ; maps/GoldenrodUndergroundWarehouse.asm
-	"MountMortar1FOutside_MapScripts" ; maps/MountMortar1FOutside.asm
-	"MountMortar1FInside_MapScripts" ; maps/MountMortar1FInside.asm
-	"MountMortar2FInside_MapScripts" ; maps/MountMortar2FInside.asm
-	"MountMortarB1F_MapScripts" ; maps/MountMortarB1F.asm
-	"IcePath1F_MapScripts" ; maps/IcePath1F.asm
-	"IcePathB1F_MapScripts" ; maps/IcePathB1F.asm
-	"IcePathB2FMahoganySide_MapScripts" ; maps/IcePathB2FMahoganySide.asm
-	"IcePathB2FBlackthornSide_MapScripts" ; maps/IcePathB2FBlackthornSide.asm
-	"IcePathB3F_MapScripts" ; maps/IcePathB3F.asm
-	"LavenderPokecenter1F_MapScripts" ; maps/LavenderPokecenter1F.asm
-	"LavenderPokecenter2FBeta_MapScripts" ; maps/LavenderPokecenter2FBeta.asm
-	"MrFujisHouse_MapScripts" ; maps/MrFujisHouse.asm
-	"LavenderSpeechHouse_MapScripts" ; maps/LavenderSpeechHouse.asm
-	"LavenderNameRater_MapScripts" ; maps/LavenderNameRater.asm
-	"LavenderMart_MapScripts" ; maps/LavenderMart.asm
-	"SoulHouse_MapScripts" ; maps/SoulHouse.asm
-	"LavRadioTower1F_MapScripts" ; maps/LavRadioTower1F.asm
-	"Route8SaffronGate_MapScripts" ; maps/Route8SaffronGate.asm
-	"Route12SuperRodHouse_MapScripts" ; maps/Route12SuperRodHouse.asm
+	"maps/Route22.asm"
+	"maps/GoldenrodUnderground.asm"
+	"maps/GoldenrodUndergroundSwitchRoomEntrances.asm"
+	"maps/GoldenrodDeptStoreB1F.asm"
+	"maps/GoldenrodUndergroundWarehouse.asm"
+	"maps/MountMortar1FOutside.asm"
+	"maps/MountMortar1FInside.asm"
+	"maps/MountMortar2FInside.asm"
+	"maps/MountMortarB1F.asm"
+	"maps/IcePath1F.asm"
+	"maps/IcePathB1F.asm"
+	"maps/IcePathB2FMahoganySide.asm"
+	"maps/IcePathB2FBlackthornSide.asm"
+	"maps/IcePathB3F.asm"
+	"maps/LavenderPokecenter1F.asm"
+	"maps/LavenderPokecenter2FBeta.asm"
+	"maps/MrFujisHouse.asm"
+	"maps/LavenderSpeechHouse.asm"
+	"maps/LavenderNameRater.asm"
+	"maps/LavenderMart.asm"
+	"maps/SoulHouse.asm"
+	"maps/LavRadioTower1F.asm"
+	"maps/Route8SaffronGate.asm"
+	"maps/Route12SuperRodHouse.asm"
 ROMX $20
-	; engine/overworld/player_movement.asm
-	"DoPlayerMovement - CheckStandingOnIce"
-	"StopPlayerForEvent"
-
-	"EngineFlagAction - EngineFlags" ; engine/events/engine_flags.asm
-	"_GetVarAction" ; engine/overworld/variables.asm
-	"BattleText_PlayerPickedUpPayDayMoney - BattleText_0x8188e" ; data/text/battle.asm
-	"ColorTest - Function823c7" ; engine/menus/debug.asm
+	"engine/overworld/player_movement.asm"
+	"engine/overworld/player_movement.asm@StopPlayerForEvent"
+	"engine/events/engine_flags.asm"
+	"engine/overworld/variables.asm"
+	"data/text/battle.asm"
+	"engine/menus/debug.asm"
 ROMX $21
-	"Printer_StartTransmission - String84a25" ; engine/printer/printer.asm
-	"AnimObj00GFX - AnimObjAeroblastGFX" ; gfx/battle_anims.asm
-	"HallOfFame - HOF_AnimatePlayerPic" ; engine/events/halloffame.asm
+	"engine/printer/printer.asm"
+	"gfx/battle_anims.asm"
+	"engine/events/halloffame.asm"
 ROMX $22
-	"Kurt_PrintTextWhichApricorn - Kurt_GetRidOfItem" ; engine/events/kurt.asm
-
-	; engine/gfx/player_gfx.asm
-	"Unreferenced_Function88248"
-	"MovePlayerPicRight - MovePlayerPic"
-	"ShowPlayerNamingChoices - Unreferenced_GetPlayerNameArray"
-	"GetPlayerIcon"
-	"GetCardPic - CardGFX"
-	"GetPlayerBackpic - GetKrisBackpic"
-	"KrisBackpic"
-
-	"String_89116 - Function8adcc" ; mobile/mobile_22.asm
-
-	; engine/events/unown_walls.asm
-	"HoOhChamber"
-	"OmanyteChamber"
-	"SpecialAerodactylChamber"
-	"SpecialKabutoChamber"
-	"DisplayUnownWords - _DisplayUnownWords_CopyWord"
-
-	; engine/events/buena.asm
-	"BuenasPassword"
-	"BuenaPrize - BuenaPrizeItems"
-
-	"GiveDratini" ; engine/events/dratini.asm
-	"CheckForMobileBattleRules - Function_HasPartyAnEgg" ; engine/events/battle_tower/rules.asm
-
-	; mobile/mobile_22_2.asm
-	"Function8b342"
-	"Function8b35d"
-	"Function8b363"
-	"Function8b36c - Unknown_8ba1f"
+	"engine/events/kurt.asm"
+	"engine/gfx/player_gfx.asm@Unreferenced_Function88248"
+	"engine/gfx/player_gfx.asm@MovePlayerPic"
+	"engine/gfx/player_gfx.asm@ShowPlayerNamingChoices"
+	"engine/gfx/player_gfx.asm@GetPlayerIcon"
+	"engine/gfx/player_gfx.asm@GetCardPic"
+	"engine/gfx/player_gfx.asm@GetPlayerPic"
+	"mobile/mobile_22.asm"
+	"engine/events/unown_walls.asm@HoOhChamber"
+	"engine/events/unown_walls.asm@OmanyteChamber"
+	"engine/events/unown_walls.asm@SpecialAerodactylChamber"
+	"engine/events/unown_walls.asm@SpecialKabutoChamber"
+	"engine/events/unown_walls.asm@DisplayUnownWords"
+	"engine/events/buena.asm@BuenasPassword"
+	"engine/events/buena.asm@BuenaPrize"
+	"engine/events/dratini.asm"
+	"engine/events/battle_tower/rules.asm"
+	"mobile/mobile_22_2.asm@Function8b342"
+	"mobile/mobile_22_2.asm@Function8b35d"
+	"mobile/mobile_22_2.asm@Function8b363"
+	"mobile/mobile_22_2.asm"
 ROMX $23
-	; engine/tilesets/timeofday_pals.asm
-	"DummyPredef35 - DummyPredef36"
-	"UpdateTimeOfDayPal - GetTimePalFade"
-
-	; engine/battle/battle_transition.asm
-	"DoBattleTransition - StartTrainerBattle_ZoomToBlack"
-	"Unreferenced_Function8c7c9"
-
-	; engine/events/field_moves.asm
-	"PlayWhirlpoolSound"
-	"BlindingFlash"
-	"ShakeHeadbuttTree - Cut_Headbutt_GetPixelFacing"
-	"FlyFromAnim - FlyFunction_FrameTimer"
-
-	"MagnetTrain - MagnetTrainTilemap4" ; engine/events/magnet_train.asm
-	"BattleStart_CopyTilemapAtOnce" ; engine/battle/battlestart_copytilemapatonce.asm
-	"ClearSpriteAnims" ; engine/gfx/sprites.asm
-	"PlaySpriteAnimationsAndDelayFrame - BigmonIcon" ; engine/gfx/sprites.asm
+	"engine/tilesets/timeofday_pals.asm@DummyPredef"
+	"engine/tilesets/timeofday_pals.asm"
+	"engine/battle/battle_transition.asm"
+	"engine/battle/battle_transition.asm@Unreferenced_Function8c7c9"
+	"engine/events/field_moves.asm@PlayWhirlpoolSound"
+	"engine/events/field_moves.asm@BlindingFlash"
+	"engine/events/field_moves.asm@Trees"
+	"engine/events/field_moves.asm@Fly"
+	"engine/events/magnet_train.asm"
+	"engine/battle/battlestart_copytilemapatonce.asm"
+	"engine/gfx/sprites.asm@ClearSpriteAnims"
+	"engine/gfx/sprites.asm"
 ROMX $24
-	"AddPhoneNumber - PermanentNumbers" ; engine/phone/numbers.asm
-	"FarPlaceString - UnknownText_0x9066d" ; engine/phone/phone.asm
-	"InitClock - AdjustHourForAMorPM" ; engine/rtc/timeset.asm
-	"PokeGear - PlayRadio" ; engine/pokegear/pokegear.asm
-	"PokegearMap - Unreferenced_Function92311" ; engine/pokegear/map.asm
-	"Fish - TimeFishGroups" ; engine/events/fish.asm
-	"_SlotMachine - Slots3LZ" ; engine/games/slot_machine.asm
+	"engine/phone/numbers.asm"
+	"engine/phone/phone.asm"
+	"engine/rtc/timeset.asm"
+	"engine/pokegear/pokegear.asm"
+	"engine/pokegear/map.asm"
+	"engine/events/fish.asm"
+	"engine/games/slot_machine.asm"
 ROMX $25
-	"MapGroupPointers - MapGroup_Cherrygrove" ; data/maps/maps.asm
-	"NewBarkTown_MapAttributes - Route31VioletGate_MapAttributes" ; data/maps/attributes.asm
-
-	; engine/overworld/events.asm
-	"OverworldLoop - ContestMons"
-	"DoBikeStep"
-	"ClearCmdQueue"
-	"HandleCmdQueue - CmdQueue_Type3"
-	"CmdQueue_StoneTable"
+	"data/maps/maps.asm"
+	"data/maps/attributes.asm"
+	"engine/overworld/events.asm"
+	"engine/overworld/events.asm@DoBikeStep"
+	"engine/overworld/events.asm@ClearCmdQueue"
+	"engine/overworld/events.asm@HandleCmdQueue"
+	"engine/overworld/events.asm@CmdQueue_StoneTable"
 ROMX $26
-	"EcruteakTinTowerEntrance_MapScripts" ; maps/EcruteakTinTowerEntrance.asm
-	"WiseTriosRoom_MapScripts" ; maps/WiseTriosRoom.asm
-	"EcruteakPokecenter1F_MapScripts" ; maps/EcruteakPokecenter1F.asm
-	"EcruteakLugiaSpeechHouse_MapScripts" ; maps/EcruteakLugiaSpeechHouse.asm
-	"DanceTheatre_MapScripts" ; maps/DanceTheatre.asm
-	"EcruteakMart_MapScripts" ; maps/EcruteakMart.asm
-	"EcruteakGym_MapScripts" ; maps/EcruteakGym.asm
-	"EcruteakItemfinderHouse_MapScripts" ; maps/EcruteakItemfinderHouse.asm
-	"ViridianGym_MapScripts" ; maps/ViridianGym.asm
-	"ViridianNicknameSpeechHouse_MapScripts" ; maps/ViridianNicknameSpeechHouse.asm
-	"TrainerHouse1F_MapScripts" ; maps/TrainerHouse1F.asm
-	"TrainerHouseB1F_MapScripts" ; maps/TrainerHouseB1F.asm
-	"ViridianMart_MapScripts" ; maps/ViridianMart.asm
-	"ViridianPokecenter1F_MapScripts" ; maps/ViridianPokecenter1F.asm
-	"ViridianPokecenter2FBeta_MapScripts" ; maps/ViridianPokecenter2FBeta.asm
-	"Route2NuggetHouse_MapScripts" ; maps/Route2NuggetHouse.asm
-	"Route2Gate_MapScripts" ; maps/Route2Gate.asm
-	"VictoryRoadGate_MapScripts" ; maps/VictoryRoadGate.asm
+	"maps/EcruteakTinTowerEntrance.asm"
+	"maps/WiseTriosRoom.asm"
+	"maps/EcruteakPokecenter1F.asm"
+	"maps/EcruteakLugiaSpeechHouse.asm"
+	"maps/DanceTheatre.asm"
+	"maps/EcruteakMart.asm"
+	"maps/EcruteakGym.asm"
+	"maps/EcruteakItemfinderHouse.asm"
+	"maps/ViridianGym.asm"
+	"maps/ViridianNicknameSpeechHouse.asm"
+	"maps/TrainerHouse1F.asm"
+	"maps/TrainerHouseB1F.asm"
+	"maps/ViridianMart.asm"
+	"maps/ViridianPokecenter1F.asm"
+	"maps/ViridianPokecenter2FBeta.asm"
+	"maps/Route2NuggetHouse.asm"
+	"maps/Route2Gate.asm"
+	"maps/VictoryRoadGate.asm"
 ROMX $27
-	"OlivinePokecenter1F_MapScripts" ; maps/OlivinePokecenter1F.asm
-	"OlivineGym_MapScripts" ; maps/OlivineGym.asm
-	"OlivineTimsHouse_MapScripts" ; maps/OlivineTimsHouse.asm
-	"OlivineHouseBeta_MapScripts" ; maps/OlivineHouseBeta.asm
-	"OlivinePunishmentSpeechHouse_MapScripts" ; maps/OlivinePunishmentSpeechHouse.asm
-	"OlivineGoodRodHouse_MapScripts" ; maps/OlivineGoodRodHouse.asm
-	"OlivineCafe_MapScripts" ; maps/OlivineCafe.asm
-	"OlivineMart_MapScripts" ; maps/OlivineMart.asm
-	"Route38EcruteakGate_MapScripts" ; maps/Route38EcruteakGate.asm
-	"Route39Barn_MapScripts" ; maps/Route39Barn.asm
-	"Route39Farmhouse_MapScripts" ; maps/Route39Farmhouse.asm
-	"ManiasHouse_MapScripts" ; maps/ManiasHouse.asm
-	"CianwoodGym_MapScripts" ; maps/CianwoodGym.asm
-	"CianwoodPokecenter1F_MapScripts" ; maps/CianwoodPokecenter1F.asm
-	"CianwoodPharmacy_MapScripts" ; maps/CianwoodPharmacy.asm
-	"CianwoodPhotoStudio_MapScripts" ; maps/CianwoodPhotoStudio.asm
-	"CianwoodLugiaSpeechHouse_MapScripts" ; maps/CianwoodLugiaSpeechHouse.asm
-	"PokeSeersHouse_MapScripts" ; maps/PokeSeersHouse.asm
-	"BattleTower1F_MapScripts" ; maps/BattleTower1F.asm
-	"BattleTowerBattleRoom_MapScripts" ; maps/BattleTowerBattleRoom.asm
-	"BattleTowerElevator_MapScripts" ; maps/BattleTowerElevator.asm
-	"BattleTowerHallway_MapScripts" ; maps/BattleTowerHallway.asm
-	"Route40BattleTowerGate_MapScripts" ; maps/Route40BattleTowerGate.asm
-	"BattleTowerOutside_MapScripts" ; maps/BattleTowerOutside.asm
+	"maps/OlivinePokecenter1F.asm"
+	"maps/OlivineGym.asm"
+	"maps/OlivineTimsHouse.asm"
+	"maps/OlivineHouseBeta.asm"
+	"maps/OlivinePunishmentSpeechHouse.asm"
+	"maps/OlivineGoodRodHouse.asm"
+	"maps/OlivineCafe.asm"
+	"maps/OlivineMart.asm"
+	"maps/Route38EcruteakGate.asm"
+	"maps/Route39Barn.asm"
+	"maps/Route39Farmhouse.asm"
+	"maps/ManiasHouse.asm"
+	"maps/CianwoodGym.asm"
+	"maps/CianwoodPokecenter1F.asm"
+	"maps/CianwoodPharmacy.asm"
+	"maps/CianwoodPhotoStudio.asm"
+	"maps/CianwoodLugiaSpeechHouse.asm"
+	"maps/PokeSeersHouse.asm"
+	"maps/BattleTower1F.asm"
+	"maps/BattleTowerBattleRoom.asm"
+	"maps/BattleTowerElevator.asm"
+	"maps/BattleTowerHallway.asm"
+	"maps/Route40BattleTowerGate.asm"
+	"maps/BattleTowerOutside.asm"
 ROMX $28
-	"Phone_GenericCall_Male - BikeShopPhoneCallerScript" ; engine/phone/scripts/generic_caller.asm
-	"BuenaPhoneCalleeScript - UnknownText_0xa1e2f" ; engine/phone/buenas_password.asm
+	"engine/phone/caller_scripts.asm"
+	"engine/phone/scripts/buena.asm"
 ROMX $29
-	"AnthonyAskNumber1Text - AnthonyRematchText" ; data/phone/text/anthony_overworld.asm
-	"ToddAskNumber1Text - UnusedText_0xa43ca" ; data/phone/text/todd_overworld.asm
-	"GinaAskNumber1Text - GinaPackFullText" ; data/phone/text/gina_overworld.asm
-	"IrwinAskNumber1Text - IrwinPhoneFullText" ; data/phone/text/irwin_overworld.asm
-	"ArnieAskNumber1Text - ArnieRematchText" ; data/phone/text/arnie_overworld.asm
-	"AlanAskNumber1Text - AlanPackFullText" ; data/phone/text/alan_overworld.asm
-	"DanaAskNumber1Text - DanaPackFullText" ; data/phone/text/dana_overworld.asm
-	"ChadAskNumber1Text - ChadRematchText" ; data/phone/text/chad_overworld.asm
-	"DerekAskNumber1Text - DerekPackFullText" ; data/phone/text/derek_overworld.asm
-	"TullyAskNumber1Text - TullyPackFullText" ; data/phone/text/tully_overworld.asm
-	"BrentAskNumber1Text - BrentRematchText" ; data/phone/text/brent_overworld.asm
-	"TiffanyAskNumber1Text - TiffanyPackFullText" ; data/phone/text/tiffany_overworld.asm
-	"VanceAskNumber1Text - VanceRematchGiftText" ; data/phone/text/vance_overworld.asm
-	"WiltonAskNumber1Text - WiltonPackFullText" ; data/phone/text/wilton_overworld.asm
-	"KenjiAskNumber1Text - KenjiPackFullText" ; data/phone/text/kenji_overworld.asm
-	"ParryAskNumber1Text - ParryRematchGiftText" ; data/phone/text/parry_overworld.asm
-	"ErinAskNumber1Text - ErinRematchGiftText" ; data/phone/text/erin_overworld.asm
+	"data/phone/text/anthony_overworld.asm"
+	"data/phone/text/todd_overworld.asm"
+	"data/phone/text/gina_overworld.asm"
+	"data/phone/text/irwin_overworld.asm"
+	"data/phone/text/arnie_overworld.asm"
+	"data/phone/text/alan_overworld.asm"
+	"data/phone/text/dana_overworld.asm"
+	"data/phone/text/chad_overworld.asm"
+	"data/phone/text/derek_overworld.asm"
+	"data/phone/text/tully_overworld.asm"
+	"data/phone/text/brent_overworld.asm"
+	"data/phone/text/tiffany_overworld.asm"
+	"data/phone/text/vance_overworld.asm"
+	"data/phone/text/wilton_overworld.asm"
+	"data/phone/text/kenji_overworld.asm"
+	"data/phone/text/parry_overworld.asm"
+	"data/phone/text/erin_overworld.asm"
 ROMX $2a
-	"Map Blocks 1" ; (not splitting) data/maps/blocks.asm
+	"Map Blocks 1"
 ROMX $2b
-	"Map Blocks 2" ; (not splitting) data/maps/blocks.asm
+	"Map Blocks 2"
 ROMX $2c
-	"Map Blocks 3" ; (not splitting) data/maps/blocks.asm
+	"Map Blocks 3"
 ROMX $2d
-	"Tileset Data 5" ; (not splitting) gfx/tilesets.asm
+	"gfx/tilesets.asm@Tileset Data 5"
 ROMX $2e
-	"ReturnFromMapSetupScript - PlaceMapNameFrame" ; engine/events/map_name_sign.asm
-	"CheckForHiddenItems" ; engine/events/checkforhiddenitems.asm
-	"TreeMonEncounter - GetTreeScore" ; engine/events/treemons.asm
-	"LoadFishingGFX - KrisFishingGFX" ; engine/events/fishing_gfx.asm
-	"PlayRadioShow - NextRadioLine" ; engine/pokegear/radio.asm
-
-	; engine/pokemon/mail_2.asm
-	"ReadPartyMonMail - PortraitMailBorderGFX"
-	"ItemIsMail - MailItems"
+	"engine/events/map_name_sign.asm"
+	"engine/events/checkforhiddenitems.asm"
+	"engine/events/treemons.asm"
+	"engine/events/fishing_gfx.asm"
+	"engine/pokegear/radio.asm"
+	"engine/pokemon/mail_2.asm@ReadAnyMail"
+	"engine/pokemon/mail_2.asm@ItemIsMail"
 ROMX $2f
-	; engine/events/std_scripts.asm
-	"StdScripts"
-	"PokecenterNurseScript"
-	"DifficultBookshelfScript"
-	"PictureBookshelfScript"
-	"MagazineBookshelfScript"
-	"TeamRocketOathScript"
-	"IncenseBurnerScript"
-	"MerchandiseShelfScript"
-	"TownMapScript"
-	"WindowScript"
-	"TVScript"
-	"HomepageScript"
-	"Radio1Script"
-	"Radio2Script"
-	"TrashCanScript"
-	"PCScript"
-	"ElevatorButtonScript"
-	"StrengthBoulderScript"
-	"SmashRockScript"
-	"PokecenterSignScript"
-	"MartSignScript"
-	"DayToTextScript"
-	"GoldenrodRocketsScript"
-	"RadioTowerRocketsScript"
-	"BugContestResultsWarpScript - BugContestResults_CopyContestantsToResults"
-	"InitializeEventsScript"
-	"AskNumber1MScript"
-	"AskNumber2MScript"
-	"RegisteredNumberMScript"
-	"NumberAcceptedMScript"
-	"NumberDeclinedMScript"
-	"PhoneFullMScript"
-	"RematchMScript"
-	"GiftMScript"
-	"PackFullMScript"
-	"RematchGiftMScript"
-	"AskNumber1FScript"
-	"AskNumber2FScript"
-	"RegisteredNumberFScript"
-	"NumberAcceptedFScript"
-	"NumberDeclinedFScript"
-	"PhoneFullFScript"
-	"RematchFScript"
-	"GiftFScript"
-	"PackFullFScript"
-	"RematchGiftFScript"
-	"GymStatue1Script"
-	"GymStatue2Script"
-	"ReceiveItemScript"
-	"ReceiveTogepiEggScript"
-	"GameCornerCoinVendorScript - CoinVendor_IntroScript"
-	"HappinessCheckScript"
-	"Movement_ContestResults_WalkAfterWarp"
-
-	"UnusedPhoneScript" ; engine/phone/scripts/unused.asm
-	"MomPhoneCalleeScript - MomPhoneLectureScript" ; engine/phone/scripts/mom.asm
-	"BillPhoneCalleeScript - BillPhoneCallerScript" ; engine/phone/scripts/bill.asm
-	"ElmPhoneCalleeScript - ElmPhoneCallerScript" ; engine/phone/scripts/elm.asm
-	"JackPhoneCalleeScript - JackBattleTrivia" ; engine/phone/scripts/jack.asm
-	"BeverlyPhoneCalleeScript - BeverlyPhoneCallerScript" ; engine/phone/scripts/beverly.asm
-	"HueyPhoneCalleeScript - HueyWantsBattle" ; engine/phone/scripts/huey.asm
-	"GavenPhoneCalleeScript - GavenFoundRare" ; engine/phone/scripts/gaven.asm
-	"BethPhoneCalleeScript - BethWantsBattle" ; engine/phone/scripts/beth.asm
-	"JosePhoneCalleeScript - JoseHasStarPiece" ; engine/phone/scripts/jose.asm
-	"ReenaPhoneCalleeScript - ReenaWantsBattle" ; engine/phone/scripts/reena.asm
-	"JoeyPhoneCalleeScript - JoeyWantsBattle" ; engine/phone/scripts/joey.asm
-	"WadePhoneCalleeScript - WadeHasItem2" ; engine/phone/scripts/wade.asm
-	"RalphPhoneCalleeScript - Ralph_SetUpSwarm" ; engine/phone/scripts/ralph.asm
-	"LizPhoneCalleeScript - LizGossipScript" ; engine/phone/scripts/liz.asm
-	"AnthonyPhoneCalleeScript - AnthonyTriesDunsparceSwarm" ; engine/phone/scripts/anthony.asm
-	"ToddPhoneCalleeScript - ToddDeptStoreSale" ; engine/phone/scripts/todd.asm
-	"GinaPhoneCalleeScript - GinaHasLeafStone" ; engine/phone/scripts/gina.asm
-	"IrwinPhoneCalleeScript - IrwinPhoneCallerScript" ; engine/phone/scripts/irwin.asm
-	"ArniePhoneCalleeScript - ArnieYanmaAlreadySwarming" ; engine/phone/scripts/arnie.asm
-	"AlanPhoneCalleeScript - AlanHasFireStone" ; engine/phone/scripts/alan.asm
-	"DanaPhoneCalleeScript - DanaHasThunderstone" ; engine/phone/scripts/dana.asm
-	"ChadPhoneCalleeScript - ChadOakGossip" ; engine/phone/scripts/chad.asm
-	"DerekPhoneCalleeScript - DerekPhoneCallerScript" ; engine/phone/scripts/derek.asm
-	"TullyPhoneCalleeScript - TullyFoundWaterStone" ; engine/phone/scripts/tully.asm
-	"BrentPhoneCalleeScript - BrentBillTrivia" ; engine/phone/scripts/brent.asm
-	"TiffanyPhoneCalleeScript - TiffanyHasPinkBow" ; engine/phone/scripts/tiffany.asm
-	"VancePhoneCalleeScript - VanceWantsRematch" ; engine/phone/scripts/vance.asm
-	"WiltonPhoneCalleeScript - WiltonHasItem" ; engine/phone/scripts/wilton.asm
-	"KenjiPhoneCalleeScript - KenjiPhoneCallerScript" ; engine/phone/scripts/kenji.asm
-	"ParryPhoneCalleeScript - ParryWantsBattle" ; engine/phone/scripts/parry.asm
-	"ErinPhoneCalleeScript - ErinWantsBattle" ; engine/phone/scripts/erin.asm
-
-	; engine/phone/scripts/generic_callee.asm
-	"PhoneScript_Random2 - PhoneScript_MonFlavorText"
-	"GrandmaString - BrotherString"
-
-	"TalkToTrainerScript - AlreadyBeatenTrainerScript" ; engine/events/trainer_scripts.asm
+	"engine/events/std_scripts.asm"
+	"engine/events/std_scripts.asm@PokecenterNurseScript"
+	"engine/events/std_scripts.asm@DifficultBookshelfScript"
+	"engine/events/std_scripts.asm@PictureBookshelfScript"
+	"engine/events/std_scripts.asm@MagazineBookshelfScript"
+	"engine/events/std_scripts.asm@TeamRocketOathScript"
+	"engine/events/std_scripts.asm@IncenseBurnerScript"
+	"engine/events/std_scripts.asm@MerchandiseShelfScript"
+	"engine/events/std_scripts.asm@TownMapScript"
+	"engine/events/std_scripts.asm@WindowScript"
+	"engine/events/std_scripts.asm@TVScript"
+	"engine/events/std_scripts.asm@HomepageScript"
+	"engine/events/std_scripts.asm@Radio1Script"
+	"engine/events/std_scripts.asm@Radio2Script"
+	"engine/events/std_scripts.asm@TrashCanScript"
+	"engine/events/std_scripts.asm@PCScript"
+	"engine/events/std_scripts.asm@ElevatorButtonScript"
+	"engine/events/std_scripts.asm@StrengthBoulderScript"
+	"engine/events/std_scripts.asm@SmashRockScript"
+	"engine/events/std_scripts.asm@PokecenterSignScript"
+	"engine/events/std_scripts.asm@MartSignScript"
+	"engine/events/std_scripts.asm@DayToTextScript"
+	"engine/events/std_scripts.asm@GoldenrodRocketsScript"
+	"engine/events/std_scripts.asm@RadioTowerRocketsScript"
+	"engine/events/std_scripts.asm@BugContestResultsScript"
+	"engine/events/std_scripts.asm@InitializeEventsScript"
+	"engine/events/std_scripts.asm@AskNumber1MScript"
+	"engine/events/std_scripts.asm@AskNumber2MScript"
+	"engine/events/std_scripts.asm@RegisteredNumberMScript"
+	"engine/events/std_scripts.asm@NumberAcceptedMScript"
+	"engine/events/std_scripts.asm@NumberDeclinedMScript"
+	"engine/events/std_scripts.asm@PhoneFullMScript"
+	"engine/events/std_scripts.asm@RematchMScript"
+	"engine/events/std_scripts.asm@GiftMScript"
+	"engine/events/std_scripts.asm@PackFullMScript"
+	"engine/events/std_scripts.asm@RematchGiftMScript"
+	"engine/events/std_scripts.asm@AskNumber1FScript"
+	"engine/events/std_scripts.asm@AskNumber2FScript"
+	"engine/events/std_scripts.asm@RegisteredNumberFScript"
+	"engine/events/std_scripts.asm@NumberAcceptedFScript"
+	"engine/events/std_scripts.asm@NumberDeclinedFScript"
+	"engine/events/std_scripts.asm@PhoneFullFScript"
+	"engine/events/std_scripts.asm@RematchFScript"
+	"engine/events/std_scripts.asm@GiftFScript"
+	"engine/events/std_scripts.asm@PackFullFScript"
+	"engine/events/std_scripts.asm@RematchGiftFScript"
+	"engine/events/std_scripts.asm@GymStatue1Script"
+	"engine/events/std_scripts.asm@GymStatue2Script"
+	"engine/events/std_scripts.asm@ReceiveItemScript"
+	"engine/events/std_scripts.asm@ReceiveTogepiEggScript"
+	"engine/events/std_scripts.asm@GameCornerCoinVendorScript"
+	"engine/events/std_scripts.asm@HappinessCheckScript"
+	"engine/events/std_scripts.asm@Movement_ContestResults_WalkAfterWarp"
+	"engine/phone/scripts/unused.asm"
+	"engine/phone/scripts/mom.asm"
+	"engine/phone/scripts/bill.asm"
+	"engine/phone/scripts/elm.asm"
+	"engine/phone/scripts/jack.asm"
+	"engine/phone/scripts/beverly.asm"
+	"engine/phone/scripts/huey.asm"
+	"engine/phone/scripts/gaven.asm"
+	"engine/phone/scripts/beth.asm"
+	"engine/phone/scripts/jose.asm"
+	"engine/phone/scripts/reena.asm"
+	"engine/phone/scripts/joey.asm"
+	"engine/phone/scripts/wade.asm"
+	"engine/phone/scripts/ralph.asm"
+	"engine/phone/scripts/liz.asm"
+	"engine/phone/scripts/anthony.asm"
+	"engine/phone/scripts/todd.asm"
+	"engine/phone/scripts/gina.asm"
+	"engine/phone/scripts/irwin.asm"
+	"engine/phone/scripts/arnie.asm"
+	"engine/phone/scripts/alan.asm"
+	"engine/phone/scripts/dana.asm"
+	"engine/phone/scripts/chad.asm"
+	"engine/phone/scripts/derek.asm"
+	"engine/phone/scripts/tully.asm"
+	"engine/phone/scripts/brent.asm"
+	"engine/phone/scripts/tiffany.asm"
+	"engine/phone/scripts/vance.asm"
+	"engine/phone/scripts/wilton.asm"
+	"engine/phone/scripts/kenji.asm"
+	"engine/phone/scripts/parry.asm"
+	"engine/phone/scripts/erin.asm"
+	"engine/phone/scripts/generic_callee.asm"
+	"engine/phone/scripts/generic_callee.asm@TiffanysFamilyMembers"
+	"engine/events/trainer_scripts.asm"
 ROMX $30
-	"Sprites 1" ; (not splitting) gfx/sprites.asm
+	"Sprites 1"
 ROMX $31
-	"Sprites 2" ; (not splitting) gfx/sprites.asm
+	"Sprites 2"
 ROMX $32
-	"ExecuteBGEffects - BattleBGEffects_Cosine" ; engine/battle_anims/bg_effects.asm
-	"BattleAnimations - BattleAnim_ShowMon_1" ; data/moves/animations.asm
-	"LoadPoisonBGPals" ; engine/events/poisonstep_pals.asm
-	"TheEndGFX" ; main.asm
+	"engine/battle_anims/bg_effects.asm"
+	"data/moves/animations.asm"
+	"engine/events/poisonstep_pals.asm"
+	"main.asm@TheEndGFX"
 ROMX $33
-	; engine/events/bug_contest/display_stats.asm
-	"DisplayCaughtContestMonStats - SwitchMonText"
-	"DisplayAlreadyCaughtText"
-	"DummyPredef2F - DummyPredef39"
-
-	"PlayBattleAnim - AnimObjGFX" ; engine/battle_anims/core.asm
-	"Music_PostCredits" ; audio/music/PostCredits.asm
+	"engine/events/bug_contest/display_stats.asm@DisplayCaughtContestMonStats"
+	"engine/events/bug_contest/display_stats.asm@DisplayAlreadyCaughtText"
+	"engine/events/bug_contest/display_stats.asm@DummyPredef"
+	"engine/battle_anims/core.asm"
+	"audio/music/postcredits.asm"
 ROMX $34
-	"Unused_AnimateMon_Slow_Normal - HOF_AnimateFrontpic" ; engine/gfx/pic_animation.asm
-	"AnimationPointers - EggAnimationIdle" ; gfx/pokemon/anims.asm
-	"UnownAnimationPointers - UnownZAnimationIdle" ; gfx/pokemon/unown_anims.asm
-	"BitmasksPointers - EggBitmasks" ; gfx/bitmasks.asm
-	"UnownBitmasksPointers - UnownZBitmasks" ; gfx/pokemon/unown_bitmasks.asm
+	"engine/gfx/pic_animation.asm"
+	"gfx/pokemon/anims.asm"
+	"gfx/pokemon/unown_anims.asm"
+	"gfx/pokemon/bitmasks.asm"
+	"gfx/pokemon/unown_bitmasks.asm"
 ROMX $35
-	"FramesPointers" ; gfx/pokemon/frame_pointers.asm
-	"BulbasaurFrames - MewFrames" ; gfx/pokemon/kanto_frames.asm
+	"gfx/pokemon/frame_pointers.asm"
+	"gfx/pokemon/kanto_frames.asm"
 ROMX $36
-	"FontInversed" ; main.asm
-	"ChikoritaFrames - EggFrames" ; gfx/pokemon/johto_frames.asm
-	"UnownFramesPointers - UnownZFrames" ; gfx/pokemon/unown_frames.asm
+	"main.asm@FontInversed"
+	"gfx/pokemon/johto_frames.asm"
+	"gfx/pokemon/unown_frames.asm"
 ROMX $37
-	"Tileset Data 6" ; (not splitting) gfx/tilesets.asm
+	"gfx/tilesets.asm@Tileset Data 6"
 ROMX $38
-	"RotateUnownFrontpic - UnownPrinter_GBPrinterRectangle" ; engine/events/print_unown_2.asm
-
-	; engine/games/card_flip.asm
-	"Unknown_e00ed"
-	"_CardFlip - CardFlipTilemap"
-
-	"_UnownPuzzle - OmanytePuzzleLZ" ; engine/games/unown_puzzle.asm
-	"_DummyGame - LZ_e2221" ; engine/games/dummy_game.asm
-
-	; engine/pokemon/bills_pc.asm
-	"_DepositPKMN - PCString_NoReleasingEGGS"
-	"_ChangeBox - BillsPC_PlaceChangeBoxString"
+	"engine/events/print_unown_2.asm"
+	"engine/games/card_flip.asm@Unknown_e00ed"
+	"engine/games/card_flip.asm"
+	"engine/games/unown_puzzle.asm"
+	"engine/games/dummy_game.asm"
+	"engine/pokemon/bills_pc.asm"
+	"engine/pokemon/bills_pc.asm@_ChangeBox"
 ROMX $39
-	"CopyrightGFX" ; main.asm
-	"_OptionsMenu - Options_UpdateCursorPosition" ; engine/menus/options_menu.asm
-
-	; engine/movie/crystal_intro.asm
-	"Copyright_GFPresents - GameFreakLogo"
-	"CrystalIntro - IntroGrass4GFX"
+	"main.asm@CopyrightGFX"
+	"engine/menus/options_menu.asm"
+	"engine/movie/crystal_intro.asm@Copyright_GFPresents"
+	"engine/movie/crystal_intro.asm"
 ROMX $3a
-	"_MapSetup_Sound_Off - SFX" ; audio/engine.asm
-	"Music_Route36" ; audio/music/Route36.asm
-	"Music_RivalBattle" ; audio/music/RivalBattle.asm
-	"Music_RocketBattle" ; audio/music/RocketBattle.asm
-	"Music_ElmsLab" ; audio/music/ElmsLab.asm
-	"Music_DarkCave" ; audio/music/DarkCave.asm
-	"Music_JohtoGymBattle" ; audio/music/JohtoGymBattle.asm
-	"Music_ChampionBattle" ; audio/music/ChampionBattle.asm
-	"Music_SSAqua" ; audio/music/SSAqua.asm
-	"Music_NewBarkTown" ; audio/music/NewBarkTown.asm
-	"Music_GoldenrodCity" ; audio/music/GoldenrodCity.asm
-	"Music_VermilionCity" ; audio/music/VermilionCity.asm
-	"Music_TitleScreen" ; audio/music/TitleScreen.asm
-	"Music_RuinsOfAlphInterior" ; audio/music/RuinsOfAlphInterior.asm
-	"Music_LookPokemaniac" ; audio/music/LookPokemaniac.asm
-	"Music_TrainerVictory" ; audio/music/TrainerVictory.asm
+	"audio/engine.asm"
+	"audio/music/route36.asm"
+	"audio/music/rivalbattle.asm"
+	"audio/music/rocketbattle.asm"
+	"audio/music/elmslab.asm"
+	"audio/music/darkcave.asm"
+	"audio/music/johtogymbattle.asm"
+	"audio/music/championbattle.asm"
+	"audio/music/ssaqua.asm"
+	"audio/music/newbarktown.asm"
+	"audio/music/goldenrodcity.asm"
+	"audio/music/vermilioncity.asm"
+	"audio/music/titlescreen.asm"
+	"audio/music/ruinsofalphinterior.asm"
+	"audio/music/lookpokemaniac.asm"
+	"audio/music/trainervictory.asm"
 ROMX $3b
-	"Music_Route1" ; audio/music/Route1.asm
-	"Music_Route3" ; audio/music/Route3.asm
-	"Music_Route12" ; audio/music/Route12.asm
-	"Music_KantoGymBattle" ; audio/music/KantoGymBattle.asm
-	"Music_KantoTrainerBattle" ; audio/music/KantoTrainerBattle.asm
-	"Music_KantoWildBattle" ; audio/music/KantoWildBattle.asm
-	"Music_PokemonCenter" ; audio/music/PokemonCenter.asm
-	"Music_LookLass" ; audio/music/LookLass.asm
-	"Music_LookOfficer" ; audio/music/LookOfficer.asm
-	"Music_Route2" ; audio/music/Route2.asm
-	"Music_MtMoon" ; audio/music/MtMoon.asm
-	"Music_ShowMeAround" ; audio/music/ShowMeAround.asm
-	"Music_GameCorner" ; audio/music/GameCorner.asm
-	"Music_Bicycle" ; audio/music/Bicycle.asm
-	"Music_LookSage" ; audio/music/LookSage.asm
-	"Music_PokemonChannel" ; audio/music/PokemonChannel.asm
-	"Music_Lighthouse" ; audio/music/Lighthouse.asm
-	"Music_LakeOfRage" ; audio/music/LakeOfRage.asm
-	"Music_IndigoPlateau" ; audio/music/IndigoPlateau.asm
-	"Music_Route37" ; audio/music/Route37.asm
-	"Music_RocketHideout" ; audio/music/RocketHideout.asm
-	"Music_DragonsDen" ; audio/music/DragonsDen.asm
-	"Music_RuinsOfAlphRadio" ; audio/music/RuinsOfAlphRadio.asm
-	"Music_LookBeauty" ; audio/music/LookBeauty.asm
-	"Music_Route26" ; audio/music/Route26.asm
-	"Music_EcruteakCity" ; audio/music/EcruteakCity.asm
-	"Music_LakeOfRageRocketRadio" ; audio/music/LakeOfRageRocketRadio.asm
-	"Music_MagnetTrain" ; audio/music/MagnetTrain.asm
-	"Music_LavenderTown" ; audio/music/LavenderTown.asm
-	"Music_DancingHall" ; audio/music/DancingHall.asm
-	"Music_ContestResults" ; audio/music/ContestResults.asm
-	"Music_Route30" ; audio/music/Route30.asm
+	"audio/music/route1.asm"
+	"audio/music/route3.asm"
+	"audio/music/route12.asm"
+	"audio/music/kantogymbattle.asm"
+	"audio/music/kantotrainerbattle.asm"
+	"audio/music/kantowildbattle.asm"
+	"audio/music/pokemoncenter.asm"
+	"audio/music/looklass.asm"
+	"audio/music/lookofficer.asm"
+	"audio/music/route2.asm"
+	"audio/music/mtmoon.asm"
+	"audio/music/showmearound.asm"
+	"audio/music/gamecorner.asm"
+	"audio/music/bicycle.asm"
+	"audio/music/looksage.asm"
+	"audio/music/pokemonchannel.asm"
+	"audio/music/lighthouse.asm"
+	"audio/music/lakeofrage.asm"
+	"audio/music/indigoplateau.asm"
+	"audio/music/route37.asm"
+	"audio/music/rockethideout.asm"
+	"audio/music/dragonsden.asm"
+	"audio/music/ruinsofalphradio.asm"
+	"audio/music/lookbeauty.asm"
+	"audio/music/route26.asm"
+	"audio/music/ecruteakcity.asm"
+	"audio/music/lakeofragerocketradio.asm"
+	"audio/music/magnettrain.asm"
+	"audio/music/lavendertown.asm"
+	"audio/music/dancinghall.asm"
+	"audio/music/contestresults.asm"
+	"audio/music/route30.asm"
 ROMX $3c
-	"Music_VioletCity" ; audio/music/VioletCity.asm
-	"Music_Route29" ; audio/music/Route29.asm
-	"Music_HallOfFame" ; audio/music/HallOfFame.asm
-	"Music_HealPokemon" ; audio/music/HealPokemon.asm
-	"Music_Evolution" ; audio/music/Evolution.asm
-	"Music_Printer" ; audio/music/Printer.asm
-
-	; audio/sfx.asm
-	"Sfx_PokeballsPlacedOnTable - Sfx_Elevator_Ch8"
-	"Sfx_StopSlot - Sfx_StopSlot_Ch5"
-	"Sfx_GlassTing - Sfx_GlassTing_Ch5"
-	"Sfx_GlassTing2 - Sfx_GlassTing2_Ch6"
-
-	"PokemonCries" ; data/pokemon/cries.asm
-
-	; audio/cries.asm
-	"Cry_Marill - Cry_Aipom_Ch8"
-	"Cry_Nidoran_M - Cry_Rattata_Ch8"
+	"audio/music/violetcity.asm"
+	"audio/music/route29.asm"
+	"audio/music/halloffame.asm"
+	"audio/music/healpokemon.asm"
+	"audio/music/evolution.asm"
+	"audio/music/printer.asm"
+	"audio/sfx.asm"
+	"audio/sfx.asm@Sfx_StopSlot"
+	"audio/sfx.asm@Sfx_GlassTing"
+	"audio/sfx.asm@Sfx_GlassTing2"
+	"data/pokemon/cries.asm"
+	"audio/cries.asm@Johto"
+	"audio/cries.asm@Kanto"
 ROMX $3d
-	"Music_ViridianCity" ; audio/music/ViridianCity.asm
-	"Music_CeladonCity" ; audio/music/CeladonCity.asm
-	"Music_WildPokemonVictory" ; audio/music/WildPokemonVictory.asm
-	"Music_SuccessfulCapture" ; audio/music/SuccessfulCapture.asm
-	"Music_GymLeaderVictory" ; audio/music/GymLeaderVictory.asm
-	"Music_MtMoonSquare" ; audio/music/MtMoonSquare.asm
-	"Music_Gym" ; audio/music/Gym.asm
-	"Music_PalletTown" ; audio/music/PalletTown.asm
-	"Music_ProfOaksPokemonTalk" ; audio/music/ProfOaksPokemonTalk.asm
-	"Music_ProfOak" ; audio/music/ProfOak.asm
-	"Music_LookRival" ; audio/music/LookRival.asm
-	"Music_AfterTheRivalFight" ; audio/music/AfterTheRivalFight.asm
-	"Music_Surf" ; audio/music/Surf.asm
-	"Music_NationalPark" ; audio/music/NationalPark.asm
-	"Music_AzaleaTown" ; audio/music/AzaleaTown.asm
-	"Music_CherrygroveCity" ; audio/music/CherrygroveCity.asm
-	"Music_UnionCave" ; audio/music/UnionCave.asm
-	"Music_JohtoWildBattle" ; audio/music/JohtoWildBattle.asm
-	"Music_JohtoWildBattleNight" ; audio/music/JohtoWildBattleNight.asm
-	"Music_JohtoTrainerBattle" ; audio/music/JohtoTrainerBattle.asm
-	"Music_LookYoungster" ; audio/music/LookYoungster.asm
-	"Music_TinTower" ; audio/music/TinTower.asm
-	"Music_SproutTower" ; audio/music/SproutTower.asm
-	"Music_BurnedTower" ; audio/music/BurnedTower.asm
-	"Music_Mom" ; audio/music/Mom.asm
-	"Music_VictoryRoad" ; audio/music/VictoryRoad.asm
-	"Music_PokemonLullaby" ; audio/music/PokemonLullaby.asm
-	"Music_PokemonMarch" ; audio/music/PokemonMarch.asm
-	"Music_GoldSilverOpening" ; audio/music/GoldSilverOpening.asm
-	"Music_GoldSilverOpening2" ; audio/music/GoldSilverOpening2.asm
-	"Music_LookHiker" ; audio/music/LookHiker.asm
-	"Music_LookRocket" ; audio/music/LookRocket.asm
-	"Music_RocketTheme" ; audio/music/RocketTheme.asm
-	"Music_MainMenu" ; audio/music/MainMenu.asm
-	"Music_LookKimonoGirl" ; audio/music/LookKimonoGirl.asm
-	"Music_PokeFluteChannel" ; audio/music/PokeFluteChannel.asm
-	"Music_BugCatchingContest" ; audio/music/BugCatchingContest.asm
+	"audio/music/viridiancity.asm"
+	"audio/music/celadoncity.asm"
+	"audio/music/wildpokemonvictory.asm"
+	"audio/music/successfulcapture.asm"
+	"audio/music/gymleadervictory.asm"
+	"audio/music/mtmoonsquare.asm"
+	"audio/music/gym.asm"
+	"audio/music/pallettown.asm"
+	"audio/music/profoakspokemontalk.asm"
+	"audio/music/profoak.asm"
+	"audio/music/lookrival.asm"
+	"audio/music/aftertherivalfight.asm"
+	"audio/music/surf.asm"
+	"audio/music/nationalpark.asm"
+	"audio/music/azaleatown.asm"
+	"audio/music/cherrygrovecity.asm"
+	"audio/music/unioncave.asm"
+	"audio/music/johtowildbattle.asm"
+	"audio/music/johtowildbattlenight.asm"
+	"audio/music/johtotrainerbattle.asm"
+	"audio/music/lookyoungster.asm"
+	"audio/music/tintower.asm"
+	"audio/music/sprouttower.asm"
+	"audio/music/burnedtower.asm"
+	"audio/music/mom.asm"
+	"audio/music/victoryroad.asm"
+	"audio/music/pokemonlullaby.asm"
+	"audio/music/pokemonmarch.asm"
+	"audio/music/goldsilveropening.asm"
+	"audio/music/goldsilveropening2.asm"
+	"audio/music/lookhiker.asm"
+	"audio/music/lookrocket.asm"
+	"audio/music/rockettheme.asm"
+	"audio/music/mainmenu.asm"
+	"audio/music/lookkimonogirl.asm"
+	"audio/music/pokeflutechannel.asm"
+	"audio/music/bugcatchingcontest.asm"
 ROMX $3e
-	"FontExtra - Footprints" ; gfx/font.asm
-
-	; engine/gfx/load_font.asm
-	"Unreferenced_fb434 - Unreferenced_Functionfb43f"
-	"_LoadStandardFont"
-	"_LoadFontsExtra1 - LoadStatsScreenPageTilesGFX"
-
-	; engine/link/time_capsule.asm
-	"ValidateOTTrademon"
-	"Functionfb5dd"
-	"PlaceTradePartnerNamesAndParty"
-
-	"KantoMonSpecials" ; data/pokemon/gen1_base_special.asm
-	"_NameRater - NameRaterDoneText" ; engine/events/name_rater.asm
-	"PlaySlowCry" ; engine/events/play_slow_cry.asm
-	"NewPokedexEntry" ; engine/pokedex/new_pokedex_entry.asm
-	"ConvertMon_2to1 - Pokered_MonIndices" ; engine/link/time_capsule_2.asm
-
-	; engine/pokedex/unown_dex.asm
-	"UpdateUnownDex"
-	"PrintUnownWord - UnownWordZ"
-
-	"CheckMagikarpLength - MagikarpHouseSign" ; engine/events/magikarp.asm
-	"HiddenPowerDamage" ; engine/battle/hidden_power.asm
-
-	; engine/battle/misc.asm
-	"_DisappearUser - GetPlayerBackpicCoords"
-	"DoWeatherModifiers - WeatherMoveModifiers"
-	"DoBadgeTypeBoosts - BadgeTypeBoosts"
+	"gfx/font.asm"
+	"engine/gfx/load_font.asm@Unreferenced"
+	"engine/gfx/load_font.asm@_LoadStandardFont"
+	"engine/gfx/load_font.asm"
+	"engine/link/time_capsule.asm@ValidateOTTrademon"
+	"engine/link/time_capsule.asm@Functionfb5dd"
+	"engine/link/time_capsule.asm@PlaceTradePartnerNamesAndParty"
+	"data/pokemon/gen1_base_special.asm"
+	"engine/events/name_rater.asm"
+	"engine/events/play_slow_cry.asm"
+	"engine/pokedex/new_pokedex_entry.asm"
+	"engine/link/time_capsule_2.asm"
+	"engine/pokedex/unown_dex.asm@UpdateUnownDex"
+	"engine/pokedex/unown_dex.asm@PrintUnownWord"
+	"engine/events/magikarp.asm"
+	"engine/battle/hidden_power.asm"
+	"engine/battle/misc.asm@AppearDisappearUser"
+	"engine/battle/misc.asm@DoWeatherModifiers"
+	"engine/battle/misc.asm@DoBadgeTypeBoosts"
 ROMX $3f
-	"_AnimateTileset - WhirlpoolTiles4" ; engine/tilesets/tileset_anims.asm
-	"NPCTrade - TradeAfterText3" ; engine/events/npc_trade.asm
-
-	; engine/events/mom_phone.asm
-	"MomTriesToBuySomething - _MomText_ItsInRoom"
-	"DummyPredef3A"
+	"engine/tilesets/tileset_anims.asm"
+	"engine/events/npc_trade.asm"
+	"engine/events/mom_phone.asm"
+	"engine/events/mom_phone.asm@DummyPredef3A"
 ROMX $40
-	; mobile/mobile_40.asm
-	"Function100000 - UnknownText_0x1021f4"
-	"Function100000 - UnknownText_0x1021f4 (2)"
-	"Function100000 - UnknownText_0x1021f4 (3)"
-	"Function100000 - UnknownText_0x1021f4 (4)"
-	"Function100000 - UnknownText_0x1021f4 (5)"
-	"Function1021f9 - Palettes_1032e2"
-	"Function103302 - MenuData_103648"
-	"Function103654"
-	"Mobile_SelectThreeMons - UnknownText_0x10377b"
-	"Function103780 - Function10378c"
-	"Function1037c2 - Function103823"
-	"Function10383c - UnknownText_0x103876"
-	"Function10387b - UnknownText_0x103898"
+	"mobile/mobile_40.asm@Function100000 - UnknownText_0x1021f4 (1)"
+	"mobile/mobile_40.asm@Function100000 - UnknownText_0x1021f4 (ASCII 1)"
+	"mobile/mobile_40.asm@Function100000 - UnknownText_0x1021f4 (2)"
+	"mobile/mobile_40.asm@Function100000 - UnknownText_0x1021f4 (ASCII 2)"
+	"mobile/mobile_40.asm@Function100000 - UnknownText_0x1021f4 (3)"
+	"mobile/mobile_40.asm@Function1021f9 - Palettes_1032e2"
+	"mobile/mobile_40.asm@Function103302 - MenuData_103648"
+	"mobile/mobile_40.asm@Function103654"
+	"mobile/mobile_40.asm@Mobile_SelectThreeMons - UnknownText_0x10377b"
+	"mobile/mobile_40.asm@Function103780 - Function10378c"
+	"mobile/mobile_40.asm@Function1037c2 - Function103823"
+	"mobile/mobile_40.asm@Function10383c - UnknownText_0x103876"
+	"mobile/mobile_40.asm@Function10387b - UnknownText_0x103898"
 ROMX $41
-	"HDMATransferAttrMapAndTileMapToWRAMBank3 - HDMATransfer_OnlyTopFourRows" ; engine/gfx/dma_transfer.asm
-	"ShockEmote - GrassRustleGFX" ; gfx/emotes.asm
-
-	; engine/overworld/warp_connection.asm
-	"HandleNewMap - InitCommandQueue"
-	"EnterMapConnection"
-	"LoadWarpData"
-	"LoadMapTimeOfDay"
-	"LoadGraphics"
-	"LoadMapPalettes"
-	"RefreshMapSprites"
-	"CheckMovingOffEdgeOfMap"
-	"GetCoordOfUpperLeftCorner"
-
-	"DoMysteryGift - MysteryGiftJP_GFX" ; engine/link/mystery_gift.asm
-	"DisplayUsedMoveText - UpdateUsedMoves" ; engine/battle/used_move_text.asm
-
-	; mobile/mobile_41.asm
-	"StubbedTrainerRankings_HallOfFame2 - InitializeTrainerRankings"
-	"_MobilePrintNum"
-	"Mobile_DummyReturnFalse"
-	"Stubbed_Function106314 - Function106453"
-	"Stubbed_Function106462"
-	"Function106464"
-	"Function10649b - asm_1064ed"
-	"Function10650a"
-	"GFX_106514"
-
-	"LoadOverworldFont" ; engine/gfx/load_overworld_font.asm
+	"engine/gfx/dma_transfer.asm"
+	"gfx/emotes.asm"
+	"engine/overworld/warp_connection.asm@HandleNewMap"
+	"engine/overworld/warp_connection.asm@EnterMapConnection"
+	"engine/overworld/warp_connection.asm@LoadWarpData"
+	"engine/overworld/warp_connection.asm@LoadMapTimeOfDay"
+	"engine/overworld/warp_connection.asm@LoadGraphics"
+	"engine/overworld/warp_connection.asm@LoadMapPalettes"
+	"engine/overworld/warp_connection.asm@RefreshMapSprites"
+	"engine/overworld/warp_connection.asm@CheckMovingOffEdgeOfMap"
+	"engine/overworld/warp_connection.asm@GetCoordOfUpperLeftCorner"
+	"engine/link/mystery_gift.asm"
+	"engine/battle/used_move_text.asm"
+	"mobile/mobile_41.asm@TrainerRankings"
+	"mobile/mobile_41.asm@_MobilePrintNum"
+	"mobile/mobile_41.asm@Mobile_DummyReturnFalse"
+	"mobile/mobile_41.asm@Stubbed_Function106314 - Function106453"
+	"mobile/mobile_41.asm@Stubbed_Function106462"
+	"mobile/mobile_41.asm@Function106464"
+	"mobile/mobile_41.asm@Function10649b - asm_1064ed"
+	"mobile/mobile_41.asm@Function10650a"
+	"mobile/mobile_41.asm@GFX_106514"
+	"engine/gfx/load_overworld_font.asm"
 ROMX $42
-	"MobileTradeAnimation_SendGivemonToGTS - Palette_1093c7" ; mobile/mobile_42.asm
-	"IntroLogoGFX" ; main.asm
-	"Credits - CreditsStrings" ; engine/movie/credits.asm
+	"mobile/mobile_42.asm"
+	"main.asm@IntroLogoGFX"
+	"engine/movie/credits.asm"
 ROMX $43
-	"UnusedTitleScreen - UnusedTitleFG_OAM" ; engine/movie/unused_title.asm
-	"Function10ed51 - TitleScreenPalettes" ; engine/movie/title.asm
+	"engine/movie/unused_title.asm"
+	"engine/movie/title.asm"
 ROMX $44
-	"Mobile Adapter SDK" ; (not splitting) lib/mobile/main.asm
+	"Mobile Adapter SDK"
 ROMX $45
-	"String_114000 - Function115d80" ; mobile/mobile_45.asm
-
-	; mobile/mobile_45_sprite_engine.asm
-	"Function115d99"
-	"Function115dc3"
-	"Function115dd3 - Unknown_116005"
-	"GFX_11601a"
-	"Function11615a"
-	"Function11619d - Unknown_117356"
-
-	; mobile/mobile_45.asm (cont.)
-	"GiveOddEgg"
-	"Function11765d - Unknown_117a47"
-	"MobileStudium - MobileStudium_JumptableIncrement"
+	"mobile/mobile_45.asm@String_114000 - Function115d80"
+	"mobile/mobile_45_sprite_engine.asm@Function115d99"
+	"mobile/mobile_45_sprite_engine.asm@Function115dc3"
+	"mobile/mobile_45_sprite_engine.asm@Function115dd3 - Unknown_116005"
+	"mobile/mobile_45_sprite_engine.asm@GFX_11601a"
+	"mobile/mobile_45_sprite_engine.asm@Function11615a"
+	"mobile/mobile_45_sprite_engine.asm@Function11619d - Unknown_117356"
+	"mobile/mobile_45.asm@GiveOddEgg"
+	"mobile/mobile_45.asm@Function11765d - Unknown_117a47"
+	"mobile/mobile_45.asm@MobileStudium"
 ROMX $46
-	"Function118000 - TilemapPack_11bb7d"
-	"Function118000 - TilemapPack_11bb7d (2)"
+	"mobile/mobile_46.asm@Function118000 - TilemapPack_11bb7d (ASCII)"
+	"mobile/mobile_46.asm@Function118000 - TilemapPack_11bb7d"
 ROMX $47
-	"BattleTowerText - BTWinF15" ; engine/events/battle_tower/trainer_text.asm
+	"engine/events/battle_tower/trainer_text.asm"
 ROMX $48
 	org $4000
-	"PokemonPicPointers" ; data/pokemon/pic_pointers.asm
-	"Pics 1" ; (not splitting) gfx/pics.asm
+	"data/pokemon/pic_pointers.asm"
+	"gfx/pics.asm@Pics 1"
 ROMX $49
 	org $4000
-	"UnownPicPointers" ; data/pokemon/unown_pic_pointers.asm
-	"Pics 2" ; (not splitting) gfx/pics.asm
+	"data/pokemon/unown_pic_pointers.asm"
+	"gfx/pics.asm@Pics 2"
 ROMX $4a
-	"TrainerPicPointers" ; data/trainers/pic_pointers.asm
-	"Pics 3" ; (not splitting) gfx/pics.asm
+	"data/trainers/pic_pointers.asm"
+	"gfx/pics.asm@Pics 3"
 ROMX $4b
-	"Pics 4" ; (not splitting) gfx/pics.asm
+	"gfx/pics.asm@Pics 4"
 ROMX $4c
-	"Pics 5" ; (not splitting) gfx/pics.asm
+	"gfx/pics.asm@Pics 5"
 ROMX $4d
-	"Pics 6" ; (not splitting) gfx/pics.asm
+	"gfx/pics.asm@Pics 6"
 ROMX $4e
-	"Pics 7" ; (not splitting) gfx/pics.asm
+	"gfx/pics.asm@Pics 7"
 ROMX $4f
-	"Pics 8" ; (not splitting) gfx/pics.asm
+	"gfx/pics.asm@Pics 8"
 ROMX $50
-	"Pics 9" ; (not splitting) gfx/pics.asm
+	"gfx/pics.asm@Pics 9"
 ROMX $51
-	"Pics 10" ; (not splitting) gfx/pics.asm
+	"gfx/pics.asm@Pics 10"
 ROMX $52
-	"Pics 11" ; (not splitting) gfx/pics.asm
+	"gfx/pics.asm@Pics 11"
 ROMX $53
-	"Pics 12" ; (not splitting) gfx/pics.asm
+	"gfx/pics.asm@Pics 12"
 ROMX $54
-	"Pics 13" ; (not splitting) gfx/pics.asm
+	"gfx/pics.asm@Pics 13"
 ROMX $55
-	"Pics 14" ; (not splitting) gfx/pics.asm
+	"gfx/pics.asm@Pics 14"
 ROMX $56
-	"Pics 15" ; (not splitting) gfx/pics.asm
+	"gfx/pics.asm@Pics 15"
 ROMX $57
-	"Pics 16" ; (not splitting) gfx/pics.asm
+	"gfx/pics.asm@Pics 16"
 ROMX $58
-	"Pics 17" ; (not splitting) gfx/pics.asm
+	"gfx/pics.asm@Pics 17"
 ROMX $59
-	"Pics 18" ; (not splitting) gfx/pics.asm
+	"gfx/pics.asm@Pics 18"
 ROMX $5a
-	"Pics 19" ; (not splitting) gfx/pics.asm
+	"gfx/pics.asm@Pics 19"
 ROMX $5b
-	"Unreferenced_Function16c000 - Unknown_16cfb9" ; mobile/mobile_5b.asm
-
-	; engine/link/link_trade.asm
-	"LinkCommsBorderGFX - LinkTextbox"
-	"Function16d6ce - Function16d6e1"
-	"LinkTradeMenu"
-
-	"Pics 20" ; (not splitting) gfx/pics.asm
+	"mobile/mobile_5b.asm"
+	"engine/link/link_trade.asm@_LoadTradeScreenBorder"
+	"engine/link/link_trade.asm@Function16d6ce"
+	"engine/link/link_trade.asm@LinkTradeMenu"
+	"gfx/pics.asm@Pics 20"
 ROMX $5c
-	; mobile/mobile_5c.asm
-	"Function170000"
-	"Function17005a"
-	"BattleTowerRoomMenu - CheckBTMonMovesForErrors"
-	"Function170cc6 - GFX_171848"
-	"Function1719c8 - String_171c73"
-	"Function171c87 - String_172e5d"
-	"Function172e78 - Attrmap_173517"
-
-	"Pics 21" ; (not splitting) gfx/pics.asm
+	"mobile/mobile_5c.asm@Function170000"
+	"mobile/mobile_5c.asm@Function17005a"
+	"mobile/mobile_5c.asm@BattleTowerRoomMenu"
+	"mobile/mobile_5c.asm@Function170cc6 - GFX_171848"
+	"mobile/mobile_5c.asm@Function1719c8 - String_171c73"
+	"mobile/mobile_5c.asm@Function171c87 - String_172e5d"
+	"mobile/mobile_5c.asm@Function172e78 - Attrmap_173517"
+	"gfx/pics.asm@Pics 21"
 ROMX $5d
-	"UnknownText_0x174000" ; data/phone/text/bike_shop.asm
-	"JackIntelligenceText - UnknownText_0x174638" ; data/phone/text/jack_caller.asm
-	"UnknownText_0x174688 - UnknownText_0x174895" ; data/phone/text/beverly_caller.asm
-	"UnknownText_0x1748ea - UnknownText_0x1749c7" ; data/phone/text/huey_caller.asm
-	"GavenGreaterText - UnknownText_0x174c49" ; data/phone/text/gaven_caller.asm
-	"UnknownText_0x174c7f - BethForgetDealText" ; data/phone/text/beth_caller.asm
-	"JoseAromaText - UnknownText_0x17529c" ; data/phone/text/jose_caller.asm
-	"UnknownText_0x1752f5 - UnknownText_0x1754e5" ; data/phone/text/reena_caller.asm
-	"JoeySharperText - UnknownText_0x175786" ; data/phone/text/joey_caller.asm
-	"WadeAreYouGrowingText - UnknownText_0x175b6d" ; data/phone/text/wade_caller.asm
-	"RalphNeglectingKidsText - UnknownText_0x175f70" ; data/phone/text/ralph_caller.asm
-	"UnknownText_0x175fda - UnknownText_0x1769da" ; data/phone/text/liz_caller.asm
-	"AnthonyAteBerriesText - UnknownText_0x176dd1" ; data/phone/text/anthony_caller.asm
-	"ToddLooksCuteLikeMeText - UnknownText_0x17717c" ; data/phone/text/todd_caller.asm
-	"UnknownText_0x1771fd - UnknownText_0x17750e" ; data/phone/text/gina_caller.asm
-	"Pics 22" ; (not splitting) gfx/pics.asm
+	"data/phone/text/bike_shop.asm"
+	"data/phone/text/jack_caller.asm"
+	"data/phone/text/beverly_caller.asm"
+	"data/phone/text/huey_caller.asm"
+	"data/phone/text/gaven_caller.asm"
+	"data/phone/text/beth_caller.asm"
+	"data/phone/text/jose_caller.asm"
+	"data/phone/text/reena_caller.asm"
+	"data/phone/text/joey_caller.asm"
+	"data/phone/text/wade_caller.asm"
+	"data/phone/text/ralph_caller.asm"
+	"data/phone/text/liz_caller.asm"
+	"data/phone/text/anthony_caller.asm"
+	"data/phone/text/todd_caller.asm"
+	"data/phone/text/gina_caller.asm"
+	"gfx/pics.asm@Pics 22"
 ROMX $5e
-	"_UpdateBattleHUDs" ; engine/battle/update_battle_huds.asm
-	"Music_MobileAdapterMenu" ; audio/music/MobileAdapterMenu.asm
-	"Music_BuenasPassword" ; audio/music/BuenasPassword.asm
-	"Music_LookMysticalMan" ; audio/music/LookMysticalMan.asm
-	"Music_CrystalOpening" ; audio/music/CrystalOpening.asm
-	"Music_BattleTowerTheme" ; audio/music/BattleTowerTheme.asm
-	"Music_SuicuneBattle" ; audio/music/SuicuneBattle.asm
-	"Music_BattleTowerLobby" ; audio/music/BattleTowerLobby.asm
-	"Music_MobileCenter" ; audio/music/MobileCenter.asm
-
-	; audio/sfx_crystal.asm
-	"Sfx_IntroUnown1 - Sfx_IntroUnown1_Ch5"
-	"Sfx_IntroUnown2 - Sfx_IntroUnown2_Ch6"
-	"Sfx_IntroUnown3 - Sfx_IntroUnown3_Ch7"
-	"Sfx_DittoPopUp - Sfx_DittoPopUp_Ch5"
-	"Sfx_DittoTransform - Sfx_DittoTransform_Ch5"
-	"Sfx_IntroSuicune1 - Sfx_IntroSuicune1_Ch8"
-	"Sfx_IntroPichu - Sfx_IntroPichu_Ch5"
-	"Sfx_IntroSuicune2 - Sfx_IntroSuicune2_Ch8"
-	"Sfx_IntroSuicune3 - Sfx_IntroSuicune3_Ch8"
-	"Sfx_DittoBounce - Sfx_DittoBounce_Ch5"
-	"Sfx_IntroSuicune4 - Sfx_IntroSuicune4_Ch8"
-	"Sfx_GameFreakPresents - Sfx_GameFreakPresents_Ch5"
-	"Sfx_Tingle - Sfx_Tingle_Ch5"
-	"Sfx_TwoPcBeeps - Sfx_TwoPcBeeps_Ch5"
-	"Sfx_4NoteDitty - Sfx_4NoteDitty_Ch7"
-	"Sfx_Twinkle - Sfx_Twinkle_Ch5"
-
-	; mobile/mobile_5e.asm
-	"MobileAdapterGFX"
-	"Function17a68f - GFX_17afa5"
-
-	"Pics 23" ; (not splitting) gfx/pics.asm
+	"engine/battle/update_battle_huds.asm"
+	"audio/music/mobileadaptermenu.asm"
+	"audio/music/buenaspassword.asm"
+	"audio/music/lookmysticalman.asm"
+	"audio/music/crystalopening.asm"
+	"audio/music/battletowertheme.asm"
+	"audio/music/suicunebattle.asm"
+	"audio/music/battletowerlobby.asm"
+	"audio/music/mobilecenter.asm"
+	"audio/sfx_crystal.asm@Sfx_IntroUnown1"
+	"audio/sfx_crystal.asm@Sfx_IntroUnown2"
+	"audio/sfx_crystal.asm@Sfx_IntroUnown3"
+	"audio/sfx_crystal.asm@Sfx_DittoPopUp"
+	"audio/sfx_crystal.asm@Sfx_DittoTransform"
+	"audio/sfx_crystal.asm@Sfx_IntroSuicune1"
+	"audio/sfx_crystal.asm@Sfx_IntroPichu"
+	"audio/sfx_crystal.asm@Sfx_IntroSuicune2"
+	"audio/sfx_crystal.asm@Sfx_IntroSuicune3"
+	"audio/sfx_crystal.asm@Sfx_DittoBounce"
+	"audio/sfx_crystal.asm@Sfx_IntroSuicune4"
+	"audio/sfx_crystal.asm@Sfx_GameFreakPresents"
+	"audio/sfx_crystal.asm@Sfx_Tingle"
+	"audio/sfx_crystal.asm@Sfx_TwoPcBeeps"
+	"audio/sfx_crystal.asm@Sfx_4NoteDitty"
+	"audio/sfx_crystal.asm@Sfx_Twinkle"
+	"mobile/mobile_5e.asm@MobileAdapterGFX"
+	"mobile/mobile_5e.asm@Function17a68f - GFX_17afa5"
+	"gfx/pics.asm@Pics 23"
 ROMX $5f
-	; mobile/mobile_5f.asm
-	"Function17c000 - HaveWantPals"
-	"CheckStringForErrors"
-	"CheckStringForErrors_IgnoreTerminator"
-	"Function17d0f3"
-	"Mobile_CopyDefaultOTName - Mobile_CopyDefaultMailAuthor"
-	"CheckStringContainsLessThanBNextCharacters"
-	"Function17d1f1"
-	"Menu_ChallengeExplanationCancel - MenuData_ChallengeExplanationCancel"
-	"Function17d2b6 - Function17d2c0"
-	"Function17d2ce - Function17f524"
-	"BattleTowerMobileError - String_17ff68"
-
-	"Pics 24" ; (not splitting) gfx/pics.asm
+	"mobile/mobile_5f.asm@Function17c000 - HaveWantPals"
+	"mobile/mobile_5f.asm@CheckStringForErrors"
+	"mobile/mobile_5f.asm@CheckStringForErrors_IgnoreTerminator"
+	"mobile/mobile_5f.asm@Function17d0f3"
+	"mobile/mobile_5f.asm@Mobile_CopyDefaultOTName - Mobile_CopyDefaultMailAuthor"
+	"mobile/mobile_5f.asm@CheckStringContainsLessThanBNextCharacters"
+	"mobile/mobile_5f.asm@Function17d1f1"
+	"mobile/mobile_5f.asm@Menu_ChallengeExplanationCancel"
+	"mobile/mobile_5f.asm@Function17d2b6 - Function17d2c0"
+	"mobile/mobile_5f.asm@Function17d2ce - Function17f524"
+	"mobile/mobile_5f.asm@BattleTowerMobileError - String_17ff68"
+	"gfx/pics.asm@Pics 24"
 ROMX $60
-	"IndigoPlateauPokecenter1F_MapScripts" ; maps/IndigoPlateauPokecenter1F.asm
-	"WillsRoom_MapScripts" ; maps/WillsRoom.asm
-	"KogasRoom_MapScripts" ; maps/KogasRoom.asm
-	"BrunosRoom_MapScripts" ; maps/BrunosRoom.asm
-	"KarensRoom_MapScripts" ; maps/KarensRoom.asm
-	"LancesRoom_MapScripts" ; maps/LancesRoom.asm
-	"HallOfFame_MapScripts" ; maps/HallOfFame.asm
-	"Pokedex Entries 001-064" ; data/pokemon/dex_entries.asm
+	"maps/IndigoPlateauPokecenter1F.asm"
+	"maps/WillsRoom.asm"
+	"maps/KogasRoom.asm"
+	"maps/BrunosRoom.asm"
+	"maps/KarensRoom.asm"
+	"maps/LancesRoom.asm"
+	"maps/HallOfFame.asm"
+	"data/pokemon/dex_entries.asm@Pokedex Entries 001-064"
 ROMX $61
-	"CeruleanCity_MapScripts" ; maps/CeruleanCity.asm
-	"SproutTower1F_MapScripts" ; maps/SproutTower1F.asm
-	"SproutTower2F_MapScripts" ; maps/SproutTower2F.asm
-	"SproutTower3F_MapScripts" ; maps/SproutTower3F.asm
-	"TinTower1F_MapScripts" ; maps/TinTower1F.asm
-	"TinTower2F_MapScripts" ; maps/TinTower2F.asm
-	"TinTower3F_MapScripts" ; maps/TinTower3F.asm
-	"TinTower4F_MapScripts" ; maps/TinTower4F.asm
-	"TinTower5F_MapScripts" ; maps/TinTower5F.asm
-	"TinTower6F_MapScripts" ; maps/TinTower6F.asm
-	"TinTower7F_MapScripts" ; maps/TinTower7F.asm
-	"TinTower8F_MapScripts" ; maps/TinTower8F.asm
-	"TinTower9F_MapScripts" ; maps/TinTower9F.asm
-	"BurnedTower1F_MapScripts" ; maps/BurnedTower1F.asm
-	"BurnedTowerB1F_MapScripts" ; maps/BurnedTowerB1F.asm
+	"maps/CeruleanCity.asm"
+	"maps/SproutTower1F.asm"
+	"maps/SproutTower2F.asm"
+	"maps/SproutTower3F.asm"
+	"maps/TinTower1F.asm"
+	"maps/TinTower2F.asm"
+	"maps/TinTower3F.asm"
+	"maps/TinTower4F.asm"
+	"maps/TinTower5F.asm"
+	"maps/TinTower6F.asm"
+	"maps/TinTower7F.asm"
+	"maps/TinTower8F.asm"
+	"maps/TinTower9F.asm"
+	"maps/BurnedTower1F.asm"
+	"maps/BurnedTowerB1F.asm"
 ROMX $62
-	"CeruleanGymBadgeSpeechHouse_MapScripts" ; maps/CeruleanGymBadgeSpeechHouse.asm
-	"CeruleanPoliceStation_MapScripts" ; maps/CeruleanPoliceStation.asm
-	"CeruleanTradeSpeechHouse_MapScripts" ; maps/CeruleanTradeSpeechHouse.asm
-	"CeruleanPokecenter1F_MapScripts" ; maps/CeruleanPokecenter1F.asm
-	"CeruleanPokecenter2FBeta_MapScripts" ; maps/CeruleanPokecenter2FBeta.asm
-	"CeruleanGym_MapScripts" ; maps/CeruleanGym.asm
-	"CeruleanMart_MapScripts" ; maps/CeruleanMart.asm
-	"Route10Pokecenter1F_MapScripts" ; maps/Route10Pokecenter1F.asm
-	"Route10Pokecenter2FBeta_MapScripts" ; maps/Route10Pokecenter2FBeta.asm
-	"PowerPlant_MapScripts" ; maps/PowerPlant.asm
-	"BillsHouse_MapScripts" ; maps/BillsHouse.asm
-	"FightingDojo_MapScripts" ; maps/FightingDojo.asm
-	"SaffronGym_MapScripts" ; maps/SaffronGym.asm
-	"SaffronMart_MapScripts" ; maps/SaffronMart.asm
-	"SaffronPokecenter1F_MapScripts" ; maps/SaffronPokecenter1F.asm
-	"SaffronPokecenter2FBeta_MapScripts" ; maps/SaffronPokecenter2FBeta.asm
-	"MrPsychicsHouse_MapScripts" ; maps/MrPsychicsHouse.asm
-	"SaffronMagnetTrainStation_MapScripts" ; maps/SaffronMagnetTrainStation.asm
-	"SilphCo1F_MapScripts" ; maps/SilphCo1F.asm
-	"CopycatsHouse1F_MapScripts" ; maps/CopycatsHouse1F.asm
-	"CopycatsHouse2F_MapScripts" ; maps/CopycatsHouse2F.asm
-	"Route5UndergroundPathEntrance_MapScripts" ; maps/Route5UndergroundPathEntrance.asm
-	"Route5SaffronGate_MapScripts" ; maps/Route5SaffronGate.asm
-	"Route5CleanseTagHouse_MapScripts" ; maps/Route5CleanseTagHouse.asm
+	"maps/CeruleanGymBadgeSpeechHouse.asm"
+	"maps/CeruleanPoliceStation.asm"
+	"maps/CeruleanTradeSpeechHouse.asm"
+	"maps/CeruleanPokecenter1F.asm"
+	"maps/CeruleanPokecenter2FBeta.asm"
+	"maps/CeruleanGym.asm"
+	"maps/CeruleanMart.asm"
+	"maps/Route10Pokecenter1F.asm"
+	"maps/Route10Pokecenter2FBeta.asm"
+	"maps/PowerPlant.asm"
+	"maps/BillsHouse.asm"
+	"maps/FightingDojo.asm"
+	"maps/SaffronGym.asm"
+	"maps/SaffronMart.asm"
+	"maps/SaffronPokecenter1F.asm"
+	"maps/SaffronPokecenter2FBeta.asm"
+	"maps/MrPsychicsHouse.asm"
+	"maps/SaffronMagnetTrainStation.asm"
+	"maps/SilphCo1F.asm"
+	"maps/CopycatsHouse1F.asm"
+	"maps/CopycatsHouse2F.asm"
+	"maps/Route5UndergroundPathEntrance.asm"
+	"maps/Route5SaffronGate.asm"
+	"maps/Route5CleanseTagHouse.asm"
 ROMX $63
-	"PewterCity_MapScripts" ; maps/PewterCity.asm
-	"WhirlIslandNW_MapScripts" ; maps/WhirlIslandNW.asm
-	"WhirlIslandNE_MapScripts" ; maps/WhirlIslandNE.asm
-	"WhirlIslandSW_MapScripts" ; maps/WhirlIslandSW.asm
-	"WhirlIslandCave_MapScripts" ; maps/WhirlIslandCave.asm
-	"WhirlIslandSE_MapScripts" ; maps/WhirlIslandSE.asm
-	"WhirlIslandB1F_MapScripts" ; maps/WhirlIslandB1F.asm
-	"WhirlIslandB2F_MapScripts" ; maps/WhirlIslandB2F.asm
-	"WhirlIslandLugiaChamber_MapScripts" ; maps/WhirlIslandLugiaChamber.asm
-	"SilverCaveRoom1_MapScripts" ; maps/SilverCaveRoom1.asm
-	"SilverCaveRoom2_MapScripts" ; maps/SilverCaveRoom2.asm
-	"SilverCaveRoom3_MapScripts" ; maps/SilverCaveRoom3.asm
-	"SilverCaveItemRooms_MapScripts" ; maps/SilverCaveItemRooms.asm
-	"DarkCaveVioletEntrance_MapScripts" ; maps/DarkCaveVioletEntrance.asm
-	"DarkCaveBlackthornEntrance_MapScripts" ; maps/DarkCaveBlackthornEntrance.asm
-	"DragonsDen1F_MapScripts" ; maps/DragonsDen1F.asm
-	"DragonsDenB1F_MapScripts" ; maps/DragonsDenB1F.asm
-	"DragonShrine_MapScripts" ; maps/DragonShrine.asm
-	"TohjoFalls_MapScripts" ; maps/TohjoFalls.asm
-	"AzaleaPokecenter1F_MapScripts" ; maps/AzaleaPokecenter1F.asm
-	"CharcoalKiln_MapScripts" ; maps/CharcoalKiln.asm
-	"AzaleaMart_MapScripts" ; maps/AzaleaMart.asm
-	"KurtsHouse_MapScripts" ; maps/KurtsHouse.asm
-	"AzaleaGym_MapScripts" ; maps/AzaleaGym.asm
+	"maps/PewterCity.asm"
+	"maps/WhirlIslandNW.asm"
+	"maps/WhirlIslandNE.asm"
+	"maps/WhirlIslandSW.asm"
+	"maps/WhirlIslandCave.asm"
+	"maps/WhirlIslandSE.asm"
+	"maps/WhirlIslandB1F.asm"
+	"maps/WhirlIslandB2F.asm"
+	"maps/WhirlIslandLugiaChamber.asm"
+	"maps/SilverCaveRoom1.asm"
+	"maps/SilverCaveRoom2.asm"
+	"maps/SilverCaveRoom3.asm"
+	"maps/SilverCaveItemRooms.asm"
+	"maps/DarkCaveVioletEntrance.asm"
+	"maps/DarkCaveBlackthornEntrance.asm"
+	"maps/DragonsDen1F.asm"
+	"maps/DragonsDenB1F.asm"
+	"maps/DragonShrine.asm"
+	"maps/TohjoFalls.asm"
+	"maps/AzaleaPokecenter1F.asm"
+	"maps/CharcoalKiln.asm"
+	"maps/AzaleaMart.asm"
+	"maps/KurtsHouse.asm"
+	"maps/AzaleaGym.asm"
 ROMX $64
-	"MahoganyTown_MapScripts" ; maps/MahoganyTown.asm
-	"Route32_MapScripts" ; maps/Route32.asm
-	"VermilionFishingSpeechHouse_MapScripts" ; maps/VermilionFishingSpeechHouse.asm
-	"VermilionPokecenter1F_MapScripts" ; maps/VermilionPokecenter1F.asm
-	"VermilionPokecenter2FBeta_MapScripts" ; maps/VermilionPokecenter2FBeta.asm
-	"PokemonFanClub_MapScripts" ; maps/PokemonFanClub.asm
-	"VermilionMagnetTrainSpeechHouse_MapScripts" ; maps/VermilionMagnetTrainSpeechHouse.asm
-	"VermilionMart_MapScripts" ; maps/VermilionMart.asm
-	"VermilionDiglettsCaveSpeechHouse_MapScripts" ; maps/VermilionDiglettsCaveSpeechHouse.asm
-	"VermilionGym_MapScripts" ; maps/VermilionGym.asm
-	"Route6SaffronGate_MapScripts" ; maps/Route6SaffronGate.asm
-	"Route6UndergroundPathEntrance_MapScripts" ; maps/Route6UndergroundPathEntrance.asm
-	"Pokecenter2F_MapScripts" ; maps/Pokecenter2F.asm
-	"TradeCenter_MapScripts" ; maps/TradeCenter.asm
-	"Colosseum_MapScripts" ; maps/Colosseum.asm
-	"TimeCapsule_MapScripts" ; maps/TimeCapsule.asm
-	"MobileTradeRoom_MapScripts" ; maps/MobileTradeRoom.asm
-	"MobileBattleRoom_MapScripts" ; maps/MobileBattleRoom.asm
+	"maps/MahoganyTown.asm"
+	"maps/Route32.asm"
+	"maps/VermilionFishingSpeechHouse.asm"
+	"maps/VermilionPokecenter1F.asm"
+	"maps/VermilionPokecenter2FBeta.asm"
+	"maps/PokemonFanClub.asm"
+	"maps/VermilionMagnetTrainSpeechHouse.asm"
+	"maps/VermilionMart.asm"
+	"maps/VermilionDiglettsCaveSpeechHouse.asm"
+	"maps/VermilionGym.asm"
+	"maps/Route6SaffronGate.asm"
+	"maps/Route6UndergroundPathEntrance.asm"
+	"maps/Pokecenter2F.asm"
+	"maps/TradeCenter.asm"
+	"maps/Colosseum.asm"
+	"maps/TimeCapsule.asm"
+	"maps/MobileTradeRoom.asm"
+	"maps/MobileBattleRoom.asm"
 ROMX $65
-	"Route36_MapScripts" ; maps/Route36.asm
-	"FuchsiaCity_MapScripts" ; maps/FuchsiaCity.asm
-	"BlackthornGym1F_MapScripts" ; maps/BlackthornGym1F.asm
-	"BlackthornGym2F_MapScripts" ; maps/BlackthornGym2F.asm
-	"BlackthornDragonSpeechHouse_MapScripts" ; maps/BlackthornDragonSpeechHouse.asm
-	"BlackthornEmysHouse_MapScripts" ; maps/BlackthornEmysHouse.asm
-	"BlackthornMart_MapScripts" ; maps/BlackthornMart.asm
-	"BlackthornPokecenter1F_MapScripts" ; maps/BlackthornPokecenter1F.asm
-	"MoveDeletersHouse_MapScripts" ; maps/MoveDeletersHouse.asm
-	"FuchsiaMart_MapScripts" ; maps/FuchsiaMart.asm
-	"SafariZoneMainOffice_MapScripts" ; maps/SafariZoneMainOffice.asm
-	"FuchsiaGym_MapScripts" ; maps/FuchsiaGym.asm
-	"BillsBrothersHouse_MapScripts" ; maps/BillsBrothersHouse.asm
-	"FuchsiaPokecenter1F_MapScripts" ; maps/FuchsiaPokecenter1F.asm
-	"FuchsiaPokecenter2FBeta_MapScripts" ; maps/FuchsiaPokecenter2FBeta.asm
-	"SafariZoneWardensHome_MapScripts" ; maps/SafariZoneWardensHome.asm
-	"Route15FuchsiaGate_MapScripts" ; maps/Route15FuchsiaGate.asm
-	"CherrygroveMart_MapScripts" ; maps/CherrygroveMart.asm
-	"CherrygrovePokecenter1F_MapScripts" ; maps/CherrygrovePokecenter1F.asm
-	"CherrygroveGymSpeechHouse_MapScripts" ; maps/CherrygroveGymSpeechHouse.asm
-	"GuideGentsHouse_MapScripts" ; maps/GuideGentsHouse.asm
-	"CherrygroveEvolutionSpeechHouse_MapScripts" ; maps/CherrygroveEvolutionSpeechHouse.asm
-	"Route30BerryHouse_MapScripts" ; maps/Route30BerryHouse.asm
-	"MrPokemonsHouse_MapScripts" ; maps/MrPokemonsHouse.asm
-	"Route31VioletGate_MapScripts" ; maps/Route31VioletGate.asm
+	"maps/Route36.asm"
+	"maps/FuchsiaCity.asm"
+	"maps/BlackthornGym1F.asm"
+	"maps/BlackthornGym2F.asm"
+	"maps/BlackthornDragonSpeechHouse.asm"
+	"maps/BlackthornEmysHouse.asm"
+	"maps/BlackthornMart.asm"
+	"maps/BlackthornPokecenter1F.asm"
+	"maps/MoveDeletersHouse.asm"
+	"maps/FuchsiaMart.asm"
+	"maps/SafariZoneMainOffice.asm"
+	"maps/FuchsiaGym.asm"
+	"maps/BillsBrothersHouse.asm"
+	"maps/FuchsiaPokecenter1F.asm"
+	"maps/FuchsiaPokecenter2FBeta.asm"
+	"maps/SafariZoneWardensHome.asm"
+	"maps/Route15FuchsiaGate.asm"
+	"maps/CherrygroveMart.asm"
+	"maps/CherrygrovePokecenter1F.asm"
+	"maps/CherrygroveGymSpeechHouse.asm"
+	"maps/GuideGentsHouse.asm"
+	"maps/CherrygroveEvolutionSpeechHouse.asm"
+	"maps/Route30BerryHouse.asm"
+	"maps/MrPokemonsHouse.asm"
+	"maps/Route31VioletGate.asm"
 ROMX $66
-	"AzaleaTown_MapScripts" ; maps/AzaleaTown.asm
-	"GoldenrodCity_MapScripts" ; maps/GoldenrodCity.asm
-	"SaffronCity_MapScripts" ; maps/SaffronCity.asm
-	"MahoganyRedGyaradosSpeechHouse_MapScripts" ; maps/MahoganyRedGyaradosSpeechHouse.asm
-	"MahoganyGym_MapScripts" ; maps/MahoganyGym.asm
-	"MahoganyPokecenter1F_MapScripts" ; maps/MahoganyPokecenter1F.asm
-	"Route42EcruteakGate_MapScripts" ; maps/Route42EcruteakGate.asm
-	"LakeOfRageHiddenPowerHouse_MapScripts" ; maps/LakeOfRageHiddenPowerHouse.asm
-	"LakeOfRageMagikarpHouse_MapScripts" ; maps/LakeOfRageMagikarpHouse.asm
-	"Route43MahoganyGate_MapScripts" ; maps/Route43MahoganyGate.asm
-	"Route43Gate_MapScripts" ; maps/Route43Gate.asm
-	"RedsHouse1F_MapScripts" ; maps/RedsHouse1F.asm
-	"RedsHouse2F_MapScripts" ; maps/RedsHouse2F.asm
-	"BluesHouse_MapScripts" ; maps/BluesHouse.asm
-	"OaksLab_MapScripts" ; maps/OaksLab.asm
+	"maps/AzaleaTown.asm"
+	"maps/GoldenrodCity.asm"
+	"maps/SaffronCity.asm"
+	"maps/MahoganyRedGyaradosSpeechHouse.asm"
+	"maps/MahoganyGym.asm"
+	"maps/MahoganyPokecenter1F.asm"
+	"maps/Route42EcruteakGate.asm"
+	"maps/LakeOfRageHiddenPowerHouse.asm"
+	"maps/LakeOfRageMagikarpHouse.asm"
+	"maps/Route43MahoganyGate.asm"
+	"maps/Route43Gate.asm"
+	"maps/RedsHouse1F.asm"
+	"maps/RedsHouse2F.asm"
+	"maps/BluesHouse.asm"
+	"maps/OaksLab.asm"
 ROMX $67
-	"CherrygroveCity_MapScripts" ; maps/CherrygroveCity.asm
-	"Route35_MapScripts" ; maps/Route35.asm
-	"Route43_MapScripts" ; maps/Route43.asm
-	"Route44_MapScripts" ; maps/Route44.asm
-	"Route45_MapScripts" ; maps/Route45.asm
-	"Route19_MapScripts" ; maps/Route19.asm
-	"Route25_MapScripts" ; maps/Route25.asm
+	"maps/CherrygroveCity.asm"
+	"maps/Route35.asm"
+	"maps/Route43.asm"
+	"maps/Route44.asm"
+	"maps/Route45.asm"
+	"maps/Route19.asm"
+	"maps/Route25.asm"
 ROMX $68
-	"CianwoodCity_MapScripts" ; maps/CianwoodCity.asm
-	"Route27_MapScripts" ; maps/Route27.asm
-	"Route29_MapScripts" ; maps/Route29.asm
-	"Route30_MapScripts" ; maps/Route30.asm
-	"Route38_MapScripts" ; maps/Route38.asm
-	"Route13_MapScripts" ; maps/Route13.asm
-	"PewterNidoranSpeechHouse_MapScripts" ; maps/PewterNidoranSpeechHouse.asm
-	"PewterGym_MapScripts" ; maps/PewterGym.asm
-	"PewterMart_MapScripts" ; maps/PewterMart.asm
-	"PewterPokecenter1F_MapScripts" ; maps/PewterPokecenter1F.asm
-	"PewterPokecenter2FBeta_MapScripts" ; maps/PewterPokecenter2FBeta.asm
-	"PewterSnoozeSpeechHouse_MapScripts" ; maps/PewterSnoozeSpeechHouse.asm
+	"maps/CianwoodCity.asm"
+	"maps/Route27.asm"
+	"maps/Route29.asm"
+	"maps/Route30.asm"
+	"maps/Route38.asm"
+	"maps/Route13.asm"
+	"maps/PewterNidoranSpeechHouse.asm"
+	"maps/PewterGym.asm"
+	"maps/PewterMart.asm"
+	"maps/PewterPokecenter1F.asm"
+	"maps/PewterPokecenter2FBeta.asm"
+	"maps/PewterSnoozeSpeechHouse.asm"
 ROMX $69
-	"EcruteakCity_MapScripts" ; maps/EcruteakCity.asm
-	"BlackthornCity_MapScripts" ; maps/BlackthornCity.asm
-	"Route26_MapScripts" ; maps/Route26.asm
-	"Route28_MapScripts" ; maps/Route28.asm
-	"Route31_MapScripts" ; maps/Route31.asm
-	"Route39_MapScripts" ; maps/Route39.asm
-	"Route40_MapScripts" ; maps/Route40.asm
-	"Route41_MapScripts" ; maps/Route41.asm
-	"Route12_MapScripts" ; maps/Route12.asm
+	"maps/EcruteakCity.asm"
+	"maps/BlackthornCity.asm"
+	"maps/Route26.asm"
+	"maps/Route28.asm"
+	"maps/Route31.asm"
+	"maps/Route39.asm"
+	"maps/Route40.asm"
+	"maps/Route41.asm"
+	"maps/Route12.asm"
 ROMX $6a
-	"NewBarkTown_MapScripts" ; maps/NewBarkTown.asm
-	"VioletCity_MapScripts" ; maps/VioletCity.asm
-	"OlivineCity_MapScripts" ; maps/OlivineCity.asm
-	"Route37_MapScripts" ; maps/Route37.asm
-	"Route42_MapScripts" ; maps/Route42.asm
-	"Route46_MapScripts" ; maps/Route46.asm
-	"ViridianCity_MapScripts" ; maps/ViridianCity.asm
-	"CeladonCity_MapScripts" ; maps/CeladonCity.asm
-	"Route15_MapScripts" ; maps/Route15.asm
-	"VermilionCity_MapScripts" ; maps/VermilionCity.asm
-	"Route9_MapScripts" ; maps/Route9.asm
-	"CinnabarPokecenter1F_MapScripts" ; maps/CinnabarPokecenter1F.asm
-	"CinnabarPokecenter2FBeta_MapScripts" ; maps/CinnabarPokecenter2FBeta.asm
-	"Route19FuchsiaGate_MapScripts" ; maps/Route19FuchsiaGate.asm
-	"SeafoamGym_MapScripts" ; maps/SeafoamGym.asm
+	"maps/NewBarkTown.asm"
+	"maps/VioletCity.asm"
+	"maps/OlivineCity.asm"
+	"maps/Route37.asm"
+	"maps/Route42.asm"
+	"maps/Route46.asm"
+	"maps/ViridianCity.asm"
+	"maps/CeladonCity.asm"
+	"maps/Route15.asm"
+	"maps/VermilionCity.asm"
+	"maps/Route9.asm"
+	"maps/CinnabarPokecenter1F.asm"
+	"maps/CinnabarPokecenter2FBeta.asm"
+	"maps/Route19FuchsiaGate.asm"
+	"maps/SeafoamGym.asm"
 ROMX $6b
-	"Route33_MapScripts" ; maps/Route33.asm
-	"Route2_MapScripts" ; maps/Route2.asm
-	"Route1_MapScripts" ; maps/Route1.asm
-	"PalletTown_MapScripts" ; maps/PalletTown.asm
-	"Route21_MapScripts" ; maps/Route21.asm
-	"CinnabarIsland_MapScripts" ; maps/CinnabarIsland.asm
-	"Route20_MapScripts" ; maps/Route20.asm
-	"Route18_MapScripts" ; maps/Route18.asm
-	"Route17_MapScripts" ; maps/Route17.asm
-	"Route16_MapScripts" ; maps/Route16.asm
-	"Route7_MapScripts" ; maps/Route7.asm
-	"Route14_MapScripts" ; maps/Route14.asm
-	"LavenderTown_MapScripts" ; maps/LavenderTown.asm
-	"Route6_MapScripts" ; maps/Route6.asm
-	"Route5_MapScripts" ; maps/Route5.asm
-	"Route24_MapScripts" ; maps/Route24.asm
-	"Route3_MapScripts" ; maps/Route3.asm
-	"Route4_MapScripts" ; maps/Route4.asm
-	"Route10South_MapScripts" ; maps/Route10South.asm
-	"Route23_MapScripts" ; maps/Route23.asm
-	"SilverCavePokecenter1F_MapScripts" ; maps/SilverCavePokecenter1F.asm
-	"Route28SteelWingHouse_MapScripts" ; maps/Route28SteelWingHouse.asm
+	"maps/Route33.asm"
+	"maps/Route2.asm"
+	"maps/Route1.asm"
+	"maps/PalletTown.asm"
+	"maps/Route21.asm"
+	"maps/CinnabarIsland.asm"
+	"maps/Route20.asm"
+	"maps/Route18.asm"
+	"maps/Route17.asm"
+	"maps/Route16.asm"
+	"maps/Route7.asm"
+	"maps/Route14.asm"
+	"maps/LavenderTown.asm"
+	"maps/Route6.asm"
+	"maps/Route5.asm"
+	"maps/Route24.asm"
+	"maps/Route3.asm"
+	"maps/Route4.asm"
+	"maps/Route10South.asm"
+	"maps/Route23.asm"
+	"maps/SilverCavePokecenter1F.asm"
+	"maps/Route28SteelWingHouse.asm"
 ROMX $6c
-	"NurseMornText - RegisteredNumber2Text" ; data/text/std_text.asm
-	"JackAskNumber1Text - JackRematchText" ; data/phone/text/jack_overworld.asm
-	"BeverlyAskNumber1Text - BeverlyPackFullText" ; data/phone/text/beverly_overworld.asm
-	"HueyAskNumber1Text - HueyRematchGiftText" ; data/phone/text/huey_overworld.asm
-	"GavenAskNumber1Text - GavenRematchText" ; data/phone/text/gaven_overworld.asm
-	"BethAskNumber1Text - BethRematchText" ; data/phone/text/beth_overworld.asm
-	"JoseAskNumber1Text - JosePackFullText" ; data/phone/text/jose_overworld.asm
-	"ReenaAskNumber1Text - ReenaRematchText" ; data/phone/text/reena_overworld.asm
-	"JoeyAskNumber1Text - JoeyRematchGiftText" ; data/phone/text/joey_overworld.asm
-	"WadeAskNumber1Text - WadePackFullText" ; data/phone/text/wade_overworld.asm
-	"RalphAskNumber1Text - RalphRematchText" ; data/phone/text/ralph_overworld.asm
-	"LizAskNumber1Text - LizRematchText" ; data/phone/text/liz_overworld.asm
-	"SilverCaveOutside_MapScripts" ; maps/SilverCaveOutside.asm
-	"Route10North_MapScripts" ; maps/Route10North.asm
+	"data/text/std_text.asm"
+	"data/phone/text/jack_overworld.asm"
+	"data/phone/text/beverly_overworld.asm"
+	"data/phone/text/huey_overworld.asm"
+	"data/phone/text/gaven_overworld.asm"
+	"data/phone/text/beth_overworld.asm"
+	"data/phone/text/jose_overworld.asm"
+	"data/phone/text/reena_overworld.asm"
+	"data/phone/text/joey_overworld.asm"
+	"data/phone/text/wade_overworld.asm"
+	"data/phone/text/ralph_overworld.asm"
+	"data/phone/text/liz_overworld.asm"
+	"maps/SilverCaveOutside.asm"
+	"maps/Route10North.asm"
 ROMX $6d
-	"MomPhoneGreetingText - MomPhoneLectureText" ; data/phone/text/mom.asm
-	"BillPhoneMornGreetingText - BillPhoneNewlyFullText" ; data/phone/text/bill.asm
-	"ElmPhoneStartText - ElmPhoneUnusedText" ; data/phone/text/elm.asm
-	"UnknownText_0x1b4dc5 - UnknownText_0x1b4ecd" ; data/phone/text/jack_callee.asm
-	"UnknownText_0x1b4f21 - UnknownText_0x1b502b" ; data/phone/text/beverly_callee.asm
-	"UnknownText_0x1b5073 - UnknownText_0x1b5154" ; data/phone/text/huey_callee.asm
-	"UnknownText_0x1b518b - UnknownText_0x1b522b" ; data/phone/text/unknown_callee.asm
-	"UnknownText_0x1b5270 - UnknownText_0x1b5393" ; data/phone/text/gaven_callee.asm
-	"UnknownText_0x1b53f7 - UnknownText_0x1b5510" ; data/phone/text/beth_callee.asm
-	"UnknownText_0x1b55ae - UnknownText_0x1b5694" ; data/phone/text/jose_callee.asm
-	"UnknownText_0x1b5702 - UnknownText_0x1b5819" ; data/phone/text/reena_callee.asm
-	"UnknownText_0x1b589a - UnknownText_0x1b59b2" ; data/phone/text/joey_callee.asm
-	"UnknownText_0x1b5a3b - UnknownText_0x1b5b68" ; data/phone/text/wade_callee.asm
-	"UnknownText_0x1b5c10 - UnknownText_0x1b5d51" ; data/phone/text/ralph_callee.asm
-	"UnknownText_0x1b5d9f - UnknownText_0x1b5ebe" ; data/phone/text/liz_callee.asm
-	"UnknownText_0x1b5f7a - UnknownText_0x1b606f" ; data/phone/text/anthony_callee.asm
-	"UnknownText_0x1b60f5 - UnknownText_0x1b61f2" ; data/phone/text/todd_callee.asm
-	"UnknownText_0x1b626a - UnknownText_0x1b6352" ; data/phone/text/gina_callee.asm
-	"UnknownText_0x1b638c - UnknownText_0x1b642c" ; data/phone/text/irwin_callee.asm
-	"UnknownText_0x1b6454 - UnknownText_0x1b656c" ; data/phone/text/arnie_callee.asm
-	"UnknownText_0x1b659d - UnknownText_0x1b6652" ; data/phone/text/alan_callee.asm
-	"UnknownText_0x1b66c8 - UnknownText_0x1b6795" ; data/phone/text/dana_callee.asm
-	"UnknownText_0x1b67e2 - UnknownText_0x1b68e8" ; data/phone/text/chad_callee.asm
-	"UnknownText_0x1b69a8 - UnknownText_0x1b6ac2" ; data/phone/text/derek_callee.asm
-	"UnknownText_0x1b6b39 - UnknownText_0x1b6c56" ; data/phone/text/tully_callee.asm
-	"UnknownText_0x1b6c96 - UnknownText_0x1b6db9" ; data/phone/text/brent_callee.asm
-	"UnknownText_0x1b6e7c - UnknownText_0x1b6f60" ; data/phone/text/tiffany_callee.asm
-	"UnknownText_0x1b7019 - UnknownText_0x1b7161" ; data/phone/text/vance_callee.asm
-	"UnknownText_0x1b71d5 - UnknownText_0x1b72d0" ; data/phone/text/wilton_callee.asm
-	"UnknownText_0x1b730b - UnknownText_0x1b73af" ; data/phone/text/kenji_callee.asm
-	"UnknownText_0x1b73c7 - UnknownText_0x1b74c8" ; data/phone/text/parry_callee.asm
-	"UnknownText_0x1b751a - UnknownText_0x1b75e5" ; data/phone/text/erin_callee.asm
-	"UnusedPhoneText" ; data/phone/text/unused.asm
+	"data/phone/text/mom.asm"
+	"data/phone/text/bill.asm"
+	"data/phone/text/elm.asm"
+	"data/phone/text/jack_callee.asm"
+	"data/phone/text/beverly_callee.asm"
+	"data/phone/text/huey_callee.asm"
+	"data/phone/text/unknown_callee.asm"
+	"data/phone/text/gaven_callee.asm"
+	"data/phone/text/beth_callee.asm"
+	"data/phone/text/jose_callee.asm"
+	"data/phone/text/reena_callee.asm"
+	"data/phone/text/joey_callee.asm"
+	"data/phone/text/wade_callee.asm"
+	"data/phone/text/ralph_callee.asm"
+	"data/phone/text/liz_callee.asm"
+	"data/phone/text/anthony_callee.asm"
+	"data/phone/text/todd_callee.asm"
+	"data/phone/text/gina_callee.asm"
+	"data/phone/text/irwin_callee.asm"
+	"data/phone/text/arnie_callee.asm"
+	"data/phone/text/alan_callee.asm"
+	"data/phone/text/dana_callee.asm"
+	"data/phone/text/chad_callee.asm"
+	"data/phone/text/derek_callee.asm"
+	"data/phone/text/tully_callee.asm"
+	"data/phone/text/brent_callee.asm"
+	"data/phone/text/tiffany_callee.asm"
+	"data/phone/text/vance_callee.asm"
+	"data/phone/text/wilton_callee.asm"
+	"data/phone/text/kenji_callee.asm"
+	"data/phone/text/parry_callee.asm"
+	"data/phone/text/erin_callee.asm"
+	"data/phone/text/unused.asm"
 ROMX $6e
-	"Pokedex Entries 065-128" ; data/pokemon/dex_entries.asm
+	"data/pokemon/dex_entries.asm@Pokedex Entries 065-128"
 ROMX $6f
-	"Text 1" ; (not splitting) data/text/common_1.asm
+	"data/text/common_1.asm"
 ROMX $70
-	"Text 2" ; (not splitting) data/text/common_2.asm
+	"data/text/common_2.asm"
 ROMX $71
-	"Text 3" ; (not splitting) data/text/common_3.asm
+	"data/text/common_3.asm"
 ROMX $72
-	"ItemNames" ; data/items/names.asm
-	"PrintItemDescription - TeruSama33Desc" ; engine/items/print_item_description.asm
-	"MoveNames" ; data/moves/names.asm
-
-	; engine/overworld/landmarks.asm
-	"GetLandmarkCoords - SpecialMapName"
-	"RegionCheck"
+	"data/items/names.asm"
+	"engine/items/print_item_description.asm"
+	"data/moves/names.asm"
+	"engine/overworld/landmarks.asm"
+	"engine/overworld/landmarks.asm@RegionCheck"
 ROMX $73
-	"Pokedex Entries 129-192" ; data/pokemon/dex_entries.asm
+	"data/pokemon/dex_entries.asm@Pokedex Entries 129-192"
 ROMX $74
-	"Pokedex Entries 193-251" ; data/pokemon/dex_entries.asm
+	"data/pokemon/dex_entries.asm@Pokedex Entries 193-251"
 ROMX $77
-	"UnownFont" ; main.asm
-
-	; engine/printer/print_party.asm
-	"PrintPage1"
-	"PrintPage2"
-	"GBPrinterString_Null - GBPrinterString_PrinterError4"
-	"PrintPartyMonPage1 - GBPrinterLvIcon"
-
-	"Tileset Data 7" ; (not splitting) gfx/tilesets.asm
-
-	; engine/rtc/print_hours_mins.asm
-	"Unreferenced_Function1dd6a9"
-	"PrintHoursMins - String_PM"
-
-	"_Diploma - DiplomaPage2Tilemap" ; engine/events/diploma.asm
-
-	; engine/pokedex/pokedex_3.asm
-	"LoadSGBPokedexGFX - SGBPokedexGFX_LZ"
-	"LoadQuestionMarkPic"
-	"DrawPokedexListWindow - Bank77_FillColumn"
-
-	"_DudeAutoInput_A - DudeAutoInput_DownA" ; engine/events/catch_tutorial_input.asm
-	"TownMap_ConvertLineBreakCharacters" ; engine/pokegear/townmap_convertlinebreakcharacters.asm
-	"PokegearGFX" ; main.asm
-
-	; engine/pokemon/european_mail.asm
-	"IsMailEuropean"
-	"StandardEnglishFont - SpanishItalianFont"
-	"HandleFrenchGermanMail"
-	"DeutenEnglischenPost"
-	"HandleSpanishItalianMail"
+	"main.asm@UnownFont"
+	"engine/printer/print_party.asm@PrintPage1"
+	"engine/printer/print_party.asm@PrintPage2"
+	"engine/printer/print_party.asm@GBPrinterStrings"
+	"engine/printer/print_party.asm@PrintPartyMon"
+	"gfx/tilesets.asm@Tileset Data 7"
+	"engine/rtc/print_hours_mins.asm@Unreferenced_Function1dd6a9"
+	"engine/rtc/print_hours_mins.asm"
+	"engine/events/diploma.asm"
+	"engine/pokedex/pokedex_3.asm@LoadSGBPokedexGFX"
+	"engine/pokedex/pokedex_3.asm@LoadQuestionMarkPic"
+	"engine/pokedex/pokedex_3.asm@DrawPokedexWindow"
+	"engine/events/catch_tutorial_input.asm"
+	"engine/pokegear/townmap_convertlinebreakcharacters.asm"
+	"main.asm@PokegearGFX"
+	"engine/pokemon/european_mail.asm@IsMailEuropean"
+	"engine/pokemon/european_mail.asm@Fonts"
+	"engine/pokemon/european_mail.asm@FrenchGerman"
+	"engine/pokemon/european_mail.asm@English"
+	"engine/pokemon/european_mail.asm@SpanishItalian"
 ROMX $78
-	"Tileset Data 8" ; (not splitting) gfx/tilesets.asm
+	"gfx/tilesets.asm@Tileset Data 8"
 ROMX $7b
-	"Battle Tower Trainer Text" ; (not splitting) data/battle_tower/trainer_text.asm
+	"data/battle_tower/trainer_text.asm"
 ROMX $7c
-	"Battle Tower Trainer Data" ; (not splitting) data/battle_tower/unknown.asm
+	"data/battle_tower/unknown.asm"
 ROMX $7d
-	; mobile/news/news.asm
-	"Unreferenced_Function1f4003"
-	"Unreferenced_Function1f4dbe"
-	"Function1f5d9f"
+	"mobile/news/news.asm@Unreferenced_Function1f4003"
+	"mobile/news/news.asm@Unreferenced_Function1f4dbe"
+	"mobile/news/news.asm@Function1f5d9f"
 ROMX $7e
-	"Function_LoadOpponentTrainerAndPokemons - BattleTowerMons10" ; engine/events/battle_tower/load_trainer.asm
-	"_GiveOddEgg - OddEgg1End" ; engine/events/odd_egg.asm
+	"engine/events/battle_tower/load_trainer.asm"
+	"engine/events/odd_egg.asm"
 ROMX $7f
 	org $7de0
-	"Mobile Stadium 2" ; main.asm
+	"main.asm@Mobile Stadium 2"
 WRAM0
 	"Stack"
 	"Audio RAM"

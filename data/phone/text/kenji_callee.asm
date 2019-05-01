@@ -1,4 +1,4 @@
-SECTION "UnknownText_0x1b730b - UnknownText_0x1b73af", ROMX
+SECTION "data/phone/text/kenji_callee.asm", ROMX
 
 UnknownText_0x1b730b:
 	text_ram wStringBuffer3

@@ -3,7 +3,7 @@
 	const DAYCARE_GRANNY
 
 
-SECTION "DayCare_MapScripts", ROMX
+SECTION "maps/DayCare.asm", ROMX
 
 DayCare_MapScripts:
 	db 0 ; scene scripts

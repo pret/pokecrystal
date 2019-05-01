@@ -1,4 +1,4 @@
-SECTION "EvolvePokemon - CelebiEvosAttacks", ROMX
+SECTION "data/pokemon/evos_attacks.asm", ROMX
 
 INCLUDE "engine/pokemon/evolve.asm"
 

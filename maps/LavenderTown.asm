@@ -5,7 +5,7 @@
 	const LAVENDERTOWN_YOUNGSTER
 
 
-SECTION "LavenderTown_MapScripts", ROMX
+SECTION "maps/LavenderTown.asm", ROMX
 
 LavenderTown_MapScripts:
 	db 0 ; scene scripts

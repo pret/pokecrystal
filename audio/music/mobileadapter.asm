@@ -1,4 +1,4 @@
-SECTION "Music_MobileAdapter", ROMX
+SECTION "audio/music/mobileadapter.asm", ROMX
 
 Music_MobileAdapter:
 	musicheader 4, 1, Music_MobileAdapter_Ch1

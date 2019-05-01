@@ -2,7 +2,7 @@
 	const WHIRLISLANDSW_POKE_BALL
 
 
-SECTION "WhirlIslandSW_MapScripts", ROMX
+SECTION "maps/WhirlIslandSW.asm", ROMX
 
 WhirlIslandSW_MapScripts:
 	db 0 ; scene scripts

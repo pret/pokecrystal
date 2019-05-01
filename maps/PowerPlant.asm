@@ -8,7 +8,7 @@
 	const POWERPLANT_FOREST
 
 
-SECTION "PowerPlant_MapScripts", ROMX
+SECTION "maps/PowerPlant.asm", ROMX
 
 PowerPlant_MapScripts:
 	db 2 ; scene scripts

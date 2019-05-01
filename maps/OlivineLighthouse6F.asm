@@ -4,7 +4,7 @@
 	const OLIVINELIGHTHOUSE6F_POKE_BALL
 
 
-SECTION "OlivineLighthouse6F_MapScripts", ROMX
+SECTION "maps/OlivineLighthouse6F.asm", ROMX
 
 OlivineLighthouse6F_MapScripts:
 	db 0 ; scene scripts

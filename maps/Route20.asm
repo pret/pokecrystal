@@ -4,7 +4,7 @@
 	const ROUTE20_SWIMMER_GUY
 
 
-SECTION "Route20_MapScripts", ROMX
+SECTION "maps/Route20.asm", ROMX
 
 Route20_MapScripts:
 	db 0 ; scene scripts

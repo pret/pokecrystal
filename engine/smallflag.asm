@@ -1,4 +1,4 @@
-SECTION "SmallFarFlagAction", ROMX
+SECTION "engine/smallflag.asm", ROMX
 
 SmallFarFlagAction:
 ; Perform action b on bit c in flag array hl.

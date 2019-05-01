@@ -3,7 +3,7 @@
 	const CHERRYGROVEGYMSPEECHHOUSE_BUG_CATCHER
 
 
-SECTION "CherrygroveGymSpeechHouse_MapScripts", ROMX
+SECTION "maps/CherrygroveGymSpeechHouse.asm", ROMX
 
 CherrygroveGymSpeechHouse_MapScripts:
 	db 0 ; scene scripts

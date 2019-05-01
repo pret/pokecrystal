@@ -1,4 +1,4 @@
-SECTION "CheckTime", ROMX
+SECTION "engine/events/checktime.asm", ROMX
 
 CheckTime::
 	ld a, [wTimeOfDay]

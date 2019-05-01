@@ -1,4 +1,4 @@
-SECTION "DisplayDexEntry - PokedexDataPointerTable", ROMX
+SECTION "engine/pokedex/dex_entry.asm", ROMX
 
 DisplayDexEntry:
 	call GetPokemonName
@@ -166,10 +166,10 @@ GetDexEntryPointer:
 	ret
 
 .PokedexEntryBanks:
-	db BANK("Pokedex Entries 001-064")
-	db BANK("Pokedex Entries 065-128")
-	db BANK("Pokedex Entries 129-192")
-	db BANK("Pokedex Entries 193-251")
+	db BANK("data/pokemon/dex_entries.asm@Pokedex Entries 001-064")
+	db BANK("data/pokemon/dex_entries.asm@Pokedex Entries 065-128")
+	db BANK("data/pokemon/dex_entries.asm@Pokedex Entries 129-192")
+	db BANK("data/pokemon/dex_entries.asm@Pokedex Entries 193-251")
 
 GetDexEntryPagePointer:
 	call GetDexEntryPointer

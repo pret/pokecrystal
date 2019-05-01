@@ -1,4 +1,4 @@
-SECTION "ChadObservingWildText - UnknownText_0x65a63", ROMX
+SECTION "data/phone/text/chad_caller.asm", ROMX
 
 ChadObservingWildText:
 	text "I recently began"

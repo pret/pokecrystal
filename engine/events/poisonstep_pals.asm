@@ -1,4 +1,4 @@
-SECTION "LoadPoisonBGPals", ROMX
+SECTION "engine/events/poisonstep_pals.asm", ROMX
 
 LoadPoisonBGPals:
 	call .LoadPals

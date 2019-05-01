@@ -7,7 +7,7 @@
 	const ROUTE19_FISHER2
 
 
-SECTION "Route19_MapScripts", ROMX
+SECTION "maps/Route19.asm", ROMX
 
 Route19_MapScripts:
 	db 0 ; scene scripts

@@ -1,4 +1,4 @@
-SECTION "_GiveOddEgg - OddEgg1End", ROMX
+SECTION "engine/events/odd_egg.asm", ROMX
 
 _GiveOddEgg:
 	; Figure out which egg to give.

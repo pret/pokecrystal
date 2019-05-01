@@ -2,7 +2,7 @@
 	const DIGLETTSCAVE_POKEFAN_M
 
 
-SECTION "DiglettsCave_MapScripts", ROMX
+SECTION "maps/DiglettsCave.asm", ROMX
 
 DiglettsCave_MapScripts:
 	db 0 ; scene scripts

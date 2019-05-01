@@ -5,7 +5,7 @@
 	const OLIVINECITY_OLIVINE_RIVAL
 
 
-SECTION "OlivineCity_MapScripts", ROMX
+SECTION "maps/OlivineCity.asm", ROMX
 
 OlivineCity_MapScripts:
 	db 2 ; scene scripts

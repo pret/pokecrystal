@@ -1,4 +1,4 @@
-SECTION "MonMenuOptionStrings - AddMonMenuItem", ROMX
+SECTION "engine/pokemon/mon_submenu.asm", ROMX
 
 INCLUDE "data/mon_menu.asm"
 
@@ -247,7 +247,7 @@ AddMonMenuItem:
 	ret
 
 
-SECTION "BattleMonMenu - MenuData_0x24edc", ROMX
+SECTION "engine/pokemon/mon_submenu.asm@BattleMonMenu", ROMX
 
 BattleMonMenu:
 	ld hl, MenuHeader_0x24ed4

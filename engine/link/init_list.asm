@@ -1,4 +1,4 @@
-SECTION "InitList", ROMX
+SECTION "engine/link/init_list.asm", ROMX
 
 InitList:
 	ld a, [wInitListType]

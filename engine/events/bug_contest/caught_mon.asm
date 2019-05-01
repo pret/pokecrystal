@@ -1,4 +1,4 @@
-SECTION "BugContest_SetCaughtContestMon", ROMX, BANK[BANK_MOVE_MON]
+SECTION "engine/events/bug_contest/caught_mon.asm", ROMX, BANK[BANK_MOVE_MON]
 
 BugContest_SetCaughtContestMon:
 	ld a, [wContestMon]

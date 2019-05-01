@@ -1,5 +1,5 @@
 
-SECTION "FuchsiaPokecenter2FBeta_MapScripts", ROMX
+SECTION "maps/FuchsiaPokecenter2FBeta.asm", ROMX
 
 FuchsiaPokecenter2FBeta_MapScripts:
 	db 0 ; scene scripts

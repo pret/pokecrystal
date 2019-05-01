@@ -5,7 +5,7 @@
 	const CELADONMANSION1F_GROWLITHE2
 
 
-SECTION "CeladonMansion1F_MapScripts", ROMX
+SECTION "maps/CeladonMansion1F.asm", ROMX
 
 CeladonMansion1F_MapScripts:
 	db 0 ; scene scripts

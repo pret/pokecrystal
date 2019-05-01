@@ -2,7 +2,7 @@
 	const TINTOWER6F_POKE_BALL
 
 
-SECTION "TinTower6F_MapScripts", ROMX
+SECTION "maps/TinTower6F.asm", ROMX
 
 TinTower6F_MapScripts:
 	db 0 ; scene scripts

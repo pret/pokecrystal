@@ -1,4 +1,4 @@
-SECTION "GinaPhoneCalleeScript - GinaHasLeafStone", ROMX
+SECTION "engine/phone/scripts/gina.asm", ROMX
 
 GinaPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, PICNICKER, GINA1

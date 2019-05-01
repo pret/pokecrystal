@@ -7,7 +7,7 @@
 	const VICTORYROAD_POKE_BALL5
 
 
-SECTION "VictoryRoad_MapScripts", ROMX
+SECTION "maps/VictoryRoad.asm", ROMX
 
 VictoryRoad_MapScripts:
 	db 2 ; scene scripts

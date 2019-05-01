@@ -1,4 +1,4 @@
-SECTION "HandleNewMap - InitCommandQueue", ROMX
+SECTION "engine/overworld/warp_connection.asm@HandleNewMap", ROMX
 
 HandleNewMap:
 	call ClearUnusedMapBuffer
@@ -17,7 +17,7 @@ InitCommandQueue:
 	ret
 
 
-SECTION "EnterMapConnection", ROMX
+SECTION "engine/overworld/warp_connection.asm@EnterMapConnection", ROMX
 
 EnterMapConnection:
 ; Return carry if a connection has been entered.
@@ -155,7 +155,7 @@ EnterMapConnection:
 	ret
 
 
-SECTION "LoadWarpData", ROMX
+SECTION "engine/overworld/warp_connection.asm@LoadWarpData", ROMX
 
 LoadWarpData:
 	call .SaveDigWarp
@@ -233,7 +233,7 @@ LoadWarpData:
 	ret
 
 
-SECTION "LoadMapTimeOfDay", ROMX
+SECTION "engine/overworld/warp_connection.asm@LoadMapTimeOfDay", ROMX
 
 LoadMapTimeOfDay:
 	ld hl, wVramState
@@ -307,7 +307,7 @@ LoadMapTimeOfDay:
 	ret
 
 
-SECTION "LoadGraphics", ROMX
+SECTION "engine/overworld/warp_connection.asm@LoadGraphics", ROMX
 
 LoadGraphics:
 	call LoadTileset
@@ -322,14 +322,14 @@ LoadGraphics:
 	ret
 
 
-SECTION "LoadMapPalettes", ROMX
+SECTION "engine/overworld/warp_connection.asm@LoadMapPalettes", ROMX
 
 LoadMapPalettes:
 	ld b, SCGB_MAPPALS
 	jp GetSGBLayout
 
 
-SECTION "RefreshMapSprites", ROMX
+SECTION "engine/overworld/warp_connection.asm@RefreshMapSprites", ROMX
 
 RefreshMapSprites:
 	call ClearSprites
@@ -350,7 +350,7 @@ RefreshMapSprites:
 	ret
 
 
-SECTION "CheckMovingOffEdgeOfMap", ROMX
+SECTION "engine/overworld/warp_connection.asm@CheckMovingOffEdgeOfMap", ROMX
 
 CheckMovingOffEdgeOfMap::
 	ld a, [wPlayerStepDirection]
@@ -410,7 +410,7 @@ CheckMovingOffEdgeOfMap::
 	ret
 
 
-SECTION "GetCoordOfUpperLeftCorner", ROMX
+SECTION "engine/overworld/warp_connection.asm@GetCoordOfUpperLeftCorner", ROMX
 
 GetCoordOfUpperLeftCorner::
 	ld hl, wOverworldMapBlocks

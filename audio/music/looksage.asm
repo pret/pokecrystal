@@ -1,4 +1,4 @@
-SECTION "Music_LookSage", ROMX
+SECTION "audio/music/looksage.asm", ROMX
 
 Music_LookSage:
 	musicheader 2, 1, Music_LookSage_Ch1

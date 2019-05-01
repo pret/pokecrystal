@@ -1,4 +1,4 @@
-SECTION "Music_LookPokemaniac", ROMX
+SECTION "audio/music/lookpokemaniac.asm", ROMX
 
 Music_LookPokemaniac:
 	musicheader 3, 1, Music_LookPokemaniac_Ch1

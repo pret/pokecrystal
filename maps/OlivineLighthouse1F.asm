@@ -3,7 +3,7 @@
 	const OLIVINELIGHTHOUSE1F_POKEFAN_F
 
 
-SECTION "OlivineLighthouse1F_MapScripts", ROMX
+SECTION "maps/OlivineLighthouse1F.asm", ROMX
 
 OlivineLighthouse1F_MapScripts:
 	db 0 ; scene scripts

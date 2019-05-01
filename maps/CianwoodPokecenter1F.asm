@@ -5,7 +5,7 @@
 	const CIANWOODPOKECENTER1F_SUPER_NERD
 
 
-SECTION "CianwoodPokecenter1F_MapScripts", ROMX
+SECTION "maps/CianwoodPokecenter1F.asm", ROMX
 
 CianwoodPokecenter1F_MapScripts:
 	db 0 ; scene scripts

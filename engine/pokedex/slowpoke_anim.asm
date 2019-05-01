@@ -1,4 +1,4 @@
-SECTION "AnimateDexSearchSlowpoke - DoDexSearchSlowpokeFrame", ROMX
+SECTION "engine/pokedex/slowpoke_anim.asm", ROMX
 
 AnimateDexSearchSlowpoke:
 	ld hl, .FrameIDs

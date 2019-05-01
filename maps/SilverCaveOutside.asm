@@ -1,5 +1,5 @@
 
-SECTION "SilverCaveOutside_MapScripts", ROMX
+SECTION "maps/SilverCaveOutside.asm", ROMX
 
 SilverCaveOutside_MapScripts:
 	db 0 ; scene scripts

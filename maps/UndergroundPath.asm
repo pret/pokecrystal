@@ -1,5 +1,5 @@
 
-SECTION "UndergroundPath_MapScripts", ROMX
+SECTION "maps/UndergroundPath.asm", ROMX
 
 UndergroundPath_MapScripts:
 	db 0 ; scene scripts

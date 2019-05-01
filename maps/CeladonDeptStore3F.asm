@@ -6,7 +6,7 @@
 	const CELADONDEPTSTORE3F_SUPER_NERD
 
 
-SECTION "CeladonDeptStore3F_MapScripts", ROMX
+SECTION "maps/CeladonDeptStore3F.asm", ROMX
 
 CeladonDeptStore3F_MapScripts:
 	db 0 ; scene scripts

@@ -1,4 +1,4 @@
-SECTION "_InitializeStartDay - CopyDayHourMinToHL", ROMX
+SECTION "engine/overworld/time.asm", ROMX
 
 _InitializeStartDay:
 	call InitializeStartDay

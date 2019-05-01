@@ -14,7 +14,7 @@
 	const ROUTE45_YOUNGSTER
 
 
-SECTION "Route45_MapScripts", ROMX
+SECTION "maps/Route45.asm", ROMX
 
 Route45_MapScripts:
 	db 0 ; scene scripts

@@ -2,7 +2,7 @@
 	const BRUNOSROOM_BRUNO
 
 
-SECTION "BrunosRoom_MapScripts", ROMX
+SECTION "maps/BrunosRoom.asm", ROMX
 
 BrunosRoom_MapScripts:
 	db 2 ; scene scripts

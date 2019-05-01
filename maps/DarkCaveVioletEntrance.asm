@@ -9,7 +9,7 @@
 	const DARKCAVEVIOLETENTRANCE_POKE_BALL4
 
 
-SECTION "DarkCaveVioletEntrance_MapScripts", ROMX
+SECTION "maps/DarkCaveVioletEntrance.asm", ROMX
 
 DarkCaveVioletEntrance_MapScripts:
 	db 0 ; scene scripts

@@ -1,4 +1,4 @@
-SECTION "PlayBattleAnim - AnimObjGFX", ROMX
+SECTION "engine/battle_anims/core.asm", ROMX
 
 PlayBattleAnim:
 	ldh a, [rSVBK]

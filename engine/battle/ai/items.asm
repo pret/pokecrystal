@@ -1,4 +1,4 @@
-SECTION "AI_SwitchOrTryItem - TextJump_EnemyUsedOn", ROMX, BANK[BANK_TRAINER_ATTRIBUTES]
+SECTION "engine/battle/ai/items.asm", ROMX, BANK[BANK_TRAINER_ATTRIBUTES]
 
 AI_SwitchOrTryItem:
 	and a

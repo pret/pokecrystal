@@ -5,7 +5,7 @@
 NUM_STAT_PAGES EQU const_value + -1
 
 
-SECTION "BattleStatsScreenInit - CheckFaintedFrzSlp", ROMX
+SECTION "engine/pokemon/stats_screen.asm", ROMX
 
 BattleStatsScreenInit:
 	ld a, [wLinkMode]

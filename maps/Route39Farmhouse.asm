@@ -5,7 +5,7 @@ ROUTE39FARMHOUSE_MILK_PRICE EQU 500
 	const ROUTE39FARMHOUSE_POKEFAN_F
 
 
-SECTION "Route39Farmhouse_MapScripts", ROMX
+SECTION "maps/Route39Farmhouse.asm", ROMX
 
 Route39Farmhouse_MapScripts:
 	db 0 ; scene scripts

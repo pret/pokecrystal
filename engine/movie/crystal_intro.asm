@@ -1,4 +1,4 @@
-SECTION "Copyright_GFPresents - GameFreakLogo", ROMX
+SECTION "engine/movie/crystal_intro.asm@Copyright_GFPresents", ROMX
 
 Copyright_GFPresents:
 	ld de, MUSIC_NONE
@@ -336,7 +336,7 @@ INCBIN "gfx/splash/logo1.1bpp"
 INCBIN "gfx/splash/logo2.1bpp"
 
 
-SECTION "CrystalIntro - IntroGrass4GFX", ROMX
+SECTION "engine/movie/crystal_intro.asm", ROMX
 
 CrystalIntro:
 	ldh a, [rSVBK]

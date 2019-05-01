@@ -4,7 +4,7 @@
 	const ROUTE21_FISHER
 
 
-SECTION "Route21_MapScripts", ROMX
+SECTION "maps/Route21.asm", ROMX
 
 Route21_MapScripts:
 	db 0 ; scene scripts

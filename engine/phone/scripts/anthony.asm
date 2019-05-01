@@ -1,4 +1,4 @@
-SECTION "AnthonyPhoneCalleeScript - AnthonyTriesDunsparceSwarm", ROMX
+SECTION "engine/phone/scripts/anthony.asm", ROMX
 
 AnthonyPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, HIKER, ANTHONY2

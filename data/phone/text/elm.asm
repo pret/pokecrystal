@@ -1,4 +1,4 @@
-SECTION "ElmPhoneStartText - ElmPhoneUnusedText", ROMX
+SECTION "data/phone/text/elm.asm", ROMX
 
 ElmPhoneStartText:
 	text "Hello, <PLAY_G>?"

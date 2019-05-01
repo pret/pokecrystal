@@ -1,4 +1,4 @@
-SECTION "CorrectNickErrors", ROMX
+SECTION "engine/pokemon/correct_nick_errors.asm", ROMX
 
 CorrectNickErrors::
 ; error-check monster nick before use

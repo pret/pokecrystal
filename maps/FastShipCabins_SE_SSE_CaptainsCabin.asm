@@ -12,7 +12,7 @@
 	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_SUPER_NERD2
 
 
-SECTION "FastShipCabins_SE_SSE_CaptainsCabin_MapScripts", ROMX
+SECTION "maps/FastShipCabins_SE_SSE_CaptainsCabin.asm", ROMX
 
 FastShipCabins_SE_SSE_CaptainsCabin_MapScripts:
 	db 0 ; scene scripts

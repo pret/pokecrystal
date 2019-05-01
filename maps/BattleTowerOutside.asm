@@ -5,7 +5,7 @@
 	const BATTLETOWEROUTSIDE_LASS
 
 
-SECTION "BattleTowerOutside_MapScripts", ROMX
+SECTION "maps/BattleTowerOutside.asm", ROMX
 
 BattleTowerOutside_MapScripts:
 	db 0 ; scene scripts

@@ -1,4 +1,4 @@
-SECTION "HDMATransferAttrMapAndTileMapToWRAMBank3 - HDMATransfer_OnlyTopFourRows", ROMX
+SECTION "engine/gfx/dma_transfer.asm", ROMX
 
 HDMATransferAttrMapAndTileMapToWRAMBank3::
 	ld hl, .Function

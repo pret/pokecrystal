@@ -3,7 +3,7 @@
 	const VERMILIONMAGNETTRAINSPEECHHOUSE_YOUNGSTER
 
 
-SECTION "VermilionMagnetTrainSpeechHouse_MapScripts", ROMX
+SECTION "maps/VermilionMagnetTrainSpeechHouse.asm", ROMX
 
 VermilionMagnetTrainSpeechHouse_MapScripts:
 	db 0 ; scene scripts

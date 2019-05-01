@@ -2,7 +2,7 @@
 	const VERMILIONPORTPASSAGE_TEACHER
 
 
-SECTION "VermilionPortPassage_MapScripts", ROMX
+SECTION "maps/VermilionPortPassage.asm", ROMX
 
 VermilionPortPassage_MapScripts:
 	db 0 ; scene scripts

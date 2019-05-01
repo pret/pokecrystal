@@ -1,4 +1,4 @@
-SECTION "Music_PokemonCenter", ROMX
+SECTION "audio/music/pokemoncenter.asm", ROMX
 
 Music_PokemonCenter:
 	musicheader 4, 1, Music_PokemonCenter_Ch1

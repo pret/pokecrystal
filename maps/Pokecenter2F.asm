@@ -5,7 +5,7 @@
 	const POKECENTER2F_OFFICER
 
 
-SECTION "Pokecenter2F_MapScripts", ROMX
+SECTION "maps/Pokecenter2F.asm", ROMX
 
 Pokecenter2F_MapScripts:
 	db 6 ; scene scripts

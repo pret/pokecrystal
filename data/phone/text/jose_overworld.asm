@@ -1,4 +1,4 @@
-SECTION "JoseAskNumber1Text - JosePackFullText", ROMX
+SECTION "data/phone/text/jose_overworld.asm", ROMX
 
 JoseAskNumber1Text:
 	text "If my @"

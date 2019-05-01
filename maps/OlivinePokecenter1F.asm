@@ -5,7 +5,7 @@
 	const OLIVINEPOKECENTER1F_TEACHER
 
 
-SECTION "OlivinePokecenter1F_MapScripts", ROMX
+SECTION "maps/OlivinePokecenter1F.asm", ROMX
 
 OlivinePokecenter1F_MapScripts:
 	db 0 ; scene scripts

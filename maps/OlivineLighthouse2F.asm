@@ -3,7 +3,7 @@
 	const OLIVINELIGHTHOUSE2F_GENTLEMAN
 
 
-SECTION "OlivineLighthouse2F_MapScripts", ROMX
+SECTION "maps/OlivineLighthouse2F.asm", ROMX
 
 OlivineLighthouse2F_MapScripts:
 	db 0 ; scene scripts

@@ -5,7 +5,7 @@
 	const ROUTE14_KIM
 
 
-SECTION "Route14_MapScripts", ROMX
+SECTION "maps/Route14.asm", ROMX
 
 Route14_MapScripts:
 	db 0 ; scene scripts

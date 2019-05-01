@@ -6,7 +6,7 @@
 	const KURTSHOUSE_TWIN2
 
 
-SECTION "KurtsHouse_MapScripts", ROMX
+SECTION "maps/KurtsHouse.asm", ROMX
 
 KurtsHouse_MapScripts:
 	db 0 ; scene scripts

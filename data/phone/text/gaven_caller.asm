@@ -1,4 +1,4 @@
-SECTION "GavenGreaterText - UnknownText_0x174c49", ROMX
+SECTION "data/phone/text/gaven_caller.asm", ROMX
 
 GavenGreaterText:
 	text "My @"

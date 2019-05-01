@@ -5,7 +5,7 @@
 	const VIRIDIANCITY_YOUNGSTER
 
 
-SECTION "ViridianCity_MapScripts", ROMX
+SECTION "maps/ViridianCity.asm", ROMX
 
 ViridianCity_MapScripts:
 	db 0 ; scene scripts

@@ -1,4 +1,4 @@
-SECTION "RepelWoreOffScript", ROMX
+SECTION "engine/events/repel.asm", ROMX
 
 RepelWoreOffScript::
 	opentext

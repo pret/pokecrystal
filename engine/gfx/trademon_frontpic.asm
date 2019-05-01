@@ -1,4 +1,4 @@
-SECTION "GetTrademonFrontpic", ROMX
+SECTION "engine/gfx/trademon_frontpic.asm@GetTrademonFrontpic", ROMX
 
 GetTrademonFrontpic:
 	ld a, [wOTTrademonSpecies]
@@ -16,7 +16,7 @@ GetTrademonFrontpic:
 	ret
 
 
-SECTION "AnimateTrademonFrontpic", ROMX
+SECTION "engine/gfx/trademon_frontpic.asm@AnimateTrademonFrontpic", ROMX
 
 AnimateTrademonFrontpic:
 	ld a, [wOTTrademonSpecies]

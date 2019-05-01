@@ -1,4 +1,4 @@
-SECTION "_DisappearUser - GetPlayerBackpicCoords", ROMX
+SECTION "engine/battle/misc.asm@AppearDisappearUser", ROMX
 
 _DisappearUser:
 	xor a
@@ -52,7 +52,7 @@ GetPlayerBackpicCoords:
 	ret
 
 
-SECTION "DoWeatherModifiers - WeatherMoveModifiers", ROMX
+SECTION "engine/battle/misc.asm@DoWeatherModifiers", ROMX
 
 DoWeatherModifiers:
 	ld de, WeatherTypeModifiers
@@ -150,7 +150,7 @@ DoWeatherModifiers:
 INCLUDE "data/battle/weather_modifiers.asm"
 
 
-SECTION "DoBadgeTypeBoosts - BadgeTypeBoosts", ROMX
+SECTION "engine/battle/misc.asm@DoBadgeTypeBoosts", ROMX
 
 DoBadgeTypeBoosts:
 	ld a, [wLinkMode]

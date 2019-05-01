@@ -1,4 +1,4 @@
-SECTION "WiltonAskNumber1Text - WiltonPackFullText", ROMX
+SECTION "data/phone/text/wilton_overworld.asm", ROMX
 
 WiltonAskNumber1Text:
 	text "Eh, our battle was"

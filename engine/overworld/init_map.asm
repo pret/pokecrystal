@@ -1,4 +1,4 @@
-SECTION "ReanchorBGMap_NoOAMUpdate - HDMATransfer_FillBGMap0WithBlack", ROMX, BANK[BANK_MAP_OBJECTS]
+SECTION "engine/overworld/init_map.asm", ROMX, BANK[BANK_MAP_OBJECTS]
 
 ReanchorBGMap_NoOAMUpdate::
 	call DelayFrame

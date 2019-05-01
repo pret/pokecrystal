@@ -5,7 +5,7 @@
 	const SAFFRONPOKECENTER1F_YOUNGSTER
 
 
-SECTION "SaffronPokecenter1F_MapScripts", ROMX
+SECTION "maps/SaffronPokecenter1F.asm", ROMX
 
 SaffronPokecenter1F_MapScripts:
 	db 0 ; scene scripts

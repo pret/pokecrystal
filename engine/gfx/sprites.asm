@@ -1,4 +1,4 @@
-SECTION "ClearSpriteAnims", ROMX
+SECTION "engine/gfx/sprites.asm@ClearSpriteAnims", ROMX
 
 ClearSpriteAnims:
 	ld hl, wSpriteAnimDict
@@ -13,7 +13,7 @@ ClearSpriteAnims:
 	ret
 
 
-SECTION "PlaySpriteAnimationsAndDelayFrame - BigmonIcon", ROMX
+SECTION "engine/gfx/sprites.asm", ROMX
 
 PlaySpriteAnimationsAndDelayFrame:
 	call PlaySpriteAnimations

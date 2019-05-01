@@ -1,7 +1,7 @@
 MAP_NAME_SIGN_START EQU $60
 
 
-SECTION "ReturnFromMapSetupScript - PlaceMapNameFrame", ROMX
+SECTION "engine/events/map_name_sign.asm", ROMX
 
 ReturnFromMapSetupScript::
 	xor a

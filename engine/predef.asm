@@ -1,4 +1,4 @@
-SECTION "GetPredefPointer - PredefPointers", ROMX
+SECTION "engine/predef.asm", ROMX
 
 GetPredefPointer::
 ; Return the bank and address of wPredefID in a and wPredefAddress.

@@ -1,4 +1,4 @@
-SECTION "HealParty - HealPartyMon", ROMX
+SECTION "engine/pokemon/health.asm", ROMX
 
 HealParty:
 	xor a
@@ -55,7 +55,7 @@ HealPartyMon:
 	ret
 
 
-SECTION "ComputeHPBarPixels - AnimateHPBar", ROMX, BANK[BANK_ANIMATE_HP_BAR]
+SECTION "engine/pokemon/health.asm@AnimateHPBar", ROMX, BANK[BANK_ANIMATE_HP_BAR]
 
 ComputeHPBarPixels:
 ; e = bc * (6 * 8) / de

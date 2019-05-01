@@ -1,4 +1,4 @@
-SECTION "_Diploma - DiplomaPage2Tilemap", ROMX
+SECTION "engine/events/diploma.asm", ROMX
 
 _Diploma:
 	call PlaceDiplomaOnScreen

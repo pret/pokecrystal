@@ -1,4 +1,4 @@
-SECTION "HiddenPowerDamage", ROMX
+SECTION "engine/battle/hidden_power.asm", ROMX
 
 HiddenPowerDamage:
 ; Override Hidden Power's type and power based on the user's DVs.

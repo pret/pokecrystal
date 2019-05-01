@@ -1,4 +1,4 @@
-SECTION "GBCOnlyScreen - GBCOnlyGFX", ROMX
+SECTION "engine/movie/gbc_only.asm", ROMX
 
 GBCOnlyScreen:
 	ldh a, [hCGB]

@@ -1,4 +1,4 @@
-SECTION "CanObjectMoveInDirection - Function7171", ROMX, BANK[BANK_MAP_OBJECTS]
+SECTION "engine/overworld/npc_movement.asm", ROMX, BANK[BANK_MAP_OBJECTS]
 
 CanObjectMoveInDirection:
 	ld hl, OBJECT_PALETTE

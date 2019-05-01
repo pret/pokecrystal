@@ -1,4 +1,4 @@
-SECTION "EmptyAllSRAMBanks", ROMX
+SECTION "engine/menus/empty_sram.asm", ROMX
 
 EmptyAllSRAMBanks:
 	ld a, 0

@@ -1,4 +1,4 @@
-SECTION "ConvertMon_2to1 - Pokered_MonIndices", ROMX
+SECTION "engine/link/time_capsule_2.asm", ROMX
 
 ConvertMon_2to1:
 ; Takes the Gen 2 Pokemon number stored in wTempSpecies,

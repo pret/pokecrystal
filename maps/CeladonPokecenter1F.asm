@@ -6,7 +6,7 @@
 	const CELADONPOKECENTER1F_EUSINE
 
 
-SECTION "CeladonPokecenter1F_MapScripts", ROMX
+SECTION "maps/CeladonPokecenter1F.asm", ROMX
 
 CeladonPokecenter1F_MapScripts:
 	db 0 ; scene scripts

@@ -1,4 +1,4 @@
-SECTION "Music_ContestResults", ROMX
+SECTION "audio/music/contestresults.asm", ROMX
 
 Music_ContestResults:
 	musicheader 4, 1, Music_ContestResults_Ch1

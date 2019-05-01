@@ -1,4 +1,4 @@
-SECTION "GetMobileOTTrainerClass - FemaleTrainers", ROMX
+SECTION "engine/events/battle_tower/get_trainer_class.asm", ROMX
 
 GetMobileOTTrainerClass: ; mobile function
 	ld h, b

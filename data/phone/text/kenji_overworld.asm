@@ -1,4 +1,4 @@
-SECTION "KenjiAskNumber1Text - KenjiPackFullText", ROMX
+SECTION "data/phone/text/kenji_overworld.asm", ROMX
 
 KenjiAskNumber1Text:
 	text "Our battle was"

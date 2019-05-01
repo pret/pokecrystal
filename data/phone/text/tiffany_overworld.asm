@@ -1,4 +1,4 @@
-SECTION "TiffanyAskNumber1Text - TiffanyPackFullText", ROMX
+SECTION "data/phone/text/tiffany_overworld.asm", ROMX
 
 TiffanyAskNumber1Text:
 	text "Hi! You like"

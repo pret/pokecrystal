@@ -1,4 +1,4 @@
-SECTION "PokegearMap - Unreferenced_Function92311", ROMX
+SECTION "engine/pokegear/map.asm", ROMX
 
 PokegearMap:
 	ld a, e

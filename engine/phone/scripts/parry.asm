@@ -1,4 +1,4 @@
-SECTION "ParryPhoneCalleeScript - ParryWantsBattle", ROMX
+SECTION "engine/phone/scripts/parry.asm", ROMX
 
 ParryPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, HIKER, PARRY1

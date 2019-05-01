@@ -3,7 +3,7 @@
 	const ROUTE31VIOLETGATE_COOLTRAINER_F
 
 
-SECTION "Route31VioletGate_MapScripts", ROMX
+SECTION "maps/Route31VioletGate.asm", ROMX
 
 Route31VioletGate_MapScripts:
 	db 0 ; scene scripts

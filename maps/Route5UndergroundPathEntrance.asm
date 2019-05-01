@@ -2,7 +2,7 @@
 	const ROUTE5UNDERGROUNDPATHENTRANCE_TEACHER
 
 
-SECTION "Route5UndergroundPathEntrance_MapScripts", ROMX
+SECTION "maps/Route5UndergroundPathEntrance.asm", ROMX
 
 Route5UndergroundPathEntrance_MapScripts:
 	db 0 ; scene scripts

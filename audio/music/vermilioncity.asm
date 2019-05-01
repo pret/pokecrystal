@@ -1,4 +1,4 @@
-SECTION "Music_VermilionCity", ROMX
+SECTION "audio/music/vermilioncity.asm", ROMX
 
 Music_VermilionCity:
 	musicheader 3, 1, Music_VermilionCity_Ch1

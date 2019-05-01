@@ -1,4 +1,4 @@
-SECTION "Music_Surf", ROMX
+SECTION "audio/music/surf.asm", ROMX
 
 Music_Surf:
 	musicheader 3, 1, Music_Surf_Ch1

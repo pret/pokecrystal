@@ -1,4 +1,4 @@
-SECTION "MobileTradeAnimation_SendGivemonToGTS - Palette_1093c7", ROMX
+SECTION "mobile/mobile_42.asm", ROMX
 
 MobileTradeAnimation_SendGivemonToGTS:
 	ld a, $80

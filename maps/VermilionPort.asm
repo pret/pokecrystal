@@ -4,7 +4,7 @@
 	const VERMILIONPORT_SUPER_NERD
 
 
-SECTION "VermilionPort_MapScripts", ROMX
+SECTION "maps/VermilionPort.asm", ROMX
 
 VermilionPort_MapScripts:
 	db 2 ; scene scripts

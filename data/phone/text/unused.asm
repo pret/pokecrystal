@@ -1,4 +1,4 @@
-SECTION "UnusedPhoneText", ROMX
+SECTION "data/phone/text/unused.asm", ROMX
 
 UnusedPhoneText:
 	text "Good morning."

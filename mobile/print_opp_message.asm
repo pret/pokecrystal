@@ -1,4 +1,4 @@
-SECTION "Mobile_PrintOpponentBattleMessage", ROMX
+SECTION "mobile/print_opp_message.asm", ROMX
 
 Mobile_PrintOpponentBattleMessage:
 	ld a, c

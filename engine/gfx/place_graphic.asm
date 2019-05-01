@@ -1,4 +1,4 @@
-SECTION "PlaceGraphic", ROMX
+SECTION "engine/gfx/place_graphic.asm", ROMX
 
 PlaceGraphic:
 ; Fill wBoxAlignment-aligned box width b height c

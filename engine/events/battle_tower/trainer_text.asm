@@ -1,4 +1,4 @@
-SECTION "BattleTowerText - BTWinF15", ROMX
+SECTION "engine/events/battle_tower/trainer_text.asm", ROMX
 
 BattleTowerText::
 ; Print text c for trainer [wBT_OTTrainerClass]

@@ -7,7 +7,7 @@
 	const WHIRLISLANDB1F_BOULDER
 
 
-SECTION "WhirlIslandB1F_MapScripts", ROMX
+SECTION "maps/WhirlIslandB1F.asm", ROMX
 
 WhirlIslandB1F_MapScripts:
 	db 0 ; scene scripts

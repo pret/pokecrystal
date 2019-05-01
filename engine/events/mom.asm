@@ -1,4 +1,4 @@
-SECTION "BankOfMom - MenuData_0x166bd", ROMX
+SECTION "engine/events/mom.asm", ROMX
 
 BankOfMom:
 	ldh a, [hInMenu]

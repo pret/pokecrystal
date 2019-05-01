@@ -6,7 +6,7 @@
 	const ECRUTEAKPOKECENTER1F_BILL
 
 
-SECTION "EcruteakPokecenter1F_MapScripts", ROMX
+SECTION "maps/EcruteakPokecenter1F.asm", ROMX
 
 EcruteakPokecenter1F_MapScripts:
 	db 2 ; scene scripts

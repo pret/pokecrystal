@@ -1,4 +1,4 @@
-SECTION "Music_TinTower", ROMX
+SECTION "audio/music/tintower.asm", ROMX
 
 Music_TinTower:
 	musicheader 4, 1, Music_TinTower_Ch1

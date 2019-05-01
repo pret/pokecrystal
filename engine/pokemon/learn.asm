@@ -1,4 +1,4 @@
-SECTION "LearnMove - Text_CantForgetHM", ROMX
+SECTION "engine/pokemon/learn.asm", ROMX
 
 LearnMove:
 	call LoadTileMapToTempTileMap

@@ -1,4 +1,4 @@
-SECTION "UnknownText_0x1b5702 - UnknownText_0x1b5819", ROMX
+SECTION "data/phone/text/reena_callee.asm", ROMX
 
 UnknownText_0x1b5702:
 	text "Hello, this is"

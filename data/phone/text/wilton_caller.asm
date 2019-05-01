@@ -1,4 +1,4 @@
-SECTION "WiltonGrownText - WiltonWantThisText", ROMX
+SECTION "data/phone/text/wilton_caller.asm", ROMX
 
 WiltonGrownText:
 	text "My @"

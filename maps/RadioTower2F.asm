@@ -12,7 +12,7 @@
 	const RADIOTOWER2F_RECEPTIONIST
 
 
-SECTION "RadioTower2F_MapScripts", ROMX
+SECTION "maps/RadioTower2F.asm", ROMX
 
 RadioTower2F_MapScripts:
 	db 0 ; scene scripts

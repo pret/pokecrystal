@@ -1,4 +1,4 @@
-SECTION "Music_LookRival", ROMX, BANK[BANK_MUSIC_RIVAL_ENCOUNTER]
+SECTION "audio/music/lookrival.asm", ROMX, BANK[BANK_MUSIC_RIVAL_ENCOUNTER]
 
 Music_LookRival:
 	musicheader 4, 1, Music_LookRival_Ch1

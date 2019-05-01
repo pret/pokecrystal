@@ -2,7 +2,7 @@
 
 
 ; FLOAT: Has to be at the same address as UnownPicPointers
-SECTION "PokemonPicPointers", ROMX[$4000]
+SECTION "data/pokemon/pic_pointers.asm", ROMX[$4000]
 
 PokemonPicPointers::
 ; entries correspond to Pokémon species, two apiece

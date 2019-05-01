@@ -10,7 +10,7 @@
 	const SLOWPOKEWELLB1F_POKE_BALL
 
 
-SECTION "SlowpokeWellB1F_MapScripts", ROMX
+SECTION "maps/SlowpokeWellB1F.asm", ROMX
 
 SlowpokeWellB1F_MapScripts:
 	db 0 ; scene scripts

@@ -1,4 +1,4 @@
-SECTION "Music_LookOfficer", ROMX
+SECTION "audio/music/lookofficer.asm", ROMX
 
 Music_LookOfficer:
 	musicheader 3, 1, Music_LookOfficer_Ch1

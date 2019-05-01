@@ -1,4 +1,4 @@
-SECTION "Music_HealPokemon", ROMX
+SECTION "audio/music/healpokemon.asm", ROMX
 
 Music_HealPokemon:
 	musicheader 3, 1, Music_HealPokemon_Ch1

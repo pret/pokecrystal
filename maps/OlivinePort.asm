@@ -8,7 +8,7 @@
 	const OLIVINEPORT_COOLTRAINER_F
 
 
-SECTION "OlivinePort_MapScripts", ROMX
+SECTION "maps/OlivinePort.asm", ROMX
 
 OlivinePort_MapScripts:
 	db 2 ; scene scripts

@@ -3,7 +3,7 @@
 	const ROUTE36RUINSOFALPHGATE_GRAMPS
 
 
-SECTION "Route36RuinsOfAlphGate_MapScripts", ROMX
+SECTION "maps/Route36RuinsOfAlphGate.asm", ROMX
 
 Route36RuinsOfAlphGate_MapScripts:
 	db 0 ; scene scripts

@@ -1,4 +1,4 @@
-SECTION "LoadBattleMenu - Function24fb2", ROMX
+SECTION "engine/battle/menu.asm", ROMX
 
 LoadBattleMenu:
 	ld hl, BattleMenuHeader

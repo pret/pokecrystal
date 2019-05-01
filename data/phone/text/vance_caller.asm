@@ -1,4 +1,4 @@
-SECTION "VanceLiftoffText - VanceHurryHurryText", ROMX
+SECTION "data/phone/text/vance_caller.asm", ROMX
 
 VanceLiftoffText:
 	text "My @"

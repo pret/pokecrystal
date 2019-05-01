@@ -1,5 +1,5 @@
 
-SECTION "RuinsOfAlphKabutoWordRoom_MapScripts", ROMX
+SECTION "maps/RuinsOfAlphKabutoWordRoom.asm", ROMX
 
 RuinsOfAlphKabutoWordRoom_MapScripts:
 	db 0 ; scene scripts

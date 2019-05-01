@@ -4,7 +4,7 @@
 	const ROUTE39BARN_MOOMOO
 
 
-SECTION "Route39Barn_MapScripts", ROMX
+SECTION "maps/Route39Barn.asm", ROMX
 
 Route39Barn_MapScripts:
 	db 0 ; scene scripts

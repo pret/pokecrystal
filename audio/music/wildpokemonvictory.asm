@@ -1,4 +1,4 @@
-SECTION "Music_WildPokemonVictory", ROMX, BANK[BANK_MUSIC_WILD_VICTORY]
+SECTION "audio/music/wildpokemonvictory.asm", ROMX, BANK[BANK_MUSIC_WILD_VICTORY]
 
 Music_WildPokemonVictory:
 	musicheader 3, 1, Music_WildPokemonVictory_Ch1

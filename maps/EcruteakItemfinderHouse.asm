@@ -3,7 +3,7 @@
 	const ECRUTEAKITEMFINDERHOUSE_POKEDEX
 
 
-SECTION "EcruteakItemfinderHouse_MapScripts", ROMX
+SECTION "maps/EcruteakItemfinderHouse.asm", ROMX
 
 EcruteakItemfinderHouse_MapScripts:
 	db 0 ; scene scripts

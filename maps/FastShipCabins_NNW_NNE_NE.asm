@@ -8,7 +8,7 @@
 	const FASTSHIPCABINS_NNW_NNE_NE_PHARMACIST
 
 
-SECTION "FastShipCabins_NNW_NNE_NE_MapScripts", ROMX
+SECTION "maps/FastShipCabins_NNW_NNE_NE.asm", ROMX
 
 FastShipCabins_NNW_NNE_NE_MapScripts:
 	db 0 ; scene scripts

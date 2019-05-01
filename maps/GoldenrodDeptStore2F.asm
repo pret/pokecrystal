@@ -6,7 +6,7 @@
 	const GOLDENRODDEPTSTORE2F_GENTLEMAN
 
 
-SECTION "GoldenrodDeptStore2F_MapScripts", ROMX
+SECTION "maps/GoldenrodDeptStore2F.asm", ROMX
 
 GoldenrodDeptStore2F_MapScripts:
 	db 0 ; scene scripts

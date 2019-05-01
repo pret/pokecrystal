@@ -8,7 +8,7 @@
 	const MOUNTMORTARB1F_POKE_BALL5
 
 
-SECTION "MountMortarB1F_MapScripts", ROMX
+SECTION "maps/MountMortarB1F.asm", ROMX
 
 MountMortarB1F_MapScripts:
 	db 0 ; scene scripts

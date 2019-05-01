@@ -1,4 +1,4 @@
-SECTION "BitmasksPointers - EggBitmasks", ROMX
+SECTION "gfx/pokemon/bitmasks.asm", ROMX
 
 INCLUDE "gfx/pokemon/bitmask_pointers.asm"
 

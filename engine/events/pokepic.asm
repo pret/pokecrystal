@@ -1,4 +1,4 @@
-SECTION "Pokepic - PokepicMenuHeader", ROMX
+SECTION "engine/events/pokepic.asm", ROMX
 
 Pokepic::
 	ld hl, PokepicMenuHeader

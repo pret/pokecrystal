@@ -1,4 +1,4 @@
-SECTION "CheckBattleScene", ROMX
+SECTION "engine/battle/check_battle_scene.asm", ROMX
 
 CheckBattleScene:
 ; Return carry if battle scene is turned off.

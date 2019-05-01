@@ -1,4 +1,4 @@
-SECTION "_BugContestJudging - ContestScore", ROMX, BANK[BANK_BUG_CONTEST_JUDGING]
+SECTION "engine/events/bug_contest/judging.asm", ROMX, BANK[BANK_BUG_CONTEST_JUDGING]
 
 _BugContestJudging:
 	call ContestScore

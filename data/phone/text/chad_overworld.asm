@@ -1,4 +1,4 @@
-SECTION "ChadAskNumber1Text - ChadRematchText", ROMX
+SECTION "data/phone/text/chad_overworld.asm", ROMX
 
 ChadAskNumber1Text:
 	text "Huh? Is that thing"

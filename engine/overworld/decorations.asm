@@ -1,4 +1,4 @@
-SECTION "InitDecorations", ROMX
+SECTION "engine/overworld/decorations.asm@InitDecorations", ROMX
 
 InitDecorations:
 	ld a, DECO_FEATHERY_BED
@@ -8,7 +8,7 @@ InitDecorations:
 	ret
 
 
-SECTION "_PlayerDecorationMenu - DecorationDesc_GiantOrnament", ROMX
+SECTION "engine/overworld/decorations.asm", ROMX
 
 _PlayerDecorationMenu:
 	ld a, [wWhichIndexSet]
@@ -1090,7 +1090,7 @@ DecorationDesc_GiantOrnament:
 	text_end
 
 
-SECTION "ToggleMaptileDecorations - PadCoords_de", ROMX
+SECTION "engine/overworld/decorations.asm@ToggleMaptileDecorations", ROMX
 
 ToggleMaptileDecorations:
 	; tile coordinates work the same way as for changeblock

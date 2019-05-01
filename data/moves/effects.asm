@@ -1,4 +1,4 @@
-SECTION "MoveEffectsPointers - DefenseCurl", ROMX
+SECTION "data/moves/effects.asm", ROMX
 
 INCLUDE "data/moves/effects_pointers.asm"
 

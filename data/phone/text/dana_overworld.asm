@@ -1,4 +1,4 @@
-SECTION "DanaAskNumber1Text - DanaPackFullText", ROMX
+SECTION "data/phone/text/dana_overworld.asm", ROMX
 
 DanaAskNumber1Text:
 	text "You're really good"

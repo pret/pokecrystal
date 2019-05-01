@@ -6,7 +6,7 @@
 	const CELADONCAFE_TEACHER
 
 
-SECTION "CeladonCafe_MapScripts", ROMX
+SECTION "maps/CeladonCafe.asm", ROMX
 
 CeladonCafe_MapScripts:
 	db 0 ; scene scripts

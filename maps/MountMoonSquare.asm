@@ -4,7 +4,7 @@
 	const MOUNTMOONSQUARE_ROCK
 
 
-SECTION "MountMoonSquare_MapScripts", ROMX
+SECTION "maps/MountMoonSquare.asm", ROMX
 
 MountMoonSquare_MapScripts:
 	db 1 ; scene scripts

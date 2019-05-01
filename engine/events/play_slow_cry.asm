@@ -1,4 +1,4 @@
-SECTION "PlaySlowCry", ROMX
+SECTION "engine/events/play_slow_cry.asm", ROMX
 
 PlaySlowCry:
 	ld a, [wScriptVar]

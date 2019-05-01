@@ -15,7 +15,7 @@
 	const TEAMROCKETBASEB3F_POKE_BALL5
 
 
-SECTION "TeamRocketBaseB3F_MapScripts", ROMX
+SECTION "maps/TeamRocketBaseB3F.asm", ROMX
 
 TeamRocketBaseB3F_MapScripts:
 	db 4 ; scene scripts

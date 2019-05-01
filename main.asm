@@ -97,11 +97,11 @@ INCLUDE "engine/link/link.asm"
 INCLUDE "engine/overworld/wildmons.asm"
 INCLUDE "engine/battle/link_result.asm"
 
-SECTION "ChrisBackpic", ROMX
+SECTION "main.asm@ChrisBackpic", ROMX
 ChrisBackpic:
 INCBIN "gfx/player/chris_back.2bpp.lz"
 
-SECTION "DudeBackpic", ROMX
+SECTION "main.asm@DudeBackpic", ROMX
 DudeBackpic:
 INCBIN "gfx/battle/dude.2bpp.lz"
 
@@ -143,11 +143,11 @@ INCLUDE "data/maps/scenes.asm"
 INCLUDE "engine/overworld/load_map_part.asm"
 INCLUDE "engine/phone/phonering_copytilemapatonce.asm"
 
-SECTION "Shrink1Pic", ROMX
+SECTION "main.asm@Shrink1Pic", ROMX
 Shrink1Pic:
 INCBIN "gfx/new_game/shrink1.2bpp.lz"
 
-SECTION "Shrink2Pic", ROMX
+SECTION "main.asm@Shrink2Pic", ROMX
 Shrink2Pic:
 INCBIN "gfx/new_game/shrink2.2bpp.lz"
 
@@ -192,7 +192,7 @@ INCLUDE "data/pokemon/base_stats.asm"
 INCLUDE "data/pokemon/names.asm"
 INCLUDE "data/pokemon/unused_pic_banks.asm"
 
-SECTION "UnknownEggPic", ROMX
+SECTION "main.asm@UnknownEggPic", ROMX
 UnknownEggPic::
 ; Another egg pic. This is shifted up a few pixels.
 INCBIN "gfx/unknown/unknown_egg.2bpp.lz"
@@ -305,7 +305,7 @@ INCLUDE "engine/battle_anims/bg_effects.asm"
 INCLUDE "data/moves/animations.asm"
 INCLUDE "engine/events/poisonstep_pals.asm"
 
-SECTION "TheEndGFX", ROMX
+SECTION "main.asm@TheEndGFX", ROMX
 TheEndGFX::
 INCBIN "gfx/credits/theend.2bpp"
 
@@ -320,7 +320,7 @@ INCLUDE "gfx/pokemon/unown_bitmasks.asm"
 INCLUDE "gfx/pokemon/frame_pointers.asm"
 INCLUDE "gfx/pokemon/kanto_frames.asm"
 
-SECTION "FontInversed", ROMX
+SECTION "main.asm@FontInversed", ROMX
 FontInversed:
 INCBIN "gfx/font/font_inversed.1bpp"
 
@@ -333,7 +333,7 @@ INCLUDE "engine/games/unown_puzzle.asm"
 INCLUDE "engine/games/dummy_game.asm"
 INCLUDE "engine/pokemon/bills_pc.asm"
 
-SECTION "CopyrightGFX", ROMX
+SECTION "main.asm@CopyrightGFX", ROMX
 CopyrightGFX::
 INCBIN "gfx/splash/copyright.2bpp"
 
@@ -363,7 +363,7 @@ INCLUDE "mobile/mobile_41.asm"
 INCLUDE "engine/gfx/load_overworld_font.asm"
 INCLUDE "mobile/mobile_42.asm"
 
-SECTION "IntroLogoGFX", ROMX
+SECTION "main.asm@IntroLogoGFX", ROMX
 IntroLogoGFX:
 INCBIN "gfx/intro/logo.2bpp.lz"
 
@@ -444,7 +444,7 @@ INCLUDE "engine/items/print_item_description.asm"
 INCLUDE "data/moves/names.asm"
 INCLUDE "engine/overworld/landmarks.asm"
 
-SECTION "UnownFont", ROMX
+SECTION "main.asm@UnownFont", ROMX
 UnownFont:
 INCBIN "gfx/font/unown_font.2bpp"
 
@@ -456,7 +456,7 @@ INCLUDE "engine/pokedex/pokedex_3.asm"
 INCLUDE "engine/events/catch_tutorial_input.asm"
 INCLUDE "engine/pokegear/townmap_convertlinebreakcharacters.asm"
 
-SECTION "PokegearGFX", ROMX
+SECTION "main.asm@PokegearGFX", ROMX
 PokegearGFX:
 INCBIN "gfx/pokegear/pokegear.2bpp.lz"
 
@@ -471,7 +471,7 @@ INCLUDE "engine/events/odd_egg.asm"
 
 ; This section is read by external programs/tools,
 ;   and is as such expected to be at the end of the ROM.
-SECTION "Mobile Stadium 2", ROMX[$7de0], BANK[$7f]
+SECTION "main.asm@Mobile Stadium 2", ROMX[$7de0], BANK[$7f]
 
 if DEF(_CRYSTAL_AU)
 INCBIN "mobile/stadium/stadium2_au.bin"

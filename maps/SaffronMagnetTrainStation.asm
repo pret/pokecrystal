@@ -5,7 +5,7 @@
 	const SAFFRONMAGNETTRAINSTATION_LASS
 
 
-SECTION "SaffronMagnetTrainStation_MapScripts", ROMX
+SECTION "maps/SaffronMagnetTrainStation.asm", ROMX
 
 SaffronMagnetTrainStation_MapScripts:
 	db 1 ; scene scripts

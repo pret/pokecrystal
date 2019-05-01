@@ -1,4 +1,4 @@
-SECTION "ReenaPhoneCalleeScript - ReenaWantsBattle", ROMX
+SECTION "engine/phone/scripts/reena.asm", ROMX
 
 ReenaPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, COOLTRAINERF, REENA1

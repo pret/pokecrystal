@@ -10,7 +10,7 @@
 	const DANCETHEATRE_GRANNY
 
 
-SECTION "DanceTheatre_MapScripts", ROMX
+SECTION "maps/DanceTheatre.asm", ROMX
 
 DanceTheatre_MapScripts:
 	db 0 ; scene scripts

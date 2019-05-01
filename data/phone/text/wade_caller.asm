@@ -1,4 +1,4 @@
-SECTION "WadeAreYouGrowingText - UnknownText_0x175b6d", ROMX
+SECTION "data/phone/text/wade_caller.asm", ROMX
 
 WadeAreYouGrowingText:
 	text "Are your #MON"

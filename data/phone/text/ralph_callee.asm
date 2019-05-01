@@ -1,4 +1,4 @@
-SECTION "UnknownText_0x1b5c10 - UnknownText_0x1b5d51", ROMX
+SECTION "data/phone/text/ralph_callee.asm", ROMX
 
 UnknownText_0x1b5c10:
 	text "Yes? Ah, <PLAY_G>."

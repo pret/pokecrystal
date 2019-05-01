@@ -1,4 +1,4 @@
-SECTION "_AnimateHPBar - ShortHPBar_CalcPixelFrame", ROMX, BANK[BANK_ANIMATE_HP_BAR]
+SECTION "engine/battle/anim_hp_bar.asm", ROMX, BANK[BANK_ANIMATE_HP_BAR]
 
 _AnimateHPBar:
 	call .IsMaximumMoreThan48Pixels

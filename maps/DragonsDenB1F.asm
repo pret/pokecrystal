@@ -10,7 +10,7 @@
 	const DRAGONSDENB1F_POKE_BALL3
 
 
-SECTION "DragonsDenB1F_MapScripts", ROMX
+SECTION "maps/DragonsDenB1F.asm", ROMX
 
 DragonsDenB1F_MapScripts:
 	db 2 ; scene scripts

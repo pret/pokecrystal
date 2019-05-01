@@ -1,10 +1,10 @@
-SECTION "MobileAdapterGFX", ROMX
+SECTION "mobile/mobile_5e.asm@MobileAdapterGFX", ROMX
 
 MobileAdapterGFX::
 INCBIN "gfx/mobile/mobile_adapter.2bpp"
 
 
-SECTION "Function17a68f - GFX_17afa5", ROMX
+SECTION "mobile/mobile_5e.asm@Function17a68f - GFX_17afa5", ROMX
 
 Function17a68f::
 	call Function17a6a8

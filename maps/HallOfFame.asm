@@ -2,7 +2,7 @@
 	const HALLOFFAME_LANCE
 
 
-SECTION "HallOfFame_MapScripts", ROMX
+SECTION "maps/HallOfFame.asm", ROMX
 
 HallOfFame_MapScripts:
 	db 2 ; scene scripts

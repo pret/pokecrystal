@@ -1,4 +1,4 @@
-SECTION "CheckBreedmonCompatibility - DayCareMonCompatibilityText", ROMX
+SECTION "engine/pokemon/breeding.asm", ROMX
 
 CheckBreedmonCompatibility:
 	call .CheckBreedingGroupCompatibility
@@ -956,7 +956,7 @@ DayCareMonCompatibilityText:
 	text_end
 
 
-SECTION "Unreferenced_GetEmptyString", ROMX
+SECTION "engine/pokemon/breeding.asm@Unreferenced_GetEmptyString", ROMX
 
 Unreferenced_GetEmptyString:
 	ld hl, .string

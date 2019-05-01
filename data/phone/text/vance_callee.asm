@@ -1,4 +1,4 @@
-SECTION "UnknownText_0x1b7019 - UnknownText_0x1b7161", ROMX
+SECTION "data/phone/text/vance_callee.asm", ROMX
 
 UnknownText_0x1b7019:
 	text "Yes, hello?"

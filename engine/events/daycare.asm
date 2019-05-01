@@ -22,7 +22,7 @@
 	const DAYCARETEXT_COME_AGAIN
 
 
-SECTION "DayCareMan - DayCare_InitBreeding", ROMX
+SECTION "engine/events/daycare.asm", ROMX
 
 DayCareMan:
 	ld hl, wDayCareMan

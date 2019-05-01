@@ -1,4 +1,4 @@
-SECTION "UnknownText_0x1b73c7 - UnknownText_0x1b74c8", ROMX
+SECTION "data/phone/text/parry_callee.asm", ROMX
 
 UnknownText_0x1b73c7:
 	text "Yup, yup!"

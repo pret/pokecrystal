@@ -1,4 +1,4 @@
-SECTION "Cry_Marill - Cry_Aipom_Ch8", ROMX
+SECTION "audio/cries.asm@Johto", ROMX
 
 Cry_Marill:
 	musicheader 3, 5, Cry_Marill_Ch5
@@ -830,7 +830,7 @@ Cry_Aipom_Ch8:
 	endchannel
 
 
-SECTION "Cry_Nidoran_M - Cry_Rattata_Ch8", ROMX
+SECTION "audio/cries.asm@Kanto", ROMX
 
 Cry_Nidoran_M:
 	musicheader 3, 5, Cry_Nidoran_M_Ch5

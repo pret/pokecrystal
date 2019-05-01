@@ -1,4 +1,4 @@
-SECTION "NewPokedexEntry", ROMX
+SECTION "engine/pokedex/new_pokedex_entry.asm", ROMX
 
 NewPokedexEntry:
 	ldh a, [hMapAnims]

@@ -7,7 +7,7 @@
 	const CERULEANCITY_YOUNGSTER
 
 
-SECTION "CeruleanCity_MapScripts", ROMX
+SECTION "maps/CeruleanCity.asm", ROMX
 
 CeruleanCity_MapScripts:
 	db 0 ; scene scripts

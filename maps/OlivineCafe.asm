@@ -4,7 +4,7 @@
 	const OLIVINECAFE_SAILOR2
 
 
-SECTION "OlivineCafe_MapScripts", ROMX
+SECTION "maps/OlivineCafe.asm", ROMX
 
 OlivineCafe_MapScripts:
 	db 0 ; scene scripts

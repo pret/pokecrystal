@@ -3,7 +3,7 @@
 	const ROUTE10SOUTH_POKEFAN_M2
 
 
-SECTION "Route10South_MapScripts", ROMX
+SECTION "maps/Route10South.asm", ROMX
 
 Route10South_MapScripts:
 	db 0 ; scene scripts

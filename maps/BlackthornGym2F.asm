@@ -9,7 +9,7 @@
 	const BLACKTHORNGYM2F_BOULDER6
 
 
-SECTION "BlackthornGym2F_MapScripts", ROMX
+SECTION "maps/BlackthornGym2F.asm", ROMX
 
 BlackthornGym2F_MapScripts:
 	db 0 ; scene scripts

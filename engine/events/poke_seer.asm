@@ -16,7 +16,7 @@
 	const SEERACTION_LEVEL_ONLY
 
 
-SECTION "PokeSeer - SeerAdvice5", ROMX
+SECTION "engine/events/poke_seer.asm", ROMX
 
 PokeSeer:
 	ld a, SEER_INTRO
@@ -400,7 +400,7 @@ SeerAdvice5:
 	text_end
 
 
-SECTION "GetCaughtGender", ROMX
+SECTION "engine/events/poke_seer.asm@GetCaughtGender", ROMX
 
 GetCaughtGender:
 	ld hl, MON_CAUGHTGENDER

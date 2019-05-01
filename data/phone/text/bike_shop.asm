@@ -1,4 +1,4 @@
-SECTION "UnknownText_0x174000", ROMX
+SECTION "data/phone/text/bike_shop.asm", ROMX
 
 UnknownText_0x174000:
 	text "Hi, <PLAY_G>!"

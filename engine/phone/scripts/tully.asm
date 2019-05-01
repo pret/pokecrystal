@@ -1,4 +1,4 @@
-SECTION "TullyPhoneCalleeScript - TullyFoundWaterStone", ROMX
+SECTION "engine/phone/scripts/tully.asm", ROMX
 
 TullyPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, FISHER, TULLY1

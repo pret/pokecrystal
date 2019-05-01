@@ -8,7 +8,7 @@
 	const ROUTE38_BUENA2
 
 
-SECTION "Route38_MapScripts", ROMX
+SECTION "maps/Route38.asm", ROMX
 
 Route38_MapScripts:
 	db 0 ; scene scripts

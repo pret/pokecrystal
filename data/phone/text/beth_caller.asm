@@ -1,4 +1,4 @@
-SECTION "UnknownText_0x174c7f - BethForgetDealText", ROMX
+SECTION "data/phone/text/beth_caller.asm", ROMX
 
 UnknownText_0x174c7f:
 	text "Do you remember my"

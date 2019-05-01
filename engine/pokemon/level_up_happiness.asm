@@ -1,4 +1,4 @@
-SECTION "LevelUpHappinessMod", ROMX
+SECTION "engine/pokemon/level_up_happiness.asm", ROMX
 
 LevelUpHappinessMod:
 	ld a, [wCurPartyMon]

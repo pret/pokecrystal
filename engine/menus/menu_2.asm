@@ -1,4 +1,4 @@
-SECTION "PlaceMenuItemName", ROMX
+SECTION "engine/menus/menu_2.asm@PlaceMenuItemName", ROMX
 
 PlaceMenuItemName:
 	push de
@@ -10,7 +10,7 @@ PlaceMenuItemName:
 	ret
 
 
-SECTION "PlaceMenuItemQuantity", ROMX
+SECTION "engine/menus/menu_2.asm@PlaceMenuItemQuantity", ROMX
 
 PlaceMenuItemQuantity:
 	push de
@@ -33,7 +33,7 @@ PlaceMenuItemQuantity:
 	ret
 
 
-SECTION "PlaceMoneyTopRight - MenuHeader_0x24b1d", ROMX
+SECTION "engine/menus/menu_2.asm@PlaceMoneyTextbox", ROMX
 
 PlaceMoneyTopRight:
 	ld hl, MenuHeader_0x24b15
@@ -73,7 +73,7 @@ MenuHeader_0x24b1d:
 	db 1 ; default option
 
 
-SECTION "DisplayCoinCaseBalance - ShowMoney_TerminatorString", ROMX
+SECTION "engine/menus/menu_2.asm@DisplayCoinCaseBalance", ROMX
 
 DisplayCoinCaseBalance:
 	; Place a text box of size 1x7 at 11, 0.
@@ -122,7 +122,7 @@ ShowMoney_TerminatorString:
 	db "@"
 
 
-SECTION "Unreferenced_Function24b8f", ROMX
+SECTION "engine/menus/menu_2.asm@Unreferenced_Function24b8f", ROMX
 
 Unreferenced_Function24b8f:
 ; related to safari?
@@ -158,7 +158,7 @@ Unreferenced_Function24b8f:
 	db "ボール　　　こ@"
 
 
-SECTION "StartMenu_DrawBugContestStatusBox - StartMenu_PrintBugContestStatus", ROMX
+SECTION "engine/menus/menu_2.asm@StartMenu_PrintBugContestStatus", ROMX
 
 StartMenu_DrawBugContestStatusBox:
 	hlcoord 0, 0
@@ -223,7 +223,7 @@ StartMenu_PrintBugContestStatus:
 	db "LEVEL@"
 
 
-SECTION "FindApricornsInBag - ApricornBalls", ROMX
+SECTION "engine/menus/menu_2.asm@FindApricornsInBag", ROMX
 
 FindApricornsInBag:
 ; Checks the bag for Apricorns.

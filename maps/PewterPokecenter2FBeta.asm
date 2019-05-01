@@ -1,5 +1,5 @@
 
-SECTION "PewterPokecenter2FBeta_MapScripts", ROMX
+SECTION "maps/PewterPokecenter2FBeta.asm", ROMX
 
 PewterPokecenter2FBeta_MapScripts:
 	db 0 ; scene scripts

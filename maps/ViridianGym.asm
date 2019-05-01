@@ -3,7 +3,7 @@
 	const VIRIDIANGYM_GYM_GUY
 
 
-SECTION "ViridianGym_MapScripts", ROMX
+SECTION "maps/ViridianGym.asm", ROMX
 
 ViridianGym_MapScripts:
 	db 0 ; scene scripts

@@ -1,5 +1,5 @@
 
-SECTION "TinTower2F_MapScripts", ROMX
+SECTION "maps/TinTower2F.asm", ROMX
 
 TinTower2F_MapScripts:
 	db 0 ; scene scripts

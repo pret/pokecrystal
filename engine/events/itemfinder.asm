@@ -1,4 +1,4 @@
-SECTION "ItemFinder", ROMX
+SECTION "engine/events/itemfinder.asm", ROMX
 
 ItemFinder:
 	farcall CheckForHiddenItems

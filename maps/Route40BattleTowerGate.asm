@@ -3,7 +3,7 @@
 	const ROUTE40BATTLETOWERGATE_TWIN
 
 
-SECTION "Route40BattleTowerGate_MapScripts", ROMX
+SECTION "maps/Route40BattleTowerGate.asm", ROMX
 
 Route40BattleTowerGate_MapScripts:
 	db 0 ; scene scripts

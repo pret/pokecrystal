@@ -3,7 +3,7 @@
 	const SEAFOAMGYM_GYM_GUY
 
 
-SECTION "SeafoamGym_MapScripts", ROMX
+SECTION "maps/SeafoamGym.asm", ROMX
 
 SeafoamGym_MapScripts:
 	db 1 ; scene scripts

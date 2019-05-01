@@ -2,7 +2,7 @@
 	const CELADONMANSIONROOFHOUSE_PHARMACIST
 
 
-SECTION "CeladonMansionRoofHouse_MapScripts", ROMX
+SECTION "maps/CeladonMansionRoofHouse.asm", ROMX
 
 CeladonMansionRoofHouse_MapScripts:
 	db 0 ; scene scripts

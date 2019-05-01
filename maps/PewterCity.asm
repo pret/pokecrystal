@@ -6,7 +6,7 @@
 	const PEWTERCITY_FRUIT_TREE2
 
 
-SECTION "PewterCity_MapScripts", ROMX
+SECTION "maps/PewterCity.asm", ROMX
 
 PewterCity_MapScripts:
 	db 0 ; scene scripts

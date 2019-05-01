@@ -1,4 +1,4 @@
-SECTION "_ResetClock - ClockResetPassword", ROMX
+SECTION "engine/rtc/reset_password.asm", ROMX
 
 _ResetClock:
 	farcall BlankScreen

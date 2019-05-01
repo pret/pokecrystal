@@ -1,4 +1,4 @@
-SECTION "Music_RivalBattle", ROMX
+SECTION "audio/music/rivalbattle.asm", ROMX
 
 Music_RivalBattle:
 	musicheader 3, 1, Music_RivalBattle_Ch1

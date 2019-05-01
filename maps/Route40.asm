@@ -13,7 +13,7 @@
 	const ROUTE40_STANDING_YOUNGSTER
 
 
-SECTION "Route40_MapScripts", ROMX
+SECTION "maps/Route40.asm", ROMX
 
 Route40_MapScripts:
 	db 0 ; scene scripts

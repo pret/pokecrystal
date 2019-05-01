@@ -1,4 +1,4 @@
-SECTION "_BasementKey", ROMX
+SECTION "engine/events/basement_key.asm", ROMX
 
 _BasementKey:
 ; Are we even in the right map to use this?

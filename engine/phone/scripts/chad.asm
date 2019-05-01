@@ -1,4 +1,4 @@
-SECTION "ChadPhoneCalleeScript - ChadOakGossip", ROMX
+SECTION "engine/phone/scripts/chad.asm", ROMX
 
 ChadPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, SCHOOLBOY, CHAD1

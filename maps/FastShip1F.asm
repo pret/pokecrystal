@@ -5,7 +5,7 @@
 	const FASTSHIP1F_GENTLEMAN
 
 
-SECTION "FastShip1F_MapScripts", ROMX
+SECTION "maps/FastShip1F.asm", ROMX
 
 FastShip1F_MapScripts:
 	db 3 ; scene scripts

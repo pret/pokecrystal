@@ -1,4 +1,4 @@
-SECTION "Music_MagnetTrain", ROMX
+SECTION "audio/music/magnettrain.asm", ROMX
 
 Music_MagnetTrain:
 	musicheader 4, 1, Music_MagnetTrain_Ch1

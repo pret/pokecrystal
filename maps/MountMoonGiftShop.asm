@@ -5,7 +5,7 @@
 	const MOUNTMOONGIFTSHOP_LASS2 ; day only
 
 
-SECTION "MountMoonGiftShop_MapScripts", ROMX
+SECTION "maps/MountMoonGiftShop.asm", ROMX
 
 MountMoonGiftShop_MapScripts:
 	db 0 ; scene scripts

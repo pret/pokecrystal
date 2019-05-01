@@ -1,4 +1,4 @@
-SECTION "Function115d99", ROMX
+SECTION "mobile/mobile_45_sprite_engine.asm@Function115d99", ROMX
 
 Function115d99:
 	ld de, GFX_11601a
@@ -19,7 +19,7 @@ Function115d99:
 	ret
 
 
-SECTION "Function115dc3", ROMX
+SECTION "mobile/mobile_45_sprite_engine.asm@Function115dc3", ROMX
 
 Function115dc3:
 	xor a
@@ -31,7 +31,7 @@ Function115dc3:
 	ret
 
 
-SECTION "Function115dd3 - Unknown_116005", ROMX
+SECTION "mobile/mobile_45_sprite_engine.asm@Function115dd3 - Unknown_116005", ROMX
 
 Function115dd3:
 	ld a, [wc305]
@@ -316,13 +316,13 @@ Unknown_116005:
 	dsprite   2, 0,   1, 0, $63, $01
 
 
-SECTION "GFX_11601a", ROMX
+SECTION "mobile/mobile_45_sprite_engine.asm@GFX_11601a", ROMX
 
 GFX_11601a::
 INCBIN "gfx/unknown/11601a.2bpp"
 
 
-SECTION "Function11615a", ROMX
+SECTION "mobile/mobile_45_sprite_engine.asm@Function11615a", ROMX
 
 Function11615a:
 	xor a
@@ -352,7 +352,7 @@ Function11615a:
 	ret
 
 
-SECTION "Function11619d - Unknown_117356", ROMX
+SECTION "mobile/mobile_45_sprite_engine.asm@Function11619d - Unknown_117356", ROMX
 
 Function11619d:
 	ld a, [wc30d]

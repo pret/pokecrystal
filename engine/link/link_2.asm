@@ -1,4 +1,4 @@
-SECTION "LinkMonStatsScreen", ROMX
+SECTION "engine/link/link_2.asm@LinkMonStatsScreen", ROMX
 
 LinkMonStatsScreen:
 	ld a, [wMenuCursorY]
@@ -20,7 +20,7 @@ LinkMonStatsScreen:
 	ret
 
 
-SECTION "Link_WaitBGMap", ROMX
+SECTION "engine/link/link_2.asm@Link_WaitBGMap", ROMX
 
 Link_WaitBGMap:
 	call WaitBGMap
@@ -28,7 +28,7 @@ Link_WaitBGMap:
 	ret
 
 
-SECTION "LinkTextbox2", ROMX
+SECTION "engine/link/link_2.asm@LinkTextbox2", ROMX
 
 LinkTextbox2:
 	ld h, d

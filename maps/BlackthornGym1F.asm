@@ -6,7 +6,7 @@
 	const BLACKTHORNGYM1F_GYM_GUY
 
 
-SECTION "BlackthornGym1F_MapScripts", ROMX
+SECTION "maps/BlackthornGym1F.asm", ROMX
 
 BlackthornGym1F_MapScripts:
 	db 0 ; scene scripts

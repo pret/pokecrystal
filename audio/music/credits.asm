@@ -1,4 +1,4 @@
-SECTION "Music_Credits", ROMX
+SECTION "audio/music/credits.asm", ROMX
 
 Music_Credits:
 	musicheader 4, 1, Music_Credits_Ch1

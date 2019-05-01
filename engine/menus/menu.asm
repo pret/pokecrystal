@@ -1,4 +1,4 @@
-SECTION "_2DMenu_ - Place2DMenuCursor", ROMX
+SECTION "engine/menus/menu.asm@_2DMenu_", ROMX
 
 _2DMenu_::
 	ld hl, CopyMenuData
@@ -557,7 +557,7 @@ Place2DMenuCursor:
 	ret
 
 
-SECTION "_PushWindow", ROMX
+SECTION "engine/menus/menu.asm@_PushWindow", ROMX
 
 _PushWindow::
 	ldh a, [rSVBK]
@@ -659,7 +659,7 @@ _PushWindow::
 	ret
 
 
-SECTION "_ExitMenu - Error_Cant_ExitMenu", ROMX
+SECTION "engine/menus/menu.asm@_ExitMenu", ROMX
 
 _ExitMenu::
 	xor a
@@ -744,7 +744,7 @@ Error_Cant_ExitMenu:
 	text_end
 
 
-SECTION "_InitVerticalMenuCursor", ROMX
+SECTION "engine/menus/menu.asm@_InitVerticalMenuCursor", ROMX
 
 _InitVerticalMenuCursor::
 	ld a, [wMenuDataFlags]

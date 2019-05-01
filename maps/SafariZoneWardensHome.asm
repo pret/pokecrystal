@@ -2,7 +2,7 @@
 	const SAFARIZONEWARDENSHOME_LASS
 
 
-SECTION "SafariZoneWardensHome_MapScripts", ROMX
+SECTION "maps/SafariZoneWardensHome.asm", ROMX
 
 SafariZoneWardensHome_MapScripts:
 	db 0 ; scene scripts

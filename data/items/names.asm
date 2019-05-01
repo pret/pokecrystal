@@ -1,4 +1,4 @@
-SECTION "ItemNames", ROMX
+SECTION "data/items/names.asm", ROMX
 
 ItemNames::
 	db "MASTER BALL@"

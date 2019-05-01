@@ -6,7 +6,7 @@
 	const PEWTERPOKECENTER1F_CHRIS
 
 
-SECTION "PewterPokecenter1F_MapScripts", ROMX
+SECTION "maps/PewterPokecenter1F.asm", ROMX
 
 PewterPokecenter1F_MapScripts:
 	db 0 ; scene scripts

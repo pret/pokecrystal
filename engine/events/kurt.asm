@@ -1,4 +1,4 @@
-SECTION "Kurt_PrintTextWhichApricorn - Kurt_GetRidOfItem", ROMX
+SECTION "engine/events/kurt.asm", ROMX
 
 Kurt_PrintTextWhichApricorn:
 	ld hl, .Text

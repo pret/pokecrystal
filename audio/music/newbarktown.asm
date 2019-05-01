@@ -1,4 +1,4 @@
-SECTION "Music_NewBarkTown", ROMX
+SECTION "audio/music/newbarktown.asm", ROMX
 
 Music_NewBarkTown:
 	musicheader 3, 1, Music_NewBarkTown_Ch1

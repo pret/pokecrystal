@@ -1,7 +1,7 @@
 HALLOFFAME_COLON EQU $63
 
 
-SECTION "HallOfFame - HOF_AnimatePlayerPic", ROMX
+SECTION "engine/events/halloffame.asm", ROMX
 
 HallOfFame::
 	call HallOfFame_FadeOutMusic

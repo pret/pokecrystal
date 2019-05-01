@@ -1,4 +1,4 @@
-SECTION "ShowLinkBattleParticipants", ROMX
+SECTION "engine/battle/start_battle.asm@ShowLinkBattleParticipants", ROMX
 
 ShowLinkBattleParticipants:
 ; If we're not in a communications room,
@@ -15,7 +15,7 @@ ShowLinkBattleParticipants:
 	ret
 
 
-SECTION "FindFirstAliveMonAndStartBattle", ROMX
+SECTION "engine/battle/start_battle.asm@FindFirstAliveMonAndStartBattle", ROMX
 
 FindFirstAliveMonAndStartBattle:
 	xor a
@@ -52,7 +52,7 @@ FindFirstAliveMonAndStartBattle:
 	ret
 
 
-SECTION "PlayBattleMusic", ROMX
+SECTION "engine/battle/start_battle.asm@PlayBattleMusic", ROMX
 
 PlayBattleMusic:
 	push hl
@@ -157,7 +157,7 @@ PlayBattleMusic:
 	ret
 
 
-SECTION "ClearBattleRAM", ROMX
+SECTION "engine/battle/start_battle.asm@ClearBattleRAM", ROMX
 
 ClearBattleRAM:
 	xor a

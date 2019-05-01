@@ -1,4 +1,4 @@
-SECTION "NurseMornText - RegisteredNumber2Text", ROMX
+SECTION "data/text/std_text.asm", ROMX
 
 NurseMornText:
 	text "Good morning!"

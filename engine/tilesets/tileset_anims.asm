@@ -1,4 +1,4 @@
-SECTION "_AnimateTileset - WhirlpoolTiles4", ROMX
+SECTION "engine/tilesets/tileset_anims.asm", ROMX
 
 _AnimateTileset::
 ; Iterate over a given pointer array of

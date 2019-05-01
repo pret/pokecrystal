@@ -1,6 +1,6 @@
 ; battle commands are defined in engine/battle/effect_commands.asm
 
-SECTION "BattleCommandPointers", ROMX
+SECTION "data/battle/effect_command_pointers.asm", ROMX
 
 	dw 0 ; padding
 

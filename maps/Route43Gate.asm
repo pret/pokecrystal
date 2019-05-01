@@ -6,7 +6,7 @@ ROUTE43GATE_TOLL EQU 1000
 	const ROUTE43GATE_ROCKET2
 
 
-SECTION "Route43Gate_MapScripts", ROMX
+SECTION "maps/Route43Gate.asm", ROMX
 
 Route43Gate_MapScripts:
 	db 2 ; scene scripts

@@ -2,7 +2,7 @@
 	const ROUTE12SUPERRODHOUSE_FISHING_GURU
 
 
-SECTION "Route12SuperRodHouse_MapScripts", ROMX
+SECTION "maps/Route12SuperRodHouse.asm", ROMX
 
 Route12SuperRodHouse_MapScripts:
 	db 0 ; scene scripts

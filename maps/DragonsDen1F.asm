@@ -1,5 +1,5 @@
 
-SECTION "DragonsDen1F_MapScripts", ROMX
+SECTION "maps/DragonsDen1F.asm", ROMX
 
 DragonsDen1F_MapScripts:
 	db 0 ; scene scripts

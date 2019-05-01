@@ -1,4 +1,4 @@
-SECTION "Music_SuicuneBattle", ROMX
+SECTION "audio/music/suicunebattle.asm", ROMX
 
 Music_SuicuneBattle:
 	musicheader 3, 1, Music_SuicuneBattle_Ch1

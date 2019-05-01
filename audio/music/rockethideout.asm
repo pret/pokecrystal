@@ -1,4 +1,4 @@
-SECTION "Music_RocketHideout", ROMX
+SECTION "audio/music/rockethideout.asm", ROMX
 
 Music_RocketHideout:
 	musicheader 4, 1, Music_RocketHideout_Ch1

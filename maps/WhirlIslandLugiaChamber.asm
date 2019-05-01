@@ -2,7 +2,7 @@
 	const WHIRLISLANDLUGIACHAMBER_LUGIA
 
 
-SECTION "WhirlIslandLugiaChamber_MapScripts", ROMX
+SECTION "maps/WhirlIslandLugiaChamber.asm", ROMX
 
 WhirlIslandLugiaChamber_MapScripts:
 	db 0 ; scene scripts

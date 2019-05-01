@@ -13,7 +13,7 @@ GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_PRICE EQU 300
 	const GOLDENRODUNDERGROUND_GRANNY
 
 
-SECTION "GoldenrodUnderground_MapScripts", ROMX
+SECTION "maps/GoldenrodUnderground.asm", ROMX
 
 GoldenrodUnderground_MapScripts:
 	db 0 ; scene scripts

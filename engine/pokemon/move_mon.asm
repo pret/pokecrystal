@@ -1,7 +1,7 @@
 RANDY_OT_ID EQU 01001
 
 
-SECTION "TryAddMonToParty - InitNickname", ROMX, BANK[BANK_MOVE_MON]
+SECTION "engine/pokemon/move_mon.asm", ROMX, BANK[BANK_MOVE_MON]
 
 TryAddMonToParty:
 ; Check if to copy wild mon or generate a new one

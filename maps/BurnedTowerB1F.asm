@@ -10,7 +10,7 @@
 	const BURNEDTOWERB1F_EUSINE
 
 
-SECTION "BurnedTowerB1F_MapScripts", ROMX
+SECTION "maps/BurnedTowerB1F.asm", ROMX
 
 BurnedTowerB1F_MapScripts:
 	db 2 ; scene scripts

@@ -9,7 +9,7 @@
 	const SAFFRONCITY_LASS2
 
 
-SECTION "SaffronCity_MapScripts", ROMX
+SECTION "maps/SaffronCity.asm", ROMX
 
 SaffronCity_MapScripts:
 	db 0 ; scene scripts

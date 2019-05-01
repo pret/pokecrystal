@@ -3,7 +3,7 @@
 	const VIOLETKYLESHOUSE_KYLE
 
 
-SECTION "VioletKylesHouse_MapScripts", ROMX
+SECTION "maps/VioletKylesHouse.asm", ROMX
 
 VioletKylesHouse_MapScripts:
 	db 0 ; scene scripts

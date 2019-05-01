@@ -5,7 +5,7 @@
 	const VERMILIONPOKECENTER1F_BUG_CATCHER
 
 
-SECTION "VermilionPokecenter1F_MapScripts", ROMX
+SECTION "maps/VermilionPokecenter1F.asm", ROMX
 
 VermilionPokecenter1F_MapScripts:
 	db 0 ; scene scripts

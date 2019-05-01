@@ -1,4 +1,4 @@
-SECTION "DerekCheekPincherText - UnknownText_0x65da6", ROMX
+SECTION "data/phone/text/derek_caller.asm", ROMX
 
 DerekCheekPincherText:
 	text "Listen to this."

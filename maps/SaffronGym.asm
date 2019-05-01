@@ -7,7 +7,7 @@
 	const SAFFRONGYM_GYM_GUY
 
 
-SECTION "SaffronGym_MapScripts", ROMX
+SECTION "maps/SaffronGym.asm", ROMX
 
 SaffronGym_MapScripts:
 	db 0 ; scene scripts

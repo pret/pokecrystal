@@ -3,7 +3,7 @@
 	const GOLDENRODPPSPEECHHOUSE_LASS
 
 
-SECTION "GoldenrodPPSpeechHouse_MapScripts", ROMX
+SECTION "maps/GoldenrodPPSpeechHouse.asm", ROMX
 
 GoldenrodPPSpeechHouse_MapScripts:
 	db 0 ; scene scripts

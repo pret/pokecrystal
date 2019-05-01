@@ -6,7 +6,7 @@
 	const MRFUJISHOUSE_PIDGEY
 
 
-SECTION "MrFujisHouse_MapScripts", ROMX
+SECTION "maps/MrFujisHouse.asm", ROMX
 
 MrFujisHouse_MapScripts:
 	db 0 ; scene scripts

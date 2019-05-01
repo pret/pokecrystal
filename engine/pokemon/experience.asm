@@ -1,4 +1,4 @@
-SECTION "CalcLevel - GrowthRates", ROMX
+SECTION "engine/pokemon/experience.asm", ROMX
 
 CalcLevel:
 	ld a, [wTempMonSpecies]

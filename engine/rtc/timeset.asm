@@ -2,7 +2,7 @@ TIMESET_UP_ARROW   EQU "♂" ; $ef
 TIMESET_DOWN_ARROW EQU "♀" ; $f5
 
 
-SECTION "InitClock - AdjustHourForAMorPM", ROMX
+SECTION "engine/rtc/timeset.asm", ROMX
 
 InitClock:
 ; Ask the player to set the time.

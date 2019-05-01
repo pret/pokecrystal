@@ -1,4 +1,4 @@
-SECTION "Music_EcruteakCity", ROMX
+SECTION "audio/music/ecruteakcity.asm", ROMX
 
 Music_EcruteakCity:
 	musicheader 3, 1, Music_EcruteakCity_Ch1

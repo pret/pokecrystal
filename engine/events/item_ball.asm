@@ -1,4 +1,4 @@
-SECTION "FindItemInBallScript", ROMX
+SECTION "engine/events/item_ball.asm", ROMX
 
 FindItemInBallScript::
 	callasm .TryReceiveItem

@@ -7,7 +7,7 @@
 	const WISETRIOSROOM_SAGE6
 
 
-SECTION "WiseTriosRoom_MapScripts", ROMX
+SECTION "maps/WiseTriosRoom.asm", ROMX
 
 WiseTriosRoom_MapScripts:
 	db 2 ; scene scripts

@@ -1,4 +1,4 @@
-SECTION "Music_BuenasPassword", ROMX
+SECTION "audio/music/buenaspassword.asm", ROMX
 
 Music_BuenasPassword:
 	musicheader 4, 1, Music_BuenasPassword_Ch1

@@ -1,4 +1,4 @@
-SECTION "Music_CrystalOpening", ROMX
+SECTION "audio/music/crystalopening.asm", ROMX
 
 Music_CrystalOpening:
 	musicheader 4, 1, Music_CrystalOpening_Ch1

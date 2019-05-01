@@ -1,4 +1,4 @@
-SECTION "HiddenItemScript - SetMemEvent", ROMX
+SECTION "engine/events/hidden_item.asm", ROMX
 
 HiddenItemScript::
 	opentext

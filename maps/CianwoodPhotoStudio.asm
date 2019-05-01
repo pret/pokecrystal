@@ -2,7 +2,7 @@
 	const CIANWOODPHOTOSTUDIO_FISHING_GURU
 
 
-SECTION "CianwoodPhotoStudio_MapScripts", ROMX
+SECTION "maps/CianwoodPhotoStudio.asm", ROMX
 
 CianwoodPhotoStudio_MapScripts:
 	db 0 ; scene scripts

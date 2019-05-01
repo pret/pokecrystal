@@ -1,4 +1,4 @@
-SECTION "TMHMPocket - BeatUpDescription", ROMX
+SECTION "engine/items/tmhm.asm", ROMX
 
 TMHMPocket:
 	ld a, $1

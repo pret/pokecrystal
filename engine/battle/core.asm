@@ -1,6 +1,6 @@
 ; Core components of the battle engine.
 
-SECTION "DoBattle - BattleStartMessage", ROMX
+SECTION "engine/battle/core.asm", ROMX
 
 DoBattle:
 	xor a

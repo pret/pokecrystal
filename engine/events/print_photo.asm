@@ -1,4 +1,4 @@
-SECTION "PhotoStudio", ROMX
+SECTION "engine/events/print_photo.asm", ROMX
 
 PhotoStudio:
 	ld hl, .Text_AskWhichMon

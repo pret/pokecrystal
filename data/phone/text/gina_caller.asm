@@ -1,4 +1,4 @@
-SECTION "UnknownText_0x1771fd - UnknownText_0x17750e", ROMX
+SECTION "data/phone/text/gina_caller.asm", ROMX
 
 UnknownText_0x1771fd:
 	text "My @"

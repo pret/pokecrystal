@@ -1,4 +1,4 @@
-SECTION "Music_KantoGymBattle", ROMX
+SECTION "audio/music/kantogymbattle.asm", ROMX
 
 Music_KantoGymBattle:
 	musicheader 3, 1, Music_KantoGymBattle_Ch1

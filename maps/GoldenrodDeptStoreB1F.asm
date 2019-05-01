@@ -9,7 +9,7 @@
 	const GOLDENRODDEPTSTOREB1F_MACHOP
 
 
-SECTION "GoldenrodDeptStoreB1F_MapScripts", ROMX
+SECTION "maps/GoldenrodDeptStoreB1F.asm", ROMX
 
 GoldenrodDeptStoreB1F_MapScripts:
 	db 0 ; scene scripts

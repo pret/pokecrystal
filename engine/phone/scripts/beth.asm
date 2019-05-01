@@ -1,4 +1,4 @@
-SECTION "BethPhoneCalleeScript - BethWantsBattle", ROMX
+SECTION "engine/phone/scripts/beth.asm", ROMX
 
 BethPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, COOLTRAINERF, BETH1

@@ -5,7 +5,7 @@
 	const ROUTE34ILEXFORESTGATE_TEACHER2
 
 
-SECTION "Route34IlexForestGate_MapScripts", ROMX
+SECTION "maps/Route34IlexForestGate.asm", ROMX
 
 Route34IlexForestGate_MapScripts:
 	db 0 ; scene scripts

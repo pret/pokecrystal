@@ -5,7 +5,7 @@
 	const CELADONDEPTSTORE2F_YOUNGSTER
 
 
-SECTION "CeladonDeptStore2F_MapScripts", ROMX
+SECTION "maps/CeladonDeptStore2F.asm", ROMX
 
 CeladonDeptStore2F_MapScripts:
 	db 0 ; scene scripts

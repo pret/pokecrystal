@@ -2,7 +2,7 @@
 	const ROUTE30BERRYHOUSE_POKEFAN_M
 
 
-SECTION "Route30BerryHouse_MapScripts", ROMX
+SECTION "maps/Route30BerryHouse.asm", ROMX
 
 Route30BerryHouse_MapScripts:
 	db 0 ; scene scripts

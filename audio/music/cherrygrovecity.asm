@@ -1,4 +1,4 @@
-SECTION "Music_CherrygroveCity", ROMX
+SECTION "audio/music/cherrygrovecity.asm", ROMX
 
 Music_CherrygroveCity:
 	musicheader 4, 1, Music_CherrygroveCity_Ch1

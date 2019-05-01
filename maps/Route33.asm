@@ -4,7 +4,7 @@
 	const ROUTE33_FRUIT_TREE
 
 
-SECTION "Route33_MapScripts", ROMX
+SECTION "maps/Route33.asm", ROMX
 
 Route33_MapScripts:
 	db 0 ; scene scripts

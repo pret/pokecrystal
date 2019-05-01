@@ -1,4 +1,4 @@
-SECTION "Sfx_IntroUnown1 - Sfx_IntroUnown1_Ch5", ROMX
+SECTION "audio/sfx_crystal.asm@Sfx_IntroUnown1", ROMX
 
 Sfx_IntroUnown1:
 	musicheader 1, 5, Sfx_IntroUnown1_Ch5
@@ -11,7 +11,7 @@ Sfx_IntroUnown1_Ch5:
 	endchannel
 
 
-SECTION "Sfx_IntroUnown2 - Sfx_IntroUnown2_Ch6", ROMX
+SECTION "audio/sfx_crystal.asm@Sfx_IntroUnown2", ROMX
 
 Sfx_IntroUnown2:
 	musicheader 1, 6, Sfx_IntroUnown2_Ch6
@@ -24,7 +24,7 @@ Sfx_IntroUnown2_Ch6:
 	endchannel
 
 
-SECTION "Sfx_IntroUnown3 - Sfx_IntroUnown3_Ch7", ROMX
+SECTION "audio/sfx_crystal.asm@Sfx_IntroUnown3", ROMX
 
 Sfx_IntroUnown3:
 	musicheader 1, 7, Sfx_IntroUnown3_Ch7
@@ -40,7 +40,7 @@ Sfx_IntroUnown3_Ch7:
 	endchannel
 
 
-SECTION "Sfx_DittoPopUp - Sfx_DittoPopUp_Ch5", ROMX
+SECTION "audio/sfx_crystal.asm@Sfx_DittoPopUp", ROMX
 
 Sfx_DittoPopUp:
 	musicheader 1, 5, Sfx_DittoPopUp_Ch5
@@ -56,7 +56,7 @@ Sfx_DittoPopUp_Ch5:
 	endchannel
 
 
-SECTION "Sfx_DittoTransform - Sfx_DittoTransform_Ch5", ROMX
+SECTION "audio/sfx_crystal.asm@Sfx_DittoTransform", ROMX
 
 Sfx_DittoTransform:
 	musicheader 1, 5, Sfx_DittoTransform_Ch5
@@ -71,7 +71,7 @@ Sfx_DittoTransform_Ch5:
 	endchannel
 
 
-SECTION "Sfx_IntroSuicune1 - Sfx_IntroSuicune1_Ch8", ROMX
+SECTION "audio/sfx_crystal.asm@Sfx_IntroSuicune1", ROMX
 
 Sfx_IntroSuicune1:
 	musicheader 1, 8, Sfx_IntroSuicune1_Ch8
@@ -82,7 +82,7 @@ Sfx_IntroSuicune1_Ch8:
 	endchannel
 
 
-SECTION "Sfx_IntroPichu - Sfx_IntroPichu_Ch5", ROMX
+SECTION "audio/sfx_crystal.asm@Sfx_IntroPichu", ROMX
 
 Sfx_IntroPichu:
 	musicheader 1, 5, Sfx_IntroPichu_Ch5
@@ -97,7 +97,7 @@ Sfx_IntroPichu_Ch5:
 	endchannel
 
 
-SECTION "Sfx_IntroSuicune2 - Sfx_IntroSuicune2_Ch8", ROMX
+SECTION "audio/sfx_crystal.asm@Sfx_IntroSuicune2", ROMX
 
 Sfx_IntroSuicune2:
 	musicheader 1, 8, Sfx_IntroSuicune2_Ch8
@@ -122,7 +122,7 @@ Sfx_IntroSuicune2_Ch8:
 	endchannel
 
 
-SECTION "Sfx_IntroSuicune3 - Sfx_IntroSuicune3_Ch8", ROMX
+SECTION "audio/sfx_crystal.asm@Sfx_IntroSuicune3", ROMX
 
 Sfx_IntroSuicune3:
 	musicheader 1, 8, Sfx_IntroSuicune3_Ch8
@@ -136,7 +136,7 @@ Sfx_IntroSuicune3_Ch8:
 	endchannel
 
 
-SECTION "Sfx_DittoBounce - Sfx_DittoBounce_Ch5", ROMX
+SECTION "audio/sfx_crystal.asm@Sfx_DittoBounce", ROMX
 
 Sfx_DittoBounce:
 	musicheader 1, 5, Sfx_DittoBounce_Ch5
@@ -151,7 +151,7 @@ Sfx_DittoBounce_Ch5:
 	endchannel
 
 
-SECTION "Sfx_IntroSuicune4 - Sfx_IntroSuicune4_Ch8", ROMX
+SECTION "audio/sfx_crystal.asm@Sfx_IntroSuicune4", ROMX
 
 Sfx_IntroSuicune4:
 	musicheader 1, 8, Sfx_IntroSuicune4_Ch8
@@ -171,7 +171,7 @@ Sfx_IntroSuicune4_Ch8:
 	endchannel
 
 
-SECTION "Sfx_GameFreakPresents - Sfx_GameFreakPresents_Ch5", ROMX
+SECTION "audio/sfx_crystal.asm@Sfx_GameFreakPresents", ROMX
 
 Sfx_GameFreakPresents:
 	musicheader 1, 5, Sfx_GameFreakPresents_Ch5
@@ -199,7 +199,7 @@ Sfx_GameFreakPresents_Ch5:
 	endchannel
 
 
-SECTION "Sfx_Tingle - Sfx_Tingle_Ch5", ROMX
+SECTION "audio/sfx_crystal.asm@Sfx_Tingle", ROMX
 
 Sfx_Tingle:
 	musicheader 1, 5, Sfx_Tingle_Ch5
@@ -224,7 +224,7 @@ Sfx_Tingle_Ch5:
 	endchannel
 
 
-SECTION "Sfx_TwoPcBeeps - Sfx_TwoPcBeeps_Ch5", ROMX
+SECTION "audio/sfx_crystal.asm@Sfx_TwoPcBeeps", ROMX
 
 Sfx_TwoPcBeeps:
 	musicheader 1, 5, Sfx_TwoPcBeeps_Ch5
@@ -238,7 +238,7 @@ Sfx_TwoPcBeeps_Ch5:
 	endchannel
 
 
-SECTION "Sfx_4NoteDitty - Sfx_4NoteDitty_Ch7", ROMX
+SECTION "audio/sfx_crystal.asm@Sfx_4NoteDitty", ROMX
 
 Sfx_4NoteDitty:
 	musicheader 3, 5, Sfx_4NoteDitty_Ch5
@@ -285,7 +285,7 @@ Sfx_4NoteDitty_Ch7:
 	endchannel
 
 
-SECTION "Sfx_Twinkle - Sfx_Twinkle_Ch5", ROMX
+SECTION "audio/sfx_crystal.asm@Sfx_Twinkle", ROMX
 
 Sfx_Twinkle:
 	musicheader 1, 5, Sfx_Twinkle_Ch5

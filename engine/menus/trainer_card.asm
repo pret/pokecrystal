@@ -9,7 +9,7 @@
 	const TRAINERCARDSTATE_QUIT          ; 6
 
 
-SECTION "TrainerCard - CardRightCornerGFX", ROMX
+SECTION "engine/menus/trainer_card.asm", ROMX
 
 TrainerCard:
 	ld a, [wVramState]

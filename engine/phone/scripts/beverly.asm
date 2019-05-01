@@ -1,4 +1,4 @@
-SECTION "BeverlyPhoneCalleeScript - BeverlyPhoneCallerScript", ROMX
+SECTION "engine/phone/scripts/beverly.asm", ROMX
 
 BeverlyPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, POKEFANF, BEVERLY1

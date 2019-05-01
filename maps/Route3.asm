@@ -5,7 +5,7 @@
 	const ROUTE3_FISHER2
 
 
-SECTION "Route3_MapScripts", ROMX
+SECTION "maps/Route3.asm", ROMX
 
 Route3_MapScripts:
 	db 0 ; scene scripts

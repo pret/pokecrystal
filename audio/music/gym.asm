@@ -1,4 +1,4 @@
-SECTION "Music_Gym", ROMX
+SECTION "audio/music/gym.asm", ROMX
 
 Music_Gym:
 	musicheader 4, 1, Music_Gym_Ch1

@@ -1,4 +1,4 @@
-SECTION "UnknownText_0x1748ea - UnknownText_0x1749c7", ROMX
+SECTION "data/phone/text/huey_caller.asm", ROMX
 
 UnknownText_0x1748ea:
 	text "Hey, I challenge"

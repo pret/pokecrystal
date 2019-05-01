@@ -1,4 +1,4 @@
-SECTION "Music_Mom", ROMX
+SECTION "audio/music/mom.asm", ROMX
 
 Music_Mom:
 	musicheader 3, 2, Music_Mom_Ch2

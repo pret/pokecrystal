@@ -1,4 +1,4 @@
-SECTION "ToddLooksCuteLikeMeText - UnknownText_0x17717c", ROMX
+SECTION "data/phone/text/todd_caller.asm", ROMX
 
 ToddLooksCuteLikeMeText:
 	text "My @"

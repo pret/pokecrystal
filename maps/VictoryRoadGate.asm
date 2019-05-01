@@ -4,7 +4,7 @@
 	const VICTORYROADGATE_BLACK_BELT2
 
 
-SECTION "VictoryRoadGate_MapScripts", ROMX
+SECTION "maps/VictoryRoadGate.asm", ROMX
 
 VictoryRoadGate_MapScripts:
 	db 2 ; scene scripts

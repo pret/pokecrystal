@@ -4,7 +4,7 @@
 	const OLIVINEMART_LASS
 
 
-SECTION "OlivineMart_MapScripts", ROMX
+SECTION "maps/OlivineMart.asm", ROMX
 
 OlivineMart_MapScripts:
 	db 0 ; scene scripts

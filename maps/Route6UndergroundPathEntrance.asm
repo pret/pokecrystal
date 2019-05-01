@@ -1,5 +1,5 @@
 
-SECTION "Route6UndergroundPathEntrance_MapScripts", ROMX
+SECTION "maps/Route6UndergroundPathEntrance.asm", ROMX
 
 Route6UndergroundPathEntrance_MapScripts:
 	db 0 ; scene scripts

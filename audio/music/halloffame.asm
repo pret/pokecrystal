@@ -1,4 +1,4 @@
-SECTION "Music_HallOfFame", ROMX
+SECTION "audio/music/halloffame.asm", ROMX
 
 Music_HallOfFame:
 	musicheader 4, 1, Music_HallOfFame_Ch1

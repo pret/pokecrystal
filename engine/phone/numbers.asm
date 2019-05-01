@@ -1,4 +1,4 @@
-SECTION "AddPhoneNumber - PermanentNumbers", ROMX
+SECTION "engine/phone/numbers.asm", ROMX
 
 AddPhoneNumber::
 	call _CheckCellNum

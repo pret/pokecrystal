@@ -5,7 +5,7 @@
 	const VIRIDIANNICKNAMESPEECHHOUSE_RATTEY
 
 
-SECTION "ViridianNicknameSpeechHouse_MapScripts", ROMX
+SECTION "maps/ViridianNicknameSpeechHouse.asm", ROMX
 
 ViridianNicknameSpeechHouse_MapScripts:
 	db 0 ; scene scripts

@@ -1,4 +1,4 @@
-SECTION "Music_NationalPark", ROMX
+SECTION "audio/music/nationalpark.asm", ROMX
 
 Music_NationalPark:
 	musicheader 4, 1, Music_NationalPark_Ch1

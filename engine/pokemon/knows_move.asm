@@ -1,4 +1,4 @@
-SECTION "KnowsMove", ROMX
+SECTION "engine/pokemon/knows_move.asm", ROMX
 
 KnowsMove:
 	ld a, MON_MOVES

@@ -4,7 +4,7 @@
 	const ROUTE35GOLDENRODGATE_FISHER
 
 
-SECTION "Route35GoldenrodGate_MapScripts", ROMX
+SECTION "maps/Route35GoldenrodGate.asm", ROMX
 
 Route35GoldenrodGate_MapScripts:
 	db 0 ; scene scripts

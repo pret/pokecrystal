@@ -1,4 +1,4 @@
-SECTION "Printer_StartTransmission - String84a25", ROMX
+SECTION "engine/printer/printer.asm", ROMX
 
 INCLUDE "engine/printer/printer_serial.asm"
 

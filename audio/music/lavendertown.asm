@@ -1,4 +1,4 @@
-SECTION "Music_LavenderTown", ROMX
+SECTION "audio/music/lavendertown.asm", ROMX
 
 Music_LavenderTown:
 	musicheader 3, 1, Music_LavenderTown_Ch1

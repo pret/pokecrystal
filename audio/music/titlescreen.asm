@@ -1,4 +1,4 @@
-SECTION "Music_TitleScreen", ROMX
+SECTION "audio/music/titlescreen.asm", ROMX
 
 Music_TitleScreen:
 	musicheader 4, 1, Music_TitleScreen_Ch1

@@ -1,4 +1,4 @@
-SECTION "GetTrainerClassName - TrainerClassAttributes", ROMX, BANK[BANK_TRAINER_ATTRIBUTES]
+SECTION "engine/battle/read_trainer_attributes.asm", ROMX, BANK[BANK_TRAINER_ATTRIBUTES]
 
 GetTrainerClassName:
 	ld hl, wRivalName

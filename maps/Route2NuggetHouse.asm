@@ -2,7 +2,7 @@
 	const ROUTE2NUGGETHOUSE_FISHER
 
 
-SECTION "Route2NuggetHouse_MapScripts", ROMX
+SECTION "maps/Route2NuggetHouse.asm", ROMX
 
 Route2NuggetHouse_MapScripts:
 	db 0 ; scene scripts

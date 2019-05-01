@@ -1,4 +1,4 @@
-SECTION "HueyAskNumber1Text - HueyRematchGiftText", ROMX
+SECTION "data/phone/text/huey_overworld.asm", ROMX
 
 HueyAskNumber1Text:
 	text "Cool! That's the"

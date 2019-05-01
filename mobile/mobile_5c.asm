@@ -1,4 +1,4 @@
-SECTION "Function170000", ROMX
+SECTION "mobile/mobile_5c.asm@Function170000", ROMX
 
 Function170000:
 	ld a, [$c62b]
@@ -38,7 +38,7 @@ Function170000:
 	ret
 
 
-SECTION "Function17005a", ROMX
+SECTION "mobile/mobile_5c.asm@Function17005a", ROMX
 
 Function17005a:
 	ld a, $5
@@ -76,7 +76,9 @@ Function17005a:
 	call CloseSRAM
 	ret
 
-SECTION "BattleTowerRoomMenu - CheckBTMonMovesForErrors", ROMX
+
+SECTION "mobile/mobile_5c.asm@BattleTowerRoomMenu", ROMX
+
 INCLUDE "engine/events/battle_tower/battle_tower.asm"
 
 Function170be4:
@@ -255,7 +257,7 @@ CheckBTMonMovesForErrors:
 	ret
 
 
-SECTION "Function170cc6 - GFX_171848", ROMX
+SECTION "mobile/mobile_5c.asm@Function170cc6 - GFX_171848", ROMX
 
 Function170cc6:
 	ldh a, [rSVBK]
@@ -305,7 +307,7 @@ GFX_171848:
 INCBIN "gfx/unknown/171848.2bpp"
 
 
-SECTION "Function1719c8 - String_171c73", ROMX
+SECTION "mobile/mobile_5c.asm@Function1719c8 - String_171c73", ROMX
 
 Function1719c8:
 	ldh a, [hInMenu]
@@ -670,7 +672,7 @@ String_171c73:
 	next "しました@"
 
 
-SECTION "Function171c87 - String_172e5d", ROMX
+SECTION "mobile/mobile_5c.asm@Function171c87 - String_172e5d", ROMX
 
 Function171c87:
 	call DisableLCD
@@ -836,7 +838,7 @@ String_172e5d:
 	next "えらんで　ください@"
 
 
-SECTION "Function172e78 - Attrmap_173517", ROMX
+SECTION "mobile/mobile_5c.asm@Function172e78 - Attrmap_173517", ROMX
 
 Function172e78:
 	ld a, $7f

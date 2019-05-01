@@ -1,4 +1,4 @@
-SECTION "_CardKey", ROMX
+SECTION "engine/events/card_key.asm", ROMX
 
 _CardKey:
 ; Are we even in the right map to use this?

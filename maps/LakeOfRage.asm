@@ -13,7 +13,7 @@
 	const LAKEOFRAGE_POKE_BALL2
 
 
-SECTION "LakeOfRage_MapScripts", ROMX
+SECTION "maps/LakeOfRage.asm", ROMX
 
 LakeOfRage_MapScripts:
 	db 2 ; scene scripts

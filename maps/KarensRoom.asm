@@ -2,7 +2,7 @@
 	const KARENSROOM_KAREN
 
 
-SECTION "KarensRoom_MapScripts", ROMX
+SECTION "maps/KarensRoom.asm", ROMX
 
 KarensRoom_MapScripts:
 	db 2 ; scene scripts

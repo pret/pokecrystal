@@ -3,7 +3,7 @@
 	const GOLDENRODFLOWERSHOP_FLORIA
 
 
-SECTION "GoldenrodFlowerShop_MapScripts", ROMX
+SECTION "maps/GoldenrodFlowerShop.asm", ROMX
 
 GoldenrodFlowerShop_MapScripts:
 	db 0 ; scene scripts

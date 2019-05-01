@@ -3,7 +3,7 @@
 	const ICEPATHB3F_ROCK
 
 
-SECTION "IcePathB3F_MapScripts", ROMX
+SECTION "maps/IcePathB3F.asm", ROMX
 
 IcePathB3F_MapScripts:
 	db 0 ; scene scripts

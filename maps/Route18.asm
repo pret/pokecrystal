@@ -3,7 +3,7 @@
 	const ROUTE18_YOUNGSTER2
 
 
-SECTION "Route18_MapScripts", ROMX
+SECTION "maps/Route18.asm", ROMX
 
 Route18_MapScripts:
 	db 0 ; scene scripts

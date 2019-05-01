@@ -5,7 +5,7 @@
 	const SILVERCAVEROOM1_POKE_BALL4
 
 
-SECTION "SilverCaveRoom1_MapScripts", ROMX
+SECTION "maps/SilverCaveRoom1.asm", ROMX
 
 SilverCaveRoom1_MapScripts:
 	db 0 ; scene scripts

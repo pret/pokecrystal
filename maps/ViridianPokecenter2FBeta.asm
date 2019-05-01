@@ -1,5 +1,5 @@
 
-SECTION "ViridianPokecenter2FBeta_MapScripts", ROMX
+SECTION "maps/ViridianPokecenter2FBeta.asm", ROMX
 
 ViridianPokecenter2FBeta_MapScripts:
 	db 0 ; scene scripts

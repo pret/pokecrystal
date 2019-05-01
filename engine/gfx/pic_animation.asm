@@ -1,6 +1,6 @@
 ; Pic animation arrangement.
 
-SECTION "Unused_AnimateMon_Slow_Normal - HOF_AnimateFrontpic", ROMX
+SECTION "engine/gfx/pic_animation.asm", ROMX
 
 Unused_AnimateMon_Slow_Normal:
 	hlcoord 12, 0

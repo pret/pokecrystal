@@ -1,4 +1,4 @@
-SECTION "_BillsPC - ClearPCItemScreen", ROMX
+SECTION "engine/pokemon/bills_pc_top.asm", ROMX
 
 _BillsPC:
 	call .CheckCanUsePC
@@ -257,7 +257,7 @@ ClearPCItemScreen:
 	ret
 
 
-SECTION "CopyBoxmonToTempMon", ROMX
+SECTION "engine/pokemon/bills_pc_top.asm@CopyBoxmonToTempMon", ROMX
 
 CopyBoxmonToTempMon:
 	ld a, [wCurPartyMon]
@@ -273,7 +273,7 @@ CopyBoxmonToTempMon:
 	ret
 
 
-SECTION "Unreferenced_Functione5d9", ROMX
+SECTION "engine/pokemon/bills_pc_top.asm@Unreferenced_Functione5d9", ROMX
 
 Unreferenced_Functione5d9:
 	ld a, [wCurBox]

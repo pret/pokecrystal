@@ -1,4 +1,4 @@
-SECTION "Unreferenced_Function1dd6a9", ROMX
+SECTION "engine/rtc/print_hours_mins.asm@Unreferenced_Function1dd6a9", ROMX
 
 Unreferenced_Function1dd6a9:
 	ld a, b
@@ -16,7 +16,7 @@ Unreferenced_Function1dd6a9:
 	ret
 
 
-SECTION "PrintHoursMins - String_PM", ROMX
+SECTION "engine/rtc/print_hours_mins.asm", ROMX
 
 PrintHoursMins:
 ; Hours in b, minutes in c

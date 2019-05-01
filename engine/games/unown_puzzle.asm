@@ -4,7 +4,7 @@ PUZZLE_VOID   EQU $ef
 puzcoord EQUS "* 6 +"
 
 
-SECTION "_UnownPuzzle - OmanytePuzzleLZ", ROMX
+SECTION "engine/games/unown_puzzle.asm", ROMX
 
 _UnownPuzzle:
 	ldh a, [hInMenu]

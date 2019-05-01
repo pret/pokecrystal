@@ -10,7 +10,7 @@
 	const ROUTE42_SUICUNE
 
 
-SECTION "Route42_MapScripts", ROMX
+SECTION "maps/Route42.asm", ROMX
 
 Route42_MapScripts:
 	db 2 ; scene scripts

@@ -4,7 +4,7 @@
 	const SAFFRONMART_COOLTRAINER_F
 
 
-SECTION "SaffronMart_MapScripts", ROMX
+SECTION "maps/SaffronMart.asm", ROMX
 
 SaffronMart_MapScripts:
 	db 0 ; scene scripts

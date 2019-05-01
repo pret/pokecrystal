@@ -1,4 +1,4 @@
-SECTION "CheckSave", ROMX
+SECTION "engine/events/checksave.asm", ROMX
 
 CheckSave::
 	ld a, BANK(sCheckValue1) ; aka BANK(sCheckValue2)

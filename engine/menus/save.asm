@@ -1,4 +1,4 @@
-SECTION "SaveMenu - Text_SaveOnMoveMonWOMail", ROMX
+SECTION "engine/menus/save.asm", ROMX
 
 SaveMenu:
 	call LoadStandardMenuHeader

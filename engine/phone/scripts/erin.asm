@@ -1,4 +1,4 @@
-SECTION "ErinPhoneCalleeScript - ErinWantsBattle", ROMX
+SECTION "engine/phone/scripts/erin.asm", ROMX
 
 ErinPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, PICNICKER, ERIN1

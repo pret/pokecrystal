@@ -5,7 +5,7 @@
 	const FASTSHIPCABINS_SW_SSW_NW_ROCKER
 
 
-SECTION "FastShipCabins_SW_SSW_NW_MapScripts", ROMX
+SECTION "maps/FastShipCabins_SW_SSW_NW.asm", ROMX
 
 FastShipCabins_SW_SSW_NW_MapScripts:
 	db 0 ; scene scripts

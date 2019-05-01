@@ -1,4 +1,4 @@
-SECTION "Music_SSAqua", ROMX
+SECTION "audio/music/ssaqua.asm", ROMX
 
 Music_SSAqua:
 	musicheader 4, 1, Music_SSAqua_Ch1

@@ -1,4 +1,4 @@
-SECTION "CheckMagikarpLength - MagikarpHouseSign", ROMX
+SECTION "engine/events/magikarp.asm", ROMX
 
 CheckMagikarpLength:
 	; Returns 3 if you select a Magikarp that beats the previous record.

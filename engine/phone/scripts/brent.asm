@@ -1,4 +1,4 @@
-SECTION "BrentPhoneCalleeScript - BrentBillTrivia", ROMX
+SECTION "engine/phone/scripts/brent.asm", ROMX
 
 BrentPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, POKEMANIAC, BRENT1

@@ -1,4 +1,4 @@
-SECTION "EngineFlagAction - EngineFlags", ROMX
+SECTION "engine/events/engine_flags.asm", ROMX
 
 EngineFlagAction::
 ; Do action b on engine flag de

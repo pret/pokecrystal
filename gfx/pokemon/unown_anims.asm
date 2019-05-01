@@ -1,4 +1,4 @@
-SECTION "UnownAnimationPointers - UnownZAnimationIdle", ROMX
+SECTION "gfx/pokemon/unown_anims.asm", ROMX
 
 INCLUDE "gfx/pokemon/unown_anim_pointers.asm"
 

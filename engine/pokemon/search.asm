@@ -1,4 +1,4 @@
-SECTION "BeastsCheck - UpdateOTPointer", ROMX
+SECTION "engine/pokemon/search.asm", ROMX
 
 BeastsCheck:
 ; Check if the player owns all three legendary beasts.

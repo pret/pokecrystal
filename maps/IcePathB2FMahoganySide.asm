@@ -7,7 +7,7 @@
 	const ICEPATHB2FMAHOGANYSIDE_POKE_BALL2
 
 
-SECTION "IcePathB2FMahoganySide_MapScripts", ROMX
+SECTION "maps/IcePathB2FMahoganySide.asm", ROMX
 
 IcePathB2FMahoganySide_MapScripts:
 	db 0 ; scene scripts

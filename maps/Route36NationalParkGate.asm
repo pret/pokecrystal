@@ -13,7 +13,7 @@
 	const ROUTE36NATIONALPARKGATE_OFFICER2
 
 
-SECTION "Route36NationalParkGate_MapScripts", ROMX, BANK[BANK_MAP_ROUTE_35_NATIONAL_PARK_GATE]
+SECTION "maps/Route36NationalParkGate.asm", ROMX, BANK[BANK_MAP_ROUTE_35_NATIONAL_PARK_GATE]
 
 Route36NationalParkGate_MapScripts:
 	db 3 ; scene scripts

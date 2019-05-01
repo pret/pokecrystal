@@ -1,4 +1,4 @@
-SECTION "AIScoring - AI_50_50", ROMX
+SECTION "engine/battle/ai/scoring.asm", ROMX
 
 AIScoring: ; used only for BANK(AIScoring)
 

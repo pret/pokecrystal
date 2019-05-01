@@ -1,4 +1,4 @@
-SECTION "TownMap_ConvertLineBreakCharacters", ROMX
+SECTION "engine/pokegear/townmap_convertlinebreakcharacters.asm", ROMX
 
 TownMap_ConvertLineBreakCharacters:
 	ld hl, wStringBuffer1

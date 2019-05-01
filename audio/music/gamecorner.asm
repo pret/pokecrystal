@@ -1,4 +1,4 @@
-SECTION "Music_GameCorner", ROMX
+SECTION "audio/music/gamecorner.asm", ROMX
 
 Music_GameCorner:
 	musicheader 4, 1, Music_GameCorner_Ch1

@@ -2,7 +2,7 @@
 	const SILVERCAVEROOM3_RED
 
 
-SECTION "SilverCaveRoom3_MapScripts", ROMX
+SECTION "maps/SilverCaveRoom3.asm", ROMX
 
 SilverCaveRoom3_MapScripts:
 	db 0 ; scene scripts

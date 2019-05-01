@@ -4,7 +4,7 @@
 	const PEWTERGYM_GYM_GUY
 
 
-SECTION "PewterGym_MapScripts", ROMX
+SECTION "maps/PewterGym.asm", ROMX
 
 PewterGym_MapScripts:
 	db 0 ; scene scripts

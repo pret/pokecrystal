@@ -1,7 +1,7 @@
 ; These functions seem to be related to backwards compatibility
 
 
-SECTION "ValidateOTTrademon", ROMX
+SECTION "engine/link/time_capsule.asm@ValidateOTTrademon", ROMX
 
 ValidateOTTrademon:
 	ld a, [wd003]
@@ -68,7 +68,7 @@ ValidateOTTrademon:
 	ret
 
 
-SECTION "Functionfb5dd", ROMX
+SECTION "engine/link/time_capsule.asm@Functionfb5dd", ROMX
 
 Functionfb5dd:
 	ld a, [wd002]
@@ -107,7 +107,7 @@ Functionfb5dd:
 	ret
 
 
-SECTION "PlaceTradePartnerNamesAndParty", ROMX
+SECTION "engine/link/time_capsule.asm@PlaceTradePartnerNamesAndParty", ROMX
 
 PlaceTradePartnerNamesAndParty:
 	hlcoord 4, 0

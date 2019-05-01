@@ -1,4 +1,4 @@
-SECTION "UnknownText_0x1b518b - UnknownText_0x1b522b", ROMX
+SECTION "data/phone/text/unknown_callee.asm", ROMX
 
 UnknownText_0x1b518b:
 	text "How are your"

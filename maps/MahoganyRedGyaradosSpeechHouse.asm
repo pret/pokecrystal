@@ -3,7 +3,7 @@
 	const MAHOGANYREDGYARADOSSPEECHHOUSE_TEACHER
 
 
-SECTION "MahoganyRedGyaradosSpeechHouse_MapScripts", ROMX
+SECTION "maps/MahoganyRedGyaradosSpeechHouse.asm", ROMX
 
 MahoganyRedGyaradosSpeechHouse_MapScripts:
 	db 0 ; scene scripts

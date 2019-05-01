@@ -1,4 +1,4 @@
-SECTION "UnknownText_0x1b5073 - UnknownText_0x1b5154", ROMX
+SECTION "data/phone/text/huey_callee.asm", ROMX
 
 UnknownText_0x1b5073:
 	text "Yeah, this is"

@@ -1,4 +1,4 @@
-SECTION "Music_LookLass", ROMX
+SECTION "audio/music/looklass.asm", ROMX
 
 Music_LookLass:
 	musicheader 4, 1, Music_LookLass_Ch1

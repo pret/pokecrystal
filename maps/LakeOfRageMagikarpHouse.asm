@@ -2,7 +2,7 @@
 	const LAKEOFRAGEMAGIKARPHOUSE_FISHING_GURU
 
 
-SECTION "LakeOfRageMagikarpHouse_MapScripts", ROMX
+SECTION "maps/LakeOfRageMagikarpHouse.asm", ROMX
 
 LakeOfRageMagikarpHouse_MapScripts:
 	db 0 ; scene scripts

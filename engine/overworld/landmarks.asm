@@ -1,4 +1,4 @@
-SECTION "GetLandmarkCoords - SpecialMapName", ROMX
+SECTION "engine/overworld/landmarks.asm", ROMX
 
 GetLandmarkCoords:
 ; Return coordinates (d, e) of landmark e.
@@ -48,7 +48,7 @@ GetLandmarkName::
 INCLUDE "data/maps/landmarks.asm"
 
 
-SECTION "RegionCheck", ROMX
+SECTION "engine/overworld/landmarks.asm@RegionCheck", ROMX
 
 RegionCheck:
 ; Checks if the player is in Kanto or Johto.

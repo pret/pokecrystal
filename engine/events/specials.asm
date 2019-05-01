@@ -1,4 +1,4 @@
-SECTION "Special - SpecialsPointers", ROMX
+SECTION "engine/events/specials.asm", ROMX
 
 Special::
 ; Run script special de.
@@ -18,13 +18,13 @@ Special::
 INCLUDE "data/special_pointers.asm"
 
 
-SECTION "DummySpecial_c224", ROMX
+SECTION "engine/events/specials.asm@DummySpecial_c224", ROMX
 
 DummySpecial_c224:
 	ret
 
 
-SECTION "SetPlayerPalette", ROMX
+SECTION "engine/events/specials.asm@SetPlayerPalette", ROMX
 
 SetPlayerPalette:
 	ld a, [wScriptVar]
@@ -33,7 +33,7 @@ SetPlayerPalette:
 	ret
 
 
-SECTION "GameCornerPrizeMonCheckDex", ROMX
+SECTION "engine/events/specials.asm@GameCornerPrizeMonCheckDex", ROMX
 
 GameCornerPrizeMonCheckDex:
 	ld a, [wScriptVar]
@@ -51,7 +51,7 @@ GameCornerPrizeMonCheckDex:
 	ret
 
 
-SECTION "UnusedSetSeenMon", ROMX
+SECTION "engine/events/specials.asm@UnusedSetSeenMon", ROMX
 
 UnusedSetSeenMon:
 	ld a, [wScriptVar]
@@ -60,7 +60,7 @@ UnusedSetSeenMon:
 	ret
 
 
-SECTION "FindPartyMonAboveLevel - FoundNone", ROMX
+SECTION "engine/events/specials.asm@FindPartyMon", ROMX
 
 FindPartyMonAboveLevel:
 	ld a, [wScriptVar]
@@ -101,7 +101,7 @@ FoundNone:
 	ret
 
 
-SECTION "NameRival", ROMX
+SECTION "engine/events/specials.asm@NameRival", ROMX
 
 NameRival:
 	ld b, NAME_RIVAL
@@ -117,14 +117,14 @@ NameRival:
 	db "SILVER@"
 
 
-SECTION "NameRater", ROMX
+SECTION "engine/events/specials.asm@NameRater", ROMX
 
 NameRater:
 	farcall _NameRater
 	ret
 
 
-SECTION "OverworldTownMap", ROMX
+SECTION "engine/events/specials.asm@OverworldTownMap", ROMX
 
 OverworldTownMap:
 	call FadeToMenu
@@ -133,7 +133,7 @@ OverworldTownMap:
 	ret
 
 
-SECTION "UnownPrinter", ROMX
+SECTION "engine/events/specials.asm@UnownPrinter", ROMX
 
 UnownPrinter:
 	call FadeToMenu
@@ -142,7 +142,7 @@ UnownPrinter:
 	ret
 
 
-SECTION "DisplayLinkRecord", ROMX
+SECTION "engine/events/specials.asm@DisplayLinkRecord", ROMX
 
 DisplayLinkRecord:
 	call FadeToMenu
@@ -151,7 +151,7 @@ DisplayLinkRecord:
 	ret
 
 
-SECTION "PlayersHousePC", ROMX
+SECTION "engine/events/specials.asm@PlayersHousePC", ROMX
 
 PlayersHousePC:
 	xor a
@@ -162,7 +162,7 @@ PlayersHousePC:
 	ret
 
 
-SECTION "CheckMysteryGift", ROMX
+SECTION "engine/events/specials.asm@CheckMysteryGift", ROMX
 
 CheckMysteryGift:
 	ld a, BANK(sMysteryGiftItem)
@@ -178,7 +178,7 @@ CheckMysteryGift:
 	ret
 
 
-SECTION "GetMysteryGiftItem", ROMX
+SECTION "engine/events/specials.asm@GetMysteryGiftItem", ROMX
 
 GetMysteryGiftItem:
 	ld a, BANK(sMysteryGiftItem)
@@ -214,7 +214,7 @@ GetMysteryGiftItem:
 	text_end
 
 
-SECTION "BugContestJudging", ROMX
+SECTION "engine/events/specials.asm@BugContestJudging", ROMX
 
 BugContestJudging:
 	farcall _BugContestJudging
@@ -223,7 +223,7 @@ BugContestJudging:
 	ret
 
 
-SECTION "MapRadio", ROMX
+SECTION "engine/events/specials.asm@MapRadio", ROMX
 
 MapRadio:
 	ld a, [wScriptVar]
@@ -232,7 +232,7 @@ MapRadio:
 	ret
 
 
-SECTION "UnownPuzzle", ROMX
+SECTION "engine/events/specials.asm@UnownPuzzle", ROMX
 
 UnownPuzzle:
 	call FadeToMenu
@@ -243,7 +243,7 @@ UnownPuzzle:
 	ret
 
 
-SECTION "SlotMachine - CheckCoinsAndCoinCase", ROMX
+SECTION "engine/events/specials.asm@StartGameCornerGame", ROMX
 
 SlotMachine:
 	call CheckCoinsAndCoinCase
@@ -319,7 +319,7 @@ CheckCoinsAndCoinCase:
 	text_end
 
 
-SECTION "ClearBGPalettesBufferScreen", ROMX
+SECTION "engine/events/specials.asm@ClearBGPalettesBufferScreen", ROMX
 
 ClearBGPalettesBufferScreen:
 	call ClearBGPalettes
@@ -327,7 +327,7 @@ ClearBGPalettesBufferScreen:
 	ret
 
 
-SECTION "ScriptReturnCarry - CheckLuckyNumberShowFlag", ROMX
+SECTION "engine/events/specials.asm@Misc", ROMX
 
 ScriptReturnCarry:
 	jr c, .carry
@@ -385,7 +385,7 @@ CheckLuckyNumberShowFlag:
 	jp ScriptReturnCarry
 
 
-SECTION "SnorlaxAwake", ROMX
+SECTION "engine/events/specials.asm@SnorlaxAwake", ROMX
 
 SnorlaxAwake:
 ; Check if the Poké Flute channel is playing, and if the player is standing
@@ -438,14 +438,14 @@ SnorlaxAwake:
 	db -1
 
 
-SECTION "PlayCurMonCry", ROMX
+SECTION "engine/events/specials.asm@PlayCurMonCry", ROMX
 
 PlayCurMonCry:
 	ld a, [wCurPartySpecies]
 	jp PlayMonCry
 
 
-SECTION "GameboyCheck", ROMX
+SECTION "engine/events/specials.asm@GameboyCheck", ROMX
 
 GameboyCheck:
 	ldh a, [hCGB]
@@ -469,7 +469,7 @@ GameboyCheck:
 	ret
 
 
-SECTION "FadeOutMusic", ROMX
+SECTION "engine/events/specials.asm@FadeOutMusic", ROMX
 
 FadeOutMusic:
 	ld a, LOW(MUSIC_NONE)
@@ -481,7 +481,7 @@ FadeOutMusic:
 	ret
 
 
-SECTION "Diploma", ROMX
+SECTION "engine/events/specials.asm@Diploma", ROMX
 
 Diploma:
 	call FadeToMenu
@@ -490,7 +490,7 @@ Diploma:
 	ret
 
 
-SECTION "PrintDiploma", ROMX
+SECTION "engine/events/specials.asm@PrintDiploma", ROMX
 
 PrintDiploma:
 	call FadeToMenu
@@ -499,7 +499,7 @@ PrintDiploma:
 	ret
 
 
-SECTION "TrainerHouse", ROMX
+SECTION "engine/events/specials.asm@TrainerHouse", ROMX
 
 TrainerHouse:
 	ld a, BANK(sMysteryGiftTrainerHouseFlag)

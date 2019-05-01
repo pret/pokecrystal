@@ -1,4 +1,4 @@
-SECTION "MoveNames", ROMX
+SECTION "data/moves/names.asm", ROMX
 
 MoveNames::
 	db "POUND@"

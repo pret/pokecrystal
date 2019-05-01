@@ -2,7 +2,7 @@
 	const PEWTERSNOOZESPEECHHOUSE_GRAMPS
 
 
-SECTION "PewterSnoozeSpeechHouse_MapScripts", ROMX
+SECTION "maps/PewterSnoozeSpeechHouse.asm", ROMX
 
 PewterSnoozeSpeechHouse_MapScripts:
 	db 0 ; scene scripts

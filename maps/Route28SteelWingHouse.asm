@@ -3,7 +3,7 @@
 	const ROUTE28STEELWINGHOUSE_FEAROW
 
 
-SECTION "Route28SteelWingHouse_MapScripts", ROMX
+SECTION "maps/Route28SteelWingHouse.asm", ROMX
 
 Route28SteelWingHouse_MapScripts:
 	db 1 ; scene scripts

@@ -4,7 +4,7 @@
 	const PEWTERMART_SUPER_NERD
 
 
-SECTION "PewterMart_MapScripts", ROMX
+SECTION "maps/PewterMart.asm", ROMX
 
 PewterMart_MapScripts:
 	db 0 ; scene scripts

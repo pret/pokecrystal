@@ -1,4 +1,4 @@
-SECTION "UnknownText_0x64f74 - UnknownText_0x6520f", ROMX
+SECTION "data/phone/text/dana_caller.asm", ROMX
 
 UnknownText_0x64f74:
 	text "My @"

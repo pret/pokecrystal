@@ -1,5 +1,5 @@
 
-SECTION "MobileTradeRoom_MapScripts", ROMX
+SECTION "maps/MobileTradeRoom.asm", ROMX
 
 MobileTradeRoom_MapScripts:
 	db 2 ; scene scripts

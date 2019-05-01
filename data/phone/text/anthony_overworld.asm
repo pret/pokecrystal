@@ -1,4 +1,4 @@
-SECTION "AnthonyAskNumber1Text - AnthonyRematchText", ROMX
+SECTION "data/phone/text/anthony_overworld.asm", ROMX
 
 AnthonyAskNumber1Text:
 	text "By the way, I'm a"

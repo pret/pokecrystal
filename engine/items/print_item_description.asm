@@ -1,4 +1,4 @@
-SECTION "PrintItemDescription - TeruSama33Desc", ROMX
+SECTION "engine/items/print_item_description.asm", ROMX
 
 PrintItemDescription:
 ; Print the description for item [wCurSpecies] at de.

@@ -10,7 +10,7 @@
 	const CIANWOODGYM_BOULDER4
 
 
-SECTION "CianwoodGym_MapScripts", ROMX
+SECTION "maps/CianwoodGym.asm", ROMX
 
 CianwoodGym_MapScripts:
 	db 0 ; scene scripts

@@ -5,7 +5,7 @@
 	const OAKSLAB_SCIENTIST3
 
 
-SECTION "OaksLab_MapScripts", ROMX
+SECTION "maps/OaksLab.asm", ROMX
 
 OaksLab_MapScripts:
 	db 0 ; scene scripts

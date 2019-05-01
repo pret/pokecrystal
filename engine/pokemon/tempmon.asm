@@ -1,4 +1,4 @@
-SECTION "CopyMonToTempMon - GetMonSpecies", ROMX
+SECTION "engine/pokemon/tempmon.asm", ROMX
 
 CopyMonToTempMon:
 ; gets the BaseData of a mon

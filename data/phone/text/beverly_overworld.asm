@@ -1,4 +1,4 @@
-SECTION "BeverlyAskNumber1Text - BeverlyPackFullText", ROMX
+SECTION "data/phone/text/beverly_overworld.asm", ROMX
 
 BeverlyAskNumber1Text:
 	text "Your MARILL is so"

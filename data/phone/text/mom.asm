@@ -1,4 +1,4 @@
-SECTION "MomPhoneGreetingText - MomPhoneLectureText", ROMX
+SECTION "data/phone/text/mom.asm", ROMX
 
 MomPhoneGreetingText:
 	text "Hello?"

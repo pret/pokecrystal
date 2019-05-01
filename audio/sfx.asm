@@ -1,4 +1,4 @@
-SECTION "Sfx_PokeballsPlacedOnTable - Sfx_Elevator_Ch8", ROMX
+SECTION "audio/sfx.asm", ROMX
 
 Sfx_PokeballsPlacedOnTable:
 	musicheader 1, 5, Sfx_PokeballsPlacedOnTable_Ch5
@@ -5007,7 +5007,7 @@ Sfx_Elevator_Ch8:
 	endchannel
 
 
-SECTION "Sfx_StopSlot - Sfx_StopSlot_Ch5", ROMX
+SECTION "audio/sfx.asm@Sfx_StopSlot", ROMX
 
 Sfx_StopSlot:
 	musicheader 1, 5, Sfx_StopSlot_Ch5
@@ -5019,7 +5019,7 @@ Sfx_StopSlot_Ch5:
 	endchannel
 
 
-SECTION "Sfx_GlassTing - Sfx_GlassTing_Ch5", ROMX
+SECTION "audio/sfx.asm@Sfx_GlassTing", ROMX
 
 Sfx_GlassTing:
 	musicheader 1, 5, Sfx_GlassTing_Ch5
@@ -5030,7 +5030,7 @@ Sfx_GlassTing_Ch5:
 	endchannel
 
 
-SECTION "Sfx_GlassTing2 - Sfx_GlassTing2_Ch6", ROMX
+SECTION "audio/sfx.asm@Sfx_GlassTing2", ROMX
 
 Sfx_GlassTing2:
 	musicheader 2, 5, Sfx_GlassTing2_Ch5

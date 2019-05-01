@@ -1,4 +1,4 @@
-SECTION "FieldMoveJumptableReset - UnknownText_0xd1d0", ROMX
+SECTION "engine/events/overworld.asm", ROMX
 
 FieldMoveJumptableReset:
 	xor a

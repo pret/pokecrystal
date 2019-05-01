@@ -1,4 +1,4 @@
-SECTION "String_114000 - Function115d80", ROMX
+SECTION "mobile/mobile_45.asm@String_114000 - Function115d80", ROMX
 
 	charmap " ", $20 ; revert to ascii
 
@@ -5160,14 +5160,14 @@ Function115d80:
 INCLUDE "mobile/mobile_45_sprite_engine.asm"
 
 
-SECTION "GiveOddEgg", ROMX
+SECTION "mobile/mobile_45.asm@GiveOddEgg", ROMX
 
 GiveOddEgg:
 	farcall _GiveOddEgg
 	ret
 
 
-SECTION "Function11765d - Unknown_117a47", ROMX
+SECTION "mobile/mobile_45.asm@Function11765d - Unknown_117a47", ROMX
 
 Function11765d:
 	ldh a, [hInMenu]
@@ -5660,7 +5660,7 @@ Unknown_117a47:
 INCBIN "data/mobile/ascii-sym.txt"
 
 
-SECTION "MobileStudium - MobileStudium_JumptableIncrement", ROMX
+SECTION "mobile/mobile_45.asm@MobileStudium", ROMX
 
 ; everything from here to the end of the bank is related to the
 ; Mobile Stadium option from the continue/newgame menu.

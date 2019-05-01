@@ -6,7 +6,7 @@
 	const PLAYERSHOUSE1F_POKEFAN_F
 
 
-SECTION "PlayersHouse1F_MapScripts", ROMX
+SECTION "maps/PlayersHouse1F.asm", ROMX
 
 PlayersHouse1F_MapScripts:
 	db 2 ; scene scripts

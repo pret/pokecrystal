@@ -13,7 +13,7 @@
 	const CIANWOODCITY_SUICUNE
 
 
-SECTION "CianwoodCity_MapScripts", ROMX
+SECTION "maps/CianwoodCity.asm", ROMX
 
 CianwoodCity_MapScripts:
 	db 2 ; scene scripts

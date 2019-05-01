@@ -2,7 +2,7 @@
 	const OLIVINEPORTPASSAGE_POKEFAN_M
 
 
-SECTION "OlivinePortPassage_MapScripts", ROMX
+SECTION "maps/OlivinePortPassage.asm", ROMX
 
 OlivinePortPassage_MapScripts:
 	db 0 ; scene scripts

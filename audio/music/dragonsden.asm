@@ -1,4 +1,4 @@
-SECTION "Music_DragonsDen", ROMX
+SECTION "audio/music/dragonsden.asm", ROMX
 
 Music_DragonsDen:
 	musicheader 4, 1, Music_DragonsDen_Ch1

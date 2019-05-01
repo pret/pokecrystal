@@ -1,4 +1,4 @@
-SECTION "RuinsOfAlphOmanyteChamber_MapScripts", ROMX
+SECTION "maps/RuinsOfAlphOmanyteChamber.asm", ROMX
 
 RuinsOfAlphOmanyteChamber_MapScripts:
 	db 2 ; scene scripts

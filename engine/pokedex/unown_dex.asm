@@ -1,4 +1,4 @@
-SECTION "UpdateUnownDex", ROMX
+SECTION "engine/pokedex/unown_dex.asm@UpdateUnownDex", ROMX
 
 UpdateUnownDex:
 	ld a, [wUnownLetter]
@@ -21,7 +21,7 @@ UpdateUnownDex:
 	ret
 
 
-SECTION "PrintUnownWord - UnownWordZ", ROMX
+SECTION "engine/pokedex/unown_dex.asm@PrintUnownWord", ROMX
 
 PrintUnownWord:
 	hlcoord 4, 15

@@ -5,7 +5,7 @@
 	const PLAYERSHOUSE2F_BIG_DOLL
 
 
-SECTION "PlayersHouse2F_MapScripts", ROMX
+SECTION "maps/PlayersHouse2F.asm", ROMX
 
 PlayersHouse2F_MapScripts:
 	db 0 ; scene scripts

@@ -1,4 +1,4 @@
-SECTION "HueyPhoneCalleeScript - HueyWantsBattle", ROMX
+SECTION "engine/phone/scripts/huey.asm", ROMX
 
 HueyPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, SAILOR, HUEY1

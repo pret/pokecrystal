@@ -7,7 +7,7 @@
 	const ROUTE46_POKE_BALL
 
 
-SECTION "Route46_MapScripts", ROMX
+SECTION "maps/Route46.asm", ROMX
 
 Route46_MapScripts:
 	db 0 ; scene scripts

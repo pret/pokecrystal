@@ -13,7 +13,7 @@
 	const FASTSHIPB1F_YOUNGSTER2
 
 
-SECTION "FastShipB1F_MapScripts", ROMX
+SECTION "maps/FastShipB1F.asm", ROMX
 
 FastShipB1F_MapScripts:
 	db 2 ; scene scripts

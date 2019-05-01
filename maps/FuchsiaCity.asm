@@ -5,7 +5,7 @@
 	const FUCHSIACITY_FRUIT_TREE
 
 
-SECTION "FuchsiaCity_MapScripts", ROMX
+SECTION "maps/FuchsiaCity.asm", ROMX
 
 FuchsiaCity_MapScripts:
 	db 0 ; scene scripts

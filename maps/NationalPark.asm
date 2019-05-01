@@ -15,7 +15,7 @@
 	const NATIONALPARK_POKE_BALL2
 
 
-SECTION "NationalPark_MapScripts", ROMX
+SECTION "maps/NationalPark.asm", ROMX
 
 NationalPark_MapScripts:
 	db 0 ; scene scripts

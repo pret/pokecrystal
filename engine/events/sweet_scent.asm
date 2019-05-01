@@ -1,4 +1,4 @@
-SECTION "SweetScentFromMenu - UnknownText_0x5072b", ROMX
+SECTION "engine/events/sweet_scent.asm", ROMX
 
 SweetScentFromMenu:
 	ld hl, .SweetScent

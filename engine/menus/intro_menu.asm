@@ -1,4 +1,4 @@
-SECTION "_MainMenu - GameInit", ROMX, BANK[BANK_GAME_INIT]
+SECTION "engine/menus/intro_menu.asm", ROMX, BANK[BANK_GAME_INIT]
 
 _MainMenu:
 	ld de, MUSIC_NONE

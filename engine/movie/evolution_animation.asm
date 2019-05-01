@@ -1,4 +1,4 @@
-SECTION "EvolutionAnimation", ROMX
+SECTION "engine/movie/evolution_animation.asm", ROMX
 
 EvolutionAnimation:
 	push hl

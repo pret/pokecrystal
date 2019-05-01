@@ -2,7 +2,7 @@
 	const BILLSHOUSE_GRAMPS
 
 
-SECTION "BillsHouse_MapScripts", ROMX
+SECTION "maps/BillsHouse.asm", ROMX
 
 BillsHouse_MapScripts:
 	db 0 ; scene scripts

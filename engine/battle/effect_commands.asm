@@ -1,4 +1,4 @@
-SECTION "DoPlayerTurn - _CheckBattleScene", ROMX
+SECTION "engine/battle/effect_commands.asm", ROMX
 
 DoPlayerTurn:
 	call SetPlayerTurn

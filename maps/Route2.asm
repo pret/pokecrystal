@@ -9,7 +9,7 @@
 	const ROUTE2_FRUIT_TREE
 
 
-SECTION "Route2_MapScripts", ROMX
+SECTION "maps/Route2.asm", ROMX
 
 Route2_MapScripts:
 	db 0 ; scene scripts

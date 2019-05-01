@@ -1,4 +1,4 @@
-SECTION "InitCrystalData - Function4a6d8", ROMX
+SECTION "engine/crystal.asm", ROMX
 
 INCLUDE "engine/menus/init_gender.asm"
 INCLUDE "engine/items/pack_kris.asm"

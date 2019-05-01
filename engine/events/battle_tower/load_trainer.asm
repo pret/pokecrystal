@@ -1,4 +1,4 @@
-SECTION "Function_LoadOpponentTrainerAndPokemons - BattleTowerMons10", ROMX
+SECTION "engine/events/battle_tower/load_trainer.asm", ROMX
 
 Function_LoadOpponentTrainerAndPokemons:
 	ldh a, [rSVBK]

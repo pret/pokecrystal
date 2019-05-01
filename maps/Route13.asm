@@ -6,7 +6,7 @@
 	const ROUTE13_POKEFAN_M3
 
 
-SECTION "Route13_MapScripts", ROMX
+SECTION "maps/Route13.asm", ROMX
 
 Route13_MapScripts:
 	db 0 ; scene scripts

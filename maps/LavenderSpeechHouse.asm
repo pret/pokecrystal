@@ -2,7 +2,7 @@
 	const LAVENDERSPEECHHOUSE_POKEFAN_F
 
 
-SECTION "LavenderSpeechHouse_MapScripts", ROMX
+SECTION "maps/LavenderSpeechHouse.asm", ROMX
 
 LavenderSpeechHouse_MapScripts:
 	db 0 ; scene scripts

@@ -4,7 +4,7 @@
 	const VERMILIONMART_BUENA
 
 
-SECTION "VermilionMart_MapScripts", ROMX
+SECTION "maps/VermilionMart.asm", ROMX
 
 VermilionMart_MapScripts:
 	db 0 ; scene scripts

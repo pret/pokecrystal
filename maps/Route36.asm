@@ -10,7 +10,7 @@
 	const ROUTE36_SUICUNE
 
 
-SECTION "Route36_MapScripts", ROMX
+SECTION "maps/Route36.asm", ROMX
 
 Route36_MapScripts:
 	db 2 ; scene scripts

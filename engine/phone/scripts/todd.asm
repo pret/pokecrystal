@@ -1,4 +1,4 @@
-SECTION "ToddPhoneCalleeScript - ToddDeptStoreSale", ROMX
+SECTION "engine/phone/scripts/todd.asm", ROMX
 
 ToddPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, CAMPER, TODD1

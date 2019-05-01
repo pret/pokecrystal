@@ -2,7 +2,7 @@
 	const CINNABARISLAND_BLUE
 
 
-SECTION "CinnabarIsland_MapScripts", ROMX
+SECTION "maps/CinnabarIsland.asm", ROMX
 
 CinnabarIsland_MapScripts:
 	db 0 ; scene scripts

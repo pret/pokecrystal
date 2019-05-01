@@ -4,7 +4,7 @@
 	const LAVENDERMART_ROCKER
 
 
-SECTION "LavenderMart_MapScripts", ROMX
+SECTION "maps/LavenderMart.asm", ROMX
 
 LavenderMart_MapScripts:
 	db 0 ; scene scripts

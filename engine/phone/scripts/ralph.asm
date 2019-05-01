@@ -1,4 +1,4 @@
-SECTION "RalphPhoneCalleeScript - Ralph_SetUpSwarm", ROMX
+SECTION "engine/phone/scripts/ralph.asm", ROMX
 
 RalphPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, FISHER, RALPH1

@@ -1,4 +1,4 @@
-SECTION "RuinsOfAlphAerodactylChamber_MapScripts", ROMX
+SECTION "maps/RuinsOfAlphAerodactylChamber.asm", ROMX
 
 RuinsOfAlphAerodactylChamber_MapScripts:
 	db 2 ; scene scripts

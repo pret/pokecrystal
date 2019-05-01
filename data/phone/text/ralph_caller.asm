@@ -1,4 +1,4 @@
-SECTION "RalphNeglectingKidsText - UnknownText_0x175f70", ROMX
+SECTION "data/phone/text/ralph_caller.asm", ROMX
 
 RalphNeglectingKidsText:
 	text "I've been spending"

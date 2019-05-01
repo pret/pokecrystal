@@ -1,4 +1,4 @@
-SECTION "UnusedPhoneScript", ROMX
+SECTION "engine/phone/scripts/unused.asm", ROMX
 
 UnusedPhoneScript:
 	farwritetext UnusedPhoneText

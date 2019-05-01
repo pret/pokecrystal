@@ -1,4 +1,4 @@
-SECTION "UnknownText_0x1b6e7c - UnknownText_0x1b6f60", ROMX
+SECTION "data/phone/text/tiffany_callee.asm", ROMX
 
 UnknownText_0x1b6e7c:
 	text "Yes? This is"

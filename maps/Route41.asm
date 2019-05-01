@@ -11,7 +11,7 @@
 	const ROUTE41_SWIMMER_GIRL5
 
 
-SECTION "Route41_MapScripts", ROMX
+SECTION "maps/Route41.asm", ROMX
 
 Route41_MapScripts:
 	db 0 ; scene scripts

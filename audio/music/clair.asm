@@ -1,4 +1,4 @@
-SECTION "Music_Clair", ROMX
+SECTION "audio/music/clair.asm", ROMX
 
 Music_Clair:
 	musicheader 4, 1, Music_Clair_Ch1

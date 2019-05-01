@@ -1,4 +1,4 @@
-SECTION "BillPhoneMornGreetingText - BillPhoneNewlyFullText", ROMX
+SECTION "data/phone/text/bill.asm", ROMX
 
 BillPhoneMornGreetingText:
 	text "Good morning!"

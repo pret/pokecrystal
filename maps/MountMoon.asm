@@ -2,7 +2,7 @@
 	const MOUNTMOON_SILVER
 
 
-SECTION "MountMoon_MapScripts", ROMX
+SECTION "maps/MountMoon.asm", ROMX
 
 MountMoon_MapScripts:
 	db 2 ; scene scripts

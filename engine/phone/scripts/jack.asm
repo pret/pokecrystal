@@ -1,4 +1,4 @@
-SECTION "JackPhoneCalleeScript - JackBattleTrivia", ROMX
+SECTION "engine/phone/scripts/jack.asm", ROMX
 
 JackPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, SCHOOLBOY, JACK1

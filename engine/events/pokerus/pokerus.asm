@@ -1,4 +1,4 @@
-SECTION "GivePokerusAndConvertBerries - ConvertBerriesToBerryJuice", ROMX
+SECTION "engine/events/pokerus/pokerus.asm", ROMX
 
 GivePokerusAndConvertBerries:
 	call ConvertBerriesToBerryJuice

@@ -1,4 +1,4 @@
-SECTION "Music_AzaleaTown", ROMX
+SECTION "audio/music/azaleatown.asm", ROMX
 
 Music_AzaleaTown:
 	musicheader 4, 1, Music_AzaleaTown_Ch1

@@ -1,4 +1,4 @@
-SECTION "LoadMapGroupRoof - Roofs", ROMX
+SECTION "engine/tilesets/mapgroup_roofs.asm", ROMX
 
 LoadMapGroupRoof::
 	ld a, [wMapGroup]

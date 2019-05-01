@@ -2,7 +2,7 @@
 ; which were used for Trainer Rankings in Pokémon News.
 
 
-SECTION "StubbedTrainerRankings_HallOfFame2 - InitializeTrainerRankings", ROMX
+SECTION "mobile/mobile_41.asm@TrainerRankings", ROMX
 
 ; Copies certain values at the time the player enters the Hall of Fame.
 StubbedTrainerRankings_HallOfFame2::
@@ -581,7 +581,7 @@ InitializeTrainerRankings:
 	ret
 
 
-SECTION "_MobilePrintNum", ROMX
+SECTION "mobile/mobile_41.asm@_MobilePrintNum", ROMX
 
 _MobilePrintNum::
 ; Supports signed 31-bit integers (up to 10 digits)
@@ -788,7 +788,7 @@ endr
 	ret
 
 
-SECTION "Mobile_DummyReturnFalse", ROMX
+SECTION "mobile/mobile_41.asm@Mobile_DummyReturnFalse", ROMX
 
 ; functions related to the cable club and various NPC scripts referencing communications
 
@@ -798,7 +798,7 @@ Mobile_DummyReturnFalse:
 	ret
 
 
-SECTION "Stubbed_Function106314 - Function106453", ROMX
+SECTION "mobile/mobile_41.asm@Stubbed_Function106314 - Function106453", ROMX
 
 Stubbed_Function106314:
 	ret
@@ -1016,14 +1016,14 @@ Function106453:
 	ret
 
 
-SECTION "Stubbed_Function106462", ROMX
+SECTION "mobile/mobile_41.asm@Stubbed_Function106462", ROMX
 
 Stubbed_Function106462:
 	ret
 	ret
 
 
-SECTION "Function106464", ROMX
+SECTION "mobile/mobile_41.asm@Function106464", ROMX
 
 Function106464::
 	ld de, FontsExtra_SolidBlackGFX
@@ -1047,7 +1047,7 @@ Function106464::
 	ret
 
 
-SECTION "Function10649b - asm_1064ed", ROMX
+SECTION "mobile/mobile_41.asm@Function10649b - asm_1064ed", ROMX
 
 Function10649b:
 	ld a, [wTextboxFrame]
@@ -1119,7 +1119,7 @@ asm_1064ed:
 	ret
 
 
-SECTION "Function10650a", ROMX
+SECTION "mobile/mobile_41.asm@Function10650a", ROMX
 
 Function10650a:
 	ld de, MobilePhoneTilesGFX
@@ -1128,7 +1128,7 @@ Function10650a:
 	ret
 
 
-SECTION "GFX_106514", ROMX
+SECTION "mobile/mobile_41.asm@GFX_106514", ROMX
 
 GFX_106514:
 INCBIN "gfx/unknown/106514.2bpp"

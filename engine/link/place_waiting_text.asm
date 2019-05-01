@@ -1,4 +1,4 @@
-SECTION "PlaceWaitingText", ROMX
+SECTION "engine/link/place_waiting_text.asm", ROMX
 
 PlaceWaitingText::
 	hlcoord 3, 10

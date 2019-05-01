@@ -6,7 +6,7 @@
 	const TRAINERHOUSE1F_GENTLEMAN
 
 
-SECTION "TrainerHouse1F_MapScripts", ROMX
+SECTION "maps/TrainerHouse1F.asm", ROMX
 
 TrainerHouse1F_MapScripts:
 	db 0 ; scene scripts

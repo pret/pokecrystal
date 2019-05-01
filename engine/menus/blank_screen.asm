@@ -1,4 +1,4 @@
-SECTION "BlankScreen", ROMX
+SECTION "engine/menus/blank_screen.asm", ROMX
 
 BlankScreen:
 	call DisableSpriteUpdates

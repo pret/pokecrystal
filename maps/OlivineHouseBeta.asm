@@ -3,7 +3,7 @@
 	const OLIVINEHOUSEBETA_RHYDON
 
 
-SECTION "OlivineHouseBeta_MapScripts", ROMX
+SECTION "maps/OlivineHouseBeta.asm", ROMX
 
 OlivineHouseBeta_MapScripts:
 	db 0 ; scene scripts

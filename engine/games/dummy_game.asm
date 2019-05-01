@@ -1,4 +1,4 @@
-SECTION "_DummyGame - LZ_e2221", ROMX, BANK[BANK_DUMMY_GAME]
+SECTION "engine/games/dummy_game.asm", ROMX, BANK[BANK_DUMMY_GAME]
 
 _DummyGame:
 	call .LoadGFXAndPals

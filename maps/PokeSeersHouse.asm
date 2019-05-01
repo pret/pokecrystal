@@ -2,7 +2,7 @@
 	const POKESEERSHOUSE_GRANNY
 
 
-SECTION "PokeSeersHouse_MapScripts", ROMX
+SECTION "maps/PokeSeersHouse.asm", ROMX
 
 PokeSeersHouse_MapScripts:
 	db 0 ; scene scripts

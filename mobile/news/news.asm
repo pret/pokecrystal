@@ -1,7 +1,7 @@
 ; http://forums.glitchcity.info/index.php?topic=7509.msg206449#msg206449
 
 
-SECTION "Unreferenced_Function1f4003", ROMX
+SECTION "mobile/news/news.asm@Unreferenced_Function1f4003", ROMX
 
 	db $cc, $6b, $1e ; unused
 
@@ -19,7 +19,7 @@ Unreferenced_Function1f4003:
 INCBIN "mobile/news/news_1.bin"
 
 
-SECTION "Unreferenced_Function1f4dbe", ROMX
+SECTION "mobile/news/news.asm@Unreferenced_Function1f4dbe", ROMX
 
 Unreferenced_Function1f4dbe:
 	ld a, $6
@@ -35,7 +35,7 @@ Unreferenced_Function1f4dbe:
 INCBIN "mobile/news/news_2.bin"
 
 
-SECTION "Function1f5d9f", ROMX
+SECTION "mobile/news/news.asm@Function1f5d9f", ROMX
 
 Function1f5d9f:
 	ld a, $6

@@ -1,4 +1,4 @@
-SECTION "CanLearnTMHMMove - TMHMMoves", ROMX
+SECTION "engine/items/tmhm2.asm", ROMX
 
 CanLearnTMHMMove:
 	ld a, [wCurPartySpecies]

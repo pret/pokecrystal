@@ -1,5 +1,5 @@
 
-SECTION "SafariZoneMainOffice_MapScripts", ROMX
+SECTION "maps/SafariZoneMainOffice.asm", ROMX
 
 SafariZoneMainOffice_MapScripts:
 	db 0 ; scene scripts

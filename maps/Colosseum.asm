@@ -3,7 +3,7 @@
 	const COLOSSEUM_CHRIS2
 
 
-SECTION "Colosseum_MapScripts", ROMX, BANK[BANK_MAP_COLOSSEUM]
+SECTION "maps/Colosseum.asm", ROMX, BANK[BANK_MAP_COLOSSEUM]
 
 Colosseum_MapScripts:
 	db 3 ; scene scripts

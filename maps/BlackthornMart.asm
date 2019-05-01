@@ -4,7 +4,7 @@
 	const BLACKTHORNMART_BLACK_BELT
 
 
-SECTION "BlackthornMart_MapScripts", ROMX
+SECTION "maps/BlackthornMart.asm", ROMX
 
 BlackthornMart_MapScripts:
 	db 0 ; scene scripts

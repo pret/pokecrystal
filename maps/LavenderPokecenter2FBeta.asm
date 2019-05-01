@@ -1,5 +1,5 @@
 
-SECTION "LavenderPokecenter2FBeta_MapScripts", ROMX
+SECTION "maps/LavenderPokecenter2FBeta.asm", ROMX
 
 LavenderPokecenter2FBeta_MapScripts:
 	db 0 ; scene scripts

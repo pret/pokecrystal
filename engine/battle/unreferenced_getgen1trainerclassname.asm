@@ -1,4 +1,4 @@
-SECTION "Unreferenced_GetGen1TrainerClassName - Gen1TrainerClassNames", ROMX
+SECTION "engine/battle/unreferenced_getgen1trainerclassname.asm", ROMX
 
 Unreferenced_GetGen1TrainerClassName:
 	ld hl, Gen1TrainerClassNames

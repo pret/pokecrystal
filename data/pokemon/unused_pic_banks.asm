@@ -2,7 +2,7 @@
 ; See pokegold-spaceworld's gfx/pokemon/pkmn_pic_banks.asm.
 
 
-SECTION "Unreferenced_MonPicBanks", ROMX
+SECTION "data/pokemon/unused_pic_banks.asm", ROMX
 
 Unreferenced_MonPicBanks:
 	; last mon in bank, bank #

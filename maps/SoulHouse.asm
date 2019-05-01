@@ -5,7 +5,7 @@
 	const SOULHOUSE_GRANNY
 
 
-SECTION "SoulHouse_MapScripts", ROMX
+SECTION "maps/SoulHouse.asm", ROMX
 
 SoulHouse_MapScripts:
 	db 0 ; scene scripts

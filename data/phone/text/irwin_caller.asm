@@ -1,4 +1,4 @@
-SECTION "UnknownText_0x64000 - UnknownText_0x648dc", ROMX
+SECTION "data/phone/text/irwin_caller.asm", ROMX
 
 UnknownText_0x64000:
 	text "I hate having to"

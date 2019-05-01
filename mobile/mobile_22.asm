@@ -1,4 +1,4 @@
-SECTION "String_89116 - Function8adcc", ROMX, BANK[BANK_MOBILE_22]
+SECTION "mobile/mobile_22.asm", ROMX, BANK[BANK_MOBILE_22]
 
 String_89116:
 	db "-----@"

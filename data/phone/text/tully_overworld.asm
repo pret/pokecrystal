@@ -1,4 +1,4 @@
-SECTION "TullyAskNumber1Text - TullyPackFullText", ROMX
+SECTION "data/phone/text/tully_overworld.asm", ROMX
 
 TullyAskNumber1Text:
 	text "Hey, you're trying"

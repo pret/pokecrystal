@@ -1,4 +1,4 @@
-SECTION "ReenaAskNumber1Text - ReenaRematchText", ROMX
+SECTION "data/phone/text/reena_overworld.asm", ROMX
 
 ReenaAskNumber1Text:
 	text "Not bad…"

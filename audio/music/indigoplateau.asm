@@ -1,4 +1,4 @@
-SECTION "Music_IndigoPlateau", ROMX
+SECTION "audio/music/indigoplateau.asm", ROMX
 
 Music_IndigoPlateau:
 	musicheader 4, 1, Music_IndigoPlateau_Ch1

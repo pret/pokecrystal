@@ -1,4 +1,4 @@
-SECTION "RalphAskNumber1Text - RalphRematchText", ROMX
+SECTION "data/phone/text/ralph_overworld.asm", ROMX
 
 RalphAskNumber1Text:
 	text "Don't young people"

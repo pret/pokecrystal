@@ -1,4 +1,4 @@
-SECTION "BattleIntroSlidingPics", ROMX
+SECTION "engine/battle/sliding_intro.asm", ROMX
 
 BattleIntroSlidingPics:
 	ldh a, [rSVBK]

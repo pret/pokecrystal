@@ -1,4 +1,4 @@
-SECTION "AskRememberPassword - Buena_ExitMenu", ROMX
+SECTION "engine/events/buena_menu.asm", ROMX
 
 AskRememberPassword:
 	call .DoMenu

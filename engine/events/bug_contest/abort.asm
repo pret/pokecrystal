@@ -1,4 +1,4 @@
-SECTION "Script_AbortBugContest", ROMX
+SECTION "engine/events/bug_contest/abort.asm", ROMX
 
 Script_AbortBugContest:
 	checkflag ENGINE_BUG_CONTEST_TIMER

@@ -1,4 +1,4 @@
-SECTION "Music_BugCatchingContest", ROMX
+SECTION "audio/music/bugcatchingcontest.asm", ROMX
 
 Music_BugCatchingContest:
 	musicheader 4, 1, Music_BugCatchingContest_Ch1

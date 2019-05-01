@@ -1,4 +1,4 @@
-SECTION "Facings - InitSprites", ROMX, BANK[BANK_MAP_OBJECTS]
+SECTION "engine/overworld/map_objects.asm", ROMX, BANK[BANK_MAP_OBJECTS]
 
 INCLUDE "data/sprites/facings.asm"
 

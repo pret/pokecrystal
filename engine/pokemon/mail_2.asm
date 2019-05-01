@@ -1,4 +1,4 @@
-SECTION "ReadPartyMonMail - PortraitMailBorderGFX", ROMX
+SECTION "engine/pokemon/mail_2.asm@ReadAnyMail", ROMX
 
 ReadPartyMonMail:
 	ld a, [wCurPartyMon]
@@ -914,7 +914,7 @@ LoadMailGFX_Color3:
 INCLUDE "gfx/mail.asm"
 
 
-SECTION "ItemIsMail - MailItems", ROMX
+SECTION "engine/pokemon/mail_2.asm@ItemIsMail", ROMX
 
 ItemIsMail:
 	ld a, d

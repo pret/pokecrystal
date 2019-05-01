@@ -1,5 +1,5 @@
 
-SECTION "WhirlIslandSE_MapScripts", ROMX
+SECTION "maps/WhirlIslandSE.asm", ROMX
 
 WhirlIslandSE_MapScripts:
 	db 0 ; scene scripts

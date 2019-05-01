@@ -2,7 +2,7 @@
 	const TINTOWERROOF_HO_OH
 
 
-SECTION "TinTowerRoof_MapScripts", ROMX
+SECTION "maps/TinTowerRoof.asm", ROMX
 
 TinTowerRoof_MapScripts:
 	db 0 ; scene scripts

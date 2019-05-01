@@ -3,7 +3,7 @@
 	const CHERRYGROVEEVOLUTIONSPEECHHOUSE_YOUNGSTER
 
 
-SECTION "CherrygroveEvolutionSpeechHouse_MapScripts", ROMX
+SECTION "maps/CherrygroveEvolutionSpeechHouse.asm", ROMX
 
 CherrygroveEvolutionSpeechHouse_MapScripts:
 	db 0 ; scene scripts

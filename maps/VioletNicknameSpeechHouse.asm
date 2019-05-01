@@ -4,7 +4,7 @@
 	const VIOLETNICKNAMESPEECHHOUSE_BIRD
 
 
-SECTION "VioletNicknameSpeechHouse_MapScripts", ROMX
+SECTION "maps/VioletNicknameSpeechHouse.asm", ROMX
 
 VioletNicknameSpeechHouse_MapScripts:
 	db 0 ; scene scripts

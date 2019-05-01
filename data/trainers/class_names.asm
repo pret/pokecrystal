@@ -1,4 +1,4 @@
-SECTION "TrainerClassNames", ROMX
+SECTION "data/trainers/class_names.asm", ROMX
 
 TrainerClassNames::
 ; entries correspond to trainer classes (see constants/trainer_constants.asm)

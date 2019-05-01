@@ -1,4 +1,4 @@
-SECTION "SwitchItemsInBag - Function24aab", ROMX
+SECTION "engine/items/switch_items.asm", ROMX
 
 SwitchItemsInBag:
 	ld a, [wSwitchItem]

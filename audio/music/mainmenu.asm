@@ -1,4 +1,4 @@
-SECTION "Music_MainMenu", ROMX
+SECTION "audio/music/mainmenu.asm", ROMX
 
 Music_MainMenu:
 	musicheader 4, 1, Music_MainMenu_Ch1

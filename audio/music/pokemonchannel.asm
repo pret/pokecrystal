@@ -1,4 +1,4 @@
-SECTION "Music_PokemonChannel", ROMX
+SECTION "audio/music/pokemonchannel.asm", ROMX
 
 Music_PokemonChannel:
 	musicheader 4, 1, Music_PokemonChannel_Ch1

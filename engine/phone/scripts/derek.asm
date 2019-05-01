@@ -1,4 +1,4 @@
-SECTION "DerekPhoneCalleeScript - DerekPhoneCallerScript", ROMX
+SECTION "engine/phone/scripts/derek.asm", ROMX
 
 DerekPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, POKEFANM, DEREK1

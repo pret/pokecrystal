@@ -1,4 +1,4 @@
-SECTION "GavenAskNumber1Text - GavenRematchText", ROMX
+SECTION "data/phone/text/gaven_overworld.asm", ROMX
 
 GavenAskNumber1Text:
 	text "Wow, you're tough."

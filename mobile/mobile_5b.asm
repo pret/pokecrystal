@@ -1,4 +1,4 @@
-SECTION "Unreferenced_Function16c000 - Unknown_16cfb9", ROMX
+SECTION "mobile/mobile_5b.asm", ROMX
 
 Unreferenced_Function16c000:
 	; Only for CGB

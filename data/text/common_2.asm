@@ -1,4 +1,4 @@
-SECTION "Text 2", ROMX
+SECTION "data/text/common_2.asm", ROMX
 
 UnknownText_0x1c0000::
 	text "Oh, no picture?"

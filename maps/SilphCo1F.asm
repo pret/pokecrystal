@@ -3,7 +3,7 @@
 	const SILPHCO1F_OFFICER
 
 
-SECTION "SilphCo1F_MapScripts", ROMX
+SECTION "maps/SilphCo1F.asm", ROMX
 
 SilphCo1F_MapScripts:
 	db 0 ; scene scripts

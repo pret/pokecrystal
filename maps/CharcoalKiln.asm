@@ -4,7 +4,7 @@
 	const CHARCOALKILN_MOLTRES
 
 
-SECTION "CharcoalKiln_MapScripts", ROMX
+SECTION "maps/CharcoalKiln.asm", ROMX
 
 CharcoalKiln_MapScripts:
 	db 0 ; scene scripts

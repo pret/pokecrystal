@@ -1,4 +1,4 @@
-SECTION "Music_LookYoungster", ROMX
+SECTION "audio/music/lookyoungster.asm", ROMX
 
 Music_LookYoungster:
 	musicheader 3, 1, Music_LookYoungster_Ch1

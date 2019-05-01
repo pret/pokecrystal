@@ -2,7 +2,7 @@
 	const MANIASHOUSE_ROCKER
 
 
-SECTION "ManiasHouse_MapScripts", ROMX
+SECTION "maps/ManiasHouse.asm", ROMX
 
 ManiasHouse_MapScripts:
 	db 0 ; scene scripts

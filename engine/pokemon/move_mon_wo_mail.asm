@@ -1,4 +1,4 @@
-SECTION "InsertPokemonIntoBox - InsertDataIntoBoxOrParty", ROMX
+SECTION "engine/pokemon/move_mon_wo_mail.asm", ROMX
 
 InsertPokemonIntoBox:
 	ld a, BANK(sBoxCount)

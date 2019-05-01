@@ -1,4 +1,4 @@
-SECTION "_UpdateBattleHUDs", ROMX
+SECTION "engine/battle/update_battle_huds.asm", ROMX
 
 _UpdateBattleHUDs:
 	farcall DrawPlayerHUD

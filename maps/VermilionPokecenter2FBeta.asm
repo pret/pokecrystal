@@ -1,5 +1,5 @@
 
-SECTION "VermilionPokecenter2FBeta_MapScripts", ROMX
+SECTION "maps/VermilionPokecenter2FBeta.asm", ROMX
 
 VermilionPokecenter2FBeta_MapScripts:
 	db 0 ; scene scripts

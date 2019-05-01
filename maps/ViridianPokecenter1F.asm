@@ -5,7 +5,7 @@
 	const VIRIDIANPOKECENTER1F_BUG_CATCHER
 
 
-SECTION "ViridianPokecenter1F_MapScripts", ROMX
+SECTION "maps/ViridianPokecenter1F.asm", ROMX
 
 ViridianPokecenter1F_MapScripts:
 	db 0 ; scene scripts

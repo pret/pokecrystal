@@ -2,7 +2,7 @@
 	const OLIVINETIMSHOUSE_TIM
 
 
-SECTION "OlivineTimsHouse_MapScripts", ROMX
+SECTION "maps/OlivineTimsHouse.asm", ROMX
 
 OlivineTimsHouse_MapScripts:
 	db 0 ; scene scripts

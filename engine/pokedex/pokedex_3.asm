@@ -1,4 +1,4 @@
-SECTION "LoadSGBPokedexGFX - SGBPokedexGFX_LZ", ROMX
+SECTION "engine/pokedex/pokedex_3.asm@LoadSGBPokedexGFX", ROMX
 
 LoadSGBPokedexGFX:
 	ld hl, SGBPokedexGFX_LZ
@@ -17,7 +17,7 @@ SGBPokedexGFX_LZ:
 INCBIN "gfx/pokedex/sgb.2bpp.lz"
 
 
-SECTION "LoadQuestionMarkPic", ROMX
+SECTION "engine/pokedex/pokedex_3.asm@LoadQuestionMarkPic", ROMX
 
 LoadQuestionMarkPic:
 	ld hl, .QuestionMarkLZ
@@ -29,7 +29,7 @@ LoadQuestionMarkPic:
 INCBIN "gfx/pokedex/question_mark.2bpp.lz"
 
 
-SECTION "DrawPokedexListWindow - Bank77_FillColumn", ROMX
+SECTION "engine/pokedex/pokedex_3.asm@DrawPokedexWindow", ROMX
 
 DrawPokedexListWindow:
 	ld a, $32

@@ -1,4 +1,4 @@
-SECTION "RunMapSetupScript - MapSetupCommands", ROMX
+SECTION "engine/overworld/map_setup.asm@RunMapSetupScript", ROMX
 
 RunMapSetupScript::
 	ldh a, [hMapEntryMethod]
@@ -110,7 +110,7 @@ MapSetupCommands:
 	dba ReturnFromMapSetupScript ; 2d
 
 
-SECTION "DontScrollText", ROMX
+SECTION "engine/overworld/map_setup.asm@DontScrollText", ROMX
 
 DontScrollText:
 	xor a
@@ -118,7 +118,7 @@ DontScrollText:
 	ret
 
 
-SECTION "ActivateMapAnims", ROMX
+SECTION "engine/overworld/map_setup.asm@ActivateMapAnims", ROMX
 
 ActivateMapAnims:
 	ld a, $1
@@ -126,7 +126,7 @@ ActivateMapAnims:
 	ret
 
 
-SECTION "SuspendMapAnims", ROMX
+SECTION "engine/overworld/map_setup.asm@SuspendMapAnims", ROMX
 
 SuspendMapAnims:
 	xor a
@@ -134,7 +134,7 @@ SuspendMapAnims:
 	ret
 
 
-SECTION "LoadObjectsRunCallback_02", ROMX
+SECTION "engine/overworld/map_setup.asm@LoadObjectsRunCallback_02", ROMX
 
 LoadObjectsRunCallback_02:
 	ld a, MAPCALLBACK_OBJECTS
@@ -147,7 +147,7 @@ LoadObjectsRunCallback_02:
 	ret
 
 
-SECTION "DelayClearingOldSprites", ROMX
+SECTION "engine/overworld/map_setup.asm@DelayClearingOldSprites", ROMX
 
 DelayClearingOldSprites:
 	ld hl, wPlayerSpriteSetupFlags
@@ -155,7 +155,7 @@ DelayClearingOldSprites:
 	ret
 
 
-SECTION "DelayLoadingNewSprites", ROMX
+SECTION "engine/overworld/map_setup.asm@DelayLoadingNewSprites", ROMX
 
 DelayLoadingNewSprites:
 	ld hl, wPlayerSpriteSetupFlags
@@ -163,7 +163,7 @@ DelayLoadingNewSprites:
 	ret
 
 
-SECTION "CheckReplaceKrisSprite", ROMX
+SECTION "engine/overworld/map_setup.asm@CheckReplaceKrisSprite", ROMX
 
 CheckReplaceKrisSprite:
 	nop
@@ -239,7 +239,7 @@ CheckReplaceKrisSprite:
 	ret
 
 
-SECTION "FadeOldMapMusic", ROMX
+SECTION "engine/overworld/map_setup.asm@FadeOldMapMusic", ROMX
 
 FadeOldMapMusic:
 	ld a, 6
@@ -247,14 +247,14 @@ FadeOldMapMusic:
 	ret
 
 
-SECTION "RetainOldPalettes", ROMX
+SECTION "engine/overworld/map_setup.asm@RetainOldPalettes", ROMX
 
 RetainOldPalettes:
 	farcall _UpdateTimePals
 	ret
 
 
-SECTION "RotatePalettesRightMapAndMusic", ROMX
+SECTION "engine/overworld/map_setup.asm@RotatePalettesRightMapAndMusic", ROMX
 
 RotatePalettesRightMapAndMusic:
 	ld e, 0
@@ -267,7 +267,7 @@ RotatePalettesRightMapAndMusic:
 	ret
 
 
-SECTION "ForceMapMusic", ROMX
+SECTION "engine/overworld/map_setup.asm@ForceMapMusic", ROMX
 
 ForceMapMusic:
 	ld a, [wPlayerState]

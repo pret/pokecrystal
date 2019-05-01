@@ -1,4 +1,4 @@
-SECTION "_CheckPokerus", ROMX
+SECTION "engine/events/pokerus/check_pokerus.asm", ROMX
 
 _CheckPokerus:
 ; Return carry if a monster in your party has Pokerus

@@ -4,7 +4,7 @@
 	const ICEPATH1F_POKE_BALL3
 
 
-SECTION "IcePath1F_MapScripts", ROMX
+SECTION "maps/IcePath1F.asm", ROMX
 
 IcePath1F_MapScripts:
 	db 0 ; scene scripts

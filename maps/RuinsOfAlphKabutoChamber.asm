@@ -3,7 +3,7 @@
 	const RUINSOFALPHKABUTOCHAMBER_SCIENTIST
 
 
-SECTION "RuinsOfAlphKabutoChamber_MapScripts", ROMX, BANK[BANK_MAP_RUINS_OF_ALPH_RESEARCH_CENTER]
+SECTION "maps/RuinsOfAlphKabutoChamber.asm", ROMX, BANK[BANK_MAP_RUINS_OF_ALPH_RESEARCH_CENTER]
 
 RuinsOfAlphKabutoChamber_MapScripts:
 	db 2 ; scene scripts

@@ -2,7 +2,7 @@
 	const ROUTE16FUCHSIASPEECHHOUSE_SUPER_NERD
 
 
-SECTION "Route16FuchsiaSpeechHouse_MapScripts", ROMX
+SECTION "maps/Route16FuchsiaSpeechHouse.asm", ROMX
 
 Route16FuchsiaSpeechHouse_MapScripts:
 	db 0 ; scene scripts

@@ -1,4 +1,4 @@
-SECTION "UnknownText_0x1b638c - UnknownText_0x1b642c", ROMX
+SECTION "data/phone/text/irwin_callee.asm", ROMX
 
 UnknownText_0x1b638c:
 	text "Hello? @"

@@ -2,7 +2,7 @@
 	const ROUTE42ECRUTEAKGATE_OFFICER
 
 
-SECTION "Route42EcruteakGate_MapScripts", ROMX
+SECTION "maps/Route42EcruteakGate.asm", ROMX
 
 Route42EcruteakGate_MapScripts:
 	db 0 ; scene scripts

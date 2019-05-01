@@ -1,4 +1,4 @@
-SECTION "HoOhChamber", ROMX
+SECTION "engine/events/unown_walls.asm@HoOhChamber", ROMX
 
 HoOhChamber:
 	ld hl, wPartySpecies
@@ -13,7 +13,7 @@ HoOhChamber:
 	ret
 
 
-SECTION "OmanyteChamber", ROMX
+SECTION "engine/events/unown_walls.asm@OmanyteChamber", ROMX
 
 OmanyteChamber:
 	call GetMapAttributesPointer ; pointless?
@@ -57,7 +57,7 @@ OmanyteChamber:
 	ret
 
 
-SECTION "SpecialAerodactylChamber", ROMX
+SECTION "engine/events/unown_walls.asm@SpecialAerodactylChamber", ROMX
 
 SpecialAerodactylChamber:
 	push de
@@ -87,7 +87,7 @@ SpecialAerodactylChamber:
 	ret
 
 
-SECTION "SpecialKabutoChamber", ROMX
+SECTION "engine/events/unown_walls.asm@SpecialKabutoChamber", ROMX
 
 SpecialKabutoChamber:
 	push hl
@@ -111,7 +111,7 @@ SpecialKabutoChamber:
 	ret
 
 
-SECTION "DisplayUnownWords - _DisplayUnownWords_CopyWord", ROMX
+SECTION "engine/events/unown_walls.asm@DisplayUnownWords", ROMX
 
 DisplayUnownWords:
 	ld a, [wScriptVar]

@@ -3,7 +3,7 @@
 	const PEWTERNIDORANSPEECHHOUSE_NIDORAN_M
 
 
-SECTION "PewterNidoranSpeechHouse_MapScripts", ROMX
+SECTION "maps/PewterNidoranSpeechHouse.asm", ROMX
 
 PewterNidoranSpeechHouse_MapScripts:
 	db 0 ; scene scripts

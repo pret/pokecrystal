@@ -4,7 +4,7 @@
 	const ROUTE32POKECENTER1F_COOLTRAINER_F
 
 
-SECTION "Route32Pokecenter1F_MapScripts", ROMX
+SECTION "maps/Route32Pokecenter1F.asm", ROMX
 
 Route32Pokecenter1F_MapScripts:
 	db 0 ; scene scripts

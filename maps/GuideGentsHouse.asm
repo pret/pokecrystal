@@ -2,7 +2,7 @@
 	const GUIDEGENTSHOUSE_GRAMPS
 
 
-SECTION "GuideGentsHouse_MapScripts", ROMX
+SECTION "maps/GuideGentsHouse.asm", ROMX
 
 GuideGentsHouse_MapScripts:
 	db 0 ; scene scripts

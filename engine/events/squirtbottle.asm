@@ -1,4 +1,4 @@
-SECTION "_Squirtbottle", ROMX
+SECTION "engine/events/squirtbottle.asm", ROMX
 
 _Squirtbottle:
 	ld hl, .SquirtbottleScript

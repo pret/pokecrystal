@@ -1,4 +1,4 @@
-SECTION "TalkToTrainerScript - AlreadyBeatenTrainerScript", ROMX
+SECTION "engine/events/trainer_scripts.asm", ROMX
 
 TalkToTrainerScript::
 	faceplayer

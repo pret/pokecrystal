@@ -1,4 +1,4 @@
-SECTION "JoeyAskNumber1Text - JoeyRematchGiftText", ROMX
+SECTION "data/phone/text/joey_overworld.asm", ROMX
 
 JoeyAskNumber1Text:
 	text "Listen, can I get"

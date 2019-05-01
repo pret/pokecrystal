@@ -4,7 +4,7 @@
 	const CERULEANPOKECENTER1F_GYM_GUY
 
 
-SECTION "CeruleanPokecenter1F_MapScripts", ROMX
+SECTION "maps/CeruleanPokecenter1F.asm", ROMX
 
 CeruleanPokecenter1F_MapScripts:
 	db 0 ; scene scripts

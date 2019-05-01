@@ -3,7 +3,7 @@
 	const GOLDENRODMAGNETTRAINSTATION_GENTLEMAN
 
 
-SECTION "GoldenrodMagnetTrainStation_MapScripts", ROMX
+SECTION "maps/GoldenrodMagnetTrainStation.asm", ROMX
 
 GoldenrodMagnetTrainStation_MapScripts:
 	db 1 ; scene scripts

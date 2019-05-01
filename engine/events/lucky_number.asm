@@ -1,4 +1,4 @@
-SECTION "CheckForLuckyNumberWinners", ROMX
+SECTION "engine/events/lucky_number.asm@CheckForLuckyNumberWinners", ROMX
 
 CheckForLuckyNumberWinners:
 	xor a
@@ -219,7 +219,7 @@ CheckForLuckyNumberWinners:
 	text_end
 
 
-SECTION "PrintTodaysLuckyNumber", ROMX
+SECTION "engine/events/lucky_number.asm@PrintTodaysLuckyNumber", ROMX
 
 PrintTodaysLuckyNumber:
 	ld hl, wStringBuffer3

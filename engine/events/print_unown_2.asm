@@ -1,4 +1,4 @@
-SECTION "RotateUnownFrontpic - UnownPrinter_GBPrinterRectangle", ROMX
+SECTION "engine/events/print_unown_2.asm", ROMX
 
 RotateUnownFrontpic:
 ; something to do with Unown printer

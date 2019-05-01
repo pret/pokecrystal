@@ -1,4 +1,4 @@
-SECTION "Music_MobileCenter", ROMX
+SECTION "audio/music/mobilecenter.asm", ROMX
 
 Music_MobileCenter:
 	musicheader 4, 1, Music_MobileCenter_Ch1

@@ -1,4 +1,4 @@
-SECTION "GavenPhoneCalleeScript - GavenFoundRare", ROMX
+SECTION "engine/phone/scripts/gaven.asm", ROMX
 
 GavenPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, COOLTRAINERM, GAVEN3

@@ -2,7 +2,7 @@
 	const TOHJOFALLS_POKE_BALL
 
 
-SECTION "TohjoFalls_MapScripts", ROMX
+SECTION "maps/TohjoFalls.asm", ROMX
 
 TohjoFalls_MapScripts:
 	db 0 ; scene scripts

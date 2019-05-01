@@ -5,7 +5,7 @@
 	const CERULEANTRADESPEECHHOUSE_ZUBAT
 
 
-SECTION "CeruleanTradeSpeechHouse_MapScripts", ROMX
+SECTION "maps/CeruleanTradeSpeechHouse.asm", ROMX
 
 CeruleanTradeSpeechHouse_MapScripts:
 	db 0 ; scene scripts

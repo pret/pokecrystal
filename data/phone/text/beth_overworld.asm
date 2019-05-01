@@ -1,4 +1,4 @@
-SECTION "BethAskNumber1Text - BethRematchText", ROMX
+SECTION "data/phone/text/beth_overworld.asm", ROMX
 
 BethAskNumber1Text:
 	text "It's been a while"

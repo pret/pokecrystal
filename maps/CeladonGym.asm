@@ -7,7 +7,7 @@
 	const CELADONGYM_TWIN2
 
 
-SECTION "CeladonGym_MapScripts", ROMX
+SECTION "maps/CeladonGym.asm", ROMX
 
 CeladonGym_MapScripts:
 	db 0 ; scene scripts

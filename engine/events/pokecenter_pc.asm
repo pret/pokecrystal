@@ -1,4 +1,4 @@
-SECTION "PokemonCenterPC - PokecenterPCText_LinkClosed", ROMX
+SECTION "engine/events/pokecenter_pc.asm", ROMX
 
 PokemonCenterPC:
 	call PC_CheckPartyForPokemon

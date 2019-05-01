@@ -3,7 +3,7 @@
 	const PALLETTOWN_FISHER
 
 
-SECTION "PalletTown_MapScripts", ROMX
+SECTION "maps/PalletTown.asm", ROMX
 
 PalletTown_MapScripts:
 	db 0 ; scene scripts

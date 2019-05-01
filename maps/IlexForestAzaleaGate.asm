@@ -3,7 +3,7 @@
 	const ILEXFORESTAZALEAGATE_GRANNY
 
 
-SECTION "IlexForestAzaleaGate_MapScripts", ROMX
+SECTION "maps/IlexForestAzaleaGate.asm", ROMX
 
 IlexForestAzaleaGate_MapScripts:
 	db 0 ; scene scripts

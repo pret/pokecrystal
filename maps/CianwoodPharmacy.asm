@@ -2,7 +2,7 @@
 	const CIANWOODPHARMACY_PHARMACIST
 
 
-SECTION "CianwoodPharmacy_MapScripts", ROMX
+SECTION "maps/CianwoodPharmacy.asm", ROMX
 
 CianwoodPharmacy_MapScripts:
 	db 1 ; scene scripts

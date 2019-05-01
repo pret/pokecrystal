@@ -1,5 +1,5 @@
 
-SECTION "GoldenrodDeptStoreElevator_MapScripts", ROMX
+SECTION "maps/GoldenrodDeptStoreElevator.asm", ROMX
 
 GoldenrodDeptStoreElevator_MapScripts:
 	db 0 ; scene scripts

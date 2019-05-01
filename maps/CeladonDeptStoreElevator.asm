@@ -1,5 +1,5 @@
 
-SECTION "CeladonDeptStoreElevator_MapScripts", ROMX
+SECTION "maps/CeladonDeptStoreElevator.asm", ROMX
 
 CeladonDeptStoreElevator_MapScripts:
 	db 0 ; scene scripts

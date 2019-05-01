@@ -1,4 +1,4 @@
-SECTION "Music_CeladonCity", ROMX
+SECTION "audio/music/celadoncity.asm", ROMX
 
 Music_CeladonCity:
 	musicheader 3, 1, Music_CeladonCity_Ch1
