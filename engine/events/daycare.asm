@@ -26,7 +26,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/daycare.asm", ROMX
 
-DayCareMan:
+DayCareMan::
 	ld hl, wDayCareMan
 	bit DAYCAREMAN_HAS_MON_F, [hl]
 	jr nz, .AskWithdrawMon
@@ -64,7 +64,7 @@ DayCareMan:
 	call PrintDayCareText
 	ret
 
-DayCareLady:
+DayCareLady::
 	ld hl, wDayCareLady
 	bit DAYCARELADY_HAS_MON_F, [hl]
 	jr nz, .AskWithdrawMon
@@ -400,7 +400,7 @@ PrintDayCareText:
 	text_far _ComeAgainText
 	text_end
 
-DayCareManOutside:
+DayCareManOutside::
 	ld hl, wDayCareMan
 	bit DAYCAREMAN_HAS_EGG_F, [hl]
 	jr nz, .AskGiveEgg

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/erin.asm", ROMX
 
-ErinPhoneCalleeScript:
+ErinPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, PICNICKER, ERIN1
 	checkflag ENGINE_ERIN
 	iftrue .WantsBattle
@@ -22,7 +22,7 @@ ErinPhoneCalleeScript:
 	getlandmarkname STRING_BUFFER_5, ROUTE_46
 	farsjump ErinComeBattleScript
 
-ErinPhoneCallerScript:
+ErinPhoneCallerScript::
 	gettrainername STRING_BUFFER_3, PICNICKER, ERIN1
 	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_ERIN

@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/BlackthornMart.asm", ROMX
 
-BlackthornMart_MapScripts:
+BlackthornMart_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -49,7 +49,7 @@ BlackthornMartBlackBeltText:
 	cont "REPEL sprays."
 	done
 
-BlackthornMart_MapEvents:
+BlackthornMart_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

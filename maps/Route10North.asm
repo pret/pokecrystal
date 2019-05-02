@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route10North.asm", ROMX
 
-Route10North_MapScripts:
+Route10North_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -18,7 +18,7 @@ PowerPlantSignText:
 	text "KANTO POWER PLANT"
 	done
 
-Route10North_MapEvents:
+Route10North_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

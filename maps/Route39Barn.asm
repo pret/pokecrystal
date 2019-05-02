@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route39Barn.asm", ROMX
 
-Route39Barn_MapScripts:
+Route39Barn_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -191,7 +191,7 @@ Route39BarnRefusedBerryText:
 	para "MILTANK looks sad."
 	done
 
-Route39Barn_MapEvents:
+Route39Barn_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

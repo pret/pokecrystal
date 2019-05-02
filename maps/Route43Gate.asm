@@ -10,7 +10,7 @@ ROUTE43GATE_TOLL EQU 1000
 
 SECTION "maps/Route43Gate.asm", ROMX
 
-Route43Gate_MapScripts:
+Route43Gate_MapScripts::
 	db 2 ; scene scripts
 	scene_script .RocketShakedown ; SCENE_DEFAULT
 	scene_script .DummyScene ; SCENE_FINISHED
@@ -250,7 +250,7 @@ OfficerText_AvoidGrass:
 	cont "the grass."
 	done
 
-Route43Gate_MapEvents:
+Route43Gate_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

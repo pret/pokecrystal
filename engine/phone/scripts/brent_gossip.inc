@@ -1,4 +1,4 @@
-BrentBillTriviaScript:
+BrentBillTriviaScript::
 	random 10
 	ifequal 0, .Father
 	ifequal 1, .Grandpa

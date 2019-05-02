@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/ralph_overworld.asm", ROMX
 
-RalphAskNumber1Text:
+RalphAskNumber1Text::
 	text "Don't young people"
 	line "fish anymore?"
 
@@ -21,13 +21,13 @@ RalphAskNumber1Text:
 	line "if I see anything."
 	done
 
-RalphAskNumber2Text:
+RalphAskNumber2Text::
 	text "Hm? So you do want"
 	line "me to phone if I"
 	cont "see rare #MON?"
 	done
 
-RalphNumberAcceptedText:
+RalphNumberAcceptedText::
 	text "Yep, phone if I"
 	line "see rare #MON."
 
@@ -35,7 +35,7 @@ RalphNumberAcceptedText:
 	line "won't forget!"
 	done
 
-RalphNumberDeclinedText:
+RalphNumberDeclinedText::
 	text "Oh…"
 	line "My own kids won't"
 
@@ -46,7 +46,7 @@ RalphNumberDeclinedText:
 	line "people are today?"
 	done
 
-RalphPhoneFullText:
+RalphPhoneFullText::
 	text "Your phone's"
 	line "memory is full."
 
@@ -55,7 +55,7 @@ RalphPhoneFullText:
 	cont "have #GEAR."
 	done
 
-RalphRematchText:
+RalphRematchText::
 	text "Hey, kid!"
 
 	para "No losing for me"

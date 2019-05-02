@@ -1,4 +1,4 @@
-BattleCommand_PayDay:
+BattleCommand_PayDay::
 ; payday
 
 	xor a

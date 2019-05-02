@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/sweet_scent.asm", ROMX
 
-SweetScentFromMenu:
+SweetScentFromMenu::
 	ld hl, .SweetScent
 	call QueueScript
 	ld a, $1

@@ -10,7 +10,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route11.asm", ROMX
 
-Route11_MapScripts:
+Route11_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -148,7 +148,7 @@ Route11SignText:
 	text "ROUTE 11"
 	done
 
-Route11_MapEvents:
+Route11_MapEvents::
 	db 0, 0 ; filler
 
 	db 0 ; warp events

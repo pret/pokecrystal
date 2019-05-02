@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/joey.asm", ROMX
 
-JoeyPhoneCalleeScript:
+JoeyPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, YOUNGSTER, JOEY1
 	checkflag ENGINE_JOEY
 	iftrue .WantsBattle
@@ -23,7 +23,7 @@ JoeyPhoneCalleeScript:
 	getlandmarkname STRING_BUFFER_5, ROUTE_30
 	farsjump UnknownScript_0xa0a4b
 
-JoeyPhoneCallerScript:
+JoeyPhoneCallerScript::
 	gettrainername STRING_BUFFER_3, YOUNGSTER, JOEY1
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_JOEY

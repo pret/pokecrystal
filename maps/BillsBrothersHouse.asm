@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/BillsBrothersHouse.asm", ROMX
 
-BillsBrothersHouse_MapScripts:
+BillsBrothersHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -30,7 +30,7 @@ BillsBrothersHouseYoungsterText:
 	cont "CYCLING ROAD."
 	done
 
-BillsBrothersHouse_MapEvents:
+BillsBrothersHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

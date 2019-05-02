@@ -3,8 +3,8 @@ INCLUDE "constants.inc"
 
 SECTION "engine/tilesets/timeofday_pals.asm@DummyPredef", ROMX
 
-DummyPredef35:
-DummyPredef36:
+DummyPredef35::
+DummyPredef36::
 	ret
 
 
@@ -135,7 +135,7 @@ FadeOutPalettes::
 	call ConvertTimePalsIncHL
 	ret
 
-BattleTowerFade:
+BattleTowerFade::
 	call FillWhiteBGColor
 	ld c, $9
 	call GetTimePalFade
@@ -151,14 +151,14 @@ BattleTowerFade:
 	jr nz, .asm_8c09c
 	ret
 
-FadeInQuickly:
+FadeInQuickly::
 	ld c, $0
 	call GetTimePalFade
 	ld b, $4
 	call ConvertTimePalsIncHL
 	ret
 
-FadeBlackQuickly:
+FadeBlackQuickly::
 	ld c, $9
 	call GetTimePalFade
 	ld b, $4
@@ -193,7 +193,7 @@ endr
 	ldh [rSVBK], a
 	ret
 
-ReplaceTimeOfDayPals:
+ReplaceTimeOfDayPals::
 	ld hl, .BrightnessLevels
 	ld a, [wMapTimeOfDay]
 	cp $4 ; Dark cave, needs Flash

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/movie/crystal_intro.asm@Copyright_GFPresents", ROMX
 
-Copyright_GFPresents:
+Copyright_GFPresents::
 	ld de, MUSIC_NONE
 	call PlayMusic
 	call ClearBGPalettes
@@ -203,7 +203,7 @@ PlaceGameFreakPresents_3:
 	set 7, [hl]
 	ret
 
-GameFreakLogoJumper:
+GameFreakLogoJumper::
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld e, [hl]
@@ -341,7 +341,7 @@ INCBIN "gfx/splash/logo2.1bpp"
 
 SECTION "engine/movie/crystal_intro.asm", ROMX
 
-CrystalIntro:
+CrystalIntro::
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wGBCPalettes)

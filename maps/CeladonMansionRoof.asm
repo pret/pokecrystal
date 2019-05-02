@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CeladonMansionRoof.asm", ROMX
 
-CeladonMansionRoof_MapScripts:
+CeladonMansionRoof_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -36,7 +36,7 @@ CeladonMansionRoofGraffitiText:
 	line "moustache!"
 	done
 
-CeladonMansionRoof_MapEvents:
+CeladonMansionRoof_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

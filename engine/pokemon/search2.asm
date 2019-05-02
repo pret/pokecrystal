@@ -3,21 +3,21 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokemon/search2.asm", ROMX
 
-_FindPartyMonAboveLevel:
+_FindPartyMonAboveLevel::
 	ld hl, wPartyMon1Level
 	call FindAboveLevel
 	ret
 
-_FindPartyMonAtLeastThatHappy:
+_FindPartyMonAtLeastThatHappy::
 	ld hl, wPartyMon1Happiness
 	call FindAtLeastThatHappy
 	ret
 
-_FindPartyMonThatSpecies:
+_FindPartyMonThatSpecies::
 	ld hl, wPartyMon1Species
 	jp FindThatSpecies
 
-_FindPartyMonThatSpeciesYourTrainerID:
+_FindPartyMonThatSpeciesYourTrainerID::
 	ld hl, wPartyMon1Species
 	call FindThatSpecies
 	ret z

@@ -5162,14 +5162,14 @@ Function115d80:
 
 SECTION "mobile/mobile_45.asm@GiveOddEgg", ROMX
 
-GiveOddEgg:
+GiveOddEgg::
 	farcall _GiveOddEgg
 	ret
 
 
 SECTION "mobile/mobile_45.asm@Function11765d - Unknown_117a47", ROMX
 
-Function11765d:
+Function11765d::
 	ldh a, [hInMenu]
 	push af
 	ld a, $1
@@ -5665,7 +5665,7 @@ SECTION "mobile/mobile_45.asm@MobileStudium", ROMX
 ; everything from here to the end of the bank is related to the
 ; Mobile Stadium option from the continue/newgame menu.
 ; Needs better function names
-MobileStudium:
+MobileStudium::
 	ldh a, [hInMenu]
 	push af
 	ld a, $1
@@ -5692,7 +5692,7 @@ Function117a94:
 	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
 	ret
 
-Function117ab4:
+Function117ab4::
 	call ClearBGPalettes
 	call ClearSprites
 	farcall Function172e78

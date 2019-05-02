@@ -13,7 +13,7 @@ SECTION "engine/battle_anims/bg_effects.asm", ROMX
 
 ; BG effects for use in battle animations.
 
-ExecuteBGEffects:
+ExecuteBGEffects::
 	ld hl, wActiveBGEffects
 	ld e, NUM_BG_EFFECTS
 .loop
@@ -34,7 +34,7 @@ ExecuteBGEffects:
 	jr nz, .loop
 	ret
 
-QueueBGEffect:
+QueueBGEffect::
 	ld hl, wActiveBGEffects
 	ld e, NUM_BG_EFFECTS
 .loop

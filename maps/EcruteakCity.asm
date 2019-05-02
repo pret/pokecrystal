@@ -12,7 +12,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/EcruteakCity.asm", ROMX
 
-EcruteakCity_MapScripts:
+EcruteakCity_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -262,7 +262,7 @@ BurnedTowerSignText:
 	line "as it is unsafe."
 	done
 
-EcruteakCity_MapEvents:
+EcruteakCity_MapEvents::
 	db 0, 0 ; filler
 
 	db 15 ; warp events

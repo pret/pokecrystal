@@ -1,4 +1,4 @@
-IrwinRumorScript:
+IrwinRumorScript::
 	checkevent EVENT_OPENED_MT_SILVER
 	iftrue .MtSilver
 	checkevent EVENT_FOUGHT_SNORLAX

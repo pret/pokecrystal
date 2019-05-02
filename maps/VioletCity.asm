@@ -13,7 +13,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/VioletCity.asm", ROMX
 
-VioletCity_MapScripts:
+VioletCity_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -281,7 +281,7 @@ EarlsPokemonAcademySignText:
 	line "ACADEMY"
 	done
 
-VioletCity_MapEvents:
+VioletCity_MapEvents::
 	db 0, 0 ; filler
 
 	db 9 ; warp events

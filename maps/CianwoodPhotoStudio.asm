@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CianwoodPhotoStudio.asm", ROMX
 
-CianwoodPhotoStudio_MapScripts:
+CianwoodPhotoStudio_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -51,7 +51,7 @@ CianwoodPhotoStudioFishingGuruText_No:
 	line "memento…"
 	done
 
-CianwoodPhotoStudio_MapEvents:
+CianwoodPhotoStudio_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

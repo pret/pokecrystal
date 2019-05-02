@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/MrPokemonsHouse.asm", ROMX
 
-MrPokemonsHouse_MapScripts:
+MrPokemonsHouse_MapScripts::
 	db 2 ; scene scripts
 	scene_script .MeetMrPokemon ; SCENE_DEFAULT
 	scene_script .DummyScene ; SCENE_FINISHED
@@ -375,7 +375,7 @@ MrPokemonsHouse_StrangeCoinsText:
 	line "another country…"
 	done
 
-MrPokemonsHouse_MapEvents:
+MrPokemonsHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/johtowildbattle.asm", ROMX, BANK[BANK_MUSIC_JOHTO_WILD_BATTLE]
 
-Music_JohtoWildBattle:
+Music_JohtoWildBattle::
 	musicheader 3, 1, Music_JohtoWildBattle_Ch1
 	musicheader 1, 2, Music_JohtoWildBattle_Ch2
 	musicheader 1, 3, Music_JohtoWildBattle_Ch3
@@ -14,7 +14,7 @@ Music_JohtoWildBattle_Ch1:
 	dutycycle $3
 	tone $0002
 	vibrato $12, $15
-Music_JohtoWildBattleNight_branch_f5ddb:
+Music_JohtoWildBattleNight_branch_f5ddb::
 	notetype $c, $b2
 	octave 4
 	note C_, 1
@@ -213,7 +213,7 @@ Music_JohtoWildBattle_Ch2:
 	notetype $c, $c2
 	octave 4
 	note G_, 6
-Music_JohtoWildBattleNight_branch_f5eb2:
+Music_JohtoWildBattleNight_branch_f5eb2::
 	octave 3
 	note D_, 6
 	note G_, 4
@@ -367,7 +367,7 @@ Music_JohtoWildBattle_branch_f5ed1:
 	note B_, 16
 	loopchannel 0, Music_JohtoWildBattle_branch_f5ed1
 
-Music_JohtoWildBattleNight_branch_f5f5d:
+Music_JohtoWildBattleNight_branch_f5f5d::
 Music_JohtoWildBattle_branch_f5f5d:
 	notetype $c, $c2
 	octave 4
@@ -422,7 +422,7 @@ Music_JohtoWildBattle_branch_f5f5d:
 
 Music_JohtoWildBattle_Ch3:
 	notetype $c, $14
-Music_JohtoWildBattleNight_branch_f5f94:
+Music_JohtoWildBattleNight_branch_f5f94::
 	octave 4
 	note G_, 2
 	octave 5

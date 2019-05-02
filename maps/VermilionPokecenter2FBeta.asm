@@ -3,12 +3,12 @@ INCLUDE "constants.inc"
 
 SECTION "maps/VermilionPokecenter2FBeta.asm", ROMX
 
-VermilionPokecenter2FBeta_MapScripts:
+VermilionPokecenter2FBeta_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
 
-VermilionPokecenter2FBeta_MapEvents:
+VermilionPokecenter2FBeta_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/MahoganyRedGyaradosSpeechHouse.asm", ROMX
 
-MahoganyRedGyaradosSpeechHouse_MapScripts:
+MahoganyRedGyaradosSpeechHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -65,7 +65,7 @@ MahoganyRedGyaradosSpeechHouseTeacherText_RocketsInRadioTower:
 	line "It's creepy."
 	done
 
-MahoganyRedGyaradosSpeechHouse_MapEvents:
+MahoganyRedGyaradosSpeechHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

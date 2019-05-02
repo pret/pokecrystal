@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/LavenderPokecenter1F.asm", ROMX
 
-LavenderPokecenter1F_MapScripts:
+LavenderPokecenter1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -83,7 +83,7 @@ LavenderPokecenter1FYoungsterText_ReturnedMachinePart:
 	cont "smoothly again."
 	done
 
-LavenderPokecenter1F_MapEvents:
+LavenderPokecenter1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

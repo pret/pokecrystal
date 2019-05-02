@@ -27,7 +27,7 @@ NUM_POKEGEAR_CARDS EQU const_value
 
 SECTION "engine/pokegear/pokegear.asm", ROMX, BANK[BANK_PHONE_CALL]
 
-PokeGear:
+PokeGear::
 	ld hl, wOptions
 	ld a, [hl]
 	push af
@@ -162,7 +162,7 @@ Pokegear_LoadGFX:
 	call CopyBytes
 	ret
 
-FastShipGFX:
+FastShipGFX::
 INCBIN "gfx/pokegear/fast_ship.2bpp"
 
 InitPokegearModeIndicatorArrow:
@@ -174,7 +174,7 @@ InitPokegearModeIndicatorArrow:
 	ld [hl], $0
 	ret
 
-AnimatePokegearModeIndicatorArrow:
+AnimatePokegearModeIndicatorArrow::
 	ld hl, wPokegearCard
 	ld e, [hl]
 	ld d, 0
@@ -1386,7 +1386,7 @@ _UpdateRadioStation:
 
 ; called from engine/sprite_anims.asm
 
-AnimateTuningKnob:
+AnimateTuningKnob::
 	push bc
 	call .TuningKnob
 	pop bc
@@ -1706,7 +1706,7 @@ LoadStation_EvolutionRadio:
 Unreferenced_LoadStation:
 	ret
 
-RadioMusicRestartDE:
+RadioMusicRestartDE::
 	push de
 	ld a, e
 	ld [wPokegearRadioMusicPlaying], a
@@ -1718,7 +1718,7 @@ RadioMusicRestartDE:
 	call PlayMusic
 	ret
 
-RadioMusicRestartPokemonChannel:
+RadioMusicRestartPokemonChannel::
 	push de
 	ld a, RESTART_MAP_MUSIC
 	ld [wPokegearRadioMusicPlaying], a
@@ -1748,14 +1748,14 @@ NoRadioStation:
 	ldh [hBGMapMode], a
 	ret
 
-NoRadioMusic:
+NoRadioMusic::
 	ld de, MUSIC_NONE
 	call PlayMusic
 	ld a, ENTER_MAP_MUSIC
 	ld [wPokegearRadioMusicPlaying], a
 	ret
 
-NoRadioName:
+NoRadioName::
 	xor a
 	ldh [hBGMapMode], a
 	hlcoord 1, 8
@@ -1776,7 +1776,7 @@ PlacesAndPeopleName:  db "Places & People@"
 LetsAllSingName:      db "Let's All Sing!@"
 PokeFluteStationName: db "# FLUTE@"
 
-_TownMap:
+_TownMap::
 	ld hl, wOptions
 	ld a, [hl]
 	push af
@@ -1944,7 +1944,7 @@ _TownMap:
 	farcall TownMapPals
 	ret
 
-PlayRadio:
+PlayRadio::
 	ld hl, wOptions
 	ld a, [hl]
 	push af

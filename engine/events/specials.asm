@@ -376,14 +376,14 @@ CheckPokerus:
 	farcall _CheckPokerus
 	jp ScriptReturnCarry
 
-ResetLuckyNumberShowFlag:
+ResetLuckyNumberShowFlag::
 	farcall RestartLuckyNumberCountdown
 	ld hl, wLuckyNumberShowFlag
 	res LUCKYNUMBERSHOW_GAME_OVER_F, [hl]
 	farcall LoadOrRegenerateLuckyIDNumber
 	ret
 
-CheckLuckyNumberShowFlag:
+CheckLuckyNumberShowFlag::
 	farcall _CheckLuckyNumberShowFlag
 	jp ScriptReturnCarry
 

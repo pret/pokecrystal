@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/gfx/place_graphic.asm", ROMX
 
-PlaceGraphic:
+PlaceGraphic::
 ; Fill wBoxAlignment-aligned box width b height c
 ; with iterating tile starting from hGraphicStartTile at hl.
 

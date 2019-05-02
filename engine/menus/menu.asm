@@ -60,7 +60,7 @@ _InterpretMobileMenu::
 	and a
 	ret
 
-Draw2DMenu:
+Draw2DMenu::
 	xor a
 	ldh [hBGMapMode], a
 	call MenuBox
@@ -71,7 +71,7 @@ Get2DMenuSelection:
 	call Init2DMenuCursorPosition
 	call StaticMenuJoypad
 	call MenuClickSound
-Mobile_GetMenuSelection:
+Mobile_GetMenuSelection::
 	ld a, [wMenuDataFlags]
 	bit 1, a
 	jr z, .skip
@@ -161,7 +161,7 @@ Place2DMenuItemStrings:
 	rst FarCall
 	ret
 
-Init2DMenuCursorPosition:
+Init2DMenuCursorPosition::
 	call GetMenuTextStartCoord
 	ld a, b
 	ld [w2DMenuCursorInitY], a
@@ -261,7 +261,7 @@ _ScrollingMenuJoypad::
 	ldh [hBGMapMode], a
 	ret
 
-MobileMenuJoypad:
+MobileMenuJoypad::
 	ld hl, w2DMenuFlags2
 	res 7, [hl]
 	ldh a, [hBGMapMode]
@@ -372,7 +372,7 @@ Menu_WasButtonPressed:
 	scf
 	ret
 
-_2DMenuInterpretJoypad:
+_2DMenuInterpretJoypad::
 	call GetMenuJoypad
 	bit A_BUTTON_F, a
 	jp nz, .a_b_start_select

@@ -12,7 +12,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/FastShipCabins_NNW_NNE_NE.asm", ROMX
 
-FastShipCabins_NNW_NNE_NE_MapScripts:
+FastShipCabins_NNW_NNE_NE_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -269,7 +269,7 @@ BurglarCoreyAfterBattleText:
 	line "lost it…"
 	done
 
-FastShipCabins_NNW_NNE_NE_MapEvents:
+FastShipCabins_NNW_NNE_NE_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

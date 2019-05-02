@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/menus/save.asm", ROMX
 
-SaveMenu:
+SaveMenu::
 	call LoadStandardMenuHeader
 	farcall DisplaySaveInfoOnSave
 	call SpeechTextbox
@@ -28,7 +28,7 @@ SaveMenu:
 	scf
 	ret
 
-SaveAfterLinkTrade:
+SaveAfterLinkTrade::
 	call PauseGameLogic
 	farcall StageRTCTimeForSave
 	farcall BackupMysteryGift
@@ -41,7 +41,7 @@ SaveAfterLinkTrade:
 	call ResumeGameLogic
 	ret
 
-ChangeBoxSaveGame:
+ChangeBoxSaveGame::
 	push de
 	ld hl, Text_SaveOnBoxSwitch
 	call MenuTextbox
@@ -65,7 +65,7 @@ ChangeBoxSaveGame:
 	pop de
 	ret
 
-Link_SaveGame:
+Link_SaveGame::
 	call AskOverwriteSaveFile
 	jr c, .refused
 	call PauseGameLogic
@@ -76,7 +76,7 @@ Link_SaveGame:
 .refused
 	ret
 
-MoveMonWOMail_SaveGame:
+MoveMonWOMail_SaveGame::
 	call PauseGameLogic
 	push de
 	call SaveBox
@@ -87,7 +87,7 @@ MoveMonWOMail_SaveGame:
 	call ResumeGameLogic
 	ret
 
-MoveMonWOMail_InsertMon_SaveGame:
+MoveMonWOMail_InsertMon_SaveGame::
 	call PauseGameLogic
 	push de
 	call SaveBox
@@ -119,7 +119,7 @@ MoveMonWOMail_InsertMon_SaveGame:
 	call DelayFrames
 	ret
 
-StartMoveMonWOMail_SaveGame:
+StartMoveMonWOMail_SaveGame::
 	ld hl, Text_SaveOnMoveMonWOMail
 	call MenuTextbox
 	call YesNoBox
@@ -147,7 +147,7 @@ ResumeGameLogic:
 	ld [wGameLogicPaused], a
 	ret
 
-AddHallOfFameEntry:
+AddHallOfFameEntry::
 	ld a, BANK(sHallOfFame)
 	call GetSRAMBank
 	ld hl, sHallOfFame + HOF_LENGTH * (NUM_HOF_TEAMS - 1) - 1
@@ -168,7 +168,7 @@ AddHallOfFameEntry:
 	call CloseSRAM
 	ret
 
-SaveGameData:
+SaveGameData::
 	call _SaveGameData
 	ret
 
@@ -215,7 +215,7 @@ SaveTheGame_yesorno:
 	and a
 	ret
 
-CompareLoadedAndSavedPlayerID:
+CompareLoadedAndSavedPlayerID::
 	ld a, BANK(sPlayerData)
 	call GetSRAMBank
 	ld hl, sPlayerData + (wPlayerID - wPlayerData)
@@ -257,7 +257,7 @@ SavedTheGame:
 	call DelayFrames
 	ret
 
-_SaveGameData:
+_SaveGameData::
 	ld a, TRUE
 	ld [wSaveFileExists], a
 	farcall StageRTCTimeForSave
@@ -459,7 +459,7 @@ Unreferenced_Function14d93:
 	call CloseSRAM
 	ret
 
-HallOfFame_InitSaveIfNeeded:
+HallOfFame_InitSaveIfNeeded::
 	ld a, [wSavedAtLeastOnce]
 	and a
 	ret nz
@@ -475,7 +475,7 @@ ValidateSave:
 	ld [sCheckValue2], a
 	jp CloseSRAM
 
-SaveOptions:
+SaveOptions::
 	ld a, BANK(sOptions)
 	call GetSRAMBank
 	ld hl, wOptions
@@ -510,12 +510,12 @@ SavePokemonData:
 	call CloseSRAM
 	ret
 
-SaveBox:
+SaveBox::
 	call GetBoxAddress
 	call SaveBoxAddress
 	ret
 
-SaveChecksum:
+SaveChecksum::
 	ld hl, sGameData
 	ld bc, sGameDataEnd - sGameData
 	ld a, BANK(sGameData)
@@ -585,7 +585,7 @@ SaveBackupChecksum:
 	call CloseSRAM
 	ret
 
-TryLoadSaveFile:
+TryLoadSaveFile::
 	call VerifyChecksum
 	jr nz, .backup
 	call LoadPlayerData
@@ -631,7 +631,7 @@ TryLoadSaveFile:
 	scf
 	ret
 
-TryLoadSaveData:
+TryLoadSaveData::
 	xor a ; FALSE
 	ld [wSaveFileExists], a
 	call CheckPrimarySaveFile
@@ -745,7 +745,7 @@ LoadPlayerData:
 	call CloseSRAM
 	ret
 
-LoadPokemonData:
+LoadPokemonData::
 	ld a, BANK(sPokemonData)
 	call GetSRAMBank
 	ld hl, sPokemonData
@@ -818,7 +818,7 @@ VerifyBackupChecksum:
 	pop af
 	ret
 
-_SaveData:
+_SaveData::
 	; This is called within two scenarios:
 	;   a) ErasePreviousSave (the process of erasing the save from a previous game file)
 	;   b) unused mobile functionality
@@ -844,7 +844,7 @@ _SaveData:
 
 	jp CloseSRAM
 
-_LoadData:
+_LoadData::
 	ld a, BANK(sCrystalData)
 	call GetSRAMBank
 	ld hl, sCrystalData

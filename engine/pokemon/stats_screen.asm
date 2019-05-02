@@ -9,7 +9,7 @@ NUM_STAT_PAGES EQU const_value + -1
 
 SECTION "engine/pokemon/stats_screen.asm", ROMX
 
-BattleStatsScreenInit:
+BattleStatsScreenInit::
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
 	jr nz, StatsScreenInit
@@ -19,11 +19,11 @@ BattleStatsScreenInit:
 	jr z, StatsScreenInit
 	jr _MobileStatsScreenInit
 
-StatsScreenInit:
+StatsScreenInit::
 	ld hl, StatsScreenMain
 	jr StatsScreenInit_gotaddress
 
-_MobileStatsScreenInit:
+_MobileStatsScreenInit::
 	ld hl, StatsScreenMobile
 	jr StatsScreenInit_gotaddress
 
@@ -1127,7 +1127,7 @@ GetNicknamePointer:
 	ld a, [wCurPartyMon]
 	jp SkipNames
 
-CheckFaintedFrzSlp:
+CheckFaintedFrzSlp::
 	ld hl, MON_HP
 	add hl, bc
 	ld a, [hli]

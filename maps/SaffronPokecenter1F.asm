@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/SaffronPokecenter1F.asm", ROMX
 
-SaffronPokecenter1F_MapScripts:
+SaffronPokecenter1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -114,7 +114,7 @@ SaffronPokecenter1FYoungsterText:
 	line "SAFFRON."
 	done
 
-SaffronPokecenter1F_MapEvents:
+SaffronPokecenter1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/dancinghall.asm", ROMX
 
-Music_DancingHall:
+Music_DancingHall::
 	musicheader 3, 1, Music_DancingHall_Ch1
 	musicheader 1, 2, Music_DancingHall_Ch2
 	musicheader 1, 3, Music_DancingHall_Ch3

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/beverly_caller.asm", ROMX
 
-UnknownText_0x174688:
+UnknownText_0x174688::
 	text "I fancied up my"
 	line "@"
 	text_ram wStringBuffer4
@@ -13,7 +13,7 @@ UnknownText_0x174688:
 	line "than before!"
 	done
 
-UnknownText_0x1746c3:
+UnknownText_0x1746c3::
 	text "I happened to come"
 	line "across a wild"
 	cont "SNUBBULL recently."
@@ -25,7 +25,7 @@ UnknownText_0x1746c3:
 	line "wild one."
 	done
 
-UnknownText_0x174734:
+UnknownText_0x174734::
 	text "I happened to see"
 	line "a wild MARILL the"
 
@@ -41,12 +41,12 @@ UnknownText_0x174734:
 	line "quite miffed."
 	done
 
-UnknownText_0x1747ac:
+UnknownText_0x1747ac::
 	text "You can expect a"
 	line "call from me."
 	done
 
-BeverlyFoundNuggetText:
+BeverlyFoundNuggetText::
 	text "My husband got"
 	line "some NUGGETS."
 
@@ -65,7 +65,7 @@ BeverlyFoundNuggetText:
 	line "when you can."
 	done
 
-UnknownText_0x17485b:
+UnknownText_0x17485b::
 	text "Are your #MON"
 	line "in prime form?"
 
@@ -73,7 +73,7 @@ UnknownText_0x17485b:
 	line "#MON again."
 	done
 
-UnknownText_0x174895:
+UnknownText_0x174895::
 	text "Pardon?"
 	line "Oh, the NUGGET?"
 

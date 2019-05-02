@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/NewBarkTown.asm", ROMX
 
-NewBarkTown_MapScripts:
+NewBarkTown_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_FINISHED
@@ -284,7 +284,7 @@ NewBarkTownElmsHouseSignText:
 	text "ELM'S HOUSE"
 	done
 
-NewBarkTown_MapEvents:
+NewBarkTown_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

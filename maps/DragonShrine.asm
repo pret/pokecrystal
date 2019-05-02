@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/DragonShrine.asm", ROMX
 
-DragonShrine_MapScripts:
+DragonShrine_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DragonShrineTest ; SCENE_DEFAULT
 	scene_script .DummyScene ; SCENE_FINISHED
@@ -660,7 +660,7 @@ DragonShrineSpeechlessText:
 	text "<……><……><……><……><……><……>"
 	done
 
-DragonShrine_MapEvents:
+DragonShrine_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route5UndergroundPathEntrance.asm", ROMX
 
-Route5UndergroundPathEntrance_MapScripts:
+Route5UndergroundPathEntrance_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -22,7 +22,7 @@ Route5UndergroundPathEntranceTeacherText:
 	line "love to visit!"
 	done
 
-Route5UndergroundPathEntrance_MapEvents:
+Route5UndergroundPathEntrance_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/buena.asm", ROMX
 
-BuenaPhoneCalleeScript:
+BuenaPhoneCalleeScript::
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue BuenaPhoneScript_Rocket
 	readvar VAR_HOUR
@@ -11,7 +11,7 @@ BuenaPhoneCalleeScript:
 	scall BuenaPhoneScript_CheckTimeOfDay1
 	sjump BuenaPhoneScript_Random1
 
-BuenaPhoneCallerScript:
+BuenaPhoneCallerScript::
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue BuenaPhoneScript_Rocket
 	scall BuenaPhoneScript_CheckTimeOfDay2

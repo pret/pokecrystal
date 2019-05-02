@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/battle/read_trainer_dvs.asm", ROMX
 
-GetTrainerDVs:
+GetTrainerDVs::
 ; Return the DVs of wOtherTrainerClass in bc
 
 	push hl

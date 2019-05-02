@@ -3,146 +3,146 @@ INCLUDE "constants.inc"
 
 SECTION "audio/cries.asm@Johto", ROMX
 
-Cry_Marill:
+Cry_Marill::
 	musicheader 3, 5, Cry_Marill_Ch5
 	musicheader 1, 6, Cry_Marill_Ch6
 	musicheader 1, 8, Cry_Marill_Ch8
 
-Cry_Togepi:
+Cry_Togepi::
 	musicheader 2, 5, Cry_Togepi_Ch5
 	musicheader 1, 6, Cry_Togepi_Ch6
 
-Cry_Togetic:
+Cry_Togetic::
 	musicheader 2, 5, Cry_Togetic_Ch5
 	musicheader 1, 6, Cry_Togetic_Ch6
 
-Cry_Spinarak:
+Cry_Spinarak::
 	musicheader 3, 5, Cry_Spinarak_Ch5
 	musicheader 1, 6, Cry_Spinarak_Ch6
 	musicheader 1, 8, Cry_Spinarak_Ch8
 
-Cry_Raikou:
+Cry_Raikou::
 	musicheader 3, 5, Cry_Raikou_Ch5
 	musicheader 1, 6, Cry_Raikou_Ch6
 	musicheader 1, 8, Cry_Raikou_Ch8
 
-Cry_Hoothoot:
+Cry_Hoothoot::
 	musicheader 3, 5, Cry_Hoothoot_Ch5
 	musicheader 1, 6, Cry_Hoothoot_Ch6
 	musicheader 1, 8, Cry_Hoothoot_Ch8
 
-Cry_Sentret:
+Cry_Sentret::
 	musicheader 2, 5, Cry_Sentret_Ch5
 	musicheader 1, 6, Cry_Sentret_Ch6
 
-Cry_Slowking:
+Cry_Slowking::
 	musicheader 3, 5, Cry_Slowking_Ch5
 	musicheader 1, 6, Cry_Slowking_Ch6
 	musicheader 1, 8, Cry_Slowking_Ch8
 
-Cry_Mareep:
+Cry_Mareep::
 	musicheader 2, 5, Cry_Mareep_Ch5
 	musicheader 1, 6, Cry_Mareep_Ch6
 
-Cry_Cyndaquil:
+Cry_Cyndaquil::
 	musicheader 3, 5, Cry_Cyndaquil_Ch5
 	musicheader 1, 6, Cry_Cyndaquil_Ch6
 	musicheader 1, 8, Cry_Cyndaquil_Ch8
 
-Cry_Chikorita:
+Cry_Chikorita::
 	musicheader 3, 5, Cry_Chikorita_Ch5
 	musicheader 1, 6, Cry_Chikorita_Ch6
 	musicheader 1, 8, Cry_Chikorita_Ch8
 
-Cry_Gligar:
+Cry_Gligar::
 	musicheader 2, 5, Cry_Gligar_Ch5
 	musicheader 1, 8, Cry_Gligar_Ch8
 
-Cry_Girafarig:
+Cry_Girafarig::
 	musicheader 3, 5, Cry_Girafarig_Ch5
 	musicheader 1, 6, Cry_Girafarig_Ch6
 	musicheader 1, 8, Cry_Girafarig_Ch8
 
-Cry_Slugma:
+Cry_Slugma::
 	musicheader 2, 5, Cry_Slugma_Ch5
 	musicheader 1, 8, Cry_Slugma_Ch8
 
-Cry_Ledyba:
+Cry_Ledyba::
 	musicheader 3, 5, Cry_Ledyba_Ch5
 	musicheader 1, 6, Cry_Ledyba_Ch6
 	musicheader 1, 8, Cry_Ledyba_Ch8
 
-Cry_Wooper:
+Cry_Wooper::
 	musicheader 3, 5, Cry_Wooper_Ch5
 	musicheader 1, 6, Cry_Wooper_Ch6
 	musicheader 1, 8, Cry_Wooper_Ch8
 
-Cry_Donphan:
+Cry_Donphan::
 	musicheader 3, 5, Cry_Donphan_Ch5
 	musicheader 1, 6, Cry_Donphan_Ch6
 	musicheader 1, 8, Cry_Donphan_Ch8
 
-Cry_Typhlosion:
+Cry_Typhlosion::
 	musicheader 3, 5, Cry_Typhlosion_Ch5
 	musicheader 1, 6, Cry_Typhlosion_Ch6
 	musicheader 1, 8, Cry_Typhlosion_Ch8
 
-Cry_Natu:
+Cry_Natu::
 	musicheader 3, 5, Cry_Natu_Ch5
 	musicheader 1, 6, Cry_Natu_Ch6
 	musicheader 1, 8, Cry_Natu_Ch8
 
-Cry_Teddiursa:
+Cry_Teddiursa::
 	musicheader 3, 5, Cry_Teddiursa_Ch5
 	musicheader 1, 6, Cry_Teddiursa_Ch6
 	musicheader 1, 8, Cry_Teddiursa_Ch8
 
-Cry_Sunflora:
+Cry_Sunflora::
 	musicheader 3, 5, Cry_Sunflora_Ch5
 	musicheader 1, 6, Cry_Sunflora_Ch6
 	musicheader 1, 8, Cry_Sunflora_Ch8
 
-Cry_Ampharos:
+Cry_Ampharos::
 	musicheader 3, 5, Cry_Ampharos_Ch5
 	musicheader 1, 6, Cry_Ampharos_Ch6
 	musicheader 1, 8, Cry_Ampharos_Ch8
 
-Cry_Totodile:
+Cry_Totodile::
 	musicheader 3, 5, Cry_Totodile_Ch5
 	musicheader 1, 6, Cry_Totodile_Ch6
 	musicheader 1, 8, Cry_Totodile_Ch8
 
-Cry_Cleffa:
+Cry_Cleffa::
 	musicheader 3, 5, Cry_Cleffa_Ch5
 	musicheader 1, 6, Cry_Cleffa_Ch6
 	musicheader 1, 8, Cry_Cleffa_Ch8
 
-Cry_Pichu:
+Cry_Pichu::
 	musicheader 3, 5, Cry_Pichu_Ch5
 	musicheader 1, 6, Cry_Pichu_Ch6
 	musicheader 1, 8, Cry_Pichu_Ch8
 
-Cry_Aipom:
+Cry_Aipom::
 	musicheader 3, 5, Cry_Aipom_Ch5
 	musicheader 1, 6, Cry_Aipom_Ch6
 	musicheader 1, 8, Cry_Aipom_Ch8
 
-Cry_Dunsparce:
+Cry_Dunsparce::
 	musicheader 3, 5, Cry_Dunsparce_Ch5
 	musicheader 1, 6, Cry_Dunsparce_Ch6
 	musicheader 1, 8, Cry_Dunsparce_Ch8
 
-Cry_Magcargo:
+Cry_Magcargo::
 	musicheader 3, 5, Cry_Magcargo_Ch5
 	musicheader 1, 6, Cry_Magcargo_Ch6
 	musicheader 1, 8, Cry_Magcargo_Ch8
 
-Cry_Entei:
+Cry_Entei::
 	musicheader 3, 5, Cry_Entei_Ch5
 	musicheader 1, 6, Cry_Entei_Ch6
 	musicheader 1, 8, Cry_Entei_Ch8
 
-Cry_Mantine:
+Cry_Mantine::
 	musicheader 3, 5, Cry_Mantine_Ch5
 	musicheader 1, 6, Cry_Mantine_Ch6
 	musicheader 1, 8, Cry_Mantine_Ch8
@@ -835,192 +835,192 @@ Cry_Aipom_Ch8:
 
 SECTION "audio/cries.asm@Kanto", ROMX
 
-Cry_Nidoran_M:
+Cry_Nidoran_M::
 	musicheader 3, 5, Cry_Nidoran_M_Ch5
 	musicheader 1, 6, Cry_Nidoran_M_Ch6
 	musicheader 1, 8, Cry_Nidoran_M_Ch8
 
-Cry_Nidoran_F:
+Cry_Nidoran_F::
 	musicheader 3, 5, Cry_Nidoran_F_Ch5
 	musicheader 1, 6, Cry_Nidoran_F_Ch6
 	musicheader 1, 8, Cry_Nidoran_F_Ch8
 
-Cry_Slowpoke:
+Cry_Slowpoke::
 	musicheader 3, 5, Cry_Slowpoke_Ch5
 	musicheader 1, 6, Cry_Slowpoke_Ch6
 	musicheader 1, 8, Cry_Slowpoke_Ch8
 
-Cry_Kangaskhan:
+Cry_Kangaskhan::
 	musicheader 3, 5, Cry_Kangaskhan_Ch5
 	musicheader 1, 6, Cry_Kangaskhan_Ch6
 	musicheader 1, 8, Cry_Kangaskhan_Ch8
 
-Cry_Charmander:
+Cry_Charmander::
 	musicheader 3, 5, Cry_Charmander_Ch5
 	musicheader 1, 6, Cry_Charmander_Ch6
 	musicheader 1, 8, Cry_Charmander_Ch8
 
-Cry_Grimer:
+Cry_Grimer::
 	musicheader 3, 5, Cry_Grimer_Ch5
 	musicheader 1, 6, Cry_Grimer_Ch6
 	musicheader 1, 8, Cry_Grimer_Ch8
 
-Cry_Voltorb:
+Cry_Voltorb::
 	musicheader 3, 5, Cry_Voltorb_Ch5
 	musicheader 1, 6, Cry_Voltorb_Ch6
 	musicheader 1, 8, Cry_Voltorb_Ch8
 
-Cry_Muk:
+Cry_Muk::
 	musicheader 3, 5, Cry_Muk_Ch5
 	musicheader 1, 6, Cry_Muk_Ch6
 	musicheader 1, 8, Cry_Muk_Ch8
 
-Cry_Oddish:
+Cry_Oddish::
 	musicheader 3, 5, Cry_Oddish_Ch5
 	musicheader 1, 6, Cry_Oddish_Ch6
 	musicheader 1, 8, Cry_Oddish_Ch8
 
-Cry_Raichu:
+Cry_Raichu::
 	musicheader 3, 5, Cry_Raichu_Ch5
 	musicheader 1, 6, Cry_Raichu_Ch6
 	musicheader 1, 8, Cry_Raichu_Ch8
 
-Cry_Nidoqueen:
+Cry_Nidoqueen::
 	musicheader 3, 5, Cry_Nidoqueen_Ch5
 	musicheader 1, 6, Cry_Nidoqueen_Ch6
 	musicheader 1, 8, Cry_Nidoqueen_Ch8
 
-Cry_Diglett:
+Cry_Diglett::
 	musicheader 3, 5, Cry_Diglett_Ch5
 	musicheader 1, 6, Cry_Diglett_Ch6
 	musicheader 1, 8, Cry_Diglett_Ch8
 
-Cry_Seel:
+Cry_Seel::
 	musicheader 3, 5, Cry_Seel_Ch5
 	musicheader 1, 6, Cry_Seel_Ch6
 	musicheader 1, 8, Cry_Seel_Ch8
 
-Cry_Drowzee:
+Cry_Drowzee::
 	musicheader 3, 5, Cry_Drowzee_Ch5
 	musicheader 1, 6, Cry_Drowzee_Ch6
 	musicheader 1, 8, Cry_Drowzee_Ch8
 
-Cry_Pidgey:
+Cry_Pidgey::
 	musicheader 3, 5, Cry_Pidgey_Ch5
 	musicheader 1, 6, Cry_Pidgey_Ch6
 	musicheader 1, 8, Cry_Pidgey_Ch8
 
-Cry_Bulbasaur:
+Cry_Bulbasaur::
 	musicheader 3, 5, Cry_Bulbasaur_Ch5
 	musicheader 1, 6, Cry_Bulbasaur_Ch6
 	musicheader 1, 8, Cry_Bulbasaur_Ch8
 
-Cry_Spearow:
+Cry_Spearow::
 	musicheader 3, 5, Cry_Spearow_Ch5
 	musicheader 1, 6, Cry_Spearow_Ch6
 	musicheader 1, 8, Cry_Spearow_Ch8
 
-Cry_Rhydon:
+Cry_Rhydon::
 	musicheader 3, 5, Cry_Rhydon_Ch5
 	musicheader 1, 6, Cry_Rhydon_Ch6
 	musicheader 1, 8, Cry_Rhydon_Ch8
 
-Cry_Golem:
+Cry_Golem::
 	musicheader 3, 5, Cry_Golem_Ch5
 	musicheader 1, 6, Cry_Golem_Ch6
 	musicheader 1, 8, Cry_Golem_Ch8
 
-Cry_Blastoise:
+Cry_Blastoise::
 	musicheader 3, 5, Cry_Blastoise_Ch5
 	musicheader 1, 6, Cry_Blastoise_Ch6
 	musicheader 1, 8, Cry_Blastoise_Ch8
 
-Cry_Pidgeotto:
+Cry_Pidgeotto::
 	musicheader 3, 5, Cry_Pidgeotto_Ch5
 	musicheader 1, 6, Cry_Pidgeotto_Ch6
 	musicheader 1, 8, Cry_Pidgeotto_Ch8
 
-Cry_Weedle:
+Cry_Weedle::
 	musicheader 3, 5, Cry_Weedle_Ch5
 	musicheader 1, 6, Cry_Weedle_Ch6
 	musicheader 1, 8, Cry_Weedle_Ch8
 
-Cry_Caterpie:
+Cry_Caterpie::
 	musicheader 3, 5, Cry_Caterpie_Ch5
 	musicheader 1, 6, Cry_Caterpie_Ch6
 	musicheader 1, 8, Cry_Caterpie_Ch8
 
-Cry_Ekans:
+Cry_Ekans::
 	musicheader 3, 5, Cry_Ekans_Ch5
 	musicheader 1, 6, Cry_Ekans_Ch6
 	musicheader 1, 8, Cry_Ekans_Ch8
 
-Cry_Fearow:
+Cry_Fearow::
 	musicheader 3, 5, Cry_Fearow_Ch5
 	musicheader 1, 6, Cry_Fearow_Ch6
 	musicheader 1, 8, Cry_Fearow_Ch8
 
-Cry_Clefairy:
+Cry_Clefairy::
 	musicheader 3, 5, Cry_Clefairy_Ch5
 	musicheader 1, 6, Cry_Clefairy_Ch6
 	musicheader 1, 8, Cry_Clefairy_Ch8
 
-Cry_Venonat:
+Cry_Venonat::
 	musicheader 3, 5, Cry_Venonat_Ch5
 	musicheader 1, 6, Cry_Venonat_Ch6
 	musicheader 1, 8, Cry_Venonat_Ch8
 
-Cry_Lapras:
+Cry_Lapras::
 	musicheader 3, 5, Cry_Lapras_Ch5
 	musicheader 1, 6, Cry_Lapras_Ch6
 	musicheader 1, 8, Cry_Lapras_Ch8
 
-Cry_Metapod:
+Cry_Metapod::
 	musicheader 3, 5, Cry_Metapod_Ch5
 	musicheader 1, 6, Cry_Metapod_Ch6
 	musicheader 1, 8, Cry_Metapod_Ch8
 
-Cry_Squirtle:
+Cry_Squirtle::
 	musicheader 3, 5, Cry_Squirtle_Ch5
 	musicheader 1, 6, Cry_Squirtle_Ch6
 	musicheader 1, 8, Cry_Squirtle_Ch8
 
-Cry_Paras:
+Cry_Paras::
 	musicheader 3, 5, Cry_Paras_Ch5
 	musicheader 1, 6, Cry_Paras_Ch6
 	musicheader 1, 8, Cry_Paras_Ch8
 
-Cry_Growlithe:
+Cry_Growlithe::
 	musicheader 3, 5, Cry_Growlithe_Ch5
 	musicheader 1, 6, Cry_Growlithe_Ch6
 	musicheader 1, 8, Cry_Growlithe_Ch8
 
-Cry_Krabby:
+Cry_Krabby::
 	musicheader 3, 5, Cry_Krabby_Ch5
 	musicheader 1, 6, Cry_Krabby_Ch6
 	musicheader 1, 8, Cry_Krabby_Ch8
 
-Cry_Psyduck:
+Cry_Psyduck::
 	musicheader 3, 5, Cry_Psyduck_Ch5
 	musicheader 1, 6, Cry_Psyduck_Ch6
 	musicheader 1, 8, Cry_Psyduck_Ch8
 
-Cry_Rattata:
+Cry_Rattata::
 	musicheader 3, 5, Cry_Rattata_Ch5
 	musicheader 1, 6, Cry_Rattata_Ch6
 	musicheader 1, 8, Cry_Rattata_Ch8
 
-Cry_Vileplume:
+Cry_Vileplume::
 	musicheader 3, 5, Cry_Vileplume_Ch5
 	musicheader 1, 6, Cry_Vileplume_Ch6
 	musicheader 1, 8, Cry_Vileplume_Ch8
 
-Cry_Vulpix:
+Cry_Vulpix::
 	musicheader 3, 5, Cry_Vulpix_Ch5
 	musicheader 1, 6, Cry_Vulpix_Ch6
 	musicheader 1, 8, Cry_Vulpix_Ch8
 
-Cry_Weepinbell:
+Cry_Weepinbell::
 	musicheader 3, 5, Cry_Weepinbell_Ch5
 	musicheader 1, 6, Cry_Weepinbell_Ch6
 	musicheader 1, 8, Cry_Weepinbell_Ch8

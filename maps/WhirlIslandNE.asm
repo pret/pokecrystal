@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/WhirlIslandNE.asm", ROMX
 
-WhirlIslandNE_MapScripts:
+WhirlIslandNE_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -14,7 +14,7 @@ WhirlIslandNE_MapScripts:
 WhirlIslandNEUltraBall:
 	itemball ULTRA_BALL
 
-WhirlIslandNE_MapEvents:
+WhirlIslandNE_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

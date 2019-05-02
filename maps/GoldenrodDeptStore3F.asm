@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/GoldenrodDeptStore3F.asm", ROMX
 
-GoldenrodDeptStore3F_MapScripts:
+GoldenrodDeptStore3F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -59,7 +59,7 @@ GoldenrodDeptStore3FDirectoryText:
 	line "   COLLECTION"
 	done
 
-GoldenrodDeptStore3F_MapEvents:
+GoldenrodDeptStore3F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

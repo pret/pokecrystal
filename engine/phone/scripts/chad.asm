@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/chad.asm", ROMX
 
-ChadPhoneCalleeScript:
+ChadPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, SCHOOLBOY, CHAD1
 	checkflag ENGINE_CHAD
 	iftrue .WantsBattle
@@ -22,7 +22,7 @@ ChadPhoneCalleeScript:
 	getlandmarkname STRING_BUFFER_5, ROUTE_38
 	farsjump UnknownScript_0xa0a7d
 
-ChadPhoneCallerScript:
+ChadPhoneCallerScript::
 	gettrainername STRING_BUFFER_3, SCHOOLBOY, CHAD1
 	farscall PhoneScript_GreetPhone_Male
 	farscall PhoneScript_Random2

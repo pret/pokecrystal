@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route6SaffronGate.asm", ROMX
 
-Route6SaffronGate_MapScripts:
+Route6SaffronGate_MapScripts::
 	db 1 ; scene scripts
 	scene_script .DummyScene
 
@@ -60,7 +60,7 @@ Route6SaffronGuardMagnetTrainText:
 	line "FRON."
 	done
 
-Route6SaffronGate_MapEvents:
+Route6SaffronGate_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

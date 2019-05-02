@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/sacred_ash.asm", ROMX
 
-_SacredAsh:
+_SacredAsh::
 	ld a, $0
 	ld [wItemEffectSucceeded], a
 	call CheckAnyFaintedMon

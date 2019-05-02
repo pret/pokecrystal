@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route14.asm", ROMX
 
-Route14_MapScripts:
+Route14_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -118,7 +118,7 @@ PokefanmTrevorAfterBattleText:
 	line "got my #MON…"
 	done
 
-Route14_MapEvents:
+Route14_MapEvents::
 	db 0, 0 ; filler
 
 	db 0 ; warp events

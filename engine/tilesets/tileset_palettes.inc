@@ -1,4 +1,4 @@
-LoadSpecialMapPalette:
+LoadSpecialMapPalette::
 	ld a, [wMapTileset]
 	cp TILESET_POKECOM_CENTER
 	jr z, .pokecom_2f

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/move_deleter.asm", ROMX
 
-MoveDeletion:
+MoveDeletion::
 	ld hl, .IntroText
 	call PrintText
 	call YesNoBox

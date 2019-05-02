@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route5SaffronGate.asm", ROMX
 
-Route5SaffronGate_MapScripts:
+Route5SaffronGate_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -23,7 +23,7 @@ Route5SaffronGateOfficerText:
 	cont "don't you agree?"
 	done
 
-Route5SaffronGate_MapEvents:
+Route5SaffronGate_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

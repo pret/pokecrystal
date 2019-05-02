@@ -679,7 +679,7 @@ BattleAnimCmd_UpdateActorPic:
 	call Request2bpp
 	ret
 
-BattleAnimCmd_RaiseSub:
+BattleAnimCmd_RaiseSub::
 	ldh a, [rSVBK]
 	push af
 	ld a, 1 ; unnecessary bankswitch?
@@ -753,7 +753,7 @@ GetSubstitutePic: ; used only for BANK(GetSubstitutePic)
 	call FarCopyBytes
 	ret
 
-BattleAnimCmd_MinimizeOpp:
+BattleAnimCmd_MinimizeOpp::
 	ldh a, [rSVBK]
 	push af
 	ld a, 1 ; unnecessary bankswitch?

@@ -6,14 +6,14 @@ SECTION "engine/link/link_trade.asm@_LoadTradeScreenBorder", ROMX
 LinkCommsBorderGFX:
 INCBIN "gfx/trade/border_tiles.2bpp"
 
-__LoadTradeScreenBorder:
+__LoadTradeScreenBorder::
 	ld de, LinkCommsBorderGFX
 	ld hl, vTiles2
 	lb bc, BANK(LinkCommsBorderGFX), 70
 	call Get2bpp
 	ret
 
-Function16d42e:
+Function16d42e::
 	ld hl, Tilemap_MobileTradeBorderFullscreen
 	decoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
@@ -44,7 +44,7 @@ INCBIN "gfx/trade/border_cable_top.tilemap"
 Tilemap_CableTradeBorderBottom:
 INCBIN "gfx/trade/border_cable_bottom.tilemap"
 
-_LinkTextbox:
+_LinkTextbox::
 	ld h, d
 	ld l, e
 	push bc
@@ -114,7 +114,7 @@ _LinkTextbox:
 	jr nz, .row_loop
 	ret
 
-InitTradeSpeciesList:
+InitTradeSpeciesList::
 	call _LoadTradeScreenBorder
 	call Function16d6ae
 	farcall InitMG_Mobile_LinkTradePalMap
@@ -127,18 +127,18 @@ InitTradeSpeciesList:
 .CANCEL:
 	db "CANCEL@"
 
-_LoadTradeScreenBorder:
+_LoadTradeScreenBorder::
 	call __LoadTradeScreenBorder
 	ret
 
-LinkComms_LoadPleaseWaitTextboxBorderGFX:
+LinkComms_LoadPleaseWaitTextboxBorderGFX::
 	ld de, LinkCommsBorderGFX + $30 tiles
 	ld hl, vTiles2 tile $76
 	lb bc, BANK(LinkCommsBorderGFX), 8
 	call Get2bpp
 	ret
 
-LoadTradeRoomBGPals:
+LoadTradeRoomBGPals::
 	farcall _LoadTradeRoomBGPals
 	ret
 
@@ -154,14 +154,14 @@ Function16d6ae:
 	call CopyBytes
 	ret
 
-LinkTextbox:
+LinkTextbox::
 	call _LinkTextbox
 	ret
 
 
 SECTION "engine/link/link_trade.asm@Function16d6ce", ROMX
 
-Function16d6ce:
+Function16d6ce::
 	call LoadStandardMenuHeader
 	call Function16d6e1
 	farcall WaitLinkTransfer
@@ -188,7 +188,7 @@ Function16d6e1:
 
 SECTION "engine/link/link_trade.asm@LinkTradeMenu", ROMX
 
-LinkTradeMenu:
+LinkTradeMenu::
 	call .MenuAction
 	call .GetJoypad
 	ret

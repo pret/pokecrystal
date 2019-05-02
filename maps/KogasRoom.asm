@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/KogasRoom.asm", ROMX
 
-KogasRoom_MapScripts:
+KogasRoom_MapScripts::
 	db 2 ; scene scripts
 	scene_script .LockDoor ; SCENE_DEFAULT
 	scene_script .DummyScene ; SCENE_FINISHED
@@ -132,7 +132,7 @@ KogaScript_KogaDefeatText:
 	cont "abilities to test!"
 	done
 
-KogasRoom_MapEvents:
+KogasRoom_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

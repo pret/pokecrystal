@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route22.asm", ROMX
 
-Route22_MapScripts:
+Route22_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -18,7 +18,7 @@ VictoryRoadEntranceSignText:
 	line "ENTRANCE"
 	done
 
-Route22_MapEvents:
+Route22_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

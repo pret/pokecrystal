@@ -13,7 +13,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route43.asm", ROMX
 
-Route43_MapScripts:
+Route43_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -503,7 +503,7 @@ Route43TrainerTipsText:
 	line "#MON's type."
 	done
 
-Route43_MapEvents:
+Route43_MapEvents::
 	db 0, 0 ; filler
 
 	db 5 ; warp events

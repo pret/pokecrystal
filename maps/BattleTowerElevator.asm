@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/BattleTowerElevator.asm", ROMX, BANK[BANK_MAP_BATTLE_TOWER]
 
-BattleTowerElevator_MapScripts:
+BattleTowerElevator_MapScripts::
 	db 2 ; scene scripts
 	scene_script .Scene0 ; SCENE_DEFAULT
 	scene_script .Scene1 ; SCENE_FINISHED
@@ -46,7 +46,7 @@ MovementData_BattleTowerElevatorPlayerWalksIn:
 	turn_head DOWN
 	step_end
 
-BattleTowerElevator_MapEvents:
+BattleTowerElevator_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/battle/used_move_text.asm", ROMX
 
-DisplayUsedMoveText:
+DisplayUsedMoveText::
 ; battle command 03
 	ld hl, UsedMoveText
 	call BattleTextbox

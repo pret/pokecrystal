@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "mobile/mobile_12_2.asm@MobileCheckOwnMonAnywhere", ROMX
 
-MobileCheckOwnMonAnywhere:
+MobileCheckOwnMonAnywhere::
 ; Like CheckOwnMonAnywhere, but only check for species.
 ; OT/ID don't matter.
 
@@ -163,7 +163,7 @@ MobileCheckOwnMonAnywhere:
 
 SECTION "mobile/mobile_12_2.asm@UnusedFindItemInPCOrBag", ROMX
 
-UnusedFindItemInPCOrBag:
+UnusedFindItemInPCOrBag::
 	ld a, [wScriptVar]
 	ld [wCurItem], a
 	ld hl, wNumPCItems
@@ -188,7 +188,7 @@ UnusedFindItemInPCOrBag:
 
 SECTION "mobile/mobile_12_2.asm", ROMX
 
-Function4a94e:
+Function4a94e::
 	call FadeToMenu
 	ld a, -1
 	ld hl, wd002

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/overworld/player_object.asm@SpawnPlayer", ROMX
 
-SpawnPlayer:
+SpawnPlayer::
 	ld a, -1
 	ld [wObjectFollow_Leader], a
 	ld [wObjectFollow_Follower], a
@@ -86,7 +86,7 @@ WriteObjectXY::
 	and a
 	ret
 
-RefreshPlayerCoords:
+RefreshPlayerCoords::
 	ld a, [wXCoord]
 	add 4
 	ld d, a
@@ -210,7 +210,7 @@ CopyMapObjectToObjectStruct:
 	ld [wTempObjectCopyRadius], a
 	ret
 
-InitializeVisibleSprites:
+InitializeVisibleSprites::
 	ld bc, wMapObjects + OBJECT_LENGTH
 	ld a, 1
 .loop
@@ -398,7 +398,7 @@ CheckObjectEnteringVisibleRange::
 	jr nz, .loop_h
 	ret
 
-CopyTempObjectToObjectStruct:
+CopyTempObjectToObjectStruct::
 	ld a, [wTempObjectCopyMapObjectIndex]
 	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, de
@@ -503,7 +503,7 @@ CopyTempObjectToObjectStruct:
 
 SECTION "engine/overworld/player_object.asm@TrainerWalkToPlayer", ROMX
 
-TrainerWalkToPlayer:
+TrainerWalkToPlayer::
 	ldh a, [hLastTalked]
 	call InitMovementBuffer
 	ld a, movement_step_sleep
@@ -570,7 +570,7 @@ TrainerWalkToPlayer:
 
 SECTION "engine/overworld/player_object.asm@SurfStartStep", ROMX
 
-SurfStartStep:
+SurfStartStep::
 	call InitMovementBuffer
 	call .GetMovementData
 	call AppendToMovementBuffer
@@ -798,7 +798,7 @@ GetRelativeFacing::
 
 SECTION "engine/overworld/player_object.asm@QueueFollowerFirstStep", ROMX
 
-QueueFollowerFirstStep:
+QueueFollowerFirstStep::
 	call .QueueFirstStep
 	jr c, .same
 	ld [wFollowMovementQueue], a

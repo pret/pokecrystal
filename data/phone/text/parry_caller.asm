@@ -3,14 +3,14 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/parry_caller.asm", ROMX
 
-ParryNoMatchText:
+ParryNoMatchText::
 	text "Nothing can match"
 	line "my @"
 	text_ram wStringBuffer4
 	text " now."
 	done
 
-UnknownText_0x66fc0:
+UnknownText_0x66fc0::
 	text "Yeah, we KO'd a"
 	line "wild @"
 	text_ram wStringBuffer4
@@ -20,7 +20,7 @@ UnknownText_0x66fc0:
 	line "wanted to get it…"
 	done
 
-UnknownText_0x67001:
+UnknownText_0x67001::
 	text "And yesterday, we"
 	line "spotted a wild"
 
@@ -39,7 +39,7 @@ UnknownText_0x67001:
 	line "How about that!"
 	done
 
-UnknownText_0x67096:
+UnknownText_0x67096::
 	text "You're thinking"
 	line "you'd like to"
 
@@ -52,17 +52,17 @@ UnknownText_0x67096:
 	text "!"
 	done
 
-UnknownText_0x670eb:
+UnknownText_0x670eb::
 	text "OK, give me a call"
 	line "again!"
 	done
 
-ParryBattleWithMeText:
+ParryBattleWithMeText::
 	text "You'll battle with"
 	line "me again, right?"
 	done
 
-ParryHaventYouGottenToText:
+ParryHaventYouGottenToText::
 	text "Haven't you gotten"
 	line "to @"
 	text_ram wStringBuffer5

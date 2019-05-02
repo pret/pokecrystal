@@ -3,12 +3,12 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route6UndergroundPathEntrance.asm", ROMX
 
-Route6UndergroundPathEntrance_MapScripts:
+Route6UndergroundPathEntrance_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
 
-Route6UndergroundPathEntrance_MapEvents:
+Route6UndergroundPathEntrance_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

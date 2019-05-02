@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/GoldenrodDeptStore1F.asm", ROMX
 
-GoldenrodDeptStore1F_MapScripts:
+GoldenrodDeptStore1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -81,7 +81,7 @@ GoldenrodDeptStore1FDirectoryText:
 	para "ROOFTOP LOOKOUT"
 	done
 
-GoldenrodDeptStore1F_MapEvents:
+GoldenrodDeptStore1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

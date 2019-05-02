@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/chad_overworld.asm", ROMX
 
-ChadAskNumber1Text:
+ChadAskNumber1Text::
 	text "Huh? Is that thing"
 	line "a #DEX? Have"
 	cont "you met PROF.OAK?"
@@ -27,7 +27,7 @@ ChadAskNumber1Text:
 	line "be loads of fun!"
 	done
 
-ChadAskNumber2Text:
+ChadAskNumber2Text::
 	text "May I please have"
 	line "your phone number?"
 
@@ -38,24 +38,24 @@ ChadAskNumber2Text:
 	line "be loads of fun!"
 	done
 
-ChadNumberAcceptedText:
+ChadNumberAcceptedText::
 	text "You must listen to"
 	line "PROF.OAK'S #MON"
 	cont "TALK, right?"
 	done
 
-ChadNumberDeclinedText:
+ChadNumberDeclinedText::
 	text "Oh… I wish I had a"
 	line "chance to meet"
 	cont "PROF.OAK…"
 	done
 
-ChadPhoneFullText:
+ChadPhoneFullText::
 	text "Your phone list is"
 	line "completely full!"
 	done
 
-ChadRematchText:
+ChadRematchText::
 	text "I've been waiting!"
 	line "Let's battle now!"
 	done

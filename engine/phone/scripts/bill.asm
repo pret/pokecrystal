@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/bill.asm", ROMX
 
-BillPhoneCalleeScript:
+BillPhoneCalleeScript::
 	checktime DAY
 	iftrue .daygreet
 	checktime NITE
@@ -40,7 +40,7 @@ BillPhoneCalleeScript:
 	farwritetext BillPhoneFullText
 	end
 
-BillPhoneCallerScript:
+BillPhoneCallerScript::
 	farwritetext BillPhoneNewlyFullText
 	waitbutton
 	end

@@ -246,7 +246,7 @@ _MomText_ItsInRoom:
 
 SECTION "engine/events/mom_phone.asm@DummyPredef3A", ROMX
 
-DummyPredef3A:
+DummyPredef3A::
 	ret
 
 	ret ; unused

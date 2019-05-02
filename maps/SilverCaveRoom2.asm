@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/SilverCaveRoom2.asm", ROMX
 
-SilverCaveRoom2_MapScripts:
+SilverCaveRoom2_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -25,7 +25,7 @@ SilverCaveRoom2PPUp:
 SilverCaveRoom2HiddenMaxPotion:
 	hiddenitem MAX_POTION, EVENT_SILVER_CAVE_ROOM_2_HIDDEN_MAX_POTION
 
-SilverCaveRoom2_MapEvents:
+SilverCaveRoom2_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

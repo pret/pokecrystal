@@ -20,7 +20,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/GoldenrodCity.asm", ROMX
 
-GoldenrodCity_MapScripts:
+GoldenrodCity_MapScripts::
 	db 0 ; scene scripts
 
 	db 2 ; callbacks
@@ -554,7 +554,7 @@ UnknownText_0x1991cf:
 	text_start
 	done
 
-GoldenrodCity_MapEvents:
+GoldenrodCity_MapEvents::
 	db 0, 0 ; filler
 
 	db 15 ; warp events

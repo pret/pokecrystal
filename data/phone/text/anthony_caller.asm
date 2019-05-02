@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/anthony_caller.asm", ROMX
 
-AnthonyAteBerriesText:
+AnthonyAteBerriesText::
 	text "The other day, I"
 	line "was watching my"
 
@@ -25,7 +25,7 @@ AnthonyAteBerriesText:
 	line "was delicious!"
 	done
 
-UnknownText_0x176aef:
+UnknownText_0x176aef::
 	text "Lately, I've been"
 	line "running across"
 
@@ -38,7 +38,7 @@ UnknownText_0x176aef:
 	line "taken care of."
 	done
 
-UnknownText_0x176b45:
+UnknownText_0x176b45::
 	text "Oh yeah, I was"
 	line "battling this"
 
@@ -58,7 +58,7 @@ UnknownText_0x176b45:
 	line "the job at hand!"
 	done
 
-UnknownText_0x176bee:
+UnknownText_0x176bee::
 	text "Come on--let's"
 	line "battle right now!"
 
@@ -71,12 +71,12 @@ UnknownText_0x176bee:
 	line "you feel up to it!"
 	done
 
-UnknownText_0x176c47:
+UnknownText_0x176c47::
 	text "All right then!"
 	line "Be good!"
 	done
 
-UnknownText_0x176c61:
+UnknownText_0x176c61::
 	text "<PLAYER>! It's"
 	line "mind-blowing!"
 
@@ -104,7 +104,7 @@ UnknownText_0x176c61:
 	line "strong #MON."
 	done
 
-UnknownText_0x176d32:
+UnknownText_0x176d32::
 	text "Rare #MON?"
 
 	para "Hey, sorry! I was"
@@ -114,7 +114,7 @@ UnknownText_0x176d32:
 	line "paying attention."
 	done
 
-UnknownText_0x176d85:
+UnknownText_0x176d85::
 	text "Hello! You haven't"
 	line "forgotten about"
 
@@ -127,7 +127,7 @@ UnknownText_0x176d85:
 	line "I'm waiting!"
 	done
 
-UnknownText_0x176dd1:
+UnknownText_0x176dd1::
 	text "Hello? What? Where"
 	line "is DUNSPARCE?"
 

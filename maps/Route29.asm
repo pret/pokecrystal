@@ -13,7 +13,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route29.asm", ROMX
 
-Route29_MapScripts:
+Route29_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_ROUTE29_NOTHING
 	scene_script .DummyScene1 ; SCENE_ROUTE29_CATCH_TUTORIAL
@@ -418,7 +418,7 @@ Route29Sign2Text:
 	line "NEW BARK TOWN"
 	done
 
-Route29_MapEvents:
+Route29_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

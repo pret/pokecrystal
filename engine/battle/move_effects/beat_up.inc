@@ -1,4 +1,4 @@
-BattleCommand_BeatUp:
+BattleCommand_BeatUp::
 ; beatup
 
 	call ResetDamage
@@ -197,7 +197,7 @@ BattleCommand_BeatUp:
 	ld b, buildopponentrage_command
 	jp SkipToBattleCommand
 
-BattleCommand_BeatUpFailText:
+BattleCommand_BeatUpFailText::
 ; beatupfailtext
 
 	ld a, [wBeatUpHitAtLeastOnce]

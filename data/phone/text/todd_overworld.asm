@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/todd_overworld.asm", ROMX
 
-ToddAskNumber1Text:
+ToddAskNumber1Text::
 	text "From here, I can"
 	line "see GOLDENROD's"
 
@@ -20,7 +20,7 @@ ToddAskNumber1Text:
 	line "they have a sale."
 	done
 
-ToddAskNumber2Text:
+ToddAskNumber2Text::
 	text "If you give me"
 	line "your number, I'll"
 
@@ -28,7 +28,7 @@ ToddAskNumber2Text:
 	line "have a sale."
 	done
 
-ToddNumberAcceptedText:
+ToddNumberAcceptedText::
 	text "I check GOLDENROD"
 	line "DEPT.STORE every"
 
@@ -37,7 +37,7 @@ ToddNumberAcceptedText:
 	cont "sale."
 	done
 
-ToddNumberDeclinedText:
+ToddNumberDeclinedText::
 	text "Anyway…"
 
 	para "If you're short on"
@@ -48,13 +48,13 @@ ToddNumberDeclinedText:
 	line "there's a sale."
 	done
 
-ToddPhoneFullText:
+ToddPhoneFullText::
 	text "Your phone doesn't"
 	line "have enough memory"
 	cont "for more numbers."
 	done
 
-ToddRematchText:
+ToddRematchText::
 	text "I waited for you!"
 	line "I even cut back my"
 

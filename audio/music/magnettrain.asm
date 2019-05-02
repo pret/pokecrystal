@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/magnettrain.asm", ROMX
 
-Music_MagnetTrain:
+Music_MagnetTrain::
 	musicheader 4, 1, Music_MagnetTrain_Ch1
 	musicheader 1, 2, Music_MagnetTrain_Ch2
 	musicheader 1, 3, Music_MagnetTrain_Ch3

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/battle_tower/get_trainer_class.asm", ROMX
 
-GetMobileOTTrainerClass: ; mobile function
+GetMobileOTTrainerClass:: ; mobile function
 	ld h, b
 	ld l, c
 	call .GetMobileOTTrainerClass

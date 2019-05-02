@@ -3,12 +3,12 @@ INCLUDE "constants.inc"
 
 SECTION "maps/PewterPokecenter2FBeta.asm", ROMX
 
-PewterPokecenter2FBeta_MapScripts:
+PewterPokecenter2FBeta_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
 
-PewterPokecenter2FBeta_MapEvents:
+PewterPokecenter2FBeta_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

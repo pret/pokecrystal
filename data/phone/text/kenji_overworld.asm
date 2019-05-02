@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/kenji_overworld.asm", ROMX
 
-KenjiAskNumber1Text:
+KenjiAskNumber1Text::
 	text "Our battle was"
 	line "remarkable!"
 
@@ -19,7 +19,7 @@ KenjiAskNumber1Text:
 	cont "chat much, but…"
 	done
 
-KenjiAskNumber2Text:
+KenjiAskNumber2Text::
 	text "My training makes"
 	line "chatting tough,"
 
@@ -27,26 +27,26 @@ KenjiAskNumber2Text:
 	line "down my number?"
 	done
 
-KenjiNumberAcceptedText:
+KenjiNumberAcceptedText::
 	text "I must train"
 	line "harder to become"
 	cont "the mightiest!"
 	done
 
-KenjiNumberDeclinedText:
+KenjiNumberDeclinedText::
 	text "If you decide you"
 	line "want my number,"
 	cont "come see me."
 	done
 
-KenjiPhoneFullText:
+KenjiPhoneFullText::
 	text "Your phone appears"
 	line "to be full."
 
 	para "Come back later!"
 	done
 
-KenjiGiftText:
+KenjiGiftText::
 	text "I wish to thank"
 	line "you, <PLAYER>!"
 
@@ -60,7 +60,7 @@ KenjiGiftText:
 	line "this!"
 	done
 
-KenjiPackFullText:
+KenjiPackFullText::
 	text "Your strength will"
 	line "not let you carry"
 

@@ -10,7 +10,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/IcePathB1F.asm", ROMX
 
-IcePathB1F_MapScripts:
+IcePathB1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -78,7 +78,7 @@ IcePathBoulderFellThroughText:
 	line "through."
 	done
 
-IcePathB1F_MapEvents:
+IcePathB1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 8 ; warp events

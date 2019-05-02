@@ -3,16 +3,16 @@ INCLUDE "constants.inc"
 
 SECTION "gfx/font.asm", ROMX
 
-FontExtra:
+FontExtra::
 INCBIN "gfx/font/font_extra.2bpp"
 
-Font:
+Font::
 INCBIN "gfx/font/font.1bpp"
 
-FontBattleExtra:
+FontBattleExtra::
 INCBIN "gfx/font/font_battle_extra.2bpp"
 
-Frames:
+Frames::
 INCBIN "gfx/frames/1.1bpp"
 INCBIN "gfx/frames/2.1bpp"
 INCBIN "gfx/frames/3.1bpp"
@@ -25,47 +25,47 @@ INCBIN "gfx/frames/9.1bpp"
 
 ; Various misc graphics here.
 
-StatsScreenPageTilesGFX:
+StatsScreenPageTilesGFX::
 INCBIN "gfx/stats/stats_tiles.2bpp"
 
-EnemyHPBarBorderGFX:
+EnemyHPBarBorderGFX::
 INCBIN "gfx/battle/enemy_hp_bar_border.1bpp"
 
-HPExpBarBorderGFX:
+HPExpBarBorderGFX::
 INCBIN "gfx/battle/hp_exp_bar_border.1bpp"
 
-ExpBarGFX:
+ExpBarGFX::
 INCBIN "gfx/battle/expbar.2bpp"
 
-TownMapGFX:
+TownMapGFX::
 INCBIN "gfx/pokegear/town_map.2bpp.lz"
 
 UnusedWeekdayKanjiGFX: ; unused kanji
 INCBIN "gfx/font/unused_weekday_kanji.2bpp"
 
-PokegearPhoneIconGFX:
+PokegearPhoneIconGFX::
 INCBIN "gfx/font/phone_icon.2bpp"
 
 UnusedBoldFontGFX: ; unused bold letters + unown chars
 INCBIN "gfx/font/unused_bold_font.1bpp"
 
-TextboxSpaceGFX:
+TextboxSpaceGFX::
 INCBIN "gfx/frames/space.1bpp"
 
-FontsExtra_SolidBlackGFX:
+FontsExtra_SolidBlackGFX::
 INCBIN "gfx/font/black.1bpp"
 
 UnusedUpArrowGFX: ; unused up arrow + whitespace
 INCBIN "gfx/font/unused_up_arrow.1bpp"
 
-MobilePhoneTilesGFX:
+MobilePhoneTilesGFX::
 INCBIN "gfx/mobile/phone_tiles.2bpp"
 
-MapEntryFrameGFX:
+MapEntryFrameGFX::
 INCBIN "gfx/frames/map_entry_sign.2bpp"
 
-FontsExtra2_UpArrowGFX:
+FontsExtra2_UpArrowGFX::
 INCBIN "gfx/font/up_arrow.2bpp"
 
-Footprints:
+Footprints::
 INCLUDE "gfx/footprints.inc"

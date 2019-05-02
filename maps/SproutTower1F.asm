@@ -11,7 +11,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/SproutTower1F.asm", ROMX
 
-SproutTower1F_MapScripts:
+SproutTower1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -105,7 +105,7 @@ SproutTower1FStatueText:
 	line "distinguished."
 	done
 
-SproutTower1F_MapEvents:
+SproutTower1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 5 ; warp events

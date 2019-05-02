@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/EcruteakTinTowerEntrance.asm", ROMX
 
-EcruteakTinTowerEntrance_MapScripts:
+EcruteakTinTowerEntrance_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_FINISHED
@@ -280,7 +280,7 @@ EcruteakTinTowerEntranceGrampsText:
 	line "never to return."
 	done
 
-EcruteakTinTowerEntrance_MapEvents:
+EcruteakTinTowerEntrance_MapEvents::
 	db 0, 0 ; filler
 
 	db 5 ; warp events

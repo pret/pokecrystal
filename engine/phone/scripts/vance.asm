@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/vance.asm", ROMX
 
-VancePhoneCalleeScript:
+VancePhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, BIRD_KEEPER, VANCE1
 	checkflag ENGINE_VANCE
 	iftrue .WantsBattle
@@ -22,7 +22,7 @@ VancePhoneCalleeScript:
 	getlandmarkname STRING_BUFFER_5, ROUTE_44
 	farsjump VanceHurryHurry
 
-VancePhoneCallerScript:
+VancePhoneCallerScript::
 	gettrainername STRING_BUFFER_3, BIRD_KEEPER, VANCE1
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_VANCE

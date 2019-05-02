@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/SilverCavePokecenter1F.asm", ROMX
 
-SilverCavePokecenter1F_MapScripts:
+SilverCavePokecenter1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -32,7 +32,7 @@ SilverCavePokecenter1FGrannyText:
 	line "anywhere…"
 	done
 
-SilverCavePokecenter1F_MapEvents:
+SilverCavePokecenter1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

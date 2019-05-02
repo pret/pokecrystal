@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/wilton_caller.asm", ROMX
 
-WiltonGrownText:
+WiltonGrownText::
 	text "My @"
 	text_ram wStringBuffer4
 	text "'s"
@@ -13,7 +13,7 @@ WiltonGrownText:
 	line "have improved too!"
 	done
 
-UnknownText_0x66b3e:
+UnknownText_0x66b3e::
 	text "We beat a wild"
 	line "@"
 	text_ram wStringBuffer4
@@ -26,7 +26,7 @@ UnknownText_0x66b3e:
 	line "#MON."
 	done
 
-UnknownText_0x66b8f:
+UnknownText_0x66b8f::
 	text "But a while back,"
 	line "we came this close"
 
@@ -39,7 +39,7 @@ UnknownText_0x66b8f:
 	line "huge. Believe me."
 	done
 
-UnknownText_0x66bf3:
+UnknownText_0x66bf3::
 	text "I'm fishing on"
 	line "@"
 	text_ram wStringBuffer5
@@ -53,11 +53,11 @@ UnknownText_0x66bf3:
 	cont "over for a battle."
 	done
 
-UnknownText_0x66c58:
+UnknownText_0x66c58::
 	text "All right, later."
 	done
 
-UnknownText_0x66c6b:
+UnknownText_0x66c6b::
 	text "I snagged an item"
 	line "while fishing."
 
@@ -67,7 +67,7 @@ UnknownText_0x66c6b:
 	text "."
 	done
 
-WiltonHaventFoundAnythingText:
+WiltonHaventFoundAnythingText::
 	text "Nah, I haven't"
 	line "found anything"
 
@@ -78,7 +78,7 @@ WiltonHaventFoundAnythingText:
 	line "patience."
 	done
 
-WiltonNotBitingText:
+WiltonNotBitingText::
 	text "Sigh…"
 	line "They're not biting"
 
@@ -91,7 +91,7 @@ WiltonNotBitingText:
 	line "for a battle!"
 	done
 
-WiltonWantThisText:
+WiltonWantThisText::
 	text "Don't you want"
 	line "this item?"
 

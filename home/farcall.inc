@@ -25,7 +25,7 @@ FarCall_hl::
 	rst Bankswitch
 	call FarJump_hl
 
-ReturnFarCall::
+ReturnFarCall:
 ; We want to retain the contents of f.
 ; To do this, we can pop to bc instead of af.
 
@@ -45,5 +45,5 @@ ReturnFarCall::
 	ld c, a
 	ret
 
-FarJump_hl::
+FarJump_hl:
 	jp hl

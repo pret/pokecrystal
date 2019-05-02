@@ -6,7 +6,7 @@ TIMESET_DOWN_ARROW EQU "♀" ; $f5
 
 SECTION "engine/rtc/timeset.asm", ROMX
 
-InitClock:
+InitClock::
 ; Ask the player to set the time.
 	ldh a, [hInMenu]
 	push af
@@ -395,7 +395,7 @@ INCBIN "gfx/new_game/up_arrow.1bpp"
 TimeSetDownArrowGFX:
 INCBIN "gfx/new_game/down_arrow.1bpp"
 
-SetDayOfWeek:
+SetDayOfWeek::
 	ldh a, [hInMenu]
 	push af
 	ld a, $1
@@ -554,7 +554,7 @@ SetDayOfWeek:
 	text_far _OakTimeText14
 	text_end
 
-InitialSetDSTFlag:
+InitialSetDSTFlag::
 	ld a, [wDST]
 	set 7, a
 	ld [wDST], a
@@ -582,7 +582,7 @@ InitialSetDSTFlag:
 	text_far Text_DSTIsThatOK
 	text_end
 
-InitialClearDSTFlag:
+InitialClearDSTFlag::
 	ld a, [wDST]
 	res 7, a
 	ld [wDST], a
@@ -688,7 +688,7 @@ DebugDisplayTime:
 	call PrintNum
 	ret
 
-PrintHour:
+PrintHour::
 	ld l, e
 	ld h, d
 	push bc

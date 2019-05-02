@@ -117,7 +117,7 @@ GetFarWRAMByte::
 	ldh a, [hBuffer]
 	ret
 
-GetFarWRAMWord::
+GetFarWRAMWord:
 	ldh [hBuffer], a
 	ldh a, [rSVBK]
 	push af

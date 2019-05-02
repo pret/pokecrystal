@@ -1,4 +1,4 @@
-TrainerPalettes:
+TrainerPalettes::
 ; entries correspond to trainer classes
 
 ; Each .gbcpal is generated from the corresponding .png, and

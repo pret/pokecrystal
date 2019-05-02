@@ -1,6 +1,6 @@
 ; Functions dealing with palettes.
 
-UpdatePalsIfCGB::
+UpdatePalsIfCGB:
 ; update bgp data from wBGPals2
 ; update obp data from wOBPals2
 ; return carry if successful
@@ -10,14 +10,14 @@ UpdatePalsIfCGB::
 	and a
 	ret z
 
-UpdateCGBPals::
+UpdateCGBPals:
 ; return carry if successful
 ; any pals to update?
 	ldh a, [hCGBPalUpdate]
 	and a
 	ret z
 
-ForceUpdateCGBPals::
+ForceUpdateCGBPals:
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wBGPals2)
@@ -319,10 +319,10 @@ ReloadSpritesNoPalettes::
 	call DelayFrame
 	ret
 
-FarCallSwapTextboxPalettes::
+FarCallSwapTextboxPalettes:
 	homecall SwapTextboxPalettes
 	ret
 
-FarCallScrollBGMapPalettes::
+FarCallScrollBGMapPalettes:
 	homecall ScrollBGMapPalettes
 	ret

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/darkcave.asm", ROMX
 
-Music_DarkCave:
+Music_DarkCave::
 	musicheader 4, 1, Music_DarkCave_Ch1
 	musicheader 1, 2, Music_DarkCave_Ch2
 	musicheader 1, 3, Music_DarkCave_Ch3

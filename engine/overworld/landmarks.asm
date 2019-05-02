@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/overworld/landmarks.asm", ROMX
 
-GetLandmarkCoords:
+GetLandmarkCoords::
 ; Return coordinates (d, e) of landmark e.
 	push hl
 	ld l, e
@@ -53,7 +53,7 @@ INCLUDE "data/maps/landmarks.inc"
 
 SECTION "engine/overworld/landmarks.asm@RegionCheck", ROMX
 
-RegionCheck:
+RegionCheck::
 ; Checks if the player is in Kanto or Johto.
 ; If in Johto, returns 0 in e.
 ; If in Kanto, returns 1 in e.

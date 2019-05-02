@@ -22,7 +22,7 @@ Function11c05d:
 	scf
 	ret
 
-Function11c075:
+Function11c075::
 	push de
 	ld a, c
 	call Function11c254
@@ -40,7 +40,7 @@ Unreferenced_Function11c082:
 	call PrintEZChatBattleMessage
 	ret
 
-Function11c08f:
+Function11c08f::
 	ld l, e
 	ld h, d
 	push hl
@@ -91,7 +91,7 @@ Function11c08f:
 	jr nz, .loop2
 	ret
 
-PrintEZChatBattleMessage:
+PrintEZChatBattleMessage::
 ; Use up to 6 words from bc to print text starting at de.
 	; Preserve $cf63, $cf64
 	ld a, [wJumptableIndex]
@@ -267,7 +267,7 @@ CopyMobileEZChatToC608:
 	ld bc, MON_NAME_LENGTH - 1
 	jr .copy_string
 
-Function11c1ab:
+Function11c1ab::
 	ldh a, [hInMenu]
 	push af
 	ld a, $1
@@ -2452,7 +2452,7 @@ Function11d035:
 	jr nz, .add_n_minus_one_times
 	ret
 
-AnimateEZChatCursor:
+AnimateEZChatCursor::
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]

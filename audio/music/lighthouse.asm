@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/lighthouse.asm", ROMX
 
-Music_Lighthouse:
+Music_Lighthouse::
 	musicheader 4, 1, Music_Lighthouse_Ch1
 	musicheader 1, 2, Music_Lighthouse_Ch2
 	musicheader 1, 3, Music_Lighthouse_Ch3

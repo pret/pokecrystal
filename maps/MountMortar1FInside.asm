@@ -15,7 +15,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/MountMortar1FInside.asm", ROMX
 
-MountMortar1FInside_MapScripts:
+MountMortar1FInside_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -119,7 +119,7 @@ SupernerdMarkusAfterBattleText:
 	line "WATERFALL?"
 	done
 
-MountMortar1FInside_MapEvents:
+MountMortar1FInside_MapEvents::
 	db 0, 0 ; filler
 
 	db 6 ; warp events

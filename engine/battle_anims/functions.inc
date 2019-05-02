@@ -4130,13 +4130,13 @@ BattleAnim_Sine:
 ; a = d * sin(a * pi/32)
 	calc_sine_wave BattleAnimSineWave
 
-BattleAnim_Sine_e:
+BattleAnim_Sine_e::
 	ld a, e
 	call BattleAnim_Sine
 	ld e, a
 	ret
 
-BattleAnim_Cosine_e:
+BattleAnim_Cosine_e::
 	ld a, e
 	call BattleAnim_Cosine
 	ld e, a

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokemon/european_mail.asm@IsMailEuropean", ROMX
 
-IsMailEuropean:
+IsMailEuropean::
 ; return 1 if French
 ; return 2 if German
 ; return 3 if Italian
@@ -35,21 +35,21 @@ IsMailEuropean:
 SECTION "engine/pokemon/european_mail.asm@Fonts", ROMX
 
 ; The regular font.
-StandardEnglishFont:
+StandardEnglishFont::
 INCBIN "gfx/font/english.1bpp"
 
 ; An extended font.
-FrenchGermanFont:
+FrenchGermanFont::
 INCBIN "gfx/font/french_german.1bpp"
 
 ; An even more extended font.
-SpanishItalianFont:
+SpanishItalianFont::
 INCBIN "gfx/font/spanish_italian.1bpp"
 
 
 SECTION "engine/pokemon/european_mail.asm@FrenchGerman", ROMX
 
-HandleFrenchGermanMail:
+HandleFrenchGermanMail::
 ; called if mail is french or german
 ; fix 's 't 'v
 	ld b, sPartyMon1MailAuthor - sPartyMon1Mail
@@ -82,7 +82,7 @@ HandleFrenchGermanMail:
 SECTION "engine/pokemon/european_mail.asm@English", ROMX
 
 LireLeCourrierAnglais:
-DeutenEnglischenPost:
+DeutenEnglischenPost::
 ; Cette fonction convertit certains des caractères anglais pour
 ; leur équivalent dans le jeu de caractères français.
 ; Diese Funktion wandelt bestimmte englische Zeichen, um ihre
@@ -116,7 +116,7 @@ DeutenEnglischenPost:
 
 SECTION "engine/pokemon/european_mail.asm@SpanishItalian", ROMX
 
-HandleSpanishItalianMail:
+HandleSpanishItalianMail::
 LeerCorreosIngleses:
 LeggiPostaInglese:
 ; This function converts certain characters between

@@ -1,4 +1,4 @@
-BattleCommand_Curse:
+BattleCommand_Curse::
 ; curse
 
 	ld de, wBattleMonType1

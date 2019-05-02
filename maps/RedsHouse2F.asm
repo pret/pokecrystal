@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/RedsHouse2F.asm", ROMX
 
-RedsHouse2F_MapScripts:
+RedsHouse2F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -28,7 +28,7 @@ RedsHouse2FPCText:
 	cont "in a long time…"
 	done
 
-RedsHouse2F_MapEvents:
+RedsHouse2F_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

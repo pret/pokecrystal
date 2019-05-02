@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route16Gate.asm", ROMX
 
-Route16Gate_MapScripts:
+Route16Gate_MapScripts::
 	db 1 ; scene scripts
 	scene_script .DummyScene ; SCENE_DEFAULT
 
@@ -63,7 +63,7 @@ Route16GateCannotPassText:
 	line "BICYCLE."
 	done
 
-Route16Gate_MapEvents:
+Route16Gate_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

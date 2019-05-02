@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/gfx/trademon_frontpic.asm@GetTrademonFrontpic", ROMX
 
-GetTrademonFrontpic:
+GetTrademonFrontpic::
 	ld a, [wOTTrademonSpecies]
 	ld hl, wOTTrademonDVs
 	ld de, vTiles2
@@ -21,7 +21,7 @@ GetTrademonFrontpic:
 
 SECTION "engine/gfx/trademon_frontpic.asm@AnimateTrademonFrontpic", ROMX
 
-AnimateTrademonFrontpic:
+AnimateTrademonFrontpic::
 	ld a, [wOTTrademonSpecies]
 	call IsAPokemon
 	ret c

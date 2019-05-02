@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/lookrocket.asm", ROMX, BANK[BANK_MUSIC_ROCKET_ENCOUNTER]
 
-Music_LookRocket:
+Music_LookRocket::
 	musicheader 4, 1, Music_LookRocket_Ch1
 	musicheader 1, 2, Music_LookRocket_Ch2
 	musicheader 1, 3, Music_LookRocket_Ch3
@@ -39,7 +39,7 @@ Music_LookRocket_branch_f74c7:
 	loopchannel 0, Music_LookRocket_branch_f74c7
 
 Music_LookRocket_branch_f74e6:
-Music_RocketTheme_branch_f74e6:
+Music_RocketTheme_branch_f74e6::
 	note D#, 1
 	note __, 1
 	note D_, 1
@@ -59,7 +59,7 @@ Music_RocketTheme_branch_f74e6:
 	endchannel
 
 Music_LookRocket_branch_f74f7:
-Music_RocketTheme_branch_f74f7:
+Music_RocketTheme_branch_f74f7::
 	note __, 2
 	octave 3
 	note D#, 1
@@ -83,7 +83,7 @@ Music_RocketTheme_branch_f74f7:
 	endchannel
 
 Music_LookRocket_branch_f750c:
-Music_RocketTheme_branch_f750c:
+Music_RocketTheme_branch_f750c::
 	note __, 2
 	octave 2
 	note B_, 1
@@ -120,7 +120,7 @@ Music_LookRocket_branch_f7526:
 	loopchannel 0, Music_LookRocket_branch_f7526
 
 Music_LookRocket_branch_f7547:
-Music_RocketTheme_branch_f7547:
+Music_RocketTheme_branch_f7547::
 	note D#, 1
 	note __, 1
 	note D_, 1
@@ -135,7 +135,7 @@ Music_RocketTheme_branch_f7547:
 	endchannel
 
 Music_LookRocket_branch_f7554:
-Music_RocketTheme_branch_f7554:
+Music_RocketTheme_branch_f7554::
 	note __, 2
 	octave 4
 	note D#, 1
@@ -158,7 +158,7 @@ Music_RocketTheme_branch_f7554:
 	endchannel
 
 Music_LookRocket_branch_f7568:
-Music_RocketTheme_branch_f7568:
+Music_RocketTheme_branch_f7568::
 	note __, 2
 	octave 3
 	note F_, 1
@@ -168,7 +168,7 @@ Music_RocketTheme_branch_f7568:
 	endchannel
 
 Music_LookRocket_branch_f756f:
-Music_RocketTheme_branch_f756f:
+Music_RocketTheme_branch_f756f::
 	intensity $63
 	note G#, 1
 	note F_, 1
@@ -194,7 +194,7 @@ Music_RocketTheme_branch_f756f:
 	endchannel
 
 Music_LookRocket_branch_f758a:
-Music_RocketTheme_branch_f758a:
+Music_RocketTheme_branch_f758a::
 	octave 3
 	note __, 2
 	note G_, 1
@@ -228,7 +228,7 @@ Music_LookRocket_branch_f75a5:
 	loopchannel 0, Music_LookRocket_branch_f75a5
 
 Music_LookRocket_branch_f75bf:
-Music_RocketTheme_branch_f75bf:
+Music_RocketTheme_branch_f75bf::
 	octave 3
 	note F_, 1
 	note __, 1
@@ -244,7 +244,7 @@ Music_RocketTheme_branch_f75bf:
 	endchannel
 
 Music_LookRocket_branch_f75cc:
-Music_RocketTheme_branch_f75cc:
+Music_RocketTheme_branch_f75cc::
 	octave 2
 	note G#, 1
 	note __, 1
@@ -268,7 +268,7 @@ Music_RocketTheme_branch_f75cc:
 	endchannel
 
 Music_LookRocket_branch_f75e1:
-Music_RocketTheme_branch_f75e1:
+Music_RocketTheme_branch_f75e1::
 	intensity $24
 	octave 2
 	note G#, 1
@@ -298,7 +298,7 @@ Music_RocketTheme_branch_f75e1:
 	endchannel
 
 Music_LookRocket_branch_f75fe:
-Music_RocketTheme_branch_f75fe:
+Music_RocketTheme_branch_f75fe::
 	note C_, 1
 	note __, 1
 	octave 4
@@ -338,7 +338,7 @@ Music_RocketTheme_branch_f75fe:
 	endchannel
 
 Music_LookRocket_branch_f7623:
-Music_RocketTheme_branch_f7623:
+Music_RocketTheme_branch_f7623::
 	octave 2
 	note G#, 1
 	note __, 1
@@ -378,7 +378,7 @@ Music_LookRocket_branch_f7640:
 	loopchannel 0, Music_LookRocket_branch_f7640
 
 Music_LookRocket_branch_f765c:
-Music_RocketTheme_branch_f765c:
+Music_RocketTheme_branch_f765c::
 	note C_, 8
 	note D_, 2
 	note D#, 2
@@ -389,7 +389,7 @@ Music_RocketTheme_branch_f765c:
 	endchannel
 
 Music_LookRocket_branch_f7664:
-Music_RocketTheme_branch_f7664:
+Music_RocketTheme_branch_f7664::
 	note D#, 2
 	note F#, 2
 	note D_, 2

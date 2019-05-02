@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/mom.asm", ROMX
 
-BankOfMom:
+BankOfMom::
 	ldh a, [hInMenu]
 	push af
 	ld a, $1

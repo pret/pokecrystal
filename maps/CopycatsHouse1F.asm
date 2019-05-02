@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CopycatsHouse1F.asm", ROMX
 
-CopycatsHouse1F_MapScripts:
+CopycatsHouse1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -75,7 +75,7 @@ CopycatsHouse1FBlisseyText:
 	text "BLISSEY: Bliisii!"
 	done
 
-CopycatsHouse1F_MapEvents:
+CopycatsHouse1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

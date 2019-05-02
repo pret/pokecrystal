@@ -3,12 +3,12 @@ INCLUDE "constants.inc"
 
 SECTION "maps/RuinsOfAlphHoOhWordRoom.asm", ROMX
 
-RuinsOfAlphHoOhWordRoom_MapScripts:
+RuinsOfAlphHoOhWordRoom_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
 
-RuinsOfAlphHoOhWordRoom_MapEvents:
+RuinsOfAlphHoOhWordRoom_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

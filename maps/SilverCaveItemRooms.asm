@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/SilverCaveItemRooms.asm", ROMX
 
-SilverCaveItemRooms_MapScripts:
+SilverCaveItemRooms_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -18,7 +18,7 @@ SilverCaveItemRoomsMaxRevive:
 SilverCaveItemRoomsFullRestore:
 	itemball FULL_RESTORE
 
-SilverCaveItemRooms_MapEvents:
+SilverCaveItemRooms_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

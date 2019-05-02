@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route32RuinsOfAlphGate.asm", ROMX
 
-Route32RuinsOfAlphGate_MapScripts:
+Route32RuinsOfAlphGate_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -49,7 +49,7 @@ Route32RuinsOfAlphGateYoungsterText:
 	cont "what they are."
 	done
 
-Route32RuinsOfAlphGate_MapEvents:
+Route32RuinsOfAlphGate_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

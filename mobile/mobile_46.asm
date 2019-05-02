@@ -50,7 +50,7 @@ asm_11800b:
 BattleTowerRoomMenu_DoNothing:
 	ret
 
-Function11805f:
+Function11805f::
 	ld a, $1
 	ld [wcd38], a
 	call BattleTowerRoomMenu_InitRAM
@@ -134,12 +134,12 @@ Function1180b8:
 	call ReturnToMapFromSubmenu
 	ret
 
-Function11811a:
+Function11811a::
 	ld a, 1
 	ld [wcd38], a
 	jr Function118125
 
-_BattleTowerRoomMenu:
+_BattleTowerRoomMenu::
 	xor a
 	ld [wcd38], a
 Function118125:
@@ -226,7 +226,7 @@ Function118180:
 	ld [wScriptVar], a
 	jr .reset_banks
 
-Function1181da:
+Function1181da::
 	call BattleTowerRoomMenu_InitRAM
 	ld a, $2
 	ld [wcd38], a
@@ -265,7 +265,7 @@ Function1181da:
 	call ReturnToMapFromSubmenu
 	ret
 
-Function118233:
+Function118233::
 	call BattleTowerRoomMenu_InitRAM
 	ld a, $1b
 	ld [wcd33], a
@@ -301,7 +301,7 @@ Function118233:
 	call BattleTowerRoomMenu_Cleanup
 	ret
 
-Function118284:
+Function118284::
 	call BattleTowerRoomMenu_InitRAM
 	ld a, $19
 	ld [wcd33], a
@@ -373,7 +373,7 @@ Function1182d5:
 	call ReturnToMapFromSubmenu
 	ret
 
-Function118329:
+Function118329::
 	call BattleTowerRoomMenu_InitRAM
 	ld a, $15
 	ld [wcd33], a
@@ -409,7 +409,7 @@ Function118329:
 	call BattleTowerRoomMenu_Cleanup
 	ret
 
-Function11837a:
+Function11837a::
 	call BattleTowerRoomMenu_InitRAM
 	ld a, $16
 	ld [wcd33], a
@@ -445,7 +445,7 @@ Function11837a:
 	call BattleTowerRoomMenu_Cleanup
 	ret
 
-BattleTowerRoomMenu_InitRAM:
+BattleTowerRoomMenu_InitRAM::
 	di
 	ldh a, [rIE]
 	ld [wcd32], a
@@ -500,7 +500,7 @@ Function118440:
 	pop af
 	ret
 
-BattleTowerRoomMenu_Cleanup:
+BattleTowerRoomMenu_Cleanup::
 	di
 	xor a
 	ldh [hMobileReceive], a
@@ -3884,7 +3884,7 @@ Strings_Ll0ToL40:
 String_119d8c:
 	db "CANCEL@"
 
-BattleTower_LevelCheck:
+BattleTower_LevelCheck::
 	ldh a, [rSVBK]
 	push af
 	ld a, $1
@@ -3928,7 +3928,7 @@ BattleTower_LevelCheck:
 	scf
 	ret
 
-BattleTower_UbersCheck:
+BattleTower_UbersCheck::
 	ldh a, [rSVBK]
 	push af
 	ld a, [wcd4f]
@@ -5143,7 +5143,7 @@ MenuHeader_11a804:
 	dw NULL
 	db 0 ; default option
 
-Function11a80c:
+Function11a80c::
 	ld de, hDivisor
 	ld bc, hDividend
 	ld hl, Unknown_11a89a
@@ -5506,7 +5506,7 @@ Text_ThisBattleRoomPleaseWait:
 	cont "Please wait…"
 	done
 
-Function11ac3e:
+Function11ac3e::
 	call SpeechTextbox
 	call FadeToMenu
 	callfar ClearSpriteAnims2
@@ -6783,7 +6783,7 @@ Function11b3d9:
 	ld [hl], a
 	ret
 
-Function11b444:
+Function11b444::
 ; special
 	call Mobile46_InitJumptable
 	call Mobile46_RunJumptable
@@ -7063,7 +7063,7 @@ Function11b5e0:
 Function11b5e7:
 	ret
 
-Function11b5e8:
+Function11b5e8::
 	ld a, $0
 	call GetSRAMBank
 	ld hl, wRTC
@@ -7158,7 +7158,7 @@ Function11b66d:
 Function11b6b3:
 	ret
 
-Function11b6b4:
+Function11b6b4::
 	ld a, $5
 	call GetSRAMBank
 	ld a, [wcd30]
@@ -7295,7 +7295,7 @@ Function11b6b4:
 	call AddMobileMonToParty
 	ret
 
-Function11b7e5:
+Function11b7e5::
 	ld a, [$c60d] ; species
 	ld [wOTTrademonSpecies], a
 	ld [wCurPartySpecies], a
@@ -7353,7 +7353,7 @@ Function11b7e5:
 	call RestartMapMusic
 	ret
 
-Function11b879:
+Function11b879::
 	farcall BattleTower_CheckSaveFileExistsAndIsYours
 	ld a, [wScriptVar]
 	and a
@@ -7445,7 +7445,7 @@ Function11b879:
 	ld [wScriptVar], a
 	ret
 
-Function11b920:
+Function11b920::
 	call Mobile46_InitJumptable
 	ld a, $5
 	call GetSRAMBank
@@ -7457,7 +7457,7 @@ Function11b920:
 	call Function118000
 	ret
 
-Function11b93b:
+Function11b93b::
 	ld a, $5
 	call GetSRAMBank
 	xor a
@@ -7496,7 +7496,7 @@ Function11b93b:
 	farcall SaveAfterLinkTrade
 	ret
 
-AddMobileMonToParty:
+AddMobileMonToParty::
 	ld hl, wPartyCount
 	ld a, [hl]
 	ld e, a
@@ -7599,7 +7599,7 @@ AddMobileMonToParty:
 	call CloseSRAM
 	ret
 
-Function11ba38:
+Function11ba38::
 	farcall CheckCurPartyMonFainted
 	ret c
 	xor a

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/menus/delete_save.asm", ROMX
 
-_DeleteSaveData:
+_DeleteSaveData::
 	farcall BlankScreen
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout

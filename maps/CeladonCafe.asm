@@ -10,7 +10,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CeladonCafe.asm", ROMX
 
-CeladonCafe_MapScripts:
+CeladonCafe_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -210,7 +210,7 @@ NoRoomForLeftoversText:
 	line "hold another item…"
 	done
 
-CeladonCafe_MapEvents:
+CeladonCafe_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

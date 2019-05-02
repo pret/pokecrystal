@@ -5,7 +5,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/link/time_capsule.asm@ValidateOTTrademon", ROMX
 
-ValidateOTTrademon:
+ValidateOTTrademon::
 	ld a, [wd003]
 	ld hl, wOTPartyMon1Species
 	call GetPartyLocation
@@ -72,7 +72,7 @@ ValidateOTTrademon:
 
 SECTION "engine/link/time_capsule.asm@Functionfb5dd", ROMX
 
-Functionfb5dd:
+Functionfb5dd::
 	ld a, [wd002]
 	ld d, a
 	ld a, [wPartyCount]
@@ -111,7 +111,7 @@ Functionfb5dd:
 
 SECTION "engine/link/time_capsule.asm@PlaceTradePartnerNamesAndParty", ROMX
 
-PlaceTradePartnerNamesAndParty:
+PlaceTradePartnerNamesAndParty::
 	hlcoord 4, 0
 	ld de, wPlayerName
 	call PlaceString

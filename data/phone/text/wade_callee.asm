@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/wade_callee.asm", ROMX
 
-UnknownText_0x1b5a3b:
+UnknownText_0x1b5a3b::
 	text "Hello? This is"
 	line "@"
 	text_ram wStringBuffer3
@@ -13,7 +13,7 @@ UnknownText_0x1b5a3b:
 	line "Good morning!"
 	done
 
-UnknownText_0x1b5a74:
+UnknownText_0x1b5a74::
 	text "Hello? This is"
 	line "@"
 	text_ram wStringBuffer3
@@ -22,7 +22,7 @@ UnknownText_0x1b5a74:
 	para "Oh, hi, <PLAY_G>!"
 	done
 
-UnknownText_0x1b5a9f:
+UnknownText_0x1b5a9f::
 	text "Hello? This is"
 	line "@"
 	text_ram wStringBuffer3
@@ -32,7 +32,7 @@ UnknownText_0x1b5a9f:
 	line "Good evening!"
 	done
 
-UnknownText_0x1b5ad8:
+UnknownText_0x1b5ad8::
 	text "<PLAY_G>, good"
 	line "morning!"
 
@@ -42,7 +42,7 @@ UnknownText_0x1b5ad8:
 	line "Isn't it nice out?"
 	done
 
-UnknownText_0x1b5b0b:
+UnknownText_0x1b5b0b::
 	text "<PLAY_G>, howdy!"
 
 	para "It's me, @"
@@ -51,7 +51,7 @@ UnknownText_0x1b5b0b:
 	line "Isn't it nice out?"
 	done
 
-UnknownText_0x1b5b37:
+UnknownText_0x1b5b37::
 	text "Good evening,"
 	line "<PLAY_G>!"
 
@@ -61,7 +61,7 @@ UnknownText_0x1b5b37:
 	line "Were you awake?"
 	done
 
-UnknownText_0x1b5b68:
+UnknownText_0x1b5b68::
 	text "How are your"
 	line "#MON doing?"
 

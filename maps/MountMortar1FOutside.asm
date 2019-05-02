@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/MountMortar1FOutside.asm", ROMX
 
-MountMortar1FOutside_MapScripts:
+MountMortar1FOutside_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -21,7 +21,7 @@ MountMortar1FOutsideRevive:
 MountMortar1FOutsideHiddenHyperPotion:
 	hiddenitem HYPER_POTION, EVENT_MOUNT_MORTAR_1F_OUTSIDE_HIDDEN_HYPER_POTION
 
-MountMortar1FOutside_MapEvents:
+MountMortar1FOutside_MapEvents::
 	db 0, 0 ; filler
 
 	db 9 ; warp events

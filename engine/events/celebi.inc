@@ -1,6 +1,6 @@
 SPECIALCELEBIEVENT_CELEBI EQU $84
 
-CelebiShrineEvent:
+CelebiShrineEvent::
 	call DelayFrame
 	ld a, [wVramState]
 	push af
@@ -122,7 +122,7 @@ INCBIN "gfx/overworld/celebi/2.2bpp"
 INCBIN "gfx/overworld/celebi/3.2bpp"
 INCBIN "gfx/overworld/celebi/4.2bpp"
 
-UpdateCelebiPosition:
+UpdateCelebiPosition::
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld a, [hl]
@@ -296,7 +296,7 @@ CelebiEvent_SetBattleType:
 	ld [wBattleType], a
 	ret
 
-CheckCaughtCelebi:
+CheckCaughtCelebi::
 	ld a, [wBattleResult]
 	bit BATTLERESULT_CAUGHT_CELEBI, a
 	jr z, .false

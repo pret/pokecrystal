@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/BrunosRoom.asm", ROMX
 
-BrunosRoom_MapScripts:
+BrunosRoom_MapScripts::
 	db 2 ; scene scripts
 	scene_script .LockDoor ; SCENE_DEFAULT
 	scene_script .DummyScene ; SCENE_FINISHED
@@ -127,7 +127,7 @@ BrunoScript_BrunoDefeatText:
 	line "challenge!"
 	done
 
-BrunosRoom_MapEvents:
+BrunosRoom_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

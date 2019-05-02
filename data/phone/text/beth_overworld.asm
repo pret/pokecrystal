@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/beth_overworld.asm", ROMX
 
-BethAskNumber1Text:
+BethAskNumber1Text::
 	text "It's been a while"
 	line "since I lost…"
 
@@ -25,7 +25,7 @@ BethAskNumber1Text:
 	line "your phone number?"
 	done
 
-BethAskNumber2Text:
+BethAskNumber2Text::
 	text "By challenging a"
 	line "tough trainer like"
 
@@ -38,24 +38,24 @@ BethAskNumber2Text:
 	line "your phone number?"
 	done
 
-BethNumberAcceptedText:
+BethNumberAcceptedText::
 	text "Let's battle again"
 	line "sometime!"
 	done
 
-BethNumberDeclinedText:
+BethNumberDeclinedText::
 	text "That's too bad…"
 
 	para "Let me know if you"
 	line "change your mind."
 	done
 
-BethPhoneFullText:
+BethPhoneFullText::
 	text "Oh no. Your phone"
 	line "is out of memory."
 	done
 
-BethRematchText:
+BethRematchText::
 	text "You sure kept me"
 	line "waiting! Let's go!"
 	done

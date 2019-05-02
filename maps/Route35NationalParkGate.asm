@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route35NationalParkGate.asm", ROMX, BANK[BANK_MAP_ROUTE_35_NATIONAL_PARK_GATE]
 
-Route35NationalParkGate_MapScripts:
+Route35NationalParkGate_MapScripts::
 	db 3 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_ROUTE35NATIONALPARKGATE_NOTHING
 	scene_script .DummyScene1 ; SCENE_ROUTE35NATIONALPARKGATE_UNUSED
@@ -205,7 +205,7 @@ Route35NationalParkGateOfficerScript:
 Route35NationalParkGateYoungsterScript:
 	jumptextfaceplayer Route35NationalParkGateYoungsterText
 
-BugCatchingContestExplanationSign:
+BugCatchingContestExplanationSign::
 	jumptext BugCatchingContestExplanationText
 
 Route35NationalParkGate_GetDayOfWeek:
@@ -440,7 +440,7 @@ BugCatchingContestExplanationText:
 	line "the contest."
 	done
 
-Route35NationalParkGate_MapEvents:
+Route35NationalParkGate_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

@@ -13,7 +13,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/GoldenrodDeptStoreB1F.asm", ROMX
 
-GoldenrodDeptStoreB1F_MapScripts:
+GoldenrodDeptStoreB1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 2 ; callbacks
@@ -112,7 +112,7 @@ GoldenrodDeptStoreB1FMachokeText:
 	text "MACHOKE: Maaacho!"
 	done
 
-GoldenrodDeptStoreB1F_MapEvents:
+GoldenrodDeptStoreB1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

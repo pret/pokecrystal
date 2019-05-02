@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/RuinsOfAlphAerodactylChamber.asm", ROMX
 
-RuinsOfAlphAerodactylChamber_MapScripts:
+RuinsOfAlphAerodactylChamber_MapScripts::
 	db 2 ; scene scripts
 	scene_script .CheckWall ; SCENE_DEFAULT
 	scene_script .DummyScene ; SCENE_FINISHED
@@ -146,7 +146,7 @@ RuinsOfAlphAerodactylChamberDescriptionText:
 	line "fangs."
 	done
 
-RuinsOfAlphAerodactylChamber_MapEvents:
+RuinsOfAlphAerodactylChamber_MapEvents::
 	db 0, 0 ; filler
 
 	db 5 ; warp events

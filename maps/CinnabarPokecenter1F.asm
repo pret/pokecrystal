@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CinnabarPokecenter1F.asm", ROMX
 
-CinnabarPokecenter1F_MapScripts:
+CinnabarPokecenter1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -37,7 +37,7 @@ CinnabarPokecenter1FFisherText:
 	cont "erupted."
 	done
 
-CinnabarPokecenter1F_MapEvents:
+CinnabarPokecenter1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

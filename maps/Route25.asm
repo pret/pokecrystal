@@ -16,7 +16,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route25.asm", ROMX
 
-Route25_MapScripts:
+Route25_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_ROUTE25_NOTHING
 	scene_script .DummyScene1 ; SCENE_ROUTE25_MISTYS_DATE
@@ -432,7 +432,7 @@ BillsHouseSignText:
 	text "BILL'S HOUSE"
 	done
 
-Route25_MapEvents:
+Route25_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

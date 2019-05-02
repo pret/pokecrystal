@@ -49,7 +49,7 @@ PrintBCDNumber::
 .done
 	ret
 
-PrintBCDDigit::
+PrintBCDDigit:
 	and %00001111
 	and a
 	jr z, .zeroDigit

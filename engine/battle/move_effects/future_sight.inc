@@ -1,4 +1,4 @@
-BattleCommand_CheckFutureSight:
+BattleCommand_CheckFutureSight::
 ; checkfuturesight
 
 	ld hl, wPlayerFutureSightCount
@@ -25,7 +25,7 @@ BattleCommand_CheckFutureSight:
 	ld b, futuresight_command
 	jp SkipToBattleCommand
 
-BattleCommand_FutureSight:
+BattleCommand_FutureSight::
 ; futuresight
 
 	call CheckUserIsCharging

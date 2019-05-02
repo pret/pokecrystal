@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route16.asm", ROMX
 
-Route16_MapScripts:
+Route16_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -31,7 +31,7 @@ CyclingRoadSignText:
 	line "ALL THE WAY!"
 	done
 
-Route16_MapEvents:
+Route16_MapEvents::
 	db 0, 0 ; filler
 
 	db 5 ; warp events

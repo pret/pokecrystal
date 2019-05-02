@@ -11,7 +11,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CopycatsHouse2F.asm", ROMX
 
-CopycatsHouse2F_MapScripts:
+CopycatsHouse2F_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -363,7 +363,7 @@ CopycatsHouse2FDollText:
 	para "It's only a doll…"
 	done
 
-CopycatsHouse2F_MapEvents:
+CopycatsHouse2F_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

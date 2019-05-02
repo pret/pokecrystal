@@ -3,11 +3,11 @@ INCLUDE "constants.inc"
 
 SECTION "engine/overworld/time.asm", ROMX
 
-_InitializeStartDay:
+_InitializeStartDay::
 	call InitializeStartDay
 	ret
 
-ClearDailyTimers:
+ClearDailyTimers::
 	xor a
 	ld [wLuckyNumberDayBuffer], a
 	ld [wUnusedTwoDayTimer], a
@@ -35,7 +35,7 @@ NextCallReceiveDelay:
 .ReceiveCallDelays:
 	db 20, 10, 5, 3
 
-CheckReceiveCallTimer:
+CheckReceiveCallTimer::
 	call CheckReceiveCallDelay ; check timer
 	ret nc
 	ld hl, wTimeCyclesSinceLastCall
@@ -124,7 +124,7 @@ endr
 .DontRestartKenjiBreakCountdown:
 	jr RestartDailyResetTimer
 
-SampleKenjiBreakCountdown:
+SampleKenjiBreakCountdown::
 ; Generate a random number between 3 and 6
 	call Random
 	and %11
@@ -132,7 +132,7 @@ SampleKenjiBreakCountdown:
 	ld [wKenjiBreakTimer], a
 	ret
 
-StartBugContestTimer:
+StartBugContestTimer::
 	ld a, BUG_CONTEST_MINUTES
 	ld [wBugContestMinsRemaining], a
 	ld a, BUG_CONTEST_SECONDS
@@ -203,7 +203,7 @@ SetUnusedTwoDayTimer:
 	call CopyDayToHL
 	ret
 
-CheckUnusedTwoDayTimer:
+CheckUnusedTwoDayTimer::
 	ld hl, wUnusedTwoDayTimerStartDate
 	call CalcDaysSince
 	call GetDaysSince
@@ -224,7 +224,7 @@ CheckUnusedTwoDayTimer:
 	scf
 	ret
 
-RestartLuckyNumberCountdown:
+RestartLuckyNumberCountdown::
 	call .GetDaysUntilNextFriday
 	ld hl, wLuckyNumberDayBuffer
 	jp InitNDaysCountdown
@@ -243,11 +243,11 @@ RestartLuckyNumberCountdown:
 .earlier
 	ret
 
-_CheckLuckyNumberShowFlag:
+_CheckLuckyNumberShowFlag::
 	ld hl, wLuckyNumberDayBuffer
 	jp CheckDayDependentEventHL
 
-DoMysteryGiftIfDayHasPassed:
+DoMysteryGiftIfDayHasPassed::
 	ld a, BANK(sMysteryGiftTimer)
 	call GetSRAMBank
 	ld hl, sMysteryGiftTimer

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/checkforhiddenitems.asm", ROMX
 
-CheckForHiddenItems:
+CheckForHiddenItems::
 ; Checks to see if there are hidden items on the screen that have not yet been found.  If it finds one, returns carry.
 	call GetMapScriptsBank
 	ld [wBuffer1], a

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/bugcatchingcontest.asm", ROMX
 
-Music_BugCatchingContest:
+Music_BugCatchingContest::
 	musicheader 4, 1, Music_BugCatchingContest_Ch1
 	musicheader 1, 2, Music_BugCatchingContest_Ch2
 	musicheader 1, 3, Music_BugCatchingContest_Ch3

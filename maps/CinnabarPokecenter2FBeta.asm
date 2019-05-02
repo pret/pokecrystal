@@ -3,12 +3,12 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CinnabarPokecenter2FBeta.asm", ROMX
 
-CinnabarPokecenter2FBeta_MapScripts:
+CinnabarPokecenter2FBeta_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
 
-CinnabarPokecenter2FBeta_MapEvents:
+CinnabarPokecenter2FBeta_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

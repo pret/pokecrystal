@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/tiffany_overworld.asm", ROMX
 
-TiffanyAskNumber1Text:
+TiffanyAskNumber1Text::
 	text "Hi! You like"
 	line "CLEFAIRY too?"
 
@@ -20,7 +20,7 @@ TiffanyAskNumber1Text:
 	line "CLEFAIRY!"
 	done
 
-TiffanyAskNumber2Text:
+TiffanyAskNumber2Text::
 	text "I want to know"
 	line "your phone number!"
 
@@ -28,12 +28,12 @@ TiffanyAskNumber2Text:
 	line "CLEFAIRY!"
 	done
 
-TiffanyNumberAcceptedText:
+TiffanyNumberAcceptedText::
 	text "Isn't my CLEFAIRY"
 	line "super-adorable?"
 	done
 
-TiffanyNumberDeclinedText:
+TiffanyNumberDeclinedText::
 	text "Aww… Oh well."
 	line "Look for me if you"
 
@@ -41,19 +41,19 @@ TiffanyNumberDeclinedText:
 	line "CLEFAIRY."
 	done
 
-TiffanyPhoneFullText:
+TiffanyPhoneFullText::
 	text "Oh? Your phone"
 	line "registry is full."
 	done
 
-TiffanyRematchText:
+TiffanyRematchText::
 	text "There you are!"
 
 	para "CLEFAIRY, I want"
 	line "you to try hard!"
 	done
 
-TiffanyGiftText:
+TiffanyGiftText::
 	text "You took a long"
 	line "time. See this?"
 
@@ -61,7 +61,7 @@ TiffanyGiftText:
 	line "It's a PINK BOW."
 	done
 
-TiffanyPackFullText:
+TiffanyPackFullText::
 	text "Uh-oh. Your PACK"
 	line "is crammed full."
 	done

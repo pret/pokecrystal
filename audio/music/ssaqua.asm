@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/ssaqua.asm", ROMX
 
-Music_SSAqua:
+Music_SSAqua::
 	musicheader 4, 1, Music_SSAqua_Ch1
 	musicheader 1, 2, Music_SSAqua_Ch2
 	musicheader 1, 3, Music_SSAqua_Ch3

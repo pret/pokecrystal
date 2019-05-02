@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/MoveDeletersHouse.asm", ROMX
 
-MoveDeletersHouse_MapScripts:
+MoveDeletersHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -22,7 +22,7 @@ MoveDeleter:
 MoveDeletersHouseBookshelf:
 	jumpstd difficultbookshelf
 
-MoveDeletersHouse_MapEvents:
+MoveDeletersHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

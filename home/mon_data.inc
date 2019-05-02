@@ -1,4 +1,4 @@
-Unreferenced_GetNthMove::
+Unreferenced_GetNthMove:
 	ld hl, wListMoves_MoveIndicesBuffer
 	ld c, a
 	ld b, 0

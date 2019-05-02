@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route8SaffronGate.asm", ROMX
 
-Route8SaffronGate_MapScripts:
+Route8SaffronGate_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -22,7 +22,7 @@ Route8SaffronGateOfficerText:
 	line "RADIO TOWER there."
 	done
 
-Route8SaffronGate_MapEvents:
+Route8SaffronGate_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

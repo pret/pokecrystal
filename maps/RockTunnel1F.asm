@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/RockTunnel1F.asm", ROMX
 
-RockTunnel1F_MapScripts:
+RockTunnel1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -24,7 +24,7 @@ RockTunnel1FHiddenXAccuracy:
 RockTunnel1FHiddenXDefend:
 	hiddenitem X_DEFEND, EVENT_ROCK_TUNNEL_1F_HIDDEN_X_DEFEND
 
-RockTunnel1F_MapEvents:
+RockTunnel1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 6 ; warp events

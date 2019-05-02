@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/parry.asm", ROMX
 
-ParryPhoneCalleeScript:
+ParryPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, HIKER, PARRY1
 	checkflag ENGINE_PARRY
 	iftrue .WantsBattle
@@ -22,7 +22,7 @@ ParryPhoneCalleeScript:
 	getlandmarkname STRING_BUFFER_5, ROUTE_45
 	farsjump ParryHaventYouGottenTo
 
-ParryPhoneCallerScript:
+ParryPhoneCallerScript::
 	gettrainername STRING_BUFFER_3, HIKER, PARRY1
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_PARRY

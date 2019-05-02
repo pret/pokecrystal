@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokemon/tempmon.asm", ROMX
 
-CopyMonToTempMon:
+CopyMonToTempMon::
 ; gets the BaseData of a mon
 ; and copies the party_struct to wTempMon
 
@@ -37,11 +37,11 @@ CopyMonToTempMon:
 .done
 	ret
 
-CalcBufferMonStats:
+CalcBufferMonStats::
 	ld bc, wBufferMon
 	jr _TempMonStatsCalculation
 
-CalcTempmonStats:
+CalcTempmonStats::
 	ld bc, wTempMon
 _TempMonStatsCalculation:
 	ld hl, MON_LEVEL

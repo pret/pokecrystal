@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/parry_overworld.asm", ROMX
 
-ParryAskNumber1Text:
+ParryAskNumber1Text::
 	text "Sheesh, the way"
 	line "you attacked! That"
 
@@ -14,7 +14,7 @@ ParryAskNumber1Text:
 	line "me your number?"
 	done
 
-ParryAskNumber2Text:
+ParryAskNumber2Text::
 	text "So you want to"
 	line "register my phone"
 
@@ -22,13 +22,13 @@ ParryAskNumber2Text:
 	line "match, huh?"
 	done
 
-ParryNumberAcceptedText:
+ParryNumberAcceptedText::
 	text "I'll call you"
 	line "whenever I feel"
 	cont "like battling!"
 	done
 
-ParryNumberDeclinedText:
+ParryNumberDeclinedText::
 	text "No? That's fine."
 
 	para "A definite no is"
@@ -39,13 +39,13 @@ ParryNumberDeclinedText:
 	cont "for a rematch."
 	done
 
-ParryPhoneFullText:
+ParryPhoneFullText::
 	text "Oh? There's no"
 	line "room to register"
 	cont "my phone number."
 	done
 
-ParryRematchText:
+ParryRematchText::
 	text "Hey, here comes"
 	line "the kid! Let's go!"
 
@@ -54,7 +54,7 @@ ParryRematchText:
 	cont "out offense?"
 	done
 
-ParryPackFullText:
+ParryPackFullText::
 	text "Your PACK looks"
 	line "stuffed full!"
 
@@ -62,7 +62,7 @@ ParryPackFullText:
 	line "this now."
 	done
 
-ParryRematchGiftText:
+ParryRematchGiftText::
 	text "Well, you're"
 	line "special all right."
 

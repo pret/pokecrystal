@@ -10,7 +10,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/OlivineLighthouse5F.asm", ROMX
 
-OlivineLighthouse5F_MapScripts:
+OlivineLighthouse5F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -93,7 +93,7 @@ BirdKeeperDenisAfterBattleText:
 	cont "across the sea…"
 	done
 
-OlivineLighthouse5F_MapEvents:
+OlivineLighthouse5F_MapEvents::
 	db 0, 0 ; filler
 
 	db 7 ; warp events

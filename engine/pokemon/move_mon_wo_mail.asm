@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokemon/move_mon_wo_mail.asm", ROMX
 
-InsertPokemonIntoBox:
+InsertPokemonIntoBox::
 	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld hl, sBoxCount
@@ -42,7 +42,7 @@ InsertPokemonIntoBox:
 	farcall RestorePPOfDepositedPokemon
 	jp CloseSRAM
 
-InsertPokemonIntoParty:
+InsertPokemonIntoParty::
 	ld hl, wPartyCount
 	call InsertSpeciesIntoBoxOrParty
 	ld a, [wPartyCount]

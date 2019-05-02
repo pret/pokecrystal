@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/OlivineMart.asm", ROMX
 
-OlivineMart_MapScripts:
+OlivineMart_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -48,7 +48,7 @@ OlivineMartLassText:
 	line "It's a secret!"
 	done
 
-OlivineMart_MapEvents:
+OlivineMart_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

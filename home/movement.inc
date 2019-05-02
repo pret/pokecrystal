@@ -32,7 +32,7 @@ AppendToMovementBuffer::
 	pop hl
 	ret
 
-AppendToMovementBufferNTimes::
+AppendToMovementBufferNTimes:
 	push af
 	ld a, c
 	and a

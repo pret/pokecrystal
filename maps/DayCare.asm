@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/DayCare.asm", ROMX
 
-DayCare_MapScripts:
+DayCare_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -158,7 +158,7 @@ DayCareText_PartyFull:
 	line "this."
 	done
 
-DayCare_MapEvents:
+DayCare_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

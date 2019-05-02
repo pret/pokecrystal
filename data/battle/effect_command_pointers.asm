@@ -7,7 +7,7 @@ SECTION "data/battle/effect_command_pointers.asm", ROMX
 
 	dw 0 ; padding
 
-BattleCommandPointers:
+BattleCommandPointers::
 ; entries correspond to macros/scripts/battle_commands.inc
 	dw BattleCommand_CheckTurn
 	dw BattleCommand_CheckObedience

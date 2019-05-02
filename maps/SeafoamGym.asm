@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/SeafoamGym.asm", ROMX
 
-SeafoamGym_MapScripts:
+SeafoamGym_MapScripts::
 	db 1 ; scene scripts
 	scene_script .DummyScene
 
@@ -160,7 +160,7 @@ SeafoamGymGuyWinText2:
 	line "for a building."
 	done
 
-SeafoamGym_MapEvents:
+SeafoamGym_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

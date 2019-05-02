@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/PewterMart.asm", ROMX
 
-PewterMart_MapScripts:
+PewterMart_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -48,7 +48,7 @@ PewterMartSuperNerdText:
 	line "excellent."
 	done
 
-PewterMart_MapEvents:
+PewterMart_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

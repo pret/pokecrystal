@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/battle/consume_held_item.asm", ROMX
 
-ConsumeHeldItem:
+ConsumeHeldItem::
 	push hl
 	push de
 	push bc

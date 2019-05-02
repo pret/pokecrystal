@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/gymleadervictory.asm", ROMX
 
-Music_GymLeaderVictory:
+Music_GymLeaderVictory::
 	musicheader 4, 1, Music_GymLeaderVictory_Ch1
 	musicheader 1, 2, Music_GymLeaderVictory_Ch2
 	musicheader 1, 3, Music_GymLeaderVictory_Ch3

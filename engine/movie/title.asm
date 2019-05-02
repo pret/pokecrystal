@@ -17,7 +17,7 @@ Function10ed51:
 .done
 	ret
 
-_TitleScreen:
+_TitleScreen::
 	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
@@ -236,7 +236,7 @@ _TitleScreen:
 
 	ret
 
-SuicuneFrameIterator:
+SuicuneFrameIterator::
 	ld hl, wSuicuneFrame
 	ld a, [hl]
 	ld c, a
@@ -359,7 +359,7 @@ InitializeBackground:
 	jr nz, .loop2
 	ret
 
-AnimateTitleCrystal:
+AnimateTitleCrystal::
 ; Move the title screen crystal downward until it's fully visible
 
 ; Stop at y=6

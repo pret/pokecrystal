@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/link/mystery_gift.asm", ROMX
 
-DoMysteryGift:
+DoMysteryGift::
 	call ClearTileMap
 	call ClearSprites
 	call WaitBGMap
@@ -1129,7 +1129,7 @@ MysteryGift_CheckAndSetDecorationAlreadyReceived:
 	xor a
 	ret
 
-MysteryGift_CopyReceivedDecosToPC:
+MysteryGift_CopyReceivedDecosToPC::
 	call GetMysteryGiftBank
 	ld c, $0
 .loop
@@ -1152,7 +1152,7 @@ MysteryGift_CopyReceivedDecosToPC:
 	jr c, .loop
 	jp CloseSRAM
 
-UnlockMysteryGift:
+UnlockMysteryGift::
 	call GetMysteryGiftBank
 	ld hl, sMysteryGiftUnlocked
 	ld a, [hl]
@@ -1163,7 +1163,7 @@ UnlockMysteryGift:
 .ok
 	jp CloseSRAM
 
-Function1050c8:
+Function1050c8::
 	call GetMysteryGiftBank
 	ld a, [sNumDailyMysteryGiftPartnerIDs]
 	cp $ff
@@ -1173,7 +1173,7 @@ Function1050c8:
 .okay
 	jp CloseSRAM
 
-BackupMysteryGift:
+BackupMysteryGift::
 	call GetMysteryGiftBank
 	ld hl, sMysteryGiftItem
 	ld de, sBackupMysteryGiftItem
@@ -1184,7 +1184,7 @@ BackupMysteryGift:
 	ld [de], a
 	jp CloseSRAM
 
-RestoreMysteryGift:
+RestoreMysteryGift::
 	call GetMysteryGiftBank
 	ld hl, sBackupMysteryGiftItem
 	ld de, sMysteryGiftItem
@@ -1400,7 +1400,7 @@ MysteryGiftGFX:
 INCBIN "gfx/mystery_gift/mystery_gift.2bpp"
 .End
 
-Function105688:
+Function105688::
 	call ClearTileMap
 	call ClearSprites
 	call WaitBGMap

@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/WillsRoom.asm", ROMX
 
-WillsRoom_MapScripts:
+WillsRoom_MapScripts::
 	db 2 ; scene scripts
 	scene_script .LockDoor ; SCENE_DEFAULT
 	scene_script .DummyScene ; SCENE_FINISHED
@@ -131,7 +131,7 @@ WillScript_WillDefeatText:
 	line "of the ELITE FOUR."
 	done
 
-WillsRoom_MapEvents:
+WillsRoom_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route7SaffronGate.asm", ROMX
 
-Route7SaffronGate_MapScripts:
+Route7SaffronGate_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -48,7 +48,7 @@ Route7SaffronGuardSeriousText:
 	line "through."
 	done
 
-Route7SaffronGate_MapEvents:
+Route7SaffronGate_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

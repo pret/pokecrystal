@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/overworld/map_objects_2.asm", ROMX
 
-LoadObjectMasks:
+LoadObjectMasks::
 	ld hl, wObjectMasks
 	xor a
 	ld bc, NUM_OBJECTS

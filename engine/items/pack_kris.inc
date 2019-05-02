@@ -1,4 +1,4 @@
-DrawKrisPackGFX:
+DrawKrisPackGFX::
 	ld hl, PackFGFXPointers
 	add hl, de
 	add hl, de

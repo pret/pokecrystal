@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route29Route46Gate.asm", ROMX
 
-Route29Route46Gate_MapScripts:
+Route29Route46Gate_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -39,7 +39,7 @@ Route29Route46GateYoungsterText:
 	line "everywhere."
 	done
 
-Route29Route46Gate_MapEvents:
+Route29Route46Gate_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

@@ -15,7 +15,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route41.asm", ROMX
 
-Route41_MapScripts:
+Route41_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -344,7 +344,7 @@ SwimmerfWendyAfterBattleText:
 	line "it's scary."
 	done
 
-Route41_MapEvents:
+Route41_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

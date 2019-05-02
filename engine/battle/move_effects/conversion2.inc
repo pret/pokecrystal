@@ -1,4 +1,4 @@
-BattleCommand_Conversion2:
+BattleCommand_Conversion2::
 ; conversion2
 
 	ld a, [wAttackMissed]

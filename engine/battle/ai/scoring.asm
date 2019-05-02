@@ -3,9 +3,9 @@ INCLUDE "constants.inc"
 
 SECTION "engine/battle/ai/scoring.asm", ROMX
 
-AIScoring: ; used only for BANK(AIScoring)
+AIScoring:: ; used only for BANK(AIScoring)
 
-AI_Basic:
+AI_Basic::
 ; Don't do anything redundant:
 ;  -Using status-only moves if the player can't be statused
 ;  -Using moves that fail if they've already been used
@@ -70,7 +70,7 @@ AI_Basic:
 INCLUDE "data/battle/ai/status_only_effects.inc"
 
 
-AI_Setup:
+AI_Setup::
 ; Use stat-modifying moves on turn 1.
 
 ; 50% chance to greatly encourage stat-up moves during the first turn of enemy's Pokemon.
@@ -145,7 +145,7 @@ AI_Setup:
 	jr .checkmove
 
 
-AI_Types:
+AI_Types::
 ; Dismiss any move that the player is immune to.
 ; Encourage super-effective moves.
 ; Discourage not very effective moves unless
@@ -235,7 +235,7 @@ AI_Types:
 	jr .checkmove
 
 
-AI_Offensive:
+AI_Offensive::
 ; Greatly discourage non-damaging moves.
 
 	ld hl, wBuffer1 - 1
@@ -262,7 +262,7 @@ AI_Offensive:
 	jr .checkmove
 
 
-AI_Smart:
+AI_Smart::
 ; Context-specific scoring.
 
 	ld hl, wBuffer1
@@ -2671,7 +2671,7 @@ AICompareSpeed:
 	pop bc
 	ret
 
-AICheckPlayerMaxHP:
+AICheckPlayerMaxHP::
 	push hl
 	push de
 	push bc
@@ -2679,7 +2679,7 @@ AICheckPlayerMaxHP:
 	ld hl, wBattleMonMaxHP
 	jr AICheckMaxHP
 
-AICheckEnemyMaxHP:
+AICheckEnemyMaxHP::
 	push hl
 	push de
 	push bc
@@ -2730,7 +2730,7 @@ AICheckPlayerHalfHP:
 	pop hl
 	ret
 
-AICheckEnemyHalfHP:
+AICheckEnemyHalfHP::
 	push hl
 	push de
 	push bc
@@ -2751,7 +2751,7 @@ AICheckEnemyHalfHP:
 	pop hl
 	ret
 
-AICheckEnemyQuarterHP:
+AICheckEnemyQuarterHP::
 	push hl
 	push de
 	push bc
@@ -2859,7 +2859,7 @@ AIHasMoveInArray:
 
 INCLUDE "data/battle/ai/useful_moves.inc"
 
-AI_Opportunist:
+AI_Opportunist::
 ; Discourage stall moves when the enemy's HP is low.
 
 ; Do nothing if enemy's HP is above 50%.
@@ -2909,7 +2909,7 @@ AI_Opportunist:
 INCLUDE "data/battle/ai/stall_moves.inc"
 
 
-AI_Aggressive:
+AI_Aggressive::
 ; Use whatever does the most damage.
 
 ; Discourage all damaging moves but the one that does the most damage.
@@ -3035,7 +3035,7 @@ AIDamageCalc:
 
 INCLUDE "data/battle/ai/constant_damage_effects.inc"
 
-AI_Cautious:
+AI_Cautious::
 ; 90% chance to discourage moves with residual effects after the first turn.
 
 	ld a, [wEnemyTurnsTaken]
@@ -3077,7 +3077,7 @@ AI_Cautious:
 INCLUDE "data/battle/ai/residual_moves.inc"
 
 
-AI_Status:
+AI_Status::
 ; Dismiss status moves that don't affect the player.
 
 	ld hl, wBuffer1 - 1
@@ -3139,7 +3139,7 @@ AI_Status:
 	jr .checkmove
 
 
-AI_Risky:
+AI_Risky::
 ; Use any move that will KO the target.
 ; Risky moves will often be an exception (see below).
 
@@ -3208,7 +3208,7 @@ endr
 INCLUDE "data/battle/ai/risky_effects.inc"
 
 
-AI_None:
+AI_None::
 	ret
 
 AIDiscourageMove:

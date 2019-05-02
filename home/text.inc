@@ -51,7 +51,7 @@ Textbox::
 	pop bc
 	jr TextboxPalette
 
-TextboxBorder::
+TextboxBorder:
 	; Top
 	push hl
 	ld a, "┌"
@@ -128,7 +128,7 @@ SpeechTextbox::
 	ld c, TEXTBOX_INNERW
 	jp Textbox
 
-TestText::
+TestText:
 	text "ゲームフりーク！"
 	done
 
@@ -164,7 +164,7 @@ SetUpTextbox::
 PlaceString::
 	push hl
 
-PlaceNextChar::
+PlaceNextChar:
 	ld a, [de]
 	cp "@"
 	jr nz, CheckDict
@@ -174,11 +174,11 @@ PlaceNextChar::
 	ret
 	pop de
 
-NextChar::
+NextChar:
 	inc de
 	jp PlaceNextChar
 
-CheckDict::
+CheckDict:
 dict: MACRO
 if \1 == "<NULL>"
 	and a
@@ -279,7 +279,7 @@ ENDM
 	call PrintLetterDelay
 	jp NextChar
 
-MobileScriptChar::
+MobileScriptChar:
 	ld c, l
 	ld b, h
 	farcall RunMobileScript
@@ -310,12 +310,12 @@ PlaceJPRoute: print_name PlaceJPRouteText
 PlaceWatashi: print_name PlaceWatashiText
 PlaceKokoWa:  print_name PlaceKokoWaText
 
-PlaceMoveTargetsName::
+PlaceMoveTargetsName:
 	ldh a, [hBattleTurn]
 	xor 1
 	jr PlaceMoveUsersName.place
 
-PlaceMoveUsersName::
+PlaceMoveUsersName:
 	ldh a, [hBattleTurn]
 
 .place:
@@ -334,7 +334,7 @@ PlaceMoveUsersName::
 	ld de, wEnemyMonNick
 	jr PlaceCommandCharacter
 
-PlaceEnemysName::
+PlaceEnemysName:
 	push de
 
 	ld a, [wLinkMode]
@@ -367,7 +367,7 @@ PlaceEnemysName::
 	ld de, wOTClassName
 	jr PlaceCommandCharacter
 
-PlaceGenderedPlayerName::
+PlaceGenderedPlayerName:
 	push de
 	ld de, wPlayerName
 	call PlaceString
@@ -380,46 +380,46 @@ PlaceGenderedPlayerName::
 	ld de, ChanSuffixText
 	jr PlaceCommandCharacter
 
-PlaceCommandCharacter::
+PlaceCommandCharacter:
 	call PlaceString
 	ld h, b
 	ld l, c
 	pop de
 	jp NextChar
 
-TMCharText::      db "TM@"
-TrainerCharText:: db "TRAINER@"
-PCCharText::      db "PC@"
-RocketCharText::  db "ROCKET@"
-PlacePOKeText::   db "POKé@"
-KougekiText::     db "こうげき@"
-SixDotsCharText:: db "……@"
-EnemyText::       db "Enemy @"
-PlacePKMNText::   db "<PK><MN>@"
-PlacePOKEText::   db "<PO><KE>@"
-String_Space::    db " @"
+TMCharText:      db "TM@"
+TrainerCharText: db "TRAINER@"
+PCCharText:      db "PC@"
+RocketCharText:  db "ROCKET@"
+PlacePOKeText:   db "POKé@"
+KougekiText:     db "こうげき@"
+SixDotsCharText: db "……@"
+EnemyText:       db "Enemy @"
+PlacePKMNText:   db "<PK><MN>@"
+PlacePOKEText:   db "<PO><KE>@"
+String_Space:    db " @"
 ; These strings have been dummied out.
-PlaceJPRouteText::
-PlaceWatashiText::
-PlaceKokoWaText:: db "@"
-KunSuffixText::   db "@"
-ChanSuffixText::  db "@"
+PlaceJPRouteText:
+PlaceWatashiText:
+PlaceKokoWaText: db "@"
+KunSuffixText:   db "@"
+ChanSuffixText:  db "@"
 
-NextLineChar::
+NextLineChar:
 	pop hl
 	ld bc, SCREEN_WIDTH * 2
 	add hl, bc
 	push hl
 	jp NextChar
 
-LineFeedChar::
+LineFeedChar:
 	pop hl
 	ld bc, SCREEN_WIDTH
 	add hl, bc
 	push hl
 	jp NextChar
 
-CarriageReturnChar::
+CarriageReturnChar:
 	pop hl
 	push de
 	ld bc, -wTileMap + $10000
@@ -460,13 +460,13 @@ CarriageReturnChar::
 	push hl
 	jp NextChar
 
-LineChar::
+LineChar:
 	pop hl
 	hlcoord TEXTBOX_INNERX, TEXTBOX_INNERY + 2
 	push hl
 	jp NextChar
 
-Paragraph::
+Paragraph:
 	push de
 
 	ld a, [wLinkMode]
@@ -489,7 +489,7 @@ Paragraph::
 	pop de
 	jp NextChar
 
-_ContText::
+_ContText:
 	ld a, [wLinkMode]
 	or a
 	jr nz, .communication
@@ -507,7 +507,7 @@ _ContText::
 	call z, UnloadBlinkingCursor
 	; fallthrough
 
-_ContTextNoPause::
+_ContTextNoPause:
 	push de
 	call TextScroll
 	call TextScroll
@@ -515,7 +515,7 @@ _ContTextNoPause::
 	pop de
 	jp NextChar
 
-ContText::
+ContText:
 	push de
 	ld de, .cont
 	ld b, h
@@ -528,14 +528,14 @@ ContText::
 
 .cont: db "<_CONT>@"
 
-PlaceDexEnd::
+PlaceDexEnd:
 ; Ends a Pokédex entry in Gen 1.
 ; Dex entries are now regular strings.
 	ld [hl], "."
 	pop hl
 	ret
 
-PromptText::
+PromptText:
 	ld a, [wLinkMode]
 	cp LINK_COLOSSEUM
 	jr z, .ok
@@ -553,7 +553,7 @@ PromptText::
 	jr z, DoneText
 	call UnloadBlinkingCursor
 
-DoneText::
+DoneText:
 	pop hl
 	ld de, .stop
 	dec de
@@ -562,13 +562,13 @@ DoneText::
 .stop:
 	text_end
 
-NullChar::
+NullChar:
 	ld a, "?"
 	ld [hli], a
 	call PrintLetterDelay
 	jp NextChar
 
-TextScroll::
+TextScroll:
 	hlcoord TEXTBOX_INNERX, TEXTBOX_INNERY
 	decoord TEXTBOX_INNERX, TEXTBOX_INNERY - 1
 	ld a, TEXTBOX_INNERH - 1
@@ -600,7 +600,7 @@ TextScroll::
 	call DelayFrames
 	ret
 
-Text_WaitBGMap::
+Text_WaitBGMap:
 	push bc
 	ldh a, [hOAMUpdate]
 	push af
@@ -614,15 +614,15 @@ Text_WaitBGMap::
 	pop bc
 	ret
 
-Diacritic::
+Diacritic:
 	ret
 
-LoadBlinkingCursor::
+LoadBlinkingCursor:
 	ld a, "▼"
 	ldcoord_a 18, 17
 	ret
 
-UnloadBlinkingCursor::
+UnloadBlinkingCursor:
 	lda_coord 17, 17
 	ldcoord_a 18, 17
 	ret
@@ -659,7 +659,7 @@ PlaceHLTextAtBC::
 	ld [wTextboxFlags], a
 	ret
 
-DoTextUntilTerminator::
+DoTextUntilTerminator:
 	ld a, [hli]
 	cp TX_END
 	ret z
@@ -684,7 +684,7 @@ DoTextUntilTerminator::
 	push de
 	ret
 
-TextCommands::
+TextCommands:
 ; entries correspond to TX_* constants (see macros/scripts/text.inc)
 	dw TextCommand_START            ; TX_START
 	dw TextCommand_RAM              ; TX_RAM
@@ -710,7 +710,7 @@ TextCommands::
 	dw TextCommand_DAY              ; TX_DAY
 	dw TextCommand_FAR              ; TX_FAR
 
-TextCommand_START::
+TextCommand_START:
 ; text_start
 ; write text until "@"
 ; [$00]["...@"]
@@ -725,7 +725,7 @@ TextCommand_START::
 	inc hl
 	ret
 
-TextCommand_RAM::
+TextCommand_RAM:
 ; text_ram
 ; write text from a ram address
 ; little endian
@@ -742,7 +742,7 @@ TextCommand_RAM::
 	pop hl
 	ret
 
-TextCommand_FAR::
+TextCommand_FAR:
 ; text_far
 ; write text from a different bank
 ; little endian
@@ -771,7 +771,7 @@ TextCommand_FAR::
 	ld [MBC3RomBank], a
 	ret
 
-TextCommand_BCD::
+TextCommand_BCD:
 ; text_bcd
 ; write bcd from address, typically ram
 ; [$02][addr][flags]
@@ -792,7 +792,7 @@ TextCommand_BCD::
 	pop hl
 	ret
 
-TextCommand_MOVE::
+TextCommand_MOVE:
 ; text_move
 ; move to a new tile
 ; [$03][addr]
@@ -805,7 +805,7 @@ TextCommand_MOVE::
 	ld b, a
 	ret
 
-TextCommand_BOX::
+TextCommand_BOX:
 ; text_box
 ; draw a box
 ; little endian
@@ -826,7 +826,7 @@ TextCommand_BOX::
 	pop hl
 	ret
 
-TextCommand_LOW::
+TextCommand_LOW:
 ; text_low
 ; write text at (1,16)
 ; [$05]
@@ -834,7 +834,7 @@ TextCommand_LOW::
 	bccoord TEXTBOX_INNERX, TEXTBOX_INNERY + 2
 	ret
 
-TextCommand_WAIT_BUTTON::
+TextCommand_WAIT_BUTTON:
 ; text_waitbutton
 ; wait for button press
 ; show arrow
@@ -855,7 +855,7 @@ TextCommand_WAIT_BUTTON::
 	pop hl
 	ret
 
-TextCommand_SCROLL::
+TextCommand_SCROLL:
 ; text_scroll
 ; pushes text up two lines and sets the BC cursor to the border tile
 ; below the first character column of the text box.
@@ -867,7 +867,7 @@ TextCommand_SCROLL::
 	bccoord TEXTBOX_INNERX, TEXTBOX_INNERY + 2
 	ret
 
-TextCommand_START_ASM::
+TextCommand_START_ASM:
 ; text_asm
 
 	bit 7, h
@@ -879,7 +879,7 @@ TextCommand_START_ASM::
 	ld [hl], a
 	ret
 
-TextCommand_NUM::
+TextCommand_NUM:
 ; text_decimal
 ; [$09][addr][hi:bytes lo:digits]
 	ld a, [hli]
@@ -904,7 +904,7 @@ TextCommand_NUM::
 	pop hl
 	ret
 
-TextCommand_PAUSE::
+TextCommand_PAUSE:
 ; text_pause
 	push hl
 	push bc
@@ -919,7 +919,7 @@ TextCommand_PAUSE::
 	pop hl
 	ret
 
-TextCommand_SOUND::
+TextCommand_SOUND:
 ; chars:
 ;   $0b, $0e, $0f, $10, $11, $12, $13
 ; see TextSFX
@@ -954,7 +954,7 @@ TextCommand_SOUND::
 	pop bc
 	ret
 
-Unreferenced_Function1522::
+Unreferenced_Function1522:
 ; sound_cry
 	push de
 	ld e, [hl]
@@ -966,7 +966,7 @@ Unreferenced_Function1522::
 	pop bc
 	ret
 
-TextSFX::
+TextSFX:
 	dbw TX_SOUND_DEX_FANFARE_50_79,  SFX_DEX_FANFARE_50_79
 	dbw TX_SOUND_FANFARE,            SFX_FANFARE
 	dbw TX_SOUND_DEX_FANFARE_20_49,  SFX_DEX_FANFARE_20_49
@@ -976,7 +976,7 @@ TextSFX::
 	dbw TX_SOUND_SLOT_MACHINE_START, SFX_SLOT_MACHINE_START
 	db -1
 
-TextCommand_DOTS::
+TextCommand_DOTS:
 ; text_dots
 ; [$0C][num]
 	ld a, [hli]
@@ -1005,7 +1005,7 @@ TextCommand_DOTS::
 	pop hl
 	ret
 
-TextCommand_LINK_WAIT_BUTTON::
+TextCommand_LINK_WAIT_BUTTON:
 ; text_linkwaitbutton
 ; wait for key down
 ; display arrow
@@ -1016,7 +1016,7 @@ TextCommand_LINK_WAIT_BUTTON::
 	pop hl
 	ret
 
-TextCommand_STRINGBUFFER::
+TextCommand_STRINGBUFFER:
 ; text_buffer
 ; Print a string from one of the following:
 ; 0: wStringBuffer3
@@ -1045,7 +1045,7 @@ TextCommand_STRINGBUFFER::
 	pop hl
 	ret
 
-TextCommand_DAY::
+TextCommand_DAY:
 ; text_today
 
 	call GetWeekday

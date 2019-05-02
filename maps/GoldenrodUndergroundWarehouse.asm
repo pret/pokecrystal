@@ -12,7 +12,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/GoldenrodUndergroundWarehouse.asm", ROMX
 
-GoldenrodUndergroundWarehouse_MapScripts:
+GoldenrodUndergroundWarehouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -213,7 +213,7 @@ DirectorAfterText:
 	line "MON nationwide!"
 	done
 
-GoldenrodUndergroundWarehouse_MapEvents:
+GoldenrodUndergroundWarehouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

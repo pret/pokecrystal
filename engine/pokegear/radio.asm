@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokegear/radio.asm", ROMX
 
-PlayRadioShow:
+PlayRadioShow::
 ; If we're already in the radio program proper, we don't need to be here.
 	ld a, [wCurRadioLine]
 	cp POKE_FLUTE_RADIO
@@ -1594,7 +1594,7 @@ BuenasPassword4:
 	ld a, BUENAS_PASSWORD_5
 	jp NextRadioLine
 
-GetBuenasPassword:
+GetBuenasPassword::
 ; The password indices are held in c.  High nybble contains the group index, low nybble contains the word index.
 ; Load the password group pointer in hl.
 	ld a, c

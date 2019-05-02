@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route35GoldenrodGate.asm", ROMX
 
-Route35GoldenrodGate_MapScripts:
+Route35GoldenrodGate_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -200,7 +200,7 @@ Route35GoldenrodGateFisherText:
 	line "different kinds."
 	done
 
-Route35GoldenrodGate_MapEvents:
+Route35GoldenrodGate_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

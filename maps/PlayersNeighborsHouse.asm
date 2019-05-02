@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/PlayersNeighborsHouse.asm", ROMX
 
-PlayersNeighborsHouse_MapScripts:
+PlayersNeighborsHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -101,7 +101,7 @@ PlayerNeighborRadioText4:
 	line "#MON CHANNEL…"
 	done
 
-PlayersNeighborsHouse_MapEvents:
+PlayersNeighborsHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

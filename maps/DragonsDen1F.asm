@@ -3,12 +3,12 @@ INCLUDE "constants.inc"
 
 SECTION "maps/DragonsDen1F.asm", ROMX
 
-DragonsDen1F_MapScripts:
+DragonsDen1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
 
-DragonsDen1F_MapEvents:
+DragonsDen1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

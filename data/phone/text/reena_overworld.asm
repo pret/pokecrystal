@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/reena_overworld.asm", ROMX
 
-ReenaAskNumber1Text:
+ReenaAskNumber1Text::
 	text "Not bad…"
 	line "It's something to"
 
@@ -17,7 +17,7 @@ ReenaAskNumber1Text:
 	line "practice partner!"
 	done
 
-ReenaAskNumber2Text:
+ReenaAskNumber2Text::
 	text "Give me your phone"
 	line "number!"
 
@@ -26,25 +26,25 @@ ReenaAskNumber2Text:
 	cont "partner!"
 	done
 
-ReenaNumberAcceptedText:
+ReenaNumberAcceptedText::
 	text "Don't be too proud"
 	line "about beating me!"
 
 	para "It was a fluke!"
 	done
 
-ReenaNumberDeclinedText:
+ReenaNumberDeclinedText::
 	text "I don't believe"
 	line "it! You're going"
 	cont "to regret this!"
 	done
 
-ReenaPhoneFullText:
+ReenaPhoneFullText::
 	text "What? Your phone"
 	line "list has no room!"
 	done
 
-ReenaRematchText:
+ReenaRematchText::
 	text "What took you?"
 	line "Start right away!"
 	done

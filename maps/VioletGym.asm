@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/VioletGym.asm", ROMX
 
-VioletGym_MapScripts:
+VioletGym_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -284,7 +284,7 @@ VioletGymGuyWinText:
 	line "time at all!"
 	done
 
-VioletGym_MapEvents:
+VioletGym_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

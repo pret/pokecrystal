@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/erin_caller.asm", ROMX
 
-UnknownText_0x6717a:
+UnknownText_0x6717a::
 	text_ram wStringBuffer3
 	text "'s @"
 	text_ram wStringBuffer4
@@ -12,7 +12,7 @@ UnknownText_0x6717a:
 	cont "than before!"
 	done
 
-UnknownText_0x671a4:
+UnknownText_0x671a4::
 	text "And, and…"
 	line "I just battled and"
 	cont "beat @"
@@ -23,7 +23,7 @@ UnknownText_0x671a4:
 	line "#MON properly!"
 	done
 
-UnknownText_0x671eb:
+UnknownText_0x671eb::
 	text "But, but…"
 
 	para "A wild @"
@@ -35,7 +35,7 @@ UnknownText_0x671eb:
 	line "not fair!"
 	done
 
-UnknownText_0x6722e:
+UnknownText_0x6722e::
 	text "I'm ERIN. Want to"
 	line "battle me again?"
 
@@ -48,11 +48,11 @@ UnknownText_0x6722e:
 	text "!"
 	done
 
-UnknownText_0x67281:
+UnknownText_0x67281::
 	text "See you. Bye-bye!"
 	done
 
-ErinWorkingHardText:
+ErinWorkingHardText::
 	text "I'm working hard"
 	line "to raise my"
 	cont "#MON!"
@@ -61,7 +61,7 @@ ErinWorkingHardText:
 	line "another battle!"
 	done
 
-ErinComeBattleText:
+ErinComeBattleText::
 	text "Oh, <PLAY_G>!"
 	line "Come battle ERIN!"
 

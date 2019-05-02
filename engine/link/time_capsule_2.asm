@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/link/time_capsule_2.asm", ROMX
 
-ConvertMon_2to1:
+ConvertMon_2to1::
 ; Takes the Gen 2 Pokemon number stored in wTempSpecies,
 ; finds it in the Pokered_MonIndices table,
 ; and returns its index in wTempSpecies.
@@ -24,7 +24,7 @@ ConvertMon_2to1:
 	pop bc
 	ret
 
-ConvertMon_1to2:
+ConvertMon_1to2::
 ; Takes the Gen 1 Pokemon number stored in wTempSpecies
 ; and returns the corresponding value from Pokered_MonIndices in wTempSpecies.
 	push bc

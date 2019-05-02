@@ -10,7 +10,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/EcruteakPokecenter1F.asm", ROMX
 
-EcruteakPokecenter1F_MapScripts:
+EcruteakPokecenter1F_MapScripts::
 	db 2 ; scene scripts
 	scene_script .MeetBill ; SCENE_DEFAULT
 	scene_script .DummyScene ; SCENE_FINISHED
@@ -209,7 +209,7 @@ EcruteakPokecenter1FGymGuyText:
 	line "acy. I know it!"
 	done
 
-EcruteakPokecenter1F_MapEvents:
+EcruteakPokecenter1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

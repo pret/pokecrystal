@@ -10,7 +10,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CeladonPokecenter1F.asm", ROMX
 
-CeladonPokecenter1F_MapScripts:
+CeladonPokecenter1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -148,7 +148,7 @@ NoBeastsText:
 	line "you, <PLAYER>!"
 	done
 
-CeladonPokecenter1F_MapEvents:
+CeladonPokecenter1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

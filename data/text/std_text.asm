@@ -3,19 +3,19 @@ INCLUDE "constants.inc"
 
 SECTION "data/text/std_text.asm", ROMX
 
-NurseMornText:
+NurseMornText::
 	text "Good morning!"
 	line "Welcome to our"
 	cont "#MON CENTER."
 	done
 
-NurseDayText:
+NurseDayText::
 	text "Hello!"
 	line "Welcome to our"
 	cont "#MON CENTER."
 	done
 
-NurseNiteText:
+NurseNiteText::
 	text "Good evening!"
 	line "You're out late."
 
@@ -23,7 +23,7 @@ NurseNiteText:
 	line "#MON CENTER."
 	done
 
-PokeComNurseMornText:
+PokeComNurseMornText::
 	text "Good morning!"
 
 	para "This is the #-"
@@ -33,7 +33,7 @@ PokeComNurseMornText:
 	line "#COM CENTER."
 	done
 
-PokeComNurseDayText:
+PokeComNurseDayText::
 	text "Hello!"
 
 	para "This is the #-"
@@ -43,7 +43,7 @@ PokeComNurseDayText:
 	line "#COM CENTER."
 	done
 
-PokeComNurseNiteText:
+PokeComNurseNiteText::
 	text "Good to see you"
 	line "working so late."
 
@@ -54,7 +54,7 @@ PokeComNurseNiteText:
 	line "#COM CENTER."
 	done
 
-NurseAskHealText:
+NurseAskHealText::
 	text "We can heal your"
 	line "#MON to perfect"
 	cont "health."
@@ -63,12 +63,12 @@ NurseAskHealText:
 	line "#MON?"
 	done
 
-NurseTakePokemonText:
+NurseTakePokemonText::
 	text "OK, may I see your"
 	line "#MON?"
 	done
 
-NurseReturnPokemonText:
+NurseReturnPokemonText::
 	text "Thank you for"
 	line "waiting."
 
@@ -76,7 +76,7 @@ NurseReturnPokemonText:
 	line "fully healed."
 	done
 
-NurseGoodbyeText:
+NurseGoodbyeText::
 	text "We hope to see you"
 	line "again."
 	done
@@ -86,7 +86,7 @@ NurseGoodbyeText:
 	line "again."
 	done
 
-NursePokerusText:
+NursePokerusText::
 	text "Your #MON"
 	line "appear to be"
 
@@ -104,7 +104,7 @@ NursePokerusText:
 	line "CENTER."
 	done
 
-PokeComNursePokerusText:
+PokeComNursePokerusText::
 	text "Your #MON"
 	line "appear to be"
 
@@ -119,18 +119,18 @@ PokeComNursePokerusText:
 	line "you anything more."
 	done
 
-DifficultBookshelfText:
+DifficultBookshelfText::
 	text "It's full of"
 	line "difficult books."
 	done
 
-PictureBookshelfText:
+PictureBookshelfText::
 	text "A whole collection"
 	line "of #MON picture"
 	cont "books!"
 	done
 
-MagazineBookshelfText:
+MagazineBookshelfText::
 	text "#MON magazines…"
 	line "#MON PAL,"
 
@@ -138,7 +138,7 @@ MagazineBookshelfText:
 	line "#MON GRAPH…"
 	done
 
-TeamRocketOathText:
+TeamRocketOathText::
 	text "TEAM ROCKET OATH"
 
 	para "Steal #MON for"
@@ -152,32 +152,32 @@ TeamRocketOathText:
 	cont "TEAM ROCKET!"
 	done
 
-IncenseBurnerText:
+IncenseBurnerText::
 	text "What is this?"
 
 	para "Oh, it's an"
 	line "incense burner!"
 	done
 
-MerchandiseShelfText:
+MerchandiseShelfText::
 	text "Lots of #MON"
 	line "merchandise!"
 	done
 
-TownMapText:
+TownMapText::
 	text "It's the TOWN MAP."
 	done
 
-WindowText:
+WindowText::
 	text "My reflection!"
 	line "Lookin' good!"
 	done
 
-TVText:
+TVText::
 	text "It's a TV."
 	done
 
-HomepageText:
+HomepageText::
 	text "#MON JOURNAL"
 	line "HOME PAGE…"
 
@@ -192,7 +192,7 @@ HomepageText:
 	line "requests now!"
 	done
 
-TrashCanText:
+TrashCanText::
 	text "There's nothing in"
 	line "here…"
 	done
@@ -207,19 +207,19 @@ TrashCanText:
 	line "can break this."
 	done
 
-PokecenterSignText:
+PokecenterSignText::
 	text "Heal Your #MON!"
 	line "#MON CENTER"
 	done
 
-MartSignText:
+MartSignText::
 	text "For All Your"
 	line "#MON Needs"
 
 	para "#MON MART"
 	done
 
-ContestResults_ReadyToJudgeText:
+ContestResults_ReadyToJudgeText::
 	text "We will now judge"
 	line "the #MON you've"
 	cont "caught."
@@ -234,7 +234,7 @@ ContestResults_ReadyToJudgeText:
 	line "this?"
 	done
 
-ContestResults_PlayerWonAPrizeText:
+ContestResults_PlayerWonAPrizeText::
 	text "<PLAYER>, the No.@"
 	text_ram wStringBuffer3
 	text_start
@@ -244,30 +244,30 @@ ContestResults_PlayerWonAPrizeText:
 	text "!"
 	done
 
-ReceivedItemText:
+ReceivedItemText::
 	text "<PLAYER> received"
 	line "@"
 	text_ram wStringBuffer4
 	text "."
 	done
 
-ContestResults_JoinUsNextTimeText:
+ContestResults_JoinUsNextTimeText::
 	text "Please join us for"
 	line "the next Contest!"
 	done
 
-ContestResults_ConsolationPrizeText:
+ContestResults_ConsolationPrizeText::
 	text "Everyone else gets"
 	line "a BERRY as a con-"
 	cont "solation prize!"
 	done
 
-ContestResults_DidNotWinText:
+ContestResults_DidNotWinText::
 	text "We hope you do"
 	line "better next time."
 	done
 
-ContestResults_ReturnPartyText:
+ContestResults_ReturnPartyText::
 	text "We'll return the"
 	line "#MON we kept"
 
@@ -275,7 +275,7 @@ ContestResults_ReturnPartyText:
 	line "Here you go!"
 	done
 
-ContestResults_PartyFullText:
+ContestResults_PartyFullText::
 	text "Your party's full,"
 	line "so the #MON was"
 
@@ -283,13 +283,13 @@ ContestResults_PartyFullText:
 	line "in BILL's PC."
 	done
 
-GymStatue_CityGymText:
+GymStatue_CityGymText::
 	text_ram wStringBuffer3
 	text_start
 	line "#MON GYM"
 	done
 
-GymStatue_WinningTrainersText:
+GymStatue_WinningTrainersText::
 	text "LEADER: @"
 	text_ram wStringBuffer4
 	text_start
@@ -297,12 +297,12 @@ GymStatue_WinningTrainersText:
 	line "<PLAYER>"
 	done
 
-CoinVendor_WelcomeText:
+CoinVendor_WelcomeText::
 	text "Welcome to the"
 	line "GAME CORNER."
 	done
 
-CoinVendor_NoCoinCaseText:
+CoinVendor_NoCoinCaseText::
 	text "Do you need game"
 	line "coins?"
 
@@ -311,7 +311,7 @@ CoinVendor_NoCoinCaseText:
 	cont "your coins."
 	done
 
-CoinVendor_IntroText:
+CoinVendor_IntroText::
 	text "Do you need some"
 	line "game coins?"
 
@@ -320,32 +320,32 @@ CoinVendor_IntroText:
 	cont "want some?"
 	done
 
-CoinVendor_Buy50CoinsText:
+CoinVendor_Buy50CoinsText::
 	text "Thank you!"
 	line "Here are 50 coins."
 	done
 
-CoinVendor_Buy500CoinsText:
+CoinVendor_Buy500CoinsText::
 	text "Thank you! Here"
 	line "are 500 coins."
 	done
 
-CoinVendor_NotEnoughMoneyText:
+CoinVendor_NotEnoughMoneyText::
 	text "You don't have"
 	line "enough money."
 	done
 
-CoinVendor_CoinCaseFullText:
+CoinVendor_CoinCaseFullText::
 	text "Whoops! Your COIN"
 	line "CASE is full."
 	done
 
-CoinVendor_CancelText:
+CoinVendor_CancelText::
 	text "No coins for you?"
 	line "Come again!"
 	done
 
-BugContestPrizeNoRoomText:
+BugContestPrizeNoRoomText::
 	text "Oh? Your PACK is"
 	line "full."
 
@@ -356,13 +356,13 @@ BugContestPrizeNoRoomText:
 	line "make room for it."
 	done
 
-HappinessText3:
+HappinessText3::
 	text "Wow! You and your"
 	line "#MON are really"
 	cont "close!"
 	done
 
-HappinessText2:
+HappinessText2::
 	text "#MON get more"
 	line "friendly if you"
 
@@ -370,7 +370,7 @@ HappinessText2:
 	line "them."
 	done
 
-HappinessText1:
+HappinessText1::
 	text "You haven't tamed"
 	line "your #MON."
 
@@ -378,14 +378,14 @@ HappinessText1:
 	line "nice, it'll pout."
 	done
 
-RegisteredNumber1Text:
+RegisteredNumber1Text::
 	text "<PLAYER> registered"
 	line "@"
 	text_ram wStringBuffer3
 	text "'s number."
 	done
 
-RegisteredNumber2Text:
+RegisteredNumber2Text::
 	text "<PLAYER> registered"
 	line "@"
 	text_ram wStringBuffer3

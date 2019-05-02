@@ -1,4 +1,4 @@
-BattleCommand_Endure:
+BattleCommand_Endure::
 ; endure
 
 ; Endure shares code with Protect. See protect.asm.

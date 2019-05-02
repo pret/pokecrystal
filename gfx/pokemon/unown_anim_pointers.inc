@@ -1,4 +1,4 @@
-UnownAnimationPointers:
+UnownAnimationPointers::
 	dw UnownAAnimation
 	dw UnownBAnimation
 	dw UnownCAnimation

@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route10Pokecenter1F.asm", ROMX
 
-Route10Pokecenter1F_MapScripts:
+Route10Pokecenter1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -83,7 +83,7 @@ Route10Pokecenter1FCooltrainerFText:
 	line "PLANT."
 	done
 
-Route10Pokecenter1F_MapEvents:
+Route10Pokecenter1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

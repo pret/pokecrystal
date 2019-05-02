@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/itemfinder.asm", ROMX
 
-ItemFinder:
+ItemFinder::
 	farcall CheckForHiddenItems
 	jr c, .found_something
 	ld hl, .Script_FoundNothing

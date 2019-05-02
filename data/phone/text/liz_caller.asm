@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/liz_caller.asm", ROMX
 
-UnknownText_0x175fda:
+UnknownText_0x175fda::
 	text "Oh, you have to"
 	line "hear this."
 
@@ -16,7 +16,7 @@ UnknownText_0x175fda:
 	line "nuzzle me!"
 	done
 
-UnknownText_0x17602d:
+UnknownText_0x17602d::
 	text "And, and! Um…"
 
 	para "We beat a wild"
@@ -31,7 +31,7 @@ UnknownText_0x17602d:
 	line "it, though."
 	done
 
-UnknownText_0x176095:
+UnknownText_0x176095::
 	text "And, and! Uh…"
 
 	para "We just saw a"
@@ -47,7 +47,7 @@ UnknownText_0x176095:
 	line "really angry!"
 	done
 
-UnknownText_0x17610a:
+UnknownText_0x17610a::
 	text "Hi! Do you have"
 	line "some free time?"
 
@@ -66,7 +66,7 @@ UnknownText_0x17610a:
 	line "you get here!"
 	done
 
-LizHiTaniaText:
+LizHiTaniaText::
 	text "Hi, TANIA. How are"
 	line "you? This is LIZ."
 
@@ -77,12 +77,12 @@ LizHiTaniaText:
 	line "Oops! Sorry!"
 	done
 
-UnknownText_0x17620a:
+UnknownText_0x17620a::
 	text "OK, I'll call you"
 	line "later!"
 	done
 
-UnknownText_0x176223:
+UnknownText_0x176223::
 	text "Listen, listen!"
 
 	para "I was listening to"
@@ -98,7 +98,7 @@ UnknownText_0x176223:
 	line "was. So strange!"
 	done
 
-UnknownText_0x1762c3:
+UnknownText_0x1762c3::
 	text "Listen, listen!"
 
 	para "Don't you think"
@@ -120,7 +120,7 @@ UnknownText_0x1762c3:
 	line "meet him!"
 	done
 
-UnknownText_0x17638a:
+UnknownText_0x17638a::
 	text "Listen, listen!"
 
 	para "Do you know EARL,"
@@ -136,7 +136,7 @@ UnknownText_0x17638a:
 	line "was wildly funny!"
 	done
 
-UnknownText_0x176424:
+UnknownText_0x176424::
 	text "Listen, listen!"
 
 	para "I collect #MON"
@@ -156,7 +156,7 @@ UnknownText_0x176424:
 	cont "you had one."
 	done
 
-UnknownText_0x1764eb:
+UnknownText_0x1764eb::
 	text "Listen, listen!"
 
 	para "Do you know about"
@@ -175,7 +175,7 @@ UnknownText_0x1764eb:
 	line "it's delicious!"
 	done
 
-UnknownText_0x176599:
+UnknownText_0x176599::
 	text "Listen, listen!"
 
 	para "There's a #MON"
@@ -203,7 +203,7 @@ UnknownText_0x176599:
 	line "whom I should use…"
 	done
 
-UnknownText_0x1766ac:
+UnknownText_0x1766ac::
 	text "Listen, listen!"
 
 	para "GOLDENROD GYM's"
@@ -220,7 +220,7 @@ UnknownText_0x1766ac:
 	line "totally talented."
 	done
 
-UnknownText_0x17674f:
+UnknownText_0x17674f::
 	text "Listen, listen!"
 
 	para "Have you ever"
@@ -241,7 +241,7 @@ UnknownText_0x17674f:
 	cont "that great?"
 	done
 
-UnknownText_0x176816:
+UnknownText_0x176816::
 	text "Listen, listen!"
 
 	para "I saw a beautiful"
@@ -256,7 +256,7 @@ UnknownText_0x176816:
 	text " too."
 	done
 
-UnknownText_0x17686d:
+UnknownText_0x17686d::
 	text "Listen, listen!"
 
 	para "Uh… Um… Whoops!"
@@ -265,7 +265,7 @@ UnknownText_0x17686d:
 	line "was going to say!"
 	done
 
-UnknownText_0x1768b0:
+UnknownText_0x1768b0::
 	text "Listen, listen!"
 
 	para "My @"
@@ -299,7 +299,7 @@ UnknownText_0x1768b0:
 	line "I love chatting!"
 	done
 
-UnknownText_0x1769da:
+UnknownText_0x1769da::
 	text "I've got too much"
 	line "time on my hands!"
 

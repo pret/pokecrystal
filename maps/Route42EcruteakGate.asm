@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route42EcruteakGate.asm", ROMX
 
-Route42EcruteakGate_MapScripts:
+Route42EcruteakGate_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -22,7 +22,7 @@ Route42EcruteakGateOfficerText:
 	line "get lost in there."
 	done
 
-Route42EcruteakGate_MapEvents:
+Route42EcruteakGate_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

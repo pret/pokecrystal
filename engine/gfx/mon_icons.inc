@@ -1,4 +1,4 @@
-LoadOverworldMonIcon:
+LoadOverworldMonIcon::
 	ld a, e
 	call ReadMonMenuIcon
 	ld l, a
@@ -13,7 +13,7 @@ LoadOverworldMonIcon:
 	ld c, 8
 	ret
 
-LoadMenuMonIcon:
+LoadMenuMonIcon::
 	push hl
 	push de
 	push bc
@@ -252,7 +252,7 @@ Trade_LoadMonIconGFX:
 	call GetMemIconGFX
 	ret
 
-GetSpeciesIcon:
+GetSpeciesIcon::
 ; Load species icon into VRAM at tile a
 	push de
 	ld a, [wTempIconSpecies]
@@ -263,7 +263,7 @@ GetSpeciesIcon:
 	call GetIconGFX
 	ret
 
-FlyFunction_GetMonIcon:
+FlyFunction_GetMonIcon::
 	push de
 	ld a, [wTempIconSpecies]
 	call ReadMonMenuIcon
@@ -349,7 +349,7 @@ GetGFXUnlessMobile:
 	jp nz, Request2bpp
 	jp Get2bpp_2
 
-FreezeMonIcons:
+FreezeMonIcons::
 	ld hl, wSpriteAnimationStructs
 	ld e, PARTY_LENGTH
 	ld a, [wMenuCursorY]
@@ -382,7 +382,7 @@ FreezeMonIcons:
 	jr nz, .loop
 	ret
 
-UnfreezeMonIcons:
+UnfreezeMonIcons::
 	ld hl, wSpriteAnimationStructs
 	ld e, PARTY_LENGTH
 .loop
@@ -403,7 +403,7 @@ UnfreezeMonIcons:
 	jr nz, .loop
 	ret
 
-HoldSwitchmonIcon:
+HoldSwitchmonIcon::
 	ld hl, wSpriteAnimationStructs
 	ld e, PARTY_LENGTH
 	ld a, [wSwitchMon]

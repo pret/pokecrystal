@@ -10,7 +10,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/VermilionGym.asm", ROMX
 
-VermilionGym_MapScripts:
+VermilionGym_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -263,7 +263,7 @@ VermilionGymTrashCanText:
 	line "but trash."
 	done
 
-VermilionGym_MapEvents:
+VermilionGym_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

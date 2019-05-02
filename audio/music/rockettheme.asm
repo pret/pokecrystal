@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/rockettheme.asm", ROMX, BANK[BANK_MUSIC_ROCKET_ENCOUNTER]
 
-Music_RocketTheme:
+Music_RocketTheme::
 	musicheader 4, 1, Music_RocketTheme_Ch1
 	musicheader 1, 2, Music_RocketTheme_Ch2
 	musicheader 1, 3, Music_RocketTheme_Ch3

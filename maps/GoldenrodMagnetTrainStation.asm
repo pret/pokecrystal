@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/GoldenrodMagnetTrainStation.asm", ROMX
 
-GoldenrodMagnetTrainStation_MapScripts:
+GoldenrodMagnetTrainStation_MapScripts::
 	db 1 ; scene scripts
 	scene_script .DummyScene ; SCENE_DEFAULT
 
@@ -167,7 +167,7 @@ GoldenrodMagnetTrainStationGentlemanText:
 	cont "to KANTO."
 	done
 
-GoldenrodMagnetTrainStation_MapEvents:
+GoldenrodMagnetTrainStation_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

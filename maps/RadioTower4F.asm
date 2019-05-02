@@ -12,7 +12,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/RadioTower4F.asm", ROMX
 
-RadioTower4F_MapScripts:
+RadioTower4F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -248,7 +248,7 @@ RadioTower4FStudio2SignText:
 	text "4F STUDIO 2"
 	done
 
-RadioTower4F_MapEvents:
+RadioTower4F_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

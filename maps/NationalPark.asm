@@ -19,7 +19,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/NationalPark.asm", ROMX
 
-NationalPark_MapScripts:
+NationalPark_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -516,7 +516,7 @@ NationalParkTrainerTipsText:
 	cont "pressing START."
 	done
 
-NationalPark_MapEvents:
+NationalPark_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

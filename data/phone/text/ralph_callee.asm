@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/ralph_callee.asm", ROMX
 
-UnknownText_0x1b5c10:
+UnknownText_0x1b5c10::
 	text "Yes? Ah, <PLAY_G>."
 
 	para "You're courteous"
@@ -13,7 +13,7 @@ UnknownText_0x1b5c10:
 	line "call on the phone."
 	done
 
-UnknownText_0x1b5c63:
+UnknownText_0x1b5c63::
 	text "Yes? Ah, <PLAY_G>."
 
 	para "You're courteous"
@@ -23,7 +23,7 @@ UnknownText_0x1b5c63:
 	line "call on the phone."
 	done
 
-UnknownText_0x1b5cb6:
+UnknownText_0x1b5cb6::
 	text "Yes? Ah, <PLAY_G>."
 
 	para "You're courteous"
@@ -33,28 +33,28 @@ UnknownText_0x1b5cb6:
 	line "call on the phone."
 	done
 
-UnknownText_0x1b5d09:
+UnknownText_0x1b5d09::
 	text "Hiya, it's Uncle"
 	line "@"
 	text_ram wStringBuffer3
 	text "."
 	done
 
-UnknownText_0x1b5d21:
+UnknownText_0x1b5d21::
 	text "Hiya, it's Uncle"
 	line "@"
 	text_ram wStringBuffer3
 	text "."
 	done
 
-UnknownText_0x1b5d39:
+UnknownText_0x1b5d39::
 	text "Hiya, it's Uncle"
 	line "@"
 	text_ram wStringBuffer3
 	text "."
 	done
 
-UnknownText_0x1b5d51:
+UnknownText_0x1b5d51::
 	text "Are you taking"
 	line "good care of your"
 

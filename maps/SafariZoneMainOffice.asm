@@ -3,12 +3,12 @@ INCLUDE "constants.inc"
 
 SECTION "maps/SafariZoneMainOffice.asm", ROMX
 
-SafariZoneMainOffice_MapScripts:
+SafariZoneMainOffice_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
 
-SafariZoneMainOffice_MapEvents:
+SafariZoneMainOffice_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

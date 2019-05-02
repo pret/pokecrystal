@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/burnedtower.asm", ROMX
 
-Music_BurnedTower:
+Music_BurnedTower::
 	musicheader 4, 1, Music_BurnedTower_Ch1
 	musicheader 1, 2, Music_BurnedTower_Ch2
 	musicheader 1, 3, Music_BurnedTower_Ch3

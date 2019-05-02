@@ -1,15 +1,15 @@
-BattleTowerRoomMenu:
+BattleTowerRoomMenu::
 ; special
 	call InitBattleTowerChallengeRAM
 	farcall _BattleTowerRoomMenu
 	ret
 
-Function1700ba:
+Function1700ba::
 	call InitBattleTowerChallengeRAM
 	farcall Function11811a
 	ret
 
-Function1700c4:
+Function1700c4::
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(w3_d202TrainerData) ; aka BANK(w3_dffc) and BANK(w3_d202Name)
@@ -50,7 +50,7 @@ Function1700c4:
 	ldh [rSVBK], a
 	ret
 
-Function170114:
+Function170114::
 	call InitBattleTowerChallengeRAM
 	call .Function170121
 	farcall Function11805f
@@ -177,13 +177,13 @@ Function170139:
 	jr nz, .digit_loop
 	ret
 
-BattleTowerBattle:
+BattleTowerBattle::
 	xor a ; FALSE
 	ld [wBattleTowerBattleEnded], a
 	call _BattleTowerBattle
 	ret
 
-DummySpecial_17021d:
+DummySpecial_17021d::
 	ret
 
 InitBattleTowerChallengeRAM:
@@ -600,7 +600,7 @@ Unreferenced_Function1704ca:
 .asm_1704e0
 	ret
 
-Function1704e1:
+Function1704e1::
 	call SpeechTextbox
 	call FadeToMenu
 	call InitBattleTowerChallengeRAM
@@ -868,7 +868,7 @@ Function1704e1:
 .String_PastReaders:
 	db "れきだいりーダーいちらん@"
 
-BattleTowerAction:
+BattleTowerAction::
 	ld a, [wScriptVar]
 	ld e, a
 	ld d, 0
@@ -1088,7 +1088,7 @@ Function1707ac:
 	ld a, 8
 	ld [wScriptVar], a
 
-Function1707f4:
+Function1707f4::
 	ld a, BANK(s5_be46) ; aka BANK(s5_aa8b) and BANK(s5_aa8c)
 	call GetSRAMBank
 	xor a
@@ -1098,7 +1098,7 @@ Function1707f4:
 	call CloseSRAM
 	ret
 
-Function170807:
+Function170807::
 	call UpdateTime
 	ld a, BANK(s5_b2f9) ; aka BANK(s5_b2fa)
 	call GetSRAMBank
@@ -1109,7 +1109,7 @@ Function170807:
 	call CloseSRAM
 	ret
 
-Function17081d:
+Function17081d::
 	xor a
 	ld [wScriptVar], a
 	ld a, BANK(s5_b2f9) ; aka BANK(s5_b2fa)
@@ -1180,7 +1180,7 @@ LoadBattleTowerLevelGroup: ; Load level group choice
 	call CloseSRAM
 	ret
 
-BattleTower_CheckSaveFileExistsAndIsYours:
+BattleTower_CheckSaveFileExistsAndIsYours::
 	ld a, [wSaveFileExists]
 	and a
 	jr z, .nope
@@ -1255,7 +1255,7 @@ Function1708f0: ; BattleTowerAction $0d
 	ld [wScriptVar], a
 	ret
 
-Function170923:
+Function170923::
 	ld a, BANK(s5_aa48) ; aka BANK(s5_aa47) and BANK(s5_aa5d)
 	call GetSRAMBank
 	xor a
@@ -1557,7 +1557,7 @@ BattleTowerAction_UbersCheck:
 	ld [wScriptVar], a
 	ret
 
-LoadOpponentTrainerAndPokemonWithOTSprite:
+LoadOpponentTrainerAndPokemonWithOTSprite::
 	farcall Function_LoadOpponentTrainerAndPokemons
 	ldh a, [rSVBK]
 	push af
@@ -1603,10 +1603,10 @@ LoadOpponentTrainerAndPokemonWithOTSprite:
 
 INCLUDE "data/trainers/sprites.inc"
 
-DummySpecial_170bd2:
+DummySpecial_170bd2::
 	ret
 
-CheckForBattleTowerRules:
+CheckForBattleTowerRules::
 	farcall _CheckForBattleTowerRules
 	jr c, .ready
 	xor a ; FALSE

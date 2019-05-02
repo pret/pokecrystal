@@ -32,7 +32,7 @@ endr
 	dw wBuffer6
 	db 60, 15
 
-RestartClock:
+RestartClock::
 ; If we're here, we had an RTC overflow.
 	ld hl, .Text_ClockTimeMayBeWrong
 	call PrintText

@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/EcruteakLugiaSpeechHouse.asm", ROMX
 
-EcruteakLugiaSpeechHouse_MapScripts:
+EcruteakLugiaSpeechHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -47,7 +47,7 @@ EcruteakLugiaSpeechHouseYoungsterText:
 	line "must be powerful."
 	done
 
-EcruteakLugiaSpeechHouse_MapEvents:
+EcruteakLugiaSpeechHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

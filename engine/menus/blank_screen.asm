@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/menus/blank_screen.asm", ROMX
 
-BlankScreen:
+BlankScreen::
 	call DisableSpriteUpdates
 	xor a
 	ldh [hBGMapMode], a

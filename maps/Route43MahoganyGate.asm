@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route43MahoganyGate.asm", ROMX
 
-Route43MahoganyGate_MapScripts:
+Route43MahoganyGate_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -41,7 +41,7 @@ Route43MahoganyGateOfficerRocketsClearedText:
 	cont "days."
 	done
 
-Route43MahoganyGate_MapEvents:
+Route43MahoganyGate_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/items/tmhm2.asm", ROMX
 
-CanLearnTMHMMove:
+CanLearnTMHMMove::
 	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
@@ -37,7 +37,7 @@ CanLearnTMHMMove:
 	ld c, 0
 	ret
 
-GetTMHMMove:
+GetTMHMMove::
 	ld a, [wTempTMHM]
 	dec a
 	ld hl, TMHMMoves

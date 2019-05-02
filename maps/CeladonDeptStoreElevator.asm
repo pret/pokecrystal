@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CeladonDeptStoreElevator.asm", ROMX
 
-CeladonDeptStoreElevator_MapScripts:
+CeladonDeptStoreElevator_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -30,7 +30,7 @@ CeladonDeptStoreElevatorData:
 	elevfloor FLOOR_6F, 2, CELADON_DEPT_STORE_6F
 	db -1 ; end
 
-CeladonDeptStoreElevator_MapEvents:
+CeladonDeptStoreElevator_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

@@ -478,7 +478,7 @@ GetTMHMNumber::
 	ld c, a
 	ret
 
-GetNumberedTMHM:
+GetNumberedTMHM::
 ; Return the item id of a TM/HM by number c.
 	ld a, c
 ; Skip any gaps.
@@ -505,7 +505,7 @@ _CheckTossableItem::
 	and a
 	ret
 
-CheckSelectableItem:
+CheckSelectableItem::
 ; Return 1 in wItemAttributeParamBuffer and carry if wCurItem can't be selected.
 	ld a, ITEMATTR_PERMISSIONS
 	call GetItemAttr
@@ -522,7 +522,7 @@ CheckItemPocket::
 	ld [wItemAttributeParamBuffer], a
 	ret
 
-CheckItemContext:
+CheckItemContext::
 ; Return the context for wCurItem in wItemAttributeParamBuffer.
 	ld a, ITEMATTR_HELP
 	call GetItemAttr
@@ -530,7 +530,7 @@ CheckItemContext:
 	ld [wItemAttributeParamBuffer], a
 	ret
 
-CheckItemMenu:
+CheckItemMenu::
 ; Return the menu for wCurItem in wItemAttributeParamBuffer.
 	ld a, ITEMATTR_HELP
 	call GetItemAttr
@@ -571,7 +571,7 @@ ItemAttr_ReturnCarry:
 	scf
 	ret
 
-GetItemPrice:
+GetItemPrice::
 ; Return the price of wCurItem in de.
 	push hl
 	push bc

@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/RockTunnelB1F.asm", ROMX
 
-RockTunnelB1F_MapScripts:
+RockTunnelB1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -25,7 +25,7 @@ RockTunnelB1FRevive:
 RockTunnelB1FHiddenMaxPotion:
 	hiddenitem MAX_POTION, EVENT_ROCK_TUNNEL_B1F_HIDDEN_MAX_POTION
 
-RockTunnelB1F_MapEvents:
+RockTunnelB1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

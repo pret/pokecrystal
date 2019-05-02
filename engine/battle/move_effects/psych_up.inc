@@ -1,4 +1,4 @@
-BattleCommand_PsychUp:
+BattleCommand_PsychUp::
 ; psychup
 
 	ld hl, wEnemyStatLevels

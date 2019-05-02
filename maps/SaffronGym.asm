@@ -11,7 +11,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/SaffronGym.asm", ROMX
 
-SaffronGym_MapScripts:
+SaffronGym_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -293,7 +293,7 @@ SaffronGymGuyWinText:
 	line "fantastic battle!"
 	done
 
-SaffronGym_MapEvents:
+SaffronGym_MapEvents::
 	db 0, 0 ; filler
 
 	db 32 ; warp events

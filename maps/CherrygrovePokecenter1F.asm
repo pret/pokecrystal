@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CherrygrovePokecenter1F.asm", ROMX
 
-CherrygrovePokecenter1F_MapScripts:
+CherrygrovePokecenter1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -71,7 +71,7 @@ CherrygrovePokecenter1FTeacherText_CommCenterOpen:
 	line "there already!"
 	done
 
-CherrygrovePokecenter1F_MapEvents:
+CherrygrovePokecenter1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

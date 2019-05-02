@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/play_slow_cry.asm", ROMX
 
-PlaySlowCry:
+PlaySlowCry::
 	ld a, [wScriptVar]
 	call LoadCry
 	jr c, .done

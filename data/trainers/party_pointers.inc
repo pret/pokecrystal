@@ -1,6 +1,6 @@
 ; Groups are defined in data/trainers/parties.inc.
 
-TrainerGroups:
+TrainerGroups::
 ; entries correspond to trainer classes (see constants/trainer_constants.inc)
 	dw FalknerGroup
 	dw WhitneyGroup

@@ -3,12 +3,12 @@ INCLUDE "constants.inc"
 
 SECTION "maps/WhirlIslandNW.asm", ROMX
 
-WhirlIslandNW_MapScripts:
+WhirlIslandNW_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
 
-WhirlIslandNW_MapEvents:
+WhirlIslandNW_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

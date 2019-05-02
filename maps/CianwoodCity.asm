@@ -17,7 +17,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CianwoodCity.asm", ROMX
 
-CianwoodCity_MapScripts:
+CianwoodCity_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_CIANWOODCITY_NOTHING
 	scene_script .DummyScene1 ; SCENE_CIANWOODCITY_SUICUNE_AND_EUSINE
@@ -384,7 +384,7 @@ CianwoodPokeSeerSignText:
 	line "AHEAD"
 	done
 
-CianwoodCity_MapEvents:
+CianwoodCity_MapEvents::
 	db 0, 0 ; filler
 
 	db 7 ; warp events

@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/ManiasHouse.asm", ROMX
 
-ManiasHouse_MapScripts:
+ManiasHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -203,7 +203,7 @@ ManiaText_ShuckleIsYourLastMon:
 	line "in battle?"
 	done
 
-ManiasHouse_MapEvents:
+ManiasHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

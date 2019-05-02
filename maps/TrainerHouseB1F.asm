@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/TrainerHouseB1F.asm", ROMX
 
-TrainerHouseB1F_MapScripts:
+TrainerHouseB1F_MapScripts::
 	db 1 ; scene scripts
 	scene_script .DummyScene ; SCENE_DEFAULT
 
@@ -172,7 +172,7 @@ TrainerHouseB1FCalBeforeText:
 	cont "could battle you."
 	done
 
-TrainerHouseB1F_MapEvents:
+TrainerHouseB1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/tintower.asm", ROMX
 
-Music_TinTower:
+Music_TinTower::
 	musicheader 4, 1, Music_TinTower_Ch1
 	musicheader 1, 2, Music_TinTower_Ch2
 	musicheader 1, 3, Music_TinTower_Ch3

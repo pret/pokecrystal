@@ -14,7 +14,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route42.asm", ROMX
 
-Route42_MapScripts:
+Route42_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_ROUTE42_NOTHING
 	scene_script .DummyScene1 ; SCENE_ROUTE42_SUICUNE
@@ -321,7 +321,7 @@ Route42Sign2Text:
 	line "MAHOGANY TOWN"
 	done
 
-Route42_MapEvents:
+Route42_MapEvents::
 	db 0, 0 ; filler
 
 	db 5 ; warp events

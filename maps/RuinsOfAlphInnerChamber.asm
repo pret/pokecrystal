@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/RuinsOfAlphInnerChamber.asm", ROMX
 
-RuinsOfAlphInnerChamber_MapScripts:
+RuinsOfAlphInnerChamber_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_RUINSOFALPHINNERCHAMBER_NOTHING
 	scene_script .UnownAppear ; SCENE_RUINSOFALPHINNERCHAMBER_STRANGE_PRESENCE
@@ -79,7 +79,7 @@ RuinsOfAlphInnerChamberStatueText:
 	cont "MON."
 	done
 
-RuinsOfAlphInnerChamber_MapEvents:
+RuinsOfAlphInnerChamber_MapEvents::
 	db 0, 0 ; filler
 
 	db 9 ; warp events

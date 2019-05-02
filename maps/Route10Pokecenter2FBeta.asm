@@ -3,12 +3,12 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route10Pokecenter2FBeta.asm", ROMX
 
-Route10Pokecenter2FBeta_MapScripts:
+Route10Pokecenter2FBeta_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
 
-Route10Pokecenter2FBeta_MapEvents:
+Route10Pokecenter2FBeta_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

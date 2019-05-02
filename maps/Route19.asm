@@ -11,7 +11,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route19.asm", ROMX
 
-Route19_MapScripts:
+Route19_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -237,7 +237,7 @@ CarefulSwimmingSignText:
 	para "FUCHSIA POLICE"
 	done
 
-Route19_MapEvents:
+Route19_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

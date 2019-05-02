@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/poisonstep_pals.asm", ROMX
 
-LoadPoisonBGPals:
+LoadPoisonBGPals::
 	call .LoadPals
 	ldh a, [hCGB]
 	and a

@@ -3,12 +3,12 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/diploma.asm", ROMX
 
-_Diploma:
+_Diploma::
 	call PlaceDiplomaOnScreen
 	call WaitPressAorB_BlinkCursor
 	ret
 
-PlaceDiplomaOnScreen:
+PlaceDiplomaOnScreen::
 	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
@@ -54,7 +54,7 @@ PlaceDiplomaOnScreen:
 	next "Congratulations!"
 	db   "@"
 
-PrintDiplomaPage2:
+PrintDiplomaPage2::
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, $7f

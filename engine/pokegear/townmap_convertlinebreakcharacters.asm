@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokegear/townmap_convertlinebreakcharacters.asm", ROMX
 
-TownMap_ConvertLineBreakCharacters:
+TownMap_ConvertLineBreakCharacters::
 	ld hl, wStringBuffer1
 .loop
 	ld a, [hl]

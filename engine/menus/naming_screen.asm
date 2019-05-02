@@ -9,13 +9,13 @@ NAMINGSCREEN_UNDERLINE  EQU "<DOT>" ; $f2
 
 SECTION "engine/menus/naming_screen.asm", ROMX
 
-_NamingScreen:
+_NamingScreen::
 	call DisableSpriteUpdates
 	call NamingScreen
 	call ReturnToMapWithSpeechTextbox
 	ret
 
-NamingScreen:
+NamingScreen::
 	ld hl, wNamingScreenDestinationPointer
 	ld [hl], e
 	inc hl
@@ -515,7 +515,7 @@ NamingScreen_GetCursorPosition:
 	xor a
 	ret
 
-NamingScreen_AnimateCursor:
+NamingScreen_AnimateCursor::
 	call .GetDPad
 	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
@@ -902,7 +902,7 @@ INCBIN "gfx/naming_screen/middle_line.1bpp"
 NamingScreenGFX_UnderLine:
 INCBIN "gfx/naming_screen/underline.1bpp"
 
-_ComposeMailMessage:
+_ComposeMailMessage::
 	ld hl, wNamingScreenDestinationPointer
 	ld [hl], e
 	inc hl
@@ -1175,7 +1175,7 @@ INCBIN "gfx/icons/mail_big.2bpp"
 
 ; called from engine/sprite_anims.asm
 
-ComposeMail_AnimateCursor:
+ComposeMail_AnimateCursor::
 	call .GetDPad
 	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc

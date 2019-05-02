@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/jack.asm", ROMX
 
-JackPhoneCalleeScript:
+JackPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, SCHOOLBOY, JACK1
 	checkflag ENGINE_JACK
 	iftrue .WantsBattle
@@ -22,7 +22,7 @@ JackPhoneCalleeScript:
 	getlandmarkname STRING_BUFFER_5, NATIONAL_PARK
 	farsjump JackWantsBattleScript
 
-JackPhoneCallerScript:
+JackPhoneCallerScript::
 	gettrainername STRING_BUFFER_3, SCHOOLBOY, JACK1
 	farscall PhoneScript_GreetPhone_Male
 	farscall PhoneScript_Random2

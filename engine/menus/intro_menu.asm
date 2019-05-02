@@ -17,7 +17,7 @@ _MainMenu:
 ; unused
 	ret
 
-PrintDayOfWeek:
+PrintDayOfWeek::
 	push de
 	ld hl, .Days
 	ld a, b
@@ -53,17 +53,17 @@ NewGame_ClearTileMapEtc:
 	call ClearWindowData
 	ret
 
-MysteryGift:
+MysteryGift::
 	call UpdateTime
 	farcall DoMysteryGiftIfDayHasPassed
 	farcall DoMysteryGift
 	ret
 
-OptionsMenu:
+OptionsMenu::
 	farcall _OptionsMenu
 	ret
 
-NewGame:
+NewGame::
 	xor a
 	ld [wDebugFlags], a
 	call ResetWRAM
@@ -307,7 +307,7 @@ InitializeWorld:
 	farcall _InitializeStartDay
 	ret
 
-LoadOrRegenerateLuckyIDNumber:
+LoadOrRegenerateLuckyIDNumber::
 	ld a, BANK(sLuckyIDNumber)
 	call GetSRAMBank
 	ld a, [wCurDay]
@@ -333,7 +333,7 @@ LoadOrRegenerateLuckyIDNumber:
 	ld [sLuckyIDNumber + 1], a
 	jp CloseSRAM
 
-Continue:
+Continue::
 	farcall TryLoadSaveFile
 	jr c, .FailToLoad
 	farcall _LoadData
@@ -490,7 +490,7 @@ DisplaySaveInfoOnContinue:
 	call DisplayNormalContinueData
 	ret
 
-DisplaySaveInfoOnSave:
+DisplaySaveInfoOnSave::
 	lb de, 4, 0
 	jr DisplayNormalContinueData
 
@@ -1295,7 +1295,7 @@ Unreferenced_Function639b:
 	db  0 * 8,      0 * 8, 11 * 8 + 4, 15 * 8
 	db  0 * 8,      0 * 8, 11 * 8 + 4, 11 * 8
 
-Copyright:
+Copyright::
 	call ClearTileMap
 	call LoadFontsExtra
 	ld de, CopyrightGFX

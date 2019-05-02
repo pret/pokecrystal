@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/battle/read_trainer_attributes.asm", ROMX, BANK[BANK_TRAINER_ATTRIBUTES]
 
-GetTrainerClassName:
+GetTrainerClassName::
 	ld hl, wRivalName
 	ld a, c
 	cp RIVAL1
@@ -49,7 +49,7 @@ GetOTName:
 	pop de
 	ret
 
-GetTrainerAttributes:
+GetTrainerAttributes::
 	ld a, [wTrainerClass]
 	ld c, a
 	call GetOTName

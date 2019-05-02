@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokemon/party_menu.asm", ROMX, BANK[BANK_PARTY_MENU]
 
-SelectMonFromParty:
+SelectMonFromParty::
 	call DisableSpriteUpdates
 	xor a
 	ld [wPartyMenuActionText], a
@@ -16,7 +16,7 @@ SelectMonFromParty:
 	call ReturnToMapWithSpeechTextbox
 	ret
 
-SelectTradeOrDayCareMon:
+SelectTradeOrDayCareMon::
 	ld a, b
 	ld [wPartyMenuActionText], a
 	call DisableSpriteUpdates
@@ -39,13 +39,13 @@ InitPartyMenuLayout:
 	call PrintPartyMenuText
 	ret
 
-LoadPartyMenuGFX:
+LoadPartyMenuGFX::
 	call LoadFontsBattleExtra
 	callfar InitPartyMenuPalettes ; engine/color.asm
 	callfar ClearSpriteAnims2
 	ret
 
-WritePartyMenuTilemap:
+WritePartyMenuTilemap::
 	ld hl, wOptions
 	ld a, [hl]
 	push af
@@ -159,7 +159,7 @@ PlacePartyHPBar:
 	call GetSGBLayout
 	ret
 
-PlacePartymonHPBar:
+PlacePartymonHPBar::
 	ld a, b
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, wPartyMon1HP
@@ -588,7 +588,7 @@ GetPartyMenuQualityIndexes:
 
 INCLUDE "data/party_menu_qualities.inc"
 
-InitPartyMenuGFX:
+InitPartyMenuGFX::
 	ld hl, wPartyCount
 	ld a, [hli]
 	and a
@@ -613,7 +613,7 @@ InitPartyMenuGFX:
 	callfar PlaySpriteAnimations
 	ret
 
-InitPartyMenuWithCancel:
+InitPartyMenuWithCancel::
 ; with cancel
 	xor a
 	ld [wSwitchMon], a
@@ -640,7 +640,7 @@ InitPartyMenuWithCancel:
 	ld [wMenuJoypadFilter], a
 	ret
 
-InitPartyMenuNoCancel:
+InitPartyMenuNoCancel::
 ; no cancel
 	ld de, PartyMenuAttributes
 	call SetMenuAttributes
@@ -676,7 +676,7 @@ PartyMenuAttributes:
 	dn 2, 0
 	db 0
 
-PartyMenuSelect:
+PartyMenuSelect::
 ; sets carry if exitted menu.
 	call StaticMenuJoypad
 	call PlaceHollowCursor
@@ -714,7 +714,7 @@ PartyMenuSelect:
 	scf
 	ret
 
-PrintPartyMenuText:
+PrintPartyMenuText::
 	hlcoord 0, 14
 	lb bc, 2, 18
 	call Textbox
@@ -788,7 +788,7 @@ YouHaveNoPKMNString:
 
 SECTION "engine/pokemon/party_menu.asm@PrintPartyMenuActionText", ROMX
 
-PrintPartyMenuActionText:
+PrintPartyMenuActionText::
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
 	call GetNick

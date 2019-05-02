@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/RuinsOfAlphKabutoItemRoom.asm", ROMX
 
-RuinsOfAlphKabutoItemRoom_MapScripts:
+RuinsOfAlphKabutoItemRoom_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -35,7 +35,7 @@ RuinsOfAlphKabutoItemRoomAncientReplicaText:
 	cont "MON."
 	done
 
-RuinsOfAlphKabutoItemRoom_MapEvents:
+RuinsOfAlphKabutoItemRoom_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

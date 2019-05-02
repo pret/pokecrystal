@@ -1,4 +1,4 @@
-BattleCommand_Metronome:
+BattleCommand_Metronome::
 ; metronome
 
 	call ClearLastMove

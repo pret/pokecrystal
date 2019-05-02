@@ -10,7 +10,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/PewterCity.asm", ROMX
 
-PewterCity_MapScripts:
+PewterCity_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -155,7 +155,7 @@ PewterCityWelcomeSignText:
 	line "PEWTER CITY!"
 	done
 
-PewterCity_MapEvents:
+PewterCity_MapEvents::
 	db 0, 0 ; filler
 
 	db 5 ; warp events

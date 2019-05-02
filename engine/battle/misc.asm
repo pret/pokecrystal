@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/battle/misc.asm@AppearDisappearUser", ROMX
 
-_DisappearUser:
+_DisappearUser::
 	xor a
 	ldh [hBGMapMode], a
 	ldh a, [hBattleTurn]
@@ -17,11 +17,11 @@ _DisappearUser:
 	call ClearBox
 	jr FinishAppearDisappearUser
 
-_AppearUserRaiseSub:
+_AppearUserRaiseSub::
 	farcall BattleCommand_RaiseSubNoAnim
 	jr AppearUser
 
-_AppearUserLowerSub:
+_AppearUserLowerSub::
 	farcall BattleCommand_LowerSubNoAnim
 
 AppearUser:
@@ -57,7 +57,7 @@ GetPlayerBackpicCoords:
 
 SECTION "engine/battle/misc.asm@DoWeatherModifiers", ROMX
 
-DoWeatherModifiers:
+DoWeatherModifiers::
 	ld de, WeatherTypeModifiers
 	ld a, [wBattleWeather]
 	ld b, a
@@ -155,7 +155,7 @@ INCLUDE "data/battle/weather_modifiers.inc"
 
 SECTION "engine/battle/misc.asm@DoBadgeTypeBoosts", ROMX
 
-DoBadgeTypeBoosts:
+DoBadgeTypeBoosts::
 	ld a, [wLinkMode]
 	and a
 	ret nz

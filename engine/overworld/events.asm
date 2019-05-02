@@ -28,7 +28,7 @@ DisableEvents:
 	ld [wScriptFlags3], a
 	ret
 
-EnableEvents::
+EnableEvents:
 	ld a, $ff
 	ld [wScriptFlags3], a
 	ret
@@ -370,7 +370,7 @@ CheckTileEvent:
 	call CallScript
 	ret
 
-CheckWildEncounterCooldown::
+CheckWildEncounterCooldown:
 	ld hl, wWildEncounterCooldown
 	ld a, [hl]
 	and a
@@ -1034,7 +1034,7 @@ WarpToSpawnPoint::
 	res STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
 	ret
 
-RunMemScript::
+RunMemScript:
 ; If there is no script here, we don't need to be here.
 	ld a, [wMapReentryScriptQueueFlag]
 	and a
@@ -1074,7 +1074,7 @@ LoadScriptBDE::
 	scf
 	ret
 
-TryTileCollisionEvent::
+TryTileCollisionEvent:
 	call GetFacingTileCoord
 	ld [wFacingTileID], a
 	ld c, a
@@ -1123,7 +1123,7 @@ TryTileCollisionEvent::
 	scf
 	ret
 
-RandomEncounter::
+RandomEncounter:
 ; Random encounter
 
 	call CheckWildEncounterCooldown
@@ -1274,7 +1274,7 @@ INCLUDE "data/wild/bug_contest_mons.inc"
 
 SECTION "engine/overworld/events.asm@DoBikeStep", ROMX
 
-DoBikeStep::
+DoBikeStep:
 	nop
 	nop
 	; If the bike shop owner doesn't have our number, or
@@ -1358,7 +1358,7 @@ ClearCmdQueue::
 
 SECTION "engine/overworld/events.asm@HandleCmdQueue", ROMX
 
-HandleCmdQueue::
+HandleCmdQueue:
 	ld hl, wCmdQueue
 	xor a
 .loop
@@ -1389,7 +1389,7 @@ Unreferenced_GetNthCmdQueueEntry:
 	ld c, l
 	ret
 
-WriteCmdQueue::
+WriteCmdQueue:
 	push bc
 	push de
 	call .GetNextEmptyEntry
@@ -1425,7 +1425,7 @@ WriteCmdQueue::
 	and a
 	ret
 
-DelCmdQueue::
+DelCmdQueue:
 	ld hl, wCmdQueue
 	ld de, CMDQUEUE_ENTRY_SIZE
 	ld c, CMDQUEUE_CAPACITY

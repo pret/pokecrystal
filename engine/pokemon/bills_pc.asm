@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokemon/bills_pc.asm", ROMX
 
-_DepositPKMN:
+_DepositPKMN::
 	ld hl, wOptions
 	ld a, [hl]
 	push af
@@ -259,7 +259,7 @@ Unreferenced_BillsPCClearThreeBoxes:
 	call ClearBox
 	ret
 
-_WithdrawPKMN:
+_WithdrawPKMN::
 	ld hl, wOptions
 	ld a, [hl]
 	push af
@@ -497,7 +497,7 @@ BillsPC_Withdraw:
 	db "RELEASE@"
 	db "CANCEL@"
 
-_MovePKMNWithoutMail:
+_MovePKMNWithoutMail::
 	ld hl, wOptions
 	ld a, [hl]
 	push af
@@ -1664,7 +1664,7 @@ BillsPC_StatsScreen:
 	call MaxVolume
 	ret
 
-StatsScreenDPad:
+StatsScreenDPad::
 	ld hl, hJoyPressed
 	ld a, [hl]
 	and A_BUTTON | B_BUTTON | D_RIGHT | D_LEFT
@@ -2235,7 +2235,7 @@ PCString_NoReleasingEGGS: db "No releasing EGGS!@"
 
 SECTION "engine/pokemon/bills_pc.asm@_ChangeBox", ROMX
 
-_ChangeBox:
+_ChangeBox::
 	call LoadStandardMenuHeader
 	call BillsPC_ClearTilemap
 .loop

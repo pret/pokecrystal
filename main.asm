@@ -1,17 +1,17 @@
 SECTION "main.asm@ChrisBackpic", ROMX
-ChrisBackpic:
+ChrisBackpic::
 INCBIN "gfx/player/chris_back.2bpp.lz"
 
 SECTION "main.asm@DudeBackpic", ROMX
-DudeBackpic:
+DudeBackpic::
 INCBIN "gfx/battle/dude.2bpp.lz"
 
 SECTION "main.asm@Shrink1Pic", ROMX
-Shrink1Pic:
+Shrink1Pic::
 INCBIN "gfx/new_game/shrink1.2bpp.lz"
 
 SECTION "main.asm@Shrink2Pic", ROMX
-Shrink2Pic:
+Shrink2Pic::
 INCBIN "gfx/new_game/shrink2.2bpp.lz"
 
 SECTION "main.asm@UnknownEggPic", ROMX
@@ -20,7 +20,7 @@ UnknownEggPic::
 INCBIN "gfx/unknown/unknown_egg.2bpp.lz"
 
 SECTION "main.asm@KrisBackpic", ROMX
-KrisBackpic:
+KrisBackpic::
 INCBIN "gfx/player/kris_back.2bpp"
 
 SECTION "main.asm@TheEndGFX", ROMX
@@ -28,7 +28,7 @@ TheEndGFX::
 INCBIN "gfx/credits/theend.2bpp"
 
 SECTION "main.asm@FontInversed", ROMX
-FontInversed:
+FontInversed::
 INCBIN "gfx/font/font_inversed.1bpp"
 
 SECTION "main.asm@CopyrightGFX", ROMX
@@ -36,15 +36,15 @@ CopyrightGFX::
 INCBIN "gfx/splash/copyright.2bpp"
 
 SECTION "main.asm@IntroLogoGFX", ROMX
-IntroLogoGFX:
+IntroLogoGFX::
 INCBIN "gfx/intro/logo.2bpp.lz"
 
 SECTION "main.asm@UnownFont", ROMX
-UnownFont:
+UnownFont::
 INCBIN "gfx/font/unown_font.2bpp"
 
 SECTION "main.asm@PokegearGFX", ROMX
-PokegearGFX:
+PokegearGFX::
 INCBIN "gfx/pokegear/pokegear.2bpp.lz"
 
 

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/battle/read_trainer_party.asm", ROMX
 
-ReadTrainerParty:
+ReadTrainerParty::
 	ld a, [wInBattleTowerBattle]
 	bit 0, a
 	ret nz

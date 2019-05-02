@@ -1,4 +1,4 @@
-BattleCommand_Sketch:
+BattleCommand_Sketch::
 ; sketch
 
 	call ClearLastMove

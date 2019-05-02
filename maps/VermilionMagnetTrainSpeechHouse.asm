@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/VermilionMagnetTrainSpeechHouse.asm", ROMX
 
-VermilionMagnetTrainSpeechHouse_MapScripts:
+VermilionMagnetTrainSpeechHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -36,7 +36,7 @@ VermilionMagnetTrainSpeechHouseYoungsterText:
 	cont "the MAGNET TRAIN."
 	done
 
-VermilionMagnetTrainSpeechHouse_MapEvents:
+VermilionMagnetTrainSpeechHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

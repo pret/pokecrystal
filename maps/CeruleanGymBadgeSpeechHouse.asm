@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CeruleanGymBadgeSpeechHouse.asm", ROMX
 
-CeruleanGymBadgeSpeechHouse_MapScripts:
+CeruleanGymBadgeSpeechHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -19,7 +19,7 @@ CeruleanGymBadgeSpeechHousePokefanMText:
 	line "KANTO GYM BADGES?"
 	done
 
-CeruleanGymBadgeSpeechHouse_MapEvents:
+CeruleanGymBadgeSpeechHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

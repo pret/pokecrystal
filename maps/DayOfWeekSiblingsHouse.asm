@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/DayOfWeekSiblingsHouse.asm", ROMX
 
-DayOfWeekSiblingsHouse_MapScripts:
+DayOfWeekSiblingsHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -73,7 +73,7 @@ DayOfWeekSiblingsHousePokedexText3:
 	line "ROUTE 37"
 	done
 
-DayOfWeekSiblingsHouse_MapEvents:
+DayOfWeekSiblingsHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/overworld/warp_connection.asm@HandleNewMap", ROMX
 
-HandleNewMap:
+HandleNewMap::
 	call ClearUnusedMapBuffer
 	call ResetMapBufferEventFlags
 	call ResetFlashIfOutOfCave
@@ -11,7 +11,7 @@ HandleNewMap:
 	call ResetBikeFlags
 	ld a, MAPCALLBACK_NEWMAP
 	call RunMapCallback
-InitCommandQueue:
+InitCommandQueue::
 	farcall ClearCmdQueue
 	ld a, MAPCALLBACK_CMDQUEUE
 	call RunMapCallback
@@ -22,7 +22,7 @@ InitCommandQueue:
 
 SECTION "engine/overworld/warp_connection.asm@EnterMapConnection", ROMX
 
-EnterMapConnection:
+EnterMapConnection::
 ; Return carry if a connection has been entered.
 	ld a, [wPlayerStepDirection]
 	and a ; DOWN
@@ -160,7 +160,7 @@ EnterMapConnection:
 
 SECTION "engine/overworld/warp_connection.asm@LoadWarpData", ROMX
 
-LoadWarpData:
+LoadWarpData::
 	call .SaveDigWarp
 	call .SetSpawn
 	ld a, [wNextWarp]
@@ -238,7 +238,7 @@ LoadWarpData:
 
 SECTION "engine/overworld/warp_connection.asm@LoadMapTimeOfDay", ROMX
 
-LoadMapTimeOfDay:
+LoadMapTimeOfDay::
 	ld hl, wVramState
 	res 6, [hl]
 	ld a, $1
@@ -312,7 +312,7 @@ LoadMapTimeOfDay:
 
 SECTION "engine/overworld/warp_connection.asm@LoadGraphics", ROMX
 
-LoadGraphics:
+LoadGraphics::
 	call LoadTileset
 	call LoadTilesetGFX
 	xor a
@@ -327,14 +327,14 @@ LoadGraphics:
 
 SECTION "engine/overworld/warp_connection.asm@LoadMapPalettes", ROMX
 
-LoadMapPalettes:
+LoadMapPalettes::
 	ld b, SCGB_MAPPALS
 	jp GetSGBLayout
 
 
 SECTION "engine/overworld/warp_connection.asm@RefreshMapSprites", ROMX
 
-RefreshMapSprites:
+RefreshMapSprites::
 	call ClearSprites
 	farcall ReturnFromMapSetupScript
 	call GetMovementPermissions

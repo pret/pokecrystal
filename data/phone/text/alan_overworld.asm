@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/alan_overworld.asm", ROMX
 
-AlanAskNumber1Text:
+AlanAskNumber1Text::
 	text "Reading textbooks"
 	line "is worthwhile"
 	cont "every so often."
@@ -23,7 +23,7 @@ AlanAskNumber1Text:
 	line "phone number?"
 	done
 
-AlanAskNumber2Text:
+AlanAskNumber2Text::
 	text "If I find some-"
 	line "thing, it's yours."
 
@@ -31,7 +31,7 @@ AlanAskNumber2Text:
 	line "phone number?"
 	done
 
-AlanNumberAcceptedText:
+AlanNumberAcceptedText::
 	text "I'll call you as"
 	line "soon as I find"
 
@@ -39,7 +39,7 @@ AlanNumberAcceptedText:
 	line "count on it!"
 	done
 
-AlanNumberDeclinedText:
+AlanNumberDeclinedText::
 	text "Oh… I thought it"
 	line "would be a good"
 
@@ -47,12 +47,12 @@ AlanNumberDeclinedText:
 	line "when I'm studying…"
 	done
 
-AlanPhoneFullText:
+AlanPhoneFullText::
 	text "There's no room"
 	line "for my number."
 	done
 
-AlanRematchText:
+AlanRematchText::
 	text "I waited around"
 	line "for you!"
 
@@ -60,12 +60,12 @@ AlanRematchText:
 	line "prepared today!"
 	done
 
-AlanGiftText:
+AlanGiftText::
 	text "This, this! This"
 	line "is yours! Ta-da!"
 	done
 
-AlanPackFullText:
+AlanPackFullText::
 	text "Whoops!"
 
 	para "You can't carry"

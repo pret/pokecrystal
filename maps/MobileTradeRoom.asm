@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/MobileTradeRoom.asm", ROMX
 
-MobileTradeRoom_MapScripts:
+MobileTradeRoom_MapScripts::
 	db 2 ; scene scripts
 	scene_script .InitializeMobileTradeRoom ; SCENE_DEFAULT
 	scene_script .DummyScene ; SCENE_FINISHED
@@ -37,7 +37,7 @@ MobileTradeRoom_EstablishingCommsText:
 	line "communications…"
 	done
 
-MobileTradeRoom_MapEvents:
+MobileTradeRoom_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

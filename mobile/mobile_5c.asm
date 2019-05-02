@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "mobile/mobile_5c.asm@Function170000", ROMX
 
-Function170000:
+Function170000::
 	ld a, [$c62b]
 	ld [wPlayerTrademonSpecies], a
 	ld hl, $c62e
@@ -43,7 +43,7 @@ Function170000:
 
 SECTION "mobile/mobile_5c.asm@Function17005a", ROMX
 
-Function17005a:
+Function17005a::
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$a824]
@@ -84,7 +84,7 @@ SECTION "mobile/mobile_5c.asm@BattleTowerRoomMenu", ROMX
 
 INCLUDE "engine/events/battle_tower/battle_tower.inc"
 
-Function170be4:
+Function170be4::
 	ld a, $5
 	call GetSRAMBank
 	xor a
@@ -262,7 +262,7 @@ CheckBTMonMovesForErrors:
 
 SECTION "mobile/mobile_5c.asm@Function170cc6 - GFX_171848", ROMX
 
-Function170cc6:
+Function170cc6::
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wDecompressScratch)
@@ -289,7 +289,7 @@ Function170cc6:
 	ldh [rSVBK], a
 	ret
 
-Function170d02:
+Function170d02::
 	ld a, $1
 	ldh [rVBK], a
 	ld de, GFX_171848
@@ -312,7 +312,7 @@ INCBIN "gfx/unknown/171848.2bpp"
 
 SECTION "mobile/mobile_5c.asm@Function1719c8 - String_171c73", ROMX
 
-Function1719c8:
+Function1719c8::
 	ldh a, [hInMenu]
 	push af
 	ld a, $1
@@ -677,7 +677,7 @@ String_171c73:
 
 SECTION "mobile/mobile_5c.asm@Function171c87 - String_172e5d", ROMX
 
-Function171c87:
+Function171c87::
 	call DisableLCD
 	ld hl, GFX_171db1
 	ld de, vTiles2 tile $00
@@ -703,7 +703,7 @@ Function171c87:
 	call PlaceString
 	ret
 
-Function171ccd:
+Function171ccd::
 	ldh a, [rSVBK]
 	push af
 	ld a, $5
@@ -722,7 +722,7 @@ Function171ccd:
 	ldh [rSVBK], a
 	ret
 
-Function171cf0:
+Function171cf0::
 	xor a
 	hlcoord 4, 15
 	ld [hli], a
@@ -843,7 +843,7 @@ String_172e5d:
 
 SECTION "mobile/mobile_5c.asm@Function172e78 - Attrmap_173517", ROMX
 
-Function172e78:
+Function172e78::
 	ld a, $7f
 	hlcoord 0, 0
 	ld bc, $168
@@ -868,7 +868,7 @@ Function172e78:
 	call CopyBytes
 	ret
 
-Function172eb9:
+Function172eb9::
 	ldh a, [rSVBK]
 	push af
 	ld a, $5

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/route2.asm", ROMX
 
-Music_Route2:
+Music_Route2::
 	musicheader 4, 1, Music_Route2_Ch1
 	musicheader 1, 2, Music_Route2_Ch2
 	musicheader 1, 3, Music_Route2_Ch3

@@ -10,7 +10,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/RuinsOfAlphOutside.asm", ROMX
 
-RuinsOfAlphOutside_MapScripts:
+RuinsOfAlphOutside_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_RUINSOFALPHOUTSIDE_NOTHING
 	scene_script .DummyScene1 ; SCENE_RUINSOFALPHOUTSIDE_GET_UNOWN_DEX
@@ -283,7 +283,7 @@ RuinsOfAlphOutsideYoungster2Text:
 	line "message!"
 	done
 
-RuinsOfAlphOutside_MapEvents:
+RuinsOfAlphOutside_MapEvents::
 	db 0, 0 ; filler
 
 	db 11 ; warp events

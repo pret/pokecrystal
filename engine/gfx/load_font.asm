@@ -83,7 +83,7 @@ _LoadFontsBattleExtra::
 	call Get2bpp_2
 	jr LoadFrame
 
-LoadFrame:
+LoadFrame::
 	ld a, [wTextboxFrame]
 	maskbits NUM_FRAMES
 	ld bc, 6 * LEN_1BPP_TILE
@@ -100,7 +100,7 @@ LoadFrame:
 	call Get1bpp_2
 	ret
 
-LoadBattleFontsHPBar:
+LoadBattleFontsHPBar::
 	ld de, FontBattleExtra
 	ld hl, vTiles2 tile $60
 	lb bc, BANK(FontBattleExtra), 12
@@ -111,7 +111,7 @@ LoadBattleFontsHPBar:
 	call Get2bpp_2
 	call LoadFrame
 
-LoadHPBar:
+LoadHPBar::
 	ld de, EnemyHPBarBorderGFX
 	ld hl, vTiles2 tile $6c
 	lb bc, BANK(EnemyHPBarBorderGFX), 4
@@ -130,7 +130,7 @@ LoadHPBar:
 	call Get2bpp_2
 	ret
 
-StatsScreen_LoadFont:
+StatsScreen_LoadFont::
 	call _LoadFontsBattleExtra
 	ld de, EnemyHPBarBorderGFX
 	ld hl, vTiles2 tile $6c
@@ -148,7 +148,7 @@ StatsScreen_LoadFont:
 	ld hl, vTiles2 tile $55
 	lb bc, BANK(ExpBarGFX), 8
 	call Get2bpp_2
-LoadStatsScreenPageTilesGFX:
+LoadStatsScreenPageTilesGFX::
 	ld de, StatsScreenPageTilesGFX
 	ld hl, vTiles2 tile $31
 	lb bc, BANK(StatsScreenPageTilesGFX), 17

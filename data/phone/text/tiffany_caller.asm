@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/tiffany_caller.asm", ROMX
 
-UnknownText_0x665ad:
+UnknownText_0x665ad::
 	text "My @"
 	text_ram wStringBuffer4
 	text "'s"
@@ -16,7 +16,7 @@ UnknownText_0x665ad:
 	line "fluffy and warm!"
 	done
 
-UnknownText_0x66605:
+UnknownText_0x66605::
 	text "Oh, and we had to"
 	line "battle a wild"
 
@@ -36,7 +36,7 @@ UnknownText_0x66605:
 	text "!"
 	done
 
-UnknownText_0x66688:
+UnknownText_0x66688::
 	text "Oh, and we had to"
 	line "battle a wild"
 
@@ -56,7 +56,7 @@ UnknownText_0x66688:
 	cont "of my CLEFAIRY."
 	done
 
-UnknownText_0x66730:
+UnknownText_0x66730::
 	text "I know this might"
 	line "surprise you, but"
 
@@ -70,7 +70,7 @@ UnknownText_0x66730:
 	text "."
 	done
 
-TiffanyItsAwfulText:
+TiffanyItsAwfulText::
 	text_ram wStringBuffer4
 	text "!"
 
@@ -86,11 +86,11 @@ TiffanyItsAwfulText:
 	line "Bye-bye!"
 	done
 
-UnknownText_0x667f7:
+UnknownText_0x667f7::
 	text "Bye-bye!"
 	done
 
-UnknownText_0x66801:
+UnknownText_0x66801::
 	text "I bought some PINK"
 	line "BOWS at GOLDENROD"
 
@@ -106,12 +106,12 @@ UnknownText_0x66801:
 	text "."
 	done
 
-UnknownText_0x66882:
+UnknownText_0x66882::
 	text "I love dressing up"
 	line "my CLEFAIRY!"
 	done
 
-UnknownText_0x668a3:
+UnknownText_0x668a3::
 	text "What's wrong?"
 	line "Can't you visit?"
 
@@ -127,7 +127,7 @@ UnknownText_0x668a3:
 	text "!"
 	done
 
-UnknownText_0x6691d:
+UnknownText_0x6691d::
 	text "What's wrong?"
 	line "Can't you visit?"
 

@@ -79,7 +79,7 @@ SLOTS_END_LOOP_F EQU 7
 
 SECTION "engine/games/slot_machine.asm", ROMX
 
-_SlotMachine:
+_SlotMachine::
 	ld hl, wOptions
 	set NO_TEXT_SCROLL, [hl]
 	call .InitGFX
@@ -1959,7 +1959,7 @@ endr
 	call WaitSFX
 	ret
 
-Slots_AnimateGolem:
+Slots_AnimateGolem::
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld e, [hl]
@@ -2058,7 +2058,7 @@ Slots_AnimateGolem:
 	ldh [hSCY], a
 	ret
 
-Slots_AnimateChansey:
+Slots_AnimateChansey::
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld e, [hl]

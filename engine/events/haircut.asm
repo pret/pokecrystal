@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/haircut.asm", ROMX, BANK[BANK_HAPPINESS]
 
-BillsGrandfather:
+BillsGrandfather::
 	farcall SelectMonFromParty
 	jr c, .cancel
 	ld a, [wCurPartySpecies]
@@ -17,15 +17,15 @@ BillsGrandfather:
 	ld [wScriptVar], a
 	ret
 
-OlderHaircutBrother:
+OlderHaircutBrother::
 	ld hl, HappinessData_OlderHaircutBrother
 	jr HaircutOrGrooming
 
-YoungerHaircutBrother:
+YoungerHaircutBrother::
 	ld hl, HappinessData_YoungerHaircutBrother
 	jr HaircutOrGrooming
 
-DaisysGrooming:
+DaisysGrooming::
 	ld hl, HappinessData_DaisysGrooming
 	; fallthrough
 
@@ -77,7 +77,7 @@ HaircutOrGrooming:
 
 INCLUDE "data/events/happiness_probabilities.inc"
 
-CopyPokemonName_Buffer1_Buffer3:
+CopyPokemonName_Buffer1_Buffer3::
 	ld hl, wStringBuffer1
 	ld de, wStringBuffer3
 	ld bc, MON_NAME_LENGTH
@@ -86,5 +86,5 @@ CopyPokemonName_Buffer1_Buffer3:
 
 SECTION "engine/events/haircut.asm@DummyPredef1", ROMX
 
-DummyPredef1:
+DummyPredef1::
 	ret

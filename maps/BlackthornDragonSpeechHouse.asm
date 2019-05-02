@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/BlackthornDragonSpeechHouse.asm", ROMX
 
-BlackthornDragonSpeechHouse_MapScripts:
+BlackthornDragonSpeechHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -50,7 +50,7 @@ BlackthornDragonSpeechHouseDratiniText:
 	text "DRATINI: Draa!"
 	done
 
-BlackthornDragonSpeechHouse_MapEvents:
+BlackthornDragonSpeechHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

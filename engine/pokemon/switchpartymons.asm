@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokemon/switchpartymons.asm", ROMX
 
-_SwitchPartyMons:
+_SwitchPartyMons::
 	ld a, [wSwitchMon]
 	dec a
 	ld [wBuffer3], a

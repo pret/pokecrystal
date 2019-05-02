@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/credits.asm", ROMX
 
-Music_Credits:
+Music_Credits::
 	musicheader 4, 1, Music_Credits_Ch1
 	musicheader 1, 2, Music_Credits_Ch2
 	musicheader 1, 3, Music_Credits_Ch3

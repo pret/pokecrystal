@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route24.asm", ROMX
 
-Route24_MapScripts:
+Route24_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -121,7 +121,7 @@ Route24RocketDisappearsText:
 	cont "from, me?"
 	done
 
-Route24_MapEvents:
+Route24_MapEvents::
 	db 0, 0 ; filler
 
 	db 0 ; warp events

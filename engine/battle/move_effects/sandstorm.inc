@@ -1,4 +1,4 @@
-BattleCommand_StartSandstorm:
+BattleCommand_StartSandstorm::
 ; startsandstorm
 
 	ld a, [wBattleWeather]

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/looklass.asm", ROMX
 
-Music_LookLass:
+Music_LookLass::
 	musicheader 4, 1, Music_LookLass_Ch1
 	musicheader 1, 2, Music_LookLass_Ch2
 	musicheader 1, 3, Music_LookLass_Ch3

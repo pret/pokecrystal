@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/AzaleaMart.asm", ROMX
 
-AzaleaMart_MapScripts:
+AzaleaMart_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -48,7 +48,7 @@ AzaleaMartBugCatcherText:
 	cont "times."
 	done
 
-AzaleaMart_MapEvents:
+AzaleaMart_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

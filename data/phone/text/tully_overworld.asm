@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/tully_overworld.asm", ROMX
 
-TullyAskNumber1Text:
+TullyAskNumber1Text::
 	text "Hey, you're trying"
 	line "to be the ultimate"
 
@@ -20,7 +20,7 @@ TullyAskNumber1Text:
 	line "phone number."
 	done
 
-TullyAskNumber2Text:
+TullyAskNumber2Text::
 	text "If I find any more"
 	line "items by the"
 
@@ -31,19 +31,19 @@ TullyAskNumber2Text:
 	line "phone number."
 	done
 
-TullyNumberAcceptedText:
+TullyNumberAcceptedText::
 	text "You'll be hearing"
 	line "from me if I find"
 	cont "something good."
 	done
 
-TullyNumberDeclinedText:
+TullyNumberDeclinedText::
 	text "Is that so? Then"
 	line "I'll just have to"
 	cont "use them myself."
 	done
 
-TullyPhoneFullText:
+TullyPhoneFullText::
 	text "Your phone list is"
 	line "all filled up."
 
@@ -51,7 +51,7 @@ TullyPhoneFullText:
 	line "make room for me."
 	done
 
-TullyRematchText:
+TullyRematchText::
 	text "I've been doing"
 	line "more than just"
 
@@ -62,7 +62,7 @@ TullyRematchText:
 	line "big surprise!"
 	done
 
-TullyGiftText:
+TullyGiftText::
 	text "Hey, there you"
 	line "are!"
 
@@ -70,7 +70,7 @@ TullyGiftText:
 	line "promised!"
 	done
 
-TullyPackFullText:
+TullyPackFullText::
 	text "Your PACK's full?"
 
 	para "Come back later--"

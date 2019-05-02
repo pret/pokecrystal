@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/suicunebattle.asm", ROMX
 
-Music_SuicuneBattle:
+Music_SuicuneBattle::
 	musicheader 3, 1, Music_SuicuneBattle_Ch1
 	musicheader 1, 2, Music_SuicuneBattle_Ch2
 	musicheader 1, 3, Music_SuicuneBattle_Ch3

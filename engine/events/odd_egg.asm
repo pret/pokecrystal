@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/odd_egg.asm", ROMX
 
-_GiveOddEgg:
+_GiveOddEgg::
 	; Figure out which egg to give.
 
 	; Compare a random word to

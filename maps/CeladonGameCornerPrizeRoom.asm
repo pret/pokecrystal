@@ -14,7 +14,7 @@ CELADONGAMECORNERPRIZEROOM_LARVITAR_COINS EQU 8888
 
 SECTION "maps/CeladonGameCornerPrizeRoom.asm", ROMX
 
-CeladonGameCornerPrizeRoom_MapScripts:
+CeladonGameCornerPrizeRoom_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -279,7 +279,7 @@ CeladonPrizeRoom_NoCoinCaseText:
 	line "a COIN CASE."
 	done
 
-CeladonGameCornerPrizeRoom_MapEvents:
+CeladonGameCornerPrizeRoom_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

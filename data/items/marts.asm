@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/items/marts.asm", ROMX
 
-Marts:
+Marts::
 ; entries correspond to MART_* constants
 	dw MartCherrygrove
 	dw MartCherrygroveDex
@@ -39,7 +39,7 @@ Marts:
 	dw MartMtMoon
 	dw MartIndigoPlateau
 	dw MartUnderground
-.End
+.End::
 
 MartCherrygrove:
 	db 4 ; # items
@@ -404,7 +404,7 @@ MartUnderground:
 	db REVIVAL_HERB
 	db -1 ; end
 
-DefaultMart:
+DefaultMart::
 	db 2 ; # items
 	db POKE_BALL
 	db POTION

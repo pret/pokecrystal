@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/brent_caller.asm", ROMX
 
-BrentRareTradeText:
+BrentRareTradeText::
 	text "Oh yeah, I got an"
 	line "extremely rare"
 
@@ -17,7 +17,7 @@ BrentRareTradeText:
 	line "it a secret!"
 	done
 
-UnknownText_0x6613c:
+UnknownText_0x6613c::
 	text "Oh yeah, I took"
 	line "down this wild"
 
@@ -30,7 +30,7 @@ UnknownText_0x6613c:
 	line "catching."
 	done
 
-UnknownText_0x6618c:
+UnknownText_0x6618c::
 	text "Oh yeah, I saw a"
 	line "rare #MON about"
 	cont "an hour ago."
@@ -45,7 +45,7 @@ UnknownText_0x6618c:
 	line "at my mistakes?"
 	done
 
-UnknownText_0x66214:
+UnknownText_0x66214::
 	text "You've got time"
 	line "like usual, right?"
 
@@ -64,11 +64,11 @@ UnknownText_0x66214:
 	text "."
 	done
 
-UnknownText_0x662a9:
+UnknownText_0x662a9::
 	text "So that's it then."
 	done
 
-UnknownText_0x662bc:
+UnknownText_0x662bc::
 	text "Did you know…?"
 	line "BILL's father is"
 
@@ -76,7 +76,7 @@ UnknownText_0x662bc:
 	line "great #MANIAC."
 	done
 
-UnknownText_0x662fc:
+UnknownText_0x662fc::
 	text "Did you know…?"
 	line "Apparently BILL's"
 
@@ -84,13 +84,13 @@ UnknownText_0x662fc:
 	line "#MANIAC."
 	done
 
-UnknownText_0x66335:
+UnknownText_0x66335::
 	text "Did you know…?"
 	line "BILL's originally"
 	cont "from GOLDENROD."
 	done
 
-UnknownText_0x66366:
+UnknownText_0x66366::
 	text "Did you know…?"
 	line "BILL evidently"
 
@@ -98,7 +98,7 @@ UnknownText_0x66366:
 	line "in KANTO."
 	done
 
-UnknownText_0x663a1:
+UnknownText_0x663a1::
 	text "Did you know…?"
 	line "ABRA was the first"
 
@@ -106,7 +106,7 @@ UnknownText_0x663a1:
 	line "ostensibly caught."
 	done
 
-UnknownText_0x663e6:
+UnknownText_0x663e6::
 	text "Did you know…?"
 	line "BILL's younger"
 
@@ -114,7 +114,7 @@ UnknownText_0x663e6:
 	line "can't wink."
 	done
 
-UnknownText_0x66421:
+UnknownText_0x66421::
 	text "Did you know…?"
 	line "BILL supposedly"
 
@@ -122,7 +122,7 @@ UnknownText_0x66421:
 	line "can't drink it."
 	done
 
-UnknownText_0x6645f:
+UnknownText_0x6645f::
 	text "Did you know…?"
 	line "Evidently, BILL"
 
@@ -130,7 +130,7 @@ UnknownText_0x6645f:
 	line "battling."
 	done
 
-UnknownText_0x6649b:
+UnknownText_0x6649b::
 	text "Did you know…?"
 	line "BILL appears to"
 
@@ -138,7 +138,7 @@ UnknownText_0x6649b:
 	line "the FLOWER SHOP."
 	done
 
-UnknownText_0x664dd:
+UnknownText_0x664dd::
 	text "Did you know…?"
 	line "BILL's mother is"
 
@@ -146,7 +146,7 @@ UnknownText_0x664dd:
 	line "a KIMONO GIRL."
 	done
 
-UnknownText_0x6651e:
+UnknownText_0x6651e::
 	text "You wanted to hear"
 	line "about BILL?"
 
@@ -157,7 +157,7 @@ UnknownText_0x6651e:
 	line "have time."
 	done
 
-UnknownText_0x66579:
+UnknownText_0x66579::
 	text "You want to see my"
 	line "rare #MON."
 

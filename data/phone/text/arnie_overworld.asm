@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/arnie_overworld.asm", ROMX
 
-ArnieAskNumber1Text:
+ArnieAskNumber1Text::
 	text "Do you get the"
 	line "feeling that there"
 
@@ -24,7 +24,7 @@ ArnieAskNumber1Text:
 	line "your phone number."
 	done
 
-ArnieAskNumber2Text:
+ArnieAskNumber2Text::
 	text "I want to let"
 	line "people know if I"
 	cont "see rare #MON."
@@ -33,7 +33,7 @@ ArnieAskNumber2Text:
 	line "your phone number!"
 	done
 
-ArnieNumberAcceptedText:
+ArnieNumberAcceptedText::
 	text "If I spot any"
 	line "awesome #MON,"
 
@@ -41,13 +41,13 @@ ArnieNumberAcceptedText:
 	line "give you a call!"
 	done
 
-ArnieNumberDeclinedText:
+ArnieNumberDeclinedText::
 	text "Aww! I want to"
 	line "tell someone about"
 	cont "my discoveries!"
 	done
 
-ArniePhoneFullText:
+ArniePhoneFullText::
 	text "There's no space"
 	line "for my number."
 
@@ -55,7 +55,7 @@ ArniePhoneFullText:
 	line "register me!"
 	done
 
-ArnieRematchText:
+ArnieRematchText::
 	text "It's my turn to"
 	line "win now!"
 

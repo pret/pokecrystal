@@ -1,4 +1,4 @@
-HasNoItems:
+HasNoItems::
 	ld a, [wNumItems]
 	and a
 	ret nz
@@ -22,7 +22,7 @@ HasNoItems:
 	and a
 	ret
 
-TossItemFromPC:
+TossItemFromPC::
 	push de
 	call PartyMonItemName
 	farcall _CheckTossableItem
@@ -95,7 +95,7 @@ CantUseItemText:
 	text_far UnknownText_0x1c1b03
 	text_end
 
-PartyMonItemName:
+PartyMonItemName::
 	ld a, [wCurItem]
 	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
@@ -271,7 +271,7 @@ GiveTakePartyMonItem:
 .quit
 	ret
 
-TryGiveItemToPartymon:
+TryGiveItemToPartymon::
 	call SpeechTextbox
 	call PartyMonItemName
 	call GetPartyItemLocation
@@ -590,7 +590,7 @@ MonMailAction:
 	text_far UnknownText_0x1c1cc4
 	text_end
 
-OpenPartyStats:
+OpenPartyStats::
 	call LoadStandardMenuHeader
 	call ClearSprites
 ; PartyMon
@@ -805,7 +805,7 @@ MonMenu_SweetScent:
 	ld a, $2
 	ret
 
-ChooseMoveToDelete:
+ChooseMoveToDelete::
 	ld hl, wOptions
 	ld a, [hl]
 	push af
@@ -866,7 +866,7 @@ DeleteMoveScreenAttrs:
 	dn 2, 0
 	db D_UP | D_DOWN | A_BUTTON | B_BUTTON
 
-ManagePokemonMoves:
+ManagePokemonMoves::
 	ld a, [wCurPartySpecies]
 	cp EGG
 	jr z, .egg

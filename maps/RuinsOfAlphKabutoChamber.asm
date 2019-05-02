@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/RuinsOfAlphKabutoChamber.asm", ROMX, BANK[BANK_MAP_RUINS_OF_ALPH_RESEARCH_CENTER]
 
-RuinsOfAlphKabutoChamber_MapScripts:
+RuinsOfAlphKabutoChamber_MapScripts::
 	db 2 ; scene scripts
 	scene_script .CheckWall ; SCENE_DEFAULT
 	scene_script .DummyScene ; SCENE_FINISHED
@@ -258,7 +258,7 @@ RuinsOfAlphKabutoChamberDescriptionText:
 	line "scanned the area."
 	done
 
-RuinsOfAlphKabutoChamber_MapEvents:
+RuinsOfAlphKabutoChamber_MapEvents::
 	db 0, 0 ; filler
 
 	db 5 ; warp events

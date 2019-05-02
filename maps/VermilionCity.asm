@@ -11,7 +11,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/VermilionCity.asm", ROMX
 
-VermilionCity_MapScripts:
+VermilionCity_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -270,7 +270,7 @@ VermilionCityPortSignText:
 	line "ENTRANCE"
 	done
 
-VermilionCity_MapEvents:
+VermilionCity_MapEvents::
 	db 0, 0 ; filler
 
 	db 10 ; warp events

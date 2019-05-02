@@ -1,4 +1,4 @@
-UnownFramesPointers:
+UnownFramesPointers::
 	dw UnownAFrames
 	dw UnownBFrames
 	dw UnownCFrames

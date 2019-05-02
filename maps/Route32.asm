@@ -19,7 +19,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route32.asm", ROMX
 
-Route32_MapScripts:
+Route32_MapScripts::
 	db 3 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_ROUTE32_OFFER_SLOWPOKETAIL
@@ -931,7 +931,7 @@ Route32UnionCaveSignText:
 	line "AHEAD"
 	done
 
-Route32_MapEvents:
+Route32_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

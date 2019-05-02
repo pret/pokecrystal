@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/rtc/reset_password.asm", ROMX
 
-_ResetClock:
+_ResetClock::
 	farcall BlankScreen
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout

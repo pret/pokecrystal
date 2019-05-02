@@ -10,7 +10,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/KurtsHouse.asm", ROMX
 
-KurtsHouse_MapScripts:
+KurtsHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -679,7 +679,7 @@ KurtsHouseCelebiStatueText:
 	cont "tector."
 	done
 
-KurtsHouse_MapEvents:
+KurtsHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

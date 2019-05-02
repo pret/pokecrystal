@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/battle/ai/items.asm", ROMX, BANK[BANK_TRAINER_ATTRIBUTES]
 
-AI_SwitchOrTryItem:
+AI_SwitchOrTryItem::
 	and a
 
 	ld a, [wBattleMode]
@@ -669,7 +669,7 @@ AI_TrySwitch:
 	and a
 	ret
 
-AI_Switch:
+AI_Switch::
 	ld a, $1
 	ld [wEnemyIsSwitching], a
 	ld [wEnemyGoesFirst], a

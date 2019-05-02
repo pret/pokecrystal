@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route3.asm", ROMX
 
-Route3_MapScripts:
+Route3_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -135,7 +135,7 @@ Route3MtMoonSquareSignText:
 	line "stairs."
 	done
 
-Route3_MapEvents:
+Route3_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

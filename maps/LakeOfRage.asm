@@ -17,7 +17,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/LakeOfRage.asm", ROMX
 
-LakeOfRage_MapScripts:
+LakeOfRage_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; unusable
 	scene_script .DummyScene1 ; unusable
@@ -496,7 +496,7 @@ FishingGurusHouseSignText:
 	line "HOUSE"
 	done
 
-LakeOfRage_MapEvents:
+LakeOfRage_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

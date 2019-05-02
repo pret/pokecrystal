@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/liz_callee.asm", ROMX
 
-UnknownText_0x1b5d9f:
+UnknownText_0x1b5d9f::
 	text "Hello, @"
 	text_ram wStringBuffer3
 	text_start
@@ -13,7 +13,7 @@ UnknownText_0x1b5d9f:
 	line "Good morning."
 	done
 
-UnknownText_0x1b5dcc:
+UnknownText_0x1b5dcc::
 	text "Hello, @"
 	text_ram wStringBuffer3
 	text_start
@@ -23,7 +23,7 @@ UnknownText_0x1b5dcc:
 	line "How are you?"
 	done
 
-UnknownText_0x1b5df8:
+UnknownText_0x1b5df8::
 	text "Hello, @"
 	text_ram wStringBuffer3
 	text_start
@@ -33,7 +33,7 @@ UnknownText_0x1b5df8:
 	line "Good evening."
 	done
 
-UnknownText_0x1b5e25:
+UnknownText_0x1b5e25::
 	text "Good morning,"
 	line "<PLAY_G>."
 
@@ -43,7 +43,7 @@ UnknownText_0x1b5e25:
 	line "Were you sleeping?"
 	done
 
-UnknownText_0x1b5e59:
+UnknownText_0x1b5e59::
 	text "Hi, <PLAY_G>."
 	line "This is @"
 	text_ram wStringBuffer3
@@ -53,7 +53,7 @@ UnknownText_0x1b5e59:
 	line "going for you?"
 	done
 
-UnknownText_0x1b5e8e:
+UnknownText_0x1b5e8e::
 	text "Good evening,"
 	line "<PLAY_G>."
 
@@ -63,7 +63,7 @@ UnknownText_0x1b5e8e:
 	line "Are you awake?"
 	done
 
-UnknownText_0x1b5ebe:
+UnknownText_0x1b5ebe::
 	text "I had some time,"
 	line "so I called you."
 

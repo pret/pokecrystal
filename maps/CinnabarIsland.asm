@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CinnabarIsland.asm", ROMX
 
-CinnabarIsland_MapScripts:
+CinnabarIsland_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -130,7 +130,7 @@ CinnabarIslandSignText:
 	line "Burning Desire"
 	done
 
-CinnabarIsland_MapEvents:
+CinnabarIsland_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

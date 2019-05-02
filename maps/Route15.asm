@@ -12,7 +12,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route15.asm", ROMX
 
-Route15_MapScripts:
+Route15_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -204,7 +204,7 @@ Route15SignText:
 	line "LAVENDER TOWN"
 	done
 
-Route15_MapEvents:
+Route15_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

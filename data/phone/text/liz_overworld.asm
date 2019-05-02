@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/liz_overworld.asm", ROMX
 
-LizAskNumber1Text:
+LizAskNumber1Text::
 	text "Oh? You're on a"
 	line "big journey to see"
 	cont "the sights? Neat!"
@@ -17,7 +17,7 @@ LizAskNumber1Text:
 	cont "you've seen!"
 	done
 
-LizAskNumber2Text:
+LizAskNumber2Text::
 	text "Let's be friends!"
 	line "Can I have your"
 	cont "phone number?"
@@ -27,23 +27,23 @@ LizAskNumber2Text:
 	cont "you've seen!"
 	done
 
-LizNumberAcceptedText:
+LizNumberAcceptedText::
 	text "I'll telephone you"
 	line "if I hear anything"
 	cont "interesting."
 	done
 
-LizNumberDeclinedText:
+LizNumberDeclinedText::
 	text "Aww… You won't be"
 	line "my friend?"
 	done
 
-LizPhoneFullText:
+LizPhoneFullText::
 	text "Wait! Your phone"
 	line "list is filled up!"
 	done
 
-LizRematchText:
+LizRematchText::
 	text "You're late! Let's"
 	line "get started now!"
 	done

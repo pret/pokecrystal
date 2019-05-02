@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/games/dummy_game.asm", ROMX, BANK[BANK_DUMMY_GAME]
 
-_DummyGame:
+_DummyGame::
 	call .LoadGFXAndPals
 	call DelayFrame
 .loop
@@ -500,7 +500,7 @@ DummyGame_Card2Coord:
 	add hl, de
 	ret
 
-DummyGame_InterpretJoypad_AnimateCursor:
+DummyGame_InterpretJoypad_AnimateCursor::
 	ld a, [wJumptableIndex]
 	cp $7
 	jr nc, .quit

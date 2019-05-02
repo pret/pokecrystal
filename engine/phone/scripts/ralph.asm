@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/ralph.asm", ROMX
 
-RalphPhoneCalleeScript:
+RalphPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, FISHER, RALPH1
 	checkflag ENGINE_RALPH
 	iftrue .Rematch
@@ -27,7 +27,7 @@ RalphPhoneCalleeScript:
 	getlandmarkname STRING_BUFFER_5, ROUTE_32
 	farsjump UnknownScript_0xa0af5
 
-RalphPhoneCallerScript:
+RalphPhoneCallerScript::
 	gettrainername STRING_BUFFER_3, FISHER, RALPH1
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_FLYPOINT_GOLDENROD

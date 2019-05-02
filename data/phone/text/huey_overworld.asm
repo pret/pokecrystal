@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/huey_overworld.asm", ROMX
 
-HueyAskNumber1Text:
+HueyAskNumber1Text::
 	text "Cool! That's the"
 	line "first time I've"
 	cont "lost in a while!"
@@ -18,7 +18,7 @@ HueyAskNumber1Text:
 	line "get stronger!"
 	done
 
-HueyAskNumber2Text:
+HueyAskNumber2Text::
 	text "Hey, give me your"
 	line "phone number."
 
@@ -29,33 +29,33 @@ HueyAskNumber2Text:
 	line "get stronger!"
 	done
 
-HueyNumberAcceptedText:
+HueyNumberAcceptedText::
 	text "Hey, let's battle"
 	line "again!"
 	done
 
-HueyNumberDeclinedText:
+HueyNumberDeclinedText::
 	text "Looks like you're"
 	line "a wimp…"
 	done
 
-HueyPhoneFullText:
+HueyPhoneFullText::
 	text "Hey! Your phone's"
 	line "already full!"
 	done
 
-HueyRematchText:
+HueyRematchText::
 	text "Hey! I'm tired of"
 	line "waiting for you!"
 	done
 
-HueyPackFullText:
+HueyPackFullText::
 	text "Oh… Your PACK's"
 	line "full. I'll give it"
 	cont "to you later."
 	done
 
-HueyRematchGiftText:
+HueyRematchGiftText::
 	text "Man! You're as"
 	line "tough as ever!"
 

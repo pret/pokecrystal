@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/LavenderMart.asm", ROMX
 
-LavenderMart_MapScripts:
+LavenderMart_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -50,7 +50,7 @@ LavenderMartRockerText:
 	line "I had some."
 	done
 
-LavenderMart_MapEvents:
+LavenderMart_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

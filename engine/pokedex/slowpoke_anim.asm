@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokedex/slowpoke_anim.asm", ROMX
 
-AnimateDexSearchSlowpoke:
+AnimateDexSearchSlowpoke::
 	ld hl, .FrameIDs
 	ld b, 25
 .loop
@@ -43,7 +43,7 @@ AnimateDexSearchSlowpoke:
 	db 4, 7
 	db -2
 
-DoDexSearchSlowpokeFrame:
+DoDexSearchSlowpokeFrame::
 	ld a, [wDexSearchSlowpokeFrame]
 	ld hl, .SlowpokeSpriteData
 	ld de, wVirtualOAMSprite00

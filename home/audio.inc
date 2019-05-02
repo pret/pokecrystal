@@ -24,7 +24,7 @@ MapSetup_Sound_Off::
 	pop hl
 	ret
 
-UpdateSound::
+UpdateSound:
 	push hl
 	push de
 	push bc
@@ -286,7 +286,7 @@ VolumeOff::
 	ld [wVolume], a
 	ret
 
-Unused_FadeOutMusic::
+Unused_FadeOutMusic:
 	ld a, 4
 	ld [wMusicFade], a
 	ret
@@ -420,7 +420,7 @@ RestartMapMusic::
 	pop hl
 	ret
 
-SpecialMapMusic::
+SpecialMapMusic:
 	ld a, [wPlayerState]
 	cp PLAYER_SURF
 	jr z, .surf
@@ -460,13 +460,13 @@ SpecialMapMusic::
 	scf
 	ret
 
-GetMapMusic_MaybeSpecial::
+GetMapMusic_MaybeSpecial:
 	call SpecialMapMusic
 	ret c
 	call GetMapMusic
 	ret
 
-Unreferenced_Function3d9f::
+Unreferenced_Function3d9f:
 ; Places a BCD number at the
 ; upper center of the screen.
 	ld a, 4 * TILE_WIDTH

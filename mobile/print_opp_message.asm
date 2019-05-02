@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "mobile/print_opp_message.asm", ROMX
 
-Mobile_PrintOpponentBattleMessage:
+Mobile_PrintOpponentBattleMessage::
 	ld a, c
 	push af
 	call SpeechTextbox

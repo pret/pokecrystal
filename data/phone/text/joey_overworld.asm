@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/joey_overworld.asm", ROMX
 
-JoeyAskNumber1Text:
+JoeyAskNumber1Text::
 	text "Listen, can I get"
 	line "your phone number?"
 
@@ -15,7 +15,7 @@ JoeyAskNumber1Text:
 	cont "a good motivator."
 	done
 
-JoeyAskNumber2Text:
+JoeyAskNumber2Text::
 	text "Can I get your"
 	line "phone number?"
 
@@ -26,30 +26,30 @@ JoeyAskNumber2Text:
 	line "again, OK?"
 	done
 
-JoeyNumberAcceptedText:
+JoeyNumberAcceptedText::
 	text "I'll ring you"
 	line "whenever I get the"
 	cont "urge to battle!"
 	done
 
-JoeyNumberDeclinedText:
+JoeyNumberDeclinedText::
 	text "Oh, all right…"
 
 	para "But I won't lose"
 	line "to you again!"
 	done
 
-JoeyPhoneFullText:
+JoeyPhoneFullText::
 	text "Huh, what? Your"
 	line "phone's full."
 	done
 
-JoeyRematchText:
+JoeyRematchText::
 	text "I've been waiting!"
 	line "Let's battle now!"
 	done
 
-JoeyPackFullText:
+JoeyPackFullText::
 	text "Hey, wait! Your"
 	line "PACK is stuffed!"
 
@@ -57,7 +57,7 @@ JoeyPackFullText:
 	line "it till next time."
 	done
 
-JoeyRematchGiftText:
+JoeyRematchGiftText::
 	text "And yet another"
 	line "loss…"
 

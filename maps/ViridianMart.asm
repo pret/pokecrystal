@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/ViridianMart.asm", ROMX
 
-ViridianMart_MapScripts:
+ViridianMart_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -39,7 +39,7 @@ ViridianMartCooltrainerMText:
 	line "south of here."
 	done
 
-ViridianMart_MapEvents:
+ViridianMart_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

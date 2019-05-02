@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CeruleanPokecenter1F.asm", ROMX
 
-CeruleanPokecenter1F_MapScripts:
+CeruleanPokecenter1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -65,7 +65,7 @@ CeruleanPokecenter1FGymGuyText:
 	line "JOHTO accessible."
 	done
 
-CeruleanPokecenter1F_MapEvents:
+CeruleanPokecenter1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/wade.asm", ROMX
 
-WadePhoneCalleeScript:
+WadePhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, BUG_CATCHER, WADE1
 	checkflag ENGINE_WADE
 	iftrue .WantsBattle
@@ -41,7 +41,7 @@ WadePhoneCalleeScript:
 	getlandmarkname STRING_BUFFER_5, ROUTE_31
 	farsjump UnknownScript_0xa0ab5
 
-WadePhoneCallerScript:
+WadePhoneCallerScript::
 	gettrainername STRING_BUFFER_3, BUG_CATCHER, WADE1
 	farscall PhoneScript_GreetPhone_Male
 	farscall PhoneScript_Random2

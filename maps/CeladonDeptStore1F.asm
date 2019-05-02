@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CeladonDeptStore1F.asm", ROMX, BANK[BANK_MAP_CELADON_DEPT_STORE_1F]
 
-CeladonDeptStore1F_MapScripts:
+CeladonDeptStore1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -25,7 +25,7 @@ CeladonDeptStore1FTeacherScript:
 CeladonDeptStore1FDirectory:
 	jumptext CeladonDeptStore1FDirectoryText
 
-CeladonDeptStore1FElevatorButton:
+CeladonDeptStore1FElevatorButton::
 	jumpstd elevatorbutton
 
 CeladonDeptStore1FReceptionistText:
@@ -76,7 +76,7 @@ CeladonDeptStore1FDirectoryText:
 	line "    SQUARE"
 	done
 
-CeladonDeptStore1F_MapEvents:
+CeladonDeptStore1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

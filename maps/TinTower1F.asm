@@ -15,7 +15,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/TinTower1F.asm", ROMX
 
-TinTower1F_MapScripts:
+TinTower1F_MapScripts::
 	db 2 ; scene scripts
 	scene_script .FaceSuicune ; SCENE_DEFAULT
 	scene_script .DummyScene ; SCENE_FINISHED
@@ -525,7 +525,7 @@ TinTower1FSage6Text2:
 	line "with SUICUNE."
 	done
 
-TinTower1F_MapEvents:
+TinTower1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

@@ -12,7 +12,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route31.asm", ROMX
 
-Route31_MapScripts:
+Route31_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -420,7 +420,7 @@ DarkCaveSignText:
 	text "DARK CAVE"
 	done
 
-Route31_MapEvents:
+Route31_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

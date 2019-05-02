@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/GoldenrodPPSpeechHouse.asm", ROMX
 
-GoldenrodPPSpeechHouse_MapScripts:
+GoldenrodPPSpeechHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -54,7 +54,7 @@ GoldenrodPPSpeechHouseLassText:
 	cont "an item."
 	done
 
-GoldenrodPPSpeechHouse_MapEvents:
+GoldenrodPPSpeechHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

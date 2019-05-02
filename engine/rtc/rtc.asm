@@ -68,7 +68,7 @@ Unreferenced_1404e:
 	db 60, DAY_F
 	db -1, MORN_F
 
-StageRTCTimeForSave:
+StageRTCTimeForSave::
 	call UpdateTime
 	ld hl, wRTC
 	ld a, [wCurDay]
@@ -81,7 +81,7 @@ StageRTCTimeForSave:
 	ld [hli], a
 	ret
 
-SaveRTC:
+SaveRTC::
 	ld a, $a
 	ld [MBC3SRamEnable], a
 	call LatchClock
@@ -127,7 +127,7 @@ Function1409b:
 
 SECTION "engine/rtc/rtc.asm@Function140ae", ROMX
 
-Function140ae:
+Function140ae::
 	call CheckRTCStatus
 	ld c, a
 	and %11000000 ; Day count exceeded 255 or 16383

@@ -11,7 +11,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route8.asm", ROMX
 
-Route8_MapScripts:
+Route8_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -175,7 +175,7 @@ Route8UndergroundPathSignText:
 	line "read…"
 	done
 
-Route8_MapEvents:
+Route8_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

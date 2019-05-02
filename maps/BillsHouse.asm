@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/BillsHouse.asm", ROMX
 
-BillsHouse_MapScripts:
+BillsHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -356,7 +356,7 @@ BillsGrandpaPichuText:
 	line "evolves."
 	done
 
-BillsHouse_MapEvents:
+BillsHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

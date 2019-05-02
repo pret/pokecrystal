@@ -893,15 +893,15 @@ MailMovedFromBoxText::
 	line "from the MAILBOX."
 	prompt
 
-UnknownText_0x1c0fb3::
+UnknownText_0x1c0fb3:
 	text "Yes"
 	prompt
 
-UnknownText_0x1c0fb8::
+UnknownText_0x1c0fb8:
 	text "No"
 	prompt
 
-UnknownText_0x1c0fbc::
+UnknownText_0x1c0fbc:
 	text_decimal wcf64, 1, 3
 	text " @"
 	text_ram wStringBuffer1
@@ -912,7 +912,7 @@ UnknownText_0x1c0fbc::
 
 	text_end ; unused
 
-UnknownText_0x1c0fdd::
+UnknownText_0x1c0fdd:
 	text "#MON number?"
 	done
 
@@ -1352,7 +1352,7 @@ _OakPCText4::
 	line "OAK's PC closed."
 	done
 
-UnknownText_0x1c19cd::
+UnknownText_0x1c19cd:
 	text "Triple-theme"
 	line "trainer ranking!"
 
@@ -1363,7 +1363,7 @@ UnknownText_0x1c19cd::
 	para ""
 	done
 
-UnknownText_0x1c1a22::
+UnknownText_0x1c1a22:
 	text "There is no"
 	line "ranking data."
 

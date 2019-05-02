@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/TradeCenter.asm", ROMX, BANK[BANK_MAP_COLOSSEUM]
 
-TradeCenter_MapScripts:
+TradeCenter_MapScripts::
 	db 2 ; scene scripts
 	scene_script .InitializeTradeCenter ; SCENE_DEFAULT
 	scene_script .DummyScene ; SCENE_FINISHED
@@ -57,7 +57,7 @@ TradeCenterFriendScript:
 	line "ready."
 	done
 
-TradeCenter_MapEvents:
+TradeCenter_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

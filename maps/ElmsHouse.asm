@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/ElmsHouse.asm", ROMX
 
-ElmsHouse_MapScripts:
+ElmsHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -86,7 +86,7 @@ ElmsHousePCText:
 	cont "search papers."
 	done
 
-ElmsHouse_MapEvents:
+ElmsHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/LavenderTown.asm", ROMX
 
-LavenderTown_MapScripts:
+LavenderTown_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -108,7 +108,7 @@ SoulHouseSignText:
 	line "#MON Rest Easy"
 	done
 
-LavenderTown_MapEvents:
+LavenderTown_MapEvents::
 	db 0, 0 ; filler
 
 	db 7 ; warp events

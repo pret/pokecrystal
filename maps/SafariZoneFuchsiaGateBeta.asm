@@ -3,12 +3,12 @@ INCLUDE "constants.inc"
 
 SECTION "maps/SafariZoneFuchsiaGateBeta.asm", ROMX
 
-SafariZoneFuchsiaGateBeta_MapScripts:
+SafariZoneFuchsiaGateBeta_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
 
-SafariZoneFuchsiaGateBeta_MapEvents:
+SafariZoneFuchsiaGateBeta_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

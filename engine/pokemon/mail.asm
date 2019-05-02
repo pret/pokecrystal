@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokemon/mail.asm", ROMX
 
-SendMailToPC:
+SendMailToPC::
 	ld a, MON_ITEM
 	call GetPartyParamLocation
 	ld d, [hl]
@@ -241,7 +241,7 @@ GivePokeMail::
 	ld [de], a
 	jp CloseSRAM
 
-BackupPartyMonMail:
+BackupPartyMonMail::
 	ld a, BANK(sPartyMail)
 	call GetSRAMBank
 	ld hl, sPartyMail
@@ -254,7 +254,7 @@ BackupPartyMonMail:
 	call CopyBytes
 	jp CloseSRAM
 
-RestorePartyMonMail:
+RestorePartyMonMail::
 	ld a, BANK(sPartyMail)
 	call GetSRAMBank
 	ld hl, sPartyMailBackup
@@ -267,7 +267,7 @@ RestorePartyMonMail:
 	call CopyBytes
 	jp CloseSRAM
 
-DeletePartyMonMail:
+DeletePartyMonMail::
 	ld a, BANK(sPartyMail)
 	call GetSRAMBank
 	xor a
@@ -280,7 +280,7 @@ DeletePartyMonMail:
 	call ByteFill
 	jp CloseSRAM
 
-IsAnyMonHoldingMail:
+IsAnyMonHoldingMail::
 	ld a, [wPartyCount]
 	and a
 	jr z, .no_mons
@@ -303,7 +303,7 @@ IsAnyMonHoldingMail:
 	and a
 	ret
 
-_PlayerMailBoxMenu:
+_PlayerMailBoxMenu::
 	call InitMail
 	jr z, .nomail
 	call LoadStandardMenuHeader

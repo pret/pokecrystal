@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/name_rater.asm", ROMX
 
-_NameRater:
+_NameRater::
 ; Introduce himself
 	ld hl, NameRaterIntroText
 	call PrintText

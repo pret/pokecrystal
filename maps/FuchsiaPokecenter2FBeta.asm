@@ -3,12 +3,12 @@ INCLUDE "constants.inc"
 
 SECTION "maps/FuchsiaPokecenter2FBeta.asm", ROMX
 
-FuchsiaPokecenter2FBeta_MapScripts:
+FuchsiaPokecenter2FBeta_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
 
-FuchsiaPokecenter2FBeta_MapEvents:
+FuchsiaPokecenter2FBeta_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

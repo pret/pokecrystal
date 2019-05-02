@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/battle/hidden_power.asm", ROMX
 
-HiddenPowerDamage:
+HiddenPowerDamage::
 ; Override Hidden Power's type and power based on the user's DVs.
 
 	ld hl, wBattleMonDVs

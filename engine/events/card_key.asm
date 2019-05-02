@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/card_key.asm", ROMX
 
-_CardKey:
+_CardKey::
 ; Are we even in the right map to use this?
 	ld a, [wMapGroup]
 	cp GROUP_RADIO_TOWER_3F

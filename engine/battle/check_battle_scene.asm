@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/battle/check_battle_scene.asm", ROMX
 
-CheckBattleScene:
+CheckBattleScene::
 ; Return carry if battle scene is turned off.
 
 	ld a, BANK(wLinkMode)

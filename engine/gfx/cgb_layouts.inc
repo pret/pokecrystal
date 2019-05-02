@@ -149,9 +149,9 @@ _CGB_FinishBattleScreenLayout:
 	call ApplyAttrMap
 	ret
 
-InitPartyMenuBGPal7:
+InitPartyMenuBGPal7::
 	farcall Function100dc0
-Mobile_InitPartyMenuBGPal7:
+Mobile_InitPartyMenuBGPal7::
 	ld hl, PartyMenuBGPalette
 	jr nc, .not_mobile
 	ld hl, PartyMenuBGMobilePalette

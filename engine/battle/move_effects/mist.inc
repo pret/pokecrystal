@@ -1,4 +1,4 @@
-BattleCommand_Mist:
+BattleCommand_Mist::
 ; mist
 
 	ld a, BATTLE_VARS_SUBSTATUS4

@@ -18,7 +18,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route34.asm", ROMX
 
-Route34_MapScripts:
+Route34_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -765,7 +765,7 @@ DayCareSignText:
 	line "#MON FOR YOU!"
 	done
 
-Route34_MapEvents:
+Route34_MapEvents::
 	db 0, 0 ; filler
 
 	db 5 ; warp events

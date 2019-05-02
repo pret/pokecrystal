@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/lookpokemaniac.asm", ROMX
 
-Music_LookPokemaniac:
+Music_LookPokemaniac::
 	musicheader 3, 1, Music_LookPokemaniac_Ch1
 	musicheader 1, 2, Music_LookPokemaniac_Ch2
 	musicheader 1, 3, Music_LookPokemaniac_Ch3

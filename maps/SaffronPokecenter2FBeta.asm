@@ -3,12 +3,12 @@ INCLUDE "constants.inc"
 
 SECTION "maps/SaffronPokecenter2FBeta.asm", ROMX
 
-SaffronPokecenter2FBeta_MapScripts:
+SaffronPokecenter2FBeta_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
 
-SaffronPokecenter2FBeta_MapEvents:
+SaffronPokecenter2FBeta_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

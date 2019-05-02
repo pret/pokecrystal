@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/beth_caller.asm", ROMX
 
-UnknownText_0x174c7f:
+UnknownText_0x174c7f::
 	text "Do you remember my"
 	line "sweet @"
 	text_ram wStringBuffer4
@@ -21,7 +21,7 @@ UnknownText_0x174c7f:
 	line "really gets going."
 	done
 
-UnknownText_0x174cf6:
+UnknownText_0x174cf6::
 	text "Oh, have you ever"
 	line "seen a @"
 	text_ram wStringBuffer4
@@ -41,7 +41,7 @@ UnknownText_0x174cf6:
 	line "course."
 	done
 
-UnknownText_0x174d86:
+UnknownText_0x174d86::
 	text "Oh, I just saw a"
 	line "wild @"
 	text_ram wStringBuffer4
@@ -64,7 +64,7 @@ UnknownText_0x174d86:
 	line "from my mistake."
 	done
 
-UnknownText_0x174e4e:
+UnknownText_0x174e4e::
 	text "Do you want to"
 	line "battle? I'm going"
 	cont "to win this time!"
@@ -78,16 +78,16 @@ UnknownText_0x174e4e:
 	line "Look for me, OK?"
 	done
 
-UnknownText_0x174eb7:
+UnknownText_0x174eb7::
 	text "OK, bye-bye!"
 	done
 
-UnknownText_0x174ec5:
+UnknownText_0x174ec5::
 	text "Let's battle again"
 	line "sometime!"
 	done
 
-BethForgetDealText:
+BethForgetDealText::
 	text "Um… <PLAY_G>?"
 	line "What's wrong?"
 

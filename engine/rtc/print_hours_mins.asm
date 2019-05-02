@@ -21,7 +21,7 @@ Unreferenced_Function1dd6a9:
 
 SECTION "engine/rtc/print_hours_mins.asm", ROMX
 
-PrintHoursMins:
+PrintHoursMins::
 ; Hours in b, minutes in c
 	ld a, b
 	cp 12

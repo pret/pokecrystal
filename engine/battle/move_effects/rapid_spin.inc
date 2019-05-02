@@ -1,4 +1,4 @@
-BattleCommand_ClearHazards:
+BattleCommand_ClearHazards::
 ; clearhazards
 
 	ld a, BATTLE_VARS_SUBSTATUS4

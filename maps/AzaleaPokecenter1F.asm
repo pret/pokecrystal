@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/AzaleaPokecenter1F.asm", ROMX
 
-AzaleaPokecenter1F_MapScripts:
+AzaleaPokecenter1F_MapScripts::
 	db 1 ; scene scripts
 	scene_script .DummyScene
 
@@ -80,7 +80,7 @@ AzaleaPokecenter1FPokefanFText:
 	line "APRICORNS."
 	done
 
-AzaleaPokecenter1F_MapEvents:
+AzaleaPokecenter1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

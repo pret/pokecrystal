@@ -10,7 +10,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/GoldenrodPokecenter1F.asm", ROMX
 
-GoldenrodPokecenter1F_MapScripts:
+GoldenrodPokecenter1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -807,7 +807,7 @@ GoldenrodPokecenter1FPlayerGaveAwayTheEonMailText:
 	line "the EON MAIL."
 	done
 
-GoldenrodPokecenter1F_MapEvents:
+GoldenrodPokecenter1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

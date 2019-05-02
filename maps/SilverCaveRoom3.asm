@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/SilverCaveRoom3.asm", ROMX
 
-SilverCaveRoom3_MapScripts:
+SilverCaveRoom3_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -53,7 +53,7 @@ Red:
 	line "<……>"
 	done
 
-SilverCaveRoom3_MapEvents:
+SilverCaveRoom3_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

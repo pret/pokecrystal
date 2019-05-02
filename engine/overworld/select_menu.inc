@@ -15,7 +15,7 @@ ItemMayBeRegisteredText:
 	text_far UnknownText_0x1c1cf3
 	text_end
 
-CheckRegisteredItem:
+CheckRegisteredItem::
 	ld a, [wWhichRegisteredItem]
 	and a
 	jr z, .NoRegisteredItem

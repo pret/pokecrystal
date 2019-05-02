@@ -19,7 +19,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/TeamRocketBaseB2F.asm", ROMX
 
-TeamRocketBaseB2F_MapScripts:
+TeamRocketBaseB2F_MapScripts::
 	db 4 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_TEAMROCKETBASEB2F_ROCKET_BOSS
@@ -911,7 +911,7 @@ UnknownText_0x6de03:
 	line "broadcast."
 	done
 
-TeamRocketBaseB2F_MapEvents:
+TeamRocketBaseB2F_MapEvents::
 	db 0, 0 ; filler
 
 	db 5 ; warp events

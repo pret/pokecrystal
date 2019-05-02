@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/vance_callee.asm", ROMX
 
-UnknownText_0x1b7019:
+UnknownText_0x1b7019::
 	text "Yes, hello?"
 	line "@"
 	text_ram wStringBuffer3
@@ -15,7 +15,7 @@ UnknownText_0x1b7019:
 	line "#MON?"
 	done
 
-UnknownText_0x1b7057:
+UnknownText_0x1b7057::
 	text "Yes, hello?"
 	line "@"
 	text_ram wStringBuffer3
@@ -27,7 +27,7 @@ UnknownText_0x1b7057:
 	line "#MON flying?"
 	done
 
-UnknownText_0x1b7092:
+UnknownText_0x1b7092::
 	text "Yes, hello?"
 	line "@"
 	text_ram wStringBuffer3
@@ -40,7 +40,7 @@ UnknownText_0x1b7092:
 	line "see some action?"
 	done
 
-UnknownText_0x1b70e7:
+UnknownText_0x1b70e7::
 	text "Good morning,"
 	line "<PLAY_G>!"
 
@@ -50,7 +50,7 @@ UnknownText_0x1b70e7:
 	line "Good morning!"
 	done
 
-UnknownText_0x1b7112:
+UnknownText_0x1b7112::
 	text "Hi, <PLAY_G>!"
 
 	para "It's @"
@@ -59,7 +59,7 @@ UnknownText_0x1b7112:
 	line "Remember me?"
 	done
 
-UnknownText_0x1b7132:
+UnknownText_0x1b7132::
 	text "Good evening,"
 	line "<PLAY_G>!"
 
@@ -69,7 +69,7 @@ UnknownText_0x1b7132:
 	line "Are you free now?"
 	done
 
-UnknownText_0x1b7161:
+UnknownText_0x1b7161::
 	text "Are you and your"
 	line "#MON fine?"
 

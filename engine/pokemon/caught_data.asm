@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokemon/caught_data.asm", ROMX
 
-CheckPartyFullAfterContest:
+CheckPartyFullAfterContest::
 	ld a, [wContestMon]
 	and a
 	jp z, .DidntCatchAnything
@@ -156,7 +156,7 @@ CheckPartyFullAfterContest:
 	ld [wScriptVar], a
 	ret
 
-GiveANickname_YesNo:
+GiveANickname_YesNo::
 	ld hl, TextJump_GiveANickname
 	call PrintText
 	jp YesNoBox
@@ -166,7 +166,7 @@ TextJump_GiveANickname:
 	text_far UnknownText_0x1c12fc
 	text_end
 
-SetCaughtData:
+SetCaughtData::
 	ld a, [wPartyCount]
 	dec a
 	ld hl, wPartyMon1CaughtLevel
@@ -204,7 +204,7 @@ SetBoxmonOrEggmonCaughtData:
 	ld [hl], a
 	ret
 
-SetBoxMonCaughtData:
+SetBoxMonCaughtData::
 	ld a, BANK(sBoxMon1CaughtLevel)
 	call GetSRAMBank
 	ld hl, sBoxMon1CaughtLevel
@@ -212,7 +212,7 @@ SetBoxMonCaughtData:
 	call CloseSRAM
 	ret
 
-SetGiftBoxMonCaughtData:
+SetGiftBoxMonCaughtData::
 	push bc
 	ld a, BANK(sBoxMon1CaughtLevel)
 	call GetSRAMBank
@@ -222,7 +222,7 @@ SetGiftBoxMonCaughtData:
 	call CloseSRAM
 	ret
 
-SetGiftPartyMonCaughtData:
+SetGiftPartyMonCaughtData::
 	ld a, [wPartyCount]
 	dec a
 	ld hl, wPartyMon1CaughtLevel
@@ -238,7 +238,7 @@ SetGiftMonCaughtData:
 	ld [hl], a
 	ret
 
-SetEggMonCaughtData:
+SetEggMonCaughtData::
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1CaughtLevel
 	call GetPartyLocation

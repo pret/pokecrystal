@@ -1,4 +1,4 @@
-BattleCommand_Counter:
+BattleCommand_Counter::
 ; counter
 
 	ld a, 1

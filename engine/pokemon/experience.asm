@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokemon/experience.asm", ROMX
 
-CalcLevel:
+CalcLevel::
 	ld a, [wTempMonSpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
@@ -35,7 +35,7 @@ CalcLevel:
 	dec d
 	ret
 
-CalcExpAtLevel:
+CalcExpAtLevel::
 ; (a/b)*n**3 + c*n**2 + d*n - e
 	ld a, [wBaseGrowthRate]
 	add a

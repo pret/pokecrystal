@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/beverly_overworld.asm", ROMX
 
-BeverlyAskNumber1Text:
+BeverlyAskNumber1Text::
 	text "Your MARILL is so"
 	line "cute and adorable!"
 
@@ -17,7 +17,7 @@ BeverlyAskNumber1Text:
 	line "be so much fun!"
 	done
 
-BeverlyAskNumber2Text:
+BeverlyAskNumber2Text::
 	text "Your MARILL is so"
 	line "cute and adorable!"
 
@@ -28,7 +28,7 @@ BeverlyAskNumber2Text:
 	line "phone number?"
 	done
 
-BeverlyNumberAcceptedText:
+BeverlyNumberAcceptedText::
 	text "To be honest, I"
 	line "want a MARILL."
 
@@ -36,19 +36,19 @@ BeverlyNumberAcceptedText:
 	line "my cute SNUBBULL."
 	done
 
-BeverlyNumberDeclinedText:
+BeverlyNumberDeclinedText::
 	text "Oh… That's"
 	line "disappointing…"
 
 	para "Goodbye, MARILL…"
 	done
 
-BeverlyPhoneFullText:
+BeverlyPhoneFullText::
 	text "Oh? Your phone's"
 	line "memory is full."
 	done
 
-BeverlyGiftText:
+BeverlyGiftText::
 	text "Oh? <PLAYER>? "
 	line "I waited here for"
 
@@ -56,7 +56,7 @@ BeverlyGiftText:
 	line "a little gift."
 	done
 
-BeverlyPackFullText:
+BeverlyPackFullText::
 	text "Oh?"
 	line "You have no room."
 

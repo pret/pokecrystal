@@ -3,109 +3,109 @@ INCLUDE "constants.inc"
 
 SECTION "audio/sfx.asm", ROMX
 
-Sfx_PokeballsPlacedOnTable:
+Sfx_PokeballsPlacedOnTable::
 	musicheader 1, 5, Sfx_PokeballsPlacedOnTable_Ch5
 
-Sfx_BallWobble:
+Sfx_BallWobble::
 	musicheader 1, 5, Sfx_BallWobble_Ch5
 
-Sfx_Potion:
+Sfx_Potion::
 	musicheader 1, 5, Sfx_Potion_Ch5
 
-Sfx_FullHeal:
+Sfx_FullHeal::
 	musicheader 1, 5, Sfx_FullHeal_Ch5
 
-Sfx_Menu:
+Sfx_Menu::
 	musicheader 1, 8, Sfx_Menu_Ch8
 
-Sfx_ReadText2:
-Sfx_ReadText:
+Sfx_ReadText2::
+Sfx_ReadText::
 	musicheader 1, 5, Sfx_ReadText2_Ch5
 
-Sfx_Poison:
+Sfx_Poison::
 	musicheader 1, 5, Sfx_Poison_Ch5
 
-Sfx_GotSafariBalls:
+Sfx_GotSafariBalls::
 	musicheader 1, 5, Sfx_GotSafariBalls_Ch5
 
-Sfx_BootPc:
+Sfx_BootPc::
 	musicheader 1, 5, Sfx_BootPc_Ch5
 
-Sfx_ShutDownPc:
+Sfx_ShutDownPc::
 	musicheader 1, 5, Sfx_ShutDownPc_Ch5
 
-Sfx_ChoosePcOption:
+Sfx_ChoosePcOption::
 	musicheader 1, 5, Sfx_ChoosePcOption_Ch5
 
-Sfx_EscapeRope:
+Sfx_EscapeRope::
 	musicheader 1, 5, Sfx_EscapeRope_Ch5
 
-Sfx_PushButton:
+Sfx_PushButton::
 	musicheader 1, 5, Sfx_PushButton_Ch5
 
-Sfx_SecondPartOfItemfinder:
+Sfx_SecondPartOfItemfinder::
 	musicheader 1, 5, Sfx_SecondPartOfItemfinder_Ch5
 
-Sfx_WarpTo:
+Sfx_WarpTo::
 	musicheader 1, 5, Sfx_WarpTo_Ch5
 
-Sfx_WarpFrom:
+Sfx_WarpFrom::
 	musicheader 1, 5, Sfx_WarpFrom_Ch5
 
-Sfx_ChangeDexMode:
+Sfx_ChangeDexMode::
 	musicheader 1, 5, Sfx_ChangeDexMode_Ch5
 
-Sfx_JumpOverLedge:
+Sfx_JumpOverLedge::
 	musicheader 1, 5, Sfx_JumpOverLedge_Ch5
 
-Sfx_GrassRustle:
+Sfx_GrassRustle::
 	musicheader 1, 8, Sfx_GrassRustle_Ch8
 
-Sfx_Fly:
+Sfx_Fly::
 	musicheader 1, 8, Sfx_Fly_Ch8
 
-Sfx_Wrong:
+Sfx_Wrong::
 	musicheader 2, 5, Sfx_Wrong_Ch5
 	musicheader 1, 6, Sfx_Wrong_Ch6
 
-Sfx_Squeak:
+Sfx_Squeak::
 	musicheader 1, 5, Sfx_Squeak_Ch5
 
-Sfx_Strength:
+Sfx_Strength::
 	musicheader 1, 8, Sfx_Strength_Ch8
 
-Sfx_Boat:
+Sfx_Boat::
 	musicheader 2, 5, Sfx_Boat_Ch5
 	musicheader 1, 6, Sfx_Boat_Ch6
 
-Sfx_WallOpen:
+Sfx_WallOpen::
 	musicheader 1, 5, Sfx_WallOpen_Ch5
 
-Sfx_PlacePuzzlePieceDown:
+Sfx_PlacePuzzlePieceDown::
 	musicheader 1, 8, Sfx_PlacePuzzlePieceDown_Ch8
 
-Sfx_EnterDoor:
+Sfx_EnterDoor::
 	musicheader 1, 8, Sfx_EnterDoor_Ch8
 
-Sfx_SwitchPokemon:
+Sfx_SwitchPokemon::
 	musicheader 2, 5, Sfx_SwitchPokemon_Ch5
 	musicheader 1, 6, Sfx_SwitchPokemon_Ch6
 
-Sfx_Tally:
+Sfx_Tally::
 	musicheader 2, 5, Sfx_Tally_Ch5
 	musicheader 1, 6, Sfx_Tally_Ch6
 
-Sfx_Transaction:
+Sfx_Transaction::
 	musicheader 2, 5, Sfx_Transaction_Ch5
 	musicheader 1, 6, Sfx_Transaction_Ch6
 
-Sfx_Bump:
+Sfx_Bump::
 	musicheader 1, 5, Sfx_Bump_Ch5
 
-Sfx_ExitBuilding:
+Sfx_ExitBuilding::
 	musicheader 1, 8, Sfx_ExitBuilding_Ch8
 
-Sfx_Save:
+Sfx_Save::
 	musicheader 2, 5, Sfx_Save_Ch5
 	musicheader 1, 6, Sfx_Save_Ch6
 
@@ -132,261 +132,261 @@ Sfx_Save_Ch6:
 	sound __, 16, $d2, $07e1
 	endchannel
 
-Sfx_Pokeflute:
+Sfx_Pokeflute::
 	musicheader 1, 7, Sfx_Pokeflute_Ch7
 
-Sfx_ElevatorEnd:
+Sfx_ElevatorEnd::
 	musicheader 1, 5, Sfx_ElevatorEnd_Ch5
 
-Sfx_ThrowBall:
+Sfx_ThrowBall::
 	musicheader 2, 5, Sfx_ThrowBall_Ch5
 	musicheader 1, 6, Sfx_ThrowBall_Ch6
 
-Sfx_BallPoof:
+Sfx_BallPoof::
 	musicheader 2, 5, Sfx_BallPoof_Ch5
 	musicheader 1, 8, Sfx_BallPoof_Ch8
 
-Sfx_Unknown3A:
+Sfx_Unknown3A::
 	musicheader 2, 5, Sfx_Unknown3A_Ch5
 	musicheader 1, 8, Sfx_Unknown3A_Ch8
 
-Sfx_Run:
+Sfx_Run::
 	musicheader 1, 8, Sfx_Run_Ch8
 
-Sfx_SlotMachineStart:
+Sfx_SlotMachineStart::
 	musicheader 2, 5, Sfx_SlotMachineStart_Ch5
 	musicheader 1, 6, Sfx_SlotMachineStart_Ch6
 
-Sfx_Call:
+Sfx_Call::
 	musicheader 1, 5, Sfx_Call_Ch5
 
-Sfx_Unknown60:
+Sfx_Unknown60::
 	musicheader 1, 8, Sfx_Unknown60_Ch8
 
-Sfx_Unknown61:
+Sfx_Unknown61::
 	musicheader 1, 8, Sfx_Unknown61_Ch8
 
-Sfx_SwitchPockets:
+Sfx_SwitchPockets::
 	musicheader 1, 8, Sfx_SwitchPockets_Ch8
 
-Sfx_Unknown63:
+Sfx_Unknown63::
 	musicheader 1, 8, Sfx_Unknown63_Ch8
 
-Sfx_Burn:
+Sfx_Burn::
 	musicheader 1, 8, Sfx_Burn_Ch8
 
-Sfx_TitleScreenEntrance:
+Sfx_TitleScreenEntrance::
 	musicheader 1, 8, Sfx_TitleScreenEntrance_Ch8
 
-Sfx_Unknown66:
+Sfx_Unknown66::
 	musicheader 1, 5, Sfx_Unknown66_Ch5
 
-Sfx_GetCoinFromSlots:
+Sfx_GetCoinFromSlots::
 	musicheader 1, 5, Sfx_GetCoinFromSlots_Ch5
 
-Sfx_PayDay:
+Sfx_PayDay::
 	musicheader 2, 5, Sfx_PayDay_Ch5
 	musicheader 1, 6, Sfx_PayDay_Ch6
 
-Sfx_Metronome:
+Sfx_Metronome::
 	musicheader 1, 5, Sfx_Metronome_Ch5
 
-Sfx_Peck:
+Sfx_Peck::
 	musicheader 1, 8, Sfx_Peck_Ch8
 
-Sfx_Kinesis:
+Sfx_Kinesis::
 	musicheader 1, 5, Sfx_Kinesis_Ch5
 
-Sfx_Lick:
+Sfx_Lick::
 	musicheader 1, 5, Sfx_Lick_Ch5
 
-Sfx_Pound:
+Sfx_Pound::
 	musicheader 1, 8, Sfx_Pound_Ch8
 
-Sfx_MovePuzzlePiece:
+Sfx_MovePuzzlePiece::
 	musicheader 1, 8, Sfx_MovePuzzlePiece_Ch8
 
-Sfx_CometPunch:
+Sfx_CometPunch::
 	musicheader 1, 8, Sfx_CometPunch_Ch8
 
-Sfx_MegaPunch:
+Sfx_MegaPunch::
 	musicheader 1, 8, Sfx_MegaPunch_Ch8
 
-Sfx_Scratch:
+Sfx_Scratch::
 	musicheader 1, 8, Sfx_Scratch_Ch8
 
-Sfx_Vicegrip:
+Sfx_Vicegrip::
 	musicheader 1, 8, Sfx_Vicegrip_Ch8
 
-Sfx_RazorWind:
+Sfx_RazorWind::
 	musicheader 1, 8, Sfx_RazorWind_Ch8
 
-Sfx_Cut:
+Sfx_Cut::
 	musicheader 1, 8, Sfx_Cut_Ch8
 
-Sfx_WingAttack:
+Sfx_WingAttack::
 	musicheader 1, 8, Sfx_WingAttack_Ch8
 
-Sfx_Whirlwind:
+Sfx_Whirlwind::
 	musicheader 1, 8, Sfx_Whirlwind_Ch8
 
-Sfx_Bind:
+Sfx_Bind::
 	musicheader 1, 8, Sfx_Bind_Ch8
 
-Sfx_VineWhip:
+Sfx_VineWhip::
 	musicheader 1, 8, Sfx_VineWhip_Ch8
 
-Sfx_DoubleKick:
+Sfx_DoubleKick::
 	musicheader 1, 8, Sfx_DoubleKick_Ch8
 
-Sfx_MegaKick:
+Sfx_MegaKick::
 	musicheader 1, 8, Sfx_MegaKick_Ch8
 
-Sfx_Headbutt:
+Sfx_Headbutt::
 	musicheader 1, 8, Sfx_Headbutt_Ch8
 
-Sfx_HornAttack:
+Sfx_HornAttack::
 	musicheader 1, 8, Sfx_HornAttack_Ch8
 
-Sfx_Tackle:
+Sfx_Tackle::
 	musicheader 1, 8, Sfx_Tackle_Ch8
 
-Sfx_PoisonSting:
+Sfx_PoisonSting::
 	musicheader 1, 8, Sfx_PoisonSting_Ch8
 
-Sfx_Powder:
+Sfx_Powder::
 	musicheader 1, 8, Sfx_Powder_Ch8
 
-Sfx_Doubleslap:
+Sfx_Doubleslap::
 	musicheader 1, 8, Sfx_Doubleslap_Ch8
 
-Sfx_Bite:
+Sfx_Bite::
 	musicheader 2, 5, Sfx_Bite_Ch5
 	musicheader 1, 8, Sfx_Bite_Ch8
 
-Sfx_JumpKick:
+Sfx_JumpKick::
 	musicheader 1, 8, Sfx_JumpKick_Ch8
 
-Sfx_Stomp:
+Sfx_Stomp::
 	musicheader 1, 8, Sfx_Stomp_Ch8
 
-Sfx_TailWhip:
+Sfx_TailWhip::
 	musicheader 1, 8, Sfx_TailWhip_Ch8
 
-Sfx_KarateChop:
+Sfx_KarateChop::
 	musicheader 1, 8, Sfx_KarateChop_Ch8
 
-Sfx_Submission:
+Sfx_Submission::
 	musicheader 1, 8, Sfx_Submission_Ch8
 
-Sfx_WaterGun:
+Sfx_WaterGun::
 	musicheader 2, 5, Sfx_WaterGun_Ch5
 	musicheader 1, 8, Sfx_WaterGun_Ch8
 
-Sfx_SwordsDance:
+Sfx_SwordsDance::
 	musicheader 1, 8, Sfx_SwordsDance_Ch8
 
-Sfx_Thunder:
+Sfx_Thunder::
 	musicheader 1, 8, Sfx_Thunder_Ch8
 
-Sfx_Supersonic:
+Sfx_Supersonic::
 	musicheader 3, 5, Sfx_Supersonic_Ch5
 	musicheader 1, 6, Sfx_Supersonic_Ch6
 	musicheader 1, 8, Sfx_Supersonic_Ch8
 
-Sfx_Leer:
+Sfx_Leer::
 	musicheader 3, 5, Sfx_Leer_Ch5
 	musicheader 1, 6, Sfx_Leer_Ch6
 	musicheader 1, 8, Sfx_Leer_Ch8
 
-Sfx_Ember:
+Sfx_Ember::
 	musicheader 2, 5, Sfx_Ember_Ch5
 	musicheader 1, 8, Sfx_Ember_Ch8
 
-Sfx_Bubblebeam:
+Sfx_Bubblebeam::
 	musicheader 3, 5, Sfx_Bubblebeam_Ch5
 	musicheader 1, 6, Sfx_Bubblebeam_Ch6
 	musicheader 1, 8, Sfx_Bubblebeam_Ch8
 
-Sfx_HydroPump:
+Sfx_HydroPump::
 	musicheader 2, 5, Sfx_HydroPump_Ch5
 	musicheader 1, 8, Sfx_HydroPump_Ch8
 
-Sfx_Surf:
+Sfx_Surf::
 	musicheader 3, 5, Sfx_Surf_Ch5
 	musicheader 1, 6, Sfx_Surf_Ch6
 	musicheader 1, 8, Sfx_Surf_Ch8
 
-Sfx_Psybeam:
+Sfx_Psybeam::
 	musicheader 3, 5, Sfx_Psybeam_Ch5
 	musicheader 1, 6, Sfx_Psybeam_Ch6
 	musicheader 1, 8, Sfx_Psybeam_Ch8
 
-Sfx_Charge:
+Sfx_Charge::
 	musicheader 3, 5, Sfx_Charge_Ch5
 	musicheader 1, 6, Sfx_Charge_Ch6
 	musicheader 1, 8, Sfx_Charge_Ch8
 
-Sfx_Thundershock:
+Sfx_Thundershock::
 	musicheader 3, 5, Sfx_Thundershock_Ch5
 	musicheader 1, 6, Sfx_Thundershock_Ch6
 	musicheader 1, 8, Sfx_Thundershock_Ch8
 
-Sfx_Psychic:
+Sfx_Psychic::
 	musicheader 3, 5, Sfx_Psychic_Ch5
 	musicheader 1, 6, Sfx_Psychic_Ch6
 	musicheader 1, 8, Sfx_Psychic_Ch8
 
-Sfx_Screech:
+Sfx_Screech::
 	musicheader 2, 5, Sfx_Screech_Ch5
 	musicheader 1, 6, Sfx_Screech_Ch6
 
-Sfx_BoneClub:
+Sfx_BoneClub::
 	musicheader 2, 5, Sfx_BoneClub_Ch5
 	musicheader 1, 6, Sfx_BoneClub_Ch6
 
-Sfx_Sharpen:
+Sfx_Sharpen::
 	musicheader 2, 5, Sfx_Sharpen_Ch5
 	musicheader 1, 6, Sfx_Sharpen_Ch6
 
-Sfx_EggBomb:
+Sfx_EggBomb::
 	musicheader 3, 5, Sfx_EggBomb_Ch5
 	musicheader 1, 6, Sfx_EggBomb_Ch6
 	musicheader 1, 8, Sfx_EggBomb_Ch8
 
-Sfx_Sing:
+Sfx_Sing::
 	musicheader 2, 5, Sfx_Sing_Ch5
 	musicheader 1, 6, Sfx_Sing_Ch6
 
-Sfx_HyperBeam:
+Sfx_HyperBeam::
 	musicheader 3, 5, Sfx_HyperBeam_Ch5
 	musicheader 1, 6, Sfx_HyperBeam_Ch6
 	musicheader 1, 8, Sfx_HyperBeam_Ch8
 
-Sfx_Shine:
+Sfx_Shine::
 	musicheader 1, 5, Sfx_Shine_Ch5
 
-Sfx_Unknown5F:
+Sfx_Unknown5F::
 	musicheader 3, 5, Sfx_Unknown5F_Ch5
 	musicheader 1, 6, Sfx_Unknown5F_Ch6
 
-Sfx_Sandstorm:
+Sfx_Sandstorm::
 	musicheader 1, 8, Sfx_Sandstorm_Ch8
 
-Sfx_HangUp:
+Sfx_HangUp::
 	musicheader 1, 5, Sfx_HangUp_Ch5
 
-Sfx_NoSignal:
+Sfx_NoSignal::
 	musicheader 1, 5, Sfx_NoSignal_Ch5
 
-Sfx_Elevator:
+Sfx_Elevator::
 	musicheader 4, 5, Sfx_Elevator_Ch5
 	musicheader 1, 6, Sfx_Elevator_Ch6
 	musicheader 1, 7, Sfx_Elevator_Ch7
 	musicheader 1, 8, Sfx_Elevator_Ch8
 
-Sfx_DexFanfare5079:
-Sfx_LevelUp:
+Sfx_DexFanfare5079::
+Sfx_LevelUp::
 	musicheader 4, 5, Sfx_DexFanfare5079_Ch5
 	musicheader 1, 6, Sfx_DexFanfare5079_Ch6
 	musicheader 1, 7, Sfx_DexFanfare5079_Ch7
@@ -447,7 +447,7 @@ Sfx_LevelUp_Ch8:
 	note C_, 12
 	endchannel
 
-Sfx_KeyItem:
+Sfx_KeyItem::
 	musicheader 4, 5, Sfx_KeyItem_Ch5
 	musicheader 1, 6, Sfx_KeyItem_Ch6
 	musicheader 1, 7, Sfx_KeyItem_Ch7
@@ -512,7 +512,7 @@ Sfx_KeyItem_Ch8:
 	note C_, 16
 	endchannel
 
-Sfx_DexFanfare2049:
+Sfx_DexFanfare2049::
 	musicheader 4, 5, Sfx_DexFanfare2049_Ch5
 	musicheader 1, 6, Sfx_DexFanfare2049_Ch6
 	musicheader 1, 7, Sfx_DexFanfare2049_Ch7
@@ -591,7 +591,7 @@ Sfx_DexFanfare2049_Ch8:
 	note __, 16
 	endchannel
 
-Sfx_Item:
+Sfx_Item::
 	musicheader 4, 5, Sfx_Item_Ch5
 	musicheader 1, 6, Sfx_Item_Ch6
 	musicheader 1, 7, Sfx_Item_Ch7
@@ -665,7 +665,7 @@ Sfx_Item_Ch8:
 	note __, 16
 	endchannel
 
-Sfx_CaughtMon:
+Sfx_CaughtMon::
 	musicheader 4, 5, Sfx_CaughtMon_Ch5
 	musicheader 1, 6, Sfx_CaughtMon_Ch6
 	musicheader 1, 7, Sfx_CaughtMon_Ch7
@@ -742,7 +742,7 @@ Sfx_CaughtMon_Ch8:
 	note __, 16
 	endchannel
 
-Sfx_DexFanfare80109:
+Sfx_DexFanfare80109::
 	musicheader 4, 5, Sfx_DexFanfare80109_Ch5
 	musicheader 1, 6, Sfx_DexFanfare80109_Ch6
 	musicheader 1, 7, Sfx_DexFanfare80109_Ch7
@@ -832,7 +832,7 @@ Sfx_DexFanfare80109_Ch8:
 	note __, 16
 	endchannel
 
-Sfx_Fanfare2:
+Sfx_Fanfare2::
 	musicheader 3, 5, Sfx_Fanfare2_Ch5
 	musicheader 1, 6, Sfx_Fanfare2_Ch6
 	musicheader 1, 8, Sfx_Fanfare2_Ch8
@@ -914,12 +914,12 @@ UnusedSfx_Ch8:
 	note __, 16
 	endchannel
 
-Sfx_Fanfare:
+Sfx_Fanfare::
 	musicheader 3, 5, Sfx_Fanfare_Ch5
 	musicheader 1, 6, Sfx_Fanfare_Ch6
 	musicheader 1, 8, Sfx_Fanfare_Ch8
 
-Sfx_RegisterPhoneNumber:
+Sfx_RegisterPhoneNumber::
 	musicheader 4, 5, Sfx_RegisterPhoneNumber_Ch5
 	musicheader 1, 6, Sfx_RegisterPhoneNumber_Ch6
 	musicheader 1, 7, Sfx_RegisterPhoneNumber_Ch7
@@ -1007,7 +1007,7 @@ Sfx_RegisterPhoneNumber_Ch8:
 
 	togglesfx
 
-Sfx_3RdPlace:
+Sfx_3RdPlace::
 	musicheader 3, 5, Sfx_3RdPlace_Ch5
 	musicheader 1, 6, Sfx_3RdPlace_Ch6
 	musicheader 1, 7, Sfx_3RdPlace_Ch7
@@ -1065,8 +1065,8 @@ Sfx_3RdPlace_Ch7:
 
 	togglesfx
 
-Sfx_GetEggFromDayCareLady:
-Sfx_GetEggFromDayCareMan:
+Sfx_GetEggFromDayCareLady::
+Sfx_GetEggFromDayCareMan::
 	musicheader 4, 5, Sfx_GetEggFromDayCareLady_Ch5
 	musicheader 1, 6, Sfx_GetEggFromDayCareLady_Ch6
 	musicheader 1, 7, Sfx_GetEggFromDayCareLady_Ch7
@@ -1168,7 +1168,7 @@ Sfx_GetEggFromDayCareMan_Ch8:
 
 	togglesfx
 
-Sfx_MoveDeleted:
+Sfx_MoveDeleted::
 	musicheader 4, 5, Sfx_MoveDeleted_Ch5
 	musicheader 1, 6, Sfx_MoveDeleted_Ch6
 	musicheader 1, 7, Sfx_MoveDeleted_Ch7
@@ -1279,7 +1279,7 @@ Sfx_MoveDeleted_Ch8:
 
 	togglesfx
 
-Sfx_2ndPlace:
+Sfx_2ndPlace::
 	musicheader 4, 5, Sfx_2ndPlace_Ch5
 	musicheader 1, 6, Sfx_2ndPlace_Ch6
 	musicheader 1, 7, Sfx_2ndPlace_Ch7
@@ -1396,7 +1396,7 @@ Sfx_2ndPlace_Ch8:
 
 	togglesfx
 
-Sfx_1stPlace:
+Sfx_1stPlace::
 	musicheader 4, 5, Sfx_1stPlace_Ch5
 	musicheader 1, 6, Sfx_1stPlace_Ch6
 	musicheader 1, 7, Sfx_1stPlace_Ch7
@@ -1512,7 +1512,7 @@ Sfx_1stPlace_Ch8:
 
 	togglesfx
 
-Sfx_ChooseACard:
+Sfx_ChooseACard::
 	musicheader 4, 5, Sfx_ChooseACard_Ch5
 	musicheader 1, 6, Sfx_ChooseACard_Ch6
 	musicheader 1, 7, Sfx_ChooseACard_Ch7
@@ -1657,7 +1657,7 @@ Sfx_ChooseACard_Ch8:
 
 	togglesfx
 
-Sfx_GetTm:
+Sfx_GetTm::
 	musicheader 4, 5, Sfx_GetTm_Ch5
 	musicheader 1, 6, Sfx_GetTm_Ch6
 	musicheader 1, 7, Sfx_GetTm_Ch7
@@ -1763,7 +1763,7 @@ Sfx_GetTm_Ch8:
 
 	togglesfx
 
-Sfx_GetBadge:
+Sfx_GetBadge::
 	musicheader 4, 5, Sfx_GetBadge_Ch5
 	musicheader 1, 6, Sfx_GetBadge_Ch6
 	musicheader 1, 7, Sfx_GetBadge_Ch7
@@ -1926,7 +1926,7 @@ Sfx_GetBadge_Ch8:
 
 	togglesfx
 
-Sfx_QuitSlots:
+Sfx_QuitSlots::
 	musicheader 4, 5, Sfx_QuitSlots_Ch5
 	musicheader 1, 6, Sfx_QuitSlots_Ch6
 	musicheader 1, 7, Sfx_QuitSlots_Ch7
@@ -2042,7 +2042,7 @@ Sfx_QuitSlots_Ch8:
 
 	togglesfx
 
-Sfx_Protect:
+Sfx_Protect::
 	musicheader 2, 5, Sfx_Protect_Ch5
 	musicheader 1, 8, Sfx_Protect_Ch8
 
@@ -2090,7 +2090,7 @@ Sfx_Protect_Ch8:
 	noise C_,  1, $75, $11
 	endchannel
 
-Sfx_Sketch:
+Sfx_Sketch::
 	musicheader 1, 5, Sfx_Sketch_Ch5
 
 Sfx_Sketch_Ch5:
@@ -2105,7 +2105,7 @@ Sfx_Sketch_Ch5:
 	soundinput $8
 	endchannel
 
-Sfx_RainDance:
+Sfx_RainDance::
 	musicheader 1, 8, Sfx_RainDance_Ch8
 
 Sfx_RainDance_Ch8:
@@ -2120,7 +2120,7 @@ Sfx_RainDance_Ch8:
 	noise __, 11, $32, $46
 	endchannel
 
-Sfx_Aeroblast:
+Sfx_Aeroblast::
 	musicheader 2, 5, Sfx_Aeroblast_Ch5
 	musicheader 1, 8, Sfx_Aeroblast_Ch8
 
@@ -2138,7 +2138,7 @@ Sfx_Aeroblast_Ch8:
 	noise C_,  1, $31, $5a
 	endchannel
 
-Sfx_Spark:
+Sfx_Spark::
 	musicheader 1, 8, Sfx_Spark_Ch8
 
 Sfx_Spark_Ch8:
@@ -2147,7 +2147,7 @@ Sfx_Spark_Ch8:
 	loopchannel 2, Sfx_Spark_Ch8
 	endchannel
 
-Sfx_Curse:
+Sfx_Curse::
 	musicheader 2, 5, Sfx_Curse_Ch5
 	musicheader 1, 8, Sfx_Curse_Ch8
 
@@ -2163,7 +2163,7 @@ Sfx_Curse_Ch8:
 	noise C_,  5, $9a, $9
 	endchannel
 
-Sfx_Rage:
+Sfx_Rage::
 	musicheader 2, 5, Sfx_Rage_Ch5
 	musicheader 1, 8, Sfx_Rage_Ch8
 
@@ -2180,7 +2180,7 @@ Sfx_Rage_Ch8:
 	noise C_,  9, $f2, $18
 	endchannel
 
-Sfx_Thief:
+Sfx_Thief::
 	musicheader 1, 8, Sfx_Thief_Ch8
 
 Sfx_Thief_Ch8:
@@ -2191,7 +2191,7 @@ Sfx_Thief_Ch8:
 	loopchannel 2, Sfx_Thief_Ch8
 	endchannel
 
-Sfx_Thief2:
+Sfx_Thief2::
 	musicheader 1, 5, Sfx_Thief2_Ch5
 
 Sfx_Thief2_Ch5:
@@ -2213,7 +2213,7 @@ Sfx_Thief2_Ch5:
 	togglesfx
 	endchannel
 
-Sfx_SpiderWeb:
+Sfx_SpiderWeb::
 	musicheader 2, 5, Sfx_SpiderWeb_Ch5
 	musicheader 1, 8, Sfx_SpiderWeb_Ch8
 
@@ -2234,7 +2234,7 @@ Sfx_SpiderWeb_Ch8:
 	noise C#,  1, $ef, $0
 	endchannel
 
-Sfx_MindReader:
+Sfx_MindReader::
 	musicheader 2, 5, Sfx_MindReader_Ch5
 	musicheader 1, 8, Sfx_MindReader_Ch8
 
@@ -2262,7 +2262,7 @@ Sfx_MindReader_Ch8:
 	noise C_,  3, $af, $18
 	endchannel
 
-Sfx_Nightmare:
+Sfx_Nightmare::
 	musicheader 1, 5, Sfx_Nightmare_Ch5
 
 Sfx_Nightmare_Ch5:
@@ -2283,7 +2283,7 @@ Sfx_Nightmare_Ch5:
 	soundinput $8
 	endchannel
 
-Sfx_Snore:
+Sfx_Snore::
 	musicheader 1, 8, Sfx_Snore_Ch8
 
 Sfx_Snore_Ch8:
@@ -2295,7 +2295,7 @@ Sfx_Snore_Ch8:
 	noise __,  5, $ee, $45
 	endchannel
 
-Sfx_SweetKiss:
+Sfx_SweetKiss::
 	musicheader 1, 5, Sfx_SweetKiss_Ch5
 
 Sfx_SweetKiss_Ch5:
@@ -2307,7 +2307,7 @@ Sfx_SweetKiss_Ch5:
 	sound C_, 11, $f1, $07e2
 	endchannel
 
-Sfx_SweetKiss2:
+Sfx_SweetKiss2::
 	musicheader 1, 5, Sfx_SweetKiss2_Ch5
 
 Sfx_SweetKiss2_Ch5:
@@ -2323,7 +2323,7 @@ Sfx_SweetKiss2_Ch5:
 	soundinput $8
 	endchannel
 
-Sfx_BellyDrum:
+Sfx_BellyDrum::
 	musicheader 2, 5, Sfx_BellyDrum_Ch5
 	musicheader 1, 8, Sfx_BellyDrum_Ch8
 
@@ -2338,7 +2338,7 @@ Sfx_BellyDrum_Ch8:
 	noise __, 13, $b1, $6c
 	endchannel
 
-Sfx_Unknown7F:
+Sfx_Unknown7F::
 	musicheader 1, 5, Sfx_Unknown7F_Ch5
 
 Sfx_Unknown7F_Ch5:
@@ -2350,7 +2350,7 @@ Sfx_Unknown7F_Ch5:
 	soundinput $8
 	endchannel
 
-Sfx_SludgeBomb:
+Sfx_SludgeBomb::
 	musicheader 2, 5, Sfx_SludgeBomb_Ch5
 	musicheader 1, 8, Sfx_SludgeBomb_Ch8
 
@@ -2370,7 +2370,7 @@ Sfx_SludgeBomb_Ch8:
 	noise C_,  1, $e2, $6d
 	endchannel
 
-Sfx_Foresight:
+Sfx_Foresight::
 	musicheader 1, 5, Sfx_Foresight_Ch5
 
 Sfx_Foresight_Ch5:
@@ -2383,7 +2383,7 @@ Sfx_Foresight_Ch5:
 	sound __,  9, $91, $07da
 	endchannel
 
-Sfx_Spite:
+Sfx_Spite::
 	musicheader 1, 5, Sfx_Spite_Ch5
 
 Sfx_Spite_Ch5:
@@ -2412,7 +2412,7 @@ Sfx_Spite_Ch5:
 	togglesfx
 	endchannel
 
-Sfx_Outrage:
+Sfx_Outrage::
 	musicheader 1, 8, Sfx_Outrage_Ch8
 
 Sfx_Outrage_Ch8:
@@ -2423,7 +2423,7 @@ Sfx_Outrage_Ch8:
 	noise __, 12, $e1, $59
 	endchannel
 
-Sfx_PerishSong:
+Sfx_PerishSong::
 	musicheader 2, 5, Sfx_PerishSong_Ch5
 	musicheader 1, 6, Sfx_PerishSong_Ch6
 
@@ -2450,7 +2450,7 @@ Sfx_PerishSong_Ch6:
 	togglesfx
 	endchannel
 
-Sfx_GigaDrain:
+Sfx_GigaDrain::
 	musicheader 2, 5, Sfx_GigaDrain_Ch5
 	musicheader 1, 8, Sfx_GigaDrain_Ch8
 
@@ -2478,7 +2478,7 @@ Sfx_GigaDrain_Ch8:
 	noise D#,  1, $c7, $57
 	endchannel
 
-Sfx_Attract:
+Sfx_Attract::
 	musicheader 1, 5, Sfx_Attract_Ch5
 
 Sfx_Attract_Ch5:
@@ -2491,7 +2491,7 @@ Sfx_Attract_Ch5:
 	soundinput $8
 	endchannel
 
-Sfx_Kinesis2:
+Sfx_Kinesis2::
 	musicheader 1, 5, Sfx_Kinesis2_Ch5
 
 Sfx_Kinesis2_Ch5:
@@ -2501,7 +2501,7 @@ Sfx_Kinesis2_Ch5:
 	sound C_,  5, $f1, $07c4
 	endchannel
 
-Sfx_ZapCannon:
+Sfx_ZapCannon::
 	musicheader 1, 8, Sfx_ZapCannon_Ch8
 
 Sfx_ZapCannon_Ch8:
@@ -2511,7 +2511,7 @@ Sfx_ZapCannon_Ch8:
 	noise __,  9, $e1, $49
 	endchannel
 
-Sfx_MeanLook:
+Sfx_MeanLook::
 	musicheader 1, 5, Sfx_MeanLook_Ch5
 
 Sfx_MeanLook_Ch5:
@@ -2531,7 +2531,7 @@ Sfx_MeanLook_Ch5:
 	soundinput $8
 	endchannel
 
-Sfx_HealBell:
+Sfx_HealBell::
 	musicheader 1, 5, Sfx_HealBell_Ch5
 
 Sfx_HealBell_Ch5:
@@ -2542,7 +2542,7 @@ Sfx_HealBell_Ch5:
 	sound __,  9, $d1, $07db
 	endchannel
 
-Sfx_Return:
+Sfx_Return::
 	musicheader 1, 5, Sfx_Return_Ch5
 
 Sfx_Return_Ch5:
@@ -2557,7 +2557,7 @@ Sfx_Return_Ch5:
 	soundinput $8
 	endchannel
 
-Sfx_ExpBar:
+Sfx_ExpBar::
 	musicheader 1, 5, Sfx_ExpBar_Ch5
 
 Sfx_ExpBar_Ch5:
@@ -2575,7 +2575,7 @@ Sfx_ExpBar_Ch5:
 	soundinput $8
 	endchannel
 
-Sfx_MilkDrink:
+Sfx_MilkDrink::
 	musicheader 1, 5, Sfx_MilkDrink_Ch5
 
 Sfx_MilkDrink_Ch5:
@@ -2591,7 +2591,7 @@ Sfx_MilkDrink_Ch5:
 	soundinput $8
 	endchannel
 
-Sfx_Present:
+Sfx_Present::
 	musicheader 1, 5, Sfx_Present_Ch5
 
 Sfx_Present_Ch5:
@@ -2605,7 +2605,7 @@ Sfx_Present_Ch5:
 	soundinput $8
 	endchannel
 
-Sfx_MorningSun:
+Sfx_MorningSun::
 	musicheader 1, 5, Sfx_MorningSun_Ch5
 
 Sfx_MorningSun_Ch5:
@@ -2621,7 +2621,7 @@ Sfx_MorningSun_Ch5:
 	sound __,  9, $82, $07e7
 	endchannel
 
-Sfx_Moonlight:
+Sfx_Moonlight::
 	musicheader 1, 5, Sfx_Moonlight_Ch5
 
 Sfx_Moonlight_Ch5:
@@ -2635,7 +2635,7 @@ Sfx_Moonlight_Ch5:
 	sound C_,  1, $81, $07e0
 	endchannel
 
-Sfx_Encore:
+Sfx_Encore::
 	musicheader 2, 5, Sfx_Encore_Ch5
 	musicheader 1, 8, Sfx_Encore_Ch8
 
@@ -2655,7 +2655,7 @@ Sfx_Encore_Ch8:
 	noise D_,  1, $76, $36
 	endchannel
 
-Sfx_BeatUp:
+Sfx_BeatUp::
 	musicheader 1, 8, Sfx_BeatUp_Ch8
 
 Sfx_BeatUp_Ch8:
@@ -2666,7 +2666,7 @@ Sfx_BeatUp_Ch8:
 	noise __,  7, $d1, $24
 	endchannel
 
-Sfx_SweetScent:
+Sfx_SweetScent::
 	musicheader 1, 5, Sfx_SweetScent_Ch5
 
 Sfx_SweetScent_Ch5:
@@ -2679,7 +2679,7 @@ Sfx_SweetScent_Ch5:
 	soundinput $8
 	endchannel
 
-Sfx_BatonPass:
+Sfx_BatonPass::
 	musicheader 2, 5, Sfx_BatonPass_Ch5
 	musicheader 1, 8, Sfx_BatonPass_Ch8
 
@@ -2699,7 +2699,7 @@ Sfx_BatonPass_Ch8:
 	noise C#,  1, $f2, $20
 	endchannel
 
-Sfx_EggCrack:
+Sfx_EggCrack::
 	musicheader 1, 5, Sfx_EggCrack_Ch5
 
 Sfx_EggCrack_Ch5:
@@ -2713,7 +2713,7 @@ Sfx_EggCrack_Ch5:
 	note F#, 1
 	endchannel
 
-Sfx_Evolved:
+Sfx_Evolved::
 	musicheader 1, 5, Sfx_Evolved_Ch5
 
 Sfx_Evolved_Ch5:
@@ -2736,7 +2736,7 @@ Sfx_Evolved_Ch5:
 	note C_, 16
 	endchannel
 
-Sfx_MasterBall:
+Sfx_MasterBall::
 	musicheader 1, 5, Sfx_MasterBall_Ch5
 
 Sfx_MasterBall_Ch5:
@@ -2769,7 +2769,7 @@ Sfx_MasterBall_Ch5:
 	note C_, 2
 	endchannel
 
-Sfx_EggHatch:
+Sfx_EggHatch::
 	musicheader 1, 5, Sfx_EggHatch_Ch5
 
 Sfx_EggHatch_Ch5:
@@ -2790,7 +2790,7 @@ Sfx_EggHatch_Ch5:
 	note B_, 7
 	endchannel
 
-Sfx_GsIntroCharizardFireball:
+Sfx_GsIntroCharizardFireball::
 	musicheader 1, 8, Sfx_GsIntroCharizardFireball_Ch8
 
 Sfx_GsIntroCharizardFireball_Ch8:
@@ -2808,7 +2808,7 @@ Sfx_GsIntroCharizardFireball_Ch8:
 	noise C#,  9, $d3, $4f
 	endchannel
 
-Sfx_GsIntroPokemonAppears:
+Sfx_GsIntroPokemonAppears::
 	musicheader 1, 8, Sfx_GsIntroPokemonAppears_Ch8
 
 Sfx_GsIntroPokemonAppears_Ch8:
@@ -2821,7 +2821,7 @@ Sfx_GsIntroPokemonAppears_Ch8:
 	noise __,  9, $f1, $0
 	endchannel
 
-Sfx_Flash:
+Sfx_Flash::
 	musicheader 1, 5, Sfx_Flash_Ch5
 
 Sfx_Flash_Ch5:
@@ -2839,7 +2839,7 @@ Sfx_Flash_Ch5:
 	soundinput $8
 	endchannel
 
-Sfx_GameFreakLogoGs:
+Sfx_GameFreakLogoGs::
 	musicheader 1, 5, Sfx_GameFreakLogoGs_Ch5
 
 Sfx_GameFreakLogoGs_Ch5:
@@ -2858,7 +2858,7 @@ Sfx_GameFreakLogoGs_Ch5:
 	soundinput $8
 	endchannel
 
-Sfx_DexFanfareLessThan20:
+Sfx_DexFanfareLessThan20::
 	musicheader 4, 5, Sfx_DexFanfareLessThan20_Ch5
 	musicheader 1, 6, Sfx_DexFanfareLessThan20_Ch6
 	musicheader 1, 7, Sfx_DexFanfareLessThan20_Ch7
@@ -2943,7 +2943,7 @@ Sfx_DexFanfareLessThan20_Ch8:
 
 	togglesfx
 
-Sfx_DexFanfare140169:
+Sfx_DexFanfare140169::
 	musicheader 4, 5, Sfx_DexFanfare140169_Ch5
 	musicheader 1, 6, Sfx_DexFanfare140169_Ch6
 	musicheader 1, 7, Sfx_DexFanfare140169_Ch7
@@ -3055,7 +3055,7 @@ Sfx_DexFanfare140169_Ch8:
 
 	togglesfx
 
-Sfx_DexFanfare170199:
+Sfx_DexFanfare170199::
 	musicheader 4, 5, Sfx_DexFanfare170199_Ch5
 	musicheader 1, 6, Sfx_DexFanfare170199_Ch6
 	musicheader 1, 7, Sfx_DexFanfare170199_Ch7
@@ -3168,7 +3168,7 @@ Sfx_DexFanfare170199_Ch8:
 
 	db $fd
 
-Sfx_DexFanfare200229:
+Sfx_DexFanfare200229::
 	musicheader 4, 5, Sfx_DexFanfare200229_Ch5
 	musicheader 1, 6, Sfx_DexFanfare200229_Ch6
 	musicheader 1, 7, Sfx_DexFanfare200229_Ch7
@@ -3297,7 +3297,7 @@ Sfx_DexFanfare200229_Ch8:
 
 	togglesfx
 
-Sfx_DexFanfare230Plus:
+Sfx_DexFanfare230Plus::
 	musicheader 4, 5, Sfx_DexFanfare230Plus_Ch5
 	musicheader 1, 6, Sfx_DexFanfare230Plus_Ch6
 	musicheader 1, 7, Sfx_DexFanfare230Plus_Ch7
@@ -3471,7 +3471,7 @@ Sfx_DexFanfare230Plus_Ch8:
 
 	togglesfx
 
-Sfx_NotVeryEffective:
+Sfx_NotVeryEffective::
 	musicheader 1, 8, Sfx_NotVeryEffective_Ch8
 
 Sfx_NotVeryEffective_Ch8:
@@ -3480,7 +3480,7 @@ Sfx_NotVeryEffective_Ch8:
 	noise C_,  1, $f1, $53
 	endchannel
 
-Sfx_Damage:
+Sfx_Damage::
 	musicheader 1, 8, Sfx_Damage_Ch8
 
 Sfx_Damage_Ch8:
@@ -3490,7 +3490,7 @@ Sfx_Damage_Ch8:
 	noise C_,  1, $f1, $44
 	endchannel
 
-Sfx_SuperEffective:
+Sfx_SuperEffective::
 	musicheader 1, 8, Sfx_SuperEffective_Ch8
 
 Sfx_SuperEffective_Ch8:
@@ -3501,7 +3501,7 @@ Sfx_SuperEffective_Ch8:
 	noise C#,  1, $f2, $35
 	endchannel
 
-Sfx_BallBounce:
+Sfx_BallBounce::
 	musicheader 2, 5, Sfx_BallBounce_Ch5
 	musicheader 1, 6, Sfx_BallBounce_Ch6
 
@@ -3530,7 +3530,7 @@ Sfx_BallBounce_Ch6:
 	sound C_,  8, $0, 0
 	endchannel
 
-Sfx_SweetScent2:
+Sfx_SweetScent2::
 	musicheader 2, 5, Sfx_SweetScent2_Ch5
 	musicheader 1, 8, Sfx_SweetScent2_Ch8
 
@@ -3557,7 +3557,7 @@ Sfx_SweetScent2_Ch8:
 	noise __,  3, $21, $7
 	endchannel
 
-Sfx_HitEndOfExpBar:
+Sfx_HitEndOfExpBar::
 	musicheader 2, 5, Sfx_HitEndOfExpBar_Ch5
 	musicheader 1, 6, Sfx_HitEndOfExpBar_Ch6
 
@@ -3575,7 +3575,7 @@ Sfx_HitEndOfExpBar_Ch6:
 	sound C_,  1, $e1, $07c4
 	endchannel
 
-Sfx_GiveTrademon:
+Sfx_GiveTrademon::
 	musicheader 1, 5, Sfx_GiveTrademon_Ch5
 
 Sfx_GiveTrademon_Ch5:
@@ -3593,7 +3593,7 @@ Sfx_GiveTrademon_Ch5:
 	soundinput $8
 	endchannel
 
-Sfx_GetTrademon:
+Sfx_GetTrademon::
 	musicheader 1, 5, Sfx_GetTrademon_Ch5
 
 Sfx_GetTrademon_Ch5:
@@ -3611,7 +3611,7 @@ Sfx_GetTrademon_Ch5:
 	soundinput $8
 	endchannel
 
-Sfx_TrainArrived:
+Sfx_TrainArrived::
 	musicheader 3, 5, Sfx_TrainArrived_Ch5
 	musicheader 1, 6, Sfx_TrainArrived_Ch6
 	musicheader 1, 8, Sfx_TrainArrived_Ch8
@@ -3641,7 +3641,7 @@ Sfx_TrainArrived_Ch8:
 	noise F_,  9, $a3, $0
 	endchannel
 
-Sfx_2Boops:
+Sfx_2Boops::
 	musicheader 1, 5, Sfx_2Boops_Ch5
 
 Sfx_2Boops_Ch5:
@@ -3656,7 +3656,7 @@ Sfx_2Boops_Ch5:
 	soundinput $8
 	endchannel
 
-Sfx_IntroWhoosh:
+Sfx_IntroWhoosh::
 	musicheader 1, 8, Sfx_IntroWhoosh_Ch8
 
 Sfx_Menu_Ch8:
@@ -5012,7 +5012,7 @@ Sfx_Elevator_Ch8:
 
 SECTION "audio/sfx.asm@Sfx_StopSlot", ROMX
 
-Sfx_StopSlot:
+Sfx_StopSlot::
 	musicheader 1, 5, Sfx_StopSlot_Ch5
 
 Sfx_StopSlot_Ch5:
@@ -5024,7 +5024,7 @@ Sfx_StopSlot_Ch5:
 
 SECTION "audio/sfx.asm@Sfx_GlassTing", ROMX
 
-Sfx_GlassTing:
+Sfx_GlassTing::
 	musicheader 1, 5, Sfx_GlassTing_Ch5
 
 Sfx_GlassTing_Ch5:
@@ -5035,7 +5035,7 @@ Sfx_GlassTing_Ch5:
 
 SECTION "audio/sfx.asm@Sfx_GlassTing2", ROMX
 
-Sfx_GlassTing2:
+Sfx_GlassTing2::
 	musicheader 2, 5, Sfx_GlassTing2_Ch5
 	musicheader 1, 6, Sfx_GlassTing2_Ch6
 

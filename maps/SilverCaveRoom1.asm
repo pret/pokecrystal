@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/SilverCaveRoom1.asm", ROMX
 
-SilverCaveRoom1_MapScripts:
+SilverCaveRoom1_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -32,7 +32,7 @@ SilverCaveRoom1HiddenDireHit:
 SilverCaveRoom1HiddenUltraBall:
 	hiddenitem ULTRA_BALL, EVENT_SILVER_CAVE_ROOM_1_HIDDEN_ULTRA_BALL
 
-SilverCaveRoom1_MapEvents:
+SilverCaveRoom1_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

@@ -13,7 +13,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route26.asm", ROMX
 
-Route26_MapScripts:
+Route26_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -415,7 +415,7 @@ Route26SignText:
 	line "RECEPTION GATE"
 	done
 
-Route26_MapEvents:
+Route26_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

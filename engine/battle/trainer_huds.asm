@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/battle/trainer_huds.asm", ROMX
 
-BattleStart_TrainerHuds:
+BattleStart_TrainerHuds::
 	ld a, $e4
 	ldh [rOBP0], a
 	call LoadBallIconGFX
@@ -13,7 +13,7 @@ BattleStart_TrainerHuds:
 	ret z
 	jp ShowOTTrainerMonsRemaining
 
-EnemySwitch_TrainerHud:
+EnemySwitch_TrainerHud::
 	ld a, $e4
 	ldh [rOBP0], a
 	call LoadBallIconGFX
@@ -103,7 +103,7 @@ StageBallTilesData:
 	add hl, bc
 	ret
 
-DrawPlayerHUDBorder:
+DrawPlayerHUDBorder::
 	ld hl, .tiles
 	ld de, wTrainerHUDTiles
 	ld bc, .tiles_end - .tiles
@@ -135,7 +135,7 @@ DrawPlayerPartyIconHUDBorder:
 	db $76 ; bottom side
 .tiles_end
 
-DrawEnemyHUDBorder:
+DrawEnemyHUDBorder::
 	ld hl, .tiles
 	ld de, wTrainerHUDTiles
 	ld bc, .tiles_end - .tiles
@@ -239,7 +239,7 @@ INCBIN "gfx/battle/balls.2bpp"
 
 SECTION "engine/battle/trainer_huds.asm@_ShowLinkBattleParticipants", ROMX
 
-_ShowLinkBattleParticipants:
+_ShowLinkBattleParticipants::
 	call ClearBGPalettes
 	call LoadFontsExtra
 	hlcoord 2, 3

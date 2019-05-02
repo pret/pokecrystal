@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/goldsilveropening2.asm", ROMX
 
-Music_GoldSilverOpening2:
+Music_GoldSilverOpening2::
 	musicheader 4, 1, Music_GoldSilverOpening2_Ch1
 	musicheader 1, 2, Music_GoldSilverOpening2_Ch2
 	musicheader 1, 3, Music_GoldSilverOpening2_Ch3

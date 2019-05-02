@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/PewterSnoozeSpeechHouse.asm", ROMX
 
-PewterSnoozeSpeechHouse_MapScripts:
+PewterSnoozeSpeechHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -23,7 +23,7 @@ PewterSnoozeSpeechHouseGrampsText:
 	cont "…Zzzz…"
 	done
 
-PewterSnoozeSpeechHouse_MapEvents:
+PewterSnoozeSpeechHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

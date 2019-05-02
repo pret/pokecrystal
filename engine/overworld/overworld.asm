@@ -20,7 +20,7 @@ _ReplaceKrisSprite::
 	call GetUsedSprite
 	ret
 
-Function14146: ; mobile
+Function14146:: ; mobile
 	ld hl, wSpriteFlags
 	ld a, [hl]
 	push af
@@ -31,7 +31,7 @@ Function14146: ; mobile
 	ld [wSpriteFlags], a
 	ret
 
-Function14157: ; mobile
+Function14157:: ; mobile
 	ld hl, wSpriteFlags
 	ld a, [hl]
 	push af
@@ -143,7 +143,7 @@ AddOutdoorSprites:
 	jr nz, .loop
 	ret
 
-LoadUsedSpritesGFX:
+LoadUsedSpritesGFX::
 	ld a, MAPCALLBACK_SPRITES
 	call RunMapCallback
 	call GetUsedSprites
@@ -562,7 +562,7 @@ GetUsedSprites:
 .done
 	ret
 
-GetUsedSprite:
+GetUsedSprite::
 	ldh a, [hUsedSpriteIndex]
 	call SafeGetSprite
 	ldh a, [hUsedSpriteTile]

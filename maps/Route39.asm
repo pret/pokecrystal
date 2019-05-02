@@ -15,7 +15,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route39.asm", ROMX
 
-Route39_MapScripts:
+Route39_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -346,7 +346,7 @@ Route39TrainerTipsText:
 	line "any tree you see!"
 	done
 
-Route39_MapEvents:
+Route39_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

@@ -11,7 +11,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/WiseTriosRoom.asm", ROMX
 
-WiseTriosRoom_MapScripts:
+WiseTriosRoom_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_FINISHED
@@ -347,7 +347,7 @@ SageKojiAfterBattleFinalText:
 	line "you to the test."
 	done
 
-WiseTriosRoom_MapEvents:
+WiseTriosRoom_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

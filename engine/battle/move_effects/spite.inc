@@ -1,4 +1,4 @@
-BattleCommand_Spite:
+BattleCommand_Spite::
 ; spite
 
 	ld a, [wAttackMissed]

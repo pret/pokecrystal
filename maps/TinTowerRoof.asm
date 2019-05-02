@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/TinTowerRoof.asm", ROMX
 
-TinTowerRoof_MapScripts:
+TinTowerRoof_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -47,7 +47,7 @@ HoOhText:
 	text "Shaoooh!"
 	done
 
-TinTowerRoof_MapEvents:
+TinTowerRoof_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

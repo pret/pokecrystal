@@ -8,7 +8,7 @@ ResetGameTime::
 	ld [wGameTimeFrames], a
 	ret
 
-GameTimer::
+GameTimer:
 	nop
 
 	ldh a, [rSVBK]
@@ -22,7 +22,7 @@ GameTimer::
 	ldh [rSVBK], a
 	ret
 
-UpdateGameTimer::
+UpdateGameTimer:
 ; Increment the game timer by one frame.
 ; The game timer is capped at 999:59:59.00.
 

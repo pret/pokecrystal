@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/BattleTowerHallway.asm", ROMX, BANK[BANK_MAP_BATTLE_TOWER]
 
-BattleTowerHallway_MapScripts:
+BattleTowerHallway_MapScripts::
 	db 2 ; scene scripts
 	scene_script .Scene0 ; SCENE_DEFAULT
 	scene_script .Scene1 ; SCENE_FINISHED
@@ -79,7 +79,7 @@ BattleTowerHallway_MapScripts:
 	warpcheck
 	end
 
-BattleTowerHallway_MapEvents:
+BattleTowerHallway_MapEvents::
 	db 0, 0 ; filler
 
 	db 6 ; warp events

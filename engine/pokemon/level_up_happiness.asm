@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokemon/level_up_happiness.asm", ROMX
 
-LevelUpHappinessMod:
+LevelUpHappinessMod::
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1CaughtLocation
 	call GetPartyLocation

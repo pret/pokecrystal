@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/VermilionPortPassage.asm", ROMX
 
-VermilionPortPassage_MapScripts:
+VermilionPortPassage_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -21,7 +21,7 @@ VermilionPortPassageTeacherText:
 	cont "every week."
 	done
 
-VermilionPortPassage_MapEvents:
+VermilionPortPassage_MapEvents::
 	db 0, 0 ; filler
 
 	db 5 ; warp events

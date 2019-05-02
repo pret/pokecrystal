@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/FastShip1F.asm", ROMX
 
-FastShip1F_MapScripts:
+FastShip1F_MapScripts::
 	db 3 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .EnterFastShip ; SCENE_FASTSHIP1F_ENTER_SHIP
@@ -288,7 +288,7 @@ FastShip1FSailor1Text_InVermilion:
 	cont "VERMILION CITY."
 	done
 
-FastShip1F_MapEvents:
+FastShip1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 12 ; warp events

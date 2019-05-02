@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/elm.asm", ROMX
 
-ElmPhoneCalleeScript:
+ElmPhoneCalleeScript::
 	readvar VAR_SPECIALPHONECALL
 	ifequal SPECIALCALL_POKERUS, .pokerus
 	checkevent EVENT_SHOWED_TOGEPI_TO_ELM
@@ -66,7 +66,7 @@ ElmPhoneCalleeScript:
 	specialphonecall SPECIALCALL_NONE
 	end
 
-ElmPhoneCallerScript:
+ElmPhoneCallerScript::
 	readvar VAR_SPECIALPHONECALL
 	ifequal SPECIALCALL_ROBBED, .disaster
 	ifequal SPECIALCALL_ASSISTANT, .assistant

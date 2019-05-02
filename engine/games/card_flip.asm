@@ -9,16 +9,16 @@ CARDFLIP_DECK_SIZE EQU 4 * 6
 SECTION "engine/games/card_flip.asm@Unknown_e00ed", ROMX, BANK[BANK_DUMMY_GAME]
 
 ; two labels below called from inside ./dummy_game.asm
-Unknown_e00ed:
+Unknown_e00ed::
 ; Graphics for an unused Game Corner
 ; game were meant to be here.
-ret_e00ed:
+ret_e00ed::
 	ret
 
 
 SECTION "engine/games/card_flip.asm", ROMX
 
-_CardFlip:
+_CardFlip::
 	ld hl, wOptions
 	set NO_TEXT_SCROLL, [hl]
 	call ClearBGPalettes

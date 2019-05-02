@@ -10,7 +10,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/LavRadioTower1F.asm", ROMX
 
-LavRadioTower1F_MapScripts:
+LavRadioTower1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -225,7 +225,7 @@ LavRadioTower1FReferenceLibraryText:
 	line "reference library."
 	done
 
-LavRadioTower1F_MapEvents:
+LavRadioTower1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

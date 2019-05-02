@@ -1,4 +1,4 @@
-PokedexDataPointerTable:
+PokedexDataPointerTable::
 ; entries correspond to constants/pokemon_constants.inc
 	dw BulbasaurPokedexEntry
 	dw IvysaurPokedexEntry

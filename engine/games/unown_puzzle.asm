@@ -8,7 +8,7 @@ puzcoord EQUS "* 6 +"
 
 SECTION "engine/games/unown_puzzle.asm", ROMX
 
-_UnownPuzzle:
+_UnownPuzzle::
 	ldh a, [hInMenu]
 	push af
 	ld a, $1

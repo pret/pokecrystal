@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/IcePathB3F.asm", ROMX
 
-IcePathB3F_MapScripts:
+IcePathB3F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -18,7 +18,7 @@ IcePathB3FNevermeltice:
 IcePathB3FRock:
 	jumpstd smashrock
 
-IcePathB3F_MapEvents:
+IcePathB3F_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

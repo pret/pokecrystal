@@ -14,7 +14,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route36.asm", ROMX
 
-Route36_MapScripts:
+Route36_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_ROUTE36_NOTHING
 	scene_script .DummyScene1 ; SCENE_ROUTE36_SUICUNE
@@ -662,7 +662,7 @@ Route36TrainerTips2Text:
 	line "landmarks."
 	done
 
-Route36_MapEvents:
+Route36_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

@@ -3,12 +3,12 @@ INCLUDE "constants.inc"
 
 SECTION "maps/ViridianPokecenter2FBeta.asm", ROMX
 
-ViridianPokecenter2FBeta_MapScripts:
+ViridianPokecenter2FBeta_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
 
-ViridianPokecenter2FBeta_MapEvents:
+ViridianPokecenter2FBeta_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

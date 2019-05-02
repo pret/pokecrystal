@@ -1,4 +1,4 @@
-PrintLetterDelay::
+PrintLetterDelay:
 ; Wait before printing the next letter.
 
 ; The text speed setting in wOptions is actually a frame count:

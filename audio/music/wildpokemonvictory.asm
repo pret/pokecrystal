@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/wildpokemonvictory.asm", ROMX, BANK[BANK_MUSIC_WILD_VICTORY]
 
-Music_WildPokemonVictory:
+Music_WildPokemonVictory::
 	musicheader 3, 1, Music_WildPokemonVictory_Ch1
 	musicheader 1, 2, Music_WildPokemonVictory_Ch2
 	musicheader 1, 3, Music_WildPokemonVictory_Ch3
@@ -21,7 +21,7 @@ Music_WildPokemonVictory_Ch1:
 	note F#, 1
 	intensity $b6
 	note E_, 12
-Music_SuccessfulCapture_branch_f4536:
+Music_SuccessfulCapture_branch_f4536::
 	stereopanning $f
 Music_WildPokemonVictory_branch_f4538:
 	callchannel Music_WildPokemonVictory_branch_f455c
@@ -83,7 +83,7 @@ Music_WildPokemonVictory_Ch2:
 	note A_, 1
 	intensity $d6
 	note B_, 12
-Music_SuccessfulCapture_branch_f4585:
+Music_SuccessfulCapture_branch_f4585::
 	stereopanning $f0
 Music_WildPokemonVictory_branch_f4587:
 	callchannel Music_WildPokemonVictory_branch_f45b5
@@ -144,7 +144,7 @@ Music_WildPokemonVictory_Ch3:
 	note __, 3
 	note E_, 1
 	note __, 3
-Music_SuccessfulCapture_branch_f45cf:
+Music_SuccessfulCapture_branch_f45cf::
 Music_WildPokemonVictory_branch_f45cf:
 	callchannel Music_WildPokemonVictory_branch_f45f4
 	note D#, 2

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/battle_tower/rules.asm", ROMX
 
-CheckForMobileBattleRules:
+CheckForMobileBattleRules::
 	ld de, .PointerTables
 	call BattleTower_ExecuteJumptable
 	ret z
@@ -30,7 +30,7 @@ CheckForMobileBattleRules:
 	text_far UnknownText_0x1c5937
 	text_end
 
-_CheckForBattleTowerRules:
+_CheckForBattleTowerRules::
 	ld hl, wStringBuffer2
 	ld [hl], "3"
 	inc hl

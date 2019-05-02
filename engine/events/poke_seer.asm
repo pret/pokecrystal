@@ -20,7 +20,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/poke_seer.asm", ROMX
 
-PokeSeer:
+PokeSeer::
 	ld a, SEER_INTRO
 	call PrintSeerText
 	call JoyWaitAorB
@@ -404,7 +404,7 @@ SeerAdvice5:
 
 SECTION "engine/events/poke_seer.asm@GetCaughtGender", ROMX
 
-GetCaughtGender:
+GetCaughtGender::
 	ld hl, MON_CAUGHTGENDER
 	add hl, bc
 

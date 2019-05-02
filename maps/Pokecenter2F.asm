@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Pokecenter2F.asm", ROMX
 
-Pokecenter2F_MapScripts:
+Pokecenter2F_MapScripts::
 	db 6 ; scene scripts
 	scene_script .Scene0 ; SCENE_DEFAULT
 	scene_script .Scene1 ; SCENE_POKECENTER2F_LEAVE_TRADE_CENTER
@@ -1025,7 +1025,7 @@ Text_BrokeStadiumRules:
 	line "when you're ready."
 	done
 
-Pokecenter2F_MapEvents:
+Pokecenter2F_MapEvents::
 	db 0, 0 ; filler
 
 	db 6 ; warp events

@@ -13,7 +13,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/SaffronCity.asm", ROMX
 
-SaffronCity_MapScripts:
+SaffronCity_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -268,7 +268,7 @@ SaffronCityMagnetTrainStationSignText:
 	cont "STATION"
 	done
 
-SaffronCity_MapEvents:
+SaffronCity_MapEvents::
 	db 0, 0 ; filler
 
 	db 15 ; warp events

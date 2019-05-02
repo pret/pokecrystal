@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/OaksLab.asm", ROMX
 
-OaksLab_MapScripts:
+OaksLab_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -259,7 +259,7 @@ OaksLabPCText:
 	line "TOWN 8-)"
 	done
 
-OaksLab_MapEvents:
+OaksLab_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

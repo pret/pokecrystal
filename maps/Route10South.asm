@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route10South.asm", ROMX
 
-Route10South_MapScripts:
+Route10South_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -78,7 +78,7 @@ Route10SignText:
 	line "LAVENDER TOWN"
 	done
 
-Route10South_MapEvents:
+Route10South_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

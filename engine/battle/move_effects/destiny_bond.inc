@@ -1,4 +1,4 @@
-BattleCommand_DestinyBond:
+BattleCommand_DestinyBond::
 ; destinybond
 
 	ld a, BATTLE_VARS_SUBSTATUS5

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/wilton_overworld.asm", ROMX
 
-WiltonAskNumber1Text:
+WiltonAskNumber1Text::
 	text "Eh, our battle was"
 	line "fun, I'd say…"
 
@@ -17,7 +17,7 @@ WiltonAskNumber1Text:
 	line "What's the number?"
 	done
 
-WiltonAskNumber2Text:
+WiltonAskNumber2Text::
 	text "If I snag an item"
 	line "while I'm fishing,"
 
@@ -25,30 +25,30 @@ WiltonAskNumber2Text:
 	line "your number?"
 	done
 
-WiltonNumberAcceptedText:
+WiltonNumberAcceptedText::
 	text "If I snag anything"
 	line "good, I'll be sure"
 	cont "to let you know."
 	done
 
-WiltonNumberDeclinedText:
+WiltonNumberDeclinedText::
 	text "All right… Come"
 	line "back if you have a"
 	cont "change of heart."
 	done
 
-WiltonPhoneFullText:
+WiltonPhoneFullText::
 	text "You can't register"
 	line "another number."
 	done
 
-WiltonRematchText:
+WiltonRematchText::
 	text "Argh! You startled"
 	line "POLIWAG into"
 	cont "fleeing again!"
 	done
 
-WiltonGiftText:
+WiltonGiftText::
 	text "So here you are."
 
 	para "See this?"
@@ -58,7 +58,7 @@ WiltonGiftText:
 	line "ago. It's yours."
 	done
 
-WiltonPackFullText:
+WiltonPackFullText::
 	text "Your PACK's full?"
 
 	para "I'll give it to"

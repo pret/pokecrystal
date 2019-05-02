@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/alan.asm", ROMX
 
-AlanPhoneCalleeScript:
+AlanPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, SCHOOLBOY, ALAN1
 	checkflag ENGINE_ALAN
 	iftrue .WantsBattle
@@ -28,7 +28,7 @@ AlanPhoneCalleeScript:
 	getlandmarkname STRING_BUFFER_5, ROUTE_36
 	farsjump UnknownScript_0xa0ac5
 
-AlanPhoneCallerScript:
+AlanPhoneCallerScript::
 	gettrainername STRING_BUFFER_3, SCHOOLBOY, ALAN1
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_ALAN

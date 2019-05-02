@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/BlackthornPokecenter1F.asm", ROMX
 
-BlackthornPokecenter1F_MapScripts:
+BlackthornPokecenter1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -52,7 +52,7 @@ BlackthornPokecenter1FTwinText:
 	cont "forget an HM move."
 	done
 
-BlackthornPokecenter1F_MapEvents:
+BlackthornPokecenter1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

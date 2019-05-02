@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/DiglettsCave.asm", ROMX
 
-DiglettsCave_MapScripts:
+DiglettsCave_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -25,7 +25,7 @@ DiglettsCavePokefanMText:
 	line "shocking."
 	done
 
-DiglettsCave_MapEvents:
+DiglettsCave_MapEvents::
 	db 0, 0 ; filler
 
 	db 6 ; warp events

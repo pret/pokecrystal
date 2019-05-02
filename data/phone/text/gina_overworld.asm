@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/gina_overworld.asm", ROMX
 
-GinaAskNumber1Text:
+GinaAskNumber1Text::
 	text "Whenever I see a"
 	line "strong trainer, I"
 
@@ -24,7 +24,7 @@ GinaAskNumber1Text:
 	line "as I get anything."
 	done
 
-GinaAskNumber2Text:
+GinaAskNumber2Text::
 	text "If I find an item,"
 	line "you can have it!"
 
@@ -32,30 +32,30 @@ GinaAskNumber2Text:
 	line "your number?"
 	done
 
-GinaNumberAcceptedText:
+GinaNumberAcceptedText::
 	text "I'll call as soon"
 	line "as I get anything!"
 	done
 
-GinaNumberDeclinedText:
+GinaNumberDeclinedText::
 	text "Is that so? Well,"
 	line "I'll still be"
 	cont "rooting for you!"
 	done
 
-GinaPhoneFullText:
+GinaPhoneFullText::
 	text "But your phone is"
 	line "all filled up!"
 	done
 
-GinaRematchText:
+GinaRematchText::
 	text "I've been waiting!"
 
 	para "I've gotten a bit"
 	line "better at this!"
 	done
 
-GinaGiftText:
+GinaGiftText::
 	text "So you're finally"
 	line "here!"
 
@@ -63,7 +63,7 @@ GinaGiftText:
 	line "make you happy."
 	done
 
-GinaPackFullText:
+GinaPackFullText::
 	text "Your PACK looks"
 	line "completely full."
 

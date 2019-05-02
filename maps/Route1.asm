@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route1.asm", ROMX
 
-Route1_MapScripts:
+Route1_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -83,7 +83,7 @@ Route1SignText:
 	line "VIRIDIAN CITY"
 	done
 
-Route1_MapEvents:
+Route1_MapEvents::
 	db 0, 0 ; filler
 
 	db 0 ; warp events

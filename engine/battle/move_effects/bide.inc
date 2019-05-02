@@ -1,4 +1,4 @@
-BattleCommand_StoreEnergy:
+BattleCommand_StoreEnergy::
 ; storeenergy
 
 	ld a, BATTLE_VARS_SUBSTATUS3
@@ -69,7 +69,7 @@ BattleCommand_StoreEnergy:
 	call StdBattleTextbox
 	jp EndMoveEffect
 
-BattleCommand_UnleashEnergy:
+BattleCommand_UnleashEnergy::
 ; unleashenergy
 
 	ld de, wPlayerDamageTaken

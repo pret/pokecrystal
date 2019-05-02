@@ -11,7 +11,7 @@ CELADONDEPTSTORE6F_LEMONADE_PRICE    EQU 350
 
 SECTION "maps/CeladonDeptStore6F.asm", ROMX, BANK[BANK_MAP_CELADON_DEPT_STORE_1F]
 
-CeladonDeptStore6F_MapScripts:
+CeladonDeptStore6F_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -152,7 +152,7 @@ CeladonDeptStore6FDirectoryText:
 	line "VENDING MACHINES"
 	done
 
-CeladonDeptStore6F_MapEvents:
+CeladonDeptStore6F_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

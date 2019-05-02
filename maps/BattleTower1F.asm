@@ -10,7 +10,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/BattleTower1F.asm", ROMX, BANK[BANK_MAP_BATTLE_TOWER]
 
-BattleTower1F_MapScripts:
+BattleTower1F_MapScripts::
 	db 2 ; scene scripts
 	scene_script .Scene0 ; SCENE_DEFAULT
 	scene_script .Scene1 ; SCENE_FINISHED
@@ -122,7 +122,7 @@ Script_WalkToBattleTowerElevator:
 	warpcheck
 	end
 
-Script_GivePlayerHisPrize:
+Script_GivePlayerHisPrize::
 	setval BATTLETOWERACTION_1C
 	special BattleTowerAction
 	setval BATTLETOWERACTION_GIVEREWARD
@@ -153,7 +153,7 @@ Script_BattleTowerSkipExplanation:
 	special BattleTowerAction
 	sjump Script_Menu_ChallengeExplanationCancel
 
-Script_BattleTowerHopeToServeYouAgain:
+Script_BattleTowerHopeToServeYouAgain::
 	writetext Text_WeHopeToServeYouAgain
 	waitbutton
 	closetext
@@ -273,18 +273,18 @@ MovementData_BattleTower1FWalkToElevator:
 	step UP
 	step UP
 	step UP
-MovementData_BattleTowerHallwayPlayerEntersBattleRoom:
+MovementData_BattleTowerHallwayPlayerEntersBattleRoom::
 	step UP
 	step_end
 
-MovementData_BattleTowerElevatorExitElevator:
+MovementData_BattleTowerElevatorExitElevator::
 	step DOWN
 	step_end
 
-MovementData_BattleTowerHallwayWalkTo1020Room:
+MovementData_BattleTowerHallwayWalkTo1020Room::
 	step RIGHT
 	step RIGHT
-MovementData_BattleTowerHallwayWalkTo3040Room:
+MovementData_BattleTowerHallwayWalkTo3040Room::
 	step RIGHT
 	step RIGHT
 	step UP
@@ -292,13 +292,13 @@ MovementData_BattleTowerHallwayWalkTo3040Room:
 	turn_head LEFT
 	step_end
 
-MovementData_BattleTowerHallwayWalkTo90100Room:
+MovementData_BattleTowerHallwayWalkTo90100Room::
 	step LEFT
 	step LEFT
-MovementData_BattleTowerHallwayWalkTo7080Room:
+MovementData_BattleTowerHallwayWalkTo7080Room::
 	step LEFT
 	step LEFT
-MovementData_BattleTowerHallwayWalkTo5060Room:
+MovementData_BattleTowerHallwayWalkTo5060Room::
 	step LEFT
 	step LEFT
 	step UP
@@ -306,7 +306,7 @@ MovementData_BattleTowerHallwayWalkTo5060Room:
 	turn_head RIGHT
 	step_end
 
-MovementData_BattleTowerBattleRoomPlayerWalksIn:
+MovementData_BattleTowerBattleRoomPlayerWalksIn::
 	step UP
 	step UP
 	step UP
@@ -314,28 +314,28 @@ MovementData_BattleTowerBattleRoomPlayerWalksIn:
 	turn_head RIGHT
 	step_end
 
-MovementData_BattleTowerBattleRoomOpponentWalksIn:
+MovementData_BattleTowerBattleRoomOpponentWalksIn::
 	slow_step DOWN
 	slow_step DOWN
 	slow_step DOWN
 	turn_head LEFT
 	step_end
 
-MovementData_BattleTowerBattleRoomOpponentWalksOut:
+MovementData_BattleTowerBattleRoomOpponentWalksOut::
 	turn_head UP
 	slow_step UP
 	slow_step UP
 	slow_step UP
 	step_end
 
-MovementData_BattleTowerBattleRoomReceptionistWalksToPlayer:
+MovementData_BattleTowerBattleRoomReceptionistWalksToPlayer::
 	slow_step RIGHT
 	slow_step RIGHT
 	slow_step UP
 	slow_step UP
 	step_end
 
-MovementData_BattleTowerBattleRoomReceptionistWalksAway:
+MovementData_BattleTowerBattleRoomReceptionistWalksAway::
 	slow_step DOWN
 	slow_step DOWN
 	slow_step LEFT
@@ -343,11 +343,11 @@ MovementData_BattleTowerBattleRoomReceptionistWalksAway:
 	turn_head RIGHT
 	step_end
 
-MovementData_BattleTowerBattleRoomPlayerTurnsToFaceReceptionist:
+MovementData_BattleTowerBattleRoomPlayerTurnsToFaceReceptionist::
 	turn_head DOWN
 	step_end
 
-MovementData_BattleTowerBattleRoomPlayerTurnsToFaceNextOpponent:
+MovementData_BattleTowerBattleRoomPlayerTurnsToFaceNextOpponent::
 	turn_head RIGHT
 	step_end
 
@@ -484,7 +484,7 @@ Text_ThankYou:
 	para ""
 	done
 
-Text_ThanksForVisiting:
+Text_ThanksForVisiting::
 	text "Thanks for"
 	line "visiting!"
 	done
@@ -507,7 +507,7 @@ Text_BeatenAllTheTrainers_Mobile:
 	para ""
 	done
 
-Text_CongratulationsYouveBeatenAllTheTrainers:
+Text_CongratulationsYouveBeatenAllTheTrainers::
 	text "Congratulations!"
 
 	para "You've beaten all"
@@ -551,12 +551,12 @@ Text_YourRegistrationIsComplete:
 	para "Please come again!"
 	done
 
-Text_WeHopeToServeYouAgain:
+Text_WeHopeToServeYouAgain::
 	text "We hope to serve"
 	line "you again."
 	done
 
-Text_PleaseStepThisWay:
+Text_PleaseStepThisWay::
 	text "Please step this"
 	line "way."
 	done
@@ -631,13 +631,13 @@ Text_BattleTower_LeftWithoutSaving:
 	line "invalid."
 	done
 
-Text_YourMonWillBeHealedToFullHealth:
+Text_YourMonWillBeHealedToFullHealth::
 	text "Your #MON will"
 	line "be healed to full"
 	cont "health."
 	done
 
-Text_NextUpOpponentNo:
+Text_NextUpOpponentNo::
 	text "Next up, opponent"
 	line "no.@"
 	text_ram wStringBuffer3
@@ -660,7 +660,7 @@ Text_SaveBeforeEnteringBattleRoom:
 	line "be saved."
 	done
 
-Text_SaveAndEndTheSession:
+Text_SaveAndEndTheSession::
 	text "SAVE and end the"
 	line "session?"
 	done
@@ -673,7 +673,7 @@ Text_SaveBeforeReentry:
 	line "the previous ROOM."
 	done
 
-Text_CancelYourBattleRoomChallenge:
+Text_CancelYourBattleRoomChallenge::
 	text "Cancel your BATTLE"
 	line "ROOM challenge?"
 	done
@@ -704,7 +704,7 @@ Text_FiveDayBattleLimit_Mobile:
 	line "tomorrow."
 	done
 
-Text_TooMuchTimeElapsedNoRegister:
+Text_TooMuchTimeElapsedNoRegister::
 	text "Sorry, but it's"
 	line "not possible to"
 
@@ -796,7 +796,7 @@ Text_BattleTowerBugCatcher:
 	line "any fire #MON…"
 	done
 
-BattleTower1F_MapEvents:
+BattleTower1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

@@ -10,7 +10,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/RadioTower5F.asm", ROMX
 
-RadioTower5F_MapScripts:
+RadioTower5F_MapScripts::
 	db 3 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_RADIOTOWER5F_ROCKET_BOSS
@@ -423,7 +423,7 @@ RadioTower5FStudio1SignText:
 	text "5F STUDIO 1"
 	done
 
-RadioTower5F_MapEvents:
+RadioTower5F_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

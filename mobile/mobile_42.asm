@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "mobile/mobile_42.asm", ROMX
 
-MobileTradeAnimation_SendGivemonToGTS:
+MobileTradeAnimation_SendGivemonToGTS::
 	ld a, $80
 	ld [wcf65], a
 	ld de, .TradeAnimScript
@@ -18,11 +18,11 @@ MobileTradeAnimation_SendGivemonToGTS:
 	mobiletradeanim_0f
 	mobiletradeanim_end
 
-MobileTradeAnimation_RetrieveGivemonFromGTS:
+MobileTradeAnimation_RetrieveGivemonFromGTS::
 	ld a, $80
 	jr asm_108018
 
-MobileTradeAnimation_ReceiveGetmonFromGTS:
+MobileTradeAnimation_ReceiveGetmonFromGTS::
 	ld a, $0
 asm_108018:
 	ld [wcf65], a
@@ -36,11 +36,11 @@ asm_108018:
 	mobiletradeanim_showgtsgetmon
 	mobiletradeanim_end
 
-Function108026:
+Function108026::
 	ld a, $0
 	jr asm_10802c
 
-Function10802a:
+Function10802a::
 	ld a, $1
 
 asm_10802c:
@@ -58,7 +58,7 @@ asm_10802c:
 	mobiletradeanim_showgetmon
 	mobiletradeanim_end
 
-Function10803d:
+Function10803d::
 	ld a, $0
 	ld [wcf65], a
 	ld de, .TradeAnimScript
@@ -71,7 +71,7 @@ Function10803d:
 	mobiletradeanim_showoddegg
 	mobiletradeanim_end
 
-Function10804d:
+Function10804d::
 	ld a, $0
 	ld [wcf65], a
 	ld de, .TradeAnimScript
@@ -1514,7 +1514,7 @@ MobileTradeAnim_DeleteSprites:
 	call ClearSprites
 	ret
 
-Function108bc7:
+Function108bc7::
 	ld a, [wcf64]
 	and a
 	ret z
@@ -1531,7 +1531,7 @@ Function108bc7:
 	farcall DeinitializeSprite
 	ret
 
-Function108be0:
+Function108be0::
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld a, [hl]

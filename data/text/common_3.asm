@@ -233,7 +233,7 @@ UnknownText_0x1c465f::
 	cont "will be saved. OK?"
 	done
 
-UnknownText_0x1c4693::
+UnknownText_0x1c4693:
 	text "The window save"
 	line "area was exceeded."
 	done
@@ -243,7 +243,7 @@ UnknownText_0x1c46b7::
 	line "able for popping."
 	done
 
-UnknownText_0x1c46dc::
+UnknownText_0x1c46dc:
 	text "Corrupted event!"
 	prompt
 
@@ -910,7 +910,7 @@ UnknownText_0x1c55ca::
 	text "Thank you!"
 	done
 
-UnknownText_0x1c55d6::
+UnknownText_0x1c55d6:
 	text "  :"
 	done
 

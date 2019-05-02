@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/GoldenrodBikeShop.asm", ROMX
 
-GoldenrodBikeShop_MapScripts:
+GoldenrodBikeShop_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -104,7 +104,7 @@ GoldenrodBikeShopBicycleText:
 	line "BICYCLE!"
 	done
 
-GoldenrodBikeShop_MapEvents:
+GoldenrodBikeShop_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route7.asm", ROMX
 
-Route7_MapScripts:
+Route7_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -37,7 +37,7 @@ Route7LockedDoorText:
 	text "It's locked…"
 	done
 
-Route7_MapEvents:
+Route7_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

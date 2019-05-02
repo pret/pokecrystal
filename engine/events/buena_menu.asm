@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/buena_menu.asm", ROMX
 
-AskRememberPassword:
+AskRememberPassword::
 	call .DoMenu
 	ld a, $0
 	jr c, .okay
@@ -47,7 +47,7 @@ AskRememberPassword:
 	scf
 	ret
 
-Buena_ExitMenu:
+Buena_ExitMenu::
 	ldh a, [hOAMUpdate]
 	push af
 	call ExitMenu

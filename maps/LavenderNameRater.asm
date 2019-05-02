@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/LavenderNameRater.asm", ROMX
 
-LavenderNameRater_MapScripts:
+LavenderNameRater_MapScripts::
 	db 1 ; scene scripts
 	scene_script .DummyScene
 
@@ -27,7 +27,7 @@ LavenderNameRaterUnusedBookshelf:
 ; unused
 	jumpstd difficultbookshelf
 
-LavenderNameRater_MapEvents:
+LavenderNameRater_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

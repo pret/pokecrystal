@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/looksage.asm", ROMX
 
-Music_LookSage:
+Music_LookSage::
 	musicheader 2, 1, Music_LookSage_Ch1
 	musicheader 1, 3, Music_LookSage_Ch3
 

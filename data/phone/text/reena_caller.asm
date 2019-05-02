@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/reena_caller.asm", ROMX
 
-UnknownText_0x1752f5:
+UnknownText_0x1752f5::
 	text "Listen, dear…"
 
 	para "Do you recall my"
@@ -21,7 +21,7 @@ UnknownText_0x1752f5:
 	cont "match for me?"
 	done
 
-UnknownText_0x17536b:
+UnknownText_0x17536b::
 	text "Have I ever faced"
 	line "a wild @"
 	text_ram wStringBuffer4
@@ -36,7 +36,7 @@ UnknownText_0x17536b:
 	cont "occasions!"
 	done
 
-UnknownText_0x1753c5:
+UnknownText_0x1753c5::
 	text "Have I ever failed"
 	line "to catch a wild"
 	cont "#MON?"
@@ -52,7 +52,7 @@ UnknownText_0x1753c5:
 	line "Oh! Never mind!"
 	done
 
-UnknownText_0x17543a:
+UnknownText_0x17543a::
 	text "We are going to"
 	line "battle!"
 
@@ -65,11 +65,11 @@ UnknownText_0x17543a:
 	line "wait! Got it?"
 	done
 
-UnknownText_0x175488:
+UnknownText_0x175488::
 	text "Fine, you may go."
 	done
 
-UnknownText_0x17549b:
+UnknownText_0x17549b::
 	text "Don't be too proud"
 	line "just because you"
 
@@ -79,7 +79,7 @@ UnknownText_0x17549b:
 	para "It was a fluke!"
 	done
 
-UnknownText_0x1754e5:
+UnknownText_0x1754e5::
 	text "What are you"
 	line "doing?"
 

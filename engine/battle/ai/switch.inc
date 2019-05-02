@@ -1,4 +1,4 @@
-CheckPlayerMoveTypeMatchups:
+CheckPlayerMoveTypeMatchups::
 ; Check how well the moves you've already used
 ; fare against the enemy's Pokemon.  Used to
 ; score a potential switch.
@@ -173,7 +173,7 @@ CheckPlayerMoveTypeMatchups:
 	ld [wEnemyAISwitchScore], a
 	ret
 
-CheckAbleToSwitch:
+CheckAbleToSwitch::
 	xor a
 	ld [wEnemySwitchMonParam], a
 	call FindAliveEnemyMons
@@ -289,7 +289,7 @@ CheckAbleToSwitch:
 	ld [wEnemySwitchMonParam], a
 	ret
 
-FindAliveEnemyMons:
+FindAliveEnemyMons::
 	ld a, [wOTPartyCount]
 	cp 2
 	jr c, .only_one

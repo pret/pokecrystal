@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokemon/health.asm", ROMX
 
-HealParty:
+HealParty::
 	xor a
 	ld [wCurPartyMon], a
 	ld hl, wPartySpecies
@@ -27,7 +27,7 @@ HealParty:
 .done
 	ret
 
-HealPartyMon:
+HealPartyMon::
 	ld a, MON_SPECIES
 	call GetPartyParamLocation
 	ld d, h
@@ -60,7 +60,7 @@ HealPartyMon:
 
 SECTION "engine/pokemon/health.asm@AnimateHPBar", ROMX, BANK[BANK_ANIMATE_HP_BAR]
 
-ComputeHPBarPixels:
+ComputeHPBarPixels::
 ; e = bc * (6 * 8) / de
 	ld a, b
 	or c
@@ -111,7 +111,7 @@ ComputeHPBarPixels:
 	ld e, 0
 	ret
 
-AnimateHPBar:
+AnimateHPBar::
 	call WaitBGMap
 	call _AnimateHPBar
 	call WaitBGMap

@@ -3,14 +3,14 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/mom.asm", ROMX
 
-MomPhoneGreetingText:
+MomPhoneGreetingText::
 	text "Hello?"
 
 	para "Oh, hi, <PLAYER>!"
 	line "Working hard?"
 	done
 
-MomPhoneLandmarkText:
+MomPhoneLandmarkText::
 	text "Oh, so you're in"
 	line "@"
 	text_ram wStringBuffer3
@@ -24,7 +24,7 @@ MomPhoneLandmarkText:
 	line "take a look?"
 	done
 
-MomPhoneGenericAreaText:
+MomPhoneGenericAreaText::
 	text "Really, you're in"
 	line "@"
 	text_ram wStringBuffer3
@@ -35,7 +35,7 @@ MomPhoneGenericAreaText:
 	cont "of neat, <PLAYER>."
 	done
 
-MomPhoneNewBarkText:
+MomPhoneNewBarkText::
 	text "What? You're in"
 	line "@"
 	text_ram wStringBuffer3
@@ -45,7 +45,7 @@ MomPhoneNewBarkText:
 	line "sometime!"
 	done
 
-MomPhoneCherrygroveText:
+MomPhoneCherrygroveText::
 	text "You're visiting"
 	line "@"
 	text_ram wStringBuffer3
@@ -55,7 +55,7 @@ MomPhoneCherrygroveText:
 	line "home for a bit?"
 	done
 
-MomOtherAreaText:
+MomOtherAreaText::
 	text "Wow, you're in"
 	line "@"
 	text_ram wStringBuffer3
@@ -65,7 +65,7 @@ MomOtherAreaText:
 	line "#MON quest!"
 	done
 
-MomDeterminedText:
+MomDeterminedText::
 	text "That sounds really"
 	line "tough."
 
@@ -76,7 +76,7 @@ MomDeterminedText:
 	line "be OK, right?"
 	done
 
-MomCheckBalanceText:
+MomCheckBalanceText::
 	text "By the way, you've"
 	line "saved up ¥@"
 	text_ram wStringBuffer3
@@ -86,12 +86,12 @@ MomCheckBalanceText:
 	line "keep on saving?"
 	done
 
-MomImportantToSaveText:
+MomImportantToSaveText::
 	text "It's important to"
 	line "save your money."
 	done
 
-MomYoureNotSavingText:
+MomYoureNotSavingText::
 	text "Oh, <PLAYER>,"
 	line "you're not saving"
 
@@ -99,7 +99,7 @@ MomYoureNotSavingText:
 	line "you like to save?"
 	done
 
-MomYouveSavedText:
+MomYouveSavedText::
 	text "By the way, you've"
 	line "saved up ¥@"
 	text_ram wStringBuffer3
@@ -109,23 +109,23 @@ MomYouveSavedText:
 	line "saving again?"
 	done
 
-MomOKIllSaveText:
+MomOKIllSaveText::
 	text "OK. I'll save your"
 	line "money."
 	done
 
-MomPhoneWontSaveMoneyText:
+MomPhoneWontSaveMoneyText::
 	text "OK. I won't save"
 	line "your money."
 	done
 
-MomPhoneHangUpText:
+MomPhoneHangUpText::
 	text "<PLAYER>, keep it"
 	line "up! I'm rooting"
 	cont "for you, baby!"
 	done
 
-MomPhoneNoPokemonText:
+MomPhoneNoPokemonText::
 	text "Hello?"
 
 	para "Oh, hi, <PLAYER>!"
@@ -133,7 +133,7 @@ MomPhoneNoPokemonText:
 	cont "waiting for you?"
 	done
 
-MomPhoneNoPokedexText:
+MomPhoneNoPokedexText::
 	text "Hello?"
 
 	para "Oh, hi, <PLAYER>!"
@@ -143,7 +143,7 @@ MomPhoneNoPokedexText:
 	line "ELM? Be good!"
 	done
 
-MomPhoneNoGymQuestText:
+MomPhoneNoGymQuestText::
 	text "Hello?"
 
 	para "Hi, <PLAYER>! If"
@@ -153,7 +153,7 @@ MomPhoneNoGymQuestText:
 	line "on home, dear."
 	done
 
-MomPhoneLectureText:
+MomPhoneLectureText::
 	text "Hello?"
 
 	para "…… <PLAYER>?"

@@ -3,6 +3,6 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/unused.asm", ROMX
 
-UnusedPhoneScript:
+UnusedPhoneScript::
 	farwritetext UnusedPhoneText
 	end

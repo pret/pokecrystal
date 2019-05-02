@@ -7,7 +7,7 @@ FIELDMOVE_FLY EQU $84
 
 SECTION "engine/events/field_moves.asm@PlayWhirlpoolSound", ROMX
 
-PlayWhirlpoolSound:
+PlayWhirlpoolSound::
 	call WaitSFX
 	ld de, SFX_SURF
 	call PlaySFX
@@ -17,7 +17,7 @@ PlayWhirlpoolSound:
 
 SECTION "engine/events/field_moves.asm@BlindingFlash", ROMX
 
-BlindingFlash:
+BlindingFlash::
 	farcall FadeOutPalettes
 	ld hl, wStatusFlags
 	set STATUSFLAGS_FLASH_F, [hl]
@@ -32,7 +32,7 @@ BlindingFlash:
 
 SECTION "engine/events/field_moves.asm@Trees", ROMX
 
-ShakeHeadbuttTree:
+ShakeHeadbuttTree::
 	farcall ClearSpriteAnims
 	ld de, CutGrassGFX
 	ld hl, vTiles0 tile FIELDMOVE_GRASS
@@ -121,7 +121,7 @@ TreeRelativeLocationTable:
 	dwcoord 8 - 2, 8     ; DOWN
 	dwcoord 8 + 2, 8     ; UP
 
-OWCutAnimation:
+OWCutAnimation::
 	; Animation index in e
 	; 0: Split tree in half
 	; 1: Mow the lawn
@@ -319,7 +319,7 @@ Cut_Headbutt_GetPixelFacing:
 
 SECTION "engine/events/field_moves.asm@Fly", ROMX
 
-FlyFromAnim:
+FlyFromAnim::
 	call DelayFrame
 	ld a, [wVramState]
 	push af
@@ -353,7 +353,7 @@ FlyFromAnim:
 	ld [wVramState], a
 	ret
 
-FlyToAnim:
+FlyToAnim::
 	call DelayFrame
 	ld a, [wVramState]
 	push af

@@ -1,4 +1,4 @@
-Serial::
+Serial:
 ; The serial interrupt.
 
 	push af
@@ -231,7 +231,7 @@ Serial_ExchangeByte::
 	jr nz, .delay_cycles
 	ret
 
-CheckwLinkTimeoutFramesNonzero::
+CheckwLinkTimeoutFramesNonzero:
 	push hl
 	ld hl, wLinkTimeoutFrames
 	ld a, [hli]
@@ -239,7 +239,7 @@ CheckwLinkTimeoutFramesNonzero::
 	pop hl
 	ret
 
-SerialDisconnected::
+SerialDisconnected:
 	dec a ; a is always 0 when this is called
 	ld [wLinkTimeoutFrames], a
 	ld [wLinkTimeoutFrames + 1], a
@@ -278,7 +278,7 @@ Serial_PrintWaitingTextAndSyncAndExchangeNybble::
 	call WaitLinkTransfer
 	jp Call_LoadTempTileMapToTileMap
 
-Serial_SyncAndExchangeNybble::
+Serial_SyncAndExchangeNybble:
 	call LoadTileMapToTempTileMap
 	callfar PlaceWaitingText
 	jp WaitLinkTransfer
@@ -388,7 +388,7 @@ LinkDataReceived::
 	ldh [rSC], a
 	ret
 
-Unreferenced_Function919::
+Unreferenced_Function919:
 	ld a, [wLinkMode]
 	and a
 	ret nz

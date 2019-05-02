@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/dana_callee.asm", ROMX
 
-UnknownText_0x1b66c8:
+UnknownText_0x1b66c8::
 	text "Hi, @"
 	text_ram wStringBuffer3
 	text " on the"
@@ -12,7 +12,7 @@ UnknownText_0x1b66c8:
 	para "Hey! It's <PLAY_G>!"
 	done
 
-UnknownText_0x1b66ec:
+UnknownText_0x1b66ec::
 	text "Hi, @"
 	text_ram wStringBuffer3
 	text " on the"
@@ -22,7 +22,7 @@ UnknownText_0x1b66ec:
 	line "It's <PLAY_G>!"
 	done
 
-UnknownText_0x1b6713:
+UnknownText_0x1b6713::
 	text "Hi, @"
 	text_ram wStringBuffer3
 	text " on the"
@@ -32,7 +32,7 @@ UnknownText_0x1b6713:
 	line "What's up?"
 	done
 
-UnknownText_0x1b6738:
+UnknownText_0x1b6738::
 	text "Uh, <PLAY_G>?"
 
 	para "It's me!"
@@ -41,7 +41,7 @@ UnknownText_0x1b6738:
 	text "!"
 	done
 
-UnknownText_0x1b6757:
+UnknownText_0x1b6757::
 	text "Uh, <PLAY_G>?"
 
 	para "It's me!"
@@ -50,7 +50,7 @@ UnknownText_0x1b6757:
 	text "!"
 	done
 
-UnknownText_0x1b6776:
+UnknownText_0x1b6776::
 	text "Uh, <PLAY_G>?"
 
 	para "It's me!"
@@ -59,7 +59,7 @@ UnknownText_0x1b6776:
 	text "!"
 	done
 
-UnknownText_0x1b6795:
+UnknownText_0x1b6795::
 	text "My @"
 	text_ram wStringBuffer4
 	text " is"

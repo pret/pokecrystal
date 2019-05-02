@@ -7,11 +7,11 @@ _DudeAutoInput_A::
 	ld hl, DudeAutoInput_A
 	jr _DudeAutoInput
 
-_DudeAutoInput_RightA:
+_DudeAutoInput_RightA::
 	ld hl, DudeAutoInput_RightA
 	jr _DudeAutoInput
 
-_DudeAutoInput_DownA:
+_DudeAutoInput_DownA::
 	ld hl, DudeAutoInput_DownA
 	jr _DudeAutoInput
 

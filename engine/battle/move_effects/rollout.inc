@@ -1,6 +1,6 @@
 MAX_ROLLOUT_COUNT EQU 5
 
-BattleCommand_CheckCurl:
+BattleCommand_CheckCurl::
 ; checkcurl
 
 	ld de, wPlayerRolloutCount
@@ -22,7 +22,7 @@ BattleCommand_CheckCurl:
 	ld [de], a
 	ret
 
-BattleCommand_RolloutPower:
+BattleCommand_RolloutPower::
 ; rolloutpower
 
 	ld a, BATTLE_VARS_STATUS

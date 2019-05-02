@@ -11,7 +11,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/PokemonFanClub.asm", ROMX
 
-PokemonFanClub_MapScripts:
+PokemonFanClub_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -299,7 +299,7 @@ PokemonFanClubBraggingSignText:
 	line "brag right back!"
 	done
 
-PokemonFanClub_MapEvents:
+PokemonFanClub_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

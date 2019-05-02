@@ -12,7 +12,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/MountMortar2FInside.asm", ROMX
 
-MountMortar2FInside_MapScripts:
+MountMortar2FInside_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -69,7 +69,7 @@ SupernerdHughAfterBattleText:
 	line "use STRENGTH?"
 	done
 
-MountMortar2FInside_MapEvents:
+MountMortar2FInside_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

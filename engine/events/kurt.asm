@@ -23,7 +23,7 @@ Kurt_PrintTextHowMany:
 	text_far _HowManyShouldIMakeText
 	text_end
 
-SelectApricornForKurt:
+SelectApricornForKurt::
 	call LoadStandardMenuHeader
 	ld c, $1
 	xor a

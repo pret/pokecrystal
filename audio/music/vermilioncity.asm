@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/vermilioncity.asm", ROMX
 
-Music_VermilionCity:
+Music_VermilionCity::
 	musicheader 3, 1, Music_VermilionCity_Ch1
 	musicheader 1, 2, Music_VermilionCity_Ch2
 	musicheader 1, 3, Music_VermilionCity_Ch3

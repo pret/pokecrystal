@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/battle/link_result.asm", ROMX
 
-DetermineLinkBattleResult:
+DetermineLinkBattleResult::
 	farcall UpdateEnemyMonInParty
 	ld hl, wPartyMon1HP
 	call .CountMonsRemaining

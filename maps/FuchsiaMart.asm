@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/FuchsiaMart.asm", ROMX
 
-FuchsiaMart_MapScripts:
+FuchsiaMart_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -40,7 +40,7 @@ FuchsiaMartCooltrainerFText:
 	cont "town."
 	done
 
-FuchsiaMart_MapEvents:
+FuchsiaMart_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

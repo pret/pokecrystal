@@ -14,7 +14,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CeladonCity.asm", ROMX
 
-CeladonCity_MapScripts:
+CeladonCity_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -250,7 +250,7 @@ CeladonCityTrainerTipsText:
 	cont "STORE!"
 	done
 
-CeladonCity_MapEvents:
+CeladonCity_MapEvents::
 	db 0, 0 ; filler
 
 	db 9 ; warp events

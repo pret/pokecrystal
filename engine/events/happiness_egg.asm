@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/happiness_egg.asm@ChangeHappiness", ROMX, BANK[BANK_HAPPINESS]
 
-GetFirstPokemonHappiness:
+GetFirstPokemonHappiness::
 	ld hl, wPartyMon1Happiness
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld de, wPartySpecies
@@ -22,7 +22,7 @@ GetFirstPokemonHappiness:
 	call GetPokemonName
 	jp CopyPokemonName_Buffer1_Buffer3
 
-CheckFirstMonIsEgg:
+CheckFirstMonIsEgg::
 	ld a, [wPartySpecies]
 	ld [wNamedObjectIndexBuffer], a
 	cp EGG
@@ -35,7 +35,7 @@ CheckFirstMonIsEgg:
 	call GetPokemonName
 	jp CopyPokemonName_Buffer1_Buffer3
 
-ChangeHappiness:
+ChangeHappiness::
 ; Perform happiness action c on wCurPartyMon
 
 	ld a, [wCurPartyMon]

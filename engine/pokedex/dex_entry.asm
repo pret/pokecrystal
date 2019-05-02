@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokedex/dex_entry.asm", ROMX
 
-DisplayDexEntry:
+DisplayDexEntry::
 	call GetPokemonName
 	hlcoord 9, 3
 	call PlaceString ; mon species
@@ -174,7 +174,7 @@ GetDexEntryPointer:
 	db BANK("data/pokemon/dex_entries.asm@Pokedex Entries 129-192")
 	db BANK("data/pokemon/dex_entries.asm@Pokedex Entries 193-251")
 
-GetDexEntryPagePointer:
+GetDexEntryPagePointer::
 	call GetDexEntryPointer
 	push hl
 	ld h, d

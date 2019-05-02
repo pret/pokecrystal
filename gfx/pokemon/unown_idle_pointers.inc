@@ -1,4 +1,4 @@
-UnownAnimationIdlePointers:
+UnownAnimationIdlePointers::
 	dw UnownAAnimationIdle
 	dw UnownBAnimationIdle
 	dw UnownCAnimationIdle

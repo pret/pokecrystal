@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/dana.asm", ROMX
 
-DanaPhoneCalleeScript:
+DanaPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, LASS, DANA1
 	checkflag ENGINE_DANA
 	iftrue .WantsBattle
@@ -28,7 +28,7 @@ DanaPhoneCalleeScript:
 	getlandmarkname STRING_BUFFER_5, ROUTE_38
 	farsjump UnknownScript_0xa0acd
 
-DanaPhoneCallerScript:
+DanaPhoneCallerScript::
 	gettrainername STRING_BUFFER_3, LASS, DANA1
 	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_DANA

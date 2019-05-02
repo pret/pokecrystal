@@ -1,4 +1,4 @@
-MoveTutor:
+MoveTutor::
 	call FadeToMenu
 	call ClearBGPalettes
 	call ClearScreen

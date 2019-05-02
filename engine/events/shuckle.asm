@@ -5,7 +5,7 @@ MANIA_OT_ID EQU 00518
 
 SECTION "engine/events/shuckle.asm", ROMX
 
-GiveShuckle:
+GiveShuckle::
 ; Adding to the party.
 	xor a
 	ld [wMonType], a
@@ -76,7 +76,7 @@ SpecialShuckleOT:
 SpecialShuckleNick:
 	db "SHUCKIE@"
 
-ReturnShuckle:
+ReturnShuckle::
 	farcall SelectMonFromParty
 	jr c, .refused
 

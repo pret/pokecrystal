@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route18.asm", ROMX
 
-Route18_MapScripts:
+Route18_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -80,7 +80,7 @@ Route18SignText:
 	line "FUCHSIA CITY"
 	done
 
-Route18_MapEvents:
+Route18_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

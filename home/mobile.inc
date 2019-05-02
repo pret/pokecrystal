@@ -50,7 +50,7 @@ Function3e60::
 	ld a, [$c986]
 	ret
 
-MobileReceive::
+MobileReceive:
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(_MobileReceive)
@@ -65,7 +65,7 @@ MobileReceive::
 
 	ret
 
-Timer::
+Timer:
 	push af
 	push bc
 	push de
@@ -122,7 +122,7 @@ Timer::
 	pop af
 	reti
 
-Unreferenced_Function3ed7::
+Unreferenced_Function3ed7:
 	ld [$dc02], a
 	ldh a, [hROMBank]
 	push af
@@ -152,7 +152,7 @@ Function3eea::
 	call MobileHome_PlaceBox
 	ret
 
-Unreferenced_Function3efd::
+Unreferenced_Function3efd:
 	push hl
 	hlcoord 0, 12
 	ld b, 4
@@ -188,7 +188,7 @@ Function3f20::
 	call MobileHome_PlaceBox
 	ret
 
-Function3f35::
+Function3f35:
 	ld a, 6
 	ld de, SCREEN_WIDTH
 .row

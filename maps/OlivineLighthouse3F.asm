@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/OlivineLighthouse3F.asm", ROMX
 
-OlivineLighthouse3F_MapScripts:
+OlivineLighthouse3F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -115,7 +115,7 @@ GentlemanPrestonAfterBattleText:
 	cont "like ONIX."
 	done
 
-OlivineLighthouse3F_MapEvents:
+OlivineLighthouse3F_MapEvents::
 	db 0, 0 ; filler
 
 	db 9 ; warp events

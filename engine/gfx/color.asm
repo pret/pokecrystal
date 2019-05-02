@@ -10,7 +10,7 @@ SHINY_DEF_VAL EQU 10
 SHINY_SPD_VAL EQU 10
 SHINY_SPC_VAL EQU 10
 
-CheckShininess:
+CheckShininess::
 ; Check if a mon is shiny by DVs at bc.
 ; Return carry if shiny.
 
@@ -48,7 +48,7 @@ CheckShininess:
 	and a
 	ret
 
-Unused_CheckShininess:
+Unused_CheckShininess::
 ; Return carry if the DVs at hl are all 10 or higher.
 
 ; Attack
@@ -104,7 +104,7 @@ Unreferenced_Function8aa4:
 	call PushSGBPals
 	ret
 
-InitPartyMenuPalettes:
+InitPartyMenuPalettes::
 	ld hl, PalPacket_PartyMenu + 1
 	call CopyFourPalettes
 	call InitPartyMenuOBPals
@@ -242,13 +242,13 @@ Unreferenced_Function8b81:
 	call LoadPalette_White_Col1_Col2_Black
 	ret
 
-LoadTrainerClassPaletteAsNthBGPal:
+LoadTrainerClassPaletteAsNthBGPal::
 	ld a, [wTrainerClass]
 	call GetTrainerPalettePointer
 	ld a, e
 	jr got_palette_pointer_8bd7
 
-LoadMonPaletteAsNthBGPal:
+LoadMonPaletteAsNthBGPal::
 	ld a, [wCurPartySpecies]
 	call _GetMonPalettePointer
 	ld a, e
@@ -308,7 +308,7 @@ Unreferenced_Function8bec:
 	call CopyTilemapAtOnce
 	ret
 
-ApplyMonOrTrainerPals:
+ApplyMonOrTrainerPals::
 	call CheckCGB
 	ret z
 	ld a, e
@@ -330,7 +330,7 @@ ApplyMonOrTrainerPals:
 	call ApplyPals
 	ret
 
-ApplyHPBarPals:
+ApplyHPBarPals::
 	ld a, [wWhichHPBar]
 	and a
 	jr z, .Enemy
@@ -380,7 +380,7 @@ ApplyHPBarPals:
 	call FillBoxCGB
 	ret
 
-LoadStatsScreenPals:
+LoadStatsScreenPals::
 	call CheckCGB
 	ret z
 	ld hl, StatsScreenPals
@@ -404,7 +404,7 @@ LoadStatsScreenPals:
 	ld a, $1
 	ret
 
-LoadMailPalettes:
+LoadMailPalettes::
 	ld l, e
 	ld h, 0
 	add hl, hl
@@ -559,7 +559,7 @@ FillBoxCGB:
 	jr nz, .row
 	ret
 
-ResetBGPals:
+ResetBGPals::
 	push af
 	push bc
 	push de
@@ -602,7 +602,7 @@ WipeAttrMap:
 	call ByteFill
 	ret
 
-ApplyPals:
+ApplyPals::
 	ld hl, wBGPals1
 	ld de, wBGPals2
 	ld bc, 16 palettes
@@ -610,7 +610,7 @@ ApplyPals:
 	call FarCopyWRAM
 	ret
 
-ApplyAttrMap:
+ApplyAttrMap::
 	ldh a, [rLCDC]
 	bit rLCDC_ENABLE, a
 	jr z, .UpdateVBank1
@@ -859,7 +859,7 @@ _PushSGBPals:
 	jr nz, .loop
 	ret
 
-InitSGBBorder:
+InitSGBBorder::
 	call CheckCGB
 	ret nz
 ; SGB/DMG only

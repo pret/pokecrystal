@@ -16,7 +16,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/RadioTower2F.asm", ROMX
 
-RadioTower2F_MapScripts:
+RadioTower2F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -714,7 +714,7 @@ RadioTower2FPokemonRadioSignText:
 	line "#MON Radio"
 	done
 
-RadioTower2F_MapEvents:
+RadioTower2F_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

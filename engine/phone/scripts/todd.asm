@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/todd.asm", ROMX
 
-ToddPhoneCalleeScript:
+ToddPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, CAMPER, TODD1
 	checkflag ENGINE_TODD
 	iftrue .WantsBattle
@@ -27,7 +27,7 @@ ToddPhoneCalleeScript:
 .SaleOn:
 	farsjump UnknownScript_0xa0b04
 
-ToddPhoneCallerScript:
+ToddPhoneCallerScript::
 	gettrainername STRING_BUFFER_3, CAMPER, TODD1
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_TODD

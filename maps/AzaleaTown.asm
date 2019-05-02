@@ -17,7 +17,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/AzaleaTown.asm", ROMX
 
-AzaleaTown_MapScripts:
+AzaleaTown_MapScripts::
 	db 3 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_AZALEATOWN_NOTHING
 	scene_script .DummyScene1 ; SCENE_AZALEATOWN_RIVAL_BATTLE
@@ -458,7 +458,7 @@ AzaleaTownIlexForestSignText:
 	line "gate."
 	done
 
-AzaleaTown_MapEvents:
+AzaleaTown_MapEvents::
 	db 0, 0 ; filler
 
 	db 8 ; warp events

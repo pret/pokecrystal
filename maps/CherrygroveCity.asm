@@ -10,7 +10,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CherrygroveCity.asm", ROMX
 
-CherrygroveCity_MapScripts:
+CherrygroveCity_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_CHERRYGROVECITY_NOTHING
 	scene_script .DummyScene1 ; SCENE_CHERRYGROVECITY_MEET_RIVAL
@@ -549,7 +549,7 @@ GuideGentsHouseSignText:
 	text "GUIDE GENT'S HOUSE"
 	done
 
-CherrygroveCity_MapEvents:
+CherrygroveCity_MapEvents::
 	db 0, 0 ; filler
 
 	db 5 ; warp events

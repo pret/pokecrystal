@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/squirtbottle.asm", ROMX
 
-_Squirtbottle:
+_Squirtbottle::
 	ld hl, .SquirtbottleScript
 	call QueueScript
 	ld a, $1

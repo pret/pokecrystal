@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/TinTower4F.asm", ROMX
 
-TinTower4F_MapScripts:
+TinTower4F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -25,7 +25,7 @@ TinTower4FEscapeRope:
 TinTower4FHiddenMaxPotion:
 	hiddenitem MAX_POTION, EVENT_TIN_TOWER_4F_HIDDEN_MAX_POTION
 
-TinTower4F_MapEvents:
+TinTower4F_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

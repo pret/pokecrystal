@@ -12,7 +12,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/AzaleaGym.asm", ROMX
 
-AzaleaGym_MapScripts:
+AzaleaGym_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -364,7 +364,7 @@ AzaleaGymGuyWinText:
 	cont "#MON is bright!"
 	done
 
-AzaleaGym_MapEvents:
+AzaleaGym_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

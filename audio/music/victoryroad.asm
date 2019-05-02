@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/victoryroad.asm", ROMX
 
-Music_VictoryRoad:
+Music_VictoryRoad::
 	musicheader 4, 1, Music_VictoryRoad_Ch1
 	musicheader 1, 2, Music_VictoryRoad_Ch2
 	musicheader 1, 3, Music_VictoryRoad_Ch3

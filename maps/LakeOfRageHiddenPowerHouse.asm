@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/LakeOfRageHiddenPowerHouse.asm", ROMX
 
-LakeOfRageHiddenPowerHouse_MapScripts:
+LakeOfRageHiddenPowerHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -70,7 +70,7 @@ HiddenPowerGuyText3:
 	text "I am meditating…"
 	done
 
-LakeOfRageHiddenPowerHouse_MapEvents:
+LakeOfRageHiddenPowerHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

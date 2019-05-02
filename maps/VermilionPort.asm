@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/VermilionPort.asm", ROMX
 
-VermilionPort_MapScripts:
+VermilionPort_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .LeaveFastShip ; SCENE_VERMILIONPORT_LEAVE_SHIP
@@ -301,7 +301,7 @@ UnknownText_0x750a6:
 	cont "there."
 	done
 
-VermilionPort_MapEvents:
+VermilionPort_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

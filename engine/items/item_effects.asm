@@ -2001,7 +2001,7 @@ GetHealingItemAmount:
 
 INCLUDE "data/items/heal_hp.inc"
 
-Softboiled_MilkDrinkFunction:
+Softboiled_MilkDrinkFunction::
 ; Softboiled/Milk Drink in the field
 	ld a, [wPartyMenuCursor]
 	dec a
@@ -2838,7 +2838,7 @@ ComputeMaxPP:
 	pop bc
 	ret
 
-RestoreAllPP:
+RestoreAllPP::
 	ld a, MON_PP
 	call GetPartyParamLocation
 	push hl
@@ -2873,7 +2873,7 @@ RestoreAllPP:
 	jr nz, .loop
 	ret
 
-GetMaxPPOfMove:
+GetMaxPPOfMove::
 	ld a, [wStringBuffer1 + 0]
 	push af
 	ld a, [wStringBuffer1 + 1]

@@ -5,7 +5,7 @@ PRINTPARTY_HP EQU "◀" ; $71
 
 SECTION "engine/printer/print_party.asm@PrintPage1", ROMX
 
-PrintPage1:
+PrintPage1::
 	hlcoord 0, 0
 	decoord 0, 0, wPrinterTileMapBuffer
 	ld bc, 17 * SCREEN_WIDTH
@@ -59,7 +59,7 @@ PrintPage1:
 
 SECTION "engine/printer/print_party.asm@PrintPage2", ROMX
 
-PrintPage2:
+PrintPage2::
 	hlcoord 0, 0, wPrinterTileMapBuffer
 	ld bc, 8 * SCREEN_WIDTH
 	ld a, " "
@@ -111,30 +111,30 @@ PrintPage2:
 
 SECTION "engine/printer/print_party.asm@GBPrinterStrings", ROMX
 
-GBPrinterStrings: ; used only for BANK(GBPrinterStrings)
-GBPrinterString_Null: db "@"
-GBPrinterString_CheckingLink: next " CHECKING LINK...@"
-GBPrinterString_Transmitting: next "  TRANSMITTING...@"
-GBPrinterString_Printing: next "    PRINTING...@"
-GBPrinterString_PrinterError1:
+GBPrinterStrings:: ; used only for BANK(GBPrinterStrings)
+GBPrinterString_Null:: db "@"
+GBPrinterString_CheckingLink:: next " CHECKING LINK...@"
+GBPrinterString_Transmitting:: next "  TRANSMITTING...@"
+GBPrinterString_Printing:: next "    PRINTING...@"
+GBPrinterString_PrinterError1::
 	db   " Printer Error 1"
 	next ""
 	next "Check the Game Boy"
 	next "Printer Manual."
 	db   "@"
-GBPrinterString_PrinterError2:
+GBPrinterString_PrinterError2::
 	db   " Printer Error 2"
 	next ""
 	next "Check the Game Boy"
 	next "Printer Manual."
 	db   "@"
-GBPrinterString_PrinterError3:
+GBPrinterString_PrinterError3::
 	db   " Printer Error 3"
 	next ""
 	next "Check the Game Boy"
 	next "Printer Manual."
 	db   "@"
-GBPrinterString_PrinterError4:
+GBPrinterString_PrinterError4::
 	db   " Printer Error 4"
 	next ""
 	next "Check the Game Boy"
@@ -144,7 +144,7 @@ GBPrinterString_PrinterError4:
 
 SECTION "engine/printer/print_party.asm@PrintPartyMon", ROMX
 
-PrintPartyMonPage1:
+PrintPartyMonPage1::
 	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
@@ -243,7 +243,7 @@ PrintPartyMonPage1:
 	call SetPalettes
 	ret
 
-PrintPartyMonPage2:
+PrintPartyMonPage2::
 	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites

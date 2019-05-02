@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/battle/returntobattle_useball.asm", ROMX
 
-_ReturnToBattle_UseBall:
+_ReturnToBattle_UseBall::
 	call ClearBGPalettes
 	call ClearTileMap
 	ld a, [wBattleType]

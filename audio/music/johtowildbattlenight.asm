@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/johtowildbattlenight.asm", ROMX, BANK[BANK_MUSIC_JOHTO_WILD_BATTLE]
 
-Music_JohtoWildBattleNight:
+Music_JohtoWildBattleNight::
 	musicheader 3, 1, Music_JohtoWildBattleNight_Ch1
 	musicheader 1, 2, Music_JohtoWildBattleNight_Ch2
 	musicheader 1, 3, Music_JohtoWildBattleNight_Ch3

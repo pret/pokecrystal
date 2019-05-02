@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/WhirlIslandB2F.asm", ROMX
 
-WhirlIslandB2F_MapScripts:
+WhirlIslandB2F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -22,7 +22,7 @@ WhirlIslandB2FMaxRevive:
 WhirlIslandB2FMaxElixer:
 	itemball MAX_ELIXER
 
-WhirlIslandB2F_MapEvents:
+WhirlIslandB2F_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

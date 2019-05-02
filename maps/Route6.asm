@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route6.asm", ROMX
 
-Route6_MapScripts:
+Route6_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -94,7 +94,7 @@ PokefanmAllanAfterBattleText:
 	cont "your heart melt?"
 	done
 
-Route6_MapEvents:
+Route6_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

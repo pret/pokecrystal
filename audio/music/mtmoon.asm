@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/mtmoon.asm", ROMX
 
-Music_MtMoon:
+Music_MtMoon::
 	musicheader 4, 1, Music_MtMoon_Ch1
 	musicheader 1, 2, Music_MtMoon_Ch2
 	musicheader 1, 3, Music_MtMoon_Ch3

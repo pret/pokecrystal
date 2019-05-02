@@ -25,7 +25,7 @@ CheckSeenMon::
 	ld b, CHECK_FLAG
 	; fallthrough
 
-PokedexFlagAction::
+PokedexFlagAction:
 	ld d, 0
 	predef SmallFarFlagAction
 	ld a, c

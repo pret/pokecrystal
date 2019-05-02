@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route16FuchsiaSpeechHouse.asm", ROMX
 
-Route16FuchsiaSpeechHouse_MapScripts:
+Route16FuchsiaSpeechHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -25,7 +25,7 @@ Route16FuchsiaSpeechHouseSuperNerdText:
 	line "FUCHSIA CITY."
 	done
 
-Route16FuchsiaSpeechHouse_MapEvents:
+Route16FuchsiaSpeechHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

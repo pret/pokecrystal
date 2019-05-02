@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route17.asm", ROMX
 
-Route17_MapScripts:
+Route17_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -135,7 +135,7 @@ BikerCharlesAfterBattleText:
 	cont "Take it easy!"
 	done
 
-Route17_MapEvents:
+Route17_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

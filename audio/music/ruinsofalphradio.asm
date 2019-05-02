@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/ruinsofalphradio.asm", ROMX
 
-Music_RuinsOfAlphRadio:
+Music_RuinsOfAlphRadio::
 	musicheader 3, 1, Music_RuinsOfAlphRadio_Ch1
 	musicheader 1, 2, Music_RuinsOfAlphRadio_Ch2
 	musicheader 1, 3, Music_RuinsOfAlphRadio_Ch3

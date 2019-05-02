@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/lookkimonogirl.asm", ROMX
 
-Music_LookKimonoGirl:
+Music_LookKimonoGirl::
 	musicheader 3, 1, Music_LookKimonoGirl_Ch1
 	musicheader 1, 2, Music_LookKimonoGirl_Ch2
 	musicheader 1, 3, Music_LookKimonoGirl_Ch3

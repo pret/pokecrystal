@@ -117,7 +117,7 @@ LoadMapPart::
 	rst Bankswitch
 	ret
 
-LoadMetatiles::
+LoadMetatiles:
 	; de <- wOverworldMapAnchor
 	ld a, [wOverworldMapAnchor]
 	ld e, a
@@ -232,7 +232,7 @@ WarpCheck::
 	call CopyWarpData
 	ret
 
-GetDestinationWarpNumber::
+GetDestinationWarpNumber:
 	farcall CheckWarpCollision
 	ret nc
 
@@ -305,7 +305,7 @@ GetDestinationWarpNumber::
 	scf
 	ret
 
-CopyWarpData::
+CopyWarpData:
 	ldh a, [hROMBank]
 	push af
 
@@ -392,7 +392,7 @@ LoadMapAttributes_SkipPeople::
 	call ReadMapEvents
 	ret
 
-CopyMapPartialAndAttributes::
+CopyMapPartialAndAttributes:
 	call CopyMapPartial
 	call SwitchToMapAttributesBank
 	call GetMapAttributesPointer
@@ -400,7 +400,7 @@ CopyMapPartialAndAttributes::
 	call GetMapConnections
 	ret
 
-ReadMapEvents::
+ReadMapEvents:
 	push af
 	ld hl, wMapEventsPointer
 	ld a, [hli]
@@ -419,7 +419,7 @@ ReadMapEvents::
 	call ReadObjectEvents
 	ret
 
-ReadMapScripts::
+ReadMapScripts:
 	ld hl, wMapScriptsPointer
 	ld a, [hli]
 	ld h, [hl]
@@ -428,7 +428,7 @@ ReadMapScripts::
 	call ReadMapCallbacks
 	ret
 
-CopyMapAttributes::
+CopyMapAttributes:
 	ld de, wMapAttributes
 	ld c, wMapAttributesEnd - wMapAttributes
 .loop
@@ -439,7 +439,7 @@ CopyMapAttributes::
 	jr nz, .loop
 	ret
 
-GetMapConnections::
+GetMapConnections:
 	ld a, $ff
 	ld [wNorthConnectedMapGroup], a
 	ld [wSouthConnectedMapGroup], a
@@ -475,7 +475,7 @@ GetMapConnections::
 
 	ret
 
-GetMapConnection::
+GetMapConnection:
 ; Load map connection struct at hl into de.
 	ld c, wSouthMapConnection - wNorthMapConnection
 .loop
@@ -486,7 +486,7 @@ GetMapConnection::
 	jr nz, .loop
 	ret
 
-ReadMapSceneScripts::
+ReadMapSceneScripts:
 	ld a, [hli] ; scene_script count
 	ld c, a
 	ld [wCurMapSceneScriptCount], a
@@ -502,7 +502,7 @@ ReadMapSceneScripts::
 	call AddNTimes
 	ret
 
-ReadMapCallbacks::
+ReadMapCallbacks:
 	ld a, [hli]
 	ld c, a
 	ld [wCurMapCallbackCount], a
@@ -518,7 +518,7 @@ ReadMapCallbacks::
 	call AddNTimes
 	ret
 
-ReadWarps::
+ReadWarps:
 	ld a, [hli]
 	ld c, a
 	ld [wCurMapWarpCount], a
@@ -533,7 +533,7 @@ ReadWarps::
 	call AddNTimes
 	ret
 
-ReadCoordEvents::
+ReadCoordEvents:
 	ld a, [hli]
 	ld c, a
 	ld [wCurMapCoordEventCount], a
@@ -550,7 +550,7 @@ ReadCoordEvents::
 	call AddNTimes
 	ret
 
-ReadBGEvents::
+ReadBGEvents:
 	ld a, [hli]
 	ld c, a
 	ld [wCurMapBGEventCount], a
@@ -567,7 +567,7 @@ ReadBGEvents::
 	call AddNTimes
 	ret
 
-ReadObjectEvents::
+ReadObjectEvents:
 	push hl
 	call ClearObjectStructs
 	pop de
@@ -612,7 +612,7 @@ ReadObjectEvents::
 	ld l, e
 	ret
 
-CopyMapObjectEvents::
+CopyMapObjectEvents:
 	and a
 	ret z
 
@@ -638,7 +638,7 @@ CopyMapObjectEvents::
 	jr nz, .loop
 	ret
 
-ClearObjectStructs::
+ClearObjectStructs:
 	ld hl, wObject1Struct
 	ld bc, OBJECT_STRUCT_LENGTH * (NUM_OBJECT_STRUCTS - 1)
 	xor a
@@ -756,7 +756,7 @@ ChangeMap::
 	rst Bankswitch
 	ret
 
-FillMapConnections::
+FillMapConnections:
 ; North
 	ld a, [wNorthConnectedMapGroup]
 	cp $ff
@@ -852,8 +852,8 @@ FillMapConnections::
 .Done:
 	ret
 
-FillNorthConnectionStrip::
-FillSouthConnectionStrip::
+FillNorthConnectionStrip:
+FillSouthConnectionStrip:
 	ld c, 3
 .y
 	push de
@@ -886,8 +886,8 @@ FillSouthConnectionStrip::
 	jr nz, .y
 	ret
 
-FillWestConnectionStrip::
-FillEastConnectionStrip::
+FillWestConnectionStrip:
+FillEastConnectionStrip:
 .loop
 	ld a, [wMapWidth]
 	add 6
@@ -942,7 +942,7 @@ CallScript::
 	scf
 	ret
 
-CallMapScript::
+CallMapScript:
 ; Call a script at hl in the current bank if there isn't already a script running
 	ld a, [wScriptRunning]
 	and a
@@ -1106,21 +1106,21 @@ GetScriptByte::
 ObjectEvent::
 	jumptextfaceplayer ObjectEventText
 
-ObjectEventText::
+ObjectEventText:
 	text_far _ObjectEventText
 	text_end
 
-BGEvent::
+BGEvent:
 	jumptext BGEventText
 
-BGEventText::
+BGEventText:
 	text_far UnknownText_0x1c46fc
 	text_end
 
-CoordinatesEvent::
+CoordinatesEvent:
 	jumptext CoordinatesEventText
 
-CoordinatesEventText::
+CoordinatesEventText:
 	text_far UnknownText_0x1c4706
 	text_end
 
@@ -1133,7 +1133,7 @@ CheckObjectMask::
 	ld a, [hl]
 	ret
 
-MaskObject::
+MaskObject:
 	ldh a, [hMapObjectIndexBuffer]
 	ld e, a
 	ld d, $0
@@ -1142,7 +1142,7 @@ MaskObject::
 	ld [hl], -1 ; , masked
 	ret
 
-UnmaskObject::
+UnmaskObject:
 	ldh a, [hMapObjectIndexBuffer]
 	ld e, a
 	ld d, $0
@@ -1226,7 +1226,7 @@ ScrollMapLeft::
 	ldh [hBGMapUpdate], a
 	ret
 
-BackupBGMapRow::
+BackupBGMapRow:
 	ld c, 2 * SCREEN_WIDTH
 .loop
 	ld a, [hli]
@@ -1236,7 +1236,7 @@ BackupBGMapRow::
 	jr nz, .loop
 	ret
 
-BackupBGMapColumn::
+BackupBGMapColumn:
 	ld c, SCREEN_HEIGHT
 .loop
 	ld a, [hli]
@@ -1256,7 +1256,7 @@ BackupBGMapColumn::
 	jr nz, .loop
 	ret
 
-UpdateBGMapRow::
+UpdateBGMapRow:
 	ld hl, wBGMapBufferPtrs
 	push de
 	call .iteration
@@ -1287,7 +1287,7 @@ UpdateBGMapRow::
 	ldh [hBGMapTileCount], a
 	ret
 
-UpdateBGMapColumn::
+UpdateBGMapColumn:
 	ld hl, wBGMapBufferPtrs
 	ld c, SCREEN_HEIGHT
 .loop
@@ -1313,7 +1313,7 @@ UpdateBGMapColumn::
 	ldh [hBGMapTileCount], a
 	ret
 
-Unreferenced_Function2816::
+Unreferenced_Function2816:
 	ld hl, wBGMapBuffer
 	ld bc, wBGMapBufferEnd - wBGMapBuffer
 	xor a
@@ -1463,7 +1463,7 @@ LoadNeighboringBlockData::
 	ld b, SCREEN_META_WIDTH
 	ld c, SCREEN_META_HEIGHT
 
-SaveScreen_LoadNeighbor::
+SaveScreen_LoadNeighbor:
 .row
 	push bc
 	push hl
@@ -1781,7 +1781,7 @@ CheckFacingBGEvent::
 	rst Bankswitch
 	ret
 
-CheckIfFacingTileCoordIsBGEvent::
+CheckIfFacingTileCoordIsBGEvent:
 ; Checks to see if you are facing a BG event.  If so, copies it into wCurBGEvent and sets carry.
 	ld hl, wCurMapBGEventsPointer
 	ld a, [hli]
@@ -1971,12 +1971,12 @@ ReloadTilesetAndPalettes::
 	call EnableLCD
 	ret
 
-GetMapPointer::
+GetMapPointer:
 	ld a, [wMapGroup]
 	ld b, a
 	ld a, [wMapNumber]
 	ld c, a
-GetAnyMapPointer::
+GetAnyMapPointer:
 ; Prior to calling this function, you must have switched banks so that
 ; MapGroupPointers is visible.
 
@@ -2007,7 +2007,7 @@ GetAnyMapPointer::
 	call AddNTimes
 	ret
 
-GetMapField::
+GetMapField:
 ; Extract data from the current map's group entry.
 
 ; inputs:
@@ -2021,7 +2021,7 @@ GetMapField::
 	ld b, a
 	ld a, [wMapNumber]
 	ld c, a
-GetAnyMapField::
+GetAnyMapField:
 	; bankswitch
 	ldh a, [hROMBank]
 	push af
@@ -2039,22 +2039,22 @@ GetAnyMapField::
 	rst Bankswitch
 	ret
 
-SwitchToMapAttributesBank::
+SwitchToMapAttributesBank:
 	ld a, [wMapGroup]
 	ld b, a
 	ld a, [wMapNumber]
 	ld c, a
-SwitchToAnyMapAttributesBank::
+SwitchToAnyMapAttributesBank:
 	call GetAnyMapAttributesBank
 	rst Bankswitch
 	ret
 
-GetMapAttributesBank::
+GetMapAttributesBank:
 	ld a, [wMapGroup]
 	ld b, a
 	ld a, [wMapNumber]
 	ld c, a
-GetAnyMapAttributesBank::
+GetAnyMapAttributesBank:
 	push hl
 	push de
 	ld de, MAP_MAPATTRIBUTES_BANK
@@ -2064,7 +2064,7 @@ GetAnyMapAttributesBank::
 	pop hl
 	ret
 
-CopyMapPartial::
+CopyMapPartial:
 ; Copy map data bank, tileset, environment, and map data address
 ; from the current map's entry within its group.
 	ldh a, [hROMBank]
@@ -2081,7 +2081,7 @@ CopyMapPartial::
 	rst Bankswitch
 	ret
 
-SwitchToMapScriptsBank::
+SwitchToMapScriptsBank:
 	ld a, [wMapScriptsBank]
 	rst Bankswitch
 	ret
@@ -2090,7 +2090,7 @@ GetMapScriptsBank::
 	ld a, [wMapScriptsBank]
 	ret
 
-GetAnyMapBlocksBank::
+GetAnyMapBlocksBank:
 ; Return the blockdata bank for group b map c.
 	push hl
 	push de
@@ -2178,7 +2178,7 @@ GetWorldMapLocation::
 	pop hl
 	ret
 
-GetMapMusic::
+GetMapMusic:
 	push hl
 	push bc
 	ld de, MAP_MUSIC
@@ -2233,7 +2233,7 @@ GetMapPhoneService::
 	swap a
 	ret
 
-GetPhoneServiceTimeOfDayByte::
+GetPhoneServiceTimeOfDayByte:
 	push hl
 	push bc
 

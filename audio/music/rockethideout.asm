@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/rockethideout.asm", ROMX
 
-Music_RocketHideout:
+Music_RocketHideout::
 	musicheader 4, 1, Music_RocketHideout_Ch1
 	musicheader 1, 2, Music_RocketHideout_Ch2
 	musicheader 1, 3, Music_RocketHideout_Ch3

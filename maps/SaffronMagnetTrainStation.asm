@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/SaffronMagnetTrainStation.asm", ROMX
 
-SaffronMagnetTrainStation_MapScripts:
+SaffronMagnetTrainStation_MapScripts::
 	db 1 ; scene scripts
 	scene_script .DummyScene ; SCENE_DEFAULT
 
@@ -218,7 +218,7 @@ SaffronMagnetTrainStationLassText:
 	line "TRAIN have PASSES."
 	done
 
-SaffronMagnetTrainStation_MapEvents:
+SaffronMagnetTrainStation_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

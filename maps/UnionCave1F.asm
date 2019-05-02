@@ -14,7 +14,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/UnionCave1F.asm", ROMX
 
-UnionCave1F_MapScripts:
+UnionCave1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -203,7 +203,7 @@ UnionCave1FUnusedSignText:
 	text "UNION CAVE"
 	done
 
-UnionCave1F_MapEvents:
+UnionCave1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

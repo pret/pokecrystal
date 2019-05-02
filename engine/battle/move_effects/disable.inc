@@ -1,4 +1,4 @@
-BattleCommand_Disable:
+BattleCommand_Disable::
 ; disable
 
 	ld a, [wAttackMissed]

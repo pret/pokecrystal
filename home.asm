@@ -12,7 +12,7 @@ INCLUDE "home/interrupts.inc"
 
 SECTION "home.asm@Header", ROM0[$0100]
 
-Start::
+Start:
 	nop
 	jp _Start
 
@@ -58,7 +58,7 @@ INCLUDE "home/predef.inc"
 INCLUDE "home/window.inc"
 INCLUDE "home/flag.inc"
 
-Unreferenced_CheckBPressedDebug::
+Unreferenced_CheckBPressedDebug:
 ; Used in debug ROMs to walk through walls and avoid encounters.
 
 	ld a, [wDebugFlags]
@@ -78,7 +78,7 @@ xor_a_dec_a::
 	dec a
 	ret
 
-Unreferenced_CheckFieldDebug::
+Unreferenced_CheckFieldDebug:
 	push hl
 	ld hl, wDebugFlags
 	bit DEBUG_FIELD_F, [hl]

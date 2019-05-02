@@ -18,12 +18,12 @@ Unreferenced_Function88248:
 
 SECTION "engine/gfx/player_gfx.asm@MovePlayerPic", ROMX
 
-MovePlayerPicRight:
+MovePlayerPicRight::
 	hlcoord 6, 4
 	ld de, 1
 	jr MovePlayerPic
 
-MovePlayerPicLeft:
+MovePlayerPicLeft::
 	hlcoord 13, 4
 	ld de, -1
 	; fallthrough
@@ -66,7 +66,7 @@ MovePlayerPic:
 
 SECTION "engine/gfx/player_gfx.asm@ShowPlayerNamingChoices", ROMX
 
-ShowPlayerNamingChoices:
+ShowPlayerNamingChoices::
 	ld hl, ChrisNameMenuHeader
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
@@ -98,7 +98,7 @@ Unreferenced_GetPlayerNameArray:
 
 SECTION "engine/gfx/player_gfx.asm@GetPlayerIcon", ROMX
 
-GetPlayerIcon:
+GetPlayerIcon::
 ; Get the player icon corresponding to gender
 
 ; Male
@@ -119,7 +119,7 @@ GetPlayerIcon:
 
 SECTION "engine/gfx/player_gfx.asm@GetCardPic", ROMX
 
-GetCardPic:
+GetCardPic::
 	ld hl, ChrisCardPic
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
@@ -149,7 +149,7 @@ INCBIN "gfx/trainer_card/trainer_card.2bpp"
 
 SECTION "engine/gfx/player_gfx.asm@GetPlayerPic", ROMX
 
-GetPlayerBackpic:
+GetPlayerBackpic::
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, GetChrisBackpic
@@ -164,7 +164,7 @@ GetChrisBackpic:
 	predef DecompressGet2bpp
 	ret
 
-HOF_LoadTrainerFrontpic:
+HOF_LoadTrainerFrontpic::
 	call WaitBGMap
 	xor a
 	ldh [hBGMapMode], a
@@ -193,7 +193,7 @@ HOF_LoadTrainerFrontpic:
 	ldh [hBGMapMode], a
 	ret
 
-DrawIntroPlayerPic:
+DrawIntroPlayerPic::
 ; Draw the player pic at (6,4).
 
 ; Get class
@@ -232,7 +232,7 @@ INCBIN "gfx/player/chris.2bpp"
 KrisPic:
 INCBIN "gfx/player/kris.2bpp"
 
-GetKrisBackpic:
+GetKrisBackpic::
 ; Kris's backpic is uncompressed.
 	ld de, KrisBackpic
 	ld hl, vTiles2 tile $31

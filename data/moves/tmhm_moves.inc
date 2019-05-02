@@ -1,4 +1,4 @@
-TMHMMoves:
+TMHMMoves::
 ; entries correspond to *_TMNUM enums (see constants/item_constants.inc)
 ; TMs
 	db DYNAMICPUNCH

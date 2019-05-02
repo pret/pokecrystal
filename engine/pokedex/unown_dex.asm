@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokedex/unown_dex.asm@UpdateUnownDex", ROMX
 
-UpdateUnownDex:
+UpdateUnownDex::
 	ld a, [wUnownLetter]
 	ld c, a
 	ld b, NUM_UNOWN
@@ -26,7 +26,7 @@ UpdateUnownDex:
 
 SECTION "engine/pokedex/unown_dex.asm@PrintUnownWord", ROMX
 
-PrintUnownWord:
+PrintUnownWord::
 	hlcoord 4, 15
 	ld bc, 12
 	ld a, " "

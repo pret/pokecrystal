@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/unknown_callee.asm", ROMX
 
-UnknownText_0x1b518b:
+UnknownText_0x1b518b::
 	text "How are your"
 	line "#MON doing?"
 
@@ -23,7 +23,7 @@ UnknownText_0x1b518b:
 	line "bit much for me!"
 	done
 
-UnknownText_0x1b522b:
+UnknownText_0x1b522b::
 	text "My @"
 	text_ram wStringBuffer4
 	text "'s"

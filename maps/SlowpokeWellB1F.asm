@@ -14,7 +14,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/SlowpokeWellB1F.asm", ROMX
 
-SlowpokeWellB1F_MapScripts:
+SlowpokeWellB1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -323,7 +323,7 @@ SlowpokeWellB1FTaillessSlowpokeText:
 	line "its TAIL cut off…"
 	done
 
-SlowpokeWellB1F_MapEvents:
+SlowpokeWellB1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route2Gate.asm", ROMX
 
-Route2Gate_MapScripts:
+Route2Gate_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -28,7 +28,7 @@ Route2GateScientistText:
 	cont "TOWN."
 	done
 
-Route2Gate_MapEvents:
+Route2Gate_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

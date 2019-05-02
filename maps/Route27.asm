@@ -14,7 +14,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route27.asm", ROMX
 
-Route27_MapScripts:
+Route27_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_FINISHED
@@ -470,7 +470,7 @@ TohjoFallsSignText:
 	line "KANTO AND JOHTO"
 	done
 
-Route27_MapEvents:
+Route27_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

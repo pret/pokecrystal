@@ -23,7 +23,7 @@ GLOBAL POKEDEX_SCX
 
 SECTION "engine/pokedex/pokedex.asm", ROMX
 
-Pokedex:
+Pokedex::
 	ldh a, [hWX]
 	ld l, a
 	ldh a, [hWY]
@@ -1386,7 +1386,7 @@ Pokedex_FillBackgroundColor2:
 	call ByteFill
 	ret
 
-Pokedex_PlaceFrontpicTopLeftCorner:
+Pokedex_PlaceFrontpicTopLeftCorner::
 	hlcoord 1, 1
 Pokedex_PlaceFrontpicAtHL:
 	xor a
@@ -1613,7 +1613,7 @@ Pokedex_CheckSeen:
 	pop de
 	ret
 
-Pokedex_OrderMonsByMode:
+Pokedex_OrderMonsByMode::
 	ld hl, wPokedexOrder
 	ld bc, wPokedexOrderEnd - wPokedexOrder
 	xor a
@@ -1670,7 +1670,7 @@ Pokedex_OrderMonsByMode:
 	ld [wDexListingEnd], a
 	ret
 
-Pokedex_ABCMode:
+Pokedex_ABCMode::
 	xor a
 	ld [wDexListingEnd], a
 	ld hl, wPokedexOrder
@@ -2519,7 +2519,7 @@ Pokedex_LoadUnownFrontpicTiles:
 	ld [wUnownLetter], a
 	ret
 
-_NewPokedexEntry:
+_NewPokedexEntry::
 	xor a
 	ldh [hBGMapMode], a
 	farcall DrawDexEntryScreenRightEdge

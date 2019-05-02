@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/movie/init_hof_credits.asm@InitDisplayForHallOfFame", ROMX
 
-InitDisplayForHallOfFame:
+InitDisplayForHallOfFame::
 	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
@@ -36,7 +36,7 @@ InitDisplayForHallOfFame:
 
 SECTION "engine/movie/init_hof_credits.asm@InitDisplayForRedCredits", ROMX
 
-InitDisplayForRedCredits:
+InitDisplayForRedCredits::
 	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
@@ -71,7 +71,7 @@ InitDisplayForRedCredits:
 
 SECTION "engine/movie/init_hof_credits.asm@ResetDisplayBetweenHallOfFameMons", ROMX
 
-ResetDisplayBetweenHallOfFameMons:
+ResetDisplayBetweenHallOfFameMons::
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wDecompressScratch)

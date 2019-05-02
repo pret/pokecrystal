@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/VioletMart.asm", ROMX
 
-VioletMart_MapScripts:
+VioletMart_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -51,7 +51,7 @@ VioletMartCooltrainerMText:
 	line "items."
 	done
 
-VioletMart_MapEvents:
+VioletMart_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

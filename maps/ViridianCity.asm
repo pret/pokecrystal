@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/ViridianCity.asm", ROMX
 
-ViridianCity_MapScripts:
+ViridianCity_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -218,7 +218,7 @@ TrainerHouseSignText:
 	line "Trainer Battles"
 	done
 
-ViridianCity_MapEvents:
+ViridianCity_MapEvents::
 	db 0, 0 ; filler
 
 	db 5 ; warp events

@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/WhirlIslandLugiaChamber.asm", ROMX
 
-WhirlIslandLugiaChamber_MapScripts:
+WhirlIslandLugiaChamber_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -46,7 +46,7 @@ LugiaText:
 	text "Gyaaas!"
 	done
 
-WhirlIslandLugiaChamber_MapEvents:
+WhirlIslandLugiaChamber_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

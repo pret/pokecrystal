@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/mom.asm", ROMX
 
-MomPhoneCalleeScript:
+MomPhoneCalleeScript::
 	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	iftrue .bcec5
 	checkevent EVENT_DUDE_TALKED_TO_YOU
@@ -137,7 +137,7 @@ MomPhoneNoGymQuestScript:
 	farwritetext MomPhoneNoGymQuestText
 	end
 
-MomPhoneLectureScript:
+MomPhoneLectureScript::
 	setevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	setflag ENGINE_MOM_ACTIVE
 	specialphonecall SPECIALCALL_NONE

@@ -12,7 +12,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/MountMortarB1F.asm", ROMX
 
-MountMortarB1F_MapScripts:
+MountMortarB1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -137,7 +137,7 @@ UnknownText_0x7e3df:
 	line "in your party!"
 	done
 
-MountMortarB1F_MapEvents:
+MountMortarB1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

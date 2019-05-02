@@ -11,7 +11,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/TeamRocketBaseB1F.asm", ROMX
 
-TeamRocketBaseB1F_MapScripts:
+TeamRocketBaseB1F_MapScripts::
 	db 1 ; scene scripts
 	scene_script .DummyScene ; SCENE_DEFAULT
 
@@ -729,7 +729,7 @@ TeamRocketBaseB1FSwitchOffText:
 	line "turned off."
 	done
 
-TeamRocketBaseB1F_MapEvents:
+TeamRocketBaseB1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

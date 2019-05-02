@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route31VioletGate.asm", ROMX
 
-Route31VioletGate_MapScripts:
+Route31VioletGate_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -30,7 +30,7 @@ Route31VioletGateCooltrainerFText:
 	cont "phone home!"
 	done
 
-Route31VioletGate_MapEvents:
+Route31VioletGate_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

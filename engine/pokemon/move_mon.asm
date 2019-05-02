@@ -5,7 +5,7 @@ RANDY_OT_ID EQU 01001
 
 SECTION "engine/pokemon/move_mon.asm", ROMX, BANK[BANK_MOVE_MON]
 
-TryAddMonToParty:
+TryAddMonToParty::
 ; Check if to copy wild mon or generate a new one
 	; Whose is it?
 	ld de, wPartyCount
@@ -83,7 +83,7 @@ TryAddMonToParty:
 	dec a
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
-GeneratePartyMonStats:
+GeneratePartyMonStats::
 ; wBattleMode specifies whether it's a wild mon or not.
 ; wMonType specifies whether it's an opposing mon or not.
 ; wCurPartySpecies/wCurPartyLevel specify the species and level.
@@ -368,7 +368,7 @@ endr
 	scf ; When this function returns, the carry flag indicates success vs failure.
 	ret
 
-FillPP:
+FillPP::
 	push bc
 	ld b, NUM_MOVES
 .loop
@@ -398,7 +398,7 @@ FillPP:
 	pop bc
 	ret
 
-AddTempmonToParty:
+AddTempmonToParty::
 	ld hl, wPartyCount
 	ld a, [hl]
 	cp PARTY_LENGTH
@@ -482,7 +482,7 @@ AddTempmonToParty:
 	and a
 	ret
 
-SendGetMonIntoFromBox:
+SendGetMonIntoFromBox::
 ; Sents/Gets mon into/from Box depending on Parameter
 ; wPokemonWithdrawDepositParameter == 0: get mon into Party
 ; wPokemonWithdrawDepositParameter == 1: sent mon into Box
@@ -713,7 +713,7 @@ CloseSRAM_And_SetCarryFlag:
 	scf
 	ret
 
-RestorePPOfDepositedPokemon:
+RestorePPOfDepositedPokemon::
 	ld a, b
 	ld hl, sBoxMons
 	ld bc, BOXMON_STRUCT_LENGTH
@@ -777,7 +777,7 @@ RestorePPOfDepositedPokemon:
 	ld [wMenuCursorY], a
 	ret
 
-RetrieveMonFromDayCareMan:
+RetrieveMonFromDayCareMan::
 	ld a, [wBreedMon1Species]
 	ld [wCurPartySpecies], a
 	ld de, SFX_TRANSACTION
@@ -792,7 +792,7 @@ RetrieveMonFromDayCareMan:
 	ld [wPokemonWithdrawDepositParameter], a
 	jp RetrieveBreedmon
 
-RetrieveMonFromDayCareLady:
+RetrieveMonFromDayCareLady::
 	ld a, [wBreedMon2Species]
 	ld [wCurPartySpecies], a
 	ld de, SFX_TRANSACTION
@@ -913,14 +913,14 @@ GetLastPartyMon:
 	ld e, l
 	ret
 
-DepositMonWithDayCareMan:
+DepositMonWithDayCareMan::
 	ld de, wBreedMon1Nick
 	call DepositBreedmon
 	xor a ; REMOVE_PARTY
 	ld [wPokemonWithdrawDepositParameter], a
 	jp RemoveMonFromPartyOrBox
 
-DepositMonWithDayCareLady:
+DepositMonWithDayCareLady::
 	ld de, wBreedMon2Nick
 	call DepositBreedmon
 	xor a ; REMOVE_PARTY
@@ -943,7 +943,7 @@ DepositBreedmon:
 	ld bc, BOXMON_STRUCT_LENGTH
 	jp CopyBytes
 
-SendMonIntoBox:
+SendMonIntoBox::
 ; Sends the mon into one of Bills Boxes
 ; the data comes mainly from 'wEnemyMon:'
 	ld a, BANK(sBoxCount)
@@ -1223,7 +1223,7 @@ GiveEgg::
 String_Egg:
 	db "EGG@"
 
-RemoveMonFromPartyOrBox:
+RemoveMonFromPartyOrBox::
 	ld hl, wPartyCount
 
 	ld a, [wPokemonWithdrawDepositParameter]
@@ -1374,7 +1374,7 @@ RemoveMonFromPartyOrBox:
 .close_sram
 	jp CloseSRAM
 
-ComputeNPCTrademonStats:
+ComputeNPCTrademonStats::
 	ld a, MON_LEVEL
 	call GetPartyParamLocation
 	ld a, [hl]
@@ -1403,7 +1403,7 @@ ComputeNPCTrademonStats:
 	ld [hl], a
 	ret
 
-CalcMonStats:
+CalcMonStats::
 ; Calculates all 6 Stats of a mon
 ; b: Take into account stat EXP if TRUE
 ; 'c' counts from 1-6 and points with 'wBaseStats' to the base value
@@ -1425,7 +1425,7 @@ CalcMonStats:
 	jr nz, .loop
 	ret
 
-CalcMonStatC:
+CalcMonStatC::
 ; 'c' is 1-6 and points to the BaseStat
 ; 1: HP
 ; 2: Attack
@@ -1810,7 +1810,7 @@ TextJump_WasSentToBillsPC:
 	text_far Text_WasSentToBillsPC
 	text_end
 
-InitNickname:
+InitNickname::
 	push de
 	call LoadStandardMenuHeader
 	call DisableSpriteUpdates

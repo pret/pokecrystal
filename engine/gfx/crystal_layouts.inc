@@ -1,4 +1,4 @@
-GetMysteryGift_MobileAdapterLayout:
+GetMysteryGift_MobileAdapterLayout::
 	ld a, b
 	cp SCGB_RAM
 	jr nz, .not_ram
@@ -49,7 +49,7 @@ MG_Mobile_Layout_WipeAttrMap:
 	call ByteFill
 	ret
 
-MG_Mobile_Layout_LoadPals:
+MG_Mobile_Layout_LoadPals::
 	ld de, wBGPals1
 	ld hl, Palette_MysteryGiftMobile
 	ld bc, 5 palettes
@@ -70,7 +70,7 @@ MG_Mobile_Layout00:
 	farcall ApplyPals
 	ret
 
-MG_Mobile_Layout_CreatePalBoxes:
+MG_Mobile_Layout_CreatePalBoxes::
 	hlcoord 0, 0, wAttrMap
 	lb bc, 4, 1
 	ld a, $1
@@ -221,7 +221,7 @@ MG_Mobile_Layout02:
 	RGB 14, 18, 31
 	RGB 31, 31, 31
 
-Function49742:
+Function49742::
 	ld hl, .Palette_49757
 	ld de, wBGPals1
 	ld bc, 8 palettes
@@ -233,7 +233,7 @@ Function49742:
 .Palette_49757:
 INCLUDE "gfx/unknown/49757.pal"
 
-_InitMG_Mobile_LinkTradePalMap:
+_InitMG_Mobile_LinkTradePalMap::
 	hlcoord 0, 0, wAttrMap
 	lb bc, 16, 2
 	ld a, $4
@@ -284,7 +284,7 @@ _InitMG_Mobile_LinkTradePalMap:
 	call ByteFill
 	ret
 
-_LoadTradeRoomBGPals:
+_LoadTradeRoomBGPals::
 	ld hl, TradeRoomPalette
 	ld de, wBGPals1 palette PAL_BG_GREEN
 	ld bc, 6 palettes
@@ -296,7 +296,7 @@ _LoadTradeRoomBGPals:
 TradeRoomPalette:
 INCLUDE "gfx/trade/border.pal"
 
-InitMG_Mobile_LinkTradePalMap:
+InitMG_Mobile_LinkTradePalMap::
 	call _InitMG_Mobile_LinkTradePalMap
 	ret
 

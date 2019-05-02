@@ -10,7 +10,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/GoldenrodDeptStore2F.asm", ROMX
 
-GoldenrodDeptStore2F_MapScripts:
+GoldenrodDeptStore2F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -103,7 +103,7 @@ GoldenrodDeptStore2FDirectoryText:
 	line "   MARKET"
 	done
 
-GoldenrodDeptStore2F_MapEvents:
+GoldenrodDeptStore2F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

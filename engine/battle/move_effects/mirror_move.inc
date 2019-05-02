@@ -1,4 +1,4 @@
-BattleCommand_MirrorMove:
+BattleCommand_MirrorMove::
 ; mirrormove
 
 	call ClearLastMove

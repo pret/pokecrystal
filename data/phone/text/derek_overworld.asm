@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/derek_overworld.asm", ROMX
 
-DerekAskNumber1Text:
+DerekAskNumber1Text::
 	text "Oh, wow! PIKACHU!"
 	line "It's so soft and"
 	cont "furry! How cute!"
@@ -19,7 +19,7 @@ DerekAskNumber1Text:
 	line "phone number?"
 	done
 
-DerekAskNumber2Text:
+DerekAskNumber2Text::
 	text "Let's chat about"
 	line "PIKACHU!"
 
@@ -27,7 +27,7 @@ DerekAskNumber2Text:
 	line "phone number?"
 	done
 
-DerekNumberAcceptedText:
+DerekNumberAcceptedText::
 	text "PIKACHU is the"
 	line "one! If anything"
 
@@ -35,19 +35,19 @@ DerekNumberAcceptedText:
 	line "give you a jingle."
 	done
 
-DerekNumberDeclinedText:
+DerekNumberDeclinedText::
 	text "You…"
 
 	para "I bet you don't"
 	line "even like PIKACHU…"
 	done
 
-DerekPhoneFullText:
+DerekPhoneFullText::
 	text "Wait a sec! Your"
 	line "phone list's full!"
 	done
 
-DerekGiftText:
+DerekGiftText::
 	text "I've been looking"
 	line "for you! Here, see"
 	cont "this? This is it!"
@@ -57,7 +57,7 @@ DerekGiftText:
 	cont "my gift too!"
 	done
 
-DerekPackFullText:
+DerekPackFullText::
 	text "Uh-oh, too bad."
 	line "You don't have any"
 

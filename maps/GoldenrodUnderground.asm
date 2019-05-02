@@ -17,7 +17,7 @@ GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_PRICE EQU 300
 
 SECTION "maps/GoldenrodUnderground.asm", ROMX
 
-GoldenrodUnderground_MapScripts:
+GoldenrodUnderground_MapScripts::
 	db 0 ; scene scripts
 
 	db 3 ; callbacks
@@ -652,7 +652,7 @@ GoldenrodUndergroundNoEntryText:
 	line "THIS POINT"
 	done
 
-GoldenrodUnderground_MapEvents:
+GoldenrodUnderground_MapEvents::
 	db 0, 0 ; filler
 
 	db 6 ; warp events

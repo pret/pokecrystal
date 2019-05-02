@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/fish.asm", ROMX
 
-Fish:
+Fish::
 ; Using a fishing rod.
 ; Fish for monsters with rod e in encounter group d.
 ; Return monster e at level d.

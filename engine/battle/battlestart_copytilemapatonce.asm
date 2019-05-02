@@ -3,6 +3,6 @@ INCLUDE "constants.inc"
 
 SECTION "engine/battle/battlestart_copytilemapatonce.asm", ROMX, BANK[BANK_BATTLE_TRANSITION]
 
-BattleStart_CopyTilemapAtOnce:
+BattleStart_CopyTilemapAtOnce::
 	call CGBOnly_CopyTilemapAtOnce
 	ret

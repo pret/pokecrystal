@@ -6,7 +6,7 @@
 
 ; This prevents the display and audio output from lagging.
 
-VBlank::
+VBlank:
 	push af
 	push bc
 	push de
@@ -44,7 +44,7 @@ VBlank::
 	dw VBlank6
 	dw VBlank0 ; just in case
 
-VBlank0::
+VBlank0:
 ; normal operation
 
 ; rng
@@ -144,7 +144,7 @@ VBlank0::
 
 	ret
 
-VBlank2::
+VBlank2:
 ; sound only
 
 	ldh a, [hROMBank]
@@ -161,7 +161,7 @@ VBlank2::
 	ld [wVBlankOccurred], a
 	ret
 
-VBlank1::
+VBlank1:
 ; scx, scy
 ; palettes
 ; bg map
@@ -227,7 +227,7 @@ VBlank1::
 	ldh [rIF], a
 	ret
 
-UpdatePals::
+UpdatePals:
 ; update pals for either dmg or cgb
 
 	ldh a, [hCGB]
@@ -245,7 +245,7 @@ UpdatePals::
 	and a
 	ret
 
-VBlank3::
+VBlank3:
 ; scx, scy
 ; palettes
 ; bg map
@@ -309,7 +309,7 @@ VBlank3::
 	ldh [rIF], a
 	ret
 
-VBlank4::
+VBlank4:
 ; bg map
 ; tiles
 ; oam
@@ -340,7 +340,7 @@ VBlank4::
 	rst Bankswitch
 	ret
 
-VBlank5::
+VBlank5:
 ; scx
 ; palettes
 ; bg map
@@ -388,7 +388,7 @@ VBlank5::
 	ldh [rIE], a
 	ret
 
-VBlank6::
+VBlank6:
 ; palettes
 ; tiles
 ; dma transfer

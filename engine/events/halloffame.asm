@@ -299,7 +299,7 @@ HOF_SlideFrontpic:
 	call DelayFrame
 	jr .frontpicloop
 
-_HallOfFamePC:
+_HallOfFamePC::
 	call LoadFontsBattleExtra
 	xor a
 	ld [wJumptableIndex], a

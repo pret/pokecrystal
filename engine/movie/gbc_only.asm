@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/movie/gbc_only.asm", ROMX
 
-GBCOnlyScreen:
+GBCOnlyScreen::
 	ldh a, [hCGB]
 	and a
 	ret nz

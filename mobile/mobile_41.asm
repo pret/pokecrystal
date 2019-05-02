@@ -38,7 +38,7 @@ StubbedTrainerRankings_HallOfFame2::
 	call CloseSRAM
 	ret
 
-StubbedTrainerRankings_MagikarpLength:
+StubbedTrainerRankings_MagikarpLength::
 	ret
 	ld a, BANK(sTrainerRankingLongestMagikarp)
 	call GetSRAMBank
@@ -106,7 +106,7 @@ StubbedTrainerRankings_MagikarpLength:
 	call CloseSRAM
 	ret
 
-StubbedTrainerRankings_BugContestScore:
+StubbedTrainerRankings_BugContestScore::
 	ret
 	ld a, BANK(sTrainerRankingBugContestScore)
 	call GetSRAMBank
@@ -135,7 +135,7 @@ StubbedTrainerRankings_BugContestScore:
 	call CloseSRAM
 	ret
 
-StubbedTrainerRankings_AddToSlotsWinStreak:
+StubbedTrainerRankings_AddToSlotsWinStreak::
 	ret
 	ld a, BANK(sTrainerRankingCurrentSlotsStreak)
 	call GetSRAMBank
@@ -175,7 +175,7 @@ StubbedTrainerRankings_AddToSlotsWinStreak:
 	call CloseSRAM
 	ret
 
-StubbedTrainerRankings_EndSlotsWinStreak:
+StubbedTrainerRankings_EndSlotsWinStreak::
 	ret
 	ld a, BANK(sTrainerRankingCurrentSlotsStreak)
 	call GetSRAMBank
@@ -187,7 +187,7 @@ StubbedTrainerRankings_EndSlotsWinStreak:
 	call CloseSRAM
 	ret
 
-StubbedTrainerRankings_AddToSlotsPayouts:
+StubbedTrainerRankings_AddToSlotsPayouts::
 	ret
 	ld a, BANK(sTrainerRankingTotalSlotsPayouts)
 	call GetSRAMBank
@@ -215,7 +215,7 @@ StubbedTrainerRankings_AddToSlotsPayouts:
 	call CloseSRAM
 	ret
 
-StubbedTrainerRankings_AddToBattlePayouts:
+StubbedTrainerRankings_AddToBattlePayouts::
 	ret
 	ld a, BANK(sTrainerRankingTotalBattlePayouts)
 	call GetSRAMBank
@@ -245,7 +245,7 @@ StubbedTrainerRankings_AddToBattlePayouts:
 	call CloseSRAM
 	ret
 
-StubbedTrainerRankings_StepCount:
+StubbedTrainerRankings_StepCount::
 	ret
 	ld hl, sTrainerRankingStepCount
 	jp StubbedTrainerRankings_Increment4Byte
@@ -261,12 +261,12 @@ Unreferenced_StubbedTrainerRankings_BattleTowerWins:
 	ld hl, sTrainerRankingBattleTowerWins
 	jp StubbedTrainerRankings_Increment2Byte
 
-StubbedTrainerRankings_TMsHMsTaught:
+StubbedTrainerRankings_TMsHMsTaught::
 	ret
 	ld hl, sTrainerRankingTMsHMsTaught
 	jp StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_Battles:
+StubbedTrainerRankings_Battles::
 	ret
 	ld a, [wBattleType]
 	cp BATTLETYPE_TUTORIAL ; Exclude the Dude’s tutorial battle
@@ -274,7 +274,7 @@ StubbedTrainerRankings_Battles:
 	ld hl, sTrainerRankingBattles
 	jp StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_WildBattles:
+StubbedTrainerRankings_WildBattles::
 	ret
 	ld a, [wBattleType]
 	cp BATTLETYPE_TUTORIAL ; Exclude the Dude’s tutorial battle
@@ -282,7 +282,7 @@ StubbedTrainerRankings_WildBattles:
 	ld hl, sTrainerRankingWildBattles
 	jp StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_TrainerBattles:
+StubbedTrainerRankings_TrainerBattles::
 	ret
 	ld hl, sTrainerRankingTrainerBattles
 	jp StubbedTrainerRankings_Increment3Byte
@@ -297,72 +297,72 @@ StubbedTrainerRankings_HallOfFame::
 	ld hl, sTrainerRankingHOFEntries
 	jp StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_WildMonsCaught:
+StubbedTrainerRankings_WildMonsCaught::
 	ret
 	ld hl, sTrainerRankingWildMonsCaught
 	jp StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_HookedEncounters:
+StubbedTrainerRankings_HookedEncounters::
 	ret
 	ld hl, sTrainerRankingHookedEncounters
 	jp StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_EggsHatched:
+StubbedTrainerRankings_EggsHatched::
 	ret
 	ld hl, sTrainerRankingEggsHatched
 	jp StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_MonsEvolved:
+StubbedTrainerRankings_MonsEvolved::
 	ret
 	ld hl, sTrainerRankingMonsEvolved
 	jp StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_FruitPicked:
+StubbedTrainerRankings_FruitPicked::
 	ret
 	ld hl, sTrainerRankingFruitPicked
 	jp StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_Healings:
+StubbedTrainerRankings_Healings::
 	ret
 	ld hl, sTrainerRankingHealings
 	jp StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_MysteryGift:
+StubbedTrainerRankings_MysteryGift::
 	ret
 	ld hl, sTrainerRankingMysteryGift
 	jr StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_Trades:
+StubbedTrainerRankings_Trades::
 	ret
 	ld hl, sTrainerRankingTrades
 	jr StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_Fly:
+StubbedTrainerRankings_Fly::
 	ret
 	ld hl, sTrainerRankingFly
 	jr StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_Surf:
+StubbedTrainerRankings_Surf::
 	ret
 	ld hl, sTrainerRankingSurf
 	jr StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_Waterfall:
+StubbedTrainerRankings_Waterfall::
 	ret
 	ld hl, sTrainerRankingWaterfall
 	jr StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_WhiteOuts:
+StubbedTrainerRankings_WhiteOuts::
 	ret
 	ld hl, sTrainerRankingWhiteOuts
 	jr StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_LuckyNumberShow:
+StubbedTrainerRankings_LuckyNumberShow::
 	ret
 	ld hl, sTrainerRankingLuckyNumberShow
 	jr StubbedTrainerRankings_Increment2Byte
 
-StubbedTrainerRankings_PhoneCalls:
+StubbedTrainerRankings_PhoneCalls::
 	ret
 	ld hl, sTrainerRankingPhoneCalls
 	jr StubbedTrainerRankings_Increment3Byte
@@ -372,12 +372,12 @@ StubbedTrainerRankings_Unused2:
 	ld hl, sTrainerRankingUnused2
 	jr StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_LinkBattles:
+StubbedTrainerRankings_LinkBattles::
 	ret
 	ld hl, sTrainerRankingLinkBattles
 	jr StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_Splash:
+StubbedTrainerRankings_Splash::
 	ret
 	; Only counts if it’s the player’s turn
 	ldh a, [hBattleTurn]
@@ -386,7 +386,7 @@ StubbedTrainerRankings_Splash:
 	ld hl, sTrainerRankingSplash
 	jr StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_TreeEncounters:
+StubbedTrainerRankings_TreeEncounters::
 	ret
 	ld hl, sTrainerRankingTreeEncounters
 	jr StubbedTrainerRankings_Increment3Byte
@@ -396,23 +396,23 @@ StubbedTrainerRankings_Unused3:
 	ld hl, sTrainerRankingUnused3
 	jr StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_ColosseumWins: ; win
+StubbedTrainerRankings_ColosseumWins:: ; win
 	ret
 	ld hl, sTrainerRankingColosseumWins
 	jr StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_ColosseumLosses: ; lose
+StubbedTrainerRankings_ColosseumLosses:: ; lose
 	ret
 	ld hl, sTrainerRankingColosseumLosses
 	jr StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_ColosseumDraws: ; draw
+StubbedTrainerRankings_ColosseumDraws:: ; draw
 	ret
 	ld hl, sTrainerRankingColosseumDraws
 	jr StubbedTrainerRankings_Increment3Byte
 
 ; Counts uses of both Selfdestruct and Explosion.
-StubbedTrainerRankings_Selfdestruct:
+StubbedTrainerRankings_Selfdestruct::
 	ret
 	; Only counts if it’s the player’s turn
 	ldh a, [hBattleTurn]
@@ -478,7 +478,7 @@ StubbedTrainerRankings_Increment:
 	ret
 
 ; Used when SRAM bank 5 isn’t already loaded — what’s the point of this?
-UpdateTrainerRankingsChecksum2:
+UpdateTrainerRankingsChecksum2::
 	ret
 	ld a, BANK(sTrainerRankings)
 	call GetSRAMBank
@@ -518,7 +518,7 @@ CalculateTrainerRankingsChecksum:
 	pop bc
 	ret
 
-BackupMobileEventIndex:
+BackupMobileEventIndex::
 	ld a, BANK(sMobileEventIndex)
 	call GetSRAMBank
 	ld a, [sMobileEventIndex]
@@ -530,7 +530,7 @@ BackupMobileEventIndex:
 	call CloseSRAM
 	ret
 
-RestoreMobileEventIndex:
+RestoreMobileEventIndex::
 	ld a, BANK(sMobileEventIndexBackup)
 	call GetSRAMBank
 	ld a, [sMobileEventIndexBackup]
@@ -553,7 +553,7 @@ Unreferenced_VerifyTrainerRankingsChecksum:
 	cp [hl]
 	ret
 
-DeleteMobileEventIndex:
+DeleteMobileEventIndex::
 	ld a, BANK(sMobileEventIndex)
 	call GetSRAMBank
 	xor a
@@ -794,7 +794,7 @@ SECTION "mobile/mobile_41.asm@Mobile_DummyReturnFalse", ROMX
 
 ; functions related to the cable club and various NPC scripts referencing communications
 
-Mobile_DummyReturnFalse:
+Mobile_DummyReturnFalse::
 	xor a
 	ld [wScriptVar], a
 	ret
@@ -817,7 +817,7 @@ Stubbed_Function106314:
 	call CloseSRAM
 	ret
 
-Mobile_AlwaysReturnNotCarry:
+Mobile_AlwaysReturnNotCarry::
 	or a
 	ret
 
@@ -857,7 +857,7 @@ Function106331:
 	ld c, a
 	ret
 
-Function10635c:
+Function10635c::
 	ld a, [wMobileCommsJumptableIndex]
 	bit 7, a
 	ret nz
@@ -1020,7 +1020,7 @@ Function106453:
 
 SECTION "mobile/mobile_41.asm@Stubbed_Function106462", ROMX
 
-Stubbed_Function106462:
+Stubbed_Function106462::
 	ret
 	ret
 

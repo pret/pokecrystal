@@ -10,7 +10,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route13.asm", ROMX
 
-Route13_MapScripts:
+Route13_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -194,7 +194,7 @@ Route13DirectionsSignText:
 	line "CITY"
 	done
 
-Route13_MapEvents:
+Route13_MapEvents::
 	db 0, 0 ; filler
 
 	db 0 ; warp events

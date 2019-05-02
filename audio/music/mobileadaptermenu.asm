@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/mobileadaptermenu.asm", ROMX
 
-Music_MobileAdapterMenu:
+Music_MobileAdapterMenu::
 	musicheader 3, 1, Music_MobileAdapterMenu_Ch1
 	musicheader 1, 2, Music_MobileAdapterMenu_Ch2
 	musicheader 1, 3, Music_MobileAdapterMenu_Ch3

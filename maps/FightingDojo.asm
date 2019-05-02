@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/FightingDojo.asm", ROMX
 
-FightingDojo_MapScripts:
+FightingDojo_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -45,7 +45,7 @@ FightingDojoSign2Text:
 	line "side!"
 	done
 
-FightingDojo_MapEvents:
+FightingDojo_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

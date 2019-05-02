@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/BlackthornEmysHouse.asm", ROMX
 
-BlackthornEmysHouse_MapScripts:
+BlackthornEmysHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -22,7 +22,7 @@ Emy:
 EmysHouseBookshelf:
 	jumpstd magazinebookshelf
 
-BlackthornEmysHouse_MapEvents:
+BlackthornEmysHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

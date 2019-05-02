@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/wade_overworld.asm", ROMX
 
-WadeAskNumber1Text:
+WadeAskNumber1Text::
 	text "You're awesome!"
 	line "I like you!"
 
@@ -21,7 +21,7 @@ WadeAskNumber1Text:
 	line "phone number?"
 	done
 
-WadeAskNumber2Text:
+WadeAskNumber2Text::
 	text "When I'm in the"
 	line "grass, I find all"
 	cont "kinds of BERRIES."
@@ -33,7 +33,7 @@ WadeAskNumber2Text:
 	line "phone number?"
 	done
 
-WadeNumberAcceptedText:
+WadeNumberAcceptedText::
 	text "You'll hear from"
 	line "me as soon as I"
 
@@ -41,24 +41,24 @@ WadeNumberAcceptedText:
 	line "you might like."
 	done
 
-WadeNumberDeclinedText:
+WadeNumberDeclinedText::
 	text "Oh well. Don't be"
 	line "shy if you want to"
 	cont "get my number."
 	done
 
-WadePhoneFullText:
+WadePhoneFullText::
 	text "Your phone list"
 	line "has no room for my"
 	cont "number."
 	done
 
-WadeRematchText:
+WadeRematchText::
 	text "I was waiting for"
 	line "you. Let's battle!"
 	done
 
-WadeGiftText:
+WadeGiftText::
 	text "Good to see you!"
 	line "See? This is what"
 
@@ -66,7 +66,7 @@ WadeGiftText:
 	line "It's for you!"
 	done
 
-WadePackFullText:
+WadePackFullText::
 	text "Oops, your PACK's"
 	line "full. Too bad."
 

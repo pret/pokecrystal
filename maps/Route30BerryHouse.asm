@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route30BerryHouse.asm", ROMX
 
-Route30BerryHouse_MapScripts:
+Route30BerryHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -49,7 +49,7 @@ Route30BerrySpeechHouseCheckTreesText:
 	cont "drop right off."
 	done
 
-Route30BerryHouse_MapEvents:
+Route30BerryHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

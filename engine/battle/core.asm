@@ -5,7 +5,7 @@ SECTION "engine/battle/core.asm", ROMX
 
 ; Core components of the battle engine.
 
-DoBattle:
+DoBattle::
 	xor a
 	ld [wBattleParticipantsNotFainted], a
 	ld [wBattleParticipantsIncludingFainted], a
@@ -855,7 +855,7 @@ GetMovePriority:
 
 INCLUDE "data/moves/effects_priorities.inc"
 
-GetMoveEffect:
+GetMoveEffect::
 	ld a, b
 	dec a
 	ld hl, Moves + MOVE_EFFECT
@@ -1788,7 +1788,7 @@ SubtractHPFromTarget:
 	call SubtractHP
 	jp UpdateHPBar
 
-SubtractHPFromUser:
+SubtractHPFromUser::
 ; Subtract HP from mon
 	call SubtractHP
 	jp UpdateHPBarBattleHuds
@@ -1837,7 +1837,7 @@ GetSixteenthMaxHP:
 .ok
 	ret
 
-GetEighthMaxHP:
+GetEighthMaxHP::
 ; output: bc
 	call GetQuarterMaxHP
 ; assumes nothing can have 1024 or more hp
@@ -1851,7 +1851,7 @@ GetEighthMaxHP:
 .end
 	ret
 
-GetQuarterMaxHP:
+GetQuarterMaxHP::
 ; output: bc
 	call GetMaxHP
 
@@ -1870,7 +1870,7 @@ GetQuarterMaxHP:
 .end
 	ret
 
-GetHalfMaxHP:
+GetHalfMaxHP::
 ; output: bc
 	call GetMaxHP
 
@@ -1886,7 +1886,7 @@ GetHalfMaxHP:
 .end
 	ret
 
-GetMaxHP:
+GetMaxHP::
 ; output: bc, wBuffer1-2
 
 	ld hl, wBattleMonMaxHP
@@ -1923,7 +1923,7 @@ Unreferenced_GetHalfHP:
 	ld [wBuffer1], a
 	ret
 
-CheckUserHasEnoughHP:
+CheckUserHasEnoughHP::
 	ld hl, wBattleMonHP + 1
 	ldh a, [hBattleTurn]
 	and a
@@ -1937,7 +1937,7 @@ CheckUserHasEnoughHP:
 	sbc [hl]
 	ret
 
-RestoreHP:
+RestoreHP::
 	ld hl, wEnemyMonMaxHP
 	ldh a, [hBattleTurn]
 	and a
@@ -2582,11 +2582,11 @@ PlayVictoryMusic:
 	pop de
 	ret
 
-IsKantoGymLeader:
+IsKantoGymLeader::
 	ld hl, KantoGymLeaders
 	jr IsGymLeaderCommon
 
-IsGymLeader:
+IsGymLeader::
 	ld hl, GymLeaders
 IsGymLeaderCommon:
 	push de
@@ -2793,7 +2793,7 @@ PlayerPartyMonEntrance:
 	call SetPlayerTurn
 	jp SpikesDamage
 
-CheckMobileBattleError:
+CheckMobileBattleError::
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
 	jr nz, .not_mobile ; It's not a mobile battle
@@ -2815,7 +2815,7 @@ IsMobileBattle:
 	cp LINK_MOBILE
 	ret
 
-SetUpBattlePartyMenu_NoLoop:
+SetUpBattlePartyMenu_NoLoop::
 	call ClearBGPalettes
 SetUpBattlePartyMenu: ; switch to fullscreen menu?
 	farcall LoadPartyMenuGFX
@@ -2892,7 +2892,7 @@ PickSwitchMonInBattle:
 	xor a
 	ret
 
-ForcePickSwitchMonInBattle:
+ForcePickSwitchMonInBattle::
 ; Can't back out.
 
 .pick
@@ -3107,7 +3107,7 @@ SlideBattlePicOut:
 	jr nz, .back
 	ret
 
-ForceEnemySwitch:
+ForceEnemySwitch::
 	call ResetEnemyBattleVars
 	ld a, [wEnemySwitchMonIndex]
 	dec a
@@ -3121,7 +3121,7 @@ ForceEnemySwitch:
 	call ResetBattleParticipants
 	ret
 
-EnemySwitch:
+EnemySwitch::
 	call CheckWhetherToAskSwitch
 	jr nc, EnemySwitch_SetMode
 	; Shift Mode
@@ -3149,7 +3149,7 @@ EnemySwitch:
 	call LoadTileMapToTempTileMap
 	jp PlayerSwitch
 
-EnemySwitch_SetMode:
+EnemySwitch_SetMode::
 	call ResetEnemyBattleVars
 	call CheckWhetherSwitchmonIsPredetermined
 	jr c, .skip
@@ -3213,7 +3213,7 @@ ResetEnemyBattleVars:
 	call EmptyBattleTextbox
 	jp LoadStandardMenuHeader
 
-ResetBattleParticipants:
+ResetBattleParticipants::
 	xor a
 	ld [wBattleParticipantsNotFainted], a
 	ld [wBattleParticipantsIncludingFainted], a
@@ -3588,7 +3588,7 @@ Function_SetEnemyMonAndSendOutAnimation:
 	ldh [hBGMapMode], a
 	ret
 
-NewEnemyMonStatus:
+NewEnemyMonStatus::
 	xor a
 	ld [wLastPlayerCounterMove], a
 	ld [wLastEnemyCounterMove], a
@@ -3611,7 +3611,7 @@ endr
 	res SUBSTATUS_CANT_RUN, [hl]
 	ret
 
-ResetEnemyStatLevels:
+ResetEnemyStatLevels::
 	ld a, BASE_STAT_LEVEL
 	ld b, NUM_LEVEL_STATS
 	ld hl, wEnemyStatLevels
@@ -3621,7 +3621,7 @@ ResetEnemyStatLevels:
 	jr nz, .loop
 	ret
 
-CheckPlayerPartyForFitMon:
+CheckPlayerPartyForFitMon::
 ; Has the player any mon in his Party that can fight?
 	ld a, [wPartyCount]
 	ld e, a
@@ -3909,7 +3909,7 @@ BattleCheckShininess:
 	callfar CheckShininess
 	ret
 
-GetPartyMonDVs:
+GetPartyMonDVs::
 	ld hl, wBattleMonDVs
 	ld a, [wPlayerSubStatus5]
 	bit SUBSTATUS_TRANSFORMED, a
@@ -3918,7 +3918,7 @@ GetPartyMonDVs:
 	ld a, [wCurBattleMon]
 	jp GetPartyLocation
 
-GetEnemyMonDVs:
+GetEnemyMonDVs::
 	ld hl, wEnemyMonDVs
 	ld a, [wEnemySubStatus5]
 	bit SUBSTATUS_TRANSFORMED, a
@@ -3993,7 +3993,7 @@ InitEnemyMon:
 	ld [wCurOTMon], a
 	ret
 
-SwitchPlayerMon:
+SwitchPlayerMon::
 	call ClearSprites
 	ld a, [wCurBattleMon]
 	ld [wLastPlayerMon], a
@@ -4102,7 +4102,7 @@ BreakAttraction:
 	res SUBSTATUS_IN_LOVE, [hl]
 	ret
 
-SpikesDamage:
+SpikesDamage::
 	ld hl, wPlayerScreens
 	ld de, wBattleMonType
 	ld bc, UpdatePlayerHUD
@@ -4142,7 +4142,7 @@ SpikesDamage:
 .hl
 	jp hl
 
-PursuitSwitch:
+PursuitSwitch::
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVar
 	ld b, a
@@ -4367,7 +4367,7 @@ ItemRecoveryAnim:
 	pop hl
 	ret
 
-UseHeldStatusHealingItem:
+UseHeldStatusHealingItem::
 	callfar GetOpponentItem
 	ld hl, HeldStatusHealingEffects
 .loop
@@ -4423,7 +4423,7 @@ UseHeldStatusHealingItem:
 
 INCLUDE "data/battle/held_heal_status.inc"
 
-UseConfusionHealingItem:
+UseConfusionHealingItem::
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVar
 	bit SUBSTATUS_CONFUSED, a
@@ -4576,7 +4576,7 @@ UpdatePlayerHUD::
 	pop hl
 	ret
 
-DrawPlayerHUD:
+DrawPlayerHUD::
 	xor a
 	ldh [hBGMapMode], a
 
@@ -4714,7 +4714,7 @@ UpdateEnemyHUD::
 	pop hl
 	ret
 
-DrawEnemyHUD:
+DrawEnemyHUD::
 	xor a
 	ldh [hBGMapMode], a
 
@@ -5266,7 +5266,7 @@ BattleMonEntrance:
 	ld [wMenuCursorY], a
 	ret
 
-PassedBattleMonEntrance:
+PassedBattleMonEntrance::
 	ld c, 50
 	call DelayFrames
 
@@ -5313,7 +5313,7 @@ CheckAmuletCoin:
 	ld [wAmuletCoin], a
 	ret
 
-MoveSelectionScreen:
+MoveSelectionScreen::
 	call IsMobileBattle
 	jr nz, .not_mobile
 	farcall MobileMoveSelectionScreen
@@ -5624,7 +5624,7 @@ MoveSelectionScreen:
 	ld [wMoveSwapBuffer], a
 	jp MoveSelectionScreen
 
-MoveInfoBox:
+MoveInfoBox::
 	xor a
 	ldh [hBGMapMode], a
 
@@ -5721,7 +5721,7 @@ MoveInfoBox:
 	call PrintNum
 	ret
 
-CheckPlayerHasUsableMoves:
+CheckPlayerHasUsableMoves::
 	ld a, STRUGGLE
 	ld [wCurPlayerMove], a
 	ld a, [wPlayerDisableCount]
@@ -5926,7 +5926,7 @@ ResetVarsForSubstatusRage:
 	res SUBSTATUS_RAGE, [hl]
 	ret
 
-CheckEnemyLockedIn:
+CheckEnemyLockedIn::
 	ld a, [wEnemySubStatus4]
 	and 1 << SUBSTATUS_RECHARGE
 	ret nz
@@ -5940,11 +5940,11 @@ CheckEnemyLockedIn:
 	bit SUBSTATUS_ROLLOUT, [hl]
 	ret
 
-LinkBattleSendReceiveAction:
+LinkBattleSendReceiveAction::
 	farcall _LinkBattleSendReceiveAction
 	ret
 
-LoadEnemyMon:
+LoadEnemyMon::
 ; Initialize enemy monster parameters
 ; To do this we pull the species from wTempEnemyMonSpecies
 
@@ -6576,7 +6576,7 @@ ApplyStatusEffectOnStats:
 	call ApplyPrzEffectOnSpeed
 	jp ApplyBrnEffectOnAttack
 
-ApplyPrzEffectOnSpeed:
+ApplyPrzEffectOnSpeed::
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .enemy
@@ -6621,7 +6621,7 @@ ApplyPrzEffectOnSpeed:
 	ld [hl], b
 	ret
 
-ApplyBrnEffectOnAttack:
+ApplyBrnEffectOnAttack::
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .enemy
@@ -6662,7 +6662,7 @@ ApplyBrnEffectOnAttack:
 	ld [hl], b
 	ret
 
-ApplyStatLevelMultiplierOnAllStats:
+ApplyStatLevelMultiplierOnAllStats::
 ; Apply StatLevelMultipliers on all 5 Stats
 	ld c, 0
 .stat_loop
@@ -6758,7 +6758,7 @@ ApplyStatLevelMultiplier:
 
 INCLUDE "data/battle/stat_multipliers_2.inc"
 
-BadgeStatBoosts:
+BadgeStatBoosts::
 ; Raise the stats of the battle mon in wBattleMon
 ; depending on which badges have been obtained.
 
@@ -6847,7 +6847,7 @@ BoostStat:
 	ld [hld], a
 	ret
 
-_LoadBattleFontsHPBar:
+_LoadBattleFontsHPBar::
 	callfar LoadBattleFontsHPBar
 	ret
 
@@ -6958,7 +6958,7 @@ Call_PlayBattleAnim:
 	call WaitBGMap
 	predef_jump PlayBattleAnim
 
-FinishBattleAnim:
+FinishBattleAnim::
 	push af
 	push bc
 	push de
@@ -7806,7 +7806,7 @@ Unreferenced_HandleSafariAngerEatingStatus:
 	pop hl
 	jp StdBattleTextbox
 
-FillInExpBar:
+FillInExpBar::
 	push hl
 	call CalcExpBar
 	pop hl
@@ -7944,13 +7944,13 @@ PlaceExpBar:
 .finish
 	ret
 
-GetBattleMonBackpic:
+GetBattleMonBackpic::
 	ld a, [wPlayerSubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
 	ld hl, BattleAnimCmd_RaiseSub
 	jr nz, GetBattleMonBackpic_DoAnim ; substitute
 
-DropPlayerSub:
+DropPlayerSub::
 	ld a, [wPlayerMinimized]
 	and a
 	ld hl, BattleAnimCmd_MinimizeOpp
@@ -7978,13 +7978,13 @@ GetBattleMonBackpic_DoAnim:
 	ldh [hBattleTurn], a
 	ret
 
-GetEnemyMonFrontpic:
+GetEnemyMonFrontpic::
 	ld a, [wEnemySubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
 	ld hl, BattleAnimCmd_RaiseSub
 	jr nz, GetEnemyMonFrontpic_DoAnim
 
-DropEnemySub:
+DropEnemySub::
 	ld a, [wEnemyMinimized]
 	and a
 	ld hl, BattleAnimCmd_MinimizeOpp
@@ -8014,7 +8014,7 @@ GetEnemyMonFrontpic_DoAnim:
 	ldh [hBattleTurn], a
 	ret
 
-StartBattle:
+StartBattle::
 ; This check prevents you from entering a battle without any Pokemon.
 ; Those using walk-through-walls to bypass getting a Pokemon experience
 ; the effects of this check.
@@ -8036,7 +8036,7 @@ Unreferenced_DoBattle:
 	call DoBattle
 	ret
 
-BattleIntro:
+BattleIntro::
 	farcall StubbedTrainerRankings_Battles ; mobile
 	call LoadTrainerOrWildMonPic
 	xor a
@@ -8282,7 +8282,7 @@ ExitBattle:
 	farcall GivePokerusAndConvertBerries
 	ret
 
-CleanUpBattleRAM:
+CleanUpBattleRAM::
 	call BattleEnd_HandleRoamMons
 	xor a
 	ld [wLowHealthAlarm], a
@@ -8349,7 +8349,7 @@ CheckPayDay:
 	call ClearBGPalettes
 	ret
 
-ShowLinkBattleParticipantsAfterEnd:
+ShowLinkBattleParticipantsAfterEnd::
 	farcall StubbedTrainerRankings_LinkBattles
 	farcall BackupMobileEventIndex
 	ld a, [wCurOTMon]
@@ -8361,7 +8361,7 @@ ShowLinkBattleParticipantsAfterEnd:
 	farcall _ShowLinkBattleParticipants
 	ret
 
-DisplayLinkBattleResult:
+DisplayLinkBattleResult::
 	farcall CheckMobileBattleError
 	jp c, .Mobile_InvalidBattle
 	call IsMobileBattle2
@@ -8445,7 +8445,7 @@ IsMobileBattle2:
 	cp LINK_MOBILE
 	ret
 
-_DisplayLinkRecord:
+_DisplayLinkRecord::
 	ld a, BANK(sLinkBattleStats)
 	call GetSRAMBank
 
@@ -8970,7 +8970,7 @@ InitBattleDisplay:
 	call CopyBackpic
 	ret
 
-GetTrainerBackpic:
+GetTrainerBackpic::
 ; Load the player character's backpic (6x6) into VRAM starting from vTiles2 tile $31.
 
 ; Special exception for Dude.

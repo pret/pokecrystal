@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/TinTower8F.asm", ROMX
 
-TinTower8F_MapScripts:
+TinTower8F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -22,7 +22,7 @@ TinTower8FMaxElixer:
 TinTower8FFullRestore:
 	itemball FULL_RESTORE
 
-TinTower8F_MapEvents:
+TinTower8F_MapEvents::
 	db 0, 0 ; filler
 
 	db 6 ; warp events

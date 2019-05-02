@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/MountMoonGiftShop.asm", ROMX
 
-MountMoonGiftShop_MapScripts:
+MountMoonGiftShop_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -30,7 +30,7 @@ MountMoonGiftShopLassText:
 	cont "come out to play."
 	done
 
-MountMoonGiftShop_MapEvents:
+MountMoonGiftShop_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

@@ -3,14 +3,14 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/irwin_caller.asm", ROMX
 
-UnknownText_0x64000:
+UnknownText_0x64000::
 	text "I hate having to"
 	line "hang up on you!"
 
 	para "Call you later!"
 	done
 
-UnknownText_0x64032:
+UnknownText_0x64032::
 	text "<PLAY_G>, have you"
 	line "heard?"
 
@@ -24,7 +24,7 @@ UnknownText_0x64032:
 	line "ROCKET?"
 	done
 
-UnknownText_0x64099:
+UnknownText_0x64099::
 	text "<PLAY_G>, I heard!"
 
 	para "You defeated that"
@@ -34,7 +34,7 @@ UnknownText_0x64099:
 	line "to be your friend!"
 	done
 
-UnknownText_0x640e6:
+UnknownText_0x640e6::
 	text "Hey, I heard about"
 	line "you!"
 
@@ -51,7 +51,7 @@ UnknownText_0x640e6:
 	line "bed with a cold!"
 	done
 
-UnknownText_0x6416d:
+UnknownText_0x6416d::
 	text "I heard, I heard,"
 	line "I heard!"
 
@@ -65,7 +65,7 @@ UnknownText_0x6416d:
 	line "TEAM ROCKET?"
 	done
 
-UnknownText_0x641e8:
+UnknownText_0x641e8::
 	text "I heard, I heard,"
 	line "I heard!"
 
@@ -76,7 +76,7 @@ UnknownText_0x641e8:
 	line "rock so hard!"
 	done
 
-UnknownText_0x64247:
+UnknownText_0x64247::
 	text "I saw, I saw!"
 
 	para "I saw you go into"
@@ -89,7 +89,7 @@ UnknownText_0x64247:
 	line "You can't fail!"
 	done
 
-UnknownText_0x642bb:
+UnknownText_0x642bb::
 	text "Yesterday, I went"
 	line "out to NEW BARK"
 
@@ -118,7 +118,7 @@ UnknownText_0x642bb:
 	line "mom, believe me!"
 	done
 
-UnknownText_0x643d4:
+UnknownText_0x643d4::
 	text "I saw, I saw,"
 	line "I saw!"
 
@@ -132,7 +132,7 @@ UnknownText_0x643d4:
 	line "your backdrop!"
 	done
 
-UnknownText_0x64448:
+UnknownText_0x64448::
 	text "I heard, I heard!"
 
 	para "You got a MAGNET"
@@ -160,7 +160,7 @@ UnknownText_0x64448:
 	line "by FLY?"
 	done
 
-UnknownText_0x6455b:
+UnknownText_0x6455b::
 	text "I saw, I saw!"
 
 	para "You waking up"
@@ -179,7 +179,7 @@ UnknownText_0x6455b:
 	line "magic!"
 	done
 
-UnknownText_0x645ff:
+UnknownText_0x645ff::
 	text "I hear rumors"
 	line "about you all over"
 	cont "the place."
@@ -197,7 +197,7 @@ UnknownText_0x645ff:
 	line "cheering you on!"
 	done
 
-IrwinCalledRightAwayText:
+IrwinCalledRightAwayText::
 	text "Hehe, I called"
 	line "right away!"
 
@@ -205,7 +205,7 @@ IrwinCalledRightAwayText:
 	line "good friends!"
 	done
 
-UnknownText_0x646df:
+UnknownText_0x646df::
 	text "I saw, I heard!"
 
 	para "You beat MORTY of"
@@ -230,7 +230,7 @@ UnknownText_0x646df:
 	line "took off for home…"
 	done
 
-UnknownText_0x647d8:
+UnknownText_0x647d8::
 	text "<PLAY_G>, I heard!"
 
 	para "You're kicking up"
@@ -245,7 +245,7 @@ UnknownText_0x647d8:
 	para "You so rock!"
 	done
 
-UnknownText_0x64846:
+UnknownText_0x64846::
 	text "Hearing about your"
 	line "escapades rocks my"
 
@@ -253,7 +253,7 @@ UnknownText_0x64846:
 	line "It sure does!"
 	done
 
-UnknownText_0x64881:
+UnknownText_0x64881::
 	text "I'm so glad you"
 	line "called!"
 
@@ -264,7 +264,7 @@ UnknownText_0x64881:
 	line "a good match!"
 	done
 
-UnknownText_0x648dc:
+UnknownText_0x648dc::
 	text "How are you?"
 
 	para "What are you"

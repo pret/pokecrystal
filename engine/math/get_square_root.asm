@@ -5,7 +5,7 @@ SECTION "engine/math/get_square_root.asm", ROMX
 
 NUM_SQUARE_ROOTS EQU 255
 
-GetSquareRoot:
+GetSquareRoot::
 ; Return the square root of de in b.
 
 ; Rather than calculating the result, we take the index of the

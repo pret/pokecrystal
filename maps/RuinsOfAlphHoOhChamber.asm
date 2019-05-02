@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/RuinsOfAlphHoOhChamber.asm", ROMX
 
-RuinsOfAlphHoOhChamber_MapScripts:
+RuinsOfAlphHoOhChamber_MapScripts::
 	db 2 ; scene scripts
 	scene_script .CheckWall ; SCENE_DEFAULT
 	scene_script .DummyScene ; SCENE_FINISHED
@@ -147,7 +147,7 @@ RuinsOfAlphHoOhChamberDescriptionText:
 	line "wings."
 	done
 
-RuinsOfAlphHoOhChamber_MapEvents:
+RuinsOfAlphHoOhChamber_MapEvents::
 	db 0, 0 ; filler
 
 	db 5 ; warp events

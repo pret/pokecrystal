@@ -16,7 +16,7 @@ NormalSpeed::
 	bit 7, [hl]
 	ret z
 
-SwitchSpeed::
+SwitchSpeed:
 	set 0, [hl]
 	xor a
 	ldh [rIF], a

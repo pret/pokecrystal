@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/menus/empty_sram.asm", ROMX
 
-EmptyAllSRAMBanks:
+EmptyAllSRAMBanks::
 	ld a, 0
 	call .EmptyBank
 	ld a, 1

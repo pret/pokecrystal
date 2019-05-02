@@ -11,7 +11,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/IndigoPlateauPokecenter1F.asm", ROMX
 
-IndigoPlateauPokecenter1F_MapScripts:
+IndigoPlateauPokecenter1F_MapScripts::
 	db 1 ; scene scripts
 	scene_script .DummyScene ; SCENE_DEFAULT
 
@@ -305,7 +305,7 @@ AbraText:
 	text "ABRA: Aabra…"
 	done
 
-IndigoPlateauPokecenter1F_MapEvents:
+IndigoPlateauPokecenter1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

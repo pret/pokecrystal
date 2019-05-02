@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/celadoncity.asm", ROMX
 
-Music_CeladonCity:
+Music_CeladonCity::
 	musicheader 3, 1, Music_CeladonCity_Ch1
 	musicheader 1, 2, Music_CeladonCity_Ch2
 	musicheader 1, 3, Music_CeladonCity_Ch3

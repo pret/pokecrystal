@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokemon/types.asm", ROMX
 
-PrintMonTypes:
+PrintMonTypes::
 ; Print one or both types of [wCurSpecies]
 ; on the stats screen at hl.
 
@@ -43,7 +43,7 @@ PrintMonTypes:
 	ld bc, NAME_LENGTH_JAPANESE - 1
 	jp ByteFill
 
-PrintMoveType:
+PrintMoveType::
 ; Print the type of move b at hl.
 
 	push hl
@@ -60,7 +60,7 @@ PrintMoveType:
 
 	ld b, a
 
-PrintType:
+PrintType::
 ; Print type b at hl.
 
 	ld a, b
@@ -78,7 +78,7 @@ PrintType:
 
 	jp PlaceString
 
-GetTypeName:
+GetTypeName::
 ; Copy the name of type [wNamedObjectIndexBuffer] to wStringBuffer1.
 
 	ld a, [wNamedObjectIndexBuffer]

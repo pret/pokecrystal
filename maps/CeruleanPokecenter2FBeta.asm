@@ -3,12 +3,12 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CeruleanPokecenter2FBeta.asm", ROMX
 
-CeruleanPokecenter2FBeta_MapScripts:
+CeruleanPokecenter2FBeta_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
 
-CeruleanPokecenter2FBeta_MapEvents:
+CeruleanPokecenter2FBeta_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

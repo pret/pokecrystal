@@ -1,4 +1,4 @@
-JackTriviaScript:
+JackTriviaScript::
 	random 11
 	ifequal  0, .Thunder
 	ifequal  1, .Rollout

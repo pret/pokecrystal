@@ -113,11 +113,11 @@ YesNoBox::
 PlaceYesNoBox::
 	jr _YesNoBox
 
-PlaceGenericTwoOptionBox::
+PlaceGenericTwoOptionBox:
 	call LoadMenuHeader
 	jr InterpretTwoOptionMenu
 
-_YesNoBox::
+_YesNoBox:
 ; Return nc (yes) or c (no).
 	push bc
 	ld hl, YesNoMenuHeader
@@ -142,7 +142,7 @@ _YesNoBox::
 	ld [wMenuBorderBottomCoord], a
 	call PushWindow
 
-InterpretTwoOptionMenu::
+InterpretTwoOptionMenu:
 	call VerticalMenu
 	push af
 	ld c, $f
@@ -227,7 +227,7 @@ DrawVariableLengthMenuBox::
 	call MenuBox
 	ret
 
-MenuWriteText::
+MenuWriteText:
 	xor a
 	ldh [hBGMapMode], a
 	call GetMenuIndexSet ; sort out the text
@@ -242,7 +242,7 @@ MenuWriteText::
 	ldh [hOAMUpdate], a
 	ret
 
-AutomaticGetMenuBottomCoord::
+AutomaticGetMenuBottomCoord:
 	ld a, [wMenuBorderLeftCoord]
 	ld c, a
 	ld a, [wMenuBorderRightCoord]
@@ -257,7 +257,7 @@ AutomaticGetMenuBottomCoord::
 	ld [wMenuBorderBottomCoord], a
 	ret
 
-GetMenuIndexSet::
+GetMenuIndexSet:
 	ld hl, wMenuDataIndicesPointer
 	ld a, [hli]
 	ld h, [hl]
@@ -281,7 +281,7 @@ GetMenuIndexSet::
 	ld [wMenuDataItems], a
 	ret
 
-RunMenuItemPrintingFunction::
+RunMenuItemPrintingFunction:
 	call MenuBoxCoord2Tile
 	ld bc, 2 * SCREEN_WIDTH + 2
 	add hl, bc
@@ -309,7 +309,7 @@ RunMenuItemPrintingFunction::
 	ld l, a
 	jp hl
 
-InitMenuCursorAndButtonPermissions::
+InitMenuCursorAndButtonPermissions:
 	call InitVerticalMenuCursor
 	ld hl, wMenuJoypadFilter
 	ld a, [wMenuDataFlags]
@@ -333,7 +333,7 @@ GetScrollingMenuJoypad::
 	and [hl]
 	jr ContinueGettingMenuJoypad
 
-GetStaticMenuJoypad::
+GetStaticMenuJoypad:
 	xor a
 	ld [wMenuJoypad], a
 	call StaticMenuJoypad
@@ -415,7 +415,7 @@ PlaceNthMenuStrings::
 	call PlaceString
 	ret
 
-Unreferenced_Function1f9e::
+Unreferenced_Function1f9e:
 	call GetMenuDataPointerTableEntry
 	inc hl
 	inc hl
@@ -432,7 +432,7 @@ MenuJumptable::
 	ld l, a
 	jp hl
 
-GetMenuDataPointerTableEntry::
+GetMenuDataPointerTableEntry:
 	ld e, a
 	ld d, $0
 	ld hl, wMenuDataPointerTableAddr
@@ -531,7 +531,7 @@ InterpretBattleMenu::
 	ld a, [wMenuCursorBuffer]
 	ret
 
-InterpretMobileMenu::
+InterpretMobileMenu:
 	ldh a, [hROMBank]
 	ld [wMenuData_2DMenuItemStringsBank], a
 	farcall _InterpretMobileMenu

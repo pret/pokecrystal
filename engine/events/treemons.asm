@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/treemons.asm", ROMX
 
-TreeMonEncounter:
+TreeMonEncounter::
 	farcall StubbedTrainerRankings_TreeEncounters
 
 	xor a
@@ -31,7 +31,7 @@ TreeMonEncounter:
 	ld [wScriptVar], a
 	ret
 
-RockMonEncounter:
+RockMonEncounter::
 	xor a
 	ld [wTempWildMonSpecies], a
 	ld [wCurPartyLevel], a

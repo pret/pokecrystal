@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/jack_caller.asm", ROMX
 
-JackIntelligenceText:
+JackIntelligenceText::
 	text "My @"
 	text_ram wStringBuffer4
 	text "'s"
@@ -14,7 +14,7 @@ JackIntelligenceText:
 	cont "yours!"
 	done
 
-JackDefeatedMonText:
+JackDefeatedMonText::
 	text "The other day, I"
 	line "easily defeated a"
 	cont "@"
@@ -26,7 +26,7 @@ JackDefeatedMonText:
 	cont "starting to help."
 	done
 
-UnknownText_0x174165:
+UnknownText_0x174165::
 	text "Oh, and listen."
 	line "I missed catching"
 
@@ -42,7 +42,7 @@ UnknownText_0x174165:
 	line "caught it…"
 	done
 
-UnknownText_0x1741e1:
+UnknownText_0x1741e1::
 	text "Do you want to"
 	line "battle? I'll show"
 
@@ -58,11 +58,11 @@ UnknownText_0x1741e1:
 	line "you're nearby."
 	done
 
-UnknownText_0x174251:
+UnknownText_0x174251::
 	text "See you later!"
 	done
 
-JackThunderTriviaText:
+JackThunderTriviaText::
 	text "Did you know?"
 
 	para "When it's raining,"
@@ -70,7 +70,7 @@ JackThunderTriviaText:
 	cont "strike."
 	done
 
-JackRolloutTriviaText:
+JackRolloutTriviaText::
 	text "Did you know…?"
 
 	para "If you use DEFENSE"
@@ -80,7 +80,7 @@ JackRolloutTriviaText:
 	line "past normal."
 	done
 
-JackSolarbeamTriviaText:
+JackSolarbeamTriviaText::
 	text "Did you know…?"
 
 	para "If the sunlight is"
@@ -90,7 +90,7 @@ JackSolarbeamTriviaText:
 	line "charged up."
 	done
 
-JackStompTriviaText:
+JackStompTriviaText::
 	text "Did you know…?"
 
 	para "If the opponent"
@@ -100,7 +100,7 @@ JackStompTriviaText:
 	line "more powerful."
 	done
 
-JackGustTriviaText:
+JackGustTriviaText::
 	text "Did you know…?"
 
 	para "If your opponent"
@@ -110,7 +110,7 @@ JackGustTriviaText:
 	line "more powerful."
 	done
 
-JackTwisterTriviaText:
+JackTwisterTriviaText::
 	text "Did you know…?"
 
 	para "If your opponent"
@@ -120,7 +120,7 @@ JackTwisterTriviaText:
 	line "more powerful."
 	done
 
-JackEarthquakeTriviaText:
+JackEarthquakeTriviaText::
 	text "Did you know…?"
 
 	para "If your opponent"
@@ -130,7 +130,7 @@ JackEarthquakeTriviaText:
 	line "more powerful."
 	done
 
-JackMagnitudeTriviaText:
+JackMagnitudeTriviaText::
 	text "Did you know…?"
 
 	para "If your opponent"
@@ -140,7 +140,7 @@ JackMagnitudeTriviaText:
 	line "more powerful."
 	done
 
-JackSandstormTriviaText:
+JackSandstormTriviaText::
 	text "Did you know…?"
 
 	para "The rock, ground"
@@ -150,7 +150,7 @@ JackSandstormTriviaText:
 	line "SANDSTORM."
 	done
 
-JackSunnyDayTriviaText:
+JackSunnyDayTriviaText::
 	text "Did you know…?"
 
 	para "If the sunlight is"
@@ -160,7 +160,7 @@ JackSunnyDayTriviaText:
 	line "weaker."
 	done
 
-JackRainDanceTriviaText:
+JackRainDanceTriviaText::
 	text "Did you know…?"
 
 	para "When it's raining,"
@@ -170,7 +170,7 @@ JackRainDanceTriviaText:
 	line "than usual."
 	done
 
-UnknownText_0x1745c2:
+UnknownText_0x1745c2::
 	text "My friend heard"
 	line "some great tips."
 
@@ -182,7 +182,7 @@ UnknownText_0x1745c2:
 	cont "away and tell you."
 	done
 
-UnknownText_0x174638:
+UnknownText_0x174638::
 	text "Hey, <PLAY_G>!"
 
 	para "Do you remember"

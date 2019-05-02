@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/prof_oaks_pc.asm", ROMX
 
-ProfOaksPC:
+ProfOaksPC::
 	ld hl, OakPCText1
 	call MenuTextbox
 	call YesNoBox
@@ -16,7 +16,7 @@ ProfOaksPC:
 	call ExitMenu
 	ret
 
-ProfOaksPCBoot:
+ProfOaksPCBoot::
 	ld hl, OakPCText2
 	call PrintText
 	call Rate
@@ -25,7 +25,7 @@ ProfOaksPCBoot:
 	call WaitSFX
 	ret
 
-ProfOaksPCRating:
+ProfOaksPCRating::
 	call Rate
 	push de
 	ld de, MUSIC_NONE

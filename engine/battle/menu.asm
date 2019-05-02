@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/battle/menu.asm", ROMX
 
-LoadBattleMenu:
+LoadBattleMenu::
 	ld hl, BattleMenuHeader
 	call LoadMenuHeader
 	ld a, [wBattleMenuCursorBuffer]
@@ -20,7 +20,7 @@ SafariBattleMenu:
 	call LoadMenuHeader
 	jr Function24f19
 
-ContestBattleMenu:
+ContestBattleMenu::
 	ld hl, MenuHeader_0x24f89
 	call LoadMenuHeader
 
@@ -33,7 +33,7 @@ Function24f19:
 	call ExitMenu
 	ret
 
-BattleMenuHeader:
+BattleMenuHeader::
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 8, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw MenuData_0x24f34

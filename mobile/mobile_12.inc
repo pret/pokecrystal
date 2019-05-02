@@ -1,4 +1,4 @@
-InitMobileProfile:
+InitMobileProfile::
 	xor a
 	set 6, a
 	ld [wd002], a
@@ -1554,7 +1554,7 @@ Function48c5a:
 	ld [hl], a
 	ret
 
-Function48c63:
+Function48c63::
 	ld a, "@"
 	ld [de], a
 	ld a, c
@@ -1644,7 +1644,7 @@ Function48ca3:
 	pop af
 	ret
 
-Function48cda:
+Function48cda::
 	ld h, d
 	ld l, e
 

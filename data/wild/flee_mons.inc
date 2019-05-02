@@ -1,4 +1,4 @@
-FleeMons:
+FleeMons::
 ; referenced by TryEnemyFlee and FastBallMultiplier
 
 SometimesFleeMons:

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/bug_contest/display_stats.asm@DisplayCaughtContestMonStats", ROMX
 
-DisplayCaughtContestMonStats:
+DisplayCaughtContestMonStats::
 	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
@@ -99,7 +99,7 @@ SwitchMonText:
 
 SECTION "engine/events/bug_contest/display_stats.asm@DisplayAlreadyCaughtText", ROMX
 
-DisplayAlreadyCaughtText:
+DisplayAlreadyCaughtText::
 	call GetPokemonName
 	ld hl, .AlreadyCaughtText
 	jp PrintText
@@ -112,7 +112,7 @@ DisplayAlreadyCaughtText:
 
 SECTION "engine/events/bug_contest/display_stats.asm@DummyPredef", ROMX
 
-DummyPredef2F:
-DummyPredef38:
-DummyPredef39:
+DummyPredef2F::
+DummyPredef38::
+DummyPredef39::
 	ret

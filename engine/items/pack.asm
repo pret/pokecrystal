@@ -17,7 +17,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/items/pack.asm", ROMX, BANK[BANK_PACK]
 
-Pack:
+Pack::
 	ld hl, wOptions
 	set NO_TEXT_SCROLL, [hl]
 	call InitPackBuffers
@@ -627,7 +627,7 @@ GiveItem:
 QuitItemSubmenu:
 	ret
 
-BattlePack:
+BattlePack::
 	ld hl, wOptions
 	set NO_TEXT_SCROLL, [hl]
 	call InitPackBuffers
@@ -919,7 +919,7 @@ InitPackBuffers:
 	ld [wSwitchItem], a
 	ret
 
-DepositSellInitPackBuffers:
+DepositSellInitPackBuffers::
 	xor a
 	ldh [hBGMapMode], a
 	ld [wJumptableIndex], a ; PACKSTATE_INITGFX
@@ -931,7 +931,7 @@ DepositSellInitPackBuffers:
 	call Pack_InitColors
 	ret
 
-DepositSellPack:
+DepositSellPack::
 .loop
 	call .RunJumptable
 	call DepositSellTutorial_InterpretJoypad
@@ -1068,7 +1068,7 @@ DepositSellTutorial_InterpretJoypad:
 	scf
 	ret
 
-TutorialPack:
+TutorialPack::
 	call DepositSellInitPackBuffers
 	ld a, [wInputType]
 	or a

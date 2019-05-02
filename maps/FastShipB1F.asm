@@ -17,7 +17,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/FastShipB1F.asm", ROMX
 
-FastShipB1F_MapScripts:
+FastShipB1F_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_FINISHED
@@ -451,7 +451,7 @@ SchoolboyRickyAfterBattleText:
 	cont "stone panels."
 	done
 
-FastShipB1F_MapEvents:
+FastShipB1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

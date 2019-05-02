@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/BattleTowerBattleRoom.asm", ROMX, BANK[BANK_MAP_BATTLE_TOWER]
 
-BattleTowerBattleRoom_MapScripts:
+BattleTowerBattleRoom_MapScripts::
 	db 2 ; scene scripts
 	scene_script .EnterBattleRoom ; SCENE_DEFAULT
 	scene_script .DummyScene ; SCENE_FINISHED
@@ -110,7 +110,7 @@ Script_BeatenAllTrainers:
 	pause 60
 	special BattleTowerFade
 	warpfacing UP, BATTLE_TOWER_1F, 7, 7
-Script_BeatenAllTrainers2:
+Script_BeatenAllTrainers2::
 	opentext
 	writetext Text_CongratulationsYouveBeatenAllTheTrainers
 	sjump Script_GivePlayerHisPrize
@@ -141,7 +141,7 @@ Text_ReturnedAfterSave_Mobile:
 	line "after you SAVE."
 	done
 
-BattleTowerBattleRoom_MapEvents:
+BattleTowerBattleRoom_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/clair.asm", ROMX
 
-Music_Clair:
+Music_Clair::
 	musicheader 4, 1, Music_Clair_Ch1
 	musicheader 1, 2, Music_Clair_Ch2
 	musicheader 1, 3, Music_Clair_Ch3

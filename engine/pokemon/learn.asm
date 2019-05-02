@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokemon/learn.asm", ROMX
 
-LearnMove:
+LearnMove::
 	call LoadTileMapToTempTileMap
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames

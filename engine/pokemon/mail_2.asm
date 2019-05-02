@@ -3,14 +3,14 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokemon/mail_2.asm@ReadAnyMail", ROMX
 
-ReadPartyMonMail:
+ReadPartyMonMail::
 	ld a, [wCurPartyMon]
 	ld hl, sPartyMail
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
-ReadAnyMail:
+ReadAnyMail::
 	push de
 	call ClearBGPalettes
 	call ClearSprites
@@ -919,7 +919,7 @@ INCLUDE "gfx/mail.inc"
 
 SECTION "engine/pokemon/mail_2.asm@ItemIsMail", ROMX
 
-ItemIsMail:
+ItemIsMail::
 	ld a, d
 	ld hl, MailItems
 	ld de, 1

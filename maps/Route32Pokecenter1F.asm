@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route32Pokecenter1F.asm", ROMX
 
-Route32Pokecenter1F_MapScripts:
+Route32Pokecenter1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -97,7 +97,7 @@ Route32Pokecenter1FCooltrainerFText:
 	cont "power…"
 	done
 
-Route32Pokecenter1F_MapEvents:
+Route32Pokecenter1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

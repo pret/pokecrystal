@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokemon/evolve.asm", ROMX
 
-EvolvePokemon:
+EvolvePokemon::
 	ld hl, wEvolvableFlags
 	xor a
 	ld [hl], a
@@ -11,7 +11,7 @@ EvolvePokemon:
 	ld c, a
 	ld b, SET_FLAG
 	call EvoFlagAction
-EvolveAfterBattle:
+EvolveAfterBattle::
 	xor a
 	ld [wMonTriedToEvolve], a
 	dec a
@@ -419,7 +419,7 @@ Text_WhatEvolving:
 	text_far UnknownText_0x1c4be3
 	text_end
 
-LearnLevelMoves:
+LearnLevelMoves::
 	ld a, [wTempSpecies]
 	ld [wCurPartySpecies], a
 	dec a
@@ -483,7 +483,7 @@ LearnLevelMoves:
 	ld [wTempSpecies], a
 	ret
 
-FillMoves:
+FillMoves::
 ; Fill in moves at de for wCurPartySpecies at wCurPartyLevel
 
 	push hl
@@ -610,7 +610,7 @@ EvoFlagAction:
 	pop de
 	ret
 
-GetPreEvolution:
+GetPreEvolution::
 ; Find the first mon to evolve into wCurPartySpecies.
 
 ; Return carry and the new species in wCurPartySpecies

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/indigoplateau.asm", ROMX
 
-Music_IndigoPlateau:
+Music_IndigoPlateau::
 	musicheader 4, 1, Music_IndigoPlateau_Ch1
 	musicheader 1, 2, Music_IndigoPlateau_Ch2
 	musicheader 1, 3, Music_IndigoPlateau_Ch3

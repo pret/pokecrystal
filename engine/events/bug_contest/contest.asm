@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/bug_contest/contest.asm@GiveParkBalls", ROMX
 
-GiveParkBalls:
+GiveParkBalls::
 	xor a
 	ld [wContestMon], a
 	ld a, 20
@@ -36,7 +36,7 @@ BugCatchingContestOutOfBallsScript:
 	writetext BugCatchingContestText_ContestIsOver
 	waitbutton
 
-BugCatchingContestReturnToGateScript:
+BugCatchingContestReturnToGateScript::
 	closetext
 	jumpstd bugcontestresultswarp
 

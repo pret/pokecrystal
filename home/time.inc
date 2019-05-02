@@ -1,6 +1,6 @@
 ; Functions relating to the timer interrupt and the real-time-clock.
 
-AskTimer::
+AskTimer:
 	push af
 	ldh a, [hMobile]
 	and a
@@ -126,7 +126,7 @@ FixDays::
 	xor a
 	ret
 
-FixTime::
+FixTime:
 ; add ingame time (set at newgame) to current time
 ;				  day     hr    min    sec
 ; store time in wCurDay, hHours, hMinutes, hSeconds
@@ -210,7 +210,7 @@ PanicResetClock::
 	ldh [hRTCDayHi], a
 	ret
 
-SetClock::
+SetClock:
 ; set clock data from hram
 
 ; enable clock r/w
@@ -257,7 +257,7 @@ SetClock::
 	call CloseSRAM ; unlatch clock, disable clock r/w
 	ret
 
-ClearRTCStatus::
+ClearRTCStatus:
 ; clear sRTCStatusFlags
 	xor a
 	push af

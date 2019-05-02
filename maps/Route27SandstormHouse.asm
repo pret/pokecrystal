@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route27SandstormHouse.asm", ROMX
 
-Route27SandstormHouse_MapScripts:
+Route27SandstormHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -96,7 +96,7 @@ SandstormHouseWomanDisloyalText:
 	cont "and trainers."
 	done
 
-Route27SandstormHouse_MapEvents:
+Route27SandstormHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

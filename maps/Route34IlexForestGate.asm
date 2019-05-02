@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route34IlexForestGate.asm", ROMX
 
-Route34IlexForestGate_MapScripts:
+Route34IlexForestGate_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -138,7 +138,7 @@ Route34IlexForestGateLassText:
 	cont "type #MON."
 	done
 
-Route34IlexForestGate_MapEvents:
+Route34IlexForestGate_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

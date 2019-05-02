@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/FuchsiaCity.asm", ROMX
 
-FuchsiaCity_MapScripts:
+FuchsiaCity_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -127,7 +127,7 @@ NoLitteringSignText:
 	line "waste with you."
 	done
 
-FuchsiaCity_MapEvents:
+FuchsiaCity_MapEvents::
 	db 0, 0 ; filler
 
 	db 11 ; warp events

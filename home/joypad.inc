@@ -1,4 +1,4 @@
-JoypadInt::
+JoypadInt:
 ; Replaced by Joypad, called from VBlank instead of the useless
 ; joypad interrupt.
 
@@ -13,7 +13,7 @@ ClearJoypad::
 	ldh [hJoyDown], a
 	ret
 
-Joypad::
+Joypad:
 ; Read the joypad register and translate it to something more
 ; workable for use in-game. There are 8 buttons, so we can use
 ; one byte to contain all player input.
@@ -260,7 +260,7 @@ StopAutoInput::
 	ld [wInputType], a
 	ret
 
-JoyTitleScreenInput::
+JoyTitleScreenInput:
 .loop
 
 	call DelayFrame
@@ -428,7 +428,7 @@ ButtonSound::
 	ldcoord_a 18, 17
 	ret
 
-BlinkCursor::
+BlinkCursor:
 	push bc
 	ld a, [hl]
 	ld b, a

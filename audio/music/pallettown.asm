@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/pallettown.asm", ROMX
 
-Music_PalletTown:
+Music_PalletTown::
 	musicheader 3, 1, Music_PalletTown_Ch1
 	musicheader 1, 2, Music_PalletTown_Ch2
 	musicheader 1, 3, Music_PalletTown_Ch3

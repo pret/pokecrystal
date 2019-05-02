@@ -5,7 +5,7 @@ SECTION "engine/pokemon/mon_submenu.asm", ROMX
 
 INCLUDE "data/mon_menu.inc"
 
-MonSubmenu:
+MonSubmenu::
 	xor a
 	ldh [hBGMapMode], a
 	call GetMonSubmenuItems
@@ -252,7 +252,7 @@ AddMonMenuItem:
 
 SECTION "engine/pokemon/mon_submenu.asm@BattleMonMenu", ROMX
 
-BattleMonMenu:
+BattleMonMenu::
 	ld hl, MenuHeader_0x24ed4
 	call CopyMenuHeader
 	xor a

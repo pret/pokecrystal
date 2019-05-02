@@ -13,7 +13,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/GoldenrodDeptStoreRoof.asm", ROMX
 
-GoldenrodDeptStoreRoof_MapScripts:
+GoldenrodDeptStoreRoof_MapScripts::
 	db 0 ; scene scripts
 
 	db 2 ; callbacks
@@ -214,7 +214,7 @@ PokeDollVendingMachineText:
 	line "empty…"
 	done
 
-GoldenrodDeptStoreRoof_MapEvents:
+GoldenrodDeptStoreRoof_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

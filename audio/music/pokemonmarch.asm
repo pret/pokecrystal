@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/pokemonmarch.asm", ROMX
 
-Music_PokemonMarch:
+Music_PokemonMarch::
 	musicheader 4, 1, Music_PokemonMarch_Ch1
 	musicheader 1, 2, Music_PokemonMarch_Ch2
 	musicheader 1, 3, Music_PokemonMarch_Ch3

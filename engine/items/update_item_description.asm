@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/items/update_item_description.asm", ROMX
 
-UpdateItemDescription:
+UpdateItemDescription::
 	ld a, [wMenuSelection]
 	ld [wCurSpecies], a
 	hlcoord 0, 12

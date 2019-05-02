@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/overworld/wildmons.asm", ROMX
 
-LoadWildMonData:
+LoadWildMonData::
 	call _GrassWildmonLookup
 	jr c, .copy
 	ld hl, wMornEncounterRate
@@ -30,7 +30,7 @@ LoadWildMonData:
 	ld [wWaterEncounterRate], a
 	ret
 
-FindNest:
+FindNest::
 ; Parameters:
 ; e: 0 = Johto, 1 = Kanto
 ; wNamedObjectIndexBuffer: species
@@ -205,7 +205,7 @@ TryWildEncounter::
 	cp b
 	ret
 
-GetMapEncounterRate:
+GetMapEncounterRate::
 	ld hl, wMornEncounterRate
 	call CheckOnWater
 	ld a, wWaterEncounterRate - wMornEncounterRate
@@ -254,7 +254,7 @@ ApplyCleanseTagEffectOnEncounterRate::
 	srl b
 	ret
 
-ChooseWildEncounter:
+ChooseWildEncounter::
 	call LoadWildMonDataPointer
 	jp nc, .nowildbattle
 	call CheckEncounterRoamMon
@@ -495,7 +495,7 @@ LookUpWildmonsForMapDE:
 	scf
 	ret
 
-InitRoamMons:
+InitRoamMons::
 ; initialize wRoamMon structs
 
 ; species
@@ -575,7 +575,7 @@ CheckEncounterRoamMon:
 	and a
 	ret
 
-UpdateRoamMons:
+UpdateRoamMons::
 	ld a, [wRoamMon1MapGroup]
 	cp GROUP_N_A
 	jr z, .SkipRaikou
@@ -674,7 +674,7 @@ UpdateRoamMons:
 	ld c, [hl]
 	ret
 
-JumpRoamMons:
+JumpRoamMons::
 	ld a, [wRoamMon1MapGroup]
 	cp GROUP_N_A
 	jr z, .SkipRaikou
@@ -770,7 +770,7 @@ ValidateTempWildMonSpecies:
 
 ; Finds a rare wild Pokemon in the route of the trainer calling, then checks if it's been Seen already.
 ; The trainer will then tell you about the Pokemon if you haven't seen it.
-RandomUnseenWildMon:
+RandomUnseenWildMon::
 	farcall GetCallerLocation
 	ld d, b
 	ld e, c
@@ -842,7 +842,7 @@ RandomUnseenWildMon:
 	text_far _JustSawSomeRareMonText
 	text_end
 
-RandomPhoneWildMon:
+RandomPhoneWildMon::
 	farcall GetCallerLocation
 	ld d, b
 	ld e, c
@@ -881,7 +881,7 @@ RandomPhoneWildMon:
 	ld bc, MON_NAME_LENGTH
 	jp CopyBytes
 
-RandomPhoneMon:
+RandomPhoneMon::
 ; Get a random monster owned by the trainer who's calling.
 	farcall GetCallerLocation
 	ld hl, TrainerGroups

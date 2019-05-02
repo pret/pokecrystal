@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/OlivinePortPassage.asm", ROMX
 
-OlivinePortPassage_MapScripts:
+OlivinePortPassage_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -22,7 +22,7 @@ OlivinePortPassagePokefanMText:
 	line "days."
 	done
 
-OlivinePortPassage_MapEvents:
+OlivinePortPassage_MapEvents::
 	db 0, 0 ; filler
 
 	db 5 ; warp events

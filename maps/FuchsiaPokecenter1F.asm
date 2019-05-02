@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/FuchsiaPokecenter1F.asm", ROMX
 
-FuchsiaPokecenter1F_MapScripts:
+FuchsiaPokecenter1F_MapScripts::
 	db 1 ; scene scripts
 	scene_script .DummyScene
 
@@ -91,7 +91,7 @@ FuchsiaPokecenter1FJanineImpersonatorText2:
 	line "like her now!"
 	done
 
-FuchsiaPokecenter1F_MapEvents:
+FuchsiaPokecenter1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

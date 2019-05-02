@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CeladonMansion2F.asm", ROMX
 
-CeladonMansion2F_MapScripts:
+CeladonMansion2F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -52,7 +52,7 @@ CeladonMansion2FMeetingRoomSignText:
 	line "MEETING ROOM"
 	done
 
-CeladonMansion2F_MapEvents:
+CeladonMansion2F_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

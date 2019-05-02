@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/buena.asm@BuenasPassword", ROMX
 
-BuenasPassword:
+BuenasPassword::
 	xor a
 	ld [wWhichIndexSet], a
 	ld hl, .MenuHeader
@@ -71,7 +71,7 @@ endr
 
 SECTION "engine/events/buena.asm@BuenaPrize", ROMX
 
-BuenaPrize:
+BuenaPrize::
 	xor a
 	ld [wMenuScrollPosition], a
 	ld a, $1

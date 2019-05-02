@@ -11,7 +11,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CeruleanGym.asm", ROMX
 
-CeruleanGym_MapScripts:
+CeruleanGym_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_CERULEANGYM_NOTHING
 	scene_script .GruntRunsOut ; SCENE_CERULEANGYM_GRUNT_RUNS_OUT
@@ -365,7 +365,7 @@ CeruleanGymGuyWinText:
 	cont "great battle!"
 	done
 
-CeruleanGym_MapEvents:
+CeruleanGym_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

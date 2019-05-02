@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/bug_contest/caught_mon.asm", ROMX, BANK[BANK_MOVE_MON]
 
-BugContest_SetCaughtContestMon:
+BugContest_SetCaughtContestMon::
 	ld a, [wContestMon]
 	and a
 	jr z, .firstcatch

@@ -1,4 +1,4 @@
-BattleCommand_Teleport:
+BattleCommand_Teleport::
 ; teleport
 
 	ld a, [wBattleType]

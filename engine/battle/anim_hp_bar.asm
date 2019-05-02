@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/battle/anim_hp_bar.asm", ROMX, BANK[BANK_ANIMATE_HP_BAR]
 
-_AnimateHPBar:
+_AnimateHPBar::
 	call .IsMaximumMoreThan48Pixels
 	jr c, .MoreThan48Pixels
 	call .ComputePixels

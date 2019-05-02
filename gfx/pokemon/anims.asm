@@ -256,6 +256,6 @@ TyranitarAnimation:  INCLUDE "gfx/pokemon/tyranitar/anim.inc"
 LugiaAnimation:      INCLUDE "gfx/pokemon/lugia/anim.inc"
 HoOhAnimation:       INCLUDE "gfx/pokemon/ho_oh/anim.inc"
 CelebiAnimation:     INCLUDE "gfx/pokemon/celebi/anim.inc"
-EggAnimation:        INCLUDE "gfx/pokemon/egg/anim.inc"
+EggAnimation::        INCLUDE "gfx/pokemon/egg/anim.inc"
 
 INCLUDE "gfx/pokemon/idles.inc"

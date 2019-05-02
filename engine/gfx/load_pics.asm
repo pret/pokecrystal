@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/gfx/load_pics.asm@GetUnownLetter", ROMX
 
-GetUnownLetter:
+GetUnownLetter::
 ; Return Unown letter in wUnownLetter based on DVs at hl
 
 ; Take the middle 2 bits of each DV and place them in order:
@@ -56,7 +56,7 @@ GetUnownLetter:
 
 SECTION "engine/gfx/load_pics.asm", ROMX
 
-GetMonFrontpic:
+GetMonFrontpic::
 	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	call IsAPokemon
@@ -68,7 +68,7 @@ GetMonFrontpic:
 	ldh [rSVBK], a
 	ret
 
-GetAnimatedFrontpic:
+GetAnimatedFrontpic::
 	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	call IsAPokemon
@@ -200,7 +200,7 @@ LoadFrontpicTiles:
 	jr nz, .loop
 	ret
 
-GetMonBackpic:
+GetMonBackpic::
 	ld a, [wCurPartySpecies]
 	call IsAPokemon
 	ret c
@@ -314,7 +314,7 @@ Function511ec:
 	call FarDecompress
 	ret
 
-GetTrainerPic:
+GetTrainerPic::
 	ld a, [wTrainerClass]
 	and a
 	ret z
@@ -356,7 +356,7 @@ GetTrainerPic:
 	ldh [hBGMapMode], a
 	ret
 
-DecompressGet2bpp:
+DecompressGet2bpp::
 ; Decompress lz data from b:hl to scratch space at 6:d000, then copy it to address de.
 
 	ldh a, [rSVBK]

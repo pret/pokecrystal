@@ -1,4 +1,4 @@
-BattleCommand_GetMagnitude:
+BattleCommand_GetMagnitude::
 ; getmagnitude
 
 	push bc

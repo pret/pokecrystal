@@ -13,7 +13,7 @@ BATTLETRANSITION_SQUARE EQU "8" ; $fe
 
 SECTION "engine/battle/battle_transition.asm", ROMX, BANK[BANK_BATTLE_TRANSITION]
 
-DoBattleTransition:
+DoBattleTransition::
 	call .InitGFX
 	ldh a, [rBGP]
 	ld [wBGP], a

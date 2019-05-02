@@ -10,7 +10,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CeladonDeptStore5F.asm", ROMX
 
-CeladonDeptStore5F_MapScripts:
+CeladonDeptStore5F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -74,7 +74,7 @@ CeladonDeptStore5FDirectoryText:
 	text "5F: DRUG STORE"
 	done
 
-CeladonDeptStore5F_MapEvents:
+CeladonDeptStore5F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

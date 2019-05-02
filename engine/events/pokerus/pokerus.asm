@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/pokerus/pokerus.asm", ROMX
 
-GivePokerusAndConvertBerries:
+GivePokerusAndConvertBerries::
 	call ConvertBerriesToBerryJuice
 	ld hl, wPartyMon1PokerusStatus
 	ld a, [wPartyCount]

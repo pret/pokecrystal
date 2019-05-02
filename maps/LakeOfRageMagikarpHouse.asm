@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/LakeOfRageMagikarpHouse.asm", ROMX
 
-LakeOfRageMagikarpHouse_MapScripts:
+LakeOfRageMagikarpHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -212,7 +212,7 @@ LakeOfRageMagikarpHouseUnusedRecordText:
 
 	text_end ; unused
 
-LakeOfRageMagikarpHouse_MapEvents:
+LakeOfRageMagikarpHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

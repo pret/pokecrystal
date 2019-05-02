@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/elm.asm", ROMX
 
-ElmPhoneStartText:
+ElmPhoneStartText::
 	text "Hello, <PLAY_G>?"
 
 	para "Try not to overdo"
@@ -14,7 +14,7 @@ ElmPhoneStartText:
 	cont "they are hurt."
 	done
 
-ElmPhoneSawMrPokemonText:
+ElmPhoneSawMrPokemonText::
 	text "Hello, <PLAY_G>?"
 
 	para "Did you meet MR."
@@ -22,7 +22,7 @@ ElmPhoneSawMrPokemonText:
 	cont "Come back safely!"
 	done
 
-ElmPhonePokemonStolenText:
+ElmPhonePokemonStolenText::
 	text "<PLAY_G>? I'm very"
 	line "upset now."
 
@@ -33,7 +33,7 @@ ElmPhonePokemonStolenText:
 	line "do that?"
 	done
 
-ElmPhoneCheckingEggText:
+ElmPhoneCheckingEggText::
 	text "Hello, <PLAY_G>?"
 
 	para "We're checking the"
@@ -43,7 +43,7 @@ ElmPhoneCheckingEggText:
 	line "#MON EGG."
 	done
 
-ElmPhoneAssistantText:
+ElmPhoneAssistantText::
 	text "Hello, <PLAY_G>?"
 
 	para "Did you see my"
@@ -53,7 +53,7 @@ ElmPhoneAssistantText:
 	line "in VIOLET CITY."
 	done
 
-ElmPhoneEggUnhatchedText:
+ElmPhoneEggUnhatchedText::
 	text "Hello, <PLAY_G>?"
 
 	para "How's the EGG? Has"
@@ -63,7 +63,7 @@ ElmPhoneEggUnhatchedText:
 	line "pens, please call."
 	done
 
-ElmPhoneEggHatchedText:
+ElmPhoneEggHatchedText::
 	text "Hello, <PLAY_G>?"
 	line "How is the EGG?"
 
@@ -75,7 +75,7 @@ ElmPhoneEggHatchedText:
 	line "me now!"
 	done
 
-ElmPhoneDiscovery1Text:
+ElmPhoneDiscovery1Text::
 	text "Hello, <PLAY_G>?"
 
 	para "I just made a new"
@@ -88,7 +88,7 @@ ElmPhoneDiscovery1Text:
 	line "the #MON."
 	done
 
-ElmPhoneDiscovery2Text:
+ElmPhoneDiscovery2Text::
 	text "Hello, <PLAY_G>?"
 
 	para "It's still a"
@@ -101,7 +101,7 @@ ElmPhoneDiscovery2Text:
 	line "ing that now."
 	done
 
-ElmPhonePokerusText:
+ElmPhonePokerusText::
 	text "Hello, <PLAY_G>?"
 
 	para "I discovered an"
@@ -134,7 +134,7 @@ ElmPhonePokerusText:
 	cont "about. Bye!"
 	done
 
-ElmPhoneDisasterText:
+ElmPhoneDisasterText::
 	text "H-hello? <PLAY_G>?"
 	line "It's a disaster!"
 
@@ -148,7 +148,7 @@ ElmPhoneDisasterText:
 	line "here now!"
 	done
 
-ElmPhoneEggAssistantText:
+ElmPhoneEggAssistantText::
 	text "Hello, <PLAY_G>? We"
 	line "discovered some-"
 
@@ -163,7 +163,7 @@ ElmPhoneEggAssistantText:
 	cont "him?"
 	done
 
-ElmPhoneRocketText:
+ElmPhoneRocketText::
 	text "<PLAY_G>, how are"
 	line "things going?"
 
@@ -190,7 +190,7 @@ ElmPhoneRocketText:
 	line "Take care!"
 	done
 
-ElmPhoneGiftText:
+ElmPhoneGiftText::
 	text "Hello, <PLAY_G>?"
 
 	para "I have something"
@@ -202,7 +202,7 @@ ElmPhoneGiftText:
 	para "See you later!"
 	done
 
-ElmPhoneUnusedText:
+ElmPhoneUnusedText::
 	text "Hello, <PLAY_G>?"
 	line "How's it going?"
 

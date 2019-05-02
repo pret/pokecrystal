@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/VermilionPokecenter1F.asm", ROMX
 
-VermilionPokecenter1F_MapScripts:
+VermilionPokecenter1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -79,7 +79,7 @@ VermilionPokecenter1FBugCatcherText:
 	line "got them in JOHTO."
 	done
 
-VermilionPokecenter1F_MapEvents:
+VermilionPokecenter1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

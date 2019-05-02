@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/lucky_number.asm@CheckForLuckyNumberWinners", ROMX
 
-CheckForLuckyNumberWinners:
+CheckForLuckyNumberWinners::
 	xor a
 	ld [wScriptVar], a
 	ld [wTempByteValue], a
@@ -224,7 +224,7 @@ CheckForLuckyNumberWinners:
 
 SECTION "engine/events/lucky_number.asm@PrintTodaysLuckyNumber", ROMX
 
-PrintTodaysLuckyNumber:
+PrintTodaysLuckyNumber::
 	ld hl, wStringBuffer3
 	ld de, wLuckyIDNumber
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5

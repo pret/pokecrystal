@@ -12,7 +12,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/SproutTower3F.asm", ROMX
 
-SproutTower3F_MapScripts:
+SproutTower3F_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_FINISHED
@@ -332,7 +332,7 @@ SproutTower3FStatueText:
 	line "distinguished."
 	done
 
-SproutTower3F_MapEvents:
+SproutTower3F_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

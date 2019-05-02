@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/OlivineLighthouse4F.asm", ROMX
 
-OlivineLighthouse4F_MapScripts:
+OlivineLighthouse4F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -84,7 +84,7 @@ LassConnie1AfterBattleText:
 	line "back to the GYM."
 	done
 
-OlivineLighthouse4F_MapEvents:
+OlivineLighthouse4F_MapEvents::
 	db 0, 0 ; filler
 
 	db 10 ; warp events

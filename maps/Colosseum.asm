@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Colosseum.asm", ROMX, BANK[BANK_MAP_COLOSSEUM]
 
-Colosseum_MapScripts:
+Colosseum_MapScripts::
 	db 3 ; scene scripts
 	scene_script .InitializeColosseum ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_FINISHED
@@ -53,7 +53,7 @@ ColosseumConsoleScript:
 	newloadmap MAPSETUP_LINKRETURN
 	end
 
-CableClubFriendScript:
+CableClubFriendScript::
 	opentext
 	writetext .FriendReadyText
 	waitbutton
@@ -65,7 +65,7 @@ CableClubFriendScript:
 	line "ready."
 	done
 
-Colosseum_MapEvents:
+Colosseum_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

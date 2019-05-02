@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/irwin_overworld.asm", ROMX
 
-IrwinAskNumber1Text:
+IrwinAskNumber1Text::
 	text "You're the best"
 	line "I've ever battled!"
 
@@ -22,12 +22,12 @@ IrwinAskNumber1Text:
 	cont "do from now on!"
 	done
 
-IrwinAskNumber2Text:
+IrwinAskNumber2Text::
 	text "You will tell me"
 	line "your phone number?"
 	done
 
-IrwinNumberAcceptedText:
+IrwinNumberAcceptedText::
 	text "Wow! Gee, thanks!"
 	line "Now I can call you"
 
@@ -38,7 +38,7 @@ IrwinNumberAcceptedText:
 	line "just to chat!"
 	done
 
-IrwinNumberDeclinedText:
+IrwinNumberDeclinedText::
 	text "Oh, but…"
 	line "I'm not dangerous!"
 
@@ -49,7 +49,7 @@ IrwinNumberDeclinedText:
 	line "and nothing!"
 	done
 
-IrwinPhoneFullText:
+IrwinPhoneFullText::
 	text "Your phone list is"
 	line "already full…"
 

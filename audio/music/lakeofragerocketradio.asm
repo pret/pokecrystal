@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/lakeofragerocketradio.asm", ROMX
 
-Music_LakeOfRageRocketRadio:
+Music_LakeOfRageRocketRadio::
 	musicheader 3, 1, Music_LakeOfRageRocketRadio_Ch1
 	musicheader 1, 2, Music_LakeOfRageRocketRadio_Ch2
 	musicheader 1, 3, Music_LakeOfRageRocketRadio_Ch3

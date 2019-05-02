@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/jose_overworld.asm", ROMX
 
-JoseAskNumber1Text:
+JoseAskNumber1Text::
 	text "If my @"
 	text_ram wStringBuffer4
 	text_start
@@ -25,7 +25,7 @@ JoseAskNumber1Text:
 	line "whole lot, OK?"
 	done
 
-JoseAskNumber2Text:
+JoseAskNumber2Text::
 	text "Do you like pretty"
 	line "things?"
 
@@ -37,31 +37,31 @@ JoseAskNumber2Text:
 	line "number? I'll call."
 	done
 
-JoseNumberAcceptedText:
+JoseNumberAcceptedText::
 	text "I'll call you as"
 	line "soon as I get"
 	cont "something pretty."
 	done
 
-JoseNumberDeclinedText:
+JoseNumberDeclinedText::
 	text "You sure? Well,"
 	line "tell me if you"
 	cont "change your mind."
 	done
 
-JosePhoneFullText:
+JosePhoneFullText::
 	text "Huh? Your phone"
 	line "list is full."
 	done
 
-JoseRematchText:
+JoseRematchText::
 	text "Tweet! Tweeeet!"
 
 	para "Kept me waiting!"
 	line "Go, FARFETCH'D!"
 	done
 
-JoseGiftText:
+JoseGiftText::
 	text "Kept me waiting!"
 	line "Look, this is it!"
 
@@ -69,7 +69,7 @@ JoseGiftText:
 	line "kind of pretty?"
 	done
 
-JosePackFullText:
+JosePackFullText::
 	text "Huh? You don't"
 	line "have anywhere to"
 

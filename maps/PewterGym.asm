@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/PewterGym.asm", ROMX
 
-PewterGym_MapScripts:
+PewterGym_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -211,7 +211,7 @@ PewterGymGuyWinText:
 	line "that seriously."
 	done
 
-PewterGym_MapEvents:
+PewterGym_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

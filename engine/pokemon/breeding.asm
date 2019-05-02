@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokemon/breeding.asm", ROMX
 
-CheckBreedmonCompatibility:
+CheckBreedmonCompatibility::
 	call .CheckBreedingGroupCompatibility
 	ld c, $0
 	jp nc, .done
@@ -396,7 +396,7 @@ HatchEggs:
 	text_far UnknownText_0x1c0dd8
 	text_end
 
-InitEggMoves:
+InitEggMoves::
 	call GetHeritableMoves
 	ld d, h
 	ld e, l
@@ -869,7 +869,7 @@ Hatch_ShellFragmentLoop:
 	jr nz, .loop
 	ret
 
-DayCareMon1:
+DayCareMon1::
 	ld hl, DayCareMon1Text
 	call PrintText
 	ld a, [wBreedMon1Species]
@@ -882,7 +882,7 @@ DayCareMon1:
 	call DayCareMonCompatibilityText
 	jp PrintText
 
-DayCareMon2:
+DayCareMon2::
 	ld hl, DayCareMon2Text
 	call PrintText
 	ld a, [wBreedMon2Species]

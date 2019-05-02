@@ -1,6 +1,6 @@
 INCLUDE "data/trainers/party_pointers.inc"
 
-Trainers:
+Trainers::
 ; Trainer data structure:
 ; - db "NAME@", TRAINERTYPE_* constant
 ; - 1 to 6 Pokémon:

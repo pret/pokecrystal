@@ -3,27 +3,27 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/generic_callee.asm", ROMX
 
-PhoneScript_Random2:
+PhoneScript_Random2::
 	random 2
 	end
 
-PhoneScript_Random3:
+PhoneScript_Random3::
 	random 3
 	end
 
-PhoneScript_Random4:
+PhoneScript_Random4::
 	random 4
 	end
 
-PhoneScript_Random5:
+PhoneScript_Random5::
 	random 5
 	end
 
-PhoneScript_Random11:
+PhoneScript_Random11::
 	random 11
 	end
 
-PhoneScript_AnswerPhone_Male:
+PhoneScript_AnswerPhone_Male::
 	checktime DAY
 	iftrue PhoneScript_AnswerPhone_Male_Day
 	checktime NITE
@@ -396,7 +396,7 @@ PhoneScript_AnswerPhone_Male_Nite:
 	buttonsound
 	end
 
-PhoneScript_AnswerPhone_Female:
+PhoneScript_AnswerPhone_Female::
 	checktime DAY
 	iftrue PhoneScript_AnswerPhone_Female_Day
 	checktime NITE
@@ -553,7 +553,7 @@ PhoneScript_AnswerPhone_Female_Nite:
 	buttonsound
 	end
 
-PhoneScript_GreetPhone_Male:
+PhoneScript_GreetPhone_Male::
 	checktime DAY
 	iftrue PhoneScript_GreetPhone_Male_Day
 	checktime NITE
@@ -926,7 +926,7 @@ PhoneScript_GreetPhone_Male_Nite:
 	buttonsound
 	end
 
-PhoneScript_GreetPhone_Female:
+PhoneScript_GreetPhone_Female::
 	checktime DAY
 	iftrue PhoneScript_GreetPhone_Female_Day
 	checktime NITE
@@ -1083,7 +1083,7 @@ PhoneScript_GreetPhone_Female_Nite:
 	buttonsound
 	end
 
-PhoneScript_Generic_Male:
+PhoneScript_Generic_Male::
 	readvar VAR_CALLERID
 	ifequal PHONE_SCHOOLBOY_JACK, .Jack
 	ifequal PHONE_COOLTRAINERM_GAVEN, .Gaven
@@ -1193,7 +1193,7 @@ PhoneScript_Generic_Male:
 	buttonsound
 	end
 
-PhoneScript_Generic_Female:
+PhoneScript_Generic_Female::
 	readvar VAR_CALLERID
 	ifequal PHONE_POKEFAN_BEVERLY, .Beverly
 	ifequal PHONE_COOLTRAINERF_BETH, .Beth
@@ -1244,7 +1244,7 @@ PhoneScript_Generic_Female:
 	buttonsound
 	end
 
-PhoneScript_MonFlavorText:
+PhoneScript_MonFlavorText::
 	special RandomPhoneMon
 	farscall PhoneScript_Random2
 	ifequal $0, .TooEnergetic
@@ -1263,9 +1263,9 @@ PhoneScript_MonFlavorText:
 
 SECTION "engine/phone/scripts/generic_callee.asm@TiffanysFamilyMembers", ROMX, BANK[BANK_PHONE_TIFFANY]
 
-GrandmaString: db "Grandma@"
-GrandpaString: db "Grandpa@"
-MomString: db "Mom@"
-DadString: db "Dad@"
-SisterString: db "Sister@"
-BrotherString: db "Brother@"
+GrandmaString:: db "Grandma@"
+GrandpaString:: db "Grandpa@"
+MomString:: db "Mom@"
+DadString:: db "Dad@"
+SisterString:: db "Sister@"
+BrotherString:: db "Brother@"

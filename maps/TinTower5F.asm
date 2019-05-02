@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/TinTower5F.asm", ROMX
 
-TinTower5F_MapScripts:
+TinTower5F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -20,7 +20,7 @@ TinTower5FHiddenFullRestore:
 TinTower5FHiddenCarbos:
 	hiddenitem CARBOS, EVENT_TIN_TOWER_5F_HIDDEN_CARBOS
 
-TinTower5F_MapEvents:
+TinTower5F_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

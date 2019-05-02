@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/menus/options_menu.asm", ROMX
 
-_OptionsMenu:
+_OptionsMenu::
 	ld hl, hInMenu
 	ld a, [hl]
 	push af

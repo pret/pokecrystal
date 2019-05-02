@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/GoldenrodNameRater.asm", ROMX
 
-GoldenrodNameRater_MapScripts:
+GoldenrodNameRater_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -27,7 +27,7 @@ GoldenrodNameRaterRadio:
 
 INCLUDE "data/text/unused_sweet_honey.inc"
 
-GoldenrodNameRater_MapEvents:
+GoldenrodNameRater_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/battle/start_battle.asm@ShowLinkBattleParticipants", ROMX
 
-ShowLinkBattleParticipants:
+ShowLinkBattleParticipants::
 ; If we're not in a communications room,
 ; we don't need to be here.
 	ld a, [wLinkMode]
@@ -20,7 +20,7 @@ ShowLinkBattleParticipants:
 
 SECTION "engine/battle/start_battle.asm@FindFirstAliveMonAndStartBattle", ROMX
 
-FindFirstAliveMonAndStartBattle:
+FindFirstAliveMonAndStartBattle::
 	xor a
 	ldh [hMapAnims], a
 	call DelayFrame
@@ -57,7 +57,7 @@ FindFirstAliveMonAndStartBattle:
 
 SECTION "engine/battle/start_battle.asm@PlayBattleMusic", ROMX
 
-PlayBattleMusic:
+PlayBattleMusic::
 	push hl
 	push de
 	push bc
@@ -162,7 +162,7 @@ PlayBattleMusic:
 
 SECTION "engine/battle/start_battle.asm@ClearBattleRAM", ROMX
 
-ClearBattleRAM:
+ClearBattleRAM::
 	xor a
 	ld [wBattlePlayerAction], a
 	ld [wBattleResult], a

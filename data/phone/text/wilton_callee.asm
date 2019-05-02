@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/wilton_callee.asm", ROMX
 
-UnknownText_0x1b71d5:
+UnknownText_0x1b71d5::
 	text "Hello, you have"
 	line "reached @"
 	text_ram wStringBuffer3
@@ -12,7 +12,7 @@ UnknownText_0x1b71d5:
 	para "Ah, <PLAY_G>."
 	done
 
-UnknownText_0x1b71fc:
+UnknownText_0x1b71fc::
 	text "Hello, you have"
 	line "reached @"
 	text_ram wStringBuffer3
@@ -22,7 +22,7 @@ UnknownText_0x1b71fc:
 	line "it?"
 	done
 
-UnknownText_0x1b722a:
+UnknownText_0x1b722a::
 	text "Hello, you have"
 	line "reached @"
 	text_ram wStringBuffer3
@@ -32,7 +32,7 @@ UnknownText_0x1b722a:
 	line "<PLAY_G>."
 	done
 
-UnknownText_0x1b725c:
+UnknownText_0x1b725c::
 	text "Ah, it's @"
 	text_ram wStringBuffer3
 	text "…"
@@ -41,7 +41,7 @@ UnknownText_0x1b725c:
 	line "moment?"
 	done
 
-UnknownText_0x1b7283:
+UnknownText_0x1b7283::
 	text "Ah, it's @"
 	text_ram wStringBuffer3
 	text "…"
@@ -49,7 +49,7 @@ UnknownText_0x1b7283:
 	para "Can you talk now?"
 	done
 
-UnknownText_0x1b72a5:
+UnknownText_0x1b72a5::
 	text "Ah, it's @"
 	text_ram wStringBuffer3
 	text "…"
@@ -58,7 +58,7 @@ UnknownText_0x1b72a5:
 	line "so late."
 	done
 
-UnknownText_0x1b72d0:
+UnknownText_0x1b72d0::
 	text "Have your #MON"
 	line "grown any?"
 

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/surf.asm", ROMX
 
-Music_Surf:
+Music_Surf::
 	musicheader 3, 1, Music_Surf_Ch1
 	musicheader 1, 2, Music_Surf_Ch2
 	musicheader 1, 3, Music_Surf_Ch3

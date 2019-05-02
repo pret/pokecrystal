@@ -16,7 +16,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route35.asm", ROMX
 
-Route35_MapScripts:
+Route35_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -465,7 +465,7 @@ Route35SignText:
 	text "ROUTE 35"
 	done
 
-Route35_MapEvents:
+Route35_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

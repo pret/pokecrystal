@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route40BattleTowerGate.asm", ROMX
 
-Route40BattleTowerGate_MapScripts:
+Route40BattleTowerGate_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -73,7 +73,7 @@ Route40BattleTowerGateTwinText:
 	line "them now!"
 	done
 
-Route40BattleTowerGate_MapEvents:
+Route40BattleTowerGate_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

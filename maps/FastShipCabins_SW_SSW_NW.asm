@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/FastShipCabins_SW_SSW_NW.asm", ROMX
 
-FastShipCabins_SW_SSW_NW_MapScripts:
+FastShipCabins_SW_SSW_NW_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -225,7 +225,7 @@ FastShipArrivedVermilionText:
 	cont "VERMILION CITY."
 	done
 
-FastShipCabins_SW_SSW_NW_MapEvents:
+FastShipCabins_SW_SSW_NW_MapEvents::
 	db 0, 0 ; filler
 
 	db 5 ; warp events

@@ -1,4 +1,4 @@
-BattleCommand_Transform:
+BattleCommand_Transform::
 ; transform
 
 	call ClearLastMove

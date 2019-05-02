@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/MahoganyPokecenter1F.asm", ROMX
 
-MahoganyPokecenter1F_MapScripts:
+MahoganyPokecenter1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -56,7 +56,7 @@ MahoganyPokecenter1FCooltrainerFText:
 	cont "more slowly."
 	done
 
-MahoganyPokecenter1F_MapEvents:
+MahoganyPokecenter1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

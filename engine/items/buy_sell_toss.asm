@@ -3,15 +3,15 @@ INCLUDE "constants.inc"
 
 SECTION "engine/items/buy_sell_toss.asm", ROMX, BANK[BANK_BUY_SELL_TOSS]
 
-SelectQuantityToToss:
+SelectQuantityToToss::
 	ld hl, TossItem_MenuHeader
 	call LoadMenuHeader
 	call Toss_Sell_Loop
 	ret
 
-SelectQuantityToBuy:
+SelectQuantityToBuy::
 	farcall GetItemPrice
-RooftopSale_SelectQuantityToBuy:
+RooftopSale_SelectQuantityToBuy::
 	ld a, d
 	ld [wBuffer1], a
 	ld a, e
@@ -21,7 +21,7 @@ RooftopSale_SelectQuantityToBuy:
 	call Toss_Sell_Loop
 	ret
 
-SelectQuantityToSell:
+SelectQuantityToSell::
 	farcall GetItemPrice
 	ld a, d
 	ld [wBuffer1], a
@@ -48,7 +48,7 @@ Toss_Sell_Loop:
 	and a
 	ret
 
-BuySellToss_InterpretJoypad:
+BuySellToss_InterpretJoypad::
 	call JoyTextDelay_ForcehJoyDown ; get joypad
 	bit B_BUTTON_F, c
 	jr nz, .b

@@ -56,7 +56,7 @@ Function100057:
 	res 1, [hl]
 	ret
 
-SetRAMStateForMobile:
+SetRAMStateForMobile::
 	xor a
 	ld hl, wBGMapBuffer
 	ld bc, $65
@@ -72,7 +72,7 @@ SetRAMStateForMobile:
 	ldh [hLCDCPointer], a
 	ret
 
-EnableMobile:
+EnableMobile::
 	xor a
 	ld hl, wOverworldMapBlocks
 	ld bc, wOverworldMapBlocksEnd - wOverworldMapBlocks
@@ -94,7 +94,7 @@ EnableMobile:
 
 	ret
 
-DisableMobile:
+DisableMobile::
 	di
 	xor a
 	ldh [hMobileReceive], a
@@ -438,14 +438,14 @@ Function100327:
 	farcall HDMATransferTileMapToWRAMBank3
 	ret
 
-Function10032e:
+Function10032e::
 	call Function10034d
 	ld e, a
 	ret nc
 	ld [wcd2b], a
 	ret
 
-Function100337:
+Function100337::
 	call Function10032e
 	ret c
 	ld a, [wc821]
@@ -941,7 +941,7 @@ Mobile_CommunicationStandby:
 .String:
 	db "つうしんたいきちゅう！@"
 
-AdvanceMobileInactivityTimerAndCheckExpired:
+AdvanceMobileInactivityTimerAndCheckExpired::
 	push bc
 	call IncrementMobileInactivityTimerByCFrames
 	pop bc
@@ -957,7 +957,7 @@ AdvanceMobileInactivityTimerAndCheckExpired:
 	scf
 	ret
 
-StartMobileInactivityTimer:
+StartMobileInactivityTimer::
 	xor a
 	ld [wMobileInactivityTimerMinutes], a
 	ld [wMobileInactivityTimerSeconds], a
@@ -1531,7 +1531,7 @@ Function1009f3:
 	xor a
 	ret
 
-_LinkBattleSendReceiveAction:
+_LinkBattleSendReceiveAction::
 	call .StageForSend
 	ld [wd431], a
 	farcall PlaceWaitingText
@@ -1696,7 +1696,7 @@ Unknown_100b0a:
 
 SECTION "mobile/mobile_40.asm@Function100000 - UnknownText_0x1021f4 (2)", ROMX, BANK[BANK_MOBILE_40]
 
-Function100b12:
+Function100b12::
 	call Function100dd8
 	ret c
 	ld hl, BattleMenuHeader
@@ -1754,7 +1754,7 @@ Function100b7a:
 	set 7, [hl]
 	ret
 
-MobileMoveSelectionScreen:
+MobileMoveSelectionScreen::
 	xor a
 	ld [wMoveSwapBuffer], a
 	farcall CheckPlayerHasUsableMoves
@@ -1900,7 +1900,7 @@ Function100c98:
 	dn 2, 0
 	db D_UP | D_DOWN | A_BUTTON | B_BUTTON
 
-Mobile_PartyMenuSelect:
+Mobile_PartyMenuSelect::
 	call Function100dd8
 	ret c
 	ld hl, w2DMenuFlags1
@@ -1952,7 +1952,7 @@ Mobile_PartyMenuSelect:
 	scf
 	ret
 
-MobileBattleMonMenu:
+MobileBattleMonMenu::
 	call Function100dd8
 	ret c
 	call Function100d67
@@ -2020,7 +2020,7 @@ Function100d67:
 	db "つよさをみる@" ; STATS
 	db "キャンセル@"  ; CANCEL
 
-Function100da5:
+Function100da5::
 	ld hl, wcd2a
 	res 3, [hl]
 	ld hl, wcd29
@@ -2040,7 +2040,7 @@ Function100db0:
 	xor a
 	ret
 
-Function100dc0:
+Function100dc0::
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
 	jr nz, .mobile
@@ -2054,12 +2054,12 @@ Function100dc0:
 	xor a
 	ret
 
-Mobile_SetOverworldDelay:
+Mobile_SetOverworldDelay::
 	ld a, 30
 	ld [wOverworldDelay], a
 	ret
 
-Function100dd8:
+Function100dd8::
 	ld c, $01
 	ld b, $03
 	farcall AdvanceMobileInactivityTimerAndCheckExpired
@@ -2079,7 +2079,7 @@ Function100dd8:
 	scf
 	ret
 
-MobileComms_CheckInactivityTimer:
+MobileComms_CheckInactivityTimer::
 	ld a, [wOverworldDelay]
 	ld c, a
 	ld a, 30
@@ -2659,7 +2659,7 @@ LoadSelectedPartiesForColosseum:
 	ld b, a
 	ret
 
-Function1011f1:
+Function1011f1::
 	ld a, $04
 	call GetSRAMBank
 	ld a, [$a60c]
@@ -2682,19 +2682,19 @@ Function1011f1:
 	ld [wLinkMode], a
 	ret
 
-Function101220:
+Function101220::
 	xor a
 	ld [wLinkMode], a
 	ret
 
-Function101225:
+Function101225::
 	ld d, 1
 	ld e, BANK(Jumptable_101297)
 	ld bc, Jumptable_101297
 	call Function100000
 	jr Function10123d
 
-Function101231:
+Function101231::
 	ld d, 2
 	ld e, BANK(Jumptable_101297)
 	ld bc, Jumptable_101297
@@ -4740,7 +4740,7 @@ Function102112:
 	pop af
 	ret
 
-Function102142:
+Function102142::
 	call Function10218d
 	call Function102180
 	ld hl, UnknownText_0x1021d1
@@ -7316,7 +7316,7 @@ Unknown_103608:
 .this
 	db 2, 2, 3
 
-AskMobileOrCable:
+AskMobileOrCable::
 	ld hl, MenuHeader_103640
 	call LoadMenuHeader
 	ld a, [wMobileOrCable_LastSelection]
@@ -7375,7 +7375,7 @@ Function103654:
 
 SECTION "mobile/mobile_40.asm@Mobile_SelectThreeMons - UnknownText_0x10377b", ROMX
 
-Mobile_SelectThreeMons:
+Mobile_SelectThreeMons::
 	farcall Mobile_AlwaysReturnNotCarry
 	bit 7, c
 	jr z, .asm_10369b
@@ -7541,7 +7541,7 @@ UnknownText_0x10377b:
 
 SECTION "mobile/mobile_40.asm@Function103780 - Function10378c", ROMX
 
-Function103780:
+Function103780::
 	ld a, [wChosenCableClubRoom]
 	push af
 	call Function10378c
@@ -7584,7 +7584,7 @@ Function10378c:
 
 SECTION "mobile/mobile_40.asm@Function1037c2 - Function103823", ROMX
 
-Function1037c2:
+Function1037c2::
 	call Function103823
 	jr c, .nope
 	ld a, [wdc5f]
@@ -7608,7 +7608,7 @@ UnknownText_0x1037e6:
 	text_far UnknownText_0x1c449c
 	text_end
 
-Function1037eb:
+Function1037eb::
 	call Function103823
 	jr nc, .asm_103807
 	ld hl, UnknownText_0x103819
@@ -7662,7 +7662,7 @@ Function103823:
 
 SECTION "mobile/mobile_40.asm@Function10383c - UnknownText_0x103876", ROMX
 
-Function10383c:
+Function10383c::
 	ld a, $01
 	ld [wdc60], a
 	xor a
@@ -7696,7 +7696,7 @@ UnknownText_0x103876:
 
 SECTION "mobile/mobile_40.asm@Function10387b - UnknownText_0x103898", ROMX
 
-Function10387b:
+Function10387b::
 	farcall Mobile_AlwaysReturnNotCarry
 	bit 7, c
 	ret nz

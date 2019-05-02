@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/jose.asm", ROMX
 
-JosePhoneCalleeScript:
+JosePhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, BIRD_KEEPER, JOSE2
 	checkflag ENGINE_JOSE
 	iftrue .WantsBattle
@@ -28,7 +28,7 @@ JosePhoneCalleeScript:
 	getlandmarkname STRING_BUFFER_5, ROUTE_27
 	farsjump UnknownScript_0xa0a41
 
-JosePhoneCallerScript:
+JosePhoneCallerScript::
 	gettrainername STRING_BUFFER_3, BIRD_KEEPER, JOSE2
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_JOSE

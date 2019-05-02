@@ -160,7 +160,7 @@ DelayClearingOldSprites:
 
 SECTION "engine/overworld/map_setup.asm@DelayLoadingNewSprites", ROMX
 
-DelayLoadingNewSprites:
+DelayLoadingNewSprites::
 	ld hl, wPlayerSpriteSetupFlags
 	set PLAYERSPRITESETUP_SKIP_RELOAD_GFX_F, [hl]
 	ret
@@ -168,7 +168,7 @@ DelayLoadingNewSprites:
 
 SECTION "engine/overworld/map_setup.asm@CheckReplaceKrisSprite", ROMX
 
-CheckReplaceKrisSprite:
+CheckReplaceKrisSprite::
 	nop
 	call .CheckBiking
 	jr c, .ok

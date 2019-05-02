@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/VictoryRoadGate.asm", ROMX
 
-VictoryRoadGate_MapScripts:
+VictoryRoadGate_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_FINISHED
@@ -100,7 +100,7 @@ VictoryRoadGateRightBlackBeltText:
 	line "ready for you!"
 	done
 
-VictoryRoadGate_MapEvents:
+VictoryRoadGate_MapEvents::
 	db 0, 0 ; filler
 
 	db 8 ; warp events

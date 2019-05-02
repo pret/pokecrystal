@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/HallOfFame.asm", ROMX
 
-HallOfFame_MapScripts:
+HallOfFame_MapScripts::
 	db 2 ; scene scripts
 	scene_script .EnterHallOfFame ; SCENE_DEFAULT
 	scene_script .DummyScene ; SCENE_FINISHED
@@ -113,7 +113,7 @@ HallOfFame_LanceText:
 	line "as CHAMPIONS!"
 	done
 
-HallOfFame_MapEvents:
+HallOfFame_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

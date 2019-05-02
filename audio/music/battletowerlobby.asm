@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/battletowerlobby.asm", ROMX
 
-Music_BattleTowerLobby:
+Music_BattleTowerLobby::
 	musicheader 4, 1, Music_BattleTowerLobby_Ch1
 	musicheader 1, 2, Music_BattleTowerLobby_Ch2
 	musicheader 1, 3, Music_BattleTowerLobby_Ch3

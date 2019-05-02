@@ -16,7 +16,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route30.asm", ROMX
 
-Route30_MapScripts:
+Route30_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -409,7 +409,7 @@ YoungsterJoeyText_GiveHPUpAfterBattle:
 	line "tougher too."
 	done
 
-Route30_MapEvents:
+Route30_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

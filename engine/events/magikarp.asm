@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/magikarp.asm", ROMX
 
-CheckMagikarpLength:
+CheckMagikarpLength::
 	; Returns 3 if you select a Magikarp that beats the previous record.
 	; Returns 2 if you select a Magikarp, but the current record is longer.
 	; Returns 1 if you press B in the Pokemon selection menu.
@@ -107,7 +107,7 @@ PrintMagikarpLength:
 	ld [hl], "@"
 	ret
 
-CalcMagikarpLength:
+CalcMagikarpLength::
 ; Return Magikarp's length (in feet and inches) at wMagikarpLength (big endian).
 ;
 ; input:
@@ -306,7 +306,7 @@ CalcMagikarpLength:
 
 INCLUDE "data/events/magikarp_lengths.inc"
 
-MagikarpHouseSign:
+MagikarpHouseSign::
 	ld a, [wBestMagikarpLengthFeet]
 	ld [wMagikarpLength], a
 	ld a, [wBestMagikarpLengthInches]

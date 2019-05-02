@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/gaven.asm", ROMX
 
-GavenPhoneCalleeScript:
+GavenPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, COOLTRAINERM, GAVEN3
 	checkflag ENGINE_GAVEN
 	iftrue .WantsBattle
@@ -22,7 +22,7 @@ GavenPhoneCalleeScript:
 	getlandmarkname STRING_BUFFER_5, ROUTE_26
 	farsjump UnknownScript_0xa0a37
 
-GavenPhoneCallerScript:
+GavenPhoneCallerScript::
 	gettrainername STRING_BUFFER_3, COOLTRAINERM, GAVEN3
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_GAVEN

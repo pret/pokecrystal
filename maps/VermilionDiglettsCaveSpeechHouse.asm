@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/VermilionDiglettsCaveSpeechHouse.asm", ROMX
 
-VermilionDiglettsCaveSpeechHouse_MapScripts:
+VermilionDiglettsCaveSpeechHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -23,7 +23,7 @@ VermilionDiglettsCaveSpeechHouseGentlemanText:
 	line "to a distant town."
 	done
 
-VermilionDiglettsCaveSpeechHouse_MapEvents:
+VermilionDiglettsCaveSpeechHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

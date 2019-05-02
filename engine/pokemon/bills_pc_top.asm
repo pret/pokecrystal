@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokemon/bills_pc_top.asm", ROMX
 
-_BillsPC:
+_BillsPC::
 	call .CheckCanUsePC
 	ret c
 	call .LogIn
@@ -178,7 +178,7 @@ Unreferenced_Functione512:
 	text_far UnknownText_0x1c1080
 	text_end
 
-CheckCurPartyMonFainted:
+CheckCurPartyMonFainted::
 	ld hl, wPartyMon1HP
 	ld de, PARTYMON_STRUCT_LENGTH
 	ld b, $0
@@ -239,7 +239,7 @@ BillsPC_ChangeBoxMenu:
 	and a
 	ret
 
-ClearPCItemScreen:
+ClearPCItemScreen::
 	call DisableSpriteUpdates
 	xor a
 	ldh [hBGMapMode], a
@@ -262,7 +262,7 @@ ClearPCItemScreen:
 
 SECTION "engine/pokemon/bills_pc_top.asm@CopyBoxmonToTempMon", ROMX
 
-CopyBoxmonToTempMon:
+CopyBoxmonToTempMon::
 	ld a, [wCurPartyMon]
 	ld hl, sBoxMon1Species
 	ld bc, BOXMON_STRUCT_LENGTH

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/overworld/decorations.asm@InitDecorations", ROMX
 
-InitDecorations:
+InitDecorations::
 	ld a, DECO_FEATHERY_BED
 	ld [wDecoBed], a
 	ld a, DECO_TOWN_MAP
@@ -13,7 +13,7 @@ InitDecorations:
 
 SECTION "engine/overworld/decorations.asm", ROMX
 
-_PlayerDecorationMenu:
+_PlayerDecorationMenu::
 	ld a, [wWhichIndexSet]
 	push af
 	ld hl, .MenuHeader
@@ -923,11 +923,11 @@ GetDecorationName_c_de:
 	call GetDecorationName
 	ret
 
-DecorationFlagAction_c:
+DecorationFlagAction_c::
 	ld a, c
 	jp DecorationFlagAction
 
-GetDecorationName_c:
+GetDecorationName_c::
 	ld a, c
 	call GetDecorationID
 	ld hl, wStringBuffer1
@@ -936,7 +936,7 @@ GetDecorationName_c:
 	pop de
 	ret
 
-SetSpecificDecorationFlag:
+SetSpecificDecorationFlag::
 	ld a, c
 	call GetDecorationID
 	ld b, SET_FLAG
@@ -1095,7 +1095,7 @@ DecorationDesc_GiantOrnament:
 
 SECTION "engine/overworld/decorations.asm@ToggleMaptileDecorations", ROMX
 
-ToggleMaptileDecorations:
+ToggleMaptileDecorations::
 	; tile coordinates work the same way as for changeblock
 	lb de, 0, 4 ; bed coordinates
 	ld a, [wDecoBed]
@@ -1147,7 +1147,7 @@ SetDecorationTile:
 	ld [hl], a
 	ret
 
-ToggleDecorationsVisibility:
+ToggleDecorationsVisibility::
 	ld de, EVENT_PLAYERS_HOUSE_2F_CONSOLE
 	ld hl, wVariableSprites + SPRITE_CONSOLE - SPRITE_VARS
 	ld a, [wDecoConsole]

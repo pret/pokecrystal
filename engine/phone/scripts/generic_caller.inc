@@ -1,4 +1,4 @@
-Phone_GenericCall_Male:
+Phone_GenericCall_Male::
 	special RandomPhoneMon
 	farscall PhoneScript_Random2
 	ifequal 0, .Bragging
@@ -8,7 +8,7 @@ Phone_GenericCall_Male:
 .Bragging:
 	farsjump Phone_BraggingCall_Male
 
-Phone_GenericCall_Female:
+Phone_GenericCall_Female::
 	special RandomPhoneMon
 	farscall PhoneScript_Random2
 	ifequal 0, .Bragging
@@ -522,11 +522,11 @@ Phone_WhoLostAMon_Female:
 	buttonsound
 	end
 
-PhoneScript_WantsToBattle_Male:
+PhoneScript_WantsToBattle_Male::
 	farscall PhoneScript_RematchText_Male
 	farsjump PhoneScript_HangupText_Male
 
-PhoneScript_WantsToBattle_Female:
+PhoneScript_WantsToBattle_Female::
 	farscall PhoneScript_RematchText_Female
 	farsjump PhoneScript_HangupText_Female
 
@@ -680,15 +680,15 @@ PhoneScript_RematchText_Female:
 	buttonsound
 	end
 
-LizWrongNumberScript:
+LizWrongNumberScript::
 	farwritetext LizHiTaniaText
 	end
 
-TiffanyItsAwful:
+TiffanyItsAwful::
 	farwritetext TiffanyItsAwfulText
 	end
 
-PhoneScript_HangupText_Male:
+PhoneScript_HangupText_Male::
 	readvar VAR_CALLERID
 	ifequal PHONE_SCHOOLBOY_JACK, .Jack
 	ifequal PHONE_SAILOR_HUEY, .Huey
@@ -834,7 +834,7 @@ PhoneScript_HangupText_Female:
 	farwritetext UnknownText_0x67281
 	end
 
-Phone_CheckIfUnseenRare_Male:
+Phone_CheckIfUnseenRare_Male::
 	scall PhoneScriptRareWildMon
 	iffalse .HangUp
 	farsjump Phone_GenericCall_Male
@@ -842,7 +842,7 @@ Phone_CheckIfUnseenRare_Male:
 .HangUp:
 	farsjump PhoneScript_HangupText_Male
 
-Phone_CheckIfUnseenRare_Female:
+Phone_CheckIfUnseenRare_Female::
 	scall PhoneScriptRareWildMon
 	iffalse .HangUp
 	farsjump Phone_GenericCall_Female
@@ -854,7 +854,7 @@ PhoneScriptRareWildMon:
 	special RandomUnseenWildMon
 	end
 
-PhoneScript_BugCatchingContest:
+PhoneScript_BugCatchingContest::
 	readvar VAR_CALLERID
 	ifequal PHONE_BUG_CATCHER_WADE, .Wade
 	ifequal PHONE_POKEFANM_DEREK, .Derek
@@ -869,32 +869,32 @@ PhoneScript_BugCatchingContest:
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-IrwinRocketRumor:
+IrwinRocketRumor::
 	farwritetext UnknownText_0x64032
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa05c6:
+UnknownScript_0xa05c6::
 	farwritetext UnknownText_0x177378
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
-UnknownScript_0xa05ce:
+UnknownScript_0xa05ce::
 	farwritetext UnknownText_0x64b5f
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa05d6:
+UnknownScript_0xa05d6::
 	farwritetext UnknownText_0x175dd9
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa05de:
+UnknownScript_0xa05de::
 	farwritetext UnknownText_0x176c61
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-PhoneScript_FoundItem_Male:
+PhoneScript_FoundItem_Male::
 	readvar VAR_CALLERID
 	ifequal PHONE_BIRDKEEPER_JOSE, .Jose
 	ifequal PHONE_BUG_CATCHER_WADE, .Wade
@@ -927,7 +927,7 @@ PhoneScript_FoundItem_Male:
 	farwritetext UnknownText_0x66c6b
 	end
 
-PhoneScript_FoundItem_Female:
+PhoneScript_FoundItem_Female::
 	readvar VAR_CALLERID
 	ifequal PHONE_POKEFAN_BEVERLY, .Beverly
 	ifequal PHONE_PICNICKER_GINA, .Gina
@@ -950,12 +950,12 @@ PhoneScript_FoundItem_Female:
 	farwritetext UnknownText_0x66801
 	end
 
-UnknownScript_0xa0644:
+UnknownScript_0xa0644::
 	farwritetext UnknownText_0x176feb
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-KenjiCallingPhoneScript:
+KenjiCallingPhoneScript::
 	farwritetext UnknownText_0x66dc5
 	buttonsound
 	sjump PhoneScript_HangupText_Male

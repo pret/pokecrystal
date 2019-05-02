@@ -221,7 +221,7 @@ SpecialCallWhereverYouAre:
 	scf
 	ret
 
-Function90199:
+Function90199::
 	; Don't do the call if you're in a link communication
 	ld a, [wLinkMode]
 	and a
@@ -330,7 +330,7 @@ WrongNumber:
 	text_far UnknownText_0x1c5565
 	text_end
 
-Script_ReceivePhoneCall:
+Script_ReceivePhoneCall::
 	refreshscreen
 	callasm RingTwice_StartCall
 	memcall wCallerContact + PHONE_CONTACT_SCRIPT2_BANK
@@ -416,7 +416,7 @@ Phone_CallerTextboxWithName2:
 	call FarPlaceString
 	ret
 
-Phone_NoSignal:
+Phone_NoSignal::
 	ld de, SFX_NO_SIGNAL
 	call PlaySFX
 	jr Phone_CallEnd
@@ -506,7 +506,7 @@ Phone_CallerTextbox:
 	call Textbox
 	ret
 
-Function90380:
+Function90380::
 	ld h, d
 	ld l, e
 	ld a, b
@@ -514,7 +514,7 @@ Function90380:
 	call GetCallerName
 	ret
 
-CheckCanDeletePhoneNumber:
+CheckCanDeletePhoneNumber::
 	ld a, c
 	call GetCallerTrainerClass
 	ld a, c
@@ -590,7 +590,7 @@ Phone_GetTrainerClassName:
 	pop hl
 	ret
 
-GetCallerLocation:
+GetCallerLocation::
 	ld a, [wCurCaller]
 	call GetCallerTrainerClass
 	ld d, c

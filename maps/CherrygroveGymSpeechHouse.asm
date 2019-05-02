@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CherrygroveGymSpeechHouse.asm", ROMX
 
-CherrygroveGymSpeechHouse_MapScripts:
+CherrygroveGymSpeechHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -47,7 +47,7 @@ CherrygroveGymSpeechHouseBugCatcherText:
 	line "them tougher!"
 	done
 
-CherrygroveGymSpeechHouse_MapEvents:
+CherrygroveGymSpeechHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

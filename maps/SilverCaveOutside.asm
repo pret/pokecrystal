@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/SilverCaveOutside.asm", ROMX
 
-SilverCaveOutside_MapScripts:
+SilverCaveOutside_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -26,7 +26,7 @@ MtSilverSignText:
 	text "MT.SILVER"
 	done
 
-SilverCaveOutside_MapEvents:
+SilverCaveOutside_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

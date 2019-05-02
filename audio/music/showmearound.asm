@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/showmearound.asm", ROMX
 
-Music_ShowMeAround:
+Music_ShowMeAround::
 	musicheader 4, 1, Music_ShowMeAround_Ch1
 	musicheader 1, 2, Music_ShowMeAround_Ch2
 	musicheader 1, 3, Music_ShowMeAround_Ch3

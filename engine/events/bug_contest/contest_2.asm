@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/bug_contest/contest_2.asm@SelectRandomBugContestContestants", ROMX, BANK[BANK_BUG_CONTEST_JUDGING]
 
-SelectRandomBugContestContestants:
+SelectRandomBugContestContestants::
 ; Select five random people to participate in the current contest.
 
 ; First we have to make sure that any old data is cleared away.
@@ -60,7 +60,7 @@ SelectRandomBugContestContestants:
 	jr nz, .loop2
 	ret
 
-CheckBugContestContestantFlag:
+CheckBugContestContestantFlag::
 ; Checks the flag of the Bug Catching Contestant whose index is loaded in a.
 
 	ld hl, BugCatchingContestantEventFlagTable
@@ -80,7 +80,7 @@ INCLUDE "data/events/bug_contest_flags.inc"
 
 SECTION "engine/events/bug_contest/contest_2.asm@ContestDropOffMons", ROMX
 
-ContestDropOffMons:
+ContestDropOffMons::
 	ld hl, wPartyMon1HP
 	ld a, [hli]
 	or [hl]
@@ -107,7 +107,7 @@ ContestDropOffMons:
 
 SECTION "engine/events/bug_contest/contest_2.asm@ContestReturnMons", ROMX
 
-ContestReturnMons:
+ContestReturnMons::
 ; Restore the species of the second mon.
 	ld hl, wPartySpecies + 1
 	ld a, [wBugContestSecondPartySpecies]

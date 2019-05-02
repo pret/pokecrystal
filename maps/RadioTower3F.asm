@@ -12,7 +12,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/RadioTower3F.asm", ROMX
 
-RadioTower3F_MapScripts:
+RadioTower3F_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -331,7 +331,7 @@ RadioTower3FPokemonMusicSignText:
 	line "Host DJ BEN"
 	done
 
-RadioTower3F_MapEvents:
+RadioTower3F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

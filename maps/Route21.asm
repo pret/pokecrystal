@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route21.asm", ROMX
 
-Route21_MapScripts:
+Route21_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -92,7 +92,7 @@ FisherArnoldAfterBattleText:
 	line "to fishing…"
 	done
 
-Route21_MapEvents:
+Route21_MapEvents::
 	db 0, 0 ; filler
 
 	db 0 ; warp events

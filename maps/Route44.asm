@@ -16,7 +16,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route44.asm", ROMX
 
-Route44_MapScripts:
+Route44_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -509,7 +509,7 @@ Route44Sign2Text:
 	line "BLACKTHORN CITY"
 	done
 
-Route44_MapEvents:
+Route44_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

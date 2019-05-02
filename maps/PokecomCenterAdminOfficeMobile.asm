@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/PokecomCenterAdminOfficeMobile.asm", ROMX
 
-PokecomCenterAdminOfficeMobile_MapScripts:
+PokecomCenterAdminOfficeMobile_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -265,7 +265,7 @@ PokecomCenterAdminOfficeMobileComputer3Text:
 	para "<……> <……> <……>"
 	done
 
-PokecomCenterAdminOfficeMobile_MapEvents:
+PokecomCenterAdminOfficeMobile_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

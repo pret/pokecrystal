@@ -1,4 +1,4 @@
-BattleCommand_FalseSwipe:
+BattleCommand_FalseSwipe::
 ; falseswipe
 
 ; Makes sure wCurDamage < MonHP

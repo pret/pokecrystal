@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/battle_tower/load_trainer.asm", ROMX
 
-Function_LoadOpponentTrainerAndPokemons:
+Function_LoadOpponentTrainerAndPokemons::
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wBT_OTTrainer)

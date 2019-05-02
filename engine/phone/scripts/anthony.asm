@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/anthony.asm", ROMX
 
-AnthonyPhoneCalleeScript:
+AnthonyPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, HIKER, ANTHONY2
 	checkflag ENGINE_ANTHONY
 	iftrue .WantsBattle
@@ -28,7 +28,7 @@ AnthonyPhoneCalleeScript:
 	getlandmarkname STRING_BUFFER_5, ROUTE_33
 	farsjump UnknownScript_0xa0afa
 
-AnthonyPhoneCallerScript:
+AnthonyPhoneCallerScript::
 	gettrainername STRING_BUFFER_3, HIKER, ANTHONY2
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_FLYPOINT_GOLDENROD

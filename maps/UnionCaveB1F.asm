@@ -12,7 +12,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/UnionCaveB1F.asm", ROMX
 
-UnionCaveB1F_MapScripts:
+UnionCaveB1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -155,7 +155,7 @@ PokemaniacCalvinAfterBattleText:
 	cont "PROF.ELM."
 	done
 
-UnionCaveB1F_MapEvents:
+UnionCaveB1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 5 ; warp events

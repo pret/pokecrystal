@@ -9,7 +9,7 @@ TRADEANIM_LEFT_ARROW  EQU "▼" ; $ee
 	const TRADEANIMSTATE_3 ; 3
 TRADEANIMJUMPTABLE_LENGTH EQU const_value
 
-TradeAnimation:
+TradeAnimation::
 	xor a
 	ld [wcf66], a
 	ld hl, wPlayerTrademonSenderName
@@ -60,7 +60,7 @@ TradeAnimation:
 	tradeanim_scroll_out_right
 	tradeanim_end
 
-TradeAnimationPlayer2:
+TradeAnimationPlayer2::
 	xor a
 	ld [wcf66], a
 	ld hl, wOTTrademonSenderName
@@ -832,7 +832,7 @@ TradeAnim_ShowGivemonFrontpic:
 	ld de, vTiles0
 	jr TradeAnim_ShowFrontpic
 
-TradeAnim_ShowGetmonFrontpic:
+TradeAnim_ShowGetmonFrontpic::
 	ld de, vTiles0 tile $31
 TradeAnim_ShowFrontpic:
 	call DelayFrame
@@ -905,7 +905,7 @@ ShowPlayerTrademonStats:
 	call TrademonStats_WaitBGMap
 	ret
 
-ShowOTTrademonStats:
+ShowOTTrademonStats::
 	ld de, wOTTrademonSpecies
 	ld a, [de]
 	cp EGG
@@ -1055,7 +1055,7 @@ TradeAnim_BulgeThroughTube:
 	ld [wFrameCounter], a
 	ret
 
-TradeAnim_AnimateTrademonInTube:
+TradeAnim_AnimateTrademonInTube::
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld e, [hl]
@@ -1470,5 +1470,5 @@ TradeArrowGFX:  INCBIN "gfx/trade/arrow.2bpp"
 TradeCableGFX:  INCBIN "gfx/trade/cable.2bpp"
 TradeBubbleGFX: INCBIN "gfx/trade/bubble.2bpp"
 TradeGameBoyLZ: INCBIN "gfx/trade/game_boy.2bpp.lz"
-TradeBallGFX:   INCBIN "gfx/trade/ball.2bpp"
-TradePoofGFX:   INCBIN "gfx/trade/poof.2bpp"
+TradeBallGFX::   INCBIN "gfx/trade/ball.2bpp"
+TradePoofGFX::   INCBIN "gfx/trade/poof.2bpp"

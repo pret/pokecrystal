@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CherrygroveEvolutionSpeechHouse.asm", ROMX
 
-CherrygroveEvolutionSpeechHouse_MapScripts:
+CherrygroveEvolutionSpeechHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -44,7 +44,7 @@ CherrygroveEvolutionSpeechHouseLassText:
 	line "if one did that!"
 	done
 
-CherrygroveEvolutionSpeechHouse_MapEvents:
+CherrygroveEvolutionSpeechHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

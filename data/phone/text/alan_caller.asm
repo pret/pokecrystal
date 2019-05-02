@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/alan_caller.asm", ROMX
 
-AlanGettingStrongerText:
+AlanGettingStrongerText::
 	text "My @"
 	text_ram wStringBuffer4
 	text "'s"
@@ -13,7 +13,7 @@ AlanGettingStrongerText:
 	line "calculated!"
 	done
 
-UnknownText_0x64cf3:
+UnknownText_0x64cf3::
 	text "By the way, we"
 	line "knocked out a wild"
 
@@ -26,7 +26,7 @@ UnknownText_0x64cf3:
 	line "advance worked!"
 	done
 
-UnknownText_0x64d4f:
+UnknownText_0x64d4f::
 	text "By the way, a wild"
 	line "@"
 	text_ram wStringBuffer4
@@ -37,7 +37,7 @@ UnknownText_0x64d4f:
 	line "error on my part…"
 	done
 
-UnknownText_0x64da4:
+UnknownText_0x64da4::
 	text "I've studied quite"
 	line "a bit since then,"
 
@@ -53,11 +53,11 @@ UnknownText_0x64da4:
 	line "for a battle?"
 	done
 
-UnknownText_0x64e1f:
+UnknownText_0x64e1f::
 	text "See you later!"
 	done
 
-UnknownText_0x64e2f:
+UnknownText_0x64e2f::
 	text "Hehehe, I picked"
 	line "up something nice!"
 
@@ -70,7 +70,7 @@ UnknownText_0x64e2f:
 	line "and pick it up?"
 	done
 
-UnknownText_0x64e90:
+UnknownText_0x64e90::
 	text "I haven't picked"
 	line "up anything yet."
 
@@ -78,7 +78,7 @@ UnknownText_0x64e90:
 	line "find something."
 	done
 
-UnknownText_0x64ed4:
+UnknownText_0x64ed4::
 	text "If we don't battle"
 	line "soon, I'll forget"
 	cont "my strategy!"
@@ -89,7 +89,7 @@ UnknownText_0x64ed4:
 	text "!"
 	done
 
-UnknownText_0x64f1a:
+UnknownText_0x64f1a::
 	text "I have to do my"
 	line "homework, so can"
 

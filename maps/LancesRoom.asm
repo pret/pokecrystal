@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/LancesRoom.asm", ROMX
 
-LancesRoom_MapScripts:
+LancesRoom_MapScripts::
 	db 2 ; scene scripts
 	scene_script .LockDoor ; SCENE_DEFAULT
 	scene_script .DummyScene ; SCENE_LANCESROOM_APPROACH_LANCE
@@ -340,7 +340,7 @@ UnknownText_0x1813c5:
 	cont "the interview!"
 	done
 
-LancesRoom_MapEvents:
+LancesRoom_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

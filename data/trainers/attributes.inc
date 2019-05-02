@@ -1,4 +1,4 @@
-TrainerClassAttributes:
+TrainerClassAttributes::
 ; entries correspond to trainer classes (see constants/trainer_constants.inc)
 
 ; Falkner

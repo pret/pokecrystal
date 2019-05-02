@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/lookofficer.asm", ROMX
 
-Music_LookOfficer:
+Music_LookOfficer::
 	musicheader 3, 1, Music_LookOfficer_Ch1
 	musicheader 1, 2, Music_LookOfficer_Ch2
 	musicheader 1, 3, Music_LookOfficer_Ch3

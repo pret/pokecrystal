@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route26HealHouse.asm", ROMX
 
-Route26HealHouse_MapScripts:
+Route26HealHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -51,7 +51,7 @@ Route26HealHouseKeepAtItText:
 	para "Keep at it!"
 	done
 
-Route26HealHouse_MapEvents:
+Route26HealHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

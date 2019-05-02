@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokemon/breedmon_level_growth.asm", ROMX, BANK[BANK_MOVE_MON]
 
-GetBreedMon1LevelGrowth:
+GetBreedMon1LevelGrowth::
 	ld hl, wBreedMon1Stats
 	ld de, wTempMon
 	ld bc, BOXMON_STRUCT_LENGTH
@@ -17,7 +17,7 @@ GetBreedMon1LevelGrowth:
 	ld d, a
 	ret
 
-GetBreedMon2LevelGrowth:
+GetBreedMon2LevelGrowth::
 	ld hl, wBreedMon2Stats
 	ld de, wTempMon
 	ld bc, BOXMON_STRUCT_LENGTH

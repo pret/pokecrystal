@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/print_photo.asm", ROMX
 
-PhotoStudio:
+PhotoStudio::
 	ld hl, .Text_AskWhichMon
 	call PrintText
 	farcall SelectMonFromParty

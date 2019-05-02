@@ -12,7 +12,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route38.asm", ROMX
 
-Route38_MapScripts:
+Route38_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -475,7 +475,7 @@ Route38TrainerTipsText:
 	cont "its evolution."
 	done
 
-Route38_MapEvents:
+Route38_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

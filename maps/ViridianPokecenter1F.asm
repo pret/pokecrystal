@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/ViridianPokecenter1F.asm", ROMX
 
-ViridianPokecenter1F_MapScripts:
+ViridianPokecenter1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -74,7 +74,7 @@ ViridianPokecenter1FBugCatcherText:
 	line "come a GYM LEADER."
 	done
 
-ViridianPokecenter1F_MapEvents:
+ViridianPokecenter1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

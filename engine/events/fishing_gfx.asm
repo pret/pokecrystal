@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/fishing_gfx.asm", ROMX
 
-LoadFishingGFX:
+LoadFishingGFX::
 	ldh a, [rVBK]
 	push af
 	ld a, $1

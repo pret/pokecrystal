@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/bicycle.asm", ROMX
 
-Music_Bicycle:
+Music_Bicycle::
 	musicheader 4, 1, Music_Bicycle_Ch1
 	musicheader 1, 2, Music_Bicycle_Ch2
 	musicheader 1, 3, Music_Bicycle_Ch3

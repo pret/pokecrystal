@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/wade_caller.asm", ROMX
 
-WadeAreYouGrowingText:
+WadeAreYouGrowingText::
 	text "Are your #MON"
 	line "growing?"
 
@@ -22,7 +22,7 @@ WadeAreYouGrowingText:
 	line "it'll get tough."
 	done
 
-UnknownText_0x175869:
+UnknownText_0x175869::
 	text "Oh yeah, we KO'd a"
 	line "wild @"
 	text_ram wStringBuffer4
@@ -37,7 +37,7 @@ UnknownText_0x175869:
 	line "the poor thing."
 	done
 
-UnknownText_0x1758e4:
+UnknownText_0x1758e4::
 	text "Oh yeah, a wild"
 	line "@"
 	text_ram wStringBuffer4
@@ -56,7 +56,7 @@ UnknownText_0x1758e4:
 	line "had it."
 	done
 
-UnknownText_0x175976:
+UnknownText_0x175976::
 	text "Do you feel like a"
 	line "#MON battle?"
 
@@ -72,11 +72,11 @@ UnknownText_0x175976:
 	line "you get there."
 	done
 
-UnknownText_0x1759e7:
+UnknownText_0x1759e7::
 	text "See you later!"
 	done
 
-WadeBugCatchingContestText:
+WadeBugCatchingContestText::
 	text "The Bug-Catching"
 	line "Contest is at the"
 
@@ -90,7 +90,7 @@ WadeBugCatchingContestText:
 	line "up my mind."
 	done
 
-WadeFoundBerryText:
+WadeFoundBerryText::
 	text "I found all kinds"
 	line "of BERRIES. If you"
 
@@ -103,7 +103,7 @@ WadeFoundBerryText:
 	text "."
 	done
 
-UnknownText_0x175abe:
+UnknownText_0x175abe::
 	text "Huh? BERRIES?"
 
 	para "Sorry, I haven't"
@@ -114,7 +114,7 @@ UnknownText_0x175abe:
 	cont "please wait?"
 	done
 
-UnknownText_0x175b1e:
+UnknownText_0x175b1e::
 	text "Let's battle"
 	line "already!"
 
@@ -127,7 +127,7 @@ UnknownText_0x175b1e:
 	line "soon as you can!"
 	done
 
-UnknownText_0x175b6d:
+UnknownText_0x175b6d::
 	text "How come you're"
 	line "not here yet?"
 

@@ -14,7 +14,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/BurnedTowerB1F.asm", ROMX
 
-BurnedTowerB1F_MapScripts:
+BurnedTowerB1F_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_FINISHED
@@ -239,7 +239,7 @@ BurnedTowerB1FEusineText:
 	para "Farewell!"
 	done
 
-BurnedTowerB1F_MapEvents:
+BurnedTowerB1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 6 ; warp events

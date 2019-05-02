@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/TohjoFalls.asm", ROMX
 
-TohjoFalls_MapScripts:
+TohjoFalls_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -14,7 +14,7 @@ TohjoFalls_MapScripts:
 TohjoFallsMoonStone:
 	itemball MOON_STONE
 
-TohjoFalls_MapEvents:
+TohjoFalls_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

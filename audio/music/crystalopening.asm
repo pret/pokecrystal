@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/crystalopening.asm", ROMX
 
-Music_CrystalOpening:
+Music_CrystalOpening::
 	musicheader 4, 1, Music_CrystalOpening_Ch1
 	musicheader 1, 2, Music_CrystalOpening_Ch2
 	musicheader 1, 3, Music_CrystalOpening_Ch3

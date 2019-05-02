@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route12SuperRodHouse.asm", ROMX
 
-Route12SuperRodHouse_MapScripts:
+Route12SuperRodHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -82,7 +82,7 @@ DontWantSuperRodText:
 	line "deceived me?"
 	done
 
-Route12SuperRodHouse_MapEvents:
+Route12SuperRodHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

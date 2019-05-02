@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/VioletKylesHouse.asm", ROMX
 
-VioletKylesHouse_MapScripts:
+VioletKylesHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -35,7 +35,7 @@ VioletKylesHousePokefanMText:
 	line "disobey you."
 	done
 
-VioletKylesHouse_MapEvents:
+VioletKylesHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

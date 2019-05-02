@@ -11,7 +11,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/FuchsiaGym.asm", ROMX
 
-FuchsiaGym_MapScripts:
+FuchsiaGym_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -383,7 +383,7 @@ FuchsiaGymGuyWinText:
 	cont "from JOHTO!"
 	done
 
-FuchsiaGym_MapEvents:
+FuchsiaGym_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

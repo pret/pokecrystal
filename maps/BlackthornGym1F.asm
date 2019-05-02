@@ -10,7 +10,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/BlackthornGym1F.asm", ROMX
 
-BlackthornGym1F_MapScripts:
+BlackthornGym1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -389,7 +389,7 @@ BlackthornGymGuyWinText:
 	cont "#MON CHAMPION!"
 	done
 
-BlackthornGym1F_MapEvents:
+BlackthornGym1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 7 ; warp events

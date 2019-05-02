@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/link/mystery_gift_2.asm@PrepMysteryGiftDataToSend", ROMX
 
-PrepMysteryGiftDataToSend:
+PrepMysteryGiftDataToSend::
 	ld de, wMysteryGiftStaging
 	ld a, $1
 	ld [de], a
@@ -129,7 +129,7 @@ PrepMysteryGiftDataToSend:
 
 SECTION "engine/link/mystery_gift_2.asm@MysteryGiftGetItemHeldEffect", ROMX
 
-MysteryGiftGetItemHeldEffect:
+MysteryGiftGetItemHeldEffect::
 	ld a, c
 	cp MysteryGiftItems.End - MysteryGiftItems
 	jr nc, MysteryGiftFallbackItem
@@ -139,7 +139,7 @@ MysteryGiftGetItemHeldEffect:
 	ld c, [hl]
 	ret
 
-MysteryGiftGetDecoration:
+MysteryGiftGetDecoration::
 	ld a, c
 	cp MysteryGiftDecos.End - MysteryGiftDecos
 	jr nc, MysteryGiftFallbackItem

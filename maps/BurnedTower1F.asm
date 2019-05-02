@@ -10,7 +10,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/BurnedTower1F.asm", ROMX
 
-BurnedTower1F_MapScripts:
+BurnedTower1F_MapScripts::
 	db 3 ; scene scripts
 	scene_script .EusineScene ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_BURNEDTOWER1F_RIVAL_BATTLE
@@ -280,7 +280,7 @@ BurnedTower1FMortyText:
 	line "TOWER with him."
 	done
 
-BurnedTower1F_MapEvents:
+BurnedTower1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 14 ; warp events

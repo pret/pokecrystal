@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/link/link_2.asm@LinkMonStatsScreen", ROMX
 
-LinkMonStatsScreen:
+LinkMonStatsScreen::
 	ld a, [wMenuCursorY]
 	dec a
 	ld [wCurPartyMon], a
@@ -25,7 +25,7 @@ LinkMonStatsScreen:
 
 SECTION "engine/link/link_2.asm@Link_WaitBGMap", ROMX
 
-Link_WaitBGMap:
+Link_WaitBGMap::
 	call WaitBGMap
 	call WaitBGMap2
 	ret
@@ -33,7 +33,7 @@ Link_WaitBGMap:
 
 SECTION "engine/link/link_2.asm@LinkTextbox2", ROMX
 
-LinkTextbox2:
+LinkTextbox2::
 	ld h, d
 	ld l, e
 	push bc

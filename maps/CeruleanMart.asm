@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CeruleanMart.asm", ROMX
 
-CeruleanMart_MapScripts:
+CeruleanMart_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -48,7 +48,7 @@ CeruleanMart_CooltrainerFText:
 	cont "CERULEAN's CAPE."
 	done
 
-CeruleanMart_MapEvents:
+CeruleanMart_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

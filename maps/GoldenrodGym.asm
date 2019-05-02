@@ -11,7 +11,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/GoldenrodGym.asm", ROMX
 
-GoldenrodGym_MapScripts:
+GoldenrodGym_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_GOLDENRODGYM_NOTHING
 	scene_script .DummyScene1 ; SCENE_GOLDENRODGYM_WHITNEY_STOPS_CRYING
@@ -382,7 +382,7 @@ GoldenrodGymGuyWinText:
 	cont "the ladies here."
 	done
 
-GoldenrodGym_MapEvents:
+GoldenrodGym_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

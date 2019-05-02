@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/vance_overworld.asm", ROMX
 
-VanceAskNumber1Text:
+VanceAskNumber1Text::
 	text "You know, you are"
 	line "really strong."
 
@@ -17,7 +17,7 @@ VanceAskNumber1Text:
 	line "more battles!"
 	done
 
-VanceAskNumber2Text:
+VanceAskNumber2Text::
 	text "I want to battle"
 	line "tough trainers as"
 	cont "often as I can!"
@@ -29,13 +29,13 @@ VanceAskNumber2Text:
 	line "more battles!"
 	done
 
-VanceNumberAcceptedText:
+VanceNumberAcceptedText::
 	text "Don't forget to"
 	line "come see me when I"
 	cont "challenge you!"
 	done
 
-VanceNumberDeclinedText:
+VanceNumberDeclinedText::
 	text "A bird-user friend"
 	line "isn't a bad thing"
 	cont "to have, I think…"
@@ -44,18 +44,18 @@ VanceNumberDeclinedText:
 	line "reconsider?"
 	done
 
-VancePhoneFullText:
+VancePhoneFullText::
 	text "Your phone's out"
 	line "of memory. Delete"
 	cont "a number for me!"
 	done
 
-VanceRematchText:
+VanceRematchText::
 	text "Am I happy to see"
 	line "you! I won't lose!"
 	done
 
-VancePackFullText:
+VancePackFullText::
 	text "Oh, too bad. You"
 	line "don't have room."
 
@@ -63,7 +63,7 @@ VancePackFullText:
 	line "you next time!"
 	done
 
-VanceRematchGiftText:
+VanceRematchGiftText::
 	text "You are really,"
 	line "really strong!"
 

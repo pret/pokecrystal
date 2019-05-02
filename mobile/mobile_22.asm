@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "mobile/mobile_22.asm", ROMX, BANK[BANK_MOBILE_22]
 
-String_89116:
+String_89116::
 	db "-----@"
 
 String_8911c:
@@ -17,7 +17,7 @@ String_89135:
 String_89153:
 	db   "メッセージは　ありません@"    ; No message
 
-OpenSRAMBank4:
+OpenSRAMBank4::
 	push af
 	ld a, $4
 	call GetSRAMBank
@@ -46,7 +46,7 @@ Function8917a:
 	call ByteFill
 	ret
 
-Function89185:
+Function89185::
 ; strcmp(hl, de, c)
 ; Compares c bytes starting at de and hl and incrementing together until a mismatch is found.
 ; Preserves hl and de.
@@ -95,7 +95,7 @@ Function8919e:
 	jr nz, .loop
 	ret
 
-Function891ab:
+Function891ab::
 	call Mobile22_SetBGMapMode1
 	farcall ReloadMapPart
 	call Mobile22_SetBGMapMode0
@@ -147,12 +147,12 @@ Function891fe:
 	pop bc
 	ret
 
-Function89209:
+Function89209::
 	ld a, 1
 	ld [wSpriteUpdatesEnabled], a
 	ret
 
-Function8920f:
+Function8920f::
 	ld a, 0
 	ld [wSpriteUpdatesEnabled], a
 	ret
@@ -193,7 +193,7 @@ Mobile22_ButtonSound:
 	call PlayClickSFX
 	ret
 
-Mobile22_SetBGMapMode0:
+Mobile22_SetBGMapMode0::
 	xor a
 	ldh [hBGMapMode], a
 	ret
@@ -273,7 +273,7 @@ MenuData_0x892ab:
 	db "はい@"
 	db "いいえ@"
 
-Function892b4:
+Function892b4::
 	call Function8931b
 
 Function892b7:
@@ -339,7 +339,7 @@ Function89305:
 	jr nz, .loop
 	ret
 
-Function8931b:
+Function8931b::
 	push hl
 	ld hl, $a03b ; 4:a03b
 	ld a, [wMenuSelection]
@@ -351,7 +351,7 @@ Function8931b:
 	pop hl
 	ret
 
-Function8932d:
+Function8932d::
 	ld hl, 0
 	add hl, bc
 
@@ -386,7 +386,7 @@ Function89346:
 	ld l, c
 	jr _incave
 
-Function8934a:
+Function8934a::
 	ld hl, NAME_LENGTH_JAPANESE
 	add hl, bc
 _incave:
@@ -535,7 +535,7 @@ Function8942b:
 	call FarCopyBytes
 	ret
 
-Function89448:
+Function89448::
 ; Clears the sprite array
 	push af
 	ld hl, wVirtualOAM
@@ -589,7 +589,7 @@ Function89492:
 	inc d
 	ret
 
-Function8949c:
+Function8949c::
 	ldh a, [rSVBK]
 	push af
 	ld a, 5
@@ -1443,7 +1443,7 @@ Function89975:
 	pop bc
 	ret
 
-Function8998b:
+Function8998b::
 	push bc
 	and $f
 	cp $a
@@ -1720,12 +1720,12 @@ Function89b28:
 	call SetPalettes
 	ret
 
-Function89b3b:
+Function89b3b::
 	call Mobile22_SetBGMapMode0
 	farcall Function48cda
 	ret
 
-Function89b45:
+Function89b45::
 	; some sort of decoder?
 	; BCD?
 	push hl
@@ -1774,7 +1774,7 @@ Function89b45:
 	pop hl
 	ret
 
-Function89b78:
+Function89b78::
 	push bc
 	ld a, [wd010]
 	cp $10
@@ -1896,7 +1896,7 @@ Function89c34:
 	pop bc
 	ret
 
-Function89c44:
+Function89c44::
 	call Function89c34
 	jr c, .asm_89c4f
 	push de
@@ -2087,7 +2087,7 @@ Function89d0d:
 	RGB 19, 19, 19
 	RGB 00, 00, 00
 
-Function89d5e:
+Function89d5e::
 	push af
 	call CopyMenuHeader
 	pop af
@@ -2107,7 +2107,7 @@ Function89d75:
 	pop hl
 	jr asm_89d90
 
-Function89d85:
+Function89d85::
 	push hl
 	call Mobile22_SetBGMapMode0
 	call _hl_
@@ -2162,7 +2162,7 @@ Function89dab:
 	and a
 	ret
 
-Function89de0:
+Function89de0::
 	call ClearSprites
 	call Function89e0a
 	jr c, .asm_89e00
@@ -3983,7 +3983,7 @@ Function8ab93:
 	call Function89b28
 	ret
 
-Function8aba9:
+Function8aba9::
 	ld a, $2
 	call Function8b94a
 	ld a, $1
@@ -4055,7 +4055,7 @@ String_8ac3b:
 	db   "こ<NO>ともだち<NI>でんわを"
 	next "かけますか？@"
 
-Function8ac4e:
+Function8ac4e::
 	xor a
 	ld [wMenuSelection], a
 	push de
@@ -4071,7 +4071,7 @@ Function8ac4e:
 	call Function891ab
 	ret
 
-Function8ac70:
+Function8ac70::
 	push de
 	ld a, $3
 	call Function8b94a
@@ -4232,7 +4232,7 @@ String_8ad9c:
 	db   "おともだち<NO>なまえを"
 	next "のこして　おきますか？@"
 
-Function8adb3:
+Function8adb3::
 	call Function891de
 	call Function8a262
 	push af
@@ -4247,7 +4247,7 @@ Function8adbf:
 	call CloseSRAM
 	ret
 
-Function8adcc:
+Function8adcc::
 	call OpenSRAMBank4
 	call Function8b3b0
 	call CloseSRAM

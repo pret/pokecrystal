@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CianwoodPokecenter1F.asm", ROMX
 
-CianwoodPokecenter1F_MapScripts:
+CianwoodPokecenter1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -136,7 +136,7 @@ CianwoodPokecenter1FSuperNerdText:
 	line "off my #MON!"
 	done
 
-CianwoodPokecenter1F_MapEvents:
+CianwoodPokecenter1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

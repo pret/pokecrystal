@@ -5,7 +5,7 @@ SECTION "data/moves/effects.asm", ROMX
 
 INCLUDE "data/moves/effects_pointers.inc"
 
-MoveEffects: ; used only for BANK(MoveEffects)
+MoveEffects:: ; used only for BANK(MoveEffects)
 
 NormalHit:
 	checkobedience

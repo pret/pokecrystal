@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/ralph_caller.asm", ROMX
 
-RalphNeglectingKidsText:
+RalphNeglectingKidsText::
 	text "I've been spending"
 	line "more time with my"
 
@@ -16,7 +16,7 @@ RalphNeglectingKidsText:
 	line "actually."
 	done
 
-UnknownText_0x175c24:
+UnknownText_0x175c24::
 	text "I just beat a wild"
 	line "@"
 	text_ram wStringBuffer4
@@ -32,7 +32,7 @@ UnknownText_0x175c24:
 	line "cocky…"
 	done
 
-UnknownText_0x175c9f:
+UnknownText_0x175c9f::
 	text "Yesterday a wild"
 	line "@"
 	text_ram wStringBuffer4
@@ -51,7 +51,7 @@ UnknownText_0x175c9f:
 	line "made my day!"
 	done
 
-UnknownText_0x175d40:
+UnknownText_0x175d40::
 	text "What do you say to"
 	line "a battle with me?"
 
@@ -67,12 +67,12 @@ UnknownText_0x175d40:
 	line "the spot!"
 	done
 
-UnknownText_0x175db7:
+UnknownText_0x175db7::
 	text "You call your mom"
 	line "sometimes too!"
 	done
 
-UnknownText_0x175dd9:
+UnknownText_0x175dd9::
 	text "Listen, I… Yowch!"
 
 	para "Uh, sorry! See,"
@@ -101,7 +101,7 @@ UnknownText_0x175dd9:
 	line "to fish!"
 	done
 
-UnknownText_0x175eaf:
+UnknownText_0x175eaf::
 	text "Yeah, I know."
 
 	para "You're looking for"
@@ -112,7 +112,7 @@ UnknownText_0x175eaf:
 	cont "MAGIKARP, though…"
 	done
 
-UnknownText_0x175f11:
+UnknownText_0x175f11::
 	text "So where are you?"
 	line "I'm waiting for"
 
@@ -125,7 +125,7 @@ UnknownText_0x175f11:
 	line "your elders wait!"
 	done
 
-UnknownText_0x175f70:
+UnknownText_0x175f70::
 	text "Hey, what's the"
 	line "matter with you?"
 

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/tully.asm", ROMX
 
-TullyPhoneCalleeScript:
+TullyPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, FISHER, TULLY1
 	checkflag ENGINE_TULLY
 	iftrue .WantsBattle
@@ -28,7 +28,7 @@ TullyPhoneCalleeScript:
 	getlandmarkname STRING_BUFFER_5, ROUTE_42
 	farsjump UnknownScript_0xa0add
 
-TullyPhoneCallerScript:
+TullyPhoneCallerScript::
 	gettrainername STRING_BUFFER_3, FISHER, TULLY1
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_TULLY

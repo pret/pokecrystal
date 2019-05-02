@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/tiffany.asm", ROMX, BANK[BANK_PHONE_TIFFANY]
 
-TiffanyPhoneCalleeScript:
+TiffanyPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, PICNICKER, TIFFANY3
 	checkflag ENGINE_TIFFANY
 	iftrue .WantsBattle
@@ -28,7 +28,7 @@ TiffanyPhoneCalleeScript:
 	getlandmarkname STRING_BUFFER_5, ROUTE_43
 	farsjump UnknownScript_0xa0ae5
 
-TiffanyPhoneCallerScript:
+TiffanyPhoneCallerScript::
 	gettrainername STRING_BUFFER_3, PICNICKER, TIFFANY3
 	farscall PhoneScript_Random4
 	ifequal 0, TiffanysFamilyMembers

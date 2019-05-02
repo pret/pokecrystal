@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/rivalbattle.asm", ROMX
 
-Music_RivalBattle:
+Music_RivalBattle::
 	musicheader 3, 1, Music_RivalBattle_Ch1
 	musicheader 1, 2, Music_RivalBattle_Ch2
 	musicheader 1, 3, Music_RivalBattle_Ch3

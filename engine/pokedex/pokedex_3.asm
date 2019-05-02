@@ -3,13 +3,13 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokedex/pokedex_3.asm@LoadSGBPokedexGFX", ROMX
 
-LoadSGBPokedexGFX:
+LoadSGBPokedexGFX::
 	ld hl, SGBPokedexGFX_LZ
 	ld de, vTiles2 tile $31
 	call Decompress
 	ret
 
-LoadSGBPokedexGFX2:
+LoadSGBPokedexGFX2::
 	ld hl, SGBPokedexGFX_LZ
 	ld de, vTiles2 tile $31
 	lb bc, BANK(SGBPokedexGFX_LZ), 58
@@ -22,7 +22,7 @@ INCBIN "gfx/pokedex/sgb.2bpp.lz"
 
 SECTION "engine/pokedex/pokedex_3.asm@LoadQuestionMarkPic", ROMX
 
-LoadQuestionMarkPic:
+LoadQuestionMarkPic::
 	ld hl, .QuestionMarkLZ
 	ld de, sScratch
 	call Decompress
@@ -34,7 +34,7 @@ INCBIN "gfx/pokedex/question_mark.2bpp.lz"
 
 SECTION "engine/pokedex/pokedex_3.asm@DrawPokedexWindow", ROMX
 
-DrawPokedexListWindow:
+DrawPokedexListWindow::
 	ld a, $32
 	hlcoord 0, 17
 	ld bc, 12
@@ -79,7 +79,7 @@ DrawPokedexListWindow:
 .Done:
 	ret
 
-DrawPokedexSearchResultsWindow:
+DrawPokedexSearchResultsWindow::
 	ld a, $34
 	hlcoord 0, 0
 	ld bc, 11
@@ -129,7 +129,7 @@ DrawPokedexSearchResultsWindow:
 ; (### FOUN)
 	next "D!@"
 
-DrawDexEntryScreenRightEdge:
+DrawDexEntryScreenRightEdge::
 	ldh a, [hBGMapAddress]
 	ld l, a
 	ldh a, [hBGMapAddress + 1]

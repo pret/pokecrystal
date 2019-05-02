@@ -12,7 +12,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route37.asm", ROMX
 
-Route37_MapScripts:
+Route37_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -240,7 +240,7 @@ Route37SignText:
 	text "ROUTE 37"
 	done
 
-Route37_MapEvents:
+Route37_MapEvents::
 	db 0, 0 ; filler
 
 	db 0 ; warp events

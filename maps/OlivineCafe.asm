@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/OlivineCafe.asm", ROMX
 
-OlivineCafe_MapScripts:
+OlivineCafe_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -81,7 +81,7 @@ OlivineCafeSailorText:
 	line "stop eating!"
 	done
 
-OlivineCafe_MapEvents:
+OlivineCafe_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

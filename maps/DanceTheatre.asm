@@ -14,7 +14,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/DanceTheatre.asm", ROMX
 
-DanceTheatre_MapScripts:
+DanceTheatre_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -340,7 +340,7 @@ DanceTheatreFancyPanelText:
 	cont "with flowers."
 	done
 
-DanceTheatre_MapEvents:
+DanceTheatre_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

@@ -1095,7 +1095,7 @@ Function2868a:
 	inc de
 	ret
 
-TimeCapsule_ReplaceTeruSama:
+TimeCapsule_ReplaceTeruSama::
 	ld a, b
 	and a
 	ret z
@@ -1965,17 +1965,17 @@ String_TooBadTheTradeWasCanceled:
 	db   "Too bad! The trade"
 	next "was canceled!@"
 
-LinkTextboxAtHL:
+LinkTextboxAtHL::
 	ld d, h
 	ld e, l
 	farcall LinkTextbox
 	ret
 
-LoadTradeScreenBorder:
+LoadTradeScreenBorder::
 	farcall _LoadTradeScreenBorder
 	ret
 
-SetTradeRoomBGPals:
+SetTradeRoomBGPals::
 	farcall LoadTradeRoomBGPals ; just a nested farcall; so wasteful
 	call SetPalettes
 	ret
@@ -1994,7 +1994,7 @@ Unreferenced_Function28f09:
 
 INCLUDE "engine/movie/trade_animation.inc"
 
-CheckTimeCapsuleCompatibility:
+CheckTimeCapsuleCompatibility::
 ; Checks to see if your party is compatible with the Gen 1 games.
 ; Returns the following in wScriptVar:
 ; 0: Party is okay
@@ -2088,7 +2088,7 @@ Function29c67:
 	call GetPokemonName
 	ret
 
-EnterTimeCapsule:
+EnterTimeCapsule::
 	ld c, 10
 	call DelayFrames
 	ld a, $4
@@ -2101,7 +2101,7 @@ EnterTimeCapsule:
 	ld [wLinkMode], a
 	ret
 
-WaitForOtherPlayerToExit:
+WaitForOtherPlayerToExit::
 	ld c, 3
 	call DelayFrames
 	ld a, CONNECTION_NOT_ESTABLISHED
@@ -2148,19 +2148,19 @@ WaitForOtherPlayerToExit:
 	ld [wLinkMode], a
 	ret
 
-SetBitsForLinkTradeRequest:
+SetBitsForLinkTradeRequest::
 	ld a, LINK_TRADECENTER - 1
 	ld [wPlayerLinkAction], a
 	ld [wChosenCableClubRoom], a
 	ret
 
-SetBitsForBattleRequest:
+SetBitsForBattleRequest::
 	ld a, LINK_COLOSSEUM - 1
 	ld [wPlayerLinkAction], a
 	ld [wChosenCableClubRoom], a
 	ret
 
-SetBitsForTimeCapsuleRequest:
+SetBitsForTimeCapsuleRequest::
 	ld a, $2
 	ldh [rSB], a
 	xor a
@@ -2174,7 +2174,7 @@ SetBitsForTimeCapsuleRequest:
 	ld [wChosenCableClubRoom], a
 	ret
 
-WaitForLinkedFriend:
+WaitForLinkedFriend::
 	ld a, [wPlayerLinkAction]
 	and a
 	jr z, .no_link_action
@@ -2245,7 +2245,7 @@ WaitForLinkedFriend:
 	ld [wScriptVar], a
 	ret
 
-CheckLinkTimeout:
+CheckLinkTimeout::
 	ld a, $1
 	ld [wPlayerLinkAction], a
 	ld hl, wLinkTimeoutFrames
@@ -2377,7 +2377,7 @@ Link_CheckCommunicationError:
 	ld [wLinkTimeoutFrames + 1], a
 	ret
 
-TryQuickSave:
+TryQuickSave::
 	ld a, [wChosenCableClubRoom]
 	push af
 	farcall Link_SaveGame
@@ -2392,7 +2392,7 @@ TryQuickSave:
 	ld [wChosenCableClubRoom], a
 	ret
 
-CheckBothSelectedSameRoom:
+CheckBothSelectedSameRoom::
 	ld a, [wChosenCableClubRoom]
 	call Link_EnsureSync
 	push af
@@ -2418,7 +2418,7 @@ CheckBothSelectedSameRoom:
 	ld [wScriptVar], a
 	ret
 
-TimeCapsule:
+TimeCapsule::
 	ld a, LINK_TIMECAPSULE
 	ld [wLinkMode], a
 	call DisableSpriteUpdates
@@ -2428,7 +2428,7 @@ TimeCapsule:
 	ldh [hVBlank], a
 	ret
 
-TradeCenter:
+TradeCenter::
 	ld a, LINK_TRADECENTER
 	ld [wLinkMode], a
 	call DisableSpriteUpdates
@@ -2438,7 +2438,7 @@ TradeCenter:
 	ldh [hVBlank], a
 	ret
 
-Colosseum:
+Colosseum::
 	ld a, LINK_COLOSSEUM
 	ld [wLinkMode], a
 	call DisableSpriteUpdates
@@ -2448,14 +2448,14 @@ Colosseum:
 	ldh [hVBlank], a
 	ret
 
-CloseLink:
+CloseLink::
 	xor a
 	ld [wLinkMode], a
 	ld c, 3
 	call DelayFrames
 	jp Link_ResetSerialRegistersAfterLinkClosure
 
-FailedLinkToPast:
+FailedLinkToPast::
 	ld c, 40
 	call DelayFrames
 	ld a, $e
@@ -2504,7 +2504,7 @@ Link_EnsureSync:
 
 SECTION "engine/link/link.asm@CableClubCheckWhichChris", ROMX
 
-CableClubCheckWhichChris:
+CableClubCheckWhichChris::
 	ldh a, [hSerialConnectionStatus]
 	cp USING_EXTERNAL_CLOCK
 	ld a, TRUE

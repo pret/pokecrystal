@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CeladonMansion1F.asm", ROMX
 
-CeladonMansion1F_MapScripts:
+CeladonMansion1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -77,7 +77,7 @@ CeladonMansionManagersSuiteSignText:
 	line "MANAGER'S SUITE"
 	done
 
-CeladonMansion1F_MapEvents:
+CeladonMansion1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 5 ; warp events

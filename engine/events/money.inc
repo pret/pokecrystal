@@ -126,7 +126,7 @@ SubtractFunds:
 	pop hl
 	ret
 
-AddMoney:
+AddMoney::
 	ld a, 3
 AddFunds:
 ; a: number of bytes

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/menus/menu_2.asm@PlaceMenuItemName", ROMX
 
-PlaceMenuItemName:
+PlaceMenuItemName::
 	push de
 	ld a, [wMenuSelection]
 	ld [wNamedObjectIndexBuffer], a
@@ -15,7 +15,7 @@ PlaceMenuItemName:
 
 SECTION "engine/menus/menu_2.asm@PlaceMenuItemQuantity", ROMX
 
-PlaceMenuItemQuantity:
+PlaceMenuItemQuantity::
 	push de
 	ld a, [wMenuSelection]
 	ld [wCurItem], a
@@ -38,17 +38,17 @@ PlaceMenuItemQuantity:
 
 SECTION "engine/menus/menu_2.asm@PlaceMoneyTextbox", ROMX
 
-PlaceMoneyTopRight:
+PlaceMoneyTopRight::
 	ld hl, MenuHeader_0x24b15
 	call CopyMenuHeader
 	jr PlaceMoneyTextbox
 
-PlaceMoneyBottomLeft:
+PlaceMoneyBottomLeft::
 	ld hl, MenuHeader_0x24b1d
 	call CopyMenuHeader
 	jr PlaceMoneyTextbox
 
-PlaceMoneyAtTopLeftOfTextbox:
+PlaceMoneyAtTopLeftOfTextbox::
 	ld hl, MenuHeader_0x24b15
 	lb de, 0, 11
 	call OffsetMenuHeader
@@ -78,7 +78,7 @@ MenuHeader_0x24b1d:
 
 SECTION "engine/menus/menu_2.asm@DisplayCoinCaseBalance", ROMX
 
-DisplayCoinCaseBalance:
+DisplayCoinCaseBalance::
 	; Place a text box of size 1x7 at 11, 0.
 	hlcoord 11, 0
 	ld b, 1
@@ -96,7 +96,7 @@ DisplayCoinCaseBalance:
 	call PrintNum
 	ret
 
-DisplayMoneyAndCoinBalance:
+DisplayMoneyAndCoinBalance::
 	hlcoord 5, 0
 	ld b, 3
 	ld c, 13
@@ -163,14 +163,14 @@ Unreferenced_Function24b8f:
 
 SECTION "engine/menus/menu_2.asm@StartMenu_PrintBugContestStatus", ROMX
 
-StartMenu_DrawBugContestStatusBox:
+StartMenu_DrawBugContestStatusBox::
 	hlcoord 0, 0
 	ld b, 5
 	ld c, 17
 	call Textbox
 	ret
 
-StartMenu_PrintBugContestStatus:
+StartMenu_PrintBugContestStatus::
 	ld hl, wOptions
 	ld a, [hl]
 	push af
@@ -228,7 +228,7 @@ StartMenu_PrintBugContestStatus:
 
 SECTION "engine/menus/menu_2.asm@FindApricornsInBag", ROMX
 
-FindApricornsInBag:
+FindApricornsInBag::
 ; Checks the bag for Apricorns.
 	ld hl, wBuffer1
 	xor a

@@ -3,11 +3,11 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokemon/mon_stats.asm@DrawHP", ROMX
 
-DrawPlayerHP:
+DrawPlayerHP::
 	ld a, $1
 	jr DrawHP
 
-DrawEnemyHP:
+DrawEnemyHP::
 	ld a, $2
 
 DrawHP:
@@ -90,7 +90,7 @@ DrawHP:
 
 SECTION "engine/pokemon/mon_stats.asm@PrintTempMonStats", ROMX
 
-PrintTempMonStats:
+PrintTempMonStats::
 ; Print wTempMon's stats at hl, with spacing bc.
 	push bc
 	push hl
@@ -132,7 +132,7 @@ PrintTempMonStats:
 
 SECTION "engine/pokemon/mon_stats.asm@GetGender", ROMX, BANK[BANK_PARTY_MENU]
 
-GetGender:
+GetGender::
 ; Return the gender of a given monster (wCurPartyMon/wCurOTMon/wCurWildMon).
 ; When calling this function, a should be set to an appropriate wMonType value.
 
@@ -248,7 +248,7 @@ GetGender:
 
 SECTION "engine/pokemon/mon_stats.asm@ListMovePP", ROMX
 
-ListMovePP:
+ListMovePP::
 	ld a, [wNumMoves]
 	inc a
 	ld c, a
@@ -356,7 +356,7 @@ Unreferenced_Function50cd0:
 ; Since this function is unused, this disassembly doesn't make sure that is the case.
 SECTION "engine/pokemon/mon_stats.asm@Unused_PlaceEnemyHPLevel", ROMX
 
-Unused_PlaceEnemyHPLevel:
+Unused_PlaceEnemyHPLevel::
 	push hl
 	push hl
 	ld hl, wPartyMonNicknames
@@ -387,7 +387,7 @@ Unused_PlaceEnemyHPLevel:
 
 SECTION "engine/pokemon/mon_stats.asm@PlaceStatusString", ROMX, BANK[BANK_PARTY_MENU]
 
-PlaceStatusString:
+PlaceStatusString::
 	push de
 	inc de
 	inc de
@@ -420,7 +420,7 @@ CopyStatusString:
 	ld [hl], a
 	ret
 
-PlaceNonFaintStatus:
+PlaceNonFaintStatus::
 	push de
 	ld a, [de]
 	ld de, PsnString
@@ -457,7 +457,7 @@ ParString: db "PAR@"
 
 SECTION "engine/pokemon/mon_stats.asm@ListMoves", ROMX
 
-ListMoves:
+ListMoves::
 ; List moves at hl, spaced every [wBuffer1] tiles.
 	ld de, wListMoves_MoveIndicesBuffer
 	ld b, $0

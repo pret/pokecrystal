@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/tully_callee.asm", ROMX
 
-UnknownText_0x1b6b39:
+UnknownText_0x1b6b39::
 	text "Hello, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -13,7 +13,7 @@ UnknownText_0x1b6b39:
 	line "<PLAY_G>."
 	done
 
-UnknownText_0x1b6b65:
+UnknownText_0x1b6b65::
 	text "Hello, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -23,7 +23,7 @@ UnknownText_0x1b6b65:
 	line "<PLAY_G>, right?"
 	done
 
-UnknownText_0x1b6b92:
+UnknownText_0x1b6b92::
 	text "Hello, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -33,7 +33,7 @@ UnknownText_0x1b6b92:
 	line "<PLAY_G>!"
 	done
 
-UnknownText_0x1b6bb9:
+UnknownText_0x1b6bb9::
 	text "Hello!"
 	line "@"
 	text_ram wStringBuffer3
@@ -43,7 +43,7 @@ UnknownText_0x1b6bb9:
 	line "weather's great!"
 	done
 
-UnknownText_0x1b6bef:
+UnknownText_0x1b6bef::
 	text "Hello!"
 	line "@"
 	text_ram wStringBuffer3
@@ -53,7 +53,7 @@ UnknownText_0x1b6bef:
 	line "for fishing!"
 	done
 
-UnknownText_0x1b6c23:
+UnknownText_0x1b6c23::
 	text "Hello!"
 	line "@"
 	text_ram wStringBuffer3
@@ -63,7 +63,7 @@ UnknownText_0x1b6c23:
 	line "for fishing!"
 	done
 
-UnknownText_0x1b6c56:
+UnknownText_0x1b6c56::
 	text "How's your trip"
 	line "coming along?"
 

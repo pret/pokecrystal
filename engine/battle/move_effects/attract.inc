@@ -1,4 +1,4 @@
-BattleCommand_Attract:
+BattleCommand_Attract::
 ; attract
 	ld a, [wAttackMissed]
 	and a
@@ -22,7 +22,7 @@ BattleCommand_Attract:
 .failed
 	jp FailMove
 
-CheckOppositeGender:
+CheckOppositeGender::
 	ld a, MON_SPECIES
 	call BattlePartyAttr
 	ld a, [hl]

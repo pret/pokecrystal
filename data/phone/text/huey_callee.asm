@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/huey_callee.asm", ROMX
 
-UnknownText_0x1b5073:
+UnknownText_0x1b5073::
 	text "Yeah, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -13,7 +13,7 @@ UnknownText_0x1b5073:
 	line "<PLAYER>?"
 	done
 
-UnknownText_0x1b509b:
+UnknownText_0x1b509b::
 	text "Yeah, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -23,7 +23,7 @@ UnknownText_0x1b509b:
 	line "<PLAYER>?"
 	done
 
-UnknownText_0x1b50c2:
+UnknownText_0x1b50c2::
 	text "Yeah, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -33,7 +33,7 @@ UnknownText_0x1b50c2:
 	line "<PLAYER>?"
 	done
 
-UnknownText_0x1b50e9:
+UnknownText_0x1b50e9::
 	text "Yo, <PLAYER>!"
 	line "You awake?"
 
@@ -43,7 +43,7 @@ UnknownText_0x1b50e9:
 	line "How's it going?"
 	done
 
-UnknownText_0x1b511a:
+UnknownText_0x1b511a::
 	text "Yo, <PLAYER>! You"
 	line "free right now?"
 
@@ -53,7 +53,7 @@ UnknownText_0x1b511a:
 	line "How's it going?"
 	done
 
-UnknownText_0x1b5154:
+UnknownText_0x1b5154::
 	text "Yo, <PLAYER>!"
 	line "Were you asleep?"
 

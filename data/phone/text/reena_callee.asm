@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/reena_callee.asm", ROMX
 
-UnknownText_0x1b5702:
+UnknownText_0x1b5702::
 	text "Hello, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -13,7 +13,7 @@ UnknownText_0x1b5702:
 	line "What's up?"
 	done
 
-UnknownText_0x1b572e:
+UnknownText_0x1b572e::
 	text "Hello, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -23,7 +23,7 @@ UnknownText_0x1b572e:
 	line "what's up?"
 	done
 
-UnknownText_0x1b575a:
+UnknownText_0x1b575a::
 	text "Hello, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -33,7 +33,7 @@ UnknownText_0x1b575a:
 	line "what's up?"
 	done
 
-UnknownText_0x1b5786:
+UnknownText_0x1b5786::
 	text "You're slow! Hurry"
 	line "up and answer!"
 
@@ -42,7 +42,7 @@ UnknownText_0x1b5786:
 	text "!"
 	done
 
-UnknownText_0x1b57b7:
+UnknownText_0x1b57b7::
 	text "You're slow! Hurry"
 	line "up and answer!"
 
@@ -51,7 +51,7 @@ UnknownText_0x1b57b7:
 	text "!"
 	done
 
-UnknownText_0x1b57e8:
+UnknownText_0x1b57e8::
 	text "You're slow! Hurry"
 	line "up and answer!"
 
@@ -60,7 +60,7 @@ UnknownText_0x1b57e8:
 	text "!"
 	done
 
-UnknownText_0x1b5819:
+UnknownText_0x1b5819::
 	text "Hey, how are your"
 	line "#MON doing?"
 

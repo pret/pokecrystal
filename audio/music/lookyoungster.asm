@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/lookyoungster.asm", ROMX
 
-Music_LookYoungster:
+Music_LookYoungster::
 	musicheader 3, 1, Music_LookYoungster_Ch1
 	musicheader 1, 2, Music_LookYoungster_Ch2
 	musicheader 1, 3, Music_LookYoungster_Ch3

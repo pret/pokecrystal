@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/derek_caller.asm", ROMX
 
-DerekCheekPincherText:
+DerekCheekPincherText::
 	text "Listen to this."
 	line "My @"
 	text_ram wStringBuffer4
@@ -17,7 +17,7 @@ DerekCheekPincherText:
 	para "I must be special."
 	done
 
-UnknownText_0x65b29:
+UnknownText_0x65b29::
 	text "Oh, and recently,"
 	line "my PIKACHU beat a"
 	cont "wild @"
@@ -39,7 +39,7 @@ UnknownText_0x65b29:
 	line "greatest!"
 	done
 
-UnknownText_0x65bc8:
+UnknownText_0x65bc8::
 	text "Oh, and I saw a"
 	line "wild @"
 	text_ram wStringBuffer4
@@ -56,12 +56,12 @@ UnknownText_0x65bc8:
 	line "good otherwise."
 	done
 
-UnknownText_0x65c4e:
+UnknownText_0x65c4e::
 	text "Well, let's talk"
 	line "again!"
 	done
 
-DerekBugCatchingContestText:
+DerekBugCatchingContestText::
 	text "Did you remember?"
 	line "The Bug-Catching"
 	cont "Contest is today."
@@ -76,7 +76,7 @@ DerekBugCatchingContestText:
 	line "off its cuteness."
 	done
 
-UnknownText_0x65cf9:
+UnknownText_0x65cf9::
 	text "I'd like you to"
 	line "have a NUGGET."
 
@@ -88,7 +88,7 @@ UnknownText_0x65cf9:
 	cont "it too!"
 	done
 
-UnknownText_0x65d5c:
+UnknownText_0x65d5c::
 	text "How is your"
 	line "PIKACHU doing?"
 
@@ -97,7 +97,7 @@ UnknownText_0x65d5c:
 	cont "PIKACHU!"
 	done
 
-UnknownText_0x65da6:
+UnknownText_0x65da6::
 	text "What's wrong?"
 
 	para "I'm waiting on"

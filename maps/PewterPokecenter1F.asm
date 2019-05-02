@@ -10,7 +10,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/PewterPokecenter1F.asm", ROMX
 
-PewterPokecenter1F_MapScripts:
+PewterPokecenter1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -70,7 +70,7 @@ PewterPokecenter1FBugCatcherText:
 	line "#MON is asleep."
 	done
 
-PewterPokecenter1F_MapEvents:
+PewterPokecenter1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

@@ -6,7 +6,7 @@ UNOWNSTAMP_BOLD_B EQU "♀" ; $f5
 
 SECTION "engine/events/print_unown.asm", ROMX
 
-_UnownPrinter:
+_UnownPrinter::
 	ld a, [wUnownDex]
 	and a
 	ret z
@@ -226,7 +226,7 @@ INCBIN "gfx/printer/bold_b.1bpp"
 
 SECTION "engine/events/print_unown.asm@PlaceUnownPrinterFrontpic", ROMX
 
-PlaceUnownPrinterFrontpic:
+PlaceUnownPrinterFrontpic::
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, " "

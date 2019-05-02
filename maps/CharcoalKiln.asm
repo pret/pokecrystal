@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CharcoalKiln.asm", ROMX
 
-CharcoalKiln_MapScripts:
+CharcoalKiln_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -151,7 +151,7 @@ FarfetchdText:
 	text "FARFETCH'D: Kwaa!"
 	done
 
-CharcoalKiln_MapEvents:
+CharcoalKiln_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

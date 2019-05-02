@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CeladonMansion3F.asm", ROMX
 
-CeladonMansion3F_MapScripts:
+CeladonMansion3F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -193,7 +193,7 @@ CeladonMansion3FReferenceMaterialText:
 	cont "a # DOLL."
 	done
 
-CeladonMansion3F_MapEvents:
+CeladonMansion3F_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

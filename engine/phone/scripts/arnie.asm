@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/arnie.asm", ROMX
 
-ArniePhoneCalleeScript:
+ArniePhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, BUG_CATCHER, ARNIE1
 	checkflag ENGINE_ARNIE
 	iftrue .WantsBattle
@@ -28,7 +28,7 @@ ArniePhoneCalleeScript:
 	getlandmarkname STRING_BUFFER_5, ROUTE_35
 	farsjump UnknownScript_0xa0aff
 
-ArniePhoneCallerScript:
+ArniePhoneCallerScript::
 	gettrainername STRING_BUFFER_3, BUG_CATCHER, ARNIE1
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_ARNIE

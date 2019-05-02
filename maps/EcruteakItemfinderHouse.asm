@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/EcruteakItemfinderHouse.asm", ROMX
 
-EcruteakItemfinderHouse_MapScripts:
+EcruteakItemfinderHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -165,7 +165,7 @@ EcruteakThreeMonText:
 	line "grassland."
 	done
 
-EcruteakItemfinderHouse_MapEvents:
+EcruteakItemfinderHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

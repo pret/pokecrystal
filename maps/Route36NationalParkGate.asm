@@ -17,7 +17,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route36NationalParkGate.asm", ROMX, BANK[BANK_MAP_ROUTE_35_NATIONAL_PARK_GATE]
 
-Route36NationalParkGate_MapScripts:
+Route36NationalParkGate_MapScripts::
 	db 3 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_ROUTE36NATIONALPARKGATE_NOTHING
 	scene_script .DummyScene1 ; SCENE_ROUTE36NATIONALPARKGATE_UNUSED
@@ -854,7 +854,7 @@ Route36NationalParkGateOfficer1HeresThePrizeText:
 	cont "for you."
 	done
 
-Route36NationalParkGate_MapEvents:
+Route36NationalParkGate_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

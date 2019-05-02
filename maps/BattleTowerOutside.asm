@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/BattleTowerOutside.asm", ROMX
 
-BattleTowerOutside_MapScripts:
+BattleTowerOutside_MapScripts::
 	db 0 ; scene scripts
 
 	db 2 ; callbacks
@@ -136,7 +136,7 @@ BattleTowerOutsideText_DoorsOpen:
 	text "It's open!"
 	done
 
-BattleTowerOutside_MapEvents:
+BattleTowerOutside_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CherrygroveMart.asm", ROMX
 
-CherrygroveMart_MapScripts:
+CherrygroveMart_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -74,7 +74,7 @@ CherrygroveMartYoungsterText:
 	line "ANTIDOTE with you."
 	done
 
-CherrygroveMart_MapEvents:
+CherrygroveMart_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

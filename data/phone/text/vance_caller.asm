@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/vance_caller.asm", ROMX
 
-VanceLiftoffText:
+VanceLiftoffText::
 	text "My @"
 	text_ram wStringBuffer4
 	text "'s"
@@ -13,7 +13,7 @@ VanceLiftoffText:
 	line "liftoff!"
 	done
 
-UnknownText_0x669b2:
+UnknownText_0x669b2::
 	text "We can easily beat"
 	line "@"
 	text_ram wStringBuffer4
@@ -23,7 +23,7 @@ UnknownText_0x669b2:
 	line "Isn't that great?"
 	done
 
-UnknownText_0x669ed:
+UnknownText_0x669ed::
 	text "But get this, a"
 	line "wild @"
 	text_ram wStringBuffer4
@@ -35,7 +35,7 @@ UnknownText_0x669ed:
 	line "after it…"
 	done
 
-UnknownText_0x66a3a:
+UnknownText_0x66a3a::
 	text "Right now, I'm on"
 	line "@"
 	text_ram wStringBuffer5
@@ -48,17 +48,17 @@ UnknownText_0x66a3a:
 	line "I'll wait here."
 	done
 
-UnknownText_0x66a93:
+UnknownText_0x66a93::
 	text "OK, bye for now!"
 	done
 
-VanceLookingForwardText:
+VanceLookingForwardText::
 	text "I'll be looking"
 	line "forward to our"
 	cont "next battle!"
 	done
 
-VanceHurryHurryText:
+VanceHurryHurryText::
 	text "Oh, <PLAY_G>!"
 	line "Hurry, hurry!"
 

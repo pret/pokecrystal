@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/GoldenrodDeptStoreElevator.asm", ROMX
 
-GoldenrodDeptStoreElevator_MapScripts:
+GoldenrodDeptStoreElevator_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -57,7 +57,7 @@ GoldenrodDeptStoreElevatorData:
 	elevfloor FLOOR_6F,  2, GOLDENROD_DEPT_STORE_6F
 	db -1 ; end
 
-GoldenrodDeptStoreElevator_MapEvents:
+GoldenrodDeptStoreElevator_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/EcruteakMart.asm", ROMX
 
-EcruteakMart_MapScripts:
+EcruteakMart_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -48,7 +48,7 @@ EcruteakMartGrannyText:
 	line "right up."
 	done
 
-EcruteakMart_MapEvents:
+EcruteakMart_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

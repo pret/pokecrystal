@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/halloffame.asm", ROMX
 
-Music_HallOfFame:
+Music_HallOfFame::
 	musicheader 4, 1, Music_HallOfFame_Ch1
 	musicheader 1, 2, Music_HallOfFame_Ch2
 	musicheader 1, 3, Music_HallOfFame_Ch3

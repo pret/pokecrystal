@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/PalletTown.asm", ROMX
 
-PalletTown_MapScripts:
+PalletTown_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -72,7 +72,7 @@ BluesHouseSignText:
 	text "BLUE'S HOUSE"
 	done
 
-PalletTown_MapEvents:
+PalletTown_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

@@ -13,7 +13,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/menus/trainer_card.asm", ROMX
 
-TrainerCard:
+TrainerCard::
 	ld a, [wVramState]
 	push af
 	xor a

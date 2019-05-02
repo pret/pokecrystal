@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/titlescreen.asm", ROMX
 
-Music_TitleScreen:
+Music_TitleScreen::
 	musicheader 4, 1, Music_TitleScreen_Ch1
 	musicheader 1, 2, Music_TitleScreen_Ch2
 	musicheader 1, 3, Music_TitleScreen_Ch3

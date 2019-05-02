@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/erin_callee.asm", ROMX
 
-UnknownText_0x1b751a:
+UnknownText_0x1b751a::
 	text "Yes, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -13,7 +13,7 @@ UnknownText_0x1b751a:
 	line "Good morning!"
 	done
 
-UnknownText_0x1b7548:
+UnknownText_0x1b7548::
 	text "Yes, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -23,7 +23,7 @@ UnknownText_0x1b7548:
 	line "Yahoo!"
 	done
 
-UnknownText_0x1b756f:
+UnknownText_0x1b756f::
 	text "Yes, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -32,7 +32,7 @@ UnknownText_0x1b756f:
 	para "Oh, hi, <PLAY_G>!"
 	done
 
-UnknownText_0x1b758f:
+UnknownText_0x1b758f::
 	text "<PLAY_G>!"
 
 	para "It's @"
@@ -41,7 +41,7 @@ UnknownText_0x1b758f:
 	line "Good morning!"
 	done
 
-UnknownText_0x1b75ac:
+UnknownText_0x1b75ac::
 	text "<PLAY_G>!"
 
 	para "It's @"
@@ -50,7 +50,7 @@ UnknownText_0x1b75ac:
 	line "Working hard?"
 	done
 
-UnknownText_0x1b75c9:
+UnknownText_0x1b75c9::
 	text "<PLAY_G>!"
 
 	para "It's @"
@@ -59,7 +59,7 @@ UnknownText_0x1b75c9:
 	line "Were you up?"
 	done
 
-UnknownText_0x1b75e5:
+UnknownText_0x1b75e5::
 	text "Are you raising"
 	line "your #MON?"
 

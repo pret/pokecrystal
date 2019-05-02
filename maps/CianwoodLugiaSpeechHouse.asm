@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CianwoodLugiaSpeechHouse.asm", ROMX
 
-CianwoodLugiaSpeechHouse_MapScripts:
+CianwoodLugiaSpeechHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -64,7 +64,7 @@ CianwoodLugiaSpeechHouseTwinText:
 	cont "get past them."
 	done
 
-CianwoodLugiaSpeechHouse_MapEvents:
+CianwoodLugiaSpeechHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

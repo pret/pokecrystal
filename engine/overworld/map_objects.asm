@@ -2164,7 +2164,7 @@ Function55e0::
 	jr nz, .loop
 	ret
 
-Function5602:
+Function5602::
 ; called at battle start
 	call Function5645 ; clear sprites
 	ld a, PLAYER
@@ -2180,7 +2180,7 @@ Function5602:
 	call _UpdateSprites
 	ret
 
-Function561d:
+Function561d::
 	call Function5645 ; clear sprites
 	ld a, PLAYER
 	call Function5629 ; respawn player
@@ -2436,7 +2436,7 @@ HandleNPCStep::
 	jr nz, .loop
 	ret
 
-RefreshPlayerSprite:
+RefreshPlayerSprite::
 	ld a, movement_step_sleep
 	ld [wPlayerNextMovement], a
 	ld [wPlayerMovement], a
@@ -2470,14 +2470,14 @@ RefreshPlayerSprite:
 	add a
 	jr ContinueSpawnFacing
 
-SpawnInFacingDown:
+SpawnInFacingDown::
 	ld a, 0
 ContinueSpawnFacing:
 	ld bc, wPlayerStruct
 	call SetSpriteDirection
 	ret
 
-_SetPlayerPalette:
+_SetPlayerPalette::
 	ld a, d
 	and 1 << 7
 	ret z
@@ -2730,7 +2730,7 @@ _UpdateSprites::
 	jr nz, .loop
 	ret
 
-ApplyBGMapAnchorToObjects:
+ApplyBGMapAnchorToObjects::
 	push hl
 	push de
 	push bc

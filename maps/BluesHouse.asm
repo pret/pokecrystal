@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/BluesHouse.asm", ROMX
 
-BluesHouse_MapScripts:
+BluesHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -147,7 +147,7 @@ DaisyCantGroomEggText:
 	cont "groom an EGG."
 	done
 
-BluesHouse_MapEvents:
+BluesHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

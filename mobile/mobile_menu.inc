@@ -511,7 +511,7 @@ Function4a39a:
 	call SetPalettes
 	ret
 
-Function4a3a7:
+Function4a3a7::
 	call Function4a485
 Function4a3aa:
 	hlcoord 0, 0
@@ -601,7 +601,7 @@ Function4a449:
 	call ByteFill
 	ret
 
-Function4a485:
+Function4a485::
 	ld de, GFX_49c0c
 	ld hl, vTiles2 tile $00
 	lb bc, BANK(GFX_49c0c), 13

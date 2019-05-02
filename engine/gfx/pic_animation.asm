@@ -5,7 +5,7 @@ SECTION "engine/gfx/pic_animation.asm", ROMX
 
 ; Pic animation arrangement.
 
-Unused_AnimateMon_Slow_Normal:
+Unused_AnimateMon_Slow_Normal::
 	hlcoord 12, 0
 	ld a, [wBattleMode]
 	cp WILD_BATTLE
@@ -85,7 +85,7 @@ PokeAnims:
 .Egg1:   pokeanim Setup, Play
 .Egg2:   pokeanim Idle, Play
 
-AnimateFrontpic:
+AnimateFrontpic::
 	call AnimateMon_CheckIfPokemon
 	ret c
 	call LoadMonAnimation
@@ -97,7 +97,7 @@ AnimateFrontpic:
 	jr nc, .loop
 	ret
 
-LoadMonAnimation:
+LoadMonAnimation::
 	push hl
 	ld c, e
 	ld b, 0
@@ -111,7 +111,7 @@ LoadMonAnimation:
 	call PokeAnim_InitPicAttributes
 	ret
 
-SetUpPokeAnim:
+SetUpPokeAnim::
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wPokeAnimStruct)
@@ -1055,11 +1055,11 @@ PokeAnim_GetSpeciesOrUnown:
 	ld a, [wPokeAnimUnownLetter]
 	ret
 
-Unused_HOF_AnimateAlignedFrontpic:
+Unused_HOF_AnimateAlignedFrontpic::
 	ld a, $1
 	ld [wBoxAlignment], a
 
-HOF_AnimateFrontpic:
+HOF_AnimateFrontpic::
 	call AnimateMon_CheckIfPokemon
 	jr c, .fail
 	ld h, d

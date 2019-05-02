@@ -31,7 +31,7 @@ FarCopyBytesDouble_DoubleBankSwitch::
 	rst Bankswitch
 	ret
 
-OldDMATransfer::
+OldDMATransfer:
 	dec c
 	ldh a, [hBGMapMode]
 	push af
@@ -110,7 +110,7 @@ LoadFontsExtra::
 	farcall _LoadFontsExtra2
 	ret
 
-LoadFontsExtra2::
+LoadFontsExtra2:
 	farcall _LoadFontsExtra2
 	ret
 
@@ -147,7 +147,7 @@ FarCopyBytes::
 	rst Bankswitch
 	ret
 
-FarCopyBytesDouble::
+FarCopyBytesDouble:
 ; Copy bc bytes from a:hl to bc*2 bytes at de,
 ; doubling each byte in the process.
 
@@ -337,7 +337,7 @@ Get2bpp::
 	bit rLCDC_ENABLE, a
 	jp nz, Request2bpp
 
-Copy2bpp::
+Copy2bpp:
 ; copy c 2bpp tiles from b:de to hl
 
 	push hl

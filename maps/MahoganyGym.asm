@@ -12,7 +12,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/MahoganyGym.asm", ROMX
 
-MahoganyGym_MapScripts:
+MahoganyGym_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -375,7 +375,7 @@ MahoganyGymGuyWinText:
 	line "eration gap!"
 	done
 
-MahoganyGym_MapEvents:
+MahoganyGym_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/liz.asm", ROMX
 
-LizPhoneCalleeScript:
+LizPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, PICNICKER, LIZ1
 	checkflag ENGINE_LIZ
 	iftrue .WantsBattle
@@ -23,7 +23,7 @@ LizPhoneCalleeScript:
 	getlandmarkname STRING_BUFFER_5, ROUTE_32
 	farsjump UnknownScript_0xa0a5a
 
-LizPhoneCallerScript:
+LizPhoneCallerScript::
 	gettrainername STRING_BUFFER_3, PICNICKER, LIZ1
 	farscall PhoneScript_Random4
 	ifequal 0, LizWrongNumber

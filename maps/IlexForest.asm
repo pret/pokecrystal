@@ -16,7 +16,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/IlexForest.asm", ROMX
 
-IlexForest_MapScripts:
+IlexForest_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -940,7 +940,7 @@ BugCatcherWayneAfterBattleText:
 	cont "places too."
 	done
 
-IlexForest_MapEvents:
+IlexForest_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

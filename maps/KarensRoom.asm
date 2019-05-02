@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/KarensRoom.asm", ROMX
 
-KarensRoom_MapScripts:
+KarensRoom_MapScripts::
 	db 2 ; scene scripts
 	scene_script .LockDoor ; SCENE_DEFAULT
 	scene_script .DummyScene ; SCENE_FINISHED
@@ -135,7 +135,7 @@ KarenScript_KarenDefeatText:
 	line "PION is waiting."
 	done
 
-KarensRoom_MapEvents:
+KarensRoom_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/printer.asm", ROMX
 
-Music_Printer:
+Music_Printer::
 	musicheader 1, 3, Music_Printer_Ch3
 
 Music_Printer_Ch3:

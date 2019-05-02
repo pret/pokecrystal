@@ -13,7 +13,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route2.asm", ROMX
 
-Route2_MapScripts:
+Route2_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -149,7 +149,7 @@ Route2DiglettsCaveSignText:
 	text "DIGLETT'S CAVE"
 	done
 
-Route2_MapEvents:
+Route2_MapEvents::
 	db 0, 0 ; filler
 
 	db 5 ; warp events

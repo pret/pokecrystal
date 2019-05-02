@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route2NuggetHouse.asm", ROMX
 
-Route2NuggetHouse_MapScripts:
+Route2NuggetHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -55,7 +55,7 @@ Route2NuggetHouseFisherText_GotNugget:
 	line "have to do!"
 	done
 
-Route2NuggetHouse_MapEvents:
+Route2NuggetHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

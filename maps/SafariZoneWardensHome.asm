@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/SafariZoneWardensHome.asm", ROMX
 
-SafariZoneWardensHome_MapScripts:
+SafariZoneWardensHome_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -79,7 +79,7 @@ SafariZonePhotoText:
 	line "frolicking in it."
 	done
 
-SafariZoneWardensHome_MapEvents:
+SafariZoneWardensHome_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

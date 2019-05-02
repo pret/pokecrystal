@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/newbarktown.asm", ROMX
 
-Music_NewBarkTown:
+Music_NewBarkTown::
 	musicheader 3, 1, Music_NewBarkTown_Ch1
 	musicheader 1, 2, Music_NewBarkTown_Ch2
 	musicheader 1, 3, Music_NewBarkTown_Ch3

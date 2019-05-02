@@ -11,7 +11,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route12.asm", ROMX
 
-Route12_MapScripts:
+Route12_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -169,7 +169,7 @@ FishingSpotSignText:
 	text "FISHING SPOT"
 	done
 
-Route12_MapEvents:
+Route12_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

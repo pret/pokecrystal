@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/UndergroundPath.asm", ROMX
 
-UndergroundPath_MapScripts:
+UndergroundPath_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -14,7 +14,7 @@ UndergroundPathHiddenFullRestore:
 UndergroundPathHiddenXSpecial:
 	hiddenitem X_SPECIAL, EVENT_UNDERGROUND_PATH_HIDDEN_X_SPECIAL
 
-UndergroundPath_MapEvents:
+UndergroundPath_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/RedsHouse1F.asm", ROMX
 
-RedsHouse1F_MapScripts:
+RedsHouse1F_MapScripts::
 	db 1 ; scene scripts
 	scene_script .DummyScene
 
@@ -77,7 +77,7 @@ RedsHouse1FTVText:
 	cont "in JOHTO…"
 	done
 
-RedsHouse1F_MapEvents:
+RedsHouse1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

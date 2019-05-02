@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/MountMoon.asm", ROMX
 
-MountMoon_MapScripts:
+MountMoon_MapScripts::
 	db 2 ; scene scripts
 	scene_script .RivalEncounter ; SCENE_DEFAULT
 	scene_script .DummyScene ; SCENE_FINISHED
@@ -163,7 +163,7 @@ MountMoonSilverTextLoss:
 	cont "greatest trainer."
 	done
 
-MountMoon_MapEvents:
+MountMoon_MapEvents::
 	db 0, 0 ; filler
 
 	db 8 ; warp events

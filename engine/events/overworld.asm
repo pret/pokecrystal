@@ -24,7 +24,7 @@ FieldMoveJumptable:
 	scf
 	ret
 
-GetPartyNick:
+GetPartyNick::
 ; write wCurPartyMon nickname to wStringBuffer1-3
 	ld hl, wPartyMonNicknames
 	ld a, BOXMON
@@ -122,7 +122,7 @@ FieldMoveFailed:
 	text_far UnknownText_0x1c05c8
 	text_end
 
-CutFunction:
+CutFunction::
 	call FieldMoveJumptableReset
 .loop
 	ld hl, .Jumptable
@@ -283,7 +283,7 @@ CheckOverworldTileArrays:
 
 INCLUDE "data/events/field_move_blocks.inc"
 
-OWFlash:
+OWFlash::
 	call .CheckUseFlash
 	and $7f
 	ld [wFieldMoveSucceeded], a
@@ -340,7 +340,7 @@ UnknownText_0xc8f3:
 .BlankText:
 	text_end
 
-SurfFunction:
+SurfFunction::
 	call FieldMoveJumptableReset
 .loop
 	ld hl, .Jumptable
@@ -554,7 +554,7 @@ AskSurfText:
 	text_far _AskSurfText
 	text_end
 
-FlyFunction:
+FlyFunction::
 	call FieldMoveJumptableReset
 .loop
 	ld hl, .Jumptable
@@ -643,7 +643,7 @@ FlyFunction:
 	farcall LoadOverworldFont
 	ret
 
-WaterfallFunction:
+WaterfallFunction::
 	call .TryWaterfall
 	and $7f
 	ld [wFieldMoveSucceeded], a
@@ -761,12 +761,12 @@ Script_AskWaterfall:
 	text_far UnknownText_0x1c06bf
 	text_end
 
-EscapeRopeFunction:
+EscapeRopeFunction::
 	call FieldMoveJumptableReset
 	ld a, $1
 	jr dig_incave
 
-DigFunction:
+DigFunction::
 	call FieldMoveJumptableReset
 	ld a, $2
 
@@ -892,7 +892,7 @@ dig_incave
 	return_dig 32
 	step_end
 
-TeleportFunction:
+TeleportFunction::
 	call FieldMoveJumptableReset
 .loop
 	ld hl, .Jumptable
@@ -977,7 +977,7 @@ TeleportFunction:
 	teleport_to
 	step_end
 
-StrengthFunction:
+StrengthFunction::
 	call .TryStrength
 	and $7f
 	ld [wFieldMoveSucceeded], a
@@ -1045,7 +1045,7 @@ Script_UsedStrength:
 	text_far UnknownText_0x1c0788
 	text_end
 
-AskStrengthScript:
+AskStrengthScript::
 	callasm TryStrengthOW
 	iffalse .AskStrength
 	ifequal $1, .DontMeetRequirements
@@ -1108,7 +1108,7 @@ TryStrengthOW:
 	ld [wScriptVar], a
 	ret
 
-WhirlpoolFunction:
+WhirlpoolFunction::
 	call FieldMoveJumptableReset
 .loop
 	ld hl, Jumptable_cdae
@@ -1255,7 +1255,7 @@ UnknownText_0xce78:
 	text_far UnknownText_0x1c0864
 	text_end
 
-HeadbuttFunction:
+HeadbuttFunction::
 	call TryHeadbuttFromMenu
 	and $7f
 	ld [wFieldMoveSucceeded], a
@@ -1339,7 +1339,7 @@ UnknownText_0xcee6:
 	text_far UnknownText_0x1c08bc
 	text_end
 
-RockSmashFunction:
+RockSmashFunction::
 	call TryRockSmashFromMenu
 	and $7f
 	ld [wFieldMoveSucceeded], a
@@ -1362,7 +1362,7 @@ TryRockSmashFromMenu:
 	ld a, $80
 	ret
 
-GetFacingObject:
+GetFacingObject::
 	farcall CheckFacingObject
 	jr nc, .fail
 
@@ -1415,7 +1415,7 @@ UnknownText_0xcf58:
 	text_far UnknownText_0x1c08f0
 	text_end
 
-AskRockSmashScript:
+AskRockSmashScript::
 	callasm HasRockSmash
 	ifequal 1, .no
 
@@ -1452,7 +1452,7 @@ HasRockSmash:
 	ld [wScriptVar], a
 	ret
 
-FishFunction:
+FishFunction::
 	ld a, e
 	push af
 	call FieldMoveJumptableReset
@@ -1651,7 +1651,7 @@ UnknownText_0xd0ae: ; unused
 	text_far UnknownText_0x1c0979
 	text_end
 
-BikeFunction:
+BikeFunction::
 	call .TryBike
 	and $7f
 	ld [wFieldMoveSucceeded], a

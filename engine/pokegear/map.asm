@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/pokegear/map.asm", ROMX
 
-PokegearMap:
+PokegearMap::
 	ld a, e
 	and a
 	jr nz, .kanto
@@ -16,7 +16,7 @@ PokegearMap:
 	call FillKantoMap
 	ret
 
-_FlyMap:
+_FlyMap::
 	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
@@ -335,7 +335,7 @@ FlyMap:
 	ld [wTownMapCursorCoordinates + 1], a
 	ret
 
-Pokedex_GetArea:
+Pokedex_GetArea::
 ; e: Current landmark
 	ld a, [wTownMapPlayerIconLandmark]
 	push af
@@ -655,7 +655,7 @@ FillTownMap:
 	inc de
 	jr .loop
 
-TownMapPals:
+TownMapPals::
 ; Assign palettes based on tile ids
 	hlcoord 0, 0
 	decoord 0, 0, wAttrMap

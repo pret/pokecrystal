@@ -1,6 +1,6 @@
 ; Functions to fade the screen in and out.
 
-Unreferenced_Function48c::
+Unreferenced_Function48c:
 ; TimeOfDayFade
 	ld a, [wTimeOfDayPal]
 	ld b, a
@@ -44,7 +44,7 @@ RotateThreePalettesRight::
 .dmg
 	ld hl, IncGradGBPalTable_13
 	ld b, 3
-RotatePalettesRight::
+RotatePalettesRight:
 ; Rotate palettes to the right and fill with loaded colors from the left
 ; If we're already at the leftmost color, fill with the leftmost color
 	push de
@@ -86,7 +86,7 @@ RotateThreePalettesLeft::
 .dmg
 	ld hl, IncGradGBPalTable_15 - 1
 	ld b, 3
-RotatePalettesLeft::
+RotatePalettesLeft:
 ; Rotate palettes to the left and fill with loaded colors from the right
 ; If we're already at the rightmost color, fill with the rightmost color
 	push de
@@ -104,24 +104,24 @@ RotatePalettesLeft::
 	jr nz, RotatePalettesLeft
 	ret
 
-IncGradGBPalTable_00:: dc 3,3,3,3, 3,3,3,3, 3,3,3,3
-IncGradGBPalTable_01:: dc 3,3,3,2, 3,3,3,2, 3,3,3,2
-IncGradGBPalTable_02:: dc 3,3,2,1, 3,3,2,1, 3,3,2,1
-IncGradGBPalTable_03:: dc 3,2,1,0, 3,2,1,0, 3,2,1,0
+IncGradGBPalTable_00: dc 3,3,3,3, 3,3,3,3, 3,3,3,3
+IncGradGBPalTable_01: dc 3,3,3,2, 3,3,3,2, 3,3,3,2
+IncGradGBPalTable_02: dc 3,3,2,1, 3,3,2,1, 3,3,2,1
+IncGradGBPalTable_03: dc 3,2,1,0, 3,2,1,0, 3,2,1,0
 
-IncGradGBPalTable_04:: dc 3,2,1,0, 3,2,1,0, 3,2,1,0
-IncGradGBPalTable_05:: dc 2,1,0,0, 2,1,0,0, 2,1,0,0
-IncGradGBPalTable_06:: dc 1,0,0,0, 1,0,0,0, 1,0,0,0
+IncGradGBPalTable_04: dc 3,2,1,0, 3,2,1,0, 3,2,1,0
+IncGradGBPalTable_05: dc 2,1,0,0, 2,1,0,0, 2,1,0,0
+IncGradGBPalTable_06: dc 1,0,0,0, 1,0,0,0, 1,0,0,0
 
-IncGradGBPalTable_07:: dc 0,0,0,0, 0,0,0,0, 0,0,0,0
+IncGradGBPalTable_07: dc 0,0,0,0, 0,0,0,0, 0,0,0,0
 ;                           bgp      obp1     obp2
-IncGradGBPalTable_08:: dc 3,3,3,3, 3,3,3,3, 3,3,3,3
-IncGradGBPalTable_09:: dc 3,3,3,2, 3,3,3,2, 3,3,2,0
-IncGradGBPalTable_10:: dc 3,3,2,1, 3,2,1,0, 3,2,1,0
-IncGradGBPalTable_11:: dc 3,2,1,0, 3,1,0,0, 3,2,0,0
+IncGradGBPalTable_08: dc 3,3,3,3, 3,3,3,3, 3,3,3,3
+IncGradGBPalTable_09: dc 3,3,3,2, 3,3,3,2, 3,3,2,0
+IncGradGBPalTable_10: dc 3,3,2,1, 3,2,1,0, 3,2,1,0
+IncGradGBPalTable_11: dc 3,2,1,0, 3,1,0,0, 3,2,0,0
 
-IncGradGBPalTable_12:: dc 3,2,1,0, 3,1,0,0, 3,2,0,0
-IncGradGBPalTable_13:: dc 2,1,0,0, 2,0,0,0, 2,1,0,0
-IncGradGBPalTable_14:: dc 1,0,0,0, 1,0,0,0, 1,0,0,0
+IncGradGBPalTable_12: dc 3,2,1,0, 3,1,0,0, 3,2,0,0
+IncGradGBPalTable_13: dc 2,1,0,0, 2,0,0,0, 2,1,0,0
+IncGradGBPalTable_14: dc 1,0,0,0, 1,0,0,0, 1,0,0,0
 
-IncGradGBPalTable_15:: dc 0,0,0,0, 0,0,0,0, 0,0,0,0
+IncGradGBPalTable_15: dc 0,0,0,0, 0,0,0,0, 0,0,0,0

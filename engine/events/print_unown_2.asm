@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/print_unown_2.asm", ROMX
 
-RotateUnownFrontpic:
+RotateUnownFrontpic::
 ; something to do with Unown printer
 	push de
 	xor a ; sScratch

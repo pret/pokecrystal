@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/RuinsOfAlphResearchCenter.asm", ROMX, BANK[BANK_MAP_RUINS_OF_ALPH_RESEARCH_CENTER]
 
-RuinsOfAlphResearchCenter_MapScripts:
+RuinsOfAlphResearchCenter_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_RUINSOFALPHRESEARCHCENTER_NOTHING
 	scene_script .GetUnownDex ; SCENE_RUINSOFALPHRESEARCHCENTER_GET_UNOWN_DEX
@@ -267,7 +267,7 @@ RuinsOfAlphResearchCenterScientist1Text_UnownAppeared:
 	line "investigate this."
 	done
 
-RuinsOfAlphResearchCenterScientist1Text_GotAllUnown:
+RuinsOfAlphResearchCenterScientist1Text_GotAllUnown::
 	text "Our investigation,"
 	line "with your help, is"
 
@@ -396,7 +396,7 @@ RuinsOfAlphResearchCenterAcademicBooksText:
 	cont "Ancients…"
 	done
 
-RuinsOfAlphResearchCenter_MapEvents:
+RuinsOfAlphResearchCenter_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

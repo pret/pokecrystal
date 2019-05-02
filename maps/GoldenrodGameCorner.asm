@@ -24,7 +24,7 @@ GOLDENRODGAMECORNER_WOBBUFFET_COINS EQU 1500
 
 SECTION "maps/GoldenrodGameCorner.asm", ROMX
 
-GoldenrodGameCorner_MapScripts:
+GoldenrodGameCorner_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -481,7 +481,7 @@ GoldenrodGameCornerLeftTheirDrinkText:
 	para "It smells sweet."
 	done
 
-GoldenrodGameCorner_MapEvents:
+GoldenrodGameCorner_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

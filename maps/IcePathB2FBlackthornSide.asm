@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/IcePathB2FBlackthornSide.asm", ROMX
 
-IcePathB2FBlackthornSide_MapScripts:
+IcePathB2FBlackthornSide_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -17,7 +17,7 @@ IcePathB2FBlackthornSideTMRest:
 IcePathB2FBlackthornSideHiddenIceHeal:
 	hiddenitem ICE_HEAL, EVENT_ICE_PATH_B2F_BLACKTHORN_SIDE_HIDDEN_ICE_HEAL
 
-IcePathB2FBlackthornSide_MapEvents:
+IcePathB2FBlackthornSide_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

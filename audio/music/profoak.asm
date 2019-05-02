@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/profoak.asm", ROMX
 
-Music_ProfOak:
+Music_ProfOak::
 	musicheader 3, 1, Music_ProfOak_Ch1
 	musicheader 1, 2, Music_ProfOak_Ch2
 	musicheader 1, 3, Music_ProfOak_Ch3

@@ -1,4 +1,4 @@
-BattleCommand_Mimic:
+BattleCommand_Mimic::
 ; mimic
 
 	call ClearLastMove

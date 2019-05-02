@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/gina.asm", ROMX
 
-GinaPhoneCalleeScript:
+GinaPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, PICNICKER, GINA1
 	checkflag ENGINE_GINA
 	iftrue .WantsBattle
@@ -33,7 +33,7 @@ GinaPhoneCalleeScript:
 	getlandmarkname STRING_BUFFER_5, ROUTE_34
 	farsjump UnknownScript_0xa0abd
 
-GinaPhoneCallerScript:
+GinaPhoneCallerScript::
 	gettrainername STRING_BUFFER_3, PICNICKER, GINA1
 	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER

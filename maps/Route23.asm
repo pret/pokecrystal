@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route23.asm", ROMX
 
-Route23_MapScripts:
+Route23_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -25,7 +25,7 @@ IndigoPlateauSignText:
 	para "#MON LEAGUE HQ"
 	done
 
-Route23_MapEvents:
+Route23_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

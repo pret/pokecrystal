@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/irwin_callee.asm", ROMX
 
-UnknownText_0x1b638c:
+UnknownText_0x1b638c::
 	text "Hello? @"
 	text_ram wStringBuffer3
 	text_start
@@ -12,7 +12,7 @@ UnknownText_0x1b638c:
 	para "Hey, <PLAY_G>!"
 	done
 
-UnknownText_0x1b63a8:
+UnknownText_0x1b63a8::
 	text "Hello? @"
 	text_ram wStringBuffer3
 	text_start
@@ -21,7 +21,7 @@ UnknownText_0x1b63a8:
 	para "Wow, <PLAY_G>!"
 	done
 
-UnknownText_0x1b63c4:
+UnknownText_0x1b63c4::
 	text "Hello? @"
 	text_ram wStringBuffer3
 	text_start
@@ -30,7 +30,7 @@ UnknownText_0x1b63c4:
 	para "Yippee, <PLAY_G>!"
 	done
 
-UnknownText_0x1b63e3:
+UnknownText_0x1b63e3::
 	text "Uh, hello."
 	line "<PLAY_G>?"
 
@@ -40,7 +40,7 @@ UnknownText_0x1b63e3:
 	text "!"
 	done
 
-UnknownText_0x1b6407:
+UnknownText_0x1b6407::
 	text "Uh, hello,"
 	line "<PLAY_G>?"
 
@@ -50,7 +50,7 @@ UnknownText_0x1b6407:
 	text "!"
 	done
 
-UnknownText_0x1b642c:
+UnknownText_0x1b642c::
 	text "Uh, hello,"
 	line "<PLAY_G>?"
 

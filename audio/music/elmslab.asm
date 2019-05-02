@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/elmslab.asm", ROMX
 
-Music_ElmsLab:
+Music_ElmsLab::
 	musicheader 4, 1, Music_ElmsLab_Ch1
 	musicheader 1, 2, Music_ElmsLab_Ch2
 	musicheader 1, 3, Music_ElmsLab_Ch3

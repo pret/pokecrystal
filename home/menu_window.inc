@@ -220,7 +220,7 @@ MenuBoxCoord2Attr::
 	ld a, [wMenuBorderTopCoord]
 	ld b, a
 
-Coord2Attr::
+Coord2Attr:
 ; Return the address of wAttrMap(c, b) in hl.
 	xor a
 	ld h, a

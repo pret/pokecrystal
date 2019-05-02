@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/IcePath1F.asm", ROMX
 
-IcePath1F_MapScripts:
+IcePath1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -22,7 +22,7 @@ IcePath1FPPUp:
 IcePath1FProtein:
 	itemball PROTEIN
 
-IcePath1F_MapEvents:
+IcePath1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

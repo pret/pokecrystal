@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/TinTower9F.asm", ROMX
 
-TinTower9F_MapScripts:
+TinTower9F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -24,7 +24,7 @@ TinTower9FUnusedLugiaText:
 	text "LUGIA: Gyaaan!"
 	done
 
-TinTower9F_MapEvents:
+TinTower9F_MapEvents::
 	db 0, 0 ; filler
 
 	db 7 ; warp events

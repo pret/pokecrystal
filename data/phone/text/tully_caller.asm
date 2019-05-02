@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/tully_caller.asm", ROMX
 
-TullyGrownText:
+TullyGrownText::
 	text "My @"
 	text_ram wStringBuffer4
 	text " has"
@@ -16,7 +16,7 @@ TullyGrownText:
 	line "it's way bigger."
 	done
 
-UnknownText_0x65e42:
+UnknownText_0x65e42::
 	text "Oh yeah, I KO'd a"
 	line "wild @"
 	text_ram wStringBuffer4
@@ -30,7 +30,7 @@ UnknownText_0x65e42:
 	cont "the phone…"
 	done
 
-UnknownText_0x65eac:
+UnknownText_0x65eac::
 	text "Oh yeah, I lost a"
 	line "wild @"
 	text_ram wStringBuffer4
@@ -44,7 +44,7 @@ UnknownText_0x65eac:
 	cont "the phone…"
 	done
 
-UnknownText_0x65f17:
+UnknownText_0x65f17::
 	text "We should get a"
 	line "battle going!"
 
@@ -57,12 +57,12 @@ UnknownText_0x65f17:
 	line "have the time."
 	done
 
-UnknownText_0x65f6e:
+UnknownText_0x65f6e::
 	text "Well, I'll be"
 	line "seeing you."
 	done
 
-UnknownText_0x65f88:
+UnknownText_0x65f88::
 	text "I picked up a good"
 	line "little thing at"
 	cont "the water's edge."
@@ -76,7 +76,7 @@ UnknownText_0x65f88:
 	text "."
 	done
 
-UnknownText_0x65ff2:
+UnknownText_0x65ff2::
 	text "Have I found"
 	line "anything good?"
 
@@ -86,7 +86,7 @@ UnknownText_0x65ff2:
 	line "you need patience."
 	done
 
-UnknownText_0x66043:
+UnknownText_0x66043::
 	text "Yup, TULLY here…"
 
 	para "<PLAY_G>? What?"
@@ -98,7 +98,7 @@ UnknownText_0x66043:
 	text "."
 	done
 
-UnknownText_0x66087:
+UnknownText_0x66087::
 	text "I've got something"
 	line "good for you."
 

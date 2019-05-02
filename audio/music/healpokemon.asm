@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/healpokemon.asm", ROMX
 
-Music_HealPokemon:
+Music_HealPokemon::
 	musicheader 3, 1, Music_HealPokemon_Ch1
 	musicheader 1, 2, Music_HealPokemon_Ch2
 	musicheader 1, 3, Music_HealPokemon_Ch3

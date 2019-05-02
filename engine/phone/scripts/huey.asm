@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/huey.asm", ROMX
 
-HueyPhoneCalleeScript:
+HueyPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, SAILOR, HUEY1
 	checkflag ENGINE_HUEY
 	iftrue .WantsBattle
@@ -23,7 +23,7 @@ HueyPhoneCalleeScript:
 	getlandmarkname STRING_BUFFER_5, LIGHTHOUSE
 	farsjump HueyWantsBattleScript
 
-HueyPhoneCallerScript:
+HueyPhoneCallerScript::
 	gettrainername STRING_BUFFER_3, SAILOR, HUEY1
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_HUEY

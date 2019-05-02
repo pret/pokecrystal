@@ -14,7 +14,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CianwoodGym.asm", ROMX
 
-CianwoodGym_MapScripts:
+CianwoodGym_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -308,7 +308,7 @@ BlackbeltLungAfterText:
 	cont "shattered…"
 	done
 
-CianwoodGym_MapEvents:
+CianwoodGym_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

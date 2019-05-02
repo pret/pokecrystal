@@ -12,7 +12,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/PowerPlant.asm", ROMX
 
-PowerPlant_MapScripts:
+PowerPlant_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_POWERPLANT_NOTHING
 	scene_script .DummyScene1 ; SCENE_POWERPLANT_GUARD_GETS_PHONE_CALL
@@ -391,7 +391,7 @@ PowerPlantManagerMyBelovedGeneratorText:
 	line "electricity out!"
 	done
 
-PowerPlant_MapEvents:
+PowerPlant_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/OlivineCity.asm", ROMX
 
-OlivineCity_MapScripts:
+OlivineCity_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_FINISHED
@@ -291,7 +291,7 @@ OlivineCityBattleTowerSignText_NotYetOpen:
 	text "BATTLE TOWER AHEAD"
 	done
 
-OlivineCity_MapEvents:
+OlivineCity_MapEvents::
 	db 0, 0 ; filler
 
 	db 11 ; warp events

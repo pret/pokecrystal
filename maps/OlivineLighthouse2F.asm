@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/OlivineLighthouse2F.asm", ROMX
 
-OlivineLighthouse2F_MapScripts:
+OlivineLighthouse2F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -207,7 +207,7 @@ SailorHueyGiveProteinText:
 	cont "before."
 	done
 
-OlivineLighthouse2F_MapEvents:
+OlivineLighthouse2F_MapEvents::
 	db 0, 0 ; filler
 
 	db 6 ; warp events

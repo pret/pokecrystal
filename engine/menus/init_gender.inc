@@ -21,7 +21,7 @@ InitCrystalData:
 
 INCLUDE "mobile/mobile_12.inc"
 
-InitGender:
+InitGender::
 	call InitGenderScreen
 	call LoadGenderScreenPal
 	call LoadGenderScreenLightBlueTile

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/battle/update_battle_huds.asm", ROMX
 
-_UpdateBattleHUDs:
+_UpdateBattleHUDs::
 	farcall DrawPlayerHUD
 	ld hl, wPlayerHPPal
 	call SetHPPal

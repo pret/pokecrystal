@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/VioletNicknameSpeechHouse.asm", ROMX
 
-VioletNicknameSpeechHouse_MapScripts:
+VioletNicknameSpeechHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -47,7 +47,7 @@ VioletNicknameSpeechHouseBirdText:
 	text "STRAWBERRY: Pijji!"
 	done
 
-VioletNicknameSpeechHouse_MapEvents:
+VioletNicknameSpeechHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

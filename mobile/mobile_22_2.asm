@@ -60,7 +60,7 @@ Function8b363:
 
 SECTION "mobile/mobile_22_2.asm", ROMX, BANK[BANK_MOBILE_22]
 
-Function8b36c:
+Function8b36c::
 	; [bc + (0:4)] = -1
 	push bc
 	ld h, b
@@ -131,7 +131,7 @@ Function8b3a4:
 	pop de
 	ret
 
-Function8b3b0:
+Function8b3b0::
 	ld bc, $a037 ; 4:a037
 	ld a, [$a60b]
 	and a
@@ -281,7 +281,7 @@ Function8b45c:
 	scf
 	ret
 
-Function8b493:
+Function8b493::
 	push bc
 	call Mobile22_SetBGMapMode0
 	call Function8b521
@@ -405,7 +405,7 @@ Unknown_8b529:
 	dwcoord 7, 4
 	db 1, 4, $48, $41, 0, 0
 
-Function8b539:
+Function8b539::
 	ld bc, wd017
 	call Function8b36c
 	xor a
@@ -418,7 +418,7 @@ Function8b539:
 	call CGBOnly_CopyTilemapAtOnce
 	ret
 
-Function8b555:
+Function8b555::
 .loop
 	ld hl, UnknownText_0x8b5ce
 	call PrintText
@@ -496,7 +496,7 @@ UnknownText_0x8b5e2:
 	text_far _FourZerosInvalidText
 	text_end
 
-Function8b5e7:
+Function8b5e7::
 	ld bc, wd013
 	call Function8b36c
 	xor a
@@ -578,7 +578,7 @@ Function8b664:
 	cp $4
 	ret
 
-Function8b677:
+Function8b677::
 	call ClearBGPalettes
 	call DisableLCD
 	call Function8b690
@@ -788,7 +788,7 @@ Function8b79e:
 	jr nz, .asm_8b7a9
 	ret
 
-Function8b7bd:
+Function8b7bd::
 	call Function8b855
 	ld hl, MenuHeader_0x8b867
 	call CopyMenuHeader
@@ -993,7 +993,7 @@ String_8b919: db "どの　めいしと　いれかえますか？@"    ; OK to 
 String_8b92a: db "あいてを　えらんでください@"        ; Please select an opponent.
 String_8b938: db "いれる　ところを　えらんでください@" ; Please select a location.
 
-Function8b94a:
+Function8b94a::
 	ld [wd033], a
 	xor a
 	ld [wMenuScrollPosition], a
@@ -1004,7 +1004,7 @@ Function8b94a:
 	ld [wd030], a
 	ret
 
-Function8b960:
+Function8b960::
 	ld hl, MenuHeader_0x8b9ac
 	call LoadMenuHeader
 	call Function8b9e9

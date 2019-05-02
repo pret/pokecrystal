@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/brent.asm", ROMX
 
-BrentPhoneCalleeScript:
+BrentPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, POKEMANIAC, BRENT1
 	checkflag ENGINE_BRENT
 	iftrue .WantsBattle
@@ -22,7 +22,7 @@ BrentPhoneCalleeScript:
 	getlandmarkname STRING_BUFFER_5, ROUTE_43
 	farsjump UnknownScript_0xa0a87
 
-BrentPhoneCallerScript:
+BrentPhoneCallerScript::
 	gettrainername STRING_BUFFER_3, POKEMANIAC, BRENT1
 	farscall PhoneScript_GreetPhone_Male
 	farscall PhoneScript_Random2

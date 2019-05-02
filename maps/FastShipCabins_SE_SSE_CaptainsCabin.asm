@@ -16,7 +16,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/FastShipCabins_SE_SSE_CaptainsCabin.asm", ROMX
 
-FastShipCabins_SE_SSE_CaptainsCabin_MapScripts:
+FastShipCabins_SE_SSE_CaptainsCabin_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -465,7 +465,7 @@ SSAquaHasArrivedVermilionText:
 	cont "VERMILION CITY."
 	done
 
-FastShipCabins_SE_SSE_CaptainsCabin_MapEvents:
+FastShipCabins_SE_SSE_CaptainsCabin_MapEvents::
 	db 0, 0 ; filler
 
 	db 6 ; warp events

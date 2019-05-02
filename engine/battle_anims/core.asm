@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/battle_anims/core.asm", ROMX
 
-PlayBattleAnim:
+PlayBattleAnim::
 	ldh a, [rSVBK]
 	push af
 
@@ -445,7 +445,7 @@ BattleAnim_UpdateOAM_All:
 .done
 	ret
 
-QueueBattleAnimation:
+QueueBattleAnimation::
 	ld hl, wActiveAnimObjects
 	ld e, NUM_ANIM_OBJECTS
 .loop

@@ -1,4 +1,4 @@
-BattleCommand_LockOn:
+BattleCommand_LockOn::
 ; lockon
 
 	call CheckSubstituteOpp

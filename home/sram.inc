@@ -5,7 +5,7 @@ GetSRAMBank::
 	jr c, OpenSRAM
 	jr CloseSRAM
 
-OpenSRAM::
+OpenSRAM:
 ; switch to sram bank a
 	push af
 ; latch clock data

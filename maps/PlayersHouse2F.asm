@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/PlayersHouse2F.asm", ROMX
 
-PlayersHouse2F_MapScripts:
+PlayersHouse2F_MapScripts::
 	db 0 ; scene scripts
 
 	db 2 ; callbacks
@@ -118,7 +118,7 @@ PlayersRadioText4:
 	line "#MON CHANNEL…"
 	done
 
-PlayersHouse2F_MapEvents:
+PlayersHouse2F_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

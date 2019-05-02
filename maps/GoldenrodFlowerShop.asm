@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/GoldenrodFlowerShop.asm", ROMX
 
-GoldenrodFlowerShop_MapScripts:
+GoldenrodFlowerShop_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -162,7 +162,7 @@ GoldenrodFlowerShopFloriaItReallyWasAMonText:
 	line "#MON!"
 	done
 
-GoldenrodFlowerShop_MapEvents:
+GoldenrodFlowerShop_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

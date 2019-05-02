@@ -11,7 +11,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/GoldenrodDeptStore5F.asm", ROMX
 
-GoldenrodDeptStore5F_MapScripts:
+GoldenrodDeptStore5F_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -220,7 +220,7 @@ GoldenrodDeptStore5FDirectoryText:
 	para "5F TM CORNER"
 	done
 
-GoldenrodDeptStore5F_MapEvents:
+GoldenrodDeptStore5F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

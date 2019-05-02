@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route5.asm", ROMX
 
-Route5_MapScripts:
+Route5_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -42,7 +42,7 @@ HouseForSaleSignText:
 	line "Nobody lives here."
 	done
 
-Route5_MapEvents:
+Route5_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

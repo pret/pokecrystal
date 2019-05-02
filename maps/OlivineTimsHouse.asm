@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/OlivineTimsHouse.asm", ROMX
 
-OlivineTimsHouse_MapScripts:
+OlivineTimsHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -22,7 +22,7 @@ Tim:
 TimsHouseBookshelf:
 	jumpstd magazinebookshelf
 
-OlivineTimsHouse_MapEvents:
+OlivineTimsHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

@@ -1,4 +1,4 @@
-ChadOakGossipScript:
+ChadOakGossipScript::
 	random 10
 	ifequal 0, .Blue
 	ifequal 1, .Daisy

@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/OlivineLighthouse6F.asm", ROMX
 
-OlivineLighthouse6F_MapScripts:
+OlivineLighthouse6F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -261,7 +261,7 @@ AmphyPaluPaluluText:
 	line "Palulu!"
 	done
 
-OlivineLighthouse6F_MapEvents:
+OlivineLighthouse6F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

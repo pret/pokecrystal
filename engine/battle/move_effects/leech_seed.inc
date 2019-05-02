@@ -1,4 +1,4 @@
-BattleCommand_LeechSeed:
+BattleCommand_LeechSeed::
 ; leechseed
 	ld a, [wAttackMissed]
 	and a

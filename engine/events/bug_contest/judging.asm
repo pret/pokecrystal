@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/bug_contest/judging.asm", ROMX, BANK[BANK_BUG_CONTEST_JUDGING]
 
-_BugContestJudging:
+_BugContestJudging::
 	call ContestScore
 	farcall StubbedTrainerRankings_BugContestScore
 	call BugContest_JudgeContestants

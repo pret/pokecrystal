@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/erin_overworld.asm", ROMX
 
-ErinAskNumber1Text:
+ErinAskNumber1Text::
 	text "It really made me"
 	line "angry to lose."
 
@@ -17,7 +17,7 @@ ErinAskNumber1Text:
 	line "battle me again?"
 	done
 
-ErinAskNumber2Text:
+ErinAskNumber2Text::
 	text "I want to battle"
 	line "with you again."
 
@@ -25,13 +25,13 @@ ErinAskNumber2Text:
 	line "exchange numbers?"
 	done
 
-ErinNumberAcceptedText:
+ErinNumberAcceptedText::
 	text "I'll remember to"
 	line "call when I want"
 	cont "to battle again!"
 	done
 
-ErinNumberDeclinedText:
+ErinNumberDeclinedText::
 	text "Oh… I'm sad…"
 	line "If you do want to"
 
@@ -39,17 +39,17 @@ ErinNumberDeclinedText:
 	line "ERIN--that's me!"
 	done
 
-ErinPhoneFullText:
+ErinPhoneFullText::
 	text "Oh no. Your phone"
 	line "is all filled up."
 	done
 
-ErinRematchText:
+ErinRematchText::
 	text "Yay! I waited!"
 	line "Let's start now!"
 	done
 
-ErinPackFullText:
+ErinPackFullText::
 	text "That's too bad!"
 	line "You have no room…"
 
@@ -57,7 +57,7 @@ ErinPackFullText:
 	line "you another time."
 	done
 
-ErinRematchGiftText:
+ErinRematchGiftText::
 	text "Aww… I lost again!"
 
 	para "I wonder how many"

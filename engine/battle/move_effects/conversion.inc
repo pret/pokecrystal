@@ -1,4 +1,4 @@
-BattleCommand_Conversion:
+BattleCommand_Conversion::
 ; conversion
 
 	ld hl, wBattleMonMoves

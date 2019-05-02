@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/PokeSeersHouse.asm", ROMX
 
-PokeSeersHouse_MapScripts:
+PokeSeersHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -19,7 +19,7 @@ SeerScript:
 	closetext
 	end
 
-PokeSeersHouse_MapEvents:
+PokeSeersHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

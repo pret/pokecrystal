@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/MountMoonSquare.asm", ROMX
 
-MountMoonSquare_MapScripts:
+MountMoonSquare_MapScripts::
 	db 1 ; scene scripts
 	scene_script .DummyScene ; SCENE_DEFAULT
 
@@ -135,7 +135,7 @@ DontLitterSignText:
 	line "DON'T LITTER"
 	done
 
-MountMoonSquare_MapEvents:
+MountMoonSquare_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/MobileBattleRoom.asm", ROMX
 
-MobileBattleRoom_MapScripts:
+MobileBattleRoom_MapScripts::
 	db 2 ; scene scripts
 	scene_script .InitializeMobileBattleRoom ; SCENE_DEFAULT
 	scene_script .DummyScene ; SCENE_FINISHED
@@ -69,7 +69,7 @@ MobileBattleRoom_HealText:
 	cont "before battle."
 	done
 
-MobileBattleRoom_MapEvents:
+MobileBattleRoom_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

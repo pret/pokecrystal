@@ -19,7 +19,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/TeamRocketBaseB3F.asm", ROMX
 
-TeamRocketBaseB3F_MapScripts:
+TeamRocketBaseB3F_MapScripts::
 	db 4 ; scene scripts
 	scene_script .LanceGetsPassword ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_TEAMROCKETBASEB3F_RIVAL_ENCOUNTER
@@ -568,7 +568,7 @@ TeamRocketBaseB3FLockedDoorOpenSesameText:
 	para "The door opened!"
 	done
 
-TeamRocketBaseB3F_MapEvents:
+TeamRocketBaseB3F_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

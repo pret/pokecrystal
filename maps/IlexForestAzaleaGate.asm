@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/IlexForestAzaleaGate.asm", ROMX
 
-IlexForestAzaleaGate_MapScripts:
+IlexForestAzaleaGate_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -33,7 +33,7 @@ IlexForestAzaleaGateGrannyText:
 	line "mischief!"
 	done
 
-IlexForestAzaleaGate_MapEvents:
+IlexForestAzaleaGate_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

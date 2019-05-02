@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/parry_callee.asm", ROMX
 
-UnknownText_0x1b73c7:
+UnknownText_0x1b73c7::
 	text "Yup, yup!"
 	line "It's @"
 	text_ram wStringBuffer3
@@ -13,7 +13,7 @@ UnknownText_0x1b73c7:
 	line "<PLAY_G>!"
 	done
 
-UnknownText_0x1b73ef:
+UnknownText_0x1b73ef::
 	text "Yup, yup!"
 	line "It's @"
 	text_ram wStringBuffer3
@@ -23,7 +23,7 @@ UnknownText_0x1b73ef:
 	line "<PLAY_G>!"
 	done
 
-UnknownText_0x1b7417:
+UnknownText_0x1b7417::
 	text "Yup, yup!"
 	line "It's @"
 	text_ram wStringBuffer3
@@ -33,7 +33,7 @@ UnknownText_0x1b7417:
 	line "<PLAY_G>!"
 	done
 
-UnknownText_0x1b743f:
+UnknownText_0x1b743f::
 	text "<PLAY_G>, it's"
 	line "@"
 	text_ram wStringBuffer3
@@ -43,7 +43,7 @@ UnknownText_0x1b743f:
 	line "proper breakfast?"
 	done
 
-UnknownText_0x1b746f:
+UnknownText_0x1b746f::
 	text "<PLAY_G>, it's"
 	line "@"
 	text_ram wStringBuffer3
@@ -53,7 +53,7 @@ UnknownText_0x1b746f:
 	line "proper lunch?"
 	done
 
-UnknownText_0x1b749b:
+UnknownText_0x1b749b::
 	text "<PLAY_G>, it's"
 	line "@"
 	text_ram wStringBuffer3
@@ -63,7 +63,7 @@ UnknownText_0x1b749b:
 	line "proper dinner?"
 	done
 
-UnknownText_0x1b74c8:
+UnknownText_0x1b74c8::
 	text "Are your #MON"
 	line "looking good?"
 

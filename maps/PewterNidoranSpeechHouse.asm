@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/PewterNidoranSpeechHouse.asm", ROMX
 
-PewterNidoranSpeechHouse_MapScripts:
+PewterNidoranSpeechHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -31,7 +31,7 @@ PewterNidoranText:
 	text "NIDORAN: Gau gau!"
 	done
 
-PewterNidoranSpeechHouse_MapEvents:
+PewterNidoranSpeechHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

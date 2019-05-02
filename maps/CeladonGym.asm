@@ -11,7 +11,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CeladonGym.asm", ROMX
 
-CeladonGym_MapScripts:
+CeladonGym_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -270,7 +270,7 @@ TwinsJoAndZoe2AfterBattleText:
 	line "much stronger!"
 	done
 
-CeladonGym_MapEvents:
+CeladonGym_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

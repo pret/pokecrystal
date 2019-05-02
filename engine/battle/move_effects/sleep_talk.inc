@@ -1,4 +1,4 @@
-BattleCommand_SleepTalk:
+BattleCommand_SleepTalk::
 ; sleeptalk
 
 	call ClearLastMove

@@ -11,7 +11,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CeruleanCity.asm", ROMX
 
-CeruleanCity_MapScripts:
+CeruleanCity_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -278,7 +278,7 @@ CeruleanLockedDoorText:
 	text "It's locked…"
 	done
 
-CeruleanCity_MapEvents:
+CeruleanCity_MapEvents::
 	db 0, 0 ; filler
 
 	db 6 ; warp events

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/basement_key.asm", ROMX
 
-_BasementKey:
+_BasementKey::
 ; Are we even in the right map to use this?
 	ld a, [wMapGroup]
 	cp GROUP_GOLDENROD_UNDERGROUND

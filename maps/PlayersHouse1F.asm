@@ -10,7 +10,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/PlayersHouse1F.asm", ROMX
 
-PlayersHouse1F_MapScripts:
+PlayersHouse1F_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_FINISHED
@@ -388,7 +388,7 @@ maps_PlayersHouse1F_asm_TVText:
 	line "rolling too!"
 	done
 
-PlayersHouse1F_MapEvents:
+PlayersHouse1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

@@ -18,7 +18,7 @@ Reset::
 
 	jr Init
 
-_Start::
+_Start:
 	cp $11
 	jr z, .cgb
 	xor a
@@ -167,7 +167,7 @@ Init::
 	ld [wMapMusic], a
 	jp GameInit
 
-ClearVRAM::
+ClearVRAM:
 ; Wipe VRAM banks 0 and 1
 
 	ld a, 1
@@ -183,7 +183,7 @@ ClearVRAM::
 	call ByteFill
 	ret
 
-ClearWRAM::
+ClearWRAM:
 ; Wipe swappable WRAM banks (1-7)
 ; Assumes CGB or AGB
 
@@ -201,7 +201,7 @@ ClearWRAM::
 	jr nc, .bank_loop ; Should be jr c
 	ret
 
-ClearsScratch::
+ClearsScratch:
 ; Wipe the first 32 bytes of sScratch
 
 	ld a, BANK(sScratch)

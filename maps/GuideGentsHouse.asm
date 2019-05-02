@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/GuideGentsHouse.asm", ROMX
 
-GuideGentsHouse_MapScripts:
+GuideGentsHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -30,7 +30,7 @@ GuideGentsHouseGuideGentText:
 	line "with kindness!"
 	done
 
-GuideGentsHouse_MapEvents:
+GuideGentsHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

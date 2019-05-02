@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/ViridianGym.asm", ROMX
 
-ViridianGym_MapScripts:
+ViridianGym_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -172,7 +172,7 @@ ViridianGymGuyWinText:
 	line "tears to my eyes."
 	done
 
-ViridianGym_MapEvents:
+ViridianGym_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

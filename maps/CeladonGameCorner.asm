@@ -14,7 +14,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CeladonGameCorner.asm", ROMX
 
-CeladonGameCorner_MapScripts:
+CeladonGameCorner_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -326,7 +326,7 @@ CeladonGameCornerSodaCanText:
 	para "Huh? It's empty!"
 	done
 
-CeladonGameCorner_MapEvents:
+CeladonGameCorner_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

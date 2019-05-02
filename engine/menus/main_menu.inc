@@ -1,7 +1,7 @@
 GFX_49c0c:
 INCBIN "gfx/unknown/049c0c.2bpp"
 
-MainMenu:
+MainMenu::
 	xor a
 	ld [wDisableTextAcceleration], a
 	call Function49ed0

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/lookbeauty.asm", ROMX
 
-Music_LookBeauty:
+Music_LookBeauty::
 	musicheader 4, 1, Music_LookBeauty_Ch1
 	musicheader 1, 2, Music_LookBeauty_Ch2
 	musicheader 1, 3, Music_LookBeauty_Ch3

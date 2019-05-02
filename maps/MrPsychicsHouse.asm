@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/MrPsychicsHouse.asm", ROMX
 
-MrPsychicsHouse_MapScripts:
+MrPsychicsHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -50,7 +50,7 @@ MrPsychicText2:
 	line "target's SPCL.DEF."
 	done
 
-MrPsychicsHouse_MapEvents:
+MrPsychicsHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

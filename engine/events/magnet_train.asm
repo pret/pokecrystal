@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/magnet_train.asm", ROMX
 
-MagnetTrain:
+MagnetTrain::
 	ld a, [wScriptVar]
 	and a
 	jr nz, .ToGoldenrod

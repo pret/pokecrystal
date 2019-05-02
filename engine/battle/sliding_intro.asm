@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/battle/sliding_intro.asm", ROMX
 
-BattleIntroSlidingPics:
+BattleIntroSlidingPics::
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wLYOverrides)

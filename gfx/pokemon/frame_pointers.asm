@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "gfx/pokemon/frame_pointers.asm", ROMX
 
-FramesPointers:
+FramesPointers::
 	dw BulbasaurFrames
 	dw IvysaurFrames
 	dw VenusaurFrames

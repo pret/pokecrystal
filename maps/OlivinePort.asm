@@ -12,7 +12,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/OlivinePort.asm", ROMX
 
-OlivinePort_MapScripts:
+OlivinePort_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .LeaveFastShip ; SCENE_OLIVINEPORT_LEAVE_SHIP
@@ -387,7 +387,7 @@ OlivinePortSailorBeforeHOFText:
 	line "allowed in."
 	done
 
-OlivinePort_MapEvents:
+OlivinePort_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

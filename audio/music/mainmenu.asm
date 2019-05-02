@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/mainmenu.asm", ROMX
 
-Music_MainMenu:
+Music_MainMenu::
 	musicheader 4, 1, Music_MainMenu_Ch1
 	musicheader 1, 2, Music_MainMenu_Ch2
 	musicheader 1, 3, Music_MainMenu_Ch3

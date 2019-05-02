@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route20.asm", ROMX
 
-Route20_MapScripts:
+Route20_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -115,7 +115,7 @@ CinnabarGymSignText:
 	line "LEADER: BLAINE"
 	done
 
-Route20_MapEvents:
+Route20_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

@@ -11,7 +11,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/UnionCaveB2F.asm", ROMX
 
-UnionCaveB2F_MapScripts:
+UnionCaveB2F_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -144,7 +144,7 @@ CooltrainerfEmmaAfterBattleText:
 	line "that #MON…"
 	done
 
-UnionCaveB2F_MapEvents:
+UnionCaveB2F_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

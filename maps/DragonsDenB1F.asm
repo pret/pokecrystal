@@ -14,7 +14,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/DragonsDenB1F.asm", ROMX
 
-DragonsDenB1F_MapScripts:
+DragonsDenB1F_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DRAGONSDENB1F_NOTHING
 	scene_script .DummyScene1 ; SCENE_DRAGONSDENB1F_CLAIR_GIVES_TM
@@ -408,7 +408,7 @@ Text_NoRoomForDragonFang:
 	cont "items."
 	done
 
-DragonsDenB1F_MapEvents:
+DragonsDenB1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

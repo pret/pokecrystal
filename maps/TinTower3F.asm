@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/TinTower3F.asm", ROMX
 
-TinTower3F_MapScripts:
+TinTower3F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -14,7 +14,7 @@ TinTower3F_MapScripts:
 TinTower3FFullHeal:
 	itemball FULL_HEAL
 
-TinTower3F_MapEvents:
+TinTower3F_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

@@ -1,4 +1,4 @@
-BattleCommand_Rage:
+BattleCommand_Rage::
 ; rage
 	ld a, BATTLE_VARS_SUBSTATUS4
 	call GetBattleVarAddr

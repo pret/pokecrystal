@@ -10,7 +10,7 @@ CheckTrainerBattle::
 	rst Bankswitch
 	ret
 
-_CheckTrainerBattle::
+_CheckTrainerBattle:
 ; Check if any trainer on the map sees the player and wants to battle.
 
 ; Skip the player object.
@@ -106,7 +106,7 @@ TalkToTrainer::
 	ld a, -1
 	ld [wSeenTrainerDirection], a
 
-LoadTrainer_continue::
+LoadTrainer_continue:
 	call GetMapScriptsBank
 	ld [wSeenTrainerBank], a
 
@@ -126,7 +126,7 @@ LoadTrainer_continue::
 	scf
 	ret
 
-FacingPlayerDistance_bc::
+FacingPlayerDistance_bc:
 	push de
 	call FacingPlayerDistance
 	ld b, d
@@ -134,7 +134,7 @@ FacingPlayerDistance_bc::
 	pop de
 	ret
 
-FacingPlayerDistance::
+FacingPlayerDistance:
 ; Return carry if the sprite at bc is facing the player,
 ; its distance in d, and its direction in e.
 
@@ -203,7 +203,7 @@ FacingPlayerDistance::
 	and a
 	ret
 
-CheckTrainerFlag::
+CheckTrainerFlag:
 	push bc
 	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc

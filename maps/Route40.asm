@@ -17,7 +17,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route40.asm", ROMX
 
-Route40_MapScripts:
+Route40_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -340,7 +340,7 @@ Route40SignText:
 	line "OLIVINE CITY"
 	done
 
-Route40_MapEvents:
+Route40_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

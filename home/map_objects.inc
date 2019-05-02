@@ -314,7 +314,7 @@ _CopyObjectStruct::
 	farcall CopyObjectStruct
 	ret
 
-ApplyDeletionToMapObject::
+ApplyDeletionToMapObject:
 	ldh [hMapObjectIndexBuffer], a
 	call GetMapObject
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
@@ -391,7 +391,7 @@ Unreferenced_Function19b8:
 	farcall DeleteMapObject
 	ret
 
-LoadMovementDataPointer::
+LoadMovementDataPointer:
 ; Load the movement data pointer for object a.
 	ld [wMovementObject], a
 	ldh a, [hROMBank]
@@ -574,12 +574,12 @@ _GetMovementByte::
 	ld a, h
 	ret
 
-SetVramState_Bit0::
+SetVramState_Bit0:
 	ld hl, wVramState
 	set 0, [hl]
 	ret
 
-ResetVramState_Bit0::
+ResetVramState_Bit0:
 	ld hl, wVramState
 	res 0, [hl]
 	ret

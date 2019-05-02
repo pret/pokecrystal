@@ -14,7 +14,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/BlackthornCity.asm", ROMX
 
-BlackthornCity_MapScripts:
+BlackthornCity_MapScripts::
 	db 0 ; scene scripts
 
 	db 2 ; callbacks
@@ -315,7 +315,7 @@ BlackthornCityTrainerTipsText:
 	cont "problem."
 	done
 
-BlackthornCity_MapEvents:
+BlackthornCity_MapEvents::
 	db 0, 0 ; filler
 
 	db 8 ; warp events

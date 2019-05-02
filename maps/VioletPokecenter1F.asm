@@ -10,7 +10,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/VioletPokecenter1F.asm", ROMX
 
-VioletPokecenter1F_MapScripts:
+VioletPokecenter1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -218,7 +218,7 @@ VioletPokecenter1FYoungsterText:
 	line "they please."
 	done
 
-VioletPokecenter1F_MapEvents:
+VioletPokecenter1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

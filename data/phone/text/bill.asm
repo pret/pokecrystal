@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/bill.asm", ROMX
 
-BillPhoneMornGreetingText:
+BillPhoneMornGreetingText::
 	text "Good morning!"
 
 	para "This is the #-"
@@ -13,7 +13,7 @@ BillPhoneMornGreetingText:
 	line "SERVICE."
 	done
 
-BillPhoneDayGreetingText:
+BillPhoneDayGreetingText::
 	text "Good day!"
 
 	para "This is the #-"
@@ -23,7 +23,7 @@ BillPhoneDayGreetingText:
 	line "SERVICE."
 	done
 
-BillPhoneNiteGreetingText:
+BillPhoneNiteGreetingText::
 	text "Good evening!"
 
 	para "This is the #-"
@@ -33,7 +33,7 @@ BillPhoneNiteGreetingText:
 	line "SERVICE."
 	done
 
-BillPhoneGenericText:
+BillPhoneGenericText::
 	text "Who's calling?"
 
 	para "<PLAY_G>, is it?"
@@ -43,7 +43,7 @@ BillPhoneGenericText:
 	line "<……>"
 	done
 
-BillPhoneNotFullText:
+BillPhoneNotFullText::
 	text "Thanks for"
 	line "waiting!"
 
@@ -57,7 +57,7 @@ BillPhoneNotFullText:
 	line "fill it up!"
 	done
 
-BillPhoneNearlyFullText:
+BillPhoneNearlyFullText::
 	text "Thanks for"
 	line "waiting!"
 
@@ -71,7 +71,7 @@ BillPhoneNearlyFullText:
 	line "switch your BOX."
 	done
 
-BillPhoneFullText:
+BillPhoneFullText::
 	text "Thanks for"
 	line "waiting!"
 
@@ -85,7 +85,7 @@ BillPhoneFullText:
 	line "more #MON."
 	done
 
-BillPhoneNewlyFullText:
+BillPhoneNewlyFullText::
 	text "Hi, <PLAY_G>?"
 	line "It's me, BILL!"
 

@@ -11,7 +11,7 @@ MAHOGANYTOWN_RAGECANDYBAR_PRICE EQU 300
 
 SECTION "maps/MahoganyTown.asm", ROMX
 
-MahoganyTown_MapScripts:
+MahoganyTown_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_FINISHED
@@ -249,7 +249,7 @@ MahoganyGymSignText:
 	line "Winter's Harshness"
 	done
 
-MahoganyTown_MapEvents:
+MahoganyTown_MapEvents::
 	db 0, 0 ; filler
 
 	db 5 ; warp events

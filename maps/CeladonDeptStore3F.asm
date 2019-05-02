@@ -10,7 +10,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CeladonDeptStore3F.asm", ROMX
 
-CeladonDeptStore3F_MapScripts:
+CeladonDeptStore3F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -97,7 +97,7 @@ CeladonDeptStore3FDirectoryText:
 	line "Stronger!"
 	done
 
-CeladonDeptStore3F_MapEvents:
+CeladonDeptStore3F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/TimeCapsule.asm", ROMX
 
-TimeCapsule_MapScripts:
+TimeCapsule_MapScripts::
 	db 2 ; scene scripts
 	scene_script .InitializeTimeCapsule ; SCENE_DEFAULT
 	scene_script .DummyScene ; SCENE_FINISHED
@@ -56,7 +56,7 @@ TimeCapsuleFriendScript:
 	line "ready."
 	done
 
-TimeCapsule_MapEvents:
+TimeCapsule_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

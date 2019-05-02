@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/SilphCo1F.asm", ROMX
 
-SilphCo1F_MapScripts:
+SilphCo1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -58,7 +58,7 @@ SilphCoOfficerText_GotUpGrade:
 	line "anywhere yet."
 	done
 
-SilphCo1F_MapEvents:
+SilphCo1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

@@ -199,7 +199,7 @@ ScrollingMenu_GetCursorPosition:
 	ld c, a
 	ret
 
-ScrollingMenu_ClearLeftColumn:
+ScrollingMenu_ClearLeftColumn::
 	call MenuBoxCoord2Tile
 	ld de, SCREEN_WIDTH
 	add hl, de

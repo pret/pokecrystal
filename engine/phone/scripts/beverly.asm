@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/beverly.asm", ROMX
 
-BeverlyPhoneCalleeScript:
+BeverlyPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, POKEFANF, BEVERLY1
 	farscall PhoneScript_AnswerPhone_Female
 	checkflag ENGINE_BEVERLY_HAS_NUGGET
@@ -14,7 +14,7 @@ BeverlyPhoneCalleeScript:
 	getlandmarkname STRING_BUFFER_5, NATIONAL_PARK
 	farsjump UnknownScript_0xa0aa5
 
-BeverlyPhoneCallerScript:
+BeverlyPhoneCallerScript::
 	gettrainername STRING_BUFFER_3, POKEFANF, BEVERLY1
 	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_BEVERLY_HAS_NUGGET

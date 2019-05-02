@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/pokeflutechannel.asm", ROMX
 
-Music_PokeFluteChannel:
+Music_PokeFluteChannel::
 	musicheader 3, 1, Music_PokeFluteChannel_Ch1
 	musicheader 1, 2, Music_PokeFluteChannel_Ch2
 	musicheader 1, 3, Music_PokeFluteChannel_Ch3

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/lookrival.asm", ROMX, BANK[BANK_MUSIC_RIVAL_ENCOUNTER]
 
-Music_LookRival:
+Music_LookRival::
 	musicheader 4, 1, Music_LookRival_Ch1
 	musicheader 1, 2, Music_LookRival_Ch2
 	musicheader 1, 3, Music_LookRival_Ch3
@@ -38,7 +38,7 @@ Music_LookRival_Ch1:
 	note G#, 8
 	intensity $a6
 	note F#, 8
-Music_AfterTheRivalFight_branch_f4fb1:
+Music_AfterTheRivalFight_branch_f4fb1::
 Music_LookRival_branch_f4fb1:
 	intensity $b5
 	note F_, 4
@@ -141,7 +141,7 @@ Music_LookRival_Ch2:
 	note D#, 10
 	intensity $b7
 	note D#, 16
-Music_AfterTheRivalFight_branch_f502e:
+Music_AfterTheRivalFight_branch_f502e::
 Music_LookRival_branch_f502e:
 	intensity $c7
 	note C_, 12
@@ -231,7 +231,7 @@ Music_LookRival_Ch3:
 	note C_, 2
 	note D#, 2
 	note F#, 2
-Music_AfterTheRivalFight_branch_f509d:
+Music_AfterTheRivalFight_branch_f509d::
 Music_LookRival_branch_f509d:
 	callchannel Music_LookRival_branch_f50ef
 	loopchannel 3, Music_LookRival_branch_f509d
@@ -341,7 +341,7 @@ Music_LookRival_Ch4:
 	note D_, 2
 	note D_, 2
 	note D_, 2
-Music_AfterTheRivalFight_branch_f5118:
+Music_AfterTheRivalFight_branch_f5118::
 Music_LookRival_branch_f5118:
 	note D#, 4
 	note D_, 2

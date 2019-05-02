@@ -16,7 +16,7 @@ SHA1 := sha1sum
 endif
 
 RGBDS ?=
-RGBASM  ?= $(RGBDS)rgbasm -E
+RGBASM  ?= $(RGBDS)rgbasm
 RGBFIX  ?= $(RGBDS)rgbfix
 RGBGFX  ?= $(RGBDS)rgbgfx
 RGBLINK ?= $(RGBDS)rgblink

@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/OlivineGym.asm", ROMX
 
-OlivineGym_MapScripts:
+OlivineGym_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -200,7 +200,7 @@ OlivineGymGuyPreText:
 	cont "sionate."
 	done
 
-OlivineGym_MapEvents:
+OlivineGym_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

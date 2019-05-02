@@ -3,12 +3,12 @@ INCLUDE "constants.inc"
 
 SECTION "maps/TinTower2F.asm", ROMX
 
-TinTower2F_MapScripts:
+TinTower2F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
 
-TinTower2F_MapEvents:
+TinTower2F_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

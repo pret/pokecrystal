@@ -1,4 +1,4 @@
-AnimationIdlePointers:
+AnimationIdlePointers::
 	dw BulbasaurAnimationIdle
 	dw IvysaurAnimationIdle
 	dw VenusaurAnimationIdle

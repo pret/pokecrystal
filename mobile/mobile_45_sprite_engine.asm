@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "mobile/mobile_45_sprite_engine.asm@Function115d99", ROMX
 
-Function115d99:
+Function115d99::
 	ld de, GFX_11601a
 	ld hl, vTiles0 tile $60
 	lb bc, BANK(GFX_11601a), 20
@@ -24,7 +24,7 @@ Function115d99:
 
 SECTION "mobile/mobile_45_sprite_engine.asm@Function115dc3", ROMX
 
-Function115dc3:
+Function115dc3::
 	xor a
 	ld [wc305], a
 	ld a, $a0
@@ -36,7 +36,7 @@ Function115dc3:
 
 SECTION "mobile/mobile_45_sprite_engine.asm@Function115dd3 - Unknown_116005", ROMX
 
-Function115dd3:
+Function115dd3::
 	ld a, [wc305]
 	and a
 	ret z
@@ -84,7 +84,7 @@ Function115dd3:
 	jr nz, .asm_115e04
 	ret
 
-Function115e18:
+Function115e18::
 	ld a, c
 	ld [wc30a], a
 	xor a
@@ -327,7 +327,7 @@ INCBIN "gfx/unknown/11601a.2bpp"
 
 SECTION "mobile/mobile_45_sprite_engine.asm@Function11615a", ROMX
 
-Function11615a:
+Function11615a::
 	xor a
 	ld [wc30d], a
 	ld [$c319], a
@@ -357,7 +357,7 @@ Function11615a:
 
 SECTION "mobile/mobile_45_sprite_engine.asm@Function11619d - Unknown_117356", ROMX
 
-Function11619d:
+Function11619d::
 	ld a, [wc30d]
 	and a
 	ret z

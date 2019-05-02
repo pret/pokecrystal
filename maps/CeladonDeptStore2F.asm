@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CeladonDeptStore2F.asm", ROMX
 
-CeladonDeptStore2F_MapScripts:
+CeladonDeptStore2F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -71,7 +71,7 @@ CeladonDeptStore2FDirectoryText:
 	line "    MARKET"
 	done
 
-CeladonDeptStore2F_MapEvents:
+CeladonDeptStore2F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

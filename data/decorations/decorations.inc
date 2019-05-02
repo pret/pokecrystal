@@ -1,4 +1,4 @@
-DecorationIDs:
+DecorationIDs::
 ; see constants/deco_constants.inc
 	db DECO_FEATHERY_BED ; 2
 	db DECO_PINK_BED ; 3
@@ -48,7 +48,7 @@ DecorationIDs:
 	db DECO_BIG_SNORLAX_DOLL ; 1a
 	db DECO_BIG_ONIX_DOLL ; 1b
 	db DECO_BIG_LAPRAS_DOLL ; 1c
-TrophyIDs:
+TrophyIDs::
 	db DECO_GOLD_TROPHY_DOLL ; 33
 	db DECO_SILVER_TROPHY_DOLL ; 34
 	db -1

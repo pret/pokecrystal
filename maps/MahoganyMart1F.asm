@@ -10,7 +10,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/MahoganyMart1F.asm", ROMX
 
-MahoganyMart1F_MapScripts:
+MahoganyMart1F_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_MAHOGANYMART1F_NOTHING
 	scene_script .LanceUncoversStaircase ; SCENE_MAHOGANYMART1F_LANCE_UNCOVERS_STAIRS
@@ -223,7 +223,7 @@ UnknownText_0x6c5ba:
 	line "I'll go first."
 	done
 
-MahoganyMart1F_MapEvents:
+MahoganyMart1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

@@ -9,7 +9,7 @@ ROUTE39FARMHOUSE_MILK_PRICE EQU 500
 
 SECTION "maps/Route39Farmhouse.asm", ROMX
 
-Route39Farmhouse_MapScripts:
+Route39Farmhouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -197,7 +197,7 @@ FarmerFText_SnoreSpeech:
 	cont "it, hon."
 	done
 
-Route39Farmhouse_MapEvents:
+Route39Farmhouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

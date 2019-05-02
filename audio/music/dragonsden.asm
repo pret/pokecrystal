@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/dragonsden.asm", ROMX
 
-Music_DragonsDen:
+Music_DragonsDen::
 	musicheader 4, 1, Music_DragonsDen_Ch1
 	musicheader 1, 2, Music_DragonsDen_Ch2
 	musicheader 1, 3, Music_DragonsDen_Ch3

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/gaven_overworld.asm", ROMX
 
-GavenAskNumber1Text:
+GavenAskNumber1Text::
 	text "Wow, you're tough."
 	line "I haven't battled"
 
@@ -22,7 +22,7 @@ GavenAskNumber1Text:
 	line "rest of my team."
 	done
 
-GavenAskNumber2Text:
+GavenAskNumber2Text::
 	text "Could I get your"
 	line "phone number?"
 
@@ -35,7 +35,7 @@ GavenAskNumber2Text:
 	line "rest of my team."
 	done
 
-GavenNumberAcceptedText:
+GavenNumberAcceptedText::
 	text "How should I beat"
 	line "you? I'm tormented"
 
@@ -43,7 +43,7 @@ GavenNumberAcceptedText:
 	line "all the time…"
 	done
 
-GavenNumberDeclinedText:
+GavenNumberDeclinedText::
 	text "OK… I understand…"
 	line "But if you change"
 
@@ -51,7 +51,7 @@ GavenNumberDeclinedText:
 	line "a shout anytime."
 	done
 
-GavenPhoneFullText:
+GavenPhoneFullText::
 	text "Your phone's"
 	line "memory is full."
 
@@ -59,7 +59,7 @@ GavenPhoneFullText:
 	line "my number."
 	done
 
-GavenRematchText:
+GavenRematchText::
 	text "Hi! I've been"
 	line "waiting for you!"
 

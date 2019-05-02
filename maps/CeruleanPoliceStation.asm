@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CeruleanPoliceStation.asm", ROMX
 
-CeruleanPoliceStation_MapScripts:
+CeruleanPoliceStation_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -46,7 +46,7 @@ CeruleanDiglettText:
 	text "DIGLETT: Dug dug."
 	done
 
-CeruleanPoliceStation_MapEvents:
+CeruleanPoliceStation_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

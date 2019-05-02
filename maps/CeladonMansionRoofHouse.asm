@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/CeladonMansionRoofHouse.asm", ROMX
 
-CeladonMansionRoofHouse_MapScripts:
+CeladonMansionRoofHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -119,7 +119,7 @@ CeladonMansionRoofHousePharmacistCurseText:
 	line "victim's HP."
 	done
 
-CeladonMansionRoofHouse_MapEvents:
+CeladonMansionRoofHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

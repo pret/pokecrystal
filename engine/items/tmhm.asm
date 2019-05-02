@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/items/tmhm.asm", ROMX
 
-TMHMPocket:
+TMHMPocket::
 	ld a, $1
 	ldh [hInMenu], a
 	call TMHM_PocketLoop
@@ -41,12 +41,12 @@ ConvertCurItemIntoCurTMHM:
 	ld [wTempTMHM], a
 	ret
 
-GetTMHMItemMove:
+GetTMHMItemMove::
 	call ConvertCurItemIntoCurTMHM
 	predef GetTMHMMove
 	ret
 
-AskTeachTMHM:
+AskTeachTMHM::
 	ld hl, wOptions
 	ld a, [hl]
 	push af
@@ -75,13 +75,13 @@ AskTeachTMHM:
 	ld [wOptions], a
 	ret
 
-ChooseMonToLearnTMHM:
+ChooseMonToLearnTMHM::
 	ld hl, wStringBuffer2
 	ld de, wTMHMMoveNameBackup
 	ld bc, 12
 	call CopyBytes
 	call ClearBGPalettes
-ChooseMonToLearnTMHM_NoRefresh:
+ChooseMonToLearnTMHM_NoRefresh::
 	farcall LoadPartyMenuGFX
 	farcall InitPartyMenuWithCancel
 	farcall InitPartyMenuGFX
@@ -121,7 +121,7 @@ ChooseMonToLearnTMHM_NoRefresh:
 	pop hl
 	jr .loopback
 
-TeachTMHM:
+TeachTMHM::
 	predef CanLearnTMHMMove
 
 	push bc
@@ -186,7 +186,7 @@ Text_ItContained:
 	text_far UnknownText_0x1c0396
 	text_end
 
-Text_TMHMNotCompatible:
+Text_TMHMNotCompatible::
 	; is not compatible with @ . It can't learn @ .
 	text_far UnknownText_0x1c03c2
 	text_end

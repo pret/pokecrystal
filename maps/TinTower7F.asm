@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/TinTower7F.asm", ROMX
 
-TinTower7F_MapScripts:
+TinTower7F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -14,7 +14,7 @@ TinTower7F_MapScripts:
 TinTower7FMaxRevive:
 	itemball MAX_REVIVE
 
-TinTower7F_MapEvents:
+TinTower7F_MapEvents::
 	db 0, 0 ; filler
 
 	db 5 ; warp events

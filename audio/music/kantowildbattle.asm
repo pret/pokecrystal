@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/kantowildbattle.asm", ROMX
 
-Music_KantoWildBattle:
+Music_KantoWildBattle::
 	musicheader 3, 1, Music_KantoWildBattle_Ch1
 	musicheader 1, 2, Music_KantoWildBattle_Ch2
 	musicheader 1, 3, Music_KantoWildBattle_Ch3

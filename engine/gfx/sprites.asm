@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/gfx/sprites.asm@ClearSpriteAnims", ROMX
 
-ClearSpriteAnims:
+ClearSpriteAnims::
 	ld hl, wSpriteAnimDict
 	ld bc, wSpriteAnimsEnd - wSpriteAnimDict
 .loop
@@ -18,12 +18,12 @@ ClearSpriteAnims:
 
 SECTION "engine/gfx/sprites.asm", ROMX
 
-PlaySpriteAnimationsAndDelayFrame:
+PlaySpriteAnimationsAndDelayFrame::
 	call PlaySpriteAnimations
 	call DelayFrame
 	ret
 
-PlaySpriteAnimations:
+PlaySpriteAnimations::
 	push hl
 	push de
 	push bc
@@ -39,7 +39,7 @@ PlaySpriteAnimations:
 	pop hl
 	ret
 
-DoNextFrameForAllSprites:
+DoNextFrameForAllSprites::
 	ld hl, wSpriteAnimationStructs
 	ld e, NUM_SPRITE_ANIM_STRUCTS
 
@@ -78,7 +78,7 @@ DoNextFrameForAllSprites:
 .done
 	ret
 
-DoNextFrameForFirst16Sprites:
+DoNextFrameForFirst16Sprites::
 	ld hl, wSpriteAnimationStructs
 	ld e, NUM_SPRITE_ANIM_STRUCTS
 
@@ -213,14 +213,14 @@ endr
 	ld [wSpriteAnimAddrBackup + 1], a
 	ret
 
-DeinitializeSprite:
+DeinitializeSprite::
 ; Clear the index field of the struct in bc.
 	ld hl, SPRITEANIMSTRUCT_INDEX
 	add hl, bc
 	ld [hl], $0
 	ret
 
-DeinitializeAllSprites:
+DeinitializeAllSprites::
 ; Clear the index field of every struct in the wSpriteAnimationStructs array.
 	ld hl, wSpriteAnimationStructs
 	ld bc, SPRITEANIMSTRUCT_LENGTH
@@ -568,7 +568,7 @@ Sprites_Sine:
 ; a = d * sin(a * pi/32)
 	calc_sine_wave
 
-AnimateEndOfExpBar:
+AnimateEndOfExpBar::
 	ldh a, [hSGB]
 	ld de, EndOfExpBarGFX
 	and a
@@ -636,7 +636,7 @@ INCBIN "gfx/battle/expbarend.2bpp"
 SGBEndOfExpBarGFX:
 INCBIN "gfx/battle/expbarend_sgb.2bpp"
 
-ClearSpriteAnims2:
+ClearSpriteAnims2::
 	push hl
 	push de
 	push bc

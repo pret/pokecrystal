@@ -1,4 +1,4 @@
-BattleCommand_Substitute:
+BattleCommand_Substitute::
 ; substitute
 
 	call BattleCommand_MoveDelay

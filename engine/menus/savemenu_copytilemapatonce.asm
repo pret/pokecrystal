@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/menus/savemenu_copytilemapatonce.asm", ROMX
 
-SaveMenu_CopyTilemapAtOnce:
+SaveMenu_CopyTilemapAtOnce::
 	ldh a, [hCGB]
 	and a
 	jp z, WaitBGMap

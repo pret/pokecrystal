@@ -3,12 +3,12 @@ INCLUDE "constants.inc"
 
 SECTION "maps/LavenderPokecenter2FBeta.asm", ROMX
 
-LavenderPokecenter2FBeta_MapScripts:
+LavenderPokecenter2FBeta_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
 
-LavenderPokecenter2FBeta_MapEvents:
+LavenderPokecenter2FBeta_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

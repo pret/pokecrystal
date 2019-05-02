@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/beth.asm", ROMX
 
-BethPhoneCalleeScript:
+BethPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, COOLTRAINERF, BETH1
 	checkflag ENGINE_BETH
 	iftrue .WantsBattle
@@ -22,7 +22,7 @@ BethPhoneCalleeScript:
 	getlandmarkname STRING_BUFFER_5, ROUTE_26
 	farsjump BethBattleReminderScript
 
-BethPhoneCallerScript:
+BethPhoneCallerScript::
 	gettrainername STRING_BUFFER_3, COOLTRAINERF, BETH1
 	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_BETH

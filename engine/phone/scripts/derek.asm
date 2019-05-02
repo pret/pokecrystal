@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/derek.asm", ROMX
 
-DerekPhoneCalleeScript:
+DerekPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, POKEFANM, DEREK1
 	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_DEREK_HAS_NUGGET
@@ -27,7 +27,7 @@ DerekPhoneCalleeScript:
 	getlandmarkname STRING_BUFFER_5, ROUTE_39
 	farsjump UnknownScript_0xa0ad5
 
-DerekPhoneCallerScript:
+DerekPhoneCallerScript::
 	gettrainername STRING_BUFFER_3, POKEFANM, DEREK1
 	farscall PhoneScript_GreetPhone_Male
 	farscall PhoneScript_Random2

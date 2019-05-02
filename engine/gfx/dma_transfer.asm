@@ -38,7 +38,7 @@ HDMATransferTileMapToWRAMBank3::
 	call HDMATransferToWRAMBank3
 	ret
 
-HDMATransferAttrMapToWRAMBank3:
+HDMATransferAttrMapToWRAMBank3::
 	ld hl, .Function
 	jp CallInSafeGFXMode
 
@@ -82,7 +82,7 @@ ReloadMapPart::
 
 	ret
 
-Mobile_ReloadMapPart:
+Mobile_ReloadMapPart::
 	ld hl, ReloadMapPart ; useless
 	ld hl, .Function
 	jp CallInSafeGFXMode
@@ -182,7 +182,7 @@ OpenAndCloseMenu_HDMATransferTileMapAndAttrMap::
 	ei
 	ret
 
-Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap:
+Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap::
 	ld hl, .Function
 	jp CallInSafeGFXMode
 
@@ -563,7 +563,7 @@ _Get1bpp::
 	ldh [rSVBK], a
 	ret
 
-HDMATransfer_OnlyTopFourRows:
+HDMATransfer_OnlyTopFourRows::
 	ld hl, .Function
 	jp CallInSafeGFXMode
 

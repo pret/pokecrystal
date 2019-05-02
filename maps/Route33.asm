@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route33.asm", ROMX
 
-Route33_MapScripts:
+Route33_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -197,7 +197,7 @@ Route33SignText:
 	text "ROUTE 33"
 	done
 
-Route33_MapEvents:
+Route33_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

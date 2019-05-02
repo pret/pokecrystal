@@ -11,7 +11,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/IcePathB2FMahoganySide.asm", ROMX
 
-IcePathB2FMahoganySide_MapScripts:
+IcePathB2FMahoganySide_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -33,7 +33,7 @@ IcePathB2FMahoganySideBoulderText:
 	line "imbedded in ice."
 	done
 
-IcePathB2FMahoganySide_MapEvents:
+IcePathB2FMahoganySide_MapEvents::
 	db 0, 0 ; filler
 
 	db 6 ; warp events

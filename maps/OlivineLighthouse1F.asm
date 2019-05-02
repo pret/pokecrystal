@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/OlivineLighthouse1F.asm", ROMX
 
-OlivineLighthouse1F_MapScripts:
+OlivineLighthouse1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -39,7 +39,7 @@ OlivineLighthouse1FPokefanFText:
 	cont "those #MON."
 	done
 
-OlivineLighthouse1F_MapEvents:
+OlivineLighthouse1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 5 ; warp events

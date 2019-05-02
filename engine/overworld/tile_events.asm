@@ -45,7 +45,7 @@ CheckDirectionalWarp::
 
 SECTION "engine/overworld/tile_events.asm@CheckWarpFacingDown", ROMX
 
-CheckWarpFacingDown:
+CheckWarpFacingDown::
 	ld de, 1
 	ld hl, .blocks
 	ld a, [wPlayerStandingTile]
@@ -90,7 +90,7 @@ CheckGrassCollision::
 
 SECTION "engine/overworld/tile_events.asm@CheckCutCollision", ROMX
 
-CheckCutCollision:
+CheckCutCollision::
 	ld a, c
 	ld hl, .blocks
 	ld de, 1

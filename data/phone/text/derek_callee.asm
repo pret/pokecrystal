@@ -3,28 +3,28 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/derek_callee.asm", ROMX
 
-UnknownText_0x1b69a8:
+UnknownText_0x1b69a8::
 	text "Hi, <PLAY_G>?"
 
 	para "Good morning pika."
 	line "What's up pika?"
 	done
 
-UnknownText_0x1b69d2:
+UnknownText_0x1b69d2::
 	text "Hi, <PLAY_G>?"
 
 	para "Good day pika,"
 	line "what's up pika?"
 	done
 
-UnknownText_0x1b69f8:
+UnknownText_0x1b69f8::
 	text "Hi, <PLAY_G>?"
 
 	para "Good evening pika,"
 	line "what's up pika?"
 	done
 
-UnknownText_0x1b6a22:
+UnknownText_0x1b6a22::
 	text "<PLAY_G> pika, good"
 	line "morning!"
 
@@ -34,7 +34,7 @@ UnknownText_0x1b6a22:
 	line "pika are you?"
 	done
 
-UnknownText_0x1b6a56:
+UnknownText_0x1b6a56::
 	text "<PLAY_G> pika, good"
 	line "pika day!"
 
@@ -44,7 +44,7 @@ UnknownText_0x1b6a56:
 	line "pika are you?"
 	done
 
-UnknownText_0x1b6a8b:
+UnknownText_0x1b6a8b::
 	text "<PLAY_G> pika, good"
 	line "evening!"
 
@@ -54,7 +54,7 @@ UnknownText_0x1b6a8b:
 	line "you pika awake?"
 	done
 
-UnknownText_0x1b6ac2:
+UnknownText_0x1b6ac2::
 	text "You have to hear"
 	line "this! My lovable"
 

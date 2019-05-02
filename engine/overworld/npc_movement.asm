@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/overworld/npc_movement.asm", ROMX, BANK[BANK_MAP_OBJECTS]
 
-CanObjectMoveInDirection:
+CanObjectMoveInDirection::
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	bit SWIMMING_F, [hl]
@@ -315,7 +315,7 @@ Unreferenced_Function7015:
 	dec d
 	ret
 
-IsNPCAtCoord:
+IsNPCAtCoord::
 	ld bc, wObjectStructs
 	xor a
 .loop

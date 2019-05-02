@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/SlowpokeWellB2F.asm", ROMX
 
-SlowpokeWellB2F_MapScripts:
+SlowpokeWellB2F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -64,7 +64,7 @@ SlowpokeWellB2FGymGuyText_GotKingsRock:
 	cont "one evolve."
 	done
 
-SlowpokeWellB2F_MapEvents:
+SlowpokeWellB2F_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

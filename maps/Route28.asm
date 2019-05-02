@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route28.asm", ROMX
 
-Route28_MapScripts:
+Route28_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -18,7 +18,7 @@ Route28SignText:
 	text "ROUTE 28"
 	done
 
-Route28_MapEvents:
+Route28_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

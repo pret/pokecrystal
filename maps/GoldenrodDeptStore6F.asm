@@ -11,7 +11,7 @@ GOLDENRODDEPTSTORE6F_LEMONADE_PRICE    EQU 350
 
 SECTION "maps/GoldenrodDeptStore6F.asm", ROMX
 
-GoldenrodDeptStore6F_MapScripts:
+GoldenrodDeptStore6F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -154,7 +154,7 @@ GoldenrodDeptStore6FDirectoryText:
 	para "6F TRANQUIL SQUARE"
 	done
 
-GoldenrodDeptStore6F_MapEvents:
+GoldenrodDeptStore6F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

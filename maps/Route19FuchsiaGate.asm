@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route19FuchsiaGate.asm", ROMX
 
-Route19FuchsiaGate_MapScripts:
+Route19FuchsiaGate_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -48,7 +48,7 @@ Route19FuchsiaGateOfficerText_RocksCleared:
 	line "That's great!"
 	done
 
-Route19FuchsiaGate_MapEvents:
+Route19FuchsiaGate_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

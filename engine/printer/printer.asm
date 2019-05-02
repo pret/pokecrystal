@@ -46,7 +46,7 @@ Printer_ExitPrinter:
 	call Printer_RestartMapMusic
 	ret
 
-PrintDexEntry:
+PrintDexEntry::
 	ld a, [wPrinterQueueLength]
 	push af
 
@@ -123,7 +123,7 @@ PrintDexEntry:
 	ld [wPrinterQueueLength], a
 	ret
 
-PrintPCBox:
+PrintPCBox::
 	ld a, [wPrinterQueueLength]
 	push af
 	ld a, 18 / 2
@@ -216,7 +216,7 @@ Printer_ResetRegistersAndStartDataSend:
 	call SendScreenToPrinter
 	ret
 
-PrintUnownStamp:
+PrintUnownStamp::
 	ld a, [wPrinterQueueLength]
 	push af
 	xor a
@@ -275,12 +275,12 @@ PrintUnownStamp:
 	ld [wPrinterQueueLength], a
 	ret
 
-PrintMailAndExit:
+PrintMailAndExit::
 	call PrintMail
 	call Printer_ExitPrinter
 	ret
 
-PrintMail:
+PrintMail::
 	ld a, [wPrinterQueueLength]
 	push af
 	xor a
@@ -322,7 +322,7 @@ PrintMail:
 	ld [wPrinterQueueLength], a
 	ret
 
-PrintPartymon:
+PrintPartymon::
 	ld a, [wPrinterQueueLength]
 	push af
 	xor a
@@ -383,7 +383,7 @@ PrintPartymon:
 	ld [wPrinterQueueLength], a
 	ret
 
-_PrintDiploma:
+_PrintDiploma::
 	ld a, [wPrinterQueueLength]
 	push af
 

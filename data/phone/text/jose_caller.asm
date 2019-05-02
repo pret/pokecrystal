@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/jose_caller.asm", ROMX
 
-JoseAromaText:
+JoseAromaText::
 	text "Hey listen, my"
 	line "@"
 	text_ram wStringBuffer4
@@ -16,7 +16,7 @@ JoseAromaText:
 	line "appetite going!"
 	done
 
-UnknownText_0x174f90:
+UnknownText_0x174f90::
 	text "A while ago, my"
 	line "FARFETCH'D KO'd"
 	cont "this @"
@@ -30,7 +30,7 @@ UnknownText_0x174f90:
 	line "Amazing stuff!"
 	done
 
-UnknownText_0x174ffd:
+UnknownText_0x174ffd::
 	text "I ran into a wild"
 	line "@"
 	text_ram wStringBuffer4
@@ -46,7 +46,7 @@ UnknownText_0x174ffd:
 	line "bit disappointing."
 	done
 
-UnknownText_0x17507d:
+UnknownText_0x17507d::
 	text "Want to battle"
 	line "again?"
 
@@ -65,11 +65,11 @@ UnknownText_0x17507d:
 	line "for me, OK?"
 	done
 
-UnknownText_0x175106:
+UnknownText_0x175106::
 	text "Be seeing you!"
 	done
 
-JoseFoundSomethingText:
+JoseFoundSomethingText::
 	text "My FARFETCH'D had"
 	line "something pretty"
 	cont "in its beak."
@@ -86,7 +86,7 @@ JoseFoundSomethingText:
 	line "have it."
 	done
 
-UnknownText_0x17519b:
+UnknownText_0x17519b::
 	text "I haven't gotten"
 	line "what I promised"
 	cont "you yet."
@@ -98,7 +98,7 @@ UnknownText_0x17519b:
 	line "a little longer?"
 	done
 
-UnknownText_0x17520a:
+UnknownText_0x17520a::
 	text "<PLAY_G>, could you"
 	line "hurry over?"
 
@@ -119,7 +119,7 @@ UnknownText_0x17520a:
 	line "soon as you can!"
 	done
 
-UnknownText_0x17529c:
+UnknownText_0x17529c::
 	text "What's wrong?"
 
 	para "Don't you want"

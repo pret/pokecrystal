@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/goldenrodcity.asm", ROMX
 
-Music_GoldenrodCity:
+Music_GoldenrodCity::
 	musicheader 4, 1, Music_GoldenrodCity_Ch1
 	musicheader 1, 2, Music_GoldenrodCity_Ch2
 	musicheader 1, 3, Music_GoldenrodCity_Ch3

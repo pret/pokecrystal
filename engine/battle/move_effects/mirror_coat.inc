@@ -1,4 +1,4 @@
-BattleCommand_MirrorCoat:
+BattleCommand_MirrorCoat::
 ; mirrorcoat
 
 	ld a, 1

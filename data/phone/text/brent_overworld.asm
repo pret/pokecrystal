@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/brent_overworld.asm", ROMX
 
-BrentAskNumber1Text:
+BrentAskNumber1Text::
 	text "By the way, you're"
 	line "a #MANIAC…"
 
@@ -26,7 +26,7 @@ BrentAskNumber1Text:
 	line "phone number."
 	done
 
-BrentAskNumber2Text:
+BrentAskNumber2Text::
 	text "I'll teach you all"
 	line "I know about BILL,"
 
@@ -34,7 +34,7 @@ BrentAskNumber2Text:
 	line "phone number."
 	done
 
-BrentNumberAcceptedText:
+BrentNumberAcceptedText::
 	text "BILL--he's more"
 	line "than amazing!"
 
@@ -44,14 +44,14 @@ BrentNumberAcceptedText:
 	para "That's my dream."
 	done
 
-BrentNumberDeclinedText:
+BrentNumberDeclinedText::
 	text "You're going to"
 	line "regret it…"
 
 	para "And I won't care…"
 	done
 
-BrentPhoneFullText:
+BrentPhoneFullText::
 	text "Huh? Your phone"
 	line "list's full."
 
@@ -59,7 +59,7 @@ BrentPhoneFullText:
 	line "to be more tidy!"
 	done
 
-BrentRematchText:
+BrentRematchText::
 	text "I've been waiting."
 
 	para "Look, check out my"

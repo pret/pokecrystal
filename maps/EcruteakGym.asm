@@ -12,7 +12,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/EcruteakGym.asm", ROMX
 
-EcruteakGym_MapScripts:
+EcruteakGym_MapScripts::
 	db 2 ; scene scripts
 	scene_script .ForcedToLeave ; SCENE_DEFAULT
 	scene_script .DummyScene ; SCENE_FINISHED
@@ -389,7 +389,7 @@ EcruteakGymClosedText:
 	para "Hohohoho."
 	done
 
-EcruteakGym_MapEvents:
+EcruteakGym_MapEvents::
 	db 0, 0 ; filler
 
 	db 33 ; warp events

@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/link/init_list.asm", ROMX
 
-InitList:
+InitList::
 	ld a, [wInitListType]
 
 	cp INIT_ENEMYOT_LIST

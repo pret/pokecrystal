@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/dana_overworld.asm", ROMX
 
-DanaAskNumber1Text:
+DanaAskNumber1Text::
 	text "You're really good"
 	line "at #MON!"
 
@@ -20,7 +20,7 @@ DanaAskNumber1Text:
 	line "your phone number."
 	done
 
-DanaAskNumber2Text:
+DanaAskNumber2Text::
 	text "I'll share my"
 	line "gifts with you."
 
@@ -28,7 +28,7 @@ DanaAskNumber2Text:
 	line "phone number."
 	done
 
-DanaNumberAcceptedText:
+DanaNumberAcceptedText::
 	text "Next time a boy"
 	line "gives me something"
 
@@ -39,7 +39,7 @@ DanaNumberAcceptedText:
 	line "bad?"
 	done
 
-DanaNumberDeclinedText:
+DanaNumberDeclinedText::
 	text "Aww, you don't"
 	line "want anything?"
 
@@ -47,12 +47,12 @@ DanaNumberDeclinedText:
 	line "free…"
 	done
 
-DanaPhoneFullText:
+DanaPhoneFullText::
 	text "But your phone's"
 	line "out of memory!"
 	done
 
-DanaRematchText:
+DanaRematchText::
 	text "You're really"
 	line "late!"
 
@@ -60,7 +60,7 @@ DanaRematchText:
 	line "going!"
 	done
 
-DanaGiftText:
+DanaGiftText::
 	text "Hi! Are you here"
 	line "for your gift?"
 
@@ -68,7 +68,7 @@ DanaGiftText:
 	line "make your day!"
 	done
 
-DanaPackFullText:
+DanaPackFullText::
 	text "Where are you"
 	line "going to put this?"
 

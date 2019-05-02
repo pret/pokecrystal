@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/unown_walls.asm@HoOhChamber", ROMX
 
-HoOhChamber:
+HoOhChamber::
 	ld hl, wPartySpecies
 	ld a, [hl]
 	cp HO_OH ; is Ho-oh the first Pokémon in the party?
@@ -18,7 +18,7 @@ HoOhChamber:
 
 SECTION "engine/events/unown_walls.asm@OmanyteChamber", ROMX
 
-OmanyteChamber:
+OmanyteChamber::
 	call GetMapAttributesPointer ; pointless?
 	ld de, EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	ld b, CHECK_FLAG
@@ -62,7 +62,7 @@ OmanyteChamber:
 
 SECTION "engine/events/unown_walls.asm@SpecialAerodactylChamber", ROMX
 
-SpecialAerodactylChamber:
+SpecialAerodactylChamber::
 	push de
 	push bc
 
@@ -92,7 +92,7 @@ SpecialAerodactylChamber:
 
 SECTION "engine/events/unown_walls.asm@SpecialKabutoChamber", ROMX
 
-SpecialKabutoChamber:
+SpecialKabutoChamber::
 	push hl
 	push de
 
@@ -116,7 +116,7 @@ SpecialKabutoChamber:
 
 SECTION "engine/events/unown_walls.asm@DisplayUnownWords", ROMX
 
-DisplayUnownWords:
+DisplayUnownWords::
 	ld a, [wScriptVar]
 	ld hl, MenuHeaders_UnownWalls
 	and a

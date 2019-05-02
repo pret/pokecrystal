@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "audio/music/sprouttower.asm", ROMX
 
-Music_SproutTower:
+Music_SproutTower::
 	musicheader 4, 1, Music_SproutTower_Ch1
 	musicheader 1, 2, Music_SproutTower_Ch2
 	musicheader 1, 3, Music_SproutTower_Ch3

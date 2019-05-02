@@ -7,7 +7,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route36RuinsOfAlphGate.asm", ROMX
 
-Route36RuinsOfAlphGate_MapScripts:
+Route36RuinsOfAlphGate_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -37,7 +37,7 @@ Route36RuinsOfAlphGateGrampsText:
 	line "RUINS OF ALPH."
 	done
 
-Route36RuinsOfAlphGate_MapEvents:
+Route36RuinsOfAlphGate_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

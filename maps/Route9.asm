@@ -11,7 +11,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route9.asm", ROMX
 
-Route9_MapScripts:
+Route9_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -208,7 +208,7 @@ Route9SignText:
 	line "ROCK TUNNEL"
 	done
 
-Route9_MapEvents:
+Route9_MapEvents::
 	db 0, 0 ; filler
 
 	db 1 ; warp events

@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/OlivineGoodRodHouse.asm", ROMX
 
-OlivineGoodRodHouse_MapScripts:
+OlivineGoodRodHouse_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -85,7 +85,7 @@ HaveGoodRodText:
 	line "Land the big one?"
 	done
 
-OlivineGoodRodHouse_MapEvents:
+OlivineGoodRodHouse_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

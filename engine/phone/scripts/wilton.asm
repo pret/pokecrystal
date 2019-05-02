@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/scripts/wilton.asm", ROMX
 
-WiltonPhoneCalleeScript:
+WiltonPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, FISHER, WILTON1
 	checkflag ENGINE_WILTON
 	iftrue .WantsBattle
@@ -28,7 +28,7 @@ WiltonPhoneCalleeScript:
 	getlandmarkname STRING_BUFFER_5, ROUTE_44
 	farsjump WiltonWantThis
 
-WiltonPhoneCallerScript:
+WiltonPhoneCallerScript::
 	gettrainername STRING_BUFFER_3, FISHER, WILTON1
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_WILTON

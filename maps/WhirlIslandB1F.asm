@@ -11,7 +11,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/WhirlIslandB1F.asm", ROMX
 
-WhirlIslandB1F_MapScripts:
+WhirlIslandB1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -43,7 +43,7 @@ WhirlIslandB1FHiddenUltraBall:
 WhirlIslandB1FHiddenFullRestore:
 	hiddenitem FULL_RESTORE, EVENT_WHIRL_ISLAND_B1F_HIDDEN_FULL_RESTORE
 
-WhirlIslandB1F_MapEvents:
+WhirlIslandB1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 9 ; warp events

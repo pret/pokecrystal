@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/jack_overworld.asm", ROMX
 
-JackAskNumber1Text:
+JackAskNumber1Text::
 	text "Your knowledge is"
 	line "impressive!"
 
@@ -19,7 +19,7 @@ JackAskNumber1Text:
 	line "your number?"
 	done
 
-JackAskNumber2Text:
+JackAskNumber2Text::
 	text "Want to trade"
 	line "battle tips?"
 
@@ -30,12 +30,12 @@ JackAskNumber2Text:
 	line "your number?"
 	done
 
-JackNumberAcceptedText:
+JackNumberAcceptedText::
 	text "I'll call you if I"
 	line "hear anything!"
 	done
 
-JackNumberDeclinedText:
+JackNumberDeclinedText::
 	text "Oh, OK. Too bad…"
 
 	para "Well, if you ever"
@@ -43,7 +43,7 @@ JackNumberDeclinedText:
 	cont "come see me, OK?"
 	done
 
-JackPhoneFullText:
+JackPhoneFullText::
 	text "Oh?"
 	line "Your phone's full."
 
@@ -51,7 +51,7 @@ JackPhoneFullText:
 	line "my number."
 	done
 
-JackRematchText:
+JackRematchText::
 	text "Hi, I was waiting"
 	line "for you to show!"
 

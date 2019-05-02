@@ -3,7 +3,7 @@
 
 SECTION "data/pokemon/gen1_base_special.asm", ROMX
 
-KantoMonSpecials:
+KantoMonSpecials::
 	db  65 ; BULBASAUR
 	db  80 ; IVYSAUR
 	db 100 ; VENUSAUR

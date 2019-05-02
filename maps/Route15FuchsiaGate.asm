@@ -6,7 +6,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route15FuchsiaGate.asm", ROMX
 
-Route15FuchsiaGate_MapScripts:
+Route15FuchsiaGate_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -22,7 +22,7 @@ Route15FuchsiaGateOfficerText:
 	line "Don't give up!"
 	done
 
-Route15FuchsiaGate_MapEvents:
+Route15FuchsiaGate_MapEvents::
 	db 0, 0 ; filler
 
 	db 4 ; warp events

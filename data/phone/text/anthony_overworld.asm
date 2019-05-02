@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "data/phone/text/anthony_overworld.asm", ROMX
 
-AnthonyAskNumber1Text:
+AnthonyAskNumber1Text::
 	text "By the way, I'm a"
 	line "HIKER, so I often"
 
@@ -21,7 +21,7 @@ AnthonyAskNumber1Text:
 	line "phone numbers?"
 	done
 
-AnthonyAskNumber2Text:
+AnthonyAskNumber2Text::
 	text "I could call you"
 	line "when I see some"
 	cont "rare #MON."
@@ -30,26 +30,26 @@ AnthonyAskNumber2Text:
 	line "phone numbers?"
 	done
 
-AnthonyNumberAcceptedText:
+AnthonyNumberAcceptedText::
 	text "Be patient. I'll"
 	line "find some rare"
 	cont "#MON for you!"
 	done
 
-AnthonyNumberDeclinedText:
+AnthonyNumberDeclinedText::
 	text "You're cold. I may"
 	line "as well head to"
 	cont "the mountains…"
 	done
 
-AnthonyPhoneFullText:
+AnthonyPhoneFullText::
 	text "Your phone's full."
 
 	para "It can't register"
 	line "my phone number."
 	done
 
-AnthonyRematchText:
+AnthonyRematchText::
 	text "All righty, then!"
 
 	para "My #MON and I"

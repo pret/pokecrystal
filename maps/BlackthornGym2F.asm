@@ -13,7 +13,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/BlackthornGym2F.asm", ROMX
 
-BlackthornGym2F_MapScripts:
+BlackthornGym2F_MapScripts::
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
@@ -128,7 +128,7 @@ BlackthornGym2FBoulderFellText:
 	line "through!"
 	done
 
-BlackthornGym2F_MapEvents:
+BlackthornGym2F_MapEvents::
 	db 0, 0 ; filler
 
 	db 5 ; warp events

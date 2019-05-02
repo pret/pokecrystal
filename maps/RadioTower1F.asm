@@ -11,7 +11,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/RadioTower1F.asm", ROMX
 
-RadioTower1F_MapScripts:
+RadioTower1F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -475,7 +475,7 @@ RadioTower1FLuckyChannelSignText:
 	cont "ent ID numbers!"
 	done
 
-RadioTower1F_MapEvents:
+RadioTower1F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

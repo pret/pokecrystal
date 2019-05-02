@@ -13,7 +13,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/DarkCaveVioletEntrance.asm", ROMX
 
-DarkCaveVioletEntrance_MapScripts:
+DarkCaveVioletEntrance_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -36,7 +36,7 @@ DarkCaveVioletEntranceRock:
 DarkCaveVioletEntranceHiddenElixer:
 	hiddenitem ELIXER, EVENT_DARK_CAVE_VIOLET_ENTRANCE_HIDDEN_ELIXER
 
-DarkCaveVioletEntrance_MapEvents:
+DarkCaveVioletEntrance_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

@@ -11,7 +11,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/Route46.asm", ROMX
 
-Route46_MapScripts:
+Route46_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -253,7 +253,7 @@ Route46SignText:
 	line "MOUNTAIN RD. AHEAD"
 	done
 
-Route46_MapEvents:
+Route46_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

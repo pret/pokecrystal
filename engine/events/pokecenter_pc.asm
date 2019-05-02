@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/events/pokecenter_pc.asm", ROMX
 
-PokemonCenterPC:
+PokemonCenterPC::
 	call PC_CheckPartyForPokemon
 	ret c
 	call PC_PlayBootSound
@@ -184,7 +184,7 @@ PC_WaitPlaySFX:
 	call PlaySFX
 	ret
 
-_PlayersHousePC:
+_PlayersHousePC::
 	call PC_PlayBootSound
 	ld hl, UnknownText_0x156ff
 	call PC_DisplayText

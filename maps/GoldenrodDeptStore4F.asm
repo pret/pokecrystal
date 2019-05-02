@@ -9,7 +9,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/GoldenrodDeptStore4F.asm", ROMX
 
-GoldenrodDeptStore4F_MapScripts:
+GoldenrodDeptStore4F_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -80,7 +80,7 @@ GoldenrodDeptStore4FDirectoryText:
 	para "4F MEDICINE BOX"
 	done
 
-GoldenrodDeptStore4F_MapEvents:
+GoldenrodDeptStore4F_MapEvents::
 	db 0, 0 ; filler
 
 	db 3 ; warp events

@@ -11,7 +11,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/ElmsLab.asm", ROMX
 
-ElmsLab_MapScripts:
+ElmsLab_MapScripts::
 	db 6 ; scene scripts
 	scene_script .MeetElm ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_ELMSLAB_CANT_LEAVE
@@ -1373,7 +1373,7 @@ ElmsLabPCText:
 	line "screen…"
 	done
 
-ElmsLab_MapEvents:
+ElmsLab_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

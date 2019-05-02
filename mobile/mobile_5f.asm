@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "mobile/mobile_5f.asm@Function17c000 - HaveWantPals", ROMX
 
-Function17c000:
+Function17c000::
 	call DisableLCD
 
 	ld hl, vTiles2
@@ -180,7 +180,7 @@ HaveWantPals:
 
 SECTION "mobile/mobile_5f.asm@CheckStringForErrors", ROMX
 
-CheckStringForErrors:
+CheckStringForErrors::
 ; Valid character ranges:
 ; $0, $5 - $13, $19 - $1c, $26 - $34, $3a - $3e, $40 - $48, $60 - $ff
 .loop
@@ -230,7 +230,7 @@ CheckStringForErrors:
 
 SECTION "mobile/mobile_5f.asm@CheckStringForErrors_IgnoreTerminator", ROMX
 
-CheckStringForErrors_IgnoreTerminator:
+CheckStringForErrors_IgnoreTerminator::
 ; Find control chars
 .loop
 	ld a, [de]
@@ -278,7 +278,7 @@ CheckStringForErrors_IgnoreTerminator:
 
 SECTION "mobile/mobile_5f.asm@Function17d0f3", ROMX
 
-Function17d0f3:
+Function17d0f3::
 	ld a, [wc608 + 5]
 	ld [wOTTrademonSpecies], a
 	ld [wCurPartySpecies], a
@@ -339,7 +339,7 @@ Function17d0f3:
 
 SECTION "mobile/mobile_5f.asm@Mobile_CopyDefaultOTName - Mobile_CopyDefaultMailAuthor", ROMX
 
-Mobile_CopyDefaultOTName:
+Mobile_CopyDefaultOTName::
 	ld hl, Mobile5F_PlayersName
 	ld de, wc63d
 	ld bc, 5
@@ -349,7 +349,7 @@ Mobile_CopyDefaultOTName:
 Mobile5F_PlayersName:
 	db "クりス@@"
 
-Mobile_CopyDefaultNickname:
+Mobile_CopyDefaultNickname::
 	ld hl, .DefaultNickname
 	ld de, wc642
 	ld bc, 5
@@ -359,7 +359,7 @@ Mobile_CopyDefaultNickname:
 .DefaultNickname:
 	db "？？？？？"
 
-Mobile_CopyDefaultMail:
+Mobile_CopyDefaultMail::
 	ld a, "@"
 	ld hl, wc647
 	ld bc, MAIL_MSG_LENGTH + 1
@@ -373,7 +373,7 @@ Mobile_CopyDefaultMail:
 .DefaultMessage:
 	db "こんにちは@"
 
-Mobile_CopyDefaultMailAuthor:
+Mobile_CopyDefaultMailAuthor::
 	ld a, "@"
 	ld de, wc668
 	ld bc, 5
@@ -387,7 +387,7 @@ Mobile_CopyDefaultMailAuthor:
 
 SECTION "mobile/mobile_5f.asm@CheckStringContainsLessThanBNextCharacters", ROMX
 
-CheckStringContainsLessThanBNextCharacters:
+CheckStringContainsLessThanBNextCharacters::
 .loop
 	ld a, [de]
 	inc de
@@ -409,7 +409,7 @@ CheckStringContainsLessThanBNextCharacters:
 
 SECTION "mobile/mobile_5f.asm@Function17d1f1", ROMX
 
-Function17d1f1:
+Function17d1f1::
 	ld a, [wCurPartySpecies]
 	dec a
 	call SetSeenAndCaughtMon
@@ -447,7 +447,7 @@ SECTION "mobile/mobile_5f.asm@Menu_ChallengeExplanationCancel", ROMX
 ; if [wScriptVar] == TRUE
 ;    Show BattleTower-Menu with 3 options in english language
 ;    - Challenge - Explanation - Cancel
-Menu_ChallengeExplanationCancel:
+Menu_ChallengeExplanationCancel::
 	ld a, [wScriptVar]
 	and a
 	jr nz, .English
@@ -522,7 +522,7 @@ MenuData_ChallengeExplanationCancel:
 
 SECTION "mobile/mobile_5f.asm@Function17d2b6 - Function17d2c0", ROMX
 
-Function17d2b6:
+Function17d2b6::
 	call Function17d2c0
 	farcall Function1181da
 	ret
@@ -538,7 +538,7 @@ Function17d2c0:
 
 SECTION "mobile/mobile_5f.asm@Function17d2ce - Function17f524", ROMX
 
-Function17d2ce:
+Function17d2ce::
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$aa72]
@@ -676,13 +676,13 @@ Function17d370:
 	call CloseSRAM
 	ret
 
-Function17d3f6:
+Function17d3f6::
 	call ClearBGPalettes
 	call ClearSprites
 	call ClearScreen
 	farcall ReloadMapPart
 
-Function17d405:
+Function17d405::
 	call DisableLCD
 	ld hl, vTiles0 tile $ee
 	ld de, wc608
@@ -4492,7 +4492,7 @@ Function17f524:
 
 SECTION "mobile/mobile_5f.asm@BattleTowerMobileError - String_17ff68", ROMX
 
-BattleTowerMobileError:
+BattleTowerMobileError::
 	call FadeToMenu
 	xor a
 	ld [wc303], a
@@ -4508,7 +4508,7 @@ BattleTowerMobileError:
 	call ExitAllMenus
 	ret
 
-DisplayMobileError:
+DisplayMobileError::
 .loop
 	call JoyTextDelay
 	call .RunJumptable

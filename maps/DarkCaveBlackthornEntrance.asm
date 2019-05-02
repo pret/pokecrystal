@@ -8,7 +8,7 @@ INCLUDE "constants.inc"
 
 SECTION "maps/DarkCaveBlackthornEntrance.asm", ROMX
 
-DarkCaveBlackthornEntrance_MapScripts:
+DarkCaveBlackthornEntrance_MapScripts::
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
@@ -64,7 +64,7 @@ DarkCaveBlackthornEntrancePharmacistText2:
 	cont "type moves."
 	done
 
-DarkCaveBlackthornEntrance_MapEvents:
+DarkCaveBlackthornEntrance_MapEvents::
 	db 0, 0 ; filler
 
 	db 2 ; warp events

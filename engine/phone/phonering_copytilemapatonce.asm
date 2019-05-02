@@ -3,7 +3,7 @@ INCLUDE "constants.inc"
 
 SECTION "engine/phone/phonering_copytilemapatonce.asm", ROMX
 
-PhoneRing_CopyTilemapAtOnce:
+PhoneRing_CopyTilemapAtOnce::
 	ldh a, [hCGB]
 	and a
 	jp z, WaitBGMap

@@ -49,7 +49,7 @@ ENDM
 
 SECTION "maps/GoldenrodUndergroundSwitchRoomEntrances.asm", ROMX
 
-GoldenrodUndergroundSwitchRoomEntrances_MapScripts:
+GoldenrodUndergroundSwitchRoomEntrances_MapScripts::
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_FINISHED
@@ -933,7 +933,7 @@ SwitchRoomText_Emergency:
 	line "EMERGENCY."
 	done
 
-GoldenrodUndergroundSwitchRoomEntrances_MapEvents:
+GoldenrodUndergroundSwitchRoomEntrances_MapEvents::
 	db 0, 0 ; filler
 
 	db 9 ; warp events

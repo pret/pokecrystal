@@ -1,4 +1,4 @@
-NamesPointers::
+NamesPointers:
 ; entries correspond to GetName constants (see constants/text_constants.inc)
 	dba PokemonNames        ; MON_NAME (not used; jumps to GetPokemonName)
 	dba MoveNames           ; MOVE_NAME
@@ -169,7 +169,7 @@ GetItemName::
 	pop hl
 	ret
 
-GetTMHMName::
+GetTMHMName:
 ; Get TM/HM name for item wNamedObjectIndexBuffer.
 
 	push hl
