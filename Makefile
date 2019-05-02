@@ -6,6 +6,8 @@ crystal_obj := $(patsubst %.asm, %.o, $(call rwildcard, audio data engine gfx li
 crystal11_obj := $(crystal_obj:.o=11.o)
 crystal_au_obj := $(crystal_obj:.o=_au.o)
 
+crystal_deps := $(crystal_obj:.o=.d)
+
 
 ### Build tools
 
@@ -36,7 +38,7 @@ crystal11: pokecrystal11.gbc
 crystal_au: pokecrystal_au.gbc
 
 clean:
-	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(crystal_au_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
+	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(crystal_au_obj) $(crystal_deps) $(roms:.gbc=.map) $(roms:.gbc=.sym)
 	find gfx \( -name "*.[12]bpp" -o -name "*.lz" -o -name "*.gbcpal" \) -delete
 	find gfx/pokemon -mindepth 1 ! -path "gfx/pokemon/unown/*" \( -name "bitmask.inc" -o -name "frames.inc" -o -name "front.animated.tilemap" -o -name "front.dimensions" \) -delete
 	$(MAKE) clean -C tools/
@@ -56,21 +58,25 @@ $(crystal_obj):   RGBASMFLAGS =
 $(crystal11_obj): RGBASMFLAGS = -D _CRYSTAL11
 $(crystal_au_obj): RGBASMFLAGS = -D _CRYSTAL11 -D _CRYSTAL_AU
 
-# The dep rules have to be explicit or else missing files won't be reported.
-# As a side effect, they're evaluated immediately instead of when the rule is invoked.
-# It doesn't look like $(shell) can be deferred so there might not be a better way.
-define DEP
-$1: $2 $$(shell tools/scan_includes $2)
-	$$(RGBASM) $$(RGBASMFLAGS) -L -o $$@ $$<
-endef
 
 # Build tools when building the rom.
 # This has to happen before the rules are processed, since that's when scan_includes is run.
 ifeq (,$(filter clean tools,$(MAKECMDGOALS)))
-
 $(info $(shell $(MAKE) -C tools))
 
-$(foreach obj, $(crystal_obj), $(eval $(call DEP,$(obj) $(obj:.o=11.o) $(obj:.o=_au.o),$(obj:.o=.asm))))
+# Generate dependency files when needed
+%.d: %.asm
+	@printf "%s %s %s: " "$(@:.d=.o)" "$(@:.d=11.o)" "$(@:.d=_au.o)" > $@
+	tools/scan_includes $< >> $@
+
+$(crystal_obj): %.o: %.asm
+	$(RGBASM) $(RGBASMFLAGS) -L -o $@ $<
+$(crystal11_obj): %11.o: %.asm
+	$(RGBASM) $(RGBASMFLAGS) -L -o $@ $<
+$(crystal_au_obj): %_au.o: %.asm
+	$(RGBASM) $(RGBASMFLAGS) -L -o $@ $<
+
+include $(crystal_deps)
 
 endif
 
@@ -78,8 +84,8 @@ endif
 pokecrystal11.gbc: RGBFIXFLAGS := -n 1
 pokecrystal_au.gbc: RGBFIXFLAGS := -i BYTU
 poke%.gbc: pokecrystal.link $$($$*_obj)
-	@$(RGBLINK) -n $(@F:.gbc=.sym) -m $(@F:.gbc=.map) -l $< -o $@ $(filter-out $<, $^)
 	@echo $(RGBLINK) -n $(@F:.gbc=.sym) -m $(@F:.gbc=.map) -l $< -o $@
+	@$(RGBLINK) -n $(@F:.gbc=.sym) -m $(@F:.gbc=.map) -l $< -o $@ $(filter-out $<, $^)
 	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $(RGBFIXFLAGS) $@
 	tools/sort_symfile.sh $(@F:.gbc=.sym)
 
