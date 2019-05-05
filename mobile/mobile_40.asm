@@ -79,7 +79,7 @@ EnableMobile:
 	call DoubleSpeed
 	xor a
 	ldh [rIF], a
-	ld a, 1 << VBLANK | 1 << LCD_STAT | 1 << TIMER | 1 << SERIAL
+	ld a, IE_DEFAULT
 	ldh [rIE], a
 	xor a
 	ldh [hMapAnims], a
@@ -162,7 +162,7 @@ Function1000fa:
 	xor a
 	ldh [rIF], a
 	ldh a, [rIE]
-	and $13
+	and $1f ^ (1 << SERIAL | 1 << TIMER)
 	ldh [rIE], a
 	xor a
 	ldh [hMobileReceive], a

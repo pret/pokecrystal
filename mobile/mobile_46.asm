@@ -469,7 +469,7 @@ BattleTowerRoomMenu_InitRAM:
 	ld a, [hl]
 	ld [wcd7f], a
 	set 1, [hl]
-	ld a, $f
+	ld a, (1 << SERIAL) | (1 << TIMER) | (1 << LCD_STAT) | (1 << VBLANK)
 	ldh [rIE], a
 	ld a, $1
 	ldh [hMobileReceive], a

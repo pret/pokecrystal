@@ -50,17 +50,17 @@ Gen2ToGen1LinkComms:
 	call DelayFrames
 	xor a
 	ldh [hSerialSend], a
-	ld a, (0 << rSC_ON) | 1
+	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | 1
+	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
 	ldh [rSC], a
 
 	call DelayFrame
 	xor a
 	ldh [hSerialSend], a
-	ld a, (0 << rSC_ON) | 1
+	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | 1
+	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
 	ldh [rSC], a
 
 .player_1
@@ -70,7 +70,7 @@ Gen2ToGen1LinkComms:
 	call DelayFrames
 	xor a
 	ldh [rIF], a
-	ld a, $8
+	ld a, 1 << SERIAL
 	ldh [rIE], a
 	ld hl, wd1f3
 	ld de, wEnemyMonSpecies
@@ -90,7 +90,7 @@ Gen2ToGen1LinkComms:
 	call Serial_ExchangeBytes
 	xor a
 	ldh [rIF], a
-	ld a, $1d
+	ld a, (1 << JOYPAD) | (1 << SERIAL) | (1 << TIMER) | (1 << VBLANK)
 	ldh [rIE], a
 	call Link_CopyRandomNumbers
 	ld hl, wOTPlayerName
@@ -194,17 +194,17 @@ Gen2ToGen2LinkComms:
 	call DelayFrames
 	xor a
 	ldh [hSerialSend], a
-	ld a, (0 << rSC_ON) | 1
+	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | 1
+	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
 	ldh [rSC], a
 
 	call DelayFrame
 	xor a
 	ldh [hSerialSend], a
-	ld a, (0 << rSC_ON) | 1
+	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | 1
+	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
 	ldh [rSC], a
 
 .Player1:
@@ -214,7 +214,7 @@ Gen2ToGen2LinkComms:
 	call DelayFrames
 	xor a
 	ldh [rIF], a
-	ld a, $8
+	ld a, 1 << SERIAL
 	ldh [rIE], a
 	ld hl, wd1f3
 	ld de, wEnemyMonSpecies
@@ -243,7 +243,7 @@ Gen2ToGen2LinkComms:
 .not_trading
 	xor a
 	ldh [rIF], a
-	ld a, $1d
+	ld a, (1 << JOYPAD) | (1 << SERIAL) | (1 << TIMER) | (1 << VBLANK)
 	ldh [rIE], a
 	ld de, MUSIC_NONE
 	call PlayMusic
@@ -447,7 +447,7 @@ Gen2ToGen2LinkComms:
 	xor a
 	ldh [rIF], a
 	ldh a, [rIE]
-	set 1, a
+	set LCD_STAT, a
 	ldh [rIE], a
 	pop af
 	ldh [rIF], a
@@ -1558,9 +1558,9 @@ Function28b22:
 	xor a
 	ldh [rSB], a
 	ldh [hSerialSend], a
-	ld a, (0 << rSC_ON) | 1
+	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | 1
+	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
 	ldh [rSC], a
 	ret
 
@@ -2104,18 +2104,18 @@ WaitForOtherPlayerToExit:
 	xor a
 	ldh [rSB], a
 	ldh [hSerialReceive], a
-	ld a, (0 << rSC_ON) | 1
+	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | 1
+	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
 	ldh [rSC], a
 	ld c, 3
 	call DelayFrames
 	xor a
 	ldh [rSB], a
 	ldh [hSerialReceive], a
-	ld a, (0 << rSC_ON) | 0
+	ld a, (0 << rSC_ON) | (0 << rSC_CLOCK)
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | 0
+	ld a, (1 << rSC_ON) | (0 << rSC_CLOCK)
 	ldh [rSC], a
 	ld c, 3
 	call DelayFrames
@@ -2131,7 +2131,7 @@ WaitForOtherPlayerToExit:
 	push af
 	xor a
 	ldh [rIF], a
-	ld a, $f
+	ld a, IE_DEFAULT
 	ldh [rIE], a
 	pop af
 	ldh [rIF], a
@@ -2160,9 +2160,9 @@ SetBitsForTimeCapsuleRequest:
 	ldh [rSB], a
 	xor a
 	ldh [hSerialReceive], a
-	ld a, (0 << rSC_ON) | 0
+	ld a, (0 << rSC_ON) | (0 << rSC_CLOCK)
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | 0
+	ld a, (1 << rSC_ON) | (0 << rSC_CLOCK)
 	ldh [rSC], a
 	xor a ; LINK_TIMECAPSULE - 1
 	ld [wPlayerLinkAction], a
@@ -2177,9 +2177,9 @@ WaitForLinkedFriend:
 	ldh [rSB], a
 	xor a
 	ldh [hSerialReceive], a
-	ld a, (0 << rSC_ON) | 0
+	ld a, (0 << rSC_ON) | (0 << rSC_CLOCK)
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | 0
+	ld a, (1 << rSC_ON) | (0 << rSC_CLOCK)
 	ldh [rSC], a
 	call DelayFrame
 	call DelayFrame
@@ -2202,9 +2202,9 @@ WaitForLinkedFriend:
 	ldh [rSB], a
 	xor a
 	ldh [hSerialReceive], a
-	ld a, (0 << rSC_ON) | 0
+	ld a, (0 << rSC_ON) | (0 << rSC_CLOCK)
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | 0
+	ld a, (1 << rSC_ON) | (0 << rSC_CLOCK)
 	ldh [rSC], a
 	ld a, [wLinkTimeoutFrames]
 	dec a
@@ -2218,9 +2218,9 @@ WaitForLinkedFriend:
 .not_done
 	ld a, $1
 	ldh [rSB], a
-	ld a, (0 << rSC_ON) | 1
+	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | 1
+	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
 	ldh [rSC], a
 	call DelayFrame
 	jr .loop
