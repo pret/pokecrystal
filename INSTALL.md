@@ -34,7 +34,7 @@ Run setup and leave the default settings. At the "**Select Packages**" step, cho
 - `git`
 - `gcc-core`
 
-Click once on the text that says "**Skip**" next to each package to select the most recent version to install.
+Double click on the text that says "**Skip**" next to each package to select the most recent version to install.
 
 Then download [**rgbds**](https://github.com/rednex/rgbds/releases/): the latest **win64.zip** or **win32.zip** release. Extract it and put all the `exe` and `dll` files individually in **C:\cygwin64\usr\local\bin**.
 
