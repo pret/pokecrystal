@@ -10,14 +10,14 @@ class symtype(Enum):
     IMPORT = 1
     EXPORT = 2
 
-def unpack_file(fmt, file):
+def unpack_file(fmt, f):
     size = calcsize(fmt)
-    return unpack(fmt, file.read(size))
+    return unpack(fmt, f.read(size))
 
-def read_string(file):
+def read_string(f):
     buf = bytearray()
     while True:
-        b = file.read(1)
+        b = f.read(1)
         if b is None or b == b'\0':
             return buf.decode()
         else:
@@ -74,7 +74,7 @@ files = {}
 for objfile in objects:
     f = open(objfile, "rb")
     if unpack_file("4s", f)[0] != b'RGB6':
-        print("Error: File '%s' is of an unknown format." % filename, file=stderr)
+        print("Error: File '%s' is of an unknown format." % objfile, file=stderr)
         exit(1)
 
     num_symbols = unpack_file("<II", f)[0]
@@ -91,6 +91,7 @@ for objfile in objects:
         if sym_filename not in files:
             files[sym_filename] = 0
         files[sym_filename] += 1
+    f.close()
 
 # Sort the files, the one with the most amount of symbols first
 files = sorted([(fname, files[fname]) for fname in files], key=lambda x: x[1], reverse=True)
