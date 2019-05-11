@@ -1,3 +1,5 @@
+SECTION "engine/pokemon/evolve.asm", ROMX
+
 EvolvePokemon:
 	ld hl, wEvolvableFlags
 	xor a
@@ -652,3 +654,5 @@ GetPreEvolution:
 	ld [wCurPartySpecies], a
 	scf
 	ret
+
+INCLUDE "data/pokemon/evos_attacks.asm"

@@ -249,7 +249,7 @@ ROMX $0f
 ROMX $10
 	"engine/pokedex/pokedex.asm"
 	"data/moves/moves.asm"
-	"data/pokemon/evos_attacks.asm"
+	"engine/pokemon/evolve.asm"
 ROMX $11
 	"engine/events/fruit_trees.asm"
 	"engine/battle/ai/move.asm"

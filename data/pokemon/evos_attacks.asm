@@ -1,7 +1,3 @@
-SECTION "data/pokemon/evos_attacks.asm", ROMX
-
-INCLUDE "engine/pokemon/evolve.asm"
-
 ; Evos+attacks data structure:
 ; - Evolution methods:
 ;    * db EVOLVE_LEVEL, level, species
