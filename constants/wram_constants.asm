@@ -54,7 +54,7 @@ NUM_FRAMES EQU const_value
 	const FAST_TEXT_DELAY_F ; 0
 	const NO_TEXT_DELAY_F   ; 1
 
-; wGBPrinter:: ; cfd0
+; wGBPrinterBrightness:: ; cfd0
 GBPRINTER_LIGHTEST EQU $00
 GBPRINTER_LIGHTER  EQU $20
 GBPRINTER_NORMAL   EQU $40

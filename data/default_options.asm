@@ -7,7 +7,7 @@ DefaultOptions:
 	db FRAME_1
 ; wTextboxFlags: use text speed
 	db 1 << FAST_TEXT_DELAY_F
-; wGBPrinter: normal brightness
+; wGBPrinterBrightness: normal
 	db GBPRINTER_NORMAL
 ; wOptions2: menu account on
 	db 1 << MENU_ACCOUNT

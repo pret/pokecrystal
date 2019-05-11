@@ -343,7 +343,7 @@ Options_Print:
 
 .Save:
 	ld b, a
-	ld [wGBPrinter], a
+	ld [wGBPrinterBrightness], a
 
 .NonePressed:
 	ld b, $0
@@ -375,7 +375,7 @@ Options_Print:
 GetPrinterSetting:
 ; converts GBPRINTER_* value in a to OPT_PRINT_* value in c,
 ; with previous/next GBPRINTER_* values in d/e
-	ld a, [wGBPrinter]
+	ld a, [wGBPrinterBrightness]
 	and a
 	jr z, .IsLightest
 	cp GBPRINTER_LIGHTER

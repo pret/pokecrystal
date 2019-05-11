@@ -957,8 +957,9 @@ wPrinterTileMapBuffer:: ds SCREEN_HEIGHT * SCREEN_WIDTH ; ca90
 wPrinterTileMapBufferEnd::
 wPrinterStatus:: db ; cbf8
 	ds 1
-wcbfa:: db
-wGBPrinterSettings:: db
+; High nibble is for margin before the image, low nibble is for after.
+wPrinterMargins:: db ; cbfa
+wPrinterExposureTime:: db ; cbfb
 	ds 16
 wGameboyPrinterRAMEnd::
 
@@ -1583,7 +1584,7 @@ wTextboxFlags::
 ; bit 0: 1-frame text delay
 ; bit 4: no text delay
 	db
-wGBPrinter:: ; cfd0
+wGBPrinterBrightness:: ; cfd0
 ; bit 0-6: brightness
 ;   lightest: $00
 ;   lighter:  $20
