@@ -199,7 +199,7 @@
 
 add_tm: MACRO
 if !DEF(TM01)
-TM01 = const_value
+TM01 EQU const_value
 	enum_start 1
 endc
 	define _\@_1, "TM_\1"
@@ -260,11 +260,11 @@ ENDM
 	add_tm FIRE_PUNCH   ; f0
 	add_tm FURY_CUTTER  ; f1
 	add_tm NIGHTMARE    ; f2
-NUM_TMS = const_value - TM01 - 2 ; discount ITEM_C3 and ITEM_DC
+NUM_TMS EQU const_value - TM01 - 2 ; discount ITEM_C3 and ITEM_DC
 
 add_hm: MACRO
 if !DEF(HM01)
-HM01 = const_value
+HM01 EQU const_value
 endc
 	define _\@_1, "HM_\1"
 	const _\@_1
@@ -278,7 +278,7 @@ ENDM
 	add_hm FLASH        ; f7
 	add_hm WHIRLPOOL    ; f8
 	add_hm WATERFALL    ; f9
-NUM_HMS = const_value - HM01
+NUM_HMS EQU const_value - HM01
 
 add_mt: MACRO
 	enum \1_TMNUM
@@ -287,7 +287,7 @@ ENDM
 	add_mt FLAMETHROWER
 	add_mt THUNDERBOLT
 	add_mt ICE_BEAM
-NUM_TM_HM_TUTOR = __enum__ + -1
+NUM_TM_HM_TUTOR EQU __enum__ + -1
 
 	const ITEM_FA       ; fa
 

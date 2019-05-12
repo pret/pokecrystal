@@ -14,7 +14,7 @@ endc
 ENDM
 
 enum: MACRO
-\1 = __enum__
+\1 EQU __enum__
 __enum__ = __enum__ + __enumdir__
 ENDM
 

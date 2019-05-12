@@ -332,7 +332,7 @@ Edit `GetMapMusic`:
 	add_tm PSYCHIC_M    ; dd
 	...
 	add_tm NIGHTMARE    ; f2
-NUM_TMS = const_value - TM01 - 2 ; discount ITEM_C3 and ITEM_DC
+NUM_TMS EQU const_value - TM01 - 2 ; discount ITEM_C3 and ITEM_DC
 ```
 
 `GetTMHMNumber` and `GetNumberedTMHM` in [engine/items/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/items.asm) have to compensate for this.
