@@ -1,4 +1,11 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/code.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/menu_constants.inc"
 
 
 SECTION "engine/battle/menu.asm", ROMX

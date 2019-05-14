@@ -1,4 +1,5 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/rst.inc"
+
 
 
 SECTION "engine/battle/update_battle_huds.asm", ROMX

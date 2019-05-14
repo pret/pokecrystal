@@ -1,4 +1,8 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
 
 
 SECTION "mobile/print_opp_message.asm", ROMX

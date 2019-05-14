@@ -1,6 +1,3 @@
-INCLUDE "constants.inc"
-
-
 SECTION "data/text_buffers.asm", ROMX
 
 StringBufferPointers::

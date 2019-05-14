@@ -1,4 +1,15 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/code.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/gfx.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "macros/scripts/text.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/pokemon_constants.inc"
+INCLUDE "constants/pokemon_data_constants.inc"
+INCLUDE "constants/script_constants.inc"
 
 
 SECTION "engine/events/magikarp.asm", ROMX

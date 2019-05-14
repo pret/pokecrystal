@@ -1,4 +1,21 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/code.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/gfx.inc"
+INCLUDE "macros/predef.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "macros/scripts/text.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/item_data_constants.inc"
+INCLUDE "constants/menu_constants.inc"
+INCLUDE "constants/misc_constants.inc"
+INCLUDE "constants/music_constants.inc"
+INCLUDE "constants/pokemon_constants.inc"
+INCLUDE "constants/pokemon_data_constants.inc"
 
 
 SECTION "mobile/mobile_5f.asm@Function17c000 - HaveWantPals", ROMX

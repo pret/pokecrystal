@@ -1,4 +1,14 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/predef.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/battle_constants.inc"
+INCLUDE "constants/move_constants.inc"
+INCLUDE "constants/move_effect_constants.inc"
+INCLUDE "constants/pokemon_data_constants.inc"
+INCLUDE "constants/type_constants.inc"
 
 
 SECTION "engine/battle/ai/scoring.asm", ROMX

@@ -1,4 +1,8 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/wram_constants.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/map_object_constants.inc"
+INCLUDE "constants/misc_constants.inc"
 
 
 SECTION "engine/overworld/map_objects_2.asm", ROMX

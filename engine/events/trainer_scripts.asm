@@ -1,4 +1,8 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/scripts/events.inc"
+INCLUDE "constants/misc_constants.inc"
+INCLUDE "constants/script_constants.inc"
 
 
 SECTION "engine/events/trainer_scripts.asm", ROMX

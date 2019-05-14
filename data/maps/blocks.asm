@@ -1,6 +1,3 @@
-INCLUDE "constants.inc"
-
-
 SECTION "Map Blocks 1", ROMX
 
 Route32_Blocks::

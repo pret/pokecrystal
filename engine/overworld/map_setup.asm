@@ -1,4 +1,9 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/wram_constants.inc"
+INCLUDE "constants/map_data_constants.inc"
+INCLUDE "constants/map_setup_constants.inc"
 
 
 SECTION "engine/overworld/map_setup.asm@RunMapSetupScript", ROMX

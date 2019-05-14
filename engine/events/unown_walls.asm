@@ -1,4 +1,16 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/event_flags.inc"
+INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/item_constants.inc"
+INCLUDE "constants/menu_constants.inc"
+INCLUDE "constants/misc_constants.inc"
+INCLUDE "constants/pokemon_constants.inc"
+INCLUDE "constants/pokemon_data_constants.inc"
+INCLUDE "constants/tileset_constants.inc"
 
 
 SECTION "engine/events/unown_walls.asm@HoOhChamber", ROMX

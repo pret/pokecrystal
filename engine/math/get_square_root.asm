@@ -1,6 +1,3 @@
-INCLUDE "constants.inc"
-
-
 SECTION "engine/math/get_square_root.asm", ROMX
 
 NUM_SQUARE_ROOTS EQU 255

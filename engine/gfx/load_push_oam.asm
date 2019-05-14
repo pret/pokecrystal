@@ -1,4 +1,7 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/floating_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
 
 
 SECTION "engine/gfx/load_push_oam.asm", ROMX, BANK[BANK_GAME_INIT]

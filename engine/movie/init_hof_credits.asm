@@ -1,4 +1,10 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/gfx.inc"
+INCLUDE "macros/scripts/text.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
 
 
 SECTION "engine/movie/init_hof_credits.asm@InitDisplayForHallOfFame", ROMX

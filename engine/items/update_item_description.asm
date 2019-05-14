@@ -1,4 +1,7 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/gfx_constants.inc"
 
 
 SECTION "engine/items/update_item_description.asm", ROMX

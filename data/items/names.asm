@@ -1,4 +1,5 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+
 
 
 SECTION "data/items/names.asm", ROMX

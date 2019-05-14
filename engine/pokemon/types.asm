@@ -1,4 +1,8 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/battle_constants.inc"
 
 
 SECTION "engine/pokemon/types.asm", ROMX

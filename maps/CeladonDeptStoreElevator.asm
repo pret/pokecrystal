@@ -1,4 +1,9 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/scripts/events.inc"
+INCLUDE "macros/scripts/maps.inc"
+INCLUDE "constants/map_constants.inc"
+INCLUDE "constants/script_constants.inc"
+INCLUDE "constants/sfx_constants.inc"
 
 
 SECTION "maps/CeladonDeptStoreElevator.asm", ROMX

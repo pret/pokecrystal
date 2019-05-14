@@ -1,4 +1,11 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "macros/scripts/events.inc"
+INCLUDE "macros/scripts/text.inc"
+INCLUDE "constants/battle_constants.inc"
+INCLUDE "constants/script_constants.inc"
+INCLUDE "constants/sfx_constants.inc"
+INCLUDE "constants/std_constants.inc"
 
 
 SECTION "engine/events/bug_contest/contest.asm@GiveParkBalls", ROMX

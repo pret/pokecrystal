@@ -1,4 +1,4 @@
-INCLUDE "constants.inc"
+INCLUDE "constants/collision_constants.inc"
 
 tilecoll: MACRO
 ; used in data/tilesets/*_collision.asm

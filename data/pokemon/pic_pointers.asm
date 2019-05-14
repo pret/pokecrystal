@@ -1,4 +1,5 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/data.inc"
+
 
 
 ; FLOAT: Has to be at the same address as UnownPicPointers

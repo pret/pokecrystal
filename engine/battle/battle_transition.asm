@@ -1,4 +1,18 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/code.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/gfx.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/wram_constants.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/floating_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/map_data_constants.inc"
+INCLUDE "constants/serial_constants.inc"
+INCLUDE "constants/sprite_data_constants.inc"
+INCLUDE "constants/tileset_constants.inc"
 
 ; BattleTransitionJumptable.Jumptable indexes
 BATTLETRANSITION_CAVE             EQU $01

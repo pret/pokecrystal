@@ -1,4 +1,4 @@
-INCLUDE "constants.inc"
+INCLUDE "constants/floating_constants.inc"
 
 
 ; FLOAT: The sprites sections break when placed in bank 1.

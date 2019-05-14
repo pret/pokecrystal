@@ -1,4 +1,11 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/scripts/events.inc"
+INCLUDE "constants/wram_constants.inc"
+INCLUDE "constants/engine_flags.inc"
+INCLUDE "constants/landmark_constants.inc"
+INCLUDE "constants/script_constants.inc"
+INCLUDE "constants/trainer_constants.inc"
 
 
 SECTION "engine/phone/scripts/todd.asm", ROMX

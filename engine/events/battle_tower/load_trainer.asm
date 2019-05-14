@@ -1,4 +1,16 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/code.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/battle_tower_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/item_constants.inc"
+INCLUDE "constants/move_constants.inc"
+INCLUDE "constants/pokemon_constants.inc"
+INCLUDE "constants/pokemon_data_constants.inc"
+INCLUDE "constants/trainer_constants.inc"
 
 
 SECTION "engine/events/battle_tower/load_trainer.asm", ROMX

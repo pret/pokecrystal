@@ -1,4 +1,14 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/code.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/gfx.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/battle_anim_constants.inc"
+INCLUDE "constants/battle_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/move_constants.inc"
 
 	const_def
 	const BGSQUARE_SIX

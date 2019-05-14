@@ -1,4 +1,10 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/floating_constants.inc"
+INCLUDE "constants/item_constants.inc"
+INCLUDE "constants/trainer_constants.inc"
+INCLUDE "constants/trainer_data_constants.inc"
 
 
 SECTION "engine/battle/read_trainer_attributes.asm", ROMX, BANK[BANK_TRAINER_ATTRIBUTES]

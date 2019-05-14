@@ -1,4 +1,22 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/code.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/gfx.inc"
+INCLUDE "macros/predef.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "macros/scripts/battle_anims.inc"
+INCLUDE "macros/scripts/gfx_anims.inc"
+INCLUDE "constants/wram_constants.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/audio_constants.inc"
+INCLUDE "constants/battle_anim_constants.inc"
+INCLUDE "constants/battle_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/item_constants.inc"
+INCLUDE "constants/move_constants.inc"
+INCLUDE "constants/scgb_constants.inc"
+INCLUDE "constants/sfx_constants.inc"
 
 
 SECTION "engine/battle_anims/core.asm", ROMX

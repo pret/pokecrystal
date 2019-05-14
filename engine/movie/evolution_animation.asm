@@ -1,4 +1,16 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/code.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/gfx.inc"
+INCLUDE "macros/predef.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/input_constants.inc"
+INCLUDE "constants/music_constants.inc"
+INCLUDE "constants/scgb_constants.inc"
+INCLUDE "constants/sfx_constants.inc"
+INCLUDE "constants/sprite_anim_constants.inc"
 
 
 SECTION "engine/movie/evolution_animation.asm", ROMX

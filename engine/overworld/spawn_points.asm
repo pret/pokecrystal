@@ -1,4 +1,7 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/scripts/maps.inc"
+INCLUDE "constants/map_constants.inc"
+INCLUDE "constants/map_data_constants.inc"
 
 
 SECTION "engine/overworld/spawn_points.asm", ROMX

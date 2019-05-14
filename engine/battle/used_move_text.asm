@@ -1,4 +1,8 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "macros/scripts/text.inc"
+INCLUDE "constants/battle_constants.inc"
+INCLUDE "constants/move_constants.inc"
 
 
 SECTION "engine/battle/used_move_text.asm", ROMX

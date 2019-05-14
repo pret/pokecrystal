@@ -1,4 +1,10 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/floating_constants.inc"
+INCLUDE "constants/pokemon_data_constants.inc"
 
 
 SECTION "engine/pokemon/breedmon_level_growth.asm", ROMX, BANK[BANK_MOVE_MON]

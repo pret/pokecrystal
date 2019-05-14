@@ -1,4 +1,12 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/battle_constants.inc"
+INCLUDE "constants/pokemon_constants.inc"
+INCLUDE "constants/pokemon_data_constants.inc"
+INCLUDE "constants/serial_constants.inc"
 
 ; These functions seem to be related to backwards compatibility
 

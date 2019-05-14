@@ -1,4 +1,6 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/gfx_constants.inc"
 
 
 SECTION "engine/overworld/load_map_part.asm", ROMX

@@ -1,4 +1,5 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/pokemon_constants.inc"
 
 
 SECTION "engine/link/time_capsule_2.asm", ROMX

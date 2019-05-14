@@ -1,4 +1,16 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/gfx.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/wram_constants.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/map_data_constants.inc"
+INCLUDE "constants/map_object_constants.inc"
+INCLUDE "constants/map_setup_constants.inc"
+INCLUDE "constants/pokemon_constants.inc"
+INCLUDE "constants/script_constants.inc"
+INCLUDE "constants/sprite_constants.inc"
+INCLUDE "constants/sprite_data_constants.inc"
 
 
 SECTION "engine/overworld/overworld.asm", ROMX

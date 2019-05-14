@@ -1,4 +1,18 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/code.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "macros/scripts/events.inc"
+INCLUDE "macros/scripts/text.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/deco_constants.inc"
+INCLUDE "constants/event_flags.inc"
+INCLUDE "constants/menu_constants.inc"
+INCLUDE "constants/misc_constants.inc"
+INCLUDE "constants/pokemon_constants.inc"
+INCLUDE "constants/sprite_constants.inc"
 
 
 SECTION "engine/overworld/decorations.asm@InitDecorations", ROMX

@@ -1,4 +1,6 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/wram_constants.inc"
+INCLUDE "constants/serial_constants.inc"
 
 
 SECTION "engine/battle/check_battle_scene.asm", ROMX

@@ -1,6 +1,3 @@
-INCLUDE "constants.inc"
-
-
 SECTION "gfx/pokemon/kanto_frames.asm", ROMX
 
 KantoFrames:: ; used only for BANK(KantoFrames)

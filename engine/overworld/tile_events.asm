@@ -1,4 +1,6 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/collision_constants.inc"
+INCLUDE "constants/sfx_constants.inc"
 
 
 SECTION "engine/overworld/tile_events.asm@CheckWarpCollision", ROMX

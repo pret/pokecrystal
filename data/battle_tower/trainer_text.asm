@@ -1,4 +1,7 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/scripts/text.inc"
+
 
 
 SECTION "data/battle_tower/trainer_text.asm", ROMX

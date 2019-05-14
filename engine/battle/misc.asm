@@ -1,4 +1,12 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/code.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/predef.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/battle_constants.inc"
+INCLUDE "constants/move_effect_constants.inc"
+INCLUDE "constants/type_constants.inc"
 
 
 SECTION "engine/battle/misc.asm@AppearDisappearUser", ROMX

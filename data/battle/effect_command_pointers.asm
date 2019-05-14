@@ -1,6 +1,3 @@
-INCLUDE "constants.inc"
-
-
 SECTION "data/battle/effect_command_pointers.asm", ROMX
 
 ; battle commands are defined in engine/battle/effect_commands.asm

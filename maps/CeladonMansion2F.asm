@@ -1,4 +1,11 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/scripts/events.inc"
+INCLUDE "macros/scripts/maps.inc"
+INCLUDE "macros/scripts/text.inc"
+INCLUDE "constants/map_constants.inc"
+INCLUDE "constants/script_constants.inc"
+INCLUDE "constants/std_constants.inc"
 
 
 SECTION "maps/CeladonMansion2F.asm", ROMX

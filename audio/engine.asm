@@ -1,4 +1,12 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/code.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/scripts/audio.inc"
+INCLUDE "constants/wram_constants.inc"
+INCLUDE "constants/audio_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/misc_constants.inc"
+INCLUDE "constants/music_constants.inc"
 
 
 SECTION "audio/engine.asm", ROMX

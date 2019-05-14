@@ -1,4 +1,5 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/input_constants.inc"
 
 
 SECTION "engine/events/catch_tutorial_input.asm", ROMX

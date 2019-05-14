@@ -1,4 +1,6 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/gfx.inc"
+INCLUDE "constants/gfx_constants.inc"
 
 
 SECTION "engine/events/print_unown_2.asm", ROMX

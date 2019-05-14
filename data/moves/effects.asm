@@ -1,4 +1,6 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/scripts/battle_commands.inc"
+
 
 
 SECTION "data/moves/effects.asm", ROMX

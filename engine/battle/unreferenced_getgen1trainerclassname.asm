@@ -1,4 +1,5 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+
 
 
 SECTION "engine/battle/unreferenced_getgen1trainerclassname.asm", ROMX

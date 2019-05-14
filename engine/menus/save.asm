@@ -1,4 +1,15 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/code.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "macros/scripts/text.inc"
+INCLUDE "constants/wram_constants.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/battle_tower_constants.inc"
+INCLUDE "constants/misc_constants.inc"
+INCLUDE "constants/pokemon_data_constants.inc"
+INCLUDE "constants/sfx_constants.inc"
 
 
 SECTION "engine/menus/save.asm", ROMX

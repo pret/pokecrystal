@@ -1,4 +1,10 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/landmark_constants.inc"
+INCLUDE "constants/map_data_constants.inc"
+INCLUDE "constants/misc_constants.inc"
+INCLUDE "constants/music_constants.inc"
+INCLUDE "constants/tileset_constants.inc"
 
 map: MACRO
 ;\1: map name: for the MapAttributes pointer (see data/maps/attributes.asm)

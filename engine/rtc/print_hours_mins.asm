@@ -1,4 +1,8 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/code.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
 
 
 SECTION "engine/rtc/print_hours_mins.asm@Unreferenced_Function1dd6a9", ROMX

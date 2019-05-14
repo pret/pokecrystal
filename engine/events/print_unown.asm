@@ -1,4 +1,17 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/code.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/gfx.inc"
+INCLUDE "macros/predef.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "macros/scripts/text.inc"
+INCLUDE "constants/wram_constants.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/input_constants.inc"
+INCLUDE "constants/pokemon_constants.inc"
+INCLUDE "constants/scgb_constants.inc"
 
 UNOWNSTAMP_BOLD_A EQU "♂" ; $ef
 UNOWNSTAMP_BOLD_B EQU "♀" ; $f5

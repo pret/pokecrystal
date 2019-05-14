@@ -1,4 +1,4 @@
-INCLUDE "constants.inc"
+INCLUDE "constants/floating_constants.inc"
 
 
 SECTION "engine/events/kurt_selectquantity_interpretjoypad.asm", ROMX, BANK[BANK_BUY_SELL_TOSS]

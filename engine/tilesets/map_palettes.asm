@@ -1,4 +1,9 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/tileset_constants.inc"
 
 
 SECTION "engine/tilesets/map_palettes.asm", ROMX

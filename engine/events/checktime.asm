@@ -1,4 +1,5 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "engine/events/checktime.asm", ROMX

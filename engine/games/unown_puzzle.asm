@@ -1,4 +1,15 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/code.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/gfx.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/input_constants.inc"
+INCLUDE "constants/misc_constants.inc"
+INCLUDE "constants/scgb_constants.inc"
+INCLUDE "constants/script_constants.inc"
+INCLUDE "constants/sfx_constants.inc"
 
 PUZZLE_BORDER EQU $ee
 PUZZLE_VOID   EQU $ef

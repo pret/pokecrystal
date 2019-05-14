@@ -1,4 +1,8 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/wram_constants.inc"
+INCLUDE "constants/engine_flags.inc"
+INCLUDE "constants/map_data_constants.inc"
 
 
 SECTION "engine/events/engine_flags.asm", ROMX

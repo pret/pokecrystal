@@ -1,4 +1,12 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "macros/scripts/events.inc"
+INCLUDE "macros/scripts/text.inc"
+INCLUDE "constants/wram_constants.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/map_constants.inc"
+INCLUDE "constants/map_object_constants.inc"
 
 
 SECTION "engine/events/squirtbottle.asm", ROMX

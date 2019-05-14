@@ -1,4 +1,9 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/predef.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/scgb_constants.inc"
 
 
 SECTION "engine/gfx/trademon_frontpic.asm@GetTrademonFrontpic", ROMX

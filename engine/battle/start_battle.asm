@@ -1,4 +1,15 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/predef.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/wram_constants.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/battle_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/music_constants.inc"
+INCLUDE "constants/pokemon_data_constants.inc"
+INCLUDE "constants/trainer_constants.inc"
 
 
 SECTION "engine/battle/start_battle.asm@ShowLinkBattleParticipants", ROMX

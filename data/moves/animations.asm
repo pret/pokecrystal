@@ -1,4 +1,8 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/scripts/battle_anims.inc"
+INCLUDE "constants/battle_anim_constants.inc"
+INCLUDE "constants/item_constants.inc"
+INCLUDE "constants/sfx_constants.inc"
 
 
 SECTION "data/moves/animations.asm", ROMX

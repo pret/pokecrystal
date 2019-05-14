@@ -1,4 +1,14 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/wram_constants.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/map_constants.inc"
+INCLUDE "constants/map_setup_constants.inc"
+INCLUDE "constants/scgb_constants.inc"
+INCLUDE "constants/tileset_constants.inc"
 
 
 SECTION "engine/overworld/warp_connection.asm@HandleNewMap", ROMX

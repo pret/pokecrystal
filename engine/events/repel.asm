@@ -1,4 +1,7 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/scripts/events.inc"
+INCLUDE "macros/scripts/text.inc"
+
 
 
 SECTION "engine/events/repel.asm", ROMX

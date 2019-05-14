@@ -1,4 +1,17 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/code.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "macros/scripts/movement.inc"
+INCLUDE "constants/wram_constants.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/floating_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/map_object_constants.inc"
+INCLUDE "constants/script_constants.inc"
+INCLUDE "constants/sfx_constants.inc"
+INCLUDE "constants/sprite_constants.inc"
+INCLUDE "constants/sprite_data_constants.inc"
 
 
 SECTION "engine/overworld/map_objects.asm", ROMX, BANK[BANK_MAP_OBJECTS]

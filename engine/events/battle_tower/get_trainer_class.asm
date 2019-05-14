@@ -1,4 +1,5 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/trainer_constants.inc"
 
 
 SECTION "engine/events/battle_tower/get_trainer_class.asm", ROMX

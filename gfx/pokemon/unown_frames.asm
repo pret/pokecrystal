@@ -1,6 +1,3 @@
-INCLUDE "constants.inc"
-
-
 SECTION "gfx/pokemon/unown_frames.asm", ROMX
 
 INCLUDE "gfx/pokemon/unown_frame_pointers.inc"

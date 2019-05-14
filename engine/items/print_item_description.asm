@@ -1,4 +1,9 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/predef.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "macros/scripts/text.inc"
+INCLUDE "constants/item_constants.inc"
 
 
 SECTION "engine/items/print_item_description.asm", ROMX

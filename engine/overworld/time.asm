@@ -1,4 +1,7 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/wram_constants.inc"
+INCLUDE "constants/misc_constants.inc"
 
 
 SECTION "engine/overworld/time.asm", ROMX

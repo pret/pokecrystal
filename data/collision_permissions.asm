@@ -1,4 +1,4 @@
-INCLUDE "constants.inc"
+INCLUDE "constants/collision_constants.inc"
 
 NONTALKABLE EQUS "db"
 TALKABLE    EQUS "db TALK +"

@@ -1,4 +1,6 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/battle_constants.inc"
 
 
 SECTION "engine/battle/returntobattle_useball.asm", ROMX

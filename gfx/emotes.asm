@@ -1,6 +1,3 @@
-INCLUDE "constants.inc"
-
-
 SECTION "gfx/emotes.asm", ROMX
 
 ShockEmote::     INCBIN "gfx/emotes/shock.2bpp"

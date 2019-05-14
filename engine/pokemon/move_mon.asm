@@ -1,4 +1,20 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/predef.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "macros/scripts/text.inc"
+INCLUDE "constants/wram_constants.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/battle_constants.inc"
+INCLUDE "constants/floating_constants.inc"
+INCLUDE "constants/item_data_constants.inc"
+INCLUDE "constants/menu_constants.inc"
+INCLUDE "constants/misc_constants.inc"
+INCLUDE "constants/pokemon_constants.inc"
+INCLUDE "constants/pokemon_data_constants.inc"
+INCLUDE "constants/sfx_constants.inc"
 
 RANDY_OT_ID EQU 01001
 

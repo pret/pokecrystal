@@ -1,4 +1,15 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/code.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/gfx.inc"
+INCLUDE "macros/predef.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/input_constants.inc"
+INCLUDE "constants/scgb_constants.inc"
+INCLUDE "constants/tileset_constants.inc"
 
 
 SECTION "engine/link/link_trade.asm@_LoadTradeScreenBorder", ROMX

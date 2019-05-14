@@ -1,6 +1,3 @@
-INCLUDE "constants.inc"
-
-
 SECTION "gfx/pokemon/bitmasks.asm", ROMX
 
 INCLUDE "gfx/pokemon/bitmask_pointers.inc"

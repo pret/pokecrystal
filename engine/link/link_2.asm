@@ -1,4 +1,9 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/predef.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/tileset_constants.inc"
 
 
 SECTION "engine/link/link_2.asm@LinkMonStatsScreen", ROMX

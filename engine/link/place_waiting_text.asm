@@ -1,4 +1,8 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/predef.inc"
+INCLUDE "constants/gfx_constants.inc"
 
 
 SECTION "engine/link/place_waiting_text.asm", ROMX

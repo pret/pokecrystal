@@ -1,4 +1,7 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/predef.inc"
+INCLUDE "constants/misc_constants.inc"
+INCLUDE "constants/move_constants.inc"
 
 
 SECTION "engine/items/tmhm2.asm", ROMX

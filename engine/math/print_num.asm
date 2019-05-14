@@ -1,4 +1,5 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+
 
 
 SECTION "engine/math/print_num.asm", ROMX

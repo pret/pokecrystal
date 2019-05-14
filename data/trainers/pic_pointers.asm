@@ -1,4 +1,5 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/data.inc"
+
 
 
 SECTION "data/trainers/pic_pointers.asm", ROMX

@@ -1,4 +1,4 @@
-INCLUDE "constants.inc"
+INCLUDE "constants/floating_constants.inc"
 
 
 ; FLOAT: All pics sections must be in consecutive banks for dba_pic to work

@@ -1,4 +1,17 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/code.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/gfx.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/input_constants.inc"
+INCLUDE "constants/music_constants.inc"
+INCLUDE "constants/scgb_constants.inc"
+INCLUDE "constants/sfx_constants.inc"
+INCLUDE "constants/sprite_anim_constants.inc"
 
 
 SECTION "engine/movie/crystal_intro.asm@Copyright_GFPresents", ROMX

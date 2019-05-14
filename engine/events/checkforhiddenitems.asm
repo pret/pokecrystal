@@ -1,4 +1,7 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/misc_constants.inc"
+INCLUDE "constants/script_constants.inc"
 
 
 SECTION "engine/events/checkforhiddenitems.asm", ROMX

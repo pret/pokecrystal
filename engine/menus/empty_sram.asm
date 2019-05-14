@@ -1,4 +1,4 @@
-INCLUDE "constants.inc"
+INCLUDE "constants/hardware_constants.inc"
 
 
 SECTION "engine/menus/empty_sram.asm", ROMX

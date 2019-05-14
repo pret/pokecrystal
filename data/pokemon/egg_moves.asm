@@ -1,4 +1,5 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/move_constants.inc"
 
 
 SECTION "data/pokemon/egg_moves.asm", ROMX

@@ -1,4 +1,5 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/data.inc"
+
 
 tileset: MACRO
 	dba \1GFX, \1Meta, \1Coll

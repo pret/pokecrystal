@@ -1,4 +1,4 @@
-INCLUDE "constants.inc"
+INCLUDE "constants/floating_constants.inc"
 
 
 SECTION "engine/battle/battlestart_copytilemapatonce.asm", ROMX, BANK[BANK_BATTLE_TRANSITION]

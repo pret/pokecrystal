@@ -1,4 +1,14 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/code.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/gfx.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/music_constants.inc"
+INCLUDE "constants/script_constants.inc"
+INCLUDE "constants/sfx_constants.inc"
+INCLUDE "constants/sprite_data_constants.inc"
 
 ; HealMachineAnim.Jumptable indexes
 	const_def

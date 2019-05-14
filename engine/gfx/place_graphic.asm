@@ -1,4 +1,5 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/gfx_constants.inc"
 
 
 SECTION "engine/gfx/place_graphic.asm", ROMX

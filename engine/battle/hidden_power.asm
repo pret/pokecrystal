@@ -1,4 +1,7 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/battle_constants.inc"
+INCLUDE "constants/type_constants.inc"
 
 
 SECTION "engine/battle/hidden_power.asm", ROMX

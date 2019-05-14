@@ -1,4 +1,7 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/scripts/text.inc"
+
 
 
 SECTION "data/phone/text/vance_caller.asm", ROMX

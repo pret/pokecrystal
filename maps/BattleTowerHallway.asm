@@ -1,4 +1,16 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/scripts/events.inc"
+INCLUDE "macros/scripts/maps.inc"
+INCLUDE "constants/wram_constants.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/floating_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/map_constants.inc"
+INCLUDE "constants/map_object_constants.inc"
+INCLUDE "constants/scene_constants.inc"
+INCLUDE "constants/script_constants.inc"
+INCLUDE "constants/sprite_constants.inc"
 
 	object_const_def ; object_event constants
 	const BATTLETOWERHALLWAY_RECEPTIONIST

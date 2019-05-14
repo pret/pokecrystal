@@ -1,4 +1,8 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/scripts/audio.inc"
+INCLUDE "constants/audio_constants.inc"
+INCLUDE "constants/floating_constants.inc"
 
 
 SECTION "audio/music/wildpokemonvictory.asm", ROMX, BANK[BANK_MUSIC_WILD_VICTORY]

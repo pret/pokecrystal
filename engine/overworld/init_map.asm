@@ -1,4 +1,7 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/floating_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
 
 
 SECTION "engine/overworld/init_map.asm", ROMX, BANK[BANK_MAP_OBJECTS]

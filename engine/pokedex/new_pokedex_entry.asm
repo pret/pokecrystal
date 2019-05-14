@@ -1,4 +1,6 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/scgb_constants.inc"
 
 
 SECTION "engine/pokedex/new_pokedex_entry.asm", ROMX

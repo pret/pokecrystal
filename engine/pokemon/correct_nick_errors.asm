@@ -1,4 +1,7 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
 
 
 SECTION "engine/pokemon/correct_nick_errors.asm", ROMX

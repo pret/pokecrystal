@@ -1,6 +1,3 @@
-INCLUDE "constants.inc"
-
-
 SECTION "gfx/battle_anims.asm", ROMX
 
 AnimObj00GFX::

@@ -1,4 +1,11 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/wram_constants.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/input_constants.inc"
+INCLUDE "constants/item_constants.inc"
 
 
 SECTION "engine/events/catch_tutorial.asm", ROMX

@@ -1,4 +1,14 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/code.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "macros/scripts/movement.inc"
+INCLUDE "constants/wram_constants.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/collision_constants.inc"
+INCLUDE "constants/input_constants.inc"
+INCLUDE "constants/map_object_constants.inc"
+INCLUDE "constants/misc_constants.inc"
+INCLUDE "constants/sfx_constants.inc"
 
 
 SECTION "engine/overworld/player_movement.asm", ROMX

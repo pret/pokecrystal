@@ -1,4 +1,20 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/code.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/gfx.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "macros/scripts/gfx_anims.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/battle_anim_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/icon_constants.inc"
+INCLUDE "constants/pokemon_constants.inc"
+INCLUDE "constants/pokemon_data_constants.inc"
+INCLUDE "constants/serial_constants.inc"
+INCLUDE "constants/sfx_constants.inc"
+INCLUDE "constants/sprite_anim_constants.inc"
+INCLUDE "constants/sprite_data_constants.inc"
 
 
 SECTION "engine/gfx/sprites.asm@ClearSpriteAnims", ROMX

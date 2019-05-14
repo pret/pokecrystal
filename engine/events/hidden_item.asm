@@ -1,4 +1,10 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/scripts/events.inc"
+INCLUDE "macros/scripts/text.inc"
+INCLUDE "constants/item_constants.inc"
+INCLUDE "constants/misc_constants.inc"
+INCLUDE "constants/script_constants.inc"
 
 
 SECTION "engine/events/hidden_item.asm", ROMX

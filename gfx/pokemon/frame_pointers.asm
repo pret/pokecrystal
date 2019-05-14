@@ -1,6 +1,3 @@
-INCLUDE "constants.inc"
-
-
 SECTION "gfx/pokemon/frame_pointers.asm", ROMX
 
 FramesPointers::

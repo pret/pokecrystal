@@ -1,6 +1,3 @@
-INCLUDE "constants.inc"
-
-
 SECTION "engine/items/switch_items.asm", ROMX
 
 SwitchItemsInBag::

@@ -1,4 +1,5 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/data.inc"
+
 
 
 SECTION "engine/predef.asm", ROMX

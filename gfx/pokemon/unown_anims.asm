@@ -1,4 +1,6 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/scripts/gfx_anims.inc"
+
 
 
 SECTION "gfx/pokemon/unown_anims.asm", ROMX

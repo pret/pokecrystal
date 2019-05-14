@@ -1,4 +1,5 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/pokemon_constants.inc"
 
 
 SECTION "data/pokemon/unused_pic_banks.asm", ROMX

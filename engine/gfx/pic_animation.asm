@@ -1,4 +1,13 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/predef.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "macros/scripts/gfx_anims.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/battle_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/misc_constants.inc"
+INCLUDE "constants/pokemon_constants.inc"
 
 
 SECTION "engine/gfx/pic_animation.asm", ROMX

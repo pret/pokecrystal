@@ -1,4 +1,19 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "macros/scripts/events.inc"
+INCLUDE "macros/scripts/maps.inc"
+INCLUDE "macros/scripts/text.inc"
+INCLUDE "constants/wram_constants.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/floating_constants.inc"
+INCLUDE "constants/map_constants.inc"
+INCLUDE "constants/map_data_constants.inc"
+INCLUDE "constants/phone_constants.inc"
+INCLUDE "constants/sfx_constants.inc"
+INCLUDE "constants/trainer_constants.inc"
 
 
 SECTION "engine/phone/phone.asm", ROMX, BANK[BANK_PHONE_CALL]

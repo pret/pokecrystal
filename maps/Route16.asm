@@ -1,4 +1,13 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/scripts/events.inc"
+INCLUDE "macros/scripts/maps.inc"
+INCLUDE "macros/scripts/text.inc"
+INCLUDE "constants/engine_flags.inc"
+INCLUDE "constants/map_constants.inc"
+INCLUDE "constants/map_setup_constants.inc"
+INCLUDE "constants/script_constants.inc"
 
 
 SECTION "maps/Route16.asm", ROMX

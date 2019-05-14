@@ -1,4 +1,17 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/predef.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "macros/scripts/text.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/battle_constants.inc"
+INCLUDE "constants/floating_constants.inc"
+INCLUDE "constants/item_constants.inc"
+INCLUDE "constants/pokemon_data_constants.inc"
+INCLUDE "constants/sfx_constants.inc"
+INCLUDE "constants/trainer_data_constants.inc"
 
 
 SECTION "engine/battle/ai/items.asm", ROMX, BANK[BANK_TRAINER_ATTRIBUTES]

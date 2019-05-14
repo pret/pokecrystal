@@ -1,6 +1,3 @@
-INCLUDE "constants.inc"
-
-
 SECTION "engine/math/divide.asm", ROMX
 
 _Divide::

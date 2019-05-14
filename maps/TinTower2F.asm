@@ -1,4 +1,6 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/scripts/maps.inc"
+INCLUDE "constants/map_constants.inc"
 
 
 SECTION "maps/TinTower2F.asm", ROMX

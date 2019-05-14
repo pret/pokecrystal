@@ -1,4 +1,9 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/gfx.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/pokemon_constants.inc"
+INCLUDE "constants/trainer_constants.inc"
 
 
 SECTION "engine/gfx/load_pics.asm@GetUnownLetter", ROMX

@@ -1,4 +1,11 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/code.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/wram_constants.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/collision_constants.inc"
+INCLUDE "constants/floating_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/map_object_constants.inc"
 
 
 SECTION "engine/overworld/npc_movement.asm", ROMX, BANK[BANK_MAP_OBJECTS]

@@ -1,4 +1,5 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/data.inc"
+
 
 
 SECTION "engine/battle/read_trainer_dvs.asm", ROMX

@@ -1,4 +1,15 @@
-INCLUDE "constants.inc"
+INCLUDE "charmap.inc"
+INCLUDE "macros/code.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/gfx.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/landmark_constants.inc"
+INCLUDE "constants/map_constants.inc"
+INCLUDE "constants/map_data_constants.inc"
+INCLUDE "constants/tileset_constants.inc"
 
 MAP_NAME_SIGN_START EQU $60
 

@@ -1,4 +1,14 @@
-INCLUDE "constants.inc"
+INCLUDE "macros/code.inc"
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/gfx.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/menu_constants.inc"
+INCLUDE "constants/music_constants.inc"
+INCLUDE "constants/pokemon_constants.inc"
+INCLUDE "constants/scgb_constants.inc"
 
 
 SECTION "mobile/mobile_45_sprite_engine.asm@Function115d99", ROMX
