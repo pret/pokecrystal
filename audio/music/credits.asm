@@ -1,7 +1,4 @@
-INCLUDE "macros/data.inc"
-INCLUDE "macros/enum.inc"
-INCLUDE "macros/scripts/audio.inc"
-INCLUDE "constants/audio_constants.inc"
+INCLUDE "constants/music_common.inc"
 
 
 SECTION "audio/music/credits.asm", ROMX
