@@ -1,10 +1,4 @@
-INCLUDE "charmap.inc"
-INCLUDE "macros/enum.inc"
-INCLUDE "macros/scripts/events.inc"
-INCLUDE "macros/scripts/maps.inc"
-INCLUDE "macros/scripts/text.inc"
-INCLUDE "constants/map_constants.inc"
-INCLUDE "constants/script_constants.inc"
+INCLUDE "constants/maps_common.inc"
 
 
 SECTION "maps/Route7.asm", ROMX

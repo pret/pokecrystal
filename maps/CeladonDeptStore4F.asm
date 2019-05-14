@@ -1,18 +1,4 @@
-INCLUDE "charmap.inc"
-INCLUDE "macros/data.inc"
-INCLUDE "macros/enum.inc"
-INCLUDE "macros/scripts/events.inc"
-INCLUDE "macros/scripts/maps.inc"
-INCLUDE "macros/scripts/text.inc"
-INCLUDE "constants/wram_constants.inc"
-INCLUDE "constants/gfx_constants.inc"
-INCLUDE "constants/map_constants.inc"
-INCLUDE "constants/map_object_constants.inc"
-INCLUDE "constants/mart_constants.inc"
-INCLUDE "constants/script_constants.inc"
-INCLUDE "constants/sprite_constants.inc"
-INCLUDE "constants/sprite_data_constants.inc"
-INCLUDE "constants/std_constants.inc"
+INCLUDE "constants/maps_common.inc"
 
 	object_const_def ; object_event constants
 	const CELADONDEPTSTORE4F_CLERK

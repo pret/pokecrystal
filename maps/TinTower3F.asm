@@ -1,14 +1,4 @@
-INCLUDE "macros/data.inc"
-INCLUDE "macros/enum.inc"
-INCLUDE "macros/scripts/maps.inc"
-INCLUDE "constants/wram_constants.inc"
-INCLUDE "constants/gfx_constants.inc"
-INCLUDE "constants/event_flags.inc"
-INCLUDE "constants/item_constants.inc"
-INCLUDE "constants/map_constants.inc"
-INCLUDE "constants/map_object_constants.inc"
-INCLUDE "constants/script_constants.inc"
-INCLUDE "constants/sprite_constants.inc"
+INCLUDE "constants/maps_common.inc"
 
 	object_const_def ; object_event constants
 	const TINTOWER3F_POKE_BALL

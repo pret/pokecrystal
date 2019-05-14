@@ -1,10 +1,4 @@
-INCLUDE "macros/data.inc"
-INCLUDE "macros/enum.inc"
-INCLUDE "macros/scripts/maps.inc"
-INCLUDE "constants/event_flags.inc"
-INCLUDE "constants/item_constants.inc"
-INCLUDE "constants/map_constants.inc"
-INCLUDE "constants/script_constants.inc"
+INCLUDE "constants/maps_common.inc"
 
 
 SECTION "maps/UndergroundPath.asm", ROMX
