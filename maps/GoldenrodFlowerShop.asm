@@ -20,7 +20,7 @@ FlowerShopTeacherScript:
 	iffalse .NoPlainBadge
 	faceplayer
 	opentext
-	writetext UnknownText_0x554c2
+	writetext GoldenrodFlowerShopTeacherHeresTheSquirtbottleText
 	buttonsound
 	verbosegiveitem SQUIRTBOTTLE
 	setevent EVENT_GOT_SQUIRTBOTTLE
@@ -32,19 +32,19 @@ FlowerShopTeacherScript:
 .Lalala:
 	turnobject GOLDENRODFLOWERSHOP_TEACHER, LEFT
 	opentext
-	writetext UnknownText_0x5552e
+	writetext GoldenrodFlowerShopTeacherLalalaHavePlentyOfWaterText
 	waitbutton
 	closetext
 	end
 
 .GotSquirtbottle:
-	jumptextfaceplayer UnknownText_0x5550d
+	jumptextfaceplayer GoldenrodFlowerShopTeacherDontDoAnythingDangerousText
 
 .NoPlainBadge:
-	jumptextfaceplayer UnknownText_0x55463
+	jumptextfaceplayer GoldenrodFlowerShopTeacherAskWantToBorrowWaterBottleText
 
 .HaventMetFloria:
-	jumptextfaceplayer UnknownText_0x553d4
+	jumptextfaceplayer GoldenrodFlowerShopTeacherMySisterWentToSeeWigglyTreeRoute36Text
 
 FlowerShopFloriaScript:
 	faceplayer
@@ -53,7 +53,7 @@ FlowerShopFloriaScript:
 	iftrue .FoughtSudowoodo
 	checkevent EVENT_GOT_SQUIRTBOTTLE
 	iftrue .GotSquirtbottle
-	writetext UnknownText_0x55561
+	writetext GoldenrodFlowerShopFloriaWonderIfSisWillLendWaterBottleText
 	waitbutton
 	closetext
 	setevent EVENT_TALKED_TO_FLORIA_AT_FLOWER_SHOP
@@ -62,13 +62,13 @@ FlowerShopFloriaScript:
 	end
 
 .GotSquirtbottle:
-	writetext UnknownText_0x555e6
+	writetext GoldenrodFlowerShopFloriaYouBeatWhitneyText
 	waitbutton
 	closetext
 	end
 
 .FoughtSudowoodo:
-	writetext UnknownText_0x55604
+	writetext GoldenrodFlowerShopFloriaItReallyWasAMonText
 	waitbutton
 	closetext
 	end
@@ -85,7 +85,7 @@ FlowerShopRadio:
 ; unused
 	jumpstd radio2
 
-UnknownText_0x553d4:
+GoldenrodFlowerShopTeacherMySisterWentToSeeWigglyTreeRoute36Text:
 	text "Have you seen that"
 	line "wiggly tree that's"
 
@@ -102,7 +102,7 @@ UnknownText_0x553d4:
 	line "it dangerous?"
 	done
 
-UnknownText_0x55463:
+GoldenrodFlowerShopTeacherAskWantToBorrowWaterBottleText:
 	text "Do you want to"
 	line "borrow the water"
 
@@ -113,7 +113,7 @@ UnknownText_0x55463:
 	line "dangerous with it."
 	done
 
-UnknownText_0x554c2:
+GoldenrodFlowerShopTeacherHeresTheSquirtbottleText:
 	text "Oh, you're better"
 	line "than WHITNEY…"
 
@@ -122,18 +122,18 @@ UnknownText_0x554c2:
 	cont "SQUIRTBOTTLE!"
 	done
 
-UnknownText_0x5550d:
+GoldenrodFlowerShopTeacherDontDoAnythingDangerousText:
 	text "Don't do anything"
 	line "too dangerous!"
 	done
 
-UnknownText_0x5552e:
+GoldenrodFlowerShopTeacherLalalaHavePlentyOfWaterText:
 	text "Lalala lalalala."
 	line "Have plenty of"
 	cont "water, my lovely!"
 	done
 
-UnknownText_0x55561:
+GoldenrodFlowerShopFloriaWonderIfSisWillLendWaterBottleText:
 	text "When I told my sis"
 	line "about the jiggly"
 
@@ -147,12 +147,12 @@ UnknownText_0x55561:
 	line "bottle…"
 	done
 
-UnknownText_0x555e6:
+GoldenrodFlowerShopFloriaYouBeatWhitneyText:
 	text "Wow, you beat"
 	line "WHITNEY? Cool!"
 	done
 
-UnknownText_0x55604:
+GoldenrodFlowerShopFloriaItReallyWasAMonText:
 	text "So it really was a"
 	line "#MON!"
 	done

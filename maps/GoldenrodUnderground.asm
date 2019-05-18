@@ -8,8 +8,8 @@ GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_PRICE EQU 300
 	const GOLDENRODUNDERGROUND_SUPER_NERD4
 	const GOLDENRODUNDERGROUND_POKE_BALL
 	const GOLDENRODUNDERGROUND_GRAMPS
-	const GOLDENRODUNDERGROUND_SUPER_NERD5
-	const GOLDENRODUNDERGROUND_SUPER_NERD6
+	const GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
+	const GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_BROTHER
 	const GOLDENRODUNDERGROUND_GRANNY
 
 GoldenrodUnderground_MapScripts:
@@ -60,8 +60,8 @@ GoldenrodUnderground_MapScripts:
 
 .Sunday:
 	disappear GOLDENRODUNDERGROUND_GRAMPS
-	disappear GOLDENRODUNDERGROUND_SUPER_NERD5
-	appear GOLDENRODUNDERGROUND_SUPER_NERD6
+	disappear GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
+	appear GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_BROTHER
 	appear GOLDENRODUNDERGROUND_GRANNY
 	return
 
@@ -71,43 +71,43 @@ GoldenrodUnderground_MapScripts:
 	iffalse .NotMondayMorning
 	appear GOLDENRODUNDERGROUND_GRAMPS
 .NotMondayMorning:
-	disappear GOLDENRODUNDERGROUND_SUPER_NERD5
-	disappear GOLDENRODUNDERGROUND_SUPER_NERD6
+	disappear GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
+	disappear GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_BROTHER
 	disappear GOLDENRODUNDERGROUND_GRANNY
 	return
 
 .Tuesday:
 	disappear GOLDENRODUNDERGROUND_GRAMPS
-	appear GOLDENRODUNDERGROUND_SUPER_NERD5
-	disappear GOLDENRODUNDERGROUND_SUPER_NERD6
+	appear GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
+	disappear GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_BROTHER
 	disappear GOLDENRODUNDERGROUND_GRANNY
 	return
 
 .Wednesday:
 	disappear GOLDENRODUNDERGROUND_GRAMPS
-	disappear GOLDENRODUNDERGROUND_SUPER_NERD5
-	appear GOLDENRODUNDERGROUND_SUPER_NERD6
+	disappear GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
+	appear GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_BROTHER
 	disappear GOLDENRODUNDERGROUND_GRANNY
 	return
 
 .Thursday:
 	disappear GOLDENRODUNDERGROUND_GRAMPS
-	appear GOLDENRODUNDERGROUND_SUPER_NERD5
-	disappear GOLDENRODUNDERGROUND_SUPER_NERD6
+	appear GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
+	disappear GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_BROTHER
 	disappear GOLDENRODUNDERGROUND_GRANNY
 	return
 
 .Friday:
 	disappear GOLDENRODUNDERGROUND_GRAMPS
-	disappear GOLDENRODUNDERGROUND_SUPER_NERD5
-	appear GOLDENRODUNDERGROUND_SUPER_NERD6
+	disappear GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
+	appear GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_BROTHER
 	disappear GOLDENRODUNDERGROUND_GRANNY
 	return
 
 .Saturday:
 	disappear GOLDENRODUNDERGROUND_GRAMPS
-	appear GOLDENRODUNDERGROUND_SUPER_NERD5
-	disappear GOLDENRODUNDERGROUND_SUPER_NERD6
+	appear GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
+	disappear GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_BROTHER
 	appear GOLDENRODUNDERGROUND_GRANNY
 	return
 
@@ -194,12 +194,12 @@ OlderHaircutBrotherScript:
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
 	iftrue .AlreadyGotHaircut
 	special PlaceMoneyTopRight
-	writetext UnknownText_0x7c5f9
+	writetext GoldenrodUndergroundOlderHaircutBrotherOfferHaircutText
 	yesorno
 	iffalse .Refused
 	checkmoney YOUR_MONEY, GOLDENRODUNDERGROUND_OLDER_HAIRCUT_PRICE
 	ifequal HAVE_LESS, .NotEnoughMoney
-	writetext UnknownText_0x7c69a
+	writetext GoldenrodUndergroundOlderHaircutBrotherAskWhichMonText
 	buttonsound
 	special YoungerHaircutBrother
 	ifequal $0, .Refused
@@ -230,7 +230,7 @@ OlderHaircutBrotherScript:
 .then
 	takemoney YOUR_MONEY, GOLDENRODUNDERGROUND_OLDER_HAIRCUT_PRICE
 	special PlaceMoneyTopRight
-	writetext UnknownText_0x7c6b8
+	writetext GoldenrodUndergroundOlderHaircutBrotherWatchItBecomeBeautifulText
 	waitbutton
 	closetext
 	special FadeOutPalettes
@@ -239,7 +239,7 @@ OlderHaircutBrotherScript:
 	special FadeInPalettes
 	special RestartMapMusic
 	opentext
-	writetext UnknownText_0x7c6d8
+	writetext GoldenrodUndergroundOlderHaircutBrotherAllDoneText
 	waitbutton
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iftrue EitherHaircutBrotherScript_SlightlyHappier
@@ -248,19 +248,19 @@ OlderHaircutBrotherScript:
 	sjump EitherHaircutBrotherScript_MuchHappier
 
 .Refused:
-	writetext UnknownText_0x7c6ea
+	writetext GoldenrodUndergroundOlderHaircutBrotherThatsAShameText
 	waitbutton
 	closetext
 	end
 
 .NotEnoughMoney:
-	writetext UnknownText_0x7c709
+	writetext GoldenrodUndergroundOlderHaircutBrotherYoullNeedMoreMoneyText
 	waitbutton
 	closetext
 	end
 
 .AlreadyGotHaircut:
-	writetext UnknownText_0x7c72b
+	writetext GoldenrodUndergroundOlderHaircutBrotherOneHaircutADayText
 	waitbutton
 	closetext
 	end
@@ -277,12 +277,12 @@ YoungerHaircutBrotherScript:
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
 	iftrue .AlreadyGotHaircut
 	special PlaceMoneyTopRight
-	writetext UnknownText_0x7c75c
+	writetext GoldenrodUndergroundYoungerHaircutBrotherOfferHaircutText
 	yesorno
 	iffalse .Refused
 	checkmoney YOUR_MONEY, GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_PRICE
 	ifequal HAVE_LESS, .NotEnoughMoney
-	writetext UnknownText_0x7c7f1
+	writetext GoldenrodUndergroundYoungerHaircutBrotherAskWhichMonText
 	buttonsound
 	special OlderHaircutBrother
 	ifequal $0, .Refused
@@ -313,7 +313,7 @@ YoungerHaircutBrotherScript:
 .then
 	takemoney YOUR_MONEY, GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_PRICE
 	special PlaceMoneyTopRight
-	writetext UnknownText_0x7c80e
+	writetext GoldenrodUndergroundYoungerHaircutBrotherIllMakeItLookCoolText
 	waitbutton
 	closetext
 	special FadeOutPalettes
@@ -322,7 +322,7 @@ YoungerHaircutBrotherScript:
 	special FadeInPalettes
 	special RestartMapMusic
 	opentext
-	writetext UnknownText_0x7c82a
+	writetext GoldenrodUndergroundYoungerHaircutBrotherAllDoneText
 	waitbutton
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iftrue EitherHaircutBrotherScript_SlightlyHappier
@@ -331,19 +331,19 @@ YoungerHaircutBrotherScript:
 	sjump EitherHaircutBrotherScript_MuchHappier
 
 .Refused:
-	writetext UnknownText_0x7c842
+	writetext GoldenrodUndergroundYoungerHaircutBrotherHowDisappointingText
 	waitbutton
 	closetext
 	end
 
 .NotEnoughMoney:
-	writetext UnknownText_0x7c85b
+	writetext GoldenrodUndergroundYoungerHaircutBrotherShortOnFundsText
 	waitbutton
 	closetext
 	end
 
 .AlreadyGotHaircut:
-	writetext UnknownText_0x7c87b
+	writetext GoldenrodUndergroundYoungerHaircutBrotherOneHaircutADayText
 	waitbutton
 	closetext
 	end
@@ -375,14 +375,14 @@ BasementDoorScript::
 	iftrue .Open
 	checkitem BASEMENT_KEY
 	iftrue .Unlock
-	writetext UnknownText_0x7c5b0
+	writetext GoldenrodUndergroundTheDoorsLockedText
 	waitbutton
 	closetext
 	end
 
 .Unlock:
 	playsound SFX_TRANSACTION
-	writetext UnknownText_0x7c5d6
+	writetext GoldenrodUndergroundBasementKeyOpenedDoorText
 	waitbutton
 	closetext
 	changeblock 18, 6, $2e ; unlocked door
@@ -392,13 +392,13 @@ BasementDoorScript::
 	end
 
 .Open:
-	writetext UnknownText_0x7c5c3
+	writetext GoldenrodUndergroundTheDoorIsOpenText
 	waitbutton
 	closetext
 	end
 
 GoldenrodUndergroundScript_ShopClosed:
-	writetext UnknownText_0x7c904
+	writetext GoldenrodUndergroundWeAreNotOpenTodayText
 	waitbutton
 	closetext
 	end
@@ -509,20 +509,20 @@ PokemaniacDonaldAfterBattleText:
 	cont "#MON."
 	done
 
-UnknownText_0x7c5b0:
+GoldenrodUndergroundTheDoorsLockedText:
 	text "The door's locked…"
 	done
 
-UnknownText_0x7c5c3:
+GoldenrodUndergroundTheDoorIsOpenText:
 	text "The door is open."
 	done
 
-UnknownText_0x7c5d6:
+GoldenrodUndergroundBasementKeyOpenedDoorText:
 	text "The BASEMENT KEY"
 	line "opened the door."
 	done
 
-UnknownText_0x7c5f9:
+GoldenrodUndergroundOlderHaircutBrotherOfferHaircutText:
 	text "Welcome!"
 
 	para "I run the #MON"
@@ -540,37 +540,37 @@ UnknownText_0x7c5f9:
 	line "to do that?"
 	done
 
-UnknownText_0x7c69a:
+GoldenrodUndergroundOlderHaircutBrotherAskWhichMonText:
 	text "Which #MON"
 	line "should I work on?"
 	done
 
-UnknownText_0x7c6b8:
+GoldenrodUndergroundOlderHaircutBrotherWatchItBecomeBeautifulText:
 	text "OK! Watch it"
 	line "become beautiful!"
 	done
 
-UnknownText_0x7c6d8:
+GoldenrodUndergroundOlderHaircutBrotherAllDoneText:
 	text "There! All done!"
 	done
 
-UnknownText_0x7c6ea:
+GoldenrodUndergroundOlderHaircutBrotherThatsAShameText:
 	text "Is that right?"
 	line "That's a shame!"
 	done
 
-UnknownText_0x7c709:
+GoldenrodUndergroundOlderHaircutBrotherYoullNeedMoreMoneyText:
 	text "You'll need more"
 	line "money than that."
 	done
 
-UnknownText_0x7c72b:
+GoldenrodUndergroundOlderHaircutBrotherOneHaircutADayText:
 	text "I do only one"
 	line "haircut a day. I'm"
 	cont "done for today."
 	done
 
-UnknownText_0x7c75c:
+GoldenrodUndergroundYoungerHaircutBrotherOfferHaircutText:
 	text "Welcome to the"
 	line "#MON SALON!"
 
@@ -586,32 +586,32 @@ UnknownText_0x7c75c:
 	para "So? How about it?"
 	done
 
-UnknownText_0x7c7f1:
+GoldenrodUndergroundYoungerHaircutBrotherAskWhichMonText:
 	text "OK, which #MON"
 	line "should I do?"
 	done
 
-UnknownText_0x7c80e:
+GoldenrodUndergroundYoungerHaircutBrotherIllMakeItLookCoolText:
 	text "OK! I'll make it"
 	line "look cool!"
 	done
 
-UnknownText_0x7c82a:
+GoldenrodUndergroundYoungerHaircutBrotherAllDoneText:
 	text "There we go!"
 	line "All done!"
 	done
 
-UnknownText_0x7c842:
+GoldenrodUndergroundYoungerHaircutBrotherHowDisappointingText:
 	text "No? "
 	line "How disappointing!"
 	done
 
-UnknownText_0x7c85b:
+GoldenrodUndergroundYoungerHaircutBrotherShortOnFundsText:
 	text "You're a little"
 	line "short on funds."
 	done
 
-UnknownText_0x7c87b:
+GoldenrodUndergroundYoungerHaircutBrotherOneHaircutADayText:
 	text "I can do only one"
 	line "haircut a day."
 
@@ -637,7 +637,7 @@ HaircutBrosText_MuchHappier:
 	line "delighted!"
 	done
 
-UnknownText_0x7c904:
+GoldenrodUndergroundWeAreNotOpenTodayText:
 	text "We're not open"
 	line "today."
 	done

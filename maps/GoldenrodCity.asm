@@ -53,16 +53,16 @@ GoldenrodCity_MapScripts:
 MoveTutorScript:
 	faceplayer
 	opentext
-	writetext UnknownText_0x199042
+	writetext GoldenrodCityMoveTutorAskTeachAMoveText
 	yesorno
 	iffalse .Refused
 	special DisplayCoinCaseBalance
-	writetext UnknownText_0x199090
+	writetext GoldenrodCityMoveTutorAsk4000CoinsOkayText
 	yesorno
 	iffalse .Refused2
 	checkcoins 4000
 	ifequal HAVE_LESS, .NotEnoughMoney
-	writetext UnknownText_0x1990ce
+	writetext GoldenrodCityMoveTutorWhichMoveShouldITeachText
 	loadmenu .MoveMenuHeader
 	verticalmenu
 	closewindow
@@ -107,34 +107,34 @@ MoveTutorScript:
 	db "CANCEL@"
 
 .Refused:
-	writetext UnknownText_0x1990b4
+	writetext GoldenrodCityMoveTutorAwwButTheyreAmazingText
 	waitbutton
 	closetext
 	end
 
 .Refused2:
-	writetext UnknownText_0x199107
+	writetext GoldenrodCityMoveTutorHmTooBadText
 	waitbutton
 	closetext
 	end
 
 .TeachMove:
-	writetext UnknownText_0x19913a
+	writetext GoldenrodCityMoveTutorIfYouUnderstandYouveMadeItText
 	buttonsound
 	takecoins 4000
 	waitsfx
 	playsound SFX_TRANSACTION
 	special DisplayCoinCaseBalance
-	writetext UnknownText_0x19918b
+	writetext GoldenrodCityMoveTutorFarewellKidText
 	waitbutton
 	closetext
 	readvar VAR_FACING
 	ifequal LEFT, .WalkAroundPlayer
-	applymovement GOLDENRODCITY_MOVETUTOR, MovementData_0x198a5f
+	applymovement GOLDENRODCITY_MOVETUTOR, GoldenrodCityMoveTutorEnterGameCornerMovement
 	sjump .GoInside
 
 .WalkAroundPlayer:
-	applymovement GOLDENRODCITY_MOVETUTOR, MovementData_0x198a63
+	applymovement GOLDENRODCITY_MOVETUTOR, GoldenrodCityMoveTutorWalkAroundPlayerThenEnterGameCornerMovement
 .GoInside:
 	playsound SFX_ENTER_DOOR
 	disappear GOLDENRODCITY_MOVETUTOR
@@ -144,13 +144,13 @@ MoveTutorScript:
 	end
 
 .Incompatible:
-	writetext UnknownText_0x1991a4
+	writetext GoldenrodCityMoveTutorBButText
 	waitbutton
 	closetext
 	end
 
 .NotEnoughMoney:
-	writetext UnknownText_0x1991ac
+	writetext GoldenrodCityMoveTutorYouDontHaveEnoughCoinsText
 	waitbutton
 	closetext
 	end
@@ -267,13 +267,13 @@ GoldenrodCityPokecenterSign:
 GoldenrodCityFlowerShopSign:
 	jumptext GoldenrodCityFlowerShopSignText
 
-MovementData_0x198a5f:
+GoldenrodCityMoveTutorEnterGameCornerMovement:
 	step RIGHT
 	step RIGHT
 	step UP
 	step_end
 
-MovementData_0x198a63:
+GoldenrodCityMoveTutorWalkAroundPlayerThenEnterGameCornerMovement:
 	step DOWN
 	step RIGHT
 	step RIGHT
@@ -487,7 +487,7 @@ GoldenrodCityFlowerShopSignText:
 	line "FLOWER SHOP"
 	done
 
-UnknownText_0x199042:
+GoldenrodCityMoveTutorAskTeachAMoveText:
 	text "I can teach your"
 	line "#MON amazing"
 
@@ -498,17 +498,17 @@ UnknownText_0x199042:
 	line "new move?"
 	done
 
-UnknownText_0x199090:
+GoldenrodCityMoveTutorAsk4000CoinsOkayText:
 	text "It will cost you"
 	line "4000 coins. Okay?"
 	done
 
-UnknownText_0x1990b4:
+GoldenrodCityMoveTutorAwwButTheyreAmazingText:
 	text "Aww… But they're"
 	line "amazing…"
 	done
 
-UnknownText_0x1990ce:
+GoldenrodCityMoveTutorWhichMoveShouldITeachText:
 	text "Wahahah! You won't"
 	line "regret it!"
 
@@ -516,13 +516,13 @@ UnknownText_0x1990ce:
 	line "I teach?"
 	done
 
-UnknownText_0x199107:
+GoldenrodCityMoveTutorHmTooBadText:
 	text "Hm, too bad. I'll"
 	line "have to get some"
 	cont "cash from home…"
 	done
 
-UnknownText_0x19913a:
+GoldenrodCityMoveTutorIfYouUnderstandYouveMadeItText:
 	text "If you understand"
 	line "what's so amazing"
 
@@ -531,16 +531,16 @@ UnknownText_0x19913a:
 	cont "a trainer."
 	done
 
-UnknownText_0x19918b:
+GoldenrodCityMoveTutorFarewellKidText:
 	text "Wahahah!"
 	line "Farewell, kid!"
 	done
 
-UnknownText_0x1991a4:
+GoldenrodCityMoveTutorBButText:
 	text "B-but…"
 	done
 
-UnknownText_0x1991ac:
+GoldenrodCityMoveTutorYouDontHaveEnoughCoinsText:
 	text "…You don't have"
 	line "enough coins here…"
 	done
