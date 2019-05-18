@@ -108,8 +108,8 @@ SpecialsPointers::
 	add_special LoadUsedSpritesGFX
 	add_special PlaySlowCry
 	add_special SnorlaxAwake ; $60
-	add_special YoungerHaircutBrother
 	add_special OlderHaircutBrother
+	add_special YoungerHaircutBrother
 	add_special DaisysGrooming
 	add_special PlayCurMonCry
 	add_special ProfOaksPCBoot

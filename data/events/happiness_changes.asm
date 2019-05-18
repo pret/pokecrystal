@@ -9,12 +9,12 @@ HappinessChanges:
 	db  -1,  -1,  -1 ; Lost to an enemy
 	db  -5,  -5, -10 ; Fainted due to poison
 	db  -5,  -5, -10 ; Lost to a much stronger enemy
-	db  +1,  +1,  +1 ; Haircut (Y1)
-	db  +3,  +3,  +1 ; Haircut (Y2)
-	db  +5,  +5,  +2 ; Haircut (Y3)
-	db  +1,  +1,  +1 ; Haircut (O1)
-	db  +3,  +3,  +1 ; Haircut (O2)
-	db +10, +10,  +4 ; Haircut (O3)
+	db  +1,  +1,  +1 ; Haircut (older brother) 1
+	db  +3,  +3,  +1 ; Haircut (older brother) 2
+	db  +5,  +5,  +2 ; Haircut (older brother) 3
+	db  +1,  +1,  +1 ; Haircut (younger brother) 1
+	db  +3,  +3,  +1 ; Haircut (younger brother) 2
+	db +10, +10,  +4 ; Haircut (younger brother) 3
 	db  -5,  -5, -10 ; Used Heal Powder or Energypowder (bitter)
 	db -10, -10, -15 ; Used Energy Root (bitter)
 	db -15, -15, -20 ; Used Revival Herb (bitter)

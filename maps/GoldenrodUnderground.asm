@@ -201,7 +201,7 @@ OlderHaircutBrotherScript:
 	ifequal HAVE_LESS, .NotEnoughMoney
 	writetext GoldenrodUndergroundOlderHaircutBrotherAskWhichMonText
 	buttonsound
-	special YoungerHaircutBrother
+	special OlderHaircutBrother
 	ifequal $0, .Refused
 	ifequal $1, .Refused
 	setflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
@@ -284,7 +284,7 @@ YoungerHaircutBrotherScript:
 	ifequal HAVE_LESS, .NotEnoughMoney
 	writetext GoldenrodUndergroundYoungerHaircutBrotherAskWhichMonText
 	buttonsound
-	special OlderHaircutBrother
+	special YoungerHaircutBrother
 	ifequal $0, .Refused
 	ifequal $1, .Refused
 	setflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT

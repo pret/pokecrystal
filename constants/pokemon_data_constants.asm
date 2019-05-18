@@ -187,12 +187,12 @@ const_value = 1
 	const HAPPINESS_FAINTED           ; 06
 	const HAPPINESS_POISONFAINT       ; 07
 	const HAPPINESS_BEATENBYSTRONGFOE ; 08
-	const HAPPINESS_YOUNGCUT1         ; 09
-	const HAPPINESS_YOUNGCUT2         ; 0a
-	const HAPPINESS_YOUNGCUT3         ; 0b
-	const HAPPINESS_OLDERCUT1         ; 0c
-	const HAPPINESS_OLDERCUT2         ; 0d
-	const HAPPINESS_OLDERCUT3         ; 0e
+	const HAPPINESS_OLDERCUT1         ; 09
+	const HAPPINESS_OLDERCUT2         ; 0a
+	const HAPPINESS_OLDERCUT3         ; 0b
+	const HAPPINESS_YOUNGCUT1         ; 0c
+	const HAPPINESS_YOUNGCUT2         ; 0d
+	const HAPPINESS_YOUNGCUT3         ; 0e
 	const HAPPINESS_BITTERPOWDER      ; 0f
 	const HAPPINESS_ENERGYROOT        ; 10
 	const HAPPINESS_REVIVALHERB       ; 11

@@ -12,12 +12,12 @@ BillsGrandfather:
 	ld [wScriptVar], a
 	ret
 
-YoungerHaircutBrother:
-	ld hl, HappinessData_YoungerHaircutBrother
-	jr HaircutOrGrooming
-
 OlderHaircutBrother:
 	ld hl, HappinessData_OlderHaircutBrother
+	jr HaircutOrGrooming
+
+YoungerHaircutBrother:
+	ld hl, HappinessData_YoungerHaircutBrother
 	jr HaircutOrGrooming
 
 DaisysGrooming:
