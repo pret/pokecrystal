@@ -1,18 +1,7 @@
-# generated
-*.tx
-*.o
-*.d
-
-# precompiled python
-*.pyc
-*$py.class
-
-# no binaries
-*.exe
-
 # roms
 *.gbc
-*.gb
+*.map
+*.sym
 
 # for any of the poor souls with save game files in their working directory
 *.sgm
@@ -20,11 +9,7 @@
 *.rtc
 *.sn*
 *.sa*
-*.sg1
-
-# rgbds extras
-*.map
-*.sym
+*.sg*
 
 # compare.sh
 baserom.txt
@@ -38,6 +23,9 @@ pokecrystal.txt
 # swap files for gedit
 *~
 
+# generated
+*.o
+*.d
 *.dimensions
 *.gbcpal
 *.2bpp
@@ -48,3 +36,4 @@ gfx/pokemon/*/bitmask.inc
 gfx/pokemon/*/frames.inc
 !gfx/pokemon/unown/bitmask.inc
 !gfx/pokemon/unown/frames.inc
+build/
