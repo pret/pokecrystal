@@ -104,7 +104,7 @@ RGBLINK ?= $(RGBDS)rgblink
 ### Variables
 
 dirs := audio data engine gfx lib maps mobile
-files := home.asm wram.asm
+files := home.asm ram.asm
 objects := $(patsubst $(dir_source)/%.asm,%.o,$(call rwildcard,$(addprefix $(dir_source)/,$(dirs)),*.asm)) $(files:.asm=.o)
 deps := $(objects:.o=.d)
 
