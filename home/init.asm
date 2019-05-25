@@ -6,7 +6,7 @@ Reset::
 	call ClearPalettes
 	xor a
 	ldh [rIF], a
-	ld a, 1 ; VBlank int
+	ld a, 1 << VBLANK
 	ldh [rIE], a
 	ei
 
@@ -154,7 +154,7 @@ Init::
 
 	xor a
 	ldh [rIF], a
-	ld a, %1111 ; VBlank, LCDStat, Timer, Serial interrupts
+	ld a, IE_DEFAULT
 	ldh [rIE], a
 	ei
 

@@ -434,7 +434,7 @@ Function104bd0:
 	xor a
 	ldh [rIF], a
 	ldh a, [rIE]
-	or $1
+	or 1 << VBLANK
 	ldh [rIE], a
 	ei
 	call DelayFrame
@@ -559,7 +559,7 @@ Function104d1c:
 	xor a
 	ldh [rIF], a
 	ldh a, [rIE]
-	or $1
+	or 1 << VBLANK
 	ldh [rIE], a
 	ei
 	call DelayFrame
@@ -600,7 +600,7 @@ Function104d56:
 
 Function104d5e:
 	call Function104d74
-	ld a, $4
+	ld a, 1 << TIMER
 	ldh [rIE], a
 	xor a
 	ldh [rIF], a

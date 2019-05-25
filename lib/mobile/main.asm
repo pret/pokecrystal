@@ -605,7 +605,7 @@ Function11032c:
 Function110393:
 	ld c, LOW(rIE)
 	ldh a, [c]
-	or $c
+	or (1 << SERIAL) | (1 << TIMER)
 	ldh [c], a
 	ret
 
@@ -4101,9 +4101,9 @@ Function111b21:
 Function111b2e:
 	ld hl, $c822
 	set 1, [hl]
-	ld a, $3
+	ld a, (0 << rSC_ON) | (1 << rSC_CGB) | (1 << rSC_CLOCK)
 	ldh [rSC], a
-	ld a, $83
+	ld a, (1 << rSC_ON) | (1 << rSC_CGB) | (1 << rSC_CLOCK)
 	ldh [rSC], a
 
 Function111b3b:
@@ -4684,7 +4684,7 @@ Function111f07:
 	ret
 .asm_111f17
 	ldh a, [rSC]
-	and $80
+	and 1 << rSC_ON
 	jr nz, .asm_111f17
 	di
 	ld a, [$c81e]

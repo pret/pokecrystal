@@ -65,9 +65,9 @@ tools:
 	$(MAKE) -C tools/
 
 
-$(crystal_obj):   RGBASMFLAGS = -D _CRYSTAL
-$(crystal11_obj): RGBASMFLAGS = -D _CRYSTAL -D _CRYSTAL11
-$(crystal_au_obj): RGBASMFLAGS = -D _CRYSTAL -D _CRYSTAL11 -D _CRYSTAL_AU
+$(crystal_obj):   RGBASMFLAGS =
+$(crystal11_obj): RGBASMFLAGS = -D _CRYSTAL11
+$(crystal_au_obj): RGBASMFLAGS = -D _CRYSTAL11 -D _CRYSTAL_AU
 
 # The dep rules have to be explicit or else missing files won't be reported.
 # As a side effect, they're evaluated immediately instead of when the rule is invoked.
