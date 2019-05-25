@@ -15,7 +15,7 @@ ifeq ($(dir_source),.)
 # If we're in the top-level directory, this makefile fragment will be used.
 # This is where we implement common facilities for the programmer,
 #   or simply create and jump into the build directory.
-# The real build rules are after the else statement.
+# The real build rules are below, after the else statement.
 
 .SUFFIXES:
 
@@ -31,7 +31,7 @@ dirs_versions := $(foreach v,$(versions),$(dir_build)/$v)
 
 
 .PHONY: all
-all: $(version)
+all: $(dir_build)/$(version)
 
 .PHONY: compare
 compare: $(versions)
@@ -40,6 +40,10 @@ compare: $(versions)
 .PHONY: clean
 clean:
 	rm -rf build $(foreach v,$(versions),poke$v.gbc poke$v.sym poke$v.map) $(tools)
+
+# `tidy` will be passed through MAKECMDGOALS
+.PHONY: tidy
+tidy: $(dirs_versions)
 
 # Create the build directory and run make inside of it.
 .PHONY: $(dirs_versions)
@@ -51,7 +55,6 @@ $(dirs_versions): $(dir_build)/%: tools
 
 # It's rather important that the tools are available and up-to-date before
 #   possibly multiple parallel builds of different versions start.
-# Recursive make is the root of all evil.
 include tools/tools.mk
 .PHONY: tools
 tools: $(tools)
@@ -69,11 +72,16 @@ $(foreach v,$(versions),$(eval $(call defver,$v)))
 
 # We don't need to update any makefiles or create any directories here.
 Makefile: ;
-%.mk: ;
-%/-: ;
+%.mk:: ;
+%/.mkdir:: ;
 
 else
 
+# If we're in a directory other than the source code,
+#   this makefile fragment will be used.
+# Here, all the build rules for the different files are defined, and the final
+#   output files will be stored in $(dir_output).
+# The general utility rules are above, before the else statement.
 
 .SUFFIXES:
 .SECONDARY:
@@ -100,10 +108,10 @@ files := home.asm main.asm wram.asm
 objects := $(patsubst $(dir_source)/%.asm,%.o,$(call rwildcard,$(addprefix $(dir_source)/,$(dirs)),*.asm)) $(files:.asm=.o)
 deps := $(objects:.o=.d)
 
-RGBASMFLAGS := -D _CRYSTAL
+RGBASMFLAGS :=
 RGBFIXFLAGS :=
 
--include $(dir_source)/version/$(version).mk
+include $(dir_source)/version/$(version).mk
 
 
 ### Build targets
@@ -111,23 +119,27 @@ RGBFIXFLAGS :=
 .PHONY: all
 all: $(dir_output)/poke$(version).gbc
 
+.PHONY: tidy
+tidy:
+	rm -f $(foreach f,gbc sym map,$(dir_output)/poke$(version).$f) $(objects) $(deps)
+
 $(dir_output)/poke$(version).gbc: pokecrystal.link $(objects)
 	@echo $(RGBLINK) -n $(@:.gbc=.sym) -m $(@:.gbc=.map) -l $< -o $@
 	@$(RGBLINK) -n $(@:.gbc=.sym) -m $(@:.gbc=.map) -l $< -o $@ $(filter-out $<, $^)
 	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $(RGBFIXFLAGS) $@
 	@$(dir_source)/tools/sort_symfile.sh $(@:.gbc=.sym)
 
-%.o: %.asm | $$(@D)/-
+%.o: %.asm | $$(@D)/.mkdir
 	$(RGBASM) -i $(dir_source)/version/$(version)/ -i $(dir_source)/ -L $(RGBASMFLAGS) -o $@ $<
 
 
 ### Dependency generation
 
-%.d: %.asm $(dir_output)/tools/scan_includes | $$(@D)/-
+%.d: %.asm $(dir_output)/tools/scan_includes | $$(@D)/.mkdir
 	@printf '%s: ' $*.o > $@
 	@$(dir_output)/tools/scan_includes -i $(dir_source)/version/$(version)/ -i $(dir_source)/ $< >> $@
 
-ifeq (,$(filter ,$(MAKECMDGOALS)))
+ifeq ($(filter tidy,$(MAKECMDGOALS)),)
 -include $(deps)
 endif
 
@@ -141,38 +153,38 @@ hash = $(shell $(dir_output)/tools/md5 $< | cut -c 1-8)
 	$(eval filename := $(dir_source)/$*.lz.$(hash))
 	$(if $(wildcard $(filename)),\
 		cp $(filename) $@,\
-		$(dir_output)/tools/lzcomp.. -- $< $@)
+		$(dir_output)/tools/lzcomp -- $< $@)
 
 
 
 ### Pokemon pic animation rules
 
-gfx/pokemon/%/front.animated.2bpp: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions $(dir_output)/tools/pokemon_animation_graphics | $$(@D)/-
+gfx/pokemon/%/front.animated.2bpp: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions $(dir_output)/tools/pokemon_animation_graphics | $$(@D)/.mkdir
 	$(dir_output)/tools/pokemon_animation_graphics -o $@ $(word 1,$^) $(word 2,$^)
-gfx/pokemon/%/front.animated.tilemap: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions $(dir_output)/tools/pokemon_animation_graphics | $$(@D)/-
+gfx/pokemon/%/front.animated.tilemap: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions $(dir_output)/tools/pokemon_animation_graphics | $$(@D)/.mkdir
 	$(dir_output)/tools/pokemon_animation_graphics -t $@ $(word 1,$^) $(word 2,$^)
-gfx/pokemon/%/bitmask.inc: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions $(dir_output)/tools/pokemon_animation | $$(@D)/-
+gfx/pokemon/%/bitmask.inc: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions $(dir_output)/tools/pokemon_animation | $$(@D)/.mkdir
 	$(dir_output)/tools/pokemon_animation -b $(word 1,$^) $(word 2,$^) > $@
-gfx/pokemon/%/frames.inc: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions $(dir_output)/tools/pokemon_animation | $$(@D)/-
+gfx/pokemon/%/frames.inc: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions $(dir_output)/tools/pokemon_animation | $$(@D)/.mkdir
 	$(dir_output)/tools/pokemon_animation -f $(word 1,$^) $(word 2,$^) > $@
 
 
 ### Catch-all graphics rules
 
-%.2bpp: %.png $(dir_output)/tools/gfx | $$(@D)/-
+%.2bpp: %.png $(dir_output)/tools/gfx | $$(@D)/.mkdir
 	$(RGBGFX) $(rgbgfx) -o $@ $<
 	$(if $(tools/gfx),\
 		$(dir_output)/tools/gfx $(tools/gfx) -o $@ $@)
 
-%.1bpp: %.png $(dir_output)/tools/gfx | $$(@D)/-
+%.1bpp: %.png $(dir_output)/tools/gfx | $$(@D)/.mkdir
 	$(RGBGFX) $(rgbgfx) -d1 -o $@ $<
 	$(if $(tools/gfx),\
 		$(dir_output)/tools/gfx $(tools/gfx) -d1 -o $@ $@)
 
-%.gbcpal: %.png | $$(@D)/-
+%.gbcpal: %.png | $$(@D)/.mkdir
 	$(RGBGFX) -p $@ $<
 
-%.dimensions: %.png $(dir_output)/tools/png_dimensions | $$(@D)/-
+%.dimensions: %.png $(dir_output)/tools/png_dimensions | $$(@D)/.mkdir
 	$(dir_output)/tools/png_dimensions $< $@
 
 
@@ -181,9 +193,9 @@ gfx/pokemon/%/frames.inc: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/fro
 # Since we use VPATH, just using the path of the directory will cause it to
 #   be found in the VPATH, and the directory never being created where we need it.
 # That's why instead of just creating a directory, we also create a file
-#   simply called "-", which is hopefully never used in any source directory.
--: ;
-%/-:
+#   simply called ".mkdir", which is hopefully never used in any source directory.
+.mkdir: ;
+%/.mkdir::
 	@mkdir -p $(@D)
 	@touch $@
 

@@ -6,6 +6,7 @@ tools := \
 	lzcomp \
 	png_dimensions \
 	scan_includes \
+	palette \
 	pokemon_animation \
 	pokemon_animation_graphics \
 	gfx \
@@ -14,5 +15,5 @@ tools := $(addprefix $(dir_output)/tools/, $(tools))
 
 $(dir_output)/tools/gfx $(dir_output)/tools/md5: tools/common.h
 
-$(dir_output)/tools/%: tools/%.c | $$(@D)/-
+$(dir_output)/tools/%: tools/%.c | $$(@D)/.mkdir
 	$(CC) $(CFLAGS) -o $@ $<
