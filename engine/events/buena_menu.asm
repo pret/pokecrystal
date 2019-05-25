@@ -1,7 +1,6 @@
 INCLUDE "macros/code.inc"
 
 
-
 SECTION "engine/events/buena_menu.asm", ROMX
 
 AskRememberPassword::

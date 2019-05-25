@@ -3,7 +3,6 @@ INCLUDE "macros/enum.inc"
 INCLUDE "macros/scripts/text.inc"
 
 
-
 SECTION "data/phone/text/todd_overworld.asm", ROMX
 
 ToddAskNumber1Text::

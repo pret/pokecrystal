@@ -2,7 +2,6 @@ INCLUDE "macros/code.inc"
 INCLUDE "macros/data.inc"
 
 
-
 SECTION "engine/math/sine.asm", ROMX
 
 _Sine::

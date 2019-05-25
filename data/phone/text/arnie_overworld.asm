@@ -3,7 +3,6 @@ INCLUDE "macros/enum.inc"
 INCLUDE "macros/scripts/text.inc"
 
 
-
 SECTION "data/phone/text/arnie_overworld.asm", ROMX
 
 ArnieAskNumber1Text::

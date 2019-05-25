@@ -4,7 +4,6 @@ INCLUDE "macros/enum.inc"
 INCLUDE "macros/scripts/text.inc"
 
 
-
 SECTION "data/text/common_1.asm", ROMX
 
 _FruitBearingTreeText::

@@ -3,7 +3,6 @@ INCLUDE "macros/enum.inc"
 INCLUDE "macros/scripts/text.inc"
 
 
-
 SECTION "data/phone/text/jack_overworld.asm", ROMX
 
 JackAskNumber1Text::

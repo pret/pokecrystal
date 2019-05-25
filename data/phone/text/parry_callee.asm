@@ -3,7 +3,6 @@ INCLUDE "macros/enum.inc"
 INCLUDE "macros/scripts/text.inc"
 
 
-
 SECTION "data/phone/text/parry_callee.asm", ROMX
 
 UnknownText_0x1b73c7::

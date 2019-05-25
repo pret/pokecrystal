@@ -1,7 +1,6 @@
 INCLUDE "charmap.inc"
 
 
-
 SECTION "engine/pokemon/european_mail.asm@IsMailEuropean", ROMX
 
 IsMailEuropean::

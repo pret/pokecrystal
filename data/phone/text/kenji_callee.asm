@@ -3,7 +3,6 @@ INCLUDE "macros/enum.inc"
 INCLUDE "macros/scripts/text.inc"
 
 
-
 SECTION "data/phone/text/kenji_callee.asm", ROMX
 
 UnknownText_0x1b730b::

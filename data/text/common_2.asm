@@ -4,7 +4,6 @@ INCLUDE "macros/enum.inc"
 INCLUDE "macros/scripts/text.inc"
 
 
-
 SECTION "data/text/common_2.asm", ROMX
 
 UnknownText_0x1c0000::

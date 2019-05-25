@@ -1,7 +1,6 @@
 INCLUDE "charmap.inc"
 
 
-
 SECTION "data/pokemon/names.asm", ROMX
 
 PokemonNames::

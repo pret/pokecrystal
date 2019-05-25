@@ -3,7 +3,6 @@ INCLUDE "macros/enum.inc"
 INCLUDE "macros/scripts/text.inc"
 
 
-
 SECTION "data/battle_tower/trainer_text.asm", ROMX
 
 BattleTowerText_0x1ec000::

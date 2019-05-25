@@ -4,7 +4,6 @@ INCLUDE "macros/enum.inc"
 INCLUDE "macros/scripts/text.inc"
 
 
-
 SECTION "data/text/battle.asm", ROMX
 
 BattleText:: ; used only for BANK(BattleText)

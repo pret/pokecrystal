@@ -3,7 +3,6 @@ INCLUDE "macros/enum.inc"
 INCLUDE "macros/scripts/text.inc"
 
 
-
 SECTION "data/pokemon/dex_entries.asm@Pokedex Entries 001-064", ROMX
 
 BulbasaurPokedexEntry::  INCLUDE "data/pokemon/dex_entries/bulbasaur.inc"

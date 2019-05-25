@@ -3,7 +3,6 @@ INCLUDE "macros/enum.inc"
 INCLUDE "macros/scripts/text.inc"
 
 
-
 SECTION "data/phone/text/tiffany_caller.asm", ROMX
 
 UnknownText_0x665ad::

@@ -3,7 +3,6 @@ INCLUDE "macros/enum.inc"
 INCLUDE "macros/scripts/text.inc"
 
 
-
 SECTION "data/phone/text/ralph_caller.asm", ROMX
 
 RalphNeglectingKidsText::

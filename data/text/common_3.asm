@@ -4,7 +4,6 @@ INCLUDE "macros/enum.inc"
 INCLUDE "macros/scripts/text.inc"
 
 
-
 SECTION "data/text/common_3.asm", ROMX
 
 _OakText6::

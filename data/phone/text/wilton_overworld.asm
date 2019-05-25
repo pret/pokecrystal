@@ -3,7 +3,6 @@ INCLUDE "macros/enum.inc"
 INCLUDE "macros/scripts/text.inc"
 
 
-
 SECTION "data/phone/text/wilton_overworld.asm", ROMX
 
 WiltonAskNumber1Text::

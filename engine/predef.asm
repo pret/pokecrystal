@@ -1,7 +1,6 @@
 INCLUDE "macros/data.inc"
 
 
-
 SECTION "engine/predef.asm", ROMX
 
 GetPredefPointer::

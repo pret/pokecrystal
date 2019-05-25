@@ -1,7 +1,6 @@
 INCLUDE "charmap.inc"
 
 
-
 SECTION "engine/battle/unreferenced_getgen1trainerclassname.asm", ROMX
 
 Unreferenced_GetGen1TrainerClassName:

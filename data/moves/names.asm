@@ -1,7 +1,6 @@
 INCLUDE "charmap.inc"
 
 
-
 SECTION "data/moves/names.asm", ROMX
 
 MoveNames::

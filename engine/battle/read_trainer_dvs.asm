@@ -1,7 +1,6 @@
 INCLUDE "macros/data.inc"
 
 
-
 SECTION "engine/battle/read_trainer_dvs.asm", ROMX
 
 GetTrainerDVs::
