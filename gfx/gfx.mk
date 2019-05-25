@@ -1,3 +1,15 @@
+### Pokemon pic animation rules
+
+gfx/pokemon/%/front.animated.2bpp: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions $(dir_output)/tools/pokemon_animation_graphics | $$(@D)/.mkdir
+	$(dir_output)/tools/pokemon_animation_graphics -o $@ $(word 1,$^) $(word 2,$^)
+gfx/pokemon/%/front.animated.tilemap: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions $(dir_output)/tools/pokemon_animation_graphics | $$(@D)/.mkdir
+	$(dir_output)/tools/pokemon_animation_graphics -t $@ $(word 1,$^) $(word 2,$^)
+gfx/pokemon/%/bitmask.inc: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions $(dir_output)/tools/pokemon_animation | $$(@D)/.mkdir
+	$(dir_output)/tools/pokemon_animation -b $(word 1,$^) $(word 2,$^) > $@
+gfx/pokemon/%/frames.inc: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions $(dir_output)/tools/pokemon_animation | $$(@D)/.mkdir
+	$(dir_output)/tools/pokemon_animation -f $(word 1,$^) $(word 2,$^) > $@
+
+
 ### Terrible hacks to match animations. Delete these rules if you don't care about matching.
 
 # Dewgong has an unused tile id in its last frame. The tile itself is missing.

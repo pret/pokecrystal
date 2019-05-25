@@ -1,9 +1,8 @@
 INCLUDE "macros/data.inc"
+INCLUDE "constants/floating_constants.inc"
 
 
-
-; FLOAT: Has to be at the same address as UnownPicPointers
-SECTION "data/pokemon/pic_pointers.asm", ROMX[$4000]
+SECTION "data/pokemon/pic_pointers.asm", ROMX[ADDR_PIC_POINTERS]
 
 ; Pics are defined in gfx/pics.asm
 PokemonPicPointers::

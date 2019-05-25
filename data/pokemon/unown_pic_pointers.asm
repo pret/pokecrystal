@@ -1,9 +1,8 @@
 INCLUDE "macros/data.inc"
+INCLUDE "constants/floating_constants.inc"
 
 
-
-; FLOAT: Has to be at the same address as PokemonPicPointers
-SECTION "data/pokemon/unown_pic_pointers.asm", ROMX[$4000]
+SECTION "data/pokemon/unown_pic_pointers.asm", ROMX[ADDR_PIC_POINTERS]
 
 UnownPicPointers::
 ; entries correspond to Unown letters, two apiece

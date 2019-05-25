@@ -45,3 +45,6 @@ BANK_PHONE_CALL          EQU $24 ; PokegearPhone_MakePhoneCall -> Function90199;
 BANK_BUG_CONTEST_RESULTS EQU $2f ; BugContestResultsWarpScript -> Movement_ContestResults_WalkAfterWarp
 BANK_PHONE_TIFFANY       EQU $2f ; TiffanysFamilyMemebers -> {GrandmaString, GrandpaString, MomString, DadString, SisterString, BrotherString}
 BANK_DUMMY_GAME          EQU $38 ; _DummyGame -> {Unknown_e00ed, ret_e00ed}
+
+; The Unown pic pointers should start at the same address as the others
+ADDR_PIC_POINTERS EQU $4000

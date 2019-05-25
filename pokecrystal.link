@@ -217,8 +217,8 @@ ROMX $0a
 	"engine/link/link.asm@Unreferenced_Function29fe4"
 	"engine/overworld/wildmons.asm"
 	"engine/battle/link_result.asm"
-	"main.asm@ChrisBackpic"
-	"main.asm@DudeBackpic"
+	"gfx/misc.asm@ChrisBackpic"
+	"gfx/misc.asm@DudeBackpic"
 ROMX $0b
 	"engine/battle/trainer_huds.asm"
 	"engine/battle/trainer_huds.asm@_ShowLinkBattleParticipants"
@@ -272,8 +272,8 @@ ROMX $13
 	"data/maps/scenes.asm"
 	"engine/overworld/load_map_part.asm"
 	"engine/phone/phonering_copytilemapatonce.asm"
-	"main.asm@Shrink1Pic"
-	"main.asm@Shrink2Pic"
+	"gfx/misc.asm@Shrink1Pic"
+	"gfx/misc.asm@Shrink2Pic"
 	"engine/link/link_2.asm@LinkMonStatsScreen"
 	"engine/link/link_2.asm@Link_WaitBGMap"
 	"engine/link/link_2.asm@LinkTextbox2"
@@ -330,7 +330,7 @@ ROMX $14
 	"data/pokemon/base_stats.asm"
 	"data/pokemon/names.asm"
 	"data/pokemon/unused_pic_banks.asm"
-	"main.asm@UnknownEggPic"
+	"gfx/misc.asm@UnknownEggPic"
 ROMX $15
 	"maps/GoldenrodGym.asm"
 	"maps/GoldenrodBikeShop.asm"
@@ -526,7 +526,7 @@ ROMX $22
 	"engine/gfx/player_gfx.asm@GetPlayerIcon"
 	"engine/gfx/player_gfx.asm@GetCardPic"
 	"engine/gfx/player_gfx.asm@GetPlayerPic"
-	"main.asm@KrisBackpic"
+	"gfx/misc.asm@KrisBackpic"
 	"mobile/mobile_22.asm"
 	"engine/events/unown_walls.asm@HoOhChamber"
 	"engine/events/unown_walls.asm@OmanyteChamber"
@@ -748,7 +748,7 @@ ROMX $32
 	"engine/battle_anims/bg_effects.asm"
 	"data/moves/animations.asm"
 	"engine/events/poisonstep_pals.asm"
-	"main.asm@TheEndGFX"
+	"gfx/misc.asm@TheEndGFX"
 ROMX $33
 	"engine/events/bug_contest/display_stats.asm@DisplayCaughtContestMonStats"
 	"engine/events/bug_contest/display_stats.asm@DisplayAlreadyCaughtText"
@@ -765,7 +765,7 @@ ROMX $35
 	"gfx/pokemon/frame_pointers.asm"
 	"gfx/pokemon/kanto_frames.asm"
 ROMX $36
-	"main.asm@FontInversed"
+	"gfx/misc.asm@FontInversed"
 	"gfx/pokemon/johto_frames.asm"
 	"gfx/pokemon/unown_frames.asm"
 ROMX $37
@@ -779,7 +779,7 @@ ROMX $38
 	"engine/pokemon/bills_pc.asm"
 	"engine/pokemon/bills_pc.asm@_ChangeBox"
 ROMX $39
-	"main.asm@CopyrightGFX"
+	"gfx/misc.asm@CopyrightGFX"
 	"engine/menus/options_menu.asm"
 	"engine/movie/crystal_intro.asm@Copyright_GFPresents"
 	"engine/movie/crystal_intro.asm"
@@ -950,7 +950,7 @@ ROMX $41
 	"engine/gfx/load_overworld_font.asm"
 ROMX $42
 	"mobile/mobile_42.asm"
-	"main.asm@IntroLogoGFX"
+	"gfx/misc.asm@IntroLogoGFX"
 	"engine/movie/credits.asm"
 ROMX $43
 	"engine/movie/unused_title.asm"
@@ -1364,7 +1364,7 @@ ROMX $73
 ROMX $74
 	"data/pokemon/dex_entries.asm@Pokedex Entries 193-251"
 ROMX $77
-	"main.asm@UnownFont"
+	"gfx/misc.asm@UnownFont"
 	"engine/printer/print_party.asm@PrintPage1"
 	"engine/printer/print_party.asm@PrintPage2"
 	"engine/printer/print_party.asm@GBPrinterStrings"
@@ -1378,7 +1378,7 @@ ROMX $77
 	"engine/pokedex/pokedex_3.asm@DrawPokedexWindow"
 	"engine/events/catch_tutorial_input.asm"
 	"engine/pokegear/townmap_convertlinebreakcharacters.asm"
-	"main.asm@PokegearGFX"
+	"gfx/misc.asm@PokegearGFX"
 	"engine/pokemon/european_mail.asm@IsMailEuropean"
 	"engine/pokemon/european_mail.asm@Fonts"
 	"engine/pokemon/european_mail.asm@FrenchGerman"
@@ -1399,7 +1399,7 @@ ROMX $7e
 	"engine/events/odd_egg.asm"
 ROMX $7f
 	org $7de0
-	"main.asm@Mobile Stadium 2"
+	"mobile/stadium2.asm"
 WRAM0
 	"Stack"
 	"Audio RAM"

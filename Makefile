@@ -104,7 +104,7 @@ RGBLINK ?= $(RGBDS)rgblink
 ### Variables
 
 dirs := audio data engine gfx lib maps mobile
-files := home.asm main.asm wram.asm
+files := home.asm wram.asm
 objects := $(patsubst $(dir_source)/%.asm,%.o,$(call rwildcard,$(addprefix $(dir_source)/,$(dirs)),*.asm)) $(files:.asm=.o)
 deps := $(objects:.o=.d)
 
@@ -155,18 +155,6 @@ hash = $(shell $(dir_output)/tools/md5 $< | cut -c 1-8)
 		cp $(filename) $@,\
 		$(dir_output)/tools/lzcomp -- $< $@)
 
-
-
-### Pokemon pic animation rules
-
-gfx/pokemon/%/front.animated.2bpp: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions $(dir_output)/tools/pokemon_animation_graphics | $$(@D)/.mkdir
-	$(dir_output)/tools/pokemon_animation_graphics -o $@ $(word 1,$^) $(word 2,$^)
-gfx/pokemon/%/front.animated.tilemap: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions $(dir_output)/tools/pokemon_animation_graphics | $$(@D)/.mkdir
-	$(dir_output)/tools/pokemon_animation_graphics -t $@ $(word 1,$^) $(word 2,$^)
-gfx/pokemon/%/bitmask.inc: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions $(dir_output)/tools/pokemon_animation | $$(@D)/.mkdir
-	$(dir_output)/tools/pokemon_animation -b $(word 1,$^) $(word 2,$^) > $@
-gfx/pokemon/%/frames.inc: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions $(dir_output)/tools/pokemon_animation | $$(@D)/.mkdir
-	$(dir_output)/tools/pokemon_animation -f $(word 1,$^) $(word 2,$^) > $@
 
 
 ### Catch-all graphics rules
