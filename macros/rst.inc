@@ -1,6 +1,8 @@
 if !DEF(RST_INC)
 RST_INC EQU 1
 
+INCLUDE "macros/legacy.inc"
+
 FarCall    EQU $08
 Bankswitch EQU $10
 JumpTable  EQU $28

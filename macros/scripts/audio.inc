@@ -2,6 +2,7 @@ if !DEF(SCRIPTS_AUDIO_INC)
 SCRIPTS_AUDIO_INC EQU 1
 
 INCLUDE "macros/enum.inc"
+INCLUDE "macros/legacy.inc"
 
 musicheader: MACRO
 	; number of tracks, track idx, address

@@ -2,6 +2,7 @@ if !DEF(SCRIPTS_MOVEMENT_INC)
 SCRIPTS_MOVEMENT_INC EQU 1
 
 INCLUDE "macros/enum.inc"
+INCLUDE "macros/legacy.inc"
 
 ; MovementPointers indexes (see engine/overworld/movement.inc)
 	enum_start 0, +4

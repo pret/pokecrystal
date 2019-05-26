@@ -2,6 +2,7 @@ if !DEF(SCRIPTS_EVENTS_INC)
 SCRIPTS_EVENTS_INC EQU 1
 
 INCLUDE "macros/enum.inc"
+INCLUDE "macros/legacy.inc"
 
 ; ScriptCommandTable indexes (see engine/overworld/scripting.inc)
 	enum_start

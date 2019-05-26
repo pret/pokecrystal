@@ -2,6 +2,7 @@ if !DEF(SCRIPTS_BATTLE_ANIMS_INC)
 SCRIPTS_BATTLE_ANIMS_INC EQU 1
 
 INCLUDE "macros/enum.inc"
+INCLUDE "macros/legacy.inc"
 
 anim_wait: MACRO
 if \1 >= $d0
