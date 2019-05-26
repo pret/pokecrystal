@@ -1,4 +1,3 @@
-INCLUDE "macros/enum.inc"
 INCLUDE "constants/move_constants.inc"
 
 

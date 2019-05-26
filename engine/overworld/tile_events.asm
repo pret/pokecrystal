@@ -1,4 +1,3 @@
-INCLUDE "macros/enum.inc"
 INCLUDE "constants/collision_constants.inc"
 INCLUDE "constants/sfx_constants.inc"
 

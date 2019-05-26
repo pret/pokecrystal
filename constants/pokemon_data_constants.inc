@@ -1,3 +1,10 @@
+if !DEF(POKEMON_DATA_CONSTANTS_INC)
+POKEMON_DATA_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/data.inc"
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/text_constants.inc"
+
 ; base data struct members (see data/pokemon/base_stats/*.asm)
 BASE_DEX_NO      EQUS "(wBaseDexNo - wCurBaseData)"
 BASE_STATS       EQUS "(wBaseStats - wCurBaseData)"
@@ -210,3 +217,5 @@ HAPPINESS_THRESHOLD_2 EQU 200
 PP_UP_MASK EQU %11000000
 PP_UP_ONE  EQU %01000000
 PP_MASK    EQU %00111111
+
+endc

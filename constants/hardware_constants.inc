@@ -1,3 +1,6 @@
+if !DEF(HARDWARE_CONSTANTS_INC)
+HARDWARE_CONSTANTS_INC EQU 1
+
 ; Graciously aped from:
 ; http://nocash.emubase.de/pandocs.htm
 ; http://gameboy.mongenel.com/dmg/asmmemmap.html
@@ -162,3 +165,5 @@ rUNKNOWN5   EQU $ff75 ; (8Fh) - Bit 4-6 (Read/Write)
 rUNKNOWN6   EQU $ff76 ; (00h) - Always 00h (Read Only)
 rUNKNOWN7   EQU $ff77 ; (00h) - Always 00h (Read Only)
 rIE         EQU $ffff ; Interrupt Enable (R/W)
+
+endc

@@ -1,3 +1,8 @@
+if !DEF(AUDIO_CONSTANTS_INC)
+AUDIO_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; pitch
 ; FrequencyTable indexes (see audio/notes.inc)
 	const_def
@@ -128,3 +133,5 @@ DANGER_ON_F    EQU 7
 
 ; wMusicFade
 MUSIC_FADE_IN_F EQU 7
+
+endc

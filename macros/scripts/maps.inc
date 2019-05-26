@@ -1,3 +1,6 @@
+if !DEF(SCRIPTS_MAPS_INC)
+SCRIPTS_MAPS_INC EQU 1
+
 map_id: MACRO
 ;\1: map id
 	db GROUP_\1, MAP_\1
@@ -132,3 +135,5 @@ stonetable: MACRO
 ;\3: script pointer
 	dbbw \1, \2, \3
 ENDM
+
+endc

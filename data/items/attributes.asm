@@ -1,5 +1,4 @@
 INCLUDE "macros/data.inc"
-INCLUDE "macros/enum.inc"
 INCLUDE "constants/item_data_constants.inc"
 
 item_attribute: MACRO

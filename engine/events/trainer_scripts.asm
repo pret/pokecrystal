@@ -1,5 +1,4 @@
 INCLUDE "macros/data.inc"
-INCLUDE "macros/enum.inc"
 INCLUDE "macros/scripts/events.inc"
 INCLUDE "constants/misc_constants.inc"
 INCLUDE "constants/script_constants.inc"

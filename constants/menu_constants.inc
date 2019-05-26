@@ -1,3 +1,8 @@
+if !DEF(MENU_CONSTANTS_INC)
+MENU_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; MenuHeader flags
 	const_def
 	shift_const MENU_RESTORE_TILES ; Will be set if MENU_BACKUP_TILES(_2) is set.
@@ -105,3 +110,5 @@ HMENURETURN_ASM    EQU %11111111
 	const NAME_6 ; duplicate of NAME_MON
 	const NAME_7 ; duplicate of NAME_MON
 NUM_NAME_TYPES EQU const_value
+
+endc

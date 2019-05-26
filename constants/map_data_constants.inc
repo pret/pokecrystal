@@ -1,3 +1,8 @@
+if !DEF(MAP_DATA_CONSTANTS_INC)
+MAP_DATA_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 GROUP_N_A  EQU -1
 MAP_N_A    EQU -1
 GROUP_NONE EQU 0
@@ -100,3 +105,5 @@ const_value = -1
 NUM_SPAWNS EQU const_value
 
 MAX_OUTDOOR_SPRITES EQU 23 ; see engine/overworld/overworld.asm
+
+endc

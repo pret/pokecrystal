@@ -1,7 +1,4 @@
 INCLUDE "macros/code.inc"
-INCLUDE "macros/enum.inc"
-INCLUDE "constants/wram_constants.inc"
-INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/collision_constants.inc"
 INCLUDE "constants/floating_constants.inc"
 INCLUDE "constants/hardware_constants.inc"

@@ -1,3 +1,8 @@
+if !DEF(ICON_CONSTANTS_INC)
+ICON_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; IconPointers indexes (see data/icon_pointers.inc)
 	const_def
 	const ICON_NULL
@@ -49,3 +54,5 @@
 	const MONICON_MOBILE1
 	const MONICON_MOBILE2
 	const MONICON_UNUSED
+
+endc

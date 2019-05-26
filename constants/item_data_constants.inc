@@ -1,3 +1,8 @@
+if !DEF(ITEM_DATA_CONSTANTS_INC)
+ITEM_DATA_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; item_attributes struct members (see data/items/attributes.asm)
 	const_def
 	const ITEMATTR_PRICE
@@ -126,3 +131,5 @@ MAIL_STRUCT_LENGTH EQU $2f ; mailmsg struct
 	const HELD_BRIGHTPOWDER
 	const HELD_78
 	const HELD_FOCUS_BAND
+
+endc

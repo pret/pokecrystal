@@ -1,3 +1,8 @@
+if !DEF(SPRITE_CONSTANTS_INC)
+SPRITE_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; sprite ids
 ; OverworldSprites indexes (see data/sprites/sprites.inc)
 	const_def
@@ -165,3 +170,5 @@ SPRITE_VARS EQU const_value
 	const SPRITE_FUCHSIA_GYM_4 ; fa
 	const SPRITE_COPYCAT ; fb
 	const SPRITE_JANINE_IMPERSONATOR ; fc
+
+endc

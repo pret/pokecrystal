@@ -1,3 +1,8 @@
+if !DEF(MOVE_CONSTANTS_INC)
+MOVE_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; move ids
 ; indexes for:
 ; - Moves (see data/moves/moves.asm)
@@ -299,3 +304,5 @@ NUM_ATTACKS EQU const_value + -1
 	const BATTLEANIM_WOBBLE
 	const BATTLEANIM_SHAKE
 	const BATTLEANIM_HIT_CONFUSION
+
+endc

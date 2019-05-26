@@ -1,4 +1,3 @@
-INCLUDE "macros/enum.inc"
 INCLUDE "constants/phone_constants.inc"
 INCLUDE "constants/trainer_constants.inc"
 

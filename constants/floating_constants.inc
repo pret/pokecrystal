@@ -1,3 +1,6 @@
+if !DEF(FLOATING_CONSTANTS_INC)
+FLOATING_CONSTANTS_INC EQU 1
+
 ; This file is a stop-gap solution until the assembler supports BANK[] with section/label names.
 ; Floating-related caveats that aren't listed in this file, are commented with the FLOAT keyword.
 ; These constants shouldn't *ever* be used as a replacement for BANK()!
@@ -48,3 +51,5 @@ BANK_DUMMY_GAME          EQU $38 ; _DummyGame -> {Unknown_e00ed, ret_e00ed}
 
 ; The Unown pic pointers should start at the same address as the others
 ADDR_PIC_POINTERS EQU $4000
+
+endc

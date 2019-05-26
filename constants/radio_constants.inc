@@ -1,3 +1,8 @@
+if !DEF(RADIO_CONSTANTS_INC)
+RADIO_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; radio channel ids
 ; indexes for:
 ; - RadioChannelSongs (see data/radio/channel_music.inc)
@@ -123,3 +128,5 @@ NUM_PASSWORDS_PER_CATEGORY EQU  3
 	const BUENA_ITEM
 	const BUENA_MOVE
 	const BUENA_STRING
+
+endc

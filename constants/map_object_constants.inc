@@ -1,3 +1,10 @@
+if !DEF(MAP_OBJECT_CONSTANTS_INC)
+MAP_OBJECT_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/wram_constants.inc"
+
 ; object_struct members (see macros/wram.inc)
 	const_def
 	const OBJECT_SPRITE              ; 00
@@ -295,3 +302,5 @@ NUM_SPRITEMOVEDATA EQU const_value
 	const STEP_TURN          ; 5
 	const STEP_BACK_LEDGE    ; 6
 	const STEP_WALK_IN_PLACE ; 7
+
+endc

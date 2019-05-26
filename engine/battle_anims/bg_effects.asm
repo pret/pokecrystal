@@ -1,7 +1,6 @@
 INCLUDE "macros/code.inc"
 INCLUDE "macros/coords.inc"
 INCLUDE "macros/data.inc"
-INCLUDE "macros/enum.inc"
 INCLUDE "macros/gfx.inc"
 INCLUDE "macros/rst.inc"
 INCLUDE "constants/gfx_constants.inc"

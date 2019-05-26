@@ -1,3 +1,8 @@
+if !DEF(DECO_CONSTANTS_INC)
+DECO_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; decoration types
 const_value = 1
 	const DECO_PLANT
@@ -125,3 +130,5 @@ NUM_NON_TROPHY_DECOS EQU __enum__
 	deco  GOLD_TROPHY_DOLL
 	deco  SILVER_TROPHY_DOLL
 NUM_DECOS EQU __enum__
+
+endc

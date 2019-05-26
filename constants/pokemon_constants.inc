@@ -1,3 +1,8 @@
+if !DEF(POKEMON_CONSTANTS_INC)
+POKEMON_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; pokemon ids
 ; indexes for:
 ; - PokemonNames (see data/pokemon/names.asm)
@@ -312,3 +317,5 @@ NUM_POKEMON EQU const_value + -1
 	const UNOWN_Y ; 25
 	const UNOWN_Z ; 26
 NUM_UNOWN EQU const_value + -1 ; 26
+
+endc

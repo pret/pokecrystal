@@ -1,3 +1,8 @@
+if !DEF(PRINTER_CONSTANTS_INC)
+PRINTER_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; wPrinterStatus
 	const_def 1
 	const PRINTER_STATUS_CHECKING
@@ -7,3 +12,5 @@
 	const PRINTER_ERROR_2
 	const PRINTER_ERROR_3
 	const PRINTER_ERROR_4
+
+endc

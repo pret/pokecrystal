@@ -1,3 +1,8 @@
+if !DEF(LANDMARK_CONSTANTS_INC)
+LANDMARK_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; Landmarks indexes (see data/maps/landmarks.inc)
 	const_def
 
@@ -110,3 +115,5 @@ EVENT_LOCATION EQU $7f
 	const JOHTO_REGION ; 0
 	const KANTO_REGION ; 1
 NUM_REGIONS EQU const_value
+
+endc

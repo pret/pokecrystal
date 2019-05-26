@@ -1,3 +1,8 @@
+if !DEF(SCRIPTS_EVENTS_INC)
+SCRIPTS_EVENTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; ScriptCommandTable indexes (see engine/overworld/scripting.inc)
 	enum_start
 
@@ -1062,3 +1067,5 @@ ENDM
 checksave: MACRO
 	db checksave_command
 ENDM
+
+endc

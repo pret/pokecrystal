@@ -1,7 +1,6 @@
 INCLUDE "charmap.inc"
 INCLUDE "macros/code.inc"
 INCLUDE "macros/data.inc"
-INCLUDE "macros/enum.inc"
 INCLUDE "macros/gfx.inc"
 INCLUDE "macros/rst.inc"
 INCLUDE "constants/wram_constants.inc"

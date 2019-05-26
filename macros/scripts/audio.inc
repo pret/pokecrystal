@@ -1,3 +1,8 @@
+if !DEF(SCRIPTS_AUDIO_INC)
+SCRIPTS_AUDIO_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 musicheader: MACRO
 	; number of tracks, track idx, address
 	dbw ((\1 - 1) << 6) + (\2 - 1), \3
@@ -267,3 +272,5 @@ ENDM
 endchannel: MACRO
 	db endchannel_cmd
 ENDM
+
+endc

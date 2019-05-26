@@ -1,4 +1,3 @@
-INCLUDE "macros/enum.inc"
 INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/serial_constants.inc"
 

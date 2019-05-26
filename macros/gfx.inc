@@ -1,3 +1,6 @@
+if !DEF(GFX_INC)
+GFX_INC EQU 1
+
 RGB: MACRO
 rept _NARG / 3
 	dw palred (\1) + palgreen (\2) + palblue (\3)
@@ -22,3 +25,5 @@ tile  EQUS "+ LEN_2BPP_TILE *"
 ; example usage:
 ; INCBIN "foo.gbcpal", middle_colors
 middle_colors EQUS "PAL_COLOR_SIZE, PAL_COLOR_SIZE * 2"
+
+endc

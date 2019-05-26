@@ -1,4 +1,3 @@
-INCLUDE "macros/enum.inc"
 INCLUDE "macros/scripts/maps.inc"
 INCLUDE "constants/map_constants.inc"
 

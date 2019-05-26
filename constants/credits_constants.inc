@@ -1,3 +1,8 @@
+if !DEF(CREDITS_CONSTANTS_INC)
+CREDITS_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; CreditsStrings indexes (see data/credits_strings.inc)
 	const_def
 	const SATOSHI_TAJIRI
@@ -113,3 +118,5 @@
 	const CREDITS_SCENE
 	const CREDITS_WAIT
 	const CREDITS_END
+
+endc

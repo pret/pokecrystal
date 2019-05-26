@@ -1,3 +1,8 @@
+if !DEF(SFX_CONSTANTS_INC)
+SFX_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; SFX indexes (see audio/sfx_pointers.inc)
 	const_def
 
@@ -210,3 +215,5 @@
 	const SFX_TWO_PC_BEEPS                ; cc
 	const SFX_4_NOTE_DITTY                ; cd
 	const SFX_TWINKLE                     ; ce
+
+endc

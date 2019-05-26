@@ -1,3 +1,8 @@
+if !DEF(SCRIPTS_BATTLE_COMMANDS_INC)
+SCRIPTS_BATTLE_COMMANDS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 command: MACRO
 	enum \1_command
 \1 EQUS "db \1_command"
@@ -184,3 +189,5 @@ ENDM
 	enum_start $fe
 	command endturn                 ; fe
 	command endmove                 ; ff
+
+endc

@@ -1,5 +1,3 @@
-INCLUDE "macros/enum.inc"
-INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/floating_constants.inc"
 INCLUDE "constants/item_constants.inc"

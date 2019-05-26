@@ -1,3 +1,8 @@
+if !DEF(SCENE_CONSTANTS_INC)
+SCENE_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; See data/maps/scenes.asm for which maps have scene variables.
 ; Each scene_script and coord_event is associated with a current scene ID.
 
@@ -155,3 +160,5 @@ SCENE_FINISHED EQU 1
 	const_def 1
 	const SCENE_FASTSHIP1F_ENTER_SHIP   ; 1
 	const SCENE_FASTSHIP1F_MEET_GRANDPA ; 2
+
+endc

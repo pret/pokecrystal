@@ -1,3 +1,8 @@
+if !DEF(SPRITE_ANIM_CONSTANTS_INC)
+SPRITE_ANIM_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; sprite_anim_struct members (see macros/wram.inc)
 	const_def
 	const SPRITEANIMSTRUCT_INDEX           ; 0
@@ -316,3 +321,5 @@ NUM_SPRITE_ANIM_STRUCTS EQU 10 ; see wSpriteAnimationStructs
 	const SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_9           ; 89
 	const SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_10          ; 8a
 	const SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_11          ; 8b
+
+endc

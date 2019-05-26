@@ -1,3 +1,8 @@
+if !DEF(INPUT_CONSTANTS_INC)
+INPUT_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; joypad buttons
 	const_def
 	const A_BUTTON_F ; 0
@@ -24,3 +29,5 @@ D_PAD      EQU D_RIGHT | D_LEFT | D_UP | D_DOWN
 
 R_DPAD     EQU %00100000
 R_BUTTONS  EQU %00010000
+
+endc

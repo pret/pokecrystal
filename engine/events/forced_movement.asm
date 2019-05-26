@@ -1,4 +1,3 @@
-INCLUDE "macros/enum.inc"
 INCLUDE "macros/scripts/events.inc"
 INCLUDE "macros/scripts/movement.inc"
 INCLUDE "constants/wram_constants.inc"

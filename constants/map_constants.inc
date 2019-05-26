@@ -1,3 +1,8 @@
+if !DEF(MAP_CONSTANTS_INC)
+MAP_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 newgroup: MACRO
 const_value = const_value + 1
 	enum_start 1
@@ -491,3 +496,5 @@ ENDM
 	map_const ROUTE_30_BERRY_HOUSE,                         4,  4 ;  9
 	map_const MR_POKEMONS_HOUSE,                            4,  4 ; 10
 	map_const ROUTE_31_VIOLET_GATE,                         5,  4 ; 11
+
+endc

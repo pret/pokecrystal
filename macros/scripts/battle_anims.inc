@@ -1,3 +1,8 @@
+if !DEF(SCRIPTS_BATTLE_ANIMS_INC)
+SCRIPTS_BATTLE_ANIMS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 anim_wait: MACRO
 if \1 >= $d0
 	fail "anim_wait argument must be less than $d0."
@@ -300,3 +305,5 @@ ENDM
 anim_ret: MACRO
 	db anim_ret_command
 ENDM
+
+endc

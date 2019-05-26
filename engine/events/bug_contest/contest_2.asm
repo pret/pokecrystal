@@ -1,4 +1,3 @@
-INCLUDE "macros/enum.inc"
 INCLUDE "constants/event_flags.inc"
 INCLUDE "constants/floating_constants.inc"
 INCLUDE "constants/misc_constants.inc"

@@ -1,3 +1,8 @@
+if !DEF(STD_CONSTANTS_INC)
+STD_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; StdScripts indexes (see engine/events/std_scripts.asm)
 ; also used in TileCollisionStdScripts (see data/events/collision_stdscripts.inc)
 	enum_start
@@ -53,3 +58,5 @@
 	enum pcscript
 	enum gamecornercoinvendor
 	enum happinesschecknpc
+
+endc

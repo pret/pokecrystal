@@ -1,3 +1,6 @@
+if !DEF(DATA_INC)
+DATA_INC EQU 1
+
 ; Value macros
 
 percent EQUS "* $ff / 100"
@@ -122,3 +125,5 @@ rept \1
 x = x + DIV(32768, \1) ; a circle has 65536 "degrees"
 endr
 ENDM
+
+endc

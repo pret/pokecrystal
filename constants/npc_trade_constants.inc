@@ -1,4 +1,9 @@
-	; npctrade struct members (see data/events/npc_trades.inc)
+if !DEF(NPC_TRADE_CONSTANTS_INC)
+NPC_TRADE_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
+; npctrade struct members (see data/events/npc_trades.inc)
 NPCTRADE_DIALOG  EQU  0 ; db
 NPCTRADE_GIVEMON EQU  1 ; db
 NPCTRADE_GETMON  EQU  2 ; db
@@ -43,3 +48,5 @@ NUM_NPC_TRADES EQU const_value
 	const TRADE_DIALOGSET_HAPPY
 	const TRADE_DIALOGSET_NEWBIE
 	const TRADE_DIALOGSET_GIRL
+
+endc

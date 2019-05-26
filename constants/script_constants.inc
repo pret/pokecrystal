@@ -1,3 +1,8 @@
+if !DEF(SCRIPT_CONSTANTS_INC)
+SCRIPT_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; person constants
 PLAYER      EQU  0
 LAST_TALKED EQU -2
@@ -291,3 +296,5 @@ NUM_UNOWN_PUZZLES EQU const_value
 	const MOVETUTOR_FLAMETHROWER ; 1
 	const MOVETUTOR_THUNDERBOLT  ; 2
 	const MOVETUTOR_ICE_BEAM     ; 3
+
+endc

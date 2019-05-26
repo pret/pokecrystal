@@ -1,4 +1,3 @@
-INCLUDE "macros/enum.inc"
 INCLUDE "macros/gfx.inc"
 INCLUDE "constants/gfx_constants.inc"
 

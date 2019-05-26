@@ -1,3 +1,8 @@
+if !DEF(SCRIPTS_TRADE_ANIMS_INC)
+SCRIPTS_TRADE_ANIMS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; DoTradeAnimation.JumpTable indexes (see engine/trade/animation.asm)
 	enum_start
 
@@ -252,3 +257,5 @@ ENDM
 mobiletradeanim_showoddegg: MACRO
 	db mobiletradeanim_showoddegg_command
 ENDM
+
+endc

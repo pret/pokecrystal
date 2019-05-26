@@ -1,6 +1,5 @@
 INCLUDE "macros/code.inc"
 INCLUDE "macros/data.inc"
-INCLUDE "macros/enum.inc"
 INCLUDE "macros/scripts/audio.inc"
 INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/audio_constants.inc"

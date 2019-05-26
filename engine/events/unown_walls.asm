@@ -1,8 +1,4 @@
 INCLUDE "charmap.inc"
-INCLUDE "macros/data.inc"
-INCLUDE "macros/enum.inc"
-INCLUDE "constants/gfx_constants.inc"
-INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/event_flags.inc"
 INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/item_constants.inc"

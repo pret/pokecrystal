@@ -1,3 +1,6 @@
+if !DEF(RST_INC)
+RST_INC EQU 1
+
 FarCall    EQU $08
 Bankswitch EQU $10
 JumpTable  EQU $28
@@ -23,3 +26,5 @@ homecall: MACRO
 	pop af
 	rst Bankswitch
 ENDM
+
+endc

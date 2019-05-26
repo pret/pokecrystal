@@ -1,3 +1,8 @@
+if !DEF(TRAINER_DATA_CONSTANTS_INC)
+TRAINER_DATA_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; TrainerClassAttributes struct members (see data/trainers/attributes.inc)
 	const_def
 	const TRNATTR_ITEM1           ; 0
@@ -52,3 +57,5 @@ SWITCH_OFTEN       EQU 1 << SWITCH_OFTEN_F
 	const TRAINERTYPE_MOVES
 	const TRAINERTYPE_ITEM
 	const TRAINERTYPE_ITEM_MOVES
+
+endc

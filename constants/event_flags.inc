@@ -1,3 +1,8 @@
+if !DEF(EVENT_FLAGS_INC)
+EVENT_FLAGS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; wEventFlags bit flags
 	const_def
 ; The first eight flags are reset upon reloading the map
@@ -2075,3 +2080,5 @@
 	const EVENT_DARK_CAVE_VIOLET_ENTRANCE_DIRE_HIT
 	const EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
 NUM_EVENTS EQU const_value ; 7d0
+
+endc

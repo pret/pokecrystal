@@ -1,4 +1,3 @@
-INCLUDE "macros/enum.inc"
 INCLUDE "macros/rst.inc"
 INCLUDE "macros/scripts/text.inc"
 INCLUDE "constants/battle_constants.inc"

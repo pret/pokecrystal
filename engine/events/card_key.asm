@@ -1,8 +1,5 @@
 INCLUDE "macros/data.inc"
-INCLUDE "macros/enum.inc"
 INCLUDE "macros/scripts/events.inc"
-INCLUDE "constants/wram_constants.inc"
-INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/map_constants.inc"
 INCLUDE "constants/map_object_constants.inc"
 INCLUDE "constants/misc_constants.inc"

@@ -1,3 +1,8 @@
+if !DEF(WRAM_CONSTANTS_INC)
+WRAM_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; wInputType:: ; c2c7
 AUTO_INPUT EQU $ff
 
@@ -306,3 +311,5 @@ DAYCAREMAN_ACTIVE_F          EQU 7
 ; wDayCareLady:: ; df2c
 DAYCARELADY_HAS_MON_F        EQU 0
 DAYCARELADY_ACTIVE_F         EQU 7
+
+endc

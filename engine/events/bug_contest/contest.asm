@@ -1,4 +1,3 @@
-INCLUDE "macros/enum.inc"
 INCLUDE "macros/rst.inc"
 INCLUDE "macros/scripts/events.inc"
 INCLUDE "macros/scripts/text.inc"

@@ -1,3 +1,6 @@
+if !DEF(LEGACY_INC)
+LEGACY_INC EQU 1
+
 ; Legacy support for old pokecrystal.
 ; Allows porting scripts with as few edits as possible.
 ; Legacy support not in this file can be found by looking for the keyword: "LEGACY"
@@ -239,3 +242,5 @@ text_jump              EQUS "text_far"
 anim_enemyfeetobj  EQUS "anim_battlergfx_2row"
 anim_playerheadobj EQUS "anim_battlergfx_1row"
 anim_clearsprites  EQUS "anim_keepsprites"
+
+endc

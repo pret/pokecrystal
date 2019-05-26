@@ -1,3 +1,8 @@
+if !DEF(CRY_CONSTANTS_INC)
+CRY_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; Cries indexes (see audio/cry_pointers.inc)
 	const_def
 
@@ -72,3 +77,5 @@
 	const CRY_AIPOM
 	const CRY_DUNSPARCE
 	const CRY_DONPHAN
+
+endc

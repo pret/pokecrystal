@@ -1,3 +1,9 @@
+if !DEF(TEXT_CONSTANTS_INC)
+TEXT_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+INCLUDE "constants/gfx_constants.inc"
+
 ; name lengths
 NAME_LENGTH          EQU 11
 PLAYER_NAME_LENGTH   EQU 8
@@ -44,3 +50,5 @@ PRINTNUM_LEADINGZEROS   EQU 1 << PRINTNUM_LEADINGZEROS_F
 ; character sets (see ./charmap.inc)
 FIRST_REGULAR_TEXT_CHAR EQU $60
 FIRST_HIRAGANA_DAKUTEN_CHAR EQU $20
+
+endc

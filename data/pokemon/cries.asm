@@ -1,4 +1,3 @@
-INCLUDE "macros/enum.inc"
 INCLUDE "constants/cry_constants.inc"
 
 mon_cry: MACRO

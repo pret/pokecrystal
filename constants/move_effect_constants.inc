@@ -1,3 +1,8 @@
+if !DEF(MOVE_EFFECT_CONSTANTS_INC)
+MOVE_EFFECT_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; MoveEffectsPointers indexes (see data/moves/effects_pointers.inc)
 	const_def
 	const EFFECT_NORMAL_HIT
@@ -157,3 +162,5 @@
 	const EFFECT_BEAT_UP
 	const EFFECT_FLY
 	const EFFECT_DEFENSE_CURL
+
+endc

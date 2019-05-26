@@ -1,3 +1,6 @@
+if !DEF(ENUM_INC)
+ENUM_INC EQU 1
+
 ; Enumerate variables
 
 enum_start: MACRO
@@ -49,3 +52,5 @@ if !DEF(\1)
 \1 EQUS \2
 endc
 ENDM
+
+endc

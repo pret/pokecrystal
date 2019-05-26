@@ -1,3 +1,8 @@
+if !DEF(SCGB_CONSTANTS_INC)
+SCGB_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; GetSGBLayout arguments (see engine/gfx/cgb_layouts.inc and engine/gfx/sgb_layouts.inc)
 	const_def
 	const SCGB_BATTLE_GRAYSCALE
@@ -148,3 +153,5 @@ SCGB_RAM EQU -1
 	const SGB_OBJ_TRN
 
 PALPACKET_LENGTH EQU $10
+
+endc

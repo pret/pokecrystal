@@ -1,3 +1,8 @@
+if !DEF(SCRIPTS_GFX_ANIMS_INC)
+SCRIPTS_GFX_ANIMS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; pic + oam animations
 
 frame: MACRO
@@ -51,3 +56,5 @@ setrepeat: MACRO
 	db setrepeat_command
 	db \1 ; amount of times to repeat
 ENDM
+
+endc

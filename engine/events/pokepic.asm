@@ -1,6 +1,5 @@
 INCLUDE "macros/code.inc"
 INCLUDE "macros/data.inc"
-INCLUDE "macros/enum.inc"
 INCLUDE "macros/predef.inc"
 INCLUDE "constants/menu_constants.inc"
 INCLUDE "constants/scgb_constants.inc"

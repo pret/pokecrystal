@@ -1,3 +1,8 @@
+if !DEF(SERIAL_CONSTANTS_INC)
+SERIAL_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; link types
 	const_def
 	const LINK_NULL        ; 0
@@ -28,3 +33,5 @@ SERIAL_PREAMBLE_BYTE              EQU $fd
 SERIAL_NO_DATA_BYTE               EQU $fe
 ; signals the end of one part of a patch list (there are two parts) for player/enemy party data
 SERIAL_PATCH_LIST_PART_TERMINATOR EQU $ff
+
+endc

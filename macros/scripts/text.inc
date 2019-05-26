@@ -1,3 +1,8 @@
+if !DEF(SCRIPTS_TEXT_INC)
+SCRIPTS_TEXT_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 text   EQUS "db TX_START,"    ; Start writing text.
 next   EQUS "db \"<NEXT>\","  ; Move a line down.
 line   EQUS "db \"<LINE>\","  ; Start writing at the bottom line.
@@ -143,3 +148,5 @@ ENDM
 text_end: MACRO
 	db TX_END
 ENDM
+
+endc

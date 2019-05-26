@@ -1,3 +1,8 @@
+if !DEF(ENGINE_FLAGS_INC)
+ENGINE_FLAGS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; EngineFlags indexes (see engine/engine_flags.asm)
 	const_def
 ; wPokegearFlags
@@ -188,3 +193,5 @@
 	const ENGINE_DUNSPARCE_SWARM ; a0
 	const ENGINE_YANMA_SWARM
 NUM_ENGINE_FLAGS EQU const_value
+
+endc

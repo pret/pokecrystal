@@ -1,5 +1,4 @@
 INCLUDE "macros/coords.inc"
-INCLUDE "macros/enum.inc"
 INCLUDE "constants/gfx_constants.inc"
 
 

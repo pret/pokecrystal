@@ -1,3 +1,8 @@
+if !DEF(TYPE_CONSTANTS_INC)
+TYPE_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; TypeNames indexes (see data/types/names.inc)
 ; also used in:
 ; - PokedexTypeSearchConversionTable (see data/types/search_types.inc)
@@ -43,3 +48,5 @@ SPECIAL EQU const_value
 TYPES_END EQU const_value
 
 NUM_TYPES EQU TYPES_END + UNUSED_TYPES - UNUSED_TYPES_END
+
+endc

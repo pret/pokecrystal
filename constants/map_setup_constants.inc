@@ -1,3 +1,8 @@
+if !DEF(MAP_SETUP_CONSTANTS_INC)
+MAP_SETUP_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; hMapEntryMethod values
 ; MapSetupScripts indexes (see data/maps/setup_scripts.inc)
 	const_def $f1
@@ -73,3 +78,5 @@ map_end EQU -1
 	const MAPCALLBACK_CMDQUEUE
 	const MAPCALLBACK_SPRITES
 	const MAPCALLBACK_NEWMAP
+
+endc

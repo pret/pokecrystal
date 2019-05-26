@@ -1,3 +1,6 @@
+if !DEF(COORDS_INC)
+COORDS_INC EQU 1
+
 hlcoord EQUS "coord hl,"
 bccoord EQUS "coord bc,"
 decoord EQUS "coord de,"
@@ -50,3 +53,5 @@ lda_coord: MACRO
 	ld a, [(\2) * SCREEN_WIDTH + (\1) + \3]
 	endc
 ENDM
+
+endc

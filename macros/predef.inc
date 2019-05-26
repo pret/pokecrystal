@@ -1,3 +1,6 @@
+if !DEF(PREDEF_INC)
+PREDEF_INC EQU 1
+
 predef_id: MACRO
 ; Some functions load the predef id
 ; without immediately calling Predef.
@@ -13,3 +16,5 @@ predef_jump: MACRO
 	predef_id \1
 	jp Predef
 ENDM
+
+endc

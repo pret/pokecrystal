@@ -1,8 +1,5 @@
-INCLUDE "macros/enum.inc"
 INCLUDE "macros/gfx.inc"
 INCLUDE "macros/rst.inc"
-INCLUDE "constants/wram_constants.inc"
-INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/map_data_constants.inc"
 INCLUDE "constants/map_object_constants.inc"

@@ -1,3 +1,8 @@
+if !DEF(ITEM_CONSTANTS_INC)
+ITEM_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; item ids
 ; indexes for:
 ; - ItemNames (see data/items/names.asm)
@@ -298,3 +303,5 @@ ITEM_FROM_MEM  EQU $ff
 SAFARI_BALL    EQU $08 ; MOON_STONE
 MOON_STONE_RED EQU $0a ; BURN_HEAL
 FULL_HEAL_RED  EQU $34 ; X_SPEED
+
+endc

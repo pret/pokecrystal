@@ -1,3 +1,8 @@
+if !DEF(GFX_CONSTANTS_INC)
+GFX_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 TILE_WIDTH EQU 8 ; pixels
 LEN_1BPP_TILE EQU 1 * TILE_WIDTH ; bytes
 LEN_2BPP_TILE EQU 2 * TILE_WIDTH ; bytes
@@ -54,3 +59,5 @@ SPRITE_GFX_LIST_CAPACITY EQU 32 ; see wUsedSprites
 	const ANIM_MON_HOF
 	const ANIM_MON_EGG1
 	const ANIM_MON_EGG2
+
+endc

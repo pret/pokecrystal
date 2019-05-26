@@ -1,5 +1,4 @@
 INCLUDE "charmap.inc"
-INCLUDE "macros/enum.inc"
 INCLUDE "macros/scripts/text.inc"
 
 

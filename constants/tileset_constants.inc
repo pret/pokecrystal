@@ -1,3 +1,8 @@
+if !DEF(TILESET_CONSTANTS_INC)
+TILESET_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; Tilesets indexes (see data/tilesets.asm)
 	const_def 1
 	const TILESET_JOHTO                ; 01
@@ -48,3 +53,5 @@
 	const PAL_BG_BROWN  ; 5
 	const PAL_BG_ROOF   ; 6
 	const PAL_BG_TEXT   ; 7
+
+endc

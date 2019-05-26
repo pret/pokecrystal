@@ -1,3 +1,8 @@
+if !DEF(PHONE_CONSTANTS_INC)
+PHONE_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; PhoneContacts indexes (see data/phone/phone_contacts.inc)
 	const_def
 	const PHONE_00
@@ -69,3 +74,5 @@ PHONE_CONTACT_SIZE EQU const_value
 
 ; maximum number of pokegear contacts
 CONTACT_LIST_SIZE EQU 10
+
+endc

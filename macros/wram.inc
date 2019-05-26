@@ -1,3 +1,6 @@
+if !DEF(WRAM_INC)
+WRAM_INC EQU 1
+
 ; Used in wram.asm
 
 flag_array: MACRO
@@ -398,3 +401,5 @@ battle_bg_effect: MACRO
 \1Field02::  ds 1
 \1Field03::  ds 1
 ENDM
+
+endc

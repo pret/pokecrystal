@@ -1,3 +1,8 @@
+if !DEF(SPRITE_DATA_CONSTANTS_INC)
+SPRITE_DATA_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; overworld_sprite struct members (see data/sprites.asm)
 	const_def
 	const SPRITEDATA_ADDR    ; 0
@@ -36,3 +41,5 @@ NUM_SPRITEDATA_FIELDS EQU const_value
 	const PAL_NPC_SILVER ; d
 	const PAL_NPC_TREE   ; e
 	const PAL_NPC_ROCK   ; f
+
+endc

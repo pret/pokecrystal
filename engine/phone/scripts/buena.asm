@@ -1,5 +1,4 @@
 INCLUDE "charmap.inc"
-INCLUDE "macros/enum.inc"
 INCLUDE "macros/scripts/events.inc"
 INCLUDE "macros/scripts/text.inc"
 INCLUDE "constants/wram_constants.inc"

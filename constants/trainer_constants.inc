@@ -1,3 +1,8 @@
+if !DEF(TRAINER_CONSTANTS_INC)
+TRAINER_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 trainerclass: MACRO
 	enum \1
 const_value = 1
@@ -701,3 +706,5 @@ KRIS EQU __enum__
 	const EUSINE
 
 NUM_TRAINER_CLASSES EQU __enum__
+
+endc

@@ -1,5 +1,4 @@
 INCLUDE "macros/data.inc"
-INCLUDE "macros/enum.inc"
 INCLUDE "constants/landmark_constants.inc"
 INCLUDE "constants/map_data_constants.inc"
 INCLUDE "constants/misc_constants.inc"

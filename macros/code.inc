@@ -1,3 +1,6 @@
+if !DEF(CODE_INC)
+CODE_INC EQU 1
+
 ; Syntactic sugar macros
 
 lb: MACRO ; r, hi, lo
@@ -104,3 +107,5 @@ if _NARG == 0
 	sine_table 32
 endc
 ENDM
+
+endc

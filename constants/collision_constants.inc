@@ -1,3 +1,6 @@
+if !DEF(COLLISION_CONSTANTS_INC)
+COLLISION_CONSTANTS_INC EQU 1
+
 ; collision permissions (see data/collision_permissions.asm)
 LANDTILE             EQU $00
 WATERTILE            EQU $01
@@ -127,3 +130,5 @@ HI_NYBBLE_WARPS      EQU $70
 HI_NYBBLE_LEDGES     EQU $a0
 HI_NYBBLE_SIDE_WALLS EQU $b0
 HI_NYBBLE_SIDE_BUOYS EQU $c0
+
+endc

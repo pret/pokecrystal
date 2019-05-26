@@ -1,3 +1,8 @@
+if !DEF(MUSIC_CONSTANTS_INC)
+MUSIC_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; song ids
 ; Music indexes (see audio/music_pointers.inc)
 	const_def
@@ -118,3 +123,5 @@ ENTER_MAP_MUSIC   EQU $ff
 ; GetMapMusic picks music for this bit flag
 RADIO_TOWER_MUSIC_F EQU 7
 RADIO_TOWER_MUSIC EQU 1 << RADIO_TOWER_MUSIC_F
+
+endc

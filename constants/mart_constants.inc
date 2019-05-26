@@ -1,3 +1,8 @@
+if !DEF(MART_CONSTANTS_INC)
+MART_CONSTANTS_INC EQU 1
+
+INCLUDE "macros/enum.inc"
+
 ; mart types (see engine/items/mart.asm)
 	const_def
 	const MARTTYPE_STANDARD
@@ -42,3 +47,5 @@
 	const MART_MT_MOON
 	const MART_INDIGO_PLATEAU
 	const MART_UNDERGROUND
+
+endc

@@ -1,7 +1,6 @@
 INCLUDE "charmap.inc"
 INCLUDE "macros/coords.inc"
 INCLUDE "macros/data.inc"
-INCLUDE "macros/enum.inc"
 INCLUDE "macros/predef.inc"
 INCLUDE "macros/rst.inc"
 INCLUDE "macros/scripts/text.inc"
