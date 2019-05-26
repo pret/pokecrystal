@@ -1,3 +1,22 @@
+### Catch-all graphics rules
+
+%.2bpp: %.png $(dir_output)/tools/gfx | $$(@D)/.mkdir
+	$(RGBGFX) $(rgbgfx) -o $@ $<
+	$(if $(tools/gfx),\
+		$(dir_output)/tools/gfx $(tools/gfx) -o $@ $@)
+
+%.1bpp: %.png $(dir_output)/tools/gfx | $$(@D)/.mkdir
+	$(RGBGFX) $(rgbgfx) -d1 -o $@ $<
+	$(if $(tools/gfx),\
+		$(dir_output)/tools/gfx $(tools/gfx) -d1 -o $@ $@)
+
+%.gbcpal: %.png | $$(@D)/.mkdir
+	$(RGBGFX) -p $@ $<
+
+%.dimensions: %.png $(dir_output)/tools/png_dimensions | $$(@D)/.mkdir
+	$(dir_output)/tools/png_dimensions $< $@
+
+
 ### Pokemon pic animation rules
 
 gfx/pokemon/%/front.animated.2bpp: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions $(dir_output)/tools/pokemon_animation_graphics | $$(@D)/.mkdir

@@ -6,9 +6,10 @@ versions := crystal crystal11 crystal-au
 
 
 # Variables used to locate the sources
-# This dir_source allows you to comfortably `make -f path/to/Makefile` in any directory.
+# This dir_source allows you to use `make -f path/to/Makefile` in any directory.
 dir_source := $(patsubst %/,%,$(dir $(word 1,$(MAKEFILE_LIST))))
 dir_output := .
+dir_version := $(dir_source)/version/$(version)
 
 ifeq ($(dir_source),.)
 
@@ -87,9 +88,13 @@ else
 .SECONDARY:
 .SECONDEXPANSION:
 
+VPATH := $(dir_version):$(dir_source)
+
+# Find all files matching pattern $2 in directory $1
 rwildcard = $(foreach d,$(wildcard $1*),$(filter $(subst *,%,$2),$d) $(call rwildcard,$d/,$2))
 
-VPATH := $(dir_source)/version/$(version):$(dir_source)
+# Find all objects in source dir $1, inside subdirectories $2 and files $3 if they exist
+getobjects = $(patsubst $1/%.asm,%.o,$(foreach d,$2,$(call rwildcard,$1/$d/,*.asm)) $(foreach f,$3,$(wildcard $1/$f)))
 
 
 ### Build tools
@@ -103,13 +108,19 @@ RGBLINK ?= $(RGBDS)rgblink
 
 ### Variables
 
+# Look for object files
 dirs := audio data engine gfx lib maps mobile
 files := home.asm ram.asm
-objects := $(patsubst $(dir_source)/%.asm,%.o,$(call rwildcard,$(addprefix $(dir_source)/,$(dirs)),*.asm)) $(files:.asm=.o)
+
+objects := $(call getobjects,$(dir_source),$(dirs),$(files))
+ifneq ($(wildcard $(dir_version)),)
+objects := $(sort $(objects) $(call getobjects,$(dir_version),$(dirs),$(files)))
+endif
 deps := $(objects:.o=.d)
 
-RGBASMFLAGS :=
-RGBFIXFLAGS :=
+# Build flags
+RGBASMFLAGS := -L
+RGBFIXFLAGS := -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL
 
 include $(dir_source)/version/$(version).mk
 
@@ -123,26 +134,28 @@ all: $(dir_output)/poke$(version).gbc
 tidy:
 	rm -f $(foreach f,gbc sym map,$(dir_output)/poke$(version).$f) $(objects) $(deps)
 
-$(dir_output)/poke$(version).gbc: pokecrystal.link $(objects)
+$(dir_output)/poke$(version).gbc: layout.link $(objects)
 	@echo $(RGBLINK) -n $(@:.gbc=.sym) -m $(@:.gbc=.map) -l $< -o $@
 	@$(RGBLINK) -n $(@:.gbc=.sym) -m $(@:.gbc=.map) -l $< -o $@ $(filter-out $<, $^)
-	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $(RGBFIXFLAGS) $@
+	$(RGBFIX) $(RGBFIXFLAGS) $@
 	@$(dir_source)/tools/sort_symfile.sh $(@:.gbc=.sym)
 
 %.o: %.asm | $$(@D)/.mkdir
-	$(RGBASM) -i $(dir_source)/version/$(version)/ -i $(dir_source)/ -L $(RGBASMFLAGS) -o $@ $<
+	$(RGBASM) -i $(dir_version)/ -i $(dir_source)/ $(RGBASMFLAGS) -o $@ $<
 
 
 ### Dependency generation
 
 %.d: %.asm $(dir_output)/tools/scan_includes | $$(@D)/.mkdir
 	@printf '%s: ' $*.o > $@
-	@$(dir_output)/tools/scan_includes -i $(dir_source)/version/$(version)/ -i $(dir_source)/ $< >> $@
+	@$(dir_output)/tools/scan_includes -i $(dir_version)/ -i $(dir_source)/ $< >> $@
 
 ifeq ($(filter tidy,$(MAKECMDGOALS)),)
 -include $(deps)
 endif
 
+
+### Compression
 
 # For files that the compressor can't match, there will be a .lz file suffixed with the md5 hash of the correct uncompressed file.
 # If the hash of the uncompressed file matches, use this .lz instead.
@@ -154,26 +167,6 @@ hash = $(shell $(dir_output)/tools/md5 $< | cut -c 1-8)
 	$(if $(wildcard $(filename)),\
 		cp $(filename) $@,\
 		$(dir_output)/tools/lzcomp -- $< $@)
-
-
-
-### Catch-all graphics rules
-
-%.2bpp: %.png $(dir_output)/tools/gfx | $$(@D)/.mkdir
-	$(RGBGFX) $(rgbgfx) -o $@ $<
-	$(if $(tools/gfx),\
-		$(dir_output)/tools/gfx $(tools/gfx) -o $@ $@)
-
-%.1bpp: %.png $(dir_output)/tools/gfx | $$(@D)/.mkdir
-	$(RGBGFX) $(rgbgfx) -d1 -o $@ $<
-	$(if $(tools/gfx),\
-		$(dir_output)/tools/gfx $(tools/gfx) -d1 -o $@ $@)
-
-%.gbcpal: %.png | $$(@D)/.mkdir
-	$(RGBGFX) -p $@ $<
-
-%.dimensions: %.png $(dir_output)/tools/png_dimensions | $$(@D)/.mkdir
-	$(dir_output)/tools/png_dimensions $< $@
 
 
 ### Directory creation
