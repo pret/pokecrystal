@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 from sys import argv, exit, stderr
-from subprocess import Popen, PIPE
+from os import walk
+from os.path import join
 from struct import unpack, calcsize
 from enum import Enum
 
@@ -27,22 +28,24 @@ def read_string(f):
 import argparse
 parser = argparse.ArgumentParser(description="Parse object files to get a list of global but unused symbols. Mainly used for Travis CI")
 parser.add_argument('objects', type=str, nargs='*', help="the objects to parse")
-parser.add_argument('-r', '--rootdir', type=str, help="use the Makefile to determine what objects to scan (NOTE: will rebuild objects as necessary)")
-parser.add_argument('-i', '--ignore', action='append', help="Ignore unused globals of certain object files while still taking their references into account")
+parser.add_argument('-b', '--builddir', type=str, help="scan a directory for object files")
+parser.add_argument('-i', '--ignore', action='append', help="ignore unused globals of certain object files while still taking their references into account")
 args = parser.parse_args()
 
 
 # Get list of object files
 objects = args.objects
-if args.rootdir:
-    for line in Popen(["make", "-C", args.rootdir, "-s", "-p"],
-            stdout=PIPE).stdout.read().decode().split("\n"):
-        if line.startswith("crystal_obj := "):
-            objects = line[15:].strip().split()
-            break
-    else:
+if args.builddir:
+    objects = []
+    for root, dirs, files in walk(args.builddir):
+        objects += [join(root, file) for file in files if file.endswith(".o")]
+    if not objects:
         print("Error: Object files not found!", file=stderr)
         exit(1)
+
+    # Prefix the build directory to the ignored files list
+    for x in range(len(args.ignore)):
+        args.ignore[x] = join(args.builddir, args.ignore[x])
 
 if not objects:
     parser.print_usage(stderr)

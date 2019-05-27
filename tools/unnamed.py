@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 from sys import stderr, exit
-from subprocess import Popen, PIPE
+from os import walk
+from os.path import join
 from struct import unpack, calcsize
 from enum import Enum
 
@@ -31,18 +32,15 @@ signal(SIGPIPE,SIG_DFL)
 import argparse
 parser = argparse.ArgumentParser(description="Parse the symfile to find unnamed symbols")
 parser.add_argument('symfile', type=argparse.FileType('r'), help="the list of symbols")
-parser.add_argument('-r', '--rootdir', type=str, help="scan the output files to obtain a list of files with unnamed symbols (NOTE: will rebuild objects as necessary)")
+parser.add_argument('-b', '--builddir', type=str, help="scan the output files to obtain a list of files with unnamed symbols")
 args = parser.parse_args()
 
 # Get list of object files
-objects = None
-if args.rootdir:
-    for line in Popen(["make", "-C", args.rootdir, "-s", "-p"],
-            stdout=PIPE).stdout.read().decode().split("\n"):
-        if line.startswith("crystal_obj := "):
-            objects = line[15:].strip().split()
-            break
-    else:
+objects = []
+if args.builddir:
+    for root, dirs, files in walk(args.builddir):
+        objects += [join(root, file) for file in files if file.endswith(".o")]
+    if not objects:
         print("Error: Object files not found!", file=stderr)
         exit(1)
 
@@ -96,4 +94,7 @@ for objfile in objects:
 # Sort the files, the one with the most amount of symbols first
 files = sorted([(fname, files[fname]) for fname in files], key=lambda x: x[1], reverse=True)
 for f in files:
-    print("%s: %d" % (f[0], f[1]))
+    fname = f[0]
+    while fname.startswith("../"):
+        fname = fname[3:]
+    print("%s: %d" % (fname, f[1]))

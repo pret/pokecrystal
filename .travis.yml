@@ -20,7 +20,7 @@ before_script:
     }
 script:
   - make -j2 compare
-  - tools/unusedglobals.py -r . -i wram.o -i engine/predef.o -i engine/events/specials.o
+  - tools/unusedglobals.py -b build/crystal/ -i ram/wram.o -i engine/predef.o -i engine/events/specials.o
   - check_status
 after_success:
   - |-

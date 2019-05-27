@@ -4,7 +4,7 @@ set -e
 root="$(readlink -e "$(dirname "$0")/..")"
 
 # Report unnamed symbols
-content="$("$root/tools/unnamed.py" -r "$root" "$root/pokecrystal.sym" | grep -v -e '^lib/mobile/' -e '^mobile/' | head)"
+content="$("$root/tools/unnamed.py" -b "$root/build/crystal" "$root/pokecrystal.sym" | grep -v -e '^lib/mobile/' -e '^mobile/' | head)"
 
 curl -H 'Content-Type: application/json' -X POST "$POKECRYSTAL_DISCORD_WEBHOOK_URL" -d@- << EOF
 {
