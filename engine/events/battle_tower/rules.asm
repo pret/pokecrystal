@@ -1,4 +1,3 @@
-INCLUDE "charmap.inc"
 INCLUDE "macros/rst.inc"
 INCLUDE "macros/scripts/text.inc"
 INCLUDE "constants/battle_tower_constants.inc"

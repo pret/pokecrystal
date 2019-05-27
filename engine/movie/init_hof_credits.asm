@@ -1,4 +1,3 @@
-INCLUDE "charmap.inc"
 INCLUDE "macros/coords.inc"
 INCLUDE "macros/gfx.inc"
 INCLUDE "macros/scripts/text.inc"

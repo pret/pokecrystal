@@ -1,4 +1,3 @@
-INCLUDE "charmap.inc"
 INCLUDE "macros/code.inc"
 INCLUDE "macros/data.inc"
 INCLUDE "macros/rst.inc"

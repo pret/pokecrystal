@@ -1,3 +1,6 @@
+if !DEF(CHARMAP_INC)
+CHARMAP_INC EQU 1
+
 ; $00-$16 are TX_* constants (see macros/scripts/text.inc)
 
 ; Control characters (see home/text.inc)
@@ -416,3 +419,5 @@
 	charmap "７", $fd
 	charmap "８", $fe
 	charmap "９", $ff
+
+endc
