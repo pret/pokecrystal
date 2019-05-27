@@ -887,6 +887,7 @@ ROMX $3d
 	"audio/music/bugcatchingcontest.asm"
 ROMX $3e
 	"gfx/font.asm"
+	"gfx/footprints.asm"
 	"engine/gfx/load_font.asm@Unreferenced"
 	"engine/gfx/load_font.asm@_LoadStandardFont"
 	"engine/gfx/load_font.asm"

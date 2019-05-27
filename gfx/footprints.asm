@@ -1,3 +1,5 @@
+INCLUDE "constants/gfx_constants.inc"
+
 ; Footprints are 2x2 tiles each, but are stored as a 16x64-tile image
 ; (32 rows of 8 footprints per row).
 ; That means there's a row of the top two tiles for eight footprints,
@@ -7,8 +9,12 @@
 footprint_top    EQUS "0,                 2 * LEN_1BPP_TILE"
 footprint_bottom EQUS "2 * LEN_1BPP_TILE, 2 * LEN_1BPP_TILE"
 
+
+SECTION "gfx/footprints.asm", ROMX
+
 ; Entries correspond to Pokémon species, two apiece, 8 tops then 8 bottoms
 
+Footprints::
 ; 001-008 top halves
 INCBIN "gfx/footprints/bulbasaur.1bpp",  footprint_top
 INCBIN "gfx/footprints/ivysaur.1bpp",    footprint_top
