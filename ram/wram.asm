@@ -1,3 +1,23 @@
+INCLUDE "macros/enum.inc"
+INCLUDE "macros/gfx.inc"
+INCLUDE "macros/wram.inc"
+INCLUDE "constants/wram_constants.inc"
+INCLUDE "constants/battle_constants.inc"
+INCLUDE "constants/battle_tower_constants.inc"
+INCLUDE "constants/deco_constants.inc"
+INCLUDE "constants/event_flags.inc"
+INCLUDE "constants/item_constants.inc"
+INCLUDE "constants/item_data_constants.inc"
+INCLUDE "constants/map_data_constants.inc"
+INCLUDE "constants/mobile_constants.inc"
+INCLUDE "constants/npc_trade_constants.inc"
+INCLUDE "constants/phone_constants.inc"
+INCLUDE "constants/pokemon_constants.inc"
+INCLUDE "constants/pokemon_data_constants.inc"
+INCLUDE "constants/script_constants.inc"
+INCLUDE "constants/sprite_constants.inc"
+
+
 SECTION "Stack", WRAM0
 
 wStackBottom::
@@ -3152,3 +3172,6 @@ SECTION "Stack RAM", WRAMX
 
 wWindowStack:: ds $1000 - 1
 wWindowStackBottom:: ds 1
+
+
+INCLUDE "ram/sram.inc"
