@@ -1,6 +1,6 @@
 # Movement Commands
 
-Defined in [macros/scripts/movement.inc](https://github.com/pret/pokecrystal/blob/master/macros/scripts/movement.asm) and [engine/overworld/movement.inc:MovementPointers](https://github.com/pret/pokecrystal/blob/master/engine/overworld/movement.asm).
+Defined in [macros/scripts/movement.inc](https://github.com/pret/pokecrystal/blob/master/macros/scripts/movement.inc) and [engine/overworld/movement.inc:MovementPointers](https://github.com/pret/pokecrystal/blob/master/engine/overworld/movement.inc).
 
 
 ## `$00`−`$03`: <code>turn_head <i>direction</i></code>

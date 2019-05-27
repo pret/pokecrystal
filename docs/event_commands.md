@@ -1,6 +1,6 @@
 # Event Commands
 
-Defined in [macros/scripts/events.inc](https://github.com/pret/pokecrystal/blob/master/macros/scripts/events.asm) and [engine/overworld/scripting.inc:ScriptCommandTable](https://github.com/pret/pokecrystal/blob/master/engine/overworld/scripting.asm).
+Defined in [macros/scripts/events.inc](https://github.com/pret/pokecrystal/blob/master/macros/scripts/events.inc) and [engine/overworld/scripting.inc:ScriptCommandTable](https://github.com/pret/pokecrystal/blob/master/engine/overworld/scripting.inc).
 
 Until this document is filled out, the [G/S Scripting Compendium](https://hax.iimarckus.org/files/scriptingcodes_eng.htm) has descriptions for most of these commands. It was written for G/S binary hacking and not Crystal assembly hacking, so it's not 100% accurate for pokecrystal.
 

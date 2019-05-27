@@ -1,6 +1,6 @@
 # Battle Animation Commands
 
-Defined in [macros/scripts/battle_anims.inc](https://github.com/pret/pokecrystal/blob/master/macros/scripts/battle_anims.asm) and [engine/battle_anims/anim_commands.inc:BattleAnimCommands](https://github.com/pret/pokecrystal/blob/master/engine/battle_anims/anim_commands.asm).
+Defined in [macros/scripts/battle_anims.inc](https://github.com/pret/pokecrystal/blob/master/macros/scripts/battle_anims.inc) and [engine/battle_anims/anim_commands.inc:BattleAnimCommands](https://github.com/pret/pokecrystal/blob/master/engine/battle_anims/anim_commands.inc).
 
 
 ## `$00`−`$CF`: <code>anim_wait <i>length</i></code>

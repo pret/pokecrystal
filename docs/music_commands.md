@@ -1,6 +1,6 @@
 # Music Commands
 
-Defined in [macros/scripts/audio.inc](https://github.com/pret/pokecrystal/blob/master/macros/scripts/audio.asm) and [audio/engine.asm:MusicCommands](https://github.com/pret/pokecrystal/blob/master/audio/engine.asm).
+Defined in [macros/scripts/audio.inc](https://github.com/pret/pokecrystal/blob/master/macros/scripts/audio.inc) and [audio/engine.asm:MusicCommands](https://github.com/pret/pokecrystal/blob/master/audio/engine.asm).
 
 *See also: [Sound Engine Commands](https://github.com/pret/pokecrystal/blob/master/wiki/Sound-Engine-Commands)*
 

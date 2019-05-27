@@ -17,7 +17,7 @@ These are parts of the code that do not work *incorrectly*, like [bugs and glitc
 
 ## Pic banks are offset by `PICS_FIX`
 
-[data/pokemon/pic_pointers.inc](https://github.com/pret/pokecrystal/blob/master/data/pokemon/pic_pointers.asm), [data/pokemon/unown_pic_pointers.inc](https://github.com/pret/pokecrystal/blob/master/data/pokemon/unown_pic_pointers.asm), and [data/trainers/pic_pointers.inc](https://github.com/pret/pokecrystal/blob/master/data/trainers/pic_pointers.asm) all have to use `dba_pic` instead of `dba`. This is a macro in [macros/data.inc](https://github.com/pret/pokecrystal/blob/master/macros/data.asm) that offsets banks by `PICS_FIX`:
+[data/pokemon/pic_pointers.asm](https://github.com/pret/pokecrystal/blob/master/data/pokemon/pic_pointers.asm), [data/pokemon/unown_pic_pointers.asm](https://github.com/pret/pokecrystal/blob/master/data/pokemon/unown_pic_pointers.asm), and [data/trainers/pic_pointers.asm](https://github.com/pret/pokecrystal/blob/master/data/trainers/pic_pointers.asm) all have to use `dba_pic` instead of `dba`. This is a macro in [macros/data.inc](https://github.com/pret/pokecrystal/blob/master/macros/data.inc) that offsets banks by `PICS_FIX`:
 
 ```asm
 dba_pic: MACRO ; dbw bank, address
@@ -85,7 +85,7 @@ In [gfx/pics.asm](https://github.com/pret/pokecrystal/blob/master/gfx/pics.asm):
 
 ```asm
 ; PokemonPicPointers and UnownPicPointers are assumed to start at the same
-; address, but in different banks. This is enforced in pokecrystal.link.
+; address, but in different banks. This is enforced in layout.link.
 
 
 SECTION "Pic Pointers", ROMX
@@ -98,7 +98,7 @@ SECTION "Unown Pic Pointers", ROMX
 INCLUDE "data/pokemon/unown_pic_pointers.inc"
 ```
 
-In [pokecrystal.link](https://github.com/pret/pokecrystal/blob/master/pokecrystal.link):
+In [layout.link](https://github.com/pret/pokecrystal/blob/master/layout.link):
 
 ```
 ROMX $48
@@ -113,7 +113,7 @@ ROMX $49
 
 **Fix:**
 
-Don't enforce `org $4000` in [pokecrystal.link](https://github.com/pret/pokecrystal/blob/master/pokecrystal.link).
+Don't enforce `org $4000` in [layout.link](https://github.com/pret/pokecrystal/blob/master/layout.link).
 
 Edit `GetFrontpicPointer`:
 
@@ -160,7 +160,7 @@ And `GetMonBackpic`:
 
 ## Footprints are split into top and bottom halves
 
-In [gfx/footprints.inc](https://github.com/pret/pokecrystal/blob/master/gfx/footprints.asm):
+In [gfx/footprints.inc](https://github.com/pret/pokecrystal/blob/master/gfx/footprints.inc):
 
 ```asm
 ; Footprints are 2x2 tiles each, but are stored as a 16x64-tile image
@@ -240,7 +240,7 @@ Edit `Pokedex_LoadAnyFootprint`:
 
 ## Music IDs $64 and $80 or above have special behavior
 
-If a map's music ID in [data/maps/maps.asm](https://github.com/pret/pokecrystal/blob/master/master/data/maps/maps.asm) is $64 (the value of `MUSIC_MAHOGANY_MART` or `MUSIC_SUICUNE_BATTLE`) it will play either `MUSIC_ROCKET_HIDEOUT` or `MUSIC_CHERRYGROVE_CITY`. Moreover, if a map's music ID is $80 or above (the value of `RADIO_TOWER_MUSIC`) it might play `MUSIC_ROCKET_OVERTURE` or something else. This is caused by `GetMapMusic` in [home/map.inc](https://github.com/pret/pokecrystal/blob/master/master/home/map.asm).
+If a map's music ID in [data/maps/maps.asm](https://github.com/pret/pokecrystal/blob/master/master/data/maps/maps.asm) is $64 (the value of `MUSIC_MAHOGANY_MART` or `MUSIC_SUICUNE_BATTLE`) it will play either `MUSIC_ROCKET_HIDEOUT` or `MUSIC_CHERRYGROVE_CITY`. Moreover, if a map's music ID is $80 or above (the value of `RADIO_TOWER_MUSIC`) it might play `MUSIC_ROCKET_OVERTURE` or something else. This is caused by `GetMapMusic` in [home/map.inc](https://github.com/pret/pokecrystal/blob/master/master/home/map.inc).
 
 **Fix:**
 
@@ -411,9 +411,9 @@ Edit [engine/items/items.asm](https://github.com/pret/pokecrystal/blob/master/en
 
 ## Pokédex entry banks are derived from their species IDs
 
-`PokedexDataPointerTable` in [data/pokemon/dex_entry_pointers.inc](https://github.com/pret/pokecrystal/blob/master/data/pokemon/dex_entry_pointers.asm) is a table of `dw`, not `dba`, yet there are four banks used for Pokédex entries. The correct bank is derived from the species ID at the beginning of each Pokémon's base stats. (This is the only use the base stat species ID has.)
+`PokedexDataPointerTable` in [data/pokemon/dex_entry_pointers.inc](https://github.com/pret/pokecrystal/blob/master/data/pokemon/dex_entry_pointers.inc) is a table of `dw`, not `dba`, yet there are four banks used for Pokédex entries. The correct bank is derived from the species ID at the beginning of each Pokémon's base stats. (This is the only use the base stat species ID has.)
 
-Three separate routines do the same derivation; `GetDexEntryPointer` in [engine/pokedex/pokedex_2.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokedex/pokedex_2.asm):
+Three separate routines do the same derivation; `GetDexEntryPointer` in [engine/pokedex/dex_entry.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokedex/dex_entry.asm):
 
 ```asm
 GetDexEntryPointer:
@@ -528,7 +528,7 @@ Sprites_Sine:
 	calc_sine_wave
 ```
 
-`BattleAnim_Cosine` and `BattleAnim_Sine` in [engine/battle_anims/functions.inc](https://github.com/pret/pokecrystal/blob/master/engine/battle_anims/functions.asm):
+`BattleAnim_Cosine` and `BattleAnim_Sine` in [engine/battle_anims/functions.inc](https://github.com/pret/pokecrystal/blob/master/engine/battle_anims/functions.inc):
 
 ```asm
 BattleAnim_Cosine:
@@ -552,7 +552,7 @@ StartTrainerBattle_DrawSineWave:
 	calc_sine_wave
 ```
 
-And `CelebiEvent_Cosine` in [engine/events/celebi.inc](https://github.com/pret/pokecrystal/blob/master/engine/events/celebi.asm):
+And `CelebiEvent_Cosine` in [engine/events/celebi.inc](https://github.com/pret/pokecrystal/blob/master/engine/events/celebi.inc):
 
 ```asm
 CelebiEvent_Cosine:
@@ -561,7 +561,7 @@ CelebiEvent_Cosine:
 	calc_sine_wave
 ```
 
-They all rely on `calc_sine_wave` in [macros/code.inc](https://github.com/pret/pokecrystal/blob/master/macros/code.asm):
+They all rely on `calc_sine_wave` in [macros/code.inc](https://github.com/pret/pokecrystal/blob/master/macros/code.inc):
 
 ```asm
 calc_sine_wave: MACRO
@@ -625,7 +625,7 @@ endr
 ENDM
 ```
 
-**Fix:** Edit [home/sine.inc](https://github.com/pret/pokecrystal/blob/master/home/sine.asm) to contain a single copy of the (co)sine code in bank 0, and call it from those five sites.
+**Fix:** Edit [home/sine.inc](https://github.com/pret/pokecrystal/blob/master/home/sine.inc) to contain a single copy of the (co)sine code in bank 0, and call it from those five sites.
 
 
 ## `GetForestTreeFrame` works, but it's still bad

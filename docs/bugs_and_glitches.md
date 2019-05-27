@@ -215,7 +215,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ([Video](https://www.youtube.com/watch?v=zuCLMikWo4Y))
 
-**Fix:** Edit `BattleCommand_BellyDrum` in [engine/battle/move_effects/belly_drum.inc](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/belly_drum.asm):
+**Fix:** Edit `BattleCommand_BellyDrum` in [engine/battle/move_effects/belly_drum.inc](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/belly_drum.inc):
 
 ```diff
  BattleCommand_BellyDrum:
@@ -249,7 +249,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 **Fix:**
 
-First, edit [./hram.inc](https://github.com/pret/pokecrystal/blob/master/hram.asm):
+First, edit [ram/hram.asm](https://github.com/pret/pokecrystal/blob/master/ram/hram.asm):
 
 ```diff
  hClockResetTrigger:: db ; ffeb
@@ -373,7 +373,7 @@ This bug affects Acid, Iron Tail, and Rock Smash.
 
 ([Video](https://www.youtube.com/watch?v=uRYyzKRatFk))
 
-**Fix:** Edit `BattleCommand_Counter` in [engine/battle/move_effects/counter.inc](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/counter.asm) and `BattleCommand_MirrorCoat` in [engine/battle/move_effects/mirror_coat.inc](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/mirror_coat.asm):
+**Fix:** Edit `BattleCommand_Counter` in [engine/battle/move_effects/counter.inc](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/counter.inc) and `BattleCommand_MirrorCoat` in [engine/battle/move_effects/mirror_coat.inc](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/mirror_coat.inc):
 
 ```diff
 -	; BUG: Move should fail with all non-damaging battle actions
@@ -475,7 +475,7 @@ This bug affects Attract, Curse, Foresight, Mean Look, Mimic, Nightmare, Spider 
 
 ([Video](https://www.youtube.com/watch?v=202-iAsrIa8))
 
-**Fix:** Edit `BattleCommand_BeatUp` in [engine/battle/move_effects/beat_up.inc](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/beat_up.asm):
+**Fix:** Edit `BattleCommand_BeatUp` in [engine/battle/move_effects/beat_up.inc](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/beat_up.inc):
 
 ```diff
  .got_mon
@@ -565,7 +565,7 @@ This bug prevents Substitute from being raised if Beat Up was blocked by Protect
 
 This bug is caused because Beat Up never sets `wAttackMissed`, even when no Pokémon was able to attack (due to being fainted or having a status condition).
 
-**Fix:** Edit `BattleCommand_BeatUpFailText` in [engine/battle/move_effects/beat_up.inc](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/beat_up.asm):
+**Fix:** Edit `BattleCommand_BeatUpFailText` in [engine/battle/move_effects/beat_up.inc](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/beat_up.inc):
 
 ```diff
  BattleCommand_BeatUpFailText:
@@ -590,7 +590,7 @@ This bug is caused because Beat Up never sets `wAttackMissed`, even when no Pok�
 
 This bug existed for all battles in Gold and Silver, and was only fixed for single-player battles in Crystal to preserve link compatibility.
 
-**Fix:** Edit `BattleCommand_Present` in [engine/battle/move_effects/present.inc](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/present.asm):
+**Fix:** Edit `BattleCommand_Present` in [engine/battle/move_effects/present.inc](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/present.inc):
 
 ```diff
  BattleCommand_Present:
@@ -833,7 +833,7 @@ This can bring Pokémon straight from level 1 to 100 by gaining just a few exper
 
 ## Moon Ball does not boost catch rate
 
-**Fix:** Edit `MoonBallMultiplier` in [items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
+**Fix:** Edit `MoonBallMultiplier` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
 
 ```diff
 -; Moon Stone's constant from Pokémon Red is used.
@@ -851,7 +851,7 @@ This can bring Pokémon straight from level 1 to 100 by gaining just a few exper
 
 ## Love Ball boosts catch rate for the wrong gender
 
-**Fix:** Edit `LoveBallMultiplier` in [items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
+**Fix:** Edit `LoveBallMultiplier` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
 
 ```diff
  .wildmale
@@ -867,7 +867,7 @@ This can bring Pokémon straight from level 1 to 100 by gaining just a few exper
 
 ## Fast Ball only boosts catch rate for three Pokémon
 
-**Fix:** Edit `FastBallMultiplier` in [items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
+**Fix:** Edit `FastBallMultiplier` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
 
 ```diff
  .loop
@@ -1349,7 +1349,7 @@ This is a mistake with the left-hand warp carpet corner tiles in [gfx/tilesets/p
 
 This bug prevents you from using blocksets with more than 128 blocks.
 
-**Fix:** Edit `LoadMetatiles` in [home/map.inc](https://github.com/pret/pokecrystal/blob/master/home/map.asm):
+**Fix:** Edit `LoadMetatiles` in [home/map.inc](https://github.com/pret/pokecrystal/blob/master/home/map.inc):
 
 ```diff
  	; Set hl to the address of the current metatile data ([wTilesetBlocksAddress] + (a) tiles).
@@ -1620,7 +1620,7 @@ This supports up to six entries.
 
 ## `ScriptCall` can overflow `wScriptStack` and crash
 
-**Fix:** Edit `ScriptCall` in [engine/overworld/scripting.inc](https://github.com/pret/pokecrystal/blob/master/engine/overworld/scripting.asm):
+**Fix:** Edit `ScriptCall` in [engine/overworld/scripting.inc](https://github.com/pret/pokecrystal/blob/master/engine/overworld/scripting.inc):
 
 ```diff
  ScriptCall:
@@ -1746,7 +1746,7 @@ This supports up to six entries.
 
 ## `ClearWRAM` only clears WRAM bank 1
 
-**Fix:** Edit `ClearWRAM` in [home/init.inc](https://github.com/pret/pokecrystal/blob/master/home/init.asm):
+**Fix:** Edit `ClearWRAM` in [home/init.inc](https://github.com/pret/pokecrystal/blob/master/home/init.inc):
 
 ```diff
  ClearWRAM::
@@ -1772,7 +1772,7 @@ This supports up to six entries.
 
 ## `BattleAnimCmd_ClearObjs` only clears the first 6⅔ objects
 
-**Fix:** Edit `BattleAnimCmd_ClearObjs` in [engine/battle_anims/anim_commands.inc](https://github.com/pret/pokecrystal/blob/master/engine/battle_anims/anim_commands.asm):
+**Fix:** Edit `BattleAnimCmd_ClearObjs` in [engine/battle_anims/anim_commands.inc](https://github.com/pret/pokecrystal/blob/master/engine/battle_anims/anim_commands.inc):
 
 ```diff
  BattleAnimCmd_ClearObjs:

@@ -1,6 +1,6 @@
 # Text Commands
 
-Defined in [macros/scripts/text.inc](https://github.com/pret/pokecrystal/blob/master/macros/scripts/text.asm) and [home/text.inc:TextCommands](https://github.com/pret/pokecrystal/blob/master/home/text.asm).
+Defined in [macros/scripts/text.inc](https://github.com/pret/pokecrystal/blob/master/macros/scripts/text.inc) and [home/text.inc:TextCommands](https://github.com/pret/pokecrystal/blob/master/home/text.inc).
 
 
 ## `$00`: `text_start`
