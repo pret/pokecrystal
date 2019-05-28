@@ -69,7 +69,7 @@ endef
 $(foreach v,$(versions),$(eval $(call defver,$v)))
 
 # Allow for `make version=<version> <path/to/file.o>`
-%: $(dir_build)/$(version) ;
+%: $(dir_build)/$(version) ; @:
 
 # We don't need to update any makefiles or create any directories here.
 Makefile: ;

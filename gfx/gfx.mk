@@ -28,6 +28,10 @@ gfx/pokemon/%/bitmask.inc: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/fr
 gfx/pokemon/%/frames.inc: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions $(dir_output)/tools/pokemon_animation | $$(@D)/.mkdir
 	$(dir_output)/tools/pokemon_animation -f $(word 1,$^) $(word 2,$^) > $@
 
+ifneq ($(filter 3.%,$(MAKE_VERSION)),)
+include $(dir_source)/gfx/make-3-hack.mk
+endif
+
 
 ### Terrible hacks to match animations. Delete these rules if you don't care about matching.
 
