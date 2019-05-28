@@ -12,5 +12,8 @@
 # It seems to work for the current set of rules at the time of writing,
 # but I can't guarantee it'll work for everything.
 
-$(foreach p,$(patsubst $(dir_source)/%/,%,$(wildcard $(dir_source)/gfx/pokemon/*/)),\
+# If you're editing the makefiles for whatever reason, consider updating your version of GNU make.
+
+$(foreach p,$(filter-out gfx/pokemon/unown,\
+		$(patsubst $(dir_source)/%/,%,$(wildcard $(dir_source)/gfx/pokemon/*/))),\
 	$(eval $p/front.dimensions: $p/front.png))

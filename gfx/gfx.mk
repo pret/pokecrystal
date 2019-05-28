@@ -29,7 +29,7 @@ gfx/pokemon/%/frames.inc: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/fro
 	$(dir_output)/tools/pokemon_animation -f $(word 1,$^) $(word 2,$^) > $@
 
 ifneq ($(filter 3.%,$(MAKE_VERSION)),)
-include $(dir_source)/gfx/make-3-hack.mk
+include $(dir_source)/gfx/make-3.x-hack.mk
 endif
 
 
