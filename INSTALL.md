@@ -69,7 +69,7 @@ To install **rgbds**:
 
 ```bash
 git clone --depth=1 https://github.com/rednex/rgbds
-sudo make -C rgbds CFLAGS=-O2 install
+sudo make -C rgbds CFLAGS="-O2 -march=native" install
 ```
 
 Now you're ready to [build **pokecrystal**](#build-pokecrystal).
@@ -92,7 +92,7 @@ To install **rgbds**:
 ```bash
 sudo apt-get install pkg-config flex bison libpng-dev
 git clone --depth=1 https://github.com/rednex/rgbds
-sudo make -C rgbds CFLAGS=-O2 install
+sudo make -C rgbds CFLAGS="-O2 -march=native" install
 ```
 
 ### OpenSUSE
@@ -108,7 +108,7 @@ To install **rgbds**:
 ```bash
 sudo zypper install pkg-config flex bison libpng16-devel
 git clone --depth=1 https://github.com/rednex/rgbds
-sudo make -C rgbds CFLAGS=-O2 install
+sudo make -C rgbds CFLAGS="-O2 -march=native" install
 ```
 
 ### Arch Linux
@@ -126,7 +126,7 @@ Alternatively, to install **rgbds** manually:
 ```bash
 sudo pacman -S pkg-config flex bison libpng
 git clone --depth=1 https://github.com/rednex/rgbds
-sudo make -C rgbds CFLAGS=-O2 install
+sudo make -C rgbds CFLAGS="-O2 -march=native" install
 ```
 
 ### Termux
@@ -163,7 +163,7 @@ To install **rgbds**:
 
 ```bash
 git clone --depth=1 https://github.com/rednex/rgbds
-sudo make -C rgbds CFLAGS=-O2 install
+sudo make -C rgbds CFLAGS="-O2 -march=native" install
 ```
 
 Now you're ready to [build **pokecrystal**](#build-pokecrystal).
@@ -181,11 +181,11 @@ cd pokecrystal
 To build **pokecrystal.gbc**:
 
 ```bash
-make
+make -j4
 ```
 
 To build **pokecrystal11.gbc**:
 
 ```bash
-make crystal11
+make -j4 crystal11
 ```
