@@ -5,7 +5,8 @@
 # to native line endings on checkout.
 
 # files part of the build
-*.asm text
+*.asm text linguist-language=Assembly
+*.inc text linguist-language=Assembly
 *.pal text
 *.link text
 *.txt text
