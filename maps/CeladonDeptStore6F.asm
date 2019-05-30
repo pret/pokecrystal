@@ -1,4 +1,5 @@
 INCLUDE "constants/maps_common.inc"
+INCLUDE "constants/floating_constants.inc"
 
 CELADONDEPTSTORE6F_FRESH_WATER_PRICE EQU 200
 CELADONDEPTSTORE6F_SODA_POP_PRICE    EQU 300

@@ -1,4 +1,5 @@
 INCLUDE "constants/maps_common.inc"
+INCLUDE "constants/floating_constants.inc"
 
 	object_const_def ; object_event constants
 	const COLOSSEUM_CHRIS1

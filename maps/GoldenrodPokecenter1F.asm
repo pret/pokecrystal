@@ -1,4 +1,5 @@
 INCLUDE "constants/maps_common.inc"
+INCLUDE "constants/battle_tower_constants.inc"
 
 	object_const_def ; object_event constants
 	const GOLDENRODPOKECENTER1F_NURSE
