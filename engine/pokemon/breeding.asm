@@ -454,7 +454,7 @@ GetEggMove:
 	ld a, BANK(EggMovePointers)
 	call GetFarHalfword
 .loop
-	ld a, BANK(EggMovePointers) ; TODO: BANK("Egg Moves")
+	ld a, BANK("data/pokemon/egg_moves.asm")
 	call GetFarByte
 	cp -1
 	jr z, .reached_end
@@ -488,18 +488,18 @@ GetEggMove:
 	ld a, BANK(EvosAttacksPointers)
 	call GetFarHalfword
 .loop3
-	ld a, BANK(EvosAttacksPointers) ; TODO: BANK("Evolutions and Attacks")
+	ld a, BANK("engine/pokemon/evolve.asm")
 	call GetFarByte
 	inc hl
 	and a
 	jr nz, .loop3
 .loop4
-	ld a, BANK(EvosAttacksPointers) ; TODO: BANK("Evolutions and Attacks")
+	ld a, BANK("engine/pokemon/evolve.asm")
 	call GetFarByte
 	and a
 	jr z, .inherit_tmhm
 	inc hl
-	ld a, BANK(EvosAttacksPointers) ; TODO: BANK("Evolutions and Attacks")
+	ld a, BANK("engine/pokemon/evolve.asm")
 	call GetFarByte
 	ld b, a
 	ld a, [de]

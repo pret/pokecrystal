@@ -6847,7 +6847,7 @@ PlayOpponentBattleAnim:
 	ret
 
 CallBattleCore:
-	ld a, BANK(DoBattle) ; TODO: BANK("Battle Core")
+	ld a, BANK("engine/battle/core.asm")
 	rst FarCall
 	ret
 
