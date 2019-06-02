@@ -44,8 +44,9 @@ if args.builddir:
         exit(1)
 
     # Prefix the build directory to the ignored files list
-    for x in range(len(args.ignore)):
-        args.ignore[x] = join(args.builddir, args.ignore[x])
+    if args.ignore:
+        for x in range(len(args.ignore)):
+            args.ignore[x] = join(args.builddir, args.ignore[x])
 
 if not objects:
     parser.print_usage(stderr)
