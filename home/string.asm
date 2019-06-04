@@ -6,7 +6,7 @@ InitString::
 InitName::
 ; Intended for names, so this function is limited to ten characters.
 	push hl
-	ld c, 10
+	ld c, NAME_LENGTH - 1
 _InitString::
 ; if the string pointed to by hl is empty (defined as "zero or more spaces
 ; followed by a null"), then initialize it to the string pointed to by de.

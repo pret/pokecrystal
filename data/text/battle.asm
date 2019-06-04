@@ -414,9 +414,8 @@ BecameConfusedText:
 	text "<TARGET>"
 	line "became confused!"
 	prompt
-; ItemHealedConfusion
 
-BattleText_ItemHealedConfusion: ; ItemHealedConfusion
+BattleText_ItemHealedConfusion:
 	text "A @"
 	text_ram wStringBuffer1
 	text " rid"

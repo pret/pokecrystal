@@ -3796,9 +3796,9 @@ BattleTowerRoomMenu_WaitForMessage:
 	call BattleTowerRoomMenu_IncrementJumptable
 
 BattleTowerRoomMenu_DelayRestartMenu:
-    ; Loops while (--[wcd50] != 0),
-    ;   to create some sort of "delay" after the message is written on the screen,
-    ;   before starting the menu again.
+	; Loops while (--[wcd50] != 0),
+	;   to create some sort of "delay" after the message is written on the screen,
+	;   before starting the menu again.
 	ld hl, wcd50
 	dec [hl]
 	ret nz

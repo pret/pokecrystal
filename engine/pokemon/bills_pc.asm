@@ -241,16 +241,16 @@ BillsPCDepositMenuHeader:
 
 Unreferenced_BillsPCClearThreeBoxes:
 	hlcoord 0, 0
-	ld b,  4
-	ld c,  8
+	ld b, 4
+	ld c, 8
 	call ClearBox
 	hlcoord 0, 4
 	ld b, 10
-	ld c,  9
+	ld c, 9
 	call ClearBox
 	hlcoord 0, 14
-	ld b,  2
-	ld c,  8
+	ld b, 2
+	ld c, 8
 	call ClearBox
 	ret
 
@@ -1854,7 +1854,7 @@ TryWithdrawPokemon:
 	ld h, b
 	ld de, wStringBuffer1
 	call PlaceString
-	ld a, $e7
+	ld a, "!"
 	ld [bc], a
 	ld c, 50
 	call DelayFrames
@@ -1913,7 +1913,7 @@ ReleasePKMN_ByePKMN:
 	call PlaceString
 	ld l, c
 	ld h, b
-	ld [hl], $e7
+	ld [hl], "!"
 	ld c, 50
 	call DelayFrames
 	ret
