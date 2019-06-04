@@ -236,8 +236,7 @@ Function15715:
 
 PlayersPCMenuData:
 	db MENU_BACKUP_TILES ; flags
-	db  0,  0 ; top left corner coords (y, x)
-	db 12, 15 ; bottom right corner coords (y, x)
+	menu_coords 0, 0, 15, 12
 	dw .PlayersPCMenuData
 	db 1 ; default selected option
 
