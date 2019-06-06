@@ -1151,7 +1151,7 @@ UnmaskObject::
 	ld [hl], 0 ; unmasked
 	ret
 
-ScrollMapDown::
+ScrollMapUp::
 	hlcoord 0, 0
 	ld de, wBGMapBuffer
 	call BackupBGMapRow
@@ -1166,7 +1166,7 @@ ScrollMapDown::
 	ldh [hBGMapUpdate], a
 	ret
 
-ScrollMapUp::
+ScrollMapDown::
 	hlcoord 0, SCREEN_HEIGHT - 2
 	ld de, wBGMapBuffer
 	call BackupBGMapRow
@@ -1189,7 +1189,7 @@ ScrollMapUp::
 	ldh [hBGMapUpdate], a
 	ret
 
-ScrollMapRight::
+ScrollMapLeft::
 	hlcoord 0, 0
 	ld de, wBGMapBuffer
 	call BackupBGMapColumn
@@ -1204,7 +1204,7 @@ ScrollMapRight::
 	ldh [hBGMapUpdate], a
 	ret
 
-ScrollMapLeft::
+ScrollMapRight::
 	hlcoord SCREEN_WIDTH - 2, 0
 	ld de, wBGMapBuffer
 	call BackupBGMapColumn
