@@ -55,6 +55,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 - [No bump noise if standing on tile `$3E`](#no-bump-noise-if-standing-on-tile-3e)
 - [Playing Entei's Pokédex cry can distort Raikou's and Suicune's](#playing-enteis-pokédex-cry-can-distort-raikous-and-suicunes)
 - [In-battle “`…`” ellipsis is too high](#in-battle--ellipsis-is-too-high)
+- [Move selection menu doesn't handle joypad properly](#move-selection-menu-doesnt-handle-joypad-properly)
 - [Two tiles in the `port` tileset are drawn incorrectly](#two-tiles-in-the-port-tileset-are-drawn-incorrectly)
 - [`LoadMetatiles` wraps around past 128 blocks](#loadmetatiles-wraps-around-past-128-blocks)
 - [Surfing directly across a map connection does not load the new map](#surfing-directly-across-a-map-connection-does-not-load-the-new-map)
@@ -1332,6 +1333,58 @@ This is a mistake with the “`…`” tile in [gfx/battle/hp_exp_bar_border.png
 **Fix:** Lower the ellipsis by two pixels:
 
 ![image](https://raw.githubusercontent.com/pret/pokecrystal/master/docs/images/hp_exp_bar_border.png)
+
+
+## Move selection menu doesn't handle joypad properly
+
+This is an oversight, where `hInMenu` isn't set properly in the menu that handles selecting moves in a battle. Because of this, your cursor is rendered unable to keep scrolling when one of the directional keys is being held.
+
+**Fix:** Edit `BattleTurn` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
+
+```diff
+ BattleTurn:
++	ldh a, [hInMenu]
++	push af
++	ld a, 1
++	ldh [hInMenu], a
++
+ .loop
+
+ 	...
+
+ 	jp .loop
+ 
+ .quit
++	pop af
++	ldh [hInMenu], a
+ 	ret
+```
+
+There existed one way in which this bug would be temporarily "fixed" in-game, and that's when the credits sequence is triggered, `hInMenu` will be set but never unset. This has no bad effect upon the rest of the game, but you might want to fix it regardless.
+
+**Fix:** Edit `Credits` in [engine/movie/credits.asm](https://github.com/pret/pokecrystal/blob/master/engine/movie/credits.asm):
+
+```diff
+ 	ldh a, [hVBlank]
+ 	push af
+ 	ld a, $5
+ 	ldh [hVBlank], a
++	ldh a, [hInMenu]
++	push af
+ 	ld a, $1
+ 	ldh [hInMenu], a
+
+ 	...
+
+ 	ldh [hLCDCPointer], a
+ 	ldh [hBGMapAddress], a
++	pop af
++	ldh [hInMenu], a
+ 	pop af
+ 	ldh [hVBlank], a
+ 	pop af
+ 	ldh [rSVBK], a
+```
 
 
 ## Two tiles in the `port` tileset are drawn incorrectly
