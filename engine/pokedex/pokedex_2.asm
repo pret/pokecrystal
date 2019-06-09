@@ -124,7 +124,7 @@ DisplayDexEntry:
 	jr z, .skip_height
 	push hl
 	push de
-; Print the height with two of the four digits will be in front of the decimal point
+; Print the height, with two of the four digits in front of the decimal point
 	ld hl, sp+$0
 	ld d, h
 	ld e, l
@@ -150,7 +150,7 @@ DisplayDexEntry:
 	or d
 	jr z, .skip_weight
 	push de
-; Print the height with four of the five digits will be in front of the decimal point
+; Print the weight, with four of the five digits in front of the decimal point
 	ld hl, sp+$0
 	ld d, h
 	ld e, l

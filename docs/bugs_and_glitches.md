@@ -1337,30 +1337,10 @@ This is a mistake with the “`…`” tile in [gfx/battle/hp_exp_bar_border.png
 
 ## Move selection menu doesn't handle joypad properly
 
-This is an oversight, where `hInMenu` isn't set properly in the menu that handles selecting moves in a battle. Because of this, your cursor is rendered unable to keep scrolling when one of the directional keys is being held.
+([Video](https://www.youtube.com/watch?v=vjFUo6Jr4po&t=438))
 
-**Fix:** Edit `BattleTurn` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
-
-```diff
- BattleTurn:
-+	ldh a, [hInMenu]
-+	push af
-+	ld a, 1
-+	ldh [hInMenu], a
-+
- .loop
-
- 	...
-
- 	jp .loop
- 
- .quit
-+	pop af
-+	ldh [hInMenu], a
- 	ret
-```
-
-There existed one way in which this bug would be temporarily "fixed" in-game, and that's when the credits sequence is triggered, `hInMenu` will be set but never unset. This has no bad effect upon the rest of the game, but you might want to fix it regardless.
+`hInMenu` isn't defined in the menu that handles selecting moves in a battle. Because of this, your cursor is usually rendered unable to keep scrolling when one of the directional keys is being held. It's up for debate whether this behavior was intentional or not, but this value should be defined when in the move selection menu. A value of 1 will allow it to keep scrolling, though it's usually 0 by default.
+There exists one way in which this behaviour would be temporarily changed in-game, and that's when the credits sequence is triggered, `hInMenu` will be set but never unset. This can be fixed with the following:
 
 **Fix:** Edit `Credits` in [engine/movie/credits.asm](https://github.com/pret/pokecrystal/blob/master/engine/movie/credits.asm):
 
@@ -1384,6 +1364,30 @@ There existed one way in which this bug would be temporarily "fixed" in-game, an
  	ldh [hVBlank], a
  	pop af
  	ldh [rSVBK], a
+```
+
+
+If you want to make sure `hInMenu` always has a defined value in the move selection menu, the following code will set it to 1:
+
+**Fix:** Edit `BattleTurn` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
+
+```diff
+ BattleTurn:
++	ldh a, [hInMenu]
++	push af
++	ld a, 1
++	ldh [hInMenu], a
++
+ .loop
+
+ 	...
+
+ 	jp .loop
+ 
+ .quit
++	pop af
++	ldh [hInMenu], a
+ 	ret
 ```
 
 
