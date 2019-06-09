@@ -87,8 +87,8 @@ Kurt_SelectApricorn:
 
 .MenuData:
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
-	db 4, 7
-	db 1
+	db 4, 7 ; rows, columns
+	db SCROLLINGMENU_ITEMS_NORMAL ; item format
 	dbw 0, wBuffer1
 	dba .Name
 	dba .Quantity

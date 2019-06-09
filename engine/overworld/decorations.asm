@@ -409,7 +409,7 @@ PopulateDecoCategoryMenu:
 .ScrollingMenuData:
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 8, 0 ; rows, columns
-	db 1 ; horizontal spacing
+	db SCROLLINGMENU_ITEMS_NORMAL ; item format
 	dbw 0, wd002 ; text pointer
 	dba DecorationMenuFunction
 	dbw 0, 0

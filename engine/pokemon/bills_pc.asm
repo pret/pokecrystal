@@ -2269,9 +2269,9 @@ _ChangeBox_MenuHeader:
 	db 1 ; default option
 
 .MenuData
-	db MENU_UNUSED_1 | MENU_UNUSED_3 ; flags
-	db 4, 0
-	db 1
+	db SCROLLINGMENU_CALL_FUNCTION3_NO_SWITCH | SCROLLINGMENU_ENABLE_FUNCTION3 ; flags
+	db 4, 0 ; rows, columns
+	db SCROLLINGMENU_ITEMS_NORMAL ; item format
 	dba .boxes
 	dba .boxnames
 	dba NULL

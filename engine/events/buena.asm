@@ -263,7 +263,7 @@ Buena_PrizeMenu:
 .MenuData:
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 13 ; rows, columns
-	db 1 ; spacing
+	db SCROLLINGMENU_ITEMS_NORMAL ; item format
 	dba .indices
 	dba .prizeitem
 	dba .prizepoints

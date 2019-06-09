@@ -543,8 +543,8 @@ MailboxPC:
 
 .TopMenuData:
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
-	db 4, 0 ; rows/columns?
-	db 1 ; horizontal spacing?
+	db 4, 0 ; rows, columns
+	db SCROLLINGMENU_ITEMS_NORMAL ; item format
 	dbw 0, wMailboxCount ; text pointer
 	dba MailboxPC_PrintMailAuthor
 	dba NULL

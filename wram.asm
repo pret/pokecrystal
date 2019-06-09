@@ -1481,7 +1481,7 @@ NEXTU ; cf92
 ; Scrolling Menu
 wMenuData_ScrollingMenuHeight:: db ; cf92
 wMenuData_ScrollingMenuWidth:: db ; cf93
-wMenuData_ScrollingMenuSpacing:: db ; cf94
+wMenuData_ScrollingMenuItemFormat:: db ; cf94
 wMenuData_ItemsPointerBank:: db ; cf95
 wMenuData_ItemsPointerAddr:: dw ; cf97
 wMenuData_ScrollingMenuFunction1:: ds 3 ; cf98

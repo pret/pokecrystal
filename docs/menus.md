@@ -26,7 +26,7 @@ Structure:
 .MenuData:
 	db 0 ; flags
 	db 5, 0 ; rows, columns
-	db 1 ; horizontal spacing
+	db SCROLLINGMENU_ITEMS_NORMAL ; item format
 	dba Items
 	dba Function1
 	dba Function2
@@ -66,9 +66,9 @@ Function3: Called to display anything else, whenever the cursor is moved.
 
 There is no register of importance that should be preserved in any of these functions.
 
-The `; horizontal spacing` item in each `MenuData` is a misnomer. It changes how the `Items` struct looks.
+The `; item format` entry in each `MenuData` changes how the `Items` struct looks.
 
-If it's 1:
+If it's `SCROLLINGMENU_ITEMS_NORMAL` (1):
 
 ```
 db entries not including cancel
@@ -78,7 +78,7 @@ db -1 ; cancel
 ...
 ```
 
-If it's 2:
+If it's `SCROLLINGMENU_ITEMS_QUANTITY` (2):
 
 ```
 db entries not including cancel

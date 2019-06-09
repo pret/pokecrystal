@@ -184,7 +184,7 @@ Elevator_MenuHeader:
 Elevator_MenuData:
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 0 ; rows, columns
-	db 1 ; horizontal spacing
+	db SCROLLINGMENU_ITEMS_NORMAL ; item format
 	dbw 0, wCurElevator
 	dba GetElevatorFloorStrings
 	dba NULL

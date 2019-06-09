@@ -585,7 +585,7 @@ MenuHeader_0x48513:
 MenuData_0x4851b:
 	db SCROLLINGMENU_DISPLAY_ARROWS | SCROLLINGMENU_ENABLE_RIGHT | SCROLLINGMENU_ENABLE_LEFT | SCROLLINGMENU_CALL_FUNCTION1_CANCEL ; flags
 	db 6, 0 ; rows, columns
-	db 1 ; horizontal spacing
+	db SCROLLINGMENU_ITEMS_NORMAL ; item format
 	dba .Items
 	dba Function483e8
 	dba NULL
