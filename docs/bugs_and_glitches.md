@@ -916,7 +916,7 @@ This can bring Pokémon straight from level 1 to 100 by gaining just a few exper
 +
 +.UnsetClairScene:
 +	setmapscene DRAGONS_DEN_B1F, SCENE_DRAGONSDENB1F_NOTHING
-+	end
++	return
 ```
 
 
