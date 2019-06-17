@@ -55,6 +55,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 - [No bump noise if standing on tile `$3E`](#no-bump-noise-if-standing-on-tile-3e)
 - [Playing Entei's Pokédex cry can distort Raikou's and Suicune's](#playing-enteis-pokédex-cry-can-distort-raikous-and-suicunes)
 - [In-battle “`…`” ellipsis is too high](#in-battle--ellipsis-is-too-high)
+- [Move selection menu doesn't handle joypad properly](#move-selection-menu-doesnt-handle-joypad-properly)
 - [Two tiles in the `port` tileset are drawn incorrectly](#two-tiles-in-the-port-tileset-are-drawn-incorrectly)
 - [`LoadMetatiles` wraps around past 128 blocks](#loadmetatiles-wraps-around-past-128-blocks)
 - [Surfing directly across a map connection does not load the new map](#surfing-directly-across-a-map-connection-does-not-load-the-new-map)
@@ -915,7 +916,7 @@ This can bring Pokémon straight from level 1 to 100 by gaining just a few exper
 +
 +.UnsetClairScene:
 +	setmapscene DRAGONS_DEN_B1F, SCENE_DRAGONSDENB1F_NOTHING
-+	end
++	return
 ```
 
 
@@ -1332,6 +1333,62 @@ This is a mistake with the “`…`” tile in [gfx/battle/hp_exp_bar_border.png
 **Fix:** Lower the ellipsis by two pixels:
 
 ![image](https://raw.githubusercontent.com/pret/pokecrystal/master/docs/images/hp_exp_bar_border.png)
+
+
+## Move selection menu doesn't handle joypad properly
+
+([Video](https://www.youtube.com/watch?v=vjFUo6Jr4po&t=438))
+
+`hInMenu` isn't defined in the menu that handles selecting moves in a battle. Because of this, your cursor is usually rendered unable to keep scrolling when one of the directional keys is being held. It's up for debate whether this behavior was intentional or not, but this value should be defined when in the move selection menu. A value of 1 will allow it to keep scrolling, though it's usually 0 by default.
+There exists one way in which this behaviour would be temporarily changed in-game, and that's when the credits sequence is triggered, `hInMenu` will be set but never unset. This can be fixed with the following:
+
+**Fix:** Edit `Credits` in [engine/movie/credits.asm](https://github.com/pret/pokecrystal/blob/master/engine/movie/credits.asm):
+
+```diff
+ 	ldh a, [hVBlank]
+ 	push af
+ 	ld a, $5
+ 	ldh [hVBlank], a
++	ldh a, [hInMenu]
++	push af
+ 	ld a, $1
+ 	ldh [hInMenu], a
+
+ 	...
+
+ 	ldh [hLCDCPointer], a
+ 	ldh [hBGMapAddress], a
++	pop af
++	ldh [hInMenu], a
+ 	pop af
+ 	ldh [hVBlank], a
+ 	pop af
+ 	ldh [rSVBK], a
+```
+
+
+If you want to make sure `hInMenu` always has a defined value in the move selection menu, the following code will set it to 1:
+
+**Fix:** Edit `BattleTurn` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
+
+```diff
+ BattleTurn:
++	ldh a, [hInMenu]
++	push af
++	ld a, 1
++	ldh [hInMenu], a
++
+ .loop
+
+ 	...
+
+ 	jp .loop
+ 
+ .quit
++	pop af
++	ldh [hInMenu], a
+ 	ret
+```
 
 
 ## Two tiles in the `port` tileset are drawn incorrectly

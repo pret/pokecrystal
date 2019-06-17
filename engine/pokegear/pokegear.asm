@@ -335,7 +335,7 @@ InitPokegearTilemap:
 .ok
 	farcall PokegearMap
 	ld a, $07
-	ld bc, $12
+	ld bc, SCREEN_WIDTH - 2
 	hlcoord 1, 2
 	call ByteFill
 	hlcoord 0, 2
@@ -2165,7 +2165,7 @@ TownMapBubble:
 	hlcoord 1, 1
 
 ; Middle row
-	ld bc, 18
+	ld bc, SCREEN_WIDTH - 2
 	ld a, " "
 	call ByteFill
 
@@ -2481,10 +2481,10 @@ Pokedex_GetArea:
 	ld a, " "
 	call ByteFill
 	hlcoord 0, 1
-	ld a, $6
+	ld a, $06
 	ld [hli], a
 	ld bc, SCREEN_WIDTH - 2
-	ld a, $7
+	ld a, $07
 	call ByteFill
 	ld [hl], $17
 	call GetPokemonName

@@ -2,6 +2,8 @@ _PrintNum::
 ; Print c digits of the b-byte value from de to hl.
 ; Allows 2 to 7 digits. For 1-digit numbers, add
 ; the value to char "0" instead of calling PrintNum.
+; The high nybble of the c register specifies how many of the total amount of
+; digits will be in front of the decimal point.
 ; Some extra flags can be given in bits 5-7 of b.
 ; Bit 5: money if set (unless left-aligned without leading zeros)
 ; Bit 6: right-aligned if set

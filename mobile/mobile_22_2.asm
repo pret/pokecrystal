@@ -883,8 +883,8 @@ MenuHeader_0x8b867:
 
 MenuData_0x8b870:
 	db SCROLLINGMENU_ENABLE_FUNCTION3 | SCROLLINGMENU_DISPLAY_ARROWS | SCROLLINGMENU_ENABLE_RIGHT | SCROLLINGMENU_ENABLE_LEFT ; flags
-	db 5 ; items
-	db 3, 1
+	db 5, 3 ; rows, columns
+	db SCROLLINGMENU_ITEMS_NORMAL ; item format
 	dbw 0, wd002
 	dba Function8b880
 	dba Function8b88c

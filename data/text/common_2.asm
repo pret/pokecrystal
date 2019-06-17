@@ -815,7 +815,7 @@ UnknownText_0x1c0df3::
 
 UnknownText_0x1c0e24::
 	text "It's @"
-	text_ram wBreedMon1
+	text_ram wBreedMon1Nick
 	text_start
 	line "that was left with"
 	cont "the DAY-CARE MAN."

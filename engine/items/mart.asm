@@ -600,7 +600,7 @@ MenuHeader_Buy:
 .MenuData
 	db SCROLLINGMENU_DISPLAY_ARROWS | SCROLLINGMENU_ENABLE_FUNCTION3 ; flags
 	db 4, 8 ; rows, columns
-	db 1 ; horizontal spacing
+	db SCROLLINGMENU_ITEMS_NORMAL ; item format
 	dbw 0, wCurMart
 	dba PlaceMenuItemName
 	dba .PrintBCDPrices
