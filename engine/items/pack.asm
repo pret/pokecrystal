@@ -1548,27 +1548,27 @@ PC_Mart_BallsPocketMenuHeader:
 
 Text_PackNoItems:
 	; No items.
-	text_far UnknownText_0x1c0b9a
+	text_far _PackNoItemText
 	text_end
 
 Text_ThrowAwayHowMany:
 	; Throw away how many?
-	text_far UnknownText_0x1c0ba5
+	text_far _AskThrowAwayText
 	text_end
 
 Text_ConfirmThrowAway:
 	; Throw away @ @ (S)?
-	text_far UnknownText_0x1c0bbb
+	text_far _AskQuantityThrowAwayText
 	text_end
 
 Text_ThrewAway:
 	; Threw away @ (S).
-	text_far UnknownText_0x1c0bd8
+	text_far _ThrewAwayText
 	text_end
 
 Text_ThisIsntTheTime:
 	; OAK:  ! This isn't the time to use that!
-	text_far UnknownText_0x1c0bee
+	text_far _OakNoUseTimeText
 	text_end
 
 TextJump_YouDontHaveAMon:
@@ -1578,22 +1578,22 @@ TextJump_YouDontHaveAMon:
 
 Text_RegisteredItem:
 	; Registered the @ .
-	text_far UnknownText_0x1c0c2e
+	text_far _RegisterItemText
 	text_end
 
 Text_CantRegister:
 	; You can't register that item.
-	text_far UnknownText_0x1c0c45
+	text_far _CantRegisterText
 	text_end
 
 Text_MoveItemWhere:
 	; Where should this be moved to?
-	text_far UnknownText_0x1c0c63
+	text_far _AskItemMoveText
 	text_end
 
 Text_PackEmptyString:
 	;
-	text_far UnknownText_0x1c0c83
+	text_far _PackEmptyText
 	text_end
 
 TextJump_YouCantUseItInABattle:

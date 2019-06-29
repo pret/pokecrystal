@@ -168,22 +168,22 @@ TeachTMHM:
 
 Text_BootedTM:
 	; Booted up a TM.
-	text_far UnknownText_0x1c0373
+	text_far Text_BootTM
 	text_end
 
 Text_BootedHM:
 	; Booted up an HM.
-	text_far UnknownText_0x1c0384
+	text_far Text_BootHM
 	text_end
 
 Text_ItContained:
 	; It contained @ . Teach @ to a #MON?
-	text_far UnknownText_0x1c0396
+	text_far Text_ContainedMove
 	text_end
 
 Text_TMHMNotCompatible:
 	; is not compatible with @ . It can't learn @ .
-	text_far UnknownText_0x1c03c2
+	text_far Text_NotCompatibleMove
 	text_end
 
 TMHM_PocketLoop:
@@ -499,12 +499,12 @@ Unreferenced_Function2cadf:
 
 .NoRoomText:
 	; You have no room for any more @ S.
-	text_far UnknownText_0x1c03fa
+	text_far Text_NoRoomTMHM
 	text_end
 
 .ReceivedText:
 	; You received @ !
-	text_far UnknownText_0x1c0421
+	text_far Text_ReceivedTMHM
 	text_end
 
 .CheckHaveRoomForTMHM:

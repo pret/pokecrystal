@@ -17,7 +17,7 @@ _Squirtbottle:
 
 .NothingHappenedText:
 	; sprinkled water. But nothing happened…
-	text_far UnknownText_0x1c0b3b
+	text_far Text_SquirtbottleNothing
 	text_end
 
 .CheckCanUseSquirtbottle:

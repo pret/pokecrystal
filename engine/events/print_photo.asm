@@ -51,5 +51,5 @@ PhotoStudio:
 
 .Text_Egg:
 	; An EGG? My talent is worth more…
-	text_far UnknownText_0x1c0021
+	text_far _EggPhotoTalentText
 	text_end

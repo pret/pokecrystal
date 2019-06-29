@@ -128,35 +128,35 @@ DoMysteryGift:
 	db   "@"
 
 .Text_LinkCanceled:
-	text_far UnknownText_0x1c0436
+	text_far Text_MysteryGiftCancelled
 	text_end
 
 .Text_CommunicationError:
-	text_far UnknownText_0x1c0454
+	text_far Text_MysteryGiftCommError
 	text_end
 
 .Text_ReceiveGiftAtCounter:
-	text_far UnknownText_0x1c046a
+	text_far Text_RetrieveMysteryGift
 	text_end
 
 .Text_FriendNotReady:
-	text_far UnknownText_0x1c048e
+	text_far Text_MysteryGiftNotReady
 	text_end
 
 .Text_MaxFiveGifts:
-	text_far UnknownText_0x1c04a7
+	text_far Text_MysteryGiftFiveADay
 	text_end
 
 .Text_MaxOneGiftPerPerson:
-	text_far UnknownText_0x1c04c6
+	text_far Text_MysteryGiftOneADay
 	text_end
 
 .Text_Sent:
-	text_far UnknownText_0x1c04e9
+	text_far Text_MysteryGiftSent
 	text_end
 
 .Text_SentToHome:
-	text_far UnknownText_0x1c04fa
+	text_far Text_MysteryGiftSentHome
 	text_end
 
 .CheckAlreadyGotFiveGiftsToday:
@@ -1490,23 +1490,23 @@ String_PressAToLink_BToCancel_JP:
 	db   "@"
 
 Text_ReceivedCard:
-	text_far UnknownText_0x1c051a
+	text_far Text_MysteryGiftReceivedCard
 	text_end
 
 Text_ListedCardAsNumber:
-	text_far UnknownText_0x1c0531
+	text_far Text_MysteryGiftListedCard
 	text_end
 
 Text_CardNotRegistered:
-	text_far UnknownText_0x1c0555
+	text_far Text_MysteryGiftNotRegisteredCard
 	text_end
 
 Text_MGLinkCanceled:
-	text_far UnknownText_0x1c0573
+	text_far Text_MysteryGiftLinkCancelled
 	text_end
 
 Text_MGCommError:
-	text_far UnknownText_0x1c0591
+	text_far Text_MysteryGiftLinkCommError
 	text_end
 
 Function105777:
