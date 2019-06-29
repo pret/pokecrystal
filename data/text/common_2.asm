@@ -384,7 +384,7 @@ Text_CantUseTeleport::
 	para ""
 	done
 
-Test_UseStrengthAlready::
+Text_AlreadyUseStrength::
 	text "A #MON is using"
 	line "STRENGTH already."
 	prompt
@@ -570,7 +570,7 @@ Text_PoisonWhiteout::
 	line "out!"
 	prompt
 
-Text_USeSweetScent::
+Text_UseSweetScent::
 	text_ram wStringBuffer3
 	text " used"
 	line "SWEET SCENT!"
@@ -599,7 +599,7 @@ Text_AnEGGCantHoldAnItem::
 	line "an item."
 	prompt
 
-_PackNoItemsText::
+_PackNoItemText::
 	text "No items."
 	done
 

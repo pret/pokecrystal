@@ -46,7 +46,7 @@ PhotoStudio:
 
 .Text_NoPicture:
 	; Oh, no picture? Come again, OK?
-	text_far UnknownText_0x1c0000
+	text_far _NoPhotoText
 	text_end
 
 .Text_Egg:
