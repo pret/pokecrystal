@@ -16,7 +16,7 @@ _BillsPC:
 
 .Text_GottaHavePokemon:
 	; You gotta have #MON to call!
-	text_far UnknownText_0x1c1006
+	text_far Text_PCNoPokemonCall
 	text_end
 
 .LogIn:
@@ -37,7 +37,7 @@ _BillsPC:
 
 .Text_What:
 	; What?
-	text_far UnknownText_0x1c1024
+	text_far Text_PCWhat
 	text_end
 
 .LogOut:
@@ -130,7 +130,7 @@ BillsPC_MovePKMNMenu:
 
 .Text_MonHoldingMail:
 	; There is a #MON holding MAIL. Please remove the MAIL.
-	text_far UnknownText_0x1c102b
+	text_far Text_PCRemoveMail
 	text_end
 
 BillsPC_DepositMenu:
@@ -165,12 +165,12 @@ Unreferenced_Functione512:
 
 .Text_NoMon:
 	; You don't have a single #MON!
-	text_far UnknownText_0x1c1062
+	text_far Text_PCNoSingleMon
 	text_end
 
 .Text_ItsYourLastMon:
 	; You can't deposit your last #MON!
-	text_far UnknownText_0x1c1080
+	text_far Text_PCNoCantDeposit
 	text_end
 
 CheckCurPartyMonFainted:
@@ -226,7 +226,7 @@ Unreferenced_Functione56d:
 
 UnknownText_0xe57e:
 	; You can't take any more #MON.
-	text_far UnknownText_0x1c10a2
+	text_far Text_PCCantTake
 	text_end
 
 BillsPC_ChangeBoxMenu:

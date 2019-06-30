@@ -88,7 +88,7 @@ DisplayCaughtContestMonStats:
 
 SwitchMonText:
 	; Switch #MON?
-	text_far UnknownText_0x1c10cf
+	text_far Text_ContestAskSwitch
 	text_end
 
 DisplayAlreadyCaughtText:
@@ -98,7 +98,7 @@ DisplayAlreadyCaughtText:
 
 .AlreadyCaughtText:
 	; You already caught a @ .
-	text_far UnknownText_0x1c10dd
+	text_far Text_ContestAlreadyCaught
 	text_end
 
 DummyPredef2F:

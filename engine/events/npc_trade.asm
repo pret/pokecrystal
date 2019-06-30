@@ -432,12 +432,12 @@ TradeTexts:
 
 ConnectLinkCableText:
 	; OK, connect the Game Link Cable.
-	text_far UnknownText_0x1bd407
+	text_far Text_NPCTradeCable
 	text_end
 
 TradedForText:
 	; traded givemon for getmon
-	text_far UnknownText_0x1bd429
+	text_far Text_NPCTraded
 	text_asm
 	ld de, MUSIC_NONE
 	call PlayMusic
@@ -448,7 +448,7 @@ TradedForText:
 .done
 	; sound_dex_fanfare_80_109
 	; text_pause
-	text_far UnknownText_0x1bd445
+	text_far Text_NPCTradeFanfare
 	text_end
 
 TradeIntroText1:

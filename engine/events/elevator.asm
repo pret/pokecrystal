@@ -139,7 +139,7 @@ Elevator_AskWhichFloor:
 
 Elevator_WhichFloorText:
 	; Which floor?
-	text_far UnknownText_0x1bd2bc
+	text_far Text_AskFloorElevator
 	text_end
 
 Elevator_GetCurrentFloorText:

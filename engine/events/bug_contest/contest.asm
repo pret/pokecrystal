@@ -34,10 +34,10 @@ BugCatchingContestReturnToGateScript:
 
 BugCatchingContestText_BeeepTimesUp:
 	; ANNOUNCER: BEEEP! Time's up!
-	text_far UnknownText_0x1bd2ca
+	text_far Text_ContestTimeUp
 	text_end
 
 BugCatchingContestText_ContestIsOver:
 	; ANNOUNCER: The Contest is over!
-	text_far UnknownText_0x1bd2e7
+	text_far Text_ContestOver
 	text_end

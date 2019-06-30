@@ -356,7 +356,7 @@ HatchEggs:
 
 .Text_HatchEgg:
 	; Huh? @ @
-	text_far UnknownText_0x1c0db0
+	text_far Text_BreedHuh
 	text_asm
 	ld hl, wVramState
 	res 0, [hl]
@@ -378,17 +378,17 @@ HatchEggs:
 
 .ClearTextbox:
 	;
-	text_far UnknownText_0x1c0db8
+	text_far Text_BreedClearbox
 	text_end
 
 .CameOutOfItsEgg:
 	; came out of its EGG!@ @
-	text_far UnknownText_0x1c0dba
+	text_far Text_BreedEggHatch
 	text_end
 
 .Text_NicknameHatchling:
 	; Give a nickname to @ ?
-	text_far UnknownText_0x1c0dd8
+	text_far Text_BreedClearbox
 	text_end
 
 InitEggMoves:
@@ -895,12 +895,12 @@ DayCareMonCursor:
 
 DayCareMon2Text:
 	; It's @ that was left with the DAY-CARE LADY.
-	text_far UnknownText_0x1c0df3
+	text_far Text_BreedWithLady
 	text_end
 
 DayCareMon1Text:
 	; It's @ that was left with the DAY-CARE MAN.
-	text_far UnknownText_0x1c0e24
+	text_far Text_BreedWithMan
 	text_end
 
 DayCareMonCompatibilityText:
@@ -930,27 +930,27 @@ DayCareMonCompatibilityText:
 
 .AllAlone:
 	; It's brimming with energy.
-	text_far UnknownText_0x1c0e54
+	text_far Text_BreedBrimming
 	text_end
 
 .Incompatible:
 	; It has no interest in @ .
-	text_far UnknownText_0x1c0e6f
+	text_far Text_BreedNoInterest
 	text_end
 
 .HighCompatibility:
 	; It appears to care for @ .
-	text_far UnknownText_0x1c0e8d
+	text_far Text_BreedCaring
 	text_end
 
 .ModerateCompatibility:
 	; It's friendly with @ .
-	text_far UnknownText_0x1c0eac
+	text_far Text_BreedFriendly
 	text_end
 
 .SlightCompatibility:
 	; It shows interest in @ .
-	text_far UnknownText_0x1c0ec6
+	text_far Text_BreedShowInterest
 	text_end
 
 Unreferenced_DayCareMonPrintEmptyString:

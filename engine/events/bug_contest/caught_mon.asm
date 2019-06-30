@@ -34,5 +34,5 @@ BugContest_SetCaughtContestMon:
 
 .caughttext
 	; Caught @ !
-	text_far UnknownText_0x1c10c0
+	text_far Text_ContestCaughtMon
 	text_end

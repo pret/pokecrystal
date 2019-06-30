@@ -213,6 +213,7 @@ _OakTimeText14::
 	text ", is it?"
 	done
 
+; unused Mobile Text
 UnknownText_0x1bc384::
 	text "There is nothing"
 	line "connected."
@@ -258,6 +259,7 @@ UnknownText_0x1bc44c::
 	line "ID no."
 	done
 
+; last Unused Mobile Adapter
 UnknownText_0x1bc45e::
 	text "Enter the"
 	line "amount."
@@ -1280,17 +1282,17 @@ UnknownText_0x1bd2a0::
 	line "VOLTORBBADGE!"
 	done
 
-UnknownText_0x1bd2bc::
+Text_AskFloorElevator::
 	text "Which floor?"
 	done
 
-UnknownText_0x1bd2ca::
+Text_ContestTimeUp::
 	text "ANNOUNCER: BEEEP!"
 
 	para "Time's up!"
 	done
 
-UnknownText_0x1bd2e7::
+Text_ContestOver::
 	text "ANNOUNCER: The"
 	line "Contest is over!"
 	done
@@ -1352,12 +1354,12 @@ _NoCoinCaseText::
 	line "COIN CASE."
 	prompt
 
-UnknownText_0x1bd407::
+Text_NPCTradeCable::
 	text "OK, connect the"
 	line "Game Link Cable."
 	prompt
 
-UnknownText_0x1bd429::
+Text_NPCTraded::
 	text "<PLAYER> traded"
 	line "@"
 	text_ram wMonOrItemNameBuffer
@@ -1367,7 +1369,7 @@ UnknownText_0x1bd429::
 	text ".@"
 	text_end
 
-UnknownText_0x1bd445::
+Text_NPCTradeFanfare::
 	sound_dex_fanfare_80_109
 	text_pause
 	text_end

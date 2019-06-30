@@ -666,7 +666,7 @@ Text_AreYouABoyOrAreYouAGirl::
 	line "Or are you a girl?"
 	done
 
-UnknownText_0x1c0cc6::
+Text_BattleEffectActivate::
 	text "<USER>'s"
 	line "@"
 	text_ram wStringBuffer2
@@ -674,16 +674,16 @@ UnknownText_0x1c0cc6::
 
 	text_end ; unused
 
-UnknownText_0x1c0cd0::
+Text_BattleWentWayUp::
 	text_pause
 	text "<SCROLL>went way up!"
 	prompt
 
-UnknownText_0x1c0ce0::
+Text_BattleWentUp::
 	text " went up!"
 	prompt
 
-UnknownText_0x1c0ceb::
+Text_BattleFoeEffectActivate::
 	text "<TARGET>'s"
 	line "@"
 	text_ram wStringBuffer2
@@ -691,45 +691,45 @@ UnknownText_0x1c0ceb::
 
 	text_end ; unused
 
-UnknownText_0x1c0cf5::
+Text_BattleSharplyFell::
 	text_pause
 	text "<SCROLL>sharply fell!"
 	prompt
 
-UnknownText_0x1c0d06::
+Text_BattleFell::
 	text " fell!"
 	prompt
 
-UnknownText_0x1c0d0e::
+Text_BattleUser::
 	text "<USER>@"
 	text_end
 
-UnknownText_0x1c0d12::
+Text_BattleMadeWhirlwind::
 	text_start
 	line "made a whirlwind!"
 	prompt
 
-UnknownText_0x1c0d26::
+Text_BattleTookSunlight::
 	text_start
 	line "took in sunlight!"
 	prompt
 
-UnknownText_0x1c0d3a::
+Text_BattleLowerHead::
 	text_start
 	line "lowered its head!"
 	prompt
 
-UnknownText_0x1c0d4e::
+Text_BattleGlowing::
 	text_start
 	line "is glowing!"
 	prompt
 
-UnknownText_0x1c0d5c::
+Text_BattleFlew::
 	text_start
 	line "flew up high!"
 	prompt
 
-UnknownText_0x1c0d6c::
+Text_BattleDug::
 	text_start
 	line "dug a hole!"
 	prompt
@@ -779,17 +779,17 @@ _EndUsedMove5Text::
 	text "!"
 	done
 
-UnknownText_0x1c0db0::
+Text_BreedHuh::
 	text "Huh?"
 
 	para "@"
 	text_end
 
-UnknownText_0x1c0db8::
+Text_BreedClearbox::
 	text_start
 	done
 
-UnknownText_0x1c0dba::
+Text_BreedEggHatch::
 	text_ram wStringBuffer1
 	text " came"
 	line "out of its EGG!@"
@@ -799,14 +799,14 @@ UnknownText_0x1c0dba::
 
 	text_end ; unused
 
-UnknownText_0x1c0dd8::
+Text_BreedAskNickname::
 	text "Give a nickname to"
 	line "@"
 	text_ram wStringBuffer1
 	text "?"
 	done
 
-UnknownText_0x1c0df3::
+Text_BreedWithLady::
 	text "It's @"
 	text_ram wBreedMon2Nick
 	text_start
@@ -814,7 +814,7 @@ UnknownText_0x1c0df3::
 	cont "the DAY-CARE LADY."
 	done
 
-UnknownText_0x1c0e24::
+Text_BreedWithMan::
 	text "It's @"
 	text_ram wBreedMon1Nick
 	text_start
@@ -822,33 +822,33 @@ UnknownText_0x1c0e24::
 	cont "the DAY-CARE MAN."
 	done
 
-UnknownText_0x1c0e54::
+Text_BreedBrimming::
 	text "It's brimming with"
 	line "energy."
 	prompt
 
-UnknownText_0x1c0e6f::
+Text_BreedNoInterest::
 	text "It has no interest"
 	line "in @"
 	text_ram wStringBuffer1
 	text "."
 	prompt
 
-UnknownText_0x1c0e8d::
+Text_BreedCaring::
 	text "It appears to care"
 	line "for @"
 	text_ram wStringBuffer1
 	text "."
 	prompt
 
-UnknownText_0x1c0eac::
+Text_BreedFriendly::
 	text "It's friendly with"
 	line "@"
 	text_ram wStringBuffer1
 	text "."
 	prompt
 
-UnknownText_0x1c0ec6::
+Text_BreedShowInterest::
 	text "It shows interest"
 	line "in @"
 	text_ram wStringBuffer1
@@ -889,14 +889,17 @@ MailMovedFromBoxText::
 	line "from the MAILBOX."
 	prompt
 
+; unused
 UnknownText_0x1c0fb3::
 	text "Yes"
 	prompt
 
+; unused
 UnknownText_0x1c0fb8::
 	text "No"
 	prompt
 
+; unused
 UnknownText_0x1c0fbc::
 	text_decimal wcf64, 1, 3
 	text " @"
@@ -908,6 +911,7 @@ UnknownText_0x1c0fbc::
 
 	text_end ; unused
 
+; unused
 UnknownText_0x1c0fdd::
 	text "#MON number?"
 	done
@@ -918,16 +922,16 @@ Text_WasSentToBillsPC::
 	line "sent to BILL's PC."
 	prompt
 
-UnknownText_0x1c1006::
+Text_PCNoPokemonCall::
 	text "You gotta have"
 	line "#MON to call!"
 	prompt
 
-UnknownText_0x1c1024::
+Text_PCWhat::
 	text "What?"
 	done
 
-UnknownText_0x1c102b::
+Text_PCRemoveMail::
 	text "There is a #MON"
 	line "holding MAIL."
 
@@ -935,32 +939,33 @@ UnknownText_0x1c102b::
 	line "MAIL."
 	prompt
 
-UnknownText_0x1c1062::
+Text_PCNoSingleMon::
 	text "You don't have a"
 	line "single #MON!"
 	prompt
 
-UnknownText_0x1c1080::
+Text_PCNoCantDeposit::
 	text "You can't deposit"
 	line "your last #MON!"
 	prompt
 
-UnknownText_0x1c10a2::
+Text_PCCantTake::
 	text "You can't take any"
 	line "more #MON."
 	prompt
 
-UnknownText_0x1c10c0::
+; start caught mon
+Text_ContestCaughtMon::
 	text "Caught @"
 	text_ram wStringBuffer1
 	text "!"
 	prompt
 
-UnknownText_0x1c10cf::
+Text_ContestAskSwitch::
 	text "Switch #MON?"
 	done
 
-UnknownText_0x1c10dd::
+Text_ContestAlreadyCaught::
 	text "You already caught"
 	line "a @"
 	text_ram wStringBuffer1
