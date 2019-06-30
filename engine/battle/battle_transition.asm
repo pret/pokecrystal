@@ -7,6 +7,7 @@ BATTLETRANSITION_FINISH           EQU $20
 BATTLETRANSITION_END              EQU $80
 
 BATTLETRANSITION_SQUARE EQU "8" ; $fe
+BATTLETRANSITION_BLACK  EQU "9" ; $ff
 
 DoBattleTransition:
 	call .InitGFX
@@ -463,7 +464,7 @@ ENDM
 	ld c, a
 	inc de
 .loop1
-	ld [hl], $ff
+	ld [hl], BATTLETRANSITION_BLACK
 	ld a, [wcf65]
 	bit RIGHT_QUADRANT_F, a
 	jr z, .leftside
@@ -572,9 +573,9 @@ StartTrainerBattle_SpeckleToBlack:
 ; If the tile has already been blacked out,
 ; sample a new tile
 	ld a, [hl]
-	cp $ff
+	cp BATTLETRANSITION_BLACK
 	jr z, .y_loop
-	ld [hl], $ff
+	ld [hl], BATTLETRANSITION_BLACK
 	ret
 
 StartTrainerBattle_LoadPokeBallGraphics:
@@ -809,7 +810,7 @@ ENDM
 	db -1
 
 .Copy:
-	ld a, $ff
+	ld a, BATTLETRANSITION_BLACK
 .row
 	push bc
 	push hl
