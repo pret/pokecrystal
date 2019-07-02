@@ -1038,7 +1038,7 @@ ContestJudging_ThirdPlaceScoreText::
 	text " points!"
 	prompt
 
-UnknownText_0x1c1203::
+Text_KarpGuruMeasure::
 	text "Let me measure"
 	line "that MAGIKARP."
 
@@ -1048,7 +1048,7 @@ UnknownText_0x1c1203::
 	text "."
 	prompt
 
-UnknownText_0x1c123a::
+Text_KarpGuruRecord::
 	text "CURRENT RECORD"
 
 	para "@"
@@ -1061,7 +1061,7 @@ UnknownText_0x1c123a::
 
 	text_end ; unused
 
-UnknownText_0x1c1261::
+Text_LuckyNumberMatchParty::
 	text "Congratulations!"
 
 	para "We have a match"
@@ -1073,7 +1073,7 @@ UnknownText_0x1c1261::
 	line "your party."
 	prompt
 
-UnknownText_0x1c12ae::
+Text_LuckyNumberMatchPC::
 	text "Congratulations!"
 
 	para "We have a match"
@@ -1085,7 +1085,7 @@ UnknownText_0x1c12ae::
 	line "your PC BOX."
 	prompt
 
-UnknownText_0x1c12fc::
+Text_CaughtAskNickname::
 	text "Give a nickname to"
 	line "the @"
 	text_ram wStringBuffer1
@@ -1093,18 +1093,18 @@ UnknownText_0x1c12fc::
 	cont "received?"
 	done
 
-UnknownText_0x1c1328::
+Text_PokePCCantUse::
 	text "Bzzzzt! You must"
 	line "have a #MON to"
 	cont "use this!"
 	prompt
 
-UnknownText_0x1c1353::
+Text_PlayersPCTurnOn::
 	text "<PLAYER> turned on"
 	line "the PC."
 	prompt
 
-UnknownText_0x1c1368::
+Text_PlayersPCAskWhatDo::
 	text "What do you want"
 	line "to do?"
 	done
@@ -1128,7 +1128,7 @@ _PlayersPCNoRoomWithdrawText::
 	line "for more items."
 	prompt
 
-UnknownText_0x1c13df::
+_PlayersOCNoItemsText::
 	text "No items here!"
 	prompt
 
@@ -1151,16 +1151,16 @@ _PlayersPCNoRoomDepositText::
 	line "store items."
 	prompt
 
-UnknownText_0x1c144d::
+Text_CenterPCTurnOn::
 	text "<PLAYER> turned on"
 	line "the PC."
 	prompt
 
-UnknownText_0x1c1462::
+Text_CenterPCWhose::
 	text "Access whose PC?"
 	done
 
-UnknownText_0x1c1474::
+Text_CenterPCBill::
 	text "BILL's PC"
 	line "accessed."
 
@@ -1168,14 +1168,14 @@ UnknownText_0x1c1474::
 	line "System opened."
 	prompt
 
-UnknownText_0x1c14a4::
+Text_CenterPCPlayers::
 	text "Accessed own PC."
 
 	para "Item Storage"
 	line "System opened."
 	prompt
 
-UnknownText_0x1c14d2::
+Text_CenterPCOaks::
 	text "PROF.OAK's PC"
 	line "accessed."
 
@@ -1183,7 +1183,7 @@ UnknownText_0x1c14d2::
 	line "System opened."
 	prompt
 
-UnknownText_0x1c1505::
+Text_CenterPCOaksClosed::
 	text "…"
 	line "Link closed…"
 	done
@@ -1353,6 +1353,7 @@ _OakPCText4::
 	line "OAK's PC closed."
 	done
 
+; unused
 UnknownText_0x1c19cd::
 	text "Triple-theme"
 	line "trainer ranking!"
@@ -1364,6 +1365,7 @@ UnknownText_0x1c19cd::
 	para ""
 	done
 
+; unused
 UnknownText_0x1c1a22::
 	text "There is no"
 	line "ranking data."
@@ -1382,19 +1384,19 @@ UnknownText_0x1c1a65::
 	text "Darn…"
 	done
 
-UnknownText_0x1c1a6c::
+Text_StartMenuContestEnd::
 	text "Would you like to"
 	line "end the Contest?"
 	done
 
-UnknownText_0x1c1a90::
+Text_ItemsAskTossQuantity::
 	text "Toss out how many"
 	line "@"
 	text_ram wStringBuffer2
 	text "(S)?"
 	done
 
-UnknownText_0x1c1aad::
+Text_ItemsThrowAway::
 	text "Throw away @"
 	text_decimal wItemQuantityChangeBuffer, 1, 2
 	text_start
@@ -1403,25 +1405,25 @@ UnknownText_0x1c1aad::
 	text "(S)?"
 	done
 
-UnknownText_0x1c1aca::
+Text_ItemsDiscarded::
 	text "Discarded"
 	line "@"
 	text_ram wStringBuffer1
 	text "(S)."
 	prompt
 
-UnknownText_0x1c1adf::
+Text_ItemsTooImportant::
 	text "That's too impor-"
 	line "tant to toss out!"
 	prompt
 
-UnknownText_0x1c1b03::
+Text_ItemsOakWarning::
 	text "OAK: <PLAYER>!"
 	line "This isn't the"
 	cont "time to use that!"
 	done
 
-UnknownText_0x1c1b2c::
+Text_ItemsSwapPokemon::
 	text "Took @"
 	text_ram wMonOrItemNameBuffer
 	text "'s"
@@ -1435,7 +1437,7 @@ UnknownText_0x1c1b2c::
 	text "."
 	prompt
 
-UnknownText_0x1c1b57::
+Text_PokemonHoldItem::
 	text "Made @"
 	text_ram wMonOrItemNameBuffer
 	text_start
@@ -1444,23 +1446,23 @@ UnknownText_0x1c1b57::
 	text "."
 	prompt
 
-UnknownText_0x1c1b6f::
+Text_PokemonRemoveMail::
 	text "Please remove the"
 	line "MAIL first."
 	prompt
 
-UnknownText_0x1c1b8e::
+Text_PokemonNotHolding::
 	text_ram wMonOrItemNameBuffer
 	text " isn't"
 	line "holding anything."
 	prompt
 
-UnknownText_0x1c1baa::
+Text_ItemStorageFull::
 	text "Item storage space"
 	line "full."
 	prompt
 
-UnknownText_0x1c1bc4::
+Text_PokemonTookItem::
 	text "Took @"
 	text_ram wStringBuffer1
 	text_start
@@ -1469,7 +1471,7 @@ UnknownText_0x1c1bc4::
 	text "."
 	prompt
 
-UnknownText_0x1c1bdc::
+Text_PokemonAskSwapItem::
 	text_ram wMonOrItemNameBuffer
 	text " is"
 	line "already holding"
@@ -1480,48 +1482,48 @@ UnknownText_0x1c1bdc::
 	line "Switch items?"
 	done
 
-UnknownText_0x1c1c09::
+Text_ItemCantHeld::
 	text "This item can't be"
 	line "held."
 	prompt
 
-UnknownText_0x1c1c22::
+Text_MailLoseMessage::
 	text "The MAIL will lose"
 	line "its message. OK?"
 	done
 
-UnknownText_0x1c1c47::
+Text_MailDetached::
 	text "MAIL detached from"
 	line "@"
 	text_ram wStringBuffer1
 	text "."
 	prompt
 
-UnknownText_0x1c1c62::
+Text_MailNoSpace::
 	text "There's no space"
 	line "for removing MAIL."
 	prompt
 
-UnknownText_0x1c1c86::
+Text_MAilAskSendToPC::
 	text "Send the removed"
 	line "MAIL to your PC?"
 	done
 
-UnknownText_0x1c1ca9::
+Text_MailboxFull::
 	text "Your PC's MAILBOX"
 	line "is full."
 	prompt
 
-UnknownText_0x1c1cc4::
+Text_MailSentToPC::
 	text "The MAIL was sent"
 	line "to your PC."
 	prompt
 
-UnknownText_0x1c1ce3::
+Text_PokemonNotEnoughHP::
 	text "Not enough HP!"
 	prompt
 
-UnknownText_0x1c1cf3::
+Text_MayRegisterItem::
 	text "An item in your"
 	line "PACK may be"
 

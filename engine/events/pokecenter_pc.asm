@@ -111,7 +111,7 @@ PC_CheckPartyForPokemon:
 
 .MustHavePokemonToUse:
 	; Bzzzzt! You must have a #MON to use this!
-	text_far UnknownText_0x1c1328
+	text_far Text_PokePCCantUse
 	text_end
 
 BillsPC:
@@ -201,7 +201,7 @@ _PlayersHousePC:
 
 UnknownText_0x156ff:
 	; turned on the PC.
-	text_far UnknownText_0x1c1353
+	text_far Text_PlayersPCTurnOn
 	text_end
 
 _PlayersPC:
@@ -304,7 +304,7 @@ PC_DisplayTextWaitMenu:
 
 UnknownText_0x157cc:
 	; What do you want to do?
-	text_far UnknownText_0x1c1368
+	text_far Text_PlayersPCAskWhatDo
 	text_end
 
 PlayerWithdrawItemMenu:
@@ -443,7 +443,7 @@ PlayerDepositItemMenu:
 
 .NoItemsInBag:
 	; No items here!
-	text_far UnknownText_0x1c13df
+	text_far _PlayersPCNoItemsText
 	text_end
 
 .TryDepositItem:
@@ -639,30 +639,30 @@ PC_DisplayText:
 
 PokecenterPCText_BootedUpPC:
 	; turned on the PC.
-	text_far UnknownText_0x1c144d
+	text_far Text_CenterPCTurnOn
 	text_end
 
 PokecenterPCText_AccessWhosePC:
 	; Access whose PC?
-	text_far UnknownText_0x1c1462
+	text_far Text_CenterPCWhose
 	text_end
 
 PokecenterPCText_AccessedBillsPC:
 	; BILL's PC accessed. #MON Storage System opened.
-	text_far UnknownText_0x1c1474
+	text_far Text_CenterPCBill
 	text_end
 
 PokecenterPCText_AccessedOwnPC:
 	; Accessed own PC. Item Storage System opened.
-	text_far UnknownText_0x1c14a4
+	text_far Text_CenterPCPlayers
 	text_end
 
 PokecenterPCText_AccessedOaksPC:
 	; PROF.OAK's PC accessed. #DEX Rating System opened.
-	text_far UnknownText_0x1c14d2
+	text_far Text_CenterPCOaks
 	text_end
 
 PokecenterPCText_LinkClosed:
 	; … Link closed…
-	text_far UnknownText_0x1c1505
+	text_far Text_CenterPCOaksClosed
 	text_end
