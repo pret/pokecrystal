@@ -732,7 +732,7 @@ Error_Cant_ExitMenu:
 	jr .InfiniteLoop
 
 .Text_NoWindowsAvailableForPopping:
-	text_far UnknownText_0x1c46b7
+	text_far Text_MenuNoWindow
 	text_end
 
 _InitVerticalMenuCursor::

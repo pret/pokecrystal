@@ -583,12 +583,12 @@ RooftopSaleAskPurchaseQuantity:
 
 Text_Mart_HowMany:
 	; How many?
-	text_far UnknownText_0x1c4bfd
+	text_far Text_MartHowMany
 	text_end
 
 Text_Mart_CostsThisMuch:
 	; @ (S) will be ¥@ .
-	text_far UnknownText_0x1c4c08
+	text_far Text_MartFinalPrice
 	text_end
 
 MenuHeader_Buy:
@@ -626,107 +626,107 @@ MenuHeader_Buy:
 
 Text_HerbShop_Intro:
 	; Hello, dear. I sell inexpensive herbal medicine. They're good, but a trifle bitter. Your #MON may not like them. Hehehehe…
-	text_far UnknownText_0x1c4c28
+	text_far Text_HerbalLady
 	text_end
 
 Text_HerbShop_HowMany:
 	; How many?
-	text_far UnknownText_0x1c4ca3
+	text_far Text_HerbalLadyHowMany
 	text_end
 
 Text_HerbShop_CostsThisMuch:
 	; @ (S) will be ¥@ .
-	text_far UnknownText_0x1c4cae
+	text_far Text_HerbalLadyFinalPrice
 	text_end
 
 Text_HerbShop_HereYouGo:
 	; Thank you, dear. Hehehehe…
-	text_far UnknownText_0x1c4cce
+	text_far Text_HerbalLadyThanks
 	text_end
 
 Text_HerbShop_BagFull:
 	; Oh? Your PACK is full, dear.
-	text_far UnknownText_0x1c4cea
+	text_far Text_HerbalLadyPackFull
 	text_end
 
 Text_HerbShop_InsufficientFunds:
 	; Hehehe… You don't have the money.
-	text_far UnknownText_0x1c4d08
+	text_far Text_HerbalLadyNoMoney
 	text_end
 
 Text_HerbShop_ComeAgain:
 	; Come again, dear. Hehehehe…
-	text_far UnknownText_0x1c4d2a
+	text_far Text_HerbalLadyComeAgain
 	text_end
 
 Text_BargainShop_Intro:
 	; Hiya! Care to see some bargains? I sell rare items that nobody else carries--but only one of each item.
-	text_far UnknownText_0x1c4d47
+	text_far Text_BargainShop
 	text_end
 
 Text_BargainShop_CostsThisMuch:
 	; costs ¥@ . Want it?
-	text_far UnknownText_0x1c4db0
+	text_far Text_BargainShopCost
 	text_end
 
 Text_BargainShop_HereYouGo:
 	; Thanks.
-	text_far UnknownText_0x1c4dcd
+	text_far Text_BargainShopThanks
 	text_end
 
 Text_BargainShop_BagFull:
 	; Uh-oh, your PACK is chock-full.
-	text_far UnknownText_0x1c4dd6
+	text_far Text_BargainShopPackFull
 	text_end
 
 Text_BargainShop_SoldOut:
 	; You bought that already. I'm all sold out of it.
-	text_far UnknownText_0x1c4df7
+	text_far Text_BargainShopSoldOut
 	text_end
 
 Text_BargainShop_InsufficientFunds:
 	; Uh-oh, you're short on funds.
-	text_far UnknownText_0x1c4e28
+	text_far Text_BargainShopNoFunds
 	text_end
 
 Text_BargainShop_ComeAgain:
 	; Come by again sometime.
-	text_far UnknownText_0x1c4e46
+	text_far Text_BargainShopComeAgain
 	text_end
 
 Text_Pharmacist_Intro:
 	; What's up? Need some medicine?
-	text_far UnknownText_0x1c4e5f
+	text_far Text_MedShopIntro
 	text_end
 
 Text_Pharmacy_HowMany:
 	; How many?
-	text_far UnknownText_0x1c4e7e
+	text_far Text_MedShopHowMany
 	text_end
 
 Text_Pharmacy_CostsThisMuch:
 	; @ (S) will cost ¥@ .
-	text_far UnknownText_0x1c4e89
+	text_far Text_MedShopFinalCost
 	text_end
 
 Text_Pharmacy_HereYouGo:
 	; Thanks much!
-	text_far UnknownText_0x1c4eab
+	text_far Text_MedShopThanks
 	text_end
 
 Text_Pharmacy_BagFull:
 	; You don't have any more space.
-	text_far UnknownText_0x1c4eb9
+	text_far Text_MedShopNoSpace
 	text_end
 
 Text_Pharmacy_InsufficientFunds:
 	; Huh? That's not enough money.
-	text_far UnknownText_0x1c4ed8
+	text_far Text_MedShopNoMoney
 	text_end
 
 Text_Pharmacist_ComeAgain:
 	; All right. See you around.
-	text_far UnknownText_0x1c4ef6
+	text_far Text_MedShopComeAgain
 	text_end
 
 SellMenu:
@@ -822,12 +822,12 @@ SellMenu:
 
 Text_Mart_SellHowMany:
 	; How many?
-	text_far UnknownText_0x1c4f33
+	text_far Text_MartSellHowMany
 	text_end
 
 Text_Mart_ICanPayThisMuch:
 	; I can pay you ¥@ . Is that OK?
-	text_far UnknownText_0x1c4f3e
+	text_far Text_MartSellPrice
 	text_end
 
 .UnusedString15f7d:
@@ -835,7 +835,7 @@ Text_Mart_ICanPayThisMuch:
 
 Text_Mart_HowMayIHelpYou:
 	; Welcome! How may I help you?
-	text_far UnknownText_0x1c4f62
+	text_far Text_MartWelcome
 	text_end
 
 MenuHeader_BuySell:
@@ -853,35 +853,35 @@ MenuHeader_BuySell:
 
 Text_Mart_HereYouGo:
 	; Here you are. Thank you!
-	text_far UnknownText_0x1c4f80
+	text_far Text_MartThanks
 	text_end
 
 Text_Mart_InsufficientFunds:
 	; You don't have enough money.
-	text_far UnknownText_0x1c4f9a
+	text_far Text_MartNoMoney
 	text_end
 
 Text_Mart_BagFull:
 	; You can't carry any more items.
-	text_far UnknownText_0x1c4fb7
+	text_far Text_MartBagFull
 	text_end
 
 TextMart_CantBuyFromYou:
 	; Sorry, I can't buy that from you.
-	text_far UnknownText_0x1c4fd7
+	text_far Text_MartCantBuy
 	text_end
 
 Text_Mart_ComeAgain:
 	; Please come again!
-	text_far UnknownText_0x1c4ff9
+	text_far Text_MartComeAgain
 	text_end
 
 Text_Mart_AnythingElse:
-	text_far UnknownText_0x1c500d
+	text_far Text_MartAskMore
 	text_end
 
 Text_Mart_SoldForAmount:
-	text_far UnknownText_0x1c502e
+	text_far Text_MartBought
 	text_end
 
 PlayTransactionSound:

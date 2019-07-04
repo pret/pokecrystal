@@ -396,22 +396,22 @@ IsMonHoldingEverstone:
 
 Text_CongratulationsYourPokemon:
 	; Congratulations! Your @ @
-	text_far UnknownText_0x1c4b92
+	text_far Text_Evolved1
 	text_end
 
 Text_EvolvedIntoPKMN:
 	; evolved into @ !
-	text_far UnknownText_0x1c4baf
+	text_far Text_Evolved2
 	text_end
 
 Text_StoppedEvolving:
 	; Huh? @ stopped evolving!
-	text_far UnknownText_0x1c4bc5
+	text_far Text_EvolveStop
 	text_end
 
 Text_WhatEvolving:
 	; What? @ is evolving!
-	text_far UnknownText_0x1c4be3
+	text_far Text_Evolving
 	text_end
 
 LearnLevelMoves:
