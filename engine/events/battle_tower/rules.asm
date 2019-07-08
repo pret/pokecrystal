@@ -22,7 +22,7 @@ CheckForMobileBattleRules:
 
 .ExcuseMeText:
 	; Excuse me!
-	text_far UnknownText_0x1c5937
+	text_far Text_BTExcuseMe
 	text_end
 
 _CheckForBattleTowerRules:
@@ -67,7 +67,7 @@ BattleTower_PleaseReturnWhenReady:
 
 .PleaseReturnWhenReady:
 	; Please return when you're ready.
-	text_far UnknownText_0x1c5962
+	text_far Text_BattleTowerReturnWhenReady
 	text_end
 
 NeedAtLeastThreeMonText:

@@ -391,33 +391,33 @@ DSTChecks:
 
 .Text_AdjustClock:
 	; Do you want to adjust your clock for Daylight Saving Time?
-	text_far UnknownText_0x1c6095
+	text_far Text_TimesetAskAdjustDST
 	text_end
 
 .Text_LostInstructionBooklet:
 	; I lost the instruction booklet for the POKéGEAR.
 	; Come back again in a while.
-	text_far UnknownText_0x1c60d1
+	text_far Text_MomLostGearBooklet
 	text_end
 
 .Text_SwitchToDST:
 	; Do you want to switch to Daylight Saving Time?
-	text_far UnknownText_0x1c6000
+	text_far Text_TimesetAskDST
 	text_end
 
 .Text_SetClockForward:
 	; I set the clock forward by one hour.
-	text_far UnknownText_0x1c6030
+	text_far Text_TimesetDST
 	text_end
 
 .Text_IsDSTOver:
 	; Is Daylight Saving Time over?
-	text_far UnknownText_0x1c6056
+	text_far Text_TimesetAskNotDST
 	text_end
 
 .Text_SetClockBack:
 	; I put the clock back one hour.
-	text_far UnknownText_0x1c6075
+	text_far Text_TimesetNotDST
 	text_end
 
 Mom_SetUpWithdrawMenu:

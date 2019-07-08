@@ -148,32 +148,32 @@ BuenaPrize:
 
 .Text_AskWhichPrize:
 	; Which prize would you like?
-	text_far UnknownText_0x1c589f
+	text_far Text_BuenaAskWhichPrize
 	text_end
 
 .Text_IsThatRight:
 	; ? Is that right?
-	text_far UnknownText_0x1c58bc
+	text_far Text_BuenaThatRight
 	text_end
 
 .Text_HereYouGo:
 	; Here you go!
-	text_far UnknownText_0x1c58d1
+	text_far Text_BuenaHereYouGo
 	text_end
 
 .Text_NotEnoughPoints:
 	; You don't have enough points.
-	text_far UnknownText_0x1c58e0
+	text_far Text_BuenaNotEnough
 	text_end
 
 .Text_NoRoom:
 	; You have no room for it.
-	text_far UnknownText_0x1c58ff
+	text_far Text_BuenaNoRoom
 	text_end
 
 .Text_PleaseComeBackAgain:
 	; Oh. Please come back again!
-	text_far UnknownText_0x1c591a
+	text_far Text_BuenaComeAgain
 	text_end
 
 Buena_DisplayBlueCardBalance:

@@ -1749,17 +1749,17 @@ Slots_AskBet:
 
 .Text_BetHowManyCoins:
 	; Bet how many coins?
-	text_far UnknownText_0x1c5049
+	text_far Text_SlotsAskBet
 	text_end
 
 .Text_Start:
 	; Start!
-	text_far UnknownText_0x1c505e
+	text_far Text_SlotsStart
 	text_end
 
 .Text_NotEnoughCoins:
 	; Not enough coins.
-	text_far UnknownText_0x1c5066
+	text_far Text_SlotsNoCoins
 	text_end
 
 .MenuHeader:
@@ -1805,11 +1805,11 @@ Slots_AskPlayAgain:
 	ret
 
 .Text_OutOfCoins:
-	text_far UnknownText_0x1c5079
+	text_far Text_SlotsRanOut
 	text_end
 
 .Text_PlayAgain:
-	text_far UnknownText_0x1c5092
+	text_far Text_SlotsPlayAgain
 	text_end
 
 Slots_GetPayout:
@@ -1907,12 +1907,12 @@ endr
 
 .Text_LinedUpWonCoins:
 	; lined up! Won @  coins!
-	text_far UnknownText_0x1c509f
+	text_far Text_SlotsLinedUp
 	text_end
 
 .Text_Darn:
 	; Darn!
-	text_far UnknownText_0x1c50bb
+	text_far Text_SlotsDarn
 	text_end
 
 .LinedUpSevens:

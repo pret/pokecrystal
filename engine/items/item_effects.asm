@@ -1063,37 +1063,37 @@ LevelBallMultiplier:
 
 Text_RBY_CatchMarowak:
 	; It dodged the thrown BALL! This #MON can't be caught!
-	text_far UnknownText_0x1c5a5a
+	text_far Text_BallCantCatch
 	text_end
 
 Text_RBY_NoShake:
 	; You missed the #MON!
-	text_far UnknownText_0x1c5a90
+	text_far Text_BallMissed
 	text_end
 
 Text_NoShake:
 	; Oh no! The #MON broke free!
-	text_far UnknownText_0x1c5aa6
+	text_far Text_BallBrokeFree
 	text_end
 
 Text_OneShake:
 	; Aww! It appeared to be caught!
-	text_far UnknownText_0x1c5ac3
+	text_far Text_BallAppearedCaught
 	text_end
 
 Text_TwoShakes:
 	; Aargh! Almost had it!
-	text_far UnknownText_0x1c5ae3
+	text_far Text_BallAlmostHadIt
 	text_end
 
 Text_ThreeShakes:
 	; Shoot! It was so close too!
-	text_far UnknownText_0x1c5afa
+	text_far Text_BallSoClose
 	text_end
 
 Text_GotchaMonWasCaught:
 	; Gotcha! @ was caught!@ @
-	text_far UnknownText_0x1c5b17
+	text_far Text_BallCaught
 	text_asm
 	call WaitSFX
 	push bc
@@ -1113,17 +1113,17 @@ TextJump_Waitbutton:
 
 Text_SentToBillsPC:
 	; was sent to BILL's PC.
-	text_far UnknownText_0x1c5b38
+	text_far Text_BallSentToPC
 	text_end
 
 Text_AddedToPokedex:
 	; 's data was newly added to the #DEX.@ @
-	text_far UnknownText_0x1c5b53
+	text_far Text_NewDexData
 	text_end
 
 Text_AskNicknameNewlyCaughtMon:
 	; Give a nickname to @ ?
-	text_far UnknownText_0x1c5b7f
+	text_far Text_AskGiveNickname
 	text_end
 
 ReturnToBattle_UseBall:
@@ -1234,7 +1234,7 @@ RareCandy_StatBooster_ExitMenu:
 
 Text_StatRose:
 	; 's @  rose.
-	text_far UnknownText_0x1c5b9a
+	text_far Text_ItemStatRose
 	text_end
 
 StatStrings:
@@ -2062,7 +2062,7 @@ Softboiled_MilkDrinkFunction:
 
 .Text_CantBeUsed:
 	; That can't be used on this #MON.
-	text_far UnknownText_0x1c5bac
+	text_far Text_ItemCantUseOnMon
 	text_end
 
 EscapeRopeEffect:
@@ -2239,17 +2239,17 @@ PokeFluteEffect:
 
 .CatchyTune:
 	; Played the # FLUTE. Now, that's a catchy tune!
-	text_far UnknownText_0x1c5bf9
+	text_far Text_PlayedFlute
 	text_end
 
 .AllSleepingMonWokeUp:
 	; All sleeping #MON woke up.
-	text_far UnknownText_0x1c5c28
+	text_far Text_FluteWakeUp
 	text_end
 
 .PlayedTheFlute:
 	; played the # FLUTE.@ @
-	text_far UnknownText_0x1c5c44
+	text_far Text_PlayedPokeFlute
 	text_asm
 	ld a, [wBattleMode]
 	and a
@@ -2269,7 +2269,7 @@ BlueCardEffect:
 	jp MenuTextboxWaitButton
 
 .bluecardtext
-	text_far UnknownText_0x1c5c5e
+	text_far Text_BlueCardBalance
 	text_end
 
 CoinCaseEffect:
@@ -2277,7 +2277,7 @@ CoinCaseEffect:
 	jp MenuTextboxWaitButton
 
 .coincasetext
-	text_far UnknownText_0x1c5c7b
+	text_far Text_CoinCaseCount
 	text_end
 
 OldRodEffect:
@@ -2552,7 +2552,7 @@ TextJump_PPsIncreased:
 
 UnknownText_0xf739:
 	; PP was restored.
-	text_far UnknownText_0x1c5cf1
+	text_far Text_PPRestored
 	text_end
 
 SquirtbottleEffect:
@@ -2591,7 +2591,7 @@ OpenBox:
 
 .text
 	; There was a trophy inside!
-	text_far UnknownText_0x1c5d03
+	text_far Text_SentTrophyHome
 	text_end
 
 NoEffect:
@@ -2686,67 +2686,67 @@ CantUseItemMessage:
 
 LooksBitterText:
 	; It looks bitter…
-	text_far UnknownText_0x1c5d3e
+	text_far Text_ItemLooksBitter
 	text_end
 
 CantUseOnEggText:
 	; That can't be used on an EGG.
-	text_far UnknownText_0x1c5d50
+	text_far Text_ItemCantUseOnEgg
 	text_end
 
 IsntTheTimeText:
 	; OAK:  ! This isn't the time to use that!
-	text_far UnknownText_0x1c5d6e
+	text_far Text_ItemOakWarning
 	text_end
 
 BelongsToSomeoneElseText:
 	; That belongs to someone else!
-	text_far UnknownText_0x1c5d97
+	text_far Text_BelongToSomeoneElse
 	text_end
 
 WontHaveAnyEffectText:
 	; It won't have any effect.
-	text_far UnknownText_0x1c5db6
+	text_far Text_ItemWontHaveEffect
 	text_end
 
 BlockedTheBallText:
 	; The trainer blocked the BALL!
-	text_far UnknownText_0x1c5dd0
+	text_far Text_BallBlocked
 	text_end
 
 DontBeAThiefText:
 	; Don't be a thief!
-	text_far UnknownText_0x1c5def
+	text_far Text_BallNoSwiping
 	text_end
 
 CyclingIsntAllowedText:
 	; Cycling isn't allowed here.
-	text_far UnknownText_0x1c5e01
+	text_far Text_NoCycling
 	text_end
 
 CantGetOnYourBikeText:
 	; Can't get on your @  now.
-	text_far UnknownText_0x1c5e1d
+	text_far Text_ItemCantGetOn
 	text_end
 
 Ball_BoxIsFullText:
 	; The #MON BOX is full. That can't be used now.
-	text_far UnknownText_0x1c5e3a
+	text_far Text_BallBoxFull
 	text_end
 
 UsedItemText:
 	; used the@ .
-	text_far UnknownText_0x1c5e68
+	text_far Text_ItemUsed
 	text_end
 
 GotOnTheItemText:
 	; got on the@ .
-	text_far UnknownText_0x1c5e7b
+	text_far Text_ItemGotOn
 	text_end
 
 GotOffTheItemText:
 	; got off@ the @ .
-	text_far UnknownText_0x1c5e90
+	text_far Text_ItemGotOff
 	text_end
 
 ApplyPPUp:

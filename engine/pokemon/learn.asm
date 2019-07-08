@@ -202,32 +202,32 @@ ForgetMove:
 
 Text_LearnedMove:
 ; <MON> learned <MOVE>!
-	text_far UnknownText_0x1c5660
+	text_far Text_MoveLearned
 	text_end
 
 Text_ForgetWhich:
 ; Which move should be forgotten?
-	text_far UnknownText_0x1c5678
+	text_far Text_MoveAskForget
 	text_end
 
 Text_StopLearning:
 ; Stop learning <MOVE>?
-	text_far UnknownText_0x1c5699
+	text_far Text_MoveAskStopLearning
 	text_end
 
 Text_DidNotLearn:
 ; <MON> did not learn <MOVE>.
-	text_far UnknownText_0x1c56af
+	text_far Text_MoveDidNotLearn
 	text_end
 
 Text_TryingToLearn:
 ; <MON> is trying to learn <MOVE>. But <MON> can't learn more than
 ; four moves. Delete an older move to make room for <MOVE>?
-	text_far UnknownText_0x1c56c9
+	text_far Text_MoveAskDelete
 	text_end
 
 Text_1_2_and_Poof:
-	text_far UnknownText_0x1c5740 ; 1, 2 and…
+	text_far Text_MoveForgetCount ; 1, 2 and…
 	text_asm
 	push de
 	ld de, SFX_SWITCH_POKEMON
@@ -238,10 +238,10 @@ Text_1_2_and_Poof:
 
 .PoofForgot:
 ; Poof! <MON> forgot <MOVE>. And…
-	text_far UnknownText_0x1c574e
+	text_far Text_MoveForgot
 	text_end
 
 Text_CantForgetHM:
 ; HM moves can't be forgotten now.
-	text_far UnknownText_0x1c5772
+	text_far Text_MoveCantForgetHM
 	text_end

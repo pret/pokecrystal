@@ -66,37 +66,37 @@ MoveDeletion:
 
 .ConfirmDeleteText:
 	; Oh, make it forget @ ?
-	text_far UnknownText_0x1c5eda
+	text_far Text_AskDeleteMove
 	text_end
 
 .MoveDeletedText:
 	; Done! Your #MON forgot the move.
-	text_far UnknownText_0x1c5ef5
+	text_far Text_DeleterForgotMove
 	text_end
 
 .EggText:
 	; An EGG doesn't know any moves!
-	text_far UnknownText_0x1c5f17
+	text_far Text_DeleterEgg
 	text_end
 
 .DeclinedDeletionText:
 	; No? Come visit me again.
-	text_far UnknownText_0x1c5f36
+	text_far Text_DeleterNoComeAgain
 	text_end
 
 .AskWhichMoveText:
 	; Which move should it forget, then?
-	text_far UnknownText_0x1c5f50
+	text_far Text_DeleterAskWhichMove
 	text_end
 
 .IntroText:
 	; Um… Oh, yes, I'm the MOVE DELETER. I can make #MON forget moves. Shall I make a #MON forget?
-	text_far UnknownText_0x1c5f74
+	text_far Text_DeleterIntro
 	text_end
 
 .AskWhichMonText:
 	; Which #MON?
-	text_far UnknownText_0x1c5fd1
+	text_far Text_DeleterAskMon
 	text_end
 
 .DeleteMove:

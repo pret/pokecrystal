@@ -602,7 +602,7 @@ InitialClearDSTFlag:
 
 .IsThatOK:
 	; , is that OK?
-	text_far UnknownText_0x1c5ff1
+	text_far Text_TimeAskOkay
 	text_end
 
 DebugDisplayTime:

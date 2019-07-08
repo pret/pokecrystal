@@ -20,7 +20,7 @@ _DeleteSaveData:
 
 .Text_ClearAllSaveData:
 	; Clear all save data?
-	text_far UnknownText_0x1c564a
+	text_far Text_AskClearData
 	text_end
 
 .NoYesMenuHeader:

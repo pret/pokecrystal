@@ -282,7 +282,7 @@ MainMenu_PrintCurrentTimeAndDay:
 
 .UnusedText:
 	; Clock time unknown
-	text_far UnknownText_0x1c5182
+	text_far Text_MainMenuTimeUnknown
 	text_end
 
 .PlaceCurrentDay:
