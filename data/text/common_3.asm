@@ -351,7 +351,7 @@ Text_SeerTrade::
 	text "!"
 	prompt
 
-Seer_TextNoLocation::
+Text_SeerNoLocation::
 	text "What!? Incredible!"
 
 	para "I don't understand"
@@ -1304,7 +1304,7 @@ Text_RepelUsedEarlierIsStillInEffect::
 	cont "in effect."
 	prompt
 
-Text_PLayedFlute::
+Text_PlayedFlute::
 	text "Played the #"
 	line "FLUTE."
 
@@ -1317,7 +1317,7 @@ Text_FluteWakeUp::
 	line "#MON woke up."
 	prompt
 
-Text_PayedPokeFlute::
+Text_PlayedPokeFlute::
 	text "<PLAYER> played the"
 	line "# FLUTE.@"
 	text_waitbutton
@@ -1529,7 +1529,7 @@ Text_TimesetDST::
 	cont "hour."
 	prompt
 
-Test_TimesetAskNotDST::
+Text_TimesetAskNotDST::
 	text "Is Daylight Saving"
 	line "Time over?"
 	done

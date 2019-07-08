@@ -1128,7 +1128,7 @@ _PlayersPCNoRoomWithdrawText::
 	line "for more items."
 	prompt
 
-_PlayersOCNoItemsText::
+_PlayersPCNoItemsText::
 	text "No items here!"
 	prompt
 
@@ -1504,7 +1504,7 @@ Text_MailNoSpace::
 	line "for removing MAIL."
 	prompt
 
-Text_MAilAskSendToPC::
+Text_MailAskSendToPC::
 	text "Send the removed"
 	line "MAIL to your PC?"
 	done

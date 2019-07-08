@@ -61,7 +61,7 @@ MoveDeletion:
 
 .OnlyOneMoveText:
 	; That #MON knows only one move.
-	text_far UnknownText_0x1c5eba
+	text_far Text_MoveKnowsOne
 	text_end
 
 .ConfirmDeleteText:
