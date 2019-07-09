@@ -260,6 +260,8 @@ UnknownText_0x1bc44c::
 	done
 
 ; last Unused Mobile Adapter
+
+
 UnknownText_0x1bc45e::
 	text "Enter the"
 	line "amount."

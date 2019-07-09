@@ -179,7 +179,7 @@ TrainerSchoolboyAlan1:
 	iftrue .NumberAccepted
 	checkevent EVENT_ALAN_ASKED_FOR_PHONE_NUMBER
 	iftrue .AskAgainForPhoneNumber
-	writetext UnknownText_0x1947aa
+	writetext SchoolboyAlanBooksText
 	buttonsound
 	setevent EVENT_ALAN_ASKED_FOR_PHONE_NUMBER
 	scall .AskNumber1
@@ -489,7 +489,7 @@ RockSmashGuyText2:
 	cont "have this."
 	done
 
-UnknownText_0x19451a:
+UnusedReceivedTM08Text:
 	text "<PLAYER> received"
 	line "TM08."
 	done
@@ -509,7 +509,7 @@ RockSmashGuyText3:
 	cont "smash 'em up!"
 	done
 
-UnknownText_0x1945b8:
+UnusedOddTreeText:
 	text "An odd tree is"
 	line "blocking the way"
 	cont "to GOLDENROD CITY."
@@ -570,7 +570,7 @@ SchoolboyAlan1BeatenText:
 	line "error?"
 	done
 
-UnknownText_0x1947aa:
+SchoolboyAlanBooksText:
 	text "Darn. I study five"
 	line "hours a day too."
 

@@ -45,14 +45,14 @@ LakeOfRageLanceScript:
 	checkevent EVENT_REFUSED_TO_HELP_LANCE_AT_LAKE_OF_RAGE
 	iftrue .AskAgainForHelp
 	opentext
-	writetext UnknownText_0x70157
+	writetext LakeOfRageLanceForcedEvoText
 	buttonsound
 	faceplayer
-	writetext UnknownText_0x701b4
+	writetext LakeOfRageLanceIntroText
 	yesorno
 	iffalse .RefusedToHelp
 .AgreedToHelp:
-	writetext UnknownText_0x702c6
+	writetext LakeOfRageLanceRadioSignalText
 	waitbutton
 	closetext
 	playsound SFX_WARP_TO
@@ -64,7 +64,7 @@ LakeOfRageLanceScript:
 	end
 
 .RefusedToHelp:
-	writetext UnknownText_0x70371
+	writetext LakeOfRageLanceRefusedText
 	waitbutton
 	closetext
 	setevent EVENT_REFUSED_TO_HELP_LANCE_AT_LAKE_OF_RAGE
@@ -73,14 +73,14 @@ LakeOfRageLanceScript:
 .AskAgainForHelp:
 	faceplayer
 	opentext
-	writetext UnknownText_0x703a5
+	writetext LakeOfRageLanceAskHelpText
 	yesorno
 	iffalse .RefusedToHelp
 	sjump .AgreedToHelp
 
 RedGyarados:
 	opentext
-	writetext UnknownText_0x703cb
+	writetext LakeOfRageGyaradosGyaText
 	pause 15
 	cry GYARADOS
 	closetext
@@ -94,7 +94,7 @@ RedGyarados:
 	opentext
 	giveitem RED_SCALE
 	waitsfx
-	writetext UnknownText_0x703df
+	writetext LakeOfRageGotRedScaleText
 	playsound SFX_ITEM
 	waitsfx
 	itemnotify
@@ -242,7 +242,7 @@ MovementData_0x70155:
 	teleport_from
 	step_end
 
-UnknownText_0x70157:
+LakeOfRageLanceForcedEvoText:
 	text "This lake is full"
 	line "of GYARADOS but"
 	cont "nothing else…"
@@ -252,7 +252,7 @@ UnknownText_0x70157:
 	cont "to evolve…"
 	done
 
-UnknownText_0x701b4:
+LakeOfRageLanceIntroText:
 	text "Did you come here"
 	line "because of the"
 	cont "rumors?"
@@ -280,7 +280,7 @@ UnknownText_0x701b4:
 	cont "investigate?"
 	done
 
-UnknownText_0x702c6:
+LakeOfRageLanceRadioSignalText:
 	text "LANCE: Excellent!"
 
 	para "It seems that the"
@@ -299,22 +299,22 @@ UnknownText_0x702c6:
 	line "for you, <PLAY_G>."
 	done
 
-UnknownText_0x70371:
+LakeOfRageLanceRefusedText:
 	text "Oh… Well, if you"
 	line "change your mind,"
 	cont "please help me."
 	done
 
-UnknownText_0x703a5:
+LakeOfRageLanceAskHelpText:
 	text "LANCE: Hm? Are you"
 	line "going to help me?"
 	done
 
-UnknownText_0x703cb:
+LakeOfRageGyaradosGyaText:
 	text "GYARADOS: Gyashaa!"
 	done
 
-UnknownText_0x703df:
+LakeOfRageGotRedScaleText:
 	text "<PLAYER> obtained a"
 	line "RED SCALE."
 	done
