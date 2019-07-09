@@ -388,7 +388,7 @@ HatchEggs:
 
 .Text_NicknameHatchling:
 	; Give a nickname to @ ?
-	text_far Text_BreedClearbox
+	text_far Text_BreedAskNickname
 	text_end
 
 InitEggMoves:
