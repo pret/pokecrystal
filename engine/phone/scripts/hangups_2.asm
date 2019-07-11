@@ -9,7 +9,7 @@ UnknownScript_0xa0aad:
 	sjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0ab5:
-	farwritetext UnknownText_0x175b6d
+	farwritetext WadeComeQuickText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -34,12 +34,12 @@ UnknownScript_0xa0ad5:
 	sjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0add:
-	farwritetext UnknownText_0x66087
+	farwritetext TullyHurryText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0ae5:
-	farwritetext UnknownText_0x6691d
+	farwritetext TiffanyHurryText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 

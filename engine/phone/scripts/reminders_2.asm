@@ -11,5 +11,5 @@ UnknownScript_0xa0aff:
 	end
 
 UnknownScript_0xa0b04:
-	farwritetext UnknownText_0x17717c
+	farwritetext ToddHurryText
 	end

@@ -8,7 +8,7 @@ WiltonGrownText:
 	line "have improved too!"
 	done
 
-UnknownText_0x66b3e:
+WiltonFunFishingText:
 	text "We beat a wild"
 	line "@"
 	text_ram wStringBuffer4
@@ -21,7 +21,7 @@ UnknownText_0x66b3e:
 	line "#MON."
 	done
 
-UnknownText_0x66b8f:
+WiltonLandWildText:
 	text "But a while back,"
 	line "we came this close"
 
@@ -34,7 +34,7 @@ UnknownText_0x66b8f:
 	line "huge. Believe me."
 	done
 
-UnknownText_0x66bf3:
+WiltonWhileTimeText:
 	text "I'm fishing on"
 	line "@"
 	text_ram wStringBuffer5
@@ -48,11 +48,11 @@ UnknownText_0x66bf3:
 	cont "over for a battle."
 	done
 
-UnknownText_0x66c58:
+WiltonLaterText:
 	text "All right, later."
 	done
 
-UnknownText_0x66c6b:
+WiltonItemFishingText:
 	text "I snagged an item"
 	line "while fishing."
 

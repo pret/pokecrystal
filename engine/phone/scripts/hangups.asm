@@ -29,7 +29,7 @@ UnknownScript_0xa0920:
 	sjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0928:
-	farwritetext UnknownText_0x17549b
+	farwritetext ReenaForwardText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
@@ -39,12 +39,12 @@ UnknownScript_0xa0930:
 	sjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0938:
-	farwritetext UnknownText_0x175abe
+	farwritetext WadeNoBerriesText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0940:
-	farwritetext UnknownText_0x175eaf
+	farwritetext RalphNoItemText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -59,7 +59,7 @@ UnknownScript_0xa0950:
 	sjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0958:
-	farwritetext UnknownText_0x1770fb
+	farwritetext ToddNoItemText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -94,7 +94,7 @@ UnknownScript_0xa0988:
 	sjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0990:
-	farwritetext UnknownText_0x65ff2
+	farwritetext TullyNoItemText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -104,7 +104,7 @@ UnknownScript_0xa0998:
 	sjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa09a0:
-	farwritetext UnknownText_0x66882
+	farwritetext TiffanyNoItemText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 

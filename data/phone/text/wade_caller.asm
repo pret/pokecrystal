@@ -17,7 +17,7 @@ WadeAreYouGrowingText:
 	line "it'll get tough."
 	done
 
-UnknownText_0x175869:
+WadeOneHitText:
 	text "Oh yeah, we KO'd a"
 	line "wild @"
 	text_ram wStringBuffer4
@@ -32,7 +32,7 @@ UnknownText_0x175869:
 	line "the poor thing."
 	done
 
-UnknownText_0x1758e4:
+WadeRunAwayText:
 	text "Oh yeah, a wild"
 	line "@"
 	text_ram wStringBuffer4
@@ -51,7 +51,7 @@ UnknownText_0x1758e4:
 	line "had it."
 	done
 
-UnknownText_0x175976:
+WadeAnotherBattleText:
 	text "Do you feel like a"
 	line "#MON battle?"
 
@@ -67,7 +67,7 @@ UnknownText_0x175976:
 	line "you get there."
 	done
 
-UnknownText_0x1759e7:
+WadeLaterText:
 	text "See you later!"
 	done
 
@@ -98,7 +98,7 @@ WadeFoundBerryText:
 	text "."
 	done
 
-UnknownText_0x175abe:
+WadeNoBerriesText:
 	text "Huh? BERRIES?"
 
 	para "Sorry, I haven't"
@@ -109,7 +109,7 @@ UnknownText_0x175abe:
 	cont "please wait?"
 	done
 
-UnknownText_0x175b1e:
+WadeQuickBattleText:
 	text "Let's battle"
 	line "already!"
 
@@ -122,7 +122,7 @@ UnknownText_0x175b1e:
 	line "soon as you can!"
 	done
 
-UnknownText_0x175b6d:
+WadeComeQuickText:
 	text "How come you're"
 	line "not here yet?"
 

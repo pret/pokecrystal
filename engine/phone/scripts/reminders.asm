@@ -19,7 +19,7 @@ UnknownScript_0xa0a41:
 	end
 
 UnknownScript_0xa0a46:
-	farwritetext UnknownText_0x1754e5
+	farwritetext ReenaHurryText
 	end
 
 UnknownScript_0xa0a4b:
@@ -27,7 +27,7 @@ UnknownScript_0xa0a4b:
 	end
 
 UnknownScript_0xa0a50:
-	farwritetext UnknownText_0x175b1e
+	farwritetext WadeQuickBattleText
 	end
 
 UnknownScript_0xa0a55:
@@ -43,7 +43,7 @@ UnknownScript_0xa0a5f:
 	end
 
 UnknownScript_0xa0a64:
-	farwritetext UnknownText_0x177138
+	farwritetext ToddForwardText
 	end
 
 UnknownScript_0xa0a69:
@@ -67,7 +67,7 @@ UnknownScript_0xa0a7d:
 	end
 
 UnknownScript_0xa0a82:
-	farwritetext UnknownText_0x66043
+	farwritetext TullyForwardText
 	end
 
 UnknownScript_0xa0a87:
@@ -75,7 +75,7 @@ UnknownScript_0xa0a87:
 	end
 
 UnknownScript_0xa0a8c:
-	farwritetext UnknownText_0x668a3
+	farwritetext TiffanyAsleepText
 	end
 
 VanceHurryHurry:

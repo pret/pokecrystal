@@ -8,7 +8,7 @@ VanceLiftoffText:
 	line "liftoff!"
 	done
 
-UnknownText_0x669b2:
+VanceEasyBeatText:
 	text "We can easily beat"
 	line "@"
 	text_ram wStringBuffer4
@@ -18,7 +18,7 @@ UnknownText_0x669b2:
 	line "Isn't that great?"
 	done
 
-UnknownText_0x669ed:
+VanceFlyAfterText:
 	text "But get this, a"
 	line "wild @"
 	text_ram wStringBuffer4
@@ -30,7 +30,7 @@ UnknownText_0x669ed:
 	line "after it…"
 	done
 
-UnknownText_0x66a3a:
+VanceAskBattleText:
 	text "Right now, I'm on"
 	line "@"
 	text_ram wStringBuffer5
@@ -43,7 +43,7 @@ UnknownText_0x66a3a:
 	line "I'll wait here."
 	done
 
-UnknownText_0x66a93:
+VanceLaterText:
 	text "OK, bye for now!"
 	done
 

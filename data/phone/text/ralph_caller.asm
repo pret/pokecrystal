@@ -11,7 +11,7 @@ RalphNeglectingKidsText:
 	line "actually."
 	done
 
-UnknownText_0x175c24:
+RalphWildWinText:
 	text "I just beat a wild"
 	line "@"
 	text_ram wStringBuffer4
@@ -27,7 +27,7 @@ UnknownText_0x175c24:
 	line "cocky…"
 	done
 
-UnknownText_0x175c9f:
+RalphWildLossText:
 	text "Yesterday a wild"
 	line "@"
 	text_ram wStringBuffer4
@@ -46,7 +46,7 @@ UnknownText_0x175c9f:
 	line "made my day!"
 	done
 
-UnknownText_0x175d40:
+RalphAskBattleText:
 	text "What do you say to"
 	line "a battle with me?"
 
@@ -62,12 +62,12 @@ UnknownText_0x175d40:
 	line "the spot!"
 	done
 
-UnknownText_0x175db7:
+RalphLaterText:
 	text "You call your mom"
 	line "sometimes too!"
 	done
 
-UnknownText_0x175dd9:
+RalphItemText:
 	text "Listen, I… Yowch!"
 
 	para "Uh, sorry! See,"
@@ -96,7 +96,7 @@ UnknownText_0x175dd9:
 	line "to fish!"
 	done
 
-UnknownText_0x175eaf:
+RalphNoItemText:
 	text "Yeah, I know."
 
 	para "You're looking for"
