@@ -58,7 +58,7 @@ RocketBaseBossFScript:
 	appear TEAMROCKETBASEB2F_ROCKET_GIRL
 	appear TEAMROCKETBASEB2F_ROCKET1
 	opentext
-	writetext UnknownText_0x6d2ad
+	writetext RocketBaseBossFHoldItText
 	waitbutton
 	closetext
 	turnobject PLAYER, DOWN
@@ -69,7 +69,7 @@ RocketBaseBossFScript:
 	turnobject PLAYER, UP
 	applymovement TEAMROCKETBASEB2F_ROCKET1, MovementData_0x6d22f
 	opentext
-	writetext UnknownText_0x6d2c3
+	writetext RocketBaseBossFThrashText
 	waitbutton
 	closetext
 	cry DRAGONITE
@@ -82,18 +82,18 @@ RocketBaseBossFScript:
 	appear TEAMROCKETBASEB2F_LANCE
 	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d244
 	opentext
-	writetext UnknownText_0x6d38c
+	writetext RocketBaseLanceShareFunText
 	waitbutton
 	closetext
 	turnobject PLAYER, RIGHT
 	applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, MovementData_0x6d241
 	opentext
-	writetext UnknownText_0x6d3bd
+	writetext RocketBaseBossMeddleText
 	waitbutton
 	closetext
 	applymovement TEAMROCKETBASEB2F_ROCKET1, MovementData_0x6d24a
 	applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, MovementData_0x6d248
-	winlosstext UnknownText_0x6d45c, 0
+	winlosstext RocketBaseBossWinText, 0
 	setlasttalked TEAMROCKETBASEB2F_ROCKET_GIRL
 	loadtrainer EXECUTIVEF, EXECUTIVEF_2
 	startbattle
@@ -104,7 +104,7 @@ RocketBaseBossFScript:
 	reloadmapafterbattle
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEF_2
 	opentext
-	writetext UnknownText_0x6d4c6
+	writetext RocketBaseBossRetreatText
 	waitbutton
 	closetext
 	special FadeBlackQuickly
@@ -120,13 +120,13 @@ RocketBaseBossFScript:
 	clearevent EVENT_TEAM_ROCKET_BASE_B2F_LANCE
 	turnobject TEAMROCKETBASEB2F_LANCE, DOWN
 	opentext
-	writetext UnknownText_0x6d5d8
+	writetext RocketBaseLancePostBattleText
 	waitbutton
 	closetext
 	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d250
 	turnobject PLAYER, UP
 	opentext
-	writetext UnknownText_0x6d64e
+	writetext RocketBaseLancePowerOffText
 	waitbutton
 	closetext
 	follow TEAMROCKETBASEB2F_LANCE, PLAYER
@@ -134,7 +134,7 @@ RocketBaseBossFScript:
 	stopfollow
 	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d258
 	opentext
-	writetext UnknownText_0x6d6cf
+	writetext RockerBaseLanceElctrodeFaintText
 	waitbutton
 	closetext
 	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d267
@@ -146,7 +146,7 @@ RocketBaseCantLeaveScript:
 
 RocketBaseLancesSideScript:
 	opentext
-	writetext UnknownText_0x6d7ea
+	writetext RocketBaseLancesSideText
 	waitbutton
 	closetext
 	applymovement PLAYER, MovementData_0x6d278
@@ -283,16 +283,16 @@ RocketBaseElectrodeScript:
 	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d27a
 	turnobject PLAYER, RIGHT
 	opentext
-	writetext UnknownText_0x6d809
+	writetext RocketBaseLanceElectrodeDoneText
 	buttonsound
 	verbosegiveitem HM_WHIRLPOOL
 	setevent EVENT_GOT_HM06_WHIRLPOOL
-	writetext UnknownText_0x6d8f8
+	writetext RocketBaseLanceWhirlpoolText
 	waitbutton
 	closetext
 	turnobject TEAMROCKETBASEB2F_LANCE, DOWN
 	opentext
-	writetext UnknownText_0x6d994
+	writetext RocketBaseLanceMonMasterText
 	waitbutton
 	closetext
 	turnobject PLAYER, DOWN
@@ -319,13 +319,13 @@ TeamRocketBaseB2FLockedDoor:
 	opentext
 	checkevent EVENT_LEARNED_HAIL_GIOVANNI
 	iftrue .KnowsPassword
-	writetext UnknownText_0x6dd39
+	writetext RocketBaseDoorNoPasswordText
 	waitbutton
 	closetext
 	end
 
 .KnowsPassword:
-	writetext UnknownText_0x6dd6b
+	writetext RocketBaseDoorKnowPasswordText
 	waitbutton
 	playsound SFX_ENTER_DOOR
 	changeblock 14, 12, $07 ; floor
@@ -339,13 +339,13 @@ TeamRocketBaseB2FTransmitterScript:
 	opentext
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue .Deactivated
-	writetext UnknownText_0x6dda7
+	writetext RocketBaseB2FTransmitterText
 	waitbutton
 	closetext
 	end
 
 .Deactivated:
-	writetext UnknownText_0x6de03
+	writetext RocketBaseB2FDeactivateTransmitterText
 	waitbutton
 	closetext
 	end
@@ -557,12 +557,12 @@ MovementData_0x6d2a4:
 	step RIGHT
 	step_end
 
-UnknownText_0x6d2ad:
+RocketBaseBossFHoldItText:
 	text "Hold it right"
 	line "there!"
 	done
 
-UnknownText_0x6d2c3:
+RocketBaseBossFThrashText:
 	text "We can't have a"
 	line "brat like you on"
 	cont "the loose."
@@ -582,13 +582,13 @@ UnknownText_0x6d2c3:
 	cont "thrashed."
 	done
 
-UnknownText_0x6d38c:
+RocketBaseLanceShareFunText:
 	text "Hey! Don't be so"
 	line "selfish. Spread"
 	cont "the fun around."
 	done
 
-UnknownText_0x6d3bd:
+RocketBaseBossMeddleText:
 	text "What? You had an"
 	line "accomplice?"
 
@@ -605,7 +605,7 @@ UnknownText_0x6d3bd:
 	line "with TEAM ROCKET!"
 	done
 
-UnknownText_0x6d45c:
+RocketBaseBossWinText:
 	text "Tch, you really"
 	line "are strong."
 
@@ -618,7 +618,7 @@ UnknownText_0x6d45c:
 	line "an EXECUTIVE."
 	done
 
-UnknownText_0x6d4c6:
+RocketBaseBossRetreatText:
 	text "…This hideout is"
 	line "done for…"
 
@@ -646,7 +646,7 @@ UnknownText_0x6d4c6:
 	para "Fufufufu…"
 	done
 
-UnknownText_0x6d5d8:
+RocketBaseLancePostBattleText:
 	text "LANCE: That did"
 	line "it. We defeated"
 
@@ -660,7 +660,7 @@ UnknownText_0x6d5d8:
 	line "the process…"
 	done
 
-UnknownText_0x6d64e:
+RocketBaseLancePowerOffText:
 	text "Sorry, <PLAY_G>."
 	line "I saw how well you"
 
@@ -674,7 +674,7 @@ UnknownText_0x6d64e:
 	line "radio signal."
 	done
 
-UnknownText_0x6d6cf:
+RockerBaseLanceElctrodeFaintText:
 	text "It's this machine"
 	line "that's causing all"
 	cont "the problems."
@@ -704,12 +704,12 @@ UnknownText_0x6d6cf:
 	line "split the job."
 	done
 
-UnknownText_0x6d7ea:
+RocketBaseLancesSideText:
 	text "LANCE: Leave this"
 	line "side to me."
 	done
 
-UnknownText_0x6d809:
+RocketBaseLanceElectrodeDoneText:
 	text "LANCE: That odd"
 	line "signal has finally"
 	cont "stopped."
@@ -731,12 +731,13 @@ UnknownText_0x6d809:
 	cont "any need for it."
 	done
 
+; unused
 UnknownText_0x6d8e6:
 	text "<PLAYER> received"
 	line "HM06."
 	done
 
-UnknownText_0x6d8f8:
+RocketBaseLanceWhirlpoolText:
 	text "That's WHIRLPOOL."
 	line "Teach it to a"
 
@@ -753,7 +754,7 @@ UnknownText_0x6d8f8:
 	line "from MAHOGANY GYM."
 	done
 
-UnknownText_0x6d994:
+RocketBaseLanceMonMasterText:
 	text "<PLAY_G>…"
 
 	para "The journey to be-"
@@ -871,14 +872,14 @@ GruntM19AfterBattleText:
 	cont "for yourself."
 	done
 
-UnknownText_0x6dd39:
+RocketBaseDoorNoPasswordText:
 	text "The door's closed…"
 
 	para "It needs a pass-"
 	line "word to open."
 	done
 
-UnknownText_0x6dd6b:
+RocketBaseDoorKnowPasswordText:
 	text "The door's closed…"
 
 	para "<PLAYER> entered"
@@ -887,7 +888,7 @@ UnknownText_0x6dd6b:
 	para "The door opened!"
 	done
 
-UnknownText_0x6dda7:
+RocketBaseB2FTransmitterText:
 	text "It's the radio"
 	line "transmitter that's"
 
@@ -898,7 +899,7 @@ UnknownText_0x6dda7:
 	line "full capacity."
 	done
 
-UnknownText_0x6de03:
+RocketBaseB2FDeactivateTransmitterText:
 	text "The radio trans-"
 	line "mitter has finally"
 

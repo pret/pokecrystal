@@ -82,7 +82,7 @@ TrainerSchoolboyJack1:
 	iftrue .NumberAccepted
 	checkevent EVENT_JACK_ASKED_FOR_PHONE_NUMBER
 	iftrue .AskAgain
-	writetext UnknownText_0x5c4f3
+	writetext SchoolBoyJackTradeMonText
 	buttonsound
 	setevent EVENT_JACK_ASKED_FOR_PHONE_NUMBER
 	scall .AskNumber1
@@ -212,7 +212,7 @@ TrainerPokefanfBeverly1:
 	iffalse .NoMarill
 	checkevent EVENT_BEVERLY_ASKED_FOR_PHONE_NUMBER
 	iftrue .AskAgain
-	writetext UnknownText_0x5c5bd
+	writetext PokefanBeverlyCuteMonText
 	buttonsound
 	setevent EVENT_BEVERLY_ASKED_FOR_PHONE_NUMBER
 	scall .AskNumber1
@@ -239,7 +239,7 @@ TrainerPokefanfBeverly1:
 	sjump .PackFull
 
 .NoMarill:
-	writetext UnknownText_0x5c68a
+	writetext PokefanBeverlyMarillFriendText
 	waitbutton
 	closetext
 	end
@@ -405,7 +405,7 @@ SchoolboyJack1BeatenText:
 	text "Wha-wha-what?"
 	done
 
-UnknownText_0x5c4f3:
+SchoolBoyJackTradeMonText:
 	text "There is a lot"
 	line "to learn."
 
@@ -432,7 +432,7 @@ PokefanfBeverly1BeatenText:
 	line "pride, but…"
 	done
 
-UnknownText_0x5c5bd:
+PokefanBeverlyCuteMonText:
 	text "I must say, your"
 	line "#MON are quite"
 	cont "cute, too."
@@ -459,7 +459,7 @@ PokefanmWilliamAfterBattleText:
 	line "being most lovely."
 	done
 
-UnknownText_0x5c68a:
+PokefanBeverlyMarillFriendText:
 	text "My friend keeps a"
 	line "MARILL!"
 
