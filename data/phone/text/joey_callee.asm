@@ -1,4 +1,4 @@
-UnknownText_0x1b589a:
+JoeyAnswerPhoneText:
 	text "Hi, @"
 	text_ram wStringBuffer3
 	text " here!"
@@ -7,7 +7,7 @@ UnknownText_0x1b589a:
 	line "doing well?"
 	done
 
-UnknownText_0x1b58c2:
+JoeyAnswerPhoneDayText:
 	text "Hi, @"
 	text_ram wStringBuffer3
 	text " here!"
@@ -16,7 +16,7 @@ UnknownText_0x1b58c2:
 	line "doing well?"
 	done
 
-UnknownText_0x1b58ea:
+JoeyAnswerPhoneNiteText:
 	text "Hi, @"
 	text_ram wStringBuffer3
 	text " here!"
@@ -25,7 +25,7 @@ UnknownText_0x1b58ea:
 	line "doing well?"
 	done
 
-UnknownText_0x1b5912:
+JoeyGreetText:
 	text "Yo, <PLAYER>!"
 	line "How're you doing?"
 
@@ -35,7 +35,7 @@ UnknownText_0x1b5912:
 	line "got a minute?"
 	done
 
-UnknownText_0x1b5948:
+JoeyGreetDayText:
 	text "Yo, <PLAYER>! How's"
 	line "it going?"
 
@@ -45,7 +45,7 @@ UnknownText_0x1b5948:
 	line "Got a minute?"
 	done
 
-UnknownText_0x1b597c:
+JoeyGreetNiteText:
 	text "Yo, <PLAYER>!"
 	line "How're you doing?"
 
@@ -55,7 +55,7 @@ UnknownText_0x1b597c:
 	line "got a minute?"
 	done
 
-UnknownText_0x1b59b2:
+JoeyGenericText:
 	text "How are your"
 	line "#MON doing?"
 

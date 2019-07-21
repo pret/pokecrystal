@@ -1,30 +1,30 @@
-JackPhoneTips:
-	farwritetext UnknownText_0x1745c2
+JackPhoneTipsScript:
+	farwritetext JackPhoneTipsText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0900:
-	farwritetext UnknownText_0x17485b
+	farwritetext BeverlyHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
 UnknownScript_0xa0908:
-	farwritetext UnknownText_0x17496b
+	farwritetext HueyHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0910:
-	farwritetext UnknownText_0x174c29
+	farwritetext GavenHangupNotThursdayText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0918:
-	farwritetext UnknownText_0x174ec5
+	farwritetext BethHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
 UnknownScript_0xa0920:
-	farwritetext UnknownText_0x17519b
+	farwritetext JoseHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -34,7 +34,7 @@ UnknownScript_0xa0928:
 	sjump PhoneScript_HangupText_Female
 
 UnknownScript_0xa0930:
-	farwritetext UnknownText_0x17571d
+	farwritetext JoeyHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -49,12 +49,12 @@ UnknownScript_0xa0940:
 	sjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0948:
-	farwritetext UnknownText_0x1768b0
+	farwritetext LizHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
 UnknownScript_0xa0950:
-	farwritetext UnknownText_0x176d32
+	farwritetext AnthonyHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -64,32 +64,32 @@ UnknownScript_0xa0958:
 	sjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0960:
-	farwritetext UnknownText_0x177465
+	farwritetext GinaHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
 UnknownScript_0xa0968:
-	farwritetext UnknownText_0x64bc6
+	farwritetext ArnieHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0970:
-	farwritetext UnknownText_0x64e90
+	farwritetext AlanHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0978:
-	farwritetext UnknownText_0x65161
+	farwritetext DanaHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
 UnknownScript_0xa0980:
-	farwritetext UnknownText_0x65a23
+	farwritetext ChadHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0988:
-	farwritetext UnknownText_0x65d5c
+	farwritetext DerekHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -99,7 +99,7 @@ UnknownScript_0xa0990:
 	sjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0998:
-	farwritetext UnknownText_0x6651e
+	farwritetext BrentHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -108,17 +108,17 @@ UnknownScript_0xa09a0:
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
-VanceLookingForward:
+VanceLookingForwardScript:
 	farwritetext VanceLookingForwardText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-WiltonHaventFoundAnything:
+WiltonHaventFoundAnythingScript:
 	farwritetext WiltonHaventFoundAnythingText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-ParryBattleWithMe:
+ParryBattleWithMeScript:
 	farwritetext ParryBattleWithMeText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
@@ -130,22 +130,22 @@ ErinWorkingHardScript:
 
 UnknownScript_0xa09c8:
 	random 3
-	ifequal 0, UnknownScript_0xa09d6
-	ifequal 1, UnknownScript_0xa09de
-	ifequal 2, UnknownScript_0xa09e6
+	ifequal 0, IrwinEscapadeScript
+	ifequal 1, IrwinGoodMatchScript
+	ifequal 2, IrwinNoseyScript
 
-UnknownScript_0xa09d6:
-	farwritetext UnknownText_0x64846
+IrwinEscapadeScript:
+	farwritetext IrwinEscapadeText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa09de:
-	farwritetext UnknownText_0x64881
+IrwinGoodMatchScript:
+	farwritetext IrwinGoodMatchText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa09e6:
-	farwritetext UnknownText_0x648dc
+IrwinNoseyScript:
+	farwritetext IrwinNoseyText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -153,12 +153,12 @@ KenjiAnswerPhoneScript:
 	readvar VAR_KENJI_BREAK
 	ifequal 2, .Training
 	ifequal 1, .OnBreak
-	farwritetext UnknownText_0x66e17
+	farwritetext KenjiHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 .Training:
-	farwritetext UnknownText_0x66e67
+	farwritetext KenjiHangupTrainingText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -173,11 +173,11 @@ KenjiAnswerPhoneScript:
 	sjump PhoneScript_HangupText_Male
 
 .Morning:
-	farwritetext UnknownText_0x66ed3
+	farwritetext KenjiHangupMorningText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 .Night:
-	farwritetext UnknownText_0x66f52
+	farwritetext KenjiHangupNightText
 	buttonsound
 	sjump PhoneScript_HangupText_Male

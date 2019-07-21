@@ -11,7 +11,7 @@ JackPhoneCalleeScript:
 	iftrue JackMondayMorning
 
 .NotMonday:
-	farsjump JackPhoneTips
+	farsjump JackPhoneTipsScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, NATIONAL_PARK

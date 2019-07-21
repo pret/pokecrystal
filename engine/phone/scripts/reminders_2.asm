@@ -1,13 +1,13 @@
 UnknownScript_0xa0af5:
-	farwritetext UnknownText_0x175f70
+	farwritetext RalphHurryText
 	end
 
 UnknownScript_0xa0afa:
-	farwritetext UnknownText_0x176dd1
+	farwritetext AnthonyHurryText
 	end
 
 UnknownScript_0xa0aff:
-	farwritetext UnknownText_0x64c5a
+	farwritetext ArnieHurryText
 	end
 
 UnknownScript_0xa0b04:

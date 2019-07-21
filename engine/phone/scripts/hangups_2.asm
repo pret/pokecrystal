@@ -1,10 +1,10 @@
 UnknownScript_0xa0aa5:
-	farwritetext UnknownText_0x174895
+	farwritetext BeverlyComePickUpText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
 UnknownScript_0xa0aad:
-	farwritetext UnknownText_0x17529c
+	farwritetext JoseComePickUpText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -14,22 +14,22 @@ UnknownScript_0xa0ab5:
 	sjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0abd:
-	farwritetext UnknownText_0x17750e
+	farwritetext GinaComePickUpText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
 UnknownScript_0xa0ac5:
-	farwritetext UnknownText_0x64f1a
+	farwritetext AlanComePickUpText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0acd:
-	farwritetext UnknownText_0x6520f
+	farwritetext DanaComePickUpText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
 UnknownScript_0xa0ad5:
-	farwritetext UnknownText_0x65da6
+	farwritetext DerekComePickUpText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -43,7 +43,7 @@ UnknownScript_0xa0ae5:
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
-WiltonWantThis:
+WiltonWantThisScript:
 	farwritetext WiltonWantThisText
 	buttonsound
 	sjump PhoneScript_HangupText_Male

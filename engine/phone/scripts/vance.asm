@@ -11,11 +11,11 @@ VancePhoneCalleeScript:
 	iftrue VanceWednesdayNight
 
 .NotWednesday:
-	farsjump VanceLookingForward
+	farsjump VanceLookingForwardScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_44
-	farsjump VanceHurryHurry
+	farsjump VanceHurryHurryScript
 
 VancePhoneCallerScript:
 	gettrainername STRING_BUFFER_3, BIRD_KEEPER, VANCE1

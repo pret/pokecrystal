@@ -1,11 +1,11 @@
-UnknownText_0x64000:
+IrwinHangupText:
 	text "I hate having to"
 	line "hang up on you!"
 
 	para "Call you later!"
 	done
 
-UnknownText_0x64032:
+IrwinRocketRumorText:
 	text "<PLAY_G>, have you"
 	line "heard?"
 
@@ -19,6 +19,7 @@ UnknownText_0x64032:
 	line "ROCKET?"
 	done
 
+; unused
 UnknownText_0x64099:
 	text "<PLAY_G>, I heard!"
 
@@ -29,6 +30,7 @@ UnknownText_0x64099:
 	line "to be your friend!"
 	done
 
+; unused
 UnknownText_0x640e6:
 	text "Hey, I heard about"
 	line "you!"
@@ -46,6 +48,7 @@ UnknownText_0x640e6:
 	line "bed with a cold!"
 	done
 
+; unused
 UnknownText_0x6416d:
 	text "I heard, I heard,"
 	line "I heard!"
@@ -60,6 +63,7 @@ UnknownText_0x6416d:
 	line "TEAM ROCKET?"
 	done
 
+; unused
 UnknownText_0x641e8:
 	text "I heard, I heard,"
 	line "I heard!"
@@ -71,6 +75,7 @@ UnknownText_0x641e8:
 	line "rock so hard!"
 	done
 
+; unused
 UnknownText_0x64247:
 	text "I saw, I saw!"
 
@@ -84,6 +89,7 @@ UnknownText_0x64247:
 	line "You can't fail!"
 	done
 
+; unused
 UnknownText_0x642bb:
 	text "Yesterday, I went"
 	line "out to NEW BARK"
@@ -113,6 +119,7 @@ UnknownText_0x642bb:
 	line "mom, believe me!"
 	done
 
+; unused
 UnknownText_0x643d4:
 	text "I saw, I saw,"
 	line "I saw!"
@@ -127,6 +134,7 @@ UnknownText_0x643d4:
 	line "your backdrop!"
 	done
 
+; unused
 UnknownText_0x64448:
 	text "I heard, I heard!"
 
@@ -155,6 +163,7 @@ UnknownText_0x64448:
 	line "by FLY?"
 	done
 
+; unused
 UnknownText_0x6455b:
 	text "I saw, I saw!"
 
@@ -174,6 +183,7 @@ UnknownText_0x6455b:
 	line "magic!"
 	done
 
+; unused
 UnknownText_0x645ff:
 	text "I hear rumors"
 	line "about you all over"
@@ -200,6 +210,7 @@ IrwinCalledRightAwayText:
 	line "good friends!"
 	done
 
+; unused
 UnknownText_0x646df:
 	text "I saw, I heard!"
 
@@ -225,6 +236,7 @@ UnknownText_0x646df:
 	line "took off for home…"
 	done
 
+; unused
 UnknownText_0x647d8:
 	text "<PLAY_G>, I heard!"
 
@@ -240,7 +252,7 @@ UnknownText_0x647d8:
 	para "You so rock!"
 	done
 
-UnknownText_0x64846:
+IrwinEscapadeText:
 	text "Hearing about your"
 	line "escapades rocks my"
 
@@ -248,7 +260,7 @@ UnknownText_0x64846:
 	line "It sure does!"
 	done
 
-UnknownText_0x64881:
+IrwinGoodMatchText:
 	text "I'm so glad you"
 	line "called!"
 
@@ -259,7 +271,7 @@ UnknownText_0x64881:
 	line "a good match!"
 	done
 
-UnknownText_0x648dc:
+IrwinNoseyText:
 	text "How are you?"
 
 	para "What are you"

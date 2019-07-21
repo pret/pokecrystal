@@ -1,4 +1,4 @@
-UnknownText_0x175fda:
+LizNuzzleText:
 	text "Oh, you have to"
 	line "hear this."
 
@@ -11,7 +11,7 @@ UnknownText_0x175fda:
 	line "nuzzle me!"
 	done
 
-UnknownText_0x17602d:
+LizOneHitText:
 	text "And, and! Um…"
 
 	para "We beat a wild"
@@ -26,7 +26,7 @@ UnknownText_0x17602d:
 	line "it, though."
 	done
 
-UnknownText_0x176095:
+LizLostAMonText:
 	text "And, and! Uh…"
 
 	para "We just saw a"
@@ -42,7 +42,7 @@ UnknownText_0x176095:
 	line "really angry!"
 	done
 
-UnknownText_0x17610a:
+LizBattleRematchText:
 	text "Hi! Do you have"
 	line "some free time?"
 
@@ -72,7 +72,7 @@ LizHiTaniaText:
 	line "Oops! Sorry!"
 	done
 
-UnknownText_0x17620a:
+LizLaterText:
 	text "OK, I'll call you"
 	line "later!"
 	done
@@ -260,7 +260,7 @@ UnknownText_0x17686d:
 	line "was going to say!"
 	done
 
-UnknownText_0x1768b0:
+LizHangupText:
 	text "Listen, listen!"
 
 	para "My @"
@@ -294,7 +294,7 @@ UnknownText_0x1768b0:
 	line "I love chatting!"
 	done
 
-UnknownText_0x1769da:
+LizReminderText:
 	text "I've got too much"
 	line "time on my hands!"
 

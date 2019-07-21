@@ -12,7 +12,7 @@ BrentRareTradeText:
 	line "it a secret!"
 	done
 
-UnknownText_0x6613c:
+BrentRareCatchText:
 	text "Oh yeah, I took"
 	line "down this wild"
 
@@ -25,7 +25,7 @@ UnknownText_0x6613c:
 	line "catching."
 	done
 
-UnknownText_0x6618c:
+BrentLostAMonText:
 	text "Oh yeah, I saw a"
 	line "rare #MON about"
 	cont "an hour ago."
@@ -40,7 +40,7 @@ UnknownText_0x6618c:
 	line "at my mistakes?"
 	done
 
-UnknownText_0x66214:
+BrentBattleRematchText:
 	text "You've got time"
 	line "like usual, right?"
 
@@ -59,7 +59,7 @@ UnknownText_0x66214:
 	text "."
 	done
 
-UnknownText_0x662a9:
+BrentLaterText:
 	text "So that's it then."
 	done
 
@@ -141,7 +141,7 @@ UnknownText_0x664dd:
 	line "a KIMONO GIRL."
 	done
 
-UnknownText_0x6651e:
+BrentHangupText:
 	text "You wanted to hear"
 	line "about BILL?"
 
@@ -152,7 +152,7 @@ UnknownText_0x6651e:
 	line "have time."
 	done
 
-UnknownText_0x66579:
+BrentReminderText:
 	text "You want to see my"
 	line "rare #MON."
 

@@ -107,7 +107,7 @@ RalphNoItemText:
 	cont "MAGIKARP, though…"
 	done
 
-UnknownText_0x175f11:
+RalphReminderText:
 	text "So where are you?"
 	line "I'm waiting for"
 
@@ -120,7 +120,7 @@ UnknownText_0x175f11:
 	line "your elders wait!"
 	done
 
-UnknownText_0x175f70:
+RalphHurryText:
 	text "Hey, what's the"
 	line "matter with you?"
 

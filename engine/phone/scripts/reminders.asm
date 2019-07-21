@@ -1,13 +1,13 @@
 JackWantsBattleScript:
-	farwritetext UnknownText_0x174638
+	farwritetext JackReminderText
 	end
 
 HueyWantsBattleScript:
-	farwritetext UnknownText_0x1749c7
+	farwritetext HueyWantsBattleText
 	end
 
 UnknownScript_0xa0a37:
-	farwritetext UnknownText_0x174c49
+	farwritetext GavenReminderText
 	end
 
 BethBattleReminderScript:
@@ -15,7 +15,7 @@ BethBattleReminderScript:
 	end
 
 UnknownScript_0xa0a41:
-	farwritetext UnknownText_0x17520a
+	farwritetext JoseReminderText
 	end
 
 UnknownScript_0xa0a46:
@@ -23,7 +23,7 @@ UnknownScript_0xa0a46:
 	end
 
 UnknownScript_0xa0a4b:
-	farwritetext UnknownText_0x175786
+	farwritetext JoeyReminderText
 	end
 
 UnknownScript_0xa0a50:
@@ -31,15 +31,15 @@ UnknownScript_0xa0a50:
 	end
 
 UnknownScript_0xa0a55:
-	farwritetext UnknownText_0x175f11
+	farwritetext RalphReminderText
 	end
 
 UnknownScript_0xa0a5a:
-	farwritetext UnknownText_0x1769da
+	farwritetext LizReminderText
 	end
 
 UnknownScript_0xa0a5f:
-	farwritetext UnknownText_0x176d85
+	farwritetext AnthonyReminderText
 	end
 
 UnknownScript_0xa0a64:
@@ -47,23 +47,23 @@ UnknownScript_0xa0a64:
 	end
 
 UnknownScript_0xa0a69:
-	farwritetext UnknownText_0x1774c1
+	farwritetext GinaReminderText
 	end
 
 UnknownScript_0xa0a6e:
-	farwritetext UnknownText_0x64c13
+	farwritetext ArnieReminderText
 	end
 
 UnknownScript_0xa0a73:
-	farwritetext UnknownText_0x64ed4
+	farwritetext AlanReminderText
 	end
 
 UnknownScript_0xa0a78:
-	farwritetext UnknownText_0x651bf
+	farwritetext DanaReminderText
 	end
 
 UnknownScript_0xa0a7d:
-	farwritetext UnknownText_0x65a63
+	farwritetext ChadReminderText
 	end
 
 UnknownScript_0xa0a82:
@@ -71,22 +71,22 @@ UnknownScript_0xa0a82:
 	end
 
 UnknownScript_0xa0a87:
-	farwritetext UnknownText_0x66579
+	farwritetext BrentReminderText
 	end
 
 UnknownScript_0xa0a8c:
 	farwritetext TiffanyAsleepText
 	end
 
-VanceHurryHurry:
+VanceHurryHurryScript:
 	farwritetext VanceHurryHurryText
 	end
 
-WiltonNotBiting:
+WiltonNotBitingScript:
 	farwritetext WiltonNotBitingText
 	end
 
-ParryHaventYouGottenTo:
+ParryHaventYouGottenToScript:
 	farwritetext ParryHaventYouGottenToText
 	end
 

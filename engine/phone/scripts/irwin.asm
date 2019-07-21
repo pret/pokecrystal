@@ -6,7 +6,7 @@ IrwinPhoneCalleeScript:
 	farsjump UnknownScript_0xa09c8
 
 .Rockets:
-	farsjump IrwinRocketRumor
+	farsjump IrwinRocketRumorScript
 
 IrwinPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, JUGGLER, IRWIN1
@@ -16,4 +16,4 @@ IrwinPhoneCallerScript:
 	farsjump IrwinRumorScript
 
 .Rockets:
-	farsjump IrwinRocketRumor
+	farsjump IrwinRocketRumorScript

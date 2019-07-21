@@ -1,4 +1,4 @@
-UnknownText_0x174c7f:
+BethHorsebackText:
 	text "Do you remember my"
 	line "sweet @"
 	text_ram wStringBuffer4
@@ -16,7 +16,7 @@ UnknownText_0x174c7f:
 	line "really gets going."
 	done
 
-UnknownText_0x174cf6:
+BethShockedWinText:
 	text "Oh, have you ever"
 	line "seen a @"
 	text_ram wStringBuffer4
@@ -36,7 +36,7 @@ UnknownText_0x174cf6:
 	line "course."
 	done
 
-UnknownText_0x174d86:
+BethLostAMonText:
 	text "Oh, I just saw a"
 	line "wild @"
 	text_ram wStringBuffer4
@@ -59,7 +59,7 @@ UnknownText_0x174d86:
 	line "from my mistake."
 	done
 
-UnknownText_0x174e4e:
+BethBattleRematchText:
 	text "Do you want to"
 	line "battle? I'm going"
 	cont "to win this time!"
@@ -73,11 +73,11 @@ UnknownText_0x174e4e:
 	line "Look for me, OK?"
 	done
 
-UnknownText_0x174eb7:
+BethLaterText:
 	text "OK, bye-bye!"
 	done
 
-UnknownText_0x174ec5:
+BethHangupText:
 	text "Let's battle again"
 	line "sometime!"
 	done

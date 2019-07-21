@@ -18,7 +18,7 @@ ChadObservingWildText:
 	line "PROF.OAK soon."
 	done
 
-UnknownText_0x65318:
+ChadInevitableText:
 	text "Oh yes, I managed"
 	line "to knock out a"
 
@@ -34,7 +34,7 @@ UnknownText_0x65318:
 	line "was inevitable."
 	done
 
-UnknownText_0x65399:
+ChadLostAMonText:
 	text "Oh yes, I came"
 	line "close to catching"
 
@@ -52,7 +52,7 @@ UnknownText_0x65399:
 	text ". Rats…"
 	done
 
-UnknownText_0x65419:
+ChadBattleRematchText:
 	text "Want to battle?"
 	line "I have to battle"
 
@@ -65,7 +65,7 @@ UnknownText_0x65419:
 	text "!"
 	done
 
-UnknownText_0x65471:
+ChadLaterText:
 	text "See you later!"
 	done
 
@@ -223,7 +223,7 @@ ChadTravelGossipText:
 	line "things too…"
 	done
 
-UnknownText_0x65a23:
+ChadHangupText:
 	text "I'm going to study"
 	line "hard so PROF.OAK"
 
@@ -231,7 +231,7 @@ UnknownText_0x65a23:
 	line "assistant!"
 	done
 
-UnknownText_0x65a63:
+ChadReminderText:
 	text "Do you remember"
 	line "about our battle?"
 
