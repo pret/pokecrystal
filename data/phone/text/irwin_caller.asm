@@ -20,7 +20,7 @@ IrwinRocketRumorText:
 	done
 
 ; unused
-UnknownText_0x64099:
+IrwinPlainBadgeGossipText:
 	text "<PLAY_G>, I heard!"
 
 	para "You defeated that"
@@ -31,7 +31,7 @@ UnknownText_0x64099:
 	done
 
 ; unused
-UnknownText_0x640e6:
+IrwinJasmineReturnedGossipText:
 	text "Hey, I heard about"
 	line "you!"
 
@@ -49,7 +49,7 @@ UnknownText_0x640e6:
 	done
 
 ; unused
-UnknownText_0x6416d:
+IrwinRocketHideoutGossipText:
 	text "I heard, I heard,"
 	line "I heard!"
 
@@ -64,7 +64,7 @@ UnknownText_0x6416d:
 	done
 
 ; unused
-UnknownText_0x641e8:
+IrwinRadioTowerGossipText:
 	text "I heard, I heard,"
 	line "I heard!"
 
@@ -76,7 +76,7 @@ UnknownText_0x641e8:
 	done
 
 ; unused
-UnknownText_0x64247:
+IrwinRisingBadgeGossipText:
 	text "I saw, I saw!"
 
 	para "I saw you go into"
@@ -90,7 +90,7 @@ UnknownText_0x64247:
 	done
 
 ; unused
-UnknownText_0x642bb:
+IrwinEliteFourGossipText:
 	text "Yesterday, I went"
 	line "out to NEW BARK"
 
@@ -120,7 +120,7 @@ UnknownText_0x642bb:
 	done
 
 ; unused
-UnknownText_0x643d4:
+IrwinVermilionCityGossipText:
 	text "I saw, I saw,"
 	line "I saw!"
 
@@ -135,7 +135,7 @@ UnknownText_0x643d4:
 	done
 
 ; unused
-UnknownText_0x64448:
+IrwinTrainPassGossipText:
 	text "I heard, I heard!"
 
 	para "You got a MAGNET"
@@ -164,7 +164,7 @@ UnknownText_0x64448:
 	done
 
 ; unused
-UnknownText_0x6455b:
+IrwinSnorlaxGossipText:
 	text "I saw, I saw!"
 
 	para "You waking up"
@@ -184,7 +184,7 @@ UnknownText_0x6455b:
 	done
 
 ; unused
-UnknownText_0x645ff:
+IrwinMtSilverGossipText:
 	text "I hear rumors"
 	line "about you all over"
 	cont "the place."
@@ -211,7 +211,7 @@ IrwinCalledRightAwayText:
 	done
 
 ; unused
-UnknownText_0x646df:
+IrwinFogBadgeGossipText:
 	text "I saw, I heard!"
 
 	para "You beat MORTY of"
@@ -237,7 +237,7 @@ UnknownText_0x646df:
 	done
 
 ; unused
-UnknownText_0x647d8:
+IrwinMarshBadgeGossipText:
 	text "<PLAY_G>, I heard!"
 
 	para "You're kicking up"

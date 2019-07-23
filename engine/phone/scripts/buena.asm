@@ -17,22 +17,22 @@ BuenaPhoneScript_CheckTimeOfDay1:
 	iftrue .morn
 	checktime DAY
 	iftrue .day
-	writetext UnknownText_0xa0d42
+	writetext BuenaPhoneNiteText
 	buttonsound
 	end
 
 .morn
-	writetext UnknownText_0xa0c28
+	writetext BuenaPhoneMorningText
 	buttonsound
 	end
 
 .day
-	writetext UnknownText_0xa0c72
+	writetext BuenaPhoneDayText
 	buttonsound
 	end
 
 BuenaPhoneScript_AfterMidnight1:
-	writetext UnknownText_0xa0caf
+	writetext BuenaPhoneMidnightText
 	end
 
 BuenaPhoneScript_CheckTimeOfDay2:
@@ -42,27 +42,27 @@ BuenaPhoneScript_CheckTimeOfDay2:
 	iftrue .morn
 	checktime DAY
 	iftrue .day
-	writetext UnknownText_0xa0e29
+	writetext BuenaPhoneNite2Text
 	buttonsound
 	end
 
 .morn
-	writetext UnknownText_0xa0d96
+	writetext BuenaPhoneMorning2Text
 	buttonsound
 	end
 
 .day
-	writetext UnknownText_0xa0dcf
+	writetext BuenaPhoneDay2Text
 	buttonsound
 	end
 
 BuenaPhoneScript_AfterMidnight2:
-	writetext UnknownText_0xa0e01
+	writetext BuenaPhoneMidnight2Text
 	buttonsound
 	end
 
 BuenaPhoneScript_Rocket:
-	writetext UnknownText_0xa0e5e
+	writetext BuenaPhoneRocketText
 	end
 
 BuenaPhoneScript_Random2:
@@ -91,59 +91,59 @@ BuenaPhoneScript_Random2:
 	ifequal 13, .thirteen
 
 .zero
-	writetext UnknownText_0xa0efb
+	writetext BuenaPhoneZeroRandom2Text
 	sjump .finish
 
 .one
-	writetext UnknownText_0xa0fcf
+	writetext BuenaPhoneOneRandom2Text
 	sjump .finish
 
 .two
-	writetext UnknownText_0xa109d
+	writetext BuenaPhoneTwoRandom2Text
 	sjump .finish
 
 .three
-	writetext UnknownText_0xa1143
+	writetext BuenaPhoneThreeRandom2Text
 	sjump .finish
 
 .four
-	writetext UnknownText_0xa1244
+	writetext BuenaPhoneFourRandom2Text
 	sjump .finish
 
 .five
-	writetext UnknownText_0xa1318
+	writetext BuenaPhoneFiveRandom2Text
 	sjump .finish
 
 .six
-	writetext UnknownText_0xa13d8
+	writetext BuenaPhoneSixRandom2Text
 	sjump .finish
 
 .seven
-	writetext UnknownText_0xa1488
+	writetext BuenaPhoneSevenRandom2Text
 	sjump .finish
 
 .eight
-	writetext UnknownText_0xa15de
+	writetext BuenaPhoneEightRandom2Text
 	sjump .finish
 
 .nine
-	writetext UnknownText_0xa1717
+	writetext BuenaPhoneNineRandom2Text
 	sjump .finish
 
 .ten
-	writetext UnknownText_0xa183d
+	writetext BuenaPhoneTenRandom2Text
 	sjump .finish
 
 .eleven
-	writetext UnknownText_0xa19b1
+	writetext BuenaPhoneElevenRandom2Text
 	sjump .finish
 
 .twelve
-	writetext UnknownText_0xa1ac0
+	writetext BuenaPhoneTwelveRandom2Text
 	sjump .finish
 
 .thirteen
-	writetext UnknownText_0xa1bed
+	writetext BuenaPhoneThirteenRandom2Text
 
 .finish
 	end
@@ -155,15 +155,15 @@ BuenaPhoneScript_Random1:
 	ifequal 2, .two
 
 .zero
-	writetext UnknownText_0xa1c88
+	writetext BuenaPhoneZeroRandomText
 	end
 
 .one
-	writetext UnknownText_0xa1d5f
+	writetext BuenaPhoneOneRandomText
 	end
 
 .two
-	writetext UnknownText_0xa1e2f
+	writetext BuenaPhoneTwoRandomText
 	end
 
 INCLUDE "data/phone/text/buena.asm"

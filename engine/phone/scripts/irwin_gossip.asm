@@ -28,61 +28,61 @@ IrwinRumorScript:
 	sjump PhoneScript_HangupText_Male
 
 .PlainBadge:
-	farwritetext UnknownText_0x64099
+	farwritetext IrwinPlainBadgeGossipText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 .JasmineReturned:
-	farwritetext UnknownText_0x640e6
+	farwritetext IrwinJasmineReturnedGossipText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 .RocketHideout:
-	farwritetext UnknownText_0x6416d
+	farwritetext IrwinRocketHideoutGossipText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 .RadioTower:
-	farwritetext UnknownText_0x641e8
+	farwritetext IrwinRadioTowerGossipText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 .RisingBadge:
-	farwritetext UnknownText_0x64247
+	farwritetext IrwinRisingBadgeGossipText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 .EliteFour:
-	farwritetext UnknownText_0x642bb
+	farwritetext IrwinEliteFourGossipText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 .VermilionCity:
-	farwritetext UnknownText_0x643d4
+	farwritetext IrwinVermilionCityGossipText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 .TrainPass:
-	farwritetext UnknownText_0x64448
+	farwritetext IrwinTrainPassGossipText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 .Snorlax:
-	farwritetext UnknownText_0x6455b
+	farwritetext IrwinSnorlaxGossipText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 .MtSilver:
-	farwritetext UnknownText_0x645ff
+	farwritetext IrwinMtSilverGossipText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 .FogBadge:
-	farwritetext UnknownText_0x646df
+	farwritetext IrwinFogBadgeGossipText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 .MarshBadge:
-	farwritetext UnknownText_0x647d8
+	farwritetext IrwinMarshBadgeGossipText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
