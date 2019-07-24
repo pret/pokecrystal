@@ -219,12 +219,12 @@ Unreferenced_Functione56d:
 	ret
 
 .asm_e576
-	ld hl, UnknownText_0xe57e
+	ld hl, PCCantTakeScript
 	call MenuTextboxBackup
 	scf
 	ret
 
-UnknownText_0xe57e:
+PCCantTakeScript:
 	; You can't take any more #MON.
 	text_far Text_PCCantTake
 	text_end

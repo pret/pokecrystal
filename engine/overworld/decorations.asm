@@ -722,7 +722,7 @@ DecoAction_TryPutItAway:
 	ret
 
 DecoAction_setupornament:
-	ld hl, UnknownText_0x26e41
+	ld hl, WhichSidePutOnScript
 	call DecoAction_AskWhichSide
 	jr c, .cancel
 	call DecoAction_SetItUp_Ornament
@@ -804,7 +804,7 @@ DecoAction_SetItUp_Ornament:
 	ld [wOtherDecoration], a
 	ret
 
-UnknownText_0x26e41:
+WhichSidePutOnScript:
 	; Which side do you want to put it on?
 	text_far _WhichSidePutOnText
 	text_end

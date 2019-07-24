@@ -58,11 +58,11 @@ BankOfMom:
 	ret
 
 .InitializeBank:
-	ld hl, UnknownText_0x16649
+	ld hl, MomLeavingText1
 	call PrintText
 	call YesNoBox
 	jr c, .DontSaveMoney
-	ld hl, UnknownText_0x1664e
+	ld hl, MomLeavingText2
 	call PrintText
 	ld a, (1 << MOM_ACTIVE_F) | (1 << MOM_SAVING_SOME_MONEY_F)
 	jr .done_1
@@ -72,14 +72,14 @@ BankOfMom:
 
 .done_1
 	ld [wMomSavingMoney], a
-	ld hl, UnknownText_0x16653
+	ld hl, MomLeavingText3
 	call PrintText
 	ld a, $8
 	ld [wJumptableIndex], a
 	ret
 
 .IsThisAboutYourMoney:
-	ld hl, UnknownText_0x16658
+	ld hl, MomVisitingText1
 	call PrintText
 	call YesNoBox
 	jr c, .nope
@@ -95,7 +95,7 @@ BankOfMom:
 	ret
 
 .AccessBankOfMom:
-	ld hl, UnknownText_0x1665d
+	ld hl, MomVisitingText2
 	call PrintText
 	call LoadStandardMenuHeader
 	ld hl, MenuHeader_0x166b5
@@ -131,7 +131,7 @@ BankOfMom:
 	ret
 
 .StoreMoney:
-	ld hl, UnknownText_0x16662
+	ld hl, MomVisitingText3
 	call PrintText
 	xor a
 	ld hl, wStringBuffer2
@@ -174,18 +174,18 @@ BankOfMom:
 	ld de, SFX_TRANSACTION
 	call PlaySFX
 	call WaitSFX
-	ld hl, UnknownText_0x1668a
+	ld hl, MomVisitingText11
 	call PrintText
 	ld a, $8
 	jr .done_4
 
 .DontHaveThatMuchToDeposit:
-	ld hl, UnknownText_0x1667b
+	ld hl, MomVisitingText8
 	call PrintText
 	ret
 
 .CantDepositThatMuch:
-	ld hl, UnknownText_0x16680
+	ld hl, MomVisitingText9
 	call PrintText
 	ret
 
@@ -197,7 +197,7 @@ BankOfMom:
 	ret
 
 .TakeMoney:
-	ld hl, UnknownText_0x16667
+	ld hl, MomVisitingText4
 	call PrintText
 	xor a
 	ld hl, wStringBuffer2
@@ -240,18 +240,18 @@ BankOfMom:
 	ld de, SFX_TRANSACTION
 	call PlaySFX
 	call WaitSFX
-	ld hl, UnknownText_0x1668f
+	ld hl, MomVisitingText12
 	call PrintText
 	ld a, $8
 	jr .done_5
 
 .InsufficientFundsInBank:
-	ld hl, UnknownText_0x16671
+	ld hl, MomVisitingText6
 	call PrintText
 	ret
 
 .NotEnoughRoomInWallet:
-	ld hl, UnknownText_0x16676
+	ld hl, MomVisitingText7
 	call PrintText
 	ret
 
@@ -263,13 +263,13 @@ BankOfMom:
 	ret
 
 .StopOrStartSavingMoney:
-	ld hl, UnknownText_0x1666c
+	ld hl, MomVisitingText5
 	call PrintText
 	call YesNoBox
 	jr c, .StopSavingMoney
 	ld a, (1 << MOM_ACTIVE_F) | (1 << MOM_SAVING_SOME_MONEY_F)
 	ld [wMomSavingMoney], a
-	ld hl, UnknownText_0x16685
+	ld hl, MomVisitingText10
 	call PrintText
 	ld a, $8
 	ld [wJumptableIndex], a
@@ -283,7 +283,7 @@ BankOfMom:
 	ret
 
 .AskDST:
-	ld hl, UnknownText_0x16694
+	ld hl, MomVisitingText13
 	call PrintText
 
 .JustDoWhatYouCan:
@@ -590,82 +590,82 @@ Mom_WithdrawDepositMenuJoypad:
 	dt 90
 	dt 9
 
-UnknownText_0x16649:
+MomLeavingText1:
 	; Wow, that's a cute #MON. Where did you get it? … So, you're leaving on an adventure… OK! I'll help too. But what can I do for you? I know! I'll save money for you. On a long journey, money's important. Do you want me to save your money?
 	text_far _MomLeavingText1
 	text_end
 
-UnknownText_0x1664e:
+MomLeavingText2:
 	; OK, I'll take care of your money.
 	text_far _MomLeavingText2
 	text_end
 
-UnknownText_0x16653:
+MomLeavingText3:
 	; Be careful. #MON are your friends. You need to work as a team. Now, go on!
 	text_far _MomLeavingText3
 	text_end
 
-UnknownText_0x16658:
+MomVisitingText1:
 	; Hi! Welcome home! You're trying very hard, I see. I've kept your room tidy. Or is this about your money?
 	text_far _MomVisitingText1
 	text_end
 
-UnknownText_0x1665d:
+MomVisitingText2:
 	; What do you want to do?
 	text_far _MomVisitingText2
 	text_end
 
-UnknownText_0x16662:
+MomVisitingText3:
 	; How much do you want to save?
 	text_far _MomVisitingText3
 	text_end
 
-UnknownText_0x16667:
+MomVisitingText4:
 	; How much do you want to take?
 	text_far _MomVisitingText4
 	text_end
 
-UnknownText_0x1666c:
+MomVisitingText5:
 	; Do you want to save some money?
 	text_far _MomVisitingText5
 	text_end
 
-UnknownText_0x16671:
+MomVisitingText6:
 	; You haven't saved that much.
 	text_far _MomVisitingText6
 	text_end
 
-UnknownText_0x16676:
+MomVisitingText7:
 	; You can't take that much.
 	text_far _MomVisitingText7
 	text_end
 
-UnknownText_0x1667b:
+MomVisitingText8:
 	; You don't have that much.
 	text_far _MomVisitingText8
 	text_end
 
-UnknownText_0x16680:
+MomVisitingText9:
 	; You can't save that much.
 	text_far _MomVisitingText9
 	text_end
 
-UnknownText_0x16685:
+MomVisitingText10:
 	; OK, I'll save your money. Trust me! , stick with it!
 	text_far _MomVisitingText10
 	text_end
 
-UnknownText_0x1668a:
+MomVisitingText11:
 	; Your money's safe here! Get going!
 	text_far _MomVisitingText11
 	text_end
 
-UnknownText_0x1668f:
+MomVisitingText12:
 	; , don't give up!
 	text_far _MomVisitingText12
 	text_end
 
-UnknownText_0x16694:
+MomVisitingText13:
 	; Just do what you can.
 	text_far _MomVisitingText13
 	text_end

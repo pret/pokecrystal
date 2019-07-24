@@ -317,12 +317,12 @@ UseFlash:
 Script_UseFlash:
 	reloadmappart
 	special UpdateTimePals
-	writetext UnknownText_0xc8f3
+	writetext UseFlashTextScript
 	callasm BlindingFlash
 	closetext
 	end
 
-UnknownText_0xc8f3:
+UseFlashTextScript:
 	text_far Text_UseFlash
 	text_asm
 	call WaitSFX
@@ -1047,30 +1047,30 @@ AskStrengthScript:
 	sjump .AlreadyUsedStrength
 
 .DontMeetRequirements:
-	jumptext UnknownText_0xcd73
+	jumptext StrengthDontMeetScript
 
 .AlreadyUsedStrength:
-	jumptext UnknownText_0xcd6e
+	jumptext AlreadyUsedStrengthTextScript
 
 .AskStrength:
 	opentext
-	writetext UnknownText_0xcd69
+	writetext AskStrengthScriptText
 	yesorno
 	iftrue Script_UsedStrength
 	closetext
 	end
 
-UnknownText_0xcd69:
+AskStrengthScriptText:
 	; A #MON may be able to move this. Want to use STRENGTH?
 	text_far Text_AskStrength
 	text_end
 
-UnknownText_0xcd6e:
+AlreadyUsedStrengthTextScript:
 	; Boulders may now be moved!
 	text_far Text_BouldersMove
 	text_end
 
-UnknownText_0xcd73:
+StrengthDontMeetScript:
 	; A #MON may be able to move this.
 	text_far Text_BouldersMayMove
 	text_end
@@ -1240,13 +1240,13 @@ Script_MightyWhirlpool:
 
 Script_AskWhirlpoolOW:
 	opentext
-	writetext UnknownText_0xce78
+	writetext AskWhirlpoolTextScript
 	yesorno
 	iftrue Script_UsedWhirlpool
 	closetext
 	end
 
-UnknownText_0xce78:
+AskWhirlpoolTextScript:
 	text_far Text_AskWhirlpool
 	text_end
 
@@ -1271,12 +1271,12 @@ TryHeadbuttFromMenu:
 	ld a, $80
 	ret
 
-UnknownText_0xce9d:
+UseHeadbuttTextScript:
 	; did a HEADBUTT!
 	text_far Text_UseHeadbutt
 	text_end
 
-UnknownText_0xcea2:
+HeadbuttNothingScript:
 	; Nope. Nothing…
 	text_far Text_HeadbuttNothing
 	text_end
@@ -1287,7 +1287,7 @@ HeadbuttFromMenuScript:
 
 HeadbuttScript:
 	callasm GetPartyNick
-	writetext UnknownText_0xce9d
+	writetext UseHeadbuttTextScript
 
 	reloadmappart
 	callasm ShakeHeadbuttTree
@@ -1301,7 +1301,7 @@ HeadbuttScript:
 	end
 
 .no_battle
-	writetext UnknownText_0xcea2
+	writetext HeadbuttNothingScript
 	waitbutton
 	closetext
 	end
@@ -1323,13 +1323,13 @@ TryHeadbuttOW::
 
 AskHeadbuttScript:
 	opentext
-	writetext UnknownText_0xcee6
+	writetext AskkHeadbuttTextScript
 	yesorno
 	iftrue HeadbuttScript
 	closetext
 	end
 
-UnknownText_0xcee6:
+AskkHeadbuttTextScript:
 	; A #MON could be in this tree. Want to HEADBUTT it?
 	text_far Text_AskHeadbutt
 	text_end
@@ -1385,7 +1385,7 @@ RockSmashFromMenuScript:
 
 RockSmashScript:
 	callasm GetPartyNick
-	writetext UnknownText_0xcf58
+	writetext UseRockSmashTextScript
 	closetext
 	special WaitSFX
 	playsound SFX_STRENGTH
@@ -1406,7 +1406,7 @@ MovementData_0xcf55:
 	rock_smash 10
 	step_end
 
-UnknownText_0xcf58:
+UseRockSmashTextScript:
 	text_far Text_UseRockSmash
 	text_end
 
@@ -1415,20 +1415,20 @@ AskRockSmashScript:
 	ifequal 1, .no
 
 	opentext
-	writetext UnknownText_0xcf77
+	writetext AskRockSmashTextScript
 	yesorno
 	iftrue RockSmashScript
 	closetext
 	end
 .no
-	jumptext UnknownText_0xcf72
+	jumptext RockSmashNoText
 
-UnknownText_0xcf72:
+RockSmashNoText:
 	; Maybe a #MON can break this.
 	text_far Text_MaySmash
 	text_end
 
-UnknownText_0xcf77:
+AskRockSmashTextScript:
 	; This rock looks breakable. Want to use ROCK SMASH?
 	text_far Text_AskRockSmash
 	text_end
@@ -1539,12 +1539,12 @@ FishFunction:
 
 Script_NotEvenANibble:
 	scall Script_FishCastRod
-	writetext UnknownText_0xd0a9
+	writetext RodNothingScript
 	sjump Script_NotEvenANibble_FallThrough
 
 Script_NotEvenANibble2:
 	scall Script_FishCastRod
-	writetext UnknownText_0xd0a9
+	writetext RodNothingScript
 
 Script_NotEvenANibble_FallThrough:
 	loademote EMOTE_SHADOW
@@ -1565,7 +1565,7 @@ Script_GotABite:
 .FightTheHookedPokemon:
 	pause 40
 	applymovement PLAYER, .Movement_RestoreRod
-	writetext UnknownText_0xd0a4
+	writetext RodBiteText
 	callasm PutTheRodAway
 	closetext
 	randomwildmon
@@ -1631,12 +1631,12 @@ PutTheRodAway:
 	call ReplaceKrisSprite
 	ret
 
-UnknownText_0xd0a4:
+RodBiteText:
 	; Oh! A bite!
 	text_far Text_RodBite
 	text_end
 
-UnknownText_0xd0a9:
+RodNothingScript:
 	; Not even a nibble!
 	text_far Text_RodNothing
 	text_end
@@ -1814,7 +1814,7 @@ TryCutOW::
 
 AskCutScript:
 	opentext
-	writetext UnknownText_0xd1c8
+	writetext AskCutTextScript
 	yesorno
 	iffalse .script_d1b8
 	callasm .CheckMap
@@ -1832,13 +1832,13 @@ AskCutScript:
 	ld [wScriptVar], a
 	ret
 
-UnknownText_0xd1c8:
+AskCutTextScript:
 	text_far Text_AskCut
 	text_end
 
 CantCutScript:
-	jumptext UnknownText_0xd1d0
+	jumptext CantCutTextScript
 
-UnknownText_0xd1d0:
+CantCutTextScript:
 	text_far Text_CanCut
 	text_end

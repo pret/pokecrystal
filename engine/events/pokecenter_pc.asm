@@ -181,7 +181,7 @@ PC_WaitPlaySFX:
 
 _PlayersHousePC:
 	call PC_PlayBootSound
-	ld hl, UnknownText_0x156ff
+	ld hl, PlayersPCTurnOnScript
 	call PC_DisplayText
 	ld b, $1
 	call _PlayersPC
@@ -199,7 +199,7 @@ _PlayersHousePC:
 	ld c, $1
 	ret
 
-UnknownText_0x156ff:
+PlayersPCTurnOnScript:
 	; turned on the PC.
 	text_far Text_PlayersPCTurnOn
 	text_end
@@ -207,7 +207,7 @@ UnknownText_0x156ff:
 _PlayersPC:
 	ld a, b
 	ld [wWhichIndexSet], a
-	ld hl, UnknownText_0x157cc
+	ld hl, PlayersPCAskWhatDoScript
 	call PC_DisplayTextWaitMenu
 	call Function15715
 	call ExitMenu
@@ -302,7 +302,7 @@ PC_DisplayTextWaitMenu:
 	ld [wOptions], a
 	ret
 
-UnknownText_0x157cc:
+PlayersPCAskWhatDoScript:
 	; What do you want to do?
 	text_far Text_PlayersPCAskWhatDo
 	text_end

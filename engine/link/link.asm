@@ -1633,7 +1633,7 @@ LinkTrade:
 	ld a, [hl]
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
-	ld hl, UnknownText_0x28eb8
+	ld hl, LinkAskTradeForScript
 	bccoord 1, 14
 	call PlaceHLTextAtBC
 	call LoadStandardMenuHeader
@@ -1948,7 +1948,7 @@ String28eab:
 	db   "TRADE"
 	next "CANCEL@"
 
-UnknownText_0x28eb8:
+LinkAskTradeForScript:
 	; Trade @ for @ ?
 	text_far Text_LinkAskTradeFor
 	text_end

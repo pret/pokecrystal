@@ -2401,7 +2401,7 @@ BattleRestorePP:
 
 .not_in_battle
 	call Play_SFX_FULL_HEAL
-	ld hl, UnknownText_0xf739
+	ld hl, PPRestoredScript
 	call PrintText
 	jr FinishPPRestore
 
@@ -2550,7 +2550,7 @@ TextJump_PPsIncreased:
 	text_far Text_PPsIncreased
 	text_end
 
-UnknownText_0xf739:
+PPRestoredScript:
 	; PP was restored.
 	text_far Text_PPRestored
 	text_end
