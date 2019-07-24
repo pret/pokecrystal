@@ -11,11 +11,11 @@ GavenPhoneCalleeScript:
 	iftrue GavenThursdayMorningScript
 
 .NotThursday:
-	farsjump UnknownScript_0xa0910
+	farsjump GavenHangupNotThursdayScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_26
-	farsjump UnknownScript_0xa0a37
+	farsjump GavenReminderScript
 
 GavenPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, COOLTRAINERM, GAVEN3

@@ -13,15 +13,15 @@ DanaPhoneCalleeScript:
 	iftrue DanaThursdayNight
 
 .NotThursday:
-	farsjump UnknownScript_0xa0978
+	farsjump DanaHangupScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_38
-	farsjump UnknownScript_0xa0a78
+	farsjump DanaReminderScript
 
 .HasThunderstone:
 	getlandmarkname STRING_BUFFER_5, ROUTE_38
-	farsjump UnknownScript_0xa0acd
+	farsjump DanaComePickUpScript
 
 DanaPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, LASS, DANA1

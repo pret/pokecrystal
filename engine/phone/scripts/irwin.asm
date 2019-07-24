@@ -3,7 +3,7 @@ IrwinPhoneCalleeScript:
 	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue .Rockets
-	farsjump UnknownScript_0xa09c8
+	farsjump IrwinRandomTextScript
 
 .Rockets:
 	farsjump IrwinRocketRumorScript

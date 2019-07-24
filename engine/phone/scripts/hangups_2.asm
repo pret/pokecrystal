@@ -1,44 +1,44 @@
-UnknownScript_0xa0aa5:
+BeverlyComePickUpScript:
 	farwritetext BeverlyComePickUpText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
-UnknownScript_0xa0aad:
+JoseComePickUpScript:
 	farwritetext JoseComePickUpText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0ab5:
+WadeComeQuickScript:
 	farwritetext WadeComeQuickText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0abd:
+GinaComePickUpScript:
 	farwritetext GinaComePickUpText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
-UnknownScript_0xa0ac5:
+AlanComePickUpScript:
 	farwritetext AlanComePickUpText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0acd:
+DanaComePickUpScript:
 	farwritetext DanaComePickUpText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
-UnknownScript_0xa0ad5:
+DerekComePickUpScript:
 	farwritetext DerekComePickUpText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0add:
+TullyHurryScript:
 	farwritetext TullyHurryText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0ae5:
+TiffanyHurryScript:
 	farwritetext TiffanyHurryText
 	buttonsound
 	sjump PhoneScript_HangupText_Female

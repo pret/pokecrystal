@@ -13,15 +13,15 @@ AnthonyPhoneCalleeScript:
 .NotFriday:
 	checkflag ENGINE_DUNSPARCE_SWARM
 	iftrue .AlreadySwarming
-	farsjump UnknownScript_0xa0950
+	farsjump AnthonyHangupScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_33
-	farsjump UnknownScript_0xa0a5f
+	farsjump AnthonyReminderScript
 
 .AlreadySwarming:
 	getlandmarkname STRING_BUFFER_5, ROUTE_33
-	farsjump UnknownScript_0xa0afa
+	farsjump AnthonyHurryScript
 
 AnthonyPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, HIKER, ANTHONY2

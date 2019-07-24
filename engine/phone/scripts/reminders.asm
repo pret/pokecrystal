@@ -6,7 +6,7 @@ HueyWantsBattleScript:
 	farwritetext HueyWantsBattleText
 	end
 
-UnknownScript_0xa0a37:
+GavenReminderScript:
 	farwritetext GavenReminderText
 	end
 
@@ -14,67 +14,67 @@ BethBattleReminderScript:
 	farwritetext BethForgetDealText
 	end
 
-UnknownScript_0xa0a41:
+JoseReminderScript:
 	farwritetext JoseReminderText
 	end
 
-UnknownScript_0xa0a46:
+ReenaHurryScript:
 	farwritetext ReenaHurryText
 	end
 
-UnknownScript_0xa0a4b:
+JoeyReminderScript:
 	farwritetext JoeyReminderText
 	end
 
-UnknownScript_0xa0a50:
+WadeQuickBattleScript:
 	farwritetext WadeQuickBattleText
 	end
 
-UnknownScript_0xa0a55:
+RalphReminderScript:
 	farwritetext RalphReminderText
 	end
 
-UnknownScript_0xa0a5a:
+LizReminderScript:
 	farwritetext LizReminderText
 	end
 
-UnknownScript_0xa0a5f:
+AnthonyReminderScript:
 	farwritetext AnthonyReminderText
 	end
 
-UnknownScript_0xa0a64:
+ToddForwardScript:
 	farwritetext ToddForwardText
 	end
 
-UnknownScript_0xa0a69:
+GinaReminderScript:
 	farwritetext GinaReminderText
 	end
 
-UnknownScript_0xa0a6e:
+ArnieReminderScript:
 	farwritetext ArnieReminderText
 	end
 
-UnknownScript_0xa0a73:
+AlanReminderScript:
 	farwritetext AlanReminderText
 	end
 
-UnknownScript_0xa0a78:
+DanaReminderScript:
 	farwritetext DanaReminderText
 	end
 
-UnknownScript_0xa0a7d:
+ChadReminderScript:
 	farwritetext ChadReminderText
 	end
 
-UnknownScript_0xa0a82:
+TullyForwardScript:
 	farwritetext TullyForwardText
 	end
 
-UnknownScript_0xa0a87:
+BrentReminderScript:
 	farwritetext BrentReminderText
 	end
 
-UnknownScript_0xa0a8c:
+TiffanyAsleepScript:
 	farwritetext TiffanyAsleepText
 	end
 

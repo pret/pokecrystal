@@ -13,14 +13,14 @@ DerekPhoneCalleeScript:
 	ifequal SATURDAY, .ContestToday
 
 .NoContest:
-	farsjump UnknownScript_0xa0988
+	farsjump DerekHangupScript
 
 .ContestToday:
 	farsjump PhoneScript_BugCatchingContest
 
 .Nugget:
 	getlandmarkname STRING_BUFFER_5, ROUTE_39
-	farsjump UnknownScript_0xa0ad5
+	farsjump DerekComePickUpScript
 
 DerekPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, POKEFANM, DEREK1

@@ -23,18 +23,18 @@ WadePhoneCalleeScript:
 	ifequal SATURDAY, .ContestToday
 
 .NoContest:
-	farsjump UnknownScript_0xa0938
+	farsjump WadeNoBerriesScript
 
 .ContestToday:
 	farsjump PhoneScript_BugCatchingContest
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_31
-	farsjump UnknownScript_0xa0a50
+	farsjump WadeQuickBattleScript
 
 .HasItem:
 	getlandmarkname STRING_BUFFER_5, ROUTE_31
-	farsjump UnknownScript_0xa0ab5
+	farsjump WadeComeQuickScript
 
 WadePhoneCallerScript:
 	gettrainername STRING_BUFFER_3, BUG_CATCHER, WADE1

@@ -11,11 +11,11 @@ ChadPhoneCalleeScript:
 	iftrue ChadFridayMorning
 
 .NotFriday:
-	farsjump UnknownScript_0xa0980
+	farsjump ChadHangupScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_38
-	farsjump UnknownScript_0xa0a7d
+	farsjump ChadReminderScript
 
 ChadPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, SCHOOLBOY, CHAD1

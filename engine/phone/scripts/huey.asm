@@ -12,7 +12,7 @@ HueyPhoneCalleeScript:
 
 .NotWednesday:
 	special RandomPhoneMon
-	farsjump UnknownScript_0xa0908
+	farsjump HueyHangupScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, LIGHTHOUSE

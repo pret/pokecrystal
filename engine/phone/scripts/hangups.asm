@@ -3,107 +3,107 @@ JackPhoneTipsScript:
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0900:
+BeverlyHangupScript:
 	farwritetext BeverlyHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
-UnknownScript_0xa0908:
+HueyHangupScript:
 	farwritetext HueyHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0910:
+GavenHangupNotThursdayScript:
 	farwritetext GavenHangupNotThursdayText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0918:
+BethHangupScript:
 	farwritetext BethHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
-UnknownScript_0xa0920:
+JoseHangupScript:
 	farwritetext JoseHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0928:
+ReenaForwardScript:
 	farwritetext ReenaForwardText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
-UnknownScript_0xa0930:
+JoeyHangupScript:
 	farwritetext JoeyHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0938:
+WadeNoBerriesScript:
 	farwritetext WadeNoBerriesText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0940:
+RalphNoItemScript:
 	farwritetext RalphNoItemText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0948:
+LizHangupScript:
 	farwritetext LizHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
-UnknownScript_0xa0950:
+AnthonyHangupScript:
 	farwritetext AnthonyHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0958:
+ToddNoItemScript:
 	farwritetext ToddNoItemText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0960:
+GinaHangupScript:
 	farwritetext GinaHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
-UnknownScript_0xa0968:
+ArnieHangupScript:
 	farwritetext ArnieHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0970:
+AlanHangupScript:
 	farwritetext AlanHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0978:
+DanaHangupScript:
 	farwritetext DanaHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
-UnknownScript_0xa0980:
+ChadHangupScript:
 	farwritetext ChadHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0988:
+DerekHangupScript:
 	farwritetext DerekHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0990:
+TullyNoItemScript:
 	farwritetext TullyNoItemText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0998:
+BrentHangupScript:
 	farwritetext BrentHangupText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa09a0:
+TiffanyNoItemScript:
 	farwritetext TiffanyNoItemText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
@@ -128,7 +128,7 @@ ErinWorkingHardScript:
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
-UnknownScript_0xa09c8:
+IrwinRandomTextScript:
 	random 3
 	ifequal 0, IrwinEscapadeScript
 	ifequal 1, IrwinGoodMatchScript

@@ -13,15 +13,15 @@ ArniePhoneCalleeScript:
 .NotTuesday:
 	checkflag ENGINE_YANMA_SWARM
 	iftrue .AlreadySwarming
-	farsjump UnknownScript_0xa0968
+	farsjump ArnieHangupScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_35
-	farsjump UnknownScript_0xa0a6e
+	farsjump ArnieReminderScript
 
 .AlreadySwarming:
 	getlandmarkname STRING_BUFFER_5, ROUTE_35
-	farsjump UnknownScript_0xa0aff
+	farsjump ArnieHurryScript
 
 ArniePhoneCallerScript:
 	gettrainername STRING_BUFFER_3, BUG_CATCHER, ARNIE1

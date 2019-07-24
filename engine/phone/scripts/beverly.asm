@@ -3,11 +3,11 @@ BeverlyPhoneCalleeScript:
 	farscall PhoneScript_AnswerPhone_Female
 	checkflag ENGINE_BEVERLY_HAS_NUGGET
 	iftrue .HasNugget
-	farsjump UnknownScript_0xa0900
+	farsjump BeverlyHangupScript
 
 .HasNugget:
 	getlandmarkname STRING_BUFFER_5, NATIONAL_PARK
-	farsjump UnknownScript_0xa0aa5
+	farsjump BeverlyComePickUpScript
 
 BeverlyPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, POKEFANF, BEVERLY1

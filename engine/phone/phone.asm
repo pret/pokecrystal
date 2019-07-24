@@ -361,8 +361,8 @@ Function90199:
 	jr .DoPhoneCall
 
 .OutOfArea:
-	ld b, BANK(UnknownScript_0x90209)
-	ld de, UnknownScript_0x90209
+	ld b, BANK(LoadOutOfAreaScript)
+	ld de, LoadOutOfAreaScript
 	call ExecuteCallbackScript
 	ret
 
@@ -373,17 +373,17 @@ Function90199:
 	ld [wPhoneCaller], a
 	ld a, h
 	ld [wPhoneCaller + 1], a
-	ld b, BANK(UnknownScript_0x90205)
-	ld de, UnknownScript_0x90205
+	ld b, BANK(LoadPhoneScriptBank)
+	ld de, LoadPhoneScriptBank
 	call ExecuteCallbackScript
 	ret
 
-UnknownScript_0x90205:
+LoadPhoneScriptBank:
 	memcall wPhoneScriptBank
 	return
 
-UnknownScript_0x90209:
-	scall UnknownScript_0x90657
+LoadOutOfAreaScript:
+	scall PhoneOutOfAreaScript
 	return
 
 LoadCallerScript:
@@ -438,7 +438,7 @@ Script_SpecialBillCall::
 	ld e, PHONE_BILL
 	jp LoadCallerScript
 
-UnknownScript_0x90261:
+LoadElmCallScript:
 	callasm .LoadElmScript
 	pause 30
 	sjump Script_ReceivePhoneCall
@@ -535,22 +535,22 @@ Function90316:
 	ret
 
 HangUp_Beep:
-	ld hl, UnknownText_0x9032a
+	ld hl, HangupPhoneClickText
 	call PrintText
 	ld de, SFX_HANG_UP
 	call PlaySFX
 	ret
 
-UnknownText_0x9032a:
+HangupPhoneClickText:
 	text_far Text_PhoneClick
 	text_end
 
 HangUp_BoopOn:
-	ld hl, UnknownText_0x90336
+	ld hl, HangupPhoneEllipseText
 	call PrintText
 	ret
 
-UnknownText_0x90336:
+HangupPhoneEllipseText:
 	text_far Text_PhoneEllipse
 	text_end
 
@@ -705,29 +705,29 @@ INCLUDE "data/phone/phone_contacts.asm"
 
 INCLUDE "data/phone/special_calls.asm"
 
-UnknownScript_0x90657:
-	writetext UnknownText_0x9065b
+PhoneOutOfAreaScript:
+	writetext PhoneOutOfAreaText
 	end
 
-UnknownText_0x9065b:
+PhoneOutOfAreaText:
 	; That number is out of the area.
 	text_far Text_PhoneOutOfArea
 	text_end
 
 PhoneScript_JustTalkToThem:
-	writetext UnknownText_0x90664
+	writetext PhoneJustTalkToThemText
 	end
 
-UnknownText_0x90664:
+PhoneJustTalkToThemText:
 	; Just go talk to that person!
 	text_far Text_PhoneGoTalk
 	text_end
 
-UnknownScript_0x90669:
-	writetext UnknownText_0x9066d
+PhoneThankYouTextScript:
+	writetext PhoneThankYouText
 	end
 
-UnknownText_0x9066d:
+PhoneThankYouText:
 	; Thank you!
 	text_far Text_PhoneThankYou
 	text_end

@@ -13,15 +13,15 @@ JosePhoneCalleeScript:
 	iftrue JoseSaturdayNight
 
 .NotSaturday:
-	farsjump UnknownScript_0xa0920
+	farsjump JoseHangupScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_27
-	farsjump UnknownScript_0xa0a41
+	farsjump JoseReminderScript
 
 .HasItem:
 	getlandmarkname STRING_BUFFER_5, ROUTE_27
-	farsjump UnknownScript_0xa0a41
+	farsjump JoseReminderScript
 
 JosePhoneCallerScript:
 	gettrainername STRING_BUFFER_3, BIRD_KEEPER, JOSE2

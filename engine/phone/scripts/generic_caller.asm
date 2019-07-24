@@ -874,7 +874,7 @@ IrwinRocketRumorScript:
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa05c6:
+GinaRocketRumorScript:
 	farwritetext GinaRocketRumorText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
@@ -884,7 +884,7 @@ ArnieSwarmScript:
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa05d6:
+RalphItemScript:
 	farwritetext RalphItemText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
@@ -950,7 +950,7 @@ PhoneScript_FoundItem_Female:
 	farwritetext TiffanyItemText
 	end
 
-UnknownScript_0xa0644:
+ToddItemScript:
 	farwritetext ToddItemText
 	buttonsound
 	sjump PhoneScript_HangupText_Male

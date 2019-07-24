@@ -1,15 +1,15 @@
-UnknownScript_0xa0af5:
+RalphHurryScript:
 	farwritetext RalphHurryText
 	end
 
-UnknownScript_0xa0afa:
+AnthonyHurryScript:
 	farwritetext AnthonyHurryText
 	end
 
-UnknownScript_0xa0aff:
+ArnieHurryScript:
 	farwritetext ArnieHurryText
 	end
 
-UnknownScript_0xa0b04:
+ToddHurryScript:
 	farwritetext ToddHurryText
 	end

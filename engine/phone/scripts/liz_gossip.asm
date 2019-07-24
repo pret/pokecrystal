@@ -1,4 +1,4 @@
-UnknownScript_0xa06da:
+LizGossipRandomScript:
 	random 10
 	ifequal 0, .RuinsOfAlph
 	ifequal 1, .Falkner
