@@ -1,4 +1,4 @@
-BattleTowerText_0x1ec000:
+_BTGreetingM1Text:
 	text "Hello, glad to"
 	line "meet you!"
 
@@ -6,122 +6,122 @@ BattleTowerText_0x1ec000:
 	line "a good battle."
 	done
 
-BattleTowerText_0x1ec03b:
+_BTLossM1Text:
 	text "Thank you! A most"
 	line "enjoyable battle!"
 	done
 
-UnknownText_0x1ec060:
+_BTWinM1Text:
 	text "Thank you. You are"
 	line "formidable."
 	done
 
-BattleTowerText_0x1ec080:
+_BTGreetingM2Text:
 	text "Work, work, work…"
 	line "I'm always busy!"
 	done
 
-UnknownText_0x1ec0a3:
+_BTLossM2Text:
 	text "But, I work hard"
 	line "in battle too!"
 	done
 
-UnknownText_0x1ec0c4:
+_BTWinM2Text:
 	text "I'm too busy to be"
 	line "battling!"
 	done
 
-UnknownText_0x1ec0e1:
+_BTGreetingM3Text:
 	text "Brace yourself for"
 	line "my all-out attack!"
 	done
 
-UnknownText_0x1ec108:
+_BTLossM3Text:
 	text "What a cakewalk!"
 	line "You're too easy!"
 	done
 
-UnknownText_0x1ec12a:
+_BTWinM3Text:
 	text "I won't lose next"
 	line "time, all right?"
 	done
 
-UnknownText_0x1ec14d:
+_BTGreetingM4Text:
 	text "Heh, your #MON"
 	line "look pretty cool."
 	done
 
-UnknownText_0x1ec16f:
+_BTLossM4Text:
 	text "Hey, hey, no way!"
 	line "You won't win!"
 	done
 
-UnknownText_0x1ec190:
+_BTWinM4Text:
 	text "You serious?"
 	line "This is brutal!"
 	done
 
-UnknownText_0x1ec1ae:
+_BTGreetingM5Text:
 	text "#MON every day!"
 	line "I love battling!"
 	done
 
-UnknownText_0x1ec1d0:
+_BTLossM5Text:
 	text "I'm on top of my"
 	line "game, but not you!"
 	done
 
-UnknownText_0x1ec1f4:
+_BTWinM5Text:
 	text "I don't care that"
 	line "I lost, really!"
 	done
 
-UnknownText_0x1ec216:
+_BTGreetingM6Text:
 	text "Hi, there! Let's"
 	line "keep this clean!"
 	done
 
-UnknownText_0x1ec238:
+_BTLossM6Text:
 	text "Whoops, sorry for"
 	line "that wipeout!"
 	done
 
-UnknownText_0x1ec259:
+_BTWinM6Text:
 	text "Whoops! Come on,"
 	line "let me win one!"
 	done
 
-UnknownText_0x1ec27b:
+_BTGreetingM7Text:
 	text "Do you want to see"
 	line "my battle level?"
 	done
 
-UnknownText_0x1ec2a0:
+_BTLossM7Text:
 	text "Hehehe, I know"
 	line "your level now!"
 	done
 
-UnknownText_0x1ec2c0:
+_BTWinM7Text:
 	text "Ouch… I'm just too"
 	line "weak…"
 	done
 
-UnknownText_0x1ec2d9:
+_BTGreetingM8Text:
 	text "Hey, let's battle."
 	line "I'm your opponent."
 	done
 
-UnknownText_0x1ec2fe:
+_BTLossM8Text:
 	text "Wow, you're not"
 	line "serious about it!"
 	done
 
-UnknownText_0x1ec320:
+_BTWinM8Text:
 	text "…Urgh… Nothing"
 	line "positive here…"
 	done
 
-UnknownText_0x1ec33f:
+_BTGreetingM9Text:
 	text "I'm your"
 	line "opponent."
 
@@ -129,47 +129,47 @@ UnknownText_0x1ec33f:
 	line "hammered."
 	done
 
-UnknownText_0x1ec36c:
+_BTLossM9Text:
 	text "Hahah! That was a"
 	line "pushover!"
 	done
 
-UnknownText_0x1ec389:
+_BTWinM9Text:
 	text "No way! There has"
 	line "to be a mistake!"
 	done
 
-UnknownText_0x1ec3ad:
+_BTGreetingM10Text:
 	text "Hah!"
 	line "Let's get rolling!"
 	done
 
-UnknownText_0x1ec3c5:
+_BTLossM10Text:
 	text "Wahahaha! Didn't"
 	line "break a sweat!"
 	done
 
-UnknownText_0x1ec3e5:
+_BTWinM10Text:
 	text "Tough! I'm no"
 	line "match for you!"
 	done
 
-UnknownText_0x1ec402:
+_BTGreetingM11Text:
 	text "<……><……><……>"
 	line "<……><……>Battle?"
 	done
 
-UnknownText_0x1ec411:
+_BTLossM11Text:
 	text "<……><……><……>"
 	line "<……><……>I won?"
 	done
 
-UnknownText_0x1ec41f:
+_BTWinM11Text:
 	text "<……><……><……>"
 	line "<……><……>I lost?"
 	done
 
-UnknownText_0x1ec42e:
+_BTGreetingM12Text:
 	text "You want to be a"
 	line "leader?"
 
@@ -177,7 +177,7 @@ UnknownText_0x1ec42e:
 	line "then!"
 	done
 
-UnknownText_0x1ec461:
+_BTLossM12Text:
 	text "You need another"
 	line "ten years of"
 
@@ -185,7 +185,7 @@ UnknownText_0x1ec461:
 	line "better, I'd say."
 	done
 
-UnknownText_0x1ec4a0:
+_BTWinM12Text:
 	text "You're incredibly"
 	line "talented."
 
@@ -193,72 +193,72 @@ UnknownText_0x1ec4a0:
 	line "you now!"
 	done
 
-UnknownText_0x1ec4d6:
+_BTGreetingM13Text:
 	text "Today, I'm going"
 	line "to whomp you."
 	done
 
-UnknownText_0x1ec4f5:
+_BTLossM13Text:
 	text "I knew I'd win."
 	line "I'm so great!"
 	done
 
-UnknownText_0x1ec512:
+_BTWinM13Text:
 	text "Uh? My plans are"
 	line "out of whack…"
 	done
 
-UnknownText_0x1ec532:
+_BTGreetingM14Text:
 	text "I bet you can't"
 	line "beat me!"
 	done
 
-UnknownText_0x1ec54b:
+_BTLossM14Text:
 	text "Those #MON"
 	line "aren't enough!"
 	done
 
-UnknownText_0x1ec565:
+_BTWinM14Text:
 	text "I want your"
 	line "#MON. Please?"
 	done
 
-UnknownText_0x1ec580:
+_BTGreetingM15Text:
 	text "I'll show you a"
 	line "real battle!"
 	done
 
-UnknownText_0x1ec59d:
+_BTLossM15Text:
 	text "This battle…"
 	line "I'm bored!"
 	done
 
-UnknownText_0x1ec5b5:
+_BTWinM15Text:
 	text "…I won't turn tail"
 	line "in battle!"
 	done
 
-UnknownText_0x1ec5d3:
+_BTGreetingM16Text:
 	text "Let's go!"
 	line "No holds barred!"
 	done
 
-UnknownText_0x1ec5ee:
+_BTLossM16Text:
 	text "Sorry! I wanted"
 	line "the win more!"
 	done
 
-UnknownText_0x1ec60d:
+_BTWinM16Text:
 	text "Wahah! Congrats!"
 	line "I can't do better!"
 	done
 
-UnknownText_0x1ec631:
+_BTGreetingM17Text:
 	text "My #MON skills"
 	line "are phenomenal!"
 	done
 
-UnknownText_0x1ec651:
+_BTLossM17Text:
 	text "You've got a long"
 	line "way to go."
 
@@ -266,17 +266,17 @@ UnknownText_0x1ec651:
 	line "Best of luck!"
 	done
 
-UnknownText_0x1ec68f:
+_BTWinM17Text:
 	text "Aww… Don't lose"
 	line "after beating me."
 	done
 
-UnknownText_0x1ec6b1:
+_BTGreetingM18Text:
 	text "Who are you?"
 	line "I don't know you…"
 	done
 
-UnknownText_0x1ec6d0:
+_BTLossM18Text:
 	text "I must've imagined"
 	line "that."
 
@@ -284,42 +284,42 @@ UnknownText_0x1ec6d0:
 	line "no one here…"
 	done
 
-UnknownText_0x1ec708:
+_BTWinM18Text:
 	text "Who am I?"
 	line "I don't know…"
 	done
 
-UnknownText_0x1ec720:
+_BTGreetingM19Text:
 	text "Um… Are you that…"
 	line "um…person?"
 	done
 
-UnknownText_0x1ec73e:
+_BTLossM19Text:
 	text "It doesn't appear"
 	line "to be you…"
 	done
 
-UnknownText_0x1ec75b:
+_BTWinM19Text:
 	text "Then you really"
 	line "are the legendary…"
 	done
 
-UnknownText_0x1ec77f:
+_BTGreetingM20Text:
 	text "I heard that"
 	line "you're hot!"
 	done
 
-UnknownText_0x1ec798:
+_BTLossM20Text:
 	text "Not bad. I was"
 	line "just a bit better."
 	done
 
-UnknownText_0x1ec7bb:
+_BTWinM20Text:
 	text "Eh, you're not"
 	line "that special."
 	done
 
-UnknownText_0x1ec7d8:
+_BTGreetingM21Text:
 	text "I'm scared about"
 	line "what might happen."
 
@@ -327,297 +327,297 @@ UnknownText_0x1ec7d8:
 	line "too strong."
 	done
 
-UnknownText_0x1ec818:
+_BTLossM21Text:
 	text "See? My #MON"
 	line "were too strong."
 	done
 
-UnknownText_0x1ec837:
+_BTWinM21Text:
 	text "Graa! My #MON"
 	line "were total wimps!"
 	done
 
-UnknownText_0x1ec858:
+_BTGreetingM22Text:
 	text "Hey, there!"
 	line "I'll take you on!"
 	done
 
-UnknownText_0x1ec876:
+_BTLossM22Text:
 	text "Don't you have a"
 	line "better strategy?"
 	done
 
-UnknownText_0x1ec898:
+_BTWinM22Text:
 	text "You've got decent"
 	line "style!"
 	done
 
-UnknownText_0x1ec8b1:
+_BTGreetingM23Text:
 	text "I wonder if I can"
 	line "battle properly…"
 	done
 
-UnknownText_0x1ec8d5:
+_BTLossM23Text:
 	text "Um… Sorry…"
 	line "I think I won."
 	done
 
-UnknownText_0x1ec8f0:
+_BTWinM23Text:
 	text "I guess I'm not"
 	line "good enough yet…"
 	done
 
-UnknownText_0x1ec911:
+_BTGreetingM24Text:
 	text "Wrrooar!"
 	line "I won't lose!"
 	done
 
-UnknownText_0x1ec928:
+_BTLossM24Text:
 	text "Wrrooar! I knew"
 	line "I was a genius!"
 	done
 
-UnknownText_0x1ec949:
+_BTWinM24Text:
 	text "Arrooh! I hate it"
 	line "when I lose!"
 	done
 
-UnknownText_0x1ec969:
+_BTGreetingM25Text:
 	text "Sorry, but I'm"
 	line "going to win."
 	done
 
-UnknownText_0x1ec986:
+_BTLossM25Text:
 	text "Yeah! My #MON"
 	line "rule!"
 	done
 
-UnknownText_0x1ec99b:
+_BTWinM25Text:
 	text "Oh, close! I lost"
 	line "by just a bit!"
 	done
 
-UnknownText_0x1ec9bd:
+_BTGreetingF1Text:
 	text "OK, I'm not"
 	line "fooling around!"
 	done
 
-UnknownText_0x1ec9d9:
+_BTLossF1Text:
 	text "Yay! Too easy!"
 	line "Like, no way!"
 	done
 
-UnknownText_0x1ec9f7:
+_BTWinF1Text:
 	text "No!"
 	line "Like, no way!"
 	done
 
-UnknownText_0x1eca0a:
+_BTGreetingF2Text:
 	text "Look! My #MON"
 	line "are really cute!"
 	done
 
-UnknownText_0x1eca2a:
+_BTLossF2Text:
 	text "Aren't they really"
 	line "adorable?"
 	done
 
-UnknownText_0x1eca47:
+_BTWinF2Text:
 	text "I'm sorry, it's"
 	line "all my fault!"
 	done
 
-UnknownText_0x1eca64:
+_BTGreetingF3Text:
 	text "Let's get our"
 	line "battle started!"
 	done
 
-UnknownText_0x1eca82:
+_BTLossF3Text:
 	text "Was I too strong"
 	line "for you?"
 	done
 
-UnknownText_0x1eca9d:
+_BTWinF3Text:
 	text "Ooh, you're in a"
 	line "different class."
 	done
 
-UnknownText_0x1ecabf:
+_BTGreetingF4Text:
 	text "Are we going to"
 	line "battle? Let's!"
 	done
 
-UnknownText_0x1ecade:
+_BTLossF4Text:
 	text "Oh, you're too"
 	line "weak. Shame."
 	done
 
-UnknownText_0x1ecafa:
+_BTWinF4Text:
 	text "Wow! Are you quite"
 	line "satisfied?"
 	done
 
-UnknownText_0x1ecb19:
+_BTGreetingF5Text:
 	text "Oh, you have some"
 	line "rare #MON."
 	done
 
-UnknownText_0x1ecb37:
+_BTLossF5Text:
 	text "May I have one of"
 	line "your #MON?"
 	done
 
-UnknownText_0x1ecb55:
+_BTWinF5Text:
 	text "…I want one of"
 	line "your #MON."
 	done
 
-UnknownText_0x1ecb70:
+_BTGreetingF6Text:
 	text "Want to hear about"
 	line "my cute #MON?"
 	done
 
-UnknownText_0x1ecb92:
+_BTLossF6Text:
 	text "What do you think"
 	line "about my cuties?"
 	done
 
-UnknownText_0x1ecbb6:
+_BTWinF6Text:
 	text "Oh! My! You're a"
 	line "dreadful trainer!"
 	done
 
-UnknownText_0x1ecbd9:
+_BTGreetingF7Text:
 	text "Battle? Sure!"
 	line "Right now!"
 	done
 
-UnknownText_0x1ecbf3:
+_BTLossF7Text:
 	text "Oh, I love it!"
 	line "Battling is wild!"
 	done
 
-UnknownText_0x1ecc15:
+_BTWinF7Text:
 	text "Oh, how rude! Wait"
 	line "till next time!"
 	done
 
-UnknownText_0x1ecc39:
+_BTGreetingF8Text:
 	text "Please let me win!"
 	line "Please?"
 	done
 
-UnknownText_0x1ecc55:
+_BTLossF8Text:
 	text "Wow, thank you!"
 	line "You're so nice!"
 	done
 
-UnknownText_0x1ecc75:
+_BTWinF8Text:
 	text "You're mean!"
 	line "I hate meanies!"
 	done
 
-UnknownText_0x1ecc92:
+_BTGreetingF9Text:
 	text "Well, can we"
 	line "begin?"
 	done
 
-UnknownText_0x1ecca7:
+_BTLossF9Text:
 	text "Well, I beg your"
 	line "pardon…"
 	done
 
-UnknownText_0x1eccc1:
+_BTWinF9Text:
 	text "Sob… That's not"
 	line "fair!"
 	done
 
-UnknownText_0x1eccd7:
+_BTGreetingF10Text:
 	text "I'm good!"
 	line "You can't win."
 	done
 
-UnknownText_0x1eccef:
+_BTLossF10Text:
 	text "Giving up? You're"
 	line "pretty weak!"
 	done
 
-UnknownText_0x1ecd0e:
+_BTWinF10Text:
 	text "I won't accept"
 	line "this… No way!"
 	done
 
-UnknownText_0x1ecd2b:
+_BTGreetingF11Text:
 	text "Are you treating"
 	line "this seriously?"
 	done
 
-UnknownText_0x1ecd4d:
+_BTLossF11Text:
 	text "Oh, sorry! Looks"
 	line "like I won!"
 	done
 
-UnknownText_0x1ecd6b:
+_BTWinF11Text:
 	text "Oh, how nasty!"
 	line "You were serious!"
 	done
 
-UnknownText_0x1ecd8d:
+_BTGreetingF12Text:
 	text "Ahahah! I'll take"
 	line "it easy on you!"
 	done
 
-UnknownText_0x1ecdaf:
+_BTLossF12Text:
 	text "Oops, sorry! But"
 	line "I'm happy too!"
 	done
 
-UnknownText_0x1ecdcf:
+_BTWinF12Text:
 	text "Oh, oh, I lost!"
 	line "Thanks. Bye!"
 	done
 
-UnknownText_0x1ecded:
+_BTGreetingF13Text:
 	text "BATTLE TOWER is a"
 	line "tough place!"
 	done
 
-UnknownText_0x1ece0d:
+_BTLossF13Text:
 	text "You might have a"
 	line "hard time."
 	done
 
-UnknownText_0x1ece2a:
+_BTWinF13Text:
 	text "Ooh, you might"
 	line "make a run here!"
 	done
 
-UnknownText_0x1ece4b:
+_BTGreetingF14Text:
 	text "I want to see your"
 	line "style in action!"
 	done
 
-UnknownText_0x1ece70:
+_BTLossF14Text:
 	text "Every battle is a"
 	line "drama!"
 	done
 
-UnknownText_0x1ece8a:
+_BTWinF14Text:
 	text "Oh… Want to trade"
 	line "something?"
 	done
 
-UnknownText_0x1ecea8:
+_BTGreetingF15Text:
 	text "OK, here goes!"
 	line "I have momentum!"
 	done
 
-UnknownText_0x1ecec9:
+_BTLossF15Text:
 	text "See, I rolled"
 	line "right over you!"
 	done
 
-UnknownText_0x1ecee8:
+_BTWinF15Text:
 	text "No! This did not"
 	line "happen!"
 	done
