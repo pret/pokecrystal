@@ -487,8 +487,8 @@ _RodNothingText::
 	text "Not even a nibble!"
 	prompt
 
-;unused
-UnknownText_0x1c0979::
+; unused
+_UnusedNothingHereText::
 	text "Looks like there's"
 	line "nothing here."
 	prompt
@@ -890,17 +890,17 @@ _MailMovedFromBoxText::
 	prompt
 
 ; unused
-UnknownText_0x1c0fb3::
+_YesPromptText::
 	text "Yes"
 	prompt
 
 ; unused
-UnknownText_0x1c0fb8::
+_NoPromptText::
 	text "No"
 	prompt
 
 ; unused
-UnknownText_0x1c0fbc::
+_AnimationTypeText::
 	text_decimal wcf64, 1, 3
 	text " @"
 	text_ram wStringBuffer1
@@ -912,7 +912,7 @@ UnknownText_0x1c0fbc::
 	text_end ; unused
 
 ; unused
-UnknownText_0x1c0fdd::
+_MonNumberText::
 	text "#MON number?"
 	done
 
@@ -954,7 +954,6 @@ _PCCantTakeText::
 	line "more #MON."
 	prompt
 
-; start caught mon
 _ContestCaughtMonText::
 	text "Caught @"
 	text_ram wStringBuffer1
@@ -1354,7 +1353,7 @@ _OakPCText4::
 	done
 
 ; unused
-UnknownText_0x1c19cd::
+_TrainerRankingExplanationText::
 	text "Triple-theme"
 	line "trainer ranking!"
 
@@ -1366,7 +1365,7 @@ UnknownText_0x1c19cd::
 	done
 
 ; unused
-UnknownText_0x1c1a22::
+_TrainerRankingNoDataText::
 	text "There is no"
 	line "ranking data."
 
@@ -1376,11 +1375,11 @@ UnknownText_0x1c1a22::
 	para ""
 	done
 
-UnknownText_0x1c1a5b::
+_DummyGameYeahText::
 	text " , yeah!"
 	done
 
-UnknownText_0x1c1a65::
+_DummyGameDarnText::
 	text "Darn…"
 	done
 

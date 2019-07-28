@@ -158,7 +158,7 @@ VioletPokecenterElmsAideAskEggText:
 	done
 
 ; unused
-UnknownText_0x6972d:
+VioletPokecenterFarawayLinkText:
 	text "I've been thinking"
 	line "it'd be great to"
 
@@ -170,7 +170,7 @@ UnknownText_0x6972d:
 	done
 
 ; unused
-UnknownText_0x69791:
+VioletPokecenterMobileAdapterText:
 	text "I just battled a"
 	line "friend in CIANWOOD"
 	cont "over a link."

@@ -65,10 +65,10 @@ BargainShop:
 Pharmacist:
 	call FarReadMart
 	call LoadStandardMenuHeader
-	ld hl, MedShopIntroText
+	ld hl, PharmacyIntroText
 	call MartTextbox
 	call BuyMenu
-	ld hl, MedShopComeAgainText
+	ld hl, PharmacyComeAgainText
 	call MartTextbox
 	ret
 
@@ -419,11 +419,11 @@ GetMartDialogGroup:
 	dw BargainShopSoldOutText
 
 .PharmacyPointers:
-	dw MedShopHowManyText
-	dw MedShopFinalPriceText
-	dw MedShopNoMoneyText
-	dw MedShopPackFullText
-	dw MedShopThanksText
+	dw PharmacyHowManyText
+	dw PharmacyFinalPriceText
+	dw PharmacyNoMoneyText
+	dw PharmacyPackFullText
+	dw PharmacyThanksText
 	dw BuyMenuLoop
 
 BuyMenuLoop:
@@ -694,39 +694,39 @@ BargainShopComeAgainText:
 	text_far _BargainShopComeAgainText
 	text_end
 
-MedShopIntroText:
+PharmacyIntroText:
 	; What's up? Need some medicine?
-	text_far _MedShopIntroText
+	text_far _PharmacyIntroText
 	text_end
 
-MedShopHowManyText:
+PharmacyHowManyText:
 	; How many?
-	text_far _MedShopHowManyText
+	text_far _PharmacyHowManyText
 	text_end
 
-MedShopFinalPriceText:
+PharmacyFinalPriceText:
 	; @ (S) will cost ¥@ .
-	text_far _MedShopFinalPriceText
+	text_far _PharmacyFinalPriceText
 	text_end
 
-MedShopThanksText:
+PharmacyThanksText:
 	; Thanks much!
-	text_far _MedShopThanksText
+	text_far _PharmacyThanksText
 	text_end
 
-MedShopPackFullText:
+PharmacyPackFullText:
 	; You don't have any more space.
-	text_far _MedShopPackFullText
+	text_far _PharmacyPackFullText
 	text_end
 
-MedShopNoMoneyText:
+PharmacyNoMoneyText:
 	; Huh? That's not enough money.
-	text_far _MedShopNoMoneyText
+	text_far _PharmacyNoMoneyText
 	text_end
 
-MedShopComeAgainText:
+PharmacyComeAgainText:
 	; All right. See you around.
-	text_far _MedShopComeAgainText
+	text_far _PharmacyComeAgainText
 	text_end
 
 SellMenu:
@@ -753,7 +753,7 @@ SellMenu:
 
 .NothingToSellText:
 	; You don't have anything to sell.
-	text_far UnknownText_0x1c4f12
+	text_far _NothingToSellText
 	text_end
 
 .TryToSellItem:

@@ -1641,9 +1641,9 @@ RodNothingText:
 	text_far _RodNothingText
 	text_end
 
-UnknownText_0xd0ae: ; unused
+UnusedNothingHereText: ; unused
 	; Looks like there's nothing here.
-	text_far UnknownText_0x1c0979
+	text_far _UnusedNothingHereText
 	text_end
 
 BikeFunction:

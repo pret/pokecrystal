@@ -213,7 +213,8 @@ _OakTimeIsItText::
 	text ", is it?"
 	done
 
-; unused Mobile Text
+; Mobile Adapter
+
 UnknownText_0x1bc384::
 	text "There is nothing"
 	line "connected."
@@ -259,8 +260,7 @@ UnknownText_0x1bc44c::
 	line "ID no."
 	done
 
-; last Unused Mobile Adapter
-
+; Mobile Adapter End
 
 UnknownText_0x1bc45e::
 	text "Enter the"

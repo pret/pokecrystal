@@ -241,18 +241,18 @@ _MoveMonWOMailSaveText::
 	done
 
 ; unused
-UnknownText_0x1c4693::
+_WindowAreaExceededErrorText::
 	text "The window save"
 	line "area was exceeded."
 	done
 
-_MenuNoWindowText::
+_WindowPoppingErrorText::
 	text "No windows avail-"
 	line "able for popping."
 	done
 
 ; unused
-UnknownText_0x1c46dc::
+_CorruptedEventErrorText::
 	text "Corrupted event!"
 	prompt
 
@@ -596,16 +596,16 @@ _BargainShopComeAgainText::
 	line "sometime."
 	done
 
-_MedShopIntroText::
+_PharmacyIntroText::
 	text "What's up? Need"
 	line "some medicine?"
 	done
 
-_MedShopHowManyText::
+_PharmacyHowManyText::
 	text "How many?"
 	done
 
-_MedShopFinalPriceText::
+_PharmacyFinalPriceText::
 	text_decimal wItemQuantityChangeBuffer, 1, 2
 	text " @"
 	text_ram wStringBuffer2
@@ -615,27 +615,27 @@ _MedShopFinalPriceText::
 	text "."
 	done
 
-_MedShopThanksText::
+_PharmacyThanksText::
 	text "Thanks much!"
 	done
 
-_MedShopPackFullText::
+_PharmacyPackFullText::
 	text "You don't have any"
 	line "more space."
 	done
 
-_MedShopNoMoneyText::
+_PharmacyNoMoneyText::
 	text "Huh? That's not"
 	line "enough money."
 	done
 
-_MedShopComeAgainText::
+_PharmacyComeAgainText::
 	text "All right."
 	line "See you around."
 	done
 
-; unused sell
-UnknownText_0x1c4f12::
+; unused
+_NothingToSellText::
 	text "You don't have"
 	line "anything to sell."
 	prompt
