@@ -35,7 +35,6 @@ ContestJudging_FirstPlaceText:
 	ret
 
 ContestJudging_FirstPlaceScoreText:
-	; The winning score was @  points!
 	text_far _ContestJudging_FirstPlaceScoreText
 	text_end
 
@@ -50,7 +49,6 @@ ContestJudging_SecondPlaceText:
 	ret
 
 ContestJudging_SecondPlaceScoreText:
-	; The score was @  points!
 	text_far _ContestJudging_SecondPlaceScoreText
 	text_end
 
@@ -65,7 +63,6 @@ ContestJudging_ThirdPlaceText:
 	ret
 
 ContestJudging_ThirdPlaceScoreText:
-	; The score was @  points!
 	text_far _ContestJudging_ThirdPlaceScoreText
 	text_end
 

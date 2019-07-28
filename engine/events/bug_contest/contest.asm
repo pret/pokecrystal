@@ -33,11 +33,9 @@ BugCatchingContestReturnToGateScript:
 	jumpstd bugcontestresultswarp
 
 BugCatchingContestTimeUpText:
-	; ANNOUNCER: BEEEP! Time's up!
 	text_far _BugCatchingContestTimeUpText
 	text_end
 
 BugCatchingContestIsOverText:
-	; ANNOUNCER: The Contest is over!
 	text_far _BugCatchingContestIsOverText
 	text_end

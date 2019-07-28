@@ -395,22 +395,18 @@ IsMonHoldingEverstone:
 	ret
 
 CongratulationsYourPokemonText:
-	; Congratulations! Your @ @
 	text_far _CongratulationsYourPokemonText
 	text_end
 
 EvolvedIntoText:
-	; evolved into @ !
 	text_far _EvolvedIntoText
 	text_end
 
 StoppedEvolvingText:
-	; Huh? @ stopped evolving!
 	text_far _StoppedEvolvingText
 	text_end
 
 EvolvingText:
-	; What? @ is evolving!
 	text_far _EvolvingText
 	text_end
 

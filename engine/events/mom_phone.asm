@@ -207,32 +207,26 @@ INCLUDE "data/items/mom_phone.asm"
 	db 0, 0, 0 ; unused
 
 MomHiHowAreYouText:
-	; Hi,  ! How are you?
 	text_far _MomHiHowAreYouText
 	text_end
 
 MomFoundAnItemText:
-	; I found a useful item shopping, so
 	text_far _MomFoundAnItemText
 	text_end
 
 MomBoughtWithYourMoneyText:
-	; I bought it with your money. Sorry!
 	text_far _MomBoughtWithYourMoneyText
 	text_end
 
 MomItsInPCText:
-	; It's in your PC. You'll like it!
 	text_far _MomItsInPCText
 	text_end
 
 MomFoundADollText:
-	; While shopping today, I saw this adorable doll, so
 	text_far _MomFoundADollText
 	text_end
 
 MomItsInRoomText:
-	; It's in your room. You'll love it!
 	text_far _MomItsInRoomText
 	text_end
 

@@ -62,17 +62,14 @@ TossItemFromPC:
 	ret
 
 .ItemsAskTossQuantityText:
-	; Toss out how many @ (S)?
 	text_far _ItemsAskTossQuantityText
 	text_end
 
 .ItemsThrowAwayText:
-	; Throw away @ @ (S)?
 	text_far _ItemsThrowAwayText
 	text_end
 
 .ItemsDiscardedText:
-	; Discarded @ (S).
 	text_far _ItemsDiscardedText
 	text_end
 
@@ -82,7 +79,6 @@ TossItemFromPC:
 	ret
 
 .ItemsTooImportantText:
-	; That's too impor- tant to toss out!
 	text_far _ItemsTooImportantText
 	text_end
 
@@ -561,32 +557,26 @@ MonMailAction:
 	db "QUIT@"
 
 .MailLoseMessageText:
-; The MAIL will lose its message. OK?
 	text_far _MailLoseMessageText
 	text_end
 
 .MailDetachedText:
-; MAIL detached from <POKEMON>.
 	text_far _MailDetachedText
 	text_end
 
 .MailNoSpaceText:
-; There's no space for removing MAIL.
 	text_far _MailNoSpaceText
 	text_end
 
 .MailAskSendToPCText:
-; Send the removed MAIL to your PC?
 	text_far _MailAskSendToPCText
 	text_end
 
 .MailboxFullText:
-; Your PC's MAILBOX is full.
 	text_far _MailboxFullText
 	text_end
 
 .MailSentToPCText:
-; The MAIL was sent to your PC.
 	text_far _MailSentToPCText
 	text_end
 
@@ -748,7 +738,6 @@ MonMenu_Softboiled_MilkDrink:
 	ret
 
 .PokemonNotEnoughHPText:
-	; Not enough HP!
 	text_far _PokemonNotEnoughHPText
 	text_end
 

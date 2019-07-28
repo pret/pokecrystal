@@ -15,7 +15,6 @@ _BillsPC:
 	ret
 
 .PCGottaHavePokemonText:
-	; You gotta have #MON to call!
 	text_far _PCGottaHavePokemonText
 	text_end
 
@@ -36,7 +35,6 @@ _BillsPC:
 	ret
 
 .PCWhatText:
-	; What?
 	text_far _PCWhatText
 	text_end
 
@@ -129,7 +127,6 @@ BillsPC_MovePKMNMenu:
 	ret
 
 .PCMonHoldingMailText:
-	; There is a #MON holding MAIL. Please remove the MAIL.
 	text_far _PCMonHoldingMailText
 	text_end
 
@@ -164,12 +161,10 @@ Unreferenced_Functione512:
 	ret
 
 .PCNoSingleMonText:
-	; You don't have a single #MON!
 	text_far _PCNoSingleMonText
 	text_end
 
 .PCNoCantDepositText:
-	; You can't deposit your last #MON!
 	text_far _PCNoCantDepositText
 	text_end
 
@@ -225,7 +220,6 @@ Unreferenced_Functione56d:
 	ret
 
 PCCantTakeText:
-	; You can't take any more #MON.
 	text_far _PCCantTakeText
 	text_end
 

@@ -281,7 +281,6 @@ MainMenu_PrintCurrentTimeAndDay:
 	db "TIME NOT SET@"
 
 .MainMenuTimeUnknownText:
-	; Clock time unknown
 	text_far _MainMenuTimeUnknownText
 	text_end
 

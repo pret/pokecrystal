@@ -1062,32 +1062,26 @@ LevelBallMultiplier:
 ; They are not used in gen 2, and are dummied out.
 
 BallCantCatchText:
-	; It dodged the thrown BALL! This #MON can't be caught!
 	text_far _BallCantCatchText
 	text_end
 
 BallMissedText:
-	; You missed the #MON!
 	text_far _BallMissedText
 	text_end
 
 BallBrokeFreeText:
-	; Oh no! The #MON broke free!
 	text_far _BallBrokeFreeText
 	text_end
 
 BallAppearedCaughtText:
-	; Aww! It appeared to be caught!
 	text_far _BallAppearedCaughtText
 	text_end
 
 BallAlmostHadItText:
-	; Aargh! Almost had it!
 	text_far _BallAlmostHadItText
 	text_end
 
 BallSoCloseText:
-	; Shoot! It was so close too!
 	text_far _BallSoCloseText
 	text_end
 
@@ -1107,22 +1101,18 @@ Text_GotchaMonWasCaught:
 	ret
 
 WaitbuttonText:
-	; @
 	text_far _WaitbuttonText
 	text_end
 
 BallSentToPCText:
-	; was sent to BILL's PC.
 	text_far _BallSentToPCText
 	text_end
 
 NewDexDataText:
-	; 's data was newly added to the #DEX.@ @
 	text_far _NewDexDataText
 	text_end
 
 AskGiveNicknameText:
-	; Give a nickname to @ ?
 	text_far _AskGiveNicknameText
 	text_end
 
@@ -1233,7 +1223,6 @@ RareCandy_StatBooster_ExitMenu:
 	jp ClearPalettes
 
 ItemStatRoseText:
-	; 's @  rose.
 	text_far _ItemStatRoseText
 	text_end
 
@@ -2061,7 +2050,6 @@ Softboiled_MilkDrinkFunction:
 	jr .loop
 
 .ItemCantUseOnMonText:
-	; That can't be used on this #MON.
 	text_far _ItemCantUseOnMonText
 	text_end
 
@@ -2097,7 +2085,6 @@ UseRepel:
 	jp UseItemText
 
 RepelUsedEarlierIsStillInEffectText:
-	; The REPEL used earlier is still in effect.
 	text_far _RepelUsedEarlierIsStillInEffectText
 	text_end
 
@@ -2238,12 +2225,10 @@ PokeFluteEffect:
 	ret
 
 .PlayedFluteText:
-	; Played the # FLUTE. Now, that's a catchy tune!
 	text_far _PlayedFluteText
 	text_end
 
 .FluteWakeUpText:
-	; All sleeping #MON woke up.
 	text_far _FluteWakeUpText
 	text_end
 
@@ -2531,27 +2516,22 @@ RestorePP:
 	ret
 
 RaiseThePPOfWhichMoveText:
-	; Raise the PP of which move?
 	text_far _RaiseThePPOfWhichMoveText
 	text_end
 
 RestoreThePPOfWhichMoveText:
-	; Restore the PP of which move?
 	text_far _RestoreThePPOfWhichMoveText
 	text_end
 
 PPIsMaxedOutText:
-	; 's PP is maxed out.
 	text_far _PPIsMaxedOutText
 	text_end
 
 PPsIncreasedText:
-	; 's PP increased.
 	text_far _PPsIncreasedText
 	text_end
 
 PPRestoredText:
-	; PP was restored.
 	text_far _PPRestoredText
 	text_end
 
@@ -2590,7 +2570,6 @@ OpenBox:
 	jp UseDisposableItem
 
 .SentTrophyHomeText:
-	; There was a trophy inside!
 	text_far _SentTrophyHomeText
 	text_end
 
@@ -2685,67 +2664,54 @@ CantUseItemMessage:
 	jp PrintText
 
 ItemLooksBitterText:
-	; It looks bitter…
 	text_far _ItemLooksBitterText
 	text_end
 
 ItemCantUseOnEggText:
-	; That can't be used on an EGG.
 	text_far _ItemCantUseOnEggText
 	text_end
 
 ItemOakWarningText:
-	; OAK:  ! This isn't the time to use that!
 	text_far _ItemOakWarningText
 	text_end
 
 ItemBelongsToSomeoneElseText:
-	; That belongs to someone else!
 	text_far _ItemBelongsToSomeoneElseText
 	text_end
 
 ItemWontHaveEffectText:
-	; It won't have any effect.
 	text_far _ItemWontHaveEffectText
 	text_end
 
 BallBlockedText:
-	; The trainer blocked the BALL!
 	text_far _BallBlockedText
 	text_end
 
 BallDontBeAThiefText:
-	; Don't be a thief!
 	text_far _BallDontBeAThiefText
 	text_end
 
 NoCyclingText:
-	; Cycling isn't allowed here.
 	text_far _NoCyclingText
 	text_end
 
 ItemCantGetOnText:
-	; Can't get on your @  now.
 	text_far _ItemCantGetOnText
 	text_end
 
 BallBoxFullText:
-	; The #MON BOX is full. That can't be used now.
 	text_far _BallBoxFullText
 	text_end
 
 ItemUsedText:
-	; used the@ .
 	text_far _ItemUsedText
 	text_end
 
 ItemGotOnText:
-	; got on the@ .
 	text_far _ItemGotOnText
 	text_end
 
 ItemGotOffText:
-	; got off@ the @ .
 	text_far _ItemGotOffText
 	text_end
 

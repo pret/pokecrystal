@@ -110,7 +110,6 @@ PC_CheckPartyForPokemon:
 	ret
 
 .PokePCCantUseText:
-	; Bzzzzt! You must have a #MON to use this!
 	text_far _PokePCCantUseText
 	text_end
 
@@ -200,7 +199,6 @@ _PlayersHousePC:
 	ret
 
 PlayersPCTurnOnText:
-	; turned on the PC.
 	text_far _PlayersPCTurnOnText
 	text_end
 
@@ -303,7 +301,6 @@ PC_DisplayTextWaitMenu:
 	ret
 
 PlayersPCAskWhatDoText:
-	; What do you want to do?
 	text_far _PlayersPCAskWhatDoText
 	text_end
 
@@ -442,7 +439,6 @@ PlayerDepositItemMenu:
 	ret
 
 .PlayersPCNoItemsText:
-	; No items here!
 	text_far _PlayersPCNoItemsText
 	text_end
 
@@ -638,31 +634,25 @@ PC_DisplayText:
 	ret
 
 CenterPCTurnOnText:
-	; turned on the PC.
 	text_far _CenterPCTurnOnText
 	text_end
 
 CenterPCWhoseText:
-	; Access whose PC?
 	text_far _CenterPCWhoseText
 	text_end
 
 CenterPCBillText:
-	; BILL's PC accessed. #MON Storage System opened.
 	text_far _CenterPCBillText
 	text_end
 
 CenterPCPlayersText:
-	; Accessed own PC. Item Storage System opened.
 	text_far _CenterPCPlayersText
 	text_end
 
 CenterPCOaksText:
-	; PROF.OAK's PC accessed. #DEX Rating System opened.
 	text_far _CenterPCOaksText
 	text_end
 
 CenterPCOaksClosedText:
-	; … Link closed…
 	text_far _CenterPCOaksClosedText
 	text_end

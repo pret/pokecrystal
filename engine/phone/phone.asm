@@ -416,7 +416,6 @@ WrongNumber:
 	writetext .Text
 	end
 .Text:
-	; Huh? Sorry, wrong number!
 	text_far _PhoneWrongNumberText
 	text_end
 
@@ -710,7 +709,6 @@ PhoneOutOfAreaScript:
 	end
 
 PhoneOutOfAreaText:
-	; That number is out of the area.
 	text_far _PhoneOutOfAreaText
 	text_end
 
@@ -719,7 +717,6 @@ PhoneScript_JustTalkToThem:
 	end
 
 PhoneJustTalkToThemText:
-	; Just go talk to that person!
 	text_far _PhoneJustTalkToThemText
 	text_end
 
@@ -728,6 +725,5 @@ PhoneThankYouTextScript:
 	end
 
 PhoneThankYouText:
-	; Thank you!
 	text_far _PhoneThankYouText
 	text_end

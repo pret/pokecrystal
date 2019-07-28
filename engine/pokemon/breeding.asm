@@ -377,17 +377,14 @@ HatchEggs:
 	ret
 
 .BreedClearboxText:
-	;
 	text_far _BreedClearboxText
 	text_end
 
 .BreedEggHatchText:
-	; came out of its EGG!@ @
 	text_far _BreedEggHatchText
 	text_end
 
 .BreedAskNicknameText:
-	; Give a nickname to @ ?
 	text_far _BreedAskNicknameText
 	text_end
 
@@ -894,12 +891,10 @@ DayCareMonCursor:
 	jp WaitPressAorB_BlinkCursor
 
 BreedWithLadyText:
-	; It's @ that was left with the DAY-CARE LADY.
 	text_far _BreedWithLadyText
 	text_end
 
 BreedWithManText:
-	; It's @ that was left with the DAY-CARE MAN.
 	text_far _BreedWithManText
 	text_end
 
@@ -929,27 +924,22 @@ DayCareMonCompatibilityText:
 	ret
 
 .BreedBrimmingText:
-	; It's brimming with energy.
 	text_far _BreedBrimmingText
 	text_end
 
 .BreedNoInterestText:
-	; It has no interest in @ .
 	text_far _BreedNoInterestText
 	text_end
 
 .BreedCaringText:
-	; It appears to care for @ .
 	text_far _BreedCaringText
 	text_end
 
 .BreedFriendlyText:
-	; It's friendly with @ .
 	text_far _BreedFriendlyText
 	text_end
 
 .BreedShowInterestText:
-	; It shows interest in @ .
 	text_far _BreedShowInterestText
 	text_end
 

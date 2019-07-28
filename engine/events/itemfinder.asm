@@ -42,11 +42,9 @@ ItemFinder:
 	end
 
 .ItemfinderNearbyText:
-	; Yes! ITEMFINDER indicates there's an item nearby.
 	text_far _ItemfinderNearbyText
 	text_end
 
 .ItemfinderNothingText:
-	; Nope! ITEMFINDER isn't responding.
 	text_far _ItemfinderNothingText
 	text_end

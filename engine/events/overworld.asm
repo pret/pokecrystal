@@ -58,8 +58,6 @@ CheckBadge:
 	ret
 
 .BadgeRequiredText:
-	; Sorry! A new BADGE
-	; is required.
 	text_far _BadgeRequiredText
 	text_end
 
@@ -113,7 +111,6 @@ FieldMoveFailed:
 	ret
 
 .CantUseItemText:
-	; Can't use that here.
 	text_far _CantUseItemText
 	text_end
 
@@ -162,12 +159,10 @@ CutFunction:
 	ret
 
 UseCutText:
-	; used CUT!
 	text_far _UseCutText
 	text_end
 
 CutNothingText:
-	; There's nothing to CUT here.
 	text_far _CutNothingText
 	text_end
 
@@ -545,7 +540,6 @@ AskSurfScript:
 	end
 
 AskSurfText:
-	; The water is calm. Want to SURF?
 	text_far _AskSurfText
 	text_end
 
@@ -709,7 +703,6 @@ Script_UsedWaterfall:
 	step_end
 
 .UseWaterfallText:
-	; used WATERFALL!
 	text_far _UseWaterfallText
 	text_end
 
@@ -739,7 +732,6 @@ Script_CantDoWaterfall:
 	jumptext .BigWaterfallText
 
 .BigWaterfallText:
-	; Wow, it's a huge waterfall.
 	text_far _BigWaterfallText
 	text_end
 
@@ -752,7 +744,6 @@ Script_AskWaterfall:
 	end
 
 .AskWaterfallText:
-	; Do you want to use WATERFALL?
 	text_far _AskWaterfallText
 	text_end
 
@@ -839,17 +830,14 @@ dig_incave
 	ret
 
 .UseDigText:
-	; used DIG!
 	text_far _UseDigText
 	text_end
 
 .UseEscapeRopeText:
-	; used an ESCAPE ROPE.
 	text_far _UseEscapeRopeText
 	text_end
 
 .CantUseDigText:
-	; Can't use that here.
 	text_far _CantUseDigText
 	text_end
 
@@ -938,12 +926,10 @@ TeleportFunction:
 	ret
 
 .TeleportReturnText:
-	; Return to the last #MON CENTER.
 	text_far _TeleportReturnText
 	text_end
 
 .CantUseTeleportText:
-	; Can't use that here.
 	text_far _CantUseTeleportText
 	text_end
 
@@ -1061,17 +1047,14 @@ AskStrengthScript:
 	end
 
 AskStrengthText:
-	; A #MON may be able to move this. Want to use STRENGTH?
 	text_far _AskStrengthText
 	text_end
 
 BouldersMoveText:
-	; Boulders may now be moved!
 	text_far _BouldersMoveText
 	text_end
 
 BouldersMayMoveText:
-	; A #MON may be able to move this.
 	text_far _BouldersMayMoveText
 	text_end
 
@@ -1147,7 +1130,6 @@ Jumptable_cdae:
 	ret
 
 UseWhirlpoolText:
-	; used WHIRLPOOL!
 	text_far _UseWhirlpoolText
 	text_end
 
@@ -1272,12 +1254,10 @@ TryHeadbuttFromMenu:
 	ret
 
 UseHeadbuttText:
-	; did a HEADBUTT!
 	text_far _UseHeadbuttText
 	text_end
 
 HeadbuttNothingText:
-	; Nope. Nothing…
 	text_far _HeadbuttNothingText
 	text_end
 
@@ -1330,7 +1310,6 @@ AskHeadbuttScript:
 	end
 
 AskHeadbuttText:
-	; A #MON could be in this tree. Want to HEADBUTT it?
 	text_far _AskHeadbuttText
 	text_end
 
@@ -1424,12 +1403,10 @@ AskRockSmashScript:
 	jumptext MaySmashText
 
 MaySmashText:
-	; Maybe a #MON can break this.
 	text_far _MaySmashText
 	text_end
 
 AskRockSmashText:
-	; This rock looks breakable. Want to use ROCK SMASH?
 	text_far _AskRockSmashText
 	text_end
 
@@ -1632,17 +1609,14 @@ PutTheRodAway:
 	ret
 
 RodBiteText:
-	; Oh! A bite!
 	text_far _RodBiteText
 	text_end
 
 RodNothingText:
-	; Not even a nibble!
 	text_far _RodNothingText
 	text_end
 
 UnusedNothingHereText: ; unused
-	; Looks like there's nothing here.
 	text_far _UnusedNothingHereText
 	text_end
 
@@ -1776,17 +1750,14 @@ Script_CantGetOffBike:
 	end
 
 .CantGetOffBikeText:
-	; You can't get off here!
 	text_far _CantGetOffBikeText
 	text_end
 
 GotOnBikeText:
-	; got on the @ .
 	text_far _GotOnBikeText
 	text_end
 
 GotOffBikeText:
-	; got off the @ .
 	text_far _GotOffBikeText
 	text_end
 

@@ -30,26 +30,21 @@ PhotoStudio:
 	ret
 
 .WhichMonPhotoText:
-	; Which #MON should I photo- graph?
 	text_far _WhichMonPhotoText
 	text_end
 
 .HoldStillText:
-	; All righty. Hold still for a bit.
 	text_far _HoldStillText
 	text_end
 
 .PrestoAllDoneText:
-	; Presto! All done. Come again, OK?
 	text_far _PrestoAllDoneText
 	text_end
 
 .NoPhotoText:
-	; Oh, no picture? Come again, OK?
 	text_far _NoPhotoText
 	text_end
 
 .EggPhotoTalentText:
-	; An EGG? My talent is worth more…
 	text_far _EggPhotoTalentText
 	text_end

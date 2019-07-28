@@ -72,7 +72,6 @@ CheckMagikarpLength:
 	ret
 
 .KarpGuruMeasureText:
-	; Let me measure that MAGIKARP. …Hm, it measures @ .
 	text_far _KarpGuruMeasureText
 	text_end
 
@@ -312,6 +311,5 @@ MagikarpHouseSign:
 	ret
 
 .KarpGuruRecordText:
-	; "CURRENT RECORD"
 	text_far _KarpGuruRecordText
 	text_end

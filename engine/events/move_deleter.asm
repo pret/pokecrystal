@@ -60,42 +60,34 @@ MoveDeletion:
 	ret
 
 .MoveKnowsOneText:
-	; That #MON knows only one move.
 	text_far _MoveKnowsOneText
 	text_end
 
 .AskDeleteMoveText:
-	; Oh, make it forget @ ?
 	text_far _AskDeleteMoveText
 	text_end
 
 .DeleterForgotMoveText:
-	; Done! Your #MON forgot the move.
 	text_far _DeleterForgotMoveText
 	text_end
 
 .MailEggText:
-	; An EGG doesn't know any moves!
 	text_far _DeleterEggText
 	text_end
 
 .DeleterNoComeAgainText:
-	; No? Come visit me again.
 	text_far _DeleterNoComeAgainText
 	text_end
 
 .DeleterAskWhichMoveText:
-	; Which move should it forget, then?
 	text_far _DeleterAskWhichMoveText
 	text_end
 
 .DeleterIntroText:
-	; Um… Oh, yes, I'm the MOVE DELETER. I can make #MON forget moves. Shall I make a #MON forget?
 	text_far _DeleterIntroText
 	text_end
 
 .DeleterAskWhichMonText:
-	; Which #MON?
 	text_far _DeleterAskWhichMonText
 	text_end
 

@@ -2635,22 +2635,18 @@ Function8a0ff:
 	jp Function89e36
 
 UnknownText_0x8a102:
-	; The CARD FOLDER stores your and your friends' CARDS. A CARD contains information like the person's name, phone number and profile.
 	text_far UnknownText_0x1c5238
 	text_end
 
 UnknownText_0x8a107:
-	; This is your CARD. Once you've entered your phone number, you can trade CARDS with your friends.
 	text_far UnknownText_0x1c52bc
 	text_end
 
 UnknownText_0x8a10c:
-	; If you have your friend's CARD, you can use it to make a call from a mobile phone on the 2nd floor of a #MON CENTER.
 	text_far UnknownText_0x1c531e
 	text_end
 
 UnknownText_0x8a111:
-	; To safely store your collection of CARDS, you must set a PASSCODE for your CARD FOLDER.
 	text_far UnknownText_0x1c5394
 	text_end
 
@@ -2779,17 +2775,14 @@ Function8a20d:
 	ret
 
 UnknownText_0x8a232:
-	; If the CARD FOLDER is deleted, all its CARDS and the PASSCODE will also be deleted. Beware--a deleted CARD FOLDER can't be restored. Want to delete your CARD FOLDER?
 	text_far UnknownText_0x1c53ee
 	text_end
 
 UnknownText_0x8a237:
-	; Are you sure you want to delete it?
 	text_far UnknownText_0x1c5494
 	text_end
 
 UnknownText_0x8a23c:
-	; The CARD FOLDER has been deleted.
 	text_far UnknownText_0x1c54b9
 	text_end
 
@@ -2874,12 +2867,10 @@ MenuHeader_0x8a2ef:
 	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 
 UnknownText_0x8a2f4:
-	; There is an older CARD FOLDER from a previous journey. Do you want to open it?
 	text_far UnknownText_0x1c54dd
 	text_end
 
 UnknownText_0x8a2f9:
-	; Delete the old CARD FOLDER?
 	text_far UnknownText_0x1c552d
 	text_end
 
@@ -4152,7 +4143,6 @@ Function8ac7c:
 	ret
 
 UnknownText_0x8ad06:
-	; Finish registering CARDS?
 	text_far UnknownText_0x1c554a
 	text_end
 

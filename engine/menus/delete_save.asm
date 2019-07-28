@@ -19,7 +19,6 @@ _DeleteSaveData:
 	ret
 
 .ClearAllSaveDataText:
-	; Clear all save data?
 	text_far _ClearAllSaveDataText
 	text_end
 

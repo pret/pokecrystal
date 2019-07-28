@@ -506,7 +506,6 @@ LinkTimeout:
 	ret
 
 .LinkTimeoutText:
-	; Too much time has elapsed. Please try again.
 	text_far _LinkTimeoutText
 	text_end
 
@@ -1488,7 +1487,6 @@ Function28926:
 	jp InitTradeMenuDisplay
 
 .LinkTradeCantBattleText:
-	; If you trade that #MON, you won't be able to battle.
 	text_far _LinkTradeCantBattleText
 	text_end
 
@@ -1496,7 +1494,6 @@ Function28926:
 	db "STATS     TRADE@"
 
 .LinkAbnormalMonText:
-	; Your friend's @  appears to be abnormal!
 	text_far _LinkAbnormalMonText
 	text_end
 
@@ -1949,7 +1946,6 @@ String28eab:
 	next "CANCEL@"
 
 LinkAskTradeForText:
-	; Trade @ for @ ?
 	text_far _LinkAskTradeForText
 	text_end
 

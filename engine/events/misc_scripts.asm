@@ -28,12 +28,10 @@ FindItemInBallScript::
 	end
 
 .FoundItemText:
-	; found @ !
 	text_far _FoundItemText
 	text_end
 
 .CantCarryItemText:
-	; But   can't carry any more items.
 	text_far _CantCarryItemText
 	text_end
 

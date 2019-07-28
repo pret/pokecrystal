@@ -935,12 +935,10 @@ PokegearPhone_MakePhoneCall:
 	ret
 
 .GearEllipseText:
-	;
 	text_far _GearEllipseText
 	text_end
 
 .GearOutOfServiceText:
-	; You're out of the service area.
 	text_far _GearOutOfServiceText
 	text_end
 
@@ -1352,17 +1350,14 @@ Pokegear_LoadTilemapRLE:
 	jr .loop
 
 GearAskWhoCallText:
-	; Whom do you want to call?
 	text_far _GearAskWhoCallText
 	text_end
 
 GearPressButtonText:
-	; Press any button to exit.
 	text_far _GearPressButtonText
 	text_end
 
 GearAskDeleteText:
-	; Delete this stored phone number?
 	text_far _GearAskDeleteText
 	text_end
 

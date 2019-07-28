@@ -615,7 +615,6 @@ GiveItem:
 	call Pack_PrintTextNoScroll
 	ret
 .AnEGGCantHoldAnItemText:
-	; An EGG can't hold an item.
 	text_far _AnEGGCantHoldAnItemText
 	text_end
 
@@ -1547,58 +1546,46 @@ PC_Mart_BallsPocketMenuHeader:
 	dba UpdateItemDescription
 
 PackNoItemText:
-	; No items.
 	text_far _PackNoItemText
 	text_end
 
 AskThrowAwayText:
-	; Throw away how many?
 	text_far _AskThrowAwayText
 	text_end
 
 AskQuantityThrowAwayText:
-	; Throw away @ @ (S)?
 	text_far _AskQuantityThrowAwayText
 	text_end
 
 ThrewAwayText:
-	; Threw away @ (S).
 	text_far _ThrewAwayText
 	text_end
 
 OakThisIsntTheTimeText:
-	; OAK:  ! This isn't the time to use that!
 	text_far _OakThisIsntTheTimeText
 	text_end
 
 YouDontHaveAMonText:
-	; You don't have a #MON!
 	text_far _YouDontHaveAMonText
 	text_end
 
 RegisteredItemText:
-	; Registered the @ .
 	text_far _RegisteredItemText
 	text_end
 
 CantRegisterText:
-	; You can't register that item.
 	text_far _CantRegisterText
 	text_end
 
 AskItemMoveText:
-	; Where should this be moved to?
 	text_far _AskItemMoveText
 	text_end
 
 PackEmptyText:
-	;
 	text_far _PackEmptyText
 	text_end
 
 YouCantUseItInABattleText:
-	; Doesn't seem to be used anywhere
-	; "You can't use it in a battle."
 	text_far _YouCantUseItInABattleText
 	text_end
 

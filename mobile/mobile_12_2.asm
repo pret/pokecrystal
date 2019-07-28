@@ -240,7 +240,6 @@ Function4a94e:
 	jr .asm_4a974
 
 UnknownText_0x4a9be:
-	; Pick three #MON for battle.
 	text_far UnknownText_0x1c51d7
 	text_end
 
@@ -293,7 +292,6 @@ Function4a9d7:
 	ret
 
 UnknownText_0x4aa1d:
-	; , @  and @ . Use these three?
 	text_far UnknownText_0x1c51f4
 	text_end
 
@@ -793,7 +791,6 @@ Function4ad17:
 	ret
 
 UnknownText_0x4ad51:
-	; Only three #MON may enter.
 	text_far UnknownText_0x1c521c
 	text_end
 

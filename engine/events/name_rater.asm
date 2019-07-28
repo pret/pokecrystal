@@ -179,57 +179,41 @@ GetNicknameLength:
 	ret
 
 NameRaterHelloText:
-	; Hello, hello! I'm the NAME RATER.
-	; I rate the names of #MON.
-	; Would you like me to rate names?
 	text_far _NameRaterHelloText
 	text_end
 
 NameRaterWhichMonText:
-	; Which #MON's nickname should I rate for you?
 	text_far _NameRaterWhichMonText
 	text_end
 
 NameRaterBetterNameText:
-	; Hm… @ … That's a fairly decent name.
-	; But, how about a slightly better nickname?
-	; Want me to give it a better name?
 	text_far _NameRaterBetterNameText
 	text_end
 
 NameRaterWhatNameText:
-	; All right. What name should we give it, then?
 	text_far _NameRaterWhatNameText
 	text_end
 
 NameRaterFinishedText:
-	; That's a better name than before! Well done!
 	text_far _NameRaterFinishedText
 	text_end
 
 NameRaterComeAgainText:
-	; OK, then. Come again sometime.
 	text_far _NameRaterComeAgainText
 	text_end
 
 NameRaterPerfectNameText:
-	; Hm… @ ? What a great name! It's perfect.
-	; Treat @ with loving care.
 	text_far _NameRaterPerfectNameText
 	text_end
 
 NameRaterEggText:
-	; Whoa… That's just an EGG.
 	text_far _NameRaterEggText
 	text_end
 
 NameRaterSameNameText:
-	; It might look the different as before,
-	; but this new name is much better! Well done!
 	text_far _NameRaterSameNameText
 	text_end
 
 NameRaterNamedText:
-	; All right. This #MON is now named @ .
 	text_far _NameRaterNamedText
 	text_end

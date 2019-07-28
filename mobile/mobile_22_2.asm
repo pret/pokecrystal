@@ -458,27 +458,22 @@ Function8b555:
 	ret
 
 EnterNewPasscodeText:
-	; Please enter any four-digit number.
 	text_far _EnterNewPasscodeText
 	text_end
 
 ConfirmPasscodeText:
-	; Enter the same number to confirm.
 	text_far _ConfirmPasscodeText
 	text_end
 
 PasscodesNotSameText:
-	; That's not the same number.
 	text_far _PasscodesNotSameText
 	text_end
 
 PasscodeSetText:
-	; Your PASSCODE has been set. Enter this number next time to open the CARD FOLDER.
 	text_far _PasscodeSetText
 	text_end
 
 FourZerosInvalidText:
-	; 0000 is invalid!
 	text_far _FourZerosInvalidText
 	text_end
 
@@ -523,12 +518,10 @@ Function8b5e7:
 	ret
 
 EnterPasscodeText:
-	; Enter the CARD FOLDER PASSCODE.
 	text_far _EnterPasscodeText
 	text_end
 
 IncorrectPasscodeText:
-	; Incorrect PASSCODE!
 	text_far _IncorrectPasscodeText
 	text_end
 

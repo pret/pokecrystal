@@ -290,12 +290,10 @@ PrintTwoDigitNumberRightAlign:
 	ret
 
 OakTimeWokeUpText:
-	; Zzz… Hm? Wha…? You woke me up! Will you check the clock for me?
 	text_far _OakTimeWokeUpText
 	text_end
 
 OakTimeWhatIsItText:
-	; What time is it?
 	text_far _OakTimeWhatIsItText
 	text_end
 
@@ -312,12 +310,10 @@ Text_WhatHrs:
 	ret
 
 .OakTimeQuestionMarkHrsText:
-	; ?
 	text_far _OakTimeQuestionMarkHrsText
 	text_end
 
 OakTimeHowManyMinutesText:
-	; How many minutes?
 	text_far _OakTimeHowManyMinutesText
 	text_end
 
@@ -334,7 +330,6 @@ Text_WhoaMins:
 	ret
 
 .OakTimeQuestionMarkMinsText:
-	; ?
 	text_far _OakTimeQuestionMarkMinsText
 	text_end
 
@@ -369,17 +364,14 @@ OakText_ResponseToSetTime:
 	ret
 
 .OakTimeOversleptText:
-	; ! I overslept!
 	text_far _OakTimeOversleptText
 	text_end
 
 .OakTimeYikesText:
-	; ! Yikes! I over- slept!
 	text_far _OakTimeYikesText
 	text_end
 
 .OakTimeSoDarkText:
-	; ! No wonder it's so dark!
 	text_far _OakTimeSoDarkText
 	text_end
 
@@ -533,7 +525,6 @@ SetDayOfWeek:
 .Saturday:  db "SATURDAY@"
 
 .OakTimeWhatDayIsItText:
-	; What day is it?
 	text_far _OakTimeWhatDayIsItText
 	text_end
 
@@ -545,7 +536,6 @@ SetDayOfWeek:
 	ret
 
 .OakTimeIsItText:
-	; , is it?
 	text_far _OakTimeIsItText
 	text_end
 
@@ -573,7 +563,6 @@ InitialSetDSTFlag:
 	ret
 
 .DSTIsThatOKText:
-	; DST, is that OK?
 	text_far _DSTIsThatOKText
 	text_end
 
@@ -601,7 +590,6 @@ InitialClearDSTFlag:
 	ret
 
 .TimeAskOkayText:
-	; , is that OK?
 	text_far _TimeAskOkayText
 	text_end
 

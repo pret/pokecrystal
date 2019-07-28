@@ -157,7 +157,6 @@ GiveANickname_YesNo:
 	jp YesNoBox
 
 CaughtAskNicknameText:
-	; Give a nickname to the @  you received?
 	text_far _CaughtAskNicknameText
 	text_end
 

@@ -116,7 +116,6 @@ _CardFlip:
 	ret
 
 .CardFlipAskThreeCoinText:
-	; Play with three coins?
 	text_far _CardFlipAskThreeCoinText
 	text_end
 
@@ -156,7 +155,6 @@ _CardFlip:
 	ret
 
 .CardFlipNotEnoughText:
-	; Not enough coins…
 	text_far _CardFlipNotEnoughText
 	text_end
 
@@ -233,7 +231,6 @@ _CardFlip:
 	ret
 
 .CardFlipChooseCardText:
-	; Choose a card.
 	text_far _CardFlipChooseCardText
 	text_end
 
@@ -255,7 +252,6 @@ _CardFlip:
 	ret
 
 .CardFlipPlaceBetText:
-	; Place your bet.
 	text_far _CardFlipPlaceBetText
 	text_end
 
@@ -326,12 +322,10 @@ _CardFlip:
 	ret
 
 .CardFlipAskPlayAgainText:
-	; Want to play again?
 	text_far _CardFlipAskPlayAgainText
 	text_end
 
 .CardFlipShuffledText:
-	; The cards have been shuffled.
 	text_far _CardFlipShuffledText
 	text_end
 
@@ -1115,12 +1109,10 @@ CardFlip_CheckWinCondition:
 	ret
 
 .CardFlipYeahText:
-	; Yeah!
 	text_far _CardFlipYeahText
 	text_end
 
 .CardFlipDarnText:
-	; Darn…
 	text_far _CardFlipDarnText
 	text_end
 

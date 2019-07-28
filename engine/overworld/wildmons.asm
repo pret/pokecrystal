@@ -833,7 +833,6 @@ RandomUnseenWildMon:
 	ret
 
 .JustSawSomeRareMonText:
-	; I just saw some rare @  in @ . I'll call you if I see another rare #MON, OK?
 	text_far _JustSawSomeRareMonText
 	text_end
 

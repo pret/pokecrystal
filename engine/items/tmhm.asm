@@ -167,22 +167,18 @@ TeachTMHM:
 	ret
 
 BootedTMText:
-	; Booted up a TM.
 	text_far _BootedTMText
 	text_end
 
 BootedHMText:
-	; Booted up an HM.
 	text_far _BootedHMText
 	text_end
 
 ContainedMoveText:
-	; It contained @ . Teach @ to a #MON?
 	text_far _ContainedMoveText
 	text_end
 
 TMHMNotCompatibleText:
-	; is not compatible with @ . It can't learn @ .
 	text_far _TMHMNotCompatibleText
 	text_end
 
@@ -498,12 +494,10 @@ Unreferenced_Function2cadf:
 	jp PrintText
 
 .NoRoomTMHMText:
-	; You have no room for any more @ S.
 	text_far _NoRoomTMHMText
 	text_end
 
 .ReceivedTMHMText:
-	; You received @ !
 	text_far _ReceivedTMHMText
 	text_end
 

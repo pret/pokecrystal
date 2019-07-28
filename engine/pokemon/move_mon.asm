@@ -1801,7 +1801,6 @@ GivePoke::
 	ret
 
 WasSentToBillsPCText:
-	; was sent to BILL's PC.
 	text_far _WasSentToBillsPCText
 	text_end
 

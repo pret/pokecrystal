@@ -58,11 +58,9 @@ SweetScentEncounter:
 	ret
 
 UseSweetScentText:
-	; used SWEET SCENT!
 	text_far _UseSweetScentText
 	text_end
 
 SweetScentNothingText:
-	; Looks like there's nothing here…
 	text_far _SweetScentNothingText
 	text_end

@@ -390,33 +390,26 @@ DSTChecks:
 	ret
 
 .TimesetAskAdjustDSTText:
-	; Do you want to adjust your clock for Daylight Saving Time?
 	text_far _TimesetAskAdjustDSTText
 	text_end
 
 .MomLostGearBookletText:
-	; I lost the instruction booklet for the POKéGEAR.
-	; Come back again in a while.
 	text_far _MomLostGearBookletText
 	text_end
 
 .TimesetAskDSTText:
-	; Do you want to switch to Daylight Saving Time?
 	text_far _TimesetAskDSTText
 	text_end
 
 .TimesetDSTText:
-	; I set the clock forward by one hour.
 	text_far _TimesetDSTText
 	text_end
 
 .TimesetAskNotDSTText:
-	; Is Daylight Saving Time over?
 	text_far _TimesetAskNotDSTText
 	text_end
 
 .TimesetNotDSTText:
-	; I put the clock back one hour.
 	text_far _TimesetNotDSTText
 	text_end
 
@@ -591,82 +584,66 @@ Mom_WithdrawDepositMenuJoypad:
 	dt 9
 
 MomLeavingText1:
-	; Wow, that's a cute #MON. Where did you get it? … So, you're leaving on an adventure… OK! I'll help too. But what can I do for you? I know! I'll save money for you. On a long journey, money's important. Do you want me to save your money?
 	text_far _MomLeavingText1
 	text_end
 
 MomLeavingText2:
-	; OK, I'll take care of your money.
 	text_far _MomLeavingText2
 	text_end
 
 MomLeavingText3:
-	; Be careful. #MON are your friends. You need to work as a team. Now, go on!
 	text_far _MomLeavingText3
 	text_end
 
 MomVisitingText1:
-	; Hi! Welcome home! You're trying very hard, I see. I've kept your room tidy. Or is this about your money?
 	text_far _MomVisitingText1
 	text_end
 
 MomVisitingText2:
-	; What do you want to do?
 	text_far _MomVisitingText2
 	text_end
 
 MomVisitingText3:
-	; How much do you want to save?
 	text_far _MomVisitingText3
 	text_end
 
 MomVisitingText4:
-	; How much do you want to take?
 	text_far _MomVisitingText4
 	text_end
 
 MomVisitingText5:
-	; Do you want to save some money?
 	text_far _MomVisitingText5
 	text_end
 
 MomVisitingText6:
-	; You haven't saved that much.
 	text_far _MomVisitingText6
 	text_end
 
 MomVisitingText7:
-	; You can't take that much.
 	text_far _MomVisitingText7
 	text_end
 
 MomVisitingText8:
-	; You don't have that much.
 	text_far _MomVisitingText8
 	text_end
 
 MomVisitingText9:
-	; You can't save that much.
 	text_far _MomVisitingText9
 	text_end
 
 MomVisitingText10:
-	; OK, I'll save your money. Trust me! , stick with it!
 	text_far _MomVisitingText10
 	text_end
 
 MomVisitingText11:
-	; Your money's safe here! Get going!
 	text_far _MomVisitingText11
 	text_end
 
 MomVisitingText12:
-	; , don't give up!
 	text_far _MomVisitingText12
 	text_end
 
 MomVisitingText13:
-	; Just do what you can.
 	text_far _MomVisitingText13
 	text_end
 

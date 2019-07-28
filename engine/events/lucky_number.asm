@@ -207,12 +207,10 @@ CheckForLuckyNumberWinners:
 	dba sBox14
 
 .LuckyNumberMatchPartyText:
-	; Congratulations! We have a match with the ID number of @  in your party.
 	text_far _LuckyNumberMatchPartyText
 	text_end
 
 .LuckyNumberMatchPCText:
-	; Congratulations! We have a match with the ID number of @  in your PC BOX.
 	text_far _LuckyNumberMatchPCText
 	text_end
 

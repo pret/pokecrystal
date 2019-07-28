@@ -582,12 +582,10 @@ RooftopSaleAskPurchaseQuantity:
 	ret
 
 MartHowManyText:
-	; How many?
 	text_far _MartHowManyText
 	text_end
 
 MartFinalPriceText:
-	; @ (S) will be ¥@ .
 	text_far _MartFinalPriceText
 	text_end
 
@@ -625,107 +623,86 @@ MenuHeader_Buy:
 	ret
 
 HerbalLadyIntroText:
-	; Hello, dear. I sell inexpensive herbal medicine. They're good, but a trifle bitter. Your #MON may not like them. Hehehehe…
 	text_far _HerbalLadyIntroText
 	text_end
 
 HerbalLadyHowManyText:
-	; How many?
 	text_far _HerbalLadyHowManyText
 	text_end
 
 HerbalLadyFinalPriceText:
-	; @ (S) will be ¥@ .
 	text_far _HerbalLadyFinalPriceText
 	text_end
 
 HerbalLadyThanksText:
-	; Thank you, dear. Hehehehe…
 	text_far _HerbalLadyThanksText
 	text_end
 
 HerbalLadyPackFullText:
-	; Oh? Your PACK is full, dear.
 	text_far _HerbalLadyPackFullText
 	text_end
 
 HerbalLadyNoMoneyText:
-	; Hehehe… You don't have the money.
 	text_far _HerbalLadyNoMoneyText
 	text_end
 
 HerbalLadyComeAgainText:
-	; Come again, dear. Hehehehe…
 	text_far _HerbalLadyComeAgainText
 	text_end
 
 BargainShopIntroText:
-	; Hiya! Care to see some bargains? I sell rare items that nobody else carries--but only one of each item.
 	text_far _BargainShopIntroText
 	text_end
 
 BargainShopFinalPriceText:
-	; costs ¥@ . Want it?
 	text_far _BargainShopFinalPriceText
 	text_end
 
 BargainShopThanksText:
-	; Thanks.
 	text_far _BargainShopThanksText
 	text_end
 
 BargainShopPackFullText:
-	; Uh-oh, your PACK is chock-full.
 	text_far _BargainShopPackFullText
 	text_end
 
 BargainShopSoldOutText:
-	; You bought that already. I'm all sold out of it.
 	text_far _BargainShopSoldOutText
 	text_end
 
 BargainShopNoFundsText:
-	; Uh-oh, you're short on funds.
 	text_far _BargainShopNoFundsText
 	text_end
 
 BargainShopComeAgainText:
-	; Come by again sometime.
 	text_far _BargainShopComeAgainText
 	text_end
 
 PharmacyIntroText:
-	; What's up? Need some medicine?
 	text_far _PharmacyIntroText
 	text_end
 
 PharmacyHowManyText:
-	; How many?
 	text_far _PharmacyHowManyText
 	text_end
 
 PharmacyFinalPriceText:
-	; @ (S) will cost ¥@ .
 	text_far _PharmacyFinalPriceText
 	text_end
 
 PharmacyThanksText:
-	; Thanks much!
 	text_far _PharmacyThanksText
 	text_end
 
 PharmacyPackFullText:
-	; You don't have any more space.
 	text_far _PharmacyPackFullText
 	text_end
 
 PharmacyNoMoneyText:
-	; Huh? That's not enough money.
 	text_far _PharmacyNoMoneyText
 	text_end
 
 PharmacyComeAgainText:
-	; All right. See you around.
 	text_far _PharmacyComeAgainText
 	text_end
 
@@ -752,7 +729,6 @@ SellMenu:
 	ret
 
 .NothingToSellText:
-	; You don't have anything to sell.
 	text_far _NothingToSellText
 	text_end
 
@@ -821,12 +797,10 @@ SellMenu:
 	ret
 
 MartSellHowManyText:
-	; How many?
 	text_far _MartSellHowManyText
 	text_end
 
 MartSellPriceText:
-	; I can pay you ¥@ . Is that OK?
 	text_far _MartSellPriceText
 	text_end
 
@@ -834,7 +808,6 @@ MartSellPriceText:
 	db "！ダミー！@"
 
 MartWelcomeText:
-	; Welcome! How may I help you?
 	text_far _MartWelcomeText
 	text_end
 
@@ -852,27 +825,22 @@ MenuHeader_BuySell:
 	db "QUIT@"
 
 MartThanksText:
-	; Here you are. Thank you!
 	text_far _MartThanksText
 	text_end
 
 MartNoMoneyText:
-	; You don't have enough money.
 	text_far _MartNoMoneyText
 	text_end
 
 MartPackFullText:
-	; You can't carry any more items.
 	text_far _MartPackFullText
 	text_end
 
 MartCantBuyText:
-	; Sorry, I can't buy that from you.
 	text_far _MartCantBuyText
 	text_end
 
 MartComeAgainText:
-	; Please come again!
 	text_far _MartComeAgainText
 	text_end
 

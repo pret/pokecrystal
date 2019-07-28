@@ -32,17 +32,14 @@ _ResetClock:
 	ret
 
 .PasswordAskResetText:
-	; Password OK. Select CONTINUE & reset settings.
 	text_far _PasswordAskResetText
 	text_end
 
 .PasswordWrongText:
-	; Wrong password!
 	text_far _PasswordWrongText
 	text_end
 
 .PasswordAskResetClockText:
-	; Reset the clock?
 	text_far _PasswordAskResetClockText
 	text_end
 
@@ -102,7 +99,6 @@ ClockResetPassword:
 	ret
 
 .PasswordAskEnterText:
-	; Please enter the password.
 	text_far _PasswordAskEnterText
 	text_end
 

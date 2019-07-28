@@ -1748,17 +1748,14 @@ Slots_AskBet:
 	ret
 
 .SlotsAskBetText:
-	; Bet how many coins?
 	text_far _SlotsAskBetText
 	text_end
 
 .SlotsStartText:
-	; Start!
 	text_far _SlotsStartText
 	text_end
 
 .SlotsNoCoinsText:
-	; Not enough coins.
 	text_far _SlotsNoCoinsText
 	text_end
 
@@ -1906,12 +1903,10 @@ endr
 	ret
 
 .SlotsLinedUpText:
-	; lined up! Won @  coins!
 	text_far _SlotsLinedUpText
 	text_end
 
 .CardFlipDarnText:
-	; Darn!
 	text_far _SlotsDarnText
 	text_end
 

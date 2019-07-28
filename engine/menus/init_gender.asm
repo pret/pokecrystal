@@ -54,7 +54,6 @@ InitGender:
 	db "Girl@"
 
 AreYouABoyOrAreYouAGirlText:
-	; Are you a boy? Or are you a girl?
 	text_far _AreYouABoyOrAreYouAGirlText
 	text_end
 

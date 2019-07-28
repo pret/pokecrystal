@@ -147,32 +147,26 @@ BuenaPrize:
 	ret
 
 .BuenaAskWhichPrizeText:
-	; Which prize would you like?
 	text_far _BuenaAskWhichPrizeText
 	text_end
 
 .BuenaThatRightText:
-	; ? Is that right?
 	text_far _BuenaThatRightText
 	text_end
 
 .BuenaHereYouGoText:
-	; Here you go!
 	text_far _BuenaHereYouGoText
 	text_end
 
 .BuenaNotEnoughPointsText:
-	; You don't have enough points.
 	text_far _BuenaNotEnoughPointsText
 	text_end
 
 .BuenaNoRoomText:
-	; You have no room for it.
 	text_far _BuenaNoRoomText
 	text_end
 
 .BuenaComeAgainText:
-	; Oh. Please come back again!
 	text_far _BuenaComeAgainText
 	text_end
 

@@ -48,12 +48,10 @@ RestartClock:
 	ret
 
 .ClockTimeMayBeWrongText:
-	; The clock's time may be wrong. Please reset the time.
 	text_far _ClockTimeMayBeWrongText
 	text_end
 
 .ClockSetWithControlPadText:
-	; Set with the Control Pad. Confirm: A Button Cancel:  B Button
 	text_far _ClockSetWithControlPadText
 	text_end
 
@@ -102,12 +100,10 @@ RestartClock:
 	ret
 
 .ClockItThisOKText:
-	; Is this OK?
 	text_far _ClockItThisOKText
 	text_end
 
 .ClockHasResetText:
-	; The clock has been reset.
 	text_far _ClockHasResetText
 	text_end
 

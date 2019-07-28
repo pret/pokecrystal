@@ -6,7 +6,6 @@ RepelWoreOffScript::
 	end
 
 .Text:
-	; REPEL's effect wore off.
 	text_far _RepelWoreOffText
 	text_end
 
@@ -32,12 +31,10 @@ HiddenItemScript::
 	end
 
 .PlayerFoundItemText:
-	; found @ !
 	text_far _PlayerFoundItemText
 	text_end
 
 .ButNoSpaceText:
-	; But   has no space left…
 	text_far _ButNoSpaceText
 	text_end
 

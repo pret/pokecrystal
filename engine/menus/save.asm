@@ -1096,41 +1096,33 @@ Checksum:
 	ret
 
 WouldYouLikeToSaveTheGameText:
-	; Would you like to save the game?
 	text_far _WouldYouLikeToSaveTheGameText
 	text_end
 
 SavingDontTurnOffThePowerText:
-	; SAVING… DON'T TURN OFF THE POWER.
 	text_far _SavingDontTurnOffThePowerText
 	text_end
 
 SavedTheGameText:
-	; saved the game.
 	text_far _SavedTheGameText
 	text_end
 
 AlreadyASaveFileText:
-	; There is already a save file. Is it OK to overwrite?
 	text_far _AlreadyASaveFileText
 	text_end
 
 AnotherSaveFileText:
-	; There is another save file. Is it OK to overwrite?
 	text_far _AnotherSaveFileText
 	text_end
 
 SaveFileCorruptedText:
-	; The save file is corrupted!
 	text_far _SaveFileCorruptedText
 	text_end
 
 ChangeBoxSaveText:
-	; When you change a #MON BOX, data will be saved. OK?
 	text_far _ChangeBoxSaveText
 	text_end
 
 MoveMonWOMailSaveText:
-	; Each time you move a #MON, data will be saved. OK?
 	text_far _MoveMonWOMailSaveText
 	text_end

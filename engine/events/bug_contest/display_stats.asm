@@ -87,7 +87,6 @@ DisplayCaughtContestMonStats:
 	db " THIS <PKMN>  @"
 
 ContestAskSwitchText:
-	; Switch #MON?
 	text_far _ContestAskSwitchText
 	text_end
 
@@ -97,7 +96,6 @@ DisplayAlreadyCaughtText:
 	jp PrintText
 
 .ContestAlreadyCaughtText:
-	; You already caught a @ .
 	text_far _ContestAlreadyCaughtText
 	text_end
 

@@ -167,7 +167,6 @@ DayCareAskDepositPokemon:
 	ret
 
 .DaycareDummyText:
-	;
 	text_far _DaycareDummyText
 	text_end
 
@@ -296,102 +295,82 @@ PrintDayCareText:
 	dw .ComeAgainText ; 13
 
 .DayCareManIntroText:
-	; I'm the DAY-CARE MAN. Want me to raise a #MON?
 	text_far _DayCareManIntroText
 	text_end
 
 .DayCareManOddEggText:
-	; I'm the DAY-CARE MAN. Do you know about EGGS? I was raising #MON with my wife, you see. We were shocked to find an EGG! How incredible is that? So, want me to raise a #MON?
 	text_far _DayCareManOddEggText
 	text_end
 
 .DayCareLadyIntroText:
-	; I'm the DAY-CARE LADY. Should I raise a #MON for you?
 	text_far _DayCareLadyIntroText
 	text_end
 
 .DayCareLadyOddEggText:
-	; I'm the DAY-CARE LADY. Do you know about EGGS? My husband and I were raising some #MON, you see. We were shocked to find an EGG! How incredible could that be? Should I raise a #MON for you?
 	text_far _DayCareLadyOddEggText
 	text_end
 
 .WhatShouldIRaiseText:
-	; What should I raise for you?
 	text_far _WhatShouldIRaiseText
 	text_end
 
 .OnlyOneMonText:
-	; Oh? But you have just one #MON.
 	text_far _OnlyOneMonText
 	text_end
 
 .CantAcceptEggText:
-	; Sorry, but I can't accept an EGG.
 	text_far _CantAcceptEggText
 	text_end
 
 .RemoveMailText:
-	; Remove MAIL before you come see me.
 	text_far _RemoveMailText
 	text_end
 
 .LastHealthyMonText:
-	; If you give me that, what will you battle with?
 	text_far _LastHealthyMonText
 	text_end
 
 .IllRaiseYourMonText:
-	; OK. I'll raise your @ .
 	text_far _IllRaiseYourMonText
 	text_end
 
 .ComeBackLaterText:
-	; Come back for it later.
 	text_far _ComeBackLaterText
 	text_end
 
 .AreWeGeniusesText:
-	; Are we geniuses or what? Want to see your @ ?
 	text_far _AreWeGeniusesText
 	text_end
 
 .YourMonHasGrownText:
-	; Your @ has grown a lot. By level, it's grown by @ . If you want your #MON back, it will cost ¥@ .
 	text_far _YourMonHasGrownText
 	text_end
 
 .PerfectHeresYourMonText:
-	; Perfect! Here's your #MON.
 	text_far _PerfectHeresYourMonText
 	text_end
 
 .GotBackMonText:
-	; got back @ .
 	text_far _GotBackMonText
 	text_end
 
 .BackAlreadyText:
-	; Huh? Back already? Your @ needs a little more time with us. If you want your #MON back, it will cost ¥100.
 	text_far _BackAlreadyText
 	text_end
 
 .HaveNoRoomText:
-	; You have no room for it.
 	text_far _HaveNoRoomText
 	text_end
 
 .DCNotEnoughMoneyText:
-	; You don't have enough money.
 	text_far _DCNotEnoughMoneyText
 	text_end
 
 .OhFineThenText:
-	; Oh, fine then.
 	text_far _OhFineThenText
 	text_end
 
 .ComeAgainText:
-	; Come again.
 	text_far _ComeAgainText
 	text_end
 
@@ -404,7 +383,6 @@ DayCareManOutside:
 	ret
 
 .NotYetText:
-	; Not yet…
 	text_far _NotYetText
 	text_end
 
@@ -446,27 +424,22 @@ DayCareManOutside:
 	ret
 
 .FoundAnEggText:
-	; Ah, it's you! We were raising your #MON, and my goodness, were we surprised! Your #MON had an EGG! We don't know how it got there, but your #MON had it. You want it?
 	text_far _FoundAnEggText
 	text_end
 
 .ReceivedEggText:
-	; received the EGG!
 	text_far _ReceivedEggText
 	text_end
 
 .TakeGoodCareOfEggText:
-	; Take good care of it.
 	text_far _TakeGoodCareOfEggText
 	text_end
 
 .IllKeepItThanksText:
-	; Well then, I'll keep it. Thanks!
 	text_far _IllKeepItThanksText
 	text_end
 
 .NoRoomForEggText:
-	; You have no room in your party. Come back later.
 	text_far _NoRoomForEggText
 	text_end
 

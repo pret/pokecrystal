@@ -297,42 +297,34 @@ SeerTexts:
 	dw SeerNoLocationText
 
 SeerSeeAllText:
-	; I see all. I know all… Certainly, I know of your #MON!
 	text_far _SeerSeeAllText
 	text_end
 
 SeerCantReadText:
-	; Whaaaat? I can't tell a thing! How could I not know of this?
 	text_far _SeerCantReadText
 	text_end
 
 SeerNameLocationText:
-	; Hm… I see you met @  here: @ !
 	text_far _SeerNameLocationText
 	text_end
 
 SeerTimeLevelText:
-	; The time was @ ! Its level was @ ! Am I good or what?
 	text_far _SeerTimeLevelText
 	text_end
 
 SeerTradeText:
-	; Hm… @ came from @ in a trade? @ was where @ met @ !
 	text_far _SeerTradeText
 	text_end
 
 SeerNoLocationText:
-	; What!? Incredible! I don't understand how, but it is incredible! You are special. I can't tell where you met it, but it was at level @ . Am I good or what?
 	text_far _SeerNoLocationText
 	text_end
 
 SeerEggText:
-	; Hey! That's an EGG! You can't say that you've met it yet…
 	text_far _SeerEggText
 	text_end
 
 SeerDoNothingText:
-	; Fufufu! I saw that you'd do nothing!
 	text_far _SeerDoNothingText
 	text_end
 
@@ -372,27 +364,22 @@ SeerAdviceTexts:
 	dbw 255, SeerMoreCareText
 
 SeerMoreCareText:
-	; Incidentally… It would be wise to raise your #MON with a little more care.
 	text_far _SeerMoreCareText
 	text_end
 
 SeerMoreConfidentText:
-	; Incidentally… It seems to have grown a little. @  seems to be becoming more confident.
 	text_far _SeerMoreConfidentText
 	text_end
 
 SeerMuchStrengthText:
-	; Incidentally… @  has grown. It's gained much strength.
 	text_far _SeerMuchStrengthText
 	text_end
 
 SeerMightyText:
-	; Incidentally… It certainly has grown mighty! This @ must have come through numerous #MON battles. It looks brimming with confidence.
 	text_far _SeerMightyText
 	text_end
 
 SeerImpressedText:
-	; Incidentally… I'm impressed by your dedication. It's been a long time since I've seen a #MON as mighty as this @ . I'm sure that seeing @ in battle would excite anyone.
 	text_far _SeerImpressedText
 	text_end
 

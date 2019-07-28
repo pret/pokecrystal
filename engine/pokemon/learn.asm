@@ -201,28 +201,22 @@ ForgetMove:
 	ret
 
 MoveLearnedText:
-; <MON> learned <MOVE>!
 	text_far _MoveLearnedText
 	text_end
 
 MoveAskForgetText:
-; Which move should be forgotten?
 	text_far _MoveAskForgetText
 	text_end
 
 MoveAskStopLearningText:
-; Stop learning <MOVE>?
 	text_far _MoveAskStopLearningText
 	text_end
 
 MoveDidNotLearnText:
-; <MON> did not learn <MOVE>.
 	text_far _MoveDidNotLearnText
 	text_end
 
 MoveAskDeleteText:
-; <MON> is trying to learn <MOVE>. But <MON> can't learn more than
-; four moves. Delete an older move to make room for <MOVE>?
 	text_far _MoveAskDeleteText
 	text_end
 
@@ -237,11 +231,9 @@ Text_1_2_and_Poof:
 	ret
 
 .MoveForgotText:
-; Poof! <MON> forgot <MOVE>. And…
 	text_far _MoveForgotText
 	text_end
 
 MoveCantForgetHMText:
-; HM moves can't be forgotten now.
 	text_far _MoveCantForgetHMText
 	text_end

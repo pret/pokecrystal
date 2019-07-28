@@ -21,7 +21,6 @@ CheckForMobileBattleRules:
 	dw EggDoesNotQualifyText
 
 .BTExcuseMeText:
-	; Excuse me!
 	text_far _BTExcuseMeText
 	text_end
 
@@ -56,7 +55,6 @@ _CheckForBattleTowerRules:
 	dw YouCantTakeAnEggText
 
 ExcuseMeYoureNotReadyText:
-	; Excuse me. You're not ready.
 	text_far _ExcuseMeYoureNotReadyText
 	text_end
 
@@ -66,37 +64,30 @@ BattleTower_PleaseReturnWhenReady:
 	ret
 
 .BattleTowerReturnWhenReadyText:
-	; Please return when you're ready.
 	text_far _BattleTowerReturnWhenReadyText
 	text_end
 
 NeedAtLeastThreeMonText:
-	; You need at least three #MON.
 	text_far _NeedAtLeastThreeMonText
 	text_end
 
 EggDoesNotQualifyText:
-	; Sorry, an EGG doesn't qualify.
 	text_far _EggDoesNotQualifyText
 	text_end
 
 OnlyThreeMonMayBeEnteredText:
-	; Only three #MON may be entered.
 	text_far _OnlyThreeMonMayBeEnteredText
 	text_end
 
 TheMonMustAllBeDifferentKindsText:
-	; The @  #MON must all be different kinds.
 	text_far _TheMonMustAllBeDifferentKindsText
 	text_end
 
 TheMonMustNotHoldTheSameItemsText:
-	; The @  #MON must not hold the same items.
 	text_far _TheMonMustNotHoldTheSameItemsText
 	text_end
 
 YouCantTakeAnEggText:
-	; You can't take an EGG!
 	text_far _YouCantTakeAnEggText
 	text_end
 

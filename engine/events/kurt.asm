@@ -4,7 +4,6 @@ Kurt_PrintTextWhichApricorn:
 	ret
 
 .Text:
-	; Which APRICORN should I use?
 	text_far _WhichApricornText
 	text_end
 
@@ -14,7 +13,6 @@ Kurt_PrintTextHowMany:
 	ret
 
 .Text:
-	; How many should I make?
 	text_far _HowManyShouldIMakeText
 	text_end
 

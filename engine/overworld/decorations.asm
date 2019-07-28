@@ -383,7 +383,6 @@ PopulateDecoCategoryMenu:
 	ret
 
 .NothingToChooseText:
-	; There's nothing to choose.
 	text_far _NothingToChooseText
 	text_end
 
@@ -805,7 +804,6 @@ DecoAction_SetItUp_Ornament:
 	ret
 
 WhichSidePutOnText:
-	; Which side do you want to put it on?
 	text_far _WhichSidePutOnText
 	text_end
 
@@ -831,7 +829,6 @@ DecoAction_PutItAway_Ornament:
 	ret
 
 WhichSidePutAwayText:
-	; Which side do you want to put away?
 	text_far _WhichSidePutAwayText
 	text_end
 
@@ -884,27 +881,22 @@ MenuData_0x26eb3:
 	db "CANCEL@"
 
 PutAwayTheDecoText:
-	; Put away the @ .
 	text_far _PutAwayTheDecoText
 	text_end
 
 NothingToPutAwayText:
-	; There's nothing to put away.
 	text_far _NothingToPutAwayText
 	text_end
 
 SetUpTheDecoText:
-	; Set up the @ .
 	text_far _SetUpTheDecoText
 	text_end
 
 PutAwayAndSetUpText:
-	; Put away the @ and set up the @ .
 	text_far _PutAwayAndSetUpText
 	text_end
 
 AlreadySetUpText:
-	; That's already set up.
 	text_far _AlreadySetUpText
 	text_end
 
@@ -1012,7 +1004,6 @@ DecorationDesc_TownMapPoster:
 	end
 
 .LookTownMapText:
-	; It's the TOWN MAP.
 	text_far _LookTownMapText
 	text_end
 
@@ -1020,7 +1011,6 @@ DecorationDesc_PikachuPoster:
 	jumptext .LookPikachuPosterText
 
 .LookPikachuPosterText:
-	; It's a poster of a cute PIKACHU.
 	text_far _LookPikachuPosterText
 	text_end
 
@@ -1028,7 +1018,6 @@ DecorationDesc_ClefairyPoster:
 	jumptext .LookClefairyPosterText
 
 .LookClefairyPosterText:
-	; It's a poster of a cute CLEFAIRY.
 	text_far _LookClefairyPosterText
 	text_end
 
@@ -1036,7 +1025,6 @@ DecorationDesc_JigglypuffPoster:
 	jumptext .LookJigglypuffPosterText
 
 .LookJigglypuffPosterText:
-	; It's a poster of a cute JIGGLYPUFF.
 	text_far _LookJigglypuffPosterText
 	text_end
 
@@ -1067,7 +1055,6 @@ DecorationDesc_OrnamentOrConsole:
 	jumptext .LookAdorableDecoText
 
 .LookAdorableDecoText:
-	; It's an adorable @ .
 	text_far _LookAdorableDecoText
 	text_end
 
@@ -1080,7 +1067,6 @@ DecorationDesc_GiantOrnament:
 	jumptext .LookGiantDecoText
 
 .LookGiantDecoText:
-	; A giant doll! It's fluffy and cuddly.
 	text_far _LookGiantDecoText
 	text_end
 

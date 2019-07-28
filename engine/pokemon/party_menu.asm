@@ -804,52 +804,42 @@ PrintPartyMenuActionText:
 	dw .CameToItsSensesText
 
 .RecoveredSomeHPText:
-	; recovered @ HP!
 	text_far _RecoveredSomeHPText
 	text_end
 
 .CuredOfPoisonText:
-	; 's cured of poison.
 	text_far _CuredOfPoisonText
 	text_end
 
 .RidOfParalysisText:
-	; 's rid of paralysis.
 	text_far _RidOfParalysisText
 	text_end
 
 .BurnWasHealedText:
-	; 's burn was healed.
 	text_far _BurnWasHealedText
 	text_end
 
 .WasDefrostedText:
-	; was defrosted.
 	text_far _WasDefrostedText
 	text_end
 
 .WokeUpText:
-	; woke up.
 	text_far _WokeUpText
 	text_end
 
 .HealthReturnedText:
-	; 's health returned.
 	text_far _HealthReturnedText
 	text_end
 
 .RevitalizedText:
-	; is revitalized.
 	text_far _RevitalizedText
 	text_end
 
 .GrewToLevelText:
-	; grew to level @ !@ @
 	text_far _GrewToLevelText
 	text_end
 
 .CameToItsSensesText:
-	; came to its senses.
 	text_far _CameToItsSensesText
 	text_end
 

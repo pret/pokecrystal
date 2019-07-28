@@ -1190,12 +1190,10 @@ TradeAnim_SentToOTText:
 	ret
 
 .MonWasSentToText:
-	; was sent to @ .
 	text_far _MonWasSentToText
 	text_end
 
 .MonNameSentToText:
-	;
 	text_far _MonNameSentToText
 	text_end
 
@@ -1210,12 +1208,10 @@ TradeAnim_OTBidsFarewell:
 	ret
 
 .BidsFarewellToMonText:
-	; bids farewell to
 	text_far _BidsFarewellToMonText
 	text_end
 
 .MonNameBidsFarewellText:
-	; .
 	text_far _MonNameBidsFarewellText
 	text_end
 
@@ -1233,7 +1229,6 @@ TradeAnim_TakeCareOfText:
 	ret
 
 .TakeGoodCareOfMonText:
-	; Take good care of @ .
 	text_far _TakeGoodCareOfMonText
 	text_end
 
@@ -1250,12 +1245,10 @@ TradeAnim_OTSendsText1:
 	ret
 
 .ForYourMonSendsText:
-	; For @ 's @ ,
 	text_far _ForYourMonSendsText
 	text_end
 
 .OTSendsText:
-	; sends @ .
 	text_far _OTSendsText
 	text_end
 
@@ -1272,12 +1265,10 @@ TradeAnim_OTSendsText2:
 	ret
 
 .WillTradeText:
-	; will trade @ @
 	text_far _WillTradeText
 	text_end
 
 .ForYourMonWillTradeText:
-	; for @ 's @ .
 	text_far _ForYourMonWillTradeText
 	text_end
 

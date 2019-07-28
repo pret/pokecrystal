@@ -431,7 +431,6 @@ TradeTexts:
 	dw NPCTradeAfterText3
 
 NPCTradeCableText:
-	; OK, connect the Game Link Cable.
 	text_far _NPCTradeCableText
 	text_end
 
@@ -446,92 +445,73 @@ TradedForText:
 	ret
 
 .done
-	; sound_dex_fanfare_80_109
-	; text_pause
 	text_far _NPCTradeFanfareText
 	text_end
 
 NPCTradeIntroText1:
-	; I collect #MON. Do you have @ ? Want to trade it for my @ ?
 	text_far _NPCTradeIntroText1
 	text_end
 
 NPCTradeCancelText1:
-	; You don't want to trade? Aww…
 	text_far _NPCTradeCancelText1
 	text_end
 
 NPCTradeWrongText1:
-	; Huh? That's not @ .  What a letdown…
 	text_far _NPCTradeWrongText1
 	text_end
 
 NPCTradeCompleteText1:
-	; Yay! I got myself @ ! Thanks!
 	text_far _NPCTradeCompleteText1
 	text_end
 
 NPCTradeAfterText1:
-	; Hi, how's my old @  doing?
 	text_far _NPCTradeAfterText1
 	text_end
 
 NPCTradeIntroText2:
-	; Hi, I'm looking for this #MON. If you have @ , would you trade it for my @ ?
 	text_far _NPCTradeIntroText2
 	text_end
 
 NPCTradeCancelText2:
-	; You don't have one either? Gee, that's really disappointing…
 	text_far _NPCTradeCancelText2
 	text_end
 
 NPCTradeWrongText2:
-	; You don't have @ ? That's too bad, then.
 	text_far _NPCTradeWrongText2
 	text_end
 
 NPCTradeCompleteText2:
-	; Great! Thank you! I finally got @ .
 	text_far _NPCTradeCompleteText2
 	text_end
 
 NPCTradeAfterText2:
-	; Hi! The @ you traded me is doing great!
 	text_far _NPCTradeAfterText2
 	text_end
 
 NPCTradeIntroText3:
-	; 's cute, but I don't have it. Do you have @ ? Want to trade it for my @ ?
 	text_far _NPCTradeIntroText3
 	text_end
 
 NPCTradeCancelText3:
-	; You don't want to trade? Oh, darn…
 	text_far _NPCTradeCancelText3
 	text_end
 
 NPCTradeWrongText3:
-	; That's not @ . Please trade with me if you get one.
 	text_far _NPCTradeWrongText3
 	text_end
 
 NPCTradeCompleteText3:
-	; Wow! Thank you! I always wanted @ !
 	text_far _NPCTradeCompleteText3
 	text_end
 
 NPCTradeAfterText3:
-	; How is that @  I traded you doing? Your @ 's so cute!
 	text_far _NPCTradeAfterText3
 	text_end
 
 NPCTradeCompleteText4:
-	; Uh? What happened?
 	text_far _NPCTradeCompleteText4
 	text_end
 
 NPCTradeAfterText4:
-	; Trading is so odd… I still have a lot to learn about it.
 	text_far _NPCTradeAfterText4
 	text_end

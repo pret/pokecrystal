@@ -5672,32 +5672,26 @@ BattleCommand_Charge:
 	ret
 
 .BattleMadeWhirlwindText:
-; 'made a whirlwind!'
 	text_far _BattleMadeWhirlwindText
 	text_end
 
 .BattleTookSunlightText:
-; 'took in sunlight!'
 	text_far _BattleTookSunlightText
 	text_end
 
 .BattleLoweredHeadText:
-; 'lowered its head!'
 	text_far _BattleLoweredHeadText
 	text_end
 
 .BattleGlowingText:
-; 'is glowing!'
 	text_far _BattleGlowingText
 	text_end
 
 .BattleFlewText:
-; 'flew up high!'
 	text_far _BattleFlewText
 	text_end
 
 .BattleDugText:
-; 'dug a hole!'
 	text_far _BattleDugText
 	text_end
 

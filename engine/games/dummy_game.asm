@@ -321,12 +321,10 @@ DummyGame_CheckMatch:
 	ret
 
 DummyGameYeahText:
-	; , yeah!
 	text_far _DummyGameYeahText
 	text_end
 
 DummyGameDarnText:
-	; Darn…
 	text_far _DummyGameDarnText
 	text_end
 

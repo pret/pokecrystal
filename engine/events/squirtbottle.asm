@@ -16,7 +16,6 @@ _Squirtbottle:
 	jumptext .SquirtbottleNothingText
 
 .SquirtbottleNothingText:
-	; sprinkled water. But nothing happened…
 	text_far _SquirtbottleNothingText
 	text_end
 

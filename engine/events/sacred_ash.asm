@@ -65,6 +65,5 @@ SacredAshScript:
 	end
 
 UseSacredAshText:
-	; 's #MON were all healed!
 	text_far _UseSacredAshText
 	text_end

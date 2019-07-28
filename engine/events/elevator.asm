@@ -138,7 +138,6 @@ Elevator_AskWhichFloor:
 	ret
 
 AskFloorElevatorText:
-	; Which floor?
 	text_far _AskFloorElevatorText
 	text_end
 
