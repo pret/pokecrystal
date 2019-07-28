@@ -287,53 +287,53 @@ PrintSeerText:
 	ret
 
 SeerTexts:
-	dw SeerIntroText
-	dw SeerCantTellText
-	dw SeerMetAtText
+	dw SeerSeeAllText
+	dw SeerCantReadText
+	dw SeerNameLocationText
 	dw SeerTimeLevelText
-	dw SeerTradedText
-	dw SeerCancelText
+	dw SeerTradeText
+	dw SeerDoNothingText
 	dw SeerEggText
-	dw SeerLevelOnlyText
+	dw SeerNoLocationText
 
-SeerIntroText:
+SeerSeeAllText:
 	; I see all. I know all… Certainly, I know of your #MON!
-	text_far Text_SeerSeeAll
+	text_far _SeerSeeAllText
 	text_end
 
-SeerCantTellText:
+SeerCantReadText:
 	; Whaaaat? I can't tell a thing! How could I not know of this?
-	text_far Text_SeerCantRead
+	text_far _SeerCantReadText
 	text_end
 
-SeerMetAtText:
+SeerNameLocationText:
 	; Hm… I see you met @  here: @ !
-	text_far Text_SeerNameLocation
+	text_far _SeerNameLocationText
 	text_end
 
 SeerTimeLevelText:
 	; The time was @ ! Its level was @ ! Am I good or what?
-	text_far Text_SeerTimeLevel
+	text_far _SeerTimeLevelText
 	text_end
 
-SeerTradedText:
+SeerTradeText:
 	; Hm… @ came from @ in a trade? @ was where @ met @ !
-	text_far Text_SeerTrade
+	text_far _SeerTradeText
 	text_end
 
-SeerLevelOnlyText:
+SeerNoLocationText:
 	; What!? Incredible! I don't understand how, but it is incredible! You are special. I can't tell where you met it, but it was at level @ . Am I good or what?
-	text_far Text_SeerNoLocation
+	text_far _SeerNoLocationText
 	text_end
 
 SeerEggText:
 	; Hey! That's an EGG! You can't say that you've met it yet…
-	text_far Text_SeerEgg
+	text_far _SeerEggText
 	text_end
 
-SeerCancelText:
+SeerDoNothingText:
 	; Fufufu! I saw that you'd do nothing!
-	text_far Text_SeerDoNothing
+	text_far _SeerDoNothingText
 	text_end
 
 SeerAdvice:
@@ -364,36 +364,36 @@ SeerAdvice:
 
 SeerAdviceTexts:
 ; level, text
-	dbw 9,   SeerAdvice1
-	dbw 29,  SeerAdvice2
-	dbw 59,  SeerAdvice3
-	dbw 89,  SeerAdvice4
-	dbw 100, SeerAdvice5
-	dbw 255, SeerAdvice1
+	dbw 9,   SeerMoreCareText
+	dbw 29,  SeerMoreConfidentText
+	dbw 59,  SeerMuchStrengthText
+	dbw 89,  SeerMightyText
+	dbw 100, SeerImpressedText
+	dbw 255, SeerMoreCareText
 
-SeerAdvice1:
+SeerMoreCareText:
 	; Incidentally… It would be wise to raise your #MON with a little more care.
-	text_far Text_SeerMoreCare
+	text_far _SeerMoreCareText
 	text_end
 
-SeerAdvice2:
+SeerMoreConfidentText:
 	; Incidentally… It seems to have grown a little. @  seems to be becoming more confident.
-	text_far Text_SeerMoreConfident
+	text_far _SeerMoreConfidentText
 	text_end
 
-SeerAdvice3:
+SeerMuchStrengthText:
 	; Incidentally… @  has grown. It's gained much strength.
-	text_far Text_SeerMuchStrength
+	text_far _SeerMuchStrengthText
 	text_end
 
-SeerAdvice4:
+SeerMightyText:
 	; Incidentally… It certainly has grown mighty! This @ must have come through numerous #MON battles. It looks brimming with confidence.
-	text_far Text_SeerMighty
+	text_far _SeerMightyText
 	text_end
 
-SeerAdvice5:
+SeerImpressedText:
 	; Incidentally… I'm impressed by your dedication. It's been a long time since I've seen a #MON as mighty as this @ . I'm sure that seeing @ in battle would excite anyone.
-	text_far Text_SeerImpressed
+	text_far _SeerImpressedText
 	text_end
 
 GetCaughtGender:

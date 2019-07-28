@@ -1,9 +1,9 @@
 MoveDeletion:
-	ld hl, .IntroText
+	ld hl, .DeleterIntroText
 	call PrintText
 	call YesNoBox
 	jr c, .declined
-	ld hl, .AskWhichMonText
+	ld hl, .DeleterAskWhichMonText
 	call PrintText
 	farcall SelectMonFromParty
 	jr c, .declined
@@ -17,7 +17,7 @@ MoveDeletion:
 	ld a, [hl]
 	and a
 	jr z, .onlyonemove
-	ld hl, .AskWhichMoveText
+	ld hl, .DeleterAskWhichMoveText
 	call PrintText
 	call LoadStandardMenuHeader
 	farcall ChooseMoveToDelete
@@ -30,7 +30,7 @@ MoveDeletion:
 	ld a, [wCurSpecies]
 	ld [wNamedObjectIndexBuffer], a
 	call GetMoveName
-	ld hl, .ConfirmDeleteText
+	ld hl, .AskDeleteMoveText
 	call PrintText
 	call YesNoBox
 	pop bc
@@ -40,63 +40,63 @@ MoveDeletion:
 	ld de, SFX_MOVE_DELETED
 	call PlaySFX
 	call WaitSFX
-	ld hl, .MoveDeletedText
+	ld hl, .DeleterForgotMoveText
 	call PrintText
 	ret
 
 .egg
-	ld hl, .EggText
+	ld hl, .MailEggText
 	call PrintText
 	ret
 
 .declined
-	ld hl, .DeclinedDeletionText
+	ld hl, .DeleterNoComeAgainText
 	call PrintText
 	ret
 
 .onlyonemove
-	ld hl, .OnlyOneMoveText
+	ld hl, .MoveKnowsOneText
 	call PrintText
 	ret
 
-.OnlyOneMoveText:
+.MoveKnowsOneText:
 	; That #MON knows only one move.
-	text_far Text_MoveKnowsOne
+	text_far _MoveKnowsOneText
 	text_end
 
-.ConfirmDeleteText:
+.AskDeleteMoveText:
 	; Oh, make it forget @ ?
-	text_far Text_AskDeleteMove
+	text_far _AskDeleteMoveText
 	text_end
 
-.MoveDeletedText:
+.DeleterForgotMoveText:
 	; Done! Your #MON forgot the move.
-	text_far Text_DeleterForgotMove
+	text_far _DeleterForgotMoveText
 	text_end
 
-.EggText:
+.MailEggText:
 	; An EGG doesn't know any moves!
-	text_far Text_DeleterEgg
+	text_far _DeleterEggText
 	text_end
 
-.DeclinedDeletionText:
+.DeleterNoComeAgainText:
 	; No? Come visit me again.
-	text_far Text_DeleterNoComeAgain
+	text_far _DeleterNoComeAgainText
 	text_end
 
-.AskWhichMoveText:
+.DeleterAskWhichMoveText:
 	; Which move should it forget, then?
-	text_far Text_DeleterAskWhichMove
+	text_far _DeleterAskWhichMoveText
 	text_end
 
-.IntroText:
+.DeleterIntroText:
 	; Um… Oh, yes, I'm the MOVE DELETER. I can make #MON forget moves. Shall I make a #MON forget?
-	text_far Text_DeleterIntro
+	text_far _DeleterIntroText
 	text_end
 
-.AskWhichMonText:
+.DeleterAskWhichMonText:
 	; Which #MON?
-	text_far Text_DeleterAskMon
+	text_far _DeleterAskWhichMonText
 	text_end
 
 .DeleteMove:

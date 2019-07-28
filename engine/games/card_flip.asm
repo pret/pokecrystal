@@ -102,7 +102,7 @@ _CardFlip:
 	ret
 
 .AskPlayWithThree:
-	ld hl, .PlayWithThreeCoinsText
+	ld hl, .CardFlipAskThreeCoinText
 	call CardFlip_UpdateCoinBalanceDisplay
 	call YesNoBox
 	jr c, .SaidNo
@@ -115,9 +115,9 @@ _CardFlip:
 	ld [wJumptableIndex], a
 	ret
 
-.PlayWithThreeCoinsText:
+.CardFlipAskThreeCoinText:
 	; Play with three coins?
-	text_far Text_CardFlipAskThreeCoin
+	text_far _CardFlipAskThreeCoinText
 	text_end
 
 .DeductCoins:
@@ -131,7 +131,7 @@ _CardFlip:
 	ld a, l
 	cp 3
 	jr nc, .deduct ; You have at least 3 coins.
-	ld hl, .NotEnoughCoinsText
+	ld hl, .CardFlipNotEnoughText
 	call CardFlip_UpdateCoinBalanceDisplay
 	ld a, 7
 	ld [wJumptableIndex], a
@@ -155,9 +155,9 @@ _CardFlip:
 	call .Increment
 	ret
 
-.NotEnoughCoinsText:
+.CardFlipNotEnoughText:
 	; Not enough coins…
-	text_far Text_CardFlipNotEnough
+	text_far _CardFlipNotEnoughText
 	text_end
 
 .ChooseACard:
@@ -184,7 +184,7 @@ _CardFlip:
 	hlcoord 2, 6
 	call PlaceCardFaceDown
 	call WaitBGMap
-	ld hl, .ChooseACardText
+	ld hl, .CardFlipChooseCardText
 	call CardFlip_UpdateCoinBalanceDisplay
 	xor a
 	ld [wCardFlipWhichCard], a
@@ -232,13 +232,13 @@ _CardFlip:
 	call .Increment
 	ret
 
-.ChooseACardText:
+.CardFlipChooseCardText:
 	; Choose a card.
-	text_far Text_CardFlipChooseCard
+	text_far _CardFlipChooseCardText
 	text_end
 
 .PlaceYourBet:
-	ld hl, .PlaceYourBetText
+	ld hl, .CardFlipPlaceBetText
 	call CardFlip_UpdateCoinBalanceDisplay
 .betloop
 	call JoyTextDelay
@@ -254,9 +254,9 @@ _CardFlip:
 	call .Increment
 	ret
 
-.PlaceYourBetText:
+.CardFlipPlaceBetText:
 	; Place your bet.
-	text_far Text_CardFlipPlaceBet
+	text_far _CardFlipPlaceBetText
 	text_end
 
 .CheckTheCard:
@@ -296,7 +296,7 @@ _CardFlip:
 
 .PlayAgain:
 	call ClearSprites
-	ld hl, .PlayAgainText
+	ld hl, .CardFlipAskPlayAgainText
 	call CardFlip_UpdateCoinBalanceDisplay
 	call YesNoBox
 	jr nc, .Continue
@@ -313,7 +313,7 @@ _CardFlip:
 	ld a, $1
 	ldh [hBGMapMode], a
 	call CardFlip_ShuffleDeck
-	ld hl, .CardsShuffledText
+	ld hl, .CardFlipShuffledText
 	call PrintText
 	jr .LoopAround
 
@@ -325,14 +325,14 @@ _CardFlip:
 	ld [wJumptableIndex], a
 	ret
 
-.PlayAgainText:
+.CardFlipAskPlayAgainText:
 	; Want to play again?
-	text_far Text_CardFlipAskPlayAgain
+	text_far _CardFlipAskPlayAgainText
 	text_end
 
-.CardsShuffledText:
+.CardFlipShuffledText:
 	; The cards have been shuffled.
-	text_far Text_CardFlipShuffled
+	text_far _CardFlipShuffledText
 	text_end
 
 .Quit:
@@ -1085,7 +1085,7 @@ CardFlip_CheckWinCondition:
 .Lose:
 	ld de, SFX_WRONG
 	call PlaySFX
-	ld hl, .Text_Darn
+	ld hl, .CardFlipDarnText
 	call CardFlip_UpdateCoinBalanceDisplay
 	call WaitSFX
 	ret
@@ -1093,7 +1093,7 @@ CardFlip_CheckWinCondition:
 .Payout:
 	push bc
 	push de
-	ld hl, .Text_Yeah
+	ld hl, .CardFlipYeahText
 	call CardFlip_UpdateCoinBalanceDisplay
 	pop de
 	call PlaySFX
@@ -1114,14 +1114,14 @@ CardFlip_CheckWinCondition:
 	jr nz, .loop
 	ret
 
-.Text_Yeah:
+.CardFlipYeahText:
 	; Yeah!
-	text_far Text_CardFlipYeah
+	text_far _CardFlipYeahText
 	text_end
 
-.Text_Darn:
+.CardFlipDarnText:
 	; Darn…
-	text_far Text_CardFlipDarn
+	text_far _CardFlipDarnText
 	text_end
 
 .AddCoinPlaySFX:

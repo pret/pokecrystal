@@ -18,26 +18,26 @@ BugCatchingContestBattleScript::
 BugCatchingContestOverScript::
 	playsound SFX_ELEVATOR_END
 	opentext
-	writetext BugCatchingContestText_BeeepTimesUp
+	writetext BugCatchingContestTimeUpText
 	waitbutton
 	sjump BugCatchingContestReturnToGateScript
 
 BugCatchingContestOutOfBallsScript:
 	playsound SFX_ELEVATOR_END
 	opentext
-	writetext BugCatchingContestText_ContestIsOver
+	writetext BugCatchingContestIsOverText
 	waitbutton
 
 BugCatchingContestReturnToGateScript:
 	closetext
 	jumpstd bugcontestresultswarp
 
-BugCatchingContestText_BeeepTimesUp:
+BugCatchingContestTimeUpText:
 	; ANNOUNCER: BEEEP! Time's up!
-	text_far Text_ContestTimeUp
+	text_far _BugCatchingContestTimeUpText
 	text_end
 
-BugCatchingContestText_ContestIsOver:
+BugCatchingContestIsOverText:
 	; ANNOUNCER: The Contest is over!
-	text_far Text_ContestOver
+	text_far _BugCatchingContestIsOverText
 	text_end

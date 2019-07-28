@@ -29,7 +29,7 @@ endr
 
 RestartClock:
 ; If we're here, we had an RTC overflow.
-	ld hl, .Text_ClockTimeMayBeWrong
+	ld hl, .ClockTimeMayBeWrongText
 	call PrintText
 	ld hl, wOptions
 	ld a, [hl]
@@ -37,7 +37,7 @@ RestartClock:
 	set NO_TEXT_SCROLL, [hl]
 	call LoadStandardMenuHeader
 	call ClearTileMap
-	ld hl, .Text_SetWithControlPad
+	ld hl, .ClockSetWithControlPadText
 	call PrintText
 	call .SetClock
 	call ExitMenu
@@ -47,14 +47,14 @@ RestartClock:
 	ld c, a
 	ret
 
-.Text_ClockTimeMayBeWrong:
+.ClockTimeMayBeWrongText:
 	; The clock's time may be wrong. Please reset the time.
-	text_far Text_ClockReset
+	text_far _ClockTimeMayBeWrongText
 	text_end
 
-.Text_SetWithControlPad:
+.ClockSetWithControlPadText:
 	; Set with the Control Pad. Confirm: A Button Cancel:  B Button
-	text_far Text_ClockSetting
+	text_far _ClockSetWithControlPadText
 	text_end
 
 .SetClock:
@@ -77,7 +77,7 @@ RestartClock:
 	and a
 	ret nz
 	call .PrintTime
-	ld hl, .Text_IsThisOK
+	ld hl, .ClockItThisOKText
 	call PrintText
 	call YesNoBox
 	jr c, .cancel
@@ -91,7 +91,7 @@ RestartClock:
 	ld [wStringBuffer2 + 3], a
 	call InitTime
 	call .PrintTime
-	ld hl, .Text_ClockReset
+	ld hl, .ClockHasResetText
 	call PrintText
 	call WaitPressAorB_BlinkCursor
 	xor a
@@ -101,14 +101,14 @@ RestartClock:
 	ld a, $1
 	ret
 
-.Text_IsThisOK:
+.ClockItThisOKText:
 	; Is this OK?
-	text_far Text_ClockAskOk
+	text_far _ClockItThisOKText
 	text_end
 
-.Text_ClockReset:
+.ClockHasResetText:
 	; The clock has been reset.
-	text_far Text_ClockHasReset
+	text_far _ClockHasResetText
 	text_end
 
 .joy_loop

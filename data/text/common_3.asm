@@ -25,7 +25,7 @@ _OakText7::
 	line "later!"
 	done
 
-Text_ClockReset::
+_ClockTimeMayBeWrongText::
 	text "The clock's time"
 	line "may be wrong."
 
@@ -33,7 +33,7 @@ Text_ClockReset::
 	line "time."
 	prompt
 
-Text_ClockSetting::
+_ClockSetWithControlPadText::
 	text "Set with the"
 	line "Control Pad."
 
@@ -41,28 +41,28 @@ Text_ClockSetting::
 	line "Cancel:  B Button"
 	done
 
-Text_ClockAskOk::
+_ClockItThisOKText::
 	text "Is this OK?"
 	done
 
-Text_ClockHasReset::
+_ClockHasResetText::
 	text "The clock has been"
 	line "reset."
 	done
 
-Text_LinkTimeout::
+_LinkTimeoutText::
 	text "Too much time has"
 	line "elapsed. Please"
 	cont "try again."
 	prompt
 
-Text_LinkTradeCantBattle::
+_LinkTradeCantBattleText::
 	text "If you trade that"
 	line "#MON, you won't"
 	cont "be able to battle."
 	prompt
 
-Text_LinkAbnormalMon::
+_LinkAbnormalMonText::
 	text "Your friend's"
 	line "@"
 	text_ram wStringBuffer1
@@ -70,7 +70,7 @@ Text_LinkAbnormalMon::
 	cont "to be abnormal!"
 	prompt
 
-Text_LinkAskTradeFor::
+_LinkAskTradeForText::
 	text "Trade @"
 	text_ram wd004
 	text_start
@@ -196,45 +196,45 @@ UnknownText_0x1c4525::
 	text " min."
 	done
 
-Text_AskSave::
+_WouldYouLikeToSaveTheGameText::
 	text "Would you like to"
 	line "save the game?"
 	done
 
-Text_SaveNoPowerOff::
+_SavingDontTurnOffThePowerText::
 	text "SAVING… DON'T TURN"
 	line "OFF THE POWER."
 	done
 
-Text_SavedGame::
+_SavedTheGameText::
 	text "<PLAYER> saved"
 	line "the game."
 	done
 
-Text_SaveAskOverwrite::
+_AlreadyASaveFileText::
 	text "There is already a"
 	line "save file. Is it"
 	cont "OK to overwrite?"
 	done
 
-Text_SaveAskOverwrite2::
+_AnotherSaveFileText::
 	text "There is another"
 	line "save file. Is it"
 	cont "OK to overwrite?"
 	done
 
-Text_SaveCorrupt::
+_SaveFileCorruptedText::
 	text "The save file is"
 	line "corrupted!"
 	prompt
 
-Text_SaveMonBox::
+_ChangeBoxSaveText::
 	text "When you change a"
 	line "#MON BOX, data"
 	cont "will be saved. OK?"
 	done
 
-Text_SaveMonData::
+_MoveMonWOMailSaveText::
 	text "Each time you move"
 	line "a #MON, data"
 	cont "will be saved. OK?"
@@ -246,7 +246,7 @@ UnknownText_0x1c4693::
 	line "area was exceeded."
 	done
 
-Text_MenuNoWindow::
+_MenuNoWindowText::
 	text "No windows avail-"
 	line "able for popping."
 	done
@@ -260,22 +260,22 @@ _ObjectEventText::
 	text "Object event"
 	done
 
-Text_BGEvent::
+_BGEventText::
 	text "BG event"
 	done
 
-Text_CoordEvent::
+_CoordinatesEventText::
 	text "Coordinates event"
 	done
 
-Text_ReceivedItem::
+_ReceivedItemText::
 	text "<PLAYER> received"
 	line "@"
 	text_ram wStringBuffer4
 	text "."
 	done
 
-Text_ItemInPocket::
+_PutItemInPocketText::
 	text "<PLAYER> put the"
 	line "@"
 	text_ram wStringBuffer1
@@ -285,14 +285,14 @@ Text_ItemInPocket::
 	text "."
 	prompt
 
-Text_BagFull::
+_PocketIsFullText::
 	text "The @"
 	text_ram wStringBuffer3
 	text_start
 	line "is full…"
 	prompt
 
-Text_SeerSeeAll::
+_SeerSeeAllText::
 	text "I see all."
 	line "I know all…"
 
@@ -300,7 +300,7 @@ Text_SeerSeeAll::
 	line "of your #MON!"
 	done
 
-Text_SeerCantRead::
+_SeerCantReadText::
 	text "Whaaaat? I can't"
 	line "tell a thing!"
 
@@ -308,7 +308,7 @@ Text_SeerCantRead::
 	line "know of this?"
 	done
 
-Text_SeerNameLocation::
+_SeerNameLocationText::
 	text "Hm… I see you met"
 	line "@"
 	text_ram wSeerNickname
@@ -318,7 +318,7 @@ Text_SeerNameLocation::
 	text "!"
 	prompt
 
-Text_SeerTimeLevel::
+_SeerTimeLevelText::
 	text "The time was"
 	line "@"
 	text_ram wSeerTimeOfDay
@@ -331,7 +331,7 @@ Text_SeerTimeLevel::
 	para "Am I good or what?"
 	prompt
 
-Text_SeerTrade::
+_SeerTradeText::
 	text "Hm… @"
 	text_ram wSeerNickname
 	text_start
@@ -351,7 +351,7 @@ Text_SeerTrade::
 	text "!"
 	prompt
 
-Text_SeerNoLocation::
+_SeerNoLocationText::
 	text "What!? Incredible!"
 
 	para "I don't understand"
@@ -369,7 +369,7 @@ Text_SeerNoLocation::
 	para "Am I good or what?"
 	prompt
 
-Text_SeerEgg::
+_SeerEggText::
 	text "Hey!"
 
 	para "That's an EGG!"
@@ -378,12 +378,12 @@ Text_SeerEgg::
 	line "you've met it yet…"
 	done
 
-Text_SeerDoNothing::
+_SeerDoNothingText::
 	text "Fufufu! I saw that"
 	line "you'd do nothing!"
 	done
 
-Text_SeerMoreCare::
+_SeerMoreCareText::
 	text "Incidentally…"
 
 	para "It would be wise"
@@ -393,7 +393,7 @@ Text_SeerMoreCare::
 	line "little more care."
 	done
 
-Text_SeerMoreConfident::
+_SeerMoreConfidentText::
 	text "Incidentally…"
 
 	para "It seems to have"
@@ -406,7 +406,7 @@ Text_SeerMoreConfident::
 	cont "more confident."
 	done
 
-Text_SeerMuchStrength::
+_SeerMuchStrengthText::
 	text "Incidentally…"
 
 	para "@"
@@ -416,7 +416,7 @@ Text_SeerMuchStrength::
 	cont "much strength."
 	done
 
-Text_SeerMighty::
+_SeerMightyText::
 	text "Incidentally…"
 
 	para "It certainly has"
@@ -434,7 +434,7 @@ Text_SeerMighty::
 	line "with confidence."
 	done
 
-Text_SeerImpressed::
+_SeerImpressedText::
 	text "Incidentally…"
 
 	para "I'm impressed by"
@@ -458,7 +458,7 @@ Text_SeerImpressed::
 	line "excite anyone."
 	done
 
-Text_Evolved1::
+_CongratulationsYourPokemonText::
 	text "Congratulations!"
 	line "Your @"
 	text_ram wStringBuffer2
@@ -466,7 +466,7 @@ Text_Evolved1::
 
 	text_end ; unused
 
-Text_Evolved2::
+_EvolvedIntoText::
 	text_start
 
 	para "evolved into"
@@ -475,25 +475,25 @@ Text_Evolved2::
 	text "!"
 	done
 
-Text_EvolveStop::
+_StoppedEvolvingText::
 	text "Huh? @"
 	text_ram wStringBuffer2
 	text_start
 	line "stopped evolving!"
 	prompt
 
-Text_Evolving::
+_EvolvingText::
 	text "What? @"
 	text_ram wStringBuffer2
 	text_start
 	line "is evolving!"
 	done
 
-Text_MartHowMany::
+_MartHowManyText::
 	text "How many?"
 	done
 
-Text_MartFinalPrice::
+_MartFinalPriceText::
 	text_decimal wItemQuantityChangeBuffer, 1, 2
 	text " @"
 	text_ram wStringBuffer2
@@ -503,7 +503,7 @@ Text_MartFinalPrice::
 	text "."
 	done
 
-Text_HerbalLady::
+_HerbalLadyIntroText::
 	text "Hello, dear."
 
 	para "I sell inexpensive"
@@ -518,11 +518,11 @@ Text_HerbalLady::
 	para "Hehehehe…"
 	done
 
-Text_HerbalLadyHowMany::
+_HerbalLadyHowManyText::
 	text "How many?"
 	done
 
-Text_HerbalLadyFinalPrice::
+_HerbalLadyFinalPriceText::
 	text_decimal wItemQuantityChangeBuffer, 1, 2
 	text " @"
 	text_ram wStringBuffer2
@@ -532,27 +532,27 @@ Text_HerbalLadyFinalPrice::
 	text "."
 	done
 
-Text_HerbalLadyThanks::
+_HerbalLadyThanksText::
 	text "Thank you, dear."
 	line "Hehehehe…"
 	done
 
-Text_HerbalLadyPackFull::
+_HerbalLadyPackFullText::
 	text "Oh? Your PACK is"
 	line "full, dear."
 	done
 
-Text_HerbalLadyNoMoney::
+_HerbalLadyNoMoneyText::
 	text "Hehehe… You don't"
 	line "have the money."
 	done
 
-Text_HerbalLadyComeAgain::
+_HerbalLadyComeAgainText::
 	text "Come again, dear."
 	line "Hehehehe…"
 	done
 
-Text_BargainShop::
+_BargainShopIntroText::
 	text "Hiya! Care to see"
 	line "some bargains?"
 
@@ -563,7 +563,7 @@ Text_BargainShop::
 	line "one of each item."
 	done
 
-Text_BargainShopCost::
+_BargainShopFinalPriceText::
 	text_ram wStringBuffer2
 	text " costs"
 	line "¥@"
@@ -571,41 +571,41 @@ Text_BargainShopCost::
 	text ". Want it?"
 	done
 
-Text_BargainShopThanks::
+_BargainShopThanksText::
 	text "Thanks."
 	done
 
-Text_BargainShopPackFull::
+_BargainShopPackFullText::
 	text "Uh-oh, your PACK"
 	line "is chock-full."
 	done
 
-Text_BargainShopSoldOut::
+_BargainShopSoldOutText::
 	text "You bought that"
 	line "already. I'm all"
 	cont "sold out of it."
 	done
 
-Text_BargainShopNoFunds::
+_BargainShopNoFundsText::
 	text "Uh-oh, you're"
 	line "short on funds."
 	done
 
-Text_BargainShopComeAgain::
+_BargainShopComeAgainText::
 	text "Come by again"
 	line "sometime."
 	done
 
-Text_MedShopIntro::
+_MedShopIntroText::
 	text "What's up? Need"
 	line "some medicine?"
 	done
 
-Text_MedShopHowMany::
+_MedShopHowManyText::
 	text "How many?"
 	done
 
-Text_MedShopFinalCost::
+_MedShopFinalPriceText::
 	text_decimal wItemQuantityChangeBuffer, 1, 2
 	text " @"
 	text_ram wStringBuffer2
@@ -615,21 +615,21 @@ Text_MedShopFinalCost::
 	text "."
 	done
 
-Text_MedShopThanks::
+_MedShopThanksText::
 	text "Thanks much!"
 	done
 
-Text_MedShopNoSpace::
+_MedShopPackFullText::
 	text "You don't have any"
 	line "more space."
 	done
 
-Text_MedShopNoMoney::
+_MedShopNoMoneyText::
 	text "Huh? That's not"
 	line "enough money."
 	done
 
-Text_MedShopComeAgain::
+_MedShopComeAgainText::
 	text "All right."
 	line "See you around."
 	done
@@ -640,11 +640,11 @@ UnknownText_0x1c4f12::
 	line "anything to sell."
 	prompt
 
-Text_MartSellHowMany::
+_MartSellHowManyText::
 	text "How many?"
 	done
 
-Text_MartSellPrice::
+_MartSellPriceText::
 	text "I can pay you"
 	line "¥@"
 	text_decimal hMoneyTemp, 3, 6
@@ -653,41 +653,41 @@ Text_MartSellPrice::
 	para "Is that OK?"
 	done
 
-Text_MartWelcome::
+_MartWelcomeText::
 	text "Welcome! How may I"
 	line "help you?"
 	done
 
-Text_MartThanks::
+_MartThanksText::
 	text "Here you are."
 	line "Thank you!"
 	done
 
-Text_MartNoMoney::
+_MartNoMoneyText::
 	text "You don't have"
 	line "enough money."
 	done
 
-Text_MartBagFull::
+_MartPackFullText::
 	text "You can't carry"
 	line "any more items."
 	done
 
-Text_MartCantBuy::
+_MartCantBuyText::
 	text "Sorry, I can't buy"
 	line "that from you."
 	prompt
 
-Text_MartComeAgain::
+_MartComeAgainText::
 	text "Please come again!"
 	done
 
-Text_MartAskMore::
+_MartAskMoreText::
 	text "Can I do anything"
 	line "else for you?"
 	done
 
-Text_MartBought::
+_MartBoughtText::
 	text "Got ¥@"
 	text_decimal hMoneyTemp, 3, 6
 	text " for"
@@ -696,37 +696,37 @@ Text_MartBought::
 	text "(S)."
 	done
 
-Text_SlotsAskBet::
+_SlotsAskBetText::
 	text "Bet how many"
 	line "coins?"
 	done
 
-Text_SlotsStart::
+_SlotsStartText::
 	text "Start!"
 	done
 
-Text_SlotsNoCoins::
+_SlotsNoCoinsText::
 	text "Not enough"
 	line "coins."
 	prompt
 
-Text_SlotsRanOut::
+_SlotsRanOutText::
 	text "Darn… Ran out of"
 	line "coins…"
 	done
 
-Text_SlotsPlayAgain::
+_SlotsPlayAgainText::
 	text "Play again?"
 	done
 
-Text_SlotsLinedUp::
+_SlotsLinedUpText::
 	text "lined up!"
 	line "Won @"
 	text_ram wStringBuffer2
 	text " coins!"
 	done
 
-Text_SlotsDarn::
+_SlotsDarnText::
 	text "Darn!"
 	done
 
@@ -754,7 +754,7 @@ _MobileStadiumSuccessText::
 	para ""
 	done
 
-Text_MainMenuTimeUnknown::
+_MainMenuTimeUnknownText::
 	text "Clock time unknown"
 	done
 
@@ -908,30 +908,30 @@ UnknownText_0x1c554a::
 	line "CARDS?"
 	done
 
-Text_PhoneWrongNumber::
+_PhoneWrongNumberText::
 	text "Huh? Sorry, wrong"
 	line "number!"
 	done
 
-Text_PhoneClick::
+_PhoneClickText::
 	text "Click!"
 	done
 
-Text_PhoneEllipse::
+_PhoneEllipseText::
 	text "<……>"
 	done
 
-Text_PhoneOutOfArea::
+_PhoneOutOfAreaText::
 	text "That number is out"
 	line "of the area."
 	done
 
-Text_PhoneGoTalk::
+_PhoneJustTalkToThemText::
 	text "Just go talk to"
 	line "that person!"
 	done
 
-Text_PhoneThankYou::
+_PhoneThankYouText::
 	text "Thank you!"
 	done
 
@@ -940,31 +940,31 @@ UnknownText_0x1c55d6::
 	text "  :"
 	done
 
-Text_PasswordAskReset::
+_PasswordAskResetText::
 	text "Password OK."
 	line "Select CONTINUE &"
 	cont "reset settings."
 	prompt
 
-Text_PasswordWrong::
+_PasswordWrongText::
 	text "Wrong password!"
 	prompt
 
-Text_PasswordAskResetClock::
+_PasswordAskResetClockText::
 	text "Reset the clock?"
 	done
 
-Text_PasswordAskEnter::
+_PasswordAskEnterText::
 	text "Please enter the"
 	line "password."
 	done
 
-Text_AskClearData::
+_ClearAllSaveDataText::
 	text "Clear all save"
 	line "data?"
 	done
 
-Text_MoveLearned::
+_MoveLearnedText::
 	text_ram wMonOrItemNameBuffer
 	text " learned"
 	line "@"
@@ -976,19 +976,19 @@ Text_MoveLearned::
 
 	text_end ; unused
 
-Text_MoveAskForget::
+_MoveAskForgetText::
 	text "Which move should"
 	next "be forgotten?"
 	done
 
-Text_MoveAskStopLearning::
+_MoveAskStopLearningText::
 	text "Stop learning"
 	line "@"
 	text_ram wStringBuffer2
 	text "?"
 	done
 
-Text_MoveDidNotLearn::
+_MoveDidNotLearnText::
 	text_ram wMonOrItemNameBuffer
 	text_start
 	line "did not learn"
@@ -997,7 +997,7 @@ Text_MoveDidNotLearn::
 	text "."
 	prompt
 
-Text_MoveAskDelete::
+_MoveAskDeleteText::
 	text_ram wMonOrItemNameBuffer
 	text " is"
 	line "trying to learn"
@@ -1025,7 +1025,7 @@ Text_MoveForgetCount::
 
 	text_end ; unused
 
-Text_MoveForgot::
+_MoveForgotText::
 	text " Poof!@"
 	text_pause
 	text_start
@@ -1040,126 +1040,126 @@ Text_MoveForgot::
 	para "And…"
 	prompt
 
-Text_MoveCantForgetHM::
+_MoveCantForgetHMText::
 	text "HM moves can't be"
 	line "forgotten now."
 	prompt
 
-Text_CardFlipAskThreeCoin::
+_CardFlipAskThreeCoinText::
 	text "Play with three"
 	line "coins?"
 	done
 
-Text_CardFlipNotEnough::
+_CardFlipNotEnoughText::
 	text "Not enough coins…"
 	prompt
 
-Text_CardFlipChooseCard::
+_CardFlipChooseCardText::
 	text "Choose a card."
 	done
 
-Text_CardFlipPlaceBet::
+_CardFlipPlaceBetText::
 	text "Place your bet."
 	done
 
-Text_CardFlipAskPlayAgain::
+_CardFlipAskPlayAgainText::
 	text "Want to play"
 	line "again?"
 	done
 
-Text_CardFlipShuffled::
+_CardFlipShuffledText::
 	text "The cards have"
 	line "been shuffled."
 	prompt
 
-Text_CardFlipYeah::
+_CardFlipYeahText::
 	text "Yeah!"
 	done
 
-Text_CardFlipDarn::
+_CardFlipDarnText::
 	text "Darn…"
 	done
 
-Text_GearToday::
+_GearTodayText::
 	text_today
 	text_end
 
 	text_end ; unused
 
-Text_GearEllipse::
+_GearEllipseText::
 	text "<……>"
 	done
 
-Text_GearOutOfService::
+_GearOutOfServiceText::
 	text "You're out of the"
 	line "service area."
 	prompt
 
-Text_GearAskWhoCall::
+_GearAskWhoCallText::
 	text "Whom do you want"
 	line "to call?"
 	done
 
-Text_GearPressButton::
+_GearPressButtonText::
 	text "Press any button"
 	line "to exit."
 	done
 
-Text_GearAskDelete::
+_GearAskDeleteText::
 	text "Delete this stored"
 	line "phone number?"
 	done
 
-Text_BuenaAskWhichPrize::
+_BuenaAskWhichPrizeText::
 	text "Which prize would"
 	line "you like?"
 	done
 
-Text_BuenaThatRight::
+_BuenaThatRightText::
 	text_ram wStringBuffer1
 	text "?"
 	line "Is that right?"
 	done
 
-Text_BuenaHereYouGo::
+_BuenaHereYouGoText::
 	text "Here you go!"
 
 	para ""
 	done
 
-Text_BuenaNotEnough::
+_BuenaNotEnoughPointsText::
 	text "You don't have"
 	line "enough points."
 
 	para ""
 	done
 
-Text_BuenaNoRoom::
+_BuenaNoRoomText::
 	text "You have no room"
 	line "for it."
 
 	para ""
 	done
 
-Text_BuenaComeAgain::
+_BuenaComeAgainText::
 	text "Oh. Please come"
 	line "back again!"
 	done
 
-Text_BTExcuseMe::
+_BTExcuseMeText::
 	text "Excuse me!"
 
 	para ""
 	done
 
-Text_ExcuseMeYoureNotReady::
+_ExcuseMeYoureNotReadyText::
 	text "Excuse me."
 	line "You're not ready."
 
 	para ""
 	done
 
-Text_BattleTowerReturnWhenReady::
+_BattleTowerReturnWhenReadyText::
 	text "Please return when"
 	line "you're ready."
 	done
@@ -1212,7 +1212,7 @@ _YouCantTakeAnEggText::
 	para ""
 	done
 
-Text_BallCantCatch::
+_BallCantCatchText::
 	text "It dodged the"
 	line "thrown BALL!"
 
@@ -1220,27 +1220,27 @@ Text_BallCantCatch::
 	line "can't be caught!"
 	prompt
 
-Text_BallMissed::
+_BallMissedText::
 	text "You missed the"
 	line "#MON!"
 	prompt
 
-Text_BallBrokeFree::
+_BallBrokeFreeText::
 	text "Oh no! The #MON"
 	line "broke free!"
 	prompt
 
-Text_BallAppearedCaught::
+_BallAppearedCaughtText::
 	text "Aww! It appeared"
 	line "to be caught!"
 	prompt
 
-Text_BallAlmostHadIt::
+_BallAlmostHadItText::
 	text "Aargh!"
 	line "Almost had it!"
 	prompt
 
-Text_BallSoClose::
+_BallSoCloseText::
 	text "Shoot! It was so"
 	line "close too!"
 	prompt
@@ -1255,19 +1255,19 @@ Text_BallCaught::
 
 	text_end ; unused
 
-Text_Waitbutton_2::
+_WaitbuttonText::
 	text_waitbutton
 	text_end
 
 	text_end ; unused
 
-Text_BallSentToPC::
+_BallSentToPCText::
 	text_ram wMonOrItemNameBuffer
 	text " was"
 	line "sent to BILL's PC."
 	prompt
 
-Text_NewDexData::
+_NewDexDataText::
 	text_ram wEnemyMonNick
 	text "'s data"
 	line "was newly added to"
@@ -1278,14 +1278,14 @@ Text_NewDexData::
 
 	text_end ; unused
 
-Text_AskGiveNickname::
+_AskGiveNicknameText::
 	text "Give a nickname to"
 	line "@"
 	text_ram wStringBuffer1
 	text "?"
 	done
 
-Text_ItemStatRose::
+_ItemStatRoseText::
 	text_ram wStringBuffer1
 	text "'s"
 	line "@"
@@ -1293,18 +1293,18 @@ Text_ItemStatRose::
 	text " rose."
 	prompt
 
-Text_ItemCantUseOnMon::
+_ItemCantUseOnMonText::
 	text "That can't be used"
 	line "on this #MON."
 	prompt
 
-Text_RepelUsedEarlierIsStillInEffect::
+_RepelUsedEarlierIsStillInEffectText::
 	text "The REPEL used"
 	line "earlier is still"
 	cont "in effect."
 	prompt
 
-Text_PlayedFlute::
+_PlayedFluteText::
 	text "Played the #"
 	line "FLUTE."
 
@@ -1312,7 +1312,7 @@ Text_PlayedFlute::
 	line "catchy tune!"
 	prompt
 
-Text_FluteWakeUp::
+_FluteWakeUpText::
 	text "All sleeping"
 	line "#MON woke up."
 	prompt
@@ -1325,14 +1325,14 @@ Text_PlayedPokeFlute::
 
 	text_end ; unused
 
-Text_BlueCardBalance::
+_BlueCardBalanceText::
 	text "You now have"
 	line "@"
 	text_decimal wBlueCardBalance, 1, 2
 	text " points."
 	done
 
-Text_CoinCaseCount::
+_CoinCaseCountText::
 	text "Coins:"
 	line "@"
 	text_decimal wCoins, 2, 4
@@ -1340,33 +1340,33 @@ Text_CoinCaseCount::
 
 	text_end ; unused
 
-Text_RaiseThePPOfWhichMove::
+_RaiseThePPOfWhichMoveText::
 	text "Raise the PP of"
 	line "which move?"
 	done
 
-Text_RestoreThePPOfWhichMove::
+_RestoreThePPOfWhichMoveText::
 	text "Restore the PP of"
 	line "which move?"
 	done
 
-Text_PPIsMaxedOut::
+_PPIsMaxedOutText::
 	text_ram wStringBuffer2
 	text "'s PP"
 	line "is maxed out."
 	prompt
 
-Text_PPsIncreased::
+_PPsIncreasedText::
 	text_ram wStringBuffer2
 	text "'s PP"
 	line "increased."
 	prompt
 
-Text_PPRestored::
+_PPRestoredText::
 	text "PP was restored."
 	prompt
 
-Text_SentTrophyHome::
+_SentTrophyHomeText::
 	text "There was a trophy"
 	line "inside!@"
 	sound_dex_fanfare_50_79
@@ -1378,73 +1378,73 @@ Text_SentTrophyHome::
 	line "trophy home."
 	prompt
 
-Text_ItemLooksBitter::
+_ItemLooksBitterText::
 	text "It looks bitter…"
 	prompt
 
-Text_ItemCantUseOnEgg::
+_ItemCantUseOnEggText::
 	text "That can't be used"
 	line "on an EGG."
 	prompt
 
-Text_ItemOakWarning::
+_ItemOakWarningText::
 	text "OAK: <PLAYER>!"
 	line "This isn't the"
 	cont "time to use that!"
 	prompt
 
-Text_BelongToSomeoneElse::
+_ItemBelongsToSomeoneElseText::
 	text "That belongs to"
 	line "someone else!"
 	prompt
 
-Text_ItemWontHaveEffect::
+_ItemWontHaveEffectText::
 	text "It won't have any"
 	line "effect."
 	prompt
 
-Text_BallBlocked::
+_BallBlockedText::
 	text "The trainer"
 	line "blocked the BALL!"
 	prompt
 
-Text_BallNoSwiping::
+_BallDontBeAThiefText::
 	text "Don't be a thief!"
 	prompt
 
-Text_NoCycling::
+_NoCyclingText::
 	text "Cycling isn't"
 	line "allowed here."
 	prompt
 
-Text_ItemCantGetOn::
+_ItemCantGetOnText::
 	text "Can't get on your"
 	line "@"
 	text_ram wStringBuffer1
 	text " now."
 	prompt
 
-Text_BallBoxFull::
+_BallBoxFullText::
 	text "The #MON BOX"
 	line "is full. That"
 	cont "can't be used now."
 	prompt
 
-Text_ItemUsed::
+_ItemUsedText::
 	text "<PLAYER> used the@"
 	text_low
 	text_ram wStringBuffer2
 	text "."
 	done
 
-Text_ItemGotOn::
+_ItemGotOnText::
 	text "<PLAYER> got on the@"
 	text_low
 	text_ram wStringBuffer2
 	text "."
 	prompt
 
-Text_ItemGotOff::
+_ItemGotOffText::
 	text "<PLAYER> got off@"
 	text_low
 	text "the @"
@@ -1452,7 +1452,7 @@ Text_ItemGotOff::
 	text "."
 	prompt
 
-Text_MoveKnown::
+_MoveKnowsText::
 	text_ram wStringBuffer1
 	text " knows"
 	line "@"
@@ -1460,39 +1460,39 @@ Text_MoveKnown::
 	text "."
 	prompt
 
-Text_MoveKnowsOne::
+_MoveKnowsOneText::
 	text "That #MON knows"
 	line "only one move."
 	done
 
-Text_AskDeleteMove::
+_AskDeleteMoveText::
 	text "Oh, make it forget"
 	line "@"
 	text_ram wStringBuffer1
 	text "?"
 	done
 
-Text_DeleterForgotMove::
+_DeleterForgotMoveText::
 	text "Done! Your #MON"
 	line "forgot the move."
 	done
 
-Text_DeleterEgg::
+_DeleterEggText::
 	text "An EGG doesn't"
 	line "know any moves!"
 	done
 
-Text_DeleterNoComeAgain::
+_DeleterNoComeAgainText::
 	text "No? Come visit me"
 	line "again."
 	done
 
-Text_DeleterAskWhichMove::
+_DeleterAskWhichMoveText::
 	text "Which move should"
 	line "it forget, then?"
 	prompt
 
-Text_DeleterIntro::
+_DeleterIntroText::
 	text "Um… Oh, yes, I'm"
 	line "the MOVE DELETER."
 
@@ -1503,43 +1503,43 @@ Text_DeleterIntro::
 	line "#MON forget?"
 	done
 
-Text_DeleterAskMon::
+_DeleterAskWhichMonText::
 	text "Which #MON?"
 	prompt
 
-Text_DSTIsThatOK::
+_DSTIsThatOKText::
 	text " DST,"
 	line "is that OK?"
 	done
 
-Text_TimeAskOkay::
+_TimeAskOkayText::
 	text ","
 	line "is that OK?"
 	done
 
-Text_TimesetAskDST::
+_TimesetAskDSTText::
 	text "Do you want to"
 	line "switch to Daylight"
 	cont "Saving Time?"
 	done
 
-Text_TimesetDST::
+_TimesetDSTText::
 	text "I set the clock"
 	line "forward by one"
 	cont "hour."
 	prompt
 
-Text_TimesetAskNotDST::
+_TimesetAskNotDSTText::
 	text "Is Daylight Saving"
 	line "Time over?"
 	done
 
-Text_TimesetNotDST::
+_TimesetNotDSTText::
 	text "I put the clock"
 	line "back one hour."
 	prompt
 
-Text_TimesetAskAdjustDST::
+_TimesetAskAdjustDSTText::
 	text "Do you want to"
 	line "adjust your clock"
 
@@ -1547,7 +1547,7 @@ Text_TimesetAskAdjustDST::
 	line "Saving Time?"
 	done
 
-Text_MomLostGearBooklet::
+_MomLostGearBookletText::
 	text "I lost the in-"
 	line "struction booklet"
 	cont "for the #GEAR."

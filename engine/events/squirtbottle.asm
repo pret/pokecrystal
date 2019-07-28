@@ -13,11 +13,11 @@ _Squirtbottle:
 	farsjump WateredWeirdTreeScript
 
 .NothingHappenedScript:
-	jumptext .NothingHappenedText
+	jumptext .SquirtbottleNothingText
 
-.NothingHappenedText:
+.SquirtbottleNothingText:
 	; sprinkled water. But nothing happened…
-	text_far Text_SquirtbottleNothing
+	text_far _SquirtbottleNothingText
 	text_end
 
 .CheckCanUseSquirtbottle:

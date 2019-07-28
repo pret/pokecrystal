@@ -102,25 +102,25 @@ LearnMove:
 	jp .learned
 
 .cancel
-	ld hl, Text_StopLearning ; Stop learning <MOVE>?
+	ld hl, MoveAskStopLearningText ; Stop learning <MOVE>?
 	call PrintText
 	call YesNoBox
 	jp c, .loop
 
-	ld hl, Text_DidNotLearn ; <MON> did not learn <MOVE>.
+	ld hl, MoveDidNotLearnText ; <MON> did not learn <MOVE>.
 	call PrintText
 	ld b, 0
 	ret
 
 .learned
-	ld hl, Text_LearnedMove ; <MON> learned <MOVE>!
+	ld hl, MoveLearnedText ; <MON> learned <MOVE>!
 	call PrintText
 	ld b, 1
 	ret
 
 ForgetMove:
 	push hl
-	ld hl, Text_TryingToLearn
+	ld hl, MoveAskDeleteText
 	call PrintText
 	call YesNoBox
 	pop hl
@@ -134,7 +134,7 @@ ForgetMove:
 	pop hl
 .loop
 	push hl
-	ld hl, Text_ForgetWhich
+	ld hl, MoveAskForgetText
 	call PrintText
 	hlcoord 5, 2
 	ld b, NUM_MOVES * 2
@@ -191,7 +191,7 @@ ForgetMove:
 	ret
 
 .hmmove
-	ld hl, Text_CantForgetHM
+	ld hl, MoveCantForgetHMText
 	call PrintText
 	pop hl
 	jr .loop
@@ -200,30 +200,30 @@ ForgetMove:
 	scf
 	ret
 
-Text_LearnedMove:
+MoveLearnedText:
 ; <MON> learned <MOVE>!
-	text_far Text_MoveLearned
+	text_far _MoveLearnedText
 	text_end
 
-Text_ForgetWhich:
+MoveAskForgetText:
 ; Which move should be forgotten?
-	text_far Text_MoveAskForget
+	text_far _MoveAskForgetText
 	text_end
 
-Text_StopLearning:
+MoveAskStopLearningText:
 ; Stop learning <MOVE>?
-	text_far Text_MoveAskStopLearning
+	text_far _MoveAskStopLearningText
 	text_end
 
-Text_DidNotLearn:
+MoveDidNotLearnText:
 ; <MON> did not learn <MOVE>.
-	text_far Text_MoveDidNotLearn
+	text_far _MoveDidNotLearnText
 	text_end
 
-Text_TryingToLearn:
+MoveAskDeleteText:
 ; <MON> is trying to learn <MOVE>. But <MON> can't learn more than
 ; four moves. Delete an older move to make room for <MOVE>?
-	text_far Text_MoveAskDelete
+	text_far _MoveAskDeleteText
 	text_end
 
 Text_1_2_and_Poof:
@@ -233,15 +233,15 @@ Text_1_2_and_Poof:
 	ld de, SFX_SWITCH_POKEMON
 	call PlaySFX
 	pop de
-	ld hl, .PoofForgot
+	ld hl, .MoveForgotText
 	ret
 
-.PoofForgot:
+.MoveForgotText:
 ; Poof! <MON> forgot <MOVE>. And…
-	text_far Text_MoveForgot
+	text_far _MoveForgotText
 	text_end
 
-Text_CantForgetHM:
+MoveCantForgetHMText:
 ; HM moves can't be forgotten now.
-	text_far Text_MoveCantForgetHM
+	text_far _MoveCantForgetHMText
 	text_end

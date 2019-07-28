@@ -1539,52 +1539,52 @@ Function108be0:
 Function108bec:
 	ld a, $90
 	ldh [hWY], a
-	ld hl, .PlayerWillTradeMon
+	ld hl, .MobilePlayerWillTradeMonText
 	call PrintText
 	ld c, 80
 	call DelayFrames
-	ld hl, .ForPartnersMon
+	ld hl, .MobileForPartnersMonText
 	call PrintText
 	ld c, 80
 	call DelayFrames
 	ret
 
-.PlayerWillTradeMon:
-	text_far _TradingText10
+.MobilePlayerWillTradeMonText:
+	text_far _MobilePlayerWillTradeMonText
 	text_end
 
-.ForPartnersMon:
-	text_far _TradingText11
+.MobileForPartnersMonText:
+	text_far _MobileForPartnersMonText
 	text_end
 
-.UnusedTextPlayersMonTrade:
-	text_far _TradingText12
+.MobilePlayersMonTradeText:
+	text_far _MobilePlayersMonTradeText
 	text_end
 
 Function108c16:
 	ld a, $90
 	ldh [hWY], a
-	ld hl, .TakeGoodCareOfMon
+	ld hl, .MobileTakeGoodCareOfMonText
 	call PrintText
 	ld c, 80
 	call DelayFrames
 	ret
 
-.TakeGoodCareOfMon:
-	text_far _TradingText13
+.MobileTakeGoodCareOfMonText:
+	text_far _MobileTakeGoodCareOfMonText
 	text_end
 
 Function108c2b:
 	ld a, $90
 	ldh [hWY], a
-	ld hl, .PlayersMonTrade
+	ld hl, .MobilePlayersMonTrade2Text
 	call PrintText
 	ld c, 80
 	call DelayFrames
 	ret
 
-.PlayersMonTrade:
-	text_far _TradingText14
+.MobilePlayersMonTrade2Text:
+	text_far _MobilePlayersMonTrade2Text
 	text_end
 
 Function108c40:
@@ -1593,25 +1593,25 @@ Function108c40:
 	ld a, [wcf65]
 	and %10000000
 	jr z, .Getmon
-	ld hl, .CameBack
+	ld hl, .MobileTradeCameBackText
 	call PrintText
 	ld c, 80
 	call DelayFrames
 	ret
 
 .Getmon:
-	ld hl, .TakeGoodCareOf
+	ld hl, .MobileTakeGoodCareOfText
 	call PrintText
 	ld c, 80
 	call DelayFrames
 	ret
 
-.TakeGoodCareOf:
-	text_far _TradingText15
+.MobileTakeGoodCareOfText:
+	text_far _MobileTakeGoodCareOfText
 	text_end
 
-.CameBack:
-	text_far _TradingText16
+.MobileTradeCameBackText:
+	text_far _MobileTradeCameBackText
 	text_end
 
 Function108c6d:

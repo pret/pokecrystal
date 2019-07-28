@@ -319,7 +319,7 @@ HatchEggs:
 	ld d, h
 	ld e, l
 	push de
-	ld hl, .Text_NicknameHatchling
+	ld hl, .BreedAskNicknameText
 	call PrintText
 	call YesNoBox
 	pop de
@@ -366,29 +366,29 @@ HatchEggs:
 	ld a, [wCurPartySpecies]
 	push af
 	call EggHatch_AnimationSequence
-	ld hl, .ClearTextbox
+	ld hl, .BreedClearboxText
 	call PrintText
 	pop af
 	ld [wCurPartySpecies], a
 	pop bc
 	pop de
 	pop hl
-	ld hl, .CameOutOfItsEgg
+	ld hl, .BreedEggHatchText
 	ret
 
-.ClearTextbox:
+.BreedClearboxText:
 	;
-	text_far Text_BreedClearbox
+	text_far _BreedClearboxText
 	text_end
 
-.CameOutOfItsEgg:
+.BreedEggHatchText:
 	; came out of its EGG!@ @
-	text_far Text_BreedEggHatch
+	text_far _BreedEggHatchText
 	text_end
 
-.Text_NicknameHatchling:
+.BreedAskNicknameText:
 	; Give a nickname to @ ?
-	text_far Text_BreedAskNickname
+	text_far _BreedAskNicknameText
 	text_end
 
 InitEggMoves:
@@ -865,7 +865,7 @@ Hatch_ShellFragmentLoop:
 	ret
 
 DayCareMon1:
-	ld hl, DayCareMon1Text
+	ld hl, BreedWithManText
 	call PrintText
 	ld a, [wBreedMon1Species]
 	call PlayMonCry
@@ -878,7 +878,7 @@ DayCareMon1:
 	jp PrintText
 
 DayCareMon2:
-	ld hl, DayCareMon2Text
+	ld hl, BreedWithLadyText
 	call PrintText
 	ld a, [wBreedMon2Species]
 	call PlayMonCry
@@ -893,14 +893,14 @@ DayCareMon2:
 DayCareMonCursor:
 	jp WaitPressAorB_BlinkCursor
 
-DayCareMon2Text:
+BreedWithLadyText:
 	; It's @ that was left with the DAY-CARE LADY.
-	text_far Text_BreedWithLady
+	text_far _BreedWithLadyText
 	text_end
 
-DayCareMon1Text:
+BreedWithManText:
 	; It's @ that was left with the DAY-CARE MAN.
-	text_far Text_BreedWithMan
+	text_far _BreedWithManText
 	text_end
 
 DayCareMonCompatibilityText:
@@ -911,46 +911,46 @@ DayCareMonCompatibilityText:
 	call CheckBreedmonCompatibility
 	pop bc
 	ld a, [wBreedingCompatibility]
-	ld hl, .AllAlone
+	ld hl, .BreedBrimmingText
 	cp -1
 	jr z, .done
-	ld hl, .Incompatible
+	ld hl, .BreedNoInterestText
 	and a
 	jr z, .done
-	ld hl, .HighCompatibility
+	ld hl, .BreedCaringText
 	cp 230
 	jr nc, .done
 	cp 70
-	ld hl, .ModerateCompatibility
+	ld hl, .BreedFriendlyText
 	jr nc, .done
-	ld hl, .SlightCompatibility
+	ld hl, .BreedShowInterestText
 
 .done
 	ret
 
-.AllAlone:
+.BreedBrimmingText:
 	; It's brimming with energy.
-	text_far Text_BreedBrimming
+	text_far _BreedBrimmingText
 	text_end
 
-.Incompatible:
+.BreedNoInterestText:
 	; It has no interest in @ .
-	text_far Text_BreedNoInterest
+	text_far _BreedNoInterestText
 	text_end
 
-.HighCompatibility:
+.BreedCaringText:
 	; It appears to care for @ .
-	text_far Text_BreedCaring
+	text_far _BreedCaringText
 	text_end
 
-.ModerateCompatibility:
+.BreedFriendlyText:
 	; It's friendly with @ .
-	text_far Text_BreedFriendly
+	text_far _BreedFriendlyText
 	text_end
 
-.SlightCompatibility:
+.BreedShowInterestText:
 	; It shows interest in @ .
-	text_far Text_BreedShowInterest
+	text_far _BreedShowInterestText
 	text_end
 
 Unreferenced_DayCareMonPrintEmptyString:

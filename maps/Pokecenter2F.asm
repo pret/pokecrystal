@@ -106,7 +106,7 @@ LinkReceptionistScript_Trade:
 
 .FriendNotReady:
 	special WaitForOtherPlayerToExit
-	writetext Text_FriendNotReady
+	writetext MysteryGiftNotReadyText
 	closetext
 	end
 
@@ -208,7 +208,7 @@ LinkReceptionistScript_Battle:
 
 .FriendNotReady:
 	special WaitForOtherPlayerToExit
-	writetext Text_FriendNotReady
+	writetext MysteryGiftNotReadyText
 	closetext
 	end
 
@@ -341,7 +341,7 @@ LinkReceptionistScript_TimeCapsule:
 
 .FriendNotReady:
 	special WaitForOtherPlayerToExit
-	writetext Text_FriendNotReady
+	writetext MysteryGiftNotReadyText
 	closetext
 	end
 
@@ -853,7 +853,7 @@ Text_TimeCapsuleReceptionistIntro:
 	line "trade across time?"
 	done
 
-Text_FriendNotReady:
+MysteryGiftNotReadyText:
 	text "Your friend is not"
 	line "ready."
 	prompt

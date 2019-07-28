@@ -475,7 +475,7 @@ Gen2ToGen2LinkComms:
 	jp InitTradeMenuDisplay
 
 LinkTimeout:
-	ld de, .TooMuchTimeHasElapsed
+	ld de, .LinkTimeoutText
 	ld b, 10
 .loop
 	call DelayFrame
@@ -505,9 +505,9 @@ LinkTimeout:
 	call WaitBGMap2
 	ret
 
-.TooMuchTimeHasElapsed:
+.LinkTimeoutText:
 	; Too much time has elapsed. Please try again.
-	text_far Text_LinkTimeout
+	text_far _LinkTimeoutText
 	text_end
 
 ExchangeBytes:
@@ -1446,7 +1446,7 @@ Function28926:
 	ld c, 18
 	call LinkTextboxAtHL
 	farcall Link_WaitBGMap
-	ld hl, .Text_CantTradeLastMon
+	ld hl, .LinkTradeCantBattleText
 	bccoord 1, 14
 	call PlaceHLTextAtBC
 	jr .cancel_trade
@@ -1468,7 +1468,7 @@ Function28926:
 	ld c, 18
 	call LinkTextboxAtHL
 	farcall Link_WaitBGMap
-	ld hl, .Text_Abnormal
+	ld hl, .LinkAbnormalMonText
 	bccoord 1, 14
 	call PlaceHLTextAtBC
 
@@ -1487,17 +1487,17 @@ Function28926:
 	call DelayFrames
 	jp InitTradeMenuDisplay
 
-.Text_CantTradeLastMon:
+.LinkTradeCantBattleText:
 	; If you trade that #MON, you won't be able to battle.
-	text_far Text_LinkTradeCantBattle
+	text_far _LinkTradeCantBattleText
 	text_end
 
 .String_Stats_Trade:
 	db "STATS     TRADE@"
 
-.Text_Abnormal:
+.LinkAbnormalMonText:
 	; Your friend's @  appears to be abnormal!
-	text_far Text_LinkAbnormalMon
+	text_far _LinkAbnormalMonText
 	text_end
 
 Function28ac9:
@@ -1633,7 +1633,7 @@ LinkTrade:
 	ld a, [hl]
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
-	ld hl, LinkAskTradeForScript
+	ld hl, LinkAskTradeForText
 	bccoord 1, 14
 	call PlaceHLTextAtBC
 	call LoadStandardMenuHeader
@@ -1948,9 +1948,9 @@ String28eab:
 	db   "TRADE"
 	next "CANCEL@"
 
-LinkAskTradeForScript:
+LinkAskTradeForText:
 	; Trade @ for @ ?
-	text_far Text_LinkAskTradeFor
+	text_far _LinkAskTradeForText
 	text_end
 
 String28ebd:

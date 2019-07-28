@@ -1,5 +1,5 @@
 PhotoStudio:
-	ld hl, .Text_AskWhichMon
+	ld hl, .WhichMonPhotoText
 	call PrintText
 	farcall SelectMonFromParty
 	jr c, .cancel
@@ -7,7 +7,7 @@ PhotoStudio:
 	cp EGG
 	jr z, .egg
 
-	ld hl, .Text_HoldStill
+	ld hl, .HoldStillText
 	call PrintText
 	call DisableSpriteUpdates
 	farcall PrintPartymon
@@ -15,41 +15,41 @@ PhotoStudio:
 	ldh a, [hPrinter]
 	and a
 	jr nz, .cancel
-	ld hl, .Text_Presto
+	ld hl, .PrestoAllDoneText
 	jr .print_text
 
 .cancel
-	ld hl, .Text_NoPicture
+	ld hl, .NoPhotoText
 	jr .print_text
 
 .egg
-	ld hl, .Text_Egg
+	ld hl, .EggPhotoTalentText
 
 .print_text
 	call PrintText
 	ret
 
-.Text_AskWhichMon:
+.WhichMonPhotoText:
 	; Which #MON should I photo- graph?
 	text_far _WhichMonPhotoText
 	text_end
 
-.Text_HoldStill:
+.HoldStillText:
 	; All righty. Hold still for a bit.
-	text_far _HoldOnText
+	text_far _HoldStillText
 	text_end
 
-.Text_Presto:
+.PrestoAllDoneText:
 	; Presto! All done. Come again, OK?
 	text_far _PrestoAllDoneText
 	text_end
 
-.Text_NoPicture:
+.NoPhotoText:
 	; Oh, no picture? Come again, OK?
 	text_far _NoPhotoText
 	text_end
 
-.Text_Egg:
+.EggPhotoTalentText:
 	; An EGG? My talent is worth more…
 	text_far _EggPhotoTalentText
 	text_end

@@ -364,101 +364,101 @@ OaksPKMNTalk8:
 
 .Adverbs:
 ; there are NUM_OAKS_POKEMON_TALK_ADVERBS entries
-	dw .sweetadorably
-	dw .wigglyslickly
-	dw .aptlynamed
-	dw .undeniablykindof
-	dw .unbearably
-	dw .wowimpressively
-	dw .almostpoisonously
-	dw .sensually
-	dw .mischievously
-	dw .topically
-	dw .addictively
-	dw .looksinwater
-	dw .evolutionmustbe
-	dw .provocatively
-	dw .flippedout
-	dw .heartmeltingly
+	dw .OPT_SweetAdorablyText
+	dw .OPT_WigglySlicklyText
+	dw .OPT_AptlyNamedText
+	dw .OPT_UndeniablyKindOfText
+	dw .OPT_UnbearablyText
+	dw .OPT_WowImpressivelyText
+	dw .OPT_AlmostPoisonouslyText
+	dw .OPT_SensuallyText
+	dw .OPT_MischievouslyText
+	dw .OPT_TopicallyText
+	dw .OPT_AddictivelyText
+	dw .OPT_LooksInWaterText
+	dw .OPT_EvolutionMustBeText
+	dw .OPT_ProvocativelyText
+	dw .OPT_FlippedOutText
+	dw .OPT_HeartMeltinglyText
 
-.sweetadorably
+.OPT_SweetAdorablyText:
 	; sweet and adorably
-	text_far OPT_SweetAdorably
+	text_far _OPT_SweetAdorablyText
 	text_end
 
-.wigglyslickly
+.OPT_WigglySlicklyText:
 	; wiggly and slickly
-	text_far OPT_WigglySlickly
+	text_far _OPT_WigglySlicklyText
 	text_end
 
-.aptlynamed
+.OPT_AptlyNamedText:
 	; aptly named and
-	text_far OPT_AptlyNamed
+	text_far _OPT_AptlyNamedText
 	text_end
 
-.undeniablykindof
+.OPT_UndeniablyKindOfText:
 	; undeniably kind of
-	text_far OPT_UndeniablyKindOf
+	text_far _OPT_UndeniablyKindOfText
 	text_end
 
-.unbearably
+.OPT_UnbearablyText:
 	; so, so unbearably
-	text_far OPT_Unbearably
+	text_far _OPT_UnbearablyText
 	text_end
 
-.wowimpressively
+.OPT_WowImpressivelyText:
 	; wow, impressively
-	text_far OPT_WowImpressively
+	text_far _OPT_WowImpressivelyText
 	text_end
 
-.almostpoisonously
+.OPT_AlmostPoisonouslyText:
 	; almost poisonously
-	text_far OPT_AlmostPoisonously
+	text_far _OPT_AlmostPoisonouslyText
 	text_end
 
-.sensually
+.OPT_SensuallyText:
 	; ooh, so sensually
-	text_far OPT_Sensually
+	text_far _OPT_SensuallyText
 	text_end
 
-.mischievously
+.OPT_MischievouslyText:
 	; so mischievously
-	text_far OPT_Mischievously
+	text_far _OPT_MischievouslyText
 	text_end
 
-.topically
+.OPT_TopicallyText:
 	; so very topically
-	text_far OPT_Topically
+	text_far _OPT_TopicallyText
 	text_end
 
-.addictively
+.OPT_AddictivelyText:
 	; sure addictively
-	text_far OPT_Addictively
+	text_far _OPT_AddictivelyText
 	text_end
 
-.looksinwater
+.OPT_LooksInWaterText:
 	; looks in water is
-	text_far OPT_LooksInWater
+	text_far _OPT_LooksInWaterText
 	text_end
 
-.evolutionmustbe
+.OPT_EvolutionMustBeText:
 	; evolution must be
-	text_far OPT_EvolutionMustBe
+	text_far _OPT_EvolutionMustBeText
 	text_end
 
-.provocatively
+.OPT_ProvocativelyText:
 	; provocatively
-	text_far OPT_Provocatively
+	text_far _OPT_ProvocativelyText
 	text_end
 
-.flippedout
+.OPT_FlippedOutText:
 	; so flipped out and
-	text_far OPT_FlippedOut
+	text_far _OPT_FlippedOutText
 	text_end
 
-.heartmeltingly
+.OPT_HeartMeltinglyText:
 	; heart-meltingly
-	text_far OPT_HeartMeltingly
+	text_far _OPT_HeartMeltinglyText
 	text_end
 
 OaksPKMNTalk9:
@@ -487,101 +487,101 @@ OaksPKMNTalk9:
 
 .Adjectives:
 ; there are NUM_OAKS_POKEMON_TALK_ADJECTIVES entries
-	dw .cute
-	dw .weird
-	dw .pleasant
-	dw .boldsortof
-	dw .frightening
-	dw .suavedebonair
-	dw .powerful
-	dw .exciting
-	dw .groovy
-	dw .inspiring
-	dw .friendly
-	dw .hothothot
-	dw .stimulating
-	dw .guarded
-	dw .lovely
-	dw .speedy
+	dw .OPT_CuteText
+	dw .OPT_WeirdText
+	dw .OPT_PleasantText
+	dw .OPT_BoldSortOfText
+	dw .OPT_FrighteningText
+	dw .OPT_SuaveDebonairText
+	dw .OPT_PowerfulText
+	dw .OPT_ExcitingText
+	dw .OPT_GroovyText
+	dw .OPT_InspiringText
+	dw .OPT_FriendlyText
+	dw .OPT_HotHotHotText
+	dw .OPT_StimulatingText
+	dw .OPT_GuardedText
+	dw .OPT_LovelyText
+	dw .OPT_SpeedyText
 
-.cute
+.OPT_CuteText:
 	; cute.
-	text_far OPT_Cute
+	text_far _OPT_CuteText
 	text_end
 
-.weird
+.OPT_WeirdText:
 	; weird.
-	text_far OPT_Weird
+	text_far _OPT_WeirdText
 	text_end
 
-.pleasant
+.OPT_PleasantText:
 	; pleasant.
-	text_far OPT_Pleasant
+	text_far _OPT_PleasantText
 	text_end
 
-.boldsortof
+.OPT_BoldSortOfText:
 	; bold, sort of.
-	text_far OPT_BoldSortOf
+	text_far _OPT_BoldSortOfText
 	text_end
 
-.frightening
+.OPT_FrighteningText:
 	; frightening.
-	text_far OPT_Frightening
+	text_far _OPT_FrighteningText
 	text_end
 
-.suavedebonair
+.OPT_SuaveDebonairText:
 	; suave & debonair!
-	text_far OPT_SuaveDebonair
+	text_far _OPT_SuaveDebonairText
 	text_end
 
-.powerful
+.OPT_PowerfulText:
 	; powerful.
-	text_far OPT_Powerful
+	text_far _OPT_PowerfulText
 	text_end
 
-.exciting
+.OPT_ExcitingText:
 	; exciting.
-	text_far OPT_Exciting
+	text_far _OPT_ExcitingText
 	text_end
 
-.groovy
+.OPT_GroovyText:
 	; groovy!
-	text_far OPT_Groovy
+	text_far _OPT_GroovyText
 	text_end
 
-.inspiring
+.OPT_InspiringText:
 	; inspiring.
-	text_far OPT_Inspiring
+	text_far _OPT_InspiringText
 	text_end
 
-.friendly
+.OPT_FriendlyText:
 	; friendly.
-	text_far OPT_Friendly
+	text_far _OPT_FriendlyText
 	text_end
 
-.hothothot
+.OPT_HotHotHotText:
 	; hot, hot, hot!
-	text_far OPT_HotHotHot
+	text_far _OPT_HotHotHotText
 	text_end
 
-.stimulating
+.OPT_StimulatingText:
 	; stimulating.
-	text_far OPT_Stimulating
+	text_far _OPT_StimulatingText
 	text_end
 
-.guarded
+.OPT_GuardedText:
 	; guarded.
-	text_far OPT_Guarded
+	text_far _OPT_GuardedText
 	text_end
 
-.lovely
+.OPT_LovelyText:
 	; lovely.
-	text_far OPT_Lovely
+	text_far _OPT_LovelyText
 	text_end
 
-.speedy
+.OPT_SpeedyText:
 	; speedy.
-	text_far OPT_Speedy
+	text_far _OPT_SpeedyText
 	text_end
 
 OaksPKMNTalk10:
@@ -875,7 +875,7 @@ FernMonMusic1:
 	jp NextRadioLine
 
 FernMonMusic2:
-	ld hl, FernIntroMusic2
+	ld hl, FernIntroText2
 	ld a, POKEMON_MUSIC_4
 	jp NextRadioLine
 
@@ -939,7 +939,7 @@ FernIntroText1:
 	text_far _FernIntroText1
 	text_end
 
-FernIntroMusic2:
+FernIntroText2:
 	; With DJ FERN!
 	text_far _FernIntroText2
 	text_end
@@ -1230,101 +1230,101 @@ PeoplePlaces5:
 
 .Adjectives:
 ; there are NUM_PNP_PEOPLE_ADJECTIVES entries
-	dw PnP_cute
-	dw PnP_lazy
-	dw PnP_happy
-	dw PnP_noisy
-	dw PnP_precocious
-	dw PnP_bold
-	dw PnP_picky
-	dw PnP_sortofok
-	dw PnP_soso
-	dw PnP_great
-	dw PnP_mytype
-	dw PnP_cool
-	dw PnP_inspiring
-	dw PnP_weird
-	dw PnP_rightforme
-	dw PnP_odd
+	dw PnP_CuteText
+	dw PnP_LazyText
+	dw PnP_HappyText
+	dw PnP_NoisyText
+	dw PnP_PrecociousText
+	dw PnP_BoldText
+	dw PnP_PickyText
+	dw PnP_SortOfOKText
+	dw PnP_SoSoText
+	dw PnP_GreatText
+	dw PnP_MyTypeText
+	dw PnP_CoolText
+	dw PnP_InspiringText
+	dw PnP_WeirdText
+	dw PnP_RightForMeText
+	dw PnP_OddText
 
-PnP_cute:
+PnP_CuteText:
 	; is cute.
-	text_far _PnP_cute
+	text_far _PnP_CuteText
 	text_end
 
-PnP_lazy:
+PnP_LazyText:
 	; is sort of lazy.
-	text_far _PnP_lazy
+	text_far _PnP_LazyText
 	text_end
 
-PnP_happy:
+PnP_HappyText:
 	; is always happy.
-	text_far _PnP_happy
+	text_far _PnP_HappyText
 	text_end
 
-PnP_noisy:
+PnP_NoisyText:
 	; is quite noisy.
-	text_far _PnP_noisy
+	text_far _PnP_NoisyText
 	text_end
 
-PnP_precocious:
+PnP_PrecociousText:
 	; is precocious.
-	text_far _PnP_precocious
+	text_far _PnP_PrecociousText
 	text_end
 
-PnP_bold:
+PnP_BoldText:
 	; is somewhat bold.
-	text_far _PnP_bold
+	text_far _PnP_BoldText
 	text_end
 
-PnP_picky:
+PnP_PickyText:
 	; is too picky!
-	text_far _PnP_picky
+	text_far _PnP_PickyText
 	text_end
 
-PnP_sortofok:
+PnP_SortOfOKText:
 	; is sort of OK.
-	text_far _PnP_sortofok
+	text_far _PnP_SortOfOKText
 	text_end
 
-PnP_soso:
+PnP_SoSoText:
 	; is just so-so.
-	text_far _PnP_soso
+	text_far _PnP_SoSoText
 	text_end
 
-PnP_great:
+PnP_GreatText:
 	; is actually great.
-	text_far _PnP_great
+	text_far _PnP_GreatText
 	text_end
 
-PnP_mytype:
+PnP_MyTypeText:
 	; is just my type.
-	text_far _PnP_mytype
+	text_far _PnP_MyTypeText
 	text_end
 
-PnP_cool:
+PnP_CoolText:
 	; is so cool, no?
-	text_far _PnP_cool
+	text_far _PnP_CoolText
 	text_end
 
-PnP_inspiring:
+PnP_InspiringText:
 	; is inspiring!
-	text_far _PnP_inspiring
+	text_far _PnP_InspiringText
 	text_end
 
-PnP_weird:
+PnP_WeirdText:
 	; is kind of weird.
-	text_far _PnP_weird
+	text_far _PnP_WeirdText
 	text_end
 
-PnP_rightforme:
+PnP_RightForMeText:
 	; is right for me?
-	text_far _PnP_rightforme
+	text_far _PnP_RightForMeText
 	text_end
 
-PnP_odd:
+PnP_OddText:
 	; is definitely odd!
-	text_far _PnP_odd
+	text_far _PnP_OddText
 	text_end
 
 PeoplePlaces6: ; Places
@@ -1381,22 +1381,22 @@ PeoplePlaces7:
 
 .Adjectives:
 ; there are NUM_PNP_PLACES_ADJECTIVES entries
-	dw PnP_cute
-	dw PnP_lazy
-	dw PnP_happy
-	dw PnP_noisy
-	dw PnP_precocious
-	dw PnP_bold
-	dw PnP_picky
-	dw PnP_sortofok
-	dw PnP_soso
-	dw PnP_great
-	dw PnP_mytype
-	dw PnP_cool
-	dw PnP_inspiring
-	dw PnP_weird
-	dw PnP_rightforme
-	dw PnP_odd
+	dw PnP_CuteText
+	dw PnP_LazyText
+	dw PnP_HappyText
+	dw PnP_NoisyText
+	dw PnP_PrecociousText
+	dw PnP_BoldText
+	dw PnP_PickyText
+	dw PnP_SortOfOKText
+	dw PnP_SoSoText
+	dw PnP_GreatText
+	dw PnP_MyTypeText
+	dw PnP_CoolText
+	dw PnP_InspiringText
+	dw PnP_WeirdText
+	dw PnP_RightForMeText
+	dw PnP_OddText
 
 RocketRadio1:
 	call StartRadioStation

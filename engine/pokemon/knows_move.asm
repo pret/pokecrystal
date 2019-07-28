@@ -14,12 +14,12 @@ KnowsMove:
 	ret
 
 .knows_move
-	ld hl, .Text_knows
+	ld hl, .MoveKnowsText
 	call PrintText
 	scf
 	ret
 
-.Text_knows:
+.MoveKnowsText:
 	; knows @ .
-	text_far Text_MoveKnown
+	text_far _MoveKnowsText
 	text_end

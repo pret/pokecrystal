@@ -17,13 +17,13 @@ InitDisplayForHallOfFame:
 	ldh [hSCY], a
 	ldh [hSCX], a
 	call EnableLCD
-	ld hl, .SavingRecordDontTurnOff
+	ld hl, .SavingRecordText
 	call PrintText
 	call WaitBGMap2
 	call SetPalettes
 	ret
 
-.SavingRecordDontTurnOff:
+.SavingRecordText:
 	; SAVING RECORD… DON'T TURN OFF!
 	text_far _SavingRecordText
 	text_end

@@ -33,7 +33,7 @@ DoMysteryGift:
 	pop de
 	hlcoord 2, 8
 	ld a, d
-	ld de, .Text_LinkCanceled ; Link has been canceled
+	ld de, .MysteryGiftCancelledText ; Link has been canceled
 	cp $10
 	jp z, .LinkCanceled
 	cp $6c
@@ -42,10 +42,10 @@ DoMysteryGift:
 	cp 3
 	jr z, .skip_checks
 	call .CheckAlreadyGotFiveGiftsToday
-	ld hl, .Text_MaxFiveGifts ; Only 5 gifts a day
+	ld hl, .MysteryGiftFiveADayText ; Only 5 gifts a day
 	jp nc, .PrintTextAndExit
 	call .CheckAlreadyGotAGiftFromThatPerson
-	ld hl, .Text_MaxOneGiftPerPerson ; Only one gift a day per person
+	ld hl, .MysteryGiftOneADayText ; Only one gift a day per person
 	jp c, .PrintTextAndExit
 .skip_checks
 	ld a, [wMysteryGiftPlayerBackupItem]
@@ -82,7 +82,7 @@ DoMysteryGift:
 	ld de, wStringBuffer1
 	ld bc, ITEM_NAME_LENGTH
 	call CopyBytes
-	ld hl, .Text_SentToHome ; sent decoration to home
+	ld hl, .MysteryGiftSentHomeText ; sent decoration to home
 	jr .PrintTextAndExit
 
 .item
@@ -95,24 +95,24 @@ DoMysteryGift:
 	ld [wNamedObjectIndexBuffer], a
 	call CloseSRAM
 	call GetItemName
-	ld hl, .Text_Sent ; sent item
+	ld hl, .MysteryGiftSentText ; sent item
 	jr .PrintTextAndExit
 
 .LinkCanceled:
-	ld hl, .Text_LinkCanceled ; Link has been canceled
+	ld hl, .MysteryGiftCancelledText ; Link has been canceled
 	jr .PrintTextAndExit
 
 .CommunicationError:
-	ld hl, .Text_CommunicationError ; Communication error
+	ld hl, .MysteryGiftCommErrorText ; Communication error
 	call PrintText
 	jp DoMysteryGift
 
 .GiftWaiting:
-	ld hl, .Text_ReceiveGiftAtCounter ; receive gift at counter
+	ld hl, .RetrieveMysteryGiftText ; receive gift at counter
 	jr .PrintTextAndExit
 
 .FriendNotReady:
-	ld hl, .Text_FriendNotReady ; friend not ready
+	ld hl, .MysteryGiftNotReadyText ; friend not ready
 
 .PrintTextAndExit:
 	call PrintText
@@ -127,36 +127,36 @@ DoMysteryGift:
 	next "cancel it."
 	db   "@"
 
-.Text_LinkCanceled:
-	text_far Text_MysteryGiftCancelled
+.MysteryGiftCancelledText:
+	text_far _MysteryGiftCancelledText
 	text_end
 
-.Text_CommunicationError:
-	text_far Text_MysteryGiftCommError
+.MysteryGiftCommErrorText:
+	text_far _MysteryGiftCommErrorText
 	text_end
 
-.Text_ReceiveGiftAtCounter:
-	text_far Text_RetrieveMysteryGift
+.RetrieveMysteryGiftText:
+	text_far _RetrieveMysteryGiftText
 	text_end
 
-.Text_FriendNotReady:
-	text_far Text_MysteryGiftNotReady
+.MysteryGiftNotReadyText:
+	text_far _MysteryGiftNotReadyText
 	text_end
 
-.Text_MaxFiveGifts:
-	text_far Text_MysteryGiftFiveADay
+.MysteryGiftFiveADayText:
+	text_far _MysteryGiftFiveADayText
 	text_end
 
-.Text_MaxOneGiftPerPerson:
-	text_far Text_MysteryGiftOneADay
+.MysteryGiftOneADayText:
+	text_far _MysteryGiftOneADayText
 	text_end
 
-.Text_Sent:
-	text_far Text_MysteryGiftSent
+.MysteryGiftSentText:
+	text_far _MysteryGiftSentText
 	text_end
 
-.Text_SentToHome:
-	text_far Text_MysteryGiftSentHome
+.MysteryGiftSentHomeText:
+	text_far _MysteryGiftSentHomeText
 	text_end
 
 .CheckAlreadyGotFiveGiftsToday:
@@ -1425,15 +1425,15 @@ Function105688:
 	ld c, 60
 	call DelayFrames
 	call Function105777
-	ld hl, Text_ReceivedCard
+	ld hl, MysteryGiftReceivedCardText
 	call PrintText
 	ld de, wMysteryGiftTrainerData
 	farcall Function8ac70
 	ld a, c
 	ld [wDeciramBuffer], a
-	ld hl, Text_CardNotRegistered
+	ld hl, MysteryGiftNotRegisteredCardText
 	jr c, PrintTextAndExit_JP
-	ld hl, Text_ListedCardAsNumber
+	ld hl, MysteryGiftListedCardText
 	jr PrintTextAndExit_JP
 
 Function1056eb:
@@ -1467,12 +1467,12 @@ endr
 
 Function105712:
 	call Function105777
-	ld hl, Text_MGLinkCanceled
+	ld hl, MysteryGiftLinkCancelledText
 	jr PrintTextAndExit_JP
 
 Function10571a:
 	call Function105777
-	ld hl, Text_MGCommError
+	ld hl, MysteryGiftLinkCommErrorText
 	call PrintText
 	jp Function105688
 
@@ -1489,24 +1489,24 @@ String_PressAToLink_BToCancel_JP:
 	next "つうしん<WO>ちゅうし　します"
 	db   "@"
 
-Text_ReceivedCard:
-	text_far Text_MysteryGiftReceivedCard
+MysteryGiftReceivedCardText:
+	text_far _MysteryGiftReceivedCardText
 	text_end
 
-Text_ListedCardAsNumber:
-	text_far Text_MysteryGiftListedCard
+MysteryGiftListedCardText:
+	text_far _MysteryGiftListedCardText
 	text_end
 
-Text_CardNotRegistered:
-	text_far Text_MysteryGiftNotRegisteredCard
+MysteryGiftNotRegisteredCardText:
+	text_far _MysteryGiftNotRegisteredCardText
 	text_end
 
-Text_MGLinkCanceled:
-	text_far Text_MysteryGiftLinkCancelled
+MysteryGiftLinkCancelledText:
+	text_far _MysteryGiftLinkCancelledText
 	text_end
 
-Text_MGCommError:
-	text_far Text_MysteryGiftLinkCommError
+MysteryGiftLinkCommErrorText:
+	text_far _MysteryGiftLinkCommErrorText
 	text_end
 
 Function105777:

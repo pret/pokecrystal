@@ -5,14 +5,14 @@ SelectMenu::
 
 .NotRegistered:
 	call OpenText
-	ld b, BANK(ItemMayBeRegisteredText)
-	ld hl, ItemMayBeRegisteredText
+	ld b, BANK(MayRegisterItemText)
+	ld hl, MayRegisterItemText
 	call MapTextbox
 	call WaitButton
 	jp CloseText
 
-ItemMayBeRegisteredText:
-	text_far Text_MayRegisterItem
+MayRegisterItemText:
+	text_far _MayRegisterItemText
 	text_end
 
 CheckRegisteredItem:

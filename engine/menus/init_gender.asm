@@ -27,7 +27,7 @@ InitGender:
 	call LoadGenderScreenLightBlueTile
 	call WaitBGMap2
 	call SetPalettes
-	ld hl, TextJump_AreYouABoyOrAreYouAGirl
+	ld hl, AreYouABoyOrAreYouAGirlText
 	call PrintText
 	ld hl, .MenuHeader
 	call LoadMenuHeader
@@ -53,9 +53,9 @@ InitGender:
 	db "Boy@"
 	db "Girl@"
 
-TextJump_AreYouABoyOrAreYouAGirl:
+AreYouABoyOrAreYouAGirlText:
 	; Are you a boy? Or are you a girl?
-	text_far Text_AreYouABoyOrAreYouAGirl
+	text_far _AreYouABoyOrAreYouAGirlText
 	text_end
 
 InitGenderScreen:

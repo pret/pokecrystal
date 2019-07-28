@@ -16,13 +16,13 @@ CheckForMobileBattleRules:
 	dw BattleTower_CheckPartyHasThreeMonsThatAreNotEggs
 
 .TextPointers:
-	dw .ExcuseMeText
+	dw .BTExcuseMeText
 	dw NeedAtLeastThreeMonText
 	dw EggDoesNotQualifyText
 
-.ExcuseMeText:
+.BTExcuseMeText:
 	; Excuse me!
-	text_far Text_BTExcuseMe
+	text_far _BTExcuseMeText
 	text_end
 
 _CheckForBattleTowerRules:
@@ -49,25 +49,25 @@ _CheckForBattleTowerRules:
 	dw Function_HasPartyAnEgg
 
 .TextPointers:
-	dw JumpText_ExcuseMeYoureNotReady
+	dw ExcuseMeYoureNotReadyText
 	dw OnlyThreeMonMayBeEnteredText
 	dw TheMonMustAllBeDifferentKindsText
 	dw TheMonMustNotHoldTheSameItemsText
 	dw YouCantTakeAnEggText
 
-JumpText_ExcuseMeYoureNotReady:
+ExcuseMeYoureNotReadyText:
 	; Excuse me. You're not ready.
-	text_far Text_ExcuseMeYoureNotReady
+	text_far _ExcuseMeYoureNotReadyText
 	text_end
 
 BattleTower_PleaseReturnWhenReady:
-	ld hl, .PleaseReturnWhenReady
+	ld hl, .BattleTowerReturnWhenReadyText
 	call PrintText
 	ret
 
-.PleaseReturnWhenReady:
+.BattleTowerReturnWhenReadyText:
 	; Please return when you're ready.
-	text_far Text_BattleTowerReturnWhenReady
+	text_far _BattleTowerReturnWhenReadyText
 	text_end
 
 NeedAtLeastThreeMonText:

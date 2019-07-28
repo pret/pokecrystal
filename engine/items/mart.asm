@@ -34,10 +34,10 @@ MartDialog:
 HerbShop:
 	call FarReadMart
 	call LoadStandardMenuHeader
-	ld hl, Text_HerbShop_Intro
+	ld hl, HerbalLadyIntroText
 	call MartTextbox
 	call BuyMenu
-	ld hl, Text_HerbShop_ComeAgain
+	ld hl, HerbalLadyComeAgainText
 	call MartTextbox
 	ret
 
@@ -47,7 +47,7 @@ BargainShop:
 	call LoadMartPointer
 	call ReadMart
 	call LoadStandardMenuHeader
-	ld hl, Text_BargainShop_Intro
+	ld hl, BargainShopIntroText
 	call MartTextbox
 	call BuyMenu
 	ld hl, wBargainShopFlags
@@ -58,17 +58,17 @@ BargainShop:
 	set DAILYFLAGS1_GOLDENROD_UNDERGROUND_BARGAIN_F, [hl]
 
 .skip_set
-	ld hl, Text_BargainShop_ComeAgain
+	ld hl, BargainShopComeAgainText
 	call MartTextbox
 	ret
 
 Pharmacist:
 	call FarReadMart
 	call LoadStandardMenuHeader
-	ld hl, Text_Pharmacist_Intro
+	ld hl, MedShopIntroText
 	call MartTextbox
 	call BuyMenu
-	ld hl, Text_Pharmacist_ComeAgain
+	ld hl, MedShopComeAgainText
 	call MartTextbox
 	ret
 
@@ -85,10 +85,10 @@ RooftopSale:
 	call LoadMartPointer
 	call ReadMart
 	call LoadStandardMenuHeader
-	ld hl, Text_Mart_HowMayIHelpYou
+	ld hl, MartWelcomeText
 	call MartTextbox
 	call BuyMenu
-	ld hl, Text_Mart_ComeAgain
+	ld hl, MartComeAgainText
 	call MartTextbox
 	ret
 
@@ -161,7 +161,7 @@ StandardMart:
 
 .HowMayIHelpYou:
 	call LoadStandardMenuHeader
-	ld hl, Text_Mart_HowMayIHelpYou
+	ld hl, MartWelcomeText
 	call PrintText
 	ld a, STANDARDMART_TOPMENU
 	ret
@@ -202,14 +202,14 @@ StandardMart:
 
 .Quit:
 	call ExitMenu
-	ld hl, Text_Mart_ComeAgain
+	ld hl, MartComeAgainText
 	call MartTextbox
 	ld a, STANDARDMART_EXIT
 	ret
 
 .AnythingElse:
 	call LoadStandardMenuHeader
-	ld hl, Text_Mart_AnythingElse
+	ld hl, MartAskMoreText
 	call PrintText
 	ld a, STANDARDMART_TOPMENU
 	ret
@@ -395,35 +395,35 @@ GetMartDialogGroup:
 	dwb .StandardMartPointers, 2
 
 .StandardMartPointers:
-	dw Text_Mart_HowMany
-	dw Text_Mart_CostsThisMuch
-	dw Text_Mart_InsufficientFunds
-	dw Text_Mart_BagFull
-	dw Text_Mart_HereYouGo
+	dw MartHowManyText
+	dw MartFinalPriceText
+	dw MartNoMoneyText
+	dw MartPackFullText
+	dw MartThanksText
 	dw BuyMenuLoop
 
 .HerbShopPointers:
-	dw Text_HerbShop_HowMany
-	dw Text_HerbShop_CostsThisMuch
-	dw Text_HerbShop_InsufficientFunds
-	dw Text_HerbShop_BagFull
-	dw Text_HerbShop_HereYouGo
+	dw HerbalLadyHowManyText
+	dw HerbalLadyFinalPriceText
+	dw HerbalLadyNoMoneyText
+	dw HerbalLadyPackFullText
+	dw HerbalLadyThanksText
 	dw BuyMenuLoop
 
 .BargainShopPointers:
 	dw BuyMenuLoop
-	dw Text_BargainShop_CostsThisMuch
-	dw Text_BargainShop_InsufficientFunds
-	dw Text_BargainShop_BagFull
-	dw Text_BargainShop_HereYouGo
-	dw Text_BargainShop_SoldOut
+	dw BargainShopFinalPriceText
+	dw BargainShopNoFundsText
+	dw BargainShopPackFullText
+	dw BargainShopThanksText
+	dw BargainShopSoldOutText
 
 .PharmacyPointers:
-	dw Text_Pharmacy_HowMany
-	dw Text_Pharmacy_CostsThisMuch
-	dw Text_Pharmacy_InsufficientFunds
-	dw Text_Pharmacy_BagFull
-	dw Text_Pharmacy_HereYouGo
+	dw MedShopHowManyText
+	dw MedShopFinalPriceText
+	dw MedShopNoMoneyText
+	dw MedShopPackFullText
+	dw MedShopThanksText
 	dw BuyMenuLoop
 
 BuyMenuLoop:
@@ -581,14 +581,14 @@ RooftopSaleAskPurchaseQuantity:
 	ld d, [hl]
 	ret
 
-Text_Mart_HowMany:
+MartHowManyText:
 	; How many?
-	text_far Text_MartHowMany
+	text_far _MartHowManyText
 	text_end
 
-Text_Mart_CostsThisMuch:
+MartFinalPriceText:
 	; @ (S) will be ¥@ .
-	text_far Text_MartFinalPrice
+	text_far _MartFinalPriceText
 	text_end
 
 MenuHeader_Buy:
@@ -624,109 +624,109 @@ MenuHeader_Buy:
 	call PrintBCDNumber
 	ret
 
-Text_HerbShop_Intro:
+HerbalLadyIntroText:
 	; Hello, dear. I sell inexpensive herbal medicine. They're good, but a trifle bitter. Your #MON may not like them. Hehehehe…
-	text_far Text_HerbalLady
+	text_far _HerbalLadyIntroText
 	text_end
 
-Text_HerbShop_HowMany:
+HerbalLadyHowManyText:
 	; How many?
-	text_far Text_HerbalLadyHowMany
+	text_far _HerbalLadyHowManyText
 	text_end
 
-Text_HerbShop_CostsThisMuch:
+HerbalLadyFinalPriceText:
 	; @ (S) will be ¥@ .
-	text_far Text_HerbalLadyFinalPrice
+	text_far _HerbalLadyFinalPriceText
 	text_end
 
-Text_HerbShop_HereYouGo:
+HerbalLadyThanksText:
 	; Thank you, dear. Hehehehe…
-	text_far Text_HerbalLadyThanks
+	text_far _HerbalLadyThanksText
 	text_end
 
-Text_HerbShop_BagFull:
+HerbalLadyPackFullText:
 	; Oh? Your PACK is full, dear.
-	text_far Text_HerbalLadyPackFull
+	text_far _HerbalLadyPackFullText
 	text_end
 
-Text_HerbShop_InsufficientFunds:
+HerbalLadyNoMoneyText:
 	; Hehehe… You don't have the money.
-	text_far Text_HerbalLadyNoMoney
+	text_far _HerbalLadyNoMoneyText
 	text_end
 
-Text_HerbShop_ComeAgain:
+HerbalLadyComeAgainText:
 	; Come again, dear. Hehehehe…
-	text_far Text_HerbalLadyComeAgain
+	text_far _HerbalLadyComeAgainText
 	text_end
 
-Text_BargainShop_Intro:
+BargainShopIntroText:
 	; Hiya! Care to see some bargains? I sell rare items that nobody else carries--but only one of each item.
-	text_far Text_BargainShop
+	text_far _BargainShopIntroText
 	text_end
 
-Text_BargainShop_CostsThisMuch:
+BargainShopFinalPriceText:
 	; costs ¥@ . Want it?
-	text_far Text_BargainShopCost
+	text_far _BargainShopFinalPriceText
 	text_end
 
-Text_BargainShop_HereYouGo:
+BargainShopThanksText:
 	; Thanks.
-	text_far Text_BargainShopThanks
+	text_far _BargainShopThanksText
 	text_end
 
-Text_BargainShop_BagFull:
+BargainShopPackFullText:
 	; Uh-oh, your PACK is chock-full.
-	text_far Text_BargainShopPackFull
+	text_far _BargainShopPackFullText
 	text_end
 
-Text_BargainShop_SoldOut:
+BargainShopSoldOutText:
 	; You bought that already. I'm all sold out of it.
-	text_far Text_BargainShopSoldOut
+	text_far _BargainShopSoldOutText
 	text_end
 
-Text_BargainShop_InsufficientFunds:
+BargainShopNoFundsText:
 	; Uh-oh, you're short on funds.
-	text_far Text_BargainShopNoFunds
+	text_far _BargainShopNoFundsText
 	text_end
 
-Text_BargainShop_ComeAgain:
+BargainShopComeAgainText:
 	; Come by again sometime.
-	text_far Text_BargainShopComeAgain
+	text_far _BargainShopComeAgainText
 	text_end
 
-Text_Pharmacist_Intro:
+MedShopIntroText:
 	; What's up? Need some medicine?
-	text_far Text_MedShopIntro
+	text_far _MedShopIntroText
 	text_end
 
-Text_Pharmacy_HowMany:
+MedShopHowManyText:
 	; How many?
-	text_far Text_MedShopHowMany
+	text_far _MedShopHowManyText
 	text_end
 
-Text_Pharmacy_CostsThisMuch:
+MedShopFinalPriceText:
 	; @ (S) will cost ¥@ .
-	text_far Text_MedShopFinalCost
+	text_far _MedShopFinalPriceText
 	text_end
 
-Text_Pharmacy_HereYouGo:
+MedShopThanksText:
 	; Thanks much!
-	text_far Text_MedShopThanks
+	text_far _MedShopThanksText
 	text_end
 
-Text_Pharmacy_BagFull:
+MedShopPackFullText:
 	; You don't have any more space.
-	text_far Text_MedShopNoSpace
+	text_far _MedShopPackFullText
 	text_end
 
-Text_Pharmacy_InsufficientFunds:
+MedShopNoMoneyText:
 	; Huh? That's not enough money.
-	text_far Text_MedShopNoMoney
+	text_far _MedShopNoMoneyText
 	text_end
 
-Text_Pharmacist_ComeAgain:
+MedShopComeAgainText:
 	; All right. See you around.
-	text_far Text_MedShopComeAgain
+	text_far _MedShopComeAgainText
 	text_end
 
 SellMenu:
@@ -780,13 +780,13 @@ SellMenu:
 	ld a, [wItemAttributeParamBuffer]
 	and a
 	jr z, .okay_to_sell
-	ld hl, TextMart_CantBuyFromYou
+	ld hl, MartCantBuyText
 	call PrintText
 	and a
 	ret
 
 .okay_to_sell
-	ld hl, Text_Mart_SellHowMany
+	ld hl, MartSellHowManyText
 	call PrintText
 	farcall PlaceMoneyAtTopLeftOfTextbox
 	farcall SelectQuantityToSell
@@ -795,7 +795,7 @@ SellMenu:
 	hlcoord 1, 14
 	lb bc, 3, 18
 	call ClearBox
-	ld hl, Text_Mart_ICanPayThisMuch
+	ld hl, MartSellPriceText
 	call PrintTextboxText
 	call YesNoBox
 	jr c, .declined
@@ -809,7 +809,7 @@ SellMenu:
 	hlcoord 1, 14
 	lb bc, 3, 18
 	call ClearBox
-	ld hl, Text_Mart_SoldForAmount
+	ld hl, MartBoughtText
 	call PrintTextboxText
 	call PlayTransactionSound
 	farcall PlaceMoneyBottomLeft
@@ -820,22 +820,22 @@ SellMenu:
 	and a
 	ret
 
-Text_Mart_SellHowMany:
+MartSellHowManyText:
 	; How many?
-	text_far Text_MartSellHowMany
+	text_far _MartSellHowManyText
 	text_end
 
-Text_Mart_ICanPayThisMuch:
+MartSellPriceText:
 	; I can pay you ¥@ . Is that OK?
-	text_far Text_MartSellPrice
+	text_far _MartSellPriceText
 	text_end
 
 .UnusedString15f7d:
 	db "！ダミー！@"
 
-Text_Mart_HowMayIHelpYou:
+MartWelcomeText:
 	; Welcome! How may I help you?
-	text_far Text_MartWelcome
+	text_far _MartWelcomeText
 	text_end
 
 MenuHeader_BuySell:
@@ -851,37 +851,37 @@ MenuHeader_BuySell:
 	db "SELL@"
 	db "QUIT@"
 
-Text_Mart_HereYouGo:
+MartThanksText:
 	; Here you are. Thank you!
-	text_far Text_MartThanks
+	text_far _MartThanksText
 	text_end
 
-Text_Mart_InsufficientFunds:
+MartNoMoneyText:
 	; You don't have enough money.
-	text_far Text_MartNoMoney
+	text_far _MartNoMoneyText
 	text_end
 
-Text_Mart_BagFull:
+MartPackFullText:
 	; You can't carry any more items.
-	text_far Text_MartBagFull
+	text_far _MartPackFullText
 	text_end
 
-TextMart_CantBuyFromYou:
+MartCantBuyText:
 	; Sorry, I can't buy that from you.
-	text_far Text_MartCantBuy
+	text_far _MartCantBuyText
 	text_end
 
-Text_Mart_ComeAgain:
+MartComeAgainText:
 	; Please come again!
-	text_far Text_MartComeAgain
+	text_far _MartComeAgainText
 	text_end
 
-Text_Mart_AnythingElse:
-	text_far Text_MartAskMore
+MartAskMoreText:
+	text_far _MartAskMoreText
 	text_end
 
-Text_Mart_SoldForAmount:
-	text_far Text_MartBought
+MartBoughtText:
+	text_far _MartBoughtText
 	text_end
 
 PlayTransactionSound:

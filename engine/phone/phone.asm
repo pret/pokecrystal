@@ -413,11 +413,11 @@ WrongNumber:
 	db TRAINER_NONE, PHONE_00
 	dba .script
 .script
-	writetext .text
+	writetext .Text
 	end
-.text
+.Text:
 	; Huh? Sorry, wrong number!
-	text_far Text_PhoneWrongNumber
+	text_far _PhoneWrongNumberText
 	text_end
 
 Script_ReceivePhoneCall:
@@ -535,23 +535,23 @@ Function90316:
 	ret
 
 HangUp_Beep:
-	ld hl, HangupPhoneClickText
+	ld hl, PhoneClickText
 	call PrintText
 	ld de, SFX_HANG_UP
 	call PlaySFX
 	ret
 
-HangupPhoneClickText:
-	text_far Text_PhoneClick
+PhoneClickText:
+	text_far _PhoneClickText
 	text_end
 
 HangUp_BoopOn:
-	ld hl, HangupPhoneEllipseText
+	ld hl, PhoneEllipseText
 	call PrintText
 	ret
 
-HangupPhoneEllipseText:
-	text_far Text_PhoneEllipse
+PhoneEllipseText:
+	text_far _PhoneEllipseText
 	text_end
 
 HangUp_BoopOff:
@@ -711,7 +711,7 @@ PhoneOutOfAreaScript:
 
 PhoneOutOfAreaText:
 	; That number is out of the area.
-	text_far Text_PhoneOutOfArea
+	text_far _PhoneOutOfAreaText
 	text_end
 
 PhoneScript_JustTalkToThem:
@@ -720,7 +720,7 @@ PhoneScript_JustTalkToThem:
 
 PhoneJustTalkToThemText:
 	; Just go talk to that person!
-	text_far Text_PhoneGoTalk
+	text_far _PhoneJustTalkToThemText
 	text_end
 
 PhoneThankYouTextScript:
@@ -729,5 +729,5 @@ PhoneThankYouTextScript:
 
 PhoneThankYouText:
 	; Thank you!
-	text_far Text_PhoneThankYou
+	text_far _PhoneThankYouText
 	text_end

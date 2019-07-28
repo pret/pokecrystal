@@ -57,14 +57,14 @@ SacredAshScript:
 	special FadeOutPalettes
 	special FadeInPalettes
 	waitsfx
-	writetext UseSacredAshScript
+	writetext UseSacredAshText
 	playsound SFX_CAUGHT_MON
 	waitsfx
 	waitbutton
 	closetext
 	end
 
-UseSacredAshScript:
+UseSacredAshText:
 	; 's #MON were all healed!
-	text_far Text_UseSacredAsh
+	text_far _UseSacredAshText
 	text_end

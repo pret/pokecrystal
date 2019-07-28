@@ -26,7 +26,7 @@ Script_Whiteout:
 
 .WhitedOutText:
 	; is out of useable #MON!  whited out!
-	text_far Text_WhiteOut
+	text_far _WhitedOutText
 	text_end
 
 OverworldBGMap:

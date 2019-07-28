@@ -1707,7 +1707,7 @@ Slots_TurnLightsOnOrOff:
 
 Slots_AskBet:
 .loop
-	ld hl, .Text_BetHowManyCoins
+	ld hl, .SlotsAskBetText
 	call PrintText
 	ld hl, .MenuHeader
 	call LoadMenuHeader
@@ -1727,7 +1727,7 @@ Slots_AskBet:
 	ld a, [hl]
 	cp c
 	jr nc, .Start
-	ld hl, .Text_NotEnoughCoins
+	ld hl, .SlotsNoCoinsText
 	call PrintText
 	jr .loop
 
@@ -1742,24 +1742,24 @@ Slots_AskBet:
 	call WaitSFX
 	ld de, SFX_PAY_DAY
 	call PlaySFX
-	ld hl, .Text_Start
+	ld hl, .SlotsStartText
 	call PrintText
 	and a
 	ret
 
-.Text_BetHowManyCoins:
+.SlotsAskBetText:
 	; Bet how many coins?
-	text_far Text_SlotsAskBet
+	text_far _SlotsAskBetText
 	text_end
 
-.Text_Start:
+.SlotsStartText:
 	; Start!
-	text_far Text_SlotsStart
+	text_far _SlotsStartText
 	text_end
 
-.Text_NotEnoughCoins:
+.SlotsNoCoinsText:
 	; Not enough coins.
-	text_far Text_SlotsNoCoins
+	text_far _SlotsNoCoinsText
 	text_end
 
 .MenuHeader:
@@ -1780,14 +1780,14 @@ Slots_AskPlayAgain:
 	ld a, [hli]
 	or [hl]
 	jr nz, .you_have_coins
-	ld hl, .Text_OutOfCoins
+	ld hl, .SlotsRanOutText
 	call PrintText
 	ld c, 60
 	call DelayFrames
 	jr .exit_slots
 
 .you_have_coins
-	ld hl, .Text_PlayAgain
+	ld hl, .SlotsPlayAgainText
 	call PrintText
 	call LoadMenuTextbox
 	lb bc, 14, 12
@@ -1804,12 +1804,12 @@ Slots_AskPlayAgain:
 	scf
 	ret
 
-.Text_OutOfCoins:
-	text_far Text_SlotsRanOut
+.SlotsRanOutText:
+	text_far _SlotsRanOutText
 	text_end
 
-.Text_PlayAgain:
-	text_far Text_SlotsPlayAgain
+.SlotsPlayAgainText:
+	text_far _SlotsPlayAgainText
 	text_end
 
 Slots_GetPayout:
@@ -1849,7 +1849,7 @@ Slots_PayoutText:
 	ld a, [wSlotMatched]
 	cp SLOTS_NO_MATCH
 	jr nz, .MatchedSomething
-	ld hl, .Text_Darn
+	ld hl, .CardFlipDarnText
 	call PrintText
 	farcall StubbedTrainerRankings_EndSlotsWinStreak
 	ret
@@ -1899,20 +1899,20 @@ Slots_PayoutText:
 	ldcoord_a 3, 14
 	hlcoord 18, 17
 	ld [hl], "▼"
-	ld hl, .Text_LinedUpWonCoins
+	ld hl, .SlotsLinedUpText
 rept 4
 	inc bc
 endr
 	ret
 
-.Text_LinedUpWonCoins:
+.SlotsLinedUpText:
 	; lined up! Won @  coins!
-	text_far Text_SlotsLinedUp
+	text_far _SlotsLinedUpText
 	text_end
 
-.Text_Darn:
+.CardFlipDarnText:
 	; Darn!
-	text_far Text_SlotsDarn
+	text_far _SlotsDarnText
 	text_end
 
 .LinedUpSevens:

@@ -204,7 +204,7 @@ EvolveAfterBattle_MasterLoop:
 	ld hl, wPartyMonNicknames
 	call GetNick
 	call CopyName1
-	ld hl, Text_WhatEvolving
+	ld hl, EvolvingText
 	call PrintText
 
 	ld c, 50
@@ -227,7 +227,7 @@ EvolveAfterBattle_MasterLoop:
 	pop af
 	jp c, CancelEvolution
 
-	ld hl, Text_CongratulationsYourPokemon
+	ld hl, CongratulationsYourPokemonText
 	call PrintText
 
 	pop hl
@@ -240,7 +240,7 @@ EvolveAfterBattle_MasterLoop:
 	call GetPokemonName
 
 	push hl
-	ld hl, Text_EvolvedIntoPKMN
+	ld hl, EvolvedIntoText
 	call PrintTextboxText
 	farcall StubbedTrainerRankings_MonsEvolved
 
@@ -377,7 +377,7 @@ UpdateSpeciesNameIfNotNicknamed:
 	jp CopyBytes
 
 CancelEvolution:
-	ld hl, Text_StoppedEvolving
+	ld hl, StoppedEvolvingText
 	call PrintText
 	call ClearTileMap
 	pop hl
@@ -394,24 +394,24 @@ IsMonHoldingEverstone:
 	pop hl
 	ret
 
-Text_CongratulationsYourPokemon:
+CongratulationsYourPokemonText:
 	; Congratulations! Your @ @
-	text_far Text_Evolved1
+	text_far _CongratulationsYourPokemonText
 	text_end
 
-Text_EvolvedIntoPKMN:
+EvolvedIntoText:
 	; evolved into @ !
-	text_far Text_Evolved2
+	text_far _EvolvedIntoText
 	text_end
 
-Text_StoppedEvolving:
+StoppedEvolvingText:
 	; Huh? @ stopped evolving!
-	text_far Text_EvolveStop
+	text_far _StoppedEvolvingText
 	text_end
 
-Text_WhatEvolving:
+EvolvingText:
 	; What? @ is evolving!
-	text_far Text_Evolving
+	text_far _EvolvingText
 	text_end
 
 LearnLevelMoves:

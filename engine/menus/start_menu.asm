@@ -411,7 +411,7 @@ StartMenu_Exit:
 StartMenu_Quit:
 ; Retire from the bug catching contest.
 
-	ld hl, .EndTheContestText
+	ld hl, .StartMenuContestEndText
 	call StartMenuYesNo
 	jr c, .DontEndContest
 	ld a, BANK(BugCatchingContestReturnToGateScript)
@@ -424,8 +424,8 @@ StartMenu_Quit:
 	ld a, 0
 	ret
 
-.EndTheContestText:
-	text_far Text_StartMenuContestEnd
+.StartMenuContestEndText:
+	text_far _StartMenuContestEndText
 	text_end
 
 StartMenu_Save:

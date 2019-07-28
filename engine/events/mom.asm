@@ -309,13 +309,13 @@ DSTChecks:
 .LostBooklet:
 	call .ClearBox
 	bccoord 1, 14
-	ld hl, .Text_AdjustClock
+	ld hl, .TimesetAskAdjustDSTText
 	call PlaceHLTextAtBC
 	call YesNoBox
 	ret c
 	call .ClearBox
 	bccoord 1, 14
-	ld hl, .Text_LostInstructionBooklet
+	ld hl, .MomLostGearBookletText
 	call PlaceHLTextAtBC
 	ret
 
@@ -325,7 +325,7 @@ DSTChecks:
 	ld a, [wDST]
 	bit 7, a
 	jr z, .SetDST
-	ld hl, .Text_IsDSTOver
+	ld hl, .TimesetAskNotDSTText
 	call PlaceHLTextAtBC
 	call YesNoBox
 	ret c
@@ -335,12 +335,12 @@ DSTChecks:
 	call .SetClockBack
 	call .ClearBox
 	bccoord 1, 14
-	ld hl, .Text_SetClockBack
+	ld hl, .TimesetNotDSTText
 	call PlaceHLTextAtBC
 	ret
 
 .SetDST:
-	ld hl, .Text_SwitchToDST
+	ld hl, .TimesetAskDSTText
 	call PlaceHLTextAtBC
 	call YesNoBox
 	ret c
@@ -350,7 +350,7 @@ DSTChecks:
 	call .SetClockForward
 	call .ClearBox
 	bccoord 1, 14
-	ld hl, .Text_SetClockForward
+	ld hl, .TimesetDSTText
 	call PlaceHLTextAtBC
 	ret
 
@@ -389,35 +389,35 @@ DSTChecks:
 	call ClearBox
 	ret
 
-.Text_AdjustClock:
+.TimesetAskAdjustDSTText:
 	; Do you want to adjust your clock for Daylight Saving Time?
-	text_far Text_TimesetAskAdjustDST
+	text_far _TimesetAskAdjustDSTText
 	text_end
 
-.Text_LostInstructionBooklet:
+.MomLostGearBookletText:
 	; I lost the instruction booklet for the POKéGEAR.
 	; Come back again in a while.
-	text_far Text_MomLostGearBooklet
+	text_far _MomLostGearBookletText
 	text_end
 
-.Text_SwitchToDST:
+.TimesetAskDSTText:
 	; Do you want to switch to Daylight Saving Time?
-	text_far Text_TimesetAskDST
+	text_far _TimesetAskDSTText
 	text_end
 
-.Text_SetClockForward:
+.TimesetDSTText:
 	; I set the clock forward by one hour.
-	text_far Text_TimesetDST
+	text_far _TimesetDSTText
 	text_end
 
-.Text_IsDSTOver:
+.TimesetAskNotDSTText:
 	; Is Daylight Saving Time over?
-	text_far Text_TimesetAskNotDST
+	text_far _TimesetAskNotDSTText
 	text_end
 
-.Text_SetClockBack:
+.TimesetNotDSTText:
 	; I put the clock back one hour.
-	text_far Text_TimesetNotDST
+	text_far _TimesetNotDSTText
 	text_end
 
 Mom_SetUpWithdrawMenu:

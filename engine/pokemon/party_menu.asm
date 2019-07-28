@@ -792,63 +792,63 @@ PrintPartyMenuActionText:
 
 .MenuActionTexts:
 ; entries correspond to PARTYMENUTEXT_* constants
-	dw .Text_CuredOfPoison
-	dw .Text_BurnWasHealed
-	dw .Text_Defrosted
-	dw .Text_WokeUp
-	dw .Text_RidOfParalysis
-	dw .Text_RecoveredSomeHP
-	dw .Text_HealthReturned
-	dw .Text_Revitalized
-	dw .Text_GrewToLevel
-	dw .Text_CameToItsSenses
+	dw .CuredOfPoisonText
+	dw .BurnWasHealedText
+	dw .WasDefrostedText
+	dw .WokeUpText
+	dw .RidOfParalysisText
+	dw .RecoveredSomeHPText
+	dw .HealthReturnedText
+	dw .RevitalizedText
+	dw .GrewToLevelText
+	dw .CameToItsSensesText
 
-.Text_RecoveredSomeHP:
+.RecoveredSomeHPText:
 	; recovered @ HP!
 	text_far _RecoveredSomeHPText
 	text_end
 
-.Text_CuredOfPoison:
+.CuredOfPoisonText:
 	; 's cured of poison.
 	text_far _CuredOfPoisonText
 	text_end
 
-.Text_RidOfParalysis:
+.RidOfParalysisText:
 	; 's rid of paralysis.
 	text_far _RidOfParalysisText
 	text_end
 
-.Text_BurnWasHealed:
+.BurnWasHealedText:
 	; 's burn was healed.
 	text_far _BurnWasHealedText
 	text_end
 
-.Text_Defrosted:
+.WasDefrostedText:
 	; was defrosted.
 	text_far _WasDefrostedText
 	text_end
 
-.Text_WokeUp:
+.WokeUpText:
 	; woke up.
 	text_far _WokeUpText
 	text_end
 
-.Text_HealthReturned:
+.HealthReturnedText:
 	; 's health returned.
 	text_far _HealthReturnedText
 	text_end
 
-.Text_Revitalized:
+.RevitalizedText:
 	; is revitalized.
 	text_far _RevitalizedText
 	text_end
 
-.Text_GrewToLevel:
+.GrewToLevelText:
 	; grew to level @ !@ @
 	text_far _GrewToLevelText
 	text_end
 
-.Text_CameToItsSenses:
+.CameToItsSensesText:
 	; came to its senses.
 	text_far _CameToItsSensesText
 	text_end

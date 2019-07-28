@@ -459,7 +459,7 @@ PokegearJumptable:
 
 PokegearClock_Init:
 	call InitPokegearTilemap
-	ld hl, PokegearText_PressAnyButtonToExit
+	ld hl, GearPressButtonText
 	call PrintText
 	ld hl, wJumptableIndex
 	inc [hl]
@@ -523,7 +523,7 @@ Pokegear_UpdateClock:
 	ld c, a
 	decoord 6, 8
 	farcall PrintHoursMins
-	ld hl, .DayText
+	ld hl, .GearTodayText
 	bccoord 6, 6
 	call PlaceHLTextAtBC
 	ret
@@ -531,8 +531,8 @@ Pokegear_UpdateClock:
 	db "ごぜん@"
 	db "ごご@"
 
-.DayText:
-	text_far Text_GearToday
+.GearTodayText:
+	text_far _GearTodayText
 	text_end
 
 PokegearMap_CheckRegion:
@@ -812,7 +812,7 @@ PokegearPhone_Init:
 	ld [wPokegearPhoneSelectedPerson], a
 	call InitPokegearTilemap
 	call ExitPokegearRadio_HandleMusic
-	ld hl, PokegearText_WhomToCall
+	ld hl, GearAskWhoCallText
 	call PrintText
 	ret
 
@@ -902,12 +902,12 @@ PokegearPhone_MakePhoneCall:
 	ldh [hInMenu], a
 	ld de, SFX_CALL
 	call PlaySFX
-	ld hl, .dotdotdot
+	ld hl, .GearEllipseText
 	call PrintText
 	call WaitSFX
 	ld de, SFX_CALL
 	call PlaySFX
-	ld hl, .dotdotdot
+	ld hl, .GearEllipseText
 	call PrintText
 	call WaitSFX
 	ld a, [wPokegearPhoneSelectedPerson]
@@ -926,22 +926,22 @@ PokegearPhone_MakePhoneCall:
 
 .no_service
 	farcall Phone_NoSignal
-	ld hl, .OutOfServiceArea
+	ld hl, .GearOutOfServiceText
 	call PrintText
 	ld a, POKEGEARSTATE_PHONEJOYPAD
 	ld [wJumptableIndex], a
-	ld hl, PokegearText_WhomToCall
+	ld hl, GearAskWhoCallText
 	call PrintText
 	ret
 
-.dotdotdot
+.GearEllipseText:
 	;
-	text_far Text_GearEllipse
+	text_far _GearEllipseText
 	text_end
 
-.OutOfServiceArea:
+.GearOutOfServiceText:
 	; You're out of the service area.
-	text_far Text_GearOutOfService
+	text_far _GearOutOfServiceText
 	text_end
 
 PokegearPhone_FinishPhoneCall:
@@ -951,7 +951,7 @@ PokegearPhone_FinishPhoneCall:
 	farcall HangUp
 	ld a, POKEGEARSTATE_PHONEJOYPAD
 	ld [wJumptableIndex], a
-	ld hl, PokegearText_WhomToCall
+	ld hl, GearAskWhoCallText
 	call PrintText
 	ret
 
@@ -1206,13 +1206,13 @@ PokegearPhoneContactSubmenu:
 	jp hl
 
 .Cancel:
-	ld hl, PokegearText_WhomToCall
+	ld hl, GearAskWhoCallText
 	call PrintText
 	scf
 	ret
 
 .Delete:
-	ld hl, PokegearText_DeleteStoredNumber
+	ld hl, GearAskDeleteText
 	call MenuTextbox
 	call YesNoBox
 	call ExitMenu
@@ -1221,7 +1221,7 @@ PokegearPhoneContactSubmenu:
 	xor a
 	ldh [hBGMapMode], a
 	call PokegearPhone_UpdateDisplayList
-	ld hl, PokegearText_WhomToCall
+	ld hl, GearAskWhoCallText
 	call PrintText
 	call WaitBGMap
 .CancelDelete:
@@ -1351,19 +1351,19 @@ Pokegear_LoadTilemapRLE:
 	jr nz, .load
 	jr .loop
 
-PokegearText_WhomToCall:
+GearAskWhoCallText:
 	; Whom do you want to call?
-	text_far Text_GearAskWhoCall
+	text_far _GearAskWhoCallText
 	text_end
 
-PokegearText_PressAnyButtonToExit:
+GearPressButtonText:
 	; Press any button to exit.
-	text_far Text_GearPressButton
+	text_far _GearPressButtonText
 	text_end
 
-PokegearText_DeleteStoredNumber:
+GearAskDeleteText:
 	; Delete this stored phone number?
-	text_far Text_GearAskDelete
+	text_far _GearAskDeleteText
 	text_end
 
 PokegearSpritesGFX:

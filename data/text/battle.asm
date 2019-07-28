@@ -881,7 +881,7 @@ ReflectEffectText:
 	line "DEFENSE rose!"
 	prompt
 
-NothingHappenedText:
+SquirtbottleNothingText:
 	text "But nothing"
 	line "happened."
 	prompt
