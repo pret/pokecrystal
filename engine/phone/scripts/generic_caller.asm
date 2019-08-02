@@ -171,12 +171,12 @@ Phone_WhosBragging_Female:
 	ifequal PHONE_PICNICKER_ERIN, .Erin
 
 .Beverly:
-	farwritetext BeverlyCuterText
+	farwritetext BeverlyEvenCuterText
 	buttonsound
 	end
 
 .Beth:
-	farwritetext BethHorsebackText
+	farwritetext BethExhilaratingRideText
 	buttonsound
 	end
 
@@ -261,12 +261,12 @@ Phone_WhoDefeatedMon_Male:
 	end
 
 .Anthony:
-	farwritetext AnthonyLotsaWildText
+	farwritetext AnthonyLotsOfWildText
 	buttonsound
 	end
 
 .Todd:
-	farwritetext ToddKOdText
+	farwritetext ToddNowWeCanKOText
 	buttonsound
 	end
 
@@ -286,7 +286,7 @@ Phone_WhoDefeatedMon_Male:
 	end
 
 .Derek:
-	farwritetext DerekGreatPikaText
+	farwritetext DerekGreatPikachuText
 	buttonsound
 	end
 
@@ -311,7 +311,7 @@ Phone_WhoDefeatedMon_Male:
 	end
 
 .Parry:
-	farwritetext ParryWildBirdText
+	farwritetext ParryWildKOText
 	buttonsound
 	end
 
@@ -387,7 +387,7 @@ Phone_WhoLostAMon_Male:
 	ifequal PHONE_HIKER_PARRY, .Parry
 
 .Jack:
-	farwritetext JackMissedText
+	farwritetext JackMissedCatchText
 	buttonsound
 	end
 

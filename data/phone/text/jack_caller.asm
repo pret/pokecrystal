@@ -21,7 +21,7 @@ JackDefeatedMonText:
 	cont "starting to help."
 	done
 
-JackMissedText:
+JackMissedCatchText:
 	text "Oh, and listen."
 	line "I missed catching"
 

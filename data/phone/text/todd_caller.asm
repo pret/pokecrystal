@@ -8,7 +8,7 @@ ToddLooksCuteLikeMeText:
 	line "getting cuter!"
 	done
 
-ToddKOdText:
+ToddNowWeCanKOText:
 	text "And, you know?"
 
 	para "Now we can KO"

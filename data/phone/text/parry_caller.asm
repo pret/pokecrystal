@@ -5,7 +5,7 @@ ParryNoMatchText:
 	text " now."
 	done
 
-ParryWildBirdText:
+ParryWildKOText:
 	text "Yeah, we KO'd a"
 	line "wild @"
 	text_ram wStringBuffer4

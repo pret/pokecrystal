@@ -20,7 +20,7 @@ AnthonyAteBerriesText:
 	line "was delicious!"
 	done
 
-AnthonyLotsaWildText:
+AnthonyLotsOfWildText:
 	text "Lately, I've been"
 	line "running across"
 

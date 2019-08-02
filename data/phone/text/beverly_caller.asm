@@ -1,4 +1,4 @@
-BeverlyCuterText:
+BeverlyEvenCuterText:
 	text "I fancied up my"
 	line "@"
 	text_ram wStringBuffer4

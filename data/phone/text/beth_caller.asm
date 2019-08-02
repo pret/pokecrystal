@@ -1,4 +1,4 @@
-BethHorsebackText:
+BethExhilaratingRideText:
 	text "Do you remember my"
 	line "sweet @"
 	text_ram wStringBuffer4

@@ -12,7 +12,7 @@ DerekCheekPincherText:
 	para "I must be special."
 	done
 
-DerekGreatPikaText:
+DerekGreatPikachuText:
 	text "Oh, and recently,"
 	line "my PIKACHU beat a"
 	cont "wild @"
