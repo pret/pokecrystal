@@ -2,17 +2,42 @@ BuenaPhoneCalleeScript:
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue BuenaPhoneScript_Rocket
 	readvar VAR_HOUR
-	ifgreater 17, BuenaPhoneScript_AfterMidnight1
-	scall BuenaPhoneScript_CheckTimeOfDay1
-	sjump BuenaPhoneScript_Random1
+	ifgreater 17, BuenaPhoneScript_AfterMidnightCallee
+	scall BuenaPhoneScript_CheckTimeOfDayCallee
+	sjump BuenaPhoneScript_RandomCallee
 
 BuenaPhoneCallerScript:
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue BuenaPhoneScript_Rocket
-	scall BuenaPhoneScript_CheckTimeOfDay2
-	sjump BuenaPhoneScript_Random2
+	scall BuenaPhoneScript_CheckTimeOfDayCaller
+	sjump BuenaPhoneScript_RandomCaller
 
-BuenaPhoneScript_CheckTimeOfDay1:
+BuenaPhoneScript_CheckTimeOfDayCallee:
+	checktime MORN
+	iftrue .morn
+	checktime DAY
+	iftrue .day
+	writetext BuenaPhoneNiteAnswerText
+	buttonsound
+	end
+
+.morn
+	writetext BuenaPhoneMorningAnswerText
+	buttonsound
+	end
+
+.day
+	writetext BuenaPhoneDayAnswerText
+	buttonsound
+	end
+
+BuenaPhoneScript_AfterMidnightCallee:
+	writetext BuenaPhoneMidnightAnswerText
+	end
+
+BuenaPhoneScript_CheckTimeOfDayCaller:
+	readvar VAR_HOUR
+	ifgreater 17, BuenaPhoneScript_AfterMidnightCaller
 	checktime MORN
 	iftrue .morn
 	checktime DAY
@@ -31,33 +56,8 @@ BuenaPhoneScript_CheckTimeOfDay1:
 	buttonsound
 	end
 
-BuenaPhoneScript_AfterMidnight1:
+BuenaPhoneScript_AfterMidnightCaller:
 	writetext BuenaPhoneMidnightText
-	end
-
-BuenaPhoneScript_CheckTimeOfDay2:
-	readvar VAR_HOUR
-	ifgreater 17, BuenaPhoneScript_AfterMidnight2
-	checktime MORN
-	iftrue .morn
-	checktime DAY
-	iftrue .day
-	writetext BuenaPhoneNite2Text
-	buttonsound
-	end
-
-.morn
-	writetext BuenaPhoneMorning2Text
-	buttonsound
-	end
-
-.day
-	writetext BuenaPhoneDay2Text
-	buttonsound
-	end
-
-BuenaPhoneScript_AfterMidnight2:
-	writetext BuenaPhoneMidnight2Text
 	buttonsound
 	end
 
@@ -65,7 +65,7 @@ BuenaPhoneScript_Rocket:
 	writetext BuenaPhoneRocketText
 	end
 
-BuenaPhoneScript_Random2:
+BuenaPhoneScript_RandomCaller:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .PostE4
 	random 11
@@ -91,79 +91,79 @@ BuenaPhoneScript_Random2:
 	ifequal 13, .thirteen
 
 .zero
-	writetext BuenaPhoneZeroRandom2Text
+	writetext BuenaPhoneWentOutWithBenText
 	sjump .finish
 
 .one
-	writetext BuenaPhoneOneRandom2Text
+	writetext BuenaPhoneReceptionistText
 	sjump .finish
 
 .two
-	writetext BuenaPhoneTwoRandom2Text
+	writetext BuenaPhoneLuckyNumberShowText
 	sjump .finish
 
 .three
-	writetext BuenaPhoneThreeRandom2Text
+	writetext BuenaPhoneStressedFromWorkText
 	sjump .finish
 
 .four
-	writetext BuenaPhoneFourRandom2Text
+	writetext BuenaPhoneProfessorOakText
 	sjump .finish
 
 .five
-	writetext BuenaPhoneFiveRandom2Text
+	writetext BuenaPhoneGotAColdText
 	sjump .finish
 
 .six
-	writetext BuenaPhoneSixRandom2Text
+	writetext BuenaPhoneRadioCardQuestionsText
 	sjump .finish
 
 .seven
-	writetext BuenaPhoneSevenRandom2Text
+	writetext BuenaPhonePikachuFanClubText
 	sjump .finish
 
 .eight
-	writetext BuenaPhoneEightRandom2Text
+	writetext BuenaPhoneRadioTowerDirectorText
 	sjump .finish
 
 .nine
-	writetext BuenaPhoneNineRandom2Text
+	writetext BuenaPhoneWhenDoYouRelaxText
 	sjump .finish
 
 .ten
-	writetext BuenaPhoneTenRandom2Text
+	writetext BuenaPhoneStarterPokemonText
 	sjump .finish
 
 .eleven
-	writetext BuenaPhoneElevenRandom2Text
+	writetext BuenaPhoneCompanyVacationText
 	sjump .finish
 
 .twelve
-	writetext BuenaPhoneTwelveRandom2Text
+	writetext BuenaPhoneBenAndFernText
 	sjump .finish
 
 .thirteen
-	writetext BuenaPhoneThirteenRandom2Text
+	writetext BuenaPhoneGoingShoppingText
 
 .finish
 	end
 
-BuenaPhoneScript_Random1:
+BuenaPhoneScript_RandomCallee:
 	random 3
 	ifequal 0, .zero
 	ifequal 1, .one
 	ifequal 2, .two
 
 .zero
-	writetext BuenaPhoneZeroRandomText
+	writetext BuenaPhoneFavouriteSlotMachineAnswerText
 	end
 
 .one
-	writetext BuenaPhoneOneRandomText
+	writetext BuenaPhonePokegearAnswerText
 	end
 
 .two
-	writetext BuenaPhoneTwoRandomText
+	writetext BuenaPhoneCoopedUpInRadioTowerAnswerText
 	end
 
 INCLUDE "data/phone/text/buena.asm"

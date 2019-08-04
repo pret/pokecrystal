@@ -1,4 +1,4 @@
-BuenaPhoneMorningText:
+BuenaPhoneMorningAnswerText:
 	text "Hi, this is BUENA…"
 
 	para "Oh! Good morning,"
@@ -8,7 +8,7 @@ BuenaPhoneMorningText:
 	line "in the morning…"
 	done
 
-BuenaPhoneDayText:
+BuenaPhoneDayAnswerText:
 	text "Hi, this is BUENA…"
 	line "Oh! Hi, <PLAY_G>!"
 
@@ -16,7 +16,7 @@ BuenaPhoneDayText:
 	line "BUENA's show?"
 	done
 
-BuenaPhoneMidnightText:
+BuenaPhoneMidnightAnswerText:
 	text "This is BUENA."
 	line "I can't come to"
 
@@ -33,7 +33,7 @@ BuenaPhoneMidnightText:
 	line "after midnight!"
 	done
 
-BuenaPhoneNiteText:
+BuenaPhoneNiteAnswerText:
 	text "Hi, this is BUENA…"
 	line "Oh! Hi, <PLAY_G>!"
 
@@ -44,7 +44,7 @@ BuenaPhoneNiteText:
 	line "I'm exhausted!"
 	done
 
-BuenaPhoneMorning2Text:
+BuenaPhoneMorningText:
 	text "<PLAY_G>!"
 	line "Hi, it's BUENA!"
 
@@ -52,7 +52,7 @@ BuenaPhoneMorning2Text:
 	line "I decided to call!"
 	done
 
-BuenaPhoneDay2Text:
+BuenaPhoneDayText:
 	text "<PLAY_G>!"
 	line "Hi, it's BUENA!"
 
@@ -60,7 +60,7 @@ BuenaPhoneDay2Text:
 	line "to chat with!"
 	done
 
-BuenaPhoneMidnight2Text:
+BuenaPhoneMidnightText:
 	text "<PLAY_G>!"
 	line "Hi, it's BUENA!"
 
@@ -68,7 +68,7 @@ BuenaPhoneMidnight2Text:
 	line "break."
 	done
 
-BuenaPhoneNite2Text:
+BuenaPhoneNiteText:
 	text "<PLAY_G>!"
 	line "Hi, it's BUENA!"
 
@@ -94,7 +94,7 @@ BuenaPhoneRocketText:
 	line "better be careful!"
 	done
 
-BuenaPhoneZeroRandom2Text:
+BuenaPhoneWentOutWithBenText:
 	text "The other day, I"
 	line "went out to eat"
 
@@ -117,7 +117,7 @@ BuenaPhoneZeroRandom2Text:
 	line "you later!"
 	done
 
-BuenaPhoneOneRandom2Text:
+BuenaPhoneReceptionistText:
 	text "You know the"
 	line "receptionist at"
 	cont "the RADIO TOWER?"
@@ -140,7 +140,7 @@ BuenaPhoneOneRandom2Text:
 	para "Catch you later!"
 	done
 
-BuenaPhoneTwoRandom2Text:
+BuenaPhoneLuckyNumberShowText:
 	text "Tell me, <PLAY_G>."
 	line "Have you ever won"
 
@@ -157,7 +157,7 @@ BuenaPhoneTwoRandom2Text:
 	para "Let's chat again!"
 	done
 
-BuenaPhoneThreeRandom2Text:
+BuenaPhoneStressedFromWorkText:
 	text "You know, last"
 	line "night…"
 
@@ -187,7 +187,7 @@ BuenaPhoneThreeRandom2Text:
 	line "wrong number!"
 	done
 
-BuenaPhoneFourRandom2Text:
+BuenaPhoneProfessorOakText:
 	text "Yesterday, PROF."
 	line "OAK was in the"
 
@@ -209,7 +209,7 @@ BuenaPhoneFourRandom2Text:
 	para "Catch you later!"
 	done
 
-BuenaPhoneFiveRandom2Text:
+BuenaPhoneGotAColdText:
 	text "…Cough, cough!"
 
 	para "Uhm sorry uh got"
@@ -229,7 +229,7 @@ BuenaPhoneFiveRandom2Text:
 	cont "been BUENA!"
 	done
 
-BuenaPhoneSixRandom2Text:
+BuenaPhoneRadioCardQuestionsText:
 	text "Hey, <PLAY_G>."
 	line "You won that RADIO"
 
@@ -249,7 +249,7 @@ BuenaPhoneSixRandom2Text:
 	line "again!"
 	done
 
-BuenaPhoneSevenRandom2Text:
+BuenaPhonePikachuFanClubText:
 	text "I'm elated that"
 	line "more people are"
 
@@ -283,7 +283,7 @@ BuenaPhoneSevenRandom2Text:
 	para "Let's chat again!"
 	done
 
-BuenaPhoneEightRandom2Text:
+BuenaPhoneRadioTowerDirectorText:
 	text "Guess what?"
 	line "The RADIO TOWER's"
 
@@ -315,7 +315,7 @@ BuenaPhoneEightRandom2Text:
 	line "my show!"
 	done
 
-BuenaPhoneNineRandom2Text:
+BuenaPhoneWhenDoYouRelaxText:
 	text "<PLAY_G>, tell me."
 
 	para "When do you relax"
@@ -347,7 +347,7 @@ BuenaPhoneNineRandom2Text:
 	line "happened! Later!"
 	done
 
-BuenaPhoneTenRandom2Text:
+BuenaPhoneStarterPokemonText:
 	text "<PLAY_G>, what was"
 	line "the first #MON"
 	cont "you ever caught?"
@@ -387,7 +387,7 @@ BuenaPhoneTenRandom2Text:
 	para "Bye-bye!"
 	done
 
-BuenaPhoneElevenRandom2Text:
+BuenaPhoneCompanyVacationText:
 	text "Guess what? All of"
 	line "us from the RADIO"
 
@@ -415,7 +415,7 @@ BuenaPhoneElevenRandom2Text:
 	para "Bye-bye!"
 	done
 
-BuenaPhoneTwelveRandom2Text:
+BuenaPhoneBenAndFernText:
 	text "Did you know…?"
 
 	para "BEN and FERN talk"
@@ -445,7 +445,7 @@ BuenaPhoneTwelveRandom2Text:
 	para "Let's chat again!"
 	done
 
-BuenaPhoneThirteenRandom2Text:
+BuenaPhoneGoingShoppingText:
 	text "I'm going shopping"
 	line "with MARY and LILY"
 	cont "soon."
@@ -462,7 +462,7 @@ BuenaPhoneThirteenRandom2Text:
 	para "Catch you later!"
 	done
 
-BuenaPhoneZeroRandomText:
+BuenaPhoneFavouriteSlotMachineAnswerText:
 	text "I'm thinking of"
 	line "going to the GAME"
 
@@ -489,7 +489,7 @@ endc
 	para "Catch you later!"
 	done
 
-BuenaPhoneOneRandomText:
+BuenaPhonePokegearAnswerText:
 	text "Hey, <PLAY_G>. You"
 	line "use your #GEAR"
 
@@ -512,7 +512,7 @@ BuenaPhoneOneRandomText:
 	line "calling! Later!"
 	done
 
-BuenaPhoneTwoRandomText:
+BuenaPhoneCoopedUpInRadioTowerAnswerText:
 	text "Is it sunny"
 	line "outside today?"
 
