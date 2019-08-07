@@ -1251,7 +1251,7 @@ PhoneScript_MonFlavorText:
 	farsjump .unnecessary
 
 .unnecessary
-	farwritetext UnknownUnnecessaryText
+	farwritetext UnknownTougherThanEverText
 	buttonsound
 	farsjump PhoneScript_HangupText_Male
 

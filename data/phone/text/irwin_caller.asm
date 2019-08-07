@@ -5,7 +5,7 @@ IrwinHangupText:
 	para "Call you later!"
 	done
 
-IrwinRocketRumorText:
+IrwinRocketTakeoverRumorText:
 	text "<PLAY_G>, have you"
 	line "heard?"
 
@@ -19,7 +19,6 @@ IrwinRocketRumorText:
 	line "ROCKET?"
 	done
 
-; unused
 IrwinPlainBadgeGossipText:
 	text "<PLAY_G>, I heard!"
 
@@ -30,7 +29,6 @@ IrwinPlainBadgeGossipText:
 	line "to be your friend!"
 	done
 
-; unused
 IrwinJasmineReturnedGossipText:
 	text "Hey, I heard about"
 	line "you!"
@@ -48,7 +46,6 @@ IrwinJasmineReturnedGossipText:
 	line "bed with a cold!"
 	done
 
-; unused
 IrwinRocketHideoutGossipText:
 	text "I heard, I heard,"
 	line "I heard!"
@@ -63,7 +60,6 @@ IrwinRocketHideoutGossipText:
 	line "TEAM ROCKET?"
 	done
 
-; unused
 IrwinRadioTowerGossipText:
 	text "I heard, I heard,"
 	line "I heard!"
@@ -75,7 +71,6 @@ IrwinRadioTowerGossipText:
 	line "rock so hard!"
 	done
 
-; unused
 IrwinRisingBadgeGossipText:
 	text "I saw, I saw!"
 
@@ -89,7 +84,6 @@ IrwinRisingBadgeGossipText:
 	line "You can't fail!"
 	done
 
-; unused
 IrwinEliteFourGossipText:
 	text "Yesterday, I went"
 	line "out to NEW BARK"
@@ -119,7 +113,6 @@ IrwinEliteFourGossipText:
 	line "mom, believe me!"
 	done
 
-; unused
 IrwinVermilionCityGossipText:
 	text "I saw, I saw,"
 	line "I saw!"
@@ -134,7 +127,6 @@ IrwinVermilionCityGossipText:
 	line "your backdrop!"
 	done
 
-; unused
 IrwinTrainPassGossipText:
 	text "I heard, I heard!"
 
@@ -163,7 +155,6 @@ IrwinTrainPassGossipText:
 	line "by FLY?"
 	done
 
-; unused
 IrwinSnorlaxGossipText:
 	text "I saw, I saw!"
 
@@ -183,7 +174,6 @@ IrwinSnorlaxGossipText:
 	line "magic!"
 	done
 
-; unused
 IrwinMtSilverGossipText:
 	text "I hear rumors"
 	line "about you all over"
@@ -210,7 +200,6 @@ IrwinCalledRightAwayText:
 	line "good friends!"
 	done
 
-; unused
 IrwinFogBadgeGossipText:
 	text "I saw, I heard!"
 
@@ -236,7 +225,6 @@ IrwinFogBadgeGossipText:
 	line "took off for home…"
 	done
 
-; unused
 IrwinMarshBadgeGossipText:
 	text "<PLAY_G>, I heard!"
 
@@ -252,7 +240,7 @@ IrwinMarshBadgeGossipText:
 	para "You so rock!"
 	done
 
-IrwinEscapadeText:
+IrwinYourEscapadesRockText:
 	text "Hearing about your"
 	line "escapades rocks my"
 
@@ -271,7 +259,7 @@ IrwinGoodMatchText:
 	line "a good match!"
 	done
 
-IrwinNoseyText:
+IrwinSoMuchToChatAboutText:
 	text "How are you?"
 
 	para "What are you"

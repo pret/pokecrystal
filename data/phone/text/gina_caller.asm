@@ -1,4 +1,4 @@
-GinaSyncText:
+GinaGettingInSyncWithMonText:
 	text "My @"
 	text_ram wStringBuffer4
 	text " and"
@@ -8,7 +8,7 @@ GinaSyncText:
 	line "other."
 	done
 
-GinaGrooveText:
+GinaGettingIntoTheGrooveText:
 	text "We battled a wild"
 	line "@"
 	text_ram wStringBuffer4
@@ -53,7 +53,7 @@ GinaLaterText:
 	line "again!"
 	done
 
-GinaRocketRumorText:
+GinaRocketTakeoverRumorText:
 	text "Have you heard"
 	line "about TEAM ROCKET?"
 

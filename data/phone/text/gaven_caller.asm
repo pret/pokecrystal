@@ -1,4 +1,4 @@
-GavenGreaterText:
+GavenMonGreaterThanImaginedText:
 	text "My @"
 	text_ram wStringBuffer4
 	text_start
@@ -35,7 +35,7 @@ GavenBarelyDefeatText:
 	cont "used to seeing."
 	done
 
-GavenMissedCatchText:
+GavenLostAMonText:
 	text "And a while back,"
 	line "I tried to catch a"
 	cont "wild @"

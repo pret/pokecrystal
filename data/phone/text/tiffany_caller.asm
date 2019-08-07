@@ -1,4 +1,4 @@
-TiffanyAdorableText:
+TiffanyMonIsAdorableText:
 	text "My @"
 	text_ram wStringBuffer4
 	text "'s"
@@ -31,7 +31,7 @@ TiffanyWildWinText:
 	text "!"
 	done
 
-TiffanyWildLossText:
+TiffanyLostAMonText:
 	text "Oh, and we had to"
 	line "battle a wild"
 
@@ -51,7 +51,7 @@ TiffanyWildLossText:
 	cont "of my CLEFAIRY."
 	done
 
-TiffanyAskBattleText:
+TiffanyBattleRematchText:
 	text "I know this might"
 	line "surprise you, but"
 

@@ -18,7 +18,7 @@ ChadObservingWildText:
 	line "PROF.OAK soon."
 	done
 
-ChadInevitableText:
+ChadVictoryWasInevitableText:
 	text "Oh yes, I managed"
 	line "to knock out a"
 
@@ -106,7 +106,7 @@ ChadProfElmGossipText:
 	line "I envy him!"
 	done
 
-ChadDreamGossipText:
+ChadProfOaksDreamGossipText:
 	text "PROF.OAK's dream"
 	line "is to compile a"
 
@@ -148,7 +148,7 @@ ChadLeagueGossipText:
 	line "great man."
 	done
 
-ChadRadioShowGossipText:
+ChadPokemonTalkGossipText:
 	text "PROF.OAK'S #MON"
 	line "TALK is a popular"
 	cont "radio show, right?"
@@ -167,7 +167,7 @@ ChadRadioShowGossipText:
 	line "thank for it!"
 	done
 
-ChadBattlingGossipText:
+ChadProfOakTrainerGossipText:
 	text "PROF.OAK used to"
 	line "be a trainer a"
 	cont "long time ago."
@@ -203,7 +203,7 @@ ChadDaisyTeaGossipText:
 	line "PROF.OAK."
 	done
 
-ChadTravelGossipText:
+ChadProfOakTravelingGossipText:
 	text "Did you know?"
 	line "PROF.OAK traveled"
 

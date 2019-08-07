@@ -27,7 +27,7 @@ ChadOakGossipScript:
 	sjump PhoneScript_HangupText_Male
 
 .Dream:
-	farwritetext ChadDreamGossipText
+	farwritetext ChadProfOaksDreamGossipText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -42,12 +42,12 @@ ChadOakGossipScript:
 	sjump PhoneScript_HangupText_Male
 
 .RadioShow:
-	farwritetext ChadRadioShowGossipText
+	farwritetext ChadPokemonTalkGossipText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 .Battling:
-	farwritetext ChadBattlingGossipText
+	farwritetext ChadProfOakTrainerGossipText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -57,6 +57,6 @@ ChadOakGossipScript:
 	sjump PhoneScript_HangupText_Male
 
 .Traveled:
-	farwritetext ChadTravelGossipText
+	farwritetext ChadProfOakTravelingGossipText
 	buttonsound
 	sjump PhoneScript_HangupText_Male

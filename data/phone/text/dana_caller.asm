@@ -1,4 +1,4 @@
-DanaPhotosText:
+DanaTakingPhotosText:
 	text "My @"
 	text_ram wStringBuffer4
 	text " is"

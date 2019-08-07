@@ -11,5 +11,5 @@ ArnieHurryScript:
 	end
 
 ToddHurryScript:
-	farwritetext ToddHurryText
+	farwritetext ToddHaveYouGoneToDepartmentStoreText
 	end

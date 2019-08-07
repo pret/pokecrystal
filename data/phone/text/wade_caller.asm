@@ -1,4 +1,4 @@
-WadeAreYouGrowingText:
+WadeAreYourMonGrowingText:
 	text "Are your #MON"
 	line "growing?"
 
@@ -32,7 +32,7 @@ WadeOneHitText:
 	line "the poor thing."
 	done
 
-WadeRunAwayText:
+WadeLostAMonText:
 	text "Oh yeah, a wild"
 	line "@"
 	text_ram wStringBuffer4
@@ -51,7 +51,7 @@ WadeRunAwayText:
 	line "had it."
 	done
 
-WadeAnotherBattleText:
+WadeBattleRematchText:
 	text "Do you feel like a"
 	line "#MON battle?"
 

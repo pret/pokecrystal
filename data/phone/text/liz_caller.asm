@@ -1,4 +1,4 @@
-LizNuzzleText:
+LizMonAlwaysWantsToNuzzleText:
 	text "Oh, you have to"
 	line "hear this."
 
@@ -11,7 +11,7 @@ LizNuzzleText:
 	line "nuzzle me!"
 	done
 
-LizOneHitText:
+LizBeatMonWithJustOneHitText:
 	text "And, and! Um…"
 
 	para "We beat a wild"
@@ -61,7 +61,7 @@ LizBattleRematchText:
 	line "you get here!"
 	done
 
-LizHiTaniaText:
+LizWrongNumberText:
 	text "Hi, TANIA. How are"
 	line "you? This is LIZ."
 
@@ -260,7 +260,7 @@ LizForgotGossipText:
 	line "was going to say!"
 	done
 
-LizHangupText:
+LizFawningOverMonText:
 	text "Listen, listen!"
 
 	para "My @"

@@ -1,4 +1,4 @@
-JoeySharperText:
+JoeyMonLookingSharperText:
 	text "My @"
 	text_ram wStringBuffer4
 	text "'s"
@@ -12,7 +12,7 @@ JoeySharperText:
 	line "party!"
 	done
 
-JoeyToughText:
+JoeyDefeatedToughMonText:
 	text "Oh yeah, I took"
 	line "down a @"
 	text_ram wStringBuffer4

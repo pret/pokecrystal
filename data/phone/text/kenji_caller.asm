@@ -3,7 +3,7 @@ KenjiLaterText:
 	line "again!"
 	done
 
-KenjiCallingPhoneText:
+KenjiRemainDedicatedText:
 	text "Are you still on"
 	line "your journey?"
 
@@ -44,7 +44,7 @@ KenjiHangupMorningText:
 	line "Ayiiiyah!"
 	done
 
-KenjiBreakText:
+KenjiTakingABreakText:
 	text "I'm taking a break"
 	line "on ROUTE 45!"
 

@@ -1,11 +1,11 @@
-ParryNoMatchText:
+ParryNothingCanMatchText:
 	text "Nothing can match"
 	line "my @"
 	text_ram wStringBuffer4
 	text " now."
 	done
 
-ParryWildKOText:
+ParryKOdAWildMonText:
 	text "Yeah, we KO'd a"
 	line "wild @"
 	text_ram wStringBuffer4

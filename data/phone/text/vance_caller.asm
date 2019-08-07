@@ -1,4 +1,4 @@
-VanceLiftoffText:
+VanceMonHasBecomeTougherText:
 	text "My @"
 	text_ram wStringBuffer4
 	text "'s"
@@ -8,7 +8,7 @@ VanceLiftoffText:
 	line "liftoff!"
 	done
 
-VanceEasyBeatText:
+VanceEasilyBeatMonText:
 	text "We can easily beat"
 	line "@"
 	text_ram wStringBuffer4
@@ -18,7 +18,7 @@ VanceEasyBeatText:
 	line "Isn't that great?"
 	done
 
-VanceFlyAfterText:
+VanceLostAMonText:
 	text "But get this, a"
 	line "wild @"
 	text_ram wStringBuffer4
@@ -30,7 +30,7 @@ VanceFlyAfterText:
 	line "after it…"
 	done
 
-VanceAskBattleText:
+VanceBattleRematchText:
 	text "Right now, I'm on"
 	line "@"
 	text_ram wStringBuffer5

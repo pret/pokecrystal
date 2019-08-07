@@ -3,7 +3,7 @@ JackWantsBattleScript:
 	end
 
 HueyWantsBattleScript:
-	farwritetext HueyWantsBattleText
+	farwritetext HueyReminderText
 	end
 
 GavenReminderScript:
@@ -11,7 +11,7 @@ GavenReminderScript:
 	end
 
 BethBattleReminderScript:
-	farwritetext BethForgetDealText
+	farwritetext BethReminderText
 	end
 
 JoseReminderScript:
@@ -43,7 +43,7 @@ AnthonyReminderScript:
 	end
 
 ToddForwardScript:
-	farwritetext ToddForwardText
+	farwritetext ToddLookingForwardToBattleText
 	end
 
 GinaReminderScript:

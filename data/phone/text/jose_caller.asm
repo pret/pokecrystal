@@ -1,4 +1,4 @@
-JoseAromaText:
+JoseMonsStickHasADeliciousAromaText:
 	text "Hey listen, my"
 	line "@"
 	text_ram wStringBuffer4
@@ -11,7 +11,7 @@ JoseAromaText:
 	line "appetite going!"
 	done
 
-JoseStickText:
+JoseShouldveSeenFarfetchdWieldStickText:
 	text "A while ago, my"
 	line "FARFETCH'D KO'd"
 	cont "this @"
@@ -60,7 +60,7 @@ JoseBattleRematchText:
 	line "for me, OK?"
 	done
 
-JoseSeeyaText:
+JoseSeeYaText:
 	text "Be seeing you!"
 	done
 

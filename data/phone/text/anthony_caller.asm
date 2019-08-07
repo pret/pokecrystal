@@ -1,4 +1,4 @@
-AnthonyAteBerriesText:
+AnthonyMonAteSomeBerriesText:
 	text "The other day, I"
 	line "was watching my"
 
@@ -20,7 +20,7 @@ AnthonyAteBerriesText:
 	line "was delicious!"
 	done
 
-AnthonyLotsOfWildText:
+AnthonyLotsOfWildMonText:
 	text "Lately, I've been"
 	line "running across"
 

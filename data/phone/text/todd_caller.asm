@@ -20,7 +20,7 @@ ToddNowWeCanKOText:
 	line "the GOLDENROD GYM."
 	done
 
-ToddWildLossText:
+ToddLostAMonText:
 	text "And, you know?"
 	line "We just failed to"
 
@@ -36,7 +36,7 @@ ToddWildLossText:
 	line "yet…"
 	done
 
-ToddAskBattleText:
+ToddBattleRematchText:
 	text "You must be a lot"
 	line "better now, huh?"
 
@@ -56,7 +56,7 @@ ToddLaterText:
 	text "See you later!"
 	done
 
-ToddItemText:
+ToddDepartmentStoreBargainSaleText:
 	text "This is it--the"
 	line "one we've all been"
 	cont "waiting for!"
@@ -82,7 +82,7 @@ ToddItemText:
 	cont "soon as you can!"
 	done
 
-ToddNoItemText:
+ToddSavingUpForBargainSaleText:
 	text "I'm saving up for"
 	line "the next bargain"
 
@@ -90,7 +90,7 @@ ToddNoItemText:
 	line "next one?"
 	done
 
-ToddForwardText:
+ToddLookingForwardToBattleText:
 	text "Where are you?"
 
 	para "Let's have our"
@@ -102,7 +102,7 @@ ToddForwardText:
 	text "."
 	done
 
-ToddHurryText:
+ToddHaveYouGoneToDepartmentStoreText:
 	text "Haven't you gone"
 	line "to GOLDENROD DEPT."
 

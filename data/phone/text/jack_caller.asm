@@ -1,4 +1,4 @@
-JackIntelligenceText:
+JackIntelligenceKeepsRisingText:
 	text "My @"
 	text_ram wStringBuffer4
 	text "'s"
@@ -21,7 +21,7 @@ JackDefeatedMonText:
 	cont "starting to help."
 	done
 
-JackMissedCatchText:
+JackLostAMonText:
 	text "Oh, and listen."
 	line "I missed catching"
 
@@ -165,7 +165,7 @@ JackRainDanceTriviaText:
 	line "than usual."
 	done
 
-JackPhoneTipsText:
+JackHeardSomeGreatTipsText:
 	text "My friend heard"
 	line "some great tips."
 

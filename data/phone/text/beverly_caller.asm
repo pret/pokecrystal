@@ -1,4 +1,4 @@
-BeverlyEvenCuterText:
+BeverlyMadeMonEvenCuterText:
 	text "I fancied up my"
 	line "@"
 	text_ram wStringBuffer4
@@ -8,7 +8,7 @@ BeverlyEvenCuterText:
 	line "than before!"
 	done
 
-BeverlyCuteSnubbullText:
+BeverlyMySnubbullWasCuterText:
 	text "I happened to come"
 	line "across a wild"
 	cont "SNUBBULL recently."

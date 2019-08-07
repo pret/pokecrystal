@@ -1,4 +1,4 @@
-ArnieLovesTheCuteText:
+ArnieMonIsSoCuteText:
 	text "I'm always with my"
 	line "@"
 	text_ram wStringBuffer4
@@ -8,7 +8,7 @@ ArnieLovesTheCuteText:
 	line "I just love it!"
 	done
 
-ArnieChangeTopicText:
+ArnieSawMonForTheFirstTime:
 	text "Changing the topic"
 	line "here, I saw this"
 
@@ -74,7 +74,7 @@ ArnieSwarmText:
 	line "this!"
 	done
 
-ArnieHangupText:
+ArnieHaventSeenRareMonText:
 	text "I haven't had any"
 	line "luck seeing rare"
 	cont "#MON lately…"

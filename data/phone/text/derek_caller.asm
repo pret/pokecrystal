@@ -1,4 +1,4 @@
-DerekCheekPincherText:
+DerekCheekPinchingText:
 	text "Listen to this."
 	line "My @"
 	text_ram wStringBuffer4
@@ -12,7 +12,7 @@ DerekCheekPincherText:
 	para "I must be special."
 	done
 
-DerekGreatPikachuText:
+DerekPikachuIsAwesomeText:
 	text "Oh, and recently,"
 	line "my PIKACHU beat a"
 	cont "wild @"

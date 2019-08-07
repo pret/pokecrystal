@@ -75,27 +75,27 @@ Phone_WhosBragging_Male:
 	ifequal PHONE_HIKER_PARRY, .Parry
 
 .Jack:
-	farwritetext JackIntelligenceText
+	farwritetext JackIntelligenceKeepsRisingText
 	buttonsound
 	end
 
 .Gaven:
-	farwritetext GavenGreaterText
+	farwritetext GavenMonGreaterThanImaginedText
 	buttonsound
 	end
 
 .Jose:
-	farwritetext JoseAromaText
+	farwritetext JoseMonsStickHasADeliciousAromaText
 	buttonsound
 	end
 
 .Joey:
-	farwritetext JoeySharperText
+	farwritetext JoeyMonLookingSharperText
 	buttonsound
 	end
 
 .Wade:
-	farwritetext WadeAreYouGrowingText
+	farwritetext WadeAreYourMonGrowingText
 	buttonsound
 	end
 
@@ -105,7 +105,7 @@ Phone_WhosBragging_Male:
 	end
 
 .Anthony:
-	farwritetext AnthonyAteBerriesText
+	farwritetext AnthonyMonAteSomeBerriesText
 	buttonsound
 	end
 
@@ -115,7 +115,7 @@ Phone_WhosBragging_Male:
 	end
 
 .Arnie:
-	farwritetext ArnieLovesTheCuteText
+	farwritetext ArnieMonIsSoCuteText
 	buttonsound
 	end
 
@@ -130,12 +130,12 @@ Phone_WhosBragging_Male:
 	end
 
 .Derek:
-	farwritetext DerekCheekPincherText
+	farwritetext DerekCheekPinchingText
 	buttonsound
 	end
 
 .Tully:
-	farwritetext TullyGrownText
+	farwritetext TullyMonHasGrownText
 	buttonsound
 	end
 
@@ -145,17 +145,17 @@ Phone_WhosBragging_Male:
 	end
 
 .Vance:
-	farwritetext VanceLiftoffText
+	farwritetext VanceMonHasBecomeTougherText
 	buttonsound
 	end
 
 .Wilton:
-	farwritetext WiltonGrownText
+	farwritetext WiltonMonHasGrownText
 	buttonsound
 	end
 
 .Parry:
-	farwritetext ParryNoMatchText
+	farwritetext ParryNothingCanMatchText
 	buttonsound
 	end
 
@@ -171,7 +171,7 @@ Phone_WhosBragging_Female:
 	ifequal PHONE_PICNICKER_ERIN, .Erin
 
 .Beverly:
-	farwritetext BeverlyEvenCuterText
+	farwritetext BeverlyMadeMonEvenCuterText
 	buttonsound
 	end
 
@@ -181,32 +181,32 @@ Phone_WhosBragging_Female:
 	end
 
 .Reena:
-	farwritetext ReenaPerfectText
+	farwritetext ReenaMonsIsAPerfectMatchText
 	buttonsound
 	end
 
 .Liz:
-	farwritetext LizNuzzleText
+	farwritetext LizMonAlwaysWantsToNuzzleText
 	buttonsound
 	end
 
 .Gina:
-	farwritetext GinaSyncText
+	farwritetext GinaGettingInSyncWithMonText
 	buttonsound
 	end
 
 .Dana:
-	farwritetext DanaPhotosText
+	farwritetext DanaTakingPhotosText
 	buttonsound
 	end
 
 .Tiffany:
-	farwritetext TiffanyAdorableText
+	farwritetext TiffanyMonIsAdorableText
 	buttonsound
 	end
 
 .Erin:
-	farwritetext ErinStrongerText
+	farwritetext ErinMonIsMuchStrongerText
 	buttonsound
 	end
 
@@ -241,12 +241,12 @@ Phone_WhoDefeatedMon_Male:
 	end
 
 .Jose:
-	farwritetext JoseStickText
+	farwritetext JoseShouldveSeenFarfetchdWieldStickText
 	buttonsound
 	end
 
 .Joey:
-	farwritetext JoeyToughText
+	farwritetext JoeyDefeatedToughMonText
 	buttonsound
 	end
 
@@ -261,7 +261,7 @@ Phone_WhoDefeatedMon_Male:
 	end
 
 .Anthony:
-	farwritetext AnthonyLotsOfWildText
+	farwritetext AnthonyLotsOfWildMonText
 	buttonsound
 	end
 
@@ -271,7 +271,7 @@ Phone_WhoDefeatedMon_Male:
 	end
 
 .Arnie:
-	farwritetext ArnieChangeTopicText
+	farwritetext ArnieSawMonForTheFirstTime
 	buttonsound
 	end
 
@@ -281,27 +281,27 @@ Phone_WhoDefeatedMon_Male:
 	end
 
 .Chad:
-	farwritetext ChadInevitableText
+	farwritetext ChadVictoryWasInevitableText
 	buttonsound
 	end
 
 .Derek:
-	farwritetext DerekGreatPikachuText
+	farwritetext DerekPikachuIsAwesomeText
 	buttonsound
 	end
 
 .Tully:
-	farwritetext TullyKOdText
+	farwritetext TullyKOdWildMonText
 	buttonsound
 	end
 
 .Brent:
-	farwritetext BrentRareCatchText
+	farwritetext BrentNotRareEnoughCatchText
 	buttonsound
 	end
 
 .Vance:
-	farwritetext VanceEasyBeatText
+	farwritetext VanceEasilyBeatMonText
 	buttonsound
 	end
 
@@ -311,7 +311,7 @@ Phone_WhoDefeatedMon_Male:
 	end
 
 .Parry:
-	farwritetext ParryWildKOText
+	farwritetext ParryKOdAWildMonText
 	buttonsound
 	end
 
@@ -327,7 +327,7 @@ Phone_WhoDefeatedMon_Female:
 	ifequal PHONE_PICNICKER_ERIN, .Erin
 
 .Beverly:
-	farwritetext BeverlyCuteSnubbullText
+	farwritetext BeverlyMySnubbullWasCuterText
 	buttonsound
 	end
 
@@ -342,12 +342,12 @@ Phone_WhoDefeatedMon_Female:
 	end
 
 .Liz:
-	farwritetext LizOneHitText
+	farwritetext LizBeatMonWithJustOneHitText
 	buttonsound
 	end
 
 .Gina:
-	farwritetext GinaGrooveText
+	farwritetext GinaGettingIntoTheGrooveText
 	buttonsound
 	end
 
@@ -362,7 +362,7 @@ Phone_WhoDefeatedMon_Female:
 	end
 
 .Erin:
-	farwritetext ErinProperRaisingText
+	farwritetext ErinRaisedMonProperlyText
 	buttonsound
 	end
 
@@ -387,12 +387,12 @@ Phone_WhoLostAMon_Male:
 	ifequal PHONE_HIKER_PARRY, .Parry
 
 .Jack:
-	farwritetext JackMissedCatchText
+	farwritetext JackLostAMonText
 	buttonsound
 	end
 
 .Gaven:
-	farwritetext GavenMissedCatchText
+	farwritetext GavenLostAMonText
 	buttonsound
 	end
 
@@ -407,12 +407,12 @@ Phone_WhoLostAMon_Male:
 	end
 
 .Wade:
-	farwritetext WadeRunAwayText
+	farwritetext WadeLostAMonText
 	buttonsound
 	end
 
 .Ralph:
-	farwritetext RalphWildLossText
+	farwritetext RalphLostAMonText
 	buttonsound
 	end
 
@@ -422,7 +422,7 @@ Phone_WhoLostAMon_Male:
 	end
 
 .Todd:
-	farwritetext ToddWildLossText
+	farwritetext ToddLostAMonText
 	buttonsound
 	end
 
@@ -447,7 +447,7 @@ Phone_WhoLostAMon_Male:
 	end
 
 .Tully:
-	farwritetext TullyLostWildText
+	farwritetext TullyLostAMonText
 	buttonsound
 	end
 
@@ -457,12 +457,12 @@ Phone_WhoLostAMon_Male:
 	end
 
 .Vance:
-	farwritetext VanceFlyAfterText
+	farwritetext VanceLostAMonText
 	buttonsound
 	end
 
 .Wilton:
-	farwritetext WiltonLandWildText
+	farwritetext WiltonLostAMonText
 	buttonsound
 	end
 
@@ -493,7 +493,7 @@ Phone_WhoLostAMon_Female:
 	end
 
 .Reena:
-	farwritetext ReenaWildLossText
+	farwritetext ReenaLostAMonText
 	buttonsound
 	end
 
@@ -513,7 +513,7 @@ Phone_WhoLostAMon_Female:
 	end
 
 .Tiffany:
-	farwritetext TiffanyWildLossText
+	farwritetext TiffanyLostAMonText
 	buttonsound
 	end
 
@@ -576,12 +576,12 @@ PhoneScript_RematchText_Male:
 	end
 
 .Wade:
-	farwritetext WadeAnotherBattleText
+	farwritetext WadeBattleRematchText
 	buttonsound
 	end
 
 .Ralph:
-	farwritetext RalphAskBattleText
+	farwritetext RalphBattleRematchText
 	buttonsound
 	end
 
@@ -591,7 +591,7 @@ PhoneScript_RematchText_Male:
 	end
 
 .Todd:
-	farwritetext ToddAskBattleText
+	farwritetext ToddBattleRematchText
 	buttonsound
 	end
 
@@ -611,7 +611,7 @@ PhoneScript_RematchText_Male:
 	end
 
 .Tully:
-	farwritetext TullyAskBattleText
+	farwritetext TullyBattleRematchText
 	buttonsound
 	end
 
@@ -621,12 +621,12 @@ PhoneScript_RematchText_Male:
 	end
 
 .Vance:
-	farwritetext VanceAskBattleText
+	farwritetext VanceBattleRematchText
 	buttonsound
 	end
 
 .Wilton:
-	farwritetext WiltonWhileTimeText
+	farwritetext WiltonBattleRematchText
 	buttonsound
 	end
 
@@ -651,7 +651,7 @@ PhoneScript_RematchText_Female:
 	end
 
 .Reena:
-	farwritetext ReenaAskBattleText
+	farwritetext ReenaBattleRematchText
 	buttonsound
 	end
 
@@ -671,7 +671,7 @@ PhoneScript_RematchText_Female:
 	end
 
 .Tiffany:
-	farwritetext TiffanyAskBattleText
+	farwritetext TiffanyBattleRematchText
 	buttonsound
 	end
 
@@ -681,7 +681,7 @@ PhoneScript_RematchText_Female:
 	end
 
 LizWrongNumberScript:
-	farwritetext LizHiTaniaText
+	farwritetext LizWrongNumberText
 	end
 
 TiffanyItsAwful:
@@ -716,7 +716,7 @@ PhoneScript_HangupText_Male:
 	end
 
 .Huey:
-	farwritetext HueySeeyaText
+	farwritetext HueySeeYaText
 	end
 
 .Gaven:
@@ -724,7 +724,7 @@ PhoneScript_HangupText_Male:
 	end
 
 .Jose:
-	farwritetext JoseSeeyaText
+	farwritetext JoseSeeYaText
 	end
 
 .Joey:
@@ -870,12 +870,12 @@ PhoneScript_BugCatchingContest:
 	sjump PhoneScript_HangupText_Male
 
 IrwinRocketRumorScript:
-	farwritetext IrwinRocketRumorText
+	farwritetext IrwinRocketTakeoverRumorText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 GinaRocketRumorScript:
-	farwritetext GinaRocketRumorText
+	farwritetext GinaRocketTakeoverRumorText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
@@ -951,11 +951,11 @@ PhoneScript_FoundItem_Female:
 	end
 
 ToddItemScript:
-	farwritetext ToddItemText
+	farwritetext ToddDepartmentStoreBargainSaleText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 KenjiCallingPhoneScript:
-	farwritetext KenjiCallingPhoneText
+	farwritetext KenjiRemainDedicatedText
 	buttonsound
 	sjump PhoneScript_HangupText_Male

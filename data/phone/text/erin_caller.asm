@@ -1,4 +1,4 @@
-ErinStrongerText:
+ErinMonIsMuchStrongerText:
 	text_ram wStringBuffer3
 	text "'s @"
 	text_ram wStringBuffer4
@@ -7,7 +7,7 @@ ErinStrongerText:
 	cont "than before!"
 	done
 
-ErinProperRaisingText:
+ErinRaisedMonProperlyText:
 	text "And, and…"
 	line "I just battled and"
 	cont "beat @"

@@ -19,7 +19,7 @@ GinaComePickUpScript:
 	sjump PhoneScript_HangupText_Female
 
 AlanComePickUpScript:
-	farwritetext AlanComePickUpText
+	farwritetext AlanComePickUpGiftText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 

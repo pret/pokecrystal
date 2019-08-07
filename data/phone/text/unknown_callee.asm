@@ -18,7 +18,7 @@ UnknownGenericText:
 	line "bit much for me!"
 	done
 
-UnknownUnnecessaryText:
+UnknownTougherThanEverText:
 	text "My @"
 	text_ram wStringBuffer4
 	text "'s"

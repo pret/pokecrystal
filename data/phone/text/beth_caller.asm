@@ -82,7 +82,7 @@ BethHangupText:
 	line "sometime!"
 	done
 
-BethForgetDealText:
+BethReminderText:
 	text "Um… <PLAY_G>?"
 	line "What's wrong?"
 

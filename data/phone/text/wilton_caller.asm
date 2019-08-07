@@ -1,4 +1,4 @@
-WiltonGrownText:
+WiltonMonHasGrownText:
 	text "My @"
 	text_ram wStringBuffer4
 	text "'s"
@@ -21,7 +21,7 @@ WiltonFunFishingText:
 	line "#MON."
 	done
 
-WiltonLandWildText:
+WiltonLostAMonText:
 	text "But a while back,"
 	line "we came this close"
 
@@ -34,7 +34,7 @@ WiltonLandWildText:
 	line "huge. Believe me."
 	done
 
-WiltonWhileTimeText:
+WiltonBattleRematchText:
 	text "I'm fishing on"
 	line "@"
 	text_ram wStringBuffer5

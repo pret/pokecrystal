@@ -84,7 +84,7 @@ AlanReminderText:
 	text "!"
 	done
 
-AlanComePickUpText:
+AlanComePickUpGiftText:
 	text "I have to do my"
 	line "homework, so can"
 

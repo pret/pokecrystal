@@ -12,7 +12,7 @@ BrentRareTradeText:
 	line "it a secret!"
 	done
 
-BrentRareCatchText:
+BrentNotRareEnoughCatchText:
 	text "Oh yeah, I took"
 	line "down this wild"
 

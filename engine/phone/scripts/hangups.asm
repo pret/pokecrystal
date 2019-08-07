@@ -1,5 +1,5 @@
 JackPhoneTipsScript:
-	farwritetext JackPhoneTipsText
+	farwritetext JackHeardSomeGreatTipsText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -49,7 +49,7 @@ RalphNoItemScript:
 	sjump PhoneScript_HangupText_Male
 
 LizHangupScript:
-	farwritetext LizHangupText
+	farwritetext LizFawningOverMonText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
@@ -59,7 +59,7 @@ AnthonyHangupScript:
 	sjump PhoneScript_HangupText_Male
 
 ToddNoItemScript:
-	farwritetext ToddNoItemText
+	farwritetext ToddSavingUpForBargainSaleText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -69,7 +69,7 @@ GinaHangupScript:
 	sjump PhoneScript_HangupText_Female
 
 ArnieHangupScript:
-	farwritetext ArnieHangupText
+	farwritetext ArnieHaventSeenRareMonText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -135,7 +135,7 @@ IrwinRandomTextScript:
 	ifequal 2, IrwinNoseyScript
 
 IrwinEscapadeScript:
-	farwritetext IrwinEscapadeText
+	farwritetext IrwinYourEscapadesRockText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -145,7 +145,7 @@ IrwinGoodMatchScript:
 	sjump PhoneScript_HangupText_Male
 
 IrwinNoseyScript:
-	farwritetext IrwinNoseyText
+	farwritetext IrwinSoMuchToChatAboutText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -168,7 +168,7 @@ KenjiAnswerPhoneScript:
 	checktime NITE
 	iftrue .Night
 	setevent EVENT_KENJI_ON_BREAK
-	farwritetext KenjiBreakText
+	farwritetext KenjiTakingABreakText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
