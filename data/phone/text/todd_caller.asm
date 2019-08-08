@@ -8,7 +8,7 @@ ToddLooksCuteLikeMeText:
 	line "getting cuter!"
 	done
 
-ToddNowWeCanKOText:
+ToddDefeatedMonText:
 	text "And, you know?"
 
 	para "Now we can KO"
@@ -52,7 +52,7 @@ ToddBattleRematchText:
 	text "."
 	done
 
-ToddLaterText:
+ToddHangupText:
 	text "See you later!"
 	done
 

@@ -5,7 +5,7 @@ ParryNothingCanMatchText:
 	text " now."
 	done
 
-ParryKOdAWildMonText:
+ParryDefeatedMonText:
 	text "Yeah, we KO'd a"
 	line "wild @"
 	text_ram wStringBuffer4
@@ -47,7 +47,7 @@ ParryBattleRematchText:
 	text "!"
 	done
 
-ParryLaterText:
+ParryHangupText:
 	text "OK, give me a call"
 	line "again!"
 	done

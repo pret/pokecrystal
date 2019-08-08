@@ -12,7 +12,7 @@ JoeyMonLookingSharperText:
 	line "party!"
 	done
 
-JoeyDefeatedToughMonText:
+JoeyDefeatedMonText:
 	text "Oh yeah, I took"
 	line "down a @"
 	text_ram wStringBuffer4
@@ -59,11 +59,11 @@ JoeyBattleRematchText:
 	line "when you come."
 	done
 
-JoeyLaterText:
+JoeyHangupText:
 	text "All right. Later!"
 	done
 
-JoeyHangupText:
+JoeyDevisingStrategiesText:
 	text "I'm checking out"
 	line "@"
 	text_ram wStringBuffer4

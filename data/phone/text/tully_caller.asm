@@ -11,7 +11,7 @@ TullyMonHasGrownText:
 	line "it's way bigger."
 	done
 
-TullyKOdWildMonText:
+TullyDefeatedMonText:
 	text "Oh yeah, I KO'd a"
 	line "wild @"
 	text_ram wStringBuffer4
@@ -52,12 +52,12 @@ TullyBattleRematchText:
 	line "have the time."
 	done
 
-TullyLaterText:
+TullyHangupText:
 	text "Well, I'll be"
 	line "seeing you."
 	done
 
-TullyItemText:
+TullyFoundItemText:
 	text "I picked up a good"
 	line "little thing at"
 	cont "the water's edge."

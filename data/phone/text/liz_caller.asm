@@ -11,7 +11,7 @@ LizMonAlwaysWantsToNuzzleText:
 	line "nuzzle me!"
 	done
 
-LizBeatMonWithJustOneHitText:
+LizDefeatedMonText:
 	text "And, and! Um…"
 
 	para "We beat a wild"
@@ -72,7 +72,7 @@ LizWrongNumberText:
 	line "Oops! Sorry!"
 	done
 
-LizLaterText:
+LizHangupText:
 	text "OK, I'll call you"
 	line "later!"
 	done

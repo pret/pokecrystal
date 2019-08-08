@@ -8,7 +8,7 @@ AlanGettingStrongerText:
 	line "calculated!"
 	done
 
-AlanAdvancedStudyText:
+AlanDefeatedMonText:
 	text "By the way, we"
 	line "knocked out a wild"
 
@@ -48,7 +48,7 @@ AlanBattleRematchText:
 	line "for a battle?"
 	done
 
-AlanLaterText:
+AlanHangupText:
 	text "See you later!"
 	done
 
@@ -65,7 +65,7 @@ AlanFoundItemText:
 	line "and pick it up?"
 	done
 
-AlanHangupText:
+AlanHaventPickedUpAnythingText:
 	text "I haven't picked"
 	line "up anything yet."
 

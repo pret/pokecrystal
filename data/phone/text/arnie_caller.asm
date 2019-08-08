@@ -8,7 +8,7 @@ ArnieMonIsSoCuteText:
 	line "I just love it!"
 	done
 
-ArnieSawMonForTheFirstTime:
+ArnieDefeatedMonText:
 	text "Changing the topic"
 	line "here, I saw this"
 
@@ -51,7 +51,7 @@ ArnieBattleRematchText:
 	text "!"
 	done
 
-ArnieLaterText:
+ArnieHangupText:
 	text "Let's talk again,"
 	line "huh?"
 	done

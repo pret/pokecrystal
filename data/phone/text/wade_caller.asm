@@ -17,7 +17,7 @@ WadeAreYourMonGrowingText:
 	line "it'll get tough."
 	done
 
-WadeOneHitText:
+WadeDefeatedMonText:
 	text "Oh yeah, we KO'd a"
 	line "wild @"
 	text_ram wStringBuffer4
@@ -67,7 +67,7 @@ WadeBattleRematchText:
 	line "you get there."
 	done
 
-WadeLaterText:
+WadeHangupText:
 	text "See you later!"
 	done
 
@@ -85,7 +85,7 @@ WadeBugCatchingContestText:
 	line "up my mind."
 	done
 
-WadeFoundBerryText:
+WadeFoundItemText:
 	text "I found all kinds"
 	line "of BERRIES. If you"
 

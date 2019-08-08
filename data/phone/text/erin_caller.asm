@@ -7,7 +7,7 @@ ErinMonIsMuchStrongerText:
 	cont "than before!"
 	done
 
-ErinRaisedMonProperlyText:
+ErinDefeatedMonText:
 	text "And, and…"
 	line "I just battled and"
 	cont "beat @"
@@ -43,7 +43,7 @@ ErinBattleRematchText:
 	text "!"
 	done
 
-ErinLaterText:
+ErinHangupText:
 	text "See you. Bye-bye!"
 	done
 

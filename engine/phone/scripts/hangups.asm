@@ -4,12 +4,12 @@ JackPhoneTipsScript:
 	sjump PhoneScript_HangupText_Male
 
 BeverlyHangupScript:
-	farwritetext BeverlyHangupText
+	farwritetext BeverlyLetsChatAboutMonAgainText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
 HueyHangupScript:
-	farwritetext HueyHangupText
+	farwritetext HueyWeHaveToBattleAgainSometimeText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -19,12 +19,12 @@ GavenHangupNotThursdayScript:
 	sjump PhoneScript_HangupText_Male
 
 BethHangupScript:
-	farwritetext BethHangupText
+	farwritetext BethLetsBattleAgainSometimeText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
 JoseHangupScript:
-	farwritetext JoseHangupText
+	farwritetext JoseHaventGottenItemYetText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -34,7 +34,7 @@ ReenaForwardScript:
 	sjump PhoneScript_HangupText_Female
 
 JoeyHangupScript:
-	farwritetext JoeyHangupText
+	farwritetext JoeyDevisingStrategiesText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -54,7 +54,7 @@ LizHangupScript:
 	sjump PhoneScript_HangupText_Female
 
 AnthonyHangupScript:
-	farwritetext AnthonyHangupText
+	farwritetext AnthonyWasntPayingAttentionText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -64,7 +64,7 @@ ToddNoItemScript:
 	sjump PhoneScript_HangupText_Male
 
 GinaHangupScript:
-	farwritetext GinaHangupText
+	farwritetext GinaHaventFoundAnythingYetText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
@@ -74,22 +74,22 @@ ArnieHangupScript:
 	sjump PhoneScript_HangupText_Male
 
 AlanHangupScript:
-	farwritetext AlanHangupText
+	farwritetext AlanHaventPickedUpAnythingText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 DanaHangupScript:
-	farwritetext DanaHangupText
+	farwritetext DanaCanYouWaitABitLongerText
 	buttonsound
 	sjump PhoneScript_HangupText_Female
 
 ChadHangupScript:
-	farwritetext ChadHangupText
+	farwritetext ChadGoingToStudyHardText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 DerekHangupScript:
-	farwritetext DerekHangupText
+	farwritetext DerekLetsGetTogetherText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -99,7 +99,7 @@ TullyNoItemScript:
 	sjump PhoneScript_HangupText_Male
 
 BrentHangupScript:
-	farwritetext BrentHangupText
+	farwritetext BrentSorryImTooBusyText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
@@ -153,12 +153,12 @@ KenjiAnswerPhoneScript:
 	readvar VAR_KENJI_BREAK
 	ifequal 2, .Training
 	ifequal 1, .OnBreak
-	farwritetext KenjiHangupText
+	farwritetext KenjiCallMeBackAnotherTimeText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 
 .Training:
-	farwritetext KenjiHangupTrainingText
+	farwritetext KenjiIllHaveTimeToChatTomorrowText
 	buttonsound
 	sjump PhoneScript_HangupText_Male
 

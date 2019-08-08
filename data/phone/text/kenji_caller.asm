@@ -1,4 +1,4 @@
-KenjiLaterText:
+KenjiHangupText:
 	text "Anyway, we'll chat"
 	line "again!"
 	done
@@ -13,7 +13,7 @@ KenjiRemainDedicatedText:
 	para "Oooooaaarrrgh!"
 	done
 
-KenjiHangupText:
+KenjiCallMeBackAnotherTimeText:
 	text "I'm in training"
 	line "now. I apologize,"
 
@@ -23,7 +23,7 @@ KenjiHangupText:
 	para "Oooooaaarrrgh!"
 	done
 
-KenjiHangupTrainingText:
+KenjiIllHaveTimeToChatTomorrowText:
 	text "I apologize, but I"
 	line "don't have time to"
 

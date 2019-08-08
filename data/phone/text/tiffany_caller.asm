@@ -11,7 +11,7 @@ TiffanyMonIsAdorableText:
 	line "fluffy and warm!"
 	done
 
-TiffanyWildWinText:
+TiffanyDefeatedMonText:
 	text "Oh, and we had to"
 	line "battle a wild"
 
@@ -81,11 +81,11 @@ TiffanyItsAwfulText:
 	line "Bye-bye!"
 	done
 
-TiffanyLaterText:
+TiffanyHangupText:
 	text "Bye-bye!"
 	done
 
-TiffanyItemText:
+TiffanyFoundItemText:
 	text "I bought some PINK"
 	line "BOWS at GOLDENROD"
 

@@ -12,7 +12,7 @@ DerekCheekPinchingText:
 	para "I must be special."
 	done
 
-DerekPikachuIsAwesomeText:
+DerekDefeatedMonText:
 	text "Oh, and recently,"
 	line "my PIKACHU beat a"
 	cont "wild @"
@@ -51,7 +51,7 @@ DerekLostAMonText:
 	line "good otherwise."
 	done
 
-DerekLaterText:
+DerekHangupText:
 	text "Well, let's talk"
 	line "again!"
 	done
@@ -83,7 +83,7 @@ DerekFoundItemText:
 	cont "it too!"
 	done
 
-DerekHangupText:
+DerekLetsGetTogetherText:
 	text "How is your"
 	line "PIKACHU doing?"
 

@@ -8,7 +8,7 @@ BeverlyMadeMonEvenCuterText:
 	line "than before!"
 	done
 
-BeverlyMySnubbullWasCuterText:
+BeverlyDefeatedMonText:
 	text "I happened to come"
 	line "across a wild"
 	cont "SNUBBULL recently."
@@ -36,12 +36,12 @@ BeverlyLostAMonText:
 	line "quite miffed."
 	done
 
-BeverlyLaterText:
+BeverlyHangupText:
 	text "You can expect a"
 	line "call from me."
 	done
 
-BeverlyFoundNuggetText:
+BeverlyFoundItemText:
 	text "My husband got"
 	line "some NUGGETS."
 
@@ -60,7 +60,7 @@ BeverlyFoundNuggetText:
 	line "when you can."
 	done
 
-BeverlyHangupText:
+BeverlyLetsChatAboutMonAgainText:
 	text "Are your #MON"
 	line "in prime form?"
 

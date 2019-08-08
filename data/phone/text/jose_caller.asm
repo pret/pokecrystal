@@ -11,7 +11,7 @@ JoseMonsStickHasADeliciousAromaText:
 	line "appetite going!"
 	done
 
-JoseShouldveSeenFarfetchdWieldStickText:
+JoseDefeatedMonText:
 	text "A while ago, my"
 	line "FARFETCH'D KO'd"
 	cont "this @"
@@ -60,11 +60,11 @@ JoseBattleRematchText:
 	line "for me, OK?"
 	done
 
-JoseSeeYaText:
+JoseHangupText:
 	text "Be seeing you!"
 	done
 
-JoseFoundSomethingText:
+JoseFoundItemText:
 	text "My FARFETCH'D had"
 	line "something pretty"
 	cont "in its beak."
@@ -81,7 +81,7 @@ JoseFoundSomethingText:
 	line "have it."
 	done
 
-JoseHangupText:
+JoseHaventGottenItemYetText:
 	text "I haven't gotten"
 	line "what I promised"
 	cont "you yet."

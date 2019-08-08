@@ -53,7 +53,7 @@ JackBattleRematchText:
 	line "you're nearby."
 	done
 
-JackLaterText:
+JackHangupText:
 	text "See you later!"
 	done
 

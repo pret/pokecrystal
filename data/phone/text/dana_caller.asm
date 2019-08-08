@@ -8,7 +8,7 @@ DanaTakingPhotosText:
 	line "photos galore!"
 	done
 
-DanaInstantKOText:
+DanaDefeatedMonText:
 	text "It took only an"
 	line "instant to KO a"
 	cont "wild @"
@@ -50,7 +50,7 @@ DanaBattleRematchText:
 	line "for you!"
 	done
 
-DanaLaterText:
+DanaHangupText:
 	text "See you!"
 	done
 
@@ -70,7 +70,7 @@ DanaFoundItemText:
 	text "!"
 	done
 
-DanaHangupText:
+DanaCanYouWaitABitLongerText:
 	text "Oh! You wanted a"
 	line "gift, right?"
 

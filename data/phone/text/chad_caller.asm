@@ -18,7 +18,7 @@ ChadObservingWildText:
 	line "PROF.OAK soon."
 	done
 
-ChadVictoryWasInevitableText:
+ChadDefeatedMonText:
 	text "Oh yes, I managed"
 	line "to knock out a"
 
@@ -65,7 +65,7 @@ ChadBattleRematchText:
 	text "!"
 	done
 
-ChadLaterText:
+ChadHangupText:
 	text "See you later!"
 	done
 
@@ -223,7 +223,7 @@ ChadProfOakTravelingGossipText:
 	line "things too…"
 	done
 
-ChadHangupText:
+ChadGoingToStudyHardText:
 	text "I'm going to study"
 	line "hard so PROF.OAK"
 

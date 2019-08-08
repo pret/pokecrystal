@@ -236,82 +236,82 @@ Phone_WhoDefeatedMon_Male:
 	end
 
 .Gaven:
-	farwritetext GavenBarelyDefeatText
+	farwritetext GavenDefeatedMonText
 	buttonsound
 	end
 
 .Jose:
-	farwritetext JoseShouldveSeenFarfetchdWieldStickText
+	farwritetext JoseDefeatedMonText
 	buttonsound
 	end
 
 .Joey:
-	farwritetext JoeyDefeatedToughMonText
+	farwritetext JoeyDefeatedMonText
 	buttonsound
 	end
 
 .Wade:
-	farwritetext WadeOneHitText
+	farwritetext WadeDefeatedMonText
 	buttonsound
 	end
 
 .Ralph:
-	farwritetext RalphWildWinText
+	farwritetext RalphDefeatedMonText
 	buttonsound
 	end
 
 .Anthony:
-	farwritetext AnthonyLotsOfWildMonText
+	farwritetext AnthonyDefeatedMonText
 	buttonsound
 	end
 
 .Todd:
-	farwritetext ToddNowWeCanKOText
+	farwritetext ToddDefeatedMonText
 	buttonsound
 	end
 
 .Arnie:
-	farwritetext ArnieSawMonForTheFirstTime
+	farwritetext ArnieDefeatedMonText
 	buttonsound
 	end
 
 .Alan:
-	farwritetext AlanAdvancedStudyText
+	farwritetext AlanDefeatedMonText
 	buttonsound
 	end
 
 .Chad:
-	farwritetext ChadVictoryWasInevitableText
+	farwritetext ChadDefeatedMonText
 	buttonsound
 	end
 
 .Derek:
-	farwritetext DerekPikachuIsAwesomeText
+	farwritetext DerekDefeatedMonText
 	buttonsound
 	end
 
 .Tully:
-	farwritetext TullyKOdWildMonText
+	farwritetext TullyDefeatedMonText
 	buttonsound
 	end
 
 .Brent:
-	farwritetext BrentNotRareEnoughCatchText
+	farwritetext BrentDefeatedMonText
 	buttonsound
 	end
 
 .Vance:
-	farwritetext VanceEasilyBeatMonText
+	farwritetext VanceDefeatedMonText
 	buttonsound
 	end
 
 .Wilton:
-	farwritetext WiltonFunFishingText
+	farwritetext WiltonDefeatedMonText
 	buttonsound
 	end
 
 .Parry:
-	farwritetext ParryKOdAWildMonText
+	farwritetext ParryDefeatedMonText
 	buttonsound
 	end
 
@@ -327,42 +327,42 @@ Phone_WhoDefeatedMon_Female:
 	ifequal PHONE_PICNICKER_ERIN, .Erin
 
 .Beverly:
-	farwritetext BeverlyMySnubbullWasCuterText
+	farwritetext BeverlyDefeatedMonText
 	buttonsound
 	end
 
 .Beth:
-	farwritetext BethShockedWinText
+	farwritetext BethDefeatedMonText
 	buttonsound
 	end
 
 .Reena:
-	farwritetext ReenaWildWinText
+	farwritetext ReenaDefeatedMonText
 	buttonsound
 	end
 
 .Liz:
-	farwritetext LizBeatMonWithJustOneHitText
+	farwritetext LizDefeatedMonText
 	buttonsound
 	end
 
 .Gina:
-	farwritetext GinaGettingIntoTheGrooveText
+	farwritetext GinaDefeatedMonText
 	buttonsound
 	end
 
 .Dana:
-	farwritetext DanaInstantKOText
+	farwritetext DanaDefeatedMonText
 	buttonsound
 	end
 
 .Tiffany:
-	farwritetext TiffanyWildWinText
+	farwritetext TiffanyDefeatedMonText
 	buttonsound
 	end
 
 .Erin:
-	farwritetext ErinRaisedMonProperlyText
+	farwritetext ErinDefeatedMonText
 	buttonsound
 	end
 
@@ -712,11 +712,11 @@ PhoneScript_HangupText_Male:
 	ifequal PHONE_HIKER_PARRY, .Parry
 
 .Jack:
-	farwritetext JackLaterText
+	farwritetext JackHangupText
 	end
 
 .Huey:
-	farwritetext HueySeeYaText
+	farwritetext HueyHangupText
 	end
 
 .Gaven:
@@ -724,27 +724,27 @@ PhoneScript_HangupText_Male:
 	end
 
 .Jose:
-	farwritetext JoseSeeYaText
+	farwritetext JoseHangupText
 	end
 
 .Joey:
-	farwritetext JoeyLaterText
+	farwritetext JoeyHangupText
 	end
 
 .Wade:
-	farwritetext WadeLaterText
+	farwritetext WadeHangupText
 	end
 
 .Ralph:
-	farwritetext RalphLaterText
+	farwritetext RalphHangupText
 	end
 
 .Anthony:
-	farwritetext AnthonyLaterText
+	farwritetext AnthonyHangupText
 	end
 
 .Todd:
-	farwritetext ToddLaterText
+	farwritetext ToddHangupText
 	end
 
 .Irwin:
@@ -752,43 +752,43 @@ PhoneScript_HangupText_Male:
 	end
 
 .Arnie:
-	farwritetext ArnieLaterText
+	farwritetext ArnieHangupText
 	end
 
 .Alan:
-	farwritetext AlanLaterText
+	farwritetext AlanHangupText
 	end
 
 .Chad:
-	farwritetext ChadLaterText
+	farwritetext ChadHangupText
 	end
 
 .Derek:
-	farwritetext DerekLaterText
+	farwritetext DerekHangupText
 	end
 
 .Tully:
-	farwritetext TullyLaterText
+	farwritetext TullyHangupText
 	end
 
 .Brent:
-	farwritetext BrentLaterText
+	farwritetext BrentHangupText
 	end
 
 .Vance:
-	farwritetext VanceLaterText
+	farwritetext VanceHangupText
 	end
 
 .Wilton:
-	farwritetext WiltonLaterText
+	farwritetext WiltonHangupText
 	end
 
 .Kenji:
-	farwritetext KenjiLaterText
+	farwritetext KenjiHangupText
 	end
 
 .Parry:
-	farwritetext ParryLaterText
+	farwritetext ParryHangupText
 	end
 
 PhoneScript_HangupText_Female:
@@ -803,35 +803,35 @@ PhoneScript_HangupText_Female:
 	ifequal PHONE_PICNICKER_ERIN, .Erin
 
 .Beverly:
-	farwritetext BeverlyLaterText
+	farwritetext BeverlyHangupText
 	end
 
 .Beth:
-	farwritetext BethLaterText
+	farwritetext BethHangupText
 	end
 
 .Reena:
-	farwritetext ReenaLaterText
+	farwritetext ReenaHangupText
 	end
 
 .Liz:
-	farwritetext LizLaterText
+	farwritetext LizHangupText
 	end
 
 .Gina:
-	farwritetext GinaLaterText
+	farwritetext GinaHangupText
 	end
 
 .Dana:
-	farwritetext DanaLaterText
+	farwritetext DanaHangupText
 	end
 
 .Tiffany:
-	farwritetext TiffanyLaterText
+	farwritetext TiffanyHangupText
 	end
 
 .Erin:
-	farwritetext ErinLaterText
+	farwritetext ErinHangupText
 	end
 
 Phone_CheckIfUnseenRare_Male:
@@ -904,11 +904,11 @@ PhoneScript_FoundItem_Male:
 	ifequal PHONE_FISHER_WILTON, .Wilton
 
 .Jose:
-	farwritetext JoseFoundSomethingText
+	farwritetext JoseFoundItemText
 	end
 
 .Wade:
-	farwritetext WadeFoundBerryText
+	farwritetext WadeFoundItemText
 	end
 
 .Alan:
@@ -920,11 +920,11 @@ PhoneScript_FoundItem_Male:
 	end
 
 .Tully:
-	farwritetext TullyItemText
+	farwritetext TullyFoundItemText
 	end
 
 .Wilton:
-	farwritetext WiltonItemFishingText
+	farwritetext WiltonFoundItemText
 	end
 
 PhoneScript_FoundItem_Female:
@@ -935,7 +935,7 @@ PhoneScript_FoundItem_Female:
 	ifequal PHONE_PICNICKER_TIFFANY, .Tiffany
 
 .Beverly:
-	farwritetext BeverlyFoundNuggetText
+	farwritetext BeverlyFoundItemText
 	end
 
 .Gina:
@@ -947,7 +947,7 @@ PhoneScript_FoundItem_Female:
 	end
 
 .Tiffany:
-	farwritetext TiffanyItemText
+	farwritetext TiffanyFoundItemText
 	end
 
 ToddItemScript:

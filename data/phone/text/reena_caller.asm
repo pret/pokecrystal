@@ -16,7 +16,7 @@ ReenaMonsIsAPerfectMatchText:
 	cont "match for me?"
 	done
 
-ReenaWildWinText:
+ReenaDefeatedMonText:
 	text "Have I ever faced"
 	line "a wild @"
 	text_ram wStringBuffer4
@@ -60,7 +60,7 @@ ReenaBattleRematchText:
 	line "wait! Got it?"
 	done
 
-ReenaLaterText:
+ReenaHangupText:
 	text "Fine, you may go."
 	done
 

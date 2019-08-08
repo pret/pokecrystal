@@ -14,11 +14,11 @@ HueyBattleRematchText:
 	line "over here pronto!"
 	done
 
-HueySeeYaText:
+HueyHangupText:
 	text "See ya!"
 	done
 
-HueyHangupText:
+HueyWeHaveToBattleAgainSometimeText:
 	text "We have to battle"
 	line "again sometime."
 

@@ -8,7 +8,7 @@ VanceMonHasBecomeTougherText:
 	line "liftoff!"
 	done
 
-VanceEasilyBeatMonText:
+VanceDefeatedMonText:
 	text "We can easily beat"
 	line "@"
 	text_ram wStringBuffer4
@@ -43,7 +43,7 @@ VanceBattleRematchText:
 	line "I'll wait here."
 	done
 
-VanceLaterText:
+VanceHangupText:
 	text "OK, bye for now!"
 	done
 

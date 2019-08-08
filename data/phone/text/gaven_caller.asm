@@ -12,7 +12,7 @@ GavenMonGreaterThanImaginedText:
 	cont "better than mine."
 	done
 
-GavenBarelyDefeatText:
+GavenDefeatedMonText:
 	text "Oh, and I managed"
 	line "to barely defeat"
 

@@ -8,7 +8,7 @@ GinaGettingInSyncWithMonText:
 	line "other."
 	done
 
-GinaGettingIntoTheGrooveText:
+GinaDefeatedMonText:
 	text "We battled a wild"
 	line "@"
 	text_ram wStringBuffer4
@@ -48,7 +48,7 @@ GinaBattleRematchText:
 	cont "me next time?"
 	done
 
-GinaLaterText:
+GinaHangupText:
 	text "Bye! Let's chat"
 	line "again!"
 	done
@@ -81,7 +81,7 @@ GinaFoundItemText:
 	line "where I am."
 	done
 
-GinaHangupText:
+GinaHaventFoundAnythingYetText:
 	text "Sorry, I haven't"
 	line "found anything"
 
