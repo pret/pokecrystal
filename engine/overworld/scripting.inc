@@ -516,7 +516,7 @@ ret_96f76:
 
 GiveItemScript:
 	callasm ret_96f76
-	writetext engine_overworld_scripting_asm_ReceivedItemText
+	writetext ReceivedItemText
 	iffalse .Full
 	waitsfx
 	specialsound
@@ -529,7 +529,7 @@ GiveItemScript:
 	pocketisfull
 	end
 
-engine_overworld_scripting_asm_ReceivedItemText:
+ReceivedItemText:
 	text_far UnknownText_0x1c4719
 	text_end
 
