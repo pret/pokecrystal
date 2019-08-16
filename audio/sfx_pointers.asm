@@ -188,9 +188,9 @@ SFX:
 	dba Sfx_TrainArrived
 	dba Sfx_StopSlot
 	dba Sfx_2Boops
+; new to Crystal
 	dba Sfx_GlassTing
 	dba Sfx_GlassTing2
-; new to Crystal
 	dba Sfx_IntroUnown1
 	dba Sfx_IntroUnown2
 	dba Sfx_IntroUnown3
