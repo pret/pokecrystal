@@ -430,7 +430,7 @@ RestoreDefaultMovement:
 	ret
 
 .ok
-	ld a, SPRITEMOVEFN_STANDING
+	ld a, SPRITEMOVEDATA_STANDING_DOWN
 	ret
 
 ClearObjectMovementByteIndex:
@@ -2466,7 +2466,7 @@ RefreshPlayerSprite:
 	jr ContinueSpawnFacing
 
 SpawnInFacingDown:
-	ld a, 0
+	ld a, DOWN
 ContinueSpawnFacing:
 	ld bc, wPlayerStruct
 	call SetSpriteDirection

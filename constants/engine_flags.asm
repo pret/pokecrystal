@@ -1,4 +1,4 @@
-; EngineFlags indexes (see engine/engine_flags.asm)
+; EngineFlags indexes (see data/engine_flags.asm)
 	const_def
 ; wPokegearFlags
 	const ENGINE_RADIO_CARD
@@ -64,7 +64,7 @@
 	const ENGINE_UNLOCKED_UNOWNS_UNUSED_7
 ; wVisitedSpawns
 	const ENGINE_FLYPOINT_PLAYERS_HOUSE
-	const ENGINE_FLYPOINT_VIRIDIAN_POKECENTER
+	const ENGINE_FLYPOINT_DEBUG
 	const ENGINE_FLYPOINT_PALLET
 	const ENGINE_FLYPOINT_VIRIDIAN
 	const ENGINE_FLYPOINT_PEWTER
