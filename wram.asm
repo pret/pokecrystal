@@ -1044,7 +1044,9 @@ wc811:: ds 1
 wc812:: ds 1
 wc813:: ds 1
 wc814:: ds 4
-wc818:: ds 8
+wc818:: ds 6
+wMobileSDK_SendCommandID:: db ; c81e
+	ds 1
 wc820:: ds 1
 wc821:: ds 47
 

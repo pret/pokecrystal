@@ -773,7 +773,7 @@ Function110485:
 
 Function1104b0:
 	xor a
-	ld [$c81e], a
+	ld [wMobileSDK_SendCommandID], a
 	call Function110393
 	xor a
 	ld [$c86b], a
@@ -799,7 +799,7 @@ Function1104c6:
 	ld a, $2
 	ld [$c86b], a
 	ld a, $a2
-	ld [$c81e], a
+	ld [wMobileSDK_SendCommandID], a
 	ld de, MobilePacket_ISPLogout.End - MobilePacket_ISPLogout
 	ld hl, MobilePacket_ISPLogout
 	ld b, $5
@@ -860,7 +860,7 @@ Function1104c6:
 	ld b, c
 	call Function111f63
 	ld a, $95
-	ld [$c81e], a
+	ld [wMobileSDK_SendCommandID], a
 	ld hl, wMobileSDK_PacketBuffer
 	ld b, $5
 	call MobileSDK_SendBytes
@@ -1040,7 +1040,7 @@ Function110615:
 .asm_1106ac
 	ld hl, wMobileSDK_PacketBuffer
 	ld a, $a8
-	ld [$c81e], a
+	ld [wMobileSDK_SendCommandID], a
 	ld b, $5
 	call MobileSDK_SendBytes
 	ld a, $f
@@ -1203,7 +1203,7 @@ Function110757:
 	ld b, c
 	call Function111f63
 	ld a, $95
-	ld [$c81e], a
+	ld [wMobileSDK_SendCommandID], a
 	ld hl, $cb53
 	ld d, $0
 	ld e, c
@@ -1277,7 +1277,7 @@ Function1107ff:
 	ld b, c
 	call Function111f63
 	ld a, $95
-	ld [$c81e], a
+	ld [wMobileSDK_SendCommandID], a
 	ld de, $0011
 	ld hl, $cbdd
 	ld b, $5
@@ -1331,7 +1331,7 @@ Function1108ab:
 	ld b, c
 	call Function111f63
 	ld a, $95
-	ld [$c81e], a
+	ld [wMobileSDK_SendCommandID], a
 	ld hl, wMobileSDK_PacketBuffer
 	ld b, $5
 	call MobileSDK_SendBytes
@@ -1450,7 +1450,7 @@ Function1109a4:
 	ld b, c
 	call Function111f63
 	ld a, $95
-	ld [$c81e], a
+	ld [wMobileSDK_SendCommandID], a
 	ld hl, wMobileSDK_PacketBuffer
 	ld b, $5
 	call MobileSDK_SendBytes
@@ -1495,7 +1495,7 @@ Function1109f9:
 	ld b, c
 	call Function111f63
 	ld a, $95
-	ld [$c81e], a
+	ld [wMobileSDK_SendCommandID], a
 	ld hl, wMobileSDK_PacketBuffer
 	ld b, $5
 	call MobileSDK_SendBytes
@@ -1579,7 +1579,7 @@ Function110a5b:
 	ld b, c
 	call Function111f63
 	ld a, $95
-	ld [$c81e], a
+	ld [wMobileSDK_SendCommandID], a
 	ld hl, wMobileSDK_PacketBuffer
 	ld b, $5
 	call MobileSDK_SendBytes
@@ -1711,7 +1711,7 @@ Function110af4:
 	ld [$c86b], a
 	ld de, $000b
 	ld a, $95
-	ld [$c81e], a
+	ld [wMobileSDK_SendCommandID], a
 	ld hl, $cbc7
 	ld b, $5
 	jp MobileSDK_SendBytes
@@ -1835,7 +1835,7 @@ Function110c3c:
 	ld b, c
 	call Function111f63
 	ld a, $95
-	ld [$c81e], a
+	ld [wMobileSDK_SendCommandID], a
 	ld hl, wMobileSDK_PacketBuffer
 	ld b, $5
 	call MobileSDK_SendBytes
@@ -1919,7 +1919,7 @@ Function110c9e:
 	ld b, c
 	call Function111f63
 	ld a, $95
-	ld [$c81e], a
+	ld [wMobileSDK_SendCommandID], a
 	ld hl, wMobileSDK_PacketBuffer
 	ld b, $5
 	call MobileSDK_SendBytes
@@ -2298,7 +2298,7 @@ Function110f07:
 	ld [$c86b], a
 	ld de, wMobileSDK_PacketBuffer
 	ld hl, MobilePacket_OpenTCPConnection
-	ld b, MobilePacket_OpenTCPConnection.End - MobilePacket_OpenTCPConnection
+	ld b, $6
 	call MobileSDK_CopyBytes
 	ld hl, $c866
 	ld b, $4
@@ -2342,7 +2342,7 @@ Function110f07:
 	ld de, $0010
 	ld hl, wMobileSDK_PacketBuffer
 	ld a, $a3
-	ld [$c81e], a
+	ld [wMobileSDK_SendCommandID], a
 	ld b, $5
 	call MobileSDK_SendBytes
 	ld a, $f
@@ -2494,7 +2494,7 @@ Function111044:
 	jr z, .asm_111144
 	ld de, $000b
 	ld a, $95
-	ld [$c81e], a
+	ld [wMobileSDK_SendCommandID], a
 	ld hl, wMobileSDK_PacketBuffer
 	ld b, $5
 	call MobileSDK_SendBytes
@@ -3272,7 +3272,7 @@ Function111596:
 	jr Function1115e4
 
 .asm_1115af
-	ld a, [$c81e]
+	ld a, [wMobileSDK_SendCommandID]
 	cp $92
 	jr nz, .asm_1115dd
 	ld a, $2a
@@ -3394,7 +3394,7 @@ Function111664:
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	ld a, [$c81e]
+	ld a, [wMobileSDK_SendCommandID]
 	cp $ff
 	jr z, .asm_111679
 	ld a, [$c822]
@@ -3482,7 +3482,7 @@ _MobileReceive::
 	ld a, $8
 	cp l
 	jp nz, Function1118bc
-	ld a, [$c81e]
+	ld a, [wMobileSDK_SendCommandID]
 	cp $ff
 	jr z, .asm_111716
 	ld a, $f2
@@ -3501,7 +3501,7 @@ _MobileReceive::
 	or a
 	jr z, .asm_111778
 .asm_111716
-	ld a, [$c81e]
+	ld a, [wMobileSDK_SendCommandID]
 	cp $ff
 	jr z, .asm_111730
 	cp $ee
@@ -3539,7 +3539,7 @@ _MobileReceive::
 	ld a, $b
 	jr .asm_111774
 .asm_111757
-	ld a, [$c81e]
+	ld a, [wMobileSDK_SendCommandID]
 	cp $ff
 	jr z, .asm_11176e
 	cp $92
@@ -3903,7 +3903,7 @@ _Timer::
 	ld e, a
 	ld d, $0
 	ld a, $95
-	ld [$c81e], a
+	ld [wMobileSDK_SendCommandID], a
 	ld hl, wMobileSDK_PacketBuffer
 	ld b, $5
 	call MobileSDK_SendBytes
@@ -3920,7 +3920,7 @@ _Timer::
 
 Function1119f0:
 	ld a, $90
-	ld [$c81e], a
+	ld [wMobileSDK_SendCommandID], a
 	ld [$c808], a
 	ld b, $5
 	ld de, MobilePacket_BeginSession.End - MobilePacket_BeginSession
@@ -4135,7 +4135,7 @@ Function111b3c:
 	push hl
 	cp $ee
 	jp z, Function111e2b
-	ld a, [$c81e]
+	ld a, [wMobileSDK_SendCommandID]
 	cp $ff
 	jp z, Function111ef8
 	cp $95
@@ -4547,7 +4547,7 @@ Function111e28:
 	jp Function110029
 
 Function111e2b:
-	ld a, [$c81e]
+	ld a, [wMobileSDK_SendCommandID]
 	cp $ff
 	jp z, Function111ef8
 	ld a, [$c86a]
@@ -4670,7 +4670,7 @@ MobileSDK_SendPacketEmptyBody:
 	ld de, 10
 
 Function111f02:
-	ld [$c81e], a
+	ld [wMobileSDK_SendCommandID], a
 	ld b, $5
 
 MobileSDK_SendBytes:
@@ -4690,7 +4690,7 @@ MobileSDK_SendBytes:
 	and 1 << rSC_ON
 	jr nz, .asm_111f17
 	di
-	ld a, [$c81e]
+	ld a, [wMobileSDK_SendCommandID]
 	cp $ff
 	jr z, .asm_111f35
 	ld a, l
@@ -4804,7 +4804,7 @@ Function111f97:
 	ret
 .asm_111fcd
 	ld b, $5
-	ld hl, $c81e
+	ld hl, wMobileSDK_SendCommandID
 	ld a, [hl]
 	cp $ff
 	jr z, .asm_111fe9
@@ -9339,7 +9339,7 @@ Function113e42:
 .asm_113e85
 	xor a
 	ld [$c86d], a
-	ld [$c81e], a
+	ld [wMobileSDK_SendCommandID], a
 	ld a, $2
 	ld [$c86a], a
 	ld a, $3
@@ -9367,7 +9367,7 @@ Function113e42:
 
 Function113eb8:
 	ld a, $ff
-	ld [$c81e], a
+	ld [wMobileSDK_SendCommandID], a
 	ld hl, $c822
 	res 5, [hl]
 	res 0, [hl]
@@ -9392,7 +9392,7 @@ Unreferenced_Function113ec7:
 	ld a, [hld]
 	dec hl
 	xor $80
-	ld [$c81e], a
+	ld [wMobileSDK_SendCommandID], a
 	ld b, $5
 	call MobileSDK_SendBytes
 	pop af
@@ -9465,7 +9465,7 @@ Function113f2d:
 	xor a
 	ld [$ca3c], a
 	ld [$ca2f], a
-	ld a, [$c81e]
+	ld a, [wMobileSDK_SendCommandID]
 	cp $91
 	jr z, .asm_113f4f
 	jp Function113eb8
