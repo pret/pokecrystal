@@ -4879,6 +4879,8 @@ MobileErrorCode_10_000_Text:
 
 MobileErrorCode_11_000_Text:
 MobileErrorCode_13_000_Text:
+; Could not connect because either the phone cannot make the call, or the telephone line is busy.
+; Please wait for a while and call again.
 	db   "でんわが　うまく　かけられないか"
 	next "でんわかいせんが　こんでいるので"
 	next "つうしん　できません"
@@ -4913,7 +4915,7 @@ MobileErrorCode_15_003_Text:
 MobileErrorCode_CommuncationErrorText:
 ; Communication error.
 ; Please wait a moment, and then try again.
-; If the issue persists, please contact the mobile support center.
+; If the issue persists, please contact the Mobile Support Center.
 	db   "つうしんエラーです"
 	next "しばらく　まって"
 	next "かけなおして　ください"
@@ -4923,6 +4925,8 @@ MobileErrorCode_CommuncationErrorText:
 	db   "@"
 
 MobileErrorCode_22_000_Text:
+; There is a mistake either with the login password, or the login ID.
+; Please confirm the password, wait for a while, and try again.
 	db   "ログインパスワードか"
 	next "ログイン　アイディーに"
 	next "まちがいがあります"
@@ -4932,6 +4936,8 @@ MobileErrorCode_22_000_Text:
 	db   "@"
 
 MobileErrorCode_23_000_Text:
+; The call was ended.
+; Please see the instruction manual, wait a moment, and try again.
 	db   "でんわが　きれました"
 	next "とりあつかいせつめいしょを"
 	next "ごらんのうえ"
@@ -4960,6 +4966,9 @@ MobileErrorCode_25_000_Text:
 	db   "@"
 
 MobileErrorCode_32_503_Text:
+; Could not connect because the Mobile Center is busy.
+; Please wait a moment and try again.
+; For details, please see the instruction manual.
 	db   "モバイルセンターが"
 	next "こんでいて　つながりません"
 	next "しばらくまって"
@@ -4981,6 +4990,8 @@ MobileErrorCode_30_553_Text:
 	db   "@"
 
 MobileErrorCode_31_002_Text:
+; There is a mistake with the email address.
+; Please see the instruction manual, and use the Mobile Trainer to repeat the initial registration (process).
 	db   "メールアドレスに"
 	next "まちがいが　あります"
 	next "とりあつかいせつめいしょを"
@@ -4991,6 +5002,8 @@ MobileErrorCode_31_002_Text:
 
 MobileErrorCode_31_003_Text:
 MobileErrorCode_33_201_Text:
+; There is either an error with the login password, or an error with the Mobile Center.
+; Please confirm the password, wait a moment, and then try again.
 	db   "ログインパスワードに"
 	next "まちがいが　あるか"
 	next "モバイルセンターの　エラーです"
@@ -5001,6 +5014,9 @@ MobileErrorCode_33_201_Text:
 
 MobileErrorCode_32_403_Text:
 MobileErrorCode_32_404_Text:
+; Cannot read data.
+; Please wait a moment, and then try again.
+; If the issue persists, please contact the Mobile Support Center.
 	db   "データの　よみこみが　できません"
 	next "しばらくまって"
 	next "かけなおして　ください"
@@ -5011,6 +5027,10 @@ MobileErrorCode_32_404_Text:
 
 MobileErrorCode_26_000_Text:
 MobileErrorCode_32_408_Text:
+; Out of time.
+; The call was ended.
+; Please try again.
+; For details, please see the instruction manual.
 	db   "じかんぎれです"
 	next "でんわが　きれました"
 	next "でんわを　かけなおしてください"
@@ -5019,6 +5039,8 @@ MobileErrorCode_32_408_Text:
 	db   "@"
 
 MobileErrorCode_33_101_Text:
+; The service cannot be used if payments for usage fees are late.
+; For details, please see the instruction manual.
 	db   "ごりよう　りょうきんの　"
 	next "おしはらいが　おくれたばあいには"
 	next "ごりようが　できなくなります"
@@ -5028,6 +5050,8 @@ MobileErrorCode_33_101_Text:
 
 MobileErrorCode_33_102_Text:
 MobileErrorCode_33_299_Text:
+; Your access to this service has been restricted. Service cannot be used.
+; For details, please see the instruction manual.
 	db   "おきゃくさまの　ごつごうにより"
 	next "ごりようできません"
 	next "くわしくは　とりあつかい"
@@ -5045,6 +5069,8 @@ MobileErrorCode_LineBusyText:
 	db   "@"
 
 MobileErrorCode_33_103_Text:
+; Service cannot be used this month because usage fees have exceeded conditions.
+; For details, please see the instruction manual.
 	db   "ごりよう　りょうきんが"
 	next "じょうげんを　こえているため"
 	next "こんげつは　ごりようできません"
@@ -5053,6 +5079,8 @@ MobileErrorCode_33_103_Text:
 	db   "@"
 
 MobileErrorCode_33_106_Text:
+; Cannot communicate because the Mobile Center is currently undergoing maintenance.
+; Please wait a moment, then try again.
 	db   "げんざい　モバイルセンターの"
 	next "てんけんを　しているので"
 	next "つうしんが　できません"
@@ -5065,12 +5093,15 @@ MobileErrorCode_33_105_Text:
 MobileErrorCode_33_203_Text:
 MobileErrorCode_33_206_Text:
 MobileErrorCode_101_004_Text:
+; Cannot read data.
+; For details, please see the instruction manual.
 	db   "データの　よみこみが　できません"
 	next "くわしくは　とりあつかい"
 	next "せつめいしょを　ごらんください"
 	db   "@"
 
 MobileErrorCode_101_006_Text:
+; Call ended because more than 3 minutes elapsed with no input.
 	db   "３ぷん　いじょう　なにも"
 	next "にゅうりょく　しなかったので"
 	next "でんわが　きれました"
@@ -5078,6 +5109,8 @@ MobileErrorCode_101_006_Text:
 
 MobileErrorCode_101_001_Text:
 MobileErrorCode_101_002_Text:
+; Could not connect properly.
+; Please try again from the beginning (of the process).
 	db   "つうしんが　うまく"
 	next "できませんでした"
 	next "もういちど　はじめから"
@@ -5087,6 +5120,9 @@ MobileErrorCode_101_002_Text:
 MobileErrorCode_101_003_Text:
 MobileErrorCode_101_008_Text:
 MobileErrorCode_101_009_Text:
+; Cannot read data.
+; Please wait a moment, then try again.
+; If the issue persists, please contact the Mobile Support Center.
 	db   "データの　よみこみが　できません"
 	next "しばらくまって"
 	next "かけなおして　ください"
@@ -5096,11 +5132,14 @@ MobileErrorCode_101_009_Text:
 	db   "@"
 
 MobileErrorCode_101_007_Text:
+; Call ended due to long waiting time.
 	db   "まちじかんが　ながいので"
 	next "でんわが　きれました"
 	db   "@"
 
 MobileErrorCode_101_005_Text:
+; (Your adapter's) type differs from the other user’s Mobile Adapter.
+; For details, please see the instruction manual.
 	db   "あいての　モバイルアダプタと"
 	next "タイプが　ちがいます"
 	next "くわしくは　とりあつかい"
@@ -5108,6 +5147,8 @@ MobileErrorCode_101_005_Text:
 	db   "@"
 
 String_17fe9a: ; unused
+; Cannot send your save data because Pokémon News is being updated.
+; Please send your save data after loading new Pokémon News.
 	db   "ポケモンニュースが"
 	next "あたらしくなっているので"
 	next "レポートを　おくれません"
@@ -5116,6 +5157,8 @@ String_17fe9a: ; unused
 	db   "@"
 
 MobileErrorCode_101_000_Text:
+; Either bad communication status, or the other user called was the incorrect user.
+; Please confirm and try again.
 	db   "つうしんの　じょうきょうが"
 	next "よくないか　かけるあいてが"
 	next "まちがっています"
