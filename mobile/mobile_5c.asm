@@ -382,11 +382,11 @@ Function171a5d:
 .asm_171a6a
 	ld a, $0
 	call Function3e32
-	ld [wc300], a
+	ld [wMobileErrorCodeBuffer], a
 	ld a, l
-	ld [wc301], a
+	ld [wMobileErrorCodeBuffer + 1], a
 	ld a, h
-	ld [wc302], a
+	ld [wMobileErrorCodeBuffer + 2], a
 	ld a, $a
 	call Function3e32
 	ldh a, [rSVBK]

@@ -232,10 +232,12 @@ wSpriteAnim10:: sprite_anim_struct wSpriteAnim10
 wSpriteAnimationStructsEnd::
 
 NEXTU ; c300
+; dummy game
+wc300::
+
+NEXTU ; c300
 ; mobile data
-wc300:: ds 1
-wc301:: ds 1
-wc302:: ds 1
+wMobileErrorCodeBuffer:: ds 3 ; c300
 wc303:: ds 2
 wc305:: ds 1
 wc306:: ds 1
@@ -1116,7 +1118,8 @@ ENDU ; cb00
 	ds 14
 wcb0e:: ds 5
 wcb13:: ds 50
-wcb45:: ds 20
+wcb45:: ds 2
+wMobileSDK_PacketBuffer:: ds 18 ; cb47
 wcb59:: ds 20
 wcb6d:: ds 1
 wcb6e:: ds 22
