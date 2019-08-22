@@ -59,7 +59,7 @@ SetRAMStateForMobile:
 	ld bc, $65
 	call ByteFill
 	xor a
-	ld hl, wc300
+	ld hl, wMobileErrorCodeBuffer
 	ld bc, $100
 	call ByteFill
 	ldh a, [rIE]
@@ -272,11 +272,11 @@ Function10016f:
 	ld de, 0
 
 .asm_1001d7
-	ld [wc300], a
+	ld [wMobileErrorCodeBuffer], a
 	ld a, d
-	ld [wc302], a
+	ld [wMobileErrorCodeBuffer + 2], a
 	ld a, e
-	ld [wc301], a
+	ld [wMobileErrorCodeBuffer + 1], a
 	call Function10020b
 	ret
 
@@ -295,11 +295,11 @@ Function10016f:
 
 .asm_1001f5
 	ld a, [wcd2c]
-	ld [wc300], a
+	ld [wMobileErrorCodeBuffer], a
 	ld a, [wcd2d]
-	ld [wc302], a
+	ld [wMobileErrorCodeBuffer + 2], a
 	ld a, [wcd2d]
-	ld [wc301], a
+	ld [wMobileErrorCodeBuffer + 1], a
 	call Function10020b
 	ret
 
