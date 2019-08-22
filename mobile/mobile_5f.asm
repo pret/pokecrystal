@@ -4838,7 +4838,7 @@ MobileErrorCodes_32: db 17
 	dw $405, MobileErrorCode_CommuncationErrorText
 	dw $406, MobileErrorCode_CommuncationErrorText
 	dw $407, MobileErrorCode_CommuncationErrorText
-	dw $408, MobileErrorCode_26_000_Text
+	dw $408, MobileErrorCode_32_408_Text
 	dw $500, MobileErrorCode_ServerErrorText
 	dw $501, MobileErrorCode_CommuncationErrorText
 	dw $502, MobileErrorCode_ServerErrorText
@@ -5010,6 +5010,7 @@ MobileErrorCode_32_404_Text:
 	db   "@"
 
 MobileErrorCode_26_000_Text:
+MobileErrorCode_32_408_Text:
 	db   "じかんぎれです"
 	next "でんわが　きれました"
 	next "でんわを　かけなおしてください"
