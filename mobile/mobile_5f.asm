@@ -4793,7 +4793,7 @@ MobileErrorCodes_23: db 1
 	dw $000, MobileErrorCode_23_000_Text
 
 MobileErrorCodes_24: db 1
-	dw $000, MobileErrorCode_LineBusyText
+	dw $000, MobileErrorCode_ServerConnectionFailedText
 
 MobileErrorCodes_25: db 1
 	dw $000, MobileErrorCode_25_000_Text
@@ -4803,11 +4803,11 @@ MobileErrorCodes_26: db 1
 
 MobileErrorCodes_30: db 17
 	dw $000, MobileErrorCode_CommuncationErrorText
-	dw $221, MobileErrorCode_LineBusyText
-	dw $421, MobileErrorCode_LineBusyText
+	dw $221, MobileErrorCode_ServerConnectionFailedText
+	dw $421, MobileErrorCode_ServerConnectionFailedText
 	dw $450, MobileErrorCode_30_450_Text
-	dw $451, MobileErrorCode_LineBusyText
-	dw $452, MobileErrorCode_LineBusyText
+	dw $451, MobileErrorCode_ServerConnectionFailedText
+	dw $452, MobileErrorCode_ServerConnectionFailedText
 	dw $500, MobileErrorCode_CommuncationErrorText
 	dw $501, MobileErrorCode_CommuncationErrorText
 	dw $502, MobileErrorCode_CommuncationErrorText
@@ -4815,17 +4815,17 @@ MobileErrorCodes_30: db 17
 	dw $504, MobileErrorCode_CommuncationErrorText
 	dw $550, MobileErrorCode_30_550_Text
 	dw $551, MobileErrorCode_30_551_Text
-	dw $552, MobileErrorCode_LineBusyText
+	dw $552, MobileErrorCode_ServerConnectionFailedText
 	dw $553, MobileErrorCode_30_553_Text
-	dw $554, MobileErrorCode_LineBusyText
-	dw -1, MobileErrorCode_LineBusyText
+	dw $554, MobileErrorCode_ServerConnectionFailedText
+	dw -1, MobileErrorCode_ServerConnectionFailedText
 
 MobileErrorCodes_31: db 5
 	dw $000, MobileErrorCode_CommuncationErrorText
 	dw $002, MobileErrorCode_31_002_Text
 	dw $003, MobileErrorCode_31_003_Text
 	dw $004, MobileErrorCode_CommuncationErrorText
-	dw -1, MobileErrorCode_LineBusyText
+	dw -1, MobileErrorCode_ServerConnectionFailedText
 
 MobileErrorCodes_32: db 17
 	dw $000, MobileErrorCode_CommuncationErrorText
@@ -5058,7 +5058,7 @@ MobileErrorCode_33_299_Text:
 	next "せつめいしょを　ごらんください"
 	db   "@"
 
-MobileErrorCode_LineBusyText:
+MobileErrorCode_ServerConnectionFailedText:
 ; The telephone line is busy. Due to this error, the Mobile Center cannot communicate.
 ; Please wait for a little while and call again.
 	db   "でんわかいせんが　こんでいるか"

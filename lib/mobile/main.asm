@@ -77,11 +77,11 @@ Function110030::
 ; clear [$c835].
 	push de
 	ld a, [$c988]
-	cp 2 * 6
+	cp $0c
 	jr z, .noreset
-	cp 2 * 7
+	cp $0e
 	jr z, .noreset
-	cp 2 * 8
+	cp $10
 	jr z, .noreset
 	xor a
 	ld [$c835], a
@@ -4546,7 +4546,8 @@ Function111e15:
 Function111e28:
 	jp Function110029
 
-Function111e2b:
+MobileSDK_GetErrorCode:
+; Converts an error packet into a BCD error code
 	ld a, [wMobileSDK_SendCommandID]
 	cp $ff
 	jp z, Function111ef8
@@ -4571,54 +4572,59 @@ Function111e2b:
 	ld a, [hli]
 	ld [$c80e], a
 	cp $10
-	jr z, .asm_111e88
+	jr z, .adapter_not_plugged_in
 	cp $12
-	jr z, .asm_111e8c
+	jr z, .dial_telephone
 	cp $13
-	jr z, .asm_111ea1
+	jr z, .hang_up_logout
 	cp $15
-	jr z, .asm_111eae
+	jr z, .transfer_data
 	cp $19
-	jr z, .asm_111edc
+	jr z, .read_configuration_data
 	cp $21
-	jr z, .asm_111ee0
+	jr z, .isp_login
 	cp $22
-	jr z, .asm_111ea1
+	jr z, .hang_up_logout
 	cp $23
-	jr z, .asm_111ee4
+	jr z, .open_tcp_connection
 	cp $24
-	jr z, .asm_111eed
+	jr z, .close_tcp_connection
 	cp $28
-	jr z, .asm_111ee9
+	jr z, .dns_query
 	ld a, [hl]
-.asm_111e84
+
+.store_error_code
 	ld [$c80f], a
 	ret
-.asm_111e88
+
+.adapter_not_plugged_in
 	ld a, $10
-	jr .asm_111e84
-.asm_111e8c
+	jr .store_error_code
+
+.dial_telephone
 	ld a, [hl]
 	or $0
 	jr z, .asm_111e9d
 	cp $2
 	jr z, .asm_111e99
 	ld a, $13
-	jr .asm_111e84
+	jr .store_error_code
 .asm_111e99
 	ld a, $17
-	jr .asm_111e84
+	jr .store_error_code
 .asm_111e9d
 	ld a, $12
-	jr .asm_111e84
-.asm_111ea1
+	jr .store_error_code
+
+.hang_up_logout
 	ld hl, $c821
 	res 1, [hl]
 	res 4, [hl]
 	ld a, $2
 	ld [$c807], a
 	ret
-.asm_111eae
+
+.transfer_data
 	ld a, [hl]
 	cp $1
 	jr nz, .asm_111ed3
@@ -4641,20 +4647,25 @@ Function111e2b:
 	ld hl, $c822
 	res 5, [hl]
 	ld a, $24
-	jr .asm_111e84
-.asm_111edc
+	jr .store_error_code
+
+.read_configuration_data
 	ld a, $14
-	jr .asm_111e84
-.asm_111ee0
+	jr .store_error_code
+
+.isp_login
 	ld a, $22
-	jr .asm_111e84
-.asm_111ee4
+	jr .store_error_code
+
+.open_tcp_connection
 	ld hl, $c821
 	res 1, [hl]
-.asm_111ee9
+
+.dns_query
 	ld a, $24
-	jr .asm_111e84
-.asm_111eed
+	jr .store_error_code
+
+.close_tcp_connection
 	ld hl, $c821
 	res 1, [hl]
 	ld a, $3
