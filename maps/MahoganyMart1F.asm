@@ -67,20 +67,20 @@ MahoganyMart1FLanceUncoversStaircaseScript:
 	pause 15
 	closetext
 	playsound SFX_TACKLE
-	applymovement MAHOGANYMART1F_DRAGON, MovementData_0x6c3f6
-	applymovement MAHOGANYMART1F_BLACK_BELT, MovementData_0x6c3fb
+	applymovement MAHOGANYMART1F_DRAGON, MahoganyMart1FDragoniteTackleMovement
+	applymovement MAHOGANYMART1F_BLACK_BELT, MahoganyMart1FBlackBeltKnockedBackMovement
 	pause 15
 	disappear MAHOGANYMART1F_DRAGON
 	pause 15
-	applymovement MAHOGANYMART1F_LANCE, MovementData_0x6c407
+	applymovement MAHOGANYMART1F_LANCE, MahoganyMart1FLanceApproachPlayerMovement
 	opentext
 	writetext MahoganyMart1FLanceRadioText
 	waitbutton
 	closetext
 	follow MAHOGANYMART1F_LANCE, PLAYER
-	applymovement MAHOGANYMART1F_LANCE, MovementData_0x6c40a
-	applymovement MAHOGANYMART1F_PHARMACIST, MovementData_0x6c403
-	applymovement MAHOGANYMART1F_LANCE, MovementData_0x6c40e
+	applymovement MAHOGANYMART1F_LANCE, MahoganyMart1FLanceApproachPharmacistMovement
+	applymovement MAHOGANYMART1F_PHARMACIST, MahoganyMart1FPharmacistShovedAsideMovement
+	applymovement MAHOGANYMART1F_LANCE, MahoganyMart1FLanceApproachHiddenStairsMovement
 	stopfollow
 	opentext
 	writetext MahoganyMart1FLanceStairsText
@@ -96,7 +96,7 @@ MahoganyMart1FLanceUncoversStaircaseScript:
 	writetext MahoganyMart1FLanceSplitUpText
 	waitbutton
 	closetext
-	applymovement MAHOGANYMART1F_LANCE, MovementData_0x6c412
+	applymovement MAHOGANYMART1F_LANCE, MahoganyMart1FLanceGoDownStairsMovement
 	playsound SFX_EXIT_BUILDING
 	disappear MAHOGANYMART1F_LANCE
 	setscene SCENE_MAHOGANYMART1F_NOTHING
@@ -110,14 +110,14 @@ MahogayMart1FGrannyScript:
 	closetext
 	end
 
-MovementData_0x6c3f6:
+MahoganyMart1FDragoniteTackleMovement:
 	fix_facing
 	big_step LEFT
 	big_step RIGHT
 	remove_fixed_facing
 	step_end
 
-MovementData_0x6c3fb:
+MahoganyMart1FBlackBeltKnockedBackMovement:
 	fix_facing
 	big_step LEFT
 	remove_fixed_facing
@@ -127,30 +127,30 @@ MovementData_0x6c3fb:
 	turn_head RIGHT
 	step_end
 
-MovementData_0x6c403:
+MahoganyMart1FPharmacistShovedAsideMovement:
 	fix_facing
 	big_step LEFT
 	remove_fixed_facing
 	step_end
 
-MovementData_0x6c407:
+MahoganyMart1FLanceApproachPlayerMovement:
 	slow_step LEFT
 	turn_head DOWN
 	step_end
 
-MovementData_0x6c40a:
+MahoganyMart1FLanceApproachPharmacistMovement:
 	slow_step RIGHT
 	slow_step UP
 	slow_step UP
 	step_end
 
-MovementData_0x6c40e:
+MahoganyMart1FLanceApproachHiddenStairsMovement:
 	slow_step UP
 	slow_step RIGHT
 	slow_step RIGHT
 	step_end
 
-MovementData_0x6c412:
+MahoganyMart1FLanceGoDownStairsMovement:
 	slow_step RIGHT
 	step_end
 
