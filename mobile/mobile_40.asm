@@ -59,8 +59,8 @@ SetRAMStateForMobile:
 	ld bc, $65
 	call ByteFill
 	xor a
-	ld hl, wMobileErrorCodeBuffer
-	ld bc, $100
+	ld hl, wMobileWRAM
+	ld bc, wMobileWRAMEnd - wMobileWRAM
 	call ByteFill
 	ldh a, [rIE]
 	ld [wBGMapBuffer], a

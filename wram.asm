@@ -237,6 +237,7 @@ wc300::
 
 NEXTU ; c300
 ; mobile data
+wMobileWRAM::
 wMobileErrorCodeBuffer:: ds 3 ; c300
 wc303:: ds 2
 wc305:: ds 1
@@ -299,8 +300,8 @@ wc3f9:: ds 1
 wc3fa:: ds 1
 wc3fb:: ds 1
 wc3fc:: ds 1
-
 	ds 3
+wMobileWRAMEnd::
 
 
 SECTION "Sprites", WRAM0
