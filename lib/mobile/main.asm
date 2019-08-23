@@ -4134,7 +4134,7 @@ Function111b3c:
 	ld hl, Function111e28
 	push hl
 	cp $ee
-	jp z, Function111e2b
+	jp z, MobileSDK_GetErrorCode
 	ld a, [wMobileSDK_SendCommandID]
 	cp $ff
 	jp z, Function111ef8
