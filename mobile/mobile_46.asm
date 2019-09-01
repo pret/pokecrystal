@@ -3571,10 +3571,10 @@ Function119b52:
 	ld a, [w3_d090]
 	cp $1
 	jr nz, .asm_119b66
-	ld a, $5
+	ld a, BANK(s5_a800)
 	call GetSRAMBank
 	ld a, $4
-	ld [$a800], a
+	ld [s5_a800], a
 	call CloseSRAM
 
 .asm_119b66
@@ -3671,10 +3671,10 @@ Function119b6b:
 .asm_119be3
 	ld a, $19
 	ld [wcf66], a
-	ld a, $5
+	ld a, BANK(s5_a800)
 	call GetSRAMBank
 	ld a, $1
-	ld [$a800], a
+	ld [s5_a800], a
 	call CloseSRAM
 	xor a
 	ld [w3_d090], a
@@ -3736,10 +3736,10 @@ Function119c3e:
 .asm_119c68
 	ld a, $19
 	ld [wcf66], a
-	ld a, $5
+	ld a, BANK(s5_a800)
 	call GetSRAMBank
 	ld a, $1
-	ld [$a800], a
+	ld [s5_a800], a
 	call CloseSRAM
 	xor a
 	ld [w3_d090], a
@@ -7014,10 +7014,10 @@ Function11b570:
 
 	ld a, $1
 	ldh [rSVBK], a
-	ld a, $5
+	ld a, BANK(s5_a800)
 	call GetSRAMBank
 
-	ld de, $a800
+	ld de, s5_a800
 	ld a, $1
 	ld [de], a
 	inc de
