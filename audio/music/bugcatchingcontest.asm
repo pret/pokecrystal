@@ -1,55 +1,56 @@
 Music_BugCatchingContest:
-	musicheader 4, 1, Music_BugCatchingContest_Ch1
-	musicheader 1, 2, Music_BugCatchingContest_Ch2
-	musicheader 1, 3, Music_BugCatchingContest_Ch3
-	musicheader 1, 4, Music_BugCatchingContest_Ch4
+	channel_count 4
+	channel 1, Music_BugCatchingContest_Ch1
+	channel 2, Music_BugCatchingContest_Ch2
+	channel 3, Music_BugCatchingContest_Ch3
+	channel 4, Music_BugCatchingContest_Ch4
 
 Music_BugCatchingContest_Ch1:
 	tempo 144
-	volume $77
-	stereopanning $f
-	vibrato $8, $24
-	dutycycle $2
-	notetype $c, $b7
-	note __, 8
+	volume 7, 7
+	stereo_panning 0, 1
+	vibrato 8, 2, 4
+	duty_cycle 2
+	note_type 12, 11, 7
+	rest 8
 	octave 4
 	note C#, 1
-	note __, 1
+	rest 1
 	note C#, 3
-	note __, 1
+	rest 1
 	note C#, 1
 	note C#, 1
 	note D_, 1
-	note __, 1
+	rest 1
 	note D_, 3
-	note __, 1
+	rest 1
 	note D_, 1
 	note D_, 1
 	note D#, 1
-	note __, 1
+	rest 1
 	note D#, 3
-	note __, 1
+	rest 1
 	note D#, 1
 	note D#, 1
 	note E_, 1
-	note __, 1
+	rest 1
 	note E_, 3
-	note __, 1
+	rest 1
 	note E_, 1
 	note E_, 1
 Music_BugCatchingContest_branch_f7c4b:
-	notetype $c, $b1
+	note_type 12, 11, 1
 Music_BugCatchingContest_branch_f7c4e:
-	note __, 2
+	rest 2
 	octave 2
 	note A_, 2
-	loopchannel 4, Music_BugCatchingContest_branch_f7c4e
+	sound_loop 4, Music_BugCatchingContest_branch_f7c4e
 Music_BugCatchingContest_branch_f7c55:
-	note __, 2
+	rest 2
 	note B_, 2
-	loopchannel 8, Music_BugCatchingContest_branch_f7c55
-	intensity $b4
-	dutycycle $1
+	sound_loop 8, Music_BugCatchingContest_branch_f7c55
+	volume_envelope 11, 4
+	duty_cycle 1
 	octave 3
 	note B_, 6
 	note A_, 1
@@ -58,21 +59,21 @@ Music_BugCatchingContest_branch_f7c55:
 	octave 4
 	note D_, 1
 	note E_, 1
-	intensity $b1
-	dutycycle $2
+	volume_envelope 11, 1
+	duty_cycle 2
 Music_BugCatchingContest_branch_f7c6b:
-	note __, 2
+	rest 2
 	octave 2
 	note A_, 2
-	loopchannel 4, Music_BugCatchingContest_branch_f7c6b
-	note __, 2
+	sound_loop 4, Music_BugCatchingContest_branch_f7c6b
+	rest 2
 	note B_, 2
-	note __, 2
+	rest 2
 	note B_, 2
-	notetype $6, $b7
+	note_type 6, 11, 7
 	octave 4
 	note E_, 4
-	note __, 1
+	rest 1
 	octave 3
 	note B_, 1
 	octave 4
@@ -81,31 +82,31 @@ Music_BugCatchingContest_branch_f7c6b:
 	note B_, 8
 	octave 5
 	note E_, 8
-	intensity $b1
-	note __, 4
+	volume_envelope 11, 1
+	rest 4
 	octave 2
 	note B_, 4
-	note __, 4
+	rest 4
 	octave 3
 	note E_, 4
-	note __, 4
+	rest 4
 	note E_, 4
 Music_BugCatchingContest_branch_f7c8e:
-	note __, 4
+	rest 4
 	octave 2
 	note A_, 4
-	loopchannel 3, Music_BugCatchingContest_branch_f7c8e
-	intensity $a7
+	sound_loop 3, Music_BugCatchingContest_branch_f7c8e
+	volume_envelope 10, 7
 	octave 4
 	note F#, 4
 	note A_, 4
-	note __, 4
+	rest 4
 	octave 3
 	note G_, 2
 	note B_, 2
 	octave 4
 	note D_, 2
-	note __, 2
+	rest 2
 	octave 3
 	note B_, 2
 	note G_, 2
@@ -119,13 +120,13 @@ Music_BugCatchingContest_branch_f7c8e:
 	note G_, 1
 	note A_, 1
 	note G_, 8
-	note __, 4
+	rest 4
 	octave 3
 	note F#, 2
 	note A_, 2
 	octave 4
 	note D_, 2
-	note __, 2
+	rest 2
 	octave 3
 	note A_, 2
 	note F#, 2
@@ -140,19 +141,19 @@ Music_BugCatchingContest_branch_f7c8e:
 	note G_, 1
 	note F#, 8
 	note D_, 2
-	note __, 2
+	rest 2
 	octave 3
 	note B_, 2
 	note G_, 2
 	octave 4
 	note G_, 2
-	note __, 2
+	rest 2
 	note D_, 2
 	octave 3
 	note B_, 2
 	octave 4
 	note B_, 2
-	note __, 2
+	rest 2
 	note G#, 2
 	note D_, 2
 	octave 3
@@ -162,263 +163,263 @@ Music_BugCatchingContest_branch_f7c8e:
 	note G#, 2
 	note B_, 2
 	note C#, 2
-	note __, 2
+	rest 2
 	note C#, 6
-	note __, 2
+	rest 2
 	note C#, 2
 	note C#, 2
 	note D_, 2
-	note __, 2
+	rest 2
 	note D_, 6
-	note __, 2
+	rest 2
 	note D_, 2
 	note D_, 2
 	note D#, 2
-	note __, 2
+	rest 2
 	note D#, 6
-	note __, 2
+	rest 2
 	note D#, 2
 	note D#, 2
 	note E_, 2
-	note __, 2
+	rest 2
 	note E_, 6
-	note __, 2
+	rest 2
 	note E_, 2
 	note E_, 2
-	loopchannel 0, Music_BugCatchingContest_branch_f7c4b
+	sound_loop 0, Music_BugCatchingContest_branch_f7c4b
 
 Music_BugCatchingContest_Ch2:
-	stereopanning $f0
-	vibrato $8, $23
-	dutycycle $1
-	notetype $c, $c7
-	note __, 8
+	stereo_panning 1, 0
+	vibrato 8, 2, 3
+	duty_cycle 1
+	note_type 12, 12, 7
+	rest 8
 Music_BugCatchingContest_branch_f7cff:
 	octave 4
 	note A_, 1
-	note __, 1
+	rest 1
 	note A_, 3
-	note __, 1
+	rest 1
 	note A_, 1
 	note A_, 1
-	loopchannel 4, Music_BugCatchingContest_branch_f7cff
+	sound_loop 4, Music_BugCatchingContest_branch_f7cff
 Music_BugCatchingContest_branch_f7d0a:
-	dutycycle $0
-	callchannel Music_BugCatchingContest_branch_f7d8e
+	duty_cycle 0
+	sound_call Music_BugCatchingContest_branch_f7d8e
 	octave 2
 	note E_, 2
 	octave 3
 	note G_, 1
-	note __, 1
+	rest 1
 	octave 1
 	note B_, 2
 	octave 3
 	note G_, 1
-	note __, 1
+	rest 1
 	octave 2
 	note E_, 2
 	octave 3
 	note G_, 1
-	note __, 1
+	rest 1
 	octave 2
 	note G_, 2
 	octave 3
 	note G_, 1
-	note __, 1
+	rest 1
 	octave 2
 	note A_, 2
 	octave 3
 	note A_, 1
-	note __, 1
+	rest 1
 	octave 2
 	note G#, 2
 	octave 3
 	note G#, 1
-	note __, 1
+	rest 1
 	octave 2
 	note G_, 2
 	octave 3
 	note G_, 1
-	note __, 1
+	rest 1
 	octave 2
 	note E_, 2
 	octave 3
 	note E_, 1
-	note __, 1
-	callchannel Music_BugCatchingContest_branch_f7d8e
+	rest 1
+	sound_call Music_BugCatchingContest_branch_f7d8e
 	octave 2
 	note E_, 2
 	octave 3
 	note G_, 1
-	note __, 1
+	rest 1
 	octave 1
 	note B_, 2
 	octave 3
 	note G_, 1
-	note __, 1
+	rest 1
 	octave 2
 	note A_, 2
 	octave 4
 	note C#, 1
-	note __, 1
+	rest 1
 	octave 2
 	note E_, 2
 	octave 4
 	note C#, 1
-	note __, 1
+	rest 1
 	octave 2
 	note D_, 2
 	octave 3
 	note F#, 1
-	note __, 1
+	rest 1
 	octave 1
 	note A_, 2
 	octave 3
 	note F#, 1
-	note __, 1
+	rest 1
 	octave 1
 	note B_, 2
 	octave 3
 	note F#, 1
-	note __, 1
+	rest 1
 	octave 2
 	note D#, 2
 	octave 3
 	note A_, 1
-	note __, 1
-	dutycycle $0
-	note __, 2
+	rest 1
+	duty_cycle 0
+	rest 2
 	octave 5
 	note D_, 1
-	note __, 1
+	rest 1
 	note C#, 2
 	note D_, 1
-	note __, 1
+	rest 1
 	octave 4
 	note B_, 8
-	note __, 2
+	rest 2
 	octave 5
 	note D_, 1
-	note __, 1
+	rest 1
 	note C#, 2
 	note D_, 1
-	note __, 1
+	rest 1
 	octave 4
 	note A_, 8
-	note __, 2
+	rest 2
 	octave 5
 	note D_, 4
 	note F#, 2
 	note E_, 2
 	note D_, 1
-	note __, 1
+	rest 1
 	note C#, 2
 	note D_, 1
-	note __, 1
+	rest 1
 	note E_, 1
-	note __, 1
+	rest 1
 	note E_, 1
-	note __, 3
+	rest 3
 	note E_, 10
 	note A_, 1
-	note __, 1
+	rest 1
 	note A_, 1
-	note __, 3
+	rest 3
 	note A_, 10
-	loopchannel 0, Music_BugCatchingContest_branch_f7d0a
+	sound_loop 0, Music_BugCatchingContest_branch_f7d0a
 
 Music_BugCatchingContest_branch_f7d8e:
 	octave 2
 	note D_, 2
 	octave 3
 	note F#, 1
-	note __, 1
+	rest 1
 	octave 1
 	note A_, 2
 	octave 3
 	note F#, 1
-	note __, 1
+	rest 1
 	octave 1
 	note B_, 2
 	octave 3
 	note F#, 1
-	note __, 1
+	rest 1
 	octave 2
 	note C#, 2
 	octave 3
 	note F#, 1
-	note __, 1
+	rest 1
 	octave 2
 	note E_, 2
 	octave 3
 	note G_, 1
-	note __, 1
+	rest 1
 	octave 1
 	note B_, 2
 	octave 3
 	note G_, 1
-	note __, 1
+	rest 1
 	octave 2
 	note C#, 2
 	octave 3
 	note G_, 1
-	note __, 1
+	rest 1
 	octave 2
 	note D#, 2
 	octave 3
 	note G_, 1
-	note __, 1
-	endchannel
+	rest 1
+	sound_ret
 
 Music_BugCatchingContest_Ch3:
-	stereopanning $ff
-	vibrato $10, $23
-	notetype $c, $14
-	note __, 8
+	stereo_panning 1, 1
+	vibrato 16, 2, 3
+	note_type 12, 1, 4
+	rest 8
 	octave 3
 	note A_, 1
-	note __, 1
+	rest 1
 	note A_, 3
-	note __, 1
+	rest 1
 	note A_, 1
 	note A_, 1
 	note B_, 1
-	note __, 1
+	rest 1
 	note B_, 3
-	note __, 1
+	rest 1
 	note B_, 1
 	note B_, 1
 	octave 4
 	note C_, 1
-	note __, 1
+	rest 1
 	note C_, 3
-	note __, 1
+	rest 1
 	note C_, 1
 	note C_, 1
 	note C#, 1
-	note __, 1
+	rest 1
 	note C#, 3
-	note __, 1
+	rest 1
 	note C#, 1
 	note C#, 1
 Music_BugCatchingContest_branch_f7dda:
-	notetype $c, $14
+	note_type 12, 1, 4
 	note F#, 5
-	note __, 1
+	rest 1
 	note F#, 1
 	note G_, 1
 	note A_, 4
 	octave 5
 	note D_, 4
 	note C#, 2
-	intensity $10
+	volume_envelope 1, 0
 	note E_, 1
 	note G_, 1
 	note B_, 1
-	note __, 1
+	rest 1
 	note G_, 1
 	note E_, 1
-	notetype $6, $20
+	note_type 6, 2, 0
 	octave 6
 	note E_, 1
 	note F#, 1
@@ -429,21 +430,21 @@ Music_BugCatchingContest_branch_f7dda:
 	note E_, 1
 	note F#, 1
 	note E_, 8
-	intensity $14
+	volume_envelope 1, 4
 	octave 4
 	note E_, 10
-	note __, 2
+	rest 2
 	note E_, 2
 	note F#, 2
 	note G_, 8
 	octave 5
 	note C#, 8
-	note __, 4
-	intensity $10
+	rest 4
+	volume_envelope 1, 0
 	note E_, 2
 	note G_, 2
 	note A_, 2
-	note __, 2
+	rest 2
 	note E_, 2
 	note C_, 2
 	octave 6
@@ -456,17 +457,17 @@ Music_BugCatchingContest_branch_f7dda:
 	note C#, 1
 	note D_, 1
 	note C#, 8
-	intensity $15
+	volume_envelope 1, 5
 	octave 5
 	note F#, 4
-	note __, 4
+	rest 4
 	note G_, 4
-	note __, 4
+	rest 4
 	note A_, 4
-	note __, 4
+	rest 4
 	octave 6
 	note D_, 4
-	note __, 4
+	rest 4
 	note C#, 12
 	octave 5
 	note B_, 2
@@ -474,11 +475,11 @@ Music_BugCatchingContest_branch_f7dda:
 	note C#, 2
 	octave 5
 	note B_, 4
-	note __, 4
+	rest 4
 	octave 6
 	note G_, 4
 	note F#, 4
-	note __, 4
+	rest 4
 	octave 5
 	note G_, 4
 	note A_, 4
@@ -492,11 +493,11 @@ Music_BugCatchingContest_branch_f7dda:
 	octave 6
 	note C#, 2
 	note D_, 4
-	note __, 8
+	rest 8
 	octave 5
 	note B_, 4
 	note A_, 4
-	note __, 1
+	rest 1
 	note D#, 1
 	note F#, 1
 	note A_, 1
@@ -504,164 +505,165 @@ Music_BugCatchingContest_branch_f7dda:
 	note C_, 8
 	octave 3
 	note G_, 2
-	note __, 2
+	rest 2
 	note B_, 2
-	note __, 2
+	rest 2
 	note D_, 2
-	note __, 2
+	rest 2
 	note B_, 2
-	note __, 2
+	rest 2
 	note E_, 2
-	note __, 2
+	rest 2
 	note B_, 2
-	note __, 2
+	rest 2
 	note G_, 2
-	note __, 2
+	rest 2
 	note B_, 2
-	note __, 2
+	rest 2
 	note D_, 2
-	note __, 2
+	rest 2
 	note F#, 2
-	note __, 2
+	rest 2
 	octave 2
 	note A_, 2
-	note __, 2
+	rest 2
 	octave 3
 	note F#, 2
-	note __, 2
+	rest 2
 	note D#, 2
-	note __, 2
+	rest 2
 	octave 4
 	note C_, 2
-	note __, 2
+	rest 2
 	octave 3
 	note A_, 2
-	note __, 2
+	rest 2
 	octave 4
 	note C_, 2
-	note __, 2
+	rest 2
 	octave 3
 	note G_, 2
-	note __, 2
+	rest 2
 	note B_, 2
-	note __, 2
+	rest 2
 	note D_, 2
-	note __, 2
+	rest 2
 	note B_, 2
-	note __, 2
+	rest 2
 	note G#, 2
-	note __, 2
+	rest 2
 	note B_, 2
-	note __, 2
+	rest 2
 	note E_, 2
-	note __, 2
+	rest 2
 	note B_, 2
-	note __, 2
+	rest 2
 	note A_, 2
-	note __, 2
+	rest 2
 	note A_, 6
-	note __, 2
+	rest 2
 	note A_, 2
 	note A_, 2
 	note B_, 2
-	note __, 2
+	rest 2
 	note B_, 6
-	note __, 2
+	rest 2
 	note B_, 2
 	note B_, 2
 	octave 4
 	note C_, 2
-	note __, 2
+	rest 2
 	note C_, 6
-	note __, 2
+	rest 2
 	note C_, 2
 	note C_, 2
 	note C#, 2
-	note __, 2
+	rest 2
 	note C#, 6
-	note __, 2
+	rest 2
 	note C#, 2
 	note C#, 2
-	loopchannel 0, Music_BugCatchingContest_branch_f7dda
+	sound_loop 0, Music_BugCatchingContest_branch_f7dda
 
 Music_BugCatchingContest_Ch4:
-	togglenoise $4
-	notetype $6
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note E_, 2
-	note E_, 2
-	callchannel Music_BugCatchingContest_branch_f7ee2
+	toggle_noise 4
+	dspeed 6
+	dnote 2, 1
+	dnote 2, 1
+	dnote 2, 1
+	dnote 2, 1
+	dnote 2, 1
+	dnote 2, 1
+	dnote 2, 1
+	dnote 2, 1
+	dnote 2, 1
+	dnote 2, 1
+	dnote 2, 1
+	dnote 2, 1
+	dnote 5, 2
+	dnote 5, 2
+	sound_call Music_BugCatchingContest_branch_f7ee2
 Music_BugCatchingContest_branch_f7eaf:
-	note D_, 4
-	note D_, 4
-	note D_, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note D_, 4
-	note D_, 4
-	note D_, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note D_, 4
-	note D_, 4
-	note D_, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note D_, 4
-	note D_, 4
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	loopchannel 5, Music_BugCatchingContest_branch_f7eaf
-	note D_, 4
-	note D_, 4
-	note D_, 2
-	note D_, 2
-	note D_, 2
-	note D_, 2
-	note D_, 4
-	note D_, 4
-	note D_, 2
-	note D_, 2
-	note D_, 2
-	note D_, 2
-	callchannel Music_BugCatchingContest_branch_f7ee2
-	loopchannel 0, Music_BugCatchingContest_branch_f7eaf
+	dnote 3, 4
+	dnote 3, 4
+	dnote 3, 2
+	dnote 2, 2
+	dnote 3, 2
+	dnote 2, 2
+	dnote 3, 4
+	dnote 3, 4
+	dnote 3, 2
+	dnote 2, 2
+	dnote 3, 2
+	dnote 2, 2
+	dnote 3, 4
+	dnote 3, 4
+	dnote 3, 2
+	dnote 2, 2
+	dnote 3, 2
+	dnote 2, 2
+	dnote 3, 4
+	dnote 3, 4
+	dnote 2, 1
+	dnote 2, 1
+	dnote 2, 1
+	dnote 2, 1
+	dnote 2, 1
+	dnote 2, 1
+	dnote 2, 1
+	dnote 2, 1
+	sound_loop 5, Music_BugCatchingContest_branch_f7eaf
+	dnote 3, 4
+	dnote 3, 4
+	dnote 3, 2
+	dnote 3, 2
+	dnote 3, 2
+	dnote 3, 2
+	dnote 3, 4
+	dnote 3, 4
+	dnote 3, 2
+	dnote 3, 2
+	dnote 3, 2
+	dnote 3, 2
+	sound_call Music_BugCatchingContest_branch_f7ee2
+	sound_loop 0, Music_BugCatchingContest_branch_f7eaf
 
 Music_BugCatchingContest_branch_f7ee2:
-	note D_, 4
-	note B_, 8
-	note D_, 2
-	note D_, 2
-	note D_, 4
-	note B_, 8
-	note D_, 2
-	note D_, 2
-	note D_, 4
-	note B_, 8
-	note D_, 2
-	note D_, 2
-	note D_, 4
-	note B_, 8
-	note D_, 2
-	note D_, 2
-	endchannel
+	dnote 3, 4
+	dnote 12, 8
+	dnote 3, 2
+	dnote 3, 2
+	dnote 3, 4
+	dnote 12, 8
+	dnote 3, 2
+	dnote 3, 2
+	dnote 3, 4
+	dnote 12, 8
+	dnote 3, 2
+	dnote 3, 2
+	dnote 3, 4
+	dnote 12, 8
+	dnote 3, 2
+	dnote 3, 2
+	sound_ret
+

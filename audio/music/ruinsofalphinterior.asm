@@ -1,22 +1,23 @@
 Music_RuinsOfAlphInterior:
-	musicheader 3, 1, Music_RuinsOfAlphInterior_Ch1
-	musicheader 1, 2, Music_RuinsOfAlphInterior_Ch2
-	musicheader 1, 3, Music_RuinsOfAlphInterior_Ch3
+	channel_count 3
+	channel 1, Music_RuinsOfAlphInterior_Ch1
+	channel 2, Music_RuinsOfAlphInterior_Ch2
+	channel 3, Music_RuinsOfAlphInterior_Ch3
 
 Music_RuinsOfAlphInterior_Ch1:
 	tempo 224
-	volume $77
-	dutycycle $0
-	stereopanning $f0
-	notetype $c, $44
-	note __, 1
-	loopchannel 0, Music_RuinsOfAlphInterior_branch_ebdc2
+	volume 7, 7
+	duty_cycle 0
+	stereo_panning 1, 0
+	note_type 12, 4, 4
+	rest 1
+	sound_loop 0, Music_RuinsOfAlphInterior_branch_ebdc2
 
 Music_RuinsOfAlphInterior_Ch2:
-	tone $0002
-	dutycycle $0
-	stereopanning $f
-	notetype $c, $a4
+	pitch_offset 2
+	duty_cycle 0
+	stereo_panning 0, 1
+	note_type 12, 10, 4
 Music_RuinsOfAlphInterior_branch_ebdc2:
 	octave 4
 	note C_, 4
@@ -32,15 +33,16 @@ Music_RuinsOfAlphInterior_branch_ebdc2:
 	note C_, 4
 	octave 3
 	note A#, 4
-	loopchannel 0, Music_RuinsOfAlphInterior_branch_ebdc2
+	sound_loop 0, Music_RuinsOfAlphInterior_branch_ebdc2
 
 Music_RuinsOfAlphInterior_Ch3:
-	notetype $c, $10
+	note_type 12, 1, 0
 Music_RuinsOfAlphInterior_branch_ebdd7:
 	octave 2
 	note G#, 2
 	octave 3
 	note C#, 2
 	note E_, 2
-	note __, 10
-	loopchannel 0, Music_RuinsOfAlphInterior_branch_ebdd7
+	rest 10
+	sound_loop 0, Music_RuinsOfAlphInterior_branch_ebdd7
+

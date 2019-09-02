@@ -1,20 +1,21 @@
 Music_Route2:
-	musicheader 4, 1, Music_Route2_Ch1
-	musicheader 1, 2, Music_Route2_Ch2
-	musicheader 1, 3, Music_Route2_Ch3
-	musicheader 1, 4, Music_Route2_Ch4
+	channel_count 4
+	channel 1, Music_Route2_Ch1
+	channel 2, Music_Route2_Ch2
+	channel 3, Music_Route2_Ch3
+	channel 4, Music_Route2_Ch4
 
 Music_Route2_Ch1:
 	tempo 151
-	volume $77
-	stereopanning $f
-	vibrato $6, $23
-	notetype $c, $b1
-	note __, 16
-	note __, 16
-	callchannel Music_Route2_branch_ed931
+	volume 7, 7
+	stereo_panning 0, 1
+	vibrato 6, 2, 3
+	note_type 12, 11, 1
+	rest 16
+	rest 16
+	sound_call Music_Route2_branch_ed931
 Music_Route2_branch_ed8fb:
-	intensity $b1
+	volume_envelope 11, 1
 	octave 3
 	note B_, 4
 	note B_, 4
@@ -25,10 +26,10 @@ Music_Route2_branch_ed8fb:
 	note E_, 4
 	note E_, 4
 	note E_, 4
-	callchannel Music_Route2_branch_ed931
-	callchannel Music_Route2_branch_ed940
-	callchannel Music_Route2_branch_ed940
-	callchannel Music_Route2_branch_ed971
+	sound_call Music_Route2_branch_ed931
+	sound_call Music_Route2_branch_ed940
+	sound_call Music_Route2_branch_ed940
+	sound_call Music_Route2_branch_ed971
 	octave 3
 	note G_, 2
 	octave 4
@@ -42,7 +43,7 @@ Music_Route2_branch_ed8fb:
 	octave 3
 	note B_, 2
 	note G_, 2
-	callchannel Music_Route2_branch_ed971
+	sound_call Music_Route2_branch_ed971
 	note G_, 2
 	octave 4
 	note C_, 2
@@ -53,7 +54,7 @@ Music_Route2_branch_ed8fb:
 	octave 3
 	note B_, 2
 	note G_, 2
-	loopchannel 0, Music_Route2_branch_ed8fb
+	sound_loop 0, Music_Route2_branch_ed8fb
 
 Music_Route2_branch_ed931:
 	octave 4
@@ -63,12 +64,12 @@ Music_Route2_branch_ed931:
 	note C_, 4
 	note C_, 4
 	note C_, 4
-	intensity $b7
+	volume_envelope 11, 7
 	note C_, 4
 	octave 3
 	note B_, 4
-	intensity $b1
-	endchannel
+	volume_envelope 11, 1
+	sound_ret
 
 Music_Route2_branch_ed940:
 	octave 2
@@ -107,7 +108,7 @@ Music_Route2_branch_ed940:
 	note G#, 2
 	note C_, 2
 	note G#, 2
-	intensity $b7
+	volume_envelope 11, 7
 	octave 2
 	note B_, 2
 	octave 3
@@ -116,8 +117,8 @@ Music_Route2_branch_ed940:
 	note B_, 2
 	octave 3
 	note G_, 2
-	intensity $b1
-	endchannel
+	volume_envelope 11, 1
+	sound_ret
 
 Music_Route2_branch_ed971:
 	note B_, 2
@@ -156,23 +157,23 @@ Music_Route2_branch_ed971:
 	note C_, 2
 	octave 3
 	note A_, 2
-	endchannel
+	sound_ret
 
 Music_Route2_Ch2:
-	stereopanning $ff
-	vibrato $8, $24
-	notetype $c, $b2
-	callchannel Music_Route2_branch_ed9ba
+	stereo_panning 1, 1
+	vibrato 8, 2, 4
+	note_type 12, 11, 2
+	sound_call Music_Route2_branch_ed9ba
 Music_Route2_branch_ed9a1:
-	intensity $b2
-	callchannel Music_Route2_branch_ed9ba
-	dutycycle $2
-	intensity $b5
-	callchannel Music_Route2_branch_ed9dc
-	callchannel Music_Route2_branch_ed9dc
-	callchannel Music_Route2_branch_eda02
-	callchannel Music_Route2_branch_eda02
-	loopchannel 0, Music_Route2_branch_ed9a1
+	volume_envelope 11, 2
+	sound_call Music_Route2_branch_ed9ba
+	duty_cycle 2
+	volume_envelope 11, 5
+	sound_call Music_Route2_branch_ed9dc
+	sound_call Music_Route2_branch_ed9dc
+	sound_call Music_Route2_branch_eda02
+	sound_call Music_Route2_branch_eda02
+	sound_loop 0, Music_Route2_branch_ed9a1
 
 Music_Route2_branch_ed9ba:
 	octave 4
@@ -202,162 +203,162 @@ Music_Route2_branch_ed9ba:
 	note A_, 4
 	note G#, 4
 	note G#, 4
-	intensity $b7
+	volume_envelope 11, 7
 	note G#, 4
 	note G_, 4
-	intensity $b2
-	endchannel
+	volume_envelope 11, 2
+	sound_ret
 
 Music_Route2_branch_ed9dc:
 	octave 2
 	note C_, 4
-	note __, 2
+	rest 2
 	note C_, 1
-	note __, 1
+	rest 1
 	note C_, 1
-	note __, 1
+	rest 1
 	note C_, 2
-	note __, 2
+	rest 2
 	note C_, 1
-	note __, 1
+	rest 1
 	note G_, 4
-	note __, 2
+	rest 2
 	note G_, 1
-	note __, 1
+	rest 1
 	note G_, 1
-	note __, 1
+	rest 1
 	note G_, 2
-	note __, 2
+	rest 2
 	note G_, 1
-	note __, 1
+	rest 1
 	note F_, 4
-	note __, 2
+	rest 2
 	note F_, 1
-	note __, 1
+	rest 1
 	note F_, 1
-	note __, 1
+	rest 1
 	note F_, 2
-	note __, 2
+	rest 2
 	note F_, 1
-	note __, 1
+	rest 1
 	note F_, 4
-	note __, 2
+	rest 2
 	note F_, 1
-	note __, 1
+	rest 1
 	note F_, 4
 	note D_, 4
-	endchannel
+	sound_ret
 
 Music_Route2_branch_eda02:
 	octave 2
 	note E_, 4
-	note __, 2
+	rest 2
 	note E_, 1
-	note __, 1
+	rest 1
 	note E_, 1
-	note __, 1
+	rest 1
 	note E_, 2
-	note __, 2
+	rest 2
 	note E_, 1
-	note __, 1
+	rest 1
 	note A_, 4
-	note __, 2
+	rest 2
 	note A_, 1
-	note __, 1
+	rest 1
 	note G#, 1
-	note __, 1
+	rest 1
 	note G#, 2
-	note __, 2
+	rest 2
 	note G#, 1
-	note __, 1
+	rest 1
 	note F_, 4
-	note __, 2
+	rest 2
 	note F_, 1
-	note __, 1
+	rest 1
 	note F#, 1
-	note __, 1
+	rest 1
 	note F#, 2
-	note __, 2
+	rest 2
 	note F#, 1
-	note __, 1
+	rest 1
 	note G_, 4
-	note __, 2
+	rest 2
 	note G_, 1
-	note __, 1
+	rest 1
 	note G_, 1
-	note __, 1
+	rest 1
 	note G_, 2
-	note __, 2
+	rest 2
 	note G_, 1
-	note __, 1
-	endchannel
+	rest 1
+	sound_ret
 
 Music_Route2_Ch3:
-	stereopanning $f0
-	vibrato $16, $15
-	notetype $c, $14
+	stereo_panning 1, 0
+	vibrato 22, 1, 5
+	note_type 12, 1, 4
 	octave 4
 	note B_, 1
-	note __, 3
+	rest 3
 	note B_, 1
-	note __, 3
+	rest 3
 	note B_, 1
-	note __, 3
+	rest 3
 	note B_, 1
-	note __, 3
+	rest 3
 	octave 5
 	note E_, 1
-	note __, 3
+	rest 3
 	note E_, 1
-	note __, 3
+	rest 3
 	note E_, 1
-	note __, 3
+	rest 3
 	note E_, 1
-	note __, 3
-	callchannel Music_Route2_branch_eda9e
+	rest 3
+	sound_call Music_Route2_branch_eda9e
 	octave 3
 	note D_, 4
 Music_Route2_branch_eda4b:
-	notetype $c, $15
+	note_type 12, 1, 5
 	octave 3
 	note C_, 4
-	note __, 2
+	rest 2
 	note C_, 1
-	note __, 1
+	rest 1
 	note C_, 1
-	note __, 1
+	rest 1
 	note C_, 2
-	note __, 2
+	rest 2
 	note C_, 1
-	note __, 1
+	rest 1
 	note G_, 4
-	note __, 2
+	rest 2
 	note G_, 1
-	note __, 1
+	rest 1
 	note G_, 1
-	note __, 1
+	rest 1
 	note G_, 2
-	note __, 2
+	rest 2
 	note G_, 1
-	note __, 1
-	callchannel Music_Route2_branch_eda9e
+	rest 1
+	sound_call Music_Route2_branch_eda9e
 	octave 3
 	note D_, 2
-	intensity $10
+	volume_envelope 1, 0
 	octave 6
 	note C_, 1
 	note D_, 1
-	callchannel Music_Route2_branch_edaaf
-	note __, 4
+	sound_call Music_Route2_branch_edaaf
+	rest 4
 	note G_, 8
 	note F_, 2
 	note G_, 2
-	notetype $c, $10
-	callchannel Music_Route2_branch_edaaf
-	note __, 16
-	intensity $25
-	callchannel Music_Route2_branch_edacb
-	note __, 4
+	note_type 12, 1, 0
+	sound_call Music_Route2_branch_edaaf
+	rest 16
+	volume_envelope 2, 5
+	sound_call Music_Route2_branch_edacb
+	rest 4
 	note D#, 1
 	note E_, 7
 	note D_, 4
@@ -373,48 +374,48 @@ Music_Route2_branch_eda4b:
 	octave 6
 	note A_, 4
 	note G_, 4
-	callchannel Music_Route2_branch_edacb
-	note __, 4
+	sound_call Music_Route2_branch_edacb
+	rest 4
 	note G#, 1
 	note A_, 7
 	note B_, 4
 	note F#, 1
 	note G_, 16
 	note G_, 15
-	loopchannel 0, Music_Route2_branch_eda4b
+	sound_loop 0, Music_Route2_branch_eda4b
 
 Music_Route2_branch_eda9e:
 	octave 3
 	note F_, 4
-	note __, 2
+	rest 2
 	note F_, 1
-	note __, 1
+	rest 1
 	note F_, 1
-	note __, 1
+	rest 1
 	note F_, 2
-	note __, 2
+	rest 2
 	note F_, 1
-	note __, 1
+	rest 1
 	note F_, 4
-	note __, 2
+	rest 2
 	note F_, 1
-	note __, 1
+	rest 1
 	note F_, 4
-	endchannel
+	sound_ret
 
 Music_Route2_branch_edaaf:
 	octave 6
 	note E_, 10
 	note D_, 2
-	note __, 2
+	rest 2
 	note C_, 2
-	notetype $6, $10
+	note_type 6, 1, 0
 	octave 5
 	note F#, 1
 	note G_, 15
 	note A_, 4
 	note A#, 4
-	note __, 4
+	rest 4
 	octave 6
 	note C_, 2
 	note D_, 2
@@ -428,12 +429,12 @@ Music_Route2_branch_edaaf:
 	note D_, 4
 	note C_, 4
 	note D_, 4
-	endchannel
+	sound_ret
 
 Music_Route2_branch_edacb:
 	octave 5
 	note B_, 16
-	note __, 4
+	rest 4
 	octave 6
 	note C#, 1
 	note D_, 7
@@ -444,71 +445,72 @@ Music_Route2_branch_edacb:
 	note C_, 16
 	note C_, 3
 	note D_, 4
-	note __, 4
+	rest 4
 	note E_, 4
 	note F_, 16
-	endchannel
+	sound_ret
 
 Music_Route2_Ch4:
-	togglenoise $5
-	notetype $c
+	toggle_noise 5
+	dspeed 12
 Music_Route2_branch_edae0:
-	note A_, 4
-	note A_, 4
-	note A_, 2
-	note B_, 2
-	note A_, 2
-	note B_, 2
-	loopchannel 3, Music_Route2_branch_edae0
-	note A_, 4
-	note A_, 4
-	note A_, 2
-	note A_, 2
-	note D#, 4
+	dnote 10, 4
+	dnote 10, 4
+	dnote 10, 2
+	dnote 12, 2
+	dnote 10, 2
+	dnote 12, 2
+	sound_loop 3, Music_Route2_branch_edae0
+	dnote 10, 4
+	dnote 10, 4
+	dnote 10, 2
+	dnote 10, 2
+	dnote 4, 4
 Music_Route2_branch_edaef:
-	note A_, 4
-	note A_, 4
-	note A_, 2
-	note A_, 2
-	note B_, 2
-	note A_, 2
-	loopchannel 4, Music_Route2_branch_edaef
+	dnote 10, 4
+	dnote 10, 4
+	dnote 10, 2
+	dnote 10, 2
+	dnote 12, 2
+	dnote 10, 2
+	sound_loop 4, Music_Route2_branch_edaef
 Music_Route2_branch_edaf9:
-	note B_, 4
-	note A_, 2
-	note B_, 2
-	note A_, 2
-	note B_, 2
-	note A_, 2
-	note B_, 2
-	loopchannel 7, Music_Route2_branch_edaf9
-	note B_, 4
-	note A_, 4
-	note A_, 2
-	note A_, 2
-	note D#, 4
+	dnote 12, 4
+	dnote 10, 2
+	dnote 12, 2
+	dnote 10, 2
+	dnote 12, 2
+	dnote 10, 2
+	dnote 12, 2
+	sound_loop 7, Music_Route2_branch_edaf9
+	dnote 12, 4
+	dnote 10, 4
+	dnote 10, 2
+	dnote 10, 2
+	dnote 4, 4
 Music_Route2_branch_edb09:
-	note B_, 4
-	note C_, 4
-	note B_, 2
-	note B_, 2
-	note C_, 4
-	loopchannel 3, Music_Route2_branch_edb09
-	note B_, 4
-	note C_, 4
-	note C#, 2
-	note C_, 2
-	note C#, 4
+	dnote 12, 4
+	dnote 1, 4
+	dnote 12, 2
+	dnote 12, 2
+	dnote 1, 4
+	sound_loop 3, Music_Route2_branch_edb09
+	dnote 12, 4
+	dnote 1, 4
+	dnote 2, 2
+	dnote 1, 2
+	dnote 2, 4
 Music_Route2_branch_edb17:
-	note B_, 4
-	note C_, 4
-	note B_, 2
-	note B_, 2
-	note C_, 4
-	loopchannel 3, Music_Route2_branch_edb17
-	note B_, 4
-	note C_, 4
-	note D_, 2
-	note D_, 2
-	note D#, 4
-	loopchannel 0, Music_Route2_branch_edaef
+	dnote 12, 4
+	dnote 1, 4
+	dnote 12, 2
+	dnote 12, 2
+	dnote 1, 4
+	sound_loop 3, Music_Route2_branch_edb17
+	dnote 12, 4
+	dnote 1, 4
+	dnote 3, 2
+	dnote 3, 2
+	dnote 4, 4
+	sound_loop 0, Music_Route2_branch_edaef
+

@@ -238,7 +238,7 @@ ForceMapMusic:
 	ld a, [wPlayerState]
 	cp PLAYER_BIKE
 	jr nz, .notbiking
-	call VolumeOff
+	call MinVolume
 	ld a, $88
 	ld [wMusicFade], a
 .notbiking

@@ -1,15 +1,16 @@
 Music_MtMoonSquare:
-	musicheader 2, 1, Music_MtMoonSquare_Ch1
-	musicheader 1, 2, Music_MtMoonSquare_Ch2
+	channel_count 2
+	channel 1, Music_MtMoonSquare_Ch1
+	channel 2, Music_MtMoonSquare_Ch2
 
 Music_MtMoonSquare_Ch1:
 	tempo 112
-	volume $77
-	dutycycle $2
-	tone $0001
-	note __, 1
+	volume 7, 7
+	duty_cycle 2
+	pitch_offset 1
+	rest 1
 Music_MtMoonSquare_branch_f4826:
-	notetype $c, $44
+	note_type 12, 4, 4
 Music_MtMoonSquare_branch_f4829:
 	octave 4
 	note D_, 2
@@ -19,7 +20,7 @@ Music_MtMoonSquare_branch_f4829:
 	note A_, 2
 	octave 5
 	note D_, 4
-	loopchannel 2, Music_MtMoonSquare_branch_f4829
+	sound_loop 2, Music_MtMoonSquare_branch_f4829
 Music_MtMoonSquare_branch_f4835:
 	octave 4
 	note E_, 2
@@ -29,7 +30,7 @@ Music_MtMoonSquare_branch_f4835:
 	note B_, 2
 	octave 5
 	note E_, 4
-	loopchannel 2, Music_MtMoonSquare_branch_f4835
+	sound_loop 2, Music_MtMoonSquare_branch_f4835
 Music_MtMoonSquare_branch_f4841:
 	octave 4
 	note C#, 2
@@ -39,7 +40,7 @@ Music_MtMoonSquare_branch_f4841:
 	note G_, 2
 	octave 5
 	note C#, 4
-	loopchannel 2, Music_MtMoonSquare_branch_f4841
+	sound_loop 2, Music_MtMoonSquare_branch_f4841
 Music_MtMoonSquare_branch_f484d:
 	octave 4
 	note D_, 2
@@ -49,14 +50,14 @@ Music_MtMoonSquare_branch_f484d:
 	note A_, 2
 	octave 5
 	note D_, 4
-	loopchannel 2, Music_MtMoonSquare_branch_f484d
-	loopchannel 0, Music_MtMoonSquare_branch_f4826
+	sound_loop 2, Music_MtMoonSquare_branch_f484d
+	sound_loop 0, Music_MtMoonSquare_branch_f4826
 
 Music_MtMoonSquare_Ch2:
-	dutycycle $2
-	vibrato $18, $24
+	duty_cycle 2
+	vibrato 24, 2, 4
 Music_MtMoonSquare_branch_f4862:
-	notetype $c, $82
+	note_type 12, 8, 2
 Music_MtMoonSquare_branch_f4865:
 	octave 4
 	note D_, 2
@@ -66,9 +67,9 @@ Music_MtMoonSquare_branch_f4865:
 	note A_, 2
 	octave 5
 	note D_, 4
-	notetype $c, $62
-	loopchannel 2, Music_MtMoonSquare_branch_f4865
-	notetype $c, $82
+	note_type 12, 6, 2
+	sound_loop 2, Music_MtMoonSquare_branch_f4865
+	note_type 12, 8, 2
 Music_MtMoonSquare_branch_f4877:
 	octave 4
 	note E_, 2
@@ -78,9 +79,9 @@ Music_MtMoonSquare_branch_f4877:
 	note B_, 2
 	octave 5
 	note E_, 4
-	notetype $c, $62
-	loopchannel 2, Music_MtMoonSquare_branch_f4877
-	notetype $c, $82
+	note_type 12, 6, 2
+	sound_loop 2, Music_MtMoonSquare_branch_f4877
+	note_type 12, 8, 2
 Music_MtMoonSquare_branch_f4889:
 	octave 4
 	note C#, 2
@@ -90,9 +91,9 @@ Music_MtMoonSquare_branch_f4889:
 	note G_, 2
 	octave 5
 	note C#, 4
-	notetype $c, $62
-	loopchannel 2, Music_MtMoonSquare_branch_f4889
-	notetype $c, $82
+	note_type 12, 6, 2
+	sound_loop 2, Music_MtMoonSquare_branch_f4889
+	note_type 12, 8, 2
 Music_MtMoonSquare_branch_f489b:
 	octave 4
 	note D_, 2
@@ -102,6 +103,7 @@ Music_MtMoonSquare_branch_f489b:
 	note A_, 2
 	octave 5
 	note D_, 4
-	notetype $c, $62
-	loopchannel 2, Music_MtMoonSquare_branch_f489b
-	loopchannel 0, Music_MtMoonSquare_branch_f4862
+	note_type 12, 6, 2
+	sound_loop 2, Music_MtMoonSquare_branch_f489b
+	sound_loop 0, Music_MtMoonSquare_branch_f4862
+

@@ -37,7 +37,7 @@ wChannel8:: channel_struct wChannel8 ; c25f
 	ds 1 ; c291
 
 wCurTrackDuty:: db
-wCurTrackIntensity:: db
+wCurTrackVolumeEnvelope:: db
 wCurTrackFrequency:: dw
 wUnusedBCDNumber:: db ; BCD value, dummied out
 wCurNoteDuration:: db ; used in MusicE0 and LoadNote
@@ -57,13 +57,12 @@ wSoundOutput:: ; c29b
 ; bit 4-7: ch1-4 so2 on/off
 ; bit 0-3: ch1-4 so1 on/off
 	db
-wSoundInput:: ; c29c
-; corresponds to rNR52
-; bit 7: global on/off
-; bit 0: ch1 on/off
-; bit 1: ch2 on/off
-; bit 2: ch3 on/off
-; bit 3: ch4 on/off
+wPitchSweep:: ; c29c
+; corresponds to rNR10
+; bit 7:   unused
+; bit 4-6: sweep time
+; bit 3:   sweep direction
+; but 0-2: sweep shift
 	db
 
 wMusicID:: dw ; c29d

@@ -1,64 +1,66 @@
 Music_AfterTheRivalFight:
-	musicheader 4, 1, Music_AfterTheRivalFight_Ch1
-	musicheader 1, 2, Music_AfterTheRivalFight_Ch2
-	musicheader 1, 3, Music_AfterTheRivalFight_Ch3
-	musicheader 1, 4, Music_AfterTheRivalFight_Ch4
+	channel_count 4
+	channel 1, Music_AfterTheRivalFight_Ch1
+	channel 2, Music_AfterTheRivalFight_Ch2
+	channel 3, Music_AfterTheRivalFight_Ch3
+	channel 4, Music_AfterTheRivalFight_Ch4
 
 Music_AfterTheRivalFight_Ch1:
 	tempo 112
-	volume $77
-	dutycycle $0
-	tone $0001
-	vibrato $8, $14
-	stereopanning $f0
-	notetype $c, $b2
+	volume 7, 7
+	duty_cycle 0
+	pitch_offset 1
+	vibrato 8, 1, 4
+	stereo_panning 1, 0
+	note_type 12, 11, 2
 	octave 2
 	note G#, 4
 	note G#, 4
-	intensity $82
+	volume_envelope 8, 2
 	octave 3
 	note G#, 2
 	note G#, 2
 	note G#, 2
 	note G#, 2
-	loopchannel 0, Music_AfterTheRivalFight_branch_f4fb1
+	sound_loop 0, Music_AfterTheRivalFight_branch_f4fb1
 
 Music_AfterTheRivalFight_Ch2:
-	dutycycle $1
-	vibrato $6, $35
-	stereopanning $f
-	notetype $c, $c2
+	duty_cycle 1
+	vibrato 6, 3, 5
+	stereo_panning 0, 1
+	note_type 12, 12, 2
 	octave 4
 	note G#, 4
 	note G#, 4
-	intensity $a2
+	volume_envelope 10, 2
 	note G#, 2
 	note G#, 2
 	note G#, 2
 	note G#, 2
-	loopchannel 0, Music_AfterTheRivalFight_branch_f502e
+	sound_loop 0, Music_AfterTheRivalFight_branch_f502e
 
 Music_AfterTheRivalFight_Ch3:
-	notetype $c, $28
+	note_type 12, 2, 8
 	octave 3
 	note D#, 2
-	note __, 2
+	rest 2
 	note D#, 2
-	note __, 2
+	rest 2
 	note G#, 2
 	note F#, 2
 	note F_, 2
 	note D#, 2
-	loopchannel 0, Music_AfterTheRivalFight_branch_f509d
+	sound_loop 0, Music_AfterTheRivalFight_branch_f509d
 
 Music_AfterTheRivalFight_Ch4:
-	togglenoise $3
-	stereopanning $f
-	notetype $c
-	note D_, 4
-	note D_, 4
-	note D#, 2
-	note D_, 2
-	note D_, 2
-	note D_, 2
-	loopchannel 0, Music_AfterTheRivalFight_branch_f5118
+	toggle_noise 3
+	stereo_panning 0, 1
+	dspeed 12
+	dnote 3, 4
+	dnote 3, 4
+	dnote 4, 2
+	dnote 3, 2
+	dnote 3, 2
+	dnote 3, 2
+	sound_loop 0, Music_AfterTheRivalFight_branch_f5118
+
