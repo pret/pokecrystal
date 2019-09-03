@@ -810,7 +810,7 @@ MobileTradeAnim_02:
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
-	call Function108d07
+	call LoadMobileAdapterPalette
 	call Function108af4
 	call GetMobileTradeAnimByte
 	ret
@@ -855,7 +855,7 @@ MobileTradeAnim_10:
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
-	call Function108d07
+	call LoadMobileAdapterPalette
 	call Function108af4
 	call GetMobileTradeAnimByte
 	ret
@@ -898,7 +898,7 @@ MobileTradeAnim_11:
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
-	call Function108d07
+	call LoadMobileAdapterPalette
 	call Function108af4
 	call Function108b5a
 	ld a, $e0
@@ -1712,18 +1712,18 @@ DebugMobileTrade:
 	dw $0456
 	db "マツミヤ@@"
 
-Function108d07:
+LoadMobileAdapterPalette:
 	ld a, [wc74e]
 	and $7f
-	cp $8
+	cp $8 ; CONST: Amount of mobile adapters
 	jr c, .asm_108d12
 	ld a, $7
 
 .asm_108d12
 	ld bc, 1 palettes
-	ld hl, Palette_1093c7
+	ld hl, MobileAdapterPalettes
 	call AddNTimes
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld de, wBGPals1 + 4 palettes
 	ld bc, 1 palettes
 	call FarCopyWRAM
@@ -1883,7 +1883,7 @@ INCBIN "gfx/unknown/1091c7.2bpp"
 GFX_1092c7:
 INCBIN "gfx/unknown/1092c7.2bpp"
 
-Palette_1093c7:
+MobileAdapterPalettes:
 	RGB 18, 31, 15
 	RGB 04, 13, 31
 	RGB 00, 00, 31
