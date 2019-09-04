@@ -134,7 +134,11 @@ ENDM
 vibrato: MACRO
 	db vibrato_cmd
 	db \1 ; delay
-	dn \2, \3 ; extent, rate
+	IF _NARG > 2
+		dn \2, \3 ; extent, rate
+	ELSE
+		db \2 ; LEGACY: Support for 1-arg extent
+	ENDC
 ENDM
 
 	enum unknownmusic0xe2_cmd ; $e2
@@ -158,7 +162,11 @@ ENDM
 	enum volume_cmd ; $e5
 volume: MACRO
 	db volume_cmd
-	dn \1, \2 ; left volume, right volume
+	IF _NARG > 1
+		dn \1, \2 ; left volume, right volume
+	ELSE
+		db \1 ; LEGACY: Support for 1-arg volume
+	ENDC
 ENDM
 
 	enum pitch_offset_cmd ; $e6
