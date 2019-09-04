@@ -12,12 +12,12 @@ Music_BuenasPassword_Ch1:
 	note_type 12, 11, 3
 	rest 8
 Music_BuenasPassword_branch_17816b:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	rest 16
 	rest 16
 	duty_cycle 3
 	note_type 6, 9, 7
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	octave 4
 	note G#, 1
 	rest 1
@@ -27,7 +27,7 @@ Music_BuenasPassword_branch_17816b:
 	note G#, 2
 	rest 10
 	rest 10
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note C#, 2
 	note F_, 2
 	note G#, 1
@@ -39,11 +39,11 @@ Music_BuenasPassword_branch_17816b:
 	rest 12
 	duty_cycle 2
 	sound_call Music_BuenasPassword_branch_178204
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	sound_call Music_BuenasPassword_branch_1782df
 	sound_call Music_BuenasPassword_branch_178222
 	sound_call Music_BuenasPassword_branch_178204
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	sound_call Music_BuenasPassword_branch_1782df
 	sound_call Music_BuenasPassword_branch_178222
 	sound_call Music_BuenasPassword_branch_178204
@@ -140,7 +140,7 @@ Music_BuenasPassword_branch_17816b:
 	sound_loop 0, Music_BuenasPassword_branch_17816b
 
 Music_BuenasPassword_branch_178204:
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 6, 8, 4
 	octave 4
 	note D#, 2
@@ -187,10 +187,10 @@ Music_BuenasPassword_Ch2:
 	octave 3
 	note F#, 1
 Music_BuenasPassword_branch_17823c:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	sound_call Music_BuenasPassword_branch_1782df
 	sound_call Music_BuenasPassword_branch_1782a4
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	sound_call Music_BuenasPassword_branch_1782cc
 	octave 3
 	note B_, 2
@@ -198,7 +198,7 @@ Music_BuenasPassword_branch_17823c:
 	note B_, 2
 	note G#, 16
 	sound_call Music_BuenasPassword_branch_1782a4
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	sound_call Music_BuenasPassword_branch_1782cc
 	note B_, 2
 	note A#, 2
@@ -283,7 +283,7 @@ Music_BuenasPassword_branch_1782a4:
 	rest 1
 	note F#, 1
 	rest 2
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	octave 4
 	note G#, 1
 	note_type 6, 8, 1
@@ -575,18 +575,18 @@ Music_BuenasPassword_branch_1783d9:
 	sound_call Music_BuenasPassword_branch_17840c
 	sound_call Music_BuenasPassword_branch_17840c
 	sound_call Music_BuenasPassword_branch_17840c
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	drum_note 4, 2
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 8, 2
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	drum_note 3, 2
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	drum_note 8, 1
 	drum_note 8, 1
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 8, 2
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	drum_note 3, 2
 	drum_note 3, 2
 	drum_note 3, 1
@@ -594,37 +594,37 @@ Music_BuenasPassword_branch_1783d9:
 	sound_loop 0, Music_BuenasPassword_branch_1783d9
 
 Music_BuenasPassword_branch_17840c:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	drum_note 4, 2
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 8, 2
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	drum_note 3, 2
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	drum_note 8, 1
 	drum_note 8, 1
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 8, 2
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	drum_note 4, 2
 	drum_note 3, 2
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	drum_note 8, 2
 	sound_ret
 
 Music_BuenasPassword_branch_178424:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	drum_note 4, 2
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 8, 2
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	drum_note 3, 2
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	drum_note 8, 1
 	drum_note 8, 1
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 8, 2
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	drum_note 4, 2
 	drum_note 3, 2
 	drum_note 3, 1

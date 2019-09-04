@@ -8,7 +8,7 @@ Music_VictoryRoad:
 Music_VictoryRoad_Ch1:
 	tempo 144
 	volume 7, 7
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	duty_cycle 3
 	pitch_offset 2
 	note_type 12, 11, 3
@@ -95,20 +95,20 @@ Music_VictoryRoad_branch_f6cd3:
 	note E_, 8
 	note_type 12, 12, 7
 	note D_, 8
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note C#, 4
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	octave 4
 	note A_, 4
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 5
 	note C_, 8
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	octave 4
 	note A#, 4
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note F_, 4
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	note A_, 12
 	note D_, 1
 	note F#, 1
@@ -135,7 +135,7 @@ Music_VictoryRoad_branch_f6d1e:
 	sound_ret
 
 Music_VictoryRoad_Ch3:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 2, 8
 Music_VictoryRoad_branch_f6d31:
 	sound_call Music_VictoryRoad_branch_f6d52

@@ -11,7 +11,7 @@ Music_MainMenu_Ch1:
 	duty_cycle 3
 	pitch_offset 1
 	vibrato 16, 1, 5
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 0, -7
 	octave 3
 	note D_, 8
@@ -44,7 +44,7 @@ Music_MainMenu_branch_f791d:
 
 Music_MainMenu_Ch2:
 	duty_cycle 3
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 0, -7
 	octave 3
 	note G_, 8
@@ -73,7 +73,7 @@ Music_MainMenu_branch_f7949:
 	sound_loop 0, Music_MainMenu_branch_f7949
 
 Music_MainMenu_Ch3:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 2, 5
 	rest 8
 Music_MainMenu_branch_f796f:
@@ -112,7 +112,7 @@ Music_MainMenu_branch_f796f:
 	sound_loop 0, Music_MainMenu_branch_f796f
 
 Music_MainMenu_Ch4:
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	toggle_noise 3
 	drum_speed 12
 	rest 8

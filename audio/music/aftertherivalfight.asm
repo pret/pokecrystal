@@ -11,7 +11,7 @@ Music_AfterTheRivalFight_Ch1:
 	duty_cycle 0
 	pitch_offset 1
 	vibrato 8, 1, 4
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 11, 2
 	octave 2
 	note G#, 4
@@ -27,7 +27,7 @@ Music_AfterTheRivalFight_Ch1:
 Music_AfterTheRivalFight_Ch2:
 	duty_cycle 1
 	vibrato 6, 3, 5
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 12, 2
 	octave 4
 	note G#, 4
@@ -54,7 +54,7 @@ Music_AfterTheRivalFight_Ch3:
 
 Music_AfterTheRivalFight_Ch4:
 	toggle_noise 3
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	drum_speed 12
 	drum_note 3, 4
 	drum_note 3, 4

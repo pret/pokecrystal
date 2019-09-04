@@ -7,7 +7,7 @@ Music_LookYoungster:
 Music_LookYoungster_Ch1:
 	tempo 118
 	volume 7, 7
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	duty_cycle 3
 	note_type 12, 10, 3
 	octave 3
@@ -62,7 +62,7 @@ Music_LookYoungster_branch_f66ea:
 	sound_ret
 
 Music_LookYoungster_Ch2:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	vibrato 18, 2, 6
 	duty_cycle 1
 	note_type 12, 10, 3
@@ -159,7 +159,7 @@ Music_LookYoungster_branch_f672f:
 	sound_ret
 
 Music_LookYoungster_Ch3:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	vibrato 2, 2, 4
 	note_type 12, 2, 5
 	rest 4

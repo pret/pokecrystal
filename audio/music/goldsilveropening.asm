@@ -9,7 +9,7 @@ Music_GoldSilverOpening_Ch1:
 	volume 7, 7
 	pitch_offset 1
 	duty_cycle 2
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 11, 7
 	octave 1
 	note G#, 16
@@ -131,7 +131,7 @@ Music_GoldSilverOpening_Ch1:
 
 Music_GoldSilverOpening_Ch2:
 	pitch_offset 1
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 11, 7
 	duty_cycle 2
 	octave 2

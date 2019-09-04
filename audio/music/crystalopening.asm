@@ -11,7 +11,7 @@ Music_CrystalOpening_Ch1:
 	pitch_offset 2
 	vibrato 16, 3, 4
 	duty_cycle 3
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 9, 2
 	octave 2
 	note F#, 2
@@ -242,7 +242,7 @@ Music_CrystalOpening_Ch3:
 	sound_ret
 
 Music_CrystalOpening_Ch4:
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	toggle_noise 3
 	drum_speed 12
 	rest 16

@@ -8,7 +8,7 @@ Music_MagnetTrain:
 Music_MagnetTrain_Ch1:
 	tempo 110
 	volume 7, 7
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	vibrato 20, 2, 3
 	duty_cycle 2
 	note_type 12, 11, 2
@@ -73,7 +73,7 @@ Music_MagnetTrain_Ch2:
 	vibrato 20, 2, 3
 	duty_cycle 1
 	note_type 12, 13, 2
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 13, 8
 	octave 1
 	note F_, 12
@@ -108,7 +108,7 @@ Music_MagnetTrain_Ch2:
 	sound_ret
 
 Music_MagnetTrain_Ch3:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	vibrato 16, 2, 3
 	note_type 12, 1, 5
 	octave 6

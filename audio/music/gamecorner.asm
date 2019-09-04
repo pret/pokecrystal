@@ -8,7 +8,7 @@ Music_GameCorner:
 Music_GameCorner_Ch1:
 	tempo 147
 	volume 7, 7
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 9, 1
 	rest 8
 Music_GameCorner_branch_edd84:
@@ -135,7 +135,7 @@ Music_GameCorner_branch_ede13:
 	sound_ret
 
 Music_GameCorner_Ch2:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	vibrato 8, 2, 4
 	note_type 12, 10, 1
 	rest 8
@@ -321,7 +321,7 @@ Music_GameCorner_Ch3:
 	note_type 12, 1, 4
 	rest 8
 Music_GameCorner_branch_edeef:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	note_type 12, 1, 4
 	sound_call Music_GameCorner_branch_edfdd
 	sound_call Music_GameCorner_branch_edff8
@@ -334,7 +334,7 @@ Music_GameCorner_branch_edeef:
 	note A#, 1
 	octave 5
 	note C_, 3
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	sound_call Music_GameCorner_branch_edfdd
 	sound_call Music_GameCorner_branch_ee00c
 	sound_call Music_GameCorner_branch_edfdd
@@ -342,7 +342,7 @@ Music_GameCorner_branch_edeef:
 	sound_call Music_GameCorner_branch_edfdd
 	sound_call Music_GameCorner_branch_ee00c
 	sound_call Music_GameCorner_branch_edfdd
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 2
 	note F_, 1
 	octave 3
@@ -375,7 +375,7 @@ Music_GameCorner_branch_edeef:
 	note A#, 1
 	octave 5
 	note C_, 3
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	sound_call Music_GameCorner_branch_edfdd
 	sound_call Music_GameCorner_branch_ee00c
 	sound_call Music_GameCorner_branch_edfdd

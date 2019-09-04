@@ -11,7 +11,7 @@ Music_BattleTowerLobby_Ch1:
 	duty_cycle 3
 	pitch_offset 1
 	vibrato 8, 2, 2
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 7, 2
 Music_BattleTowerLobby_branch_1794a9:
 	note_type 12, 7, 2
@@ -120,7 +120,7 @@ Music_BattleTowerLobby_branch_1794a9:
 Music_BattleTowerLobby_Ch2:
 	duty_cycle 2
 	vibrato 16, 3, 4
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 8, 2
 Music_BattleTowerLobby_branch_179544:
 	note_type 12, 8, 2

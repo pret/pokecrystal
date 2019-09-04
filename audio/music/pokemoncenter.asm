@@ -12,7 +12,7 @@ Music_PokemonCenter_Ch1:
 	vibrato 10, 1, 4
 	pitch_offset 1
 Music_PokemonCenter_branch_ed5df:
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 8, 3
 	octave 3
 	note F#, 2
@@ -86,7 +86,7 @@ Music_PokemonCenter_branch_ed5df:
 	note G_, 2
 	note A_, 2
 	note B_, 2
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note F#, 2
 	note E_, 2
 	note D_, 4
@@ -153,33 +153,33 @@ Music_PokemonCenter_branch_ed5df:
 Music_PokemonCenter_Ch2:
 	vibrato 16, 2, 5
 Music_PokemonCenter_branch_ed674:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	sound_call Music_PokemonCenter_branch_ed6d1
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 10, 5
 	octave 3
 	note A_, 4
 	note E_, 4
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	sound_call Music_PokemonCenter_branch_ed6e4
 	note D_, 2
 	note F#, 6
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 10, 5
 	octave 3
 	note A_, 4
 	note E_, 4
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	sound_call Music_PokemonCenter_branch_ed6d1
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 10, 5
 	octave 3
 	note A_, 4
 	note E_, 4
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	sound_call Music_PokemonCenter_branch_ed6e4
 	note D_, 8
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 10, 5
 	octave 3
 	note D_, 4
@@ -252,7 +252,7 @@ Music_PokemonCenter_branch_ed6e4:
 Music_PokemonCenter_Ch3:
 	note_type 12, 2, 8
 Music_PokemonCenter_branch_ed6f6:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	octave 3
 	note D_, 1
 	rest 5
@@ -298,7 +298,7 @@ Music_PokemonCenter_branch_ed6f6:
 	rest 1
 	note G_, 1
 	rest 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	sound_call Music_PokemonCenter_branch_ed783
 	note G_, 1
 	rest 5
@@ -395,7 +395,7 @@ Music_PokemonCenter_branch_ed783:
 Music_PokemonCenter_Ch4:
 	toggle_noise 3
 	drum_speed 12
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 Music_PokemonCenter_branch_ed792:
 	drum_note 8, 6
 	drum_note 8, 4

@@ -11,7 +11,7 @@ Music_BurnedTower_Ch1:
 	duty_cycle 1
 	pitch_offset 4
 	vibrato 8, 4, 5
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 9, 1
 	rest 2
 	octave 2
@@ -193,7 +193,7 @@ Music_BurnedTower_branch_f6b8e:
 	sound_ret
 
 Music_BurnedTower_Ch3:
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 1, 4
 	rest 16
 	rest 16
@@ -251,7 +251,7 @@ Music_BurnedTower_branch_f6be1:
 	sound_loop 4, Music_BurnedTower_branch_f6be1
 	rest 2
 Music_BurnedTower_branch_f6be7:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 8, 2
 	drum_note 9, 2
 	drum_note 8, 4

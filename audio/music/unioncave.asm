@@ -11,7 +11,7 @@ Music_UnionCave_Ch1:
 	duty_cycle 1
 	pitch_offset 2
 	vibrato 24, 3, 4
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 Music_UnionCave_branch_f5c7b:
 	note_type 12, 11, 3
 Music_UnionCave_branch_f5c7e:
@@ -176,7 +176,7 @@ Music_UnionCave_branch_f5d52:
 
 Music_UnionCave_Ch3:
 	note_type 12, 1, 6
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 Music_UnionCave_branch_f5d5d:
 	rest 16
 	sound_loop 7, Music_UnionCave_branch_f5d5d
@@ -241,18 +241,18 @@ Music_UnionCave_Ch4:
 	toggle_noise 1
 	drum_speed 12
 Music_UnionCave_branch_f5da9:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 5, 4
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	drum_note 6, 4
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	drum_note 9, 4
 	rest 8
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	drum_note 5, 4
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	drum_note 6, 4
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 9, 4
 	rest 8
 	sound_loop 0, Music_UnionCave_branch_f5da9

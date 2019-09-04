@@ -8,7 +8,7 @@ Music_MobileAdapterMenu_Ch1:
 	tempo 168
 	volume 7, 7
 	pitch_offset 1
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	duty_cycle 2
 	note_type 12, 6, 6
 	rest 2
@@ -84,7 +84,7 @@ Music_MobileAdapterMenu_branch_178076:
 	sound_ret
 
 Music_MobileAdapterMenu_Ch2:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 8, 4
 	duty_cycle 2
 	octave 4

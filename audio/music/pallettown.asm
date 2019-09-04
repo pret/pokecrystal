@@ -9,7 +9,7 @@ Music_PalletTown_Ch1:
 	volume 7, 7
 	vibrato 18, 2, 4
 	pitch_offset 1
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 Music_PalletTown_branch_f4b22:
 	duty_cycle 2
 	note_type 12, 7, 8
@@ -122,7 +122,7 @@ Music_PalletTown_branch_f4b59:
 Music_PalletTown_Ch2:
 	vibrato 18, 4, 4
 	duty_cycle 2
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 Music_PalletTown_branch_f4ba8:
 	note_type 12, 8, 8
 	octave 1

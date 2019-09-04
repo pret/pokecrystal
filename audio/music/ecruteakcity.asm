@@ -7,7 +7,7 @@ Music_EcruteakCity:
 Music_EcruteakCity_Ch1:
 	tempo 197
 	volume 7, 7
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	vibrato 18, 2, 5
 	duty_cycle 2
 Music_EcruteakCity_branch_ef2e5:
@@ -40,10 +40,10 @@ Music_EcruteakCity_branch_ef2e5:
 	note C#, 4
 	note D_, 10
 	rest 2
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 4
 	note B_, 8
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	octave 3
 	note A#, 1
 	note B_, 11
@@ -251,7 +251,7 @@ Music_EcruteakCity_branch_ef3d0:
 Music_EcruteakCity_Ch2:
 	vibrato 18, 2, 5
 	duty_cycle 3
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 Music_EcruteakCity_branch_ef3f2:
 	note_type 6, 6, 7
 	rest 16
@@ -312,9 +312,9 @@ Music_EcruteakCity_branch_ef3f2:
 	note E_, 4
 	note D_, 10
 	rest 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	note D#, 9
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	duty_cycle 0
 	octave 5
 	note C#, 1
@@ -471,7 +471,7 @@ Music_EcruteakCity_branch_ef3f2:
 	sound_loop 0, Music_EcruteakCity_branch_ef3f2
 
 Music_EcruteakCity_Ch3:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 Music_EcruteakCity_branch_ef4e3:
 	vibrato 18, 2, 5
 	note_type 12, 2, 5

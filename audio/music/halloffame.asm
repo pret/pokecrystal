@@ -11,7 +11,7 @@ Music_HallOfFame_Ch1:
 	duty_cycle 2
 	vibrato 12, 2, 2
 	pitch_offset 1
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 9, 3
 	rest 16
 	rest 16
@@ -144,13 +144,13 @@ Music_HallOfFame_Ch4:
 	rest 16
 	drum_speed 6
 Music_HallOfFame_branch_f0677:
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	drum_note 11, 4
 	drum_note 11, 8
 	drum_note 11, 4
 	drum_note 11, 4
 	drum_note 11, 4
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 10, 2
 	drum_note 10, 2
 	drum_note 11, 2
@@ -160,7 +160,7 @@ Music_HallOfFame_branch_f0677:
 	drum_note 11, 8
 	drum_note 11, 4
 	drum_note 11, 4
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	drum_note 11, 1
 	drum_note 11, 1
 	drum_note 10, 1

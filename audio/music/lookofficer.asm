@@ -9,7 +9,7 @@ Music_LookOfficer_Ch1:
 	volume 7, 7
 	pitch_offset 1
 	vibrato 18, 3, 4
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	duty_cycle 3
 	note_type 12, 10, 7
 	octave 4
@@ -97,7 +97,7 @@ Music_LookOfficer_branch_ed89e:
 
 Music_LookOfficer_Ch3:
 	vibrato 20, 1, 4
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 1, 4
 	rest 10
 	octave 3

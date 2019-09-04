@@ -11,7 +11,7 @@ Music_SproutTower_Ch1:
 	duty_cycle 3
 	pitch_offset 2
 	vibrato 8, 4, 5
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 10, 3
 	rest 16
 	rest 16
@@ -159,7 +159,7 @@ Music_SproutTower_Ch3:
 	note D#, 2
 	rest 2
 	note F#, 2
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 Music_SproutTower_branch_f6a3e:
 	rest 4
 	note C_, 2
@@ -225,20 +225,20 @@ Music_SproutTower_Ch4:
 	rest 4
 Music_SproutTower_branch_f6a7f:
 	drum_note 7, 4
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 4, 4
 	drum_note 7, 2
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	drum_note 4, 2
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	drum_note 7, 4
 	drum_note 7, 4
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	drum_note 4, 4
 	drum_note 7, 2
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 4, 2
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	drum_note 7, 4
 	sound_loop 0, Music_SproutTower_branch_f6a7f
 

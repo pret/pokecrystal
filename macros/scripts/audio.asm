@@ -23,9 +23,9 @@ ENDM
 square_note: MACRO
 	db \1 ; length
 	IF \3 < 0
-		db (\2 << 4) | (%1000 | (\3 * -1)) ; volume envelope
+		dn \2, %1000 | (\3 * -1) ; volume envelope
 	ELSE
-		db (\2 << 4) | \3 ; volume envelope
+		dn \2, \3 ; volume envelope
 	ENDC
 	dw \4 ; frequency
 ENDM
@@ -33,9 +33,9 @@ ENDM
 noise_note: MACRO
 	db \1 ; length
 	IF \3 < 0
-		db (\2 << 4) | (%1000 | (\3 * -1)) ; volume envelope
+		dn \2, %1000 | (\3 * -1) ; volume envelope
 	ELSE
-		db (\2 << 4) | \3 ; volume envelope
+		dn \2, \3 ; volume envelope
 	ENDC
 	db \4 ; frequency
 ENDM
@@ -57,9 +57,9 @@ note_type: MACRO
 	db \1 ; note length
 	IF _NARG >= 2
 		IF \3 < 0
-			db (\2 << 4) | (%1000 | (\3 * -1)) ; volume envelope
+			dn \2, %1000 | (\3 * -1) ; volume envelope
 		ELSE
-			db (\2 << 4) | \3 ; volume envelope
+			dn \2, \3 ; volume envelope
 		ENDC
 	ENDC
 ENDM
@@ -91,9 +91,9 @@ ENDM
 volume_envelope: MACRO
 	db volume_envelope_cmd
 	IF \2 < 0
-		db (\1 << 4) | (%1000 | (\2 * -1)) ; volume envelope
+		dn \1, %1000 | (\2 * -1) ; volume envelope
 	ELSE
-		db (\1 << 4) | \2 ; volume envelope
+		dn \1, \2 ; volume envelope
 	ENDC
 ENDM
 
@@ -101,9 +101,9 @@ ENDM
 pitch_sweep: MACRO
 	db pitch_sweep_cmd
 	IF \2 < 0
-		db (\1 << 4) | (%1000 | (\2 * -1)) ; pitch sweep
+		dn \1, %1000 | (\2 * -1) ; pitch sweep
 	ELSE
-		db (\1 << 4) | \2 ; pitch sweep
+		dn \1, \2 ; pitch sweep
 	ENDC
 ENDM
 
@@ -152,7 +152,7 @@ ENDM
 	enum force_stereo_panning_cmd ; $e4
 force_stereo_panning: MACRO
 	db force_stereo_panning_cmd
-	dn %\1\1\1\1, %\2\2\2\2 ; left enable, right enable
+	dn %1111 * \1, %1111 * \2 ; left enable, right enable
 ENDM
 
 	enum volume_cmd ; $e5
@@ -221,7 +221,7 @@ ENDM
 	enum stereo_panning_cmd ; $ef
 stereo_panning: MACRO
 	db stereo_panning_cmd
-	dn %\1\1\1\1, %\2\2\2\2 ; left enable, right enable
+	dn %1111 * \1, %1111 * \2 ; left enable, right enable
 ENDM
 
 	enum sfx_toggle_noise_cmd ; $f0

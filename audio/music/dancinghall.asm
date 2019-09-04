@@ -9,7 +9,7 @@ Music_DancingHall:
 Music_DancingHall_Ch1:
 	tempo 208
 	volume 7, 7
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 6, 11, 7
 	rest 3
 	duty_cycle 0
@@ -89,7 +89,7 @@ Music_DancingHall_branch_efa17:
 	sound_ret
 
 Music_DancingHall_Ch2:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 6, 10, 1
 	duty_cycle 0
 	vibrato 16, 2, 4
@@ -221,7 +221,7 @@ Music_DancingHall_branch_efa7a:
 	sound_ret
 
 Music_DancingHall_Ch3:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	vibrato 22, 2, 4
 	note_type 6, 1, 0
 	octave 5

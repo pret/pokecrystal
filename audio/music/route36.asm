@@ -11,7 +11,7 @@ Music_Route36_Ch1:
 	duty_cycle 3
 	pitch_offset 1
 	vibrato 16, 1, 5
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 11, 3
 	octave 3
 	note C_, 4
@@ -98,7 +98,7 @@ Music_Route36_branch_e9517:
 	note A_, 2
 	octave 4
 	note D_, 2
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	volume_envelope 9, 5
 	octave 3
 	note D_, 6
@@ -158,7 +158,7 @@ Music_Route36_branch_e9517:
 	note B_, 2
 	note A_, 6
 	note D_, 6
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	volume_envelope 11, 5
 	note D#, 2
 	note E_, 2
@@ -167,7 +167,7 @@ Music_Route36_branch_e9517:
 Music_Route36_Ch2:
 	duty_cycle 3
 	vibrato 16, 3, 6
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 12, 2
 	octave 3
 	note F_, 2
@@ -231,7 +231,7 @@ Music_Route36_branch_e95ce:
 	note A_, 16
 	volume_envelope 11, 7
 	note A_, 16
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	volume_envelope 10, 4
 	octave 3
 	note A_, 6
@@ -293,7 +293,7 @@ Music_Route36_branch_e95ce:
 	octave 4
 	note C_, 8
 	note C#, 4
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	note D_, 6
 	note A_, 6
 	note G_, 2
@@ -302,7 +302,7 @@ Music_Route36_branch_e95ce:
 	note D_, 4
 	volume_envelope 11, 7
 	note D_, 8
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	volume_envelope 12, 4
 	octave 3
 	note F#, 1

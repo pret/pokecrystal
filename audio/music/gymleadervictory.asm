@@ -26,7 +26,7 @@ Music_GymLeaderVictory_Ch1:
 	note A_, 1
 	octave 5
 	note D_, 8
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 Music_GymLeaderVictory_branch_f4658:
 	duty_cycle 1
 	sound_call Music_GymLeaderVictory_branch_f4689
@@ -224,7 +224,7 @@ Music_GymLeaderVictory_Ch3:
 	note B_, 2
 	octave 3
 	note C#, 2
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 Music_GymLeaderVictory_branch_f4744:
 	note D_, 2
 	rest 4

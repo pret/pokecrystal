@@ -11,7 +11,7 @@ Music_LookRival_Ch1:
 	duty_cycle 1
 	pitch_offset 1
 	vibrato 18, 1, 5
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 11, 2
 	octave 4
 	note C_, 1
@@ -119,7 +119,7 @@ Music_LookRival_branch_f4ff7:
 Music_LookRival_Ch2:
 	duty_cycle 3
 	vibrato 8, 3, 6
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 12, 2
 	octave 4
 	note F#, 2
@@ -322,7 +322,7 @@ Music_LookRival_branch_f50ff:
 	sound_ret
 
 Music_LookRival_Ch4:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	toggle_noise 3
 	drum_speed 12
 	rest 8

@@ -10,7 +10,7 @@ Music_RuinsOfAlphRadio_Ch1:
 	duty_cycle 0
 	pitch_offset 280
 	vibrato 0, 15, 0
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 Music_RuinsOfAlphRadio_branch_eede3:
 	note_type 6, 7, 1
 	sound_call Music_RuinsOfAlphRadio_branch_eee01
@@ -51,7 +51,7 @@ Music_RuinsOfAlphRadio_Ch2:
 	duty_cycle 1
 	vibrato 1, 14, 0
 Music_RuinsOfAlphRadio_branch_eee17:
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 6, 8, 1
 	sound_call Music_RuinsOfAlphRadio_branch_eee01
 	note_type 12, 10, 1

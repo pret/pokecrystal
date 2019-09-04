@@ -10,7 +10,7 @@ Music_Bicycle_Ch1:
 	volume 7, 7
 	duty_cycle 3
 	pitch_offset 1
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	vibrato 8, 1, 5
 	note_type 12, 11, 4
 	octave 3
@@ -24,7 +24,7 @@ Music_Bicycle_Ch1:
 	volume_envelope 11, 2
 	note F#, 2
 Music_Bicycle_branch_ee144:
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	volume_envelope 11, 2
 	note G_, 2
 	note G_, 2
@@ -100,7 +100,7 @@ Music_Bicycle_branch_ee144:
 	note G_, 2
 	note G#, 2
 	note A_, 2
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	volume_envelope 11, 6
 	note B_, 4
 	note G_, 4
@@ -173,7 +173,7 @@ Music_Bicycle_branch_ee144:
 Music_Bicycle_Ch2:
 	duty_cycle 2
 	vibrato 16, 2, 4
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 12, 6
 	octave 4
 	note D_, 6
@@ -195,7 +195,7 @@ Music_Bicycle_Ch2:
 	note B_, 2
 	note A_, 2
 Music_Bicycle_branch_ee1fd:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	duty_cycle 2
 	volume_envelope 12, 3
 	octave 3
@@ -253,7 +253,7 @@ Music_Bicycle_branch_ee1fd:
 	note E_, 2
 	volume_envelope 12, 7
 	note F#, 8
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	sound_call Music_Bicycle_branch_ee263
 	note F#, 4
 	volume_envelope 12, 3
@@ -503,12 +503,12 @@ Music_Bicycle_Ch4:
 Music_Bicycle_branch_ee34b:
 	rest 2
 Music_Bicycle_branch_ee34c:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 6, 4
 	sound_loop 12, Music_Bicycle_branch_ee34c
 	drum_note 6, 4
 	drum_note 6, 4
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	drum_note 6, 2
 	drum_note 6, 2
 	drum_note 6, 2

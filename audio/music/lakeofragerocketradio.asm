@@ -10,7 +10,7 @@ Music_LakeOfRageRocketRadio_Ch1:
 	duty_cycle 1
 	pitch_offset 4376
 	vibrato 0, 15, 0
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 Music_LakeOfRageRocketRadio_branch_ef5c9:
 	note_type 12, 10, 7
 	octave 7
@@ -26,7 +26,7 @@ Music_LakeOfRageRocketRadio_Ch2:
 	vibrato 19, 14, 8
 	note_type 12, 10, 7
 	rest 2
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	sound_loop 0, Music_LakeOfRageRocketRadio_branch_ef5c9
 
 Music_LakeOfRageRocketRadio_Ch3:

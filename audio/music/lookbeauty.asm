@@ -6,7 +6,7 @@ Music_LookBeauty:
 	channel 4, Music_LookBeauty_Ch4
 
 Music_LookBeauty_Ch1:
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	vibrato 18, 2, 5
 	duty_cycle 2
 	tempo 128
@@ -78,7 +78,7 @@ Music_LookBeauty_branch_eee5f:
 	sound_loop 0, Music_LookBeauty_branch_eee5f
 
 Music_LookBeauty_Ch2:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	vibrato 16, 2, 3
 	duty_cycle 2
 	note_type 12, 12, 7
@@ -155,7 +155,7 @@ Music_LookBeauty_branch_eeec5:
 	sound_loop 0, Music_LookBeauty_branch_eeec5
 
 Music_LookBeauty_Ch3:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	vibrato 8, 1, 2
 	note_type 12, 1, 5
 	rest 16

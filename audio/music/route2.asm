@@ -8,7 +8,7 @@ Music_Route2:
 Music_Route2_Ch1:
 	tempo 151
 	volume 7, 7
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	vibrato 6, 2, 3
 	note_type 12, 11, 1
 	rest 16
@@ -160,7 +160,7 @@ Music_Route2_branch_ed971:
 	sound_ret
 
 Music_Route2_Ch2:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	vibrato 8, 2, 4
 	note_type 12, 11, 2
 	sound_call Music_Route2_branch_ed9ba
@@ -294,7 +294,7 @@ Music_Route2_branch_eda02:
 	sound_ret
 
 Music_Route2_Ch3:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	vibrato 22, 1, 5
 	note_type 12, 1, 4
 	octave 4

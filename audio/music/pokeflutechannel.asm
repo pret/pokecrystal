@@ -7,7 +7,7 @@ Music_PokeFluteChannel:
 Music_PokeFluteChannel_Ch1:
 	tempo 240
 	volume 7, 7
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	duty_cycle 3
 	pitch_offset 2
 	note_type 12, 11, 4
@@ -70,7 +70,7 @@ Music_PokeFluteChannel_branch_f7b40:
 	sound_loop 0, Music_PokeFluteChannel_branch_f7b40
 
 Music_PokeFluteChannel_Ch2:
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	duty_cycle 3
 	pitch_offset 1
 	note_type 12, 12, 4

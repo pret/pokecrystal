@@ -10,7 +10,7 @@ Music_IndigoPlateau_Ch1:
 	volume 7, 7
 	duty_cycle 3
 	pitch_offset 2
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 Music_IndigoPlateau_branch_ee86a:
 	sound_call Music_IndigoPlateau_branch_ee881
 	octave 3
@@ -43,7 +43,7 @@ Music_IndigoPlateau_branch_ee881:
 Music_IndigoPlateau_Ch2:
 	duty_cycle 3
 	vibrato 16, 2, 2
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 Music_IndigoPlateau_branch_ee899:
 	sound_call Music_IndigoPlateau_branch_ee8e9
 	note A_, 4
@@ -149,7 +149,7 @@ Music_IndigoPlateau_branch_ee915:
 	sound_ret
 
 Music_IndigoPlateau_Ch4:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	toggle_noise 0
 	drum_speed 12
 Music_IndigoPlateau_branch_ee92a:

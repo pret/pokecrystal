@@ -12,7 +12,7 @@ Music_RocketHideout_Ch1:
 	pitch_offset 4
 	vibrato 16, 4, 4
 	note_type 12, 11, 3
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 Music_RocketHideout_branch_eeb93:
 	rest 16
 	sound_loop 4, Music_RocketHideout_branch_eeb93
@@ -124,7 +124,7 @@ Music_RocketHideout_Ch2:
 	pitch_offset 2
 	vibrato 0, 15, 0
 	note_type 12, 12, 4
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 Music_RocketHideout_branch_eec14:
 	octave 2
 	note D#, 2
@@ -276,7 +276,7 @@ Music_RocketHideout_branch_eeca6:
 Music_RocketHideout_Ch4:
 	toggle_noise 0
 	drum_speed 12
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	rest 16
 	rest 16
 	drum_note 3, 1
@@ -296,14 +296,14 @@ Music_RocketHideout_branch_eecc7:
 	sound_loop 0, Music_RocketHideout_branch_eecc7
 
 Music_RocketHideout_branch_eecdb:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 4, 1
 	drum_note 4, 1
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	drum_note 10, 4
 	drum_note 4, 1
 	drum_note 4, 1
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 10, 4
 	sound_ret
 

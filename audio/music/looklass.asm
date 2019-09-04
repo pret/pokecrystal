@@ -16,7 +16,7 @@ Music_LookLass_Ch1:
 	rest 1
 	octave 4
 	note B_, 14
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	duty_cycle 0
 Music_LookLass_branch_ed7bd:
 	volume_envelope 10, 2
@@ -31,7 +31,7 @@ Music_LookLass_branch_ed7bd:
 	sound_loop 0, Music_LookLass_branch_ed7bd
 
 Music_LookLass_Ch2:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	duty_cycle 0
 	note_type 12, 8, 3
 	rest 16

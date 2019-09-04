@@ -11,7 +11,7 @@ Music_ElmsLab_Ch1:
 	duty_cycle 3
 	pitch_offset 1
 	vibrato 16, 1, 5
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 11, 2
 	octave 2
 	note F_, 2
@@ -186,7 +186,7 @@ Music_ElmsLab_branch_ea075:
 Music_ElmsLab_Ch2:
 	duty_cycle 3
 	vibrato 16, 2, 6
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 12, 3
 	octave 4
 	note F_, 2
@@ -212,7 +212,7 @@ Music_ElmsLab_Ch2:
 	note C_, 4
 	note C_, 4
 	note C_, 2
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 Music_ElmsLab_branch_ea14f:
 	volume_envelope 12, 6
 	octave 4
@@ -351,7 +351,7 @@ Music_ElmsLab_branch_ea14f:
 	sound_loop 0, Music_ElmsLab_branch_ea14f
 
 Music_ElmsLab_Ch3:
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 2, 5
 	rest 8
 	rest 14
@@ -528,7 +528,7 @@ Music_ElmsLab_branch_ea216:
 	sound_loop 0, Music_ElmsLab_branch_ea216
 
 Music_ElmsLab_Ch4:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	toggle_noise 0
 	drum_speed 12
 	rest 16

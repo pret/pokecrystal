@@ -6,7 +6,7 @@ Music_Route26:
 	channel 4, Music_Route26_Ch4
 
 Music_Route26_Ch1:
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	vibrato 18, 2, 3
 	tempo 151
 	volume 7, 7
@@ -196,7 +196,7 @@ Music_Route26_branch_eefe0:
 	sound_loop 0, Music_Route26_branch_eefe0
 
 Music_Route26_Ch2:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	vibrato 20, 2, 3
 	duty_cycle 2
 	note_type 12, 12, 7
@@ -354,7 +354,7 @@ Music_Route26_branch_ef14e:
 	sound_ret
 
 Music_Route26_Ch3:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	vibrato 18, 2, 3
 	note_type 12, 1, 4
 	vibrato 24, 2, 3

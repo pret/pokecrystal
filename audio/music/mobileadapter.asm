@@ -9,7 +9,7 @@ Music_MobileAdapter_Ch1:
 	tempo 132
 	volume 7, 7
 	pitch_offset 1
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	duty_cycle 2
 	note_type 12, 8, 4
 	rest 2
@@ -606,7 +606,7 @@ Music_MobileAdapter_branch_1ff09:
 
 Music_MobileAdapter_Ch4:
 	toggle_noise 3
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_speed 12
 	rest 2
 	rest 10

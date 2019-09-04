@@ -11,7 +11,7 @@ Music_MtMoon_Ch1:
 	duty_cycle 2
 	pitch_offset 1
 	vibrato 8, 1, 4
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 4, 5
 	rest 2
 	sound_loop 0, Music_MtMoon_branch_edb56
@@ -20,7 +20,7 @@ Music_MtMoon_Ch2:
 	vibrato 11, 1, 5
 	duty_cycle 2
 	note_type 12, 8, 4
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 Music_MtMoon_branch_edb56:
 	octave 4
 	note D#, 6
@@ -122,18 +122,18 @@ Music_MtMoon_Ch4:
 	toggle_noise 5
 	drum_speed 12
 Music_MtMoon_branch_edbc3:
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	drum_note 11, 4
 	drum_note 11, 8
 	drum_note 11, 4
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 11, 4
 	drum_note 11, 4
 	drum_note 11, 4
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	drum_note 11, 4
 	drum_note 11, 4
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 11, 8
 	sound_loop 0, Music_MtMoon_branch_edbc3
 

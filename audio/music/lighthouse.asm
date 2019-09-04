@@ -11,7 +11,7 @@ Music_Lighthouse_Ch1:
 	duty_cycle 3
 	pitch_offset 4
 	vibrato 8, 4, 5
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 Music_Lighthouse_branch_ee584:
 	note_type 12, 11, 3
 	octave 3
@@ -213,7 +213,7 @@ Music_Lighthouse_branch_ee604:
 
 Music_Lighthouse_Ch3:
 	note_type 12, 1, -1
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 Music_Lighthouse_branch_ee65b:
 	octave 2
 	note G#, 2
@@ -293,14 +293,14 @@ Music_Lighthouse_Ch4:
 	toggle_noise 0
 	drum_speed 12
 Music_Lighthouse_branch_ee6b1:
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	drum_note 9, 4
 	drum_note 6, 2
 	drum_note 9, 4
 	drum_note 6, 2
 	drum_note 10, 2
 	drum_note 11, 2
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	drum_note 9, 2
 	drum_note 6, 4
 	drum_note 9, 2

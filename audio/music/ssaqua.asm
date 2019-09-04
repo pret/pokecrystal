@@ -8,7 +8,7 @@ Music_SSAqua:
 Music_SSAqua_Ch1:
 	tempo 117
 	volume 7, 7
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	pitch_offset 1
 	vibrato 18, 3, 3
 	duty_cycle 2
@@ -250,7 +250,7 @@ Music_SSAqua_branch_eadbc:
 	sound_loop 0, Music_SSAqua_branch_eadbc
 
 Music_SSAqua_Ch2:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	duty_cycle 2
 	vibrato 8, 3, 3
 	note_type 12, 11, 7
@@ -603,7 +603,7 @@ Music_SSAqua_branch_eb03e:
 	sound_ret
 
 Music_SSAqua_Ch3:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	vibrato 8, 3, 4
 	note_type 6, 1, 5
 	octave 2

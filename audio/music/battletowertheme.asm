@@ -10,7 +10,7 @@ Music_BattleTowerTheme_Ch1:
 	volume 7, 7
 	pitch_offset 1
 	vibrato 18, 3, 4
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 6, 9, 4
 Music_BattleTowerTheme_branch_1788a5:
 	rest 16
@@ -285,7 +285,7 @@ Music_BattleTowerTheme_branch_178970:
 	note G_, 1
 	note F_, 1
 	note E_, 8
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	duty_cycle 2
 	note F_, 6
 	note A_, 1
@@ -336,7 +336,7 @@ Music_BattleTowerTheme_branch_178970:
 	rest 1
 	note G_, 4
 	rest 4
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	duty_cycle 3
 	octave 3
 	note C_, 2
@@ -361,7 +361,7 @@ Music_BattleTowerTheme_Ch3:
 	vibrato 18, 3, 4
 	note_type 6, 1, 6
 Music_BattleTowerTheme_branch_178a26:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	sound_call Music_BattleTowerTheme_branch_178afe
 	note C_, 2
 	rest 2
@@ -375,7 +375,7 @@ Music_BattleTowerTheme_branch_178a26:
 	rest 1
 	note F_, 4
 	rest 4
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note C_, 8
 	sound_call Music_BattleTowerTheme_branch_178afe
 	note C_, 2
@@ -469,7 +469,7 @@ Music_BattleTowerTheme_branch_178a26:
 	note F_, 2
 	note G_, 4
 	rest 4
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	note G_, 2
 	octave 3
 	note C_, 2

@@ -5,7 +5,7 @@ Music_LookSage:
 
 Music_LookSage_Ch1:
 	tempo 144
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	volume 7, 7
 	duty_cycle 3
 	note_type 12, 11, 3
@@ -123,7 +123,7 @@ Music_LookSage_branch_ee3fa:
 	sound_ret
 
 Music_LookSage_Ch3:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	vibrato 22, 2, 3
 	note_type 12, 1, 0
 	octave 5

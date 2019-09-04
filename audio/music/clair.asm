@@ -10,7 +10,7 @@ Music_Clair_Ch1:
 	volume 7, 7
 	pitch_offset 1
 	vibrato 18, 3, 4
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 9, 3
 	duty_cycle 3
 Music_Clair_branch_1faab:
@@ -98,13 +98,13 @@ Music_Clair_branch_1fac9:
 
 Music_Clair_branch_1fb12:
 	duty_cycle 3
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 3
 	note B_, 1
 	rest 2
 	note G#, 5
 	duty_cycle 2
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	octave 2
 	note B_, 2
 	note G#, 1
@@ -391,11 +391,11 @@ Music_Clair_branch_1fc3c:
 Music_Clair_Ch4:
 	toggle_noise 3
 	drum_speed 12
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 12, 8
 	drum_note 12, 8
 	drum_note 12, 6
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	drum_note 4, 1
 	drum_note 4, 1
 	drum_note 3, 2
@@ -405,31 +405,31 @@ Music_Clair_Ch4:
 	drum_note 3, 1
 	drum_note 3, 1
 Music_Clair_branch_1fc5e:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	sound_call Music_Clair_branch_1fc6e
 	drum_note 8, 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	sound_call Music_Clair_branch_1fc6e
 	drum_note 7, 1
 	sound_loop 0, Music_Clair_branch_1fc5e
 
 Music_Clair_branch_1fc6e:
 	drum_note 4, 2
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 8, 2
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	drum_note 3, 2
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 8, 1
 	drum_note 8, 1
 	drum_note 8, 2
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	drum_note 4, 1
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 8, 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	drum_note 3, 2
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 8, 1
 	sound_ret
 

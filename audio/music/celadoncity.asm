@@ -9,7 +9,7 @@ Music_CeladonCity_Ch1:
 	volume 7, 7
 	pitch_offset 1
 Music_CeladonCity_branch_f436c:
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 10, 6
 	octave 3
 	note A_, 7
@@ -143,7 +143,7 @@ Music_CeladonCity_branch_f43fe:
 Music_CeladonCity_Ch2:
 	vibrato 18, 3, 4
 	duty_cycle 2
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 11, 7
 	octave 4
 	note D_, 1

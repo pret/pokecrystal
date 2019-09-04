@@ -8,7 +8,7 @@ Music_Credits:
 Music_Credits_Ch1:
 	tempo 139
 	volume 7, 7
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	duty_cycle 3
 	note_type 12, 2, -7
 	octave 2
@@ -561,7 +561,7 @@ Music_Credits_Ch2:
 	duty_cycle 1
 	vibrato 20, 2, 3
 	note_type 12, 2, -7
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	octave 4
 	note G_, 16
 	volume_envelope 12, 7
@@ -975,7 +975,7 @@ Music_Credits_branch_1f748:
 Music_Credits_Ch3:
 	vibrato 22, 2, 3
 	note_type 12, 3, 4
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 6
 	note G_, 1
 	note D_, 1

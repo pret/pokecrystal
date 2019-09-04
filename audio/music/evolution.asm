@@ -23,7 +23,7 @@ Music_Evolution_Ch1:
 	note G_, 1
 	rest 4
 	duty_cycle 3
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 Music_Evolution_branch_f0713:
 	sound_call Music_Evolution_branch_f0737
 	note_type 12, 10, 4
@@ -75,7 +75,7 @@ Music_Evolution_Ch2:
 	note D_, 1
 	rest 4
 	duty_cycle 3
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 Music_Evolution_branch_f0761:
 	sound_call Music_Evolution_branch_f0787
 	note_type 12, 11, 5
@@ -190,10 +190,10 @@ Music_Evolution_Ch4:
 	drum_speed 12
 	rest 8
 Music_Evolution_branch_f07f0:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 11, 6
 	drum_note 11, 4
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	drum_note 5, 2
 	drum_note 5, 2
 	drum_note 5, 2

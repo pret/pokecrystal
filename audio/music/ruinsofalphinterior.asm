@@ -8,7 +8,7 @@ Music_RuinsOfAlphInterior_Ch1:
 	tempo 224
 	volume 7, 7
 	duty_cycle 0
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 4, 4
 	rest 1
 	sound_loop 0, Music_RuinsOfAlphInterior_branch_ebdc2
@@ -16,7 +16,7 @@ Music_RuinsOfAlphInterior_Ch1:
 Music_RuinsOfAlphInterior_Ch2:
 	pitch_offset 2
 	duty_cycle 0
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 10, 4
 Music_RuinsOfAlphInterior_branch_ebdc2:
 	octave 4

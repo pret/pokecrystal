@@ -11,7 +11,7 @@ Music_DarkCave_Ch1:
 	duty_cycle 3
 	pitch_offset 1
 	vibrato 17, 1, 5
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 10, 7
 Music_DarkCave_branch_ea2dc:
 	rest 16
@@ -139,7 +139,7 @@ Music_DarkCave_branch_ea333:
 Music_DarkCave_Ch2:
 	duty_cycle 1
 	vibrato 18, 3, 6
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 10, 7
 Music_DarkCave_branch_ea374:
 	rest 16
@@ -153,7 +153,7 @@ Music_DarkCave_branch_ea37e:
 	rest 16
 	sound_loop 4, Music_DarkCave_branch_ea37e
 	rest 8
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	volume_envelope 12, 7
 	octave 5
 	note C_, 8
@@ -196,7 +196,7 @@ Music_DarkCave_branch_ea37e:
 	note D#, 10
 	volume_envelope 11, 7
 	note D#, 6
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	volume_envelope 12, 4
 	octave 4
 	note F_, 4
@@ -259,7 +259,7 @@ Music_DarkCave_branch_ea37e:
 	volume_envelope 11, 7
 	note C_, 8
 	volume_envelope 12, 7
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	rest 8
 	octave 5
 	note C_, 8
@@ -303,7 +303,7 @@ Music_DarkCave_branch_ea37e:
 	note C_, 8
 	volume_envelope 12, 7
 	rest 16
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	rest 8
 	octave 3
 	note A#, 2
@@ -461,24 +461,24 @@ Music_DarkCave_Ch4:
 	toggle_noise 3
 	drum_speed 12
 Music_DarkCave_branch_ea4ee:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	drum_note 4, 8
 	drum_note 4, 8
 	drum_note 4, 4
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 2, 4
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	drum_note 2, 2
 	drum_note 2, 2
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 2, 4
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	drum_note 4, 8
 	drum_note 4, 8
 	drum_note 4, 4
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	drum_note 2, 8
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 2, 2
 	drum_note 2, 2
 	sound_loop 0, Music_DarkCave_branch_ea4ee

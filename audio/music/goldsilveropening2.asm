@@ -10,7 +10,7 @@ Music_GoldSilverOpening2_Ch1:
 	volume 7, 7
 	duty_cycle 3
 	pitch_offset 2
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 3, -5
 	octave 3
 	note D#, 8
@@ -56,7 +56,7 @@ Music_GoldSilverOpening2_branch_f7325:
 Music_GoldSilverOpening2_Ch2:
 	duty_cycle 3
 	vibrato 20, 1, 4
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 3, -7
 	octave 3
 	note A#, 8

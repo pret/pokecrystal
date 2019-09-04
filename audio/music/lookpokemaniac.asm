@@ -5,7 +5,7 @@ Music_LookPokemaniac:
 	channel 3, Music_LookPokemaniac_Ch3
 
 Music_LookPokemaniac_Ch1:
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	tempo 144
 	volume 7, 7
 	vibrato 2, 3, 3
@@ -29,7 +29,7 @@ Music_LookPokemaniac_branch_ebdfb:
 	sound_loop 0, Music_LookPokemaniac_branch_ebdfb
 
 Music_LookPokemaniac_Ch2:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	vibrato 2, 3, 3
 	pitch_offset 1
 	note_type 12, 11, 3
@@ -80,7 +80,7 @@ Music_LookPokemaniac_branch_ebe38:
 	sound_loop 0, Music_LookPokemaniac_branch_ebe24
 
 Music_LookPokemaniac_Ch3:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	vibrato 6, 3, 3
 	note_type 12, 1, 5
 	octave 4

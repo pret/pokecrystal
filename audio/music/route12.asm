@@ -10,7 +10,7 @@ Music_Route12_Ch1:
 	volume 7, 7
 	vibrato 18, 3, 4
 	pitch_offset 1
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	duty_cycle 3
 	note_type 12, 9, 8
 	octave 3
@@ -391,7 +391,7 @@ Music_Route12_branch_ec6b4:
 
 Music_Route12_Ch4:
 	toggle_noise 4
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_speed 12
 	drum_note 12, 10
 	drum_note 2, 1

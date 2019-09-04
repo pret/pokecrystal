@@ -8,7 +8,7 @@ Music_NationalPark:
 Music_NationalPark_Ch1:
 	tempo 192
 	volume 7, 7
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	vibrato 24, 2, 4
 	duty_cycle 1
 	note_type 12, 7, 7
@@ -301,7 +301,7 @@ Music_NationalPark_Ch2:
 	duty_cycle 1
 	note_type 12, 10, 7
 	rest 2
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 Music_NationalPark_branch_f565d:
 	note_type 12, 10, 7
 	sound_call Music_NationalPark_branch_f56b8
@@ -484,7 +484,7 @@ Music_NationalPark_Ch3:
 	octave 4
 	note G#, 1
 	note A#, 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 Music_NationalPark_branch_f572e:
 	sound_call Music_NationalPark_branch_f5756
 	octave 5

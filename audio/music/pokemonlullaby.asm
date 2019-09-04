@@ -15,26 +15,26 @@ Music_PokemonLullaby_branch_f6d8c:
 	note G_, 16
 	octave 4
 	note C_, 16
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	octave 3
 	note G_, 16
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	octave 4
 	note C_, 8
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	octave 3
 	note B_, 8
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note G_, 16
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	octave 4
 	note C_, 8
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	octave 3
 	note B_, 8
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note G_, 8
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	rest 2
 	note G_, 2
 	note G_, 2
@@ -107,7 +107,7 @@ Music_PokemonLullaby_branch_f6dcc:
 Music_PokemonLullaby_Ch3:
 	note_type 12, 1, 1
 Music_PokemonLullaby_branch_f6e06:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	octave 4
 	note C_, 2
 	note E_, 2
@@ -119,7 +119,7 @@ Music_PokemonLullaby_branch_f6e06:
 	note B_, 2
 	note A_, 2
 	note G_, 2
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note D_, 2
 	note F_, 2
 	note A_, 2

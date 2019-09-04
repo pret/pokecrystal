@@ -8,7 +8,7 @@ Music_ViridianCity:
 Music_ViridianCity_Ch1:
 	tempo 157
 	volume 7, 7
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	duty_cycle 2
 	vibrato 18, 3, 4
 	note_type 12, 10, 7
@@ -275,7 +275,7 @@ Music_ViridianCity_Ch2:
 	vibrato 16, 4, 6
 	duty_cycle 1
 	note_type 12, 11, 7
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	octave 2
 	note D_, 4
 	rest 2
@@ -509,7 +509,7 @@ Music_ViridianCity_branch_f4215:
 Music_ViridianCity_Ch3:
 	vibrato 18, 2, 4
 	note_type 12, 1, 3
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 4
 	note A_, 1
 	rest 3

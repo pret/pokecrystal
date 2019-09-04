@@ -7,7 +7,7 @@ Music_Route1:
 	db $3
 
 Music_Route1_Ch1:
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	tempo 184
 	volume 7, 7
 	vibrato 22, 1, 1
@@ -205,7 +205,7 @@ Music_Route1_branch_ec04a:
 	sound_loop 0, Music_Route1_branch_ec04a
 
 Music_Route1_Ch2:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	vibrato 18, 2, 2
 	duty_cycle 2
 	note_type 12, 9, 2
@@ -378,7 +378,7 @@ Music_Route1_branch_ec1aa:
 	sound_ret
 
 Music_Route1_Ch3:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	vibrato 16, 2, 3
 	note_type 12, 2, 5
 	rest 2

@@ -10,7 +10,7 @@ Music_DragonsDen_Ch1:
 	volume 7, 7
 	duty_cycle 0
 	pitch_offset 4
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 8, 0
 Music_DragonsDen_branch_eed03:
 	sound_call Music_DragonsDen_branch_eed1e
@@ -62,7 +62,7 @@ Music_DragonsDen_branch_eed2d:
 Music_DragonsDen_Ch2:
 	duty_cycle 0
 	pitch_offset 4
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 9, 0
 Music_DragonsDen_branch_eed46:
 	sound_call Music_DragonsDen_branch_eed5e
@@ -161,12 +161,12 @@ Music_DragonsDen_Ch4:
 	rest 16
 	rest 16
 Music_DragonsDen_branch_eedbd:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 6, 4
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	drum_note 7, 4
 	drum_note 7, 4
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	drum_note 7, 4
 	sound_loop 0, Music_DragonsDen_branch_eedbd
 

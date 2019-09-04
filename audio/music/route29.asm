@@ -11,7 +11,7 @@ Music_Route29_Ch1:
 	duty_cycle 3
 	pitch_offset 1
 	vibrato 16, 1, 5
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 11, 2
 	rest 2
 Music_Route29_branch_f03a5:
@@ -333,7 +333,7 @@ Music_Route29_branch_f04de:
 	sound_ret
 
 Music_Route29_Ch3:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 2, 5
 	vibrato 9, 2, 7
 	rest 2
@@ -502,7 +502,7 @@ Music_Route29_branch_f0504:
 	sound_loop 0, Music_Route29_branch_f0504
 
 Music_Route29_Ch4:
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	toggle_noise 0
 	drum_speed 12
 	rest 2

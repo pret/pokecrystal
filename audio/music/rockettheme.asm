@@ -9,7 +9,7 @@ Music_RocketTheme_Ch1:
 	tempo 128
 	volume 7, 7
 	duty_cycle 3
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	vibrato 5, 6, 4
 	note_type 12, 10, 8
 	octave 4
@@ -155,7 +155,7 @@ Music_RocketTheme_branch_f7727:
 	sound_ret
 
 Music_RocketTheme_Ch2:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	vibrato 4, 6, 4
 	duty_cycle 3
 	note_type 12, 11, 7
@@ -331,7 +331,7 @@ Music_RocketTheme_branch_f781c:
 	sound_ret
 
 Music_RocketTheme_Ch3:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	vibrato 4, 2, 2
 	note_type 12, 1, 4
 	rest 2

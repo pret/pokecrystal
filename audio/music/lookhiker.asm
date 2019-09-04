@@ -11,7 +11,7 @@ Music_LookHiker_Ch1:
 	pitch_offset 1
 	vibrato 18, 2, 4
 	duty_cycle 2
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 6, 8
 	octave 3
 	note F#, 2
@@ -70,7 +70,7 @@ Music_LookHiker_branch_f7457:
 
 Music_LookHiker_Ch3:
 	vibrato 18, 2, 4
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 1, 4
 	octave 4
 	note B_, 2

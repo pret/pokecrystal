@@ -19,7 +19,7 @@ Music_TrainerVictory_Ch1:
 	note G_, 2
 	volume_envelope 11, 6
 	note A_, 12
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 Music_TrainerVictory_branch_ebecd:
 	volume_envelope 7, 2
 	sound_call Music_TrainerVictory_branch_ebf11
@@ -98,7 +98,7 @@ Music_TrainerVictory_Ch2:
 	note C#, 2
 	volume_envelope 13, 6
 	note D_, 12
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 Music_TrainerVictory_branch_ebf30:
 	note_type 8, 8, 2
 	sound_call Music_TrainerVictory_branch_ebf56

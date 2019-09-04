@@ -9,7 +9,7 @@ Music_AzaleaTown_Ch1:
 	tempo 160
 	volume 7, 7
 	duty_cycle 2
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 10, 1
 	rest 2
 Music_AzaleaTown_branch_f5801:
@@ -29,7 +29,7 @@ Music_AzaleaTown_branch_f5801:
 	sound_loop 2, Music_AzaleaTown_branch_f5801
 Music_AzaleaTown_branch_f5816:
 	sound_call Music_AzaleaTown_branch_f588c
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	volume_envelope 10, 4
 	note G#, 2
 	note A#, 1
@@ -42,9 +42,9 @@ Music_AzaleaTown_branch_f5816:
 	note F#, 4
 	note D#, 2
 	rest 2
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	sound_call Music_AzaleaTown_branch_f588c
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 6, 10, 4
 	note D#, 4
 	note C_, 4
@@ -55,7 +55,7 @@ Music_AzaleaTown_branch_f5816:
 	octave 3
 	note A#, 4
 	note F#, 4
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	sound_call Music_AzaleaTown_branch_f5912
 	volume_envelope 10, 3
 	note A#, 4
@@ -232,7 +232,7 @@ Music_AzaleaTown_branch_f5912:
 Music_AzaleaTown_Ch2:
 	vibrato 18, 2, 3
 	duty_cycle 2
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 6, 2
 	rest 1
 	octave 4
@@ -418,7 +418,7 @@ Music_AzaleaTown_branch_f59c7:
 	sound_ret
 
 Music_AzaleaTown_Ch3:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	vibrato 6, 2, 6
 	note_type 12, 2, 5
 	octave 2

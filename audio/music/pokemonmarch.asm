@@ -8,7 +8,7 @@ Music_PokemonMarch:
 Music_PokemonMarch_Ch1:
 	tempo 144
 	volume 7, 7
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	duty_cycle 3
 	pitch_offset 1
 	note_type 12, 4, 2
@@ -233,7 +233,7 @@ Music_PokemonMarch_branch_f6ece:
 	sound_loop 0, Music_PokemonMarch_branch_f6ece
 
 Music_PokemonMarch_Ch3:
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 1, 6
 	rest 16
 	note_type 8, 1, 6
@@ -395,7 +395,7 @@ Music_PokemonMarch_branch_f6fe8:
 	sound_ret
 
 Music_PokemonMarch_Ch4:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	toggle_noise 5
 	drum_speed 8
 	sound_call Music_PokemonMarch_branch_f704c

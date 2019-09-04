@@ -9,7 +9,7 @@ Music_LookKimonoGirl:
 Music_LookKimonoGirl_Ch1:
 	tempo 160
 	volume 7, 7
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	duty_cycle 1
 	note_type 6, 8, 7
 	pitch_offset 1
@@ -107,7 +107,7 @@ Music_LookKimonoGirl_branch_f7a34:
 Music_LookKimonoGirl_Ch2:
 	duty_cycle 0
 	note_type 6, 10, 7
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	sound_call Music_LookKimonoGirl_branch_f7aa8
 Music_LookKimonoGirl_branch_f7a5f:
 	duty_cycle 3
@@ -212,7 +212,7 @@ Music_LookKimonoGirl_branch_f7aa8:
 	sound_ret
 
 Music_LookKimonoGirl_Ch3:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	vibrato 18, 2, 4
 	note_type 6, 1, 3
 	rest 1

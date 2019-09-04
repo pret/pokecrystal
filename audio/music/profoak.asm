@@ -9,7 +9,7 @@ Music_ProfOak_Ch1:
 	volume 7, 7
 	vibrato 18, 3, 4
 	pitch_offset 1
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	duty_cycle 3
 	note_type 12, 9, 8
 	octave 2
@@ -205,7 +205,7 @@ Music_ProfOak_branch_f4ebf:
 	sound_loop 0, Music_ProfOak_branch_f4ebf
 
 Music_ProfOak_Ch3:
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 1, 4
 	rest 4
 	octave 3

@@ -10,7 +10,7 @@ Music_LookMysticalMan_Ch1:
 	volume 7, 7
 	vibrato 10, 3, 4
 	pitch_offset 1
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	note_type 12, 11, 3
 	rest 8
 Music_LookMysticalMan_branch_178458:
@@ -198,7 +198,7 @@ Music_LookMysticalMan_Ch2:
 	note_type 12, 11, 3
 	rest 8
 Music_LookMysticalMan_branch_178523:
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 6, 11, 8
 	octave 3
 	note B_, 1
@@ -210,10 +210,10 @@ Music_LookMysticalMan_branch_178523:
 	rest 4
 	note B_, 2
 	rest 6
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	note B_, 8
 	note A_, 4
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note G#, 1
 	rest 1
 	note G#, 1
@@ -223,10 +223,10 @@ Music_LookMysticalMan_branch_178523:
 	rest 4
 	note G#, 2
 	rest 6
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	note F#, 8
 	note G#, 4
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note A_, 1
 	rest 1
 	note A_, 1
@@ -236,10 +236,10 @@ Music_LookMysticalMan_branch_178523:
 	rest 4
 	note A_, 2
 	rest 6
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	note A_, 8
 	note G_, 4
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note F#, 1
 	rest 1
 	note F#, 1

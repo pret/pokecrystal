@@ -9,7 +9,7 @@ Music_LookRocket_Ch1:
 	tempo 123
 	volume 7, 7
 	transpose 0, 2
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	duty_cycle 3
 	vibrato 5, 6, 4
 	note_type 12, 10, 8
@@ -94,7 +94,7 @@ Music_LookRocket_Ch2:
 	vibrato 4, 6, 4
 	duty_cycle 3
 	note_type 12, 11, 7
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 5
 	note C_, 1
 	note D_, 1
@@ -209,7 +209,7 @@ Music_LookRocket_Ch3:
 	transpose 0, 2
 	vibrato 4, 2, 2
 	note_type 12, 1, 4
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	rest 2
 	sound_call Music_LookRocket_branch_f75bf
 Music_LookRocket_branch_f75a5:

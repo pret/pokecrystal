@@ -11,7 +11,7 @@ Music_MobileCenter_Ch1:
 	duty_cycle 1
 	pitch_offset 2
 	vibrato 8, 2, 2
-	stereo_panning 1, 0
+	stereo_panning TRUE, FALSE
 	note_type 12, 10, 2
 	octave 3
 	note E_, 2
@@ -453,7 +453,7 @@ Music_MobileCenter_branch_179788:
 
 Music_MobileCenter_Ch4:
 	toggle_noise 3
-	stereo_panning 0, 1
+	stereo_panning FALSE, TRUE
 	drum_speed 12
 	drum_note 10, 8
 	drum_note 10, 4
