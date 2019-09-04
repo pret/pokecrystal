@@ -618,42 +618,42 @@ Music_NationalPark_branch_f578f:
 
 Music_NationalPark_Ch4:
 	toggle_noise 3
-	dspeed 12
+	drum_speed 12
 	rest 2
 Music_NationalPark_branch_f57bd:
 	rest 16
 	sound_loop 23, Music_NationalPark_branch_f57bd
 	rest 8
-	dnote 11, 2
-	dnote 3, 2
-	dnote 11, 1
-	dnote 3, 1
-	dnote 12, 2
+	drum_note 11, 2
+	drum_note 3, 2
+	drum_note 11, 1
+	drum_note 3, 1
+	drum_note 12, 2
 Music_NationalPark_branch_f57c8:
-	dnote 11, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 3, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 11, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 3, 2
-	dnote 12, 2
+	drum_note 11, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 3, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 11, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 3, 2
+	drum_note 12, 2
 	sound_loop 7, Music_NationalPark_branch_f57c8
-	dnote 11, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 3, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 11, 2
-	dnote 4, 1
-	dnote 4, 1
-	dnote 3, 1
-	dnote 3, 1
-	dnote 11, 1
-	dnote 4, 1
+	drum_note 11, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 3, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 11, 2
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 11, 1
+	drum_note 4, 1
 	sound_loop 0, Music_NationalPark_branch_f57bd
 

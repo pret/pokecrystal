@@ -1082,25 +1082,25 @@ Music_SSAqua_branch_eb230:
 
 Music_SSAqua_Ch4:
 	toggle_noise 3
-	dspeed 12
+	drum_speed 12
 	rest 2
 Music_SSAqua_branch_eb24e:
-	dnote 9, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 9, 1
-	dnote 8, 1
+	drum_note 9, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 9, 1
+	drum_note 8, 1
 	sound_loop 12, Music_SSAqua_branch_eb24e
 	sound_call Music_SSAqua_branch_eb2ae
 	sound_call Music_SSAqua_branch_eb2ae
@@ -1129,45 +1129,45 @@ Music_SSAqua_branch_eb24e:
 	sound_loop 0, Music_SSAqua_branch_eb24e
 
 Music_SSAqua_branch_eb2ae:
-	dnote 11, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 3, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 11, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 3, 2
-	dnote 8, 1
-	dnote 8, 1
+	drum_note 11, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 3, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 11, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 3, 2
+	drum_note 8, 1
+	drum_note 8, 1
 	sound_ret
 
 Music_SSAqua_branch_eb2bb:
-	dnote 11, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 3, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 11, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 3, 2
-	dnote 7, 2
+	drum_note 11, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 3, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 11, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 3, 2
+	drum_note 7, 2
 	sound_ret
 
 Music_SSAqua_branch_eb2c7:
-	dnote 11, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 3, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 2
-	dnote 3, 2
-	dnote 1, 2
+	drum_note 11, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 3, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 1, 2
 	sound_ret
 

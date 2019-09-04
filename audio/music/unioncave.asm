@@ -239,21 +239,21 @@ Music_UnionCave_branch_f5d9c:
 
 Music_UnionCave_Ch4:
 	toggle_noise 1
-	dspeed 12
+	drum_speed 12
 Music_UnionCave_branch_f5da9:
 	stereo_panning 1, 0
-	dnote 5, 4
+	drum_note 5, 4
 	stereo_panning 1, 1
-	dnote 6, 4
+	drum_note 6, 4
 	stereo_panning 0, 1
-	dnote 9, 4
+	drum_note 9, 4
 	rest 8
 	stereo_panning 0, 1
-	dnote 5, 4
+	drum_note 5, 4
 	stereo_panning 1, 1
-	dnote 6, 4
+	drum_note 6, 4
 	stereo_panning 1, 0
-	dnote 9, 4
+	drum_note 9, 4
 	rest 8
 	sound_loop 0, Music_UnionCave_branch_f5da9
 	sound_loop 0, Music_UnionCave_branch_f5da9

@@ -658,151 +658,151 @@ Music_GameCorner_branch_ee03f:
 
 Music_GameCorner_Ch4:
 	toggle_noise 3
-	dspeed 12
-	dspeed 8
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 1
-	dspeed 12
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 2
-	dnote 3, 1
-	dnote 3, 1
+	drum_speed 12
+	drum_speed 8
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_speed 12
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 2
+	drum_note 3, 1
+	drum_note 3, 1
 Music_GameCorner_branch_ee07f:
 	sound_call Music_GameCorner_branch_ee106
 Music_GameCorner_branch_ee082:
-	dnote 11, 2
-	dnote 7, 2
-	dnote 3, 2
-	dnote 7, 2
-	dnote 11, 2
-	dnote 7, 2
-	dnote 3, 2
-	dnote 7, 2
+	drum_note 11, 2
+	drum_note 7, 2
+	drum_note 3, 2
+	drum_note 7, 2
+	drum_note 11, 2
+	drum_note 7, 2
+	drum_note 3, 2
+	drum_note 7, 2
 	sound_loop 6, Music_GameCorner_branch_ee082
 	sound_call Music_GameCorner_branch_ee10f
 Music_GameCorner_branch_ee091:
-	dnote 11, 2
-	dnote 7, 2
-	dnote 3, 2
-	dnote 7, 2
-	dnote 11, 2
-	dnote 7, 2
-	dnote 3, 2
-	dnote 7, 2
+	drum_note 11, 2
+	drum_note 7, 2
+	drum_note 3, 2
+	drum_note 7, 2
+	drum_note 11, 2
+	drum_note 7, 2
+	drum_note 3, 2
+	drum_note 7, 2
 	sound_loop 3, Music_GameCorner_branch_ee091
 	rest 12
-	dnote 3, 1
-	dnote 3, 1
-	dnote 7, 2
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 7, 2
 	sound_call Music_GameCorner_branch_ee106
 Music_GameCorner_branch_ee0a4:
-	dnote 11, 2
-	dnote 7, 2
-	dnote 3, 2
-	dnote 7, 2
-	dnote 11, 2
-	dnote 7, 2
-	dnote 3, 2
-	dnote 7, 2
+	drum_note 11, 2
+	drum_note 7, 2
+	drum_note 3, 2
+	drum_note 7, 2
+	drum_note 11, 2
+	drum_note 7, 2
+	drum_note 3, 2
+	drum_note 7, 2
 	sound_loop 6, Music_GameCorner_branch_ee0a4
 	sound_call Music_GameCorner_branch_ee10f
 Music_GameCorner_branch_ee0b3:
-	dnote 11, 2
-	dnote 7, 2
-	dnote 3, 2
-	dnote 7, 2
-	dnote 11, 2
-	dnote 7, 2
-	dnote 3, 2
-	dnote 7, 2
+	drum_note 11, 2
+	drum_note 7, 2
+	drum_note 3, 2
+	drum_note 7, 2
+	drum_note 11, 2
+	drum_note 7, 2
+	drum_note 3, 2
+	drum_note 7, 2
 	sound_loop 3, Music_GameCorner_branch_ee0b3
-	dnote 11, 2
-	dnote 7, 2
-	dnote 3, 2
-	dnote 7, 2
-	dnote 4, 2
-	dnote 7, 2
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 1
+	drum_note 11, 2
+	drum_note 7, 2
+	drum_note 3, 2
+	drum_note 7, 2
+	drum_note 4, 2
+	drum_note 7, 2
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
 Music_GameCorner_branch_ee0c9:
-	dnote 11, 2
-	dnote 7, 1
-	dnote 4, 1
-	dnote 3, 1
-	dnote 4, 1
-	dnote 7, 1
-	dnote 4, 1
-	dnote 4, 1
-	dnote 3, 1
-	dnote 7, 1
-	dnote 4, 1
-	dnote 3, 2
-	dnote 7, 2
+	drum_note 11, 2
+	drum_note 7, 1
+	drum_note 4, 1
+	drum_note 3, 1
+	drum_note 4, 1
+	drum_note 7, 1
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 3, 1
+	drum_note 7, 1
+	drum_note 4, 1
+	drum_note 3, 2
+	drum_note 7, 2
 	sound_loop 3, Music_GameCorner_branch_ee0c9
-	dnote 11, 2
-	dnote 7, 1
-	dnote 4, 1
-	dnote 3, 1
-	dnote 4, 1
-	dnote 7, 1
-	dnote 4, 1
-	dnote 4, 1
-	dnote 3, 1
-	dnote 7, 1
-	dnote 4, 1
-	dnote 3, 2
-	dnote 3, 1
-	dnote 3, 1
+	drum_note 11, 2
+	drum_note 7, 1
+	drum_note 4, 1
+	drum_note 3, 1
+	drum_note 4, 1
+	drum_note 7, 1
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 3, 1
+	drum_note 7, 1
+	drum_note 4, 1
+	drum_note 3, 2
+	drum_note 3, 1
+	drum_note 3, 1
 Music_GameCorner_branch_ee0e8:
-	dnote 11, 2
-	dnote 7, 1
-	dnote 4, 1
-	dnote 3, 1
-	dnote 4, 1
-	dnote 7, 1
-	dnote 4, 1
-	dnote 4, 1
-	dnote 3, 1
-	dnote 7, 1
-	dnote 4, 1
-	dnote 3, 2
-	dnote 7, 2
+	drum_note 11, 2
+	drum_note 7, 1
+	drum_note 4, 1
+	drum_note 3, 1
+	drum_note 4, 1
+	drum_note 7, 1
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 3, 1
+	drum_note 7, 1
+	drum_note 4, 1
+	drum_note 3, 2
+	drum_note 7, 2
 	sound_loop 3, Music_GameCorner_branch_ee0e8
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 2
-	dnote 11, 1
-	dnote 7, 2
-	dnote 7, 5
-	dnote 3, 1
-	dnote 3, 1
-	dnote 4, 2
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 2
+	drum_note 11, 1
+	drum_note 7, 2
+	drum_note 7, 5
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 4, 2
 	sound_loop 0, Music_GameCorner_branch_ee07f
 
 Music_GameCorner_branch_ee106:
-	dnote 1, 2
-	dnote 7, 2
-	dnote 3, 2
-	dnote 7, 2
-	dnote 11, 2
-	dnote 7, 2
-	dnote 3, 2
-	dnote 7, 2
+	drum_note 1, 2
+	drum_note 7, 2
+	drum_note 3, 2
+	drum_note 7, 2
+	drum_note 11, 2
+	drum_note 7, 2
+	drum_note 3, 2
+	drum_note 7, 2
 	sound_ret
 
 Music_GameCorner_branch_ee10f:
-	dnote 11, 2
-	dnote 7, 2
-	dnote 3, 2
-	dnote 7, 2
-	dnote 11, 2
-	dnote 7, 2
-	dnote 3, 1
-	dnote 3, 1
-	dnote 7, 2
+	drum_note 11, 2
+	drum_note 7, 2
+	drum_note 3, 2
+	drum_note 7, 2
+	drum_note 11, 2
+	drum_note 7, 2
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 7, 2
 	sound_ret
 

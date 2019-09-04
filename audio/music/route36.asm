@@ -469,7 +469,7 @@ Music_Route36_branch_e9684:
 
 Music_Route36_Ch4:
 	toggle_noise 1
-	dspeed 12
+	drum_speed 12
 	sound_call Music_Route36_branch_e9734
 	sound_call Music_Route36_branch_e9741
 Music_Route36_branch_e9713:
@@ -479,44 +479,44 @@ Music_Route36_branch_e9713:
 	sound_call Music_Route36_branch_e9741
 	sound_loop 2, Music_Route36_branch_e9713
 Music_Route36_branch_e9723:
-	dnote 11, 4
-	dnote 10, 2
-	dnote 6, 4
-	dnote 12, 1
-	dnote 12, 1
-	dnote 10, 4
+	drum_note 11, 4
+	drum_note 10, 2
+	drum_note 6, 4
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 10, 4
 	sound_loop 11, Music_Route36_branch_e9723
 	sound_call Music_Route36_branch_e9741
 	sound_loop 0, Music_Route36_branch_e9713
 
 Music_Route36_branch_e9734:
-	dnote 10, 4
-	dnote 10, 6
-	dnote 11, 1
-	dnote 11, 1
-	dnote 10, 2
-	dnote 11, 2
+	drum_note 10, 4
+	drum_note 10, 6
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 2
+	drum_note 11, 2
 	sound_ret
 
 Music_Route36_branch_e973b:
-	dnote 10, 4
-	dnote 10, 6
-	dnote 12, 1
-	dnote 11, 1
-	dnote 10, 4
+	drum_note 10, 4
+	drum_note 10, 6
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 10, 4
 	sound_ret
 
 Music_Route36_branch_e9741:
-	dnote 10, 4
-	dnote 10, 6
-	dnote 11, 1
-	dnote 11, 1
-	dnote 10, 2
-	dspeed 6
-	dnote 11, 1
-	dnote 11, 1
-	dnote 10, 1
-	dnote 10, 1
-	dspeed 12
+	drum_note 10, 4
+	drum_note 10, 6
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 2
+	drum_speed 6
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 1
+	drum_note 10, 1
+	drum_speed 12
 	sound_ret
 

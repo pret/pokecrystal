@@ -549,119 +549,119 @@ Music_Route26_branch_ef22f:
 
 Music_Route26_Ch4:
 	toggle_noise 4
-	dspeed 12
+	drum_speed 12
 Music_Route26_branch_ef23c:
-	dnote 12, 6
-	dnote 3, 1
-	dnote 3, 1
+	drum_note 12, 6
+	drum_note 3, 1
+	drum_note 3, 1
 	sound_loop 3, Music_Route26_branch_ef23c
 	sound_call Music_Route26_branch_ef2b0
 Music_Route26_branch_ef246:
-	dspeed 6
+	drum_speed 6
 	sound_call Music_Route26_branch_ef29a
 	sound_call Music_Route26_branch_ef29a
 	sound_call Music_Route26_branch_ef2a8
-	dnote 3, 12
-	dnote 3, 2
-	dnote 3, 2
-	dspeed 8
-	dnote 3, 2
-	dnote 2, 2
-	dnote 2, 2
-	dnote 3, 2
-	dnote 3, 2
-	dnote 5, 2
-	dspeed 6
+	drum_note 3, 12
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_speed 8
+	drum_note 3, 2
+	drum_note 2, 2
+	drum_note 2, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 5, 2
+	drum_speed 6
 	sound_call Music_Route26_branch_ef29a
 	sound_call Music_Route26_branch_ef29a
-	dspeed 8
+	drum_speed 8
 Music_Route26_branch_ef266:
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 2
-	dnote 12, 6
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 12, 6
 	sound_loop 4, Music_Route26_branch_ef266
-	dspeed 6
+	drum_speed 6
 	sound_call Music_Route26_branch_ef2a8
 	sound_call Music_Route26_branch_ef2a8
 	sound_call Music_Route26_branch_ef29a
 	sound_call Music_Route26_branch_ef2a8
 Music_Route26_branch_ef27c:
-	dspeed 6
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 1
-	dspeed 8
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 2
-	dnote 12, 12
+	drum_speed 6
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_speed 8
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 12, 12
 	sound_loop 2, Music_Route26_branch_ef27c
-	dspeed 12
-	dnote 12, 16
+	drum_speed 12
+	drum_note 12, 16
 	sound_call Music_Route26_branch_ef2b0
 	sound_loop 0, Music_Route26_branch_ef246
 
 Music_Route26_branch_ef29a:
-	dnote 5, 12
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 4
-	dnote 3, 4
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
+	drum_note 5, 12
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 4
+	drum_note 3, 4
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
 	sound_ret
 
 Music_Route26_branch_ef2a8:
-	dnote 5, 12
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 4
-	dnote 3, 4
-	dnote 5, 4
-	dnote 3, 4
+	drum_note 5, 12
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 4
+	drum_note 3, 4
+	drum_note 5, 4
+	drum_note 3, 4
 	sound_ret
 
 Music_Route26_branch_ef2b0:
-	dspeed 6
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dspeed 8
-	dnote 3, 2
-	dnote 3, 2
-	dnote 5, 2
+	drum_speed 6
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_speed 8
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 5, 2
 	sound_ret
 

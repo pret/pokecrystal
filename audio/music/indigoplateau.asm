@@ -151,34 +151,34 @@ Music_IndigoPlateau_branch_ee915:
 Music_IndigoPlateau_Ch4:
 	stereo_panning 1, 0
 	toggle_noise 0
-	dspeed 12
+	drum_speed 12
 Music_IndigoPlateau_branch_ee92a:
-	dnote 4, 4
-	dnote 3, 2
-	dnote 4, 2
-	dnote 4, 2
-	dnote 4, 2
-	dnote 3, 4
-	dnote 3, 2
-	dnote 3, 2
-	dspeed 6
-	dnote 3, 1
-	dnote 3, 1
-	dnote 4, 1
-	dnote 4, 1
-	dnote 4, 1
-	dnote 4, 1
-	dnote 3, 1
-	dnote 3, 1
-	dspeed 12
-	dnote 4, 4
-	dnote 3, 2
-	dnote 4, 2
-	dnote 4, 2
-	dnote 3, 2
-	dnote 2, 4
-	dnote 3, 2
-	dnote 3, 2
-	dnote 2, 4
+	drum_note 4, 4
+	drum_note 3, 2
+	drum_note 4, 2
+	drum_note 4, 2
+	drum_note 4, 2
+	drum_note 3, 4
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_speed 6
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_speed 12
+	drum_note 4, 4
+	drum_note 3, 2
+	drum_note 4, 2
+	drum_note 4, 2
+	drum_note 3, 2
+	drum_note 2, 4
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 2, 4
 	sound_loop 0, Music_IndigoPlateau_branch_ee92a
 

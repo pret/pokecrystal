@@ -185,35 +185,35 @@ Music_GoldSilverOpening2_Ch3:
 
 Music_GoldSilverOpening2_Ch4:
 	toggle_noise 0
-	dspeed 6
-	dnote 4, 2
-	dnote 4, 2
-	dnote 4, 2
-	dnote 4, 2
-	dnote 4, 2
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 2
-	dspeed 12
+	drum_speed 6
+	drum_note 4, 2
+	drum_note 4, 2
+	drum_note 4, 2
+	drum_note 4, 2
+	drum_note 4, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_speed 12
 Music_GoldSilverOpening2_branch_f73f8:
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 2
-	dnote 2, 4
-	dnote 4, 2
-	dnote 4, 2
-	dnote 4, 2
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 2
-	dnote 2, 6
-	dspeed 6
-	dnote 4, 2
-	dnote 4, 2
-	dnote 4, 2
-	dnote 4, 2
-	dspeed 12
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 2, 4
+	drum_note 4, 2
+	drum_note 4, 2
+	drum_note 4, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 2, 6
+	drum_speed 6
+	drum_note 4, 2
+	drum_note 4, 2
+	drum_note 4, 2
+	drum_note 4, 2
+	drum_speed 12
 	sound_loop 4, Music_GoldSilverOpening2_branch_f73f8
-	dnote 1, 16
+	drum_note 1, 16
 	sound_ret
 

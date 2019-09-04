@@ -382,40 +382,40 @@ Music_GymLeaderVictory_branch_f479e:
 
 Music_GymLeaderVictory_Ch4:
 	toggle_noise 4
-	dspeed 12
-	dnote 12, 16
-	dnote 12, 16
+	drum_speed 12
+	drum_note 12, 16
+	drum_note 12, 16
 Music_GymLeaderVictory_branch_f47eb:
 	sound_call Music_GymLeaderVictory_branch_f480b
-	dnote 4, 6
-	dnote 4, 2
-	dnote 4, 8
+	drum_note 4, 6
+	drum_note 4, 2
+	drum_note 4, 8
 	sound_call Music_GymLeaderVictory_branch_f480b
-	dnote 4, 6
-	dnote 4, 2
-	dnote 4, 4
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
+	drum_note 4, 6
+	drum_note 4, 2
+	drum_note 4, 4
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
 Music_GymLeaderVictory_branch_f47fb:
-	dnote 4, 2
-	dnote 8, 2
-	dnote 3, 2
-	dnote 4, 2
-	dnote 8, 2
-	dnote 4, 2
-	dnote 3, 2
-	dnote 8, 2
+	drum_note 4, 2
+	drum_note 8, 2
+	drum_note 3, 2
+	drum_note 4, 2
+	drum_note 8, 2
+	drum_note 4, 2
+	drum_note 3, 2
+	drum_note 8, 2
 	sound_loop 16, Music_GymLeaderVictory_branch_f47fb
 	sound_loop 0, Music_GymLeaderVictory_branch_f47eb
 
 Music_GymLeaderVictory_branch_f480b:
-	dnote 4, 6
-	dnote 4, 2
-	dnote 4, 4
-	dnote 3, 2
-	dnote 4, 2
+	drum_note 4, 6
+	drum_note 4, 2
+	drum_note 4, 4
+	drum_note 3, 2
+	drum_note 4, 2
 	sound_loop 3, Music_GymLeaderVictory_branch_f480b
 	sound_ret
 

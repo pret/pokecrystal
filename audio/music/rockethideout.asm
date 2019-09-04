@@ -275,35 +275,35 @@ Music_RocketHideout_branch_eeca6:
 
 Music_RocketHideout_Ch4:
 	toggle_noise 0
-	dspeed 12
+	drum_speed 12
 	stereo_panning 0, 1
 	rest 16
 	rest 16
-	dnote 3, 1
-	dnote 3, 1
-	dnote 4, 1
-	dnote 4, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 4, 1
+	drum_note 4, 1
 	sound_call Music_RocketHideout_branch_eecdb
 Music_RocketHideout_branch_eecc7:
 	sound_call Music_RocketHideout_branch_eecdb
-	dnote 5, 4
+	drum_note 5, 4
 	sound_call Music_RocketHideout_branch_eecdb
-	dnote 6, 4
+	drum_note 6, 4
 	sound_call Music_RocketHideout_branch_eecdb
-	dnote 11, 4
+	drum_note 11, 4
 	sound_call Music_RocketHideout_branch_eecdb
-	dnote 7, 4
+	drum_note 7, 4
 	sound_loop 0, Music_RocketHideout_branch_eecc7
 
 Music_RocketHideout_branch_eecdb:
 	stereo_panning 1, 0
-	dnote 4, 1
-	dnote 4, 1
+	drum_note 4, 1
+	drum_note 4, 1
 	stereo_panning 0, 1
-	dnote 10, 4
-	dnote 4, 1
-	dnote 4, 1
+	drum_note 10, 4
+	drum_note 4, 1
+	drum_note 4, 1
 	stereo_panning 1, 0
-	dnote 10, 4
+	drum_note 10, 4
 	sound_ret
 

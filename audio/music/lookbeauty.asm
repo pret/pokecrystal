@@ -296,7 +296,7 @@ Music_LookBeauty_branch_eef0f:
 
 Music_LookBeauty_Ch4:
 	toggle_noise 3
-	dspeed 12
+	drum_speed 12
 	rest 16
 	rest 16
 Music_LookBeauty_branch_eef91:
@@ -307,21 +307,21 @@ Music_LookBeauty_branch_eef91:
 	sound_loop 0, Music_LookBeauty_branch_eef91
 
 Music_LookBeauty_branch_eefa1:
-	dnote 7, 2
-	dnote 8, 2
-	dnote 3, 2
-	dnote 8, 2
-	dnote 8, 2
-	dnote 3, 2
-	dnote 8, 2
-	dnote 8, 2
-	dnote 7, 2
-	dnote 3, 2
-	dnote 8, 2
-	dnote 3, 2
-	dnote 8, 2
-	dnote 8, 2
-	dnote 3, 2
-	dnote 8, 2
+	drum_note 7, 2
+	drum_note 8, 2
+	drum_note 3, 2
+	drum_note 8, 2
+	drum_note 8, 2
+	drum_note 3, 2
+	drum_note 8, 2
+	drum_note 8, 2
+	drum_note 7, 2
+	drum_note 3, 2
+	drum_note 8, 2
+	drum_note 3, 2
+	drum_note 8, 2
+	drum_note 8, 2
+	drum_note 3, 2
+	drum_note 8, 2
 	sound_ret
 

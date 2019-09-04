@@ -221,24 +221,24 @@ Music_SproutTower_branch_f6a3e:
 
 Music_SproutTower_Ch4:
 	toggle_noise 0
-	dspeed 12
+	drum_speed 12
 	rest 4
 Music_SproutTower_branch_f6a7f:
-	dnote 7, 4
+	drum_note 7, 4
 	stereo_panning 1, 0
-	dnote 4, 4
-	dnote 7, 2
+	drum_note 4, 4
+	drum_note 7, 2
 	stereo_panning 0, 1
-	dnote 4, 2
+	drum_note 4, 2
 	stereo_panning 1, 1
-	dnote 7, 4
-	dnote 7, 4
+	drum_note 7, 4
+	drum_note 7, 4
 	stereo_panning 0, 1
-	dnote 4, 4
-	dnote 7, 2
+	drum_note 4, 4
+	drum_note 7, 2
 	stereo_panning 1, 0
-	dnote 4, 2
+	drum_note 4, 2
 	stereo_panning 1, 1
-	dnote 7, 4
+	drum_note 7, 4
 	sound_loop 0, Music_SproutTower_branch_f6a7f
 

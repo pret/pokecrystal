@@ -504,19 +504,19 @@ Music_Route29_branch_f0504:
 Music_Route29_Ch4:
 	stereo_panning 0, 1
 	toggle_noise 0
-	dspeed 12
+	drum_speed 12
 	rest 2
 Music_Route29_branch_f05b0:
 	rest 2
-	dnote 6, 2
-	dnote 6, 6
-	dnote 6, 2
-	dnote 6, 2
-	dnote 6, 2
+	drum_note 6, 2
+	drum_note 6, 6
+	drum_note 6, 2
+	drum_note 6, 2
+	drum_note 6, 2
 	rest 2
-	dnote 6, 4
-	dnote 6, 4
-	dnote 6, 2
-	dnote 6, 4
+	drum_note 6, 4
+	drum_note 6, 4
+	drum_note 6, 2
+	drum_note 6, 4
 	sound_loop 0, Music_Route29_branch_f05b0
 

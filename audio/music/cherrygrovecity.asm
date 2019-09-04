@@ -285,23 +285,23 @@ Music_CherrygroveCity_branch_f5be4:
 
 Music_CherrygroveCity_Ch4:
 	toggle_noise 3
-	dspeed 12
+	drum_speed 12
 	rest 16
 Music_CherrygroveCity_branch_f5c4d:
-	dnote 2, 2
+	drum_note 2, 2
 	rest 2
-	dnote 8, 2
-	dnote 2, 2
-	dnote 2, 2
-	dnote 7, 2
-	dnote 2, 4
-	dnote 2, 2
+	drum_note 8, 2
+	drum_note 2, 2
+	drum_note 2, 2
+	drum_note 7, 2
+	drum_note 2, 4
+	drum_note 2, 2
 	rest 2
-	dnote 8, 2
-	dnote 2, 1
-	dnote 2, 1
-	dnote 7, 4
-	dnote 2, 2
-	dnote 8, 2
+	drum_note 8, 2
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 7, 4
+	drum_note 2, 2
+	drum_note 8, 2
 	sound_loop 0, Music_CherrygroveCity_branch_f5c4d
 

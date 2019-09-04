@@ -530,10 +530,10 @@ Music_ElmsLab_branch_ea216:
 Music_ElmsLab_Ch4:
 	stereo_panning 1, 0
 	toggle_noise 0
-	dspeed 12
+	drum_speed 12
 	rest 16
 	rest 2
 Music_ElmsLab_branch_ea2b9:
-	dnote 8, 4
+	drum_note 8, 4
 	sound_loop 0, Music_ElmsLab_branch_ea2b9
 

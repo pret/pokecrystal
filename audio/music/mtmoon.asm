@@ -120,20 +120,20 @@ Music_MtMoon_branch_edbab:
 
 Music_MtMoon_Ch4:
 	toggle_noise 5
-	dspeed 12
+	drum_speed 12
 Music_MtMoon_branch_edbc3:
 	stereo_panning 0, 1
-	dnote 11, 4
-	dnote 11, 8
-	dnote 11, 4
+	drum_note 11, 4
+	drum_note 11, 8
+	drum_note 11, 4
 	stereo_panning 1, 0
-	dnote 11, 4
-	dnote 11, 4
-	dnote 11, 4
+	drum_note 11, 4
+	drum_note 11, 4
+	drum_note 11, 4
 	stereo_panning 0, 1
-	dnote 11, 4
-	dnote 11, 4
+	drum_note 11, 4
+	drum_note 11, 4
 	stereo_panning 1, 0
-	dnote 11, 8
+	drum_note 11, 8
 	sound_loop 0, Music_MtMoon_branch_edbc3
 

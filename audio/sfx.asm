@@ -542,7 +542,7 @@ Sfx_LevelUp_Ch8:
 Sfx_DexFanfare5079_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
-	dspeed 12
+	drum_speed 12
 	note C_, 12
 	sound_ret
 
@@ -608,7 +608,7 @@ Sfx_KeyItem_Ch7:
 Sfx_KeyItem_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
-	dspeed 12
+	drum_speed 12
 	note C_, 16
 	sound_ret
 
@@ -687,7 +687,7 @@ Sfx_DexFanfare2049_Ch7:
 Sfx_DexFanfare2049_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
-	dspeed 12
+	drum_speed 12
 	note C_, 16
 	rest 16
 	sound_ret
@@ -762,7 +762,7 @@ Sfx_Item_Ch7:
 Sfx_Item_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
-	dspeed 12
+	drum_speed 12
 	note C_, 16
 	rest 16
 	sound_ret
@@ -840,7 +840,7 @@ Sfx_CaughtMon_Ch7:
 Sfx_CaughtMon_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
-	dspeed 12
+	drum_speed 12
 	note C_, 16
 	rest 16
 	sound_ret
@@ -931,7 +931,7 @@ Sfx_DexFanfare80109_Ch7:
 Sfx_DexFanfare80109_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
-	dspeed 12
+	drum_speed 12
 	note C_, 16
 	rest 16
 	sound_ret
@@ -1015,7 +1015,7 @@ Sfx_Unused_Ch7:
 Sfx_Unused_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
-	dspeed 12
+	drum_speed 12
 	note C_, 16
 	rest 16
 	sound_ret
@@ -1107,7 +1107,7 @@ Sfx_RegisterPhoneNumber_Ch7:
 Sfx_RegisterPhoneNumber_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
-	dspeed 12
+	drum_speed 12
 	note C_, 2
 	rest 16
 	rest 16
@@ -1269,9 +1269,9 @@ Sfx_GetEggFromDayCareMan_Ch8:
 Sfx_GetEggFromDayCareLady_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
-	dspeed 8
+	drum_speed 8
 	rest 2
-	dspeed 12
+	drum_speed 12
 	rest 16
 	rest 12
 	sound_ret
@@ -1381,7 +1381,7 @@ Sfx_MoveDeleted_Ch7:
 Sfx_MoveDeleted_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 3
-	dspeed 12
+	drum_speed 12
 	note F_, 8
 	rest 16
 	rest 16
@@ -1496,7 +1496,7 @@ Sfx_2ndPlace_Ch7:
 Sfx_2ndPlace_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 3
-	dspeed 8
+	drum_speed 8
 Sfx_2ndPlace_branch_f0fd7:
 	note C#, 1
 	sound_loop 6, Sfx_2ndPlace_branch_f0fd7
@@ -1607,7 +1607,7 @@ Sfx_1stPlace_Ch7:
 Sfx_1stPlace_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
-	dspeed 6
+	drum_speed 6
 	note D_, 4
 	note D_, 4
 	note D_, 4
@@ -1618,7 +1618,7 @@ Sfx_1stPlace_Ch8:
 	note D_, 4
 	note D_, 4
 	note D_, 4
-	dspeed 12
+	drum_speed 12
 	note B_, 10
 	rest 6
 	sound_ret
@@ -1749,7 +1749,7 @@ Sfx_ChooseACard_Ch7:
 Sfx_ChooseACard_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
-	dspeed 6
+	drum_speed 6
 	note D_, 2
 	note C#, 2
 	note B_, 4
@@ -1861,7 +1861,7 @@ Sfx_GetTm_Ch7:
 Sfx_GetTm_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
-	dspeed 6
+	drum_speed 6
 	note D_, 4
 	note C#, 2
 	note D_, 2
@@ -2019,7 +2019,7 @@ Sfx_GetBadge_Ch7:
 Sfx_GetBadge_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
-	dspeed 6
+	drum_speed 6
 Sfx_GetBadge_branch_f1220:
 	note B_, 12
 	note D_, 1
@@ -2142,7 +2142,7 @@ Sfx_QuitSlots_Ch7:
 Sfx_QuitSlots_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 3
-	dspeed 8
+	drum_speed 8
 	note D#, 6
 	note D_, 4
 	note D#, 2
@@ -3099,7 +3099,7 @@ Sfx_DexFanfareLessThan20_Ch7:
 Sfx_DexFanfareLessThan20_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
-	dspeed 12
+	drum_speed 12
 	note C#, 6
 	rest 16
 	rest 12
@@ -3206,7 +3206,7 @@ Sfx_DexFanfare140169_Ch7:
 Sfx_DexFanfare140169_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
-	dspeed 12
+	drum_speed 12
 	note C_, 4
 Sfx_DexFanfare140169_branch_f1945:
 	note D_, 4
@@ -3315,7 +3315,7 @@ Sfx_DexFanfare170199_Ch7:
 Sfx_DexFanfare170199_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
-	dspeed 8
+	drum_speed 8
 	note D_, 2
 	note D_, 2
 	note D_, 4
@@ -3328,7 +3328,7 @@ Sfx_DexFanfare170199_Ch8:
 	note C#, 1
 	note C#, 1
 	note C#, 1
-	dspeed 12
+	drum_speed 12
 	note B_, 16
 	sound_ret
 
@@ -3438,7 +3438,7 @@ Sfx_DexFanfare200229_Ch7:
 Sfx_DexFanfare200229_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
-	dspeed 8
+	drum_speed 8
 	note C#, 1
 	note C#, 1
 	note C#, 1
@@ -3606,7 +3606,7 @@ Sfx_DexFanfare230Plus_Ch7:
 Sfx_DexFanfare230Plus_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
-	dspeed 8
+	drum_speed 8
 	note D_, 2
 	note D_, 2
 	note D_, 2
@@ -5031,14 +5031,14 @@ Sfx_Fanfare2_Ch6:
 
 Sfx_Fanfare2_Ch8:
 	toggle_sfx
-	dspeed 6
+	drum_speed 6
 	note C_, 1
 	octave 5
 	note C#, 2
 	rest 2
 	note C#, 2
 	rest 2
-	dspeed 4
+	drum_speed 4
 	note C_, 1
 	note C#, 2
 	rest 2
@@ -5117,7 +5117,7 @@ Sfx_Fanfare_Ch6:
 
 Sfx_Fanfare_Ch8:
 	toggle_sfx
-	dspeed 6
+	drum_speed 6
 	note C_, 1
 	octave 4
 	note A#, 4
@@ -5129,7 +5129,7 @@ Sfx_Fanfare_Ch8:
 	rest 4
 	note D#, 4
 	rest 4
-	dspeed 4
+	drum_speed 4
 	note C_, 1
 	note F_, 4
 	note D#, 4

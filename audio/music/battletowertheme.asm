@@ -585,18 +585,18 @@ Music_BattleTowerTheme_branch_178afe:
 
 Music_BattleTowerTheme_Ch4:
 	toggle_noise 3
-	dspeed 12
+	drum_speed 12
 Music_BattleTowerTheme_branch_178b11:
 	sound_call Music_BattleTowerTheme_branch_178b58
-	dnote 3, 2
-	dnote 3, 4
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 4
-	dnote 3, 1
-	dnote 2, 1
-	dnote 3, 1
-	dnote 2, 1
+	drum_note 3, 2
+	drum_note 3, 4
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 4
+	drum_note 3, 1
+	drum_note 2, 1
+	drum_note 3, 1
+	drum_note 2, 1
 Music_BattleTowerTheme_branch_178b1d:
 	sound_call Music_BattleTowerTheme_branch_178b58
 	sound_call Music_BattleTowerTheme_branch_178b61
@@ -604,84 +604,84 @@ Music_BattleTowerTheme_branch_178b1d:
 	sound_call Music_BattleTowerTheme_branch_178b6c
 	sound_call Music_BattleTowerTheme_branch_178b61
 	sound_call Music_BattleTowerTheme_branch_178b6c
-	dnote 3, 2
-	dnote 3, 4
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 8
+	drum_note 3, 2
+	drum_note 3, 4
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 8
 Music_BattleTowerTheme_branch_178b35:
 	sound_call Music_BattleTowerTheme_branch_178b76
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 1
-	dnote 2, 1
-	dnote 3, 1
-	dnote 2, 1
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 1
+	drum_note 2, 1
+	drum_note 3, 1
+	drum_note 2, 1
 	sound_loop 3, Music_BattleTowerTheme_branch_178b35
 	sound_call Music_BattleTowerTheme_branch_178b76
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 4
-	dnote 3, 1
-	dnote 2, 1
-	dnote 3, 1
-	dnote 2, 1
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 4
+	drum_note 3, 1
+	drum_note 2, 1
+	drum_note 3, 1
+	drum_note 2, 1
 	sound_loop 0, Music_BattleTowerTheme_branch_178b11
 
 Music_BattleTowerTheme_branch_178b58:
-	dnote 3, 2
-	dnote 3, 4
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 2
-	dnote 3, 4
-	dnote 3, 1
-	dnote 3, 1
+	drum_note 3, 2
+	drum_note 3, 4
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 2
+	drum_note 3, 4
+	drum_note 3, 1
+	drum_note 3, 1
 	sound_ret
 
 Music_BattleTowerTheme_branch_178b61:
-	dnote 3, 2
-	dnote 3, 4
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 1
-	dnote 2, 1
-	dnote 3, 1
-	dnote 2, 1
+	drum_note 3, 2
+	drum_note 3, 4
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 1
+	drum_note 2, 1
+	drum_note 3, 1
+	drum_note 2, 1
 	sound_ret
 
 Music_BattleTowerTheme_branch_178b6c:
-	dnote 3, 2
-	dnote 3, 4
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 1
-	dnote 3, 1
+	drum_note 3, 2
+	drum_note 3, 4
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 1
+	drum_note 3, 1
 	sound_ret
 
 Music_BattleTowerTheme_branch_178b76:
-	dnote 3, 2
-	dnote 2, 2
-	dnote 3, 2
-	dnote 3, 1
-	dnote 2, 1
-	dnote 3, 2
-	dnote 2, 2
-	dnote 3, 2
-	dnote 3, 1
-	dnote 2, 1
+	drum_note 3, 2
+	drum_note 2, 2
+	drum_note 3, 2
+	drum_note 3, 1
+	drum_note 2, 1
+	drum_note 3, 2
+	drum_note 2, 2
+	drum_note 3, 2
+	drum_note 3, 1
+	drum_note 2, 1
 	sound_ret
 

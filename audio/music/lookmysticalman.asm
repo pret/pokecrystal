@@ -535,12 +535,12 @@ Music_LookMysticalMan_branch_178615:
 
 Music_LookMysticalMan_Ch4:
 	toggle_noise 3
-	dspeed 12
-	dnote 4, 2
-	dnote 4, 2
-	dnote 3, 2
-	dnote 3, 1
-	dnote 3, 1
+	drum_speed 12
+	drum_note 4, 2
+	drum_note 4, 2
+	drum_note 3, 2
+	drum_note 3, 1
+	drum_note 3, 1
 Music_LookMysticalMan_branch_178697:
 	sound_call Music_LookMysticalMan_branch_1786d3
 	sound_call Music_LookMysticalMan_branch_1786d9
@@ -550,61 +550,61 @@ Music_LookMysticalMan_branch_178697:
 	sound_call Music_LookMysticalMan_branch_1786d3
 	sound_call Music_LookMysticalMan_branch_1786d9
 	sound_call Music_LookMysticalMan_branch_1786d3
-	dnote 3, 2
-	dnote 4, 2
-	dnote 3, 2
-	dnote 4, 1
-	dnote 3, 1
-	dnote 3, 2
-	dnote 4, 2
-	dnote 3, 2
-	dnote 3, 1
-	dnote 3, 1
+	drum_note 3, 2
+	drum_note 4, 2
+	drum_note 3, 2
+	drum_note 4, 1
+	drum_note 3, 1
+	drum_note 3, 2
+	drum_note 4, 2
+	drum_note 3, 2
+	drum_note 3, 1
+	drum_note 3, 1
 Music_LookMysticalMan_branch_1786ba:
-	dnote 3, 2
-	dnote 4, 2
-	dnote 3, 3
-	dnote 4, 1
-	dnote 4, 2
-	dnote 4, 2
-	dnote 3, 2
-	dnote 4, 2
-	dnote 3, 2
-	dnote 4, 2
-	dnote 3, 3
-	dnote 4, 1
-	dnote 4, 2
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 1
-	dnote 3, 1
+	drum_note 3, 2
+	drum_note 4, 2
+	drum_note 3, 3
+	drum_note 4, 1
+	drum_note 4, 2
+	drum_note 4, 2
+	drum_note 3, 2
+	drum_note 4, 2
+	drum_note 3, 2
+	drum_note 4, 2
+	drum_note 3, 3
+	drum_note 4, 1
+	drum_note 4, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 1
+	drum_note 3, 1
 	sound_loop 2, Music_LookMysticalMan_branch_1786ba
 	sound_loop 0, Music_LookMysticalMan_branch_178697
 
 Music_LookMysticalMan_branch_1786d3:
-	dnote 4, 4
-	dnote 3, 3
-	dnote 4, 3
-	dnote 4, 2
-	dnote 3, 4
+	drum_note 4, 4
+	drum_note 3, 3
+	drum_note 4, 3
+	drum_note 4, 2
+	drum_note 3, 4
 	sound_ret
 
 Music_LookMysticalMan_branch_1786d9:
-	dnote 4, 4
-	dnote 3, 3
-	dnote 3, 3
-	dnote 4, 2
-	dnote 3, 4
+	drum_note 4, 4
+	drum_note 3, 3
+	drum_note 3, 3
+	drum_note 4, 2
+	drum_note 3, 4
 	sound_ret
 
 Music_LookMysticalMan_branch_1786df:
-	dnote 4, 4
-	dnote 3, 2
-	dnote 4, 1
-	dnote 3, 3
-	dnote 3, 2
-	dnote 4, 2
-	dnote 3, 1
-	dnote 3, 1
+	drum_note 4, 4
+	drum_note 3, 2
+	drum_note 4, 1
+	drum_note 3, 3
+	drum_note 3, 2
+	drum_note 4, 2
+	drum_note 3, 1
+	drum_note 3, 1
 	sound_ret
 

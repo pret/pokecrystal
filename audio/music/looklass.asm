@@ -100,17 +100,17 @@ Music_LookLass_branch_ed7ef:
 
 Music_LookLass_Ch4:
 	toggle_noise 4
-	dspeed 12
-	dnote 1, 16
+	drum_speed 12
+	drum_note 1, 16
 Music_LookLass_branch_ed81f:
-	dspeed 6
-	dnote 3, 8
-	dnote 2, 8
-	dnote 2, 8
-	dnote 2, 4
-	dnote 3, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
+	drum_speed 6
+	drum_note 3, 8
+	drum_note 2, 8
+	drum_note 2, 8
+	drum_note 2, 4
+	drum_note 3, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
 	sound_loop 0, Music_LookLass_branch_ed81f
 

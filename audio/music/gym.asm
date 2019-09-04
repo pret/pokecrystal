@@ -505,64 +505,64 @@ Music_Gym_branch_f4ab3:
 Music_Gym_Ch4:
 	toggle_noise 4
 Music_Gym_branch_f4ac7:
-	dspeed 12
-	dnote 3, 2
-	dnote 2, 1
-	dnote 2, 1
-	dnote 12, 4
-	dnote 3, 2
-	dnote 2, 1
-	dnote 2, 1
-	dnote 12, 4
-	dnote 3, 2
-	dnote 2, 1
-	dnote 2, 1
-	dnote 3, 2
-	dnote 2, 1
-	dnote 2, 1
-	dnote 11, 1
-	dnote 4, 1
-	dnote 4, 1
-	dnote 4, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 3, 1
-	dnote 3, 1
-	dspeed 6
+	drum_speed 12
+	drum_note 3, 2
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 12, 4
+	drum_note 3, 2
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 12, 4
+	drum_note 3, 2
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 3, 2
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 11, 1
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_speed 6
 Music_Gym_branch_f4ae1:
-	dnote 3, 6
-	dnote 3, 6
-	dnote 3, 4
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 4
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 3, 6
-	dnote 3, 6
-	dnote 3, 4
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 4
-	dnote 12, 8
+	drum_note 3, 6
+	drum_note 3, 6
+	drum_note 3, 4
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 4
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 3, 6
+	drum_note 3, 6
+	drum_note 3, 4
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 4
+	drum_note 12, 8
 	sound_loop 4, Music_Gym_branch_f4ae1
 Music_Gym_branch_f4afa:
-	dnote 4, 4
-	dnote 7, 4
-	dnote 3, 4
-	dnote 4, 2
-	dnote 3, 2
-	dnote 4, 2
-	dnote 3, 2
-	dnote 4, 4
-	dnote 3, 4
-	dnote 7, 4
+	drum_note 4, 4
+	drum_note 7, 4
+	drum_note 3, 4
+	drum_note 4, 2
+	drum_note 3, 2
+	drum_note 4, 2
+	drum_note 3, 2
+	drum_note 4, 4
+	drum_note 3, 4
+	drum_note 7, 4
 	sound_loop 8, Music_Gym_branch_f4afa
 	sound_loop 0, Music_Gym_branch_f4ac7
 

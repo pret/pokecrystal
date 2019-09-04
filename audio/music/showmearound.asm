@@ -300,12 +300,12 @@ Music_ShowMeAround_branch_edd0f:
 
 Music_ShowMeAround_Ch4:
 	toggle_noise 3
-	dspeed 12
+	drum_speed 12
 	rest 16
 	rest 8
-	dnote 3, 2
-	dnote 4, 2
-	dnote 7, 4
+	drum_note 3, 2
+	drum_note 4, 2
+	drum_note 7, 4
 Music_ShowMeAround_branch_edd39:
 	sound_call Music_ShowMeAround_branch_edd4f
 	sound_call Music_ShowMeAround_branch_edd4f
@@ -316,36 +316,36 @@ Music_ShowMeAround_branch_edd39:
 	sound_loop 0, Music_ShowMeAround_branch_edd39
 
 Music_ShowMeAround_branch_edd4f:
-	dnote 4, 2
-	dnote 7, 2
-	dnote 3, 2
-	dnote 8, 2
-	dnote 8, 2
-	dnote 7, 4
-	dnote 3, 2
-	dnote 4, 2
-	dnote 7, 4
-	dnote 3, 2
-	dnote 8, 2
-	dnote 8, 2
-	dnote 3, 2
-	dnote 4, 2
+	drum_note 4, 2
+	drum_note 7, 2
+	drum_note 3, 2
+	drum_note 8, 2
+	drum_note 8, 2
+	drum_note 7, 4
+	drum_note 3, 2
+	drum_note 4, 2
+	drum_note 7, 4
+	drum_note 3, 2
+	drum_note 8, 2
+	drum_note 8, 2
+	drum_note 3, 2
+	drum_note 4, 2
 	sound_ret
 
 Music_ShowMeAround_branch_edd5e:
-	dnote 4, 2
-	dnote 7, 2
-	dnote 3, 2
-	dnote 8, 2
-	dnote 8, 2
-	dnote 7, 4
-	dnote 3, 2
-	dnote 4, 2
-	dnote 7, 4
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 2
-	dnote 7, 2
+	drum_note 4, 2
+	drum_note 7, 2
+	drum_note 3, 2
+	drum_note 8, 2
+	drum_note 8, 2
+	drum_note 7, 4
+	drum_note 3, 2
+	drum_note 4, 2
+	drum_note 7, 4
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 7, 2
 	sound_ret
 

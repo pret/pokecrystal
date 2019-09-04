@@ -397,33 +397,33 @@ Music_Route37_Ch4:
 	stereo_panning 0, 1
 	toggle_noise 0
 Music_Route37_branch_eeb51:
-	dspeed 12
+	drum_speed 12
 	sound_call Music_Route37_branch_eeb6b
-	dnote 3, 1
-	dnote 4, 1
-	dnote 4, 1
-	dnote 3, 1
+	drum_note 3, 1
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 3, 1
 	sound_call Music_Route37_branch_eeb6b
-	dspeed 6
-	dnote 4, 1
-	dnote 4, 1
-	dnote 4, 1
-	dnote 4, 1
-	dnote 4, 1
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 1
+	drum_speed 6
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
 	sound_loop 0, Music_Route37_branch_eeb51
 
 Music_Route37_branch_eeb6b:
-	dnote 3, 2
-	dnote 4, 1
-	dnote 4, 1
-	dnote 3, 2
-	dnote 4, 1
-	dnote 4, 1
-	dnote 3, 2
-	dnote 4, 1
-	dnote 4, 1
+	drum_note 3, 2
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 3, 2
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 3, 2
+	drum_note 4, 1
+	drum_note 4, 1
 	sound_ret
 

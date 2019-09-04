@@ -225,59 +225,59 @@ Music_MagnetTrain_Ch3:
 
 Music_MagnetTrain_Ch4:
 	toggle_noise 3
-	dspeed 12
-	dnote 12, 12
-	dnote 3, 2
-	dnote 11, 1
-	dnote 11, 1
-	dspeed 6
-	dnote 4, 4
-	dnote 7, 4
-	dnote 4, 4
-	dnote 7, 4
-	dnote 11, 4
-	dnote 7, 4
-	dnote 11, 4
-	dnote 3, 2
-	dnote 3, 2
+	drum_speed 12
+	drum_note 12, 12
+	drum_note 3, 2
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_speed 6
+	drum_note 4, 4
+	drum_note 7, 4
+	drum_note 4, 4
+	drum_note 7, 4
+	drum_note 11, 4
+	drum_note 7, 4
+	drum_note 11, 4
+	drum_note 3, 2
+	drum_note 3, 2
 	sound_call Music_MagnetTrain_branch_ef71e
 	sound_call Music_MagnetTrain_branch_ef71e
-	dspeed 12
-	dnote 12, 16
+	drum_speed 12
+	drum_note 12, 16
 	sound_ret
 
 ; unused
 Music_MagnetTrain_branch_ef711:
-	dnote 9, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 9, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 9, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 9, 1
-	dnote 8, 1
-	dnote 8, 1
+	drum_note 9, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 9, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 9, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 9, 1
+	drum_note 8, 1
+	drum_note 8, 1
 	sound_ret
 
 Music_MagnetTrain_branch_ef71e:
-	dnote 9, 2
-	dnote 8, 2
-	dnote 8, 2
-	dnote 8, 2
-	dnote 9, 2
-	dnote 8, 2
-	dnote 8, 2
-	dnote 8, 2
-	dnote 9, 2
-	dnote 8, 2
-	dnote 8, 2
-	dnote 8, 2
-	dnote 9, 2
-	dnote 8, 2
-	dnote 8, 2
-	dnote 8, 2
+	drum_note 9, 2
+	drum_note 8, 2
+	drum_note 8, 2
+	drum_note 8, 2
+	drum_note 9, 2
+	drum_note 8, 2
+	drum_note 8, 2
+	drum_note 8, 2
+	drum_note 9, 2
+	drum_note 8, 2
+	drum_note 8, 2
+	drum_note 8, 2
+	drum_note 9, 2
+	drum_note 8, 2
+	drum_note 8, 2
+	drum_note 8, 2
 	sound_ret
 

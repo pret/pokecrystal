@@ -114,31 +114,31 @@ Music_MainMenu_branch_f796f:
 Music_MainMenu_Ch4:
 	stereo_panning 0, 1
 	toggle_noise 3
-	dspeed 12
+	drum_speed 12
 	rest 8
 	rest 16
 	rest 16
 	rest 16
 	rest 12
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
 Music_MainMenu_branch_f79a5:
-	dnote 3, 6
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 4
-	dnote 3, 6
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 2
-	dnote 3, 2
-	dnote 4, 1
-	dnote 4, 1
-	dnote 3, 1
-	dnote 3, 1
+	drum_note 3, 6
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 4
+	drum_note 3, 6
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 3, 1
+	drum_note 3, 1
 	sound_loop 0, Music_MainMenu_branch_f79a5
 

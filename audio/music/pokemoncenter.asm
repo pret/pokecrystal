@@ -394,13 +394,13 @@ Music_PokemonCenter_branch_ed783:
 
 Music_PokemonCenter_Ch4:
 	toggle_noise 3
-	dspeed 12
+	drum_speed 12
 	stereo_panning 1, 1
 Music_PokemonCenter_branch_ed792:
-	dnote 8, 6
-	dnote 8, 4
-	dnote 8, 2
-	dnote 8, 2
-	dnote 8, 2
+	drum_note 8, 6
+	drum_note 8, 4
+	drum_note 8, 2
+	drum_note 8, 2
+	drum_note 8, 2
 	sound_loop 0, Music_PokemonCenter_branch_ed792
 

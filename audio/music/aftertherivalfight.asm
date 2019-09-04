@@ -55,12 +55,12 @@ Music_AfterTheRivalFight_Ch3:
 Music_AfterTheRivalFight_Ch4:
 	toggle_noise 3
 	stereo_panning 0, 1
-	dspeed 12
-	dnote 3, 4
-	dnote 3, 4
-	dnote 4, 2
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 2
+	drum_speed 12
+	drum_note 3, 4
+	drum_note 3, 4
+	drum_note 4, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
 	sound_loop 0, Music_AfterTheRivalFight_branch_f5118
 

@@ -1,18 +1,18 @@
 channel_count: MACRO
-num_channels = \1 - 1
+_num_channels = \1 - 1
 ENDM
 
 channel: MACRO
-	dn (num_channels << 2), \1 - 1 ; channel id
+	dn (_num_channels << 2), \1 - 1 ; channel id
 	dw \2 ; address
-num_channels = 0
+_num_channels = 0
 ENDM
 
 note: MACRO
 	dn (\1), (\2) - 1 ; pitch, length
 ENDM
 
-dnote: MACRO
+drum_note: MACRO
 	note \1, \2 ; drum instrument, length
 ENDM
 
@@ -65,7 +65,7 @@ note_type: MACRO
 ENDM
 
 ; only valid on the noise channel
-dspeed: MACRO
+drum_speed: MACRO
 	note_type \1 ; note length
 ENDM
 

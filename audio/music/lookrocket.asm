@@ -359,7 +359,7 @@ Music_RocketTheme_branch_f7623:
 
 Music_LookRocket_Ch4:
 	toggle_noise 3
-	dspeed 12
+	drum_speed 12
 	rest 2
 	sound_call Music_LookRocket_branch_f765c
 Music_LookRocket_branch_f7640:
@@ -375,24 +375,24 @@ Music_LookRocket_branch_f7640:
 
 Music_LookRocket_branch_f765c:
 Music_RocketTheme_branch_f765c:
-	dnote 1, 8
-	dnote 3, 2
-	dnote 4, 2
-	dnote 2, 1
-	dnote 2, 1
-	dnote 3, 1
-	dnote 3, 1
+	drum_note 1, 8
+	drum_note 3, 2
+	drum_note 4, 2
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 3, 1
+	drum_note 3, 1
 	sound_ret
 
 Music_LookRocket_branch_f7664:
 Music_RocketTheme_branch_f7664:
-	dnote 4, 2
-	dnote 7, 2
-	dnote 3, 2
-	dnote 7, 2
-	dnote 4, 2
-	dnote 7, 2
-	dnote 3, 2
-	dnote 7, 2
+	drum_note 4, 2
+	drum_note 7, 2
+	drum_note 3, 2
+	drum_note 7, 2
+	drum_note 4, 2
+	drum_note 7, 2
+	drum_note 3, 2
+	drum_note 7, 2
 	sound_ret
 

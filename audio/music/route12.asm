@@ -392,61 +392,61 @@ Music_Route12_branch_ec6b4:
 Music_Route12_Ch4:
 	toggle_noise 4
 	stereo_panning 1, 0
-	dspeed 12
-	dnote 12, 10
-	dnote 2, 1
-	dnote 2, 1
-	dnote 3, 4
-	dnote 12, 6
-	dnote 2, 1
-	dnote 2, 1
-	dnote 3, 4
-	dspeed 6
+	drum_speed 12
+	drum_note 12, 10
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 3, 4
+	drum_note 12, 6
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 3, 4
+	drum_speed 6
 	sound_call Music_Route12_branch_ec717
 Music_Route12_branch_ec6e1:
-	dnote 3, 4
-	dnote 3, 8
-	dnote 2, 2
-	dnote 2, 2
-	dnote 3, 8
+	drum_note 3, 4
+	drum_note 3, 8
+	drum_note 2, 2
+	drum_note 2, 2
+	drum_note 3, 8
 	sound_call Music_Route12_branch_ec717
 	sound_loop 8, Music_Route12_branch_ec6e1
 Music_Route12_branch_ec6ed:
-	dspeed 12
-	dnote 12, 10
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 6
-	dnote 2, 1
-	dnote 2, 1
-	dnote 3, 6
-	dnote 2, 1
-	dnote 2, 1
-	dnote 3, 4
+	drum_speed 12
+	drum_note 12, 10
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 6
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 3, 6
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 3, 4
 	sound_loop 2, Music_Route12_branch_ec6ed
-	dnote 12, 16
-	dspeed 6
+	drum_note 12, 16
+	drum_speed 6
 	sound_call Music_Route12_branch_ec717
 	sound_call Music_Route12_branch_ec717
-	dnote 12, 16
+	drum_note 12, 16
 Music_Route12_branch_ec707:
-	dnote 3, 4
-	dnote 3, 8
-	dnote 2, 2
-	dnote 2, 2
-	dnote 3, 8
+	drum_note 3, 4
+	drum_note 3, 8
+	drum_note 2, 2
+	drum_note 2, 2
+	drum_note 3, 8
 	sound_call Music_Route12_branch_ec717
 	sound_loop 2, Music_Route12_branch_ec707
 	sound_loop 0, Music_Route12_branch_ec6e1
 
 Music_Route12_branch_ec717:
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
 	sound_ret
 

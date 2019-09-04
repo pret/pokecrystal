@@ -79,32 +79,32 @@ Music_Mom_branch_f6c2e:
 
 Music_Mom_Ch4:
 	toggle_noise 3
-	dspeed 12
+	drum_speed 12
 	rest 6
 Music_Mom_branch_f6c56:
-	dnote 4, 1
+	drum_note 4, 1
 	rest 1
-	dnote 7, 2
-	dnote 3, 1
+	drum_note 7, 2
+	drum_note 3, 1
 	rest 1
-	dnote 8, 1
+	drum_note 8, 1
 	rest 1
-	dnote 8, 1
+	drum_note 8, 1
 	rest 1
-	dnote 7, 4
-	dnote 3, 1
+	drum_note 7, 4
+	drum_note 3, 1
 	rest 1
-	dnote 4, 1
+	drum_note 4, 1
 	rest 1
-	dnote 7, 4
-	dnote 3, 1
+	drum_note 7, 4
+	drum_note 3, 1
 	rest 1
-	dnote 8, 1
+	drum_note 8, 1
 	rest 1
-	dnote 8, 1
+	drum_note 8, 1
 	rest 1
-	dnote 3, 2
-	dnote 4, 1
+	drum_note 3, 2
+	drum_note 4, 1
 	rest 1
 	sound_loop 0, Music_Mom_branch_f6c56
 

@@ -497,20 +497,20 @@ Music_Bicycle_branch_ee333:
 
 Music_Bicycle_Ch4:
 	toggle_noise 0
-	dspeed 12
+	drum_speed 12
 	rest 16
 	rest 16
 Music_Bicycle_branch_ee34b:
 	rest 2
 Music_Bicycle_branch_ee34c:
 	stereo_panning 1, 0
-	dnote 6, 4
+	drum_note 6, 4
 	sound_loop 12, Music_Bicycle_branch_ee34c
-	dnote 6, 4
-	dnote 6, 4
+	drum_note 6, 4
+	drum_note 6, 4
 	stereo_panning 1, 1
-	dnote 6, 2
-	dnote 6, 2
-	dnote 6, 2
+	drum_note 6, 2
+	drum_note 6, 2
+	drum_note 6, 2
 	sound_loop 0, Music_Bicycle_branch_ee34b
 

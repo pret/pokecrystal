@@ -690,7 +690,7 @@ Music_ViridianCity_branch_f42a2:
 
 Music_ViridianCity_Ch4:
 	toggle_noise 3
-	dspeed 12
+	drum_speed 12
 	sound_call Music_ViridianCity_branch_f431d
 	sound_call Music_ViridianCity_branch_f432c
 Music_ViridianCity_branch_f42e9:
@@ -713,72 +713,72 @@ Music_ViridianCity_branch_f42e9:
 	sound_loop 0, Music_ViridianCity_branch_f42e9
 
 Music_ViridianCity_branch_f431d:
-	dnote 5, 2
-	dnote 5, 2
-	dnote 3, 2
-	dnote 5, 4
-	dnote 3, 2
-	dnote 5, 2
-	dnote 7, 2
-	dnote 5, 2
-	dnote 5, 2
-	dnote 3, 4
-	dnote 5, 2
-	dnote 3, 2
-	dnote 5, 2
-	dnote 7, 2
+	drum_note 5, 2
+	drum_note 5, 2
+	drum_note 3, 2
+	drum_note 5, 4
+	drum_note 3, 2
+	drum_note 5, 2
+	drum_note 7, 2
+	drum_note 5, 2
+	drum_note 5, 2
+	drum_note 3, 4
+	drum_note 5, 2
+	drum_note 3, 2
+	drum_note 5, 2
+	drum_note 7, 2
 	sound_ret
 
 Music_ViridianCity_branch_f432c:
-	dnote 5, 2
-	dnote 5, 2
-	dnote 3, 2
-	dnote 5, 4
-	dnote 3, 2
-	dnote 5, 2
-	dnote 7, 2
-	dnote 5, 2
-	dnote 5, 2
-	dnote 7, 4
-	dnote 3, 2
-	dnote 3, 2
-	dnote 11, 2
-	dnote 11, 2
+	drum_note 5, 2
+	drum_note 5, 2
+	drum_note 3, 2
+	drum_note 5, 4
+	drum_note 3, 2
+	drum_note 5, 2
+	drum_note 7, 2
+	drum_note 5, 2
+	drum_note 5, 2
+	drum_note 7, 4
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 11, 2
+	drum_note 11, 2
 	sound_ret
 
 Music_ViridianCity_branch_f433b:
-	dnote 4, 2
-	dnote 7, 2
-	dnote 3, 2
-	dnote 4, 2
-	dnote 4, 2
-	dnote 7, 2
-	dnote 3, 4
-	dnote 4, 2
-	dnote 7, 2
-	dnote 3, 2
-	dnote 4, 2
-	dnote 4, 2
-	dnote 7, 2
-	dnote 3, 2
-	dnote 4, 2
+	drum_note 4, 2
+	drum_note 7, 2
+	drum_note 3, 2
+	drum_note 4, 2
+	drum_note 4, 2
+	drum_note 7, 2
+	drum_note 3, 4
+	drum_note 4, 2
+	drum_note 7, 2
+	drum_note 3, 2
+	drum_note 4, 2
+	drum_note 4, 2
+	drum_note 7, 2
+	drum_note 3, 2
+	drum_note 4, 2
 	sound_ret
 
 Music_ViridianCity_branch_f434b:
-	dnote 4, 2
-	dnote 7, 2
-	dnote 3, 2
-	dnote 4, 2
-	dnote 4, 2
-	dnote 7, 2
-	dnote 3, 4
-	dnote 4, 2
-	dnote 7, 2
-	dnote 3, 2
-	dnote 4, 2
-	dnote 4, 2
-	dnote 3, 2
-	dnote 3, 2
-	dnote 7, 2
+	drum_note 4, 2
+	drum_note 7, 2
+	drum_note 3, 2
+	drum_note 4, 2
+	drum_note 4, 2
+	drum_note 7, 2
+	drum_note 3, 4
+	drum_note 4, 2
+	drum_note 7, 2
+	drum_note 3, 2
+	drum_note 4, 2
+	drum_note 4, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 7, 2
 	sound_ret
 

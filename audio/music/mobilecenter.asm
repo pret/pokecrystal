@@ -454,32 +454,32 @@ Music_MobileCenter_branch_179788:
 Music_MobileCenter_Ch4:
 	toggle_noise 3
 	stereo_panning 0, 1
-	dspeed 12
-	dnote 10, 8
-	dnote 10, 4
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
+	drum_speed 12
+	drum_note 10, 8
+	drum_note 10, 4
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
 Music_MobileCenter_branch_179813:
-	dnote 10, 2
-	dnote 2, 2
-	dnote 2, 2
-	dnote 2, 2
-	dnote 10, 2
-	dnote 2, 2
-	dnote 3, 2
-	dnote 2, 2
+	drum_note 10, 2
+	drum_note 2, 2
+	drum_note 2, 2
+	drum_note 2, 2
+	drum_note 10, 2
+	drum_note 2, 2
+	drum_note 3, 2
+	drum_note 2, 2
 	sound_loop 3, Music_MobileCenter_branch_179813
-	dnote 10, 2
-	dnote 2, 2
-	dnote 2, 2
-	dnote 2, 2
-	dnote 10, 2
-	dnote 3, 2
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
+	drum_note 10, 2
+	drum_note 2, 2
+	drum_note 2, 2
+	drum_note 2, 2
+	drum_note 10, 2
+	drum_note 3, 2
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
 	sound_loop 0, Music_MobileCenter_branch_179813
 

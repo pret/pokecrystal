@@ -607,52 +607,52 @@ Music_MobileAdapter_branch_1ff09:
 Music_MobileAdapter_Ch4:
 	toggle_noise 3
 	stereo_panning 1, 0
-	dspeed 12
+	drum_speed 12
 	rest 2
 	rest 10
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 1
-	dnote 3, 1
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 1
+	drum_note 3, 1
 Music_MobileAdapter_branch_1ff38:
 	sound_call Music_MobileAdapter_branch_1ff60
 	sound_call Music_MobileAdapter_branch_1ff60
 Music_MobileAdapter_branch_1ff3e:
 	rest 4
-	dnote 3, 8
-	dnote 3, 8
-	dnote 3, 4
-	dnote 3, 1
-	dnote 3, 3
-	dnote 3, 4
+	drum_note 3, 8
+	drum_note 3, 8
+	drum_note 3, 4
+	drum_note 3, 1
+	drum_note 3, 3
+	drum_note 3, 4
 	sound_loop 2, Music_MobileAdapter_branch_1ff3e
 Music_MobileAdapter_branch_1ff49:
 	rest 4
-	dnote 3, 4
+	drum_note 3, 4
 	sound_loop 11, Music_MobileAdapter_branch_1ff49
 	rest 2
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 1
-	dnote 3, 1
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 1
+	drum_note 3, 1
 	rest 4
-	dnote 3, 8
-	dnote 3, 8
-	dnote 3, 6
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 1
-	dnote 3, 1
+	drum_note 3, 8
+	drum_note 3, 8
+	drum_note 3, 6
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 1
+	drum_note 3, 1
 	sound_loop 0, Music_MobileAdapter_branch_1ff38
 
 Music_MobileAdapter_branch_1ff60:
 	rest 4
-	dnote 3, 4
+	drum_note 3, 4
 	sound_loop 7, Music_MobileAdapter_branch_1ff60
 	rest 2
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 1
-	dnote 3, 1
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 1
+	drum_note 3, 1
 	sound_ret
 

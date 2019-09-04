@@ -261,33 +261,33 @@ Music_TinTower_branch_f68fb:
 
 Music_TinTower_Ch4:
 	toggle_noise 0
-	dspeed 12
+	drum_speed 12
 Music_TinTower_branch_f694c:
 	stereo_panning 0, 1
-	dnote 8, 2
+	drum_note 8, 2
 	stereo_panning 1, 0
-	dnote 8, 1
-	dnote 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
 	stereo_panning 0, 1
-	dnote 8, 2
+	drum_note 8, 2
 	stereo_panning 1, 0
-	dnote 6, 4
+	drum_note 6, 4
 	stereo_panning 0, 1
-	dnote 8, 2
-	dnote 8, 2
-	dnote 6, 2
+	drum_note 8, 2
+	drum_note 8, 2
+	drum_note 6, 2
 	stereo_panning 1, 0
-	dnote 8, 2
+	drum_note 8, 2
 	stereo_panning 0, 1
-	dnote 8, 1
-	dnote 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
 	stereo_panning 1, 0
-	dnote 8, 2
+	drum_note 8, 2
 	stereo_panning 0, 1
-	dnote 6, 4
+	drum_note 6, 4
 	stereo_panning 1, 0
-	dnote 8, 2
-	dnote 8, 2
-	dnote 6, 2
+	drum_note 8, 2
+	drum_note 8, 2
+	drum_note 6, 2
 	sound_loop 0, Music_TinTower_branch_f694c
 

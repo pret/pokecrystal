@@ -300,11 +300,11 @@ Music_BattleTowerLobby_branch_1795b1:
 Music_BattleTowerLobby_Ch4:
 	toggle_noise 0
 Music_BattleTowerLobby_branch_179612:
-	dspeed 12
+	drum_speed 12
 	rest 2
-	dnote 6, 4
-	dnote 6, 4
-	dnote 6, 2
-	dnote 6, 4
+	drum_note 6, 4
+	drum_note 6, 4
+	drum_note 6, 2
+	drum_note 6, 4
 	sound_loop 0, Music_BattleTowerLobby_branch_179612
 

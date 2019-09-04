@@ -459,27 +459,27 @@ Music_DarkCave_branch_ea4ce:
 
 Music_DarkCave_Ch4:
 	toggle_noise 3
-	dspeed 12
+	drum_speed 12
 Music_DarkCave_branch_ea4ee:
 	stereo_panning 1, 1
-	dnote 4, 8
-	dnote 4, 8
-	dnote 4, 4
+	drum_note 4, 8
+	drum_note 4, 8
+	drum_note 4, 4
 	stereo_panning 1, 0
-	dnote 2, 4
+	drum_note 2, 4
 	stereo_panning 0, 1
-	dnote 2, 2
-	dnote 2, 2
+	drum_note 2, 2
+	drum_note 2, 2
 	stereo_panning 1, 0
-	dnote 2, 4
+	drum_note 2, 4
 	stereo_panning 1, 1
-	dnote 4, 8
-	dnote 4, 8
-	dnote 4, 4
+	drum_note 4, 8
+	drum_note 4, 8
+	drum_note 4, 4
 	stereo_panning 0, 1
-	dnote 2, 8
+	drum_note 2, 8
 	stereo_panning 1, 0
-	dnote 2, 2
-	dnote 2, 2
+	drum_note 2, 2
+	drum_note 2, 2
 	sound_loop 0, Music_DarkCave_branch_ea4ee
 

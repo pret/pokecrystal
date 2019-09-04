@@ -587,83 +587,83 @@ Music_BugCatchingContest_branch_f7dda:
 
 Music_BugCatchingContest_Ch4:
 	toggle_noise 4
-	dspeed 6
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 5, 2
-	dnote 5, 2
+	drum_speed 6
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 5, 2
+	drum_note 5, 2
 	sound_call Music_BugCatchingContest_branch_f7ee2
 Music_BugCatchingContest_branch_f7eaf:
-	dnote 3, 4
-	dnote 3, 4
-	dnote 3, 2
-	dnote 2, 2
-	dnote 3, 2
-	dnote 2, 2
-	dnote 3, 4
-	dnote 3, 4
-	dnote 3, 2
-	dnote 2, 2
-	dnote 3, 2
-	dnote 2, 2
-	dnote 3, 4
-	dnote 3, 4
-	dnote 3, 2
-	dnote 2, 2
-	dnote 3, 2
-	dnote 2, 2
-	dnote 3, 4
-	dnote 3, 4
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 2, 1
+	drum_note 3, 4
+	drum_note 3, 4
+	drum_note 3, 2
+	drum_note 2, 2
+	drum_note 3, 2
+	drum_note 2, 2
+	drum_note 3, 4
+	drum_note 3, 4
+	drum_note 3, 2
+	drum_note 2, 2
+	drum_note 3, 2
+	drum_note 2, 2
+	drum_note 3, 4
+	drum_note 3, 4
+	drum_note 3, 2
+	drum_note 2, 2
+	drum_note 3, 2
+	drum_note 2, 2
+	drum_note 3, 4
+	drum_note 3, 4
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
 	sound_loop 5, Music_BugCatchingContest_branch_f7eaf
-	dnote 3, 4
-	dnote 3, 4
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 4
-	dnote 3, 4
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 2
+	drum_note 3, 4
+	drum_note 3, 4
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 4
+	drum_note 3, 4
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
 	sound_call Music_BugCatchingContest_branch_f7ee2
 	sound_loop 0, Music_BugCatchingContest_branch_f7eaf
 
 Music_BugCatchingContest_branch_f7ee2:
-	dnote 3, 4
-	dnote 12, 8
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 4
-	dnote 12, 8
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 4
-	dnote 12, 8
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 4
-	dnote 12, 8
-	dnote 3, 2
-	dnote 3, 2
+	drum_note 3, 4
+	drum_note 12, 8
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 4
+	drum_note 12, 8
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 4
+	drum_note 12, 8
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 4
+	drum_note 12, 8
+	drum_note 3, 2
+	drum_note 3, 2
 	sound_ret
 

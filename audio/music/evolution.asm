@@ -187,15 +187,15 @@ Music_Evolution_branch_f07d5:
 
 Music_Evolution_Ch4:
 	toggle_noise 5
-	dspeed 12
+	drum_speed 12
 	rest 8
 Music_Evolution_branch_f07f0:
 	stereo_panning 1, 0
-	dnote 11, 6
-	dnote 11, 4
+	drum_note 11, 6
+	drum_note 11, 4
 	stereo_panning 0, 1
-	dnote 5, 2
-	dnote 5, 2
-	dnote 5, 2
+	drum_note 5, 2
+	drum_note 5, 2
+	drum_note 5, 2
 	sound_loop 0, Music_Evolution_branch_f07f0
 

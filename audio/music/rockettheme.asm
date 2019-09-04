@@ -445,7 +445,7 @@ Music_RocketTheme_branch_f782f:
 
 Music_RocketTheme_Ch4:
 	toggle_noise 3
-	dspeed 12
+	drum_speed 12
 	rest 2
 Music_RocketTheme_branch_f78c3:
 	sound_call Music_RocketTheme_branch_f765c
@@ -458,14 +458,14 @@ Music_RocketTheme_branch_f78c3:
 	sound_call Music_RocketTheme_branch_f7664
 	sound_call Music_RocketTheme_branch_f765c
 Music_RocketTheme_branch_f78de:
-	dnote 11, 2
-	dnote 7, 2
-	dnote 3, 2
-	dnote 7, 2
-	dnote 11, 2
-	dnote 7, 2
-	dnote 3, 2
-	dnote 7, 2
+	drum_note 11, 2
+	drum_note 7, 2
+	drum_note 3, 2
+	drum_note 7, 2
+	drum_note 11, 2
+	drum_note 7, 2
+	drum_note 3, 2
+	drum_note 7, 2
 	sound_loop 11, Music_RocketTheme_branch_f78de
 	sound_call Music_RocketTheme_branch_f7664
 	sound_call Music_RocketTheme_branch_f7664

@@ -203,31 +203,31 @@ Music_PokemonChannel_Ch3:
 
 Music_PokemonChannel_Ch4:
 	toggle_noise 3
-	dspeed 12
+	drum_speed 12
 Music_PokemonChannel_branch_ee54d:
-	dnote 11, 3
-	dnote 11, 1
-	dnote 3, 2
-	dnote 1, 4
-	dnote 3, 2
-	dnote 3, 2
-	dnote 11, 1
-	dnote 3, 1
+	drum_note 11, 3
+	drum_note 11, 1
+	drum_note 3, 2
+	drum_note 1, 4
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 11, 1
+	drum_note 3, 1
 	sound_loop 2, Music_PokemonChannel_branch_ee54d
-	dnote 9, 2
-	dnote 11, 2
-	dnote 9, 1
-	dnote 9, 1
-	dnote 9, 1
-	dnote 9, 1
-	dnote 1, 4
-	dnote 9, 1
-	dnote 9, 1
-	dnote 9, 1
-	dnote 9, 1
-	dnote 12, 4
-	dnote 3, 4
-	dnote 11, 4
-	dnote 11, 4
+	drum_note 9, 2
+	drum_note 11, 2
+	drum_note 9, 1
+	drum_note 9, 1
+	drum_note 9, 1
+	drum_note 9, 1
+	drum_note 1, 4
+	drum_note 9, 1
+	drum_note 9, 1
+	drum_note 9, 1
+	drum_note 9, 1
+	drum_note 12, 4
+	drum_note 3, 4
+	drum_note 11, 4
+	drum_note 11, 4
 	sound_ret
 

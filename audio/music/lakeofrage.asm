@@ -299,26 +299,26 @@ Music_LakeOfRage_branch_ee7d0:
 Music_LakeOfRage_Ch4:
 	stereo_panning 1, 0
 	toggle_noise 3
-	dspeed 12
+	drum_speed 12
 Music_LakeOfRage_branch_ee83b:
-	dnote 3, 2
-	dnote 3, 1
-	dnote 3, 1
-	dnote 8, 2
-	dnote 3, 2
-	dnote 3, 1
-	dnote 3, 1
-	dnote 7, 6
-	dnote 3, 2
-	dnote 3, 1
-	dnote 3, 1
-	dnote 8, 2
-	dnote 3, 2
-	dnote 3, 1
-	dnote 3, 1
-	dnote 7, 3
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 1
+	drum_note 3, 2
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 8, 2
+	drum_note 3, 2
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 7, 6
+	drum_note 3, 2
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 8, 2
+	drum_note 3, 2
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 7, 3
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
 	sound_loop 0, Music_LakeOfRage_branch_ee83b
 

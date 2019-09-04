@@ -153,23 +153,23 @@ Music_ContestResults_branch_efbd2:
 
 Music_ContestResults_Ch4:
 	toggle_noise 4
-	dspeed 6
+	drum_speed 6
 Music_ContestResults_branch_efbed:
-	dnote 2, 4
-	dnote 2, 4
-	dnote 2, 2
-	dnote 2, 2
-	dnote 2, 2
-	dnote 2, 2
-	dnote 2, 4
-	dnote 2, 4
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
+	drum_note 2, 4
+	drum_note 2, 4
+	drum_note 2, 2
+	drum_note 2, 2
+	drum_note 2, 2
+	drum_note 2, 2
+	drum_note 2, 4
+	drum_note 2, 4
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
 	sound_loop 0, Music_ContestResults_branch_efbed
 

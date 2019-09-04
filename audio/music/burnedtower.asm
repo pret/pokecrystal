@@ -245,17 +245,17 @@ Music_BurnedTower_branch_f6bc3:
 
 Music_BurnedTower_Ch4:
 	toggle_noise 0
-	dspeed 12
+	drum_speed 12
 Music_BurnedTower_branch_f6be1:
 	rest 16
 	sound_loop 4, Music_BurnedTower_branch_f6be1
 	rest 2
 Music_BurnedTower_branch_f6be7:
 	stereo_panning 1, 0
-	dnote 8, 2
-	dnote 9, 2
-	dnote 8, 4
-	dnote 9, 2
-	dnote 8, 4
+	drum_note 8, 2
+	drum_note 9, 2
+	drum_note 8, 4
+	drum_note 9, 2
+	drum_note 8, 4
 	sound_loop 0, Music_BurnedTower_branch_f6be7
 

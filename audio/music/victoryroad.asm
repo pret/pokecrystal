@@ -175,25 +175,25 @@ Music_VictoryRoad_branch_f6d52:
 
 Music_VictoryRoad_Ch4:
 	toggle_noise 0
-	dspeed 12
+	drum_speed 12
 Music_VictoryRoad_branch_f6d63:
-	dnote 3, 2
-	dnote 3, 2
-	dnote 4, 1
-	dnote 3, 3
-	dnote 4, 1
-	dnote 3, 3
-	dnote 4, 1
-	dnote 3, 3
-	dnote 3, 2
-	dnote 3, 2
-	dnote 4, 1
-	dnote 3, 3
-	dnote 4, 1
-	dnote 4, 1
-	dnote 3, 2
-	dnote 4, 1
-	dnote 3, 2
-	dnote 4, 1
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 4, 1
+	drum_note 3, 3
+	drum_note 4, 1
+	drum_note 3, 3
+	drum_note 4, 1
+	drum_note 3, 3
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 4, 1
+	drum_note 3, 3
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 3, 2
+	drum_note 4, 1
+	drum_note 3, 2
+	drum_note 4, 1
 	sound_loop 0, Music_VictoryRoad_branch_f6d63
 

@@ -708,23 +708,23 @@ Music_VioletCity_branch_f0311:
 
 Music_VioletCity_Ch4:
 	toggle_noise 3
-	dspeed 12
-	dnote 4, 2
-	dnote 3, 2
-	dnote 4, 1
-	dnote 4, 1
-	dnote 3, 2
-	dnote 3, 4
-	dnote 7, 4
+	drum_speed 12
+	drum_note 4, 2
+	drum_note 3, 2
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 3, 2
+	drum_note 3, 4
+	drum_note 7, 4
 	sound_call Music_VioletCity_branch_f036c
 	sound_call Music_VioletCity_branch_f036c
 	sound_call Music_VioletCity_branch_f036c
-	dnote 3, 2
-	dnote 4, 1
-	dnote 4, 1
-	dnote 3, 2
-	dnote 1, 8
-	dnote 4, 2
+	drum_note 3, 2
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 3, 2
+	drum_note 1, 8
+	drum_note 4, 2
 Music_VioletCity_branch_f0338:
 	sound_call Music_VioletCity_branch_f037a
 	sound_call Music_VioletCity_branch_f037a
@@ -745,32 +745,32 @@ Music_VioletCity_branch_f0338:
 	sound_loop 0, Music_VioletCity_branch_f0338
 
 Music_VioletCity_branch_f036c:
-	dnote 3, 1
-	dnote 3, 1
-	dnote 4, 1
-	dnote 4, 1
-	dnote 3, 2
-	dnote 8, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 7, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 3, 2
+	drum_note 8, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 7, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
 	sound_ret
 
 Music_VioletCity_branch_f037a:
-	dnote 4, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
+	drum_note 4, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
 	rest 1
-	dnote 4, 1
-	dnote 4, 1
+	drum_note 4, 1
+	drum_note 4, 1
 	rest 2
-	dnote 4, 2
-	dnote 3, 2
-	dnote 4, 2
+	drum_note 4, 2
+	drum_note 3, 2
+	drum_note 4, 2
 	sound_ret
 

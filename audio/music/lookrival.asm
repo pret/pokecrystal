@@ -324,31 +324,31 @@ Music_LookRival_branch_f50ff:
 Music_LookRival_Ch4:
 	stereo_panning 1, 0
 	toggle_noise 3
-	dspeed 12
+	drum_speed 12
 	rest 8
 	rest 16
-	dnote 4, 2
-	dnote 3, 4
-	dnote 3, 6
-	dnote 3, 4
-	dnote 4, 4
-	dnote 4, 4
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 2
+	drum_note 4, 2
+	drum_note 3, 4
+	drum_note 3, 6
+	drum_note 3, 4
+	drum_note 4, 4
+	drum_note 4, 4
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
 Music_LookRival_branch_f5118:
 Music_AfterTheRivalFight_branch_f5118:
-	dnote 4, 4
-	dnote 3, 2
-	dnote 4, 4
-	dnote 4, 2
-	dnote 3, 4
-	dnote 4, 4
-	dnote 3, 2
-	dnote 4, 4
-	dnote 4, 2
-	dnote 3, 2
-	dnote 3, 2
+	drum_note 4, 4
+	drum_note 3, 2
+	drum_note 4, 4
+	drum_note 4, 2
+	drum_note 3, 4
+	drum_note 4, 4
+	drum_note 3, 2
+	drum_note 4, 4
+	drum_note 4, 2
+	drum_note 3, 2
+	drum_note 3, 2
 	sound_loop 0, Music_LookRival_branch_f5118
 

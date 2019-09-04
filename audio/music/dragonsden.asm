@@ -157,16 +157,16 @@ Music_DragonsDen_branch_eed99:
 
 Music_DragonsDen_Ch4:
 	toggle_noise 0
-	dspeed 12
+	drum_speed 12
 	rest 16
 	rest 16
 Music_DragonsDen_branch_eedbd:
 	stereo_panning 1, 0
-	dnote 6, 4
+	drum_note 6, 4
 	stereo_panning 0, 1
-	dnote 7, 4
-	dnote 7, 4
+	drum_note 7, 4
+	drum_note 7, 4
 	stereo_panning 1, 0
-	dnote 7, 4
+	drum_note 7, 4
 	sound_loop 0, Music_DragonsDen_branch_eedbd
 

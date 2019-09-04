@@ -397,22 +397,22 @@ Music_PokemonMarch_branch_f6fe8:
 Music_PokemonMarch_Ch4:
 	stereo_panning 1, 0
 	toggle_noise 5
-	dspeed 8
+	drum_speed 8
 	sound_call Music_PokemonMarch_branch_f704c
 Music_PokemonMarch_branch_f7003:
 	sound_call Music_PokemonMarch_branch_f7042
-	dnote 1, 4
-	dnote 1, 2
-	dnote 1, 4
-	dnote 1, 2
-	dnote 1, 4
-	dnote 1, 5
-	dspeed 6
-	dnote 3, 1
-	dnote 3, 1
-	dnote 2, 1
-	dnote 2, 1
-	dspeed 8
+	drum_note 1, 4
+	drum_note 1, 2
+	drum_note 1, 4
+	drum_note 1, 2
+	drum_note 1, 4
+	drum_note 1, 5
+	drum_speed 6
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_speed 8
 	sound_call Music_PokemonMarch_branch_f7042
 	sound_call Music_PokemonMarch_branch_f704c
 	sound_call Music_PokemonMarch_branch_f7042
@@ -421,41 +421,41 @@ Music_PokemonMarch_branch_f7003:
 	sound_call Music_PokemonMarch_branch_f704c
 	sound_call Music_PokemonMarch_branch_f7042
 	sound_call Music_PokemonMarch_branch_f704c
-	dnote 2, 4
-	dnote 2, 2
-	dnote 2, 4
-	dnote 2, 2
-	dnote 2, 6
-	dnote 1, 2
-	dspeed 4
+	drum_note 2, 4
+	drum_note 2, 2
+	drum_note 2, 4
+	drum_note 2, 2
+	drum_note 2, 6
+	drum_note 1, 2
+	drum_speed 4
 	rest 5
-	dspeed 6
-	dnote 3, 1
-	dnote 3, 1
-	dspeed 8
+	drum_speed 6
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_speed 8
 	sound_call Music_PokemonMarch_branch_f704c
 	sound_loop 0, Music_PokemonMarch_branch_f7003
 
 Music_PokemonMarch_branch_f7042:
-	dnote 1, 4
-	dnote 1, 2
-	dnote 1, 4
-	dnote 1, 2
-	dnote 1, 4
-	dnote 3, 2
-	dnote 3, 2
-	dnote 2, 2
-	dnote 2, 2
+	drum_note 1, 4
+	drum_note 1, 2
+	drum_note 1, 4
+	drum_note 1, 2
+	drum_note 1, 4
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 2, 2
+	drum_note 2, 2
 	sound_ret
 
 Music_PokemonMarch_branch_f704c:
-	dnote 1, 4
-	dnote 1, 2
-	dnote 1, 4
-	dnote 1, 4
-	dnote 1, 4
-	dnote 2, 2
-	dnote 3, 2
-	dnote 2, 2
+	drum_note 1, 4
+	drum_note 1, 2
+	drum_note 1, 4
+	drum_note 1, 4
+	drum_note 1, 4
+	drum_note 2, 2
+	drum_note 3, 2
+	drum_note 2, 2
 	sound_ret
 

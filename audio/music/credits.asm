@@ -1430,32 +1430,32 @@ Music_Credits_branch_1f94b:
 
 Music_Credits_Ch4:
 	toggle_noise 3
-	dspeed 12
-	dnote 9, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 9, 1
-	dnote 8, 1
-	dnote 12, 2
-	dnote 9, 1
-	dnote 8, 1
-	dnote 9, 1
-	dnote 8, 1
-	dnote 11, 4
-	dnote 11, 4
+	drum_speed 12
+	drum_note 9, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 9, 1
+	drum_note 8, 1
+	drum_note 12, 2
+	drum_note 9, 1
+	drum_note 8, 1
+	drum_note 9, 1
+	drum_note 8, 1
+	drum_note 11, 4
+	drum_note 11, 4
 	sound_call Music_Credits_branch_1fa4d
 	sound_call Music_Credits_branch_1fa4d
 	sound_call Music_Credits_branch_1fa4d
@@ -1465,212 +1465,212 @@ Music_Credits_Ch4:
 	sound_call Music_Credits_branch_1fa4d
 	sound_call Music_Credits_branch_1fa6d
 Music_Credits_branch_1f9a8:
-	dnote 11, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 3, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 11, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 3, 2
-	dnote 7, 2
+	drum_note 11, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 3, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 11, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 3, 2
+	drum_note 7, 2
 	sound_loop 7, Music_Credits_branch_1f9a8
-	dnote 9, 1
-	dnote 8, 1
-	dnote 3, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 3, 1
-	dnote 7, 2
-	dnote 3, 1
-	dnote 8, 1
-	dnote 3, 1
-	dnote 8, 1
-	dnote 2, 1
-	dnote 2, 1
-	dnote 3, 1
-	dnote 3, 1
+	drum_note 9, 1
+	drum_note 8, 1
+	drum_note 3, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 3, 1
+	drum_note 7, 2
+	drum_note 3, 1
+	drum_note 8, 1
+	drum_note 3, 1
+	drum_note 8, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 3, 1
+	drum_note 3, 1
 Music_Credits_branch_1f9c6:
-	dnote 11, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 3, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 11, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 3, 2
-	dnote 7, 2
+	drum_note 11, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 3, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 11, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 3, 2
+	drum_note 7, 2
 	sound_loop 7, Music_Credits_branch_1f9c6
-	dnote 9, 1
-	dnote 8, 1
-	dnote 7, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 11, 4
-	dnote 2, 4
-	dnote 9, 1
-	dnote 8, 1
-	dnote 12, 2
-	dnote 9, 1
-	dnote 8, 1
-	dnote 12, 2
-	dnote 11, 4
-	dnote 11, 4
+	drum_note 9, 1
+	drum_note 8, 1
+	drum_note 7, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 11, 4
+	drum_note 2, 4
+	drum_note 9, 1
+	drum_note 8, 1
+	drum_note 12, 2
+	drum_note 9, 1
+	drum_note 8, 1
+	drum_note 12, 2
+	drum_note 11, 4
+	drum_note 11, 4
 	sound_call Music_Credits_branch_1fa4d
 	sound_call Music_Credits_branch_1fa4d
 	sound_call Music_Credits_branch_1fa4d
 	sound_call Music_Credits_branch_1fa6d
 Music_Credits_branch_1f9f2:
-	dnote 11, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 3, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 11, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 3, 2
-	dnote 7, 2
+	drum_note 11, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 3, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 11, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 3, 2
+	drum_note 7, 2
 	sound_loop 7, Music_Credits_branch_1f9f2
-	dnote 9, 1
-	dnote 8, 1
-	dnote 7, 2
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 7
-	dspeed 8
-	dnote 11, 1
-	dnote 11, 1
-	dnote 11, 1
-	dspeed 12
-	dnote 12, 16
+	drum_note 9, 1
+	drum_note 8, 1
+	drum_note 7, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 7
+	drum_speed 8
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_speed 12
+	drum_note 12, 16
 	rest 16
-	dnote 12, 15
+	drum_note 12, 15
 	rest 1
-	dnote 12, 8
-	dnote 12, 8
-	dnote 12, 16
+	drum_note 12, 8
+	drum_note 12, 8
+	drum_note 12, 16
 	rest 16
-	dnote 12, 16
-	dnote 12, 8
-	dnote 12, 6
-	dnote 3, 1
-	dnote 3, 1
-	dnote 12, 12
-	dspeed 8
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 2
-	dspeed 12
-	dnote 12, 12
-	dspeed 8
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 2
-	dnote 12, 12
-	dspeed 12
-	dnote 3, 1
+	drum_note 12, 16
+	drum_note 12, 8
+	drum_note 12, 6
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 12, 12
+	drum_speed 8
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_speed 12
+	drum_note 12, 12
+	drum_speed 8
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 12, 12
+	drum_speed 12
+	drum_note 3, 1
 	rest 1
-	dnote 3, 1
+	drum_note 3, 1
 	rest 1
-	dspeed 8
-	dnote 2, 2
-	dnote 2, 2
-	dnote 3, 2
-	dspeed 12
-	dnote 3, 1
+	drum_speed 8
+	drum_note 2, 2
+	drum_note 2, 2
+	drum_note 3, 2
+	drum_speed 12
+	drum_note 3, 1
 	rest 3
-	dnote 3, 1
+	drum_note 3, 1
 	rest 3
-	dspeed 8
-	dnote 2, 2
-	dnote 2, 2
-	dnote 2, 2
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 2
-	dspeed 12
-	dnote 3, 1
+	drum_speed 8
+	drum_note 2, 2
+	drum_note 2, 2
+	drum_note 2, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_speed 12
+	drum_note 3, 1
 	rest 7
-	dnote 11, 8
+	drum_note 11, 8
 	rest 16
 	rest 16
 	rest 16
 	sound_ret
 
 Music_Credits_branch_1fa4d:
-	dnote 9, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 3, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 9, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 3, 1
-	dnote 8, 1
-	dnote 7, 2
+	drum_note 9, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 3, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 9, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 3, 1
+	drum_note 8, 1
+	drum_note 7, 2
 	sound_ret
 
 Music_Credits_branch_1fa6d:
-	dnote 9, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 1
-	dnote 3, 1
-	dnote 8, 1
-	dnote 3, 1
-	dnote 8, 1
-	dnote 9, 1
-	dnote 8, 1
-	dnote 3, 1
-	dnote 8, 1
-	dnote 9, 1
-	dnote 3, 1
-	dnote 7, 2
-	dnote 3, 1
-	dnote 8, 1
-	dnote 3, 1
-	dnote 8, 1
-	dnote 3, 1
-	dnote 3, 1
-	dnote 11, 1
-	dnote 3, 1
+	drum_note 9, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 3, 1
+	drum_note 8, 1
+	drum_note 3, 1
+	drum_note 8, 1
+	drum_note 9, 1
+	drum_note 8, 1
+	drum_note 3, 1
+	drum_note 8, 1
+	drum_note 9, 1
+	drum_note 3, 1
+	drum_note 7, 2
+	drum_note 3, 1
+	drum_note 8, 1
+	drum_note 3, 1
+	drum_note 8, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 11, 1
+	drum_note 3, 1
 	sound_ret
 

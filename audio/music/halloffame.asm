@@ -137,37 +137,37 @@ Music_HallOfFame_branch_f0631:
 
 Music_HallOfFame_Ch4:
 	toggle_noise 5
-	dspeed 12
+	drum_speed 12
 	rest 16
 	rest 16
 	rest 16
 	rest 16
-	dspeed 6
+	drum_speed 6
 Music_HallOfFame_branch_f0677:
 	stereo_panning 0, 1
-	dnote 11, 4
-	dnote 11, 8
-	dnote 11, 4
-	dnote 11, 4
-	dnote 11, 4
+	drum_note 11, 4
+	drum_note 11, 8
+	drum_note 11, 4
+	drum_note 11, 4
+	drum_note 11, 4
 	stereo_panning 1, 0
-	dnote 10, 2
-	dnote 10, 2
-	dnote 11, 2
-	dnote 11, 2
-	dnote 11, 4
-	dnote 11, 4
-	dnote 11, 8
-	dnote 11, 4
-	dnote 11, 4
+	drum_note 10, 2
+	drum_note 10, 2
+	drum_note 11, 2
+	drum_note 11, 2
+	drum_note 11, 4
+	drum_note 11, 4
+	drum_note 11, 8
+	drum_note 11, 4
+	drum_note 11, 4
 	stereo_panning 0, 1
-	dnote 11, 1
-	dnote 11, 1
-	dnote 10, 1
-	dnote 10, 1
-	dnote 11, 1
-	dnote 11, 1
-	dnote 11, 1
-	dnote 11, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 1
+	drum_note 10, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 11, 1
 	sound_loop 0, Music_HallOfFame_branch_f0677
 

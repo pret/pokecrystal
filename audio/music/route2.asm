@@ -452,65 +452,65 @@ Music_Route2_branch_edacb:
 
 Music_Route2_Ch4:
 	toggle_noise 5
-	dspeed 12
+	drum_speed 12
 Music_Route2_branch_edae0:
-	dnote 10, 4
-	dnote 10, 4
-	dnote 10, 2
-	dnote 12, 2
-	dnote 10, 2
-	dnote 12, 2
+	drum_note 10, 4
+	drum_note 10, 4
+	drum_note 10, 2
+	drum_note 12, 2
+	drum_note 10, 2
+	drum_note 12, 2
 	sound_loop 3, Music_Route2_branch_edae0
-	dnote 10, 4
-	dnote 10, 4
-	dnote 10, 2
-	dnote 10, 2
-	dnote 4, 4
+	drum_note 10, 4
+	drum_note 10, 4
+	drum_note 10, 2
+	drum_note 10, 2
+	drum_note 4, 4
 Music_Route2_branch_edaef:
-	dnote 10, 4
-	dnote 10, 4
-	dnote 10, 2
-	dnote 10, 2
-	dnote 12, 2
-	dnote 10, 2
+	drum_note 10, 4
+	drum_note 10, 4
+	drum_note 10, 2
+	drum_note 10, 2
+	drum_note 12, 2
+	drum_note 10, 2
 	sound_loop 4, Music_Route2_branch_edaef
 Music_Route2_branch_edaf9:
-	dnote 12, 4
-	dnote 10, 2
-	dnote 12, 2
-	dnote 10, 2
-	dnote 12, 2
-	dnote 10, 2
-	dnote 12, 2
+	drum_note 12, 4
+	drum_note 10, 2
+	drum_note 12, 2
+	drum_note 10, 2
+	drum_note 12, 2
+	drum_note 10, 2
+	drum_note 12, 2
 	sound_loop 7, Music_Route2_branch_edaf9
-	dnote 12, 4
-	dnote 10, 4
-	dnote 10, 2
-	dnote 10, 2
-	dnote 4, 4
+	drum_note 12, 4
+	drum_note 10, 4
+	drum_note 10, 2
+	drum_note 10, 2
+	drum_note 4, 4
 Music_Route2_branch_edb09:
-	dnote 12, 4
-	dnote 1, 4
-	dnote 12, 2
-	dnote 12, 2
-	dnote 1, 4
+	drum_note 12, 4
+	drum_note 1, 4
+	drum_note 12, 2
+	drum_note 12, 2
+	drum_note 1, 4
 	sound_loop 3, Music_Route2_branch_edb09
-	dnote 12, 4
-	dnote 1, 4
-	dnote 2, 2
-	dnote 1, 2
-	dnote 2, 4
+	drum_note 12, 4
+	drum_note 1, 4
+	drum_note 2, 2
+	drum_note 1, 2
+	drum_note 2, 4
 Music_Route2_branch_edb17:
-	dnote 12, 4
-	dnote 1, 4
-	dnote 12, 2
-	dnote 12, 2
-	dnote 1, 4
+	drum_note 12, 4
+	drum_note 1, 4
+	drum_note 12, 2
+	drum_note 12, 2
+	drum_note 1, 4
 	sound_loop 3, Music_Route2_branch_edb17
-	dnote 12, 4
-	dnote 1, 4
-	dnote 3, 2
-	dnote 3, 2
-	dnote 4, 4
+	drum_note 12, 4
+	drum_note 1, 4
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 4, 4
 	sound_loop 0, Music_Route2_branch_edaef
 

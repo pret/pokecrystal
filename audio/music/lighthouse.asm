@@ -291,21 +291,21 @@ Music_Lighthouse_branch_ee69b:
 
 Music_Lighthouse_Ch4:
 	toggle_noise 0
-	dspeed 12
+	drum_speed 12
 Music_Lighthouse_branch_ee6b1:
 	stereo_panning 0, 1
-	dnote 9, 4
-	dnote 6, 2
-	dnote 9, 4
-	dnote 6, 2
-	dnote 10, 2
-	dnote 11, 2
+	drum_note 9, 4
+	drum_note 6, 2
+	drum_note 9, 4
+	drum_note 6, 2
+	drum_note 10, 2
+	drum_note 11, 2
 	stereo_panning 1, 1
-	dnote 9, 2
-	dnote 6, 4
-	dnote 9, 2
-	dnote 6, 4
-	dnote 9, 2
-	dnote 10, 2
+	drum_note 9, 2
+	drum_note 6, 4
+	drum_note 9, 2
+	drum_note 6, 4
+	drum_note 9, 2
+	drum_note 10, 2
 	sound_loop 0, Music_Lighthouse_branch_ee6b1
 

@@ -578,7 +578,7 @@ Music_Route30_branch_efd79:
 
 Music_Route30_Ch4:
 	toggle_noise 3
-	dspeed 12
+	drum_speed 12
 	sound_call Music_Route30_branch_efeb8
 	sound_call Music_Route30_branch_efec1
 Music_Route30_branch_efe84:
@@ -601,71 +601,71 @@ Music_Route30_branch_efe84:
 	sound_loop 0, Music_Route30_branch_efe84
 
 Music_Route30_branch_efeb8:
-	dnote 3, 2
-	dnote 7, 2
-	dnote 7, 2
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 4
+	drum_note 3, 2
+	drum_note 7, 2
+	drum_note 7, 2
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 4
 	sound_ret
 
 Music_Route30_branch_efec1:
-	dnote 3, 2
-	dnote 7, 2
-	dnote 7, 2
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 1
+	drum_note 3, 2
+	drum_note 7, 2
+	drum_note 7, 2
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
 	sound_ret
 
 Music_Route30_branch_efecd:
-	dnote 3, 2
-	dnote 7, 2
-	dnote 7, 2
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 2
-	dnote 3, 2
+	drum_note 3, 2
+	drum_note 7, 2
+	drum_note 7, 2
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
 	sound_ret
 
 Music_Route30_branch_efed7:
-	dnote 3, 2
-	dnote 7, 2
-	dnote 7, 2
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 2
-	dnote 7, 2
-	dnote 3, 2
-	dnote 3, 2
+	drum_note 3, 2
+	drum_note 7, 2
+	drum_note 7, 2
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 2
+	drum_note 7, 2
+	drum_note 3, 2
+	drum_note 3, 2
 	sound_ret
 
 Music_Route30_branch_efee1:
-	dnote 3, 2
-	dnote 7, 2
-	dnote 7, 2
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 2
-	dnote 3, 2
-	dspeed 6
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 1
-	dnote 3, 1
-	dspeed 12
+	drum_note 3, 2
+	drum_note 7, 2
+	drum_note 7, 2
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_speed 6
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_speed 12
 	sound_ret
 

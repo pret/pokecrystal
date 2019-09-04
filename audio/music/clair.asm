@@ -390,46 +390,46 @@ Music_Clair_branch_1fc3c:
 
 Music_Clair_Ch4:
 	toggle_noise 3
-	dspeed 12
+	drum_speed 12
 	stereo_panning 1, 0
-	dnote 12, 8
-	dnote 12, 8
-	dnote 12, 6
+	drum_note 12, 8
+	drum_note 12, 8
+	drum_note 12, 6
 	stereo_panning 1, 1
-	dnote 4, 1
-	dnote 4, 1
-	dnote 3, 2
-	dnote 4, 1
-	dnote 4, 1
-	dnote 3, 2
-	dnote 3, 1
-	dnote 3, 1
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 3, 2
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 3, 2
+	drum_note 3, 1
+	drum_note 3, 1
 Music_Clair_branch_1fc5e:
 	stereo_panning 1, 1
 	sound_call Music_Clair_branch_1fc6e
-	dnote 8, 1
+	drum_note 8, 1
 	stereo_panning 1, 1
 	sound_call Music_Clair_branch_1fc6e
-	dnote 7, 1
+	drum_note 7, 1
 	sound_loop 0, Music_Clair_branch_1fc5e
 
 Music_Clair_branch_1fc6e:
-	dnote 4, 2
+	drum_note 4, 2
 	stereo_panning 1, 0
-	dnote 8, 2
+	drum_note 8, 2
 	stereo_panning 1, 1
-	dnote 3, 2
+	drum_note 3, 2
 	stereo_panning 1, 0
-	dnote 8, 1
-	dnote 8, 1
-	dnote 8, 2
+	drum_note 8, 1
+	drum_note 8, 1
+	drum_note 8, 2
 	stereo_panning 1, 1
-	dnote 4, 1
+	drum_note 4, 1
 	stereo_panning 1, 0
-	dnote 8, 1
+	drum_note 8, 1
 	stereo_panning 1, 1
-	dnote 3, 2
+	drum_note 3, 2
 	stereo_panning 1, 0
-	dnote 8, 1
+	drum_note 8, 1
 	sound_ret
 
