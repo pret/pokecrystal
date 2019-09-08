@@ -609,4 +609,3 @@ Music_KantoGymBattle_branch_ec9e5:
 	note D#, 2
 	note F_, 2
 	sound_loop 0, Music_KantoGymBattle_branch_ec965
-

@@ -181,4 +181,3 @@ Music_WildPokemonVictory_branch_f45f4:
 	rest 4
 	note C#, 2
 	sound_ret
-

@@ -49,4 +49,3 @@ Music_HealPokemon_Ch3:
 	note E_, 6
 	rest 2
 	sound_ret
-

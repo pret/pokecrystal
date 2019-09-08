@@ -351,4 +351,3 @@ Music_AfterTheRivalFight_branch_f5118:
 	drum_note 3, 2
 	drum_note 3, 2
 	sound_loop 0, Music_LookRival_branch_f5118
-

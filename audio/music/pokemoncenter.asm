@@ -403,4 +403,3 @@ Music_PokemonCenter_branch_ed792:
 	drum_note 8, 2
 	drum_note 8, 2
 	sound_loop 0, Music_PokemonCenter_branch_ed792
-

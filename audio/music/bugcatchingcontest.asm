@@ -666,4 +666,3 @@ Music_BugCatchingContest_branch_f7ee2:
 	drum_note 3, 2
 	drum_note 3, 2
 	sound_ret
-

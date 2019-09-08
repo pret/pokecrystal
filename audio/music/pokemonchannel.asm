@@ -230,4 +230,3 @@ Music_PokemonChannel_branch_ee54d:
 	drum_note 11, 4
 	drum_note 11, 4
 	sound_ret
-

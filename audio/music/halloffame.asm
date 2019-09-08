@@ -170,4 +170,3 @@ Music_HallOfFame_branch_f0677:
 	drum_note 11, 1
 	drum_note 11, 1
 	sound_loop 0, Music_HallOfFame_branch_f0677
-

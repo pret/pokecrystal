@@ -181,4 +181,3 @@ Music_IndigoPlateau_branch_ee92a:
 	drum_note 3, 2
 	drum_note 2, 4
 	sound_loop 0, Music_IndigoPlateau_branch_ee92a
-

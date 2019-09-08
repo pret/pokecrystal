@@ -656,4 +656,3 @@ Music_NationalPark_branch_f57c8:
 	drum_note 11, 1
 	drum_note 4, 1
 	sound_loop 0, Music_NationalPark_branch_f57bd
-

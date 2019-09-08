@@ -565,4 +565,3 @@ Music_Gym_branch_f4afa:
 	drum_note 7, 4
 	sound_loop 8, Music_Gym_branch_f4afa
 	sound_loop 0, Music_Gym_branch_f4ac7
-

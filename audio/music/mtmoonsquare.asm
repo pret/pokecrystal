@@ -106,4 +106,3 @@ Music_MtMoonSquare_branch_f489b:
 	note_type 12, 6, 2
 	sound_loop 2, Music_MtMoonSquare_branch_f489b
 	sound_loop 0, Music_MtMoonSquare_branch_f4862
-

@@ -304,4 +304,3 @@ Music_DancingHall_branch_efae3:
 	octave 6
 	note D_, 1
 	sound_loop 0, Music_DancingHall_branch_efae3
-

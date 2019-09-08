@@ -2111,4 +2111,3 @@ Cry_Rattata_Ch8:
 	noise_note 1, 10, 2, 57
 	noise_note 8, 9, 1, 73
 	sound_ret
-

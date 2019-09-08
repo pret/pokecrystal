@@ -136,4 +136,3 @@ Music_LookOfficer_branch_ed8c8:
 	note E_, 8
 	note C#, 8
 	sound_loop 0, Music_LookOfficer_branch_ed8c8
-

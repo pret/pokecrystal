@@ -34,4 +34,3 @@ Music_LakeOfRageRocketRadio_Ch3:
 	vibrato 16, 4, 4
 	rest 4
 	sound_loop 0, Music_LakeOfRageRocketRadio_branch_ef5c9
-

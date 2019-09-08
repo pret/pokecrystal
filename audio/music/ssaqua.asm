@@ -1170,4 +1170,3 @@ Music_SSAqua_branch_eb2c7:
 	drum_note 3, 2
 	drum_note 1, 2
 	sound_ret
-

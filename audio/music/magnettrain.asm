@@ -280,4 +280,3 @@ Music_MagnetTrain_branch_ef71e:
 	drum_note 8, 2
 	drum_note 8, 2
 	sound_ret
-

@@ -519,4 +519,3 @@ Music_Route36_branch_e9741:
 	drum_note 10, 1
 	drum_speed 12
 	sound_ret
-

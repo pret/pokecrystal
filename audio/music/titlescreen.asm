@@ -1167,4 +1167,3 @@ Music_TitleScreen_branch_ebd93:
 	drum_note 1, 4
 	drum_note 1, 4
 	sound_ret
-

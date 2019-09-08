@@ -136,4 +136,3 @@ Music_MtMoon_branch_edbc3:
 	stereo_panning TRUE, FALSE
 	drum_note 11, 8
 	sound_loop 0, Music_MtMoon_branch_edbc3
-

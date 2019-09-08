@@ -513,4 +513,3 @@ Music_Route2_branch_edb17:
 	drum_note 3, 2
 	drum_note 4, 4
 	sound_loop 0, Music_Route2_branch_edaef
-

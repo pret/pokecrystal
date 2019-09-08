@@ -1028,4 +1028,3 @@ Music_RocketBattle_branch_ea033:
 	octave 2
 	note A_, 2
 	sound_ret
-

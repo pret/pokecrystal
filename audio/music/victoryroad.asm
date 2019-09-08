@@ -196,4 +196,3 @@ Music_VictoryRoad_branch_f6d63:
 	drum_note 3, 2
 	drum_note 4, 1
 	sound_loop 0, Music_VictoryRoad_branch_f6d63
-

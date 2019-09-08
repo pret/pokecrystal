@@ -655,4 +655,3 @@ Music_MobileAdapter_branch_1ff60:
 	drum_note 3, 1
 	drum_note 3, 1
 	sound_ret
-

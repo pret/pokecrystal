@@ -473,4 +473,3 @@ Music_RocketTheme_branch_f78de:
 	sound_call Music_RocketTheme_branch_f765c
 	sound_call Music_RocketTheme_branch_f765c
 	sound_loop 0, Music_RocketTheme_branch_f78c3
-

@@ -719,4 +719,3 @@ Music_Surf_branch_f54c8:
 	note G#, 1
 	rest 3
 	sound_ret
-

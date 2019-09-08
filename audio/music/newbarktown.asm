@@ -323,4 +323,3 @@ Music_NewBarkTown_branch_eb408:
 	note D_, 1
 	note E_, 1
 	sound_loop 0, Music_NewBarkTown_branch_eb408
-

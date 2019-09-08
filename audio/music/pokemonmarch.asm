@@ -458,4 +458,3 @@ Music_PokemonMarch_branch_f704c:
 	drum_note 3, 2
 	drum_note 2, 2
 	sound_ret
-

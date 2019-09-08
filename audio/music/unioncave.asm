@@ -257,4 +257,3 @@ Music_UnionCave_branch_f5da9:
 	rest 8
 	sound_loop 0, Music_UnionCave_branch_f5da9
 	sound_loop 0, Music_UnionCave_branch_f5da9
-

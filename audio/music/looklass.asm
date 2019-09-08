@@ -113,4 +113,3 @@ Music_LookLass_branch_ed81f:
 	drum_note 2, 1
 	drum_note 2, 1
 	sound_loop 0, Music_LookLass_branch_ed81f
-

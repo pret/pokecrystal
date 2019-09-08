@@ -395,4 +395,3 @@ Music_RocketTheme_branch_f7664:
 	drum_note 3, 2
 	drum_note 7, 2
 	sound_ret
-

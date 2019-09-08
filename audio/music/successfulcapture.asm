@@ -21,4 +21,3 @@ Music_SuccessfulCapture_Ch2:
 Music_SuccessfulCapture_Ch3:
 	note_type 12, 2, 5
 	sound_jump Music_SuccessfulCapture_branch_f45cf
-

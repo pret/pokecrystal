@@ -859,4 +859,3 @@ Music_RivalBattle_branch_e9b65:
 	note D#, 2
 	sound_loop 2, Music_RivalBattle_branch_e9b65
 	sound_ret
-

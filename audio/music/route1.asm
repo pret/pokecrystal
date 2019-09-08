@@ -645,4 +645,3 @@ Music_Route1_branch_ec20c:
 	note A_, 1
 	rest 3
 	sound_loop 0, Music_Route1_branch_ec20c
-

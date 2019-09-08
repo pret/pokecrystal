@@ -426,4 +426,3 @@ Music_Route37_branch_eeb6b:
 	drum_note 4, 1
 	drum_note 4, 1
 	sound_ret
-

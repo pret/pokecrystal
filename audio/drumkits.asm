@@ -258,4 +258,3 @@ Kick2:
 	noise_note 32, 10, 8, 107
 	noise_note 32, 7, 1, 0
 	sound_ret
-

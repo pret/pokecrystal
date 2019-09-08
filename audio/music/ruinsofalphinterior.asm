@@ -45,4 +45,3 @@ Music_RuinsOfAlphInterior_branch_ebdd7:
 	note E_, 2
 	rest 10
 	sound_loop 0, Music_RuinsOfAlphInterior_branch_ebdd7
-

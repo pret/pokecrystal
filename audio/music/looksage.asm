@@ -177,4 +177,3 @@ Music_LookSage_branch_ee430:
 	note G_, 1
 	note G#, 1
 	sound_loop 0, Music_LookSage_branch_ee430
-

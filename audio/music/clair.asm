@@ -432,4 +432,3 @@ Music_Clair_branch_1fc6e:
 	stereo_panning TRUE, FALSE
 	drum_note 8, 1
 	sound_ret
-

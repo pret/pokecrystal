@@ -283,4 +283,3 @@ Sfx_Twinkle_Ch5:
 	octave 5
 	note G_, 6
 	sound_ret
-

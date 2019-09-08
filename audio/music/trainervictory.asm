@@ -228,4 +228,3 @@ Music_TrainerVictory_branch_ebfb1:
 	octave 2
 	note B_, 2
 	sound_ret
-

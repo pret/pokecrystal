@@ -63,4 +63,3 @@ Music_AfterTheRivalFight_Ch4:
 	drum_note 3, 2
 	drum_note 3, 2
 	sound_loop 0, Music_AfterTheRivalFight_branch_f5118
-

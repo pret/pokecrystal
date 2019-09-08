@@ -418,4 +418,3 @@ Music_GymLeaderVictory_branch_f480b:
 	drum_note 4, 2
 	sound_loop 3, Music_GymLeaderVictory_branch_f480b
 	sound_ret
-

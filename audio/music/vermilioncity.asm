@@ -336,4 +336,3 @@ Music_VermilionCity_branch_eb7f5:
 	octave 4
 	note C#, 1
 	sound_ret
-

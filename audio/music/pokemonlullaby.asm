@@ -131,4 +131,3 @@ Music_PokemonLullaby_branch_f6e06:
 	note B_, 2
 	note A_, 2
 	sound_loop 0, Music_PokemonLullaby_branch_f6e06
-

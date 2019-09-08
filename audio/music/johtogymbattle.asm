@@ -1016,4 +1016,3 @@ Music_JohtoGymBattle_branch_ea9b8:
 	note F_, 2
 	note D#, 2
 	sound_ret
-

@@ -519,4 +519,3 @@ Music_Route29_branch_f05b0:
 	drum_note 6, 2
 	drum_note 6, 4
 	sound_loop 0, Music_Route29_branch_f05b0
-

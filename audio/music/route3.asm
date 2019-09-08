@@ -500,4 +500,3 @@ Music_Route3_branch_ec4f0:
 	drum_note 2, 1
 	drum_note 2, 1
 	sound_loop 0, Music_Route3_branch_ec4f0
-

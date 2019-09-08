@@ -630,4 +630,3 @@ Music_BuenasPassword_branch_178424:
 	drum_note 3, 1
 	drum_note 3, 1
 	sound_ret
-

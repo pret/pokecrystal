@@ -536,4 +536,3 @@ Music_ElmsLab_Ch4:
 Music_ElmsLab_branch_ea2b9:
 	drum_note 8, 4
 	sound_loop 0, Music_ElmsLab_branch_ea2b9
-

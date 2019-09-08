@@ -291,4 +291,3 @@ Music_LookYoungster_branch_f67ae:
 	rest 1
 	sound_loop 0, Music_LookYoungster_branch_f67ae
 	sound_ret
-

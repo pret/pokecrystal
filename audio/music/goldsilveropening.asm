@@ -614,4 +614,3 @@ Music_GoldSilverOpening_Ch3:
 	note C_, 1
 	rest 13
 	sound_ret
-

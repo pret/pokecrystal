@@ -107,4 +107,3 @@ Music_Mom_branch_f6c56:
 	drum_note 4, 1
 	rest 1
 	sound_loop 0, Music_Mom_branch_f6c56
-

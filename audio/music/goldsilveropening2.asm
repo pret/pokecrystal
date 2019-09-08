@@ -216,4 +216,3 @@ Music_GoldSilverOpening2_branch_f73f8:
 	sound_loop 4, Music_GoldSilverOpening2_branch_f73f8
 	drum_note 1, 16
 	sound_ret
-

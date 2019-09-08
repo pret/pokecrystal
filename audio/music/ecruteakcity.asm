@@ -666,4 +666,3 @@ Music_EcruteakCity_branch_ef569:
 	rest 1
 	note B_, 1
 	sound_ret
-

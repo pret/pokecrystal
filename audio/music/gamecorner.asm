@@ -805,4 +805,3 @@ Music_GameCorner_branch_ee10f:
 	drum_note 3, 1
 	drum_note 7, 2
 	sound_ret
-

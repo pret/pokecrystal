@@ -513,4 +513,3 @@ Music_Bicycle_branch_ee34c:
 	drum_note 6, 2
 	drum_note 6, 2
 	sound_loop 0, Music_Bicycle_branch_ee34b
-

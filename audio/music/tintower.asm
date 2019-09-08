@@ -290,4 +290,3 @@ Music_TinTower_branch_f694c:
 	drum_note 8, 2
 	drum_note 6, 2
 	sound_loop 0, Music_TinTower_branch_f694c
-

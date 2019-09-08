@@ -773,4 +773,3 @@ Music_ChampionBattle_branch_ead8e:
 	note D#, 2
 	note E_, 2
 	sound_ret
-

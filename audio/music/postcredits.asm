@@ -263,4 +263,3 @@ Music_PostCredits_branch_cfe5a:
 	note E_, 2
 	note F_, 2
 	sound_loop 0, Music_PostCredits_branch_cfe5a
-

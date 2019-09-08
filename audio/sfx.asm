@@ -5222,4 +5222,3 @@ Sfx_GlassTing2_Ch6:
 	duty_cycle 2
 	square_note 16, 13, 1, 2013
 	sound_ret
-

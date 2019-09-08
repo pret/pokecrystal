@@ -473,4 +473,3 @@ Music_GoldenrodCity_branch_eb66d:
 	drum_note 8, 1
 	drum_note 8, 1
 	sound_ret
-

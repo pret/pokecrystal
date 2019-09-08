@@ -583,4 +583,3 @@ Music_JohtoWildBattle_branch_f6055:
 	note G#, 2
 	sound_loop 4, Music_JohtoWildBattle_branch_f6055
 	sound_ret
-

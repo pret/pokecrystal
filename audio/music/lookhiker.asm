@@ -113,4 +113,3 @@ Music_LookHiker_branch_f749a:
 	drum_note 3, 2
 	drum_note 8, 2
 	sound_loop 0, Music_LookHiker_branch_f749a
-

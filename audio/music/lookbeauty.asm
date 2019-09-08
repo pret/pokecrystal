@@ -324,4 +324,3 @@ Music_LookBeauty_branch_eefa1:
 	drum_note 3, 2
 	drum_note 8, 2
 	sound_ret
-

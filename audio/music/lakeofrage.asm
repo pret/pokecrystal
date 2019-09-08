@@ -321,4 +321,3 @@ Music_LakeOfRage_branch_ee83b:
 	drum_note 3, 1
 	drum_note 3, 1
 	sound_loop 0, Music_LakeOfRage_branch_ee83b
-

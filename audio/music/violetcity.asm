@@ -773,4 +773,3 @@ Music_VioletCity_branch_f037a:
 	drum_note 3, 2
 	drum_note 4, 2
 	sound_ret
-

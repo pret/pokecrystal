@@ -308,4 +308,3 @@ Music_Lighthouse_branch_ee6b1:
 	drum_note 9, 2
 	drum_note 10, 2
 	sound_loop 0, Music_Lighthouse_branch_ee6b1
-

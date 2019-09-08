@@ -27,4 +27,3 @@ Music_JohtoWildBattleNight_Ch2:
 Music_JohtoWildBattleNight_Ch3:
 	note_type 12, 1, 1
 	sound_loop 0, Music_JohtoWildBattleNight_branch_f5f94
-

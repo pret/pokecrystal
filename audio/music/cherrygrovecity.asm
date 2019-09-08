@@ -304,4 +304,3 @@ Music_CherrygroveCity_branch_f5c4d:
 	drum_note 2, 2
 	drum_note 8, 2
 	sound_loop 0, Music_CherrygroveCity_branch_f5c4d
-

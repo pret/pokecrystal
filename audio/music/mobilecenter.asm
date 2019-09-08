@@ -482,4 +482,3 @@ Music_MobileCenter_branch_179813:
 	drum_note 2, 1
 	drum_note 2, 1
 	sound_loop 0, Music_MobileCenter_branch_179813
-

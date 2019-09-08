@@ -482,4 +482,3 @@ Music_DarkCave_branch_ea4ee:
 	drum_note 2, 2
 	drum_note 2, 2
 	sound_loop 0, Music_DarkCave_branch_ea4ee
-

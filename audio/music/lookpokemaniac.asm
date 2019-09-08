@@ -158,4 +158,3 @@ Music_LookPokemaniac_branch_ebe70:
 	note C_, 1
 	rest 1
 	sound_ret
-

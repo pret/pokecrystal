@@ -306,4 +306,3 @@ Music_ProfOaksPokemonTalk_branch_f4d95:
 	note A#, 1
 	rest 1
 	sound_loop 0, Music_ProfOaksPokemonTalk_branch_f4d95
-

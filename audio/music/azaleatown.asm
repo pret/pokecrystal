@@ -652,4 +652,3 @@ Music_AzaleaTown_branch_f5aea:
 	drum_note 3, 2
 	drum_note 7, 2
 	sound_loop 0, Music_AzaleaTown_branch_f5aea
-

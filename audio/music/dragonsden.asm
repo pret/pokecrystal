@@ -169,4 +169,3 @@ Music_DragonsDen_branch_eedbd:
 	stereo_panning TRUE, FALSE
 	drum_note 7, 4
 	sound_loop 0, Music_DragonsDen_branch_eedbd
-

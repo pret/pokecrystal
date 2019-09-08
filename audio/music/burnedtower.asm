@@ -258,4 +258,3 @@ Music_BurnedTower_branch_f6be7:
 	drum_note 9, 2
 	drum_note 8, 4
 	sound_loop 0, Music_BurnedTower_branch_f6be7
-

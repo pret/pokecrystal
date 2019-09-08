@@ -513,4 +513,3 @@ Music_LavenderTown_branch_ef941:
 	note E_, 2
 	note F_, 2
 	sound_loop 0, Music_LavenderTown_branch_ef941
-

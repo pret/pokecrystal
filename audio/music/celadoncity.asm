@@ -384,4 +384,3 @@ Music_CeladonCity_branch_f4510:
 	note A_, 2
 	note B_, 2
 	sound_ret
-

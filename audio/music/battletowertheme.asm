@@ -684,4 +684,3 @@ Music_BattleTowerTheme_branch_178b76:
 	drum_note 3, 1
 	drum_note 2, 1
 	sound_ret
-

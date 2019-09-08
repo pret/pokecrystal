@@ -664,4 +664,3 @@ Music_Route26_branch_ef2b0:
 	drum_note 3, 2
 	drum_note 5, 2
 	sound_ret
-

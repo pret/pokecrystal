@@ -2055,4 +2055,3 @@ Music_SuicuneBattle_branch_179182:
 	note D_, 2
 	note E_, 2
 	sound_loop 0, Music_SuicuneBattle_branch_179182
-

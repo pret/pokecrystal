@@ -607,4 +607,3 @@ Music_LookMysticalMan_branch_1786df:
 	drum_note 3, 1
 	drum_note 3, 1
 	sound_ret
-

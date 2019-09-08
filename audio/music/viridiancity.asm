@@ -781,4 +781,3 @@ Music_ViridianCity_branch_f434b:
 	drum_note 3, 2
 	drum_note 7, 2
 	sound_ret
-

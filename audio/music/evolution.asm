@@ -198,4 +198,3 @@ Music_Evolution_branch_f07f0:
 	drum_note 5, 2
 	drum_note 5, 2
 	sound_loop 0, Music_Evolution_branch_f07f0
-

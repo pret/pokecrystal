@@ -226,4 +226,3 @@ Music_PokeFluteChannel_branch_f7c05:
 	note F_, 2
 	note G_, 4
 	sound_ret
-

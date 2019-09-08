@@ -241,4 +241,3 @@ Music_SproutTower_branch_f6a7f:
 	stereo_panning TRUE, TRUE
 	drum_note 7, 4
 	sound_loop 0, Music_SproutTower_branch_f6a7f
-

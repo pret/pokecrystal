@@ -668,4 +668,3 @@ Music_Route30_branch_efee1:
 	drum_note 3, 1
 	drum_speed 12
 	sound_ret
-

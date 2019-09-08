@@ -1330,4 +1330,3 @@ Music_JohtoTrainerBattle_branch_f66b4:
 	note G#, 1
 	note A#, 2
 	sound_ret
-

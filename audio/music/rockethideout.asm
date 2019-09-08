@@ -306,4 +306,3 @@ Music_RocketHideout_branch_eecdb:
 	stereo_panning TRUE, FALSE
 	drum_note 10, 4
 	sound_ret
-

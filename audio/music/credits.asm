@@ -1673,4 +1673,3 @@ Music_Credits_branch_1fa6d:
 	drum_note 11, 1
 	drum_note 3, 1
 	sound_ret
-

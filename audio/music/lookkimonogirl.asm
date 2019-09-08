@@ -264,4 +264,3 @@ Music_LookKimonoGirl_branch_f7aec:
 	note D_, 8
 	note E_, 8
 	sound_loop 0, Music_LookKimonoGirl_branch_f7aec
-

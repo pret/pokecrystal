@@ -172,4 +172,3 @@ Music_ContestResults_branch_efbed:
 	drum_note 8, 1
 	drum_note 8, 1
 	sound_loop 0, Music_ContestResults_branch_efbed
-

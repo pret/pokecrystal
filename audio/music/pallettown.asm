@@ -356,4 +356,3 @@ Music_PalletTown_branch_f4c2d:
 	note B_, 8
 	note A_, 8
 	sound_loop 0, Music_PalletTown_branch_f4c2d
-

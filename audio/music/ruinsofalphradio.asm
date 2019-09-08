@@ -72,4 +72,3 @@ Music_RuinsOfAlphRadio_branch_eee35:
 	note C_, 1
 	rest 16
 	sound_loop 0, Music_RuinsOfAlphRadio_branch_eee35
-

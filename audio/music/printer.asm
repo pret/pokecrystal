@@ -318,4 +318,3 @@ Music_Printer_branch_f0823:
 	note D#, 1
 	rest 1
 	sound_loop 0, Music_Printer_branch_f0823
-

@@ -1215,4 +1215,3 @@ Music_KantoWildBattle_branch_ed39e:
 	note G_, 16
 	note G_, 16
 	sound_loop 0, Music_KantoWildBattle_branch_ed39e
-

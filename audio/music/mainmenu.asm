@@ -141,4 +141,3 @@ Music_MainMenu_branch_f79a5:
 	drum_note 3, 1
 	drum_note 3, 1
 	sound_loop 0, Music_MainMenu_branch_f79a5
-

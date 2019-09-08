@@ -449,4 +449,3 @@ Music_Route12_branch_ec717:
 	drum_note 2, 1
 	drum_note 2, 1
 	sound_ret
-

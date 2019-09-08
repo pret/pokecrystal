@@ -358,4 +358,3 @@ Music_CrystalOpening_Ch4:
 	rest 16
 	rest 16
 	sound_ret
-

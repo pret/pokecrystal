@@ -1535,4 +1535,3 @@ Music_KantoTrainerBattle_branch_ece5a:
 	octave 5
 	note G_, 4
 	sound_loop 0, Music_KantoTrainerBattle_branch_ece5a
-

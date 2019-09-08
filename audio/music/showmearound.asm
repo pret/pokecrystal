@@ -348,4 +348,3 @@ Music_ShowMeAround_branch_edd5e:
 	drum_note 3, 2
 	drum_note 7, 2
 	sound_ret
-
