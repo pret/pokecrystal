@@ -156,7 +156,7 @@ ENDM
 	enum force_stereo_panning_cmd ; $e4
 force_stereo_panning: MACRO
 	db force_stereo_panning_cmd
-	dn %1111 * \1, %1111 * \2 ; left enable, right enable
+	dn %1111 * (1 && \1), %1111 * (1 && \2) ; left enable, right enable
 ENDM
 
 	enum volume_cmd ; $e5
@@ -229,7 +229,7 @@ ENDM
 	enum stereo_panning_cmd ; $ef
 stereo_panning: MACRO
 	db stereo_panning_cmd
-	dn %1111 * \1, %1111 * \2 ; left enable, right enable
+	dn %1111 * (1 && \1), %1111 * (1 && \2) ; left enable, right enable
 ENDM
 
 	enum sfx_toggle_noise_cmd ; $f0
