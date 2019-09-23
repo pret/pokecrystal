@@ -1778,7 +1778,7 @@ ReceiveItemScript:
 ReceiveTogepiEggScript:
 	waitsfx
 	farwritetext ReceivedItemText
-	playsound SFX_GET_EGG_FROM_DAY_CARE_LADY
+	playsound SFX_GET_EGG
 	waitsfx
 	end
 
