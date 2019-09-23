@@ -3615,8 +3615,8 @@ _RunMobileScript:
 	dw Function17f220 ; 5
 	dw Function17f27b ; 6
 	dw Function17f2cb ; 7
-	dw Function17f2ff ; 8
-	dw Function17f334 ; 9
+	dw MobileScript_PlayerName ; 8
+	dw MobileScript_Prefecture ; 9
 	dw Function17f382 ; a
 	dw Function17f3c9 ; b
 	dw Function17f3f0 ; c
@@ -4068,7 +4068,7 @@ Function17f2cb:
 	and a
 	ret
 
-Function17f2ff:
+MobileScript_PlayerName:
 	pop hl
 	push bc
 	ld a, [hli]
@@ -4080,7 +4080,7 @@ Function17f2ff:
 	ldh [rSVBK], a
 	ld hl, wPlayerName
 	ld de, wc608
-	ld bc, $6
+	ld bc, NAME_LENGTH_JAPANESE
 	call CopyBytes
 	ld a, $4
 	ldh [rSVBK], a
@@ -4097,7 +4097,7 @@ Function17f2ff:
 	and a
 	ret
 
-Function17f334:
+MobileScript_Prefecture:
 	pop hl
 	push bc
 	ld a, [hli]
@@ -4118,9 +4118,9 @@ Function17f334:
 	jr .asm_17f35d
 
 .asm_17f355
-	ld a, $5
+	ld a, BANK(s5_b2f3)
 	call GetSRAMBank
-	ld a, [$b2f3]
+	ld a, [s5_b2f3]
 
 .asm_17f35d
 	ld c, a
@@ -4161,9 +4161,9 @@ Function17f382:
 	jr .asm_17f3ab
 
 .asm_17f3a3
-	ld a, $5
+	ld a, BANK(s5_b2f4)
 	call GetSRAMBank
-	ld de, $b2f4
+	ld de, s5_b2f4
 
 .asm_17f3ab
 	ld a, PRINTNUM_LEADINGZEROS | 2
@@ -4195,7 +4195,7 @@ Function17f3c9:
 	push hl
 	ld hl, wc708
 	ld de, wcd36
-	ld bc, $c
+	ld bc, 12
 	call CopyBytes
 	pop bc
 	pop de
