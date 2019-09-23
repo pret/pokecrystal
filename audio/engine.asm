@@ -1364,7 +1364,7 @@ ParseMusicCommand:
 	jp hl
 
 MusicCommands:
-; entries correspond to macros/sound.asm enumeration
+; entries correspond to macros/scripts/audio.asm enumeration
 	dw Music_Octave8 ; octave 8
 	dw Music_Octave7 ; octave 7
 	dw Music_Octave6 ; octave 6

@@ -1,4 +1,3 @@
-
 HandleNewMap:
 	call ClearUnusedMapBuffer
 	call ResetMapBufferEventFlags

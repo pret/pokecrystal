@@ -348,7 +348,12 @@ s5_aa8e:: ds 7 * $cc ; aa8e
 s5_b023:: ds 105 ; b023
 s5_b08c:: ds 4 ; b08c
 
-	ds $269
+	ds $263
+
+s5_b2f3:: db ; b2f3
+s5_b2f4:: db ; b2f4
+
+	ds 4
 
 s5_b2f9:: db ; b2f9
 s5_b2fa:: db ; b2fa
