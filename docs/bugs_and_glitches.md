@@ -170,7 +170,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ## Glacier Badge may not boost Special Defense depending on the value of Special Attack
 
-As Pryce's dialogue ("That BADGE will raise the SPECIAL stats of POKéMON.") implies, Glacier Badge is intended to boost both Special Attack and Special Defense. However, due to BoostStat overwriting `a` when boosting Special attack, the Special Defense boost will not happen if the unboosted Special Attack stat is either 0 ~ 205, or 433 ~ 660.
+As Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") implies, Glacier Badge is intended to boost both Special Attack and Special Defense. However, due to BoostStat overwriting `a` when boosting Special Attack, the Special Defense boost will not happen if the unboosted Special Attack stat is either 0-205 or 433-660.
 
 **Fix:** Edit `BadgeStatBoosts.CheckBadge` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
 
