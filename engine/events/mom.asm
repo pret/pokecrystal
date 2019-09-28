@@ -38,8 +38,8 @@ BankOfMom:
 	dw .StoreMoney
 	dw .TakeMoney
 	dw .StopOrStartSavingMoney
-	dw .AskDST
 	dw .JustDoWhatYouCan
+	dw .AskDST
 
 .CheckIfBankInitialized:
 	ld a, [wMomSavingMoney]
@@ -79,7 +79,7 @@ BankOfMom:
 	ret
 
 .IsThisAboutYourMoney:
-	ld hl, MomVisitingText1
+	ld hl, MomIsThisAboutYourMoneyText
 	call PrintText
 	call YesNoBox
 	jr c, .nope
@@ -95,7 +95,7 @@ BankOfMom:
 	ret
 
 .AccessBankOfMom:
-	ld hl, MomVisitingText2
+	ld hl, MomBankWhatDoYouWantToDoText
 	call PrintText
 	call LoadStandardMenuHeader
 	ld hl, MenuHeader_0x166b5
@@ -131,7 +131,7 @@ BankOfMom:
 	ret
 
 .StoreMoney:
-	ld hl, MomVisitingText3
+	ld hl, MomStoreMoneyText
 	call PrintText
 	xor a
 	ld hl, wStringBuffer2
@@ -155,7 +155,7 @@ BankOfMom:
 	ld de, wMoney
 	ld bc, wStringBuffer2
 	farcall CompareMoney
-	jr c, .DontHaveThatMuchToDeposit
+	jr c, .InsufficientFundsInWallet
 	ld hl, wStringBuffer2
 	ld de, wStringBuffer2 + 3
 	ld bc, 3
@@ -163,7 +163,7 @@ BankOfMom:
 	ld bc, wMomsMoney
 	ld de, wStringBuffer2
 	farcall GiveMoney
-	jr c, .CantDepositThatMuch
+	jr c, .NotEnoughRoomInBank
 	ld bc, wStringBuffer2 + 3
 	ld de, wMoney
 	farcall TakeMoney
@@ -174,18 +174,18 @@ BankOfMom:
 	ld de, SFX_TRANSACTION
 	call PlaySFX
 	call WaitSFX
-	ld hl, MomVisitingText11
+	ld hl, MomStoredMoneyText
 	call PrintText
 	ld a, $8
 	jr .done_4
 
-.DontHaveThatMuchToDeposit:
-	ld hl, MomVisitingText8
+.InsufficientFundsInWallet:
+	ld hl, MomInsufficientFundsInWalletText
 	call PrintText
 	ret
 
-.CantDepositThatMuch:
-	ld hl, MomVisitingText9
+.NotEnoughRoomInBank:
+	ld hl, MomNotEnoughRoomInBankText
 	call PrintText
 	ret
 
@@ -197,7 +197,7 @@ BankOfMom:
 	ret
 
 .TakeMoney:
-	ld hl, MomVisitingText4
+	ld hl, MomTakeMoneyText
 	call PrintText
 	xor a
 	ld hl, wStringBuffer2
@@ -240,18 +240,18 @@ BankOfMom:
 	ld de, SFX_TRANSACTION
 	call PlaySFX
 	call WaitSFX
-	ld hl, MomVisitingText12
+	ld hl, MomTakenMoneyText
 	call PrintText
 	ld a, $8
 	jr .done_5
 
 .InsufficientFundsInBank:
-	ld hl, MomVisitingText6
+	ld hl, MomInsufficientFundsInBankText
 	call PrintText
 	ret
 
 .NotEnoughRoomInWallet:
-	ld hl, MomVisitingText7
+	ld hl, MomNotEnoughRoomInWalletText
 	call PrintText
 	ret
 
@@ -263,13 +263,13 @@ BankOfMom:
 	ret
 
 .StopOrStartSavingMoney:
-	ld hl, MomVisitingText5
+	ld hl, MomSaveMoneyText
 	call PrintText
 	call YesNoBox
 	jr c, .StopSavingMoney
 	ld a, (1 << MOM_ACTIVE_F) | (1 << MOM_SAVING_SOME_MONEY_F)
 	ld [wMomSavingMoney], a
-	ld hl, MomVisitingText10
+	ld hl, MomStartSavingMoneyText
 	call PrintText
 	ld a, $8
 	ld [wJumptableIndex], a
@@ -282,11 +282,11 @@ BankOfMom:
 	ld [wJumptableIndex], a
 	ret
 
-.AskDST:
-	ld hl, MomVisitingText13
+.JustDoWhatYouCan:
+	ld hl, MomJustDoWhatYouCanText
 	call PrintText
 
-.JustDoWhatYouCan:
+.AskDST:
 	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
@@ -595,56 +595,56 @@ MomLeavingText3:
 	text_far _MomLeavingText3
 	text_end
 
-MomVisitingText1:
-	text_far _MomVisitingText1
+MomIsThisAboutYourMoneyText:
+	text_far _MomIsThisAboutYourMoneyText
 	text_end
 
-MomVisitingText2:
-	text_far _MomVisitingText2
+MomBankWhatDoYouWantToDoText:
+	text_far _MomBankWhatDoYouWantToDoText
 	text_end
 
-MomVisitingText3:
-	text_far _MomVisitingText3
+MomStoreMoneyText:
+	text_far _MomStoreMoneyText
 	text_end
 
-MomVisitingText4:
-	text_far _MomVisitingText4
+MomTakeMoneyText:
+	text_far _MomTakeMoneyText
 	text_end
 
-MomVisitingText5:
-	text_far _MomVisitingText5
+MomSaveMoneyText:
+	text_far _MomSaveMoneyText
 	text_end
 
-MomVisitingText6:
-	text_far _MomVisitingText6
+MomInsufficientFundsInBankText:
+	text_far _MomInsufficientFundsInBankText
 	text_end
 
-MomVisitingText7:
-	text_far _MomVisitingText7
+MomNotEnoughRoomInWalletText:
+	text_far _MomNotEnoughRoomInWalletText
 	text_end
 
-MomVisitingText8:
-	text_far _MomVisitingText8
+MomInsufficientFundsInWalletText:
+	text_far _MomInsufficientFundsInWalletText
 	text_end
 
-MomVisitingText9:
-	text_far _MomVisitingText9
+MomNotEnoughRoomInBankText:
+	text_far _MomNotEnoughRoomInBankText
 	text_end
 
-MomVisitingText10:
-	text_far _MomVisitingText10
+MomStartSavingMoneyText:
+	text_far _MomStartSavingMoneyText
 	text_end
 
-MomVisitingText11:
-	text_far _MomVisitingText11
+MomStoredMoneyText:
+	text_far _MomStoredMoneyText
 	text_end
 
-MomVisitingText12:
-	text_far _MomVisitingText12
+MomTakenMoneyText:
+	text_far _MomTakenMoneyText
 	text_end
 
-MomVisitingText13:
-	text_far _MomVisitingText13
+MomJustDoWhatYouCanText:
+	text_far _MomJustDoWhatYouCanText
 	text_end
 
 Mom_SavedString:

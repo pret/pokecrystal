@@ -1576,7 +1576,7 @@ _MomLeavingText3::
 	para "Now, go on!"
 	done
 
-_MomVisitingText1::
+_MomIsThisAboutYourMoneyText::
 	text "Hi! Welcome home!"
 	line "You're trying very"
 	cont "hard, I see."
@@ -1588,47 +1588,47 @@ _MomVisitingText1::
 	line "your money?"
 	done
 
-_MomVisitingText2::
+_MomBankWhatDoYouWantToDoText::
 	text "What do you want"
 	line "to do?"
 	done
 
-_MomVisitingText3::
+_MomStoreMoneyText::
 	text "How much do you"
 	line "want to save?"
 	done
 
-_MomVisitingText4::
+_MomTakeMoneyText::
 	text "How much do you"
 	line "want to take?"
 	done
 
-_MomVisitingText5::
+_MomSaveMoneyText::
 	text "Do you want to"
 	line "save some money?"
 	done
 
-_MomVisitingText6::
+_MomInsufficientFundsInBankText::
 	text "You haven't saved"
 	line "that much."
 	prompt
 
-_MomVisitingText7::
+_MomNotEnoughRoomInWalletText::
 	text "You can't take"
 	line "that much."
 	prompt
 
-_MomVisitingText8::
+_MomInsufficientFundsInWalletText::
 	text "You don't have"
 	line "that much."
 	prompt
 
-_MomVisitingText9::
+_MomNotEnoughRoomInBankText::
 	text "You can't save"
 	line "that much."
 	prompt
 
-_MomVisitingText10::
+_MomStartSavingMoneyText::
 	text "OK, I'll save your"
 	line "money. Trust me!"
 
@@ -1636,17 +1636,17 @@ _MomVisitingText10::
 	line "with it!"
 	done
 
-_MomVisitingText11::
+_MomStoredMoneyText::
 	text "Your money's safe"
 	line "here! Get going!"
 	done
 
-_MomVisitingText12::
+_MomTakenMoneyText::
 	text "<PLAYER>, don't"
 	line "give up!"
 	done
 
-_MomVisitingText13::
+_MomJustDoWhatYouCanText::
 	text "Just do what"
 	line "you can."
 	done
