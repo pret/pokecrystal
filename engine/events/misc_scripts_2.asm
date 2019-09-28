@@ -1,11 +1,11 @@
 RepelWoreOffScript::
 	opentext
-	writetext .Text
+	writetext .RepelWoreOffText
 	waitbutton
 	closetext
 	end
 
-.Text:
+.RepelWoreOffText:
 	text_far _RepelWoreOffText
 	text_end
 

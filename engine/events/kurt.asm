@@ -1,18 +1,18 @@
 Kurt_PrintTextWhichApricorn:
-	ld hl, .Text
+	ld hl, .WhichApricornText
 	call PrintText
 	ret
 
-.Text:
+.WhichApricornText:
 	text_far _WhichApricornText
 	text_end
 
 Kurt_PrintTextHowMany:
-	ld hl, .Text
+	ld hl, .HowManyShouldIMakeText
 	call PrintText
 	ret
 
-.Text:
+.HowManyShouldIMakeText:
 	text_far _HowManyShouldIMakeText
 	text_end
 

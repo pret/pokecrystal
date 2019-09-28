@@ -82,7 +82,7 @@ TrainerSchoolboyJack1:
 	iftrue .NumberAccepted
 	checkevent EVENT_JACK_ASKED_FOR_PHONE_NUMBER
 	iftrue .AskAgain
-	writetext SchoolBoyJackTradeMonText
+	writetext SchoolboyJackTradeMonText
 	buttonsound
 	setevent EVENT_JACK_ASKED_FOR_PHONE_NUMBER
 	scall .AskNumber1
@@ -239,7 +239,7 @@ TrainerPokefanfBeverly1:
 	sjump .PackFull
 
 .NoMarill:
-	writetext PokefanBeverlyMarillFriendText
+	writetext PokefanFBeverlyMarillFriendText
 	waitbutton
 	closetext
 	end
@@ -405,7 +405,7 @@ SchoolboyJack1BeatenText:
 	text "Wha-wha-what?"
 	done
 
-SchoolBoyJackTradeMonText:
+SchoolboyJackTradeMonText:
 	text "There is a lot"
 	line "to learn."
 
@@ -459,7 +459,7 @@ PokefanmWilliamAfterBattleText:
 	line "being most lovely."
 	done
 
-PokefanBeverlyMarillFriendText:
+PokefanFBeverlyMarillFriendText:
 	text "My friend keeps a"
 	line "MARILL!"
 

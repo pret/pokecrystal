@@ -1777,7 +1777,7 @@ Slots_AskPlayAgain:
 	ld a, [hli]
 	or [hl]
 	jr nz, .you_have_coins
-	ld hl, .SlotsRanOutText
+	ld hl, .SlotsRanOutOfCoinsText
 	call PrintText
 	ld c, 60
 	call DelayFrames
@@ -1801,8 +1801,8 @@ Slots_AskPlayAgain:
 	scf
 	ret
 
-.SlotsRanOutText:
-	text_far _SlotsRanOutText
+.SlotsRanOutOfCoinsText:
+	text_far _SlotsRanOutOfCoinsText
 	text_end
 
 .SlotsPlayAgainText:
@@ -1846,7 +1846,7 @@ Slots_PayoutText:
 	ld a, [wSlotMatched]
 	cp SLOTS_NO_MATCH
 	jr nz, .MatchedSomething
-	ld hl, .CardFlipDarnText
+	ld hl, .SlotsDarnText
 	call PrintText
 	farcall StubbedTrainerRankings_EndSlotsWinStreak
 	ret
@@ -1906,7 +1906,7 @@ endr
 	text_far _SlotsLinedUpText
 	text_end
 
-.CardFlipDarnText:
+.SlotsDarnText:
 	text_far _SlotsDarnText
 	text_end
 

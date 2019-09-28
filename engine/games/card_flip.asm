@@ -102,7 +102,7 @@ _CardFlip:
 	ret
 
 .AskPlayWithThree:
-	ld hl, .CardFlipAskThreeCoinText
+	ld hl, .CardFlipPlayWithThreeCoinsText
 	call CardFlip_UpdateCoinBalanceDisplay
 	call YesNoBox
 	jr c, .SaidNo
@@ -115,8 +115,8 @@ _CardFlip:
 	ld [wJumptableIndex], a
 	ret
 
-.CardFlipAskThreeCoinText:
-	text_far _CardFlipAskThreeCoinText
+.CardFlipPlayWithThreeCoinsText:
+	text_far _CardFlipPlayWithThreeCoinsText
 	text_end
 
 .DeductCoins:
@@ -130,7 +130,7 @@ _CardFlip:
 	ld a, l
 	cp 3
 	jr nc, .deduct ; You have at least 3 coins.
-	ld hl, .CardFlipNotEnoughText
+	ld hl, .CardFlipNotEnoughCoinsText
 	call CardFlip_UpdateCoinBalanceDisplay
 	ld a, 7
 	ld [wJumptableIndex], a
@@ -154,8 +154,8 @@ _CardFlip:
 	call .Increment
 	ret
 
-.CardFlipNotEnoughText:
-	text_far _CardFlipNotEnoughText
+.CardFlipNotEnoughCoinsText:
+	text_far _CardFlipNotEnoughCoinsText
 	text_end
 
 .ChooseACard:
@@ -235,7 +235,7 @@ _CardFlip:
 	text_end
 
 .PlaceYourBet:
-	ld hl, .CardFlipPlaceBetText
+	ld hl, .CardFlipPlaceYourBetText
 	call CardFlip_UpdateCoinBalanceDisplay
 .betloop
 	call JoyTextDelay
@@ -251,8 +251,8 @@ _CardFlip:
 	call .Increment
 	ret
 
-.CardFlipPlaceBetText:
-	text_far _CardFlipPlaceBetText
+.CardFlipPlaceYourBetText:
+	text_far _CardFlipPlaceYourBetText
 	text_end
 
 .CheckTheCard:

@@ -23,7 +23,7 @@ PhotoStudio:
 	jr .print_text
 
 .egg
-	ld hl, .EggPhotoTalentText
+	ld hl, .EggPhotoText
 
 .print_text
 	call PrintText
@@ -45,6 +45,6 @@ PhotoStudio:
 	text_far _NoPhotoText
 	text_end
 
-.EggPhotoTalentText:
-	text_far _EggPhotoTalentText
+.EggPhotoText:
+	text_far _EggPhotoText
 	text_end

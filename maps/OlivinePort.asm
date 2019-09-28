@@ -34,7 +34,7 @@ OlivinePortSailorAtGangwayScript:
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iftrue OlivinePortAlreadyRodeScript
-	writetext OlivinePortSailorGetAboardText
+	writetext OlivinePortSailorGetOnBoardText
 	waitbutton
 	closetext
 	turnobject OLIVINEPORT_SAILOR1, DOWN
@@ -283,7 +283,7 @@ MovementData_0x74a49:
 	step DOWN
 	step_end
 
-OlivinePortSailorGetAboardText:
+OlivinePortSailorGetOnBoardText:
 	text "We're departing"
 	line "soon. Please get"
 	cont "on board."

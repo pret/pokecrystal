@@ -185,7 +185,7 @@ TrainerSchoolboyChad1:
 	iftrue .HaveChadsNumber
 	checkevent EVENT_CHAD_ASKED_FOR_PHONE_NUMBER
 	iftrue .SecondTimeAsking
-	writetext SchoolBoyChadTestHogText
+	writetext SchoolboyChadSoManyTestsText
 	buttonsound
 	setevent EVENT_CHAD_ASKED_FOR_PHONE_NUMBER
 	scall .AskPhoneNumber1
@@ -350,7 +350,7 @@ SchoolboyChad1BeatenText:
 	line "enough, I guess."
 	done
 
-SchoolBoyChadTestHogText:
+SchoolboyChadSoManyTestsText:
 	text "I have to take so"
 	line "many tests, I"
 

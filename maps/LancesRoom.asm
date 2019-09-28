@@ -80,7 +80,7 @@ LancesRoomLanceScript:
 	appear LANCESROOM_MARY
 	applymovement LANCESROOM_MARY, LancesRoomMovementData_MaryRushesIn
 	opentext
-	writetext LancesRoomMaryReprimandOakText
+	writetext LancesRoomMaryOhNoOakText
 	waitbutton
 	closetext
 	appear LANCESROOM_OAK
@@ -91,7 +91,7 @@ LancesRoomLanceScript:
 	turnobject LANCESROOM_OAK, UP
 	turnobject LANCESROOM_LANCE, LEFT
 	opentext
-	writetext LancesRoomOakCongratsText
+	writetext LancesRoomOakCongratulationsText
 	waitbutton
 	closetext
 	applymovement LANCESROOM_MARY, LancesRoomMovementData_MaryInterviewChampion
@@ -273,7 +273,7 @@ LanceBattleAfterText:
 	line "your #MON."
 	done
 
-LancesRoomMaryReprimandOakText:
+LancesRoomMaryOhNoOakText:
 	text "MARY: Oh, no!"
 	line "It's all over!"
 
@@ -281,7 +281,7 @@ LancesRoomMaryReprimandOakText:
 	line "weren't so slow…"
 	done
 
-LancesRoomOakCongratsText:
+LancesRoomOakCongratulationsText:
 	text "PROF.OAK: Ah,"
 	line "<PLAY_G>!"
 

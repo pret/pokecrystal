@@ -29,7 +29,7 @@ CheckMagikarpLength:
 	call CalcMagikarpLength
 	call PrintMagikarpLength
 	farcall StubbedTrainerRankings_MagikarpLength
-	ld hl, .KarpGuruMeasureText
+	ld hl, .MagikarpGuruMeasureText
 	call PrintText
 
 	; Did we beat the record?
@@ -71,8 +71,8 @@ CheckMagikarpLength:
 	ld [wScriptVar], a
 	ret
 
-.KarpGuruMeasureText:
-	text_far _KarpGuruMeasureText
+.MagikarpGuruMeasureText:
+	text_far _MagikarpGuruMeasureText
 	text_end
 
 Magikarp_LoadFeetInchesChars:

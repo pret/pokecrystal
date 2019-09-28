@@ -413,9 +413,9 @@ WrongNumber:
 	db TRAINER_NONE, PHONE_00
 	dba .script
 .script
-	writetext .Text
+	writetext .PhoneWrongNumberText
 	end
-.Text:
+.PhoneWrongNumberText:
 	text_far _PhoneWrongNumberText
 	text_end
 

@@ -173,7 +173,7 @@ Mom_GetScriptPointer:
 	writetext MomHiHowAreYouText
 	writetext MomFoundADollText
 	writetext MomBoughtWithYourMoneyText
-	writetext MomItsInRoomText
+	writetext MomItsInYourRoomText
 	end
 
 GetItemFromMom:
@@ -226,8 +226,8 @@ MomFoundADollText:
 	text_far _MomFoundADollText
 	text_end
 
-MomItsInRoomText:
-	text_far _MomItsInRoomText
+MomItsInYourRoomText:
+	text_far _MomItsInYourRoomText
 	text_end
 
 	db 0 ; unused

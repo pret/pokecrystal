@@ -2,9 +2,9 @@ PokemonCenterPC:
 	call PC_CheckPartyForPokemon
 	ret c
 	call PC_PlayBootSound
-	ld hl, CenterPCTurnOnText
+	ld hl, PokecenterPCTurnOnText
 	call PC_DisplayText
-	ld hl, CenterPCWhoseText
+	ld hl, PokecenterPCWhoseText
 	call PC_DisplayTextWaitMenu
 	ld hl, .TopMenu
 	call LoadMenuHeader
@@ -104,18 +104,18 @@ PC_CheckPartyForPokemon:
 	ret nz
 	ld de, SFX_CHOOSE_PC_OPTION
 	call PlaySFX
-	ld hl, .PokePCCantUseText
+	ld hl, .PokecenterPCCantUseText
 	call PC_DisplayText
 	scf
 	ret
 
-.PokePCCantUseText:
-	text_far _PokePCCantUseText
+.PokecenterPCCantUseText:
+	text_far _PokecenterPCCantUseText
 	text_end
 
 BillsPC:
 	call PC_PlayChoosePCSound
-	ld hl, CenterPCBillText
+	ld hl, PokecenterPCBillText
 	call PC_DisplayText
 	farcall _BillsPC
 	and a
@@ -123,7 +123,7 @@ BillsPC:
 
 PlayersPC:
 	call PC_PlayChoosePCSound
-	ld hl, CenterPCPlayersText
+	ld hl, PokecenterPCPlayersText
 	call PC_DisplayText
 	ld b, $0
 	call _PlayersPC
@@ -132,7 +132,7 @@ PlayersPC:
 
 OaksPC:
 	call PC_PlayChoosePCSound
-	ld hl, CenterPCOaksText
+	ld hl, PokecenterPCOaksText
 	call PC_DisplayText
 	farcall ProfOaksPC
 	and a
@@ -147,7 +147,7 @@ HallOfFamePC:
 	ret
 
 TurnOffPC:
-	ld hl, CenterPCOaksClosedText
+	ld hl, PokecenterPCOaksClosedText
 	call PrintText
 	scf
 	ret
@@ -633,26 +633,26 @@ PC_DisplayText:
 	call ExitMenu
 	ret
 
-CenterPCTurnOnText:
-	text_far _CenterPCTurnOnText
+PokecenterPCTurnOnText:
+	text_far _PokecenterPCTurnOnText
 	text_end
 
-CenterPCWhoseText:
-	text_far _CenterPCWhoseText
+PokecenterPCWhoseText:
+	text_far _PokecenterPCWhoseText
 	text_end
 
-CenterPCBillText:
-	text_far _CenterPCBillText
+PokecenterPCBillText:
+	text_far _PokecenterPCBillText
 	text_end
 
-CenterPCPlayersText:
-	text_far _CenterPCPlayersText
+PokecenterPCPlayersText:
+	text_far _PokecenterPCPlayersText
 	text_end
 
-CenterPCOaksText:
-	text_far _CenterPCOaksText
+PokecenterPCOaksText:
+	text_far _PokecenterPCOaksText
 	text_end
 
-CenterPCOaksClosedText:
-	text_far _CenterPCOaksClosedText
+PokecenterPCOaksClosedText:
+	text_far _PokecenterPCOaksClosedText
 	text_end

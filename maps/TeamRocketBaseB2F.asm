@@ -58,7 +58,7 @@ RocketBaseBossFScript:
 	appear TEAMROCKETBASEB2F_ROCKET_GIRL
 	appear TEAMROCKETBASEB2F_ROCKET1
 	opentext
-	writetext RocketBaseBossFHoldItText
+	writetext RocketBaseExecutiveFHoldItText
 	waitbutton
 	closetext
 	turnobject PLAYER, DOWN
@@ -88,7 +88,7 @@ RocketBaseBossFScript:
 	turnobject PLAYER, RIGHT
 	applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, MovementData_0x6d241
 	opentext
-	writetext RocketBaseBossMeddleText
+	writetext RocketBaseBossDontMeddleText
 	waitbutton
 	closetext
 	applymovement TEAMROCKETBASEB2F_ROCKET1, MovementData_0x6d24a
@@ -134,7 +134,7 @@ RocketBaseBossFScript:
 	stopfollow
 	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d258
 	opentext
-	writetext RockerBaseLanceElctrodeFaintText
+	writetext RockerBaseLanceElectrodeFaintText
 	waitbutton
 	closetext
 	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d267
@@ -557,7 +557,7 @@ MovementData_0x6d2a4:
 	step RIGHT
 	step_end
 
-RocketBaseBossFHoldItText:
+RocketBaseExecutiveFHoldItText:
 	text "Hold it right"
 	line "there!"
 	done
@@ -588,7 +588,7 @@ RocketBaseLanceShareFunText:
 	cont "the fun around."
 	done
 
-RocketBaseBossMeddleText:
+RocketBaseBossDontMeddleText:
 	text "What? You had an"
 	line "accomplice?"
 
@@ -674,7 +674,7 @@ RocketBaseLancePowerOffText:
 	line "radio signal."
 	done
 
-RockerBaseLanceElctrodeFaintText:
+RockerBaseLanceElectrodeFaintText:
 	text "It's this machine"
 	line "that's causing all"
 	cont "the problems."

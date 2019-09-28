@@ -45,7 +45,7 @@ LakeOfRageLanceScript:
 	checkevent EVENT_REFUSED_TO_HELP_LANCE_AT_LAKE_OF_RAGE
 	iftrue .AskAgainForHelp
 	opentext
-	writetext LakeOfRageLanceForcedEvoText
+	writetext LakeOfRageLanceForcedToEvolveText
 	buttonsound
 	faceplayer
 	writetext LakeOfRageLanceIntroText
@@ -80,7 +80,7 @@ LakeOfRageLanceScript:
 
 RedGyarados:
 	opentext
-	writetext LakeOfRageGyaradosGyaText
+	writetext LakeOfRageGyaradosCryText
 	pause 15
 	cry GYARADOS
 	closetext
@@ -242,7 +242,7 @@ MovementData_0x70155:
 	teleport_from
 	step_end
 
-LakeOfRageLanceForcedEvoText:
+LakeOfRageLanceForcedToEvolveText:
 	text "This lake is full"
 	line "of GYARADOS but"
 	cont "nothing else…"
@@ -310,7 +310,7 @@ LakeOfRageLanceAskHelpText:
 	line "going to help me?"
 	done
 
-LakeOfRageGyaradosGyaText:
+LakeOfRageGyaradosCryText:
 	text "GYARADOS: Gyashaa!"
 	done
 

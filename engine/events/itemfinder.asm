@@ -30,21 +30,21 @@ ItemFinder:
 	reloadmappart
 	special UpdateTimePals
 	callasm .ItemfinderSound
-	writetext .ItemfinderNearbyText
+	writetext .ItemfinderItemNearbyText
 	closetext
 	end
 
 .Script_FoundNothing:
 	reloadmappart
 	special UpdateTimePals
-	writetext .ItemfinderNothingText
+	writetext .ItemfinderNopeText
 	closetext
 	end
 
-.ItemfinderNearbyText:
-	text_far _ItemfinderNearbyText
+.ItemfinderItemNearbyText:
+	text_far _ItemfinderItemNearbyText
 	text_end
 
-.ItemfinderNothingText:
-	text_far _ItemfinderNothingText
+.ItemfinderNopeText:
+	text_far _ItemfinderNopeText
 	text_end

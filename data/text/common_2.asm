@@ -3,7 +3,7 @@ _NoPhotoText::
 	line "Come again, OK?"
 	done
 
-_EggPhotoTalentText::
+_EggPhotoText::
 	text "An EGG? My talent"
 	line "is worth more…"
 	done
@@ -226,7 +226,7 @@ _RetrieveMysteryGiftText::
 	line "at #MON CENTER."
 	prompt
 
-_MysteryGiftNotReadyText::
+_YourFriendIsNotReadyText::
 	text "Your friend isn't"
 	line "ready."
 	prompt
@@ -545,13 +545,13 @@ _WhitedOutText::
 	line "out!"
 	done
 
-_ItemfinderNearbyText::
+_ItemfinderItemNearbyText::
 	text "Yes! ITEMFINDER"
 	line "indicates there's"
 	cont "an item nearby."
 	prompt
 
-_ItemfinderNothingText::
+_ItemfinderNopeText::
 	text "Nope! ITEMFINDER"
 	line "isn't responding."
 	prompt
@@ -1037,7 +1037,7 @@ _ContestJudging_ThirdPlaceScoreText::
 	text " points!"
 	prompt
 
-_KarpGuruMeasureText::
+_MagikarpGuruMeasureText::
 	text "Let me measure"
 	line "that MAGIKARP."
 
@@ -1092,7 +1092,7 @@ _CaughtAskNicknameText::
 	cont "received?"
 	done
 
-_PokePCCantUseText::
+_PokecenterPCCantUseText::
 	text "Bzzzzt! You must"
 	line "have a #MON to"
 	cont "use this!"
@@ -1150,16 +1150,16 @@ _PlayersPCNoRoomDepositText::
 	line "store items."
 	prompt
 
-_CenterPCTurnOnText::
+_PokecenterPCTurnOnText::
 	text "<PLAYER> turned on"
 	line "the PC."
 	prompt
 
-_CenterPCWhoseText::
+_PokecenterPCWhoseText::
 	text "Access whose PC?"
 	done
 
-_CenterPCBillText::
+_PokecenterPCBillText::
 	text "BILL's PC"
 	line "accessed."
 
@@ -1167,14 +1167,14 @@ _CenterPCBillText::
 	line "System opened."
 	prompt
 
-_CenterPCPlayersText::
+_PokecenterPCPlayersText::
 	text "Accessed own PC."
 
 	para "Item Storage"
 	line "System opened."
 	prompt
 
-_CenterPCOaksText::
+_PokecenterPCOaksText::
 	text "PROF.OAK's PC"
 	line "accessed."
 
@@ -1182,7 +1182,7 @@ _CenterPCOaksText::
 	line "System opened."
 	prompt
 
-_CenterPCOaksClosedText::
+_PokecenterPCOaksClosedText::
 	text "…"
 	line "Link closed…"
 	done
@@ -1388,7 +1388,7 @@ _StartMenuContestEndText::
 	line "end the Contest?"
 	done
 
-_ItemsAskTossQuantityText::
+_ItemsTossOutHowManyText::
 	text "Toss out how many"
 	line "@"
 	text_ram wStringBuffer2
@@ -1422,7 +1422,7 @@ _ItemsOakWarningText::
 	cont "time to use that!"
 	done
 
-_ItemsSwapPokemonText::
+_PokemonSwapItemText::
 	text "Took @"
 	text_ram wMonOrItemNameBuffer
 	text "'s"

@@ -112,7 +112,7 @@ DoMysteryGift:
 	jr .PrintTextAndExit
 
 .FriendNotReady:
-	ld hl, .MysteryGiftNotReadyText ; friend not ready
+	ld hl, .YourFriendIsNotReadyText ; friend not ready
 
 .PrintTextAndExit:
 	call PrintText
@@ -139,8 +139,8 @@ DoMysteryGift:
 	text_far _RetrieveMysteryGiftText
 	text_end
 
-.MysteryGiftNotReadyText:
-	text_far _MysteryGiftNotReadyText
+.YourFriendIsNotReadyText:
+	text_far _YourFriendIsNotReadyText
 	text_end
 
 .MysteryGiftFiveADayText:

@@ -290,7 +290,7 @@ PrintDayCareText:
 	dw .GotBackMonText ; 0e
 	dw .BackAlreadyText ; 0f
 	dw .HaveNoRoomText ; 10
-	dw .DCNotEnoughMoneyText ; 11
+	dw .NotEnoughMoneyText ; 11
 	dw .OhFineThenText ; 12
 	dw .ComeAgainText ; 13
 
@@ -362,8 +362,8 @@ PrintDayCareText:
 	text_far _HaveNoRoomText
 	text_end
 
-.DCNotEnoughMoneyText:
-	text_far _DCNotEnoughMoneyText
+.NotEnoughMoneyText:
+	text_far _NotEnoughMoneyText
 	text_end
 
 .OhFineThenText:

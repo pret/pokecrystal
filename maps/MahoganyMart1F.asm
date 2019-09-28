@@ -63,7 +63,7 @@ MahogayMart1FBlackBeltScript:
 MahoganyMart1FLanceUncoversStaircaseScript:
 	pause 15
 	opentext
-	writetext MahoganyMart1FLanceDragoniteCommandText
+	writetext MahoganyMart1FLanceDragoniteHyperBeamText
 	pause 15
 	closetext
 	playsound SFX_TACKLE
@@ -189,7 +189,7 @@ MahogayMart1FBlackBeltText_LanceEntered:
 	line "#MON are tough…"
 	done
 
-MahoganyMart1FLanceDragoniteCommandText:
+MahoganyMart1FLanceDragoniteHyperBeamText:
 	text "LANCE: DRAGONITE,"
 	line "HYPER BEAM."
 	done

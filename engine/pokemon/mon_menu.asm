@@ -29,7 +29,7 @@ TossItemFromPC:
 	ld a, [wItemAttributeParamBuffer]
 	and a
 	jr nz, .key_item
-	ld hl, .ItemsAskTossQuantityText
+	ld hl, .ItemsTossOutHowManyText
 	call MenuTextbox
 	farcall SelectQuantityToToss
 	push af
@@ -61,8 +61,8 @@ TossItemFromPC:
 	scf
 	ret
 
-.ItemsAskTossQuantityText:
-	text_far _ItemsAskTossQuantityText
+.ItemsTossOutHowManyText:
+	text_far _ItemsTossOutHowManyText
 	text_end
 
 .ItemsThrowAwayText:
@@ -312,7 +312,7 @@ TryGiveItemToPartymon:
 	call ReceiveItemFromPokemon
 	jr nc, .bag_full
 
-	ld hl, ItemsSwapPokemonText
+	ld hl, PokemonSwapItemText
 	call MenuTextboxBackup
 	ld a, [wNamedObjectIndexBuffer]
 	ld [wCurItem], a
@@ -386,8 +386,8 @@ GiveTakeItemMenuData:
 	db "GIVE@"
 	db "TAKE@"
 
-ItemsSwapPokemonText:
-	text_far _ItemsSwapPokemonText
+PokemonSwapItemText:
+	text_far _PokemonSwapItemText
 	text_end
 
 PokemonHoldItemText:

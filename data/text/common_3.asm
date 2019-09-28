@@ -710,7 +710,7 @@ _SlotsNotEnoughCoinsText::
 	line "coins."
 	prompt
 
-_SlotsRanOutText::
+_SlotsRanOutOfCoinsText::
 	text "Darn… Ran out of"
 	line "coins…"
 	done
@@ -1045,12 +1045,12 @@ _MoveCantForgetHMText::
 	line "forgotten now."
 	prompt
 
-_CardFlipAskThreeCoinText::
+_CardFlipPlayWithThreeCoinsText::
 	text "Play with three"
 	line "coins?"
 	done
 
-_CardFlipNotEnoughText::
+_CardFlipNotEnoughCoinsText::
 	text "Not enough coins…"
 	prompt
 
@@ -1058,7 +1058,7 @@ _CardFlipChooseACardText::
 	text "Choose a card."
 	done
 
-_CardFlipPlaceBetText::
+_CardFlipPlaceYourBetText::
 	text "Place your bet."
 	done
 

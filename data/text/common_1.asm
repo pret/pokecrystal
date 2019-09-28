@@ -375,7 +375,7 @@ _MomFoundADollText::
 	cont "adorable doll, so"
 	prompt
 
-_MomItsInRoomText::
+_MomItsInYourRoomText::
 	text "It's in your room."
 	line "You'll love it!"
 	done
@@ -1801,7 +1801,7 @@ _HaveNoRoomText::
 	line "for it."
 	prompt
 
-_DCNotEnoughMoneyText::
+_NotEnoughMoneyText::
 	text "You don't have"
 	line "enough money."
 	prompt
