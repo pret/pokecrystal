@@ -758,26 +758,26 @@ _MainMenuTimeUnknownText::
 	text "Clock time unknown"
 	done
 
-; unused mobile menu
-UnknownText_0x1c5196::
+; unused mobile
+_DeleteSavedLoginPasswordText::
 	text "Delete the saved"
 	line "LOG-IN PASSWORD?"
 	done
 
-; unused mobile menu
-UnknownText_0x1c51b9::
+; unused mobile
+_DeletedTheLoginPasswordText::
 	text "Deleted the LOG-IN"
 	line "PASSWORD."
 	done
 
-; unused mobile menu
-UnknownText_0x1c51d7::
+; unused mobile
+_MobilePickThreeMonForBattle::
 	text "Pick three #MON"
 	line "for battle."
 	prompt
 
-; unused mobile menu
-UnknownText_0x1c51f4::
+; unused mobile
+_MobileUseTheseThreeMonText::
 	text_ram wMobileParticipant1Nickname
 	text ","
 	line "@"
@@ -791,13 +791,13 @@ UnknownText_0x1c51f4::
 	done
 
 ; unused mobile
-UnknownText_0x1c521c::
+_MobileOnlyThreeMonMayEnterText::
 	text "Only three #MON"
 	line "may enter."
 	prompt
 
 ; unused mobile
-UnknownText_0x1c5238::
+_MobileCardFolderIntro1Text::
 	text "The CARD FOLDER"
 	line "stores your and"
 
@@ -815,7 +815,7 @@ UnknownText_0x1c5238::
 	done
 
 ; unused mobile
-UnknownText_0x1c52bc::
+_MobileCardFolderIntro2Text::
 	text "This is your CARD."
 
 	para "Once you've"
@@ -829,7 +829,7 @@ UnknownText_0x1c52bc::
 	done
 
 ; unused mobile
-UnknownText_0x1c531e::
+_MobileCardFolderIntro3Text::
 	text "If you have your"
 	line "friend's CARD, you"
 
@@ -844,7 +844,7 @@ UnknownText_0x1c531e::
 	done
 
 ; unused mobile
-UnknownText_0x1c5394::
+_MobileCardFolderIntro4Text::
 	text "To safely store"
 	line "your collection of"
 
@@ -856,7 +856,7 @@ UnknownText_0x1c5394::
 	done
 
 ; unused mobile
-UnknownText_0x1c53ee::
+_MobileCardFolderAskDeleteText::
 	text "If the CARD FOLDER"
 	line "is deleted, all"
 
@@ -873,13 +873,13 @@ UnknownText_0x1c53ee::
 	done
 
 ; unused mobile
-UnknownText_0x1c5494::
+_MobileCardFolderDeleteAreYouSureText::
 	text "Are you sure you"
 	line "want to delete it?"
 	done
 
 ; unused mobile
-UnknownText_0x1c54b9::
+_MobileCardFolderDeletedText::
 	text "The CARD FOLDER"
 	line "has been deleted."
 
@@ -887,7 +887,7 @@ UnknownText_0x1c54b9::
 	done
 
 ; unused mobile
-UnknownText_0x1c54dd::
+_MobileCardFolderAskOpenOldText::
 	text "There is an older"
 	line "CARD FOLDER from a"
 	cont "previous journey."
@@ -897,13 +897,13 @@ UnknownText_0x1c54dd::
 	done
 
 ; unused mobile
-UnknownText_0x1c552d::
+_MobileCardFolderAskDeleteOldText::
 	text "Delete the old"
 	line "CARD FOLDER?"
 	done
 
 ; unused mobile
-UnknownText_0x1c554a::
+_MobileCardFolderFinishRegisteringCardsText::
 	text "Finish registering"
 	line "CARDS?"
 	done
