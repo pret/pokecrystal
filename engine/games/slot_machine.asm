@@ -1707,7 +1707,7 @@ Slots_TurnLightsOnOrOff:
 
 Slots_AskBet:
 .loop
-	ld hl, .SlotsAskBetText
+	ld hl, .SlotsBetHowManyCoinsText
 	call PrintText
 	ld hl, .MenuHeader
 	call LoadMenuHeader
@@ -1727,7 +1727,7 @@ Slots_AskBet:
 	ld a, [hl]
 	cp c
 	jr nc, .Start
-	ld hl, .SlotsNoCoinsText
+	ld hl, .SlotsNotEnoughCoinsText
 	call PrintText
 	jr .loop
 
@@ -1747,16 +1747,16 @@ Slots_AskBet:
 	and a
 	ret
 
-.SlotsAskBetText:
-	text_far _SlotsAskBetText
+.SlotsBetHowManyCoinsText:
+	text_far _SlotsBetHowManyCoinsText
 	text_end
 
 .SlotsStartText:
 	text_far _SlotsStartText
 	text_end
 
-.SlotsNoCoinsText:
-	text_far _SlotsNoCoinsText
+.SlotsNotEnoughCoinsText:
+	text_far _SlotsNotEnoughCoinsText
 	text_end
 
 .MenuHeader:

@@ -89,7 +89,7 @@ BuenaPrize:
 	ld a, [hl]
 	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
-	ld hl, .BuenaThatRightText
+	ld hl, .BuenaIsThatRightText
 	call BuenaPrintText
 	call YesNoBox
 	jr c, .loop
@@ -150,8 +150,8 @@ BuenaPrize:
 	text_far _BuenaAskWhichPrizeText
 	text_end
 
-.BuenaThatRightText:
-	text_far _BuenaThatRightText
+.BuenaIsThatRightText:
+	text_far _BuenaIsThatRightText
 	text_end
 
 .BuenaHereYouGoText:

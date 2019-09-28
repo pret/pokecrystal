@@ -38,7 +38,7 @@ ElmPhoneCalleeScript:
 	end
 
 .eggunhatched
-	farwritetext ElmPhoneHowIsTheEgg
+	farwritetext ElmPhoneHowIsTheEggText
 	end
 
 .egghatched

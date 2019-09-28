@@ -6303,7 +6303,7 @@ PrintDoesntAffect:
 
 PrintNothingHappened:
 ; 'but nothing happened!'
-	ld hl, SquirtbottleNothingText
+	ld hl, NothingHappenedText
 	jp StdBattleTextbox
 
 TryPrintButItFailed:

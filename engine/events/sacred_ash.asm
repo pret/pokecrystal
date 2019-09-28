@@ -1,4 +1,3 @@
-
 _SacredAsh:
 	ld a, $0
 	ld [wItemEffectSucceeded], a

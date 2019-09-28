@@ -182,7 +182,7 @@ _CardFlip:
 	hlcoord 2, 6
 	call PlaceCardFaceDown
 	call WaitBGMap
-	ld hl, .CardFlipChooseCardText
+	ld hl, .CardFlipChooseACardText
 	call CardFlip_UpdateCoinBalanceDisplay
 	xor a
 	ld [wCardFlipWhichCard], a
@@ -230,8 +230,8 @@ _CardFlip:
 	call .Increment
 	ret
 
-.CardFlipChooseCardText:
-	text_far _CardFlipChooseCardText
+.CardFlipChooseACardText:
+	text_far _CardFlipChooseACardText
 	text_end
 
 .PlaceYourBet:
@@ -292,7 +292,7 @@ _CardFlip:
 
 .PlayAgain:
 	call ClearSprites
-	ld hl, .CardFlipAskPlayAgainText
+	ld hl, .CardFlipPlayAgainText
 	call CardFlip_UpdateCoinBalanceDisplay
 	call YesNoBox
 	jr nc, .Continue
@@ -321,8 +321,8 @@ _CardFlip:
 	ld [wJumptableIndex], a
 	ret
 
-.CardFlipAskPlayAgainText:
-	text_far _CardFlipAskPlayAgainText
+.CardFlipPlayAgainText:
+	text_far _CardFlipPlayAgainText
 	text_end
 
 .CardFlipShuffledText:

@@ -41,7 +41,7 @@ _ClockSetWithControlPadText::
 	line "Cancel:  B Button"
 	done
 
-_ClockItThisOKText::
+_ClockIsThisOKText::
 	text "Is this OK?"
 	done
 
@@ -696,7 +696,7 @@ _MartBoughtText::
 	text "(S)."
 	done
 
-_SlotsAskBetText::
+_SlotsBetHowManyCoinsText::
 	text "Bet how many"
 	line "coins?"
 	done
@@ -705,7 +705,7 @@ _SlotsStartText::
 	text "Start!"
 	done
 
-_SlotsNoCoinsText::
+_SlotsNotEnoughCoinsText::
 	text "Not enough"
 	line "coins."
 	prompt
@@ -1054,7 +1054,7 @@ _CardFlipNotEnoughText::
 	text "Not enough coins…"
 	prompt
 
-_CardFlipChooseCardText::
+_CardFlipChooseACardText::
 	text "Choose a card."
 	done
 
@@ -1062,7 +1062,7 @@ _CardFlipPlaceBetText::
 	text "Place your bet."
 	done
 
-_CardFlipAskPlayAgainText::
+_CardFlipPlayAgainText::
 	text "Want to play"
 	line "again?"
 	done
@@ -1115,7 +1115,7 @@ _BuenaAskWhichPrizeText::
 	line "you like?"
 	done
 
-_BuenaThatRightText::
+_BuenaIsThatRightText::
 	text_ram wStringBuffer1
 	text "?"
 	line "Is that right?"

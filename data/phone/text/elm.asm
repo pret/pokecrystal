@@ -48,7 +48,7 @@ ElmPhoneAssistantText:
 	line "in VIOLET CITY."
 	done
 
-ElmPhoneHowIsTheEgg:
+ElmPhoneHowIsTheEggText:
 	text "Hello, <PLAY_G>?"
 
 	para "How's the EGG? Has"

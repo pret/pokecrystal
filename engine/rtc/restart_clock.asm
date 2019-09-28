@@ -75,7 +75,7 @@ RestartClock:
 	and a
 	ret nz
 	call .PrintTime
-	ld hl, .ClockItThisOKText
+	ld hl, .ClockIsThisOKText
 	call PrintText
 	call YesNoBox
 	jr c, .cancel
@@ -99,8 +99,8 @@ RestartClock:
 	ld a, $1
 	ret
 
-.ClockItThisOKText:
-	text_far _ClockItThisOKText
+.ClockIsThisOKText:
+	text_far _ClockIsThisOKText
 	text_end
 
 .ClockHasResetText:
