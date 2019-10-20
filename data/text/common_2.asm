@@ -1159,7 +1159,7 @@ _PokecenterPCWhoseText::
 	text "Access whose PC?"
 	done
 
-_PokecenterPCBillText::
+_PokecenterBillsPCText::
 	text "BILL's PC"
 	line "accessed."
 
@@ -1167,14 +1167,14 @@ _PokecenterPCBillText::
 	line "System opened."
 	prompt
 
-_PokecenterPCPlayersText::
+_PokecenterPlayersPCText::
 	text "Accessed own PC."
 
 	para "Item Storage"
 	line "System opened."
 	prompt
 
-_PokecenterPCOaksText::
+_PokecenterOaksPCText::
 	text "PROF.OAK's PC"
 	line "accessed."
 

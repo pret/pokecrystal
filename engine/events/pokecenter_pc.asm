@@ -115,7 +115,7 @@ PC_CheckPartyForPokemon:
 
 BillsPC:
 	call PC_PlayChoosePCSound
-	ld hl, PokecenterPCBillText
+	ld hl, PokecenterBillsPCText
 	call PC_DisplayText
 	farcall _BillsPC
 	and a
@@ -123,7 +123,7 @@ BillsPC:
 
 PlayersPC:
 	call PC_PlayChoosePCSound
-	ld hl, PokecenterPCPlayersText
+	ld hl, PokecenterPlayersPCText
 	call PC_DisplayText
 	ld b, $0
 	call _PlayersPC
@@ -132,7 +132,7 @@ PlayersPC:
 
 OaksPC:
 	call PC_PlayChoosePCSound
-	ld hl, PokecenterPCOaksText
+	ld hl, PokecenterOaksPCText
 	call PC_DisplayText
 	farcall ProfOaksPC
 	and a
@@ -641,16 +641,16 @@ PokecenterPCWhoseText:
 	text_far _PokecenterPCWhoseText
 	text_end
 
-PokecenterPCBillText:
-	text_far _PokecenterPCBillText
+PokecenterBillsPCText:
+	text_far _PokecenterBillsPCText
 	text_end
 
-PokecenterPCPlayersText:
-	text_far _PokecenterPCPlayersText
+PokecenterPlayersPCText:
+	text_far _PokecenterPlayersPCText
 	text_end
 
-PokecenterPCOaksText:
-	text_far _PokecenterPCOaksText
+PokecenterOaksPCText:
+	text_far _PokecenterOaksPCText
 	text_end
 
 PokecenterPCOaksClosedText:
