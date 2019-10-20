@@ -60,7 +60,7 @@ JoseBattleRematchText:
 	line "for me, OK?"
 	done
 
-JoseHangupText:
+JoseHangUpText:
 	text "Be seeing you!"
 	done
 

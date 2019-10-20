@@ -155,7 +155,7 @@ Unreferenced_Functione512:
 	ret
 
 .only_one_mon
-	ld hl, .PCNoCantDepositText
+	ld hl, .PCCantDepositLastMonText
 	call MenuTextboxBackup
 	scf
 	ret
@@ -164,8 +164,8 @@ Unreferenced_Functione512:
 	text_far _PCNoSingleMonText
 	text_end
 
-.PCNoCantDepositText:
-	text_far _PCNoCantDepositText
+.PCCantDepositLastMonText:
+	text_far _PCCantDepositLastMonText
 	text_end
 
 CheckCurPartyMonFainted:

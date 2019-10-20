@@ -51,7 +51,7 @@ InitClock:
 	ld [wInitHourBuffer], a
 
 .loop
-	ld hl, OakTimeWhatIsItText
+	ld hl, OakTimeWhatTimeIsItText
 	call PrintText
 	hlcoord 3, 7
 	ld b, 2
@@ -74,7 +74,7 @@ InitClock:
 	ld a, [wInitHourBuffer]
 	ld [wStringBuffer2 + 1], a
 	call .ClearScreen
-	ld hl, Text_WhatHrs
+	ld hl, OakTimeWhatHoursText
 	call PrintText
 	call YesNoBox
 	jr nc, .HourIsSet
@@ -104,7 +104,7 @@ InitClock:
 	ld a, [wInitMinuteBuffer]
 	ld [wStringBuffer2 + 2], a
 	call .ClearScreen
-	ld hl, Text_WhoaMins
+	ld hl, OakTimeWhoaMinutesText
 	call PrintText
 	call YesNoBox
 	jr nc, .MinutesAreSet
@@ -293,24 +293,24 @@ OakTimeWokeUpText:
 	text_far _OakTimeWokeUpText
 	text_end
 
-OakTimeWhatIsItText:
-	text_far _OakTimeWhatIsItText
+OakTimeWhatTimeIsItText:
+	text_far _OakTimeWhatTimeIsItText
 	text_end
 
 String_oclock:
 	db "o'clock@"
 
-Text_WhatHrs:
+OakTimeWhatHoursText:
 	; What?@ @
-	text_far _OakTimeText3
+	text_far _OakTimeWhatHoursText
 	text_asm
 	hlcoord 1, 16
 	call DisplayHourOClock
-	ld hl, .OakTimeQuestionMarkHrsText
+	ld hl, .OakTimeHoursQuestionMarkText
 	ret
 
-.OakTimeQuestionMarkHrsText:
-	text_far _OakTimeQuestionMarkHrsText
+.OakTimeHoursQuestionMarkText:
+	text_far _OakTimeHoursQuestionMarkText
 	text_end
 
 OakTimeHowManyMinutesText:
@@ -320,17 +320,17 @@ OakTimeHowManyMinutesText:
 String_min:
 	db "min.@"
 
-Text_WhoaMins:
+OakTimeWhoaMinutesText:
 	; Whoa!@ @
-	text_far _OakTimeText6
+	text_far _OakTimeWhoaMinutesText
 	text_asm
 	hlcoord 7, 14
 	call DisplayMinutesWithMinString
-	ld hl, .OakTimeQuestionMarkMinsText
+	ld hl, .OakTimeMinutesQuestionMarkText
 	ret
 
-.OakTimeQuestionMarkMinsText:
-	text_far _OakTimeQuestionMarkMinsText
+.OakTimeMinutesQuestionMarkText:
+	text_far _OakTimeMinutesQuestionMarkText
 	text_end
 
 OakText_ResponseToSetTime:

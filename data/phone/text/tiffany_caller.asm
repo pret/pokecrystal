@@ -81,7 +81,7 @@ TiffanyItsAwfulText:
 	line "Bye-bye!"
 	done
 
-TiffanyHangupText:
+TiffanyHangUpText:
 	text "Bye-bye!"
 	done
 

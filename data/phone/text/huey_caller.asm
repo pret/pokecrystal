@@ -14,7 +14,7 @@ HueyBattleRematchText:
 	line "over here pronto!"
 	done
 
-HueyHangupText:
+HueyHangUpText:
 	text "See ya!"
 	done
 

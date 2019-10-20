@@ -102,25 +102,25 @@ LearnMove:
 	jp .learned
 
 .cancel
-	ld hl, MoveAskStopLearningText ; Stop learning <MOVE>?
+	ld hl, StopLearningMoveText
 	call PrintText
 	call YesNoBox
 	jp c, .loop
 
-	ld hl, MoveDidNotLearnText ; <MON> did not learn <MOVE>.
+	ld hl, DidNotLearnMoveText
 	call PrintText
 	ld b, 0
 	ret
 
 .learned
-	ld hl, MoveLearnedText ; <MON> learned <MOVE>!
+	ld hl, LearnedMoveText
 	call PrintText
 	ld b, 1
 	ret
 
 ForgetMove:
 	push hl
-	ld hl, MoveAskDeleteText
+	ld hl, AskForgetMoveText
 	call PrintText
 	call YesNoBox
 	pop hl
@@ -200,24 +200,24 @@ ForgetMove:
 	scf
 	ret
 
-MoveLearnedText:
-	text_far _MoveLearnedText
+LearnedMoveText:
+	text_far _LearnedMoveText
 	text_end
 
 MoveAskForgetText:
 	text_far _MoveAskForgetText
 	text_end
 
-MoveAskStopLearningText:
-	text_far _MoveAskStopLearningText
+StopLearningMoveText:
+	text_far _StopLearningMoveText
 	text_end
 
-MoveDidNotLearnText:
-	text_far _MoveDidNotLearnText
+DidNotLearnMoveText:
+	text_far _DidNotLearnMoveText
 	text_end
 
-MoveAskDeleteText:
-	text_far _MoveAskDeleteText
+AskForgetMoveText:
+	text_far _AskForgetMoveText
 	text_end
 
 Text_1_2_and_Poof:

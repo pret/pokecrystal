@@ -36,7 +36,7 @@ BeverlyLostAMonText:
 	line "quite miffed."
 	done
 
-BeverlyHangupText:
+BeverlyHangUpText:
 	text "You can expect a"
 	line "call from me."
 	done

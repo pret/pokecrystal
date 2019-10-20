@@ -7405,20 +7405,20 @@ BoostExp:
 Text_MonGainedExpPoint:
 	text_far Text_Gained
 	text_asm
-	ld hl, StringBuffer2ExpPointsText
+	ld hl, ExpPointsText
 	ld a, [wStringBuffer2 + 2] ; IsTradedMon
 	and a
 	ret z
 
-	ld hl, ABoostedStringBuffer2ExpPointsText
+	ld hl, BoostedExpPointsText
 	ret
 
-ABoostedStringBuffer2ExpPointsText:
-	text_far _ABoostedStringBuffer2ExpPointsText
+BoostedExpPointsText:
+	text_far _BoostedExpPointsText
 	text_end
 
-StringBuffer2ExpPointsText:
-	text_far _StringBuffer2ExpPointsText
+ExpPointsText:
+	text_far _ExpPointsText
 	text_end
 
 AnimateExpBar:
@@ -7687,11 +7687,11 @@ JumpText_YourFoesWeakGetmMon:
 	text_far Text_YourFoesWeakGetmMon
 	text_asm
 Function_TextJump_BattleMonNick01:
-	ld hl, BattleMonNick01Text
+	ld hl, BattleMonNicknameText
 	ret
 
-BattleMonNick01Text:
-	text_far _BattleMonNick01Text
+BattleMonNicknameText:
+	text_far _BattleMonNicknameText
 	text_end
 
 WithdrawMonText:

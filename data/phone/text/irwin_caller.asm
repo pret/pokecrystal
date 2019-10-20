@@ -1,4 +1,4 @@
-IrwinHangupText:
+IrwinHangUpText:
 	text "I hate having to"
 	line "hang up on you!"
 

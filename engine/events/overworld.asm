@@ -318,7 +318,7 @@ Script_UseFlash:
 	end
 
 UseFlashTextScript:
-	text_far Text_UseFlash
+	text_far _BlindingFlashText
 	text_asm
 	call WaitSFX
 	ld de, SFX_FLASH
@@ -729,10 +729,10 @@ TryWaterfallOW::
 	ret
 
 Script_CantDoWaterfall:
-	jumptext .BigWaterfallText
+	jumptext .HugeWaterfallText
 
-.BigWaterfallText:
-	text_far _BigWaterfallText
+.HugeWaterfallText:
+	text_far _HugeWaterfallText
 	text_end
 
 Script_AskWaterfall:

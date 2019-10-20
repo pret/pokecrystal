@@ -164,15 +164,15 @@ _OakTimeWokeUpText::
 	line "clock for me?"
 	prompt
 
-_OakTimeWhatIsItText::
+_OakTimeWhatTimeIsItText::
 	text "What time is it?"
 	done
 
-_OakTimeText3::
+_OakTimeWhatHoursText::
 	text "What?@"
 	text_end
 
-_OakTimeQuestionMarkHrsText::
+_OakTimeHoursQuestionMarkText::
 	text "?"
 	done
 
@@ -180,11 +180,11 @@ _OakTimeHowManyMinutesText::
 	text "How many minutes?"
 	done
 
-_OakTimeText6::
+_OakTimeWhoaMinutesText::
 	text "Whoa!@"
 	text_end
 
-_OakTimeQuestionMarkMinsText::
+_OakTimeMinutesQuestionMarkText::
 	text "?"
 	done
 
@@ -1608,7 +1608,7 @@ _MomSaveMoneyText::
 	line "save some money?"
 	done
 
-_MomInsufficientFundsInBankText::
+_MomHaventSavedThatMuchText::
 	text "You haven't saved"
 	line "that much."
 	prompt

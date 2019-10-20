@@ -13,7 +13,7 @@ AlanPhoneCalleeScript:
 	iftrue AlanWednesdayDay
 
 .NotWednesday:
-	farsjump AlanHangupScript
+	farsjump AlanHangUpScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_36

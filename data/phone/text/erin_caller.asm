@@ -43,7 +43,7 @@ ErinBattleRematchText:
 	text "!"
 	done
 
-ErinHangupText:
+ErinHangUpText:
 	text "See you. Bye-bye!"
 	done
 

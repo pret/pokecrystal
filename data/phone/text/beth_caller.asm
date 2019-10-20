@@ -73,7 +73,7 @@ BethBattleRematchText:
 	line "Look for me, OK?"
 	done
 
-BethHangupText:
+BethHangUpText:
 	text "OK, bye-bye!"
 	done
 

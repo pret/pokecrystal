@@ -300,7 +300,7 @@ _SeerSeeAllText::
 	line "of your #MON!"
 	done
 
-_SeerCantReadText::
+_SeerCantTellAThingText::
 	text "Whaaaat? I can't"
 	line "tell a thing!"
 
@@ -503,7 +503,7 @@ _MartFinalPriceText::
 	text "."
 	done
 
-_HerbalLadyIntroText::
+_HerbShopLadyIntroText::
 	text "Hello, dear."
 
 	para "I sell inexpensive"
@@ -964,7 +964,7 @@ _ClearAllSaveDataText::
 	line "data?"
 	done
 
-_MoveLearnedText::
+_LearnedMoveText::
 	text_ram wMonOrItemNameBuffer
 	text " learned"
 	line "@"
@@ -981,14 +981,14 @@ _MoveAskForgetText::
 	next "be forgotten?"
 	done
 
-_MoveAskStopLearningText::
+_StopLearningMoveText::
 	text "Stop learning"
 	line "@"
 	text_ram wStringBuffer2
 	text "?"
 	done
 
-_MoveDidNotLearnText::
+_DidNotLearnMoveText::
 	text_ram wMonOrItemNameBuffer
 	text_start
 	line "did not learn"
@@ -997,7 +997,7 @@ _MoveDidNotLearnText::
 	text "."
 	prompt
 
-_MoveAskDeleteText::
+_AskForgetMoveText::
 	text_ram wMonOrItemNameBuffer
 	text " is"
 	line "trying to learn"
@@ -1095,17 +1095,17 @@ _GearOutOfServiceText::
 	line "service area."
 	prompt
 
-_GearAskWhoCallText::
+_PokegearAskWhoCallText::
 	text "Whom do you want"
 	line "to call?"
 	done
 
-_GearPressButtonText::
+_PokegearPressButtonText::
 	text "Press any button"
 	line "to exit."
 	done
 
-_GearAskDeleteText::
+_PokegearAskDeleteText::
 	text "Delete this stored"
 	line "phone number?"
 	done
@@ -1212,7 +1212,7 @@ _YouCantTakeAnEggText::
 	para ""
 	done
 
-_BallCantCatchText::
+_BallDodgedText::
 	text "It dodged the"
 	line "thrown BALL!"
 
@@ -1255,7 +1255,7 @@ Text_BallCaught::
 
 	text_end ; unused
 
-_WaitbuttonText::
+_WaitButtonText::
 	text_waitbutton
 	text_end
 
@@ -1452,7 +1452,7 @@ _ItemGotOffText::
 	text "."
 	prompt
 
-_MoveKnowsText::
+_KnowsMoveText::
 	text_ram wStringBuffer1
 	text " knows"
 	line "@"

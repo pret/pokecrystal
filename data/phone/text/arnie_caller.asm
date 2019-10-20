@@ -51,7 +51,7 @@ ArnieBattleRematchText:
 	text "!"
 	done
 
-ArnieHangupText:
+ArnieHangUpText:
 	text "Let's talk again,"
 	line "huh?"
 	done

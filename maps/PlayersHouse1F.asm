@@ -36,7 +36,7 @@ MeetMomScript:
 	opentext
 	writetext ElmsLookingForYouText
 	buttonsound
-	getstring STRING_BUFFER_4, GearName
+	getstring STRING_BUFFER_4, PokegearName
 	scall PlayersHouse1FReceiveItemStd
 	setflag ENGINE_POKEGEAR
 	setflag ENGINE_PHONE_CARD
@@ -103,7 +103,7 @@ MeetMomTalkedScript:
 	playmusic MUSIC_MOM
 	sjump MeetMomScript
 
-GearName:
+PokegearName:
 	db "#GEAR@"
 
 PlayersHouse1FReceiveItemStd:

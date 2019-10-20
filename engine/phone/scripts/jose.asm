@@ -13,7 +13,7 @@ JosePhoneCalleeScript:
 	iftrue JoseSaturdayNight
 
 .NotSaturday:
-	farsjump JoseHangupScript
+	farsjump JoseHangUpScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_27

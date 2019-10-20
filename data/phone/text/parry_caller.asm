@@ -47,7 +47,7 @@ ParryBattleRematchText:
 	text "!"
 	done
 
-ParryHangupText:
+ParryHangUpText:
 	text "OK, give me a call"
 	line "again!"
 	done

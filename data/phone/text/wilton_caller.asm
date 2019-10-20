@@ -48,7 +48,7 @@ WiltonBattleRematchText:
 	cont "over for a battle."
 	done
 
-WiltonHangupText:
+WiltonHangUpText:
 	text "All right, later."
 	done
 

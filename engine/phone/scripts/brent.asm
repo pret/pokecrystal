@@ -11,7 +11,7 @@ BrentPhoneCalleeScript:
 	iftrue BrentMondayMorning
 
 .NotMonday:
-	farsjump BrentHangupScript
+	farsjump BrentHangUpScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_43

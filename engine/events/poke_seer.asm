@@ -288,7 +288,7 @@ PrintSeerText:
 
 SeerTexts:
 	dw SeerSeeAllText
-	dw SeerCantReadText
+	dw SeerCantTellAThingText
 	dw SeerNameLocationText
 	dw SeerTimeLevelText
 	dw SeerTradeText
@@ -300,8 +300,8 @@ SeerSeeAllText:
 	text_far _SeerSeeAllText
 	text_end
 
-SeerCantReadText:
-	text_far _SeerCantReadText
+SeerCantTellAThingText:
+	text_far _SeerCantTellAThingText
 	text_end
 
 SeerNameLocationText:

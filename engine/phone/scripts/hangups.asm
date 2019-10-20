@@ -1,153 +1,153 @@
 JackPhoneTipsScript:
 	farwritetext JackHeardSomeGreatTipsText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
-BeverlyHangupScript:
+BeverlyHangUpScript:
 	farwritetext BeverlyLetsChatAboutMonAgainText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
-HueyHangupScript:
+HueyHangUpScript:
 	farwritetext HueyWeHaveToBattleAgainSometimeText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
-GavenHangupNotThursdayScript:
-	farwritetext GavenHangupNotThursdayText
+GavenHangUpNotThursdayScript:
+	farwritetext GavenHangUpNotThursdayText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
-BethHangupScript:
+BethHangUpScript:
 	farwritetext BethLetsBattleAgainSometimeText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
-JoseHangupScript:
+JoseHangUpScript:
 	farwritetext JoseHaventGottenItemYetText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
 ReenaForwardScript:
 	farwritetext ReenaForwardText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
-JoeyHangupScript:
+JoeyHangUpScript:
 	farwritetext JoeyDevisingStrategiesText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
 WadeNoBerriesScript:
 	farwritetext WadeNoBerriesText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
 RalphNoItemScript:
 	farwritetext RalphNoItemText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
-LizHangupScript:
+LizHangUpScript:
 	farwritetext LizFawningOverMonText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
-AnthonyHangupScript:
+AnthonyHangUpScript:
 	farwritetext AnthonyWasntPayingAttentionText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
 ToddNoItemScript:
 	farwritetext ToddSavingUpForBargainSaleText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
-GinaHangupScript:
+GinaHangUpScript:
 	farwritetext GinaHaventFoundAnythingYetText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
-ArnieHangupScript:
+ArnieHangUpScript:
 	farwritetext ArnieHaventSeenRareMonText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
-AlanHangupScript:
+AlanHangUpScript:
 	farwritetext AlanHaventPickedUpAnythingText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
-DanaHangupScript:
+DanaHangUpScript:
 	farwritetext DanaCanYouWaitABitLongerText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
-ChadHangupScript:
+ChadHangUpScript:
 	farwritetext ChadGoingToStudyHardText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
-DerekHangupScript:
+DerekHangUpScript:
 	farwritetext DerekLetsGetTogetherText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
 TullyNoItemScript:
 	farwritetext TullyNoItemText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
-BrentHangupScript:
+BrentHangUpScript:
 	farwritetext BrentSorryImTooBusyText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
 TiffanyNoItemScript:
 	farwritetext TiffanyNoItemText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
 VanceLookingForwardScript:
 	farwritetext VanceLookingForwardText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
 WiltonHaventFoundAnythingScript:
 	farwritetext WiltonHaventFoundAnythingText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
 ParryBattleWithMeScript:
 	farwritetext ParryBattleWithMeText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
 ErinWorkingHardScript:
 	farwritetext ErinWorkingHardText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
 IrwinRandomTextScript:
 	random 3
 	ifequal 0, IrwinEscapadeScript
 	ifequal 1, IrwinGoodMatchScript
-	ifequal 2, IrwinNoseyScript
+	ifequal 2, IrwinSoMuchToChatAboutScript
 
 IrwinEscapadeScript:
 	farwritetext IrwinYourEscapadesRockText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
 IrwinGoodMatchScript:
 	farwritetext IrwinGoodMatchText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
-IrwinNoseyScript:
+IrwinSoMuchToChatAboutScript:
 	farwritetext IrwinSoMuchToChatAboutText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
 KenjiAnswerPhoneScript:
 	readvar VAR_KENJI_BREAK
@@ -155,12 +155,12 @@ KenjiAnswerPhoneScript:
 	ifequal 1, .OnBreak
 	farwritetext KenjiCallMeBackAnotherTimeText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
 .Training:
 	farwritetext KenjiIllHaveTimeToChatTomorrowText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
 .OnBreak:
 	checktime MORN
@@ -170,14 +170,14 @@ KenjiAnswerPhoneScript:
 	setevent EVENT_KENJI_ON_BREAK
 	farwritetext KenjiTakingABreakText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
 .Morning:
-	farwritetext KenjiHangupMorningText
+	farwritetext KenjiHangUpMorningText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
 .Night:
-	farwritetext KenjiHangupNightText
+	farwritetext KenjiHangUpNightText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male

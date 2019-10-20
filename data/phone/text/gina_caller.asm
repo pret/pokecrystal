@@ -48,7 +48,7 @@ GinaBattleRematchText:
 	cont "me next time?"
 	done
 
-GinaHangupText:
+GinaHangUpText:
 	text "Bye! Let's chat"
 	line "again!"
 	done

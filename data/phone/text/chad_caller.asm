@@ -65,7 +65,7 @@ ChadBattleRematchText:
 	text "!"
 	done
 
-ChadHangupText:
+ChadHangUpText:
 	text "See you later!"
 	done
 

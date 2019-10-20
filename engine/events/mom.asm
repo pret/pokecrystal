@@ -246,7 +246,7 @@ BankOfMom:
 	jr .done_5
 
 .InsufficientFundsInBank:
-	ld hl, MomInsufficientFundsInBankText
+	ld hl, MomHaventSavedThatMuchText
 	call PrintText
 	ret
 
@@ -615,8 +615,8 @@ MomSaveMoneyText:
 	text_far _MomSaveMoneyText
 	text_end
 
-MomInsufficientFundsInBankText:
-	text_far _MomInsufficientFundsInBankText
+MomHaventSavedThatMuchText:
+	text_far _MomHaventSavedThatMuchText
 	text_end
 
 MomNotEnoughRoomInWalletText:

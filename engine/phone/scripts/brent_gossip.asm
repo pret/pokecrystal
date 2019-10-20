@@ -14,49 +14,49 @@ BrentBillTriviaScript:
 .Father:
 	farwritetext BrentFatherGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
 .Grandpa:
 	farwritetext BrentGrandpaGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
 .Goldenrod:
 	farwritetext BrentGoldenrodGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
 .Route25:
 	farwritetext BrentRoute25GossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
 .Abra:
 	farwritetext BrentAbraGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
 .Sister:
 	farwritetext BrentSisterGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
 .Milk:
 	farwritetext BrentMilkGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
 .Battling:
 	farwritetext BrentBattlingGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
 .FlowerShop:
 	farwritetext BrentFlowerShopGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male
 
 .KimonoGirl:
 	farwritetext BrentKimonoGirlGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Male
+	sjump PhoneScript_HangUpText_Male

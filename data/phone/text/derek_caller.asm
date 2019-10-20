@@ -51,7 +51,7 @@ DerekLostAMonText:
 	line "good otherwise."
 	done
 
-DerekHangupText:
+DerekHangUpText:
 	text "Well, let's talk"
 	line "again!"
 	done

@@ -60,7 +60,7 @@ ReenaBattleRematchText:
 	line "wait! Got it?"
 	done
 
-ReenaHangupText:
+ReenaHangUpText:
 	text "Fine, you may go."
 	done
 

@@ -1245,7 +1245,7 @@ PhoneScript_MonFlavorText:
 	ifequal $0, .TooEnergetic
 	farwritetext UnknownGenericText
 	buttonsound
-	farsjump PhoneScript_HangupText_Male
+	farsjump PhoneScript_HangUpText_Male
 
 .TooEnergetic:
 	farsjump .unnecessary
@@ -1253,7 +1253,7 @@ PhoneScript_MonFlavorText:
 .unnecessary
 	farwritetext UnknownTougherThanEverText
 	buttonsound
-	farsjump PhoneScript_HangupText_Male
+	farsjump PhoneScript_HangUpText_Male
 
 GrandmaString: db "Grandma@"
 GrandpaString: db "Grandpa@"

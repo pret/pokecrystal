@@ -13,7 +13,7 @@ DanaPhoneCalleeScript:
 	iftrue DanaThursdayNight
 
 .NotThursday:
-	farsjump DanaHangupScript
+	farsjump DanaHangUpScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_38

@@ -3,7 +3,7 @@ BeverlyPhoneCalleeScript:
 	farscall PhoneScript_AnswerPhone_Female
 	checkflag ENGINE_BEVERLY_HAS_NUGGET
 	iftrue .HasNugget
-	farsjump BeverlyHangupScript
+	farsjump BeverlyHangUpScript
 
 .HasNugget:
 	getlandmarkname STRING_BUFFER_5, NATIONAL_PARK

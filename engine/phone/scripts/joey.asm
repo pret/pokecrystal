@@ -12,7 +12,7 @@ JoeyPhoneCalleeScript:
 
 .NotMonday:
 	special RandomPhoneMon
-	farsjump JoeyHangupScript
+	farsjump JoeyHangUpScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_30

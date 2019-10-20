@@ -52,7 +52,7 @@ ToddBattleRematchText:
 	text "."
 	done
 
-ToddHangupText:
+ToddHangUpText:
 	text "See you later!"
 	done
 

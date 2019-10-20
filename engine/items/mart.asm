@@ -34,7 +34,7 @@ MartDialog:
 HerbShop:
 	call FarReadMart
 	call LoadStandardMenuHeader
-	ld hl, HerbalLadyIntroText
+	ld hl, HerbShopLadyIntroText
 	call MartTextbox
 	call BuyMenu
 	ld hl, HerbalLadyComeAgainText
@@ -622,8 +622,8 @@ MenuHeader_Buy:
 	call PrintBCDNumber
 	ret
 
-HerbalLadyIntroText:
-	text_far _HerbalLadyIntroText
+HerbShopLadyIntroText:
+	text_far _HerbShopLadyIntroText
 	text_end
 
 HerbalLadyHowManyText:

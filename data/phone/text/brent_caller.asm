@@ -59,7 +59,7 @@ BrentBattleRematchText:
 	text "."
 	done
 
-BrentHangupText:
+BrentHangUpText:
 	text "So that's it then."
 	done
 

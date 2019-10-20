@@ -155,7 +155,7 @@ BuenaPhoneScript_RandomCallee:
 	ifequal 2, .two
 
 .zero
-	writetext BuenaPhoneFavouriteSlotMachineAnswerText
+	writetext BuenaPhoneFavoriteSlotMachineAnswerText
 	end
 
 .one

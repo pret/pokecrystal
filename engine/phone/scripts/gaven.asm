@@ -11,7 +11,7 @@ GavenPhoneCalleeScript:
 	iftrue GavenThursdayMorningScript
 
 .NotThursday:
-	farsjump GavenHangupNotThursdayScript
+	farsjump GavenHangUpNotThursdayScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_26

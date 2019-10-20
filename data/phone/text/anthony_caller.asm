@@ -66,7 +66,7 @@ AnthonyBattleRematchText:
 	line "you feel up to it!"
 	done
 
-AnthonyHangupText:
+AnthonyHangUpText:
 	text "All right then!"
 	line "Be good!"
 	done

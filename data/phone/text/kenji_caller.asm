@@ -1,4 +1,4 @@
-KenjiHangupText:
+KenjiHangUpText:
 	text "Anyway, we'll chat"
 	line "again!"
 	done
@@ -36,7 +36,7 @@ KenjiIllHaveTimeToChatTomorrowText:
 	para "Yiiihah!"
 	done
 
-KenjiHangupMorningText:
+KenjiHangUpMorningText:
 	text "I plan to take a"
 	line "lunch break, so"
 
@@ -52,7 +52,7 @@ KenjiTakingABreakText:
 	line "you are free?"
 	done
 
-KenjiHangupNightText:
+KenjiHangUpNightText:
 	text "I rested up over"
 	line "my lunch break."
 

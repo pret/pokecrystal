@@ -12,7 +12,7 @@ LizPhoneCalleeScript:
 
 .NotThursday:
 	special RandomPhoneMon
-	farsjump LizHangupScript
+	farsjump LizHangUpScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_32

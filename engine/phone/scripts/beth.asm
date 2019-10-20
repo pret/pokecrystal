@@ -11,7 +11,7 @@ BethPhoneCalleeScript:
 	iftrue BethFridayAfternoon
 
 .NotFriday:
-	farsjump BethHangupScript
+	farsjump BethHangUpScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_26

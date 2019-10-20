@@ -581,7 +581,7 @@ GiveItem:
 	ld a, [wCurPartySpecies]
 	cp EGG
 	jr nz, .give
-	ld hl, .AnEGGCantHoldAnItemText
+	ld hl, .AnEggCantHoldAnItemText
 	call PrintText
 	jr .loop
 
@@ -614,8 +614,8 @@ GiveItem:
 	ld hl, YouDontHaveAMonText
 	call Pack_PrintTextNoScroll
 	ret
-.AnEGGCantHoldAnItemText:
-	text_far _AnEGGCantHoldAnItemText
+.AnEggCantHoldAnItemText:
+	text_far _AnEggCantHoldAnItemText
 	text_end
 
 QuitItemSubmenu:

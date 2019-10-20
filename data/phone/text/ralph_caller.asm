@@ -62,7 +62,7 @@ RalphBattleRematchText:
 	line "the spot!"
 	done
 
-RalphHangupText:
+RalphHangUpText:
 	text "You call your mom"
 	line "sometimes too!"
 	done

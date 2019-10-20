@@ -15,7 +15,7 @@ GinaPhoneCalleeScript:
 .NotSunday:
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue .Rockets
-	farsjump GinaHangupScript
+	farsjump GinaHangUpScript
 
 .Rockets:
 	farsjump GinaRocketRumorScript

@@ -14,49 +14,49 @@ LizGossipRandomScript:
 .RuinsOfAlph:
 	farwritetext LizRuinsOfAlphGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
 .Falkner:
 	farwritetext LizFalknerGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
 .Earl:
 	farwritetext LizEarlGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
 .SurfPikachu:
 	farwritetext LizSurfPikachuGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
 .MooMooMilk:
 	farwritetext LizMooMooMilkGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
 .Salon:
 	farwritetext LizSalonGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
 .Whitney:
 	farwritetext LizWhitneyGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
 .BugCatchingContest:
 	farwritetext LizBugCatchingContestGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
 .BeautifulMon:
 	farwritetext LizBeautifulMonGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
 .Forgot:
 	farwritetext LizForgotGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female

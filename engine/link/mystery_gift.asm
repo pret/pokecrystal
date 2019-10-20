@@ -33,7 +33,7 @@ DoMysteryGift:
 	pop de
 	hlcoord 2, 8
 	ld a, d
-	ld de, .MysteryGiftCancelledText ; Link has been canceled
+	ld de, .MysteryGiftCanceledText ; Link has been canceled
 	cp $10
 	jp z, .LinkCanceled
 	cp $6c
@@ -99,7 +99,7 @@ DoMysteryGift:
 	jr .PrintTextAndExit
 
 .LinkCanceled:
-	ld hl, .MysteryGiftCancelledText ; Link has been canceled
+	ld hl, .MysteryGiftCanceledText ; Link has been canceled
 	jr .PrintTextAndExit
 
 .CommunicationError:
@@ -127,8 +127,8 @@ DoMysteryGift:
 	next "cancel it."
 	db   "@"
 
-.MysteryGiftCancelledText:
-	text_far _MysteryGiftCancelledText
+.MysteryGiftCanceledText:
+	text_far _MysteryGiftCanceledText
 	text_end
 
 .MysteryGiftCommErrorText:

@@ -48,7 +48,7 @@ AlanBattleRematchText:
 	line "for a battle?"
 	done
 
-AlanHangupText:
+AlanHangUpText:
 	text "See you later!"
 	done
 

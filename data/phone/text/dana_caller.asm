@@ -50,7 +50,7 @@ DanaBattleRematchText:
 	line "for you!"
 	done
 
-DanaHangupText:
+DanaHangUpText:
 	text "See you!"
 	done
 

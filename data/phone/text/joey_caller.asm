@@ -59,7 +59,7 @@ JoeyBattleRematchText:
 	line "when you come."
 	done
 
-JoeyHangupText:
+JoeyHangUpText:
 	text "All right. Later!"
 	done
 

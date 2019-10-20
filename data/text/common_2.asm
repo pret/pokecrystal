@@ -99,7 +99,7 @@ Text_Gained::
 	text " gained@"
 	text_end
 
-_ABoostedStringBuffer2ExpPointsText::
+_BoostedExpPointsText::
 	text_start
 	line "a boosted"
 	cont "@"
@@ -107,7 +107,7 @@ _ABoostedStringBuffer2ExpPointsText::
 	text " EXP. Points!"
 	prompt
 
-_StringBuffer2ExpPointsText::
+_ExpPointsText::
 	text_start
 	line "@"
 	text_decimal wStringBuffer2, 2, 4
@@ -132,7 +132,7 @@ Text_YourFoesWeakGetmMon::
 	line "Get'm, @"
 	text_end
 
-_BattleMonNick01Text::
+_BattleMonNicknameText::
 	text_ram wBattleMonNick
 	text "!"
 	done
@@ -211,7 +211,7 @@ _ReceivedTMHMText::
 	text "!"
 	prompt
 
-_MysteryGiftCancelledText::
+_MysteryGiftCanceledText::
 	text "The link has been"
 	line "cancelled."
 	prompt
@@ -311,7 +311,7 @@ _CutNothingText::
 	line "CUT here."
 	prompt
 
-Text_UseFlash::
+_BlindingFlashText::
 	text "A blinding FLASH"
 	line "lights the area!@"
 	text_waitbutton
@@ -346,7 +346,7 @@ _UseWaterfallText::
 	line "WATERFALL!"
 	done
 
-_BigWaterfallText::
+_HugeWaterfallText::
 	text "Wow, it's a huge"
 	line "waterfall."
 	done
@@ -594,7 +594,7 @@ _UseSacredAshText::
 	line "were all healed!"
 	done
 
-_AnEGGCantHoldAnItemText::
+_AnEggCantHoldAnItemText::
 	text "An EGG can't hold"
 	line "an item."
 	prompt
@@ -806,7 +806,7 @@ _BreedAskNicknameText::
 	text "?"
 	done
 
-_BreedWithLadyText::
+_LeftWithDayCareLadyText::
 	text "It's @"
 	text_ram wBreedMon2Nick
 	text_start
@@ -814,7 +814,7 @@ _BreedWithLadyText::
 	cont "the DAY-CARE LADY."
 	done
 
-_BreedWithManText::
+_LeftWithDayCareManText::
 	text "It's @"
 	text_ram wBreedMon1Nick
 	text_start
@@ -822,7 +822,7 @@ _BreedWithManText::
 	cont "the DAY-CARE MAN."
 	done
 
-_BreedBrimmingText::
+_BreedBrimmingWithEnergyText::
 	text "It's brimming with"
 	line "energy."
 	prompt
@@ -834,7 +834,7 @@ _BreedNoInterestText::
 	text "."
 	prompt
 
-_BreedCaringText::
+_BreedAppearsToCareForText::
 	text "It appears to care"
 	line "for @"
 	text_ram wStringBuffer1
@@ -848,7 +848,7 @@ _BreedFriendlyText::
 	text "."
 	prompt
 
-_BreedShowInterestText::
+_BreedShowsInterestText::
 	text "It shows interest"
 	line "in @"
 	text_ram wStringBuffer1
@@ -944,7 +944,7 @@ _PCNoSingleMonText::
 	line "single #MON!"
 	prompt
 
-_PCNoCantDepositText::
+_PCCantDepositLastMonText::
 	text "You can't deposit"
 	line "your last #MON!"
 	prompt

@@ -862,7 +862,7 @@ Hatch_ShellFragmentLoop:
 	ret
 
 DayCareMon1:
-	ld hl, BreedWithManText
+	ld hl, LeftWithDayCareManText
 	call PrintText
 	ld a, [wBreedMon1Species]
 	call PlayMonCry
@@ -875,7 +875,7 @@ DayCareMon1:
 	jp PrintText
 
 DayCareMon2:
-	ld hl, BreedWithLadyText
+	ld hl, LeftWithDayCareLadyText
 	call PrintText
 	ld a, [wBreedMon2Species]
 	call PlayMonCry
@@ -890,12 +890,12 @@ DayCareMon2:
 DayCareMonCursor:
 	jp WaitPressAorB_BlinkCursor
 
-BreedWithLadyText:
-	text_far _BreedWithLadyText
+LeftWithDayCareLadyText:
+	text_far _LeftWithDayCareLadyText
 	text_end
 
-BreedWithManText:
-	text_far _BreedWithManText
+LeftWithDayCareManText:
+	text_far _LeftWithDayCareManText
 	text_end
 
 DayCareMonCompatibilityText:
@@ -906,41 +906,41 @@ DayCareMonCompatibilityText:
 	call CheckBreedmonCompatibility
 	pop bc
 	ld a, [wBreedingCompatibility]
-	ld hl, .BreedBrimmingText
+	ld hl, .BreedBrimmingWithEnergyText
 	cp -1
 	jr z, .done
 	ld hl, .BreedNoInterestText
 	and a
 	jr z, .done
-	ld hl, .BreedCaringText
+	ld hl, .BreedAppearsToCareForText
 	cp 230
 	jr nc, .done
 	cp 70
 	ld hl, .BreedFriendlyText
 	jr nc, .done
-	ld hl, .BreedShowInterestText
+	ld hl, .BreedShowsInterestText
 
 .done
 	ret
 
-.BreedBrimmingText:
-	text_far _BreedBrimmingText
+.BreedBrimmingWithEnergyText:
+	text_far _BreedBrimmingWithEnergyText
 	text_end
 
 .BreedNoInterestText:
 	text_far _BreedNoInterestText
 	text_end
 
-.BreedCaringText:
-	text_far _BreedCaringText
+.BreedAppearsToCareForText:
+	text_far _BreedAppearsToCareForText
 	text_end
 
 .BreedFriendlyText:
 	text_far _BreedFriendlyText
 	text_end
 
-.BreedShowInterestText:
-	text_far _BreedShowInterestText
+.BreedShowsInterestText:
+	text_far _BreedShowsInterestText
 	text_end
 
 Unreferenced_DayCareMonPrintEmptyString:

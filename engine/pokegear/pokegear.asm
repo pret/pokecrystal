@@ -459,7 +459,7 @@ PokegearJumptable:
 
 PokegearClock_Init:
 	call InitPokegearTilemap
-	ld hl, GearPressButtonText
+	ld hl, PokegearPressButtonText
 	call PrintText
 	ld hl, wJumptableIndex
 	inc [hl]
@@ -812,7 +812,7 @@ PokegearPhone_Init:
 	ld [wPokegearPhoneSelectedPerson], a
 	call InitPokegearTilemap
 	call ExitPokegearRadio_HandleMusic
-	ld hl, GearAskWhoCallText
+	ld hl, PokegearAskWhoCallText
 	call PrintText
 	ret
 
@@ -930,7 +930,7 @@ PokegearPhone_MakePhoneCall:
 	call PrintText
 	ld a, POKEGEARSTATE_PHONEJOYPAD
 	ld [wJumptableIndex], a
-	ld hl, GearAskWhoCallText
+	ld hl, PokegearAskWhoCallText
 	call PrintText
 	ret
 
@@ -949,7 +949,7 @@ PokegearPhone_FinishPhoneCall:
 	farcall HangUp
 	ld a, POKEGEARSTATE_PHONEJOYPAD
 	ld [wJumptableIndex], a
-	ld hl, GearAskWhoCallText
+	ld hl, PokegearAskWhoCallText
 	call PrintText
 	ret
 
@@ -1204,13 +1204,13 @@ PokegearPhoneContactSubmenu:
 	jp hl
 
 .Cancel:
-	ld hl, GearAskWhoCallText
+	ld hl, PokegearAskWhoCallText
 	call PrintText
 	scf
 	ret
 
 .Delete:
-	ld hl, GearAskDeleteText
+	ld hl, PokegearAskDeleteText
 	call MenuTextbox
 	call YesNoBox
 	call ExitMenu
@@ -1219,7 +1219,7 @@ PokegearPhoneContactSubmenu:
 	xor a
 	ldh [hBGMapMode], a
 	call PokegearPhone_UpdateDisplayList
-	ld hl, GearAskWhoCallText
+	ld hl, PokegearAskWhoCallText
 	call PrintText
 	call WaitBGMap
 .CancelDelete:
@@ -1349,16 +1349,16 @@ Pokegear_LoadTilemapRLE:
 	jr nz, .load
 	jr .loop
 
-GearAskWhoCallText:
-	text_far _GearAskWhoCallText
+PokegearAskWhoCallText:
+	text_far _PokegearAskWhoCallText
 	text_end
 
-GearPressButtonText:
-	text_far _GearPressButtonText
+PokegearPressButtonText:
+	text_far _PokegearPressButtonText
 	text_end
 
-GearAskDeleteText:
-	text_far _GearAskDeleteText
+PokegearAskDeleteText:
+	text_far _PokegearAskDeleteText
 	text_end
 
 PokegearSpritesGFX:

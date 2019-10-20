@@ -67,7 +67,7 @@ WadeBattleRematchText:
 	line "you get there."
 	done
 
-WadeHangupText:
+WadeHangUpText:
 	text "See you later!"
 	done
 

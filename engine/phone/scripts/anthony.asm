@@ -13,7 +13,7 @@ AnthonyPhoneCalleeScript:
 .NotFriday:
 	checkflag ENGINE_DUNSPARCE_SWARM
 	iftrue .AlreadySwarming
-	farsjump AnthonyHangupScript
+	farsjump AnthonyHangUpScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_33

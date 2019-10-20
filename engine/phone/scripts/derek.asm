@@ -13,7 +13,7 @@ DerekPhoneCalleeScript:
 	ifequal SATURDAY, .ContestToday
 
 .NoContest:
-	farsjump DerekHangupScript
+	farsjump DerekHangUpScript
 
 .ContestToday:
 	farsjump PhoneScript_BugCatchingContest

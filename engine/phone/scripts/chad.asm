@@ -11,7 +11,7 @@ ChadPhoneCalleeScript:
 	iftrue ChadFridayMorning
 
 .NotFriday:
-	farsjump ChadHangupScript
+	farsjump ChadHangUpScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_38

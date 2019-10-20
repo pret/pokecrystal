@@ -64,12 +64,12 @@ GavenBattleRematchText:
 	line "when you're close."
 	done
 
-GavenHangupText:
+GavenHangUpText:
 	text "OK, I'll talk to"
 	line "you soon!"
 	done
 
-GavenHangupNotThursdayText:
+GavenHangUpNotThursdayText:
 	text "I obsess over how"
 	line "to beat you."
 	done

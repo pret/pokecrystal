@@ -72,7 +72,7 @@ LizWrongNumberText:
 	line "Oops! Sorry!"
 	done
 
-LizHangupText:
+LizHangUpText:
 	text "OK, I'll call you"
 	line "later!"
 	done

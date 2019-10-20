@@ -1061,8 +1061,8 @@ LevelBallMultiplier:
 ; These two texts were carried over from gen 1.
 ; They are not used in gen 2, and are dummied out.
 
-BallCantCatchText:
-	text_far _BallCantCatchText
+BallDodgedText:
+	text_far _BallDodgedText
 	text_end
 
 BallMissedText:
@@ -1097,11 +1097,11 @@ Text_GotchaMonWasCaught:
 	ld de, MUSIC_CAPTURE
 	call PlayMusic
 	pop bc
-	ld hl, WaitbuttonText
+	ld hl, WaitButtonText
 	ret
 
-WaitbuttonText:
-	text_far _WaitbuttonText
+WaitButtonText:
+	text_far _WaitButtonText
 	text_end
 
 BallSentToPCText:

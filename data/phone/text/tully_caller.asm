@@ -52,7 +52,7 @@ TullyBattleRematchText:
 	line "have the time."
 	done
 
-TullyHangupText:
+TullyHangUpText:
 	text "Well, I'll be"
 	line "seeing you."
 	done

@@ -43,7 +43,7 @@ VanceBattleRematchText:
 	line "I'll wait here."
 	done
 
-VanceHangupText:
+VanceHangUpText:
 	text "OK, bye for now!"
 	done
 

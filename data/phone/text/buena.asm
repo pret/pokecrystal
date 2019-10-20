@@ -462,7 +462,7 @@ BuenaPhoneGoingShoppingText:
 	para "Catch you later!"
 	done
 
-BuenaPhoneFavouriteSlotMachineAnswerText:
+BuenaPhoneFavoriteSlotMachineAnswerText:
 	text "I'm thinking of"
 	line "going to the GAME"
 

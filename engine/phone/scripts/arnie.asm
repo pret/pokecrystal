@@ -13,7 +13,7 @@ ArniePhoneCalleeScript:
 .NotTuesday:
 	checkflag ENGINE_YANMA_SWARM
 	iftrue .AlreadySwarming
-	farsjump ArnieHangupScript
+	farsjump ArnieHangUpScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_35
