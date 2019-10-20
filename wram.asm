@@ -731,6 +731,9 @@ wPuzzlePieces:: ds 6 * 6
 wUnownPuzzleEnd::
 
 NEXTU ; c608
+wMobileTransferData:: ds $1e0
+
+NEXTU ; c608
 
 ; This union spans 200 bytes from c608 to c6d0.
 UNION ; c608
@@ -759,7 +762,6 @@ wOddEggName:: ds MON_NAME_LENGTH
 wOddEggOTName:: ds NAME_LENGTH
 
 NEXTU ; c608
-; mobile data
 wc608:: ds 53
 wc63d:: ds 5
 wc642:: ds 5
@@ -1052,14 +1054,15 @@ wc80e:: ds 1
 wc80f:: ds 1
 wc810:: ds 1
 wc811:: ds 1
-wc812:: ds 1
-wc813:: ds 1
+wMobileSDK_PacketChecksum:: dw ; c812
 wc814:: ds 4
-wc818:: ds 6
+wMobileSDK_AdapterType:: db ; c818
+	ds 5
 wMobileSDK_SendCommandID:: db ; c81e
 	ds 1
 wc820:: ds 1
-wc821:: ds 47
+wc821:: ds 1
+wc822:: ds 46
 
 UNION ; c850
 wMysteryGiftTrainerData:: ds (1 + 1 + NUM_MOVES) * PARTY_LENGTH + 2
@@ -1126,6 +1129,13 @@ NEXTU ; ca00
 ; link data
 	ds 191
 wcabf:: ds 1
+
+NEXTU ; ca00
+	ds $2f
+wMobileSDK_ReceivePacketBufferAlt:: ds 11 ; ca2f
+wMobileSDK_ReceivedBytes:: dw ; ca3a
+wMobileSDK_ReceivePacketBuffer:: ; ca3c
+
 ENDU ; cb00
 
 	ds 14
@@ -3065,6 +3075,7 @@ NEXTU ; dd68
 	ds $98
 w3_de00:: ds $200
 ENDU ; e000
+
 
 SECTION "GBC Video", WRAMX, ALIGN[8]
 ; LCD expects wLYOverrides to have an alignment of $100

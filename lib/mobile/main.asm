@@ -1,8 +1,28 @@
 ; A library included as part of the Mobile Adapter GB SDK.
 
+INCLUDE "macros/enum.asm"
+INCLUDE "constants/hardware_constants.asm"
+INCLUDE "constants/mobile_constants.asm"
+
 charmap "<CR>", $d
 
-INCLUDE "constants/hardware_constants.asm"
+; Mobile Adapter protocol commands
+MOBILE_COMMAND_BEGIN_SESSION            EQU $10
+MOBILE_COMMAND_END_SESSION              EQU $11
+MOBILE_COMMAND_DIAL_TELEPHONE           EQU $12
+MOBILE_COMMAND_HANG_UP_TELEPHONE        EQU $13
+MOBILE_COMMAND_WAIT_FOR_TELEPHONE_CALL  EQU $14
+MOBILE_COMMAND_TRANSFER_DATA            EQU $15
+MOBILE_COMMAND_TELEPHONE_STATUS         EQU $17
+MOBILE_COMMAND_READ_CONFIGURATION_DATA  EQU $19
+MOBILE_COMMAND_WRITE_CONFIGURATION_DATA EQU $1a
+MOBILE_COMMAND_TRANSFER_DATA_END        EQU $1f
+MOBILE_COMMAND_ISP_LOGIN                EQU $21
+MOBILE_COMMAND_ISP_LOGOUT               EQU $22
+MOBILE_COMMAND_OPEN_TCP_CONNECTION      EQU $23
+MOBILE_COMMAND_CLOSE_TCP_CONNECTION     EQU $24
+MOBILE_COMMAND_DNS_QUERY                EQU $28
+MOBILE_COMMAND_ERROR                    EQU $6e
 
 
 SECTION "Mobile Adapter SDK", ROMX
@@ -62,10 +82,10 @@ MobileSDK_CopyStringLen:
 	ld b, a
 	ret
 
-Function110029:
-; Clear two bytes at $ca3a.
+ResetReceivePacketBuffer:
+; Clear two bytes at wMobileSDK_ReceivedBytes
 	xor a
-	ld hl, $ca3a
+	ld hl, wMobileSDK_ReceivedBytes
 	ld [hli], a
 	ld [hl], a
 	ret
@@ -353,7 +373,7 @@ Function110115:
 	jp .asm_11015b
 
 .asm_1101f8
-	ld a, [$ca3c]
+	ld a, [wMobileSDK_ReceivePacketBuffer]
 	cp $a4
 	jr z, .asm_1101a4
 	ld a, $3
@@ -404,7 +424,7 @@ Function110236:
 	ldh a, [rIF]
 	and $1b
 	ldh [rIF], a
-	call Function110029
+	call ResetReceivePacketBuffer
 	ld bc, $0452
 	ld hl, $c800
 .asm_11024e
@@ -752,7 +772,7 @@ Function110485:
 	pop bc
 	pop hl
 	push bc
-	ld a, [$c818]
+	ld a, [wMobileSDK_AdapterType]
 	cp $8c
 	jr c, .asm_11049e
 	ld a, $3
@@ -765,7 +785,7 @@ Function110485:
 	ld [de], a
 	inc de
 	ld bc, $0001
-	ld a, $14 ; CONST: Maximum mobile number length
+	ld a, MOBILE_PHONE_NUMBER_LENGTH
 	call MobileSDK_CopyStringLen
 	ld a, c
 	ld [wMobileSDK_PacketBuffer + 5], a
@@ -780,7 +800,7 @@ Function1104b0:
 	ld de, MobilePacket_Idle.End - MobilePacket_Idle
 	ld hl, MobilePacket_Idle
 	ld b, 1
-	jp MobileSDK_SendBytes
+	jp PacketSendBytes
 
 Function1104c6:
 	ld a, [$c821]
@@ -798,12 +818,12 @@ Function1104c6:
 	jr nz, .asm_110507
 	ld a, $2
 	ld [$c86b], a
-	ld a, $a2
+	ld a, MOBILE_COMMAND_ISP_LOGOUT | $80
 	ld [wMobileSDK_SendCommandID], a
 	ld de, MobilePacket_ISPLogout.End - MobilePacket_ISPLogout
 	ld hl, MobilePacket_ISPLogout
 	ld b, $5
-	call MobileSDK_SendBytes
+	call PacketSendBytes
 .asm_1104fa
 	ld a, $e
 	ld [$c86a], a
@@ -859,11 +879,11 @@ Function1104c6:
 	call MobileSDK_CopyString
 	ld b, c
 	call Function111f63
-	ld a, $95
+	ld a, MOBILE_COMMAND_TRANSFER_DATA | $80
 	ld [wMobileSDK_SendCommandID], a
 	ld hl, wMobileSDK_PacketBuffer
 	ld b, $5
-	call MobileSDK_SendBytes
+	call PacketSendBytes
 	ld a, $e
 	ld [$c86a], a
 	jp Function110432
@@ -1039,10 +1059,10 @@ Function110615:
 
 .asm_1106ac
 	ld hl, wMobileSDK_PacketBuffer
-	ld a, $a8
+	ld a, MOBILE_COMMAND_DNS_QUERY | $80
 	ld [wMobileSDK_SendCommandID], a
 	ld b, $5
-	call MobileSDK_SendBytes
+	call PacketSendBytes
 	ld a, $f
 	ld [$c86a], a
 	jp Function110432
@@ -1202,13 +1222,13 @@ Function110757:
 	ld [$cb58], a
 	ld b, c
 	call Function111f63
-	ld a, $95
+	ld a, MOBILE_COMMAND_TRANSFER_DATA | $80
 	ld [wMobileSDK_SendCommandID], a
 	ld hl, $cb53
 	ld d, $0
 	ld e, c
 	ld b, $5
-	call MobileSDK_SendBytes
+	call PacketSendBytes
 	ld a, $15
 	ld [$c86a], a
 	jp Function110432
@@ -1276,12 +1296,12 @@ Function1107ff:
 	ld [$cbe2], a
 	ld b, c
 	call Function111f63
-	ld a, $95
+	ld a, MOBILE_COMMAND_TRANSFER_DATA | $80
 	ld [wMobileSDK_SendCommandID], a
 	ld de, $0011
 	ld hl, $cbdd
 	ld b, $5
-	call MobileSDK_SendBytes
+	call PacketSendBytes
 
 .asm_110891
 	ld a, $16
@@ -1330,11 +1350,11 @@ Function1108ab:
 	call MobileSDK_CopyString
 	ld b, c
 	call Function111f63
-	ld a, $95
+	ld a, MOBILE_COMMAND_TRANSFER_DATA | $80
 	ld [wMobileSDK_SendCommandID], a
 	ld hl, wMobileSDK_PacketBuffer
 	ld b, $5
-	call MobileSDK_SendBytes
+	call PacketSendBytes
 	ld a, $17
 	ld [$c86a], a
 	jp Function110432
@@ -1449,11 +1469,11 @@ Function1109a4:
 	call MobileSDK_CopyString
 	ld b, c
 	call Function111f63
-	ld a, $95
+	ld a, MOBILE_COMMAND_TRANSFER_DATA | $80
 	ld [wMobileSDK_SendCommandID], a
 	ld hl, wMobileSDK_PacketBuffer
 	ld b, $5
-	call MobileSDK_SendBytes
+	call PacketSendBytes
 	ld a, $18
 	ld [$c86a], a
 	jp Function110432
@@ -1494,11 +1514,11 @@ Function1109f9:
 	call Function110d37
 	ld b, c
 	call Function111f63
-	ld a, $95
+	ld a, MOBILE_COMMAND_TRANSFER_DATA | $80
 	ld [wMobileSDK_SendCommandID], a
 	ld hl, wMobileSDK_PacketBuffer
 	ld b, $5
-	call MobileSDK_SendBytes
+	call PacketSendBytes
 	ld a, $1d
 	ld [$c86a], a
 	jp Function110432
@@ -1578,11 +1598,11 @@ Function110a5b:
 	call Function110d37
 	ld b, c
 	call Function111f63
-	ld a, $95
+	ld a, MOBILE_COMMAND_TRANSFER_DATA | $80
 	ld [wMobileSDK_SendCommandID], a
 	ld hl, wMobileSDK_PacketBuffer
 	ld b, $5
-	call MobileSDK_SendBytes
+	call PacketSendBytes
 	ld a, $1a
 	ld [$c86a], a
 	jp Function110432
@@ -1710,11 +1730,11 @@ Function110af4:
 	ld a, $1
 	ld [$c86b], a
 	ld de, $000b
-	ld a, $95
+	ld a, MOBILE_COMMAND_TRANSFER_DATA | $80
 	ld [wMobileSDK_SendCommandID], a
 	ld hl, $cbc7
 	ld b, $5
-	jp MobileSDK_SendBytes
+	jp PacketSendBytes
 
 .asm_110bbb
 	ld a, $4
@@ -1834,11 +1854,11 @@ Function110c3c:
 	call Function110d37
 	ld b, c
 	call Function111f63
-	ld a, $95
+	ld a, MOBILE_COMMAND_TRANSFER_DATA | $80
 	ld [wMobileSDK_SendCommandID], a
 	ld hl, wMobileSDK_PacketBuffer
 	ld b, $5
-	call MobileSDK_SendBytes
+	call PacketSendBytes
 	ld a, $1b
 	ld [$c86a], a
 	jp Function110432
@@ -1918,11 +1938,11 @@ Function110c9e:
 	call Function110d37
 	ld b, c
 	call Function111f63
-	ld a, $95
+	ld a, MOBILE_COMMAND_TRANSFER_DATA | $80
 	ld [wMobileSDK_SendCommandID], a
 	ld hl, wMobileSDK_PacketBuffer
 	ld b, $5
-	call MobileSDK_SendBytes
+	call PacketSendBytes
 	ld a, $1c
 	ld [$c86a], a
 	jp Function110432
@@ -2341,10 +2361,10 @@ Function110f07:
 .asm_110f95
 	ld de, $0010
 	ld hl, wMobileSDK_PacketBuffer
-	ld a, $a3
+	ld a, MOBILE_COMMAND_OPEN_TCP_CONNECTION | $80
 	ld [wMobileSDK_SendCommandID], a
 	ld b, $5
-	call MobileSDK_SendBytes
+	call PacketSendBytes
 	ld a, $f
 	ld [$c86a], a
 	jp Function110432
@@ -2489,15 +2509,15 @@ Function111044:
 	ld [$c989], a
 	ld hl, $c821
 	res 2, [hl]
-	ld a, [$ca3c]
+	ld a, [wMobileSDK_ReceivePacketBuffer]
 	cp $9f
 	jr z, .asm_111144
 	ld de, $000b
-	ld a, $95
+	ld a, MOBILE_COMMAND_TRANSFER_DATA | $80
 	ld [wMobileSDK_SendCommandID], a
 	ld hl, wMobileSDK_PacketBuffer
 	ld b, $5
-	call MobileSDK_SendBytes
+	call PacketSendBytes
 	ld a, $1
 	ld [$c86b], a
 	ret
@@ -3230,9 +3250,9 @@ Function111541:
 	jr c, .asm_111582
 	xor a
 	ld [$c86b], a
-	ld a, $97
+	ld a, MOBILE_COMMAND_TELEPHONE_STATUS | $80
 	ld hl, MobilePacket_TelephoneStatus
-	call MobileSDK_SendPacketEmptyBody
+	call PacketSendEmptyBody
 .asm_11156f
 	ld a, [$c988]
 	cp $40
@@ -3288,7 +3308,7 @@ Function111596:
 	ld [$c800], a
 	ld a, $8
 	ld [$c807], a
-	call Function110029
+	call ResetReceivePacketBuffer
 	call Function11164f
 	ld hl, $c821
 	set 0, [hl]
@@ -3311,7 +3331,7 @@ Function1115e4:
 	ld [$c86b], a
 	ld a, [$c86d]
 	or a
-	ld a, [$ca3c]
+	ld a, [wMobileSDK_ReceivePacketBuffer]
 	jr z, .asm_111609
 	cp $9f
 	jr z, .asm_11160d
@@ -3361,7 +3381,7 @@ Function11162d:
 	ld [hli], a
 	ld [hl], a
 	call Function111686
-	call Function110029
+	call ResetReceivePacketBuffer
 	ld bc, $0452
 	ld hl, $c800
 .asm_111647
@@ -3379,7 +3399,7 @@ Function11164f:
 	ld [hli], a
 	ld a, [$c81f]
 	ld b, a
-	ld a, [$c818]
+	ld a, [wMobileSDK_AdapterType]
 	ld a, b
 	srl a
 	srl a
@@ -3389,7 +3409,7 @@ Function11164f:
 	ret
 
 Function111664:
-	ld hl, $ca3a
+	ld hl, wMobileSDK_ReceivedBytes
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -3397,16 +3417,16 @@ Function111664:
 	ld a, [wMobileSDK_SendCommandID]
 	cp $ff
 	jr z, .asm_111679
-	ld a, [$c822]
+	ld a, [wc822]
 	bit 0, a
 	jr z, .asm_11167c
 .asm_111679
-	ld hl, $ca2f
+	ld hl, wMobileSDK_ReceivePacketBufferAlt
 .asm_11167c
 	add hl, de
 	ld [hl], c
 	inc de
-	ld hl, $ca3a
+	ld hl, wMobileSDK_ReceivedBytes
 	ld a, e
 	ld [hli], a
 	ld [hl], d
@@ -3419,7 +3439,7 @@ Function111686:
 	ldh a, [c]
 	and $f3
 	ldh [c], a
-	ld a, [$cb48]
+	ld a, [wMobileSDK_PacketBuffer + 1]
 	ld [$c86a], a
 	ld a, [wMobileSDK_PacketBuffer]
 	ld c, a
@@ -3502,17 +3522,17 @@ _MobileReceive::
 	jr z, .asm_111778
 .asm_111716
 	ld a, [wMobileSDK_SendCommandID]
-	cp $ff
+	cp -1
 	jr z, .asm_111730
-	cp $ee
+	cp MOBILE_COMMAND_ERROR | $80
 	jr z, .asm_111727
-	cp $9f
+	cp MOBILE_COMMAND_TRANSFER_DATA_END | $80
 	jr nz, .asm_111727
-	ld a, $95
+	ld a, MOBILE_COMMAND_TRANSFER_DATA | $80
 .asm_111727
 	cp [hl]
 	jr nz, asm_11179a
-	ld a, [$c818]
+	ld a, [wMobileSDK_AdapterType]
 	or a
 	jr z, .asm_111730
 .asm_111730
@@ -3540,13 +3560,13 @@ _MobileReceive::
 	jr .asm_111774
 .asm_111757
 	ld a, [wMobileSDK_SendCommandID]
-	cp $ff
+	cp -1
 	jr z, .asm_11176e
-	cp $92
+	cp MOBILE_COMMAND_DIAL_TELEPHONE | $80
 	jr z, .asm_111772
-	cp $a3
+	cp MOBILE_COMMAND_OPEN_TCP_CONNECTION | $80
 	jr z, .asm_111772
-	cp $a8
+	cp MOBILE_COMMAND_DNS_QUERY | $80
 	jr z, .asm_111772
 	ld a, $20
 	jr .asm_111774
@@ -3687,7 +3707,7 @@ Function1117e7:
 	xor a
 	ld [hli], a
 	inc [hl]
-	ld hl, $c812
+	ld hl, wMobileSDK_PacketChecksum
 	ld b, $3
 .asm_11184e
 	ld [hli], a
@@ -3768,15 +3788,15 @@ Function1118c2:
 	ldh a, [rSB]
 	ld c, a
 	ld b, $0
-	ld hl, $c812
+	ld hl, wMobileSDK_PacketChecksum
 	ld a, [hli]
 	ld l, [hl]
 	ld h, a
 	add hl, bc
 	ld a, h
-	ld [$c812], a
+	ld [wMobileSDK_PacketChecksum], a
 	ld a, l
-	ld [$c813], a
+	ld [wMobileSDK_PacketChecksum + 1], a
 	call Function111664
 	ld hl, $c80a
 	inc [hl]
@@ -3902,11 +3922,11 @@ _Timer::
 	add $a
 	ld e, a
 	ld d, $0
-	ld a, $95
+	ld a, MOBILE_COMMAND_TRANSFER_DATA | $80
 	ld [wMobileSDK_SendCommandID], a
 	ld hl, wMobileSDK_PacketBuffer
 	ld b, $5
-	call MobileSDK_SendBytes
+	call PacketSendBytes
 	jp Function111b3b
 .asm_1119dd
 	ld hl, $c821
@@ -3919,13 +3939,13 @@ _Timer::
 	jr .asm_1119a9
 
 Function1119f0:
-	ld a, $90
+	ld a, MOBILE_COMMAND_BEGIN_SESSION | $80
 	ld [wMobileSDK_SendCommandID], a
 	ld [$c808], a
 	ld b, $5
 	ld de, MobilePacket_BeginSession.End - MobilePacket_BeginSession
 	ld hl, MobilePacket_BeginSession
-	call MobileSDK_SendBytes
+	call PacketSendBytes
 	ld a, $1
 	ld [$c806], a
 	jp Function111b3b
@@ -3946,7 +3966,7 @@ Function111a0b:
 	ld h, [hl]
 	ld l, a
 	ld b, $5
-	call MobileSDK_SendBytes
+	call PacketSendBytes
 	jp Function111b3b
 
 Function111a2a:
@@ -3967,6 +3987,7 @@ asm_111a40:
 Function111a42:
 	ldh [rSB], a
 	jp Function111b2e
+
 asm_111a47:
 	ld hl, $c815
 	dec [hl]
@@ -4019,7 +4040,7 @@ asm_111a47:
 	ld a, $8
 	ld [$c807], a
 .asm_111aa8
-	call Function110029
+	call ResetReceivePacketBuffer
 	call Function11164f
 	ld hl, $c822
 	res 5, [hl]
@@ -4035,7 +4056,7 @@ Function111abd:
 	ld a, [$c814]
 	or a
 	jr nz, .asm_111acb
-	ld a, [$ca3c]
+	ld a, [wMobileSDK_ReceivePacketBuffer]
 	xor $80
 	jp Function111a42
 .asm_111acb
@@ -4044,7 +4065,7 @@ Function111abd:
 	ld a, $3
 	cp [hl]
 	jr z, .asm_111afe
-	call Function110029
+	call ResetReceivePacketBuffer
 	ld a, $3
 	ld [$c800], a
 	xor a
@@ -4121,48 +4142,50 @@ Function111b3c:
 	res 5, [hl]
 	bit 0, [hl]
 	jr z, .asm_111b59
-	ld a, [$ca2f]
+	ld a, [wMobileSDK_ReceivePacketBufferAlt]
 	jr .asm_111b5c
 .asm_111b59
-	ld a, [$ca3c]
+	ld a, [wMobileSDK_ReceivePacketBuffer]
 .asm_111b5c
-	cp $9f
+
+	cp MOBILE_COMMAND_TRANSFER_DATA_END | $80
 	jr nz, .asm_111b62
-	ld a, $95
+	ld a, MOBILE_COMMAND_TRANSFER_DATA | $80
 .asm_111b62
 	ld b, a
+
 	ld hl, Function111e28
 	push hl
-	cp $ee
-	jp z, MobileSDK_GetErrorCode
+	cp MOBILE_COMMAND_ERROR | $80
+	jp z, GetErrorCode
 	ld a, [wMobileSDK_SendCommandID]
-	cp $ff
+	cp -1
 	jp z, Function111ef8
-	cp $95
+	cp MOBILE_COMMAND_TRANSFER_DATA | $80
 	jp z, Function111c17
-	cp $a8
+	cp MOBILE_COMMAND_DNS_QUERY | $80
 	jp z, Function111d23
-	cp $a3
+	cp MOBILE_COMMAND_OPEN_TCP_CONNECTION | $80
 	jr z, .asm_111bbe
-	cp $a4
+	cp MOBILE_COMMAND_CLOSE_TCP_CONNECTION | $80
 	jr z, .asm_111bbe
-	cp $93
+	cp MOBILE_COMMAND_HANG_UP_TELEPHONE | $80
 	jr z, .asm_111be0
-	cp $99
+	cp MOBILE_COMMAND_READ_CONFIGURATION_DATA | $80
 	jr z, .asm_111bf0
-	cp $9a
+	cp MOBILE_COMMAND_WRITE_CONFIGURATION_DATA | $80
 	jp z, Function111c06
-	cp $97
+	cp MOBILE_COMMAND_TELEPHONE_STATUS | $80
 	jp z, Function111d70
-	cp $a1
+	cp MOBILE_COMMAND_ISP_LOGIN | $80
 	jr z, .asm_111bd0
-	cp $a2
+	cp MOBILE_COMMAND_ISP_LOGOUT | $80
 	jr z, .asm_111bca
-	cp $90
-	jp z, Function111d39
-	cp $94
+	cp MOBILE_COMMAND_BEGIN_SESSION | $80
+	jp z, ParseResponse_BeginSession
+	cp MOBILE_COMMAND_WAIT_FOR_TELEPHONE_CALL | $80
 	jp z, Function111d65
-	cp $92
+	cp MOBILE_COMMAND_DIAL_TELEPHONE | $80
 	jp z, Function111d65
 	ld hl, $c822
 	res 0, [hl]
@@ -4171,16 +4194,19 @@ Function111b3c:
 	xor a
 	ld [$c800], a
 	ret
+
 .asm_111bbe
 	ld a, [$ca40]
 	ld [$c86c], a
 	ld a, $4
 	ld [$c807], a
 	ret
+
 .asm_111bca
 	ld a, $3
 	ld [$c807], a
 	ret
+
 .asm_111bd0
 	ld a, $4
 	ld [$c807], a
@@ -4188,6 +4214,7 @@ Function111b3c:
 	ld hl, $ca40
 	ld b, $4
 	jp MobileSDK_CopyBytes
+
 .asm_111be0
 	ld a, $2
 	ld [$c807], a
@@ -4196,12 +4223,13 @@ Function111b3c:
 	ld hl, $c821
 	res 4, [hl]
 	ret
+
 .asm_111bf0
 	ld hl, $c829
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
-	ld hl, $ca3f
+	ld hl, wMobileSDK_ReceivePacketBuffer + 3 ; packet size
 	ld a, [hli]
 	dec a
 	ld b, a
@@ -4221,8 +4249,8 @@ Function111c06:
 	ret
 
 Function111c17:
-	ld a, [$ca3c]
-	cp $9f
+	ld a, [wMobileSDK_ReceivePacketBuffer]
+	cp MOBILE_COMMAND_TRANSFER_DATA_END | $80
 	jp z, Function111d07
 	ld a, [$c86f]
 	ld b, a
@@ -4395,35 +4423,36 @@ Function111d23:
 	ld [$c807], a
 	ret
 
-Function111d39:
-	ld de, $ca3f
+ParseResponse_BeginSession:
+	ld de, wMobileSDK_ReceivePacketBuffer + 3
 	ld hl, MobilePacket_BeginSession + 5
-	ld b, $9
-.asm_111d41
+	ld b, 1 + STRLEN("NINTENDO")
+.check_loop
 	ld a, [de]
 	inc de
 	cp [hl]
-	jr nz, .asm_111d4a
+	jr nz, .check_done
 	inc hl
 	dec b
-	jr nz, .asm_111d41
-.asm_111d4a
+	jr nz, .check_loop
+.check_done
 	ld a, b
 	or a
-	jr nz, .asm_111d59
-	ld a, [$ca4a]
+	jr nz, .done
+
+	ld a, [wMobileSDK_ReceivePacketBuffer + 14] ; device type
 	cp $80
-	jr c, .asm_111d62
+	jr c, .fail
 	cp $90
-	jr nc, .asm_111d62
-.asm_111d59
-	ld [$c818], a
+	jr nc, .fail
+.done
+	ld [wMobileSDK_AdapterType], a
 	ld a, $2
 	ld [$c807], a
 	ret
-.asm_111d62
+.fail
 	xor a
-	jr .asm_111d59
+	jr .done
 
 Function111d65:
 	ld a, $3
@@ -4544,12 +4573,12 @@ Function111e15:
 	ret
 
 Function111e28:
-	jp Function110029
+	jp ResetReceivePacketBuffer
 
-MobileSDK_GetErrorCode:
+GetErrorCode:
 ; Converts an error packet into a BCD error code
 	ld a, [wMobileSDK_SendCommandID]
-	cp $ff
+	cp -1
 	jp z, Function111ef8
 	ld a, [$c86a]
 	cp $d
@@ -4571,25 +4600,25 @@ MobileSDK_GetErrorCode:
 .asm_111e57
 	ld a, [hli]
 	ld [$c80e], a
-	cp $10
+	cp MOBILE_COMMAND_BEGIN_SESSION
 	jr z, .adapter_not_plugged_in
-	cp $12
+	cp MOBILE_COMMAND_DIAL_TELEPHONE
 	jr z, .dial_telephone
-	cp $13
+	cp MOBILE_COMMAND_HANG_UP_TELEPHONE
 	jr z, .hang_up_logout
-	cp $15
+	cp MOBILE_COMMAND_TRANSFER_DATA
 	jr z, .transfer_data
-	cp $19
+	cp MOBILE_COMMAND_READ_CONFIGURATION_DATA
 	jr z, .read_configuration_data
-	cp $21
+	cp MOBILE_COMMAND_ISP_LOGIN
 	jr z, .isp_login
-	cp $22
+	cp MOBILE_COMMAND_ISP_LOGOUT
 	jr z, .hang_up_logout
-	cp $23
+	cp MOBILE_COMMAND_OPEN_TCP_CONNECTION
 	jr z, .open_tcp_connection
-	cp $24
+	cp MOBILE_COMMAND_CLOSE_TCP_CONNECTION
 	jr z, .close_tcp_connection
-	cp $28
+	cp MOBILE_COMMAND_DNS_QUERY
 	jr z, .dns_query
 	ld a, [hl]
 
@@ -4677,14 +4706,14 @@ Function111ef8:
 	ld [$c807], a
 	ret
 
-MobileSDK_SendPacketEmptyBody:
+PacketSendEmptyBody:
 	ld de, 10
 
 Function111f02:
 	ld [wMobileSDK_SendCommandID], a
 	ld b, $5
 
-MobileSDK_SendBytes:
+PacketSendBytes:
 ; hl = bytes
 ; de = size
 ; b = ?
@@ -4817,20 +4846,20 @@ Function111f97:
 	ld b, $5
 	ld hl, wMobileSDK_SendCommandID
 	ld a, [hl]
-	cp $ff
+	cp -1
 	jr z, .asm_111fe9
-	ld a, $97
+	ld a, MOBILE_COMMAND_TELEPHONE_STATUS | $80
 	ld [hl], a
 	ld hl, MobilePacket_TelephoneStatus
 	ld de, MobilePacket_TelephoneStatus.End - MobilePacket_TelephoneStatus
-	call MobileSDK_SendBytes
+	call PacketSendBytes
 	ld hl, $c822
 	set 0, [hl]
 	ret
 .asm_111fe9
 	ld hl, MobilePacket_BeginSession
 	ld de, MobilePacket_BeginSession.End - MobilePacket_BeginSession
-	jp MobileSDK_SendBytes
+	jp PacketSendBytes
 
 	ds 14
 
@@ -4839,63 +4868,63 @@ MobilePacket_Idle:
 .End
 
 MobilePacket_BeginSession:
-	db $99, $66, $10, $00, $00, $08, "NINTENDO", $02, $77, $80, $00
+	db $99, $66, MOBILE_COMMAND_BEGIN_SESSION, $00, $00, $08, "NINTENDO", $02, $77, $80, $00
 .End
 
 MobilePacket_EndSession:
-	db $99, $66, $11, $00, $00, $00, $00, $11, $80, $00
+	db $99, $66, MOBILE_COMMAND_END_SESSION, $00, $00, $00, $00, $11, $80, $00
 .End
 
 MobilePacket_DialTelephone:
-	db $99, $66, $12, $00, $00, $00
+	db $99, $66, MOBILE_COMMAND_DIAL_TELEPHONE, $00, $00, $00
 .End
 
 MobilePacket_HangUpTelephone:
-	db $99, $66, $13, $00, $00, $00, $00, $13, $80, $00
+	db $99, $66, MOBILE_COMMAND_HANG_UP_TELEPHONE, $00, $00, $00, $00, $13, $80, $00
 .End
 
 MobilePacket_TelephoneStatus:
-	db $99, $66, $17, $00, $00, $00, $00, $17, $80, $00
+	db $99, $66, MOBILE_COMMAND_TELEPHONE_STATUS, $00, $00, $00, $00, $17, $80, $00
 .End
 
 MobilePacket_ISPLogin:
-	db $99, $66, $21, $00, $00
+	db $99, $66, MOBILE_COMMAND_ISP_LOGIN, $00, $00
 .End
 
 MobilePacket_ISPLogout:
-	db $99, $66, $22, $00, $00, $00, $00, $22, $80, $00
+	db $99, $66, MOBILE_COMMAND_ISP_LOGOUT, $00, $00, $00, $00, $22, $80, $00
 .End
 
 MobilePacket_ReadConfigurationDataPart1:
-	db $99, $66, $19, $00, $00, $02, $00, $60, $00, $7b, $80, $00
+	db $99, $66, MOBILE_COMMAND_READ_CONFIGURATION_DATA, $00, $00, $02, $00, $60, $00, $7b, $80, $00
 .End
 
 MobilePacket_ReadConfigurationDataPart2:
-	db $99, $66, $19, $00, $00, $02, $60, $60, $00, $db, $80, $00
+	db $99, $66, MOBILE_COMMAND_READ_CONFIGURATION_DATA, $00, $00, $02, $60, $60, $00, $db, $80, $00
 .End
 
 MobilePacket_WriteConfigurationData:
-	db $99, $66, $1a, $00, $00
+	db $99, $66, MOBILE_COMMAND_WRITE_CONFIGURATION_DATA, $00, $00
 .End
 
 MobilePacket_DNSQuery:
-	db $99, $66, $28, $00, $00
+	db $99, $66, MOBILE_COMMAND_DNS_QUERY, $00, $00
 .End
 
 MobilePacket_WaitForTelephoneCall:
-	db $99, $66, $14, $00, $00, $00, $00, $14, $80, $00
+	db $99, $66, MOBILE_COMMAND_WAIT_FOR_TELEPHONE_CALL, $00, $00, $00, $00, $14, $80, $00
 .End
 
 MobilePacket_TransferData:
-	db $99, $66, $15, $00, $00, $01, $ff, $01, $15, $80, $00
+	db $99, $66, MOBILE_COMMAND_TRANSFER_DATA, $00, $00, $01, $ff, $01, $15, $80, $00
 .End
 
 MobilePacket_OpenTCPConnection:
-	db $99, $66, $23, $00, $00, $06
+	db $99, $66, MOBILE_COMMAND_OPEN_TCP_CONNECTION, $00, $00, $06
 .End
 
 MobilePacket_CloseTCPConnection:
-	db $99, $66, $24, $00, $00, $01
+	db $99, $66, MOBILE_COMMAND_CLOSE_TCP_CONNECTION, $00, $00, $01
 .End
 
 Unknown_112089:
@@ -5047,7 +5076,7 @@ Function1121f6:
 	ret
 
 .asm_1121fe
-	ld a, [$c818]
+	ld a, [wMobileSDK_AdapterType]
 	or a
 	jr z, .asm_112206
 	jr Function112269
@@ -5064,21 +5093,24 @@ Function1121f6:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [$c818]
+	ld a, [wMobileSDK_AdapterType]
 	cp $88
 	jr c, .asm_112249
 	sub $88
 	ld [hl], a
+
+	; There aren't more than four adapters
 	cp $4
 	jr c, .asm_112226
 	ld a, $3
-
 .asm_112226
+
+	; The green adapter was scrapped, so the red adapter is the third
 	cp $3
 	jr nz, .asm_11222b
 	dec a
-
 .asm_11222b
+
 	ld b, a
 	ld a, $4
 	sub b
@@ -5122,9 +5154,9 @@ Function11225d:
 	ret
 
 Function112269:
-	ld a, $91
+	ld a, MOBILE_COMMAND_END_SESSION | $80
 	ld hl, MobilePacket_EndSession
-	jp MobileSDK_SendPacketEmptyBody
+	jp PacketSendEmptyBody
 
 Function112271:
 	dec a
@@ -5275,9 +5307,9 @@ Function11235a:
 	ld [hli], a
 	ld a, $c8
 	ld [hl], a
-	ld a, $97
+	ld a, MOBILE_COMMAND_TELEPHONE_STATUS | $80
 	ld hl, MobilePacket_TelephoneStatus
-	jp MobileSDK_SendPacketEmptyBody
+	jp PacketSendEmptyBody
 
 Function11236b:
 	ld a, $99
@@ -5340,12 +5372,12 @@ Function1123b6:
 	dec [hl]
 
 .asm_1123be
-	ld a, $94
+	ld a, MOBILE_COMMAND_WAIT_FOR_TELEPHONE_CALL | $80
 	ld hl, MobilePacket_WaitForTelephoneCall
-	jp MobileSDK_SendPacketEmptyBody
+	jp PacketSendEmptyBody
 
 .asm_1123c6
-	ld a, [$ca3c]
+	ld a, [wMobileSDK_ReceivePacketBuffer]
 	cp $ee
 	jr z, .asm_1123bd
 	ld hl, $c822
@@ -5373,7 +5405,7 @@ Function1123e1:
 	ret
 
 .asm_1123f2
-	ld a, [$ca3c]
+	ld a, [wMobileSDK_ReceivePacketBuffer]
 	cp $9f
 	jr z, .asm_112408
 	call Function1127e1
@@ -5389,14 +5421,14 @@ Function1123e1:
 .asm_11240a
 	xor a
 	ld [$c86d], a
-	ld a, $a2
+	ld a, MOBILE_COMMAND_ISP_LOGOUT | $80
 	ld hl, MobilePacket_ISPLogout
-	jp MobileSDK_SendPacketEmptyBody
+	jp PacketSendEmptyBody
 
 .asm_112416
-	ld a, $93
+	ld a, MOBILE_COMMAND_HANG_UP_TELEPHONE | $80
 	ld hl, MobilePacket_HangUpTelephone
-	jp MobileSDK_SendPacketEmptyBody
+	jp PacketSendEmptyBody
 
 .asm_11241e
 	jp Function112269
@@ -5468,7 +5500,7 @@ Function112451:
 	jp Function111f02
 
 .asm_112496
-	ld a, [$ca3c]
+	ld a, [wMobileSDK_ReceivePacketBuffer]
 	cp $a3
 	jr z, .asm_1124ce
 	ld a, [$c822]
@@ -5899,7 +5931,7 @@ Function11273a:
 	jp Function111f02
 
 .asm_11277a
-	ld a, [$ca3c]
+	ld a, [wMobileSDK_ReceivePacketBuffer]
 	cp $9f
 	jr z, Function1127cd
 	ld hl, $c86b
@@ -6087,7 +6119,7 @@ Function112840:
 	ret
 
 .asm_1128ab
-	ld a, [$ca3c]
+	ld a, [wMobileSDK_ReceivePacketBuffer]
 	cp $9f
 	jp z, Function1127cd
 	ld hl, $c86b
@@ -6124,7 +6156,7 @@ Function1128db:
 	ret
 
 .asm_1128e5
-	ld a, [$ca3c]
+	ld a, [wMobileSDK_ReceivePacketBuffer]
 	cp $9f
 	jp z, Function1127cd
 	call Function113482
@@ -6151,7 +6183,7 @@ Function1128db:
 .asm_112913
 	call Function1127e1
 	jr nz, .asm_11293d
-	ld a, [$ca3c]
+	ld a, [wMobileSDK_ReceivePacketBuffer]
 	cp $9f
 	jp z, Function1127cd
 	ld hl, $c880
@@ -6211,7 +6243,7 @@ Function112969:
 	ret
 
 .asm_112970
-	ld a, [$ca3c]
+	ld a, [wMobileSDK_ReceivePacketBuffer]
 	cp $9f
 	jr z, .asm_112986
 	call Function1127e1
@@ -6289,7 +6321,7 @@ Function11299c:
 	ret
 
 .asm_1129fe
-	ld a, [$ca3c]
+	ld a, [wMobileSDK_ReceivePacketBuffer]
 	cp $9f
 	jr z, Function112a42
 	ld hl, $c86b
@@ -6385,7 +6417,7 @@ Function112a56:
 	jp Function1128d3
 
 .asm_112a95
-	ld a, [$ca3c]
+	ld a, [wMobileSDK_ReceivePacketBuffer]
 	cp $9f
 	jr z, Function112a42
 	ld hl, $c86b
@@ -6567,7 +6599,7 @@ Function112b71:
 	jp Function1128d3
 
 .asm_112ba3
-	ld a, [$ca3c]
+	ld a, [wMobileSDK_ReceivePacketBuffer]
 	cp $9f
 	jp z, Function112a42
 	ld hl, $c86b
@@ -6596,7 +6628,7 @@ Function112bbb:
 	jp Function1128d3
 
 .asm_112bd4
-	ld a, [$ca3c]
+	ld a, [wMobileSDK_ReceivePacketBuffer]
 	cp $9f
 	jp z, Function112a42
 	ld hl, $c86b
@@ -6774,7 +6806,7 @@ Function112bec:
 	jr z, .asm_112d01
 
 .asm_112cef
-	ld a, [$ca3c]
+	ld a, [wMobileSDK_ReceivePacketBuffer]
 	cp $9f
 	jp z, Function112a42
 	ld hl, $c86b
@@ -6891,15 +6923,15 @@ Function112d33:
 	jr .asm_112dc1
 
 .asm_112dab
-	ld a, [$ca3c]
-	cp $9f
+	ld a, [wMobileSDK_ReceivePacketBuffer]
+	cp MOBILE_COMMAND_TRANSFER_DATA_END | $80
 	jr z, .asm_112dc1
 	ld hl, $c86b
 	dec [hl]
 	ld de, $000b
 	ld hl, wMobileSDK_PacketBuffer
 	ld b, $5
-	jp MobileSDK_SendBytes
+	jp PacketSendBytes
 
 .asm_112dc1
 	ld a, [$c989]
@@ -7333,7 +7365,7 @@ Function11306b:
 Function113072:
 	call Function113268
 	jp nc, Function113089
-	ld a, [$ca3c]
+	ld a, [wMobileSDK_ReceivePacketBuffer]
 	cp $9f
 	jp nz, Function1131a9
 	push hl
@@ -7387,7 +7419,7 @@ Function113095:
 .asm_1130c8
 	ld a, $6
 	ld [$c86b], a
-	ld a, [$ca3c]
+	ld a, [wMobileSDK_ReceivePacketBuffer]
 	cp $9f
 	ret z
 	jp Function112430
@@ -7429,7 +7461,7 @@ Function113095:
 	call MobileSDK_CopyBytes
 
 .asm_11310d
-	ld a, [$ca3c]
+	ld a, [wMobileSDK_ReceivePacketBuffer]
 	cp $9f
 	jr z, .asm_113150
 	ld a, [$ca3f]
@@ -8020,9 +8052,9 @@ Function1134cb:
 	jr .asm_1134fc
 
 .asm_1134f4
-	ld a, $97
+	ld a, MOBILE_COMMAND_TELEPHONE_STATUS | $80
 	ld hl, MobilePacket_TelephoneStatus
-	jp MobileSDK_SendPacketEmptyBody
+	jp PacketSendEmptyBody
 
 .asm_1134fc
 	ld hl, $c86e
@@ -9334,7 +9366,7 @@ Function113e42:
 .asm_113e6d
 	ld a, [$c86d]
 	or a
-	ld a, [$ca3c]
+	ld a, [wMobileSDK_ReceivePacketBuffer]
 	jr z, .asm_113e81
 	cp $9f
 	jr z, .asm_113e85
@@ -9405,7 +9437,7 @@ Unreferenced_Function113ec7:
 	xor $80
 	ld [wMobileSDK_SendCommandID], a
 	ld b, $5
-	call MobileSDK_SendBytes
+	call PacketSendBytes
 	pop af
 	bit 0, a
 	ret z
@@ -9474,8 +9506,8 @@ Function113f2d:
 
 .asm_113f3e
 	xor a
-	ld [$ca3c], a
-	ld [$ca2f], a
+	ld [wMobileSDK_ReceivePacketBuffer], a
+	ld [wMobileSDK_ReceivePacketBufferAlt], a
 	ld a, [wMobileSDK_SendCommandID]
 	cp $91
 	jr z, .asm_113f4f
