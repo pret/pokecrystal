@@ -18,6 +18,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 - [Thick Club and Light Ball can make (Special) Attack wrap around above 1024](#thick-club-and-light-ball-can-make-special-attack-wrap-around-above-1024)
 - [Metal Powder can increase damage taken with boosted (Special) Defense](#metal-powder-can-increase-damage-taken-with-boosted-special-defense)
 - [Reflect and Light Screen can make (Special) Defense wrap around above 1024](#reflect-and-light-screen-can-make-special-defense-wrap-around-above-1024)
+- [Glacier Badge may not boost Special Defense depending on the value of Special Attack](#glacier-badge-may-not-boost-special-defense-depending-on-the-value-of-special-attack)
 - [Moves with a 100% secondary effect chance will not trigger it in 1/256 uses](#moves-with-a-100-secondary-effect-chance-will-not-trigger-it-in-1256-uses)
 - [Belly Drum sharply boosts Attack even with under 50% HP](#belly-drum-sharply-boosts-attack-even-with-under-50-hp)
 - [Confusion damage is affected by type-boosting items and Explosion/Self-Destruct doubling](#confusion-damage-is-affected-by-type-boosting-items-and-explosionself-destruct-doubling)
@@ -165,6 +166,34 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 ```
 
 (This fix also affects Thick Club, Light Ball, and Metal Powder, as described above, but their specific fixes in the above bugs allow more accurate damage calculations.)
+
+
+## Glacier Badge may not boost Special Defense depending on the value of Special Attack
+
+As Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") implies, Glacier Badge is intended to boost both Special Attack and Special Defense. However, due to BoostStat overwriting `a` when boosting Special Attack, the Special Defense boost will not happen if the unboosted Special Attack stat is either 0-205 or 433-660.
+
+**Fix:** Edit `BadgeStatBoosts.CheckBadge` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
+
+```diff
+ .CheckBadge:
+ 	ld a, b
+ 	srl b
++	push af
+ 	call c, BoostStat
++	pop af
+ 	inc hl
+ 	inc hl
+ ; Check every other badge.
+ 	srl b
+ 	dec c
+ 	jr nz, .CheckBadge
+ ; Check GlacierBadge again for Special Defense.
+-; This check is buggy because it assumes that a is set by the "ld a, b" in the above loop,
+-; but it can actually be overwritten by the call to BoostStat.
+ 	srl a
+ 	call c, BoostStat
+ 	ret
+```
 
 
 ## Moves with a 100% secondary effect chance will not trigger it in 1/256 uses

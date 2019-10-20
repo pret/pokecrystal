@@ -6758,12 +6758,12 @@ BadgeStatBoosts:
 ; depending on which badges have been obtained.
 
 ; Every other badge boosts a stat, starting from the first.
+; GlacierBadge also boosts Special Defense, although the relevant code is buggy (see below).
 
 ; 	ZephyrBadge:  Attack
 ; 	PlainBadge:   Speed
 ; 	MineralBadge: Defense
-; 	GlacierBadge: Special Attack
-; 	RisingBadge:  Special Defense
+; 	GlacierBadge: Special Attack and Special Defense
 
 ; The boosted stats are in order, except PlainBadge and MineralBadge's boosts are swapped.
 
@@ -6806,7 +6806,9 @@ BadgeStatBoosts:
 	srl b
 	dec c
 	jr nz, .CheckBadge
-; And the last one (RisingBadge) too.
+; Check GlacierBadge again for Special Defense.
+; This check is buggy because it assumes that a is set by the "ld a, b" in the above loop,
+; but it can actually be overwritten by the call to BoostStat.
 	srl a
 	call c, BoostStat
 	ret
