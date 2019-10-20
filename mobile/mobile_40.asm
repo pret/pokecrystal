@@ -1102,13 +1102,13 @@ Function1006fd:
 	call CloseSRAM
 	ret
 
-Function10070d:
-	ld a, $04
-	ld hl, $a800
+MobileBattleFixTimer:
+	ld a, BANK(sMobileBattleTimer)
+	ld hl, sMobileBattleTimer
 	call GetSRAMBank
-	xor a
+	xor a ; MOBILE_BATTLE_ALLOWED_SECONDS
 	ld [hli], a
-	ld a, $0a
+	ld a, MOBILE_BATTLE_ALLOWED_MINUTES
 	ld [hli], a
 	xor a
 	ld [hli], a
@@ -1125,8 +1125,8 @@ Function100720:
 	ld [wcd73], a
 	ldh a, [hSeconds]
 	ld [wcd74], a
-	ld a, $04
-	ld hl, $a800
+	ld a, BANK(sMobileBattleTimer)
+	ld hl, sMobileBattleTimer
 	call GetSRAMBank
 	ld a, [hli]
 	ld [wcd6c], a
@@ -1335,9 +1335,11 @@ String_10088e:
 String_10089f:
 	db "　むせいげん@"
 
-Function1008a6:
-	ld a, $04
-	ld hl, $a800
+MobileBattleGetRemainingTime:
+; Calculates the difference between 10 minutes and sMobileBattleTimer
+; Returns minutes in c and seconds in b
+	ld a, BANK(sMobileBattleTimer)
+	ld hl, sMobileBattleTimer
 	call GetSRAMBank
 	ld a, [hli]
 	ld [wStringBuffer2], a
@@ -1348,26 +1350,25 @@ Function1008a6:
 	call CloseSRAM
 	ld a, [wStringBuffer2 + 2]
 	ld b, a
-	ld a, 0
+	ld a, MOBILE_BATTLE_ALLOWED_SECONDS
 	sub b
-	jr nc, .asm_1008c8
-	add $3c
-
-.asm_1008c8
+	jr nc, .no_carry_seconds
+	add 60
+.no_carry_seconds
 	ld b, a
 	ld a, [wStringBuffer2 + 1]
 	ld c, a
-	ld a, $0a
+	ld a, MOBILE_BATTLE_ALLOWED_MINUTES
 	sbc c
 	ld c, a
-	jr c, .asm_1008da
+	jr c, .fail
 	ld a, [wStringBuffer2]
 	and a
-	jr nz, .asm_1008da
+	jr nz, .fail
 	ret
 
-.asm_1008da
-	call Function10070d
+.fail
+	call MobileBattleFixTimer
 	ld c, 0
 	ret
 
@@ -3280,46 +3281,46 @@ Function10162a:
 	ld [wMobileCommsJumptableIndex], a
 	ret
 
-Function101635:
-	ld de, wc608
+MobileCopyTransferData:
+	ld de, wMobileTransferData
 	ld bc, $1e0
 	call FarCopyWRAM
 	ret
 
-Function10163f:
-	ld hl, wc608
+MobileCopyTransferData2:
+	ld hl, wMobileTransferData
 	ld bc, $1e0
 	call FarCopyWRAM
 	ret
 
 Function101649:
-	ld a, $05
+	ld a, BANK(w5_d800)
 	ld hl, w5_d800
-	call Function101635
-	ld a, $05
+	call MobileCopyTransferData
+	ld a, BANK(w5_da00)
 	ld de, w5_da00
-	call Function10163f
+	call MobileCopyTransferData2
 	ret
 
 Function10165a:
-	ld a, $05
+	ld a, BANK(w5_da00)
 	ld hl, w5_da00
-	call Function101635
+	call MobileCopyTransferData
 	ret
 
 Function101663:
-	ld a, $05
+	ld a, BANK(w5_dc00)
 	ld hl, w5_d800
-	call Function101635
-	ld a, $05
+	call MobileCopyTransferData
+	ld a, BANK(w5_dc00)
 	ld de, w5_dc00
-	call Function10163f
+	call MobileCopyTransferData2
 	ret
 
 Unreferenced_Function101674:
-	ld a, $05
+	ld a, BANK(w5_dc00)
 	ld hl, w5_dc00
-	call Function101635
+	call MobileCopyTransferData
 	ret
 
 Function10167d:
@@ -7443,7 +7444,7 @@ Function103700:
 	ld hl, wSwarmFlags
 	bit SWARMFLAGS_MOBILE_4_F, [hl]
 	jr z, .asm_10370f
-	farcall Function1008a6
+	farcall MobileBattleGetRemainingTime
 
 .asm_10370f
 	ld a, c
@@ -7564,7 +7565,7 @@ Function10378c:
 	ret
 
 Function1037c2:
-	call Function103823
+	call MobileCheckRemainingBattleTime
 	jr c, .nope
 	ld a, [wdc5f]
 	and a
@@ -7588,12 +7589,12 @@ UnknownText_0x1037e6:
 	text_end
 
 Function1037eb:
-	call Function103823
+	call MobileCheckRemainingBattleTime
 	jr nc, .asm_103807
-	ld hl, UnknownText_0x103819
+	ld hl, MobileBattleLessThanOneMinuteLeftText
 	call PrintText
 	call JoyWaitAorB
-	ld hl, UnknownText_0x10381e
+	ld hl, MobileBattleNoTimeLeftForLinkingText
 	call PrintText
 	call JoyWaitAorB
 	xor a
@@ -7613,28 +7614,29 @@ Function1037eb:
 	ld [wScriptVar], a
 	ret
 
-UnknownText_0x103819:
-	text_far UnknownText_0x1c44c0
+MobileBattleLessThanOneMinuteLeftText:
+	text_far _MobileBattleLessThanOneMinuteLeftText
 	text_end
 
-UnknownText_0x10381e:
-	text_far UnknownText_0x1c44e7
+MobileBattleNoTimeLeftForLinkingText:
+	text_far _MobileBattleNoTimeLeftForLinkingText
 	text_end
 
-Function103823:
+MobileCheckRemainingBattleTime:
+; Returns carry if less than one minute remains
 	farcall Mobile_AlwaysReturnNotCarry
 	bit 7, c
-	jr nz, .asm_103838
-	farcall Function1008a6
+	jr nz, .ok
+	farcall MobileBattleGetRemainingTime
 	ld a, c
-	cp $01
-	jr c, .asm_10383a
+	cp 1
+	jr c, .fail
 
-.asm_103838
+.ok
 	xor a
 	ret
 
-.asm_10383a
+.fail
 	scf
 	ret
 
@@ -7673,7 +7675,7 @@ Function10387b:
 	farcall Mobile_AlwaysReturnNotCarry
 	bit 7, c
 	ret nz
-	farcall Function1008a6
+	farcall MobileBattleGetRemainingTime
 	ld a, c
 	ld [wStringBuffer2], a
 	ld hl, UnknownText_0x103898

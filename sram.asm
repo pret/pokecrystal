@@ -258,6 +258,10 @@ s4_a60c:: db ; a60c
 
 s4_a60e:: dw ; a60e
 
+	ds $1f0
+
+sMobileBattleTimer:: ds 3
+
 
 SECTION "SRAM Mobile 2", SRAM
 

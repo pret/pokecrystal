@@ -79,7 +79,6 @@ _LinkAskTradeForText::
 	text "?"
 	done
 
-; unused
 UnknownText_0x1c422a::
 	text "To enter a mobile"
 	line "battle, you must"
@@ -90,13 +89,11 @@ UnknownText_0x1c422a::
 	para "Is that OK?"
 	done
 
-; unused
 UnknownText_0x1c4275::
 	text "Need more info on"
 	line "mobile battles?"
 	done
 
-; unused
 UnknownText_0x1c4298::
 	text "For a mobile"
 	line "battle, choose"
@@ -124,7 +121,6 @@ UnknownText_0x1c4298::
 	line "wins."
 	done
 
-; unused
 UnknownText_0x1c439c::
 	text "Today's remaining"
 	line "time is @"
@@ -135,7 +131,6 @@ UnknownText_0x1c439c::
 	line "battle?"
 	done
 
-; unused
 UnknownText_0x1c43dc::
 	text "There are only @"
 	text_decimal wStringBuffer2, 1, 2
@@ -146,7 +141,6 @@ UnknownText_0x1c43dc::
 	line "battle?"
 	done
 
-; unused
 UnknownText_0x1c4419::
 	text "There is only"
 	line "1 min. left today!"
@@ -155,7 +149,6 @@ UnknownText_0x1c4419::
 	line "through a battle?"
 	done
 
-; unused
 UnknownText_0x1c445a::
 	text "There is less than"
 	line "1 min. left today!"
@@ -164,31 +157,26 @@ UnknownText_0x1c445a::
 	line "tomorrow."
 	done
 
-; unused
 UnknownText_0x1c449c::
 	text "Try again using"
 	line "the same settings?"
 	done
 
-; unused
-UnknownText_0x1c44c0::
+_MobileBattleLessThanOneMinuteLeftText::
 	text "There is less than"
 	line "1 min. left today!"
 	done
 
-; unused
-UnknownText_0x1c44e7::
+_MobileBattleNoTimeLeftForLinkingText::
 	text "No time left for"
 	line "linking today."
 	done
 
-; unused
 UnknownText_0x1c4508::
 	text "Pick three #MON"
 	line "for battle."
 	done
 
-; unused
 UnknownText_0x1c4525::
 	text "Today's remaining"
 	line "time is @"
