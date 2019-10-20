@@ -1,4 +1,4 @@
-ElmPhoneStartText:
+ElmPhoneHealYourMonText:
 	text "Hello, <PLAY_G>?"
 
 	para "Try not to overdo"
@@ -28,7 +28,7 @@ ElmPhonePokemonStolenText:
 	line "do that?"
 	done
 
-ElmPhoneCheckingEggText:
+ElmPhoneCheckingTheEggText:
 	text "Hello, <PLAY_G>?"
 
 	para "We're checking the"
@@ -48,7 +48,7 @@ ElmPhoneAssistantText:
 	line "in VIOLET CITY."
 	done
 
-ElmPhoneEggUnhatchedText:
+ElmPhoneHowIsTheEggText:
 	text "Hello, <PLAY_G>?"
 
 	para "How's the EGG? Has"
@@ -70,7 +70,7 @@ ElmPhoneEggHatchedText:
 	line "me now!"
 	done
 
-ElmPhoneDiscovery1Text:
+ElmPhoneDiscoveredHatchTimeText:
 	text "Hello, <PLAY_G>?"
 
 	para "I just made a new"
@@ -83,7 +83,7 @@ ElmPhoneDiscovery1Text:
 	line "the #MON."
 	done
 
-ElmPhoneDiscovery2Text:
+ElmPhoneInvestigatingEggMovesText:
 	text "Hello, <PLAY_G>?"
 
 	para "It's still a"
@@ -96,7 +96,7 @@ ElmPhoneDiscovery2Text:
 	line "ing that now."
 	done
 
-ElmPhonePokerusText:
+ElmPhoneDiscoveredPokerusText:
 	text "Hello, <PLAY_G>?"
 
 	para "I discovered an"
@@ -158,7 +158,7 @@ ElmPhoneEggAssistantText:
 	cont "him?"
 	done
 
-ElmPhoneRocketText:
+ElmPhoneRadioTowerRocketTakeoverText:
 	text "<PLAY_G>, how are"
 	line "things going?"
 
@@ -197,7 +197,8 @@ ElmPhoneGiftText:
 	para "See you later!"
 	done
 
-ElmPhoneUnusedText:
+; unused
+ElmPhoneGotAholdOfSomethingNeatText:
 	text "Hello, <PLAY_G>?"
 	line "How's it going?"
 

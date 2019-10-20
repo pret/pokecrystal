@@ -70,8 +70,8 @@ CheckCanLearnMoveTutorMove:
 	ld de, SFX_WRONG
 	call PlaySFX
 	pop de
-	ld a, BANK(Text_TMHMNotCompatible)
-	ld hl, Text_TMHMNotCompatible
+	ld a, BANK(TMHMNotCompatibleText)
+	ld hl, TMHMNotCompatibleText
 	call FarPrintText
 	jr .didnt_learn
 

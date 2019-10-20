@@ -12,11 +12,11 @@ LizPhoneCalleeScript:
 
 .NotThursday:
 	special RandomPhoneMon
-	farsjump UnknownScript_0xa0948
+	farsjump LizHangUpScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_32
-	farsjump UnknownScript_0xa0a5a
+	farsjump LizReminderScript
 
 LizPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, PICNICKER, LIZ1
@@ -99,4 +99,4 @@ LizGossip:
 	sjump LizGossipScript
 
 LizGossipScript:
-	farsjump UnknownScript_0xa06da
+	farsjump LizGossipRandomScript

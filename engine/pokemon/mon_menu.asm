@@ -29,7 +29,7 @@ TossItemFromPC:
 	ld a, [wItemAttributeParamBuffer]
 	and a
 	jr nz, .key_item
-	ld hl, .TossHowMany
+	ld hl, .ItemsTossOutHowManyText
 	call MenuTextbox
 	farcall SelectQuantityToToss
 	push af
@@ -37,7 +37,7 @@ TossItemFromPC:
 	call ExitMenu
 	pop af
 	jr c, .quit
-	ld hl, .ConfirmToss
+	ld hl, .ItemsThrowAwayText
 	call MenuTextbox
 	call YesNoBox
 	push af
@@ -48,7 +48,7 @@ TossItemFromPC:
 	ld a, [wCurItemQuantity]
 	call TossItem
 	call PartyMonItemName
-	ld hl, .TossedThisMany
+	ld hl, .ItemsDiscardedText
 	call MenuTextbox
 	call ExitMenu
 	and a
@@ -61,38 +61,34 @@ TossItemFromPC:
 	scf
 	ret
 
-.TossHowMany:
-	; Toss out how many @ (S)?
-	text_far UnknownText_0x1c1a90
+.ItemsTossOutHowManyText:
+	text_far _ItemsTossOutHowManyText
 	text_end
 
-.ConfirmToss:
-	; Throw away @ @ (S)?
-	text_far UnknownText_0x1c1aad
+.ItemsThrowAwayText:
+	text_far _ItemsThrowAwayText
 	text_end
 
-.TossedThisMany:
-	; Discarded @ (S).
-	text_far UnknownText_0x1c1aca
+.ItemsDiscardedText:
+	text_far _ItemsDiscardedText
 	text_end
 
 .CantToss:
-	ld hl, .TooImportantToToss
+	ld hl, .ItemsTooImportantText
 	call MenuTextboxBackup
 	ret
 
-.TooImportantToToss:
-	; That's too impor- tant to toss out!
-	text_far UnknownText_0x1c1adf
+.ItemsTooImportantText:
+	text_far _ItemsTooImportantText
 	text_end
 
 CantUseItem:
-	ld hl, CantUseItemText
+	ld hl, ItemsOakWarningText
 	call MenuTextboxWaitButton
 	ret
 
-CantUseItemText:
-	text_far UnknownText_0x1c1b03
+ItemsOakWarningText:
+	text_far _ItemsOakWarningText
 	text_end
 
 PartyMonItemName:
@@ -264,7 +260,7 @@ GiveTakePartyMonItem:
 	jr .quit
 
 .next
-	ld hl, CantBeHeldText
+	ld hl, ItemCantHeldText
 	call MenuTextboxBackup
 	jr .loop
 
@@ -289,20 +285,20 @@ TryGiveItemToPartymon:
 
 .give_item_to_mon
 	call GiveItemToPokemon
-	ld hl, MadeHoldText
+	ld hl, PokemonHoldItemText
 	call MenuTextboxBackup
 	call GivePartyItem
 	ret
 
 .please_remove_mail
-	ld hl, PleaseRemoveMailText
+	ld hl, PokemonRemoveMailText
 	call MenuTextboxBackup
 	ret
 
 .already_holding_item
 	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
-	ld hl, SwitchAlreadyHoldingText
+	ld hl, PokemonAskSwapItemText
 	call StartMenuYesNo
 	jr c, .abort
 
@@ -316,7 +312,7 @@ TryGiveItemToPartymon:
 	call ReceiveItemFromPokemon
 	jr nc, .bag_full
 
-	ld hl, TookAndMadeHoldText
+	ld hl, PokemonSwapItemText
 	call MenuTextboxBackup
 	ld a, [wNamedObjectIndexBuffer]
 	ld [wCurItem], a
@@ -327,7 +323,7 @@ TryGiveItemToPartymon:
 	ld a, [wNamedObjectIndexBuffer]
 	ld [wCurItem], a
 	call ReceiveItemFromPokemon
-	ld hl, ItemStorageIsFullText
+	ld hl, ItemStorageFullText
 	call MenuTextboxBackup
 
 .abort
@@ -362,17 +358,17 @@ TakePartyItem:
 	ld [wNamedObjectIndexBuffer], a
 	ld [hl], NO_ITEM
 	call GetItemName
-	ld hl, TookFromText
+	ld hl, PokemonTookItemText
 	call MenuTextboxBackup
 	jr .asm_12c9a
 
 .asm_12c8c
-	ld hl, IsntHoldingAnythingText
+	ld hl, PokemonNotHoldingText
 	call MenuTextboxBackup
 	jr .asm_12c9a
 
 .asm_12c94
-	ld hl, ItemStorageIsFullText
+	ld hl, ItemStorageFullText
 	call MenuTextboxBackup
 
 .asm_12c9a
@@ -390,36 +386,36 @@ GiveTakeItemMenuData:
 	db "GIVE@"
 	db "TAKE@"
 
-TookAndMadeHoldText:
-	text_far UnknownText_0x1c1b2c
+PokemonSwapItemText:
+	text_far _PokemonSwapItemText
 	text_end
 
-MadeHoldText:
-	text_far UnknownText_0x1c1b57
+PokemonHoldItemText:
+	text_far _PokemonHoldItemText
 	text_end
 
-PleaseRemoveMailText:
-	text_far UnknownText_0x1c1b6f
+PokemonRemoveMailText:
+	text_far _PokemonRemoveMailText
 	text_end
 
-IsntHoldingAnythingText:
-	text_far UnknownText_0x1c1b8e
+PokemonNotHoldingText:
+	text_far _PokemonNotHoldingText
 	text_end
 
-ItemStorageIsFullText:
-	text_far UnknownText_0x1c1baa
+ItemStorageFullText:
+	text_far _ItemStorageFullText
 	text_end
 
-TookFromText:
-	text_far UnknownText_0x1c1bc4
+PokemonTookItemText:
+	text_far _PokemonTookItemText
 	text_end
 
-SwitchAlreadyHoldingText:
-	text_far UnknownText_0x1c1bdc
+PokemonAskSwapItemText:
+	text_far _PokemonAskSwapItemText
 	text_end
 
-CantBeHeldText:
-	text_far UnknownText_0x1c1c09
+ItemCantHeldText:
+	text_far _ItemCantHeldText
 	text_end
 
 GetPartyItemLocation:
@@ -506,24 +502,24 @@ MonMailAction:
 	ret
 
 .take
-	ld hl, .sendmailtopctext
+	ld hl, .MailAskSendToPCText
 	call StartMenuYesNo
 	jr c, .RemoveMailToBag
 	ld a, [wCurPartyMon]
 	ld b, a
 	farcall SendMailToPC
 	jr c, .MailboxFull
-	ld hl, .sentmailtopctext
+	ld hl, .MailSentToPCText
 	call MenuTextboxBackup
 	jr .done
 
 .MailboxFull:
-	ld hl, .mailboxfulltext
+	ld hl, .MailboxFullText
 	call MenuTextboxBackup
 	jr .done
 
 .RemoveMailToBag:
-	ld hl, .mailwilllosemessagetext
+	ld hl, .MailLoseMessageText
 	call StartMenuYesNo
 	jr c, .done
 	call GetPartyItemLocation
@@ -534,12 +530,12 @@ MonMailAction:
 	call GetPartyItemLocation
 	ld [hl], $0
 	call GetCurNick
-	ld hl, .tookmailfrommontext
+	ld hl, .MailDetachedText
 	call MenuTextboxBackup
 	jr .done
 
 .BagIsFull:
-	ld hl, .bagfulltext
+	ld hl, .MailNoSpaceText
 	call MenuTextboxBackup
 	jr .done
 
@@ -560,34 +556,28 @@ MonMailAction:
 	db "TAKE@"
 	db "QUIT@"
 
-.mailwilllosemessagetext
-; The MAIL will lose its message. OK?
-	text_far UnknownText_0x1c1c22
+.MailLoseMessageText:
+	text_far _MailLoseMessageText
 	text_end
 
-.tookmailfrommontext
-; MAIL detached from <POKEMON>.
-	text_far UnknownText_0x1c1c47
+.MailDetachedText:
+	text_far _MailDetachedText
 	text_end
 
-.bagfulltext
-; There's no space for removing MAIL.
-	text_far UnknownText_0x1c1c62
+.MailNoSpaceText:
+	text_far _MailNoSpaceText
 	text_end
 
-.sendmailtopctext
-; Send the removed MAIL to your PC?
-	text_far UnknownText_0x1c1c86
+.MailAskSendToPCText:
+	text_far _MailAskSendToPCText
 	text_end
 
-.mailboxfulltext
-; Your PC's MAILBOX is full.
-	text_far UnknownText_0x1c1ca9
+.MailboxFullText:
+	text_far _MailboxFullText
 	text_end
 
-.sentmailtopctext
-; The MAIL was sent to your PC.
-	text_far UnknownText_0x1c1cc4
+.MailSentToPCText:
+	text_far _MailSentToPCText
 	text_end
 
 OpenPartyStats:
@@ -738,7 +728,7 @@ MonMenu_Softboiled_MilkDrink:
 	jr .finish
 
 .NotEnoughHP:
-	ld hl, .Text_NotEnoughHP
+	ld hl, .PokemonNotEnoughHPText
 	call PrintText
 
 .finish
@@ -747,9 +737,8 @@ MonMenu_Softboiled_MilkDrink:
 	ld a, $3
 	ret
 
-.Text_NotEnoughHP:
-	; Not enough HP!
-	text_far UnknownText_0x1c1ce3
+.PokemonNotEnoughHPText:
+	text_far _PokemonNotEnoughHPText
 	text_end
 
 .CheckMonHasEnoughHP:

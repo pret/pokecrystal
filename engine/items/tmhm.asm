@@ -54,14 +54,14 @@ AskTeachTMHM:
 	ld [wPutativeTMHMMove], a
 	call GetMoveName
 	call CopyName1
-	ld hl, Text_BootedTM ; Booted up a TM
+	ld hl, BootedTMText ; Booted up a TM
 	ld a, [wCurItem]
 	cp HM01
 	jr c, .TM
-	ld hl, Text_BootedHM ; Booted up an HM
+	ld hl, BootedHMText ; Booted up an HM
 .TM:
 	call PrintText
-	ld hl, Text_ItContained
+	ld hl, ContainedMoveText
 	call PrintText
 	call YesNoBox
 .NotTMHM:
@@ -132,7 +132,7 @@ TeachTMHM:
 	ld de, SFX_WRONG
 	call PlaySFX
 	pop de
-	ld hl, Text_TMHMNotCompatible
+	ld hl, TMHMNotCompatibleText
 	call PrintText
 	jr .nope
 
@@ -166,24 +166,20 @@ TeachTMHM:
 	scf
 	ret
 
-Text_BootedTM:
-	; Booted up a TM.
-	text_far UnknownText_0x1c0373
+BootedTMText:
+	text_far _BootedTMText
 	text_end
 
-Text_BootedHM:
-	; Booted up an HM.
-	text_far UnknownText_0x1c0384
+BootedHMText:
+	text_far _BootedHMText
 	text_end
 
-Text_ItContained:
-	; It contained @ . Teach @ to a #MON?
-	text_far UnknownText_0x1c0396
+ContainedMoveText:
+	text_far _ContainedMoveText
 	text_end
 
-Text_TMHMNotCompatible:
-	; is not compatible with @ . It can't learn @ .
-	text_far UnknownText_0x1c03c2
+TMHMNotCompatibleText:
+	text_far _TMHMNotCompatibleText
 	text_end
 
 TMHM_PocketLoop:
@@ -491,20 +487,18 @@ TMHM_PlaySFX_ReadText2:
 Unreferenced_Function2cadf:
 	call ConvertCurItemIntoCurTMHM
 	call .CheckHaveRoomForTMHM
-	ld hl, .NoRoomText
+	ld hl, .NoRoomTMHMText
 	jr nc, .print
-	ld hl, .ReceivedText
+	ld hl, .ReceivedTMHMText
 .print
 	jp PrintText
 
-.NoRoomText:
-	; You have no room for any more @ S.
-	text_far UnknownText_0x1c03fa
+.NoRoomTMHMText:
+	text_far _NoRoomTMHMText
 	text_end
 
-.ReceivedText:
-	; You received @ !
-	text_far UnknownText_0x1c0421
+.ReceivedTMHMText:
+	text_far _ReceivedTMHMText
 	text_end
 
 .CheckHaveRoomForTMHM:

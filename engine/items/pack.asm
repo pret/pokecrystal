@@ -440,7 +440,7 @@ UseItem:
 	dw .Field   ; ITEMMENU_CLOSE
 
 .Oak:
-	ld hl, Text_ThisIsntTheTime
+	ld hl, OakThisIsntTheTimeText
 	call Pack_PrintTextNoScroll
 	ret
 
@@ -461,7 +461,7 @@ UseItem:
 	ret
 
 .NoPokemon:
-	ld hl, TextJump_YouDontHaveAMon
+	ld hl, YouDontHaveAMonText
 	call Pack_PrintTextNoScroll
 	ret
 
@@ -475,7 +475,7 @@ UseItem:
 	ret
 
 TossMenu:
-	ld hl, Text_ThrowAwayHowMany
+	ld hl, AskThrowAwayText
 	call Pack_PrintTextNoScroll
 	farcall SelectQuantityToToss
 	push af
@@ -483,7 +483,7 @@ TossMenu:
 	pop af
 	jr c, .finish
 	call Pack_GetItemName
-	ld hl, Text_ConfirmThrowAway
+	ld hl, AskQuantityThrowAwayText
 	call MenuTextbox
 	call YesNoBox
 	push af
@@ -494,7 +494,7 @@ TossMenu:
 	ld a, [wCurItemQuantity]
 	call TossItem
 	call Pack_GetItemName
-	ld hl, Text_ThrewAway
+	ld hl, ThrewAwayText
 	call Pack_PrintTextNoScroll
 .finish
 	ret
@@ -547,12 +547,12 @@ RegisterItem:
 	call Pack_GetItemName
 	ld de, SFX_FULL_HEAL
 	call WaitPlaySFX
-	ld hl, Text_RegisteredItem
+	ld hl, RegisteredItemText
 	call Pack_PrintTextNoScroll
 	ret
 
 .cant_register
-	ld hl, Text_CantRegister
+	ld hl, CantRegisterText
 	call Pack_PrintTextNoScroll
 	ret
 
@@ -581,7 +581,7 @@ GiveItem:
 	ld a, [wCurPartySpecies]
 	cp EGG
 	jr nz, .give
-	ld hl, .Egg
+	ld hl, .AnEggCantHoldAnItemText
 	call PrintText
 	jr .loop
 
@@ -611,12 +611,11 @@ GiveItem:
 	ret
 
 .NoPokemon:
-	ld hl, TextJump_YouDontHaveAMon
+	ld hl, YouDontHaveAMonText
 	call Pack_PrintTextNoScroll
 	ret
-.Egg:
-	; An EGG can't hold an item.
-	text_far Text_AnEGGCantHoldAnItem
+.AnEggCantHoldAnItemText:
+	text_far _AnEggCantHoldAnItemText
 	text_end
 
 QuitItemSubmenu:
@@ -735,7 +734,7 @@ BattlePack:
 	xor a
 	ldh [hBGMapMode], a
 	call WaitBGMap_DrawPackGFX
-	ld hl, Text_PackEmptyString
+	ld hl, PackEmptyText
 	call Pack_PrintTextNoScroll
 	call Pack_JumptableNext
 	ret
@@ -851,7 +850,7 @@ TMHMSubmenu:
 	dw .BattleOnly  ; ITEMMENU_CLOSE
 
 .Oak:
-	ld hl, Text_ThisIsntTheTime
+	ld hl, OakThisIsntTheTimeText
 	call Pack_PrintTextNoScroll
 	ret
 
@@ -1298,7 +1297,7 @@ Pack_InterpretJoypad:
 
 .select
 	farcall SwitchItemsInBag
-	ld hl, Text_MoveItemWhere
+	ld hl, AskItemMoveText
 	call Pack_PrintTextNoScroll
 	scf
 	ret
@@ -1546,60 +1545,48 @@ PC_Mart_BallsPocketMenuHeader:
 	dba PlaceMenuItemQuantity
 	dba UpdateItemDescription
 
-Text_PackNoItems:
-	; No items.
-	text_far UnknownText_0x1c0b9a
+PackNoItemText:
+	text_far _PackNoItemText
 	text_end
 
-Text_ThrowAwayHowMany:
-	; Throw away how many?
-	text_far UnknownText_0x1c0ba5
+AskThrowAwayText:
+	text_far _AskThrowAwayText
 	text_end
 
-Text_ConfirmThrowAway:
-	; Throw away @ @ (S)?
-	text_far UnknownText_0x1c0bbb
+AskQuantityThrowAwayText:
+	text_far _AskQuantityThrowAwayText
 	text_end
 
-Text_ThrewAway:
-	; Threw away @ (S).
-	text_far UnknownText_0x1c0bd8
+ThrewAwayText:
+	text_far _ThrewAwayText
 	text_end
 
-Text_ThisIsntTheTime:
-	; OAK:  ! This isn't the time to use that!
-	text_far UnknownText_0x1c0bee
+OakThisIsntTheTimeText:
+	text_far _OakThisIsntTheTimeText
 	text_end
 
-TextJump_YouDontHaveAMon:
-	; You don't have a #MON!
-	text_far Text_YouDontHaveAMon
+YouDontHaveAMonText:
+	text_far _YouDontHaveAMonText
 	text_end
 
-Text_RegisteredItem:
-	; Registered the @ .
-	text_far UnknownText_0x1c0c2e
+RegisteredItemText:
+	text_far _RegisteredItemText
 	text_end
 
-Text_CantRegister:
-	; You can't register that item.
-	text_far UnknownText_0x1c0c45
+CantRegisterText:
+	text_far _CantRegisterText
 	text_end
 
-Text_MoveItemWhere:
-	; Where should this be moved to?
-	text_far UnknownText_0x1c0c63
+AskItemMoveText:
+	text_far _AskItemMoveText
 	text_end
 
-Text_PackEmptyString:
-	;
-	text_far UnknownText_0x1c0c83
+PackEmptyText:
+	text_far _PackEmptyText
 	text_end
 
-TextJump_YouCantUseItInABattle:
-	; Doesn't seem to be used anywhere
-	; "You can't use it in a battle."
-	text_far Text_YouCantUseItInABattle
+YouCantUseItInABattleText:
+	text_far _YouCantUseItInABattleText
 	text_end
 
 PackMenuGFX:

@@ -1782,7 +1782,7 @@ GivePoke::
 	ld a, b
 	and a
 	ret z
-	ld hl, TextJump_WasSentToBillsPC
+	ld hl, WasSentToBillsPCText
 	call PrintText
 	ld a, BANK(sBoxMonNicknames)
 	call GetSRAMBank
@@ -1800,9 +1800,8 @@ GivePoke::
 	ld b, $2
 	ret
 
-TextJump_WasSentToBillsPC:
-	; was sent to BILL's PC.
-	text_far Text_WasSentToBillsPC
+WasSentToBillsPCText:
+	text_far _WasSentToBillsPCText
 	text_end
 
 InitNickname:

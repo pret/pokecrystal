@@ -1,4 +1,4 @@
-UnknownText_0x1b518b:
+UnknownGenericText:
 	text "How are your"
 	line "#MON doing?"
 
@@ -18,7 +18,7 @@ UnknownText_0x1b518b:
 	line "bit much for me!"
 	done
 
-UnknownText_0x1b522b:
+UnknownTougherThanEverText:
 	text "My @"
 	text_ram wStringBuffer4
 	text "'s"

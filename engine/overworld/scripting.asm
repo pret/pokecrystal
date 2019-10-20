@@ -530,7 +530,7 @@ GiveItemScript:
 	end
 
 ReceivedItemText:
-	text_far UnknownText_0x1c4719
+	text_far _ReceivedItemText
 	text_end
 
 Script_verbosegiveitemvar:
@@ -622,11 +622,11 @@ CurItemName:
 	ret
 
 PutItemInPocketText:
-	text_far UnknownText_0x1c472c
+	text_far _PutItemInPocketText
 	text_end
 
 PocketIsFullText:
-	text_far UnknownText_0x1c474b
+	text_far _PocketIsFullText
 	text_end
 
 Script_pokemart:

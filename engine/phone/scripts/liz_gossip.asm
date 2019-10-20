@@ -1,4 +1,4 @@
-UnknownScript_0xa06da:
+LizGossipRandomScript:
 	random 10
 	ifequal 0, .RuinsOfAlph
 	ifequal 1, .Falkner
@@ -12,51 +12,51 @@ UnknownScript_0xa06da:
 	ifequal 9, .Forgot
 
 .RuinsOfAlph:
-	farwritetext UnknownText_0x176223
+	farwritetext LizRuinsOfAlphGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
 .Falkner:
-	farwritetext UnknownText_0x1762c3
+	farwritetext LizFalknerGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
 .Earl:
-	farwritetext UnknownText_0x17638a
+	farwritetext LizEarlGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
 .SurfPikachu:
-	farwritetext UnknownText_0x176424
+	farwritetext LizSurfPikachuGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
 .MooMooMilk:
-	farwritetext UnknownText_0x1764eb
+	farwritetext LizMooMooMilkGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
 .Salon:
-	farwritetext UnknownText_0x176599
+	farwritetext LizSalonGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
 .Whitney:
-	farwritetext UnknownText_0x1766ac
+	farwritetext LizWhitneyGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
 .BugCatchingContest:
-	farwritetext UnknownText_0x17674f
+	farwritetext LizBugCatchingContestGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
 .BeautifulMon:
-	farwritetext UnknownText_0x176816
+	farwritetext LizBeautifulMonGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female
 
 .Forgot:
-	farwritetext UnknownText_0x17686d
+	farwritetext LizForgotGossipText
 	buttonsound
-	sjump PhoneScript_HangupText_Female
+	sjump PhoneScript_HangUpText_Female

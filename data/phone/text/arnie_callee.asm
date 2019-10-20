@@ -1,4 +1,4 @@
-UnknownText_0x1b6454:
+ArnieAnswerPhoneText:
 	text "Yeah, hello."
 	line "This is @"
 	text_ram wStringBuffer3
@@ -7,7 +7,7 @@ UnknownText_0x1b6454:
 	para "…Huh, <PLAY_G>? Yo!"
 	done
 
-UnknownText_0x1b647e:
+ArnieAnswerPhoneDayText:
 	text "Yeah, hello, you"
 	line "got @"
 	text_ram wStringBuffer3
@@ -16,7 +16,7 @@ UnknownText_0x1b647e:
 	para "…Huh, <PLAY_G>? Yo!"
 	done
 
-UnknownText_0x1b64a8:
+ArnieAnswerPhoneNiteText:
 	text "Yeah, hello, you"
 	line "got @"
 	text_ram wStringBuffer3
@@ -25,7 +25,7 @@ UnknownText_0x1b64a8:
 	para "…Huh, <PLAY_G>? Yo!"
 	done
 
-UnknownText_0x1b64d2:
+ArnieGreetText:
 	text "Yeah, hello?"
 	line "@"
 	text_ram wStringBuffer3
@@ -35,7 +35,7 @@ UnknownText_0x1b64d2:
 	line "to, <PLAY_G>?"
 	done
 
-UnknownText_0x1b6506:
+ArnieGreetDayText:
 	text "Yeah, hello?"
 	line "@"
 	text_ram wStringBuffer3
@@ -45,7 +45,7 @@ UnknownText_0x1b6506:
 	line "<PLAY_G>?"
 	done
 
-UnknownText_0x1b6539:
+ArnieGreetNiteText:
 	text "Yeah, hello?"
 	line "@"
 	text_ram wStringBuffer3
@@ -55,7 +55,7 @@ UnknownText_0x1b6539:
 	line "<PLAY_G>?"
 	done
 
-UnknownText_0x1b656c:
+ArnieGenericText:
 	text "I bet your #MON"
 	line "are a lot stronger"
 	cont "than before."

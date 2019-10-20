@@ -11,11 +11,11 @@ ReenaPhoneCalleeScript:
 	iftrue ReenaSundayMorning
 
 .NotSunday:
-	farsjump UnknownScript_0xa0928
+	farsjump ReenaForwardScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_27
-	farsjump UnknownScript_0xa0a46
+	farsjump ReenaHurryScript
 
 ReenaPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, COOLTRAINERF, REENA1

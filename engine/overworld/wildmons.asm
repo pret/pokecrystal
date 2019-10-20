@@ -821,7 +821,7 @@ RandomUnseenWildMon:
 	ld a, c
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
-	ld hl, .SawRareMonText
+	ld hl, .JustSawSomeRareMonText
 	call PrintText
 	xor a
 	ld [wScriptVar], a
@@ -832,8 +832,7 @@ RandomUnseenWildMon:
 	ld [wScriptVar], a
 	ret
 
-.SawRareMonText:
-	; I just saw some rare @  in @ . I'll call you if I see another rare #MON, OK?
+.JustSawSomeRareMonText:
 	text_far _JustSawSomeRareMonText
 	text_end
 

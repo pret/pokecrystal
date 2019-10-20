@@ -13,15 +13,15 @@ WiltonPhoneCalleeScript:
 	iftrue WiltonThursdayMorning
 
 .NotThursday:
-	farsjump WiltonHaventFoundAnything
+	farsjump WiltonHaventFoundAnythingScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_44
-	farsjump WiltonNotBiting
+	farsjump WiltonNotBitingScript
 
 .HasItem:
 	getlandmarkname STRING_BUFFER_5, ROUTE_44
-	farsjump WiltonWantThis
+	farsjump WiltonWantThisScript
 
 WiltonPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, FISHER, WILTON1

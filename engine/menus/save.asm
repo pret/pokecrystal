@@ -4,7 +4,7 @@ SaveMenu:
 	call SpeechTextbox
 	call UpdateSprites
 	farcall SaveMenu_CopyTilemapAtOnce
-	ld hl, Text_WouldYouLikeToSaveTheGame
+	ld hl, WouldYouLikeToSaveTheGameText
 	call SaveTheGame_yesorno
 	jr nz, .refused
 	call AskOverwriteSaveFile
@@ -38,7 +38,7 @@ SaveAfterLinkTrade:
 
 ChangeBoxSaveGame:
 	push de
-	ld hl, Text_SaveOnBoxSwitch
+	ld hl, ChangeBoxSaveText
 	call MenuTextbox
 	call YesNoBox
 	call ExitMenu
@@ -115,7 +115,7 @@ MoveMonWOMail_InsertMon_SaveGame:
 	ret
 
 StartMoveMonWOMail_SaveGame:
-	ld hl, Text_SaveOnMoveMonWOMail
+	ld hl, MoveMonWOMailSaveText
 	call MenuTextbox
 	call YesNoBox
 	call ExitMenu
@@ -173,13 +173,13 @@ AskOverwriteSaveFile:
 	jr z, .erase
 	call CompareLoadedAndSavedPlayerID
 	jr z, .yoursavefile
-	ld hl, Text_AnotherSaveFile
+	ld hl, AnotherSaveFileText
 	call SaveTheGame_yesorno
 	jr nz, .refused
 	jr .erase
 
 .yoursavefile
-	ld hl, Text_AlreadyASaveFile
+	ld hl, AlreadyASaveFileText
 	call SaveTheGame_yesorno
 	jr nz, .refused
 	jr .ok
@@ -196,7 +196,7 @@ AskOverwriteSaveFile:
 	ret
 
 SaveTheGame_yesorno:
-	ld b, BANK(Text_WouldYouLikeToSaveTheGame)
+	ld b, BANK(WouldYouLikeToSaveTheGameText)
 	call MapTextbox
 	call LoadMenuTextbox
 	lb bc, 0, 7
@@ -239,7 +239,7 @@ SavedTheGame:
 	ld a, TEXT_DELAY_MED
 	ld [wOptions], a
 	; <PLAYER> saved the game!
-	ld hl, Text_PlayerSavedTheGame
+	ld hl, SavedTheGameText
 	call PrintText
 	; restore the original text speed setting
 	pop af
@@ -336,7 +336,7 @@ SavingDontTurnOffThePower:
 	ld a, TEXT_DELAY_MED
 	ld [wOptions], a
 	; SAVING... DON'T TURN OFF THE POWER.
-	ld hl, Text_SavingDontTurnOffThePower
+	ld hl, SavingDontTurnOffThePowerText
 	call PrintText
 	; Restore the text speed setting
 	pop af
@@ -619,7 +619,7 @@ TryLoadSaveFile:
 	push af
 	set NO_TEXT_SCROLL, a
 	ld [wOptions], a
-	ld hl, Text_SaveFileCorrupted
+	ld hl, SaveFileCorruptedText
 	call PrintText
 	pop af
 	ld [wOptions], a
@@ -1095,42 +1095,34 @@ Checksum:
 	jr nz, .loop
 	ret
 
-Text_WouldYouLikeToSaveTheGame:
-	; Would you like to save the game?
-	text_far UnknownText_0x1c454b
+WouldYouLikeToSaveTheGameText:
+	text_far _WouldYouLikeToSaveTheGameText
 	text_end
 
-Text_SavingDontTurnOffThePower:
-	; SAVING… DON'T TURN OFF THE POWER.
-	text_far UnknownText_0x1c456d
+SavingDontTurnOffThePowerText:
+	text_far _SavingDontTurnOffThePowerText
 	text_end
 
-Text_PlayerSavedTheGame:
-	; saved the game.
-	text_far UnknownText_0x1c4590
+SavedTheGameText:
+	text_far _SavedTheGameText
 	text_end
 
-Text_AlreadyASaveFile:
-	; There is already a save file. Is it OK to overwrite?
-	text_far UnknownText_0x1c45a3
+AlreadyASaveFileText:
+	text_far _AlreadyASaveFileText
 	text_end
 
-Text_AnotherSaveFile:
-	; There is another save file. Is it OK to overwrite?
-	text_far UnknownText_0x1c45d9
+AnotherSaveFileText:
+	text_far _AnotherSaveFileText
 	text_end
 
-Text_SaveFileCorrupted:
-	; The save file is corrupted!
-	text_far UnknownText_0x1c460d
+SaveFileCorruptedText:
+	text_far _SaveFileCorruptedText
 	text_end
 
-Text_SaveOnBoxSwitch:
-	; When you change a #MON BOX, data will be saved. OK?
-	text_far UnknownText_0x1c462a
+ChangeBoxSaveText:
+	text_far _ChangeBoxSaveText
 	text_end
 
-Text_SaveOnMoveMonWOMail:
-	; Each time you move a #MON, data will be saved. OK?
-	text_far UnknownText_0x1c465f
+MoveMonWOMailSaveText:
+	text_far _MoveMonWOMailSaveText
 	text_end

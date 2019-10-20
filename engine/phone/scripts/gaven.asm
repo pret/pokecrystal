@@ -8,14 +8,14 @@ GavenPhoneCalleeScript:
 	readvar VAR_WEEKDAY
 	ifnotequal THURSDAY, .NotThursday
 	checktime MORN
-	iftrue GavenThursdayMorning
+	iftrue GavenThursdayMorningScript
 
 .NotThursday:
-	farsjump UnknownScript_0xa0910
+	farsjump GavenHangUpNotThursdayScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_26
-	farsjump UnknownScript_0xa0a37
+	farsjump GavenReminderScript
 
 GavenPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, COOLTRAINERM, GAVEN3
@@ -32,7 +32,7 @@ GavenPhoneCallerScript:
 	ifequal 0, GavenFoundRare
 	farsjump Phone_GenericCall_Male
 
-GavenThursdayMorning:
+GavenThursdayMorningScript:
 	setflag ENGINE_GAVEN_THURSDAY_MORNING
 
 GavenWantsRematch:

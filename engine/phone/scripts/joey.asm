@@ -12,11 +12,11 @@ JoeyPhoneCalleeScript:
 
 .NotMonday:
 	special RandomPhoneMon
-	farsjump UnknownScript_0xa0930
+	farsjump JoeyHangUpScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_30
-	farsjump UnknownScript_0xa0a4b
+	farsjump JoeyReminderScript
 
 JoeyPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, YOUNGSTER, JOEY1

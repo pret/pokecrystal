@@ -6,7 +6,7 @@ _DeleteSaveData:
 	call LoadFontsExtra
 	ld de, MUSIC_MAIN_MENU
 	call PlayMusic
-	ld hl, .Text_ClearAllSaveData
+	ld hl, .ClearAllSaveDataText
 	call PrintText
 	ld hl, .NoYesMenuHeader
 	call CopyMenuHeader
@@ -18,9 +18,8 @@ _DeleteSaveData:
 	farcall EmptyAllSRAMBanks
 	ret
 
-.Text_ClearAllSaveData:
-	; Clear all save data?
-	text_far UnknownText_0x1c564a
+.ClearAllSaveDataText:
+	text_far _ClearAllSaveDataText
 	text_end
 
 .NoYesMenuHeader:

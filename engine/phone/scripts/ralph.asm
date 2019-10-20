@@ -12,15 +12,15 @@ RalphPhoneCalleeScript:
 .CheckSwarm:
 	checkflag ENGINE_FISH_SWARM
 	iftrue .ReportSwarm
-	farsjump UnknownScript_0xa0940
+	farsjump RalphNoItemScript
 
 .Rematch:
 	getlandmarkname STRING_BUFFER_5, ROUTE_32
-	farsjump UnknownScript_0xa0a55
+	farsjump RalphReminderScript
 
 .ReportSwarm:
 	getlandmarkname STRING_BUFFER_5, ROUTE_32
-	farsjump UnknownScript_0xa0af5
+	farsjump RalphHurryScript
 
 RalphPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, FISHER, RALPH1
@@ -53,7 +53,7 @@ Ralph_SetUpSwarm:
 	getlandmarkname STRING_BUFFER_5, ROUTE_32
 	setval FISHSWARM_QWILFISH
 	special ActivateFishingSwarm
-	farsjump UnknownScript_0xa05d6
+	farsjump RalphItemScript
 
 .Generic:
 	farsjump Phone_GenericCall_Male

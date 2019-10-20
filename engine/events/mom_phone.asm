@@ -163,17 +163,17 @@ Mom_GetScriptPointer:
 	ret
 
 .ItemScript:
-	writetext _MomText_HiHowAreYou
-	writetext _MomText_FoundAnItem
-	writetext _MomText_BoughtWithYourMoney
-	writetext _MomText_ItsInPC
+	writetext MomHiHowAreYouText
+	writetext MomFoundAnItemText
+	writetext MomBoughtWithYourMoneyText
+	writetext MomItsInPCText
 	end
 
 .DollScript:
-	writetext _MomText_HiHowAreYou
-	writetext _MomText_FoundADoll
-	writetext _MomText_BoughtWithYourMoney
-	writetext _MomText_ItsInRoom
+	writetext MomHiHowAreYouText
+	writetext MomFoundADollText
+	writetext MomBoughtWithYourMoneyText
+	writetext MomItsInYourRoomText
 	end
 
 GetItemFromMom:
@@ -206,34 +206,28 @@ INCLUDE "data/items/mom_phone.asm"
 
 	db 0, 0, 0 ; unused
 
-_MomText_HiHowAreYou:
-	; Hi,  ! How are you?
-	text_far _MomShoppingText1
+MomHiHowAreYouText:
+	text_far _MomHiHowAreYouText
 	text_end
 
-_MomText_FoundAnItem:
-	; I found a useful item shopping, so
-	text_far _MomShoppingText2
+MomFoundAnItemText:
+	text_far _MomFoundAnItemText
 	text_end
 
-_MomText_BoughtWithYourMoney:
-	; I bought it with your money. Sorry!
-	text_far _MomShoppingText3
+MomBoughtWithYourMoneyText:
+	text_far _MomBoughtWithYourMoneyText
 	text_end
 
-_MomText_ItsInPC:
-	; It's in your PC. You'll like it!
-	text_far _MomShoppingText4
+MomItsInPCText:
+	text_far _MomItsInPCText
 	text_end
 
-_MomText_FoundADoll:
-	; While shopping today, I saw this adorable doll, so
-	text_far _MomShoppingText5
+MomFoundADollText:
+	text_far _MomFoundADollText
 	text_end
 
-_MomText_ItsInRoom:
-	; It's in your room. You'll love it!
-	text_far _MomShoppingText6
+MomItsInYourRoomText:
+	text_far _MomItsInYourRoomText
 	text_end
 
 	db 0 ; unused

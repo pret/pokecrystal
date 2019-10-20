@@ -110,10 +110,10 @@ CheckForLuckyNumberWinners:
 	ld a, [wCurPartySpecies]
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
-	ld hl, .FoundPartymonText
+	ld hl, .LuckyNumberMatchPartyText
 	pop af
 	jr z, .print
-	ld hl, .FoundBoxmonText
+	ld hl, .LuckyNumberMatchPCText
 
 .print
 	jp PrintText
@@ -206,14 +206,12 @@ CheckForLuckyNumberWinners:
 	dba sBox13
 	dba sBox14
 
-.FoundPartymonText:
-	; Congratulations! We have a match with the ID number of @  in your party.
-	text_far UnknownText_0x1c1261
+.LuckyNumberMatchPartyText:
+	text_far _LuckyNumberMatchPartyText
 	text_end
 
-.FoundBoxmonText:
-	; Congratulations! We have a match with the ID number of @  in your PC BOX.
-	text_far UnknownText_0x1c12ae
+.LuckyNumberMatchPCText:
+	text_far _LuckyNumberMatchPCText
 	text_end
 
 PrintTodaysLuckyNumber:

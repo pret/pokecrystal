@@ -304,7 +304,7 @@ DummyGame_CheckMatch:
 	call DummyGame_Card2Coord
 	call DummyGame_PlaceCard
 
-	ld hl, DummyGameText_Darn
+	ld hl, DummyGameDarnText
 	call PrintText
 	ret
 
@@ -313,21 +313,19 @@ DummyGame_CheckMatch:
 	push bc
 	hlcoord 2, 13
 	call DummyGame_PlaceCard
-	ld hl, DummyGameText_Yeah
+	ld hl, DummyGameYeahText
 	pop bc
 	inc bc
 	inc bc
 	inc bc
 	ret
 
-DummyGameText_Yeah:
-	; , yeah!
-	text_far UnknownText_0x1c1a5b
+DummyGameYeahText:
+	text_far _DummyGameYeahText
 	text_end
 
-DummyGameText_Darn:
-	; Darn…
-	text_far UnknownText_0x1c1a65
+DummyGameDarnText:
+	text_far _DummyGameDarnText
 	text_end
 
 DummyGame_InitBoard:

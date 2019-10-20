@@ -70,12 +70,12 @@ BuenaPrize:
 	ld [wMenuSelection], a
 	call Buena_PlacePrizeMenuBox
 	call Buena_DisplayBlueCardBalance
-	ld hl, .Text_AskWhichPrize
+	ld hl, .BuenaAskWhichPrizeText
 	call PrintText
 	jr .okay
 
 .loop
-	ld hl, .Text_AskWhichPrize
+	ld hl, .BuenaAskWhichPrizeText
 	call BuenaPrintText
 
 .okay
@@ -89,7 +89,7 @@ BuenaPrize:
 	ld a, [hl]
 	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
-	ld hl, .Text_IsThatRight
+	ld hl, .BuenaIsThatRightText
 	call BuenaPrintText
 	call YesNoBox
 	jr c, .loop
@@ -121,17 +121,17 @@ BuenaPrize:
 	jr .Purchase
 
 .InsufficientBalance:
-	ld hl, .Text_NotEnoughPoints
+	ld hl, .BuenaNotEnoughPointsText
 	jr .print
 
 .BagFull:
-	ld hl, .Text_NoRoom
+	ld hl, .BuenaNoRoomText
 	jr .print
 
 .Purchase:
 	ld de, SFX_TRANSACTION
 	call PlaySFX
-	ld hl, .Text_HereYouGo
+	ld hl, .BuenaHereYouGoText
 
 .print
 	call BuenaPrintText
@@ -140,40 +140,34 @@ BuenaPrize:
 .done
 	call CloseWindow
 	call CloseWindow
-	ld hl, .Text_PleaseComeBackAgain
+	ld hl, .BuenaComeAgainText
 	call PrintText
 	call JoyWaitAorB
 	call PlayClickSFX
 	ret
 
-.Text_AskWhichPrize:
-	; Which prize would you like?
-	text_far UnknownText_0x1c589f
+.BuenaAskWhichPrizeText:
+	text_far _BuenaAskWhichPrizeText
 	text_end
 
-.Text_IsThatRight:
-	; ? Is that right?
-	text_far UnknownText_0x1c58bc
+.BuenaIsThatRightText:
+	text_far _BuenaIsThatRightText
 	text_end
 
-.Text_HereYouGo:
-	; Here you go!
-	text_far UnknownText_0x1c58d1
+.BuenaHereYouGoText:
+	text_far _BuenaHereYouGoText
 	text_end
 
-.Text_NotEnoughPoints:
-	; You don't have enough points.
-	text_far UnknownText_0x1c58e0
+.BuenaNotEnoughPointsText:
+	text_far _BuenaNotEnoughPointsText
 	text_end
 
-.Text_NoRoom:
-	; You have no room for it.
-	text_far UnknownText_0x1c58ff
+.BuenaNoRoomText:
+	text_far _BuenaNoRoomText
 	text_end
 
-.Text_PleaseComeBackAgain:
-	; Oh. Please come back again!
-	text_far UnknownText_0x1c591a
+.BuenaComeAgainText:
+	text_far _BuenaComeAgainText
 	text_end
 
 Buena_DisplayBlueCardBalance:

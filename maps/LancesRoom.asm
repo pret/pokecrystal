@@ -80,7 +80,7 @@ LancesRoomLanceScript:
 	appear LANCESROOM_MARY
 	applymovement LANCESROOM_MARY, LancesRoomMovementData_MaryRushesIn
 	opentext
-	writetext UnknownText_0x1811dd
+	writetext LancesRoomMaryOhNoOakText
 	waitbutton
 	closetext
 	appear LANCESROOM_OAK
@@ -91,19 +91,19 @@ LancesRoomLanceScript:
 	turnobject LANCESROOM_OAK, UP
 	turnobject LANCESROOM_LANCE, LEFT
 	opentext
-	writetext UnknownText_0x18121b
+	writetext LancesRoomOakCongratulationsText
 	waitbutton
 	closetext
 	applymovement LANCESROOM_MARY, LancesRoomMovementData_MaryInterviewChampion
 	turnobject PLAYER, LEFT
 	opentext
-	writetext UnknownText_0x18134b
+	writetext LancesRoomMaryInterviewText
 	waitbutton
 	closetext
 	applymovement LANCESROOM_LANCE, LancesRoomMovementData_LancePositionsSelfToGuidePlayerAway
 	turnobject PLAYER, UP
 	opentext
-	writetext UnknownText_0x18137b
+	writetext LancesRoomNoisyText
 	waitbutton
 	closetext
 	follow LANCESROOM_LANCE, PLAYER
@@ -119,7 +119,7 @@ LancesRoomLanceScript:
 	applymovement LANCESROOM_MARY, LancesRoomMovementData_MaryTriesToFollow
 	showemote EMOTE_SHOCK, LANCESROOM_MARY, 15
 	opentext
-	writetext UnknownText_0x1813c5
+	writetext LancesRoomMaryNoInterviewText
 	pause 30
 	closetext
 	applymovement LANCESROOM_MARY, LancesRoomMovementData_MaryRunsBackAndForth
@@ -273,7 +273,7 @@ LanceBattleAfterText:
 	line "your #MON."
 	done
 
-UnknownText_0x1811dd:
+LancesRoomMaryOhNoOakText:
 	text "MARY: Oh, no!"
 	line "It's all over!"
 
@@ -281,7 +281,7 @@ UnknownText_0x1811dd:
 	line "weren't so slow…"
 	done
 
-UnknownText_0x18121b:
+LancesRoomOakCongratulationsText:
 	text "PROF.OAK: Ah,"
 	line "<PLAY_G>!"
 
@@ -314,13 +314,13 @@ UnknownText_0x18121b:
 	line "<PLAY_G>!"
 	done
 
-UnknownText_0x18134b:
+LancesRoomMaryInterviewText:
 	text "MARY: Let's inter-"
 	line "view the brand new"
 	cont "CHAMPION!"
 	done
 
-UnknownText_0x18137b:
+LancesRoomNoisyText:
 	text "LANCE: This is"
 	line "getting to be a"
 	cont "bit too noisy…"
@@ -329,7 +329,7 @@ UnknownText_0x18137b:
 	line "come with me?"
 	done
 
-UnknownText_0x1813c5:
+LancesRoomMaryNoInterviewText:
 	text "MARY: Oh, wait!"
 	line "We haven't done"
 	cont "the interview!"

@@ -9,15 +9,14 @@ _Squirtbottle:
 	reloadmappart
 	special UpdateTimePals
 	callasm .CheckCanUseSquirtbottle
-	iffalse .NothingHappenedScript
+	iffalse .SquirtbottleNothingScript
 	farsjump WateredWeirdTreeScript
 
-.NothingHappenedScript:
-	jumptext .NothingHappenedText
+.SquirtbottleNothingScript:
+	jumptext .SquirtbottleNothingText
 
-.NothingHappenedText:
-	; sprinkled water. But nothing happened…
-	text_far UnknownText_0x1c0b3b
+.SquirtbottleNothingText:
+	text_far _SquirtbottleNothingText
 	text_end
 
 .CheckCanUseSquirtbottle:

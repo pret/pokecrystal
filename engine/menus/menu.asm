@@ -725,14 +725,14 @@ Unreferenced_Function24423:
 	ret
 
 Error_Cant_ExitMenu:
-	ld hl, .Text_NoWindowsAvailableForPopping
+	ld hl, .WindowPoppingErrorText
 	call PrintText
 	call WaitBGMap
-.InfiniteLoop:
-	jr .InfiniteLoop
+.infinite_loop
+	jr .infinite_loop
 
-.Text_NoWindowsAvailableForPopping:
-	text_far UnknownText_0x1c46b7
+.WindowPoppingErrorText:
+	text_far _WindowPoppingErrorText
 	text_end
 
 _InitVerticalMenuCursor::

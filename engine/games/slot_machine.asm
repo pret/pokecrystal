@@ -1707,7 +1707,7 @@ Slots_TurnLightsOnOrOff:
 
 Slots_AskBet:
 .loop
-	ld hl, .Text_BetHowManyCoins
+	ld hl, .SlotsBetHowManyCoinsText
 	call PrintText
 	ld hl, .MenuHeader
 	call LoadMenuHeader
@@ -1727,7 +1727,7 @@ Slots_AskBet:
 	ld a, [hl]
 	cp c
 	jr nc, .Start
-	ld hl, .Text_NotEnoughCoins
+	ld hl, .SlotsNotEnoughCoinsText
 	call PrintText
 	jr .loop
 
@@ -1742,24 +1742,21 @@ Slots_AskBet:
 	call WaitSFX
 	ld de, SFX_PAY_DAY
 	call PlaySFX
-	ld hl, .Text_Start
+	ld hl, .SlotsStartText
 	call PrintText
 	and a
 	ret
 
-.Text_BetHowManyCoins:
-	; Bet how many coins?
-	text_far UnknownText_0x1c5049
+.SlotsBetHowManyCoinsText:
+	text_far _SlotsBetHowManyCoinsText
 	text_end
 
-.Text_Start:
-	; Start!
-	text_far UnknownText_0x1c505e
+.SlotsStartText:
+	text_far _SlotsStartText
 	text_end
 
-.Text_NotEnoughCoins:
-	; Not enough coins.
-	text_far UnknownText_0x1c5066
+.SlotsNotEnoughCoinsText:
+	text_far _SlotsNotEnoughCoinsText
 	text_end
 
 .MenuHeader:
@@ -1780,14 +1777,14 @@ Slots_AskPlayAgain:
 	ld a, [hli]
 	or [hl]
 	jr nz, .you_have_coins
-	ld hl, .Text_OutOfCoins
+	ld hl, .SlotsRanOutOfCoinsText
 	call PrintText
 	ld c, 60
 	call DelayFrames
 	jr .exit_slots
 
 .you_have_coins
-	ld hl, .Text_PlayAgain
+	ld hl, .SlotsPlayAgainText
 	call PrintText
 	call LoadMenuTextbox
 	lb bc, 14, 12
@@ -1804,12 +1801,12 @@ Slots_AskPlayAgain:
 	scf
 	ret
 
-.Text_OutOfCoins:
-	text_far UnknownText_0x1c5079
+.SlotsRanOutOfCoinsText:
+	text_far _SlotsRanOutOfCoinsText
 	text_end
 
-.Text_PlayAgain:
-	text_far UnknownText_0x1c5092
+.SlotsPlayAgainText:
+	text_far _SlotsPlayAgainText
 	text_end
 
 Slots_GetPayout:
@@ -1849,7 +1846,7 @@ Slots_PayoutText:
 	ld a, [wSlotMatched]
 	cp SLOTS_NO_MATCH
 	jr nz, .MatchedSomething
-	ld hl, .Text_Darn
+	ld hl, .SlotsDarnText
 	call PrintText
 	farcall StubbedTrainerRankings_EndSlotsWinStreak
 	ret
@@ -1899,20 +1896,18 @@ Slots_PayoutText:
 	ldcoord_a 3, 14
 	hlcoord 18, 17
 	ld [hl], "▼"
-	ld hl, .Text_LinedUpWonCoins
+	ld hl, .SlotsLinedUpText
 rept 4
 	inc bc
 endr
 	ret
 
-.Text_LinedUpWonCoins:
-	; lined up! Won @  coins!
-	text_far UnknownText_0x1c509f
+.SlotsLinedUpText:
+	text_far _SlotsLinedUpText
 	text_end
 
-.Text_Darn:
-	; Darn!
-	text_far UnknownText_0x1c50bb
+.SlotsDarnText:
+	text_far _SlotsDarnText
 	text_end
 
 .LinedUpSevens:

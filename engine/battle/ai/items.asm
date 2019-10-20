@@ -687,7 +687,7 @@ AI_Switch:
 	pop af
 
 	jr c, .skiptext
-	ld hl, TextJump_EnemyWithdrew
+	ld hl, EnemyWithdrewText
 	call PrintText
 
 .skiptext
@@ -707,8 +707,8 @@ AI_Switch:
 	scf
 	ret
 
-TextJump_EnemyWithdrew:
-	text_far Text_EnemyWithdrew
+EnemyWithdrewText:
+	text_far _EnemyWithdrewText
 	text_end
 
 Function384d5: ; This appears to be unused
@@ -824,9 +824,9 @@ PrintText_UsedItemOn:
 	ld de, wMonOrItemNameBuffer
 	ld bc, ITEM_NAME_LENGTH
 	call CopyBytes
-	ld hl, TextJump_EnemyUsedOn
+	ld hl, EnemyUsedOnText
 	jp PrintText
 
-TextJump_EnemyUsedOn:
-	text_far Text_EnemyUsedOn
+EnemyUsedOnText:
+	text_far _EnemyUsedOnText
 	text_end

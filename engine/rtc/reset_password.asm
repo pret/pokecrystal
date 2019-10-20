@@ -6,7 +6,7 @@ _ResetClock:
 	call LoadFontsExtra
 	ld de, MUSIC_MAIN_MENU
 	call PlayMusic
-	ld hl, .text_askreset
+	ld hl, .PasswordAskResetClockText
 	call PrintText
 	ld hl, .NoYes_MenuHeader
 	call CopyMenuHeader
@@ -22,28 +22,25 @@ _ResetClock:
 	ld a, $80
 	ld [sRTCStatusFlags], a
 	call CloseSRAM
-	ld hl, .text_okay
+	ld hl, .PasswordAskResetText
 	call PrintText
 	ret
 
 .wrongpassword
-	ld hl, .text_wrong
+	ld hl, .PasswordWrongText
 	call PrintText
 	ret
 
-.text_okay
-	; Password OK. Select CONTINUE & reset settings.
-	text_far UnknownText_0x1c55db
+.PasswordAskResetText:
+	text_far _PasswordAskResetText
 	text_end
 
-.text_wrong
-	; Wrong password!
-	text_far UnknownText_0x1c560b
+.PasswordWrongText:
+	text_far _PasswordWrongText
 	text_end
 
-.text_askreset
-	; Reset the clock?
-	text_far UnknownText_0x1c561c
+.PasswordAskResetClockText:
+	text_far _PasswordAskResetClockText
 	text_end
 
 .NoYes_MenuHeader:
@@ -67,7 +64,7 @@ ClockResetPassword:
 	call ByteFill
 	ld a, $4
 	ld [wStringBuffer2 + 5], a
-	ld hl, .pleaseenterpasswordtext
+	ld hl, .PasswordAskEnterText
 	call PrintText
 .loop
 	call .updateIDdisplay
@@ -101,9 +98,8 @@ ClockResetPassword:
 	scf
 	ret
 
-.pleaseenterpasswordtext
-	; Please enter the password.
-	text_far UnknownText_0x1c562e
+.PasswordAskEnterText:
+	text_far _PasswordAskEnterText
 	text_end
 
 .updateIDdisplay

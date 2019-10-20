@@ -182,7 +182,7 @@ MerchandiseShelfScript:
 
 TownMapScript:
 	opentext
-	farwritetext TownMapText
+	farwritetext LookTownMapText
 	waitbutton
 	special OverworldTownMap
 	closetext

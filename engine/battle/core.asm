@@ -7405,20 +7405,20 @@ BoostExp:
 Text_MonGainedExpPoint:
 	text_far Text_Gained
 	text_asm
-	ld hl, TextJump_StringBuffer2ExpPoints
+	ld hl, ExpPointsText
 	ld a, [wStringBuffer2 + 2] ; IsTradedMon
 	and a
 	ret z
 
-	ld hl, TextJump_ABoostedStringBuffer2ExpPoints
+	ld hl, BoostedExpPointsText
 	ret
 
-TextJump_ABoostedStringBuffer2ExpPoints:
-	text_far Text_ABoostedStringBuffer2ExpPoints
+BoostedExpPointsText:
+	text_far _BoostedExpPointsText
 	text_end
 
-TextJump_StringBuffer2ExpPoints:
-	text_far Text_StringBuffer2ExpPoints
+ExpPointsText:
+	text_far _ExpPointsText
 	text_end
 
 AnimateExpBar:
@@ -7687,11 +7687,11 @@ JumpText_YourFoesWeakGetmMon:
 	text_far Text_YourFoesWeakGetmMon
 	text_asm
 Function_TextJump_BattleMonNick01:
-	ld hl, TextJump_BattleMonNick01
+	ld hl, BattleMonNicknameText
 	ret
 
-TextJump_BattleMonNick01:
-	text_far Text_BattleMonNick01
+BattleMonNicknameText:
+	text_far _BattleMonNicknameText
 	text_end
 
 WithdrawMonText:
@@ -7734,40 +7734,40 @@ WithdrawMonText:
 	pop bc
 	pop de
 	ldh a, [hQuotient + 3]
-	ld hl, TextJump_ThatsEnoughComeBack
+	ld hl, ThatsEnoughComeBackText
 	and a
 	ret z
 
-	ld hl, TextJump_ComeBack
+	ld hl, ComeBackText
 	cp 30
 	ret c
 
-	ld hl, TextJump_OKComeBack
+	ld hl, OKComeBackText
 	cp 70
 	ret c
 
-	ld hl, TextJump_GoodComeBack
+	ld hl, GoodComeBackText
 	ret
 
-TextJump_ThatsEnoughComeBack:
-	text_far Text_ThatsEnoughComeBack
+ThatsEnoughComeBackText:
+	text_far _ThatsEnoughComeBackText
 	text_end
 
-TextJump_OKComeBack:
-	text_far Text_OKComeBack
+OKComeBackText:
+	text_far _OKComeBackText
 	text_end
 
-TextJump_GoodComeBack:
-	text_far Text_GoodComeBack
+GoodComeBackText:
+	text_far _GoodComeBackText
 	text_end
 
 Unreferenced_TextJump_ComeBack:
 ; this function doesn't seem to be used
-	ld hl, TextJump_ComeBack
+	ld hl, ComeBackText
 	ret
 
-TextJump_ComeBack:
-	text_far Text_ComeBack
+ComeBackText:
+	text_far _ComeBackText
 	text_end
 
 Unreferenced_HandleSafariAngerEatingStatus:

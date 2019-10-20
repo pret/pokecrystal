@@ -1,4 +1,4 @@
-UnknownText_0x174000:
+BikeShopPhoneCallerText:
 	text "Hi, <PLAY_G>!"
 	line "Our BICYCLE sales"
 

@@ -1114,14 +1114,14 @@ BGEvent::
 	jumptext BGEventText
 
 BGEventText::
-	text_far UnknownText_0x1c46fc
+	text_far _BGEventText
 	text_end
 
 CoordinatesEvent::
 	jumptext CoordinatesEventText
 
 CoordinatesEventText::
-	text_far UnknownText_0x1c4706
+	text_far _CoordinatesEventText
 	text_end
 
 CheckObjectMask::

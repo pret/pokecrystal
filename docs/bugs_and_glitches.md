@@ -780,10 +780,10 @@ This can bring Pokémon straight from level 1 to 100 by gaining just a few exper
 
 ([Video](https://www.youtube.com/watch?v=o54VjpAEoO8))
 
-**Fix:** Edit `Text_ABoostedStringBuffer2ExpPoints` and `Text_StringBuffer2ExpPoints` in [data/text/common_2.asm](https://github.com/pret/pokecrystal/blob/master/data/text/common_2.asm):
+**Fix:** Edit `_ABoostedStringBuffer2ExpPointsText` and `_StringBuffer2ExpPointsText` in [data/text/common_2.asm](https://github.com/pret/pokecrystal/blob/master/data/text/common_2.asm):
 
 ```diff
- Text_ABoostedStringBuffer2ExpPoints::
+ _ABoostedStringBuffer2ExpPointsText::
  	text_start
  	line "a boosted"
  	cont "@"
@@ -792,7 +792,7 @@ This can bring Pokémon straight from level 1 to 100 by gaining just a few exper
  	text " EXP. Points!"
  	prompt
 
- Text_StringBuffer2ExpPoints::
+ _StringBuffer2ExpPointsText::
  	text_start
  	line "@"
 -	text_decimal wStringBuffer2, 2, 4

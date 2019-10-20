@@ -13,15 +13,15 @@ AlanPhoneCalleeScript:
 	iftrue AlanWednesdayDay
 
 .NotWednesday:
-	farsjump UnknownScript_0xa0970
+	farsjump AlanHangUpScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_36
-	farsjump UnknownScript_0xa0a73
+	farsjump AlanReminderScript
 
 .FireStone:
 	getlandmarkname STRING_BUFFER_5, ROUTE_36
-	farsjump UnknownScript_0xa0ac5
+	farsjump AlanComePickUpScript
 
 AlanPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, SCHOOLBOY, ALAN1

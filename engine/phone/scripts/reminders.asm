@@ -1,92 +1,92 @@
 JackWantsBattleScript:
-	farwritetext UnknownText_0x174638
+	farwritetext JackReminderText
 	end
 
 HueyWantsBattleScript:
-	farwritetext UnknownText_0x1749c7
+	farwritetext HueyReminderText
 	end
 
-UnknownScript_0xa0a37:
-	farwritetext UnknownText_0x174c49
+GavenReminderScript:
+	farwritetext GavenReminderText
 	end
 
 BethBattleReminderScript:
-	farwritetext BethForgetDealText
+	farwritetext BethReminderText
 	end
 
-UnknownScript_0xa0a41:
-	farwritetext UnknownText_0x17520a
+JoseReminderScript:
+	farwritetext JoseReminderText
 	end
 
-UnknownScript_0xa0a46:
-	farwritetext UnknownText_0x1754e5
+ReenaHurryScript:
+	farwritetext ReenaHurryText
 	end
 
-UnknownScript_0xa0a4b:
-	farwritetext UnknownText_0x175786
+JoeyReminderScript:
+	farwritetext JoeyReminderText
 	end
 
-UnknownScript_0xa0a50:
-	farwritetext UnknownText_0x175b1e
+WadeQuickBattleScript:
+	farwritetext WadeQuickBattleText
 	end
 
-UnknownScript_0xa0a55:
-	farwritetext UnknownText_0x175f11
+RalphReminderScript:
+	farwritetext RalphReminderText
 	end
 
-UnknownScript_0xa0a5a:
-	farwritetext UnknownText_0x1769da
+LizReminderScript:
+	farwritetext LizReminderText
 	end
 
-UnknownScript_0xa0a5f:
-	farwritetext UnknownText_0x176d85
+AnthonyReminderScript:
+	farwritetext AnthonyReminderText
 	end
 
-UnknownScript_0xa0a64:
-	farwritetext UnknownText_0x177138
+ToddForwardScript:
+	farwritetext ToddLookingForwardToBattleText
 	end
 
-UnknownScript_0xa0a69:
-	farwritetext UnknownText_0x1774c1
+GinaReminderScript:
+	farwritetext GinaReminderText
 	end
 
-UnknownScript_0xa0a6e:
-	farwritetext UnknownText_0x64c13
+ArnieReminderScript:
+	farwritetext ArnieReminderText
 	end
 
-UnknownScript_0xa0a73:
-	farwritetext UnknownText_0x64ed4
+AlanReminderScript:
+	farwritetext AlanReminderText
 	end
 
-UnknownScript_0xa0a78:
-	farwritetext UnknownText_0x651bf
+DanaReminderScript:
+	farwritetext DanaReminderText
 	end
 
-UnknownScript_0xa0a7d:
-	farwritetext UnknownText_0x65a63
+ChadReminderScript:
+	farwritetext ChadReminderText
 	end
 
-UnknownScript_0xa0a82:
-	farwritetext UnknownText_0x66043
+TullyForwardScript:
+	farwritetext TullyForwardText
 	end
 
-UnknownScript_0xa0a87:
-	farwritetext UnknownText_0x66579
+BrentReminderScript:
+	farwritetext BrentReminderText
 	end
 
-UnknownScript_0xa0a8c:
-	farwritetext UnknownText_0x668a3
+TiffanyAsleepScript:
+	farwritetext TiffanyAsleepText
 	end
 
-VanceHurryHurry:
+VanceHurryHurryScript:
 	farwritetext VanceHurryHurryText
 	end
 
-WiltonNotBiting:
+WiltonNotBitingScript:
 	farwritetext WiltonNotBitingText
 	end
 
-ParryHaventYouGottenTo:
+ParryHaventYouGottenToScript:
 	farwritetext ParryHaventYouGottenToText
 	end
 
