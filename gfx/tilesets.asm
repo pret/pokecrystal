@@ -206,14 +206,14 @@ INCBIN "data/tilesets/pokecom_center_metatiles.bin"
 TilesetPokeComCenterColl:
 INCLUDE "data/tilesets/pokecom_center_collision.asm"
 
-TilesetBattleTowerGFX:
-INCBIN "gfx/tilesets/battle_tower.2bpp.lz"
+TilesetBattleTowerInsideGFX:
+INCBIN "gfx/tilesets/battle_tower_inside.2bpp.lz"
 
-TilesetBattleTowerMeta:
-INCBIN "data/tilesets/battle_tower_metatiles.bin"
+TilesetBattleTowerInsideMeta:
+INCBIN "data/tilesets/battle_tower_inside_metatiles.bin"
 
-TilesetBattleTowerColl:
-INCLUDE "data/tilesets/battle_tower_collision.asm"
+TilesetBattleTowerInsideColl:
+INCLUDE "data/tilesets/battle_tower_inside_collision.asm"
 
 TilesetGateGFX:
 INCBIN "gfx/tilesets/gate.2bpp.lz"
