@@ -132,7 +132,7 @@ rept NUM_MOVES + -1
 	ld [hli], a
 endr
 	ld [hl], a
-	ld [wBuffer1], a
+	ld [wEvolutionOldSpecies], a
 	predef FillMoves
 
 .next
