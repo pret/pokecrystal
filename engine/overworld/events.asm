@@ -1626,7 +1626,7 @@ CmdQueue_StoneTable:
 	jr c, .fall_down_hole
 
 .next
-	ld hl, OBJECT_STRUCT_LENGTH
+	ld hl, OBJECT_LENGTH
 	add hl, de
 	ld d, h
 	ld e, l

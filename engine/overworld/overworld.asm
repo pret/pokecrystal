@@ -109,7 +109,7 @@ AddIndoorSprites:
 	push af
 	ld a, [hl]
 	call AddSpriteGFX
-	ld de, OBJECT_LENGTH
+	ld de, MAPOBJECT_LENGTH
 	add hl, de
 	pop af
 	inc a
