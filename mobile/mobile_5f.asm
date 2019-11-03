@@ -716,7 +716,7 @@ Function17d48d:
 	ld de, wc608
 	ld bc, $40
 	call CopyBytes
-	ld hl, TileAttrmap_17eb8e
+	ld hl, PokemonNewsTileAttrmap
 	decoord 0, 0
 	bccoord 0, 0, wAttrMap
 	ld a, $12
@@ -3533,8 +3533,8 @@ INCBIN "gfx/mobile/pokemon_news.2bpp"
 GFX_17eb7e:
 INCBIN "gfx/unknown/17eb7e.2bpp"
 
-TileAttrmap_17eb8e:
-INCBIN "gfx/unknown/17eb8e.attrmap"
+PokemonNewsTileAttrmap:
+INCBIN "gfx/mobile/pokemon_news.bin"
 
 Palette_17eff6:
 	RGB 24,  9,  8
