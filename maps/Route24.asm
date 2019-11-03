@@ -21,7 +21,7 @@ Route24RocketScript:
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	opentext
 	writetext Route24RocketAfterBattleText
-	buttonsound
+	promptbutton
 	special FadeOutMusic
 	writetext Route24RocketDisappearsText
 	waitbutton

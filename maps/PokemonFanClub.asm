@@ -22,10 +22,10 @@ PokemonFanClubChairmanScript:
 	yesorno
 	iffalse .NotListening
 	writetext PokemonFanClubChairmanRapidashText
-	buttonsound
+	promptbutton
 .HeardSpeechButBagFull:
 	writetext PokemonFanClubChairmanIWantYouToHaveThisText
-	buttonsound
+	promptbutton
 	verbosegiveitem RARE_CANDY
 	iffalse .BagFull
 	setevent EVENT_LISTENED_TO_FAN_CLUB_PRESIDENT
@@ -71,9 +71,9 @@ PokemonFanClubClefairyGuyScript:
 	end
 
 .MetCopycat:
-	buttonsound
+	promptbutton
 	writetext PokemonFanClubClefairyGuyTakeThisDollBackToGirlText
-	buttonsound
+	promptbutton
 	waitsfx
 	giveitem LOST_ITEM
 	iffalse .NoRoom

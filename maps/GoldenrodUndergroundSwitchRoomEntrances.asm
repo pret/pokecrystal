@@ -273,7 +273,7 @@ TrainerGruntF3:
 Switch1Script:
 	opentext
 	writetext SwitchRoomText_Switch1
-	buttonsound
+	promptbutton
 	checkevent EVENT_SWITCH_1
 	iftrue .On
 	writetext SwitchRoomText_OffTurnOn
@@ -298,7 +298,7 @@ Switch1Script:
 Switch2Script:
 	opentext
 	writetext SwitchRoomText_Switch2
-	buttonsound
+	promptbutton
 	checkevent EVENT_SWITCH_2
 	iftrue .On
 	writetext SwitchRoomText_OffTurnOn
@@ -323,7 +323,7 @@ Switch2Script:
 Switch3Script:
 	opentext
 	writetext SwitchRoomText_Switch3
-	buttonsound
+	promptbutton
 	checkevent EVENT_SWITCH_3
 	iftrue .On
 	writetext SwitchRoomText_OffTurnOn
@@ -348,7 +348,7 @@ Switch3Script:
 EmergencySwitchScript:
 	opentext
 	writetext SwitchRoomText_Emergency
-	buttonsound
+	promptbutton
 	checkevent EVENT_EMERGENCY_SWITCH
 	iftrue .On
 	writetext SwitchRoomText_OffTurnOn

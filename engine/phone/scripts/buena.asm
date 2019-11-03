@@ -18,17 +18,17 @@ BuenaPhoneScript_CheckTimeOfDayCallee:
 	checktime DAY
 	iftrue .day
 	writetext BuenaPhoneNiteAnswerText
-	buttonsound
+	promptbutton
 	end
 
 .morn
 	writetext BuenaPhoneMorningAnswerText
-	buttonsound
+	promptbutton
 	end
 
 .day
 	writetext BuenaPhoneDayAnswerText
-	buttonsound
+	promptbutton
 	end
 
 BuenaPhoneScript_AfterMidnightCallee:
@@ -43,22 +43,22 @@ BuenaPhoneScript_CheckTimeOfDayCaller:
 	checktime DAY
 	iftrue .day
 	writetext BuenaPhoneNiteText
-	buttonsound
+	promptbutton
 	end
 
 .morn
 	writetext BuenaPhoneMorningText
-	buttonsound
+	promptbutton
 	end
 
 .day
 	writetext BuenaPhoneDayText
-	buttonsound
+	promptbutton
 	end
 
 BuenaPhoneScript_AfterMidnightCaller:
 	writetext BuenaPhoneMidnightText
-	buttonsound
+	promptbutton
 	end
 
 BuenaPhoneScript_Rocket:

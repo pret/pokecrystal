@@ -33,7 +33,7 @@ LavRadioTower1FGentlemanScript:
 
 .ReturnedMachinePart:
 	writetext LavRadioTower1FGentlemanText_ReturnedMachinePart
-	buttonsound
+	promptbutton
 	getstring STRING_BUFFER_4, .expncardname
 	scall .receiveitem
 	setflag ENGINE_EXPN_CARD

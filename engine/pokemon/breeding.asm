@@ -869,7 +869,7 @@ DayCareMon1:
 	ld a, [wDayCareLady]
 	bit DAYCARELADY_HAS_MON_F, a
 	jr z, DayCareMonCursor
-	call ButtonSound
+	call PromptButton
 	ld hl, wBreedMon2Nick
 	call DayCareMonCompatibilityText
 	jp PrintText
@@ -882,7 +882,7 @@ DayCareMon2:
 	ld a, [wDayCareMan]
 	bit DAYCAREMAN_HAS_MON_F, a
 	jr z, DayCareMonCursor
-	call ButtonSound
+	call PromptButton
 	ld hl, wBreedMon1Nick
 	call DayCareMonCompatibilityText
 	jp PrintText

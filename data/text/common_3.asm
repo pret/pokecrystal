@@ -959,7 +959,7 @@ _LearnedMoveText::
 	text_ram wStringBuffer2
 	text "!@"
 	sound_dex_fanfare_50_79
-	text_waitbutton
+	text_promptbutton
 	text_end
 
 	text_end ; unused
@@ -1244,7 +1244,7 @@ Text_BallCaught::
 	text_end ; unused
 
 _WaitButtonText::
-	text_waitbutton
+	text_promptbutton
 	text_end
 
 	text_end ; unused
@@ -1261,7 +1261,7 @@ _NewDexDataText::
 	line "was newly added to"
 	cont "the #DEX.@"
 	sound_slot_machine_start
-	text_waitbutton
+	text_promptbutton
 	text_end
 
 	text_end ; unused
@@ -1308,7 +1308,7 @@ _FluteWakeUpText::
 Text_PlayedPokeFlute::
 	text "<PLAYER> played the"
 	line "# FLUTE.@"
-	text_waitbutton
+	text_promptbutton
 	text_end
 
 	text_end ; unused

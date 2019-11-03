@@ -478,7 +478,7 @@ Paragraph::
 
 .linkbattle
 	call Text_WaitBGMap
-	call ButtonSound
+	call PromptButton
 	hlcoord TEXTBOX_INNERX, TEXTBOX_INNERY
 	lb bc, TEXTBOX_INNERH - 1, TEXTBOX_INNERW
 	call ClearBox
@@ -499,7 +499,7 @@ _ContText::
 	call Text_WaitBGMap
 
 	push de
-	call ButtonSound
+	call PromptButton
 	pop de
 
 	ld a, [wLinkMode]
@@ -545,7 +545,7 @@ PromptText::
 
 .ok
 	call Text_WaitBGMap
-	call ButtonSound
+	call PromptButton
 	ld a, [wLinkMode]
 	cp LINK_COLOSSEUM
 	jr z, DoneText
@@ -686,29 +686,29 @@ DoTextUntilTerminator::
 
 TextCommands::
 ; entries correspond to TX_* constants (see macros/scripts/text.asm)
-	dw TextCommand_START            ; TX_START
-	dw TextCommand_RAM              ; TX_RAM
-	dw TextCommand_BCD              ; TX_BCD
-	dw TextCommand_MOVE             ; TX_MOVE
-	dw TextCommand_BOX              ; TX_BOX
-	dw TextCommand_LOW              ; TX_LOW
-	dw TextCommand_WAIT_BUTTON      ; TX_WAIT_BUTTON
-	dw TextCommand_SCROLL           ; TX_SCROLL
-	dw TextCommand_START_ASM        ; TX_START_ASM
-	dw TextCommand_NUM              ; TX_NUM
-	dw TextCommand_PAUSE            ; TX_PAUSE
-	dw TextCommand_SOUND            ; TX_SOUND_DEX_FANFARE_50_79
-	dw TextCommand_DOTS             ; TX_DOTS
-	dw TextCommand_LINK_WAIT_BUTTON ; TX_LINK_WAIT_BUTTON
-	dw TextCommand_SOUND            ; TX_SOUND_DEX_FANFARE_20_49
-	dw TextCommand_SOUND            ; TX_SOUND_ITEM
-	dw TextCommand_SOUND            ; TX_SOUND_CAUGHT_MON
-	dw TextCommand_SOUND            ; TX_SOUND_DEX_FANFARE_80_109
-	dw TextCommand_SOUND            ; TX_SOUND_FANFARE
-	dw TextCommand_SOUND            ; TX_SOUND_SLOT_MACHINE_START
-	dw TextCommand_STRINGBUFFER     ; TX_STRINGBUFFER
-	dw TextCommand_DAY              ; TX_DAY
-	dw TextCommand_FAR              ; TX_FAR
+	dw TextCommand_START              ; TX_START
+	dw TextCommand_RAM                ; TX_RAM
+	dw TextCommand_BCD                ; TX_BCD
+	dw TextCommand_MOVE               ; TX_MOVE
+	dw TextCommand_BOX                ; TX_BOX
+	dw TextCommand_LOW                ; TX_LOW
+	dw TextCommand_PROMPT_BUTTON      ; TX_PROMPT_BUTTON
+	dw TextCommand_SCROLL             ; TX_SCROLL
+	dw TextCommand_START_ASM          ; TX_START_ASM
+	dw TextCommand_NUM                ; TX_NUM
+	dw TextCommand_PAUSE              ; TX_PAUSE
+	dw TextCommand_SOUND              ; TX_SOUND_DEX_FANFARE_50_79
+	dw TextCommand_DOTS               ; TX_DOTS
+	dw TextCommand_LINK_PROMPT_BUTTON ; TX_LINK_PROMPT_BUTTON
+	dw TextCommand_SOUND              ; TX_SOUND_DEX_FANFARE_20_49
+	dw TextCommand_SOUND              ; TX_SOUND_ITEM
+	dw TextCommand_SOUND              ; TX_SOUND_CAUGHT_MON
+	dw TextCommand_SOUND              ; TX_SOUND_DEX_FANFARE_80_109
+	dw TextCommand_SOUND              ; TX_SOUND_FANFARE
+	dw TextCommand_SOUND              ; TX_SOUND_SLOT_MACHINE_START
+	dw TextCommand_STRINGBUFFER       ; TX_STRINGBUFFER
+	dw TextCommand_DAY                ; TX_DAY
+	dw TextCommand_FAR                ; TX_FAR
 
 TextCommand_START::
 ; text_start
@@ -834,22 +834,22 @@ TextCommand_LOW::
 	bccoord TEXTBOX_INNERX, TEXTBOX_INNERY + 2
 	ret
 
-TextCommand_WAIT_BUTTON::
-; text_waitbutton
+TextCommand_PROMPT_BUTTON::
+; text_promptbutton
 ; wait for button press
 ; show arrow
 ; [06]
 
 	ld a, [wLinkMode]
 	cp LINK_COLOSSEUM
-	jp z, TextCommand_LINK_WAIT_BUTTON
+	jp z, TextCommand_LINK_PROMPT_BUTTON
 	cp LINK_MOBILE
-	jp z, TextCommand_LINK_WAIT_BUTTON
+	jp z, TextCommand_LINK_PROMPT_BUTTON
 
 	push hl
 	call LoadBlinkingCursor
 	push bc
-	call ButtonSound
+	call PromptButton
 	pop bc
 	call UnloadBlinkingCursor
 	pop hl
@@ -1005,13 +1005,13 @@ TextCommand_DOTS::
 	pop hl
 	ret
 
-TextCommand_LINK_WAIT_BUTTON::
-; text_linkwaitbutton
+TextCommand_LINK_PROMPT_BUTTON::
+; text_linkpromptbutton
 ; wait for key down
 ; display arrow
 	push hl
 	push bc
-	call ButtonSound
+	call PromptButton
 	pop bc
 	pop hl
 	ret

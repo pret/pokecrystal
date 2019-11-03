@@ -20,12 +20,12 @@ GameFreakGameDesignerScript:
 	end
 
 .CompletedPokedex:
-	buttonsound
+	promptbutton
 	writetext GameFreakGameDesignerCompletedPokedexText
 	playsound SFX_DEX_FANFARE_230_PLUS
 	waitsfx
 	writetext GameFreakGameDesignerPauseForDiplomaText
-	buttonsound
+	promptbutton
 	special Diploma
 	writetext GameFreakGameDesignerAfterDiplomaText
 	waitbutton

@@ -20,7 +20,7 @@ Route32Pokecenter1FFishingGuruScript:
 	yesorno
 	iffalse .Refused
 	writetext Route32Pokecenter1FFishingGuruText_Yes
-	buttonsound
+	promptbutton
 	verbosegiveitem OLD_ROD
 	writetext Route32Pokecenter1FFishingGuruText_GiveOldRod
 	waitbutton

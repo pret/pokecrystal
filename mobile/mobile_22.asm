@@ -183,7 +183,7 @@ Function8921f:
 	pop de
 	ret
 
-Mobile22_ButtonSound:
+Mobile22_PromptButton:
 	call JoyWaitAorB
 	call PlayClickSFX
 	ret
@@ -2509,7 +2509,7 @@ Function89ff6:
 	call Function89a0c
 	call CloseSRAM
 	call Function891ab
-	call Mobile22_ButtonSound
+	call Mobile22_PromptButton
 	jp Function89e36
 
 Function8a03d:
@@ -3892,7 +3892,7 @@ Function8ab00:
 	hlcoord 1, 13
 	call PlaceString
 	call WaitBGMap
-	call Mobile22_ButtonSound
+	call Mobile22_PromptButton
 	and a
 	ret
 

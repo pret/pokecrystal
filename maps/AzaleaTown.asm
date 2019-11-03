@@ -157,10 +157,10 @@ AzaleaTownCelebiScene:
 	applymovement PLAYER, AzaleaTownPlayerLeavesKurtsHouseMovement
 	opentext
 	writetext AzaleaTownKurtText1
-	buttonsound
+	promptbutton
 	turnobject AZALEATOWN_KURT_OUTSIDE, RIGHT
 	writetext AzaleaTownKurtText2
-	buttonsound
+	promptbutton
 	writetext AzaleaTownKurtText3
 	waitbutton
 	verbosegiveitem GS_BALL

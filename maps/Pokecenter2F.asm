@@ -596,7 +596,7 @@ Pokecenter2FOfficerScript:
 	yesorno
 	iffalse .RefusedGift
 	writetext Text_MysteryGiftDeliveryGuy_HereYouGo
-	buttonsound
+	promptbutton
 	waitsfx
 	special GetMysteryGiftItem
 	iffalse .BagIsFull

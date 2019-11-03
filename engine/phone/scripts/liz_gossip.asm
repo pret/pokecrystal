@@ -13,50 +13,50 @@ LizGossipRandomScript:
 
 .RuinsOfAlph:
 	farwritetext LizRuinsOfAlphGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Female
 
 .Falkner:
 	farwritetext LizFalknerGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Female
 
 .Earl:
 	farwritetext LizEarlGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Female
 
 .SurfPikachu:
 	farwritetext LizSurfPikachuGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Female
 
 .MooMooMilk:
 	farwritetext LizMooMooMilkGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Female
 
 .Salon:
 	farwritetext LizSalonGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Female
 
 .Whitney:
 	farwritetext LizWhitneyGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Female
 
 .BugCatchingContest:
 	farwritetext LizBugCatchingContestGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Female
 
 .BeautifulMon:
 	farwritetext LizBeautifulMonGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Female
 
 .Forgot:
 	farwritetext LizForgotGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Female

@@ -18,7 +18,7 @@ GoldenrodBikeShopClerkScript:
 	yesorno
 	iffalse .Refused
 	writetext GoldenrodBikeShopClerkAgreedText
-	buttonsound
+	promptbutton
 	waitsfx
 	giveitem BICYCLE
 	writetext BorrowedABicycleText

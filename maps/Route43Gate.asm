@@ -47,7 +47,7 @@ RocketScript_Southbound:
 	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_BlocksYouSouth
 	opentext
 	writetext RocketText_TollFee
-	buttonsound
+	promptbutton
 	checkmoney YOUR_MONEY, ROUTE43GATE_TOLL - 1
 	ifequal HAVE_MORE, RocketScript_TollSouth
 	sjump RocketScript_YoureBrokeSouth
@@ -63,7 +63,7 @@ RocketScript_YoureBrokeSouth:
 	sjump RocketScript_ShakeDownSouth
 
 RocketScript_ShakeDownSouth:
-	buttonsound
+	promptbutton
 	closetext
 	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_LetsYouPassSouth
 	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_LetsYouPassSouth
@@ -79,7 +79,7 @@ RocketScript_Northbound:
 	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_BlocksYouNorth
 	opentext
 	writetext RocketText_TollFee
-	buttonsound
+	promptbutton
 	checkmoney YOUR_MONEY, ROUTE43GATE_TOLL - 1
 	ifequal HAVE_MORE, RocketScript_TollNorth
 	sjump RocketScript_YoureBrokeNorth
@@ -95,7 +95,7 @@ RocketScript_YoureBrokeNorth:
 	sjump RocketScript_ShakeDownNorth
 
 RocketScript_ShakeDownNorth:
-	buttonsound
+	promptbutton
 	closetext
 	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_LetsYouPassNorth
 	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_LetsYouPassNorth
@@ -112,7 +112,7 @@ OfficerScript_GuardWithSludgeBomb:
 	checkevent EVENT_GOT_TM36_SLUDGE_BOMB
 	iftrue .GotSludgeBomb
 	writetext OfficerText_FoundTM
-	buttonsound
+	promptbutton
 	verbosegiveitem TM_SLUDGE_BOMB
 	iffalse .NoRoomForSludgeBomb
 	setevent EVENT_GOT_TM36_SLUDGE_BOMB

@@ -90,7 +90,7 @@ RuinsOfAlphKabutoChamberScientistScript:
 	checkevent EVENT_SOLVED_KABUTO_PUZZLE
 	iffalse .PuzzleIncomplete
 	writetext RuinsOfAlphKabutoChamberScientistTremorText
-	buttonsound
+	promptbutton
 .PuzzleIncomplete:
 	writetext RuinsOfAlphKabutoChamberScientistCrypticText
 	waitbutton

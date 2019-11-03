@@ -314,7 +314,7 @@ _CutNothingText::
 _BlindingFlashText::
 	text "A blinding FLASH"
 	line "lights the area!@"
-	text_waitbutton
+	text_promptbutton
 	text_end
 
 	text_end ; unused
@@ -794,7 +794,7 @@ _BreedEggHatchText::
 	text " came"
 	line "out of its EGG!@"
 	sound_caught_mon
-	text_waitbutton
+	text_promptbutton
 	text_end
 
 	text_end ; unused
@@ -1055,7 +1055,7 @@ _KarpGuruRecordText::
 	text " caught by"
 	line "@"
 	text_ram wMagikarpRecordHoldersName
-	text_waitbutton
+	text_promptbutton
 	text_end
 
 	text_end ; unused
@@ -1551,7 +1551,7 @@ _OakText2::
 	text_end
 
 _OakText3::
-	text_waitbutton
+	text_promptbutton
 	text_end
 
 	text_end ; unused

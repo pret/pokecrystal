@@ -26,7 +26,7 @@ CeladonEusine:
 	faceplayer
 	opentext
 	writetext CeladonEusineText1
-	buttonsound
+	promptbutton
 	setval SUICUNE
 	special MonCheck
 	iffalse .NoSuicune

@@ -35,7 +35,7 @@ Draw a box.
 Write text at (1, 16).
 
 
-## `$06`: `text_waitbutton`
+## `$06`: `text_promptbutton`
 
 Wait for button press; show arrow.
 
@@ -71,7 +71,7 @@ Play `SFX_DEX_FANFARE_50_79`.
 Print *n* `"…"`s, pausing for 10 frames after each; interrupt if A or B is pressed.
 
 
-## `$0D`: `text_linkwaitbutton`
+## `$0D`: `text_linkpromptbutton`
 
 Wait for button press; show arrow.
 

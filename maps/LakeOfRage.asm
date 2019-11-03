@@ -46,7 +46,7 @@ LakeOfRageLanceScript:
 	iftrue .AskAgainForHelp
 	opentext
 	writetext LakeOfRageLanceForcedToEvolveText
-	buttonsound
+	promptbutton
 	faceplayer
 	writetext LakeOfRageLanceIntroText
 	yesorno
@@ -138,7 +138,7 @@ MagikarpHouseSignScript:
 	end
 
 .MagikarpLengthRecord:
-	buttonsound
+	promptbutton
 	special MagikarpHouseSign
 	closetext
 	end
@@ -197,11 +197,11 @@ WesleyScript:
 	checkevent EVENT_MET_WESLEY_OF_WEDNESDAY
 	iftrue .MetWesley
 	writetext MeetWesleyText
-	buttonsound
+	promptbutton
 	setevent EVENT_MET_WESLEY_OF_WEDNESDAY
 .MetWesley:
 	writetext WesleyGivesGiftText
-	buttonsound
+	promptbutton
 	verbosegiveitem BLACKBELT
 	iffalse WesleyDoneScript
 	setevent EVENT_GOT_BLACKBELT_FROM_WESLEY

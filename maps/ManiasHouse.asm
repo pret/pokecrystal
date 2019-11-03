@@ -19,7 +19,7 @@ ManiaScript:
 	special GiveShuckle
 	iffalse .partyfull
 	writetext ManiaText_TakeCareOfShuckle
-	buttonsound
+	promptbutton
 	waitsfx
 	writetext ManiaText_GotShuckle
 	playsound SFX_KEY_ITEM

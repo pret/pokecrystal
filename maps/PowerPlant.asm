@@ -158,7 +158,7 @@ PowerPlantManager:
 
 .FoundMachinePart:
 	writetext PowerPlantManagerThatsThePartText
-	buttonsound
+	promptbutton
 	takeitem MACHINE_PART
 	setevent EVENT_RETURNED_MACHINE_PART
 	clearevent EVENT_SAFFRON_TRAIN_STATION_POPULATION
@@ -170,7 +170,7 @@ PowerPlantManager:
 	checkevent EVENT_GOT_TM07_ZAP_CANNON
 	iftrue .GotZapCannon
 	writetext PowerPlantManagerTakeThisTMText
-	buttonsound
+	promptbutton
 	verbosegiveitem TM_ZAP_CANNON
 	iffalse .NoRoom
 	setevent EVENT_GOT_TM07_ZAP_CANNON

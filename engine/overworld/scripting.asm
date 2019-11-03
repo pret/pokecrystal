@@ -148,7 +148,7 @@ ScriptCommandTable:
 	dw Script_farjumptext                ; 52
 	dw Script_jumptext                   ; 53
 	dw Script_waitbutton                 ; 54
-	dw Script_buttonsound                ; 55
+	dw Script_promptbutton                ; 55
 	dw Script_pokepic                    ; 56
 	dw Script_closepokepic               ; 57
 	dw Script__2dmenu                    ; 58
@@ -398,7 +398,7 @@ Script_waitbutton:
 
 	jp WaitButton
 
-Script_buttonsound:
+Script_promptbutton:
 ; script command 0x55
 
 	ldh a, [hOAMUpdate]
@@ -406,7 +406,7 @@ Script_buttonsound:
 	ld a, $1
 	ldh [hOAMUpdate], a
 	call WaitBGMap
-	call ButtonSound
+	call PromptButton
 	pop af
 	ldh [hOAMUpdate], a
 	ret
@@ -525,7 +525,7 @@ GiveItemScript:
 	end
 
 .Full:
-	buttonsound
+	promptbutton
 	pocketisfull
 	end
 

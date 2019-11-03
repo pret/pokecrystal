@@ -93,7 +93,7 @@ OlivinePortWalkUpToShipScript:
 	yesorno
 	iffalse OlivinePortNotRidingMoveAwayScript
 	writetext OlivinePortAskTicketText
-	buttonsound
+	promptbutton
 	checkitem S_S_TICKET
 	iffalse .NoTicket
 	writetext OlivinePortFlashTicketText
@@ -158,7 +158,7 @@ OlivinePortSailorAfterHOFScript:
 	yesorno
 	iffalse OlivinePortNotRidingScript
 	writetext OlivinePortAskTicketText
-	buttonsound
+	promptbutton
 	checkitem S_S_TICKET
 	iffalse .NoTicket
 	writetext OlivinePortFlashTicketText
