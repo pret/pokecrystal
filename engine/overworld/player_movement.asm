@@ -120,7 +120,7 @@ DoPlayerMovement::
 	ld c, a
 	call CheckWhirlpoolTile
 	jr c, .not_whirlpool
-	ld a, 3
+	ld a, PLAYERMOVEMENT_FORCE_TURN
 	scf
 	ret
 
@@ -222,7 +222,7 @@ DoPlayerMovement::
 .continue_walk
 	ld a, STEP_WALK
 	call .DoStep
-	ld a, 5
+	ld a, PLAYERMOVEMENT_CONTINUE
 	scf
 	ret
 
@@ -247,7 +247,7 @@ DoPlayerMovement::
 
 	ld a, STEP_TURN
 	call .DoStep
-	ld a, 2
+	ld a, PLAYERMOVEMENT_TURN
 	scf
 	ret
 
@@ -345,7 +345,7 @@ DoPlayerMovement::
 	call PlayMapMusic
 	ld a, STEP_WALK
 	call .DoStep
-	ld a, 6
+	ld a, PLAYERMOVEMENT_EXIT_WATER
 	scf
 	ret
 
@@ -374,7 +374,7 @@ DoPlayerMovement::
 	call PlaySFX
 	ld a, STEP_LEDGE
 	call .DoStep
-	ld a, 7
+	ld a, PLAYERMOVEMENT_JUMP
 	scf
 	ret
 
@@ -428,11 +428,11 @@ DoPlayerMovement::
 
 	call .StandInPlace
 	scf
-	ld a, 1
+	ld a, PLAYERMOVEMENT_WARP
 	ret
 
 .not_warp
-	xor a
+	xor a ; PLAYERMOVEMENT_NORMAL
 	ret
 
 .EdgeWarps:
@@ -465,7 +465,7 @@ DoPlayerMovement::
 	ld a, [hl]
 	ld [wPlayerTurningDirection], a
 
-	ld a, 4
+	ld a, PLAYERMOVEMENT_FINISH
 	ret
 
 .Steps:
