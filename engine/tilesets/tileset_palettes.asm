@@ -14,17 +14,17 @@ LoadSpecialMapPalette:
 	jr z, .mansion_mobile
 	jr .do_nothing
 
-.pokecom_2f:
+.pokecom_2f
 	call LoadPokeComPalette
 	scf
 	ret
 
-.battle_tower_inside:
+.battle_tower_inside
 	call LoadBattleTowerInsidePalette
 	scf
 	ret
 
-.ice_path:
+.ice_path
 	ld a, [wEnvironment]
 	and $7
 	cp INDOOR ; Hall of Fame
@@ -33,22 +33,22 @@ LoadSpecialMapPalette:
 	scf
 	ret
 
-.house:
+.house
 	call LoadHousePalette
 	scf
 	ret
 
-.radio_tower:
+.radio_tower
 	call LoadRadioTowerPalette
 	scf
 	ret
 
-.mansion_mobile:
+.mansion_mobile
 	call LoadMansionPalette
 	scf
 	ret
 
-.do_nothing:
+.do_nothing
 	and a
 	ret
 
