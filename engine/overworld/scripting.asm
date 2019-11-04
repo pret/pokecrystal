@@ -1952,7 +1952,7 @@ Script_getmoney:
 	call ResetStringBuffer1
 	call GetMoneyAccount
 	ld hl, wStringBuffer1
-	lb bc, PRINTNUM_RIGHTALIGN | 3, 6
+	lb bc, PRINTNUM_LEFTALIGN | 3, 6
 	call PrintNum
 	ld de, wStringBuffer1
 	jp GetStringBuffer
@@ -1964,7 +1964,7 @@ Script_getcoins:
 	call ResetStringBuffer1
 	ld hl, wStringBuffer1
 	ld de, wCoins
-	lb bc, PRINTNUM_RIGHTALIGN | 2, 6
+	lb bc, PRINTNUM_LEFTALIGN | 2, 6
 	call PrintNum
 	ld de, wStringBuffer1
 	jp GetStringBuffer
@@ -1976,7 +1976,7 @@ Script_getnum:
 	call ResetStringBuffer1
 	ld de, wScriptVar
 	ld hl, wStringBuffer1
-	lb bc, PRINTNUM_RIGHTALIGN | 1, 3
+	lb bc, PRINTNUM_LEFTALIGN | 1, 3
 	call PrintNum
 	ld de, wStringBuffer1
 	jp GetStringBuffer

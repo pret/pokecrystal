@@ -371,7 +371,7 @@ TMHM_DisplayPocketItems:
 	ld [hl], "H"
 	inc hl
 	ld de, wTempTMHM
-	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
+	lb bc, PRINTNUM_LEFTALIGN | 1, 2
 	call PrintNum
 	pop af
 	ld [wTempTMHM], a

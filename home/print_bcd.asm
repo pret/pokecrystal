@@ -13,12 +13,12 @@ PrintBCDNumber::
 ; Note that bits 5 and 7 are modified during execution. The above reflects
 ; their meaning at the beginning of the functions's execution.
 	ld b, c ; save flags in b
-	res 7, c
-	res 6, c
-	res 5, c ; c now holds the length
-	bit 5, b
+	res PRINTNUM_LEADINGZEROS_F, c
+	res PRINTNUM_LEFTALIGN_F, c
+	res PRINTNUM_MONEY_F, c ; c now holds the length
+	bit PRINTNUM_MONEY_F, b
 	jr z, .loop
-	bit 7, b
+	bit PRINTNUM_LEADINGZEROS_F, b
 	jr nz, .loop ; skip currency symbol
 	ld [hl], "¥"
 	inc hl
@@ -31,14 +31,14 @@ PrintBCDNumber::
 	inc de
 	dec c
 	jr nz, .loop
-	bit 7, b ; were any non-zero digits printed?
+	bit PRINTNUM_LEADINGZEROS_F, b
 	jr z, .done ; if so, we are done
 .numberEqualsZero ; if every digit of the BCD number is zero
-	bit 6, b ; left or right alignment?
-	jr nz, .skipRightAlignmentAdjustment
-	dec hl ; if the string is right-aligned, it needs to be moved back one space
-.skipRightAlignmentAdjustment
-	bit 5, b
+	bit PRINTNUM_LEFTALIGN_F, b
+	jr nz, .skipLeftAlignmentAdjustment
+	dec hl ; if the string is left-aligned, it needs to be moved back one space
+.skipLeftAlignmentAdjustment
+	bit PRINTNUM_MONEY_F, b
 	jr z, .skipCurrencySymbol
 	ld [hl], "¥" ; currency symbol
 	inc hl
@@ -54,25 +54,25 @@ PrintBCDDigit::
 	and a
 	jr z, .zeroDigit
 .nonzeroDigit
-	bit 7, b ; have any non-space characters been printed?
+	bit PRINTNUM_LEADINGZEROS_F, b ; have any non-space characters been printed?
 	jr z, .outputDigit
 ; if bit 7 is set, then no numbers have been printed yet
-	bit 5, b ; print the currency symbol?
+	bit PRINTNUM_MONEY_F, b
 	jr z, .skipCurrencySymbol
 	ld [hl], "¥"
 	inc hl
-	res 5, b
+	res PRINTNUM_MONEY_F, b
 .skipCurrencySymbol
-	res 7, b ; unset 7 to indicate that a nonzero digit has been reached
+	res PRINTNUM_LEADINGZEROS_F, b ; unset 7 to indicate that a nonzero digit has been reached
 .outputDigit
 	add "0"
 	ld [hli], a
 	jp PrintLetterDelay
 
 .zeroDigit
-	bit 7, b ; either printing leading zeroes or already reached a nonzero digit?
+	bit PRINTNUM_LEADINGZEROS_F, b ; either printing leading zeroes or already reached a nonzero digit?
 	jr z, .outputDigit ; if so, print a zero digit
-	bit 6, b ; left or right alignment?
+	bit PRINTNUM_LEFTALIGN_F, b
 	ret nz
 	ld a, " "
 	ld [hli], a ; if right-aligned, "print" a space by advancing the pointer

@@ -273,19 +273,19 @@ SetMinutes:
 
 DisplayMinutesWithMinString:
 	ld de, wInitMinuteBuffer
-	call PrintTwoDigitNumberRightAlign
+	call PrintTwoDigitNumberLeftAlign
 	inc hl
 	ld de, String_min
 	call PlaceString
 	ret
 
-PrintTwoDigitNumberRightAlign:
+PrintTwoDigitNumberLeftAlign:
 	push hl
 	ld a, " "
 	ld [hli], a
 	ld [hl], a
 	pop hl
-	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
+	lb bc, PRINTNUM_LEFTALIGN | 1, 2
 	call PrintNum
 	ret
 
@@ -684,7 +684,7 @@ PrintHour:
 	call AdjustHourForAMorPM
 	ld [wDeciramBuffer], a
 	ld de, wDeciramBuffer
-	call PrintTwoDigitNumberRightAlign
+	call PrintTwoDigitNumberLeftAlign
 	ret
 
 GetTimeOfDayString:

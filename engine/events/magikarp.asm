@@ -89,12 +89,12 @@ PrintMagikarpLength:
 	call Magikarp_LoadFeetInchesChars
 	ld hl, wStringBuffer1
 	ld de, wMagikarpLength
-	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
+	lb bc, PRINTNUM_LEFTALIGN | 1, 2
 	call PrintNum
 	ld [hl], "′"
 	inc hl
 	ld de, wMagikarpLength + 1
-	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
+	lb bc, PRINTNUM_LEFTALIGN | 1, 2
 	call PrintNum
 	ld [hl], "″"
 	inc hl
