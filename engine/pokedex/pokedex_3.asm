@@ -1,5 +1,3 @@
-	ret ; unused
-
 LoadSGBPokedexGFX:
 	ld hl, SGBPokedexGFX_LZ
 	ld de, vTiles2 tile $31

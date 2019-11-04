@@ -148,7 +148,7 @@ ScriptCommandTable:
 	dw Script_farjumptext                ; 52
 	dw Script_jumptext                   ; 53
 	dw Script_waitbutton                 ; 54
-	dw Script_promptbutton                ; 55
+	dw Script_promptbutton               ; 55
 	dw Script_pokepic                    ; 56
 	dw Script_closepokepic               ; 57
 	dw Script__2dmenu                    ; 58
