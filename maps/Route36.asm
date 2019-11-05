@@ -137,7 +137,7 @@ Route36RockSmashGuyScript:
 
 .ClearedSudowoodo:
 	writetext RockSmashGuyText2
-	buttonsound
+	promptbutton
 	verbosegiveitem TM_ROCK_SMASH
 	iffalse .NoRoomForTM
 	setevent EVENT_GOT_TM08_ROCK_SMASH
@@ -180,7 +180,7 @@ TrainerSchoolboyAlan1:
 	checkevent EVENT_ALAN_ASKED_FOR_PHONE_NUMBER
 	iftrue .AskAgainForPhoneNumber
 	writetext SchoolboyAlanBooksText
-	buttonsound
+	promptbutton
 	setevent EVENT_ALAN_ASKED_FOR_PHONE_NUMBER
 	scall .AskNumber1
 	sjump .ContinueAskForPhoneNumber
@@ -323,11 +323,11 @@ ArthurScript:
 	checkevent EVENT_MET_ARTHUR_OF_THURSDAY
 	iftrue .MetArthur
 	writetext MeetArthurText
-	buttonsound
+	promptbutton
 	setevent EVENT_MET_ARTHUR_OF_THURSDAY
 .MetArthur:
 	writetext ArthurGivesGiftText
-	buttonsound
+	promptbutton
 	verbosegiveitem HARD_STONE
 	iffalse .BagFull
 	setevent EVENT_GOT_HARD_STONE_FROM_ARTHUR

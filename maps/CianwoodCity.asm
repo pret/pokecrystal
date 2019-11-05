@@ -86,7 +86,7 @@ CianwoodCityChucksWife:
 	checkevent EVENT_GOT_HM02_FLY
 	iftrue .GotFly
 	writetext ChucksWifeEasierToFlyText
-	buttonsound
+	promptbutton
 	checkevent EVENT_BEAT_CHUCK
 	iftrue .BeatChuck
 	writetext ChucksWifeBeatChuckText
@@ -96,12 +96,12 @@ CianwoodCityChucksWife:
 
 .BeatChuck:
 	writetext ChucksWifeGiveHMText
-	buttonsound
+	promptbutton
 	verbosegiveitem HM_FLY
 	iffalse .Done
 	setevent EVENT_GOT_HM02_FLY
 	writetext ChucksWifeFlySpeechText
-	buttonsound
+	promptbutton
 .GotFly:
 	writetext ChucksWifeChubbyText
 	waitbutton

@@ -66,12 +66,12 @@ CherrygroveCityGuideGent:
 	turnobject PLAYER, RIGHT
 	opentext
 	writetext GuideGentGiftText
-	buttonsound
+	promptbutton
 	getstring STRING_BUFFER_4, .mapcardname
 	scall .JumpstdReceiveItem
 	setflag ENGINE_MAP_CARD
 	writetext GotMapCardText
-	buttonsound
+	promptbutton
 	writetext GuideGentPokegearText
 	waitbutton
 	closetext
@@ -212,7 +212,7 @@ MysticWaterGuy:
 	checkevent EVENT_GOT_MYSTIC_WATER_IN_CHERRYGROVE
 	iftrue .After
 	writetext MysticWaterGuyTextBefore
-	buttonsound
+	promptbutton
 	verbosegiveitem MYSTIC_WATER
 	iffalse .Exit
 	setevent EVENT_GOT_MYSTIC_WATER_IN_CHERRYGROVE

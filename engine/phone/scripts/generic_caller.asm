@@ -76,87 +76,87 @@ Phone_WhosBragging_Male:
 
 .Jack:
 	farwritetext JackIntelligenceKeepsRisingText
-	buttonsound
+	promptbutton
 	end
 
 .Gaven:
 	farwritetext GavenMonGreaterThanImaginedText
-	buttonsound
+	promptbutton
 	end
 
 .Jose:
 	farwritetext JoseMonsStickHasADeliciousAromaText
-	buttonsound
+	promptbutton
 	end
 
 .Joey:
 	farwritetext JoeyMonLookingSharperText
-	buttonsound
+	promptbutton
 	end
 
 .Wade:
 	farwritetext WadeAreYourMonGrowingText
-	buttonsound
+	promptbutton
 	end
 
 .Ralph:
 	farwritetext RalphNeglectingKidsText
-	buttonsound
+	promptbutton
 	end
 
 .Anthony:
 	farwritetext AnthonyMonAteSomeBerriesText
-	buttonsound
+	promptbutton
 	end
 
 .Todd:
 	farwritetext ToddLooksCuteLikeMeText
-	buttonsound
+	promptbutton
 	end
 
 .Arnie:
 	farwritetext ArnieMonIsSoCuteText
-	buttonsound
+	promptbutton
 	end
 
 .Alan:
 	farwritetext AlanGettingStrongerText
-	buttonsound
+	promptbutton
 	end
 
 .Chad:
 	farwritetext ChadObservingWildText
-	buttonsound
+	promptbutton
 	end
 
 .Derek:
 	farwritetext DerekCheekPinchingText
-	buttonsound
+	promptbutton
 	end
 
 .Tully:
 	farwritetext TullyMonHasGrownText
-	buttonsound
+	promptbutton
 	end
 
 .Brent:
 	farwritetext BrentRareTradeText
-	buttonsound
+	promptbutton
 	end
 
 .Vance:
 	farwritetext VanceMonHasBecomeTougherText
-	buttonsound
+	promptbutton
 	end
 
 .Wilton:
 	farwritetext WiltonMonHasGrownText
-	buttonsound
+	promptbutton
 	end
 
 .Parry:
 	farwritetext ParryNothingCanMatchText
-	buttonsound
+	promptbutton
 	end
 
 Phone_WhosBragging_Female:
@@ -172,42 +172,42 @@ Phone_WhosBragging_Female:
 
 .Beverly:
 	farwritetext BeverlyMadeMonEvenCuterText
-	buttonsound
+	promptbutton
 	end
 
 .Beth:
 	farwritetext BethExhilaratingRideText
-	buttonsound
+	promptbutton
 	end
 
 .Reena:
 	farwritetext ReenaMonsIsAPerfectMatchText
-	buttonsound
+	promptbutton
 	end
 
 .Liz:
 	farwritetext LizMonAlwaysWantsToNuzzleText
-	buttonsound
+	promptbutton
 	end
 
 .Gina:
 	farwritetext GinaGettingInSyncWithMonText
-	buttonsound
+	promptbutton
 	end
 
 .Dana:
 	farwritetext DanaTakingPhotosText
-	buttonsound
+	promptbutton
 	end
 
 .Tiffany:
 	farwritetext TiffanyMonIsAdorableText
-	buttonsound
+	promptbutton
 	end
 
 .Erin:
 	farwritetext ErinMonIsMuchStrongerText
-	buttonsound
+	promptbutton
 	end
 
 Phone_WhoDefeatedMon_Male:
@@ -232,87 +232,87 @@ Phone_WhoDefeatedMon_Male:
 
 .Jack:
 	farwritetext JackDefeatedMonText
-	buttonsound
+	promptbutton
 	end
 
 .Gaven:
 	farwritetext GavenDefeatedMonText
-	buttonsound
+	promptbutton
 	end
 
 .Jose:
 	farwritetext JoseDefeatedMonText
-	buttonsound
+	promptbutton
 	end
 
 .Joey:
 	farwritetext JoeyDefeatedMonText
-	buttonsound
+	promptbutton
 	end
 
 .Wade:
 	farwritetext WadeDefeatedMonText
-	buttonsound
+	promptbutton
 	end
 
 .Ralph:
 	farwritetext RalphDefeatedMonText
-	buttonsound
+	promptbutton
 	end
 
 .Anthony:
 	farwritetext AnthonyDefeatedMonText
-	buttonsound
+	promptbutton
 	end
 
 .Todd:
 	farwritetext ToddDefeatedMonText
-	buttonsound
+	promptbutton
 	end
 
 .Arnie:
 	farwritetext ArnieDefeatedMonText
-	buttonsound
+	promptbutton
 	end
 
 .Alan:
 	farwritetext AlanDefeatedMonText
-	buttonsound
+	promptbutton
 	end
 
 .Chad:
 	farwritetext ChadDefeatedMonText
-	buttonsound
+	promptbutton
 	end
 
 .Derek:
 	farwritetext DerekDefeatedMonText
-	buttonsound
+	promptbutton
 	end
 
 .Tully:
 	farwritetext TullyDefeatedMonText
-	buttonsound
+	promptbutton
 	end
 
 .Brent:
 	farwritetext BrentDefeatedMonText
-	buttonsound
+	promptbutton
 	end
 
 .Vance:
 	farwritetext VanceDefeatedMonText
-	buttonsound
+	promptbutton
 	end
 
 .Wilton:
 	farwritetext WiltonDefeatedMonText
-	buttonsound
+	promptbutton
 	end
 
 .Parry:
 	farwritetext ParryDefeatedMonText
-	buttonsound
+	promptbutton
 	end
 
 Phone_WhoDefeatedMon_Female:
@@ -328,42 +328,42 @@ Phone_WhoDefeatedMon_Female:
 
 .Beverly:
 	farwritetext BeverlyDefeatedMonText
-	buttonsound
+	promptbutton
 	end
 
 .Beth:
 	farwritetext BethDefeatedMonText
-	buttonsound
+	promptbutton
 	end
 
 .Reena:
 	farwritetext ReenaDefeatedMonText
-	buttonsound
+	promptbutton
 	end
 
 .Liz:
 	farwritetext LizDefeatedMonText
-	buttonsound
+	promptbutton
 	end
 
 .Gina:
 	farwritetext GinaDefeatedMonText
-	buttonsound
+	promptbutton
 	end
 
 .Dana:
 	farwritetext DanaDefeatedMonText
-	buttonsound
+	promptbutton
 	end
 
 .Tiffany:
 	farwritetext TiffanyDefeatedMonText
-	buttonsound
+	promptbutton
 	end
 
 .Erin:
 	farwritetext ErinDefeatedMonText
-	buttonsound
+	promptbutton
 	end
 
 Phone_WhoLostAMon_Male:
@@ -388,87 +388,87 @@ Phone_WhoLostAMon_Male:
 
 .Jack:
 	farwritetext JackLostAMonText
-	buttonsound
+	promptbutton
 	end
 
 .Gaven:
 	farwritetext GavenLostAMonText
-	buttonsound
+	promptbutton
 	end
 
 .Jose:
 	farwritetext JoseLostAMonText
-	buttonsound
+	promptbutton
 	end
 
 .Joey:
 	farwritetext JoeyLostAMonText
-	buttonsound
+	promptbutton
 	end
 
 .Wade:
 	farwritetext WadeLostAMonText
-	buttonsound
+	promptbutton
 	end
 
 .Ralph:
 	farwritetext RalphLostAMonText
-	buttonsound
+	promptbutton
 	end
 
 .Anthony:
 	farwritetext AnthonyLostAMonText
-	buttonsound
+	promptbutton
 	end
 
 .Todd:
 	farwritetext ToddLostAMonText
-	buttonsound
+	promptbutton
 	end
 
 .Arnie:
 	farwritetext ArnieLostAMonText
-	buttonsound
+	promptbutton
 	end
 
 .Alan:
 	farwritetext AlanLostAMonText
-	buttonsound
+	promptbutton
 	end
 
 .Chad:
 	farwritetext ChadLostAMonText
-	buttonsound
+	promptbutton
 	end
 
 .Derek:
 	farwritetext DerekLostAMonText
-	buttonsound
+	promptbutton
 	end
 
 .Tully:
 	farwritetext TullyLostAMonText
-	buttonsound
+	promptbutton
 	end
 
 .Brent:
 	farwritetext BrentLostAMonText
-	buttonsound
+	promptbutton
 	end
 
 .Vance:
 	farwritetext VanceLostAMonText
-	buttonsound
+	promptbutton
 	end
 
 .Wilton:
 	farwritetext WiltonLostAMonText
-	buttonsound
+	promptbutton
 	end
 
 .Parry:
 	farwritetext ParryLostAMonText
-	buttonsound
+	promptbutton
 	end
 
 Phone_WhoLostAMon_Female:
@@ -484,42 +484,42 @@ Phone_WhoLostAMon_Female:
 
 .Beverly:
 	farwritetext BeverlyLostAMonText
-	buttonsound
+	promptbutton
 	end
 
 .Beth:
 	farwritetext BethLostAMonText
-	buttonsound
+	promptbutton
 	end
 
 .Reena:
 	farwritetext ReenaLostAMonText
-	buttonsound
+	promptbutton
 	end
 
 .Liz:
 	farwritetext LizLostAMonText
-	buttonsound
+	promptbutton
 	end
 
 .Gina:
 	farwritetext GinaLostAMonText
-	buttonsound
+	promptbutton
 	end
 
 .Dana:
 	farwritetext DanaLostAMonText
-	buttonsound
+	promptbutton
 	end
 
 .Tiffany:
 	farwritetext TiffanyLostAMonText
-	buttonsound
+	promptbutton
 	end
 
 .Erin:
 	farwritetext ErinLostAMonText
-	buttonsound
+	promptbutton
 	end
 
 PhoneScript_WantsToBattle_Male:
@@ -552,87 +552,87 @@ PhoneScript_RematchText_Male:
 
 .Jack:
 	farwritetext JackBattleRematchText
-	buttonsound
+	promptbutton
 	end
 
 .Huey:
 	farwritetext HueyBattleRematchText
-	buttonsound
+	promptbutton
 	end
 
 .Gaven:
 	farwritetext GavenBattleRematchText
-	buttonsound
+	promptbutton
 	end
 
 .Jose:
 	farwritetext JoseBattleRematchText
-	buttonsound
+	promptbutton
 	end
 
 .Joey:
 	farwritetext JoeyBattleRematchText
-	buttonsound
+	promptbutton
 	end
 
 .Wade:
 	farwritetext WadeBattleRematchText
-	buttonsound
+	promptbutton
 	end
 
 .Ralph:
 	farwritetext RalphBattleRematchText
-	buttonsound
+	promptbutton
 	end
 
 .Anthony:
 	farwritetext AnthonyBattleRematchText
-	buttonsound
+	promptbutton
 	end
 
 .Todd:
 	farwritetext ToddBattleRematchText
-	buttonsound
+	promptbutton
 	end
 
 .Arnie:
 	farwritetext ArnieBattleRematchText
-	buttonsound
+	promptbutton
 	end
 
 .Alan:
 	farwritetext AlanBattleRematchText
-	buttonsound
+	promptbutton
 	end
 
 .Chad:
 	farwritetext ChadBattleRematchText
-	buttonsound
+	promptbutton
 	end
 
 .Tully:
 	farwritetext TullyBattleRematchText
-	buttonsound
+	promptbutton
 	end
 
 .Brent:
 	farwritetext BrentBattleRematchText
-	buttonsound
+	promptbutton
 	end
 
 .Vance:
 	farwritetext VanceBattleRematchText
-	buttonsound
+	promptbutton
 	end
 
 .Wilton:
 	farwritetext WiltonBattleRematchText
-	buttonsound
+	promptbutton
 	end
 
 .Parry:
 	farwritetext ParryBattleRematchText
-	buttonsound
+	promptbutton
 	end
 
 PhoneScript_RematchText_Female:
@@ -647,37 +647,37 @@ PhoneScript_RematchText_Female:
 
 .Beth:
 	farwritetext BethBattleRematchText
-	buttonsound
+	promptbutton
 	end
 
 .Reena:
 	farwritetext ReenaBattleRematchText
-	buttonsound
+	promptbutton
 	end
 
 .Liz:
 	farwritetext LizBattleRematchText
-	buttonsound
+	promptbutton
 	end
 
 .Gina:
 	farwritetext GinaBattleRematchText
-	buttonsound
+	promptbutton
 	end
 
 .Dana:
 	farwritetext DanaBattleRematchText
-	buttonsound
+	promptbutton
 	end
 
 .Tiffany:
 	farwritetext TiffanyBattleRematchText
-	buttonsound
+	promptbutton
 	end
 
 .Erin:
 	farwritetext ErinBattleRematchText
-	buttonsound
+	promptbutton
 	end
 
 LizWrongNumberScript:
@@ -861,37 +861,37 @@ PhoneScript_BugCatchingContest:
 
 .Wade:
 	farwritetext WadeBugCatchingContestText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .Derek:
 	farwritetext DerekBugCatchingContestText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 IrwinRocketRumorScript:
 	farwritetext IrwinRocketTakeoverRumorText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 GinaRocketRumorScript:
 	farwritetext GinaRocketTakeoverRumorText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Female
 
 ArnieSwarmScript:
 	farwritetext ArnieSwarmText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 RalphItemScript:
 	farwritetext RalphItemText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 AnthonySwarmScript:
 	farwritetext AnthonySwarmText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 PhoneScript_FoundItem_Male:
@@ -952,10 +952,10 @@ PhoneScript_FoundItem_Female:
 
 ToddItemScript:
 	farwritetext ToddDepartmentStoreBargainSaleText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 KenjiCallingPhoneScript:
 	farwritetext KenjiRemainDedicatedText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male

@@ -371,13 +371,13 @@ Gen2ToGen2LinkComms:
 	jr z, .next
 	sub $3
 	jr nc, .skip
-	farcall DeutenEnglischenPost
+	farcall ConvertEnglishMailToFrenchGerman
 	jr .next
 
 .skip
 	cp $2
 	jr nc, .next
-	farcall HandleSpanishItalianMail
+	farcall ConvertEnglishMailToSpanishItalian
 
 .next
 	pop de
@@ -875,13 +875,13 @@ Link_PrepPartyData_Gen2:
 	jr z, .next
 	sub $3
 	jr nc, .italian_spanish
-	farcall HandleFrenchGermanMail
+	farcall ConvertFrenchGermanMailToEnglish
 	jr .next
 
 .italian_spanish
 	cp $2
 	jr nc, .next
-	farcall HandleSpanishItalianMail
+	farcall ConvertSpanishItalianMailToEnglish
 
 .next
 	pop de

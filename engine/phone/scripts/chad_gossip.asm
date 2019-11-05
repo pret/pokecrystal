@@ -13,50 +13,50 @@ ChadOakGossipScript:
 
 .Blue:
 	farwritetext ChadBlueGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .Daisy:
 	farwritetext ChadDaisyGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .ProfElm:
 	farwritetext ChadProfElmGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .Dream:
 	farwritetext ChadProfOaksDreamGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .Kurt:
 	farwritetext ChadKurtGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .League:
 	farwritetext ChadLeagueGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .RadioShow:
 	farwritetext ChadPokemonTalkGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .Battling:
 	farwritetext ChadProfOakTrainerGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .DaisyTea:
 	farwritetext ChadDaisyTeaGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .Traveled:
 	farwritetext ChadProfOakTravelingGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male

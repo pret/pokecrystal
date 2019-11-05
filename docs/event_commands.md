@@ -298,7 +298,7 @@ If <code><i>item_id</i></code> = `USE_SCRIPT_VAR`, then it uses `[wScriptVar]` i
 ## `$54`: `waitbutton`
 
 
-## `$55`: `buttonsound`
+## `$55`: `promptbutton`
 
 
 ## `$56`: <code>pokepic <i>mon_id</i></code>

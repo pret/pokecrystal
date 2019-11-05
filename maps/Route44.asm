@@ -30,7 +30,7 @@ TrainerBirdKeeperVance1:
 	checkevent EVENT_VANCE_ASKED_FOR_PHONE_NUMBER
 	iftrue .AskedAlready
 	writetext BirdKeeperVanceLegendaryBirdsText
-	buttonsound
+	promptbutton
 	setevent EVENT_VANCE_ASKED_FOR_PHONE_NUMBER
 	scall Route44AskNumber1M
 	sjump .AskForNumber
@@ -174,7 +174,7 @@ TrainerFisherWilton1:
 	checkevent EVENT_WILTON_ASKED_FOR_PHONE_NUMBER
 	iftrue .AskedAlready
 	writetext FisherWiltonHugePoliwagText
-	buttonsound
+	promptbutton
 	setevent EVENT_WILTON_ASKED_FOR_PHONE_NUMBER
 	scall Route44AskNumber1M
 	sjump .AskForNumber

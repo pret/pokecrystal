@@ -42,7 +42,7 @@ FakeDirectorScript:
 	reloadmapafterbattle
 	opentext
 	writetext FakeDirectorTextAfter
-	buttonsound
+	promptbutton
 	verbosegiveitem BASEMENT_KEY
 	closetext
 	setscene SCENE_RADIOTOWER5F_ROCKET_BOSS
@@ -119,7 +119,7 @@ RadioTower5FRocketBossScene:
 	turnobject PLAYER, RIGHT
 	opentext
 	writetext RadioTower5FDirectorThankYouText
-	buttonsound
+	promptbutton
 	verbosegiveitem CLEAR_BELL
 	writetext RadioTower5FDirectorDescribeClearBellText
 	waitbutton

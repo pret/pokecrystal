@@ -372,7 +372,7 @@ SimpleWaitPressAorB::
 	jr z, .loop
 	ret
 
-ButtonSound::
+PromptButton::
 	ld a, [wLinkMode]
 	and a
 	jr nz, .link

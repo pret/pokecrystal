@@ -284,7 +284,7 @@ RocketBaseElectrodeScript:
 	turnobject PLAYER, RIGHT
 	opentext
 	writetext RocketBaseLanceElectrodeDoneText
-	buttonsound
+	promptbutton
 	verbosegiveitem HM_WHIRLPOOL
 	setevent EVENT_GOT_HM06_WHIRLPOOL
 	writetext RocketBaseLanceWhirlpoolText

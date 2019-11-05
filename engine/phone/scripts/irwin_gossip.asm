@@ -24,65 +24,65 @@ IrwinRumorScript:
 	checkflag ENGINE_PLAINBADGE
 	iftrue .PlainBadge
 	farwritetext IrwinCalledRightAwayText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .PlainBadge:
 	farwritetext IrwinPlainBadgeGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .JasmineReturned:
 	farwritetext IrwinJasmineReturnedGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .RocketHideout:
 	farwritetext IrwinRocketHideoutGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .RadioTower:
 	farwritetext IrwinRadioTowerGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .RisingBadge:
 	farwritetext IrwinRisingBadgeGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .EliteFour:
 	farwritetext IrwinEliteFourGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .VermilionCity:
 	farwritetext IrwinVermilionCityGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .TrainPass:
 	farwritetext IrwinTrainPassGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .Snorlax:
 	farwritetext IrwinSnorlaxGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .MtSilver:
 	farwritetext IrwinMtSilverGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .FogBadge:
 	farwritetext IrwinFogBadgeGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .MarshBadge:
 	farwritetext IrwinMarshBadgeGossipText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male

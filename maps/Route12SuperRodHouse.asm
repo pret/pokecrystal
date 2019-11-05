@@ -15,7 +15,7 @@ Route12SuperRodHouseFishingGuruScript:
 	yesorno
 	iffalse .Refused
 	writetext GiveSuperRodText
-	buttonsound
+	promptbutton
 	verbosegiveitem SUPER_ROD
 	iffalse .NoRoom
 	setevent EVENT_GOT_SUPER_ROD

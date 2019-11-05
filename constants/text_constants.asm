@@ -33,12 +33,12 @@ TEXTBOX_INNERY EQU TEXTBOX_Y + 2
 ; PrintNum bit flags
 	const_def 5
 	const PRINTNUM_MONEY_F        ; 5
-	const PRINTNUM_RIGHTALIGN_F   ; 6
+	const PRINTNUM_LEFTALIGN_F    ; 6
 	const PRINTNUM_LEADINGZEROS_F ; 7
 
 ; PrintNum arguments (see engine/math/print_num.asm)
 PRINTNUM_MONEY          EQU 1 << PRINTNUM_MONEY_F
-PRINTNUM_RIGHTALIGN     EQU 1 << PRINTNUM_RIGHTALIGN_F
+PRINTNUM_LEFTALIGN      EQU 1 << PRINTNUM_LEFTALIGN_F
 PRINTNUM_LEADINGZEROS   EQU 1 << PRINTNUM_LEADINGZEROS_F
 
 ; character sets (see charmap.asm)

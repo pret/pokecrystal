@@ -216,6 +216,17 @@ INCBIN "gfx/footprints/wartortle.1bpp"
 Edit `Pokedex_LoadAnyFootprint`:
 
 ```diff
+ 	ld a, [wTempSpecies]
+ 	dec a
+ 	and %111
+ 	swap a ; * $10
++	add a, a
+ 	ld l, a
+ 	ld h, 0
+ 	add hl, de
+ 	ld de, Footprints
+ 	add hl, de
+
 -	push hl
  	ld e, l
  	ld d, h

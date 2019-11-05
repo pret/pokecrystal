@@ -37,7 +37,7 @@ VioletGymFalknerScript:
 	setmapscene ELMS_LAB, SCENE_ELMSLAB_NOTHING
 	specialphonecall SPECIALCALL_ASSISTANT
 	writetext FalknerZephyrBadgeText
-	buttonsound
+	promptbutton
 	verbosegiveitem TM_MUD_SLAP
 	iffalse .NoRoomForMudSlap
 	setevent EVENT_GOT_TM31_MUD_SLAP

@@ -15,7 +15,7 @@ _CheckTrainerBattle::
 
 ; Skip the player object.
 	ld a, 1
-	ld de, wMapObjects + OBJECT_LENGTH
+	ld de, wMapObjects + MAPOBJECT_LENGTH
 
 .loop
 
@@ -78,7 +78,7 @@ _CheckTrainerBattle::
 
 .next
 	pop de
-	ld hl, OBJECT_LENGTH
+	ld hl, MAPOBJECT_LENGTH
 	add hl, de
 	ld d, h
 	ld e, l

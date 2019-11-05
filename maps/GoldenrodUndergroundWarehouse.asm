@@ -72,14 +72,14 @@ GoldenrodUndergroundWarehouseDirectorScript:
 	checkevent EVENT_RECEIVED_CARD_KEY
 	iftrue .GotCardKey
 	writetext DirectorIntroText
-	buttonsound
+	promptbutton
 	verbosegiveitem CARD_KEY
 	setevent EVENT_RECEIVED_CARD_KEY
 	setevent EVENT_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1
 	clearevent EVENT_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
 	clearevent EVENT_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
 	writetext DirectorCardKeyText
-	buttonsound
+	promptbutton
 .GotCardKey:
 	writetext DirectorAfterText
 	waitbutton

@@ -17,7 +17,7 @@ BillScript:
 	yesorno
 	iffalse .Refused
 	writetext BillImCountingOnYouText
-	buttonsound
+	promptbutton
 	waitsfx
 	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, .NoRoom
@@ -54,13 +54,13 @@ BillsMomScript:
 	opentext
 	checkevent EVENT_MET_BILL
 	iffalse .HaventMetBill
-	writetext BillsPopText
+	writetext BillsMomText_BeforeEcruteak
 	waitbutton
 	closetext
 	end
 
 .HaventMetBill:
-	writetext BillsMomText
+	writetext BillsMomText_AfterEcruteak
 	waitbutton
 	closetext
 	end
@@ -79,7 +79,7 @@ BillsSisterScript:
 	writetext RecordedBillsNumberText
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitsfx
-	buttonsound
+	promptbutton
 .GotBillsNumber:
 	writetext BillsSisterStorageSystemText
 	waitbutton
@@ -94,7 +94,7 @@ BillsSisterScript:
 
 .NoRoom:
 	writetext BillsSisterPhoneFullText
-	buttonsound
+	promptbutton
 	sjump .Refused
 
 BillsHouseBookshelf1:
@@ -175,7 +175,7 @@ BillPopWontWorkText:
 	line "a real headache…"
 	done
 
-BillsPopText:
+BillsMomText_BeforeEcruteak:
 	text "Oh, you collect"
 	line "#MON? My son"
 	cont "BILL is an expert."
@@ -193,7 +193,7 @@ BillsPopText:
 	line "being called…"
 	done
 
-BillsMomText:
+BillsMomText_AfterEcruteak:
 	text "My husband was"
 	line "once known as a"
 

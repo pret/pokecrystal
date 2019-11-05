@@ -57,7 +57,7 @@ BattleTower1FReceptionistScript:
 	ifequal $3, Script_BeatenAllTrainers2 ; maps/BattleTowerBattleRoom.asm
 	opentext
 	writetext Text_BattleTowerWelcomesYou
-	buttonsound
+	promptbutton
 	setval BATTLETOWERACTION_CHECK_EXPLANATION_READ ; if new save file: bit 1, [sBattleTowerSaveFileFlags]
 	special BattleTowerAction
 	ifnotequal $0, Script_Menu_ChallengeExplanationCancel
@@ -528,7 +528,7 @@ Text_PlayerGotFive:
 	text_ram wStringBuffer4
 	text "!@"
 	sound_item
-	text_waitbutton
+	text_promptbutton
 	text_end
 
 Text_YourPackIsStuffedFull:

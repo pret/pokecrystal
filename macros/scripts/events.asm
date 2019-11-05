@@ -553,9 +553,9 @@ waitbutton: MACRO
 	db waitbutton_command
 ENDM
 
-	enum buttonsound_command ; $55
-buttonsound: MACRO
-	db buttonsound_command
+	enum promptbutton_command ; $55
+promptbutton: MACRO
+	db promptbutton_command
 ENDM
 
 	enum pokepic_command ; $56

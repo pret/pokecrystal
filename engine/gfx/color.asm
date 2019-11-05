@@ -1075,21 +1075,21 @@ SGBBorder_MorePalPushing:
 	ld a, $e4
 	ldh [rBGP], a
 	ld de, vTiles1
-	ld bc, 20 tiles
+	ld bc, (6 + SCREEN_WIDTH + 6) * 5 * 2
 	call CopyData
-	ld b, 18
+	ld b, SCREEN_HEIGHT
 .loop
 	push bc
-	ld bc, $c
+	ld bc, 6 * 2
 	call CopyData
-	ld bc, $28
+	ld bc, SCREEN_WIDTH * 2
 	call ClearBytes
-	ld bc, $c
+	ld bc, 6 * 2
 	call CopyData
 	pop bc
 	dec b
 	jr nz, .loop
-	ld bc, $140
+	ld bc, (6 + SCREEN_WIDTH + 6) * 5 * 2
 	call CopyData
 	ld bc, $100
 	call ClearBytes
@@ -1195,6 +1195,7 @@ SGBBorderMap:
 INCBIN "gfx/sgb/sgb_border.bin"
 
 SGBBorderPalettes:
+; assumed to come after SGBBorderMap
 INCLUDE "gfx/sgb/sgb_border.pal"
 
 SGBBorder:

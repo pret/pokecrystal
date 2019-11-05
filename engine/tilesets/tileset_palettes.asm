@@ -2,8 +2,8 @@ LoadSpecialMapPalette:
 	ld a, [wMapTileset]
 	cp TILESET_POKECOM_CENTER
 	jr z, .pokecom_2f
-	cp TILESET_BATTLE_TOWER
-	jr z, .battle_tower
+	cp TILESET_BATTLE_TOWER_INSIDE
+	jr z, .battle_tower_inside
 	cp TILESET_ICE_PATH
 	jr z, .ice_path
 	cp TILESET_HOUSE
@@ -19,8 +19,8 @@ LoadSpecialMapPalette:
 	scf
 	ret
 
-.battle_tower
-	call LoadBattleTowerPalette
+.battle_tower_inside
+	call LoadBattleTowerInsidePalette
 	scf
 	ret
 
@@ -63,16 +63,16 @@ LoadPokeComPalette:
 PokeComPalette:
 INCLUDE "gfx/tilesets/pokecom_center.pal"
 
-LoadBattleTowerPalette:
+LoadBattleTowerInsidePalette:
 	ld a, BANK(wBGPals1)
 	ld de, wBGPals1
-	ld hl, BattleTowerPalette
+	ld hl, BattleTowerInsidePalette
 	ld bc, 8 palettes
 	call FarCopyWRAM
 	ret
 
-BattleTowerPalette:
-INCLUDE "gfx/tilesets/battle_tower.pal"
+BattleTowerInsidePalette:
+INCLUDE "gfx/tilesets/battle_tower_inside.pal"
 
 LoadIcePathPalette:
 	ld a, BANK(wBGPals1)

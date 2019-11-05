@@ -58,7 +58,7 @@ ElmsLab_MapScripts:
 
 .ElmGetsEmail:
 	writetext ElmText_Accepted
-	buttonsound
+	promptbutton
 	writetext ElmText_ResearchAmbitions
 	waitbutton
 	closetext
@@ -171,13 +171,13 @@ CyndaquilPokeBallScript:
 	disappear ELMSLAB_POKE_BALL1
 	setevent EVENT_GOT_CYNDAQUIL_FROM_ELM
 	writetext ChoseStarterText
-	buttonsound
+	promptbutton
 	waitsfx
 	getmonname STRING_BUFFER_3, CYNDAQUIL
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
 	waitsfx
-	buttonsound
+	promptbutton
 	givepoke CYNDAQUIL, 5, BERRY
 	closetext
 	readvar VAR_FACING
@@ -201,13 +201,13 @@ TotodilePokeBallScript:
 	disappear ELMSLAB_POKE_BALL2
 	setevent EVENT_GOT_TOTODILE_FROM_ELM
 	writetext ChoseStarterText
-	buttonsound
+	promptbutton
 	waitsfx
 	getmonname STRING_BUFFER_3, TOTODILE
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
 	waitsfx
-	buttonsound
+	promptbutton
 	givepoke TOTODILE, 5, BERRY
 	closetext
 	applymovement PLAYER, AfterTotodileMovement
@@ -229,13 +229,13 @@ ChikoritaPokeBallScript:
 	disappear ELMSLAB_POKE_BALL3
 	setevent EVENT_GOT_CHIKORITA_FROM_ELM
 	writetext ChoseStarterText
-	buttonsound
+	promptbutton
 	waitsfx
 	getmonname STRING_BUFFER_3, CHIKORITA
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
 	waitsfx
-	buttonsound
+	promptbutton
 	givepoke CHIKORITA, 5, BERRY
 	closetext
 	applymovement PLAYER, AfterChikoritaMovement
@@ -325,7 +325,7 @@ ElmAfterTheftScript:
 	writetext ElmAfterTheftText1
 	checkitem MYSTERY_EGG
 	iffalse ElmAfterTheftDoneScript
-	buttonsound
+	promptbutton
 	writetext ElmAfterTheftText2
 	waitbutton
 	takeitem MYSTERY_EGG
@@ -334,9 +334,9 @@ ElmAfterTheftScript:
 	waitbutton
 	scall ElmJumpBackScript2
 	writetext ElmAfterTheftText4
-	buttonsound
+	promptbutton
 	writetext ElmAfterTheftText5
-	buttonsound
+	promptbutton
 	setevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	setflag ENGINE_MAIN_MENU_MOBILE_CHOICES
 	setmapscene ROUTE_29, SCENE_ROUTE29_CATCH_TUTORIAL
@@ -374,12 +374,12 @@ ShowElmTogepiScript:
 	setevent EVENT_SHOWED_TOGEPI_TO_ELM
 	opentext
 	writetext ShowElmTogepiText2
-	buttonsound
+	promptbutton
 	writetext ShowElmTogepiText3
-	buttonsound
+	promptbutton
 ElmGiveEverstoneScript:
 	writetext ElmGiveEverstoneText1
-	buttonsound
+	promptbutton
 	verbosegiveitem EVERSTONE
 	iffalse ElmScript_NoRoomForEverstone
 	writetext ElmGiveEverstoneText2
@@ -397,7 +397,7 @@ ElmScript_NoRoomForEverstone:
 
 ElmGiveMasterBallScript:
 	writetext ElmGiveMasterBallText1
-	buttonsound
+	promptbutton
 	verbosegiveitem MASTER_BALL
 	iffalse .notdone
 	setevent EVENT_GOT_MASTER_BALL_FROM_ELM
@@ -409,7 +409,7 @@ ElmGiveMasterBallScript:
 
 ElmGiveTicketScript:
 	writetext ElmGiveTicketText1
-	buttonsound
+	promptbutton
 	verbosegiveitem S_S_TICKET
 	setevent EVENT_GOT_SS_TICKET_FROM_ELM
 	writetext ElmGiveTicketText2
@@ -472,7 +472,7 @@ AideScript_WalkPotion2:
 AideScript_GivePotion:
 	opentext
 	writetext AideText_GiveYouPotion
-	buttonsound
+	promptbutton
 	verbosegiveitem POTION
 	writetext AideText_AlwaysBusy
 	waitbutton
@@ -497,12 +497,12 @@ AideScript_WalkBalls2:
 AideScript_GiveYouBalls:
 	opentext
 	writetext AideText_GiveYouBalls
-	buttonsound
+	promptbutton
 	getitemname STRING_BUFFER_4, POKE_BALL
 	scall AideScript_ReceiveTheBalls
 	giveitem POKE_BALL, 5
 	writetext AideText_ExplainBalls
-	buttonsound
+	promptbutton
 	itemnotify
 	closetext
 	setscene SCENE_ELMSLAB_NOTHING
@@ -553,7 +553,7 @@ CopScript:
 	turnobject ELMSLAB_OFFICER, LEFT
 	opentext
 	writetext ElmsLabOfficerText1
-	buttonsound
+	promptbutton
 	special NameRival
 	writetext ElmsLabOfficerText2
 	waitbutton

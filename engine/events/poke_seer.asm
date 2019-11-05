@@ -164,7 +164,7 @@ GetCaughtLevel:
 	ld [wSeerCaughtLevel], a
 	ld hl, wSeerCaughtLevelString
 	ld de, wSeerCaughtLevel
-	lb bc, PRINTNUM_RIGHTALIGN | 1, 3
+	lb bc, PRINTNUM_LEFTALIGN | 1, 3
 	call PrintNum
 	ret
 

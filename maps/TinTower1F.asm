@@ -192,7 +192,7 @@ TinTower1FSage5Script:
 	checkevent EVENT_GOT_RAINBOW_WING
 	iftrue .GotRainbowWing
 	writetext TinTower1FSage5Text1
-	buttonsound
+	promptbutton
 	verbosegiveitem RAINBOW_WING
 	closetext
 	refreshscreen

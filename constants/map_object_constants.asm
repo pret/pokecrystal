@@ -34,7 +34,7 @@
 	const OBJECT_1F                  ; 1f
 	const OBJECT_RANGE               ; 20
 	; 21-27 are not used
-OBJECT_STRUCT_LENGTH EQU 40
+OBJECT_LENGTH EQU 40
 NUM_OBJECT_STRUCTS EQU 13 ; see wObjectStructs
 
 ; object_struct OBJECT_FACING values
@@ -114,7 +114,7 @@ ABSOLUTE_TILE_ID    EQU 1 << ABSOLUTE_TILE_ID_F
 	const MAPOBJECT_FLAG_HI ; d
 	const MAPOBJECT_E ; unused
 	const MAPOBJECT_F ; unused
-OBJECT_LENGTH EQU const_value
+MAPOBJECT_LENGTH EQU const_value
 
 ; SpriteMovementData struct members (see data/sprites/map_objects.asm)
 	const_def

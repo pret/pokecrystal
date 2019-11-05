@@ -30,7 +30,7 @@ MountMortarB1FKiyoScript:
 	opentext
 .BeatKiyo:
 	writetext MountMortarB1FTyrogueRewardText
-	buttonsound
+	promptbutton
 	waitsfx
 	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, .NoRoom

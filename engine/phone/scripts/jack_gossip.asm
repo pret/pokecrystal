@@ -14,55 +14,55 @@ JackTriviaScript:
 
 .Thunder:
 	farwritetext JackThunderTriviaText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .Rollout:
 	farwritetext JackRolloutTriviaText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .Solarbeam:
 	farwritetext JackSolarbeamTriviaText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .Stomp:
 	farwritetext JackStompTriviaText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .Gust:
 	farwritetext JackGustTriviaText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .Twister:
 	farwritetext JackTwisterTriviaText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .Earthquake:
 	farwritetext JackEarthquakeTriviaText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .Magnitude:
 	farwritetext JackMagnitudeTriviaText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .Sandstorm:
 	farwritetext JackSandstormTriviaText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .SunnyDay:
 	farwritetext JackSunnyDayTriviaText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 .RainDance:
 	farwritetext JackRainDanceTriviaText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male

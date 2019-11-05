@@ -1,49 +1,49 @@
 BeverlyComePickUpScript:
 	farwritetext BeverlyComePickUpText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Female
 
 JoseComePickUpScript:
 	farwritetext JoseComePickUpText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 WadeComeQuickScript:
 	farwritetext WadeComeQuickText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 GinaComePickUpScript:
 	farwritetext GinaComePickUpText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Female
 
 AlanComePickUpScript:
 	farwritetext AlanComePickUpGiftText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 DanaComePickUpScript:
 	farwritetext DanaComePickUpText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Female
 
 DerekComePickUpScript:
 	farwritetext DerekComePickUpText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 TullyHurryScript:
 	farwritetext TullyHurryText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
 TiffanyHurryScript:
 	farwritetext TiffanyHurryText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Female
 
 WiltonWantThisScript:
 	farwritetext WiltonWantThisText
-	buttonsound
+	promptbutton
 	sjump PhoneScript_HangUpText_Male

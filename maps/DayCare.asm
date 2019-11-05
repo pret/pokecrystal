@@ -26,7 +26,7 @@ DayCareManScript_Inside:
 	checkevent EVENT_GOT_ODD_EGG
 	iftrue .AlreadyHaveOddEgg
 	writetext DayCareManText_GiveOddEgg
-	buttonsound
+	promptbutton
 	closetext
 	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, .PartyFull

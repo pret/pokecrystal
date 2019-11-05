@@ -75,7 +75,7 @@ RuinsOfAlphOutsideFisherScript:
 	iftrue .Next
 	setevent EVENT_TALKED_TO_RUINS_COWARD
 	writetext RuinsOfAlphOutsideFisherText1
-	buttonsound
+	promptbutton
 .Next:
 	writetext RuinsOfAlphOutsideFisherText2
 	waitbutton

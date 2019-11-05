@@ -200,7 +200,7 @@ OlderHaircutBrotherScript:
 	checkmoney YOUR_MONEY, GOLDENRODUNDERGROUND_OLDER_HAIRCUT_PRICE
 	ifequal HAVE_LESS, .NotEnoughMoney
 	writetext GoldenrodUndergroundOlderHaircutBrotherAskWhichMonText
-	buttonsound
+	promptbutton
 	special OlderHaircutBrother
 	ifequal $0, .Refused
 	ifequal $1, .Refused
@@ -283,7 +283,7 @@ YoungerHaircutBrotherScript:
 	checkmoney YOUR_MONEY, GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_PRICE
 	ifequal HAVE_LESS, .NotEnoughMoney
 	writetext GoldenrodUndergroundYoungerHaircutBrotherAskWhichMonText
-	buttonsound
+	promptbutton
 	special YoungerHaircutBrother
 	ifequal $0, .Refused
 	ifequal $1, .Refused

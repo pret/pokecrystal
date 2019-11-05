@@ -28,7 +28,7 @@ Script_BattleRoomLoop:
 	applymovement BATTLETOWERBATTLEROOM_YOUNGSTER, MovementData_BattleTowerBattleRoomOpponentWalksIn
 	opentext
 	battletowertext BATTLETOWERTEXT_INTRO
-	buttonsound
+	promptbutton
 	closetext
 	special BattleTowerBattle ; calls predef startbattle
 	special FadeOutPalettes

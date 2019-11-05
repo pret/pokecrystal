@@ -69,33 +69,33 @@ PokecenterNurseScript:
 	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
 	iftrue .morn_comcenter
 	farwritetext NurseMornText
-	buttonsound
+	promptbutton
 	sjump .ok
 .morn_comcenter
 	farwritetext PokeComNurseMornText
-	buttonsound
+	promptbutton
 	sjump .ok
 
 .day
 	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
 	iftrue .day_comcenter
 	farwritetext NurseDayText
-	buttonsound
+	promptbutton
 	sjump .ok
 .day_comcenter
 	farwritetext PokeComNurseDayText
-	buttonsound
+	promptbutton
 	sjump .ok
 
 .nite
 	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
 	iftrue .nite_comcenter
 	farwritetext NurseNiteText
-	buttonsound
+	promptbutton
 	sjump .ok
 .nite_comcenter
 	farwritetext PokeComNurseNiteText
-	buttonsound
+	promptbutton
 	sjump .ok
 
 .ok
@@ -326,19 +326,19 @@ BugContestResultsScript:
 	ifequal 2, BugContestResults_SecondPlace
 	ifequal 3, BugContestResults_ThirdPlace
 	farwritetext ContestResults_ConsolationPrizeText
-	buttonsound
+	promptbutton
 	waitsfx
 	verbosegiveitem BERRY
 	iffalse BugContestResults_NoRoomForBerry
 
 BugContestResults_DidNotWin:
 	farwritetext ContestResults_DidNotWinText
-	buttonsound
+	promptbutton
 	sjump BugContestResults_FinishUp
 
 BugContestResults_ReturnAfterWinnersPrize:
 	farwritetext ContestResults_JoinUsNextTimeText
-	buttonsound
+	promptbutton
 
 BugContestResults_FinishUp:
 	checkevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
@@ -408,25 +408,25 @@ BugContestResults_ThirdPlace:
 
 BugContestResults_NoRoomForSunStone:
 	farwritetext BugContestPrizeNoRoomText
-	buttonsound
+	promptbutton
 	setevent EVENT_CONTEST_OFFICER_HAS_SUN_STONE
 	sjump BugContestResults_ReturnAfterWinnersPrize
 
 BugContestResults_NoRoomForEverstone:
 	farwritetext BugContestPrizeNoRoomText
-	buttonsound
+	promptbutton
 	setevent EVENT_CONTEST_OFFICER_HAS_EVERSTONE
 	sjump BugContestResults_ReturnAfterWinnersPrize
 
 BugContestResults_NoRoomForGoldBerry:
 	farwritetext BugContestPrizeNoRoomText
-	buttonsound
+	promptbutton
 	setevent EVENT_CONTEST_OFFICER_HAS_GOLD_BERRY
 	sjump BugContestResults_ReturnAfterWinnersPrize
 
 BugContestResults_NoRoomForBerry:
 	farwritetext BugContestPrizeNoRoomText
-	buttonsound
+	promptbutton
 	setevent EVENT_CONTEST_OFFICER_HAS_BERRY
 	sjump BugContestResults_DidNotWin
 
@@ -786,7 +786,7 @@ RegisteredNumberMScript:
 	farwritetext RegisteredNumber1Text
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitsfx
-	buttonsound
+	promptbutton
 	end
 
 NumberAcceptedMScript:
@@ -1279,31 +1279,31 @@ GiftMScript:
 
 .Jose:
 	farwritetext JoseGiftText
-	buttonsound
+	promptbutton
 	end
 .Wade:
 	farwritetext WadeGiftText
-	buttonsound
+	promptbutton
 	end
 .Alan:
 	farwritetext AlanGiftText
-	buttonsound
+	promptbutton
 	end
 .Derek:
 	farwritetext DerekGiftText
-	buttonsound
+	promptbutton
 	end
 .Tully:
 	farwritetext TullyGiftText
-	buttonsound
+	promptbutton
 	end
 .Wilton:
 	farwritetext WiltonGiftText
-	buttonsound
+	promptbutton
 	end
 .Kenji:
 	farwritetext KenjiGiftText
-	buttonsound
+	promptbutton
 	end
 
 PackFullMScript:
@@ -1386,19 +1386,19 @@ RematchGiftMScript:
 
 .Huey:
 	farwritetext HueyRematchGiftText
-	buttonsound
+	promptbutton
 	end
 .Joey:
 	farwritetext JoeyRematchGiftText
-	buttonsound
+	promptbutton
 	end
 .Vance:
 	farwritetext VanceRematchGiftText
-	buttonsound
+	promptbutton
 	end
 .Parry:
 	farwritetext ParryRematchGiftText
-	buttonsound
+	promptbutton
 	end
 
 AskNumber1FScript:
@@ -1477,7 +1477,7 @@ RegisteredNumberFScript:
 	farwritetext RegisteredNumber2Text
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitsfx
-	buttonsound
+	promptbutton
 	end
 
 NumberAcceptedFScript:
@@ -1691,19 +1691,19 @@ GiftFScript:
 
 .Beverly:
 	farwritetext BeverlyGiftText
-	buttonsound
+	promptbutton
 	end
 .Gina:
 	farwritetext GinaGiftText
-	buttonsound
+	promptbutton
 	end
 .Dana:
 	farwritetext DanaGiftText
-	buttonsound
+	promptbutton
 	end
 .Tiffany:
 	farwritetext TiffanyGiftText
-	buttonsound
+	promptbutton
 	end
 
 PackFullFScript:
@@ -1747,7 +1747,7 @@ RematchGiftFScript:
 .Erin:
 	opentext
 	farwritetext ErinRematchGiftText
-	buttonsound
+	promptbutton
 	end
 
 GymStatue1Script:
@@ -1762,7 +1762,7 @@ GymStatue2Script:
 	getcurlandmarkname STRING_BUFFER_3
 	opentext
 	farwritetext GymStatue_CityGymText
-	buttonsound
+	promptbutton
 	farwritetext GymStatue_WinningTrainersText
 	waitbutton
 	closetext
@@ -1786,7 +1786,7 @@ GameCornerCoinVendorScript:
 	faceplayer
 	opentext
 	farwritetext CoinVendor_WelcomeText
-	buttonsound
+	promptbutton
 	checkitem COIN_CASE
 	iftrue CoinVendor_IntroScript
 	farwritetext CoinVendor_NoCoinCaseText

@@ -22,7 +22,7 @@ HiddenItemScript::
 	sjump .finish
 
 .bag_full
-	buttonsound
+	promptbutton
 	writetext .ButNoSpaceText
 	waitbutton
 

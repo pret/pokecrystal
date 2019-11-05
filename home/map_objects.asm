@@ -202,7 +202,7 @@ CheckStandingOnEntrance::
 GetMapObject::
 ; Return the location of map object a in bc.
 	ld hl, wMapObjects
-	ld bc, OBJECT_LENGTH
+	ld bc, MAPOBJECT_LENGTH
 	call AddNTimes
 	ld b, h
 	ld c, l
@@ -358,7 +358,7 @@ CopyPlayerObjectTemplate::
 	ld [de], a
 	inc de
 	pop hl
-	ld bc, OBJECT_LENGTH - 1
+	ld bc, MAPOBJECT_LENGTH - 1
 	call CopyBytes
 	ret
 
@@ -370,7 +370,7 @@ Unreferenced_Function19b8:
 	push af
 	ld [hl], -1
 	inc hl
-	ld bc, OBJECT_LENGTH - 1
+	ld bc, MAPOBJECT_LENGTH - 1
 	xor a
 	call ByteFill
 	pop af
@@ -424,7 +424,7 @@ FindFirstEmptyObjectStruct::
 	push bc
 	push de
 	ld hl, wObjectStructs
-	ld de, OBJECT_STRUCT_LENGTH
+	ld de, OBJECT_LENGTH
 	ld c, NUM_OBJECT_STRUCTS
 .loop
 	ld a, [hl]
@@ -594,7 +594,7 @@ UpdateSprites::
 	ret
 
 GetObjectStruct::
-	ld bc, OBJECT_STRUCT_LENGTH
+	ld bc, OBJECT_LENGTH
 	ld hl, wObjectStructs
 	call AddNTimes
 	ld b, h
