@@ -2,7 +2,7 @@
 	const MAHOGANYMART1F_PHARMACIST
 	const MAHOGANYMART1F_BLACK_BELT
 	const MAHOGANYMART1F_LANCE
-	const MAHOGANYMART1F_DRAGON
+	const MAHOGANYMART1F_DRAGONITE
 	const MAHOGANYMART1F_GRANNY
 
 MahoganyMart1F_MapScripts:
@@ -29,7 +29,7 @@ MahoganyMart1F_MapScripts:
 	changeblock 6, 2, $1e ; stairs
 	return
 
-MahogayMart1FPharmacistScript:
+MahoganyMart1FPharmacistScript:
 	faceplayer
 	opentext
 	checkevent EVENT_DECIDED_TO_HELP_LANCE
@@ -39,23 +39,23 @@ MahogayMart1FPharmacistScript:
 	end
 
 .LanceEntered:
-	writetext MahogayMart1FPharmacistText_LanceEntered
+	writetext MahoganyMart1FPharmacistText_LanceEntered
 	waitbutton
 	closetext
 	end
 
-MahogayMart1FBlackBeltScript:
+MahoganyMart1FBlackBeltScript:
 	faceplayer
 	opentext
 	checkevent EVENT_DECIDED_TO_HELP_LANCE
 	iftrue .LanceEntered
-	writetext MahogayMart1FBlackBeltText
+	writetext MahoganyMart1FBlackBeltText
 	waitbutton
 	closetext
 	end
 
 .LanceEntered:
-	writetext MahogayMart1FBlackBeltText_LanceEntered
+	writetext MahoganyMart1FBlackBeltText_LanceEntered
 	waitbutton
 	closetext
 	end
@@ -67,20 +67,20 @@ MahoganyMart1FLanceUncoversStaircaseScript:
 	pause 15
 	closetext
 	playsound SFX_TACKLE
-	applymovement MAHOGANYMART1F_DRAGON, MovementData_0x6c3f6
-	applymovement MAHOGANYMART1F_BLACK_BELT, MovementData_0x6c3fb
+	applymovement MAHOGANYMART1F_DRAGONITE, MahoganyMart1FDragoniteTackleMovement
+	applymovement MAHOGANYMART1F_BLACK_BELT, MahoganyMart1FBlackBeltKnockedBackMovement
 	pause 15
-	disappear MAHOGANYMART1F_DRAGON
+	disappear MAHOGANYMART1F_DRAGONITE
 	pause 15
-	applymovement MAHOGANYMART1F_LANCE, MovementData_0x6c407
+	applymovement MAHOGANYMART1F_LANCE, MahoganyMart1FLanceApproachPlayerMovement
 	opentext
 	writetext MahoganyMart1FLanceRadioText
 	waitbutton
 	closetext
 	follow MAHOGANYMART1F_LANCE, PLAYER
-	applymovement MAHOGANYMART1F_LANCE, MovementData_0x6c40a
-	applymovement MAHOGANYMART1F_PHARMACIST, MovementData_0x6c403
-	applymovement MAHOGANYMART1F_LANCE, MovementData_0x6c40e
+	applymovement MAHOGANYMART1F_LANCE, MahoganyMart1FLanceApproachPharmacistMovement
+	applymovement MAHOGANYMART1F_PHARMACIST, MahoganyMart1FPharmacistShovedAsideMovement
+	applymovement MAHOGANYMART1F_LANCE, MahoganyMart1FLanceApproachHiddenStairsMovement
 	stopfollow
 	opentext
 	writetext MahoganyMart1FLanceStairsText
@@ -96,28 +96,28 @@ MahoganyMart1FLanceUncoversStaircaseScript:
 	writetext MahoganyMart1FLanceSplitUpText
 	waitbutton
 	closetext
-	applymovement MAHOGANYMART1F_LANCE, MovementData_0x6c412
+	applymovement MAHOGANYMART1F_LANCE, MahoganyMart1FLanceGoDownStairsMovement
 	playsound SFX_EXIT_BUILDING
 	disappear MAHOGANYMART1F_LANCE
 	setscene SCENE_MAHOGANYMART1F_NOTHING
 	waitsfx
 	end
 
-MahogayMart1FGrannyScript:
+MahoganyMart1FGrannyScript:
 	faceplayer
 	opentext
 	pokemart MARTTYPE_STANDARD, MART_MAHOGANY_2
 	closetext
 	end
 
-MovementData_0x6c3f6:
+MahoganyMart1FDragoniteTackleMovement:
 	fix_facing
 	big_step LEFT
 	big_step RIGHT
 	remove_fixed_facing
 	step_end
 
-MovementData_0x6c3fb:
+MahoganyMart1FBlackBeltKnockedBackMovement:
 	fix_facing
 	big_step LEFT
 	remove_fixed_facing
@@ -127,30 +127,30 @@ MovementData_0x6c3fb:
 	turn_head RIGHT
 	step_end
 
-MovementData_0x6c403:
+MahoganyMart1FPharmacistShovedAsideMovement:
 	fix_facing
 	big_step LEFT
 	remove_fixed_facing
 	step_end
 
-MovementData_0x6c407:
+MahoganyMart1FLanceApproachPlayerMovement:
 	slow_step LEFT
 	turn_head DOWN
 	step_end
 
-MovementData_0x6c40a:
+MahoganyMart1FLanceApproachPharmacistMovement:
 	slow_step RIGHT
 	slow_step UP
 	slow_step UP
 	step_end
 
-MovementData_0x6c40e:
+MahoganyMart1FLanceApproachHiddenStairsMovement:
 	slow_step UP
 	slow_step RIGHT
 	slow_step RIGHT
 	step_end
 
-MovementData_0x6c412:
+MahoganyMart1FLanceGoDownStairsMovement:
 	slow_step RIGHT
 	step_end
 
@@ -164,13 +164,13 @@ UnknownText_0x6c414:
 	line "eat in MAHOGANY!"
 	done
 
-MahogayMart1FPharmacistText_LanceEntered:
+MahoganyMart1FPharmacistText_LanceEntered:
 	text "Arrgh… You found"
 	line "the secret stair-"
 	cont "way…"
 	done
 
-MahogayMart1FBlackBeltText:
+MahoganyMart1FBlackBeltText:
 	text "Heheh! The experi-"
 	line "ment worked like a"
 	cont "charm."
@@ -182,7 +182,7 @@ MahogayMart1FBlackBeltText:
 	line "moneymakers."
 	done
 
-MahogayMart1FBlackBeltText_LanceEntered:
+MahoganyMart1FBlackBeltText_LanceEntered:
 	text "Urrgh…"
 
 	para "That guy's dragon"
@@ -231,8 +231,8 @@ MahoganyMart1F_MapEvents:
 	db 0 ; bg events
 
 	db 5 ; object events
-	object_event  4,  3, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahogayMart1FPharmacistScript, EVENT_TEAM_ROCKET_BASE_POPULATION
-	object_event  1,  6, SPRITE_BLACK_BELT, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahogayMart1FBlackBeltScript, EVENT_TEAM_ROCKET_BASE_POPULATION
+	object_event  4,  3, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahoganyMart1FPharmacistScript, EVENT_TEAM_ROCKET_BASE_POPULATION
+	object_event  1,  6, SPRITE_BLACK_BELT, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahoganyMart1FBlackBeltScript, EVENT_TEAM_ROCKET_BASE_POPULATION
 	object_event  4,  6, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
 	object_event  3,  6, SPRITE_DRAGON, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
-	object_event  1,  3, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahogayMart1FGrannyScript, EVENT_MAHOGANY_MART_OWNERS
+	object_event  1,  3, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahoganyMart1FGrannyScript, EVENT_MAHOGANY_MART_OWNERS
