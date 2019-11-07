@@ -36,6 +36,8 @@ pokecrystal.txt
 .*.swp
 # swap files for gedit
 *~
+# osx files
+.DS_STORE
 
 *.dimensions
 *.gbcpal
