@@ -1,4 +1,4 @@
-; link types
+; wLinkMode
 	const_def
 	const LINK_NULL        ; 0
 	const LINK_TIMECAPSULE ; 1

@@ -295,7 +295,7 @@ Function17d0f3:
 	farcall Function17d1f1
 	ld a, $1
 	ld [wForceEvolution], a
-	ld a, $2
+	ld a, LINK_TRADECENTER
 	ld [wLinkMode], a
 	farcall EvolvePokemon
 	xor a
