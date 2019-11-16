@@ -12,7 +12,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get install pkg-config flex bison libpng-dev gcc
-        git clone --depth=1 https://github.com/rednex/rgbds && cd rgbds
+        git clone --depth=1 https://github.com/rednex/rgbds
         sudo make -C rgbds CFLAGS=-O2 install
         cd ..
     - name: Make default version
