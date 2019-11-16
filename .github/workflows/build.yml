@@ -10,10 +10,11 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Install dependencies
-    - run: |
+      run: |
         sudo apt-get install pkg-config flex bison libpng-dev gcc
-        git clone --depth=1 https://github.com/rednex/rgbds
+        git clone --depth=1 https://github.com/rednex/rgbds && rgbds
         sudo make -C rgbds CFLAGS=-O2 install
+        cd ..
     - name: Make default version
       run: make
     
