@@ -17,4 +17,8 @@ jobs:
         cd ..
     - name: Make default version
       run: make
+    - uses: actions/upload-artifact@master
+      with:
+        name: pokecrystal.gbc
+        path: pokecrystal.gbc
     
