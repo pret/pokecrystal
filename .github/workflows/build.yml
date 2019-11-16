@@ -1,0 +1,19 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install dependencies
+    - run: |
+        sudo apt-get install pkg-config flex bison libpng-dev gcc
+        git clone --depth=1 https://github.com/rednex/rgbds
+        sudo make -C rgbds CFLAGS=-O2 install
+    - name: Make default version
+      run: make
+    
