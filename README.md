@@ -1,4 +1,4 @@
-# Pokémon Crystal [![Build Status][travis-badge]][travis]
+# Pokémon Crystal ![](https://github.com/b13rg/pokecrystal/workflows/CI/badge.svg)
 
 This is a disassembly of Pokémon Crystal.
 
