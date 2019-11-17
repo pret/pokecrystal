@@ -30,6 +30,7 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 
 - [x] HP bar lowers same speed even for high hp
 - [x] Rocket execs use Team Rocket battle music, not just grunts
+- [x] Default to fast text speed
 
 ## TODO List
 
@@ -78,7 +79,6 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 - [ ] Restored original japanese sprites for Beauty, Fisher, Medium, Sage, and Swimmer♀.
 - [ ] Revised shiny pallete
 - [ ] Color coded starter poke balls
-- [ ] Fast text by default
 - [ ] Stereo sound by default
 - [ ] Third Trainer Card page for Kanto badges.
 - [ ] Fourth stats page for capture data formerly told by the Poké Seer.
