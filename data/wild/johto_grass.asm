@@ -1333,7 +1333,7 @@ JohtoGrassWildMons:
 	db 12, PIDGEY
 	db 10, ABRA
 	db 12, JIGGLYPUFF
-	db 10, DITTO
+	db 10, TYROGUE
 	db 10, DITTO
 	; day
 	db 10, SNUBBULL
@@ -1341,7 +1341,7 @@ JohtoGrassWildMons:
 	db 12, PIDGEY
 	db 10, ABRA
 	db 12, JIGGLYPUFF
-	db 10, DITTO
+	db 10, TYROGUE
 	db 10, DITTO
 	; nite
 	db 12, DROWZEE
@@ -1349,7 +1349,7 @@ JohtoGrassWildMons:
 	db 12, HOOTHOOT
 	db 10, ABRA
 	db 12, JIGGLYPUFF
-	db 10, DITTO
+	db 10, TYROGUE
 	db 10, DITTO
 
 	map_id ROUTE_35
