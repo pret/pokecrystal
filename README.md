@@ -13,6 +13,34 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 ## Feature List
 
 - [x] Rematch all overworld NPC's at will
+- [x] Updated language
+  - [x] Berry Names  
+  - [x] Enemy → Foe, 
+  - [x] Cooltrainer → Ace Trainer, 
+  - [x] Fisher → Fisherman,
+  - [x] Elixer → Elixir, 
+  - [x] Pink Bow → PNK Silk Bow
+- [ ] Update trainer graphics with JPN sprite
+  - [x] Trainer beauty
+  - [x] Trainer fisher
+  - [x] Trainer medium
+  - [x] Trainer swimmer_f
+  - [ ] Trainer sage
+- [ ] Update pokemon sprites with JPN
+  - [ ] Lanturn
+  - [ ] Pichu
+  - [ ] Sneasel
+  - [ ] Jynx
+  - [ ] Slowpoke
+  - [ ] Blissey
+  - [ ] Pinsir
+  - [ ] Flaaffy
+  - [ ] Wooper
+  - [ ] Girafarig
+  - [ ] Quilfish
+  - [ ] Slugma
+  - [ ] Politoed
+  - [ ] Pupitar
 - [x] All non-legendary pokemon available
   - [x] Johoto starters Route 29
   - [x] Kanto starters Route 1
@@ -75,13 +103,6 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 - [ ] All fossils available
 - [ ] Pokemon communication center is back in goldenrod
 - [ ] Pokemon communication center contains move reminder, deleter, and seer
-- [x] Updated language
-  - [x] Berry Names  
-  - [x] Enemy → Foe, 
-  - [x] Cooltrainer → Ace Trainer, 
-  - [x] Fisher → Fisherman,
-  - [x] Elixer → Elixir, 
-  - [x] Pink Bow → PNK Silk Bow
 - [ ] Brass Tower → Gong Tower (かね kane can mean 金 "metal" or 鉦, a gong-like bell).
 - [ ] Janine's pink badge is called the Marsh Badge; Sabrina's gold badge is called the Soul 
 
