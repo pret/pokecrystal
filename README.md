@@ -25,6 +25,29 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
   - [x] Primeape Route 9
   - [x] Omanyte Route 20
   - [x] Kabuto Route 21
+  - [x] Tyrogue Route 34
+
+### Evolutions
+
+- [x] All baby pokemon (Pichu, Cleffa, Igglybuff, Togepi) now also evolve when they become teenagers, level 13
+- [x] Traded pokemon also evolve at a level
+  - [x] Kadabra Lvl. 34
+  - [x] Machoke Lvl. 38
+  - [x] Graveler Lvl. 35
+  - [x] Haunter Lvl. 42
+  - [] Machoke Lvl. 38
+- [x] Pokemon needed to be traded with an item can also use the item directly
+  - [x] Poliwhirl -> Politoed Kings Rock
+  - [x] Slowpoke -> Slowking Kings Rock
+  - [x] Onix -> Steelix Metal Coat
+  - [x] Seadra -> Kingdra Dragon Scale
+  - [x] Scyther -> Scizor Metal Coat
+  - [x] Porygon -> Porygon2 Upgrade
+- [x] Pokemon that elvolve with happiness now also have a high evolution level
+  - [x] Golbat Lvl. 42
+  - [x] Chansey Lvl. 45
+  - [x] Eevee -> Espeon Sun Stone
+  - [x] Eevee -> Umbreon Moon Stone
 - [x] Pokemon have 1/512 to be shiny (Attack in [2,3,6,7,10,11,14,15], Defense in [4,5,6,7,12,13,14,15], Special = 10 and Speed in [11,15])
 
 ### Bug Fixes
