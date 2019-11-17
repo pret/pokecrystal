@@ -15,6 +15,7 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 ### Bug Fixes
 
 - [x] HP bar lowers same speed even for high hp
+- [x] Rocket execs use Team Rocket battle music, not just grunts
 
 ## TODO List
 
@@ -87,7 +88,6 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 - [ ] Catch rate fixes
 - [ ] Expshare formula fixes
 - [ ] Menu navigation speed
-- [ ] Rocket execs use Team Rocket battle music, not just grunts
 - [ ] Menu scrolling oversight
 - [ ] Opponents full heal and full restore correctly heals nightmare and confusion
 
