@@ -287,7 +287,7 @@ MartVermilion:
 	db -1 ; end
 
 MartCeladon2F1:
-	db 7 ; # items
+	db 10 ; # items
 	db POTION
 	db SUPER_POTION
 	db HYPER_POTION
@@ -295,6 +295,9 @@ MartCeladon2F1:
 	db REVIVE
 	db SUPER_REPEL
 	db MAX_REPEL
+	db POKE_DOLL
+	db LOVELY_MAIL
+	db SURF_MAIL
 	db -1 ; end
 
 MartCeladon2F2:
@@ -321,10 +324,17 @@ MartCeladon3F:
 	db -1 ; end
 
 MartCeladon4F:
-	db 3 ; # items
-	db POKE_DOLL
-	db LOVELY_MAIL
-	db SURF_MAIL
+	db 10 ; # items
+	db MOON_STONE
+	db FIRE_STONE
+	db THUNDERSTONE
+	db WATER_STONE
+	db LEAF_STONE
+	db SUN_STONE
+	db KINGS_ROCK
+	db METAL_COAT
+	db DRAGON_SCALE
+	db UP_GRADE
 	db -1 ; end
 
 MartCeladon5F1:
@@ -381,8 +391,9 @@ MartMtMoon:
 	db -1 ; end
 
 MartIndigoPlateau:
-	db 7 ; # items
+	db 8 ; # items
 	db ULTRA_BALL
+	db MASTER_BALL
 	db MAX_REPEL
 	db HYPER_POTION
 	db MAX_POTION

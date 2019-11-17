@@ -35,7 +35,7 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
   - [x] Machoke Lvl. 38
   - [x] Graveler Lvl. 35
   - [x] Haunter Lvl. 42
-  - [] Machoke Lvl. 38
+  - [x] Machoke Lvl. 38
 - [x] Pokemon needed to be traded with an item can also use the item directly
   - [x] Poliwhirl -> Politoed Kings Rock
   - [x] Slowpoke -> Slowking Kings Rock
@@ -48,6 +48,7 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
   - [x] Chansey Lvl. 45
   - [x] Eevee -> Espeon Sun Stone
   - [x] Eevee -> Umbreon Moon Stone
+- [x] All evolution items are sold on Celadon Market 4f
 - [x] Pokemon have 1/512 to be shiny (Attack in [2,3,6,7,10,11,14,15], Defense in [4,5,6,7,12,13,14,15], Special = 10 and Speed in [11,15])
 
 ### Bug Fixes
