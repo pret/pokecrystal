@@ -1091,9 +1091,9 @@ Function1006dc:
 	ld [de], a
 	ret
 
-Function1006fd:
-	ld a, $04
-	ld hl, $a800
+MobileBattleResetTimer:
+	ld a, BANK(sMobileBattleTimer)
+	ld hl, sMobileBattleTimer
 	call GetSRAMBank
 	xor a
 	ld [hli], a
@@ -1274,7 +1274,7 @@ Function100826:
 .asm_100830
 	ld [hld], a
 	ccf
-	ld a, [wBGMapBufferPtrs]
+	ld a, [wcd70]
 	adc [hl]
 	sub $3c
 	jr nc, .asm_10083c
@@ -7551,7 +7551,7 @@ Function10378c:
 	ld a, c
 	and a
 	ret z
-	farcall Function1006fd
+	farcall MobileBattleResetTimer
 	ret
 
 .failed_to_save

@@ -218,7 +218,7 @@ sBTMonPrevPrevTrainer2:: db
 sBTMonPrevPrevTrainer3:: db
 
 
-SECTION "Boxes 1-7",  SRAM, BANK [2]
+SECTION "Boxes 1-7", SRAM
 
 sBox1::  box sBox1
 sBox2::  box sBox2
@@ -260,7 +260,7 @@ s4_a60e:: dw ; a60e
 
 	ds $1f0
 
-sMobileBattleTimer:: ds 3
+sMobileBattleTimer:: ds 3 ; a800
 
 
 SECTION "SRAM Mobile 2", SRAM
