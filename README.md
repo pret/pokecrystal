@@ -13,6 +13,18 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 ## Feature List
 
 - [x] Rematch all overworld NPC's at will
+- [x] All non-legendary pokemon available
+  - [x] Johoto starters Route 29
+  - [x] Kanto starters Route 1
+  - [x] Mareep Routes 32, 42, 43 
+  - [x] Flaaffy Routes 42, 43
+  - [x] Vulpix Route 36, 7, 8
+  - [x] Mankey Routes 42, 
+  - [x] Girafarig Route 43
+  - [x] Remoraid Route 44
+  - [x] Primeape Route 9
+  - [x] Omanyte Route 20
+  - [x] Kabuto Route 21
 
 ### Bug Fixes
 

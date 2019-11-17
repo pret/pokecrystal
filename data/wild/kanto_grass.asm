@@ -173,7 +173,7 @@ KantoGrassWildMons:
 	db 3, PIDGEY
 	db 6, FURRET
 	db 4, PIDGEY
-	db 4, PIDGEY
+	db 6, CHARMANDER
 	; day
 	db 2, PIDGEY
 	db 2, RATTATA
@@ -181,7 +181,7 @@ KantoGrassWildMons:
 	db 3, PIDGEY
 	db 6, FURRET
 	db 4, PIDGEY
-	db 4, PIDGEY
+	db 6, BULBASAUR
 	; nite
 	db 2, HOOTHOOT
 	db 2, RATTATA
@@ -189,7 +189,7 @@ KantoGrassWildMons:
 	db 3, HOOTHOOT
 	db 6, RATICATE
 	db 4, HOOTHOOT
-	db 4, HOOTHOOT
+	db 6, SQUIRTLE
 
 	map_id ROUTE_2
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -335,7 +335,7 @@ KantoGrassWildMons:
 	db 18, RATICATE
 	db 18, JIGGLYPUFF
 	db 16, ABRA
-	db 16, ABRA
+	db 16, VULPIX
 	; day
 	db 17, RATTATA
 	db 17, SPEAROW
@@ -343,7 +343,7 @@ KantoGrassWildMons:
 	db 18, RATICATE
 	db 18, JIGGLYPUFF
 	db 16, ABRA
-	db 16, ABRA
+	db 16, VULPIX
 	; nite
 	db 17, MEOWTH
 	db 17, MURKROW
@@ -351,7 +351,7 @@ KantoGrassWildMons:
 	db 18, PERSIAN
 	db 18, JIGGLYPUFF
 	db 16, ABRA
-	db 16, ABRA
+	db 16, VULPIX
 
 	map_id ROUTE_8
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -362,7 +362,7 @@ KantoGrassWildMons:
 	db 17, GROWLITHE
 	db 16, JIGGLYPUFF
 	db 18, KADABRA
-	db 18, KADABRA
+	db 17, VULPIX
 	; day
 	db 17, SNUBBULL
 	db 19, PIDGEOTTO
@@ -370,7 +370,7 @@ KantoGrassWildMons:
 	db 17, GROWLITHE
 	db 16, JIGGLYPUFF
 	db 18, KADABRA
-	db 18, KADABRA
+	db 17, VULPIX
 	; nite
 	db 17, MEOWTH
 	db 20, NOCTOWL
@@ -378,7 +378,7 @@ KantoGrassWildMons:
 	db 17, HAUNTER
 	db 16, JIGGLYPUFF
 	db 18, KADABRA
-	db 18, KADABRA
+	db 17, VULPIX
 
 	map_id ROUTE_9
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -389,7 +389,7 @@ KantoGrassWildMons:
 	db 15, FEAROW
 	db 15, FEAROW
 	db 18, MAROWAK
-	db 18, MAROWAK
+	db 16, PRIMEAPE
 	; day
 	db 15, RATTATA
 	db 15, SPEAROW
@@ -397,7 +397,7 @@ KantoGrassWildMons:
 	db 15, FEAROW
 	db 15, FEAROW
 	db 18, MAROWAK
-	db 18, MAROWAK
+	db 16, PRIMEAPE
 	; nite
 	db 15, RATTATA
 	db 15, VENONAT
@@ -405,7 +405,7 @@ KantoGrassWildMons:
 	db 15, VENOMOTH
 	db 15, ZUBAT
 	db 18, RATICATE
-	db 18, RATICATE
+	db 16, PRIMEAPE
 
 	map_id ROUTE_10_NORTH
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite

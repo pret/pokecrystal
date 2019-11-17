@@ -1199,7 +1199,7 @@ JohtoGrassWildMons:
 	db 3, SENTRET
 	db 2, RATTATA
 	db 3, HOPPIP
-	db 3, HOPPIP
+	db 3, CYNDAQUIL
 	; day
 	db 2, PIDGEY
 	db 2, SENTRET
@@ -1207,7 +1207,7 @@ JohtoGrassWildMons:
 	db 3, SENTRET
 	db 2, RATTATA
 	db 3, HOPPIP
-	db 3, HOPPIP
+	db 3, CHIKORITA
 	; nite
 	db 2, HOOTHOOT
 	db 2, RATTATA
@@ -1215,7 +1215,7 @@ JohtoGrassWildMons:
 	db 3, RATTATA
 	db 2, RATTATA
 	db 3, HOOTHOOT
-	db 3, HOOTHOOT
+	db 3, TOTODILE
 
 	map_id ROUTE_30
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -1280,7 +1280,7 @@ JohtoGrassWildMons:
 	db 6, HOPPIP
 	db 7, PIDGEY
 	db 7, HOPPIP
-	db 7, HOPPIP
+	db 7, MAREEP
 	; day
 	db 4, EKANS
 	db 5, RATTATA
@@ -1288,7 +1288,7 @@ JohtoGrassWildMons:
 	db 6, HOPPIP
 	db 7, PIDGEY
 	db 7, HOPPIP
-	db 7, HOPPIP
+	db 7, MAREEP
 	; nite
 	db 4, WOOPER
 	db 5, RATTATA
@@ -1388,7 +1388,7 @@ JohtoGrassWildMons:
 	db 5, GROWLITHE
 	db 5, PIDGEY
 	db 6, PIDGEY
-	db 6, PIDGEY
+	db 6, VULPIX
 	; day
 	db 4, PIDGEY
 	db 4, PIDGEY
@@ -1396,7 +1396,7 @@ JohtoGrassWildMons:
 	db 5, GROWLITHE
 	db 5, PIDGEY
 	db 6, PIDGEY
-	db 6, PIDGEY
+	db 6, VULPIX
 	; nite
 	db 4, SPINARAK
 	db 4, HOOTHOOT
@@ -1404,7 +1404,7 @@ JohtoGrassWildMons:
 	db 5, HOOTHOOT
 	db 5, HOOTHOOT
 	db 5, GASTLY
-	db 5, GASTLY
+	db 5, VULPIX
 
 	map_id ROUTE_37
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -1496,7 +1496,7 @@ JohtoGrassWildMons:
 	db 16, RATICATE
 	db 15, ARBOK
 	db 16, FEAROW
-	db 16, FEAROW
+	db 16, MAREEP
 	; day
 	db 13, EKANS
 	db 14, SPEAROW
@@ -1504,15 +1504,15 @@ JohtoGrassWildMons:
 	db 16, RATICATE
 	db 15, ARBOK
 	db 16, FEAROW
-	db 16, FEAROW
+	db 16, MANKEY
 	; nite
 	db 13, RATTATA
 	db 14, ZUBAT
 	db 15, RATICATE
 	db 16, GOLBAT
 	db 15, MARILL
-	db 16, GOLBAT
-	db 16, GOLBAT
+	db 16, FLAAFFY
+	db 16, MANKEY
 
 	map_id ROUTE_43
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -1520,18 +1520,18 @@ JohtoGrassWildMons:
 	db 15, SENTRET
 	db 16, PIDGEOTTO
 	db 16, FARFETCH_D
-	db 15, FURRET
+	db 15, MAREEP
 	db 17, RATICATE
-	db 17, FURRET
+	db 17, FLAAFFY
 	db 17, FURRET
 	; day
 	db 15, SENTRET
 	db 16, PIDGEOTTO
 	db 16, FARFETCH_D
-	db 15, FURRET
+	db 15, MAREEP
 	db 17, RATICATE
-	db 17, FURRET
-	db 17, FURRET
+	db 17, FLAAFFY
+	db 17, GIRAFARIG
 	; nite
 	db 15, VENONAT
 	db 16, NOCTOWL
