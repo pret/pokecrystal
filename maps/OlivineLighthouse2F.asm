@@ -158,8 +158,11 @@ SailorHueySeenText:
 	done
 
 SailorHueyBeatenText:
-	text "Urf!"
-	line "I lose!"
+	text "Urf! What power!"
+	line "How would you like"
+
+	para "to sail the seas"
+	line "with me?"
 	done
 
 SailorHueyUnusedText:

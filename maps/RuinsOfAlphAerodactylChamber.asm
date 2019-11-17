@@ -110,6 +110,7 @@ RuinsOfAlphAerodactylChamberSkyfallTopMovement:
 RuinsOfAlphAerodactylChamberWallPatternLeftText:
 	text "Patterns appeared"
 	line "on the walls…"
+	cont "It's UNOWN text!"
 	done
 
 RuinsOfAlphAerodactylChamberUnownText:
@@ -120,6 +121,7 @@ RuinsOfAlphAerodactylChamberUnownText:
 RuinsOfAlphAerodactylChamberWallPatternRightText:
 	text "Patterns appeared"
 	line "on the walls…"
+	cont "It's UNOWN text!"
 	done
 
 RuinsOfAlphAerodactylChamberWallHoleText:

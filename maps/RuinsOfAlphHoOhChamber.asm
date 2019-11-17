@@ -111,6 +111,7 @@ RuinsOfAlphHoOhChamberSkyfallTopMovement:
 RuinsOfAlphHoOhChamberWallPatternLeftText:
 	text "Patterns appeared"
 	line "on the walls…"
+	cont "It's UNOWN text!"
 	done
 
 RuinsOfAlphHoOhChamberUnownText:
@@ -121,6 +122,7 @@ RuinsOfAlphHoOhChamberUnownText:
 RuinsOfAlphHoOhChamberWallPatternRightText:
 	text "Patterns appeared"
 	line "on the walls…"
+	cont "It's UNOWN text!"
 	done
 
 RuinsOfAlphHoOhChamberWallHoleText:

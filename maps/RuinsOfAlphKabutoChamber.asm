@@ -198,6 +198,22 @@ RuinsOfAlphKabutoChamberScientistTremorText:
 	para "But I'm more"
 	line "concerned about"
 	cont "this wall here…"
+
+	para "The patterns on"
+	line "the wall appear to"
+	cont "be words!"
+
+	para "And those sliding"
+	line "stone panels seem"
+
+	para "to be signals of"
+	line "some kind."
+
+	para "I think they make"
+	line "#MON appear,"
+
+	para "but it's not clear"
+	line "yet…"
 	done
 
 RuinsOfAlphKabutoChamberUnusedText:
@@ -222,6 +238,7 @@ RuinsOfAlphKabutoChamberUnusedText:
 RuinsOfAlphKabutoChamberWallPatternLeftText:
 	text "Patterns appeared"
 	line "on the walls…"
+	cont "It's UNOWN text!"
 	done
 
 RuinsOfAlphKabutoChamberUnownText:
@@ -232,6 +249,7 @@ RuinsOfAlphKabutoChamberUnownText:
 RuinsOfAlphKabutoChamberWallPatternRightText:
 	text "Patterns appeared"
 	line "on the walls…"
+	cont "It's UNOWN text!"
 	done
 
 RuinsOfAlphKabutoChamberWallHoleText:

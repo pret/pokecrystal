@@ -243,6 +243,12 @@ RuinsOfAlphResearchCenterScientist1Text:
 	para "But it's not known"
 	line "why they were"
 	cont "built--or by whom."
+
+	para "We think something"
+	line "caused the cryptic"
+
+	para "patterns to appear"
+	line "in the RUINS."
 	done
 
 RuinsOfAlphResearchCenterScientist1Text_GotUnownDex:
@@ -287,6 +293,9 @@ RuinsOfAlphResearchCenterScientist2Text:
 	line "keys for unravel-"
 	cont "ing the mystery"
 	cont "of the RUINS."
+
+	para "We've focused our"
+	line "studies on that."
 	done
 
 RuinsOfAlphResearchCenterScientist2Text_UnownAppeared:
@@ -344,6 +353,21 @@ RuinsOfAlphResearchCenterScientist2Text_GotAllUnown:
 	para "appear on the wall"
 	line "now?"
 
+	para "According to my"
+	line "research…"
+
+	para "Those mysterious"
+	line "patterns appeared"
+
+	para "when the #COM"
+	line "CENTER was built."
+
+	para "It may mean that"
+	line "radio waves have"
+
+	para "some sort of a"
+	line "link."
+
 	para "The mystery"
 	line "deepens…"
 	done
@@ -389,6 +413,12 @@ RuinsOfAlphResearchCenterAcademicBooksText:
 	para "Ancient Ruins…"
 	line "Mysteries of the"
 	cont "Ancients…"
+
+	para "It's a photo of"
+	line "the RESEARCH"
+
+	para "CENTER'S founder,"
+	line "PROF.SILKTREE."
 	done
 
 RuinsOfAlphResearchCenter_MapEvents:
