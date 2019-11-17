@@ -12,6 +12,8 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 
 ## Feature List
 
+- [x] Rematch all overworld NPC's at will
+
 ### Bug Fixes
 
 - [x] HP bar lowers same speed even for high hp
@@ -31,7 +33,6 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 - [ ] All legendaries respawn after beating elite 4
 - [ ] Rematch more powerful elite 4 after earning all 16 badges
 - [ ] NPC's can have shiny pokemon
-- [ ] Rematch all overworld NPC's at will
 - [ ] After earning 16 badges and beating elite 4, all gym leaders are more powerful
 - [ ] New pokemon balls
 - [ ] All fossils available
