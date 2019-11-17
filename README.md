@@ -62,7 +62,6 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 ### Features
 
 - [ ] All 253 pokemon available
-- [ ] Trade evolutions evolve by leveling
 - [ ] Gain experience from catching pokemon
 - [ ] Play low pitched cry when pokemon faints
 - [ ] Mystery gift girl gives random berry each day
@@ -76,7 +75,13 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 - [ ] All fossils available
 - [ ] Pokemon communication center is back in goldenrod
 - [ ] Pokemon communication center contains move reminder, deleter, and seer
-- [ ] Updated language (Pack → Bag, Enemy → Foe, Cooltrainer → Ace Trainer, Fisher → Fisherman,Elixer → Elixir, Pink Bow → Silk Scarf, new Berry names, etc).
+- [x] Updated language
+  - [x] Berry Names  
+  - [x] Enemy → Foe, 
+  - [x] Cooltrainer → Ace Trainer, 
+  - [x] Fisher → Fisherman,
+  - [x] Elixer → Elixir, 
+  - [x] Pink Bow → PNK Silk Bow
 - [ ] Brass Tower → Gong Tower (かね kane can mean 金 "metal" or 鉦, a gong-like bell).
 - [ ] Janine's pink badge is called the Marsh Badge; Sabrina's gold badge is called the Soul 
 

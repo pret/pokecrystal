@@ -1651,7 +1651,7 @@ HandleScreens:
 .Your:
 	db "Your@"
 .Enemy:
-	db "Enemy@"
+	db "Foe@"
 
 .LightScreenTick:
 	ld a, [de]
