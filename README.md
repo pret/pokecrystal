@@ -12,6 +12,10 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 
 ## Feature List
 
+### Bug Fixes
+
+- [x] HP bar lowers same speed even for high hp
+
 ## TODO List
 
 ### Features
@@ -84,7 +88,6 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 - [ ] Expshare formula fixes
 - [ ] Menu navigation speed
 - [ ] Rocket execs use Team Rocket battle music, not just grunts
-- [ ] HP bar lowers same speed even for high hp
 - [ ] Menu scrolling oversight
 - [ ] Opponents full heal and full restore correctly heals nightmare and confusion
 
