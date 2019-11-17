@@ -25,6 +25,7 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
   - [x] Primeape Route 9
   - [x] Omanyte Route 20
   - [x] Kabuto Route 21
+- [x] Pokemon have 1/512 to be shiny (Attack in [2,3,6,7,10,11,14,15], Defense in [4,5,6,7,12,13,14,15], Special = 10 and Speed in [11,15])
 
 ### Bug Fixes
 
@@ -57,7 +58,6 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 
 ### QoL Changes
 
-- [ ] Shiny pokemon have odd DV in attack, defense
 - [ ] Light ball doubles both attach and spc. attack
 - [ ] Electric pokemon immune to paralysis
 - [ ] Ice type immune to freezing
