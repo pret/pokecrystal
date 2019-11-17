@@ -61,6 +61,9 @@ AskTeachTMHM:
 	ld hl, BootedHMText ; Booted up an HM
 .TM:
 	call PrintText
+	ld de, SFX_CHOOSE_PC_OPTION
+	call WaitPlaySFX
+	call Text_WaitButton
 	ld hl, ContainedMoveText
 	call PrintText
 	call YesNoBox
