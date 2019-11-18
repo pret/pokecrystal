@@ -33,10 +33,10 @@ StartBattleWithMapTrainerScript:
 AlreadyBeatenTrainerScript:
 ; Say the post-battle message
 	loadtemptrainer
+	scripttalkafter
 	opentext
 	trainertext TRAINERTEXT_SEEN
 	waitbutton
 	yesorno
 	iftrue StartBattleWithMapTrainerScript
 	closetext
-	scripttalkafter
