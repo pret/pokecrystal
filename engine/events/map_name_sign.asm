@@ -1,6 +1,6 @@
 MAP_NAME_SIGN_START EQU $60
 
-ReturnFromMapSetupScript::
+InitMapNameSign::
 	xor a
 	ldh [hBGMapMode], a
 	farcall .inefficient_farcall ; this is a waste of 6 ROM bytes and 6 stack bytes
