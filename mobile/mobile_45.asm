@@ -1,6 +1,7 @@
 SECTION "Mobile 45", ROMX
 
-	charmap " ", $20 ; revert to ascii
+	pushc
+	setcharmap ascii ; revert to ascii
 
 String_114000:
 	db "---", 0
@@ -58,6 +59,8 @@ String_114160:
 	db "--", 0
 String_114163:
 	db ".", 0
+
+popc
 
 Jumptable_114165:
 	dw Stubbed_Function114268
