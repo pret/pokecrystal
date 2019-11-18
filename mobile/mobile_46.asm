@@ -1484,7 +1484,8 @@ Function118b9a:
 	and a
 	ret
 
-	charmap " ", $20 ; revert to ascii
+	pushc
+	setcharmap ascii ; revert to ascii
 
 ExchangeDownloadURL:
 	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/exchange/index.txt", 0
@@ -2927,6 +2928,7 @@ Unknown_1196b8:
 	db "Sat"
 	db "Sun"
 
+popc
 
 SECTION "Mobile 46 ASCII", ROMX
 ; A hack to use ascii above.
