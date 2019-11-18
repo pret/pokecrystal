@@ -1502,6 +1502,8 @@ MenuDownloadURL:
 IndexDownloadURL:
 	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/tamago/index.txt", 0
 
+	popc
+
 Unreferenced_Function118d35:
 	ld hl, $d200
 	ld a, [wcd38]
@@ -2918,6 +2920,9 @@ Function119694:
 	cp $7
 	jr nz, .asm_119699
 	ret
+
+pushc
+setcharmap ascii
 
 Unknown_1196b8:
 	db "Mon"
