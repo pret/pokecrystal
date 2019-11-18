@@ -418,6 +418,6 @@
 	charmap "９", $ff
 
 ; ASCII charmap, for mobile functions
-	pushc
-	newcharmap ascii
-	popc
+pushc
+newcharmap ascii
+popc

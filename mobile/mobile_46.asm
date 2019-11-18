@@ -1484,8 +1484,8 @@ Function118b9a:
 	and a
 	ret
 
-	pushc
-	setcharmap ascii ; revert to ascii
+pushc
+setcharmap ascii
 
 ExchangeDownloadURL:
 	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/exchange/index.txt", 0
@@ -1502,7 +1502,7 @@ MenuDownloadURL:
 IndexDownloadURL:
 	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/tamago/index.txt", 0
 
-	popc
+popc
 
 Unreferenced_Function118d35:
 	ld hl, $d200
@@ -2934,9 +2934,6 @@ Unknown_1196b8:
 	db "Sun"
 
 popc
-
-SECTION "Mobile 46 ASCII", ROMX
-; A hack to use ascii above.
 
 Function1196cd:
 	ld de, wc719

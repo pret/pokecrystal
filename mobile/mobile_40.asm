@@ -1683,18 +1683,13 @@ Function100ae7:
 	ld [wcd2b], a
 	ret
 
-
-SECTION "tetsuji", ROMX
-
-	pushc
-	setcharmap ascii ; revert to ascii
+pushc
+setcharmap ascii
 
 Unknown_100b0a:
 	db "tetsuji", 0
 
-	popc
-
-SECTION "bank40_2", ROMX
+popc
 
 Function100b12:
 	call Function100dd8
@@ -3619,11 +3614,8 @@ Function101826:
 	ld [wcd2b], a
 	ret
 
-
-SECTION "ascii 10186f", ROMX
-
-	pushc
-	setcharmap ascii ; revert to ascii
+pushc
+setcharmap ascii
 
 Unknown_10186f:
 	db .end - @
@@ -3641,8 +3633,6 @@ Unknown_101895:
 .end	db 0
 
 popc
-
-SECTION "bank40_3", ROMX
 
 Function1018a8:
 	ld hl, wccb5

@@ -167,10 +167,6 @@ ROMX $3f
 	"bank3F"
 ROMX $40
 	"mobile_40"
-	"tetsuji"
-	"bank40_2"
-	"ascii 10186f"
-	"bank40_3"
 ROMX $41
 	"bank41"
 ROMX $42
@@ -186,7 +182,6 @@ ROMX $45
 	"Mobile Stadium"
 ROMX $46
 	"Mobile 46"
-	"Mobile 46 ASCII"
 ROMX $47
 	"Battle Tower"
 ROMX $48

@@ -1,7 +1,7 @@
 SECTION "Mobile 45", ROMX
 
-	pushc
-	setcharmap ascii ; revert to ascii
+pushc
+setcharmap ascii
 
 String_114000:
 	db "---", 0
@@ -59,8 +59,6 @@ String_114160:
 	db "--", 0
 String_114163:
 	db ".", 0
-
-popc
 
 Jumptable_114165:
 	dw Stubbed_Function114268
@@ -127,6 +125,8 @@ String_114228:
 	db "BOUNDARY=", 0
 String_114232:
 	db "=?ISO-2022-JP?B?", 0
+
+popc
 
 Function114243::
 	ld a, SRAM_ENABLE
