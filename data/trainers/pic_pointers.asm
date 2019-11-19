@@ -69,3 +69,4 @@ TrainerPicPointers::
 	dba OfficerPic
 	dba GruntfPic
 	dba MysticalmanPic
+	dba PSwimmerfPic	; Proto- swimmerF

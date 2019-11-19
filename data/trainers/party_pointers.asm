@@ -69,3 +69,4 @@ TrainerGroups:
 	dw OfficerGroup
 	dw GruntFGroup
 	dw MysticalmanGroup
+	dw PSwimmerFGroup
