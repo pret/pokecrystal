@@ -677,32 +677,32 @@ _CGB_TrainerCard:
 	; top-right corner still uses the border's palette
 	hlcoord 18, 1, wAttrMap
 	ld [hl], $1
-	hlcoord 2, 11, wAttrMap
-	lb bc, 2, 4
+	hlcoord 3, 10, wAttrMap
+	lb bc, 3, 3
 	ld a, $1 ; falkner
 	call FillBoxCGB
-	hlcoord 6, 11, wAttrMap
-	lb bc, 2, 4
+	hlcoord 7, 10, wAttrMap
+	lb bc, 3, 3
 	ld a, $2 ; bugsy
 	call FillBoxCGB
-	hlcoord 10, 11, wAttrMap
-	lb bc, 2, 4
+	hlcoord 11, 10, wAttrMap
+	lb bc, 3, 3
 	ld a, $3 ; whitney
 	call FillBoxCGB
-	hlcoord 14, 11, wAttrMap
-	lb bc, 2, 4
+	hlcoord 15, 10, wAttrMap
+	lb bc, 3, 3
 	ld a, $4 ; morty
 	call FillBoxCGB
-	hlcoord 2, 14, wAttrMap
-	lb bc, 2, 4
+	hlcoord 3, 13, wAttrMap
+	lb bc, 3, 3
 	ld a, $5 ; chuck
 	call FillBoxCGB
-	hlcoord 6, 14, wAttrMap
-	lb bc, 2, 4
+	hlcoord 7, 13, wAttrMap
+	lb bc, 3, 3
 	ld a, $6 ; jasmine
 	call FillBoxCGB
-	hlcoord 10, 14, wAttrMap
-	lb bc, 2, 4
+	hlcoord 11, 13, wAttrMap
+	lb bc, 3, 3
 	ld a, $7 ; pryce
 	call FillBoxCGB
 	; clair uses kris's palette
@@ -710,8 +710,8 @@ _CGB_TrainerCard:
 	and a
 	push af
 	jr z, .got_gender3
-	hlcoord 14, 14, wAttrMap
-	lb bc, 2, 4
+	hlcoord 15, 13, wAttrMap
+	lb bc, 3, 3
 	ld a, $1
 	call FillBoxCGB
 .got_gender3

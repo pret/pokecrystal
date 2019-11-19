@@ -70,6 +70,7 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 - [x] HP bar lowers same speed even for high hp
 - [x] Rocket execs use Team Rocket battle music, not just grunts
 - [x] Default to fast text speed
+- [x] Show tops of gym leaders heads on trainer card
 
 ## See also
 
