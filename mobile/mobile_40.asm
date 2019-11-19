@@ -1683,16 +1683,13 @@ Function100ae7:
 	ld [wcd2b], a
 	ret
 
-
-SECTION "tetsuji", ROMX
-
-	charmap " ", $20 ; revert to ascii
+pushc
+setcharmap ascii
 
 Unknown_100b0a:
 	db "tetsuji", 0
 
-
-SECTION "bank40_2", ROMX
+popc
 
 Function100b12:
 	call Function100dd8
@@ -3617,10 +3614,8 @@ Function101826:
 	ld [wcd2b], a
 	ret
 
-
-SECTION "ascii 10186f", ROMX
-
-	charmap " ", $20 ; revert to ascii
+pushc
+setcharmap ascii
 
 Unknown_10186f:
 	db .end - @
@@ -3637,8 +3632,7 @@ Unknown_101895:
 	db $19, $67, $10, $01, "limit_crystal"
 .end	db 0
 
-
-SECTION "bank40_3", ROMX
+popc
 
 Function1018a8:
 	ld hl, wccb5

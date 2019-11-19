@@ -416,3 +416,8 @@
 	charmap "７", $fd
 	charmap "８", $fe
 	charmap "９", $ff
+
+; ASCII charmap, for mobile functions
+pushc
+newcharmap ascii
+popc
