@@ -5,7 +5,7 @@ Audio:
 Maps:
   - data/maps/**/*
   - maps/**/*
-  engine/overworld/**/*
+  - engine/overworld/**/*
 Graphics:
   - gfx/**/*
 Data:
