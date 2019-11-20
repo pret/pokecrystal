@@ -1,0 +1,12 @@
+Engine:
+  - engine/**/*
+Audio:
+  - audio/**/*
+Maps:
+  - data/maps/**/*
+  - maps/**/*
+  engine/overworld/**/*
+Graphics:
+  - gfx/**/*
+Data:
+  - data/**/*
