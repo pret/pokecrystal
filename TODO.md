@@ -52,6 +52,7 @@
   - [ ] Add back hoot hoot send-out animation to more pokemon (dark ?)
 - [ ] Add symbol to show if wild pokemon is caught
 - [ ] Split special
+- [ ] Same type moves earlier for starter (slightly)
 
 ### Overworld
 
@@ -62,6 +63,7 @@
   - [ ] mystery gift
   - [ ] odd egg giver
 - [ ] Brass Tower → Gong Tower (かね kane can mean 金 "metal" or 鉦, a gong-like bell).
+- [ ] add many more floors to bellsprout tower
 - [ ] All legendaries respawn after beating elite 4
 - [ ] Move reminder in same house as move deleter
 - [ ] Fly to the Rock Tunnel/Power Plant Pokémon Center.
@@ -75,6 +77,7 @@
 - [ ] access patched house in violet city (add stuff about ruins)
 - [ ] add pharmacy to eaucrete
 - [ ] add back cinnabar pokemon lab somewhere
+  - [ ] unused maps exist, could have built lab underground on cinnebar to monitor volcano
 - [ ] improve kanto safari zone
 - [ ] fix pokemon academy text to teach better battle concepts
 - [ ] spruce up veridian forest
@@ -86,6 +89,16 @@
   - [ ] Have geovanni return
   - [ ] Add back team rocket base to somewhere
   - [ ] Improve team rocket story
+- [ ] Trainer school
+  - [ ] Emphasize type matchups
+  - [ ] use blackboard
+  - [ ] book cases
+  - [ ] teacher
+  - [ ] books on desks
+- [ ] If building in violet, only set pidgey name to strawbery if lady talked to
+- [ ] Add color to old people sprites
+  - [ ] Scientists too
+- [ ] Replace alph ancient pokemon statues with sprites from later generations
 - [ ] battle sim room with Smogon competitive teams to practice (add special music)
 - [ ] Surfing / flying pikachuo
 - [ ] Add player sprites
@@ -104,11 +117,13 @@
   - [ ] delinquent
   - [ ] biker
 - [ ] Port city in jhoto you can travel to/from
+- [ ] Add back fancy doors to professor elms lab from prototype
 
 ### Items
 
 - [ ] New pokemon balls
 - [ ] All fossils available and able to be revived in lab in pewter
+  - [ ] Map files for rooms remain in ROM
 - [ ] Mystery gift girl gives an odd egg each day
 - [ ] Odd egg is 50% shiny 
 - [ ] Prof. Oaks aids give you items as you complete pokedex
