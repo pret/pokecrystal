@@ -1974,58 +1974,6 @@ SwimmerFGroup:
 	db 20, SEAKING
 	db -1 ; end
 
-	; SWIMMERF (11)
-	db "KATIE@", TRAINERTYPE_NORMAL
-	db 33, DEWGONG
-	db -1 ; end
-
-	; SWIMMERF (12)
-	db "DAWN@", TRAINERTYPE_NORMAL
-	db 34, SEAKING
-	db -1 ; end
-
-	; SWIMMERF (13)
-	db "TARA@", TRAINERTYPE_NORMAL
-	db 20, SEAKING
-	db -1 ; end
-
-	; SWIMMERF (14)
-	db "NICOLE@", TRAINERTYPE_NORMAL
-	db 29, MARILL
-	db 29, MARILL
-	db 32, LAPRAS
-	db -1 ; end
-
-	; SWIMMERF (15)
-	db "LORI@", TRAINERTYPE_NORMAL
-	db 32, STARMIE
-	db 32, STARMIE
-	db -1 ; end
-
-	; SWIMMERF (16)
-	db "JODY@", TRAINERTYPE_NORMAL
-	db 20, SEAKING
-	db -1 ; end
-
-	; SWIMMERF (17)
-	db "NIKKI@", TRAINERTYPE_NORMAL
-	db 28, SEEL
-	db 28, SEEL
-	db 28, SEEL
-	db 28, DEWGONG
-	db -1 ; end
-
-	; SWIMMERF (18)
-	db "DIANA@", TRAINERTYPE_NORMAL
-	db 37, GOLDUCK
-	db -1 ; end
-
-	; SWIMMERF (19)
-	db "BRIANA@", TRAINERTYPE_NORMAL
-	db 35, SEAKING
-	db 35, SEAKING
-	db -1 ; end
-
 SailorGroup:
 	; SAILOR (1)
 	db "EUGENE@", TRAINERTYPE_NORMAL
@@ -3494,4 +3442,57 @@ MysticalmanGroup:
 	db 23, DROWZEE,    DREAM_EATER, HYPNOSIS, DISABLE, CONFUSION
 	db 23, HAUNTER,    LICK, HYPNOSIS, MEAN_LOOK, CURSE
 	db 25, ELECTRODE,  SCREECH, SONICBOOM, THUNDER, ROLLOUT
+	db -1 ; end
+
+PSwimmerFGroup:
+; SWIMMERF (11)
+	db "KATIE@", TRAINERTYPE_NORMAL
+	db 33, DEWGONG
+	db -1 ; end
+
+	; SWIMMERF (12)
+	db "DAWN@", TRAINERTYPE_NORMAL
+	db 34, SEAKING
+	db -1 ; end
+
+	; SWIMMERF (13)
+	db "TARA@", TRAINERTYPE_NORMAL
+	db 20, SEAKING
+	db -1 ; end
+
+	; SWIMMERF (14)
+	db "NICOLE@", TRAINERTYPE_NORMAL
+	db 29, MARILL
+	db 29, MARILL
+	db 32, LAPRAS
+	db -1 ; end
+
+	; SWIMMERF (15)
+	db "LORI@", TRAINERTYPE_NORMAL
+	db 32, STARMIE
+	db 32, STARMIE
+	db -1 ; end
+
+	; SWIMMERF (16)
+	db "JODY@", TRAINERTYPE_NORMAL
+	db 20, SEAKING
+	db -1 ; end
+
+	; SWIMMERF (17)
+	db "NIKKI@", TRAINERTYPE_NORMAL
+	db 28, SEEL
+	db 28, SEEL
+	db 28, SEEL
+	db 28, DEWGONG
+	db -1 ; end
+
+	; SWIMMERF (18)
+	db "DIANA@", TRAINERTYPE_NORMAL
+	db 37, GOLDUCK
+	db -1 ; end
+
+	; SWIMMERF (19)
+	db "BRIANA@", TRAINERTYPE_NORMAL
+	db 35, SEAKING
+	db 35, SEAKING
 	db -1 ; end

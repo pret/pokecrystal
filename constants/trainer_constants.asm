@@ -407,15 +407,6 @@ KRIS EQU __enum__
 	const LISA
 	const JILL
 	const MARY
-	const KATIE
-	const DAWN
-	const TARA
-	const NICOLE
-	const LORI
-	const JODY
-	const NIKKI
-	const DIANA
-	const BRIANA
 
 	trainerclass SAILOR ; 28
 	const EUGENE
@@ -699,5 +690,16 @@ KRIS EQU __enum__
 
 	trainerclass MYSTICALMAN ; 43
 	const EUSINE
+
+	trainerclass PSWIMMERF	;44
+	const KATIE
+	const DAWN
+	const TARA
+	const NICOLE
+	const LORI
+	const JODY
+	const NIKKI
+	const DIANA
+	const BRIANA
 
 NUM_TRAINER_CLASSES EQU __enum__
