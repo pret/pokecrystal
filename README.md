@@ -20,42 +20,15 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
   - [x] Fisher → Fisherman,
   - [x] Elixer → Elixir, 
   - [x] Pink Bow → PNK Silk Bow
+  - [x] Adding back unused text in the code
 - [ ] Update trainer graphics with JPN sprite
   - [x] Trainer beauty
   - [x] Trainer fisher
   - [x] Trainer medium
   - [x] Trainer swimmer_f
   - [ ] Trainer sage
-- [ ] Update pokemon sprites with JPN
-  - [ ] Lanturn
-  - [ ] Pichu
-  - [ ] Sneasel
-  - [ ] Jynx
-  - [ ] Slowpoke
-  - [ ] Blissey
-  - [ ] Pinsir
-  - [ ] Flaaffy
-  - [ ] Wooper
-  - [ ] Girafarig
-  - [ ] Quilfish
-  - [ ] Slugma
-  - [ ] Politoed
-  - [ ] Pupitar
-- [x] All non-legendary pokemon available
-  - [x] Johoto starters Route 29
-  - [x] Kanto starters Route 1
-  - [x] Mareep Routes 32, 42, 43 
-  - [x] Flaaffy Routes 42, 43
-  - [x] Vulpix Route 36, 7, 8
-  - [x] Mankey Routes 42, 
-  - [x] Girafarig Route 43
-  - [x] Remoraid Route 44
-  - [x] Primeape Route 9
-  - [x] Omanyte Route 20
-  - [x] Kabuto Route 21
-  - [x] Tyrogue Route 34
 
-### Evolutions
+### Pokemon
 
 - [x] All baby pokemon (Pichu, Cleffa, Igglybuff, Togepi) now also evolve when they become teenagers, level 13
 - [x] Traded pokemon also evolve at a level
@@ -71,12 +44,25 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
   - [x] Seadra -> Kingdra Dragon Scale
   - [x] Scyther -> Scizor Metal Coat
   - [x] Porygon -> Porygon2 Upgrade
-- [x] Pokemon that elvolve with happiness now also have a high evolution level
+- [x] Pokemon that evolve with happiness now also have a high evolution level
   - [x] Golbat Lvl. 42
   - [x] Chansey Lvl. 45
   - [x] Eevee -> Espeon Sun Stone
   - [x] Eevee -> Umbreon Moon Stone
 - [x] All evolution items are sold on Celadon Market 4f
+- [x] All non-legendary pokemon available
+  - [x] Johoto starters Route 29
+  - [x] Kanto starters Route 1
+  - [x] Mareep Routes 32, 42, 43 
+  - [x] Flaaffy Routes 42, 43
+  - [x] Vulpix Route 36, 7, 8
+  - [x] Mankey Routes 42, 
+  - [x] Girafarig Route 43
+  - [x] Remoraid Route 44
+  - [x] Primeape Route 9
+  - [x] Omanyte Route 20
+  - [x] Kabuto Route 21
+  - [x] Tyrogue Route 34
 - [x] Pokemon have 1/512 to be shiny (Attack in [2,3,6,7,10,11,14,15], Defense in [4,5,6,7,12,13,14,15], Special = 10 and Speed in [11,15])
 
 ### Bug Fixes
