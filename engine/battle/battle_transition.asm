@@ -710,7 +710,22 @@ INCLUDE "gfx/overworld/trainer_battle_nite.pal"
 
 .loadpokeballgfx
 	ld a, [wOtherTrainerClass]
+	; Check if opposing trainer is team rocket
+	cp GRUNTM
+	jr z, .TeamRocketTransition
+	cp GRUNTF
+	jr z, .TeamRocketTransition
+	cp EXECUTIVEM
+	jr z, .TeamRocketTransition
+	cp EXECUTIVEF
+	jr z, .TeamRocketTransition
+	cp SCIENTIST
+	jr z, .TeamRocketTransition
 	ld de, PokeBallTransition
+	ret
+
+.TeamRocketTransition
+	ld de, TeamRocketTransition
 	ret
 
 PokeBallTransition:
@@ -733,6 +748,27 @@ opt b.X ; . = 0, X = 1
 	bigdw %..XXXX....XXXX..
 	bigdw %....XXXXXXXX....
 	bigdw %......XXXX......
+popo
+
+TeamRocketTransition:
+pusho
+opt b.X ; . = 0, X = 1
+	bigdw %XXXXXXXXXXXX....
+	bigdw %XXXXXXXXXXXXXX..
+	bigdw %XXXXXXXXXXXXXXX.
+	bigdw %XXXXXXXXXXXXXXX.
+	bigdw %XXXXX.....XXXXXX
+	bigdw %XXXXX......XXXXX
+	bigdw %XXXXX.....XXXXXX
+	bigdw %XXXXXXXXXXXXXXX.
+	bigdw %XXXXXXXXXXXXXXX.
+	bigdw %XXXXXXXXXXXXXX..
+	bigdw %XXXXXXXXXXXXX...
+	bigdw %XXXXX....XXXXX..
+	bigdw %XXXXX....XXXXX..
+	bigdw %XXXXX.....XXXXX.
+	bigdw %XXXXX......XXXXX
+	bigdw %XXXXX......XXXXX
 popo
 
 WipeLYOverrides:

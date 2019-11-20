@@ -110,8 +110,6 @@ MoveMonWOMail_InsertMon_SaveGame:
 	call ResumeGameLogic
 	ld de, SFX_SAVE
 	call PlaySFX
-	ld c, 24
-	call DelayFrames
 	ret
 
 StartMoveMonWOMail_SaveGame:
@@ -172,17 +170,11 @@ AskOverwriteSaveFile:
 	and a
 	jr z, .erase
 	call CompareLoadedAndSavedPlayerID
-	jr z, .yoursavefile
+	ret z ; return if player saving over same save file
 	ld hl, AnotherSaveFileText
 	call SaveTheGame_yesorno
 	jr nz, .refused
 	jr .erase
-
-.yoursavefile
-	ld hl, AlreadyASaveFileText
-	call SaveTheGame_yesorno
-	jr nz, .refused
-	jr .ok
 
 .erase
 	call ErasePreviousSave
@@ -228,29 +220,26 @@ CompareLoadedAndSavedPlayerID:
 _SavingDontTurnOffThePower:
 	call SavingDontTurnOffThePower
 SavedTheGame:
+	ld hl, wOptions
+	set NO_TEXT_SCROLL, [hl]
+	push hl
+	ld hl, .saving_text
+	call PrintText
+	pop hl
+	res NO_TEXT_SCROLL, [hl]
 	call _SaveGameData
-	; wait 32 frames
-	ld c, 32
-	call DelayFrames
-	; copy the original text speed setting to the stack
-	ld a, [wOptions]
-	push af
-	; set text speed to medium
-	ld a, TEXT_DELAY_MED
-	ld [wOptions], a
 	; <PLAYER> saved the game!
 	ld hl, SavedTheGameText
 	call PrintText
-	; restore the original text speed setting
-	pop af
-	ld [wOptions], a
+	; play the save sound
 	ld de, SFX_SAVE
 	call WaitPlaySFX
 	call WaitSFX
-	; wait 30 frames
-	ld c, 30
-	call DelayFrames
 	ret
+
+.saving_text
+	text "Saving..."
+	done
 
 _SaveGameData:
 	ld a, TRUE
@@ -329,21 +318,9 @@ SavingDontTurnOffThePower:
 	ldh [hJoypadPressed], a
 	ldh [hJoypadSum], a
 	ldh [hJoypadDown], a
-	; Save the text speed setting to the stack
-	ld a, [wOptions]
-	push af
-	; Set the text speed to medium
-	ld a, TEXT_DELAY_MED
-	ld [wOptions], a
 	; SAVING... DON'T TURN OFF THE POWER.
 	ld hl, SavingDontTurnOffThePowerText
 	call PrintText
-	; Restore the text speed setting
-	pop af
-	ld [wOptions], a
-	; Wait for 16 frames
-	ld c, 16
-	call DelayFrames
 	ret
 
 ErasePreviousSave:
@@ -1104,10 +1081,6 @@ SavingDontTurnOffThePowerText:
 
 SavedTheGameText:
 	text_far _SavedTheGameText
-	text_end
-
-AlreadyASaveFileText:
-	text_far _AlreadyASaveFileText
 	text_end
 
 AnotherSaveFileText:

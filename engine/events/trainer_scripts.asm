@@ -4,6 +4,9 @@ TalkToTrainerScript::
 	iftrue AlreadyBeatenTrainerScript
 	loadtemptrainer
 	encountermusic
+	opentext
+	trainertext TRAINERTEXT_SEEN
+	waitbutton
 	sjump StartBattleWithMapTrainerScript
 
 SeenByTrainerScript::
@@ -30,9 +33,10 @@ StartBattleWithMapTrainerScript:
 AlreadyBeatenTrainerScript:
 ; Say the post-battle message
 	loadtemptrainer
+	scripttalkafter
 	opentext
 	trainertext TRAINERTEXT_SEEN
 	waitbutton
 	yesorno
 	iftrue StartBattleWithMapTrainerScript
-	scripttalkafter
+	closetext
