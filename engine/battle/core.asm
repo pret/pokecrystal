@@ -4840,7 +4840,6 @@ DrawEnemyHUD:
 	call PrintLevel
 
 .skip_level
-
 	ld hl, wEnemyMonHP
 	ld a, [hli]
 	ldh [hMultiplicand + 1], a
@@ -6921,7 +6920,7 @@ _LoadHPBar:
 Unreferenced_LoadHPExpBarGFX:
 	ld de, EnemyHPBarBorderGFX
 	ld hl, vTiles2 tile $6c
-	lb bc, BANK(EnemyHPBarBorderGFX), 5
+	lb bc, BANK(EnemyHPBarBorderGFX), 4
 	call Get1bpp
 	ld de, HPExpBarBorderGFX
 	ld hl, vTiles2 tile $73
