@@ -4702,9 +4702,18 @@ PrintPlayerHUD:
 	ld [wCurSpecies], a
 	call GetBaseData
 
+	; Save registers before shiny check
+	push bc
+	ld bc, wPartyMon1DVs
+	farcall CheckShininess
+	pop bc
 	pop hl
 	dec hl
+	jr nz, .get_gender
+	hlcoord 10, 8
+	ld [hl], "<SHINY2>"
 
+.get_gender
 	ld a, TEMPMON
 	ld [wMonType], a
 	callfar GetGender
@@ -4809,7 +4818,7 @@ DrawEnemyHUD:
 	farcall CheckShininess
 	pop bc
 	pop hl
-	jr nz, print_status
+	jr nz, .print_status
 	hlcoord 2, 1
 	ld [hl], "<SHINY2>"
 .print_status
