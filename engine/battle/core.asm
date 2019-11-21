@@ -4810,6 +4810,16 @@ DrawEnemyHUD:
 	ld a, [wEnemyMonLevel]
 	ld [wTempMonLevel], a
 	call PrintLevel
+	; Print if enemy mon is caught in pokedex
+	ld a, [wEnemyMonSpecies]
+	dec a
+	call CheckCaughtMon
+	jr z, .skip_level
+.print_caught
+	ld de, "<PKBALL>"
+	hlcoord 1, 1
+	call ret_3e138
+	call PlaceString
 .skip_level
 
 	ld hl, wEnemyMonHP
