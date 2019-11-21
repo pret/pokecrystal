@@ -4793,7 +4793,11 @@ DrawEnemyHUD:
 .got_gender
 	hlcoord 9, 1
 	ld [hl], a
-
+	call CheckCaughtMon
+	jr z, .skip_caught
+	hlcoord 1, 1
+	ld [hl], "c"
+.skip_caught
 	hlcoord 6, 1
 	push af
 	push hl
@@ -4813,13 +4817,7 @@ DrawEnemyHUD:
 	; Print if enemy mon is caught in pokedex
 	ld a, [wEnemyMonSpecies]
 	dec a
-	call CheckCaughtMon
-	jr z, .skip_level
-.print_caught
-	ld de, "<PKBALL>"
-	hlcoord 1, 1
-	call ret_3e138
-	call PlaceString
+
 .skip_level
 
 	ld hl, wEnemyMonHP
