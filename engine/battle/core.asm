@@ -4793,11 +4793,26 @@ DrawEnemyHUD:
 .got_gender
 	hlcoord 9, 1
 	ld [hl], a
+	; Check if this pokemon is in the pokedex
+		; Print if enemy mon is caught in pokedex
+	ld a, [wEnemyMonSpecies]
+	dec a
 	call CheckCaughtMon
-	jr z, .skip_caught
+	jr z, .check_shiny
 	hlcoord 1, 1
-	ld [hl], "c"
-.skip_caught
+	ld [hl], "<PKBALL>"
+.check_shiny
+	; Save registers before call
+	push hl
+	push bc
+	ld bc, wEnemyMonDVs
+	farcall CheckShininess
+	pop bc
+	pop hl
+	jr nz, print_status
+	hlcoord 2, 1
+	ld [hl], "<SHINY2>"
+.print_status
 	hlcoord 6, 1
 	push af
 	push hl
@@ -4814,9 +4829,6 @@ DrawEnemyHUD:
 	ld a, [wEnemyMonLevel]
 	ld [wTempMonLevel], a
 	call PrintLevel
-	; Print if enemy mon is caught in pokedex
-	ld a, [wEnemyMonSpecies]
-	dec a
 
 .skip_level
 
@@ -6900,7 +6912,7 @@ _LoadHPBar:
 Unreferenced_LoadHPExpBarGFX:
 	ld de, EnemyHPBarBorderGFX
 	ld hl, vTiles2 tile $6c
-	lb bc, BANK(EnemyHPBarBorderGFX), 4
+	lb bc, BANK(EnemyHPBarBorderGFX), 5
 	call Get1bpp
 	ld de, HPExpBarBorderGFX
 	ld hl, vTiles2 tile $73

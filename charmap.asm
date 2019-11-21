@@ -38,7 +38,7 @@
 
 ; Actual characters (from gfx/font/font_extra.png)
 
-	charmap "<PKBALL>",  $60 ; Prints a small pokeball icon
+	charmap "<BOLD_A>",  $60 ; Prints a small pokeball icon
 	charmap "<BOLD_B>",  $61 ; unused
 	charmap "<BOLD_C>",  $62 ; unused
 	charmap "<BOLD_D>",  $63 ; unused
@@ -357,8 +357,8 @@
 	charmap "て", $c3
 	charmap "と", $c4
 	charmap "な", $c5
-	charmap "に", $c6
-	charmap "ぬ", $c7
+	charmap "<PKBALL>", $c6
+	charmap "<SHINY2>", $c7
 	charmap "ね", $c8
 	charmap "の", $c9
 	charmap "は", $ca
