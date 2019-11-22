@@ -14,12 +14,12 @@ SeenByTrainerScript::
 	applymovementlasttalked wMovementBuffer
 	writeobjectxy LAST_TALKED
 	faceobject PLAYER, LAST_TALKED
-	opentext
-	trainertext TRAINERTEXT_SEEN
-	waitbutton
 	sjump StartBattleWithMapTrainerScript
 
 StartBattleWithMapTrainerScript:
+	opentext
+	trainertext TRAINERTEXT_SEEN
+	waitbutton
 	closetext
 	loadtemptrainer
 	startbattle
@@ -28,11 +28,4 @@ StartBattleWithMapTrainerScript:
 	loadmem wRunningTrainerBattleScript, -1
 
 AlreadyBeatenTrainerScript:
-; Say the post-battle message
-	loadtemptrainer
-	opentext
-	trainertext TRAINERTEXT_SEEN
-	waitbutton
-	yesorno
-	iftrue StartBattleWithMapTrainerScript
 	scripttalkafter

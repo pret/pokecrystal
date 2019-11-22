@@ -45,8 +45,11 @@ RGBLINK ?= $(RGBDS)rgblink
 
 all: crystal
 crystal: pokecrystal.gbc
+	@$(SHA1) pokecrystal.gbc
 crystal11: pokecrystal11.gbc
+	@$(SHA1) pokecrystal11.gbc
 crystal-au: pokecrystal-au.gbc
+	@$(SHA1) pokecrystal-au.gbc
 
 clean:
 	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(crystal_au_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)

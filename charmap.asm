@@ -357,8 +357,8 @@
 	charmap "て", $c3
 	charmap "と", $c4
 	charmap "な", $c5
-	charmap "に", $c6
-	charmap "ぬ", $c7
+	charmap "<PKBALL>", $c6
+	charmap "<SHINY2>", $c7
 	charmap "ね", $c8
 	charmap "の", $c9
 	charmap "は", $ca
@@ -416,3 +416,8 @@
 	charmap "７", $fd
 	charmap "８", $fe
 	charmap "９", $ff
+
+; ASCII charmap, for mobile functions
+pushc
+newcharmap ascii
+popc
