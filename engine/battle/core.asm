@@ -4702,9 +4702,18 @@ PrintPlayerHUD:
 	ld [wCurSpecies], a
 	call GetBaseData
 
+	; Save registers before shiny check
+	push bc
+	ld bc, wPartyMon1DVs
+	farcall CheckShininess
+	pop bc
 	pop hl
 	dec hl
+	jr nz, .get_gender
+	hlcoord 10, 8
+	ld [hl], "<SHINY2>"
 
+.get_gender
 	ld a, TEMPMON
 	ld [wMonType], a
 	callfar GetGender
@@ -4793,7 +4802,26 @@ DrawEnemyHUD:
 .got_gender
 	hlcoord 9, 1
 	ld [hl], a
-
+	; Check if this pokemon is in the pokedex
+		; Print if enemy mon is caught in pokedex
+	ld a, [wEnemyMonSpecies]
+	dec a
+	call CheckCaughtMon
+	jr z, .check_shiny
+	hlcoord 1, 1
+	ld [hl], "<PKBALL>"
+.check_shiny
+	; Save registers before call
+	push hl
+	push bc
+	ld bc, wEnemyMonDVs
+	farcall CheckShininess
+	pop bc
+	pop hl
+	jr nz, .print_status
+	hlcoord 2, 1
+	ld [hl], "<SHINY2>"
+.print_status
 	hlcoord 6, 1
 	push af
 	push hl
@@ -4810,8 +4838,8 @@ DrawEnemyHUD:
 	ld a, [wEnemyMonLevel]
 	ld [wTempMonLevel], a
 	call PrintLevel
-.skip_level
 
+.skip_level
 	ld hl, wEnemyMonHP
 	ld a, [hli]
 	ldh [hMultiplicand + 1], a
