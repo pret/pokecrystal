@@ -4702,14 +4702,10 @@ PrintPlayerHUD:
 	ld [wCurSpecies], a
 	call GetBaseData
 
-	; Save registers before shiny check
-	push bc
-	ld bc, wPartyMon1DVs
-	farcall CheckShininess
-	pop bc
+	call BattleCheckEnemyShininess
 	pop hl
 	dec hl
-	jr nz, .get_gender
+	jr nc, .get_gender
 	hlcoord 10, 8
 	ld [hl], "<SHINY2>"
 
@@ -4813,12 +4809,9 @@ DrawEnemyHUD:
 .check_shiny
 	; Save registers before call
 	push hl
-	push bc
-	ld bc, wEnemyMonDVs
-	farcall CheckShininess
-	pop bc
+	call BattleCheckEnemyShininess
 	pop hl
-	jr nz, .print_status
+	jr nc, .print_status
 	hlcoord 2, 1
 	ld [hl], "<SHINY2>"
 .print_status
