@@ -113,7 +113,7 @@ ItemDescriptions:
 	dw BigPearlDesc
 	dw EverStoneDesc
 	dw SpellTagDesc
-	dw RageCandyBarDesc
+	dw CakeOfRageDesc
 	dw GSBallDesc
 	dw BlueCardDesc
 	dw MiracleSeedDesc
@@ -696,7 +696,7 @@ SpellTagDesc:
 	db   "Powers up ghost-"
 	next "type moves. (HOLD)@"
 
-RageCandyBarDesc:
+CakeOfRageDesc:
 	db   "Restores #MON"
 	next "HP by 20.@"
 

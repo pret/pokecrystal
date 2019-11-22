@@ -158,7 +158,7 @@ UnknownText_0x6c414:
 	text "Hello, kiddo!"
 
 	para "How would you like"
-	line "some RAGECANDYBAR?"
+	line "some CAKEOFRAGE?"
 
 	para "It's the thing to"
 	line "eat in MAHOGANY!"

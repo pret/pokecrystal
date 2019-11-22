@@ -201,7 +201,7 @@ MartMahogany1:
 
 MartMahogany2:
 	db 9 ; # items
-	db RAGECANDYBAR
+	db CAKEOFRAGE
 	db GREAT_BALL
 	db SUPER_POTION
 	db HYPER_POTION

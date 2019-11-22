@@ -1,4 +1,4 @@
-MAHOGANYTOWN_RAGECANDYBAR_PRICE EQU 300
+MAHOGANYTOWN_CAKEOFRAGE_PRICE EQU 300
 
 	object_const_def ; object_event constants
 	const MAHOGANYTOWN_POKEFAN_M
@@ -24,65 +24,65 @@ MahoganyTown_MapScripts:
 	setflag ENGINE_FLYPOINT_MAHOGANY
 	return
 
-MahoganyTownTryARageCandyBarScript:
+MahoganyTownTryACakeOfRageScript:
 	showemote EMOTE_SHOCK, MAHOGANYTOWN_POKEFAN_M, 15
 	applymovement MAHOGANYTOWN_POKEFAN_M, MovementData_0x1900a9
 	follow PLAYER, MAHOGANYTOWN_POKEFAN_M
 	applymovement PLAYER, MovementData_0x1900a7
 	stopfollow
 	turnobject PLAYER, RIGHT
-	scall RageCandyBarMerchantScript
+	scall CakeOfRageMerchantScript
 	applymovement MAHOGANYTOWN_POKEFAN_M, MovementData_0x1900ad
 	end
 
 MahoganyTownPokefanMScript:
 	faceplayer
-RageCandyBarMerchantScript:
+CakeOfRageMerchantScript:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue .ClearedRocketHideout
-	scall .SellRageCandyBars
+	scall .SellCakeOfRages
 	end
 
 .ClearedRocketHideout:
 	opentext
-	writetext RageCandyBarMerchantSoldOutText
+	writetext CakeOfRageMerchantSoldOutText
 	waitbutton
 	closetext
 	end
 
-.SellRageCandyBars:
+.SellCakeOfRages:
 	opentext
-	writetext RageCandyBarMerchantTryOneText
+	writetext CakeOfRageMerchantTryOneText
 	special PlaceMoneyTopRight
 	yesorno
 	iffalse .Refused
-	checkmoney YOUR_MONEY, MAHOGANYTOWN_RAGECANDYBAR_PRICE
+	checkmoney YOUR_MONEY, MAHOGANYTOWN_CAKEOFRAGE_PRICE
 	ifequal HAVE_LESS, .NotEnoughMoney
-	giveitem RAGECANDYBAR
+	giveitem CAKEOFRAGE
 	iffalse .NoRoom
 	waitsfx
 	playsound SFX_TRANSACTION
-	takemoney YOUR_MONEY, MAHOGANYTOWN_RAGECANDYBAR_PRICE
+	takemoney YOUR_MONEY, MAHOGANYTOWN_CAKEOFRAGE_PRICE
 	special PlaceMoneyTopRight
-	writetext RageCandyBarMerchantSavorItText
+	writetext CakeOfRageMerchantSavorItText
 	waitbutton
 	closetext
 	end
 
 .NotEnoughMoney:
-	writetext RageCandyBarMerchantNotEnoughMoneyText
+	writetext CakeOfRageMerchantNotEnoughMoneyText
 	waitbutton
 	closetext
 	end
 
 .Refused:
-	writetext RageCandyBarMerchantRefusedText
+	writetext CakeOfRageMerchantRefusedText
 	waitbutton
 	closetext
 	end
 
 .NoRoom:
-	writetext RageCandyBarMerchantNoRoomText
+	writetext CakeOfRageMerchantNoRoomText
 	waitbutton
 	closetext
 	end
@@ -112,8 +112,8 @@ MahoganyTownLassScript:
 MahoganyTownSign:
 	jumptext MahoganyTownSignText
 
-MahoganyTownRagecandybarSign:
-	jumptext MahoganyTownRagecandybarSignText
+MahoganyTownCakeOfRageSign:
+	jumptext MahoganyTownCakeOfRageSignText
 
 MahoganyGymSign:
 	jumptext MahoganyGymSignText
@@ -140,7 +140,7 @@ MovementData_0x1900ad:
 	turn_head DOWN
 	step_end
 
-RageCandyBarMerchantTryOneText:
+CakeOfRageMerchantTryOneText:
 	text "Hiya, kid!"
 
 	para "I see you're new"
@@ -149,34 +149,34 @@ RageCandyBarMerchantTryOneText:
 	para "Since you're new,"
 	line "you should try a"
 
-	para "yummy RAGECANDY-"
-	line "BAR!"
+	para "yummy slice of"
+	line "CAKEOFRAGE!"
 
 	para "Right now, it can"
 	line "be yours for just"
 	cont "¥300! Want one?"
 	done
 
-RageCandyBarMerchantSavorItText:
+CakeOfRageMerchantSavorItText:
 	text "Good! Savor it!"
 	done
 
-RageCandyBarMerchantNotEnoughMoneyText:
+CakeOfRageMerchantNotEnoughMoneyText:
 	text "You don't have"
 	line "enough money."
 	done
 
-RageCandyBarMerchantRefusedText:
+CakeOfRageMerchantRefusedText:
 	text "Oh, fine then…"
 	done
 
-RageCandyBarMerchantNoRoomText:
+CakeOfRageMerchantNoRoomText:
 	text "You don't have"
 	line "room for this."
 	done
 
-RageCandyBarMerchantSoldOutText:
-	text "RAGECANDYBAR's"
+CakeOfRageMerchantSoldOutText:
+	text "CAKEOFRAGE's"
 	line "sold out."
 
 	para "I'm packing up."
@@ -229,10 +229,10 @@ MahoganyTownSignText:
 	line "Home of the Ninja"
 	done
 
-MahoganyTownRagecandybarSignText:
+MahoganyTownCakeOfRageSignText:
 	text "While visiting"
 	line "MAHOGANY TOWN, try"
-	cont "a RAGECANDYBAR!"
+	cont "a CAKEOFRAGE!"
 	done
 
 MahoganyGymSignText:
@@ -255,12 +255,12 @@ MahoganyTown_MapEvents:
 	warp_event  9,  1, ROUTE_43_MAHOGANY_GATE, 3
 
 	db 2 ; coord events
-	coord_event 19,  8, SCENE_DEFAULT, MahoganyTownTryARageCandyBarScript
-	coord_event 19,  9, SCENE_DEFAULT, MahoganyTownTryARageCandyBarScript
+	coord_event 19,  8, SCENE_DEFAULT, MahoganyTownTryACakeOfRageScript
+	coord_event 19,  9, SCENE_DEFAULT, MahoganyTownTryACakeOfRageScript
 
 	db 4 ; bg events
 	bg_event  1,  5, BGEVENT_READ, MahoganyTownSign
-	bg_event  9,  7, BGEVENT_READ, MahoganyTownRagecandybarSign
+	bg_event  9,  7, BGEVENT_READ, MahoganyTownCakeOfRageSign
 	bg_event  3, 13, BGEVENT_READ, MahoganyGymSign
 	bg_event 16, 13, BGEVENT_READ, MahoganyTownPokecenterSign
 
