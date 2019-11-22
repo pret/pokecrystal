@@ -112,7 +112,7 @@ ItemNames::
 	db "BIG PEARL@"
 	db "EVERSTONE@"
 	db "SPELL TAG@"
-	db "CAKEOFRAGE@"
+	db "CAKE OF RAGE@"
 	db "GS BALL@"
 	db "BLUE CARD@"
 	db "MIRACLE SEED@"

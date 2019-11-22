@@ -150,7 +150,7 @@ CakeOfRageMerchantTryOneText:
 	line "you should try a"
 
 	para "yummy slice of"
-	line "CAKEOFRAGE!"
+	line "CAKE OF RAGE!"
 
 	para "Right now, it can"
 	line "be yours for just"
@@ -176,8 +176,8 @@ CakeOfRageMerchantNoRoomText:
 	done
 
 CakeOfRageMerchantSoldOutText:
-	text "CAKEOFRAGE's"
-	line "sold out."
+	text "All the CAKE OF-"
+	line "RAGE is sold out."
 
 	para "I'm packing up."
 	line "Don't bother me,"
@@ -232,7 +232,7 @@ MahoganyTownSignText:
 MahoganyTownCakeOfRageSignText:
 	text "While visiting"
 	line "MAHOGANY TOWN, try"
-	cont "a CAKEOFRAGE!"
+	cont "some CAKE OF RAGE!"
 	done
 
 MahoganyGymSignText:
