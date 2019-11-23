@@ -262,7 +262,7 @@ GoldenrodCityUndergroundSignSouth:
 	jumptext GoldenrodCityUndergroundSignSouthText
 
 GoldenrodCityPokecenterSign:
-	jumpstd pokecentersign
+	jumpstd GoldenrodCityPokeComCenterSignText
 
 GoldenrodCityFlowerShopSign:
 	jumptext GoldenrodCityFlowerShopSignText
@@ -477,7 +477,6 @@ GoldenrodCityUndergroundSignSouthText:
 	done
 
 GoldenrodCityPokeComCenterSignText:
-; unused
 	text "For Mobile Tips!"
 	line "#COM CENTER"
 	done
@@ -571,7 +570,7 @@ GoldenrodCity_MapEvents:
 
 	db 0 ; coord events
 
-	db 12 ; bg events
+	db 13 ; bg events
 	bg_event 10, 14, BGEVENT_READ, GoldenrodCityStationSign
 	bg_event  4, 17, BGEVENT_READ, GoldenrodCityRadioTowerSign
 	bg_event 26, 27, BGEVENT_READ, GoldenrodDeptStoreSign
@@ -581,8 +580,9 @@ GoldenrodCity_MapEvents:
 	bg_event 16, 22, BGEVENT_READ, GoldenrodCityGameCornerSign
 	bg_event 12,  7, BGEVENT_READ, GoldenrodCityNameRaterSign
 	bg_event  8,  6, BGEVENT_READ, GoldenrodCityUndergroundSignNorth
-	bg_event 10, 27, BGEVENT_READ, GoldenrodCityUndergroundSignSouth
+	bg_event 10, 26, BGEVENT_READ, GoldenrodCityUndergroundSignSouth
 	bg_event 17, 27, BGEVENT_UP, GoldenrodCityPokecenterSign
+	bg_event 16, 27, BGEVENT_UP, GoldenrodCityPokecenterSign
 	bg_event 30,  6, BGEVENT_READ, GoldenrodCityFlowerShopSign
 
 	db 15 ; object events
