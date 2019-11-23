@@ -14,16 +14,10 @@ GoldenrodPokecenter1FNurseScript:
 	jumpstd pokecenternurse
 
 GoldenrodPokecenter1F_GSBallSceneLeft:
-	setval BATTLETOWERACTION_CHECKMOBILEEVENT
-	special BattleTowerAction
-	ifequal MOBILE_EVENT_OBJECT_GS_BALL, .gsball
-	end
-
-.gsball
 	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	iftrue .cancel
 	playsound SFX_EXIT_BUILDING
-	moveobject GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, 0, 7
+	moveobject GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, 2, 14
 	disappear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	appear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	playmusic MUSIC_SHOW_ME_AROUND
@@ -42,20 +36,16 @@ GoldenrodPokecenter1F_GSBallSceneLeft:
 	special RestartMapMusic
 	disappear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	playsound SFX_EXIT_BUILDING
+	moveobject GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, 16, 8
+	appear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 .cancel
 	end
 
 GoldenrodPokecenter1F_GSBallSceneRight:
-	setval BATTLETOWERACTION_CHECKMOBILEEVENT
-	special BattleTowerAction
-	ifequal MOBILE_EVENT_OBJECT_GS_BALL, .gsball
-	end
-
-.gsball
 	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	iftrue .cancel
 	playsound SFX_EXIT_BUILDING
-	moveobject GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, 0, 7
+	moveobject GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, 3, 14
 	disappear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	appear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	playmusic MUSIC_SHOW_ME_AROUND
@@ -74,6 +64,8 @@ GoldenrodPokecenter1F_GSBallSceneRight:
 	special RestartMapMusic
 	disappear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	playsound SFX_EXIT_BUILDING
+	moveobject GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, 16, 8
+	appear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 .cancel
 	end
 
@@ -82,6 +74,27 @@ GoldenrodPokecenter1FGameboyKidScript:
 
 GoldenrodPokecenter1FLassScript:
 	jumptextfaceplayer GoldenrodPokecenter1FLassText
+
+GoldenrodPokecenter1FTeacherScript:
+	jumptextfaceplayer GoldenrodPokecenter1FTeacherText
+
+GoldenrodPokecenter1FSuperNerdScript:
+	jumptextfaceplayer GoldenrodPokecenter1FSuperNerdText
+
+GoldenrodPokecenter1FYoungsterScript:
+	jumptextfaceplayer GoldenrodPokecenter1FYoungsterText
+
+GoldenrodPokecenter1FRockerScript:
+	jumptextfaceplayer GoldenrodPokecenter1FRockerText
+
+GoldenrodPokecenter1FSignScript:
+	jumptextfaceplayer GoldenrodPokecenter1FSignText
+
+GoldenrodPokeCenter1FLinkReceptionistScript:
+	jumptextfaceplayer GoldenrodPokeCenter1FLinkReceptionistText
+
+GoldenrodPokeCenter1FNewsReceptionistScript:
+	jumptextfaceplayer GoldenrodPokeCenter1FNewsReceptionistText
 
 GoldenrodPokecenter1FPokefanF:
 	faceplayer
@@ -122,6 +135,7 @@ GoldenrodPokeCenter1FLinkReceptionistApproachPlayerAtLeftDoorwayTileMovement:
 	step RIGHT
 	step RIGHT
 	step RIGHT
+	step RIGHT
 	turn_head DOWN
 	step_end
 
@@ -129,7 +143,7 @@ GoldenrodPokeCenter1FLinkReceptionistWalkToStairsFromLeftDoorwayTileMovement:
 	step LEFT
 	step LEFT
 	step LEFT
-	step DOWN
+	step LEFT
 	step_end
 
 GoldenrodPokeCenter1FLinkReceptionistApproachPlayerAtRightDoorwayTileMovement:
@@ -146,18 +160,23 @@ GoldenrodPokeCenter1FLinkReceptionistWalkToStairsFromRightDoorwayTileMovement:
 	step LEFT
 	step LEFT
 	step LEFT
-	step DOWN
 	step_end
 
 ; unused
-UnknownText_0x61072:
+GoldenrodPokeCenter1FLinkReceptionistText:
 	text "Hello! Welcome to"
 	line "#COM CENTER"
 	cont "TRADE CORNER."
 
-	para "You can trade"
+	para "You could trade"
 	line "#MON with other"
 	cont "people far away."
+
+	para "It's unfortunate,"
+	line "but the TRADE-"
+	cont "CORNER is no"
+	cont "longer in service."
+
 	done
 
 UnknownText_0x610ce:
@@ -457,8 +476,8 @@ UnknownText_0x619f5:
 	line "like to do?"
 	done
 
-UnknownText_0x61a11:
-	text "#MON NEWS is"
+GoldenrodPokeCenter1FNewsReceptionistText:
+	text "#MON NEWS was"
 	line "news compiled from"
 
 	para "the SAVE files of"
@@ -467,20 +486,16 @@ UnknownText_0x61a11:
 	para "When reading the"
 	line "NEWS, your SAVE"
 
-	para "file may be sent"
-	line "out."
+	para "file was sent out."
 
 	para "The SAVE file data"
-	line "will contain your"
+	line "contained your"
 
 	para "adventure log and"
 	line "mobile profile."
 
-	para "Your phone number"
-	line "will not be sent."
-
 	para "The contents of"
-	line "the NEWS will vary"
+	line "the NEWS varied"
 
 	para "depending on the"
 	line "SAVE files sent by"
@@ -488,8 +503,8 @@ UnknownText_0x61a11:
 	para "you and the other"
 	line "#MON trainers."
 
-	para "You might even be"
-	line "in the NEWS!"
+	para "It was a cool way"
+	line "to get the NEWS!"
 	done
 
 UnknownText_0x61b7c:
@@ -531,7 +546,7 @@ UnknownText_0x61c4b:
 	line "MACHINE."
 	done
 
-UnknownText_0x61c89:
+GoldenrodPokecenter1FSuperNerdText:
 	text "Whoa, this #MON"
 	line "CENTER is huge."
 
@@ -624,7 +639,7 @@ UnknownText_0x61f48:
 	line "sorts of people."
 	done
 
-UnknownText_0x61fc9:
+GoldenrodPokecenter1FRockerText:
 	text "The machines here"
 	line "can't be used yet."
 
@@ -649,7 +664,7 @@ UnknownText_0x6206d:
 	cont "the latest NEWS!"
 	done
 
-UnknownText_0x620a1:
+GoldenrodPokecenter1FYoungsterText:
 	text "If I get in the"
 	line "NEWS and become"
 
@@ -673,7 +688,7 @@ GoldenrodPokecenter1FGameboyKidText:
 	line "afford to lose."
 	done
 
-UnknownText_0x62173:
+GoldenrodPokecenter1FTeacherText:
 	text "I came over here"
 	line "when I got word"
 
@@ -732,7 +747,7 @@ GoldenrodPokeCenter1FLinkReceptionistPleaseDoComeAgainText:
 	line "again!"
 	done
 
-UnknownText_0x62370:
+GoldenrodPokecenter1FSignText:
 	text "#COM CENTER"
 	line "1F INFORMATION"
 
@@ -806,20 +821,26 @@ GoldenrodPokecenter1F_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event  3,  7, GOLDENROD_CITY, 15
-	warp_event  4,  7, GOLDENROD_CITY, 15
+	warp_event  6,  15, GOLDENROD_CITY, 15
+	warp_event  7,  15, GOLDENROD_CITY, 15
 	warp_event  0,  6, POKECOM_CENTER_ADMIN_OFFICE_MOBILE, 1
-	warp_event  0,  7, POKECENTER_2F, 1
+	warp_event  0,  15, POKECENTER_2F, 1
 
 	db 2 ; coord events
-	coord_event  3,  7, SCENE_DEFAULT, GoldenrodPokecenter1F_GSBallSceneLeft
-	coord_event  4,  7, SCENE_DEFAULT, GoldenrodPokecenter1F_GSBallSceneRight
+	coord_event  6,  14, SCENE_DEFAULT, GoldenrodPokecenter1F_GSBallSceneLeft
+	coord_event  7,  14, SCENE_DEFAULT, GoldenrodPokecenter1F_GSBallSceneRight
 
-	db 0 ; bg events
+	db 1 ; bg events
+	bg_event     2,  9, BGEVENT_READ, GoldenrodPokecenter1FSignScript
 
-	db 5 ; object events
-	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FNurseScript, -1
-	object_event 16,  8, SPRITE_LINK_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
-	object_event  6,  1, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FGameboyKidScript, -1
-	object_event  1,  4, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FLassScript, -1
-	object_event  7,  5, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FPokefanF, -1
+	db 10 ; object events
+	object_event   7,   7, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FNurseScript, -1
+	object_event  16,   8, SPRITE_LINK_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodPokeCenter1FLinkReceptionistScript, -1
+	object_event  11,  12, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FGameboyKidScript, -1
+	object_event   3,  11, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FLassScript, -1
+	object_event  20,  14, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FPokefanF, -1
+	object_event   8,  13, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FSuperNerdScript, -1
+	object_event  21,   6, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FRockerScript, -1
+	object_event  17,  12, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FYoungsterScript, -1
+	object_event  27,  13, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FTeacherScript, -1
+	object_event  23,  10, SPRITE_LINK_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodPokeCenter1FNewsReceptionistScript, -1
