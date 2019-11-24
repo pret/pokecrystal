@@ -1,5 +1,3 @@
-SECTION "Mobile 46", ROMX
-
 Function118000:
 	ld a, $1
 	ld [wcd38], a
