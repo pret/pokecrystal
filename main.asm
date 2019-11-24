@@ -87,7 +87,6 @@ INCLUDE "engine/events/daycare.asm"
 INCLUDE "engine/events/print_unown.asm"
 INCLUDE "engine/events/print_photo.asm"
 INCLUDE "engine/pokemon/breeding.asm"
-INCLUDE "gfx/tilesets.asm"
 
 
 SECTION "Roofs", ROMX
