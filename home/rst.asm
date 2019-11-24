@@ -26,12 +26,10 @@ SECTION "rst28", ROM0 ; rst JumpTable
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
+; SECTION "rst30", ROM0
 	ld l, a
 	pop de
 	jp hl
-
-; SECTION "rst30", ROM0
-; rst30 is midst rst28
 
 SECTION "rst38", ROM0
 	rst $38
