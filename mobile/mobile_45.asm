@@ -129,7 +129,7 @@ popc
 Function114243::
 	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
-	ldh a, [hFF8C]
+	ldh a, [hSRAMBank]
 	push af ; if [$dc02] == 0, this is popped to pc.
 	push de
 	ld a, [$dc02]
@@ -147,8 +147,8 @@ Function114243::
 Function11425c:
 	ld [$dc02], a
 	pop af
-	ldh [hFF8C], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ret
 
@@ -163,7 +163,7 @@ Function114269:
 	ld [$dc03], a
 	ld a, [hli]
 	ld [$dc00], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -360,7 +360,7 @@ Function11433c:
 	pop bc
 	ld a, [$dc03]
 	ld [$dc00], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	call Function114c0b
 	ld hl, String_114004
@@ -418,7 +418,7 @@ Function1143b7:
 	push af
 	ld a, [hli]
 	ld [wCurMapBGEventCount], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld h, [hl]
@@ -473,7 +473,7 @@ Function1143f3:
 Function114412:
 	ld a, c
 	ld [$dc00], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld hl, Unknown_11417f
 	ld a, b
@@ -660,7 +660,7 @@ Function1144d1:
 	pop hl
 	ld a, [hli]
 	ld [wCurMapBGEventCount], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -677,7 +677,7 @@ Function1144d1:
 	ld hl, $dc06
 	ld a, [hl]
 	ld [wCurMapBGEventCount], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld hl, $dc09
 	ld e, [hl]
@@ -735,7 +735,7 @@ Function114576:
 	jr nz, .asm_1145b4
 	ld a, h
 	ld [$dc00], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	push hl
 	push de
@@ -753,7 +753,7 @@ Function114576:
 	jr nz, .asm_1145ba
 	ld a, h
 	ld [$dc00], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld hl, String_114218
 	call Function114acf
@@ -925,7 +925,7 @@ Function11463c:
 	pop de
 	pop af
 	ld [$dc00], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	xor a
 	ld [wDecoCarpet], a
@@ -946,7 +946,7 @@ Function1146a4:
 	ld hl, $dc03
 	ld a, [hli]
 	ld [$dc00], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -960,7 +960,7 @@ Function1146a4:
 	ld hl, $dc03
 	ld a, [hli]
 	ld [$dc00], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -1003,7 +1003,7 @@ Function1146fa:
 	ld hl, $dc03
 	ld a, [hli]
 	ld [$dc00], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -1017,7 +1017,7 @@ Function1146fa:
 	ld a, $1
 	ld [$dc0e], a
 	ld a, [$dc00]
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld a, $1
 	ld [wDecoRightOrnament], a
@@ -1044,7 +1044,7 @@ Function1146fa:
 	ld hl, $dc03
 	ld a, [hli]
 	ld [$dc00], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -1098,7 +1098,7 @@ Function1146fa:
 	ld hl, $dc03
 	ld a, [hli]
 	ld [$dc00], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	call Function114a7a
 	and a
@@ -1208,7 +1208,7 @@ Function114843:
 	ld a, [$dc00]
 	push af
 	push de
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	call Function114a18
 	and a
@@ -1231,7 +1231,7 @@ Function114867:
 	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurMapBGEventCount], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -1296,7 +1296,7 @@ Function1148c2:
 	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurMapBGEventCount], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -1394,7 +1394,7 @@ Function11494d:
 	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurMapBGEventCount], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -1484,7 +1484,7 @@ Function1149cc:
 	ld hl, $dc06
 	ld a, [hl]
 	ld [wCurMapBGEventCount], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	push de
 	ld hl, $dc09
@@ -1831,7 +1831,7 @@ endr
 	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurMapBGEventCount], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -1869,7 +1869,7 @@ Function114bbc:
 	jr nz, .asm_114bff
 	ld a, h
 	ld [$dc00], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	call Function114c0b
 	ld hl, $dc24
@@ -1880,7 +1880,7 @@ Function114bbc:
 	pop hl
 	ld a, [hli]
 	ld [wCurMapBGEventCount], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
@@ -2086,7 +2086,7 @@ Function114cd9:
 	ld [$dc04], a
 	ld a, h
 	ld [$dc00], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld hl, $dc24
 	call Function114d39
@@ -2105,7 +2105,7 @@ endr
 	pop hl
 	ld a, [hli]
 	ld [wCurMapBGEventCount], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
@@ -2403,7 +2403,7 @@ Function114ea0:
 	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurMapBGEventCount], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
@@ -2603,7 +2603,7 @@ Function114f59:
 	inc hl
 	ld a, [hli]
 	ld [$dc00], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -2681,7 +2681,7 @@ Function115020:
 	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurMapBGEventCount], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
@@ -2738,7 +2738,7 @@ Function115062:
 	ld c, a
 	ld a, [hli]
 	ld [$dc00], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -2889,7 +2889,7 @@ Function115136:
 	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurMapBGEventCount], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
@@ -2942,7 +2942,7 @@ Function115179:
 	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurMapBGEventCount], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
@@ -3060,7 +3060,7 @@ Function115217:
 	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurMapBGEventCount], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
@@ -3153,7 +3153,7 @@ Function11528f:
 	inc hl
 	ld a, [hli]
 	ld [$dc00], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
@@ -3402,7 +3402,7 @@ Function1153d2:
 .asm_1153f5
 	ld a, [hli]
 	ld [$dc00], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -3536,7 +3536,7 @@ Function1153d2:
 	ld hl, wDecoRightOrnament
 	ld a, [hli]
 	ld [wCurMapBGEventCount], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -3769,7 +3769,7 @@ Function11560a:
 	ld [wCurMapBGEventCount], a
 	ld a, [$dc17]
 	ld [$dc00], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld hl, $dc1a
 	ld c, [hl]
@@ -3842,7 +3842,7 @@ Function11560a:
 	ld [hl], d
 	pop bc
 	ld a, [wCurMapBGEventCount]
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld hl, wCurMapSceneScriptCount
 	ld e, [hl]
@@ -4148,7 +4148,7 @@ Function11581e:
 	ld hl, $dc02
 	ld a, [hli]
 	ld [$dc00], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -4202,7 +4202,7 @@ Function11581e:
 	ld hl, wCurMapSceneScriptCount
 	ld a, [hli]
 	ld [wCurMapBGEventCount], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -4669,7 +4669,7 @@ Function115b00:
 	ld hl, $dc02
 	ld a, [hli]
 	ld [$dc00], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -4757,7 +4757,7 @@ Function115b00:
 	ld hl, wCurMapSceneScriptCount
 	ld a, [hli]
 	ld [wCurMapBGEventCount], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -5150,7 +5150,7 @@ Function115d80:
 	ld a, [bc]
 	inc a
 	ld [bc], a
-	ldh [hFF8C], a
+	ldh [hSRAMBank], a
 	ld [MBC3SRamBank], a
 	ld a, e
 	ld d, $a0

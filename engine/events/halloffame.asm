@@ -449,7 +449,7 @@ DisplayHOFMon:
 	ld bc, MON_NAME_LENGTH - 1
 	call CopyBytes
 	ld a, "@"
-	ld [wStringBuffer2 + 10], a
+	ld [wStringBuffer2 + MON_NAME_LENGTH - 1], a
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, " "
