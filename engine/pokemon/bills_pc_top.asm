@@ -261,7 +261,7 @@ CopyBoxmonToTempMon:
 	call CloseSRAM
 	ret
 
-Unreferenced_Functione5d9:
+Unreferenced_LoadBoxMonListing:
 	ld a, [wCurBox]
 	cp b
 	jr z, .same_box
@@ -284,11 +284,11 @@ Unreferenced_Functione5d9:
 .okay
 	call GetSRAMBank
 	ld a, [hl]
-	ld bc, 1 + MONS_PER_BOX + 1
+	ld bc, sBoxMons - sBox
 	add hl, bc
 	ld b, a
 	ld c, $0
-	ld de, wc608
+	ld de, wBoxPartialData
 	ld a, b
 	and a
 	jr z, .empty_box
@@ -296,7 +296,7 @@ Unreferenced_Functione5d9:
 	push hl
 	push bc
 	ld a, c
-	ld bc, 0
+	ld bc, sBoxMon1Species - sBoxMons
 	add hl, bc
 	ld bc, BOXMON_STRUCT_LENGTH
 	call AddNTimes
@@ -311,7 +311,7 @@ Unreferenced_Functione5d9:
 	push hl
 	push bc
 	ld a, c
-	ld bc, MONS_PER_BOX * (BOXMON_STRUCT_LENGTH + NAME_LENGTH)
+	ld bc, sBoxMonNicknames - sBoxMons
 	add hl, bc
 	call SkipNames
 	call CopyBytes

@@ -218,7 +218,7 @@ sBTMonPrevPrevTrainer2:: db
 sBTMonPrevPrevTrainer3:: db
 
 
-SECTION "Boxes 1-7",  SRAM, BANK [2]
+SECTION "Boxes 1-7", SRAM
 
 sBox1::  box sBox1
 sBox2::  box sBox2

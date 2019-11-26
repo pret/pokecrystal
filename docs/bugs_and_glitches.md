@@ -811,10 +811,10 @@ This can bring Pokémon straight from level 1 to 100 by gaining just a few exper
 
 ([Video](https://www.youtube.com/watch?v=o54VjpAEoO8))
 
-**Fix:** Edit `_ABoostedStringBuffer2ExpPointsText` and `_StringBuffer2ExpPointsText` in [data/text/common_2.asm](https://github.com/pret/pokecrystal/blob/master/data/text/common_2.asm):
+**Fix:** Edit `_BoostedExpPointsText` and `_ExpPointsText` in [data/text/common_2.asm](https://github.com/pret/pokecrystal/blob/master/data/text/common_2.asm):
 
 ```diff
- _ABoostedStringBuffer2ExpPointsText::
+ _BoostedExpPointsText::
  	text_start
  	line "a boosted"
  	cont "@"
@@ -823,7 +823,7 @@ This can bring Pokémon straight from level 1 to 100 by gaining just a few exper
  	text " EXP. Points!"
  	prompt
 
- _StringBuffer2ExpPointsText::
+ _ExpPointsText::
  	text_start
  	line "@"
 -	text_decimal wStringBuffer2, 2, 4
@@ -1264,7 +1264,7 @@ Finally, edit [engine/battle/read_trainer_party.asm](https://github.com/pret/pok
 
 ([Video](https://www.youtube.com/watch?v=ojq3xqfRF6I))
 
-**Fix:** Edit `Slots_PayoutAnim` in [engine/games/slot_machine.asm](https://github.com/pret/pokecrystal/blob/master/engine/games/slot_machine.asm):
+**Fix:** Edit `SlotsAction_PayoutAnim` in [engine/games/slot_machine.asm](https://github.com/pret/pokecrystal/blob/master/engine/games/slot_machine.asm):
 
 ```diff
  .okay

@@ -14,6 +14,7 @@ engine/movie/credits.o \
 engine/overworld/events.o \
 gfx/pics.o \
 gfx/sprites.o \
+gfx/tilesets.o \
 lib/mobile/main.o
 
 crystal11_obj := $(crystal_obj:.o=11.o)
