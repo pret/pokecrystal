@@ -84,6 +84,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 
 **Fix:** TBD
 
+
 ## Thick Club and Light Ball can make (Special) Attack wrap around above 1024
 
 *Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
