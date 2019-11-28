@@ -716,12 +716,15 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
  	xor a
  	ld [hl], a
  	ld [wEnemyMonStatus], a
--	; Bug: this should reset SUBSTATUS_NIGHTMARE too
+-	; Bug: this should reset SUBSTATUS_NIGHTMARE
+-	; and SUBSTATUS_CONFUSED too
 -	; Uncomment the lines below to fix
 -	; ld hl, wEnemySubStatus1
 -	; res SUBSTATUS_NIGHTMARE, [hl]
 +	ld hl, wEnemySubStatus1
 +	res SUBSTATUS_NIGHTMARE, [hl]
+	; ld hl, wEnemySubStatus3
+	; res SUBSTATUS_CONFUSED, [hl]
  	ld hl, wEnemySubStatus5
  	res SUBSTATUS_TOXIC, [hl]
  	ret
@@ -732,7 +735,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ([Video]())
 
-**Fix:** Edit `AI_HealStatus` and `EnemyUsedFullRestore` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/items.asm):
+**Fix:** Edit `EnemyUsedFullRestore` and `AI_HealStatus` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/items.asm):
 
 
 ```diff
@@ -755,10 +758,13 @@ EnemyUsedFullRestore:
  	xor a
  	ld [hl], a
  	ld [wEnemyMonStatus], a
-	; Bug: this should reset SUBSTATUS_NIGHTMARE too
+	; Bug: this should reset SUBSTATUS_NIGHTMARE
+	; and SUBSTATUS_CONFUSED too
 	; Uncomment the lines below to fix
 	; ld hl, wEnemySubStatus1
 	; res SUBSTATUS_NIGHTMARE, [hl]
+-	; ld hl, wEnemySubStatus3
+-	; res SUBSTATUS_CONFUSED, [hl]
 +	ld hl, wEnemySubStatus3
 +	res SUBSTATUS_CONFUSED, [hl]
  	ld hl, wEnemySubStatus5
