@@ -1853,8 +1853,9 @@ This supports up to six entries.
  	ld de, 3
  	ld hl, .pointers
  	call IsInArray
- 	jr nc, .nope
+- 	jr nc, .nope
  	pop bc
++	jr nc, .nope
 
  	inc hl
  	ld a, [hli]
@@ -1864,7 +1865,6 @@ This supports up to six entries.
 
  .nope
 -	; pop bc
-+	pop bc
  	xor a
  	ret
 ```
