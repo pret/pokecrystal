@@ -739,7 +739,6 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 **Fix:** Edit `EnemyUsedFullRestore` and `AI_HealStatus` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/items.asm):
 
-
 ```diff
 EnemyUsedFullRestore:
 	call AI_HealStatus
