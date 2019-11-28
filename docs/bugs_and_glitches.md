@@ -696,7 +696,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ([Video](https://www.youtube.com/watch?v=rGqu3d3pdok&t=322))
 
-**Fix:** Edit `AI_HealStatus` and `EnemyUsedFullRestore` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/items.asm):
+**Fix:** Edit `AI_HealStatus` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/items.asm):
 
 ```diff
  AI_HealStatus:
@@ -723,7 +723,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ([Video]())
 
-**Fix:** Edit `AI_HealStatus` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/items.asm):
+**Fix:** Edit `AI_HealStatus` and `EnemyUsedFullRestore` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/items.asm):
 
 
 ```diff
