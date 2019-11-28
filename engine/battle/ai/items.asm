@@ -725,10 +725,13 @@ AI_HealStatus:
 	xor a
 	ld [hl], a
 	ld [wEnemyMonStatus], a
-	; Bug: this should reset SUBSTATUS_NIGHTMARE too
+	; Bug: this should reset SUBSTATUS_NIGHTMARE
+	; and SUBSTATUS_CONFUSED too
 	; Uncomment the lines below to fix
 	; ld hl, wEnemySubStatus1
 	; res SUBSTATUS_NIGHTMARE, [hl]
+	; ld hl, wEnemySubStatus3
+	; res SUBSTATUS_CONFUSED, [hl]
 	ld hl, wEnemySubStatus5
 	res SUBSTATUS_TOXIC, [hl]
 	ret
