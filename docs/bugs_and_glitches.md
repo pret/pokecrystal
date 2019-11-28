@@ -35,7 +35,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 - ["Smart" AI encourages Mean Look if its own Pokémon is badly poisoned](#smart-ai-encourages-mean-look-if-its-own-pokémon-is-badly-poisoned)
 - [AI makes a false assumption about `CheckTypeMatchup`](#ai-makes-a-false-assumption-about-checktypematchup)
 - [NPC use of Full Heal or Full Restore does not cure Nightmare status](#npc-use-of-full-heal-or-full-restore-does-not-cure-nightmare-status)
-- [NPC use of Full Heal does not cure confusion status]#npc-use-of-full-heal-does-not-cure-confusion-status)
+- [NPC use of Full Heal does not cure confusion status](#npc-use-of-full-heal-does-not-cure-confusion-status)
 - [HP bar animation is slow for high HP](#hp-bar-animation-is-slow-for-high-hp)
 - [HP bar animation off-by-one error for low HP](#hp-bar-animation-off-by-one-error-for-low-hp)
 - [Experience underflow for level 1 Pokémon with Medium-Slow growth rate](#experience-underflow-for-level-1-pokémon-with-medium-slow-growth-rate)
