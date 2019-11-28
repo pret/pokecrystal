@@ -35,6 +35,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 - ["Smart" AI encourages Mean Look if its own Pokémon is badly poisoned](#smart-ai-encourages-mean-look-if-its-own-pokémon-is-badly-poisoned)
 - [AI makes a false assumption about `CheckTypeMatchup`](#ai-makes-a-false-assumption-about-checktypematchup)
 - [NPC use of Full Heal or Full Restore does not cure Nightmare status](#npc-use-of-full-heal-or-full-restore-does-not-cure-nightmare-status)
+- [NPC use of Full Heal does not cure confusion status]#npc-use-of-full-heal-does-not-cure-confusion-status)
 - [HP bar animation is slow for high HP](#hp-bar-animation-is-slow-for-high-hp)
 - [HP bar animation off-by-one error for low HP](#hp-bar-animation-off-by-one-error-for-low-hp)
 - [Experience underflow for level 1 Pokémon with Medium-Slow growth rate](#experience-underflow-for-level-1-pokémon-with-medium-slow-growth-rate)
@@ -670,12 +671,8 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
  	ld hl, wEnemyMonType1
  	ldh a, [hBattleTurn]
  	and a
--	jr z, CheckTypeMatchup
-+	jr z, .get_type
+	jr z, CheckTypeMatchup
  	ld hl, wBattleMonType1
-+.get_type
-+	ld a, BATTLE_VARS_MOVE_TYPE
-+	call GetBattleVar ; preserves hl, de, and bc
  CheckTypeMatchup:
 -; There is an incorrect assumption about this function made in the AI related code: when
 -; the AI calls CheckTypeMatchup (not BattleCheckTypeMatchup), it assumes that placing the
@@ -683,6 +680,8 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 -; this assumption is incorrect. A simple fix would be to load the move type for the
 -; current move into a in BattleCheckTypeMatchup, before falling through, which is
 -; consistent with how the rest of the code assumes this code works like.
++	ld a, BATTLE_VARS_MOVE_TYPE
++	call GetBattleVar ; preserves hl, de, and bc
  	push hl
  	push de
  	push bc
@@ -697,7 +696,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ([Video](https://www.youtube.com/watch?v=rGqu3d3pdok&t=322))
 
-**Fix:** Edit `AI_HealStatus` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/items.asm):
+**Fix:** Edit `AI_HealStatus` and `EnemyUsedFullRestore` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/items.asm):
 
 ```diff
  AI_HealStatus:
@@ -714,6 +713,45 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 -	; res SUBSTATUS_NIGHTMARE, [hl]
 +	ld hl, wEnemySubStatus1
 +	res SUBSTATUS_NIGHTMARE, [hl]
+ 	ld hl, wEnemySubStatus5
+ 	res SUBSTATUS_TOXIC, [hl]
+ 	ret
+```
+
+
+## NPC use of Full Heal does not cure confusion status
+
+([Video]())
+
+**Fix:** Edit `AI_HealStatus` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/items.asm):
+
+
+```diff
+EnemyUsedFullRestore:
+	call AI_HealStatus
+	ld a, FULL_RESTORE
+	ld [wCurEnemyItem], a
+-	ld hl, wEnemySubStatus3
+-	res SUBSTATUS_CONFUSED, [hl]
+	xor a
+	ld [wEnemyConfuseCount], a
+```
+
+```diff
+ AI_HealStatus:
+ 	ld a, [wCurOTMon]
+ 	ld hl, wOTPartyMon1Status
+ 	ld bc, PARTYMON_STRUCT_LENGTH
+ 	call AddNTimes
+ 	xor a
+ 	ld [hl], a
+ 	ld [wEnemyMonStatus], a
+	; Bug: this should reset SUBSTATUS_NIGHTMARE too
+	; Uncomment the lines below to fix
+	; ld hl, wEnemySubStatus1
+	; res SUBSTATUS_NIGHTMARE, [hl]
++	ld hl, wEnemySubStatus3
++	res SUBSTATUS_CONFUSED, [hl]
  	ld hl, wEnemySubStatus5
  	res SUBSTATUS_TOXIC, [hl]
  	ret
