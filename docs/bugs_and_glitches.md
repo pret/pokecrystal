@@ -14,7 +14,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 
 
 ## Contents
-
+- [Berserk Gene's confusion isn't permanent](#berserk-genes-confusion-isnt-permanent)
 - [Thick Club and Light Ball can make (Special) Attack wrap around above 1024](#thick-club-and-light-ball-can-make-special-attack-wrap-around-above-1024)
 - [Metal Powder can increase damage taken with boosted (Special) Defense](#metal-powder-can-increase-damage-taken-with-boosted-special-defense)
 - [Reflect and Light Screen can make (Special) Defense wrap around above 1024](#reflect-and-light-screen-can-make-special-defense-wrap-around-above-1024)
@@ -75,6 +75,14 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 - [`ClearWRAM` only clears WRAM bank 1](#clearwram-only-clears-wram-bank-1)
 - [`BattleAnimCmd_ClearObjs` only clears the first 6⅔ objects](#battleanimcmd_clearobjs-only-clears-the-first-6-objects)
 
+
+## Berserk Gene's confusion isn't permanent
+
+*Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
+
+([Video](https://youtube.com/watch?v=Pru3mohq20A))
+
+**Fix:** TBD
 
 ## Thick Club and Light Ball can make (Special) Attack wrap around above 1024
 
