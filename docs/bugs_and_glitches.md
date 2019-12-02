@@ -767,7 +767,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ([Video]())
 
-**Fix:** Edit `EnemyUsedFullRestore` and `AI_HealStatus` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/items.asm):
+**Fix:** Edit `EnemyUsedFullRestore`, `EnemyUsedFullHeal`, and `AI_HealStatus` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/items.asm):
 
 ```diff
 EnemyUsedFullRestore:
@@ -778,6 +778,17 @@ EnemyUsedFullRestore:
 -	res SUBSTATUS_CONFUSED, [hl]
 	xor a
 	ld [wEnemyConfuseCount], a
+```
+
+```diff
+EnemyUsedFullHeal:
+	call AIUsedItemSound
+	call AI_HealStatus
+	ld a, FULL_HEAL
++	ld [wCurEnemyItem], a
++	xor a
++	ld [wEnemyConfuseCount], a
+	jp PrintText_UsedItemOn_AND_AIUpdateHUD
 ```
 
 ```diff
