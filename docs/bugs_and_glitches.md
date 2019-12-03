@@ -579,9 +579,29 @@ This bug prevents Substitute from being raised if Beat Up was blocked by Protect
  	jr z, .multihit
  	cp EFFECT_POISON_MULTI_HIT
  	jr z, .multihit
+-	jp EndMoveEffect
 +	cp EFFECT_BEAT_UP
-+	jr z, .multihit
++	jp nz, EndMoveEffect
+
+ .multihit
+ 	call BattleCommand_RaiseSub
  	jp EndMoveEffect
+```
+
+**Compatibility preservation:** If you wish to keep compatibility with standard Pokémon Crystal, you can disable the fix during link battles by also applying the following edit in the same place:
+
+```diff
+ 	cp EFFECT_MULTI_HIT
+ 	jr z, .multihit
+ 	cp EFFECT_DOUBLE_HIT
+ 	jr z, .multihit
+ 	cp EFFECT_POISON_MULTI_HIT
+ 	jr z, .multihit
+ 	cp EFFECT_BEAT_UP
+ 	jp nz, EndMoveEffect
++	ld a, [wLinkMode]
++	cp LINK_COLOSSEUM
++	jp nz, EndMoveEffect
 
  .multihit
  	call BattleCommand_RaiseSub
