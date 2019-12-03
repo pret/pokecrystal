@@ -178,13 +178,13 @@ CheckReplaceKrisSprite:
 	jr z, .surfing
 	call GetMapEnvironment
 	cp INDOOR
-	jr z, .checkbiking
+	jr z, .no_biking
 	cp ENVIRONMENT_5
-	jr z, .checkbiking
+	jr z, .no_biking
 	cp DUNGEON
-	jr z, .checkbiking
+	jr z, .no_biking
 	jr .nope
-.checkbiking
+.no_biking
 	ld a, [wPlayerState]
 	cp PLAYER_BIKE
 	jr nz, .nope
@@ -200,18 +200,19 @@ CheckReplaceKrisSprite:
 
 .CheckSurfing:
 	call CheckOnWater
-	jr nz, .ret_nc
+	jr nz, .nope2
 	ld a, [wPlayerState]
 	cp PLAYER_SURF
-	jr z, ._surfing
+	jr z, .is_surfing
 	cp PLAYER_SURF_PIKA
-	jr z, ._surfing
+	jr z, .is_surfing
 	ld a, PLAYER_SURF
 	ld [wPlayerState], a
-._surfing
+.is_surfing
 	scf
 	ret
-.ret_nc
+
+.nope2
 	and a
 	ret
 

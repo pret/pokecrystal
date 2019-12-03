@@ -369,6 +369,7 @@ CheckIndoorMap::
 	ret
 
 ; unused
+UnreferencedCheckEnvironment::
 	cp INDOOR
 	ret z
 	cp GATE
