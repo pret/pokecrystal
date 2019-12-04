@@ -729,7 +729,7 @@ AI_HealStatus:
 	; Uncomment the 2 lines below to fix
 	; ld hl, wEnemySubStatus1
 	; res SUBSTATUS_NIGHTMARE, [hl]
-	; This should also reset SUBSTATUS_CONFUSED
+	; Bug: this should reset SUBSTATUS_CONFUSED
 	; Uncomment the 2 lines below to fix
 	; ld hl, wEnemySubStatus3
 	; res SUBSTATUS_CONFUSED, [hl]
