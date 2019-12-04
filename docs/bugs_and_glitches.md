@@ -86,33 +86,22 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 **Fix:** Edit `HandleBerserkGene` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm)
 
 ```diff
-	ld h, d
-    	ld l, e
-    	ld a, b
-    	call GetPartyLocation
-    	xor a
-    	ld [hl], a
-    	ld a, BATTLE_VARS_SUBSTATUS3
-    	call GetBattleVarAddr
-    	push af
-+    	push bc
-+    	ld bc, wEnemyConfuseCount
-+    	ldh a, [hBattleTurn]
-+    	and a
-+    	jr z, .got_confuse_count
-+    	ld bc, wPlayerConfuseCount
-+
-+.got_confuse_count
-    	set SUBSTATUS_CONFUSED, [hl]
-+    	; confused for 2-5 turns
-+    	call BattleRandom
-+    	and %11
-+    	inc a
-+    	inc a
-+    	ld [bc], a
-+    	pop bc
-    	ld a, BATTLE_VARS_MOVE_ANIM
-    	call GetBattleVarAddr
+     ld a, BATTLE_VARS_SUBSTATUS3
+     call GetBattleVarAddr
+     push af
+     set SUBSTATUS_CONFUSED, [hl]
++    ld a, [hBattleTurn]
++    and a
++    ld hl, wEnemyConfuseCount
++    jr z, .set_confuse_count
++    ld hl, wPlayerConfuseCount
++.set_confuse_count
++    call BattleRandom
++    and %11
++    add a, 2
++    ld [hl], a
+     ld a, BATTLE_VARS_MOVE_ANIM
+     call GetBattleVarAddr
 ```
 
 
