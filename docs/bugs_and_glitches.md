@@ -83,7 +83,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 
 ([Video](https://youtube.com/watch?v=Pru3mohq20A))
 
-**Fix:** Edit `HandleBerserkGene` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm)
+**Fix:** Edit `HandleBerserkGene` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm)
 
 ```diff
      ld a, BATTLE_VARS_SUBSTATUS3
