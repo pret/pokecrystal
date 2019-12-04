@@ -742,7 +742,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 -	; res SUBSTATUS_NIGHTMARE, [hl]
 +	ld hl, wEnemySubStatus1
 +	res SUBSTATUS_NIGHTMARE, [hl]
-	; This should also reset SUBSTATUS_CONFUSED
+	; Bug: this should reset SUBSTATUS_CONFUSED
 	; Uncomment the 2 lines below to fix
 	; ld hl, wEnemySubStatus3
 	; res SUBSTATUS_CONFUSED, [hl]
@@ -793,7 +793,7 @@ EnemyUsedFullHeal:
 	; Uncomment the 2 lines below to fix
 	; ld hl, wEnemySubStatus1
 	; res SUBSTATUS_NIGHTMARE, [hl]
--	; This should also reset SUBSTATUS_CONFUSED
+-	; Bug: this should reset SUBSTATUS_CONFUSED
 -	; Uncomment the 2 lines below to fix
 -	; ld hl, wEnemySubStatus3
 -	; res SUBSTATUS_CONFUSED, [hl]
