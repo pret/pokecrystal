@@ -15,7 +15,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 
 ## Contents
 
-- [Berserk Gene's confusion lasts for 256 turns](#berserk-genes-confusion-lasts-for-256-turns)
+- [Berserk Gene's confusion lasts for 256 turns or the previous Pokémon's confusion count](#berserk-genes-confusion-lasts-for-256-turns-or-the-previous-Pokémons-confusion-count)
 - [Thick Club and Light Ball can make (Special) Attack wrap around above 1024](#thick-club-and-light-ball-can-make-special-attack-wrap-around-above-1024)
 - [Metal Powder can increase damage taken with boosted (Special) Defense](#metal-powder-can-increase-damage-taken-with-boosted-special-defense)
 - [Reflect and Light Screen can make (Special) Defense wrap around above 1024](#reflect-and-light-screen-can-make-special-defense-wrap-around-above-1024)
@@ -77,13 +77,13 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 - [`BattleAnimCmd_ClearObjs` only clears the first 6⅔ objects](#battleanimcmd_clearobjs-only-clears-the-first-6-objects)
 
 
-## Berserk Gene's confusion lasts for 256 turns
+## Berserk Gene's confusion lasts for 256 turns or the previous Pokémon's confusion count
 
 *Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
 
 ([Video](https://youtube.com/watch?v=Pru3mohq20A))
 
-**Fix:** Edit `HandleBerserkGene` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm)
+**Fix:** Edit `HandleBerserkGene` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm) (This makes the Berserk Gene use the regular confusion formula (2-5 turns))
 
 ```diff
      ld a, BATTLE_VARS_SUBSTATUS3
