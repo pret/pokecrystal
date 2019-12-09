@@ -23,6 +23,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 - [Moves with a 100% secondary effect chance will not trigger it in 1/256 uses](#moves-with-a-100-secondary-effect-chance-will-not-trigger-it-in-1256-uses)
 - [Belly Drum sharply boosts Attack even with under 50% HP](#belly-drum-sharply-boosts-attack-even-with-under-50-hp)
 - [Confusion damage is affected by type-boosting items and Explosion/Self-Destruct doubling](#confusion-damage-is-affected-by-type-boosting-items-and-explosionself-destruct-doubling)
+- [Saves can be corrupted in such a way as to glitch the game](#saves-can-be-corrupted-in-such-a-way-as-to-glitch-the-game)
 - [Moves that lower Defense can do so after breaking a Substitute](#moves-that-lower-defense-can-do-so-after-breaking-a-substitute)
 - [Counter and Mirror Coat still work if the opponent uses an item](#counter-and-mirror-coat-still-work-if-the-opponent-uses-an-item)
 - [A Disabled but PP Up–enhanced move may not trigger Struggle](#a-disabled-but-pp-upenhanced-move-may-not-trigger-struggle)
@@ -388,6 +389,104 @@ Then edit four routines in [engine/battle/effect_commands.asm](https://github.co
 -	call BattleCommand_DamageCalc
 +	call ConfusionDamageCalc
  	call BattleCommand_LowerSub
+```
+
+
+## Saves can be corrupted in such a way as to glitch the game
+
+([Video 1](https://www.youtube.com/watch?v=ukqtK0l6bu0))
+([Video 2](https://www.youtube.com/watch?v=c2zHd1BPtvc))
+
+**Fix:** Edit `MoveMonWOMail_InsertMon_SaveGame` and `_SaveGameData` in [engine/menus/save.asm](https://github.com/pret/pokecrystal/blob/master/engine/menus/save.asm)
+
+```diff
+	ld a, TRUE
+	ld [wSaveFileExists], a
+	farcall StageRTCTimeForSave
+	farcall BackupMysteryGift
++	call InvalidateSave
+-	call ValidateSave
+	call SaveOptions
+	call SavePlayerData
+	call SavePokemonData
+	call SaveChecksum
++	call ValidateSave
++	call InvalidateBackupSave
+-	call ValidateBackupSave
+	call SaveBackupOptions
+	call SaveBackupPlayerData
+	call SaveBackupPokemonData
+	call SaveBackupChecksum
++	call ValidateBackupSave
+	farcall BackupPartyMonMail
+	farcall BackupMobileEventIndex
+	farcall SaveRTC
+```
+
+```diff
+	ld a, TRUE
+	ld [wSaveFileExists], a
+	farcall StageRTCTimeForSave
+	farcall BackupMysteryGift
++	call InvalidateSave
+-	call ValidateSave
+	call SaveOptions
+	call SavePlayerData
+	call SavePokemonData
+	call SaveBox
+	call SaveChecksum
++	call ValidateSave
++	call InvalidateBackupSave
+-	call ValidateBackupSave
+	call SaveBackupOptions
+	call SaveBackupPlayerData
+	call SaveBackupPokemonData
+	call SaveBackupChecksum
++	call ValidateBackupSave
+	call UpdateStackTop
+	farcall BackupPartyMonMail
+	farcall BackupMobileEventIndex
+	farcall SaveRTC
+```
+
+Also create two new routines, one named `InvalidateSave` and another named `InvalidateBackupSave` in [engine/menus/save.asm](https://github.com/pret/pokecrystal/blob/master/engine/menus/save.asm):
+
+```diff
+ValidateSave:
+	ld a, BANK(sCheckValue1) ; aka BANK(sCheckValue2)
+	call GetSRAMBank
+	ld a, SAVE_CHECK_VALUE_1
+	ld [sCheckValue1], a
+	ld a, SAVE_CHECK_VALUE_2
+	ld [sCheckValue2], a
+	jp CloseSRAM
+
++InvalidateSave:
++	ld a, BANK(sCheckValue1) ; aka BANK(sCheckValue2)
++	call GetSRAMBank
++	xor a
++	ld [sCheckValue1], a
++	ld [sCheckValue2], a
++	jp CloseSRAM
+```
+
+```diff
+ValidateBackupSave:
+	ld a, BANK(sBackupCheckValue1) ; aka BANK(sBackupCheckValue2)
+	call GetSRAMBank
+	ld a, SAVE_CHECK_VALUE_1
+	ld [sBackupCheckValue1], a
+	ld a, SAVE_CHECK_VALUE_2
+	ld [sBackupCheckValue2], a
+	jp CloseSRAM
+
++InvalidateBackupSave:
++	ld a, BANK(sBackupCheckValue1) ; aka BANK(sBackupCheckValue2)
++	call GetSRAMBank
++	xor a
++	ld [sBackupCheckValue1], a
++	ld [sBackupCheckValue2], a
++	jp CloseSRAM
 ```
 
 
