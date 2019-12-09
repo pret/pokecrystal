@@ -23,7 +23,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 - [Moves with a 100% secondary effect chance will not trigger it in 1/256 uses](#moves-with-a-100-secondary-effect-chance-will-not-trigger-it-in-1256-uses)
 - [Belly Drum sharply boosts Attack even with under 50% HP](#belly-drum-sharply-boosts-attack-even-with-under-50-hp)
 - [Confusion damage is affected by type-boosting items and Explosion/Self-Destruct doubling](#confusion-damage-is-affected-by-type-boosting-items-and-explosionself-destruct-doubling)
-- [Saves can be corrupted in such a way as to glitch the game](#saves-can-be-corrupted-in-such-a-way-as-to-glitch-the-game)
+- [Saves corrupted by mid-save shutoff are not handled](#saves-corrupted-by-mid-save-shutoff-are-not-handled)
 - [Moves that lower Defense can do so after breaking a Substitute](#moves-that-lower-defense-can-do-so-after-breaking-a-substitute)
 - [Counter and Mirror Coat still work if the opponent uses an item](#counter-and-mirror-coat-still-work-if-the-opponent-uses-an-item)
 - [A Disabled but PP Up–enhanced move may not trigger Struggle](#a-disabled-but-pp-upenhanced-move-may-not-trigger-struggle)
@@ -392,7 +392,7 @@ Then edit four routines in [engine/battle/effect_commands.asm](https://github.co
 ```
 
 
-## Saves can be corrupted in such a way as to glitch the game
+## Saves corrupted by mid-save shutoff are not handled
 
 ([Video 1](https://www.youtube.com/watch?v=ukqtK0l6bu0))
 ([Video 2](https://www.youtube.com/watch?v=c2zHd1BPtvc))
@@ -459,7 +459,8 @@ ValidateSave:
 	ld [sCheckValue1], a
 	ld a, SAVE_CHECK_VALUE_2
 	ld [sCheckValue2], a
-	jp CloseSRAM
+	call CloseSRAM
+	ret
 
 +InvalidateSave:
 +	ld a, BANK(sCheckValue1) ; aka BANK(sCheckValue2)
@@ -467,7 +468,8 @@ ValidateSave:
 +	xor a
 +	ld [sCheckValue1], a
 +	ld [sCheckValue2], a
-+	jp CloseSRAM
++	call CloseSRAM
++	ret
 ```
 
 ```diff
@@ -478,7 +480,8 @@ ValidateBackupSave:
 	ld [sBackupCheckValue1], a
 	ld a, SAVE_CHECK_VALUE_2
 	ld [sBackupCheckValue2], a
-	jp CloseSRAM
+	call CloseSRAM
+	ret
 
 +InvalidateBackupSave:
 +	ld a, BANK(sBackupCheckValue1) ; aka BANK(sBackupCheckValue2)
@@ -486,7 +489,8 @@ ValidateBackupSave:
 +	xor a
 +	ld [sBackupCheckValue1], a
 +	ld [sBackupCheckValue2], a
-+	jp CloseSRAM
++	call CloseSRAM
++	ret
 ```
 
 
