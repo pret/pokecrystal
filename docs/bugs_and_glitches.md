@@ -524,8 +524,7 @@ ValidateSave:
 	ld [sCheckValue1], a
 	ld a, SAVE_CHECK_VALUE_2
 	ld [sCheckValue2], a
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 +InvalidateSave:
 +	ld a, BANK(sCheckValue1) ; aka BANK(sCheckValue2)
@@ -533,8 +532,7 @@ ValidateSave:
 +	xor a
 +	ld [sCheckValue1], a
 +	ld [sCheckValue2], a
-+	call CloseSRAM
-+	ret
++	jp CloseSRAM
 ```
 
 ```diff
@@ -545,8 +543,7 @@ ValidateBackupSave:
 	ld [sBackupCheckValue1], a
 	ld a, SAVE_CHECK_VALUE_2
 	ld [sBackupCheckValue2], a
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 +InvalidateBackupSave:
 +	ld a, BANK(sBackupCheckValue1) ; aka BANK(sBackupCheckValue2)
@@ -554,8 +551,7 @@ ValidateBackupSave:
 +	xor a
 +	ld [sBackupCheckValue1], a
 +	ld [sBackupCheckValue2], a
-+	call CloseSRAM
-+	ret
++	jp CloseSRAM
 ```
 
 
