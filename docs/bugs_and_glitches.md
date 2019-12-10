@@ -16,6 +16,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 ## Contents
 
 - [Berserk Gene's confusion lasts for 256 turns or the previous Pokémon's confusion count](#berserk-genes-confusion-lasts-for-256-turns-or-the-previous-Pokémons-confusion-count)
+- [Perish Song and Spikes can leave a Pokémon with 0 HP and not faint](#perish-song-and-spikes-can-leave-a-pokémon-with-0-hp-and-not-faint)
 - [Thick Club and Light Ball can make (Special) Attack wrap around above 1024](#thick-club-and-light-ball-can-make-special-attack-wrap-around-above-1024)
 - [Metal Powder can increase damage taken with boosted (Special) Defense](#metal-powder-can-increase-damage-taken-with-boosted-special-defense)
 - [Reflect and Light Screen can make (Special) Defense wrap around above 1024](#reflect-and-light-screen-can-make-special-defense-wrap-around-above-1024)
@@ -103,6 +104,52 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 +    ld [hl], a
      ld a, BATTLE_VARS_MOVE_ANIM
      call GetBattleVarAddr
+```
+
+
+## Perish Song and Spikes can leave a Pokémon with 0 HP and not faint
+
+*Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
+
+([Video]TBA))
+
+**Fix:** Edit `CheckFaint_PlayerThenEnemy` and `CheckFaint_EnemyThenPlayer` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm)
+
+```diff
+ 	jp HandleEncore
+ 
++HasAnyoneFainted:
++	call HasPlayerFainted
++	call nz, HasEnemyFainted
++	ret
++
+CheckFaint_PlayerThenEnemy:
++.faint_loop
++	call .Function
++	ret c
++	call HasAnyoneFainted
++	ret nz
++	jr .faint_loop
++
++.Function:
+ 	call HasPlayerFainted
+ 	jr nz, .PlayerNotFainted
+ 	call HandlePlayerMonFaint
+```
+
+```diff
+CheckFaint_EnemyThenPlayer:
++.faint_loop
++	call .Function
++	ret c
++	call HasAnyoneFainted
++	ret nz
++	jr .faint_loop
++
++.Function:
+ 	call HasEnemyFainted
+ 	jr nz, .EnemyNotFainted
+ 	call HandleEnemyMonFaint
 ```
 
 
@@ -857,7 +904,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ## NPC use of Full Heal does not cure confusion status
 
-([Video]())
+([Video](TBA))
 
 **Fix:** Edit `EnemyUsedFullRestore`, `EnemyUsedFullHeal`, and `AI_HealStatus` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/items.asm):
 
