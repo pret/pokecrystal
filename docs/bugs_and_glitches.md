@@ -16,6 +16,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 ## Contents
 
 - [Berserk Gene's confusion lasts for 256 turns or the previous Pokémon's confusion count](#berserk-genes-confusion-lasts-for-256-turns-or-the-previous-Pokémons-confusion-count)
+- [A Transformed Pokémon knowing Sketch can give itself otherwise unobtainable moves](a-transformed-pokémon-knowing-sketch-can-give-itself-otherwise-unobtainable-moves)
 - [Perish Song and Spikes can leave a Pokémon with 0 HP and not faint](#perish-song-and-spikes-can-leave-a-pokémon-with-0-hp-and-not-faint)
 - [Thick Club and Light Ball can make (Special) Attack wrap around above 1024](#thick-club-and-light-ball-can-make-special-attack-wrap-around-above-1024)
 - [Metal Powder can increase damage taken with boosted (Special) Defense](#metal-powder-can-increase-damage-taken-with-boosted-special-defense)
@@ -104,6 +105,23 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 +    ld [hl], a
      ld a, BATTLE_VARS_MOVE_ANIM
      call GetBattleVarAddr
+```
+
+
+## A Transformed Pokémon knowing Sketch can give itself otherwise unobtainable moves
+
+([Video](https://www.youtube.com/watch?v=AFiBxAOkCGI))
+
+**Fix:** Edit `BattleCommand_Sketch` in [engine/battle/move_effects/sketch.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/sketch.asm)
+
+```diff
+-; If the opponent is transformed, fail.
++; If the user is transformed, fail.
+-       ld a, BATTLE_VARS_SUBSTATUS5_OPP
++       ld a, BATTLE_VARS_SUBSTATUS5
+        call GetBattleVarAddr
+        bit SUBSTATUS_TRANSFORMED, [hl]
+        jp nz, .fail
 ```
 
 
