@@ -129,7 +129,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 
 *Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
 
-([Video]TBA))
+([Video](TBA))
 
 **Fix:** Edit `CheckFaint_PlayerThenEnemy` and `CheckFaint_EnemyThenPlayer` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm)
 
