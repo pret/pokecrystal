@@ -15,6 +15,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 
 ## Contents
 
+- [The S.S. Aqua and the ports have you white out to your cabin or either the Vermilion or Olivine Pokémon Centers even if you saved somewhere else](#the-s.s.-aqua-and-the-ports-have-you-white-out-to-your-cabin-or-either-the-vermilion-or-olivine-pokémon-centers-even-if-you-saved-somewhere-else)
 - [Berserk Gene's confusion lasts for 256 turns or the previous Pokémon's confusion count](#berserk-genes-confusion-lasts-for-256-turns-or-the-previous-Pokémons-confusion-count)
 - [A Transformed Pokémon knowing Sketch can give itself otherwise unobtainable moves](#a-transformed-pokémon-knowing-sketch-can-give-itself-otherwise-unobtainable-moves)
 - [Perish Song and Spikes can leave a Pokémon with 0 HP and not faint](#perish-song-and-spikes-can-leave-a-pokémon-with-0-hp-and-not-faint)
@@ -80,13 +81,61 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 - [`BattleAnimCmd_ClearObjs` only clears the first 6⅔ objects](#battleanimcmd_clearobjs-only-clears-the-first-6-objects)
 
 
+## The S.S. Aqua and the ports have you white out to your cabin or either the Vermilion or Olivine Pokémon Centers even if you saved somewhere else
+
+([Video](https://www.youtube.com/watch?v=Va3pzlujwE4))
+
+**Fix:** Edit `.LeaveFastShipScript` in [maps/OlivinePort.asm](https://github.com/pret/pokecrystal/blob/master/maps/OlivinePort.asm) and [maps/VermilionPort.asm](https://github.com/pret/pokecrystal/blob/master/maps/VermilionPort.asm)
+
+```diff
+	applymovement PLAYER, MovementData_0x74a32
+	appear OLIVINEPORT_SAILOR1
+	setscene SCENE_DEFAULT
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+-	blackoutmod OLIVINE_CITY
+	end
+```
+
+```diff
+	applymovement PLAYER, MovementData_0x74ef3
+	appear VERMILIONPORT_SAILOR1
+	setscene SCENE_DEFAULT
+	setevent EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1
+	setevent EVENT_FAST_SHIP_CABINS_SE_SSE_GENTLEMAN
+	setevent EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	clearevent EVENT_OLIVINE_PORT_PASSAGE_POKEFAN_M
+	setevent EVENT_FAST_SHIP_FIRST_TIME
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+-	blackoutmod VERMILION_CITY
+	end
+```
+
+Also edit `.EnterFastShipScript` in [maps/FastShip1F.asm](https://github.com/pret/pokecrystal/blob/master/maps/FastShip1F.asm)
+
+```diff
+	applymovement FASTSHIP1F_SAILOR1, MovementData_0x7520e
+	applymovement PLAYER, MovementData_0x75217
+	applymovement FASTSHIP1F_SAILOR1, MovementData_0x75211
+	pause 30
+	playsound SFX_BOAT
+	earthquake 30
+-	blackoutmod FAST_SHIP_CABINS_SW_SSW_NW
+	clearevent EVENT_FAST_SHIP_HAS_ARRIVED
+	checkevent EVENT_FAST_SHIP_FIRST_TIME
+	iftrue .SkipGrandpa
+	setscene SCENE_FASTSHIP1F_MEET_GRANDPA
+	end
+```
+
+
 ## Berserk Gene's confusion lasts for 256 turns or the previous Pokémon's confusion count
 
 *Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
 
 ([Video](https://youtube.com/watch?v=Pru3mohq20A))
 
-**Fix:** Edit `HandleBerserkGene` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm) (This makes the Berserk Gene use the regular confusion formula (2-5 turns))
+**Fix:** Edit `HandleBerserkGene` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm)
+(This makes the Berserk Gene use the regular confusion formula (2-5 turns))
 
 ```diff
      ld a, BATTLE_VARS_SUBSTATUS3
