@@ -40,7 +40,7 @@ Other disassembly projects:
 [docs]: https://pret.github.io/pokecrystal/
 [wiki]: https://github.com/pret/pokecrystal/wiki
 [tutorials]: https://github.com/pret/pokecrystal/wiki/Tutorials
-[discord]: https://discord.gg/6EuWgX9
+[discord]: https://discord.gg/d5dubZ3
 [irc]: https://kiwiirc.com/client/irc.freenode.net/?#pret
 [travis]: https://travis-ci.org/pret/pokecrystal
 [travis-badge]: https://travis-ci.org/pret/pokecrystal.svg?branch=master
