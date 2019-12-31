@@ -2395,7 +2395,6 @@ IgglybuffEvosAttacks:
 
 TogepiEvosAttacks:
 	db EVOLVE_HAPPINESS, TR_ANYTIME, TOGETIC
-	db EVOLVE_LEVEL, 13, JIGGLYPUFF
 	db 0 ; no more evolutions
 	db 1, GROWL
 	db 1, CHARM
