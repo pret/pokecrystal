@@ -225,7 +225,7 @@ IrwinFogBadgeGossipText:
 	line "took off for home…"
 	done
 
-IrwinMarshBadgeGossipText:
+IrwinSoulBadgeGossipText:
 	text "<PLAY_G>, I heard!"
 
 	para "You're kicking up"
