@@ -469,7 +469,6 @@ ClefairyBackpic:     INCBIN "gfx/pokemon/clefairy/back.2bpp.lz"
 VenonatBackpic:      INCBIN "gfx/pokemon/venonat/back.2bpp.lz"
 BellossomBackpic:    INCBIN "gfx/pokemon/bellossom/back.2bpp.lz"
 Rival1Pic:           INCBIN "gfx/trainers/rival1.2bpp.lz"
-SwinubBackpic:       INCBIN "gfx/pokemon/swinub/back.2bpp.lz"
 
 
 SECTION "Pics 15", ROMX
@@ -644,7 +643,6 @@ SkarmoryBackpic:     INCBIN "gfx/pokemon/skarmory/back.2bpp.lz"
 MetapodBackpic:      INCBIN "gfx/pokemon/metapod/back.2bpp.lz"
 JigglypuffBackpic:   INCBIN "gfx/pokemon/jigglypuff/back.2bpp.lz"
 OddishBackpic:       INCBIN "gfx/pokemon/oddish/back.2bpp.lz"
-UnownDBackpic:       INCBIN "gfx/pokemon/unown_d/back.2bpp.lz"
 
 
 SECTION "Pics 18", ROMX
@@ -715,6 +713,8 @@ SECTION "Pics 19", ROMX
 
 PSwimmerfPic:			INCBIN "gfx/trainers/pswimmer_f.2bpp.lz"
 OmastarBackpic:      INCBIN "gfx/pokemon/omastar/back.2bpp.lz"
+SwinubBackpic:       INCBIN "gfx/pokemon/swinub/back.2bpp.lz"
+UnownDBackpic:       INCBIN "gfx/pokemon/unown_d/back.2bpp.lz"
 
 ; Sections "Pics 20" to "Pics 24" are not used for any graphics,
 ; but entries for their banks exist in FixPicBank (see engine/gfx/load_pics.asm).
