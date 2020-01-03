@@ -39,3 +39,44 @@ IconPointers:
 	dw SlowpokeIcon
 	dw SudowoodoIcon
 	dw BigmonIcon
+	dw BlastoiseIcon
+	dw ButterfreeIcon
+	dw CaterpieIcon
+	dw CharizardIcon
+	dw CharmeleonIcon
+	dw IvysaurIcon
+	dw MetapodIcon
+	dw VenusaurIcon
+	dw WartortleIcon
+	dw WeedleIcon
+	dw KakunaIcon
+	dw BeedrillIcon
+	dw PidgeyIcon
+	dw PidgeottoIcon
+	dw PidgeotIcon
+	dw RattataIcon
+	dw RaticateIcon
+	dw SpearowIcon
+	dw FearowIcon
+	dw EkansIcon
+	dw ArbokIcon
+	dw RaichuIcon
+	dw SandshrewIcon
+	dw SandslashIcon
+	dw NidoranFIcon
+	dw NidorinaIcon
+	dw NidoqueenIcon
+	dw NidoranMIcon
+	dw NidorinoIcon
+	dw NidokingIcon
+	dw ClefableIcon
+	dw VulpixIcon
+	dw NinetalesIcon
+	dw WigglytuffIcon
+	dw ZubatIcon
+	dw GolbatIcon
+	dw OddishIcon
+	dw GloomIcon
+	dw VileplumeIcon
+	dw ParasIcon
+	dw ParasectIcon

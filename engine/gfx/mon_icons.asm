@@ -1,6 +1,7 @@
 LoadOverworldMonIcon:
 	ld a, e
 	call ReadMonMenuIcon
+	ld [wCurIcon], a
 	ld l, a
 	ld h, 0
 	add hl, hl
@@ -9,7 +10,7 @@ LoadOverworldMonIcon:
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	ld b, BANK(Icons)
+	call GetIconBank
 	ld c, 8
 	ret
 
@@ -337,11 +338,20 @@ endr
 	ld d, [hl]
 	pop hl
 
-	lb bc, BANK(Icons), 8
+	call GetIconBank
 	call GetGFXUnlessMobile
 
 	pop hl
 	ret
+
+GetIconBank:
+	ld a, [wCurIcon]
+	cp TAUROS	;last mon in Icons1
+	lb bc, BANK("Mon Icons 1"), 8
+	ret c
+	ld b, BANK("Mon Icons 2")
+	ret
+
 
 GetGFXUnlessMobile:
 	ld a, [wLinkMode]
