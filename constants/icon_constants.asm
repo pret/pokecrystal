@@ -1,53 +1,38 @@
 ; IconPointers indexes (see data/icon_pointers.asm)
 	const_def
 	const ICON_NULL
-	const ICON_POLIWAG
-	const ICON_JIGGLYPUFF
-	const ICON_DIGLETT
-	const ICON_PIKACHU
-	const ICON_STARYU
-	const ICON_FISH
-	const ICON_BIRD
+	
+	const ICON_CATERPILLAR
 	const ICON_MONSTER
-	const ICON_CLEFAIRY
-	const ICON_ODDISH
-	const ICON_BUG
-	const ICON_GHOST
-	const ICON_LAPRAS
 	const ICON_HUMANSHAPE
 	const ICON_FOX
 	const ICON_EQUINE
 	const ICON_SHELL
 	const ICON_BLOB
 	const ICON_SERPENT
-	const ICON_VOLTORB
-	const ICON_SQUIRTLE
-	const ICON_BULBASAUR
-	const ICON_CHARMANDER
-	const ICON_CATERPILLAR
-	const ICON_UNOWN
-	const ICON_GEODUDE
 	const ICON_FIGHTER
 	const ICON_EGG
 	const ICON_JELLYFISH
 	const ICON_MOTH
 	const ICON_BAT
-	const ICON_SNORLAX
-	const ICON_HO_OH
-	const ICON_LUGIA
-	const ICON_GYARADOS
-	const ICON_SLOWPOKE
-	const ICON_SUDOWOODO
+	const ICON_FISH
+	const ICON_BIRD
+	const ICON_BUG
+	const ICON_GHOST
 	const ICON_BIGMON
-	const ICON_BLASTOISE
-	const ICON_BUTTERFREE
-	const ICON_CATERPIE
-	const ICON_CHARIZARD
-	const ICON_CHARMELEON
+	
+	const ICON_BULBASAUR
 	const ICON_IVYSAUR
-	const ICON_METAPOD
 	const ICON_VENUSAUR
+	const ICON_CHARMANDER
+	const ICON_CHARMELEON
+	const ICON_CHARIZARD
+	const ICON_SQUIRTLE
 	const ICON_WARTORTLE
+	const ICON_BLASTOISE
+	const ICON_CATERPIE
+	const ICON_METAPOD
+	const ICON_BUTTERFREE
 	const ICON_WEEDLE
 	const ICON_KAKUNA
 	const ICON_BEEDRILL
@@ -60,6 +45,7 @@
 	const ICON_FEAROW
 	const ICON_EKANS
 	const ICON_ARBOK
+	const ICON_PIKACHU
 	const ICON_RAICHU
 	const ICON_SANDSHREW
 	const ICON_SANDSLASH
@@ -69,16 +55,88 @@
 	const ICON_NIDORANM
 	const ICON_NIDORINO
 	const ICON_NIDOKING
+	const ICON_CLEFAIRY
 	const ICON_CLEFABLE
 	const ICON_VULPIX
 	const ICON_NINETALES
+	const ICON_JIGGLYPUFF
 	const ICON_WIGGLYTUFF
 	const ICON_ZUBAT
 	const ICON_GOLBAT
+	const ICON_ODDISH
 	const ICON_GLOOM
 	const ICON_VILEPLUME
 	const ICON_PARAS
 	const ICON_PARASECT
+	const ICON_VENONAT
+	const ICON_VENOMOTH
+	const ICON_DIGLETT
+	const ICON_DUGTRIO
+	const ICON_MEOWTH
+	const ICON_PERSIAN
+	const ICON_PSYDUCK
+	const ICON_GOLDUCK
+	const ICON_MANKEY
+	const ICON_PRIMEAPE
+	const ICON_GROWLITHE
+	const ICON_ARCANINE
+	const ICON_POLIWAG
+	const ICON_POLIWHIRL
+	const ICON_POLIWRATH
+	const ICON_ABRA
+	const ICON_KADABRA
+	const ICON_ALAKAZAM
+	const ICON_MACHOP
+	const ICON_MACHOKE
+	const ICON_MACHAMP
+	const ICON_BELLSPROUT
+	const ICON_WEEPINBELL
+	const ICON_VICTREEBEL
+	const ICON_TENTACOOL
+	const ICON_TENTACRUEL
+	const ICON_GEODUDE
+	const ICON_GRAVELER
+	const ICON_GOLEM
+	const ICON_PONYTA
+	const ICON_RAPIDASH
+	const ICON_SLOWPOKE
+	const ICON_SLOWBRO
+	const ICON_MAGNEMITE
+	const ICON_MAGNETON
+	const ICON_FARFETCHD
+	const ICON_DODUO
+	const ICON_DODRIO
+	const ICON_SEEL
+	const ICON_DEWGONG
+	const ICON_GRIMER
+	const ICON_MUK
+	const ICON_SHELLDER
+	const ICON_CLOYSTER
+	const ICON_GASTLY
+	const ICON_HAUNTER
+	const ICON_GENGAR
+	const ICON_ONIX
+	const ICON_DROWZEE
+	const ICON_HYPNO
+	const ICON_KRABBY
+	const ICON_KINGLER
+	const ICON_VOLTORB
+	const ICON_ELECTRODE
+	const ICON_EXEGGCUTE
+	const ICON_EXEGGUTOR
+	const ICON_CUBONE
+	const ICON_MAROWAK
+
+	const ICON_STARYU
+
+	const ICON_LAPRAS
+	const ICON_UNOWN
+
+	const ICON_SNORLAX
+	const ICON_HO_OH
+	const ICON_LUGIA
+	const ICON_GYARADOS
+	const ICON_SUDOWOODO
 
 ; LoadMenuMonIcon.Jumptable indexes (see engine/gfx/mon_icons.asm)
 	const_def

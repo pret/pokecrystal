@@ -1,53 +1,50 @@
 IconPointers:
 ; entries correspond to ICON_* constants
 	dw NullIcon
-	dw PoliwagIcon
-	dw JigglypuffIcon
-	dw DiglettIcon
-	dw PikachuIcon
-	dw StaryuIcon
-	dw FishIcon
-	dw BirdIcon
+
+	dw CaterpillarIcon
 	dw MonsterIcon
-	dw ClefairyIcon
-	dw OddishIcon
-	dw BugIcon
-	dw GhostIcon
-	dw LaprasIcon
 	dw HumanshapeIcon
 	dw FoxIcon
 	dw EquineIcon
 	dw ShellIcon
 	dw BlobIcon
 	dw SerpentIcon
-	dw VoltorbIcon
-	dw SquirtleIcon
-	dw BulbasaurIcon
-	dw CharmanderIcon
-	dw CaterpillarIcon
-	dw UnownIcon
-	dw GeodudeIcon
 	dw FighterIcon
 	dw EggIcon
 	dw JellyfishIcon
 	dw MothIcon
 	dw BatIcon
+	dw FishIcon
+	dw BirdIcon
+	dw BugIcon
+	dw GhostIcon
+	dw BigmonIcon
+
+
+	dw JigglypuffIcon
+	dw StaryuIcon
+	dw LaprasIcon
+	dw UnownIcon
 	dw SnorlaxIcon
 	dw HoOhIcon
 	dw LugiaIcon
 	dw GyaradosIcon
-	dw SlowpokeIcon
 	dw SudowoodoIcon
-	dw BigmonIcon
-	dw BlastoiseIcon
-	dw ButterfreeIcon
-	dw CaterpieIcon
+
+	
+	dw BulbasaurIcon
+	dw IvysaurIcon
+	dw VenusaurIcon
 	dw CharizardIcon
 	dw CharmeleonIcon
-	dw IvysaurIcon
-	dw MetapodIcon
-	dw VenusaurIcon
+	dw CharizardIcon
+	dw SquirtleIcon
 	dw WartortleIcon
+	dw BlastoiseIcon
+	dw CaterpieIcon
+	dw MetapodIcon
+	dw ButterfreeIcon
 	dw WeedleIcon
 	dw KakunaIcon
 	dw BeedrillIcon
@@ -60,6 +57,7 @@ IconPointers:
 	dw FearowIcon
 	dw EkansIcon
 	dw ArbokIcon
+	DW PikachuIcon
 	dw RaichuIcon
 	dw SandshrewIcon
 	dw SandslashIcon
@@ -69,9 +67,11 @@ IconPointers:
 	dw NidoranMIcon
 	dw NidorinoIcon
 	dw NidokingIcon
+	DW ClefairyIcon
 	dw ClefableIcon
 	dw VulpixIcon
 	dw NinetalesIcon
+	DW JigglypuffIcon
 	dw WigglytuffIcon
 	dw ZubatIcon
 	dw GolbatIcon
@@ -80,3 +80,61 @@ IconPointers:
 	dw VileplumeIcon
 	dw ParasIcon
 	dw ParasectIcon
+	dw VenonatIcon
+	dw VenomothIcon
+	dw DiglettIcon
+	dw DugtrioIcon
+	dw MeowthIcon
+	dw PersianIcon
+	dw PsyduckIcon
+	dw GolduckIcon
+	dw MankeyIcon
+	dw PrimeapeIcon
+	dw GrowlitheIcon
+	dw ArcanineIcon
+	dw PoliwagIcon
+	dw PoliwhirlIcon
+	dw PoliwrathIcon
+	dw AbraIcon
+	dw KadabraIcon
+	dw AlakazamIcon
+	dw MachopIcon
+	dw MachokeIcon
+	dw MachampIcon
+	dw BellsproutIcon
+	dw WeepinbellIcon
+	dw VictreebelIcon
+	dw TentacoolIcon
+	dw TentacruelIcon
+	dw GeodudeIcon
+	dw GravelerIcon
+	dw GolemIcon
+	dw PonytaIcon
+	dw RapidashIcon
+	dw SlowpokeIcon
+	dw SlowbroIcon
+	dw MagnemiteIcon
+	dw MagnetonIcon
+	dw FarfetchdIcon
+	dw DoduoIcon
+	dw DodrioIcon
+	dw SeelIcon
+	dw DewgongIcon
+	dw GrimerIcon
+	dw MukIcon
+	dw ShellderIcon
+	dw CloysterIcon
+	dw GhastlyIcon
+	dw HaunterIcon
+	dw GengarIcon
+	dw OnixIcon
+	dw DrowzeeIcon
+	dw HypnoIcon
+	dw KrabbyIcon
+	dw KinglerIcon
+	dw VoltorbIcon
+	dw ElectrodeIcon
+	dw ExeggcuteIcon
+	dw ExeggutorIcon
+	dw CuboneIcon
+	dw MarowackIcon
