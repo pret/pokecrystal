@@ -68,8 +68,8 @@ FuchsiaCityPokefanMText:
 	done
 
 FuchsiaCityTeacherText:
-	text "The SAFARI ZONE is"
-	line "closed… It's sad,"
+	text "The SAFARI ZONE was"
+	line "closed… It was sad,"
 
 	para "considering it's"
 	line "FUCHSIA's main"
@@ -93,12 +93,7 @@ FuchsiaGymSignText:
 	done
 
 SafariZoneOfficeSignText:
-	text "There's a notice"
-	line "here…"
-
-	para "SAFARI ZONE OFFICE"
-	line "is closed until"
-	cont "further notice."
+	text "SAFARI ZONE OFFICE"
 	done
 
 WardensHomeSignText:
@@ -107,12 +102,12 @@ WardensHomeSignText:
 	done
 
 SafariZoneClosedSignText:
-	text "The WARDEN is"
+	text "The WARDEN was"
 	line "traveling abroad."
 
-	para "Therefore, the"
-	line "SAFARI ZONE is"
-	cont "closed."
+	para "Since he's back,"
+	line "the SAFARI ZONE is"
+	cont "open!"
 	done
 
 NoLitteringSignText:
@@ -126,17 +121,17 @@ FuchsiaCity_MapEvents:
 	db 0, 0 ; filler
 
 	db 11 ; warp events
-	warp_event  5, 13, FUCHSIA_MART, 2
+	warp_event  5, 11, FUCHSIA_MART, 2
 	warp_event 22, 13, SAFARI_ZONE_MAIN_OFFICE, 1
 	warp_event  8, 27, FUCHSIA_GYM, 1
 	warp_event 11, 27, BILLS_BROTHERS_HOUSE, 1
 	warp_event 19, 27, FUCHSIA_POKECENTER_1F, 1
 	warp_event 27, 27, SAFARI_ZONE_WARDENS_HOME, 1
-	warp_event 18,  3, SAFARI_ZONE_FUCHSIA_GATE_BETA, 3 ; inaccessible
-	warp_event 37, 22, ROUTE_15_FUCHSIA_GATE, 1
-	warp_event 37, 23, ROUTE_15_FUCHSIA_GATE, 2
-	warp_event  7, 35, ROUTE_19_FUCHSIA_GATE, 1
-	warp_event  8, 35, ROUTE_19_FUCHSIA_GATE, 2
+	warp_event 16,  3, SAFARI_ZONE_FUCHSIA_GATE_BETA, 3 ; inaccessible
+	warp_event 37, 16, ROUTE_15_FUCHSIA_GATE, 1
+	warp_event 37, 17, ROUTE_15_FUCHSIA_GATE, 2
+	warp_event  21, 35, ROUTE_19_FUCHSIA_GATE, 1
+	warp_event  22, 35, ROUTE_19_FUCHSIA_GATE, 2
 
 	db 0 ; coord events
 
@@ -145,10 +140,10 @@ FuchsiaCity_MapEvents:
 	bg_event  5, 29, BGEVENT_READ, FuchsiaGymSign
 	bg_event 25, 15, BGEVENT_READ, SafariZoneOfficeSign
 	bg_event 27, 29, BGEVENT_READ, WardensHomeSign
-	bg_event 17,  5, BGEVENT_READ, SafariZoneClosedSign
+	bg_event 15,  5, BGEVENT_READ, SafariZoneClosedSign
 	bg_event 13, 15, BGEVENT_READ, NoLitteringSign
 	bg_event 20, 27, BGEVENT_READ, FuchsiaCityPokecenterSign
-	bg_event  6, 13, BGEVENT_READ, FuchsiaCityMartSign
+	bg_event  6, 11, BGEVENT_READ, FuchsiaCityMartSign
 
 	db 4 ; object events
 	object_event 23, 18, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, FuchsiaCityYoungster, -1
