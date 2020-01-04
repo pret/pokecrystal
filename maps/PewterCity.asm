@@ -129,12 +129,8 @@ PewterGymSignText:
 	done
 
 PewterMuseumSignText:
-	text "There's a notice"
-	line "here…"
-
-	para "PEWTER MUSEUM OF"
-	line "SCIENCE is closed"
-	cont "for renovations…"
+	text "PEWTER MUSEUM OF"
+	line "SCIENCE"
 	done
 
 PewterCityMtMoonGiftShopSignText:
