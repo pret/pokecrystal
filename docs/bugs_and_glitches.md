@@ -15,8 +15,6 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 
 ## Contents
 
-- [Berserk Gene's confusion lasts for 256 turns or the previous Pokémon's confusion count](#berserk-genes-confusion-lasts-for-256-turns-or-the-previous-Pokémons-confusion-count)
-- [A Transformed Pokémon knowing Sketch can give itself otherwise unobtainable moves](#a-transformed-pokémon-knowing-sketch-can-give-itself-otherwise-unobtainable-moves)
 - [Perish Song and Spikes can leave a Pokémon with 0 HP and not faint](#perish-song-and-spikes-can-leave-a-pokémon-with-0-hp-and-not-faint)
 - [Thick Club and Light Ball can make (Special) Attack wrap around above 1024](#thick-club-and-light-ball-can-make-special-attack-wrap-around-above-1024)
 - [Metal Powder can increase damage taken with boosted (Special) Defense](#metal-powder-can-increase-damage-taken-with-boosted-special-defense)
@@ -24,6 +22,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 - [Glacier Badge may not boost Special Defense depending on the value of Special Attack](#glacier-badge-may-not-boost-special-defense-depending-on-the-value-of-special-attack)
 - [Moves with a 100% secondary effect chance will not trigger it in 1/256 uses](#moves-with-a-100-secondary-effect-chance-will-not-trigger-it-in-1256-uses)
 - [Belly Drum sharply boosts Attack even with under 50% HP](#belly-drum-sharply-boosts-attack-even-with-under-50-hp)
+- [Berserk Gene's confusion lasts for 256 turns or the previous Pokémon's confusion count](#berserk-genes-confusion-lasts-for-256-turns-or-the-previous-Pokémons-confusion-count)
 - [Confusion damage is affected by type-boosting items and Explosion/Self-Destruct doubling](#confusion-damage-is-affected-by-type-boosting-items-and-explosionself-destruct-doubling)
 - [Saves corrupted by mid-save shutoff are not handled](#saves-corrupted-by-mid-save-shutoff-are-not-handled)
 - [Moves that lower Defense can do so after breaking a Substitute](#moves-that-lower-defense-can-do-so-after-breaking-a-substitute)
@@ -36,6 +35,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 - [Beat Up may fail to raise Substitute](#beat-up-may-fail-to-raise-substitute)
 - [Beat Up may trigger King's Rock even if it failed](#beat-up-may-trigger-kings-rock-even-if-it-failed)
 - [Present damage is incorrect in link battles](#present-damage-is-incorrect-in-link-battles)
+- [A Transformed Pokémon can use Sketch and learn otherwise unobtainable moves](#a-transformed-pokémon-can-use-sketch-and-learn-otherwise-unobtainable-moves)
 - ["Smart" AI encourages Mean Look if its own Pokémon is badly poisoned](#smart-ai-encourages-mean-look-if-its-own-pokémon-is-badly-poisoned)
 - [AI makes a false assumption about `CheckTypeMatchup`](#ai-makes-a-false-assumption-about-checktypematchup)
 - [NPC use of Full Heal or Full Restore does not cure Nightmare status](#npc-use-of-full-heal-or-full-restore-does-not-cure-nightmare-status)
@@ -80,69 +80,23 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 - [`BattleAnimCmd_ClearObjs` only clears the first 6⅔ objects](#battleanimcmd_clearobjs-only-clears-the-first-6-objects)
 
 
-## Berserk Gene's confusion lasts for 256 turns or the previous Pokémon's confusion count
-
-*Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
-
-([Video](https://youtube.com/watch?v=Pru3mohq20A))
-
-**Fix:** Edit `HandleBerserkGene` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm)
-(This makes the Berserk Gene use the regular confusion formula (2-5 turns))
-
-```diff
-     ld a, BATTLE_VARS_SUBSTATUS3
-     call GetBattleVarAddr
-     push af
-     set SUBSTATUS_CONFUSED, [hl]
-+    ld a, [hBattleTurn]
-+    and a
-+    ld hl, wEnemyConfuseCount
-+    jr z, .set_confuse_count
-+    ld hl, wPlayerConfuseCount
-+.set_confuse_count
-+    call BattleRandom
-+    and %11
-+    add a, 2
-+    ld [hl], a
-     ld a, BATTLE_VARS_MOVE_ANIM
-     call GetBattleVarAddr
-```
-
-
-## A Transformed Pokémon knowing Sketch can give itself otherwise unobtainable moves
-
-([Video](https://www.youtube.com/watch?v=AFiBxAOkCGI))
-
-**Fix:** Edit `BattleCommand_Sketch` in [engine/battle/move_effects/sketch.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/sketch.asm)
-
-```diff
--; If the opponent is transformed, fail.
-+; If the user is transformed, fail.
--       ld a, BATTLE_VARS_SUBSTATUS5_OPP
-+       ld a, BATTLE_VARS_SUBSTATUS5
-        call GetBattleVarAddr
-        bit SUBSTATUS_TRANSFORMED, [hl]
-        jp nz, .fail
-```
-
-
 ## Perish Song and Spikes can leave a Pokémon with 0 HP and not faint
 
 *Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
 
-([Video](https://cdn.discordapp.com/attachments/487424856913346580/653998883185360913/death_metal.mp4))
+([Video](https://www.youtube.com/watch?v=1IiPWw5fMf8&t=85))
 
-**Fix:** Edit `CheckFaint_PlayerThenEnemy` and `CheckFaint_EnemyThenPlayer` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm)
+**Fix:** Edit `CheckFaint_PlayerThenEnemy` and `CheckFaint_EnemyThenPlayer` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
 
 ```diff
  	jp HandleEncore
- 
+
 +HasAnyoneFainted:
 +	call HasPlayerFainted
 +	call nz, HasEnemyFainted
 +	ret
 +
-CheckFaint_PlayerThenEnemy:
+ CheckFaint_PlayerThenEnemy:
 +.faint_loop
 +	call .Function
 +	ret c
@@ -154,10 +108,11 @@ CheckFaint_PlayerThenEnemy:
  	call HasPlayerFainted
  	jr nz, .PlayerNotFainted
  	call HandlePlayerMonFaint
+ 	...
 ```
 
 ```diff
-CheckFaint_EnemyThenPlayer:
+ CheckFaint_EnemyThenPlayer:
 +.faint_loop
 +	call .Function
 +	ret c
@@ -169,6 +124,7 @@ CheckFaint_EnemyThenPlayer:
  	call HasEnemyFainted
  	jr nz, .EnemyNotFainted
  	call HandleEnemyMonFaint
+ 	...
 ```
 
 
@@ -368,6 +324,39 @@ As Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") impli
 ```
 
 
+## Berserk Gene's confusion lasts for 256 turns or the previous Pokémon's confusion count
+
+*Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
+
+([Video](https://youtube.com/watch?v=Pru3mohq20A))
+
+**Fix:** Edit `HandleBerserkGene` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
+
+```diff
+ HandleBerserkGene:
+ 	...
+ 	ld a, BATTLE_VARS_SUBSTATUS3
+ 	call GetBattleVarAddr
+ 	push af
+ 	set SUBSTATUS_CONFUSED, [hl]
++	ld a, [hBattleTurn]
++	and a
++	ld hl, wEnemyConfuseCount
++	jr z, .set_confuse_count
++	ld hl, wPlayerConfuseCount
++.set_confuse_count
++	call BattleRandom
++	and %11
++	add a, 2
++	ld [hl], a
+ 	ld a, BATTLE_VARS_MOVE_ANIM
+ 	call GetBattleVarAddr
+ 	...
+```
+
+This makes the Berserk Gene use the regular confusion duration (2-5 turns).
+
+
 ## Confusion damage is affected by type-boosting items and Explosion/Self-Destruct doubling
 
 *Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
@@ -376,11 +365,15 @@ As Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") impli
 
 **Fix:**
 
-First, edit [hram.asm](https://github.com/pret/pokecrystal/blob/master/hram.asm):
+First, edit [wram.asm](https://github.com/pret/pokecrystal/blob/master/wram.asm):
 
 ```diff
- hClockResetTrigger:: db ; ffeb
-+hIsConfusionDamage:: db ; ffec
+ wTurnEnded:: db ; c6b4
+
+-	ds 1
++wIsConfusionDamage:: db ; c6b5
+
+ wPlayerStats:: ; c6b6
 ```
 
 Then edit four routines in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm):
@@ -393,7 +386,7 @@ Then edit four routines in [engine/battle/effect_commands.asm](https://github.co
  	pop af
  	ld e, a
 +	ld a, TRUE
-+	ldh [hIsConfusionDamage], a
++	ld [wIsConfusionDamage], a
  	ret
 ```
 
@@ -403,7 +396,7 @@ Then edit four routines in [engine/battle/effect_commands.asm](https://github.co
  	...
  .skip_zero_damage_check
 +	xor a ; Not confusion damage
-+	ldh [hIsConfusionDamage], a
++	ld [wIsConfusionDamage], a
 +	; fallthrough
 +
 +ConfusionDamageCalc:
@@ -419,7 +412,7 @@ Then edit four routines in [engine/battle/effect_commands.asm](https://github.co
  ; Item boosts
 +
 +; Item boosts don't apply to confusion damage
-+	ldh a, [hIsConfusionDamage]
++	ld a, [wIsConfusionDamage]
 +	and a
 +	jr nz, .DoneItem
 +
@@ -460,72 +453,77 @@ Then edit four routines in [engine/battle/effect_commands.asm](https://github.co
 
 ## Saves corrupted by mid-save shutoff are not handled
 
-([Video 1](https://www.youtube.com/watch?v=ukqtK0l6bu0))
-([Video 2](https://www.youtube.com/watch?v=c2zHd1BPtvc))
+([Video 1](https://www.youtube.com/watch?v=ukqtK0l6bu0), [Video 2](https://www.youtube.com/watch?v=c2zHd1BPtvc))
 
-**Fix:** Edit `MoveMonWOMail_InsertMon_SaveGame` and `_SaveGameData` in [engine/menus/save.asm](https://github.com/pret/pokecrystal/blob/master/engine/menus/save.asm)
+**Fix:** Edit `MoveMonWOMail_InsertMon_SaveGame` and `_SaveGameData` in [engine/menus/save.asm](https://github.com/pret/pokecrystal/blob/master/engine/menus/save.asm):
 
 ```diff
-	ld a, TRUE
-	ld [wSaveFileExists], a
-	farcall StageRTCTimeForSave
-	farcall BackupMysteryGift
-+	call InvalidateSave
+ MoveMonWOMail_InsertMon_SaveGame:
+ 	...
+ 	ld a, TRUE
+ 	ld [wSaveFileExists], a
+ 	farcall StageRTCTimeForSave
+ 	farcall BackupMysteryGift
 -	call ValidateSave
-	call SaveOptions
-	call SavePlayerData
-	call SavePokemonData
-	call SaveChecksum
++	call InvalidateSave
+ 	call SaveOptions
+ 	call SavePlayerData
+ 	call SavePokemonData
+ 	call SaveChecksum
+-	call ValidateBackupSave
 +	call ValidateSave
 +	call InvalidateBackupSave
--	call ValidateBackupSave
-	call SaveBackupOptions
-	call SaveBackupPlayerData
-	call SaveBackupPokemonData
-	call SaveBackupChecksum
+ 	call SaveBackupOptions
+ 	call SaveBackupPlayerData
+ 	call SaveBackupPokemonData
+ 	call SaveBackupChecksum
 +	call ValidateBackupSave
-	farcall BackupPartyMonMail
-	farcall BackupMobileEventIndex
-	farcall SaveRTC
+ 	farcall BackupPartyMonMail
+ 	farcall BackupMobileEventIndex
+ 	farcall SaveRTC
+ 	...
 ```
 
 ```diff
-	ld a, TRUE
-	ld [wSaveFileExists], a
-	farcall StageRTCTimeForSave
-	farcall BackupMysteryGift
-+	call InvalidateSave
+ _SaveGameData:
+ 	...
+ 	ld a, TRUE
+ 	ld [wSaveFileExists], a
+ 	farcall StageRTCTimeForSave
+ 	farcall BackupMysteryGift
 -	call ValidateSave
-	call SaveOptions
-	call SavePlayerData
-	call SavePokemonData
-	call SaveBox
-	call SaveChecksum
++	call InvalidateSave
+ 	call SaveOptions
+ 	call SavePlayerData
+ 	call SavePokemonData
+ 	call SaveBox
+ 	call SaveChecksum
+-	call ValidateBackupSave
 +	call ValidateSave
 +	call InvalidateBackupSave
--	call ValidateBackupSave
-	call SaveBackupOptions
-	call SaveBackupPlayerData
-	call SaveBackupPokemonData
-	call SaveBackupChecksum
+ 	call SaveBackupOptions
+ 	call SaveBackupPlayerData
+ 	call SaveBackupPokemonData
+ 	call SaveBackupChecksum
 +	call ValidateBackupSave
-	call UpdateStackTop
-	farcall BackupPartyMonMail
-	farcall BackupMobileEventIndex
-	farcall SaveRTC
+ 	call UpdateStackTop
+ 	farcall BackupPartyMonMail
+ 	farcall BackupMobileEventIndex
+ 	farcall SaveRTC
+ 	...
 ```
 
-Also create two new routines, one named `InvalidateSave` and another named `InvalidateBackupSave` in [engine/menus/save.asm](https://github.com/pret/pokecrystal/blob/master/engine/menus/save.asm):
+Then create two new routines, `InvalidateSave` and `InvalidateBackupSave`:
 
 ```diff
-ValidateSave:
-	ld a, BANK(sCheckValue1) ; aka BANK(sCheckValue2)
-	call GetSRAMBank
-	ld a, SAVE_CHECK_VALUE_1
-	ld [sCheckValue1], a
-	ld a, SAVE_CHECK_VALUE_2
-	ld [sCheckValue2], a
-	jp CloseSRAM
+ ValidateSave:
+ 	ld a, BANK(sCheckValue1) ; aka BANK(sCheckValue2)
+ 	call GetSRAMBank
+ 	ld a, SAVE_CHECK_VALUE_1
+ 	ld [sCheckValue1], a
+ 	ld a, SAVE_CHECK_VALUE_2
+ 	ld [sCheckValue2], a
+ 	jp CloseSRAM
 
 +InvalidateSave:
 +	ld a, BANK(sCheckValue1) ; aka BANK(sCheckValue2)
@@ -537,14 +535,14 @@ ValidateSave:
 ```
 
 ```diff
-ValidateBackupSave:
-	ld a, BANK(sBackupCheckValue1) ; aka BANK(sBackupCheckValue2)
-	call GetSRAMBank
-	ld a, SAVE_CHECK_VALUE_1
-	ld [sBackupCheckValue1], a
-	ld a, SAVE_CHECK_VALUE_2
-	ld [sBackupCheckValue2], a
-	jp CloseSRAM
+ ValidateBackupSave:
+ 	ld a, BANK(sBackupCheckValue1) ; aka BANK(sBackupCheckValue2)
+ 	call GetSRAMBank
+ 	ld a, SAVE_CHECK_VALUE_1
+ 	ld [sBackupCheckValue1], a
+ 	ld a, SAVE_CHECK_VALUE_2
+ 	ld [sBackupCheckValue2], a
+ 	jp CloseSRAM
 
 +InvalidateBackupSave:
 +	ld a, BANK(sBackupCheckValue1) ; aka BANK(sBackupCheckValue2)
@@ -839,6 +837,23 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 ```
 
 
+## A Transformed Pokémon can use Sketch and learn otherwise unobtainable moves
+
+([Video](https://www.youtube.com/watch?v=AFiBxAOkCGI))
+
+**Fix:** Edit `BattleCommand_Sketch` in [engine/battle/move_effects/sketch.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/sketch.asm):
+
+```diff
+-; If the opponent is transformed, fail.
++; If the user is transformed, fail.
+-	ld a, BATTLE_VARS_SUBSTATUS5_OPP
++	ld a, BATTLE_VARS_SUBSTATUS5
+ 	call GetBattleVarAddr
+ 	bit SUBSTATUS_TRANSFORMED, [hl]
+ 	jp nz, .fail
+```
+
+
 ## "Smart" AI encourages Mean Look if its own Pokémon is badly poisoned
 
 ([Video](https://www.youtube.com/watch?v=cygMO-zHTls))
@@ -919,30 +934,28 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ## NPC use of Full Heal does not cure confusion status
 
-([Video](TBA))
-
 **Fix:** Edit `EnemyUsedFullRestore`, `EnemyUsedFullHeal`, and `AI_HealStatus` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/items.asm):
 
 ```diff
-EnemyUsedFullRestore:
-	call AI_HealStatus
-	ld a, FULL_RESTORE
-	ld [wCurEnemyItem], a
+ EnemyUsedFullRestore:
+ 	call AI_HealStatus
+ 	ld a, FULL_RESTORE
+ 	ld [wCurEnemyItem], a
 -	ld hl, wEnemySubStatus3
 -	res SUBSTATUS_CONFUSED, [hl]
-	xor a
-	ld [wEnemyConfuseCount], a
+ 	xor a
+ 	ld [wEnemyConfuseCount], a
 ```
 
 ```diff
-EnemyUsedFullHeal:
-	call AIUsedItemSound
-	call AI_HealStatus
-	ld a, FULL_HEAL
+ EnemyUsedFullHeal:
+ 	call AIUsedItemSound
+ 	call AI_HealStatus
+ 	ld a, FULL_HEAL
 +	ld [wCurEnemyItem], a
 +	xor a
 +	ld [wEnemyConfuseCount], a
-	jp PrintText_UsedItemOn_AND_AIUpdateHUD
+ 	jp PrintText_UsedItemOn_AND_AIUpdateHUD
 ```
 
 ```diff
@@ -1317,7 +1330,7 @@ CopyPokemonName_Buffer1_Buffer3:
  	jr nc, .GenerateDVs
 ```
 
-**Better fix:** Rewrite the whole system to use millimeters instead of feet and inches, since they have better precision (1 in = 25.4 mm); and only convert from metric to imperial units for display purposes (or don't, of course). 
+**Better fix:** Rewrite the whole system to use millimeters instead of feet and inches, since they have better precision (1 in = 25.4 mm); and only convert from metric to imperial units for display purposes (or don't, of course).
 
 
 ## Magikarp lengths can be miscalculated
@@ -1664,7 +1677,7 @@ If you want to make sure `hInMenu` always has a defined value in the move select
  	...
 
  	jp .loop
- 
+
  .quit
 +	pop af
 +	ldh [hInMenu], a
@@ -1723,12 +1736,12 @@ First, edit `UsedSurfScript` in [engine/events/overworld.asm](https://github.com
  	writetext UsedSurfText ; "used SURF!"
  	waitbutton
  	closetext
- 
+
  	callasm .empty_fn ; empty function
- 
+
  	readmem wBuffer2
  	writevar VAR_MOVEMENT
- 
+
  	special ReplaceKrisSprite
  	special PlayMapMusic
 -; step into the water (slow_step DIR, step_end)
