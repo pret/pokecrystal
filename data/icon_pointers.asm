@@ -1,37 +1,6 @@
 IconPointers:
 ; entries correspond to ICON_* constants
 	dw NullIcon
-
-	dw CaterpillarIcon
-	dw MonsterIcon
-	dw HumanshapeIcon
-	dw FoxIcon
-	dw EquineIcon
-	dw ShellIcon
-	dw BlobIcon
-	dw SerpentIcon
-	dw FighterIcon
-	dw EggIcon
-	dw JellyfishIcon
-	dw MothIcon
-	dw BatIcon
-	dw FishIcon
-	dw BirdIcon
-	dw BugIcon
-	dw GhostIcon
-	dw BigmonIcon
-
-
-	dw JigglypuffIcon
-	dw StaryuIcon
-	dw LaprasIcon
-	dw UnownIcon
-	dw SnorlaxIcon
-	dw HoOhIcon
-	dw LugiaIcon
-	dw GyaradosIcon
-	dw SudowoodoIcon
-
 	
 	dw BulbasaurIcon
 	dw IvysaurIcon
@@ -57,7 +26,7 @@ IconPointers:
 	dw FearowIcon
 	dw EkansIcon
 	dw ArbokIcon
-	DW PikachuIcon
+	dw PikachuIcon
 	dw RaichuIcon
 	dw SandshrewIcon
 	dw SandslashIcon
@@ -138,3 +107,59 @@ IconPointers:
 	dw ExeggutorIcon
 	dw CuboneIcon
 	dw MarowackIcon
+	dw HitmonleeIcon
+	dw HitmonchanIcon
+	dw LickitungIcon
+	dw KoffingIcon
+	dw WeezingIcon
+	dw RhyhornIcon
+	dw RhydonIcon
+	dw ChanseyIcon
+	dw TangelaIcon
+	dw KangaskhanIcon
+	dw HorseaIcon
+	dw SeadraIcon
+	dw GoldeenIcon
+	dw SeakingIcon
+	dw StaryuIcon
+	dw StarmieIcon
+	dw MrmimeIcon
+	dw ScytherIcon
+	dw JynxIcon
+	dw ElectabuzzIcon
+	dw MagmarIcon
+	dw PinsirIcon
+	dw TaurosIcon
+	dw MagikarpIcon
+	dw GyaradosIcon
+	dw LaprasIcon
+	dw DittoIcon
+	dw EeveeIcon
+	dw VaporeonIcon
+	dw JolteonIcon
+	dw FlareonIcon
+
+	dw UnownIcon
+	dw SnorlaxIcon
+	dw HoOhIcon
+	dw LugiaIcon
+	dw SudowoodoIcon
+
+	dw CaterpillarIcon
+	dw MonsterIcon
+	dw HumanshapeIcon
+	dw FoxIcon
+	dw EquineIcon
+	dw ShellIcon
+	dw BlobIcon
+	dw SerpentIcon
+	dw FighterIcon
+	dw EggIcon
+	dw JellyfishIcon
+	dw MothIcon
+	dw BatIcon
+	dw FishIcon
+	dw BirdIcon
+	dw BugIcon
+	dw GhostIcon
+	dw BigmonIcon

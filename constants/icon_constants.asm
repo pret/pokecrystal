@@ -2,25 +2,6 @@
 	const_def
 	const ICON_NULL
 	
-	const ICON_CATERPILLAR
-	const ICON_MONSTER
-	const ICON_HUMANSHAPE
-	const ICON_FOX
-	const ICON_EQUINE
-	const ICON_SHELL
-	const ICON_BLOB
-	const ICON_SERPENT
-	const ICON_FIGHTER
-	const ICON_EGG
-	const ICON_JELLYFISH
-	const ICON_MOTH
-	const ICON_BAT
-	const ICON_FISH
-	const ICON_BIRD
-	const ICON_BUG
-	const ICON_GHOST
-	const ICON_BIGMON
-	
 	const ICON_BULBASAUR
 	const ICON_IVYSAUR
 	const ICON_VENUSAUR
@@ -126,17 +107,64 @@
 	const ICON_EXEGGUTOR
 	const ICON_CUBONE
 	const ICON_MAROWAK
-
+	const ICON_HITMONLEE
+	const ICON_HITMONCHAN
+	const ICON_LICKITUNG
+	const ICON_KOFFING
+	const ICON_WEEZING
+	const ICON_RHYHORN
+	const ICON_RHYDON
+	const ICON_CHANSEY
+	const ICON_TANGELA
+	const ICON_KANGASKHAN
+	const ICON_HORSEA
+	const ICON_SEADRA
+	const ICON_GOLDEEN
+	const ICON_SEAKING
 	const ICON_STARYU
-
+	const ICON_STARMIE
+	const ICON_MRMIME
+	const ICON_SCYTHER
+	const ICON_JYNX
+	const ICON_ELECTABUZZ
+	const ICON_MAGMAR
+	const ICON_PINSIR
+	const ICON_TAUROS
+	const ICON_MAGIKARP
+	const ICON_GYARADOS
 	const ICON_LAPRAS
+	const ICON_DITTO
+	const ICON_EEVEE
+	const ICON_VAPOREON
+	const ICON_JOLTEON
+	const ICON_FLAREON
+
+
 	const ICON_UNOWN
 
 	const ICON_SNORLAX
 	const ICON_HO_OH
 	const ICON_LUGIA
-	const ICON_GYARADOS
 	const ICON_SUDOWOODO
+
+	const ICON_CATERPILLAR
+	const ICON_MONSTER
+	const ICON_HUMANSHAPE
+	const ICON_FOX
+	const ICON_EQUINE
+	const ICON_SHELL
+	const ICON_BLOB
+	const ICON_SERPENT
+	const ICON_FIGHTER
+	const ICON_EGG
+	const ICON_JELLYFISH
+	const ICON_MOTH
+	const ICON_BAT
+	const ICON_FISH
+	const ICON_BIRD
+	const ICON_BUG
+	const ICON_GHOST
+	const ICON_BIGMON
 
 ; LoadMenuMonIcon.Jumptable indexes (see engine/gfx/mon_icons.asm)
 	const_def
