@@ -19,7 +19,7 @@ Music_MobileCenter_Ch1:
 	note G_, 2
 	note A_, 2
 	note B_, 4
-Music_MobileCenter_branch_179642:
+.mainloop:
 	octave 3
 	note E_, 2
 	note C_, 2
@@ -154,7 +154,7 @@ Music_MobileCenter_branch_179642:
 	note D_, 2
 	note E_, 2
 	note F_, 2
-	loopchannel 0, Music_MobileCenter_branch_179642
+	loopchannel 0, .mainloop
 
 Music_MobileCenter_Ch2:
 	notetype $c, $c2
@@ -164,7 +164,7 @@ Music_MobileCenter_Ch2:
 	note G_, 2
 	note A_, 2
 	note B_, 2
-Music_MobileCenter_branch_1796d6:
+.mainloop:
 	octave 2
 	note C_, 2
 	note E_, 2
@@ -322,7 +322,7 @@ Music_MobileCenter_branch_1796d6:
 	note F_, 2
 	note E_, 2
 	note D_, 2
-	loopchannel 0, Music_MobileCenter_branch_1796d6
+	loopchannel 0, .mainloop
 
 Music_MobileCenter_Ch3:
 	notetype $c, $24
@@ -336,7 +336,7 @@ Music_MobileCenter_Ch3:
 	note C_, 2
 	note D_, 4
 	notetype $c, $25
-Music_MobileCenter_branch_179788:
+.mainloop:
 	note C_, 2
 	octave 4
 	note G_, 2
@@ -448,7 +448,7 @@ Music_MobileCenter_branch_179788:
 	note D_, 2
 	note C_, 8
 	vibrato $10, $34
-	loopchannel 0, Music_MobileCenter_branch_179788
+	loopchannel 0, .mainloop
 
 Music_MobileCenter_Ch4:
 	togglenoise $3
@@ -460,7 +460,8 @@ Music_MobileCenter_Ch4:
 	note C#, 1
 	note C#, 1
 	note C#, 1
-Music_MobileCenter_branch_179813:
+.mainloop:
+.loop1:
 	note A_, 2
 	note C#, 2
 	note C#, 2
@@ -469,7 +470,7 @@ Music_MobileCenter_branch_179813:
 	note C#, 2
 	note D_, 2
 	note C#, 2
-	loopchannel 3, Music_MobileCenter_branch_179813
+	loopchannel 3, .loop1
 	note A_, 2
 	note C#, 2
 	note C#, 2
@@ -480,4 +481,4 @@ Music_MobileCenter_branch_179813:
 	note C#, 1
 	note C#, 1
 	note C#, 1
-	loopchannel 0, Music_MobileCenter_branch_179813
+	loopchannel 0, .mainloop

@@ -26,7 +26,7 @@ Music_Route30_Ch1:
 	note D_, 2
 	intensity $4e
 	note C_, 4
-Music_Route30_branch_efc2e:
+.mainloop:
 	intensity $b6
 	note D_, 6
 	intensity $b4
@@ -181,7 +181,7 @@ Music_Route30_branch_efc2e:
 	note B_, 2
 	octave 4
 	note D_, 2
-	loopchannel 0, Music_Route30_branch_efc2e
+	loopchannel 0, .mainloop
 
 Music_Route30_Ch2:
 	dutycycle $3
@@ -205,7 +205,7 @@ Music_Route30_Ch2:
 	note E_, 1
 	note F_, 1
 	note F#, 1
-Music_Route30_branch_efcf6:
+.mainloop:
 	intensity $c7
 	note G_, 10
 	octave 4
@@ -292,7 +292,7 @@ Music_Route30_branch_efcf6:
 	intensity $a7
 	octave 3
 	note F#, 2
-	loopchannel 0, Music_Route30_branch_efcf6
+	loopchannel 0, .mainloop
 
 Music_Route30_Ch3:
 	notetype $c, $27
@@ -319,7 +319,7 @@ Music_Route30_Ch3:
 	note __, 1
 	note G_, 1
 	note __, 1
-Music_Route30_branch_efd79:
+.mainloop:
 	note G_, 1
 	note __, 1
 	note B_, 2
@@ -573,33 +573,33 @@ Music_Route30_branch_efd79:
 	note __, 1
 	note G_, 1
 	note __, 1
-	loopchannel 0, Music_Route30_branch_efd79
+	loopchannel 0, .mainloop
 
 Music_Route30_Ch4:
 	togglenoise $3
 	notetype $c
-	callchannel Music_Route30_branch_efeb8
-	callchannel Music_Route30_branch_efec1
-Music_Route30_branch_efe84:
-	callchannel Music_Route30_branch_efecd
-	callchannel Music_Route30_branch_efed7
-	callchannel Music_Route30_branch_efed7
-	callchannel Music_Route30_branch_efee1
-	callchannel Music_Route30_branch_efed7
-	callchannel Music_Route30_branch_efecd
-	callchannel Music_Route30_branch_efed7
-	callchannel Music_Route30_branch_efee1
-	callchannel Music_Route30_branch_efed7
-	callchannel Music_Route30_branch_efed7
-	callchannel Music_Route30_branch_efecd
-	callchannel Music_Route30_branch_efed7
-	callchannel Music_Route30_branch_efed7
-	callchannel Music_Route30_branch_efed7
-	callchannel Music_Route30_branch_efecd
-	callchannel Music_Route30_branch_efee1
-	loopchannel 0, Music_Route30_branch_efe84
+	callchannel .sub1
+	callchannel .sub2
+.mainloop:
+	callchannel .sub3
+	callchannel .sub4
+	callchannel .sub4
+	callchannel .sub5
+	callchannel .sub4
+	callchannel .sub3
+	callchannel .sub4
+	callchannel .sub5
+	callchannel .sub4
+	callchannel .sub4
+	callchannel .sub3
+	callchannel .sub4
+	callchannel .sub4
+	callchannel .sub4
+	callchannel .sub3
+	callchannel .sub5
+	loopchannel 0, .mainloop
 
-Music_Route30_branch_efeb8:
+.sub1:
 	note D_, 2
 	note F#, 2
 	note F#, 2
@@ -610,7 +610,7 @@ Music_Route30_branch_efeb8:
 	note D_, 4
 	endchannel
 
-Music_Route30_branch_efec1:
+.sub2:
 	note D_, 2
 	note F#, 2
 	note F#, 2
@@ -624,7 +624,7 @@ Music_Route30_branch_efec1:
 	note D_, 1
 	endchannel
 
-Music_Route30_branch_efecd:
+.sub3:
 	note D_, 2
 	note F#, 2
 	note F#, 2
@@ -636,7 +636,7 @@ Music_Route30_branch_efecd:
 	note D_, 2
 	endchannel
 
-Music_Route30_branch_efed7:
+.sub4:
 	note D_, 2
 	note F#, 2
 	note F#, 2
@@ -648,7 +648,7 @@ Music_Route30_branch_efed7:
 	note D_, 2
 	endchannel
 
-Music_Route30_branch_efee1:
+.sub5:
 	note D_, 2
 	note F#, 2
 	note F#, 2

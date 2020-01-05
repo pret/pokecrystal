@@ -41,13 +41,13 @@ Music_ViridianCity_Ch1:
 	note __, 4
 	note G_, 8
 	note __, 4
-Music_ViridianCity_branch_f4039:
-	callchannel Music_ViridianCity_branch_f40c5
+.mainloop:
+	callchannel .sub1
 	note __, 4
-	callchannel Music_ViridianCity_branch_f40c5
+	callchannel .sub1
 	octave 4
 	note C_, 4
-	callchannel Music_ViridianCity_branch_f410f
+	callchannel .sub2
 	octave 4
 	note B_, 2
 	note G_, 2
@@ -117,7 +117,7 @@ Music_ViridianCity_branch_f4039:
 	octave 3
 	note B_, 2
 	note A_, 2
-	callchannel Music_ViridianCity_branch_f410f
+	callchannel .sub2
 	octave 4
 	note A_, 2
 	note G_, 2
@@ -168,9 +168,9 @@ Music_ViridianCity_branch_f4039:
 	note __, 3
 	note G_, 8
 	note A#, 4
-	loopchannel 0, Music_ViridianCity_branch_f4039
+	loopchannel 0, .mainloop
 
-Music_ViridianCity_branch_f40c5:
+.sub1:
 	octave 3
 	note A_, 1
 	note __, 3
@@ -246,7 +246,7 @@ Music_ViridianCity_branch_f40c5:
 	note G_, 8
 	endchannel
 
-Music_ViridianCity_branch_f410f:
+.sub2:
 	octave 3
 	note B_, 2
 	note D_, 2
@@ -304,13 +304,13 @@ Music_ViridianCity_Ch2:
 	note __, 4
 	note E_, 8
 	note __, 4
-Music_ViridianCity_branch_f414c:
-	callchannel Music_ViridianCity_branch_f41c0
+.mainloop:
+	callchannel .sub1
 	note __, 4
-	callchannel Music_ViridianCity_branch_f41c0
+	callchannel .sub1
 	octave 2
 	note F#, 4
-	callchannel Music_ViridianCity_branch_f4201
+	callchannel .sub2
 	note G_, 4
 	note __, 2
 	octave 3
@@ -323,7 +323,7 @@ Music_ViridianCity_branch_f414c:
 	note D_, 4
 	octave 2
 	note B_, 2
-	callchannel Music_ViridianCity_branch_f420b
+	callchannel .sub3
 	note __, 2
 	note F#, 2
 	note __, 2
@@ -332,7 +332,7 @@ Music_ViridianCity_branch_f414c:
 	note __, 1
 	note C#, 4
 	note C_, 4
-	callchannel Music_ViridianCity_branch_f4215
+	callchannel .sub4
 	note E_, 4
 	note __, 2
 	note B_, 1
@@ -359,7 +359,7 @@ Music_ViridianCity_branch_f414c:
 	octave 2
 	note A_, 2
 	note F#, 2
-	callchannel Music_ViridianCity_branch_f4201
+	callchannel .sub2
 	note G_, 4
 	note __, 2
 	note B_, 1
@@ -368,7 +368,7 @@ Music_ViridianCity_branch_f414c:
 	note __, 1
 	note B_, 4
 	note G_, 2
-	callchannel Music_ViridianCity_branch_f420b
+	callchannel .sub3
 	note __, 2
 	note F#, 2
 	note __, 2
@@ -379,7 +379,7 @@ Music_ViridianCity_branch_f414c:
 	note __, 2
 	octave 2
 	note D#, 2
-	callchannel Music_ViridianCity_branch_f4215
+	callchannel .sub4
 	note E_, 4
 	note __, 2
 	note A#, 1
@@ -401,9 +401,9 @@ Music_ViridianCity_branch_f414c:
 	note E_, 8
 	octave 1
 	note A_, 4
-	loopchannel 0, Music_ViridianCity_branch_f414c
+	loopchannel 0, .mainloop
 
-Music_ViridianCity_branch_f41c0:
+.sub1:
 	octave 2
 	note D_, 4
 	note __, 2
@@ -470,7 +470,7 @@ Music_ViridianCity_branch_f41c0:
 	note E_, 8
 	endchannel
 
-Music_ViridianCity_branch_f4201:
+.sub2:
 	note G_, 4
 	note __, 2
 	octave 3
@@ -482,7 +482,7 @@ Music_ViridianCity_branch_f4201:
 	note F#, 2
 	endchannel
 
-Music_ViridianCity_branch_f420b:
+.sub3:
 	note F#, 4
 	note __, 2
 	octave 3
@@ -494,7 +494,7 @@ Music_ViridianCity_branch_f420b:
 	note F_, 2
 	endchannel
 
-Music_ViridianCity_branch_f4215:
+.sub4:
 	octave 2
 	note E_, 4
 	note __, 2
@@ -541,13 +541,13 @@ Music_ViridianCity_Ch3:
 	note D_, 8
 	note F#, 2
 	note G_, 2
-Music_ViridianCity_branch_f4246:
+.mainloop:
 	intensity $13
-	callchannel Music_ViridianCity_branch_f42a2
+	callchannel .sub1
 	octave 5
 	note F#, 2
 	note G_, 2
-	callchannel Music_ViridianCity_branch_f42a2
+	callchannel .sub1
 	note E_, 4
 	vibrato $18, $25
 	intensity $25
@@ -622,9 +622,9 @@ Music_ViridianCity_branch_f4246:
 	note __, 3
 	note D_, 8
 	note E_, 4
-	loopchannel 0, Music_ViridianCity_branch_f4246
+	loopchannel 0, .mainloop
 
-Music_ViridianCity_branch_f42a2:
+.sub1:
 	octave 5
 	note A_, 2
 	note __, 2
@@ -690,28 +690,28 @@ Music_ViridianCity_branch_f42a2:
 Music_ViridianCity_Ch4:
 	togglenoise $3
 	notetype $c
-	callchannel Music_ViridianCity_branch_f431d
-	callchannel Music_ViridianCity_branch_f432c
-Music_ViridianCity_branch_f42e9:
-	callchannel Music_ViridianCity_branch_f431d
-	callchannel Music_ViridianCity_branch_f431d
-	callchannel Music_ViridianCity_branch_f431d
-	callchannel Music_ViridianCity_branch_f432c
-	callchannel Music_ViridianCity_branch_f431d
-	callchannel Music_ViridianCity_branch_f431d
-	callchannel Music_ViridianCity_branch_f431d
-	callchannel Music_ViridianCity_branch_f432c
-	callchannel Music_ViridianCity_branch_f433b
-	callchannel Music_ViridianCity_branch_f434b
-	callchannel Music_ViridianCity_branch_f433b
-	callchannel Music_ViridianCity_branch_f433b
-	callchannel Music_ViridianCity_branch_f433b
-	callchannel Music_ViridianCity_branch_f434b
-	callchannel Music_ViridianCity_branch_f433b
-	callchannel Music_ViridianCity_branch_f433b
-	loopchannel 0, Music_ViridianCity_branch_f42e9
+	callchannel .sub1
+	callchannel .sub2
+.mainloop:
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub2
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub2
+	callchannel .sub3
+	callchannel .sub4
+	callchannel .sub3
+	callchannel .sub3
+	callchannel .sub3
+	callchannel .sub4
+	callchannel .sub3
+	callchannel .sub3
+	loopchannel 0, .mainloop
 
-Music_ViridianCity_branch_f431d:
+.sub1:
 	note E_, 2
 	note E_, 2
 	note D_, 2
@@ -728,7 +728,7 @@ Music_ViridianCity_branch_f431d:
 	note F#, 2
 	endchannel
 
-Music_ViridianCity_branch_f432c:
+.sub2:
 	note E_, 2
 	note E_, 2
 	note D_, 2
@@ -745,7 +745,7 @@ Music_ViridianCity_branch_f432c:
 	note A#, 2
 	endchannel
 
-Music_ViridianCity_branch_f433b:
+.sub3:
 	note D#, 2
 	note F#, 2
 	note D_, 2
@@ -763,7 +763,7 @@ Music_ViridianCity_branch_f433b:
 	note D#, 2
 	endchannel
 
-Music_ViridianCity_branch_f434b:
+.sub4:
 	note D#, 2
 	note F#, 2
 	note D_, 2

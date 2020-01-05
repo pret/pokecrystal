@@ -13,7 +13,7 @@ Music_GoldSilverOpening2_Ch1:
 	notetype $c, $3d
 	octave 3
 	note D#, 8
-Music_GoldSilverOpening2_branch_f7325:
+.loop1:
 	notetype $c, $c1
 	octave 3
 	note D_, 2
@@ -29,7 +29,7 @@ Music_GoldSilverOpening2_branch_f7325:
 	note F_, 4
 	note D#, 4
 	note C_, 2
-	loopchannel 2, Music_GoldSilverOpening2_branch_f7325
+	loopchannel 2, .loop1
 	intensity $c1
 	note D_, 2
 	note D_, 2
@@ -194,7 +194,7 @@ Music_GoldSilverOpening2_Ch4:
 	note D_, 2
 	note D_, 2
 	notetype $c
-Music_GoldSilverOpening2_branch_f73f8:
+.loop1:
 	note D_, 2
 	note D_, 2
 	note D_, 2
@@ -212,6 +212,6 @@ Music_GoldSilverOpening2_branch_f73f8:
 	note D#, 2
 	note D#, 2
 	notetype $c
-	loopchannel 4, Music_GoldSilverOpening2_branch_f73f8
+	loopchannel 4, .loop1
 	note C_, 16
 	endchannel

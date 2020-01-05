@@ -17,22 +17,22 @@ Music_ChampionBattle_Ch1:
 	note A#, 4
 	intensity $b7
 	note B_, 4
-Music_ChampionBattle_branch_ea9e2:
-	callchannel Music_ChampionBattle_branch_eaaee
+.loop1:
+	callchannel .sub1
 	octave 3
 	note D#, 4
-	loopchannel 2, Music_ChampionBattle_branch_ea9e2
-	callchannel Music_ChampionBattle_branch_eaaee
+	loopchannel 2, .loop1
+	callchannel .sub1
 	octave 3
 	note E_, 4
-Music_ChampionBattle_branch_ea9f0:
-	callchannel Music_ChampionBattle_branch_eaafc
-	loopchannel 3, Music_ChampionBattle_branch_ea9f0
-	callchannel Music_ChampionBattle_branch_eab06
-Music_ChampionBattle_branch_ea9fa:
-	callchannel Music_ChampionBattle_branch_eaafc
-	loopchannel 7, Music_ChampionBattle_branch_ea9fa
-	callchannel Music_ChampionBattle_branch_eab06
+.loop2:
+	callchannel .sub2
+	loopchannel 3, .loop2
+	callchannel .sub3
+.loop3:
+	callchannel .sub2
+	loopchannel 7, .loop3
+	callchannel .sub3
 	intensity $b2
 	note A#, 2
 	note A#, 2
@@ -72,25 +72,25 @@ Music_ChampionBattle_branch_ea9fa:
 	octave 4
 	note C_, 1
 	note C#, 1
-Music_ChampionBattle_branch_eaa35:
-	callchannel Music_ChampionBattle_branch_eab0f
+.mainloop:
+	callchannel .sub4
 	note E_, 2
 	note E_, 2
 	intensity $b7
 	note F#, 4
-Music_ChampionBattle_branch_eaa3d:
+.loop4:
 	intensity $b2
 	note E_, 2
 	note E_, 2
 	intensity $b7
 	note G#, 4
-	loopchannel 2, Music_ChampionBattle_branch_eaa3d
+	loopchannel 2, .loop4
 	intensity $b2
 	note E_, 2
 	note E_, 2
 	intensity $b7
 	note B_, 4
-	callchannel Music_ChampionBattle_branch_eab0f
+	callchannel .sub4
 	note E_, 2
 	note E_, 2
 	intensity $b7
@@ -111,10 +111,10 @@ Music_ChampionBattle_branch_eaa3d:
 	intensity $b7
 	octave 4
 	note E_, 4
-	callchannel Music_ChampionBattle_branch_eab24
+	callchannel .sub5
 	note B_, 4
 	note G#, 4
-	callchannel Music_ChampionBattle_branch_eab24
+	callchannel .sub5
 	octave 4
 	note D_, 4
 	note D_, 4
@@ -166,7 +166,7 @@ Music_ChampionBattle_branch_eaa3d:
 	intensity $90
 	note D#, 16
 	note C#, 16
-Music_ChampionBattle_branch_eaab1:
+.loop5:
 	intensity $b2
 	octave 2
 	note A#, 2
@@ -174,14 +174,14 @@ Music_ChampionBattle_branch_eaab1:
 	intensity $b7
 	octave 3
 	note D#, 4
-	loopchannel 4, Music_ChampionBattle_branch_eaab1
-Music_ChampionBattle_branch_eaabe:
+	loopchannel 4, .loop5
+.loop6:
 	intensity $b2
 	note C_, 2
 	note C_, 2
 	intensity $b7
 	note D#, 4
-	loopchannel 2, Music_ChampionBattle_branch_eaabe
+	loopchannel 2, .loop6
 	intensity $b2
 	note C_, 2
 	note C_, 2
@@ -192,22 +192,22 @@ Music_ChampionBattle_branch_eaabe:
 	note C_, 2
 	intensity $b7
 	note G#, 4
-	callchannel Music_ChampionBattle_branch_eab31
+	callchannel .sub6
 	octave 3
 	note D#, 2
 	note D#, 2
 	intensity $b7
 	note B_, 4
-	callchannel Music_ChampionBattle_branch_eab31
+	callchannel .sub6
 	octave 3
 	note D#, 2
 	note D#, 2
 	intensity $b7
 	octave 4
 	note D_, 4
-	loopchannel 0, Music_ChampionBattle_branch_eaa35
+	loopchannel 0, .mainloop
 
-Music_ChampionBattle_branch_eaaee:
+.sub1:
 	intensity $b2
 	octave 2
 	note A#, 2
@@ -221,7 +221,7 @@ Music_ChampionBattle_branch_eaaee:
 	intensity $b7
 	endchannel
 
-Music_ChampionBattle_branch_eaafc:
+.sub2:
 	intensity $b2
 	octave 2
 	note A#, 2
@@ -231,7 +231,7 @@ Music_ChampionBattle_branch_eaafc:
 	note D#, 4
 	endchannel
 
-Music_ChampionBattle_branch_eab06:
+.sub3:
 	intensity $b2
 	octave 2
 	note A#, 2
@@ -240,7 +240,7 @@ Music_ChampionBattle_branch_eab06:
 	note B_, 4
 	endchannel
 
-Music_ChampionBattle_branch_eab0f:
+.sub4:
 	intensity $b5
 	octave 3
 	note D#, 2
@@ -261,7 +261,7 @@ Music_ChampionBattle_branch_eab0f:
 	intensity $b2
 	endchannel
 
-Music_ChampionBattle_branch_eab24:
+.sub5:
 	intensity $b2
 	octave 3
 	note A#, 2
@@ -274,7 +274,7 @@ Music_ChampionBattle_branch_eab24:
 	intensity $b7
 	endchannel
 
-Music_ChampionBattle_branch_eab31:
+.sub6:
 	intensity $b2
 	note D#, 2
 	note D#, 2
@@ -306,18 +306,18 @@ Music_ChampionBattle_Ch2:
 	note D#, 4
 	intensity $c7
 	note D_, 4
-	callchannel Music_ChampionBattle_branch_eac4f
+	callchannel .sub1
 	note A#, 4
-	callchannel Music_ChampionBattle_branch_eac4f
+	callchannel .sub1
 	note B_, 4
-	callchannel Music_ChampionBattle_branch_eac4f
+	callchannel .sub1
 	octave 4
 	note C#, 4
-	callchannel Music_ChampionBattle_branch_eac5c
+	callchannel .sub2
 	note D_, 4
-	callchannel Music_ChampionBattle_branch_eac5c
+	callchannel .sub2
 	note F_, 4
-	callchannel Music_ChampionBattle_branch_eac5c
+	callchannel .sub2
 	note D_, 4
 	intensity $c2
 	note D#, 2
@@ -349,7 +349,7 @@ Music_ChampionBattle_Ch2:
 	note E_, 8
 	intensity $3c
 	note E_, 8
-Music_ChampionBattle_branch_eab9d:
+.mainloop:
 	intensity $c5
 	note D#, 6
 	octave 3
@@ -397,10 +397,10 @@ Music_ChampionBattle_branch_eab9d:
 	note G#, 8
 	note E_, 8
 	note B_, 8
-	callchannel Music_ChampionBattle_branch_eac79
+	callchannel .sub3
 	note E_, 4
 	note E_, 4
-	callchannel Music_ChampionBattle_branch_eac79
+	callchannel .sub3
 	note F#, 4
 	note F#, 4
 	intensity $c7
@@ -417,7 +417,7 @@ Music_ChampionBattle_branch_eab9d:
 	note F_, 16
 	note F#, 16
 	intensity $c4
-Music_ChampionBattle_branch_eabef:
+.loop1:
 	octave 5
 	note D#, 4
 	note D_, 4
@@ -430,7 +430,7 @@ Music_ChampionBattle_branch_eabef:
 	octave 4
 	note B_, 4
 	note B_, 4
-	loopchannel 2, Music_ChampionBattle_branch_eabef
+	loopchannel 2, .loop1
 	intensity $b0
 	octave 3
 	note D#, 16
@@ -489,9 +489,9 @@ Music_ChampionBattle_branch_eabef:
 	note E_, 8
 	note F#, 8
 	note G#, 8
-	loopchannel 0, Music_ChampionBattle_branch_eab9d
+	loopchannel 0, .mainloop
 
-Music_ChampionBattle_branch_eac4f:
+.sub1:
 	intensity $c2
 	note D#, 2
 	note D#, 6
@@ -504,7 +504,7 @@ Music_ChampionBattle_branch_eac4f:
 	intensity $c7
 	endchannel
 
-Music_ChampionBattle_branch_eac5c:
+.sub2:
 	intensity $c2
 	octave 3
 	note D#, 2
@@ -527,7 +527,7 @@ Music_ChampionBattle_branch_eac5c:
 	intensity $c7
 	endchannel
 
-Music_ChampionBattle_branch_eac79:
+.sub3:
 	intensity $c1
 	note D#, 2
 	note D#, 4
@@ -541,22 +541,22 @@ Music_ChampionBattle_branch_eac79:
 
 Music_ChampionBattle_Ch3:
 	notetype $c, $14
-Music_ChampionBattle_branch_eac88:
+.loop1:
 	octave 3
 	note D#, 1
 	note __, 7
-	loopchannel 3, Music_ChampionBattle_branch_eac88
+	loopchannel 3, .loop1
 	note D#, 1
 	note __, 3
 	note E_, 4
-	callchannel Music_ChampionBattle_branch_ead61
-	callchannel Music_ChampionBattle_branch_ead61
-	callchannel Music_ChampionBattle_branch_ead61
-	callchannel Music_ChampionBattle_branch_ead6f
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub2
 	note D_, 4
-	callchannel Music_ChampionBattle_branch_ead6f
+	callchannel .sub2
 	note A_, 4
-	callchannel Music_ChampionBattle_branch_ead6f
+	callchannel .sub2
 	note D_, 4
 	note D#, 1
 	note __, 1
@@ -589,14 +589,15 @@ Music_ChampionBattle_branch_eac88:
 	note A#, 2
 	note F_, 2
 	note A_, 2
-Music_ChampionBattle_branch_eacc6:
+.mainloop:
+.loop2:
 	note D#, 2
 	note A#, 2
-	loopchannel 8, Music_ChampionBattle_branch_eacc6
-Music_ChampionBattle_branch_eaccc:
+	loopchannel 8, .loop2
+.loop3:
 	note E_, 2
 	note B_, 2
-	loopchannel 5, Music_ChampionBattle_branch_eaccc
+	loopchannel 5, .loop3
 	note E_, 2
 	octave 4
 	note C_, 2
@@ -605,15 +606,15 @@ Music_ChampionBattle_branch_eaccc:
 	note B_, 2
 	note G_, 2
 	note A_, 2
-Music_ChampionBattle_branch_eacda:
+.loop4:
 	note D#, 2
 	note A#, 2
-	loopchannel 8, Music_ChampionBattle_branch_eacda
-Music_ChampionBattle_branch_eace0:
+	loopchannel 8, .loop4
+.loop5:
 	note E_, 2
 	note B_, 2
-	loopchannel 8, Music_ChampionBattle_branch_eace0
-	callchannel Music_ChampionBattle_branch_ead83
+	loopchannel 8, .loop5
+	callchannel .sub3
 	octave 3
 	note D#, 2
 	note E_, 2
@@ -624,7 +625,7 @@ Music_ChampionBattle_branch_eace0:
 	note D_, 2
 	note C#, 2
 	note C_, 2
-	callchannel Music_ChampionBattle_branch_ead83
+	callchannel .sub3
 	octave 3
 	note D#, 2
 	note A#, 2
@@ -640,11 +641,11 @@ Music_ChampionBattle_branch_eace0:
 	note D#, 8
 	note B_, 8
 	note D#, 8
-Music_ChampionBattle_branch_ead05:
+.loop6:
 	note D#, 2
 	note F#, 2
-	loopchannel 16, Music_ChampionBattle_branch_ead05
-	callchannel Music_ChampionBattle_branch_ead8e
+	loopchannel 16, .loop6
+	callchannel .sub4
 	octave 3
 	note E_, 2
 	note B_, 2
@@ -657,16 +658,16 @@ Music_ChampionBattle_branch_ead05:
 	octave 4
 	note D#, 2
 	note E_, 2
-	callchannel Music_ChampionBattle_branch_ead8e
-Music_ChampionBattle_branch_ead1d:
+	callchannel .sub4
+.loop7:
 	octave 3
 	note E_, 2
 	note B_, 2
-	loopchannel 4, Music_ChampionBattle_branch_ead1d
-Music_ChampionBattle_branch_ead24:
+	loopchannel 4, .loop7
+.loop8:
 	note D#, 2
 	note A#, 2
-	loopchannel 5, Music_ChampionBattle_branch_ead24
+	loopchannel 5, .loop8
 	note B_, 2
 	octave 4
 	note D#, 2
@@ -675,10 +676,10 @@ Music_ChampionBattle_branch_ead24:
 	note __, 2
 	note D#, 2
 	note __, 2
-Music_ChampionBattle_branch_ead32:
+.loop9:
 	note E_, 2
 	note B_, 2
-	loopchannel 5, Music_ChampionBattle_branch_ead32
+	loopchannel 5, .loop9
 	octave 4
 	note C#, 2
 	note E_, 2
@@ -687,37 +688,38 @@ Music_ChampionBattle_branch_ead32:
 	note __, 2
 	note E_, 2
 	note __, 2
-Music_ChampionBattle_branch_ead40:
+.loop10:
 	note D#, 2
 	note G#, 2
-	loopchannel 8, Music_ChampionBattle_branch_ead40
-Music_ChampionBattle_branch_ead46:
+	loopchannel 8, .loop10
+.loop11:
 	note D#, 2
 	note A#, 2
-	loopchannel 7, Music_ChampionBattle_branch_ead46
+	loopchannel 7, .loop11
 	note B_, 2
 	note A#, 2
-Music_ChampionBattle_branch_ead4e:
+.loop12:
 	octave 3
 	note D#, 2
 	note A#, 2
 	octave 4
 	note D_, 2
 	note D#, 2
-	loopchannel 7, Music_ChampionBattle_branch_ead4e
+	loopchannel 7, .loop12
 	note C#, 2
 	octave 3
 	note B_, 2
 	note A#, 2
 	note G#, 2
-	loopchannel 0, Music_ChampionBattle_branch_eacc6
+	loopchannel 0, .mainloop
 
-Music_ChampionBattle_branch_ead61:
+.sub1:
+.sub1loop1:
 	note D#, 1
 	note __, 1
 	note D#, 1
 	note __, 5
-	loopchannel 3, Music_ChampionBattle_branch_ead61
+	loopchannel 3, .sub1loop1
 	note D#, 1
 	note __, 1
 	note D#, 1
@@ -725,7 +727,7 @@ Music_ChampionBattle_branch_ead61:
 	note B_, 4
 	endchannel
 
-Music_ChampionBattle_branch_ead6f:
+.sub2:
 	note D#, 1
 	note __, 1
 	note D#, 1
@@ -747,7 +749,7 @@ Music_ChampionBattle_branch_ead6f:
 	note __, 1
 	endchannel
 
-Music_ChampionBattle_branch_ead83:
+.sub3:
 	octave 3
 	note D#, 2
 	note F#, 2
@@ -760,7 +762,7 @@ Music_ChampionBattle_branch_ead83:
 	note C_, 2
 	endchannel
 
-Music_ChampionBattle_branch_ead8e:
+.sub4:
 	octave 3
 	note E_, 2
 	note B_, 2

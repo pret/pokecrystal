@@ -11,7 +11,7 @@ Music_BattleTowerTheme_Ch1:
 	vibrato $12, $34
 	stereopanning $f
 	notetype $6, $94
-Music_BattleTowerTheme_branch_1788a5:
+.mainloop:
 	note __, 16
 	note __, 16
 	note __, 12
@@ -21,7 +21,7 @@ Music_BattleTowerTheme_branch_1788a5:
 	note C_, 2
 	note E_, 2
 	note G_, 4
-	callchannel Music_BattleTowerTheme_branch_17895e
+	callchannel .sub1
 	note G_, 2
 	note __, 2
 	note C_, 4
@@ -39,7 +39,7 @@ Music_BattleTowerTheme_branch_1788a5:
 	octave 3
 	note G_, 2
 	note E_, 2
-	callchannel Music_BattleTowerTheme_branch_17895e
+	callchannel .sub1
 	note G_, 2
 	note __, 2
 	octave 2
@@ -183,9 +183,9 @@ Music_BattleTowerTheme_branch_1788a5:
 	note __, 1
 	note E_, 4
 	note __, 12
-	loopchannel 0, Music_BattleTowerTheme_branch_1788a5
+	loopchannel 0, .mainloop
 
-Music_BattleTowerTheme_branch_17895e:
+.sub1:
 	intensity $94
 	note A_, 2
 	note __, 2
@@ -203,7 +203,7 @@ Music_BattleTowerTheme_branch_17895e:
 
 Music_BattleTowerTheme_Ch2:
 	vibrato $12, $34
-Music_BattleTowerTheme_branch_178970:
+.mainloop:
 	dutycycle $3
 	notetype $6, $b8
 	octave 3
@@ -245,14 +245,14 @@ Music_BattleTowerTheme_branch_178970:
 	octave 4
 	note C_, 2
 	note E_, 4
-	callchannel Music_BattleTowerTheme_branch_178a15
+	callchannel .sub1
 	note A#, 4
 	note __, 2
 	note F_, 2
 	notetype $c, $b7
 	note C_, 12
 	notetype $6, $b7
-	callchannel Music_BattleTowerTheme_branch_178a15
+	callchannel .sub1
 	notetype $c, $b7
 	note A#, 2
 	note __, 1
@@ -341,9 +341,9 @@ Music_BattleTowerTheme_branch_178970:
 	note C_, 2
 	note D_, 2
 	note E_, 4
-	loopchannel 0, Music_BattleTowerTheme_branch_178970
+	loopchannel 0, .mainloop
 
-Music_BattleTowerTheme_branch_178a15:
+.sub1:
 	note F_, 2
 	note __, 2
 	note F_, 8
@@ -359,9 +359,9 @@ Music_BattleTowerTheme_branch_178a15:
 Music_BattleTowerTheme_Ch3:
 	vibrato $12, $34
 	notetype $6, $16
-Music_BattleTowerTheme_branch_178a26:
+.mainloop:
 	stereopanning $ff
-	callchannel Music_BattleTowerTheme_branch_178afe
+	callchannel .sub1
 	note C_, 2
 	note __, 2
 	note F_, 4
@@ -376,7 +376,7 @@ Music_BattleTowerTheme_branch_178a26:
 	note __, 4
 	stereopanning $f0
 	note C_, 8
-	callchannel Music_BattleTowerTheme_branch_178afe
+	callchannel .sub1
 	note C_, 2
 	note __, 2
 	note F_, 4
@@ -390,7 +390,7 @@ Music_BattleTowerTheme_branch_178a26:
 	note __, 4
 	note C_, 2
 	note __, 2
-	callchannel Music_BattleTowerTheme_branch_178afe
+	callchannel .sub1
 	octave 2
 	note A#, 2
 	note __, 2
@@ -563,9 +563,9 @@ Music_BattleTowerTheme_branch_178a26:
 	note __, 1
 	note G_, 4
 	note __, 12
-	loopchannel 0, Music_BattleTowerTheme_branch_178a26
+	loopchannel 0, .mainloop
 
-Music_BattleTowerTheme_branch_178afe:
+.sub1:
 	octave 3
 	note C_, 2
 	note __, 2
@@ -585,8 +585,8 @@ Music_BattleTowerTheme_branch_178afe:
 Music_BattleTowerTheme_Ch4:
 	togglenoise $3
 	notetype $c
-Music_BattleTowerTheme_branch_178b11:
-	callchannel Music_BattleTowerTheme_branch_178b58
+.mainloop:
+	callchannel .sub1
 	note D_, 2
 	note D_, 4
 	note D_, 1
@@ -596,20 +596,20 @@ Music_BattleTowerTheme_branch_178b11:
 	note C#, 1
 	note D_, 1
 	note C#, 1
-Music_BattleTowerTheme_branch_178b1d:
-	callchannel Music_BattleTowerTheme_branch_178b58
-	callchannel Music_BattleTowerTheme_branch_178b61
-	loopchannel 2, Music_BattleTowerTheme_branch_178b1d
-	callchannel Music_BattleTowerTheme_branch_178b6c
-	callchannel Music_BattleTowerTheme_branch_178b61
-	callchannel Music_BattleTowerTheme_branch_178b6c
+.loop1:
+	callchannel .sub1
+	callchannel .sub2
+	loopchannel 2, .loop1
+	callchannel .sub3
+	callchannel .sub2
+	callchannel .sub3
 	note D_, 2
 	note D_, 4
 	note D_, 1
 	note D_, 1
 	note D_, 8
-Music_BattleTowerTheme_branch_178b35:
-	callchannel Music_BattleTowerTheme_branch_178b76
+.loop2:
+	callchannel .sub4
 	note D_, 2
 	note D_, 2
 	note D_, 2
@@ -621,8 +621,8 @@ Music_BattleTowerTheme_branch_178b35:
 	note C#, 1
 	note D_, 1
 	note C#, 1
-	loopchannel 3, Music_BattleTowerTheme_branch_178b35
-	callchannel Music_BattleTowerTheme_branch_178b76
+	loopchannel 3, .loop2
+	callchannel .sub4
 	note D_, 2
 	note D_, 2
 	note D_, 2
@@ -633,9 +633,9 @@ Music_BattleTowerTheme_branch_178b35:
 	note C#, 1
 	note D_, 1
 	note C#, 1
-	loopchannel 0, Music_BattleTowerTheme_branch_178b11
+	loopchannel 0, .mainloop
 
-Music_BattleTowerTheme_branch_178b58:
+.sub1:
 	note D_, 2
 	note D_, 4
 	note D_, 1
@@ -646,7 +646,7 @@ Music_BattleTowerTheme_branch_178b58:
 	note D_, 1
 	endchannel
 
-Music_BattleTowerTheme_branch_178b61:
+.sub2:
 	note D_, 2
 	note D_, 4
 	note D_, 1
@@ -659,7 +659,7 @@ Music_BattleTowerTheme_branch_178b61:
 	note C#, 1
 	endchannel
 
-Music_BattleTowerTheme_branch_178b6c:
+.sub3:
 	note D_, 2
 	note D_, 4
 	note D_, 1
@@ -671,7 +671,7 @@ Music_BattleTowerTheme_branch_178b6c:
 	note D_, 1
 	endchannel
 
-Music_BattleTowerTheme_branch_178b76:
+.sub4:
 	note D_, 2
 	note C#, 2
 	note D_, 2

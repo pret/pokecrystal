@@ -13,9 +13,9 @@ Music_GoldenrodCity_Ch1:
 	note __, 16
 	note __, 16
 	note __, 16
-Music_GoldenrodCity_branch_eb46d:
+.mainloop:
 	dutycycle $0
-	callchannel Music_GoldenrodCity_branch_eb4a9
+	callchannel .sub1
 	octave 3
 	note G#, 1
 	octave 4
@@ -29,14 +29,14 @@ Music_GoldenrodCity_branch_eb46d:
 	note C_, 1
 	intensity $71
 	dutycycle $0
-	callchannel Music_GoldenrodCity_branch_eb4d1
+	callchannel .sub2
 	intensity $77
 	note D#, 2
 	note F_, 2
 	note F#, 2
 	note G#, 4
 	intensity $71
-	callchannel Music_GoldenrodCity_branch_eb4d1
+	callchannel .sub2
 	note D#, 1
 	note F#, 1
 	intensity $77
@@ -48,15 +48,15 @@ Music_GoldenrodCity_branch_eb46d:
 	note D#, 2
 	dutycycle $2
 	intensity $97
-	callchannel Music_GoldenrodCity_branch_eb4a9
+	callchannel .sub1
 	note C_, 4
 	octave 3
 	note G#, 2
 	octave 4
 	note C_, 2
-	loopchannel 0, Music_GoldenrodCity_branch_eb46d
+	loopchannel 0, .mainloop
 
-Music_GoldenrodCity_branch_eb4a9:
+.sub1:
 	octave 4
 	note C#, 2
 	octave 3
@@ -98,7 +98,7 @@ Music_GoldenrodCity_branch_eb4a9:
 	note C#, 2
 	endchannel
 
-Music_GoldenrodCity_branch_eb4d1:
+.sub2:
 	octave 4
 	note F_, 1
 	note C#, 1
@@ -177,16 +177,16 @@ Music_GoldenrodCity_Ch2:
 	vibrato $12, $23
 	dutycycle $2
 	notetype $c, $97
-Music_GoldenrodCity_branch_eb523:
+.mainloop:
 	intensity $97
-	callchannel Music_GoldenrodCity_branch_eb555
+	callchannel .sub1
 	octave 4
 	note F_, 2
 	note F#, 2
 	note G#, 2
 	note F_, 2
 	note D#, 8
-	callchannel Music_GoldenrodCity_branch_eb555
+	callchannel .sub1
 	note G#, 2
 	note A#, 2
 	octave 5
@@ -195,7 +195,7 @@ Music_GoldenrodCity_branch_eb523:
 	note D#, 8
 	dutycycle $2
 	intensity $77
-	callchannel Music_GoldenrodCity_branch_eb572
+	callchannel .sub2
 	octave 4
 	note G#, 2
 	note A#, 2
@@ -204,16 +204,16 @@ Music_GoldenrodCity_branch_eb523:
 	note C_, 4
 	dutycycle $3
 	intensity $77
-	callchannel Music_GoldenrodCity_branch_eb572
+	callchannel .sub2
 	note F_, 2
 	note D#, 2
 	note C#, 2
 	note C_, 2
 	octave 4
 	note G#, 2
-	loopchannel 0, Music_GoldenrodCity_branch_eb523
+	loopchannel 0, .mainloop
 
-Music_GoldenrodCity_branch_eb555:
+.sub1:
 	octave 4
 	note F_, 4
 	note C#, 4
@@ -243,7 +243,7 @@ Music_GoldenrodCity_branch_eb555:
 	dutycycle $1
 	endchannel
 
-Music_GoldenrodCity_branch_eb572:
+.sub2:
 	note C#, 6
 	note F_, 6
 	note C#, 4
@@ -267,10 +267,10 @@ Music_GoldenrodCity_Ch3:
 	stereopanning $ff
 	vibrato $8, $23
 	notetype $c, $25
-Music_GoldenrodCity_branch_eb58c:
-	callchannel Music_GoldenrodCity_branch_eb5aa
-	callchannel Music_GoldenrodCity_branch_eb5aa
-	callchannel Music_GoldenrodCity_branch_eb5d2
+.mainloop:
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub2
 	note __, 3
 	octave 3
 	note C_, 1
@@ -278,7 +278,7 @@ Music_GoldenrodCity_branch_eb58c:
 	note G_, 1
 	note G#, 1
 	note D#, 2
-	callchannel Music_GoldenrodCity_branch_eb5d2
+	callchannel .sub2
 	note __, 1
 	octave 3
 	note G#, 2
@@ -286,9 +286,9 @@ Music_GoldenrodCity_branch_eb58c:
 	note D#, 2
 	octave 2
 	note G#, 2
-	loopchannel 0, Music_GoldenrodCity_branch_eb58c
+	loopchannel 0, .mainloop
 
-Music_GoldenrodCity_branch_eb5aa:
+.sub1:
 	octave 3
 	note C#, 4
 	note __, 2
@@ -330,7 +330,7 @@ Music_GoldenrodCity_branch_eb5aa:
 	note __, 1
 	endchannel
 
-Music_GoldenrodCity_branch_eb5d2:
+.sub2:
 	note C#, 1
 	note __, 1
 	octave 4
@@ -396,7 +396,8 @@ Music_GoldenrodCity_Ch4:
 	note D_, 1
 	note D_, 1
 	note F#, 2
-Music_GoldenrodCity_branch_eb613:
+.mainloop:
+.loop1:
 	note D#, 2
 	note F#, 2
 	note D_, 2
@@ -405,39 +406,39 @@ Music_GoldenrodCity_branch_eb613:
 	note F#, 2
 	note D_, 2
 	note F#, 2
-	loopchannel 3, Music_GoldenrodCity_branch_eb613
-	callchannel Music_GoldenrodCity_branch_eb663
-	callchannel Music_GoldenrodCity_branch_eb66d
+	loopchannel 3, .loop1
+	callchannel .sub1
+	callchannel .sub2
 	note G_, 1
 	note G_, 1
 	note F#, 2
-	callchannel Music_GoldenrodCity_branch_eb66d
+	callchannel .sub2
 	note D_, 2
 	note F#, 2
-	callchannel Music_GoldenrodCity_branch_eb66d
+	callchannel .sub2
 	note D_, 1
 	note D_, 1
 	note F#, 2
-	callchannel Music_GoldenrodCity_branch_eb66d
+	callchannel .sub2
 	note D_, 2
 	note D_, 1
 	note D_, 1
-	callchannel Music_GoldenrodCity_branch_eb66d
+	callchannel .sub2
 	note G_, 1
 	note G_, 1
 	note F#, 2
-	callchannel Music_GoldenrodCity_branch_eb66d
+	callchannel .sub2
 	note D_, 2
 	note F#, 2
-	callchannel Music_GoldenrodCity_branch_eb66d
+	callchannel .sub2
 	note D_, 1
 	note D_, 1
 	note F#, 2
-	callchannel Music_GoldenrodCity_branch_eb66d
+	callchannel .sub2
 	note D_, 2
 	note D_, 1
 	note D_, 1
-Music_GoldenrodCity_branch_eb650:
+.loop2:
 	note D#, 2
 	note F#, 2
 	note D_, 2
@@ -446,11 +447,11 @@ Music_GoldenrodCity_branch_eb650:
 	note F#, 2
 	note D_, 2
 	note F#, 2
-	loopchannel 3, Music_GoldenrodCity_branch_eb650
-	callchannel Music_GoldenrodCity_branch_eb663
-	loopchannel 0, Music_GoldenrodCity_branch_eb613
+	loopchannel 3, .loop2
+	callchannel .sub1
+	loopchannel 0, .mainloop
 
-Music_GoldenrodCity_branch_eb663:
+.sub1:
 	note D#, 2
 	note F#, 2
 	note D_, 2
@@ -462,7 +463,7 @@ Music_GoldenrodCity_branch_eb663:
 	note F#, 2
 	endchannel
 
-Music_GoldenrodCity_branch_eb66d:
+.sub2:
 	note D#, 2
 	note D_, 1
 	note D#, 3

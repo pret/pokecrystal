@@ -37,17 +37,17 @@ Music_BugCatchingContest_Ch1:
 	note __, 1
 	note E_, 1
 	note E_, 1
-Music_BugCatchingContest_branch_f7c4b:
+.mainloop:
 	notetype $c, $b1
-Music_BugCatchingContest_branch_f7c4e:
+.loop1:
 	note __, 2
 	octave 2
 	note A_, 2
-	loopchannel 4, Music_BugCatchingContest_branch_f7c4e
-Music_BugCatchingContest_branch_f7c55:
+	loopchannel 4, .loop1
+.loop2:
 	note __, 2
 	note B_, 2
-	loopchannel 8, Music_BugCatchingContest_branch_f7c55
+	loopchannel 8, .loop2
 	intensity $b4
 	dutycycle $1
 	octave 3
@@ -60,11 +60,11 @@ Music_BugCatchingContest_branch_f7c55:
 	note E_, 1
 	intensity $b1
 	dutycycle $2
-Music_BugCatchingContest_branch_f7c6b:
+.loop3:
 	note __, 2
 	octave 2
 	note A_, 2
-	loopchannel 4, Music_BugCatchingContest_branch_f7c6b
+	loopchannel 4, .loop3
 	note __, 2
 	note B_, 2
 	note __, 2
@@ -90,11 +90,11 @@ Music_BugCatchingContest_branch_f7c6b:
 	note E_, 4
 	note __, 4
 	note E_, 4
-Music_BugCatchingContest_branch_f7c8e:
+.loop4:
 	note __, 4
 	octave 2
 	note A_, 4
-	loopchannel 3, Music_BugCatchingContest_branch_f7c8e
+	loopchannel 3, .loop4
 	intensity $a7
 	octave 4
 	note F#, 4
@@ -185,7 +185,7 @@ Music_BugCatchingContest_branch_f7c8e:
 	note __, 2
 	note E_, 2
 	note E_, 2
-	loopchannel 0, Music_BugCatchingContest_branch_f7c4b
+	loopchannel 0, .mainloop
 
 Music_BugCatchingContest_Ch2:
 	stereopanning $f0
@@ -193,7 +193,7 @@ Music_BugCatchingContest_Ch2:
 	dutycycle $1
 	notetype $c, $c7
 	note __, 8
-Music_BugCatchingContest_branch_f7cff:
+.loop5:
 	octave 4
 	note A_, 1
 	note __, 1
@@ -201,10 +201,10 @@ Music_BugCatchingContest_branch_f7cff:
 	note __, 1
 	note A_, 1
 	note A_, 1
-	loopchannel 4, Music_BugCatchingContest_branch_f7cff
-Music_BugCatchingContest_branch_f7d0a:
+	loopchannel 4, .loop5
+.mainloop:
 	dutycycle $0
-	callchannel Music_BugCatchingContest_branch_f7d8e
+	callchannel .sub1
 	octave 2
 	note E_, 2
 	octave 3
@@ -245,7 +245,7 @@ Music_BugCatchingContest_branch_f7d0a:
 	octave 3
 	note E_, 1
 	note __, 1
-	callchannel Music_BugCatchingContest_branch_f7d8e
+	callchannel .sub1
 	octave 2
 	note E_, 2
 	octave 3
@@ -325,9 +325,9 @@ Music_BugCatchingContest_branch_f7d0a:
 	note A_, 1
 	note __, 3
 	note A_, 10
-	loopchannel 0, Music_BugCatchingContest_branch_f7d0a
+	loopchannel 0, .mainloop
 
-Music_BugCatchingContest_branch_f7d8e:
+.sub1:
 	octave 2
 	note D_, 2
 	octave 3
@@ -401,7 +401,7 @@ Music_BugCatchingContest_Ch3:
 	note __, 1
 	note C#, 1
 	note C#, 1
-Music_BugCatchingContest_branch_f7dda:
+.mainloop:
 	notetype $c, $14
 	note F#, 5
 	note __, 1
@@ -582,7 +582,7 @@ Music_BugCatchingContest_branch_f7dda:
 	note __, 2
 	note C#, 2
 	note C#, 2
-	loopchannel 0, Music_BugCatchingContest_branch_f7dda
+	loopchannel 0, .mainloop
 
 Music_BugCatchingContest_Ch4:
 	togglenoise $4
@@ -601,8 +601,9 @@ Music_BugCatchingContest_Ch4:
 	note C#, 1
 	note E_, 2
 	note E_, 2
-	callchannel Music_BugCatchingContest_branch_f7ee2
-Music_BugCatchingContest_branch_f7eaf:
+	callchannel Music_BugCatchingContest_Ch4.sub1
+.mainloop:
+.loop1:
 	note D_, 4
 	note D_, 4
 	note D_, 2
@@ -631,7 +632,7 @@ Music_BugCatchingContest_branch_f7eaf:
 	note C#, 1
 	note C#, 1
 	note C#, 1
-	loopchannel 5, Music_BugCatchingContest_branch_f7eaf
+	loopchannel 5, .loop1
 	note D_, 4
 	note D_, 4
 	note D_, 2
@@ -644,10 +645,10 @@ Music_BugCatchingContest_branch_f7eaf:
 	note D_, 2
 	note D_, 2
 	note D_, 2
-	callchannel Music_BugCatchingContest_branch_f7ee2
-	loopchannel 0, Music_BugCatchingContest_branch_f7eaf
+	callchannel .sub1
+	loopchannel 0, .mainloop
 
-Music_BugCatchingContest_branch_f7ee2:
+.sub1:
 	note D_, 4
 	note B_, 8
 	note D_, 2

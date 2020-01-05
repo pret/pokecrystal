@@ -14,7 +14,8 @@ Music_MainMenu_Ch1:
 	notetype $c, $f
 	octave 3
 	note D_, 8
-Music_MainMenu_branch_f791d:
+.mainloop:
+.loop1:
 	notetype $c, $92
 	octave 3
 	note C#, 6
@@ -23,7 +24,7 @@ Music_MainMenu_branch_f791d:
 	note C#, 2
 	note C#, 2
 	note C#, 4
-	loopchannel 2, Music_MainMenu_branch_f791d
+	loopchannel 2, .loop1
 	note D#, 6
 	note D#, 1
 	note D#, 1
@@ -39,7 +40,7 @@ Music_MainMenu_branch_f791d:
 	notetype $c, $94
 	octave 3
 	note C_, 4
-	loopchannel 0, Music_MainMenu_branch_f791d
+	loopchannel 0, .mainloop
 
 Music_MainMenu_Ch2:
 	dutycycle $3
@@ -47,7 +48,8 @@ Music_MainMenu_Ch2:
 	notetype $c, $f
 	octave 3
 	note G_, 8
-Music_MainMenu_branch_f7949:
+.mainloop:
+.loop1:
 	notetype $c, $a2
 	note F#, 6
 	note F#, 1
@@ -55,7 +57,7 @@ Music_MainMenu_branch_f7949:
 	note F#, 2
 	note F#, 2
 	note F#, 4
-	loopchannel 2, Music_MainMenu_branch_f7949
+	loopchannel 2, .loop1
 	note G#, 6
 	note G#, 1
 	note G#, 1
@@ -69,13 +71,14 @@ Music_MainMenu_branch_f7949:
 	note E_, 2
 	notetype $c, $a4
 	note F_, 4
-	loopchannel 0, Music_MainMenu_branch_f7949
+	loopchannel 0, .mainloop
 
 Music_MainMenu_Ch3:
 	stereopanning $f0
 	notetype $c, $25
 	note __, 8
-Music_MainMenu_branch_f796f:
+.mainloop:
+.loop1:
 	octave 2
 	note F#, 1
 	note __, 5
@@ -87,7 +90,7 @@ Music_MainMenu_branch_f796f:
 	note __, 1
 	note F#, 1
 	note __, 3
-	loopchannel 2, Music_MainMenu_branch_f796f
+	loopchannel 2, .loop1
 	note G#, 1
 	note __, 5
 	note G#, 1
@@ -108,7 +111,7 @@ Music_MainMenu_branch_f796f:
 	note __, 1
 	note F_, 1
 	note __, 3
-	loopchannel 0, Music_MainMenu_branch_f796f
+	loopchannel 0, .mainloop
 
 Music_MainMenu_Ch4:
 	stereopanning $f
@@ -123,7 +126,7 @@ Music_MainMenu_Ch4:
 	note D_, 1
 	note D_, 1
 	note D_, 1
-Music_MainMenu_branch_f79a5:
+.mainloop:
 	note D_, 6
 	note D_, 1
 	note D_, 1
@@ -139,4 +142,4 @@ Music_MainMenu_branch_f79a5:
 	note D#, 1
 	note D_, 1
 	note D_, 1
-	loopchannel 0, Music_MainMenu_branch_f79a5
+	loopchannel 0, .mainloop

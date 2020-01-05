@@ -3,7 +3,7 @@ Music_LookKimonoGirl:
 	musicheader 1, 2, Music_LookKimonoGirl_Ch2
 	musicheader 1, 3, Music_LookKimonoGirl_Ch3
 
-	db $3
+	db $3 ; unused
 
 Music_LookKimonoGirl_Ch1:
 	tempo 160
@@ -12,17 +12,17 @@ Music_LookKimonoGirl_Ch1:
 	dutycycle $1
 	notetype $6, $87
 	tone $0001
-	callchannel Music_LookKimonoGirl_branch_f7aa8
+	callchannel Music_LookKimonoGirl_Ch2.sub2
 	tone 0
-Music_LookKimonoGirl_branch_f79d7:
+.mainloop:
 	notetype $c, $b2
-	callchannel Music_LookKimonoGirl_branch_f7a13
-	callchannel Music_LookKimonoGirl_branch_f7a13
-	callchannel Music_LookKimonoGirl_branch_f7a34
-	callchannel Music_LookKimonoGirl_branch_f7a34
-	callchannel Music_LookKimonoGirl_branch_f7a13
-	callchannel Music_LookKimonoGirl_branch_f7a13
-	callchannel Music_LookKimonoGirl_branch_f7a34
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub2
+	callchannel .sub2
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub2
 	intensity $b4
 	octave 3
 	note E_, 1
@@ -47,9 +47,9 @@ Music_LookKimonoGirl_branch_f79d7:
 	intensity $54
 	octave 3
 	note A_, 1
-	loopchannel 0, Music_LookKimonoGirl_branch_f79d7
+	loopchannel 0, .mainloop
 
-Music_LookKimonoGirl_branch_f7a13:
+.sub1:
 	intensity $b4
 	octave 2
 	note F_, 1
@@ -76,7 +76,7 @@ Music_LookKimonoGirl_branch_f7a13:
 	note D_, 1
 	endchannel
 
-Music_LookKimonoGirl_branch_f7a34:
+.sub2:
 	intensity $b4
 	octave 2
 	note E_, 1
@@ -107,8 +107,8 @@ Music_LookKimonoGirl_Ch2:
 	dutycycle $0
 	notetype $6, $a7
 	stereopanning $f0
-	callchannel Music_LookKimonoGirl_branch_f7aa8
-Music_LookKimonoGirl_branch_f7a5f:
+	callchannel .sub2
+.mainloop:
 	dutycycle $3
 	notetype $c, $91
 	octave 5
@@ -130,7 +130,7 @@ Music_LookKimonoGirl_branch_f7a5f:
 	note A_, 1
 	note E_, 1
 	note D_, 1
-	callchannel Music_LookKimonoGirl_branch_f7a94
+	callchannel .sub1
 	octave 5
 	note F_, 1
 	note D_, 1
@@ -150,10 +150,10 @@ Music_LookKimonoGirl_branch_f7a5f:
 	note A_, 1
 	note E_, 1
 	note D_, 1
-	callchannel Music_LookKimonoGirl_branch_f7a94
-	loopchannel 0, Music_LookKimonoGirl_branch_f7a5f
+	callchannel .sub1
+	loopchannel 0, .mainloop
 
-Music_LookKimonoGirl_branch_f7a94:
+.sub1:
 	octave 5
 	note B_, 1
 	note A_, 1
@@ -175,7 +175,7 @@ Music_LookKimonoGirl_branch_f7a94:
 	note E_, 1
 	endchannel
 
-Music_LookKimonoGirl_branch_f7aa8:
+.sub2:
 	octave 4
 	note E_, 1
 	octave 5
@@ -226,7 +226,7 @@ Music_LookKimonoGirl_Ch3:
 	octave 5
 	note D_, 2
 	note E_, 2
-Music_LookKimonoGirl_branch_f7aec:
+.mainloop:
 	octave 5
 	note D_, 4
 	note E_, 4
@@ -262,4 +262,4 @@ Music_LookKimonoGirl_branch_f7aec:
 	note E_, 2
 	note D_, 8
 	note E_, 8
-	loopchannel 0, Music_LookKimonoGirl_branch_f7aec
+	loopchannel 0, .mainloop

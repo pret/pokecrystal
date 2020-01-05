@@ -17,7 +17,7 @@ Music_SSAqua_Ch1:
 	note __, 1
 	note G_, 1
 	note __, 1
-Music_SSAqua_branch_eadbc:
+.mainloop:
 	octave 2
 	note G_, 16
 	note __, 8
@@ -42,7 +42,7 @@ Music_SSAqua_branch_eadbc:
 	note __, 8
 	dutycycle $1
 	intensity $61
-	callchannel Music_SSAqua_branch_eaff5
+	callchannel Music_SSAqua_Ch2.sub4
 	octave 5
 	note G_, 1
 	octave 4
@@ -67,8 +67,8 @@ Music_SSAqua_branch_eadbc:
 	note B_, 1
 	note A_, 1
 	note G_, 1
-	callchannel Music_SSAqua_branch_eaff5
-	callchannel Music_SSAqua_branch_eb03e
+	callchannel Music_SSAqua_Ch2.sub4
+	callchannel Music_SSAqua_Ch2.sub5
 	note __, 16
 	note __, 16
 	note __, 16
@@ -246,7 +246,7 @@ Music_SSAqua_branch_eadbc:
 	note D_, 2
 	note F#, 2
 	note A_, 2
-	loopchannel 0, Music_SSAqua_branch_eadbc
+	loopchannel 0, .mainloop
 
 Music_SSAqua_Ch2:
 	stereopanning $f0
@@ -254,15 +254,15 @@ Music_SSAqua_Ch2:
 	vibrato $8, $33
 	notetype $c, $b7
 	note __, 2
-Music_SSAqua_branch_eaed5:
+.mainloop:
 	notetype $c, $b7
 	dutycycle $1
 	intensity $61
-	callchannel Music_SSAqua_branch_eaff5
-	callchannel Music_SSAqua_branch_eb03e
+	callchannel .sub4
+	callchannel .sub5
 	dutycycle $2
 	intensity $d7
-	callchannel Music_SSAqua_branch_eafe0
+	callchannel .sub3
 	note B_, 1
 	note __, 1
 	note G_, 1
@@ -275,7 +275,7 @@ Music_SSAqua_branch_eaed5:
 	note C#, 1
 	note E_, 1
 	pitchoffset 0, CC
-	callchannel Music_SSAqua_branch_eafe0
+	callchannel .sub3
 	pitchoffset 0, C_
 	octave 3
 	note B_, 1
@@ -291,7 +291,7 @@ Music_SSAqua_branch_eaed5:
 	note B_, 1
 	octave 4
 	note C_, 1
-	callchannel Music_SSAqua_branch_eaf88
+	callchannel .sub1
 	note G_, 4
 	note __, 4
 	note G_, 8
@@ -311,7 +311,7 @@ Music_SSAqua_branch_eaed5:
 	note B_, 1
 	octave 4
 	note C_, 1
-	callchannel Music_SSAqua_branch_eaf88
+	callchannel .sub1
 	note G_, 4
 	note __, 4
 	note G_, 8
@@ -336,7 +336,7 @@ Music_SSAqua_branch_eaed5:
 	dutycycle $0
 	note B_, 2
 	note A_, 2
-	callchannel Music_SSAqua_branch_eafd5
+	callchannel .sub2
 	notetype $6, $b7
 	note G#, 1
 	note A_, 11
@@ -363,7 +363,7 @@ Music_SSAqua_branch_eaed5:
 	note A#, 12
 	note B_, 2
 	note A_, 2
-	callchannel Music_SSAqua_branch_eafd5
+	callchannel .sub2
 	notetype $6, $b7
 	note G#, 1
 	note A_, 11
@@ -389,9 +389,9 @@ Music_SSAqua_branch_eaed5:
 	note G_, 8
 	note A_, 8
 	note __, 8
-	loopchannel 0, Music_SSAqua_branch_eaed5
+	loopchannel 0, .mainloop
 
-Music_SSAqua_branch_eaf88:
+.sub1:
 	note D_, 6
 	octave 3
 	note B_, 1
@@ -466,7 +466,7 @@ Music_SSAqua_branch_eaf88:
 	note F#, 2
 	endchannel
 
-Music_SSAqua_branch_eafd5:
+.sub2:
 	notetype $c, $b7
 	note B_, 10
 	note F#, 1
@@ -477,7 +477,7 @@ Music_SSAqua_branch_eafd5:
 	note __, 1
 	endchannel
 
-Music_SSAqua_branch_eafe0:
+.sub3:
 	octave 3
 	note D_, 10
 	note E_, 1
@@ -500,7 +500,7 @@ Music_SSAqua_branch_eafe0:
 	note __, 1
 	endchannel
 
-Music_SSAqua_branch_eaff5:
+.sub4:
 	octave 5
 	note G_, 1
 	note D_, 1
@@ -575,7 +575,7 @@ Music_SSAqua_branch_eaff5:
 	note G_, 1
 	endchannel
 
-Music_SSAqua_branch_eb03e:
+.sub5:
 	octave 5
 	note G_, 1
 	octave 4
@@ -610,7 +610,7 @@ Music_SSAqua_Ch3:
 	note __, 1
 	note G_, 1
 	note __, 1
-Music_SSAqua_branch_eb063:
+.mainloop:
 	note G_, 16
 	note __, 8
 	note G_, 2
@@ -641,9 +641,9 @@ Music_SSAqua_branch_eb063:
 	note B_, 1
 	octave 4
 	note E_, 1
-	callchannel Music_SSAqua_branch_eb14d
-	callchannel Music_SSAqua_branch_eb14d
-Music_SSAqua_branch_eb08d:
+	callchannel .sub1
+	callchannel .sub1
+.loop1:
 	note G_, 2
 	note __, 2
 	octave 3
@@ -670,10 +670,10 @@ Music_SSAqua_branch_eb08d:
 	octave 2
 	note G_, 1
 	note __, 1
-	loopchannel 4, Music_SSAqua_branch_eb08d
-	callchannel Music_SSAqua_branch_eb172
-	callchannel Music_SSAqua_branch_eb172
-	callchannel Music_SSAqua_branch_eb230
+	loopchannel 4, .loop1
+	callchannel .sub2
+	callchannel .sub2
+	callchannel .sub3
 	octave 3
 	note E_, 2
 	note __, 2
@@ -746,7 +746,7 @@ Music_SSAqua_branch_eb08d:
 	octave 4
 	note F#, 1
 	note __, 3
-	callchannel Music_SSAqua_branch_eb230
+	callchannel .sub3
 	octave 3
 	note E_, 2
 	note __, 2
@@ -821,9 +821,9 @@ Music_SSAqua_branch_eb08d:
 	note __, 1
 	note G_, 1
 	note __, 1
-	loopchannel 0, Music_SSAqua_branch_eb063
+	loopchannel 0, .mainloop
 
-Music_SSAqua_branch_eb14d:
+.sub1:
 	notetype $6, $15
 	octave 2
 	note G_, 2
@@ -860,7 +860,7 @@ Music_SSAqua_branch_eb14d:
 	note __, 1
 	endchannel
 
-Music_SSAqua_branch_eb172:
+.sub2:
 	octave 2
 	note G_, 2
 	note __, 2
@@ -1052,7 +1052,7 @@ Music_SSAqua_branch_eb172:
 	note __, 3
 	endchannel
 
-Music_SSAqua_branch_eb230:
+.sub3:
 	octave 2
 	note B_, 2
 	note __, 2
@@ -1083,7 +1083,8 @@ Music_SSAqua_Ch4:
 	togglenoise $3
 	notetype $c
 	note __, 2
-Music_SSAqua_branch_eb24e:
+.mainloop:
+.loop1:
 	note G#, 1
 	note G_, 1
 	note G_, 1
@@ -1100,34 +1101,34 @@ Music_SSAqua_branch_eb24e:
 	note G_, 1
 	note G#, 1
 	note G_, 1
-	loopchannel 12, Music_SSAqua_branch_eb24e
-	callchannel Music_SSAqua_branch_eb2ae
-	callchannel Music_SSAqua_branch_eb2ae
-	callchannel Music_SSAqua_branch_eb2ae
-	callchannel Music_SSAqua_branch_eb2bb
-	callchannel Music_SSAqua_branch_eb2ae
-	callchannel Music_SSAqua_branch_eb2ae
-	callchannel Music_SSAqua_branch_eb2ae
-	callchannel Music_SSAqua_branch_eb2bb
-	callchannel Music_SSAqua_branch_eb2ae
-	callchannel Music_SSAqua_branch_eb2ae
-	callchannel Music_SSAqua_branch_eb2ae
-	callchannel Music_SSAqua_branch_eb2bb
-	callchannel Music_SSAqua_branch_eb2ae
-	callchannel Music_SSAqua_branch_eb2ae
-	callchannel Music_SSAqua_branch_eb2ae
-	callchannel Music_SSAqua_branch_eb2c7
-	callchannel Music_SSAqua_branch_eb2ae
-	callchannel Music_SSAqua_branch_eb2ae
-	callchannel Music_SSAqua_branch_eb2ae
-	callchannel Music_SSAqua_branch_eb2bb
-	callchannel Music_SSAqua_branch_eb2ae
-	callchannel Music_SSAqua_branch_eb2ae
-	callchannel Music_SSAqua_branch_eb2ae
-	callchannel Music_SSAqua_branch_eb2c7
-	loopchannel 0, Music_SSAqua_branch_eb24e
+	loopchannel 12, .loop1
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub2
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub2
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub2
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub3
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub2
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub3
+	loopchannel 0, .mainloop
 
-Music_SSAqua_branch_eb2ae:
+.sub1:
 	note A#, 2
 	note G_, 1
 	note G_, 1
@@ -1142,7 +1143,7 @@ Music_SSAqua_branch_eb2ae:
 	note G_, 1
 	endchannel
 
-Music_SSAqua_branch_eb2bb:
+.sub2:
 	note A#, 2
 	note G_, 1
 	note G_, 1
@@ -1156,7 +1157,7 @@ Music_SSAqua_branch_eb2bb:
 	note F#, 2
 	endchannel
 
-Music_SSAqua_branch_eb2c7:
+.sub3:
 	note A#, 2
 	note G_, 1
 	note G_, 1

@@ -12,7 +12,7 @@ Music_LookMysticalMan_Ch1:
 	stereopanning $f
 	notetype $c, $b3
 	note __, 8
-Music_LookMysticalMan_branch_178458:
+.mainloop:
 	dutycycle $3
 	notetype $6, $96
 	octave 3
@@ -60,7 +60,7 @@ Music_LookMysticalMan_branch_178458:
 	note __, 4
 	note C#, 4
 	dutycycle $2
-	callchannel Music_LookMysticalMan_branch_1784f9
+	callchannel .sub1
 	octave 4
 	note C#, 2
 	note __, 2
@@ -75,7 +75,7 @@ Music_LookMysticalMan_branch_178458:
 	note F#, 4
 	note __, 4
 	note E_, 4
-	callchannel Music_LookMysticalMan_branch_1784f9
+	callchannel .sub1
 	octave 4
 	note C#, 2
 	note __, 2
@@ -93,14 +93,14 @@ Music_LookMysticalMan_branch_178458:
 	note A#, 6
 	dutycycle $2
 	intensity $72
-Music_LookMysticalMan_branch_1784b4:
+.loop1:
 	octave 5
 	note D_, 2
 	octave 4
 	note B_, 2
 	note F#, 2
 	note D_, 2
-	loopchannel 4, Music_LookMysticalMan_branch_1784b4
+	loopchannel 4, .loop1
 	octave 5
 	note D_, 2
 	octave 4
@@ -123,7 +123,7 @@ Music_LookMysticalMan_branch_1784b4:
 	note D_, 2
 	note F#, 2
 	note B_, 2
-Music_LookMysticalMan_branch_1784d4:
+.loop2:
 	octave 5
 	note D_, 2
 	octave 4
@@ -131,7 +131,7 @@ Music_LookMysticalMan_branch_1784d4:
 	note E_, 2
 	octave 3
 	note B_, 2
-	loopchannel 4, Music_LookMysticalMan_branch_1784d4
+	loopchannel 4, .loop2
 	octave 5
 	note C#, 2
 	octave 4
@@ -154,9 +154,9 @@ Music_LookMysticalMan_branch_1784d4:
 	note E_, 2
 	note F#, 2
 	note A#, 2
-	loopchannel 0, Music_LookMysticalMan_branch_178458
+	loopchannel 0, .mainloop
 
-Music_LookMysticalMan_branch_1784f9:
+.sub1:
 	note D_, 16
 	octave 4
 	note D_, 2
@@ -196,7 +196,7 @@ Music_LookMysticalMan_Ch2:
 	vibrato $a, $34
 	notetype $c, $b3
 	note __, 8
-Music_LookMysticalMan_branch_178523:
+.mainloop:
 	stereopanning $f0
 	notetype $6, $b8
 	octave 3
@@ -252,22 +252,22 @@ Music_LookMysticalMan_branch_178523:
 	note F#, 4
 	note __, 4
 	note E_, 4
-	callchannel Music_LookMysticalMan_branch_17859a
+	callchannel .sub1
 	note F#, 2
 	note __, 2
 	note E_, 2
 	note __, 2
 	note D_, 2
 	note E_, 6
-	callchannel Music_LookMysticalMan_branch_1785c8
-	callchannel Music_LookMysticalMan_branch_17859a
+	callchannel .sub2
+	callchannel .sub1
 	note F#, 2
 	note __, 2
 	note F#, 2
 	note __, 2
 	note E_, 2
 	note D_, 6
-	callchannel Music_LookMysticalMan_branch_1785c8
+	callchannel .sub2
 	notetype $c, $b7
 	note B_, 2
 	note __, 2
@@ -293,9 +293,9 @@ Music_LookMysticalMan_branch_178523:
 	note __, 1
 	note A#, 16
 	note __, 2
-	loopchannel 0, Music_LookMysticalMan_branch_178523
+	loopchannel 0, .mainloop
 
-Music_LookMysticalMan_branch_17859a:
+.sub1:
 	note B_, 2
 	note __, 2
 	octave 4
@@ -340,7 +340,7 @@ Music_LookMysticalMan_branch_17859a:
 	note E_, 6
 	endchannel
 
-Music_LookMysticalMan_branch_1785c8:
+.sub2:
 	note C#, 8
 	intensity $88
 	note C_, 1
@@ -360,7 +360,7 @@ Music_LookMysticalMan_branch_1785c8:
 Music_LookMysticalMan_Ch3:
 	notetype $6, $16
 	note __, 16
-Music_LookMysticalMan_branch_1785df:
+.mainloop:
 	octave 2
 	note B_, 4
 	octave 3
@@ -415,7 +415,7 @@ Music_LookMysticalMan_branch_1785df:
 	note A_, 2
 	octave 3
 	note E_, 2
-Music_LookMysticalMan_branch_178615:
+.loop1:
 	octave 2
 	note F#, 4
 	note A#, 2
@@ -469,7 +469,7 @@ Music_LookMysticalMan_branch_178615:
 	note C#, 2
 	octave 2
 	note E_, 6
-	loopchannel 2, Music_LookMysticalMan_branch_178615
+	loopchannel 2, .loop1
 	note F#, 4
 	note A#, 2
 	note __, 2
@@ -530,7 +530,7 @@ Music_LookMysticalMan_branch_178615:
 	octave 2
 	note B_, 8
 	note A#, 4
-	loopchannel 0, Music_LookMysticalMan_branch_1785df
+	loopchannel 0, .mainloop
 
 Music_LookMysticalMan_Ch4:
 	togglenoise $3
@@ -540,15 +540,16 @@ Music_LookMysticalMan_Ch4:
 	note D_, 2
 	note D_, 1
 	note D_, 1
-Music_LookMysticalMan_branch_178697:
-	callchannel Music_LookMysticalMan_branch_1786d3
-	callchannel Music_LookMysticalMan_branch_1786d9
-	callchannel Music_LookMysticalMan_branch_1786d3
-	callchannel Music_LookMysticalMan_branch_1786df
-	loopchannel 2, Music_LookMysticalMan_branch_178697
-	callchannel Music_LookMysticalMan_branch_1786d3
-	callchannel Music_LookMysticalMan_branch_1786d9
-	callchannel Music_LookMysticalMan_branch_1786d3
+.mainloop:
+.loop1:
+	callchannel .sub1
+	callchannel .sub2
+	callchannel .sub1
+	callchannel .sub3
+	loopchannel 2, .loop1
+	callchannel .sub1
+	callchannel .sub2
+	callchannel .sub1
 	note D_, 2
 	note D#, 2
 	note D_, 2
@@ -559,7 +560,7 @@ Music_LookMysticalMan_branch_178697:
 	note D_, 2
 	note D_, 1
 	note D_, 1
-Music_LookMysticalMan_branch_1786ba:
+.loop2:
 	note D_, 2
 	note D#, 2
 	note D_, 3
@@ -577,10 +578,10 @@ Music_LookMysticalMan_branch_1786ba:
 	note D_, 2
 	note D_, 1
 	note D_, 1
-	loopchannel 2, Music_LookMysticalMan_branch_1786ba
-	loopchannel 0, Music_LookMysticalMan_branch_178697
+	loopchannel 2, .loop2
+	loopchannel 0, .mainloop
 
-Music_LookMysticalMan_branch_1786d3:
+.sub1:
 	note D#, 4
 	note D_, 3
 	note D#, 3
@@ -588,7 +589,7 @@ Music_LookMysticalMan_branch_1786d3:
 	note D_, 4
 	endchannel
 
-Music_LookMysticalMan_branch_1786d9:
+.sub2:
 	note D#, 4
 	note D_, 3
 	note D_, 3
@@ -596,7 +597,7 @@ Music_LookMysticalMan_branch_1786d9:
 	note D_, 4
 	endchannel
 
-Music_LookMysticalMan_branch_1786df:
+.sub3:
 	note D#, 4
 	note D_, 2
 	note D#, 1

@@ -203,7 +203,7 @@ Music_PokemonChannel_Ch3:
 Music_PokemonChannel_Ch4:
 	togglenoise $3
 	notetype $c
-Music_PokemonChannel_branch_ee54d:
+.loop1:
 	note A#, 3
 	note A#, 1
 	note D_, 2
@@ -212,7 +212,7 @@ Music_PokemonChannel_branch_ee54d:
 	note D_, 2
 	note A#, 1
 	note D_, 1
-	loopchannel 2, Music_PokemonChannel_branch_ee54d
+	loopchannel 2, .loop1
 	note G#, 2
 	note A#, 2
 	note G#, 1
