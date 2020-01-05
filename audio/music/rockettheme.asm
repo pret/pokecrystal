@@ -14,28 +14,28 @@ Music_RocketTheme_Ch1:
 	octave 4
 	note C_, 1
 	note D_, 1
-Music_RocketTheme_branch_f768b:
+.mainloop:
 	dutycycle $3
 	notetype $c, $a8
-	callchannel Music_RocketTheme_branch_f74e6
+	callchannel Music_LookRocket_Ch1.sub1
 	dutycycle $1
 	intensity $a8
-	callchannel Music_RocketTheme_branch_f74f7
-	callchannel Music_RocketTheme_branch_f758a
+	callchannel Music_LookRocket_Ch1.sub2
+	callchannel Music_LookRocket_Ch2.sub5
 	octave 4
 	note F#, 1
 	note __, 1
 	intensity $53
-	callchannel Music_RocketTheme_branch_f750c
+	callchannel Music_LookRocket_Ch1.sub3
 	intensity $c3
-	callchannel Music_RocketTheme_branch_f750c
+	callchannel Music_LookRocket_Ch1.sub3
 	intensity $e3
-	callchannel Music_RocketTheme_branch_f750c
+	callchannel Music_LookRocket_Ch1.sub3
 	note __, 16
 	dutycycle $0
 	notetype $6, $b3
 	vibrato $6, $64
-	callchannel Music_RocketTheme_branch_f7727
+	callchannel .sub1
 	octave 4
 	note F_, 1
 	note F#, 3
@@ -60,7 +60,7 @@ Music_RocketTheme_branch_f768b:
 	note __, 4
 	note D#, 2
 	note F#, 2
-	callchannel Music_RocketTheme_branch_f7727
+	callchannel .sub1
 	octave 3
 	note F#, 1
 	note G_, 3
@@ -86,13 +86,13 @@ Music_RocketTheme_branch_f768b:
 	note E_, 2
 	note D#, 2
 	note D_, 2
-Music_RocketTheme_branch_f76ef:
+.loop1:
 	note __, 4
 	note F_, 2
 	note __, 14
 	note F#, 2
 	note __, 10
-	loopchannel 3, Music_RocketTheme_branch_f76ef
+	loopchannel 3, .loop1
 	note __, 4
 	note F_, 2
 	note __, 14
@@ -102,33 +102,33 @@ Music_RocketTheme_branch_f76ef:
 	note __, 2
 	note D#, 2
 	note C_, 2
-Music_RocketTheme_branch_f7701:
+.loop2:
 	note F#, 2
 	note A_, 2
-	loopchannel 4, Music_RocketTheme_branch_f7701
-Music_RocketTheme_branch_f7707:
+	loopchannel 4, .loop2
+.loop3:
 	note G_, 2
 	note A#, 2
-	loopchannel 4, Music_RocketTheme_branch_f7707
-Music_RocketTheme_branch_f770d:
+	loopchannel 4, .loop3
+.loop4:
 	note G#, 2
 	note B_, 2
-	loopchannel 4, Music_RocketTheme_branch_f770d
-Music_RocketTheme_branch_f7713:
+	loopchannel 4, .loop4
+.loop5:
 	octave 3
 	note A_, 2
 	octave 4
 	note C_, 2
-	loopchannel 4, Music_RocketTheme_branch_f7713
+	loopchannel 4, .loop5
 	notetype $c, $b3
 	note __, 16
 	note __, 12
 	note F_, 2
 	note C_, 1
 	note D_, 1
-	loopchannel 0, Music_RocketTheme_branch_f768b
+	loopchannel 0, .mainloop
 
-Music_RocketTheme_branch_f7727:
+.sub1:
 	note __, 7
 	note B_, 1
 	octave 4
@@ -161,24 +161,24 @@ Music_RocketTheme_Ch2:
 	octave 5
 	note C_, 1
 	note D_, 1
-Music_RocketTheme_branch_f774b:
+.mainloop:
 	notetype $c, $b7
-	callchannel Music_RocketTheme_branch_f7547
+	callchannel Music_LookRocket_Ch2.sub1
 	intensity $b7
-	callchannel Music_RocketTheme_branch_f758a
+	callchannel Music_LookRocket_Ch2.sub5
 	octave 5
 	note C_, 1
 	note __, 1
-	callchannel Music_RocketTheme_branch_f7554
+	callchannel Music_LookRocket_Ch2.sub2
 	intensity $53
-	callchannel Music_RocketTheme_branch_f7568
+	callchannel Music_LookRocket_Ch2.sub3
 	intensity $c3
-	callchannel Music_RocketTheme_branch_f7568
+	callchannel Music_LookRocket_Ch2.sub3
 	intensity $e3
-	callchannel Music_RocketTheme_branch_f7568
-	callchannel Music_RocketTheme_branch_f756f
+	callchannel Music_LookRocket_Ch2.sub3
+	callchannel Music_LookRocket_Ch2.sub4
 	vibrato $6, $64
-	callchannel Music_RocketTheme_branch_f7800
+	callchannel .sub1
 	octave 4
 	note A_, 1
 	vibrato $0, $0
@@ -194,7 +194,7 @@ Music_RocketTheme_branch_f774b:
 	octave 5
 	note C_, 1
 	note D_, 1
-	callchannel Music_RocketTheme_branch_f7800
+	callchannel .sub1
 	note B_, 1
 	vibrato $0, $0
 	intensity $b8
@@ -212,7 +212,7 @@ Music_RocketTheme_branch_f774b:
 	note G#, 1
 	note G_, 1
 	notetype $6, $b7
-	callchannel Music_RocketTheme_branch_f781c
+	callchannel .sub2
 	octave 4
 	note D_, 1
 	note D#, 9
@@ -223,7 +223,7 @@ Music_RocketTheme_branch_f774b:
 	note __, 2
 	note F#, 2
 	note __, 2
-	callchannel Music_RocketTheme_branch_f781c
+	callchannel .sub2
 	octave 3
 	note B_, 2
 	note __, 2
@@ -287,9 +287,9 @@ Music_RocketTheme_branch_f774b:
 	octave 5
 	note C_, 2
 	note D_, 2
-	loopchannel 0, Music_RocketTheme_branch_f774b
+	loopchannel 0, .mainloop
 
-Music_RocketTheme_branch_f7800:
+.sub1:
 	notetype $6, $b7
 	note __, 7
 	octave 4
@@ -317,7 +317,7 @@ Music_RocketTheme_branch_f7800:
 	note __, 2
 	endchannel
 
-Music_RocketTheme_branch_f781c:
+.sub2:
 	octave 3
 	note B_, 1
 	octave 4
@@ -334,25 +334,25 @@ Music_RocketTheme_Ch3:
 	vibrato $4, $22
 	notetype $c, $14
 	note __, 2
-Music_RocketTheme_branch_f782f:
+.mainloop:
 	notetype $c, $14
-	callchannel Music_RocketTheme_branch_f75bf
-	callchannel Music_RocketTheme_branch_f75fe
-	callchannel Music_RocketTheme_branch_f75fe
+	callchannel Music_LookRocket_Ch3.sub1
+	callchannel Music_LookRocket_Ch3.sub4
+	callchannel Music_LookRocket_Ch3.sub4
 	intensity $24
-	callchannel Music_RocketTheme_branch_f7623
+	callchannel Music_LookRocket_Ch3.sub5
 	intensity $14
-	callchannel Music_RocketTheme_branch_f75cc
-	callchannel Music_RocketTheme_branch_f7623
-	callchannel Music_RocketTheme_branch_f75e1
-	callchannel Music_RocketTheme_branch_f75fe
-	callchannel Music_RocketTheme_branch_f75fe
-	callchannel Music_RocketTheme_branch_f75fe
-	callchannel Music_RocketTheme_branch_f75fe
-	callchannel Music_RocketTheme_branch_f7623
-	callchannel Music_RocketTheme_branch_f75cc
-	callchannel Music_RocketTheme_branch_f7623
-	callchannel Music_RocketTheme_branch_f75cc
+	callchannel Music_LookRocket_Ch3.sub2
+	callchannel Music_LookRocket_Ch3.sub5
+	callchannel Music_LookRocket_Ch3.sub3
+	callchannel Music_LookRocket_Ch3.sub4
+	callchannel Music_LookRocket_Ch3.sub4
+	callchannel Music_LookRocket_Ch3.sub4
+	callchannel Music_LookRocket_Ch3.sub4
+	callchannel Music_LookRocket_Ch3.sub5
+	callchannel Music_LookRocket_Ch3.sub2
+	callchannel Music_LookRocket_Ch3.sub5
+	callchannel Music_LookRocket_Ch3.sub2
 	octave 3
 	note C_, 1
 	note __, 1
@@ -440,23 +440,23 @@ Music_RocketTheme_branch_f782f:
 	octave 4
 	note G#, 1
 	note __, 1
-	loopchannel 0, Music_RocketTheme_branch_f782f
+	loopchannel 0, .mainloop
 
 Music_RocketTheme_Ch4:
 	togglenoise $3
 	notetype $c
 	note __, 2
-Music_RocketTheme_branch_f78c3:
-	callchannel Music_RocketTheme_branch_f765c
-	callchannel Music_RocketTheme_branch_f7664
-	callchannel Music_RocketTheme_branch_f7664
-	callchannel Music_RocketTheme_branch_f7664
-	callchannel Music_RocketTheme_branch_f7664
-	callchannel Music_RocketTheme_branch_f7664
-	callchannel Music_RocketTheme_branch_f7664
-	callchannel Music_RocketTheme_branch_f7664
-	callchannel Music_RocketTheme_branch_f765c
-Music_RocketTheme_branch_f78de:
+.mainloop:
+	callchannel Music_LookRocket_Ch4.sub1
+	callchannel Music_LookRocket_Ch4.sub2
+	callchannel Music_LookRocket_Ch4.sub2
+	callchannel Music_LookRocket_Ch4.sub2
+	callchannel Music_LookRocket_Ch4.sub2
+	callchannel Music_LookRocket_Ch4.sub2
+	callchannel Music_LookRocket_Ch4.sub2
+	callchannel Music_LookRocket_Ch4.sub2
+	callchannel Music_LookRocket_Ch4.sub1
+.loop1:
 	note A#, 2
 	note F#, 2
 	note D_, 2
@@ -465,10 +465,10 @@ Music_RocketTheme_branch_f78de:
 	note F#, 2
 	note D_, 2
 	note F#, 2
-	loopchannel 11, Music_RocketTheme_branch_f78de
-	callchannel Music_RocketTheme_branch_f7664
-	callchannel Music_RocketTheme_branch_f7664
-	callchannel Music_RocketTheme_branch_f7664
-	callchannel Music_RocketTheme_branch_f765c
-	callchannel Music_RocketTheme_branch_f765c
-	loopchannel 0, Music_RocketTheme_branch_f78c3
+	loopchannel 11, .loop1
+	callchannel Music_LookRocket_Ch4.sub2
+	callchannel Music_LookRocket_Ch4.sub2
+	callchannel Music_LookRocket_Ch4.sub2
+	callchannel Music_LookRocket_Ch4.sub1
+	callchannel Music_LookRocket_Ch4.sub1
+	loopchannel 0, .mainloop

@@ -94,7 +94,7 @@ Music_SuicuneBattle_Ch1:
 	octave 3
 	note E_, 1
 	note G#, 1
-Music_SuicuneBattle_branch_178bfc:
+.mainloop:
 	notetype $c, $b4
 	octave 2
 	note A_, 2
@@ -509,7 +509,7 @@ Music_SuicuneBattle_branch_178bfc:
 	note A_, 16
 	vibrato $12, $15
 	dutycycle $3
-	loopchannel 0, Music_SuicuneBattle_branch_178bfc
+	loopchannel 0, .mainloop
 
 Music_SuicuneBattle_Ch2:
 	dutycycle $3
@@ -589,7 +589,7 @@ Music_SuicuneBattle_Ch2:
 	note E_, 8
 	note E_, 8
 	note E_, 4
-Music_SuicuneBattle_branch_178e4e:
+.mainloop:
 	notetype $c, $c7
 	octave 3
 	note A_, 8
@@ -1184,7 +1184,7 @@ Music_SuicuneBattle_branch_178e4e:
 	note E_, 2
 	note A_, 2
 	note B_, 2
-	loopchannel 0, Music_SuicuneBattle_branch_178e4e
+	loopchannel 0, .mainloop
 
 Music_SuicuneBattle_Ch3:
 	notetype $c, $18
@@ -1279,7 +1279,7 @@ Music_SuicuneBattle_Ch3:
 	note D_, 2
 	note E_, 2
 	notetype $c, $16
-Music_SuicuneBattle_branch_179182:
+.mainloop:
 	octave 1
 	note A_, 2
 	octave 2
@@ -2053,4 +2053,4 @@ Music_SuicuneBattle_branch_179182:
 	note E_, 2
 	note D_, 2
 	note E_, 2
-	loopchannel 0, Music_SuicuneBattle_branch_179182
+	loopchannel 0, .mainloop

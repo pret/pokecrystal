@@ -13,7 +13,7 @@ Music_Route37_Ch1:
 	notetype $c, $b3
 	note __, 16
 	note __, 16
-Music_Route37_branch_ee969:
+.mainloop:
 	intensity $b3
 	note __, 2
 	octave 2
@@ -67,37 +67,37 @@ Music_Route37_branch_ee969:
 	note E_, 2
 	note D#, 4
 	stereopanning $f
-Music_Route37_branch_ee9a5:
-	callchannel Music_Route37_branch_ee9da
+.loop1:
+	callchannel .sub1
 	octave 3
 	note C#, 4
-	loopchannel 2, Music_Route37_branch_ee9a5
-	callchannel Music_Route37_branch_ee9e9
+	loopchannel 2, .loop1
+	callchannel .sub2
 	octave 3
 	note F#, 4
-	callchannel Music_Route37_branch_ee9e9
+	callchannel .sub2
 	octave 3
 	note F#, 4
-	callchannel Music_Route37_branch_ee9da
+	callchannel .sub1
 	octave 3
 	note E_, 4
-	callchannel Music_Route37_branch_ee9da
+	callchannel .sub1
 	octave 3
 	note G#, 4
-	callchannel Music_Route37_branch_ee9e9
+	callchannel .sub2
 	octave 4
 	note D#, 4
-	callchannel Music_Route37_branch_ee9e9
+	callchannel .sub2
 	octave 3
 	note F_, 4
 	stereopanning $ff
-	callchannel Music_Route37_branch_ee9e9
+	callchannel .sub2
 	note __, 4
-	callchannel Music_Route37_branch_ee9e9
+	callchannel .sub2
 	note __, 4
-	loopchannel 0, Music_Route37_branch_ee969
+	loopchannel 0, .mainloop
 
-Music_Route37_branch_ee9da:
+.sub1:
 	intensity $c2
 	octave 2
 	note A_, 2
@@ -112,7 +112,7 @@ Music_Route37_branch_ee9da:
 	intensity $b7
 	endchannel
 
-Music_Route37_branch_ee9e9:
+.sub2:
 	intensity $c2
 	octave 2
 	note B_, 2
@@ -158,8 +158,8 @@ Music_Route37_Ch2:
 	note B_, 1
 	intensity $c2
 	note B_, 2
-Music_Route37_branch_eea24:
-	callchannel Music_Route37_branch_eeab7
+.mainloop:
+	callchannel .sub1
 	intensity $c6
 	octave 4
 	note C#, 4
@@ -173,7 +173,7 @@ Music_Route37_branch_eea24:
 	note F#, 8
 	intensity $c7
 	note D#, 12
-	callchannel Music_Route37_branch_eeab7
+	callchannel .sub1
 	intensity $c7
 	octave 4
 	note C#, 4
@@ -269,9 +269,9 @@ Music_Route37_branch_eea24:
 	note F#, 1
 	intensity $c2
 	note F#, 2
-	loopchannel 0, Music_Route37_branch_eea24
+	loopchannel 0, .mainloop
 
-Music_Route37_branch_eeab7:
+.sub1:
 	intensity $c7
 	octave 3
 	note F#, 4
@@ -288,13 +288,13 @@ Music_Route37_branch_eeab7:
 Music_Route37_Ch3:
 	stereopanning $f0
 	notetype $c, $14
-Music_Route37_branch_eeacc:
+.loop1:
 	octave 2
 	note F#, 2
 	note __, 6
-	loopchannel 4, Music_Route37_branch_eeacc
-Music_Route37_branch_eead3:
-	callchannel Music_Route37_branch_eeb32
+	loopchannel 4, .loop1
+.mainloop:
+	callchannel .sub1
 	note A_, 2
 	octave 3
 	note C#, 2
@@ -305,12 +305,12 @@ Music_Route37_branch_eead3:
 	note A_, 2
 	note F#, 2
 	note E_, 2
-Music_Route37_branch_eeae0:
+.loop2:
 	note D#, 2
 	note F#, 2
-	loopchannel 4, Music_Route37_branch_eeae0
-	callchannel Music_Route37_branch_eeb32
-	callchannel Music_Route37_branch_eeb32
+	loopchannel 4, .loop2
+	callchannel .sub1
+	callchannel .sub1
 	note A_, 2
 	octave 3
 	note C#, 2
@@ -323,45 +323,45 @@ Music_Route37_branch_eeae0:
 	note C#, 2
 	octave 2
 	note A_, 2
-	callchannel Music_Route37_branch_eeb32
-Music_Route37_branch_eeafb:
+	callchannel .sub1
+.loop3:
 	octave 2
 	note B_, 2
 	octave 3
 	note D#, 2
-	loopchannel 4, Music_Route37_branch_eeafb
-Music_Route37_branch_eeb03:
+	loopchannel 4, .loop3
+.loop4:
 	octave 2
 	note A_, 2
 	octave 3
 	note C#, 2
-	loopchannel 7, Music_Route37_branch_eeb03
+	loopchannel 7, .loop4
 	note E_, 2
 	note C#, 2
-	callchannel Music_Route37_branch_eeb3c
-Music_Route37_branch_eeb10:
+	callchannel .sub2
+.loop5:
 	octave 2
 	note B_, 2
 	octave 3
 	note F#, 2
-	loopchannel 4, Music_Route37_branch_eeb10
-Music_Route37_branch_eeb18:
+	loopchannel 4, .loop5
+.loop6:
 	octave 2
 	note A_, 2
 	octave 3
 	note C#, 2
-	loopchannel 7, Music_Route37_branch_eeb18
+	loopchannel 7, .loop6
 	note E_, 2
 	note C#, 2
-	callchannel Music_Route37_branch_eeb3c
-	callchannel Music_Route37_branch_eeb32
-Music_Route37_branch_eeb28:
+	callchannel .sub2
+	callchannel .sub1
+.loop7:
 	note F#, 2
 	note __, 6
-	loopchannel 4, Music_Route37_branch_eeb28
-	loopchannel 0, Music_Route37_branch_eead3
+	loopchannel 4, .loop7
+	loopchannel 0, .mainloop
 
-Music_Route37_branch_eeb32:
+.sub1:
 	octave 2
 	note F#, 2
 	note B_, 2
@@ -373,7 +373,7 @@ Music_Route37_branch_eeb32:
 	note B_, 2
 	endchannel
 
-Music_Route37_branch_eeb3c:
+.sub2:
 	octave 2
 	note B_, 2
 	octave 3
@@ -395,14 +395,14 @@ Music_Route37_branch_eeb3c:
 Music_Route37_Ch4:
 	stereopanning $f
 	togglenoise $0
-Music_Route37_branch_eeb51:
+.mainloop:
 	notetype $c
-	callchannel Music_Route37_branch_eeb6b
+	callchannel .sub1
 	note D_, 1
 	note D#, 1
 	note D#, 1
 	note D_, 1
-	callchannel Music_Route37_branch_eeb6b
+	callchannel .sub1
 	notetype $6
 	note D#, 1
 	note D#, 1
@@ -412,9 +412,9 @@ Music_Route37_branch_eeb51:
 	note D_, 1
 	note D_, 1
 	note D_, 1
-	loopchannel 0, Music_Route37_branch_eeb51
+	loopchannel 0, .mainloop
 
-Music_Route37_branch_eeb6b:
+.sub1:
 	note D_, 2
 	note D#, 1
 	note D#, 1

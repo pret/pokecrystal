@@ -26,7 +26,7 @@ Music_BurnedTower_Ch1:
 	note D_, 2
 	intensity $80
 	note C#, 6
-Music_BurnedTower_branch_f6ac8:
+.loop1:
 	intensity $91
 	octave 2
 	note A_, 4
@@ -34,9 +34,9 @@ Music_BurnedTower_branch_f6ac8:
 	note A_, 2
 	intensity $80
 	note A#, 6
-	loopchannel 2, Music_BurnedTower_branch_f6ac8
+	loopchannel 2, .loop1
 	tempo 150
-Music_BurnedTower_branch_f6ad8:
+.mainloop:
 	intensity $b1
 	octave 2
 	note A_, 4
@@ -86,7 +86,7 @@ Music_BurnedTower_branch_f6ad8:
 	note E_, 2
 	intensity $a0
 	note D#, 6
-Music_BurnedTower_branch_f6b17:
+.loop2:
 	intensity $b1
 	octave 2
 	note B_, 4
@@ -95,18 +95,18 @@ Music_BurnedTower_branch_f6b17:
 	intensity $a0
 	octave 3
 	note C_, 6
-	loopchannel 2, Music_BurnedTower_branch_f6b17
-	loopchannel 0, Music_BurnedTower_branch_f6ad8
+	loopchannel 2, .loop2
+	loopchannel 0, .mainloop
 
 Music_BurnedTower_Ch2:
 	dutycycle $2
 	vibrato $20, $82
 	tone $0002
 	notetype $c, $70
-	callchannel Music_BurnedTower_branch_f6b8e
+	callchannel .sub1
 	intensity $c5
-Music_BurnedTower_branch_f6b39:
-	callchannel Music_BurnedTower_branch_f6b8e
+.mainloop:
+	callchannel .sub1
 	intensity $c1
 	dutycycle $3
 	note __, 2
@@ -167,9 +167,9 @@ Music_BurnedTower_branch_f6b39:
 	note E_, 4
 	intensity $b7
 	note F#, 16
-	loopchannel 0, Music_BurnedTower_branch_f6b39
+	loopchannel 0, .mainloop
 
-Music_BurnedTower_branch_f6b8e:
+.sub1:
 	octave 3
 	note E_, 4
 	note D_, 2
@@ -200,7 +200,8 @@ Music_BurnedTower_Ch3:
 	note __, 12
 	octave 3
 	note D#, 4
-Music_BurnedTower_branch_f6bad:
+.mainloop:
+.loop1:
 	octave 2
 	note A_, 2
 	octave 3
@@ -219,8 +220,8 @@ Music_BurnedTower_branch_f6bad:
 	note __, 2
 	note E_, 2
 	note D#, 4
-	loopchannel 4, Music_BurnedTower_branch_f6bad
-Music_BurnedTower_branch_f6bc3:
+	loopchannel 4, .loop1
+.loop2:
 	octave 2
 	note B_, 2
 	octave 3
@@ -239,21 +240,21 @@ Music_BurnedTower_branch_f6bc3:
 	note __, 2
 	note F#, 2
 	note F_, 4
-	loopchannel 2, Music_BurnedTower_branch_f6bc3
-	loopchannel 0, Music_BurnedTower_branch_f6bad
+	loopchannel 2, .loop2
+	loopchannel 0, .mainloop
 
 Music_BurnedTower_Ch4:
 	togglenoise $0
 	notetype $c
-Music_BurnedTower_branch_f6be1:
+.loop1:
 	note __, 16
-	loopchannel 4, Music_BurnedTower_branch_f6be1
+	loopchannel 4, .loop1
 	note __, 2
-Music_BurnedTower_branch_f6be7:
+.mainloop:
 	stereopanning $f0
 	note G_, 2
 	note G#, 2
 	note G_, 4
 	note G#, 2
 	note G_, 4
-	loopchannel 0, Music_BurnedTower_branch_f6be7
+	loopchannel 0, .mainloop

@@ -11,21 +11,22 @@ Music_LookPokemaniac_Ch1:
 	tone $0002
 	notetype $c, $b3
 	note __, 8
-Music_LookPokemaniac_branch_ebdfb:
+.mainloop:
+.loop1:
 	note __, 4
 	octave 3
 	note A#, 1
 	note __, 3
 	note A#, 1
 	note __, 3
-	loopchannel 4, Music_LookPokemaniac_branch_ebdfb
+	loopchannel 4, .loop1
 	note __, 4
 	note G_, 1
 	note __, 3
 	note G_, 1
 	note __, 3
-	loopchannel 4, Music_LookPokemaniac_branch_ebdfb
-	loopchannel 0, Music_LookPokemaniac_branch_ebdfb
+	loopchannel 4, .loop1
+	loopchannel 0, .mainloop
 
 Music_LookPokemaniac_Ch2:
 	stereopanning $ff
@@ -39,7 +40,8 @@ Music_LookPokemaniac_Ch2:
 	note C_, 1
 	octave 1
 	note A_, 4
-Music_LookPokemaniac_branch_ebe24:
+.mainloop:
+.loop1:
 	octave 2
 	note C_, 2
 	note __, 2
@@ -56,8 +58,8 @@ Music_LookPokemaniac_branch_ebe24:
 	note __, 3
 	note D#, 1
 	note __, 3
-	loopchannel 2, Music_LookPokemaniac_branch_ebe24
-Music_LookPokemaniac_branch_ebe38:
+	loopchannel 2, .loop1
+.loop2:
 	octave 1
 	note A_, 2
 	note __, 2
@@ -75,8 +77,8 @@ Music_LookPokemaniac_branch_ebe38:
 	octave 3
 	note C_, 1
 	note __, 3
-	loopchannel 2, Music_LookPokemaniac_branch_ebe38
-	loopchannel 0, Music_LookPokemaniac_branch_ebe24
+	loopchannel 2, .loop2
+	loopchannel 0, .mainloop
 
 Music_LookPokemaniac_Ch3:
 	stereopanning $f0
@@ -90,14 +92,14 @@ Music_LookPokemaniac_Ch3:
 	octave 5
 	note C_, 4
 	intensity $10
-Music_LookPokemaniac_branch_ebe62:
-	callchannel Music_LookPokemaniac_branch_ebe70
+.mainloop:
+	callchannel .sub1
 	intensity $14
-	callchannel Music_LookPokemaniac_branch_ebe70
+	callchannel .sub1
 	intensity $10
-	loopchannel 0, Music_LookPokemaniac_branch_ebe62
+	loopchannel 0, .mainloop
 
-Music_LookPokemaniac_branch_ebe70:
+.sub1:
 	note A#, 6
 	note A_, 2
 	note G#, 2

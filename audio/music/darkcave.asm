@@ -12,18 +12,19 @@ Music_DarkCave_Ch1:
 	vibrato $11, $15
 	stereopanning $f0
 	notetype $c, $a7
-Music_DarkCave_branch_ea2dc:
+loop1:
 	note __, 16
-	loopchannel 4, Music_DarkCave_branch_ea2dc
+	loopchannel 4, loop1
 	octave 3
 	note D#, 16
 	note D_, 16
 	note C#, 16
 	note C_, 16
 	intensity $a3
-Music_DarkCave_branch_ea2e8:
-	callchannel Music_DarkCave_branch_ea333
-	loopchannel 3, Music_DarkCave_branch_ea2e8
+.mainloop:
+.loop2:
+	callchannel .sub1
+	loopchannel 3, .loop2
 	intensity $b7
 	note G#, 8
 	note D#, 8
@@ -42,9 +43,9 @@ Music_DarkCave_branch_ea2e8:
 	note D#, 8
 	note C_, 8
 	intensity $a3
-Music_DarkCave_branch_ea303:
-	callchannel Music_DarkCave_branch_ea333
-	loopchannel 2, Music_DarkCave_branch_ea303
+.loop3:
+	callchannel .sub1
+	loopchannel 2, .loop3
 	note __, 16
 	note __, 8
 	intensity $b7
@@ -73,12 +74,12 @@ Music_DarkCave_branch_ea303:
 	note G_, 2
 	note G#, 4
 	intensity $a3
-Music_DarkCave_branch_ea328:
-	callchannel Music_DarkCave_branch_ea333
-	loopchannel 2, Music_DarkCave_branch_ea328
-	loopchannel 0, Music_DarkCave_branch_ea2e8
+.loop4:
+	callchannel .sub1
+	loopchannel 2, .loop4
+	loopchannel 0, .mainloop
 
-Music_DarkCave_branch_ea333:
+.sub1:
 	octave 4
 	note D#, 2
 	octave 3
@@ -140,17 +141,18 @@ Music_DarkCave_Ch2:
 	vibrato $12, $36
 	stereopanning $f
 	notetype $c, $a7
-Music_DarkCave_branch_ea374:
+.loop1:
 	note __, 16
-	loopchannel 4, Music_DarkCave_branch_ea374
+	loopchannel 4, .loop1
 	octave 3
 	note G_, 16
 	note A#, 16
 	note F_, 16
 	note G_, 16
-Music_DarkCave_branch_ea37e:
+.mainloop:
+.loop2:
 	note __, 16
-	loopchannel 4, Music_DarkCave_branch_ea37e
+	loopchannel 4, .loop2
 	note __, 8
 	stereopanning $ff
 	intensity $c7
@@ -343,17 +345,18 @@ Music_DarkCave_branch_ea37e:
 	note D_, 16
 	note F_, 16
 	note D#, 16
-	loopchannel 0, Music_DarkCave_branch_ea37e
+	loopchannel 0, .mainloop
 
 Music_DarkCave_Ch3:
 	notetype $c, $27
-Music_DarkCave_branch_ea471:
-	callchannel Music_DarkCave_branch_ea4ce
-	loopchannel 2, Music_DarkCave_branch_ea471
-Music_DarkCave_branch_ea478:
-	callchannel Music_DarkCave_branch_ea4ce
-	loopchannel 7, Music_DarkCave_branch_ea478
-	callchannel Music_DarkCave_branch_ea4c3
+.loop1:
+	callchannel .sub3
+	loopchannel 2, .loop1
+.mainloop:
+.loop2:
+	callchannel .sub3
+	loopchannel 7, .loop2
+	callchannel .sub2
 	octave 3
 	note C_, 4
 	note G_, 2
@@ -364,7 +367,7 @@ Music_DarkCave_branch_ea478:
 	note __, 2
 	octave 2
 	note A#, 12
-	callchannel Music_DarkCave_branch_ea4c3
+	callchannel .sub2
 	octave 3
 	note C_, 4
 	note G_, 2
@@ -379,11 +382,11 @@ Music_DarkCave_branch_ea478:
 	note C#, 2
 	note C_, 2
 	note C#, 4
-	callchannel Music_DarkCave_branch_ea4a7
-	callchannel Music_DarkCave_branch_ea4a7
-	loopchannel 0, Music_DarkCave_branch_ea478
+	callchannel .sub1
+	callchannel .sub1
+	loopchannel 0, .mainloop
 
-Music_DarkCave_branch_ea4a7:
+.sub1:
 	octave 3
 	note C_, 4
 	note G_, 2
@@ -413,7 +416,7 @@ Music_DarkCave_branch_ea4a7:
 	note C#, 4
 	endchannel
 
-Music_DarkCave_branch_ea4c3:
+.sub2:
 	octave 3
 	note C_, 4
 	note G_, 2
@@ -426,7 +429,7 @@ Music_DarkCave_branch_ea4c3:
 	note A#, 12
 	endchannel
 
-Music_DarkCave_branch_ea4ce:
+.sub3:
 	octave 2
 	note C_, 4
 	note G_, 2
@@ -459,7 +462,7 @@ Music_DarkCave_branch_ea4ce:
 Music_DarkCave_Ch4:
 	togglenoise $3
 	notetype $c
-Music_DarkCave_branch_ea4ee:
+.mainloop:
 	stereopanning $ff
 	note D#, 8
 	note D#, 8
@@ -480,4 +483,4 @@ Music_DarkCave_branch_ea4ee:
 	stereopanning $f0
 	note C#, 2
 	note C#, 2
-	loopchannel 0, Music_DarkCave_branch_ea4ee
+	loopchannel 0, .mainloop

@@ -194,17 +194,17 @@ Music_TitleScreen_Ch1:
 	tempo 136
 	note C#, 6
 	tempo 134
-	callchannel Music_TitleScreen_branch_eb96d
+	callchannel .sub1
 	octave 4
 	note C_, 4
 	note C_, 4
 	note C#, 4
-	callchannel Music_TitleScreen_branch_eb96d
+	callchannel .sub1
 	octave 4
 	note C_, 4
 	note C_, 4
 	note C#, 4
-	callchannel Music_TitleScreen_branch_eb96d
+	callchannel .sub1
 	octave 3
 	note E_, 4
 	note E_, 4
@@ -272,10 +272,10 @@ Music_TitleScreen_Ch1:
 	note __, 11
 	endchannel
 
-Music_TitleScreen_branch_eb96d:
+.sub1:
 	notetype $c, $c3
 	note D_, 1
-Music_TitleScreen_branch_eb971:
+.sub1loop1:
 	note __, 1
 	octave 2
 	note D_, 1
@@ -283,7 +283,7 @@ Music_TitleScreen_branch_eb971:
 	note A_, 1
 	octave 2
 	note D_, 1
-	loopchannel 5, Music_TitleScreen_branch_eb971
+	loopchannel 5, .sub1loop1
 	note __, 1
 	note D_, 1
 	octave 1
@@ -479,11 +479,11 @@ Music_TitleScreen_Ch2:
 	note C#, 4
 	tone $0001
 	stereopanning $f
-	callchannel Music_TitleScreen_branch_ebae7
+	callchannel .sub1
 	note C#, 4
-	callchannel Music_TitleScreen_branch_ebae7
+	callchannel .sub1
 	note C#, 4
-	callchannel Music_TitleScreen_branch_ebae7
+	callchannel .sub1
 	octave 4
 	note A_, 4
 	stereopanning $ff
@@ -554,17 +554,17 @@ Music_TitleScreen_Ch2:
 	note __, 11
 	endchannel
 
-Music_TitleScreen_branch_ebae7:
+.sub1:
 	notetype $c, $b2
 	note D_, 1
-Music_TitleScreen_branch_ebaeb:
+.sub1loop1:
 	octave 3
 	note A_, 1
 	octave 4
 	note D_, 1
 	note A_, 1
 	note D_, 1
-	loopchannel 5, Music_TitleScreen_branch_ebaeb
+	loopchannel 5, .sub1loop1
 	octave 3
 	note A_, 1
 	octave 4
@@ -947,9 +947,9 @@ Music_TitleScreen_Ch4:
 	note C_, 1
 	note C_, 1
 	notetype $c
-	callchannel Music_TitleScreen_branch_ebd77
-	callchannel Music_TitleScreen_branch_ebd81
-	callchannel Music_TitleScreen_branch_ebd81
+	callchannel .sub1
+	callchannel .sub2
+	callchannel .sub2
 	note C_, 2
 	note D#, 2
 	note C_, 2
@@ -964,7 +964,7 @@ Music_TitleScreen_Ch4:
 	note C_, 1
 	note C_, 1
 	notetype $c
-	callchannel Music_TitleScreen_branch_ebd77
+	callchannel .sub1
 	note C_, 2
 	note D#, 2
 	note C_, 2
@@ -974,7 +974,7 @@ Music_TitleScreen_Ch4:
 	note C_, 1
 	note C_, 2
 	note C_, 2
-	callchannel Music_TitleScreen_branch_ebd81
+	callchannel .sub2
 	note C_, 2
 	note D#, 2
 	note C_, 2
@@ -985,9 +985,9 @@ Music_TitleScreen_Ch4:
 	note C_, 2
 	note C_, 1
 	note C_, 1
-	callchannel Music_TitleScreen_branch_ebd77
-	callchannel Music_TitleScreen_branch_ebd81
-	callchannel Music_TitleScreen_branch_ebd81
+	callchannel .sub1
+	callchannel .sub2
+	callchannel .sub2
 	note C_, 2
 	note D#, 2
 	note C_, 2
@@ -1002,8 +1002,8 @@ Music_TitleScreen_Ch4:
 	note D_, 1
 	note C#, 1
 	notetype $c
-	callchannel Music_TitleScreen_branch_ebd77
-	callchannel Music_TitleScreen_branch_ebd81
+	callchannel .sub1
+	callchannel .sub2
 	note C_, 2
 	note D#, 2
 	note C_, 2
@@ -1053,31 +1053,31 @@ Music_TitleScreen_Ch4:
 	note C#, 1
 	note C_, 1
 	note C_, 1
-	callchannel Music_TitleScreen_branch_ebd8b
-	callchannel Music_TitleScreen_branch_ebd93
+	callchannel .sub3
+	callchannel .sub4
 	note C#, 1
 	note D_, 1
 	note D_, 1
 	note C#, 1
 	notetype $c
-	callchannel Music_TitleScreen_branch_ebd8b
-	callchannel Music_TitleScreen_branch_ebd93
+	callchannel .sub3
+	callchannel .sub4
 	note D_, 1
 	note D_, 1
 	note C#, 1
 	note C#, 1
 	notetype $c
-	callchannel Music_TitleScreen_branch_ebd8b
-	callchannel Music_TitleScreen_branch_ebd93
+	callchannel .sub3
+	callchannel .sub4
 	note C#, 1
 	note C#, 1
 	note C#, 1
 	note C#, 1
 	notetype $c
 	note G#, 16
-Music_TitleScreen_branch_ebd40:
+.loop1:
 	note __, 16
-	loopchannel 6, Music_TitleScreen_branch_ebd40
+	loopchannel 6, .loop1
 	note __, 12
 	notetype $6
 	note D_, 1
@@ -1124,7 +1124,7 @@ Music_TitleScreen_branch_ebd40:
 	note B_, 4
 	endchannel
 
-Music_TitleScreen_branch_ebd77:
+.sub1:
 	note C_, 2
 	note D#, 2
 	note C_, 2
@@ -1136,7 +1136,7 @@ Music_TitleScreen_branch_ebd77:
 	note D#, 2
 	endchannel
 
-Music_TitleScreen_branch_ebd81:
+.sub2:
 	note C_, 2
 	note D#, 2
 	note C_, 2
@@ -1148,14 +1148,15 @@ Music_TitleScreen_branch_ebd81:
 	note D#, 2
 	endchannel
 
-Music_TitleScreen_branch_ebd8b:
+.sub3:
+.sub3loop1:
 	note C_, 2
 	note C_, 1
 	note C_, 1
-	loopchannel 4, Music_TitleScreen_branch_ebd8b
+	loopchannel 4, .sub3loop1
 	endchannel
 
-Music_TitleScreen_branch_ebd93:
+.sub4:
 	note C_, 2
 	note C_, 1
 	note C_, 1

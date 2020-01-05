@@ -85,8 +85,8 @@ Music_KantoGymBattle_Ch1:
 	note E_, 4
 	note E_, 4
 	note E_, 2
-Music_KantoGymBattle_branch_ec78b:
-	callchannel Music_KantoGymBattle_branch_ec832
+.mainloop:
+	callchannel .sub1
 	octave 2
 	note A#, 2
 	intensity $b7
@@ -95,7 +95,7 @@ Music_KantoGymBattle_branch_ec78b:
 	octave 3
 	note D#, 10
 	note E_, 6
-	callchannel Music_KantoGymBattle_branch_ec832
+	callchannel .sub1
 	note D#, 2
 	intensity $b7
 	note C#, 8
@@ -227,9 +227,9 @@ Music_KantoGymBattle_branch_ec78b:
 	intensity $4c
 	octave 3
 	note D_, 4
-	loopchannel 0, Music_KantoGymBattle_branch_ec78b
+	loopchannel 0, .mainloop
 
-Music_KantoGymBattle_branch_ec832:
+.sub1:
 	intensity $b5
 	note D#, 2
 	octave 2
@@ -256,16 +256,16 @@ Music_KantoGymBattle_Ch2:
 	vibrato $8, $36
 	tone $0001
 	notetype $c, $c2
-Music_KantoGymBattle_branch_ec852:
+.loop1:
 	octave 4
 	note A#, 1
 	note G#, 1
 	note A#, 1
 	octave 5
 	note D#, 1
-	loopchannel 8, Music_KantoGymBattle_branch_ec852
+	loopchannel 8, .loop1
 	octave 3
-Music_KantoGymBattle_branch_ec85d:
+.loop2:
 	intensity $c2
 	note D#, 2
 	note D#, 2
@@ -312,14 +312,14 @@ Music_KantoGymBattle_branch_ec85d:
 	note B_, 2
 	intensity $c2
 	octave 4
-	loopchannel 2, Music_KantoGymBattle_branch_ec85d
-Music_KantoGymBattle_branch_ec894:
-	callchannel Music_KantoGymBattle_branch_ec907
+	loopchannel 2, .loop2
+.mainloop:
+	callchannel .sub1
 	note E_, 8
 	note G#, 8
 	note B_, 10
 	note G#, 6
-	callchannel Music_KantoGymBattle_branch_ec907
+	callchannel .sub1
 	note E_, 8
 	note G#, 8
 	note B_, 10
@@ -401,9 +401,9 @@ Music_KantoGymBattle_branch_ec894:
 	note A#, 6
 	octave 3
 	note A_, 4
-	loopchannel 0, Music_KantoGymBattle_branch_ec894
+	loopchannel 0, .mainloop
 
-Music_KantoGymBattle_branch_ec907:
+.sub1:
 	dutycycle $2
 	intensity $d1
 	octave 3
@@ -439,14 +439,14 @@ Music_KantoGymBattle_Ch3:
 	octave 2
 	note E_, 1
 	note __, 1
-Music_KantoGymBattle_branch_ec934:
+.loop1:
 	note B_, 3
 	note __, 1
-	loopchannel 6, Music_KantoGymBattle_branch_ec934
+	loopchannel 6, .loop1
 	note B_, 2
 	note G#, 2
 	note B_, 2
-Music_KantoGymBattle_branch_ec93d:
+.loop2:
 	note D#, 1
 	note __, 1
 	note D#, 1
@@ -483,16 +483,17 @@ Music_KantoGymBattle_branch_ec93d:
 	note D#, 1
 	note __, 1
 	note E_, 2
-	loopchannel 2, Music_KantoGymBattle_branch_ec93d
-Music_KantoGymBattle_branch_ec965:
+	loopchannel 2, .loop2
+.mainloop:
+.loop3:
 	octave 2
 	note D#, 2
 	note A#, 2
-	loopchannel 8, Music_KantoGymBattle_branch_ec965
-Music_KantoGymBattle_branch_ec96c:
+	loopchannel 8, .loop3
+.loop4:
 	note E_, 2
 	note B_, 2
-	loopchannel 4, Music_KantoGymBattle_branch_ec96c
+	loopchannel 4, .loop4
 	octave 1
 	note B_, 2
 	octave 2
@@ -506,22 +507,22 @@ Music_KantoGymBattle_branch_ec96c:
 	note E_, 2
 	octave 2
 	note B_, 2
-Music_KantoGymBattle_branch_ec97f:
+.loop5:
 	octave 2
 	note F#, 2
 	octave 3
 	note C#, 2
-	loopchannel 8, Music_KantoGymBattle_branch_ec97f
-Music_KantoGymBattle_branch_ec987:
+	loopchannel 8, .loop5
+.loop6:
 	octave 2
 	note E_, 2
 	note B_, 2
-	loopchannel 7, Music_KantoGymBattle_branch_ec987
+	loopchannel 7, .loop6
 	octave 3
 	note E_, 2
 	octave 2
 	note B_, 2
-Music_KantoGymBattle_branch_ec992:
+.loop7:
 	note D#, 1
 	note __, 1
 	note D#, 1
@@ -540,11 +541,11 @@ Music_KantoGymBattle_branch_ec992:
 	note D#, 1
 	note __, 1
 	note E_, 2
-	loopchannel 2, Music_KantoGymBattle_branch_ec992
-Music_KantoGymBattle_branch_ec9a8:
+	loopchannel 2, .loop7
+.loop8:
 	note D#, 2
 	note A#, 2
-	loopchannel 7, Music_KantoGymBattle_branch_ec9a8
+	loopchannel 7, .loop8
 	octave 3
 	note C#, 2
 	octave 2
@@ -558,17 +559,17 @@ Music_KantoGymBattle_branch_ec9a8:
 	note B_, 2
 	octave 3
 	note E_, 2
-Music_KantoGymBattle_branch_ec9bb:
+.loop9:
 	octave 2
 	note E_, 2
 	note B_, 2
-	loopchannel 5, Music_KantoGymBattle_branch_ec9bb
-Music_KantoGymBattle_branch_ec9c2:
+	loopchannel 5, .loop9
+.loop10:
 	octave 2
 	note F#, 2
 	octave 3
 	note C#, 2
-	loopchannel 7, Music_KantoGymBattle_branch_ec9c2
+	loopchannel 7, .loop10
 	octave 2
 	note A#, 2
 	octave 3
@@ -583,19 +584,19 @@ Music_KantoGymBattle_branch_ec9c2:
 	note F#, 2
 	note E_, 2
 	note C#, 2
-Music_KantoGymBattle_branch_ec9d8:
+.loop11:
 	octave 2
 	note D#, 2
 	note A#, 2
-	loopchannel 4, Music_KantoGymBattle_branch_ec9d8
-Music_KantoGymBattle_branch_ec9df:
+	loopchannel 4, .loop11
+.loop12:
 	note C#, 2
 	note G#, 2
-	loopchannel 8, Music_KantoGymBattle_branch_ec9df
-Music_KantoGymBattle_branch_ec9e5:
+	loopchannel 8, .loop12
+.loop13:
 	note D#, 2
 	note A#, 2
-	loopchannel 4, Music_KantoGymBattle_branch_ec9e5
+	loopchannel 4, .loop13
 	octave 3
 	note D#, 2
 	octave 2
@@ -607,4 +608,4 @@ Music_KantoGymBattle_branch_ec9e5:
 	octave 3
 	note D#, 2
 	note F_, 2
-	loopchannel 0, Music_KantoGymBattle_branch_ec965
+	loopchannel 0, .mainloop

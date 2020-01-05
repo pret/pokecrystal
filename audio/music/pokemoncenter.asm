@@ -10,7 +10,7 @@ Music_PokemonCenter_Ch1:
 	dutycycle $2
 	vibrato $a, $14
 	tone $0001
-Music_PokemonCenter_branch_ed5df:
+.mainloop:
 	stereopanning $f
 	notetype $c, $83
 	octave 3
@@ -147,20 +147,20 @@ Music_PokemonCenter_branch_ed5df:
 	note E_, 2
 	note F#, 2
 	note G_, 2
-	loopchannel 0, Music_PokemonCenter_branch_ed5df
+	loopchannel 0, .mainloop
 
 Music_PokemonCenter_Ch2:
 	vibrato $10, $25
-Music_PokemonCenter_branch_ed674:
+.mainloop:
 	stereopanning $ff
-	callchannel Music_PokemonCenter_branch_ed6d1
+	callchannel .sub1
 	stereopanning $f
 	notetype $c, $a5
 	octave 3
 	note A_, 4
 	note E_, 4
 	stereopanning $ff
-	callchannel Music_PokemonCenter_branch_ed6e4
+	callchannel .sub2
 	note D_, 2
 	note F#, 6
 	stereopanning $f
@@ -169,14 +169,14 @@ Music_PokemonCenter_branch_ed674:
 	note A_, 4
 	note E_, 4
 	stereopanning $ff
-	callchannel Music_PokemonCenter_branch_ed6d1
+	callchannel .sub1
 	stereopanning $f
 	notetype $c, $a5
 	octave 3
 	note A_, 4
 	note E_, 4
 	stereopanning $ff
-	callchannel Music_PokemonCenter_branch_ed6e4
+	callchannel .sub2
 	note D_, 8
 	stereopanning $f
 	notetype $c, $a5
@@ -215,9 +215,9 @@ Music_PokemonCenter_branch_ed674:
 	note F#, 2
 	note E_, 2
 	note D_, 8
-	loopchannel 0, Music_PokemonCenter_branch_ed674
+	loopchannel 0, .mainloop
 
-Music_PokemonCenter_branch_ed6d1:
+.sub1:
 	dutycycle $2
 	notetype $c, $c2
 	octave 4
@@ -234,7 +234,7 @@ Music_PokemonCenter_branch_ed6d1:
 	note C#, 6
 	endchannel
 
-Music_PokemonCenter_branch_ed6e4:
+.sub2:
 	notetype $c, $c2
 	octave 4
 	note C#, 2
@@ -250,7 +250,7 @@ Music_PokemonCenter_branch_ed6e4:
 
 Music_PokemonCenter_Ch3:
 	notetype $c, $28
-Music_PokemonCenter_branch_ed6f6:
+.mainloop:
 	stereopanning $f0
 	octave 3
 	note D_, 1
@@ -263,8 +263,8 @@ Music_PokemonCenter_branch_ed6f6:
 	note __, 1
 	note F#, 1
 	note __, 1
-	callchannel Music_PokemonCenter_branch_ed76f
-	callchannel Music_PokemonCenter_branch_ed778
+	callchannel .sub1
+	callchannel .sub2
 	note F#, 1
 	note __, 5
 	note A_, 1
@@ -285,8 +285,8 @@ Music_PokemonCenter_branch_ed6f6:
 	note __, 1
 	note F#, 1
 	note __, 1
-	callchannel Music_PokemonCenter_branch_ed76f
-	callchannel Music_PokemonCenter_branch_ed778
+	callchannel .sub1
+	callchannel .sub2
 	note D_, 1
 	note __, 5
 	note F#, 1
@@ -298,7 +298,7 @@ Music_PokemonCenter_branch_ed6f6:
 	note G_, 1
 	note __, 1
 	stereopanning $ff
-	callchannel Music_PokemonCenter_branch_ed783
+	callchannel .sub3
 	note G_, 1
 	note __, 5
 	note B_, 1
@@ -327,7 +327,7 @@ Music_PokemonCenter_branch_ed6f6:
 	note __, 1
 	note A_, 1
 	note __, 1
-	callchannel Music_PokemonCenter_branch_ed783
+	callchannel .sub3
 	note G_, 1
 	note __, 5
 	note B_, 1
@@ -354,9 +354,9 @@ Music_PokemonCenter_branch_ed6f6:
 	note __, 1
 	note E_, 1
 	note __, 1
-	loopchannel 0, Music_PokemonCenter_branch_ed6f6
+	loopchannel 0, .mainloop
 
-Music_PokemonCenter_branch_ed76f:
+.sub1:
 	note E_, 1
 	note __, 5
 	note A_, 1
@@ -367,7 +367,7 @@ Music_PokemonCenter_branch_ed76f:
 	note __, 1
 	endchannel
 
-Music_PokemonCenter_branch_ed778:
+.sub2:
 	note E_, 1
 	note __, 5
 	note A_, 1
@@ -380,7 +380,7 @@ Music_PokemonCenter_branch_ed778:
 	note __, 1
 	endchannel
 
-Music_PokemonCenter_branch_ed783:
+.sub3:
 	note F#, 1
 	note __, 5
 	note A_, 1
@@ -395,10 +395,10 @@ Music_PokemonCenter_Ch4:
 	togglenoise $3
 	notetype $c
 	stereopanning $ff
-Music_PokemonCenter_branch_ed792:
+.mainloop:
 	note G_, 6
 	note G_, 4
 	note G_, 2
 	note G_, 2
 	note G_, 2
-	loopchannel 0, Music_PokemonCenter_branch_ed792
+	loopchannel 0, .mainloop

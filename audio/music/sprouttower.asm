@@ -14,7 +14,7 @@ Music_SproutTower_Ch1:
 	notetype $c, $a3
 	note __, 16
 	note __, 16
-Music_SproutTower_branch_f6994:
+.mainloop:
 	note __, 6
 	octave 3
 	note F_, 2
@@ -59,7 +59,7 @@ Music_SproutTower_branch_f6994:
 	note F_, 4
 	note D#, 4
 	note D#, 4
-	loopchannel 0, Music_SproutTower_branch_f6994
+	loopchannel 0, .mainloop
 
 Music_SproutTower_Ch2:
 	dutycycle $3
@@ -75,7 +75,7 @@ Music_SproutTower_Ch2:
 	note F_, 4
 	note D#, 4
 	note D#, 4
-Music_SproutTower_branch_f69dc:
+.mainloop:
 	intensity $b5
 	octave 4
 	note C_, 4
@@ -136,7 +136,7 @@ Music_SproutTower_branch_f69dc:
 	octave 4
 	note C_, 16
 	note __, 16
-	loopchannel 0, Music_SproutTower_branch_f69dc
+	loopchannel 0, .mainloop
 
 Music_SproutTower_Ch3:
 	vibrato $14, $e8
@@ -159,7 +159,7 @@ Music_SproutTower_Ch3:
 	note __, 2
 	note F#, 2
 	stereopanning $f0
-Music_SproutTower_branch_f6a3e:
+.mainloop:
 	note __, 4
 	note C_, 2
 	note F_, 2
@@ -216,13 +216,13 @@ Music_SproutTower_branch_f6a3e:
 	note D#, 2
 	note __, 2
 	note F_, 2
-	loopchannel 0, Music_SproutTower_branch_f6a3e
+	loopchannel 0, .mainloop
 
 Music_SproutTower_Ch4:
 	togglenoise $0
 	notetype $c
 	note __, 4
-Music_SproutTower_branch_f6a7f:
+.mainloop:
 	note F#, 4
 	stereopanning $f0
 	note D#, 4
@@ -239,4 +239,4 @@ Music_SproutTower_branch_f6a7f:
 	note D#, 2
 	stereopanning $ff
 	note F#, 4
-	loopchannel 0, Music_SproutTower_branch_f6a7f
+	loopchannel 0, .mainloop

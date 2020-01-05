@@ -33,7 +33,7 @@ Music_Printer_Ch3:
 	note __, 1
 	note F#, 1
 	note __, 1
-Music_Printer_branch_f0823:
+.mainloop:
 	note E_, 1
 	note __, 1
 	note B_, 1
@@ -316,4 +316,4 @@ Music_Printer_branch_f0823:
 	note __, 1
 	note D#, 1
 	note __, 1
-	loopchannel 0, Music_Printer_branch_f0823
+	loopchannel 0, .mainloop

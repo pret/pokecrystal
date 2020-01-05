@@ -9,7 +9,7 @@ Music_PalletTown_Ch1:
 	vibrato $12, $24
 	tone $0001
 	stereopanning $f
-Music_PalletTown_branch_f4b22:
+.mainloop:
 	dutycycle $2
 	notetype $c, $78
 	octave 3
@@ -59,7 +59,7 @@ Music_PalletTown_branch_f4b22:
 	note B_, 8
 	intensity $77
 	note B_, 8
-Music_PalletTown_branch_f4b59:
+.loop1:
 	dutycycle $3
 	intensity $92
 	note G_, 2
@@ -82,7 +82,7 @@ Music_PalletTown_branch_f4b59:
 	note C_, 2
 	octave 3
 	note B_, 2
-	loopchannel 2, Music_PalletTown_branch_f4b59
+	loopchannel 2, .loop1
 	intensity $3f
 	octave 4
 	note C_, 4
@@ -116,13 +116,13 @@ Music_PalletTown_branch_f4b59:
 	note G_, 1
 	intensity $1f
 	note F#, 8
-	loopchannel 0, Music_PalletTown_branch_f4b22
+	loopchannel 0, .mainloop
 
 Music_PalletTown_Ch2:
 	vibrato $12, $44
 	dutycycle $2
 	stereopanning $f0
-Music_PalletTown_branch_f4ba8:
+.mainloop:
 	notetype $c, $88
 	octave 1
 	note G_, 2
@@ -182,7 +182,7 @@ Music_PalletTown_branch_f4ba8:
 	octave 3
 	note C_, 2
 	note D_, 2
-Music_PalletTown_branch_f4be5:
+.loop1:
 	intensity $a2
 	octave 3
 	note E_, 2
@@ -206,7 +206,7 @@ Music_PalletTown_branch_f4be5:
 	note G_, 3
 	note D_, 2
 	note G_, 4
-	loopchannel 2, Music_PalletTown_branch_f4be5
+	loopchannel 2, .loop1
 	note C_, 2
 	octave 3
 	note E_, 4
@@ -241,11 +241,11 @@ Music_PalletTown_branch_f4be5:
 	octave 1
 	note B_, 2
 	note A_, 2
-	loopchannel 0, Music_PalletTown_branch_f4ba8
+	loopchannel 0, .mainloop
 
 Music_PalletTown_Ch3:
 	vibrato $14, $24
-Music_PalletTown_branch_f4c2d:
+.mainloop:
 	notetype $c, $10
 	octave 6
 	note D_, 2
@@ -354,4 +354,4 @@ Music_PalletTown_branch_f4c2d:
 	note __, 1
 	note B_, 8
 	note A_, 8
-	loopchannel 0, Music_PalletTown_branch_f4c2d
+	loopchannel 0, .mainloop

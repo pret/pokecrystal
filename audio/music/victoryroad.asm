@@ -11,10 +11,11 @@ Music_VictoryRoad_Ch1:
 	dutycycle $3
 	tone $0002
 	notetype $c, $b3
-Music_VictoryRoad_branch_f6c8d:
-	callchannel Music_VictoryRoad_branch_f6cb9
-	loopchannel 6, Music_VictoryRoad_branch_f6c8d
-Music_VictoryRoad_branch_f6c94:
+.mainloop:
+.loop1:
+	callchannel .sub1
+	loopchannel 6, .loop1
+.loop2:
 	intensity $b2
 	octave 2
 	note A_, 1
@@ -35,13 +36,13 @@ Music_VictoryRoad_branch_f6c94:
 	note A_, 1
 	octave 3
 	note G#, 3
-	loopchannel 2, Music_VictoryRoad_branch_f6c94
-Music_VictoryRoad_branch_f6cae:
-	callchannel Music_VictoryRoad_branch_f6cb9
-	loopchannel 2, Music_VictoryRoad_branch_f6cae
-	loopchannel 0, Music_VictoryRoad_branch_f6c8d
+	loopchannel 2, .loop2
+.loop3:
+	callchannel .sub1
+	loopchannel 2, .loop3
+	loopchannel 0, .mainloop
 
-Music_VictoryRoad_branch_f6cb9:
+.sub1:
 	intensity $b2
 	octave 2
 	note G_, 1
@@ -65,11 +66,11 @@ Music_VictoryRoad_branch_f6cb9:
 Music_VictoryRoad_Ch2:
 	dutycycle $3
 	vibrato $10, $24
-Music_VictoryRoad_branch_f6cd3:
+.mainloop:
 	notetype $c, $c2
-	callchannel Music_VictoryRoad_branch_f6d1e
+	callchannel .sub1
 	note __, 2
-	callchannel Music_VictoryRoad_branch_f6d1e
+	callchannel .sub1
 	note __, 1
 	octave 4
 	note C_, 1
@@ -115,9 +116,9 @@ Music_VictoryRoad_branch_f6cd3:
 	octave 5
 	note C#, 1
 	note D_, 16
-	loopchannel 0, Music_VictoryRoad_branch_f6cd3
+	loopchannel 0, .mainloop
 
-Music_VictoryRoad_branch_f6d1e:
+.sub1:
 	octave 3
 	note E_, 1
 	note __, 1
@@ -136,10 +137,11 @@ Music_VictoryRoad_branch_f6d1e:
 Music_VictoryRoad_Ch3:
 	stereopanning $f0
 	notetype $c, $28
-Music_VictoryRoad_branch_f6d31:
-	callchannel Music_VictoryRoad_branch_f6d52
-	loopchannel 6, Music_VictoryRoad_branch_f6d31
-Music_VictoryRoad_branch_f6d38:
+.mainloop:
+.loop1:
+	callchannel .sub1
+	loopchannel 6, .loop1
+.loop2:
 	note D_, 1
 	note __, 1
 	note B_, 1
@@ -151,13 +153,13 @@ Music_VictoryRoad_branch_f6d38:
 	note __, 2
 	note D_, 1
 	note B_, 3
-	loopchannel 2, Music_VictoryRoad_branch_f6d38
-Music_VictoryRoad_branch_f6d47:
-	callchannel Music_VictoryRoad_branch_f6d52
-	loopchannel 2, Music_VictoryRoad_branch_f6d47
-	loopchannel 0, Music_VictoryRoad_branch_f6d31
+	loopchannel 2, .loop2
+.loop3:
+	callchannel .sub1
+	loopchannel 2, .loop3
+	loopchannel 0, .mainloop
 
-Music_VictoryRoad_branch_f6d52:
+.sub1:
 	octave 3
 	note C_, 1
 	note __, 1
@@ -175,7 +177,7 @@ Music_VictoryRoad_branch_f6d52:
 Music_VictoryRoad_Ch4:
 	togglenoise $0
 	notetype $c
-Music_VictoryRoad_branch_f6d63:
+.mainloop:
 	note D_, 2
 	note D_, 2
 	note D#, 1
@@ -194,4 +196,4 @@ Music_VictoryRoad_branch_f6d63:
 	note D#, 1
 	note D_, 2
 	note D#, 1
-	loopchannel 0, Music_VictoryRoad_branch_f6d63
+	loopchannel 0, .mainloop

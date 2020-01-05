@@ -3,7 +3,7 @@ Music_KantoWildBattle:
 	musicheader 1, 2, Music_KantoWildBattle_Ch2
 	musicheader 1, 3, Music_KantoWildBattle_Ch3
 
-	db $3
+	db $3 ; unused
 
 Music_KantoWildBattle_Ch1:
 	tempo 112
@@ -24,15 +24,15 @@ Music_KantoWildBattle_Ch1:
 	note G_, 1
 	note F#, 1
 	note F_, 1
-Music_KantoWildBattle_branch_ed091:
+.mainloop:
 	notetype $c, $b7
-	callchannel Music_KantoWildBattle_branch_ed18a
+	callchannel .sub1
 	octave 4
 	note F_, 4
 	note C#, 4
 	octave 3
 	note B_, 8
-	callchannel Music_KantoWildBattle_branch_ed18a
+	callchannel .sub1
 	note __, 8
 	note G_, 1
 	note B_, 1
@@ -207,41 +207,41 @@ Music_KantoWildBattle_branch_ed091:
 	note D#, 1
 	note __, 5
 	note C#, 8
-Music_KantoWildBattle_branch_ed15b:
+.loop1:
 	intensity $b1
 	octave 3
 	note C_, 1
 	note D#, 1
 	note D_, 1
 	note C#, 1
-	loopchannel 8, Music_KantoWildBattle_branch_ed15b
-Music_KantoWildBattle_branch_ed166:
+	loopchannel 8, .loop1
+.loop2:
 	note C#, 1
 	note F_, 1
 	note E_, 1
 	note D#, 1
-	loopchannel 8, Music_KantoWildBattle_branch_ed166
-Music_KantoWildBattle_branch_ed16e:
+	loopchannel 8, .loop2
+.loop3:
 	note C_, 1
 	note D#, 1
 	note D_, 1
 	note C#, 1
-	loopchannel 16, Music_KantoWildBattle_branch_ed16e
-Music_KantoWildBattle_branch_ed176:
+	loopchannel 16, .loop3
+.loop4:
 	note C#, 1
 	note E_, 1
 	note D#, 1
 	note D_, 1
-	loopchannel 8, Music_KantoWildBattle_branch_ed176
-Music_KantoWildBattle_branch_ed17e:
+	loopchannel 8, .loop4
+.loop5:
 	note C_, 1
 	note D#, 1
 	note D_, 1
 	note C#, 1
-	loopchannel 8, Music_KantoWildBattle_branch_ed17e
-	loopchannel 0, Music_KantoWildBattle_branch_ed091
+	loopchannel 8, .loop5
+	loopchannel 0, .mainloop
 
-Music_KantoWildBattle_branch_ed18a:
+.sub1:
 	octave 4
 	note C_, 1
 	note __, 5
@@ -301,9 +301,9 @@ Music_KantoWildBattle_Ch2:
 	note D#, 1
 	note D_, 1
 	note C#, 1
-Music_KantoWildBattle_branch_ed1c8:
+.mainloop:
 	notetype $c, $b7
-	callchannel Music_KantoWildBattle_branch_ed2c6
+	callchannel .sub1
 	octave 2
 	note F_, 2
 	octave 1
@@ -311,7 +311,7 @@ Music_KantoWildBattle_branch_ed1c8:
 	note __, 1
 	octave 2
 	note G_, 2
-	callchannel Music_KantoWildBattle_branch_ed2c6
+	callchannel .sub1
 	octave 2
 	note G_, 1
 	note __, 1
@@ -322,21 +322,21 @@ Music_KantoWildBattle_branch_ed1c8:
 	note F_, 1
 	note F#, 1
 	notetype $6, $b7
-	callchannel Music_KantoWildBattle_branch_ed307
-	callchannel Music_KantoWildBattle_branch_ed307
+	callchannel .sub2
+	callchannel .sub2
 	pitchoffset 0, C#
-	callchannel Music_KantoWildBattle_branch_ed307
-	callchannel Music_KantoWildBattle_branch_ed307
+	callchannel .sub2
+	callchannel .sub2
 	pitchoffset 0, C_
 rept 4
-	callchannel Music_KantoWildBattle_branch_ed307
+	callchannel .sub2
 endr
 	pitchoffset 0, C#
-	callchannel Music_KantoWildBattle_branch_ed307
-	callchannel Music_KantoWildBattle_branch_ed307
+	callchannel .sub2
+	callchannel .sub2
 	pitchoffset 0, C_
-	callchannel Music_KantoWildBattle_branch_ed307
-	callchannel Music_KantoWildBattle_branch_ed307
+	callchannel .sub2
+	callchannel .sub2
 	note __, 16
 	octave 3
 	note A#, 16
@@ -380,11 +380,11 @@ endr
 	note B_, 1
 	note G#, 1
 	notetype $6, $b7
-	callchannel Music_KantoWildBattle_branch_ed31b
+	callchannel .sub3
 	pitchoffset 0, C#
-	callchannel Music_KantoWildBattle_branch_ed31b
+	callchannel .sub3
 	pitchoffset 0, C_
-	callchannel Music_KantoWildBattle_branch_ed340
+	callchannel .sub4
 	octave 2
 	note C_, 2
 	note __, 2
@@ -443,12 +443,12 @@ endr
 	octave 2
 	note C#, 2
 	note __, 2
-	callchannel Music_KantoWildBattle_branch_ed340
-	callchannel Music_KantoWildBattle_branch_ed354
-	callchannel Music_KantoWildBattle_branch_ed340
-	callchannel Music_KantoWildBattle_branch_ed354
+	callchannel .sub4
+	callchannel .sub5
+	callchannel .sub4
+	callchannel .sub5
 	pitchoffset 0, C#
-	callchannel Music_KantoWildBattle_branch_ed340
+	callchannel .sub4
 	pitchoffset 0, C_
 	note C#, 2
 	note __, 2
@@ -469,7 +469,7 @@ endr
 	octave 2
 	note C#, 2
 	note __, 2
-	callchannel Music_KantoWildBattle_branch_ed340
+	callchannel .sub4
 	note C_, 2
 	note __, 2
 	octave 3
@@ -489,9 +489,9 @@ endr
 	octave 2
 	note C_, 2
 	note __, 2
-	loopchannel 0, Music_KantoWildBattle_branch_ed1c8
+	loopchannel 0, .mainloop
 
-Music_KantoWildBattle_branch_ed2c6:
+.sub1:
 	octave 2
 	note C_, 1
 	note __, 2
@@ -558,7 +558,7 @@ Music_KantoWildBattle_branch_ed2c6:
 	note G_, 2
 	endchannel
 
-Music_KantoWildBattle_branch_ed307:
+.sub2:
 	octave 2
 	note C_, 2
 	note __, 4
@@ -580,7 +580,7 @@ Music_KantoWildBattle_branch_ed307:
 	note C_, 4
 	endchannel
 
-Music_KantoWildBattle_branch_ed31b:
+.sub3:
 	octave 2
 	note C_, 2
 	note __, 4
@@ -619,7 +619,7 @@ Music_KantoWildBattle_branch_ed31b:
 	note C_, 2
 	endchannel
 
-Music_KantoWildBattle_branch_ed340:
+.sub4:
 	octave 3
 	note G_, 4
 	octave 2
@@ -641,7 +641,7 @@ Music_KantoWildBattle_branch_ed340:
 	note __, 2
 	endchannel
 
-Music_KantoWildBattle_branch_ed354:
+.sub5:
 	note C_, 2
 	note __, 2
 	octave 3
@@ -714,7 +714,7 @@ Music_KantoWildBattle_Ch3:
 	note G_, 1
 	octave 4
 	note G_, 1
-Music_KantoWildBattle_branch_ed39e:
+.mainloop:
 	notetype $c, $14
 	octave 5
 	note G_, 1
@@ -1212,4 +1212,4 @@ Music_KantoWildBattle_branch_ed39e:
 	note G#, 16
 	note G_, 16
 	note G_, 16
-	loopchannel 0, Music_KantoWildBattle_branch_ed39e
+	loopchannel 0, .mainloop

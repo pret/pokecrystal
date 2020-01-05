@@ -22,7 +22,7 @@ Music_Bicycle_Ch1:
 	note A_, 8
 	intensity $b2
 	note F#, 2
-Music_Bicycle_branch_ee144:
+.mainloop:
 	stereopanning $f
 	intensity $b2
 	note G_, 2
@@ -167,7 +167,7 @@ Music_Bicycle_branch_ee144:
 	note G_, 2
 	note G#, 2
 	note A_, 2
-	loopchannel 0, Music_Bicycle_branch_ee144
+	loopchannel 0, .mainloop
 
 Music_Bicycle_Ch2:
 	dutycycle $2
@@ -193,7 +193,7 @@ Music_Bicycle_Ch2:
 	octave 3
 	note B_, 2
 	note A_, 2
-Music_Bicycle_branch_ee1fd:
+.mainloop:
 	stereopanning $ff
 	dutycycle $2
 	intensity $c3
@@ -253,7 +253,7 @@ Music_Bicycle_branch_ee1fd:
 	intensity $c7
 	note F#, 8
 	stereopanning $f
-	callchannel Music_Bicycle_branch_ee263
+	callchannel .sub1
 	note F#, 4
 	intensity $c3
 	note A_, 2
@@ -262,7 +262,7 @@ Music_Bicycle_branch_ee1fd:
 	note F_, 2
 	note F#, 4
 	intensity $c7
-	callchannel Music_Bicycle_branch_ee263
+	callchannel .sub1
 	note F#, 4
 	intensity $c3
 	note A_, 2
@@ -270,9 +270,9 @@ Music_Bicycle_branch_ee1fd:
 	note A_, 2
 	note G_, 2
 	note F#, 4
-	loopchannel 0, Music_Bicycle_branch_ee1fd
+	loopchannel 0, .mainloop
 
-Music_Bicycle_branch_ee263:
+.sub1:
 	note G_, 6
 	note B_, 6
 	note G_, 4
@@ -301,8 +301,8 @@ Music_Bicycle_Ch3:
 	octave 3
 	note A_, 1
 	note __, 1
-Music_Bicycle_branch_ee27f:
-	callchannel Music_Bicycle_branch_ee333
+.mainloop:
+	callchannel .sub1
 	note E_, 1
 	note __, 1
 	note G_, 1
@@ -353,7 +353,7 @@ Music_Bicycle_branch_ee27f:
 	note __, 1
 	note F#, 1
 	note __, 1
-	callchannel Music_Bicycle_branch_ee333
+	callchannel .sub1
 	note E_, 1
 	note __, 1
 	note G_, 1
@@ -404,7 +404,7 @@ Music_Bicycle_branch_ee27f:
 	note __, 1
 	note A_, 1
 	note __, 1
-Music_Bicycle_branch_ee2e9:
+.loop1:
 	note G_, 1
 	note __, 1
 	note B_, 1
@@ -471,10 +471,10 @@ Music_Bicycle_branch_ee2e9:
 	note __, 1
 	note A_, 1
 	note __, 1
-	loopchannel 2, Music_Bicycle_branch_ee2e9
-	loopchannel 0, Music_Bicycle_branch_ee27f
+	loopchannel 2, .loop1
+	loopchannel 0, .mainloop
 
-Music_Bicycle_branch_ee333:
+.sub1:
 	octave 3
 	note G_, 1
 	note __, 1
@@ -499,16 +499,16 @@ Music_Bicycle_Ch4:
 	notetype $c
 	note __, 16
 	note __, 16
-Music_Bicycle_branch_ee34b:
+.mainloop:
 	note __, 2
-Music_Bicycle_branch_ee34c:
+.loop1:
 	stereopanning $f0
 	note F_, 4
-	loopchannel 12, Music_Bicycle_branch_ee34c
+	loopchannel 12, .loop1
 	note F_, 4
 	note F_, 4
 	stereopanning $ff
 	note F_, 2
 	note F_, 2
 	note F_, 2
-	loopchannel 0, Music_Bicycle_branch_ee34b
+	loopchannel 0, .mainloop
