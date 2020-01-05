@@ -75,6 +75,7 @@ const_value = -1
 	const SPAWN_PEWTER
 	const SPAWN_CERULEAN
 	const SPAWN_ROCK_TUNNEL
+	const SPAWN_POWER_PLANT
 	const SPAWN_VERMILION
 	const SPAWN_LAVENDER
 	const SPAWN_SAFFRON
