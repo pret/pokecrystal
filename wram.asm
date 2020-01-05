@@ -1288,7 +1288,8 @@ wcd6b:: ds 1
 wcd6c:: ds 1
 wcd6d:: ds 1
 wcd6e:: ds 1
-wcd6f:: ds 2
+wcd6f:: ds 1
+wcd70:: ds 1
 wcd71:: ds 1
 wcd72:: ds 1
 wcd73:: ds 1

@@ -338,6 +338,12 @@ JoyTextDelay::
 	ret
 
 WaitPressAorB_BlinkCursor::
+; Show a blinking cursor in the lower right-hand
+; corner of a textbox and wait until A or B is
+; pressed.
+;
+; NOTE: The cursor has to be shown before calling
+; this function or no cursor will be shown at all.
 	ldh a, [hMapObjectIndexBuffer]
 	push af
 	ldh a, [hObjectStructIndexBuffer]
@@ -373,6 +379,9 @@ SimpleWaitPressAorB::
 	ret
 
 PromptButton::
+; Show a blinking cursor in the lower right-hand
+; corner of a textbox and wait until A or B is
+; pressed, afterwards, play a sound.
 	ld a, [wLinkMode]
 	and a
 	jr nz, .link

@@ -2088,7 +2088,7 @@ EnterTimeCapsule:
 	call DelayFrames
 	xor a
 	ldh [hVBlank], a
-	inc a
+	inc a ; LINK_TIMECAPSULE
 	ld [wLinkMode], a
 	ret
 

@@ -381,11 +381,11 @@ LoadMapAttributes::
 	call CopyMapPartialAndAttributes
 	call SwitchToMapScriptsBank
 	call ReadMapScripts
-	xor a ; do not skip object_events
+	xor a ; do not skip object events
 	call ReadMapEvents
 	ret
 
-LoadMapAttributes_SkipPeople::
+LoadMapAttributes_SkipObjects::
 	call CopyMapPartialAndAttributes
 	call SwitchToMapScriptsBank
 	call ReadMapScripts
@@ -657,7 +657,7 @@ ClearObjectStructs::
 	jr nz, .loop
 	ret
 
-RestoreFacingAfterWarp::
+GetWarpDestCoords::
 	call GetMapScriptsBank
 	rst Bankswitch
 
@@ -685,7 +685,7 @@ endr
 	call .backup
 
 .skip
-	farcall GetCoordOfUpperLeftCorner
+	farcall GetMapScreenCoords
 	ret
 
 .backup
@@ -1438,7 +1438,7 @@ SaveScreen::
 .vertical
 	ld b, SCREEN_META_WIDTH
 	ld c, SCREEN_META_HEIGHT - 1
-	jr SaveScreen_LoadNeighbor
+	jr SaveScreen_LoadConnection
 
 .left
 	ld de, wScreenSave + 1
@@ -1450,9 +1450,9 @@ SaveScreen::
 .horizontal
 	ld b, SCREEN_META_WIDTH - 1
 	ld c, SCREEN_META_HEIGHT
-	jr SaveScreen_LoadNeighbor
+	jr SaveScreen_LoadConnection
 
-LoadNeighboringBlockData::
+LoadConnectionBlockData::
 	ld hl, wOverworldMapAnchor
 	ld a, [hli]
 	ld h, [hl]
@@ -1464,7 +1464,7 @@ LoadNeighboringBlockData::
 	ld b, SCREEN_META_WIDTH
 	ld c, SCREEN_META_HEIGHT
 
-SaveScreen_LoadNeighbor::
+SaveScreen_LoadConnection::
 .row
 	push bc
 	push hl
@@ -1481,7 +1481,6 @@ SaveScreen_LoadNeighbor::
 	ld e, a
 	jr nc, .okay
 	inc d
-
 .okay
 	pop hl
 	ldh a, [hConnectionStripLength]
@@ -2260,7 +2259,7 @@ GetFishingGroup::
 	pop de
 	ret
 
-LoadTileset::
+LoadMapTileset::
 	push hl
 	push bc
 

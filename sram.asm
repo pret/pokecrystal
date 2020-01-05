@@ -260,7 +260,7 @@ s4_a60e:: dw ; a60e
 
 	ds $1f0
 
-sMobileBattleTimer:: ds 3
+sMobileBattleTimer:: ds 3 ; a800
 
 
 SECTION "SRAM Mobile 2", SRAM
