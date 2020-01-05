@@ -118,11 +118,6 @@ toggle_sfx: MACRO
 	db toggle_sfx_cmd
 ENDM
 
-; for compatibility with red
-execute_music: MACRO
-	toggle_sfx
-ENDM
-
 	enum pitch_slide_cmd ; $e0
 pitch_slide: MACRO
 	db pitch_slide_cmd
@@ -150,7 +145,9 @@ ENDM
 	enum toggle_noise_cmd ; $e3
 toggle_noise: MACRO
 	db toggle_noise_cmd
-	db \1 ; drum kit
+	IF _NARG > 0
+		db \1 ; drum kit
+	ENDC
 ENDM
 
 	enum force_stereo_panning_cmd ; $e4
@@ -173,11 +170,6 @@ ENDM
 pitch_offset: MACRO
 	db pitch_offset_cmd
 	bigdw \1 ; pitch offset
-ENDM
-
-; for compatibility with red
-toggle_perfect_pitch: MACRO
-	pitch_offset 1
 ENDM
 
 	enum unknownmusic0xe7_cmd ; $e7
@@ -235,7 +227,9 @@ ENDM
 	enum sfx_toggle_noise_cmd ; $f0
 sfx_toggle_noise: MACRO
 	db sfx_toggle_noise_cmd
-	db \1 ; drum kit
+	IF _NARG > 0
+		db \1 ; drum kit
+	ENDC
 ENDM
 
 	enum music0xf1_cmd ; $f1
