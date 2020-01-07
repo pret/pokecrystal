@@ -166,15 +166,11 @@ ROMX $3e
 ROMX $3f
 	"bank3F"
 ROMX $40
-	"mobile_40"
-	"tetsuji"
-	"bank40_2"
-	"ascii 10186f"
-	"bank40_3"
+	"mobile40"
 ROMX $41
 	"bank41"
 ROMX $42
-	"Mobile 42"
+	"mobile42"
 	"Intro Logo"
 	"Credits"
 ROMX $43
@@ -182,11 +178,9 @@ ROMX $43
 ROMX $44
 	"Mobile Adapter SDK"
 ROMX $45
-	"Mobile 45"
-	"Mobile Stadium"
+	"mobile45"
 ROMX $46
-	"Mobile 46"
-	"Mobile 46 ASCII"
+	"mobile46"
 ROMX $47
 	"Battle Tower"
 ROMX $48
@@ -236,7 +230,7 @@ ROMX $5b
 	"bank5B"
 	"Pics 20"
 ROMX $5c
-	"Mobile 5C"
+	"mobile5C"
 	"Pics 21"
 ROMX $5d
 	"Crystal Phone Text 2"
@@ -245,10 +239,10 @@ ROMX $5e
 	"UpdateBattleHUDs"
 	"Songs 5"
 	"Crystal Sound Effects"
-	"Mobile 5E"
+	"mobile5E"
 	"Pics 23"
 ROMX $5f
-	"Mobile 5F"
+	"mobile5F"
 	"Pics 24"
 ROMX $60
 	"Map Scripts 13"
@@ -331,6 +325,7 @@ WRAMX 2
 WRAMX 3
 	"Battle Tower RAM"
 WRAMX 5
+	align 8
 	"GBC Video"
 	org $d300
 	"Battle Animations"
@@ -365,5 +360,7 @@ SRAM $04
 	"SRAM Mobile 1"
 SRAM $05
 	"SRAM Mobile 2"
+SRAM $06
+	"SRAM Mobile 3"
 HRAM
 	"HRAM"

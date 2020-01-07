@@ -36,7 +36,7 @@ FarmerMScript_SellMilk:
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext FarmerMText_GotMilk
-	buttonsound
+	promptbutton
 	itemnotify
 	closetext
 	end
@@ -79,7 +79,7 @@ PokefanF_SnoreFarmer:
 
 FarmerFScript_GiveSnore:
 	writetext FarmerFText_HealedMiltank
-	buttonsound
+	promptbutton
 	verbosegiveitem TM_SNORE
 	iffalse FarmerFScript_NoRoomForSnore
 	setevent EVENT_GOT_TM13_SNORE_FROM_MOOMOO_FARM

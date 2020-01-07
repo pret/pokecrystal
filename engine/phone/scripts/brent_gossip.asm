@@ -12,51 +12,51 @@ BrentBillTriviaScript:
 	ifequal 9, .KimonoGirl
 
 .Father:
-	farwritetext UnknownText_0x662bc
-	buttonsound
-	sjump PhoneScript_HangupText_Male
+	farwritetext BrentFatherGossipText
+	promptbutton
+	sjump PhoneScript_HangUpText_Male
 
 .Grandpa:
-	farwritetext UnknownText_0x662fc
-	buttonsound
-	sjump PhoneScript_HangupText_Male
+	farwritetext BrentGrandpaGossipText
+	promptbutton
+	sjump PhoneScript_HangUpText_Male
 
 .Goldenrod:
-	farwritetext UnknownText_0x66335
-	buttonsound
-	sjump PhoneScript_HangupText_Male
+	farwritetext BrentGoldenrodGossipText
+	promptbutton
+	sjump PhoneScript_HangUpText_Male
 
 .Route25:
-	farwritetext UnknownText_0x66366
-	buttonsound
-	sjump PhoneScript_HangupText_Male
+	farwritetext BrentRoute25GossipText
+	promptbutton
+	sjump PhoneScript_HangUpText_Male
 
 .Abra:
-	farwritetext UnknownText_0x663a1
-	buttonsound
-	sjump PhoneScript_HangupText_Male
+	farwritetext BrentAbraGossipText
+	promptbutton
+	sjump PhoneScript_HangUpText_Male
 
 .Sister:
-	farwritetext UnknownText_0x663e6
-	buttonsound
-	sjump PhoneScript_HangupText_Male
+	farwritetext BrentSisterGossipText
+	promptbutton
+	sjump PhoneScript_HangUpText_Male
 
 .Milk:
-	farwritetext UnknownText_0x66421
-	buttonsound
-	sjump PhoneScript_HangupText_Male
+	farwritetext BrentMilkGossipText
+	promptbutton
+	sjump PhoneScript_HangUpText_Male
 
 .Battling:
-	farwritetext UnknownText_0x6645f
-	buttonsound
-	sjump PhoneScript_HangupText_Male
+	farwritetext BrentBattlingGossipText
+	promptbutton
+	sjump PhoneScript_HangUpText_Male
 
 .FlowerShop:
-	farwritetext UnknownText_0x6649b
-	buttonsound
-	sjump PhoneScript_HangupText_Male
+	farwritetext BrentFlowerShopGossipText
+	promptbutton
+	sjump PhoneScript_HangUpText_Male
 
 .KimonoGirl:
-	farwritetext UnknownText_0x664dd
-	buttonsound
-	sjump PhoneScript_HangupText_Male
+	farwritetext BrentKimonoGirlGossipText
+	promptbutton
+	sjump PhoneScript_HangUpText_Male

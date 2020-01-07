@@ -13,7 +13,7 @@ GoldenrodHappinessRaterTeacherScript:
 	opentext
 	special GetFirstPokemonHappiness
 	writetext GoldenrodHappinessRaterTeacherText
-	buttonsound
+	promptbutton
 	ifgreater 250 - 1, .LovesYouALot
 	ifgreater 200 - 1, .ReallyTrustsYou
 	ifgreater 150 - 1, .SortOfHappy

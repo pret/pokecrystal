@@ -13,15 +13,15 @@ TullyPhoneCalleeScript:
 	iftrue TullySundayNight
 
 .NotSunday:
-	farsjump UnknownScript_0xa0990
+	farsjump TullyNoItemScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_42
-	farsjump UnknownScript_0xa0a82
+	farsjump TullyForwardScript
 
 .WaterStone:
 	getlandmarkname STRING_BUFFER_5, ROUTE_42
-	farsjump UnknownScript_0xa0add
+	farsjump TullyHurryScript
 
 TullyPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, FISHER, TULLY1

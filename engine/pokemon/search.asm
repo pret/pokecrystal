@@ -113,7 +113,7 @@ CheckOwnMonAnywhere:
 	jr z, .loopbox
 
 	; Load the box.
-	ld hl, BoxAddressTable1
+	ld hl, BoxAddressTable
 	ld b, 0
 	add hl, bc
 	add hl, bc
@@ -244,7 +244,7 @@ endr
 	scf
 	ret
 
-BoxAddressTable1:
+BoxAddressTable:
 	dba sBox1
 	dba sBox2
 	dba sBox3

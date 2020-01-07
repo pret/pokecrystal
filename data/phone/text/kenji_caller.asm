@@ -1,9 +1,9 @@
-UnknownText_0x66dab:
+KenjiHangUpText:
 	text "Anyway, we'll chat"
 	line "again!"
 	done
 
-UnknownText_0x66dc5:
+KenjiRemainDedicatedText:
 	text "Are you still on"
 	line "your journey?"
 
@@ -13,7 +13,7 @@ UnknownText_0x66dc5:
 	para "Oooooaaarrrgh!"
 	done
 
-UnknownText_0x66e17:
+KenjiCallMeBackAnotherTimeText:
 	text "I'm in training"
 	line "now. I apologize,"
 
@@ -23,7 +23,7 @@ UnknownText_0x66e17:
 	para "Oooooaaarrrgh!"
 	done
 
-UnknownText_0x66e67:
+KenjiIllHaveTimeToChatTomorrowText:
 	text "I apologize, but I"
 	line "don't have time to"
 
@@ -36,7 +36,7 @@ UnknownText_0x66e67:
 	para "Yiiihah!"
 	done
 
-UnknownText_0x66ed3:
+KenjiHangUpMorningText:
 	text "I plan to take a"
 	line "lunch break, so"
 
@@ -44,7 +44,7 @@ UnknownText_0x66ed3:
 	line "Ayiiiyah!"
 	done
 
-KenjiBreakText:
+KenjiTakingABreakText:
 	text "I'm taking a break"
 	line "on ROUTE 45!"
 
@@ -52,7 +52,7 @@ KenjiBreakText:
 	line "you are free?"
 	done
 
-UnknownText_0x66f52:
+KenjiHangUpNightText:
 	text "I rested up over"
 	line "my lunch break."
 

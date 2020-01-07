@@ -1,11 +1,11 @@
-UnknownText_0x64000:
+IrwinHangUpText:
 	text "I hate having to"
 	line "hang up on you!"
 
 	para "Call you later!"
 	done
 
-UnknownText_0x64032:
+IrwinRocketTakeoverRumorText:
 	text "<PLAY_G>, have you"
 	line "heard?"
 
@@ -19,7 +19,7 @@ UnknownText_0x64032:
 	line "ROCKET?"
 	done
 
-UnknownText_0x64099:
+IrwinPlainBadgeGossipText:
 	text "<PLAY_G>, I heard!"
 
 	para "You defeated that"
@@ -29,7 +29,7 @@ UnknownText_0x64099:
 	line "to be your friend!"
 	done
 
-UnknownText_0x640e6:
+IrwinJasmineReturnedGossipText:
 	text "Hey, I heard about"
 	line "you!"
 
@@ -46,7 +46,7 @@ UnknownText_0x640e6:
 	line "bed with a cold!"
 	done
 
-UnknownText_0x6416d:
+IrwinRocketHideoutGossipText:
 	text "I heard, I heard,"
 	line "I heard!"
 
@@ -60,7 +60,7 @@ UnknownText_0x6416d:
 	line "TEAM ROCKET?"
 	done
 
-UnknownText_0x641e8:
+IrwinRadioTowerGossipText:
 	text "I heard, I heard,"
 	line "I heard!"
 
@@ -71,7 +71,7 @@ UnknownText_0x641e8:
 	line "rock so hard!"
 	done
 
-UnknownText_0x64247:
+IrwinRisingBadgeGossipText:
 	text "I saw, I saw!"
 
 	para "I saw you go into"
@@ -84,7 +84,7 @@ UnknownText_0x64247:
 	line "You can't fail!"
 	done
 
-UnknownText_0x642bb:
+IrwinEliteFourGossipText:
 	text "Yesterday, I went"
 	line "out to NEW BARK"
 
@@ -113,7 +113,7 @@ UnknownText_0x642bb:
 	line "mom, believe me!"
 	done
 
-UnknownText_0x643d4:
+IrwinVermilionCityGossipText:
 	text "I saw, I saw,"
 	line "I saw!"
 
@@ -127,7 +127,7 @@ UnknownText_0x643d4:
 	line "your backdrop!"
 	done
 
-UnknownText_0x64448:
+IrwinTrainPassGossipText:
 	text "I heard, I heard!"
 
 	para "You got a MAGNET"
@@ -155,7 +155,7 @@ UnknownText_0x64448:
 	line "by FLY?"
 	done
 
-UnknownText_0x6455b:
+IrwinSnorlaxGossipText:
 	text "I saw, I saw!"
 
 	para "You waking up"
@@ -174,7 +174,7 @@ UnknownText_0x6455b:
 	line "magic!"
 	done
 
-UnknownText_0x645ff:
+IrwinMtSilverGossipText:
 	text "I hear rumors"
 	line "about you all over"
 	cont "the place."
@@ -200,7 +200,7 @@ IrwinCalledRightAwayText:
 	line "good friends!"
 	done
 
-UnknownText_0x646df:
+IrwinFogBadgeGossipText:
 	text "I saw, I heard!"
 
 	para "You beat MORTY of"
@@ -225,7 +225,7 @@ UnknownText_0x646df:
 	line "took off for home…"
 	done
 
-UnknownText_0x647d8:
+IrwinMarshBadgeGossipText:
 	text "<PLAY_G>, I heard!"
 
 	para "You're kicking up"
@@ -240,7 +240,7 @@ UnknownText_0x647d8:
 	para "You so rock!"
 	done
 
-UnknownText_0x64846:
+IrwinYourEscapadesRockText:
 	text "Hearing about your"
 	line "escapades rocks my"
 
@@ -248,7 +248,7 @@ UnknownText_0x64846:
 	line "It sure does!"
 	done
 
-UnknownText_0x64881:
+IrwinGoodMatchText:
 	text "I'm so glad you"
 	line "called!"
 
@@ -259,7 +259,7 @@ UnknownText_0x64881:
 	line "a good match!"
 	done
 
-UnknownText_0x648dc:
+IrwinSoMuchToChatAboutText:
 	text "How are you?"
 
 	para "What are you"

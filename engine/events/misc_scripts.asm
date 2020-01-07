@@ -11,7 +11,7 @@ FindItemInBallScript::
 	iffalse .no_room
 	disappear LAST_TALKED
 	opentext
-	writetext .text_found
+	writetext .FoundItemText
 	playsound SFX_ITEM
 	pause 60
 	itemnotify
@@ -20,21 +20,19 @@ FindItemInBallScript::
 
 .no_room
 	opentext
-	writetext .text_found
+	writetext .FoundItemText
 	waitbutton
-	writetext .text_bag_full
+	writetext .CantCarryItemText
 	waitbutton
 	closetext
 	end
 
-.text_found
-	; found @ !
-	text_far UnknownText_0x1c0a1c
+.FoundItemText:
+	text_far _FoundItemText
 	text_end
 
-.text_bag_full
-	; But   can't carry any more items.
-	text_far UnknownText_0x1c0a2c
+.CantCarryItemText:
+	text_far _CantCarryItemText
 	text_end
 
 .TryReceiveItem:

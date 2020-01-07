@@ -46,103 +46,103 @@ PhoneScript_AnswerPhone_Male:
 	ifequal PHONE_HIKER_PARRY, .Parry
 
 .Jack:
-	farwritetext UnknownText_0x1b4dc5
-	buttonsound
+	farwritetext JackAnswerPhoneText
+	promptbutton
 	end
 
 .Huey:
-	farwritetext UnknownText_0x1b5073
-	buttonsound
+	farwritetext HueyAnswerPhoneText
+	promptbutton
 	end
 
 .Gaven:
-	farwritetext UnknownText_0x1b5270
-	buttonsound
+	farwritetext GavenAnswerPhoneText
+	promptbutton
 	end
 
 .Jose:
-	farwritetext UnknownText_0x1b55ae
-	buttonsound
+	farwritetext JoseAnswerPhoneText
+	promptbutton
 	end
 
 .Joey:
-	farwritetext UnknownText_0x1b589a
-	buttonsound
+	farwritetext JoeyAnswerPhoneText
+	promptbutton
 	end
 
 .Wade:
-	farwritetext UnknownText_0x1b5a3b
-	buttonsound
+	farwritetext WadeAnswerPhoneText
+	promptbutton
 	end
 
 .Ralph:
-	farwritetext UnknownText_0x1b5c10
-	buttonsound
+	farwritetext RalphAnswerPhoneText
+	promptbutton
 	end
 
 .Anthony:
-	farwritetext UnknownText_0x1b5f7a
-	buttonsound
+	farwritetext AnthonyAnswerPhoneText
+	promptbutton
 	end
 
 .Todd:
-	farwritetext UnknownText_0x1b60f5
-	buttonsound
+	farwritetext ToddAnswerPhoneText
+	promptbutton
 	end
 
 .Irwin:
-	farwritetext UnknownText_0x1b638c
-	buttonsound
+	farwritetext IrwinAnswerPhoneText
+	promptbutton
 	end
 
 .Arnie:
-	farwritetext UnknownText_0x1b6454
-	buttonsound
+	farwritetext ArnieAnswerPhoneText
+	promptbutton
 	end
 
 .Alan:
-	farwritetext UnknownText_0x1b659d
-	buttonsound
+	farwritetext AlanAnswerPhoneText
+	promptbutton
 	end
 
 .Chad:
-	farwritetext UnknownText_0x1b67e2
-	buttonsound
+	farwritetext ChadAnswerPhoneText
+	promptbutton
 	end
 
 .Derek:
-	farwritetext UnknownText_0x1b69a8
-	buttonsound
+	farwritetext DerekAnswerPhoneText
+	promptbutton
 	end
 
 .Tully:
-	farwritetext UnknownText_0x1b6b39
-	buttonsound
+	farwritetext TullyAnswerPhoneText
+	promptbutton
 	end
 
 .Brent:
-	farwritetext UnknownText_0x1b6c96
-	buttonsound
+	farwritetext BrentAnswerPhoneText
+	promptbutton
 	end
 
 .Vance:
-	farwritetext UnknownText_0x1b7019
-	buttonsound
+	farwritetext VanceAnswerPhoneText
+	promptbutton
 	end
 
 .Wilton:
-	farwritetext UnknownText_0x1b71d5
-	buttonsound
+	farwritetext WiltonAnswerPhoneText
+	promptbutton
 	end
 
 .Kenji:
-	farwritetext UnknownText_0x1b730b
-	buttonsound
+	farwritetext KenjiAnswerPhoneText
+	promptbutton
 	end
 
 .Parry:
-	farwritetext UnknownText_0x1b73c7
-	buttonsound
+	farwritetext ParryAnswerPhoneText
+	promptbutton
 	end
 
 PhoneScript_AnswerPhone_Male_Day:
@@ -169,103 +169,103 @@ PhoneScript_AnswerPhone_Male_Day:
 	ifequal PHONE_HIKER_PARRY, .Parry
 
 .Jack:
-	farwritetext UnknownText_0x1b4ded
-	buttonsound
+	farwritetext JackAnswerPhoneDayText
+	promptbutton
 	end
 
 .Huey:
-	farwritetext UnknownText_0x1b509b
-	buttonsound
+	farwritetext HueyAnswerPhoneDayText
+	promptbutton
 	end
 
 .Gaven:
-	farwritetext UnknownText_0x1b52a5
-	buttonsound
+	farwritetext GavenAnswerPhoneDayText
+	promptbutton
 	end
 
 .Jose:
-	farwritetext UnknownText_0x1b55da
-	buttonsound
+	farwritetext JoseAnswerPhoneDayText
+	promptbutton
 	end
 
 .Joey:
-	farwritetext UnknownText_0x1b58c2
-	buttonsound
+	farwritetext JoeyAnswerPhoneDayText
+	promptbutton
 	end
 
 .Wade:
-	farwritetext UnknownText_0x1b5a74
-	buttonsound
+	farwritetext WadeAnswerPhoneDayText
+	promptbutton
 	end
 
 .Ralph:
-	farwritetext UnknownText_0x1b5c63
-	buttonsound
+	farwritetext RalphAnswerPhoneDayText
+	promptbutton
 	end
 
 .Anthony:
-	farwritetext UnknownText_0x1b5f9e
-	buttonsound
+	farwritetext AnthonyAnswerPhoneDayText
+	promptbutton
 	end
 
 .Todd:
-	farwritetext UnknownText_0x1b611b
-	buttonsound
+	farwritetext ToddAnswerPhoneDayText
+	promptbutton
 	end
 
 .Irwin:
-	farwritetext UnknownText_0x1b63a8
-	buttonsound
+	farwritetext IrwinAnswerPhoneDayText
+	promptbutton
 	end
 
 .Arnie:
-	farwritetext UnknownText_0x1b647e
-	buttonsound
+	farwritetext ArnieAnswerPhoneDayText
+	promptbutton
 	end
 
 .Alan:
-	farwritetext UnknownText_0x1b65c7
-	buttonsound
+	farwritetext AlanAnswerPhoneDayText
+	promptbutton
 	end
 
 .Chad:
-	farwritetext UnknownText_0x1b680e
-	buttonsound
+	farwritetext ChadAnswerPhoneDayText
+	promptbutton
 	end
 
 .Derek:
-	farwritetext UnknownText_0x1b69d2
-	buttonsound
+	farwritetext DerekAnswerPhoneDayText
+	promptbutton
 	end
 
 .Tully:
-	farwritetext UnknownText_0x1b6b65
-	buttonsound
+	farwritetext TullyAnswerPhoneDayText
+	promptbutton
 	end
 
 .Brent:
-	farwritetext UnknownText_0x1b6cc6
-	buttonsound
+	farwritetext BrentAnswerPhoneDayText
+	promptbutton
 	end
 
 .Vance:
-	farwritetext UnknownText_0x1b7057
-	buttonsound
+	farwritetext VanceAnswerPhoneDayText
+	promptbutton
 	end
 
 .Wilton:
-	farwritetext UnknownText_0x1b71fc
-	buttonsound
+	farwritetext WiltonAnswerPhoneDayText
+	promptbutton
 	end
 
 .Kenji:
-	farwritetext UnknownText_0x1b7331
-	buttonsound
+	farwritetext KenjiAnswerPhoneDayText
+	promptbutton
 	end
 
 .Parry:
-	farwritetext UnknownText_0x1b73ef
-	buttonsound
+	farwritetext ParryAnswerPhoneDayText
+	promptbutton
 	end
 
 PhoneScript_AnswerPhone_Male_Nite:
@@ -292,103 +292,103 @@ PhoneScript_AnswerPhone_Male_Nite:
 	ifequal PHONE_HIKER_PARRY, .Parry
 
 .Jack:
-	farwritetext UnknownText_0x1b4e16
-	buttonsound
+	farwritetext JackAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Huey:
-	farwritetext UnknownText_0x1b50c2
-	buttonsound
+	farwritetext HueyAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Gaven:
-	farwritetext UnknownText_0x1b52cc
-	buttonsound
+	farwritetext GavenAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Jose:
-	farwritetext UnknownText_0x1b55fc
-	buttonsound
+	farwritetext JoseAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Joey:
-	farwritetext UnknownText_0x1b58ea
-	buttonsound
+	farwritetext JoeyAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Wade:
-	farwritetext UnknownText_0x1b5a9f
-	buttonsound
+	farwritetext WadeAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Ralph:
-	farwritetext UnknownText_0x1b5cb6
-	buttonsound
+	farwritetext RalphAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Anthony:
-	farwritetext UnknownText_0x1b5fc9
-	buttonsound
+	farwritetext AnthonyAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Todd:
-	farwritetext UnknownText_0x1b6149
-	buttonsound
+	farwritetext ToddAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Irwin:
-	farwritetext UnknownText_0x1b63c4
-	buttonsound
+	farwritetext IrwinAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Arnie:
-	farwritetext UnknownText_0x1b64a8
-	buttonsound
+	farwritetext ArnieAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Alan:
-	farwritetext UnknownText_0x1b65e3
-	buttonsound
+	farwritetext AlanAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Chad:
-	farwritetext UnknownText_0x1b6836
-	buttonsound
+	farwritetext ChadAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Derek:
-	farwritetext UnknownText_0x1b69f8
-	buttonsound
+	farwritetext DerekAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Tully:
-	farwritetext UnknownText_0x1b6b92
-	buttonsound
+	farwritetext TullyAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Brent:
-	farwritetext UnknownText_0x1b6cf6
-	buttonsound
+	farwritetext BrentAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Vance:
-	farwritetext UnknownText_0x1b7092
-	buttonsound
+	farwritetext VanceAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Wilton:
-	farwritetext UnknownText_0x1b722a
-	buttonsound
+	farwritetext WiltonAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Kenji:
-	farwritetext UnknownText_0x1b7357
-	buttonsound
+	farwritetext KenjiAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Parry:
-	farwritetext UnknownText_0x1b7417
-	buttonsound
+	farwritetext ParryAnswerPhoneNiteText
+	promptbutton
 	end
 
 PhoneScript_AnswerPhone_Female:
@@ -407,43 +407,43 @@ PhoneScript_AnswerPhone_Female:
 	ifequal PHONE_PICNICKER_ERIN, .Erin
 
 .Beverly:
-	farwritetext UnknownText_0x1b4f21
-	buttonsound
+	farwritetext BeverlyAnswerPhoneText
+	promptbutton
 	end
 
 .Beth:
-	farwritetext UnknownText_0x1b53f7
-	buttonsound
+	farwritetext BethAnswerPhoneText
+	promptbutton
 	end
 
 .Reena:
-	farwritetext UnknownText_0x1b5702
-	buttonsound
+	farwritetext ReenaAnswerPhoneText
+	promptbutton
 	end
 
 .Liz:
-	farwritetext UnknownText_0x1b5d9f
-	buttonsound
+	farwritetext LizAnswerPhoneText
+	promptbutton
 	end
 
 .Gina:
-	farwritetext UnknownText_0x1b626a
-	buttonsound
+	farwritetext GinaAnswerPhoneText
+	promptbutton
 	end
 
 .Dana:
-	farwritetext UnknownText_0x1b66c8
-	buttonsound
+	farwritetext DanaAnswerPhoneText
+	promptbutton
 	end
 
 .Tiffany:
-	farwritetext UnknownText_0x1b6e7c
-	buttonsound
+	farwritetext TiffanyAnswerPhoneText
+	promptbutton
 	end
 
 .Erin:
-	farwritetext UnknownText_0x1b751a
-	buttonsound
+	farwritetext ErinAnswerPhoneText
+	promptbutton
 	end
 
 PhoneScript_AnswerPhone_Female_Day:
@@ -458,43 +458,43 @@ PhoneScript_AnswerPhone_Female_Day:
 	ifequal PHONE_PICNICKER_ERIN, .Erin
 
 .Beverly:
-	farwritetext UnknownText_0x1b4f4d
-	buttonsound
+	farwritetext BeverlyAnswerPhoneDayText
+	promptbutton
 	end
 
 .Beth:
-	farwritetext UnknownText_0x1b5424
-	buttonsound
+	farwritetext BethAnswerPhoneDayText
+	promptbutton
 	end
 
 .Reena:
-	farwritetext UnknownText_0x1b572e
-	buttonsound
+	farwritetext ReenaAnswerPhoneDayText
+	promptbutton
 	end
 
 .Liz:
-	farwritetext UnknownText_0x1b5dcc
-	buttonsound
+	farwritetext LizAnswerPhoneDayText
+	promptbutton
 	end
 
 .Gina:
-	farwritetext UnknownText_0x1b6296
-	buttonsound
+	farwritetext GinaAnswerPhoneDayText
+	promptbutton
 	end
 
 .Dana:
-	farwritetext UnknownText_0x1b66ec
-	buttonsound
+	farwritetext DanaAnswerPhoneDayText
+	promptbutton
 	end
 
 .Tiffany:
-	farwritetext UnknownText_0x1b6ea6
-	buttonsound
+	farwritetext TiffanyAnswerPhoneDayText
+	promptbutton
 	end
 
 .Erin:
-	farwritetext UnknownText_0x1b7548
-	buttonsound
+	farwritetext ErinAnswerPhoneDayText
+	promptbutton
 	end
 
 PhoneScript_AnswerPhone_Female_Nite:
@@ -509,43 +509,43 @@ PhoneScript_AnswerPhone_Female_Nite:
 	ifequal PHONE_PICNICKER_ERIN, .Erin
 
 .Beverly:
-	farwritetext UnknownText_0x1b4f75
-	buttonsound
+	farwritetext BeverlyAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Beth:
-	farwritetext UnknownText_0x1b5446
-	buttonsound
+	farwritetext BethAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Reena:
-	farwritetext UnknownText_0x1b575a
-	buttonsound
+	farwritetext ReenaAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Liz:
-	farwritetext UnknownText_0x1b5df8
-	buttonsound
+	farwritetext LizAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Gina:
-	farwritetext UnknownText_0x1b62c5
-	buttonsound
+	farwritetext GinaAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Dana:
-	farwritetext UnknownText_0x1b6713
-	buttonsound
+	farwritetext DanaAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Tiffany:
-	farwritetext UnknownText_0x1b6ec9
-	buttonsound
+	farwritetext TiffanyAnswerPhoneNiteText
+	promptbutton
 	end
 
 .Erin:
-	farwritetext UnknownText_0x1b756f
-	buttonsound
+	farwritetext ErinAnswerPhoneNiteText
+	promptbutton
 	end
 
 PhoneScript_GreetPhone_Male:
@@ -576,103 +576,103 @@ PhoneScript_GreetPhone_Male:
 	ifequal PHONE_HIKER_PARRY, .Parry
 
 .Jack:
-	farwritetext UnknownText_0x1b4e3e
-	buttonsound
+	farwritetext JackGreetText
+	promptbutton
 	end
 
 .Huey:
-	farwritetext UnknownText_0x1b50e9
-	buttonsound
+	farwritetext HueyGreetText
+	promptbutton
 	end
 
 .Gaven:
-	farwritetext UnknownText_0x1b5301
-	buttonsound
+	farwritetext GavenGreetText
+	promptbutton
 	end
 
 .Jose:
-	farwritetext UnknownText_0x1b5628
-	buttonsound
+	farwritetext JoseGreetText
+	promptbutton
 	end
 
 .Joey:
-	farwritetext UnknownText_0x1b5912
-	buttonsound
+	farwritetext JoeyGreetText
+	promptbutton
 	end
 
 .Wade:
-	farwritetext UnknownText_0x1b5ad8
-	buttonsound
+	farwritetext WadeGreetText
+	promptbutton
 	end
 
 .Ralph:
-	farwritetext UnknownText_0x1b5d09
-	buttonsound
+	farwritetext RalphGreetText
+	promptbutton
 	end
 
 .Anthony:
-	farwritetext UnknownText_0x1b5ff6
-	buttonsound
+	farwritetext AnthonyGreetText
+	promptbutton
 	end
 
 .Todd:
-	farwritetext UnknownText_0x1b616e
-	buttonsound
+	farwritetext ToddGreetText
+	promptbutton
 	end
 
 .Irwin:
-	farwritetext UnknownText_0x1b63e3
-	buttonsound
+	farwritetext IrwinGreetText
+	promptbutton
 	end
 
 .Arnie:
-	farwritetext UnknownText_0x1b64d2
-	buttonsound
+	farwritetext ArnieGreetText
+	promptbutton
 	end
 
 .Alan:
-	farwritetext UnknownText_0x1b660d
-	buttonsound
+	farwritetext AlanGreetText
+	promptbutton
 	end
 
 .Chad:
-	farwritetext UnknownText_0x1b6862
-	buttonsound
+	farwritetext ChadGreetText
+	promptbutton
 	end
 
 .Derek:
-	farwritetext UnknownText_0x1b6a22
-	buttonsound
+	farwritetext DerekGreetText
+	promptbutton
 	end
 
 .Tully:
-	farwritetext UnknownText_0x1b6bb9
-	buttonsound
+	farwritetext TullyGreetText
+	promptbutton
 	end
 
 .Brent:
-	farwritetext UnknownText_0x1b6d26
-	buttonsound
+	farwritetext BrentGreetText
+	promptbutton
 	end
 
 .Vance:
-	farwritetext UnknownText_0x1b70e7
-	buttonsound
+	farwritetext VanceGreetText
+	promptbutton
 	end
 
 .Wilton:
-	farwritetext UnknownText_0x1b725c
-	buttonsound
+	farwritetext WiltonGreetText
+	promptbutton
 	end
 
 .Kenji:
-	farwritetext UnknownText_0x1b737f
-	buttonsound
+	farwritetext KenjiGreetText
+	promptbutton
 	end
 
 .Parry:
-	farwritetext UnknownText_0x1b743f
-	buttonsound
+	farwritetext ParryGreetText
+	promptbutton
 	end
 
 PhoneScript_GreetPhone_Male_Day:
@@ -699,103 +699,103 @@ PhoneScript_GreetPhone_Male_Day:
 	ifequal PHONE_HIKER_PARRY, .Parry
 
 .Jack:
-	farwritetext UnknownText_0x1b4e72
-	buttonsound
+	farwritetext JackGreetDayText
+	promptbutton
 	end
 
 .Huey:
-	farwritetext UnknownText_0x1b511a
-	buttonsound
+	farwritetext HueyGreetDayText
+	promptbutton
 	end
 
 .Gaven:
-	farwritetext UnknownText_0x1b5335
-	buttonsound
+	farwritetext GavenGreetDayText
+	promptbutton
 	end
 
 .Jose:
-	farwritetext UnknownText_0x1b564c
-	buttonsound
+	farwritetext JoseGreetDayText
+	promptbutton
 	end
 
 .Joey:
-	farwritetext UnknownText_0x1b5948
-	buttonsound
+	farwritetext JoeyGreetDayText
+	promptbutton
 	end
 
 .Wade:
-	farwritetext UnknownText_0x1b5b0b
-	buttonsound
+	farwritetext WadeGreetDayText
+	promptbutton
 	end
 
 .Ralph:
-	farwritetext UnknownText_0x1b5d21
-	buttonsound
+	farwritetext RalphGreetDayText
+	promptbutton
 	end
 
 .Anthony:
-	farwritetext UnknownText_0x1b6017
-	buttonsound
+	farwritetext AnthonyGreetDayText
+	promptbutton
 	end
 
 .Todd:
-	farwritetext UnknownText_0x1b618f
-	buttonsound
+	farwritetext ToddGreetDayText
+	promptbutton
 	end
 
 .Irwin:
-	farwritetext UnknownText_0x1b6407
-	buttonsound
+	farwritetext IrwinGreetDayText
+	promptbutton
 	end
 
 .Arnie:
-	farwritetext UnknownText_0x1b6506
-	buttonsound
+	farwritetext ArnieGreetDayText
+	promptbutton
 	end
 
 .Alan:
-	farwritetext UnknownText_0x1b6624
-	buttonsound
+	farwritetext AlanGreetDayText
+	promptbutton
 	end
 
 .Chad:
-	farwritetext UnknownText_0x1b6890
-	buttonsound
+	farwritetext ChadGreetDayText
+	promptbutton
 	end
 
 .Derek:
-	farwritetext UnknownText_0x1b6a56
-	buttonsound
+	farwritetext DerekGreetDayText
+	promptbutton
 	end
 
 .Tully:
-	farwritetext UnknownText_0x1b6bef
-	buttonsound
+	farwritetext TullyGreetDayText
+	promptbutton
 	end
 
 .Brent:
-	farwritetext UnknownText_0x1b6d57
-	buttonsound
+	farwritetext BrentGreetDayText
+	promptbutton
 	end
 
 .Vance:
-	farwritetext UnknownText_0x1b7112
-	buttonsound
+	farwritetext VanceGreetDayText
+	promptbutton
 	end
 
 .Wilton:
-	farwritetext UnknownText_0x1b7283
-	buttonsound
+	farwritetext WiltonGreetDayText
+	promptbutton
 	end
 
 .Kenji:
-	farwritetext UnknownText_0x1b7397
-	buttonsound
+	farwritetext KenjiGreetDayText
+	promptbutton
 	end
 
 .Parry:
-	farwritetext UnknownText_0x1b746f
-	buttonsound
+	farwritetext ParryGreetDayText
+	promptbutton
 	end
 
 PhoneScript_GreetPhone_Male_Nite:
@@ -822,103 +822,103 @@ PhoneScript_GreetPhone_Male_Nite:
 	ifequal PHONE_HIKER_PARRY, .Parry
 
 .Jack:
-	farwritetext UnknownText_0x1b4e9e
-	buttonsound
+	farwritetext JackGreetNiteText
+	promptbutton
 	end
 
 .Huey:
-	farwritetext UnknownText_0x1b5154
-	buttonsound
+	farwritetext HueyGreetNiteText
+	promptbutton
 	end
 
 .Gaven:
-	farwritetext UnknownText_0x1b535f
-	buttonsound
+	farwritetext GavenGreetNiteText
+	promptbutton
 	end
 
 .Jose:
-	farwritetext UnknownText_0x1b5670
-	buttonsound
+	farwritetext JoseGreetNiteText
+	promptbutton
 	end
 
 .Joey:
-	farwritetext UnknownText_0x1b597c
-	buttonsound
+	farwritetext JoeyGreetNiteText
+	promptbutton
 	end
 
 .Wade:
-	farwritetext UnknownText_0x1b5b37
-	buttonsound
+	farwritetext WadeGreetNiteText
+	promptbutton
 	end
 
 .Ralph:
-	farwritetext UnknownText_0x1b5d39
-	buttonsound
+	farwritetext RalphGreetNiteText
+	promptbutton
 	end
 
 .Anthony:
-	farwritetext UnknownText_0x1b6041
-	buttonsound
+	farwritetext AnthonyGreetNiteText
+	promptbutton
 	end
 
 .Todd:
-	farwritetext UnknownText_0x1b61bd
-	buttonsound
+	farwritetext ToddGreetNiteText
+	promptbutton
 	end
 
 .Irwin:
-	farwritetext UnknownText_0x1b642c
-	buttonsound
+	farwritetext IrwinGreetNiteText
+	promptbutton
 	end
 
 .Arnie:
-	farwritetext UnknownText_0x1b6539
-	buttonsound
+	farwritetext ArnieGreetNiteText
+	promptbutton
 	end
 
 .Alan:
-	farwritetext UnknownText_0x1b663b
-	buttonsound
+	farwritetext AlanGreetNiteText
+	promptbutton
 	end
 
 .Chad:
-	farwritetext UnknownText_0x1b68ba
-	buttonsound
+	farwritetext ChadGreetNiteText
+	promptbutton
 	end
 
 .Derek:
-	farwritetext UnknownText_0x1b6a8b
-	buttonsound
+	farwritetext DerekGreetNiteText
+	promptbutton
 	end
 
 .Tully:
-	farwritetext UnknownText_0x1b6c23
-	buttonsound
+	farwritetext TullyGreetNiteText
+	promptbutton
 	end
 
 .Brent:
-	farwritetext UnknownText_0x1b6d88
-	buttonsound
+	farwritetext BrentGreetNiteText
+	promptbutton
 	end
 
 .Vance:
-	farwritetext UnknownText_0x1b7132
-	buttonsound
+	farwritetext VanceGreetNiteText
+	promptbutton
 	end
 
 .Wilton:
-	farwritetext UnknownText_0x1b72a5
-	buttonsound
+	farwritetext WiltonGreetNiteText
+	promptbutton
 	end
 
 .Kenji:
-	farwritetext UnknownText_0x1b73af
-	buttonsound
+	farwritetext KenjiGreetNiteText
+	promptbutton
 	end
 
 .Parry:
-	farwritetext UnknownText_0x1b749b
-	buttonsound
+	farwritetext ParryGreetNiteText
+	promptbutton
 	end
 
 PhoneScript_GreetPhone_Female:
@@ -937,43 +937,43 @@ PhoneScript_GreetPhone_Female:
 	ifequal PHONE_PICNICKER_ERIN, .Erin
 
 .Beverly:
-	farwritetext UnknownText_0x1b4fa1
-	buttonsound
+	farwritetext BeverlyGreetText
+	promptbutton
 	end
 
 .Beth:
-	farwritetext UnknownText_0x1b5472
-	buttonsound
+	farwritetext BethGreetText
+	promptbutton
 	end
 
 .Reena:
-	farwritetext UnknownText_0x1b5786
-	buttonsound
+	farwritetext ReenaGreetText
+	promptbutton
 	end
 
 .Liz:
-	farwritetext UnknownText_0x1b5e25
-	buttonsound
+	farwritetext LizGreetText
+	promptbutton
 	end
 
 .Gina:
-	farwritetext UnknownText_0x1b62f1
-	buttonsound
+	farwritetext GinaGreetText
+	promptbutton
 	end
 
 .Dana:
-	farwritetext UnknownText_0x1b6738
-	buttonsound
+	farwritetext DanaGreetText
+	promptbutton
 	end
 
 .Tiffany:
-	farwritetext UnknownText_0x1b6ef3
-	buttonsound
+	farwritetext TiffanyGreetText
+	promptbutton
 	end
 
 .Erin:
-	farwritetext UnknownText_0x1b758f
-	buttonsound
+	farwritetext ErinGreetText
+	promptbutton
 	end
 
 PhoneScript_GreetPhone_Female_Day:
@@ -988,43 +988,43 @@ PhoneScript_GreetPhone_Female_Day:
 	ifequal PHONE_PICNICKER_ERIN, .Erin
 
 .Beverly:
-	farwritetext UnknownText_0x1b4fda
-	buttonsound
+	farwritetext BeverlyGreetDayText
+	promptbutton
 	end
 
 .Beth:
-	farwritetext UnknownText_0x1b54a6
-	buttonsound
+	farwritetext BethGreetDayText
+	promptbutton
 	end
 
 .Reena:
-	farwritetext UnknownText_0x1b57b7
-	buttonsound
+	farwritetext ReenaGreetDayText
+	promptbutton
 	end
 
 .Liz:
-	farwritetext UnknownText_0x1b5e59
-	buttonsound
+	farwritetext LizGreetDayText
+	promptbutton
 	end
 
 .Gina:
-	farwritetext UnknownText_0x1b630e
-	buttonsound
+	farwritetext GinaGreetDayText
+	promptbutton
 	end
 
 .Dana:
-	farwritetext UnknownText_0x1b6757
-	buttonsound
+	farwritetext DanaGreetDayText
+	promptbutton
 	end
 
 .Tiffany:
-	farwritetext UnknownText_0x1b6f1c
-	buttonsound
+	farwritetext TiffanyGreetDayText
+	promptbutton
 	end
 
 .Erin:
-	farwritetext UnknownText_0x1b75ac
-	buttonsound
+	farwritetext ErinGreetDayText
+	promptbutton
 	end
 
 PhoneScript_GreetPhone_Female_Nite:
@@ -1039,43 +1039,43 @@ PhoneScript_GreetPhone_Female_Nite:
 	ifequal PHONE_PICNICKER_ERIN, .Erin
 
 .Beverly:
-	farwritetext UnknownText_0x1b5004
-	buttonsound
+	farwritetext BeverlyGreetNiteText
+	promptbutton
 	end
 
 .Beth:
-	farwritetext UnknownText_0x1b54d4
-	buttonsound
+	farwritetext BethGreetNiteText
+	promptbutton
 	end
 
 .Reena:
-	farwritetext UnknownText_0x1b57e8
-	buttonsound
+	farwritetext ReenaGreetNiteText
+	promptbutton
 	end
 
 .Liz:
-	farwritetext UnknownText_0x1b5e8e
-	buttonsound
+	farwritetext LizGreetNiteText
+	promptbutton
 	end
 
 .Gina:
-	farwritetext UnknownText_0x1b6331
-	buttonsound
+	farwritetext GinaGreetNiteText
+	promptbutton
 	end
 
 .Dana:
-	farwritetext UnknownText_0x1b6776
-	buttonsound
+	farwritetext DanaGreetNiteText
+	promptbutton
 	end
 
 .Tiffany:
-	farwritetext UnknownText_0x1b6f37
-	buttonsound
+	farwritetext TiffanyGreetNiteText
+	promptbutton
 	end
 
 .Erin:
-	farwritetext UnknownText_0x1b75c9
-	buttonsound
+	farwritetext ErinGreetNiteText
+	promptbutton
 	end
 
 PhoneScript_Generic_Male:
@@ -1099,93 +1099,93 @@ PhoneScript_Generic_Male:
 	ifequal PHONE_HIKER_PARRY, .Parry
 
 .Jack:
-	farwritetext UnknownText_0x1b4ecd
-	buttonsound
+	farwritetext JackGenericText
+	promptbutton
 	end
 
 .Unknown:
-	farwritetext UnknownText_0x1b518b
-	buttonsound
+	farwritetext UnknownGenericText
+	promptbutton
 	end
 
 .Gaven:
-	farwritetext UnknownText_0x1b5393
-	buttonsound
+	farwritetext GavenGenericText
+	promptbutton
 	end
 
 .Jose:
-	farwritetext UnknownText_0x1b5694
-	buttonsound
+	farwritetext JoseGenericText
+	promptbutton
 	end
 
 .Joey:
-	farwritetext UnknownText_0x1b59b2
-	buttonsound
+	farwritetext JoeyGenericText
+	promptbutton
 	end
 
 .Wade:
-	farwritetext UnknownText_0x1b5b68
-	buttonsound
+	farwritetext WadeGenericText
+	promptbutton
 	end
 
 .Ralph:
-	farwritetext UnknownText_0x1b5d51
-	buttonsound
+	farwritetext RalphGenericText
+	promptbutton
 	end
 
 .Anthony:
-	farwritetext UnknownText_0x1b606f
-	buttonsound
+	farwritetext AnthonyGenericText
+	promptbutton
 	end
 
 .Todd:
-	farwritetext UnknownText_0x1b61f2
-	buttonsound
+	farwritetext ToddGenericText
+	promptbutton
 	end
 
 .Arnie:
-	farwritetext UnknownText_0x1b656c
-	buttonsound
+	farwritetext ArnieGenericText
+	promptbutton
 	end
 
 .Alan:
-	farwritetext UnknownText_0x1b6652
-	buttonsound
+	farwritetext AlanGenericText
+	promptbutton
 	end
 
 .Chad:
-	farwritetext UnknownText_0x1b68e8
-	buttonsound
+	farwritetext ChadGenericText
+	promptbutton
 	end
 
 .Derek:
-	farwritetext UnknownText_0x1b6ac2
-	buttonsound
+	farwritetext DerekGenericText
+	promptbutton
 	end
 
 .Tully:
-	farwritetext UnknownText_0x1b6c56
-	buttonsound
+	farwritetext TullyGenericText
+	promptbutton
 	end
 
 .Brent:
-	farwritetext UnknownText_0x1b6db9
-	buttonsound
+	farwritetext BrentGenericText
+	promptbutton
 	end
 
 .Vance:
-	farwritetext UnknownText_0x1b7161
-	buttonsound
+	farwritetext VanceGenericText
+	promptbutton
 	end
 
 .Wilton:
-	farwritetext UnknownText_0x1b72d0
-	buttonsound
+	farwritetext WiltonGenericText
+	promptbutton
 	end
 
 .Parry:
-	farwritetext UnknownText_0x1b74c8
-	buttonsound
+	farwritetext ParryGenericText
+	promptbutton
 	end
 
 PhoneScript_Generic_Female:
@@ -1200,60 +1200,60 @@ PhoneScript_Generic_Female:
 	ifequal PHONE_PICNICKER_ERIN, .Erin
 
 .Beverly:
-	farwritetext UnknownText_0x1b502b
-	buttonsound
+	farwritetext BeverlyGenericText
+	promptbutton
 	end
 
 .Beth:
-	farwritetext UnknownText_0x1b5510
-	buttonsound
+	farwritetext BethGenericText
+	promptbutton
 	end
 
 .Reena:
-	farwritetext UnknownText_0x1b5819
-	buttonsound
+	farwritetext ReenaGenericText
+	promptbutton
 	end
 
 .Liz:
-	farwritetext UnknownText_0x1b5ebe
-	buttonsound
+	farwritetext LizGenericText
+	promptbutton
 	end
 
 .Gina:
-	farwritetext UnknownText_0x1b6352
-	buttonsound
+	farwritetext GinaGenericText
+	promptbutton
 	end
 
 .Dana:
-	farwritetext UnknownText_0x1b6795
-	buttonsound
+	farwritetext DanaGenericText
+	promptbutton
 	end
 
 .Tiffany:
-	farwritetext UnknownText_0x1b6f60
-	buttonsound
+	farwritetext TiffanyGenericText
+	promptbutton
 	end
 
 .Erin:
-	farwritetext UnknownText_0x1b75e5
-	buttonsound
+	farwritetext ErinGenericText
+	promptbutton
 	end
 
 PhoneScript_MonFlavorText:
 	special RandomPhoneMon
 	farscall PhoneScript_Random2
 	ifequal $0, .TooEnergetic
-	farwritetext UnknownText_0x1b518b
-	buttonsound
-	farsjump PhoneScript_HangupText_Male
+	farwritetext UnknownGenericText
+	promptbutton
+	farsjump PhoneScript_HangUpText_Male
 
 .TooEnergetic:
 	farsjump .unnecessary
 
 .unnecessary
-	farwritetext UnknownText_0x1b522b
-	buttonsound
-	farsjump PhoneScript_HangupText_Male
+	farwritetext UnknownTougherThanEverText
+	promptbutton
+	farsjump PhoneScript_HangUpText_Male
 
 GrandmaString: db "Grandma@"
 GrandpaString: db "Grandpa@"

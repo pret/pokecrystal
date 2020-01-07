@@ -87,7 +87,6 @@ INCLUDE "engine/events/daycare.asm"
 INCLUDE "engine/events/print_unown.asm"
 INCLUDE "engine/events/print_photo.asm"
 INCLUDE "engine/pokemon/breeding.asm"
-INCLUDE "gfx/tilesets.asm"
 
 
 SECTION "Roofs", ROMX
@@ -518,6 +517,8 @@ INCLUDE "engine/events/npc_trade.asm"
 INCLUDE "engine/events/mom_phone.asm"
 
 
+SECTION "mobile40", ROMX
+
 INCLUDE "mobile/mobile_40.asm"
 
 
@@ -532,7 +533,7 @@ INCLUDE "mobile/mobile_41.asm"
 INCLUDE "engine/gfx/load_overworld_font.asm"
 
 
-SECTION "Mobile 42", ROMX
+SECTION "mobile42", ROMX
 
 INCLUDE "mobile/mobile_42.asm"
 
@@ -549,8 +550,15 @@ INCLUDE "engine/movie/unused_title.asm"
 INCLUDE "engine/movie/title.asm"
 
 
-INCLUDE "mobile/mobile_45.asm"
+SECTION "mobile45", ROMX
 
+INCLUDE "mobile/mobile_45.asm"
+INCLUDE "mobile/mobile_45_sprite_engine.asm"
+INCLUDE "mobile/mobile_45_2.asm"
+INCLUDE "mobile/mobile_45_stadium.asm"
+
+
+SECTION "mobile46", ROMX
 
 INCLUDE "mobile/mobile_46.asm"
 
@@ -566,7 +574,7 @@ INCLUDE "mobile/mobile_5b.asm"
 INCLUDE "engine/link/link_trade.asm"
 
 
-SECTION "Mobile 5C", ROMX
+SECTION "mobile5C", ROMX
 
 INCLUDE "mobile/mobile_5c.asm"
 
@@ -595,12 +603,12 @@ SECTION "UpdateBattleHUDs", ROMX
 INCLUDE "engine/battle/update_battle_huds.asm"
 
 
-SECTION "Mobile 5E", ROMX
+SECTION "mobile5E", ROMX
 
 INCLUDE "mobile/mobile_5e.asm"
 
 
-SECTION "Mobile 5F", ROMX
+SECTION "mobile5F", ROMX
 
 INCLUDE "mobile/mobile_5f.asm"
 

@@ -1,4 +1,4 @@
-UnknownText_0x1b66c8:
+DanaAnswerPhoneText:
 	text "Hi, @"
 	text_ram wStringBuffer3
 	text " on the"
@@ -7,7 +7,7 @@ UnknownText_0x1b66c8:
 	para "Hey! It's <PLAY_G>!"
 	done
 
-UnknownText_0x1b66ec:
+DanaAnswerPhoneDayText:
 	text "Hi, @"
 	text_ram wStringBuffer3
 	text " on the"
@@ -17,7 +17,7 @@ UnknownText_0x1b66ec:
 	line "It's <PLAY_G>!"
 	done
 
-UnknownText_0x1b6713:
+DanaAnswerPhoneNiteText:
 	text "Hi, @"
 	text_ram wStringBuffer3
 	text " on the"
@@ -27,7 +27,7 @@ UnknownText_0x1b6713:
 	line "What's up?"
 	done
 
-UnknownText_0x1b6738:
+DanaGreetText:
 	text "Uh, <PLAY_G>?"
 
 	para "It's me!"
@@ -36,7 +36,7 @@ UnknownText_0x1b6738:
 	text "!"
 	done
 
-UnknownText_0x1b6757:
+DanaGreetDayText:
 	text "Uh, <PLAY_G>?"
 
 	para "It's me!"
@@ -45,7 +45,7 @@ UnknownText_0x1b6757:
 	text "!"
 	done
 
-UnknownText_0x1b6776:
+DanaGreetNiteText:
 	text "Uh, <PLAY_G>?"
 
 	para "It's me!"
@@ -54,7 +54,7 @@ UnknownText_0x1b6776:
 	text "!"
 	done
 
-UnknownText_0x1b6795:
+DanaGenericText:
 	text "My @"
 	text_ram wStringBuffer4
 	text " is"

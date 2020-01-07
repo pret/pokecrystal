@@ -1,6 +1,6 @@
 INCLUDE "data/maps/spawn_points.asm"
 
-LoadSpawnPoint:
+EnterMapSpawnPoint:
 	; loads the spawn point in wDefaultSpawnpoint
 	push hl
 	push de

@@ -406,7 +406,7 @@ Function8b539:
 
 Function8b555:
 .loop
-	ld hl, UnknownText_0x8b5ce
+	ld hl, EnterNewPasscodeText
 	call PrintText
 	ld bc, wd017
 	call Function8b45c
@@ -417,12 +417,12 @@ Function8b555:
 	ld bc, wd017
 	call Function8b664
 	jr nz, .asm_8b57c
-	ld hl, UnknownText_0x8b5e2
+	ld hl, FourZerosInvalidText
 	call PrintText
 	jr .loop
 
 .asm_8b57c
-	ld hl, UnknownText_0x8b5d3
+	ld hl, ConfirmPasscodeText
 	call PrintText
 	ld bc, wd013
 	call Function8b45c
@@ -434,7 +434,7 @@ Function8b555:
 	call Function89448
 	ld bc, wd013
 	call Function8b493
-	ld hl, UnknownText_0x8b5d8
+	ld hl, PasscodesNotSameText
 	call PrintText
 	jr .asm_8b57c
 
@@ -448,7 +448,7 @@ Function8b555:
 	call Function89448
 	ld bc, wd013
 	call Function8b493
-	ld hl, UnknownText_0x8b5dd
+	ld hl, PasscodeSetText
 	call PrintText
 	and a
 .asm_8b5c8
@@ -457,28 +457,23 @@ Function8b555:
 	pop af
 	ret
 
-UnknownText_0x8b5ce:
-	; Please enter any four-digit number.
+EnterNewPasscodeText:
 	text_far _EnterNewPasscodeText
 	text_end
 
-UnknownText_0x8b5d3:
-	; Enter the same number to confirm.
+ConfirmPasscodeText:
 	text_far _ConfirmPasscodeText
 	text_end
 
-UnknownText_0x8b5d8:
-	; That's not the same number.
+PasscodesNotSameText:
 	text_far _PasscodesNotSameText
 	text_end
 
-UnknownText_0x8b5dd:
-	; Your PASSCODE has been set. Enter this number next time to open the CARD FOLDER.
+PasscodeSetText:
 	text_far _PasscodeSetText
 	text_end
 
-UnknownText_0x8b5e2:
-	; 0000 is invalid!
+FourZerosInvalidText:
 	text_far _FourZerosInvalidText
 	text_end
 
@@ -494,7 +489,7 @@ Function8b5e7:
 	ld e, $0
 	call Function89c44
 .asm_8b602
-	ld hl, UnknownText_0x8b642
+	ld hl, EnterPasscodeText
 	call PrintText
 	ld bc, wd013
 	call Function8b45c
@@ -507,7 +502,7 @@ Function8b5e7:
 	call Function8b3a4
 	call CloseSRAM
 	jr z, .asm_8b635
-	ld hl, UnknownText_0x8b647
+	ld hl, IncorrectPasscodeText
 	call PrintText
 	ld bc, wd013
 	call Function8b36c
@@ -522,13 +517,11 @@ Function8b5e7:
 	pop af
 	ret
 
-UnknownText_0x8b642:
-	; Enter the CARD FOLDER PASSCODE.
+EnterPasscodeText:
 	text_far _EnterPasscodeText
 	text_end
 
-UnknownText_0x8b647:
-	; Incorrect PASSCODE!
+IncorrectPasscodeText:
 	text_far _IncorrectPasscodeText
 	text_end
 

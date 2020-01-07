@@ -1174,16 +1174,14 @@ Sfx_3rdPlace_Ch7:
 
 	toggle_sfx
 
-Sfx_GetEggFromDayCareMan:
-Sfx_GetEggFromDayCareLady:
+Sfx_GetEgg:
 	channel_count 4
-	channel 5, Sfx_GetEggFromDayCareLady_Ch5
-	channel 6, Sfx_GetEggFromDayCareLady_Ch6
-	channel 7, Sfx_GetEggFromDayCareLady_Ch7
-	channel 8, Sfx_GetEggFromDayCareLady_Ch8
+	channel 5, Sfx_GetEgg_Ch5
+	channel 6, Sfx_GetEgg_Ch6
+	channel 7, Sfx_GetEgg_Ch7
+	channel 8, Sfx_GetEgg_Ch8
 
-Sfx_GetEggFromDayCareMan_Ch5:
-Sfx_GetEggFromDayCareLady_Ch5:
+Sfx_GetEgg_Ch5:
 	toggle_sfx
 	tempo 120
 	volume 7, 7
@@ -1215,8 +1213,7 @@ Sfx_GetEggFromDayCareLady_Ch5:
 
 	toggle_sfx
 
-Sfx_GetEggFromDayCareMan_Ch6:
-Sfx_GetEggFromDayCareLady_Ch6:
+Sfx_GetEgg_Ch6:
 	toggle_sfx
 	vibrato 18, 3, 4
 	duty_cycle 3
@@ -1245,8 +1242,7 @@ Sfx_GetEggFromDayCareLady_Ch6:
 
 	toggle_sfx
 
-Sfx_GetEggFromDayCareMan_Ch7:
-Sfx_GetEggFromDayCareLady_Ch7:
+Sfx_GetEgg_Ch7:
 	toggle_sfx
 	note_type 8, 2, 5
 	rest 2
@@ -1265,8 +1261,7 @@ Sfx_GetEggFromDayCareLady_Ch7:
 
 	toggle_sfx
 
-Sfx_GetEggFromDayCareMan_Ch8:
-Sfx_GetEggFromDayCareLady_Ch8:
+Sfx_GetEgg_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
 	drum_speed 8

@@ -17,7 +17,7 @@ MobileCheckOwnMonAnywhere:
 	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
-	call .CopyName
+	call .AdvanceOTName
 	dec d
 	jr nz, .asm_4a851
 	ld a, BANK(sBoxCount)
@@ -39,7 +39,7 @@ MobileCheckOwnMonAnywhere:
 	ld bc, BOXMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
-	call .CopyName
+	call .AdvanceOTName
 	dec d
 	jr nz, .asm_4a873
 
@@ -90,7 +90,7 @@ MobileCheckOwnMonAnywhere:
 	ld bc, BOXMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
-	call .CopyName
+	call .AdvanceOTName
 	dec d
 	jr nz, .asm_4a8ba
 	pop bc
@@ -146,7 +146,7 @@ MobileCheckOwnMonAnywhere:
 	dba sBox13
 	dba sBox14
 
-.CopyName:
+.AdvanceOTName:
 	push hl
 	ld hl, NAME_LENGTH
 	add hl, bc
@@ -235,13 +235,12 @@ Function4a94e:
 .asm_4a9b0
 	ld de, SFX_WRONG
 	call PlaySFX
-	ld hl, UnknownText_0x4a9be
+	ld hl, MobilePickThreeMonForBattle
 	call PrintText
 	jr .asm_4a974
 
-UnknownText_0x4a9be:
-	; Pick three #MON for battle.
-	text_far UnknownText_0x1c51d7
+MobilePickThreeMonForBattle:
+	text_far _MobilePickThreeMonForBattle
 	text_end
 
 Function4a9c3:
@@ -287,14 +286,13 @@ Function4a9d7:
 	ld de, wd012
 	ld bc, 6
 	call CopyBytes
-	ld hl, UnknownText_0x4aa1d
+	ld hl, MobileUseTheseThreeMonText
 	call PrintText
 	call YesNoBox
 	ret
 
-UnknownText_0x4aa1d:
-	; , @  and @ . Use these three?
-	text_far UnknownText_0x1c51f4
+MobileUseTheseThreeMonText:
+	text_far _MobileUseTheseThreeMonText
 	text_end
 
 Function4aa22:
@@ -772,7 +770,7 @@ Function4ad17:
 	jr z, .asm_4ad39
 	ld de, SFX_WRONG
 	call WaitPlaySFX
-	ld hl, UnknownText_0x4ad51
+	ld hl, MobileOnlyThreeMonMayEnterText
 	call PrintText
 	ret
 
@@ -792,9 +790,8 @@ Function4ad17:
 	call Function4adc2
 	ret
 
-UnknownText_0x4ad51:
-	; Only three #MON may enter.
-	text_far UnknownText_0x1c521c
+MobileOnlyThreeMonMayEnterText:
+	text_far _MobileOnlyThreeMonMayEnterText
 	text_end
 
 Function4ad56:

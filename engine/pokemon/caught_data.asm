@@ -152,13 +152,12 @@ CheckPartyFullAfterContest:
 	ret
 
 GiveANickname_YesNo:
-	ld hl, TextJump_GiveANickname
+	ld hl, CaughtAskNicknameText
 	call PrintText
 	jp YesNoBox
 
-TextJump_GiveANickname:
-	; Give a nickname to the @  you received?
-	text_far UnknownText_0x1c12fc
+CaughtAskNicknameText:
+	text_far _CaughtAskNicknameText
 	text_end
 
 SetCaughtData:

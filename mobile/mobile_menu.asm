@@ -413,7 +413,7 @@ Function4a28a:
 
 .DeleteLoginPassword:
 	call PlaceHollowCursor
-	ld hl, UnknownText_0x4a358
+	ld hl, DeleteSavedLoginPasswordText
 	call PrintText
 	hlcoord 14, 7
 	ld b, 3
@@ -435,7 +435,7 @@ Function4a28a:
 	ld bc, MOBILE_LOGIN_PASSWORD_LENGTH
 	call ByteFill
 	call CloseSRAM
-	ld hl, UnknownText_0x4a35d
+	ld hl, DeletedTheLoginPasswordText
 	call PrintText
 	call JoyWaitAorB
 .dont_delete_password
@@ -455,14 +455,12 @@ String_4a34b:
 	next "けす"
 	next "もどる@"
 
-UnknownText_0x4a358:
-	; Delete the saved LOG-IN PASSWORD?
-	text_far UnknownText_0x1c5196
+DeleteSavedLoginPasswordText:
+	text_far _DeleteSavedLoginPasswordText
 	text_end
 
-UnknownText_0x4a35d:
-	; Deleted the LOG-IN PASSWORD.
-	text_far UnknownText_0x1c51b9
+DeletedTheLoginPasswordText:
+	text_far _DeletedTheLoginPasswordText
 	text_end
 
 DeletePassword_YesNo_MenuHeader:

@@ -13,15 +13,15 @@ TiffanyPhoneCalleeScript:
 	iftrue TiffanyTuesdayAfternoon
 
 .NotTuesday:
-	farsjump UnknownScript_0xa09a0
+	farsjump TiffanyNoItemScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_43
-	farsjump UnknownScript_0xa0a8c
+	farsjump TiffanyAsleepScript
 
 .HasItem:
 	getlandmarkname STRING_BUFFER_5, ROUTE_43
-	farsjump UnknownScript_0xa0ae5
+	farsjump TiffanyHurryScript
 
 TiffanyPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, PICNICKER, TIFFANY3

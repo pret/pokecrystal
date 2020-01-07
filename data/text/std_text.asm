@@ -159,7 +159,7 @@ MerchandiseShelfText:
 	line "merchandise!"
 	done
 
-TownMapText:
+LookTownMapText:
 	text "It's the TOWN MAP."
 	done
 

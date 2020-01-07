@@ -168,7 +168,6 @@ GetMysteryGiftItem:
 	ret
 
 .ReceiveItemText:
-	; received item
 	text_far _ReceiveItemText
 	text_end
 
@@ -256,12 +255,10 @@ CheckCoinsAndCoinCase:
 	ret
 
 .NoCoinsText:
-	; You have no coins.
 	text_far _NoCoinsText
 	text_end
 
 .NoCoinCaseText:
-	; You don't have a COIN CASE.
 	text_far _NoCoinCaseText
 	text_end
 

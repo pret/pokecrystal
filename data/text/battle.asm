@@ -819,7 +819,7 @@ SubFadedText:
 	line "SUBSTITUTE faded!"
 	prompt
 
-LearnedMoveText:
+MimicLearnedMoveText:
 	text "<USER>"
 	line "learned"
 	cont "@"

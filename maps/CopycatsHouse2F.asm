@@ -108,7 +108,7 @@ Copycat:
 .ReturnLostItem:
 	opentext
 	writetext CopycatText_GiveDoll
-	buttonsound
+	promptbutton
 	takeitem LOST_ITEM
 	setevent EVENT_RETURNED_LOST_ITEM_TO_COPYCAT
 	clearevent EVENT_COPYCATS_HOUSE_2F_DOLL
@@ -118,7 +118,7 @@ Copycat:
 	opentext
 .GivePass:
 	writetext CopycatText_GivePass
-	buttonsound
+	promptbutton
 	verbosegiveitem PASS
 	iffalse .Cancel
 	setevent EVENT_GOT_PASS_FROM_COPYCAT
@@ -174,7 +174,7 @@ CopycatsDodrio:
 	opentext
 	writetext CopycatsDodrioText1
 	cry DODRIO
-	buttonsound
+	promptbutton
 	writetext CopycatsDodrioText2
 	waitbutton
 	closetext

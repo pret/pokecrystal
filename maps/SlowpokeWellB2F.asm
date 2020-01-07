@@ -13,7 +13,7 @@ SlowpokeWellB2FGymGuyScript:
 	checkevent EVENT_GOT_KINGS_ROCK_IN_SLOWPOKE_WELL
 	iftrue .GotKingsRock
 	writetext SlowpokeWellB2FGymGuyText
-	buttonsound
+	promptbutton
 	verbosegiveitem KINGS_ROCK
 	iffalse .NoRoom
 	setevent EVENT_GOT_KINGS_ROCK_IN_SLOWPOKE_WELL

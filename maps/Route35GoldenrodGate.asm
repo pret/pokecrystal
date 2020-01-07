@@ -21,7 +21,7 @@ RandyScript:
 	yesorno
 	iffalse .refused
 	writetext Route35GoldenrodGateRandyThanksKidText
-	buttonsound
+	promptbutton
 	waitsfx
 	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, .partyfull
@@ -51,7 +51,7 @@ RandyScript:
 
 .questcomplete
 	writetext Route35GoldenrodGateRandySomethingForYourTroubleText
-	buttonsound
+	promptbutton
 	verbosegiveitem HP_UP
 	iffalse .bagfull
 	setevent EVENT_GOT_HP_UP_FROM_RANDY

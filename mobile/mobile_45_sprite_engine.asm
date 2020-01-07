@@ -691,7 +691,7 @@ Function1163c0:
 	ldh [rSVBK], a
 	farcall ReloadMapPart
 	ld a, [wLinkMode]
-	cp $4
+	cp LINK_MOBILE
 	jr z, .asm_11642a
 	ld a, $8
 	ld [wMusicFade], a

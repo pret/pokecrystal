@@ -25,7 +25,7 @@ VictoryRoadGateOfficerScript:
 VictoryRoadGateBadgeCheckScript:
 	opentext
 	writetext VictoryRoadGateOfficerText
-	buttonsound
+	promptbutton
 	readvar VAR_BADGES
 	ifgreater NUM_JOHTO_BADGES - 1, .AllEightBadges
 	writetext VictoryRoadGateNotEnoughBadgesText

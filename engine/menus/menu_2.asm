@@ -161,7 +161,7 @@ StartMenu_PrintBugContestStatus:
 	call PlaceString
 	hlcoord 8, 5
 	ld de, wParkBallsRemaining
-	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
+	lb bc, PRINTNUM_LEFTALIGN | 1, 2
 	call PrintNum
 	hlcoord 1, 1
 	ld de, .CAUGHT
@@ -187,7 +187,7 @@ StartMenu_PrintBugContestStatus:
 	ld l, c
 	inc hl
 	ld c, 3
-	call Print8BitNumRightAlign
+	call Print8BitNumLeftAlign
 
 .skip_level
 	pop af

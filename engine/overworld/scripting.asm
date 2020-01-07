@@ -148,7 +148,7 @@ ScriptCommandTable:
 	dw Script_farjumptext                ; 52
 	dw Script_jumptext                   ; 53
 	dw Script_waitbutton                 ; 54
-	dw Script_buttonsound                ; 55
+	dw Script_promptbutton               ; 55
 	dw Script_pokepic                    ; 56
 	dw Script_closepokepic               ; 57
 	dw Script__2dmenu                    ; 58
@@ -398,7 +398,7 @@ Script_waitbutton:
 
 	jp WaitButton
 
-Script_buttonsound:
+Script_promptbutton:
 ; script command 0x55
 
 	ldh a, [hOAMUpdate]
@@ -406,7 +406,7 @@ Script_buttonsound:
 	ld a, $1
 	ldh [hOAMUpdate], a
 	call WaitBGMap
-	call ButtonSound
+	call PromptButton
 	pop af
 	ldh [hOAMUpdate], a
 	ret
@@ -525,12 +525,12 @@ GiveItemScript:
 	end
 
 .Full:
-	buttonsound
+	promptbutton
 	pocketisfull
 	end
 
 ReceivedItemText:
-	text_far UnknownText_0x1c4719
+	text_far _ReceivedItemText
 	text_end
 
 Script_verbosegiveitemvar:
@@ -622,11 +622,11 @@ CurItemName:
 	ret
 
 PutItemInPocketText:
-	text_far UnknownText_0x1c472c
+	text_far _PutItemInPocketText
 	text_end
 
 PocketIsFullText:
-	text_far UnknownText_0x1c474b
+	text_far _PocketIsFullText
 	text_end
 
 Script_pokemart:
@@ -1952,7 +1952,7 @@ Script_getmoney:
 	call ResetStringBuffer1
 	call GetMoneyAccount
 	ld hl, wStringBuffer1
-	lb bc, PRINTNUM_RIGHTALIGN | 3, 6
+	lb bc, PRINTNUM_LEFTALIGN | 3, 6
 	call PrintNum
 	ld de, wStringBuffer1
 	jp GetStringBuffer
@@ -1964,7 +1964,7 @@ Script_getcoins:
 	call ResetStringBuffer1
 	ld hl, wStringBuffer1
 	ld de, wCoins
-	lb bc, PRINTNUM_RIGHTALIGN | 2, 6
+	lb bc, PRINTNUM_LEFTALIGN | 2, 6
 	call PrintNum
 	ld de, wStringBuffer1
 	jp GetStringBuffer
@@ -1976,7 +1976,7 @@ Script_getnum:
 	call ResetStringBuffer1
 	ld de, wScriptVar
 	ld hl, wStringBuffer1
-	lb bc, PRINTNUM_RIGHTALIGN | 1, 3
+	lb bc, PRINTNUM_LEFTALIGN | 1, 3
 	call PrintNum
 	ld de, wStringBuffer1
 	jp GetStringBuffer

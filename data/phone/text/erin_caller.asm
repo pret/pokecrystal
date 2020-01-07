@@ -1,4 +1,4 @@
-UnknownText_0x6717a:
+ErinMonIsMuchStrongerText:
 	text_ram wStringBuffer3
 	text "'s @"
 	text_ram wStringBuffer4
@@ -7,7 +7,7 @@ UnknownText_0x6717a:
 	cont "than before!"
 	done
 
-UnknownText_0x671a4:
+ErinDefeatedMonText:
 	text "And, and…"
 	line "I just battled and"
 	cont "beat @"
@@ -18,7 +18,7 @@ UnknownText_0x671a4:
 	line "#MON properly!"
 	done
 
-UnknownText_0x671eb:
+ErinLostAMonText:
 	text "But, but…"
 
 	para "A wild @"
@@ -30,7 +30,7 @@ UnknownText_0x671eb:
 	line "not fair!"
 	done
 
-UnknownText_0x6722e:
+ErinBattleRematchText:
 	text "I'm ERIN. Want to"
 	line "battle me again?"
 
@@ -43,7 +43,7 @@ UnknownText_0x6722e:
 	text "!"
 	done
 
-UnknownText_0x67281:
+ErinHangUpText:
 	text "See you. Bye-bye!"
 	done
 

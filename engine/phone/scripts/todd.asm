@@ -13,14 +13,14 @@ ToddPhoneCalleeScript:
 .NotSaturday:
 	checkflag ENGINE_GOLDENROD_DEPT_STORE_SALE_IS_ON
 	iftrue .SaleOn
-	farsjump UnknownScript_0xa0958
+	farsjump ToddNoItemScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_34
-	farsjump UnknownScript_0xa0a64
+	farsjump ToddForwardScript
 
 .SaleOn:
-	farsjump UnknownScript_0xa0b04
+	farsjump ToddHurryScript
 
 ToddPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, CAMPER, TODD1
@@ -56,4 +56,4 @@ ToddFoundRare:
 
 ToddDeptStoreSale:
 	setflag ENGINE_GOLDENROD_DEPT_STORE_SALE_IS_ON
-	farsjump UnknownScript_0xa0644
+	farsjump ToddItemScript

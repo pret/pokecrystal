@@ -39,7 +39,7 @@ DaisyScript:
 	opentext
 	writetext GroomedMonLooksContentText
 	special PlayCurMonCry
-	buttonsound
+	promptbutton
 	writetext DaisyAllDoneText
 	waitbutton
 	closetext

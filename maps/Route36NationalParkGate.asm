@@ -160,7 +160,7 @@ Route36OfficerScriptContest:
 	setflag ENGINE_BUG_CONTEST_TIMER
 	special PlayMapMusic
 	writetext Route36NationalParkGateOfficer1GiveParkBallsText
-	buttonsound
+	promptbutton
 	waitsfx
 	writetext Route36NationalParkGatePlayerReceivedParkBallsText
 	playsound SFX_ITEM
@@ -193,11 +193,11 @@ Route36OfficerScriptContest:
 	iftrue .FirstMonIsFainted
 	setevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 	writetext Route36NationalParkGateOfficer1WellHoldYourMonText
-	buttonsound
+	promptbutton
 	writetext Route36NationalParkGatePlayersMonLeftWithHelperText
 	playsound SFX_GOT_SAFARI_BALLS
 	waitsfx
-	buttonsound
+	promptbutton
 	sjump .ResumeStartingContest
 
 .DecidedNotToJoinContest:
@@ -246,7 +246,7 @@ Route36Officer_ContestHasConcluded:
 
 .Sunstone:
 	writetext Route36NationalParkGateOfficer1HeresThePrizeText
-	buttonsound
+	promptbutton
 	verbosegiveitem SUN_STONE
 	iffalse .BagFull
 	clearevent EVENT_CONTEST_OFFICER_HAS_SUN_STONE
@@ -255,7 +255,7 @@ Route36Officer_ContestHasConcluded:
 
 .Everstone:
 	writetext Route36NationalParkGateOfficer1HeresThePrizeText
-	buttonsound
+	promptbutton
 	verbosegiveitem EVERSTONE
 	iffalse .BagFull
 	clearevent EVENT_CONTEST_OFFICER_HAS_EVERSTONE
@@ -264,7 +264,7 @@ Route36Officer_ContestHasConcluded:
 
 .GoldBerry:
 	writetext Route36NationalParkGateOfficer1HeresThePrizeText
-	buttonsound
+	promptbutton
 	verbosegiveitem GOLD_BERRY
 	iffalse .BagFull
 	clearevent EVENT_CONTEST_OFFICER_HAS_GOLD_BERRY
@@ -273,7 +273,7 @@ Route36Officer_ContestHasConcluded:
 
 .Berry:
 	writetext Route36NationalParkGateOfficer1HeresThePrizeText
-	buttonsound
+	promptbutton
 	verbosegiveitem BERRY
 	iffalse .BagFull
 	clearevent EVENT_CONTEST_OFFICER_HAS_BERRY

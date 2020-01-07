@@ -11,11 +11,11 @@ ParryPhoneCalleeScript:
 	iftrue ParryFridayDay
 
 .WantsRematch:
-	farsjump ParryBattleWithMe
+	farsjump ParryBattleWithMeScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_45
-	farsjump ParryHaventYouGottenTo
+	farsjump ParryHaventYouGottenToScript
 
 ParryPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, HIKER, PARRY1

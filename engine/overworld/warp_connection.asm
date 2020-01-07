@@ -1,4 +1,3 @@
-
 HandleNewMap:
 	call ClearUnusedMapBuffer
 	call ResetMapBufferEventFlags
@@ -7,7 +6,7 @@ HandleNewMap:
 	call ResetBikeFlags
 	ld a, MAPCALLBACK_NEWMAP
 	call RunMapCallback
-InitCommandQueue:
+HandleContinueMap:
 	farcall ClearCmdQueue
 	ld a, MAPCALLBACK_CMDQUEUE
 	call RunMapCallback
@@ -150,7 +149,7 @@ EnterMapConnection:
 	scf
 	ret
 
-LoadWarpData:
+EnterMapWarp:
 	call .SaveDigWarp
 	call .SetSpawn
 	ld a, [wNextWarp]
@@ -296,8 +295,8 @@ LoadMapTimeOfDay:
 	ldh [rVBK], a
 	ret
 
-LoadGraphics:
-	call LoadTileset
+LoadMapGraphics:
+	call LoadMapTileset
 	call LoadTilesetGFX
 	xor a
 	ldh [hMapAnims], a
@@ -314,7 +313,7 @@ LoadMapPalettes:
 
 RefreshMapSprites:
 	call ClearSprites
-	farcall ReturnFromMapSetupScript
+	farcall InitMapNameSign
 	call GetMovementPermissions
 	farcall RefreshPlayerSprite
 	farcall CheckReplaceKrisSprite
@@ -326,7 +325,7 @@ RefreshMapSprites:
 	call SafeUpdateSprites
 .skip
 	ld a, [wPlayerSpriteSetupFlags]
-	and %00011100
+	and (1 << PLAYERSPRITESETUP_FEMALE_TO_MALE_F) | (1 << 3) | (1 << 4)
 	ld [wPlayerSpriteSetupFlags], a
 	ret
 
@@ -387,7 +386,7 @@ CheckMovingOffEdgeOfMap::
 	scf
 	ret
 
-GetCoordOfUpperLeftCorner::
+GetMapScreenCoords::
 	ld hl, wOverworldMapBlocks
 	ld a, [wXCoord]
 	bit 0, a

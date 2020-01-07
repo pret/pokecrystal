@@ -280,9 +280,8 @@ MainMenu_PrintCurrentTimeAndDay:
 .TimeNotSet:
 	db "TIME NOT SET@"
 
-.UnusedText:
-	; Clock time unknown
-	text_far UnknownText_0x1c5182
+.MainMenuTimeUnknownText:
+	text_far _MainMenuTimeUnknownText
 	text_end
 
 .PlaceCurrentDay:

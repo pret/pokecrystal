@@ -6,7 +6,7 @@
 ; 	FadeMusic
 ; 	PlayStereoSFX
 
-_MapSetup_Sound_Off::
+_InitSound::
 ; restart sound operation
 ; clear all relevant hardware registers & wram
 	push hl
@@ -62,7 +62,7 @@ MusicFadeRestart:
 	push af
 	ld a, [wMusicFadeID]
 	push af
-	call _MapSetup_Sound_Off
+	call _InitSound
 	pop af
 	ld [wMusicFadeID], a
 	pop af
@@ -1364,7 +1364,7 @@ ParseMusicCommand:
 	jp hl
 
 MusicCommands:
-; entries correspond to macros/sound.asm enumeration
+; entries correspond to macros/scripts/audio.asm enumeration
 	dw Music_Octave8 ; octave 8
 	dw Music_Octave7 ; octave 7
 	dw Music_Octave6 ; octave 6
@@ -2798,7 +2798,7 @@ ChannelPointers:
 
 ClearChannels::
 ; runs ClearChannel for all 4 channels
-; doesn't seem to be used, but functionally identical to MapSetup_Sound_Off
+; doesn't seem to be used, but functionally identical to InitSound
 	ld hl, rNR50
 	xor a
 	ld [hli], a

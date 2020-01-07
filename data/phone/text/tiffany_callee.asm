@@ -1,4 +1,4 @@
-UnknownText_0x1b6e7c:
+TiffanyAnswerPhoneText:
 	text "Yes? This is"
 	line "@"
 	text_ram wStringBuffer3
@@ -8,7 +8,7 @@ UnknownText_0x1b6e7c:
 	line "Good morning."
 	done
 
-UnknownText_0x1b6ea6:
+TiffanyAnswerPhoneDayText:
 	text "Yes? This is"
 	line "@"
 	text_ram wStringBuffer3
@@ -18,7 +18,7 @@ UnknownText_0x1b6ea6:
 	line "Hello."
 	done
 
-UnknownText_0x1b6ec9:
+TiffanyAnswerPhoneNiteText:
 	text "Yes? This is"
 	line "@"
 	text_ram wStringBuffer3
@@ -28,7 +28,7 @@ UnknownText_0x1b6ec9:
 	line "evening."
 	done
 
-UnknownText_0x1b6ef3:
+TiffanyGreetText:
 	text "Is this <PLAY_G>?"
 
 	para "Good morning. This"
@@ -37,7 +37,7 @@ UnknownText_0x1b6ef3:
 	text "."
 	done
 
-UnknownText_0x1b6f1c:
+TiffanyGreetDayText:
 	text "Is this <PLAY_G>?"
 
 	para "Hi, it's @"
@@ -45,7 +45,7 @@ UnknownText_0x1b6f1c:
 	text "."
 	done
 
-UnknownText_0x1b6f37:
+TiffanyGreetNiteText:
 	text "Is this <PLAY_G>?"
 
 	para "Good evening. This"
@@ -54,7 +54,7 @@ UnknownText_0x1b6f37:
 	text "."
 	done
 
-UnknownText_0x1b6f60:
+TiffanyGenericText:
 	text "Are your #MON"
 	line "doing well?"
 

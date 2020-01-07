@@ -810,7 +810,7 @@ MobileTradeAnim_02:
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
-	call Function108d07
+	call LoadMobileAdapterPalette
 	call Function108af4
 	call GetMobileTradeAnimByte
 	ret
@@ -855,7 +855,7 @@ MobileTradeAnim_10:
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
-	call Function108d07
+	call LoadMobileAdapterPalette
 	call Function108af4
 	call GetMobileTradeAnimByte
 	ret
@@ -898,7 +898,7 @@ MobileTradeAnim_11:
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
-	call Function108d07
+	call LoadMobileAdapterPalette
 	call Function108af4
 	call Function108b5a
 	ld a, $e0
@@ -1539,52 +1539,52 @@ Function108be0:
 Function108bec:
 	ld a, $90
 	ldh [hWY], a
-	ld hl, .PlayerWillTradeMon
+	ld hl, .MobilePlayerWillTradeMonText
 	call PrintText
 	ld c, 80
 	call DelayFrames
-	ld hl, .ForPartnersMon
+	ld hl, .MobileForPartnersMonText
 	call PrintText
 	ld c, 80
 	call DelayFrames
 	ret
 
-.PlayerWillTradeMon:
-	text_far _TradingText10
+.MobilePlayerWillTradeMonText:
+	text_far _MobilePlayerWillTradeMonText
 	text_end
 
-.ForPartnersMon:
-	text_far _TradingText11
+.MobileForPartnersMonText:
+	text_far _MobileForPartnersMonText
 	text_end
 
-.UnusedTextPlayersMonTrade:
-	text_far _TradingText12
+.MobilePlayersMonTradeText:
+	text_far _MobilePlayersMonTradeText
 	text_end
 
 Function108c16:
 	ld a, $90
 	ldh [hWY], a
-	ld hl, .TakeGoodCareOfMon
+	ld hl, .MobileTakeGoodCareOfMonText
 	call PrintText
 	ld c, 80
 	call DelayFrames
 	ret
 
-.TakeGoodCareOfMon:
-	text_far _TradingText13
+.MobileTakeGoodCareOfMonText:
+	text_far _MobileTakeGoodCareOfMonText
 	text_end
 
 Function108c2b:
 	ld a, $90
 	ldh [hWY], a
-	ld hl, .PlayersMonTrade
+	ld hl, .MobilePlayersMonTrade2Text
 	call PrintText
 	ld c, 80
 	call DelayFrames
 	ret
 
-.PlayersMonTrade:
-	text_far _TradingText14
+.MobilePlayersMonTrade2Text:
+	text_far _MobilePlayersMonTrade2Text
 	text_end
 
 Function108c40:
@@ -1593,25 +1593,25 @@ Function108c40:
 	ld a, [wcf65]
 	and %10000000
 	jr z, .Getmon
-	ld hl, .CameBack
+	ld hl, .MobileTradeCameBackText
 	call PrintText
 	ld c, 80
 	call DelayFrames
 	ret
 
 .Getmon:
-	ld hl, .TakeGoodCareOf
+	ld hl, .MobileTakeGoodCareOfText
 	call PrintText
 	ld c, 80
 	call DelayFrames
 	ret
 
-.TakeGoodCareOf:
-	text_far _TradingText15
+.MobileTakeGoodCareOfText:
+	text_far _MobileTakeGoodCareOfText
 	text_end
 
-.CameBack:
-	text_far _TradingText16
+.MobileTradeCameBackText:
+	text_far _MobileTradeCameBackText
 	text_end
 
 Function108c6d:
@@ -1712,18 +1712,18 @@ DebugMobileTrade:
 	dw $0456
 	db "マツミヤ@@"
 
-Function108d07:
+LoadMobileAdapterPalette:
 	ld a, [wc74e]
 	and $7f
-	cp $8
+	cp $8 ; CONST: Amount of mobile adapters
 	jr c, .asm_108d12
 	ld a, $7
 
 .asm_108d12
 	ld bc, 1 palettes
-	ld hl, Palette_1093c7
+	ld hl, MobileAdapterPalettes
 	call AddNTimes
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld de, wBGPals1 + 4 palettes
 	ld bc, 1 palettes
 	call FarCopyWRAM
@@ -1883,7 +1883,7 @@ INCBIN "gfx/unknown/1091c7.2bpp"
 GFX_1092c7:
 INCBIN "gfx/unknown/1092c7.2bpp"
 
-Palette_1093c7:
+MobileAdapterPalettes:
 	RGB 18, 31, 15
 	RGB 04, 13, 31
 	RGB 00, 00, 31

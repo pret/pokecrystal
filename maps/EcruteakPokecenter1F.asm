@@ -38,7 +38,7 @@ EcruteakPokecenter1F_MapScripts:
 	pause 10
 	opentext
 	writetext EcruteakPokecenter1F_BillText1
-	buttonsound
+	promptbutton
 	sjump .PointlessJump
 
 .PointlessJump:

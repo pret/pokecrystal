@@ -1,4 +1,4 @@
-UnknownText_0x1b73c7:
+ParryAnswerPhoneText:
 	text "Yup, yup!"
 	line "It's @"
 	text_ram wStringBuffer3
@@ -8,7 +8,7 @@ UnknownText_0x1b73c7:
 	line "<PLAY_G>!"
 	done
 
-UnknownText_0x1b73ef:
+ParryAnswerPhoneDayText:
 	text "Yup, yup!"
 	line "It's @"
 	text_ram wStringBuffer3
@@ -18,7 +18,7 @@ UnknownText_0x1b73ef:
 	line "<PLAY_G>!"
 	done
 
-UnknownText_0x1b7417:
+ParryAnswerPhoneNiteText:
 	text "Yup, yup!"
 	line "It's @"
 	text_ram wStringBuffer3
@@ -28,7 +28,7 @@ UnknownText_0x1b7417:
 	line "<PLAY_G>!"
 	done
 
-UnknownText_0x1b743f:
+ParryGreetText:
 	text "<PLAY_G>, it's"
 	line "@"
 	text_ram wStringBuffer3
@@ -38,7 +38,7 @@ UnknownText_0x1b743f:
 	line "proper breakfast?"
 	done
 
-UnknownText_0x1b746f:
+ParryGreetDayText:
 	text "<PLAY_G>, it's"
 	line "@"
 	text_ram wStringBuffer3
@@ -48,7 +48,7 @@ UnknownText_0x1b746f:
 	line "proper lunch?"
 	done
 
-UnknownText_0x1b749b:
+ParryGreetNiteText:
 	text "<PLAY_G>, it's"
 	line "@"
 	text_ram wStringBuffer3
@@ -58,7 +58,7 @@ UnknownText_0x1b749b:
 	line "proper dinner?"
 	done
 
-UnknownText_0x1b74c8:
+ParryGenericText:
 	text "Are your #MON"
 	line "looking good?"
 

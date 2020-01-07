@@ -1,4 +1,4 @@
-UnknownText_0x1b5702:
+ReenaAnswerPhoneText:
 	text "Hello, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -8,7 +8,7 @@ UnknownText_0x1b5702:
 	line "What's up?"
 	done
 
-UnknownText_0x1b572e:
+ReenaAnswerPhoneDayText:
 	text "Hello, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -18,7 +18,7 @@ UnknownText_0x1b572e:
 	line "what's up?"
 	done
 
-UnknownText_0x1b575a:
+ReenaAnswerPhoneNiteText:
 	text "Hello, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -28,7 +28,7 @@ UnknownText_0x1b575a:
 	line "what's up?"
 	done
 
-UnknownText_0x1b5786:
+ReenaGreetText:
 	text "You're slow! Hurry"
 	line "up and answer!"
 
@@ -37,7 +37,7 @@ UnknownText_0x1b5786:
 	text "!"
 	done
 
-UnknownText_0x1b57b7:
+ReenaGreetDayText:
 	text "You're slow! Hurry"
 	line "up and answer!"
 
@@ -46,7 +46,7 @@ UnknownText_0x1b57b7:
 	text "!"
 	done
 
-UnknownText_0x1b57e8:
+ReenaGreetNiteText:
 	text "You're slow! Hurry"
 	line "up and answer!"
 
@@ -55,7 +55,7 @@ UnknownText_0x1b57e8:
 	text "!"
 	done
 
-UnknownText_0x1b5819:
+ReenaGenericText:
 	text "Hey, how are your"
 	line "#MON doing?"
 

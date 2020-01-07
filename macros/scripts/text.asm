@@ -46,9 +46,9 @@ text_low: MACRO
 	db TX_LOW
 ENDM
 
-	enum TX_WAIT_BUTTON ; $06
-text_waitbutton: MACRO
-	db TX_WAIT_BUTTON
+	enum TX_PROMPT_BUTTON ; $06
+text_promptbutton: MACRO
+	db TX_PROMPT_BUTTON
 ENDM
 
 	enum TX_SCROLL ; $07
@@ -84,9 +84,9 @@ text_dots: MACRO
 	db \1
 ENDM
 
-	enum TX_LINK_WAIT_BUTTON ; $0d
-text_linkwaitbutton: MACRO
-	db TX_LINK_WAIT_BUTTON
+	enum TX_LINK_PROMPT_BUTTON ; $0d
+text_linkpromptbutton: MACRO
+	db TX_LINK_PROMPT_BUTTON
 ENDM
 
 	enum TX_SOUND_DEX_FANFARE_20_49 ; $0e

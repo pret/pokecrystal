@@ -1,20 +1,18 @@
 Kurt_PrintTextWhichApricorn:
-	ld hl, .Text
+	ld hl, .WhichApricornText
 	call PrintText
 	ret
 
-.Text:
-	; Which APRICORN should I use?
+.WhichApricornText:
 	text_far _WhichApricornText
 	text_end
 
 Kurt_PrintTextHowMany:
-	ld hl, .Text
+	ld hl, .HowManyShouldIMakeText
 	call PrintText
 	ret
 
-.Text:
-	; How many should I make?
+.HowManyShouldIMakeText:
 	text_far _HowManyShouldIMakeText
 	text_end
 

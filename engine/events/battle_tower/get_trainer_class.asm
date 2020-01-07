@@ -21,7 +21,7 @@ GetMobileOTTrainerClass: ; mobile function
 
 .skip_male_trainers
 	ld a, [de]
-	cp $1
+	cp FEMALE
 	ld hl, MaleTrainers
 	jr nz, .finished
 

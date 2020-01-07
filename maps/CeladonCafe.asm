@@ -107,7 +107,7 @@ CeladonCafeTrashcan:
 	opentext
 	getitemname STRING_BUFFER_3, LEFTOVERS
 	writetext FoundLeftoversText
-	buttonsound
+	promptbutton
 	writetext NoRoomForLeftoversText
 	waitbutton
 	closetext

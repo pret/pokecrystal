@@ -1,4 +1,4 @@
-UnknownText_0x174688:
+BeverlyMadeMonEvenCuterText:
 	text "I fancied up my"
 	line "@"
 	text_ram wStringBuffer4
@@ -8,7 +8,7 @@ UnknownText_0x174688:
 	line "than before!"
 	done
 
-UnknownText_0x1746c3:
+BeverlyDefeatedMonText:
 	text "I happened to come"
 	line "across a wild"
 	cont "SNUBBULL recently."
@@ -20,7 +20,7 @@ UnknownText_0x1746c3:
 	line "wild one."
 	done
 
-UnknownText_0x174734:
+BeverlyLostAMonText:
 	text "I happened to see"
 	line "a wild MARILL the"
 
@@ -36,12 +36,12 @@ UnknownText_0x174734:
 	line "quite miffed."
 	done
 
-UnknownText_0x1747ac:
+BeverlyHangUpText:
 	text "You can expect a"
 	line "call from me."
 	done
 
-BeverlyFoundNuggetText:
+BeverlyFoundItemText:
 	text "My husband got"
 	line "some NUGGETS."
 
@@ -60,7 +60,7 @@ BeverlyFoundNuggetText:
 	line "when you can."
 	done
 
-UnknownText_0x17485b:
+BeverlyLetsChatAboutMonAgainText:
 	text "Are your #MON"
 	line "in prime form?"
 
@@ -68,7 +68,7 @@ UnknownText_0x17485b:
 	line "#MON again."
 	done
 
-UnknownText_0x174895:
+BeverlyComePickUpText:
 	text "Pardon?"
 	line "Oh, the NUGGET?"
 

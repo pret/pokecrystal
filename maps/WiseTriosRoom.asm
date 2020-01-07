@@ -96,7 +96,7 @@ TrainerSageKoji:
 	showemote EMOTE_SHOCK, WISETRIOSROOM_SAGE6, 20
 	opentext
 	writetext SageKojiAfterBattleQuestionText
-	buttonsound
+	promptbutton
 	writetext SageKojiAfterBattleSpeechText
 	waitbutton
 	closetext

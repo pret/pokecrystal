@@ -14,6 +14,7 @@ engine/movie/credits.o \
 engine/overworld/events.o \
 gfx/pics.o \
 gfx/sprites.o \
+gfx/tilesets.o \
 lib/mobile/main.o
 
 crystal11_obj := $(crystal_obj:.o=11.o)
@@ -166,6 +167,7 @@ gfx/mail/flower_mail_border.1bpp: tools/gfx += --remove-whitespace
 gfx/mail/litebluemail_border.1bpp: tools/gfx += --remove-whitespace
 
 gfx/pokedex/pokedex.2bpp: tools/gfx += --trim-whitespace
+gfx/pokedex/question_mark.2bpp: rgbgfx += -h
 gfx/pokedex/sgb.2bpp: tools/gfx += --trim-whitespace
 gfx/pokedex/slowpoke.2bpp: tools/gfx += --trim-whitespace
 

@@ -1,4 +1,4 @@
-UnknownText_0x1b5073:
+HueyAnswerPhoneText:
 	text "Yeah, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -8,7 +8,7 @@ UnknownText_0x1b5073:
 	line "<PLAYER>?"
 	done
 
-UnknownText_0x1b509b:
+HueyAnswerPhoneDayText:
 	text "Yeah, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -18,7 +18,7 @@ UnknownText_0x1b509b:
 	line "<PLAYER>?"
 	done
 
-UnknownText_0x1b50c2:
+HueyAnswerPhoneNiteText:
 	text "Yeah, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -28,7 +28,7 @@ UnknownText_0x1b50c2:
 	line "<PLAYER>?"
 	done
 
-UnknownText_0x1b50e9:
+HueyGreetText:
 	text "Yo, <PLAYER>!"
 	line "You awake?"
 
@@ -38,7 +38,7 @@ UnknownText_0x1b50e9:
 	line "How's it going?"
 	done
 
-UnknownText_0x1b511a:
+HueyGreetDayText:
 	text "Yo, <PLAYER>! You"
 	line "free right now?"
 
@@ -48,7 +48,7 @@ UnknownText_0x1b511a:
 	line "How's it going?"
 	done
 
-UnknownText_0x1b5154:
+HueyGreetNiteText:
 	text "Yo, <PLAYER>!"
 	line "Were you asleep?"
 

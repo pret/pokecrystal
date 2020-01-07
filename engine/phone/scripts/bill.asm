@@ -4,22 +4,22 @@ BillPhoneCalleeScript:
 	checktime NITE
 	iftrue .nitegreet
 	farwritetext BillPhoneMornGreetingText
-	buttonsound
+	promptbutton
 	sjump .main
 
 .daygreet
 	farwritetext BillPhoneDayGreetingText
-	buttonsound
+	promptbutton
 	sjump .main
 
 .nitegreet
 	farwritetext BillPhoneNiteGreetingText
-	buttonsound
+	promptbutton
 	sjump .main
 
 .main
 	farwritetext BillPhoneGenericText
-	buttonsound
+	promptbutton
 	readvar VAR_BOXSPACE
 	getnum STRING_BUFFER_3
 	ifequal 0, .full

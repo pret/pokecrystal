@@ -1,4 +1,4 @@
-UnknownText_0x1b67e2:
+ChadAnswerPhoneText:
 	text "Hello, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -8,7 +8,7 @@ UnknownText_0x1b67e2:
 	line "Good morning!"
 	done
 
-UnknownText_0x1b680e:
+ChadAnswerPhoneDayText:
 	text "Hello, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -18,7 +18,7 @@ UnknownText_0x1b680e:
 	line "day!"
 	done
 
-UnknownText_0x1b6836:
+ChadAnswerPhoneNiteText:
 	text "Hello, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -28,7 +28,7 @@ UnknownText_0x1b6836:
 	line "evening!"
 	done
 
-UnknownText_0x1b6862:
+ChadGreetText:
 	text "Hi, <PLAY_G>, good"
 	line "morning!"
 
@@ -38,7 +38,7 @@ UnknownText_0x1b6862:
 	line "How are you?"
 	done
 
-UnknownText_0x1b6890:
+ChadGreetDayText:
 	text "Hi, <PLAY_G>, good"
 	line "day!"
 
@@ -48,7 +48,7 @@ UnknownText_0x1b6890:
 	line "How are you?"
 	done
 
-UnknownText_0x1b68ba:
+ChadGreetNiteText:
 	text "Hi, <PLAY_G>, good"
 	line "evening!"
 
@@ -58,7 +58,7 @@ UnknownText_0x1b68ba:
 	line "How are you?"
 	done
 
-UnknownText_0x1b68e8:
+ChadGenericText:
 	text "How are your"
 	line "#MON doing?"
 

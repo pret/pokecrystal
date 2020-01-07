@@ -14,7 +14,7 @@ DarkCaveBlackthornEntrancePharmacistScript:
 	checkevent EVENT_GOT_BLACKGLASSES_IN_DARK_CAVE
 	iftrue .GotBlackglasses
 	writetext DarkCaveBlackthornEntrancePharmacistText1
-	buttonsound
+	promptbutton
 	verbosegiveitem BLACKGLASSES
 	iffalse .PackFull
 	setevent EVENT_GOT_BLACKGLASSES_IN_DARK_CAVE

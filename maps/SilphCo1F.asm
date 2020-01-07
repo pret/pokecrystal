@@ -16,7 +16,7 @@ SilphCoOfficerScript:
 	checkevent EVENT_GOT_UP_GRADE
 	iftrue .GotUpGrade
 	writetext SilphCoOfficerText
-	buttonsound
+	promptbutton
 	verbosegiveitem UP_GRADE
 	iffalse .NoRoom
 	setevent EVENT_GOT_UP_GRADE

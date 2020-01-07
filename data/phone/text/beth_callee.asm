@@ -1,4 +1,4 @@
-UnknownText_0x1b53f7:
+BethAnswerPhoneText:
 	text "Hello, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -10,7 +10,7 @@ UnknownText_0x1b53f7:
 	para ""
 	done
 
-UnknownText_0x1b5424:
+BethAnswerPhoneDayText:
 	text "Hello, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -19,7 +19,7 @@ UnknownText_0x1b5424:
 	para "Oh. Hi, <PLAY_G>."
 	done
 
-UnknownText_0x1b5446:
+BethAnswerPhoneNiteText:
 	text "Hello, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -29,7 +29,7 @@ UnknownText_0x1b5446:
 	line "Good evening."
 	done
 
-UnknownText_0x1b5472:
+BethGreetText:
 	text "Good morning,"
 	line "<PLAY_G>!"
 
@@ -39,7 +39,7 @@ UnknownText_0x1b5472:
 	line "Were you sleeping?"
 	done
 
-UnknownText_0x1b54a6:
+BethGreetDayText:
 	text "<PLAY_G>, hi!"
 	line "This is @"
 	text_ram wStringBuffer3
@@ -49,7 +49,7 @@ UnknownText_0x1b54a6:
 	line "time?"
 	done
 
-UnknownText_0x1b54d4:
+BethGreetNiteText:
 	text "Hi, <PLAY_G>."
 	line "Good evening."
 
@@ -61,7 +61,7 @@ UnknownText_0x1b54d4:
 	line "awake."
 	done
 
-UnknownText_0x1b5510:
+BethGenericText:
 	text "Are you the kind"
 	line "of person who goes"
 

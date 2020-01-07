@@ -13,13 +13,13 @@ SandstormHouseWoman:
 	iftrue .AlreadyGotItem
 	special GetFirstPokemonHappiness
 	writetext SandstormHouseWomanText1
-	buttonsound
+	promptbutton
 	ifgreater 150 - 1, .Loyal
 	sjump .Disloyal
 
 .Loyal:
 	writetext SandstormHouseWomanLoyalText
-	buttonsound
+	promptbutton
 	verbosegiveitem TM_SANDSTORM
 	iffalse .Done
 	setevent EVENT_GOT_TM37_SANDSTORM

@@ -1,4 +1,4 @@
-UnknownText_0x64f74:
+DanaTakingPhotosText:
 	text "My @"
 	text_ram wStringBuffer4
 	text " is"
@@ -8,7 +8,7 @@ UnknownText_0x64f74:
 	line "photos galore!"
 	done
 
-UnknownText_0x64fb2:
+DanaDefeatedMonText:
 	text "It took only an"
 	line "instant to KO a"
 	cont "wild @"
@@ -22,7 +22,7 @@ UnknownText_0x64fb2:
 	line "time."
 	done
 
-UnknownText_0x6501c:
+DanaLostAMonText:
 	text "You know what?"
 	line "A wild @"
 	text_ram wStringBuffer4
@@ -37,7 +37,7 @@ UnknownText_0x6501c:
 	line "and I would've…"
 	done
 
-UnknownText_0x65091:
+DanaBattleRematchText:
 	text "Right now, I'm on"
 	line "@"
 	text_ram wStringBuffer5
@@ -50,11 +50,11 @@ UnknownText_0x65091:
 	line "for you!"
 	done
 
-UnknownText_0x650e2:
+DanaHangUpText:
 	text "See you!"
 	done
 
-UnknownText_0x650ec:
+DanaFoundItemText:
 	text "You know what?"
 	line "I got a good gift!"
 
@@ -70,7 +70,7 @@ UnknownText_0x650ec:
 	text "!"
 	done
 
-UnknownText_0x65161:
+DanaCanYouWaitABitLongerText:
 	text "Oh! You wanted a"
 	line "gift, right?"
 
@@ -81,7 +81,7 @@ UnknownText_0x65161:
 	line "longer?"
 	done
 
-UnknownText_0x651bf:
+DanaReminderText:
 	text "Hi! You haven't"
 	line "forgotten about"
 
@@ -94,7 +94,7 @@ UnknownText_0x651bf:
 	text "!"
 	done
 
-UnknownText_0x6520f:
+DanaComePickUpText:
 	text "Hello?"
 
 	para "If you don't come"

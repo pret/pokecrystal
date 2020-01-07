@@ -23,7 +23,7 @@ FarCall_hl::
 	push af
 	ldh a, [hBuffer]
 	rst Bankswitch
-	call FarJump_hl
+	call FarCall_JumpToHL
 
 ReturnFarCall::
 ; We want to retain the contents of f.
@@ -45,5 +45,5 @@ ReturnFarCall::
 	ld c, a
 	ret
 
-FarJump_hl::
+FarCall_JumpToHL::
 	jp hl

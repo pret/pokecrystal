@@ -6,7 +6,7 @@ _PrintNum::
 ; digits will be in front of the decimal point.
 ; Some extra flags can be given in bits 5-7 of b.
 ; Bit 5: money if set (unless left-aligned without leading zeros)
-; Bit 6: right-aligned if set
+; Bit 6: left-aligned if set
 ; Bit 7: print leading zeros if set
 
 	push bc

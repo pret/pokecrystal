@@ -161,7 +161,7 @@ TrainerCooltrainermKevin:
 	checkevent EVENT_CLEARED_NUGGET_BRIDGE
 	iftrue .AfterNuggetBridge
 	writetext CooltrainermKevinNuggetText
-	buttonsound
+	promptbutton
 	verbosegiveitem NUGGET
 	iffalse .NoRoomForNugget
 	setevent EVENT_CLEARED_NUGGET_BRIDGE

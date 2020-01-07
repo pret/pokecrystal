@@ -66,17 +66,17 @@ SunnyScript:
 	checkevent EVENT_MET_SUNNY_OF_SUNDAY
 	iftrue .MetSunny
 	writetext MeetSunnyText
-	buttonsound
+	promptbutton
 	setevent EVENT_MET_SUNNY_OF_SUNDAY
 .MetSunny:
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Kris
 	writetext SunnyGivesGiftText1
-	buttonsound
+	promptbutton
 	sjump .next
 .Kris:
 	writetext SunnyGivesGiftText2
-	buttonsound
+	promptbutton
 .next
 	verbosegiveitem MAGNET
 	iffalse SunnyDoneScript

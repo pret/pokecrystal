@@ -29,7 +29,7 @@ RadioTower4FDJMaryScript:
 
 .ClearedRockets:
 	writetext RadioTower4FDJMaryText_ClearedRockets
-	buttonsound
+	promptbutton
 	verbosegiveitem PINK_BOW
 	iffalse .NoRoom
 	writetext RadioTower4FDJMaryText_GivePinkBow
