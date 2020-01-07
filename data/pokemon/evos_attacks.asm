@@ -2124,8 +2124,8 @@ CyndaquilEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, TACKLE
 	db 1, LEER
-	db 6, SMOKESCREEN
-	db 12, EMBER
+	db 6, EMBER
+	db 12, SMOKESCREEN
 	db 19, QUICK_ATTACK
 	db 27, FLAME_WHEEL
 	db 36, SWIFT
@@ -2165,8 +2165,8 @@ TotodileEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, SCRATCH
 	db 1, LEER
-	db 7, RAGE
-	db 13, WATER_GUN
+	db 7, WATER_GUN
+	db 13, RAGE
 	db 20, BITE
 	db 27, SCARY_FACE
 	db 35, SLASH
