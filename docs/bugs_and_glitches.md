@@ -75,6 +75,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 - [`ScriptCall` can overflow `wScriptStack` and crash](#scriptcall-can-overflow-wscriptstack-and-crash)
 - [`LoadSpriteGFX` does not limit the capacity of `UsedSprites`](#loadspritegfx-does-not-limit-the-capacity-of-usedsprites)
 - [`ChooseWildEncounter` doesn't really validate the wild Pokémon species](#choosewildencounter-doesnt-really-validate-the-wild-pokémon-species)
+- [`0x1500` control code arbitrary code execution](#0x1500-control-code-arbitrary-code-execution)
 - [`TryObjectEvent` arbitrary code execution](#tryobjectevent-arbitrary-code-execution)
 - [`ClearWRAM` only clears WRAM bank 1](#clearwram-only-clears-wram-bank-1)
 - [`BattleAnimCmd_ClearObjs` only clears the first 6⅔ objects](#battleanimcmd_clearobjs-only-clears-the-first-6-objects)
@@ -2065,6 +2066,36 @@ This supports up to six entries.
 -	ld a, b ; This is in the wrong place.
  	cp UNOWN
  	jr nz, .done
+```
+
+
+## `0x1500` control code arbitrary code execution
+
+([Video 1](https://www.youtube.com/watch?v=VtRFxxKW7mY)), ([Video 2](https://www.youtube.com/watch?v=YqD68-2aAjg))
+
+**Fix:** Edit `_RunMobileScript` in [mobile/mobile_5f.asm](https://github.com/pret/pokecrystal/blob/master/mobile/mobile_5f.asm):
+
+```diff
+_RunMobileScript:
+    ld a, [de]
+    inc de
+    cp "@"
+    jr z, .finished
++   dec a
++   cp $09 ; jumptable size - 1
+-   cp $10 ; jumptable size
+    jr nc, .finished
+-   dec a
+    push de
+    ld e, a
+    ld d, 0
+    ld hl, .Jumptable
+    add hl, de
+    add hl, de
+    ld a, [hli]
+    ld h, [hl]
+    ld l, a
+    jp hl
 ```
 
 
