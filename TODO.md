@@ -52,7 +52,7 @@
   - [ ] Add back hoot hoot send-out animation to more pokemon (dark ?)
 - [ ] Add symbol to show if wild pokemon is caught #48
 - [ ] Split special
-- [ ] Same type moves earlier for starter (slightly)
+- [ ] Starters should learn Same type moves earlier
 
 ### Overworld
 
@@ -209,6 +209,42 @@
 - [ ] Expshare formula fixes
 - [ ] Menu scrolling oversight
 - [ ] Opponents full heal and full restore correctly heals nightmare and confusion
+
+### Unsorted
+
+- [ ] Add pokedoll dispenser to top of dept. store
+- [ ] Add pause to pokemon train station "carry on back" quote
+- [ ] Align PCC entry to nurse
+- [ ] Scale trainer rematches based on algorithm instead of explicit coding
+- [ ] Show tm name when you recieve or find a tm
+- [ ] Add leftovers to random trashcans
+- [ ] Show all six pokemon when depositing into PC, so scrolling isn't needed, except to select "back"
+- [ ] Use tall grass sprite in more areas (coastal?)
+- [ ] Give pokefan william more color to sprite
+- [ ] Create story reason for legendaries to stat aapearing, maybe combining bell/wing together?
+- [ ] Remove limit to # of numbers in pokegear (at least increase)
+- [ ] Use pokegear to set time (either through a time function or by calling someone)
+- [ ] Allow player to ignore phone calls
+- [ ] Add move tester to pokegear to test type effectivness
+- [ ] In Goldenrod 1f, mother should reference underground store
+- [ ] add more books to book cases all over
+- [ ] In house with pidgey (biolet town?), have pidgey name be "Strawberry" after talking to girl.  Check scripting in flower shop
+- [ ] Change story so falkner is filling in for dad
+   - [ ] add dad somewhere?
+- [ ] unlimited use TMs
+- [ ] pluralize "Move" on stats screen
+- [ ] connect item title and name with line (pokemon stats screen)
+- [ ] Fly locations:
+   - [ ] Union Cave
+   - [ ] 
+   - [ ] 
+- [ ] Add more textures to top of rocks
+- [ ] Make each route sign more memorable
+- [ ] Spruce up charcol kiln house
+- [ ] Underground rocket base on cinnebar?
+- [ ] More type advantage/disadvantage on early routes
+- [ ] Modify wild pokemon lists to end with 0 instead of being a set number: https://github.com/pret/pokecrystal/wiki/Improve-the-outdoor-sprite-system#1-make-outdoor-sprite-sets-variable-length-ending-with-0
+
 
 ## Implementation notes
 

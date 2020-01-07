@@ -5,8 +5,8 @@ IrwinRumorScript:
 	iftrue .Snorlax
 	checkevent EVENT_GOT_PASS_FROM_COPYCAT
 	iftrue .TrainPass
-	checkflag ENGINE_MARSHBADGE
-	iftrue .MarshBadge
+	checkflag ENGINE_SOULBADGE
+	iftrue .SoulBadge
 	checkflag ENGINE_FLYPOINT_VERMILION
 	iftrue .VermilionCity
 	checkevent EVENT_BEAT_ELITE_FOUR
@@ -82,7 +82,7 @@ IrwinRumorScript:
 	promptbutton
 	sjump PhoneScript_HangUpText_Male
 
-.MarshBadge:
-	farwritetext IrwinMarshBadgeGossipText
+.SoulBadge:
+	farwritetext IrwinSoulBadgeGossipText
 	promptbutton
 	sjump PhoneScript_HangUpText_Male

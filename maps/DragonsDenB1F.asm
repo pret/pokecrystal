@@ -216,14 +216,11 @@ ClairText_GiveDragonbreathDragonDen:
 
 NotifyReceiveDragonbreath:
 	text "<PLAYER> received"
-	line "TM24."
+	line "TM24 DRAGONBREATH."
 	done
 
 ClairText_DescribeDragonbreathDragonDen:
-	text "That contains"
-	line "DRAGONBREATH."
-
-	para "No, it doesn't"
+	text "No, it doesn't"
 	line "have anything to"
 	cont "do with my breath."
 
