@@ -231,14 +231,11 @@ BlackthornGymClairText_YouKeptMeWaiting:
 
 BlackthornGymText_ReceivedTM24:
 	text "<PLAYER> received"
-	line "TM24."
+	line "TM24 DRAGONBREATH."
 	done
 
 BlackthornGymClairText_DescribeTM24:
-	text "That contains"
-	line "DRAGONBREATH."
-
-	para "No, it doesn't"
+	text "No, it doesn't"
 	line "have anything to"
 	cont "do with my breath."
 
