@@ -177,7 +177,7 @@
 
 - [ ] Bill calls to switch boxes when full
 - [ ] Revised shiny pallete
-- [ ] Color coded starter poke balls
+- [x] Color coded starter poke balls
 - [ ] Stereo sound by default
 - [ ] Third Trainer Card page for Kanto badges. #44
 - [ ] Fourth stats page for capture data formerly told by the Poké Seer. #45
@@ -244,6 +244,9 @@
 - [ ] Underground rocket base on cinnebar?
 - [ ] More type advantage/disadvantage on early routes
 - [ ] Modify wild pokemon lists to end with 0 instead of being a set number: https://github.com/pret/pokecrystal/wiki/Improve-the-outdoor-sprite-system#1-make-outdoor-sprite-sets-variable-length-ending-with-0
+- [ ] Make wooper do battle entry animation when shown by oak at beginning
+- [ ] Saying that you know how to use the pokegear to mom should skip the pokegear lesson
+- [ ] Add more color to Elm's lab pallet
 
 
 ## Implementation notes
