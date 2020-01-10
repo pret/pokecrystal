@@ -155,7 +155,9 @@
 - [ ] Add visible Iv/ev stats
 - [ ] add pokemon to more areas (variety)
 - [ ] spruce up starter move levels
-- [ ] get to ilx forest without cut #5
+- [x] get through ilex forest without cut #5
+  - [x] Connect west water of ilex to ocean to the left
+- [x] Surf from route 34 to ilex forest
 - [ ] fly to indigo plateau #6
 - [ ] make payday a field move (get random amount of money 20-500)
 - [ ] add ability to name mother #40

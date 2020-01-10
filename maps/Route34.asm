@@ -763,12 +763,14 @@ DayCareSignText:
 Route34_MapEvents:
 	db 0, 0 ; filler
 
-	db 5 ; warp events
+	db 7 ; warp events
 	warp_event 13, 37, ROUTE_34_ILEX_FOREST_GATE, 1
 	warp_event 14, 37, ROUTE_34_ILEX_FOREST_GATE, 2
 	warp_event 11, 14, DAY_CARE, 1
 	warp_event 11, 15, DAY_CARE, 2
 	warp_event 13, 15, DAY_CARE, 3
+	warp_event 11, 42, ILEX_FOREST, 5
+	warp_event 11, 43, ILEX_FOREST, 6 
 
 	db 0 ; coord events
 
