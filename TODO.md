@@ -188,12 +188,12 @@
 - [ ] follower pokemon (stretch)
 - [ ] "Mother" gigas music for mewtwo encounter
 - [ ] Koga -> marsh badge, sabrina -> soul badge #31
-- [ ] Double-check day/night lenghts
+- [ ] Double-check day/night lengths
   - [ ] Morning 4:00-11:59
   - [ ] Day 12:00-7:59
   - [ ] Night 8:00-3:59
   - [ ] Speed up clock a lot, full cycle every 1-3 hours?
-- [ ] Add ability to set clock at anytime #42
+- [x] Add ability to set clock at anytime #42
   - [ ] Call "time man" on phone to set time
 - [ ] Show time when pokemon can be encountered in the wild in the pokedex
 - [ ] More boxes/ box spots
