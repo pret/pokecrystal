@@ -150,7 +150,7 @@ MovementData_0x980cc:
 	step_end
 
 EcruteakTinTowerEntranceSageText:
-	text "TIN TOWER is off"
+	text "BELL TOWER is off"
 	line "limits to anyone"
 
 	para "without ECRUTEAK"
@@ -161,7 +161,7 @@ EcruteakTinTowerEntranceSageText:
 	done
 
 EcruteakTinTowerEntranceSageText_GotFogBadge:
-	text "TIN TOWER is off"
+	text "BELL TOWER is off"
 	line "limits to anyone"
 
 	para "without ECRUTEAK"
@@ -221,7 +221,7 @@ EcruteakTinTowerEntranceSageText_HearsClearBell:
 
 	para "You may be able to"
 	line "make it through"
-	cont "TIN TOWER."
+	cont "BELL TOWER."
 
 	para "Please, do go on."
 	done
@@ -239,13 +239,13 @@ EcruteakTinTowerEntranceSageText_HeardClearBell:
 
 	para "You may be able to"
 	line "make it through"
-	cont "TIN TOWER."
+	cont "BELL TOWER."
 
 	para "Please, do go on."
 	done
 
 EcruteakTinTowerEntranceWanderingSageText:
-	text "The TIN TOWER"
+	text "The BELL TOWER"
 	line "ahead is a nine-"
 
 	para "tier tower of"
@@ -257,7 +257,7 @@ EcruteakTinTowerEntranceWanderingSageText:
 	done
 
 EcruteakTinTowerEntranceWanderingSageText_GotClearBell:
-	text "The TIN TOWER"
+	text "The BELL TOWER"
 	line "shook! A #MON"
 
 	para "must have returned"

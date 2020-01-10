@@ -225,7 +225,7 @@ EcruteakCitySignText:
 	done
 
 TinTowerSignText:
-	text "TIN TOWER"
+	text "BELL TOWER"
 
 	para "A legendary #-"
 	line "MON is said to"
