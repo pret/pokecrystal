@@ -422,7 +422,7 @@ WrongNumber:
 Script_ReceivePhoneCall:
 	refreshscreen
 	callasm RingTwice_StartCall
-	writetext .PhoneWrongNumberText
+	writetext .PhoneAskToAnswerText
 	yesorno
 	iffalse .SkipCallScript
 	memcall wCallerContact + PHONE_CONTACT_SCRIPT2_BANK
@@ -434,8 +434,8 @@ Script_ReceivePhoneCall:
 	callasm InitCallReceiveDelay
 	end
 
-.PhoneWrongNumberText:
-	text_far _PhoneWrongNumberText
+.PhoneAskToAnswerText:
+	text_far _PhoneAskToAnswerText
 	text_end
 
 Script_SpecialBillCall::
