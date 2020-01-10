@@ -1580,3 +1580,8 @@ _OakText5::
 	para "That's why I study"
 	line "#MON every day."
 	prompt
+
+_RebattleText::
+	text "Care for another"
+	line "battle?"
+	done
