@@ -193,7 +193,7 @@
 
 ### Bug fixes
 
-- [ ] Fishing returns to Cerulean Gym #43
+- [x] Fishing returns to Cerulean Gym #43
 - [ ] Catch rate fixes
 - [ ] Expshare formula fixes
 - [ ] Menu scrolling oversight
