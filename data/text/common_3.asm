@@ -895,6 +895,11 @@ _PhoneWrongNumberText::
 	line "number!"
 	done
 
+_PhoneAskToAnswerText::
+	text "Would you like to"
+	line "answer the phone?"
+	done
+
 _PhoneClickText::
 	text "Click!"
 	done
