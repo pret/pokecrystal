@@ -13,10 +13,23 @@ VioletNicknameSpeechHouseTeacherScript:
 
 VioletNicknameSpeechHouseLassScript:
 	jumptextfaceplayer VioletNicknameSpeechHouseLassText
+	setevent EVENT_SPEECH_HOUSE_PIDGEY_NAME	; "Pidgey" will now be named "Strawberry"
 
 VioletNicknameSpeechHouseBirdScript:
 	faceplayer
+	checkevent EVENT_SPEECH_HOUSE_PIDGEY_NAME
+	iftrue .KnowBirdsName
 	opentext
+	; Check flag
+	writetext VioletNicknameSpeechHouseBirdTextNormal
+	cry PIDGEY
+	waitbutton
+	closetext
+	end
+
+.KnowBirdsName:
+	opentext
+	; Check flag
 	writetext VioletNicknameSpeechHouseBirdText
 	cry PIDGEY
 	waitbutton
@@ -40,6 +53,10 @@ VioletNicknameSpeechHouseLassText:
 
 VioletNicknameSpeechHouseBirdText:
 	text "STRAWBERRY: Pijji!"
+	done
+
+VioletNicknameSpeechHouseBirdTextNormal:
+	text "PIDGEY: Pijji!"
 	done
 
 VioletNicknameSpeechHouse_MapEvents:

@@ -217,7 +217,7 @@
 - [ ] Add move tester to pokegear to test type effectivness
 - [ ] In Goldenrod 1f, mother should reference underground store
 - [ ] add more books to book cases all over
-- [ ] In house with pidgey (biolet town?), have pidgey name be "Strawberry" after talking to girl.  Check scripting in flower shop
+- [x] In house with pidgey (biolet town?), have pidgey name be "Strawberry" after talking to girl.  Check scripting in flower shop
 - [ ] Change story so falkner is filling in for dad
    - [ ] add dad somewhere?
 - [ ] pluralize "Move" on stats screen
