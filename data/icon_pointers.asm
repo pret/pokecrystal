@@ -138,9 +138,37 @@ IconPointers:
 	dw VaporeonIcon
 	dw JolteonIcon
 	dw FlareonIcon
+	dw PorygonIcon
+	dw OmanyteIcon
+	dw OmastarIcon
+	dw KabutoIcon
+	dw KabutopsIcon
+	dw AerodactylIcon
+	dw SnorlaxIcon
+	dw ArticunoIcon
+	dw ZapdosIcon
+	dw MoltresIcon
+	dw DratiniIcon
+	dw DragonairIcon
+	dw DragoniteIcon
+	dw MewtwoIcon
+	dw MewIcon
+	dw ChikoritaIcon
+	dw BayleefIcon
+	dw MeganiumIcon
+	dw CyndaquilIcon
+	dw QuilavaIcon
+	dw TyphlosionIcon
+	dw TotodileIcon
+	dw CroconawIcon
+	dw FeraligatorIcon
+	dw SentretIcon
+	dw FurretIcon
+	dw HoothootIcon
+	dw NoctowlIcon
+	dw LedybaIcon
 
 	dw UnownIcon
-	dw SnorlaxIcon
 	dw HoOhIcon
 	dw LugiaIcon
 	dw SudowoodoIcon
