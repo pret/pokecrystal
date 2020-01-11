@@ -4,7 +4,6 @@
 
 ### Battles
 
-- [ ] Gain experience from catching pokemon #9
 - [ ] Play low pitched cry when pokemon faints
 - [ ] NPC's can have shiny pokemon #24
 - [ ] Light ball doubles both attach and spc. attack
@@ -155,9 +154,6 @@
 - [ ] Add visible Iv/ev stats
 - [ ] add pokemon to more areas (variety)
 - [ ] spruce up starter move levels
-- [x] get through ilex forest without cut #5
-  - [x] Connect west water of ilex to ocean to the left
-- [x] Surf from route 34 to ilex forest
 - [ ] fly to indigo plateau #6
 - [ ] make payday a field move (get random amount of money 20-500)
 - [ ] add ability to name mother #40
@@ -195,7 +191,6 @@
 
 ### Bug fixes
 
-- [x] Fishing returns to Cerulean Gym #43
 - [ ] Catch rate fixes
 - [ ] Expshare formula fixes
 - [ ] Menu scrolling oversight
@@ -219,7 +214,6 @@
 - [ ] Add move tester to pokegear to test type effectivness
 - [ ] In Goldenrod 1f, mother should reference underground store
 - [ ] add more books to book cases all over
-- [x] In house with pidgey (biolet town?), have pidgey name be "Strawberry" after talking to girl.  Check scripting in flower shop
 - [ ] Change story so falkner is filling in for dad
    - [ ] add dad somewhere?
 - [ ] pluralize "Move" on stats screen

@@ -31,6 +31,13 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 - [x] Fishing succeeds 75% of the time instead of 50%
 - [x] Made Celibi event available
 - [x] Hold 'B' While walking to run
+- [x] Get through Ilex forest without cut
+- [x] Fish in Cerulean Gym again like in Gen. 1
+- [ ] Gain experience from catching pokemon
+
+### Map Changes
+
+- [x] Surf from Route 34 to Ilex Forest
 
 ### Pokemon
 
@@ -83,18 +90,21 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 - [x] Rocket execs use Team Rocket battle music, not just grunts
 - [x] Show tops of gym leaders heads on trainer card
 - [x] Updated Text
-  - [x] Berry Names  
-  - [x] Enemy → Foe, 
-  - [x] Cooltrainer → Ace Trainer, 
-  - [x] Fisher → Fisherman,
-  - [x] Elixer → Elixir, 
-  - [x] Pink Bow → PNK Silk Bow
-  - [x] Swap names of Marsh and Soul gym badges
-  - [x] Adding back unused text in the code
+- [x] Pidgey in Violet town is only called "Strawberry" after you talk to the girl
 
-### Other Changes
+### Name Changes
 
 - [x] Rename RAGE CANDY BAR to CAKE OF RAGE
+- [x] Berry Names  
+- [x] Enemy → Foe, 
+- [x] Cooltrainer → Ace Trainer, 
+- [x] Fisher → Fisherman,
+- [x] Elixer → Elixir, 
+- [x] Pink Bow → PNK Silk Bow
+- [x] Swap names of Marsh and Soul gym badges
+- [x] Adding back unused text in the code
+- [x] TIN -> Bell Tower
+- [x] Brass -> Gong Tower
 
 ## See also
 
