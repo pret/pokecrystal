@@ -334,7 +334,7 @@ CoinVendor_CoinCaseFullText:
 	text "Whoops! Your COIN"
 	line "CASE is full."
 
-	text "You must be a "
+	para "You must be a "
 	line "real high roller!"
 	done
 
