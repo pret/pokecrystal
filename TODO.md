@@ -47,12 +47,9 @@
 - [ ] Investigate crystal clear gym leveling and rematch
   - [ ] Rematch more powerful elite 4 after earning all 16 badges #30
   - [ ] After earning 16 badges and beating elite 4, all gym leaders are more powerful #29
-- [ ] Janine's pink badge is called the Marsh Badge; Sabrina's gold badge is called the Soul #31
 - [ ] Add send-out animation
   - [ ] Add back hoot hoot send-out animation to more pokemon (dark ?)
-- [ ] Add symbol to show if wild pokemon is caught #48
 - [ ] Split special
-- [ ] Starters should learn Same type moves earlier
 
 ### Overworld
 
@@ -67,8 +64,6 @@
 - [ ] All legendaries respawn after beating elite 4 #16
 - [ ] Move reminder in same house as move deleter 
 - [ ] Fly to the Rock Tunnel/Power Plant Pokémon Center. #36
-- [ ] Fishing works 75% of the time, not 50%. #17
-- [ ] GS ball and Celibi side event is available #18
 - [ ] Restore poke blue map elements #35
   - [ ] Pokemon Safari
   - [ ] Silf co
@@ -128,8 +123,7 @@
 - [ ] Odd egg is 50% shiny #22
 - [ ] Prof. Oaks aids give you items as you complete pokedex
 - [ ] Trees randomly give 1 2 or 3 berries
-- [ ] Unlimited use TMs
-- [ ] Hold b to use running shoes, setting to always use them #19
+- [ ] Add setting to always use running shoes them #19
 - [ ] Continious repel system
 - [ ] Surf at bicycle speed #47
 - [ ] The Skateboard returns #20
@@ -163,7 +157,6 @@
 - [ ] spruce up starter move levels
 - [ ] get to ilx forest without cut #5
 - [ ] fly to indigo plateau #6
-- [ ] rage candy bar -> cake of rage #8
 - [ ] make payday a field move (get random amount of money 20-500)
 - [ ] add ability to name mother #40
 - [ ] have legendary birds roam?
@@ -183,18 +176,14 @@
 - [ ] Fourth stats page for capture data formerly told by the Poké Seer. #45
   - [ ] Also poke happiness
 - [ ] Move stats include type, category, power, and accuracy. #46
-- [x] turn around after getting healed in pokecenter
-- [ ] run holding b #19
 - [ ] follower pokemon (stretch)
 - [ ] "Mother" gigas music for mewtwo encounter
-- [ ] Koga -> marsh badge, sabrina -> soul badge #31
 - [ ] Double-check day/night lengths
   - [ ] Morning 4:00-11:59
   - [ ] Day 12:00-7:59
   - [ ] Night 8:00-3:59
   - [ ] Speed up clock a lot, full cycle every 1-3 hours?
-- [x] Add ability to set clock at anytime #42
-  - [ ] Call "time man" on phone to set time
+- [ ] Call "time man" on phone to set time
 - [ ] Show time when pokemon can be encountered in the wild in the pokedex
 - [ ] More boxes/ box spots
 - [ ] More item slots
@@ -221,7 +210,7 @@
 - [ ] Show all six pokemon when depositing into PC, so scrolling isn't needed, except to select "back"
 - [ ] Use tall grass sprite in more areas (coastal?)
 - [ ] Give pokefan william more color to sprite
-- [ ] Create story reason for legendaries to stat aapearing, maybe combining bell/wing together?
+- [ ] Create story reason for legendaries to start aapearing, maybe combining bell/wing together?
 - [ ] Remove limit to # of numbers in pokegear (at least increase)
 - [ ] Use pokegear to set time (either through a time function or by calling someone)
 - [ ] Allow player to ignore phone calls
@@ -231,7 +220,6 @@
 - [ ] In house with pidgey (biolet town?), have pidgey name be "Strawberry" after talking to girl.  Check scripting in flower shop
 - [ ] Change story so falkner is filling in for dad
    - [ ] add dad somewhere?
-- [ ] unlimited use TMs
 - [ ] pluralize "Move" on stats screen
 - [ ] connect item title and name with line (pokemon stats screen)
 - [ ] Fly locations:
