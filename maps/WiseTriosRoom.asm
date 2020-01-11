@@ -154,7 +154,7 @@ WiseTriosRoomSage2Text:
 	done
 
 WiseTriosRoomSage3BlocksExitText:
-	text "TIN TOWER may be"
+	text "BELL TOWER may be"
 	line "entered by those"
 
 	para "bearing ECRUTEAK's"
@@ -191,7 +191,7 @@ SageGakuSeenText:
 	para "will come forth to"
 	line "put that trainer"
 
-	para "to test at the TIN"
+	para "to test at the BELL"
 	line "TOWER."
 
 	para "The legend has"
@@ -246,11 +246,11 @@ SageMasaAfterBattleText:
 	line "were two nine-tier"
 	cont "towers here."
 
-	para "The BRASS TOWER,"
+	para "The GONG TOWER,"
 	line "which was said to"
 
-	para "awaken #MON,"
-	line "and the TIN TOWER,"
+	para "awaken #MON, and"
+	line "the BELL TOWER,"
 
 	para "where #MON were"
 	line "said to rest."
@@ -268,7 +268,7 @@ SageMasaAfterBattleText:
 	line "was said to make"
 
 	para "its roost atop the"
-	line "BRASS TOWER."
+	line "GONG TOWER."
 
 	para "However…"
 
@@ -328,7 +328,7 @@ SageKojiAfterBattleSpeechText:
 	line "and soul of truth."
 
 	para "Please, do go on"
-	line "and enter the TIN"
+	line "and enter the BELL"
 	cont "TOWER ahead."
 
 	para "SUICUNE will put"

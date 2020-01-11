@@ -92,11 +92,8 @@ NursePokerusText:
 	line "healthy and seem"
 	cont "to be fine."
 
-	para "But we can't tell"
-	line "you anything more"
-
-	para "at a #MON"
-	line "CENTER."
+	para "It seems to help"
+	line "#MON grow quicker."
 	done
 
 PokeComNursePokerusText:
@@ -112,6 +109,9 @@ PokeComNursePokerusText:
 
 	para "But we can't tell"
 	line "you anything more."
+	
+	para "at a #COM"
+	line "CENTER."
 	done
 
 DifficultBookshelfText:
@@ -333,10 +333,13 @@ CoinVendor_NotEnoughMoneyText:
 CoinVendor_CoinCaseFullText:
 	text "Whoops! Your COIN"
 	line "CASE is full."
+
+	para "You must be a "
+	line "real high roller!"
 	done
 
 CoinVendor_CancelText:
-	text "No coins for you?"
+	text "No coins for you!"
 	line "Come again!"
 	done
 
@@ -367,7 +370,7 @@ HappinessText2:
 
 HappinessText1:
 	text "You haven't tamed"
-	line "your #MON."
+	line "your #MON yet."
 
 	para "If you aren't"
 	line "nice, it'll pout."

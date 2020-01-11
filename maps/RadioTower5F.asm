@@ -362,7 +362,7 @@ RadioTower5FDirectorDescribeClearBellText:
 	para "That bell has some"
 	line "connection to the"
 
-	para "TIN TOWER in"
+	para "BELL TOWER in"
 	line "ECRUTEAK CITY…"
 
 	para "Ah!"
@@ -374,7 +374,7 @@ RadioTower5FDirectorDescribeClearBellText:
 
 	para "Apparently, some-"
 	line "thing is going on"
-	cont "at the TIN TOWER."
+	cont "at the BELL TOWER."
 
 	para "I have no idea"
 	line "what is happening,"
