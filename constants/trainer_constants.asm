@@ -181,13 +181,6 @@ KRIS EQU __enum__
 	const SHANNON
 	const MICHELLE
 	const DANA1
-	const ELLEN
-	const CONNIE2
-	const CONNIE3
-	const DANA2
-	const DANA3
-	const DANA4
-	const DANA5
 
 	trainerclass JANINE ; 1a
 	const JANINE1
@@ -248,13 +241,6 @@ KRIS EQU __enum__
 	const CARLENE
 	const JESSICA
 	const RACHAEL
-	const ANGELICA
-	const KENDRA
-	const VERONICA
-	const JULIA
-	const THERESA
-	const VALERIE
-	const OLIVIA
 
 	trainerclass POKEMANIAC ; 1e
 	const LARRY
@@ -267,11 +253,6 @@ KRIS EQU __enum__
 	const ETHAN
 	const BRENT2
 	const BRENT3
-	const ISSAC
-	const DONALD
-	const ZACH
-	const BRENT4
-	const MILLER
 
 	trainerclass GRUNTM ; 1f
 	const GRUNTM_1
@@ -294,17 +275,6 @@ KRIS EQU __enum__
 	const GRUNTM_18
 	const GRUNTM_19
 	const GRUNTM_20
-	const GRUNTM_21
-	const GRUNTM_22
-	const GRUNTM_23
-	const GRUNTM_24
-	const GRUNTM_25
-	const GRUNTM_26
-	const GRUNTM_27
-	const GRUNTM_28
-	const GRUNTM_29
-	const GRUNTM_30
-	const GRUNTM_31
 
 	trainerclass GENTLEMAN ; 20
 	const PRESTON
@@ -508,9 +478,6 @@ KRIS EQU __enum__
 	const IRWIN1
 	const FRITZ
 	const HORTON
-	const IRWIN2
-	const IRWIN3
-	const IRWIN4
 
 	trainerclass BLACKBELT_T ; 32
 	const KENJI1
@@ -657,11 +624,6 @@ KRIS EQU __enum__
 	const ANNANDANNE2
 	const AMYANDMAY2
 	const JOANDZOE1
-	const JOANDZOE2
-	const MEGANDPEG1
-	const MEGANDPEG2
-	const LEAANDPIA1
-	const LEAANDPIA2
 
 	trainerclass POKEFANF ; 3e
 	const BEVERLY1
@@ -701,5 +663,55 @@ KRIS EQU __enum__
 	const NIKKI
 	const DIANA
 	const BRIANA
+
+	trainerclass TWINSPROTO
+		const JOANDZOE2
+		const MEGANDPEG1
+		const MEGANDPEG2
+		const LEAANDPIA1
+		const LEAANDPIA2
+
+	trainerclass BEAUTYPROTO
+		const ANGELICA
+		const KENDRA
+		const VERONICA
+		const JULIA
+		const THERESA
+		const VALERIE
+		const OLIVIA
+
+	trainerclass JUGGLERPROTO
+		const IRWIN2
+		const IRWIN3
+		const IRWIN4
+
+	trainerclass POKEMANIACPROTO
+		const ISSAC
+		const DONALD
+		const ZACH
+		const BRENT4
+		const MILLER
+
+	trainerclass LASSPROTO
+		const ELLEN
+		const CONNIE2
+		const CONNIE3
+		const DANA2
+		const DANA3
+		const DANA4
+		const DANA5
+
+	trainerclass GRUNTPROTO
+		const GRUNTM_21
+		const GRUNTM_22
+		const GRUNTM_23
+		const GRUNTM_24
+		const GRUNTM_25
+		const GRUNTM_26
+		const GRUNTM_27
+		const GRUNTM_28
+		const GRUNTM_29
+		const GRUNTM_30
+		const GRUNTM_31
 
 NUM_TRAINER_CLASSES EQU __enum__

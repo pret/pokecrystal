@@ -75,3 +75,9 @@ INCBIN "gfx/trainers/officer.gbcpal", middle_colors
 INCBIN "gfx/trainers/grunt_f.gbcpal", middle_colors
 INCBIN "gfx/trainers/mysticalman.gbcpal", middle_colors
 INCBIN "gfx/trainers/pswimmer_f.gbcpal", middle_colors
+INCBIN "gfx/trainers/twins_proto.gbcpal", middle_colors
+INCBIN "gfx/trainers/beauty_proto.gbcpal", middle_colors
+INCBIN "gfx/trainers/juggler_proto.gbcpal", middle_colors
+INCBIN "gfx/trainers/pokemaniac_proto.gbcpal", middle_colors
+INCBIN "gfx/trainers/lass_proto.gbcpal", middle_colors
+INCBIN "gfx/trainers/rocket_proto.gbcpal", middle_colors

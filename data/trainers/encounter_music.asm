@@ -71,5 +71,9 @@ TrainerEncounterMusic::
 	db MUSIC_ROCKET_ENCOUNTER      ; gruntf
 	db MUSIC_HIKER_ENCOUNTER       ; mysticalman
 	db MUSIC_BEAUTY_ENCOUNTER      ; pswimmerf
-	db MUSIC_HIKER_ENCOUNTER
-	db MUSIC_HIKER_ENCOUNTER
+	db MUSIC_LASS_ENCOUNTER        ; TwinsProto
+	db MUSIC_BEAUTY_ENCOUNTER      ; BeautyProto
+	db MUSIC_POKEMANIAC_ENCOUNTER  ; JugglerProto
+	db MUSIC_POKEMANIAC_ENCOUNTER  ; PokemaniacPr
+	db MUSIC_LASS_ENCOUNTER        ; LassProto
+	db MUSIC_ROCKET_ENCOUNTER      ; GruntProto
