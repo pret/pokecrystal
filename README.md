@@ -9,12 +9,20 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 ## Feature List
 
 - [x] Rematch all overworld NPC's at will
-- [ ] Update graphics with original  JPN sprite
+- [x] Update trainer and pokemon sprites with original  JPN versions
   - [x] Trainer beauty
   - [x] Trainer fisher
   - [x] Trainer medium
   - [x] Trainer swimmer_f
-  - [ ] Trainer sage
+  - [x] Trainer sage
+- [x] Additional sprites from pokemon prototype
+  - [x] Beauty
+  - [x] Juggler
+  - [x] Lass
+  - [x] PokeManiac
+  - [x] Rocket Grunt
+  - [x] Twins
+- [x] Each pokemon has their own custom menu sprite
 - [x] Replace Goldenrod PkMn Center with the PokeCommunication center
 
 ### QOL Changes
@@ -34,6 +42,7 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 - [x] Get through Ilex forest without cut
 - [x] Fish in Cerulean Gym again like in Gen. 1
 - [ ] Gain experience from catching pokemon
+- [x] Pokeballs in Elm's Lab are color coordinated
 
 ### Map Changes
 

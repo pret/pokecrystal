@@ -30,9 +30,7 @@
   - [ ] Biker
   - [ ] Engineer
   - [ ] Supernerd
-  - [x] Swimmer_f
   - [ ] Teacher f/m
-  - [ ] Beauty
   - [ ] Professional m/f
 - [ ] add depth to battles (enemy move combos, interesting teams)
   - [ ] give enemies more variety in their teams #27
