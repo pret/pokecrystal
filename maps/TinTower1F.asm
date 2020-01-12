@@ -366,7 +366,7 @@ TinTower1FSage1Text:
 	done
 
 TinTower1FSage2Text:
-	text "When the BRASS"
+	text "When the GONG"
 	line "TOWER burned down,"
 
 	para "three nameless"
@@ -418,7 +418,7 @@ TinTower1FSage4Text1:
 	text "HO-OH appears to"
 	line "have descended"
 
-	para "upon this, the TIN"
+	para "upon this, the BELL"
 	line "TOWER!"
 	done
 

@@ -1,34 +1,47 @@
 # Pokémon Crystal ![](https://github.com/b13rg/pokecrystal/workflows/CI/badge.svg)
 
-This is a disassembly of Pokémon Crystal.
+This is a modified disassembly of Pokémon Crystal.
 
-It builds the following ROMs:
-
-- Pokemon - Crystal Version (UE) (V1.0) [C][!].gbc
-- Pokemon - Crystal Version (UE) (V1.1) [C][!].gbc
-- Pokemon - Crystal Version (A) [C][!].gbc
+It builds a modified Pokemon Crystal ROM
 
 To set up the repository, see [INSTALL.md](INSTALL.md).
 
 ## Feature List
 
 - [x] Rematch all overworld NPC's at will
-- [x] Updated language
-  - [x] Berry Names  
-  - [x] Enemy → Foe, 
-  - [x] Cooltrainer → Ace Trainer, 
-  - [x] Fisher → Fisherman,
-  - [x] Elixer → Elixir, 
-  - [x] Pink Bow → PNK Silk Bow
-  - [x] Adding back unused text in the code
-- [ ] Update trainer graphics with JPN sprite
+- [ ] Update graphics with original  JPN sprite
   - [x] Trainer beauty
   - [x] Trainer fisher
   - [x] Trainer medium
   - [x] Trainer swimmer_f
   - [ ] Trainer sage
+- [x] Replace Goldenrod PkMn Center with the PokeCommunication center
+
+### QOL Changes
+
+- [x] Easily set clock from intro and main menu
+- [x] Turn towards door after healing pokemon in pokemon center
+- [x] Remove artificial save delay
+- [x] Default to fast text speed
+- [x] Pokemon have 1/512 to be shiny (Attack in [2,3,6,7,10,11,14,15], Defense in [4,5,6,7,12,13,14,15], Special = 10 and Speed in [11,15])
+- [x] Pokeball symbol shows if wild pokemon is caught during battle
+- [x] Shiny symbol shows if pokemon is shiny during battle
+- [x] Ability to decline phone calls
+- [x] Use TMs Unlimited times
+- [x] Fishing succeeds 75% of the time instead of 50%
+- [x] Made Celibi event available
+- [x] Hold 'B' While walking to run
+- [x] Get through Ilex forest without cut
+- [x] Fish in Cerulean Gym again like in Gen. 1
+- [ ] Gain experience from catching pokemon
+
+### Map Changes
+
+- [x] Surf from Route 34 to Ilex Forest
 
 ### Pokemon
+
+#### Evolution
 
 - [x] All baby pokemon (Pichu, Cleffa, Igglybuff, Togepi) now also evolve when they become teenagers, level 13
 - [x] Traded pokemon also evolve at a level
@@ -37,7 +50,7 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
   - [x] Graveler Lvl. 35
   - [x] Haunter Lvl. 42
   - [x] Machoke Lvl. 38
-- [x] Pokemon needed to be traded with an item can also use the item directly
+- [x] Pokemon needed to be traded with an item can also use the item directly to evolve
   - [x] Poliwhirl -> Politoed Kings Rock
   - [x] Slowpoke -> Slowking Kings Rock
   - [x] Onix -> Steelix Metal Coat
@@ -50,7 +63,10 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
   - [x] Eevee -> Espeon Sun Stone
   - [x] Eevee -> Umbreon Moon Stone
 - [x] All evolution items are sold on Celadon Market 4f
-- [x] All non-legendary pokemon available
+
+#### Locations
+
+- [ ] All 251 pokemon available
   - [x] Johoto starters Route 29
   - [x] Kanto starters Route 1
   - [x] Mareep Routes 32, 42, 43 
@@ -63,15 +79,32 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
   - [x] Omanyte Route 20
   - [x] Kabuto Route 21
   - [x] Tyrogue Route 34
-- [x] Pokemon have 1/512 to be shiny (Attack in [2,3,6,7,10,11,14,15], Defense in [4,5,6,7,12,13,14,15], Special = 10 and Speed in [11,15])
+
+#### Stats
+
+- [x] Starters learn same-type moves  earlier
 
 ### Bug Fixes
 
 - [x] HP bar lowers same speed even for high hp
 - [x] Rocket execs use Team Rocket battle music, not just grunts
-- [x] Default to fast text speed
 - [x] Show tops of gym leaders heads on trainer card
-- [x] Remove artificial save delay
+- [x] Updated Text
+- [x] Pidgey in Violet town is only called "Strawberry" after you talk to the girl
+
+### Name Changes
+
+- [x] Rename RAGE CANDY BAR to CAKE OF RAGE
+- [x] Berry Names  
+- [x] Enemy → Foe, 
+- [x] Cooltrainer → Ace Trainer, 
+- [x] Fisher → Fisherman,
+- [x] Elixer → Elixir, 
+- [x] Pink Bow → PNK Silk Bow
+- [x] Swap names of Marsh and Soul gym badges
+- [x] Adding back unused text in the code
+- [x] TIN -> Bell Tower
+- [x] Brass -> Gong Tower
 
 ## See also
 

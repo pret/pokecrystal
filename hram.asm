@@ -159,4 +159,4 @@ hSGB::          db ; ffe7
 hDMATransfer:: db ; ffe8
 hMobile:: db ; ffe9
 hSystemBooted:: db ; ffea
-hClockResetTrigger:: db ; ffeb
+hUnused:: db ; ffeb

@@ -821,8 +821,8 @@ GoldenrodPokecenter1F_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event  6,  15, GOLDENROD_CITY, 15
 	warp_event  7,  15, GOLDENROD_CITY, 15
+	warp_event  6,  15, GOLDENROD_CITY, 15
 	warp_event  0,  6, POKECOM_CENTER_ADMIN_OFFICE_MOBILE, 1
 	warp_event  0,  15, POKECENTER_2F, 1
 
