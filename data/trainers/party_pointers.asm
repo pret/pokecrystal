@@ -70,3 +70,9 @@ TrainerGroups:
 	dw GruntFGroup
 	dw MysticalmanGroup
 	dw PSwimmerFGroup
+	dw TwinsProtoGroup
+	dw BeautyProtoGroup
+	dw JugglerProtoGroup
+	dw PokemaniacProtoGroup
+	dw LassProtoGroup
+	dw GruntProtoGroup

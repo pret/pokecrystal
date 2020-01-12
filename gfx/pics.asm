@@ -715,6 +715,12 @@ PSwimmerfPic:			INCBIN "gfx/trainers/pswimmer_f.2bpp.lz"
 OmastarBackpic:      INCBIN "gfx/pokemon/omastar/back.2bpp.lz"
 SwinubBackpic:       INCBIN "gfx/pokemon/swinub/back.2bpp.lz"
 UnownDBackpic:       INCBIN "gfx/pokemon/unown_d/back.2bpp.lz"
+JugglerProtoPic:     INCBIN "gfx/trainers/juggler_proto.2bpp.lz"
+BeautyProtoPic:      INCBIN "gfx/trainers/beauty_proto.2bpp.lz"
+GruntProtoPic:       INCBIN "gfx/trainers/rocket_proto.2bpp.lz"
+TwinsProtoPic:       INCBIN "gfx/trainers/twins_proto.2bpp.lz"
+PokemaniacProto:     INCBIN "gfx/trainers/pokemaniac_proto.2bpp.lz"
+LassProtoPic:        INCBIN "gfx/trainers/lass_proto.2bpp.lz"
 
 ; Sections "Pics 20" to "Pics 24" are not used for any graphics,
 ; but entries for their banks exist in FixPicBank (see engine/gfx/load_pics.asm).

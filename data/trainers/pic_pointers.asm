@@ -70,3 +70,9 @@ TrainerPicPointers::
 	dba GruntfPic
 	dba MysticalmanPic
 	dba PSwimmerfPic	; Proto- swimmerF
+	dba TwinsProtoPic
+	dba BeautyProtoPic
+	dba JugglerProtoPic
+	dba PokemaniacProto
+	dba LassProtoPic
+	dba GruntProtoPic
