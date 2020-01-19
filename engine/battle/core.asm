@@ -6998,7 +6998,7 @@ GiveExperiencePoints:
 	ld a, [wCurPartyMon]
 	ld c, a
 	ld b, CHECK_FLAG
-	ld d, FALSE
+	ld d, 0
 	predef SmallFarFlagAction
 	ld a, c
 	and a
