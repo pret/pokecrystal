@@ -1884,6 +1884,8 @@ This bug can affect Mew or Pokémon other than Ditto that used Transform via Mir
 
 ## Having the Dude catch a Pokémon while your boxes and party are full shows the box is full message
 
+([Video](https://www.youtube.com/watch?v=A8zaTOkjKS4))
+
 **Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm]((https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
 
 ```diff
