@@ -1886,7 +1886,7 @@ This bug can affect Mew or Pokémon other than Ditto that used Transform via Mir
 
 ([Video](https://youtu.be/A8zaTOkjKS4?t=407))
 
-**Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm]((https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
+**Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
 
 ```diff
      ld a, [wBattleMode]
