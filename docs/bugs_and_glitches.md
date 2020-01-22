@@ -68,6 +68,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 - [Swimming NPCs aren't limited by their movement radius](#swimming-npcs-arent-limited-by-their-movement-radius)
 - [`CheckOwnMon` only checks the first five letters of OT names](#checkownmon-only-checks-the-first-five-letters-of-ot-names)
 - [Catching a Transformed Pokémon always catches a Ditto](#catching-a-transformed-pokémon-always-catches-a-ditto)
+- [Having the Dude catch a Pokémon while your boxes and party are full causes problems](#having-the-dude-catch-a-pokémon-while-your-boxes-and-party-are-full-causes-problems)
 - [Using a Park Ball in normal battles has a corrupt animation](#using-a-park-ball-in-normal-battles-has-a-corrupt-animation)
 - [`HELD_CATCH_CHANCE` has no effect](#held_catch_chance-has-no-effect)
 - [Only the first three evolution entries can have Stone compatibility reported correctly](#only-the-first-three-evolution-entries-can-have-stone-compatibility-reported-correctly)
@@ -1878,6 +1879,32 @@ This bug can affect Mew or Pokémon other than Ditto that used Transform via Mir
 
  	pop af
  	ld [wEnemySubStatus5], a
+```
+
+
+## Having the Dude catch a Pokémon while your boxes and party are full causes problems
+
+**Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm]((https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
+
+```diff
+     ld a, [wBattleMode]
+     dec a
+     jp nz, UseBallInTrainerBattle
+ 
++    ld a, [wBattleType]
++    cp BATTLETYPE_TUTORIAL
++    jr z, .room_in_party
++
+     ld a, [wPartyCount]
+     cp PARTY_LENGTH
+     jr nz, .room_in_party
+ 
+     ld a, BANK(sBoxCount)
+     call GetSRAMBank
+     ld a, [sBoxCount]
+     cp MONS_PER_BOX
+     call CloseSRAM
+     jp z, Ball_BoxIsFullMessage
 ```
 
 
