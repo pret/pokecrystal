@@ -1883,7 +1883,7 @@ This bug can affect Mew or Pokémon other than Ditto that used Transform via Mir
 
 
 ## If your party and current PC box are full during the Dude's catching tutorial, his Poké Ball can't be used and may crash the game
-([Video](https://youtu.be/A8zaTOkjKS4?t=407))
+([Video](https://www.youtube.com/watch?v=A8zaTOkjKS4&t=407))
 
 **Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
 
