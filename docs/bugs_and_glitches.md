@@ -68,7 +68,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 - [Swimming NPCs aren't limited by their movement radius](#swimming-npcs-arent-limited-by-their-movement-radius)
 - [`CheckOwnMon` only checks the first five letters of OT names](#checkownmon-only-checks-the-first-five-letters-of-ot-names)
 - [Catching a Transformed Pokémon always catches a Ditto](#catching-a-transformed-pokémon-always-catches-a-ditto)
-- [If your party and current PC box are full during the Dude's catching tutorial, his Poké Ball can't be used and may crash the game](#if-your-party-and-current-pc-box-are-full-during-the-dudes-catching-tutorial-his-poké-ball-can't-be-used-and-may-crash-the-game)
+- [If your party and current PC box are full during the Dude's catching tutorial, his Poké Ball can't be used and may crash the game](#if-your-party-and-current-pc-box-are-full-during-the-dudes-catching-tutorial-his-poké-ball-cant-be-used-and-may-crash-the-game)
 - [Using a Park Ball in normal battles has a corrupt animation](#using-a-park-ball-in-normal-battles-has-a-corrupt-animation)
 - [`HELD_CATCH_CHANCE` has no effect](#held_catch_chance-has-no-effect)
 - [Only the first three evolution entries can have Stone compatibility reported correctly](#only-the-first-three-evolution-entries-can-have-stone-compatibility-reported-correctly)
