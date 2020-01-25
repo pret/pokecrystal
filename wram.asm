@@ -3100,7 +3100,11 @@ wMagnetTrainHoldPosition:: db
 wMagnetTrainFinalPosition:: db
 wMagnetTrainPlayerSpriteInitX:: db
 
-	ds 106
+wColorVaryDVs:: ds 3
+wColorVarySpecies:: ds 1
+wColorVaryShiny:: ds 1
+
+	ds 101
 
 wLYOverridesBackup:: ds SCREEN_HEIGHT_PX ; d200
 wLYOverridesBackupEnd::

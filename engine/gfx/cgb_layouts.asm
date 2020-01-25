@@ -80,8 +80,17 @@ _CGB_BattleGrayscale:
 _CGB_BattleColors:
 	ld de, wBGPals1
 	call GetBattlemonBackpicPalettePointer
-	push hl
 	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_PLAYER
+	
+	push de
+	farcall GetPartyMonDVs
+	ld a, [wTempBattleMonSpecies]
+	ld b, a
+	call CopyDVsToColorVaryDVs
+	ld hl, wBGPals1 palette PAL_BATTLE_BG_PLAYER + 2
+	call VaryColorsByDVs
+	pop de
+
 	call GetEnemyFrontpicPalettePointer
 	push hl
 	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_ENEMY
@@ -93,6 +102,19 @@ _CGB_BattleColors:
 	ld bc, HPBarPals
 	add hl, bc
 	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_ENEMY_HP
+	
+	push de
+	; hl = DVs
+	farcall GetEnemyMonDVs
+	; b = species
+	ld a, [wTempEnemyMonSpecies]
+	ld b, a
+	; vary colors by DVs
+	call CopyDVsToColorVaryDVs
+	ld hl, wBGPals1 palette PAL_BATTLE_BG_ENEMY + 2
+	call VaryColorsByDVs
+	pop de
+	
 	ld a, [wPlayerHPPal]
 	ld l, a
 	ld h, $0
