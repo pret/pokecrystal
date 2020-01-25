@@ -585,6 +585,21 @@ _CGB_Evolution:
 	ld a, [wPlayerHPPal]
 	call GetPlayerOrMonPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
+	
+	; hl = DVs
+	ld hl, wPartyMon1DVs
+	ld bc, PARTYMON_STRUCT_LENGTH
+	ld a, [wCurPartyMon]
+	rst AddNTimes
+	; b = species
+	ld a, [wCurPartySpecies]
+	ld b, a
+	; vary colors by DVs
+	call CopyDVsToColorVaryDVs
+	ld hl, wBGPals1 palette 0 + 2
+	call VaryColorsByDVs
+	
+	
 	ld hl, BattleObjectPals
 	ld de, wOBPals1 palette PAL_BATTLE_OB_GRAY
 	ld bc, 6 palettes

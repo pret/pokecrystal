@@ -13,7 +13,7 @@ SECTION "rst10", ROM0 ; rst Bankswitch
 	ret
 
 SECTION "rst18", ROM0
-	rst $38
+	jp _AddNTimes
 
 SECTION "rst20", ROM0
 	rst $38
