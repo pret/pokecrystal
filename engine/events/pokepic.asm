@@ -1,11 +1,16 @@
 Pokepic::
+	; 1
 	ld hl, PokepicMenuHeader
 	call CopyMenuHeader
 	call MenuBox
 	call UpdateSprites
+
+	; ???
 	call ApplyTilemap
 	ld b, SCGB_POKEPIC
 	call GetSGBLayout
+
+	; we got the palette
 	xor a
 	ldh [hBGMapMode], a
 	ld a, [wCurPartySpecies]
@@ -13,6 +18,8 @@ Pokepic::
 	call GetBaseData
 	ld de, vTiles1
 	predef GetMonFrontpic
+
+	; make the picture display
 	ld a, [wMenuBorderTopCoord]
 	inc a
 	ld b, a
