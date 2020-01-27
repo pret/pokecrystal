@@ -5,7 +5,7 @@ SHINY_DEF_VAL EQU 10
 SHINY_SPD_VAL EQU 10
 SHINY_SPC_VAL EQU 10
 
-CheckShininess:
+Unused_CheckShininess:
 ; Check if a mon is shiny by DVs at bc.
 ; Return carry if shiny.
 
@@ -43,7 +43,7 @@ CheckShininess:
 	and a
 	ret
 
-Unused_CheckShininess:
+CheckShininess:
 ; Return carry if the DVs at hl are all 10 or higher.
 
 ; Attack
