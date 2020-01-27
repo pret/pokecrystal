@@ -225,10 +225,15 @@ _CGB_StatsScreenHPPals:
 	ld bc, HPBarPals
 	add hl, bc
 	call LoadPalette_White_Col1_Col2_Black ; hp palette
+
 	ld a, [wCurPartySpecies]
 	ld bc, wTempMonDVs
 	call GetPlayerOrMonPalettePointer
 	call LoadPalette_White_Col1_Col2_Black ; mon palette
+	push de
+	call VaryBGPal1ByTempMonDVs
+	pop de
+
 	ld hl, ExpBarPalette
 	call LoadPalette_White_Col1_Col2_Black ; exp palette
 	ld hl, StatsScreenPagePals
@@ -330,6 +335,7 @@ _CGB_BillsPC:
 	ld bc, wTempMonDVs
 	call GetPlayerOrMonPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
+	call VaryBGPal1ByTempMonDVs
 .Resume:
 	call WipeAttrMap
 	hlcoord 1, 4, wAttrMap
@@ -943,6 +949,7 @@ _CGB_PlayerOrMonFrontpicPals:
 	ld bc, wTempMonDVs
 	call GetPlayerOrMonPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
+	call VaryBGPal0ByTempMonDVs
 	call WipeAttrMap
 	call ApplyAttrMap
 	call ApplyPals
@@ -978,6 +985,7 @@ _CGB_TrainerOrMonFrontpicPals:
 	ld bc, wTempMonDVs
 	call GetFrontpicPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
+	call VaryBGPal0ByTempMonDVs
 	call WipeAttrMap
 	call ApplyAttrMap
 	call ApplyPals
