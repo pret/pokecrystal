@@ -94,7 +94,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 
 +HasAnyoneFainted:
 +	call HasPlayerFainted
-+	call nz, HasEnemyFainted
++	jp nz, HasEnemyFainted
 +	ret
 +
  CheckFaint_PlayerThenEnemy:
