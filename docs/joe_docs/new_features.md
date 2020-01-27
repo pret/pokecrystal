@@ -7,5 +7,6 @@
 - [Add Some New Pokemon](./new_pokemon.md)
 - Starter Pokeballs are color-coded
 - Shininess is determined by all DVs being 10 or over
+- Running Shoes
 
 ---
