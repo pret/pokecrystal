@@ -958,6 +958,20 @@ VaryColorsByDVs::
 	ld [rSVBK], a
 	ret
 
+VaryBGPal0ByTempMonDVs:
+	ld hl, wBGPals1 palette 0 + 2
+	jr VaryBGPalByTempMonDVs
+VaryBGPal1ByTempMonDVs:
+	ld hl, wBGPals1 palette 1 + 2
+VaryBGPalByTempMonDVs:
+	push hl
+	ld hl, wTempMonDVs
+	ld a, [wTempMonSpecies]
+	ld b, a
+	call CopyDVsToColorVaryDVs
+	pop hl
+	jp VaryColorsByDVs
+
 GetPlayerOrMonPalettePointer:
 	and a
 	jp nz, GetMonNormalOrShinyPalettePointer
