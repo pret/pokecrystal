@@ -156,7 +156,7 @@ MonMenuIcons:
 	db ICON_ODDISH      ; BAYLEEF
 	db ICON_ODDISH      ; MEGANIUM
 	db ICON_FOX         ; CYNDAQUIL
-	db ICON_FOX         ; QUILAVA
+	db ICON_QUILAVA         ; QUILAVA
 	db ICON_FOX         ; TYPHLOSION
 	db ICON_MONSTER     ; TOTODILE
 	db ICON_MONSTER     ; CROCONAW
