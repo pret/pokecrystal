@@ -14,5 +14,18 @@
 - [Add Some New Pokemon](./new_pokemon.md)
 - Starter Pokeballs are color-coded
 - Add Menu Icons For Each Pokemon
+  - Add Menu Icon Palettes For Each Pokemon Menu Icon
 - Add Forms
   - Flying Pikachu
+- Fourth Stats Screen
+- Nurse Joy turns you around after talking to her
+- Remove Name Rater restriction
+- Survive poison at 1 HP in the overworld
+    - Remove poison overworld effect?
+- Bill calls and switches box for you
+- Pressing B in a wild battle moves the cursor to RUN
+- Rejecting an egg from the Daycare Man no longer stops egg production
+- Instant text speed
+- Fix apricorn ball effects
+- Replace trade evolutions with different methods
+- Low HP beeping
