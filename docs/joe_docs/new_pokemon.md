@@ -83,12 +83,13 @@
 
 ---
 
-### Wimpod / Golisopod
+### Magnezone
 > #
 > 
 > | Normal   |      Shiny    |
 > |:--------:|:-------------:|
-> |  TODO:   |     TODO:     |
+> | [![magnemite](https://img.pokemondb.net/sprites/crystal/normal/magnemite.png)](http://pokemondb.net/pokedex/magnemite) |  [![magnemite](https://img.pokemondb.net/sprites/crystal/shiny/magnemite.png)](http://pokemondb.net/pokedex/magnemite)
+> | [![magneton](https://img.pokemondb.net/sprites/crystal/normal/magneton.png)](http://pokemondb.net/pokedex/magneton) |  [![magneton](https://img.pokemondb.net/sprites/crystal/shiny/magneton.png)](http://pokemondb.net/pokedex/magneton)
 > |  TODO:   |     TODO:     |
 > #
 
