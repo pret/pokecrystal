@@ -38,6 +38,7 @@ PrintLetterDelay::
 ; text speed
 	ld a, [wOptions]
 	and %111
+	jr z, .end
 	jr .updatedelay
 
 .fast
