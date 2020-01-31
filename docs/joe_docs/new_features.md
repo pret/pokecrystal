@@ -5,7 +5,8 @@
 ## Done
 - Vary Each Pokemon's Palette Based On Its DVs
 - Shininess is determined by all DVs being 10 or over
-- Running Shoes
+- Hold B to Run
+- Badges are not required to use HMs 
 
 ---
 
@@ -18,6 +19,9 @@
 - Add Forms
   - Flying Pikachu
 - Fourth Stats Screen
+  - DVs
+  - Hidden Power Type
+  - Happiness
 - Nurse Joy turns you around after talking to her
 - Remove Name Rater restriction
 - Survive poison at 1 HP in the overworld
