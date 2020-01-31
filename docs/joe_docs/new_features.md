@@ -3,10 +3,17 @@
 ---
 
 ## Done
+
+### Cosmetic
 - Vary Each Pokemon's Palette Based On Its DVs
 - Shininess is determined by all DVs being 10 or over
+
+### Quality of Life Improvements
 - Hold B to Run
-- Badges are not required to use HMs 
+- Remove Name Rater restriction
+
+### Open World Features
+- Badges are not required to use HMs
 
 ---
 
@@ -23,7 +30,6 @@
   - Hidden Power Type
   - Happiness
 - Nurse Joy turns you around after talking to her (prevents accidentally taling to her again)
-- Remove Name Rater restriction
 - Survive poison at 1 HP in the overworld
     - Remove poison overworld effect?
 - Bill calls and switches box for you
