@@ -22,7 +22,7 @@
   - DVs
   - Hidden Power Type
   - Happiness
-- Nurse Joy turns you around after talking to her
+- Nurse Joy turns you around after talking to her (prevents accidentally taling to her again)
 - Remove Name Rater restriction
 - Survive poison at 1 HP in the overworld
     - Remove poison overworld effect?
