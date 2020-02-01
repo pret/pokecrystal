@@ -31,7 +31,6 @@ GetBaseData::
 	jr .end
 
 .egg
-; ????
 	ld de, UnknownEggPic
 
 ; Sprite dimensions
@@ -39,8 +38,9 @@ GetBaseData::
 	ld hl, wBasePicSize
 	ld [hl], b
 
-; ????
-	ld hl, wBasePadding
+; Beta front and back sprites
+; (see pokegold-spaceworld's data/pokemon/base_stats/*)
+	ld hl, wBaseUnusedFrontpic
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -48,7 +48,7 @@ GetBaseData::
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	jr .end
+	jr .end ; useless
 
 .end
 ; Replace Pokedex # with species
