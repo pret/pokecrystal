@@ -775,7 +775,149 @@ StatsScreen_LoadGFX:
 	dw wBufferMonOT
 
 .OrangePage:
+.print_labels
+	; place HP label
+	ld de, HPString
+	hlcoord 1, 8
+	call PlaceString
+
+	; place Atk label
+	ld de, AttackString
+	hlcoord 1, 9
+	call PlaceString
+
+	; place Def label
+	ld de, DefenseString
+	hlcoord 1, 10
+	call PlaceString
+
+	; place Spe label
+	ld de, SpeedString
+	hlcoord 1, 11
+	call PlaceString
+
+	; place SpAtk label
+	ld de, SpecialAttackString
+	hlcoord 1, 12
+	call PlaceString
+
+	; place SpDef label
+	ld de, SpecialDefenseString
+	hlcoord 1, 13
+	call PlaceString
+
+.store_DVs_in_wTempMonsDVs
+	; TODO: THE CODE BELOW IS NOT WORKING CORRECTLY
+	; load DVs into hl
+	ld hl, wPartyMon1DVs
+	ld bc, PARTYMON_STRUCT_LENGTH
+	ld a, [wCurPartyMon]
+	call AddNTimes
+
+	; Store DVs in wram
+	; e = HPAtkDV
+	ld a, [hli]
+	ld e, a
+	; d = DefSpdDV
+	ld a, [hli]
+	ld d, a
+	; c = SatSdfDV
+	ld a, [hli]
+	ld c, a
+	ld hl, wTempMonDVs
+; wColorVaryDVs = HPAtkDV
+	ld a, e
+	ld [hli], a
+; wColorVaryDVs+1 = DefSpdDV
+	ld a, d
+	ld [hli], a
+; wColorVaryDVs+2 = SatSdfDV
+	ld a, c
+	ld [hl], a
+
+.display_DVs
+	; Store HPDV in 
+	ld a, [wTempMonDVs]
+	swap a
+	and %1111
+
+	ld [wBuffer2], a
+	ld de, wBuffer2
+	lb bc, PRINTNUM_LEFTALIGN | 1, 2
+	hlcoord 7, 8
+	call PrintNum
+
+	; Display Atk DV
+	ld a, [wTempMonDVs]
+	and %1111
+
+	ld [wBuffer2], a
+	ld de, wBuffer2
+	lb bc, PRINTNUM_LEFTALIGN | 1, 2
+	hlcoord 7, 9
+	call PrintNum
+
+	; Display Spe DV
+	ld a, [wTempMonDVs + 1]
+	swap a
+	and %1111
+
+	ld [wBuffer2], a
+	ld de, wBuffer2
+	lb bc, PRINTNUM_LEFTALIGN | 1, 2
+	hlcoord 7, 10
+	call PrintNum
+
+	; Display Def DV
+	ld a, [wTempMonDVs + 1]
+	and %1111
+
+	ld [wBuffer2], a
+	ld de, wBuffer2
+	lb bc, PRINTNUM_LEFTALIGN | 1, 2
+	hlcoord 7, 11
+	call PrintNum
+
+	; Display SpDef DV
+	ld a, [wTempMonDVs + 2]
+	swap a
+	and %1111
+
+	ld [wBuffer2], a
+	ld de, wBuffer2
+	lb bc, PRINTNUM_LEFTALIGN | 1, 2
+	hlcoord 7, 12
+	call PrintNum
+
+	; Display SpAtk DV
+	ld a, [wTempMonDVs + 2]
+	and %1111
+
+	ld [wBuffer2], a
+	ld de, wBuffer2
+	lb bc, PRINTNUM_LEFTALIGN | 1, 2
+	hlcoord 7, 13
+	call PrintNum
+
 	ret
+
+HPString:
+	db "HP  :@"
+
+AttackString:
+	db "Atk :@"
+
+DefenseString:
+	db "Def :@"
+
+SpecialAttackString:
+	db "SAtk:@"
+
+SpecialDefenseString:
+	db "SDef:@"
+
+SpeedString:
+	db "Spe :@"
 
 IDNoString:
 	db "<ID>№.@"
