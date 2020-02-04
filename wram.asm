@@ -2248,7 +2248,8 @@ wBaseUnknown1:: db ; d244
 wBaseEggSteps:: db ; d245
 wBaseUnknown2:: db ; d246
 wBasePicSize:: db ; d247
-wBasePadding:: ds 4 ; d248
+wBaseUnusedFrontpic:: dw ; d248
+wBaseUnusedBackpic:: dw ; d24a
 wBaseGrowthRate:: db ; d24c
 wBaseEggGroups:: db ; d24d
 wBaseTMHM:: flag_array NUM_TM_HM_TUTOR ; d24e

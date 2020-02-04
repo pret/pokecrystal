@@ -1509,20 +1509,20 @@ CmdQueue_Type4:
 
 .zero
 	ldh a, [hSCY]
-	ld hl, 4
+	ld hl, CMDQUEUE_04
 	add hl, bc
 	ld [hl], a
 	call CmdQueueAnonJT_Increment
 .one
-	ld hl, 1
+	ld hl, CMDQUEUE_ADDR
 	add hl, bc
 	ld a, [hl]
 	dec a
 	ld [hl], a
 	jr z, .finish
-	and $1
+	and 1
 	jr z, .add
-	ld hl, 2
+	ld hl, CMDQUEUE_02
 	add hl, bc
 	ldh a, [hSCY]
 	sub [hl]
@@ -1530,7 +1530,7 @@ CmdQueue_Type4:
 	ret
 
 .add
-	ld hl, 2
+	ld hl, CMDQUEUE_02
 	add hl, bc
 	ldh a, [hSCY]
 	add [hl]
@@ -1538,7 +1538,7 @@ CmdQueue_Type4:
 	ret
 
 .finish
-	ld hl, 4
+	ld hl, CMDQUEUE_04
 	add hl, bc
 	ld a, [hl]
 	ldh [hSCY], a
@@ -1561,7 +1561,7 @@ CmdQueue_Type3:
 	jr z, .PlayerNotFacingDown
 	call CmdQueueAnonJT_Increment
 
-	ld hl, 2
+	ld hl, CMDQUEUE_02
 	add hl, bc
 	ld a, [hl]
 	ld [wd173], a
@@ -1572,7 +1572,7 @@ CmdQueue_Type3:
 	jr z, .PlayerNotFacingDown
 	call CmdQueueAnonJT_Decrement
 
-	ld hl, 3
+	ld hl, CMDQUEUE_03
 	add hl, bc
 	ld a, [hl]
 	ld [wd173], a
@@ -1581,7 +1581,7 @@ CmdQueue_Type3:
 .PlayerNotFacingDown:
 	ld a, $7f
 	ld [wd173], a
-	ld hl, 5
+	ld hl, CMDQUEUE_05
 	add hl, bc
 	ld [hl], 0
 	ret
