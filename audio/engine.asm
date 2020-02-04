@@ -116,19 +116,19 @@ _UpdateSound::
 	; turn vibrato off for now
 	ld hl, CHANNEL_FLAGS2
 	add hl, bc
-	res SOUND_PITCH_WHEEL, [hl]
+	res SOUND_PITCH_SLIDE, [hl]
 	; get next note
 	call ParseMusic
 .continue_sound_update
-	call ApplyPitchWheel
+	call ApplyPitchSlide
 	; duty cycle
 	ld hl, CHANNEL_DUTY_CYCLE
 	add hl, bc
 	ld a, [hli]
 	ld [wCurTrackDuty], a
-	; intensity
+	; volume envelope
 	ld a, [hli]
-	ld [wCurTrackIntensity], a
+	ld [wCurTrackVolumeEnvelope], a
 	; frequency
 	ld a, [hli]
 	ld [wCurTrackFrequency], a
@@ -240,12 +240,12 @@ UpdateChannels:
 .Channel5:
 	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
-	bit NOTE_UNKN_3, [hl]
-	jr z, .asm_e8159
+	bit NOTE_PITCH_SWEEP, [hl]
+	jr z, .noPitchSweep
 	;
-	ld a, [wSoundInput]
+	ld a, [wPitchSweep]
 	ldh [rNR10], a
-.asm_e8159
+.noPitchSweep
 	bit NOTE_REST, [hl] ; rest
 	jr nz, .ch1rest
 	bit NOTE_NOISE_SAMPLING, [hl]
@@ -296,7 +296,7 @@ UpdateChannels:
 	ld a, $3f ; sound length
 	or [hl]
 	ldh [rNR11], a
-	ld a, [wCurTrackIntensity]
+	ld a, [wCurTrackVolumeEnvelope]
 	ldh [rNR12], a
 	ld a, [wCurTrackFrequency]
 	ldh [rNR13], a
@@ -356,7 +356,7 @@ UpdateChannels:
 	ld a, $3f ; sound length
 	or [hl]
 	ldh [rNR21], a
-	ld a, [wCurTrackIntensity]
+	ld a, [wCurTrackVolumeEnvelope]
 	ldh [rNR22], a
 	ld a, [wCurTrackFrequency]
 	ldh [rNR23], a
@@ -414,7 +414,7 @@ UpdateChannels:
 
 .asm_e8268
 	push hl
-	ld a, [wCurTrackIntensity]
+	ld a, [wCurTrackVolumeEnvelope]
 	and $f ; only 0-9 are valid
 	ld l, a
 	ld h, 0
@@ -460,7 +460,7 @@ endr
 	ld a, [hli]
 	ldh [rWave_f], a
 	pop hl
-	ld a, [wCurTrackIntensity]
+	ld a, [wCurTrackVolumeEnvelope]
 	and $f0
 	sla a
 	ldh [rNR32], a
@@ -492,7 +492,7 @@ endr
 .asm_e82d4
 	ld a, $3f ; sound length
 	ldh [rNR41], a
-	ld a, [wCurTrackIntensity]
+	ld a, [wCurTrackVolumeEnvelope]
 	ldh [rNR42], a
 	ld a, [wCurTrackFrequency]
 	ldh [rNR43], a
@@ -706,10 +706,10 @@ FadeMusic:
 	ret
 
 LoadNote:
-	; wait for pitch wheel to finish
+	; wait for pitch slide to finish
 	ld hl, CHANNEL_FLAGS2
 	add hl, bc
-	bit SOUND_PITCH_WHEEL, [hl]
+	bit SOUND_PITCH_SLIDE, [hl]
 	ret z
 	; get note duration
 	ld hl, CHANNEL_NOTE_DURATION
@@ -727,8 +727,8 @@ LoadNote:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	; get direction of pitch wheel
-	ld hl, CHANNEL_PITCH_WHEEL_TARGET
+	; get direction of pitch slide
+	ld hl, CHANNEL_PITCH_SLIDE_TARGET
 	add hl, bc
 	ld a, e
 	sub [hl]
@@ -736,13 +736,13 @@ LoadNote:
 	ld a, d
 	sbc 0
 	ld d, a
-	ld hl, CHANNEL_PITCH_WHEEL_TARGET + 1
+	ld hl, CHANNEL_PITCH_SLIDE_TARGET + 1
 	add hl, bc
 	sub [hl]
 	jr nc, .greater_than
 	ld hl, CHANNEL_FLAGS3
 	add hl, bc
-	set SOUND_PITCH_WHEEL_DIR, [hl]
+	set SOUND_PITCH_SLIDE_DIR, [hl]
 	; get frequency
 	ld hl, CHANNEL_FREQUENCY
 	add hl, bc
@@ -750,7 +750,7 @@ LoadNote:
 	inc hl
 	ld d, [hl]
 	; ????
-	ld hl, CHANNEL_PITCH_WHEEL_TARGET
+	ld hl, CHANNEL_PITCH_SLIDE_TARGET
 	add hl, bc
 	ld a, [hl]
 	sub e
@@ -759,7 +759,7 @@ LoadNote:
 	sbc 0
 	ld d, a
 	; ????
-	ld hl, CHANNEL_PITCH_WHEEL_TARGET + 1
+	ld hl, CHANNEL_PITCH_SLIDE_TARGET + 1
 	add hl, bc
 	ld a, [hl]
 	sub d
@@ -769,15 +769,15 @@ LoadNote:
 .greater_than
 	ld hl, CHANNEL_FLAGS3
 	add hl, bc
-	res SOUND_PITCH_WHEEL_DIR, [hl]
+	res SOUND_PITCH_SLIDE_DIR, [hl]
 	; get frequency
 	ld hl, CHANNEL_FREQUENCY
 	add hl, bc
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	; get distance from pitch wheel target
-	ld hl, CHANNEL_PITCH_WHEEL_TARGET
+	; get distance from pitch slide target
+	ld hl, CHANNEL_PITCH_SLIDE_TARGET
 	add hl, bc
 	ld a, e
 	sub [hl]
@@ -785,7 +785,7 @@ LoadNote:
 	ld a, d
 	sbc 0
 	ld d, a
-	ld hl, CHANNEL_PITCH_WHEEL_TARGET + 1
+	ld hl, CHANNEL_PITCH_SLIDE_TARGET + 1
 	add hl, bc
 	sub [hl]
 	ld d, a
@@ -813,10 +813,10 @@ LoadNote:
 	add [hl]
 	ld d, b ; quotient
 	pop bc
-	ld hl, CHANNEL_PITCH_WHEEL_AMOUNT
+	ld hl, CHANNEL_PITCH_SLIDE_AMOUNT
 	add hl, bc
 	ld [hl], d ; quotient
-	ld hl, CHANNEL_PITCH_WHEEL_AMOUNT_FRACTION
+	ld hl, CHANNEL_PITCH_SLIDE_AMOUNT_FRACTION
 	add hl, bc
 	ld [hl], a ; remainder
 	ld hl, CHANNEL_FIELD25
@@ -829,9 +829,9 @@ HandleTrackVibrato:
 ; handle duty, cry pitch, and vibrato
 	ld hl, CHANNEL_FLAGS2
 	add hl, bc
-	bit SOUND_DUTY, [hl] ; duty
+	bit SOUND_DUTY_LOOP, [hl] ; duty cycle looping
 	jr z, .next
-	ld hl, CHANNEL_SFX_DUTY_LOOP
+	ld hl, CHANNEL_DUTY_CYCLE_PATTERN
 	add hl, bc
 	ld a, [hl]
 	rlca
@@ -845,9 +845,9 @@ HandleTrackVibrato:
 .next
 	ld hl, CHANNEL_FLAGS2
 	add hl, bc
-	bit SOUND_CRY_PITCH, [hl]
+	bit SOUND_PITCH_OFFSET, [hl]
 	jr z, .vibrato
-	ld hl, CHANNEL_CRY_PITCH
+	ld hl, CHANNEL_PITCH_OFFSET
 	add hl, bc
 	ld e, [hl]
 	inc hl
@@ -942,11 +942,11 @@ HandleTrackVibrato:
 .quit
 	ret
 
-ApplyPitchWheel:
-	; quit if pitch wheel inactive
+ApplyPitchSlide:
+	; quit if pitch slide inactive
 	ld hl, CHANNEL_FLAGS2
 	add hl, bc
-	bit SOUND_PITCH_WHEEL, [hl]
+	bit SOUND_PITCH_SLIDE, [hl]
 	ret z
 	; de = Frequency
 	ld hl, CHANNEL_FREQUENCY
@@ -954,22 +954,22 @@ ApplyPitchWheel:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	; check whether pitch wheel is going up or down
+	; check whether pitch slide is going up or down
 	ld hl, CHANNEL_FLAGS3
 	add hl, bc
-	bit SOUND_PITCH_WHEEL_DIR, [hl]
+	bit SOUND_PITCH_SLIDE_DIR, [hl]
 	jr z, .decreasing
-	; frequency += [Channel*PitchWheelAmount]
-	ld hl, CHANNEL_PITCH_WHEEL_AMOUNT
+	; frequency += [Channel*PitchSlideAmount]
+	ld hl, CHANNEL_PITCH_SLIDE_AMOUNT
 	add hl, bc
 	ld l, [hl]
 	ld h, 0
 	add hl, de
 	ld d, h
 	ld e, l
-	; [Channel*Field25] += [Channel*PitchWheelAmountFraction]
+	; [Channel*Field25] += [Channel*PitchSlideAmountFraction]
 	; if rollover: Frequency += 1
-	ld hl, CHANNEL_PITCH_WHEEL_AMOUNT_FRACTION
+	ld hl, CHANNEL_PITCH_SLIDE_AMOUNT_FRACTION
 	add hl, bc
 	ld a, [hl]
 	ld hl, CHANNEL_FIELD25
@@ -982,26 +982,26 @@ ApplyPitchWheel:
 	ld a, 0
 	adc d
 	ld d, a
-	; Compare the dw at [Channel*PitchWheelTarget] to de.
+	; Compare the dw at [Channel*PitchSlideTarget] to de.
 	; If frequency is greater, we're finished.
 	; Otherwise, load the frequency and set two flags.
-	ld hl, CHANNEL_PITCH_WHEEL_TARGET + 1
+	ld hl, CHANNEL_PITCH_SLIDE_TARGET + 1
 	add hl, bc
 	ld a, [hl]
 	cp d
-	jp c, .finished_pitch_wheel
-	jr nz, .continue_pitch_wheel
-	ld hl, CHANNEL_PITCH_WHEEL_TARGET
+	jp c, .finished_pitch_slide
+	jr nz, .continue_pitch_slide
+	ld hl, CHANNEL_PITCH_SLIDE_TARGET
 	add hl, bc
 	ld a, [hl]
 	cp e
-	jp c, .finished_pitch_wheel
-	jr .continue_pitch_wheel
+	jp c, .finished_pitch_slide
+	jr .continue_pitch_slide
 
 .decreasing
-	; frequency -= [Channel*PitchWheelAmount]
+	; frequency -= [Channel*PitchSlideAmount]
 	ld a, e
-	ld hl, CHANNEL_PITCH_WHEEL_AMOUNT
+	ld hl, CHANNEL_PITCH_SLIDE_AMOUNT
 	add hl, bc
 	ld e, [hl]
 	sub e
@@ -1011,7 +1011,7 @@ ApplyPitchWheel:
 	ld d, a
 	; [Channel*Field25] *= 2
 	; if rollover: Frequency -= 1
-	ld hl, CHANNEL_PITCH_WHEEL_AMOUNT_FRACTION
+	ld hl, CHANNEL_PITCH_SLIDE_AMOUNT_FRACTION
 	add hl, bc
 	ld a, [hl]
 	add a
@@ -1022,30 +1022,30 @@ ApplyPitchWheel:
 	ld a, d
 	sbc 0
 	ld d, a
-	; Compare the dw at [Channel*PitchWheelTarget] to de.
+	; Compare the dw at [Channel*PitchSlideTarget] to de.
 	; If frequency is lower, we're finished.
 	; Otherwise, load the frequency and set two flags.
-	ld hl, CHANNEL_PITCH_WHEEL_TARGET + 1
+	ld hl, CHANNEL_PITCH_SLIDE_TARGET + 1
 	add hl, bc
 	ld a, d
 	cp [hl]
-	jr c, .finished_pitch_wheel
-	jr nz, .continue_pitch_wheel
-	ld hl, CHANNEL_PITCH_WHEEL_TARGET
+	jr c, .finished_pitch_slide
+	jr nz, .continue_pitch_slide
+	ld hl, CHANNEL_PITCH_SLIDE_TARGET
 	add hl, bc
 	ld a, e
 	cp [hl]
-	jr nc, .continue_pitch_wheel
-.finished_pitch_wheel
+	jr nc, .continue_pitch_slide
+.finished_pitch_slide
 	ld hl, CHANNEL_FLAGS2
 	add hl, bc
-	res SOUND_PITCH_WHEEL, [hl]
+	res SOUND_PITCH_SLIDE, [hl]
 	ld hl, CHANNEL_FLAGS3
 	add hl, bc
-	res SOUND_PITCH_WHEEL_DIR, [hl]
+	res SOUND_PITCH_SLIDE_DIR, [hl]
 	ret
 
-.continue_pitch_wheel
+.continue_pitch_slide
 	ld hl, CHANNEL_FREQUENCY
 	add hl, bc
 	ld [hl], e
@@ -1088,7 +1088,7 @@ ReadNoiseSample:
 ;	[wx] [yy] [zz]
 ;	w: ? either 2 or 3
 ;	x: duration
-;	zz: intensity
+;	zz: volume envelope
 ;       yy: frequency
 
 	; de = [wNoiseSampleAddress]
@@ -1105,7 +1105,7 @@ ReadNoiseSample:
 	ld a, [de]
 	inc de
 
-	cp endchannel_cmd
+	cp sound_ret_cmd
 	jr z, .quit
 
 	and $f
@@ -1113,7 +1113,7 @@ ReadNoiseSample:
 	ld [wNoiseSampleDelay], a
 	ld a, [de]
 	inc de
-	ld [wCurTrackIntensity], a
+	ld [wCurTrackVolumeEnvelope], a
 	ld a, [de]
 	inc de
 	ld [wCurTrackFrequency], a
@@ -1136,8 +1136,8 @@ ReadNoiseSample:
 ParseMusic:
 ; parses until a note is read or the song is ended
 	call GetMusicByte ; store next byte in a
-	cp endchannel_cmd
-	jr z, .endchannel
+	cp sound_ret_cmd
+	jr z, .sound_ret
 	cp FIRST_MUSIC_CMD
 	jr c, .readnote
 	; then it's a command
@@ -1196,7 +1196,7 @@ ParseMusic:
 	set NOTE_REST, [hl] ; Rest
 	ret
 
-.endchannel
+.sound_ret
 ; $ff is reached in music data
 	ld hl, CHANNEL_FLAGS1
 	add hl, bc
@@ -1247,10 +1247,10 @@ RestoreVolume:
 	cp CHAN5
 	ret nz
 	xor a
-	ld hl, wChannel6CryPitch
+	ld hl, wChannel6PitchOffset
 	ld [hli], a
 	ld [hl], a
-	ld hl, wChannel8CryPitch
+	ld hl, wChannel8PitchOffset
 	ld [hli], a
 	ld [hl], a
 	ld a, [wLastVolume]
@@ -1268,9 +1268,9 @@ ParseSFXOrRest:
 	; update note duration
 	ld a, [wCurMusicByte]
 	call SetNoteDuration ; top nybble doesnt matter?
-	; update intensity from next param
+	; update volume envelope from next param
 	call GetMusicByte
-	ld hl, CHANNEL_INTENSITY
+	ld hl, CHANNEL_VOLUME_ENVELOPE
 	add hl, bc
 	ld [hl], a
 	; update lo frequency from next param
@@ -1373,24 +1373,24 @@ MusicCommands:
 	dw Music_Octave3 ; octave 3
 	dw Music_Octave2 ; octave 2
 	dw Music_Octave1 ; octave 1
-	dw Music_NoteType ; note length + intensity
-	dw Music_ForceOctave ; set starting octave
+	dw Music_NoteType ; note length + volume envelope
+	dw Music_Transpose ; transpose
 	dw Music_Tempo ; tempo
 	dw Music_DutyCycle ; duty cycle
-	dw Music_Intensity ; intensity
-	dw Music_SoundStatus ; update sound status
-	dw Music_SoundDuty ; sfx duty
+	dw Music_VolumeEnvelope ; volume envelope
+	dw Music_PitchSweep ; update pitch sweep
+	dw Music_DutyCyclePattern ; duty cycle pattern
 	dw Music_ToggleSFX ; sound on/off
-	dw Music_SlidePitchTo ; pitch wheel
+	dw Music_PitchSlide ; pitch slide
 	dw Music_Vibrato ; vibrato
 	dw MusicE2 ; unused
 	dw Music_ToggleNoise ; music noise sampling
-	dw Music_Panning ; force panning
+	dw Music_ForceStereoPanning ; force stereo panning
 	dw Music_Volume ; volume
-	dw Music_Tone ; tone
+	dw Music_PitchOffset ; pitch offset
 	dw MusicE7 ; unused
 	dw MusicE8 ; unused
-	dw Music_TempoRelative ; global tempo
+	dw Music_TempoRelative ; tempo adjust
 	dw Music_RestartChannel ; restart current channel from header
 	dw Music_NewSong ; new song
 	dw Music_SFXPriorityOn ; sfx priority on
@@ -1407,12 +1407,12 @@ MusicCommands:
 	dw MusicF7 ; nothing
 	dw MusicF8 ; nothing
 	dw MusicF9 ; unused
-	dw Music_SetCondition ; setcondition
+	dw Music_SetCondition ; set condition
 	dw Music_JumpIf ; jumpif
-	dw Music_JumpChannel ; jump
-	dw Music_LoopChannel ; loop
-	dw Music_CallChannel ; call
-	dw Music_EndChannel ; return
+	dw Music_Jump ; jump
+	dw Music_Loop ; loop
+	dw Music_Call ; call
+	dw Music_Ret ; return
 
 MusicF1:
 MusicF2:
@@ -1424,7 +1424,7 @@ MusicF7:
 MusicF8:
 	ret
 
-Music_EndChannel:
+Music_Ret:
 ; called when $ff is encountered w/ subroutine flag set
 ; end music stream
 ; return to caller of the subroutine
@@ -1445,7 +1445,7 @@ Music_EndChannel:
 	ld [hl], d
 	ret
 
-Music_CallChannel:
+Music_Call:
 ; call music stream (subroutine)
 ; parameters: ll hh ; pointer to subroutine
 	; get pointer from next 2 bytes
@@ -1478,7 +1478,7 @@ Music_CallChannel:
 	set SOUND_SUBROUTINE, [hl]
 	ret
 
-Music_JumpChannel:
+Music_Jump:
 ; jump
 ; parameters: ll hh ; pointer
 	; get pointer from next 2 bytes
@@ -1493,7 +1493,7 @@ Music_JumpChannel:
 	ld [hl], d
 	ret
 
-Music_LoopChannel:
+Music_Loop:
 ; loops xx - 1 times
 ; 	00: infinite
 ; params: 3
@@ -1740,8 +1740,8 @@ Music_Vibrato:
 	ld [hl], a
 	ret
 
-Music_SlidePitchTo:
-; set the target for pitch wheel
+Music_PitchSlide:
+; set the target for pitch slide
 ; params: 2
 ; note duration
 ; target note
@@ -1760,24 +1760,25 @@ Music_SlidePitchTo:
 	and $f
 	ld d, a
 	call GetFrequency
-	ld hl, CHANNEL_PITCH_WHEEL_TARGET
+	ld hl, CHANNEL_PITCH_SLIDE_TARGET
 	add hl, bc
 	ld [hl], e
-	ld hl, CHANNEL_PITCH_WHEEL_TARGET + 1
+	ld hl, CHANNEL_PITCH_SLIDE_TARGET + 1
 	add hl, bc
 	ld [hl], d
 	ld hl, CHANNEL_FLAGS2
 	add hl, bc
-	set SOUND_PITCH_WHEEL, [hl]
+	set SOUND_PITCH_SLIDE, [hl]
 	ret
 
-Music_Tone:
+Music_PitchOffset:
 ; tone
 ; params: 1 (dw)
+; offset to add to each note frequency
 	ld hl, CHANNEL_FLAGS2
 	add hl, bc
-	set SOUND_CRY_PITCH, [hl]
-	ld hl, CHANNEL_CRY_PITCH + 1
+	set SOUND_PITCH_OFFSET, [hl]
+	ld hl, CHANNEL_PITCH_OFFSET + 1
 	add hl, bc
 	call GetMusicByte
 	ld [hld], a
@@ -1797,17 +1798,17 @@ MusicE7:
 	ld [hl], a
 	ret
 
-Music_SoundDuty:
+Music_DutyCyclePattern:
 ; sequence of 4 duty cycles to be looped
 ; params: 1 (4 2-bit duty cycle arguments)
 	ld hl, CHANNEL_FLAGS2
 	add hl, bc
-	set SOUND_DUTY, [hl] ; duty cycle
+	set SOUND_DUTY_LOOP, [hl] ; duty cycle looping
 	; sound duty sequence
 	call GetMusicByte
 	rrca
 	rrca
-	ld hl, CHANNEL_SFX_DUTY_LOOP
+	ld hl, CHANNEL_DUTY_CYCLE_PATTERN
 	add hl, bc
 	ld [hl], a
 	; update duty cycle
@@ -1889,7 +1890,7 @@ Music_SFXToggleNoise:
 Music_NoteType:
 ; note length
 ;	# frames per 16th note
-; intensity: see Music_Intensity
+; volume envelope: see Music_VolumeEnvelope
 ; params: 2
 	; note length
 	call GetMusicByte
@@ -1900,18 +1901,18 @@ Music_NoteType:
 	maskbits NUM_MUSIC_CHANS
 	cp CHAN4
 	ret z
-	; intensity
-	call Music_Intensity
+	; volume envelope
+	call Music_VolumeEnvelope
 	ret
 
-Music_SoundStatus:
-; update sound status
+Music_PitchSweep:
+; update pitch sweep
 ; params: 1
 	call GetMusicByte
-	ld [wSoundInput], a
+	ld [wPitchSweep], a
 	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
-	set NOTE_UNKN_3, [hl]
+	set NOTE_PITCH_SWEEP, [hl]
 	ret
 
 Music_DutyCycle:
@@ -1926,13 +1927,13 @@ Music_DutyCycle:
 	ld [hl], a
 	ret
 
-Music_Intensity:
-; intensity
+Music_VolumeEnvelope:
+; volume envelope
 ; params: 1
-;	hi: pressure
-;   lo: velocity
+;	hi: volume
+;   lo: fade
 	call GetMusicByte
-	ld hl, CHANNEL_INTENSITY
+	ld hl, CHANNEL_VOLUME_ENVELOPE
 	add hl, bc
 	ld [hl], a
 	ret
@@ -1964,12 +1965,12 @@ Music_Octave1:
 	ld [hl], a
 	ret
 
-Music_ForceOctave:
+Music_Transpose:
 ; set starting octave
 ; this forces all notes up by the starting octave
 ; params: 1
 	call GetMusicByte
-	ld hl, CHANNEL_PITCH_OFFSET
+	ld hl, CHANNEL_TRANSPOSITION
 	add hl, bc
 	ld [hl], a
 	ret
@@ -1980,12 +1981,12 @@ Music_StereoPanning:
 	; stereo on?
 	ld a, [wOptions]
 	bit STEREO, a
-	jr nz, Music_Panning
+	jr nz, Music_ForceStereoPanning
 	; skip param
 	call GetMusicByte
 	ret
 
-Music_Panning:
+Music_ForceStereoPanning:
 ; force panning
 ; params: 1
 	call SetLRTracks
@@ -2141,7 +2142,7 @@ GetFrequency:
 
 ; get octave
 	; get starting octave
-	ld hl, CHANNEL_PITCH_OFFSET
+	ld hl, CHANNEL_TRANSPOSITION
 	add hl, bc
 	ld a, [hl]
 	swap a ; hi nybble
@@ -2150,7 +2151,7 @@ GetFrequency:
 	add d
 	push af ; we'll use this later
 	; get starting octave
-	ld hl, CHANNEL_PITCH_OFFSET
+	ld hl, CHANNEL_TRANSPOSITION
 	add hl, bc
 	ld a, [hl]
 	and $f ; lo nybble
@@ -2402,9 +2403,9 @@ _PlayCry::
 
 	ld hl, CHANNEL_FLAGS2
 	add hl, bc
-	set SOUND_CRY_PITCH, [hl]
+	set SOUND_PITCH_OFFSET, [hl]
 
-	ld hl, CHANNEL_CRY_PITCH
+	ld hl, CHANNEL_PITCH_OFFSET
 	add hl, bc
 	ld a, [wCryPitch]
 	ld [hli], a
@@ -2484,8 +2485,8 @@ _PlaySFX::
 	ld a, $80
 	ldh [rNR14], a ; restart sound (freq hi = 0)
 	xor a
-	ld [wSoundInput], a ; global sound off
-	ldh [rNR10], a ; sweep = 0
+	ld [wPitchSweep], a ; pitch sweep off
+	ldh [rNR10], a ; pitch sweep off
 .ch6
 	ld hl, wChannel6Flags1
 	bit SOUND_CHANNEL_ON, [hl]

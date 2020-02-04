@@ -277,11 +277,11 @@ MaxVolume::
 	ret
 
 LowVolume::
-	ld a, $33 ; 40%
+	ld a, $33 ; 50%
 	ld [wVolume], a
 	ret
 
-VolumeOff::
+MinVolume::
 	xor a
 	ld [wVolume], a
 	ret
@@ -525,7 +525,7 @@ CheckSFX::
 TerminateExpBarSound::
 	xor a
 	ld [wChannel5Flags1], a
-	ld [wSoundInput], a
+	ld [wPitchSweep], a
 	ldh [rNR10], a
 	ldh [rNR11], a
 	ldh [rNR12], a
@@ -540,7 +540,7 @@ ChannelsOff::
 	ld [wChannel2Flags1], a
 	ld [wChannel3Flags1], a
 	ld [wChannel4Flags1], a
-	ld [wSoundInput], a
+	ld [wPitchSweep], a
 	ret
 
 SFXChannelsOff::
@@ -550,5 +550,5 @@ SFXChannelsOff::
 	ld [wChannel6Flags1], a
 	ld [wChannel7Flags1], a
 	ld [wChannel8Flags1], a
-	ld [wSoundInput], a
+	ld [wPitchSweep], a
 	ret
