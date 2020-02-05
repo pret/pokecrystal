@@ -2,146 +2,199 @@
 
 Defined in [macros/scripts/audio.asm](https://github.com/pret/pokecrystal/blob/master/macros/scripts/audio.asm) and [audio/engine.asm:MusicCommands](https://github.com/pret/pokecrystal/blob/master/audio/engine.asm).
 
-*See also: [Sound Engine Commands](https://github.com/pret/pokecrystal/blob/master/wiki/Sound-Engine-Commands)*
+Note: Commands that are intended for the song channels (1-4) can be used by the sound effect channels (5-8) if the sound effect channel exits sound effect mode with the `toggle_sfx` command.
 
 
-## <code>musicheader <i>n</i>, <i>index</i>, <i>address</i></code>
+## <code>channel_count <i>n</i></code>
+
+Used at the start of each sound header to specify how many channels are used in the sound.  
+`n`: Number of channels [`1`, `4`]
+
+
+## <code>channel <i>index</i>, <i>address</i></code>
+
+Used for each channel in a sound header.  
+`index`: Channel number [`1`, `8`]  
+`address`: Pointer to the sound data
 
 
 ## <code>note <i>pitch</i>, <i>length</i></code>
 
-(Used on all channels)
-
-The high nibble is the note to play. 0 is rest, 1 is `C_`, 2 is `C#`, etc; `$C` is `B_`.
-The low nibble is the length of the note. 1 gets added to this, so 0 still has a length.
-
-
-## <code>sound <i>pitch</i>, <i>octave</i>, <i>intensity</i>, <i>frequency</i></code>
+Play a basic note. Used by channels 1-3.  
+`pitch`: Pitch of note (see [constants/audio_constants.asm](https://github.com/pret/pokecrystal/blob/master/constants/audio_constants.asm))  
+`length`: Length of note in "ticks" [`1`, `16`]. The exact duration of a tick is dependant on the current "speed" (see `note_type` and `drum_speed`) and the current "tempo" (see `tempo`).
 
 
-## <code>noise <i>pitch</i>, <i>duration</i>, <i>intensity</i>, <i>frequency</i></code>
+## <code>drum_note <i>instrument</i>, <i>length</i></code>
+
+Play a predefined drum note. Used by channel 4.  
+`instrument`: Instrument ID [`1`, `12`] (see `toggle_noise`)  
+`length`: Length of note [`1`, `16`]
+
+
+## <code>rest <i>length</i></code>
+
+Basic rest. Used by channels 1-4.  
+`length`: Length of rest [`1`, `16`]
+
+
+## <code>square_note <i>length</i>, <i>volume</i>, <i>fade</i>, <i>frequency</i></code>
+
+Sound effect square note. Used by channels 5-7.  
+`length`: Length of note [`0`, `255`]  
+`volume`: Initial volume [`0`, `15`]  
+`fade`: Volume fade [`-7`, `7`]  
+`frequency`: Note frequency [`0`, `65535`]
+
+
+## <code>noise_note <i>length</i>, <i>volume</i>, <i>fade</i>, <i>frequency</i></code>
+
+Sound effect noise note. Used by channel 8.  
+`length`: Length of note [`0`, `255`]  
+`volume`: Initial volume [`0`, `15`]  
+`fade`: Volume fade [`-7`, `7`]  
+`frequency`: Note frequency [`0`, `255`]
 
 
 ## `$D0`−`$D7`: <code>octave <i>n</i></code>
 
-(Used in channels 1-3)
-
-Sets the octave for the notes played on the channel.
-`$D7` is the lowest octave, whereas `$D0` is the highest.
+Set the octave for the notes played on the current channel. Used by channels 1-3.  
+`n`: New octave [`1`, `8`]
 
 
-## `$D8`: <code>notetype <i>length</i>[, <i>intensity</i>]</code>
+## `$D8`: <code>note_type <i>length</i>, <i>volume</i>, <i>fade/wave_instrument</i></code>
 
-(Used in channels 1-4) (When using in channel 4, the *intensity* byte is not needed)
+Set persistent note properties. Used by channels 1-3.  
+`length`: Base note length [`1`, `15`] (`12` is often used for 4/4 common time because `12` is factorable by both `3` and `4`. Therefore it works very well for quarter notes, eighth notes, sixteenth notes, and triplets.)  
+`volume`: Initial volume [`0`, `15`] for channels 1-2, [`0`, `3`] for channel 3 (see `volume_envelope`)  
+`fade`: Volume fade [`-7`, `7`] (applies to channels 1-2)  
+`wave_instrument`: Wave instrument ID (applies to channel 3) (see [audio/wave_samples.asm](https://github.com/pret/pokecrystal/blob/master/audio/wave_samples.asm))
 
-Sets the length multiplier of notes on the channel, and the envelope for channels 1-3 (see `intensity`).
-The first byte only reads the lower 4 bits, and multiplies it by the note length. A larger number means slower playback/longer notes. `$C` is commonly used for a normal timeframe.
 
-The second byte is identical to the first byte in the `intensity` command.
+## `$D8`: <code>drum_speed <i>length</i></code>
+
+Set persistent note properties. Used by channel 4.  
+`length`: Base note length [`1`, `15`] (use `12` for common time)
 
 
-## `$D9`: <code>pitchoffset <i>octave</i>, <i>key</i></code>
+## `$D9`: <code>transpose <i>num_octaves</i>, <i>num_pitches</i></code>
 
-(Used in channels 1-3)
-
-Transposes all notes played on the channel by a value.
-The high nibble determins how many octaves to subtract, while the low nibble is how many note values to add.
-Ex: Setting a value of `$13` would make a `C_`4 play as a `D#`3.
+Transpose all notes played on the current channel. Used by channels 1-3.  
+`num_octaves`: Number of octaves to subtract from each note  
+`num_pitches`: Number of pitches to add to each note
 
 
 ## `$DA`: <code>tempo <i>tempo</i></code>
 
-(Used in channel 1)
+Set the tempo for all playing channels. This should only be used by channel 1.
 
-Sets the tempo for all playing channels. This should only be called on channel 1.
-
-The formula to convert from this tempo to BPM is: BPM = 19200 / Tempo
-This formula also works backwards to convert BPM to tempo: Tempo = 19200 / BPM
+The formula to convert from this tempo to BPM is: BPM = 19200 / `tempo`  
+This formula also works backwards to convert BPM to tempo: `tempo` = 19200 / BPM
 
 Only set or change this value when all playing channels are triggering a note or rest at the same time, otherwise desyncs may happen.
 
 
-## `$DB`: <code>dutycycle <i>duty_cycle</i></code>
+## `$DB`: <code>duty_cycle <i>duty_cycle</i></code>
 
-(Used on channels 1&2)
-
-Sets the square duty (sound) for the current channel. To change the sound for channel 3, use intensity. The only accepted values are 0-3.
+Set the square duty (sound) for the current channel. Used by channels 1-2.  
+The only accepted values are 0-3.
 
 - 0 = 12.5% waveform: `_______¯`
 - 1 = 25% waveform: `______¯¯`
 - 2 = 50% waveform: `____¯¯¯¯`
 - 3 = 75% waveform: `__¯¯¯¯¯¯` (sounds the same as 25%)
 
-
-## `$DC`: <code>intensity <i>intensity</i></code>
-
-(Used on channels 1-3) (Used to set instrument on channel 3)
-
-For channels 1&2:
-This sets the volume and fade of the notes. The high nibble is the starting volume, 0 is mute, $F is max. Bit 3 determines the fade direction (0=Fade to silence, 1=Fade to max volume). The last 3 bits is how fast the fade happens. 0 is no fade, 1 is fastest fade, 7 is slowest fade.
-
-For channel 3:
-The high nibble sets the volume of channel 3. Only 4 values are accepted (0=Mute, 1=100% volume, 2=50% volume, 3=25% volume). The low nibble sets the instrument/waveform for channel 3 to play. Crystal natively has 10 instruments, values 0-9.
+To change the sound for channel 3, use `note_type` or `volume_envelope`.
 
 
-## `$DD`: <code>soundinput <i>input</i></code>
+## `$DC`: <code>volume_envelope <i>volume</i>, <i>fade/wave_instrument</i></code>
+
+Set the volume envelope for the current channel. Used by channels 1-3.  
+`volume`: Initial volume [`0`, `15`] for channels 1-2, [`0`, `3`] for channel 3  
+`fade`: Volume fade [`-7`, `7`] (applies to channels 1-2)  
+`wave_instrument`: Wave instrument ID (applies to channel 3) (see [audio/wave_samples.asm](https://github.com/pret/pokecrystal/blob/master/audio/wave_samples.asm))
+
+For channel 3, the only acceped `volume` values are 0-3.
+
+- 0 = Mute
+- 1 = 100% volume
+- 2 = 50% volume
+- 3 = 25% volume
+
+Note about `fade`: A positive value means a decrease in volume; a negative value means an increase in volume. A small magnitude means a quick change; a large magnitude means a slow change. It is stored in signed magnitude representation, so a value of `8` is the same as (negative) `0`.
 
 
-## `$DE`: <code>sound_duty <i>a</i>, <i>b</i>, <i>c</i>, <i>d</i></code>
+## `$DD`: <code>pitch_sweep <i>length</i>, <i>pitch_change</i></code>
 
-(Used on channels 1&2)
-
-This cycles the channel through 4 duty definitions, one per frame.
-Each pair of bits defines a duty, same as the `dutycycle` command.
-This is mostly only used in cries, SFX, and Jigglypuff's song in RBY.
+Set pitch sweep properties. Used by channel 5.  
+`length`: Duration of effect [`0`, `15`]  
+`pitch_change`: Extent of effect [`-7`, `8`] Note: `8` is used in place of `0`
 
 
-## `$DF`: `togglesfx`
+## `$DE`: <code>duty_cycle_pattern <i>a</i>, <i>b</i>, <i>c</i>, <i>d</i></code>
+
+Set duty cycle pattern (ie, pulse width modulation). Used by channels 5-6.
+
+This cycles the channel through 4 duty cycles, one per frame.  
+Each argument defines a duty cycle, same as the `duty_cycle` command.
 
 
-## `$E0`: <code>slidepitchto <i>duration</i>, <i>octave</i>, <i>pitch</i></code>
+## `$DF`: <code>toggle_sfx</code>
 
-(Used on channel 1)
+Toggle between pitch-based songs and frequency-based sound effects. Can be used by any channel.
 
-This bends the pitch of the note played next, and only that note.
-The first byte tells how many frames to play the destination note for, before the length of the note is up.
-The high nibble of the second byte is the octave of the destination note.
-The low nibble of the second byte is the destination note. If rest is used as the destination note, then the whole destination pitch becomes `$0000` (the lowest pitch).
+Note: Similar to the pokered command `execute_music`, however `execute_music` can only be used on channels 5-8 and can not be disabled for the duration of the sound once it is enabled.
 
 
-## `$E1`: <code>vibrato <i>delay</i>, <i>extent</i></code>
+## `$E0`: <code>pitch_slide <i>duration</i>, <i>octave</i>, <i>pitch</i></code>
 
-(Used on channels 1-3)
+Bend the pitch of the next note played, and only that note. Used by channel 1.  
+`duration`: Duration of the target note after slide effect  
+`octave`: Target octave  
+`pitch`: Target pitch (see [constants/audio_constants.asm](https://github.com/pret/pokecrystal/blob/master/constants/audio_constants.asm))
 
-Modifies pitch after the timer runs out, making notes sound less "flat".
-First byte will set the delay, decrementing by one each frame. When it tries subtracting from 0, it starts decrementing from the speed timer.
-Second byte, high nibble is the speed timer. It will decrement by one each frame, when it tries decrementing from 0, it mods the frequencey by half of pitch depth, and resets itself to it's initial value.
-Second byte, low nibble is the pitch depth. Half of this value will alternate between adding to the pitch, and subtracting from the pitch each time speed timer resets. When this is an odd number, the value added to the pitch will be greater than the value subtracted from the pitch.
-Ex: normal pitch of 405, if pitch depth = 3, it will alternate between 407 and 404. Speed timer does NOT reset when a new note is played. only when the song stops or changes. (Also, because a timer counts 0, a timer of 5 will take 6 frames to change.)
+
+## `$E1`: <code>vibrato <i>delay</i>, <i>extent</i>, <i>rate</i></code>
+
+Apply vibrato to current channel. Used by channels 1-3.  
+`delay`: Delay until vibrato effect begins for each note [`0`, `255`]  
+`extent`: Amplitude of vibrato [`0`, `15`]  
+`rate`: Frequency of vibrato [`0`, `15`]
 
 
 ## `$E2`: <code>unknownmusic0xe2 <i>unknown</i></code>
 
 
-## `$E3`: <code>togglenoise <i>id</i></code>
+## `$E3`: <code>toggle_noise <i>id</i></code>
 
-(Used on channel 4)
+Set the "drum kit" to be used if it is currently unset. Mute the channel otherwise. Used by channel 4.  
+`id`: Drum kit ID [`0`, `5`] (see [audio/drumkits.asm](https://github.com/pret/pokecrystal/blob/master/audio/drumkits.asm))
 
-Sets the "drum kit" to be used. This needs to be called before channel 4 can make any noise.
-Calling it more than once in a song will mute the channel. (Keep it out of loops!)
+Note: The drum kit ID is initially unset at the start of a song. When muting the channel, the `id` argument must not be present.
 
 
-## `$E4`: <code>panning <i>tracks</i></code>
+## `$E4`: <code>force_stereo_panning <i>left_enable</i>, <i>right_enable</i></code>
 
-## `$E5`: <code>volume <i>volume</i></code>
+Set left/right stereo output for the current channel, regardless of user's stereo setting. Used by channels 1-4.  
+`left_enable`: `TRUE`/`FALSE`  
+`right_enable`: `TRUE`/`FALSE`
 
-## `$E6`: <code>tone <i>tone</i></code>
 
-(Used on channel 1-3)
+## `$E5`: <code>volume <i>left_volume</i>, <i>right_volume</i></code>
 
-This modifies the pitch of the notes (fine tuning).
-It makes notes sound better if multiple channels play the same note simultaneously.
-A lot of GSC songs set the main melody channel with a value of 1, and the secondary channel (not bass) as 2.
+Set master volume for left/right speakers. Typically only used by channel 1.  
+`left_volume`: Left speaker volume [`0`, `7`]  
+`right_volume`: Right speaker volume [`0`, `7`]
+
+Note: Minimum volume, `0`, is not muted.
+
+
+## `$E6`: <code>pitch_offset <i>pitch_offset</i></code>
+
+Adjust the pitch of all notes on the current channel. Used by channels 1-3.  
+`pitch_offset`: Frequency adjustment of each pitch
+
+Note: Similar to the pokered command `toggle_perfect_pitch`. `toggle_perfect_pitch` can be replaced with a combination of `pitch_offset 1` and `pitch_offset 0`.
 
 
 ## `$E7`: <code>unknownmusic0xe7 <i>unknown</i></code>
@@ -153,67 +206,85 @@ A lot of GSC songs set the main melody channel with a value of 1, and the second
 ## `$E9`: <code>tempo_relative <i>value</i></code>
 
 
-## `$EA`: <code>restartchannel <i>address</i></code>
+## `$EA`: <code>restart_channel <i>address</i></code>
 
 
-## `$EB`: <code>newsong <i>id</i></code>
+## `$EB`: <code>new_song <i>id</i></code>
 
 
-## `$EC`: <code>sfxpriorityon</i></code>
+## `$EC`: <code>sfx_priority_on</code>
 
 
-## `$ED`: <code>sfxpriorityoff</i></code>
+## `$ED`: <code>sfx_priority_off</code>
 
 
 ## `$EE`: <code>unknownmusic0xee <i>address</i></code>
 
 
-## `$EF`: <code>stereopanning <i>tracks</i></code>
+## `$EF`: <code>stereo_panning <i>left_enable</i>, <i>right_enable</i></code>
+
+Set left/right stereo output for the current channel, if the user has stereo mode enabled. Used by channels 1-4.  
+`left_enable`: `TRUE`/`FALSE`  
+`right_enable`: `TRUE`/`FALSE`
 
 
-## `$F0`: <code>sfxtogglenoise <i>id</i></code>
+## `$F0`: <code>sfx_toggle_noise <i>id</i></code>
+
+Set the "drum kit" to be used if it is currently unset. Mute the channel otherwise. Used by channel 8.  
+`id`: Drum kit ID [`0`, `5`] (see [audio/drumkits.asm](https://github.com/pret/pokecrystal/blob/master/audio/drumkits.asm))
+
+Note: The drum kit ID is initially unset at the start of a song. When muting the channel, the `id` argument must not be present.
 
 
-## `$F1`: `music0xf1`
+## `$F1`: <code>music0xf1</code>
 
 
-## `$F2`: `music0xf2`
+## `$F2`: <code>music0xf2</code>
 
 
-## `$F3`: `music0xf3`
+## `$F3`: <code>music0xf3</code>
 
 
-## `$F4`: `music0xf4`
+## `$F4`: <code>music0xf4</code>
 
 
-## `$F5`: `music0xf5`
+## `$F5`: <code>music0xf5</code>
 
 
-## `$F6`: `music0xf6`
+## `$F6`: <code>music0xf6</code>
 
 
-## `$F7`: `music0xf7`
+## `$F7`: <code>music0xf7</code>
 
 
-## `$F8`: `music0xf8`
+## `$F8`: <code>music0xf8</code>
 
 
-## `$F9`: `unknownmusic0xf9`
+## `$F9`: <code>unknownmusic0xf9</code>
 
 
-## `$FA`: <code>setcondition <i>condition</i></code>
+## `$FA`: <code>set_condition <i>condition</i></code>
 
 
-## `$FB`: <code>jumpif <i>condition</i>, <i>address</i></code>
+## `$FB`: <code>sound_jump_if <i>condition</i>, <i>address</i></code>
 
 
-## `$FC`: <code>jumpchannel <i>address</i></code>
+## `$FC`: <code>sound_jump <i>address</i></code>
 
 
-## `$FD`: <code>loopchannel <i>count</i>, <i>address</i></code>
+## `$FD`: <code>sound_loop <i>count</i>, <i>address</i></code>
+
+Execute a branch of sound commands a total of `count` times.  
+`count`: Number of times to execute the loop (including the first execution) (use `0` for an infinite loop)  
+`address`: Pointer to the start of the loop of sound commands
 
 
-## `$FE`: <code>callchannel <i>address</i></code>
+## `$FE`: <code>sound_call <i>address</i></code>
+
+Execute a branch of sound commands, returning to the call point once a `sound_ret` command is reached.  
+`address`: Pointer to the branch of sound commands to call
 
 
-## `$FF`: `endchannel`
+## `$FF`: <code>sound_ret</code>
+
+Return to the caller (ie, `sound_call`) if in a sub branch. End the sound otherwise.
