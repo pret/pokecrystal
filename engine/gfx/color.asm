@@ -749,9 +749,9 @@ GetColorChannelVariedByDV:
 ; a <- d + (e & %11) - (e & %1100 >> 2), ±5 if not in [0, 31]
 	ld a, e
 	cp %0010 ; override a +2
-	jr z, .plus5
+	jr z, .plus4
 	cp %1000 ; override a -2
-	jr z, .minus5
+	jr z, .minus4
 	and %11
 	add d
 	srl e
@@ -769,14 +769,14 @@ GetColorChannelVariedByDV:
 	add 5
 	ret
 
-.plus5
+.plus4
 	ld a, d
-	add 5
+	add 4
 	jr .ceil
 
-.minus5
+.minus4
 	ld a, d
-	sub 5
+	sub 4
 	jr .floor
 
 
