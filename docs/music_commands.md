@@ -22,7 +22,7 @@ Used for each channel in a sound header.
 
 Play a basic note. Used by channels 1-3.  
 `pitch`: Pitch of note (see [constants/audio_constants.asm](https://github.com/pret/pokecrystal/blob/master/constants/audio_constants.asm))  
-`length`: Length of note [`1`, `16`]
+`length`: Length of note in "ticks" [`1`, `16`]. The exact duration of a tick is dependant on the current "speed" (see `note_type` and `drum_speed`) and the current "tempo" (see `tempo`).
 
 
 ## <code>drum_note <i>instrument</i>, <i>length</i></code>
@@ -65,7 +65,7 @@ Set the octave for the notes played on the current channel. Used by channels 1-3
 ## `$D8`: <code>note_type <i>length</i>, <i>volume</i>, <i>fade/wave_instrument</i></code>
 
 Set persistent note properties. Used by channels 1-3.  
-`length`: Base note length [`1`, `15`] (use `12` for common time)  
+`length`: Base note length [`1`, `15`] (`12` is often used for 4/4 common time because `12` is factorable by both `3` and `4`. Therefore it works very well for quarter notes, eighth notes, sixteenth notes, and triplets.)  
 `volume`: Initial volume [`0`, `15`] for channels 1-2, [`0`, `3`] for channel 3 (see `volume_envelope`)  
 `fade`: Volume fade [`-7`, `7`] (applies to channels 1-2)  
 `wave_instrument`: Wave instrument ID (applies to channel 3) (see [audio/wave_samples.asm](https://github.com/pret/pokecrystal/blob/master/audio/wave_samples.asm))
@@ -120,6 +120,8 @@ For channel 3, the only acceped `volume` values are 0-3.
 - 1 = 100% volume
 - 2 = 50% volume
 - 3 = 25% volume
+
+Note about `fade`: A positive value means a decrease in volume; a negative value means an increase in volume. A small magnitude means a quick change; a large magnitude means a slow change. It is stored in signed magnitude representation, so a value of `8` is the same as (negative) `0`.
 
 
 ## `$DD`: <code>pitch_sweep <i>length</i>, <i>pitch_change</i></code>
