@@ -1479,31 +1479,53 @@ CalcMonStatC:
 	jr z, .Special
 	cp STAT_SDEF
 	jr z, .Special
+
 ; DV_HP = (DV_ATK & 1) << 3 | (DV_DEF & 1) << 2 | (DV_SPD & 1) << 1 | (DV_SPC & 1)
 	push bc
-	ld a, [hl]
+
+;   ATK & 1
+	ld a, [hl] ; ATK
 	swap a
 	and 1
+;	<< 3
 	add a
 	add a
 	add a
+;	Load result into b
 	ld b, a
+
+
+ ;	DEF & 1
 	ld a, [hli]
 	and 1
+;	<< 2
 	add a
 	add a
+;	Add b to a
 	add b
+;	Load result into b
 	ld b, a
+
+
+;	SPD & 1
 	ld a, [hl]
 	swap a
 	and 1
+;	<< 1
 	add a
+;	Add b to a
 	add b
+;	Load result into b
 	ld b, a
+
+ ;	SPC & 1
 	ld a, [hl]
 	and 1
+;	Add b to a
 	add b
+
 	pop bc
+
 	jr .GotDV
 
 .Attack:
