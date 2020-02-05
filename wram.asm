@@ -3100,7 +3100,7 @@ wMagnetTrainHoldPosition:: db
 wMagnetTrainFinalPosition:: db
 wMagnetTrainPlayerSpriteInitX:: db
 
-wColorVaryDVs:: ds 3
+wColorVaryDVs:: ds 2
 wColorVarySpecies:: ds 1
 wColorVaryShiny:: ds 1
 

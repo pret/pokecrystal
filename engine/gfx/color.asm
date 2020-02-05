@@ -702,15 +702,12 @@ GetEnemyFrontpicPalettePointer:
 	ret
 
 CopyDVsToColorVaryDVs:
-; e = HPAtkDV
+; e = AtkDefDV
 	ld a, [hli]
 	ld e, a
-; d = DefSpdDV
+; d = SpeSpcDV
 	ld a, [hli]
 	ld d, a
-; c = SatSdfDV
-	ld a, [hli]
-	ld c, a
 ; b = Shiny
 	push bc
 	ld a, [hl]
@@ -722,10 +719,10 @@ CopyDVsToColorVaryDVs:
 	ld [rSVBK], a
 
 	ld hl, wColorVaryDVs
-; wColorVaryDVs = HPAtkDV
+; wColorVaryDVs = AtkDefDV
 	ld a, e
 	ld [hli], a
-; wColorVaryDVs+1 = DefSpdDV
+; wColorVaryDVs+1 = SpeSpc
 	ld a, d
 	ld [hli], a
 	inc hl
@@ -871,9 +868,8 @@ VaryColorsByDVs::
 ; [hl+3] = 0BBB:BBGG
 
 ; DVs in wColorVaryDVs
-; [bc+0] = hhhh:aaaa
-; [bc+1] = dddd:ssss
-; [bc+2] = pppp:qqqq
+; [bc+0] = aaaa:dddd
+; [bc+1] = ssss:cccc
 
 ; [wColorVarySpecies] = species
 ; [wColorVaryShiny] = shiny
@@ -891,8 +887,8 @@ VaryColorsByDVs::
 
 	ld a, [wColorVarySpecies]
 
-;;; LiteRed ~ HPDV, aka, rrrrr ~ hhhh
-; store HPDV in e
+;;; LiteRed ~ AtkDV, aka, rrrrr ~ hhhh
+; store AtkDV in e
 	ld a, [bc]
 	swap a
 	and %1111
@@ -900,19 +896,19 @@ VaryColorsByDVs::
 ; vary LiteRed by e
 	call VaryRedByDV
 
-;;; LiteGrn ~ AtkDV, aka, ggggg ~ aaaa
-; store AtkDV in e
+;;; LiteGrn ~ DefDV, aka, ggggg ~ aaaa
+; store DefDV in e
 	ld a, [bc]
 	and %1111
 	ld e, a
 ; vary LiteGrn by e
 	call VaryGreenByDV
 
-;;; advance from HP/Atk DV to Def/Spd DV
+;;; advance from Atk/Def DV to Spe/Spc DV
 	inc bc
 
-;;; LiteBlu ~ DefDV, aka, bbbbb ~ dddd
-; store DefDV in e
+;;; LiteBlu ~ SpeDV, aka, bbbbb ~ dddd
+; store SpeDV in e
 	ld a, [bc]
 	swap a
 	and %1111
@@ -925,19 +921,18 @@ VaryColorsByDVs::
 	inc hl
 
 .Finish:
-;;; DarkRed ~ SpdDV, aka, RRRRR ~ ssss
-; store SpdDV in e
+;;; move from Spe/Spc DV to Atk/Def DV
+	dec bc
+;;; DarkRed ~ AtkDV, aka, RRRRR ~ ssss
+; store AtkDV in e
 	ld a, [bc]
 	and %1111
 	ld e, a
 ; vary DarkRed by e
 	call VaryRedByDV
 
-;;; move from Def/Spd DV to SAt/SDf DV
-	inc bc
-
-;;; DarkGrn ~ SAtDV, aka, GGGGG ~ pppp
-; store SAtDV in e
+;;; DarkGrn ~ DefDV, aka, GGGGG ~ pppp
+; store DefDV in e
 	ld a, [bc]
 	swap a
 	and %1111
@@ -945,8 +940,11 @@ VaryColorsByDVs::
 ; vary DarkGrn by e
 	call VaryGreenByDV
 
-;;; DarkBlu ~ SDfDV, aka, BBBBB ~ qqqq
-; store SDfDV in e
+;;; move from Atk/Def DV to Spe/Spc DV
+	inc bc
+
+;;; DarkBlu ~ SpeDV, aka, BBBBB ~ qqqq
+; store SpeDV in e
 	ld a, [bc]
 	and %1111
 	ld e, a
