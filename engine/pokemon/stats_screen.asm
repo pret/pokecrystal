@@ -775,6 +775,15 @@ StatsScreen_LoadGFX:
 	dw wBufferMonOT
 
 .OrangePage:
+	call PrintDVs
+	call TN_PrintToD
+	call TN_PrintLocation
+
+	; TODO: print correct level
+	;call TN_PrintLV 
+	ret
+
+PrintDVs
 .print_labels
 	; place HP label
 	ld de, HPString
@@ -865,6 +874,7 @@ StatsScreen_LoadGFX:
 	and 1
 ;	Add b to a
 	add b
+	dec hl
 .display_dvs
 	; Display Atk DV
 	; a = HPDV
@@ -938,6 +948,89 @@ IDNoString:
 
 OTString:
 	db "OT/@"
+
+TN_PrintToD
+	ld de, .caughtat
+	hlcoord 1, 11
+	call PlaceString
+	ld a, [wTempMonCaughtTime]
+	and CAUGHT_TIME_MASK
+	ld de, .unknown
+	jr z, .print
+	rlca
+	rlca
+	rlca
+	cp 2
+	ld de, .morn
+	jr c, .print
+	ld de, .day
+	jr z, .print
+	ld de, .nite
+.print
+	hlcoord 3, 12
+	jp PlaceString
+
+.caughtat
+	db "Met/@"
+
+.morn
+	db "Morn@"
+
+.day
+	db "Day@"
+
+.nite
+	db "Nite@"
+
+.unknown
+	db "???@"
+
+TN_PrintLocation:
+	ld a, [wTempMonCaughtLocation]
+	and a
+	ret z
+	ld de, .event
+	cp $ff
+	jr z, .print
+	ld e, a
+	farcall GetLandmarkName
+	ld de, wStringBuffer1
+.print
+	hlcoord 3, 13
+	jp PlaceString
+
+.event
+	db "Event #mon@"
+
+TN_PrintLV:
+	ld a, [wTempMonCaughtLevel]
+	hlcoord 8, 12
+	and a
+	jr z, .unknown
+	cp 1
+	jr z, .hatched
+	ld [wBuffer3], a
+	ld de, .str_atlv
+	call PlaceString
+	ld de, wBuffer3
+	lb bc, PRINTNUM_LEFTALIGN | 1, 3
+	hlcoord 14, 12
+	jp PrintNum
+.hatched
+	ld de, .str_hatched
+	jp PlaceString
+.unknown
+	ld de, .str_unknown
+	jp PlaceString
+
+.str_atlv
+	db "at <LV>@"
+
+.str_hatched
+	db "from Egg@"
+
+.str_unknown
+	db "by trade@"
 
 StatsScreen_PlaceFrontpic:
 	ld hl, wTempMonDVs
