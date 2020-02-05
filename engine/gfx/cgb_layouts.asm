@@ -611,7 +611,6 @@ _CGB_Evolution:
 	ld hl, wBGPals1 palette 0 + 2
 	call VaryColorsByDVs
 	
-	
 	ld hl, BattleObjectPals
 	ld de, wOBPals1 palette PAL_BATTLE_OB_GRAY
 	ld bc, 6 palettes
