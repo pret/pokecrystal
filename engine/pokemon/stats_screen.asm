@@ -783,22 +783,22 @@ StatsScreen_LoadGFX:
 
 	; place Atk label
 	ld de, AttackString
-	hlcoord 1, 9
+	hlcoord 4, 8
 	call PlaceString
 
 	; place Def label
 	ld de, DefenseString
-	hlcoord 1, 10
+	hlcoord 8, 8
 	call PlaceString
 
 	; place Spe label
 	ld de, SpeedString
-	hlcoord 1, 11
+	hlcoord 12, 8
 	call PlaceString
 
 	; place Spc label
 	ld de, SpecialString
-	hlcoord 1, 12
+	hlcoord 16, 8
 	call PlaceString
 
 .get_mon_dvs
@@ -871,7 +871,7 @@ StatsScreen_LoadGFX:
 	ld [wBuffer1], a
 	ld de, wBuffer1
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
-	hlcoord 7, 8
+	hlcoord 1, 9
 	call PrintNum
 
 	; Display Atk DV
@@ -882,7 +882,7 @@ StatsScreen_LoadGFX:
 	ld [wBuffer1], a
 	ld de, wBuffer1
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
-	hlcoord 7, 9
+	hlcoord 5, 9
 	call PrintNum
 
 	; Display Def DV
@@ -892,7 +892,7 @@ StatsScreen_LoadGFX:
 	ld [wBuffer1], a
 	ld de, wBuffer1
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
-	hlcoord 7, 10
+	hlcoord 9, 9
 	call PrintNum
 
 	; Display Spe DV
@@ -903,7 +903,7 @@ StatsScreen_LoadGFX:
 	ld [wBuffer1], a
 	ld de, wBuffer1
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
-	hlcoord 7, 11
+	hlcoord 13, 9
 	call PrintNum
 
 	; Display Spc DV
@@ -913,25 +913,25 @@ StatsScreen_LoadGFX:
 	ld [wBuffer1], a
 	ld de, wBuffer1
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
-	hlcoord 7, 12
+	hlcoord 17, 9
 	call PrintNum
 
 	ret
 
 HPString:
-	db "HP  :@"
+	db "HP@"
 
 AttackString:
-	db "ATK :@"
+	db "ATK@"
 
 DefenseString:
-	db "DEF :@"
+	db "DEF@"
 
 SpeedString:
-	db "Spe :@"
+	db "SPE@"
 
 SpecialString:
-	db "Spc :@"
+	db "SPC@"
 
 IDNoString:
 	db "<ID>№.@"
