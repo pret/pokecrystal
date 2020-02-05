@@ -796,65 +796,103 @@ StatsScreen_LoadGFX:
 	hlcoord 1, 11
 	call PlaceString
 
-	; place SpAtk label
-	ld de, SpecialAttackString
+	; place Spc label
+	ld de, SpecialString
 	hlcoord 1, 12
 	call PlaceString
 
-	; place SpDef label
-	ld de, SpecialDefenseString
-	hlcoord 1, 13
-	call PlaceString
-
-.store_DVs_in_wTempMonsDVs
-	; TODO: THE CODE BELOW IS NOT WORKING CORRECTLY
+.get_mon_dvs
 	; load DVs into hl
 	ld hl, wPartyMon1DVs
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [wCurPartyMon]
 	call AddNTimes
 
+.store_dvs_in_wTempMonDVs
 	; Store DVs in wram
-	; e = HPAtkDV
+	; e = AtkDefDV
 	ld a, [hli]
 	ld e, a
-	; d = DefSpdDV
+	; d = SpeSpcDV
 	ld a, [hli]
 	ld d, a
-	; c = SatSdfDV
-	ld a, [hli]
-	ld c, a
 	ld hl, wTempMonDVs
-; wColorVaryDVs = HPAtkDV
+; wTempMonDVs = AtkDefDV
 	ld a, e
 	ld [hli], a
-; wColorVaryDVs+1 = DefSpdDV
+; wTempMonDVs+1 = SpeSpcDV
 	ld a, d
-	ld [hli], a
-; wColorVaryDVs+2 = SatSdfDV
-	ld a, c
 	ld [hl], a
+	dec hl
+.get_hp_dv
+; DV_HP = (DV_ATK & 1) << 3 | (DV_DEF & 1) << 2 | (DV_SPD & 1) << 1 | (DV_SPC & 1)
 
-.display_DVs
-	; Store HPDV in 
-	ld a, [wTempMonDVs]
+;   ATK & 1
+	ld a, [hl] ; ATK
 	swap a
-	and %1111
+	and 1
+;	<< 3
+	add a
+	add a
+	add a
+;	Load result into b
+	ld b, a
 
-	ld [wBuffer2], a
-	ld de, wBuffer2
+ ;	DEF & 1
+	ld a, [hli]
+	and 1
+;	<< 2
+	add a
+	add a
+;	Add b to a
+	add b
+;	Load result into b
+	ld b, a
+
+;	SPD & 1
+	ld a, [hl]
+	swap a
+	and 1
+;	<< 1
+	add a
+;	Add b to a
+	add b
+;	Load result into b
+	ld b, a
+
+;	SPC & 1
+	ld a, [hl]
+	and 1
+;	Add b to a
+	add b
+.display_dvs
+	; Display Atk DV
+	; a = HPDV
+	ld [wBuffer1], a
+	ld de, wBuffer1
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
 	hlcoord 7, 8
 	call PrintNum
 
 	; Display Atk DV
 	ld a, [wTempMonDVs]
+	swap a
 	and %1111
 
-	ld [wBuffer2], a
-	ld de, wBuffer2
+	ld [wBuffer1], a
+	ld de, wBuffer1
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
 	hlcoord 7, 9
+	call PrintNum
+
+	; Display Def DV
+	ld a, [wTempMonDVs]
+	and %1111
+
+	ld [wBuffer1], a
+	ld de, wBuffer1
+	lb bc, PRINTNUM_LEFTALIGN | 1, 2
+	hlcoord 7, 10
 	call PrintNum
 
 	; Display Spe DV
@@ -862,41 +900,20 @@ StatsScreen_LoadGFX:
 	swap a
 	and %1111
 
-	ld [wBuffer2], a
-	ld de, wBuffer2
-	lb bc, PRINTNUM_LEFTALIGN | 1, 2
-	hlcoord 7, 10
-	call PrintNum
-
-	; Display Def DV
-	ld a, [wTempMonDVs + 1]
-	and %1111
-
-	ld [wBuffer2], a
-	ld de, wBuffer2
+	ld [wBuffer1], a
+	ld de, wBuffer1
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
 	hlcoord 7, 11
 	call PrintNum
 
-	; Display SpDef DV
-	ld a, [wTempMonDVs + 2]
-	swap a
+	; Display Spc DV
+	ld a, [wTempMonDVs + 1]
 	and %1111
 
-	ld [wBuffer2], a
-	ld de, wBuffer2
+	ld [wBuffer1], a
+	ld de, wBuffer1
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
 	hlcoord 7, 12
-	call PrintNum
-
-	; Display SpAtk DV
-	ld a, [wTempMonDVs + 2]
-	and %1111
-
-	ld [wBuffer2], a
-	ld de, wBuffer2
-	lb bc, PRINTNUM_LEFTALIGN | 1, 2
-	hlcoord 7, 13
 	call PrintNum
 
 	ret
@@ -905,19 +922,16 @@ HPString:
 	db "HP  :@"
 
 AttackString:
-	db "Atk :@"
+	db "ATK :@"
 
 DefenseString:
-	db "Def :@"
-
-SpecialAttackString:
-	db "SAtk:@"
-
-SpecialDefenseString:
-	db "SDef:@"
+	db "DEF :@"
 
 SpeedString:
 	db "Spe :@"
+
+SpecialString:
+	db "Spc :@"
 
 IDNoString:
 	db "<ID>№.@"
