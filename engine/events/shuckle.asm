@@ -14,7 +14,7 @@ SECTION "engine/events/shuckle.asm", ROMX
 
 GiveShuckle::
 ; Adding to the party.
-	xor a
+	xor a ; PARTYMON
 	ld [wMonType], a
 
 ; Level 15 Shuckle.

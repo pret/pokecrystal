@@ -3,7 +3,7 @@ INCLUDE "macros/scripts/text.inc"
 
 SECTION "data/phone/text/jack_callee.asm", ROMX
 
-UnknownText_0x1b4dc5::
+JackAnswerPhoneText::
 	text "Hello. This is"
 	line "@"
 	text_ram wStringBuffer3
@@ -13,7 +13,7 @@ UnknownText_0x1b4dc5::
 	line "<PLAY_G>!"
 	done
 
-UnknownText_0x1b4ded::
+JackAnswerPhoneDayText::
 	text "Hello. This is"
 	line "@"
 	text_ram wStringBuffer3
@@ -23,7 +23,7 @@ UnknownText_0x1b4ded::
 	line "<PLAY_G>?"
 	done
 
-UnknownText_0x1b4e16::
+JackAnswerPhoneNiteText::
 	text "Hello. This is"
 	line "@"
 	text_ram wStringBuffer3
@@ -33,7 +33,7 @@ UnknownText_0x1b4e16::
 	line "<PLAY_G>!"
 	done
 
-UnknownText_0x1b4e3e::
+JackGreetText::
 	text "<PLAY_G>, good"
 	line "morning!"
 
@@ -43,7 +43,7 @@ UnknownText_0x1b4e3e::
 	line "How are you doing?"
 	done
 
-UnknownText_0x1b4e72::
+JackGreetDayText::
 	text "<PLAY_G>, howdy!"
 
 	para "It's me, @"
@@ -52,7 +52,7 @@ UnknownText_0x1b4e72::
 	line "Isn't it nice out?"
 	done
 
-UnknownText_0x1b4e9e::
+JackGreetNiteText::
 	text "<PLAY_G>, good"
 	line "evening!"
 
@@ -62,7 +62,7 @@ UnknownText_0x1b4e9e::
 	line "Got a minute?"
 	done
 
-UnknownText_0x1b4ecd::
+JackGenericText::
 	text "How are your"
 	line "#MON doing?"
 

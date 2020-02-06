@@ -3,7 +3,7 @@ INCLUDE "macros/scripts/text.inc"
 
 SECTION "data/phone/text/brent_callee.asm", ROMX
 
-UnknownText_0x1b6c96::
+BrentAnswerPhoneText::
 	text "Yes? @"
 	text_ram wStringBuffer3
 	text " here…"
@@ -12,7 +12,7 @@ UnknownText_0x1b6c96::
 	line "can I do for you?"
 	done
 
-UnknownText_0x1b6cc6::
+BrentAnswerPhoneDayText::
 	text "Yes? @"
 	text_ram wStringBuffer3
 	text " here…"
@@ -21,7 +21,7 @@ UnknownText_0x1b6cc6::
 	line "can I do for you?"
 	done
 
-UnknownText_0x1b6cf6::
+BrentAnswerPhoneNiteText::
 	text "Yes? @"
 	text_ram wStringBuffer3
 	text " here…"
@@ -30,7 +30,7 @@ UnknownText_0x1b6cf6::
 	line "can I do for you?"
 	done
 
-UnknownText_0x1b6d26::
+BrentGreetText::
 	text "Hiya, <PLAYER>. How"
 	line "are you doing?"
 
@@ -40,7 +40,7 @@ UnknownText_0x1b6d26::
 	text "."
 	done
 
-UnknownText_0x1b6d57::
+BrentGreetDayText::
 	text "Hiya, <PLAYER>, how"
 	line "are you doing?"
 
@@ -50,7 +50,7 @@ UnknownText_0x1b6d57::
 	text "."
 	done
 
-UnknownText_0x1b6d88::
+BrentGreetNiteText::
 	text "Hiya, <PLAYER>, how"
 	line "are you doing?"
 
@@ -60,7 +60,7 @@ UnknownText_0x1b6d88::
 	text "."
 	done
 
-UnknownText_0x1b6db9::
+BrentGenericText::
 	text "Oh yeah, I saw you"
 	line "coming out of a"
 

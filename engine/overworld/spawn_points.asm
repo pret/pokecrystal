@@ -7,7 +7,7 @@ SECTION "engine/overworld/spawn_points.asm", ROMX
 
 INCLUDE "data/maps/spawn_points.inc"
 
-LoadSpawnPoint::
+EnterMapSpawnPoint::
 	; loads the spawn point in wDefaultSpawnpoint
 	push hl
 	push de

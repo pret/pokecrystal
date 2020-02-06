@@ -27,7 +27,7 @@ INCLUDE "data/maps/setup_scripts.inc"
 ReadMapSetupScript:
 .loop
 	ld a, [hli]
-	cp -1
+	cp map_end
 	ret z
 
 	push hl
@@ -71,55 +71,55 @@ MapSetupCommands:
 ; entries correspond to command indexes in constants/map_setup_constants.inc
 	dba EnableLCD ; 00
 	dba DisableLCD ; 01
-	dba MapSetup_Sound_Off ; 02
+	dba InitSound ; 02
 	dba PlayMapMusic ; 03
 	dba RestartMapMusic ; 04
 	dba FadeToMapMusic ; 05
-	dba RotatePalettesRightMapAndMusic ; 06
-	dba EnterMapMusic ; 07
+	dba FadeMapMusicAndPalettes ; 06
+	dba PlayMapMusicBike ; 07
 	dba ForceMapMusic ; 08
 	dba FadeInMusic ; 09
 	dba LoadBlockData ; 0a (callback 1)
-	dba LoadNeighboringBlockData ; 0b
+	dba LoadConnectionBlockData ; 0b
 	dba SaveScreen ; 0c
 	dba BufferScreen ; 0d
-	dba LoadGraphics ; 0e
-	dba LoadTileset ; 0f
+	dba LoadMapGraphics ; 0e
+	dba LoadMapTileset ; 0f
 	dba LoadMapTimeOfDay ; 10
 	dba LoadMapPalettes ; 11
 	dba LoadWildMonData ; 12
 	dba RefreshMapSprites ; 13
 	dba HandleNewMap ; 14
-	dba InitCommandQueue ; 15
-	dba LoadObjectsRunCallback_02 ; 16
-	dba LoadSpawnPoint ; 17
+	dba HandleContinueMap ; 15
+	dba LoadMapObjects ; 16
+	dba EnterMapSpawnPoint ; 17
 	dba EnterMapConnection ; 18
-	dba LoadWarpData ; 19
+	dba EnterMapWarp ; 19
 	dba LoadMapAttributes ; 1a
-	dba LoadMapAttributes_SkipPeople ; 1b
+	dba LoadMapAttributes_SkipObjects ; 1b
 	dba ClearBGPalettes ; 1c
 	dba FadeOutPalettes ; 1d
 	dba FadeInPalettes ; 1e
-	dba GetCoordOfUpperLeftCorner ; 1f
-	dba RestoreFacingAfterWarp ; 20
+	dba GetMapScreenCoords ; 1f
+	dba GetWarpDestCoords ; 20
 	dba SpawnInFacingDown ; 21
 	dba SpawnPlayer ; 22
 	dba RefreshPlayerCoords ; 23
-	dba DelayClearingOldSprites ; 24
-	dba DelayLoadingNewSprites ; 25
+	dba ResetPlayerObjectAction ; 24
+	dba SkipUpdateMapSprites ; 25
 	dba UpdateRoamMons ; 26
 	dba JumpRoamMons ; 27
-	dba FadeOldMapMusic ; 28
+	dba FadeOutMapMusic ; 28
 	dba ActivateMapAnims ; 29
 	dba SuspendMapAnims ; 2a
-	dba RetainOldPalettes ; 2b
-	dba DontScrollText ; 2c
-	dba ReturnFromMapSetupScript ; 2d
+	dba ApplyMapPalettes ; 2b
+	dba EnableTextAcceleration ; 2c
+	dba InitMapNameSign ; 2d
 
 
-SECTION "engine/overworld/map_setup.asm@DontScrollText", ROMX
+SECTION "engine/overworld/map_setup.asm@EnableTextAcceleration", ROMX
 
-DontScrollText:
+EnableTextAcceleration:
 	xor a
 	ld [wDisableTextAcceleration], a
 	ret
@@ -141,9 +141,9 @@ SuspendMapAnims:
 	ret
 
 
-SECTION "engine/overworld/map_setup.asm@LoadObjectsRunCallback_02", ROMX
+SECTION "engine/overworld/map_setup.asm@LoadMapObjects", ROMX
 
-LoadObjectsRunCallback_02:
+LoadMapObjects:
 	ld a, MAPCALLBACK_OBJECTS
 	call RunMapCallback
 	farcall LoadObjectMasks
@@ -154,17 +154,17 @@ LoadObjectsRunCallback_02:
 	ret
 
 
-SECTION "engine/overworld/map_setup.asm@DelayClearingOldSprites", ROMX
+SECTION "engine/overworld/map_setup.asm@ResetPlayerObjectAction", ROMX
 
-DelayClearingOldSprites:
+ResetPlayerObjectAction:
 	ld hl, wPlayerSpriteSetupFlags
 	set PLAYERSPRITESETUP_RESET_ACTION_F, [hl]
 	ret
 
 
-SECTION "engine/overworld/map_setup.asm@DelayLoadingNewSprites", ROMX
+SECTION "engine/overworld/map_setup.asm@SkipUpdateMapSprites", ROMX
 
-DelayLoadingNewSprites::
+SkipUpdateMapSprites::
 	ld hl, wPlayerSpriteSetupFlags
 	set PLAYERSPRITESETUP_SKIP_RELOAD_GFX_F, [hl]
 	ret
@@ -208,13 +208,13 @@ CheckReplaceKrisSprite::
 	jr z, .surfing
 	call GetMapEnvironment
 	cp INDOOR
-	jr z, .checkbiking
+	jr z, .no_biking
 	cp ENVIRONMENT_5
-	jr z, .checkbiking
+	jr z, .no_biking
 	cp DUNGEON
-	jr z, .checkbiking
+	jr z, .no_biking
 	jr .nope
-.checkbiking
+.no_biking
 	ld a, [wPlayerState]
 	cp PLAYER_BIKE
 	jr nz, .nope
@@ -230,40 +230,41 @@ CheckReplaceKrisSprite::
 
 .CheckSurfing:
 	call CheckOnWater
-	jr nz, .ret_nc
+	jr nz, .nope2
 	ld a, [wPlayerState]
 	cp PLAYER_SURF
-	jr z, ._surfing
+	jr z, .is_surfing
 	cp PLAYER_SURF_PIKA
-	jr z, ._surfing
+	jr z, .is_surfing
 	ld a, PLAYER_SURF
 	ld [wPlayerState], a
-._surfing
+.is_surfing
 	scf
 	ret
-.ret_nc
+
+.nope2
 	and a
 	ret
 
 
-SECTION "engine/overworld/map_setup.asm@FadeOldMapMusic", ROMX
+SECTION "engine/overworld/map_setup.asm@FadeOutMapMusic", ROMX
 
-FadeOldMapMusic:
+FadeOutMapMusic:
 	ld a, 6
 	call SkipMusic
 	ret
 
 
-SECTION "engine/overworld/map_setup.asm@RetainOldPalettes", ROMX
+SECTION "engine/overworld/map_setup.asm@ApplyMapPalettes", ROMX
 
-RetainOldPalettes:
+ApplyMapPalettes:
 	farcall _UpdateTimePals
 	ret
 
 
-SECTION "engine/overworld/map_setup.asm@RotatePalettesRightMapAndMusic", ROMX
+SECTION "engine/overworld/map_setup.asm@FadeMapMusicAndPalettes", ROMX
 
-RotatePalettesRightMapAndMusic:
+FadeMapMusicAndPalettes:
 	ld e, 0
 	ld a, [wMusicFadeID]
 	ld d, 0

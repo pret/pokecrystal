@@ -3,7 +3,7 @@ INCLUDE "macros/scripts/text.inc"
 
 SECTION "data/phone/text/anthony_callee.asm", ROMX
 
-UnknownText_0x1b5f7a::
+AnthonyAnswerPhoneText::
 	text "Yeah, @"
 	text_ram wStringBuffer3
 	text " the"
@@ -12,7 +12,7 @@ UnknownText_0x1b5f7a::
 	para "Ah, <PLAYER>!"
 	done
 
-UnknownText_0x1b5f9e::
+AnthonyAnswerPhoneDayText::
 	text "Yeah, @"
 	text_ram wStringBuffer3
 	text " the"
@@ -22,7 +22,7 @@ UnknownText_0x1b5f9e::
 	line "right?"
 	done
 
-UnknownText_0x1b5fc9::
+AnthonyAnswerPhoneNiteText::
 	text "Yeah, @"
 	text_ram wStringBuffer3
 	text " the"
@@ -32,7 +32,7 @@ UnknownText_0x1b5fc9::
 	line "it?"
 	done
 
-UnknownText_0x1b5ff6::
+AnthonyGreetText::
 	text "Yo, <PLAYER>?"
 
 	para "This is @"
@@ -41,7 +41,7 @@ UnknownText_0x1b5ff6::
 	line "the HIKER!"
 	done
 
-UnknownText_0x1b6017::
+AnthonyGreetDayText::
 	text "Hey, is this"
 	line "<PLAYER>?"
 
@@ -51,7 +51,7 @@ UnknownText_0x1b6017::
 	line "the HIKER!"
 	done
 
-UnknownText_0x1b6041::
+AnthonyGreetNiteText::
 	text "<PLAYER>, you still"
 	line "awake?"
 
@@ -61,7 +61,7 @@ UnknownText_0x1b6041::
 	line "the HIKER!"
 	done
 
-UnknownText_0x1b606f::
+AnthonyGenericText::
 	text "Are your #MON"
 	line "as feisty as ever?"
 

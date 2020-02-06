@@ -15,21 +15,21 @@ Music_JohtoGymBattle_Ch1:
 	tone $0002
 	vibrato $12, $15
 	notetype $c, $b2
-Music_JohtoGymBattle_branch_ea526:
+.loop1:
 	octave 3
 	note A#, 1
 	note A_, 1
 	note G#, 1
 	note A_, 1
-	loopchannel 4, Music_JohtoGymBattle_branch_ea526
-Music_JohtoGymBattle_branch_ea52f:
+	loopchannel 4, .loop1
+.loop2:
 	note C#, 1
 	note C_, 1
 	octave 2
 	note A#, 1
 	octave 3
 	note C_, 1
-	loopchannel 3, Music_JohtoGymBattle_branch_ea52f
+	loopchannel 3, .loop2
 	intensity $4b
 	note C#, 4
 	intensity $b2
@@ -62,7 +62,7 @@ Music_JohtoGymBattle_branch_ea52f:
 	octave 3
 	note G#, 2
 	note F_, 2
-Music_JohtoGymBattle_branch_ea55d:
+.mainloop:
 	intensity $b5
 	note D_, 6
 	note G_, 6
@@ -289,26 +289,26 @@ Music_JohtoGymBattle_branch_ea55d:
 	octave 3
 	note D#, 2
 	note F#, 2
-	loopchannel 0, Music_JohtoGymBattle_branch_ea55d
+	loopchannel 0, .mainloop
 
 Music_JohtoGymBattle_Ch2:
 	dutycycle $3
 	vibrato $8, $36
 	tone $0001
 	notetype $c, $c2
-Music_JohtoGymBattle_branch_ea66a:
+.loop1:
 	octave 4
 	note F#, 1
 	note F_, 1
 	note E_, 1
 	note A#, 1
-	loopchannel 4, Music_JohtoGymBattle_branch_ea66a
-Music_JohtoGymBattle_branch_ea673:
+	loopchannel 4, .loop1
+.loop2:
 	note F#, 1
 	note F_, 1
 	note F#, 1
 	note A#, 1
-	loopchannel 4, Music_JohtoGymBattle_branch_ea673
+	loopchannel 4, .loop2
 	note A_, 6
 	octave 3
 	note A#, 6
@@ -400,7 +400,7 @@ Music_JohtoGymBattle_branch_ea673:
 	octave 3
 	note G#, 1
 	note A_, 1
-Music_JohtoGymBattle_branch_ea6ee:
+.mainloop:
 	intensity $c7
 	note A#, 8
 	intensity $c4
@@ -615,7 +615,7 @@ Music_JohtoGymBattle_branch_ea6ee:
 	octave 3
 	note B_, 16
 	note G_, 16
-	loopchannel 0, Music_JohtoGymBattle_branch_ea6ee
+	loopchannel 0, .mainloop
 
 Music_JohtoGymBattle_Ch3:
 	notetype $c, $19
@@ -652,7 +652,7 @@ Music_JohtoGymBattle_Ch3:
 	note F_, 2
 	note G_, 2
 	note G#, 4
-	callchannel Music_JohtoGymBattle_branch_ea952
+	callchannel .sub1
 	note G_, 2
 	note D_, 2
 	note F_, 2
@@ -668,7 +668,7 @@ Music_JohtoGymBattle_Ch3:
 	note G#, 2
 	note D#, 2
 	note F#, 4
-	callchannel Music_JohtoGymBattle_branch_ea952
+	callchannel .sub1
 	note G_, 2
 	note D_, 2
 	note F_, 2
@@ -687,10 +687,10 @@ Music_JohtoGymBattle_Ch3:
 	octave 3
 	note A#, 2
 	note G#, 2
-Music_JohtoGymBattle_branch_ea83f:
-	callchannel Music_JohtoGymBattle_branch_ea963
-	callchannel Music_JohtoGymBattle_branch_ea963
-	callchannel Music_JohtoGymBattle_branch_ea96a
+.mainloop:
+	callchannel .sub2
+	callchannel .sub2
+	callchannel .sub3
 	note C#, 2
 	note G#, 2
 	note C#, 2
@@ -699,7 +699,7 @@ Music_JohtoGymBattle_branch_ea83f:
 	note A#, 2
 	note A_, 2
 	note G#, 2
-	callchannel Music_JohtoGymBattle_branch_ea963
+	callchannel .sub2
 	note D_, 2
 	note G_, 2
 	note D_, 2
@@ -708,8 +708,8 @@ Music_JohtoGymBattle_branch_ea83f:
 	note G_, 2
 	note G#, 2
 	note G_, 2
-	callchannel Music_JohtoGymBattle_branch_ea96a
-	callchannel Music_JohtoGymBattle_branch_ea96a
+	callchannel .sub3
+	callchannel .sub3
 	note C_, 2
 	note G_, 2
 	note A#, 2
@@ -718,14 +718,14 @@ Music_JohtoGymBattle_branch_ea83f:
 	note F_, 2
 	note G_, 2
 	note A#, 2
-	callchannel Music_JohtoGymBattle_branch_ea971
-	callchannel Music_JohtoGymBattle_branch_ea96a
-	callchannel Music_JohtoGymBattle_branch_ea978
+	callchannel .sub4
+	callchannel .sub3
+	callchannel .sub5
 	octave 3
 	note G_, 2
 	note G#, 2
 	note F_, 2
-	callchannel Music_JohtoGymBattle_branch_ea971
+	callchannel .sub4
 	note C_, 2
 	note G_, 2
 	note C_, 2
@@ -734,13 +734,13 @@ Music_JohtoGymBattle_branch_ea83f:
 	note E_, 2
 	note F_, 2
 	note G_, 2
-	callchannel Music_JohtoGymBattle_branch_ea96a
-	callchannel Music_JohtoGymBattle_branch_ea978
+	callchannel .sub3
+	callchannel .sub5
 	octave 3
 	note C_, 2
 	note C#, 2
 	note G#, 2
-	callchannel Music_JohtoGymBattle_branch_ea971
+	callchannel .sub4
 	note C_, 2
 	note G_, 2
 	note C_, 2
@@ -749,15 +749,15 @@ Music_JohtoGymBattle_branch_ea83f:
 	note E_, 2
 	note F_, 2
 	note G_, 2
-	callchannel Music_JohtoGymBattle_branch_ea96a
-	callchannel Music_JohtoGymBattle_branch_ea978
+	callchannel .sub3
+	callchannel .sub5
 	octave 3
 	note F_, 2
 	octave 2
 	note A#, 2
 	octave 3
 	note G#, 2
-	callchannel Music_JohtoGymBattle_branch_ea971
+	callchannel .sub4
 	note C_, 2
 	note G_, 2
 	note C_, 2
@@ -768,12 +768,12 @@ Music_JohtoGymBattle_branch_ea83f:
 	note G_, 2
 	note F_, 2
 	note G_, 2
-	callchannel Music_JohtoGymBattle_branch_ea983
+	callchannel .sub6
 	note __, 2
-	callchannel Music_JohtoGymBattle_branch_ea990
+	callchannel .sub7
 	octave 4
 	note C#, 2
-	callchannel Music_JohtoGymBattle_branch_ea99c
+	callchannel .sub8
 	note __, 2
 	note D#, 2
 	note A#, 2
@@ -788,11 +788,11 @@ Music_JohtoGymBattle_branch_ea83f:
 	note D#, 2
 	octave 4
 	note D#, 2
-	callchannel Music_JohtoGymBattle_branch_ea983
+	callchannel .sub6
 	note G_, 2
-	callchannel Music_JohtoGymBattle_branch_ea990
+	callchannel .sub7
 	note G#, 2
-	callchannel Music_JohtoGymBattle_branch_ea99c
+	callchannel .sub8
 	note A_, 2
 	octave 4
 	note D#, 2
@@ -806,7 +806,7 @@ Music_JohtoGymBattle_branch_ea83f:
 	octave 4
 	note D#, 2
 	note D_, 4
-	callchannel Music_JohtoGymBattle_branch_ea9a9
+	callchannel .sub9
 	note D#, 2
 	note G#, 2
 	note D#, 2
@@ -817,7 +817,7 @@ Music_JohtoGymBattle_branch_ea83f:
 	note A_, 2
 	note D#, 2
 	note G#, 2
-	callchannel Music_JohtoGymBattle_branch_ea9a9
+	callchannel .sub9
 	note D#, 2
 	note G#, 2
 	note D#, 2
@@ -826,7 +826,7 @@ Music_JohtoGymBattle_branch_ea83f:
 	note A_, 2
 	note G#, 2
 	note F#, 2
-	callchannel Music_JohtoGymBattle_branch_ea9b1
+	callchannel .sub10
 	note C#, 2
 	note F#, 2
 	note C#, 2
@@ -837,7 +837,7 @@ Music_JohtoGymBattle_branch_ea83f:
 	note A_, 2
 	note C#, 2
 	note G_, 2
-	callchannel Music_JohtoGymBattle_branch_ea9b1
+	callchannel .sub10
 	note C#, 2
 	note F#, 2
 	note C#, 2
@@ -846,7 +846,7 @@ Music_JohtoGymBattle_branch_ea83f:
 	note D#, 2
 	note E_, 2
 	note A_, 2
-	callchannel Music_JohtoGymBattle_branch_ea9a9
+	callchannel .sub9
 	note D#, 2
 	note G#, 2
 	note D#, 2
@@ -883,7 +883,7 @@ Music_JohtoGymBattle_branch_ea83f:
 	note F#, 2
 	note E_, 2
 	note F#, 2
-	callchannel Music_JohtoGymBattle_branch_ea9b8
+	callchannel .sub11
 	note F_, 2
 	note C_, 2
 	note D#, 2
@@ -892,7 +892,7 @@ Music_JohtoGymBattle_branch_ea83f:
 	note D#, 2
 	note C#, 2
 	note D#, 2
-	callchannel Music_JohtoGymBattle_branch_ea9b8
+	callchannel .sub11
 	note F_, 2
 	note C_, 2
 	note D#, 2
@@ -901,9 +901,9 @@ Music_JohtoGymBattle_branch_ea83f:
 	note F#, 2
 	note F_, 2
 	note D#, 2
-	loopchannel 0, Music_JohtoGymBattle_branch_ea83f
+	loopchannel 0, .mainloop
 
-Music_JohtoGymBattle_branch_ea952:
+.sub1:
 	note G_, 2
 	note D_, 2
 	note F_, 2
@@ -922,25 +922,28 @@ Music_JohtoGymBattle_branch_ea952:
 	note F_, 2
 	endchannel
 
-Music_JohtoGymBattle_branch_ea963:
+.sub2:
+.sub2loop1:
 	note D_, 2
 	note G_, 2
-	loopchannel 4, Music_JohtoGymBattle_branch_ea963
+	loopchannel 4, .sub2loop1
 	endchannel
 
-Music_JohtoGymBattle_branch_ea96a:
+.sub3:
+.sub3loop1:
 	note C#, 2
 	note G#, 2
-	loopchannel 4, Music_JohtoGymBattle_branch_ea96a
+	loopchannel 4, .sub3loop1
 	endchannel
 
-Music_JohtoGymBattle_branch_ea971:
+.sub4:
+.sub4loop1:
 	note C_, 2
 	note G_, 2
-	loopchannel 4, Music_JohtoGymBattle_branch_ea971
+	loopchannel 4, .sub4loop1
 	endchannel
 
-Music_JohtoGymBattle_branch_ea978:
+.sub5:
 	octave 2
 	note A#, 2
 	octave 3
@@ -953,7 +956,7 @@ Music_JohtoGymBattle_branch_ea978:
 	note A#, 2
 	endchannel
 
-Music_JohtoGymBattle_branch_ea983:
+.sub6:
 	octave 3
 	note C_, 2
 	note G_, 2
@@ -968,7 +971,7 @@ Music_JohtoGymBattle_branch_ea983:
 	note C_, 2
 	endchannel
 
-Music_JohtoGymBattle_branch_ea990:
+.sub7:
 	note C#, 2
 	note G#, 2
 	octave 4
@@ -982,7 +985,7 @@ Music_JohtoGymBattle_branch_ea990:
 	note C#, 2
 	endchannel
 
-Music_JohtoGymBattle_branch_ea99c:
+.sub8:
 	octave 3
 	note D_, 2
 	note A_, 2
@@ -997,20 +1000,22 @@ Music_JohtoGymBattle_branch_ea99c:
 	note D_, 2
 	endchannel
 
-Music_JohtoGymBattle_branch_ea9a9:
+.sub9:
+.sub9loop1:
 	octave 3
 	note D#, 2
 	note G#, 2
-	loopchannel 4, Music_JohtoGymBattle_branch_ea9a9
+	loopchannel 4, .sub9loop1
 	endchannel
 
-Music_JohtoGymBattle_branch_ea9b1:
+.sub10:
+.sub10loop1:
 	note C#, 2
 	note F#, 2
-	loopchannel 4, Music_JohtoGymBattle_branch_ea9b1
+	loopchannel 4, .sub10loop1
 	endchannel
 
-Music_JohtoGymBattle_branch_ea9b8:
+.sub11:
 	note F_, 2
 	note C_, 2
 	note D#, 2

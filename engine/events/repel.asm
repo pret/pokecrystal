@@ -6,12 +6,11 @@ SECTION "engine/events/repel.asm", ROMX
 
 RepelWoreOffScript::
 	opentext
-	writetext .text
+	writetext .RepelWoreOffText
 	waitbutton
 	closetext
 	end
 
-.text
-	; REPEL's effect wore off.
+.RepelWoreOffText:
 	text_far _RepelWoreOffText
 	text_end

@@ -37,7 +37,6 @@ SECTION "home.asm@NULL", ROM0[$0000]
 NULL::
 
 INCLUDE "home/rst.inc"
-
 INCLUDE "home/interrupts.inc"
 
 
@@ -69,8 +68,9 @@ INCLUDE "home/video.inc"
 INCLUDE "home/map_objects.inc"
 INCLUDE "home/sine.inc"
 INCLUDE "home/movement.inc"
-INCLUDE "home/menu_window.inc"
 INCLUDE "home/menu.inc"
+INCLUDE "home/menu_window.inc"
+INCLUDE "home/menu2.inc"
 INCLUDE "home/handshake.inc"
 INCLUDE "home/game_time.inc"
 INCLUDE "home/map.inc"

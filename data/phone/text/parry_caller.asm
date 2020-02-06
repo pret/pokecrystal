@@ -3,14 +3,14 @@ INCLUDE "macros/scripts/text.inc"
 
 SECTION "data/phone/text/parry_caller.asm", ROMX
 
-ParryNoMatchText::
+ParryNothingCanMatchText::
 	text "Nothing can match"
 	line "my @"
 	text_ram wStringBuffer4
 	text " now."
 	done
 
-UnknownText_0x66fc0::
+ParryDefeatedMonText::
 	text "Yeah, we KO'd a"
 	line "wild @"
 	text_ram wStringBuffer4
@@ -20,7 +20,7 @@ UnknownText_0x66fc0::
 	line "wanted to get it…"
 	done
 
-UnknownText_0x67001::
+ParryLostAMonText::
 	text "And yesterday, we"
 	line "spotted a wild"
 
@@ -39,7 +39,7 @@ UnknownText_0x67001::
 	line "How about that!"
 	done
 
-UnknownText_0x67096::
+ParryBattleRematchText::
 	text "You're thinking"
 	line "you'd like to"
 
@@ -52,7 +52,7 @@ UnknownText_0x67096::
 	text "!"
 	done
 
-UnknownText_0x670eb::
+ParryHangUpText::
 	text "OK, give me a call"
 	line "again!"
 	done

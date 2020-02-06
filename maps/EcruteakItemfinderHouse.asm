@@ -21,7 +21,7 @@ EcruteakItemfinderGuy:
 	yesorno
 	iffalse .no
 	writetext EcruteakItemfinderTrueSpiritText
-	buttonsound
+	promptbutton
 	verbosegiveitem ITEMFINDER
 	setevent EVENT_GOT_ITEMFINDER
 .itemfinder:

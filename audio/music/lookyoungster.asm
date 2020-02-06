@@ -29,7 +29,7 @@ Music_LookYoungster_Ch1:
 	note __, 2
 	note C_, 6
 	intensity $b3
-Music_LookYoungster_branch_f66ea:
+.mainloop:
 	note __, 2
 	octave 3
 	note G_, 1
@@ -62,9 +62,9 @@ Music_LookYoungster_branch_f66ea:
 	note C_, 1
 	note __, 1
 	note __, 16
-	loopchannel 0, Music_LookYoungster_branch_f66ea
+	loopchannel 0, .mainloop
 
-	db $ff
+	endchannel ; unused
 
 Music_LookYoungster_Ch2:
 	stereopanning $f0
@@ -87,7 +87,7 @@ Music_LookYoungster_Ch2:
 	note F_, 4
 	note __, 2
 	note F#, 6
-Music_LookYoungster_branch_f672f:
+.mainloop:
 	dutycycle $3
 	intensity $b3
 	note __, 2
@@ -160,9 +160,9 @@ Music_LookYoungster_branch_f672f:
 	octave 4
 	note C_, 1
 	note __, 1
-	loopchannel 0, Music_LookYoungster_branch_f672f
+	loopchannel 0, .mainloop
 
-	db $ff
+	endchannel ; unused
 
 Music_LookYoungster_Ch3:
 	stereopanning $ff
@@ -200,7 +200,7 @@ Music_LookYoungster_Ch3:
 	note __, 2
 	note G#, 6
 	intensity $25
-Music_LookYoungster_branch_f67ae:
+.mainloop:
 	octave 2
 	note G_, 1
 	note __, 1
@@ -295,6 +295,6 @@ Music_LookYoungster_branch_f67ae:
 	note __, 1
 	note G#, 1
 	note __, 1
-	loopchannel 0, Music_LookYoungster_branch_f67ae
+	loopchannel 0, .mainloop
 
-	db $ff
+	endchannel ; unused

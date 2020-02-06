@@ -97,6 +97,17 @@ RETVAR_EXECUTE EQU (2 << 6)
 	const PLAYEREVENT_JOYCHANGEFACING
 NUM_PLAYER_EVENTS EQU const_value
 
+; PlayerMovement.pointers indexes (see engine/overworld/events.asm)
+	const_def
+	const PLAYERMOVEMENT_NORMAL
+	const PLAYERMOVEMENT_WARP
+	const PLAYERMOVEMENT_TURN
+	const PLAYERMOVEMENT_FORCE_TURN
+	const PLAYERMOVEMENT_FINISH
+	const PLAYERMOVEMENT_CONTINUE
+	const PLAYERMOVEMENT_EXIT_WATER
+	const PLAYERMOVEMENT_JUMP
+
 ; script data sizes (see macros/scripts/maps.inc)
 SCENE_SCRIPT_SIZE EQU 4 ; scene_script
 CALLBACK_SIZE     EQU 3 ; callback
@@ -132,6 +143,7 @@ OBJECT_EVENT_SIZE EQU 13 ; object_event
 ; command queue members
 CMDQUEUE_TYPE  EQU 0
 CMDQUEUE_ADDR  EQU 1
+CMDQUEUE_02    EQU 2
 CMDQUEUE_03    EQU 3
 CMDQUEUE_04    EQU 4
 CMDQUEUE_05    EQU 5

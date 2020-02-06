@@ -205,7 +205,7 @@ SentAllToMomText::
 	text "Sent all to MOM!"
 	prompt
 
-BattleText_0x80a4f:
+BattleText_0x80a4f::
 	text "<RIVAL>: Huh? I"
 	line "should've chosen"
 	cont "your #MON!"
@@ -221,7 +221,7 @@ BattleText_UseNextMon::
 	text "Use next #MON?"
 	done
 
-BattleText_0x80a93:
+BattleText_0x80a93::
 	text "<RIVAL>: Yes!"
 	line "I guess I chose a"
 	cont "good #MON!"
@@ -420,9 +420,8 @@ BecameConfusedText::
 	text "<TARGET>"
 	line "became confused!"
 	prompt
-; ItemHealedConfusion
 
-BattleText_ItemHealedConfusion:: ; ItemHealedConfusion
+BattleText_ItemHealedConfusion::
 	text "A @"
 	text_ram wStringBuffer1
 	text " rid"
@@ -826,7 +825,7 @@ SubFadedText::
 	line "SUBSTITUTE faded!"
 	prompt
 
-LearnedMoveText::
+MimicLearnedMoveText::
 	text "<USER>"
 	line "learned"
 	cont "@"
@@ -1109,7 +1108,7 @@ BattleText_LinkErrorBattleCanceled::
 	line "been canceled…"
 	prompt
 
-BattleText_0x8188e:
+BattleText_0x8188e::
 	text "There is no time"
 	line "left today!"
 	done

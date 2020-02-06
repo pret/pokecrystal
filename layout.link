@@ -144,16 +144,16 @@ ROMX $05
 	"engine/menus/save.asm"
 	"engine/overworld/spawn_points.asm"
 	"engine/overworld/map_setup.asm@RunMapSetupScript"
-	"engine/overworld/map_setup.asm@DontScrollText"
+	"engine/overworld/map_setup.asm@EnableTextAcceleration"
 	"engine/overworld/map_setup.asm@ActivateMapAnims"
 	"engine/overworld/map_setup.asm@SuspendMapAnims"
-	"engine/overworld/map_setup.asm@LoadObjectsRunCallback_02"
-	"engine/overworld/map_setup.asm@DelayClearingOldSprites"
-	"engine/overworld/map_setup.asm@DelayLoadingNewSprites"
+	"engine/overworld/map_setup.asm@LoadMapObjects"
+	"engine/overworld/map_setup.asm@ResetPlayerObjectAction"
+	"engine/overworld/map_setup.asm@SkipUpdateMapSprites"
 	"engine/overworld/map_setup.asm@CheckReplaceKrisSprite"
-	"engine/overworld/map_setup.asm@FadeOldMapMusic"
-	"engine/overworld/map_setup.asm@RetainOldPalettes"
-	"engine/overworld/map_setup.asm@RotatePalettesRightMapAndMusic"
+	"engine/overworld/map_setup.asm@FadeOutMapMusic"
+	"engine/overworld/map_setup.asm@ApplyMapPalettes"
+	"engine/overworld/map_setup.asm@FadeMapMusicAndPalettes"
 	"engine/overworld/map_setup.asm@ForceMapMusic"
 	"engine/events/pokecenter_pc.asm"
 	"engine/items/mart.asm"
@@ -912,11 +912,7 @@ ROMX $3f
 	"engine/events/mom_phone.asm"
 	"engine/events/mom_phone.asm@DummyPredef3A"
 ROMX $40
-	"mobile/mobile_40.asm@Function100000 - UnknownText_0x1021f4 (1)"
-	"mobile/mobile_40.asm@Function100000 - UnknownText_0x1021f4 (ASCII 1)"
-	"mobile/mobile_40.asm@Function100000 - UnknownText_0x1021f4 (2)"
-	"mobile/mobile_40.asm@Function100000 - UnknownText_0x1021f4 (ASCII 2)"
-	"mobile/mobile_40.asm@Function100000 - UnknownText_0x1021f4 (3)"
+	"mobile/mobile_40.asm@Function100000 - UnknownText_0x1021f4"
 	"mobile/mobile_40.asm@Function1021f9 - Palettes_1032e2"
 	"mobile/mobile_40.asm@Function103302 - MenuData_103648"
 	"mobile/mobile_40.asm@Function103654"
@@ -966,11 +962,10 @@ ROMX $45
 	"mobile/mobile_45_sprite_engine.asm@GFX_11601a"
 	"mobile/mobile_45_sprite_engine.asm@Function11615a"
 	"mobile/mobile_45_sprite_engine.asm@Function11619d - Unknown_117356"
-	"mobile/mobile_45.asm@GiveOddEgg"
-	"mobile/mobile_45.asm@Function11765d - Unknown_117a47"
-	"mobile/mobile_45.asm@MobileStudium"
+	"mobile/mobile_45_stadium.asm@GiveOddEgg"
+	"mobile/mobile_45_stadium.asm@Function11765d - Unknown_117a47"
+	"mobile/mobile_45_stadium.asm@MobileStudium"
 ROMX $46
-	"mobile/mobile_46.asm@Function118000 - TilemapPack_11bb7d (ASCII)"
 	"mobile/mobile_46.asm@Function118000 - TilemapPack_11bb7d"
 ROMX $47
 	"engine/events/battle_tower/trainer_text.asm"
@@ -1421,6 +1416,7 @@ WRAMX 2
 WRAMX 3
 	"Battle Tower RAM"
 WRAMX 5
+	align 8
 	"GBC Video"
 	org $d300
 	"Battle Animations"
@@ -1455,5 +1451,7 @@ SRAM $04
 	"SRAM Mobile 1"
 SRAM $05
 	"SRAM Mobile 2"
+SRAM $06
+	"SRAM Mobile 3"
 HRAM
 	"HRAM"

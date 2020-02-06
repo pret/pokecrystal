@@ -31,17 +31,18 @@ Music_GymLeaderVictory_Ch1:
 	octave 5
 	note D_, 8
 	stereopanning $f
-Music_GymLeaderVictory_branch_f4658:
+.mainloop:
+.loop1:
 	dutycycle $1
-	callchannel Music_GymLeaderVictory_branch_f4689
+	callchannel .sub1
 	octave 4
 	note C#, 4
 	note E_, 4
-	callchannel Music_GymLeaderVictory_branch_f4689
+	callchannel .sub1
 	note F#, 8
-	loopchannel 2, Music_GymLeaderVictory_branch_f4658
+	loopchannel 2, .loop1
 	dutycycle $2
-	callchannel Music_GymLeaderVictory_branch_f46a0
+	callchannel .sub2
 	note A_, 4
 	note G_, 4
 	note F#, 6
@@ -52,7 +53,7 @@ Music_GymLeaderVictory_branch_f4658:
 	note D_, 8
 	note C#, 8
 	dutycycle $3
-	callchannel Music_GymLeaderVictory_branch_f46a0
+	callchannel .sub2
 	note C#, 4
 	note E_, 4
 	note G_, 6
@@ -62,9 +63,9 @@ Music_GymLeaderVictory_branch_f4658:
 	note G_, 2
 	intensity $87
 	note F#, 16
-	loopchannel 0, Music_GymLeaderVictory_branch_f4658
+	loopchannel 0, .mainloop
 
-Music_GymLeaderVictory_branch_f4689:
+.sub1:
 	intensity $91
 	octave 3
 	note F#, 2
@@ -88,7 +89,7 @@ Music_GymLeaderVictory_branch_f4689:
 	note D_, 1
 	endchannel
 
-Music_GymLeaderVictory_branch_f46a0:
+.sub2:
 	intensity $87
 	octave 3
 	note F#, 14
@@ -133,25 +134,25 @@ Music_GymLeaderVictory_Ch2:
 	octave 5
 	note D_, 1
 	note F#, 16
-Music_GymLeaderVictory_branch_f46d0:
+.mainloop:
 	dutycycle $3
 	intensity $a1
-	callchannel Music_GymLeaderVictory_branch_f4711
+	callchannel .sub1
 	note A_, 4
 	note A_, 4
-	callchannel Music_GymLeaderVictory_branch_f4711
+	callchannel .sub1
 	note D_, 6
 	dutycycle $2
 	note B_, 1
 	octave 5
 	note C#, 1
-	callchannel Music_GymLeaderVictory_branch_f4711
+	callchannel .sub1
 	note A_, 4
 	note A_, 4
-	callchannel Music_GymLeaderVictory_branch_f4711
+	callchannel .sub1
 	note D_, 8
 	dutycycle $3
-	callchannel Music_GymLeaderVictory_branch_f4720
+	callchannel .sub2
 	note F#, 4
 	note E_, 4
 	note D_, 14
@@ -160,7 +161,7 @@ Music_GymLeaderVictory_branch_f46d0:
 	intensity $a7
 	note A_, 16
 	dutycycle $2
-	callchannel Music_GymLeaderVictory_branch_f4720
+	callchannel .sub2
 	octave 4
 	note A_, 4
 	octave 5
@@ -175,9 +176,9 @@ Music_GymLeaderVictory_branch_f46d0:
 	note B_, 1
 	octave 5
 	note C#, 1
-	loopchannel 0, Music_GymLeaderVictory_branch_f46d0
+	loopchannel 0, .mainloop
 
-Music_GymLeaderVictory_branch_f4711:
+.sub1:
 	octave 5
 	note D_, 2
 	note C#, 2
@@ -194,7 +195,7 @@ Music_GymLeaderVictory_branch_f4711:
 	note F#, 2
 	endchannel
 
-Music_GymLeaderVictory_branch_f4720:
+.sub2:
 	intensity $98
 	note A_, 6
 	note F#, 1
@@ -229,7 +230,8 @@ Music_GymLeaderVictory_Ch3:
 	octave 3
 	note C#, 2
 	stereopanning $f0
-Music_GymLeaderVictory_branch_f4744:
+.mainloop:
+.loop1:
 	note D_, 2
 	note __, 4
 	octave 2
@@ -261,8 +263,8 @@ Music_GymLeaderVictory_branch_f4744:
 	octave 3
 	note D_, 2
 	note __, 6
-	loopchannel 2, Music_GymLeaderVictory_branch_f4744
-	callchannel Music_GymLeaderVictory_branch_f479e
+	loopchannel 2, .loop1
+	callchannel .sub1
 	octave 3
 	note D_, 2
 	note __, 2
@@ -287,7 +289,7 @@ Music_GymLeaderVictory_branch_f4744:
 	note C#, 2
 	octave 2
 	note A_, 2
-	callchannel Music_GymLeaderVictory_branch_f479e
+	callchannel .sub1
 	octave 3
 	note D_, 2
 	note __, 2
@@ -309,9 +311,9 @@ Music_GymLeaderVictory_branch_f4744:
 	note B_, 2
 	octave 3
 	note C#, 2
-	loopchannel 0, Music_GymLeaderVictory_branch_f4744
+	loopchannel 0, .mainloop
 
-Music_GymLeaderVictory_branch_f479e:
+.sub1:
 	octave 3
 	note D_, 2
 	note __, 2
@@ -389,12 +391,12 @@ Music_GymLeaderVictory_Ch4:
 	notetype $c
 	note B_, 16
 	note B_, 16
-Music_GymLeaderVictory_branch_f47eb:
-	callchannel Music_GymLeaderVictory_branch_f480b
+.mainloop:
+	callchannel .sub1
 	note D#, 6
 	note D#, 2
 	note D#, 8
-	callchannel Music_GymLeaderVictory_branch_f480b
+	callchannel .sub1
 	note D#, 6
 	note D#, 2
 	note D#, 4
@@ -402,7 +404,7 @@ Music_GymLeaderVictory_branch_f47eb:
 	note C#, 1
 	note C#, 1
 	note C#, 1
-Music_GymLeaderVictory_branch_f47fb:
+.loop1:
 	note D#, 2
 	note G_, 2
 	note D_, 2
@@ -411,14 +413,15 @@ Music_GymLeaderVictory_branch_f47fb:
 	note D#, 2
 	note D_, 2
 	note G_, 2
-	loopchannel 16, Music_GymLeaderVictory_branch_f47fb
-	loopchannel 0, Music_GymLeaderVictory_branch_f47eb
+	loopchannel 16, .loop1
+	loopchannel 0, .mainloop
 
-Music_GymLeaderVictory_branch_f480b:
+.sub1:
+.sub1loop1:
 	note D#, 6
 	note D#, 2
 	note D#, 4
 	note D_, 2
 	note D#, 2
-	loopchannel 3, Music_GymLeaderVictory_branch_f480b
+	loopchannel 3, .sub1loop1
 	endchannel

@@ -69,7 +69,7 @@ Music_VioletCity_Ch1:
 	octave 3
 	note C#, 12
 	note __, 8
-Music_VioletCity_branch_f0056:
+.mainloop:
 	notetype $6, $95
 	note __, 4
 	octave 2
@@ -299,7 +299,7 @@ Music_VioletCity_branch_f0056:
 	octave 4
 	note C#, 4
 	note __, 4
-	loopchannel 0, Music_VioletCity_branch_f0056
+	loopchannel 0, .mainloop
 
 Music_VioletCity_Ch2:
 	vibrato $12, $24
@@ -352,7 +352,7 @@ Music_VioletCity_Ch2:
 	note __, 2
 	note D#, 1
 	note E_, 1
-Music_VioletCity_branch_f0199:
+.mainloop:
 	intensity $b7
 	note F#, 4
 	note __, 2
@@ -505,7 +505,7 @@ Music_VioletCity_branch_f0199:
 	note __, 2
 	note D#, 1
 	note E_, 1
-	loopchannel 0, Music_VioletCity_branch_f0199
+	loopchannel 0, .mainloop
 
 Music_VioletCity_Ch3:
 	notetype $c, $25
@@ -532,7 +532,7 @@ Music_VioletCity_Ch3:
 	note F#, 2
 	octave 2
 	note A#, 2
-Music_VioletCity_branch_f0261:
+.mainloop:
 	notetype $c, $25
 	note B_, 1
 	note __, 5
@@ -628,7 +628,7 @@ Music_VioletCity_branch_f0261:
 	note B_, 2
 	note __, 2
 	note A_, 8
-	callchannel Music_VioletCity_branch_f0311
+	callchannel .sub1
 	note F#, 2
 	note __, 10
 	note B_, 2
@@ -638,7 +638,7 @@ Music_VioletCity_branch_f0261:
 	note A#, 8
 	note A_, 2
 	note __, 2
-	callchannel Music_VioletCity_branch_f0311
+	callchannel .sub1
 	note F#, 2
 	note __, 10
 	note B_, 2
@@ -693,9 +693,9 @@ Music_VioletCity_branch_f0261:
 	note __, 4
 	octave 2
 	note A#, 4
-	loopchannel 0, Music_VioletCity_branch_f0261
+	loopchannel 0, .mainloop
 
-Music_VioletCity_branch_f0311:
+.sub1:
 	note G_, 2
 	note __, 10
 	note G_, 2
@@ -720,35 +720,35 @@ Music_VioletCity_Ch4:
 	note D_, 2
 	note D_, 4
 	note F#, 4
-	callchannel Music_VioletCity_branch_f036c
-	callchannel Music_VioletCity_branch_f036c
-	callchannel Music_VioletCity_branch_f036c
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub1
 	note D_, 2
 	note D#, 1
 	note D#, 1
 	note D_, 2
 	note C_, 8
 	note D#, 2
-Music_VioletCity_branch_f0338:
-	callchannel Music_VioletCity_branch_f037a
-	callchannel Music_VioletCity_branch_f037a
-	callchannel Music_VioletCity_branch_f037a
-	callchannel Music_VioletCity_branch_f037a
-	callchannel Music_VioletCity_branch_f037a
-	callchannel Music_VioletCity_branch_f037a
-	callchannel Music_VioletCity_branch_f037a
-	callchannel Music_VioletCity_branch_f037a
-	callchannel Music_VioletCity_branch_f037a
-	callchannel Music_VioletCity_branch_f037a
-	callchannel Music_VioletCity_branch_f037a
-	callchannel Music_VioletCity_branch_f037a
-	callchannel Music_VioletCity_branch_f037a
-	callchannel Music_VioletCity_branch_f037a
-	callchannel Music_VioletCity_branch_f037a
-	callchannel Music_VioletCity_branch_f037a
-	loopchannel 0, Music_VioletCity_branch_f0338
+.mainloop:
+	callchannel .sub2
+	callchannel .sub2
+	callchannel .sub2
+	callchannel .sub2
+	callchannel .sub2
+	callchannel .sub2
+	callchannel .sub2
+	callchannel .sub2
+	callchannel .sub2
+	callchannel .sub2
+	callchannel .sub2
+	callchannel .sub2
+	callchannel .sub2
+	callchannel .sub2
+	callchannel .sub2
+	callchannel .sub2
+	loopchannel 0, .mainloop
 
-Music_VioletCity_branch_f036c:
+.sub1:
 	note D_, 1
 	note D_, 1
 	note D#, 1
@@ -764,7 +764,7 @@ Music_VioletCity_branch_f036c:
 	note G_, 1
 	endchannel
 
-Music_VioletCity_branch_f037a:
+.sub2:
 	note D#, 2
 	note G_, 1
 	note G_, 1

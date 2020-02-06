@@ -3,7 +3,7 @@ INCLUDE "macros/scripts/text.inc"
 
 SECTION "data/phone/text/arnie_caller.asm", ROMX
 
-ArnieLovesTheCuteText::
+ArnieMonIsSoCuteText::
 	text "I'm always with my"
 	line "@"
 	text_ram wStringBuffer4
@@ -13,7 +13,7 @@ ArnieLovesTheCuteText::
 	line "I just love it!"
 	done
 
-UnknownText_0x64a13::
+ArnieDefeatedMonText::
 	text "Changing the topic"
 	line "here, I saw this"
 
@@ -26,7 +26,7 @@ UnknownText_0x64a13::
 	line "beat, actually."
 	done
 
-UnknownText_0x64a71::
+ArnieLostAMonText::
 	text "I was wondering,"
 	line "do you happen to"
 	cont "have @"
@@ -40,7 +40,7 @@ UnknownText_0x64a71::
 	line "wonder."
 	done
 
-UnknownText_0x64ada::
+ArnieBattleRematchText::
 	text "Hey, let's battle"
 	line "our #MON!"
 
@@ -56,12 +56,12 @@ UnknownText_0x64ada::
 	text "!"
 	done
 
-UnknownText_0x64b48::
+ArnieHangUpText::
 	text "Let's talk again,"
 	line "huh?"
 	done
 
-UnknownText_0x64b5f::
+ArnieSwarmText::
 	text "Boy, am I glad I"
 	line "caught you!"
 
@@ -79,7 +79,7 @@ UnknownText_0x64b5f::
 	line "this!"
 	done
 
-UnknownText_0x64bc6::
+ArnieHaventSeenRareMonText::
 	text "I haven't had any"
 	line "luck seeing rare"
 	cont "#MON lately…"
@@ -88,7 +88,7 @@ UnknownText_0x64bc6::
 	line "out there!"
 	done
 
-UnknownText_0x64c13::
+ArnieReminderText::
 	text "Hey, where are you"
 	line "now?"
 
@@ -99,7 +99,7 @@ UnknownText_0x64c13::
 	text "!"
 	done
 
-UnknownText_0x64c5a::
+ArnieHurryText::
 	text "Hello? Are you"
 	line "coming or what?"
 

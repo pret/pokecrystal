@@ -18,7 +18,7 @@ Music_Route29_Ch1:
 	stereopanning $f
 	notetype $c, $b2
 	note __, 2
-Music_Route29_branch_f03a5:
+.mainloop:
 	note __, 2
 	octave 4
 	note C_, 2
@@ -171,7 +171,7 @@ Music_Route29_branch_f03a5:
 	note C_, 2
 	note G_, 2
 	note G_, 4
-	loopchannel 0, Music_Route29_branch_f03a5
+	loopchannel 0, .mainloop
 
 Music_Route29_Ch2:
 	dutycycle $3
@@ -180,8 +180,8 @@ Music_Route29_Ch2:
 	octave 4
 	note C_, 1
 	note D_, 1
-Music_Route29_branch_f0458:
-	callchannel Music_Route29_branch_f04de
+.mainloop:
+	callchannel .sub1
 	note F_, 1
 	note E_, 1
 	note D_, 2
@@ -196,7 +196,7 @@ Music_Route29_branch_f0458:
 	octave 4
 	note C_, 1
 	note D_, 1
-	callchannel Music_Route29_branch_f04de
+	callchannel .sub1
 	note F_, 1
 	note E_, 1
 	note D_, 2
@@ -303,9 +303,9 @@ Music_Route29_branch_f0458:
 	octave 4
 	note C_, 1
 	note D_, 1
-	loopchannel 0, Music_Route29_branch_f0458
+	loopchannel 0, .mainloop
 
-Music_Route29_branch_f04de:
+.sub1:
 	note E_, 2
 	note E_, 2
 	note G_, 2
@@ -341,7 +341,7 @@ Music_Route29_Ch3:
 	notetype $c, $25
 	vibrato $9, $27
 	note __, 2
-Music_Route29_branch_f0504:
+.mainloop:
 	note __, 2
 	octave 3
 	note G_, 1
@@ -503,14 +503,14 @@ Music_Route29_branch_f0504:
 	note __, 1
 	note C_, 1
 	note __, 3
-	loopchannel 0, Music_Route29_branch_f0504
+	loopchannel 0, .mainloop
 
 Music_Route29_Ch4:
 	stereopanning $f
 	togglenoise $0
 	notetype $c
 	note __, 2
-Music_Route29_branch_f05b0:
+.mainloop:
 	note __, 2
 	note F_, 2
 	note F_, 6
@@ -522,4 +522,4 @@ Music_Route29_branch_f05b0:
 	note F_, 4
 	note F_, 2
 	note F_, 4
-	loopchannel 0, Music_Route29_branch_f05b0
+	loopchannel 0, .mainloop

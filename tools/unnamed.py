@@ -71,7 +71,15 @@ if not objects:
 files = {}
 for objfile in objects:
     f = open(objfile, "rb")
-    if unpack_file("4s", f)[0] != b'RGB6':
+    obj_ver = None
+
+    magic = unpack_file("4s", f)[0]
+    if magic == b'RGB6':
+        obj_ver = 6
+    elif magic == b'RGB9':
+        obj_ver = 10 + unpack_file("<I", f)[0]
+
+    if obj_ver not in [6, 10]:
         print("Error: File '%s' is of an unknown format." % objfile, file=stderr)
         exit(1)
 

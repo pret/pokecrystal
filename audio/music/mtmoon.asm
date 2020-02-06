@@ -18,14 +18,14 @@ Music_MtMoon_Ch1:
 	stereopanning $f0
 	notetype $c, $45
 	note __, 2
-	loopchannel 0, Music_MtMoon_branch_edb56
+	loopchannel 0, Music_MtMoon_Ch2.mainloop
 
 Music_MtMoon_Ch2:
 	vibrato $b, $15
 	dutycycle $2
 	notetype $c, $84
 	stereopanning $f
-Music_MtMoon_branch_edb56:
+.mainloop:
 	octave 4
 	note D#, 6
 	note C#, 6
@@ -74,12 +74,12 @@ Music_MtMoon_branch_edb56:
 	note E_, 6
 	note F#, 6
 	note E_, 4
-	loopchannel 0, Music_MtMoon_branch_edb56
+	loopchannel 0, .mainloop
 
 Music_MtMoon_Ch3:
-Music_MtMoon_branch_edb8a:
+.mainloop:
 	notetype $c, $28
-Music_MtMoon_branch_edb8d:
+.loop1:
 	octave 2
 	note B_, 2
 	octave 3
@@ -94,7 +94,7 @@ Music_MtMoon_branch_edb8d:
 	note B_, 2
 	octave 3
 	note D#, 2
-	loopchannel 3, Music_MtMoon_branch_edb8d
+	loopchannel 3, .loop1
 	octave 2
 	note B_, 2
 	octave 3
@@ -107,12 +107,7 @@ Music_MtMoon_branch_edb8d:
 	note G_, 2
 	note D#, 2
 	note E_, 2
-Music_MtMoon_branch_edbab:
-	note E_, 2
-	note G#, 2
-	octave 4
-	note C_, 2
-	octave 3
+.loop2:
 	note E_, 2
 	note G#, 2
 	octave 4
@@ -120,13 +115,18 @@ Music_MtMoon_branch_edbab:
 	octave 3
 	note E_, 2
 	note G#, 2
-	loopchannel 4, Music_MtMoon_branch_edbab
-	loopchannel 0, Music_MtMoon_branch_edb8a
+	octave 4
+	note C_, 2
+	octave 3
+	note E_, 2
+	note G#, 2
+	loopchannel 4, .loop2
+	loopchannel 0, .mainloop
 
 Music_MtMoon_Ch4:
 	togglenoise $5
 	notetype $c
-Music_MtMoon_branch_edbc3:
+.mainloop:
 	stereopanning $f
 	note A#, 4
 	note A#, 8
@@ -140,4 +140,4 @@ Music_MtMoon_branch_edbc3:
 	note A#, 4
 	stereopanning $f0
 	note A#, 8
-	loopchannel 0, Music_MtMoon_branch_edbc3
+	loopchannel 0, .mainloop

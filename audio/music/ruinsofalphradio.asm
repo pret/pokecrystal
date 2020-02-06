@@ -15,22 +15,22 @@ Music_RuinsOfAlphRadio_Ch1:
 	tone $0118
 	vibrato $0, $f0
 	stereopanning $f0
-Music_RuinsOfAlphRadio_branch_eede3:
+.mainloop:
 	notetype $6, $71
-	callchannel Music_RuinsOfAlphRadio_branch_eee01
+	callchannel .sub1
 	notetype $c, $a1
 	note __, 16
 	note __, 16
-	callchannel Music_RuinsOfAlphRadio_branch_eee08
+	callchannel .sub2
 	notetype $c, $a1
 	note __, 16
 	note __, 16
-	callchannel Music_RuinsOfAlphRadio_branch_eee01
+	callchannel .sub1
 	notetype $c, $a1
 	note __, 16
-	loopchannel 0, Music_RuinsOfAlphRadio_branch_eede3
+	loopchannel 0, .mainloop
 
-Music_RuinsOfAlphRadio_branch_eee01:
+.sub1:
 	octave 4
 	note G_, 1
 	note F#, 1
@@ -39,7 +39,7 @@ Music_RuinsOfAlphRadio_branch_eee01:
 	note C_, 8
 	endchannel
 
-Music_RuinsOfAlphRadio_branch_eee08:
+.sub2:
 	octave 4
 	note G_, 1
 	note F#, 1
@@ -54,25 +54,25 @@ Music_RuinsOfAlphRadio_branch_eee08:
 Music_RuinsOfAlphRadio_Ch2:
 	dutycycle $1
 	vibrato $1, $e0
-Music_RuinsOfAlphRadio_branch_eee17:
+.mainloop:
 	stereopanning $f
 	notetype $6, $81
-	callchannel Music_RuinsOfAlphRadio_branch_eee01
+	callchannel Music_RuinsOfAlphRadio_Ch1.sub1
 	notetype $c, $a1
 	note __, 16
 	note __, 16
 	notetype $6, $81
-	callchannel Music_RuinsOfAlphRadio_branch_eee08
+	callchannel Music_RuinsOfAlphRadio_Ch1.sub2
 	notetype $c, $a1
 	note __, 16
-	loopchannel 0, Music_RuinsOfAlphRadio_branch_eee17
+	loopchannel 0, .mainloop
 
 Music_RuinsOfAlphRadio_Ch3:
 	notetype $6, $26
-Music_RuinsOfAlphRadio_branch_eee35:
+.mainloop:
 	octave 2
 	note C_, 1
 	note C#, 1
 	note C_, 1
 	note __, 16
-	loopchannel 0, Music_RuinsOfAlphRadio_branch_eee35
+	loopchannel 0, .mainloop

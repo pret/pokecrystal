@@ -7,7 +7,7 @@ Music_PostCredits::
 	musicheader 2, 1, Music_PostCredits_Ch1
 	musicheader 1, 2, Music_PostCredits_Ch2
 
-	db $2
+	db $2 ; unused
 
 Music_PostCredits_Ch1:
 	tempo 271
@@ -16,7 +16,7 @@ Music_PostCredits_Ch1:
 	dutycycle $2
 	notetype $c, $93
 	note __, 8
-Music_PostCredits_branch_cfdb2:
+.mainloop:
 	octave 3
 	note C_, 2
 	note E_, 2
@@ -133,7 +133,7 @@ Music_PostCredits_branch_cfdb2:
 	note D_, 2
 	octave 2
 	note G_, 2
-	loopchannel 0, Music_PostCredits_branch_cfdb2
+	loopchannel 0, .mainloop
 
 Music_PostCredits_Ch2:
 	pitchoffset 0, D#
@@ -147,7 +147,7 @@ Music_PostCredits_Ch2:
 	note F_, 2
 	intensity $73
 	note F_, 2
-Music_PostCredits_branch_cfe5a:
+.mainloop:
 	intensity $a3
 	note G_, 2
 	intensity $73
@@ -266,4 +266,4 @@ Music_PostCredits_branch_cfe5a:
 	intensity $a3
 	note E_, 2
 	note F_, 2
-	loopchannel 0, Music_PostCredits_branch_cfe5a
+	loopchannel 0, .mainloop

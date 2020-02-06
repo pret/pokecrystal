@@ -40,7 +40,7 @@ Tilesets::
 	tileset TilesetLighthouse
 	tileset TilesetPlayersRoom
 	tileset TilesetPokeComCenter
-	tileset TilesetBattleTower
+	tileset TilesetBattleTowerInside
 	tileset TilesetTower
 	tileset TilesetCave
 	tileset TilesetPark

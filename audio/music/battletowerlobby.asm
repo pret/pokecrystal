@@ -17,7 +17,7 @@ Music_BattleTowerLobby_Ch1:
 	vibrato $8, $22
 	stereopanning $f0
 	notetype $c, $72
-Music_BattleTowerLobby_branch_1794a9:
+.mainloop:
 	notetype $c, $72
 	octave 3
 	note G#, 2
@@ -119,14 +119,14 @@ Music_BattleTowerLobby_branch_1794a9:
 	notetype $c, $75
 	octave 2
 	note B_, 4
-	loopchannel 0, Music_BattleTowerLobby_branch_1794a9
+	loopchannel 0, .mainloop
 
 Music_BattleTowerLobby_Ch2:
 	dutycycle $2
 	vibrato $10, $34
 	stereopanning $f
 	notetype $c, $82
-Music_BattleTowerLobby_branch_179544:
+.mainloop:
 	notetype $c, $82
 	octave 4
 	note E_, 2
@@ -203,11 +203,11 @@ Music_BattleTowerLobby_branch_179544:
 	note B_, 1
 	octave 4
 	note D#, 1
-	loopchannel 0, Music_BattleTowerLobby_branch_179544
+	loopchannel 0, .mainloop
 
 Music_BattleTowerLobby_Ch3:
 	notetype $c, $11
-Music_BattleTowerLobby_branch_1795b1:
+.mainloop:
 	octave 2
 	note B_, 2
 	octave 3
@@ -299,15 +299,15 @@ Music_BattleTowerLobby_branch_1795b1:
 	note E_, 2
 	note D#, 2
 	note F#, 2
-	loopchannel 0, Music_BattleTowerLobby_branch_1795b1
+	loopchannel 0, .mainloop
 
 Music_BattleTowerLobby_Ch4:
 	togglenoise $0
-Music_BattleTowerLobby_branch_179612:
+.mainloop:
 	notetype $c
 	note __, 2
 	note F_, 4
 	note F_, 4
 	note F_, 2
 	note F_, 4
-	loopchannel 0, Music_BattleTowerLobby_branch_179612
+	loopchannel 0, .mainloop

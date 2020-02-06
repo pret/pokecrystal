@@ -39,8 +39,7 @@ Music_LookRival_Ch1:
 	note G#, 8
 	intensity $a6
 	note F#, 8
-Music_AfterTheRivalFight_branch_f4fb1::
-Music_LookRival_branch_f4fb1:
+.mainloop::
 	intensity $b5
 	note F_, 4
 	note D#, 2
@@ -104,7 +103,7 @@ Music_LookRival_branch_f4fb1:
 	note G#, 8
 	note F_, 6
 	note C_, 2
-Music_LookRival_branch_f4ff7:
+.loop1:
 	intensity $b2
 	note F_, 6
 	intensity $b7
@@ -112,14 +111,14 @@ Music_LookRival_branch_f4ff7:
 	note F#, 2
 	note F_, 2
 	note D#, 2
-	loopchannel 3, Music_LookRival_branch_f4ff7
+	loopchannel 3, .loop1
 	intensity $b2
 	note F_, 2
 	note G#, 4
 	intensity $b7
 	note G#, 6
 	note F#, 4
-	loopchannel 0, Music_LookRival_branch_f4fb1
+	loopchannel 0, .mainloop
 
 Music_LookRival_Ch2:
 	dutycycle $3
@@ -142,8 +141,7 @@ Music_LookRival_Ch2:
 	note D#, 10
 	intensity $b7
 	note D#, 16
-Music_AfterTheRivalFight_branch_f502e::
-Music_LookRival_branch_f502e:
+.mainloop::
 	intensity $c7
 	note C_, 12
 	intensity $c4
@@ -196,19 +194,19 @@ Music_LookRival_branch_f502e:
 	note D#, 1
 	note D_, 1
 	note D#, 2
-Music_LookRival_branch_f5070:
+.loop1:
 	intensity $c2
 	note C_, 6
 	intensity $c7
 	note D#, 6
 	intensity $c2
 	note F_, 4
-	loopchannel 3, Music_LookRival_branch_f5070
+	loopchannel 3, .loop1
 	note C_, 2
 	note D#, 4
 	intensity $c7
 	note D#, 10
-	loopchannel 0, Music_LookRival_branch_f502e
+	loopchannel 0, .mainloop
 
 Music_LookRival_Ch3:
 	notetype $c, $28
@@ -232,17 +230,17 @@ Music_LookRival_Ch3:
 	note C_, 2
 	note D#, 2
 	note F#, 2
-Music_AfterTheRivalFight_branch_f509d::
-Music_LookRival_branch_f509d:
-	callchannel Music_LookRival_branch_f50ef
-	loopchannel 3, Music_LookRival_branch_f509d
+.mainloop::
+.loop1:
+	callchannel .sub1
+	loopchannel 3, .loop1
 	note F_, 4
 	note C_, 2
 	note D#, 4
 	note G#, 2
 	note G_, 2
 	note F#, 2
-	callchannel Music_LookRival_branch_f50f7
+	callchannel .sub2
 	note A#, 2
 	note F_, 2
 	note G_, 2
@@ -251,7 +249,7 @@ Music_LookRival_branch_f509d:
 	note G_, 2
 	note G#, 1
 	note A_, 1
-	callchannel Music_LookRival_branch_f50ff
+	callchannel .sub3
 	note A#, 2
 	note F_, 2
 	note G_, 2
@@ -276,10 +274,10 @@ Music_LookRival_branch_f509d:
 	note A_, 2
 	note A#, 1
 	note A_, 1
-	callchannel Music_LookRival_branch_f50f7
-	callchannel Music_LookRival_branch_f50ff
-	callchannel Music_LookRival_branch_f50ef
-	callchannel Music_LookRival_branch_f50ef
+	callchannel .sub2
+	callchannel .sub3
+	callchannel .sub1
+	callchannel .sub1
 	note F_, 2
 	note C_, 2
 	note D_, 2
@@ -295,9 +293,9 @@ Music_LookRival_branch_f509d:
 	note C_, 2
 	note F#, 2
 	note E_, 2
-	loopchannel 0, Music_LookRival_branch_f509d
+	loopchannel 0, .mainloop
 
-Music_LookRival_branch_f50ef:
+.sub1:
 	note F_, 2
 	note C_, 2
 	note D_, 2
@@ -307,7 +305,7 @@ Music_LookRival_branch_f50ef:
 	note D#, 2
 	endchannel
 
-Music_LookRival_branch_f50f7:
+.sub2:
 	note A#, 2
 	note F_, 2
 	note G_, 2
@@ -317,7 +315,7 @@ Music_LookRival_branch_f50f7:
 	note G#, 2
 	endchannel
 
-Music_LookRival_branch_f50ff:
+.sub3:
 	note A#, 4
 	note F_, 2
 	note G#, 4
@@ -342,8 +340,7 @@ Music_LookRival_Ch4:
 	note D_, 2
 	note D_, 2
 	note D_, 2
-Music_AfterTheRivalFight_branch_f5118::
-Music_LookRival_branch_f5118:
+.mainloop::
 	note D#, 4
 	note D_, 2
 	note D#, 4
@@ -355,4 +352,4 @@ Music_LookRival_branch_f5118:
 	note D#, 2
 	note D_, 2
 	note D_, 2
-	loopchannel 0, Music_LookRival_branch_f5118
+	loopchannel 0, .mainloop

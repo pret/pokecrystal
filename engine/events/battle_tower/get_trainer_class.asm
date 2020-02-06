@@ -1,3 +1,4 @@
+INCLUDE "constants/misc_constants.inc"
 INCLUDE "constants/trainer_constants.inc"
 
 
@@ -26,7 +27,7 @@ GetMobileOTTrainerClass:: ; mobile function
 
 .skip_male_trainers
 	ld a, [de]
-	cp $1
+	cp FEMALE
 	ld hl, MaleTrainers
 	jr nz, .finished
 

@@ -15,7 +15,7 @@ Music_TinTower_Ch1:
 	dutycycle $3
 	tone $0004
 	vibrato $8, $45
-Music_TinTower_branch_f682a:
+.mainloop:
 	stereopanning $f0
 	notetype $c, $a5
 	octave 3
@@ -98,15 +98,15 @@ Music_TinTower_branch_f682a:
 	intensity $a5
 	octave 3
 	note A#, 4
-	loopchannel 0, Music_TinTower_branch_f682a
+	loopchannel 0, .mainloop
 
 Music_TinTower_Ch2:
 	dutycycle $3
 	tone $0002
 	vibrato $18, $44
-Music_TinTower_branch_f6893:
+.mainloop:
 	stereopanning $ff
-Music_TinTower_branch_f6895:
+.loop1:
 	notetype $c, $b5
 	octave 4
 	note C_, 4
@@ -137,7 +137,7 @@ Music_TinTower_branch_f6895:
 	octave 4
 	note C_, 8
 	stereopanning $f
-	loopchannel 2, Music_TinTower_branch_f6895
+	loopchannel 2, .loop1
 	intensity $b2
 	octave 3
 	note C_, 4
@@ -187,11 +187,11 @@ Music_TinTower_branch_f6895:
 	note C_, 6
 	intensity $95
 	note C#, 2
-	loopchannel 0, Music_TinTower_branch_f6893
+	loopchannel 0, .mainloop
 
 Music_TinTower_Ch3:
 	notetype $c, $14
-Music_TinTower_branch_f68fb:
+.mainloop:
 	note __, 16
 	note __, 16
 	note __, 16
@@ -261,12 +261,12 @@ Music_TinTower_branch_f68fb:
 	note C_, 1
 	note __, 11
 	stereopanning $ff
-	loopchannel 0, Music_TinTower_branch_f68fb
+	loopchannel 0, .mainloop
 
 Music_TinTower_Ch4:
 	togglenoise $0
 	notetype $c
-Music_TinTower_branch_f694c:
+.mainloop:
 	stereopanning $f
 	note G_, 2
 	stereopanning $f0
@@ -293,4 +293,4 @@ Music_TinTower_branch_f694c:
 	note G_, 2
 	note G_, 2
 	note F_, 2
-	loopchannel 0, Music_TinTower_branch_f694c
+	loopchannel 0, .mainloop

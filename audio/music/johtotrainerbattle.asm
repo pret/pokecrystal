@@ -90,9 +90,9 @@ Music_JohtoTrainerBattle_Ch1:
 	note F_, 6
 	intensity $b7
 	note G_, 4
-Music_JohtoTrainerBattle_branch_f6102:
+.mainloop:
 	intensity $b4
-	callchannel Music_JohtoTrainerBattle_branch_f629f
+	callchannel .sub1
 	intensity $b7
 	note A#, 4
 	intensity $b3
@@ -124,7 +124,7 @@ Music_JohtoTrainerBattle_branch_f6102:
 	note E_, 2
 	note D_, 2
 	note C_, 2
-	callchannel Music_JohtoTrainerBattle_branch_f629f
+	callchannel .sub1
 	intensity $b7
 	note F_, 4
 	note E_, 2
@@ -247,7 +247,7 @@ Music_JohtoTrainerBattle_branch_f6102:
 	intensity $a7
 	note D#, 12
 	note __, 16
-Music_JohtoTrainerBattle_branch_f61bd:
+.loop1:
 	intensity $b7
 	note F_, 8
 	intensity $b4
@@ -270,7 +270,7 @@ Music_JohtoTrainerBattle_branch_f61bd:
 	note D#, 2
 	note F_, 4
 	note F_, 4
-	loopchannel 2, Music_JohtoTrainerBattle_branch_f61bd
+	loopchannel 2, .loop1
 	intensity $b7
 	note F_, 8
 	intensity $b4
@@ -416,7 +416,7 @@ Music_JohtoTrainerBattle_branch_f61bd:
 	intensity $a7
 	note F_, 8
 	intensity $b3
-	callchannel Music_JohtoTrainerBattle_branch_f629f
+	callchannel .sub1
 	note F_, 4
 	note E_, 2
 	note F_, 2
@@ -431,9 +431,9 @@ Music_JohtoTrainerBattle_branch_f61bd:
 	note F_, 10
 	intensity $a7
 	note F_, 6
-	loopchannel 0, Music_JohtoTrainerBattle_branch_f6102
+	loopchannel 0, .mainloop
 
-Music_JohtoTrainerBattle_branch_f629f:
+.sub1:
 	octave 3
 	note E_, 2
 	note D_, 2
@@ -501,10 +501,10 @@ Music_JohtoTrainerBattle_Ch2:
 	intensity $c2
 	octave 4
 	note A_, 6
-	callchannel Music_JohtoTrainerBattle_branch_f649a
+	callchannel .sub1
 	intensity $c2
 	note A_, 6
-	callchannel Music_JohtoTrainerBattle_branch_f649a
+	callchannel .sub1
 	intensity $c2
 	octave 5
 	note C_, 6
@@ -549,13 +549,13 @@ Music_JohtoTrainerBattle_Ch2:
 	note E_, 2
 	intensity $c7
 	note B_, 4
-Music_JohtoTrainerBattle_branch_f632a:
-	callchannel Music_JohtoTrainerBattle_branch_f64a3
+.mainloop:
+	callchannel .sub2
 	intensity $3e
 	note A#, 8
 	intensity $c7
 	note A#, 8
-	callchannel Music_JohtoTrainerBattle_branch_f64a3
+	callchannel .sub2
 	intensity $c4
 	note D_, 4
 	octave 3
@@ -586,7 +586,7 @@ Music_JohtoTrainerBattle_branch_f632a:
 	note A_, 16
 	intensity $b7
 	note A_, 16
-Music_JohtoTrainerBattle_branch_f635a:
+.loop1:
 	intensity $c3
 	octave 3
 	note A_, 2
@@ -598,7 +598,7 @@ Music_JohtoTrainerBattle_branch_f635a:
 	note A_, 2
 	note G_, 2
 	note A#, 2
-	loopchannel 3, Music_JohtoTrainerBattle_branch_f635a
+	loopchannel 3, .loop1
 	note A_, 2
 	octave 4
 	note D_, 2
@@ -609,7 +609,7 @@ Music_JohtoTrainerBattle_branch_f635a:
 	note G_, 2
 	note A_, 2
 	note A#, 2
-Music_JohtoTrainerBattle_branch_f6376:
+.loop2:
 	note G_, 2
 	note F_, 2
 	note G_, 2
@@ -619,7 +619,7 @@ Music_JohtoTrainerBattle_branch_f6376:
 	note G_, 2
 	note F_, 2
 	note G#, 2
-	loopchannel 3, Music_JohtoTrainerBattle_branch_f6376
+	loopchannel 3, .loop2
 	note F_, 2
 	octave 4
 	note C_, 2
@@ -680,14 +680,14 @@ Music_JohtoTrainerBattle_branch_f6376:
 	intensity $b7
 	note D#, 8
 	intensity $62
-	callchannel Music_JohtoTrainerBattle_branch_f64b6
+	callchannel .sub3
 	intensity $82
-	callchannel Music_JohtoTrainerBattle_branch_f64b6
+	callchannel .sub3
 	intensity $92
-	callchannel Music_JohtoTrainerBattle_branch_f64b6
+	callchannel .sub3
 	intensity $a2
-	callchannel Music_JohtoTrainerBattle_branch_f64b6
-Music_JohtoTrainerBattle_branch_f63dd:
+	callchannel .sub3
+.loop3:
 	octave 4
 	note D#, 2
 	octave 3
@@ -704,18 +704,18 @@ Music_JohtoTrainerBattle_branch_f63dd:
 	note G_, 2
 	octave 3
 	note A#, 2
-	loopchannel 8, Music_JohtoTrainerBattle_branch_f63dd
-	callchannel Music_JohtoTrainerBattle_branch_f64be
+	loopchannel 8, .loop3
+	callchannel .sub4
 	octave 3
 	note A#, 2
 	intensity $c7
 	octave 4
 	note C_, 8
-	callchannel Music_JohtoTrainerBattle_branch_f64be
+	callchannel .sub4
 	note G_, 2
 	intensity $c7
 	note F_, 8
-	callchannel Music_JohtoTrainerBattle_branch_f64be
+	callchannel .sub4
 	octave 3
 	note A#, 2
 	intensity $b0
@@ -748,7 +748,7 @@ Music_JohtoTrainerBattle_branch_f63dd:
 	note G_, 6
 	intensity $4c
 	note G#, 4
-	callchannel Music_JohtoTrainerBattle_branch_f64d2
+	callchannel .sub5
 	intensity $b0
 	note F_, 8
 	intensity $b7
@@ -757,7 +757,7 @@ Music_JohtoTrainerBattle_branch_f63dd:
 	note G#, 8
 	intensity $b7
 	note G#, 8
-	callchannel Music_JohtoTrainerBattle_branch_f64d2
+	callchannel .sub5
 	intensity $b0
 	note C#, 8
 	intensity $b7
@@ -819,7 +819,7 @@ Music_JohtoTrainerBattle_branch_f63dd:
 	note A#, 8
 	intensity $b7
 	note A#, 8
-	callchannel Music_JohtoTrainerBattle_branch_f64a3
+	callchannel .sub2
 	intensity $c7
 	note D_, 4
 	octave 3
@@ -830,9 +830,9 @@ Music_JohtoTrainerBattle_branch_f63dd:
 	note E_, 2
 	note D_, 2
 	note F_, 2
-	loopchannel 0, Music_JohtoTrainerBattle_branch_f632a
+	loopchannel 0, .mainloop
 
-Music_JohtoTrainerBattle_branch_f649a:
+.sub1:
 	octave 3
 	note A_, 6
 	note A_, 4
@@ -842,7 +842,7 @@ Music_JohtoTrainerBattle_branch_f649a:
 	note A#, 4
 	endchannel
 
-Music_JohtoTrainerBattle_branch_f64a3:
+.sub2:
 	intensity $c7
 	octave 3
 	note A_, 6
@@ -860,7 +860,7 @@ Music_JohtoTrainerBattle_branch_f64a3:
 	note F_, 8
 	endchannel
 
-Music_JohtoTrainerBattle_branch_f64b6:
+.sub3:
 	octave 3
 	note A#, 2
 	note D#, 2
@@ -870,7 +870,7 @@ Music_JohtoTrainerBattle_branch_f64b6:
 	note D#, 2
 	endchannel
 
-Music_JohtoTrainerBattle_branch_f64be:
+.sub4:
 	intensity $c7
 	octave 4
 	note F_, 4
@@ -890,7 +890,7 @@ Music_JohtoTrainerBattle_branch_f64be:
 	note F_, 2
 	endchannel
 
-Music_JohtoTrainerBattle_branch_f64d2:
+.sub5:
 	intensity $c7
 	octave 4
 	note D#, 6
@@ -937,7 +937,7 @@ Music_JohtoTrainerBattle_Ch3:
 	note A#, 2
 	note A_, 2
 	note G#, 2
-Music_JohtoTrainerBattle_branch_f6501:
+.loop1:
 	note A_, 2
 	note E_, 2
 	note F#, 2
@@ -946,7 +946,7 @@ Music_JohtoTrainerBattle_branch_f6501:
 	note F#, 2
 	note G_, 2
 	note E_, 2
-	loopchannel 3, Music_JohtoTrainerBattle_branch_f6501
+	loopchannel 3, .loop1
 	note A_, 2
 	note E_, 2
 	note F#, 2
@@ -955,7 +955,7 @@ Music_JohtoTrainerBattle_branch_f6501:
 	note F#, 2
 	note G_, 2
 	note G#, 2
-	callchannel Music_JohtoTrainerBattle_branch_f6676
+	callchannel .sub1
 	octave 4
 	note C_, 2
 	octave 3
@@ -968,7 +968,7 @@ Music_JohtoTrainerBattle_branch_f6501:
 	note C_, 2
 	octave 3
 	note A#, 2
-	callchannel Music_JohtoTrainerBattle_branch_f6676
+	callchannel .sub1
 	octave 4
 	note C_, 2
 	octave 3
@@ -979,16 +979,16 @@ Music_JohtoTrainerBattle_branch_f6501:
 	note A_, 2
 	note A#, 2
 	note G_, 2
-Music_JohtoTrainerBattle_branch_f6531:
-	callchannel Music_JohtoTrainerBattle_branch_f6681
+.mainloop:
+	callchannel .sub2
 	note E_, 2
-	callchannel Music_JohtoTrainerBattle_branch_f6692
-	callchannel Music_JohtoTrainerBattle_branch_f6692
-	callchannel Music_JohtoTrainerBattle_branch_f6681
+	callchannel .sub3
+	callchannel .sub3
+	callchannel .sub2
 	note A_, 2
-	callchannel Music_JohtoTrainerBattle_branch_f6692
-	callchannel Music_JohtoTrainerBattle_branch_f6692
-	callchannel Music_JohtoTrainerBattle_branch_f669d
+	callchannel .sub3
+	callchannel .sub3
+	callchannel .sub4
 	note E_, 2
 	note A_, 2
 	note E_, 2
@@ -997,7 +997,7 @@ Music_JohtoTrainerBattle_branch_f6531:
 	note D_, 2
 	note E_, 2
 	note F_, 2
-	callchannel Music_JohtoTrainerBattle_branch_f669d
+	callchannel .sub4
 	note E_, 2
 	octave 4
 	note F_, 2
@@ -1008,7 +1008,7 @@ Music_JohtoTrainerBattle_branch_f6531:
 	note G#, 2
 	note A_, 2
 	note A#, 2
-	callchannel Music_JohtoTrainerBattle_branch_f66a5
+	callchannel .sub5
 	note D_, 2
 	note A_, 2
 	note D_, 2
@@ -1017,7 +1017,7 @@ Music_JohtoTrainerBattle_branch_f6531:
 	note A_, 2
 	note G_, 2
 	note A_, 2
-	callchannel Music_JohtoTrainerBattle_branch_f66a5
+	callchannel .sub5
 	note D_, 2
 	octave 4
 	note D_, 2
@@ -1028,7 +1028,7 @@ Music_JohtoTrainerBattle_branch_f6531:
 	note G_, 2
 	note A_, 2
 	note A#, 2
-	callchannel Music_JohtoTrainerBattle_branch_f66ac
+	callchannel .sub6
 	note C_, 2
 	note G_, 2
 	note C_, 2
@@ -1037,7 +1037,7 @@ Music_JohtoTrainerBattle_branch_f6531:
 	note G_, 2
 	note F_, 2
 	note G_, 2
-	callchannel Music_JohtoTrainerBattle_branch_f66ac
+	callchannel .sub6
 	note C_, 2
 	octave 4
 	note C_, 2
@@ -1052,7 +1052,7 @@ Music_JohtoTrainerBattle_branch_f6531:
 	note F_, 8
 	note E_, 8
 	note D#, 8
-Music_JohtoTrainerBattle_branch_f6591:
+.loop2:
 	octave 3
 	note D#, 2
 	note A#, 2
@@ -1063,8 +1063,8 @@ Music_JohtoTrainerBattle_branch_f6591:
 	note A_, 2
 	octave 4
 	note C_, 2
-	loopchannel 2, Music_JohtoTrainerBattle_branch_f6591
-	callchannel Music_JohtoTrainerBattle_branch_f66ac
+	loopchannel 2, .loop2
+	callchannel .sub6
 	note C_, 2
 	octave 4
 	note C_, 2
@@ -1075,42 +1075,42 @@ Music_JohtoTrainerBattle_branch_f6591:
 	note F_, 2
 	note D#, 2
 	note G_, 2
-Music_JohtoTrainerBattle_branch_f65ac:
+.loop3:
 	note C#, 2
 	note G#, 2
-	loopchannel 7, Music_JohtoTrainerBattle_branch_f65ac
+	loopchannel 7, .loop3
 	note B_, 2
 	note A_, 2
-Music_JohtoTrainerBattle_branch_f65b4:
+.loop4:
 	note D_, 2
 	note A_, 2
-	loopchannel 5, Music_JohtoTrainerBattle_branch_f65b4
+	loopchannel 5, .loop4
 	note B_, 2
 	note A_, 2
 	note G#, 2
 	note F#, 2
 	note G#, 2
 	note A_, 2
-Music_JohtoTrainerBattle_branch_f65c0:
+.loop5:
 	note A#, 4
 	note D#, 4
-	loopchannel 4, Music_JohtoTrainerBattle_branch_f65c0
-Music_JohtoTrainerBattle_branch_f65c6:
+	loopchannel 4, .loop5
+.loop6:
 	octave 4
 	note G_, 4
 	octave 3
 	note A#, 4
-	loopchannel 4, Music_JohtoTrainerBattle_branch_f65c6
-Music_JohtoTrainerBattle_branch_f65ce:
-	callchannel Music_JohtoTrainerBattle_branch_f66b4
+	loopchannel 4, .loop6
+.loop7:
+	callchannel .sub7
 	note D#, 2
 	note F_, 8
-	callchannel Music_JohtoTrainerBattle_branch_f66b4
+	callchannel .sub7
 	octave 4
 	note C_, 2
 	octave 3
 	note A#, 8
-	loopchannel 2, Music_JohtoTrainerBattle_branch_f65ce
+	loopchannel 2, .loop7
 	octave 4
 	note C#, 8
 	note C_, 8
@@ -1175,28 +1175,28 @@ Music_JohtoTrainerBattle_branch_f65ce:
 	note C_, 2
 	octave 3
 	note A#, 2
-Music_JohtoTrainerBattle_branch_f661e:
+.loop8:
 	note D#, 2
 	note A#, 2
-	loopchannel 8, Music_JohtoTrainerBattle_branch_f661e
-Music_JohtoTrainerBattle_branch_f6624:
+	loopchannel 8, .loop8
+.loop9:
 	note C#, 2
 	note G#, 2
-	loopchannel 6, Music_JohtoTrainerBattle_branch_f6624
+	loopchannel 6, .loop9
 	note C#, 2
 	octave 4
 	note C_, 2
 	octave 3
 	note A#, 2
 	note G#, 2
-Music_JohtoTrainerBattle_branch_f6630:
+.loop10:
 	note D#, 2
 	note A#, 2
-	loopchannel 8, Music_JohtoTrainerBattle_branch_f6630
-Music_JohtoTrainerBattle_branch_f6636:
+	loopchannel 8, .loop10
+.loop11:
 	note C#, 2
 	note G#, 2
-	loopchannel 4, Music_JohtoTrainerBattle_branch_f6636
+	loopchannel 4, .loop11
 	note C#, 2
 	octave 4
 	note C#, 2
@@ -1251,9 +1251,9 @@ Music_JohtoTrainerBattle_branch_f6636:
 	note A#, 2
 	octave 4
 	note D_, 2
-	loopchannel 0, Music_JohtoTrainerBattle_branch_f6531
+	loopchannel 0, .mainloop
 
-Music_JohtoTrainerBattle_branch_f6676:
+.sub1:
 	octave 4
 	note C_, 2
 	octave 3
@@ -1266,7 +1266,7 @@ Music_JohtoTrainerBattle_branch_f6676:
 	note G_, 2
 	endchannel
 
-Music_JohtoTrainerBattle_branch_f6681:
+.sub2:
 	octave 3
 	note E_, 2
 	note A_, 2
@@ -1285,7 +1285,7 @@ Music_JohtoTrainerBattle_branch_f6681:
 	note G_, 2
 	endchannel
 
-Music_JohtoTrainerBattle_branch_f6692:
+.sub3:
 	octave 3
 	note F_, 2
 	note A#, 2
@@ -1298,27 +1298,30 @@ Music_JohtoTrainerBattle_branch_f6692:
 	note D_, 2
 	endchannel
 
-Music_JohtoTrainerBattle_branch_f669d:
+.sub4:
+.sub4loop1:
 	octave 3
 	note E_, 2
 	note A_, 2
-	loopchannel 4, Music_JohtoTrainerBattle_branch_f669d
+	loopchannel 4, .sub4loop1
 	endchannel
 
-Music_JohtoTrainerBattle_branch_f66a5:
+.sub5:
+.sub5loop1:
 	note D_, 2
 	note A_, 2
-	loopchannel 4, Music_JohtoTrainerBattle_branch_f66a5
+	loopchannel 4, .sub5loop1
 	endchannel
 
-Music_JohtoTrainerBattle_branch_f66ac:
+.sub6:
+.sub6loop1:
 	octave 3
 	note C_, 2
 	note G_, 2
-	loopchannel 4, Music_JohtoTrainerBattle_branch_f66ac
+	loopchannel 4, .sub6loop1
 	endchannel
 
-Music_JohtoTrainerBattle_branch_f66b4:
+.sub7:
 	note A#, 4
 	note D#, 2
 	note A#, 2

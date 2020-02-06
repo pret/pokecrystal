@@ -14,7 +14,7 @@ Music_EcruteakCity_Ch1:
 	stereopanning $f
 	vibrato $12, $25
 	dutycycle $2
-Music_EcruteakCity_branch_ef2e5:
+.mainloop:
 	notetype $c, $57
 	note __, 10
 	octave 4
@@ -77,7 +77,7 @@ Music_EcruteakCity_branch_ef2e5:
 	note G_, 4
 	note __, 8
 	intensity $52
-	callchannel Music_EcruteakCity_branch_ef37f
+	callchannel .sub1
 	note D_, 2
 	octave 4
 	note B_, 2
@@ -99,7 +99,7 @@ Music_EcruteakCity_branch_ef2e5:
 	note B_, 2
 	note A_, 2
 	note B_, 2
-	callchannel Music_EcruteakCity_branch_ef391
+	callchannel .sub2
 	intensity $52
 	note A#, 2
 	note G_, 2
@@ -120,7 +120,7 @@ Music_EcruteakCity_branch_ef2e5:
 	note G_, 2
 	note E_, 2
 	note C#, 2
-	callchannel Music_EcruteakCity_branch_ef37f
+	callchannel .sub1
 	note D_, 2
 	note C_, 2
 	octave 4
@@ -147,10 +147,10 @@ Music_EcruteakCity_branch_ef2e5:
 	note G#, 2
 	octave 5
 	note C_, 2
-	callchannel Music_EcruteakCity_branch_ef391
-	loopchannel 0, Music_EcruteakCity_branch_ef2e5
+	callchannel .sub2
+	loopchannel 0, .mainloop
 
-Music_EcruteakCity_branch_ef37f:
+.sub1:
 	octave 5
 	note E_, 2
 	note C_, 2
@@ -164,10 +164,10 @@ Music_EcruteakCity_branch_ef37f:
 	note C_, 2
 	note E_, 2
 	note C_, 2
-	loopchannel 2, Music_EcruteakCity_branch_ef37f
+	loopchannel 2, .sub1
 	endchannel
 
-Music_EcruteakCity_branch_ef391:
+.sub2:
 	octave 5
 	note D_, 2
 	octave 4
@@ -213,7 +213,7 @@ Music_EcruteakCity_branch_ef391:
 	note C_, 2
 	octave 3
 	note A_, 2
-Music_EcruteakCity_branch_ef3be:
+.sub2loop1:
 	octave 4
 	note F_, 2
 	note A_, 2
@@ -228,8 +228,8 @@ Music_EcruteakCity_branch_ef3be:
 	octave 5
 	note C_, 2
 	note F_, 2
-	loopchannel 2, Music_EcruteakCity_branch_ef3be
-Music_EcruteakCity_branch_ef3d0:
+	loopchannel 2, .sub2loop1
+.sub2loop2:
 	octave 4
 	note G_, 2
 	note B_, 2
@@ -244,7 +244,7 @@ Music_EcruteakCity_branch_ef3d0:
 	octave 5
 	note D_, 2
 	note G_, 2
-	loopchannel 2, Music_EcruteakCity_branch_ef3d0
+	loopchannel 2, .sub2loop2
 	intensity $50
 	dutycycle $0
 	note E_, 16
@@ -256,7 +256,7 @@ Music_EcruteakCity_Ch2:
 	vibrato $12, $25
 	dutycycle $3
 	stereopanning $f0
-Music_EcruteakCity_branch_ef3f2:
+.mainloop:
 	notetype $6, $67
 	note __, 16
 	note __, 5
@@ -472,11 +472,11 @@ Music_EcruteakCity_branch_ef3f2:
 	note C_, 2
 	note D_, 2
 	note E_, 16
-	loopchannel 0, Music_EcruteakCity_branch_ef3f2
+	loopchannel 0, .mainloop
 
 Music_EcruteakCity_Ch3:
 	stereopanning $ff
-Music_EcruteakCity_branch_ef4e3:
+.mainloop:
 	vibrato $12, $25
 	notetype $c, $25
 	octave 3
@@ -579,7 +579,7 @@ Music_EcruteakCity_branch_ef4e3:
 	note B_, 2
 	octave 4
 	note D_, 2
-	callchannel Music_EcruteakCity_branch_ef569
+	callchannel .sub1
 	octave 4
 	note C_, 8
 	note E_, 8
@@ -590,16 +590,16 @@ Music_EcruteakCity_branch_ef4e3:
 	note E_, 8
 	note C#, 8
 	notetype $c, $25
-	callchannel Music_EcruteakCity_branch_ef569
+	callchannel .sub1
 	octave 4
 	note C_, 8
 	octave 3
 	note G_, 8
 	note E_, 8
 	note D_, 8
-	loopchannel 0, Music_EcruteakCity_branch_ef4e3
+	loopchannel 0, .mainloop
 
-Music_EcruteakCity_branch_ef569:
+.sub1:
 	octave 3
 	note F_, 4
 	note __, 2

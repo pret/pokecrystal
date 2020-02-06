@@ -15,7 +15,7 @@ Music_LookSage_Ch1:
 	notetype $c, $b3
 	note __, 2
 	note __, 16
-	callchannel Music_LookSage_branch_ee3fa
+	callchannel .sub1
 	intensity $b3
 	octave 3
 	note D_, 2
@@ -33,7 +33,7 @@ Music_LookSage_Ch1:
 	note F_, 2
 	intensity $93
 	note F_, 2
-Music_LookSage_branch_ee38e:
+.mainloop:
 	intensity $b3
 	note D_, 2
 	intensity $93
@@ -103,10 +103,10 @@ Music_LookSage_branch_ee38e:
 	note B_, 2
 	intensity $93
 	note B_, 2
-	callchannel Music_LookSage_branch_ee3fa
-	loopchannel 0, Music_LookSage_branch_ee38e
+	callchannel .sub1
+	loopchannel 0, .mainloop
 
-Music_LookSage_branch_ee3fa:
+.sub1:
 	intensity $b3
 	octave 2
 	note E_, 2
@@ -146,7 +146,7 @@ Music_LookSage_Ch3:
 	note E_, 14
 	note G_, 1
 	note G#, 1
-Music_LookSage_branch_ee430:
+.mainloop:
 	note A_, 12
 	note B_, 4
 	note D_, 9
@@ -180,4 +180,4 @@ Music_LookSage_branch_ee430:
 	note E_, 14
 	note G_, 1
 	note G#, 1
-	loopchannel 0, Music_LookSage_branch_ee430
+	loopchannel 0, .mainloop

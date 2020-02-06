@@ -13,7 +13,7 @@ Music_ContestResults_Ch1:
 	tempo 144
 	volume $77
 	notetype $c, $51
-Music_ContestResults_branch_efb52:
+.mainloop:
 	note __, 2
 	octave 2
 	note G_, 1
@@ -51,11 +51,11 @@ Music_ContestResults_branch_efb52:
 	note __, 3
 	note G_, 1
 	note __, 1
-	loopchannel 0, Music_ContestResults_branch_efb52
+	loopchannel 0, .mainloop
 
 Music_ContestResults_Ch2:
 	notetype $c, $61
-Music_ContestResults_branch_efb7e:
+.mainloop:
 	octave 2
 	note C_, 2
 	octave 3
@@ -96,7 +96,7 @@ Music_ContestResults_branch_efb7e:
 	octave 3
 	note F_, 1
 	note __, 1
-Music_ContestResults_branch_efba6:
+.loop1:
 	octave 2
 	note D_, 2
 	octave 3
@@ -107,7 +107,7 @@ Music_ContestResults_branch_efba6:
 	octave 3
 	note F_, 1
 	note __, 1
-	loopchannel 2, Music_ContestResults_branch_efba6
+	loopchannel 2, .loop1
 	octave 2
 	note G_, 2
 	octave 3
@@ -128,12 +128,12 @@ Music_ContestResults_branch_efba6:
 	octave 3
 	note D_, 1
 	note __, 1
-	loopchannel 0, Music_ContestResults_branch_efb7e
+	loopchannel 0, .mainloop
 
 Music_ContestResults_Ch3:
 	vibrato $8, $24
 	notetype $c, $23
-Music_ContestResults_branch_efbd2:
+.mainloop:
 	octave 4
 	note E_, 5
 	note __, 1
@@ -153,12 +153,12 @@ Music_ContestResults_branch_efbd2:
 	note B_, 4
 	note A_, 8
 	note G_, 8
-	loopchannel 0, Music_ContestResults_branch_efbd2
+	loopchannel 0, .mainloop
 
 Music_ContestResults_Ch4:
 	togglenoise $4
 	notetype $6
-Music_ContestResults_branch_efbed:
+.mainloop:
 	note C#, 4
 	note C#, 4
 	note C#, 2
@@ -175,4 +175,4 @@ Music_ContestResults_branch_efbed:
 	note G_, 1
 	note G_, 1
 	note G_, 1
-	loopchannel 0, Music_ContestResults_branch_efbed
+	loopchannel 0, .mainloop

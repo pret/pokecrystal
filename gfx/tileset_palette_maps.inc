@@ -103,8 +103,8 @@ INCLUDE "gfx/tilesets/forest_palette_map.inc"
 TilesetPokeComCenterPalMap::
 INCLUDE "gfx/tilesets/pokecom_center_palette_map.inc"
 
-TilesetBattleTowerPalMap::
-INCLUDE "gfx/tilesets/battle_tower_palette_map.inc"
+TilesetBattleTowerInsidePalMap::
+INCLUDE "gfx/tilesets/battle_tower_inside_palette_map.inc"
 
 TilesetBattleTowerOutsidePalMap::
 INCLUDE "gfx/tilesets/battle_tower_outside_palette_map.inc"

@@ -22,7 +22,7 @@ Music_LookLass_Ch1:
 	note B_, 14
 	stereopanning $f
 	dutycycle $0
-Music_LookLass_branch_ed7bd:
+.mainloop:
 	intensity $a2
 	octave 3
 	note E_, 4
@@ -32,14 +32,14 @@ Music_LookLass_branch_ed7bd:
 	note E_, 2
 	intensity $a3
 	note B_, 2
-	loopchannel 0, Music_LookLass_branch_ed7bd
+	loopchannel 0, .mainloop
 
 Music_LookLass_Ch2:
 	stereopanning $f0
 	dutycycle $0
 	notetype $c, $83
 	note __, 16
-Music_LookLass_branch_ed7d5:
+.mainloop:
 	intensity $92
 	octave 2
 	note B_, 4
@@ -50,7 +50,7 @@ Music_LookLass_branch_ed7d5:
 	intensity $93
 	octave 3
 	note G#, 2
-	loopchannel 0, Music_LookLass_branch_ed7d5
+	loopchannel 0, .mainloop
 
 Music_LookLass_Ch3:
 	notetype $c, $10
@@ -60,7 +60,7 @@ Music_LookLass_Ch3:
 	note D#, 2
 	note C#, 2
 	note C_, 2
-Music_LookLass_branch_ed7ef:
+.mainloop:
 	octave 5
 	note B_, 2
 	note __, 2
@@ -100,13 +100,13 @@ Music_LookLass_branch_ed7ef:
 	note F#, 2
 	note G#, 2
 	note A_, 2
-	loopchannel 0, Music_LookLass_branch_ed7ef
+	loopchannel 0, .mainloop
 
 Music_LookLass_Ch4:
 	togglenoise $4
 	notetype $c
 	note C_, 16
-Music_LookLass_branch_ed81f:
+.mainloop:
 	notetype $6
 	note D_, 8
 	note C#, 8
@@ -116,4 +116,4 @@ Music_LookLass_branch_ed81f:
 	note C#, 1
 	note C#, 1
 	note C#, 1
-	loopchannel 0, Music_LookLass_branch_ed81f
+	loopchannel 0, .mainloop

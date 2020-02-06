@@ -21,7 +21,7 @@ Music_LookBeauty_Ch1:
 	octave 4
 	note C_, 8
 	dutycycle $3
-Music_LookBeauty_branch_eee5f:
+.mainloop:
 	note __, 4
 	octave 3
 	note D_, 1
@@ -79,7 +79,7 @@ Music_LookBeauty_branch_eee5f:
 	note A_, 1
 	octave 4
 	note C_, 1
-	loopchannel 0, Music_LookBeauty_branch_eee5f
+	loopchannel 0, .mainloop
 
 Music_LookBeauty_Ch2:
 	stereopanning $f0
@@ -116,7 +116,7 @@ Music_LookBeauty_Ch2:
 	note F#, 1
 	note __, 1
 	dutycycle $3
-Music_LookBeauty_branch_eeec5:
+.mainloop:
 	notetype $c, $c7
 	note G_, 16
 	note A_, 8
@@ -156,7 +156,7 @@ Music_LookBeauty_branch_eeec5:
 	note __, 14
 	note F#, 8
 	note A_, 8
-	loopchannel 0, Music_LookBeauty_branch_eeec5
+	loopchannel 0, .mainloop
 
 Music_LookBeauty_Ch3:
 	stereopanning $ff
@@ -175,7 +175,7 @@ Music_LookBeauty_Ch3:
 	octave 3
 	note D_, 7
 	note F#, 1
-Music_LookBeauty_branch_eef0f:
+.mainloop:
 	note G_, 4
 	octave 4
 	note B_, 1
@@ -296,21 +296,21 @@ Music_LookBeauty_branch_eef0f:
 	note __, 7
 	octave 3
 	note D_, 8
-	loopchannel 0, Music_LookBeauty_branch_eef0f
+	loopchannel 0, .mainloop
 
 Music_LookBeauty_Ch4:
 	togglenoise $3
 	notetype $c
 	note __, 16
 	note __, 16
-Music_LookBeauty_branch_eef91:
-	callchannel Music_LookBeauty_branch_eefa1
-	callchannel Music_LookBeauty_branch_eefa1
-	callchannel Music_LookBeauty_branch_eefa1
-	callchannel Music_LookBeauty_branch_eefa1
-	loopchannel 0, Music_LookBeauty_branch_eef91
+.mainloop:
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub1
+	loopchannel 0, .mainloop
 
-Music_LookBeauty_branch_eefa1:
+.sub1:
 	note F#, 2
 	note G_, 2
 	note D_, 2

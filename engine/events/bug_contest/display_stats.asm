@@ -77,7 +77,7 @@ DisplayCaughtContestMonStats::
 	ld de, wEnemyMonMaxHP
 	call PrintNum
 
-	ld hl, SwitchMonText
+	ld hl, ContestAskSwitchText
 	call PrintText
 
 	pop af
@@ -96,9 +96,8 @@ DisplayCaughtContestMonStats::
 .This:
 	db " THIS <PKMN>  @"
 
-SwitchMonText:
-	; Switch #MON?
-	text_far UnknownText_0x1c10cf
+ContestAskSwitchText:
+	text_far _ContestAskSwitchText
 	text_end
 
 
@@ -106,12 +105,11 @@ SECTION "engine/events/bug_contest/display_stats.asm@DisplayAlreadyCaughtText", 
 
 DisplayAlreadyCaughtText::
 	call GetPokemonName
-	ld hl, .AlreadyCaughtText
+	ld hl, .ContestAlreadyCaughtText
 	jp PrintText
 
-.AlreadyCaughtText:
-	; You already caught a @ .
-	text_far UnknownText_0x1c10dd
+.ContestAlreadyCaughtText:
+	text_far _ContestAlreadyCaughtText
 	text_end
 
 

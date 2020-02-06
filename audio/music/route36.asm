@@ -30,7 +30,7 @@ Music_Route36_Ch1:
 	note A_, 1
 	intensity $5d
 	note A#, 4
-Music_Route36_branch_e9517:
+.mainloop:
 	intensity $b5
 	note F_, 4
 	note A_, 2
@@ -166,7 +166,7 @@ Music_Route36_branch_e9517:
 	intensity $b5
 	note D#, 2
 	note E_, 2
-	loopchannel 0, Music_Route36_branch_e9517
+	loopchannel 0, .mainloop
 
 Music_Route36_Ch2:
 	dutycycle $3
@@ -191,7 +191,7 @@ Music_Route36_Ch2:
 	note F_, 8
 	octave 3
 	note G_, 4
-Music_Route36_branch_e95ce:
+.mainloop:
 	intensity $c7
 	octave 4
 	note C_, 10
@@ -313,7 +313,7 @@ Music_Route36_branch_e95ce:
 	note G_, 1
 	note A_, 1
 	note B_, 1
-	loopchannel 0, Music_Route36_branch_e95ce
+	loopchannel 0, .mainloop
 
 Music_Route36_Ch3:
 	notetype $c, $25
@@ -339,7 +339,7 @@ Music_Route36_Ch3:
 	octave 3
 	note D#, 2
 	note E_, 2
-Music_Route36_branch_e9684:
+.mainloop:
 	note F_, 4
 	note C_, 2
 	note F_, 4
@@ -469,31 +469,32 @@ Music_Route36_branch_e9684:
 	note D_, 2
 	note D#, 2
 	note E_, 2
-	loopchannel 0, Music_Route36_branch_e9684
+	loopchannel 0, .mainloop
 
 Music_Route36_Ch4:
 	togglenoise $1
 	notetype $c
-	callchannel Music_Route36_branch_e9734
-	callchannel Music_Route36_branch_e9741
-Music_Route36_branch_e9713:
-	callchannel Music_Route36_branch_e9734
-	callchannel Music_Route36_branch_e973b
-	callchannel Music_Route36_branch_e9734
-	callchannel Music_Route36_branch_e9741
-	loopchannel 2, Music_Route36_branch_e9713
-Music_Route36_branch_e9723:
+	callchannel .sub1
+	callchannel .sub3
+.mainloop:
+.loop1:
+	callchannel .sub1
+	callchannel .sub2
+	callchannel .sub1
+	callchannel .sub3
+	loopchannel 2, .loop1
+.loop2:
 	note A#, 4
 	note A_, 2
 	note F_, 4
 	note B_, 1
 	note B_, 1
 	note A_, 4
-	loopchannel 11, Music_Route36_branch_e9723
-	callchannel Music_Route36_branch_e9741
-	loopchannel 0, Music_Route36_branch_e9713
+	loopchannel 11, .loop2
+	callchannel .sub3
+	loopchannel 0, .mainloop
 
-Music_Route36_branch_e9734:
+.sub1:
 	note A_, 4
 	note A_, 6
 	note A#, 1
@@ -502,7 +503,7 @@ Music_Route36_branch_e9734:
 	note A#, 2
 	endchannel
 
-Music_Route36_branch_e973b:
+.sub2:
 	note A_, 4
 	note A_, 6
 	note B_, 1
@@ -510,7 +511,7 @@ Music_Route36_branch_e973b:
 	note A_, 4
 	endchannel
 
-Music_Route36_branch_e9741:
+.sub3:
 	note A_, 4
 	note A_, 6
 	note A#, 1

@@ -420,4 +420,9 @@ CHARMAP_INC EQU 1
 	charmap "８", $fe
 	charmap "９", $ff
 
+; ASCII charmap, for mobile functions
+pushc
+newcharmap ascii
+popc
+
 endc

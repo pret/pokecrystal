@@ -3,7 +3,7 @@ INCLUDE "macros/scripts/text.inc"
 
 SECTION "data/phone/text/kenji_callee.asm", ROMX
 
-UnknownText_0x1b730b::
+KenjiAnswerPhoneText::
 	text_ram wStringBuffer3
 	text " here…"
 
@@ -11,7 +11,7 @@ UnknownText_0x1b730b::
 	line "morning, hey?"
 	done
 
-UnknownText_0x1b7331::
+KenjiAnswerPhoneDayText::
 	text_ram wStringBuffer3
 	text " here…"
 
@@ -19,7 +19,7 @@ UnknownText_0x1b7331::
 	line "weather, hey?"
 	done
 
-UnknownText_0x1b7357::
+KenjiAnswerPhoneNiteText::
 	text_ram wStringBuffer3
 	text " here…"
 
@@ -27,21 +27,21 @@ UnknownText_0x1b7357::
 	line "moonlight, hey?"
 	done
 
-UnknownText_0x1b737f::
+KenjiGreetText::
 	text "Hey, <PLAYER>!"
 	line "This is @"
 	text_ram wStringBuffer3
 	text "!"
 	done
 
-UnknownText_0x1b7397::
+KenjiGreetDayText::
 	text "Hey, <PLAYER>!"
 	line "This is @"
 	text_ram wStringBuffer3
 	text "!"
 	done
 
-UnknownText_0x1b73af::
+KenjiGreetNiteText::
 	text "Hey, <PLAYER>!"
 	line "This is @"
 	text_ram wStringBuffer3

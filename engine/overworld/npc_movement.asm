@@ -378,7 +378,7 @@ IsNPCAtCoord::
 	jr nz, .setcarry
 
 .next
-	ld hl, OBJECT_STRUCT_LENGTH
+	ld hl, OBJECT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
@@ -532,7 +532,7 @@ Unreferenced_Function7113:
 	jr .yes
 
 .next
-	ld hl, OBJECT_STRUCT_LENGTH
+	ld hl, OBJECT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l

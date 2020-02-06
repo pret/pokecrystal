@@ -16,7 +16,7 @@ Music_Lighthouse_Ch1:
 	tone $0004
 	vibrato $8, $45
 	stereopanning $f
-Music_Lighthouse_branch_ee584:
+.mainloop:
 	notetype $c, $b3
 	octave 3
 	note C#, 8
@@ -131,13 +131,13 @@ Music_Lighthouse_branch_ee584:
 	note B_, 2
 	note A_, 2
 	note G#, 8
-	loopchannel 0, Music_Lighthouse_branch_ee584
+	loopchannel 0, .mainloop
 
 Music_Lighthouse_Ch2:
 	dutycycle $3
 	tone $0002
 	vibrato $10, $45
-Music_Lighthouse_branch_ee604:
+.mainloop:
 	notetype $c, $c5
 	octave 3
 	note G#, 12
@@ -213,12 +213,12 @@ Music_Lighthouse_branch_ee604:
 	note D#, 2
 	note C#, 2
 	note C_, 8
-	loopchannel 0, Music_Lighthouse_branch_ee604
+	loopchannel 0, .mainloop
 
 Music_Lighthouse_Ch3:
 	notetype $c, $19
 	stereopanning $f0
-Music_Lighthouse_branch_ee65b:
+.mainloop:
 	octave 2
 	note G#, 2
 	note __, 2
@@ -228,7 +228,7 @@ Music_Lighthouse_branch_ee65b:
 	note __, 2
 	note G_, 2
 	note __, 2
-Music_Lighthouse_branch_ee664:
+.loop1:
 	note G#, 2
 	note __, 2
 	note D#, 2
@@ -237,7 +237,7 @@ Music_Lighthouse_branch_ee664:
 	note __, 2
 	note A_, 2
 	note __, 2
-	loopchannel 2, Music_Lighthouse_branch_ee664
+	loopchannel 2, .loop1
 	note G#, 2
 	note __, 2
 	note D#, 2
@@ -257,7 +257,7 @@ Music_Lighthouse_branch_ee664:
 	octave 3
 	note C_, 2
 	note __, 2
-Music_Lighthouse_branch_ee683:
+.loop2:
 	note C#, 2
 	note __, 2
 	octave 2
@@ -268,7 +268,7 @@ Music_Lighthouse_branch_ee683:
 	octave 3
 	note D_, 2
 	note __, 2
-	loopchannel 2, Music_Lighthouse_branch_ee683
+	loopchannel 2, .loop2
 	note C#, 2
 	note __, 2
 	octave 2
@@ -279,7 +279,7 @@ Music_Lighthouse_branch_ee683:
 	octave 3
 	note D#, 2
 	note F#, 2
-Music_Lighthouse_branch_ee69b:
+.loop3:
 	note E_, 2
 	note __, 2
 	octave 2
@@ -290,13 +290,13 @@ Music_Lighthouse_branch_ee69b:
 	note __, 2
 	note F_, 2
 	note __, 2
-	loopchannel 8, Music_Lighthouse_branch_ee69b
-	loopchannel 0, Music_Lighthouse_branch_ee65b
+	loopchannel 8, .loop3
+	loopchannel 0, .mainloop
 
 Music_Lighthouse_Ch4:
 	togglenoise $0
 	notetype $c
-Music_Lighthouse_branch_ee6b1:
+.mainloop:
 	stereopanning $f
 	note G#, 4
 	note F_, 2
@@ -311,4 +311,4 @@ Music_Lighthouse_branch_ee6b1:
 	note F_, 4
 	note G#, 2
 	note A_, 2
-	loopchannel 0, Music_Lighthouse_branch_ee6b1
+	loopchannel 0, .mainloop

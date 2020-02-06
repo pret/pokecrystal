@@ -3,7 +3,7 @@ INCLUDE "macros/scripts/text.inc"
 
 SECTION "data/phone/text/gina_callee.asm", ROMX
 
-UnknownText_0x1b626a::
+GinaAnswerPhoneText::
 	text "Hello? This is"
 	line "@"
 	text_ram wStringBuffer3
@@ -13,7 +13,7 @@ UnknownText_0x1b626a::
 	line "Good morning!"
 	done
 
-UnknownText_0x1b6296::
+GinaAnswerPhoneDayText::
 	text "Hello? This is"
 	line "@"
 	text_ram wStringBuffer3
@@ -23,7 +23,7 @@ UnknownText_0x1b6296::
 	line "Hi, how are you?"
 	done
 
-UnknownText_0x1b62c5::
+GinaAnswerPhoneNiteText::
 	text "Hello? This is"
 	line "@"
 	text_ram wStringBuffer3
@@ -33,7 +33,7 @@ UnknownText_0x1b62c5::
 	line "Good evening!"
 	done
 
-UnknownText_0x1b62f1::
+GinaGreetText::
 	text "<PLAY_G>?"
 
 	para "It's @"
@@ -42,7 +42,7 @@ UnknownText_0x1b62f1::
 	line "Good morning!"
 	done
 
-UnknownText_0x1b630e::
+GinaGreetDayText::
 	text "<PLAY_G>?"
 
 	para "It's @"
@@ -51,7 +51,7 @@ UnknownText_0x1b630e::
 	line "this a bad time?"
 	done
 
-UnknownText_0x1b6331::
+GinaGreetNiteText::
 	text "<PLAY_G>?"
 
 	para "It's @"
@@ -60,7 +60,7 @@ UnknownText_0x1b6331::
 	line "Got time to chat?"
 	done
 
-UnknownText_0x1b6352::
+GinaGenericText::
 	text "Are your #MON"
 	line "still tough?"
 

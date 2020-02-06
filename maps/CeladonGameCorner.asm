@@ -58,7 +58,7 @@ CeladonGameCornerFisherScript:
 	checkevent EVENT_GOT_COINS_FROM_GAMBLER_AT_CELADON
 	iftrue .GotCoins
 	writetext CeladonGameCornerFisherText1
-	buttonsound
+	promptbutton
 	checkitem COIN_CASE
 	iffalse .NoCoinCase
 	checkcoins MAX_COINS - 1

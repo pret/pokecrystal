@@ -128,9 +128,9 @@ CopyObjectStruct::
 	and a
 	ret nz ; masked
 
-	ld hl, wObjectStructs + OBJECT_STRUCT_LENGTH * 1
+	ld hl, wObjectStructs + OBJECT_LENGTH * 1
 	ld a, 1
-	ld de, OBJECT_STRUCT_LENGTH
+	ld de, OBJECT_LENGTH
 .loop
 	ldh [hObjectStructIndexBuffer], a
 	ld a, [hl]
@@ -220,7 +220,7 @@ CopyMapObjectToObjectStruct:
 	ret
 
 InitializeVisibleSprites::
-	ld bc, wMapObjects + OBJECT_LENGTH
+	ld bc, wMapObjects + MAPOBJECT_LENGTH
 	ld a, 1
 .loop
 	ldh [hMapObjectIndexBuffer], a
@@ -267,7 +267,7 @@ InitializeVisibleSprites::
 	jp c, .ret
 
 .next
-	ld hl, OBJECT_LENGTH
+	ld hl, MAPOBJECT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
@@ -307,7 +307,7 @@ CheckObjectEnteringVisibleRange::
 	ld d, a
 	ld a, [wXCoord]
 	ld e, a
-	ld bc, wMapObjects + OBJECT_LENGTH
+	ld bc, wMapObjects + MAPOBJECT_LENGTH
 	ld a, 1
 .loop_v
 	ldh [hMapObjectIndexBuffer], a
@@ -341,7 +341,7 @@ CheckObjectEnteringVisibleRange::
 	pop de
 
 .next_v
-	ld hl, OBJECT_LENGTH
+	ld hl, MAPOBJECT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
@@ -363,7 +363,7 @@ CheckObjectEnteringVisibleRange::
 	ld e, a
 	ld a, [wYCoord]
 	ld d, a
-	ld bc, wMapObjects + OBJECT_LENGTH
+	ld bc, wMapObjects + MAPOBJECT_LENGTH
 	ld a, 1
 .loop_h
 	ldh [hMapObjectIndexBuffer], a
@@ -397,7 +397,7 @@ CheckObjectEnteringVisibleRange::
 	pop de
 
 .next_h
-	ld hl, OBJECT_LENGTH
+	ld hl, MAPOBJECT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l

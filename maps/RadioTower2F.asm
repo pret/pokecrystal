@@ -166,7 +166,7 @@ Buena:
 
 .Introduction:
 	writetext RadioTower2FBuenaShowIntroductionText
-	buttonsound
+	promptbutton
 	setevent EVENT_MET_BUENA
 	verbosegiveitem BLUE_CARD
 .TuneIn:
@@ -290,7 +290,7 @@ Buena:
 	writetext RadioTower2FRegisteredBuenasNumberText
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitsfx
-	buttonsound
+	promptbutton
 	writetext RadioTower2FBuenaCallMeText
 	waitbutton
 	closetext
@@ -319,14 +319,14 @@ RadioTowerBuenaPrizeReceptionist:
 	checkitem BLUE_CARD
 	iffalse .NoCard
 	writetext RadioTower2FBuenaReceptionistPointsForPrizesText
-	buttonsound
+	promptbutton
 	special BuenaPrize
 	closetext
 	end
 
 .NoCard:
 	writetext RadioTower2FBuenaReceptionistNoCardText
-	buttonsound
+	promptbutton
 	closetext
 	end
 

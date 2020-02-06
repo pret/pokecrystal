@@ -983,6 +983,8 @@ CrystalIntroSequence:
 	jr c, StartTitleScreen
 	farcall CrystalIntro
 
+	; fallthrough
+
 StartTitleScreen:
 	ldh a, [rSVBK]
 	push af

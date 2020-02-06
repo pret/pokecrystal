@@ -26,27 +26,27 @@ Music_ProfOak_Ch1:
 	note G#, 8
 	intensity $97
 	note G#, 8
-Music_ProfOak_branch_f4e10:
+.loop1:
 	intensity $91
-	callchannel Music_ProfOak_branch_f4e42
-	callchannel Music_ProfOak_branch_f4e42
-	callchannel Music_ProfOak_branch_f4e4d
-	callchannel Music_ProfOak_branch_f4e4d
-	loopchannel 2, Music_ProfOak_branch_f4e10
-Music_ProfOak_branch_f4e22:
-	callchannel Music_ProfOak_branch_f4e58
-	callchannel Music_ProfOak_branch_f4e58
-	callchannel Music_ProfOak_branch_f4e6c
-	callchannel Music_ProfOak_branch_f4e6c
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub2
+	callchannel .sub2
+	loopchannel 2, .loop1
+.mainloop:
+	callchannel .sub3
+	callchannel .sub3
+	callchannel .sub4
+	callchannel .sub4
 	pitchoffset 0, D_
-	callchannel Music_ProfOak_branch_f4e58
-	callchannel Music_ProfOak_branch_f4e58
+	callchannel .sub3
+	callchannel .sub3
 	pitchoffset 0, C_
-	callchannel Music_ProfOak_branch_f4e6c
-	callchannel Music_ProfOak_branch_f4e6c
-	loopchannel 0, Music_ProfOak_branch_f4e22
+	callchannel .sub4
+	callchannel .sub4
+	loopchannel 0, .mainloop
 
-Music_ProfOak_branch_f4e42:
+.sub1:
 	octave 2
 	note B_, 2
 	octave 3
@@ -59,7 +59,7 @@ Music_ProfOak_branch_f4e42:
 	note E_, 2
 	endchannel
 
-Music_ProfOak_branch_f4e4d:
+.sub2:
 	octave 2
 	note B_, 2
 	octave 3
@@ -72,7 +72,7 @@ Music_ProfOak_branch_f4e4d:
 	note D#, 2
 	endchannel
 
-Music_ProfOak_branch_f4e58:
+.sub3:
 	octave 2
 	note A_, 2
 	octave 3
@@ -90,7 +90,7 @@ Music_ProfOak_branch_f4e58:
 	intensity $91
 	endchannel
 
-Music_ProfOak_branch_f4e6c:
+.sub4:
 	octave 2
 	note B_, 1
 	octave 3
@@ -120,7 +120,7 @@ Music_ProfOak_Ch2:
 	intensity $a7
 	note B_, 10
 	dutycycle $2
-Music_ProfOak_branch_f4e92:
+.loop1:
 	intensity $b2
 	octave 3
 	note B_, 2
@@ -155,10 +155,10 @@ Music_ProfOak_branch_f4e92:
 	note A_, 4
 	note B_, 2
 	note B_, 4
-	loopchannel 2, Music_ProfOak_branch_f4e92
+	loopchannel 2, .loop1
 	note __, 6
 	intensity $b4
-Music_ProfOak_branch_f4ebf:
+.mainloop:
 	note C#, 6
 	octave 3
 	note A_, 1
@@ -206,7 +206,7 @@ Music_ProfOak_branch_f4ebf:
 	octave 4
 	note E_, 1
 	note G#, 16
-	loopchannel 0, Music_ProfOak_branch_f4ebf
+	loopchannel 0, .mainloop
 
 Music_ProfOak_Ch3:
 	stereopanning $f
@@ -227,27 +227,27 @@ Music_ProfOak_Ch3:
 	note B_, 1
 	note __, 1
 	note E_, 2
-	callchannel Music_ProfOak_branch_f4f3d
-Music_ProfOak_branch_f4f0d:
-	callchannel Music_ProfOak_branch_f4f3d
-	callchannel Music_ProfOak_branch_f4f3d
-	callchannel Music_ProfOak_branch_f4f4c
-	callchannel Music_ProfOak_branch_f4f4c
-	loopchannel 2, Music_ProfOak_branch_f4f0d
-Music_ProfOak_branch_f4f1d:
-	callchannel Music_ProfOak_branch_f4f5a
-	callchannel Music_ProfOak_branch_f4f5a
-	callchannel Music_ProfOak_branch_f4f69
-	callchannel Music_ProfOak_branch_f4f69
+	callchannel .sub1
+.loop1:
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub2
+	callchannel .sub2
+	loopchannel 2, .loop1
+.mainloop:
+	callchannel .sub3
+	callchannel .sub3
+	callchannel .sub4
+	callchannel .sub4
 	pitchoffset 0, D_
-	callchannel Music_ProfOak_branch_f4f5a
-	callchannel Music_ProfOak_branch_f4f5a
+	callchannel .sub3
+	callchannel .sub3
 	pitchoffset 0, C_
-	callchannel Music_ProfOak_branch_f4f69
-	callchannel Music_ProfOak_branch_f4f69
-	loopchannel 0, Music_ProfOak_branch_f4f1d
+	callchannel .sub4
+	callchannel .sub4
+	loopchannel 0, .mainloop
 
-Music_ProfOak_branch_f4f3d:
+.sub1:
 	note E_, 2
 	note __, 2
 	octave 4
@@ -264,7 +264,7 @@ Music_ProfOak_branch_f4f3d:
 	note E_, 2
 	endchannel
 
-Music_ProfOak_branch_f4f4c:
+.sub2:
 	octave 2
 	note B_, 2
 	note __, 2
@@ -280,7 +280,7 @@ Music_ProfOak_branch_f4f4c:
 	note D#, 2
 	endchannel
 
-Music_ProfOak_branch_f4f5a:
+.sub3:
 	octave 2
 	note A_, 2
 	note __, 2
@@ -297,7 +297,7 @@ Music_ProfOak_branch_f4f5a:
 	note C#, 2
 	endchannel
 
-Music_ProfOak_branch_f4f69:
+.sub4:
 	octave 2
 	note G#, 2
 	note __, 2

@@ -190,10 +190,10 @@ INCLUDE "data/tilesets/underground_collision.inc"
 TilesetDarkCaveGFX::
 INCBIN "gfx/tilesets/dark_cave.2bpp.lz"
 
-UnusedTilesetDarkCaveMeta:
+UnusedTilesetDarkCaveMeta::
 INCBIN "data/tilesets/unused_dark_cave_metatiles.bin"
 
-UnusedTilesetDarkCaveColl:
+UnusedTilesetDarkCaveColl::
 INCLUDE "data/tilesets/unused_dark_cave_collision.inc"
 
 
@@ -208,14 +208,14 @@ INCBIN "data/tilesets/pokecom_center_metatiles.bin"
 TilesetPokeComCenterColl::
 INCLUDE "data/tilesets/pokecom_center_collision.inc"
 
-TilesetBattleTowerGFX::
-INCBIN "gfx/tilesets/battle_tower.2bpp.lz"
+TilesetBattleTowerInsideGFX::
+INCBIN "gfx/tilesets/battle_tower_inside.2bpp.lz"
 
-TilesetBattleTowerMeta::
-INCBIN "data/tilesets/battle_tower_metatiles.bin"
+TilesetBattleTowerInsideMeta::
+INCBIN "data/tilesets/battle_tower_inside_metatiles.bin"
 
-TilesetBattleTowerColl::
-INCLUDE "data/tilesets/battle_tower_collision.inc"
+TilesetBattleTowerInsideColl::
+INCLUDE "data/tilesets/battle_tower_inside_collision.inc"
 
 TilesetGateGFX::
 INCBIN "gfx/tilesets/gate.2bpp.lz"

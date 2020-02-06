@@ -3,7 +3,7 @@ ENGINE_FLAGS_INC EQU 1
 
 INCLUDE "macros/enum.inc"
 
-; EngineFlags indexes (see engine/engine_flags.asm)
+; EngineFlags indexes (see data/engine_flags.inc)
 	const_def
 ; wPokegearFlags
 	const ENGINE_RADIO_CARD
@@ -69,7 +69,7 @@ INCLUDE "macros/enum.inc"
 	const ENGINE_UNLOCKED_UNOWNS_UNUSED_7
 ; wVisitedSpawns
 	const ENGINE_FLYPOINT_PLAYERS_HOUSE
-	const ENGINE_FLYPOINT_VIRIDIAN_POKECENTER
+	const ENGINE_FLYPOINT_DEBUG
 	const ENGINE_FLYPOINT_PALLET
 	const ENGINE_FLYPOINT_VIRIDIAN
 	const ENGINE_FLYPOINT_PEWTER

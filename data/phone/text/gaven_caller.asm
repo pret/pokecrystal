@@ -3,7 +3,7 @@ INCLUDE "macros/scripts/text.inc"
 
 SECTION "data/phone/text/gaven_caller.asm", ROMX
 
-GavenGreaterText::
+GavenMonGreaterThanImaginedText::
 	text "My @"
 	text_ram wStringBuffer4
 	text_start
@@ -17,7 +17,7 @@ GavenGreaterText::
 	cont "better than mine."
 	done
 
-UnknownText_0x174a80::
+GavenDefeatedMonText::
 	text "Oh, and I managed"
 	line "to barely defeat"
 
@@ -40,7 +40,7 @@ UnknownText_0x174a80::
 	cont "used to seeing."
 	done
 
-UnknownText_0x174b2d::
+GavenLostAMonText::
 	text "And a while back,"
 	line "I tried to catch a"
 	cont "wild @"
@@ -57,7 +57,7 @@ UnknownText_0x174b2d::
 	line "to be careful too."
 	done
 
-UnknownText_0x174bc5::
+GavenBattleRematchText::
 	text "Let's battle!"
 
 	para "I'll be waiting on"
@@ -69,17 +69,17 @@ UnknownText_0x174bc5::
 	line "when you're close."
 	done
 
-UnknownText_0x174c0e::
+GavenHangUpText::
 	text "OK, I'll talk to"
 	line "you soon!"
 	done
 
-UnknownText_0x174c29::
+GavenHangUpNotThursdayText::
 	text "I obsess over how"
 	line "to beat you."
 	done
 
-UnknownText_0x174c49::
+GavenReminderText::
 	text "<PLAY_G>, why"
 	line "aren't you here?"
 

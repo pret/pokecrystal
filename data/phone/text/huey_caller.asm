@@ -3,7 +3,7 @@ INCLUDE "macros/scripts/text.inc"
 
 SECTION "data/phone/text/huey_caller.asm", ROMX
 
-UnknownText_0x1748ea::
+HueyBattleRematchText::
 	text "Hey, I challenge"
 	line "you to a battle!"
 
@@ -19,11 +19,11 @@ UnknownText_0x1748ea::
 	line "over here pronto!"
 	done
 
-UnknownText_0x174962::
+HueyHangUpText::
 	text "See ya!"
 	done
 
-UnknownText_0x17496b::
+HueyWeHaveToBattleAgainSometimeText::
 	text "We have to battle"
 	line "again sometime."
 
@@ -34,7 +34,7 @@ UnknownText_0x17496b::
 	line "till I win."
 	done
 
-UnknownText_0x1749c7::
+HueyReminderText::
 	text "Hey, you'd better"
 	line "not have forgotten"
 	cont "about our battle!"

@@ -17,7 +17,7 @@ Music_Clair_Ch1:
 	stereopanning $f
 	notetype $c, $93
 	dutycycle $3
-Music_Clair_branch_1faab:
+.loop1:
 	octave 4
 	note F_, 1
 	note F#, 1
@@ -25,7 +25,7 @@ Music_Clair_branch_1faab:
 	note __, 1
 	note C#, 1
 	note __, 1
-	loopchannel 2, Music_Clair_branch_1faab
+	loopchannel 2, .loop1
 	octave 3
 	note B_, 1
 	note __, 1
@@ -41,9 +41,9 @@ Music_Clair_branch_1faab:
 	note D#, 4
 	note F_, 4
 	note G_, 4
-Music_Clair_branch_1fac9:
+.mainloop:
 	intensity $93
-	callchannel Music_Clair_branch_1fb12
+	callchannel .sub1
 	octave 2
 	note B_, 1
 	octave 3
@@ -57,7 +57,7 @@ Music_Clair_branch_1fac9:
 	octave 2
 	note A#, 1
 	note G_, 1
-	callchannel Music_Clair_branch_1fb12
+	callchannel .sub1
 	note D#, 1
 	note C#, 1
 	note D#, 2
@@ -69,7 +69,7 @@ Music_Clair_branch_1fac9:
 	note A#, 1
 	octave 5
 	note D#, 1
-	callchannel Music_Clair_branch_1fb2e
+	callchannel .sub2
 	dutycycle $3
 	note G#, 3
 	note F_, 2
@@ -83,7 +83,7 @@ Music_Clair_branch_1fac9:
 	note A#, 1
 	octave 5
 	note D#, 1
-	callchannel Music_Clair_branch_1fb2e
+	callchannel .sub2
 	dutycycle $3
 	note D#, 3
 	note C#, 2
@@ -98,9 +98,9 @@ Music_Clair_branch_1fac9:
 	note B_, 1
 	octave 4
 	note D#, 1
-	loopchannel 0, Music_Clair_branch_1fac9
+	loopchannel 0, .mainloop
 
-Music_Clair_branch_1fb12:
+.sub1:
 	dutycycle $3
 	stereopanning $ff
 	octave 3
@@ -126,7 +126,7 @@ Music_Clair_branch_1fb12:
 	note __, 1
 	endchannel
 
-Music_Clair_branch_1fb2e:
+.sub2:
 	octave 4
 	note F#, 1
 	note D#, 1
@@ -151,7 +151,7 @@ Music_Clair_Ch2:
 	dutycycle $3
 	vibrato $12, $34
 	notetype $6, $b7
-Music_Clair_branch_1fb49:
+.loop1:
 	octave 3
 	note A#, 2
 	note B_, 2
@@ -159,7 +159,7 @@ Music_Clair_branch_1fb49:
 	note __, 2
 	note G#, 2
 	note __, 2
-	loopchannel 2, Music_Clair_branch_1fb49
+	loopchannel 2, .loop1
 	note F_, 2
 	note __, 2
 	note C#, 2
@@ -190,8 +190,8 @@ Music_Clair_branch_1fb49:
 	note G_, 2
 	note A#, 2
 	intensity $b7
-Music_Clair_branch_1fb77:
-	callchannel Music_Clair_branch_1fba6
+.mainloop:
+	callchannel .sub1
 	note F#, 2
 	note __, 4
 	note D#, 12
@@ -209,7 +209,7 @@ Music_Clair_branch_1fb77:
 	note A#, 16
 	note __, 4
 	pitchoffset 0, CC
-	callchannel Music_Clair_branch_1fba6
+	callchannel .sub1
 	pitchoffset 0, C_
 	octave 5
 	note F#, 2
@@ -228,9 +228,9 @@ Music_Clair_branch_1fb77:
 	note __, 2
 	note G#, 16
 	note __, 4
-	loopchannel 0, Music_Clair_branch_1fb77
+	loopchannel 0, .mainloop
 
-Music_Clair_branch_1fba6:
+.sub1:
 	octave 4
 	note F#, 2
 	note __, 4
@@ -273,8 +273,8 @@ Music_Clair_Ch3:
 	note A#, 4
 	note G#, 4
 	note G_, 4
-Music_Clair_branch_1fbd1:
-	callchannel Music_Clair_branch_1fc3c
+.mainloop:
+	callchannel .sub1
 	octave 2
 	note C#, 2
 	note __, 1
@@ -285,7 +285,7 @@ Music_Clair_branch_1fbd1:
 	note D#, 2
 	note A#, 2
 	note D#, 2
-	callchannel Music_Clair_branch_1fc3c
+	callchannel .sub1
 	octave 2
 	note G#, 2
 	note __, 1
@@ -373,9 +373,9 @@ Music_Clair_branch_1fbd1:
 	note G#, 1
 	octave 1
 	note G#, 1
-	loopchannel 0, Music_Clair_branch_1fbd1
+	loopchannel 0, .mainloop
 
-Music_Clair_branch_1fc3c:
+.sub1:
 	octave 1
 	note G#, 2
 	note __, 1
@@ -408,16 +408,16 @@ Music_Clair_Ch4:
 	note D_, 2
 	note D_, 1
 	note D_, 1
-Music_Clair_branch_1fc5e:
+.mainloop:
 	stereopanning $ff
-	callchannel Music_Clair_branch_1fc6e
+	callchannel .sub1
 	note G_, 1
 	stereopanning $ff
-	callchannel Music_Clair_branch_1fc6e
+	callchannel .sub1
 	note F#, 1
-	loopchannel 0, Music_Clair_branch_1fc5e
+	loopchannel 0, .mainloop
 
-Music_Clair_branch_1fc6e:
+.sub1:
 	note D#, 2
 	stereopanning $f0
 	note G_, 2

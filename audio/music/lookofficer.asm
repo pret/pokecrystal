@@ -25,7 +25,7 @@ Music_LookOfficer_Ch1:
 	intensity $2f
 	octave 3
 	note B_, 16
-Music_LookOfficer_branch_ed852:
+.mainloop:
 	intensity $82
 	note __, 4
 	note B_, 6
@@ -37,7 +37,7 @@ Music_LookOfficer_branch_ed852:
 	intensity $2f
 	note A#, 16
 	note A_, 16
-	loopchannel 0, Music_LookOfficer_branch_ed852
+	loopchannel 0, .mainloop
 
 Music_LookOfficer_Ch2:
 	vibrato $12, $34
@@ -64,7 +64,8 @@ Music_LookOfficer_Ch2:
 	note B_, 2
 	octave 2
 	note D#, 2
-Music_LookOfficer_branch_ed882:
+.mainloop:
+.loop1:
 	note E_, 2
 	note G#, 2
 	octave 3
@@ -75,14 +76,14 @@ Music_LookOfficer_branch_ed882:
 	note B_, 2
 	note E_, 2
 	note G#, 2
-	loopchannel 2, Music_LookOfficer_branch_ed882
+	loopchannel 2, .loop1
 	pitchoffset 0, C#
-	callchannel Music_LookOfficer_branch_ed89e
+	callchannel .sub1
 	pitchoffset 0, C_
-	callchannel Music_LookOfficer_branch_ed89e
-	loopchannel 0, Music_LookOfficer_branch_ed882
+	callchannel .sub1
+	loopchannel 0, .mainloop
 
-Music_LookOfficer_branch_ed89e:
+.sub1:
 	octave 1
 	note A_, 2
 	octave 2
@@ -121,7 +122,7 @@ Music_LookOfficer_Ch3:
 	note C#, 2
 	note __, 1
 	note D#, 2
-Music_LookOfficer_branch_ed8c8:
+.mainloop:
 	note E_, 6
 	note D#, 6
 	note C#, 4
@@ -139,4 +140,4 @@ Music_LookOfficer_branch_ed8c8:
 	note D_, 8
 	note E_, 8
 	note C#, 8
-	loopchannel 0, Music_LookOfficer_branch_ed8c8
+	loopchannel 0, .mainloop

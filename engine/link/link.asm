@@ -401,13 +401,13 @@ Gen2ToGen2LinkComms:
 	jr z, .next
 	sub $3
 	jr nc, .skip
-	farcall DeutenEnglischenPost
+	farcall ConvertEnglishMailToFrenchGerman
 	jr .next
 
 .skip
 	cp $2
 	jr nc, .next
-	farcall HandleSpanishItalianMail
+	farcall ConvertEnglishMailToSpanishItalian
 
 .next
 	pop de
@@ -505,7 +505,7 @@ Gen2ToGen2LinkComms:
 	jp InitTradeMenuDisplay
 
 LinkTimeout:
-	ld de, .TooMuchTimeHasElapsed
+	ld de, .LinkTimeoutText
 	ld b, 10
 .loop
 	call DelayFrame
@@ -535,9 +535,8 @@ LinkTimeout:
 	call WaitBGMap2
 	ret
 
-.TooMuchTimeHasElapsed:
-	; Too much time has elapsed. Please try again.
-	text_far UnknownText_0x1c4183
+.LinkTimeoutText:
+	text_far _LinkTimeoutText
 	text_end
 
 ExchangeBytes:
@@ -906,13 +905,13 @@ Link_PrepPartyData_Gen2:
 	jr z, .next
 	sub $3
 	jr nc, .italian_spanish
-	farcall HandleFrenchGermanMail
+	farcall ConvertFrenchGermanMailToEnglish
 	jr .next
 
 .italian_spanish
 	cp $2
 	jr nc, .next
-	farcall HandleSpanishItalianMail
+	farcall ConvertSpanishItalianMailToEnglish
 
 .next
 	pop de
@@ -1476,7 +1475,7 @@ Function28926:
 	ld c, 18
 	call LinkTextboxAtHL
 	farcall Link_WaitBGMap
-	ld hl, .Text_CantTradeLastMon
+	ld hl, .LinkTradeCantBattleText
 	bccoord 1, 14
 	call PlaceHLTextAtBC
 	jr .cancel_trade
@@ -1498,7 +1497,7 @@ Function28926:
 	ld c, 18
 	call LinkTextboxAtHL
 	farcall Link_WaitBGMap
-	ld hl, .Text_Abnormal
+	ld hl, .LinkAbnormalMonText
 	bccoord 1, 14
 	call PlaceHLTextAtBC
 
@@ -1517,17 +1516,15 @@ Function28926:
 	call DelayFrames
 	jp InitTradeMenuDisplay
 
-.Text_CantTradeLastMon:
-	; If you trade that #MON, you won't be able to battle.
-	text_far UnknownText_0x1c41b1
+.LinkTradeCantBattleText:
+	text_far _LinkTradeCantBattleText
 	text_end
 
 .String_Stats_Trade:
 	db "STATS     TRADE@"
 
-.Text_Abnormal:
-	; Your friend's @  appears to be abnormal!
-	text_far UnknownText_0x1c41e6
+.LinkAbnormalMonText:
+	text_far _LinkAbnormalMonText
 	text_end
 
 Function28ac9:
@@ -1663,7 +1660,7 @@ LinkTrade:
 	ld a, [hl]
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
-	ld hl, UnknownText_0x28eb8
+	ld hl, LinkAskTradeForText
 	bccoord 1, 14
 	call PlaceHLTextAtBC
 	call LoadStandardMenuHeader
@@ -1978,9 +1975,8 @@ String28eab:
 	db   "TRADE"
 	next "CANCEL@"
 
-UnknownText_0x28eb8:
-	; Trade @ for @ ?
-	text_far UnknownText_0x1c4212
+LinkAskTradeForText:
+	text_far _LinkAskTradeForText
 	text_end
 
 String28ebd:
@@ -2122,7 +2118,7 @@ EnterTimeCapsule::
 	call DelayFrames
 	xor a
 	ldh [hVBlank], a
-	inc a
+	inc a ; LINK_TIMECAPSULE
 	ld [wLinkMode], a
 	ret
 

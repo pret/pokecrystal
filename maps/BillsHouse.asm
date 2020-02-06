@@ -21,7 +21,7 @@ BillsGrandpa:
 	checkevent EVENT_MET_BILLS_GRANDPA
 	iftrue .MetGrandpa
 	writetext BillsGrandpaIntroText
-	buttonsound
+	promptbutton
 	setevent EVENT_MET_BILLS_GRANDPA
 .MetGrandpa:
 	checkevent EVENT_SHOWED_PICHU_TO_BILLS_GRANDPA
@@ -35,7 +35,7 @@ BillsGrandpa:
 	checkevent EVENT_SHOWED_LICKITUNG_TO_BILLS_GRANDPA
 	iftrue .ShowedLickitung
 	writetext BillsGrandpaLickitungText
-	buttonsound
+	promptbutton
 	writetext BillsGrandpaAskToSeeMonText
 	yesorno
 	iffalse .SaidNo
@@ -49,7 +49,7 @@ BillsGrandpa:
 
 .GotEverstone:
 	writetext BillsGrandpaOddishText
-	buttonsound
+	promptbutton
 	writetext BillsGrandpaAskToSeeMonText
 	yesorno
 	iffalse .SaidNo
@@ -63,7 +63,7 @@ BillsGrandpa:
 
 .GotLeafStone:
 	writetext BillsGrandpaStaryuText
-	buttonsound
+	promptbutton
 	writetext BillsGrandpaAskToSeeMonText
 	yesorno
 	iffalse .SaidNo
@@ -79,7 +79,7 @@ BillsGrandpa:
 	checkver
 	iftrue .AskVulpix
 	writetext BillsGrandpaGrowlitheText
-	buttonsound
+	promptbutton
 	writetext BillsGrandpaAskToSeeMonText
 	yesorno
 	iffalse .SaidNo
@@ -93,7 +93,7 @@ BillsGrandpa:
 
 .AskVulpix:
 	writetext BillsGrandpaVulpixText
-	buttonsound
+	promptbutton
 	writetext BillsGrandpaAskToSeeMonText
 	yesorno
 	iffalse .SaidNo
@@ -107,7 +107,7 @@ BillsGrandpa:
 
 .GotFireStone:
 	writetext BillsGrandpaPichuText
-	buttonsound
+	promptbutton
 	writetext BillsGrandpaAskToSeeMonText
 	yesorno
 	iffalse .SaidNo
@@ -173,7 +173,7 @@ BillsGrandpa:
 
 .ExcitedToSee:
 	writetext BillsGrandpaExcitedToSeeText
-	buttonsound
+	promptbutton
 	end
 
 .SaidNo:
@@ -184,12 +184,12 @@ BillsGrandpa:
 
 .CorrectPokemon:
 	writetext BillsGrandpaShownPokemonText
-	buttonsound
+	promptbutton
 	end
 
 .ReceiveItem:
 	writetext BillsGrandpaTokenOfAppreciationText
-	buttonsound
+	promptbutton
 	end
 
 .JustShowedSomething:

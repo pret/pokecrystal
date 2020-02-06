@@ -584,13 +584,21 @@ MenuHeader_0x48513:
 
 MenuData_0x4851b:
 	db SCROLLINGMENU_DISPLAY_ARROWS | SCROLLINGMENU_ENABLE_RIGHT | SCROLLINGMENU_ENABLE_LEFT | SCROLLINGMENU_CALL_FUNCTION1_CANCEL ; flags
-	db 6 ; items
+	db 6, 0 ; rows, columns
+	db SCROLLINGMENU_ITEMS_NORMAL ; item format
+	dba .Items
+	dba Function483e8
+	dba NULL
+	dba NULL
 
-Unknown_4851d:
-	db $00, $01, $12, $2b, $45, $12, $e8, $43, $00, $00, $00, $00, $00, $00, $2e, $00, $01, $02, $03, $04
-	db $05, $06, $07, $08, $09, $0a, $0b, $0c, $0d, $0e, $0f, $10, $11, $12, $13, $14, $15, $16, $17, $18
-	db $19, $1a, $1b, $1c, $1d, $1e, $1f, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $2a, $2b, $2c
-	db $2d, $ff
+.Items:
+	db 46
+x = 0
+rept 46
+	db x
+x = x + 1
+endr
+	db -1
 
 Prefectures:
 Aichi:     db "あいちけん@"   ; Aichi

@@ -1,6 +1,6 @@
 Reset::
 	di
-	call MapSetup_Sound_Off
+	call InitSound
 	xor a
 	ldh [hMapAnims], a
 	call ClearPalettes
@@ -162,7 +162,7 @@ Init::
 
 	predef InitSGBBorder ; SGB init
 
-	call MapSetup_Sound_Off
+	call InitSound
 	xor a
 	ld [wMapMusic], a
 	jp GameInit

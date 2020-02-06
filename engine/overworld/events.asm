@@ -782,40 +782,41 @@ PlayerMovement:
 	ret
 
 .pointers
-	dw .zero
-	dw .one
-	dw .two
-	dw .three
-	dw .four
-	dw .five
-	dw .six
-	dw .seven
+; entries correspond to PLAYERMOVEMENT_* constants
+	dw .normal
+	dw .warp
+	dw .turn
+	dw .force_turn
+	dw .finish
+	dw .continue
+	dw .exit_water
+	dw .jump
 
-.zero
-.four
+.normal:
+.finish:
 	xor a
 	ld c, a
 	ret
 
-.seven
+.jump:
 	call ret_968d7 ; mobile
 	xor a
 	ld c, a
 	ret
 
-.one
-	ld a, 5
+.warp:
+	ld a, PLAYEREVENT_WARP
 	ld c, a
 	scf
 	ret
 
-.two
-	ld a, 9
+.turn:
+	ld a, PLAYEREVENT_JOYCHANGEFACING
 	ld c, a
 	scf
 	ret
 
-.three
+.force_turn:
 ; force the player to move in some direction
 	ld a, BANK(Script_ForcedMovement)
 	ld hl, Script_ForcedMovement
@@ -825,8 +826,8 @@ PlayerMovement:
 	scf
 	ret
 
-.five
-.six
+.continue:
+.exit_water:
 	ld a, -1
 	ld c, a
 	and a
@@ -946,13 +947,13 @@ CountStep:
 	ret
 
 .hatch
-	ld a, 8
+	ld a, PLAYEREVENT_HATCH
 	scf
 	ret
 
 ; unused
 .unreferenced
-	ld a, 7
+	ld a, PLAYEREVENT_WHITEOUT
 	scf
 	ret
 
@@ -1540,20 +1541,20 @@ CmdQueue_Type4:
 
 .zero
 	ldh a, [hSCY]
-	ld hl, 4
+	ld hl, CMDQUEUE_04
 	add hl, bc
 	ld [hl], a
 	call CmdQueueAnonJT_Increment
 .one
-	ld hl, 1
+	ld hl, CMDQUEUE_ADDR
 	add hl, bc
 	ld a, [hl]
 	dec a
 	ld [hl], a
 	jr z, .finish
-	and $1
+	and 1
 	jr z, .add
-	ld hl, 2
+	ld hl, CMDQUEUE_02
 	add hl, bc
 	ldh a, [hSCY]
 	sub [hl]
@@ -1561,7 +1562,7 @@ CmdQueue_Type4:
 	ret
 
 .add
-	ld hl, 2
+	ld hl, CMDQUEUE_02
 	add hl, bc
 	ldh a, [hSCY]
 	add [hl]
@@ -1569,7 +1570,7 @@ CmdQueue_Type4:
 	ret
 
 .finish
-	ld hl, 4
+	ld hl, CMDQUEUE_04
 	add hl, bc
 	ld a, [hl]
 	ldh [hSCY], a
@@ -1592,7 +1593,7 @@ CmdQueue_Type3:
 	jr z, .PlayerNotFacingDown
 	call CmdQueueAnonJT_Increment
 
-	ld hl, 2
+	ld hl, CMDQUEUE_02
 	add hl, bc
 	ld a, [hl]
 	ld [wd173], a
@@ -1603,7 +1604,7 @@ CmdQueue_Type3:
 	jr z, .PlayerNotFacingDown
 	call CmdQueueAnonJT_Decrement
 
-	ld hl, 3
+	ld hl, CMDQUEUE_03
 	add hl, bc
 	ld a, [hl]
 	ld [wd173], a
@@ -1612,7 +1613,7 @@ CmdQueue_Type3:
 .PlayerNotFacingDown:
 	ld a, $7f
 	ld [wd173], a
-	ld hl, 5
+	ld hl, CMDQUEUE_05
 	add hl, bc
 	ld [hl], 0
 	ret
@@ -1661,7 +1662,7 @@ CmdQueue_StoneTable:
 	jr c, .fall_down_hole
 
 .next
-	ld hl, OBJECT_STRUCT_LENGTH
+	ld hl, OBJECT_LENGTH
 	add hl, de
 	ld d, h
 	ld e, l

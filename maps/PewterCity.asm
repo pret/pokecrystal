@@ -32,7 +32,7 @@ PewterCityGrampsScript:
 	checkevent EVENT_GOT_SILVER_WING
 	iftrue .GotSilverWing
 	writetext PewterCityGrampsText
-	buttonsound
+	promptbutton
 	verbosegiveitem SILVER_WING
 	setevent EVENT_GOT_SILVER_WING
 	closetext

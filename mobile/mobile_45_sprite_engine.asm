@@ -8,6 +8,7 @@ INCLUDE "constants/menu_constants.inc"
 INCLUDE "constants/music_constants.inc"
 INCLUDE "constants/pokemon_constants.inc"
 INCLUDE "constants/scgb_constants.inc"
+INCLUDE "constants/serial_constants.inc"
 
 
 SECTION "mobile/mobile_45_sprite_engine.asm@Function115d99", ROMX
@@ -720,7 +721,7 @@ Function1163c0:
 	ldh [rSVBK], a
 	farcall ReloadMapPart
 	ld a, [wLinkMode]
-	cp $4
+	cp LINK_MOBILE
 	jr z, .asm_11642a
 	ld a, $8
 	ld [wMusicFade], a

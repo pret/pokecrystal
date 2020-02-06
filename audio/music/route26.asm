@@ -31,7 +31,7 @@ Music_Route26_Ch1:
 	octave 3
 	note G#, 2
 	note F#, 2
-Music_Route26_branch_eefe0:
+.mainloop:
 	dutycycle $0
 	notetype $c, $a7
 	octave 3
@@ -197,7 +197,7 @@ Music_Route26_branch_eefe0:
 	octave 2
 	note B_, 4
 	note __, 4
-	loopchannel 0, Music_Route26_branch_eefe0
+	loopchannel 0, .mainloop
 
 Music_Route26_Ch2:
 	stereopanning $f0
@@ -237,7 +237,7 @@ Music_Route26_Ch2:
 	octave 2
 	note C_, 2
 	note D#, 2
-Music_Route26_branch_ef0ce:
+.mainloop:
 	dutycycle $2
 	notetype $c, $c2
 	octave 2
@@ -258,7 +258,7 @@ Music_Route26_branch_ef0ce:
 	note B_, 2
 	note B_, 2
 	note B_, 2
-	callchannel Music_Route26_branch_ef14e
+	callchannel .sub1
 	note A_, 6
 	note A_, 1
 	octave 2
@@ -273,7 +273,7 @@ Music_Route26_branch_ef0ce:
 	note B_, 2
 	note B_, 2
 	notetype $c, $c2
-	callchannel Music_Route26_branch_ef14e
+	callchannel .sub1
 	intensity $c7
 	octave 2
 	note F#, 4
@@ -286,14 +286,14 @@ Music_Route26_branch_ef0ce:
 	note D#, 4
 	note D#, 4
 	notetype $8, $c2
-Music_Route26_branch_ef10e:
+.loop1:
 	octave 2
 	note G#, 2
 	note G#, 2
 	note G#, 2
 	octave 1
 	note G#, 6
-	loopchannel 3, Music_Route26_branch_ef10e
+	loopchannel 3, .loop1
 	octave 2
 	note G#, 2
 	note G#, 2
@@ -341,9 +341,9 @@ Music_Route26_branch_ef10e:
 	note C#, 1
 	note C_, 1
 	note D#, 1
-	loopchannel 0, Music_Route26_branch_ef0ce
+	loopchannel 0, .mainloop
 
-Music_Route26_branch_ef14e:
+.sub1:
 	note A#, 6
 	note A#, 1
 	octave 2
@@ -393,7 +393,7 @@ Music_Route26_Ch3:
 	note F#, 2
 	note F_, 2
 	note D#, 2
-Music_Route26_branch_ef18a:
+.mainloop:
 	vibrato $18, $23
 	notetype $c, $14
 	octave 5
@@ -401,7 +401,7 @@ Music_Route26_branch_ef18a:
 	note __, 2
 	octave 4
 	note G#, 1
-	callchannel Music_Route26_branch_ef22f
+	callchannel .sub1
 	vibrato $25, $13
 	note C#, 1
 	note __, 1
@@ -409,7 +409,7 @@ Music_Route26_branch_ef18a:
 	note G#, 1
 	octave 5
 	note C#, 1
-	callchannel Music_Route26_branch_ef22f
+	callchannel .sub1
 	note F_, 1
 	note __, 1
 	note C#, 1
@@ -538,9 +538,9 @@ Music_Route26_branch_ef18a:
 	note G#, 1
 	octave 3
 	note C_, 1
-	loopchannel 0, Music_Route26_branch_ef18a
+	loopchannel 0, .mainloop
 
-Music_Route26_branch_ef22f:
+.sub1:
 	octave 5
 	note F_, 8
 	note C#, 2
@@ -554,17 +554,17 @@ Music_Route26_branch_ef22f:
 Music_Route26_Ch4:
 	togglenoise $4
 	notetype $c
-Music_Route26_branch_ef23c:
+.loop1:
 	note B_, 6
 	note D_, 1
 	note D_, 1
-	loopchannel 3, Music_Route26_branch_ef23c
-	callchannel Music_Route26_branch_ef2b0
-Music_Route26_branch_ef246:
+	loopchannel 3, .loop1
+	callchannel .sub3
+.mainloop:
 	notetype $6
-	callchannel Music_Route26_branch_ef29a
-	callchannel Music_Route26_branch_ef29a
-	callchannel Music_Route26_branch_ef2a8
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub2
 	note D_, 12
 	note D_, 2
 	note D_, 2
@@ -576,21 +576,21 @@ Music_Route26_branch_ef246:
 	note D_, 2
 	note E_, 2
 	notetype $6
-	callchannel Music_Route26_branch_ef29a
-	callchannel Music_Route26_branch_ef29a
+	callchannel .sub1
+	callchannel .sub1
 	notetype $8
-Music_Route26_branch_ef266:
+.loop2:
 	note D_, 2
 	note D_, 2
 	note D_, 2
 	note B_, 6
-	loopchannel 4, Music_Route26_branch_ef266
+	loopchannel 4, .loop2
 	notetype $6
-	callchannel Music_Route26_branch_ef2a8
-	callchannel Music_Route26_branch_ef2a8
-	callchannel Music_Route26_branch_ef29a
-	callchannel Music_Route26_branch_ef2a8
-Music_Route26_branch_ef27c:
+	callchannel .sub2
+	callchannel .sub2
+	callchannel .sub1
+	callchannel .sub2
+.loop3:
 	notetype $6
 	note D_, 1
 	note D_, 1
@@ -605,13 +605,13 @@ Music_Route26_branch_ef27c:
 	note D_, 2
 	note D_, 2
 	note B_, 12
-	loopchannel 2, Music_Route26_branch_ef27c
+	loopchannel 2, .loop3
 	notetype $c
 	note B_, 16
-	callchannel Music_Route26_branch_ef2b0
-	loopchannel 0, Music_Route26_branch_ef246
+	callchannel .sub3
+	loopchannel 0, .mainloop
 
-Music_Route26_branch_ef29a:
+.sub1:
 	note E_, 12
 	note D_, 2
 	note D_, 2
@@ -627,7 +627,7 @@ Music_Route26_branch_ef29a:
 	note C#, 1
 	endchannel
 
-Music_Route26_branch_ef2a8:
+.sub2:
 	note E_, 12
 	note D_, 2
 	note D_, 2
@@ -637,7 +637,7 @@ Music_Route26_branch_ef2a8:
 	note D_, 4
 	endchannel
 
-Music_Route26_branch_ef2b0:
+.sub3:
 	notetype $6
 	note C#, 1
 	note C#, 1

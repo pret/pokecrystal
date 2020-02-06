@@ -95,17 +95,17 @@ RuinsOfAlphKabutoChamberScientistScript:
 	iftrue .WallOpen
 	checkevent EVENT_SOLVED_KABUTO_PUZZLE
 	iffalse .PuzzleIncomplete
-	writetext UnknownText_0x589b8
-	buttonsound
+	writetext RuinsOfAlphKabutoChamberScientistTremorText
+	promptbutton
 .PuzzleIncomplete:
-	writetext UnknownText_0x588f5
+	writetext RuinsOfAlphKabutoChamberScientistCrypticText
 	waitbutton
 	closetext
 	turnobject RUINSOFALPHKABUTOCHAMBER_SCIENTIST, UP
 	end
 
 .WallOpen:
-	writetext UnknownText_0x5897c
+	writetext RuinsOfAlphKabutoChamberScientistHoleText
 	waitbutton
 	closetext
 	end
@@ -176,7 +176,7 @@ RuinsOfAlphKabutoChamberReceptionistText:
 	line "patterns."
 	done
 
-UnknownText_0x588f5:
+RuinsOfAlphKabutoChamberScientistCrypticText:
 	text "Recently, strange,"
 	line "cryptic patterns"
 	cont "have appeared."
@@ -189,7 +189,7 @@ UnknownText_0x588f5:
 	line "look at the walls."
 	done
 
-UnknownText_0x5897c:
+RuinsOfAlphKabutoChamberScientistHoleText:
 	text "Ah! Here's another"
 	line "huge hole!"
 
@@ -197,7 +197,7 @@ UnknownText_0x5897c:
 	line "go through!"
 	done
 
-UnknownText_0x589b8:
+RuinsOfAlphKabutoChamberScientistTremorText:
 	text "That tremor was"
 	line "pretty scary!"
 

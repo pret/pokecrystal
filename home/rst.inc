@@ -26,12 +26,10 @@ SECTION "home/rst.inc@rst28", ROM0[$0028] ; rst JumpTable
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
+; SECTION "home/rst.inc@rst28", ROM0[$0030]
 	ld l, a
 	pop de
 	jp hl
-
-; SECTION "rst30", ROM0
-; rst30 is midst rst28
 
 SECTION "home/rst.inc@rst38", ROM0[$0038]
 	rst $38

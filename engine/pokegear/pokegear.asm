@@ -25,6 +25,8 @@ INCLUDE "constants/sprite_anim_constants.inc"
 	const POKEGEARCARD_RADIO ; 3
 NUM_POKEGEAR_CARDS EQU const_value
 
+PHONE_DISPLAY_HEIGHT EQU 4
+
 ; PokegearJumptable.Jumptable indexes
 	const_def
 	const POKEGEARSTATE_CLOCKINIT       ; 0
@@ -357,7 +359,7 @@ InitPokegearTilemap:
 .ok
 	farcall PokegearMap
 	ld a, $07
-	ld bc, $12
+	ld bc, SCREEN_WIDTH - 2
 	hlcoord 1, 2
 	call ByteFill
 	hlcoord 0, 2
@@ -481,7 +483,7 @@ PokegearJumptable:
 
 PokegearClock_Init:
 	call InitPokegearTilemap
-	ld hl, PokegearText_PressAnyButtonToExit
+	ld hl, PokegearPressButtonText
 	call PrintText
 	ld hl, wJumptableIndex
 	inc [hl]
@@ -545,7 +547,7 @@ Pokegear_UpdateClock:
 	ld c, a
 	decoord 6, 8
 	farcall PrintHoursMins
-	ld hl, .DayText
+	ld hl, .GearTodayText
 	bccoord 6, 6
 	call PlaceHLTextAtBC
 	ret
@@ -553,8 +555,8 @@ Pokegear_UpdateClock:
 	db "ごぜん@"
 	db "ごご@"
 
-.DayText:
-	text_far UnknownText_0x1c5821
+.GearTodayText:
+	text_far _GearTodayText
 	text_end
 
 PokegearMap_CheckRegion:
@@ -834,7 +836,7 @@ PokegearPhone_Init:
 	ld [wPokegearPhoneSelectedPerson], a
 	call InitPokegearTilemap
 	call ExitPokegearRadio_HandleMusic
-	ld hl, PokegearText_WhomToCall
+	ld hl, PokegearAskWhoCallText
 	call PrintText
 	ret
 
@@ -900,7 +902,7 @@ PokegearPhone_Joypad:
 	ld [wPokegearPhoneSelectedPerson], a
 	hlcoord 1, 4
 	ld a, [wPokegearPhoneCursorPosition]
-	ld bc, 20 * 2
+	ld bc, SCREEN_WIDTH * 2
 	call AddNTimes
 	ld [hl], "▷"
 	call PokegearPhoneContactSubmenu
@@ -924,12 +926,12 @@ PokegearPhone_MakePhoneCall:
 	ldh [hInMenu], a
 	ld de, SFX_CALL
 	call PlaySFX
-	ld hl, .dotdotdot
+	ld hl, .GearEllipseText
 	call PrintText
 	call WaitSFX
 	ld de, SFX_CALL
 	call PlaySFX
-	ld hl, .dotdotdot
+	ld hl, .GearEllipseText
 	call PrintText
 	call WaitSFX
 	ld a, [wPokegearPhoneSelectedPerson]
@@ -948,22 +950,20 @@ PokegearPhone_MakePhoneCall:
 
 .no_service
 	farcall Phone_NoSignal
-	ld hl, .OutOfServiceArea
+	ld hl, .GearOutOfServiceText
 	call PrintText
 	ld a, POKEGEARSTATE_PHONEJOYPAD
 	ld [wJumptableIndex], a
-	ld hl, PokegearText_WhomToCall
+	ld hl, PokegearAskWhoCallText
 	call PrintText
 	ret
 
-.dotdotdot
-	;
-	text_far UnknownText_0x1c5824
+.GearEllipseText:
+	text_far _GearEllipseText
 	text_end
 
-.OutOfServiceArea:
-	; You're out of the service area.
-	text_far UnknownText_0x1c5827
+.GearOutOfServiceText:
+	text_far _GearOutOfServiceText
 	text_end
 
 PokegearPhone_FinishPhoneCall:
@@ -973,7 +973,7 @@ PokegearPhone_FinishPhoneCall:
 	farcall HangUp
 	ld a, POKEGEARSTATE_PHONEJOYPAD
 	ld [wJumptableIndex], a
-	ld hl, PokegearText_WhomToCall
+	ld hl, PokegearAskWhoCallText
 	call PrintText
 	ret
 
@@ -1006,7 +1006,7 @@ PokegearPhone_GetDPad:
 .down
 	ld hl, wPokegearPhoneCursorPosition
 	ld a, [hl]
-	cp 3
+	cp PHONE_DISPLAY_HEIGHT - 1
 	jr nc, .scroll_page_down
 	inc [hl]
 	jr .done_joypad_same_page
@@ -1014,7 +1014,7 @@ PokegearPhone_GetDPad:
 .scroll_page_down
 	ld hl, wPokegearPhoneScrollPosition
 	ld a, [hl]
-	cp 6
+	cp CONTACT_LIST_SIZE - PHONE_DISPLAY_HEIGHT
 	ret nc
 	inc [hl]
 	jr .done_joypad_update_page
@@ -1035,14 +1035,12 @@ PokegearPhone_GetDPad:
 
 PokegearPhone_UpdateCursor:
 	ld a, " "
-	hlcoord 1, 4
+x = 4
+rept PHONE_DISPLAY_HEIGHT
+	hlcoord 1, x
 	ld [hl], a
-	hlcoord 1, 6
-	ld [hl], a
-	hlcoord 1, 8
-	ld [hl], a
-	hlcoord 1, 10
-	ld [hl], a
+x = x + 2
+endr
 	hlcoord 1, 4
 	ld a, [wPokegearPhoneCursorPosition]
 	ld bc, 2 * SCREEN_WIDTH
@@ -1052,10 +1050,10 @@ PokegearPhone_UpdateCursor:
 
 PokegearPhone_UpdateDisplayList:
 	hlcoord 1, 3
-	ld b, 9
+	ld b, PHONE_DISPLAY_HEIGHT * 2 + 1
 	ld a, " "
 .row
-	ld c, 18
+	ld c, SCREEN_WIDTH - 2
 .col
 	ld [hli], a
 	dec c
@@ -1066,7 +1064,7 @@ PokegearPhone_UpdateDisplayList:
 	jr nz, .row
 	ld a, [wPokegearPhoneScrollPosition]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, wPhoneList
 	add hl, de
 	xor a
@@ -1088,7 +1086,7 @@ PokegearPhone_UpdateDisplayList:
 	ld a, [wPokegearPhoneLoadNameBuffer]
 	inc a
 	ld [wPokegearPhoneLoadNameBuffer], a
-	cp 4
+	cp PHONE_DISPLAY_HEIGHT
 	jr c, .loop
 	call PokegearPhone_UpdateCursor
 	ret
@@ -1228,13 +1226,13 @@ PokegearPhoneContactSubmenu:
 	jp hl
 
 .Cancel:
-	ld hl, PokegearText_WhomToCall
+	ld hl, PokegearAskWhoCallText
 	call PrintText
 	scf
 	ret
 
 .Delete:
-	ld hl, PokegearText_DeleteStoredNumber
+	ld hl, PokegearAskDeleteText
 	call MenuTextbox
 	call YesNoBox
 	call ExitMenu
@@ -1243,7 +1241,7 @@ PokegearPhoneContactSubmenu:
 	xor a
 	ldh [hBGMapMode], a
 	call PokegearPhone_UpdateDisplayList
-	ld hl, PokegearText_WhomToCall
+	ld hl, PokegearAskWhoCallText
 	call PrintText
 	call WaitBGMap
 .CancelDelete:
@@ -1333,7 +1331,7 @@ ExitPokegearRadio_HandleMusic:
 	cp RESTART_MAP_MUSIC
 	jr z, .restart_map_music
 	cp ENTER_MAP_MUSIC
-	call z, EnterMapMusic
+	call z, PlayMapMusicBike
 	xor a
 	ld [wPokegearRadioMusicPlaying], a
 	ret
@@ -1373,19 +1371,16 @@ Pokegear_LoadTilemapRLE:
 	jr nz, .load
 	jr .loop
 
-PokegearText_WhomToCall:
-	; Whom do you want to call?
-	text_far UnknownText_0x1c5847
+PokegearAskWhoCallText:
+	text_far _PokegearAskWhoCallText
 	text_end
 
-PokegearText_PressAnyButtonToExit:
-	; Press any button to exit.
-	text_far UnknownText_0x1c5862
+PokegearPressButtonText:
+	text_far _PokegearPressButtonText
 	text_end
 
-PokegearText_DeleteStoredNumber:
-	; Delete this stored phone number?
-	text_far UnknownText_0x1c587d
+PokegearAskDeleteText:
+	text_far _PokegearAskDeleteText
 	text_end
 
 PokegearSpritesGFX:
@@ -1490,15 +1485,15 @@ RadioChannels:
 ; entries correspond to constants/radio_constants.inc
 
 ; frequency value given here = 4 × ingame_frequency − 2
-	dbw 16, .PKMNTalkAndPokedexShow
-	dbw 28, .PokemonMusic
-	dbw 32, .LuckyChannel
-	dbw 40, .BuenasPassword
-	dbw 52, .RuinsOfAlphRadio
-	dbw 64, .PlacesAndPeople
-	dbw 72, .LetsAllSing
-	dbw 78, .PokeFluteRadio
-	dbw 80, .EvolutionRadio
+	dbw 16, .PKMNTalkAndPokedexShow ; 04.5
+	dbw 28, .PokemonMusic           ; 07.5
+	dbw 32, .LuckyChannel           ; 08.5
+	dbw 40, .BuenasPassword         ; 10.5
+	dbw 52, .RuinsOfAlphRadio       ; 13.5
+	dbw 64, .PlacesAndPeople        ; 16.5
+	dbw 72, .LetsAllSing            ; 18.5
+	dbw 78, .PokeFluteRadio         ; 20.0
+	dbw 80, .EvolutionRadio         ; 20.5
 	db -1
 
 .PKMNTalkAndPokedexShow:

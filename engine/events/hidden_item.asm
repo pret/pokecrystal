@@ -12,7 +12,7 @@ HiddenItemScript::
 	opentext
 	readmem wHiddenItemID
 	getitemname STRING_BUFFER_3, USE_SCRIPT_VAR
-	writetext .found_text
+	writetext .PlayerFoundItemText
 	giveitem ITEM_FROM_MEM
 	iffalse .bag_full
 	callasm SetMemEvent
@@ -21,21 +21,19 @@ HiddenItemScript::
 	sjump .finish
 
 .bag_full
-	buttonsound
-	writetext .no_room_text
+	promptbutton
+	writetext .ButNoSpaceText
 	waitbutton
 
 .finish
 	closetext
 	end
 
-.found_text
-	; found @ !
+.PlayerFoundItemText:
 	text_far _PlayerFoundItemText
 	text_end
 
-.no_room_text
-	; But   has no space left…
+.ButNoSpaceText:
 	text_far _ButNoSpaceText
 	text_end
 

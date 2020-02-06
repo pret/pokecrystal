@@ -16,7 +16,7 @@ Music_Gym_Ch1:
 	vibrato $12, $24
 	dutycycle $1
 	notetype $c, $b7
-Music_Gym_branch_f48c9:
+.mainloop:
 	octave 4
 	note F#, 2
 	octave 2
@@ -192,12 +192,12 @@ Music_Gym_branch_f48c9:
 	note G_, 1
 	note F#, 1
 	note E_, 1
-	loopchannel 0, Music_Gym_branch_f48c9
+	loopchannel 0, .mainloop
 
 Music_Gym_Ch2:
 	dutycycle $1
 	stereopanning $f0
-Music_Gym_branch_f4980:
+.mainloop:
 	notetype $c, $c3
 	octave 2
 	note D_, 2
@@ -231,12 +231,12 @@ Music_Gym_branch_f4980:
 	octave 3
 	note C_, 1
 	note C#, 1
-	callchannel Music_Gym_branch_f49e9
+	callchannel .sub1
 	octave 3
 	note E_, 2
 	note C_, 1
 	note C#, 1
-	callchannel Music_Gym_branch_f49e9
+	callchannel .sub1
 	octave 3
 	note C_, 1
 	note E_, 1
@@ -244,7 +244,7 @@ Music_Gym_branch_f4980:
 	octave 4
 	note C_, 1
 	intensity $d2
-	callchannel Music_Gym_branch_f4a15
+	callchannel .sub2
 	octave 1
 	note F#, 1
 	note B_, 1
@@ -265,7 +265,7 @@ Music_Gym_branch_f4980:
 	octave 2
 	note G_, 2
 	note E_, 2
-	callchannel Music_Gym_branch_f4a15
+	callchannel .sub2
 	octave 1
 	note G_, 1
 	octave 2
@@ -288,9 +288,9 @@ Music_Gym_branch_f4980:
 	octave 2
 	note F#, 2
 	note D_, 2
-	loopchannel 0, Music_Gym_branch_f4980
+	loopchannel 0, .mainloop
 
-Music_Gym_branch_f49e9:
+.sub1:
 	octave 3
 	note D_, 3
 	octave 2
@@ -336,7 +336,7 @@ Music_Gym_branch_f49e9:
 	note C_, 2
 	endchannel
 
-Music_Gym_branch_f4a15:
+.sub2:
 	octave 2
 	note D_, 4
 	note D_, 2
@@ -375,7 +375,7 @@ Music_Gym_branch_f4a15:
 Music_Gym_Ch3:
 	vibrato $14, $23
 	stereopanning $ff
-Music_Gym_branch_f4a3c:
+.mainloop:
 	notetype $c, $14
 	octave 6
 	note D_, 2
@@ -458,7 +458,7 @@ Music_Gym_branch_f4a3c:
 	octave 5
 	note B_, 4
 	intensity $13
-	callchannel Music_Gym_branch_f4ab3
+	callchannel .sub1
 	note __, 2
 	note A_, 2
 	octave 6
@@ -471,7 +471,7 @@ Music_Gym_branch_f4a3c:
 	note A#, 4
 	note A_, 4
 	note G_, 4
-	callchannel Music_Gym_branch_f4ab3
+	callchannel .sub1
 	note A_, 1
 	note __, 1
 	note A_, 1
@@ -484,9 +484,9 @@ Music_Gym_branch_f4a3c:
 	note E_, 1
 	note F#, 8
 	note E_, 4
-	loopchannel 0, Music_Gym_branch_f4a3c
+	loopchannel 0, .mainloop
 
-Music_Gym_branch_f4ab3:
+.sub1:
 	octave 5
 	note A_, 6
 	octave 6
@@ -508,7 +508,7 @@ Music_Gym_branch_f4ab3:
 
 Music_Gym_Ch4:
 	togglenoise $4
-Music_Gym_branch_f4ac7:
+.mainloop:
 	notetype $c
 	note D_, 2
 	note C#, 1
@@ -533,7 +533,7 @@ Music_Gym_branch_f4ac7:
 	note D_, 1
 	note D_, 1
 	notetype $6
-Music_Gym_branch_f4ae1:
+.loop1:
 	note D_, 6
 	note D_, 6
 	note D_, 4
@@ -555,8 +555,8 @@ Music_Gym_branch_f4ae1:
 	note D_, 2
 	note D_, 4
 	note B_, 8
-	loopchannel 4, Music_Gym_branch_f4ae1
-Music_Gym_branch_f4afa:
+	loopchannel 4, .loop1
+.loop2:
 	note D#, 4
 	note F#, 4
 	note D_, 4
@@ -567,5 +567,5 @@ Music_Gym_branch_f4afa:
 	note D#, 4
 	note D_, 4
 	note F#, 4
-	loopchannel 8, Music_Gym_branch_f4afa
-	loopchannel 0, Music_Gym_branch_f4ac7
+	loopchannel 8, .loop2
+	loopchannel 0, .mainloop

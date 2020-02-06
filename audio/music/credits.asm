@@ -26,7 +26,7 @@ Music_Credits_Ch1:
 	octave 4
 	note C_, 7
 	note D_, 8
-	callchannel Music_Credits_branch_1f483
+	callchannel .sub1
 	note __, 4
 	octave 3
 	note B_, 2
@@ -57,10 +57,10 @@ Music_Credits_Ch1:
 	octave 3
 	note __, 1
 	intensity $a7
-	callchannel Music_Credits_branch_1f483
-	callchannel Music_Credits_branch_1f4ed
+	callchannel .sub1
+	callchannel .sub2
 	intensity $97
-	callchannel Music_Credits_branch_1f4f8
+	callchannel .sub3
 	octave 3
 	note B_, 2
 	octave 4
@@ -122,8 +122,8 @@ Music_Credits_Ch1:
 	note C_, 2
 	octave 3
 	note B_, 2
-	callchannel Music_Credits_branch_1f4f8
-	callchannel Music_Credits_branch_1f559
+	callchannel .sub3
+	callchannel .sub4
 	note B_, 1
 	octave 4
 	note C_, 7
@@ -147,10 +147,10 @@ Music_Credits_Ch1:
 	octave 3
 	note __, 1
 	pitchoffset 0, D_
-	callchannel Music_Credits_branch_1f483
-	callchannel Music_Credits_branch_1f4ed
-	callchannel Music_Credits_branch_1f4f8
-	callchannel Music_Credits_branch_1f559
+	callchannel .sub1
+	callchannel .sub2
+	callchannel .sub3
+	callchannel .sub4
 	pitchoffset 0, C_
 	octave 3
 	note A_, 12
@@ -158,7 +158,7 @@ Music_Credits_Ch1:
 	note D_, 1
 	note D_, 1
 	note D_, 1
-	callchannel Music_Credits_branch_1f582
+	callchannel .sub5
 	octave 3
 	note B_, 6
 	note A_, 6
@@ -169,7 +169,7 @@ Music_Credits_Ch1:
 	note A_, 6
 	octave 4
 	note C#, 6
-	callchannel Music_Credits_branch_1f582
+	callchannel .sub5
 	tempo 143
 	octave 4
 	note D_, 6
@@ -185,12 +185,12 @@ Music_Credits_Ch1:
 	octave 5
 	note C#, 6
 	notetype $c, $a7
-Music_Credits_branch_1f407:
+.loop1:
 	octave 3
 	note A_, 1
 	octave 4
 	note D_, 1
-	loopchannel 6, Music_Credits_branch_1f407
+	loopchannel 6, .loop1
 	notetype $8, $a7
 	note G_, 1
 	note __, 1
@@ -285,7 +285,7 @@ Music_Credits_branch_1f407:
 	note __, 16
 	endchannel
 
-Music_Credits_branch_1f483:
+.sub1:
 	note C_, 16
 	note F#, 1
 	note G_, 3
@@ -393,7 +393,7 @@ Music_Credits_branch_1f483:
 	note __, 1
 	endchannel
 
-Music_Credits_branch_1f4ed:
+.sub2:
 	octave 4
 	note C_, 4
 	octave 3
@@ -406,7 +406,7 @@ Music_Credits_branch_1f4ed:
 	note D#, 4
 	endchannel
 
-Music_Credits_branch_1f4f8:
+.sub3:
 	octave 3
 	note A_, 2
 	octave 4
@@ -505,7 +505,7 @@ Music_Credits_branch_1f4f8:
 	note F_, 2
 	endchannel
 
-Music_Credits_branch_1f559:
+.sub4:
 	octave 3
 	note A_, 2
 	octave 4
@@ -548,7 +548,7 @@ Music_Credits_branch_1f559:
 	note A_, 2
 	endchannel
 
-Music_Credits_branch_1f582:
+.sub5:
 	note __, 6
 	octave 3
 	note D_, 6
@@ -575,7 +575,7 @@ Music_Credits_Ch2:
 	note G_, 4
 	note F_, 4
 	notetype $6, $c7
-	callchannel Music_Credits_branch_1f6cb
+	callchannel .sub1
 	octave 1
 	note G_, 2
 	note __, 2
@@ -601,9 +601,9 @@ Music_Credits_Ch2:
 	note D_, 1
 	note C#, 1
 	intensity $c7
-	callchannel Music_Credits_branch_1f6cb
-	callchannel Music_Credits_branch_1f73f
-	callchannel Music_Credits_branch_1f748
+	callchannel .sub1
+	callchannel .sub2
+	callchannel .sub3
 	octave 4
 	note B_, 1
 	octave 5
@@ -631,7 +631,7 @@ Music_Credits_Ch2:
 	octave 4
 	note A_, 2
 	note E_, 2
-	callchannel Music_Credits_branch_1f748
+	callchannel .sub3
 	octave 4
 	note B_, 1
 	octave 5
@@ -663,9 +663,9 @@ Music_Credits_Ch2:
 	note G_, 4
 	notetype $6, $c7
 	pitchoffset 0, D_
-	callchannel Music_Credits_branch_1f6cb
-	callchannel Music_Credits_branch_1f73f
-	callchannel Music_Credits_branch_1f748
+	callchannel .sub1
+	callchannel .sub2
+	callchannel .sub3
 	pitchoffset 0, C_
 	octave 5
 	note C#, 1
@@ -721,13 +721,13 @@ Music_Credits_Ch2:
 	octave 2
 	note F#, 1
 	note __, 1
-Music_Credits_branch_1f657:
+.loop1:
 	octave 1
 	note G_, 2
 	octave 2
 	note G_, 1
 	note __, 1
-	loopchannel 4, Music_Credits_branch_1f657
+	loopchannel 4, .loop1
 	octave 1
 	note A_, 1
 	octave 2
@@ -817,7 +817,7 @@ Music_Credits_branch_1f657:
 	note __, 16
 	endchannel
 
-Music_Credits_branch_1f6cb:
+.sub1:
 	octave 2
 	note C_, 4
 	intensity $b1
@@ -929,7 +929,7 @@ Music_Credits_branch_1f6cb:
 	note C_, 2
 	endchannel
 
-Music_Credits_branch_1f73f:
+.sub2:
 	octave 1
 	note G_, 4
 	note __, 4
@@ -940,7 +940,7 @@ Music_Credits_branch_1f73f:
 	note F#, 8
 	endchannel
 
-Music_Credits_branch_1f748:
+.sub3:
 	octave 4
 	note A_, 8
 	note B_, 8
@@ -1022,7 +1022,7 @@ Music_Credits_Ch3:
 	note D#, 1
 	note E_, 7
 	note F_, 8
-	callchannel Music_Credits_branch_1f8aa
+	callchannel .sub1
 	octave 4
 	note G_, 1
 	note __, 1
@@ -1042,10 +1042,10 @@ Music_Credits_Ch3:
 	note E_, 4
 	note __, 4
 	note F_, 4
-	callchannel Music_Credits_branch_1f8aa
-	callchannel Music_Credits_branch_1f8db
-	callchannel Music_Credits_branch_1f8e7
-	callchannel Music_Credits_branch_1f934
+	callchannel .sub1
+	callchannel .sub2
+	callchannel .sub3
+	callchannel .sub4
 	octave 2
 	note G_, 4
 	note __, 2
@@ -1111,9 +1111,9 @@ Music_Credits_Ch3:
 	note F#, 4
 	octave 3
 	note E_, 4
-	callchannel Music_Credits_branch_1f8e7
-	callchannel Music_Credits_branch_1f934
-	callchannel Music_Credits_branch_1f94b
+	callchannel .sub3
+	callchannel .sub4
+	callchannel .sub5
 	octave 5
 	note D#, 1
 	note E_, 7
@@ -1134,13 +1134,13 @@ Music_Credits_Ch3:
 	note F#, 7
 	note G_, 8
 	pitchoffset 0, D_
-	callchannel Music_Credits_branch_1f8aa
-	callchannel Music_Credits_branch_1f8db
+	callchannel .sub1
+	callchannel .sub2
 	pitchoffset 1, D_
-	callchannel Music_Credits_branch_1f8e7
+	callchannel .sub3
 	pitchoffset 0, D_
-	callchannel Music_Credits_branch_1f934
-	callchannel Music_Credits_branch_1f94b
+	callchannel .sub4
+	callchannel .sub5
 	pitchoffset 0, C_
 	octave 6
 	note C#, 2
@@ -1233,7 +1233,7 @@ Music_Credits_Ch3:
 	note __, 16
 	endchannel
 
-Music_Credits_branch_1f8aa:
+.sub1:
 	note G_, 16
 	octave 6
 	note C#, 1
@@ -1274,7 +1274,7 @@ Music_Credits_branch_1f8aa:
 	note D_, 16
 	endchannel
 
-Music_Credits_branch_1f8db:
+.sub2:
 	notetype $6, $14
 	note F#, 1
 	note G_, 3
@@ -1286,7 +1286,7 @@ Music_Credits_branch_1f8db:
 	note G#, 8
 	endchannel
 
-Music_Credits_branch_1f8e7:
+.sub3:
 	octave 3
 	note F_, 4
 	note __, 2
@@ -1365,7 +1365,7 @@ Music_Credits_branch_1f8e7:
 	note G#, 2
 	endchannel
 
-Music_Credits_branch_1f934:
+.sub4:
 	octave 2
 	note F_, 4
 	note __, 2
@@ -1390,7 +1390,7 @@ Music_Credits_branch_1f934:
 	note F_, 2
 	endchannel
 
-Music_Credits_branch_1f94b:
+.sub5:
 	octave 2
 	note F#, 4
 	note __, 2
@@ -1460,15 +1460,15 @@ Music_Credits_Ch4:
 	note G_, 1
 	note A#, 4
 	note A#, 4
-	callchannel Music_Credits_branch_1fa4d
-	callchannel Music_Credits_branch_1fa4d
-	callchannel Music_Credits_branch_1fa4d
-	callchannel Music_Credits_branch_1fa6d
-	callchannel Music_Credits_branch_1fa4d
-	callchannel Music_Credits_branch_1fa4d
-	callchannel Music_Credits_branch_1fa4d
-	callchannel Music_Credits_branch_1fa6d
-Music_Credits_branch_1f9a8:
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub2
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub2
+.loop1:
 	note A#, 2
 	note G_, 1
 	note G_, 1
@@ -1480,7 +1480,7 @@ Music_Credits_branch_1f9a8:
 	note G_, 1
 	note D_, 2
 	note F#, 2
-	loopchannel 7, Music_Credits_branch_1f9a8
+	loopchannel 7, .loop1
 	note G#, 1
 	note G_, 1
 	note D_, 1
@@ -1496,7 +1496,7 @@ Music_Credits_branch_1f9a8:
 	note C#, 1
 	note D_, 1
 	note D_, 1
-Music_Credits_branch_1f9c6:
+.loop2:
 	note A#, 2
 	note G_, 1
 	note G_, 1
@@ -1508,7 +1508,7 @@ Music_Credits_branch_1f9c6:
 	note G_, 1
 	note D_, 2
 	note F#, 2
-	loopchannel 7, Music_Credits_branch_1f9c6
+	loopchannel 7, .loop2
 	note G#, 1
 	note G_, 1
 	note F#, 2
@@ -1526,11 +1526,11 @@ Music_Credits_branch_1f9c6:
 	note B_, 2
 	note A#, 4
 	note A#, 4
-	callchannel Music_Credits_branch_1fa4d
-	callchannel Music_Credits_branch_1fa4d
-	callchannel Music_Credits_branch_1fa4d
-	callchannel Music_Credits_branch_1fa6d
-Music_Credits_branch_1f9f2:
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub2
+.loop3:
 	note A#, 2
 	note G_, 1
 	note G_, 1
@@ -1542,7 +1542,7 @@ Music_Credits_branch_1f9f2:
 	note G_, 1
 	note D_, 2
 	note F#, 2
-	loopchannel 7, Music_Credits_branch_1f9f2
+	loopchannel 7, .loop3
 	note G#, 1
 	note G_, 1
 	note F#, 2
@@ -1610,7 +1610,7 @@ Music_Credits_branch_1f9f2:
 	note __, 16
 	endchannel
 
-Music_Credits_branch_1fa4d:
+.sub1:
 	note G#, 1
 	note G_, 1
 	note G_, 1
@@ -1644,7 +1644,7 @@ Music_Credits_branch_1fa4d:
 	note F#, 2
 	endchannel
 
-Music_Credits_branch_1fa6d:
+.sub2:
 	note G#, 1
 	note G_, 1
 	note G_, 1

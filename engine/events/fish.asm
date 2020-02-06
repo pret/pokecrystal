@@ -11,7 +11,7 @@ SECTION "engine/events/fish.asm", ROMX
 Fish::
 ; Using a fishing rod.
 ; Fish for monsters with rod e in encounter group d.
-; Return monster e at level d.
+; Return monster d at level e.
 
 	push af
 	push bc
@@ -33,7 +33,7 @@ endr
 
 .Fish:
 ; Fish for monsters with rod b from encounter data in FishGroup at hl.
-; Return monster e at level d.
+; Return monster d at level e.
 
 	call Random
 	cp [hl]

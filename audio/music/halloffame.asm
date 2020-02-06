@@ -26,7 +26,8 @@ Music_HallOfFame_Ch1:
 	note E_, 1
 	note F_, 1
 	note F#, 1
-Music_HallOfFame_branch_f05e6:
+.mainloop:
+.loop1:
 	intensity $97
 	octave 4
 	note C_, 8
@@ -44,17 +45,17 @@ Music_HallOfFame_branch_f05e6:
 	note F_, 8
 	intensity $57
 	note F_, 8
-	loopchannel 3, Music_HallOfFame_branch_f05e6
+	loopchannel 3, .loop1
 	note __, 16
 	note __, 16
 	note __, 16
 	note __, 16
-	loopchannel 0, Music_HallOfFame_branch_f05e6
+	loopchannel 0, .mainloop
 
 Music_HallOfFame_Ch2:
 	vibrato $8, $25
 	dutycycle $3
-Music_HallOfFame_branch_f0610:
+.mainloop:
 	notetype $c, $c4
 	octave 3
 	note G_, 2
@@ -79,12 +80,12 @@ Music_HallOfFame_branch_f0610:
 	note A#, 4
 	note A_, 4
 	note F_, 2
-	loopchannel 0, Music_HallOfFame_branch_f0610
+	loopchannel 0, .mainloop
 
 Music_HallOfFame_Ch3:
-Music_HallOfFame_branch_f062e:
+.mainloop:
 	notetype $c, $28
-Music_HallOfFame_branch_f0631:
+.loop1:
 	octave 3
 	note D_, 2
 	note G_, 2
@@ -121,7 +122,7 @@ Music_HallOfFame_branch_f0631:
 	note F_, 2
 	note C_, 2
 	note F_, 2
-	loopchannel 3, Music_HallOfFame_branch_f0631
+	loopchannel 3, .loop1
 	note D_, 4
 	note G_, 4
 	note D_, 4
@@ -138,7 +139,7 @@ Music_HallOfFame_branch_f0631:
 	note G_, 4
 	note E_, 4
 	note G_, 4
-	loopchannel 0, Music_HallOfFame_branch_f062e
+	loopchannel 0, .mainloop
 
 Music_HallOfFame_Ch4:
 	togglenoise $5
@@ -148,7 +149,7 @@ Music_HallOfFame_Ch4:
 	note __, 16
 	note __, 16
 	notetype $6
-Music_HallOfFame_branch_f0677:
+.mainloop:
 	stereopanning $f
 	note A#, 4
 	note A#, 8
@@ -174,4 +175,4 @@ Music_HallOfFame_branch_f0677:
 	note A#, 1
 	note A#, 1
 	note A#, 1
-	loopchannel 0, Music_HallOfFame_branch_f0677
+	loopchannel 0, .mainloop

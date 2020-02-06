@@ -15,7 +15,7 @@ Music_BuenasPassword_Ch1:
 	tone $0001
 	notetype $c, $b3
 	note __, 8
-Music_BuenasPassword_branch_17816b:
+.mainloop:
 	stereopanning $ff
 	note __, 16
 	note __, 16
@@ -42,15 +42,15 @@ Music_BuenasPassword_branch_17816b:
 	note G#, 2
 	note __, 12
 	dutycycle $2
-	callchannel Music_BuenasPassword_branch_178204
+	callchannel .sub1
 	stereopanning $ff
-	callchannel Music_BuenasPassword_branch_1782df
-	callchannel Music_BuenasPassword_branch_178222
-	callchannel Music_BuenasPassword_branch_178204
+	callchannel Music_BuenasPassword_Ch2.sub3
+	callchannel .sub2
+	callchannel .sub1
 	stereopanning $ff
-	callchannel Music_BuenasPassword_branch_1782df
-	callchannel Music_BuenasPassword_branch_178222
-	callchannel Music_BuenasPassword_branch_178204
+	callchannel Music_BuenasPassword_Ch2.sub3
+	callchannel .sub2
+	callchannel .sub1
 	dutycycle $1
 	note C#, 2
 	note __, 2
@@ -141,9 +141,9 @@ Music_BuenasPassword_branch_17816b:
 	note __, 1
 	note G_, 1
 	note __, 1
-	loopchannel 0, Music_BuenasPassword_branch_17816b
+	loopchannel 0, .mainloop
 
-Music_BuenasPassword_branch_178204:
+.sub1:
 	stereopanning $f
 	notetype $6, $84
 	octave 4
@@ -166,7 +166,7 @@ Music_BuenasPassword_branch_178204:
 	notetype $c, $84
 	endchannel
 
-Music_BuenasPassword_branch_178222:
+.sub2:
 	octave 3
 	note D#, 1
 	note __, 1
@@ -190,25 +190,25 @@ Music_BuenasPassword_Ch2:
 	note __, 7
 	octave 3
 	note F#, 1
-Music_BuenasPassword_branch_17823c:
+.mainloop:
 	stereopanning $ff
-	callchannel Music_BuenasPassword_branch_1782df
-	callchannel Music_BuenasPassword_branch_1782a4
+	callchannel .sub3
+	callchannel .sub1
 	stereopanning $ff
-	callchannel Music_BuenasPassword_branch_1782cc
+	callchannel .sub2
 	octave 3
 	note B_, 2
 	note A#, 2
 	note B_, 2
 	note G#, 16
-	callchannel Music_BuenasPassword_branch_1782a4
+	callchannel .sub1
 	stereopanning $ff
-	callchannel Music_BuenasPassword_branch_1782cc
+	callchannel .sub2
 	note B_, 2
 	note A#, 2
 	note B_, 2
 	note G#, 16
-	callchannel Music_BuenasPassword_branch_1782a4
+	callchannel .sub1
 	note F#, 2
 	note __, 2
 	note G#, 2
@@ -274,9 +274,9 @@ Music_BuenasPassword_branch_17823c:
 	note G_, 1
 	note __, 1
 	intensity $a5
-	loopchannel 0, Music_BuenasPassword_branch_17823c
+	loopchannel 0, .mainloop
 
-Music_BuenasPassword_branch_1782a4:
+.sub1:
 	octave 3
 	note G#, 1
 	note __, 1
@@ -309,7 +309,7 @@ Music_BuenasPassword_branch_1782a4:
 	notetype $c, $a5
 	endchannel
 
-Music_BuenasPassword_branch_1782cc:
+.sub2:
 	octave 4
 	note G#, 2
 	note __, 2
@@ -330,7 +330,7 @@ Music_BuenasPassword_branch_1782cc:
 	note __, 2
 	endchannel
 
-Music_BuenasPassword_branch_1782df:
+.sub3:
 	octave 3
 	note G#, 1
 	note __, 1
@@ -385,10 +385,11 @@ Music_BuenasPassword_branch_1782df:
 Music_BuenasPassword_Ch3:
 	notetype $c, $14
 	note __, 8
-Music_BuenasPassword_branch_178315:
-	callchannel Music_BuenasPassword_branch_1783a7
-	callchannel Music_BuenasPassword_branch_1783a7
-	callchannel Music_BuenasPassword_branch_1783a7
+.mainloop:
+.loop1:
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub1
 	octave 2
 	note G#, 1
 	note __, 1
@@ -405,7 +406,7 @@ Music_BuenasPassword_branch_178315:
 	note B_, 1
 	note __, 1
 	note G#, 4
-	loopchannel 3, Music_BuenasPassword_branch_178315
+	loopchannel 3, .loop1
 	note F#, 1
 	note __, 1
 	note A#, 1
@@ -477,7 +478,7 @@ Music_BuenasPassword_branch_178315:
 	note D#, 1
 	note __, 1
 	note G_, 2
-	callchannel Music_BuenasPassword_branch_1783bc
+	callchannel .sub2
 	octave 3
 	note C#, 1
 	note __, 1
@@ -497,7 +498,7 @@ Music_BuenasPassword_branch_178315:
 	note __, 1
 	octave 3
 	note C#, 2
-	callchannel Music_BuenasPassword_branch_1783bc
+	callchannel .sub2
 	note G#, 1
 	note __, 1
 	note G#, 1
@@ -515,9 +516,9 @@ Music_BuenasPassword_branch_178315:
 	note __, 1
 	note G_, 1
 	note __, 1
-	loopchannel 0, Music_BuenasPassword_branch_178315
+	loopchannel 0, .mainloop
 
-Music_BuenasPassword_branch_1783a7:
+.sub1:
 	octave 2
 	note G#, 1
 	note __, 1
@@ -540,7 +541,7 @@ Music_BuenasPassword_branch_1783a7:
 	note C#, 1
 	endchannel
 
-Music_BuenasPassword_branch_1783bc:
+.sub2:
 	octave 2
 	note G#, 1
 	note __, 1
@@ -570,15 +571,16 @@ Music_BuenasPassword_Ch4:
 	note D_, 2
 	note D_, 1
 	note D_, 1
-Music_BuenasPassword_branch_1783d9:
-	callchannel Music_BuenasPassword_branch_17840c
-	callchannel Music_BuenasPassword_branch_17840c
-	callchannel Music_BuenasPassword_branch_17840c
-	callchannel Music_BuenasPassword_branch_178424
-	loopchannel 4, Music_BuenasPassword_branch_1783d9
-	callchannel Music_BuenasPassword_branch_17840c
-	callchannel Music_BuenasPassword_branch_17840c
-	callchannel Music_BuenasPassword_branch_17840c
+.mainloop:
+.loop1:
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub2
+	loopchannel 4, .loop1
+	callchannel .sub1
+	callchannel .sub1
+	callchannel .sub1
 	stereopanning $ff
 	note D#, 2
 	stereopanning $f0
@@ -595,9 +597,9 @@ Music_BuenasPassword_branch_1783d9:
 	note D_, 2
 	note D_, 1
 	note D_, 1
-	loopchannel 0, Music_BuenasPassword_branch_1783d9
+	loopchannel 0, .mainloop
 
-Music_BuenasPassword_branch_17840c:
+.sub1:
 	stereopanning $ff
 	note D#, 2
 	stereopanning $f0
@@ -616,7 +618,7 @@ Music_BuenasPassword_branch_17840c:
 	note G_, 2
 	endchannel
 
-Music_BuenasPassword_branch_178424:
+.sub2:
 	stereopanning $ff
 	note D#, 2
 	stereopanning $f0

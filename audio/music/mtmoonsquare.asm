@@ -13,9 +13,9 @@ Music_MtMoonSquare_Ch1:
 	dutycycle $2
 	tone $0001
 	note __, 1
-Music_MtMoonSquare_branch_f4826:
+.mainloop:
 	notetype $c, $44
-Music_MtMoonSquare_branch_f4829:
+.loop1:
 	octave 4
 	note D_, 2
 	note E_, 2
@@ -24,8 +24,8 @@ Music_MtMoonSquare_branch_f4829:
 	note A_, 2
 	octave 5
 	note D_, 4
-	loopchannel 2, Music_MtMoonSquare_branch_f4829
-Music_MtMoonSquare_branch_f4835:
+	loopchannel 2, .loop1
+.loop2:
 	octave 4
 	note E_, 2
 	note F#, 2
@@ -34,8 +34,8 @@ Music_MtMoonSquare_branch_f4835:
 	note B_, 2
 	octave 5
 	note E_, 4
-	loopchannel 2, Music_MtMoonSquare_branch_f4835
-Music_MtMoonSquare_branch_f4841:
+	loopchannel 2, .loop2
+.loop3:
 	octave 4
 	note C#, 2
 	note D_, 2
@@ -44,8 +44,8 @@ Music_MtMoonSquare_branch_f4841:
 	note G_, 2
 	octave 5
 	note C#, 4
-	loopchannel 2, Music_MtMoonSquare_branch_f4841
-Music_MtMoonSquare_branch_f484d:
+	loopchannel 2, .loop3
+.loop4:
 	octave 4
 	note D_, 2
 	note E_, 2
@@ -54,15 +54,15 @@ Music_MtMoonSquare_branch_f484d:
 	note A_, 2
 	octave 5
 	note D_, 4
-	loopchannel 2, Music_MtMoonSquare_branch_f484d
-	loopchannel 0, Music_MtMoonSquare_branch_f4826
+	loopchannel 2, .loop4
+	loopchannel 0, .mainloop
 
 Music_MtMoonSquare_Ch2:
 	dutycycle $2
 	vibrato $18, $24
-Music_MtMoonSquare_branch_f4862:
+.mainloop:
 	notetype $c, $82
-Music_MtMoonSquare_branch_f4865:
+.loop1:
 	octave 4
 	note D_, 2
 	note E_, 2
@@ -72,9 +72,9 @@ Music_MtMoonSquare_branch_f4865:
 	octave 5
 	note D_, 4
 	notetype $c, $62
-	loopchannel 2, Music_MtMoonSquare_branch_f4865
+	loopchannel 2, .loop1
 	notetype $c, $82
-Music_MtMoonSquare_branch_f4877:
+.loop2:
 	octave 4
 	note E_, 2
 	note F#, 2
@@ -84,9 +84,9 @@ Music_MtMoonSquare_branch_f4877:
 	octave 5
 	note E_, 4
 	notetype $c, $62
-	loopchannel 2, Music_MtMoonSquare_branch_f4877
+	loopchannel 2, .loop2
 	notetype $c, $82
-Music_MtMoonSquare_branch_f4889:
+.loop3:
 	octave 4
 	note C#, 2
 	note D_, 2
@@ -96,9 +96,9 @@ Music_MtMoonSquare_branch_f4889:
 	octave 5
 	note C#, 4
 	notetype $c, $62
-	loopchannel 2, Music_MtMoonSquare_branch_f4889
+	loopchannel 2, .loop3
 	notetype $c, $82
-Music_MtMoonSquare_branch_f489b:
+.loop4:
 	octave 4
 	note D_, 2
 	note E_, 2
@@ -108,5 +108,5 @@ Music_MtMoonSquare_branch_f489b:
 	octave 5
 	note D_, 4
 	notetype $c, $62
-	loopchannel 2, Music_MtMoonSquare_branch_f489b
-	loopchannel 0, Music_MtMoonSquare_branch_f4862
+	loopchannel 2, .loop4
+	loopchannel 0, .mainloop

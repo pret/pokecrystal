@@ -3,7 +3,7 @@ INCLUDE "macros/scripts/text.inc"
 
 SECTION "data/phone/text/alan_callee.asm", ROMX
 
-UnknownText_0x1b659d::
+AlanAnswerPhoneText::
 	text "Yup, it's @"
 	text_ram wStringBuffer3
 	text "!"
@@ -12,7 +12,7 @@ UnknownText_0x1b659d::
 	line "Good morning!"
 	done
 
-UnknownText_0x1b65c7::
+AlanAnswerPhoneDayText::
 	text "Yup, it's @"
 	text_ram wStringBuffer3
 	text "!"
@@ -20,7 +20,7 @@ UnknownText_0x1b65c7::
 	para "Is that <PLAY_G>?"
 	done
 
-UnknownText_0x1b65e3::
+AlanAnswerPhoneNiteText::
 	text "Yup, it's @"
 	text_ram wStringBuffer3
 	text "!"
@@ -29,28 +29,28 @@ UnknownText_0x1b65e3::
 	line "Good evening!"
 	done
 
-UnknownText_0x1b660d::
+AlanGreetText::
 	text "Hello! It's me,"
 	line "@"
 	text_ram wStringBuffer3
 	text "!"
 	done
 
-UnknownText_0x1b6624::
+AlanGreetDayText::
 	text "Hello! It's me,"
 	line "@"
 	text_ram wStringBuffer3
 	text "!"
 	done
 
-UnknownText_0x1b663b::
+AlanGreetNiteText::
 	text "Hello! It's me,"
 	line "@"
 	text_ram wStringBuffer3
 	text "!"
 	done
 
-UnknownText_0x1b6652::
+AlanGenericText::
 	text "<PLAY_G>, are you"
 	line "raising your"
 	cont "#MON properly?"

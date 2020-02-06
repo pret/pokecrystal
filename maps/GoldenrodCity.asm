@@ -78,21 +78,21 @@ MoveTutorScript:
 
 .Flamethrower:
 	setval MOVETUTOR_FLAMETHROWER
-	writetext UnknownText_0x1991cf
+	writetext GoldenrodCityMoveTutorMoveText
 	special MoveTutor
 	ifequal FALSE, .TeachMove
 	sjump .Incompatible
 
 .Thunderbolt:
 	setval MOVETUTOR_THUNDERBOLT
-	writetext UnknownText_0x1991cf
+	writetext GoldenrodCityMoveTutorMoveText
 	special MoveTutor
 	ifequal FALSE, .TeachMove
 	sjump .Incompatible
 
 .IceBeam:
 	setval MOVETUTOR_ICE_BEAM
-	writetext UnknownText_0x1991cf
+	writetext GoldenrodCityMoveTutorMoveText
 	special MoveTutor
 	ifequal FALSE, .TeachMove
 	sjump .Incompatible
@@ -125,7 +125,7 @@ MoveTutorScript:
 
 .TeachMove:
 	writetext GoldenrodCityMoveTutorIfYouUnderstandYouveMadeItText
-	buttonsound
+	promptbutton
 	takecoins 4000
 	waitsfx
 	playsound SFX_TRANSACTION
@@ -210,7 +210,7 @@ GoldenrodCityGrampsScript:
 GoldenrodCityRocketScoutScript:
 	opentext
 	writetext GoldenrodCityRocketScoutText1
-	buttonsound
+	promptbutton
 	faceplayer
 	writetext GoldenrodCityRocketScoutText2
 	waitbutton
@@ -550,7 +550,7 @@ GoldenrodCityMoveTutorYouDontHaveEnoughCoinsText:
 	line "enough coins here…"
 	done
 
-UnknownText_0x1991cf:
+GoldenrodCityMoveTutorMoveText:
 	text_start
 	done
 

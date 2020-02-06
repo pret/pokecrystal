@@ -3,7 +3,7 @@ INCLUDE "macros/scripts/text.inc"
 
 SECTION "data/phone/text/beverly_callee.asm", ROMX
 
-UnknownText_0x1b4f21::
+BeverlyAnswerPhoneText::
 	text "Hello, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -13,7 +13,7 @@ UnknownText_0x1b4f21::
 	line "<PLAYER>."
 	done
 
-UnknownText_0x1b4f4d::
+BeverlyAnswerPhoneDayText::
 	text "Hello, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -23,7 +23,7 @@ UnknownText_0x1b4f4d::
 	line "<PLAYER>."
 	done
 
-UnknownText_0x1b4f75::
+BeverlyAnswerPhoneNiteText::
 	text "Hello, this is"
 	line "@"
 	text_ram wStringBuffer3
@@ -33,7 +33,7 @@ UnknownText_0x1b4f75::
 	line "<PLAYER>."
 	done
 
-UnknownText_0x1b4fa1::
+BeverlyGreetText::
 	text "Hello, <PLAYER>."
 	line "Good morning."
 
@@ -43,7 +43,7 @@ UnknownText_0x1b4fa1::
 	line "Were you asleep?"
 	done
 
-UnknownText_0x1b4fda::
+BeverlyGreetDayText::
 	text "Hi, <PLAYER>."
 	line "This is @"
 	text_ram wStringBuffer3
@@ -52,7 +52,7 @@ UnknownText_0x1b4fda::
 	para "How are you doing?"
 	done
 
-UnknownText_0x1b5004::
+BeverlyGreetNiteText::
 	text "Hi, <PLAYER>."
 	line "This is @"
 	text_ram wStringBuffer3
@@ -61,7 +61,7 @@ UnknownText_0x1b5004::
 	para "Were you awake?"
 	done
 
-UnknownText_0x1b502b::
+BeverlyGenericText::
 	text "Keeping your"
 	line "#MON happy?"
 

@@ -22,7 +22,7 @@ BethPhoneCalleeScript::
 	iftrue BethFridayAfternoon
 
 .NotFriday:
-	farsjump UnknownScript_0xa0918
+	farsjump BethHangUpScript
 
 .WantsBattle:
 	getlandmarkname STRING_BUFFER_5, ROUTE_26

@@ -20,7 +20,7 @@ HandleNewMap::
 	call ResetBikeFlags
 	ld a, MAPCALLBACK_NEWMAP
 	call RunMapCallback
-InitCommandQueue::
+HandleContinueMap::
 	farcall ClearCmdQueue
 	ld a, MAPCALLBACK_CMDQUEUE
 	call RunMapCallback
@@ -169,7 +169,7 @@ EnterMapConnection::
 
 SECTION "engine/overworld/warp_connection.asm@LoadWarpData", ROMX
 
-LoadWarpData::
+EnterMapWarp::
 	call .SaveDigWarp
 	call .SetSpawn
 	ld a, [wNextWarp]
@@ -321,8 +321,8 @@ LoadMapTimeOfDay::
 
 SECTION "engine/overworld/warp_connection.asm@LoadGraphics", ROMX
 
-LoadGraphics::
-	call LoadTileset
+LoadMapGraphics::
+	call LoadMapTileset
 	call LoadTilesetGFX
 	xor a
 	ldh [hMapAnims], a
@@ -345,7 +345,7 @@ SECTION "engine/overworld/warp_connection.asm@RefreshMapSprites", ROMX
 
 RefreshMapSprites::
 	call ClearSprites
-	farcall ReturnFromMapSetupScript
+	farcall InitMapNameSign
 	call GetMovementPermissions
 	farcall RefreshPlayerSprite
 	farcall CheckReplaceKrisSprite
@@ -357,7 +357,7 @@ RefreshMapSprites::
 	call SafeUpdateSprites
 .skip
 	ld a, [wPlayerSpriteSetupFlags]
-	and %00011100
+	and (1 << PLAYERSPRITESETUP_FEMALE_TO_MALE_F) | (1 << 3) | (1 << 4)
 	ld [wPlayerSpriteSetupFlags], a
 	ret
 
@@ -424,7 +424,7 @@ CheckMovingOffEdgeOfMap::
 
 SECTION "engine/overworld/warp_connection.asm@GetCoordOfUpperLeftCorner", ROMX
 
-GetCoordOfUpperLeftCorner::
+GetMapScreenCoords::
 	ld hl, wOverworldMapBlocks
 	ld a, [wXCoord]
 	bit 0, a

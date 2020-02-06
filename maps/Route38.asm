@@ -54,8 +54,8 @@ TrainerLassDana1:
 	iftrue .NumberAccepted
 	checkevent EVENT_DANA_ASKED_FOR_PHONE_NUMBER
 	iftrue .SecondTimeAsking
-	writetext UnknownText_0x1a20ec
-	buttonsound
+	writetext LassDanaMoomooMilkText
+	promptbutton
 	setevent EVENT_DANA_ASKED_FOR_PHONE_NUMBER
 	scall .AskNumber1F
 	sjump .AskForPhoneNumber
@@ -190,8 +190,8 @@ TrainerSchoolboyChad1:
 	iftrue .HaveChadsNumber
 	checkevent EVENT_CHAD_ASKED_FOR_PHONE_NUMBER
 	iftrue .SecondTimeAsking
-	writetext UnknownText_0x1a200e
-	buttonsound
+	writetext SchoolboyChadSoManyTestsText
+	promptbutton
 	setevent EVENT_CHAD_ASKED_FOR_PHONE_NUMBER
 	scall .AskPhoneNumber1
 	sjump .AskToRegisterNumber
@@ -355,7 +355,7 @@ SchoolboyChad1BeatenText:
 	line "enough, I guess."
 	done
 
-UnknownText_0x1a200e:
+SchoolboyChadSoManyTestsText:
 	text "I have to take so"
 	line "many tests, I"
 
@@ -381,7 +381,7 @@ LassDana1BeatenText:
 	line "battle that way."
 	done
 
-UnknownText_0x1a20ec:
+LassDanaMoomooMilkText:
 	text "I know something"
 	line "good!"
 

@@ -3,7 +3,7 @@ SERIAL_CONSTANTS_INC EQU 1
 
 INCLUDE "macros/enum.inc"
 
-; link types
+; wLinkMode
 	const_def
 	const LINK_NULL        ; 0
 	const LINK_TIMECAPSULE ; 1

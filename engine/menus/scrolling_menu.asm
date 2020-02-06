@@ -2,6 +2,7 @@ INCLUDE "charmap.inc"
 INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/input_constants.inc"
+INCLUDE "constants/menu_constants.inc"
 
 
 SECTION "engine/menus/scrolling_menu.asm", ROMX
@@ -505,10 +506,10 @@ ScrollingMenu_GetListItemCoordAndFunctionArgs:
 	ld h, [hl]
 	ld l, a
 	inc hl ; items
-	ld a, [wMenuData_ScrollingMenuSpacing]
-	cp 1
+	ld a, [wMenuData_ScrollingMenuItemFormat]
+	cp SCROLLINGMENU_ITEMS_NORMAL
 	jr z, .got_spacing
-	cp 2
+	cp SCROLLINGMENU_ITEMS_QUANTITY
 	jr z, .pointless_jump
 .pointless_jump
 	add hl, de

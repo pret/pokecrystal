@@ -272,9 +272,9 @@ Request1bpp::
 
 	ldh a, [hTilesPerCycle]
 	push af
-
 	ld a, $8
 	ldh [hTilesPerCycle], a
+
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
 	jr nz, .NotMobile

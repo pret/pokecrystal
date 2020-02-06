@@ -56,7 +56,7 @@ MagikarpLengthRaterScript:
 
 .GetReward:
 	writetext MagikarpLengthRaterText_Memento
-	buttonsound
+	promptbutton
 	verbosegiveitem ELIXER
 	iffalse .NoRoom
 	writetext MagikarpLengthRaterText_Bonus

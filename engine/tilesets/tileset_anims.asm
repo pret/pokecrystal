@@ -268,7 +268,7 @@ TilesetChampionsRoomAnim::
 TilesetLighthouseAnim::
 TilesetPlayersRoomAnim::
 TilesetPokeComCenterAnim::
-TilesetBattleTowerAnim::
+TilesetBattleTowerInsideAnim::
 TilesetRuinsOfAlphAnim::
 TilesetRadioTowerAnim::
 TilesetUndergroundAnim::

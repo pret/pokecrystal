@@ -41,7 +41,7 @@ FirstStepIntoKantoScene_Continue:
 	turnobject PLAYER, RIGHT
 	opentext
 	writetext Route27FisherHeyText
-	buttonsound
+	promptbutton
 	writetext Route27FisherText
 	waitbutton
 	closetext
@@ -78,7 +78,7 @@ TrainerBirdKeeperJose2:
 	checkevent EVENT_JOSE_ASKED_FOR_PHONE_NUMBER
 	iftrue .AskedAlready
 	writetext BirdKeeperJose2AfterBattleText
-	buttonsound
+	promptbutton
 	setevent EVENT_JOSE_ASKED_FOR_PHONE_NUMBER
 	scall .AskNumber1
 	sjump .AskForNumber
@@ -211,7 +211,7 @@ TrainerCooltrainerfReena:
 	checkevent EVENT_REENA_ASKED_FOR_PHONE_NUMBER
 	iftrue .AskedAlready
 	writetext CooltrainerfReenaAfterBattleText
-	buttonsound
+	promptbutton
 	setevent EVENT_REENA_ASKED_FOR_PHONE_NUMBER
 	scall .AskNumber1
 	sjump .AskForNumber

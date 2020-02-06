@@ -3,7 +3,7 @@ INCLUDE "macros/scripts/text.inc"
 
 SECTION "data/phone/text/gina_caller.asm", ROMX
 
-UnknownText_0x1771fd::
+GinaGettingInSyncWithMonText::
 	text "My @"
 	text_ram wStringBuffer4
 	text " and"
@@ -13,7 +13,7 @@ UnknownText_0x1771fd::
 	line "other."
 	done
 
-UnknownText_0x177237::
+GinaDefeatedMonText::
 	text "We battled a wild"
 	line "@"
 	text_ram wStringBuffer4
@@ -26,7 +26,7 @@ UnknownText_0x177237::
 	line "the groove!"
 	done
 
-UnknownText_0x177297::
+GinaLostAMonText::
 	text "But, you know?"
 
 	para "I still haven't"
@@ -38,7 +38,7 @@ UnknownText_0x177297::
 	line "frustrating…"
 	done
 
-UnknownText_0x1772e2::
+GinaBattleRematchText::
 	text "Would you be my"
 	line "practice partner"
 	cont "again sometime?"
@@ -53,12 +53,12 @@ UnknownText_0x1772e2::
 	cont "me next time?"
 	done
 
-UnknownText_0x177361::
+GinaHangUpText::
 	text "Bye! Let's chat"
 	line "again!"
 	done
 
-UnknownText_0x177378::
+GinaRocketTakeoverRumorText::
 	text "Have you heard"
 	line "about TEAM ROCKET?"
 
@@ -70,7 +70,7 @@ UnknownText_0x177378::
 	line "inside safe?"
 	done
 
-UnknownText_0x1773e7::
+GinaFoundItemText::
 	text "I picked up some-"
 	line "thing nice today."
 
@@ -86,7 +86,7 @@ UnknownText_0x1773e7::
 	line "where I am."
 	done
 
-UnknownText_0x177465::
+GinaHaventFoundAnythingYetText::
 	text "Sorry, I haven't"
 	line "found anything"
 
@@ -97,7 +97,7 @@ UnknownText_0x177465::
 	line "can have it!"
 	done
 
-UnknownText_0x1774c1::
+GinaReminderText::
 	text "Oh, <PLAY_G>!"
 	line "How soon can I"
 
@@ -110,7 +110,7 @@ UnknownText_0x1774c1::
 	text "!"
 	done
 
-UnknownText_0x17750e::
+GinaComePickUpText::
 	text "I'm getting really"
 	line "impatient, waiting"
 

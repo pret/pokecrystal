@@ -19,7 +19,7 @@ OlivineCafeStrengthSailorScript:
 	checkevent EVENT_GOT_HM04_STRENGTH
 	iftrue .GotStrength
 	writetext OlivineCafeStrengthSailorText
-	buttonsound
+	promptbutton
 	verbosegiveitem HM_STRENGTH
 	setevent EVENT_GOT_HM04_STRENGTH
 .GotStrength:

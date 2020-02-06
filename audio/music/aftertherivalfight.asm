@@ -27,7 +27,7 @@ Music_AfterTheRivalFight_Ch1:
 	note G#, 2
 	note G#, 2
 	note G#, 2
-	loopchannel 0, Music_AfterTheRivalFight_branch_f4fb1
+	loopchannel 0, Music_LookRival_Ch1.mainloop
 
 Music_AfterTheRivalFight_Ch2:
 	dutycycle $1
@@ -42,7 +42,7 @@ Music_AfterTheRivalFight_Ch2:
 	note G#, 2
 	note G#, 2
 	note G#, 2
-	loopchannel 0, Music_AfterTheRivalFight_branch_f502e
+	loopchannel 0, Music_LookRival_Ch2.mainloop
 
 Music_AfterTheRivalFight_Ch3:
 	notetype $c, $28
@@ -55,7 +55,7 @@ Music_AfterTheRivalFight_Ch3:
 	note F#, 2
 	note F_, 2
 	note D#, 2
-	loopchannel 0, Music_AfterTheRivalFight_branch_f509d
+	loopchannel 0, Music_LookRival_Ch3.mainloop
 
 Music_AfterTheRivalFight_Ch4:
 	togglenoise $3
@@ -67,4 +67,4 @@ Music_AfterTheRivalFight_Ch4:
 	note D_, 2
 	note D_, 2
 	note D_, 2
-	loopchannel 0, Music_AfterTheRivalFight_branch_f5118
+	loopchannel 0, Music_LookRival_Ch4.mainloop

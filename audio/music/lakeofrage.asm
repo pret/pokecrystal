@@ -23,7 +23,7 @@ Music_LakeOfRage_Ch1:
 	note D_, 6
 	note D_, 6
 	note E_, 4
-Music_LakeOfRage_branch_ee6e9:
+.mainloop:
 	intensity $b5
 	note F#, 6
 	note E_, 6
@@ -96,7 +96,7 @@ Music_LakeOfRage_branch_ee6e9:
 	note D_, 6
 	intensity $a7
 	note D_, 6
-	loopchannel 0, Music_LakeOfRage_branch_ee6e9
+	loopchannel 0, .mainloop
 
 Music_LakeOfRage_Ch2:
 	dutycycle $3
@@ -111,7 +111,7 @@ Music_LakeOfRage_Ch2:
 	note A_, 8
 	intensity $a7
 	note A_, 8
-Music_LakeOfRage_branch_ee75e:
+.mainloop:
 	notetype $8, $c7
 	octave 4
 	note D_, 16
@@ -185,7 +185,7 @@ Music_LakeOfRage_branch_ee75e:
 	note F#, 4
 	notetype $c, $c7
 	note A_, 16
-	loopchannel 0, Music_LakeOfRage_branch_ee75e
+	loopchannel 0, .mainloop
 
 Music_LakeOfRage_Ch3:
 	stereopanning $f
@@ -200,7 +200,7 @@ Music_LakeOfRage_Ch3:
 	note F#, 4
 	note __, 2
 	note E_, 4
-Music_LakeOfRage_branch_ee7d0:
+.mainloop:
 	octave 3
 	note D_, 4
 	octave 2
@@ -298,13 +298,13 @@ Music_LakeOfRage_branch_ee7d0:
 	note D_, 2
 	octave 2
 	note A_, 2
-	loopchannel 0, Music_LakeOfRage_branch_ee7d0
+	loopchannel 0, .mainloop
 
 Music_LakeOfRage_Ch4:
 	stereopanning $f0
 	togglenoise $3
 	notetype $c
-Music_LakeOfRage_branch_ee83b:
+.mainloop:
 	note D_, 2
 	note D_, 1
 	note D_, 1
@@ -324,4 +324,4 @@ Music_LakeOfRage_branch_ee83b:
 	note D_, 1
 	note D_, 1
 	note D_, 1
-	loopchannel 0, Music_LakeOfRage_branch_ee83b
+	loopchannel 0, .mainloop

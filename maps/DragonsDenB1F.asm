@@ -57,7 +57,7 @@ DragonsDenB1F_ClairScene:
 	applymovement DRAGONSDENB1F_CLAIR, MovementDragonsDen_ClairWalksToYou
 	opentext
 	writetext ClairText_GiveDragonbreathDragonDen
-	buttonsound
+	promptbutton
 	giveitem TM_DRAGONBREATH
 	iffalse .BagFull
 	getitemname STRING_BUFFER_3, TM_DRAGONBREATH
@@ -67,7 +67,7 @@ DragonsDenB1F_ClairScene:
 	itemnotify
 	setevent EVENT_GOT_TM24_DRAGONBREATH
 	writetext ClairText_DescribeDragonbreathDragonDen
-	buttonsound
+	promptbutton
 	writetext ClairText_WhatsTheMatterDragonDen
 	waitbutton
 	closetext
@@ -149,7 +149,7 @@ DragonsDenB1FDragonFangScript:
 	opentext
 	getitemname STRING_BUFFER_3, DRAGON_FANG
 	writetext Text_FoundDragonFang
-	buttonsound
+	promptbutton
 	writetext Text_NoRoomForDragonFang
 	waitbutton
 	closetext

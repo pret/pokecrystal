@@ -16,9 +16,9 @@ Music_MobileAdapterMenu_Ch1:
 	dutycycle $2
 	notetype $c, $66
 	note __, 2
-Music_MobileAdapterMenu_branch_178038:
-	callchannel Music_MobileAdapterMenu_branch_178057
-	callchannel Music_MobileAdapterMenu_branch_178076
+.mainloop:
+	callchannel .sub1
+	callchannel .sub2
 	octave 3
 	note F#, 4
 	note B_, 4
@@ -26,7 +26,7 @@ Music_MobileAdapterMenu_branch_178038:
 	note B_, 1
 	note __, 1
 	note D#, 4
-	callchannel Music_MobileAdapterMenu_branch_178076
+	callchannel .sub2
 	octave 3
 	note F#, 2
 	octave 2
@@ -35,10 +35,10 @@ Music_MobileAdapterMenu_branch_178038:
 	note D#, 3
 	note E_, 1
 	note D#, 8
-	callchannel Music_MobileAdapterMenu_branch_178057
-	loopchannel 0, Music_MobileAdapterMenu_branch_178038
+	callchannel .sub1
+	loopchannel 0, .mainloop
 
-Music_MobileAdapterMenu_branch_178057:
+.sub1:
 	octave 3
 	note G#, 7
 	octave 4
@@ -71,7 +71,7 @@ Music_MobileAdapterMenu_branch_178057:
 	note G#, 8
 	endchannel
 
-Music_MobileAdapterMenu_branch_178076:
+.sub2:
 	note E_, 1
 	note __, 1
 	note A_, 1
@@ -94,16 +94,16 @@ Music_MobileAdapterMenu_Ch2:
 	octave 4
 	note E_, 1
 	note G#, 1
-Music_MobileAdapterMenu_branch_17808e:
-	callchannel Music_MobileAdapterMenu_branch_1780ae
+.mainloop:
+	callchannel .sub1
 	note E_, 8
-	callchannel Music_MobileAdapterMenu_branch_1780d7
+	callchannel .sub2
 	note D#, 2
 	note C#, 2
 	note D#, 3
 	note E_, 1
 	note F#, 8
-	callchannel Music_MobileAdapterMenu_branch_1780d7
+	callchannel .sub2
 	note D#, 2
 	note E_, 2
 	note F#, 3
@@ -111,13 +111,13 @@ Music_MobileAdapterMenu_branch_17808e:
 	note F#, 6
 	note E_, 1
 	note G#, 1
-	callchannel Music_MobileAdapterMenu_branch_1780ae
+	callchannel .sub1
 	note E_, 6
 	note E_, 1
 	note G#, 1
-	loopchannel 0, Music_MobileAdapterMenu_branch_17808e
+	loopchannel 0, .mainloop
 
-Music_MobileAdapterMenu_branch_1780ae:
+.sub1:
 	octave 4
 	note B_, 1
 	note __, 1
@@ -160,7 +160,7 @@ Music_MobileAdapterMenu_branch_1780ae:
 	note D#, 1
 	endchannel
 
-Music_MobileAdapterMenu_branch_1780d7:
+.sub2:
 	note A_, 1
 	note __, 1
 	note A_, 1
@@ -177,12 +177,12 @@ Music_MobileAdapterMenu_Ch3:
 	vibrato $8, $34
 	notetype $c, $25
 	note __, 2
-Music_MobileAdapterMenu_branch_1780e9:
-	callchannel Music_MobileAdapterMenu_branch_178119
+.mainloop:
+	callchannel .sub1
 	octave 2
 	note B_, 1
 	note G#, 1
-	callchannel Music_MobileAdapterMenu_branch_178146
+	callchannel .sub2
 	octave 2
 	note B_, 2
 	note __, 2
@@ -197,7 +197,7 @@ Music_MobileAdapterMenu_branch_1780e9:
 	note B_, 2
 	note F#, 1
 	note G#, 1
-	callchannel Music_MobileAdapterMenu_branch_178146
+	callchannel .sub2
 	octave 2
 	note B_, 2
 	note __, 2
@@ -212,11 +212,11 @@ Music_MobileAdapterMenu_branch_1780e9:
 	note D#, 1
 	note __, 1
 	note F#, 4
-	callchannel Music_MobileAdapterMenu_branch_178119
+	callchannel .sub1
 	note __, 2
-	loopchannel 0, Music_MobileAdapterMenu_branch_1780e9
+	loopchannel 0, .mainloop
 
-Music_MobileAdapterMenu_branch_178119:
+.sub1:
 	octave 3
 	note E_, 2
 	note __, 2
@@ -261,7 +261,7 @@ Music_MobileAdapterMenu_branch_178119:
 	intensity $25
 	endchannel
 
-Music_MobileAdapterMenu_branch_178146:
+.sub2:
 	note A_, 2
 	note __, 2
 	octave 3

@@ -84,7 +84,7 @@ FastShipB1FSailorScript:
 	end
 
 .NotFoundGirl:
-	buttonsound
+	promptbutton
 	writetext FastShipB1FOnDutySailorSawLittleGirlText
 	waitbutton
 	closetext

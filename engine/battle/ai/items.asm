@@ -701,7 +701,7 @@ AI_Switch::
 	pop af
 
 	jr c, .skiptext
-	ld hl, TextJump_EnemyWithdrew
+	ld hl, EnemyWithdrewText
 	call PrintText
 
 .skiptext
@@ -721,8 +721,8 @@ AI_Switch::
 	scf
 	ret
 
-TextJump_EnemyWithdrew:
-	text_far Text_EnemyWithdrew
+EnemyWithdrewText:
+	text_far _EnemyWithdrewText
 	text_end
 
 Function384d5: ; This appears to be unused
@@ -739,10 +739,14 @@ AI_HealStatus:
 	xor a
 	ld [hl], a
 	ld [wEnemyMonStatus], a
-	; Bug: this should reset SUBSTATUS_NIGHTMARE too
-	; Uncomment the lines below to fix
+	; Bug: this should reset SUBSTATUS_NIGHTMARE
+	; Uncomment the 2 lines below to fix
 	; ld hl, wEnemySubStatus1
 	; res SUBSTATUS_NIGHTMARE, [hl]
+	; Bug: this should reset SUBSTATUS_CONFUSED
+	; Uncomment the 2 lines below to fix
+	; ld hl, wEnemySubStatus3
+	; res SUBSTATUS_CONFUSED, [hl]
 	ld hl, wEnemySubStatus5
 	res SUBSTATUS_TOXIC, [hl]
 	ret
@@ -838,9 +842,9 @@ PrintText_UsedItemOn:
 	ld de, wMonOrItemNameBuffer
 	ld bc, ITEM_NAME_LENGTH
 	call CopyBytes
-	ld hl, TextJump_EnemyUsedOn
+	ld hl, EnemyUsedOnText
 	jp PrintText
 
-TextJump_EnemyUsedOn:
-	text_far Text_EnemyUsedOn
+EnemyUsedOnText:
+	text_far _EnemyUsedOnText
 	text_end

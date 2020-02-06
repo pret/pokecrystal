@@ -17,7 +17,7 @@ CeladonMansionRoofHousePharmacistScript:
 	checkevent EVENT_GOT_TM03_CURSE
 	iftrue .GotCurse
 	writetext CeladonMansionRoofHousePharmacistIntroText
-	buttonsound
+	promptbutton
 	checktime NITE
 	iftrue .Night
 	writetext CeladonMansionRoofHousePharmacistNotNightText
@@ -27,7 +27,7 @@ CeladonMansionRoofHousePharmacistScript:
 
 .Night:
 	writetext CeladonMansionRoofHousePharmacistStoryText
-	buttonsound
+	promptbutton
 	verbosegiveitem TM_CURSE
 	iffalse .NoRoom
 	setevent EVENT_GOT_TM03_CURSE

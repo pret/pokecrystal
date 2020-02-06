@@ -15,7 +15,7 @@ MAP_NAME_SIGN_START EQU $60
 
 SECTION "engine/events/map_name_sign.asm", ROMX
 
-ReturnFromMapSetupScript::
+InitMapNameSign::
 	xor a
 	ldh [hBGMapMode], a
 	farcall .inefficient_farcall ; this is a waste of 6 ROM bytes and 6 stack bytes
@@ -30,13 +30,13 @@ ReturnFromMapSetupScript::
 	call GetWorldMapLocation
 	ld [wCurLandmark], a
 	call .CheckNationalParkGate
-	jr z, .nationalparkgate
+	jr z, .gate
 
 	call GetMapEnvironment
 	cp GATE
 	jr nz, .not_gate
 
-.nationalparkgate
+.gate
 	ld a, -1
 	ld [wCurLandmark], a
 
@@ -85,7 +85,7 @@ ReturnFromMapSetupScript::
 ; These landmarks do not get pop-up signs.
 	cp -1
 	ret z
-	cp SPECIAL_MAP
+	cp SPECIAL_MAP ; redundant check
 	ret z
 	cp RADIO_TOWER
 	ret z
@@ -120,11 +120,11 @@ PlaceMapNameSign::
 	cp 60
 	ret z
 	cp 59
-	jr nz, .skip2
+	jr nz, .already_initialized
 	call InitMapNameFrame
 	call PlaceMapNameCenterAlign
 	farcall HDMATransfer_OnlyTopFourRows
-.skip2
+.already_initialized
 	ld a, $80
 	ld a, $70
 	ldh [rWY], a

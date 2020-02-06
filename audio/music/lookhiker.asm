@@ -21,7 +21,7 @@ Music_LookHiker_Ch1:
 	note F#, 2
 	note F_, 2
 	note F#, 8
-Music_LookHiker_branch_f7433:
+.mainloop:
 	note D_, 2
 	note D#, 2
 	note E_, 2
@@ -34,7 +34,7 @@ Music_LookHiker_branch_f7433:
 	note __, 2
 	note F#, 2
 	note __, 6
-	loopchannel 0, Music_LookHiker_branch_f7433
+	loopchannel 0, .mainloop
 
 Music_LookHiker_Ch2:
 	dutycycle $0
@@ -53,7 +53,7 @@ Music_LookHiker_Ch2:
 	note F#, 1
 	note D_, 1
 	intensity $a1
-Music_LookHiker_branch_f7457:
+.mainloop:
 	octave 1
 	note B_, 1
 	note B_, 2
@@ -70,7 +70,7 @@ Music_LookHiker_branch_f7457:
 	note D_, 1
 	note F#, 1
 	note D_, 1
-	loopchannel 0, Music_LookHiker_branch_f7457
+	loopchannel 0, .mainloop
 
 Music_LookHiker_Ch3:
 	vibrato $12, $24
@@ -80,21 +80,21 @@ Music_LookHiker_Ch3:
 	note B_, 2
 	note A#, 2
 	note B_, 8
-Music_LookHiker_branch_f7477:
+.mainloop:
 	octave 5
 	note D#, 2
 	note D_, 2
 	note C#, 2
 	note C_, 2
-	callchannel Music_LookHiker_branch_f748a
+	callchannel .sub1
 	note G_, 2
 	note G#, 2
 	note A_, 2
 	note A#, 2
-	callchannel Music_LookHiker_branch_f748a
-	loopchannel 0, Music_LookHiker_branch_f7477
+	callchannel .sub1
+	loopchannel 0, .mainloop
 
-Music_LookHiker_branch_f748a:
+.sub1:
 	octave 4
 	note B_, 2
 	note __, 4
@@ -111,9 +111,9 @@ Music_LookHiker_Ch4:
 	notetype $c
 	note F_, 4
 	note __, 16
-Music_LookHiker_branch_f749a:
+.mainloop:
 	note D#, 2
 	note G_, 2
 	note D_, 2
 	note G_, 2
-	loopchannel 0, Music_LookHiker_branch_f749a
+	loopchannel 0, .mainloop

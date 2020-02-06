@@ -47,13 +47,13 @@ VermilionSnorlax:
 	opentext
 	special SnorlaxAwake
 	iftrue .Awake
-	writetext UnknownText_0x1aab64
+	writetext VermilionCitySnorlaxSleepingText
 	waitbutton
 	closetext
 	end
 
 .Awake:
-	writetext UnknownText_0x1aab84
+	writetext VermilionCityRadioNearSnorlaxText
 	pause 15
 	cry SNORLAX
 	closetext
@@ -74,31 +74,31 @@ VermilionGymBadgeGuy:
 	ifequal NUM_BADGES, .AllBadges
 	ifgreater 13, .MostBadges
 	ifgreater 9, .SomeBadges
-	writetext UnknownText_0x1aabc8
+	writetext VermilionCityBadgeGuyTrainerText
 	waitbutton
 	closetext
 	end
 
 .SomeBadges:
-	writetext UnknownText_0x1aac2b
+	writetext VermilionCityBadgeGuySomeBadgesText
 	waitbutton
 	closetext
 	end
 
 .MostBadges:
-	writetext UnknownText_0x1aac88
+	writetext VermilionCityBadgeGuyMostBadgesText
 	waitbutton
 	closetext
 	end
 
 .AllBadges:
-	writetext UnknownText_0x1aacf3
-	buttonsound
+	writetext VermilionCityBadgeGuyAllBadgesText
+	promptbutton
 	verbosegiveitem HP_UP
 	iffalse .Done
 	setevent EVENT_GOT_HP_UP_FROM_VERMILION_GUY
 .AlreadyGotItem:
-	writetext UnknownText_0x1aad4a
+	writetext VermilionCityBadgeGuyBattleEdgeText
 	waitbutton
 .Done:
 	closetext
@@ -168,12 +168,12 @@ VermilionCitySuperNerdText:
 	cont "#MON GYM."
 	done
 
-UnknownText_0x1aab64:
+VermilionCitySnorlaxSleepingText:
 	text "SNORLAX is snoring"
 	line "peacefully…"
 	done
 
-UnknownText_0x1aab84:
+VermilionCityRadioNearSnorlaxText:
 	text "The #GEAR was"
 	line "placed near the"
 	cont "sleeping SNORLAX…"
@@ -183,7 +183,7 @@ UnknownText_0x1aab84:
 	para "SNORLAX woke up!"
 	done
 
-UnknownText_0x1aabc8:
+VermilionCityBadgeGuyTrainerText:
 	text "Skilled trainers"
 	line "gather in KANTO."
 
@@ -194,7 +194,7 @@ UnknownText_0x1aabc8:
 	line "to defeat."
 	done
 
-UnknownText_0x1aac2b:
+VermilionCityBadgeGuySomeBadgesText:
 	text "You've started to"
 	line "collect KANTO GYM"
 	cont "BADGES?"
@@ -204,7 +204,7 @@ UnknownText_0x1aac2b:
 	cont "here are tough?"
 	done
 
-UnknownText_0x1aac88:
+VermilionCityBadgeGuyMostBadgesText:
 	text "I guess you'll be"
 	line "finished with your"
 
@@ -216,7 +216,7 @@ UnknownText_0x1aac88:
 	cont "BADGES."
 	done
 
-UnknownText_0x1aacf3:
+VermilionCityBadgeGuyAllBadgesText:
 	text "Congratulations!"
 
 	para "You got all the"
@@ -226,7 +226,7 @@ UnknownText_0x1aacf3:
 	line "for your efforts."
 	done
 
-UnknownText_0x1aad4a:
+VermilionCityBadgeGuyBattleEdgeText:
 	text "Having a variety"
 	line "of #MON types"
 

@@ -8,14 +8,14 @@ Music_Surf::
 	musicheader 1, 2, Music_Surf_Ch2
 	musicheader 1, 3, Music_Surf_Ch3
 
-	db $3
+	db $3 ; unused
 
 Music_Surf_Ch1:
 	tempo 108
 	volume $77
 	notetype $c, $a7
 	stereopanning $f
-Music_Surf_branch_f519e:
+.mainloop:
 	dutycycle $2
 	vibrato $10, $24
 	intensity $73
@@ -73,11 +73,11 @@ Music_Surf_branch_f519e:
 	octave 4
 	note D_, 2
 	dutycycle $0
-	callchannel Music_Surf_branch_f5233
+	callchannel .sub1
 	dutycycle $1
 	notetype $8, $a7
-	callchannel Music_Surf_branch_f5233
-	callchannel Music_Surf_branch_f5293
+	callchannel .sub1
+	callchannel .sub2
 	octave 4
 	note C_, 2
 	octave 3
@@ -92,7 +92,7 @@ Music_Surf_branch_f519e:
 	note G_, 2
 	dutycycle $1
 	notetype $6, $97
-	callchannel Music_Surf_branch_f5293
+	callchannel .sub2
 	intensity $a8
 	note G#, 6
 	note A_, 6
@@ -101,14 +101,14 @@ Music_Surf_branch_f519e:
 	note D_, 3
 	intensity $a8
 	dutycycle $1
-	callchannel Music_Surf_branch_f52d9
+	callchannel .sub3
 	octave 3
 	note D#, 8
 	note G#, 8
 	note D#, 8
 	dutycycle $3
 	notetype $8, $98
-	callchannel Music_Surf_branch_f52d9
+	callchannel .sub3
 	notetype $c, $a7
 	octave 3
 	note D#, 12
@@ -122,9 +122,9 @@ Music_Surf_branch_f519e:
 	note B_, 2
 	octave 3
 	note D#, 2
-	loopchannel 0, Music_Surf_branch_f519e
+	loopchannel 0, .mainloop
 
-Music_Surf_branch_f5233:
+.sub1:
 	notetype $c, $a7
 	octave 3
 	note D#, 4
@@ -218,7 +218,7 @@ Music_Surf_branch_f5233:
 	note D_, 4
 	endchannel
 
-Music_Surf_branch_f5293:
+.sub2:
 	octave 4
 	note G#, 16
 	note D#, 4
@@ -284,7 +284,7 @@ Music_Surf_branch_f5293:
 	note G_, 2
 	endchannel
 
-Music_Surf_branch_f52d9:
+.sub3:
 	octave 3
 	note A#, 3
 	note G_, 3
@@ -344,12 +344,12 @@ Music_Surf_branch_f52d9:
 	endchannel
 
 Music_Surf_Ch2:
-Music_Surf_branch_f5317:
+.mainloop:
 	notetype $c, $c2
 	stereopanning $f0
 	dutycycle $2
 	vibrato $14, $23
-Music_Surf_branch_f5321:
+.loop1:
 	octave 1
 	note A#, 4
 	octave 2
@@ -357,7 +357,7 @@ Music_Surf_branch_f5321:
 	note __, 3
 	note A#, 1
 	note __, 3
-	loopchannel 3, Music_Surf_branch_f5321
+	loopchannel 3, .loop1
 	octave 1
 	note A#, 4
 	octave 2
@@ -365,7 +365,7 @@ Music_Surf_branch_f5321:
 	note __, 3
 	note A#, 1
 	note __, 3
-Music_Surf_branch_f5333:
+.loop2:
 	note D#, 4
 	note G_, 2
 	note G#, 2
@@ -400,42 +400,42 @@ Music_Surf_branch_f5333:
 	note B_, 4
 	note A#, 4
 	note G#, 4
-	loopchannel 2, Music_Surf_branch_f5333
+	loopchannel 2, .loop2
 	intensity $c7
-	callchannel Music_Surf_branch_f53b2
+	callchannel .sub1
 	note D#, 4
 	note D_, 4
 	note C#, 4
-	callchannel Music_Surf_branch_f53b2
+	callchannel .sub1
 	note D_, 4
 	note D#, 4
 	octave 1
 	note A#, 4
 	notetype $6, $b8
-	callchannel Music_Surf_branch_f53d6
+	callchannel .sub2
 	dutycycle $1
 	intensity $b8
-	callchannel Music_Surf_branch_f53e8
+	callchannel .sub3
 	dutycycle $2
-	callchannel Music_Surf_branch_f53f3
+	callchannel .sub4
 	dutycycle $1
 	intensity $b8
-	callchannel Music_Surf_branch_f5404
+	callchannel .sub5
 	octave 3
 	note B_, 16
 	octave 4
 	note C#, 8
 	pitchoffset 0, CC
 	dutycycle $3
-	callchannel Music_Surf_branch_f53d6
+	callchannel .sub2
 	intensity $b8
 	dutycycle $1
-	callchannel Music_Surf_branch_f53e8
+	callchannel .sub3
 	dutycycle $3
-	callchannel Music_Surf_branch_f53f3
+	callchannel .sub4
 	intensity $b8
 	dutycycle $1
-	callchannel Music_Surf_branch_f5404
+	callchannel .sub5
 	pitchoffset 0, C_
 	notetype $c, $b8
 	octave 4
@@ -447,9 +447,9 @@ Music_Surf_branch_f5333:
 	note G#, 4
 	note A#, 4
 	note B_, 4
-	loopchannel 0, Music_Surf_branch_f5317
+	loopchannel 0, .mainloop
 
-Music_Surf_branch_f53b2:
+.sub1:
 	octave 1
 	note G#, 4
 	octave 3
@@ -487,7 +487,7 @@ Music_Surf_branch_f53b2:
 	note G_, 4
 	endchannel
 
-Music_Surf_branch_f53d6:
+.sub2:
 	octave 4
 	note F_, 4
 	note D#, 4
@@ -506,7 +506,7 @@ Music_Surf_branch_f53d6:
 	note A_, 1
 	endchannel
 
-Music_Surf_branch_f53e8:
+.sub3:
 	note A#, 7
 	octave 4
 	note C_, 8
@@ -519,7 +519,7 @@ Music_Surf_branch_f53e8:
 	note G_, 8
 	endchannel
 
-Music_Surf_branch_f53f3:
+.sub4:
 	note F#, 1
 	note G_, 3
 	note F_, 4
@@ -537,7 +537,7 @@ Music_Surf_branch_f53f3:
 	note B_, 1
 	endchannel
 
-Music_Surf_branch_f5404:
+.sub5:
 	octave 4
 	note C_, 8
 	note G_, 4
@@ -548,7 +548,7 @@ Music_Surf_branch_f5404:
 	endchannel
 
 Music_Surf_Ch3:
-Music_Surf_branch_f540c:
+.mainloop:
 	stereopanning $ff
 	notetype $c, $15
 	vibrato $16, $23
@@ -668,7 +668,7 @@ Music_Surf_branch_f540c:
 	octave 5
 	note A#, 4
 	intensity $15
-	callchannel Music_Surf_branch_f54c8
+	callchannel .sub1
 	octave 2
 	note B_, 4
 	octave 3
@@ -677,7 +677,7 @@ Music_Surf_branch_f540c:
 	note G#, 4
 	note A#, 4
 	note B_, 4
-	callchannel Music_Surf_branch_f54c8
+	callchannel .sub1
 	octave 2
 	note B_, 4
 	octave 3
@@ -690,9 +690,9 @@ Music_Surf_branch_f540c:
 	note D#, 8
 	octave 2
 	note B_, 4
-	loopchannel 0, Music_Surf_branch_f540c
+	loopchannel 0, .mainloop
 
-Music_Surf_branch_f54c8:
+.sub1:
 	octave 3
 	note D#, 4
 	note G_, 1
