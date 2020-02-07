@@ -780,7 +780,8 @@ StatsScreen_LoadGFX:
 	call PrintDVs
 	call TN_PrintToD
 	call TN_PrintLocation
-	call TN_PrintLV 
+	call TN_PrintLV
+	call PrintHappiness
 	ret
 
 PrintDVs
@@ -902,6 +903,18 @@ PrintDV:
 	call PrintNum
 	ret
 
+PrintHappiness:
+	ld a, [wTempMonHappiness]
+	ld [wBuffer1], a
+	ld de, wBuffer1
+	lb bc, PRINTNUM_LEFTALIGN | 1, 3
+	hlcoord 3, 16
+	call PrintNum
+	ld de, HappinessString
+	hlcoord 1, 15
+	call PlaceString
+	ret
+
 HPString:
 	db "HP@"
 
@@ -922,6 +935,9 @@ IDNoString:
 
 OTString:
 	db "OT/@"
+
+HappinessString:
+	db "Happiness/@"
 
 TN_PrintToD:
 	ld de, .caughtat
