@@ -774,13 +774,14 @@ StatsScreen_LoadGFX:
 	dw sBoxMonOT
 	dw wBufferMonOT
 
+; Fourth stats page code by TPP Anniversary Crystal 251
+; Ported by FredrIQ
 .OrangePage:
+	; Print DVs code by GoldenX
 	call PrintDVs
 	call TN_PrintToD
 	call TN_PrintLocation
-
-	; TODO: print correct level
-	;call TN_PrintLV 
+	call TN_PrintLV 
 	ret
 
 PrintDVs
@@ -834,6 +835,7 @@ PrintDVs
 	ld [hl], a
 	dec hl
 .get_hp_dv
+; hl = DVs
 ; DV_HP = (DV_ATK & 1) << 3 | (DV_DEF & 1) << 2 | (DV_SPD & 1) << 1 | (DV_SPC & 1)
 
 ;   ATK & 1
@@ -878,55 +880,43 @@ PrintDVs
 .display_dvs
 	; Display Atk DV
 	; a = HPDV
-	ld [wBuffer1], a
-	ld de, wBuffer1
-	lb bc, PRINTNUM_LEFTALIGN | 1, 2
 	hlcoord 1, 9
-	call PrintNum
+	jp PrintDV
 
 	; Display Atk DV
 	ld a, [wTempMonDVs]
 	swap a
 	and %1111
-
-	ld [wBuffer1], a
-	ld de, wBuffer1
-	lb bc, PRINTNUM_LEFTALIGN | 1, 2
 	hlcoord 5, 9
-	call PrintNum
+	jp PrintDV
 
 	; Display Def DV
 	ld a, [wTempMonDVs]
 	and %1111
-
-	ld [wBuffer1], a
-	ld de, wBuffer1
-	lb bc, PRINTNUM_LEFTALIGN | 1, 2
 	hlcoord 9, 9
-	call PrintNum
+	jp PrintDV
 
 	; Display Spe DV
 	ld a, [wTempMonDVs + 1]
 	swap a
 	and %1111
-
-	ld [wBuffer1], a
-	ld de, wBuffer1
-	lb bc, PRINTNUM_LEFTALIGN | 1, 2
 	hlcoord 13, 9
-	call PrintNum
+	jp PrintDV
 
 	; Display Spc DV
 	ld a, [wTempMonDVs + 1]
 	and %1111
+	hlcoord 17, 9
+	jp PrintDV
 
+	ret
+
+PrintDv:
+; a = DV
 	ld [wBuffer1], a
 	ld de, wBuffer1
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
-	hlcoord 17, 9
 	call PrintNum
-
-	ret
 
 HPString:
 	db "HP@"
@@ -949,7 +939,7 @@ IDNoString:
 OTString:
 	db "OT/@"
 
-TN_PrintToD
+TN_PrintToD:
 	ld de, .caughtat
 	hlcoord 1, 11
 	call PlaceString
@@ -987,7 +977,7 @@ TN_PrintToD
 
 TN_PrintLocation:
 	ld a, [wTempMonCaughtLocation]
-	and a
+	and CAUGHT_LOCATION_MASK
 	ret z
 	ld de, .event
 	cp $ff
@@ -1005,7 +995,7 @@ TN_PrintLocation:
 TN_PrintLV:
 	ld a, [wTempMonCaughtLevel]
 	hlcoord 8, 12
-	and a
+	and CAUGHT_LEVEL_MASK
 	jr z, .unknown
 	cp 1
 	jr z, .hatched
