@@ -881,42 +881,43 @@ PrintDVs
 	; Display Atk DV
 	; a = HPDV
 	hlcoord 1, 9
-	jp PrintDV
+	call PrintDV
 
 	; Display Atk DV
 	ld a, [wTempMonDVs]
 	swap a
 	and %1111
 	hlcoord 5, 9
-	jp PrintDV
+	call PrintDV
 
 	; Display Def DV
 	ld a, [wTempMonDVs]
 	and %1111
 	hlcoord 9, 9
-	jp PrintDV
+	call PrintDV
 
 	; Display Spe DV
 	ld a, [wTempMonDVs + 1]
 	swap a
 	and %1111
 	hlcoord 13, 9
-	jp PrintDV
+	call PrintDV
 
 	; Display Spc DV
 	ld a, [wTempMonDVs + 1]
 	and %1111
 	hlcoord 17, 9
-	jp PrintDV
+	call PrintDV
 
 	ret
 
-PrintDv:
+PrintDV:
 ; a = DV
 	ld [wBuffer1], a
 	ld de, wBuffer1
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
 	call PrintNum
+	ret
 
 HPString:
 	db "HP@"
