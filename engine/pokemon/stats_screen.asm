@@ -774,10 +774,9 @@ StatsScreen_LoadGFX:
 	dw sBoxMonOT
 	dw wBufferMonOT
 
-; Fourth stats page code by TPP Anniversary Crystal 251
+; Most fourth stats page code by TPP Anniversary Crystal 251
 ; Ported by FredrIQ
 .OrangePage:
-	; Print DVs code by GoldenX
 	call PrintDVs
 	call TN_PrintToD
 	call TN_PrintLocation
