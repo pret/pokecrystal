@@ -818,22 +818,6 @@ PrintDVs
 	ld a, [wCurPartyMon]
 	call AddNTimes
 
-.store_dvs_in_wTempMonDVs
-	; Store DVs in wram
-	; e = AtkDefDV
-	ld a, [hli]
-	ld e, a
-	; d = SpeSpcDV
-	ld a, [hli]
-	ld d, a
-	ld hl, wTempMonDVs
-; wTempMonDVs = AtkDefDV
-	ld a, e
-	ld [hli], a
-; wTempMonDVs+1 = SpeSpcDV
-	ld a, d
-	ld [hl], a
-	dec hl
 .get_hp_dv
 ; hl = DVs
 ; DV_HP = (DV_ATK & 1) << 3 | (DV_DEF & 1) << 2 | (DV_SPD & 1) << 1 | (DV_SPC & 1)
