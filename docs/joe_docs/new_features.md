@@ -12,6 +12,13 @@
 - Hold B to Run
 - Remove Name Rater restriction
 - Instant text speed
+- Fourth Stats Screen
+  - DVs
+  - Caught Data
+    - Time
+    - Level
+    - Locations
+  - Happiness
 
 ### Open World Features
 - Badges are not required to use HMs
@@ -27,19 +34,44 @@
 - Add Forms
   - Flying Pikachu
 - Starter Pokeballs are color-coded
+- Pokemon should be able to switch forms
+  - R/B/G/Y, Beta, fossil skeleton, autumn form, alternate sprites
 
 ### Quality of Life Improvements
 - Fourth Stats Screen
-  - DVs
   - Hidden Power Type
-  - Happiness
+  - Happiness should be displayed using heart icon graphics
+  - Display Pokeball caught in 
+- Reusable TMs
 - Nurse Joy turns you around after talking to her (prevents accidentally talking to her again)
 - Poison overworld effect should be removed
 - Bill calls and switches your box when its full
 - Pressing B in a wild battle moves the cursor to RUN
-- Rejecting an egg from the Daycare Man no longer stops egg production
+- Name Rater/Move Relearner/Move Deleter at every pokecenter
+- Breeding
+  - Rejecting an egg from the Daycare Man no longer stops egg production
+  - Day Care man is outside fence
+  - Day Care man tells you if egg is shiny
+  - Egg stats screen tells you if it's shiny
+  - Eggs reflect palette of Pokemon inside
+  - Remove weird DV based breeding restrictions
+  - Eggs appear quicker
+  - Eggs hatch faster
 - Replace trade evolutions with different methods
 - Low HP beeping
+- Remove useless moves and replace with useful moves
+- Display kanto badges on trainer card
+- Temtem Key Item that gives you a single party heal once after every pokecenter visit
+
+### New Areas
+- Safari Zone
+
+### Open World Features
+- Start with all HMs
+  - Holy Grail: replace HMs with tools
+- Start from any town
+- Start with any base pokemon
+- Once you can fly, you can fly anywhere!
 
 ### Bugfixes
 - Fix apricorn ball effects
