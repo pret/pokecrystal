@@ -58,13 +58,37 @@
   - Eggs appear quicker
   - Eggs hatch faster
 - Replace trade evolutions with different methods
+  - Trade stone?
+  - Atk, Def, or Spc reach a certain level?
+- Stone & Trade Evo pokemon can appear in the wild
 - Low HP beeping
 - Remove useless moves and replace with useful moves
 - Display kanto badges on trainer card
 - Temtem Key Item that gives you a single party heal once after every pokecenter visit
+- Catch all 251!
 
-### New Areas
+### Returning Areas
 - Safari Zone
+- Viridian Forest
+- Pokemon Mansion?
+- Seafoam Islands
+- Cerulean Cave
+
+### Gift Pokemon
+- Squirtle (Sunglasses Variant) from Officer Jenny
+- Bulbasaur from Cerulean Orphanage
+- Charmander from responsible trainer above Cerulean
+
+### New Items
+- Eviolite
+
+### Endgame
+- Fight vs Green (Leaf) in ???
+- Fight vs Giovanni in Cerulean Cave
+- Fight vs Professor Oak in his lab
+- Mewtwo in Cerulean Cave
+- Mew in Pokemon Mansion
+- Celebi in Ilex Forest
 
 ### Open World Features
 - Start with all HMs
@@ -72,6 +96,7 @@
 - Start from any town
 - Start with any base pokemon
 - Once you can fly, you can fly anywhere!
+- Rebattleable Gyms
 
 ### Bugfixes
 - Fix apricorn ball effects
