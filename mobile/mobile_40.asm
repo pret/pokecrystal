@@ -21,7 +21,7 @@ INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "mobile/mobile_40.asm@Function100000 - UnknownText_0x1021f4", ROMX, BANK[BANK_MOBILE_40]
+SECTION "mobile/mobile_40.asm@Function100000 - UnknownText_0x1021f4", ROMX
 
 Function100000:
 ; d: 1 or 2

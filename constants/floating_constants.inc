@@ -14,11 +14,6 @@ BANK_SPRITES EQU $30
 ; These functions are expected to be in the same bank by Init
 BANK_GAME_INIT EQU $01 ; {WriteOAMDMACodeToHram, GameInit}
 
-; ASCII Hacks
-; Sections using these are split for the sole purpose of using a different charmap
-BANK_MOBILE_40 EQU $40
-BANK_MOBILE_46 EQU $46
-
 ; Tracks with alternate versions
 BANK_MUSIC_WILD_VICTORY      EQU $3d
 BANK_MUSIC_RIVAL_ENCOUNTER   EQU $3d
@@ -35,7 +30,7 @@ BANK_MAP_COLOSSEUM                     EQU $64 ; TradeCenter_MapEvents -> CableC
 ; Code
 BANK_HAPPINESS           EQU $01 ; {GetFirstPokemonHappiness, CheckFirstMonIsEgg} -> CopyPokemonName_Buffer1_Buffer3; HaircutOrGrooming -> ChangeHappiness
 BANK_MAP_OBJECTS         EQU $01 ; MapObjectMovementPattern -> CanObjectMoveInDirection; ReanchorBGMap_NoOAMUpdate -> ApplyBGMapAnchorToObjects
-BANK_ANIMATE_HP_BAR      EQU $03 ; AnimateHPBar -> _AnimateHPBar; {_AnimateHPBar, LongAnim_UpdateVariables, LongHPBarAnim_Updatetiles} -> ComputeHPBarPixels
+BANK_ANIMATE_HP_BAR      EQU $03 ; AnimateHPBar -> _AnimateHPBar; {_AnimateHPBar, LongAnim_UpdateVariables, LongHPBarAnim_UpdateTiles} -> ComputeHPBarPixels
 BANK_MOVE_MON            EQU $03 ; RetrieveMonFromDayCareMan -> GetBreedMon1LevelGrowth; RetrieveMonFromDayCareLady -> GetBreedMon2LevelGrowth; BugContest_SetCaughtContestMon -> GeneratePartyMonStats
 BANK_BUG_CONTEST_JUDGING EQU $04 ; ComputeAIContestantScores -> CheckBugContestContestantFlag
 BANK_PACK                EQU $04 ; GiveItem -> TryGiveItemToPartymon

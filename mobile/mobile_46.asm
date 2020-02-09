@@ -18,7 +18,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/serial_constants.inc"
 
 
-SECTION "mobile/mobile_46.asm@Function118000 - TilemapPack_11bb7d", ROMX, BANK[BANK_MOBILE_46]
+SECTION "mobile/mobile_46.asm@Function118000 - TilemapPack_11bb7d", ROMX
 
 Function118000:
 	ld a, $1
