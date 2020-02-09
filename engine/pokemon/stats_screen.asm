@@ -777,47 +777,47 @@ StatsScreen_LoadGFX:
 ; Most fourth stats page code by TPP Anniversary Crystal 251
 ; Ported by FredrIQ
 .OrangePage:
-	call PrintDVs
+	call PrintMonDVs
 	call TN_PrintToD
 	call TN_PrintLocation
 	call TN_PrintLV
 	call PrintHappiness
 	ret
 
-PrintDVs
-.print_labels
-	; place HP label
+PrintMonDVs
+call DisplayMonDVLabels
+call GetMonDVs
+call DisplayMonDVs
+
+DisplayMonDVLabels
+.place_HP_label
 	ld de, HPString
 	hlcoord 1, 8
 	call PlaceString
-
-	; place Atk label
+.place_ATK_label
 	ld de, AttackString
 	hlcoord 4, 8
 	call PlaceString
-
-	; place Def label
+.place_DEF_label
 	ld de, DefenseString
 	hlcoord 8, 8
 	call PlaceString
-
-	; place Spe label
+.place_SPE_label
 	ld de, SpeedString
 	hlcoord 12, 8
 	call PlaceString
-
-	; place Spc label
+.place_SPC_label
 	ld de, SpecialString
 	hlcoord 16, 8
 	call PlaceString
+	ret
 
-.get_mon_dvs
+GetMonDVs
 	; load DVs into hl
 	ld hl, wPartyMon1DVs
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [wCurPartyMon]
 	call AddNTimes
-
 .get_hp_dv
 ; hl = DVs
 ; DV_HP = (DV_ATK & 1) << 3 | (DV_DEF & 1) << 2 | (DV_SPD & 1) << 1 | (DV_SPC & 1)
@@ -861,41 +861,37 @@ PrintDVs
 ;	Add b to a
 	add b
 	dec hl
-.display_dvs
-	; Display Atk DV
+	ret
+
+DisplayMonDVs
+.display_HP_DV
 	; a = HPDV
 	hlcoord 1, 9
-	call PrintDV
-
-	; Display Atk DV
+	call .print_DV
+.display_atk_DV
 	ld a, [wTempMonDVs]
 	swap a
 	and %1111
 	hlcoord 5, 9
-	call PrintDV
-
-	; Display Def DV
+	call .print_DV
+.display_def_DV
 	ld a, [wTempMonDVs]
 	and %1111
 	hlcoord 9, 9
-	call PrintDV
-
-	; Display Spe DV
+	call .print_DV
+.display_spe_DV
 	ld a, [wTempMonDVs + 1]
 	swap a
 	and %1111
 	hlcoord 13, 9
-	call PrintDV
-
-	; Display Spc DV
+	call .print_DV
+.display_spc_DV
 	ld a, [wTempMonDVs + 1]
 	and %1111
 	hlcoord 17, 9
-	call PrintDV
-
+	call .print_DV
 	ret
-
-PrintDV:
+.print_DV:
 ; a = DV
 	ld [wBuffer1], a
 	ld de, wBuffer1
