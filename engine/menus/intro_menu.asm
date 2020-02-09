@@ -69,12 +69,49 @@ NewGame:
 	ld a, 1
 	ld [wPrevLandmark], a
 
+	; TODO: determine spawn point based on player town selection
 	ld a, SPAWN_HOME
 	ld [wDefaultSpawnpoint], a
 
 	ld a, MAPSETUP_WARP
 	ldh [hMapEntryMethod], a
+
 	jp FinishContinueFunction
+
+; TODO: this function is unused
+; save it for setting the day of the week without having to talk to your mom
+SetUpPokeGear:
+	setflag ENGINE_POKEGEAR
+	setflag ENGINE_PHONE_CARD
+	addcellnum PHONE_MOM
+	setevent EVENT_PLAYERS_HOUSE_MOM_1
+	clearevent EVENT_PLAYERS_HOUSE_MOM_2
+	special SetDayOfWeek
+.SetDayOfWeek:
+	writetext IsItDSTText
+	yesorno
+	iffalse .WrongDay
+	special InitialSetDSTFlag
+	yesorno
+	iffalse .SetDayOfWeek
+	sjump .FinishPhone
+
+.WrongDay:
+	special InitialClearDSTFlag
+	yesorno
+	iffalse .SetDayOfWeek
+
+.FinishPhone:
+	waitbutton
+	closetext
+	ret
+
+IsItDSTText:
+	text "Is it Daylight"
+	line "Saving Time now?"
+	done
+
+
 
 AreYouABoyOrAreYouAGirl:
 	farcall Mobile_AlwaysReturnNotCarry ; some mobile stuff
