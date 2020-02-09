@@ -22,6 +22,7 @@
 
 ### Open World Features
 - Badges are not required to use HMs
+- Start with Pokegear
 
 ---
 
