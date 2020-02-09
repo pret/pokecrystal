@@ -483,9 +483,6 @@ PokegearClock_Joypad:
 	jr .done
 
 .no_map_card
-	;ld a, [wPokegearFlags]
-	;bit POKEGEAR_PHONE_CARD_F, a
-	;jr z, .no_phone_card
 	ld c, POKEGEARSTATE_PHONEINIT
 	ld b, POKEGEARCARD_PHONE
 
@@ -582,9 +579,6 @@ PokegearMap_ContinueMap:
 	ret
 
 .right
-	ld a, [wPokegearFlags]
-	bit POKEGEAR_PHONE_CARD_F, a
-	jr z, .no_phone
 	ld c, POKEGEARSTATE_PHONEINIT
 	ld b, POKEGEARCARD_PHONE
 	jr .done
@@ -769,9 +763,6 @@ PokegearRadio_Joypad:
 	ret
 
 .left
-	ld a, [wPokegearFlags]
-	bit POKEGEAR_PHONE_CARD_F, a
-	jr z, .no_phone
 	ld c, POKEGEARSTATE_PHONEINIT
 	ld b, POKEGEARCARD_PHONE
 	jr .switch_page
