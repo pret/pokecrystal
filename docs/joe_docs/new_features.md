@@ -25,6 +25,7 @@
 ### Open World Features - DONE
 
 - Badges are not required to use HMs
+- Once you can use FLY, you can fly anywhere within the current region!
 - Start with Pokegear
   - Map Card
   - Radio Card
@@ -60,6 +61,7 @@
   - Happiness should be displayed using heart icon graphics
   - Display Pokeball caught in
 - Reusable TMs
+- Hidden Power always deals max damage
 - Nurse Joy turns you around after talking to her (prevents accidentally talking to her again)
 - Poison overworld effect should be removed
 - Bill calls and switches your box when its full
@@ -76,7 +78,7 @@
   - Eggs hatch faster
 - Replace trade evolutions with different methods
   - Trade stone?
-  - Atk, Def, or Spc reach a certain level?
+  - Atk, Def, or Spc reach a certain stat?
 - Stone & Trade Evo pokemon can appear in the wild
 - Low HP beeping
 - Remove useless moves and replace with useful moves
@@ -118,7 +120,6 @@
   - Holy Grail: replace HMs with tools
 - Start from any town
 - Start with any base pokemon
-- Once you can fly, you can fly anywhere!
 - Rebattleable Gyms
 
 ### Bugfixes - TODO
