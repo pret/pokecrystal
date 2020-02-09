@@ -577,9 +577,6 @@ PokegearMap_ContinueMap:
 	jr .done
 
 .no_phone
-	;ld a, [wPokegearFlags]
-	;bit POKEGEAR_RADIO_CARD_F, a
-	;ret z
 	ld c, POKEGEARSTATE_RADIOINIT
 	ld b, POKEGEARCARD_RADIO
 	jr .done
@@ -819,9 +816,6 @@ PokegearPhone_Joypad:
 	jr .switch_page
 
 .right
-	;ld a, [wPokegearFlags]
-	;bit POKEGEAR_RADIO_CARD_F, a
-	;ret z
 	ld c, POKEGEARSTATE_RADIOINIT
 	ld b, POKEGEARCARD_RADIO
 .switch_page
@@ -2080,8 +2074,6 @@ FlyMapScroll:
 	ld [hl], a
 .NotAtEndYet:
 	inc [hl]
-	call CheckIfVisitedFlypoint
-	jr z, .ScrollNext
 	jr .Finally
 
 .ScrollPrev:
@@ -2094,8 +2086,6 @@ FlyMapScroll:
 	ld [hl], a
 .NotAtStartYet:
 	dec [hl]
-	call CheckIfVisitedFlypoint
-	jr z, .ScrollPrev
 .Finally:
 	call TownMapBubble
 	call WaitBGMap
@@ -2186,24 +2176,6 @@ GetMapCursorCoordinates:
 	ld [hl], d
 	ret
 
-CheckIfVisitedFlypoint:
-; Check if the flypoint loaded in [hl] has been visited yet.
-	push bc
-	push de
-	push hl
-	ld l, [hl]
-	ld h, 0
-	add hl, hl
-	ld de, Flypoints + 1
-	add hl, de
-	ld c, [hl]
-	call HasVisitedSpawn
-	pop hl
-	pop de
-	pop bc
-	and a
-	ret
-
 HasVisitedSpawn:
 ; Check if spawn point c has been visited.
 	ld hl, wVisitedSpawns
@@ -2256,20 +2228,7 @@ FlyMap:
 	ret
 
 .KantoFlyMap:
-; The event that there are no flypoints enabled in a map is not
-; accounted for. As a result, if you attempt to select a flypoint
-; when there are none enabled, the game will crash. Additionally,
-; the flypoint selection has a default starting point that
-; can be flown to even if none are enabled.
-; To prevent both of these things from happening when the player
-; enters Kanto, fly access is restricted until Indigo Plateau is
-; visited and its flypoint enabled.
 	push af
-	ld c, SPAWN_INDIGO
-	call HasVisitedSpawn
-	and a
-	jr z, .NoKanto
-; Kanto's map is only loaded if we've visited Indigo Plateau
 
 ; Flypoints begin at Pallet Town...
 	ld a, FLY_PALLET
