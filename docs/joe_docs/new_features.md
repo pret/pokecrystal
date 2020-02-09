@@ -26,6 +26,10 @@
 
 - Badges are not required to use HMs
 - Start with Pokegear
+  - Map Card
+  - Radio Card
+  - Phone Card
+  - EXPN Card
 
 ---
 
@@ -97,6 +101,7 @@
 ### New Items - TODO
 
 - Eviolite
+  - Should also prevent Mon fom evolving
 
 ### Endgame - TODO
 
