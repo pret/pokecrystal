@@ -313,7 +313,6 @@ endr
 	call .AppendMenuList
 .no_pack
 
-	ld hl, wPokegearFlags
 	ld a, STARTMENUITEM_POKEGEAR
 	call .AppendMenuList
 .no_pokegear
