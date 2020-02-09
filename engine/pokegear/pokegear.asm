@@ -394,11 +394,7 @@ Pokegear_FinishTilemap:
 
 	call .PlaceMapIcon
 	call .PlacePhoneIcon
-	ld de, wPokegearFlags
-
-	ld a, [de]
-	bit POKEGEAR_RADIO_CARD_F, a
-	call nz, .PlaceRadioIcon
+	call .PlaceRadioIcon
 	hlcoord 0, 0
 	ld a, $46
 	call .PlacePokegearCardIcon
@@ -581,9 +577,9 @@ PokegearMap_ContinueMap:
 	jr .done
 
 .no_phone
-	ld a, [wPokegearFlags]
-	bit POKEGEAR_RADIO_CARD_F, a
-	ret z
+	;ld a, [wPokegearFlags]
+	;bit POKEGEAR_RADIO_CARD_F, a
+	;ret z
 	ld c, POKEGEARSTATE_RADIOINIT
 	ld b, POKEGEARCARD_RADIO
 	jr .done
@@ -823,9 +819,9 @@ PokegearPhone_Joypad:
 	jr .switch_page
 
 .right
-	ld a, [wPokegearFlags]
-	bit POKEGEAR_RADIO_CARD_F, a
-	ret z
+	;ld a, [wPokegearFlags]
+	;bit POKEGEAR_RADIO_CARD_F, a
+	;ret z
 	ld c, POKEGEARSTATE_RADIOINIT
 	ld b, POKEGEARCARD_RADIO
 .switch_page

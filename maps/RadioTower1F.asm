@@ -114,65 +114,9 @@ RadioTower1FLuckyNumberManScript:
 RadioTower1FRadioCardWomanScript:
 	faceplayer
 	opentext
-	checkflag ENGINE_RADIO_CARD
-	iftrue .GotCard
-	writetext RadioTower1FRadioCardWomanOfferQuizText
-	yesorno
-	iffalse .NoQuiz
-	writetext RadioTower1FRadioCardWomanQuestion1Text
-	yesorno
-	iffalse .WrongAnswer
-	playsound SFX_ELEVATOR_END
-	waitsfx
-	writetext RadioTower1FRadioCardWomanQuestion2Text
-	yesorno
-	iffalse .WrongAnswer
-	playsound SFX_ELEVATOR_END
-	waitsfx
-	writetext RadioTower1FRadioCardWomanQuestion3Text
-	yesorno
-	iftrue .WrongAnswer
-	playsound SFX_ELEVATOR_END
-	waitsfx
-	writetext RadioTower1FRadioCardWomanQuestion4Text
-	yesorno
-	iffalse .WrongAnswer
-	playsound SFX_ELEVATOR_END
-	waitsfx
-	writetext RadioTower1FRadioCardWomanQuestion5Text
-	yesorno
-	iftrue .WrongAnswer
-	playsound SFX_ELEVATOR_END
-	waitsfx
-	writetext RadioTower1FRadioCardWomanYouWinText
-	promptbutton
-	getstring STRING_BUFFER_4, .RadioCardText
-	scall .ReceiveItem
-	writetext RadioTower1FPokegearIsARadioText
-	promptbutton
-	setflag ENGINE_RADIO_CARD
+
 .GotCard:
 	writetext RadioTower1FRadioCardWomanTuneInText
-	waitbutton
-	closetext
-	end
-
-.RadioCardText:
-	db "RADIO CARD@"
-
-.ReceiveItem:
-	jumpstd receiveitem
-	end
-
-.WrongAnswer:
-	playsound SFX_WRONG
-	writetext RadioTower1FRadioCardWomanWrongAnswerText
-	waitbutton
-	closetext
-	end
-
-.NoQuiz:
-	writetext RadioTower1FRadioCardWomanNotTakingQuizText
 	waitbutton
 	closetext
 	end
@@ -301,106 +245,9 @@ RadioTower1FLuckyNumberManNoRoomForYourPrizeText:
 	line "back right away."
 	done
 
-RadioTower1FRadioCardWomanOfferQuizText:
-	text "We have a special"
-	line "quiz campaign on"
-	cont "right now."
-
-	para "Answer five ques-"
-	line "tions correctly to"
-	cont "win a RADIO CARD."
-
-	para "Slide it into your"
-	line "#GEAR to play"
-
-	para "the radio anytime,"
-	line "anywhere."
-
-	para "Would you like to"
-	line "take the quiz?"
-	done
-
-RadioTower1FRadioCardWomanQuestion1Text:
-	text "Question 1:"
-
-	para "Is there a #MON"
-	line "that appears only"
-	cont "in the morning?"
-	done
-
-RadioTower1FRadioCardWomanQuestion2Text:
-	text "Correct!"
-	line "Question 2:"
-
-	para "Is this statement"
-	line "correct?"
-
-	para "You can't buy a"
-	line "BERRY at a MART."
-	done
-
-RadioTower1FRadioCardWomanQuestion3Text:
-	text "Bull's-eye!"
-	line "Question 3:"
-
-	para "Does HM01 contain"
-	line "the move FLASH?"
-	done
-
-RadioTower1FRadioCardWomanQuestion4Text:
-	text "So far so good!"
-	line "Question 4:"
-
-	para "Is FALKNER the"
-	line "VIOLET GYM LEADER"
-
-	para "who uses bird"
-	line "#MON?"
-	done
-
-RadioTower1FRadioCardWomanQuestion5Text:
-	text "Wow! Right again!"
-	line "Here's the final"
-	cont "question:"
-
-	para "Do GOLDENROD GAME"
-	line "CORNER's slots"
-
-	para "have CHARMANDER"
-	line "on their reels?"
-	done
-
-RadioTower1FRadioCardWomanYouWinText:
-	text "Bingo! You got it!"
-	line "Congratulations!"
-
-	para "Here's your prize,"
-	line "a RADIO CARD!"
-	done
-
-RadioTower1FPokegearIsARadioText:
-	text "<PLAYER>'s #GEAR"
-	line "can now double as"
-	cont "a radio!"
-	done
-
 RadioTower1FRadioCardWomanTuneInText:
 	text "Please tune in to"
 	line "our radio shows."
-	done
-
-RadioTower1FRadioCardWomanWrongAnswerText:
-	text "Oh, dear."
-	line "Sorry, but you"
-
-	para "got it wrong."
-	line "Please try again!"
-	done
-
-RadioTower1FRadioCardWomanNotTakingQuizText:
-	text "Oh. I see. Please"
-	line "see me if you"
-	cont "change your mind."
 	done
 
 RadioTower1FLassText:

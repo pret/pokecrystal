@@ -231,22 +231,9 @@ BuenaPhoneGotAColdText:
 
 BuenaPhoneRadioCardQuestionsText:
 	text "Hey, <PLAY_G>."
-	line "You won that RADIO"
+	line "You have the RADIO"
 
-	para "CARD by beating"
-	line "the quiz at the"
-
-	para "reception desk,"
-	line "didn't you?"
-
-	para "Guess what? I made"
-	line "up the questions!"
-
-	para "…Were they too"
-	line "easy for you?"
-
-	para "Well, let's chat"
-	line "again!"
+	text "CARD!"
 	done
 
 BuenaPhonePikachuFanClubText:
