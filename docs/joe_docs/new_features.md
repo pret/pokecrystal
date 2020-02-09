@@ -10,7 +10,7 @@
 
 ### Quality of Life Improvements
 - Hold B to Run
-- Remove Name Rater restriction
+- In-Game Trade Pokemon are renamable
 - Instant text speed
 - Fourth Stats Screen
   - DVs
@@ -92,9 +92,9 @@
 - Eviolite
 
 ### Endgame
-- Fight vs Green (Leaf) in ???
-- Fight vs Giovanni in Cerulean Cave
-- Fight vs Professor Oak in his lab
+- Battle vs Green (Leaf) in ???
+- Battle vs Giovanni in Cerulean Cave
+- Battle vs Professor Oak in his lab
 - Mewtwo in Cerulean Cave
 - Mew in Pokemon Mansion
 - Celebi in Ilex Forest
