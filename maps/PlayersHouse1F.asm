@@ -36,16 +36,11 @@ MeetMomScript:
 	opentext
 	writetext ElmsLookingForYouText
 	promptbutton
-	getstring STRING_BUFFER_4, PokegearName
-	scall PlayersHouse1FReceiveItemStd
-	setflag ENGINE_POKEGEAR
-	setflag ENGINE_PHONE_CARD
+	; TODO: Need to find a way to start new game with mom's phone #
 	addcellnum PHONE_MOM
 	setscene SCENE_FINISHED
 	setevent EVENT_PLAYERS_HOUSE_MOM_1
 	clearevent EVENT_PLAYERS_HOUSE_MOM_2
-	writetext MomGivesPokegearText
-	promptbutton
 	special SetDayOfWeek
 .SetDayOfWeek:
 	writetext IsItDSTText
@@ -62,22 +57,8 @@ MeetMomScript:
 	iffalse .SetDayOfWeek
 .DayOfWeekDone:
 	writetext ComeHomeForDSTText
-	yesorno
-	iffalse .ExplainPhone
-	sjump .KnowPhone
-
-.KnowPhone:
-	writetext KnowTheInstructionsText
-	promptbutton
-	sjump .FinishPhone
-
-.ExplainPhone:
-	writetext DontKnowTheInstructionsText
-	promptbutton
-	sjump .FinishPhone
 
 .FinishPhone:
-	writetext InstructionsNextText
 	waitbutton
 	closetext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
@@ -221,28 +202,6 @@ ElmsLookingForYouText:
 	line "you to do some-"
 	cont "thing for him."
 
-	para "Oh! I almost for-"
-	line "got! Your #MON"
-
-	para "GEAR is back from"
-	line "the repair shop."
-
-	para "Here you go!"
-	done
-
-MomGivesPokegearText:
-	text "#MON GEAR, or"
-	line "just #GEAR."
-
-	para "It's essential if"
-	line "you want to be a"
-	cont "good trainer."
-
-	para "Oh, the day of the"
-	line "week isn't set."
-
-	para "You mustn't forget"
-	line "that!"
 	done
 
 IsItDSTText:
@@ -256,10 +215,6 @@ ComeHomeForDSTText:
 
 	para "for Daylight"
 	line "Saving Time."
-
-	para "By the way, do you"
-	line "know how to use"
-	cont "the PHONE?"
 	done
 
 KnowTheInstructionsText:
@@ -268,26 +223,6 @@ KnowTheInstructionsText:
 
 	para "on and select the"
 	line "PHONE icon?"
-	done
-
-DontKnowTheInstructionsText:
-	text "I'll read the"
-	line "instructions."
-
-	para "Turn the #GEAR"
-	line "on and select the"
-	cont "PHONE icon."
-	done
-
-InstructionsNextText:
-	text "Phone numbers are"
-	line "stored in memory."
-
-	para "Just choose a name"
-	line "you want to call."
-
-	para "Gee, isn't that"
-	line "convenient?"
 	done
 
 HurryUpElmIsWaitingText:
