@@ -4,11 +4,13 @@
 
 ## Done
 
-### Cosmetic
+### Cosmetic - DONE
+
 - Vary Each Pokemon's Palette Based On Its DVs
 - Shininess is determined by all DVs being 10 or over
 
-### Quality of Life Improvements
+### Quality of Life Improvements - DONE
+
 - Hold B to Run
 - In-Game Trade Pokemon are renamable
 - Instant text speed
@@ -20,7 +22,8 @@
     - Locations
   - Happiness
 
-### Open World Features
+### Open World Features - DONE
+
 - Badges are not required to use HMs
 - Start with Pokegear
 
@@ -28,12 +31,13 @@
 
 ## TODO
 
-### Cosmetic
+### Cosmetic - TODO
+
 - [Fix Some Shiny Pokemon Palettes](./shiny_changes.md)
 - Add Menu Icons For Each Pokemon
   - Add Menu Icon Palettes For Each Pokemon Menu Icon
 - Pokemon Forms  
-  - Pokemon should be able to switch forms 
+  - Pokemon should be able to switch forms
   - Add Forms
     - Surfing Pikachu
     - Flying Pikachu
@@ -45,12 +49,12 @@
     - Plant-based Pokemon Autumn Form
 - Starter Pokeballs are color-coded
 
+### Quality of Life Improvements - TODO
 
-### Quality of Life Improvements
 - Fourth Stats Screen
   - Hidden Power Type
   - Happiness should be displayed using heart icon graphics
-  - Display Pokeball caught in 
+  - Display Pokeball caught in
 - Reusable TMs
 - Nurse Joy turns you around after talking to her (prevents accidentally talking to her again)
 - Poison overworld effect should be removed
@@ -76,22 +80,26 @@
 - Temtem Key Item that gives you a single party heal once after every pokecenter visit
 - Catch all 251!
 
-### Returning Areas
+### Returning Areas - TODO
+
 - Safari Zone
 - Viridian Forest
 - Pokemon Mansion?
 - Seafoam Islands
 - Cerulean Cave
 
-### Gift Pokemon
+### Gift Pokemon - TODO
+
 - Squirtle (Sunglasses Variant) from Officer Jenny
 - Bulbasaur from Cerulean Orphanage
 - Charmander from responsible trainer above Cerulean
 
-### New Items
+### New Items - TODO
+
 - Eviolite
 
-### Endgame
+### Endgame - TODO
+
 - Battle vs Green (Leaf) in ???
 - Battle vs Giovanni in Cerulean Cave
 - Battle vs Professor Oak in his lab
@@ -99,7 +107,8 @@
 - Mew in Pokemon Mansion
 - Celebi in Ilex Forest
 
-### Open World Features
+### Open World Features - TODO
+
 - Start with all HMs
   - Holy Grail: replace HMs with tools
 - Start from any town
@@ -107,8 +116,10 @@
 - Once you can fly, you can fly anywhere!
 - Rebattleable Gyms
 
-### Bugfixes
+### Bugfixes - TODO
+
 - Fix apricorn ball effects
 
-### New Pokemon
+### New Pokemon - TODO
+
 - [Add Some New Pokemon](./new_pokemon.md)
