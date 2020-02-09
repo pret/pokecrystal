@@ -26,74 +26,7 @@ CherrygroveCity_MapScripts:
 CherrygroveCityGuideGent:
 	faceplayer
 	opentext
-	writetext GuideGentIntroText
-	yesorno
-	iffalse .No
-	sjump .Yes
-.Yes:
-	writetext GuideGentTourText1
-	waitbutton
-	closetext
-	playmusic MUSIC_SHOW_ME_AROUND
-	follow CHERRYGROVECITY_GRAMPS, PLAYER
-	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement1
-	opentext
-	writetext GuideGentPokecenterText
-	waitbutton
-	closetext
-	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement2
-	turnobject PLAYER, UP
-	opentext
-	writetext GuideGentMartText
-	waitbutton
-	closetext
-	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement3
-	turnobject PLAYER, UP
-	opentext
-	writetext GuideGentRoute30Text
-	waitbutton
-	closetext
-	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement4
-	turnobject PLAYER, LEFT
-	opentext
-	writetext GuideGentSeaText
-	waitbutton
-	closetext
-	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement5
-	turnobject PLAYER, UP
-	pause 60
-	turnobject CHERRYGROVECITY_GRAMPS, LEFT
-	turnobject PLAYER, RIGHT
-	opentext
-	writetext GuideGentGiftText
-	promptbutton
-	getstring STRING_BUFFER_4, .mapcardname
-	scall .JumpstdReceiveItem
-	setflag ENGINE_MAP_CARD
-	writetext GotMapCardText
-	promptbutton
-	writetext GuideGentPokegearText
-	waitbutton
-	closetext
-	stopfollow
-	special RestartMapMusic
-	turnobject PLAYER, UP
-	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement6
-	playsound SFX_ENTER_DOOR
-	disappear CHERRYGROVECITY_GRAMPS
-	clearevent EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
-	waitsfx
-	end
-
-.JumpstdReceiveItem:
-	jumpstd receiveitem
-	end
-
-.mapcardname
-	db "MAP CARD@"
-
-.No:
-	writetext GuideGentNoText
+	writetext GuideGentText
 	waitbutton
 	closetext
 	end
@@ -177,19 +110,10 @@ CherrygroveSilverSceneNorth:
 CherrygroveTeacherScript:
 	faceplayer
 	opentext
-	checkflag ENGINE_MAP_CARD
-	iftrue .HaveMapCard
-	writetext CherrygroveTeacherText_NoMapCard
+	writetext CherrygroveTeacherText
 	waitbutton
 	closetext
 	end
-
-.HaveMapCard:
-	writetext CherrygroveTeacherText_HaveMapCard
-	waitbutton
-	closetext
-	end
-
 CherrygroveYoungsterScript:
 	faceplayer
 	opentext
@@ -235,75 +159,6 @@ CherrygroveCityPokecenterSign:
 CherrygroveCityMartSign:
 	jumpstd martsign
 
-GuideGentMovement1:
-	step LEFT
-	step LEFT
-	step UP
-	step LEFT
-	turn_head UP
-	step_end
-
-GuideGentMovement2:
-	step LEFT
-	step LEFT
-	step LEFT
-	step LEFT
-	step LEFT
-	step LEFT
-	turn_head UP
-	step_end
-
-GuideGentMovement3:
-	step LEFT
-	step LEFT
-	step LEFT
-	step LEFT
-	step LEFT
-	step LEFT
-	step LEFT
-	turn_head UP
-	step_end
-
-GuideGentMovement4:
-	step LEFT
-	step LEFT
-	step LEFT
-	step DOWN
-	step LEFT
-	step LEFT
-	step LEFT
-	step DOWN
-	turn_head LEFT
-	step_end
-
-GuideGentMovement5:
-	step DOWN
-	step DOWN
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step DOWN
-	step DOWN
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	turn_head UP
-	step_end
-
-GuideGentMovement6:
-	step UP
-	step UP
-	step_end
-
 CherrygroveCity_RivalWalksToYou:
 	step LEFT
 	step LEFT
@@ -317,11 +172,6 @@ CherrygroveCity_RivalPushesYouOutOfTheWay:
 	turn_head UP
 	step_end
 
-CherrygroveCity_UnusedMovementData:
-	step LEFT
-	turn_head DOWN
-	step_end
-
 CherrygroveCity_RivalExitsStageLeft:
 	big_step LEFT
 	big_step LEFT
@@ -333,101 +183,10 @@ CherrygroveCity_RivalExitsStageLeft:
 	big_step LEFT
 	step_end
 
-GuideGentIntroText:
-	text "You're a rookie"
-	line "trainer, aren't"
-	cont "you? I can tell!"
-
-	para "That's OK! Every-"
-	line "one is a rookie"
-	cont "at some point!"
-
-	para "If you'd like, I"
-	line "can teach you a"
-	cont "few things."
-	done
-
-GuideGentTourText1:
-	text "OK, then!"
-	line "Follow me!"
-	done
-
-GuideGentPokecenterText:
-	text "This is a #MON"
-	line "CENTER. They heal"
-
-	para "your #MON in no"
-	line "time at all."
-
-	para "You'll be relying"
-	line "on them a lot, so"
-
-	para "you better learn"
-	line "about them."
-	done
-
-GuideGentMartText:
-	text "This is a #MON"
-	line "MART."
-
-	para "They sell BALLS"
-	line "for catching wild"
-
-	para "#MON and other"
-	line "useful items."
-	done
-
-GuideGentRoute30Text:
-	text "ROUTE 30 is out"
-	line "this way."
-
-	para "Trainers will be"
-	line "battling their"
-
-	para "prized #MON"
-	line "there."
-	done
-
-GuideGentSeaText:
-	text "This is the sea,"
-	line "as you can see."
-
-	para "Some #MON are"
-	line "found only in"
-	cont "water."
-	done
-
-GuideGentGiftText:
-	text "Here…"
-
-	para "It's my house!"
-	line "Thanks for your"
-	cont "company."
-
-	para "Let me give you a"
-	line "small gift."
-	done
-
-GotMapCardText:
-	text "<PLAYER>'s #GEAR"
-	line "now has a MAP!"
-	done
-
-GuideGentPokegearText:
-	text "#GEAR becomes"
-	line "more useful as you"
-	cont "add CARDS."
-
-	para "I wish you luck on"
-	line "your journey!"
-	done
-
-GuideGentNoText:
-	text "Oh… It's something"
-	line "I enjoy doing…"
-
-	para "Fine. Come see me"
-	line "when you like."
+GuideGentText:
+	text "Hey kid! That's"
+	line "a nice MAP"
+	cont "you got there!"
 	done
 
 CherrygroveRivalText_Seen:
@@ -483,20 +242,13 @@ CherrygroveRivalText_YouWon:
 	cont "trainer."
 	done
 
-CherrygroveTeacherText_NoMapCard:
+CherrygroveTeacherText:
 	text "Did you talk to"
 	line "the old man by the"
 	cont "#MON CENTER?"
 
-	para "He'll put a MAP of"
-	line "JOHTO on your"
-	cont "#GEAR."
-	done
-
-CherrygroveTeacherText_HaveMapCard:
-	text "When you're with"
-	line "#MON, going"
-	cont "anywhere is fun."
+	para "He's REALLY into"
+	line "maps."
 	done
 
 CherrygroveYoungsterText_NoPokedex:
