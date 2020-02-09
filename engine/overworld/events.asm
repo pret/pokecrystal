@@ -150,7 +150,10 @@ HandleMap:
 	ld a, [wMapStatus]
 	cp MAPSTATUS_HANDLE
 	ret nz
+	call DoBackgroundEvents
 
+; fallthrough
+DoBackgroundEvents:
 	call HandleMapObjects
 	call NextOverworldFrame
 	call HandleMapBackground
@@ -159,38 +162,28 @@ HandleMap:
 
 MapEvents:
 	ld a, [wMapEventStatus]
-	ld hl, .jumps
-	rst JumpTable
-	ret
-
-.jumps
-; entries correspond to MAPEVENTS_* constants
-	dw .events
-	dw .no_events
-
-.events
+	and a
+	ret nz
 	call PlayerEvents
 	call DisableEvents
 	farcall ScriptEvents
 	ret
 
-.no_events
-	ret
-
-MaxOverworldDelay:
-	db 2
-
 ResetOverworldDelay:
-	ld a, [MaxOverworldDelay]
-	ld [wOverworldDelay], a
+	ld hl, wOverworldDelay
+	bit 7, [hl]
+	res 7, [hl]
+	ret nz
+	ld [hl], 2
 	ret
 
 NextOverworldFrame:
 	ld a, [wOverworldDelay]
 	and a
-	ret z
-	ld c, a
-	call DelayFrames
+	jp nz, DelayFrame
+; reset overworld delay to leak into the next frame
+	ld a, $82
+	ld [wOverworldDelay], a
 	ret
 
 HandleMapTimeAndJoypad:
@@ -1013,7 +1006,7 @@ FallIntoMapScript:
 
 MovementData_0x96c48:
 	skyfall
-	step_end
+	step_resume
 
 LandAfterPitfallScript:
 	earthquake 16
@@ -1023,7 +1016,7 @@ EdgeWarpScript: ; 4
 	reloadandreturn MAPSETUP_CONNECTION
 
 ChangeDirectionScript: ; 9
-	deactivatefacing 3
+	callasm ReleaseAllMapObjects
 	callasm EnableWildEncounters
 	end
 

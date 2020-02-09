@@ -188,7 +188,7 @@ wTempObjectCopyX:: db ; c2f6
 wTempObjectCopyY:: db ; c2f7
 wTempObjectCopyRadius:: db ; c2f8
 
-	ds 1
+wLastStepDirection:: db
 
 wTileDown::  db ; c2fa
 wTileUp::    db ; c2fb
