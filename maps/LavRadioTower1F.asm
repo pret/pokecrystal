@@ -22,43 +22,16 @@ LavRadioTower1FSuperNerd1Script:
 LavRadioTower1FGentlemanScript:
 	faceplayer
 	opentext
-	checkflag ENGINE_EXPN_CARD
-	iftrue .GotExpnCard
-	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue .ReturnedMachinePart
-	writetext LavRadioTower1FGentlemanText
-	waitbutton
-	closetext
-	end
 
-.ReturnedMachinePart:
-	writetext LavRadioTower1FGentlemanText_ReturnedMachinePart
-	promptbutton
-	getstring STRING_BUFFER_4, .expncardname
-	scall .receiveitem
-	setflag ENGINE_EXPN_CARD
 .GotExpnCard:
 	writetext LavRadioTower1FGentlemanText_GotExpnCard
 	waitbutton
 	closetext
 	end
 
-.receiveitem:
-	jumpstd receiveitem
-	end
-
-.expncardname
-	db "EXPN CARD@"
-
 LavRadioTower1FSuperNerd2Script:
 	faceplayer
 	opentext
-	checkflag ENGINE_EXPN_CARD
-	iftrue .GotExpnCard
-	writetext LavRadioTower1FSuperNerd2Text
-	waitbutton
-	closetext
-	end
 
 .GotExpnCard:
 	writetext LavRadioTower1FSuperNerd2Text_GotExpnCard
@@ -129,25 +102,8 @@ LavRadioTower1FGentlemanText:
 	para "I'll be ruined!"
 	done
 
-LavRadioTower1FGentlemanText_ReturnedMachinePart:
-	text "Ah! So you're the"
-	line "<PLAY_G> who solved"
-
-	para "the POWER PLANT's"
-	line "problem?"
-
-	para "Thanks to you, I"
-	line "never lost my job."
-
-	para "I tell you, you're"
-	line "a real lifesaver!"
-
-	para "Please take this"
-	line "as my thanks."
-	done
-
 LavRadioTower1FGentlemanText_GotExpnCard:
-	text "With that thing,"
+	text "With the #GEAR,"
 	line "you can tune into"
 
 	para "the radio programs"
