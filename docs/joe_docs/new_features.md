@@ -31,11 +31,19 @@
 - [Fix Some Shiny Pokemon Palettes](./shiny_changes.md)
 - Add Menu Icons For Each Pokemon
   - Add Menu Icon Palettes For Each Pokemon Menu Icon
-- Add Forms
-  - Flying Pikachu
+- Pokemon Forms  
+  - Pokemon should be able to switch forms 
+  - Add Forms
+    - Surfing Pikachu
+    - Flying Pikachu
+    - Kabutops Skeleton
+    - Aerodactyl Skeleton
+    - Squirtle/Wartortle/Blastoise Squirtle Squad
+    - R/B/G/Y
+    - Beta
+    - Plant-based Pokemon Autumn Form
 - Starter Pokeballs are color-coded
-- Pokemon should be able to switch forms
-  - R/B/G/Y, Beta, fossil skeleton, autumn form, alternate sprites
+
 
 ### Quality of Life Improvements
 - Fourth Stats Screen
