@@ -148,7 +148,7 @@ SFX:
 	dba Sfx_KeyItem
 	dba Sfx_Fanfare2
 	dba Sfx_RegisterPhoneNumber
-	dba Sfx_3RdPlace
+	dba Sfx_3rdPlace
 	dba Sfx_GetEgg
 	dba Sfx_GetEgg
 	dba Sfx_MoveDeleted

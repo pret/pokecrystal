@@ -1,21 +1,42 @@
-musicheader: MACRO
-	; number of tracks, track idx, address
-	dbw ((\1 - 1) << 6) + (\2 - 1), \3
+channel_count: MACRO
+_num_channels = \1 - 1
+ENDM
+
+channel: MACRO
+	dn (_num_channels << 2), \1 - 1 ; channel id
+	dw \2 ; address
+_num_channels = 0
 ENDM
 
 note: MACRO
-	dn (\1), (\2) - 1
+	dn (\1), (\2) - 1 ; pitch, length
 ENDM
 
-sound: MACRO
-	note \1, \2
-	db \3 ; intensity
+drum_note: MACRO
+	note \1, \2 ; drum instrument, length
+ENDM
+
+rest: MACRO
+	note 0, \1 ; length
+ENDM
+
+square_note: MACRO
+	db \1 ; length
+	IF \3 < 0
+		dn \2, %1000 | (\3 * -1) ; volume envelope
+	ELSE
+		dn \2, \3 ; volume envelope
+	ENDC
 	dw \4 ; frequency
 ENDM
 
-noise: MACRO
-	note \1, \2 ; duration
-	db \3 ; intensity
+noise_note: MACRO
+	db \1 ; length
+	IF \3 < 0
+		dn \2, %1000 | (\3 * -1) ; volume envelope
+	ELSE
+		dn \2, \3 ; volume envelope
+	ENDC
 	db \4 ; frequency
 ENDM
 
@@ -25,24 +46,33 @@ FIRST_MUSIC_CMD EQU __enum__
 
 	enum octave_cmd ; $d0
 octave: MACRO
-	db octave_cmd | 8 - (\1)
+	db octave_cmd | 8 - (\1) ; octave
 ENDM
 
 __enumdir__ = +1
 
-	enum notetype_cmd ; $d8
-notetype: MACRO
-	db notetype_cmd
-	db \1 ; note_length
-if _NARG >= 2
-	db \2 ; intensity
-endc
+	enum note_type_cmd ; $d8
+note_type: MACRO
+	db note_type_cmd
+	db \1 ; note length
+	IF _NARG >= 2
+		IF \3 < 0
+			dn \2, %1000 | (\3 * -1) ; volume envelope
+		ELSE
+			dn \2, \3 ; volume envelope
+		ENDC
+	ENDC
 ENDM
 
-	enum pitchoffset_cmd ; $d9
-pitchoffset: MACRO
-	db pitchoffset_cmd
-	dn \1, \2 - 1 ; octave, key
+; only valid on the noise channel
+drum_speed: MACRO
+	note_type \1 ; note length
+ENDM
+
+	enum transpose_cmd ; $d9
+transpose: MACRO
+	db transpose_cmd
+	dn \1, \2 ; num octaves, num pitches
 ENDM
 
 	enum tempo_cmd ; $da
@@ -51,51 +81,59 @@ tempo: MACRO
 	bigdw \1 ; tempo
 ENDM
 
-	enum dutycycle_cmd ; $db
-dutycycle: MACRO
-	db dutycycle_cmd
-	db \1 ; duty_cycle
+	enum duty_cycle_cmd ; $db
+duty_cycle: MACRO
+	db duty_cycle_cmd
+	db \1 ; duty cycle
 ENDM
 
-	enum intensity_cmd ; $dc
-intensity: MACRO
-	db intensity_cmd
-	db \1 ; intensity
+	enum volume_envelope_cmd ; $dc
+volume_envelope: MACRO
+	db volume_envelope_cmd
+	IF \2 < 0
+		dn \1, %1000 | (\2 * -1) ; volume envelope
+	ELSE
+		dn \1, \2 ; volume envelope
+	ENDC
 ENDM
 
-	enum soundinput_cmd ; $dd
-soundinput: MACRO
-	db soundinput_cmd
-	db \1 ; input
+	enum pitch_sweep_cmd ; $dd
+pitch_sweep: MACRO
+	db pitch_sweep_cmd
+	IF \2 < 0
+		dn \1, %1000 | (\2 * -1) ; pitch sweep
+	ELSE
+		dn \1, \2 ; pitch sweep
+	ENDC
 ENDM
 
-	enum sound_duty_cmd ; $de
-sound_duty: MACRO
-	db sound_duty_cmd
-if _NARG == 4
-	db \1 | (\2 << 2) | (\3 << 4) | (\4 << 6) ; duty sequence
-else
-	db \1 ; LEGACY: Support for one-byte duty value
-endc
+	enum duty_cycle_pattern_cmd ; $de
+duty_cycle_pattern: MACRO
+	db duty_cycle_pattern_cmd
+	db (\1 << 6) | (\2 << 4) | (\3 << 2) | (\4 << 0) ; duty cycle pattern
 ENDM
 
-	enum togglesfx_cmd ; $df
-togglesfx: MACRO
-	db togglesfx_cmd
+	enum toggle_sfx_cmd ; $df
+toggle_sfx: MACRO
+	db toggle_sfx_cmd
 ENDM
 
-	enum slidepitchto_cmd ; $e0
-slidepitchto: MACRO
-	db slidepitchto_cmd
+	enum pitch_slide_cmd ; $e0
+pitch_slide: MACRO
+	db pitch_slide_cmd
 	db \1 - 1 ; duration
-	dn \2, \3 ; octave, pitch
+	dn 8 - \2, \3 % 12 ; octave, pitch
 ENDM
 
 	enum vibrato_cmd ; $e1
 vibrato: MACRO
 	db vibrato_cmd
 	db \1 ; delay
-	db \2 ; extent
+	IF _NARG > 2
+		dn \2, \3 ; extent, rate
+	ELSE
+		db \2 ; LEGACY: Support for 1-arg extent
+	ENDC
 ENDM
 
 	enum unknownmusic0xe2_cmd ; $e2
@@ -104,28 +142,34 @@ unknownmusic0xe2: MACRO
 	db \1 ; unknown
 ENDM
 
-	enum togglenoise_cmd ; $e3
-togglenoise: MACRO
-	db togglenoise_cmd
-	db \1 ; id
+	enum toggle_noise_cmd ; $e3
+toggle_noise: MACRO
+	db toggle_noise_cmd
+	IF _NARG > 0
+		db \1 ; drum kit
+	ENDC
 ENDM
 
-	enum panning_cmd ; $e4
-panning: MACRO
-	db panning_cmd
-	db \1 ; tracks
+	enum force_stereo_panning_cmd ; $e4
+force_stereo_panning: MACRO
+	db force_stereo_panning_cmd
+	dn %1111 * (1 && \1), %1111 * (1 && \2) ; left enable, right enable
 ENDM
 
 	enum volume_cmd ; $e5
 volume: MACRO
 	db volume_cmd
-	db \1 ; volume
+	IF _NARG > 1
+		dn \1, \2 ; left volume, right volume
+	ELSE
+		db \1 ; LEGACY: Support for 1-arg volume
+	ENDC
 ENDM
 
-	enum tone_cmd ; $e6
-tone: MACRO
-	db tone_cmd
-	bigdw \1 ; tone
+	enum pitch_offset_cmd ; $e6
+pitch_offset: MACRO
+	db pitch_offset_cmd
+	bigdw \1 ; pitch offset
 ENDM
 
 	enum unknownmusic0xe7_cmd ; $e7
@@ -143,29 +187,29 @@ ENDM
 	enum tempo_relative_cmd ; $e9
 tempo_relative: MACRO
 	db tempo_relative_cmd
-	bigdw \1 ; value
+	bigdw \1 ; tempo adjustment
 ENDM
 
-	enum restartchannel_cmd ; $ea
-restartchannel: MACRO
-	db restartchannel_cmd
+	enum restart_channel_cmd ; $ea
+restart_channel: MACRO
+	db restart_channel_cmd
 	dw \1 ; address
 ENDM
 
-	enum newsong_cmd ; $eb
-newsong: MACRO
-	db newsong_cmd
+	enum new_song_cmd ; $eb
+new_song: MACRO
+	db new_song_cmd
 	bigdw \1 ; id
 ENDM
 
-	enum sfxpriorityon_cmd ; $ec
-sfxpriorityon: MACRO
-	db sfxpriorityon_cmd
+	enum sfx_priority_on_cmd ; $ec
+sfx_priority_on: MACRO
+	db sfx_priority_on_cmd
 ENDM
 
-	enum sfxpriorityoff_cmd ; $ed
-sfxpriorityoff: MACRO
-	db sfxpriorityoff_cmd
+	enum sfx_priority_off_cmd ; $ed
+sfx_priority_off: MACRO
+	db sfx_priority_off_cmd
 ENDM
 
 	enum unknownmusic0xee_cmd ; $ee
@@ -174,16 +218,18 @@ unknownmusic0xee: MACRO
 	dw \1 ; address
 ENDM
 
-	enum stereopanning_cmd ; $ef
-stereopanning: MACRO
-	db stereopanning_cmd
-	db \1 ; tracks
+	enum stereo_panning_cmd ; $ef
+stereo_panning: MACRO
+	db stereo_panning_cmd
+	dn %1111 * (1 && \1), %1111 * (1 && \2) ; left enable, right enable
 ENDM
 
-	enum sfxtogglenoise_cmd ; $f0
-sfxtogglenoise: MACRO
-	db sfxtogglenoise_cmd
-	db \1 ; id
+	enum sfx_toggle_noise_cmd ; $f0
+sfx_toggle_noise: MACRO
+	db sfx_toggle_noise_cmd
+	IF _NARG > 0
+		db \1 ; drum kit
+	ENDC
 ENDM
 
 	enum music0xf1_cmd ; $f1
@@ -231,39 +277,39 @@ unknownmusic0xf9: MACRO
 	db unknownmusic0xf9_cmd
 ENDM
 
-	enum setcondition_cmd ; $fa
-setcondition: MACRO
-	db setcondition_cmd
+	enum set_condition_cmd ; $fa
+set_condition: MACRO
+	db set_condition_cmd
 	db \1 ; condition
 ENDM
 
-	enum jumpif_cmd ; $fb
-jumpif: MACRO
-	db jumpif_cmd
+	enum sound_jump_if_cmd ; $fb
+sound_jump_if: MACRO
+	db sound_jump_if_cmd
 	db \1 ; condition
 	dw \2 ; address
 ENDM
 
-	enum jumpchannel_cmd ; $fc
-jumpchannel: MACRO
-	db jumpchannel_cmd
+	enum sound_jump_cmd ; $fc
+sound_jump: MACRO
+	db sound_jump_cmd
 	dw \1 ; address
 ENDM
 
-	enum loopchannel_cmd ; $fd
-loopchannel: MACRO
-	db loopchannel_cmd
+	enum sound_loop_cmd ; $fd
+sound_loop: MACRO
+	db sound_loop_cmd
 	db \1 ; count
 	dw \2 ; address
 ENDM
 
-	enum callchannel_cmd ; $fe
-callchannel: MACRO
-	db callchannel_cmd
+	enum sound_call_cmd ; $fe
+sound_call: MACRO
+	db sound_call_cmd
 	dw \1 ; address
 ENDM
 
-	enum endchannel_cmd ; $ff
-endchannel: MACRO
-	db endchannel_cmd
+	enum sound_ret_cmd ; $ff
+sound_ret: MACRO
+	db sound_ret_cmd
 ENDM

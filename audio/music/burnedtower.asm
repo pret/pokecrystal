@@ -1,152 +1,153 @@
 Music_BurnedTower:
-	musicheader 4, 1, Music_BurnedTower_Ch1
-	musicheader 1, 2, Music_BurnedTower_Ch2
-	musicheader 1, 3, Music_BurnedTower_Ch3
-	musicheader 1, 4, Music_BurnedTower_Ch4
+	channel_count 4
+	channel 1, Music_BurnedTower_Ch1
+	channel 2, Music_BurnedTower_Ch2
+	channel 3, Music_BurnedTower_Ch3
+	channel 4, Music_BurnedTower_Ch4
 
 Music_BurnedTower_Ch1:
 	tempo 168
-	volume $77
-	dutycycle $1
-	tone $0004
-	vibrato $8, $45
-	stereopanning $f0
-	notetype $c, $91
-	note __, 2
+	volume 7, 7
+	duty_cycle 1
+	pitch_offset 4
+	vibrato 8, 4, 5
+	stereo_panning TRUE, FALSE
+	note_type 12, 9, 1
+	rest 2
 	octave 2
 	note A_, 4
 	note A_, 4
 	note A_, 2
-	intensity $80
+	volume_envelope 8, 0
 	octave 3
 	note D#, 6
-	intensity $91
+	volume_envelope 9, 1
 	note D_, 4
 	note D_, 4
 	note D_, 2
-	intensity $80
+	volume_envelope 8, 0
 	note C#, 6
 .loop1:
-	intensity $91
+	volume_envelope 9, 1
 	octave 2
 	note A_, 4
 	note A_, 4
 	note A_, 2
-	intensity $80
+	volume_envelope 8, 0
 	note A#, 6
-	loopchannel 2, .loop1
+	sound_loop 2, .loop1
 	tempo 150
 .mainloop:
-	intensity $b1
+	volume_envelope 11, 1
 	octave 2
 	note A_, 4
 	note A_, 4
 	note A_, 2
-	intensity $a0
+	volume_envelope 10, 0
 	octave 3
 	note D#, 6
-	intensity $b1
+	volume_envelope 11, 1
 	note D_, 4
 	note D_, 4
 	note D_, 2
-	intensity $a0
+	volume_envelope 10, 0
 	note C#, 6
-	intensity $b1
+	volume_envelope 11, 1
 	octave 2
 	note A_, 4
 	note A_, 4
 	note A_, 2
-	intensity $a0
+	volume_envelope 10, 0
 	note A#, 6
-	intensity $b1
+	volume_envelope 11, 1
 	note A_, 4
 	note A_, 4
 	note A_, 2
-	intensity $b3
+	volume_envelope 11, 3
 	note A#, 16
 	note A#, 16
 	note A#, 16
 	note G#, 6
-	intensity $b1
+	volume_envelope 11, 1
 	note A_, 4
 	note A_, 4
 	note A_, 2
-	intensity $a0
+	volume_envelope 10, 0
 	note A#, 6
-	intensity $b1
+	volume_envelope 11, 1
 	note B_, 4
 	note B_, 4
 	note B_, 2
-	intensity $a0
+	volume_envelope 10, 0
 	octave 3
 	note F_, 6
-	intensity $b1
+	volume_envelope 11, 1
 	note E_, 4
 	note E_, 4
 	note E_, 2
-	intensity $a0
+	volume_envelope 10, 0
 	note D#, 6
 .loop2:
-	intensity $b1
+	volume_envelope 11, 1
 	octave 2
 	note B_, 4
 	note B_, 4
 	note B_, 2
-	intensity $a0
+	volume_envelope 10, 0
 	octave 3
 	note C_, 6
-	loopchannel 2, .loop2
-	loopchannel 0, .mainloop
+	sound_loop 2, .loop2
+	sound_loop 0, .mainloop
 
 Music_BurnedTower_Ch2:
-	dutycycle $2
-	vibrato $20, $82
-	tone $0002
-	notetype $c, $70
-	callchannel .sub1
-	intensity $c5
+	duty_cycle 2
+	vibrato 32, 8, 2
+	pitch_offset 2
+	note_type 12, 7, 0
+	sound_call .sub1
+	volume_envelope 12, 5
 .mainloop:
-	callchannel .sub1
-	intensity $c1
-	dutycycle $3
-	note __, 2
+	sound_call .sub1
+	volume_envelope 12, 1
+	duty_cycle 3
+	rest 2
 	octave 2
 	note A_, 4
 	note A_, 4
 	note A_, 2
-	intensity $b0
+	volume_envelope 11, 0
 	octave 3
 	note D#, 6
-	intensity $c1
+	volume_envelope 12, 1
 	note D_, 4
 	note D_, 4
 	note D_, 2
-	intensity $b0
+	volume_envelope 11, 0
 	note C#, 6
-	intensity $c1
+	volume_envelope 12, 1
 	octave 2
 	note A_, 4
 	note A_, 4
 	note A_, 2
-	intensity $b0
+	volume_envelope 11, 0
 	note A#, 4
-	intensity $c1
-	intensity $c2
+	volume_envelope 12, 1
+	volume_envelope 12, 2
 	octave 3
 	note A_, 1
 	note G_, 1
 	note A_, 1
 	octave 4
 	note C_, 1
-	vibrato $0, $0
-	intensity $3d
+	vibrato 0, 0, 0
+	volume_envelope 3, -5
 	note E_, 8
-	vibrato $20, $83
-	intensity $b0
+	vibrato 32, 8, 3
+	volume_envelope 11, 0
 	octave 2
 	note G_, 4
-	dutycycle $2
-	intensity $b0
+	duty_cycle 2
+	volume_envelope 11, 0
 	octave 3
 	note F#, 4
 	note E_, 2
@@ -165,9 +166,9 @@ Music_BurnedTower_Ch2:
 	note F#, 2
 	note G_, 4
 	note E_, 4
-	intensity $b7
+	volume_envelope 11, 7
 	note F#, 16
-	loopchannel 0, .mainloop
+	sound_loop 0, .mainloop
 
 .sub1:
 	octave 3
@@ -189,15 +190,15 @@ Music_BurnedTower_Ch2:
 	note F_, 4
 	note D_, 4
 	note E_, 16
-	endchannel
+	sound_ret
 
 Music_BurnedTower_Ch3:
-	stereopanning $f
-	notetype $c, $14
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 12
+	stereo_panning FALSE, TRUE
+	note_type 12, 1, 4
+	rest 16
+	rest 16
+	rest 16
+	rest 12
 	octave 3
 	note D#, 4
 .mainloop:
@@ -206,55 +207,55 @@ Music_BurnedTower_Ch3:
 	note A_, 2
 	octave 3
 	note E_, 2
-	note __, 2
+	rest 2
 	note E_, 2
-	note __, 2
+	rest 2
 	note E_, 2
 	note F_, 4
 	octave 2
 	note A_, 2
 	octave 3
 	note E_, 2
-	note __, 2
+	rest 2
 	note E_, 2
-	note __, 2
+	rest 2
 	note E_, 2
 	note D#, 4
-	loopchannel 4, .loop1
+	sound_loop 4, .loop1
 .loop2:
 	octave 2
 	note B_, 2
 	octave 3
 	note F#, 2
-	note __, 2
+	rest 2
 	note F#, 2
-	note __, 2
+	rest 2
 	note F#, 2
 	note G_, 4
 	octave 2
 	note B_, 2
 	octave 3
 	note F#, 2
-	note __, 2
+	rest 2
 	note F#, 2
-	note __, 2
+	rest 2
 	note F#, 2
 	note F_, 4
-	loopchannel 2, .loop2
-	loopchannel 0, .mainloop
+	sound_loop 2, .loop2
+	sound_loop 0, .mainloop
 
 Music_BurnedTower_Ch4:
-	togglenoise $0
-	notetype $c
+	toggle_noise 0
+	drum_speed 12
 .loop1:
-	note __, 16
-	loopchannel 4, .loop1
-	note __, 2
+	rest 16
+	sound_loop 4, .loop1
+	rest 2
 .mainloop:
-	stereopanning $f0
-	note G_, 2
-	note G#, 2
-	note G_, 4
-	note G#, 2
-	note G_, 4
-	loopchannel 0, .mainloop
+	stereo_panning TRUE, FALSE
+	drum_note 8, 2
+	drum_note 9, 2
+	drum_note 8, 4
+	drum_note 9, 2
+	drum_note 8, 4
+	sound_loop 0, .mainloop
