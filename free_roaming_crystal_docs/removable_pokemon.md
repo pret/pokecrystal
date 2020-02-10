@@ -3,17 +3,17 @@
   ---
 
 1. Spearow
-2. Fearow
-3. Goldeen
-4. Seaking
-5. Seal
-6. Dewgong
-7. Smoochum
-8. Jynx
-9. Hoppip
-10. Skiploom
-11. Jumpluff
-12. Sunkern
-13. Sunflora
-14. Qwilfish?
-15. Stantler
+1. Fearow
+1. Goldeen
+1. Seaking
+1. Seal
+1. Dewgong
+1. Smoochum
+1. Jynx
+1. Hoppip
+1. Skiploom
+1. Jumpluff
+1. Sunkern
+1. Sunflora
+1. Qwilfish?
+1. Stantler
