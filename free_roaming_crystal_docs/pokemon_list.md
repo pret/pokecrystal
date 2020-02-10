@@ -1,4 +1,4 @@
-# Crystal Joe Edition Pokemon List
+# Pokemon List
 
 ---
 

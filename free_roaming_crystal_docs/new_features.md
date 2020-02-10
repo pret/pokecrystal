@@ -1,4 +1,4 @@
-# Crystal Joe Edition New Features
+# New Features
 
 ---
 
