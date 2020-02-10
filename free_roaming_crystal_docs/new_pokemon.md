@@ -1,7 +1,5 @@
 # New Pokemon
 
----
-
 ## 1. Weavile
 
 | Normal   |      Shiny    |

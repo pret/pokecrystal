@@ -1,7 +1,5 @@
 # Pokemon List
 
----
-
 |#|Image|Species Name|Location|Evolution Method|
 |:---|:---:|:---:|:---:|:---:|
 |1|[![bulbasaur](https://img.pokemondb.net/sprites/crystal/normal/bulbasaur.png)](http://pokemondb.net/pokedex/bulbasaur)|Bulbasaur|||

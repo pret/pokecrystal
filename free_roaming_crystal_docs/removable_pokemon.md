@@ -1,7 +1,5 @@
 # Removable Pokemon
 
-  ---
-
 1. Spearow
 1. Fearow
 1. Goldeen

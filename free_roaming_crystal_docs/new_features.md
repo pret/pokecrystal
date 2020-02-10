@@ -1,7 +1,5 @@
 # New Features
 
----
-
 ## Done
 
 ### Cosmetic - DONE
