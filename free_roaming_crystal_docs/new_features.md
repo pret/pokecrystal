@@ -85,6 +85,7 @@
 - Display kanto badges on trainer card
 - Temtem Key Item that gives you a single party heal once after every pokecenter visit
 - Catch all 251!
+- Pokemon have personality traits
 
 ### Returning Areas - TODO
 
@@ -121,6 +122,8 @@
 - Start from any town
 - Start with any base pokemon
 - Rebattleable Gyms
+- Scaling Trainers
+- SCaling Wildmon
 
 ### Bugfixes - TODO
 
