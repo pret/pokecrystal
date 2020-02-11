@@ -1,5 +1,5 @@
-INCLUDE "constants/music_common.inc"
 INCLUDE "constants/floating_constants.inc"
+INCLUDE "constants/music_common.inc"
 
 
 SECTION "audio/music/rockettheme.asm", ROMX, BANK[BANK_MUSIC_ROCKET_ENCOUNTER]

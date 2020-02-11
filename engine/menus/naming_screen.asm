@@ -3,8 +3,6 @@ INCLUDE "macros/code.inc"
 INCLUDE "macros/coords.inc"
 INCLUDE "macros/gfx.inc"
 INCLUDE "macros/rst.inc"
-INCLUDE "constants/wram_constants.inc"
-INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/icon_constants.inc"
 INCLUDE "constants/input_constants.inc"
@@ -12,6 +10,8 @@ INCLUDE "constants/item_data_constants.inc"
 INCLUDE "constants/menu_constants.inc"
 INCLUDE "constants/scgb_constants.inc"
 INCLUDE "constants/sprite_anim_constants.inc"
+INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 NAMINGSCREEN_CURSOR     EQU $7e
 

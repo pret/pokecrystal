@@ -1,10 +1,10 @@
 INCLUDE "charmap.inc"
 INCLUDE "macros/data.inc"
 INCLUDE "macros/scripts/events.inc"
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/floating_constants.inc"
 INCLUDE "constants/phone_constants.inc"
 INCLUDE "constants/script_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "engine/phone/scripts/generic_callee.asm", ROMX

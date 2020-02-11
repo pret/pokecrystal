@@ -3,12 +3,12 @@ INCLUDE "macros/coords.inc"
 INCLUDE "macros/gfx.inc"
 INCLUDE "macros/rst.inc"
 INCLUDE "macros/scripts/text.inc"
-INCLUDE "constants/wram_constants.inc"
-INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/input_constants.inc"
 INCLUDE "constants/misc_constants.inc"
 INCLUDE "constants/music_constants.inc"
 INCLUDE "constants/scgb_constants.inc"
+INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 TIMESET_UP_ARROW   EQU "♂" ; $ef
 TIMESET_DOWN_ARROW EQU "♀" ; $f5

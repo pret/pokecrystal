@@ -1,5 +1,5 @@
-INCLUDE "constants/music_common.inc"
 INCLUDE "constants/floating_constants.inc"
+INCLUDE "constants/music_common.inc"
 
 
 SECTION "audio/music/wildpokemonvictory.asm", ROMX, BANK[BANK_MUSIC_WILD_VICTORY]

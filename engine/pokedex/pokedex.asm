@@ -5,8 +5,6 @@ INCLUDE "macros/gfx.inc"
 INCLUDE "macros/predef.inc"
 INCLUDE "macros/rst.inc"
 INCLUDE "macros/scripts/text.inc"
-INCLUDE "constants/wram_constants.inc"
-INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/input_constants.inc"
 INCLUDE "constants/landmark_constants.inc"
@@ -14,7 +12,9 @@ INCLUDE "constants/misc_constants.inc"
 INCLUDE "constants/pokemon_constants.inc"
 INCLUDE "constants/scgb_constants.inc"
 INCLUDE "constants/sfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/type_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 ; Pokedex_RunJumptable.Jumptable indexes
 	const_def

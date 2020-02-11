@@ -1,9 +1,9 @@
 INCLUDE "macros/scripts/events.inc"
 INCLUDE "macros/scripts/text.inc"
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/engine_flags.inc"
 INCLUDE "constants/event_flags.inc"
 INCLUDE "constants/script_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "engine/phone/scripts/buena.asm", ROMX

@@ -1,6 +1,5 @@
 INCLUDE "charmap.inc"
 INCLUDE "macros/predef.inc"
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/battle_constants.inc"
 INCLUDE "constants/item_constants.inc"
 INCLUDE "constants/move_constants.inc"
@@ -8,6 +7,7 @@ INCLUDE "constants/pokemon_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/trainer_constants.inc"
 INCLUDE "constants/trainer_data_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "engine/battle/read_trainer_party.asm", ROMX

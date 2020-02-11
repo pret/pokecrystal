@@ -2,8 +2,8 @@ INCLUDE "macros/data.inc"
 INCLUDE "macros/rst.inc"
 INCLUDE "macros/scripts/events.inc"
 INCLUDE "macros/scripts/text.inc"
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/engine_flags.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "engine/events/sweet_scent.asm", ROMX

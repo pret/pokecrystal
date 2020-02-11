@@ -2,9 +2,9 @@ INCLUDE "macros/code.inc"
 INCLUDE "macros/coords.inc"
 INCLUDE "macros/rst.inc"
 INCLUDE "macros/scripts/text.inc"
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/menu_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "engine/pokemon/bills_pc_top.asm", ROMX

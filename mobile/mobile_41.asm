@@ -3,10 +3,10 @@ INCLUDE "macros/code.inc"
 INCLUDE "macros/data.inc"
 INCLUDE "macros/gfx.inc"
 INCLUDE "macros/rst.inc"
-INCLUDE "constants/wram_constants.inc"
-INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/battle_constants.inc"
+INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "mobile/mobile_41.asm@TrainerRankings", ROMX

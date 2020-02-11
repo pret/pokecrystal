@@ -1,6 +1,6 @@
-INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/floating_constants.inc"
 INCLUDE "constants/item_constants.inc"
+INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/trainer_constants.inc"
 INCLUDE "constants/trainer_data_constants.inc"
 

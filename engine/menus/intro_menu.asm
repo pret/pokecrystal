@@ -4,7 +4,6 @@ INCLUDE "macros/gfx.inc"
 INCLUDE "macros/predef.inc"
 INCLUDE "macros/rst.inc"
 INCLUDE "macros/scripts/text.inc"
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/floating_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/input_constants.inc"
@@ -20,6 +19,7 @@ INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/sprite_anim_constants.inc"
 INCLUDE "constants/sprite_data_constants.inc"
 INCLUDE "constants/trainer_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "engine/menus/intro_menu.asm", ROMX, BANK[BANK_GAME_INIT]

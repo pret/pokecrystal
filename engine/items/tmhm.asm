@@ -3,7 +3,6 @@ INCLUDE "macros/coords.inc"
 INCLUDE "macros/predef.inc"
 INCLUDE "macros/rst.inc"
 INCLUDE "macros/scripts/text.inc"
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/battle_constants.inc"
 INCLUDE "constants/input_constants.inc"
 INCLUDE "constants/item_constants.inc"
@@ -11,6 +10,7 @@ INCLUDE "constants/menu_constants.inc"
 INCLUDE "constants/pokemon_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/sfx_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "engine/items/tmhm.asm", ROMX

@@ -1,11 +1,11 @@
 INCLUDE "charmap.inc"
 INCLUDE "macros/code.inc"
 INCLUDE "macros/coords.inc"
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/input_constants.inc"
 INCLUDE "constants/scgb_constants.inc"
 INCLUDE "constants/sfx_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "engine/menus/options_menu.asm", ROMX

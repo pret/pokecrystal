@@ -2,8 +2,8 @@ INCLUDE "macros/code.inc"
 INCLUDE "macros/coords.inc"
 INCLUDE "macros/rst.inc"
 INCLUDE "macros/scripts/text.inc"
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "engine/rtc/restart_clock.asm", ROMX

@@ -1,9 +1,9 @@
 INCLUDE "charmap.inc"
 INCLUDE "macros/code.inc"
 INCLUDE "macros/gfx.inc"
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "engine/gfx/load_font.asm@Unreferenced", ROMX

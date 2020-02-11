@@ -2,7 +2,6 @@ INCLUDE "macros/code.inc"
 INCLUDE "macros/coords.inc"
 INCLUDE "macros/gfx.inc"
 INCLUDE "macros/rst.inc"
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/battle_anim_constants.inc"
 INCLUDE "constants/battle_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
@@ -11,6 +10,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/scgb_constants.inc"
 INCLUDE "constants/tileset_constants.inc"
 INCLUDE "constants/trainer_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "engine/gfx/color.asm", ROMX

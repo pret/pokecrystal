@@ -4,8 +4,6 @@ INCLUDE "macros/data.inc"
 INCLUDE "macros/gfx.inc"
 INCLUDE "macros/rst.inc"
 INCLUDE "macros/scripts/text.inc"
-INCLUDE "constants/wram_constants.inc"
-INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/battle_constants.inc"
 INCLUDE "constants/floating_constants.inc"
 INCLUDE "constants/input_constants.inc"
@@ -15,6 +13,8 @@ INCLUDE "constants/misc_constants.inc"
 INCLUDE "constants/pokemon_constants.inc"
 INCLUDE "constants/scgb_constants.inc"
 INCLUDE "constants/sfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 ; Pack.Jumptable and BattlePack.Jumptable indexes
 	const_def

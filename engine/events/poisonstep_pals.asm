@@ -1,9 +1,9 @@
 INCLUDE "macros/code.inc"
 INCLUDE "macros/gfx.inc"
 INCLUDE "macros/rst.inc"
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "engine/events/poisonstep_pals.asm", ROMX

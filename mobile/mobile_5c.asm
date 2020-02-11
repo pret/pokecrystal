@@ -4,7 +4,6 @@ INCLUDE "macros/gfx.inc"
 INCLUDE "macros/predef.inc"
 INCLUDE "macros/rst.inc"
 INCLUDE "macros/scripts/text.inc"
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/battle_constants.inc"
 INCLUDE "constants/battle_tower_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
@@ -19,6 +18,7 @@ INCLUDE "constants/pokemon_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/sprite_anim_constants.inc"
 INCLUDE "constants/sprite_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "mobile/mobile_5c.asm@Function170000", ROMX

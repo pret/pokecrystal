@@ -1,10 +1,10 @@
 INCLUDE "macros/data.inc"
 INCLUDE "macros/gfx.inc"
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/scgb_constants.inc"
 INCLUDE "constants/tileset_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "engine/tilesets/timeofday_pals.asm@DummyPredef", ROMX

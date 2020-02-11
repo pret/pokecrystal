@@ -1,5 +1,5 @@
-INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/floating_constants.inc"
+INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
 
 

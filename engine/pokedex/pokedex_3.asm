@@ -2,8 +2,8 @@ INCLUDE "macros/code.inc"
 INCLUDE "macros/coords.inc"
 INCLUDE "macros/gfx.inc"
 INCLUDE "macros/scripts/text.inc"
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/gfx_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "engine/pokedex/pokedex_3.asm@LoadSGBPokedexGFX", ROMX

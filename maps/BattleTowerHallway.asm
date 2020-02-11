@@ -1,6 +1,6 @@
-INCLUDE "constants/maps_common.inc"
-INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/floating_constants.inc"
+INCLUDE "constants/hardware_constants.inc"
+INCLUDE "constants/maps_common.inc"
 
 	object_const_def ; object_event constants
 	const BATTLETOWERHALLWAY_RECEPTIONIST

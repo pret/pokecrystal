@@ -5,14 +5,14 @@ INCLUDE "macros/predef.inc"
 INCLUDE "macros/rst.inc"
 INCLUDE "macros/scripts/text.inc"
 INCLUDE "macros/scripts/trade_anims.inc"
-INCLUDE "constants/wram_constants.inc"
-INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/music_constants.inc"
 INCLUDE "constants/pokemon_constants.inc"
 INCLUDE "constants/scgb_constants.inc"
 INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/sprite_anim_constants.inc"
+INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "mobile/mobile_42.asm", ROMX

@@ -4,9 +4,9 @@ INCLUDE "macros/coords.inc"
 INCLUDE "macros/gfx.inc"
 INCLUDE "macros/predef.inc"
 INCLUDE "macros/rst.inc"
-INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/input_constants.inc"
 INCLUDE "constants/scgb_constants.inc"
+INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/tileset_constants.inc"
 
 

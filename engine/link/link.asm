@@ -5,7 +5,6 @@ INCLUDE "macros/predef.inc"
 INCLUDE "macros/rst.inc"
 INCLUDE "macros/scripts/text.inc"
 INCLUDE "macros/scripts/trade_anims.inc"
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/battle_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/icon_constants.inc"
@@ -24,6 +23,7 @@ INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/sprite_anim_constants.inc"
 INCLUDE "constants/trainer_constants.inc"
 INCLUDE "constants/type_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "engine/link/link.asm", ROMX

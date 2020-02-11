@@ -1,9 +1,9 @@
 INCLUDE "macros/predef.inc"
 INCLUDE "macros/rst.inc"
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/misc_constants.inc"
 INCLUDE "constants/pokemon_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "engine/pokemon/tempmon.asm", ROMX

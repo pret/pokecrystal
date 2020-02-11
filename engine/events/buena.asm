@@ -2,11 +2,11 @@ INCLUDE "macros/code.inc"
 INCLUDE "macros/data.inc"
 INCLUDE "macros/rst.inc"
 INCLUDE "macros/scripts/text.inc"
-INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/item_constants.inc"
 INCLUDE "constants/menu_constants.inc"
 INCLUDE "constants/radio_constants.inc"
 INCLUDE "constants/sfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
 
 
 SECTION "engine/events/buena.asm@BuenasPassword", ROMX

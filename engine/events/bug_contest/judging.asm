@@ -1,11 +1,11 @@
 INCLUDE "macros/data.inc"
 INCLUDE "macros/rst.inc"
 INCLUDE "macros/scripts/text.inc"
-INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/floating_constants.inc"
 INCLUDE "constants/misc_constants.inc"
 INCLUDE "constants/pokemon_constants.inc"
 INCLUDE "constants/sfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/trainer_constants.inc"
 
 

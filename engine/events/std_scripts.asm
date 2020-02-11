@@ -3,8 +3,6 @@ INCLUDE "macros/data.inc"
 INCLUDE "macros/scripts/events.inc"
 INCLUDE "macros/scripts/maps.inc"
 INCLUDE "macros/scripts/movement.inc"
-INCLUDE "constants/wram_constants.inc"
-INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/engine_flags.inc"
 INCLUDE "constants/event_flags.inc"
 INCLUDE "constants/floating_constants.inc"
@@ -19,6 +17,8 @@ INCLUDE "constants/scene_constants.inc"
 INCLUDE "constants/script_constants.inc"
 INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/sprite_constants.inc"
+INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "engine/events/std_scripts.asm", ROMX

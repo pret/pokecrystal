@@ -1,5 +1,5 @@
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "engine/link/init_list.asm", ROMX

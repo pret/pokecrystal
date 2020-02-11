@@ -1,9 +1,9 @@
 INCLUDE "macros/code.inc"
 INCLUDE "macros/data.inc"
 INCLUDE "macros/scripts/text.inc"
-INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/music_constants.inc"
 INCLUDE "constants/sfx_constants.inc"
+INCLUDE "constants/text_constants.inc"
 
 
 SECTION "engine/events/prof_oaks_pc.asm", ROMX

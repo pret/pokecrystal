@@ -1,10 +1,10 @@
 INCLUDE "macros/data.inc"
 INCLUDE "macros/scripts/events.inc"
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/engine_flags.inc"
 INCLUDE "constants/event_flags.inc"
 INCLUDE "constants/phone_constants.inc"
 INCLUDE "constants/script_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "engine/phone/caller_scripts.asm", ROMX

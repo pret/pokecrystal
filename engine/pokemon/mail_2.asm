@@ -4,10 +4,10 @@ INCLUDE "macros/coords.inc"
 INCLUDE "macros/data.inc"
 INCLUDE "macros/gfx.inc"
 INCLUDE "macros/rst.inc"
-INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/input_constants.inc"
 INCLUDE "constants/item_constants.inc"
 INCLUDE "constants/item_data_constants.inc"
+INCLUDE "constants/text_constants.inc"
 
 
 SECTION "engine/pokemon/mail_2.asm@ReadAnyMail", ROMX

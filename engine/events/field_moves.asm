@@ -3,11 +3,11 @@ INCLUDE "macros/coords.inc"
 INCLUDE "macros/data.inc"
 INCLUDE "macros/gfx.inc"
 INCLUDE "macros/rst.inc"
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/scgb_constants.inc"
 INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/sprite_anim_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 FIELDMOVE_GRASS EQU $80
 FIELDMOVE_TREE EQU $84

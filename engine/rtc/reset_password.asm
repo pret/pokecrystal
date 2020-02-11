@@ -2,11 +2,11 @@ INCLUDE "macros/coords.inc"
 INCLUDE "macros/data.inc"
 INCLUDE "macros/rst.inc"
 INCLUDE "macros/scripts/text.inc"
-INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/input_constants.inc"
 INCLUDE "constants/menu_constants.inc"
 INCLUDE "constants/music_constants.inc"
 INCLUDE "constants/scgb_constants.inc"
+INCLUDE "constants/text_constants.inc"
 
 
 SECTION "engine/rtc/reset_password.asm", ROMX

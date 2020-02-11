@@ -1,8 +1,8 @@
 INCLUDE "macros/gfx.inc"
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/tileset_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "engine/tilesets/tileset_anims.asm", ROMX

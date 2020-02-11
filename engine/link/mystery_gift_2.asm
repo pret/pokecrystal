@@ -1,7 +1,7 @@
 INCLUDE "macros/data.inc"
-INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/deco_constants.inc"
 INCLUDE "constants/item_constants.inc"
+INCLUDE "constants/text_constants.inc"
 
 
 SECTION "engine/link/mystery_gift_2.asm@PrepMysteryGiftDataToSend", ROMX

@@ -1,8 +1,8 @@
 INCLUDE "charmap.inc"
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/input_constants.inc"
 INCLUDE "constants/menu_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "engine/menus/scrolling_menu.asm", ROMX

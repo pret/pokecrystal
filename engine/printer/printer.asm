@@ -3,13 +3,13 @@ INCLUDE "macros/code.inc"
 INCLUDE "macros/coords.inc"
 INCLUDE "macros/gfx.inc"
 INCLUDE "macros/rst.inc"
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/input_constants.inc"
 INCLUDE "constants/music_constants.inc"
 INCLUDE "constants/pokemon_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/printer_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "engine/printer/printer.asm", ROMX

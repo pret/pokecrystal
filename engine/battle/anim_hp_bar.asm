@@ -1,8 +1,8 @@
 INCLUDE "charmap.inc"
 INCLUDE "macros/code.inc"
 INCLUDE "macros/rst.inc"
-INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/floating_constants.inc"
+INCLUDE "constants/gfx_constants.inc"
 
 
 SECTION "engine/battle/anim_hp_bar.asm", ROMX, BANK[BANK_ANIMATE_HP_BAR]

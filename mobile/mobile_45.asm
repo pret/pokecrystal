@@ -4,11 +4,11 @@ INCLUDE "macros/data.inc"
 INCLUDE "macros/gfx.inc"
 INCLUDE "macros/rst.inc"
 INCLUDE "macros/scripts/text.inc"
-INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/input_constants.inc"
 INCLUDE "constants/menu_constants.inc"
 INCLUDE "constants/mobile_constants.inc"
+INCLUDE "constants/text_constants.inc"
 
 
 SECTION "mobile/mobile_45.asm@String_114000 - Function115d80", ROMX

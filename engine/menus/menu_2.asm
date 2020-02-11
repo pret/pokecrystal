@@ -3,10 +3,10 @@ INCLUDE "macros/code.inc"
 INCLUDE "macros/coords.inc"
 INCLUDE "macros/data.inc"
 INCLUDE "macros/rst.inc"
-INCLUDE "constants/wram_constants.inc"
-INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/item_constants.inc"
 INCLUDE "constants/menu_constants.inc"
+INCLUDE "constants/text_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "engine/menus/menu_2.asm@PlaceMenuItemName", ROMX

@@ -3,7 +3,6 @@ INCLUDE "macros/coords.inc"
 INCLUDE "macros/predef.inc"
 INCLUDE "macros/rst.inc"
 INCLUDE "macros/scripts/text.inc"
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/battle_constants.inc"
 INCLUDE "constants/floating_constants.inc"
 INCLUDE "constants/icon_constants.inc"
@@ -16,6 +15,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/scgb_constants.inc"
 INCLUDE "constants/serial_constants.inc"
 INCLUDE "constants/sfx_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 ; StartMenu.Items indexes
 	const_def

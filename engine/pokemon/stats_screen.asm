@@ -4,7 +4,6 @@ INCLUDE "macros/gfx.inc"
 INCLUDE "macros/predef.inc"
 INCLUDE "macros/rst.inc"
 INCLUDE "macros/scripts/text.inc"
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/battle_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/input_constants.inc"
@@ -14,6 +13,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/scgb_constants.inc"
 INCLUDE "constants/serial_constants.inc"
 INCLUDE "constants/sfx_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 	const_def 1
 	const PINK_PAGE  ; 1

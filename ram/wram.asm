@@ -1,7 +1,6 @@
 INCLUDE "macros/enum.inc"
 INCLUDE "macros/gfx.inc"
 INCLUDE "macros/wram.inc"
-INCLUDE "constants/wram_constants.inc"
 INCLUDE "constants/battle_constants.inc"
 INCLUDE "constants/battle_tower_constants.inc"
 INCLUDE "constants/deco_constants.inc"
@@ -16,6 +15,7 @@ INCLUDE "constants/pokemon_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/script_constants.inc"
 INCLUDE "constants/sprite_constants.inc"
+INCLUDE "constants/wram_constants.inc"
 
 
 SECTION "Stack", WRAM0

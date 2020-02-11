@@ -2,10 +2,10 @@ INCLUDE "charmap.inc"
 INCLUDE "macros/code.inc"
 INCLUDE "macros/data.inc"
 INCLUDE "macros/rst.inc"
-INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/floating_constants.inc"
 INCLUDE "constants/input_constants.inc"
 INCLUDE "constants/menu_constants.inc"
+INCLUDE "constants/text_constants.inc"
 
 
 SECTION "engine/items/buy_sell_toss.asm", ROMX, BANK[BANK_BUY_SELL_TOSS]
