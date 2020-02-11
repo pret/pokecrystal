@@ -110,7 +110,7 @@ endr
 .spawn_object
 	depixel 6, 3, 4, 4
 	ld a, SPRITE_ANIM_INDEX_DUMMY_GAME
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld a, 5
 	ld [wDummyGameNumberTriesRemaining], a
 	ld hl, wJumptableIndex

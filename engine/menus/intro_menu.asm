@@ -1280,7 +1280,7 @@ Unreferenced_Function639b:
 	ld e, a
 	ld d, [hl]
 	ld a, SPRITE_ANIM_INDEX_GS_TITLE_TRAIL
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ret
 
 .Data63ca:

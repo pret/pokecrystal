@@ -413,11 +413,11 @@ EZChat_MasterLoop:
 .SpawnObjects:
 	depixel 3, 1, 2, 5
 	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	depixel 8, 1, 2, 5
 
 	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, $1
@@ -425,7 +425,7 @@ EZChat_MasterLoop:
 
 	depixel 9, 2, 2, 0
 	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, $3
@@ -433,7 +433,7 @@ EZChat_MasterLoop:
 
 	depixel 10, 16
 	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, $4
@@ -441,7 +441,7 @@ EZChat_MasterLoop:
 
 	depixel 10, 4
 	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, $5
@@ -449,7 +449,7 @@ EZChat_MasterLoop:
 
 	depixel 10, 2
 	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, $2

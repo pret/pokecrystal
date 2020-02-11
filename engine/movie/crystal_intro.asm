@@ -80,7 +80,7 @@ Copyright_GFPresents:
 	farcall ClearSpriteAnims
 	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_GAMEFREAK_LOGO
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], $a0
@@ -733,7 +733,7 @@ IntroScene7:
 	farcall ClearSpriteAnims
 	depixel 13, 27, 4, 0
 	ld a, SPRITE_ANIM_INDEX_INTRO_SUICUNE
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld a, $f0
 	ld [wGlobalAnimXOffset], a
 	call Intro_SetCGBPalUpdate
@@ -826,7 +826,7 @@ IntroScene10:
 .pichu
 	depixel 21, 16, 1, 0
 	ld a, SPRITE_ANIM_INDEX_INTRO_PICHU
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld de, SFX_INTRO_PICHU
 	call PlaySFX
 	ret
@@ -834,7 +834,7 @@ IntroScene10:
 .wooper
 	depixel 22, 6
 	ld a, SPRITE_ANIM_INDEX_INTRO_WOOPER
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld de, SFX_INTRO_PICHU
 	call PlaySFX
 	ret
@@ -1013,7 +1013,7 @@ IntroScene13:
 	farcall ClearSpriteAnims
 	depixel 13, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_INTRO_SUICUNE
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld de, MUSIC_CRYSTAL_OPENING
 	call PlayMusic
 	xor a
@@ -1124,10 +1124,10 @@ IntroScene15:
 	call Intro_SetCGBPalUpdate
 	depixel 8, 5
 	ld a, SPRITE_ANIM_INDEX_INTRO_UNOWN_F
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	depixel 12, 0
 	ld a, SPRITE_ANIM_INDEX_INTRO_SUICUNE_AWAY
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	xor a
 	ld [wIntroSceneFrameCounter], a
 	ld [wIntroSceneTimer], a
@@ -1276,7 +1276,7 @@ IntroScene19:
 	call Intro_SetCGBPalUpdate
 	depixel 12, 0
 	ld a, SPRITE_ANIM_INDEX_INTRO_SUICUNE_AWAY
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	xor a
 	ld [wIntroSceneFrameCounter], a
 	ld [wIntroSceneTimer], a
@@ -1533,7 +1533,7 @@ INCLUDE "gfx/intro/fade.pal"
 CrystalIntro_InitUnownAnim:
 	push de
 	ld a, SPRITE_ANIM_INDEX_INTRO_UNOWN
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $8
@@ -1543,7 +1543,7 @@ CrystalIntro_InitUnownAnim:
 
 	push de
 	ld a, SPRITE_ANIM_INDEX_INTRO_UNOWN
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $18
@@ -1553,7 +1553,7 @@ CrystalIntro_InitUnownAnim:
 
 	push de
 	ld a, SPRITE_ANIM_INDEX_INTRO_UNOWN
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $28
@@ -1562,7 +1562,7 @@ CrystalIntro_InitUnownAnim:
 	pop de
 
 	ld a, SPRITE_ANIM_INDEX_INTRO_UNOWN
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $38

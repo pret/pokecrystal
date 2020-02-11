@@ -106,14 +106,14 @@ Function117738:
 	farcall Function171ccd
 	depixel 6, 3
 	ld a, $1d
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, $c
 	add hl, bc
 	ld a, $6
 	ld [hl], a
 	depixel 9, 4
 	ld a, $1d
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, $c
 	add hl, bc
 	ld a, $7
