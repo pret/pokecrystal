@@ -273,7 +273,7 @@ CheckOverworldTileArrays:
 
 INCLUDE "data/events/field_move_blocks.asm"
 
-OWFlash:
+FlashFunction:
 	call .CheckUseFlash
 	and $7f
 	ld [wFieldMoveSucceeded], a

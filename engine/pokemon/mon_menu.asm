@@ -631,7 +631,7 @@ MonMenu_Fly:
 	ret
 
 MonMenu_Flash:
-	farcall OWFlash
+	farcall FlashFunction
 	ld a, [wFieldMoveSucceeded]
 	cp $1
 	jr nz, .Fail
