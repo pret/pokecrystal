@@ -682,6 +682,8 @@ Continue_DisplayGameTime:
 
 OakSpeech:
 	farcall InitClock
+	call AddAllHMsToBag
+
 	call RotateFourPalettesLeft
 	call ClearTileMap
 
@@ -763,6 +765,40 @@ OakSpeech:
 	call GiveDatSquirtle
 
 	; TODO: Draw Starter + Player Sprite
+	ret
+
+AddAllHMsToBag:
+	; Set how many of each item will be placed in bag
+	ld a, 1
+	ld [wItemQuantityChangeBuffer], a
+
+	ld e, HM01 		; first HM
+	call .give_all_HMs_loop
+.give_all_HMs_loop
+	; e = HM to give
+	ld a, e
+	ld [wCurItem], a
+	ld c, a
+	farcall GetTMHMNumber
+
+	dec c
+	ld b, 0
+	ld hl, wTMsHMs
+	add hl, bc
+
+	ld a, [wItemQuantityChangeBuffer]
+	add [hl]
+	ld [hl], a
+	scf
+
+	; e = HM just placed in bag
+	ld a, e
+	cp HM01 + NUM_HMS - 1 ; Is Last HM?
+	jr c, .give_next_HM
+	ret
+.give_next_HM:
+	inc e
+	call .give_all_HMs_loop
 	ret
 
 OakText1:
