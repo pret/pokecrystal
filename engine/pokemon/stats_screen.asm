@@ -774,13 +774,8 @@ StatsScreen_LoadGFX:
 	dw sBoxMonOT
 	dw wBufferMonOT
 
-; Most fourth stats page code by TPP Anniversary Crystal 251
-; Ported by FredrIQ
 .OrangePage:
 	call PrintMonDVs
-	call TN_PrintToD
-	call TN_PrintLocation
-	call TN_PrintLV
 	call PrintHappiness
 	ret
 
@@ -895,7 +890,7 @@ DisplayMonDVs
 ; a = DV
 	ld [wBuffer1], a
 	ld de, wBuffer1
-	lb bc, PRINTNUM_LEFTALIGN | 1, 2
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ret
 
@@ -904,10 +899,10 @@ PrintHappiness:
 	ld [wBuffer1], a
 	ld de, wBuffer1
 	lb bc, PRINTNUM_LEFTALIGN | 1, 3
-	hlcoord 3, 16
+	hlcoord 12, 12
 	call PrintNum
 	ld de, HappinessString
-	hlcoord 1, 15
+	hlcoord 1, 12
 	call PlaceString
 	ret
 
@@ -933,90 +928,7 @@ OTString:
 	db "OT/@"
 
 HappinessString:
-	db "Happiness/@"
-
-TN_PrintToD:
-	ld de, .caughtat
-	hlcoord 1, 11
-	call PlaceString
-	ld a, [wTempMonCaughtTime]
-	and CAUGHT_TIME_MASK
-	ld de, .unknown
-	jr z, .print
-	rlca
-	rlca
-	rlca
-	cp 2
-	ld de, .morn
-	jr c, .print
-	ld de, .day
-	jr z, .print
-	ld de, .nite
-.print
-	hlcoord 3, 12
-	jp PlaceString
-
-.caughtat
-	db "Met/@"
-
-.morn
-	db "Morn@"
-
-.day
-	db "Day@"
-
-.nite
-	db "Nite@"
-
-.unknown
-	db "???@"
-
-TN_PrintLocation:
-	ld a, [wTempMonCaughtLocation]
-	and CAUGHT_LOCATION_MASK
-	ret z
-	ld de, .event
-	cp $ff
-	jr z, .print
-	ld e, a
-	farcall GetLandmarkName
-	ld de, wStringBuffer1
-.print
-	hlcoord 3, 13
-	jp PlaceString
-
-.event
-	db "Event #mon@"
-
-TN_PrintLV:
-	ld a, [wTempMonCaughtLevel]
-	hlcoord 8, 12
-	and CAUGHT_LEVEL_MASK
-	jr z, .unknown
-	cp 1
-	jr z, .hatched
-	ld [wBuffer3], a
-	ld de, .str_atlv
-	call PlaceString
-	ld de, wBuffer3
-	lb bc, PRINTNUM_LEFTALIGN | 1, 3
-	hlcoord 14, 12
-	jp PrintNum
-.hatched
-	ld de, .str_hatched
-	jp PlaceString
-.unknown
-	ld de, .str_unknown
-	jp PlaceString
-
-.str_atlv
-	db "at <LV>@"
-
-.str_hatched
-	db "from Egg@"
-
-.str_unknown
-	db "by trade@"
+	db "Happiness:@"
 
 StatsScreen_PlaceFrontpic:
 	ld hl, wTempMonDVs
