@@ -769,7 +769,6 @@ AddAllHMsToBag:
 	add hl, bc
 
 	ld a, [wItemQuantityChangeBuffer]
-	add [hl]
 	ld [hl], a
 	scf
 
