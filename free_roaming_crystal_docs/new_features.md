@@ -19,11 +19,13 @@
     - Level
     - Locations
   - Happiness
+- Berry Trees always give two berries
 
 ### Open World Features - DONE
 
 - Badges are not required to use HMs
 - Once you can use FLY, you can fly anywhere within the current region!
+- Begin the Game with a Starter (currently Squirtle)
 - Start with Pokegear
   - Map Card
   - Radio Card
@@ -55,9 +57,7 @@
 ### Quality of Life Improvements - TODO
 
 - Fourth Stats Screen
-  - Hidden Power Type
-  - Happiness should be displayed using heart icon graphics
-  - Display Pokeball caught in
+  - Display Pokeball caught in?
 - Reusable TMs
 - Hidden Power always deals max damage
 - Nurse Joy turns you around after talking to her (prevents accidentally talking to her again)
@@ -83,7 +83,6 @@
 - Display kanto badges on trainer card
 - Temtem Key Item that gives you a single party heal once after every pokecenter visit
 - Catch all 251!
-- Pokemon have personality traits
 
 ### Returning Areas - TODO
 
@@ -118,14 +117,16 @@
 - Start with all HMs
   - Holy Grail: replace HMs with tools
 - Start from any town
-- Start with any base pokemon
 - Rebattleable Gyms
 - Scaling Trainers
-- SCaling Wildmon
+- Scaling Wildmon
+- Begin the game with a starter
+  - Start with any base pokemon
 
 ### Bugfixes - TODO
 
 - Fix apricorn ball effects
+- Love Ball's vanilla effect will remain
 
 ### New Pokemon - TODO
 
