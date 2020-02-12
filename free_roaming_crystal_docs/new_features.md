@@ -21,6 +21,7 @@
   - Happiness
 - Berry Trees always give two berries
 - Nurse Joy turns you around after talking to her (prevents accidentally talking to her again)
+- Remove artificial save delay
 
 ### Open World Features - DONE
 
@@ -58,7 +59,6 @@
 
 #### QOL - High Priority
 
-- Remove artificial save delay
 - Reusable TMs
 - Poison overworld effect should be removed
 - Bill calls and switches your box when its full
