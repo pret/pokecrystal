@@ -1667,7 +1667,7 @@ GivePoke::
 	ld a, [wCurItem]
 	ld [hl], a
 	jr .done
-
+	
 .failed
 	ld a, [wCurPartySpecies]
 	ld [wTempEnemyMonSpecies], a
@@ -1840,4 +1840,134 @@ InitNickname:
 	ld a, $4 ; ExitAllMenus is in bank 0, XXX could this be in bank 4 in pokered?
 	ld hl, ExitAllMenus
 	rst FarCall
+	ret
+
+GiveStarterPoke::
+	push de
+	push bc
+	xor a ; PARTYMON
+	ld [wMonType], a
+	call TryAddMonToParty
+	ld hl, wPartyMonNicknames
+	ld a, [wPartyCount]
+	dec a
+	ld [wCurPartyMon], a
+	call SkipNames
+	ld d, h
+	ld e, l
+	pop bc
+	ld a, b
+	ld b, 0
+	push bc
+	push de
+	push af
+	ld a, [wCurItem]
+	and a
+	jr z, .done
+	ld a, [wCurPartyMon]
+	ld hl, wPartyMon1Item
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call AddNTimes
+	ld a, [wCurItem]
+	ld [hli], a	
+	jr .done
+
+.done
+	ld a, [wCurPartySpecies]
+	ld [wNamedObjectIndexBuffer], a
+	ld [wTempEnemyMonSpecies], a
+	call GetPokemonName
+	ld hl, wStringBuffer1
+	ld de, wMonOrItemNameBuffer
+	ld bc, MON_NAME_LENGTH
+	call CopyBytes
+	pop af
+	and a
+	jp z, .wildmon
+	pop de
+	pop bc
+	pop hl
+	push bc
+	push hl
+	ld a, [wScriptBank]
+	call GetFarHalfword
+	ld bc, MON_NAME_LENGTH
+	ld a, [wScriptBank]
+	call FarCopyBytes
+	pop hl
+	inc hl
+	inc hl
+	ld a, [wScriptBank]
+	call GetFarHalfword
+	pop bc
+	ld a, b
+	and a
+	push de
+	push bc
+
+	push hl
+	ld a, [wCurPartyMon]
+	ld hl, wPartyMonOT
+	call SkipNames
+	ld d, h
+	ld e, l
+	pop hl
+.otnameloop
+	ld a, [wScriptBank]
+	call GetFarByte
+	ld [de], a
+	inc hl
+	inc de
+	cp "@"
+	jr nz, .otnameloop
+	ld a, [wScriptBank]
+	call GetFarByte
+	ld b, a
+	push bc
+	ld a, [wCurPartyMon]
+	ld hl, wPartyMon1ID
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call AddNTimes
+	ld a, HIGH(RANDY_OT_ID)
+	ld [hli], a
+	ld [hl], LOW(RANDY_OT_ID)
+	pop bc
+	farcall SetGiftPartyMonCaughtData
+	jr .skip_nickname
+
+.wildmon
+	pop de
+	pop bc
+	push bc
+	push de
+	ld a, b
+	and a
+	jr z, .party
+
+.party
+	farcall SetCaughtData
+.set_caught_data
+	farcall GiveANickname_YesNo
+	pop de
+	jr c, .skip_nickname
+	call InitStarterNickname
+
+.skip_nickname
+	pop bc
+	pop de
+	ret z
+
+InitStarterNickname:
+	push de
+	call LoadStandardMenuHeader
+	call DisableSpriteUpdates
+	pop de
+	push de
+	ld b, NAME_MON
+	farcall NamingScreen
+	pop hl
+	ld de, wStringBuffer1
+	call InitName
+	call ClearTileMap
+
 	ret

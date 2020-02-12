@@ -78,6 +78,25 @@ NewGame:
 
 	jp FinishContinueFunction
 
+GiveDatSquirtle:
+
+	ld a, $7 ; SQUIRTLE
+	ld [wCurPartySpecies], a
+
+	ld a, $5 ; LVL 5
+	ld [wCurPartyLevel], a
+
+	ld a, $2 ; Ultra Ball
+	ld [wCurItem], a
+
+	ld a, 0
+	ld b, a
+	farcall GiveStarterPoke
+	ld a, b
+	ld [wScriptVar], a
+
+	ret
+
 ; TODO: this function is unused
 ; save it for setting the day of the week without having to talk to your mom
 SetUpPokeGear:
@@ -737,6 +756,13 @@ OakSpeech:
 	call NamePlayer
 	ld hl, OakText7
 	call PrintText
+
+	; TODO: Add OakText about you starter
+	; TODO: Let user pick from list of starters
+	; TODO: Give Starter based on selection
+	call GiveDatSquirtle
+
+	; TODO: Draw Starter + Player Sprite
 	ret
 
 OakText1:
