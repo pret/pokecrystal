@@ -11,7 +11,7 @@ _HeyItsFruitText::
 	done
 
 _ObtainedFruitText::
-	text "Obtained"
+	text "Obtained 2"
 	line "@"
 	text_ram wStringBuffer3
 	text "!"
