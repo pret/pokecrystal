@@ -25,6 +25,7 @@
 
 ### Open World Features - DONE
 
+- Start with all HMs
 - Badges are not required to use HMs
 - Once you can use FLY, you can fly anywhere within the current region!
 - Begin the Game with a Starter (currently Squirtle)
@@ -119,19 +120,25 @@
 
 ### Open World Features - TODO
 
-- Start with all HMs
-  - Holy Grail: replace HMs with tools
+#### OPF - High Priority
+
+- Start with any base or baby pokemon
 - Start from any town
-- Rebattleable Gyms
 - Scaling Trainers
+  - Define 16 different sets??
+  - Define 8 different sets??
+  - Define certain pokemon and level/evolve those Pokemon after each badge??
+
+#### OPF - Medium Priority
+
 - Scaling Wildmon
-- Begin the game with a starter
-  - Start with any base pokemon
+- Replace HMs with tools
+- Rebattleable Gyms
 
 ### Bugfixes - TODO
 
 - Fix apricorn ball effects
-- Love Ball's vanilla effect will remain
+  - Love Ball's vanilla effect is unchanged
 
 ### New Pokemon - TODO
 
