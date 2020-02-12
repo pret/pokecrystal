@@ -20,6 +20,7 @@
     - Locations
   - Happiness
 - Berry Trees always give two berries
+- Nurse Joy turns you around after talking to her (prevents accidentally talking to her again)
 
 ### Open World Features - DONE
 
@@ -52,19 +53,31 @@
     - R/B/G/Y
     - Beta
     - Plant-based Pokemon Autumn Form
-- Starter Pokeballs are color-coded
 
 ### Quality of Life Improvements - TODO
 
-- Fourth Stats Screen
-  - Display Pokeball caught in?
+#### QOL - High Priority
+
+- Remove artificial save delay
 - Reusable TMs
-- Hidden Power always deals max damage
-- Nurse Joy turns you around after talking to her (prevents accidentally talking to her again)
 - Poison overworld effect should be removed
 - Bill calls and switches your box when its full
 - Pressing B in a wild battle moves the cursor to RUN
 - Name Rater/Move Relearner/Move Deleter at every pokecenter
+- Replace trade evolutions with different methods
+  - Trade stone?
+  - Atk, Def, or Spc reach a certain stat?
+- Low HP beeping
+- Remove useless moves and replace with useful moves
+- Display kanto badges on trainer card
+  
+#### QOL - Medium Priority
+
+- Hidden Power always deals max damage
+- Temtem Key Item that gives you a single party heal once after every pokecenter visit
+- Catch all 251!
+- Fourth Stats Screen
+  - Display Pokeball caught in?
 - Breeding
   - Rejecting an egg from the Daycare Man no longer stops egg production
   - Day Care man is outside fence
@@ -74,15 +87,7 @@
   - Remove weird DV based breeding restrictions
   - Eggs appear quicker
   - Eggs hatch faster
-- Replace trade evolutions with different methods
-  - Trade stone?
-  - Atk, Def, or Spc reach a certain stat?
 - Stone & Trade Evo pokemon can appear in the wild
-- Low HP beeping
-- Remove useless moves and replace with useful moves
-- Display kanto badges on trainer card
-- Temtem Key Item that gives you a single party heal once after every pokecenter visit
-- Catch all 251!
 
 ### Returning Areas - TODO
 
