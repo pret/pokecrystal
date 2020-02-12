@@ -78,25 +78,6 @@ NewGame:
 
 	jp FinishContinueFunction
 
-GiveDatSquirtle:
-
-	ld a, $7 ; SQUIRTLE
-	ld [wCurPartySpecies], a
-
-	ld a, $5 ; LVL 5
-	ld [wCurPartyLevel], a
-
-	ld a, $2 ; Ultra Ball
-	ld [wCurItem], a
-
-	ld a, 0
-	ld b, a
-	farcall GiveStarterPoke
-	ld a, b
-	ld [wScriptVar], a
-
-	ret
-
 ; TODO: this function is unused
 ; save it for setting the day of the week without having to talk to your mom
 SetUpPokeGear:
@@ -762,6 +743,7 @@ OakSpeech:
 	; TODO: Add OakText about you starter
 	; TODO: Let user pick from list of starters
 	; TODO: Give Starter based on selection
+	; TODO: BUG: Yes/No Nickname screen should not select 'YES' if the user presses 'B'
 	call GiveDatSquirtle
 
 	; TODO: Draw Starter + Player Sprite
@@ -799,6 +781,25 @@ AddAllHMsToBag:
 .give_next_HM:
 	inc e
 	call .give_all_HMs_loop
+	ret
+
+GiveDatSquirtle:
+
+	ld a, $7 ; SQUIRTLE
+	ld [wCurPartySpecies], a
+
+	ld a, $5 ; LVL 5
+	ld [wCurPartyLevel], a
+
+	ld a, $2 ; Ultra Ball
+	ld [wCurItem], a
+
+	ld a, 0
+	ld b, a
+	farcall GiveStarterPoke
+	ld a, b
+	ld [wScriptVar], a
+
 	ret
 
 OakText1:
