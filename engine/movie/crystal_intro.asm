@@ -2,7 +2,7 @@ Copyright_GFPresents:
 	ld de, MUSIC_NONE
 	call PlayMusic
 	call ClearBGPalettes
-	call ClearTileMap
+	call ClearTilemap
 	ld a, HIGH(vBGMap0)
 	ldh [hBGMapAddress + 1], a
 	xor a ; LOW(vBGMap0)
@@ -22,7 +22,7 @@ Copyright_GFPresents:
 	call WaitBGMap
 	ld c, 100
 	call DelayFrames
-	call ClearTileMap
+	call ClearTilemap
 	farcall GBCOnlyScreen
 	call .GetGFLogoGFX
 .joy_loop
@@ -106,7 +106,7 @@ Copyright_GFPresents:
 
 .StopGamefreakAnim:
 	farcall ClearSpriteAnims
-	call ClearTileMap
+	call ClearTilemap
 	call ClearSprites
 	ld c, 16
 	call DelayFrames
@@ -363,7 +363,7 @@ CrystalIntro:
 .done
 	call ClearBGPalettes
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	xor a
 	ldh [hSCX], a
 	ldh [hSCY], a
@@ -440,7 +440,7 @@ IntroScene1:
 ; Setup the next scene.
 	call Intro_ClearBGPals
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	xor a
 	ldh [hBGMapMode], a
 	ld a, $1
@@ -516,7 +516,7 @@ IntroScene3:
 ; More setup. Transition to the outdoor scene.
 	call Intro_ClearBGPals
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	xor a
 	ldh [hBGMapMode], a
 	ld a, $1
@@ -578,7 +578,7 @@ IntroScene5:
 ; Go back to the Unown.
 	call Intro_ClearBGPals
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	xor a
 	ldh [hBGMapMode], a
 	ldh [hLCDCPointer], a
@@ -676,7 +676,7 @@ IntroScene7:
 ; Back to the outdoor scene.
 	call Intro_ClearBGPals
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	xor a
 	ldh [hBGMapMode], a
 
@@ -777,7 +777,7 @@ IntroScene9:
 	xor a
 	ldh [hLCDCPointer], a
 	call ClearSprites
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	; first 12 rows have palette 1
 	ld bc, 12 * SCREEN_WIDTH
 	ld a, $1
@@ -846,7 +846,7 @@ IntroScene11:
 ; Back to Unown again.
 	call Intro_ClearBGPals
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	xor a
 	ldh [hBGMapMode], a
 	ldh [hLCDCPointer], a
@@ -970,7 +970,7 @@ IntroScene13:
 ; Switch scenes again.
 	call Intro_ClearBGPals
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	xor a
 	ldh [hBGMapMode], a
 	ld a, $1
@@ -1074,7 +1074,7 @@ IntroScene15:
 ; Transition to a new scene.
 	call Intro_ClearBGPals
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	xor a
 	ldh [hBGMapMode], a
 	ld a, $1
@@ -1156,7 +1156,7 @@ IntroScene17:
 ; ...
 	call Intro_ClearBGPals
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	xor a
 	ldh [hBGMapMode], a
 	ld a, $1
@@ -1222,7 +1222,7 @@ IntroScene19:
 ; More setup.
 	call Intro_ClearBGPals
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	xor a
 	ldh [hBGMapMode], a
 	ld a, $1
@@ -1399,7 +1399,7 @@ IntroScene26:
 ; Load the final scene.
 	call ClearBGPalettes
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	xor a
 	ldh [hBGMapMode], a
 	ld a, $1

@@ -70,7 +70,7 @@ MagnetTrain:
 	ld [wRequested2bppDest], a
 	ld [wRequested2bppDest + 1], a
 	ld [wRequested2bpp], a
-	call ClearTileMap
+	call ClearTilemap
 
 	pop af
 	ldh [hSCY], a

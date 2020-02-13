@@ -194,7 +194,7 @@ MenuBoxCoord2Tile::
 	ld b, a
 
 Coord2Tile::
-; Return the address of wTileMap(c, b) in hl.
+; Return the address of wTilemap(c, b) in hl.
 	xor a
 	ld h, a
 	ld l, b
@@ -221,7 +221,7 @@ MenuBoxCoord2Attr::
 	ld b, a
 
 Coord2Attr::
-; Return the address of wAttrMap(c, b) in hl.
+; Return the address of wAttrmap(c, b) in hl.
 	xor a
 	ld h, a
 	ld l, b
@@ -237,6 +237,6 @@ Coord2Attr::
 	xor a
 	ld b, a
 	add hl, bc
-	bccoord 0, 0, wAttrMap
+	bccoord 0, 0, wAttrmap
 	add hl, bc
 	ret

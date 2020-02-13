@@ -696,11 +696,11 @@ Function11c4a5:
 
 Function11c4be:
 	ld a, $1
-	hlcoord 0, 6, wAttrMap
+	hlcoord 0, 6, wAttrmap
 	ld bc, $a0
 	call ByteFill
 	ld a, $7
-	hlcoord 0, 14, wAttrMap
+	hlcoord 0, 14, wAttrmap
 	ld bc, $28
 	call ByteFill
 	farcall ReloadMapPart
@@ -895,7 +895,7 @@ EZChat_PlaceCategoryNames:
 
 Function11c618:
 	ld a, $2
-	hlcoord 0, 6, wAttrMap
+	hlcoord 0, 6, wAttrmap
 	ld bc, $c8
 	call ByteFill
 	farcall ReloadMapPart
@@ -1495,7 +1495,7 @@ Function11c992:
 
 Function11c9ab:
 	ld a, $7
-	hlcoord 0, 6, wAttrMap
+	hlcoord 0, 6, wAttrmap
 	ld bc, $c8
 	call ByteFill
 	farcall ReloadMapPart
@@ -1552,7 +1552,7 @@ Function11c9c3:
 	ret
 
 Function11ca01:
-	hlcoord 14, 7, wAttrMap
+	hlcoord 14, 7, wAttrmap
 	ld de, $14
 	ld a, $5
 	ld c, a
@@ -1571,7 +1571,7 @@ Function11ca01:
 	jr nz, .asm_11ca0a
 
 Function11ca19:
-	hlcoord 0, 12, wAttrMap
+	hlcoord 0, 12, wAttrmap
 	ld de, $14
 	ld a, $6
 	ld c, a
@@ -1993,11 +1993,11 @@ Function11cd54:
 
 Function11cdaa:
 	ld a, $2
-	hlcoord 0, 6, wAttrMap
+	hlcoord 0, 6, wAttrmap
 	ld bc, 6 * SCREEN_WIDTH
 	call ByteFill
 	ld a, $7
-	hlcoord 0, 12, wAttrMap
+	hlcoord 0, 12, wAttrmap
 	ld bc, 4 * SCREEN_WIDTH
 	call ByteFill
 	farcall ReloadMapPart

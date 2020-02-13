@@ -37,13 +37,13 @@ StatsScreenInit_gotaddress:
 	push bc
 	push hl
 	call ClearBGPalettes
-	call ClearTileMap
+	call ClearTilemap
 	call UpdateSprites
 	farcall StatsScreen_LoadFont
 	pop hl
 	call _hl_
 	call ClearBGPalettes
-	call ClearTileMap
+	call ClearTilemap
 	pop bc
 
 	; restore old values
@@ -129,7 +129,7 @@ StatsScreen_WaitAnim:
 .finish
 	ld hl, wcf64
 	res 5, [hl]
-	farcall HDMATransferTileMapToWRAMBank3
+	farcall HDMATransferTilemapToWRAMBank3
 	ret
 
 StatsScreen_SetJumptableIndex:
@@ -148,8 +148,8 @@ MonStatsInit:
 	ld hl, wcf64
 	res 6, [hl]
 	call ClearBGPalettes
-	call ClearTileMap
-	farcall HDMATransferTileMapToWRAMBank3
+	call ClearTilemap
+	farcall HDMATransferTilemapToWRAMBank3
 	call StatsScreen_CopyToTempMon
 	ld a, [wCurPartySpecies]
 	cp EGG
@@ -989,7 +989,7 @@ EggStatsScreen:
 	call DelayFrame
 	hlcoord 0, 0
 	call PrepMonFrontpic
-	farcall HDMATransferTileMapToWRAMBank3
+	farcall HDMATransferTilemapToWRAMBank3
 	call StatsScreen_AnimateEgg
 
 	ld a, [wTempMonHappiness]

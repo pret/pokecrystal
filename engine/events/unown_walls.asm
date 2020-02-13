@@ -139,7 +139,7 @@ DisplayUnownWords:
 	jr nz, .loop2
 .copy
 	call _DisplayUnownWords_CopyWord
-	ld bc, wAttrMap - wTileMap
+	ld bc, wAttrmap - wTilemap
 	add hl, bc
 	call _DisplayUnownWords_FillAttr
 	call WaitBGMap2

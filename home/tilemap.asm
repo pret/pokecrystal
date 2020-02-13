@@ -61,7 +61,7 @@ CopyTilemapAtOnce::
 	jr .CopyTilemapAtOnce
 
 ; unused
-	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
+	farcall HDMATransferAttrmapAndTilemapToWRAMBank3
 	ret
 
 .CopyTilemapAtOnce:
@@ -83,7 +83,7 @@ CopyTilemapAtOnce::
 	di
 	ld a, BANK(vTiles3)
 	ldh [rVBK], a
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	call .StackPointerMagic
 	ld a, BANK(vTiles0)
 	ldh [rVBK], a

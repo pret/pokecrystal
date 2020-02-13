@@ -20,7 +20,7 @@ SaveMenu_CopyTilemapAtOnce:
 	di
 	ld a, BANK(vBGMap2)
 	ldh [rVBK], a
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	call .CopyTilemapAtOnce
 	ld a, BANK(vBGMap0)
 	ldh [rVBK], a

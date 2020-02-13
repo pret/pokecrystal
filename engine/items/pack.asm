@@ -1326,7 +1326,7 @@ Pack_InterpretJoypad:
 
 Pack_InitGFX:
 	call ClearBGPalettes
-	call ClearTileMap
+	call ClearTilemap
 	call ClearSprites
 	call DisableLCD
 	ld hl, PackMenuGFX

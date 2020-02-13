@@ -1144,7 +1144,7 @@ BattleTowerRoomMenu_PlacePickLevelMenu:
 	call MenuBox
 	call MenuBoxCoord2Tile
 	call ApplyTilemap
-	hlcoord 16, 8, wAttrMap
+	hlcoord 16, 8, wAttrmap
 	ld a, $40
 	or [hl]
 	ld [hl], a
@@ -4998,7 +4998,7 @@ Function11a5b9:
 	ld a, $5
 	ld [wMenuBorderBottomCoord], a
 	call PushWindow
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	ld b, $6
 	ld c, $14
 	hlcoord 0, 0
@@ -5023,7 +5023,7 @@ Function11a5f5:
 	ld a, $a
 	ld [wMenuBorderBottomCoord], a
 	call PushWindow
-	hlcoord 14, 6, wAttrMap
+	hlcoord 14, 6, wAttrmap
 	ld b, $5
 	ld c, $6
 	hlcoord 14, 6
@@ -5615,7 +5615,7 @@ Function11acb7:
 Function11ad1b:
 	call ClearBGPalettes
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	farcall Function17c000
 	ld a, [wMenuCursorY]
 	ld [wcd82], a
@@ -5680,7 +5680,7 @@ Function11ad95:
 	hlcoord 12, 12
 	ld de, String_11ae40
 	call PlaceString
-	hlcoord 10, 10, wAttrMap
+	hlcoord 10, 10, wAttrmap
 	lb bc, 8, 8
 	call Function11afd6
 	farcall ReloadMapPart
@@ -5790,10 +5790,10 @@ Function11ae4e:
 	hlcoord 16, 8
 	ld de, String_11b01b
 	call PlaceString
-	hlcoord 14, 7, wAttrMap
+	hlcoord 14, 7, wAttrmap
 	lb bc, 5, 6
 	call Function11afd6
-	hlcoord 9, 12, wAttrMap
+	hlcoord 9, 12, wAttrmap
 	lb bc, 6, 11
 	call Function11afd6
 	farcall ReloadMapPart
@@ -5880,10 +5880,10 @@ Function11af04:
 	hlcoord 16, 8
 	ld de, String_11b01b
 	call PlaceString
-	hlcoord 14, 7, wAttrMap
+	hlcoord 14, 7, wAttrmap
 	lb bc, 5, 6
 	call Function11afd6
-	hlcoord 9, 12, wAttrMap
+	hlcoord 9, 12, wAttrmap
 	lb bc, 6, 11
 	call Function11afd6
 	farcall ReloadMapPart

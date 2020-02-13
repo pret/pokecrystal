@@ -195,7 +195,7 @@ Function100144:
 	ret z
 	res 2, [hl]
 	res 6, [hl]
-	farcall HDMATransferTileMapToWRAMBank3
+	farcall HDMATransferTilemapToWRAMBank3
 	ret
 
 Function100163:
@@ -430,7 +430,7 @@ Function100320:
 	ret
 
 Function100327:
-	farcall HDMATransferTileMapToWRAMBank3
+	farcall HDMATransferTilemapToWRAMBank3
 	ret
 
 Function10032e:
@@ -1436,7 +1436,7 @@ Function100970:
 	hlcoord 0, 0
 	ld de, w3_dc00
 	call Function1009a5
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	ld de, w3_dd68
 	call Function1009a5
 	call Function1009d2
@@ -1450,7 +1450,7 @@ Function100989:
 	call Function1009ae
 	farcall ReloadMapPart
 	ld hl, w3_dd68
-	decoord 0, 0, wAttrMap
+	decoord 0, 0, wAttrmap
 	call Function1009a5
 	ret
 
@@ -1467,7 +1467,7 @@ Function1009ae:
 	ldh [rSVBK], a
 
 	ld hl, w3_d800
-	decoord 0, 0, wAttrMap
+	decoord 0, 0, wAttrmap
 	ld c, SCREEN_WIDTH
 	ld b, SCREEN_HEIGHT
 .loop_row
@@ -1715,7 +1715,7 @@ Function100b45:
 	call Mobile_SetOverworldDelay
 	farcall MobileMenuJoypad
 	push bc
-	farcall HDMATransferTileMapToWRAMBank3
+	farcall HDMATransferTilemapToWRAMBank3
 	call Function100e2d
 	pop bc
 	jr c, .asm_100b6b
@@ -1773,7 +1773,7 @@ MobileMoveSelectionScreen:
 	call Mobile_SetOverworldDelay
 	farcall MobileMenuJoypad
 	push bc
-	farcall HDMATransferTileMapToWRAMBank3
+	farcall HDMATransferTilemapToWRAMBank3
 	call Function100e2d
 	pop bc
 	jr c, .b_button
@@ -1857,7 +1857,7 @@ MobileMoveSelectionScreen:
 
 .print_text
 	call StdBattleTextbox
-	call SafeLoadTempTileMapToTileMap
+	call SafeLoadTempTilemapToTilemap
 	jp .GetMoveSelection
 
 Function100c74:
@@ -1904,7 +1904,7 @@ Mobile_PartyMenuSelect:
 	farcall MobileMenuJoypad
 	push bc
 	farcall PlaySpriteAnimations
-	farcall HDMATransferTileMapToWRAMBank3
+	farcall HDMATransferTilemapToWRAMBank3
 	call MobileComms_CheckInactivityTimer
 	pop bc
 	jr c, .done
@@ -1957,7 +1957,7 @@ MobileBattleMonMenu:
 	farcall MobileMenuJoypad
 	push bc
 	farcall PlaySpriteAnimations
-	farcall HDMATransferTileMapToWRAMBank3
+	farcall HDMATransferTilemapToWRAMBank3
 	call MobileComms_CheckInactivityTimer
 	pop bc
 	jr c, .asm_100d54
@@ -2918,7 +2918,7 @@ Function1013c0:
 	ret
 
 Function1013d6:
-	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
+	farcall HDMATransferAttrmapAndTilemapToWRAMBank3
 	ret
 
 Function1013dd:
@@ -3785,7 +3785,7 @@ _StartMobileBattle:
 	farcall Function100846
 	ld c, 120
 	call DelayFrames
-	farcall ClearTileMap
+	farcall ClearTilemap
 	call .CopyOTDetails
 	call StartMobileBattle
 	ld a, [wcd2b]
@@ -4907,14 +4907,14 @@ Function102274:
 
 Function102283:
 	ld a, $01
-	ld [wAttrMapEnd], a
+	ld [wAttrmapEnd], a
 	ld hl, wcd4b
 	set 0, [hl]
 	ret
 
 Function10228e:
 	xor a
-	ld [wAttrMapEnd], a
+	ld [wAttrmapEnd], a
 	ld hl, wcd4b
 	res 0, [hl]
 	ret
@@ -4945,7 +4945,7 @@ Function102298:
 .asm_1022c1
 	call Function10304f
 	ld a, $01
-	ld [wAttrMapEnd], a
+	ld [wAttrmapEnd], a
 	ret
 
 Function1022ca:
@@ -6415,10 +6415,10 @@ Function102d9a:
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	ld a, $07
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
-	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
+	farcall HDMATransferAttrmapAndTilemapToWRAMBank3
 	ret
 
 Function102db7:
@@ -6691,7 +6691,7 @@ String_10302e:
 
 Function10304f:
 	xor a
-	ld [wAttrMapEnd], a
+	ld [wAttrmapEnd], a
 	ld [wcf42], a
 	ld [wcf44], a
 	ld [wcf45], a
@@ -6699,7 +6699,7 @@ Function10304f:
 
 Function10305d:
 	nop
-	ld a, [wAttrMapEnd]
+	ld a, [wAttrmapEnd]
 	and a
 	ret z
 	call Function10307f
@@ -6958,7 +6958,7 @@ Function103309:
 	ld [wd1ee], a
 	call Function1034be
 	call UpdateSprites
-	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
+	farcall HDMATransferAttrmapAndTilemapToWRAMBank3
 	ld a, $01
 	ld [wd1f0], a
 	call Function10339a
@@ -6971,7 +6971,7 @@ Function103362:
 	call Function1033af
 	call Function10339a
 	call Function10342c
-	farcall HDMATransferTileMapToWRAMBank3
+	farcall HDMATransferTilemapToWRAMBank3
 	ld a, [wBuffer2]
 	bit 7, a
 	jr z, .asm_103362
@@ -7179,7 +7179,7 @@ Function1034e0:
 	push hl
 	call ClearBox
 	pop hl
-	ld bc, wAttrMap - wTileMap
+	ld bc, wAttrmap - wTilemap
 	add hl, bc
 	pop bc
 	ld a, $06

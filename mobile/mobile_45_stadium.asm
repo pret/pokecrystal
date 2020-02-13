@@ -519,7 +519,7 @@ Function117a94:
 	call ClearBGPalettes
 	call ClearSprites
 	farcall Function172e78
-	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
+	farcall HDMATransferAttrmapAndTilemapToWRAMBank3
 	ret
 
 Function117ab4:
@@ -536,7 +536,7 @@ Function117acd:
 	bit 7, a
 	jr nz, .asm_117ae2
 	call Function117ae9
-	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
+	farcall HDMATransferAttrmapAndTilemapToWRAMBank3
 	jr Function117acd
 
 .asm_117ae2

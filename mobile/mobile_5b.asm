@@ -161,8 +161,8 @@ MobileSystemSplashScreen_InitGFX:
 	lb bc, BANK(.Tiles), 104
 	call Get2bpp
 	call .LoadPals
-	call .LoadTileMap
-	call .LoadAttrMap
+	call .LoadTilemap
+	call .LoadAttrmap
 	hlbgcoord 0, 0
 	call Function16cc73
 	call Function16cc02
@@ -180,24 +180,24 @@ MobileSystemSplashScreen_InitGFX:
 	farcall ApplyPals
 	ret
 
-.LoadTileMap:
+.LoadTilemap:
 	hlcoord 0, 0
 	ld bc, 20
 	xor a
 	call ByteFill
-	ld hl, .TileMap
+	ld hl, .Tilemap
 	decoord 0, 1
 	ld bc, $0154
 	call CopyBytes
 	ret
 
-.LoadAttrMap:
-	hlcoord 0, 0, wAttrMap
+.LoadAttrmap:
+	hlcoord 0, 0, wAttrmap
 	ld bc, SCREEN_WIDTH
 	xor a
 	call ByteFill
-	ld hl, .AttrMap
-	decoord 0, 1, wAttrMap
+	ld hl, .Attrmap
+	decoord 0, 1, wAttrmap
 	ld bc, 17 * SCREEN_WIDTH
 	call CopyBytes
 	ret
@@ -205,10 +205,10 @@ MobileSystemSplashScreen_InitGFX:
 .Tiles:
 INCBIN "gfx/mobile/mobile_splash.2bpp"
 
-.TileMap:
+.Tilemap:
 INCBIN "gfx/mobile/mobile_splash.tilemap"
 
-.AttrMap:
+.Attrmap:
 INCBIN "gfx/mobile/mobile_splash.attrmap"
 
 UnknownMobilePalettes_16c903:
@@ -710,7 +710,7 @@ Function16cc5a:
 	ret
 
 Function16cc62:
-	hlcoord 0, 15, wAttrMap
+	hlcoord 0, 15, wAttrmap
 	ld bc, $0028
 	ld a, $1
 	call ByteFill
@@ -731,7 +731,7 @@ Function16cc73:
 	pop hl
 	ld a, $1
 	ldh [rVBK], a
-	decoord 0, 0, wAttrMap
+	decoord 0, 0, wAttrmap
 	call Function16cc90
 	pop af
 	ldh [rVBK], a

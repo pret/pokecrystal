@@ -1,7 +1,7 @@
 _TitleScreen:
 	call ClearBGPalettes
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 
 ; Turn BG Map update off
 	xor a

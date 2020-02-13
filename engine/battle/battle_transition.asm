@@ -585,7 +585,7 @@ StartTrainerBattle_LoadPokeBallGraphics:
 
 	xor a
 	ldh [hBGMapMode], a
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
 	inc b
 	inc c

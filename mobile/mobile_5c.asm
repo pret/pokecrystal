@@ -672,7 +672,7 @@ Function171c87:
 	ld bc, $168
 	call CopyBytes
 	ld hl, Attrmap_1727ed
-	decoord 0, 0, wAttrMap
+	decoord 0, 0, wAttrmap
 	ld bc, $168
 	call CopyBytes
 	hlcoord 3, 2
@@ -744,7 +744,7 @@ Function171d2b:
 	ld bc, $168
 	call CopyBytes
 	ld hl, Attrmap_172955
-	decoord 0, 0, wAttrMap
+	decoord 0, 0, wAttrmap
 	ld bc, $168
 	call CopyBytes
 	hlcoord 2, 2
@@ -826,7 +826,7 @@ Function172e78:
 	ld bc, $168
 	call ByteFill
 	ld a, $7
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	ld bc, $168
 	call ByteFill
 	call DisableLCD
@@ -840,7 +840,7 @@ Function172e78:
 	ld bc, $168
 	call CopyBytes
 	ld hl, Attrmap_173517
-	decoord 0, 0, wAttrMap
+	decoord 0, 0, wAttrmap
 	ld bc, $168
 	call CopyBytes
 	ret

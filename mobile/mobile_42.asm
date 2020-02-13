@@ -140,7 +140,7 @@ Function1080b7:
 	ld [wJumptableIndex], a
 	call ClearBGPalettes
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	call DisableLCD
 	call MobileTradeAnim_ClearTiles
 	call MobileTradeAnim_ClearBGMap
@@ -215,7 +215,7 @@ Function108157:
 	ld [wJumptableIndex], a
 	call ClearBGPalettes
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	call DisableLCD
 	call MobileTradeAnim_ClearTiles
 	call MobileTradeAnim_ClearBGMap
@@ -421,7 +421,7 @@ Function1082db:
 .loop
 	farcall PlaySpriteAnimations
 	farcall SetUpPokeAnim
-	farcall HDMATransferTileMapToWRAMBank3
+	farcall HDMATransferTilemapToWRAMBank3
 	jr nc, .loop
 	ret
 
@@ -515,7 +515,7 @@ MobileTradeAnim_ShowPlayerMonToBeSent:
 MobileTradeAnim_ShowOTMonFromTrade:
 	call ClearBGPalettes
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	call DisableLCD
 	call MobileTradeAnim_ClearBGMap
 	ld a, [wOTTrademonSpecies]
@@ -648,7 +648,7 @@ MobileTradeAnim_ShowPlayerMonForGTS:
 MobileTradeAnim_ShowOTMonFromGTS:
 	call ClearBGPalettes
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	call DisableLCD
 	call MobileTradeAnim_ClearBGMap
 	ld a, [wOTTrademonSpecies]
@@ -716,7 +716,7 @@ MobileTradeAnim_ShowOTMonFromGTS:
 MobileTradeAnim_GetOddEgg:
 	call ClearBGPalettes
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	call DisableLCD
 	call MobileTradeAnim_ClearBGMap
 	ld a, [wOTTrademonSpecies]
@@ -784,7 +784,7 @@ MobileTradeAnim_02:
 	farcall DeinitializeAllSprites
 	call ClearBGPalettes
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	xor a
 	ldh [hBGMapMode], a
 	call DisableLCD
@@ -819,7 +819,7 @@ MobileTradeAnim_10:
 	farcall DeinitializeAllSprites
 	call ClearBGPalettes
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	xor a
 	ldh [hBGMapMode], a
 	call DisableLCD
@@ -863,7 +863,7 @@ MobileTradeAnim_10:
 MobileTradeAnim_11:
 	call ClearBGPalettes
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	xor a
 	ldh [hBGMapMode], a
 	call DisableLCD
@@ -1149,7 +1149,7 @@ MobileTradeAnim_0f:
 	farcall DeinitializeAllSprites
 	call ClearBGPalettes
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	call DisableLCD
 	call MobileTradeAnim_ClearTiles
 	call MobileTradeAnim_ClearBGMap
