@@ -51,7 +51,7 @@ DoBattle:
 	ld a, d
 	and a
 	jp z, LostBattle
-	call Call_LoadTempTileMapToTileMap
+	call SafeLoadTempTileMapToTileMap
 	ld a, [wBattleType]
 	cp BATTLETYPE_DEBUG
 	jp z, .tutorial_debug
@@ -116,7 +116,7 @@ DoBattle:
 	jp BattleMenu
 
 WildFled_EnemyFled_LinkBattleCanceled:
-	call Call_LoadTempTileMapToTileMap
+	call SafeLoadTempTileMapToTileMap
 	ld a, [wBattleResult]
 	and BATTLERESULT_BITMASK
 	add DRAW
@@ -624,7 +624,7 @@ ParsePlayerAction:
 	ld [wFXAnimID], a
 	call MoveSelectionScreen
 	push af
-	call Call_LoadTempTileMapToTileMap
+	call SafeLoadTempTileMapToTileMap
 	call UpdateBattleHuds
 	ld a, [wCurPlayerMove]
 	cp STRUGGLE
@@ -2303,7 +2303,7 @@ HandleEnemySwitch:
 	cp BATTLEACTION_FORFEIT
 	ret z
 
-	call Call_LoadTempTileMapToTileMap
+	call SafeLoadTempTileMapToTileMap
 
 .not_linked
 	ld hl, wBattleMonHP
@@ -3726,7 +3726,7 @@ TryToRunAwayFromBattle:
 	ldh [hEnemyMonSpeed + 0], a
 	ld a, [de]
 	ldh [hEnemyMonSpeed + 1], a
-	call Call_LoadTempTileMapToTileMap
+	call SafeLoadTempTileMapToTileMap
 	ld de, hMultiplicand + 1
 	ld hl, hEnemyMonSpeed
 	ld c, 2
@@ -3808,7 +3808,7 @@ TryToRunAwayFromBattle:
 	xor a
 	ld [wCurPlayerMove], a
 	call LinkBattleSendReceiveAction
-	call Call_LoadTempTileMapToTileMap
+	call SafeLoadTempTileMapToTileMap
 	call CheckMobileBattleError
 	jr c, .mobile
 
@@ -4907,7 +4907,7 @@ BattleMenu:
 BattleMenu_Fight:
 	xor a
 	ld [wNumFleeAttempts], a
-	call Call_LoadTempTileMapToTileMap
+	call SafeLoadTempTileMapToTileMap
 	and a
 	ret
 
@@ -5283,7 +5283,7 @@ PassedBattleMonEntrance:
 	jp SpikesDamage
 
 BattleMenu_Run:
-	call Call_LoadTempTileMapToTileMap
+	call SafeLoadTempTileMapToTileMap
 	ld a, $3
 	ld [wMenuCursorY], a
 	ld hl, wBattleMonSpeed
@@ -5508,7 +5508,7 @@ MoveSelectionScreen:
 
 .place_textbox_start_over
 	call StdBattleTextbox
-	call Call_LoadTempTileMapToTileMap
+	call SafeLoadTempTileMapToTileMap
 	jp MoveSelectionScreen
 
 .string_3e61c
@@ -5775,7 +5775,7 @@ ParseEnemyAction:
 	ld a, [wBattlePlayerAction]
 	and a ; BATTLEPLAYERACTION_USEMOVE?
 	call z, LinkBattleSendReceiveAction
-	call Call_LoadTempTileMapToTileMap
+	call SafeLoadTempTileMapToTileMap
 	ld a, [wBattleAction]
 	cp BATTLEACTION_STRUGGLE
 	jp z, .struggle
@@ -7302,7 +7302,7 @@ GiveExperiencePoints:
 	ld c, 30
 	call DelayFrames
 	call WaitPressAorB_BlinkCursor
-	call Call_LoadTempTileMapToTileMap
+	call SafeLoadTempTileMapToTileMap
 	xor a ; PARTYMON
 	ld [wMonType], a
 	ld a, [wCurSpecies]
@@ -7799,7 +7799,7 @@ Unreferenced_HandleSafariAngerEatingStatus:
 
 .finish
 	push hl
-	call Call_LoadTempTileMapToTileMap
+	call SafeLoadTempTileMapToTileMap
 	pop hl
 	jp StdBattleTextbox
 

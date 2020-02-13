@@ -166,7 +166,7 @@ ForgetMove:
 	ld [w2DMenuCursorOffsets], a
 	call StaticMenuJoypad
 	push af
-	call Call_LoadTempTileMapToTileMap
+	call SafeLoadTempTileMapToTileMap
 	pop af
 	pop hl
 	bit 1, a

@@ -1369,7 +1369,7 @@ Function28926:
 .b_button
 	pop af
 	ld [wMenuCursorY], a
-	call Call_LoadTempTileMapToTileMap
+	call SafeLoadTempTileMapToTileMap
 	jp LinkTrade_PlayerPartyMenu
 
 .d_right
@@ -1407,7 +1407,7 @@ Function28926:
 	ld [wInitListType], a
 	callfar InitList
 	farcall LinkMonStatsScreen
-	call Call_LoadTempTileMapToTileMap
+	call SafeLoadTempTileMapToTileMap
 	hlcoord 6, 1
 	lb bc, 6, 1
 	ld a, " "

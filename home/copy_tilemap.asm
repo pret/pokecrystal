@@ -12,7 +12,7 @@ LoadTileMapToTempTileMap::
 	ldh [rSVBK], a
 	ret
 
-Call_LoadTempTileMapToTileMap::
+SafeLoadTempTileMapToTileMap::
 	xor a
 	ldh [hBGMapMode], a
 	call LoadTempTileMapToTileMap

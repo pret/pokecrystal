@@ -1857,7 +1857,7 @@ MobileMoveSelectionScreen:
 
 .print_text
 	call StdBattleTextbox
-	call Call_LoadTempTileMapToTileMap
+	call SafeLoadTempTileMapToTileMap
 	jp .GetMoveSelection
 
 Function100c74:

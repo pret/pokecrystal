@@ -231,7 +231,7 @@ PrintUnownStamp:
 	farcall PlaceUnownPrinterFrontpic
 	ln a, 0, 0 ; to be loaded to wPrinterMargins
 	call Printer_PrepareTileMapForPrint
-	call Call_LoadTempTileMapToTileMap
+	call SafeLoadTempTileMapToTileMap
 	call Printer_ResetJoypadRegisters
 	ld a, 18 / 2
 	ld [wPrinterQueueLength], a
@@ -259,7 +259,7 @@ PrintUnownStamp:
 	pop af
 	ldh [hVBlank], a
 	call Printer_CleanUpAfterSend
-	call Call_LoadTempTileMapToTileMap
+	call SafeLoadTempTileMapToTileMap
 	xor a
 	ldh [rIF], a
 	pop af
@@ -418,7 +418,7 @@ _PrintDiploma:
 
 	ln a, 0, 3 ; to be loaded to wPrinterMargins
 	call Printer_PrepareTileMapForPrint
-	call Call_LoadTempTileMapToTileMap
+	call SafeLoadTempTileMapToTileMap
 	call Printer_ResetJoypadRegisters
 
 	ld a, 18 / 2

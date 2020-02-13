@@ -276,7 +276,7 @@ Serial_PrintWaitingTextAndSyncAndExchangeNybble::
 	call LoadTileMapToTempTileMap
 	callfar PlaceWaitingText
 	call WaitLinkTransfer
-	jp Call_LoadTempTileMapToTileMap
+	jp SafeLoadTempTileMapToTileMap
 
 Serial_SyncAndExchangeNybble::
 	call LoadTileMapToTempTileMap
