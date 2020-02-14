@@ -90,7 +90,7 @@ _CGB_BattleColors:
 	ld hl, wBGPals1 palette PAL_BATTLE_BG_PLAYER + 2
 	call VaryColorsByDVs
 	pop de
-
+	
 	call GetEnemyFrontpicPalettePointer
 	push hl
 	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_ENEMY
@@ -598,6 +598,7 @@ _CGB_Evolution:
 	call GetPlayerOrMonPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
 	
+	push de
 	; hl = DVs
 	ld hl, wPartyMon1DVs
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -610,6 +611,7 @@ _CGB_Evolution:
 	call CopyDVsToColorVaryDVs
 	ld hl, wBGPals1 palette 0 + 2
 	call VaryColorsByDVs
+	pop de
 	
 	ld hl, BattleObjectPals
 	ld de, wOBPals1 palette PAL_BATTLE_OB_GRAY
