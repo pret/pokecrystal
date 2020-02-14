@@ -44,7 +44,10 @@ Unused_CheckShininess:
 	ret
 
 CheckShininess:
-; Return carry if the DVs at hl are all 10 or higher.
+; Return carry if the DVs at bc are all 10 or higher.
+
+	ld l, c
+	ld h, b
 
 ; Attack
 	ld a, [hl]
@@ -532,12 +535,15 @@ CopyDVsToColorVaryDVs:
 	ld a, [hli]
 	ld e, a
 ; d = SpeSpcDV
-	ld a, [hli]
+	ld a, [hl]
 	ld d, a
+
 ; b = Shiny
 	push bc
-	ld a, [hl]
-	ld b, a
+
+	dec hl
+	call CheckShininess
+	ld b, c
 
 	ld a, [rSVBK]
 	ld c, a
@@ -561,9 +567,6 @@ CopyDVsToColorVaryDVs:
 	pop bc
 ; wColorVarySpecies = Species
 	ld a, b
-	ld [hld], a
-; wColorVaryDVs+2 = SatSdfDV
-	ld a, c
 	ld [hl], a
 
 	ld a, d
