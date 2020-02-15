@@ -752,16 +752,16 @@ VaryColorsByDVs::
 .Finish:
 ;;; move from Spe/Spc DV to Atk/Def DV
 	dec bc
-;;; DarkRed ~ AtkDV, aka, RRRRR ~ ssss
-; store AtkDV in e
+;;; DarkRed ~ DefDV, aka, RRRRR ~ ssss
+; store DefDV in e
 	ld a, [bc]
 	and %1111
 	ld e, a
 ; vary DarkRed by e
 	call VaryRedByDV
 
-;;; DarkGrn ~ DefDV, aka, GGGGG ~ pppp
-; store DefDV in e
+;;; DarkGrn ~ AtkDV, aka, GGGGG ~ pppp
+; store AtkDV in e
 	ld a, [bc]
 	swap a
 	and %1111
@@ -772,8 +772,8 @@ VaryColorsByDVs::
 ;;; move from Atk/Def DV to Spe/Spc DV
 	inc bc
 
-;;; DarkBlu ~ SpeDV, aka, BBBBB ~ qqqq
-; store SpeDV in e
+;;; DarkBlu ~ SpcDV, aka, BBBBB ~ qqqq
+; store SpcDV in e
 	ld a, [bc]
 	and %1111
 	ld e, a
