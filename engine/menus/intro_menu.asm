@@ -745,7 +745,7 @@ OakSpeech:
 	; TODO: BUG: Yes/No Nickname screen should not select 'YES' if the user presses 'B'
 	call ClearTileMap
 
-	; Display and name Starter selection
+	; Display Starter and Nickname
 	ld a, SQUIRTLE
 	ld [wCurSpecies], a
 	ld [wCurPartySpecies], a
@@ -763,8 +763,8 @@ OakSpeech:
 	call Intro_WipeInFrontpic
 	call GiveDatSquirtle
 	call ClearTileMap
-
-
+	
+	; Display Player
 	xor a
 	ld [wCurPartySpecies], a
 	farcall DrawIntroPlayerPic
