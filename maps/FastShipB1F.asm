@@ -28,7 +28,7 @@ FastShipB1F_MapScripts:
 FastShipB1FSailorBlocksLeft:
 	checkevent EVENT_FAST_SHIP_B1F_SAILOR_RIGHT
 	iftrue FastShipB1FAlreadyBlocked
-	applymovement FASTSHIPB1F_SAILOR2, FashShipB1FSailorBlocksLeftMovement
+	applymovement FASTSHIPB1F_SAILOR2, FastShipB1FSailorBlocksLeftMovement
 	moveobject FASTSHIPB1F_SAILOR1, 30, 6
 	appear FASTSHIPB1F_SAILOR1
 	pause 5
@@ -38,7 +38,7 @@ FastShipB1FSailorBlocksLeft:
 FastShipB1FSailorBlocksRight:
 	checkevent EVENT_FAST_SHIP_B1F_SAILOR_LEFT
 	iftrue FastShipB1FAlreadyBlocked
-	applymovement FASTSHIPB1F_SAILOR1, FashShipB1FSailorBlocksRightMovement
+	applymovement FASTSHIPB1F_SAILOR1, FastShipB1FSailorBlocksRightMovement
 	moveobject FASTSHIPB1F_SAILOR2, 31, 6
 	appear FASTSHIPB1F_SAILOR2
 	pause 5
@@ -201,17 +201,17 @@ TrainerSchoolboyRicky:
 	closetext
 	end
 
-FashShipB1FTrashcan:
+FastShipB1FTrashcan:
 	jumpstd trashcan
 
-FashShipB1FSailorBlocksRightMovement:
+FastShipB1FSailorBlocksRightMovement:
 	fix_facing
 	big_step RIGHT
 	remove_fixed_facing
 	turn_head DOWN
 	step_end
 
-FashShipB1FSailorBlocksLeftMovement:
+FastShipB1FSailorBlocksLeftMovement:
 	fix_facing
 	big_step LEFT
 	remove_fixed_facing
@@ -458,7 +458,7 @@ FastShipB1F_MapEvents:
 	coord_event 31,  7, SCENE_DEFAULT, FastShipB1FSailorBlocksRight
 
 	db 1 ; bg events
-	bg_event 27,  9, BGEVENT_READ, FashShipB1FTrashcan
+	bg_event 27,  9, BGEVENT_READ, FastShipB1FTrashcan
 
 	db 12 ; object events
 	object_event 30,  6, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FastShipB1FSailorScript, EVENT_FAST_SHIP_B1F_SAILOR_LEFT
