@@ -745,7 +745,7 @@ OakSpeech:
 	; TODO: BUG: Yes/No Nickname screen should not select 'YES' if the user presses 'B'
 	call ClearTileMap
 
-	; Display and nameame Starter selection
+	; Display and name Starter selection
 	ld a, SQUIRTLE
 	ld [wCurSpecies], a
 	ld [wCurPartySpecies], a
