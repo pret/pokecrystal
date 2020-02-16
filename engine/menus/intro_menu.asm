@@ -744,7 +744,6 @@ OakSpeech:
 	; TODO: Give Starter based on selection
 	; TODO: BUG: Yes/No Nickname screen should not select 'YES' if the user presses 'B'
 	call ClearTileMap
-	;call Choose Starter
 
 	; Display and nameame Starter selection
 	ld a, SQUIRTLE
