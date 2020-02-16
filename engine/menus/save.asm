@@ -670,7 +670,7 @@ TryLoadSaveData:
 	ld de, wOptions
 	ld bc, wOptionsEnd - wOptions
 	call CopyBytes
-	call PanicResetClock
+	call ClearClock
 	ret
 
 INCLUDE "data/default_options.asm"

@@ -14,6 +14,7 @@ ClearJoypad::
 	ret
 
 Joypad::
+; This is called automatically every frame in VBlank.
 ; Read the joypad register and translate it to something more
 ; workable for use in-game. There are 8 buttons, so we can use
 ; one byte to contain all player input.
