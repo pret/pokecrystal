@@ -744,7 +744,23 @@ OakSpeech:
 	; TODO: Let user pick from list of starters
 	; TODO: Give Starter based on selection
 	; TODO: BUG: Yes/No Nickname screen should not select 'YES' if the user presses 'B'
+	call ClearTileMap
+	;call Choose Starter
+
 	call GiveDatSquirtle
+	call ClearTileMap
+
+
+	xor a
+	ld [wCurPartySpecies], a
+	farcall DrawIntroPlayerPic
+
+	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
+	call GetSGBLayout
+	call Intro_RotatePalettesLeftFrontpic
+
+	ld hl, OakText8
+	call PrintText
 
 	; TODO: Draw Starter + Player Sprite
 	ret
@@ -832,6 +848,10 @@ OakText6:
 
 OakText7:
 	text_far _OakText7
+	text_end
+
+OakText8:
+	text_far _OakText8
 	text_end
 
 NamePlayer:

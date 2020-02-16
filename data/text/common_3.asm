@@ -4,6 +4,12 @@ _OakText6::
 	prompt
 
 _OakText7::
+	text "And which"
+	line "<PKMN> will"
+	cont "be your partner?"
+	prompt
+
+_OakText8::
 	text "<PLAYER>, are you"
 	line "ready?"
 
