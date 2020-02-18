@@ -1,0 +1,9 @@
+Starters:
+	dw CHIKORITA
+	dw CYNDAQUIL
+	dw TOTODILE
+	dw BULBASAUR
+	dw CHARMANDER
+	dw SQUIRTLE
+	dw PIKACHU
+	dw EEVEE

@@ -1948,7 +1948,7 @@ wBallsPocketCursor::    db
 wTMHMPocketCursor::     db
 
 wPCItemsScrollPosition::        db
-wPartyMenuScrollPosition::      db ; unused
+wStarterCursorPosition::      db ; unused
 wItemsPocketScrollPosition::    db
 wKeyItemsPocketScrollPosition:: db
 wBallsPocketScrollPosition::    db

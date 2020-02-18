@@ -743,6 +743,8 @@ OakSpeech:
 	; TODO: Let user pick from list of starters
 	; TODO: Give Starter based on selection
 	call ClearTileMap
+	predef StarterSelectionScreenInit
+	call ClearTileMap
 
 	; Display Starter and Nickname
 	ld a, SQUIRTLE
