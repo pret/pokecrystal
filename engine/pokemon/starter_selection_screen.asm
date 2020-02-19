@@ -116,6 +116,7 @@ REMOVEME:
 StarterStatsInit:
 	ld hl, wcf64
 	res 6, [hl]
+
 	call ClearBGPalettes
 	call ClearTileMap
 	farcall HDMATransferTileMapToWRAMBank3
@@ -128,13 +129,15 @@ StarterStatsInit:
 	add hl, de
 
 	ld a, [hl]
+	ld [wTempSpecies], a
 	ld [wCurSpecies], a
 	ld [wCurPartySpecies], a
-	call GetBaseData
-	hlcoord 6, 4
-	call PrepMonFrontpic
 
-	call StarterSelectionScreen_InitUpperHalf
+	hlcoord 4, 9
+	ld [hl], "◀"
+	hlcoord 15, 9
+	ld [hl], "▶"
+
 	ld hl, wcf64
 	set 4, [hl]
 	ld h, 4
@@ -142,21 +145,6 @@ StarterStatsInit:
 	ret
 
 REMOVEMEJOYPAD:
-	call StarterSelectionScreen_GetJoypad
-	jr nc, .check
-	ld h, 0
-	call StarterSelectionScreen_SetJumptableIndex
-	ret
-
-.check
-	bit A_BUTTON_F, a
-	jr nz, .quit
-	and D_DOWN | D_UP | A_BUTTON | B_BUTTON
-	jp StarterSelectionScreen_JoypadAction
-
-.quit
-	ld h, 7
-	call StarterSelectionScreen_SetJumptableIndex
 	ret
 
 StarterSelectionScreen_LoadPage:
@@ -233,6 +221,7 @@ StarterSelectionScreen_JoypadAction:
 	ld a, [wStarterCursorPosition]
 	cp EEVEE_PAGE
 	jr z, .done
+
 	ld a, [wStarterCursorPosition]
 	add a, 1
 	ld [wStarterCursorPosition], a
@@ -275,26 +264,19 @@ StarterSelectionScreen_JoypadAction:
 	call StarterSelectionScreen_SetJumptableIndex
 	ret
 
-StarterSelectionScreen_InitUpperHalf:
-	xor a
-	ldh [hBGMapMode], a
-	hlcoord 8, 0
-	ld [hl], "№"
-	inc hl
-	ld [hl], "."
-	inc hl
-	ret
-
 StarterSelectionScreen_LoadGFX:
-	;ld a, [wBaseDexNo]
-	;ld [wTempSpecies], a
-	;ld [wCurSpecies], a
+	ld a, [wBaseDexNo]
+	ld [wTempSpecies], a
+	ld [wCurSpecies], a
 	xor a
 	ldh [hBGMapMode], a
+
 	call .LoadPals
+
 	ld hl, wcf64
 	bit 4, [hl]
-	;jr nz, .place_frontpic
+
+	jr nz, .place_frontpic
 	call SetPalettes
 	ret
 
@@ -304,10 +286,15 @@ StarterSelectionScreen_LoadGFX:
 
 .LoadPals:
 	ld a, [wcf64]
-	maskbits NUM_STAT_PAGES
+	maskbits NUM_STARTER_PAGES
 	ld c, a
+
+	; calling both of these is a hack
+	; TODO: figure out why both
 	farcall LoadStatsScreenPals
+	farcall LoadMonPaletteAsNthBGPal
 	call DelayFrame
+
 	ld hl, wcf64
 	set 5, [hl]
 	ret
@@ -316,15 +303,9 @@ StarterSelectionScreen_PlaceFrontpic:
 	ld hl, wTempMonDVs
 	predef GetUnownLetter
 	call StarterSelectionScreen_GetAnimationParam
-	jr c, .egg
 	and a
 	jr z, .no_cry
 	jr .cry
-
-.egg
-	call .AnimateEgg
-	call SetPalettes
-	ret
 
 .no_cry
 	call .AnimateMon
@@ -342,51 +323,15 @@ StarterSelectionScreen_PlaceFrontpic:
 	ld hl, wcf64
 	set 5, [hl]
 	ld a, [wCurPartySpecies]
-	cp UNOWN
-	jr z, .unown
-	hlcoord 0, 0
+	hlcoord 6, 4
 	call PrepMonFrontpic
 	ret
 
-.unown
-	xor a
-	ld [wBoxAlignment], a
-	hlcoord 0, 0
-	call _PrepMonFrontpic
-	ret
-
 .AnimateEgg:
-	ld a, [wCurPartySpecies]
-	cp UNOWN
-	jr z, .unownegg
-	ld a, TRUE
-	ld [wBoxAlignment], a
-	call .get_animation
-	ret
-
-.unownegg
-	xor a
-	ld [wBoxAlignment], a
-	call .get_animation
-	ret
-
-.get_animation
-	ld a, [wCurPartySpecies]
-	call IsAPokemon
-	ret c
-	call StarterSelectionScreen_LoadTextboxSpaceGFX
-	ld de, vTiles2 tile $00
-	predef GetAnimatedFrontpic
-	hlcoord 0, 0
-	ld d, $0
-	ld e, ANIM_MON_MENU
-	predef LoadMonAnimation
-	ld hl, wcf64
-	set 6, [hl]
-	ret
+ret
 
 StarterSelectionScreen_GetAnimationParam:
-	ld bc, wTempMonSpecies
+	ld bc, wCurPartySpecies
 	ret
 
 StarterSelectionScreen_LoadTextboxSpaceGFX:
