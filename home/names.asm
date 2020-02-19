@@ -125,7 +125,7 @@ GetPokemonName::
 	ld e, a
 	ld h, 0
 	ld l, a
-	add hl, hl ; hl = hl * 4
+	add hl, hl ; hl = hl * 2
 	add hl, hl ; hl = hl * 4
 	add hl, de ; hl = (hl*4) + de
 	add hl, hl ; hl = (5*hl) + (5*hl)

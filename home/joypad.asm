@@ -295,7 +295,7 @@ JoyWaitAorB::
 	ldh a, [hJoyPressed]
 	and A_BUTTON | B_BUTTON
 	ret nz
-	call RTC
+	call UpdateTimeAndPals
 	jr .loop
 
 WaitButton::
@@ -413,7 +413,7 @@ PromptButton::
 	ldh a, [hJoyPressed]
 	and A_BUTTON | B_BUTTON
 	jr nz, .received_input
-	call RTC
+	call UpdateTimeAndPals
 	ld a, $1
 	ldh [hBGMapMode], a
 	call DelayFrame

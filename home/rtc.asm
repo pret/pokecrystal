@@ -1,4 +1,4 @@
-RTC::
+UpdateTimeAndPals::
 ; update time and time-sensitive palettes
 
 ; rtc enabled?

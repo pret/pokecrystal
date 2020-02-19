@@ -240,7 +240,7 @@ LinkTradeMenu:
 	ret
 
 .loop2
-	call RTC
+	call UpdateTimeAndPals
 	call .TryAnims
 	ret c
 	ld a, [w2DMenuFlags1]
