@@ -663,6 +663,7 @@ Continue_DisplayGameTime:
 
 OakSpeech:
 	farcall InitClock
+	;farcal ResetClock ;TODO:
 	call AddAllHMsToBag
 
 	call RotateFourPalettesLeft
@@ -789,7 +790,6 @@ AddAllHMsToBag:
 .give_all_HMs_loop
 	; e = HM to give
 	ld a, e
-	ld [wCurItem], a
 	ld c, a
 	farcall GetTMHMNumber
 
