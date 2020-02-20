@@ -1,12 +1,12 @@
 	const_def
-	const CHIKORITA_PAGE	; 0
-	const CYNDAQUIL_PAGE 	; 1
-	const TOTODILE_PAGE		; 2	
-	const BULBASAUR_PAGE	; 3
-	const CHARMANDER_PAGE	; 4
-	const SQUIRTLE_PAGE		; 5
-	const PIKACHU_PAGE		; 6
-	const EEVEE_PAGE		; 7
+	const CHIKORITA_PAGE  ; 0
+	const CYNDAQUIL_PAGE  ; 1
+	const TOTODILE_PAGE   ; 2
+	const BULBASAUR_PAGE  ; 3
+	const CHARMANDER_PAGE ; 4
+	const SQUIRTLE_PAGE   ; 5
+	const PIKACHU_PAGE    ; 6
+	const EEVEE_PAGE      ; 7
 
 NUM_STARTER_PAGES EQU const_value
 
@@ -64,19 +64,16 @@ StarterSelectionScreenMain:
 	rst JumpTable
 	call StarterSelectionScreen_WaitAnim ; check for keys?
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit 4, a ; StarterSelectionScreen_Exit
 	jr z, .loop
 	ret
 
 StarterSelectionScreenPointerTable:
-	dw StarterStatsInit       ; regular pokémon
-	dw REMOVEME       ; egg
-	dw StarterSelectionScreenWaitCry
-	dw REMOVEMEJOYPAD
-	dw StarterSelectionScreen_LoadPage
-	dw StarterSelectionScreenWaitCry
-	dw StarterStatsJoypad
-	dw StarterSelectionScreen_Exit
+	dw StarterStatsInit                ; 0
+	dw StarterSelectionScreen_LoadPage ; 1
+	dw StarterSelectionScreenWaitCry   ; 2
+	dw StarterStatsJoypad              ; 3
+	dw StarterSelectionScreen_Exit     ; 4
 
 StarterSelectionScreen_WaitAnim:
 	ld hl, wcf64
@@ -107,7 +104,7 @@ StarterSelectionScreen_SetJumptableIndex:
 
 StarterSelectionScreen_Exit:
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set 4, [hl] ; StarterSelectionScreen_Exit
 	ret
 
 REMOVEME:
@@ -133,15 +130,27 @@ StarterStatsInit:
 	ld [wCurSpecies], a
 	ld [wCurPartySpecies], a
 
+	call .place_navigation_arrows
+	call .place_mon_name
+
+	ld hl, wcf64
+	set 4, [hl]
+	ld h, 1 ; StarterSelectionScreen_LoadPage
+	call StarterSelectionScreen_SetJumptableIndex
+	ret
+.place_navigation_arrows
 	hlcoord 4, 9
 	ld [hl], "◀"
 	hlcoord 15, 9
 	ld [hl], "▶"
-
-	ld hl, wcf64
-	set 4, [hl]
-	ld h, 4
-	call StarterSelectionScreen_SetJumptableIndex
+	ret
+.place_mon_name
+	ld a, MON_NAME
+	ld [wNamedObjectTypeBuffer], a
+	farcall GetName
+	ld de, wStringBuffer1
+	hlcoord 1, 1
+	call PlaceString
 	ret
 
 REMOVEMEJOYPAD:
@@ -152,14 +161,14 @@ StarterSelectionScreen_LoadPage:
 	ld hl, wcf64
 	res 4, [hl]
 	ld a, [wJumptableIndex]
-	inc a
+	inc a ; StarterSelectionScreenWaitCry
 	ld [wJumptableIndex], a
 	ret
 
 StarterStatsJoypad:
 	call StarterSelectionScreen_GetJoypad
 	jr nc, .next
-	ld h, 0
+	ld h, 0 ; StarterStatsInit
 	call StarterSelectionScreen_SetJumptableIndex
 	ret
 
@@ -171,7 +180,7 @@ StarterSelectionScreenWaitCry:
 	call IsSFXPlaying
 	ret nc
 	ld a, [wJumptableIndex]
-	inc a
+	inc a ; StarterStatsJoypad
 	ld [wJumptableIndex], a
 	ret
 
@@ -214,7 +223,7 @@ StarterSelectionScreen_JoypadAction:
 
 .d_right
 	ld a, [wStarterCursorPosition]
-	cp EEVEE_PAGE
+	cp EEVEE_PAGE ; last page
 	jr z, .done
 
 	ld a, [wStarterCursorPosition]
@@ -225,7 +234,7 @@ StarterSelectionScreen_JoypadAction:
 
 .d_left
 	ld a, [wStarterCursorPosition]
-	cp CHIKORITA_PAGE
+	cp CHIKORITA_PAGE ; first page
 	jr z, .done
 	ld a, [wStarterCursorPosition]
 	sub a, 1
@@ -245,17 +254,17 @@ StarterSelectionScreen_JoypadAction:
 	and %11111100
 	or c
 	ld [wcf64], a
-	ld h, 4
+	ld h, 1 ; StarterSelectionScreen_LoadPage
 	call StarterSelectionScreen_SetJumptableIndex
 	ret
 
 .load_mon
-	ld h, 0
+	ld h, 0 ; StarterStatsInit
 	call StarterSelectionScreen_SetJumptableIndex
 	ret
 
 .exit_starter_selection_screen
-	ld h, 7
+	ld h, 4 ; StarterSelectionScreen_Exit
 	call StarterSelectionScreen_SetJumptableIndex
 	ret
 
