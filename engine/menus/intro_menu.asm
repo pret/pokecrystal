@@ -747,9 +747,8 @@ OakSpeech:
 	call ClearTileMap
 
 	; Display Starter and Nickname
-	ld a, SQUIRTLE
+	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
-	ld [wCurPartySpecies], a
 	call GetBaseData
 
 	hlcoord 6, 4
@@ -762,7 +761,7 @@ OakSpeech:
 	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	call Intro_WipeInFrontpic
-	call GiveDatSquirtle
+	call GiveStarterMon
 	call ClearTileMap
 	
 	; Display Player
@@ -813,22 +812,18 @@ AddAllHMsToBag:
 	call .give_all_HMs_loop
 	ret
 
-GiveDatSquirtle:
-
-	ld a, $7 ; SQUIRTLE
-	ld [wCurPartySpecies], a
+GiveStarterMon:
 
 	ld a, $5 ; LVL 5
 	ld [wCurPartyLevel], a
 
-	ld a, $2 ; Ultra Ball
-	ld [wCurItem], a
+	; TODO: give item based on starter
+	;ld a, $2 ; Ultra Ball
+	;ld [wCurItem], a
 
 	ld a, 0
 	ld b, a
 	farcall GiveStarterPoke
-	ld a, b
-	ld [wScriptVar], a
 
 	ret
 

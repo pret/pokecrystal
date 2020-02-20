@@ -204,11 +204,6 @@ StarterSelectionScreen_GetJoypad:
 	ret
 
 StarterSelectionScreen_JoypadAction:
-	push af
-	ld a, [wcf64]
-	maskbits NUM_STAT_PAGES
-	ld c, a
-	pop af
 	bit D_LEFT_F, a
 	jr nz, .d_left
 	bit D_RIGHT_F, a
@@ -290,7 +285,7 @@ StarterSelectionScreen_LoadGFX:
 	ld c, a
 
 	; calling both of these is a hack
-	; TODO: figure out why both
+	; TODO: figure out why both need to be called
 	farcall LoadStatsScreenPals
 	farcall LoadMonPaletteAsNthBGPal
 	call DelayFrame
@@ -300,17 +295,8 @@ StarterSelectionScreen_LoadGFX:
 	ret
 
 StarterSelectionScreen_PlaceFrontpic:
-	ld hl, wTempMonDVs
-	predef GetUnownLetter
 	call StarterSelectionScreen_GetAnimationParam
-	and a
-	jr z, .no_cry
 	jr .cry
-
-.no_cry
-	call .AnimateMon
-	call SetPalettes
-	ret
 
 .cry
 	call SetPalettes
@@ -322,7 +308,7 @@ StarterSelectionScreen_PlaceFrontpic:
 .AnimateMon:
 	ld hl, wcf64
 	set 5, [hl]
-	ld a, [wCurPartySpecies]
+
 	hlcoord 6, 4
 	call PrepMonFrontpic
 	ret
@@ -331,28 +317,6 @@ StarterSelectionScreen_PlaceFrontpic:
 ret
 
 StarterSelectionScreen_GetAnimationParam:
-	ld bc, wCurPartySpecies
-	ret
-
-StarterSelectionScreen_LoadTextboxSpaceGFX:
-	nop
-	push hl
-	push de
-	push bc
-	push af
-	call DelayFrame
-	ldh a, [rVBK]
-	push af
-	ld a, $1
-	ldh [rVBK], a
-	ld de, TextboxSpaceGFX
-	lb bc, BANK(TextboxSpaceGFX), 1
-	ld hl, vTiles2 tile " "
-	call Get2bpp
-	pop af
-	ldh [rVBK], a
-	pop af
-	pop bc
-	pop de
-	pop hl
+	ld bc, wTempMonSpecies
+	xor a
 	ret
