@@ -8,6 +8,9 @@
 	const PIKACHU_PAGE    ; 6
 	const EEVEE_PAGE      ; 7
 
+
+	const UNOWN_PAGE      ; 8
+
 NUM_STARTER_PAGES EQU const_value
 
 INCLUDE "data/starters.asm"
@@ -191,7 +194,7 @@ StarterSelectionScreen_GetJoypad:
 	pop de
 	pop hl
 	ld a, [wMenuJoypad]
-	and D_DOWN | D_UP
+	and D_LEFT | D_RIGHT
 	jr nz, .set_carry
 	ld a, [wMenuJoypad]
 	jr .clear_flags
@@ -217,7 +220,7 @@ StarterSelectionScreen_JoypadAction:
 
 .d_right
 	ld a, [wStarterCursorPosition]
-	cp EEVEE_PAGE ; last page
+	cp UNOWN_PAGE ; last page
 	jr z, .done
 
 	ld a, [wStarterCursorPosition]
@@ -284,7 +287,7 @@ StarterSelectionScreen_LoadGFX:
 
 .LoadPals:
 	ld a, [wcf64]
-	maskbits NUM_STARTER_PAGES
+	maskbits NUM_STAT_PAGES
 	ld c, a
 
 	; calling both of these is a hack
@@ -298,6 +301,8 @@ StarterSelectionScreen_LoadGFX:
 	ret
 
 StarterSelectionScreen_PlaceFrontpic:
+	ld hl, wTempMonDVs
+	predef GetUnownLetter
 	call StarterSelectionScreen_GetAnimationParam
 	jr .cry
 

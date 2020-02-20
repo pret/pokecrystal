@@ -7,3 +7,4 @@ Starters:
 	dw SQUIRTLE
 	dw PIKACHU
 	dw EEVEE
+	dw UNOWN
