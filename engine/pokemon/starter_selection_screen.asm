@@ -107,9 +107,6 @@ StarterSelectionScreen_Exit:
 	set 4, [hl] ; StarterSelectionScreen_Exit
 	ret
 
-REMOVEME:
-	ret
-
 StarterStatsInit:
 	ld hl, wcf64
 	res 6, [hl]
@@ -151,9 +148,6 @@ StarterStatsInit:
 	ld de, wStringBuffer1
 	hlcoord 1, 1
 	call PlaceString
-	ret
-
-REMOVEMEJOYPAD:
 	ret
 
 StarterSelectionScreen_LoadPage:
@@ -321,9 +315,6 @@ StarterSelectionScreen_PlaceFrontpic:
 	hlcoord 6, 4
 	call PrepMonFrontpic
 	ret
-
-.AnimateEgg:
-ret
 
 StarterSelectionScreen_GetAnimationParam:
 	ld bc, wTempMonSpecies
