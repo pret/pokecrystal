@@ -1821,10 +1821,10 @@ SubtractHP:
 
 GetSixteenthMaxHP:
 	call GetQuarterMaxHP
-	; quarter result
+; quarter result
 	srl c
 	srl c
-	; round up
+; at least 1
 	ld a, c
 	and a
 	jr nz, .ok
@@ -1838,7 +1838,7 @@ GetEighthMaxHP:
 ; assumes nothing can have 1024 or more hp
 ; halve result
 	srl c
-; round up
+; at least 1
 	ld a, c
 	and a
 	jr nz, .end
@@ -1857,7 +1857,7 @@ GetQuarterMaxHP:
 	rr c
 
 ; assumes nothing can have 1024 or more hp
-; round up
+; at least 1
 	ld a, c
 	and a
 	jr nz, .end
@@ -1873,7 +1873,7 @@ GetHalfMaxHP:
 	srl b
 	rr c
 
-; floor = 1
+; at least 1
 	ld a, c
 	or b
 	jr nz, .end

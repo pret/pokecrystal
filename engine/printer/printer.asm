@@ -146,7 +146,7 @@ PrintPCBox:
 	ld hl, hVBlank
 	ld a, [hl]
 	push af
-	ld [hl], 4
+	ld [hl], $4
 
 	xor a
 	ldh [hBGMapMode], a
@@ -295,7 +295,7 @@ PrintMail:
 	ld hl, hVBlank
 	ld a, [hl]
 	push af
-	ld [hl], %0100
+	ld [hl], $4
 
 	ld a, 18 / 2
 	ld [wPrinterQueueLength], a
@@ -338,7 +338,7 @@ PrintPartymon:
 	ld hl, hVBlank
 	ld a, [hl]
 	push af
-	ld [hl], %0100
+	ld [hl], $4
 
 	ld a, 16 / 2
 	ld [wPrinterQueueLength], a
@@ -396,7 +396,7 @@ _PrintDiploma:
 	ld hl, hVBlank
 	ld a, [hl]
 	push af
-	ld [hl], %0100
+	ld [hl], $4
 
 	ln a, 1, 0 ; to be loaded to wPrinterMargins
 	call Printer_PrepareTilemapForPrint
