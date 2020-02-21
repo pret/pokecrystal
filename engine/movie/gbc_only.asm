@@ -6,7 +6,7 @@ GBCOnlyScreen:
 	ld de, MUSIC_NONE
 	call PlayMusic
 
-	call ClearTileMap
+	call ClearTilemap
 
 	ld hl, GBCOnlyGFX
 	ld de, wGBCOnlyDecompressBuffer

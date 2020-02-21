@@ -9,7 +9,7 @@ _UnownPuzzle:
 	ld a, $1
 	ldh [hInMenu], a
 	call ClearBGPalettes
-	call ClearTileMap
+	call ClearTilemap
 	call ClearSprites
 	xor a
 	ldh [hBGMapMode], a
@@ -83,7 +83,7 @@ _UnownPuzzle:
 	pop af
 	ldh [hInMenu], a
 	call ClearBGPalettes
-	call ClearTileMap
+	call ClearTilemap
 	call ClearSprites
 	ld a, LCDC_DEFAULT
 	ldh [rLCDC], a

@@ -29,7 +29,7 @@ ReanchorBGMap_NoOAMUpdate::
 	call OverworldTextModeSwitch
 	ld a, HIGH(vBGMap1)
 	call .LoadBGMapAddrIntoHRAM
-	call _OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
+	call _OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
 	farcall LoadOW_BGPal7
 	farcall ApplyPals
 	ld a, $1
@@ -84,7 +84,7 @@ HDMATransfer_FillBGMap0WithBlack:
 
 	ld a, "■"
 	ld hl, wDecompressScratch
-	ld bc, wScratchAttrMap - wDecompressScratch
+	ld bc, wScratchAttrmap - wDecompressScratch
 	call ByteFill
 	ld a, HIGH(wDecompressScratch)
 	ldh [rHDMA1], a

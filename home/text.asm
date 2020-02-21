@@ -19,12 +19,12 @@ FillBoxWithByte::
 	jr nz, .row
 	ret
 
-ClearTileMap::
-; Fill wTileMap with blank tiles.
+ClearTilemap::
+; Fill wTilemap with blank tiles.
 
 	hlcoord 0, 0
 	ld a, " "
-	ld bc, wTileMapEnd - wTileMap
+	ld bc, wTilemapEnd - wTilemap
 	call ByteFill
 
 	; Update the BG Map.
@@ -35,10 +35,10 @@ ClearTileMap::
 
 ClearScreen::
 	ld a, PAL_BG_TEXT
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
-	jr ClearTileMap
+	jr ClearTilemap
 
 Textbox::
 ; Draw a text box at hl with room for b lines of c characters each.
@@ -99,7 +99,7 @@ TextboxBorder::
 
 TextboxPalette::
 ; Fill text box width c height b at hl with pal 7
-	ld de, wAttrMap - wTileMap
+	ld de, wAttrmap - wTilemap
 	add hl, de
 	inc b
 	inc b
@@ -422,7 +422,7 @@ LineFeedChar::
 CarriageReturnChar::
 	pop hl
 	push de
-	ld bc, -wTileMap + $10000
+	ld bc, -wTilemap + $10000
 	add hl, bc
 	ld de, -SCREEN_WIDTH
 	ld c, 1

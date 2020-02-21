@@ -33,7 +33,7 @@ ShakeHeadbuttTree:
 	call Request2bpp
 	call Cut_Headbutt_GetPixelFacing
 	ld a, SPRITE_ANIM_INDEX_HEADBUTT
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], FIELDMOVE_TREE
@@ -92,7 +92,7 @@ HideHeadbuttTree:
 	ld h, [hl]
 	ld l, a
 
-	ld a, $5
+	ld a, $05 ; grass block
 	ld [hli], a
 	ld [hld], a
 	ld bc, SCREEN_WIDTH
@@ -174,7 +174,7 @@ OWCutJumptable:
 Cut_SpawnAnimateTree:
 	call Cut_Headbutt_GetPixelFacing
 	ld a, SPRITE_ANIM_INDEX_CUT_TREE ; cut tree
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], FIELDMOVE_TREE
@@ -227,7 +227,7 @@ Cut_SpawnLeaf:
 	push de
 	push af
 	ld a, SPRITE_ANIM_INDEX_LEAF ; leaf
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], FIELDMOVE_GRASS
@@ -314,7 +314,7 @@ FlyFromAnim:
 	call FlyFunction_InitGFX
 	depixel 10, 10, 4, 0
 	ld a, SPRITE_ANIM_INDEX_RED_WALK
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], FIELDMOVE_FLY
@@ -348,7 +348,7 @@ FlyToAnim:
 	call FlyFunction_InitGFX
 	depixel 31, 10, 4, 0
 	ld a, SPRITE_ANIM_INDEX_RED_WALK
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], FIELDMOVE_FLY
@@ -447,7 +447,7 @@ FlyFunction_FrameTimer:
 	ld d, a
 	ld e, $0
 	ld a, SPRITE_ANIM_INDEX_FLY_LEAF ; fly land
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], FIELDMOVE_GRASS
