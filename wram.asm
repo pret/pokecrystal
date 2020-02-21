@@ -3106,8 +3106,9 @@ wColorVaryShiny:: ds 1
 
 wStarterCursorPositionMon:: db
 wStarterCursorPositionCategory:: db
+wNumStartersInCategory:: db
 
-	ds 99
+	ds 98
 
 wLYOverridesBackup:: ds SCREEN_HEIGHT_PX ; d200
 wLYOverridesBackupEnd::

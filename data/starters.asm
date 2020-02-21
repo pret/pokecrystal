@@ -1,34 +1,97 @@
-	const_def
-	const BASIC
-	const ROCKET
-	const ANIME
-	const COMMON
-	const UNCOMMON
-	const TRADE
-	const PSEUDO_LEGENDS
-	const BABY
-	const CHALLENGE
-NUM_CATEGORIES EQU 9
+NUM_STARTER_CATEGORIES EQU 9
+
+NUM_BASIC_STARTERS EQU 8
+NUM_ROCKET_STARTERS EQU 3
+NUM_ANIME_STARTERS EQU 3
+NUM_COMMON_STARTERS EQU 13
+NUM_UNCOMMON_STARTERS EQU 69
+NUM_TRADE_STARTERS EQU 4
+NUM_PSEUDO_LEGEND_STARTERS EQU 2
+NUM_BABY_STARTERS EQU 9
+NUM_CHALLENGE_STARTERS EQU 6
+
+GetStarter:
+	; store mon in hl
+	ld a, [wStarterCursorPositionMon]
+	ld e, a
+	ld d, 0
+ 	call GetStartersInCategory
+	add hl, de
+	add hl, de
+	ret
 
 GetStartersInCategory:
- 	cp BASIC
- 	jp z, BasicStarters
- 	cp ROCKET
- 	jp z, RocketStarters
- 	cp ANIME
- 	jp z, AnimeStarters
- 	cp COMMON
- 	jp z, CommonStarters
- 	cp UNCOMMON
- 	jp z, UncommonStarters
- 	cp TRADE
- 	jp z, TradeStarters
- 	cp PSEUDO_LEGENDS
- 	jp z, PseudoLegendStarters
- 	cp BABY
- 	jp z, BabyStarters
- 	cp CHALLENGE
- 	jp z, ChallengeStarters
+	ld a, [wStarterCursorPositionCategory]
+	maskbits NUM_STARTER_CATEGORIES
+	ld hl, .Jumptable
+	rst JumpTable
+	ret
+
+.Jumptable
+	dw GetBasicStarters
+	dw GetRocketStarters
+	dw GetAnimeStarters
+	dw GetCommonStarters
+	dw GetUncommonStarters
+	dw GetTradeStarters
+	dw GetPseudoLegendaryStarters
+	dw GetBabyStarters
+	dw GetChallengeStarters
+
+
+GetBasicStarters:
+	ld hl, BasicStarters
+	ld a, NUM_BASIC_STARTERS
+	ld [wNumStartersInCategory], a
+	ret
+
+GetRocketStarters:
+	ld hl, RocketStarters
+	ld a, NUM_ROCKET_STARTERS
+	ld [wNumStartersInCategory], a
+	ret
+
+
+GetAnimeStarters:
+	ld hl, AnimeStarters
+	ld a, NUM_ANIME_STARTERS
+	ld [wNumStartersInCategory], a
+	ret
+
+GetCommonStarters:
+	ld hl, CommonStarters
+	ld a, NUM_COMMON_STARTERS
+	ld [wNumStartersInCategory], a
+	ret
+
+GetUncommonStarters:
+	ld hl, UncommonStarters
+	ld a, NUM_UNCOMMON_STARTERS
+	ld [wNumStartersInCategory], a
+	ret
+
+GetTradeStarters:
+	ld hl, TradeStarters
+    ld a, NUM_TRADE_STARTERS
+	ld [wNumStartersInCategory], a
+	ret
+
+GetPseudoLegendaryStarters:
+	ld hl, PseudoLegendStarters
+    ld a, NUM_PSEUDO_LEGEND_STARTERS
+	ld [wNumStartersInCategory], a
+	ret
+
+GetBabyStarters:
+	ld hl, BabyStarters
+	ld a, NUM_BABY_STARTERS
+	ld [wNumStartersInCategory], a
+	ret
+
+GetChallengeStarters:
+	ld hl, ChallengeStarters
+    ld a, NUM_CHALLENGE_STARTERS
+	ld [wNumStartersInCategory], a
 	ret
 
 BasicStarters:

@@ -1,13 +1,3 @@
-NUM_BASIC_MON EQU 8
-NUM_ROCKET_MON EQU 3
-NUM_ANIME_MON EQU 3
-NUM_COMMON_MON EQU 13
-NUM_UNCOMMON_MON EQU 69
-NUM_TRADE_MON EQU 4
-NUM_PSEUDO_LEGEND_MON EQU 2
-NUM_BABY_MON EQU 9
-NUM_CHALLENGE_MON EQU 6
-
 INCLUDE "data/starters.asm"
 
 StarterSelectionScreenInit:
@@ -52,6 +42,7 @@ StarterSelectionScreenInit_gotaddress:
 StarterSelectionScreenMain:
 	xor a
 	ld [wStarterCursorPositionMon], a
+	ld [wStarterCursorPositionCategory], a
 	ld [wJumptableIndex], a
 	; stupid interns
 	ld [wcf64], a
@@ -113,14 +104,9 @@ StarterStatsInit:
 	call ClearTileMap
 	farcall HDMATransferTileMapToWRAMBank3
 
-	; TODO: Get category table in bc
-	; TODO; Get mon from category at hl
-	ld a, [wStarterCursorPositionMon]
-	ld e, a
-	ld d, 0
-	ld hl, BasicStarters
-	add hl, de
-	add hl, de
+
+	call GetStarter
+	
 
 	ld a, [hl]
 	ld [wTempSpecies], a
@@ -167,7 +153,7 @@ StarterStatsJoypad:
 	ret
 
 .next
-	and D_DOWN | D_UP | D_LEFT | D_RIGHT | A_BUTTON | B_BUTTON
+	and D_DOWN | D_UP | D_LEFT | D_RIGHT | A_BUTTON
 	jp StarterSelectionScreen_JoypadAction
 
 StarterSelectionScreenWaitCry:
@@ -191,7 +177,7 @@ StarterSelectionScreen_GetJoypad:
 	pop de
 	pop hl
 	ld a, [wMenuJoypad]
-	and D_LEFT | D_RIGHT
+	and D_LEFT | D_RIGHT | D_UP | D_DOWN
 	jr nz, .set_carry
 	ld a, [wMenuJoypad]
 	jr .clear_flags
@@ -207,6 +193,10 @@ StarterSelectionScreen_GetJoypad:
 	ret
 
 StarterSelectionScreen_JoypadAction:
+	bit D_UP_F, a
+	jr nz, .d_up
+	bit D_DOWN_F, a
+	jr nz, .d_down
 	bit D_LEFT_F, a
 	jr nz, .d_left
 	bit D_RIGHT_F, a
@@ -216,8 +206,11 @@ StarterSelectionScreen_JoypadAction:
 	jr .done
 
 .d_right
+	ld a, [wNumStartersInCategory]
+	sub a, 1
+	ld e, a
 	ld a, [wStarterCursorPositionMon]
-	cp NUM_BASIC_MON - 1 ; last page
+	cp e ; last page
 	jr z, .go_to_first_starter
 	ld a, [wStarterCursorPositionMon]
 	add a, 1
@@ -232,6 +225,32 @@ StarterSelectionScreen_JoypadAction:
 	ld a, [wStarterCursorPositionMon]
 	sub a, 1
 	ld [wStarterCursorPositionMon], a
+	call .load_mon
+	ret
+
+.d_up
+	xor a
+	ld [wStarterCursorPositionMon], a ; start from first mon in category
+
+	ld a, [wStarterCursorPositionCategory]
+	cp 0 ; last category
+	jr z, .done
+	ld a, [wStarterCursorPositionCategory]
+	sub a, 1
+	ld [wStarterCursorPositionCategory], a
+	call .load_mon
+	ret
+
+.d_down
+	xor a
+	ld [wStarterCursorPositionMon], a ; start from first mon in category
+
+	ld a, [wStarterCursorPositionCategory]
+	cp NUM_STARTER_CATEGORIES - 1 ; last category
+	jr z, .done
+	ld a, [wStarterCursorPositionCategory]
+	add a, 1
+	ld [wStarterCursorPositionCategory], a
 	call .load_mon
 	ret
 
@@ -257,7 +276,7 @@ StarterSelectionScreen_JoypadAction:
 	ret
 
 .go_to_last_starter
-	ld a, NUM_BASIC_MON - 1
+	ld a, NUM_BASIC_STARTERS - 1
 	LD [wStarterCursorPositionMon], a
 	call .load_mon
 	ret
