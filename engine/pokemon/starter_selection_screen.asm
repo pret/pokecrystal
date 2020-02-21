@@ -1,17 +1,12 @@
-	const_def
-	const CHIKORITA_PAGE  ; 0
-	const CYNDAQUIL_PAGE  ; 1
-	const TOTODILE_PAGE   ; 2
-	const BULBASAUR_PAGE  ; 3
-	const CHARMANDER_PAGE ; 4
-	const SQUIRTLE_PAGE   ; 5
-	const PIKACHU_PAGE    ; 6
-	const EEVEE_PAGE      ; 7
-
-
-	const UNOWN_PAGE      ; 8
-
-NUM_STARTER_PAGES EQU const_value
+NUM_BASIC_MON EQU 8
+NUM_ROCKET_MON EQU 3
+NUM_ANIME_MON EQU 3
+NUM_COMMON_MON EQU 13
+NUM_UNCOMMON_MON EQU 69
+NUM_TRADE_MON EQU 4
+NUM_PSEUDO_LEGEND_MON EQU 2
+NUM_BABY_MON EQU 9
+NUM_CHALLENGE_MON EQU 6
 
 INCLUDE "data/starters.asm"
 
@@ -56,7 +51,7 @@ StarterSelectionScreenInit_gotaddress:
 
 StarterSelectionScreenMain:
 	xor a
-	ld [wStarterCursorPosition], a
+	ld [wStarterCursorPositionMon], a
 	ld [wJumptableIndex], a
 	; stupid interns
 	ld [wcf64], a
@@ -118,10 +113,12 @@ StarterStatsInit:
 	call ClearTileMap
 	farcall HDMATransferTileMapToWRAMBank3
 
-	ld a, [wStarterCursorPosition]
+	; TODO: Get category table in bc
+	; TODO; Get mon from category at hl
+	ld a, [wStarterCursorPositionMon]
 	ld e, a
 	ld d, 0
-	ld hl, Starters
+	ld hl, BasicStarters
 	add hl, de
 	add hl, de
 
@@ -219,22 +216,22 @@ StarterSelectionScreen_JoypadAction:
 	jr .done
 
 .d_right
-	ld a, [wStarterCursorPosition]
-	cp NUM_STARTER_PAGES - 1 ; last page
+	ld a, [wStarterCursorPositionMon]
+	cp NUM_BASIC_MON - 1 ; last page
 	jr z, .go_to_first_starter
-	ld a, [wStarterCursorPosition]
+	ld a, [wStarterCursorPositionMon]
 	add a, 1
-	ld [wStarterCursorPosition], a
+	ld [wStarterCursorPositionMon], a
 	call .load_mon
 	ret
 
 .d_left
-	ld a, [wStarterCursorPosition]
+	ld a, [wStarterCursorPositionMon]
 	cp 0 ; first page
 	jr z, .go_to_last_starter
-	ld a, [wStarterCursorPosition]
+	ld a, [wStarterCursorPositionMon]
 	sub a, 1
-	ld [wStarterCursorPosition], a
+	ld [wStarterCursorPositionMon], a
 	call .load_mon
 	ret
 
@@ -255,13 +252,13 @@ StarterSelectionScreen_JoypadAction:
 
 .go_to_first_starter
 	xor a
-	ld [wStarterCursorPosition], a
+	ld [wStarterCursorPositionMon], a
 	call .load_mon
 	ret
 
 .go_to_last_starter
-	ld a, NUM_STARTER_PAGES - 1
-	LD [wStarterCursorPosition], a
+	ld a, NUM_BASIC_MON - 1
+	LD [wStarterCursorPositionMon], a
 	call .load_mon
 	ret
 
@@ -314,13 +311,8 @@ StarterSelectionScreen_PlaceFrontpic:
 	ld hl, wTempMonDVs
 	predef GetUnownLetter
 	call StarterSelectionScreen_GetAnimationParam
-	jr .cry
-
-.cry
 	call SetPalettes
 	call .AnimateMon
-	ld a, [wCurPartySpecies]
-	call PlayMonCry2
 	ret
 
 .AnimateMon:
