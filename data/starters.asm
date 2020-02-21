@@ -10,17 +10,18 @@ NUM_PSEUDO_LEGEND_STARTERS EQU 2
 NUM_BABY_STARTERS EQU 9
 NUM_CHALLENGE_STARTERS EQU 6
 
-GetStarter:
+PopulateStarterInfo:
 	; store mon in hl
+	; set wram variables to allow for endless scroll in each category
 	ld a, [wStarterCursorPositionMon]
 	ld e, a
 	ld d, 0
- 	call GetStartersInCategory
+ 	call GetStarterCategory
 	add hl, de
 	add hl, de
 	ret
 
-GetStartersInCategory:
+GetStarterCategory:
 	ld a, [wStarterCursorPositionCategory]
 	maskbits NUM_STARTER_CATEGORIES
 	ld hl, .Jumptable
@@ -37,7 +38,6 @@ GetStartersInCategory:
 	dw GetPseudoLegendaryStarters
 	dw GetBabyStarters
 	dw GetChallengeStarters
-
 
 GetBasicStarters:
 	ld hl, BasicStarters
@@ -93,6 +93,17 @@ GetChallengeStarters:
     ld a, NUM_CHALLENGE_STARTERS
 	ld [wNumStartersInCategory], a
 	ret
+
+CategoryNames:
+	db "BASIC@"
+	db "ROCKET@"
+	db "ANIME@"
+	db "COMMON@"
+	db "UNCOMMON@"
+	db "TRADE@"
+	db "PSEDUO LEGEND@"
+	db "BABY@"
+	db "CHALLENGE@"
 
 BasicStarters:
 	dw CHIKORITA
@@ -200,17 +211,17 @@ UncommonStarters:
 	dw STANTLER
 	dw MILTANK
 
-TradeStarters
+TradeStarters:
 	dw ABRA
 	dw MACHOP
 	dw GEODUDE
 	dw GASTLY
 
-PseudoLegendStarters
+PseudoLegendStarters:
 	dw DRATINI
 	dw LARVITAR
 
-BabyStarters
+BabyStarters:
 	dw PICHU
 	dw TOGEPI
 	dw TYROGUE
@@ -221,7 +232,7 @@ BabyStarters
 	dw SMOOCHUM
 	dw SUNKERN
 
-ChallengeStarters
+ChallengeStarters:
 	dw FARFETCH_D
 	dw SHUCKLE
 	dw WOBBUFFET

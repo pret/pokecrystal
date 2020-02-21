@@ -104,35 +104,41 @@ StarterStatsInit:
 	call ClearTileMap
 	farcall HDMATransferTileMapToWRAMBank3
 
-
-	call GetStarter
-	
-
+	call PopulateStarterInfo
 	ld a, [hl]
 	ld [wTempSpecies], a
 	ld [wCurSpecies], a
 	ld [wCurPartySpecies], a
 
-	call .place_navigation_arrows
-	call .place_mon_name
+	call PlaceNavigationArrows
+	call PlaceMonName
+	;call PlaceStarterCategory
 
 	ld hl, wcf64
 	set 4, [hl]
 	ld h, 1 ; StarterSelectionScreen_LoadPage
 	call StarterSelectionScreen_SetJumptableIndex
 	ret
-.place_navigation_arrows
+
+PlaceNavigationArrows:
 	hlcoord 4, 9
 	ld [hl], "◀"
 	hlcoord 15, 9
 	ld [hl], "▶"
 	ret
-.place_mon_name
+
+PlaceMonName:
 	ld a, MON_NAME
 	ld [wNamedObjectTypeBuffer], a
 	farcall GetName
 	ld de, wStringBuffer1
 	hlcoord 1, 1
+	call PlaceString
+	ret
+
+PlaceStarterCategory:
+	ld de, wStringBuffer2
+	hlcoord 10, 12
 	call PlaceString
 	ret
 
