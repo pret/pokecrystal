@@ -220,9 +220,8 @@ StarterSelectionScreen_JoypadAction:
 
 .d_right
 	ld a, [wStarterCursorPosition]
-	cp UNOWN_PAGE ; last page
-	jr z, .done
-
+	cp NUM_STARTER_PAGES - 1 ; last page
+	jr z, .go_to_first_starter
 	ld a, [wStarterCursorPosition]
 	add a, 1
 	ld [wStarterCursorPosition], a
@@ -231,13 +230,12 @@ StarterSelectionScreen_JoypadAction:
 
 .d_left
 	ld a, [wStarterCursorPosition]
-	cp CHIKORITA_PAGE ; first page
-	jr z, .done
+	cp 0 ; first page
+	jr z, .go_to_last_starter
 	ld a, [wStarterCursorPosition]
 	sub a, 1
 	ld [wStarterCursorPosition], a
 	call .load_mon
-	ret
 	ret
 
 .a_button
@@ -253,6 +251,18 @@ StarterSelectionScreen_JoypadAction:
 	ld [wcf64], a
 	ld h, 1 ; StarterSelectionScreen_LoadPage
 	call StarterSelectionScreen_SetJumptableIndex
+	ret
+
+.go_to_first_starter
+	xor a
+	ld [wStarterCursorPosition], a
+	call .load_mon
+	ret
+
+.go_to_last_starter
+	ld a, NUM_STARTER_PAGES - 1
+	LD [wStarterCursorPosition], a
+	call .load_mon
 	ret
 
 .load_mon
