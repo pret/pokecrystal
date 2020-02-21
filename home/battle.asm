@@ -224,3 +224,22 @@ GetBattleAnimByte::
 
 	ld a, [wBattleAnimByte]
 	ret
+
+PushLYOverrides::
+	ldh a, [hLCDCPointer]
+	and a
+	ret z
+
+	ld a, LOW(wLYOverridesBackup)
+	ld [wRequested2bppSource], a
+	ld a, HIGH(wLYOverridesBackup)
+	ld [wRequested2bppSource + 1], a
+
+	ld a, LOW(wLYOverrides)
+	ld [wRequested2bppDest], a
+	ld a, HIGH(wLYOverrides)
+	ld [wRequested2bppDest + 1], a
+
+	ld a, (wLYOverridesEnd - wLYOverrides) / 16
+	ld [wRequested2bpp], a
+	ret

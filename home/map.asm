@@ -2277,3 +2277,12 @@ LoadMapTileset::
 	pop bc
 	pop hl
 	ret
+
+InexplicablyEmptyFunction::
+; unused
+; Inexplicably empty.
+; Seen in PredefPointers.
+rept 16
+	nop
+endr
+	ret
