@@ -9,6 +9,11 @@ _OakText7::
 	cont "be your partner?"
 	prompt
 
+_IsThisYourPartnerText::
+	text "Is this your"
+	line "partner?"
+	done
+
 _OakText8::
 	text "<PLAYER>, are you"
 	line "ready?"
