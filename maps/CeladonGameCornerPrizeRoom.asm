@@ -39,6 +39,8 @@ CeladonPrizeRoom_tmcounterloop:
 	sjump CeladonPrizeRoom_CancelPurchaseScript
 
 .DoubleTeam:
+	checkitem TM_DOUBLE_TEAM
+	iftrue CeladonPrizeRoom_alreadyhavetm
 	checkcoins CELADONGAMECORNERPRIZEROOM_TM32_COINS
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
 	getitemname STRING_BUFFER_3, TM_DOUBLE_TEAM
@@ -50,6 +52,10 @@ CeladonPrizeRoom_tmcounterloop:
 	sjump CeladonPrizeRoom_purchased
 
 .Psychic:
+	checkitem TM_HYPER_BEAM
+	iftrue CeladonPrizeRoom_alreadyhavetm
+	checkitem TM_PSYCHIC_M
+	iftrue CeladonPrizeRoom_alreadyhavetm
 	checkcoins CELADONGAMECORNERPRIZEROOM_TM29_COINS
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
 	getitemname STRING_BUFFER_3, TM_PSYCHIC_M
@@ -83,6 +89,10 @@ CeladonPrizeRoom_purchased:
 	waitbutton
 	sjump CeladonPrizeRoom_tmcounterloop
 
+CeladonPrizeRoom_alreadyhavetm:
+	writetext CeladonPrizeRoom_AlreadyHaveTMText
+	waitbutton
+	sjump CeladonPrizeRoom_tmcounterloop
 CeladonPrizeRoom_notenoughcoins:
 	writetext CeladonPrizeRoom_NotEnoughCoinsText
 	waitbutton
@@ -254,6 +264,10 @@ CeladonPrizeRoom_HereYouGoText:
 	text "Here you go!"
 	done
 
+CeladonPrizeRoom_AlreadyHaveTMText:
+	text "You already have"
+	line "that TM."
+	done
 CeladonPrizeRoom_NotEnoughCoinsText:
 	text "You don't have"
 	line "enough coins."
