@@ -109,8 +109,8 @@ RGBLINK ?= $(RGBDS)rgblink
 ### Variables
 
 # Look for object files
-dirs := audio data engine gfx lib maps mobile ram
-files := home.asm
+dirs := audio data engine gfx home lib maps mobile ram
+files :=
 
 objects := $(call getobjects,$(dir_source),$(dirs),$(files))
 ifneq ($(wildcard $(dir_version)),)

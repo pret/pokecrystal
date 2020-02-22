@@ -1,4 +1,3 @@
-INCLUDE "macros/enum.inc"
 INCLUDE "macros/gfx.inc"
 INCLUDE "macros/wram.inc"
 INCLUDE "constants/battle_constants.inc"
