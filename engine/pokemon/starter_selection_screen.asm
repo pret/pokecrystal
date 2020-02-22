@@ -302,7 +302,6 @@ StarterSelectionScreen_JoypadAction:
 	call .load_mon
 	ret
 
-
 .load_mon
 	ld h, 0 ; StarterStatsInit
 	call StarterSelectionScreen_SetJumptableIndex
