@@ -42,8 +42,8 @@ MG_Mobile_Layout_FillBox:
 	jr nz, .row
 	ret
 
-MG_Mobile_Layout_WipeAttrMap:
-	hlcoord 0, 0, wAttrMap
+MG_Mobile_Layout_WipeAttrmap:
+	hlcoord 0, 0, wAttrmap
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
 	xor a
 	call ByteFill
@@ -64,14 +64,14 @@ MG_Mobile_Layout_LoadPals:
 
 MG_Mobile_Layout00:
 	call MG_Mobile_Layout_LoadPals
-	call MG_Mobile_Layout_WipeAttrMap
+	call MG_Mobile_Layout_WipeAttrmap
 	call MG_Mobile_Layout_CreatePalBoxes
-	farcall ApplyAttrMap
+	farcall ApplyAttrmap
 	farcall ApplyPals
 	ret
 
 MG_Mobile_Layout_CreatePalBoxes:
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	lb bc, 4, 1
 	ld a, $1
 	call MG_Mobile_Layout_FillBox
@@ -81,7 +81,7 @@ MG_Mobile_Layout_CreatePalBoxes:
 	lb bc, 6, 1
 	ld a, $3
 	call MG_Mobile_Layout_FillBox
-	hlcoord 1, 0, wAttrMap
+	hlcoord 1, 0, wAttrmap
 	ld a, $1
 	lb bc, 3, 18
 	call MG_Mobile_Layout_FillBox
@@ -91,7 +91,7 @@ MG_Mobile_Layout_CreatePalBoxes:
 	lb bc, 12, 18
 	ld a, $3
 	call MG_Mobile_Layout_FillBox
-	hlcoord 19, 0, wAttrMap
+	hlcoord 19, 0, wAttrmap
 	lb bc, 4, 1
 	ld a, $1
 	call MG_Mobile_Layout_FillBox
@@ -101,7 +101,7 @@ MG_Mobile_Layout_CreatePalBoxes:
 	lb bc, 6, 1
 	ld a, $3
 	call MG_Mobile_Layout_FillBox
-	hlcoord 0, 12, wAttrMap
+	hlcoord 0, 12, wAttrmap
 	ld bc, 6 * SCREEN_WIDTH
 	ld a, $7
 	call ByteFill
@@ -136,12 +136,12 @@ MG_Mobile_Layout01:
 	ld bc, 1 palettes
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
-	call MG_Mobile_Layout_WipeAttrMap
-	hlcoord 0, 0, wAttrMap
+	call MG_Mobile_Layout_WipeAttrmap
+	hlcoord 0, 0, wAttrmap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	xor a
 	call ByteFill
-	hlcoord 0, 14, wAttrMap
+	hlcoord 0, 14, wAttrmap
 	ld bc, 4 * SCREEN_WIDTH
 	ld a, $7
 	call ByteFill
@@ -155,7 +155,7 @@ MG_Mobile_Layout01:
 	call Function49496
 
 .asm_49467
-	farcall ApplyAttrMap
+	farcall ApplyAttrmap
 	farcall ApplyPals
 	ld a, $1
 	ldh [hCGBPalUpdate], a
@@ -168,26 +168,26 @@ MG_Mobile_Layout01:
 	RGB 00, 00, 00
 
 Function49480:
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	lb bc, 4, SCREEN_WIDTH
 	ld a, $7
 	call MG_Mobile_Layout_FillBox
-	hlcoord 0, 2, wAttrMap
+	hlcoord 0, 2, wAttrmap
 	ld a, $4
 	ld [hl], a
-	hlcoord 19, 2, wAttrMap
+	hlcoord 19, 2, wAttrmap
 	ld [hl], a
 	ret
 
 Function49496:
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	lb bc, 2, SCREEN_WIDTH
 	ld a, $7
 	call MG_Mobile_Layout_FillBox
-	hlcoord 0, 1, wAttrMap
+	hlcoord 0, 1, wAttrmap
 	ld a, $4
 	ld [hl], a
-	hlcoord 19, 1, wAttrMap
+	hlcoord 19, 1, wAttrmap
 	ld [hl], a
 	ret
 
@@ -200,8 +200,8 @@ MG_Mobile_Layout02:
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	farcall ApplyPals
-	call MG_Mobile_Layout_WipeAttrMap
-	farcall ApplyAttrMap
+	call MG_Mobile_Layout_WipeAttrmap
+	farcall ApplyAttrmap
 	ld hl, .Palette_4973a
 	ld de, wOBPals1
 	ld bc, 1 palettes
@@ -234,43 +234,43 @@ Function49742:
 INCLUDE "gfx/unknown/49757.pal"
 
 _InitMG_Mobile_LinkTradePalMap:
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	lb bc, 16, 2
 	ld a, $4
 	call MG_Mobile_Layout_FillBox
 	ld a, $3
-	ldcoord_a 0, 1, wAttrMap
-	ldcoord_a 0, 14, wAttrMap
-	hlcoord 2, 0, wAttrMap
+	ldcoord_a 0, 1, wAttrmap
+	ldcoord_a 0, 14, wAttrmap
+	hlcoord 2, 0, wAttrmap
 	lb bc, 8, 18
 	ld a, $5
 	call MG_Mobile_Layout_FillBox
-	hlcoord 2, 8, wAttrMap
+	hlcoord 2, 8, wAttrmap
 	lb bc, 8, 18
 	ld a, $6
 	call MG_Mobile_Layout_FillBox
-	hlcoord 0, 16, wAttrMap
+	hlcoord 0, 16, wAttrmap
 	lb bc, 2, SCREEN_WIDTH
 	ld a, $4
 	call MG_Mobile_Layout_FillBox
 	ld a, $3
 	lb bc, 6, 1
-	hlcoord 6, 1, wAttrMap
+	hlcoord 6, 1, wAttrmap
 	call MG_Mobile_Layout_FillBox
 	ld a, $3
 	lb bc, 6, 1
-	hlcoord 17, 1, wAttrMap
+	hlcoord 17, 1, wAttrmap
 	call MG_Mobile_Layout_FillBox
 	ld a, $3
 	lb bc, 6, 1
-	hlcoord 6, 9, wAttrMap
+	hlcoord 6, 9, wAttrmap
 	call MG_Mobile_Layout_FillBox
 	ld a, $3
 	lb bc, 6, 1
-	hlcoord 17, 9, wAttrMap
+	hlcoord 17, 9, wAttrmap
 	call MG_Mobile_Layout_FillBox
 	ld a, $2
-	hlcoord 2, 16, wAttrMap
+	hlcoord 2, 16, wAttrmap
 	ld [hli], a
 	ld a, $7
 	ld [hli], a
@@ -278,7 +278,7 @@ _InitMG_Mobile_LinkTradePalMap:
 	ld [hli], a
 	ld a, $2
 	ld [hl], a
-	hlcoord 2, 17, wAttrMap
+	hlcoord 2, 17, wAttrmap
 	ld a, $3
 	ld bc, 6
 	call ByteFill

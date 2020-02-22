@@ -18,7 +18,7 @@ MainMenu:
 	call MainMenuJoypadLoop
 	call CloseWindow
 	jr c, .quit
-	call ClearTileMap
+	call ClearTilemap
 	ld a, [wMenuSelection]
 	ld hl, .Jumptable
 	rst JumpTable
@@ -313,7 +313,7 @@ MainMenu_PrintCurrentTimeAndDay:
 Function49ed0:
 	xor a
 	ldh [hMapAnims], a
-	call ClearTileMap
+	call ClearTilemap
 	call LoadFontsExtra
 	call LoadStandardFont
 	call ClearWindowData

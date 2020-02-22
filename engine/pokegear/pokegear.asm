@@ -72,7 +72,7 @@ PokeGear:
 
 .InitTilemap:
 	call ClearBGPalettes
-	call ClearTileMap
+	call ClearTilemap
 	call ClearSprites
 	call DisableLCD
 	xor a
@@ -165,7 +165,7 @@ INCBIN "gfx/pokegear/fast_ship.2bpp"
 InitPokegearModeIndicatorArrow:
 	depixel 4, 2, 4, 0
 	ld a, SPRITE_ANIM_INDEX_POKEGEAR_ARROW
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $0
@@ -646,7 +646,7 @@ PokegearMap_InitPlayerIcon:
 	ld b, SPRITE_ANIM_INDEX_BLUE_WALK
 .got_gender
 	ld a, b
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $10
@@ -667,7 +667,7 @@ PokegearMap_InitCursor:
 	push af
 	depixel 0, 0
 	ld a, SPRITE_ANIM_INDEX_POKEGEAR_ARROW
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $04
@@ -725,7 +725,7 @@ PokegearRadio_Init:
 	call InitPokegearTilemap
 	depixel 4, 10, 4, 4
 	ld a, SPRITE_ANIM_INDEX_RADIO_TUNING_KNOB
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $08
@@ -1737,7 +1737,7 @@ _TownMap:
 	ld [wVramState], a
 
 	call ClearBGPalettes
-	call ClearTileMap
+	call ClearTilemap
 	call ClearSprites
 	call DisableLCD
 	call Pokegear_LoadGFX
@@ -1989,7 +1989,7 @@ PokegearMap:
 
 _FlyMap:
 	call ClearBGPalettes
-	call ClearTileMap
+	call ClearTilemap
 	call ClearSprites
 	ld hl, hInMenu
 	ld a, [hl]
@@ -2416,7 +2416,7 @@ Pokedex_GetArea:
 .GetAndPlaceNest:
 	ld [wTownMapCursorLandmark], a
 	ld e, a
-	farcall FindNest ; load nest landmarks into wTileMap[0,0]
+	farcall FindNest ; load nest landmarks into wTilemap[0,0]
 	decoord 0, 0
 	ld hl, wVirtualOAMSprite00
 .nestloop
@@ -2594,7 +2594,7 @@ FillTownMap:
 TownMapPals:
 ; Assign palettes based on tile ids
 	hlcoord 0, 0
-	decoord 0, 0, wAttrMap
+	decoord 0, 0, wAttrmap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 .loop
 ; Current tile
@@ -2662,7 +2662,7 @@ TownMapMon:
 ; Animation/palette
 	depixel 0, 0
 	ld a, SPRITE_ANIM_INDEX_PARTY_MON
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $08
@@ -2697,7 +2697,7 @@ TownMapPlayerIcon:
 	ld b, SPRITE_ANIM_INDEX_BLUE_WALK ; Female
 .got_gender
 	ld a, b
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $10

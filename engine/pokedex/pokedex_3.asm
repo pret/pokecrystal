@@ -140,7 +140,7 @@ DrawDexEntryScreenRightEdge:
 	ld [hl], $3c
 	xor a
 	ld b, SCREEN_HEIGHT
-	hlcoord 19, 0, wAttrMap
+	hlcoord 19, 0, wAttrmap
 	call Bank77_FillColumn
 	call WaitBGMap2
 	pop hl

@@ -17,16 +17,16 @@ PushLYOverrides::
 	ld [wRequested2bpp], a
 	ret
 
-_InitSpriteAnimStruct::
+InitSpriteAnimStruct::
 	ld [wSpriteAnimIDBuffer], a
 	ldh a, [hROMBank]
 	push af
 
-	ld a, BANK(InitSpriteAnimStruct)
+	ld a, BANK(_InitSpriteAnimStruct)
 	rst Bankswitch
 	ld a, [wSpriteAnimIDBuffer]
 
-	call InitSpriteAnimStruct
+	call _InitSpriteAnimStruct
 
 	pop af
 	rst Bankswitch

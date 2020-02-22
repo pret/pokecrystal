@@ -2,7 +2,7 @@ Copyright_GFPresents:
 	ld de, MUSIC_NONE
 	call PlayMusic
 	call ClearBGPalettes
-	call ClearTileMap
+	call ClearTilemap
 	ld a, HIGH(vBGMap0)
 	ldh [hBGMapAddress + 1], a
 	xor a ; LOW(vBGMap0)
@@ -22,7 +22,7 @@ Copyright_GFPresents:
 	call WaitBGMap
 	ld c, 100
 	call DelayFrames
-	call ClearTileMap
+	call ClearTilemap
 	farcall GBCOnlyScreen
 	call .GetGFLogoGFX
 .joy_loop
@@ -80,7 +80,7 @@ Copyright_GFPresents:
 	farcall ClearSpriteAnims
 	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_GAMEFREAK_LOGO
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], $a0
@@ -106,7 +106,7 @@ Copyright_GFPresents:
 
 .StopGamefreakAnim:
 	farcall ClearSpriteAnims
-	call ClearTileMap
+	call ClearTilemap
 	call ClearSprites
 	ld c, 16
 	call DelayFrames
@@ -363,7 +363,7 @@ CrystalIntro:
 .done
 	call ClearBGPalettes
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	xor a
 	ldh [hSCX], a
 	ldh [hSCY], a
@@ -473,7 +473,7 @@ INCLUDE "gfx/intro/fade.pal"
 CrystalIntro_InitUnownAnim:
 	push de
 	ld a, SPRITE_ANIM_INDEX_INTRO_UNOWN
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $8
@@ -483,7 +483,7 @@ CrystalIntro_InitUnownAnim:
 
 	push de
 	ld a, SPRITE_ANIM_INDEX_INTRO_UNOWN
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $18
@@ -493,7 +493,7 @@ CrystalIntro_InitUnownAnim:
 
 	push de
 	ld a, SPRITE_ANIM_INDEX_INTRO_UNOWN
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $28
@@ -502,7 +502,7 @@ CrystalIntro_InitUnownAnim:
 	pop de
 
 	ld a, SPRITE_ANIM_INDEX_INTRO_UNOWN
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $38

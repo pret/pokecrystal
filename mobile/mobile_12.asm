@@ -144,7 +144,7 @@ asm_4815f:
 	call ClearBGPalettes
 	call Function48d30
 	pop bc
-	call ClearTileMap
+	call ClearTilemap
 	ld a, $ff
 	ret
 
@@ -254,7 +254,7 @@ Function4820d:
 	call ClearBGPalettes
 	call Function48d30
 	pop bc
-	call ClearTileMap
+	call ClearTilemap
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	ld hl, wd479
@@ -354,7 +354,7 @@ Function48304:
 	ld a, $29
 .asm_4833f
 	ld [wMenuScrollPosition], a
-	farcall Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
+	farcall Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
 .asm_48348
 	call ScrollingMenu
 	ld de, $629
@@ -380,7 +380,7 @@ Function48304:
 	ld [wd003], a
 .asm_48377
 	call Function48187
-	farcall Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
+	farcall Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
 	jp Function4840c
 
 Function48383:
@@ -1662,7 +1662,7 @@ Function48cdc:
 	call Function48cfd
 	pop hl
 	pop bc
-	ld de, wAttrMap - wTileMap
+	ld de, wAttrmap - wTilemap
 	add hl, de
 	inc b
 	inc b

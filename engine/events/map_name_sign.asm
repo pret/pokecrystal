@@ -135,7 +135,7 @@ InitMapNameFrame:
 	hlcoord 0, 0
 	ld b, 2
 	ld c, 18
-	call InitMapSignAttrMap
+	call InitMapSignAttrmap
 	call PlaceMapNameFrame
 	ret
 
@@ -171,8 +171,8 @@ PlaceMapNameCenterAlign:
 	pop hl
 	ret
 
-InitMapSignAttrMap:
-	ld de, wAttrMap - wTileMap
+InitMapSignAttrmap:
+	ld de, wAttrmap - wTilemap
 	add hl, de
 	inc b
 	inc b

@@ -631,7 +631,7 @@ MonMenu_Fly:
 	ret
 
 MonMenu_Flash:
-	farcall OWFlash
+	farcall FlashFunction
 	ld a, [wFieldMoveSucceeded]
 	cp $1
 	jr nz, .Fail
@@ -844,7 +844,7 @@ ChooseMoveToDelete:
 	ld hl, w2DMenuFlags1
 	res 6, [hl]
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	pop af
 	ret
 
@@ -1075,7 +1075,7 @@ MoveScreenLoop:
 	ld hl, w2DMenuFlags1
 	res 6, [hl]
 	call ClearSprites
-	jp ClearTileMap
+	jp ClearTilemap
 
 MoveScreenAttributes:
 	db 3, 1
@@ -1089,7 +1089,7 @@ String_MoveWhere:
 
 SetUpMoveScreenBG:
 	call ClearBGPalettes
-	call ClearTileMap
+	call ClearTilemap
 	call ClearSprites
 	xor a
 	ldh [hBGMapMode], a

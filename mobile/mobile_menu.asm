@@ -65,7 +65,7 @@ Function49f16:
 .b_button
 	pop bc
 	call ClearBGPalettes
-	call ClearTileMap
+	call ClearTilemap
 	ld a, MUSIC_MAIN_MENU
 	ld [wMapMusic], a
 	ld de, MUSIC_MAIN_MENU
@@ -208,7 +208,7 @@ Function4a100:
 	call ClearBGPalettes
 	call Function4a13b
 	call ClearBGPalettes
-	call ClearTileMap
+	call ClearTilemap
 
 asm_4a111:
 	pop bc
@@ -271,7 +271,7 @@ Function4a149:
 	call ClearBox
 	hlcoord 1, 14
 	call PlaceString
-	farcall Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
+	farcall Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
 	call SetPalettes
 	call StaticMenuJoypad
 	ld hl, wMenuCursorY
@@ -390,7 +390,7 @@ Function4a28a:
 	hlcoord 14, 1
 	ld de, String_4a34b
 	call PlaceString
-	farcall Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
+	farcall Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
 	call Function4a118
 	call ScrollingMenuJoypad
 	push af
@@ -419,7 +419,7 @@ Function4a28a:
 	ld b, 3
 	ld c, 4
 	call Textbox
-	farcall Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
+	farcall Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
 	ld hl, DeletePassword_YesNo_MenuHeader
 	call LoadMenuHeader
 	call VerticalMenu
@@ -442,7 +442,7 @@ Function4a28a:
 	call ExitMenu
 .quit
 	call Call_ExitMenu
-	farcall Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
+	farcall Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
 	xor a
 	ret
 
@@ -715,7 +715,7 @@ asm_4a54d:
 .asm_4a574
 	pop bc
 	call ClearBGPalettes
-	call ClearTileMap
+	call ClearTilemap
 	jp Function49f0a
 .asm_4a57e
 	ld hl, wMenuCursorY

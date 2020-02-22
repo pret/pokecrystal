@@ -1245,9 +1245,9 @@ PnP_OddText:
 
 PeoplePlaces6: ; Places
 	call Random
-	cp (PnP_HiddenPlaces.End - PnP_HiddenPlaces) / 2
+	cp (PnP_Places.End - PnP_Places) / 2
 	jr nc, PeoplePlaces6
-	ld hl, PnP_HiddenPlaces
+	ld hl, PnP_Places
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -1262,7 +1262,7 @@ PeoplePlaces6: ; Places
 	ld a, PLACES_AND_PEOPLE_7
 	jp NextRadioLine
 
-INCLUDE "data/radio/pnp_hidden_places.asm"
+INCLUDE "data/radio/pnp_places.asm"
 
 PnP_Text5:
 	text_far _PnP_Text5
