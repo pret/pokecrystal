@@ -741,8 +741,6 @@ OakSpeech:
 	ld hl, OakText7
 	call PrintText
 
-	; TODO: Let user pick from list of starters
-	; TODO: Give Starter based on selection
 	call ClearTileMap
 	predef StarterSelectionScreenInit
 	call ClearTileMap
@@ -777,7 +775,6 @@ OakSpeech:
 	ld hl, OakText8
 	call PrintText
 
-	; TODO: Draw Starter + Player Sprite
 	ret
 
 AddAllHMsToBag:
