@@ -88,13 +88,13 @@ GetSafariStarters:
 
 GetTradeStarters:
 	ld hl, TradeStarters
-    ld a, NUM_TRADE_STARTERS
+	ld a, NUM_TRADE_STARTERS
 	ld [wNumStartersInCategory], a
 	ret
 
 GetPseudoLegendaryStarters:
 	ld hl, PseudoLegendStarters
-    ld a, NUM_PSEUDO_LEGEND_STARTERS
+	ld a, NUM_PSEUDO_LEGEND_STARTERS
 	ld [wNumStartersInCategory], a
 	ret
 
@@ -106,7 +106,7 @@ GetBabyStarters:
 
 GetChallengeStarters:
 	ld hl, ChallengeStarters
-    ld a, NUM_CHALLENGE_STARTERS
+	ld a, NUM_CHALLENGE_STARTERS
 	ld [wNumStartersInCategory], a
 	ret
 
@@ -129,13 +129,13 @@ CategoryNames:
 	dw .rocket
 	dw .anime
 	dw .common
-    dw .uncommon
+	dw .uncommon
 	dw .fossil
 	dw .safari
-    dw .trade
-    dw .pseudo_legend
-    dw .baby
-    dw .challenge
+	dw .trade
+	dw .pseudo_legend
+	dw .baby
+	dw .challenge
 .basic db "BASIC@"
 .rocket db "ROCKET@"
 .anime db "ANIME@"
