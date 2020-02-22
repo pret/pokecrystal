@@ -1968,6 +1968,6 @@ InitStarterNickname:
 	pop hl
 	ld de, wStringBuffer1
 	call InitName
-	call ClearTileMap
+	call ClearTilemap
 
 	ret

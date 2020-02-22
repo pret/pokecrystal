@@ -741,9 +741,9 @@ OakSpeech:
 	ld hl, OakText7
 	call PrintText
 
-	call ClearTileMap
+	call ClearTilemap
 	predef StarterSelectionScreenInit
-	call ClearTileMap
+	call ClearTilemap
 
 	; Display Starter and Nickname
 	ld a, [wCurPartySpecies]
@@ -761,7 +761,7 @@ OakSpeech:
 	call GetSGBLayout
 	call Intro_WipeInFrontpic
 	call GiveStarterMon
-	call ClearTileMap
+	call ClearTilemap
 	
 	; Display Player
 	xor a

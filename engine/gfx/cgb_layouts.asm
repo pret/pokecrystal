@@ -254,27 +254,27 @@ _CGB_StatsScreenHPPals:
 	ld a, $2 ; exp palette
 	call ByteFill
 
-	hlcoord 11, 5, wAttrMap
+	hlcoord 11, 5, wAttrmap
 	lb bc, 2, 2
 	ld a, $3 ; pink page palette
 	call FillBoxCGB
 
-	hlcoord 13, 5, wAttrMap
+	hlcoord 13, 5, wAttrmap
 	lb bc, 2, 2
 	ld a, $4 ; green page palette
 	call FillBoxCGB
 
-	hlcoord 15, 5, wAttrMap
+	hlcoord 15, 5, wAttrmap
 	lb bc, 2, 2
 	ld a, $5 ; blue page palette
 	call FillBoxCGB
 
-	hlcoord 17, 5, wAttrMap
+	hlcoord 17, 5, wAttrmap
 	lb bc, 2, 2
 	ld a, $6 ; orange page palette
 	call FillBoxCGB
 
-	call ApplyAttrMap
+	call ApplyAttrmap
 	call ApplyPals
 	ld a, $1
 	ldh [hCGBPalUpdate], a
@@ -957,8 +957,8 @@ _CGB_PlayerOrMonFrontpicPals:
 	call GetPlayerOrMonPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
 	call VaryBGPal0ByTempMonDVs
-	call WipeAttrMap
-	call ApplyAttrMap
+	call WipeAttrmap
+	call ApplyAttrmap
 	call ApplyPals
 	ret
 
@@ -993,8 +993,8 @@ _CGB_TrainerOrMonFrontpicPals:
 	call GetFrontpicPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
 	call VaryBGPal0ByTempMonDVs
-	call WipeAttrMap
-	call ApplyAttrMap
+	call WipeAttrmap
+	call ApplyAttrmap
 	call ApplyPals
 	ret
 
