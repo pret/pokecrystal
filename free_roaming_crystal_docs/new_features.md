@@ -22,15 +22,16 @@
 
 ### Quality of Life Improvements - DONE
 
+- Reusable TMs
 - Hold B to Run
-- In-Game Trade Pokemon are renamable
-- Instant text speed
+- Instant text speed option
 - Fourth Stats Screen
   - DVs
   - Happiness
 - Berry Trees always give two berries
 - Nurse Joy turns you around after talking to her (prevents accidentally talking to her again)
 - Remove artificial save delay
+- In-Game Trade Pokemon are renamable
 
 ---
 
@@ -73,7 +74,6 @@
 
 #### QOL - High Priority
 
-- Reusable TMs
 - Poison overworld effect should be removed
 - Bill calls and switches your box when its full
 - Pressing B in a wild battle moves the cursor to RUN
