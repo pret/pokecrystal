@@ -663,6 +663,7 @@ Continue_DisplayGameTime:
 
 OakSpeech:
 	farcall InitClock
+	;farcal ResetClock ;TODO:
 	call AddAllHMsToBag
 
 	call RotateFourPalettesLeft
@@ -740,11 +741,41 @@ OakSpeech:
 	ld hl, OakText7
 	call PrintText
 
-	; TODO: Add OakText about you starter
 	; TODO: Let user pick from list of starters
 	; TODO: Give Starter based on selection
-	; TODO: BUG: Yes/No Nickname screen should not select 'YES' if the user presses 'B'
-	call GiveDatSquirtle
+	call ClearTileMap
+	predef StarterSelectionScreenInit
+	call ClearTileMap
+
+	; Display Starter and Nickname
+	ld a, [wCurPartySpecies]
+	ld [wCurSpecies], a
+	call GetBaseData
+
+	hlcoord 6, 4
+	call PrepMonFrontpic
+
+	xor a
+	ld [wTempMonDVs], a
+	ld [wTempMonDVs + 1], a
+
+	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
+	call GetSGBLayout
+	call Intro_WipeInFrontpic
+	call GiveStarterMon
+	call ClearTileMap
+	
+	; Display Player
+	xor a
+	ld [wCurPartySpecies], a
+	farcall DrawIntroPlayerPic
+
+	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
+	call GetSGBLayout
+	call Intro_RotatePalettesLeftFrontpic
+
+	ld hl, OakText8
+	call PrintText
 
 	; TODO: Draw Starter + Player Sprite
 	ret
@@ -759,7 +790,6 @@ AddAllHMsToBag:
 .give_all_HMs_loop
 	; e = HM to give
 	ld a, e
-	ld [wCurItem], a
 	ld c, a
 	farcall GetTMHMNumber
 
@@ -782,22 +812,18 @@ AddAllHMsToBag:
 	call .give_all_HMs_loop
 	ret
 
-GiveDatSquirtle:
-
-	ld a, $7 ; SQUIRTLE
-	ld [wCurPartySpecies], a
+GiveStarterMon:
 
 	ld a, $5 ; LVL 5
 	ld [wCurPartyLevel], a
 
-	ld a, $2 ; Ultra Ball
-	ld [wCurItem], a
+	; TODO: give item based on starter
+	;ld a, $2 ; Ultra Ball
+	;ld [wCurItem], a
 
 	ld a, 0
 	ld b, a
 	farcall GiveStarterPoke
-	ld a, b
-	ld [wScriptVar], a
 
 	ret
 
@@ -832,6 +858,10 @@ OakText6:
 
 OakText7:
 	text_far _OakText7
+	text_end
+
+OakText8:
+	text_far _OakText8
 	text_end
 
 NamePlayer:

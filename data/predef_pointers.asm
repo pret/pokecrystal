@@ -45,6 +45,7 @@ PredefPointers::
 	add_predef ListMovePP
 	add_predef GetGender
 	add_predef StatsScreenInit
+	add_predef StarterSelectionScreenInit
 	add_predef DrawPlayerHP
 	add_predef DrawEnemyHP
 	add_predef PrintTempMonStats ; $28

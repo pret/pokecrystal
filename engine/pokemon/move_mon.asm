@@ -1955,7 +1955,7 @@ GiveStarterPoke::
 .skip_nickname
 	pop bc
 	pop de
-	ret z
+	ret
 
 InitStarterNickname:
 	push de
