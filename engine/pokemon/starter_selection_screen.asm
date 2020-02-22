@@ -228,7 +228,6 @@ StarterSelectionScreen_JoypadAction:
 	ld e, a
 	ld a, [wStarterCursorPositionMon]
 	cp e ; last page
-	;jr z, .go_to_first_starter
 	jr z, .d_down
 	ld a, [wStarterCursorPositionMon]
 	add a, 1
@@ -274,12 +273,11 @@ StarterSelectionScreen_JoypadAction:
 	ret
 
 .a_button
-	;ld hl, IsThisYourPartnerText
-	;call PrintText
-	;call YesNoBox
-	;jr c, .done
-	call .exit_starter_selection_screen
-
+	ld hl, IsThisYourPartnerText
+	call PrintText
+	call YesNoBox
+	jr c, .load_mon
+	jr .mon_selected
 .done
 	ret
 
@@ -299,15 +297,12 @@ StarterSelectionScreen_JoypadAction:
 	ld a, [wNumStartersInCategory]
 	sub a, 1
 	ld [wStarterCursorPositionMon], a
-	call .load_mon
-	ret
-
 .load_mon
 	ld h, 0 ; StarterStatsInit
 	call StarterSelectionScreen_SetJumptableIndex
 	ret
 
-.exit_starter_selection_screen
+.mon_selected
 	ld h, 4 ; StarterSelectionScreen_Exit
 	call StarterSelectionScreen_SetJumptableIndex
 	ret
