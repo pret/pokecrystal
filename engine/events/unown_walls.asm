@@ -1,4 +1,3 @@
-INCLUDE "charmap.inc"
 INCLUDE "constants/event_flags.inc"
 INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/item_constants.inc"

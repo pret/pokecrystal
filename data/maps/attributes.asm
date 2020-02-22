@@ -1,4 +1,3 @@
-INCLUDE "charmap.inc"
 INCLUDE "macros/scripts/maps.inc"
 INCLUDE "constants/map_constants.inc"
 INCLUDE "constants/map_data_constants.inc"
