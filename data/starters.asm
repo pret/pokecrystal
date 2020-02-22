@@ -1,10 +1,12 @@
-NUM_STARTER_CATEGORIES EQU 9
+NUM_STARTER_CATEGORIES EQU 11
 
 NUM_BASIC_STARTERS EQU 8
-NUM_ROCKET_STARTERS EQU 3
+NUM_ROCKET_STARTERS EQU 4
 NUM_ANIME_STARTERS EQU 3
 NUM_COMMON_STARTERS EQU 13
-NUM_UNCOMMON_STARTERS EQU 69
+NUM_UNCOMMON_STARTERS EQU 58
+NUM_FOSSIL_STARTERS EQU  3
+NUM_SAFARI_STARTERS EQU 7
 NUM_TRADE_STARTERS EQU 4
 NUM_PSEUDO_LEGEND_STARTERS EQU 2
 NUM_BABY_STARTERS EQU 9
@@ -34,6 +36,8 @@ GetStarterCategory:
 	dw GetAnimeStarters
 	dw GetCommonStarters
 	dw GetUncommonStarters
+	dw GetFossilStarters
+	dw GetSafariStarters
 	dw GetTradeStarters
 	dw GetPseudoLegendaryStarters
 	dw GetBabyStarters
@@ -70,6 +74,18 @@ GetUncommonStarters:
 	ld [wNumStartersInCategory], a
 	ret
 
+GetFossilStarters:
+	ld hl, FossilStarters
+	ld a, NUM_FOSSIL_STARTERS
+	ld [wNumStartersInCategory], a
+	ret
+
+GetSafariStarters:
+	ld hl, SafariStarters
+	ld a, NUM_SAFARI_STARTERS
+	ld [wNumStartersInCategory], a
+	ret
+
 GetTradeStarters:
 	ld hl, TradeStarters
     ld a, NUM_TRADE_STARTERS
@@ -94,16 +110,43 @@ GetChallengeStarters:
 	ld [wNumStartersInCategory], a
 	ret
 
+GetStarterCategoryName:
+	push hl
+	ld a, [wStarterCursorPositionCategory]
+	ld hl, CategoryNames
+	ld e, a
+	ld d, 0
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	pop hl
+	ret
+
 CategoryNames:
-	db "BASIC@"
-	db "ROCKET@"
-	db "ANIME@"
-	db "COMMON@"
-	db "UNCOMMON@"
-	db "TRADE@"
-	db "PSEDUO LEGEND@"
-	db "BABY@"
-	db "CHALLENGE@"
+	dw .basic
+	dw .rocket
+	dw .anime
+	dw .common
+    dw .uncommon
+	dw .fossil
+	dw .safari
+    dw .trade
+    dw .pseudo_legend
+    dw .baby
+    dw .challenge
+.basic db "BASIC@"
+.rocket db "ROCKET@"
+.anime db "ANIME@"
+.common db "COMMON@"
+.uncommon db "UNCOMMON@"
+.fossil db "FOSSIL@"
+.safari db "SAFARI@"
+.trade db "TRADE@"
+.pseudo_legend db "PSEDUO LEGEND@"
+.baby db "BABY@"
+.challenge db "CHALLENGE@"
 
 BasicStarters:
 	dw CHIKORITA
@@ -119,6 +162,7 @@ RocketStarters:
 	dw MEOWTH
 	dw EKANS
 	dw KOFFING
+	dw GRIMER
 
 AnimeStarters:
 	dw PSYDUCK
@@ -150,38 +194,27 @@ UncommonStarters:
 	dw GROWLITHE
 	dw POLIWAG
 	dw BELLSPROUT
-	dw PONYTA
+	dw PONYTA ;10
 	dw SLOWPOKE
 	dw MAGNEMITE
 	dw DODUO
 	dw SEEL
-	dw GRIMER
 	dw SHELLDER
 	dw ONIX
 	dw KRABBY
 	dw VOLTORB
-	dw EXEGGCUTE
 	dw CUBONE
-	dw LICKITUNG
-	dw RHYHORN
-	dw CHANSEY
+	dw RHYHORN ; 20
 	dw TANGELA
-	dw KANGASKHAN
 	dw HORSEA
 	dw GOLDEEN
 	dw STARYU
 	dw MR__MIME
-	dw SCYTHER
-	dw PINSIR
-	dw TAUROS
 	dw LAPRAS
 	dw SNORLAX
 	dw PORYGON
-	dw OMANYTE
-	dw KABUTO
-	dw AERODACTYL
 	dw CHINCHOU
-	dw NATU
+	dw NATU ; 30
 	dw MAREEP
 	dw MARILL
 	dw SUDOWOODO
@@ -191,7 +224,7 @@ UncommonStarters:
 	dw WOOPER
 	dw MURKROW
 	dw MISDREAVUS
-	dw GIRAFARIG
+	dw GIRAFARIG ; 40
 	dw PINECO
 	dw GLIGAR
 	dw SNUBBULL
@@ -201,7 +234,7 @@ UncommonStarters:
 	dw TEDDIURSA
 	dw SLUGMA
 	dw SWINUB
-	dw CORSOLA
+	dw CORSOLA ; 50
 	dw REMORAID
 	dw DELIBIRD
 	dw MANTINE
@@ -209,7 +242,21 @@ UncommonStarters:
 	dw HOUNDOUR
 	dw PHANPY
 	dw STANTLER
-	dw MILTANK
+	dw MILTANK ; 58
+
+FossilStarters:
+	dw OMANYTE
+	dw KABUTO
+	dw AERODACTYL
+
+SafariStarters:
+	dw TAUROS
+	dw SCYTHER
+	dw PINSIR
+	dw CHANSEY
+	dw KANGASKHAN
+	dw EXEGGCUTE
+	dw LICKITUNG
 
 TradeStarters:
 	dw ABRA
