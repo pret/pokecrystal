@@ -112,7 +112,7 @@ StarterStatsInit:
 
 	call PlaceNavigationArrows
 	call PlaceMonName
-	;call PlaceStarterCategory
+	call PlaceStarterCategory
 
 	ld hl, wcf64
 	set 4, [hl]
@@ -121,9 +121,9 @@ StarterStatsInit:
 	ret
 
 PlaceNavigationArrows:
-	hlcoord 4, 9
+	hlcoord 4, 7
 	ld [hl], "◀"
-	hlcoord 15, 9
+	hlcoord 15, 7
 	ld [hl], "▶"
 	ret
 
@@ -132,15 +132,26 @@ PlaceMonName:
 	ld [wNamedObjectTypeBuffer], a
 	farcall GetName
 	ld de, wStringBuffer1
-	hlcoord 1, 1
+	hlcoord 2, 0
 	call PlaceString
 	ret
 
 PlaceStarterCategory:
-	ld de, wStringBuffer2
-	hlcoord 10, 12
+	ld de, .category_label
+	hlcoord 2, 11
+	call PlaceString
+	ld de, .mon_label
+	hlcoord 2, 12
+	call PlaceString
+
+	call GetStarterCategoryName
+	hlcoord 3, 1
 	call PlaceString
 	ret
+.category_label
+	db "CATEGORY: UP/DOWN@"
+.mon_label
+	db "MON: LEFT/RIGHT@"
 
 StarterSelectionScreen_LoadPage:
 	call StarterSelectionScreen_LoadGFX
@@ -217,7 +228,8 @@ StarterSelectionScreen_JoypadAction:
 	ld e, a
 	ld a, [wStarterCursorPositionMon]
 	cp e ; last page
-	jr z, .go_to_first_starter
+	;jr z, .go_to_first_starter
+	jr z, .d_down
 	ld a, [wStarterCursorPositionMon]
 	add a, 1
 	ld [wStarterCursorPositionMon], a
@@ -227,7 +239,8 @@ StarterSelectionScreen_JoypadAction:
 .d_left
 	ld a, [wStarterCursorPositionMon]
 	cp 0 ; first page
-	jr z, .go_to_last_starter
+	;jr z, .go_to_last_starter
+	jr z, .go_to_last_starter_in_prev_category
 	ld a, [wStarterCursorPositionMon]
 	sub a, 1
 	ld [wStarterCursorPositionMon], a
@@ -239,7 +252,7 @@ StarterSelectionScreen_JoypadAction:
 	ld [wStarterCursorPositionMon], a ; start from first mon in category
 
 	ld a, [wStarterCursorPositionCategory]
-	cp 0 ; last category
+	cp 0 ; first category
 	jr z, .done
 	ld a, [wStarterCursorPositionCategory]
 	sub a, 1
@@ -261,6 +274,10 @@ StarterSelectionScreen_JoypadAction:
 	ret
 
 .a_button
+	;ld hl, IsThisYourPartnerText
+	;call PrintText
+	;call YesNoBox
+	;jr c, .done
 	call .exit_starter_selection_screen
 
 .done
@@ -275,17 +292,16 @@ StarterSelectionScreen_JoypadAction:
 	call StarterSelectionScreen_SetJumptableIndex
 	ret
 
-.go_to_first_starter
-	xor a
+.go_to_last_starter_in_prev_category
+	call .d_up
+	call GetStarterCategory
+.go_to_last_starter
+	ld a, [wNumStartersInCategory]
+	sub a, 1
 	ld [wStarterCursorPositionMon], a
 	call .load_mon
 	ret
 
-.go_to_last_starter
-	ld a, NUM_BASIC_STARTERS - 1
-	LD [wStarterCursorPositionMon], a
-	call .load_mon
-	ret
 
 .load_mon
 	ld h, 0 ; StarterStatsInit
@@ -344,7 +360,7 @@ StarterSelectionScreen_PlaceFrontpic:
 	ld hl, wcf64
 	set 5, [hl]
 
-	hlcoord 6, 4
+	hlcoord 6, 2
 	call PrepMonFrontpic
 	ret
 
@@ -352,3 +368,7 @@ StarterSelectionScreen_GetAnimationParam:
 	ld bc, wTempMonSpecies
 	xor a
 	ret
+
+IsThisYourPartnerText:
+	text_far _IsThisYourPartnerText
+	text_end
