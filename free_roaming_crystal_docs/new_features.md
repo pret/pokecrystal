@@ -2,6 +2,19 @@
 
 ## Done
 
+### Open World Features - DONE
+
+- Start with any base or baby pokemon
+- Start with all HMs
+- Badges are not required to use HMs
+- Once you can use FLY, you can fly anywhere within the current region!
+- Begin the Game with a Starter (currently Squirtle)
+- Start with Pokegear
+  - Map Card
+  - Radio Card
+  - Phone Card
+  - EXPN Card
+
 ### Cosmetic - DONE
 
 - Vary Each Pokemon's Palette Based On Its DVs
@@ -14,30 +27,30 @@
 - Instant text speed
 - Fourth Stats Screen
   - DVs
-  - Caught Data
-    - Time
-    - Level
-    - Locations
   - Happiness
 - Berry Trees always give two berries
 - Nurse Joy turns you around after talking to her (prevents accidentally talking to her again)
 - Remove artificial save delay
 
-### Open World Features - DONE
-
-- Start with all HMs
-- Badges are not required to use HMs
-- Once you can use FLY, you can fly anywhere within the current region!
-- Begin the Game with a Starter (currently Squirtle)
-- Start with Pokegear
-  - Map Card
-  - Radio Card
-  - Phone Card
-  - EXPN Card
-
 ---
 
 ## TODO
+
+### Open World Features - TODO
+
+#### OPF - High Priority
+
+- Start from any town
+- Scaling Trainers
+  - Define 16 different sets??
+  - Define 8 different sets??
+  - Define certain pokemon and level/evolve those Pokemon after each badge??
+
+#### OPF - Medium Priority
+
+- Scaling Wildmon
+- Replace HMs with tools
+- Rebattleable Gyms
 
 ### Cosmetic - TODO
 
@@ -101,7 +114,7 @@
 ### Gift Pokemon - TODO
 
 - Squirtle (Sunglasses Variant) from Officer Jenny
-- Bulbasaur from Cerulean Orphanage
+- Bulbasaur from Cerulean Orphanage (flower headband?)
 - Charmander from responsible trainer above Cerulean
 
 ### New Items - TODO
@@ -117,23 +130,6 @@
 - Mewtwo in Cerulean Cave
 - Mew in Pokemon Mansion
 - Celebi in Ilex Forest
-
-### Open World Features - TODO
-
-#### OPF - High Priority
-
-- Start with any base or baby pokemon
-- Start from any town
-- Scaling Trainers
-  - Define 16 different sets??
-  - Define 8 different sets??
-  - Define certain pokemon and level/evolve those Pokemon after each badge??
-
-#### OPF - Medium Priority
-
-- Scaling Wildmon
-- Replace HMs with tools
-- Rebattleable Gyms
 
 ### Bugfixes - TODO
 
