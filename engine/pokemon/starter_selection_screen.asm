@@ -19,13 +19,13 @@ StarterSelectionScreenInit_gotaddress:
 	push bc
 	push hl
 	call ClearBGPalettes
-	call ClearTileMap
+	call ClearTilemap
 	call UpdateSprites
 	farcall StatsScreen_LoadFont
 	pop hl
 	call _hl_
 	call ClearBGPalettes
-	call ClearTileMap
+	call ClearTilemap
 	pop bc
 
 	; restore old values
@@ -81,7 +81,7 @@ StarterSelectionScreen_WaitAnim:
 .finish
 	ld hl, wcf64
 	res 5, [hl]
-	farcall HDMATransferTileMapToWRAMBank3
+	farcall HDMATransferTilemapToWRAMBank3
 	ret
 
 StarterSelectionScreen_SetJumptableIndex:
@@ -101,8 +101,8 @@ StarterStatsInit:
 	res 6, [hl]
 
 	call ClearBGPalettes
-	call ClearTileMap
-	farcall HDMATransferTileMapToWRAMBank3
+	call ClearTilemap
+	farcall HDMATransferTilemapToWRAMBank3
 
 	call PopulateStarterInfo
 	ld a, [hl]
