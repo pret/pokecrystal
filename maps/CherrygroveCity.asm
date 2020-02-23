@@ -117,14 +117,6 @@ CherrygroveTeacherScript:
 CherrygroveYoungsterScript:
 	faceplayer
 	opentext
-	checkflag ENGINE_POKEDEX
-	iftrue .HavePokedex
-	writetext CherrygroveYoungsterText_NoPokedex
-	waitbutton
-	closetext
-	end
-
-.HavePokedex:
 	writetext CherrygroveYoungsterText_HavePokedex
 	waitbutton
 	closetext
