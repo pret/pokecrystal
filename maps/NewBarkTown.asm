@@ -76,14 +76,6 @@ NewBarkTownTeacherScript:
 	iftrue .CallMom
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue .TellMomYoureLeaving
-	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
-	iftrue .MonIsAdorable
-	writetext Text_GearIsImpressive
-	waitbutton
-	closetext
-	end
-
-.MonIsAdorable:
 	writetext Text_YourMonIsAdorable
 	waitbutton
 	closetext
