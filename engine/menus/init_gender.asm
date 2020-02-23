@@ -10,12 +10,11 @@ InitCrystalData:
 	ld [wd478], a
 	ld [wd002], a
 	ld [wd003], a
-	; could have done "ld a, [wd479] \ and %11111100", saved four operations
 	ld a, [wd479]
-	res 0, a
+	res 0, a ; ???
 	ld [wd479], a
 	ld a, [wd479]
-	res 1, a
+	res 1, a ; ???
 	ld [wd479], a
 	ret
 

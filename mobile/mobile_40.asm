@@ -6469,7 +6469,7 @@ Function102e07:
 	jr .okay
 
 .link_battle
-; this is idiotic
+; the next three operations are pointless
 	hlcoord 3, 10
 	ld b,  1
 	ld c, 11

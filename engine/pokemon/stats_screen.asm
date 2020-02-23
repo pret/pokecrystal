@@ -60,7 +60,7 @@ StatsScreenInit_gotaddress:
 StatsScreenMain:
 	xor a
 	ld [wJumptableIndex], a
-	; stupid interns
+; ???
 	ld [wcf64], a
 	ld a, [wcf64]
 	and %11111100
@@ -80,7 +80,7 @@ StatsScreenMain:
 StatsScreenMobile:
 	xor a
 	ld [wJumptableIndex], a
-	; stupid interns
+; ???
 	ld [wcf64], a
 	ld a, [wcf64]
 	and %11111100
