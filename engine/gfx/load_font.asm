@@ -1,23 +1,5 @@
 INCLUDE "gfx/font.asm"
 
-; This and the following two functions are unreferenced.
-; Debug, perhaps?
-Unreferenced_fb434:
-	db 0
-
-Unreferenced_Functionfb435:
-	ld a, [Unreferenced_fb434]
-	and a
-	jp nz, Get1bpp_2
-	jp Get1bpp
-
-Unreferenced_Functionfb43f:
-	ld a, [Unreferenced_fb434]
-	and a
-	jp nz, Get2bpp_2
-	jp Get2bpp
-; End unreferenced block
-
 _LoadStandardFont::
 	ld de, Font
 	ld hl, vTiles1

@@ -581,25 +581,6 @@ CopyBTTrainer_FromBT_OT_TowBT_OTTemp:
 SkipBattleTowerTrainer:
 	ret
 
-Unreferenced_Function1704ca:
-	ld a, [$be46]
-	cp $7
-	jr c, .asm_1704d3
-	ld a, $6
-
-.asm_1704d3
-	ld hl, $afce
-	ld de, -$e0
-.asm_1704d9
-	and a
-	jr z, .asm_1704e0
-	add hl, de
-	dec a
-	jr .asm_1704d9
-
-.asm_1704e0
-	ret
-
 Function1704e1:
 	call SpeechTextbox
 	call FadeToMenu

@@ -415,19 +415,6 @@ TMHMPocket_GetCurrentLineCoord:
 	jr nz, .loop
 	ret
 
-Unreferenced_Function2ca95:
-	pop hl
-	ld bc, 3
-	add hl, bc
-	predef GetTMHMMove
-	ld a, [wTempTMHM]
-	ld [wPutativeTMHMMove], a
-	call GetMoveName
-	push hl
-	call PlaceString
-	pop hl
-	ret
-
 TMHM_String_Cancel:
 	db "CANCEL@"
 
@@ -461,37 +448,6 @@ TMHM_PlaySFX_ReadText2:
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
 	pop de
-	ret
-
-Unreferenced_Function2cadf:
-	call ConvertCurItemIntoCurTMHM
-	call .CheckHaveRoomForTMHM
-	ld hl, .NoRoomTMHMText
-	jr nc, .print
-	ld hl, .ReceivedTMHMText
-.print
-	jp PrintText
-
-.NoRoomTMHMText:
-	text_far _NoRoomTMHMText
-	text_end
-
-.ReceivedTMHMText:
-	text_far _ReceivedTMHMText
-	text_end
-
-.CheckHaveRoomForTMHM:
-	ld a, [wTempTMHM]
-	dec a
-	ld hl, wTMsHMs
-	ld b, 0
-	ld c, a
-	add hl, bc
-	ld a, [hl]
-	inc a
-	cp NUM_TMS * 2
-	ret nc
-	ld [hl], a
 	ret
 
 CountTMsHMs:

@@ -1561,22 +1561,6 @@ Function28b22:
 	ldh [rSC], a
 	ret
 
-Unreferenced_Function28b42:
-	hlcoord 0, 16
-	ld a, "┘"
-	ld bc, 2 * SCREEN_WIDTH
-	call ByteFill
-	hlcoord 1, 16
-	ld a, " "
-	ld bc, SCREEN_WIDTH - 2
-	call ByteFill
-	hlcoord 2, 16
-	ld de, .Cancel
-	jp PlaceString
-
-.Cancel:
-	db "CANCEL@"
-
 Function28b68:
 	ld a, [wOtherPlayerLinkMode]
 	hlcoord 6, 9
@@ -1969,18 +1953,6 @@ LoadTradeScreenBorder:
 SetTradeRoomBGPals:
 	farcall LoadTradeRoomBGPals ; just a nested farcall; so wasteful
 	call SetPalettes
-	ret
-
-Unreferenced_Function28f09:
-	hlcoord 0, 0
-	ld b, 6
-	ld c, 18
-	call LinkTextboxAtHL
-	hlcoord 0, 8
-	ld b, 6
-	ld c, 18
-	call LinkTextboxAtHL
-	farcall PlaceTradePartnerNamesAndParty
 	ret
 
 INCLUDE "engine/movie/trade_animation.asm"
