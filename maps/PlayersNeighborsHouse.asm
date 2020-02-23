@@ -17,31 +17,7 @@ PlayersNeighborsHouseBookshelfScript:
 	jumpstd magazinebookshelf
 
 PlayersNeighborsHouseRadioScript:
-	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
-	iftrue .NormalRadio
-	checkevent EVENT_LISTENED_TO_INITIAL_RADIO
-	iftrue .AbbreviatedRadio
-	playmusic MUSIC_POKEMON_TALK
-	opentext
-	writetext PlayerNeighborRadioText1
-	pause 45
-	writetext PlayerNeighborRadioText2
-	pause 45
-	writetext PlayerNeighborRadioText3
-	pause 45
-	musicfadeout MUSIC_NEW_BARK_TOWN, 16
-	writetext PlayerNeighborRadioText4
-	pause 45
-	closetext
-	setevent EVENT_LISTENED_TO_INITIAL_RADIO
-	end
-.NormalRadio:
 	jumpstd radio1
-.AbbreviatedRadio:
-	opentext
-	writetext PlayerNeighborRadioText4
-	pause 45
-	closetext
 	end
 
 PlayersNeighborsDaughterText:
