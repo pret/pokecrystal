@@ -63,4 +63,4 @@ Start::
 
 ; The cartridge header data is filled in by rgbfix.
 ; This makes sure it doesn't get used.
-	ds $0150 - @
+	ds $0150 - $0104
