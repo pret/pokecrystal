@@ -103,14 +103,6 @@ MomScript:
 	iftrue .BankOfMom
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue .GaveMysteryEgg
-	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
-	iftrue .GotAPokemon
-	writetext HurryUpElmIsWaitingText
-	waitbutton
-	closetext
-	end
-
-.GotAPokemon:
 	writetext SoWhatWasProfElmsErrandText
 	waitbutton
 	closetext

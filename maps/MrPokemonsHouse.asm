@@ -87,12 +87,7 @@ MrPokemonsHouse_OakScript:
 	turnobject PLAYER, RIGHT
 	opentext
 	writetext MrPokemonsHouse_OakText1
-	promptbutton
-	waitsfx
-	writetext MrPokemonsHouse_GetDexText
-	playsound SFX_ITEM
-	waitsfx
-	setflag ENGINE_POKEDEX
+	waitbutton
 	writetext MrPokemonsHouse_OakText2
 	waitbutton
 	closetext
@@ -120,27 +115,9 @@ MrPokemonsHouse_OakScript:
 	writetext MrPokemonText_ImDependingOnYou
 	waitbutton
 	closetext
-	setevent EVENT_RIVAL_NEW_BARK_TOWN
 	setevent EVENT_PLAYERS_HOUSE_1F_NEIGHBOR
 	clearevent EVENT_PLAYERS_NEIGHBORS_HOUSE_NEIGHBOR
 	setscene SCENE_FINISHED
-	setmapscene CHERRYGROVE_CITY, SCENE_CHERRYGROVECITY_MEET_RIVAL
-	setmapscene ELMS_LAB, SCENE_ELMSLAB_MEET_OFFICER
-	specialphonecall SPECIALCALL_ROBBED
-	clearevent EVENT_COP_IN_ELMS_LAB
-	checkevent EVENT_GOT_TOTODILE_FROM_ELM
-	iftrue .RivalTakesChikorita
-	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
-	iftrue .RivalTakesCyndaquil
-	setevent EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
-	end
-
-.RivalTakesChikorita:
-	setevent EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
-	end
-
-.RivalTakesCyndaquil:
-	setevent EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
 	end
 
 MrPokemonsHouse_ForeignMagazines:
@@ -175,13 +152,14 @@ MrPokemonIntroText1:
 	line "must be <PLAY_G>."
 
 	para "PROF.ELM said that"
-	line "you would visit."
+	line "you might visit"
+	cont "sometime."
 	done
 
 MrPokemonIntroText2:
-	text "This is what I"
-	line "want PROF.ELM to"
-	cont "examine."
+	text "Could you have"
+	line "PROF.ELM"
+	cont "examine this?"
 	done
 
 MrPokemonsHouse_GotEggText:
@@ -250,80 +228,25 @@ MrPokemonsHouse_OakText1:
 	line "ing my old friend"
 	cont "MR.#MON."
 
-	para "I heard you were"
-	line "running an errand"
-
-	para "for PROF.ELM, so I"
-	line "waited here."
-
-	para "Oh! What's this?"
-	line "A rare #MON!"
-
-	para "Let's see…"
-
-	para "Hm, I see!"
-
-	para "I understand why"
-	line "PROF.ELM gave you"
-
-	para "a #MON for this"
-	line "errand."
-
 	para "To researchers"
 	line "like PROF.ELM and"
 
 	para "I, #MON are our"
 	line "friends."
 
-	para "He saw that you"
-	line "would treat your"
+	para "I hope you feel"
+	line "the same way."
 
-	para "#MON with love"
-	line "and care."
-
-	para "…Ah!"
-
-	para "You seem to be"
-	line "dependable."
-
-	para "How would you like"
-	line "to help me out?"
-
-	para "See? This is the"
-	line "latest version of"
-	cont "#DEX."
-
-	para "It automatically"
-	line "records data on"
-
-	para "#MON you've"
-	line "seen or caught."
-
-	para "It's a hi-tech"
-	line "encyclopedia!"
-	done
-
-MrPokemonsHouse_GetDexText:
-	text "<PLAYER> received"
-	line "#DEX!"
 	done
 
 MrPokemonsHouse_OakText2:
-	text "Go meet many kinds"
-	line "of #MON and"
-
-	para "complete that"
-	line "#DEX!"
-
-	para "But I've stayed"
-	line "too long."
-
-	para "I have to get to"
+	text "I have to get to"
 	line "GOLDENROD for my"
 	cont "usual radio show."
 
-	para "<PLAY_G>, I'm"
-	line "counting on you!"
+	para "<PLAY_G>, I"
+	line "wish you good"
+	cont "luck!"
 	done
 
 MrPokemonText_GimmeTheScale:
