@@ -1,23 +1,9 @@
 INCLUDE "constants.asm"
 
-
 SECTION "NULL", ROM0
-
 NULL::
 
-
-INCLUDE "home/rst.asm"
-
-
-INCLUDE "home/interrupts.asm"
-
-
-SECTION "Header", ROM0
-
-Start::
-	nop
-	jp _Start
-
+INCLUDE "home/header.asm"
 
 SECTION "Home", ROM0
 
