@@ -288,10 +288,6 @@ endr
 	xor a
 	ld [wWhichIndexSet], a
 	call .FillMenuList
-
-	ld hl, wStatusFlags
-	bit STATUSFLAGS_POKEDEX_F, [hl]
-	jr z, .no_pokedex
 	ld a, STARTMENUITEM_POKEDEX
 	call .AppendMenuList
 .no_pokedex
@@ -315,8 +311,8 @@ endr
 
 	ld a, STARTMENUITEM_POKEGEAR
 	call .AppendMenuList
-.no_pokegear
 
+.status
 	ld a, STARTMENUITEM_STATUS
 	call .AppendMenuList
 
