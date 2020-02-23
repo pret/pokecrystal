@@ -121,9 +121,9 @@ StarterStatsInit:
 	ret
 
 PlaceNavigationArrows:
-	hlcoord 4, 7
+	hlcoord 4, 9
 	ld [hl], "◀"
-	hlcoord 15, 7
+	hlcoord 15, 9
 	ld [hl], "▶"
 	ret
 
@@ -132,20 +132,20 @@ PlaceMonName:
 	ld [wNamedObjectTypeBuffer], a
 	farcall GetName
 	ld de, wStringBuffer1
-	hlcoord 2, 0
+	hlcoord 1, 2
 	call PlaceString
 	ret
 
 PlaceStarterCategory:
 	ld de, .category_label
-	hlcoord 2, 11
+	hlcoord 1, 13
 	call PlaceString
 	ld de, .mon_label
-	hlcoord 2, 12
+	hlcoord 1, 14
 	call PlaceString
 
 	call GetStarterCategoryName
-	hlcoord 3, 1
+	hlcoord 3, 3
 	call PlaceString
 	ret
 .category_label
@@ -354,7 +354,7 @@ StarterSelectionScreen_PlaceFrontpic:
 	ld hl, wcf64
 	set 5, [hl]
 
-	hlcoord 6, 2
+	hlcoord 6, 4
 	call PrepMonFrontpic
 	ret
 
