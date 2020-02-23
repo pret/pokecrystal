@@ -514,9 +514,6 @@ PokeBallEffect:
 	and a
 	jr nz, .skip_pokedex
 
-	call CheckReceivedDex
-	jr z, .skip_pokedex
-
 	ld hl, NewDexDataText
 	call PrintText
 

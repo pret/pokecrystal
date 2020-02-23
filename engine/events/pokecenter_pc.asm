@@ -85,12 +85,6 @@ PCPC_TURN_OFF     EQU 4
 	db -1 ; end
 
 .ChooseWhichPCListToUse:
-	call CheckReceivedDex
-	jr nz, .got_dex
-	ld a, 0 ; before Pokédex
-	ret
-
-.got_dex
 	ld a, [wHallOfFameCount]
 	and a
 	ld a, 1 ; before Hall Of Fame
