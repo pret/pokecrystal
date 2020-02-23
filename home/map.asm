@@ -592,7 +592,7 @@ ReadObjectEvents::
 	jr z, .skip
 	; jr c, .skip
 
-; stupid waste of time and space
+	; could have done "inc hl" instead
 	ld bc, 1
 	add hl, bc
 ; Fill the remaining sprite IDs and y coords with 0 and -1, respectively.

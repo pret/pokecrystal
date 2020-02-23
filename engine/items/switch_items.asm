@@ -225,7 +225,6 @@ Function24a6c:
 	ret
 
 ItemSwitch_ConvertItemFormatToDW:
-; This function is absolutely idiotic.
 	push hl
 	ld a, [wMenuData_ScrollingMenuItemFormat]
 	ld c, a
