@@ -8,12 +8,7 @@
 - Start with all HMs
 - Badges are not required to use HMs
 - Once you can use FLY, you can fly anywhere within the current region!
-- Begin the Game with a Starter (currently Squirtle)
-- Start with Pokegear
-  - Map Card
-  - Radio Card
-  - Phone Card
-  - EXPN Card
+- Start with complete Pokegear
 
 ### Cosmetic - DONE
 
