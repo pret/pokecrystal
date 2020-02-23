@@ -30,3 +30,6 @@ IsInJohto::
 .Kanto:
 	ld a, 1
 	ret
+
+ret_2f3e::
+	ret
