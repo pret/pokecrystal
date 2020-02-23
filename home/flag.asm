@@ -93,11 +93,3 @@ endr
 	and [hl]
 	ld [hl], a
 	ret
-
-CheckReceivedDex::
-	ld de, ENGINE_POKEDEX
-	ld b, CHECK_FLAG
-	farcall EngineFlagAction
-	ld a, c
-	and a
-	ret
