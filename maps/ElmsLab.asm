@@ -108,13 +108,6 @@ ElmDirectionsScript:
 	writetext ElmDirectionsText1
 	waitbutton
 	closetext
-	addcellnum PHONE_ELM
-	opentext
-	writetext GotElmsNumberText
-	playsound SFX_REGISTER_PHONE_NUMBER
-	waitsfx
-	waitbutton
-	closetext
 	opentext
 	writetext ElmDirectionsText2
 	waitbutton
@@ -411,19 +404,14 @@ ElmDirectionsText1:
 	para "there, so you"
 	line "can't miss it."
 
-	para "But just in case,"
-	line "here's my phone"
-
-	para "number. Call me if"
-	line "anything comes up!"
 	done
 
 ElmDirectionsText2:
 	text "If your #MON is"
 	line "hurt, you should"
 
-	para "heal it with this"
-	line "machine."
+	para "heal it with the"
+	line "machine in back."
 
 	para "Feel free to use"
 	line "it anytime."

@@ -78,6 +78,13 @@ NewGame:
 
 	jp FinishContinueFunction
 
+AddInitialCellNums::
+	ld c, PHONE_MOM
+	farcall AddPhoneNumber
+	ld c, PHONE_ELM
+	farcall AddPhoneNumber
+	ret
+
 ; TODO: this function is unused
 ; save it for setting the day of the week without having to talk to your mom
 SetUpPokeGear:
@@ -665,6 +672,7 @@ OakSpeech:
 	farcall InitClock
 	;farcal ResetClock ;TODO:
 	call AddAllHMsToBag
+	CALL AddInitialCellNums
 
 	call RotateFourPalettesLeft
 	call ClearTilemap
