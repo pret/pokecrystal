@@ -120,46 +120,17 @@ MomPhoneHangUpText:
 	cont "for you, baby!"
 	done
 
-MomPhoneNoPokemonText:
+MomPhoneSpecialSaveMoneyText:
 	text "Hello?"
 
 	para "Oh, hi, <PLAYER>!"
-	line "Wasn't PROF.ELM"
-	cont "waiting for you?"
-	done
+	line "How is your"
+	cont "adventure going?"
 
-MomPhoneNoPokedexText:
-	text "Hello?"
+	para "That's great!"
+	line "Keep it up!"
 
-	para "Oh, hi, <PLAYER>!"
-	line "You're on a big"
-
-	para "mission for PROF."
-	line "ELM? Be good!"
-	done
-
-MomPhoneNoGymQuestText:
-	text "Hello?"
-
-	para "Hi, <PLAYER>! If"
-	line "you're done with"
-
-	para "your errand come"
-	line "on home, dear."
-	done
-
-MomPhoneLectureText:
-	text "Hello?"
-
-	para "…… <PLAYER>?"
-	line "I heard from PROF."
-
-	para "ELM that you went"
-	line "on a long trip."
-
-	para "I wish you would"
-	line "have told me…"
-
-	para "What about money?"
-	line "Should I save it?"
+	para "By the way, would"
+	line "like me to save"
+	cont "your money?"
 	done
