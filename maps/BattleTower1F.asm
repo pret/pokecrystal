@@ -324,8 +324,8 @@ BattleTower1FClerkScript:
 	checkitem COIN_CASE
 	iffalse Clerk_NoCoinCaseScript
 .loop
-	writetext ClerkWhichPrizeText
-	waitbutton
+	;writetext ClerkWhichPrizeText
+	;waitbutton
 	writetext ClerkClearText
 	special DisplayCoinCaseBalance
 	loadmenu .MenuHeader
@@ -345,6 +345,14 @@ BattleTower1FClerkScript:
 	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
 	readmem wRandMon
+	
+	refreshscreen
+	pokepic USE_SCRIPT_VAR
+	cry USE_SCRIPT_VAR
+	waitbutton
+	closepokepic
+	opentext
+	
 	getmonname STRING_BUFFER_3, USE_SCRIPT_VAR
 	scall Clerk_ConfirmPurchaseScript
 	iffalse .loop ;Clerk_CancelPurchaseScript
@@ -1080,5 +1088,5 @@ BattleTower1F_MapEvents:
 	object_event  5,  3, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BattleTower1FBugCatcherScript, -1
 	object_event 18,  3, SPRITE_GRANNY, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTower1FGrannyScript, -1
 	object_event 21, 10, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, PAL_NPC_RED, BattleTower1FTeacherScript, -1
-	object_event 2, 9, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BattleTower1FClerkScript, -1
+	object_event 2, 10, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BattleTower1FClerkScript, -1
 	object_event  4, 11, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, BattleTowerCoinCase, EVENT_GOLDENROD_UNDERGROUND_COIN_CASE
