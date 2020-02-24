@@ -10,7 +10,7 @@
 - Once you can use FLY, you can fly anywhere within the current region!
 - Start with complete Pokegear
 
-### Cosmetic - DONE
+### Forms - DONE
 
 - Vary Each Pokemon's Palette Based On Its DVs
 - Shininess is determined by all DVs being 10 or over
@@ -48,11 +48,9 @@
 - Replace HMs with tools
 - Rebattleable Gyms
 
-### Cosmetic - TODO
+### Forms - TODO
 
 - [Fix Some Shiny Pokemon Palettes](./shiny_changes.md)
-- Add Menu Icons For Each Pokemon
-  - Add Menu Icon Palettes For Each Pokemon Menu Icon
 - Pokemon Forms  
   - Pokemon should be able to switch forms
   - Add Forms
@@ -64,6 +62,8 @@
     - R/B/G/Y
     - Beta
     - Plant-based Pokemon Autumn Form
+    - Pinkan Berry item transformation
+    - Megas (look at armored mewtwo in Polished Crystal)
 
 ### Quality of Life Improvements - TODO
 
@@ -79,6 +79,8 @@
 - Low HP beeping
 - Remove useless moves and replace with useful moves
 - Display kanto badges on trainer card
+- Add Menu Icons For Each Pokemon
+- Add Menu Icon Palettes For Each Pokemon Menu Icon
   
 #### QOL - Medium Priority
 
