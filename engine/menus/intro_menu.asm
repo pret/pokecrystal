@@ -85,41 +85,6 @@ AddInitialCellNums::
 	farcall AddPhoneNumber
 	ret
 
-; TODO: this function is unused
-; save it for setting the day of the week without having to talk to your mom
-SetUpPokeGear:
-	setflag ENGINE_POKEGEAR
-	setflag ENGINE_PHONE_CARD
-	addcellnum PHONE_MOM
-	setevent EVENT_PLAYERS_HOUSE_MOM_1
-	clearevent EVENT_PLAYERS_HOUSE_MOM_2
-	special SetDayOfWeek
-.SetDayOfWeek:
-	writetext IsItDSTText
-	yesorno
-	iffalse .WrongDay
-	special InitialSetDSTFlag
-	yesorno
-	iffalse .SetDayOfWeek
-	sjump .FinishPhone
-
-.WrongDay:
-	special InitialClearDSTFlag
-	yesorno
-	iffalse .SetDayOfWeek
-
-.FinishPhone:
-	waitbutton
-	closetext
-	ret
-
-IsItDSTText:
-	text "Is it Daylight"
-	line "Saving Time now?"
-	done
-
-
-
 AreYouABoyOrAreYouAGirl:
 	farcall Mobile_AlwaysReturnNotCarry ; some mobile stuff
 	jr c, .ok
@@ -669,18 +634,19 @@ Continue_DisplayGameTime:
 	jp PrintNum
 
 OakSpeech:
-	farcall InitClock
-	;farcal ResetClock ;TODO:
+	call RotateFourPalettesLeft
+	call ClearTilemap
+
+	call RotateFourPalettesRight
+	farcall RestartClock
 	call AddAllHMsToBag
 	CALL AddInitialCellNums
 
-	call RotateFourPalettesLeft
 	call ClearTilemap
 
 	ld de, MUSIC_ROUTE_30
 	call PlayMusic
 
-	call RotateFourPalettesRight
 	call RotateThreePalettesRight
 	xor a
 	ld [wCurPartySpecies], a

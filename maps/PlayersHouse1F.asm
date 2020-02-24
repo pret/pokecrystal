@@ -18,104 +18,9 @@ PlayersHouse1F_MapScripts:
 .DummyScene1:
 	end
 
-MeetMomLeftScript:
-	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-
-MeetMomRightScript:
-	playmusic MUSIC_MOM
-	showemote EMOTE_SHOCK, PLAYERSHOUSE1F_MOM1, 15
-	turnobject PLAYER, LEFT
-	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	iffalse .OnRight
-	applymovement PLAYERSHOUSE1F_MOM1, MomTurnsTowardPlayerMovement
-	sjump MeetMomScript
-
-.OnRight:
-	applymovement PLAYERSHOUSE1F_MOM1, MomWalksToPlayerMovement
-MeetMomScript:
-	opentext
-	writetext ElmsLookingForYouText
-	promptbutton
-	setscene SCENE_FINISHED
-	setevent EVENT_PLAYERS_HOUSE_MOM_1
-	clearevent EVENT_PLAYERS_HOUSE_MOM_2
-	special SetDayOfWeek
-.SetDayOfWeek:
-	writetext IsItDSTText
-	yesorno
-	iffalse .WrongDay
-	special InitialSetDSTFlag
-	yesorno
-	iffalse .SetDayOfWeek
-	sjump .DayOfWeekDone
-
-.WrongDay:
-	special InitialClearDSTFlag
-	yesorno
-	iffalse .SetDayOfWeek
-.DayOfWeekDone:
-	writetext ComeHomeForDSTText
-
-.FinishPhone:
-	waitbutton
-	closetext
-	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	iftrue .FromRight
-	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
-	iffalse .FromLeft
-	sjump .Finish
-
-.FromRight:
-	applymovement PLAYERSHOUSE1F_MOM1, MomTurnsBackMovement
-	sjump .Finish
-
-.FromLeft:
-	applymovement PLAYERSHOUSE1F_MOM1, MomWalksBackMovement
-	sjump .Finish
-
-.Finish:
-	special RestartMapMusic
-	turnobject PLAYERSHOUSE1F_MOM1, LEFT
-	end
-
-MeetMomTalkedScript:
-	playmusic MUSIC_MOM
-	sjump MeetMomScript
-
-PokegearName:
-	db "#GEAR@"
-
-PlayersHouse1FReceiveItemStd:
-	jumpstd receiveitem
-	end
-
 MomScript:
 	faceplayer
-	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
-	checkscene
-	iffalse MeetMomTalkedScript ; SCENE_DEFAULT
 	opentext
-	checkevent EVENT_FIRST_TIME_BANKING_WITH_MOM
-	iftrue .FirstTimeBanking
-	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
-	iftrue .BankOfMom
-	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
-	iftrue .GaveMysteryEgg
-	writetext SoWhatWasProfElmsErrandText
-	waitbutton
-	closetext
-	end
-
-.FirstTimeBanking:
-	writetext ImBehindYouText
-	waitbutton
-	closetext
-	end
-
-.GaveMysteryEgg:
-	setevent EVENT_FIRST_TIME_BANKING_WITH_MOM
-.BankOfMom:
-	setevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	special BankOfMom
 	waitbutton
 	closetext
@@ -181,53 +86,6 @@ MomWalksBackMovement:
 	slow_step LEFT
 	; step_end causes moving artifacts, so we use:
 	step_resume
-
-ElmsLookingForYouText:
-	text "Oh, <PLAYER>…! Our"
-	line "neighbor, PROF."
-
-	para "ELM, was looking"
-	line "for you."
-
-	para "He said he wanted"
-	line "you to do some-"
-	cont "thing for him."
-
-	done
-
-IsItDSTText:
-	text "Is it Daylight"
-	line "Saving Time now?"
-	done
-
-ComeHomeForDSTText:
-	text "Come home to"
-	line "adjust your clock"
-
-	para "for Daylight"
-	line "Saving Time."
-	done
-
-SoWhatWasProfElmsErrandText:
-	text "So, what was PROF."
-	line "ELM's errand?"
-
-	para "…"
-
-	para "That does sound"
-	line "challenging."
-
-	para "But, you should be"
-	line "proud that people"
-	cont "rely on you."
-	done
-
-ImBehindYouText:
-	text "<PLAYER>, do it!"
-
-	para "I'm behind you all"
-	line "the way!"
-	done
 
 NeighborMornIntroText:
 	text "Good morning,"
@@ -302,9 +160,7 @@ PlayersHouse1F_MapEvents:
 	warp_event  7,  7, NEW_BARK_TOWN, 2
 	warp_event  9,  0, PLAYERS_HOUSE_2F, 1
 
-	db 2 ; coord events
-	coord_event  8,  4, SCENE_DEFAULT, MeetMomLeftScript
-	coord_event  9,  4, SCENE_DEFAULT, MeetMomRightScript
+	db 0 ; coord events
 
 	db 4 ; bg events
 	bg_event  0,  1, BGEVENT_READ, StoveScript

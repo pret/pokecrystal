@@ -37,10 +37,7 @@ _OakText8::
 	done
 
 _ClockTimeMayBeWrongText::
-	text "The clock's time"
-	line "may be wrong."
-
-	para "Please reset the"
+	text "Please set the"
 	line "time."
 	prompt
 
@@ -49,7 +46,6 @@ _ClockSetWithControlPadText::
 	line "Control Pad."
 
 	para "Confirm: A Button"
-	line "Cancel:  B Button"
 	done
 
 _ClockIsThisOKText::
@@ -58,7 +54,7 @@ _ClockIsThisOKText::
 
 _ClockHasResetText::
 	text "The clock has been"
-	line "reset."
+	line "set."
 	done
 
 _LinkTimeoutText::

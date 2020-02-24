@@ -78,7 +78,7 @@ RestartClock:
 	ld hl, .ClockIsThisOKText
 	call PrintText
 	call YesNoBox
-	jr c, .cancel
+	jr c, .display_instructions_and_loop
 	ld a, [wBuffer4]
 	ld [wStringBuffer2], a
 	ld a, [wBuffer5]
@@ -95,9 +95,10 @@ RestartClock:
 	xor a
 	ret
 
-.cancel
-	ld a, $1
-	ret
+.display_instructions_and_loop:
+	jp .ClockSetWithControlPadText
+	call PrintText
+	jr .loop
 
 .ClockIsThisOKText:
 	text_far _ClockIsThisOKText
@@ -115,8 +116,6 @@ RestartClock:
 	pop af
 	bit 0, a
 	jr nz, .press_A
-	bit 1, a
-	jr nz, .press_B
 	bit 6, a
 	jr nz, .pressed_up
 	bit 7, a
@@ -129,11 +128,6 @@ RestartClock:
 
 .press_A
 	ld a, $0
-	scf
-	ret
-
-.press_B
-	ld a, $1
 	scf
 	ret
 
@@ -206,13 +200,6 @@ RestartClock:
 	ld [wBuffer2], a
 	ret
 
-.unreferenced
-; unused
-	ld a, [wBuffer3]
-	ld b, a
-	call Coord2Tile
-	ret
-
 .PlaceChars:
 	push de
 	call RestartClock_GetWraparoundTime
@@ -226,11 +213,3 @@ RestartClock:
 	add hl, bc
 	ld [hl], e
 	ret
-
-UnreferencedString_HourJP:
-; unused
-	db "じ@" ; HR
-
-UnreferencedString_MinuteJP:
-; unused
-	db "ふん@" ; MIN
