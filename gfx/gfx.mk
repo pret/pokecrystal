@@ -1,32 +1,32 @@
 ### Catch-all graphics rules
 
-%.2bpp: %.png $(dir_output)/tools/gfx | $$(@D)/.mkdir
+%.2bpp: %.png $(dir_tools)/gfx | $$(@D)/.mkdir
 	$(RGBGFX) $(rgbgfx) -o $@ $<
 	$(if $(tools/gfx),\
-		$(dir_output)/tools/gfx $(tools/gfx) -o $@ $@)
+		$(dir_tools)/gfx $(tools/gfx) -o $@ $@)
 
-%.1bpp: %.png $(dir_output)/tools/gfx | $$(@D)/.mkdir
+%.1bpp: %.png $(dir_tools)/gfx | $$(@D)/.mkdir
 	$(RGBGFX) $(rgbgfx) -d1 -o $@ $<
 	$(if $(tools/gfx),\
-		$(dir_output)/tools/gfx $(tools/gfx) -d1 -o $@ $@)
+		$(dir_tools)/gfx $(tools/gfx) -d1 -o $@ $@)
 
 %.gbcpal: %.png | $$(@D)/.mkdir
 	$(RGBGFX) -p $@ $<
 
-%.dimensions: %.png $(dir_output)/tools/png_dimensions | $$(@D)/.mkdir
-	$(dir_output)/tools/png_dimensions $< $@
+%.dimensions: %.png $(dir_tools)/png_dimensions | $$(@D)/.mkdir
+	$(dir_tools)/png_dimensions $< $@
 
 
 ### Pokemon pic animation rules
 
-gfx/pokemon/%/front.animated.2bpp: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions $(dir_output)/tools/pokemon_animation_graphics | $$(@D)/.mkdir
-	$(dir_output)/tools/pokemon_animation_graphics -o $@ $(word 1,$^) $(word 2,$^)
-gfx/pokemon/%/front.animated.tilemap: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions $(dir_output)/tools/pokemon_animation_graphics | $$(@D)/.mkdir
-	$(dir_output)/tools/pokemon_animation_graphics -t $@ $(word 1,$^) $(word 2,$^)
-gfx/pokemon/%/bitmask.inc: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions $(dir_output)/tools/pokemon_animation | $$(@D)/.mkdir
-	$(dir_output)/tools/pokemon_animation -b $(word 1,$^) $(word 2,$^) > $@
-gfx/pokemon/%/frames.inc: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions $(dir_output)/tools/pokemon_animation | $$(@D)/.mkdir
-	$(dir_output)/tools/pokemon_animation -f $(word 1,$^) $(word 2,$^) > $@
+gfx/pokemon/%/front.animated.2bpp: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions $(dir_tools)/pokemon_animation_graphics | $$(@D)/.mkdir
+	$(dir_tools)/pokemon_animation_graphics -o $@ $(word 1,$^) $(word 2,$^)
+gfx/pokemon/%/front.animated.tilemap: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions $(dir_tools)/pokemon_animation_graphics | $$(@D)/.mkdir
+	$(dir_tools)/pokemon_animation_graphics -t $@ $(word 1,$^) $(word 2,$^)
+gfx/pokemon/%/bitmask.inc: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions $(dir_tools)/pokemon_animation | $$(@D)/.mkdir
+	$(dir_tools)/pokemon_animation -b $(word 1,$^) $(word 2,$^) > $@
+gfx/pokemon/%/frames.inc: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions $(dir_tools)/pokemon_animation | $$(@D)/.mkdir
+	$(dir_tools)/pokemon_animation -f $(word 1,$^) $(word 2,$^) > $@
 
 ifneq ($(filter 3.%,$(MAKE_VERSION)),)
 include $(dir_source)/gfx/make-3.x-hack.mk
@@ -36,21 +36,21 @@ endif
 ### Terrible hacks to match animations. Delete these rules if you don't care about matching.
 
 # Dewgong has an unused tile id in its last frame. The tile itself is missing.
-gfx/pokemon/dewgong/frames.inc: gfx/pokemon/dewgong/front.animated.tilemap gfx/pokemon/dewgong/front.dimensions $(dir_output)/tools/pokemon_animation | $$(@D)/.mkdir
-	$(dir_output)/tools/pokemon_animation -f $(word 1,$^) $(word 2,$^) > $@
+gfx/pokemon/dewgong/frames.inc: gfx/pokemon/dewgong/front.animated.tilemap gfx/pokemon/dewgong/front.dimensions $(dir_tools)/pokemon_animation | $$(@D)/.mkdir
+	$(dir_tools)/pokemon_animation -f $(word 1,$^) $(word 2,$^) > $@
 	echo "	db \$$4d" >> $@
 
 # Lugia has two unused tile ids in its last frame. The tiles themselves are missing.
-gfx/pokemon/lugia/frames.inc: gfx/pokemon/lugia/front.animated.tilemap gfx/pokemon/lugia/front.dimensions $(dir_output)/tools/pokemon_animation | $$(@D)/.mkdir
-	$(dir_output)/tools/pokemon_animation -f $(word 1,$^) $(word 2,$^) > $@
+gfx/pokemon/lugia/frames.inc: gfx/pokemon/lugia/front.animated.tilemap gfx/pokemon/lugia/front.dimensions $(dir_tools)/pokemon_animation | $$(@D)/.mkdir
+	$(dir_tools)/pokemon_animation -f $(word 1,$^) $(word 2,$^) > $@
 	echo "	db \$$5e, \$$59" >> $@
 
 # Girafarig has a redundant tile after the end. It is used in two frames, so it must be injected into the generated graphics.
 # This is more involved, so it's hacked into pokemon_animation_graphics.
-gfx/pokemon/girafarig/front.animated.2bpp: gfx/pokemon/girafarig/front.2bpp gfx/pokemon/girafarig/front.dimensions $(dir_output)/tools/pokemon_animation_graphics | $$(@D)/.mkdir
-	$(dir_output)/tools/pokemon_animation_graphics --girafarig -o $@ $(word 1,$^) $(word 2,$^)
-gfx/pokemon/girafarig/front.animated.tilemap: gfx/pokemon/girafarig/front.2bpp gfx/pokemon/girafarig/front.dimensions $(dir_output)/tools/pokemon_animation_graphics | $$(@D)/.mkdir
-	$(dir_output)/tools/pokemon_animation_graphics --girafarig -t $@ $(word 1,$^) $(word 2,$^)
+gfx/pokemon/girafarig/front.animated.2bpp: gfx/pokemon/girafarig/front.2bpp gfx/pokemon/girafarig/front.dimensions $(dir_tools)/pokemon_animation_graphics | $$(@D)/.mkdir
+	$(dir_tools)/pokemon_animation_graphics --girafarig -o $@ $(word 1,$^) $(word 2,$^)
+gfx/pokemon/girafarig/front.animated.tilemap: gfx/pokemon/girafarig/front.2bpp gfx/pokemon/girafarig/front.dimensions $(dir_tools)/pokemon_animation_graphics | $$(@D)/.mkdir
+	$(dir_tools)/pokemon_animation_graphics --girafarig -t $@ $(word 1,$^) $(word 2,$^)
 
 
 ### Misc file-specific graphics rules

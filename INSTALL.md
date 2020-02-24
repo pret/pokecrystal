@@ -189,3 +189,5 @@ To build **pokecrystal11.gbc**:
 ```bash
 make -j4 crystal11
 ```
+
+For more information about the `make` command, see [docs/makefile\_usage.md](docs/makefile_usage.md)

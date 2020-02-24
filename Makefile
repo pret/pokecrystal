@@ -1,3 +1,6 @@
+# Name of the ROM
+name = poke$(version)
+
 # Default version of the game to build
 version := crystal
 
@@ -8,7 +11,6 @@ versions := crystal crystal11 crystal-au
 # Variables used to locate the sources
 # This dir_source allows you to use `make -f path/to/Makefile` in any directory.
 dir_source := $(patsubst %/,%,$(dir $(word 1,$(MAKEFILE_LIST))))
-dir_output := .
 dir_version := $(dir_source)/version/$(version)
 
 ifeq ($(dir_source),.)
@@ -28,8 +30,11 @@ endif
 
 dir_source := ../..
 dir_build := build
-dirs_versions := $(foreach v,$(versions),$(dir_build)/$v)
+dirs_versions := $(foreach version,$(versions),$(dir_build)/$(version))
 
+# Allow setting ROM destination from the environment
+POKECRYSTAL_OUTPUT ?= .
+dir_output := $(POKECRYSTAL_OUTPUT)
 
 .PHONY: all
 all: $(dir_build)/$(version)
@@ -40,7 +45,9 @@ compare: $(versions)
 
 .PHONY: clean
 clean:
-	rm -rf build $(foreach v,$(versions),poke$v.gbc poke$v.sym poke$v.map) $(tools)
+	rm -rf $(dir_build)
+	rm -f $(foreach version,$(versions),"$(dir_output)/$(name).gbc" "$(dir_output)/$(name).sym" "$(dir_output)/$(name).map")
+	rm -f $(tools)
 
 # `tidy` will be passed through MAKECMDGOALS
 .PHONY: tidy
@@ -50,8 +57,8 @@ tidy: $(dirs_versions)
 .PHONY: $(dirs_versions)
 $(dirs_versions): $(dir_build)/%: tools
 	+@mkdir -p $@
-	+@$(MAKE) --no-print-directory -C $@ -f $(dir_source)/Makefile \
-	          dir_source=$(dir_source) dir_output=$(dir_source) version=$* \
+	+@$(MAKE) --no-print-directory -C $@ -f $(dir_source)/Makefile version=$* \
+	          dir_source=$(dir_source) dir_tools=$(dir_source)/tools \
 	          $(MAKECMDGOALS)
 
 # It's rather important that the tools are available and up-to-date before
@@ -62,11 +69,17 @@ tools: $(tools)
 
 # Allow for `make <version>`
 define defver
-.PHONY: $1
-$1: MAKECMDGOALS :=
-$1: $(dir_build)/$1
+.PHONY: $(version)
+$(version): MAKECMDGOALS :=
+$(version): $(dir_build)/$(version)
+ifneq ($(dir_output),.)
+	@mkdir -p "$(dir_output)"
+endif
+	@cp $(dir_build)/$(version)/$(name).gbc "$(dir_output)/$(name).gbc"
+	@cp $(dir_build)/$(version)/$(name).sym "$(dir_output)/$(name).sym"
+	@cp $(dir_build)/$(version)/$(name).map "$(dir_output)/$(name).map"
 endef
-$(foreach v,$(versions),$(eval $(call defver,$v)))
+$(foreach version,$(versions),$(eval $(call defver)))
 
 # Allow for `make version=<version> <path/to/file.o>`
 %: $(dir_build)/$(version) ; @:
@@ -113,6 +126,7 @@ dirs := audio data engine gfx home lib maps mobile ram
 files :=
 
 objects := $(call getobjects,$(dir_source),$(dirs),$(files))
+# Scan the version/ subdir if it exists
 ifneq ($(wildcard $(dir_version)),)
 objects := $(sort $(objects) $(call getobjects,$(dir_version),$(dirs),$(files)))
 endif
@@ -128,13 +142,14 @@ include $(dir_source)/version/$(version).mk
 ### Build targets
 
 .PHONY: all
-all: $(dir_output)/poke$(version).gbc
+all: $(name).gbc
 
 .PHONY: tidy
 tidy:
-	rm -f $(foreach f,gbc sym map,$(dir_output)/poke$(version).$f) $(objects) $(deps)
+	rm -f $(foreach f,gbc sym map,"$(dir_output)/$(name).$f" $(name).$f)
+	@rm -f $(objects) $(deps)
 
-$(dir_output)/poke$(version).gbc: layout.link $(objects)
+$(name).gbc: layout.link $(objects)
 	@echo $(RGBLINK) -n $(@:.gbc=.sym) -m $(@:.gbc=.map) -l $< -o $@
 	@$(RGBLINK) -n $(@:.gbc=.sym) -m $(@:.gbc=.map) -l $< -o $@ $(filter-out $<, $^)
 	$(RGBFIX) $(RGBFIXFLAGS) $@
@@ -143,12 +158,15 @@ $(dir_output)/poke$(version).gbc: layout.link $(objects)
 %.o: %.asm | $$(@D)/.mkdir
 	$(RGBASM) -i $(dir_version)/ -i $(dir_source)/ $(RGBASMFLAGS) -o $@ $<
 
+include $(dir_source)/tools/tools.mk
+include $(dir_source)/gfx/gfx.mk
+
 
 ### Dependency generation
 
-%.d: %.asm $(dir_output)/tools/scan_includes | $$(@D)/.mkdir
+%.d: %.asm $(dir_tools)/scan_includes | $$(@D)/.mkdir
 	@printf '%s: ' $*.o > $@
-	@$(dir_output)/tools/scan_includes -i $(dir_version)/ -i $(dir_source)/ $< >> $@
+	@$(dir_tools)/scan_includes -i $(dir_version)/ -i $(dir_source)/ $< >> $@
 
 ifeq ($(filter tidy,$(MAKECMDGOALS)),)
 -include $(deps)
@@ -157,31 +175,28 @@ endif
 
 ### Compression
 
-# For files that the compressor can't match, there will be a .lz file suffixed with the md5 hash of the correct uncompressed file.
+# For files that the compressor can't match, there will be a .lz file
+#   suffixed with the md5 hash of the correct uncompressed file.
 # If the hash of the uncompressed file matches, use this .lz instead.
 # This allows pngs to be used for compressed graphics and still match.
 
-hash = $(shell $(dir_output)/tools/md5 $< | cut -c 1-8)
-%.lz: % $(dir_output)/tools/md5 $(dir_output)/tools/lzcomp
+hash = $(shell $(dir_tools)/md5 $< | cut -c 1-8)
+%.lz: % $(dir_tools)/md5 $(dir_tools)/lzcomp
 	$(eval filename := $(dir_source)/$*.lz.$(hash))
 	$(if $(wildcard $(filename)),\
 		cp $(filename) $@,\
-		$(dir_output)/tools/lzcomp -- $< $@)
+		$(dir_tools)/lzcomp -- $< $@)
 
 
 ### Directory creation
 
-# Since we use VPATH, just using the path of the directory will cause it to
-#   be found in the VPATH, and the directory never being created where we need it.
-# That's why instead of just creating a directory, we also create a file
-#   simply called ".mkdir", which is hopefully never used in any source directory.
+# Since we use VPATH, just using the path of the directory will cause it to be
+#   found in the VPATH, and the directory never being created where we need it.
+# That's why instead of just creating a directory, we also create a file simply
+#   called ".mkdir", which is hopefully never used in any source directory.
 .mkdir: ;
 %/.mkdir::
 	@mkdir -p $(@D)
 	@touch $@
-
-
-include $(dir_source)/tools/tools.mk
-include $(dir_source)/gfx/gfx.mk
 
 endif
