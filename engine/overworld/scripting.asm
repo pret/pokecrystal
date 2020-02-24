@@ -2284,8 +2284,13 @@ Script_checkphonecall:
 Script_givepoke:
 ; script command 0x2d
 ; parameters: pokemon, level, item, trainer, trainer_name_pointer, pkmn_nickname
+;(pokemon = 0 aka pokemon = USE_SCRIPT_VAR to use wScriptVar)
 
 	call GetScriptByte
+	and a ;USE_SCRIPT_VAR
+	jr nz, .gotit
+	ld a, [wScriptVar]
+.gotit
 	ld [wCurPartySpecies], a
 	call GetScriptByte
 	ld [wCurPartyLevel], a

@@ -85,14 +85,14 @@ Script_DontSaveAndEndTheSession:
 	special BattleTowerAction
 	closetext
 	special FadeOutPalettes
-	warpfacing UP, BATTLE_TOWER_1F, 7, 7
+	warpfacing UP, BATTLE_TOWER_1F, 11, 7
 	opentext
 	sjump Script_BattleTowerHopeToServeYouAgain
 
 Script_FailedBattleTowerChallenge:
 	pause 60
 	special BattleTowerFade
-	warpfacing UP, BATTLE_TOWER_1F, 7, 7
+	warpfacing UP, BATTLE_TOWER_1F, 11, 7
 	setval BATTLETOWERACTION_CHALLENGECANCELED
 	special BattleTowerAction
 	opentext
@@ -104,7 +104,7 @@ Script_FailedBattleTowerChallenge:
 Script_BeatenAllTrainers:
 	pause 60
 	special BattleTowerFade
-	warpfacing UP, BATTLE_TOWER_1F, 7, 7
+	warpfacing UP, BATTLE_TOWER_1F, 11, 7
 Script_BeatenAllTrainers2:
 	opentext
 	writetext Text_CongratulationsYouveBeatenAllTheTrainers
@@ -140,13 +140,13 @@ BattleTowerBattleRoom_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event  3,  7, BATTLE_TOWER_HALLWAY, 4
-	warp_event  4,  7, BATTLE_TOWER_HALLWAY, 4
+	warp_event  5,  7, BATTLE_TOWER_HALLWAY, 4
+	warp_event  6,  7, BATTLE_TOWER_HALLWAY, 4
 
 	db 0 ; coord events
 
 	db 0 ; bg events
 
 	db 2 ; object events
-	object_event  4,  0, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BATTLE_TOWER_BATTLE_ROOM_YOUNGSTER
-	object_event  1,  6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
+	object_event  6,  0, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BATTLE_TOWER_BATTLE_ROOM_YOUNGSTER
+	object_event  3,  6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1

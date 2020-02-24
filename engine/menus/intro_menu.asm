@@ -69,7 +69,7 @@ NewGame:
 	ld a, 1
 	ld [wPrevLandmark], a
 
-	ld a, SPAWN_HOME
+	ld a, SPAWN_BATTLE_TOWER_OUTSIDE
 	ld [wDefaultSpawnpoint], a
 
 	ld a, MAPSETUP_WARP

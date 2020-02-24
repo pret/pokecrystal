@@ -4,6 +4,17 @@
 	const BATTLETOWER1F_COOLTRAINER_F
 	const BATTLETOWER1F_BUG_CATCHER
 	const BATTLETOWER1F_GRANNY
+	const BATTLETOWER1F_TEACHER
+	const BATTLETOWER1F_CLERK
+	const BATTLETOWER_POKE_BALL
+
+
+
+BATTLETOWER_MILD_COINS EQU 20
+BATTLETOWER_MEGA_COINS EQU 70
+BATTLETOWER_MYTHIC_COINS EQU 100
+
+
 
 BattleTower1F_MapScripts:
 	db 2 ; scene scripts
@@ -261,6 +272,213 @@ BattleTower1FBugCatcherScript:
 
 BattleTower1FGrannyScript:
 	jumptextfaceplayer Text_BattleTowerGranny
+
+BattleTower1FTeacherScript:
+	givecoins 500
+	jumptextfaceplayer Text_BattleTowerTeacher
+
+
+
+
+
+
+Clerk_NoCoinCaseScript:
+	writetext ClerkNoCoinCaseText
+	waitbutton
+	closetext
+	end
+
+Clerk_CancelPurchaseScript:
+	writetext ClerkQuitText
+	waitbutton
+	closetext
+	end
+
+Clerk_NotEnoughCoinsScript:
+	writetext ClerkNeedMoreCoinsText
+	waitbutton
+	closetext
+	end
+	
+Clerk_NoRoomForPrizeScript:
+	writetext ClerkNoMoreRoomText
+	waitbutton
+	closetext
+	end	
+	
+Clerk_ConfirmPurchaseScript:
+	writetext ClerkConfirmPrizeText
+	yesorno
+	end
+	
+
+
+BattleTower1FClerkScript:
+	random 251
+	addval 1
+	writemem wRandMon
+	faceplayer
+	opentext
+	writetext ClerkIntroText
+	waitbutton
+	checkitem COIN_CASE
+	iffalse Clerk_NoCoinCaseScript
+.loop
+	writetext ClerkWhichPrizeText
+	waitbutton
+	writetext ClerkClearText
+	special DisplayCoinCaseBalance
+	loadmenu .MenuHeader
+	verticalmenu
+	closewindow
+	ifequal 1, .Mild1
+	ifequal 2, .Mild2
+	ifequal 3, .Mild3
+	ifequal 4, .Mild4
+	ifequal 5, .Mega
+	ifequal 6, .Mythic
+	sjump Clerk_CancelPurchaseScript
+
+.Mild1:
+	checkcoins BATTLETOWER_MILD_COINS
+	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
+	readmem wRandMon
+	getmonname STRING_BUFFER_3, USE_SCRIPT_VAR
+	scall Clerk_ConfirmPurchaseScript
+	iffalse .loop ;Clerk_CancelPurchaseScript
+	waitsfx
+	playsound SFX_TRANSACTION
+	writetext ClerkHereYouGoText
+	waitbutton
+	readmem wRandMon
+	;setval USE_SCRIPT_VAR
+	special GameCornerPrizeMonCheckDex
+	readmem wRandMon
+	givepoke USE_SCRIPT_VAR, 40 
+	takecoins BATTLETOWER_MILD_COINS
+	sjump .loop
+
+.Mild2:
+	checkcoins BATTLETOWER_MILD_COINS
+	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
+	getmonname STRING_BUFFER_3, SKARMORY
+	scall Clerk_ConfirmPurchaseScript
+	iffalse .loop ;Clerk_CancelPurchaseScript
+	waitsfx
+	playsound SFX_TRANSACTION
+	writetext ClerkHereYouGoText
+	waitbutton
+	setval SKARMORY
+	special GameCornerPrizeMonCheckDex
+	givepoke SKARMORY, 50, MINT_BERRY
+	takecoins BATTLETOWER_MILD_COINS
+	sjump .loop
+
+.Mild3:
+	checkcoins BATTLETOWER_MILD_COINS
+	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
+	getmonname STRING_BUFFER_3, BLISSEY
+	scall Clerk_ConfirmPurchaseScript
+	iffalse .loop ;Clerk_CancelPurchaseScript
+	waitsfx
+	playsound SFX_TRANSACTION
+	writetext ClerkHereYouGoText
+	waitbutton
+	setval BLISSEY
+	special GameCornerPrizeMonCheckDex
+	givepoke BLISSEY, 50, LEFTOVERS
+	takecoins BATTLETOWER_MILD_COINS
+	sjump .loop
+	
+.Mild4:
+	checkcoins BATTLETOWER_MILD_COINS
+	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
+	getmonname STRING_BUFFER_3, TYRANITAR
+	scall Clerk_ConfirmPurchaseScript
+	iffalse .loop ;Clerk_CancelPurchaseScript
+	waitsfx
+	playsound SFX_TRANSACTION
+	writetext ClerkHereYouGoText
+	waitbutton
+	setval TYRANITAR
+	special GameCornerPrizeMonCheckDex
+	givepoke TYRANITAR, 50, MIRACLEBERRY
+	takecoins BATTLETOWER_MILD_COINS
+	sjump .loop	
+	
+.Mega:
+	checkcoins BATTLETOWER_MEGA_COINS
+	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
+	getmonname STRING_BUFFER_3, CHINCHOU
+	scall Clerk_ConfirmPurchaseScript
+	iffalse .loop ;Clerk_CancelPurchaseScript
+	waitsfx
+	playsound SFX_TRANSACTION
+	writetext ClerkHereYouGoText
+	waitbutton
+	setval CHINCHOU
+	special GameCornerPrizeMonCheckDex
+	givepoke CHINCHOU, 69
+	takecoins BATTLETOWER_MEGA_COINS
+	sjump .loop		
+
+.Mythic:
+	checkcoins BATTLETOWER_MYTHIC_COINS
+	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
+	getmonname STRING_BUFFER_3, LUGIA
+	scall Clerk_ConfirmPurchaseScript
+	iffalse .loop ;Clerk_CancelPurchaseScript
+	waitsfx
+	playsound SFX_TRANSACTION
+	writetext ClerkHereYouGoText
+	waitbutton
+	setval LUGIA
+	special GameCornerPrizeMonCheckDex
+	givepoke LUGIA, 15
+	takecoins BATTLETOWER_MYTHIC_COINS
+	sjump .loop		
+
+.MenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 2, 19, 17
+	dw .MenuData
+	db 1 ; default option
+
+.MenuData:
+	db STATICMENU_CURSOR ; flags
+	db 7 ; items
+	db "MILD         20@"
+	db "MILD         20@"
+	db "MILD         20@"
+	db "MILD         20@"
+	db "MEGA         70@"
+	db "MYTHIC      100@"
+	db "CANCEL@"
+
+
+
+
+
+BattleTowerCoinCase:
+	itemball COIN_CASE
+
+
+
+
+
+
 
 MovementData_BattleTower1FWalkToElevator:
 	step UP
@@ -780,6 +998,11 @@ Text_BattleTowerGranny:
 	line "winning battles."
 	done
 
+Text_BattleTowerTeacher:
+	text "Hello! Welcome to"
+	line "the battle tower!"
+	done
+
 Text_BattleTowerBugCatcher:
 	text "I'm trying to see"
 	line "how far I can go"
@@ -791,22 +1014,71 @@ Text_BattleTowerBugCatcher:
 	line "any fire #MON…"
 	done
 
+
+
+ClerkIntroText:
+	text "Hi! Welcome to the"
+	line "#MON shop!"
+	done
+
+ClerkNoCoinCaseText:
+	text "Get a coin case!"
+	done
+
+ClerkWhichPrizeText:
+	text "Please select a"
+	line "#MON."
+	done
+
+ClerkClearText:
+	text ""
+	done
+
+ClerkQuitText:
+	text "Have fun!"
+	done
+
+ClerkNeedMoreCoinsText:
+	text "Not enough coin,"
+	line "trainer."
+	done
+
+ClerkNoMoreRoomText:
+	text "It seems that your"
+	line "party is full."
+	done
+
+ClerkConfirmPrizeText:
+	text_ram wStringBuffer3
+	text "."
+	line "Is that right?"
+	done
+	
+ClerkHereYouGoText:
+	text "Here you go!"
+	done	
+	
+	
+
 BattleTower1F_MapEvents:
 	db 0, 0 ; filler
 
 	db 3 ; warp events
-	warp_event  7,  9, BATTLE_TOWER_OUTSIDE, 3
-	warp_event  8,  9, BATTLE_TOWER_OUTSIDE, 4
-	warp_event  7,  0, BATTLE_TOWER_ELEVATOR, 1
+	warp_event  11,  11, BATTLE_TOWER_OUTSIDE, 3
+	warp_event  12,  11, BATTLE_TOWER_OUTSIDE, 4
+	warp_event  11,  0, BATTLE_TOWER_ELEVATOR, 1
 
 	db 0 ; coord events
 
 	db 1 ; bg events
-	bg_event  6,  6, BGEVENT_READ, BattleTower1FRulesSign
+	bg_event  10,  6, BGEVENT_READ, BattleTower1FRulesSign
 
-	db 5 ; object events
-	object_event  7,  6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTower1FReceptionistScript, -1
-	object_event 14,  9, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BattleTower1FYoungsterScript, -1
-	object_event  4,  9, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BattleTower1FCooltrainerFScript, -1
-	object_event  1,  3, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BattleTower1FBugCatcherScript, -1
-	object_event 14,  3, SPRITE_GRANNY, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTower1FGrannyScript, -1
+	db 8 ; object events
+	object_event  11,  6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTower1FReceptionistScript, -1
+	object_event 18,  9, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BattleTower1FYoungsterScript, -1
+	object_event  8,  9, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BattleTower1FCooltrainerFScript, -1
+	object_event  5,  3, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BattleTower1FBugCatcherScript, -1
+	object_event 18,  3, SPRITE_GRANNY, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTower1FGrannyScript, -1
+	object_event 21, 10, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, PAL_NPC_RED, BattleTower1FTeacherScript, -1
+	object_event 2, 9, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BattleTower1FClerkScript, -1
+	object_event  4, 11, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, BattleTowerCoinCase, EVENT_GOLDENROD_UNDERGROUND_COIN_CASE

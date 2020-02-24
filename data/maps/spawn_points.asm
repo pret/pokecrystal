@@ -37,4 +37,5 @@ SpawnPoints:
 	spawn BLACKTHORN_CITY,            21, 30
 	spawn SILVER_CAVE_OUTSIDE,        23, 20
 	spawn FAST_SHIP_CABINS_SW_SSW_NW,  6,  2
+	spawn BATTLE_TOWER_OUTSIDE,		   8, 10
 	spawn N_A,                        -1, -1
