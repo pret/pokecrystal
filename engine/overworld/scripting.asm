@@ -233,6 +233,8 @@ ScriptCommandTable:
 	dw Script_getname                    ; a7
 	dw Script_wait                       ; a8
 	dw Script_checksave                  ; a9
+	dw Script_checksameday				 ; aa
+	dw Script_randomizeshop				 ; ab
 
 StartScript:
 	ld hl, wScriptFlags
@@ -2820,6 +2822,32 @@ Script_checksave:
 	ld a, c
 	ld [wScriptVar], a
 	ret
+	
+Script_checksameday:
+; script command 0xaa
+
+	ld a, [wDayLastSet]
+	ld b, a
+	ld a, [wCurDay]
+	cp b
+	jr z, .same
+	ld [wDayLastSet], a
+	xor a
+	ld [wScriptVar], a
+	ret
+.same
+	ld a, 1
+	ld [wScriptVar], a
+	ret
+
+Script_randomizeshop:
+; script command 0xab
+
+	random 251
+	addval 1
+	writemem wRandMon
+	ret
+
 
 ; unused
 	ld a, [.byte]

@@ -1,11 +1,11 @@
 ; Functions dealing with rendering and interacting with maps.
 
-ClearUnusedMapBuffer::
-	ld hl, wUnusedMapBuffer
-	ld bc, wUnusedMapBufferEnd - wUnusedMapBuffer
-	ld a, 0
-	call ByteFill
-	ret
+; ClearUnusedMapBuffer::
+	; ld hl, wUnusedMapBuffer
+	; ld bc, wUnusedMapBufferEnd - wUnusedMapBuffer
+	; ld a, 0
+	; call ByteFill
+	; ret
 
 CheckScenes::
 ; Checks wCurMapSceneScriptPointer.  If it's empty, returns -1 in a.  Otherwise, returns the active scene ID in a.

@@ -927,7 +927,13 @@ ENDU ; c7e8
 
 ; This was a buffer for map-related pointers in the 1997 G/S prototype.
 ; See wMapBuffer in pokegold-spaceworld's wram.asm.
-wUnusedMapBuffer:: ds 24
+
+; wUnusedMapBuffer:: ds 24
+
+wDayLastSet:: db
+wBTShop1:: db
+	ds 22
+
 wUnusedMapBufferEnd::
 
 

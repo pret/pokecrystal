@@ -1062,3 +1062,15 @@ ENDM
 checksave: MACRO
 	db checksave_command
 ENDM
+
+	enum checksameday_command ; $aa
+checksameday: MACRO
+	db checksameday_command
+ENDM
+
+	enum randomizeshop_command ; $ab
+randomizeshop: MACRO
+	db randomizeshop_command
+ENDM
+
+

@@ -314,9 +314,13 @@ Clerk_ConfirmPurchaseScript:
 
 
 BattleTower1FClerkScript:
+	checksameday	
+	iftrue .norand
+	;randomizeshop
 	random 251
 	addval 1
 	writemem wRandMon
+.norand	
 	faceplayer
 	opentext
 	writetext ClerkIntroText
