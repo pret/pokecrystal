@@ -60,8 +60,8 @@ StarterSelectionScreenMain:
 StarterSelectionScreenPointerTable:
 	dw StarterStatsInit                ; 0
 	dw StarterSelectionScreen_LoadPage ; 1
-	dw StarterSelectionScreenWaitCry   ; 2
-	dw StarterStatsJoypad              ; 3
+	dw StarterSelectionScreen          ; 2
+	dw StarterSelectionJoypad          ; 3
 	dw StarterSelectionScreen_Exit     ; 4
 
 StarterSelectionScreen_WaitAnim:
@@ -224,11 +224,10 @@ StarterSelectionScreen_LoadPage:
 	ld hl, wcf64
 	res 4, [hl]
 	ld a, [wJumptableIndex]
-	inc a ; StarterSelectionScreenWaitCry
-	ld [wJumptableIndex], a
+	inc a ; StarterSelectionScreen          d [wJumptableIndex], a
 	ret
 
-StarterStatsJoypad:
+StarterSelectionJoypad:
 	call StarterSelectionScreen_GetJoypad
 	jr nc, .next
 	ld h, 0 ; StarterStatsInit
@@ -239,11 +238,10 @@ StarterStatsJoypad:
 	and D_DOWN | D_UP | D_LEFT | D_RIGHT | A_BUTTON
 	jp StarterSelectionScreen_JoypadAction
 
-StarterSelectionScreenWaitCry:
-	call IsSFXPlaying
+StarterSelectionScreen          call IsSFXPlaying
 	ret nc
 	ld a, [wJumptableIndex]
-	inc a ; StarterStatsJoypad
+	inc a ; StarterSelectionJoypad
 	ld [wJumptableIndex], a
 	ret
 
@@ -339,6 +337,7 @@ StarterSelectionScreen_JoypadAction:
 	ret
 
 .a_button
+	; TODO: If Unown, pick forms
 	ld hl, IsThisYourPartnerText
 	call PrintText
 	call YesNoBox
