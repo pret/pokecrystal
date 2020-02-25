@@ -60,7 +60,7 @@ StarterSelectionScreenMain:
 StarterSelectionScreenPointerTable:
 	dw StarterStatsInit                ; 0
 	dw StarterSelectionScreen_LoadPage ; 1
-	dw StarterSelectionScreen          ; 2
+	dw StarterSelectionScreenNoCry     ; 2
 	dw StarterSelectionJoypad          ; 3
 	dw StarterSelectionScreen_Exit     ; 4
 
@@ -224,7 +224,8 @@ StarterSelectionScreen_LoadPage:
 	ld hl, wcf64
 	res 4, [hl]
 	ld a, [wJumptableIndex]
-	inc a ; StarterSelectionScreen          d [wJumptableIndex], a
+	inc a ; StarterSelectionScreenNoCry
+	ld [wJumptableIndex], a
 	ret
 
 StarterSelectionJoypad:
@@ -238,7 +239,8 @@ StarterSelectionJoypad:
 	and D_DOWN | D_UP | D_LEFT | D_RIGHT | A_BUTTON
 	jp StarterSelectionScreen_JoypadAction
 
-StarterSelectionScreen          call IsSFXPlaying
+StarterSelectionScreenNoCry
+	call IsSFXPlaying
 	ret nc
 	ld a, [wJumptableIndex]
 	inc a ; StarterSelectionJoypad
