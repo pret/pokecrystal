@@ -144,9 +144,9 @@ CategoryNames:
 .fossil db "FOSSIL@"
 .safari db "SAFARI@"
 .trade db "TRADE@"
-.pseudo_legend db "PSEDUO LEGEND@"
+.pseudo_legend db "PSEUDO L@"
 .baby db "BABY@"
-.challenge db "CHALLENGE@"
+.challenge db "CHALLNGE@"
 
 BasicStarters:
 	dw CHIKORITA

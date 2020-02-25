@@ -108,10 +108,16 @@ StarterStatsInit:
 	ld [wTempSpecies], a
 	ld [wCurSpecies], a
 	ld [wCurPartySpecies], a
+	push hl
+	farcall GetBaseData
+	pop hl
 
 	call PlaceNavigationArrows
 	call PlaceMonName
+	call PlaceMonTypes
 	call PlaceStarterCategory
+	call PlaceIndex
+	call PlaceInstructions
 
 	ld hl, wcf64
 	set 4, [hl]
@@ -131,27 +137,87 @@ PlaceMonName:
 	ld [wNamedObjectTypeBuffer], a
 	farcall GetName
 	ld de, wStringBuffer1
-	hlcoord 1, 2
+	hlcoord 1, 1
 	call PlaceString
+	ret
+
+PlaceMonTypes:
+	ld a, [wBaseType1]
+	ld [wNamedObjectIndexBuffer], a
+	farcall GetTypeName
+	ld de, wStringBuffer1
+	hlcoord 1, 3
+	call PlaceString
+
+.PrintSecondType
+	ld de, Slash
+	hlcoord 1, 4
+	call PlaceString
+
+	ld a, [wBaseType2]
+	ld [wNamedObjectIndexBuffer], a
+	farcall GetTypeName
+	ld de, wStringBuffer1
+	hlcoord 2, 4
+	call PlaceString
+
+	ret
+.done
 	ret
 
 PlaceStarterCategory:
+	call GetStarterCategoryName
+	hlcoord 12, 3
+	call PlaceString
+	ret
+
+PlaceIndex:
+	ld hl, wStarterCursorPositionMon
+
+	ld a, [hl]
+	add 1
+	ld [hl], a
+	ld d, h
+	ld e, l
+
+	hlcoord 14, 4
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
+	call PrintNum
+
+
+	ld hl, wStarterCursorPositionMon
+	ld a, [hl]
+	sub 1
+	ld [hl], a
+
+
+
+	ld de, Slash
+	hlcoord 16, 4
+	call PlaceString
+
+	ld de, wNumStartersInCategory
+	hlcoord 17, 4
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
+	call PrintNum
+	ret
+
+Slash:
+	db "/@"
+
+PlaceInstructions:
 	ld de, .mon_label
-	hlcoord 1, 14
+	hlcoord 2, 15
 	call PlaceString
 
 	ld de, .category_label
-	hlcoord 1, 15
-	call PlaceString
-
-	call GetStarterCategoryName
-	hlcoord 3, 3
+	hlcoord 1, 16
 	call PlaceString
 	ret
-.category_label
-	db "CATEGORY: UP/DOWN@"
 .mon_label
 	db "MON: LEFT/RIGHT@"
+.category_label
+	db "CATEGORY: UP/DOWN@"
 
 StarterSelectionScreen_LoadPage:
 	call StarterSelectionScreen_LoadGFX
@@ -354,7 +420,7 @@ StarterSelectionScreen_PlaceFrontpic:
 	ld hl, wcf64
 	set 5, [hl]
 
-	hlcoord 6, 5
+	hlcoord 6, 6
 	call PrepMonFrontpic
 	ret
 
