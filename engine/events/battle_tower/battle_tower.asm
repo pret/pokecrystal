@@ -29,7 +29,7 @@ Function1700c4:
 	call CopyBytes
 	ld hl, w3_d202Name
 	ld de, s5_aa8e
-	ld bc, 7 * $cc ; length of battle tower struct from japanese games?
+	ld bc, BATTLETOWER_STREAK_LENGTH * $cc ; length of battle tower struct from japanese games?
 	call CopyBytes
 	ld hl, s5_aa5d ; some sort of count
 	ld a, [hl]
@@ -582,22 +582,22 @@ SkipBattleTowerTrainer:
 	ret
 
 Unreferenced_Function1704ca:
-	ld a, [$be46]
-	cp $7
-	jr c, .asm_1704d3
-	ld a, $6
+	ld a, [s5_be46]
+	cp BATTLETOWER_STREAK_LENGTH
+	jr c, .not_max
+	ld a, BATTLETOWER_STREAK_LENGTH - 1
 
-.asm_1704d3
-	ld hl, $afce
-	ld de, -$e0
-.asm_1704d9
+.not_max
+	ld hl, s5_aa8e + BATTLE_TOWER_STRUCT_LENGTH * (BATTLETOWER_STREAK_LENGTH - 1)
+	ld de, -BATTLE_TOWER_STRUCT_LENGTH
+.loop
 	and a
-	jr z, .asm_1704e0
+	jr z, .done
 	add hl, de
 	dec a
-	jr .asm_1704d9
+	jr .loop
 
-.asm_1704e0
+.done
 	ret
 
 Function1704e1:
