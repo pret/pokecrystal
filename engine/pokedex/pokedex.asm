@@ -100,7 +100,7 @@ Pokedex::
 InitPokedex:
 	call ClearBGPalettes
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	call Pokedex_LoadGFX
 
 	ld hl, wPokedexDataStart
@@ -240,7 +240,7 @@ Pokedex_InitMainScreen:
 	ldh [hBGMapMode], a
 	call ClearSprites
 	xor a
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
 	call ByteFill
 	farcall DrawPokedexListWindow
@@ -739,7 +739,7 @@ Pokedex_InitSearchResultsScreen:
 	xor a
 	ldh [hBGMapMode], a
 	xor a
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	call Pokedex_SetBGMapMode4

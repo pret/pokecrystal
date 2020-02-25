@@ -84,7 +84,7 @@ WillObjectBumpIntoWater:
 	ld a, [hl]
 	ld d, a
 	call GetTileCollision
-	and a ; LANDTILE
+	and a ; LAND_TILE
 	jr z, WillObjectBumpIntoTile
 	scf
 	ret
@@ -96,7 +96,7 @@ WillObjectBumpIntoLand:
 	add hl, bc
 	ld a, [hl]
 	call GetTileCollision
-	cp WATERTILE
+	cp WATER_TILE
 	jr z, WillObjectBumpIntoTile
 	scf
 	ret
@@ -222,11 +222,11 @@ Function6fa1:
 	call GetCoordTile
 	call GetTileCollision
 	pop de
-	and a ; LANDTILE
+	and a ; LAND_TILE
 	jr nz, .not_land
 	call GetCoordTile
 	call GetTileCollision
-	and a ; LANDTILE
+	and a ; LAND_TILE
 	jr nz, .not_land
 	xor a
 	ret

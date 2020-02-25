@@ -124,14 +124,14 @@ Function117738:
 	farcall Function171ccd
 	depixel 6, 3
 	ld a, $1d
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, $c
 	add hl, bc
 	ld a, $6
 	ld [hl], a
 	depixel 9, 4
 	ld a, $1d
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, $c
 	add hl, bc
 	ld a, $7
@@ -540,7 +540,7 @@ Function117a94:
 	call ClearBGPalettes
 	call ClearSprites
 	farcall Function172e78
-	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
+	farcall HDMATransferAttrmapAndTilemapToWRAMBank3
 	ret
 
 Function117ab4::
@@ -557,7 +557,7 @@ Function117acd:
 	bit 7, a
 	jr nz, .asm_117ae2
 	call Function117ae9
-	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
+	farcall HDMATransferAttrmapAndTilemapToWRAMBank3
 	jr Function117acd
 
 .asm_117ae2

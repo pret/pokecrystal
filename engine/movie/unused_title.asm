@@ -10,7 +10,7 @@ SECTION "engine/movie/unused_title.asm", ROMX
 
 UnusedTitleScreen:
 	call ClearBGPalettes
-	call ClearTileMap
+	call ClearTilemap
 	call DisableLCD
 
 ; Turn BG Map update off

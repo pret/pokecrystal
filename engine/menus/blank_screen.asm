@@ -12,11 +12,11 @@ BlankScreen::
 	call ClearBGPalettes
 	call ClearSprites
 	hlcoord 0, 0
-	ld bc, wTileMapEnd - wTileMap
+	ld bc, wTilemapEnd - wTilemap
 	ld a, " "
 	call ByteFill
-	hlcoord 0, 0, wAttrMap
-	ld bc, wAttrMapEnd - wAttrMap
+	hlcoord 0, 0, wAttrmap
+	ld bc, wAttrmapEnd - wAttrmap
 	ld a, $7
 	call ByteFill
 	call WaitBGMap2

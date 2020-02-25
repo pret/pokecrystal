@@ -149,7 +149,7 @@ RunTradeAnimScript:
 	ld [wJumptableIndex], a
 	call ClearBGPalettes
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	call DisableLCD
 	call LoadFontsBattleExtra
 	callfar ClearSpriteAnims
@@ -359,7 +359,7 @@ TradeAnim_InitTubeAnim:
 
 	pop de
 	ld a, SPRITE_ANIM_INDEX_TRADEMON_ICON
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
@@ -368,7 +368,7 @@ TradeAnim_InitTubeAnim:
 
 	pop de
 	ld a, SPRITE_ANIM_INDEX_TRADEMON_BUBBLE
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
@@ -466,7 +466,7 @@ TradeAnim_TubeToPlayer6:
 TradeAnim_TubeToOT8:
 TradeAnim_TubeToPlayer8:
 	call ClearBGPalettes
-	call ClearTileMap
+	call ClearTilemap
 	call ClearSprites
 	call DisableLCD
 	callfar ClearSpriteAnims
@@ -534,7 +534,7 @@ TradeAnim_TubeAnimJumptable:
 
 .Zero:
 .Three:
-	call TradeAnim_BlankTileMap
+	call TradeAnim_BlankTilemap
 	hlcoord 9, 3
 	ld [hl], $5b
 	inc hl
@@ -546,7 +546,7 @@ TradeAnim_TubeAnimJumptable:
 	ret
 
 .One:
-	call TradeAnim_BlankTileMap
+	call TradeAnim_BlankTilemap
 	hlcoord 0, 3
 	ld bc, SCREEN_WIDTH
 	ld a, $60
@@ -554,7 +554,7 @@ TradeAnim_TubeAnimJumptable:
 	ret
 
 .Two:
-	call TradeAnim_BlankTileMap
+	call TradeAnim_BlankTilemap
 	hlcoord 0, 3
 	ld bc, $11
 	ld a, $60
@@ -593,7 +593,7 @@ TradeAnim_PlaceTrademonStatsOnTubeAnim:
 	call WaitTop
 	ld a, HIGH(vBGMap1)
 	ldh [hBGMapAddress + 1], a
-	call ClearTileMap
+	call ClearTilemap
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH
 	ld a, "─"
@@ -623,11 +623,11 @@ TradeAnim_PlaceTrademonStatsOnTubeAnim:
 	call WaitTop
 	ld a, HIGH(vBGMap0)
 	ldh [hBGMapAddress + 1], a
-	call ClearTileMap
+	call ClearTilemap
 	ret
 
 TradeAnim_EnterLinkTube1:
-	call ClearTileMap
+	call ClearTilemap
 	call WaitTop
 	ld a, $a0
 	ldh [hSCX], a
@@ -671,7 +671,7 @@ TradeAnim_ExitLinkTube:
 	ret
 
 .done
-	call ClearTileMap
+	call ClearTilemap
 	xor a
 	ldh [hSCX], a
 	call TradeAnim_AdvanceScriptPointer
@@ -735,7 +735,7 @@ TradeAnim_ScrollOutRight:
 	call WaitTop
 	ld a, HIGH(vBGMap0)
 	ldh [hBGMapAddress + 1], a
-	call ClearTileMap
+	call ClearTilemap
 	call TradeAnim_IncrementJumptableIndex
 	ret
 
@@ -840,7 +840,7 @@ TradeAnim_ShowFrontpic:
 	lb bc, 10, $31
 	call Request2bpp
 	call WaitTop
-	call TradeAnim_BlankTileMap
+	call TradeAnim_BlankTilemap
 	hlcoord 7, 2
 	xor a
 	ldh [hGraphicStartTile], a
@@ -925,7 +925,7 @@ ShowOTTrademonStats::
 
 TrademonStats_MonTemplate:
 	call WaitTop
-	call TradeAnim_BlankTileMap
+	call TradeAnim_BlankTilemap
 	ld a, HIGH(vBGMap1)
 	ldh [hBGMapAddress + 1], a
 	hlcoord 3, 0
@@ -945,7 +945,7 @@ TrademonStats_MonTemplate:
 
 TrademonStats_Egg:
 	call WaitTop
-	call TradeAnim_BlankTileMap
+	call TradeAnim_BlankTilemap
 	ld a, HIGH(vBGMap1)
 	ldh [hBGMapAddress + 1], a
 	hlcoord 3, 0
@@ -1012,7 +1012,7 @@ TrademonStats_PrintTrademonID:
 TradeAnim_RockingBall:
 	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_TRADE_POKE_BALL
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	call TradeAnim_AdvanceScriptPointer
 	ld a, 32
 	ld [wFrameCounter], a
@@ -1021,7 +1021,7 @@ TradeAnim_RockingBall:
 TradeAnim_DropBall:
 	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_TRADE_POKE_BALL
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld [hl], $1
@@ -1036,7 +1036,7 @@ TradeAnim_DropBall:
 TradeAnim_Poof:
 	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_TRADE_POOF
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	call TradeAnim_AdvanceScriptPointer
 	ld a, 16
 	ld [wFrameCounter], a
@@ -1049,7 +1049,7 @@ TradeAnim_BulgeThroughTube:
 	call DmgToCgbObjPal0
 	depixel 5, 11
 	ld a, SPRITE_ANIM_INDEX_TRADE_TUBE_BULGE
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	call TradeAnim_AdvanceScriptPointer
 	ld a, 64
 	ld [wFrameCounter], a
@@ -1277,7 +1277,7 @@ TradeAnim_Wait80Frames:
 	call DelayFrames
 	ret
 
-TradeAnim_BlankTileMap:
+TradeAnim_BlankTilemap:
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, " "

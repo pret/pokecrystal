@@ -4,18 +4,6 @@ INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/serial_constants.inc"
 
 
-SECTION "home/init.asm@NULL", ROM0
-NULL::
-
-
-SECTION "home/init.asm@Header", ROM0
-
-Start::
-	nop
-	jp _Start
-	ds $0150 - $0104
-
-
 SECTION "home/init.asm", ROM0
 
 Reset::
@@ -38,7 +26,7 @@ Reset::
 
 	jr Init
 
-_Start:
+_Start::
 	cp $11
 	jr z, .cgb
 	xor a

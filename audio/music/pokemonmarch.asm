@@ -4,74 +4,75 @@ INCLUDE "constants/music_common.inc"
 SECTION "audio/music/pokemonmarch.asm", ROMX
 
 Music_PokemonMarch::
-	musicheader 4, 1, Music_PokemonMarch_Ch1
-	musicheader 1, 2, Music_PokemonMarch_Ch2
-	musicheader 1, 3, Music_PokemonMarch_Ch3
-	musicheader 1, 4, Music_PokemonMarch_Ch4
+	channel_count 4
+	channel 1, Music_PokemonMarch_Ch1
+	channel 2, Music_PokemonMarch_Ch2
+	channel 3, Music_PokemonMarch_Ch3
+	channel 4, Music_PokemonMarch_Ch4
 
 Music_PokemonMarch_Ch1:
 	tempo 144
-	volume $77
-	stereopanning $f0
-	dutycycle $3
-	tone $0001
-	notetype $c, $42
+	volume 7, 7
+	stereo_panning TRUE, FALSE
+	duty_cycle 3
+	pitch_offset 1
+	note_type 12, 4, 2
 	octave 3
 	note D_, 4
-	intensity $62
+	volume_envelope 6, 2
 	note D_, 4
-	intensity $82
+	volume_envelope 8, 2
 	note D_, 4
-	intensity $a2
+	volume_envelope 10, 2
 	note D_, 4
-	notetype $8, $a2
+	note_type 8, 10, 2
 .mainloop:
-	callchannel .sub1
+	sound_call .sub1
 	note D#, 2
 	note C_, 2
 	note D#, 2
 	note C_, 2
-	callchannel .sub1
+	sound_call .sub1
 	note D#, 2
 	note C_, 2
 	note D#, 2
 	note G_, 2
-	callchannel .sub1
+	sound_call .sub1
 	note C_, 2
 	note C_, 2
 	note D#, 2
 	note C_, 2
-	callchannel .sub1
+	sound_call .sub1
 	note D#, 2
 	note C_, 2
 	note C#, 2
 	note D#, 2
-	callchannel .sub2
+	sound_call .sub2
 	note F_, 2
 	note D_, 2
 	note F_, 2
 	note D_, 2
-	callchannel .sub2
+	sound_call .sub2
 	note F_, 2
 	note D_, 2
 	note F_, 2
 	note A_, 2
-	callchannel .sub2
+	sound_call .sub2
 	note D_, 2
 	note D_, 2
 	note F_, 2
 	note D_, 2
-	callchannel .sub2
+	sound_call .sub2
 	note F_, 2
 	note D_, 2
 	note F_, 2
 	note G_, 2
-	callchannel .sub2
+	sound_call .sub2
 	note F_, 2
 	note D_, 2
 	note F_, 2
 	note D_, 2
-	callchannel .sub1
+	sound_call .sub1
 	note D#, 2
 	note C_, 2
 	note D#, 2
@@ -86,9 +87,9 @@ Music_PokemonMarch_Ch1:
 	note C_, 2
 	octave 2
 	note A#, 2
-	note __, 4
+	rest 4
 	note D#, 2
-	note __, 4
+	rest 4
 	octave 3
 	note D#, 2
 	note D#, 2
@@ -100,56 +101,56 @@ Music_PokemonMarch_Ch1:
 	note F_, 2
 	note G_, 4
 	note A#, 2
-	loopchannel 0, .mainloop
+	sound_loop 0, .mainloop
 
 .sub1:
-	note __, 4
+	rest 4
 	octave 3
 	note D#, 1
 	note D_, 1
 	note D#, 2
-	note __, 2
+	rest 2
 	note D#, 2
 	note D#, 2
-	note __, 2
-	endchannel
+	rest 2
+	sound_ret
 
 .sub2:
-	note __, 4
+	rest 4
 	note F_, 1
 	note E_, 1
 	note F_, 2
-	note __, 2
+	rest 2
 	note F_, 2
 	note F_, 2
-	note __, 2
-	endchannel
+	rest 2
+	sound_ret
 
 Music_PokemonMarch_Ch2:
-	dutycycle $2
-	vibrato $10, $22
-	notetype $c, $b2
+	duty_cycle 2
+	vibrato 16, 2, 2
+	note_type 12, 11, 2
 	octave 3
 	note G_, 4
 	note G_, 4
 	note G_, 4
 	note G_, 4
 .mainloop:
-	notetype $c, $b7
+	note_type 12, 11, 7
 	octave 3
 	note G#, 12
-	notetype $8, $b3
+	note_type 8, 11, 3
 	note D#, 2
 	note G#, 2
 	note A#, 2
 	octave 4
 	note C_, 2
-	note __, 16
-	note __, 6
-	notetype $8, $b7
+	rest 16
+	rest 6
+	note_type 8, 11, 7
 	octave 3
 	note G#, 16
-	notetype $8, $b3
+	note_type 8, 11, 3
 	note D#, 2
 	note G#, 4
 	note A#, 2
@@ -164,21 +165,21 @@ Music_PokemonMarch_Ch2:
 	octave 3
 	note A#, 2
 	note G#, 2
-	notetype $8, $b7
+	note_type 8, 11, 7
 	note A#, 16
-	notetype $8, $b3
+	note_type 8, 11, 3
 	note A#, 2
 	note F_, 2
 	note A#, 2
 	octave 4
 	note C_, 2
 	note D_, 2
-	note __, 16
-	note __, 6
-	notetype $8, $b7
+	rest 16
+	rest 6
+	note_type 8, 11, 7
 	octave 3
 	note A#, 16
-	notetype $8, $b3
+	note_type 8, 11, 3
 	note F_, 2
 	note A#, 4
 	octave 4
@@ -193,17 +194,17 @@ Music_PokemonMarch_Ch2:
 	note C_, 2
 	octave 3
 	note B_, 2
-	notetype $8, $b7
+	note_type 8, 11, 7
 	note A#, 16
-	notetype $8, $b3
+	note_type 8, 11, 3
 	note A_, 2
 	note A#, 4
 	octave 4
 	note C_, 2
-	notetype $8, $b7
+	note_type 8, 11, 7
 	octave 3
 	note G#, 16
-	notetype $8, $b3
+	note_type 8, 11, 3
 	note A#, 2
 	note G#, 4
 	note F_, 2
@@ -214,12 +215,12 @@ Music_PokemonMarch_Ch2:
 	note F#, 2
 	note F_, 2
 	note D#, 2
-	note __, 2
+	rest 2
 	octave 4
 	note D#, 1
 	note D_, 1
 	note D#, 1
-	note __, 5
+	rest 5
 	octave 3
 	note G_, 2
 	note G_, 2
@@ -228,45 +229,45 @@ Music_PokemonMarch_Ch2:
 	note A_, 2
 	note G#, 2
 	note G_, 2
-	note __, 2
+	rest 2
 	octave 4
 	note G_, 1
 	note F#, 1
 	note G_, 1
-	note __, 5
-	loopchannel 0, .mainloop
+	rest 5
+	sound_loop 0, .mainloop
 
 Music_PokemonMarch_Ch3:
-	stereopanning $f
-	notetype $c, $16
-	note __, 16
-	notetype $8, $16
+	stereo_panning FALSE, TRUE
+	note_type 12, 1, 6
+	rest 16
+	note_type 8, 1, 6
 .mainloop:
-	callchannel .sub1
-	note __, 2
+	sound_call .sub1
+	rest 2
 	octave 4
 	note D#, 2
-	callchannel .sub1
+	sound_call .sub1
 	octave 4
 	note G#, 2
 	note D#, 2
-	callchannel .sub1
-	note __, 2
+	sound_call .sub1
+	rest 2
 	octave 4
 	note D#, 2
 	octave 3
 	note G#, 2
-	note __, 2
+	rest 2
 	octave 4
 	note D#, 2
 	octave 3
 	note D#, 2
-	note __, 2
+	rest 2
 	octave 4
 	note D#, 2
 	octave 3
 	note G#, 2
-	note __, 2
+	rest 2
 	octave 4
 	note D#, 2
 	octave 3
@@ -276,39 +277,39 @@ Music_PokemonMarch_Ch3:
 .loop1:
 	octave 3
 	note A#, 2
-	note __, 2
+	rest 2
 	octave 4
 	note F_, 2
 	octave 3
 	note F_, 2
-	note __, 2
+	rest 2
 	octave 4
 	note F_, 2
 	octave 3
 	note G_, 2
-	note __, 2
+	rest 2
 	octave 4
 	note F_, 2
 	octave 3
 	note A_, 2
-	note __, 1
+	rest 1
 	octave 4
 	note F_, 2
-	note __, 1
-	loopchannel 3, .loop1
+	rest 1
+	sound_loop 3, .loop1
 	octave 3
 	note A#, 2
-	note __, 2
+	rest 2
 	octave 4
 	note F_, 2
 	octave 3
 	note F_, 2
-	note __, 2
+	rest 2
 	octave 4
 	note F_, 2
 	octave 3
 	note A#, 2
-	note __, 2
+	rest 2
 	octave 4
 	note F_, 2
 	note D_, 2
@@ -316,17 +317,17 @@ Music_PokemonMarch_Ch3:
 	octave 3
 	note B_, 2
 	note A#, 2
-	note __, 2
+	rest 2
 	octave 4
 	note F_, 2
 	octave 3
 	note F_, 2
-	note __, 2
+	rest 2
 	octave 4
 	note F_, 2
 	octave 3
 	note G_, 2
-	note __, 2
+	rest 2
 	octave 4
 	note F_, 2
 	octave 3
@@ -334,22 +335,22 @@ Music_PokemonMarch_Ch3:
 	note G_, 2
 	note A#, 2
 	note G#, 2
-	note __, 2
+	rest 2
 	octave 4
 	note D#, 2
 	octave 3
 	note D#, 2
-	note __, 2
+	rest 2
 	octave 4
 	note D#, 2
 	octave 3
 	note F_, 2
-	note __, 2
+	rest 2
 	octave 4
 	note D#, 2
 	octave 3
 	note G#, 2
-	note __, 2
+	rest 2
 	octave 4
 	note C_, 2
 	note D#, 2
@@ -359,10 +360,10 @@ Music_PokemonMarch_Ch3:
 	note F#, 2
 	note F_, 2
 	note D#, 2
-	note __, 4
+	rest 4
 	octave 3
 	note D#, 2
-	note __, 4
+	rest 4
 	octave 4
 	note G_, 2
 	note G_, 2
@@ -371,94 +372,94 @@ Music_PokemonMarch_Ch3:
 	note A_, 2
 	note G#, 2
 	note G_, 2
-	note __, 2
+	rest 2
 	note D#, 2
 	note F_, 2
-	note __, 2
+	rest 2
 	note G#, 2
-	loopchannel 0, .mainloop
+	sound_loop 0, .mainloop
 
 .sub1:
 	octave 3
 	note G#, 2
-	note __, 2
+	rest 2
 	octave 4
 	note D#, 2
 	octave 3
 	note D#, 2
-	note __, 2
+	rest 2
 	octave 4
 	note D#, 2
 	octave 3
 	note F_, 2
-	note __, 2
+	rest 2
 	octave 4
 	note D#, 2
 	octave 3
 	note G_, 2
-	endchannel
+	sound_ret
 
 Music_PokemonMarch_Ch4:
-	stereopanning $f0
-	togglenoise $5
-	notetype $8
-	callchannel .sub2
+	stereo_panning TRUE, FALSE
+	toggle_noise 5
+	drum_speed 8
+	sound_call .sub2
 .mainloop:
-	callchannel .sub1
-	note C_, 4
-	note C_, 2
-	note C_, 4
-	note C_, 2
-	note C_, 4
-	note C_, 5
-	notetype $6
-	note D_, 1
-	note D_, 1
-	note C#, 1
-	note C#, 1
-	notetype $8
-	callchannel .sub1
-	callchannel .sub2
-	callchannel .sub1
-	callchannel .sub2
-	callchannel .sub1
-	callchannel .sub2
-	callchannel .sub1
-	callchannel .sub2
-	note C#, 4
-	note C#, 2
-	note C#, 4
-	note C#, 2
-	note C#, 6
-	note C_, 2
-	notetype $4
-	note __, 5
-	notetype $6
-	note D_, 1
-	note D_, 1
-	notetype $8
-	callchannel .sub2
-	loopchannel 0, .mainloop
+	sound_call .sub1
+	drum_note 1, 4
+	drum_note 1, 2
+	drum_note 1, 4
+	drum_note 1, 2
+	drum_note 1, 4
+	drum_note 1, 5
+	drum_speed 6
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_speed 8
+	sound_call .sub1
+	sound_call .sub2
+	sound_call .sub1
+	sound_call .sub2
+	sound_call .sub1
+	sound_call .sub2
+	sound_call .sub1
+	sound_call .sub2
+	drum_note 2, 4
+	drum_note 2, 2
+	drum_note 2, 4
+	drum_note 2, 2
+	drum_note 2, 6
+	drum_note 1, 2
+	drum_speed 4
+	rest 5
+	drum_speed 6
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_speed 8
+	sound_call .sub2
+	sound_loop 0, .mainloop
 
 .sub1:
-	note C_, 4
-	note C_, 2
-	note C_, 4
-	note C_, 2
-	note C_, 4
-	note D_, 2
-	note D_, 2
-	note C#, 2
-	note C#, 2
-	endchannel
+	drum_note 1, 4
+	drum_note 1, 2
+	drum_note 1, 4
+	drum_note 1, 2
+	drum_note 1, 4
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 2, 2
+	drum_note 2, 2
+	sound_ret
 
 .sub2:
-	note C_, 4
-	note C_, 2
-	note C_, 4
-	note C_, 4
-	note C_, 4
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	endchannel
+	drum_note 1, 4
+	drum_note 1, 2
+	drum_note 1, 4
+	drum_note 1, 4
+	drum_note 1, 4
+	drum_note 2, 2
+	drum_note 3, 2
+	drum_note 2, 2
+	sound_ret

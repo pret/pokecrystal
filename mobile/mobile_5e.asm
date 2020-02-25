@@ -56,7 +56,7 @@ Function17a6a8:
 	call Function17aba0
 	farcall Function106464
 	call Function17ac0c
-	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
+	farcall HDMATransferAttrmapAndTilemapToWRAMBank3
 	call Function17abcf
 	farcall LoadOW_BGPal7
 	farcall Function49420
@@ -178,7 +178,7 @@ Function17a78f:
 	bit 7, [hl]
 	res 7, [hl]
 	jr nz, .asm_17a79f
-	farcall HDMATransferTileMapToWRAMBank3
+	farcall HDMATransferTilemapToWRAMBank3
 	ret
 
 .asm_17a79f
@@ -671,7 +671,7 @@ Function17aaa9:
 	call Function17aae3
 	ld c, a
 	ld b, $0
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	add hl, bc
 	push hl
 	ld a, $4
@@ -812,10 +812,10 @@ Function17ac1d:
 
 Function17ac2a:
 	ld hl, Tilemap_17ae3d
-	decoord 0, 4, wAttrMap
+	decoord 0, 4, wAttrmap
 	ld bc, (SCREEN_HEIGHT - 4) * SCREEN_WIDTH
 	call CopyBytes
-	hlcoord 0, 4, wAttrMap
+	hlcoord 0, 4, wAttrmap
 	ld bc, (SCREEN_HEIGHT - 4) * SCREEN_WIDTH
 .loop
 	ld a, [hl]

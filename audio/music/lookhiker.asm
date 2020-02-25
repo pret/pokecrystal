@@ -4,19 +4,20 @@ INCLUDE "constants/music_common.inc"
 SECTION "audio/music/lookhiker.asm", ROMX
 
 Music_LookHiker::
-	musicheader 4, 1, Music_LookHiker_Ch1
-	musicheader 1, 2, Music_LookHiker_Ch2
-	musicheader 1, 3, Music_LookHiker_Ch3
-	musicheader 1, 4, Music_LookHiker_Ch4
+	channel_count 4
+	channel 1, Music_LookHiker_Ch1
+	channel 2, Music_LookHiker_Ch2
+	channel 3, Music_LookHiker_Ch3
+	channel 4, Music_LookHiker_Ch4
 
 Music_LookHiker_Ch1:
 	tempo 132
-	volume $77
-	tone $0001
-	vibrato $12, $24
-	dutycycle $2
-	stereopanning $f
-	notetype $c, $68
+	volume 7, 7
+	pitch_offset 1
+	vibrato 18, 2, 4
+	duty_cycle 2
+	stereo_panning FALSE, TRUE
+	note_type 12, 6, 8
 	octave 3
 	note F#, 2
 	note F_, 2
@@ -27,19 +28,19 @@ Music_LookHiker_Ch1:
 	note E_, 2
 	note F_, 2
 	note F#, 2
-	note __, 4
+	rest 4
 	note F#, 2
-	note __, 4
+	rest 4
 	note F#, 2
-	note __, 2
+	rest 2
 	note F#, 2
-	note __, 6
-	loopchannel 0, .mainloop
+	rest 6
+	sound_loop 0, .mainloop
 
 Music_LookHiker_Ch2:
-	dutycycle $0
-	notetype $c, $a1
-	note __, 4
+	duty_cycle 0
+	note_type 12, 10, 1
+	rest 4
 	octave 1
 	note B_, 1
 	note B_, 5
@@ -52,7 +53,7 @@ Music_LookHiker_Ch2:
 	note D_, 1
 	note F#, 1
 	note D_, 1
-	intensity $a1
+	volume_envelope 10, 1
 .mainloop:
 	octave 1
 	note B_, 1
@@ -70,12 +71,12 @@ Music_LookHiker_Ch2:
 	note D_, 1
 	note F#, 1
 	note D_, 1
-	loopchannel 0, .mainloop
+	sound_loop 0, .mainloop
 
 Music_LookHiker_Ch3:
-	vibrato $12, $24
-	stereopanning $f0
-	notetype $c, $14
+	vibrato 18, 2, 4
+	stereo_panning TRUE, FALSE
+	note_type 12, 1, 4
 	octave 4
 	note B_, 2
 	note A#, 2
@@ -86,34 +87,34 @@ Music_LookHiker_Ch3:
 	note D_, 2
 	note C#, 2
 	note C_, 2
-	callchannel .sub1
+	sound_call .sub1
 	note G_, 2
 	note G#, 2
 	note A_, 2
 	note A#, 2
-	callchannel .sub1
-	loopchannel 0, .mainloop
+	sound_call .sub1
+	sound_loop 0, .mainloop
 
 .sub1:
 	octave 4
 	note B_, 2
-	note __, 4
+	rest 4
 	note B_, 2
-	note __, 4
+	rest 4
 	note B_, 2
-	note __, 2
+	rest 2
 	note B_, 2
-	note __, 6
-	endchannel
+	rest 6
+	sound_ret
 
 Music_LookHiker_Ch4:
-	togglenoise $3
-	notetype $c
-	note F_, 4
-	note __, 16
+	toggle_noise 3
+	drum_speed 12
+	drum_note 6, 4
+	rest 16
 .mainloop:
-	note D#, 2
-	note G_, 2
-	note D_, 2
-	note G_, 2
-	loopchannel 0, .mainloop
+	drum_note 4, 2
+	drum_note 8, 2
+	drum_note 3, 2
+	drum_note 8, 2
+	sound_loop 0, .mainloop

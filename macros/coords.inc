@@ -8,7 +8,7 @@ decoord EQUS "coord de,"
 coord: MACRO
 ; register, x, y[, origin]
 	if _NARG < 4
-	ld \1, (\3) * SCREEN_WIDTH + (\2) + wTileMap
+	ld \1, (\3) * SCREEN_WIDTH + (\2) + wTilemap
 	else
 	ld \1, (\3) * SCREEN_WIDTH + (\2) + \4
 	endc
@@ -30,7 +30,7 @@ ENDM
 dwcoord: MACRO
 ; x, y
 rept _NARG / 2
-	dw (\2) * SCREEN_WIDTH + (\1) + wTileMap
+	dw (\2) * SCREEN_WIDTH + (\1) + wTilemap
 	shift
 	shift
 endr
@@ -39,7 +39,7 @@ ENDM
 ldcoord_a: MACRO
 ; x, y[, origin]
 	if _NARG < 3
-	ld [(\2) * SCREEN_WIDTH + (\1) + wTileMap], a
+	ld [(\2) * SCREEN_WIDTH + (\1) + wTilemap], a
 	else
 	ld [(\2) * SCREEN_WIDTH + (\1) + \3], a
 	endc
@@ -48,7 +48,7 @@ ENDM
 lda_coord: MACRO
 ; x, y[, origin]
 	if _NARG < 3
-	ld a, [(\2) * SCREEN_WIDTH + (\1) + wTileMap]
+	ld a, [(\2) * SCREEN_WIDTH + (\1) + wTilemap]
 	else
 	ld a, [(\2) * SCREEN_WIDTH + (\1) + \3]
 	endc

@@ -29,7 +29,7 @@ Function17c000::
 
 	ld hl, HaveWantMap
 	decoord 0, 0
-	bccoord 0, 0, wAttrMap
+	bccoord 0, 0, wAttrmap
 
 	ld a, SCREEN_HEIGHT
 .y
@@ -763,7 +763,7 @@ Function17d48d:
 	call CopyBytes
 	ld hl, PokemonNewsTileAttrmap
 	decoord 0, 0
-	bccoord 0, 0, wAttrMap
+	bccoord 0, 0, wAttrmap
 	ld a, $12
 .asm_17d4a4
 	push af
@@ -3531,7 +3531,7 @@ Function17e691:
 
 .asm_17e6c7
 	pop hl
-	bccoord 0, 0, wAttrMap
+	bccoord 0, 0, wAttrmap
 	add hl, bc
 	ld [hl], a
 	pop hl
@@ -3554,7 +3554,7 @@ Function17e6de:
 	ld l, a
 	ld a, [wc709]
 	ld h, a
-	decoord 0, 0, wAttrMap
+	decoord 0, 0, wAttrmap
 	add hl, de
 	pop af
 	ld b, $7
@@ -4295,7 +4295,7 @@ Function17f41d:
 	push af
 	ld l, c
 	ld h, b
-	ld bc, -wTileMap + $10000
+	ld bc, -wTilemap + $10000
 	add hl, bc
 	ld de, -SCREEN_WIDTH
 	ld c, $1
@@ -4528,7 +4528,7 @@ DisplayMobileError::
 	ld a, [wc303]
 	bit 7, a
 	jr nz, .quit
-	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
+	farcall HDMATransferAttrmapAndTilemapToWRAMBank3
 	jr .loop
 
 .quit
@@ -4593,7 +4593,7 @@ Function17f5c3:
 
 Function17f5d2:
 	call Function17f5e4
-	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
+	farcall HDMATransferAttrmapAndTilemapToWRAMBank3
 	call SetPalettes
 	ld a, $1
 	ld [wc303], a
@@ -4612,7 +4612,7 @@ Function17f5e4:
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	ld a, $6
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	hlcoord 2, 1

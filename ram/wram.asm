@@ -48,7 +48,7 @@ wChannel8:: channel_struct wChannel8 ; c25f
 	ds 1 ; c291
 
 wCurTrackDuty:: db
-wCurTrackIntensity:: db
+wCurTrackVolumeEnvelope:: db
 wCurTrackFrequency:: dw
 wUnusedBCDNumber:: db ; BCD value, dummied out
 wCurNoteDuration:: db ; used in MusicE0 and LoadNote
@@ -68,13 +68,12 @@ wSoundOutput:: ; c29b
 ; bit 4-7: ch1-4 so2 on/off
 ; bit 0-3: ch1-4 so1 on/off
 	db
-wSoundInput:: ; c29c
-; corresponds to rNR52
-; bit 7: global on/off
-; bit 0: ch1 on/off
-; bit 1: ch2 on/off
-; bit 2: ch3 on/off
-; bit 3: ch4 on/off
+wPitchSweep:: ; c29c
+; corresponds to rNR10
+; bit 7:   unused
+; bit 4-6: sweep time
+; bit 3:   sweep direction
+; but 0-2: sweep shift
 	db
 
 wMusicID:: dw ; c29d
@@ -372,10 +371,10 @@ wVirtualOAMEnd::
 
 SECTION "Tilemap", WRAM0
 
-wTileMap:: ; c4a0
+wTilemap:: ; c4a0
 ; 20x18 grid of 8x8 tiles
 	ds SCREEN_WIDTH * SCREEN_HEIGHT
-wTileMapEnd::
+wTilemapEnd::
 
 
 SECTION "Miscellaneous", WRAM0
@@ -979,8 +978,8 @@ wPrinterSendByteOffset:: dw
 wPrinterSendByteCounter:: dw
 
 ; tilemap backup?
-wPrinterTileMapBuffer:: ds SCREEN_HEIGHT * SCREEN_WIDTH ; ca90
-wPrinterTileMapBufferEnd::
+wPrinterTilemapBuffer:: ds SCREEN_HEIGHT * SCREEN_WIDTH ; ca90
+wPrinterTilemapBufferEnd::
 wPrinterStatus:: db ; cbf8
 	ds 1
 ; High nibble is for margin before the image, low nibble is for after.
@@ -1338,7 +1337,7 @@ wCurHPPal:: db
 
 wSGBPals:: ds 48 ; cda9
 
-wAttrMap:: ; cdd9
+wAttrmap:: ; cdd9
 ; 20x18 grid of bg tile attributes for 8x8 tiles
 ; read horizontally from the top row
 ;		bit 7: priority
@@ -1348,7 +1347,7 @@ wAttrMap:: ; cdd9
 ;		bit 3: vram bank (cgb only)
 ;		bit 2-0: pal # (cgb only)
 	ds SCREEN_WIDTH * SCREEN_HEIGHT
-wAttrMapEnd::
+wAttrmapEnd::
 
 UNION ; cf41
 ; addresses dealing with serial comms
@@ -2982,7 +2981,7 @@ wGameDataEnd::
 
 SECTION "Pic Animations", WRAMX
 
-wTempTileMap::
+wTempTilemap::
 ; 20x18 grid of 8x8 tiles
 	ds SCREEN_WIDTH * SCREEN_HEIGHT ; $168 = 360
 
@@ -3205,8 +3204,8 @@ w5_MobileOpponentBattleLossMessage:: ds $c ; dc3e
 SECTION "Scratch RAM", WRAMX
 
 UNION ; d000
-wScratchTileMap:: ds BG_MAP_WIDTH * BG_MAP_HEIGHT
-wScratchAttrMap:: ds BG_MAP_WIDTH * BG_MAP_HEIGHT
+wScratchTilemap:: ds BG_MAP_WIDTH * BG_MAP_HEIGHT
+wScratchAttrmap:: ds BG_MAP_WIDTH * BG_MAP_HEIGHT
 
 NEXTU ; d000
 wDecompressScratch:: ds $80 tiles

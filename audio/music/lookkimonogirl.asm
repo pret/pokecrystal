@@ -4,118 +4,119 @@ INCLUDE "constants/music_common.inc"
 SECTION "audio/music/lookkimonogirl.asm", ROMX
 
 Music_LookKimonoGirl::
-	musicheader 3, 1, Music_LookKimonoGirl_Ch1
-	musicheader 1, 2, Music_LookKimonoGirl_Ch2
-	musicheader 1, 3, Music_LookKimonoGirl_Ch3
+	channel_count 3
+	channel 1, Music_LookKimonoGirl_Ch1
+	channel 2, Music_LookKimonoGirl_Ch2
+	channel 3, Music_LookKimonoGirl_Ch3
 
 	db $3 ; unused
 
 Music_LookKimonoGirl_Ch1:
 	tempo 160
-	volume $77
-	stereopanning $f
-	dutycycle $1
-	notetype $6, $87
-	tone $0001
-	callchannel Music_LookKimonoGirl_Ch2.sub2
-	tone 0
+	volume 7, 7
+	stereo_panning FALSE, TRUE
+	duty_cycle 1
+	note_type 6, 8, 7
+	pitch_offset 1
+	sound_call Music_LookKimonoGirl_Ch2.sub2
+	pitch_offset 0
 .mainloop:
-	notetype $c, $b2
-	callchannel .sub1
-	callchannel .sub1
-	callchannel .sub2
-	callchannel .sub2
-	callchannel .sub1
-	callchannel .sub1
-	callchannel .sub2
-	intensity $b4
+	note_type 12, 11, 2
+	sound_call .sub1
+	sound_call .sub1
+	sound_call .sub2
+	sound_call .sub2
+	sound_call .sub1
+	sound_call .sub1
+	sound_call .sub2
+	volume_envelope 11, 4
 	octave 3
 	note E_, 1
-	intensity $54
+	volume_envelope 5, 4
 	octave 4
 	note E_, 1
-	intensity $b4
+	volume_envelope 11, 4
 	octave 3
 	note D_, 1
-	intensity $54
+	volume_envelope 5, 4
 	octave 4
 	note D_, 1
-	intensity $b4
+	volume_envelope 11, 4
 	octave 2
 	note B_, 1
-	intensity $54
+	volume_envelope 5, 4
 	octave 3
 	note B_, 1
-	intensity $b4
+	volume_envelope 11, 4
 	octave 2
 	note A_, 1
-	intensity $54
+	volume_envelope 5, 4
 	octave 3
 	note A_, 1
-	loopchannel 0, .mainloop
+	sound_loop 0, .mainloop
 
 .sub1:
-	intensity $b4
+	volume_envelope 11, 4
 	octave 2
 	note F_, 1
-	intensity $74
+	volume_envelope 7, 4
 	octave 3
 	note F_, 1
-	intensity $b4
+	volume_envelope 11, 4
 	octave 2
 	note A_, 1
-	intensity $74
+	volume_envelope 7, 4
 	octave 3
 	note A_, 1
-	intensity $b4
+	volume_envelope 11, 4
 	octave 2
 	note B_, 1
-	intensity $74
+	volume_envelope 7, 4
 	octave 3
 	note B_, 1
-	intensity $b4
+	volume_envelope 11, 4
 	octave 3
 	note D_, 1
-	intensity $74
+	volume_envelope 7, 4
 	octave 4
 	note D_, 1
-	endchannel
+	sound_ret
 
 .sub2:
-	intensity $b4
+	volume_envelope 11, 4
 	octave 2
 	note E_, 1
-	intensity $74
+	volume_envelope 7, 4
 	octave 3
 	note E_, 1
-	intensity $b4
+	volume_envelope 11, 4
 	octave 2
 	note A_, 1
-	intensity $74
+	volume_envelope 7, 4
 	octave 3
 	note A_, 1
-	intensity $b4
+	volume_envelope 11, 4
 	octave 2
 	note B_, 1
-	intensity $74
+	volume_envelope 7, 4
 	octave 3
 	note B_, 1
-	intensity $b4
+	volume_envelope 11, 4
 	octave 3
 	note D_, 1
-	intensity $74
+	volume_envelope 7, 4
 	octave 4
 	note D_, 1
-	endchannel
+	sound_ret
 
 Music_LookKimonoGirl_Ch2:
-	dutycycle $0
-	notetype $6, $a7
-	stereopanning $f0
-	callchannel .sub2
+	duty_cycle 0
+	note_type 6, 10, 7
+	stereo_panning TRUE, FALSE
+	sound_call .sub2
 .mainloop:
-	dutycycle $3
-	notetype $c, $91
+	duty_cycle 3
+	note_type 12, 9, 1
 	octave 5
 	note E_, 1
 	note D_, 1
@@ -135,7 +136,7 @@ Music_LookKimonoGirl_Ch2:
 	note A_, 1
 	note E_, 1
 	note D_, 1
-	callchannel .sub1
+	sound_call .sub1
 	octave 5
 	note F_, 1
 	note D_, 1
@@ -155,8 +156,8 @@ Music_LookKimonoGirl_Ch2:
 	note A_, 1
 	note E_, 1
 	note D_, 1
-	callchannel .sub1
-	loopchannel 0, .mainloop
+	sound_call .sub1
+	sound_loop 0, .mainloop
 
 .sub1:
 	octave 5
@@ -178,56 +179,56 @@ Music_LookKimonoGirl_Ch2:
 	octave 3
 	note B_, 1
 	note E_, 1
-	endchannel
+	sound_ret
 
 .sub2:
 	octave 4
 	note E_, 1
 	octave 5
 	note E_, 16
-	note __, 1
+	rest 1
 	note E_, 2
-	note __, 3
-	intensity $b7
+	rest 3
+	volume_envelope 11, 7
 	note E_, 2
-	note __, 2
-	intensity $b7
+	rest 2
+	volume_envelope 11, 7
 	note E_, 2
-	note __, 1
-	intensity $a7
+	rest 1
+	volume_envelope 10, 7
 	note E_, 2
-	note __, 1
-	notetype $6, $65
+	rest 1
+	note_type 6, 6, 5
 	note E_, 2
-	note __, 1
-	intensity $54
+	rest 1
+	volume_envelope 5, 4
 	note E_, 2
-	note __, 1
-	intensity $63
+	rest 1
+	volume_envelope 6, 3
 	note E_, 2
 	note E_, 2
-	intensity $91
+	volume_envelope 9, 1
 	note E_, 2
-	intensity $a1
+	volume_envelope 10, 1
 	note E_, 1
-	notetype $8, $b1
+	note_type 8, 11, 1
 	note E_, 1
 	note E_, 1
-	endchannel
+	sound_ret
 
 Music_LookKimonoGirl_Ch3:
-	stereopanning $ff
-	vibrato $12, $24
-	notetype $6, $13
-	note __, 1
-	note __, 16
+	stereo_panning TRUE, TRUE
+	vibrato 18, 2, 4
+	note_type 6, 1, 3
+	rest 1
+	rest 16
 	octave 5
 	note E_, 1
 	note F_, 1
 	note E_, 2
-	notetype $c, $13
+	note_type 12, 1, 3
 	note E_, 12
-	notetype $6, $13
+	note_type 6, 1, 3
 	octave 5
 	note D_, 2
 	note E_, 2
@@ -267,4 +268,4 @@ Music_LookKimonoGirl_Ch3:
 	note E_, 2
 	note D_, 8
 	note E_, 8
-	loopchannel 0, .mainloop
+	sound_loop 0, .mainloop

@@ -149,7 +149,7 @@ Unreferenced_Function3ed7:
 Function3eea::
 	push hl
 	push bc
-	ld de, wAttrMap - wTileMap
+	ld de, wAttrmap - wTilemap
 	add hl, de
 	inc b
 	inc b
@@ -174,7 +174,7 @@ Unreferenced_Function3efd:
 .fill_attr
 	push hl
 	push bc
-	ld de, wAttrMap - wTileMap
+	ld de, wAttrmap - wTilemap
 	add hl, de
 	inc b
 	inc b
@@ -187,7 +187,7 @@ Unreferenced_Function3efd:
 	ret
 
 Function3f20::
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	ld b,  6
 	ld c, 20
 	call Function3f35

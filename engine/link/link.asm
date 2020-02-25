@@ -1358,7 +1358,7 @@ LinkTradePartiesMenuMasterLoop:
 	jp LinkTradeOTPartymonMenuLoop  ; OTPARTYMON
 
 Function28926:
-	call LoadTileMapToTempTileMap
+	call LoadTilemapToTempTilemap
 	ld a, [wMenuCursorY]
 	push af
 	hlcoord 0, 15
@@ -1399,7 +1399,7 @@ Function28926:
 .b_button
 	pop af
 	ld [wMenuCursorY], a
-	call Call_LoadTempTileMapToTileMap
+	call SafeLoadTempTilemapToTilemap
 	jp LinkTrade_PlayerPartyMenu
 
 .d_right
@@ -1437,7 +1437,7 @@ Function28926:
 	ld [wInitListType], a
 	callfar InitList
 	farcall LinkMonStatsScreen
-	call Call_LoadTempTileMapToTileMap
+	call SafeLoadTempTilemapToTilemap
 	hlcoord 6, 1
 	lb bc, 6, 1
 	ld a, " "
@@ -1874,7 +1874,7 @@ LinkTrade:
 	ld [wd003], a
 	ld c, 100
 	call DelayFrames
-	call ClearTileMap
+	call ClearTilemap
 	call LoadFontsBattleExtra
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout

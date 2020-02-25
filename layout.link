@@ -2,33 +2,33 @@
 
 ROM0
 	org $0000
-	"home/init.asm@NULL"
+	"home/header.asm@NULL"
 	org $0000
-	"home/rst.asm@rst0"
+	"home/header.asm@rst0"
 	org $0008
-	"home/rst.asm@rst8"
+	"home/header.asm@rst8"
 	org $0010
-	"home/rst.asm@rst10"
+	"home/header.asm@rst10"
 	org $0018
-	"home/rst.asm@rst18"
+	"home/header.asm@rst18"
 	org $0020
-	"home/rst.asm@rst20"
+	"home/header.asm@rst20"
 	org $0028
-	"home/rst.asm@rst28"
+	"home/header.asm@rst28"
 	org $0038
-	"home/rst.asm@rst38"
+	"home/header.asm@rst38"
 	org $0040
-	"home/interrupts.asm@vblank"
+	"home/header.asm@vblank"
 	org $0048
-	"home/interrupts.asm@lcd"
+	"home/header.asm@lcd"
 	org $0050
-	"home/interrupts.asm@timer"
+	"home/header.asm@timer"
 	org $0058
-	"home/interrupts.asm@serial"
+	"home/header.asm@serial"
 	org $0060
-	"home/interrupts.asm@joypad"
+	"home/header.asm@joypad"
 	org $0100
-	"home/init.asm@Header"
+	"home/header.asm@Header"
 	"home/init.asm"
 	"home/vblank.asm"
 	"home/delay.asm"

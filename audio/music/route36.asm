@@ -4,34 +4,35 @@ INCLUDE "constants/music_common.inc"
 SECTION "audio/music/route36.asm", ROMX
 
 Music_Route36::
-	musicheader 4, 1, Music_Route36_Ch1
-	musicheader 1, 2, Music_Route36_Ch2
-	musicheader 1, 3, Music_Route36_Ch3
-	musicheader 1, 4, Music_Route36_Ch4
+	channel_count 4
+	channel 1, Music_Route36_Ch1
+	channel 2, Music_Route36_Ch2
+	channel 3, Music_Route36_Ch3
+	channel 4, Music_Route36_Ch4
 
 Music_Route36_Ch1:
 	tempo 144
-	volume $77
-	dutycycle $3
-	tone $0001
-	vibrato $10, $15
-	stereopanning $f
-	notetype $c, $b3
+	volume 7, 7
+	duty_cycle 3
+	pitch_offset 1
+	vibrato 16, 1, 5
+	stereo_panning FALSE, TRUE
+	note_type 12, 11, 3
 	octave 3
 	note C_, 4
 	note C_, 6
 	note F_, 1
 	note E_, 1
-	intensity $b5
+	volume_envelope 11, 5
 	note F_, 8
-	intensity $b3
+	volume_envelope 11, 3
 	note F_, 6
 	note A#, 1
 	note A_, 1
-	intensity $5d
+	volume_envelope 5, -5
 	note A#, 4
 .mainloop:
-	intensity $b5
+	volume_envelope 11, 5
 	note F_, 4
 	note A_, 2
 	note G_, 2
@@ -58,10 +59,10 @@ Music_Route36_Ch1:
 	note D#, 4
 	octave 3
 	note A#, 2
-	intensity $b6
+	volume_envelope 11, 6
 	octave 4
 	note F_, 10
-	intensity $b5
+	volume_envelope 11, 5
 	note C_, 2
 	note F_, 2
 	note C_, 2
@@ -73,7 +74,7 @@ Music_Route36_Ch1:
 	note C_, 2
 	octave 3
 	note A#, 4
-	intensity $b4
+	volume_envelope 11, 4
 	note A_, 2
 	octave 4
 	note D_, 2
@@ -87,7 +88,7 @@ Music_Route36_Ch1:
 	note A_, 2
 	octave 4
 	note D_, 2
-	intensity $a4
+	volume_envelope 10, 4
 	octave 3
 	note A_, 2
 	octave 4
@@ -102,8 +103,8 @@ Music_Route36_Ch1:
 	note A_, 2
 	octave 4
 	note D_, 2
-	stereopanning $f0
-	intensity $95
+	stereo_panning TRUE, FALSE
+	volume_envelope 9, 5
 	octave 3
 	note D_, 6
 	octave 2
@@ -115,11 +116,11 @@ Music_Route36_Ch1:
 	octave 3
 	note D_, 6
 	note E_, 4
-	intensity $b5
+	volume_envelope 11, 5
 	note D_, 6
 	note A_, 6
 	note G_, 4
-	intensity $a5
+	volume_envelope 10, 5
 	octave 2
 	note A_, 6
 	octave 3
@@ -130,7 +131,7 @@ Music_Route36_Ch1:
 	note A_, 6
 	octave 3
 	note D_, 4
-	intensity $b5
+	volume_envelope 11, 5
 	note F#, 6
 	note E_, 6
 	note C#, 4
@@ -146,7 +147,7 @@ Music_Route36_Ch1:
 	note G_, 6
 	note C_, 2
 	note E_, 2
-	intensity $b7
+	volume_envelope 11, 7
 	note C_, 6
 	note G_, 4
 	note D_, 2
@@ -162,65 +163,65 @@ Music_Route36_Ch1:
 	note B_, 2
 	note A_, 6
 	note D_, 6
-	stereopanning $f
-	intensity $b5
+	stereo_panning FALSE, TRUE
+	volume_envelope 11, 5
 	note D#, 2
 	note E_, 2
-	loopchannel 0, .mainloop
+	sound_loop 0, .mainloop
 
 Music_Route36_Ch2:
-	dutycycle $3
-	vibrato $10, $36
-	stereopanning $f0
-	notetype $c, $c2
+	duty_cycle 3
+	vibrato 16, 3, 6
+	stereo_panning TRUE, FALSE
+	note_type 12, 12, 2
 	octave 3
 	note F_, 2
 	note C_, 1
 	note F_, 1
-	intensity $c7
+	volume_envelope 12, 7
 	note A_, 8
 	note C_, 4
-	intensity $c3
+	volume_envelope 12, 3
 	octave 4
 	note C_, 2
 	octave 3
 	note A_, 1
 	octave 4
 	note C_, 1
-	intensity $c7
+	volume_envelope 12, 7
 	note F_, 8
 	octave 3
 	note G_, 4
 .mainloop:
-	intensity $c7
+	volume_envelope 12, 7
 	octave 4
 	note C_, 10
-	intensity $c4
+	volume_envelope 12, 4
 	octave 3
 	note A_, 2
 	octave 4
 	note C_, 2
 	note A_, 2
 	note G_, 3
-	intensity $c2
+	volume_envelope 12, 2
 	note D#, 1
-	intensity $c7
+	volume_envelope 12, 7
 	note D#, 12
 	note C_, 10
-	intensity $c4
+	volume_envelope 12, 4
 	octave 3
 	note A_, 2
 	octave 4
 	note C_, 2
 	note F_, 2
-	intensity $c2
+	volume_envelope 12, 2
 	note D#, 2
 	note D#, 1
 	note F_, 1
-	intensity $c7
+	volume_envelope 12, 7
 	note G_, 12
 	note A_, 10
-	intensity $c4
+	volume_envelope 12, 4
 	note F_, 2
 	note A_, 2
 	octave 5
@@ -228,15 +229,15 @@ Music_Route36_Ch2:
 	octave 4
 	note A#, 3
 	note A_, 1
-	intensity $c7
+	volume_envelope 12, 7
 	note G_, 8
 	note A#, 4
-	intensity $b0
+	volume_envelope 11, 0
 	note A_, 16
-	intensity $b7
+	volume_envelope 11, 7
 	note A_, 16
-	stereopanning $f
-	intensity $a4
+	stereo_panning FALSE, TRUE
+	volume_envelope 10, 4
 	octave 3
 	note A_, 6
 	note G_, 6
@@ -244,84 +245,84 @@ Music_Route36_Ch2:
 	note E_, 6
 	note F#, 6
 	note G_, 4
-	intensity $b3
+	volume_envelope 11, 3
 	note A_, 2
 	note F#, 1
 	note A_, 1
-	intensity $b7
+	volume_envelope 11, 7
 	octave 4
 	note D_, 12
-	intensity $a4
+	volume_envelope 10, 4
 	octave 3
 	note F#, 2
 	note D_, 1
 	note F#, 1
-	intensity $a7
+	volume_envelope 10, 7
 	note A_, 12
-	intensity $c7
+	volume_envelope 12, 7
 	note A_, 6
 	note G_, 6
 	note F#, 4
 	note B_, 6
 	note A_, 6
 	note G_, 4
-	intensity $c3
+	volume_envelope 12, 3
 	note A_, 2
 	note F#, 1
 	note A_, 1
-	intensity $c7
+	volume_envelope 12, 7
 	octave 4
 	note D_, 12
-	intensity $c3
+	volume_envelope 12, 3
 	octave 3
 	note F#, 2
 	note D_, 1
 	note F#, 1
-	intensity $c7
+	volume_envelope 12, 7
 	note A_, 12
-	intensity $c2
+	volume_envelope 12, 2
 	note G_, 2
 	note E_, 1
 	note G_, 1
-	intensity $b0
+	volume_envelope 11, 0
 	octave 4
 	note C_, 2
-	intensity $b7
+	volume_envelope 11, 7
 	note C_, 10
-	intensity $c5
+	volume_envelope 12, 5
 	octave 3
 	note G_, 2
 	note E_, 1
 	note G_, 1
-	intensity $c7
+	volume_envelope 12, 7
 	octave 4
 	note C_, 8
 	note C#, 4
-	stereopanning $ff
+	stereo_panning TRUE, TRUE
 	note D_, 6
 	note A_, 6
 	note G_, 2
 	note F#, 2
-	intensity $b0
+	volume_envelope 11, 0
 	note D_, 4
-	intensity $b7
+	volume_envelope 11, 7
 	note D_, 8
-	stereopanning $f0
-	intensity $c4
+	stereo_panning TRUE, FALSE
+	volume_envelope 12, 4
 	octave 3
 	note F#, 1
 	note G_, 1
 	note A_, 1
 	note B_, 1
-	loopchannel 0, .mainloop
+	sound_loop 0, .mainloop
 
 Music_Route36_Ch3:
-	notetype $c, $25
+	note_type 12, 2, 5
 	octave 3
 	note F_, 1
-	note __, 3
+	rest 3
 	note F_, 1
-	note __, 1
+	rest 1
 	octave 4
 	note C_, 4
 	octave 3
@@ -329,9 +330,9 @@ Music_Route36_Ch3:
 	note F_, 2
 	note C_, 2
 	note D#, 1
-	note __, 3
+	rest 3
 	note D#, 1
-	note __, 1
+	rest 1
 	octave 4
 	note F_, 4
 	octave 2
@@ -469,58 +470,58 @@ Music_Route36_Ch3:
 	note D_, 2
 	note D#, 2
 	note E_, 2
-	loopchannel 0, .mainloop
+	sound_loop 0, .mainloop
 
 Music_Route36_Ch4:
-	togglenoise $1
-	notetype $c
-	callchannel .sub1
-	callchannel .sub3
+	toggle_noise 1
+	drum_speed 12
+	sound_call .sub1
+	sound_call .sub3
 .mainloop:
 .loop1:
-	callchannel .sub1
-	callchannel .sub2
-	callchannel .sub1
-	callchannel .sub3
-	loopchannel 2, .loop1
+	sound_call .sub1
+	sound_call .sub2
+	sound_call .sub1
+	sound_call .sub3
+	sound_loop 2, .loop1
 .loop2:
-	note A#, 4
-	note A_, 2
-	note F_, 4
-	note B_, 1
-	note B_, 1
-	note A_, 4
-	loopchannel 11, .loop2
-	callchannel .sub3
-	loopchannel 0, .mainloop
+	drum_note 11, 4
+	drum_note 10, 2
+	drum_note 6, 4
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 10, 4
+	sound_loop 11, .loop2
+	sound_call .sub3
+	sound_loop 0, .mainloop
 
 .sub1:
-	note A_, 4
-	note A_, 6
-	note A#, 1
-	note A#, 1
-	note A_, 2
-	note A#, 2
-	endchannel
+	drum_note 10, 4
+	drum_note 10, 6
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 2
+	drum_note 11, 2
+	sound_ret
 
 .sub2:
-	note A_, 4
-	note A_, 6
-	note B_, 1
-	note A#, 1
-	note A_, 4
-	endchannel
+	drum_note 10, 4
+	drum_note 10, 6
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 10, 4
+	sound_ret
 
 .sub3:
-	note A_, 4
-	note A_, 6
-	note A#, 1
-	note A#, 1
-	note A_, 2
-	notetype $6
-	note A#, 1
-	note A#, 1
-	note A_, 1
-	note A_, 1
-	notetype $c
-	endchannel
+	drum_note 10, 4
+	drum_note 10, 6
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 2
+	drum_speed 6
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 1
+	drum_note 10, 1
+	drum_speed 12
+	sound_ret

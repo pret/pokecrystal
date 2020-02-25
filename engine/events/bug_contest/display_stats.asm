@@ -10,7 +10,7 @@ SECTION "engine/events/bug_contest/display_stats.asm@DisplayCaughtContestMonStat
 
 DisplayCaughtContestMonStats::
 	call ClearBGPalettes
-	call ClearTileMap
+	call ClearTilemap
 	call ClearSprites
 	call LoadFontsBattleExtra
 

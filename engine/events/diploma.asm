@@ -14,7 +14,7 @@ _Diploma::
 
 PlaceDiplomaOnScreen::
 	call ClearBGPalettes
-	call ClearTileMap
+	call ClearTilemap
 	call ClearSprites
 	call DisableLCD
 	ld hl, DiplomaGFX

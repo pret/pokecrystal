@@ -640,11 +640,11 @@ Palette_8b6d5:
 	RGB 00, 00, 00
 
 Function8b6ed:
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	ld bc, $012c
 	xor a
 	call ByteFill
-	hlcoord 0, 14, wAttrMap
+	hlcoord 0, 14, wAttrmap
 	ld bc, $0050
 	ld a, $7
 	call ByteFill
@@ -700,7 +700,7 @@ Function8b73e:
 	ret
 
 Function8b744:
-	ld de, wAttrMap - wTileMap
+	ld de, wAttrmap - wTilemap
 	add hl, de
 	inc b
 	inc b
@@ -768,10 +768,10 @@ Function8b788:
 	ret
 
 Function8b79e:
-	hlcoord 0, 1, wAttrMap
+	hlcoord 0, 1, wAttrmap
 	ld a, $1
 	ld [hli], a
-	hlcoord 9, 1, wAttrMap
+	hlcoord 9, 1, wAttrmap
 	ld e, $b
 .asm_8b7a9
 	ld a, $2

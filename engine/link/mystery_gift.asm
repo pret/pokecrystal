@@ -16,7 +16,7 @@ INCLUDE "constants/scgb_constants.inc"
 SECTION "engine/link/mystery_gift.asm", ROMX
 
 DoMysteryGift::
-	call ClearTileMap
+	call ClearTilemap
 	call ClearSprites
 	call WaitBGMap
 	call InitMysteryGiftLayout
@@ -41,7 +41,7 @@ DoMysteryGift::
 	pop af
 	ldh [rIE], a
 	push de
-	call ClearTileMap
+	call ClearTilemap
 	call EnableLCD
 	call WaitBGMap
 	ld b, SCGB_DIPLOMA
@@ -1413,7 +1413,7 @@ INCBIN "gfx/mystery_gift/mystery_gift.2bpp"
 .End
 
 Function105688::
-	call ClearTileMap
+	call ClearTilemap
 	call ClearSprites
 	call WaitBGMap
 	call Function1057d7
@@ -1528,7 +1528,7 @@ MysteryGiftLinkCommErrorText:
 
 Function105777:
 	call ClearSprites
-	call ClearTileMap
+	call ClearTilemap
 	call EnableLCD
 	call WaitBGMap
 	ld b, SCGB_DIPLOMA

@@ -151,7 +151,7 @@ Function81948:
 	ld bc, sScratch - vTiles0
 	xor a
 	call ByteFill
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	xor a
 	call ByteFill
@@ -394,15 +394,15 @@ String_81bb4: db "ノーマル@" ; normal
 String_81bb9: db DEBUGTEST_A, "きりかえ▶@" ; (A) switches
 
 Function81bc0:
-	decoord 0, 11, wAttrMap
+	decoord 0, 11, wAttrmap
 	hlcoord 2, 11
 	ld a, $1
 	call Function81bde
-	decoord 0, 13, wAttrMap
+	decoord 0, 13, wAttrmap
 	hlcoord 2, 13
 	ld a, $2
 	call Function81bde
-	decoord 0, 15, wAttrMap
+	decoord 0, 15, wAttrmap
 	hlcoord 2, 15
 	ld a, $3
 
@@ -1077,7 +1077,7 @@ TilesetColorTest:
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, DEBUGTEST_BLACK
 	call ByteFill
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, $7
 	call ByteFill
@@ -1107,7 +1107,7 @@ Function821d2:
 
 Function821d8:
 	ld a, [wcf64]
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 
 Function821de:
 	add hl, de

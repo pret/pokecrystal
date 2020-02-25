@@ -49,7 +49,7 @@ UsedMoveText:
 .grammar
 	call GetMoveGrammar ; convert move id to grammar index
 
-; everything except 'instead' made redundant in localization
+; everything except 'CheckObedience' made redundant in localization
 
 	; check obedience
 	ld a, [wAlreadyDisobeyed]

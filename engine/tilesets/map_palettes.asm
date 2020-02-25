@@ -7,9 +7,9 @@ INCLUDE "constants/tileset_constants.inc"
 
 SECTION "engine/tilesets/map_palettes.asm", ROMX
 
-SwapTextboxPalettes::
+_SwapTextboxPalettes::
 	hlcoord 0, 0
-	decoord 0, 0, wAttrMap
+	decoord 0, 0, wAttrmap
 	ld b, SCREEN_HEIGHT
 .loop
 	push bc
@@ -53,7 +53,7 @@ SwapTextboxPalettes::
 	jr nz, .loop
 	ret
 
-ScrollBGMapPalettes::
+_ScrollBGMapPalettes::
 	ld hl, wBGMapBuffer
 	ld de, wBGMapPalBuffer
 .loop

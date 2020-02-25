@@ -44,12 +44,12 @@ Printer_CleanUpAfterSend:
 	ld [wPrinterOpcode], a
 	ret
 
-Printer_PrepareTileMapForPrint:
+Printer_PrepareTilemapForPrint:
 	push af
 	call Printer_StartTransmission
 	pop af
 	ld [wPrinterMargins], a
-	call Printer_CopyTileMapToBuffer
+	call Printer_CopyTilemapToBuffer
 	ret
 
 Printer_ExitPrinter:
@@ -81,7 +81,7 @@ PrintDexEntry::
 	ln a, 1, 0
 	ld [wPrinterMargins], a
 	farcall PrintPage1
-	call ClearTileMap
+	call ClearTilemap
 	ld a, %11100100
 	call DmgToCgbBGPals
 	call DelayFrame
@@ -164,13 +164,13 @@ PrintPCBox::
 	ld hl, hVBlank
 	ld a, [hl]
 	push af
-	ld [hl], 4
+	ld [hl], $4
 
 	xor a
 	ldh [hBGMapMode], a
 	call PrintPCBox_Page1
 	ln a, 1, 0 ; to be loaded to wPrinterMargins
-	call Printer_PrepareTileMapForPrint
+	call Printer_PrepareTilemapForPrint
 	call Printer_ResetRegistersAndStartDataSend
 	jr c, .cancel
 
@@ -181,7 +181,7 @@ PrintPCBox::
 	ldh [hBGMapMode], a
 	call PrintPCBox_Page2
 	ln a, 0, 0 ; to be loaded to wPrinterMargins
-	call Printer_PrepareTileMapForPrint
+	call Printer_PrepareTilemapForPrint
 	call Printer_ResetRegistersAndStartDataSend
 	jr c, .cancel
 
@@ -193,7 +193,7 @@ PrintPCBox::
 	ldh [hBGMapMode], a
 	call PrintPCBox_Page3
 	ln a, 0, 0 ; to be loaded to wPrinterMargins
-	call Printer_PrepareTileMapForPrint
+	call Printer_PrepareTilemapForPrint
 	call Printer_ResetRegistersAndStartDataSend
 	jr c, .cancel
 
@@ -205,7 +205,7 @@ PrintPCBox::
 	ldh [hBGMapMode], a
 	call PrintPCBox_Page4
 	ln a, 0, 3 ; to be loaded to wPrinterMargins
-	call Printer_PrepareTileMapForPrint
+	call Printer_PrepareTilemapForPrint
 	call Printer_ResetRegistersAndStartDataSend
 .cancel
 	pop af
@@ -245,11 +245,11 @@ PrintUnownStamp::
 	ld [hl], $4
 	xor a
 	ldh [hBGMapMode], a
-	call LoadTileMapToTempTileMap
+	call LoadTilemapToTempTilemap
 	farcall PlaceUnownPrinterFrontpic
 	ln a, 0, 0 ; to be loaded to wPrinterMargins
-	call Printer_PrepareTileMapForPrint
-	call Call_LoadTempTileMapToTileMap
+	call Printer_PrepareTilemapForPrint
+	call SafeLoadTempTilemapToTilemap
 	call Printer_ResetJoypadRegisters
 	ld a, 18 / 2
 	ld [wPrinterQueueLength], a
@@ -277,7 +277,7 @@ PrintUnownStamp::
 	pop af
 	ldh [hVBlank], a
 	call Printer_CleanUpAfterSend
-	call Call_LoadTempTileMapToTileMap
+	call SafeLoadTempTilemapToTilemap
 	xor a
 	ldh [rIF], a
 	pop af
@@ -309,11 +309,11 @@ PrintMail::
 	ldh [hBGMapMode], a
 
 	ln a, 1, 3 ; to be loaded to wPrinterMargins
-	call Printer_PrepareTileMapForPrint
+	call Printer_PrepareTilemapForPrint
 	ld hl, hVBlank
 	ld a, [hl]
 	push af
-	ld [hl], %0100
+	ld [hl], $4
 
 	ld a, 18 / 2
 	ld [wPrinterQueueLength], a
@@ -322,7 +322,7 @@ PrintMail::
 	pop af
 	ldh [hVBlank], a
 	call Printer_CleanUpAfterSend
-	call Printer_CopyBufferToTileMap
+	call Printer_CopyBufferToTilemap
 
 	xor a
 	ldh [rIF], a
@@ -351,12 +351,12 @@ PrintPartymon::
 	ldh [hBGMapMode], a
 	farcall PrintPartyMonPage1
 	ln a, 1, 0 ; to be loaded to wPrinterMargins
-	call Printer_PrepareTileMapForPrint
+	call Printer_PrepareTilemapForPrint
 
 	ld hl, hVBlank
 	ld a, [hl]
 	push af
-	ld [hl], %0100
+	ld [hl], $4
 
 	ld a, 16 / 2
 	ld [wPrinterQueueLength], a
@@ -372,7 +372,7 @@ PrintPartymon::
 	ldh [hBGMapMode], a
 	farcall PrintPartyMonPage2
 	ln a, 0, 3 ; to be loaded to wPrinterMargins
-	call Printer_PrepareTileMapForPrint
+	call Printer_PrepareTilemapForPrint
 
 	ld a, 18 / 2
 	ld [wPrinterQueueLength], a
@@ -383,7 +383,7 @@ PrintPartymon::
 	ldh [hVBlank], a
 	call Printer_CleanUpAfterSend
 
-	call Printer_CopyBufferToTileMap
+	call Printer_CopyBufferToTilemap
 	xor a
 	ldh [rIF], a
 	pop af
@@ -414,10 +414,10 @@ _PrintDiploma::
 	ld hl, hVBlank
 	ld a, [hl]
 	push af
-	ld [hl], %0100
+	ld [hl], $4
 
 	ln a, 1, 0 ; to be loaded to wPrinterMargins
-	call Printer_PrepareTileMapForPrint
+	call Printer_PrepareTilemapForPrint
 	call Printer_ResetJoypadRegisters
 
 	ld a, 18 / 2
@@ -428,15 +428,15 @@ _PrintDiploma::
 	ld c, 12
 	call DelayFrames
 
-	call LoadTileMapToTempTileMap
+	call LoadTilemapToTempTilemap
 	xor a
 	ldh [hBGMapMode], a
 
 	farcall PrintDiplomaPage2
 
 	ln a, 0, 3 ; to be loaded to wPrinterMargins
-	call Printer_PrepareTileMapForPrint
-	call Call_LoadTempTileMapToTileMap
+	call Printer_PrepareTilemapForPrint
+	call SafeLoadTempTilemapToTilemap
 	call Printer_ResetJoypadRegisters
 
 	ld a, 18 / 2
@@ -491,15 +491,15 @@ CheckCancelPrint:
 	scf
 	ret
 
-Printer_CopyTileMapToBuffer:
+Printer_CopyTilemapToBuffer:
 	hlcoord 0, 0
-	ld de, wPrinterTileMapBuffer
+	ld de, wPrinterTilemapBuffer
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call CopyBytes
 	ret
 
-Printer_CopyBufferToTileMap:
-	ld hl, wPrinterTileMapBuffer
+Printer_CopyBufferToTilemap:
+	ld hl, wPrinterTilemapBuffer
 	decoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call CopyBytes

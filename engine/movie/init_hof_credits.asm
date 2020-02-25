@@ -9,7 +9,7 @@ SECTION "engine/movie/init_hof_credits.asm@InitDisplayForHallOfFame", ROMX
 
 InitDisplayForHallOfFame::
 	call ClearBGPalettes
-	call ClearTileMap
+	call ClearTilemap
 	call ClearSprites
 	call DisableLCD
 	call LoadStandardFont
@@ -18,7 +18,7 @@ InitDisplayForHallOfFame::
 	ld bc, vBGMap1 - vBGMap0
 	ld a, " "
 	call ByteFill
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	xor a
 	call ByteFill
@@ -41,7 +41,7 @@ SECTION "engine/movie/init_hof_credits.asm@InitDisplayForRedCredits", ROMX
 
 InitDisplayForRedCredits::
 	call ClearBGPalettes
-	call ClearTileMap
+	call ClearTilemap
 	call ClearSprites
 	call DisableLCD
 	call LoadStandardFont
@@ -50,7 +50,7 @@ InitDisplayForRedCredits::
 	ld bc, vBGMap1 - vBGMap0
 	ld a, " "
 	call ByteFill
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	xor a
 	call ByteFill
@@ -80,7 +80,7 @@ ResetDisplayBetweenHallOfFameMons::
 	ld a, BANK(wDecompressScratch)
 	ldh [rSVBK], a
 	ld hl, wDecompressScratch
-	ld bc, wScratchAttrMap - wDecompressScratch
+	ld bc, wScratchAttrmap - wDecompressScratch
 	ld a, " "
 	call ByteFill
 	hlbgcoord 0, 0

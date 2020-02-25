@@ -141,7 +141,7 @@ Function891d3:
 Function891de:
 	call Mobile22_SetBGMapMode0
 	call ClearPalettes
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	ld a, $7
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
@@ -173,7 +173,7 @@ Function8920f::
 Function89215:
 	push hl
 	push bc
-	ld bc, wAttrMap - wTileMap
+	ld bc, wAttrmap - wTilemap
 	add hl, bc
 	ld [hl], a
 	pop bc
@@ -812,7 +812,7 @@ Palette_895de:
 
 Function895e6:
 	ld a, 7
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	ret
@@ -820,7 +820,7 @@ Function895e6:
 Function895f2:
 	push bc
 	xor a
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	call Function89605
@@ -829,7 +829,7 @@ Function895f2:
 	ret
 
 Function89605:
-	hlcoord 19, 2, wAttrMap
+	hlcoord 19, 2, wAttrmap
 	ld a, 1
 	ld de, SCREEN_WIDTH
 	ld c, 14
@@ -846,7 +846,7 @@ Function89605:
 	jr nz, .loop
 
 .done
-	hlcoord 0, 16, wAttrMap
+	hlcoord 0, 16, wAttrmap
 	ld c, 10
 	ld a, 2
 .loop2
@@ -856,7 +856,7 @@ Function89605:
 	inc a
 	dec c
 	jr nz, .loop2
-	hlcoord 1, 11, wAttrMap
+	hlcoord 1, 11, wAttrmap
 	ld a, 4
 	ld bc, 4
 	call ByteFill
@@ -866,7 +866,7 @@ Function89605:
 	ret
 
 Function8963d:
-	hlcoord 12, 3, wAttrMap
+	hlcoord 12, 3, wAttrmap
 	ld a, 6
 	ld de, SCREEN_WIDTH
 	lb bc, 7, 7
@@ -884,7 +884,7 @@ Function8963d:
 	ret
 
 Function89655:
-	hlcoord 1, 12, wAttrMap
+	hlcoord 1, 12, wAttrmap
 	ld de, SCREEN_WIDTH
 	ld a, 5
 	ld b, 4
@@ -1182,7 +1182,7 @@ Function897d5:
 	push bc
 	call Function8934a
 	jr nc, .asm_897f3
-	hlcoord 12, 3, wAttrMap
+	hlcoord 12, 3, wAttrmap
 	xor a
 	ld de, SCREEN_WIDTH
 	lb bc, 7, 7
@@ -2116,7 +2116,7 @@ Function89d75:
 	push hl
 	call Mobile22_SetBGMapMode0
 	call _hl_
-	farcall Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
+	farcall Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
 	pop hl
 	jr asm_89d90
 
@@ -2274,10 +2274,10 @@ Function89e6f:
 	hlcoord 7, 4
 	call Function8a58d
 	ld a, $5
-	hlcoord 7, 4, wAttrMap
+	hlcoord 7, 4, wAttrmap
 	call Function8a5a3
 	ld a, $6
-	hlcoord 10, 4, wAttrMap
+	hlcoord 10, 4, wAttrmap
 	call Function8a5a3
 	call Function891ab
 	call SetPalettes
@@ -2309,10 +2309,10 @@ Function89eb9:
 	hlcoord 7, 4
 	call Function8a58d
 	ld a, $5
-	hlcoord 7, 4, wAttrMap
+	hlcoord 7, 4, wAttrmap
 	call Function8a5a3
 	ld a, $6
-	hlcoord 10, 4, wAttrMap
+	hlcoord 10, 4, wAttrmap
 	call Function8a5a3
 	call Function891ab
 	call SetPalettes
@@ -2489,10 +2489,10 @@ Function89fa5:
 Function89fce:
 	call Function8a5b6
 	ld a, $5
-	hlcoord 7, 4, wAttrMap
+	hlcoord 7, 4, wAttrmap
 	call Function8a5a3
 	ld a, $6
-	hlcoord 10, 4, wAttrMap
+	hlcoord 10, 4, wAttrmap
 	call Function8a5a3
 	call Function89448
 	call SetPalettes
@@ -2572,11 +2572,11 @@ Function8a055:
 	hlcoord 12, 4
 	call Function8a58d
 	ld a, $5
-	hlcoord 12, 4, wAttrMap
+	hlcoord 12, 4, wAttrmap
 	call Function8a5a3
 	pop hl
 	ld a, $6
-	hlcoord 15, 4, wAttrMap
+	hlcoord 15, 4, wAttrmap
 	call Function8a5a3
 	call CGBOnly_CopyTilemapAtOnce
 	jp Function89e36
@@ -2604,7 +2604,7 @@ Function8a0a1:
 
 Function8a0c1:
 	push hl
-	ld bc, wAttrMap - wTileMap
+	ld bc, wAttrmap - wTilemap
 	add hl, bc
 	ld a, [hl]
 	pop hl
@@ -2630,7 +2630,7 @@ Function8a0c9:
 
 Function8a0de:
 	call Function8a0c9
-	ld de, wAttrMap - wTileMap
+	ld de, wAttrmap - wTilemap
 	add hl, de
 	ret
 
@@ -2832,10 +2832,10 @@ Function8a262:
 	hlcoord 12, 4
 	call Function8a58d
 	ld a, $5
-	hlcoord 12, 4, wAttrMap
+	hlcoord 12, 4, wAttrmap
 	call Function8a5a3
 	ld a, $6
-	hlcoord 15, 4, wAttrMap
+	hlcoord 15, 4, wAttrmap
 	call Function8a5a3
 	xor a
 	ld [wd02e], a
@@ -3098,18 +3098,18 @@ Function8a4d3:
 	cp $1
 	jr nz, .asm_8a4eb
 	ld a, $5
-	hlcoord 12, 4, wAttrMap
+	hlcoord 12, 4, wAttrmap
 	call Function8a5a3
 	ld a, $7
-	hlcoord 15, 4, wAttrMap
+	hlcoord 15, 4, wAttrmap
 	call Function8a5a3
 	ret
 .asm_8a4eb
 	ld a, $7
-	hlcoord 12, 4, wAttrMap
+	hlcoord 12, 4, wAttrmap
 	call Function8a5a3
 	ld a, $6
-	hlcoord 15, 4, wAttrMap
+	hlcoord 15, 4, wAttrmap
 	call Function8a5a3
 	ret
 

@@ -100,7 +100,7 @@ AnimateFrontpic::
 .loop
 	call SetUpPokeAnim
 	push af
-	farcall HDMATransferTileMapToWRAMBank3
+	farcall HDMATransferTilemapToWRAMBank3
 	pop af
 	jr nc, .loop
 	ret
@@ -274,9 +274,9 @@ PokeAnim_DeinitFrames:
 	ld a, BANK(wPokeAnimCoord)
 	ldh [rSVBK], a
 	call PokeAnim_PlaceGraphic
-	farcall HDMATransferTileMapToWRAMBank3
+	farcall HDMATransferTilemapToWRAMBank3
 	call PokeAnim_SetVBank0
-	farcall HDMATransferAttrMapToWRAMBank3
+	farcall HDMATransferAttrmapToWRAMBank3
 	pop af
 	ldh [rSVBK], a
 	ret
@@ -843,13 +843,13 @@ PokeAnim_SetVBank1:
 	xor a
 	ldh [hBGMapMode], a
 	call .SetFlag
-	farcall HDMATransferAttrMapToWRAMBank3
+	farcall HDMATransferAttrmapToWRAMBank3
 	pop af
 	ldh [rSVBK], a
 	ret
 
 .SetFlag:
-	call PokeAnim_GetAttrMapCoord
+	call PokeAnim_GetAttrmapCoord
 	ld b, 7
 	ld c, 7
 	ld de, SCREEN_WIDTH
@@ -871,7 +871,7 @@ PokeAnim_SetVBank1:
 	ret
 
 PokeAnim_SetVBank0:
-	call PokeAnim_GetAttrMapCoord
+	call PokeAnim_GetAttrmapCoord
 	ld b, 7
 	ld c, 7
 	ld de, SCREEN_WIDTH
@@ -892,12 +892,12 @@ PokeAnim_SetVBank0:
 	jr nz, .row
 	ret
 
-PokeAnim_GetAttrMapCoord:
+PokeAnim_GetAttrmapCoord:
 	ld hl, wPokeAnimCoord
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, wAttrMap - wTileMap
+	ld de, wAttrmap - wTilemap
 	add hl, de
 	ret
 

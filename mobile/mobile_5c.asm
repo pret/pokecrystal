@@ -530,7 +530,7 @@ Function171b42:
 Function171b4b:
 	depixel 8, 2
 	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, $8
@@ -538,7 +538,7 @@ Function171b4b:
 
 	depixel 8, 19
 	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, $9
@@ -546,7 +546,7 @@ Function171b4b:
 
 	depixel 17, 14, 2, 0
 	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, $a
@@ -712,7 +712,7 @@ Function171c87::
 	ld bc, $168
 	call CopyBytes
 	ld hl, Attrmap_1727ed
-	decoord 0, 0, wAttrMap
+	decoord 0, 0, wAttrmap
 	ld bc, $168
 	call CopyBytes
 	hlcoord 3, 2
@@ -784,7 +784,7 @@ Function171d2b:
 	ld bc, $168
 	call CopyBytes
 	ld hl, Attrmap_172955
-	decoord 0, 0, wAttrMap
+	decoord 0, 0, wAttrmap
 	ld bc, $168
 	call CopyBytes
 	hlcoord 2, 2
@@ -869,7 +869,7 @@ Function172e78::
 	ld bc, $168
 	call ByteFill
 	ld a, $7
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	ld bc, $168
 	call ByteFill
 	call DisableLCD
@@ -883,7 +883,7 @@ Function172e78::
 	ld bc, $168
 	call CopyBytes
 	ld hl, Attrmap_173517
-	decoord 0, 0, wAttrMap
+	decoord 0, 0, wAttrmap
 	ld bc, $168
 	call CopyBytes
 	ret

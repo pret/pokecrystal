@@ -5,24 +5,25 @@ INCLUDE "constants/music_common.inc"
 SECTION "audio/music/successfulcapture.asm", ROMX, BANK[BANK_MUSIC_WILD_VICTORY]
 
 Music_SuccessfulCapture::
-	musicheader 3, 1, Music_SuccessfulCapture_Ch1
-	musicheader 1, 2, Music_SuccessfulCapture_Ch2
-	musicheader 1, 3, Music_SuccessfulCapture_Ch3
+	channel_count 3
+	channel 1, Music_SuccessfulCapture_Ch1
+	channel 2, Music_SuccessfulCapture_Ch2
+	channel 3, Music_SuccessfulCapture_Ch3
 
 Music_SuccessfulCapture_Ch1:
 	tempo 126
-	volume $77
-	dutycycle $3
-	tone $0001
-	notetype $c, $a1
-	jumpchannel Music_WildPokemonVictory_Ch1.body
+	volume 7, 7
+	duty_cycle 3
+	pitch_offset 1
+	note_type 12, 10, 1
+	sound_jump Music_WildPokemonVictory_Ch1.body
 
 Music_SuccessfulCapture_Ch2:
-	vibrato $12, $24
-	notetype $c, $c1
-	dutycycle $2
-	jumpchannel Music_WildPokemonVictory_Ch2.body
+	vibrato 18, 2, 4
+	note_type 12, 12, 1
+	duty_cycle 2
+	sound_jump Music_WildPokemonVictory_Ch2.body
 
 Music_SuccessfulCapture_Ch3:
-	notetype $c, $25
-	jumpchannel Music_WildPokemonVictory_Ch3.body
+	note_type 12, 2, 5
+	sound_jump Music_WildPokemonVictory_Ch3.body

@@ -4,64 +4,65 @@ INCLUDE "constants/music_common.inc"
 SECTION "audio/music/rivalbattle.asm", ROMX
 
 Music_RivalBattle::
-	musicheader 3, 1, Music_RivalBattle_Ch1
-	musicheader 1, 2, Music_RivalBattle_Ch2
-	musicheader 1, 3, Music_RivalBattle_Ch3
+	channel_count 3
+	channel 1, Music_RivalBattle_Ch1
+	channel 2, Music_RivalBattle_Ch2
+	channel 3, Music_RivalBattle_Ch3
 
 Music_RivalBattle_Ch1:
 	tempo 102
-	volume $77
-	dutycycle $3
-	tone $0002
-	vibrato $8, $15
-	notetype $c, $b2
+	volume 7, 7
+	duty_cycle 3
+	pitch_offset 2
+	vibrato 8, 1, 5
+	note_type 12, 11, 2
 	octave 3
 	note F#, 2
 	note A#, 4
-	intensity $b7
+	volume_envelope 11, 7
 	note A#, 10
-	intensity $b2
+	volume_envelope 11, 2
 	note F#, 2
 	octave 4
 	note C#, 4
-	intensity $b7
+	volume_envelope 11, 7
 	note C#, 6
 	note E_, 4
 .loop1:
-	intensity $b2
+	volume_envelope 11, 2
 	octave 2
 	note A#, 6
-	intensity $b7
+	volume_envelope 11, 7
 	octave 3
 	note C#, 6
-	intensity $b2
+	volume_envelope 11, 2
 	note D#, 4
-	loopchannel 3, .loop1
-	intensity $b2
+	sound_loop 3, .loop1
+	volume_envelope 11, 2
 	octave 2
 	note A#, 2
 	octave 3
 	note C#, 4
-	intensity $b7
+	volume_envelope 11, 7
 	note C#, 10
 .loop2:
-	intensity $b2
+	volume_envelope 11, 2
 	octave 3
 	note G#, 6
-	intensity $b7
+	volume_envelope 11, 7
 	note B_, 6
-	intensity $b2
+	volume_envelope 11, 2
 	octave 4
 	note C#, 4
-	loopchannel 3, .loop2
-	intensity $b2
+	sound_loop 3, .loop2
+	volume_envelope 11, 2
 	octave 3
 	note G#, 2
 	note B_, 4
-	intensity $4d
+	volume_envelope 4, -5
 	note B_, 10
 .mainloop:
-	intensity $b7
+	volume_envelope 11, 7
 	note A#, 6
 	note F#, 6
 	note D#, 4
@@ -69,21 +70,21 @@ Music_RivalBattle_Ch1:
 	note F#, 4
 	note G#, 2
 	note A#, 6
-	intensity $b2
+	volume_envelope 11, 2
 	note F_, 1
 	note D#, 1
 	note C#, 1
 	note D#, 1
-	intensity $b7
+	volume_envelope 11, 7
 	note F_, 4
-	intensity $b2
+	volume_envelope 11, 2
 	note G#, 1
 	note F#, 1
 	note F_, 1
 	note F#, 1
-	intensity $b7
+	volume_envelope 11, 7
 	note G#, 4
-	intensity $b6
+	volume_envelope 11, 6
 	note G#, 2
 	note A#, 2
 	note B_, 2
@@ -95,7 +96,7 @@ Music_RivalBattle_Ch1:
 	note B_, 2
 	octave 4
 	note E_, 2
-	intensity $b7
+	volume_envelope 11, 7
 	octave 3
 	note A#, 6
 	note F#, 6
@@ -111,7 +112,7 @@ Music_RivalBattle_Ch1:
 	note C#, 6
 	octave 3
 	note G#, 4
-	intensity $b5
+	volume_envelope 11, 5
 	note C#, 2
 	note F_, 2
 	note G#, 2
@@ -122,32 +123,32 @@ Music_RivalBattle_Ch1:
 	note G#, 2
 	note F_, 2
 	note G#, 2
-	intensity $b7
+	volume_envelope 11, 7
 	note F#, 10
-	intensity $b4
+	volume_envelope 11, 4
 	octave 2
 	note B_, 2
 	octave 3
 	note D#, 2
 	note F#, 2
-	intensity $b7
+	volume_envelope 11, 7
 	note F_, 4
 	note D#, 4
 	note C#, 2
 	note D#, 6
-	intensity $a0
+	volume_envelope 10, 0
 	note F_, 8
-	intensity $a7
+	volume_envelope 10, 7
 	note F_, 8
-	intensity $a0
+	volume_envelope 10, 0
 	octave 2
 	note A#, 8
-	intensity $a7
+	volume_envelope 10, 7
 	note A#, 8
-	intensity $b7
+	volume_envelope 11, 7
 	octave 3
 	note F#, 10
-	intensity $b5
+	volume_envelope 11, 5
 	octave 2
 	note B_, 2
 	octave 3
@@ -161,17 +162,17 @@ Music_RivalBattle_Ch1:
 	note F#, 2
 	note F_, 2
 	note G#, 2
-	intensity $a0
+	volume_envelope 10, 0
 	note A#, 16
-	intensity $a7
+	volume_envelope 10, 7
 	note A#, 16
-	intensity $a0
+	volume_envelope 10, 0
 	note B_, 8
-	intensity $a7
+	volume_envelope 10, 7
 	note B_, 4
-	intensity $b7
+	volume_envelope 11, 7
 	note G#, 4
-	intensity $b5
+	volume_envelope 11, 5
 	octave 4
 	note E_, 2
 	note D#, 2
@@ -208,8 +209,8 @@ Music_RivalBattle_Ch1:
 	note A#, 2
 	octave 4
 	note D#, 2
-	loopchannel 2, .loop3
-	intensity $94
+	sound_loop 2, .loop3
+	volume_envelope 9, 4
 	octave 3
 	note D#, 8
 	octave 2
@@ -217,14 +218,14 @@ Music_RivalBattle_Ch1:
 	octave 3
 	note G_, 8
 	note F_, 8
-	intensity $96
+	volume_envelope 9, 6
 	octave 2
 	note G#, 8
 	note A#, 8
 	note B_, 8
 	octave 3
 	note C#, 8
-	intensity $b7
+	volume_envelope 11, 7
 	octave 4
 	note D#, 8
 	octave 3
@@ -238,16 +239,16 @@ Music_RivalBattle_Ch1:
 	note B_, 8
 	octave 4
 	note C#, 8
-	intensity $a0
+	volume_envelope 10, 0
 	note D#, 8
-	intensity $a7
+	volume_envelope 10, 7
 	note D#, 8
-	intensity $a0
+	volume_envelope 10, 0
 	octave 3
 	note G_, 8
-	intensity $a7
+	volume_envelope 10, 7
 	note G_, 8
-	intensity $b7
+	volume_envelope 11, 7
 	note D#, 8
 	note C#, 8
 	note D#, 4
@@ -256,7 +257,7 @@ Music_RivalBattle_Ch1:
 	note B_, 4
 	octave 3
 	note C#, 4
-	intensity $c7
+	volume_envelope 12, 7
 	octave 2
 	note A#, 6
 	octave 3
@@ -288,13 +289,13 @@ Music_RivalBattle_Ch1:
 	note B_, 6
 	octave 3
 	note C#, 10
-	loopchannel 0, .mainloop
+	sound_loop 0, .mainloop
 
 Music_RivalBattle_Ch2:
-	dutycycle $3
-	vibrato $8, $36
-	tone $0001
-	notetype $c, $c2
+	duty_cycle 3
+	vibrato 8, 3, 6
+	pitch_offset 1
+	note_type 12, 12, 2
 	octave 4
 	note E_, 1
 	note D#, 1
@@ -332,94 +333,94 @@ Music_RivalBattle_Ch2:
 	note C_, 1
 	octave 2
 	note B_, 1
-	intensity $c2
+	volume_envelope 12, 2
 	octave 4
 	note D#, 6
-	intensity $c7
+	volume_envelope 12, 7
 	octave 3
 	note F#, 6
-	intensity $c2
+	volume_envelope 12, 2
 	note G#, 4
 .loop1:
-	intensity $c2
+	volume_envelope 12, 2
 	note D#, 6
-	intensity $c7
+	volume_envelope 12, 7
 	note F#, 6
-	intensity $c2
+	volume_envelope 12, 2
 	note G#, 4
-	loopchannel 2, .loop1
-	intensity $c2
+	sound_loop 2, .loop1
+	volume_envelope 12, 2
 	note D#, 2
 	note F#, 4
-	intensity $c7
+	volume_envelope 12, 7
 	note F#, 8
-	intensity $a2
+	volume_envelope 10, 2
 	note B_, 1
 	octave 4
 	note C_, 1
 .loop2:
-	intensity $c2
+	volume_envelope 12, 2
 	note C#, 6
-	intensity $c7
+	volume_envelope 12, 7
 	note E_, 6
-	intensity $c2
+	volume_envelope 12, 2
 	note F#, 4
-	loopchannel 3, .loop2
-	intensity $c2
+	sound_loop 3, .loop2
+	volume_envelope 12, 2
 	note C#, 2
 	note E_, 4
-	intensity $b0
+	volume_envelope 11, 0
 	note E_, 4
-	intensity $b7
+	volume_envelope 11, 7
 	note E_, 6
 .mainloop:
-	callchannel .sub1
-	intensity $b0
+	sound_call .sub1
+	volume_envelope 11, 0
 	note G#, 8
-	intensity $b7
+	volume_envelope 11, 7
 	note G#, 8
-	callchannel .sub1
-	intensity $4e
+	sound_call .sub1
+	volume_envelope 4, -6
 	note G#, 8
-	intensity $b7
+	volume_envelope 11, 7
 	note G#, 8
-	intensity $b0
+	volume_envelope 11, 0
 	octave 3
 	note B_, 10
-	intensity $b7
+	volume_envelope 11, 7
 	note B_, 6
-	intensity $b0
+	volume_envelope 11, 0
 	octave 4
 	note C#, 8
 	octave 3
 	note B_, 8
-	intensity $b0
+	volume_envelope 11, 0
 	note A#, 10
-	intensity $b7
+	volume_envelope 11, 7
 	note A#, 6
-	intensity $2f
+	volume_envelope 2, -7
 	note D#, 10
-	intensity $b7
+	volume_envelope 11, 7
 	note D#, 6
-	intensity $b0
+	volume_envelope 11, 0
 	note B_, 10
-	intensity $b7
+	volume_envelope 11, 7
 	note B_, 6
-	intensity $c7
+	volume_envelope 12, 7
 	octave 4
 	note C#, 8
 	octave 3
 	note B_, 8
-	intensity $b0
+	volume_envelope 11, 0
 	octave 4
 	note D#, 16
-	intensity $b7
+	volume_envelope 11, 7
 	note D#, 16
-	intensity $b0
+	volume_envelope 11, 0
 	note E_, 4
-	intensity $b7
+	volume_envelope 11, 7
 	note E_, 6
-	intensity $c7
+	volume_envelope 12, 7
 	note E_, 2
 	note G#, 2
 	note B_, 2
@@ -427,36 +428,36 @@ Music_RivalBattle_Ch2:
 	note C#, 8
 	octave 4
 	note B_, 8
-	intensity $b0
+	volume_envelope 11, 0
 	note A#, 10
-	intensity $b7
+	volume_envelope 11, 7
 	note A#, 6
-	intensity $b0
+	volume_envelope 11, 0
 	note A_, 10
-	intensity $b7
+	volume_envelope 11, 7
 	note A_, 6
-	intensity $b0
+	volume_envelope 11, 0
 	note G#, 10
-	intensity $b7
+	volume_envelope 11, 7
 	note G#, 6
-	intensity $b0
+	volume_envelope 11, 0
 	note G_, 10
-	intensity $b7
+	volume_envelope 11, 7
 	note G_, 6
-	intensity $a4
+	volume_envelope 10, 4
 	octave 3
 	note G_, 8
 	note D#, 8
 	note A#, 8
 	note G#, 8
-	intensity $a6
+	volume_envelope 10, 6
 	octave 2
 	note B_, 8
 	octave 3
 	note C#, 8
 	note D#, 8
 	note F_, 8
-	intensity $c7
+	volume_envelope 12, 7
 	octave 4
 	note G_, 8
 	note D#, 8
@@ -468,89 +469,89 @@ Music_RivalBattle_Ch2:
 	note C#, 8
 	note D#, 8
 	note F_, 8
-	intensity $b0
+	volume_envelope 11, 0
 	note G_, 16
 	note D#, 16
 	octave 3
 	note B_, 8
 	note A#, 8
 	note G#, 8
-	intensity $c7
+	volume_envelope 12, 7
 	note F_, 8
 .loop3:
-	intensity $c2
+	volume_envelope 12, 2
 	octave 3
 	note A#, 6
-	intensity $c7
+	volume_envelope 12, 7
 	octave 4
 	note C#, 6
-	intensity $c2
+	volume_envelope 12, 2
 	note D#, 4
-	loopchannel 3, .loop3
-	intensity $c2
+	sound_loop 3, .loop3
+	volume_envelope 12, 2
 	octave 3
 	note A#, 2
 	octave 4
 	note C#, 4
-	intensity $b7
+	volume_envelope 11, 7
 	note C#, 6
-	intensity $9a
+	volume_envelope 9, -2
 	note C#, 4
 .loop4:
-	intensity $c2
+	volume_envelope 12, 2
 	octave 3
 	note G#, 6
-	intensity $c7
+	volume_envelope 12, 7
 	note B_, 6
-	intensity $c2
+	volume_envelope 12, 2
 	octave 4
 	note C#, 4
-	loopchannel 3, .loop4
-	intensity $c2
+	sound_loop 3, .loop4
+	volume_envelope 12, 2
 	octave 3
 	note G#, 2
 	note B_, 4
-	intensity $c7
+	volume_envelope 12, 7
 	note B_, 6
-	intensity $6a
+	volume_envelope 6, -2
 	octave 4
 	note D_, 4
-	loopchannel 0, .mainloop
+	sound_loop 0, .mainloop
 
 .sub1:
-	intensity $c7
+	volume_envelope 12, 7
 	note D#, 10
-	intensity $c4
+	volume_envelope 12, 4
 	octave 3
 	note A#, 2
 	octave 4
 	note D#, 2
 	note F#, 2
-	intensity $c5
+	volume_envelope 12, 5
 	note F_, 4
 	note D#, 4
-	intensity $c2
+	volume_envelope 12, 2
 	note C#, 2
-	intensity $c7
+	volume_envelope 12, 7
 	note D#, 6
-	intensity $b0
+	volume_envelope 11, 0
 	note F_, 8
-	intensity $b7
+	volume_envelope 11, 7
 	note F_, 8
-	endchannel
+	sound_ret
 
 Music_RivalBattle_Ch3:
-	notetype $c, $19
+	note_type 12, 1, -1
 	octave 3
 	note F#, 2
 	note A#, 2
-	note __, 2
+	rest 2
 	note A#, 10
 	octave 3
 	note F#, 2
 	octave 4
 	note C#, 2
-	note __, 2
+	rest 2
 	note C#, 6
 	octave 3
 	note C#, 2
@@ -563,7 +564,7 @@ Music_RivalBattle_Ch3:
 	note E_, 2
 	note D#, 2
 	note C#, 2
-	loopchannel 4, .loop1
+	sound_loop 4, .loop1
 .loop2:
 	octave 3
 	note C#, 2
@@ -576,7 +577,7 @@ Music_RivalBattle_Ch3:
 	note C#, 2
 	octave 2
 	note B_, 2
-	loopchannel 3, .loop2
+	sound_loop 3, .loop2
 	octave 3
 	note C#, 2
 	note E_, 2
@@ -588,7 +589,7 @@ Music_RivalBattle_Ch3:
 	note C#, 2
 	note D_, 2
 .mainloop:
-	callchannel .sub1
+	sound_call .sub1
 	octave 2
 	note A#, 2
 	octave 4
@@ -605,7 +606,7 @@ Music_RivalBattle_Ch3:
 	note A#, 2
 	octave 3
 	note G#, 2
-	callchannel .sub2
+	sound_call .sub2
 	note C#, 2
 	note G#, 2
 	octave 4
@@ -616,7 +617,7 @@ Music_RivalBattle_Ch3:
 	note C_, 2
 	octave 2
 	note B_, 2
-	callchannel .sub1
+	sound_call .sub1
 	octave 2
 	note A#, 2
 	octave 3
@@ -633,12 +634,12 @@ Music_RivalBattle_Ch3:
 	note A#, 2
 	octave 3
 	note F_, 2
-	callchannel .sub2
+	sound_call .sub2
 .loop3:
 	note C#, 2
 	note G#, 2
-	loopchannel 4, .loop3
-	callchannel .sub3
+	sound_loop 4, .loop3
+	sound_call .sub3
 	note G#, 2
 	note F#, 2
 .loop4:
@@ -646,7 +647,7 @@ Music_RivalBattle_Ch3:
 	note A#, 2
 	octave 3
 	note F_, 2
-	loopchannel 4, .loop4
+	sound_loop 4, .loop4
 	octave 2
 	note A#, 2
 	octave 3
@@ -661,17 +662,17 @@ Music_RivalBattle_Ch3:
 	note F#, 2
 	note F_, 2
 	note D#, 2
-	callchannel .sub3
+	sound_call .sub3
 	octave 2
 	note B_, 2
 	octave 3
 	note D_, 2
-	callchannel .sub4
+	sound_call .sub4
 	octave 3
 	note D#, 2
 	octave 4
 	note D#, 2
-	callchannel .sub4
+	sound_call .sub4
 	octave 3
 	note D#, 2
 	note A#, 2
@@ -702,31 +703,31 @@ Music_RivalBattle_Ch3:
 .loop5:
 	note D#, 2
 	note A#, 2
-	loopchannel 4, .loop5
+	sound_loop 4, .loop5
 .loop6:
 	note D#, 2
 	note A_, 2
-	loopchannel 4, .loop6
+	sound_loop 4, .loop6
 .loop7:
 	note D#, 2
 	note G#, 2
-	loopchannel 4, .loop7
+	sound_loop 4, .loop7
 .loop8:
 	note D#, 2
 	note G_, 2
-	loopchannel 12, .loop8
+	sound_loop 12, .loop8
 .loop9:
 	octave 2
 	note B_, 2
 	octave 3
 	note D#, 2
-	loopchannel 4, .loop9
+	sound_loop 4, .loop9
 .loop10:
 	octave 2
 	note B_, 2
 	octave 3
 	note F#, 2
-	loopchannel 4, .loop10
+	sound_loop 4, .loop10
 	note D#, 2
 	note G_, 2
 	note A#, 2
@@ -785,7 +786,7 @@ Music_RivalBattle_Ch3:
 	note A#, 2
 	octave 3
 	note D#, 2
-	loopchannel 7, .loop11
+	sound_loop 7, .loop11
 	note E_, 2
 	note D#, 2
 .loop12:
@@ -793,7 +794,7 @@ Music_RivalBattle_Ch3:
 	note A#, 2
 	octave 3
 	note D#, 2
-	loopchannel 6, .loop12
+	sound_loop 6, .loop12
 	octave 2
 	note A#, 2
 	octave 3
@@ -805,7 +806,7 @@ Music_RivalBattle_Ch3:
 	note G#, 2
 	octave 3
 	note C#, 2
-	loopchannel 7, .loop13
+	sound_loop 7, .loop13
 	note D_, 2
 	note C#, 2
 .loop14:
@@ -813,7 +814,7 @@ Music_RivalBattle_Ch3:
 	note G#, 2
 	octave 3
 	note C#, 2
-	loopchannel 4, .loop14
+	sound_loop 4, .loop14
 	octave 2
 	note B_, 2
 	note G#, 2
@@ -823,7 +824,7 @@ Music_RivalBattle_Ch3:
 	note E_, 2
 	note D#, 2
 	note D_, 2
-	loopchannel 0, .mainloop
+	sound_loop 0, .mainloop
 
 .sub1:
 .sub1loop1:
@@ -831,8 +832,8 @@ Music_RivalBattle_Ch3:
 	note A#, 2
 	octave 3
 	note D#, 2
-	loopchannel 4, .sub1loop1
-	endchannel
+	sound_loop 4, .sub1loop1
+	sound_ret
 
 .sub2:
 	note C#, 2
@@ -846,7 +847,7 @@ Music_RivalBattle_Ch3:
 	octave 3
 	note C#, 2
 	note G#, 2
-	endchannel
+	sound_ret
 
 .sub3:
 .sub3loop1:
@@ -854,8 +855,8 @@ Music_RivalBattle_Ch3:
 	note B_, 2
 	octave 3
 	note F#, 2
-	loopchannel 7, .sub3loop1
-	endchannel
+	sound_loop 7, .sub3loop1
+	sound_ret
 
 .sub4:
 .sub4loop1:
@@ -864,5 +865,5 @@ Music_RivalBattle_Ch3:
 	note A#, 2
 	octave 4
 	note D#, 2
-	loopchannel 2, .sub4loop1
-	endchannel
+	sound_loop 2, .sub4loop1
+	sound_ret

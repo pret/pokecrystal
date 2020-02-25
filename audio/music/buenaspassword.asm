@@ -4,73 +4,74 @@ INCLUDE "constants/music_common.inc"
 SECTION "audio/music/buenaspassword.asm", ROMX
 
 Music_BuenasPassword::
-	musicheader 4, 1, Music_BuenasPassword_Ch1
-	musicheader 1, 2, Music_BuenasPassword_Ch2
-	musicheader 1, 3, Music_BuenasPassword_Ch3
-	musicheader 1, 4, Music_BuenasPassword_Ch4
+	channel_count 4
+	channel 1, Music_BuenasPassword_Ch1
+	channel 2, Music_BuenasPassword_Ch2
+	channel 3, Music_BuenasPassword_Ch3
+	channel 4, Music_BuenasPassword_Ch4
 
 Music_BuenasPassword_Ch1:
 	tempo 136
-	volume $77
-	tone $0001
-	notetype $c, $b3
-	note __, 8
+	volume 7, 7
+	pitch_offset 1
+	note_type 12, 11, 3
+	rest 8
 .mainloop:
-	stereopanning $ff
-	note __, 16
-	note __, 16
-	dutycycle $3
-	notetype $6, $97
-	stereopanning $f
+	stereo_panning TRUE, TRUE
+	rest 16
+	rest 16
+	duty_cycle 3
+	note_type 6, 9, 7
+	stereo_panning FALSE, TRUE
 	octave 4
 	note G#, 1
-	note __, 1
+	rest 1
 	note G#, 1
-	note __, 1
+	rest 1
 	note F#, 2
 	note G#, 2
-	note __, 10
-	note __, 10
-	stereopanning $f0
+	rest 10
+	rest 10
+	stereo_panning TRUE, FALSE
 	note C#, 2
 	note F_, 2
 	note G#, 1
-	note __, 1
+	rest 1
 	note G#, 1
-	note __, 1
+	rest 1
 	note F#, 2
 	note G#, 2
-	note __, 12
-	dutycycle $2
-	callchannel .sub1
-	stereopanning $ff
-	callchannel Music_BuenasPassword_Ch2.sub3
-	callchannel .sub2
-	callchannel .sub1
-	stereopanning $ff
-	callchannel Music_BuenasPassword_Ch2.sub3
-	callchannel .sub2
-	callchannel .sub1
-	dutycycle $1
+	rest 12
+	duty_cycle 2
+	sound_call .sub1
+	stereo_panning TRUE, TRUE
+	sound_call Music_BuenasPassword_Ch2.sub3
+	sound_call .sub2
+	sound_call .sub1
+	stereo_panning TRUE, TRUE
+	sound_call Music_BuenasPassword_Ch2.sub3
+	sound_call .sub2
+	sound_call .sub1
+	duty_cycle 1
 	note C#, 2
-	note __, 2
+	rest 2
 	note D#, 2
-	note __, 2
+	rest 2
 	note F#, 2
-	note __, 1
+	rest 1
 	note G#, 2
-	note __, 1
+	rest 1
 	note A#, 2
 	note B_, 1
-	note __, 1
+	rest 1
 	octave 4
 	note C#, 1
-	note __, 1
+	rest 1
 	note D#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note B_, 2
-	note __, 2
+	rest 2
 	note B_, 2
 	note G#, 2
 	note B_, 2
@@ -93,140 +94,140 @@ Music_BuenasPassword_Ch1:
 	note D#, 1
 	note G_, 3
 	note B_, 2
-	note __, 2
+	rest 2
 	note A#, 2
-	note __, 2
+	rest 2
 	note G#, 2
-	note __, 1
+	rest 1
 	note F#, 2
-	note __, 1
+	rest 1
 	note D#, 2
 	note C#, 1
-	note __, 1
+	rest 1
 	note D#, 1
-	note __, 1
+	rest 1
 	note F_, 1
-	note __, 1
+	rest 1
 	note C#, 2
-	note __, 2
+	rest 2
 	note G#, 2
 	octave 4
 	note C#, 2
 	note F_, 2
 	note G#, 1
-	note __, 1
+	rest 1
 	note D#, 1
-	note __, 1
+	rest 1
 	note G#, 1
 	note F#, 3
 	note F_, 1
-	note __, 1
+	rest 1
 	note D#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note B_, 1
 	note G#, 3
 	note F#, 1
-	note __, 1
+	rest 1
 	note D#, 1
-	note __, 1
+	rest 1
 	note G#, 1
 	note D#, 2
 	note F#, 1
 	note G#, 1
-	note __, 1
+	rest 1
 	note D#, 1
-	note __, 1
+	rest 1
 	note F#, 1
-	note __, 1
+	rest 1
 	note G_, 1
-	note __, 1
-	loopchannel 0, .mainloop
+	rest 1
+	sound_loop 0, .mainloop
 
 .sub1:
-	stereopanning $f
-	notetype $6, $84
+	stereo_panning FALSE, TRUE
+	note_type 6, 8, 4
 	octave 4
 	note D#, 2
-	intensity $71
+	volume_envelope 7, 1
 	note C#, 1
 	note C_, 1
-	intensity $51
+	volume_envelope 5, 1
 	octave 3
 	note A#, 1
 	note G#, 1
-	intensity $31
+	volume_envelope 3, 1
 	note G_, 1
 	note F_, 1
-	intensity $11
+	volume_envelope 1, 1
 	note D#, 1
 	note C#, 1
 	note C_, 1
-	note __, 1
-	notetype $c, $84
-	endchannel
+	rest 1
+	note_type 12, 8, 4
+	sound_ret
 
 .sub2:
 	octave 3
 	note D#, 1
-	note __, 1
+	rest 1
 	octave 2
 	note G#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note D#, 1
 	octave 2
 	note G#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note D#, 1
-	note __, 2
-	endchannel
+	rest 2
+	sound_ret
 
 Music_BuenasPassword_Ch2:
-	vibrato $12, $34
-	dutycycle $2
-	notetype $c, $a5
-	note __, 7
+	vibrato 18, 3, 4
+	duty_cycle 2
+	note_type 12, 10, 5
+	rest 7
 	octave 3
 	note F#, 1
 .mainloop:
-	stereopanning $ff
-	callchannel .sub3
-	callchannel .sub1
-	stereopanning $ff
-	callchannel .sub2
+	stereo_panning TRUE, TRUE
+	sound_call .sub3
+	sound_call .sub1
+	stereo_panning TRUE, TRUE
+	sound_call .sub2
 	octave 3
 	note B_, 2
 	note A#, 2
 	note B_, 2
 	note G#, 16
-	callchannel .sub1
-	stereopanning $ff
-	callchannel .sub2
+	sound_call .sub1
+	stereo_panning TRUE, TRUE
+	sound_call .sub2
 	note B_, 2
 	note A#, 2
 	note B_, 2
 	note G#, 16
-	callchannel .sub1
+	sound_call .sub1
 	note F#, 2
-	note __, 2
+	rest 2
 	note G#, 2
-	note __, 2
+	rest 2
 	note A#, 2
-	note __, 1
+	rest 1
 	note B_, 2
-	note __, 1
+	rest 1
 	octave 4
 	note C#, 2
 	note D#, 1
-	note __, 1
+	rest 1
 	note F_, 1
-	note __, 1
+	rest 1
 	note F#, 1
-	note __, 1
+	rest 1
 	note D#, 2
-	note __, 2
+	rest 2
 	note G#, 2
 	note F#, 2
 	note G#, 2
@@ -240,23 +241,23 @@ Music_BuenasPassword_Ch2:
 	note C#, 1
 	note D#, 8
 	note F#, 2
-	note __, 2
+	rest 2
 	note F_, 2
-	note __, 2
+	rest 2
 	note D#, 2
-	note __, 1
+	rest 1
 	note C#, 2
-	note __, 1
+	rest 1
 	octave 3
 	note B_, 2
 	note G#, 1
-	note __, 1
+	rest 1
 	note A#, 1
-	note __, 1
+	rest 1
 	note B_, 1
-	note __, 1
+	rest 1
 	note G#, 2
-	note __, 2
+	rest 2
 	octave 4
 	note C#, 2
 	note F_, 2
@@ -265,266 +266,266 @@ Music_BuenasPassword_Ch2:
 	note A#, 1
 	note B_, 1
 	note G#, 10
-	intensity $84
+	volume_envelope 8, 4
 	octave 2
 	note D#, 1
-	note __, 1
+	rest 1
 	note F#, 1
-	note __, 1
+	rest 1
 	note G_, 1
-	note __, 1
-	intensity $a5
-	loopchannel 0, .mainloop
+	rest 1
+	volume_envelope 10, 5
+	sound_loop 0, .mainloop
 
 .sub1:
 	octave 3
 	note G#, 1
-	note __, 1
+	rest 1
 	note D#, 1
-	note __, 1
+	rest 1
 	note F#, 1
 	note D#, 1
-	note __, 1
+	rest 1
 	note F#, 1
-	note __, 2
-	stereopanning $f0
+	rest 2
+	stereo_panning TRUE, FALSE
 	octave 4
 	note G#, 1
-	notetype $6, $81
+	note_type 6, 8, 1
 	note G_, 1
 	note F_, 1
-	intensity $71
+	volume_envelope 7, 1
 	note D#, 1
 	note C#, 1
-	intensity $61
+	volume_envelope 6, 1
 	note C_, 1
 	octave 3
 	note A#, 1
-	intensity $41
+	volume_envelope 4, 1
 	note G#, 1
-	intensity $21
+	volume_envelope 2, 1
 	note G_, 1
 	note F_, 1
-	note __, 1
-	notetype $c, $a5
-	endchannel
+	rest 1
+	note_type 12, 10, 5
+	sound_ret
 
 .sub2:
 	octave 4
 	note G#, 2
-	note __, 2
+	rest 2
 	note F#, 2
-	note __, 2
+	rest 2
 	note F_, 2
-	note __, 1
+	rest 1
 	note D#, 2
-	note __, 1
+	rest 1
 	note C#, 2
 	note D#, 1
-	note __, 1
+	rest 1
 	note D#, 1
-	note __, 1
+	rest 1
 	note C#, 1
-	note __, 1
+	rest 1
 	note D#, 2
-	note __, 2
-	endchannel
+	rest 2
+	sound_ret
 
 .sub3:
 	octave 3
 	note G#, 1
-	note __, 1
+	rest 1
 	note D#, 1
-	note __, 1
+	rest 1
 	note F#, 1
 	note D#, 1
-	note __, 1
+	rest 1
 	note F#, 1
 	note F_, 1
-	note __, 1
+	rest 1
 	note C#, 1
-	note __, 1
+	rest 1
 	octave 2
 	note B_, 1
 	note G#, 3
 	octave 3
 	note G#, 1
-	note __, 1
+	rest 1
 	note D#, 1
-	note __, 1
+	rest 1
 	note F#, 1
 	note D#, 1
-	note __, 1
+	rest 1
 	note F#, 1
 	note F_, 1
-	note __, 1
+	rest 1
 	note C#, 1
-	note __, 1
+	rest 1
 	octave 2
 	note B_, 1
 	note G#, 2
 	octave 3
 	note F#, 1
 	note G#, 1
-	note __, 1
+	rest 1
 	note D#, 1
-	note __, 1
+	rest 1
 	note F#, 1
 	note D#, 1
-	note __, 1
+	rest 1
 	note F#, 1
 	note F_, 1
-	note __, 1
+	rest 1
 	note C#, 1
-	note __, 1
+	rest 1
 	octave 2
 	note B_, 1
 	note G#, 3
-	endchannel
+	sound_ret
 
 Music_BuenasPassword_Ch3:
-	notetype $c, $14
-	note __, 8
+	note_type 12, 1, 4
+	rest 8
 .mainloop:
 .loop1:
-	callchannel .sub1
-	callchannel .sub1
-	callchannel .sub1
+	sound_call .sub1
+	sound_call .sub1
+	sound_call .sub1
 	octave 2
 	note G#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note F#, 1
-	note __, 1
+	rest 1
 	octave 2
 	note G#, 1
 	octave 3
 	note D#, 2
 	octave 2
 	note G#, 1
-	note __, 2
+	rest 2
 	note B_, 1
-	note __, 1
+	rest 1
 	note G#, 4
-	loopchannel 3, .loop1
+	sound_loop 3, .loop1
 	note F#, 1
-	note __, 1
+	rest 1
 	note A#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note C#, 1
 	octave 2
 	note F#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note C#, 1
 	octave 2
 	note F#, 1
-	note __, 1
+	rest 1
 	note A#, 2
 	octave 3
 	note C#, 1
-	note __, 1
+	rest 1
 	octave 2
 	note F#, 2
 	note G#, 1
-	note __, 1
+	rest 1
 	note G#, 1
-	note __, 1
+	rest 1
 	note B_, 1
 	note G#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note D#, 1
 	octave 2
 	note G#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note G#, 2
 	octave 2
 	note G#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note D#, 2
 	octave 2
 	note D#, 1
-	note __, 1
+	rest 1
 	note D#, 1
-	note __, 1
+	rest 1
 	note G#, 1
 	note D#, 1
-	note __, 1
+	rest 1
 	note A#, 1
 	note D#, 1
-	note __, 1
+	rest 1
 	note G#, 2
 	note A#, 1
-	note __, 1
+	rest 1
 	note D#, 1
-	note __, 1
+	rest 1
 	note D#, 1
-	note __, 1
+	rest 1
 	note D#, 1
-	note __, 1
+	rest 1
 	note G_, 1
 	note D#, 1
-	note __, 1
+	rest 1
 	note A#, 1
 	note D#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note D#, 2
 	octave 2
 	note D#, 1
-	note __, 1
+	rest 1
 	note G_, 2
-	callchannel .sub2
+	sound_call .sub2
 	octave 3
 	note C#, 1
-	note __, 1
+	rest 1
 	note C#, 1
-	note __, 1
+	rest 1
 	note F_, 1
 	note C#, 1
-	note __, 1
+	rest 1
 	note G#, 1
 	octave 2
 	note G#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note F_, 2
 	octave 2
 	note G#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note C#, 2
-	callchannel .sub2
+	sound_call .sub2
 	note G#, 1
-	note __, 1
+	rest 1
 	note G#, 1
-	note __, 1
+	rest 1
 	note B_, 1
 	note G#, 2
 	octave 3
 	note D#, 1
 	octave 2
 	note G#, 1
-	note __, 1
+	rest 1
 	note D#, 1
-	note __, 1
+	rest 1
 	note F#, 1
-	note __, 1
+	rest 1
 	note G_, 1
-	note __, 1
-	loopchannel 0, .mainloop
+	rest 1
+	sound_loop 0, .mainloop
 
 .sub1:
 	octave 2
 	note G#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note F#, 1
-	note __, 1
+	rest 1
 	octave 2
 	note G#, 1
 	octave 3
@@ -533,106 +534,106 @@ Music_BuenasPassword_Ch3:
 	note G#, 1
 	octave 3
 	note C#, 1
-	note __, 1
+	rest 1
 	note B_, 1
-	note __, 1
+	rest 1
 	note C#, 1
 	note F_, 2
 	note C#, 1
-	endchannel
+	sound_ret
 
 .sub2:
 	octave 2
 	note G#, 1
-	note __, 1
+	rest 1
 	note G#, 1
-	note __, 1
+	rest 1
 	note B_, 1
 	note G#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note D#, 1
 	octave 2
 	note G#, 1
-	note __, 1
+	rest 1
 	note B_, 2
 	octave 3
 	note D#, 1
-	note __, 1
+	rest 1
 	octave 2
 	note G#, 2
-	endchannel
+	sound_ret
 
 Music_BuenasPassword_Ch4:
-	togglenoise $3
-	notetype $c
-	note D#, 2
-	note D_, 2
-	note D_, 2
-	note D_, 1
-	note D_, 1
+	toggle_noise 3
+	drum_speed 12
+	drum_note 4, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 1
+	drum_note 3, 1
 .mainloop:
 .loop1:
-	callchannel .sub1
-	callchannel .sub1
-	callchannel .sub1
-	callchannel .sub2
-	loopchannel 4, .loop1
-	callchannel .sub1
-	callchannel .sub1
-	callchannel .sub1
-	stereopanning $ff
-	note D#, 2
-	stereopanning $f0
-	note G_, 2
-	stereopanning $ff
-	note D_, 2
-	stereopanning $f
-	note G_, 1
-	note G_, 1
-	stereopanning $f0
-	note G_, 2
-	stereopanning $ff
-	note D_, 2
-	note D_, 2
-	note D_, 1
-	note D_, 1
-	loopchannel 0, .mainloop
+	sound_call .sub1
+	sound_call .sub1
+	sound_call .sub1
+	sound_call .sub2
+	sound_loop 4, .loop1
+	sound_call .sub1
+	sound_call .sub1
+	sound_call .sub1
+	stereo_panning TRUE, TRUE
+	drum_note 4, 2
+	stereo_panning TRUE, FALSE
+	drum_note 8, 2
+	stereo_panning TRUE, TRUE
+	drum_note 3, 2
+	stereo_panning FALSE, TRUE
+	drum_note 8, 1
+	drum_note 8, 1
+	stereo_panning TRUE, FALSE
+	drum_note 8, 2
+	stereo_panning TRUE, TRUE
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 1
+	drum_note 3, 1
+	sound_loop 0, .mainloop
 
 .sub1:
-	stereopanning $ff
-	note D#, 2
-	stereopanning $f0
-	note G_, 2
-	stereopanning $ff
-	note D_, 2
-	stereopanning $f
-	note G_, 1
-	note G_, 1
-	stereopanning $f0
-	note G_, 2
-	stereopanning $ff
-	note D#, 2
-	note D_, 2
-	stereopanning $f
-	note G_, 2
-	endchannel
+	stereo_panning TRUE, TRUE
+	drum_note 4, 2
+	stereo_panning TRUE, FALSE
+	drum_note 8, 2
+	stereo_panning TRUE, TRUE
+	drum_note 3, 2
+	stereo_panning FALSE, TRUE
+	drum_note 8, 1
+	drum_note 8, 1
+	stereo_panning TRUE, FALSE
+	drum_note 8, 2
+	stereo_panning TRUE, TRUE
+	drum_note 4, 2
+	drum_note 3, 2
+	stereo_panning FALSE, TRUE
+	drum_note 8, 2
+	sound_ret
 
 .sub2:
-	stereopanning $ff
-	note D#, 2
-	stereopanning $f0
-	note G_, 2
-	stereopanning $ff
-	note D_, 2
-	stereopanning $f
-	note G_, 1
-	note G_, 1
-	stereopanning $f0
-	note G_, 2
-	stereopanning $ff
-	note D#, 2
-	note D_, 2
-	note D_, 1
-	note D_, 1
-	endchannel
+	stereo_panning TRUE, TRUE
+	drum_note 4, 2
+	stereo_panning TRUE, FALSE
+	drum_note 8, 2
+	stereo_panning TRUE, TRUE
+	drum_note 3, 2
+	stereo_panning FALSE, TRUE
+	drum_note 8, 1
+	drum_note 8, 1
+	stereo_panning TRUE, FALSE
+	drum_note 8, 2
+	stereo_panning TRUE, TRUE
+	drum_note 4, 2
+	drum_note 3, 2
+	drum_note 3, 1
+	drum_note 3, 1
+	sound_ret

@@ -2,10 +2,10 @@ if !DEF(COLLISION_CONSTANTS_INC)
 COLLISION_CONSTANTS_INC EQU 1
 
 ; collision permissions (see data/collision_permissions.asm)
-LANDTILE             EQU $00
-WATERTILE            EQU $01
-WALLTILE             EQU $0f
-TALK                 EQU $10
+LAND_TILE  EQU $00
+WATER_TILE EQU $01
+WALL_TILE  EQU $0f
+TALK       EQU $10
 
 ; collision data types (see data/tilesets/*_collision.asm)
 ; TileCollisionTable indexes (see data/collision_permissions.asm)

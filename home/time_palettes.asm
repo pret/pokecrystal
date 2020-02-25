@@ -3,7 +3,7 @@ INCLUDE "macros/rst.inc"
 
 SECTION "home/time_palettes.asm", ROM0
 
-RTC::
+UpdateTimeAndPals::
 ; update time and time-sensitive palettes
 
 ; rtc enabled?
