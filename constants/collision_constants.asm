@@ -20,14 +20,14 @@ COLL_TALL_GRASS        EQU $18
 COLL_CUT_TREE_1A       EQU $1a ; unused
 COLL_LONG_GRASS_1C     EQU $1c ; unused
 COLL_HEADBUTT_TREE_1D  EQU $1d ; unused
-COLL_WATER_21          EQU $21 ; ???
+COLL_WATER_21          EQU $21 ; unused
 COLL_ICE               EQU $23
 COLL_WHIRLPOOL         EQU $24
 COLL_BUOY              EQU $27
 COLL_CUT_28            EQU $28 ; garbage
 COLL_WATER             EQU $29
-COLL_ICE_2B            EQU $2b ; unused
-COLL_WHIRLPOOL_2C      EQU $2c ; unused
+COLL_ICE_2B            EQU $2b ; 
+COLL_WHIRLPOOL_2C      EQU $2c ; 
 COLL_WATERFALL_RIGHT   EQU $30 ; unused
 COLL_WATERFALL_LEFT    EQU $31 ; unused
 COLL_WATERFALL_UP      EQU $32 ; unused
