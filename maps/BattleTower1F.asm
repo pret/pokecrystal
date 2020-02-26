@@ -275,6 +275,7 @@ BattleTower1FGrannyScript:
 
 BattleTower1FTeacherScript:
 	givecoins 500
+	setflag ENGINE_POKEGEAR
 	jumptextfaceplayer Text_BattleTowerTeacher
 
 
@@ -314,12 +315,22 @@ Clerk_ConfirmPurchaseScript:
 
 
 BattleTower1FClerkScript:
+	checkflag ENGINE_SHOP_INITIALIZED
+	iffalse .rand
 	checksameday	
 	iftrue .norand
+.rand
+	setflag ENGINE_SHOP_INITIALIZED
+	clearflag ENGINE_SHOP_BOUGHT1
+	clearflag ENGINE_SHOP_BOUGHT2
+	clearflag ENGINE_SHOP_BOUGHT3
+	clearflag ENGINE_SHOP_BOUGHT4
+	clearflag ENGINE_SHOP_BOUGHT5
+	clearflag ENGINE_SHOP_BOUGHT6
 	;randomizeshop
 	random 251
 	addval 1
-	writemem wRandMon
+	writemem wRandMon1
 .norand	
 	faceplayer
 	opentext
@@ -344,11 +355,13 @@ BattleTower1FClerkScript:
 	sjump Clerk_CancelPurchaseScript
 
 .Mild1:
+	checkflag ENGINE_SHOP_BOUGHT1
+	iftrue .alreadybought
 	checkcoins BATTLETOWER_MILD_COINS
 	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
 	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
-	readmem wRandMon
+	readmem wRandMon1
 	
 	refreshscreen
 	pokepic USE_SCRIPT_VAR
@@ -364,15 +377,18 @@ BattleTower1FClerkScript:
 	playsound SFX_TRANSACTION
 	writetext ClerkHereYouGoText
 	waitbutton
-	readmem wRandMon
+	readmem wRandMon1
 	;setval USE_SCRIPT_VAR
 	special GameCornerPrizeMonCheckDex
-	readmem wRandMon
+	readmem wRandMon1
 	givepoke USE_SCRIPT_VAR, 40 
 	takecoins BATTLETOWER_MILD_COINS
+	setflag ENGINE_SHOP_BOUGHT1
 	sjump .loop
 
 .Mild2:
+	checkflag ENGINE_SHOP_BOUGHT2
+	iftrue .alreadybought
 	checkcoins BATTLETOWER_MILD_COINS
 	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
 	readvar VAR_PARTYCOUNT
@@ -388,9 +404,12 @@ BattleTower1FClerkScript:
 	special GameCornerPrizeMonCheckDex
 	givepoke SKARMORY, 50, MINT_BERRY
 	takecoins BATTLETOWER_MILD_COINS
+	setflag ENGINE_SHOP_BOUGHT2
 	sjump .loop
 
 .Mild3:
+	checkflag ENGINE_SHOP_BOUGHT3
+	iftrue .alreadybought
 	checkcoins BATTLETOWER_MILD_COINS
 	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
 	readvar VAR_PARTYCOUNT
@@ -406,9 +425,12 @@ BattleTower1FClerkScript:
 	special GameCornerPrizeMonCheckDex
 	givepoke BLISSEY, 50, LEFTOVERS
 	takecoins BATTLETOWER_MILD_COINS
+	setflag ENGINE_SHOP_BOUGHT3
 	sjump .loop
 	
 .Mild4:
+	checkflag ENGINE_SHOP_BOUGHT4
+	iftrue .alreadybought
 	checkcoins BATTLETOWER_MILD_COINS
 	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
 	readvar VAR_PARTYCOUNT
@@ -424,9 +446,12 @@ BattleTower1FClerkScript:
 	special GameCornerPrizeMonCheckDex
 	givepoke TYRANITAR, 50, MIRACLEBERRY
 	takecoins BATTLETOWER_MILD_COINS
+	setflag ENGINE_SHOP_BOUGHT4
 	sjump .loop	
 	
 .Mega:
+	checkflag ENGINE_SHOP_BOUGHT5
+	iftrue .alreadybought
 	checkcoins BATTLETOWER_MEGA_COINS
 	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
 	readvar VAR_PARTYCOUNT
@@ -442,9 +467,12 @@ BattleTower1FClerkScript:
 	special GameCornerPrizeMonCheckDex
 	givepoke CHINCHOU, 69
 	takecoins BATTLETOWER_MEGA_COINS
+	setflag ENGINE_SHOP_BOUGHT5
 	sjump .loop		
 
 .Mythic:
+	checkflag ENGINE_SHOP_BOUGHT6
+	iftrue .alreadybought
 	checkcoins BATTLETOWER_MYTHIC_COINS
 	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
 	readvar VAR_PARTYCOUNT
@@ -460,7 +488,13 @@ BattleTower1FClerkScript:
 	special GameCornerPrizeMonCheckDex
 	givepoke LUGIA, 15
 	takecoins BATTLETOWER_MYTHIC_COINS
+	setflag ENGINE_SHOP_BOUGHT6
 	sjump .loop		
+
+.alreadybought
+	writetext ClerkAlreadyBoughtText
+	waitbutton
+	sjump .loop
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
@@ -1069,6 +1103,11 @@ ClerkConfirmPrizeText:
 ClerkHereYouGoText:
 	text "Here you go!"
 	done	
+	
+ClerkAlreadyBoughtText:
+	text "You already have"
+	line "that #MON."
+	done
 	
 	
 

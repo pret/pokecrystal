@@ -197,3 +197,12 @@ EngineFlags:
 
 	engine_flag wSwarmFlags, SWARMFLAGS_DUNSPARCE_SWARM_F ; $a0
 	engine_flag wSwarmFlags, SWARMFLAGS_YANMA_SWARM_F
+	
+	; battle tower flags
+	engine_flag wBTShopFlags, ENGINE_SHOP_INITIALIZED
+	engine_flag wBTShopFlags, ENGINE_SHOP_BOUGHT1
+	engine_flag wBTShopFlags, ENGINE_SHOP_BOUGHT2
+	engine_flag wBTShopFlags, ENGINE_SHOP_BOUGHT3
+	engine_flag wBTShopFlags, ENGINE_SHOP_BOUGHT4
+	engine_flag wBTShopFlags, ENGINE_SHOP_BOUGHT5
+	engine_flag wBTShopFlags, ENGINE_SHOP_BOUGHT6

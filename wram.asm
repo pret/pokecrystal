@@ -931,8 +931,14 @@ ENDU ; c7e8
 ; wUnusedMapBuffer:: ds 24
 
 wDayLastSet:: db
-wBTShop1:: db
-	ds 22
+wBTShopFlags:: db
+wRandMon1::
+wRandMon2::
+wRandMon3::
+wRandMon4::
+wRandMon5::
+wRandMon6::
+	ds 16
 
 wUnusedMapBufferEnd::
 
