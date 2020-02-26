@@ -121,8 +121,8 @@ sine_table: MACRO
 ; \1 samples of sin(x) from x=0 to x<32768 (pi radians)
 x = 0
 rept \1
-	dw (SIN(x) + (SIN(x) & $ff)) >> 8 ; round up
-x = x + DIV(32768, \1) ; a circle has 65536 "degrees"
+	dw (sin(x) + (sin(x) & $ff)) >> 8 ; round up
+x = x + div(32768, \1) ; a circle has 65536 "degrees"
 endr
 ENDM
 

@@ -6,7 +6,6 @@ INCLUDE "constants/mobile_constants.inc"
 
 charmap "<CR>", $d
 
-
 ; Mobile Adapter protocol commands
 MOBILE_COMMAND_BEGIN_SESSION            EQU $10
 MOBILE_COMMAND_END_SESSION              EQU $11

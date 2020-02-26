@@ -1,6 +1,5 @@
 INCLUDE "macros/data.inc"
 INCLUDE "macros/scripts/audio.inc"
-INCLUDE "constants/audio_constants.inc"
 
 
 SECTION "audio/cries.asm@Johto", ROMX
