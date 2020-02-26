@@ -638,6 +638,8 @@ OakSpeech:
 	call ClearTilemap
 
 	call RotateFourPalettesRight
+
+	; Set up Clock, HMs, and Cell Nums
 	farcall RestartClock
 	call AddAllHMsToBag
 	CALL AddInitialCellNums
@@ -647,6 +649,7 @@ OakSpeech:
 	ld de, MUSIC_ROUTE_30
 	call PlayMusic
 
+	; Display Oak
 	call RotateThreePalettesRight
 	xor a
 	ld [wCurPartySpecies], a
@@ -663,6 +666,7 @@ OakSpeech:
 	call RotateThreePalettesRight
 	call ClearTilemap
 
+	; Display Wooper
 	ld a, WOOPER
 	ld [wCurSpecies], a
 	ld [wCurPartySpecies], a
@@ -686,6 +690,7 @@ OakSpeech:
 	call RotateThreePalettesRight
 	call ClearTilemap
 
+	; Display Oak
 	xor a
 	ld [wCurPartySpecies], a
 	ld a, POKEMON_PROF
@@ -701,6 +706,7 @@ OakSpeech:
 	call RotateThreePalettesRight
 	call ClearTilemap
 
+	; Display Player
 	xor a
 	ld [wCurPartySpecies], a
 	farcall DrawIntroPlayerPic
@@ -715,6 +721,7 @@ OakSpeech:
 	ld hl, OakText7
 	call PrintText
 
+	; Select Starter
 	call ClearTilemap
 	predef StarterSelectionScreenInit
 	call ClearTilemap
