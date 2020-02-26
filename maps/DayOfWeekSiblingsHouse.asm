@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const DAYOFWEEKSIBLINGSHOUSE_POKEDEX
 
 
-SECTION "maps/DayOfWeekSiblingsHouse.asm", ROMX
+SECTION "maps/DayOfWeekSiblingsHouse", ROMX
 
 DayOfWeekSiblingsHouse_MapScripts::
 	db 0 ; scene scripts

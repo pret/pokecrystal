@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const COPYCATSHOUSE1F_CLEFAIRY
 
 
-SECTION "maps/CopycatsHouse1F.asm", ROMX
+SECTION "maps/CopycatsHouse1F", ROMX
 
 CopycatsHouse1F_MapScripts::
 	db 0 ; scene scripts

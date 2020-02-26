@@ -18,7 +18,7 @@ INCLUDE "constants/tileset_constants.inc"
 ; Functions dealing with rendering and interacting with maps.
 
 
-SECTION "home/map.asm", ROM0
+SECTION "home/map", ROM0
 
 ClearUnusedMapBuffer::
 	ld hl, wUnusedMapBuffer

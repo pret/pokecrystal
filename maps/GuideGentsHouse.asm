@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const GUIDEGENTSHOUSE_GRAMPS
 
 
-SECTION "maps/GuideGentsHouse.asm", ROMX
+SECTION "maps/GuideGentsHouse", ROMX
 
 GuideGentsHouse_MapScripts::
 	db 0 ; scene scripts

@@ -8,7 +8,7 @@ INCLUDE "constants/maps_common.inc"
 	const PLAYERSHOUSE1F_POKEFAN_F
 
 
-SECTION "maps/PlayersHouse1F.asm", ROMX
+SECTION "maps/PlayersHouse1F", ROMX
 
 PlayersHouse1F_MapScripts::
 	db 2 ; scene scripts

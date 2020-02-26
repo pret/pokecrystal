@@ -4,7 +4,7 @@ INCLUDE "constants/misc_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/rtc/rtc.asm@Unreferenced_StopRTC", ROMX
+SECTION "engine/rtc/rtc@Unreferenced_StopRTC", ROMX
 
 Unreferenced_StopRTC:
 	ld a, SRAM_ENABLE
@@ -19,7 +19,7 @@ Unreferenced_StopRTC:
 	ret
 
 
-SECTION "engine/rtc/rtc.asm@StartRTC - Function1409b", ROMX
+SECTION "engine/rtc/rtc@StartRTC - Function1409b", ROMX
 
 StartRTC:
 	ld a, SRAM_ENABLE
@@ -128,7 +128,7 @@ Function1409b:
 	ret
 
 
-SECTION "engine/rtc/rtc.asm@Function140ae", ROMX
+SECTION "engine/rtc/rtc@Function140ae", ROMX
 
 Function140ae::
 	call CheckRTCStatus
@@ -166,7 +166,7 @@ Function140ae::
 	ret
 
 
-SECTION "engine/rtc/rtc.asm@_InitTime", ROMX
+SECTION "engine/rtc/rtc@_InitTime", ROMX
 
 _InitTime::
 	call GetClock

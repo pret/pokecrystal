@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/gaven_caller.asm", ROMX
+SECTION "data/phone/text/gaven_caller", ROMX
 
 GavenMonGreaterThanImaginedText::
 	text "My @"

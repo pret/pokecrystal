@@ -4,7 +4,7 @@ INCLUDE "macros/predef.inc"
 INCLUDE "constants/gfx_constants.inc"
 
 
-SECTION "engine/link/place_waiting_text.asm", ROMX
+SECTION "engine/link/place_waiting_text", ROMX
 
 PlaceWaitingText::
 	hlcoord 3, 10

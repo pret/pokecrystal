@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const LANCESROOM_OAK
 
 
-SECTION "maps/LancesRoom.asm", ROMX
+SECTION "maps/LancesRoom", ROMX
 
 LancesRoom_MapScripts::
 	db 2 ; scene scripts

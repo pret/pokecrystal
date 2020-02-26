@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const REDSHOUSE1F_REDS_MOM
 
 
-SECTION "maps/RedsHouse1F.asm", ROMX
+SECTION "maps/RedsHouse1F", ROMX
 
 RedsHouse1F_MapScripts::
 	db 1 ; scene scripts

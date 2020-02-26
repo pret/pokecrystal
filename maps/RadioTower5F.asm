@@ -8,7 +8,7 @@ INCLUDE "constants/maps_common.inc"
 	const RADIOTOWER5F_POKE_BALL
 
 
-SECTION "maps/RadioTower5F.asm", ROMX
+SECTION "maps/RadioTower5F", ROMX
 
 RadioTower5F_MapScripts::
 	db 3 ; scene scripts

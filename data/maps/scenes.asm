@@ -8,7 +8,7 @@ scene_var: MACRO
 ENDM
 
 
-SECTION "data/maps/scenes.asm", ROMX
+SECTION "data/maps/scenes", ROMX
 
 MapScenes::
 	scene_var POKECENTER_2F,                               wPokecenter2FSceneID

@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/todd_callee.asm", ROMX
+SECTION "data/phone/text/todd_callee", ROMX
 
 ToddAnswerPhoneText::
 	text "Yes? This is"

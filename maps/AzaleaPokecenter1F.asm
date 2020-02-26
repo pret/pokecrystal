@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const AZALEAPOKECENTER1F_POKEFAN_F
 
 
-SECTION "maps/AzaleaPokecenter1F.asm", ROMX
+SECTION "maps/AzaleaPokecenter1F", ROMX
 
 AzaleaPokecenter1F_MapScripts::
 	db 1 ; scene scripts

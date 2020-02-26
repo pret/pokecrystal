@@ -5,7 +5,7 @@ INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
 
 
-SECTION "engine/movie/init_hof_credits.asm@InitDisplayForHallOfFame", ROMX
+SECTION "engine/movie/init_hof_credits@InitDisplayForHallOfFame", ROMX
 
 InitDisplayForHallOfFame::
 	call ClearBGPalettes
@@ -37,7 +37,7 @@ InitDisplayForHallOfFame::
 	text_end
 
 
-SECTION "engine/movie/init_hof_credits.asm@InitDisplayForRedCredits", ROMX
+SECTION "engine/movie/init_hof_credits@InitDisplayForRedCredits", ROMX
 
 InitDisplayForRedCredits::
 	call ClearBGPalettes
@@ -72,7 +72,7 @@ InitDisplayForRedCredits::
 	ret
 
 
-SECTION "engine/movie/init_hof_credits.asm@ResetDisplayBetweenHallOfFameMons", ROMX
+SECTION "engine/movie/init_hof_credits@ResetDisplayBetweenHallOfFameMons", ROMX
 
 ResetDisplayBetweenHallOfFameMons::
 	ldh a, [rSVBK]

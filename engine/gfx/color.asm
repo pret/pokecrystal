@@ -13,7 +13,7 @@ INCLUDE "constants/trainer_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/gfx/color.asm", ROMX
+SECTION "engine/gfx/color", ROMX
 
 INCLUDE "engine/gfx/sgb_layouts.inc"
 

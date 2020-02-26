@@ -1,7 +1,7 @@
 INCLUDE "macros/rst.inc"
 
 
-SECTION "home/farcall.asm", ROM0
+SECTION "home/farcall", ROM0
 
 FarCall_de::
 ; Call a:de.

@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/looklass.asm", ROMX
+SECTION "audio/music/looklass", ROMX
 
 Music_LookLass::
 	channel_count 4

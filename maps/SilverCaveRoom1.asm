@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const SILVERCAVEROOM1_POKE_BALL4
 
 
-SECTION "maps/SilverCaveRoom1.asm", ROMX
+SECTION "maps/SilverCaveRoom1", ROMX
 
 SilverCaveRoom1_MapScripts::
 	db 0 ; scene scripts

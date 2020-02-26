@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const TIMECAPSULE_CHRIS2
 
 
-SECTION "maps/TimeCapsule.asm", ROMX
+SECTION "maps/TimeCapsule", ROMX
 
 TimeCapsule_MapScripts::
 	db 2 ; scene scripts

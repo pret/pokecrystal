@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const PEWTERNIDORANSPEECHHOUSE_NIDORAN_M
 
 
-SECTION "maps/PewterNidoranSpeechHouse.asm", ROMX
+SECTION "maps/PewterNidoranSpeechHouse", ROMX
 
 PewterNidoranSpeechHouse_MapScripts::
 	db 0 ; scene scripts

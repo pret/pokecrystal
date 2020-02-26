@@ -1,4 +1,4 @@
-SECTION "data/battle/effect_command_pointers.asm", ROMX
+SECTION "data/battle/effect_command_pointers", ROMX
 
 ; battle commands are defined in engine/battle/effect_commands.asm
 

@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE8SAFFRONGATE_OFFICER
 
 
-SECTION "maps/Route8SaffronGate.asm", ROMX
+SECTION "maps/Route8SaffronGate", ROMX
 
 Route8SaffronGate_MapScripts::
 	db 0 ; scene scripts

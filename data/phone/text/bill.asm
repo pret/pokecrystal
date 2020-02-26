@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/bill.asm", ROMX
+SECTION "data/phone/text/bill", ROMX
 
 BillPhoneMornGreetingText::
 	text "Good morning!"

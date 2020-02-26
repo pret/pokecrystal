@@ -8,7 +8,7 @@ INCLUDE "constants/scgb_constants.inc"
 INCLUDE "constants/std_constants.inc"
 
 
-SECTION "engine/events/whiteout.asm", ROMX
+SECTION "engine/events/whiteout", ROMX
 
 Script_BattleWhiteout::
 	callasm BattleBGMap

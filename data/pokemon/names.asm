@@ -1,7 +1,7 @@
 INCLUDE "charmap.inc"
 
 
-SECTION "data/pokemon/names.asm", ROMX
+SECTION "data/pokemon/names", ROMX
 
 PokemonNames::
 	db "BULBASAUR@"

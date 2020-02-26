@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const PEWTERSNOOZESPEECHHOUSE_GRAMPS
 
 
-SECTION "maps/PewterSnoozeSpeechHouse.asm", ROMX
+SECTION "maps/PewterSnoozeSpeechHouse", ROMX
 
 PewterSnoozeSpeechHouse_MapScripts::
 	db 0 ; scene scripts

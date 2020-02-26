@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const TINTOWERROOF_HO_OH
 
 
-SECTION "maps/TinTowerRoof.asm", ROMX
+SECTION "maps/TinTowerRoof", ROMX
 
 TinTowerRoof_MapScripts::
 	db 0 ; scene scripts

@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const SOULHOUSE_GRANNY
 
 
-SECTION "maps/SoulHouse.asm", ROMX
+SECTION "maps/SoulHouse", ROMX
 
 SoulHouse_MapScripts::
 	db 0 ; scene scripts

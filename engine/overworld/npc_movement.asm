@@ -5,7 +5,7 @@ INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/map_object_constants.inc"
 
 
-SECTION "engine/overworld/npc_movement.asm", ROMX, BANK[BANK_MAP_OBJECTS]
+SECTION "engine/overworld/npc_movement", ROMX, BANK[BANK_MAP_OBJECTS]
 
 CanObjectMoveInDirection::
 	ld hl, OBJECT_PALETTE

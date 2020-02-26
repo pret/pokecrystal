@@ -8,7 +8,7 @@ INCLUDE "constants/maps_common.inc"
 	const MRFUJISHOUSE_PIDGEY
 
 
-SECTION "maps/MrFujisHouse.asm", ROMX
+SECTION "maps/MrFujisHouse", ROMX
 
 MrFujisHouse_MapScripts::
 	db 0 ; scene scripts

@@ -4,7 +4,7 @@ INCLUDE "constants/script_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/events/forced_movement.asm", ROMX
+SECTION "engine/events/forced_movement", ROMX
 
 Script_ForcedMovement::
 	readvar VAR_FACING

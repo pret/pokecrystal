@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE32RUINSOFALPHGATE_YOUNGSTER
 
 
-SECTION "maps/Route32RuinsOfAlphGate.asm", ROMX
+SECTION "maps/Route32RuinsOfAlphGate", ROMX
 
 Route32RuinsOfAlphGate_MapScripts::
 	db 0 ; scene scripts

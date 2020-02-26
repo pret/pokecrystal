@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/Route22.asm", ROMX
+SECTION "maps/Route22", ROMX
 
 Route22_MapScripts::
 	db 0 ; scene scripts

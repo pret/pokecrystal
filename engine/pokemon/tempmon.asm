@@ -6,7 +6,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/pokemon/tempmon.asm", ROMX
+SECTION "engine/pokemon/tempmon", ROMX
 
 CopyMonToTempMon::
 ; gets the BaseData of a mon

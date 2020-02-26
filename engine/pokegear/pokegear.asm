@@ -44,7 +44,7 @@ PHONE_DISPLAY_HEIGHT EQU 4
 	const POKEGEARSTATE_RADIOJOYPAD     ; c
 
 
-SECTION "engine/pokegear/pokegear.asm", ROMX, BANK[BANK_PHONE_CALL]
+SECTION "engine/pokegear/pokegear", ROMX, BANK[BANK_PHONE_CALL]
 
 PokeGear::
 	ld hl, wOptions

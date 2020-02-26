@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const CHERRYGROVEPOKECENTER1F_TEACHER
 
 
-SECTION "maps/CherrygrovePokecenter1F.asm", ROMX
+SECTION "maps/CherrygrovePokecenter1F", ROMX
 
 CherrygrovePokecenter1F_MapScripts::
 	db 0 ; scene scripts

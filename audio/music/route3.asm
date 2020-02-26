@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/route3.asm", ROMX
+SECTION "audio/music/route3", ROMX
 
 Music_Route3::
 	channel_count 4

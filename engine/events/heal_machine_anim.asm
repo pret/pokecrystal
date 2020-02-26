@@ -19,7 +19,7 @@ INCLUDE "constants/sprite_data_constants.inc"
 	const HEALMACHINESTATE_FINISH
 
 
-SECTION "engine/events/heal_machine_anim.asm", ROMX
+SECTION "engine/events/heal_machine_anim", ROMX
 
 HealMachineAnim::
 	; If you have no Pokemon, don't change the buffer.  This can lead to some glitchy effects if you have no Pokemon.

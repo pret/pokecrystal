@@ -1,7 +1,7 @@
 INCLUDE "macros/rst.inc"
 
 
-SECTION "home/item.asm", ROM0
+SECTION "home/item", ROM0
 
 DoItemEffect::
 	farcall _DoItemEffect

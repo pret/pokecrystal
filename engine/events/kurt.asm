@@ -7,7 +7,7 @@ INCLUDE "constants/menu_constants.inc"
 INCLUDE "constants/text_constants.inc"
 
 
-SECTION "engine/events/kurt.asm", ROMX
+SECTION "engine/events/kurt", ROMX
 
 Kurt_PrintTextWhichApricorn:
 	ld hl, .WhichApricornText

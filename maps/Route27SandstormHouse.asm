@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE27SANDSTORMHOUSE_GRANNY
 
 
-SECTION "maps/Route27SandstormHouse.asm", ROMX
+SECTION "maps/Route27SandstormHouse", ROMX
 
 Route27SandstormHouse_MapScripts::
 	db 0 ; scene scripts

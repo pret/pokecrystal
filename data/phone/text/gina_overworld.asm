@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/gina_overworld.asm", ROMX
+SECTION "data/phone/text/gina_overworld", ROMX
 
 GinaAskNumber1Text::
 	text "Whenever I see a"

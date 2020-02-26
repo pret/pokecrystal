@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/CeladonPokecenter2FBeta.asm", ROMX
+SECTION "maps/CeladonPokecenter2FBeta", ROMX
 
 CeladonPokecenter2FBeta_MapScripts::
 	db 0 ; scene scripts

@@ -4,7 +4,7 @@ INCLUDE "constants/map_data_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/events/engine_flags.asm", ROMX
+SECTION "engine/events/engine_flags", ROMX
 
 EngineFlagAction::
 ; Do action b on engine flag de

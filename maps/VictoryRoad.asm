@@ -9,7 +9,7 @@ INCLUDE "constants/maps_common.inc"
 	const VICTORYROAD_POKE_BALL5
 
 
-SECTION "maps/VictoryRoad.asm", ROMX
+SECTION "maps/VictoryRoad", ROMX
 
 VictoryRoad_MapScripts::
 	db 2 ; scene scripts

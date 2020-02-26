@@ -2,7 +2,7 @@ INCLUDE "macros/data.inc"
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/text/common_1.asm", ROMX
+SECTION "data/text/common_1", ROMX
 
 _FruitBearingTreeText::
 	text "It's a fruit-"

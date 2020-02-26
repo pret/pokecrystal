@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE36RUINSOFALPHGATE_GRAMPS
 
 
-SECTION "maps/Route36RuinsOfAlphGate.asm", ROMX
+SECTION "maps/Route36RuinsOfAlphGate", ROMX
 
 Route36RuinsOfAlphGate_MapScripts::
 	db 0 ; scene scripts

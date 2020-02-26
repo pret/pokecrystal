@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/battle_commands.inc"
 
 
-SECTION "data/moves/effects.asm", ROMX
+SECTION "data/moves/effects", ROMX
 
 INCLUDE "data/moves/effects_pointers.inc"
 

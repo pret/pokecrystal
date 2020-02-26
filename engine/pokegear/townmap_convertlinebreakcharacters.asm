@@ -3,7 +3,7 @@ INCLUDE "macros/coords.inc"
 INCLUDE "constants/gfx_constants.inc"
 
 
-SECTION "engine/pokegear/townmap_convertlinebreakcharacters.asm", ROMX
+SECTION "engine/pokegear/townmap_convertlinebreakcharacters", ROMX
 
 TownMap_ConvertLineBreakCharacters::
 	ld hl, wStringBuffer1

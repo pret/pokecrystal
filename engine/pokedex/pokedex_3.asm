@@ -6,7 +6,7 @@ INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/pokedex/pokedex_3.asm@LoadSGBPokedexGFX", ROMX
+SECTION "engine/pokedex/pokedex_3@LoadSGBPokedexGFX", ROMX
 
 LoadSGBPokedexGFX::
 	ld hl, SGBPokedexGFX_LZ
@@ -25,7 +25,7 @@ SGBPokedexGFX_LZ:
 INCBIN "gfx/pokedex/sgb.2bpp.lz"
 
 
-SECTION "engine/pokedex/pokedex_3.asm@LoadQuestionMarkPic", ROMX
+SECTION "engine/pokedex/pokedex_3@LoadQuestionMarkPic", ROMX
 
 LoadQuestionMarkPic::
 	ld hl, .QuestionMarkLZ
@@ -37,7 +37,7 @@ LoadQuestionMarkPic::
 INCBIN "gfx/pokedex/question_mark.2bpp.lz"
 
 
-SECTION "engine/pokedex/pokedex_3.asm@DrawPokedexWindow", ROMX
+SECTION "engine/pokedex/pokedex_3@DrawPokedexWindow", ROMX
 
 DrawPokedexListWindow::
 	ld a, $32

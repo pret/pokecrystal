@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/irwin_overworld.asm", ROMX
+SECTION "data/phone/text/irwin_overworld", ROMX
 
 IrwinAskNumber1Text::
 	text "You're the best"

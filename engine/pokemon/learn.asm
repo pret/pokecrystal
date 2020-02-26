@@ -6,7 +6,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/sfx_constants.inc"
 
 
-SECTION "engine/pokemon/learn.asm", ROMX
+SECTION "engine/pokemon/learn", ROMX
 
 LearnMove::
 	call LoadTilemapToTempTilemap

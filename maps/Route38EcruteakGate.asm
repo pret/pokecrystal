@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE38ECRUTEAKGATE_OFFICER
 
 
-SECTION "maps/Route38EcruteakGate.asm", ROMX
+SECTION "maps/Route38EcruteakGate", ROMX
 
 Route38EcruteakGate_MapScripts::
 	db 0 ; scene scripts

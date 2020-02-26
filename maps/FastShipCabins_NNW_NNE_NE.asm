@@ -10,7 +10,7 @@ INCLUDE "constants/maps_common.inc"
 	const FASTSHIPCABINS_NNW_NNE_NE_PHARMACIST
 
 
-SECTION "maps/FastShipCabins_NNW_NNE_NE.asm", ROMX
+SECTION "maps/FastShipCabins_NNW_NNE_NE", ROMX
 
 FastShipCabins_NNW_NNE_NE_MapScripts::
 	db 0 ; scene scripts

@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/text/std_text.asm", ROMX
+SECTION "data/text/std_text", ROMX
 
 NurseMornText::
 	text "Good morning!"

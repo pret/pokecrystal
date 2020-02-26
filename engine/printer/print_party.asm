@@ -11,7 +11,7 @@ INCLUDE "constants/text_constants.inc"
 PRINTPARTY_HP EQU "◀" ; $71
 
 
-SECTION "engine/printer/print_party.asm@PrintPage1", ROMX
+SECTION "engine/printer/print_party@PrintPage1", ROMX
 
 PrintPage1::
 	hlcoord 0, 0
@@ -65,7 +65,7 @@ PrintPage1::
 	ret
 
 
-SECTION "engine/printer/print_party.asm@PrintPage2", ROMX
+SECTION "engine/printer/print_party@PrintPage2", ROMX
 
 PrintPage2::
 	hlcoord 0, 0, wPrinterTilemapBuffer
@@ -117,7 +117,7 @@ PrintPage2::
 	ret
 
 
-SECTION "engine/printer/print_party.asm@GBPrinterStrings", ROMX
+SECTION "engine/printer/print_party@GBPrinterStrings", ROMX
 
 GBPrinterStrings:: ; used only for BANK(GBPrinterStrings)
 GBPrinterString_Null:: db "@"
@@ -150,7 +150,7 @@ GBPrinterString_PrinterError4::
 	db   "@"
 
 
-SECTION "engine/printer/print_party.asm@PrintPartyMon", ROMX
+SECTION "engine/printer/print_party@PrintPartyMon", ROMX
 
 PrintPartyMonPage1::
 	call ClearBGPalettes

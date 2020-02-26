@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/SafariZoneFuchsiaGateBeta.asm", ROMX
+SECTION "maps/SafariZoneFuchsiaGateBeta", ROMX
 
 SafariZoneFuchsiaGateBeta_MapScripts::
 	db 0 ; scene scripts

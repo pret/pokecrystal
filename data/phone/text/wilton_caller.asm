@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/wilton_caller.asm", ROMX
+SECTION "data/phone/text/wilton_caller", ROMX
 
 WiltonMonHasGrownText::
 	text "My @"

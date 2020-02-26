@@ -7,7 +7,7 @@ INCLUDE "constants/trainer_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/phone/scripts/todd.asm", ROMX
+SECTION "engine/phone/scripts/todd", ROMX
 
 ToddPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, CAMPER, TODD1

@@ -2,7 +2,7 @@ INCLUDE "macros/data.inc"
 INCLUDE "constants/battle_constants.inc"
 
 
-SECTION "engine/pokemon/experience.asm", ROMX
+SECTION "engine/pokemon/experience", ROMX
 
 CalcLevel::
 	ld a, [wTempMonSpecies]

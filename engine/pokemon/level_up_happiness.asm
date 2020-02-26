@@ -2,7 +2,7 @@ INCLUDE "macros/rst.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 
 
-SECTION "engine/pokemon/level_up_happiness.asm", ROMX
+SECTION "engine/pokemon/level_up_happiness", ROMX
 
 LevelUpHappinessMod::
 	ld a, [wCurPartyMon]

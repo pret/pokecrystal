@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE19FUCHSIAGATE_OFFICER
 
 
-SECTION "maps/Route19FuchsiaGate.asm", ROMX
+SECTION "maps/Route19FuchsiaGate", ROMX
 
 Route19FuchsiaGate_MapScripts::
 	db 0 ; scene scripts

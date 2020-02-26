@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/DragonsDen1F.asm", ROMX
+SECTION "maps/DragonsDen1F", ROMX
 
 DragonsDen1F_MapScripts::
 	db 0 ; scene scripts

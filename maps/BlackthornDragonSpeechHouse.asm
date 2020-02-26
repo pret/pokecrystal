@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const BLACKTHORNDRAGONSPEECHHOUSE_EKANS
 
 
-SECTION "maps/BlackthornDragonSpeechHouse.asm", ROMX
+SECTION "maps/BlackthornDragonSpeechHouse", ROMX
 
 BlackthornDragonSpeechHouse_MapScripts::
 	db 0 ; scene scripts

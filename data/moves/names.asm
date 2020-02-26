@@ -1,7 +1,7 @@
 INCLUDE "charmap.inc"
 
 
-SECTION "data/moves/names.asm", ROMX
+SECTION "data/moves/names", ROMX
 
 MoveNames::
 	db "POUND@"

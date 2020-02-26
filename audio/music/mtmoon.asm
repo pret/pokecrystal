@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/mtmoon.asm", ROMX
+SECTION "audio/music/mtmoon", ROMX
 
 Music_MtMoon::
 	channel_count 4

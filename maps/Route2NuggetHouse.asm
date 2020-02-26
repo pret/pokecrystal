@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE2NUGGETHOUSE_FISHER
 
 
-SECTION "maps/Route2NuggetHouse.asm", ROMX
+SECTION "maps/Route2NuggetHouse", ROMX
 
 Route2NuggetHouse_MapScripts::
 	db 0 ; scene scripts

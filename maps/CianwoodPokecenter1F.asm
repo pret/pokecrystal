@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const CIANWOODPOKECENTER1F_SUPER_NERD
 
 
-SECTION "maps/CianwoodPokecenter1F.asm", ROMX
+SECTION "maps/CianwoodPokecenter1F", ROMX
 
 CianwoodPokecenter1F_MapScripts::
 	db 0 ; scene scripts

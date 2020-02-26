@@ -15,7 +15,7 @@ INCLUDE "constants/maps_common.inc"
 	const AZALEATOWN_KURT_OUTSIDE
 
 
-SECTION "maps/AzaleaTown.asm", ROMX
+SECTION "maps/AzaleaTown", ROMX
 
 AzaleaTown_MapScripts::
 	db 3 ; scene scripts

@@ -5,7 +5,7 @@ INCLUDE "constants/floating_constants.inc"
 INCLUDE "constants/gfx_constants.inc"
 
 
-SECTION "engine/battle/anim_hp_bar.asm", ROMX, BANK[BANK_ANIMATE_HP_BAR]
+SECTION "engine/battle/anim_hp_bar", ROMX, BANK[BANK_ANIMATE_HP_BAR]
 
 _AnimateHPBar::
 	call .IsMaximumMoreThan48Pixels

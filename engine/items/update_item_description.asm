@@ -3,7 +3,7 @@ INCLUDE "macros/rst.inc"
 INCLUDE "constants/gfx_constants.inc"
 
 
-SECTION "engine/items/update_item_description.asm", ROMX
+SECTION "engine/items/update_item_description", ROMX
 
 UpdateItemDescription::
 	ld a, [wMenuSelection]

@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/profoakspokemontalk.asm", ROMX
+SECTION "audio/music/profoakspokemontalk", ROMX
 
 Music_ProfOaksPokemonTalk::
 	channel_count 3

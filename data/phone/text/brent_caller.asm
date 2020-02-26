@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/brent_caller.asm", ROMX
+SECTION "data/phone/text/brent_caller", ROMX
 
 BrentRareTradeText::
 	text "Oh yeah, I got an"

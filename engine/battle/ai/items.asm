@@ -10,7 +10,7 @@ INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/trainer_data_constants.inc"
 
 
-SECTION "engine/battle/ai/items.asm", ROMX, BANK[BANK_TRAINER_ATTRIBUTES]
+SECTION "engine/battle/ai/items", ROMX, BANK[BANK_TRAINER_ATTRIBUTES]
 
 AI_SwitchOrTryItem::
 	and a

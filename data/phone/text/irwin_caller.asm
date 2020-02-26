@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/irwin_caller.asm", ROMX
+SECTION "data/phone/text/irwin_caller", ROMX
 
 IrwinHangUpText::
 	text "I hate having to"

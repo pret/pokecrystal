@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const WILLSROOM_WILL
 
 
-SECTION "maps/WillsRoom.asm", ROMX
+SECTION "maps/WillsRoom", ROMX
 
 WillsRoom_MapScripts::
 	db 2 ; scene scripts

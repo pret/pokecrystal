@@ -6,7 +6,7 @@ INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/music_constants.inc"
 
 
-SECTION "engine/movie/unused_title.asm", ROMX
+SECTION "engine/movie/unused_title", ROMX
 
 UnusedTitleScreen:
 	call ClearBGPalettes

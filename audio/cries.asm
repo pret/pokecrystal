@@ -2,7 +2,7 @@ INCLUDE "macros/data.inc"
 INCLUDE "macros/scripts/audio.inc"
 
 
-SECTION "audio/cries.asm@Johto", ROMX
+SECTION "audio/cries@Johto", ROMX
 
 Cry_Marill::
 	channel_count 3
@@ -864,7 +864,7 @@ Cry_Aipom_Ch8:
 	sound_ret
 
 
-SECTION "audio/cries.asm@Kanto", ROMX
+SECTION "audio/cries@Kanto", ROMX
 
 Cry_Nidoran_M::
 	channel_count 3

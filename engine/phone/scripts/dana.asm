@@ -8,7 +8,7 @@ INCLUDE "constants/trainer_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/phone/scripts/dana.asm", ROMX
+SECTION "engine/phone/scripts/dana", ROMX
 
 DanaPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, LASS, DANA1

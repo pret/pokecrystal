@@ -14,7 +14,7 @@ INCLUDE "constants/maps_common.inc"
 	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_SUPER_NERD2
 
 
-SECTION "maps/FastShipCabins_SE_SSE_CaptainsCabin.asm", ROMX
+SECTION "maps/FastShipCabins_SE_SSE_CaptainsCabin", ROMX
 
 FastShipCabins_SE_SSE_CaptainsCabin_MapScripts::
 	db 0 ; scene scripts

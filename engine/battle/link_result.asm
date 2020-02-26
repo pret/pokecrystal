@@ -3,7 +3,7 @@ INCLUDE "constants/battle_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 
 
-SECTION "engine/battle/link_result.asm", ROMX
+SECTION "engine/battle/link_result", ROMX
 
 DetermineLinkBattleResult::
 	farcall UpdateEnemyMonInParty

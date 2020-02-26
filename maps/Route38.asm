@@ -10,7 +10,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE38_BUENA2
 
 
-SECTION "maps/Route38.asm", ROMX
+SECTION "maps/Route38", ROMX
 
 Route38_MapScripts::
 	db 0 ; scene scripts

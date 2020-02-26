@@ -6,7 +6,7 @@ INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/music_constants.inc"
 
 
-SECTION "engine/movie/gbc_only.asm", ROMX
+SECTION "engine/movie/gbc_only", ROMX
 
 GBCOnlyScreen::
 	ldh a, [hCGB]

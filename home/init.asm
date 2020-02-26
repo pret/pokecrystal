@@ -4,7 +4,7 @@ INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/serial_constants.inc"
 
 
-SECTION "home/init.asm", ROM0
+SECTION "home/init", ROM0
 
 Reset::
 	di

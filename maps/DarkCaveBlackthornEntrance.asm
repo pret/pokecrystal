@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const DARKCAVEBLACKTHORNENTRANCE_POKE_BALL2
 
 
-SECTION "maps/DarkCaveBlackthornEntrance.asm", ROMX
+SECTION "maps/DarkCaveBlackthornEntrance", ROMX
 
 DarkCaveBlackthornEntrance_MapScripts::
 	db 0 ; scene scripts

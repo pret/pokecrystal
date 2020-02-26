@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/mobileadaptermenu.asm", ROMX
+SECTION "audio/music/mobileadaptermenu", ROMX
 
 Music_MobileAdapterMenu::
 	channel_count 3

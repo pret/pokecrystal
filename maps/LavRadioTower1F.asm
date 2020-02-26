@@ -8,7 +8,7 @@ INCLUDE "constants/maps_common.inc"
 	const LAVRADIOTOWER1F_SUPER_NERD2
 
 
-SECTION "maps/LavRadioTower1F.asm", ROMX
+SECTION "maps/LavRadioTower1F", ROMX
 
 LavRadioTower1F_MapScripts::
 	db 0 ; scene scripts

@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const VIOLETNICKNAMESPEECHHOUSE_BIRD
 
 
-SECTION "maps/VioletNicknameSpeechHouse.asm", ROMX
+SECTION "maps/VioletNicknameSpeechHouse", ROMX
 
 VioletNicknameSpeechHouse_MapScripts::
 	db 0 ; scene scripts

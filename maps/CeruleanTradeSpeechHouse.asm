@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const CERULEANTRADESPEECHHOUSE_ZUBAT
 
 
-SECTION "maps/CeruleanTradeSpeechHouse.asm", ROMX
+SECTION "maps/CeruleanTradeSpeechHouse", ROMX
 
 CeruleanTradeSpeechHouse_MapScripts::
 	db 0 ; scene scripts

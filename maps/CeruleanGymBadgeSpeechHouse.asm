@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const CERULEANGYMBADGESPEECHHOUSE_POKEFAN_M
 
 
-SECTION "maps/CeruleanGymBadgeSpeechHouse.asm", ROMX
+SECTION "maps/CeruleanGymBadgeSpeechHouse", ROMX
 
 CeruleanGymBadgeSpeechHouse_MapScripts::
 	db 0 ; scene scripts

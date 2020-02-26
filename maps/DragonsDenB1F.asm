@@ -12,7 +12,7 @@ INCLUDE "constants/maps_common.inc"
 	const DRAGONSDENB1F_POKE_BALL3
 
 
-SECTION "maps/DragonsDenB1F.asm", ROMX
+SECTION "maps/DragonsDenB1F", ROMX
 
 DragonsDenB1F_MapScripts::
 	db 2 ; scene scripts

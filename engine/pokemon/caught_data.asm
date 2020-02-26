@@ -7,7 +7,7 @@ INCLUDE "constants/script_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/pokemon/caught_data.asm", ROMX
+SECTION "engine/pokemon/caught_data", ROMX
 
 CheckPartyFullAfterContest::
 	ld a, [wContestMon]

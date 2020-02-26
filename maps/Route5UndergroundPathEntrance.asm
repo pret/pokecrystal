@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE5UNDERGROUNDPATHENTRANCE_TEACHER
 
 
-SECTION "maps/Route5UndergroundPathEntrance.asm", ROMX
+SECTION "maps/Route5UndergroundPathEntrance", ROMX
 
 Route5UndergroundPathEntrance_MapScripts::
 	db 0 ; scene scripts

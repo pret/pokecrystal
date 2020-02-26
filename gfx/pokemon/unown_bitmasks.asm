@@ -1,4 +1,4 @@
-SECTION "gfx/pokemon/unown_bitmasks.asm", ROMX
+SECTION "gfx/pokemon/unown_bitmasks", ROMX
 
 INCLUDE "gfx/pokemon/unown_bitmask_pointers.inc"
 

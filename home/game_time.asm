@@ -2,7 +2,7 @@ INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "home/game_time.asm", ROM0
+SECTION "home/game_time", ROM0
 
 ResetGameTime::
 	xor a

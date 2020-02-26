@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/nationalpark.asm", ROMX
+SECTION "audio/music/nationalpark", ROMX
 
 Music_NationalPark::
 	channel_count 4

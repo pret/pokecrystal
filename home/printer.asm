@@ -2,7 +2,7 @@ INCLUDE "macros/rst.inc"
 INCLUDE "constants/hardware_constants.inc"
 
 
-SECTION "home/printer.asm", ROM0
+SECTION "home/printer", ROM0
 
 PrinterReceive::
 	homecall _PrinterReceive

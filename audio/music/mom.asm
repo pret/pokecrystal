@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/mom.asm", ROMX
+SECTION "audio/music/mom", ROMX
 
 Music_Mom::
 	channel_count 3

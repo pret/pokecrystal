@@ -18,7 +18,7 @@ INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/tileset_constants.inc"
 
 
-SECTION "engine/events/overworld.asm", ROMX
+SECTION "engine/events/overworld", ROMX
 
 FieldMoveJumptableReset:
 	xor a

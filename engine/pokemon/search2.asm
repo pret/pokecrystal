@@ -2,7 +2,7 @@ INCLUDE "constants/pokemon_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 
 
-SECTION "engine/pokemon/search2.asm", ROMX
+SECTION "engine/pokemon/search2", ROMX
 
 _FindPartyMonAboveLevel::
 	ld hl, wPartyMon1Level

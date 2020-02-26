@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const LAVENDERSPEECHHOUSE_POKEFAN_F
 
 
-SECTION "maps/LavenderSpeechHouse.asm", ROMX
+SECTION "maps/LavenderSpeechHouse", ROMX
 
 LavenderSpeechHouse_MapScripts::
 	db 0 ; scene scripts

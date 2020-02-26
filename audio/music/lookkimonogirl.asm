@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/lookkimonogirl.asm", ROMX
+SECTION "audio/music/lookkimonogirl", ROMX
 
 Music_LookKimonoGirl::
 	channel_count 3

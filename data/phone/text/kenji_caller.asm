@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/kenji_caller.asm", ROMX
+SECTION "data/phone/text/kenji_caller", ROMX
 
 KenjiHangUpText::
 	text "Anyway, we'll chat"

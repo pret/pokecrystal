@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const VERMILIONDIGLETTSCAVESPEECHHOUSE_GENTLEMAN
 
 
-SECTION "maps/VermilionDiglettsCaveSpeechHouse.asm", ROMX
+SECTION "maps/VermilionDiglettsCaveSpeechHouse", ROMX
 
 VermilionDiglettsCaveSpeechHouse_MapScripts::
 	db 0 ; scene scripts

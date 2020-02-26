@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/WhirlIslandSE.asm", ROMX
+SECTION "maps/WhirlIslandSE", ROMX
 
 WhirlIslandSE_MapScripts::
 	db 0 ; scene scripts

@@ -17,7 +17,7 @@ INCLUDE "constants/sprite_anim_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/pokemon/breeding.asm", ROMX
+SECTION "engine/pokemon/breeding", ROMX
 
 CheckBreedmonCompatibility::
 	call .CheckBreedingGroupCompatibility
@@ -451,7 +451,7 @@ GetEggMove:
 	ld a, BANK(EggMovePointers)
 	call GetFarHalfword
 .loop
-	ld a, BANK("data/pokemon/egg_moves.asm")
+	ld a, BANK("data/pokemon/egg_moves")
 	call GetFarByte
 	cp -1
 	jr z, .reached_end
@@ -485,18 +485,18 @@ GetEggMove:
 	ld a, BANK(EvosAttacksPointers)
 	call GetFarHalfword
 .loop3
-	ld a, BANK("engine/pokemon/evolve.asm")
+	ld a, BANK("engine/pokemon/evolve")
 	call GetFarByte
 	inc hl
 	and a
 	jr nz, .loop3
 .loop4
-	ld a, BANK("engine/pokemon/evolve.asm")
+	ld a, BANK("engine/pokemon/evolve")
 	call GetFarByte
 	and a
 	jr z, .inherit_tmhm
 	inc hl
-	ld a, BANK("engine/pokemon/evolve.asm")
+	ld a, BANK("engine/pokemon/evolve")
 	call GetFarByte
 	ld b, a
 	ld a, [de]
@@ -965,7 +965,7 @@ DayCareMonCompatibilityText:
 	text_end
 
 
-SECTION "engine/pokemon/breeding.asm@Unreferenced_GetEmptyString", ROMX
+SECTION "engine/pokemon/breeding@Unreferenced_GetEmptyString", ROMX
 
 Unreferenced_GetEmptyString:
 	ld hl, .string

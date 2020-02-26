@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const TINTOWER3F_POKE_BALL
 
 
-SECTION "maps/TinTower3F.asm", ROMX
+SECTION "maps/TinTower3F", ROMX
 
 TinTower3F_MapScripts::
 	db 0 ; scene scripts

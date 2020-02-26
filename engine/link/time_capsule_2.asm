@@ -1,7 +1,7 @@
 INCLUDE "constants/pokemon_constants.inc"
 
 
-SECTION "engine/link/time_capsule_2.asm", ROMX
+SECTION "engine/link/time_capsule_2", ROMX
 
 ConvertMon_2to1::
 ; Takes the Gen 2 Pokemon number stored in wTempSpecies,

@@ -3,7 +3,7 @@ INCLUDE "constants/pokemon_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 
 
-SECTION "engine/pokemon/search.asm", ROMX
+SECTION "engine/pokemon/search", ROMX
 
 BeastsCheck::
 ; Check if the player owns all three legendary beasts.

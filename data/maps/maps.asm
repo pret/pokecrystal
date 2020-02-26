@@ -22,7 +22,7 @@ map: MACRO
 ENDM
 
 
-SECTION "data/maps/maps.asm", ROMX
+SECTION "data/maps/maps", ROMX
 
 MapGroupPointers::
 ; pointers to the first map of each map group

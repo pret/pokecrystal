@@ -18,7 +18,7 @@ CARDFLIP_LIGHT_ON  EQU "♀" ; $f5
 CARDFLIP_DECK_SIZE EQU 4 * 6
 
 
-SECTION "engine/games/card_flip.asm@Unknown_e00ed", ROMX, BANK[BANK_DUMMY_GAME]
+SECTION "engine/games/card_flip@Unknown_e00ed", ROMX, BANK[BANK_DUMMY_GAME]
 
 ; two labels below called from inside ./dummy_game.asm
 Unknown_e00ed::
@@ -28,7 +28,7 @@ ret_e00ed::
 	ret
 
 
-SECTION "engine/games/card_flip.asm", ROMX
+SECTION "engine/games/card_flip", ROMX
 
 _CardFlip::
 	ld hl, wOptions

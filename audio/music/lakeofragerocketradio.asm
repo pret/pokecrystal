@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/lakeofragerocketradio.asm", ROMX
+SECTION "audio/music/lakeofragerocketradio", ROMX
 
 Music_LakeOfRageRocketRadio::
 	channel_count 3

@@ -5,7 +5,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/sfx_constants.inc"
 
 
-SECTION "engine/pokemon/switchpartymons.asm", ROMX
+SECTION "engine/pokemon/switchpartymons", ROMX
 
 _SwitchPartyMons::
 	ld a, [wSwitchMon]

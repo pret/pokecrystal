@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const LAKEOFRAGEMAGIKARPHOUSE_FISHING_GURU
 
 
-SECTION "maps/LakeOfRageMagikarpHouse.asm", ROMX
+SECTION "maps/LakeOfRageMagikarpHouse", ROMX
 
 LakeOfRageMagikarpHouse_MapScripts::
 	db 0 ; scene scripts

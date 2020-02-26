@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROCKTUNNEL1F_POKE_BALL2
 
 
-SECTION "maps/RockTunnel1F.asm", ROMX
+SECTION "maps/RockTunnel1F", ROMX
 
 RockTunnel1F_MapScripts::
 	db 0 ; scene scripts

@@ -3,7 +3,7 @@ INCLUDE "macros/scripts/audio.inc"
 INCLUDE "constants/audio_constants.inc"
 
 
-SECTION "audio/sfx.asm", ROMX
+SECTION "audio/sfx", ROMX
 
 Sfx_PokeballsPlacedOnTable::
 	channel_count 1
@@ -5192,7 +5192,7 @@ Sfx_Elevator_Ch8:
 	sound_ret
 
 
-SECTION "audio/sfx.asm@Sfx_StopSlot", ROMX
+SECTION "audio/sfx@Sfx_StopSlot", ROMX
 
 Sfx_StopSlot::
 	channel_count 1
@@ -5205,7 +5205,7 @@ Sfx_StopSlot_Ch5:
 	sound_ret
 
 
-SECTION "audio/sfx.asm@Sfx_GlassTing", ROMX
+SECTION "audio/sfx@Sfx_GlassTing", ROMX
 
 Sfx_GlassTing::
 	channel_count 1
@@ -5217,7 +5217,7 @@ Sfx_GlassTing_Ch5:
 	sound_ret
 
 
-SECTION "audio/sfx.asm@Sfx_GlassTing2", ROMX
+SECTION "audio/sfx@Sfx_GlassTing2", ROMX
 
 Sfx_GlassTing2::
 	channel_count 2

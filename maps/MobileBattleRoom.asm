@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/MobileBattleRoom.asm", ROMX
+SECTION "maps/MobileBattleRoom", ROMX
 
 MobileBattleRoom_MapScripts::
 	db 2 ; scene scripts

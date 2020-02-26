@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/postcredits.asm", ROMX
+SECTION "audio/music/postcredits", ROMX
 
 Music_PostCredits::
 	channel_count 2

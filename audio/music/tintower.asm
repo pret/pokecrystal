@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/tintower.asm", ROMX
+SECTION "audio/music/tintower", ROMX
 
 Music_TinTower::
 	channel_count 4

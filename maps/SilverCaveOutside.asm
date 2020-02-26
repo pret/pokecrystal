@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/SilverCaveOutside.asm", ROMX
+SECTION "maps/SilverCaveOutside", ROMX
 
 SilverCaveOutside_MapScripts::
 	db 0 ; scene scripts

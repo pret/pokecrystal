@@ -5,7 +5,7 @@ INCLUDE "constants/floating_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 
 
-SECTION "engine/events/bug_contest/caught_mon.asm", ROMX, BANK[BANK_MOVE_MON]
+SECTION "engine/events/bug_contest/caught_mon", ROMX, BANK[BANK_MOVE_MON]
 
 BugContest_SetCaughtContestMon::
 	ld a, [wContestMon]

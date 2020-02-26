@@ -1,4 +1,4 @@
-SECTION "gfx/pokemon/johto_frames.asm", ROMX
+SECTION "gfx/pokemon/johto_frames", ROMX
 
 JohtoFrames:: ; used only for BANK(JohtoFrames)
 

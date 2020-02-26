@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/elm.asm", ROMX
+SECTION "data/phone/text/elm", ROMX
 
 ElmPhoneHealYourMonText::
 	text "Hello, <PLAY_G>?"

@@ -5,7 +5,7 @@ INCLUDE "constants/misc_constants.inc"
 INCLUDE "constants/script_constants.inc"
 
 
-SECTION "home/trainers.asm", ROM0
+SECTION "home/trainers", ROM0
 
 CheckTrainerBattle::
 	ldh a, [hROMBank]

@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const POKECENTER2F_OFFICER
 
 
-SECTION "maps/Pokecenter2F.asm", ROMX
+SECTION "maps/Pokecenter2F", ROMX
 
 Pokecenter2F_MapScripts::
 	db 6 ; scene scripts

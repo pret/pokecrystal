@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const KARENSROOM_KAREN
 
 
-SECTION "maps/KarensRoom.asm", ROMX
+SECTION "maps/KarensRoom", ROMX
 
 KarensRoom_MapScripts::
 	db 2 ; scene scripts

@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/mainmenu.asm", ROMX
+SECTION "audio/music/mainmenu", ROMX
 
 Music_MainMenu::
 	channel_count 4

@@ -12,7 +12,7 @@ INCLUDE "constants/maps_common.inc"
 	const BURNEDTOWERB1F_EUSINE
 
 
-SECTION "maps/BurnedTowerB1F.asm", ROMX
+SECTION "maps/BurnedTowerB1F", ROMX
 
 BurnedTowerB1F_MapScripts::
 	db 2 ; scene scripts

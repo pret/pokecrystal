@@ -1,4 +1,4 @@
-SECTION "home/delay.asm", ROM0
+SECTION "home/delay", ROM0
 
 DelayFrame::
 ; Wait for one frame

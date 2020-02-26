@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const RUINSOFALPHHOOHITEMROOM_POKE_BALL4
 
 
-SECTION "maps/RuinsOfAlphHoOhItemRoom.asm", ROMX
+SECTION "maps/RuinsOfAlphHoOhItemRoom", ROMX
 
 RuinsOfAlphHoOhItemRoom_MapScripts::
 	db 0 ; scene scripts

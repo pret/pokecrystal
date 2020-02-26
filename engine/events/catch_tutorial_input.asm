@@ -1,7 +1,7 @@
 INCLUDE "constants/input_constants.inc"
 
 
-SECTION "engine/events/catch_tutorial_input.asm", ROMX
+SECTION "engine/events/catch_tutorial_input", ROMX
 
 _DudeAutoInput_A::
 	ld hl, DudeAutoInput_A

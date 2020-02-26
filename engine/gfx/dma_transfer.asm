@@ -5,7 +5,7 @@ INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
 
 
-SECTION "engine/gfx/dma_transfer.asm", ROMX
+SECTION "engine/gfx/dma_transfer", ROMX
 
 HDMATransferAttrmapAndTilemapToWRAMBank3::
 	ld hl, .Function

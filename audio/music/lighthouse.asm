@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/lighthouse.asm", ROMX
+SECTION "audio/music/lighthouse", ROMX
 
 Music_Lighthouse::
 	channel_count 4

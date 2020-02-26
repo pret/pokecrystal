@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/SafariZoneMainOffice.asm", ROMX
+SECTION "maps/SafariZoneMainOffice", ROMX
 
 SafariZoneMainOffice_MapScripts::
 	db 0 ; scene scripts

@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const SAFARIZONEWARDENSHOME_LASS
 
 
-SECTION "maps/SafariZoneWardensHome.asm", ROMX
+SECTION "maps/SafariZoneWardensHome", ROMX
 
 SafariZoneWardensHome_MapScripts::
 	db 0 ; scene scripts

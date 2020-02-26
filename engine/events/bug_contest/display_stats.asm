@@ -6,7 +6,7 @@ INCLUDE "constants/scgb_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/events/bug_contest/display_stats.asm@DisplayCaughtContestMonStats", ROMX
+SECTION "engine/events/bug_contest/display_stats@DisplayCaughtContestMonStats", ROMX
 
 DisplayCaughtContestMonStats::
 	call ClearBGPalettes
@@ -101,7 +101,7 @@ ContestAskSwitchText:
 	text_end
 
 
-SECTION "engine/events/bug_contest/display_stats.asm@DisplayAlreadyCaughtText", ROMX
+SECTION "engine/events/bug_contest/display_stats@DisplayAlreadyCaughtText", ROMX
 
 DisplayAlreadyCaughtText::
 	call GetPokemonName
@@ -113,7 +113,7 @@ DisplayAlreadyCaughtText::
 	text_end
 
 
-SECTION "engine/events/bug_contest/display_stats.asm@DummyPredef", ROMX
+SECTION "engine/events/bug_contest/display_stats@DummyPredef", ROMX
 
 DummyPredef2F::
 DummyPredef38::

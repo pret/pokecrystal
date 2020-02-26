@@ -30,7 +30,7 @@ INCLUDE "constants/wram_constants.inc"
 	const STARTMENUITEM_QUIT     ; 8
 
 
-SECTION "engine/menus/start_menu.asm", ROMX, BANK[BANK_PACK]
+SECTION "engine/menus/start_menu", ROMX, BANK[BANK_PACK]
 
 StartMenu::
 	call ClearWindowData

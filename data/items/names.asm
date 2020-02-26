@@ -1,7 +1,7 @@
 INCLUDE "charmap.inc"
 
 
-SECTION "data/items/names.asm", ROMX
+SECTION "data/items/names", ROMX
 
 ItemNames::
 	db "MASTER BALL@"

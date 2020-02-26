@@ -24,7 +24,7 @@ INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/text_constants.inc"
 
 
-SECTION "engine/overworld/events.asm", ROMX
+SECTION "engine/overworld/events", ROMX
 
 OverworldLoop::
 	xor a ; MAPSTATUS_START
@@ -1296,7 +1296,7 @@ TryWildEncounter_BugContest:
 INCLUDE "data/wild/bug_contest_mons.inc"
 
 
-SECTION "engine/overworld/events.asm@DoBikeStep", ROMX
+SECTION "engine/overworld/events@DoBikeStep", ROMX
 
 DoBikeStep:
 	nop
@@ -1365,7 +1365,7 @@ DoBikeStep:
 	ret
 
 
-SECTION "engine/overworld/events.asm@ClearCmdQueue", ROMX
+SECTION "engine/overworld/events@ClearCmdQueue", ROMX
 
 ClearCmdQueue::
 	ld hl, wCmdQueue
@@ -1380,7 +1380,7 @@ ClearCmdQueue::
 	ret
 
 
-SECTION "engine/overworld/events.asm@HandleCmdQueue", ROMX
+SECTION "engine/overworld/events@HandleCmdQueue", ROMX
 
 HandleCmdQueue:
 	ld hl, wCmdQueue
@@ -1627,7 +1627,7 @@ CmdQueue_Type3:
 	ret
 
 
-SECTION "engine/overworld/events.asm@CmdQueue_StoneTable", ROMX
+SECTION "engine/overworld/events@CmdQueue_StoneTable", ROMX
 
 CmdQueue_StoneTable:
 	ld de, wPlayerStruct

@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const OLIVINEMART_LASS
 
 
-SECTION "maps/OlivineMart.asm", ROMX
+SECTION "maps/OlivineMart", ROMX
 
 OlivineMart_MapScripts::
 	db 0 ; scene scripts

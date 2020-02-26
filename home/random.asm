@@ -2,7 +2,7 @@ INCLUDE "macros/rst.inc"
 INCLUDE "constants/hardware_constants.inc"
 
 
-SECTION "home/random.asm", ROM0
+SECTION "home/random", ROM0
 
 Random::
 ; A simple hardware-based random number generator (RNG).

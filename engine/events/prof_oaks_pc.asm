@@ -6,7 +6,7 @@ INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/text_constants.inc"
 
 
-SECTION "engine/events/prof_oaks_pc.asm", ROMX
+SECTION "engine/events/prof_oaks_pc", ROMX
 
 ProfOaksPC::
 	ld hl, OakPCText1

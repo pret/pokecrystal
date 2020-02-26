@@ -5,7 +5,7 @@ INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/tileset_constants.inc"
 
 
-SECTION "engine/tilesets/map_palettes.asm", ROMX
+SECTION "engine/tilesets/map_palettes", ROMX
 
 _SwapTextboxPalettes::
 	hlcoord 0, 0

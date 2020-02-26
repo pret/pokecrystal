@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const SILVERCAVEPOKECENTER1F_GRANNY
 
 
-SECTION "maps/SilverCavePokecenter1F.asm", ROMX
+SECTION "maps/SilverCavePokecenter1F", ROMX
 
 SilverCavePokecenter1F_MapScripts::
 	db 0 ; scene scripts

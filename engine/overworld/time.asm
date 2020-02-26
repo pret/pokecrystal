@@ -3,7 +3,7 @@ INCLUDE "constants/misc_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/overworld/time.asm", ROMX
+SECTION "engine/overworld/time", ROMX
 
 _InitializeStartDay::
 	call InitializeStartDay

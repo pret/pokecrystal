@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/jack_overworld.asm", ROMX
+SECTION "data/phone/text/jack_overworld", ROMX
 
 JackAskNumber1Text::
 	text "Your knowledge is"

@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/reena_caller.asm", ROMX
+SECTION "data/phone/text/reena_caller", ROMX
 
 ReenaMonsIsAPerfectMatchText::
 	text "Listen, dear…"

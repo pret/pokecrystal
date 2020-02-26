@@ -8,7 +8,7 @@ INCLUDE "constants/maps_common.inc"
 	const PLAYERSHOUSE2F_BIG_DOLL
 
 
-SECTION "maps/PlayersHouse2F.asm", ROMX
+SECTION "maps/PlayersHouse2F", ROMX
 
 PlayersHouse2F_MapScripts::
 	db 0 ; scene scripts

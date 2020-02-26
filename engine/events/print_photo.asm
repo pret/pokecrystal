@@ -3,7 +3,7 @@ INCLUDE "macros/scripts/text.inc"
 INCLUDE "constants/pokemon_constants.inc"
 
 
-SECTION "engine/events/print_photo.asm", ROMX
+SECTION "engine/events/print_photo", ROMX
 
 PhotoStudio::
 	ld hl, .WhichMonPhotoText

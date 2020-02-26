@@ -13,7 +13,7 @@ INCLUDE "constants/maps_common.inc"
 	const MOUNTMORTAR1FINSIDE_POKE_BALL7
 
 
-SECTION "maps/MountMortar1FInside.asm", ROMX
+SECTION "maps/MountMortar1FInside", ROMX
 
 MountMortar1FInside_MapScripts::
 	db 0 ; scene scripts

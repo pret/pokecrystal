@@ -3,7 +3,7 @@ INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
 
 
-SECTION "engine/menus/savemenu_copytilemapatonce.asm", ROMX
+SECTION "engine/menus/savemenu_copytilemapatonce", ROMX
 
 SaveMenu_CopyTilemapAtOnce::
 	ldh a, [hCGB]

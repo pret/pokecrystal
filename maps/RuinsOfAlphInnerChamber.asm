@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const RUINSOFALPHINNERCHAMBER_GRAMPS
 
 
-SECTION "maps/RuinsOfAlphInnerChamber.asm", ROMX
+SECTION "maps/RuinsOfAlphInnerChamber", ROMX
 
 RuinsOfAlphInnerChamber_MapScripts::
 	db 2 ; scene scripts

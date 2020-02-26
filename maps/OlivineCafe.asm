@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const OLIVINECAFE_SAILOR2
 
 
-SECTION "maps/OlivineCafe.asm", ROMX
+SECTION "maps/OlivineCafe", ROMX
 
 OlivineCafe_MapScripts::
 	db 0 ; scene scripts

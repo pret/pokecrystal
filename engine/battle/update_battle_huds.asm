@@ -1,7 +1,7 @@
 INCLUDE "macros/rst.inc"
 
 
-SECTION "engine/battle/update_battle_huds.asm", ROMX
+SECTION "engine/battle/update_battle_huds", ROMX
 
 _UpdateBattleHUDs::
 	farcall DrawPlayerHUD

@@ -4,7 +4,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/script_constants.inc"
 
 
-SECTION "engine/overworld/variables.asm", ROMX
+SECTION "engine/overworld/variables", ROMX
 
 _GetVarAction::
 	ld a, c

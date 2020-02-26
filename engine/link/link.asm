@@ -26,7 +26,7 @@ INCLUDE "constants/type_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/link/link.asm", ROMX
+SECTION "engine/link/link", ROMX
 
 LinkCommunications:
 	call ClearBGPalettes
@@ -2523,7 +2523,7 @@ Link_EnsureSync:
 	ret
 
 
-SECTION "engine/link/link.asm@CableClubCheckWhichChris", ROMX
+SECTION "engine/link/link@CableClubCheckWhichChris", ROMX
 
 CableClubCheckWhichChris::
 	ldh a, [hSerialConnectionStatus]
@@ -2537,13 +2537,13 @@ CableClubCheckWhichChris::
 	ret
 
 
-SECTION "engine/link/link.asm@Unreferenced_Gen1LinkCommsBorderGFX", ROMX
+SECTION "engine/link/link@Unreferenced_Gen1LinkCommsBorderGFX", ROMX
 
 Unreferenced_Gen1LinkCommsBorderGFX:
 INCBIN "gfx/trade/unused_gen_1_border_tiles.2bpp"
 
 
-SECTION "engine/link/link.asm@Unreferenced_Function29fe4", ROMX
+SECTION "engine/link/link@Unreferenced_Function29fe4", ROMX
 
 Unreferenced_Function29fe4:
 	ld a, BANK(sPartyMail)

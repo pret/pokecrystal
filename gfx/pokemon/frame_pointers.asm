@@ -1,4 +1,4 @@
-SECTION "gfx/pokemon/frame_pointers.asm", ROMX
+SECTION "gfx/pokemon/frame_pointers", ROMX
 
 FramesPointers::
 	dw BulbasaurFrames

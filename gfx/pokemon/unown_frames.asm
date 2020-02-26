@@ -1,4 +1,4 @@
-SECTION "gfx/pokemon/unown_frames.asm", ROMX
+SECTION "gfx/pokemon/unown_frames", ROMX
 
 INCLUDE "gfx/pokemon/unown_frame_pointers.inc"
 

@@ -6,7 +6,7 @@ INCLUDE "constants/script_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/events/fish.asm", ROMX
+SECTION "engine/events/fish", ROMX
 
 Fish::
 ; Using a fishing rod.

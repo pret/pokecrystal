@@ -1,7 +1,7 @@
 INCLUDE "macros/rst.inc"
 
 
-SECTION "home/math.asm", ROM0
+SECTION "home/math", ROM0
 
 SimpleMultiply::
 ; Return a * c.

@@ -92,7 +92,7 @@ SLOTS_END_LOOP_F EQU 7
 	const REEL_ACTION_DROP_REEL
 
 
-SECTION "engine/games/slot_machine.asm", ROMX
+SECTION "engine/games/slot_machine", ROMX
 
 _SlotMachine::
 	ld hl, wOptions

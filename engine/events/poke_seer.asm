@@ -24,7 +24,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 	const SEERACTION_LEVEL_ONLY
 
 
-SECTION "engine/events/poke_seer.asm", ROMX
+SECTION "engine/events/poke_seer", ROMX
 
 PokeSeer::
 	ld a, SEER_INTRO
@@ -395,7 +395,7 @@ SeerImpressedText:
 	text_end
 
 
-SECTION "engine/events/poke_seer.asm@GetCaughtGender", ROMX
+SECTION "engine/events/poke_seer@GetCaughtGender", ROMX
 
 GetCaughtGender::
 	ld hl, MON_CAUGHTGENDER

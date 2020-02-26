@@ -5,7 +5,7 @@ INCLUDE "constants/script_constants.inc"
 INCLUDE "constants/sfx_constants.inc"
 
 
-SECTION "engine/events/item_ball.asm", ROMX
+SECTION "engine/events/item_ball", ROMX
 
 FindItemInBallScript::
 	callasm .TryReceiveItem

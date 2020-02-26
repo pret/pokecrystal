@@ -4,7 +4,7 @@ INCLUDE "constants/battle_constants.inc"
 INCLUDE "constants/move_effect_constants.inc"
 
 
-SECTION "engine/battle/ai/redundant.asm", ROMX
+SECTION "engine/battle/ai/redundant", ROMX
 
 AI_Redundant::
 ; Check if move effect c will fail because it's already been used.

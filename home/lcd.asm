@@ -3,7 +3,7 @@ INCLUDE "constants/hardware_constants.inc"
 ; LCD handling
 
 
-SECTION "home/lcd.asm", ROM0
+SECTION "home/lcd", ROM0
 
 Unreferenced_Function547:
 	ldh a, [hLCDCPointer]

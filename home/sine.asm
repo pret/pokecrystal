@@ -1,7 +1,7 @@
 INCLUDE "macros/rst.inc"
 
 
-SECTION "home/sine.asm", ROM0
+SECTION "home/sine", ROM0
 
 Cosine:
 ; a = d * cos(a * pi/32)

@@ -3,7 +3,7 @@ INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
 
 
-SECTION "engine/phone/phonering_copytilemapatonce.asm", ROMX
+SECTION "engine/phone/phonering_copytilemapatonce", ROMX
 
 PhoneRing_CopyTilemapAtOnce::
 	ldh a, [hCGB]

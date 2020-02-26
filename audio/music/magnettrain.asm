@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/magnettrain.asm", ROMX
+SECTION "audio/music/magnettrain", ROMX
 
 Music_MagnetTrain::
 	channel_count 4

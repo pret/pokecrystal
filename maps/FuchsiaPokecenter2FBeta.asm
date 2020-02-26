@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/FuchsiaPokecenter2FBeta.asm", ROMX
+SECTION "maps/FuchsiaPokecenter2FBeta", ROMX
 
 FuchsiaPokecenter2FBeta_MapScripts::
 	db 0 ; scene scripts

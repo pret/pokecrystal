@@ -9,7 +9,7 @@ INCLUDE "constants/maps_common.inc"
 	const COPYCATSHOUSE2F_COPYCAT2 ; if player is female
 
 
-SECTION "maps/CopycatsHouse2F.asm", ROMX
+SECTION "maps/CopycatsHouse2F", ROMX
 
 CopycatsHouse2F_MapScripts::
 	db 0 ; scene scripts

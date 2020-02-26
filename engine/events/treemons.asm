@@ -6,7 +6,7 @@ INCLUDE "constants/pokemon_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 
 
-SECTION "engine/events/treemons.asm", ROMX
+SECTION "engine/events/treemons", ROMX
 
 TreeMonEncounter::
 	farcall StubbedTrainerRankings_TreeEncounters

@@ -11,7 +11,7 @@ INCLUDE "constants/sprite_data_constants.inc"
 INCLUDE "constants/text_constants.inc"
 
 
-SECTION "engine/overworld/map_objects.asm", ROMX, BANK[BANK_MAP_OBJECTS]
+SECTION "engine/overworld/map_objects", ROMX, BANK[BANK_MAP_OBJECTS]
 
 INCLUDE "data/sprites/facings.inc"
 

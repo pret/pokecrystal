@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const OLIVINEPORTPASSAGE_POKEFAN_M
 
 
-SECTION "maps/OlivinePortPassage.asm", ROMX
+SECTION "maps/OlivinePortPassage", ROMX
 
 OlivinePortPassage_MapScripts::
 	db 0 ; scene scripts

@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/vance_caller.asm", ROMX
+SECTION "data/phone/text/vance_caller", ROMX
 
 VanceMonHasBecomeTougherText::
 	text "My @"

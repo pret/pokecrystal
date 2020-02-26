@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE21_FISHER
 
 
-SECTION "maps/Route21.asm", ROMX
+SECTION "maps/Route21", ROMX
 
 Route21_MapScripts::
 	db 0 ; scene scripts

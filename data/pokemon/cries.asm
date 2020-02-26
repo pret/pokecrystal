@@ -6,7 +6,7 @@ mon_cry: MACRO
 ENDM
 
 
-SECTION "data/pokemon/cries.asm", ROMX
+SECTION "data/pokemon/cries", ROMX
 
 PokemonCries::
 ; entries correspond to constants/pokemon_constants.inc

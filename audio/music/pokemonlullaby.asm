@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/pokemonlullaby.asm", ROMX
+SECTION "audio/music/pokemonlullaby", ROMX
 
 Music_PokemonLullaby::
 	channel_count 3

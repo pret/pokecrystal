@@ -9,7 +9,7 @@ INCLUDE "constants/maps_common.inc"
 	const INDIGOPLATEAUPOKECENTER1F_ABRA
 
 
-SECTION "maps/IndigoPlateauPokecenter1F.asm", ROMX
+SECTION "maps/IndigoPlateauPokecenter1F", ROMX
 
 IndigoPlateauPokecenter1F_MapScripts::
 	db 1 ; scene scripts

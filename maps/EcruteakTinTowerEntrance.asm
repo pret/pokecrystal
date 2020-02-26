@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const ECRUTEAKTINTOWERENTRANCE_GRAMPS
 
 
-SECTION "maps/EcruteakTinTowerEntrance.asm", ROMX
+SECTION "maps/EcruteakTinTowerEntrance", ROMX
 
 EcruteakTinTowerEntrance_MapScripts::
 	db 2 ; scene scripts

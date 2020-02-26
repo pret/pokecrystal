@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/LavenderPokecenter2FBeta.asm", ROMX
+SECTION "maps/LavenderPokecenter2FBeta", ROMX
 
 LavenderPokecenter2FBeta_MapScripts::
 	db 0 ; scene scripts

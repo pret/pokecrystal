@@ -8,7 +8,7 @@ INCLUDE "constants/maps_common.inc"
 	const CELADONPOKECENTER1F_EUSINE
 
 
-SECTION "maps/CeladonPokecenter1F.asm", ROMX
+SECTION "maps/CeladonPokecenter1F", ROMX
 
 CeladonPokecenter1F_MapScripts::
 	db 0 ; scene scripts

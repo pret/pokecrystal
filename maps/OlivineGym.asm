@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const OLIVINEGYM_GYM_GUY
 
 
-SECTION "maps/OlivineGym.asm", ROMX
+SECTION "maps/OlivineGym", ROMX
 
 OlivineGym_MapScripts::
 	db 0 ; scene scripts

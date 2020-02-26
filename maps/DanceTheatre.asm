@@ -12,7 +12,7 @@ INCLUDE "constants/maps_common.inc"
 	const DANCETHEATRE_GRANNY
 
 
-SECTION "maps/DanceTheatre.asm", ROMX
+SECTION "maps/DanceTheatre", ROMX
 
 DanceTheatre_MapScripts::
 	db 0 ; scene scripts

@@ -8,7 +8,7 @@ INCLUDE "constants/maps_common.inc"
 	const KURTSHOUSE_TWIN2
 
 
-SECTION "maps/KurtsHouse.asm", ROMX
+SECTION "maps/KurtsHouse", ROMX
 
 KurtsHouse_MapScripts::
 	db 0 ; scene scripts

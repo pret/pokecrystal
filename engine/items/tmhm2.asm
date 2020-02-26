@@ -3,7 +3,7 @@ INCLUDE "constants/misc_constants.inc"
 INCLUDE "constants/move_constants.inc"
 
 
-SECTION "engine/items/tmhm2.asm", ROMX
+SECTION "engine/items/tmhm2", ROMX
 
 CanLearnTMHMMove::
 	ld a, [wCurPartySpecies]

@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/CeruleanPokecenter2FBeta.asm", ROMX
+SECTION "maps/CeruleanPokecenter2FBeta", ROMX
 
 CeruleanPokecenter2FBeta_MapScripts::
 	db 0 ; scene scripts

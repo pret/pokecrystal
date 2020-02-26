@@ -13,7 +13,7 @@ INCLUDE "constants/trainer_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "home/text.asm", ROM0
+SECTION "home/text", ROM0
 
 ClearBox::
 ; Fill a c*b box at hl with blank tiles.

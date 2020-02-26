@@ -10,7 +10,7 @@ INCLUDE "constants/maps_common.inc"
 	const ECRUTEAKCITY_GRAMPS3
 
 
-SECTION "maps/EcruteakCity.asm", ROMX
+SECTION "maps/EcruteakCity", ROMX
 
 EcruteakCity_MapScripts::
 	db 0 ; scene scripts

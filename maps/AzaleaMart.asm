@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const AZALEAMART_BUG_CATCHER
 
 
-SECTION "maps/AzaleaMart.asm", ROMX
+SECTION "maps/AzaleaMart", ROMX
 
 AzaleaMart_MapScripts::
 	db 0 ; scene scripts

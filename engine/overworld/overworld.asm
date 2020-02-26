@@ -10,7 +10,7 @@ INCLUDE "constants/sprite_constants.inc"
 INCLUDE "constants/sprite_data_constants.inc"
 
 
-SECTION "engine/overworld/overworld.asm", ROMX
+SECTION "engine/overworld/overworld", ROMX
 
 GetEmote2bpp:
 	ld a, $1

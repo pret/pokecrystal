@@ -10,7 +10,7 @@ INCLUDE "constants/maps_common.inc"
 	const AZALEAGYM_GYM_GUY
 
 
-SECTION "maps/AzaleaGym.asm", ROMX
+SECTION "maps/AzaleaGym", ROMX
 
 AzaleaGym_MapScripts::
 	db 0 ; scene scripts

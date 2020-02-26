@@ -10,7 +10,7 @@ INCLUDE "constants/trainer_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/gfx/player_gfx.asm@Unreferenced_Function88248", ROMX
+SECTION "engine/gfx/player_gfx@Unreferenced_Function88248", ROMX
 
 Unreferenced_Function88248:
 	ld c, CAL
@@ -25,7 +25,7 @@ Unreferenced_Function88248:
 	ret
 
 
-SECTION "engine/gfx/player_gfx.asm@MovePlayerPic", ROMX
+SECTION "engine/gfx/player_gfx@MovePlayerPic", ROMX
 
 MovePlayerPicRight::
 	hlcoord 6, 4
@@ -73,7 +73,7 @@ MovePlayerPic:
 	jr .loop
 
 
-SECTION "engine/gfx/player_gfx.asm@ShowPlayerNamingChoices", ROMX
+SECTION "engine/gfx/player_gfx@ShowPlayerNamingChoices", ROMX
 
 ShowPlayerNamingChoices::
 	ld hl, ChrisNameMenuHeader
@@ -105,7 +105,7 @@ Unreferenced_GetPlayerNameArray:
 	ret
 
 
-SECTION "engine/gfx/player_gfx.asm@GetPlayerIcon", ROMX
+SECTION "engine/gfx/player_gfx@GetPlayerIcon", ROMX
 
 GetPlayerIcon::
 ; Get the player icon corresponding to gender
@@ -126,7 +126,7 @@ GetPlayerIcon::
 	ret
 
 
-SECTION "engine/gfx/player_gfx.asm@GetCardPic", ROMX
+SECTION "engine/gfx/player_gfx@GetCardPic", ROMX
 
 GetCardPic::
 	ld hl, ChrisCardPic
@@ -156,7 +156,7 @@ CardGFX:
 INCBIN "gfx/trainer_card/trainer_card.2bpp"
 
 
-SECTION "engine/gfx/player_gfx.asm@GetPlayerPic", ROMX
+SECTION "engine/gfx/player_gfx@GetPlayerPic", ROMX
 
 GetPlayerBackpic::
 	ld a, [wPlayerGender]

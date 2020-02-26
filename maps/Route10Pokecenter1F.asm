@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE10POKECENTER1F_COOLTRAINER_F
 
 
-SECTION "maps/Route10Pokecenter1F.asm", ROMX
+SECTION "maps/Route10Pokecenter1F", ROMX
 
 Route10Pokecenter1F_MapScripts::
 	db 0 ; scene scripts

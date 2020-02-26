@@ -4,7 +4,7 @@ INCLUDE "constants/floating_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
 
 
-SECTION "engine/overworld/init_map.asm", ROMX, BANK[BANK_MAP_OBJECTS]
+SECTION "engine/overworld/init_map", ROMX, BANK[BANK_MAP_OBJECTS]
 
 ReanchorBGMap_NoOAMUpdate::
 	call DelayFrame

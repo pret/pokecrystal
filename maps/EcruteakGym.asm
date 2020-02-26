@@ -10,7 +10,7 @@ INCLUDE "constants/maps_common.inc"
 	const ECRUTEAKGYM_GRAMPS
 
 
-SECTION "maps/EcruteakGym.asm", ROMX
+SECTION "maps/EcruteakGym", ROMX
 
 EcruteakGym_MapScripts::
 	db 2 ; scene scripts

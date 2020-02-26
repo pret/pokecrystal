@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const MAHOGANYREDGYARADOSSPEECHHOUSE_TEACHER
 
 
-SECTION "maps/MahoganyRedGyaradosSpeechHouse.asm", ROMX
+SECTION "maps/MahoganyRedGyaradosSpeechHouse", ROMX
 
 MahoganyRedGyaradosSpeechHouse_MapScripts::
 	db 0 ; scene scripts

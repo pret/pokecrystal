@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/battle_tower/trainer_text.asm", ROMX
+SECTION "data/battle_tower/trainer_text", ROMX
 
 _BTGreetingM1Text::
 	text "Hello, glad to"

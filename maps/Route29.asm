@@ -11,7 +11,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE29_POKE_BALL
 
 
-SECTION "maps/Route29.asm", ROMX
+SECTION "maps/Route29", ROMX
 
 Route29_MapScripts::
 	db 2 ; scene scripts

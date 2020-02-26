@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const OLIVINEHOUSEBETA_RHYDON
 
 
-SECTION "maps/OlivineHouseBeta.asm", ROMX
+SECTION "maps/OlivineHouseBeta", ROMX
 
 OlivineHouseBeta_MapScripts::
 	db 0 ; scene scripts

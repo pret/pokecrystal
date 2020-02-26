@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE12SUPERRODHOUSE_FISHING_GURU
 
 
-SECTION "maps/Route12SuperRodHouse.asm", ROMX
+SECTION "maps/Route12SuperRodHouse", ROMX
 
 Route12SuperRodHouse_MapScripts::
 	db 0 ; scene scripts

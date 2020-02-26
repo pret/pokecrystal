@@ -2,7 +2,7 @@ INCLUDE "macros/data.inc"
 INCLUDE "constants/floating_constants.inc"
 
 
-SECTION "data/pokemon/pic_pointers.asm", ROMX[ADDR_PIC_POINTERS]
+SECTION "data/pokemon/pic_pointers", ROMX[ADDR_PIC_POINTERS]
 
 ; Pics are defined in gfx/pics.asm
 PokemonPicPointers::

@@ -9,7 +9,7 @@ INCLUDE "constants/maps_common.inc"
 	const CELADONGYM_TWIN2
 
 
-SECTION "maps/CeladonGym.asm", ROMX
+SECTION "maps/CeladonGym", ROMX
 
 CeladonGym_MapScripts::
 	db 0 ; scene scripts

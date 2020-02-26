@@ -11,7 +11,7 @@ INCLUDE "constants/scgb_constants.inc"
 INCLUDE "constants/sprite_anim_constants.inc"
 
 
-SECTION "engine/games/dummy_game.asm", ROMX, BANK[BANK_DUMMY_GAME]
+SECTION "engine/games/dummy_game", ROMX, BANK[BANK_DUMMY_GAME]
 
 _DummyGame::
 	call .LoadGFXAndPals

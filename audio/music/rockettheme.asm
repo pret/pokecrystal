@@ -2,7 +2,7 @@ INCLUDE "constants/floating_constants.inc"
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/rockettheme.asm", ROMX, BANK[BANK_MUSIC_ROCKET_ENCOUNTER]
+SECTION "audio/music/rockettheme", ROMX, BANK[BANK_MUSIC_ROCKET_ENCOUNTER]
 
 Music_RocketTheme::
 	channel_count 4

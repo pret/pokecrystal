@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const KOGASROOM_KOGA
 
 
-SECTION "maps/KogasRoom.asm", ROMX
+SECTION "maps/KogasRoom", ROMX
 
 KogasRoom_MapScripts::
 	db 2 ; scene scripts

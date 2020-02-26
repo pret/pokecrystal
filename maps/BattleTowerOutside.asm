@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const BATTLETOWEROUTSIDE_LASS
 
 
-SECTION "maps/BattleTowerOutside.asm", ROMX
+SECTION "maps/BattleTowerOutside", ROMX
 
 BattleTowerOutside_MapScripts::
 	db 0 ; scene scripts

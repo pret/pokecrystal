@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const WHIRLISLANDLUGIACHAMBER_LUGIA
 
 
-SECTION "maps/WhirlIslandLugiaChamber.asm", ROMX
+SECTION "maps/WhirlIslandLugiaChamber", ROMX
 
 WhirlIslandLugiaChamber_MapScripts::
 	db 0 ; scene scripts

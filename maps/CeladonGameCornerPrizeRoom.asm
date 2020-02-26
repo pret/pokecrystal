@@ -12,7 +12,7 @@ CELADONGAMECORNERPRIZEROOM_LARVITAR_COINS EQU 8888
 	const CELADONGAMECORNERPRIZEROOM_PHARMACIST
 
 
-SECTION "maps/CeladonGameCornerPrizeRoom.asm", ROMX
+SECTION "maps/CeladonGameCornerPrizeRoom", ROMX
 
 CeladonGameCornerPrizeRoom_MapScripts::
 	db 0 ; scene scripts

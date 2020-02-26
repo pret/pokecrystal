@@ -7,7 +7,7 @@ INCLUDE "constants/trainer_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/phone/scripts/liz.asm", ROMX
+SECTION "engine/phone/scripts/liz", ROMX
 
 LizPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, PICNICKER, LIZ1

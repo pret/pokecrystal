@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const ILEXFORESTAZALEAGATE_GRANNY
 
 
-SECTION "maps/IlexForestAzaleaGate.asm", ROMX
+SECTION "maps/IlexForestAzaleaGate", ROMX
 
 IlexForestAzaleaGate_MapScripts::
 	db 0 ; scene scripts

@@ -9,7 +9,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/trainer_constants.inc"
 
 
-SECTION "engine/events/battle_tower/load_trainer.asm", ROMX
+SECTION "engine/events/battle_tower/load_trainer", ROMX
 
 Function_LoadOpponentTrainerAndPokemons::
 	ldh a, [rSVBK]

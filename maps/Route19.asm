@@ -9,7 +9,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE19_FISHER2
 
 
-SECTION "maps/Route19.asm", ROMX
+SECTION "maps/Route19", ROMX
 
 Route19_MapScripts::
 	db 0 ; scene scripts

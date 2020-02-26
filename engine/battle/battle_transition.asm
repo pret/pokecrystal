@@ -25,7 +25,7 @@ BATTLETRANSITION_SQUARE EQU "8" ; $fe
 BATTLETRANSITION_BLACK  EQU "9" ; $ff
 
 
-SECTION "engine/battle/battle_transition.asm", ROMX, BANK[BANK_BATTLE_TRANSITION]
+SECTION "engine/battle/battle_transition", ROMX, BANK[BANK_BATTLE_TRANSITION]
 
 DoBattleTransition::
 	call .InitGFX
@@ -845,7 +845,7 @@ ENDM
 	ret
 
 
-SECTION "engine/battle/battle_transition.asm@Unreferenced_Function8c7c9", ROMX
+SECTION "engine/battle/battle_transition@Unreferenced_Function8c7c9", ROMX
 
 Unreferenced_Function8c7c9:
 	ld a, $1

@@ -10,7 +10,7 @@ INCLUDE "constants/maps_common.inc"
 	const SPROUTTOWER3F_SILVER
 
 
-SECTION "maps/SproutTower3F.asm", ROMX
+SECTION "maps/SproutTower3F", ROMX
 
 SproutTower3F_MapScripts::
 	db 2 ; scene scripts

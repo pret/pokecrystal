@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const SPROUTTOWER2F_POKE_BALL
 
 
-SECTION "maps/SproutTower2F.asm", ROMX
+SECTION "maps/SproutTower2F", ROMX
 
 SproutTower2F_MapScripts::
 	db 0 ; scene scripts

@@ -3,7 +3,7 @@ INCLUDE "constants/input_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "home/print_text.asm", ROM0
+SECTION "home/print_text", ROM0
 
 PrintLetterDelay::
 ; Wait before printing the next letter.

@@ -2,7 +2,7 @@ INCLUDE "constants/floating_constants.inc"
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/aftertherivalfight.asm", ROMX, BANK[BANK_MUSIC_RIVAL_ENCOUNTER]
+SECTION "audio/music/aftertherivalfight", ROMX, BANK[BANK_MUSIC_RIVAL_ENCOUNTER]
 
 Music_AfterTheRivalFight::
 	channel_count 4

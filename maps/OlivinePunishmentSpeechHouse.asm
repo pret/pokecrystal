@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const OLIVINEPUNISHMENTSPEECHHOUSE_LASS
 
 
-SECTION "maps/OlivinePunishmentSpeechHouse.asm", ROMX
+SECTION "maps/OlivinePunishmentSpeechHouse", ROMX
 
 OlivinePunishmentSpeechHouse_MapScripts::
 	db 0 ; scene scripts

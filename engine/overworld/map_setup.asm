@@ -5,7 +5,7 @@ INCLUDE "constants/map_setup_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/overworld/map_setup.asm@RunMapSetupScript", ROMX
+SECTION "engine/overworld/map_setup@RunMapSetupScript", ROMX
 
 RunMapSetupScript::
 	ldh a, [hMapEntryMethod]
@@ -117,7 +117,7 @@ MapSetupCommands:
 	dba InitMapNameSign ; 2d
 
 
-SECTION "engine/overworld/map_setup.asm@EnableTextAcceleration", ROMX
+SECTION "engine/overworld/map_setup@EnableTextAcceleration", ROMX
 
 EnableTextAcceleration:
 	xor a
@@ -125,7 +125,7 @@ EnableTextAcceleration:
 	ret
 
 
-SECTION "engine/overworld/map_setup.asm@ActivateMapAnims", ROMX
+SECTION "engine/overworld/map_setup@ActivateMapAnims", ROMX
 
 ActivateMapAnims:
 	ld a, $1
@@ -133,7 +133,7 @@ ActivateMapAnims:
 	ret
 
 
-SECTION "engine/overworld/map_setup.asm@SuspendMapAnims", ROMX
+SECTION "engine/overworld/map_setup@SuspendMapAnims", ROMX
 
 SuspendMapAnims:
 	xor a
@@ -141,7 +141,7 @@ SuspendMapAnims:
 	ret
 
 
-SECTION "engine/overworld/map_setup.asm@LoadMapObjects", ROMX
+SECTION "engine/overworld/map_setup@LoadMapObjects", ROMX
 
 LoadMapObjects:
 	ld a, MAPCALLBACK_OBJECTS
@@ -154,7 +154,7 @@ LoadMapObjects:
 	ret
 
 
-SECTION "engine/overworld/map_setup.asm@ResetPlayerObjectAction", ROMX
+SECTION "engine/overworld/map_setup@ResetPlayerObjectAction", ROMX
 
 ResetPlayerObjectAction:
 	ld hl, wPlayerSpriteSetupFlags
@@ -162,7 +162,7 @@ ResetPlayerObjectAction:
 	ret
 
 
-SECTION "engine/overworld/map_setup.asm@SkipUpdateMapSprites", ROMX
+SECTION "engine/overworld/map_setup@SkipUpdateMapSprites", ROMX
 
 SkipUpdateMapSprites::
 	ld hl, wPlayerSpriteSetupFlags
@@ -170,7 +170,7 @@ SkipUpdateMapSprites::
 	ret
 
 
-SECTION "engine/overworld/map_setup.asm@CheckReplaceKrisSprite", ROMX
+SECTION "engine/overworld/map_setup@CheckReplaceKrisSprite", ROMX
 
 CheckReplaceKrisSprite::
 	nop
@@ -247,7 +247,7 @@ CheckReplaceKrisSprite::
 	ret
 
 
-SECTION "engine/overworld/map_setup.asm@FadeOutMapMusic", ROMX
+SECTION "engine/overworld/map_setup@FadeOutMapMusic", ROMX
 
 FadeOutMapMusic:
 	ld a, 6
@@ -255,14 +255,14 @@ FadeOutMapMusic:
 	ret
 
 
-SECTION "engine/overworld/map_setup.asm@ApplyMapPalettes", ROMX
+SECTION "engine/overworld/map_setup@ApplyMapPalettes", ROMX
 
 ApplyMapPalettes:
 	farcall _UpdateTimePals
 	ret
 
 
-SECTION "engine/overworld/map_setup.asm@FadeMapMusicAndPalettes", ROMX
+SECTION "engine/overworld/map_setup@FadeMapMusicAndPalettes", ROMX
 
 FadeMapMusicAndPalettes:
 	ld e, 0
@@ -275,7 +275,7 @@ FadeMapMusicAndPalettes:
 	ret
 
 
-SECTION "engine/overworld/map_setup.asm@ForceMapMusic", ROMX
+SECTION "engine/overworld/map_setup@ForceMapMusic", ROMX
 
 ForceMapMusic:
 	ld a, [wPlayerState]

@@ -9,7 +9,7 @@ INCLUDE "constants/input_constants.inc"
 INCLUDE "constants/music_constants.inc"
 
 
-SECTION "engine/movie/credits.asm", ROMX
+SECTION "engine/movie/credits", ROMX
 
 Credits::
 	bit 6, b ; Hall Of Fame

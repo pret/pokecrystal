@@ -10,7 +10,7 @@ INCLUDE "constants/sprite_constants.inc"
 INCLUDE "constants/sprite_data_constants.inc"
 
 
-SECTION "engine/overworld/player_object.asm@SpawnPlayer", ROMX
+SECTION "engine/overworld/player_object@SpawnPlayer", ROMX
 
 SpawnPlayer::
 	ld a, -1
@@ -511,7 +511,7 @@ CopyTempObjectToObjectStruct::
 	ret
 
 
-SECTION "engine/overworld/player_object.asm@TrainerWalkToPlayer", ROMX
+SECTION "engine/overworld/player_object@TrainerWalkToPlayer", ROMX
 
 TrainerWalkToPlayer::
 	ldh a, [hLastTalked]
@@ -578,7 +578,7 @@ TrainerWalkToPlayer::
 	ret
 
 
-SECTION "engine/overworld/player_object.asm@SurfStartStep", ROMX
+SECTION "engine/overworld/player_object@SurfStartStep", ROMX
 
 SurfStartStep::
 	call InitMovementBuffer
@@ -607,7 +607,7 @@ SurfStartStep::
 	slow_step RIGHT
 
 
-SECTION "engine/overworld/player_object.asm@FollowNotExact", ROMX
+SECTION "engine/overworld/player_object@FollowNotExact", ROMX
 
 FollowNotExact::
 	push bc
@@ -697,7 +697,7 @@ FollowNotExact::
 	ret
 
 
-SECTION "engine/overworld/player_object.asm@GetRelativeFacing", ROMX
+SECTION "engine/overworld/player_object@GetRelativeFacing", ROMX
 
 GetRelativeFacing::
 ; Determines which way map object e would have to turn to face map object d.  Returns carry if it's impossible for whatever reason.
@@ -806,7 +806,7 @@ GetRelativeFacing::
 	ret
 
 
-SECTION "engine/overworld/player_object.asm@QueueFollowerFirstStep", ROMX
+SECTION "engine/overworld/player_object@QueueFollowerFirstStep", ROMX
 
 QueueFollowerFirstStep::
 	call .QueueFirstStep

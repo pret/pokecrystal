@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const BILLSHOUSE_GRAMPS
 
 
-SECTION "maps/BillsHouse.asm", ROMX
+SECTION "maps/BillsHouse", ROMX
 
 BillsHouse_MapScripts::
 	db 0 ; scene scripts

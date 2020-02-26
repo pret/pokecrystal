@@ -6,7 +6,7 @@ INCLUDE "constants/misc_constants.inc"
 INCLUDE "constants/script_constants.inc"
 
 
-SECTION "engine/events/hidden_item.asm", ROMX
+SECTION "engine/events/hidden_item", ROMX
 
 HiddenItemScript::
 	opentext

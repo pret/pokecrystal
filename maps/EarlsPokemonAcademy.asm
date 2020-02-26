@@ -9,7 +9,7 @@ INCLUDE "constants/maps_common.inc"
 	const EARLSPOKEMONACADEMY_POKEDEX
 
 
-SECTION "maps/EarlsPokemonAcademy.asm", ROMX
+SECTION "maps/EarlsPokemonAcademy", ROMX
 
 EarlsPokemonAcademy_MapScripts::
 	db 0 ; scene scripts

@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/azaleatown.asm", ROMX
+SECTION "audio/music/azaleatown", ROMX
 
 Music_AzaleaTown::
 	channel_count 4

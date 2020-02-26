@@ -1,7 +1,7 @@
 INCLUDE "charmap.inc"
 
 
-SECTION "home/copy_name.asm", ROM0
+SECTION "home/copy_name", ROM0
 
 CopyName1::
 ; Copies the name from de to wStringBuffer2

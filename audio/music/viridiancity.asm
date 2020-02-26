@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/viridiancity.asm", ROMX
+SECTION "audio/music/viridiancity", ROMX
 
 Music_ViridianCity::
 	channel_count 4

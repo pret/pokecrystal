@@ -5,7 +5,7 @@ INCLUDE "constants/menu_constants.inc"
 INCLUDE "constants/scgb_constants.inc"
 
 
-SECTION "engine/events/pokepic.asm", ROMX
+SECTION "engine/events/pokepic", ROMX
 
 Pokepic::
 	ld hl, PokepicMenuHeader

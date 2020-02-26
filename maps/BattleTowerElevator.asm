@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const BATTLETOWERELEVATOR_RECEPTIONIST
 
 
-SECTION "maps/BattleTowerElevator.asm", ROMX, BANK[BANK_MAP_BATTLE_TOWER]
+SECTION "maps/BattleTowerElevator", ROMX, BANK[BANK_MAP_BATTLE_TOWER]
 
 BattleTowerElevator_MapScripts::
 	db 2 ; scene scripts

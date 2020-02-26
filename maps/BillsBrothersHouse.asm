@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const BILLSBROTHERSHOUSE_YOUNGSTER
 
 
-SECTION "maps/BillsBrothersHouse.asm", ROMX
+SECTION "maps/BillsBrothersHouse", ROMX
 
 BillsBrothersHouse_MapScripts::
 	db 0 ; scene scripts

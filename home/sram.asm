@@ -1,7 +1,7 @@
 INCLUDE "constants/hardware_constants.inc"
 
 
-SECTION "home/sram.asm", ROM0
+SECTION "home/sram", ROM0
 
 GetSRAMBank::
 ; load sram bank a

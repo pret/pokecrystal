@@ -7,7 +7,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/sfx_constants.inc"
 
 
-SECTION "engine/events/poisonstep.asm", ROMX
+SECTION "engine/events/poisonstep", ROMX
 
 DoPoisonStep::
 	ld a, [wPartyCount]

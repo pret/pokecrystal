@@ -1,7 +1,7 @@
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/events/checktime.asm", ROMX
+SECTION "engine/events/checktime", ROMX
 
 CheckTime::
 	ld a, [wTimeOfDay]

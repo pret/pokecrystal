@@ -1,4 +1,4 @@
-SECTION "home/sprite_updates.asm", ROM0
+SECTION "home/sprite_updates", ROM0
 
 DisableSpriteUpdates::
 	xor a

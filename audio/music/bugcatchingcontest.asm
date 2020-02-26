@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/bugcatchingcontest.asm", ROMX
+SECTION "audio/music/bugcatchingcontest", ROMX
 
 Music_BugCatchingContest::
 	channel_count 4

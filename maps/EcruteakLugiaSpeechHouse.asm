@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const ECRUTEAKLUGIASPEECHHOUSE_YOUNGSTER
 
 
-SECTION "maps/EcruteakLugiaSpeechHouse.asm", ROMX
+SECTION "maps/EcruteakLugiaSpeechHouse", ROMX
 
 EcruteakLugiaSpeechHouse_MapScripts::
 	db 0 ; scene scripts

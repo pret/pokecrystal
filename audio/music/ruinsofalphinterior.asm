@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/ruinsofalphinterior.asm", ROMX
+SECTION "audio/music/ruinsofalphinterior", ROMX
 
 Music_RuinsOfAlphInterior::
 	channel_count 3

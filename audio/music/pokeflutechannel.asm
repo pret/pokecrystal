@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/pokeflutechannel.asm", ROMX
+SECTION "audio/music/pokeflutechannel", ROMX
 
 Music_PokeFluteChannel::
 	channel_count 3

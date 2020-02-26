@@ -12,7 +12,7 @@ INCLUDE "constants/maps_common.inc"
 	const CELADONGAMECORNER_GRAMPS
 
 
-SECTION "maps/CeladonGameCorner.asm", ROMX
+SECTION "maps/CeladonGameCorner", ROMX
 
 CeladonGameCorner_MapScripts::
 	db 0 ; scene scripts

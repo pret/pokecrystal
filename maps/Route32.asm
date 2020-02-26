@@ -17,7 +17,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE32_POKE_BALL2
 
 
-SECTION "maps/Route32.asm", ROMX
+SECTION "maps/Route32", ROMX
 
 Route32_MapScripts::
 	db 3 ; scene scripts

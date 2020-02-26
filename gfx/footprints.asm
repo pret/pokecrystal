@@ -10,7 +10,7 @@ footprint_top    EQUS "0,                 2 * LEN_1BPP_TILE"
 footprint_bottom EQUS "2 * LEN_1BPP_TILE, 2 * LEN_1BPP_TILE"
 
 
-SECTION "gfx/footprints.asm", ROMX
+SECTION "gfx/footprints", ROMX
 
 ; Entries correspond to Pokémon species, two apiece, 8 tops then 8 bottoms
 

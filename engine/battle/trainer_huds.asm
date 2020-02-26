@@ -9,7 +9,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/scgb_constants.inc"
 
 
-SECTION "engine/battle/trainer_huds.asm", ROMX
+SECTION "engine/battle/trainer_huds", ROMX
 
 BattleStart_TrainerHuds::
 	ld a, $e4
@@ -245,7 +245,7 @@ LoadBallIconGFX:
 INCBIN "gfx/battle/balls.2bpp"
 
 
-SECTION "engine/battle/trainer_huds.asm@_ShowLinkBattleParticipants", ROMX
+SECTION "engine/battle/trainer_huds@_ShowLinkBattleParticipants", ROMX
 
 _ShowLinkBattleParticipants::
 	call ClearBGPalettes

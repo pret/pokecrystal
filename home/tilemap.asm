@@ -8,7 +8,7 @@ INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/scgb_constants.inc"
 
 
-SECTION "home/tilemap.asm", ROM0
+SECTION "home/tilemap", ROM0
 
 ClearBGPalettes::
 	call ClearPalettes

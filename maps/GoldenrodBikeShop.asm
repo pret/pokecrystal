@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const GOLDENRODBIKESHOP_CLERK
 
 
-SECTION "maps/GoldenrodBikeShop.asm", ROMX
+SECTION "maps/GoldenrodBikeShop", ROMX
 
 GoldenrodBikeShop_MapScripts::
 	db 0 ; scene scripts

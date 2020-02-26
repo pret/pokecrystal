@@ -3,7 +3,7 @@ INCLUDE "constants/map_constants.inc"
 INCLUDE "constants/map_data_constants.inc"
 
 
-SECTION "engine/overworld/spawn_points.asm", ROMX
+SECTION "engine/overworld/spawn_points", ROMX
 
 INCLUDE "data/maps/spawn_points.inc"
 

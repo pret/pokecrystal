@@ -13,7 +13,7 @@ INCLUDE "constants/tileset_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/events/magnet_train.asm", ROMX
+SECTION "engine/events/magnet_train", ROMX
 
 MagnetTrain::
 	ld a, [wScriptVar]

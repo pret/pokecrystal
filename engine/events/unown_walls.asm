@@ -8,7 +8,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/tileset_constants.inc"
 
 
-SECTION "engine/events/unown_walls.asm@HoOhChamber", ROMX
+SECTION "engine/events/unown_walls@HoOhChamber", ROMX
 
 HoOhChamber::
 	ld hl, wPartySpecies
@@ -23,7 +23,7 @@ HoOhChamber::
 	ret
 
 
-SECTION "engine/events/unown_walls.asm@OmanyteChamber", ROMX
+SECTION "engine/events/unown_walls@OmanyteChamber", ROMX
 
 OmanyteChamber::
 	call GetMapAttributesPointer ; pointless?
@@ -67,7 +67,7 @@ OmanyteChamber::
 	ret
 
 
-SECTION "engine/events/unown_walls.asm@SpecialAerodactylChamber", ROMX
+SECTION "engine/events/unown_walls@SpecialAerodactylChamber", ROMX
 
 SpecialAerodactylChamber::
 	push de
@@ -97,7 +97,7 @@ SpecialAerodactylChamber::
 	ret
 
 
-SECTION "engine/events/unown_walls.asm@SpecialKabutoChamber", ROMX
+SECTION "engine/events/unown_walls@SpecialKabutoChamber", ROMX
 
 SpecialKabutoChamber::
 	push hl
@@ -121,7 +121,7 @@ SpecialKabutoChamber::
 	ret
 
 
-SECTION "engine/events/unown_walls.asm@DisplayUnownWords", ROMX
+SECTION "engine/events/unown_walls@DisplayUnownWords", ROMX
 
 DisplayUnownWords::
 	ld a, [wScriptVar]

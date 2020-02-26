@@ -9,7 +9,7 @@ INCLUDE "constants/maps_common.inc"
 	const CERULEANCITY_YOUNGSTER
 
 
-SECTION "maps/CeruleanCity.asm", ROMX
+SECTION "maps/CeruleanCity", ROMX
 
 CeruleanCity_MapScripts::
 	db 0 ; scene scripts

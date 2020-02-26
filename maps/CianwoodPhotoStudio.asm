@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const CIANWOODPHOTOSTUDIO_FISHING_GURU
 
 
-SECTION "maps/CianwoodPhotoStudio.asm", ROMX
+SECTION "maps/CianwoodPhotoStudio", ROMX
 
 CianwoodPhotoStudio_MapScripts::
 	db 0 ; scene scripts

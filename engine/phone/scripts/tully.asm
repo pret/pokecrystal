@@ -8,7 +8,7 @@ INCLUDE "constants/trainer_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/phone/scripts/tully.asm", ROMX
+SECTION "engine/phone/scripts/tully", ROMX
 
 TullyPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, FISHER, TULLY1

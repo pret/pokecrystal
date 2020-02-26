@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const MOVEDELETERSHOUSE_SUPER_NERD
 
 
-SECTION "maps/MoveDeletersHouse.asm", ROMX
+SECTION "maps/MoveDeletersHouse", ROMX
 
 MoveDeletersHouse_MapScripts::
 	db 0 ; scene scripts

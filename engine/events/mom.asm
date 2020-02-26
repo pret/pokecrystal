@@ -10,7 +10,7 @@ INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/events/mom.asm", ROMX
+SECTION "engine/events/mom", ROMX
 
 BankOfMom::
 	ldh a, [hInMenu]

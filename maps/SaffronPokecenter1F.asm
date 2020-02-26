@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const SAFFRONPOKECENTER1F_YOUNGSTER
 
 
-SECTION "maps/SaffronPokecenter1F.asm", ROMX
+SECTION "maps/SaffronPokecenter1F", ROMX
 
 SaffronPokecenter1F_MapScripts::
 	db 0 ; scene scripts

@@ -2,7 +2,7 @@ INCLUDE "constants/floating_constants.inc"
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/johtowildbattlenight.asm", ROMX, BANK[BANK_MUSIC_JOHTO_WILD_BATTLE]
+SECTION "audio/music/johtowildbattlenight", ROMX, BANK[BANK_MUSIC_JOHTO_WILD_BATTLE]
 
 Music_JohtoWildBattleNight::
 	channel_count 3

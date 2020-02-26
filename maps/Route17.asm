@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE17_BIKER4
 
 
-SECTION "maps/Route17.asm", ROMX
+SECTION "maps/Route17", ROMX
 
 Route17_MapScripts::
 	db 0 ; scene scripts

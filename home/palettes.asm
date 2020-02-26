@@ -7,7 +7,7 @@ INCLUDE "constants/hardware_constants.inc"
 ; Functions dealing with palettes.
 
 
-SECTION "home/palettes.asm", ROM0
+SECTION "home/palettes", ROM0
 
 UpdatePalsIfCGB::
 ; update bgp data from wBGPals2

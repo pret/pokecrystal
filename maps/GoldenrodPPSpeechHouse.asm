@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const GOLDENRODPPSPEECHHOUSE_LASS
 
 
-SECTION "maps/GoldenrodPPSpeechHouse.asm", ROMX
+SECTION "maps/GoldenrodPPSpeechHouse", ROMX
 
 GoldenrodPPSpeechHouse_MapScripts::
 	db 0 ; scene scripts

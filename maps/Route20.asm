@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE20_SWIMMER_GUY
 
 
-SECTION "maps/Route20.asm", ROMX
+SECTION "maps/Route20", ROMX
 
 Route20_MapScripts::
 	db 0 ; scene scripts

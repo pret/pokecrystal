@@ -1,7 +1,7 @@
 INCLUDE "macros/rst.inc"
 
 
-SECTION "home/time_palettes.asm", ROM0
+SECTION "home/time_palettes", ROM0
 
 UpdateTimeAndPals::
 ; update time and time-sensitive palettes

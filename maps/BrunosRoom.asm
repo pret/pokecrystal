@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const BRUNOSROOM_BRUNO
 
 
-SECTION "maps/BrunosRoom.asm", ROMX
+SECTION "maps/BrunosRoom", ROMX
 
 BrunosRoom_MapScripts::
 	db 2 ; scene scripts

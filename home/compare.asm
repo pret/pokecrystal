@@ -1,4 +1,4 @@
-SECTION "home/compare.asm", ROM0
+SECTION "home/compare", ROM0
 
 CompareBytes::
 ; Compare c bytes at de and hl.

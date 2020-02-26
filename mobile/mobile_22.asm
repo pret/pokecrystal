@@ -14,7 +14,7 @@ INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "mobile/mobile_22.asm", ROMX, BANK[BANK_MOBILE_22]
+SECTION "mobile/mobile_22", ROMX, BANK[BANK_MOBILE_22]
 
 String_89116::
 	db "-----@"

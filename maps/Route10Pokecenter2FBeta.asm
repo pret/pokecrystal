@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/Route10Pokecenter2FBeta.asm", ROMX
+SECTION "maps/Route10Pokecenter2FBeta", ROMX
 
 Route10Pokecenter2FBeta_MapScripts::
 	db 0 ; scene scripts

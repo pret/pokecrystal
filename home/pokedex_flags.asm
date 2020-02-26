@@ -2,7 +2,7 @@ INCLUDE "macros/predef.inc"
 INCLUDE "constants/misc_constants.inc"
 
 
-SECTION "home/pokedex_flags.asm", ROM0
+SECTION "home/pokedex_flags", ROM0
 
 CountSetBits::
 ; Count the number of set bits in b bytes starting from hl.

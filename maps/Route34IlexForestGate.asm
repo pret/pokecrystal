@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE34ILEXFORESTGATE_TEACHER2
 
 
-SECTION "maps/Route34IlexForestGate.asm", ROMX
+SECTION "maps/Route34IlexForestGate", ROMX
 
 Route34IlexForestGate_MapScripts::
 	db 0 ; scene scripts

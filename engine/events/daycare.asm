@@ -33,7 +33,7 @@ INCLUDE "constants/wram_constants.inc"
 	const DAYCARETEXT_COME_AGAIN
 
 
-SECTION "engine/events/daycare.asm", ROMX
+SECTION "engine/events/daycare", ROMX
 
 DayCareMan::
 	ld hl, wDayCareMan

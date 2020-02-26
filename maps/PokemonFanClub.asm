@@ -9,7 +9,7 @@ INCLUDE "constants/maps_common.inc"
 	const POKEMONFANCLUB_ODDISH
 
 
-SECTION "maps/PokemonFanClub.asm", ROMX
+SECTION "maps/PokemonFanClub", ROMX
 
 PokemonFanClub_MapScripts::
 	db 0 ; scene scripts

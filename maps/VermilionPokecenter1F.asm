@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const VERMILIONPOKECENTER1F_BUG_CATCHER
 
 
-SECTION "maps/VermilionPokecenter1F.asm", ROMX
+SECTION "maps/VermilionPokecenter1F", ROMX
 
 VermilionPokecenter1F_MapScripts::
 	db 0 ; scene scripts

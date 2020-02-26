@@ -2,7 +2,7 @@ INCLUDE "macros/rst.inc"
 INCLUDE "constants/input_constants.inc"
 
 
-SECTION "home/scrolling_menu.asm", ROM0
+SECTION "home/scrolling_menu", ROM0
 
 ScrollingMenu::
 	call CopyMenuData

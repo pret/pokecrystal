@@ -4,7 +4,7 @@ INCLUDE "macros/gfx.inc"
 INCLUDE "constants/gfx_constants.inc"
 
 
-SECTION "engine/gfx/load_overworld_font.asm", ROMX
+SECTION "engine/gfx/load_overworld_font", ROMX
 
 LoadOverworldFont::
 	ld de, .OverworldFontGFX

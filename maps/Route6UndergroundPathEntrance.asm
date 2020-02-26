@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/Route6UndergroundPathEntrance.asm", ROMX
+SECTION "maps/Route6UndergroundPathEntrance", ROMX
 
 Route6UndergroundPathEntrance_MapScripts::
 	db 0 ; scene scripts

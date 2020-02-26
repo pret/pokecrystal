@@ -7,7 +7,7 @@ INCLUDE "constants/trainer_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/phone/scripts/gaven.asm", ROMX
+SECTION "engine/phone/scripts/gaven", ROMX
 
 GavenPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, COOLTRAINERM, GAVEN3

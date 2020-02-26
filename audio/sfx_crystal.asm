@@ -3,7 +3,7 @@ INCLUDE "macros/scripts/audio.inc"
 INCLUDE "constants/audio_constants.inc"
 
 
-SECTION "audio/sfx_crystal.asm@Sfx_IntroUnown1", ROMX
+SECTION "audio/sfx_crystal@Sfx_IntroUnown1", ROMX
 
 Sfx_IntroUnown1::
 	channel_count 1
@@ -17,7 +17,7 @@ Sfx_IntroUnown1_Ch5:
 	sound_ret
 
 
-SECTION "audio/sfx_crystal.asm@Sfx_IntroUnown2", ROMX
+SECTION "audio/sfx_crystal@Sfx_IntroUnown2", ROMX
 
 Sfx_IntroUnown2::
 	channel_count 1
@@ -31,7 +31,7 @@ Sfx_IntroUnown2_Ch6:
 	sound_ret
 
 
-SECTION "audio/sfx_crystal.asm@Sfx_IntroUnown3", ROMX
+SECTION "audio/sfx_crystal@Sfx_IntroUnown3", ROMX
 
 Sfx_IntroUnown3::
 	channel_count 1
@@ -48,7 +48,7 @@ Sfx_IntroUnown3_Ch7:
 	sound_ret
 
 
-SECTION "audio/sfx_crystal.asm@Sfx_DittoPopUp", ROMX
+SECTION "audio/sfx_crystal@Sfx_DittoPopUp", ROMX
 
 Sfx_DittoPopUp::
 	channel_count 1
@@ -65,7 +65,7 @@ Sfx_DittoPopUp_Ch5:
 	sound_ret
 
 
-SECTION "audio/sfx_crystal.asm@Sfx_DittoTransform", ROMX
+SECTION "audio/sfx_crystal@Sfx_DittoTransform", ROMX
 
 Sfx_DittoTransform::
 	channel_count 1
@@ -81,7 +81,7 @@ Sfx_DittoTransform_Ch5:
 	sound_ret
 
 
-SECTION "audio/sfx_crystal.asm@Sfx_IntroSuicune1", ROMX
+SECTION "audio/sfx_crystal@Sfx_IntroSuicune1", ROMX
 
 Sfx_IntroSuicune1::
 	channel_count 1
@@ -93,7 +93,7 @@ Sfx_IntroSuicune1_Ch8:
 	sound_ret
 
 
-SECTION "audio/sfx_crystal.asm@Sfx_IntroPichu", ROMX
+SECTION "audio/sfx_crystal@Sfx_IntroPichu", ROMX
 
 Sfx_IntroPichu::
 	channel_count 1
@@ -109,7 +109,7 @@ Sfx_IntroPichu_Ch5:
 	sound_ret
 
 
-SECTION "audio/sfx_crystal.asm@Sfx_IntroSuicune2", ROMX
+SECTION "audio/sfx_crystal@Sfx_IntroSuicune2", ROMX
 
 Sfx_IntroSuicune2::
 	channel_count 1
@@ -135,7 +135,7 @@ Sfx_IntroSuicune2_Ch8:
 	sound_ret
 
 
-SECTION "audio/sfx_crystal.asm@Sfx_IntroSuicune3", ROMX
+SECTION "audio/sfx_crystal@Sfx_IntroSuicune3", ROMX
 
 Sfx_IntroSuicune3::
 	channel_count 1
@@ -150,7 +150,7 @@ Sfx_IntroSuicune3_Ch8:
 	sound_ret
 
 
-SECTION "audio/sfx_crystal.asm@Sfx_DittoBounce", ROMX
+SECTION "audio/sfx_crystal@Sfx_DittoBounce", ROMX
 
 Sfx_DittoBounce::
 	channel_count 1
@@ -166,7 +166,7 @@ Sfx_DittoBounce_Ch5:
 	sound_ret
 
 
-SECTION "audio/sfx_crystal.asm@Sfx_IntroSuicune4", ROMX
+SECTION "audio/sfx_crystal@Sfx_IntroSuicune4", ROMX
 
 Sfx_IntroSuicune4::
 	channel_count 1
@@ -187,7 +187,7 @@ Sfx_IntroSuicune4_Ch8:
 	sound_ret
 
 
-SECTION "audio/sfx_crystal.asm@Sfx_GameFreakPresents", ROMX
+SECTION "audio/sfx_crystal@Sfx_GameFreakPresents", ROMX
 
 Sfx_GameFreakPresents::
 	channel_count 1
@@ -216,7 +216,7 @@ Sfx_GameFreakPresents_Ch5:
 	sound_ret
 
 
-SECTION "audio/sfx_crystal.asm@Sfx_Tingle", ROMX
+SECTION "audio/sfx_crystal@Sfx_Tingle", ROMX
 
 Sfx_Tingle::
 	channel_count 1
@@ -242,7 +242,7 @@ Sfx_Tingle_branch_17996c:
 	sound_ret
 
 
-SECTION "audio/sfx_crystal.asm@Sfx_TwoPcBeeps", ROMX
+SECTION "audio/sfx_crystal@Sfx_TwoPcBeeps", ROMX
 
 Sfx_TwoPcBeeps::
 	channel_count 1
@@ -257,7 +257,7 @@ Sfx_TwoPcBeeps_Ch5:
 	sound_ret
 
 
-SECTION "audio/sfx_crystal.asm@Sfx_4NoteDitty", ROMX
+SECTION "audio/sfx_crystal@Sfx_4NoteDitty", ROMX
 
 Sfx_4NoteDitty::
 	channel_count 3
@@ -305,7 +305,7 @@ Sfx_4NoteDitty_Ch7:
 	sound_ret
 
 
-SECTION "audio/sfx_crystal.asm@Sfx_Twinkle", ROMX
+SECTION "audio/sfx_crystal@Sfx_Twinkle", ROMX
 
 Sfx_Twinkle::
 	channel_count 1

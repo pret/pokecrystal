@@ -9,7 +9,7 @@ INCLUDE "constants/maps_common.inc"
 	const CERULEANGYM_GYM_GUY
 
 
-SECTION "maps/CeruleanGym.asm", ROMX
+SECTION "maps/CeruleanGym", ROMX
 
 CeruleanGym_MapScripts::
 	db 2 ; scene scripts

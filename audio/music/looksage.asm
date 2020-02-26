@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/looksage.asm", ROMX
+SECTION "audio/music/looksage", ROMX
 
 Music_LookSage::
 	channel_count 2

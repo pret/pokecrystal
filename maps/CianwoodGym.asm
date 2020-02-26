@@ -12,7 +12,7 @@ INCLUDE "constants/maps_common.inc"
 	const CIANWOODGYM_BOULDER4
 
 
-SECTION "maps/CianwoodGym.asm", ROMX
+SECTION "maps/CianwoodGym", ROMX
 
 CianwoodGym_MapScripts::
 	db 0 ; scene scripts

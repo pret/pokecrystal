@@ -2,7 +2,7 @@ INCLUDE "macros/scripts/events.inc"
 INCLUDE "constants/engine_flags.inc"
 
 
-SECTION "engine/events/bug_contest/abort.asm", ROMX
+SECTION "engine/events/bug_contest/abort", ROMX
 
 Script_AbortBugContest::
 	checkflag ENGINE_BUG_CONTEST_TIMER

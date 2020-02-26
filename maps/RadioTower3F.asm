@@ -10,7 +10,7 @@ INCLUDE "constants/maps_common.inc"
 	const RADIOTOWER3F_SCIENTIST
 
 
-SECTION "maps/RadioTower3F.asm", ROMX
+SECTION "maps/RadioTower3F", ROMX
 
 RadioTower3F_MapScripts::
 	db 0 ; scene scripts

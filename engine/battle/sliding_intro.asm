@@ -3,7 +3,7 @@ INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
 
 
-SECTION "engine/battle/sliding_intro.asm", ROMX
+SECTION "engine/battle/sliding_intro", ROMX
 
 BattleIntroSlidingPics::
 	ldh a, [rSVBK]

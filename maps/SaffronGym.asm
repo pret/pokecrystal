@@ -9,7 +9,7 @@ INCLUDE "constants/maps_common.inc"
 	const SAFFRONGYM_GYM_GUY
 
 
-SECTION "maps/SaffronGym.asm", ROMX
+SECTION "maps/SaffronGym", ROMX
 
 SaffronGym_MapScripts::
 	db 0 ; scene scripts

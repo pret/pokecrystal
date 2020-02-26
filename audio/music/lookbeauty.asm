@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/lookbeauty.asm", ROMX
+SECTION "audio/music/lookbeauty", ROMX
 
 Music_LookBeauty::
 	channel_count 4

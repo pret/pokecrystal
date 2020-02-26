@@ -14,7 +14,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/serial_constants.inc"
 
 
-SECTION "mobile/mobile_5f.asm@Function17c000 - HaveWantPals", ROMX
+SECTION "mobile/mobile_5f@Function17c000 - HaveWantPals", ROMX
 
 Function17c000::
 	call DisableLCD
@@ -191,7 +191,7 @@ HaveWantPals:
 	RGB  0,  0,  0
 
 
-SECTION "mobile/mobile_5f.asm@CheckStringForErrors", ROMX
+SECTION "mobile/mobile_5f@CheckStringForErrors", ROMX
 
 CheckStringForErrors::
 ; Valid character ranges:
@@ -241,7 +241,7 @@ CheckStringForErrors::
 	ret
 
 
-SECTION "mobile/mobile_5f.asm@CheckStringForErrors_IgnoreTerminator", ROMX
+SECTION "mobile/mobile_5f@CheckStringForErrors_IgnoreTerminator", ROMX
 
 CheckStringForErrors_IgnoreTerminator::
 ; Find control chars
@@ -289,7 +289,7 @@ CheckStringForErrors_IgnoreTerminator::
 	ret
 
 
-SECTION "mobile/mobile_5f.asm@Function17d0f3", ROMX
+SECTION "mobile/mobile_5f@Function17d0f3", ROMX
 
 Function17d0f3::
 	ld a, [wc608 + 5]
@@ -350,7 +350,7 @@ Function17d0f3::
 	ret
 
 
-SECTION "mobile/mobile_5f.asm@Mobile_CopyDefaultOTName - Mobile_CopyDefaultMailAuthor", ROMX
+SECTION "mobile/mobile_5f@Mobile_CopyDefaultOTName - Mobile_CopyDefaultMailAuthor", ROMX
 
 Mobile_CopyDefaultOTName::
 	ld hl, Mobile5F_PlayersName
@@ -398,7 +398,7 @@ Mobile_CopyDefaultMailAuthor::
 	ret
 
 
-SECTION "mobile/mobile_5f.asm@CheckStringContainsLessThanBNextCharacters", ROMX
+SECTION "mobile/mobile_5f@CheckStringContainsLessThanBNextCharacters", ROMX
 
 CheckStringContainsLessThanBNextCharacters::
 .loop
@@ -420,7 +420,7 @@ CheckStringContainsLessThanBNextCharacters::
 	ret
 
 
-SECTION "mobile/mobile_5f.asm@Function17d1f1", ROMX
+SECTION "mobile/mobile_5f@Function17d1f1", ROMX
 
 Function17d1f1::
 	ld a, [wCurPartySpecies]
@@ -449,7 +449,7 @@ Function17d1f1::
 	ret
 
 
-SECTION "mobile/mobile_5f.asm@Menu_ChallengeExplanationCancel", ROMX
+SECTION "mobile/mobile_5f@Menu_ChallengeExplanationCancel", ROMX
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Parameter: [wScriptVar] = 0..1
@@ -533,7 +533,7 @@ MenuData_ChallengeExplanationCancel:
 	db "Cancel@"
 
 
-SECTION "mobile/mobile_5f.asm@Function17d2b6 - Function17d2c0", ROMX
+SECTION "mobile/mobile_5f@Function17d2b6 - Function17d2c0", ROMX
 
 Function17d2b6::
 	call Function17d2c0
@@ -549,7 +549,7 @@ Function17d2c0:
 	ret
 
 
-SECTION "mobile/mobile_5f.asm@Function17d2ce - Function17f524", ROMX
+SECTION "mobile/mobile_5f@Function17d2ce - Function17f524", ROMX
 
 Function17d2ce::
 	ld a, $5
@@ -4503,7 +4503,7 @@ Function17f524:
 	jr .asm_17f536
 
 
-SECTION "mobile/mobile_5f.asm@BattleTowerMobileError - String_17ff68", ROMX
+SECTION "mobile/mobile_5f@BattleTowerMobileError - String_17ff68", ROMX
 
 BattleTowerMobileError::
 	call FadeToMenu

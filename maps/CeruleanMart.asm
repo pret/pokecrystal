@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const CERULEANMART_COOLTRAINER_F
 
 
-SECTION "maps/CeruleanMart.asm", ROMX
+SECTION "maps/CeruleanMart", ROMX
 
 CeruleanMart_MapScripts::
 	db 0 ; scene scripts

@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const VERMILIONPORTPASSAGE_TEACHER
 
 
-SECTION "maps/VermilionPortPassage.asm", ROMX
+SECTION "maps/VermilionPortPassage", ROMX
 
 VermilionPortPassage_MapScripts::
 	db 0 ; scene scripts

@@ -16,7 +16,7 @@ NUM_MOM_ITEMS_2 EQUS "((MomItems_2.End - MomItems_2) / 8)"
 	const MOM_DOLL
 
 
-SECTION "engine/events/mom_phone.asm", ROMX
+SECTION "engine/events/mom_phone", ROMX
 
 MomTriesToBuySomething::
 	ld a, [wMapReentryScriptQueueFlag]
@@ -246,7 +246,7 @@ MomItsInYourRoomText:
 	db 0 ; unused
 
 
-SECTION "engine/events/mom_phone.asm@DummyPredef3A", ROMX
+SECTION "engine/events/mom_phone@DummyPredef3A", ROMX
 
 DummyPredef3A::
 	ret

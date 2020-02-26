@@ -10,7 +10,7 @@ INCLUDE "constants/maps_common.inc"
 	const GOLDENRODUNDERGROUNDWAREHOUSE_POKE_BALL3
 
 
-SECTION "maps/GoldenrodUndergroundWarehouse.asm", ROMX
+SECTION "maps/GoldenrodUndergroundWarehouse", ROMX
 
 GoldenrodUndergroundWarehouse_MapScripts::
 	db 0 ; scene scripts

@@ -8,7 +8,7 @@ INCLUDE "constants/maps_common.inc"
 	const VERMILIONGYM_GYM_GUY
 
 
-SECTION "maps/VermilionGym.asm", ROMX
+SECTION "maps/VermilionGym", ROMX
 
 VermilionGym_MapScripts::
 	db 0 ; scene scripts

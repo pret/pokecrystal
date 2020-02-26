@@ -3,7 +3,7 @@ INCLUDE "constants/map_object_constants.inc"
 INCLUDE "constants/script_constants.inc"
 
 
-SECTION "home/stone_queue.asm", ROM0
+SECTION "home/stone_queue", ROM0
 
 HandleStoneQueue::
 	ldh a, [hROMBank]

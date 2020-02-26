@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/halloffame.asm", ROMX
+SECTION "audio/music/halloffame", ROMX
 
 Music_HallOfFame::
 	channel_count 4

@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const MOUNTMORTAR1FOUTSIDE_POKE_BALL2
 
 
-SECTION "maps/MountMortar1FOutside.asm", ROMX
+SECTION "maps/MountMortar1FOutside", ROMX
 
 MountMortar1FOutside_MapScripts::
 	db 0 ; scene scripts

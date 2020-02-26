@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/derek_caller.asm", ROMX
+SECTION "data/phone/text/derek_caller", ROMX
 
 DerekCheekPinchingText::
 	text "Listen to this."

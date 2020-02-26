@@ -1,4 +1,4 @@
-SECTION "gfx/pokemon/kanto_frames.asm", ROMX
+SECTION "gfx/pokemon/kanto_frames", ROMX
 
 KantoFrames:: ; used only for BANK(KantoFrames)
 

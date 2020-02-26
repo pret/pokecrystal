@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/ViridianPokecenter2FBeta.asm", ROMX
+SECTION "maps/ViridianPokecenter2FBeta", ROMX
 
 ViridianPokecenter2FBeta_MapScripts::
 	db 0 ; scene scripts

@@ -5,7 +5,7 @@ INCLUDE "constants/phone_constants.inc"
 INCLUDE "constants/script_constants.inc"
 
 
-SECTION "engine/phone/scripts/elm.asm", ROMX
+SECTION "engine/phone/scripts/elm", ROMX
 
 ElmPhoneCalleeScript::
 	readvar VAR_SPECIALPHONECALL

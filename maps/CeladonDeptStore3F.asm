@@ -8,7 +8,7 @@ INCLUDE "constants/maps_common.inc"
 	const CELADONDEPTSTORE3F_SUPER_NERD
 
 
-SECTION "maps/CeladonDeptStore3F.asm", ROMX
+SECTION "maps/CeladonDeptStore3F", ROMX
 
 CeladonDeptStore3F_MapScripts::
 	db 0 ; scene scripts

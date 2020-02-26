@@ -1,7 +1,7 @@
 INCLUDE "macros/data.inc"
 
 
-SECTION "data/trainers/pic_pointers.asm", ROMX
+SECTION "data/trainers/pic_pointers", ROMX
 
 ; Pics are defined in gfx/pics.asm
 TrainerPicPointers::

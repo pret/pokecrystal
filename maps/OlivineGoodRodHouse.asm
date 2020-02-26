@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const OLIVINEGOODRODHOUSE_FISHING_GURU
 
 
-SECTION "maps/OlivineGoodRodHouse.asm", ROMX
+SECTION "maps/OlivineGoodRodHouse", ROMX
 
 OlivineGoodRodHouse_MapScripts::
 	db 0 ; scene scripts

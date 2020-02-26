@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE43MAHOGANYGATE_OFFICER
 
 
-SECTION "maps/Route43MahoganyGate.asm", ROMX
+SECTION "maps/Route43MahoganyGate", ROMX
 
 Route43MahoganyGate_MapScripts::
 	db 0 ; scene scripts

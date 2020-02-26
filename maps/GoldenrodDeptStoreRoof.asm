@@ -11,7 +11,7 @@ INCLUDE "constants/maps_common.inc"
 	const GOLDENRODDEPTSTOREROOF_BUG_CATCHER
 
 
-SECTION "maps/GoldenrodDeptStoreRoof.asm", ROMX
+SECTION "maps/GoldenrodDeptStoreRoof", ROMX
 
 GoldenrodDeptStoreRoof_MapScripts::
 	db 0 ; scene scripts

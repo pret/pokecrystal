@@ -21,7 +21,7 @@ INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/events/std_scripts.asm", ROMX
+SECTION "engine/events/std_scripts", ROMX
 
 StdScripts::
 ; entries correspond to constants/std_constants.inc
@@ -79,7 +79,7 @@ StdScripts::
 	dba HappinessCheckScript
 
 
-SECTION "engine/events/std_scripts.asm@PokecenterNurseScript", ROMX
+SECTION "engine/events/std_scripts@PokecenterNurseScript", ROMX
 
 PokecenterNurseScript:
 ; EVENT_WELCOMED_TO_POKECOM_CENTER is never set
@@ -191,43 +191,43 @@ PokecenterNurseScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@DifficultBookshelfScript", ROMX
+SECTION "engine/events/std_scripts@DifficultBookshelfScript", ROMX
 
 DifficultBookshelfScript:
 	farjumptext DifficultBookshelfText
 
 
-SECTION "engine/events/std_scripts.asm@PictureBookshelfScript", ROMX
+SECTION "engine/events/std_scripts@PictureBookshelfScript", ROMX
 
 PictureBookshelfScript:
 	farjumptext PictureBookshelfText
 
 
-SECTION "engine/events/std_scripts.asm@MagazineBookshelfScript", ROMX
+SECTION "engine/events/std_scripts@MagazineBookshelfScript", ROMX
 
 MagazineBookshelfScript:
 	farjumptext MagazineBookshelfText
 
 
-SECTION "engine/events/std_scripts.asm@TeamRocketOathScript", ROMX
+SECTION "engine/events/std_scripts@TeamRocketOathScript", ROMX
 
 TeamRocketOathScript:
 	farjumptext TeamRocketOathText
 
 
-SECTION "engine/events/std_scripts.asm@IncenseBurnerScript", ROMX
+SECTION "engine/events/std_scripts@IncenseBurnerScript", ROMX
 
 IncenseBurnerScript:
 	farjumptext IncenseBurnerText
 
 
-SECTION "engine/events/std_scripts.asm@MerchandiseShelfScript", ROMX
+SECTION "engine/events/std_scripts@MerchandiseShelfScript", ROMX
 
 MerchandiseShelfScript:
 	farjumptext MerchandiseShelfText
 
 
-SECTION "engine/events/std_scripts.asm@TownMapScript", ROMX
+SECTION "engine/events/std_scripts@TownMapScript", ROMX
 
 TownMapScript:
 	opentext
@@ -238,13 +238,13 @@ TownMapScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@WindowScript", ROMX
+SECTION "engine/events/std_scripts@WindowScript", ROMX
 
 WindowScript:
 	farjumptext WindowText
 
 
-SECTION "engine/events/std_scripts.asm@TVScript", ROMX
+SECTION "engine/events/std_scripts@TVScript", ROMX
 
 TVScript:
 	opentext
@@ -254,13 +254,13 @@ TVScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@HomepageScript", ROMX
+SECTION "engine/events/std_scripts@HomepageScript", ROMX
 
 HomepageScript:
 	farjumptext HomepageText
 
 
-SECTION "engine/events/std_scripts.asm@Radio1Script", ROMX
+SECTION "engine/events/std_scripts@Radio1Script", ROMX
 
 Radio1Script:
 	opentext
@@ -270,7 +270,7 @@ Radio1Script:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@Radio2Script", ROMX
+SECTION "engine/events/std_scripts@Radio2Script", ROMX
 
 Radio2Script:
 ; Lucky Channel
@@ -281,13 +281,13 @@ Radio2Script:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@TrashCanScript", ROMX
+SECTION "engine/events/std_scripts@TrashCanScript", ROMX
 
 TrashCanScript:
 	farjumptext TrashCanText
 
 
-SECTION "engine/events/std_scripts.asm@PCScript", ROMX
+SECTION "engine/events/std_scripts@PCScript", ROMX
 
 PCScript:
 	opentext
@@ -296,7 +296,7 @@ PCScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@ElevatorButtonScript", ROMX
+SECTION "engine/events/std_scripts@ElevatorButtonScript", ROMX
 
 ElevatorButtonScript:
 	playsound SFX_READ_TEXT_2
@@ -305,31 +305,31 @@ ElevatorButtonScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@StrengthBoulderScript", ROMX
+SECTION "engine/events/std_scripts@StrengthBoulderScript", ROMX
 
 StrengthBoulderScript:
 	farsjump AskStrengthScript
 
 
-SECTION "engine/events/std_scripts.asm@SmashRockScript", ROMX
+SECTION "engine/events/std_scripts@SmashRockScript", ROMX
 
 SmashRockScript:
 	farsjump AskRockSmashScript
 
 
-SECTION "engine/events/std_scripts.asm@PokecenterSignScript", ROMX
+SECTION "engine/events/std_scripts@PokecenterSignScript", ROMX
 
 PokecenterSignScript:
 	farjumptext PokecenterSignText
 
 
-SECTION "engine/events/std_scripts.asm@MartSignScript", ROMX
+SECTION "engine/events/std_scripts@MartSignScript", ROMX
 
 MartSignScript:
 	farjumptext MartSignText
 
 
-SECTION "engine/events/std_scripts.asm@DayToTextScript", ROMX
+SECTION "engine/events/std_scripts@DayToTextScript", ROMX
 
 DayToTextScript:
 	readvar VAR_WEEKDAY
@@ -375,14 +375,14 @@ DayToTextScript:
 	db "SATURDAY@"
 
 
-SECTION "engine/events/std_scripts.asm@GoldenrodRocketsScript", ROMX
+SECTION "engine/events/std_scripts@GoldenrodRocketsScript", ROMX
 
 GoldenrodRocketsScript:
 	clearevent EVENT_GOLDENROD_CITY_ROCKET_TAKEOVER
 	end
 
 
-SECTION "engine/events/std_scripts.asm@RadioTowerRocketsScript", ROMX
+SECTION "engine/events/std_scripts@RadioTowerRocketsScript", ROMX
 
 RadioTowerRocketsScript:
 	setflag ENGINE_ROCKETS_IN_RADIO_TOWER
@@ -396,7 +396,7 @@ RadioTowerRocketsScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@BugContestResultsScript", ROMX, BANK[BANK_BUG_CONTEST_RESULTS]
+SECTION "engine/events/std_scripts@BugContestResultsScript", ROMX, BANK[BANK_BUG_CONTEST_RESULTS]
 
 BugContestResultsWarpScript:
 	special ClearBGPalettes
@@ -571,7 +571,7 @@ BugContestResults_CopyContestantsToResults:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@InitializeEventsScript", ROMX
+SECTION "engine/events/std_scripts@InitializeEventsScript", ROMX
 
 InitializeEventsScript:
 	setevent EVENT_EARLS_ACADEMY_EARL
@@ -713,7 +713,7 @@ InitializeEventsScript:
 	return
 
 
-SECTION "engine/events/std_scripts.asm@AskNumber1MScript", ROMX
+SECTION "engine/events/std_scripts@AskNumber1MScript", ROMX
 
 AskNumber1MScript:
 	special RandomPhoneMon
@@ -801,7 +801,7 @@ AskNumber1MScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@AskNumber2MScript", ROMX
+SECTION "engine/events/std_scripts@AskNumber2MScript", ROMX
 
 AskNumber2MScript:
 	special RandomPhoneMon
@@ -889,7 +889,7 @@ AskNumber2MScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@RegisteredNumberMScript", ROMX
+SECTION "engine/events/std_scripts@RegisteredNumberMScript", ROMX
 
 RegisteredNumberMScript:
 	farwritetext RegisteredNumber1Text
@@ -899,7 +899,7 @@ RegisteredNumberMScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@NumberAcceptedMScript", ROMX
+SECTION "engine/events/std_scripts@NumberAcceptedMScript", ROMX
 
 NumberAcceptedMScript:
 	readvar VAR_CALLERID
@@ -1026,7 +1026,7 @@ NumberAcceptedMScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@NumberDeclinedMScript", ROMX
+SECTION "engine/events/std_scripts@NumberDeclinedMScript", ROMX
 
 NumberDeclinedMScript:
 	readvar VAR_CALLERID
@@ -1153,7 +1153,7 @@ NumberDeclinedMScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@PhoneFullMScript", ROMX
+SECTION "engine/events/std_scripts@PhoneFullMScript", ROMX
 
 PhoneFullMScript:
 	readvar VAR_CALLERID
@@ -1280,7 +1280,7 @@ PhoneFullMScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@RematchMScript", ROMX
+SECTION "engine/events/std_scripts@RematchMScript", ROMX
 
 RematchMScript:
 	readvar VAR_CALLERID
@@ -1389,7 +1389,7 @@ RematchMScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@GiftMScript", ROMX
+SECTION "engine/events/std_scripts@GiftMScript", ROMX
 
 GiftMScript:
 	readvar VAR_CALLERID
@@ -1431,7 +1431,7 @@ GiftMScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@PackFullMScript", ROMX
+SECTION "engine/events/std_scripts@PackFullMScript", ROMX
 
 PackFullMScript:
 	readvar VAR_CALLERID
@@ -1504,7 +1504,7 @@ PackFullMScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@RematchGiftMScript", ROMX
+SECTION "engine/events/std_scripts@RematchGiftMScript", ROMX
 
 RematchGiftMScript:
 	opentext
@@ -1532,7 +1532,7 @@ RematchGiftMScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@AskNumber1FScript", ROMX
+SECTION "engine/events/std_scripts@AskNumber1FScript", ROMX
 
 AskNumber1FScript:
 	readvar VAR_CALLERID
@@ -1571,7 +1571,7 @@ AskNumber1FScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@AskNumber2FScript", ROMX
+SECTION "engine/events/std_scripts@AskNumber2FScript", ROMX
 
 AskNumber2FScript:
 	readvar VAR_CALLERID
@@ -1610,7 +1610,7 @@ AskNumber2FScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@RegisteredNumberFScript", ROMX
+SECTION "engine/events/std_scripts@RegisteredNumberFScript", ROMX
 
 RegisteredNumberFScript:
 	farwritetext RegisteredNumber2Text
@@ -1620,7 +1620,7 @@ RegisteredNumberFScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@NumberAcceptedFScript", ROMX
+SECTION "engine/events/std_scripts@NumberAcceptedFScript", ROMX
 
 NumberAcceptedFScript:
 	readvar VAR_CALLERID
@@ -1675,7 +1675,7 @@ NumberAcceptedFScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@NumberDeclinedFScript", ROMX
+SECTION "engine/events/std_scripts@NumberDeclinedFScript", ROMX
 
 NumberDeclinedFScript:
 	readvar VAR_CALLERID
@@ -1730,7 +1730,7 @@ NumberDeclinedFScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@PhoneFullFScript", ROMX
+SECTION "engine/events/std_scripts@PhoneFullFScript", ROMX
 
 PhoneFullFScript:
 	readvar VAR_CALLERID
@@ -1785,7 +1785,7 @@ PhoneFullFScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@RematchFScript", ROMX
+SECTION "engine/events/std_scripts@RematchFScript", ROMX
 
 RematchFScript:
 	readvar VAR_CALLERID
@@ -1834,7 +1834,7 @@ RematchFScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@GiftFScript", ROMX
+SECTION "engine/events/std_scripts@GiftFScript", ROMX
 
 GiftFScript:
 	readvar VAR_CALLERID
@@ -1861,7 +1861,7 @@ GiftFScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@PackFullFScript", ROMX
+SECTION "engine/events/std_scripts@PackFullFScript", ROMX
 
 PackFullFScript:
 	readvar VAR_CALLERID
@@ -1898,7 +1898,7 @@ PackFullFScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@RematchGiftFScript", ROMX
+SECTION "engine/events/std_scripts@RematchGiftFScript", ROMX
 
 RematchGiftFScript:
 	readvar VAR_CALLERID
@@ -1911,7 +1911,7 @@ RematchGiftFScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@GymStatue1Script", ROMX
+SECTION "engine/events/std_scripts@GymStatue1Script", ROMX
 
 GymStatue1Script:
 	getcurlandmarkname STRING_BUFFER_3
@@ -1922,7 +1922,7 @@ GymStatue1Script:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@GymStatue2Script", ROMX
+SECTION "engine/events/std_scripts@GymStatue2Script", ROMX
 
 GymStatue2Script:
 	getcurlandmarkname STRING_BUFFER_3
@@ -1935,7 +1935,7 @@ GymStatue2Script:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@ReceiveItemScript", ROMX
+SECTION "engine/events/std_scripts@ReceiveItemScript", ROMX
 
 ReceiveItemScript:
 	waitsfx
@@ -1945,7 +1945,7 @@ ReceiveItemScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@ReceiveTogepiEggScript", ROMX
+SECTION "engine/events/std_scripts@ReceiveTogepiEggScript", ROMX
 
 ReceiveTogepiEggScript:
 	waitsfx
@@ -1955,7 +1955,7 @@ ReceiveTogepiEggScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@GameCornerCoinVendorScript", ROMX
+SECTION "engine/events/std_scripts@GameCornerCoinVendorScript", ROMX
 
 GameCornerCoinVendorScript:
 	faceplayer
@@ -2039,7 +2039,7 @@ CoinVendor_IntroScript:
 	db "CANCEL@"
 
 
-SECTION "engine/events/std_scripts.asm@HappinessCheckScript", ROMX
+SECTION "engine/events/std_scripts@HappinessCheckScript", ROMX
 
 HappinessCheckScript:
 	faceplayer
@@ -2065,7 +2065,7 @@ HappinessCheckScript:
 	end
 
 
-SECTION "engine/events/std_scripts.asm@Movement_ContestResults_WalkAfterWarp", ROMX, BANK[BANK_BUG_CONTEST_RESULTS]
+SECTION "engine/events/std_scripts@Movement_ContestResults_WalkAfterWarp", ROMX, BANK[BANK_BUG_CONTEST_RESULTS]
 
 Movement_ContestResults_WalkAfterWarp:
 	step RIGHT

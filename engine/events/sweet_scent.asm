@@ -6,7 +6,7 @@ INCLUDE "constants/engine_flags.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/events/sweet_scent.asm", ROMX
+SECTION "engine/events/sweet_scent", ROMX
 
 SweetScentFromMenu::
 	ld hl, .SweetScent

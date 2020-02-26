@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const BLUESHOUSE_DAISY
 
 
-SECTION "maps/BluesHouse.asm", ROMX
+SECTION "maps/BluesHouse", ROMX
 
 BluesHouse_MapScripts::
 	db 0 ; scene scripts

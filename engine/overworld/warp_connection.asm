@@ -10,7 +10,7 @@ INCLUDE "constants/tileset_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/overworld/warp_connection.asm@HandleNewMap", ROMX
+SECTION "engine/overworld/warp_connection@HandleNewMap", ROMX
 
 HandleNewMap::
 	call ClearUnusedMapBuffer
@@ -29,7 +29,7 @@ HandleContinueMap::
 	ret
 
 
-SECTION "engine/overworld/warp_connection.asm@EnterMapConnection", ROMX
+SECTION "engine/overworld/warp_connection@EnterMapConnection", ROMX
 
 EnterMapConnection::
 ; Return carry if a connection has been entered.
@@ -167,7 +167,7 @@ EnterMapConnection::
 	ret
 
 
-SECTION "engine/overworld/warp_connection.asm@LoadWarpData", ROMX
+SECTION "engine/overworld/warp_connection@LoadWarpData", ROMX
 
 EnterMapWarp::
 	call .SaveDigWarp
@@ -245,7 +245,7 @@ EnterMapWarp::
 	ret
 
 
-SECTION "engine/overworld/warp_connection.asm@LoadMapTimeOfDay", ROMX
+SECTION "engine/overworld/warp_connection@LoadMapTimeOfDay", ROMX
 
 LoadMapTimeOfDay::
 	ld hl, wVramState
@@ -319,7 +319,7 @@ LoadMapTimeOfDay::
 	ret
 
 
-SECTION "engine/overworld/warp_connection.asm@LoadGraphics", ROMX
+SECTION "engine/overworld/warp_connection@LoadGraphics", ROMX
 
 LoadMapGraphics::
 	call LoadMapTileset
@@ -334,14 +334,14 @@ LoadMapGraphics::
 	ret
 
 
-SECTION "engine/overworld/warp_connection.asm@LoadMapPalettes", ROMX
+SECTION "engine/overworld/warp_connection@LoadMapPalettes", ROMX
 
 LoadMapPalettes::
 	ld b, SCGB_MAPPALS
 	jp GetSGBLayout
 
 
-SECTION "engine/overworld/warp_connection.asm@RefreshMapSprites", ROMX
+SECTION "engine/overworld/warp_connection@RefreshMapSprites", ROMX
 
 RefreshMapSprites::
 	call ClearSprites
@@ -362,7 +362,7 @@ RefreshMapSprites::
 	ret
 
 
-SECTION "engine/overworld/warp_connection.asm@CheckMovingOffEdgeOfMap", ROMX
+SECTION "engine/overworld/warp_connection@CheckMovingOffEdgeOfMap", ROMX
 
 CheckMovingOffEdgeOfMap::
 	ld a, [wPlayerStepDirection]
@@ -422,7 +422,7 @@ CheckMovingOffEdgeOfMap::
 	ret
 
 
-SECTION "engine/overworld/warp_connection.asm@GetCoordOfUpperLeftCorner", ROMX
+SECTION "engine/overworld/warp_connection@GetCoordOfUpperLeftCorner", ROMX
 
 GetMapScreenCoords::
 	ld hl, wOverworldMapBlocks

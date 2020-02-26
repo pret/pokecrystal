@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const MOUNTMOONSQUARE_ROCK
 
 
-SECTION "maps/MountMoonSquare.asm", ROMX
+SECTION "maps/MountMoonSquare", ROMX
 
 MountMoonSquare_MapScripts::
 	db 1 ; scene scripts

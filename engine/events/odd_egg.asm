@@ -6,7 +6,7 @@ INCLUDE "constants/pokemon_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 
 
-SECTION "engine/events/odd_egg.asm", ROMX
+SECTION "engine/events/odd_egg", ROMX
 
 _GiveOddEgg::
 	; Figure out which egg to give.

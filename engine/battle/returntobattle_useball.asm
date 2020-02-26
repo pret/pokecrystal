@@ -2,7 +2,7 @@ INCLUDE "macros/rst.inc"
 INCLUDE "constants/battle_constants.inc"
 
 
-SECTION "engine/battle/returntobattle_useball.asm", ROMX
+SECTION "engine/battle/returntobattle_useball", ROMX
 
 _ReturnToBattle_UseBall::
 	call ClearBGPalettes

@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/gfx_anims.inc"
 
 
-SECTION "gfx/pokemon/unown_anims.asm", ROMX
+SECTION "gfx/pokemon/unown_anims", ROMX
 
 INCLUDE "gfx/pokemon/unown_anim_pointers.inc"
 

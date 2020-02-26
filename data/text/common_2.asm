@@ -2,7 +2,7 @@ INCLUDE "macros/data.inc"
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/text/common_2.asm", ROMX
+SECTION "data/text/common_2", ROMX
 
 _NoPhotoText::
 	text "Oh, no picture?"

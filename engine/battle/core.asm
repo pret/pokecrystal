@@ -29,7 +29,7 @@ INCLUDE "constants/type_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/battle/core.asm", ROMX
+SECTION "engine/battle/core", ROMX
 
 ; Core components of the battle engine.
 

@@ -9,7 +9,7 @@ INCLUDE "constants/maps_common.inc"
 	const TEAMROCKETBASEB1F_POKE_BALL3
 
 
-SECTION "maps/TeamRocketBaseB1F.asm", ROMX
+SECTION "maps/TeamRocketBaseB1F", ROMX
 
 TeamRocketBaseB1F_MapScripts::
 	db 1 ; scene scripts

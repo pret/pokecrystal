@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/Route16.asm", ROMX
+SECTION "maps/Route16", ROMX
 
 Route16_MapScripts::
 	db 0 ; scene scripts

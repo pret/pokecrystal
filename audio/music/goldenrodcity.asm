@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/goldenrodcity.asm", ROMX
+SECTION "audio/music/goldenrodcity", ROMX
 
 Music_GoldenrodCity::
 	channel_count 4

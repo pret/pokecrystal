@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const MOUNTMOONGIFTSHOP_LASS2 ; day only
 
 
-SECTION "maps/MountMoonGiftShop.asm", ROMX
+SECTION "maps/MountMoonGiftShop", ROMX
 
 MountMoonGiftShop_MapScripts::
 	db 0 ; scene scripts

@@ -1,7 +1,7 @@
 INCLUDE "constants/text_constants.inc"
 
 
-SECTION "home/array.asm", ROM0
+SECTION "home/array", ROM0
 
 IsInArray::
 ; Find value a for every de bytes in array hl.

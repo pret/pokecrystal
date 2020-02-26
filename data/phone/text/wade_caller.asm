@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/wade_caller.asm", ROMX
+SECTION "data/phone/text/wade_caller", ROMX
 
 WadeAreYourMonGrowingText::
 	text "Are your #MON"

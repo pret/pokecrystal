@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/Route10North.asm", ROMX
+SECTION "maps/Route10North", ROMX
 
 Route10North_MapScripts::
 	db 0 ; scene scripts

@@ -2,7 +2,7 @@ INCLUDE "constants/floating_constants.inc"
 
 
 ; FLOAT: All pics sections must be in consecutive banks for dba_pic to work
-SECTION "gfx/pics.asm@Pics 1", ROMX, BANK[BANK_PICS + 0]
+SECTION "gfx/pics@Pics 1", ROMX, BANK[BANK_PICS + 0]
 
 HoOhFrontpic::        INCBIN "gfx/pokemon/ho_oh/front.animated.2bpp.lz"
 MachampFrontpic::     INCBIN "gfx/pokemon/machamp/front.animated.2bpp.lz"
@@ -19,7 +19,7 @@ SuicuneFrontpic::     INCBIN "gfx/pokemon/suicune/front.animated.2bpp.lz"
 TyphlosionFrontpic::  INCBIN "gfx/pokemon/typhlosion/front.animated.2bpp.lz"
 
 
-SECTION "gfx/pics.asm@Pics 2", ROMX, BANK[BANK_PICS + 1]
+SECTION "gfx/pics@Pics 2", ROMX, BANK[BANK_PICS + 1]
 
 BlastoiseFrontpic::   INCBIN "gfx/pokemon/blastoise/front.animated.2bpp.lz"
 RapidashFrontpic::    INCBIN "gfx/pokemon/rapidash/front.animated.2bpp.lz"
@@ -39,7 +39,7 @@ CharizardFrontpic::   INCBIN "gfx/pokemon/charizard/front.animated.2bpp.lz"
 QuilavaFrontpic::     INCBIN "gfx/pokemon/quilava/front.animated.2bpp.lz"
 
 
-SECTION "gfx/pics.asm@Pics 3", ROMX, BANK[BANK_PICS + 2]
+SECTION "gfx/pics@Pics 3", ROMX, BANK[BANK_PICS + 2]
 
 SteelixFrontpic::     INCBIN "gfx/pokemon/steelix/front.animated.2bpp.lz"
 AlakazamFrontpic::    INCBIN "gfx/pokemon/alakazam/front.animated.2bpp.lz"
@@ -61,7 +61,7 @@ PrimeapeFrontpic::    INCBIN "gfx/pokemon/primeape/front.animated.2bpp.lz"
 OmastarBackpic::      INCBIN "gfx/pokemon/omastar/back.2bpp.lz"
 
 
-SECTION "gfx/pics.asm@Pics 4", ROMX, BANK[BANK_PICS + 3]
+SECTION "gfx/pics@Pics 4", ROMX, BANK[BANK_PICS + 3]
 
 DodrioFrontpic::      INCBIN "gfx/pokemon/dodrio/front.animated.2bpp.lz"
 SlowkingFrontpic::    INCBIN "gfx/pokemon/slowking/front.animated.2bpp.lz"
@@ -85,7 +85,7 @@ PinsirFrontpic::      INCBIN "gfx/pokemon/pinsir/front.animated.2bpp.lz"
 UnownEFrontpic::      INCBIN "gfx/pokemon/unown_e/front.animated.2bpp.lz"
 
 
-SECTION "gfx/pics.asm@Pics 5", ROMX, BANK[BANK_PICS + 4]
+SECTION "gfx/pics@Pics 5", ROMX, BANK[BANK_PICS + 4]
 
 GolbatFrontpic::      INCBIN "gfx/pokemon/golbat/front.animated.2bpp.lz"
 KinglerFrontpic::     INCBIN "gfx/pokemon/kingler/front.animated.2bpp.lz"
@@ -110,7 +110,7 @@ MrMimeFrontpic::      INCBIN "gfx/pokemon/mr__mime/front.animated.2bpp.lz"
 HeracrossFrontpic::   INCBIN "gfx/pokemon/heracross/front.animated.2bpp.lz"
 
 
-SECTION "gfx/pics.asm@Pics 6", ROMX, BANK[BANK_PICS + 5]
+SECTION "gfx/pics@Pics 6", ROMX, BANK[BANK_PICS + 5]
 
 AriadosFrontpic::     INCBIN "gfx/pokemon/ariados/front.animated.2bpp.lz"
 NoctowlFrontpic::     INCBIN "gfx/pokemon/noctowl/front.animated.2bpp.lz"
@@ -137,7 +137,7 @@ GligarFrontpic::      INCBIN "gfx/pokemon/gligar/front.animated.2bpp.lz"
 DunsparceFrontpic::   INCBIN "gfx/pokemon/dunsparce/front.animated.2bpp.lz"
 
 
-SECTION "gfx/pics.asm@Pics 7", ROMX, BANK[BANK_PICS + 6]
+SECTION "gfx/pics@Pics 7", ROMX, BANK[BANK_PICS + 6]
 
 VaporeonFrontpic::    INCBIN "gfx/pokemon/vaporeon/front.animated.2bpp.lz"
 GirafarigFrontpic::   INCBIN "gfx/pokemon/girafarig/front.animated.2bpp.lz"
@@ -166,7 +166,7 @@ TogeticFrontpic::     INCBIN "gfx/pokemon/togetic/front.animated.2bpp.lz"
 KangaskhanBackpic::   INCBIN "gfx/pokemon/kangaskhan/back.2bpp.lz"
 
 
-SECTION "gfx/pics.asm@Pics 8", ROMX, BANK[BANK_PICS + 7]
+SECTION "gfx/pics@Pics 8", ROMX, BANK[BANK_PICS + 7]
 
 SeelFrontpic::        INCBIN "gfx/pokemon/seel/front.animated.2bpp.lz"
 CrobatFrontpic::      INCBIN "gfx/pokemon/crobat/front.animated.2bpp.lz"
@@ -197,7 +197,7 @@ HitmonchanFrontpic::  INCBIN "gfx/pokemon/hitmonchan/front.animated.2bpp.lz"
 QuagsireFrontpic::    INCBIN "gfx/pokemon/quagsire/front.animated.2bpp.lz"
 
 
-SECTION "gfx/pics.asm@Pics 9", ROMX, BANK[BANK_PICS + 8]
+SECTION "gfx/pics@Pics 9", ROMX, BANK[BANK_PICS + 8]
 
 EkansFrontpic::       INCBIN "gfx/pokemon/ekans/front.animated.2bpp.lz"
 SudowoodoFrontpic::   INCBIN "gfx/pokemon/sudowoodo/front.animated.2bpp.lz"
@@ -232,7 +232,7 @@ PidgeyFrontpic::      INCBIN "gfx/pokemon/pidgey/front.animated.2bpp.lz"
 ParasectBackpic::     INCBIN "gfx/pokemon/parasect/back.2bpp.lz"
 
 
-SECTION "gfx/pics.asm@Pics 10", ROMX, BANK[BANK_PICS + 9]
+SECTION "gfx/pics@Pics 10", ROMX, BANK[BANK_PICS + 9]
 
 MisdreavusFrontpic::  INCBIN "gfx/pokemon/misdreavus/front.animated.2bpp.lz"
 HoundourFrontpic::    INCBIN "gfx/pokemon/houndour/front.animated.2bpp.lz"
@@ -271,7 +271,7 @@ HoothootFrontpic::    INCBIN "gfx/pokemon/hoothoot/front.animated.2bpp.lz"
 UnownFBackpic::       INCBIN "gfx/pokemon/unown_f/back.2bpp.lz"
 
 
-SECTION "gfx/pics.asm@Pics 11", ROMX, BANK[BANK_PICS + 10]
+SECTION "gfx/pics@Pics 11", ROMX, BANK[BANK_PICS + 10]
 
 DodrioBackpic::       INCBIN "gfx/pokemon/dodrio/back.2bpp.lz"
 ClefairyFrontpic::    INCBIN "gfx/pokemon/clefairy/front.animated.2bpp.lz"
@@ -313,7 +313,7 @@ BugCatcherPic::       INCBIN "gfx/trainers/bug_catcher.2bpp.lz"
 SnorlaxBackpic::      INCBIN "gfx/pokemon/snorlax/back.2bpp.lz"
 
 
-SECTION "gfx/pics.asm@Pics 12", ROMX, BANK[BANK_PICS + 11]
+SECTION "gfx/pics@Pics 12", ROMX, BANK[BANK_PICS + 11]
 
 VenusaurBackpic::     INCBIN "gfx/pokemon/venusaur/back.2bpp.lz"
 MoltresBackpic::      INCBIN "gfx/pokemon/moltres/back.2bpp.lz"
@@ -358,7 +358,7 @@ BulbasaurFrontpic::   INCBIN "gfx/pokemon/bulbasaur/front.animated.2bpp.lz"
 StarmieBackpic::      INCBIN "gfx/pokemon/starmie/back.2bpp.lz"
 
 
-SECTION "gfx/pics.asm@Pics 13", ROMX, BANK[BANK_PICS + 12]
+SECTION "gfx/pics@Pics 13", ROMX, BANK[BANK_PICS + 12]
 
 OmanyteBackpic::      INCBIN "gfx/pokemon/omanyte/back.2bpp.lz"
 PidgeyBackpic::       INCBIN "gfx/pokemon/pidgey/back.2bpp.lz"
@@ -405,7 +405,7 @@ CooltrainerfPic::     INCBIN "gfx/trainers/cooltrainer_f.2bpp.lz"
 ElectrodeFrontpic::   INCBIN "gfx/pokemon/electrode/front.animated.2bpp.lz"
 
 
-SECTION "gfx/pics.asm@Pics 14", ROMX, BANK[BANK_PICS + 13]
+SECTION "gfx/pics@Pics 14", ROMX, BANK[BANK_PICS + 13]
 
 SudowoodoBackpic::    INCBIN "gfx/pokemon/sudowoodo/back.2bpp.lz"
 FlaaffyBackpic::      INCBIN "gfx/pokemon/flaaffy/back.2bpp.lz"
@@ -455,7 +455,7 @@ Rival1Pic::           INCBIN "gfx/trainers/rival1.2bpp.lz"
 SwinubBackpic::       INCBIN "gfx/pokemon/swinub/back.2bpp.lz"
 
 
-SECTION "gfx/pics.asm@Pics 15", ROMX, BANK[BANK_PICS + 14]
+SECTION "gfx/pics@Pics 15", ROMX, BANK[BANK_PICS + 14]
 
 MewtwoBackpic::       INCBIN "gfx/pokemon/mewtwo/back.2bpp.lz"
 PokemonProfPic::      INCBIN "gfx/trainers/oak.2bpp.lz"
@@ -508,7 +508,7 @@ JaninePic::           INCBIN "gfx/trainers/janine.2bpp.lz"
 MagnemiteBackpic::    INCBIN "gfx/pokemon/magnemite/back.2bpp.lz"
 
 
-SECTION "gfx/pics.asm@Pics 16", ROMX, BANK[BANK_PICS + 15]
+SECTION "gfx/pics@Pics 16", ROMX, BANK[BANK_PICS + 15]
 
 HoothootBackpic::     INCBIN "gfx/pokemon/hoothoot/back.2bpp.lz"
 NoctowlBackpic::      INCBIN "gfx/pokemon/noctowl/back.2bpp.lz"
@@ -565,7 +565,7 @@ PorygonBackpic::      INCBIN "gfx/pokemon/porygon/back.2bpp.lz"
 UnownHBackpic::       INCBIN "gfx/pokemon/unown_h/back.2bpp.lz"
 
 
-SECTION "gfx/pics.asm@Pics 17", ROMX, BANK[BANK_PICS + 16]
+SECTION "gfx/pics@Pics 17", ROMX, BANK[BANK_PICS + 16]
 
 ParasBackpic::        INCBIN "gfx/pokemon/paras/back.2bpp.lz"
 VaporeonBackpic::     INCBIN "gfx/pokemon/vaporeon/back.2bpp.lz"
@@ -630,7 +630,7 @@ OddishBackpic::       INCBIN "gfx/pokemon/oddish/back.2bpp.lz"
 UnownDBackpic::       INCBIN "gfx/pokemon/unown_d/back.2bpp.lz"
 
 
-SECTION "gfx/pics.asm@Pics 18", ROMX, BANK[BANK_PICS + 17]
+SECTION "gfx/pics@Pics 18", ROMX, BANK[BANK_PICS + 17]
 
 SpinarakBackpic::     INCBIN "gfx/pokemon/spinarak/back.2bpp.lz"
 RaikouBackpic::       INCBIN "gfx/pokemon/raikou/back.2bpp.lz"
@@ -694,7 +694,7 @@ UnownIBackpic::       INCBIN "gfx/pokemon/unown_i/back.2bpp.lz"
 UnownRBackpic::       INCBIN "gfx/pokemon/unown_r/back.2bpp.lz"
 
 
-SECTION "gfx/pics.asm@Pics 19", ROMX, BANK[BANK_PICS + 18]
+SECTION "gfx/pics@Pics 19", ROMX, BANK[BANK_PICS + 18]
 
 ; Seems to be an accidental copy of the previous bank
 
@@ -760,15 +760,15 @@ INCBIN "gfx/pokemon/unown_i/back.2bpp.lz"
 INCBIN "gfx/pokemon/unown_r/back.2bpp.lz"
 
 
-; Sections "gfx/pics.asm@Pics 20" to "gfx/pics.asm@Pics 24" are not used for any graphics,
+; Sections "gfx/pics@Pics 20" to "gfx/pics.asm@Pics 24" are not used for any graphics,
 ; but entries for their banks exist in FixPicBank (see engine/gfx/load_pics.asm).
 
-SECTION "gfx/pics.asm@Pics 20", ROMX, BANK[BANK_PICS + 19]
+SECTION "gfx/pics@Pics 20", ROMX, BANK[BANK_PICS + 19]
 
-SECTION "gfx/pics.asm@Pics 21", ROMX, BANK[BANK_PICS + 20]
+SECTION "gfx/pics@Pics 21", ROMX, BANK[BANK_PICS + 20]
 
-SECTION "gfx/pics.asm@Pics 22", ROMX, BANK[BANK_PICS + 21]
+SECTION "gfx/pics@Pics 22", ROMX, BANK[BANK_PICS + 21]
 
-SECTION "gfx/pics.asm@Pics 23", ROMX, BANK[BANK_PICS + 22]
+SECTION "gfx/pics@Pics 23", ROMX, BANK[BANK_PICS + 22]
 
-SECTION "gfx/pics.asm@Pics 24", ROMX, BANK[BANK_PICS + 23]
+SECTION "gfx/pics@Pics 24", ROMX, BANK[BANK_PICS + 23]

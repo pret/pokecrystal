@@ -13,7 +13,7 @@ INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/pokemon/party_menu.asm", ROMX, BANK[BANK_PARTY_MENU]
+SECTION "engine/pokemon/party_menu", ROMX, BANK[BANK_PARTY_MENU]
 
 SelectMonFromParty::
 	call DisableSpriteUpdates
@@ -411,7 +411,7 @@ PlacePartyMonEvoStoneCompatibility:
 	ld h, [hl]
 	ld l, a
 	ld de, wStringBuffer1
-	ld a, BANK("engine/pokemon/evolve.asm")
+	ld a, BANK("engine/pokemon/evolve")
 	ld bc, 10
 	call FarCopyBytes
 	ld hl, wStringBuffer1
@@ -798,7 +798,7 @@ YouHaveNoPKMNString:
 	db "You have no <PK><MN>!@"
 
 
-SECTION "engine/pokemon/party_menu.asm@PrintPartyMenuActionText", ROMX
+SECTION "engine/pokemon/party_menu@PrintPartyMenuActionText", ROMX
 
 PrintPartyMenuActionText::
 	ld a, [wCurPartyMon]

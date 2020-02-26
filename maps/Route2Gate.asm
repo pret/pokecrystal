@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE2GATE_SCIENTIST
 
 
-SECTION "maps/Route2Gate.asm", ROMX
+SECTION "maps/Route2Gate", ROMX
 
 Route2Gate_MapScripts::
 	db 0 ; scene scripts

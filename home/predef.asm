@@ -1,7 +1,7 @@
 INCLUDE "macros/rst.inc"
 
 
-SECTION "home/predef.asm", ROM0
+SECTION "home/predef", ROM0
 
 Predef::
 ; Call predefined function a.

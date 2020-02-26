@@ -2,7 +2,7 @@ INCLUDE "constants/serial_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/battle/check_battle_scene.asm", ROMX
+SECTION "engine/battle/check_battle_scene", ROMX
 
 CheckBattleScene::
 ; Return carry if battle scene is turned off.

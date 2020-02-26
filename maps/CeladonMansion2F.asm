@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/CeladonMansion2F.asm", ROMX
+SECTION "maps/CeladonMansion2F", ROMX
 
 CeladonMansion2F_MapScripts::
 	db 0 ; scene scripts

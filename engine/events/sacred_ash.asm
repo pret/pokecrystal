@@ -5,7 +5,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/sfx_constants.inc"
 
 
-SECTION "engine/events/sacred_ash.asm", ROMX
+SECTION "engine/events/sacred_ash", ROMX
 
 _SacredAsh::
 	ld a, $0

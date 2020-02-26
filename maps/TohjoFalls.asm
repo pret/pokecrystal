@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const TOHJOFALLS_POKE_BALL
 
 
-SECTION "maps/TohjoFalls.asm", ROMX
+SECTION "maps/TohjoFalls", ROMX
 
 TohjoFalls_MapScripts::
 	db 0 ; scene scripts

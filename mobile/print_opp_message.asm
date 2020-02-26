@@ -4,7 +4,7 @@ INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
 
 
-SECTION "mobile/print_opp_message.asm", ROMX
+SECTION "mobile/print_opp_message", ROMX
 
 Mobile_PrintOpponentBattleMessage::
 	ld a, c

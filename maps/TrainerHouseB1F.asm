@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const TRAINERHOUSEB1F_CHRIS
 
 
-SECTION "maps/TrainerHouseB1F.asm", ROMX
+SECTION "maps/TrainerHouseB1F", ROMX
 
 TrainerHouseB1F_MapScripts::
 	db 1 ; scene scripts

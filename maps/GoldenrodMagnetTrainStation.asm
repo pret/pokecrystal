@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const GOLDENRODMAGNETTRAINSTATION_GENTLEMAN
 
 
-SECTION "maps/GoldenrodMagnetTrainStation.asm", ROMX
+SECTION "maps/GoldenrodMagnetTrainStation", ROMX
 
 GoldenrodMagnetTrainStation_MapScripts::
 	db 1 ; scene scripts

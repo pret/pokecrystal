@@ -22,7 +22,7 @@ INCLUDE "constants/wram_constants.inc"
 NUM_STAT_PAGES EQU const_value + -1
 
 
-SECTION "engine/pokemon/stats_screen.asm", ROMX
+SECTION "engine/pokemon/stats_screen", ROMX
 
 BattleStatsScreenInit::
 	ld a, [wLinkMode]

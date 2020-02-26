@@ -7,7 +7,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/trainer_data_constants.inc"
 
 
-SECTION "engine/battle/ai/move.asm", ROMX
+SECTION "engine/battle/ai/move", ROMX
 
 AIChooseMove::
 ; Score each move in wEnemyMonMoves starting from wBuffer1. Lower is better.

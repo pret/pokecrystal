@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/parry_callee.asm", ROMX
+SECTION "data/phone/text/parry_callee", ROMX
 
 ParryAnswerPhoneText::
 	text "Yup, yup!"

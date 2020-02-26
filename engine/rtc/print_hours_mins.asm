@@ -3,7 +3,7 @@ INCLUDE "macros/code.inc"
 INCLUDE "constants/text_constants.inc"
 
 
-SECTION "engine/rtc/print_hours_mins.asm@Unreferenced_Function1dd6a9", ROMX
+SECTION "engine/rtc/print_hours_mins@Unreferenced_Function1dd6a9", ROMX
 
 Unreferenced_Function1dd6a9:
 	ld a, b
@@ -21,7 +21,7 @@ Unreferenced_Function1dd6a9:
 	ret
 
 
-SECTION "engine/rtc/print_hours_mins.asm", ROMX
+SECTION "engine/rtc/print_hours_mins", ROMX
 
 PrintHoursMins::
 ; Hours in b, minutes in c

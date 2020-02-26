@@ -10,7 +10,7 @@ INCLUDE "constants/maps_common.inc"
 	const MAHOGANYGYM_GYM_GUY
 
 
-SECTION "maps/MahoganyGym.asm", ROMX
+SECTION "maps/MahoganyGym", ROMX
 
 MahoganyGym_MapScripts::
 	db 0 ; scene scripts

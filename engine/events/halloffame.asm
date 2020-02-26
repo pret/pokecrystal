@@ -15,7 +15,7 @@ INCLUDE "constants/wram_constants.inc"
 HALLOFFAME_COLON EQU $63
 
 
-SECTION "engine/events/halloffame.asm", ROMX
+SECTION "engine/events/halloffame", ROMX
 
 HallOfFame::
 	call HallOfFame_FadeOutMusic

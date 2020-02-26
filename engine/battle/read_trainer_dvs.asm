@@ -1,7 +1,7 @@
 INCLUDE "macros/data.inc"
 
 
-SECTION "engine/battle/read_trainer_dvs.asm", ROMX
+SECTION "engine/battle/read_trainer_dvs", ROMX
 
 GetTrainerDVs::
 ; Return the DVs of wOtherTrainerClass in bc

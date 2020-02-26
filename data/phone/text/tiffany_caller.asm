@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/tiffany_caller.asm", ROMX
+SECTION "data/phone/text/tiffany_caller", ROMX
 
 TiffanyMonIsAdorableText::
 	text "My @"

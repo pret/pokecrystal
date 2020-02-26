@@ -5,7 +5,7 @@ INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/events/fishing_gfx.asm", ROMX
+SECTION "engine/events/fishing_gfx", ROMX
 
 LoadFishingGFX::
 	ldh a, [rVBK]

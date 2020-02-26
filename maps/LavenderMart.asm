@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const LAVENDERMART_ROCKER
 
 
-SECTION "maps/LavenderMart.asm", ROMX
+SECTION "maps/LavenderMart", ROMX
 
 LavenderMart_MapScripts::
 	db 0 ; scene scripts

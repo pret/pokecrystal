@@ -4,7 +4,7 @@ INCLUDE "constants/battle_constants.inc"
 INCLUDE "constants/move_constants.inc"
 
 
-SECTION "engine/battle/used_move_text.asm", ROMX
+SECTION "engine/battle/used_move_text", ROMX
 
 DisplayUsedMoveText::
 ; battle command 03

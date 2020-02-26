@@ -11,7 +11,7 @@ INCLUDE "constants/maps_common.inc"
 	const SAFFRONCITY_LASS2
 
 
-SECTION "maps/SaffronCity.asm", ROMX
+SECTION "maps/SaffronCity", ROMX
 
 SaffronCity_MapScripts::
 	db 0 ; scene scripts

@@ -8,7 +8,7 @@ INCLUDE "constants/maps_common.inc"
 	const BURNEDTOWER1F_POKE_BALL
 
 
-SECTION "maps/BurnedTower1F.asm", ROMX
+SECTION "maps/BurnedTower1F", ROMX
 
 BurnedTower1F_MapScripts::
 	db 3 ; scene scripts

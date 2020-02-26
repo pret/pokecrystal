@@ -4,7 +4,7 @@ INCLUDE "constants/pokemon_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 
 
-SECTION "engine/events/dratini.asm", ROMX
+SECTION "engine/events/dratini", ROMX
 
 GiveDratini::
 ; if wScriptVar is 0 or 1, change the moveset of the last Dratini in the party.

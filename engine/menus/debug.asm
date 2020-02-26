@@ -36,7 +36,7 @@ INCLUDE "constants/trainer_constants.inc"
 	const DEBUGTEST_F        ; $7f
 
 
-SECTION "engine/menus/debug.asm", ROMX
+SECTION "engine/menus/debug", ROMX
 
 ColorTest:
 ; A debug menu to test monster and trainer palettes at runtime.

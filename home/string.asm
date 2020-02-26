@@ -2,7 +2,7 @@ INCLUDE "charmap.inc"
 INCLUDE "constants/text_constants.inc"
 
 
-SECTION "home/string.asm", ROM0
+SECTION "home/string", ROM0
 
 InitString::
 ; Init a string of length c.

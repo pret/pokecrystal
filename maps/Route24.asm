@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE24_ROCKET
 
 
-SECTION "maps/Route24.asm", ROMX
+SECTION "maps/Route24", ROMX
 
 Route24_MapScripts::
 	db 0 ; scene scripts

@@ -4,7 +4,7 @@ INCLUDE "constants/pokemon_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 
 
-SECTION "engine/events/haircut.asm", ROMX, BANK[BANK_HAPPINESS]
+SECTION "engine/events/haircut", ROMX, BANK[BANK_HAPPINESS]
 
 BillsGrandfather::
 	farcall SelectMonFromParty
@@ -87,7 +87,7 @@ CopyPokemonName_Buffer1_Buffer3::
 	jp CopyBytes
 
 
-SECTION "engine/events/haircut.asm@DummyPredef1", ROMX
+SECTION "engine/events/haircut@DummyPredef1", ROMX
 
 DummyPredef1::
 	ret

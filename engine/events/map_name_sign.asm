@@ -13,7 +13,7 @@ INCLUDE "constants/tileset_constants.inc"
 MAP_NAME_SIGN_START EQU $60
 
 
-SECTION "engine/events/map_name_sign.asm", ROMX
+SECTION "engine/events/map_name_sign", ROMX
 
 InitMapNameSign::
 	xor a

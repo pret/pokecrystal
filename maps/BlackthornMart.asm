@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const BLACKTHORNMART_BLACK_BELT
 
 
-SECTION "maps/BlackthornMart.asm", ROMX
+SECTION "maps/BlackthornMart", ROMX
 
 BlackthornMart_MapScripts::
 	db 0 ; scene scripts

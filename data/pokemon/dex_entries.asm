@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/pokemon/dex_entries.asm@Pokedex Entries 001-064", ROMX
+SECTION "data/pokemon/dex_entries@Pokedex Entries 001-064", ROMX
 
 BulbasaurPokedexEntry::  INCLUDE "data/pokemon/dex_entries/bulbasaur.inc"
 IvysaurPokedexEntry::    INCLUDE "data/pokemon/dex_entries/ivysaur.inc"
@@ -69,7 +69,7 @@ AbraPokedexEntry::       INCLUDE "data/pokemon/dex_entries/abra.inc"
 KadabraPokedexEntry::    INCLUDE "data/pokemon/dex_entries/kadabra.inc"
 
 
-SECTION "data/pokemon/dex_entries.asm@Pokedex Entries 065-128", ROMX
+SECTION "data/pokemon/dex_entries@Pokedex Entries 065-128", ROMX
 
 AlakazamPokedexEntry::   INCLUDE "data/pokemon/dex_entries/alakazam.inc"
 MachopPokedexEntry::     INCLUDE "data/pokemon/dex_entries/machop.inc"
@@ -137,7 +137,7 @@ PinsirPokedexEntry::     INCLUDE "data/pokemon/dex_entries/pinsir.inc"
 TaurosPokedexEntry::     INCLUDE "data/pokemon/dex_entries/tauros.inc"
 
 
-SECTION "data/pokemon/dex_entries.asm@Pokedex Entries 129-192", ROMX
+SECTION "data/pokemon/dex_entries@Pokedex Entries 129-192", ROMX
 
 MagikarpPokedexEntry::   INCLUDE "data/pokemon/dex_entries/magikarp.inc"
 GyaradosPokedexEntry::   INCLUDE "data/pokemon/dex_entries/gyarados.inc"
@@ -205,7 +205,7 @@ SunkernPokedexEntry::    INCLUDE "data/pokemon/dex_entries/sunkern.inc"
 SunfloraPokedexEntry::   INCLUDE "data/pokemon/dex_entries/sunflora.inc"
 
 
-SECTION "data/pokemon/dex_entries.asm@Pokedex Entries 193-251", ROMX
+SECTION "data/pokemon/dex_entries@Pokedex Entries 193-251", ROMX
 
 YanmaPokedexEntry::      INCLUDE "data/pokemon/dex_entries/yanma.inc"
 WooperPokedexEntry::     INCLUDE "data/pokemon/dex_entries/wooper.inc"

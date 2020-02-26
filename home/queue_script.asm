@@ -1,4 +1,4 @@
-SECTION "home/queue_script.asm", ROM0
+SECTION "home/queue_script", ROM0
 
 QueueScript::
 ; Push pointer hl in the current bank to wQueuedScriptBank.

@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/ssaqua.asm", ROMX
+SECTION "audio/music/ssaqua", ROMX
 
 Music_SSAqua::
 	channel_count 4

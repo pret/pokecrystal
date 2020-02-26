@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/tully_caller.asm", ROMX
+SECTION "data/phone/text/tully_caller", ROMX
 
 TullyMonHasGrownText::
 	text "My @"

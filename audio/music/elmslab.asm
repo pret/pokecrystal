@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/elmslab.asm", ROMX
+SECTION "audio/music/elmslab", ROMX
 
 Music_ElmsLab::
 	channel_count 4

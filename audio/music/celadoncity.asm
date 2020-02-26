@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/celadoncity.asm", ROMX
+SECTION "audio/music/celadoncity", ROMX
 
 Music_CeladonCity::
 	channel_count 3

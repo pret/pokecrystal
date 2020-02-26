@@ -7,7 +7,7 @@ INCLUDE "constants/trainer_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/phone/scripts/vance.asm", ROMX
+SECTION "engine/phone/scripts/vance", ROMX
 
 VancePhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, BIRD_KEEPER, VANCE1

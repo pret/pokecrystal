@@ -1,4 +1,4 @@
-SECTION "engine/math/get_square_root.asm", ROMX
+SECTION "engine/math/get_square_root", ROMX
 
 NUM_SQUARE_ROOTS EQU 255
 

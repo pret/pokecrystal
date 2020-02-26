@@ -5,7 +5,7 @@ INCLUDE "constants/hardware_constants.inc"
 ; Functions relating to the timer interrupt and the real-time-clock.
 
 
-SECTION "home/time.asm", ROM0
+SECTION "home/time", ROM0
 
 Unreferenced_Timer:
 	push af

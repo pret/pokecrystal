@@ -11,7 +11,7 @@ INCLUDE "constants/maps_common.inc"
 	const VIOLETCITY_POKE_BALL2
 
 
-SECTION "maps/VioletCity.asm", ROMX
+SECTION "maps/VioletCity", ROMX
 
 VioletCity_MapScripts::
 	db 0 ; scene scripts

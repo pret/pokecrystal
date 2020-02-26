@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/lookpokemaniac.asm", ROMX
+SECTION "audio/music/lookpokemaniac", ROMX
 
 Music_LookPokemaniac::
 	channel_count 3

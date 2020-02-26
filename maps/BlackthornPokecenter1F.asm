@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const BLACKTHORNPOKECENTER1F_COOLTRAINER_M
 
 
-SECTION "maps/BlackthornPokecenter1F.asm", ROMX
+SECTION "maps/BlackthornPokecenter1F", ROMX
 
 BlackthornPokecenter1F_MapScripts::
 	db 0 ; scene scripts

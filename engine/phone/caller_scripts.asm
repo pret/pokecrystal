@@ -7,7 +7,7 @@ INCLUDE "constants/script_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/phone/caller_scripts.asm", ROMX
+SECTION "engine/phone/caller_scripts", ROMX
 
 INCLUDE "engine/phone/scripts/generic_caller.inc"
 INCLUDE "engine/phone/scripts/jack_gossip.inc"

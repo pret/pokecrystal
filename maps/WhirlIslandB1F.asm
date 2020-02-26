@@ -9,7 +9,7 @@ INCLUDE "constants/maps_common.inc"
 	const WHIRLISLANDB1F_BOULDER
 
 
-SECTION "maps/WhirlIslandB1F.asm", ROMX
+SECTION "maps/WhirlIslandB1F", ROMX
 
 WhirlIslandB1F_MapScripts::
 	db 0 ; scene scripts

@@ -1,4 +1,4 @@
-SECTION "engine/math/multiply.asm", ROMX
+SECTION "engine/math/multiply", ROMX
 
 _Multiply::
 ; hMultiplier is one byte.

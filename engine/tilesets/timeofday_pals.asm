@@ -7,14 +7,14 @@ INCLUDE "constants/tileset_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/tilesets/timeofday_pals.asm@DummyPredef", ROMX
+SECTION "engine/tilesets/timeofday_pals@DummyPredef", ROMX
 
 DummyPredef35::
 DummyPredef36::
 	ret
 
 
-SECTION "engine/tilesets/timeofday_pals.asm", ROMX
+SECTION "engine/tilesets/timeofday_pals", ROMX
 
 UpdateTimeOfDayPal::
 	call UpdateTime

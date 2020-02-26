@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/CinnabarPokecenter2FBeta.asm", ROMX
+SECTION "maps/CinnabarPokecenter2FBeta", ROMX
 
 CinnabarPokecenter2FBeta_MapScripts::
 	db 0 ; scene scripts

@@ -12,7 +12,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE27_FISHER
 
 
-SECTION "maps/Route27.asm", ROMX
+SECTION "maps/Route27", ROMX
 
 Route27_MapScripts::
 	db 2 ; scene scripts

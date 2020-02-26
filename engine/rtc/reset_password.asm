@@ -9,7 +9,7 @@ INCLUDE "constants/scgb_constants.inc"
 INCLUDE "constants/text_constants.inc"
 
 
-SECTION "engine/rtc/reset_password.asm", ROMX
+SECTION "engine/rtc/reset_password", ROMX
 
 _ResetClock::
 	farcall BlankScreen

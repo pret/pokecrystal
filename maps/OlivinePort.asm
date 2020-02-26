@@ -10,7 +10,7 @@ INCLUDE "constants/maps_common.inc"
 	const OLIVINEPORT_COOLTRAINER_F
 
 
-SECTION "maps/OlivinePort.asm", ROMX
+SECTION "maps/OlivinePort", ROMX
 
 OlivinePort_MapScripts::
 	db 2 ; scene scripts

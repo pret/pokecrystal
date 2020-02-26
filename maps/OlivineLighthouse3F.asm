@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const OLIVINELIGHTHOUSE3F_POKE_BALL
 
 
-SECTION "maps/OlivineLighthouse3F.asm", ROMX
+SECTION "maps/OlivineLighthouse3F", ROMX
 
 OlivineLighthouse3F_MapScripts::
 	db 0 ; scene scripts

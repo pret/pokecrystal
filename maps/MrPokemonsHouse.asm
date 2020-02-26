@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const MRPOKEMONSHOUSE_OAK
 
 
-SECTION "maps/MrPokemonsHouse.asm", ROMX
+SECTION "maps/MrPokemonsHouse", ROMX
 
 MrPokemonsHouse_MapScripts::
 	db 2 ; scene scripts

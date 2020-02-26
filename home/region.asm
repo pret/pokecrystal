@@ -1,7 +1,7 @@
 INCLUDE "constants/landmark_constants.inc"
 
 
-SECTION "home/region.asm", ROM0
+SECTION "home/region", ROM0
 
 IsInJohto::
 ; Return 0 if the player is in Johto, and 1 in Kanto.

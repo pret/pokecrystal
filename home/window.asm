@@ -1,7 +1,7 @@
 INCLUDE "macros/rst.inc"
 
 
-SECTION "home/window.asm", ROM0
+SECTION "home/window", ROM0
 
 RefreshScreen::
 	call ClearWindowData

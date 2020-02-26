@@ -1,7 +1,7 @@
 INCLUDE "charmap.inc"
 
 
-SECTION "engine/pokemon/european_mail.asm@IsMailEuropean", ROMX
+SECTION "engine/pokemon/european_mail@IsMailEuropean", ROMX
 
 IsMailEuropean::
 ; return 1 if French
@@ -32,7 +32,7 @@ IsMailEuropean::
 	ret
 
 
-SECTION "engine/pokemon/european_mail.asm@Fonts", ROMX
+SECTION "engine/pokemon/european_mail@Fonts", ROMX
 
 ; The regular font.
 StandardEnglishFont::
@@ -47,7 +47,7 @@ SpanishItalianFont::
 INCBIN "gfx/font/spanish_italian.1bpp"
 
 
-SECTION "engine/pokemon/european_mail.asm@FrenchGerman", ROMX
+SECTION "engine/pokemon/european_mail@FrenchGerman", ROMX
 
 ConvertFrenchGermanMailToEnglish::
 ; Called if mail is French or German
@@ -79,7 +79,7 @@ ConvertFrenchGermanMailToEnglish::
 	ret
 
 
-SECTION "engine/pokemon/european_mail.asm@English", ROMX
+SECTION "engine/pokemon/european_mail@English", ROMX
 
 ConvertEnglishMailToFrenchGerman::
 ; Called if mail is English and game is French or German
@@ -111,7 +111,7 @@ ConvertEnglishMailToFrenchGerman::
 	ret
 
 
-SECTION "engine/pokemon/european_mail.asm@SpanishItalian", ROMX
+SECTION "engine/pokemon/european_mail@SpanishItalian", ROMX
 
 ConvertSpanishItalianMailToEnglish::
 ; Called if mail is Spanish or Italian

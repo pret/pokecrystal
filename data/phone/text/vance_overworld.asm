@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/vance_overworld.asm", ROMX
+SECTION "data/phone/text/vance_overworld", ROMX
 
 VanceAskNumber1Text::
 	text "You know, you are"

@@ -10,7 +10,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE37_FRUIT_TREE3
 
 
-SECTION "maps/Route37.asm", ROMX
+SECTION "maps/Route37", ROMX
 
 Route37_MapScripts::
 	db 0 ; scene scripts

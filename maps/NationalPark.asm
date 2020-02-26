@@ -17,7 +17,7 @@ INCLUDE "constants/maps_common.inc"
 	const NATIONALPARK_POKE_BALL2
 
 
-SECTION "maps/NationalPark.asm", ROMX
+SECTION "maps/NationalPark", ROMX
 
 NationalPark_MapScripts::
 	db 0 ; scene scripts

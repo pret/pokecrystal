@@ -15,7 +15,7 @@ INCLUDE "constants/maps_common.inc"
 	const FASTSHIPB1F_YOUNGSTER2
 
 
-SECTION "maps/FastShipB1F.asm", ROMX
+SECTION "maps/FastShipB1F", ROMX
 
 FastShipB1F_MapScripts::
 	db 2 ; scene scripts

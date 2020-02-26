@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const VIRIDIANMART_COOLTRAINER_M
 
 
-SECTION "maps/ViridianMart.asm", ROMX
+SECTION "maps/ViridianMart", ROMX
 
 ViridianMart_MapScripts::
 	db 0 ; scene scripts

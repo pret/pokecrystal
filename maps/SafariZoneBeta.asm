@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/SafariZoneBeta.asm", ROMX
+SECTION "maps/SafariZoneBeta", ROMX
 
 SafariZoneBeta_MapScripts::
 	db 0 ; scene scripts

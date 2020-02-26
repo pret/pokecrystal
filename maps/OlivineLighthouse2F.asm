@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const OLIVINELIGHTHOUSE2F_GENTLEMAN
 
 
-SECTION "maps/OlivineLighthouse2F.asm", ROMX
+SECTION "maps/OlivineLighthouse2F", ROMX
 
 OlivineLighthouse2F_MapScripts::
 	db 0 ; scene scripts

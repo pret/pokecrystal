@@ -7,7 +7,7 @@ INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/std_constants.inc"
 
 
-SECTION "engine/events/bug_contest/contest.asm@GiveParkBalls", ROMX
+SECTION "engine/events/bug_contest/contest@GiveParkBalls", ROMX
 
 GiveParkBalls::
 	xor a
@@ -18,7 +18,7 @@ GiveParkBalls::
 	ret
 
 
-SECTION "engine/events/bug_contest/contest.asm@BugCatchingContestBattleScript", ROMX
+SECTION "engine/events/bug_contest/contest@BugCatchingContestBattleScript", ROMX
 
 BugCatchingContestBattleScript::
 	loadvar VAR_BATTLETYPE, BATTLETYPE_CONTEST

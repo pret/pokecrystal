@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const OAKSLAB_SCIENTIST3
 
 
-SECTION "maps/OaksLab.asm", ROMX
+SECTION "maps/OaksLab", ROMX
 
 OaksLab_MapScripts::
 	db 0 ; scene scripts

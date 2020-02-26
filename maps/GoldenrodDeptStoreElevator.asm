@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/GoldenrodDeptStoreElevator.asm", ROMX
+SECTION "maps/GoldenrodDeptStoreElevator", ROMX
 
 GoldenrodDeptStoreElevator_MapScripts::
 	db 0 ; scene scripts

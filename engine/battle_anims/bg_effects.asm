@@ -18,7 +18,7 @@ INCLUDE "constants/move_constants.inc"
 	const BGSQUARE_THREE
 
 
-SECTION "engine/battle_anims/bg_effects.asm", ROMX
+SECTION "engine/battle_anims/bg_effects", ROMX
 
 ; BG effects for use in battle animations.
 

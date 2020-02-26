@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/gina_caller.asm", ROMX
+SECTION "data/phone/text/gina_caller", ROMX
 
 GinaGettingInSyncWithMonText::
 	text "My @"

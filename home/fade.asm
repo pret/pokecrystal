@@ -4,7 +4,7 @@ INCLUDE "constants/hardware_constants.inc"
 ; Functions to fade the screen in and out.
 
 
-SECTION "home/fade.asm", ROM0
+SECTION "home/fade", ROM0
 
 Unreferenced_Function48c:
 ; TimeOfDayFade

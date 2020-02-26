@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/wilton_overworld.asm", ROMX
+SECTION "data/phone/text/wilton_overworld", ROMX
 
 WiltonAskNumber1Text::
 	text "Eh, our battle was"

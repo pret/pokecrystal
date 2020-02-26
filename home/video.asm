@@ -6,7 +6,7 @@ INCLUDE "constants/hardware_constants.inc"
 ; Functions dealing with VRAM.
 
 
-SECTION "home/video.asm", ROM0
+SECTION "home/video", ROM0
 
 DMATransfer::
 ; Return carry if the transfer is completed.

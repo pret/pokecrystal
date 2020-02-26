@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const VERMILIONPORT_SUPER_NERD
 
 
-SECTION "maps/VermilionPort.asm", ROMX
+SECTION "maps/VermilionPort", ROMX
 
 VermilionPort_MapScripts::
 	db 2 ; scene scripts

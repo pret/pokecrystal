@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/titlescreen.asm", ROMX
+SECTION "audio/music/titlescreen", ROMX
 
 Music_TitleScreen::
 	channel_count 4

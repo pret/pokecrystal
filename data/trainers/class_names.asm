@@ -1,7 +1,7 @@
 INCLUDE "charmap.inc"
 
 
-SECTION "data/trainers/class_names.asm", ROMX
+SECTION "data/trainers/class_names", ROMX
 
 TrainerClassNames::
 ; entries correspond to trainer classes (see constants/trainer_constants.inc)

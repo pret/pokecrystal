@@ -5,7 +5,7 @@ INCLUDE "constants/pokemon_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 
 
-SECTION "engine/events/battle_tower/rules.asm", ROMX
+SECTION "engine/events/battle_tower/rules", ROMX
 
 CheckForMobileBattleRules::
 	ld de, .PointerTables

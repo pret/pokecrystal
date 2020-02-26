@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const HALLOFFAME_LANCE
 
 
-SECTION "maps/HallOfFame.asm", ROMX
+SECTION "maps/HallOfFame", ROMX
 
 HallOfFame_MapScripts::
 	db 2 ; scene scripts

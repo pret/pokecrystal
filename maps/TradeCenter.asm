@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const TRADECENTER_CHRIS2
 
 
-SECTION "maps/TradeCenter.asm", ROMX, BANK[BANK_MAP_COLOSSEUM]
+SECTION "maps/TradeCenter", ROMX, BANK[BANK_MAP_COLOSSEUM]
 
 TradeCenter_MapScripts::
 	db 2 ; scene scripts

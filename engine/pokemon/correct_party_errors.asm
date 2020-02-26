@@ -8,7 +8,7 @@ INCLUDE "constants/pokemon_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 
 
-SECTION "engine/pokemon/correct_party_errors.asm", ROMX
+SECTION "engine/pokemon/correct_party_errors", ROMX
 
 Unreferenced_CorrectPartyErrors:
 	ld hl, wPartyCount

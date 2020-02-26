@@ -5,7 +5,7 @@ INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/tileset_constants.inc"
 
 
-SECTION "engine/link/link_2.asm@LinkMonStatsScreen", ROMX
+SECTION "engine/link/link_2@LinkMonStatsScreen", ROMX
 
 LinkMonStatsScreen::
 	ld a, [wMenuCursorY]
@@ -27,7 +27,7 @@ LinkMonStatsScreen::
 	ret
 
 
-SECTION "engine/link/link_2.asm@Link_WaitBGMap", ROMX
+SECTION "engine/link/link_2@Link_WaitBGMap", ROMX
 
 Link_WaitBGMap::
 	call WaitBGMap
@@ -35,7 +35,7 @@ Link_WaitBGMap::
 	ret
 
 
-SECTION "engine/link/link_2.asm@LinkTextbox2", ROMX
+SECTION "engine/link/link_2@LinkTextbox2", ROMX
 
 LinkTextbox2::
 	ld h, d

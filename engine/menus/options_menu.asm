@@ -8,7 +8,7 @@ INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/menus/options_menu.asm", ROMX
+SECTION "engine/menus/options_menu", ROMX
 
 _OptionsMenu::
 	ld hl, hInMenu

@@ -16,7 +16,7 @@ move: MACRO
 ENDM
 
 
-SECTION "data/moves/moves.asm", ROMX
+SECTION "data/moves/moves", ROMX
 
 Moves::
 ; entries correspond to constants/move_constants.inc

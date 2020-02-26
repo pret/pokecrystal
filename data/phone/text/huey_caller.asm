@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/huey_caller.asm", ROMX
+SECTION "data/phone/text/huey_caller", ROMX
 
 HueyBattleRematchText::
 	text "Hey, I challenge"

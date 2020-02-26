@@ -8,7 +8,7 @@ INCLUDE "constants/maps_common.inc"
 	const CHERRYGROVECITY_FISHER
 
 
-SECTION "maps/CherrygroveCity.asm", ROMX
+SECTION "maps/CherrygroveCity", ROMX
 
 CherrygroveCity_MapScripts::
 	db 2 ; scene scripts

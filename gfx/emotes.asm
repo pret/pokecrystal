@@ -1,4 +1,4 @@
-SECTION "gfx/emotes.asm", ROMX
+SECTION "gfx/emotes", ROMX
 
 ShockEmote::     INCBIN "gfx/emotes/shock.2bpp"
 QuestionEmote::  INCBIN "gfx/emotes/question.2bpp"

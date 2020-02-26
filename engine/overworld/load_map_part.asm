@@ -2,7 +2,7 @@ INCLUDE "macros/coords.inc"
 INCLUDE "constants/gfx_constants.inc"
 
 
-SECTION "engine/overworld/load_map_part.asm", ROMX
+SECTION "engine/overworld/load_map_part", ROMX
 
 _LoadMapPart::
 	ld hl, wSurroundingTiles

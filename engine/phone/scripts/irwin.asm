@@ -5,7 +5,7 @@ INCLUDE "constants/script_constants.inc"
 INCLUDE "constants/trainer_constants.inc"
 
 
-SECTION "engine/phone/scripts/irwin.asm", ROMX
+SECTION "engine/phone/scripts/irwin", ROMX
 
 IrwinPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, JUGGLER, IRWIN1

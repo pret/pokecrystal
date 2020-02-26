@@ -21,7 +21,7 @@ INCLUDE "constants/sprite_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "mobile/mobile_5c.asm@Function170000", ROMX
+SECTION "mobile/mobile_5c@Function170000", ROMX
 
 Function170000::
 	ld a, [$c62b]
@@ -61,7 +61,7 @@ Function170000::
 	ret
 
 
-SECTION "mobile/mobile_5c.asm@Function17005a", ROMX
+SECTION "mobile/mobile_5c@Function17005a", ROMX
 
 Function17005a::
 	ld a, $5
@@ -100,7 +100,7 @@ Function17005a::
 	ret
 
 
-SECTION "mobile/mobile_5c.asm@BattleTowerRoomMenu", ROMX
+SECTION "mobile/mobile_5c@BattleTowerRoomMenu", ROMX
 
 INCLUDE "engine/events/battle_tower/battle_tower.inc"
 
@@ -280,7 +280,7 @@ CheckBTMonMovesForErrors:
 	ret
 
 
-SECTION "mobile/mobile_5c.asm@Function170cc6 - GFX_171848", ROMX
+SECTION "mobile/mobile_5c@Function170cc6 - GFX_171848", ROMX
 
 Function170cc6::
 	ldh a, [rSVBK]
@@ -330,7 +330,7 @@ GFX_171848:
 INCBIN "gfx/unknown/171848.2bpp"
 
 
-SECTION "mobile/mobile_5c.asm@Function1719c8 - String_171c73", ROMX
+SECTION "mobile/mobile_5c@Function1719c8 - String_171c73", ROMX
 
 Function1719c8::
 	ldh a, [hInMenu]
@@ -695,7 +695,7 @@ String_171c73:
 	next "しました@"
 
 
-SECTION "mobile/mobile_5c.asm@Function171c87 - String_172e5d", ROMX
+SECTION "mobile/mobile_5c@Function171c87 - String_172e5d", ROMX
 
 Function171c87::
 	call DisableLCD
@@ -861,7 +861,7 @@ String_172e5d:
 	next "えらんで　ください@"
 
 
-SECTION "mobile/mobile_5c.asm@Function172e78 - Attrmap_173517", ROMX
+SECTION "mobile/mobile_5c@Function172e78 - Attrmap_173517", ROMX
 
 Function172e78::
 	ld a, $7f

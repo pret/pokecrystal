@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const FASTSHIPCABINS_SW_SSW_NW_ROCKER
 
 
-SECTION "maps/FastShipCabins_SW_SSW_NW.asm", ROMX
+SECTION "maps/FastShipCabins_SW_SSW_NW", ROMX
 
 FastShipCabins_SW_SSW_NW_MapScripts::
 	db 0 ; scene scripts

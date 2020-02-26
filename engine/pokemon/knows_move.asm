@@ -3,7 +3,7 @@ INCLUDE "constants/battle_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 
 
-SECTION "engine/pokemon/knows_move.asm", ROMX
+SECTION "engine/pokemon/knows_move", ROMX
 
 KnowsMove::
 	ld a, MON_MOVES

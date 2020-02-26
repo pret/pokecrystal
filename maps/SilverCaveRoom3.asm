@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const SILVERCAVEROOM3_RED
 
 
-SECTION "maps/SilverCaveRoom3.asm", ROMX
+SECTION "maps/SilverCaveRoom3", ROMX
 
 SilverCaveRoom3_MapScripts::
 	db 0 ; scene scripts

@@ -12,7 +12,7 @@ INCLUDE "constants/maps_common.inc"
 	const SLOWPOKEWELLB1F_POKE_BALL
 
 
-SECTION "maps/SlowpokeWellB1F.asm", ROMX
+SECTION "maps/SlowpokeWellB1F", ROMX
 
 SlowpokeWellB1F_MapScripts::
 	db 0 ; scene scripts

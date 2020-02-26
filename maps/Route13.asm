@@ -8,7 +8,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE13_POKEFAN_M3
 
 
-SECTION "maps/Route13.asm", ROMX
+SECTION "maps/Route13", ROMX
 
 Route13_MapScripts::
 	db 0 ; scene scripts

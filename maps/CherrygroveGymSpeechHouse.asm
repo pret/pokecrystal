@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const CHERRYGROVEGYMSPEECHHOUSE_BUG_CATCHER
 
 
-SECTION "maps/CherrygroveGymSpeechHouse.asm", ROMX
+SECTION "maps/CherrygroveGymSpeechHouse", ROMX
 
 CherrygroveGymSpeechHouse_MapScripts::
 	db 0 ; scene scripts

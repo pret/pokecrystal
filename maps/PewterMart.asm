@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const PEWTERMART_SUPER_NERD
 
 
-SECTION "maps/PewterMart.asm", ROMX
+SECTION "maps/PewterMart", ROMX
 
 PewterMart_MapScripts::
 	db 0 ; scene scripts

@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/rockethideout.asm", ROMX
+SECTION "audio/music/rockethideout", ROMX
 
 Music_RocketHideout::
 	channel_count 4

@@ -14,7 +14,7 @@ INCLUDE "constants/trainer_data_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/overworld/wildmons.asm", ROMX
+SECTION "engine/overworld/wildmons", ROMX
 
 LoadWildMonData::
 	call _GrassWildmonLookup

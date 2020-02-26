@@ -7,7 +7,7 @@ INCLUDE "constants/menu_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/events/elevator.asm", ROMX
+SECTION "engine/events/elevator", ROMX
 
 Elevator::
 	call .LoadPointer

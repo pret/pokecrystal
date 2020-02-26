@@ -2,7 +2,7 @@ INCLUDE "macros/data.inc"
 INCLUDE "constants/floating_constants.inc"
 
 
-SECTION "data/pokemon/unown_pic_pointers.asm", ROMX[ADDR_PIC_POINTERS]
+SECTION "data/pokemon/unown_pic_pointers", ROMX[ADDR_PIC_POINTERS]
 
 UnownPicPointers::
 ; entries correspond to Unown letters, two apiece

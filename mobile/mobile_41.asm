@@ -9,7 +9,7 @@ INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "mobile/mobile_41.asm@TrainerRankings", ROMX
+SECTION "mobile/mobile_41@TrainerRankings", ROMX
 
 ; These functions deal with miscellaneous statistics
 ; which were used for Trainer Rankings in Pokémon News.
@@ -591,7 +591,7 @@ InitializeTrainerRankings:
 	ret
 
 
-SECTION "mobile/mobile_41.asm@_MobilePrintNum", ROMX
+SECTION "mobile/mobile_41@_MobilePrintNum", ROMX
 
 _MobilePrintNum::
 ; Supports signed 31-bit integers (up to 10 digits)
@@ -798,7 +798,7 @@ endr
 	ret
 
 
-SECTION "mobile/mobile_41.asm@Mobile_DummyReturnFalse", ROMX
+SECTION "mobile/mobile_41@Mobile_DummyReturnFalse", ROMX
 
 ; functions related to the cable club and various NPC scripts referencing communications
 
@@ -808,7 +808,7 @@ Mobile_DummyReturnFalse::
 	ret
 
 
-SECTION "mobile/mobile_41.asm@Stubbed_Function106314 - Function106453", ROMX
+SECTION "mobile/mobile_41@Stubbed_Function106314 - Function106453", ROMX
 
 Stubbed_Function106314:
 	ret
@@ -1026,14 +1026,14 @@ Function106453:
 	ret
 
 
-SECTION "mobile/mobile_41.asm@Stubbed_Function106462", ROMX
+SECTION "mobile/mobile_41@Stubbed_Function106462", ROMX
 
 Stubbed_Function106462::
 	ret
 	ret
 
 
-SECTION "mobile/mobile_41.asm@Function106464", ROMX
+SECTION "mobile/mobile_41@Function106464", ROMX
 
 Function106464::
 	ld de, FontsExtra_SolidBlackGFX
@@ -1057,7 +1057,7 @@ Function106464::
 	ret
 
 
-SECTION "mobile/mobile_41.asm@Function10649b - asm_1064ed", ROMX
+SECTION "mobile/mobile_41@Function10649b - asm_1064ed", ROMX
 
 Function10649b:
 	ld a, [wTextboxFrame]
@@ -1129,7 +1129,7 @@ asm_1064ed:
 	ret
 
 
-SECTION "mobile/mobile_41.asm@Function10650a", ROMX
+SECTION "mobile/mobile_41@Function10650a", ROMX
 
 Function10650a:
 	ld de, MobilePhoneTilesGFX
@@ -1138,7 +1138,7 @@ Function10650a:
 	ret
 
 
-SECTION "mobile/mobile_41.asm@GFX_106514", ROMX
+SECTION "mobile/mobile_41@GFX_106514", ROMX
 
 GFX_106514:
 INCBIN "gfx/unknown/106514.2bpp"

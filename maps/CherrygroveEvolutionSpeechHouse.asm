@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const CHERRYGROVEEVOLUTIONSPEECHHOUSE_YOUNGSTER
 
 
-SECTION "maps/CherrygroveEvolutionSpeechHouse.asm", ROMX
+SECTION "maps/CherrygroveEvolutionSpeechHouse", ROMX
 
 CherrygroveEvolutionSpeechHouse_MapScripts::
 	db 0 ; scene scripts

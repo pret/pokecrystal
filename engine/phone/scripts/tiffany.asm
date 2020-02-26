@@ -9,7 +9,7 @@ INCLUDE "constants/trainer_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/phone/scripts/tiffany.asm", ROMX, BANK[BANK_PHONE_TIFFANY]
+SECTION "engine/phone/scripts/tiffany", ROMX, BANK[BANK_PHONE_TIFFANY]
 
 TiffanyPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, PICNICKER, TIFFANY3

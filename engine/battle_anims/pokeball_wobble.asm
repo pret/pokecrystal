@@ -1,7 +1,7 @@
 INCLUDE "constants/hardware_constants.inc"
 
 
-SECTION "engine/battle_anims/pokeball_wobble.asm", ROMX
+SECTION "engine/battle_anims/pokeball_wobble", ROMX
 
 GetPokeBallWobble::
 ; Returns whether a Poke Ball will wobble in the catch animation.

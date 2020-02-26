@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const SILPHCO1F_OFFICER
 
 
-SECTION "maps/SilphCo1F.asm", ROMX
+SECTION "maps/SilphCo1F", ROMX
 
 SilphCo1F_MapScripts::
 	db 0 ; scene scripts

@@ -8,7 +8,7 @@ INCLUDE "constants/maps_common.inc"
 	const PEWTERCITY_FRUIT_TREE2
 
 
-SECTION "maps/PewterCity.asm", ROMX
+SECTION "maps/PewterCity", ROMX
 
 PewterCity_MapScripts::
 	db 0 ; scene scripts

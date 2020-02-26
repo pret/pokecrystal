@@ -6,7 +6,7 @@ INCLUDE "constants/script_constants.inc"
 INCLUDE "constants/trainer_constants.inc"
 
 
-SECTION "engine/phone/scripts/beverly.asm", ROMX
+SECTION "engine/phone/scripts/beverly", ROMX
 
 BeverlyPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, POKEFANF, BEVERLY1

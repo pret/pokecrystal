@@ -10,7 +10,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/pokemon/mon_stats.asm@DrawHP", ROMX
+SECTION "engine/pokemon/mon_stats@DrawHP", ROMX
 
 DrawPlayerHP::
 	ld a, $1
@@ -97,7 +97,7 @@ DrawHP:
 	ret
 
 
-SECTION "engine/pokemon/mon_stats.asm@PrintTempMonStats", ROMX
+SECTION "engine/pokemon/mon_stats@PrintTempMonStats", ROMX
 
 PrintTempMonStats::
 ; Print wTempMon's stats at hl, with spacing bc.
@@ -139,7 +139,7 @@ PrintTempMonStats::
 	next "@"
 
 
-SECTION "engine/pokemon/mon_stats.asm@GetGender", ROMX, BANK[BANK_PARTY_MENU]
+SECTION "engine/pokemon/mon_stats@GetGender", ROMX, BANK[BANK_PARTY_MENU]
 
 GetGender::
 ; Return the gender of a given monster (wCurPartyMon/wCurOTMon/wCurWildMon).
@@ -255,7 +255,7 @@ GetGender::
 	ret
 
 
-SECTION "engine/pokemon/mon_stats.asm@ListMovePP", ROMX
+SECTION "engine/pokemon/mon_stats@ListMovePP", ROMX
 
 ListMovePP::
 	ld a, [wNumMoves]
@@ -347,7 +347,7 @@ ListMovePP::
 	ret
 
 
-SECTION "engine/pokemon/mon_stats.asm@Unreferenced_Function50cd0", ROMX
+SECTION "engine/pokemon/mon_stats@Unreferenced_Function50cd0", ROMX
 
 Unreferenced_Function50cd0:
 .loop
@@ -363,7 +363,7 @@ Unreferenced_Function50cd0:
 
 ; FLOAT: Must be in the same bank as CopyMonToTempMon and DrawEnemyHP.
 ; Since this function is unused, this disassembly doesn't make sure that is the case.
-SECTION "engine/pokemon/mon_stats.asm@Unused_PlaceEnemyHPLevel", ROMX
+SECTION "engine/pokemon/mon_stats@Unused_PlaceEnemyHPLevel", ROMX
 
 Unused_PlaceEnemyHPLevel::
 	push hl
@@ -394,7 +394,7 @@ Unused_PlaceEnemyHPLevel::
 	ret
 
 
-SECTION "engine/pokemon/mon_stats.asm@PlaceStatusString", ROMX, BANK[BANK_PARTY_MENU]
+SECTION "engine/pokemon/mon_stats@PlaceStatusString", ROMX, BANK[BANK_PARTY_MENU]
 
 PlaceStatusString::
 	push de
@@ -464,7 +464,7 @@ FrzString: db "FRZ@"
 ParString: db "PAR@"
 
 
-SECTION "engine/pokemon/mon_stats.asm@ListMoves", ROMX
+SECTION "engine/pokemon/mon_stats@ListMoves", ROMX
 
 ListMoves::
 ; List moves at hl, spaced every [wBuffer1] tiles.

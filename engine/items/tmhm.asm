@@ -13,7 +13,7 @@ INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/items/tmhm.asm", ROMX
+SECTION "engine/items/tmhm", ROMX
 
 TMHMPocket::
 	ld a, $1

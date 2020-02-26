@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/mom.asm", ROMX
+SECTION "data/phone/text/mom", ROMX
 
 MomPhoneGreetingText::
 	text "Hello?"

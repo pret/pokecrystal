@@ -6,7 +6,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/serial_constants.inc"
 
 
-SECTION "home/battle.asm", ROM0
+SECTION "home/battle", ROM0
 
 GetPartyParamLocation::
 ; Get the location of parameter a from wCurPartyMon in hl

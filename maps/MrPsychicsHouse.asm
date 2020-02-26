@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const MRPSYCHICSHOUSE_FISHING_GURU
 
 
-SECTION "maps/MrPsychicsHouse.asm", ROMX
+SECTION "maps/MrPsychicsHouse", ROMX
 
 MrPsychicsHouse_MapScripts::
 	db 0 ; scene scripts

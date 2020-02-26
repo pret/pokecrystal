@@ -3,7 +3,7 @@ INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
 
 
-SECTION "engine/gfx/load_push_oam.asm", ROMX, BANK[BANK_GAME_INIT]
+SECTION "engine/gfx/load_push_oam", ROMX, BANK[BANK_GAME_INIT]
 
 WriteOAMDMACodeToHRAM::
 	ld c, LOW(hTransferVirtualOAM)

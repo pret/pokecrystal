@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const VIRIDIANPOKECENTER1F_BUG_CATCHER
 
 
-SECTION "maps/ViridianPokecenter1F.asm", ROMX
+SECTION "maps/ViridianPokecenter1F", ROMX
 
 ViridianPokecenter1F_MapScripts::
 	db 0 ; scene scripts

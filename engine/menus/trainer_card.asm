@@ -22,7 +22,7 @@ INCLUDE "constants/wram_constants.inc"
 	const TRAINERCARDSTATE_QUIT          ; 6
 
 
-SECTION "engine/menus/trainer_card.asm", ROMX
+SECTION "engine/menus/trainer_card", ROMX
 
 TrainerCard::
 	ld a, [wVramState]

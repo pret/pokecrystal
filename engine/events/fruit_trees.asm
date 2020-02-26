@@ -7,7 +7,7 @@ INCLUDE "constants/script_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/events/fruit_trees.asm", ROMX
+SECTION "engine/events/fruit_trees", ROMX
 
 FruitTreeScript::
 	callasm GetCurTreeFruit

@@ -22,7 +22,7 @@ GOLDENRODGAMECORNER_WOBBUFFET_COINS EQU 1500
 	const GOLDENRODGAMECORNER_MOVETUTOR
 
 
-SECTION "maps/GoldenrodGameCorner.asm", ROMX
+SECTION "maps/GoldenrodGameCorner", ROMX
 
 GoldenrodGameCorner_MapScripts::
 	db 0 ; scene scripts

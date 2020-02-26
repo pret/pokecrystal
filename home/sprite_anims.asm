@@ -1,7 +1,7 @@
 INCLUDE "macros/rst.inc"
 
 
-SECTION "home/sprite_anims.asm", ROM0
+SECTION "home/sprite_anims", ROM0
 
 InitSpriteAnimStruct::
 	ld [wSpriteAnimIDBuffer], a

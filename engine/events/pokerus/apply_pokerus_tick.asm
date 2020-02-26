@@ -1,7 +1,7 @@
 INCLUDE "constants/pokemon_data_constants.inc"
 
 
-SECTION "engine/events/pokerus/apply_pokerus_tick.asm", ROMX
+SECTION "engine/events/pokerus/apply_pokerus_tick", ROMX
 
 ApplyPokerusTick::
 ; decreases all pokemon's pokerus counter by b. if the lower nybble reaches zero, the pokerus is cured.

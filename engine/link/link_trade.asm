@@ -10,7 +10,7 @@ INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/tileset_constants.inc"
 
 
-SECTION "engine/link/link_trade.asm@_LoadTradeScreenBorder", ROMX
+SECTION "engine/link/link_trade@_LoadTradeScreenBorder", ROMX
 
 LinkCommsBorderGFX:
 INCBIN "gfx/trade/border_tiles.2bpp"
@@ -168,7 +168,7 @@ LinkTextbox::
 	ret
 
 
-SECTION "engine/link/link_trade.asm@Function16d6ce", ROMX
+SECTION "engine/link/link_trade@Function16d6ce", ROMX
 
 Function16d6ce::
 	call LoadStandardMenuHeader
@@ -195,7 +195,7 @@ Function16d6e1:
 	db "WAITING..!@"
 
 
-SECTION "engine/link/link_trade.asm@LinkTradeMenu", ROMX
+SECTION "engine/link/link_trade@LinkTradeMenu", ROMX
 
 LinkTradeMenu::
 	call .MenuAction

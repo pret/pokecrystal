@@ -9,7 +9,7 @@ GOLDENRODDEPTSTORE6F_LEMONADE_PRICE    EQU 350
 	const GOLDENRODDEPTSTORE6F_SUPER_NERD
 
 
-SECTION "maps/GoldenrodDeptStore6F.asm", ROMX
+SECTION "maps/GoldenrodDeptStore6F", ROMX
 
 GoldenrodDeptStore6F_MapScripts::
 	db 0 ; scene scripts

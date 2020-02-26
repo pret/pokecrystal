@@ -18,7 +18,7 @@ INCLUDE "constants/maps_common.inc"
 	const GOLDENRODCITY_MOVETUTOR
 
 
-SECTION "maps/GoldenrodCity.asm", ROMX
+SECTION "maps/GoldenrodCity", ROMX
 
 GoldenrodCity_MapScripts::
 	db 0 ; scene scripts

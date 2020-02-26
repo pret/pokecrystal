@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/clair.asm", ROMX
+SECTION "audio/music/clair", ROMX
 
 Music_Clair::
 	channel_count 4

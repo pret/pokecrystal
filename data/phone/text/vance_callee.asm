@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/vance_callee.asm", ROMX
+SECTION "data/phone/text/vance_callee", ROMX
 
 VanceAnswerPhoneText::
 	text "Yes, hello?"

@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE28STEELWINGHOUSE_FEAROW
 
 
-SECTION "maps/Route28SteelWingHouse.asm", ROMX
+SECTION "maps/Route28SteelWingHouse", ROMX
 
 Route28SteelWingHouse_MapScripts::
 	db 1 ; scene scripts

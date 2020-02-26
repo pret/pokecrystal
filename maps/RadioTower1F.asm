@@ -9,7 +9,7 @@ INCLUDE "constants/maps_common.inc"
 	const RADIOTOWER1F_CARD_WOMAN
 
 
-SECTION "maps/RadioTower1F.asm", ROMX
+SECTION "maps/RadioTower1F", ROMX
 
 RadioTower1F_MapScripts::
 	db 0 ; scene scripts

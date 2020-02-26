@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/kenji_callee.asm", ROMX
+SECTION "data/phone/text/kenji_callee", ROMX
 
 KenjiAnswerPhoneText::
 	text_ram wStringBuffer3

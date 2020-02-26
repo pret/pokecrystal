@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const POKESEERSHOUSE_GRANNY
 
 
-SECTION "maps/PokeSeersHouse.asm", ROMX
+SECTION "maps/PokeSeersHouse", ROMX
 
 PokeSeersHouse_MapScripts::
 	db 0 ; scene scripts

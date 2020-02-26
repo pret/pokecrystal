@@ -12,7 +12,7 @@ INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/sprite_anim_constants.inc"
 
 
-SECTION "engine/movie/evolution_animation.asm", ROMX
+SECTION "engine/movie/evolution_animation", ROMX
 
 EvolutionAnimation::
 	push hl

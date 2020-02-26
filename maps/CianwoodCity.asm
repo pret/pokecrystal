@@ -15,7 +15,7 @@ INCLUDE "constants/maps_common.inc"
 	const CIANWOODCITY_SUICUNE
 
 
-SECTION "maps/CianwoodCity.asm", ROMX
+SECTION "maps/CianwoodCity", ROMX
 
 CianwoodCity_MapScripts::
 	db 2 ; scene scripts

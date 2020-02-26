@@ -10,7 +10,7 @@ INCLUDE "constants/scgb_constants.inc"
 INCLUDE "constants/sfx_constants.inc"
 
 
-SECTION "mobile/mobile_12_2.asm@MobileCheckOwnMonAnywhere", ROMX
+SECTION "mobile/mobile_12_2@MobileCheckOwnMonAnywhere", ROMX
 
 MobileCheckOwnMonAnywhere::
 ; Like CheckOwnMonAnywhere, but only check for species.
@@ -170,7 +170,7 @@ MobileCheckOwnMonAnywhere::
 	ret
 
 
-SECTION "mobile/mobile_12_2.asm@UnusedFindItemInPCOrBag", ROMX
+SECTION "mobile/mobile_12_2@UnusedFindItemInPCOrBag", ROMX
 
 UnusedFindItemInPCOrBag::
 	ld a, [wScriptVar]
@@ -195,7 +195,7 @@ UnusedFindItemInPCOrBag::
 	ret
 
 
-SECTION "mobile/mobile_12_2.asm", ROMX
+SECTION "mobile/mobile_12_2", ROMX
 
 Function4a94e::
 	call FadeToMenu

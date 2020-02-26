@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const DRAGONSHRINE_CLAIR
 
 
-SECTION "maps/DragonShrine.asm", ROMX
+SECTION "maps/DragonShrine", ROMX
 
 DragonShrine_MapScripts::
 	db 2 ; scene scripts

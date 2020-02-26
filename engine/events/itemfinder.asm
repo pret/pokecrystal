@@ -5,7 +5,7 @@ INCLUDE "macros/scripts/text.inc"
 INCLUDE "constants/sfx_constants.inc"
 
 
-SECTION "engine/events/itemfinder.asm", ROMX
+SECTION "engine/events/itemfinder", ROMX
 
 ItemFinder::
 	farcall CheckForHiddenItems

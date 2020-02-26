@@ -8,7 +8,7 @@ INCLUDE "constants/trainer_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/phone/scripts/wade.asm", ROMX
+SECTION "engine/phone/scripts/wade", ROMX
 
 WadePhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, BUG_CATCHER, WADE1

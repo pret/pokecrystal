@@ -5,7 +5,7 @@ INCLUDE "constants/pokemon_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 
 
-SECTION "engine/events/name_rater.asm", ROMX
+SECTION "engine/events/name_rater", ROMX
 
 _NameRater::
 ; Introduce himself

@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const ELMSHOUSE_ELMS_SON
 
 
-SECTION "maps/ElmsHouse.asm", ROMX
+SECTION "maps/ElmsHouse", ROMX
 
 ElmsHouse_MapScripts::
 	db 0 ; scene scripts

@@ -5,7 +5,7 @@ INCLUDE "constants/serial_constants.inc"
 ; Functions to copy data from ROM.
 
 
-SECTION "home/gfx.asm", ROM0
+SECTION "home/gfx", ROM0
 
 Get2bpp_2::
 	ldh a, [rLCDC]

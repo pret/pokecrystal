@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/PewterPokecenter2FBeta.asm", ROMX
+SECTION "maps/PewterPokecenter2FBeta", ROMX
 
 PewterPokecenter2FBeta_MapScripts::
 	db 0 ; scene scripts

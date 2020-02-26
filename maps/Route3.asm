@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE3_FISHER2
 
 
-SECTION "maps/Route3.asm", ROMX
+SECTION "maps/Route3", ROMX
 
 Route3_MapScripts::
 	db 0 ; scene scripts

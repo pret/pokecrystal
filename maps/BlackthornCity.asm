@@ -12,7 +12,7 @@ INCLUDE "constants/maps_common.inc"
 	const BLACKTHORNCITY_COOLTRAINER_F2
 
 
-SECTION "maps/BlackthornCity.asm", ROMX
+SECTION "maps/BlackthornCity", ROMX
 
 BlackthornCity_MapScripts::
 	db 0 ; scene scripts

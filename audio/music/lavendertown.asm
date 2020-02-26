@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/lavendertown.asm", ROMX
+SECTION "audio/music/lavendertown", ROMX
 
 Music_LavenderTown::
 	channel_count 3

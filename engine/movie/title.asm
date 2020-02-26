@@ -7,7 +7,7 @@ INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/text_constants.inc"
 
 
-SECTION "engine/movie/title.asm", ROMX
+SECTION "engine/movie/title", ROMX
 
 Function10ed51:
 	call _TitleScreen

@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/dana_overworld.asm", ROMX
+SECTION "data/phone/text/dana_overworld", ROMX
 
 DanaAskNumber1Text::
 	text "You're really good"

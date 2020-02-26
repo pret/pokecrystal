@@ -2,7 +2,7 @@ INCLUDE "constants/floating_constants.inc"
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/lookrocket.asm", ROMX, BANK[BANK_MUSIC_ROCKET_ENCOUNTER]
+SECTION "audio/music/lookrocket", ROMX, BANK[BANK_MUSIC_ROCKET_ENCOUNTER]
 
 Music_LookRocket::
 	channel_count 4

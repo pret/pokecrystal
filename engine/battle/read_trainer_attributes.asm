@@ -5,7 +5,7 @@ INCLUDE "constants/trainer_constants.inc"
 INCLUDE "constants/trainer_data_constants.inc"
 
 
-SECTION "engine/battle/read_trainer_attributes.asm", ROMX, BANK[BANK_TRAINER_ATTRIBUTES]
+SECTION "engine/battle/read_trainer_attributes", ROMX, BANK[BANK_TRAINER_ATTRIBUTES]
 
 GetTrainerClassName::
 	ld hl, wRivalName

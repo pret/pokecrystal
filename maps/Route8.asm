@@ -9,7 +9,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE8_FRUIT_TREE
 
 
-SECTION "maps/Route8.asm", ROMX
+SECTION "maps/Route8", ROMX
 
 Route8_MapScripts::
 	db 0 ; scene scripts

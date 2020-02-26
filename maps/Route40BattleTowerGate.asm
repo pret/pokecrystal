@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE40BATTLETOWERGATE_TWIN
 
 
-SECTION "maps/Route40BattleTowerGate.asm", ROMX
+SECTION "maps/Route40BattleTowerGate", ROMX
 
 Route40BattleTowerGate_MapScripts::
 	db 0 ; scene scripts

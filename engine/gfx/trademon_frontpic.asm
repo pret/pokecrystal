@@ -5,7 +5,7 @@ INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/scgb_constants.inc"
 
 
-SECTION "engine/gfx/trademon_frontpic.asm@GetTrademonFrontpic", ROMX
+SECTION "engine/gfx/trademon_frontpic@GetTrademonFrontpic", ROMX
 
 GetTrademonFrontpic::
 	ld a, [wOTTrademonSpecies]
@@ -23,7 +23,7 @@ GetTrademonFrontpic::
 	ret
 
 
-SECTION "engine/gfx/trademon_frontpic.asm@AnimateTrademonFrontpic", ROMX
+SECTION "engine/gfx/trademon_frontpic@AnimateTrademonFrontpic", ROMX
 
 AnimateTrademonFrontpic::
 	ld a, [wOTTrademonSpecies]

@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const PEWTERGYM_GYM_GUY
 
 
-SECTION "maps/PewterGym.asm", ROMX
+SECTION "maps/PewterGym", ROMX
 
 PewterGym_MapScripts::
 	db 0 ; scene scripts

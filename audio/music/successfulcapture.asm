@@ -2,7 +2,7 @@ INCLUDE "constants/floating_constants.inc"
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/successfulcapture.asm", ROMX, BANK[BANK_MUSIC_WILD_VICTORY]
+SECTION "audio/music/successfulcapture", ROMX, BANK[BANK_MUSIC_WILD_VICTORY]
 
 Music_SuccessfulCapture::
 	channel_count 3

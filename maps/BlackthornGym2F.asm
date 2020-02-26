@@ -11,7 +11,7 @@ INCLUDE "constants/maps_common.inc"
 	const BLACKTHORNGYM2F_BOULDER6
 
 
-SECTION "maps/BlackthornGym2F.asm", ROMX
+SECTION "maps/BlackthornGym2F", ROMX
 
 BlackthornGym2F_MapScripts::
 	db 0 ; scene scripts

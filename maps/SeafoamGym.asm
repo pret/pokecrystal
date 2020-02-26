@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const SEAFOAMGYM_GYM_GUY
 
 
-SECTION "maps/SeafoamGym.asm", ROMX
+SECTION "maps/SeafoamGym", ROMX
 
 SeafoamGym_MapScripts::
 	db 1 ; scene scripts

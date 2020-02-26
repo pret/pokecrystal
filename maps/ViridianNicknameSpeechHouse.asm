@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const VIRIDIANNICKNAMESPEECHHOUSE_RATTEY
 
 
-SECTION "maps/ViridianNicknameSpeechHouse.asm", ROMX
+SECTION "maps/ViridianNicknameSpeechHouse", ROMX
 
 ViridianNicknameSpeechHouse_MapScripts::
 	db 0 ; scene scripts

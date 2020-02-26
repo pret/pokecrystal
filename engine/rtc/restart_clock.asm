@@ -6,7 +6,7 @@ INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/rtc/restart_clock.asm", ROMX
+SECTION "engine/rtc/restart_clock", ROMX
 
 RestartClock_GetWraparoundTime:
 	push hl

@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/pallettown.asm", ROMX
+SECTION "audio/music/pallettown", ROMX
 
 Music_PalletTown::
 	channel_count 3

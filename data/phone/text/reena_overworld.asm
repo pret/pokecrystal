@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/reena_overworld.asm", ROMX
+SECTION "data/phone/text/reena_overworld", ROMX
 
 ReenaAskNumber1Text::
 	text "Not bad…"

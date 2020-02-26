@@ -6,7 +6,7 @@ INCLUDE "constants/pokemon_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 
 
-SECTION "home/pokemon.asm", ROM0
+SECTION "home/pokemon", ROM0
 
 IsAPokemon::
 ; Return carry if species a is not a Pokemon.

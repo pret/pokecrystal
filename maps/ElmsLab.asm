@@ -9,7 +9,7 @@ INCLUDE "constants/maps_common.inc"
 	const ELMSLAB_OFFICER
 
 
-SECTION "maps/ElmsLab.asm", ROMX
+SECTION "maps/ElmsLab", ROMX
 
 ElmsLab_MapScripts::
 	db 6 ; scene scripts

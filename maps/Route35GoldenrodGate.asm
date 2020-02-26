@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE35GOLDENRODGATE_FISHER
 
 
-SECTION "maps/Route35GoldenrodGate.asm", ROMX
+SECTION "maps/Route35GoldenrodGate", ROMX
 
 Route35GoldenrodGate_MapScripts::
 	db 0 ; scene scripts

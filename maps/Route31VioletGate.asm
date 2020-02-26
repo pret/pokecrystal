@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE31VIOLETGATE_COOLTRAINER_F
 
 
-SECTION "maps/Route31VioletGate.asm", ROMX
+SECTION "maps/Route31VioletGate", ROMX
 
 Route31VioletGate_MapScripts::
 	db 0 ; scene scripts

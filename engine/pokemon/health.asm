@@ -4,7 +4,7 @@ INCLUDE "constants/pokemon_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 
 
-SECTION "engine/pokemon/health.asm", ROMX
+SECTION "engine/pokemon/health", ROMX
 
 HealParty::
 	xor a
@@ -61,7 +61,7 @@ HealPartyMon::
 	ret
 
 
-SECTION "engine/pokemon/health.asm@AnimateHPBar", ROMX, BANK[BANK_ANIMATE_HP_BAR]
+SECTION "engine/pokemon/health@AnimateHPBar", ROMX, BANK[BANK_ANIMATE_HP_BAR]
 
 ComputeHPBarPixels::
 ; e = bc * (6 * 8) / de

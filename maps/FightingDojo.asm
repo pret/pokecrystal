@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const FIGHTINGDOJO_POKE_BALL
 
 
-SECTION "maps/FightingDojo.asm", ROMX
+SECTION "maps/FightingDojo", ROMX
 
 FightingDojo_MapScripts::
 	db 0 ; scene scripts

@@ -4,7 +4,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/events/pokerus/pokerus.asm", ROMX
+SECTION "engine/events/pokerus/pokerus", ROMX
 
 GivePokerusAndConvertBerries::
 	call ConvertBerriesToBerryJuice

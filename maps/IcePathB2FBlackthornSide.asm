@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const ICEPATHB2FBLACKTHORNSIDE_POKE_BALL
 
 
-SECTION "maps/IcePathB2FBlackthornSide.asm", ROMX
+SECTION "maps/IcePathB2FBlackthornSide", ROMX
 
 IcePathB2FBlackthornSide_MapScripts::
 	db 0 ; scene scripts

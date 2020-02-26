@@ -8,7 +8,7 @@ INCLUDE "constants/maps_common.inc"
 	const ECRUTEAKPOKECENTER1F_BILL
 
 
-SECTION "maps/EcruteakPokecenter1F.asm", ROMX
+SECTION "maps/EcruteakPokecenter1F", ROMX
 
 EcruteakPokecenter1F_MapScripts::
 	db 2 ; scene scripts

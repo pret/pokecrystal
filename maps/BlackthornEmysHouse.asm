@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const BLACKTHORNEMYSHOUSE_EMY
 
 
-SECTION "maps/BlackthornEmysHouse.asm", ROMX
+SECTION "maps/BlackthornEmysHouse", ROMX
 
 BlackthornEmysHouse_MapScripts::
 	db 0 ; scene scripts

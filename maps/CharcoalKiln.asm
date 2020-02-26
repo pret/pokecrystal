@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const CHARCOALKILN_MOLTRES
 
 
-SECTION "maps/CharcoalKiln.asm", ROMX
+SECTION "maps/CharcoalKiln", ROMX
 
 CharcoalKiln_MapScripts::
 	db 0 ; scene scripts

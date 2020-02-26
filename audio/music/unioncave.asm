@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/unioncave.asm", ROMX
+SECTION "audio/music/unioncave", ROMX
 
 Music_UnionCave::
 	channel_count 4

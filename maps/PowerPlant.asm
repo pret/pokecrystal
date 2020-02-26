@@ -10,7 +10,7 @@ INCLUDE "constants/maps_common.inc"
 	const POWERPLANT_FOREST
 
 
-SECTION "maps/PowerPlant.asm", ROMX
+SECTION "maps/PowerPlant", ROMX
 
 PowerPlant_MapScripts::
 	db 2 ; scene scripts

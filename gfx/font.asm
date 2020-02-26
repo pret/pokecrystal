@@ -1,4 +1,4 @@
-SECTION "gfx/font.asm", ROMX
+SECTION "gfx/font", ROMX
 
 FontExtra::
 INCBIN "gfx/font/font_extra.2bpp"

@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const VERMILIONMAGNETTRAINSPEECHHOUSE_YOUNGSTER
 
 
-SECTION "maps/VermilionMagnetTrainSpeechHouse.asm", ROMX
+SECTION "maps/VermilionMagnetTrainSpeechHouse", ROMX
 
 VermilionMagnetTrainSpeechHouse_MapScripts::
 	db 0 ; scene scripts

@@ -12,7 +12,7 @@ INCLUDE "constants/printer_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/printer/printer.asm", ROMX
+SECTION "engine/printer/printer", ROMX
 
 INCLUDE "engine/printer/printer_serial.inc"
 

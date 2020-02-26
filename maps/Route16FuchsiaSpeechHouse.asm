@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE16FUCHSIASPEECHHOUSE_SUPER_NERD
 
 
-SECTION "maps/Route16FuchsiaSpeechHouse.asm", ROMX
+SECTION "maps/Route16FuchsiaSpeechHouse", ROMX
 
 Route16FuchsiaSpeechHouse_MapScripts::
 	db 0 ; scene scripts

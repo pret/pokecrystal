@@ -4,7 +4,7 @@ INCLUDE "constants/item_constants.inc"
 INCLUDE "constants/sfx_constants.inc"
 
 
-SECTION "data/moves/animations.asm", ROMX
+SECTION "data/moves/animations", ROMX
 
 BattleAnimations::
 ; entries correspond to constants/move_constants.inc

@@ -21,7 +21,7 @@ INCLUDE "constants/tileset_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/crystal.asm", ROMX
+SECTION "engine/crystal", ROMX
 
 INCLUDE "engine/menus/init_gender.inc"
 INCLUDE "engine/items/pack_kris.inc"

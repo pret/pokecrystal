@@ -9,7 +9,7 @@ INCLUDE "constants/maps_common.inc"
 	const FUCHSIAGYM_GYM_GUY
 
 
-SECTION "maps/FuchsiaGym.asm", ROMX
+SECTION "maps/FuchsiaGym", ROMX
 
 FuchsiaGym_MapScripts::
 	db 0 ; scene scripts

@@ -15,7 +15,7 @@ UNOWNSTAMP_BOLD_A EQU "♂" ; $ef
 UNOWNSTAMP_BOLD_B EQU "♀" ; $f5
 
 
-SECTION "engine/events/print_unown.asm", ROMX
+SECTION "engine/events/print_unown", ROMX
 
 _UnownPrinter::
 	ld a, [wUnownDex]
@@ -235,7 +235,7 @@ UnownDexBTile:
 INCBIN "gfx/printer/bold_b.1bpp"
 
 
-SECTION "engine/events/print_unown.asm@PlaceUnownPrinterFrontpic", ROMX
+SECTION "engine/events/print_unown@PlaceUnownPrinterFrontpic", ROMX
 
 PlaceUnownPrinterFrontpic::
 	hlcoord 0, 0

@@ -13,7 +13,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE41_SWIMMER_GIRL5
 
 
-SECTION "maps/Route41.asm", ROMX
+SECTION "maps/Route41", ROMX
 
 Route41_MapScripts::
 	db 0 ; scene scripts

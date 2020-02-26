@@ -2,7 +2,7 @@ INCLUDE "charmap.inc"
 INCLUDE "constants/text_constants.inc"
 
 
-SECTION "home/print_bcd.asm", ROM0
+SECTION "home/print_bcd", ROM0
 
 PrintBCDNumber::
 ; function to print a BCD (Binary-coded decimal) number

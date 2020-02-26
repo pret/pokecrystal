@@ -6,7 +6,7 @@ INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/events/catch_tutorial.asm", ROMX
+SECTION "engine/events/catch_tutorial", ROMX
 
 CatchTutorial::
 	ld a, [wBattleType]

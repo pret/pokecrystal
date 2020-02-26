@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const SAFFRONMART_COOLTRAINER_F
 
 
-SECTION "maps/SaffronMart.asm", ROMX
+SECTION "maps/SaffronMart", ROMX
 
 SaffronMart_MapScripts::
 	db 0 ; scene scripts

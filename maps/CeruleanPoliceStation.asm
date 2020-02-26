@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const CERULEANPOLICESTATION_DIGLETT
 
 
-SECTION "maps/CeruleanPoliceStation.asm", ROMX
+SECTION "maps/CeruleanPoliceStation", ROMX
 
 CeruleanPoliceStation_MapScripts::
 	db 0 ; scene scripts

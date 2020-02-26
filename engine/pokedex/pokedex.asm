@@ -37,7 +37,7 @@ POKEDEX_SCX EQU 5
 GLOBAL POKEDEX_SCX
 
 
-SECTION "engine/pokedex/pokedex.asm", ROMX
+SECTION "engine/pokedex/pokedex", ROMX
 
 Pokedex::
 	ldh a, [hWX]

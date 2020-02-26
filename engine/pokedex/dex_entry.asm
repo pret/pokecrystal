@@ -4,7 +4,7 @@ INCLUDE "macros/coords.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 
 
-SECTION "engine/pokedex/dex_entry.asm", ROMX
+SECTION "engine/pokedex/dex_entry", ROMX
 
 DisplayDexEntry::
 	call GetPokemonName
@@ -175,10 +175,10 @@ GetDexEntryPointer:
 	ret
 
 .PokedexEntryBanks:
-	db BANK("data/pokemon/dex_entries.asm@Pokedex Entries 001-064")
-	db BANK("data/pokemon/dex_entries.asm@Pokedex Entries 065-128")
-	db BANK("data/pokemon/dex_entries.asm@Pokedex Entries 129-192")
-	db BANK("data/pokemon/dex_entries.asm@Pokedex Entries 193-251")
+	db BANK("data/pokemon/dex_entries@Pokedex Entries 001-064")
+	db BANK("data/pokemon/dex_entries@Pokedex Entries 065-128")
+	db BANK("data/pokemon/dex_entries@Pokedex Entries 129-192")
+	db BANK("data/pokemon/dex_entries@Pokedex Entries 193-251")
 
 GetDexEntryPagePointer::
 	call GetDexEntryPointer

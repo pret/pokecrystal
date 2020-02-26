@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/battletowertheme.asm", ROMX
+SECTION "audio/music/battletowertheme", ROMX
 
 Music_BattleTowerTheme::
 	channel_count 4

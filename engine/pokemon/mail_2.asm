@@ -10,7 +10,7 @@ INCLUDE "constants/item_data_constants.inc"
 INCLUDE "constants/text_constants.inc"
 
 
-SECTION "engine/pokemon/mail_2.asm@ReadAnyMail", ROMX
+SECTION "engine/pokemon/mail_2@ReadAnyMail", ROMX
 
 ReadPartyMonMail::
 	ld a, [wCurPartyMon]
@@ -926,7 +926,7 @@ LoadMailGFX_Color3:
 INCLUDE "gfx/mail.inc"
 
 
-SECTION "engine/pokemon/mail_2.asm@ItemIsMail", ROMX
+SECTION "engine/pokemon/mail_2@ItemIsMail", ROMX
 
 ItemIsMail::
 	ld a, d

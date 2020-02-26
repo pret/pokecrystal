@@ -9,7 +9,7 @@ INCLUDE "constants/script_constants.inc"
 INCLUDE "constants/sfx_constants.inc"
 
 
-SECTION "engine/overworld/player_movement.asm", ROMX
+SECTION "engine/overworld/player_movement", ROMX
 
 DoPlayerMovement::
 
@@ -820,7 +820,7 @@ CheckStandingOnIce::
 	ret
 
 
-SECTION "engine/overworld/player_movement.asm@StopPlayerForEvent", ROMX
+SECTION "engine/overworld/player_movement@StopPlayerForEvent", ROMX
 
 StopPlayerForEvent::
 	ld hl, wPlayerNextMovement

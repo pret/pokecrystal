@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/lookofficer.asm", ROMX
+SECTION "audio/music/lookofficer", ROMX
 
 Music_LookOfficer::
 	channel_count 3

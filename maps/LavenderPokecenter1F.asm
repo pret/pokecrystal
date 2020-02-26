@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const LAVENDERPOKECENTER1F_YOUNGSTER
 
 
-SECTION "maps/LavenderPokecenter1F.asm", ROMX
+SECTION "maps/LavenderPokecenter1F", ROMX
 
 LavenderPokecenter1F_MapScripts::
 	db 0 ; scene scripts

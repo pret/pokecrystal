@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const VIRIDIANCITY_YOUNGSTER
 
 
-SECTION "maps/ViridianCity.asm", ROMX
+SECTION "maps/ViridianCity", ROMX
 
 ViridianCity_MapScripts::
 	db 0 ; scene scripts

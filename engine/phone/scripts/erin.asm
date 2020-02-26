@@ -7,7 +7,7 @@ INCLUDE "constants/trainer_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/phone/scripts/erin.asm", ROMX
+SECTION "engine/phone/scripts/erin", ROMX
 
 ErinPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, PICNICKER, ERIN1

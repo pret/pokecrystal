@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const OLIVINEPOKECENTER1F_TEACHER
 
 
-SECTION "maps/OlivinePokecenter1F.asm", ROMX
+SECTION "maps/OlivinePokecenter1F", ROMX
 
 OlivinePokecenter1F_MapScripts::
 	db 0 ; scene scripts

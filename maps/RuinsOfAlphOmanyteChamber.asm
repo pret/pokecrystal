@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/RuinsOfAlphOmanyteChamber.asm", ROMX
+SECTION "maps/RuinsOfAlphOmanyteChamber", ROMX
 
 RuinsOfAlphOmanyteChamber_MapScripts::
 	db 2 ; scene scripts

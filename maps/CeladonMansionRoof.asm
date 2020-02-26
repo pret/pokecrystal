@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const CELADONMANSIONROOF_FISHER
 
 
-SECTION "maps/CeladonMansionRoof.asm", ROMX
+SECTION "maps/CeladonMansionRoof", ROMX
 
 CeladonMansionRoof_MapScripts::
 	db 0 ; scene scripts

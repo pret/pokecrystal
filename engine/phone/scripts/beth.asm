@@ -7,7 +7,7 @@ INCLUDE "constants/trainer_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/phone/scripts/beth.asm", ROMX
+SECTION "engine/phone/scripts/beth", ROMX
 
 BethPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, COOLTRAINERF, BETH1

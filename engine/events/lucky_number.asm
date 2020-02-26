@@ -6,7 +6,7 @@ INCLUDE "constants/pokemon_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 
 
-SECTION "engine/events/lucky_number.asm@CheckForLuckyNumberWinners", ROMX
+SECTION "engine/events/lucky_number@CheckForLuckyNumberWinners", ROMX
 
 CheckForLuckyNumberWinners::
 	xor a
@@ -225,7 +225,7 @@ CheckForLuckyNumberWinners::
 	text_end
 
 
-SECTION "engine/events/lucky_number.asm@PrintTodaysLuckyNumber", ROMX
+SECTION "engine/events/lucky_number@PrintTodaysLuckyNumber", ROMX
 
 PrintTodaysLuckyNumber::
 	ld hl, wStringBuffer3

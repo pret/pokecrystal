@@ -6,7 +6,7 @@ INCLUDE "constants/map_object_constants.inc"
 ; Functions handling map objects.
 
 
-SECTION "home/map_objects.asm", ROM0
+SECTION "home/map_objects", ROM0
 
 GetSpritePalette::
 	push hl

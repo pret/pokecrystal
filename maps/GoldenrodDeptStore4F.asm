@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const GOLDENRODDEPTSTORE4F_GAMEBOY_KID
 
 
-SECTION "maps/GoldenrodDeptStore4F.asm", ROMX
+SECTION "maps/GoldenrodDeptStore4F", ROMX
 
 GoldenrodDeptStore4F_MapScripts::
 	db 0 ; scene scripts

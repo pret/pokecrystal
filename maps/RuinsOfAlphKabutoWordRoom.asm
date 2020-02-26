@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/RuinsOfAlphKabutoWordRoom.asm", ROMX
+SECTION "maps/RuinsOfAlphKabutoWordRoom", ROMX
 
 RuinsOfAlphKabutoWordRoom_MapScripts::
 	db 0 ; scene scripts

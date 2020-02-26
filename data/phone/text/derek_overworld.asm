@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/derek_overworld.asm", ROMX
+SECTION "data/phone/text/derek_overworld", ROMX
 
 DerekAskNumber1Text::
 	text "Oh, wow! PIKACHU!"

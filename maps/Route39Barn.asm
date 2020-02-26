@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE39BARN_MOOMOO
 
 
-SECTION "maps/Route39Barn.asm", ROMX
+SECTION "maps/Route39Barn", ROMX
 
 Route39Barn_MapScripts::
 	db 0 ; scene scripts

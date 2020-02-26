@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const CIANWOODPHARMACY_PHARMACIST
 
 
-SECTION "maps/CianwoodPharmacy.asm", ROMX
+SECTION "maps/CianwoodPharmacy", ROMX
 
 CianwoodPharmacy_MapScripts::
 	db 1 ; scene scripts

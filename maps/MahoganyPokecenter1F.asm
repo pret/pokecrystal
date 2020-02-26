@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const MAHOGANYPOKECENTER1F_COOLTRAINER_F
 
 
-SECTION "maps/MahoganyPokecenter1F.asm", ROMX
+SECTION "maps/MahoganyPokecenter1F", ROMX
 
 MahoganyPokecenter1F_MapScripts::
 	db 0 ; scene scripts

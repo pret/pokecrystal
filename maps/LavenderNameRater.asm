@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const LAVENDERNAMERATER_NAME_RATER
 
 
-SECTION "maps/LavenderNameRater.asm", ROMX
+SECTION "maps/LavenderNameRater", ROMX
 
 LavenderNameRater_MapScripts::
 	db 1 ; scene scripts

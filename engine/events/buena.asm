@@ -9,7 +9,7 @@ INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/text_constants.inc"
 
 
-SECTION "engine/events/buena.asm@BuenasPassword", ROMX
+SECTION "engine/events/buena@BuenasPassword", ROMX
 
 BuenasPassword::
 	xor a
@@ -77,7 +77,7 @@ endr
 	ret
 
 
-SECTION "engine/events/buena.asm@BuenaPrize", ROMX
+SECTION "engine/events/buena@BuenaPrize", ROMX
 
 BuenaPrize::
 	xor a

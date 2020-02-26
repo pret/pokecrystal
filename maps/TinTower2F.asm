@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/TinTower2F.asm", ROMX
+SECTION "maps/TinTower2F", ROMX
 
 TinTower2F_MapScripts::
 	db 0 ; scene scripts

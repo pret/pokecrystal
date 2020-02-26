@@ -6,7 +6,7 @@ INCLUDE "constants/script_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/phone/scripts/buena.asm", ROMX
+SECTION "engine/phone/scripts/buena", ROMX
 
 BuenaPhoneCalleeScript::
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER

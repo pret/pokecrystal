@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const FUCHSIAMART_COOLTRAINER_F
 
 
-SECTION "maps/FuchsiaMart.asm", ROMX
+SECTION "maps/FuchsiaMart", ROMX
 
 FuchsiaMart_MapScripts::
 	db 0 ; scene scripts

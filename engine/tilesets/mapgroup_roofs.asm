@@ -2,7 +2,7 @@ INCLUDE "macros/gfx.inc"
 INCLUDE "constants/gfx_constants.inc"
 
 
-SECTION "engine/tilesets/mapgroup_roofs.asm", ROMX
+SECTION "engine/tilesets/mapgroup_roofs", ROMX
 
 LoadMapGroupRoof::
 	ld a, [wMapGroup]

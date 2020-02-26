@@ -5,7 +5,7 @@ INCLUDE "constants/tileset_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/tilesets/tileset_anims.asm", ROMX
+SECTION "engine/tilesets/tileset_anims", ROMX
 
 _AnimateTileset::
 ; Iterate over a given pointer array of

@@ -3,7 +3,7 @@ INCLUDE "constants/battle_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 
 
-SECTION "engine/pokemon/move_mon_wo_mail.asm", ROMX
+SECTION "engine/pokemon/move_mon_wo_mail", ROMX
 
 InsertPokemonIntoBox::
 	ld a, BANK(sBoxCount)

@@ -7,7 +7,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/events/happiness_egg.asm@ChangeHappiness", ROMX, BANK[BANK_HAPPINESS]
+SECTION "engine/events/happiness_egg@ChangeHappiness", ROMX, BANK[BANK_HAPPINESS]
 
 GetFirstPokemonHappiness::
 	ld hl, wPartyMon1Happiness
@@ -116,7 +116,7 @@ ChangeHappiness::
 INCLUDE "data/events/happiness_changes.inc"
 
 
-SECTION "engine/events/happiness_egg.asm@StepHappiness", ROMX
+SECTION "engine/events/happiness_egg@StepHappiness", ROMX
 
 StepHappiness::
 ; Raise the party's happiness by 1 point every other step cycle.
@@ -154,7 +154,7 @@ StepHappiness::
 	ret
 
 
-SECTION "engine/events/happiness_egg.asm@DayCareStep", ROMX
+SECTION "engine/events/happiness_egg@DayCareStep", ROMX
 
 DayCareStep::
 ; Raise the experience of Day-Care Pokémon every step cycle.

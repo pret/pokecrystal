@@ -14,7 +14,7 @@ INCLUDE "constants/trainer_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/phone/phone.asm", ROMX, BANK[BANK_PHONE_CALL]
+SECTION "engine/phone/phone", ROMX, BANK[BANK_PHONE_CALL]
 
 FarPlaceString:
 	ldh a, [hROMBank]

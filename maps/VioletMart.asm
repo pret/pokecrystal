@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const VIOLETMART_COOLTRAINER_M
 
 
-SECTION "maps/VioletMart.asm", ROMX
+SECTION "maps/VioletMart", ROMX
 
 VioletMart_MapScripts::
 	db 0 ; scene scripts

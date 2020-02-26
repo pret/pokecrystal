@@ -8,7 +8,7 @@ INCLUDE "constants/maps_common.inc"
 	const CELADONCAFE_TEACHER
 
 
-SECTION "maps/CeladonCafe.asm", ROMX
+SECTION "maps/CeladonCafe", ROMX
 
 CeladonCafe_MapScripts::
 	db 0 ; scene scripts

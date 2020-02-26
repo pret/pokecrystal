@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/dragonsden.asm", ROMX
+SECTION "audio/music/dragonsden", ROMX
 
 Music_DragonsDen::
 	channel_count 4

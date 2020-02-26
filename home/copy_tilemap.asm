@@ -3,7 +3,7 @@ INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
 
 
-SECTION "home/copy_tilemap.asm", ROM0
+SECTION "home/copy_tilemap", ROM0
 
 LoadTilemapToTempTilemap::
 ; Load wTilemap into wTempTilemap

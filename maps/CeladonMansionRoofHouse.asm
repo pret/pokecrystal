@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const CELADONMANSIONROOFHOUSE_PHARMACIST
 
 
-SECTION "maps/CeladonMansionRoofHouse.asm", ROMX
+SECTION "maps/CeladonMansionRoofHouse", ROMX
 
 CeladonMansionRoofHouse_MapScripts::
 	db 0 ; scene scripts

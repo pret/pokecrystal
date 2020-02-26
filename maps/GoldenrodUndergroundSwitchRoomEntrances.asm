@@ -47,7 +47,7 @@ ENDM
 	const GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
 
 
-SECTION "maps/GoldenrodUndergroundSwitchRoomEntrances.asm", ROMX
+SECTION "maps/GoldenrodUndergroundSwitchRoomEntrances", ROMX
 
 GoldenrodUndergroundSwitchRoomEntrances_MapScripts::
 	db 2 ; scene scripts

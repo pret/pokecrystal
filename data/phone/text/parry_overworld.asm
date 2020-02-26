@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/parry_overworld.asm", ROMX
+SECTION "data/phone/text/parry_overworld", ROMX
 
 ParryAskNumber1Text::
 	text "Sheesh, the way"

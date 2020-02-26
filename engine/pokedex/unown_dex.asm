@@ -4,7 +4,7 @@ INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/pokemon_constants.inc"
 
 
-SECTION "engine/pokedex/unown_dex.asm@UpdateUnownDex", ROMX
+SECTION "engine/pokedex/unown_dex@UpdateUnownDex", ROMX
 
 UpdateUnownDex::
 	ld a, [wUnownLetter]
@@ -27,7 +27,7 @@ UpdateUnownDex::
 	ret
 
 
-SECTION "engine/pokedex/unown_dex.asm@PrintUnownWord", ROMX
+SECTION "engine/pokedex/unown_dex@PrintUnownWord", ROMX
 
 PrintUnownWord::
 	hlcoord 4, 15

@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const COLOSSEUM_CHRIS2
 
 
-SECTION "maps/Colosseum.asm", ROMX, BANK[BANK_MAP_COLOSSEUM]
+SECTION "maps/Colosseum", ROMX, BANK[BANK_MAP_COLOSSEUM]
 
 Colosseum_MapScripts::
 	db 3 ; scene scripts

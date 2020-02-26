@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const CELADONMANSION3F_FISHER
 
 
-SECTION "maps/CeladonMansion3F.asm", ROMX
+SECTION "maps/CeladonMansion3F", ROMX
 
 CeladonMansion3F_MapScripts::
 	db 0 ; scene scripts

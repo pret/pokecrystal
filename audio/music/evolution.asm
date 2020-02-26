@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/evolution.asm", ROMX
+SECTION "audio/music/evolution", ROMX
 
 Music_Evolution::
 	channel_count 4

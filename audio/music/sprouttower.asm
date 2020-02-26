@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/sprouttower.asm", ROMX
+SECTION "audio/music/sprouttower", ROMX
 
 Music_SproutTower::
 	channel_count 4

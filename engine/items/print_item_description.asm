@@ -4,7 +4,7 @@ INCLUDE "macros/scripts/text.inc"
 INCLUDE "constants/item_constants.inc"
 
 
-SECTION "engine/items/print_item_description.asm", ROMX
+SECTION "engine/items/print_item_description", ROMX
 
 PrintItemDescription::
 ; Print the description for item [wCurSpecies] at de.

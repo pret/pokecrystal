@@ -1,4 +1,4 @@
-SECTION "gfx/pokemon/bitmasks.asm", ROMX
+SECTION "gfx/pokemon/bitmasks", ROMX
 
 INCLUDE "gfx/pokemon/bitmask_pointers.inc"
 

@@ -5,7 +5,7 @@ INCLUDE "constants/map_object_constants.inc"
 INCLUDE "constants/misc_constants.inc"
 
 
-SECTION "engine/events/card_key.asm", ROMX
+SECTION "engine/events/card_key", ROMX
 
 _CardKey::
 ; Are we even in the right map to use this?

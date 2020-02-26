@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const FUCHSIACITY_FRUIT_TREE
 
 
-SECTION "maps/FuchsiaCity.asm", ROMX
+SECTION "maps/FuchsiaCity", ROMX
 
 FuchsiaCity_MapScripts::
 	db 0 ; scene scripts

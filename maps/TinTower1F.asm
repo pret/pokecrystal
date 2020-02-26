@@ -13,7 +13,7 @@ INCLUDE "constants/maps_common.inc"
 	const TINTOWER1F_SAGE6
 
 
-SECTION "maps/TinTower1F.asm", ROMX
+SECTION "maps/TinTower1F", ROMX
 
 TinTower1F_MapScripts::
 	db 2 ; scene scripts

@@ -12,7 +12,7 @@ INCLUDE "constants/maps_common.inc"
 	const UNIONCAVE1F_POKE_BALL4
 
 
-SECTION "maps/UnionCave1F.asm", ROMX
+SECTION "maps/UnionCave1F", ROMX
 
 UnionCave1F_MapScripts::
 	db 0 ; scene scripts

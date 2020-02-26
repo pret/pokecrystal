@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/cherrygrovecity.asm", ROMX
+SECTION "audio/music/cherrygrovecity", ROMX
 
 Music_CherrygroveCity::
 	channel_count 4

@@ -1,7 +1,7 @@
 INCLUDE "macros/rst.inc"
 
 
-SECTION "engine/events/play_slow_cry.asm", ROMX
+SECTION "engine/events/play_slow_cry", ROMX
 
 PlaySlowCry::
 	ld a, [wScriptVar]

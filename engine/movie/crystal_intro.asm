@@ -13,7 +13,7 @@ INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/sprite_anim_constants.inc"
 
 
-SECTION "engine/movie/crystal_intro.asm@Copyright_GFPresents", ROMX
+SECTION "engine/movie/crystal_intro@Copyright_GFPresents", ROMX
 
 Copyright_GFPresents::
 	ld de, MUSIC_NONE
@@ -351,7 +351,7 @@ INCBIN "gfx/splash/logo1.1bpp"
 INCBIN "gfx/splash/logo2.1bpp"
 
 
-SECTION "engine/movie/crystal_intro.asm", ROMX
+SECTION "engine/movie/crystal_intro", ROMX
 
 CrystalIntro::
 	ldh a, [rSVBK]

@@ -3,7 +3,7 @@ INCLUDE "constants/floating_constants.inc"
 INCLUDE "constants/misc_constants.inc"
 
 
-SECTION "engine/events/bug_contest/contest_2.asm@SelectRandomBugContestContestants", ROMX, BANK[BANK_BUG_CONTEST_JUDGING]
+SECTION "engine/events/bug_contest/contest_2@SelectRandomBugContestContestants", ROMX, BANK[BANK_BUG_CONTEST_JUDGING]
 
 SelectRandomBugContestContestants::
 ; Select five random people to participate in the current contest.
@@ -80,7 +80,7 @@ CheckBugContestContestantFlag::
 INCLUDE "data/events/bug_contest_flags.inc"
 
 
-SECTION "engine/events/bug_contest/contest_2.asm@ContestDropOffMons", ROMX
+SECTION "engine/events/bug_contest/contest_2@ContestDropOffMons", ROMX
 
 ContestDropOffMons::
 	ld hl, wPartyMon1HP
@@ -107,7 +107,7 @@ ContestDropOffMons::
 	ret
 
 
-SECTION "engine/events/bug_contest/contest_2.asm@ContestReturnMons", ROMX
+SECTION "engine/events/bug_contest/contest_2@ContestReturnMons", ROMX
 
 ContestReturnMons::
 ; Restore the species of the second mon.

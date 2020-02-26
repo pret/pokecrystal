@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const GOLDENRODFLOWERSHOP_FLORIA
 
 
-SECTION "maps/GoldenrodFlowerShop.asm", ROMX
+SECTION "maps/GoldenrodFlowerShop", ROMX
 
 GoldenrodFlowerShop_MapScripts::
 	db 0 ; scene scripts

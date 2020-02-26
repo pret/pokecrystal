@@ -1,4 +1,4 @@
-SECTION "gfx/battle_anims.asm", ROMX
+SECTION "gfx/battle_anims", ROMX
 
 AnimObj00GFX::
 AnimObjHitGFX::       INCBIN "gfx/battle_anims/hit.2bpp.lz"

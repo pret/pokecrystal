@@ -8,7 +8,7 @@ INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "home/joypad.asm", ROM0
+SECTION "home/joypad", ROM0
 
 Joypad::
 ; Replaced by Joypad, called from VBlank instead of the useless

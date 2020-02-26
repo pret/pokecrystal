@@ -8,7 +8,7 @@ INCLUDE "constants/trainer_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/battle/start_battle.asm@ShowLinkBattleParticipants", ROMX
+SECTION "engine/battle/start_battle@ShowLinkBattleParticipants", ROMX
 
 ShowLinkBattleParticipants::
 ; If we're not in a communications room,
@@ -25,7 +25,7 @@ ShowLinkBattleParticipants::
 	ret
 
 
-SECTION "engine/battle/start_battle.asm@FindFirstAliveMonAndStartBattle", ROMX
+SECTION "engine/battle/start_battle@FindFirstAliveMonAndStartBattle", ROMX
 
 FindFirstAliveMonAndStartBattle::
 	xor a
@@ -62,7 +62,7 @@ FindFirstAliveMonAndStartBattle::
 	ret
 
 
-SECTION "engine/battle/start_battle.asm@PlayBattleMusic", ROMX
+SECTION "engine/battle/start_battle@PlayBattleMusic", ROMX
 
 PlayBattleMusic::
 	push hl
@@ -167,7 +167,7 @@ PlayBattleMusic::
 	ret
 
 
-SECTION "engine/battle/start_battle.asm@ClearBattleRAM", ROMX
+SECTION "engine/battle/start_battle@ClearBattleRAM", ROMX
 
 ClearBattleRAM::
 	xor a

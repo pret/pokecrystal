@@ -6,7 +6,7 @@ INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/gfx/load_font.asm@Unreferenced", ROMX
+SECTION "engine/gfx/load_font@Unreferenced", ROMX
 
 ; This and the following two functions are unreferenced.
 ; Debug, perhaps?
@@ -27,7 +27,7 @@ Unreferenced_Functionfb43f:
 ; End unreferenced block
 
 
-SECTION "engine/gfx/load_font.asm@_LoadStandardFont", ROMX
+SECTION "engine/gfx/load_font@_LoadStandardFont", ROMX
 
 _LoadStandardFont::
 	ld de, Font
@@ -56,7 +56,7 @@ _LoadStandardFont::
 	ret
 
 
-SECTION "engine/gfx/load_font.asm", ROMX
+SECTION "engine/gfx/load_font", ROMX
 
 _LoadFontsExtra1::
 	ld de, FontsExtra_SolidBlackGFX

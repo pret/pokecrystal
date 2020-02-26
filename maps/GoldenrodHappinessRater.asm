@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const GOLDENRODHAPPINESSRATER_TWIN
 
 
-SECTION "maps/GoldenrodHappinessRater.asm", ROMX
+SECTION "maps/GoldenrodHappinessRater", ROMX
 
 GoldenrodHappinessRater_MapScripts::
 	db 0 ; scene scripts

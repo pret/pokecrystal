@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE30BERRYHOUSE_POKEFAN_M
 
 
-SECTION "maps/Route30BerryHouse.asm", ROMX
+SECTION "maps/Route30BerryHouse", ROMX
 
 Route30BerryHouse_MapScripts::
 	db 0 ; scene scripts

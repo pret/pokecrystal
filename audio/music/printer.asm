@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/printer.asm", ROMX
+SECTION "audio/music/printer", ROMX
 
 Music_Printer::
 	channel_count 1

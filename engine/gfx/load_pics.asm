@@ -5,7 +5,7 @@ INCLUDE "constants/pokemon_constants.inc"
 INCLUDE "constants/trainer_constants.inc"
 
 
-SECTION "engine/gfx/load_pics.asm@GetUnownLetter", ROMX
+SECTION "engine/gfx/load_pics@GetUnownLetter", ROMX
 
 GetUnownLetter::
 ; Return Unown letter in wUnownLetter based on DVs at hl
@@ -58,7 +58,7 @@ GetUnownLetter::
 	ret
 
 
-SECTION "engine/gfx/load_pics.asm", ROMX
+SECTION "engine/gfx/load_pics", ROMX
 
 GetMonFrontpic::
 	ld a, [wCurPartySpecies]
@@ -263,7 +263,7 @@ GLOBAL PICS_FIX
 
 	push hl
 	push bc
-	sub BANK("gfx/pics.asm@Pics 1") - PICS_FIX
+	sub BANK("gfx/pics@Pics 1") - PICS_FIX
 	ld c, a
 	ld b, 0
 	ld hl, .PicsBanks
@@ -274,30 +274,30 @@ GLOBAL PICS_FIX
 	ret
 
 .PicsBanks:
-	db BANK("gfx/pics.asm@Pics 1")  ; BANK("gfx/pics.asm@Pics 1") + 0
-	db BANK("gfx/pics.asm@Pics 2")  ; BANK("gfx/pics.asm@Pics 1") + 1
-	db BANK("gfx/pics.asm@Pics 3")  ; BANK("gfx/pics.asm@Pics 1") + 2
-	db BANK("gfx/pics.asm@Pics 4")  ; BANK("gfx/pics.asm@Pics 1") + 3
-	db BANK("gfx/pics.asm@Pics 5")  ; BANK("gfx/pics.asm@Pics 1") + 4
-	db BANK("gfx/pics.asm@Pics 6")  ; BANK("gfx/pics.asm@Pics 1") + 5
-	db BANK("gfx/pics.asm@Pics 7")  ; BANK("gfx/pics.asm@Pics 1") + 6
-	db BANK("gfx/pics.asm@Pics 8")  ; BANK("gfx/pics.asm@Pics 1") + 7
-	db BANK("gfx/pics.asm@Pics 9")  ; BANK("gfx/pics.asm@Pics 1") + 8
-	db BANK("gfx/pics.asm@Pics 10") ; BANK("gfx/pics.asm@Pics 1") + 9
-	db BANK("gfx/pics.asm@Pics 11") ; BANK("gfx/pics.asm@Pics 1") + 10
-	db BANK("gfx/pics.asm@Pics 12") ; BANK("gfx/pics.asm@Pics 1") + 11
-	db BANK("gfx/pics.asm@Pics 13") ; BANK("gfx/pics.asm@Pics 1") + 12
-	db BANK("gfx/pics.asm@Pics 14") ; BANK("gfx/pics.asm@Pics 1") + 13
-	db BANK("gfx/pics.asm@Pics 15") ; BANK("gfx/pics.asm@Pics 1") + 14
-	db BANK("gfx/pics.asm@Pics 16") ; BANK("gfx/pics.asm@Pics 1") + 15
-	db BANK("gfx/pics.asm@Pics 17") ; BANK("gfx/pics.asm@Pics 1") + 16
-	db BANK("gfx/pics.asm@Pics 18") ; BANK("gfx/pics.asm@Pics 1") + 17
-	db BANK("gfx/pics.asm@Pics 19") ; BANK("gfx/pics.asm@Pics 1") + 18
-	db BANK("gfx/pics.asm@Pics 20") ; BANK("gfx/pics.asm@Pics 1") + 19
-	db BANK("gfx/pics.asm@Pics 21") ; BANK("gfx/pics.asm@Pics 1") + 20
-	db BANK("gfx/pics.asm@Pics 22") ; BANK("gfx/pics.asm@Pics 1") + 21
-	db BANK("gfx/pics.asm@Pics 23") ; BANK("gfx/pics.asm@Pics 1") + 22
-	db BANK("gfx/pics.asm@Pics 24") ; BANK("gfx/pics.asm@Pics 1") + 23
+	db BANK("gfx/pics@Pics 1")  ; BANK("gfx/pics.asm@Pics 1") + 0
+	db BANK("gfx/pics@Pics 2")  ; BANK("gfx/pics.asm@Pics 1") + 1
+	db BANK("gfx/pics@Pics 3")  ; BANK("gfx/pics.asm@Pics 1") + 2
+	db BANK("gfx/pics@Pics 4")  ; BANK("gfx/pics.asm@Pics 1") + 3
+	db BANK("gfx/pics@Pics 5")  ; BANK("gfx/pics.asm@Pics 1") + 4
+	db BANK("gfx/pics@Pics 6")  ; BANK("gfx/pics.asm@Pics 1") + 5
+	db BANK("gfx/pics@Pics 7")  ; BANK("gfx/pics.asm@Pics 1") + 6
+	db BANK("gfx/pics@Pics 8")  ; BANK("gfx/pics.asm@Pics 1") + 7
+	db BANK("gfx/pics@Pics 9")  ; BANK("gfx/pics.asm@Pics 1") + 8
+	db BANK("gfx/pics@Pics 10") ; BANK("gfx/pics.asm@Pics 1") + 9
+	db BANK("gfx/pics@Pics 11") ; BANK("gfx/pics.asm@Pics 1") + 10
+	db BANK("gfx/pics@Pics 12") ; BANK("gfx/pics.asm@Pics 1") + 11
+	db BANK("gfx/pics@Pics 13") ; BANK("gfx/pics.asm@Pics 1") + 12
+	db BANK("gfx/pics@Pics 14") ; BANK("gfx/pics.asm@Pics 1") + 13
+	db BANK("gfx/pics@Pics 15") ; BANK("gfx/pics.asm@Pics 1") + 14
+	db BANK("gfx/pics@Pics 16") ; BANK("gfx/pics.asm@Pics 1") + 15
+	db BANK("gfx/pics@Pics 17") ; BANK("gfx/pics.asm@Pics 1") + 16
+	db BANK("gfx/pics@Pics 18") ; BANK("gfx/pics.asm@Pics 1") + 17
+	db BANK("gfx/pics@Pics 19") ; BANK("gfx/pics.asm@Pics 1") + 18
+	db BANK("gfx/pics@Pics 20") ; BANK("gfx/pics.asm@Pics 1") + 19
+	db BANK("gfx/pics@Pics 21") ; BANK("gfx/pics.asm@Pics 1") + 20
+	db BANK("gfx/pics@Pics 22") ; BANK("gfx/pics.asm@Pics 1") + 21
+	db BANK("gfx/pics@Pics 23") ; BANK("gfx/pics.asm@Pics 1") + 22
+	db BANK("gfx/pics@Pics 24") ; BANK("gfx/pics.asm@Pics 1") + 23
 
 Function511ec:
 	ld a, c

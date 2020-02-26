@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/liz_caller.asm", ROMX
+SECTION "data/phone/text/liz_caller", ROMX
 
 LizMonAlwaysWantsToNuzzleText::
 	text "Oh, you have to"

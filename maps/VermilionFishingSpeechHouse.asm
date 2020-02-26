@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const VERMILIONFISHINGSPEECHHOUSE_FISHING_GURU
 
 
-SECTION "maps/VermilionFishingSpeechHouse.asm", ROMX
+SECTION "maps/VermilionFishingSpeechHouse", ROMX
 
 VermilionFishingSpeechHouse_MapScripts::
 	db 0 ; scene scripts

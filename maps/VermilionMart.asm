@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const VERMILIONMART_BUENA
 
 
-SECTION "maps/VermilionMart.asm", ROMX
+SECTION "maps/VermilionMart", ROMX
 
 VermilionMart_MapScripts::
 	db 0 ; scene scripts

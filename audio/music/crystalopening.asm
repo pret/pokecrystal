@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/crystalopening.asm", ROMX
+SECTION "audio/music/crystalopening", ROMX
 
 Music_CrystalOpening::
 	channel_count 4

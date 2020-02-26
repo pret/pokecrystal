@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const NEWBARKTOWN_SILVER
 
 
-SECTION "maps/NewBarkTown.asm", ROMX
+SECTION "maps/NewBarkTown", ROMX
 
 NewBarkTown_MapScripts::
 	db 2 ; scene scripts

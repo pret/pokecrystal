@@ -5,7 +5,7 @@ INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
 
 
-SECTION "home/mobile.asm", ROM0
+SECTION "home/mobile", ROM0
 
 Function3e32::
 ; Mobile

@@ -1,7 +1,7 @@
 INCLUDE "constants/move_constants.inc"
 
 
-SECTION "data/pokemon/egg_moves.asm", ROMX
+SECTION "data/pokemon/egg_moves", ROMX
 
 ; All instances of Charm, Steel Wing, Sweet Scent, and Lovely Kiss were
 ; removed from egg move lists in Crystal.

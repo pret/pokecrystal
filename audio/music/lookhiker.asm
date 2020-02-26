@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/lookhiker.asm", ROMX
+SECTION "audio/music/lookhiker", ROMX
 
 Music_LookHiker::
 	channel_count 4

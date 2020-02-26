@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const ECRUTEAKMART_GRANNY
 
 
-SECTION "maps/EcruteakMart.asm", ROMX
+SECTION "maps/EcruteakMart", ROMX
 
 EcruteakMart_MapScripts::
 	db 0 ; scene scripts

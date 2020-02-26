@@ -2,7 +2,7 @@ INCLUDE "macros/code.inc"
 INCLUDE "macros/rst.inc"
 
 
-SECTION "home/decompress.asm", ROM0
+SECTION "home/decompress", ROM0
 
 FarDecompress::
 ; Decompress graphics data from a:hl to de.

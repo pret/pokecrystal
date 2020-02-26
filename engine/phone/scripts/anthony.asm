@@ -10,7 +10,7 @@ INCLUDE "constants/trainer_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/phone/scripts/anthony.asm", ROMX
+SECTION "engine/phone/scripts/anthony", ROMX
 
 AnthonyPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, HIKER, ANTHONY2

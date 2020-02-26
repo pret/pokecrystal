@@ -9,7 +9,7 @@ INCLUDE "constants/maps_common.inc"
 	const ICEPATHB2FMAHOGANYSIDE_POKE_BALL2
 
 
-SECTION "maps/IcePathB2FMahoganySide.asm", ROMX
+SECTION "maps/IcePathB2FMahoganySide", ROMX
 
 IcePathB2FMahoganySide_MapScripts::
 	db 0 ; scene scripts

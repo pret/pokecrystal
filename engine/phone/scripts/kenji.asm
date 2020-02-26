@@ -4,7 +4,7 @@ INCLUDE "constants/script_constants.inc"
 INCLUDE "constants/trainer_constants.inc"
 
 
-SECTION "engine/phone/scripts/kenji.asm", ROMX
+SECTION "engine/phone/scripts/kenji", ROMX
 
 KenjiPhoneCalleeScript::
 	gettrainername STRING_BUFFER_3, BLACKBELT_T, KENJI3

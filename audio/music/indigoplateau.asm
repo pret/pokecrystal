@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/indigoplateau.asm", ROMX
+SECTION "audio/music/indigoplateau", ROMX
 
 Music_IndigoPlateau::
 	channel_count 4

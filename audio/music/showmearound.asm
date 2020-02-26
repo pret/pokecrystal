@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/showmearound.asm", ROMX
+SECTION "audio/music/showmearound", ROMX
 
 Music_ShowMeAround::
 	channel_count 4

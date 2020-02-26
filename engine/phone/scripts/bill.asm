@@ -4,7 +4,7 @@ INCLUDE "constants/script_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/phone/scripts/bill.asm", ROMX
+SECTION "engine/phone/scripts/bill", ROMX
 
 BillPhoneCalleeScript::
 	checktime DAY

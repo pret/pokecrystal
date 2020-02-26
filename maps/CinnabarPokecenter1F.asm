@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const CINNABARPOKECENTER1F_FISHER
 
 
-SECTION "maps/CinnabarPokecenter1F.asm", ROMX
+SECTION "maps/CinnabarPokecenter1F", ROMX
 
 CinnabarPokecenter1F_MapScripts::
 	db 0 ; scene scripts

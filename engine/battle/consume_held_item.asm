@@ -3,7 +3,7 @@ INCLUDE "constants/item_constants.inc"
 INCLUDE "constants/item_data_constants.inc"
 
 
-SECTION "engine/battle/consume_held_item.asm", ROMX
+SECTION "engine/battle/consume_held_item", ROMX
 
 ConsumeHeldItem::
 	push hl

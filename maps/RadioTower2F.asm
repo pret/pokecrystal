@@ -14,7 +14,7 @@ INCLUDE "constants/maps_common.inc"
 	const RADIOTOWER2F_RECEPTIONIST
 
 
-SECTION "maps/RadioTower2F.asm", ROMX
+SECTION "maps/RadioTower2F", ROMX
 
 RadioTower2F_MapScripts::
 	db 0 ; scene scripts

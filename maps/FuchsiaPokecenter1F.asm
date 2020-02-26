@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const FUCHSIAPOKECENTER1F_JANINE_IMPERSONATOR
 
 
-SECTION "maps/FuchsiaPokecenter1F.asm", ROMX
+SECTION "maps/FuchsiaPokecenter1F", ROMX
 
 FuchsiaPokecenter1F_MapScripts::
 	db 1 ; scene scripts

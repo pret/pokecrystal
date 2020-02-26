@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const MOUNTMOON_SILVER
 
 
-SECTION "maps/MountMoon.asm", ROMX
+SECTION "maps/MountMoon", ROMX
 
 MountMoon_MapScripts::
 	db 2 ; scene scripts

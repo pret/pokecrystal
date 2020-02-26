@@ -6,7 +6,7 @@ INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
 
 
-SECTION "mobile/mobile_5b.asm", ROMX
+SECTION "mobile/mobile_5b", ROMX
 
 Unreferenced_Function16c000:
 	; Only for CGB

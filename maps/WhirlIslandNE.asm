@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const WHIRLISLANDNE_POKE_BALL
 
 
-SECTION "maps/WhirlIslandNE.asm", ROMX
+SECTION "maps/WhirlIslandNE", ROMX
 
 WhirlIslandNE_MapScripts::
 	db 0 ; scene scripts

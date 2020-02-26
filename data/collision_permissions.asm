@@ -1,7 +1,7 @@
 INCLUDE "constants/collision_constants.inc"
 
 
-SECTION "data/collision_permissions.asm", ROMX
+SECTION "data/collision_permissions", ROMX
 
 TileCollisionTable::
 ; entries correspond to COLL_* constants

@@ -7,7 +7,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/type_constants.inc"
 
 
-SECTION "engine/battle/ai/scoring.asm", ROMX
+SECTION "engine/battle/ai/scoring", ROMX
 
 AIScoring:: ; used only for BANK(AIScoring)
 

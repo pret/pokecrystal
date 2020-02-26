@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/darkcave.asm", ROMX
+SECTION "audio/music/darkcave", ROMX
 
 Music_DarkCave::
 	channel_count 4

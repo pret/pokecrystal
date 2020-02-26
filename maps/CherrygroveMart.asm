@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const CHERRYGROVEMART_YOUNGSTER
 
 
-SECTION "maps/CherrygroveMart.asm", ROMX
+SECTION "maps/CherrygroveMart", ROMX
 
 CherrygroveMart_MapScripts::
 	db 0 ; scene scripts

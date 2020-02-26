@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/CeladonDeptStoreElevator.asm", ROMX
+SECTION "maps/CeladonDeptStoreElevator", ROMX
 
 CeladonDeptStoreElevator_MapScripts::
 	db 0 ; scene scripts

@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const ICEPATHB3F_ROCK
 
 
-SECTION "maps/IcePathB3F.asm", ROMX
+SECTION "maps/IcePathB3F", ROMX
 
 IcePathB3F_MapScripts::
 	db 0 ; scene scripts

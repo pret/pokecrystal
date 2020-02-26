@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/liz_overworld.asm", ROMX
+SECTION "data/phone/text/liz_overworld", ROMX
 
 LizAskNumber1Text::
 	text "Oh? You're on a"

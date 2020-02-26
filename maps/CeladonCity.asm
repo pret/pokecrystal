@@ -12,7 +12,7 @@ INCLUDE "constants/maps_common.inc"
 	const CELADONCITY_LASS
 
 
-SECTION "maps/CeladonCity.asm", ROMX
+SECTION "maps/CeladonCity", ROMX
 
 CeladonCity_MapScripts::
 	db 0 ; scene scripts

@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const CELADONMANSION1F_GROWLITHE2
 
 
-SECTION "maps/CeladonMansion1F.asm", ROMX
+SECTION "maps/CeladonMansion1F", ROMX
 
 CeladonMansion1F_MapScripts::
 	db 0 ; scene scripts

@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/wade_overworld.asm", ROMX
+SECTION "data/phone/text/wade_overworld", ROMX
 
 WadeAskNumber1Text::
 	text "You're awesome!"

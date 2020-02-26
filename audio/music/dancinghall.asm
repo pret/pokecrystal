@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/dancinghall.asm", ROMX
+SECTION "audio/music/dancinghall", ROMX
 
 Music_DancingHall::
 	channel_count 3

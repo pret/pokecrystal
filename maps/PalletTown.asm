@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const PALLETTOWN_FISHER
 
 
-SECTION "maps/PalletTown.asm", ROMX
+SECTION "maps/PalletTown", ROMX
 
 PalletTown_MapScripts::
 	db 0 ; scene scripts

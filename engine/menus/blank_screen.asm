@@ -3,7 +3,7 @@ INCLUDE "macros/coords.inc"
 INCLUDE "constants/gfx_constants.inc"
 
 
-SECTION "engine/menus/blank_screen.asm", ROMX
+SECTION "engine/menus/blank_screen", ROMX
 
 BlankScreen::
 	call DisableSpriteUpdates

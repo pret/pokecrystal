@@ -9,7 +9,7 @@ INCLUDE "constants/maps_common.inc"
 	const UNIONCAVEB2F_LAPRAS
 
 
-SECTION "maps/UnionCaveB2F.asm", ROMX
+SECTION "maps/UnionCaveB2F", ROMX
 
 UnionCaveB2F_MapScripts::
 	db 0 ; scene scripts

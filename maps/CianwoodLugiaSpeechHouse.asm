@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const CIANWOODLUGIASPEECHHOUSE_TWIN
 
 
-SECTION "maps/CianwoodLugiaSpeechHouse.asm", ROMX
+SECTION "maps/CianwoodLugiaSpeechHouse", ROMX
 
 CianwoodLugiaSpeechHouse_MapScripts::
 	db 0 ; scene scripts

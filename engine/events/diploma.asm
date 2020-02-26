@@ -5,7 +5,7 @@ INCLUDE "constants/scgb_constants.inc"
 INCLUDE "constants/text_constants.inc"
 
 
-SECTION "engine/events/diploma.asm", ROMX
+SECTION "engine/events/diploma", ROMX
 
 _Diploma::
 	call PlaceDiplomaOnScreen

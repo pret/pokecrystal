@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const MANIASHOUSE_ROCKER
 
 
-SECTION "maps/ManiasHouse.asm", ROMX
+SECTION "maps/ManiasHouse", ROMX
 
 ManiasHouse_MapScripts::
 	db 0 ; scene scripts

@@ -12,7 +12,7 @@ INCLUDE "constants/sprite_constants.inc"
 INCLUDE "constants/text_constants.inc"
 
 
-SECTION "engine/overworld/decorations.asm@InitDecorations", ROMX
+SECTION "engine/overworld/decorations@InitDecorations", ROMX
 
 InitDecorations::
 	ld a, DECO_FEATHERY_BED
@@ -22,7 +22,7 @@ InitDecorations::
 	ret
 
 
-SECTION "engine/overworld/decorations.asm", ROMX
+SECTION "engine/overworld/decorations", ROMX
 
 _PlayerDecorationMenu::
 	ld a, [wWhichIndexSet]
@@ -1090,7 +1090,7 @@ DecorationDesc_GiantOrnament:
 	text_end
 
 
-SECTION "engine/overworld/decorations.asm@ToggleMaptileDecorations", ROMX
+SECTION "engine/overworld/decorations@ToggleMaptileDecorations", ROMX
 
 ToggleMaptileDecorations::
 	; tile coordinates work the same way as for changeblock

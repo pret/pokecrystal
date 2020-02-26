@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const OLIVINECITY_OLIVINE_RIVAL
 
 
-SECTION "maps/OlivineCity.asm", ROMX
+SECTION "maps/OlivineCity", ROMX
 
 OlivineCity_MapScripts::
 	db 2 ; scene scripts

@@ -1,4 +1,4 @@
-SECTION "home/call_regs.asm", ROM0
+SECTION "home/call_regs", ROM0
 
 ; Register aliases
 

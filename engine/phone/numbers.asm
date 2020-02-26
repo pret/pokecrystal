@@ -2,7 +2,7 @@ INCLUDE "constants/phone_constants.inc"
 INCLUDE "constants/trainer_constants.inc"
 
 
-SECTION "engine/phone/numbers.asm", ROMX
+SECTION "engine/phone/numbers", ROMX
 
 AddPhoneNumber::
 	call _CheckCellNum

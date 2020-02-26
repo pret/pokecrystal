@@ -18,7 +18,7 @@ INCLUDE "constants/type_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/battle/effect_commands.asm", ROMX
+SECTION "engine/battle/effect_commands", ROMX
 
 DoPlayerTurn::
 	call SetPlayerTurn
@@ -6841,7 +6841,7 @@ PlayOpponentBattleAnim:
 	ret
 
 CallBattleCore:
-	ld a, BANK("engine/battle/core.asm")
+	ld a, BANK("engine/battle/core")
 	rst FarCall
 	ret
 

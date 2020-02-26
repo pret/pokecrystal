@@ -4,7 +4,7 @@ INCLUDE "constants/map_constants.inc"
 INCLUDE "constants/misc_constants.inc"
 
 
-SECTION "engine/events/basement_key.asm", ROMX
+SECTION "engine/events/basement_key", ROMX
 
 _BasementKey::
 ; Are we even in the right map to use this?

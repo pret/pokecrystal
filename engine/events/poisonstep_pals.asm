@@ -6,7 +6,7 @@ INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/events/poisonstep_pals.asm", ROMX
+SECTION "engine/events/poisonstep_pals", ROMX
 
 LoadPoisonBGPals::
 	call .LoadPals

@@ -13,7 +13,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/scgb_constants.inc"
 
 
-SECTION "engine/link/mystery_gift.asm", ROMX
+SECTION "engine/link/mystery_gift", ROMX
 
 DoMysteryGift::
 	call ClearTilemap

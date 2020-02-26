@@ -8,7 +8,7 @@ INCLUDE "constants/music_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "audio/engine.asm", ROMX
+SECTION "audio/engine", ROMX
 
 ; The entire sound engine. Uses section "audio" in WRAM.
 

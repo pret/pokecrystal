@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/lookyoungster.asm", ROMX
+SECTION "audio/music/lookyoungster", ROMX
 
 Music_LookYoungster::
 	channel_count 3

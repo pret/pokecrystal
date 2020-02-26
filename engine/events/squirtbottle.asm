@@ -6,7 +6,7 @@ INCLUDE "constants/map_constants.inc"
 INCLUDE "constants/map_object_constants.inc"
 
 
-SECTION "engine/events/squirtbottle.asm", ROMX
+SECTION "engine/events/squirtbottle", ROMX
 
 _Squirtbottle::
 	ld hl, .SquirtbottleScript

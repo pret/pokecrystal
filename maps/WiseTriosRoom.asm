@@ -9,7 +9,7 @@ INCLUDE "constants/maps_common.inc"
 	const WISETRIOSROOM_SAGE6
 
 
-SECTION "maps/WiseTriosRoom.asm", ROMX
+SECTION "maps/WiseTriosRoom", ROMX
 
 WiseTriosRoom_MapScripts::
 	db 2 ; scene scripts

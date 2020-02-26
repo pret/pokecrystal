@@ -13,7 +13,7 @@ INCLUDE "constants/sprite_anim_constants.inc"
 INCLUDE "constants/sprite_data_constants.inc"
 
 
-SECTION "engine/gfx/sprites.asm@ClearSpriteAnims", ROMX
+SECTION "engine/gfx/sprites@ClearSpriteAnims", ROMX
 
 ClearSpriteAnims::
 	ld hl, wSpriteAnimDict
@@ -28,7 +28,7 @@ ClearSpriteAnims::
 	ret
 
 
-SECTION "engine/gfx/sprites.asm", ROMX
+SECTION "engine/gfx/sprites", ROMX
 
 PlaySpriteAnimationsAndDelayFrame::
 	call PlaySpriteAnimations

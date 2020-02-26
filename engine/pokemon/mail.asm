@@ -8,7 +8,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/script_constants.inc"
 
 
-SECTION "engine/pokemon/mail.asm", ROMX
+SECTION "engine/pokemon/mail", ROMX
 
 SendMailToPC::
 	ld a, MON_ITEM

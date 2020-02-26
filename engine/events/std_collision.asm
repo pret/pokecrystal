@@ -4,7 +4,7 @@ INCLUDE "constants/collision_constants.inc"
 INCLUDE "constants/std_constants.inc"
 
 
-SECTION "engine/events/std_collision.asm", ROMX
+SECTION "engine/events/std_collision", ROMX
 
 CheckFacingTileForStdScript::
 ; Checks to see if the tile you're facing has a std script associated with it.  If so, executes the script and returns carry.

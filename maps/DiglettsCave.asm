@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const DIGLETTSCAVE_POKEFAN_M
 
 
-SECTION "maps/DiglettsCave.asm", ROMX
+SECTION "maps/DiglettsCave", ROMX
 
 DiglettsCave_MapScripts::
 	db 0 ; scene scripts

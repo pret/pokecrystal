@@ -6,7 +6,7 @@ INCLUDE "constants/move_constants.inc"
 INCLUDE "constants/text_constants.inc"
 
 
-SECTION "home/names.asm", ROM0
+SECTION "home/names", ROM0
 
 NamesPointers:
 ; entries correspond to GetName constants (see constants/text_constants.inc)

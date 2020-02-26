@@ -7,7 +7,7 @@ INCLUDE "constants/scgb_constants.inc"
 INCLUDE "constants/text_constants.inc"
 
 
-SECTION "engine/menus/delete_save.asm", ROMX
+SECTION "engine/menus/delete_save", ROMX
 
 _DeleteSaveData::
 	farcall BlankScreen

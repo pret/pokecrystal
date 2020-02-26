@@ -9,7 +9,7 @@ MAHOGANYTOWN_RAGECANDYBAR_PRICE EQU 300
 	const MAHOGANYTOWN_LASS
 
 
-SECTION "maps/MahoganyTown.asm", ROMX
+SECTION "maps/MahoganyTown", ROMX
 
 MahoganyTown_MapScripts::
 	db 2 ; scene scripts

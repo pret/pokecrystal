@@ -1,7 +1,7 @@
 INCLUDE "macros/data.inc"
 
 
-SECTION "engine/pokedex/slowpoke_anim.asm", ROMX
+SECTION "engine/pokedex/slowpoke_anim", ROMX
 
 AnimateDexSearchSlowpoke::
 	ld hl, .FrameIDs

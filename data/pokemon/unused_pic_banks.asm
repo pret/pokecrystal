@@ -1,7 +1,7 @@
 INCLUDE "constants/pokemon_constants.inc"
 
 
-SECTION "data/pokemon/unused_pic_banks.asm", ROMX
+SECTION "data/pokemon/unused_pic_banks", ROMX
 
 ; This was a table of Pokémon sprite banks in the 1997 G/S prototype.
 ; See pokegold-spaceworld's gfx/pokemon/pkmn_pic_banks.asm.

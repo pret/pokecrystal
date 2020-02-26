@@ -7,7 +7,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/script_constants.inc"
 
 
-SECTION "engine/events/magikarp.asm", ROMX
+SECTION "engine/events/magikarp", ROMX
 
 CheckMagikarpLength::
 	; Returns 3 if you select a Magikarp that beats the previous record.

@@ -17,7 +17,7 @@ INCLUDE "constants/sprite_data_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/pokegear/map.asm", ROMX
+SECTION "engine/pokegear/map", ROMX
 
 PokegearMap::
 	ld a, e

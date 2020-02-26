@@ -22,7 +22,7 @@ INCLUDE "constants/trainer_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/menus/intro_menu.asm", ROMX, BANK[BANK_GAME_INIT]
+SECTION "engine/menus/intro_menu", ROMX, BANK[BANK_GAME_INIT]
 
 _MainMenu:
 	ld de, MUSIC_NONE

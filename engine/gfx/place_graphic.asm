@@ -1,7 +1,7 @@
 INCLUDE "constants/gfx_constants.inc"
 
 
-SECTION "engine/gfx/place_graphic.asm", ROMX
+SECTION "engine/gfx/place_graphic", ROMX
 
 PlaceGraphic::
 ; Fill wBoxAlignment-aligned box width b height c

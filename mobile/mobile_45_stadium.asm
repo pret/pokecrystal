@@ -11,14 +11,14 @@ INCLUDE "constants/mobile_constants.inc"
 INCLUDE "constants/text_constants.inc"
 
 
-SECTION "mobile/mobile_45_stadium.asm@GiveOddEgg", ROMX
+SECTION "mobile/mobile_45_stadium@GiveOddEgg", ROMX
 
 GiveOddEgg::
 	farcall _GiveOddEgg
 	ret
 
 
-SECTION "mobile/mobile_45_stadium.asm@Function11765d - Unknown_117a47", ROMX
+SECTION "mobile/mobile_45_stadium@Function11765d - Unknown_117a47", ROMX
 
 Function11765d::
 	ldh a, [hInMenu]
@@ -511,7 +511,7 @@ Unknown_117a47:
 INCBIN "data/mobile/ascii-sym.txt"
 
 
-SECTION "mobile/mobile_45_stadium.asm@MobileStudium", ROMX
+SECTION "mobile/mobile_45_stadium@MobileStudium", ROMX
 
 ; everything from here to the end of the bank is related to the
 ; Mobile Stadium option from the continue/newgame menu.

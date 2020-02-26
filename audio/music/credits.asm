@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/credits.asm", ROMX
+SECTION "audio/music/credits", ROMX
 
 Music_Credits::
 	channel_count 4

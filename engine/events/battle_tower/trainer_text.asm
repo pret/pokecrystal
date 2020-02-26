@@ -13,7 +13,7 @@ INCLUDE "constants/sprite_anim_constants.inc"
 INCLUDE "constants/text_constants.inc"
 
 
-SECTION "engine/events/battle_tower/trainer_text.asm", ROMX
+SECTION "engine/events/battle_tower/trainer_text", ROMX
 
 BattleTowerText::
 ; Print text c for trainer [wBT_OTTrainerClass]

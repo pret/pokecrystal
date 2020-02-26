@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/gamecorner.asm", ROMX
+SECTION "audio/music/gamecorner", ROMX
 
 Music_GameCorner::
 	channel_count 4

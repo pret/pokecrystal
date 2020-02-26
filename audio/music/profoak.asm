@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/profoak.asm", ROMX
+SECTION "audio/music/profoak", ROMX
 
 Music_ProfOak::
 	channel_count 3

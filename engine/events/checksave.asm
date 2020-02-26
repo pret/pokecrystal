@@ -1,7 +1,7 @@
 INCLUDE "constants/misc_constants.inc"
 
 
-SECTION "engine/events/checksave.asm", ROMX
+SECTION "engine/events/checksave", ROMX
 
 CheckSave::
 	ld a, BANK(sCheckValue1) ; aka BANK(sCheckValue2)

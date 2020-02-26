@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const SAFFRONMAGNETTRAINSTATION_LASS
 
 
-SECTION "maps/SaffronMagnetTrainStation.asm", ROMX
+SECTION "maps/SaffronMagnetTrainStation", ROMX
 
 SaffronMagnetTrainStation_MapScripts::
 	db 1 ; scene scripts

@@ -6,7 +6,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/sfx_constants.inc"
 
 
-SECTION "engine/events/move_deleter.asm", ROMX
+SECTION "engine/events/move_deleter", ROMX
 
 MoveDeletion::
 	ld hl, .DeleterIntroText

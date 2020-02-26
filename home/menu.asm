@@ -10,7 +10,7 @@ INCLUDE "constants/menu_constants.inc"
 INCLUDE "constants/sfx_constants.inc"
 
 
-SECTION "home/menu.asm", ROM0
+SECTION "home/menu", ROM0
 
 SetMenuAttributes::
 	push hl

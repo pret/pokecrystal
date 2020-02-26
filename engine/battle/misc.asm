@@ -8,7 +8,7 @@ INCLUDE "constants/move_effect_constants.inc"
 INCLUDE "constants/type_constants.inc"
 
 
-SECTION "engine/battle/misc.asm@AppearDisappearUser", ROMX
+SECTION "engine/battle/misc@AppearDisappearUser", ROMX
 
 _DisappearUser::
 	xor a
@@ -62,7 +62,7 @@ GetPlayerBackpicCoords:
 	ret
 
 
-SECTION "engine/battle/misc.asm@DoWeatherModifiers", ROMX
+SECTION "engine/battle/misc@DoWeatherModifiers", ROMX
 
 DoWeatherModifiers::
 	ld de, WeatherTypeModifiers
@@ -160,7 +160,7 @@ DoWeatherModifiers::
 INCLUDE "data/battle/weather_modifiers.inc"
 
 
-SECTION "engine/battle/misc.asm@DoBadgeTypeBoosts", ROMX
+SECTION "engine/battle/misc@DoBadgeTypeBoosts", ROMX
 
 DoBadgeTypeBoosts::
 	ld a, [wLinkMode]

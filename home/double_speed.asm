@@ -8,7 +8,7 @@ INCLUDE "constants/hardware_constants.inc"
 ; collapses during the switch.
 
 
-SECTION "home/double_speed.asm", ROM0
+SECTION "home/double_speed", ROM0
 
 DoubleSpeed::
 	ld hl, rKEY1

@@ -16,7 +16,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE45_YOUNGSTER
 
 
-SECTION "maps/Route45.asm", ROMX
+SECTION "maps/Route45", ROMX
 
 Route45_MapScripts::
 	db 0 ; scene scripts

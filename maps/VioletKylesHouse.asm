@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const VIOLETKYLESHOUSE_KYLE
 
 
-SECTION "maps/VioletKylesHouse.asm", ROMX
+SECTION "maps/VioletKylesHouse", ROMX
 
 VioletKylesHouse_MapScripts::
 	db 0 ; scene scripts

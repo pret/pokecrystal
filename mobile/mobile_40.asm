@@ -20,7 +20,7 @@ INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "mobile/mobile_40.asm@Function100000 - UnknownText_0x1021f4", ROMX
+SECTION "mobile/mobile_40@Function100000 - UnknownText_0x1021f4", ROMX
 
 Function100000:
 ; d: 1 or 2
@@ -4849,7 +4849,7 @@ UnknownText_0x1021f4:
 	text_end
 
 
-SECTION "mobile/mobile_40.asm@Function1021f9 - Palettes_1032e2", ROMX
+SECTION "mobile/mobile_40@Function1021f9 - Palettes_1032e2", ROMX
 
 Function1021f9:
 	call Function102233
@@ -6942,7 +6942,7 @@ Palettes_1032e2:
 	RGB  0,  0,  0
 
 
-SECTION "mobile/mobile_40.asm@Function103302 - MenuData_103648", ROMX
+SECTION "mobile/mobile_40@Function103302 - MenuData_103648", ROMX
 
 Function103302:
 	call Function103309
@@ -7369,7 +7369,7 @@ MenuData_103648:
 	db "ケーブル@"
 
 
-SECTION "mobile/mobile_40.asm@Function103654", ROMX
+SECTION "mobile/mobile_40@Function103654", ROMX
 
 Function103654:
 	farcall Mobile_AlwaysReturnNotCarry
@@ -7387,7 +7387,7 @@ Function103654:
 	ret
 
 
-SECTION "mobile/mobile_40.asm@Mobile_SelectThreeMons - UnknownText_0x10377b", ROMX
+SECTION "mobile/mobile_40@Mobile_SelectThreeMons - UnknownText_0x10377b", ROMX
 
 Mobile_SelectThreeMons::
 	farcall Mobile_AlwaysReturnNotCarry
@@ -7553,7 +7553,7 @@ UnknownText_0x10377b:
 	text_end
 
 
-SECTION "mobile/mobile_40.asm@Function103780 - Function10378c", ROMX
+SECTION "mobile/mobile_40@Function103780 - Function10378c", ROMX
 
 Function103780::
 	ld a, [wChosenCableClubRoom]
@@ -7596,7 +7596,7 @@ Function10378c:
 	ret
 
 
-SECTION "mobile/mobile_40.asm@Function1037c2 - Function103823", ROMX
+SECTION "mobile/mobile_40@Function1037c2 - Function103823", ROMX
 
 Function1037c2::
 	call MobileCheckRemainingBattleTime
@@ -7675,7 +7675,7 @@ MobileCheckRemainingBattleTime:
 	ret
 
 
-SECTION "mobile/mobile_40.asm@Function10383c - UnknownText_0x103876", ROMX
+SECTION "mobile/mobile_40@Function10383c - UnknownText_0x103876", ROMX
 
 Function10383c::
 	ld a, $01
@@ -7709,7 +7709,7 @@ UnknownText_0x103876:
 	text_end
 
 
-SECTION "mobile/mobile_40.asm@Function10387b - UnknownText_0x103898", ROMX
+SECTION "mobile/mobile_40@Function10387b - UnknownText_0x103898", ROMX
 
 Function10387b::
 	farcall Mobile_AlwaysReturnNotCarry

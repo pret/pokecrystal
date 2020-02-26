@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/jack_caller.asm", ROMX
+SECTION "data/phone/text/jack_caller", ROMX
 
 JackIntelligenceKeepsRisingText::
 	text "My @"

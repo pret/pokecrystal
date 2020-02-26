@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const DAYCARE_GRANNY
 
 
-SECTION "maps/DayCare.asm", ROMX
+SECTION "maps/DayCare", ROMX
 
 DayCare_MapScripts::
 	db 0 ; scene scripts

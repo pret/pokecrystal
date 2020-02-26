@@ -10,7 +10,7 @@ INCLUDE "constants/maps_common.inc"
 	const MOUNTMORTAR2FINSIDE_SUPER_NERD
 
 
-SECTION "maps/MountMortar2FInside.asm", ROMX
+SECTION "maps/MountMortar2FInside", ROMX
 
 MountMortar2FInside_MapScripts::
 	db 0 ; scene scripts

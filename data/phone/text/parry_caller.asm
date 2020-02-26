@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/parry_caller.asm", ROMX
+SECTION "data/phone/text/parry_caller", ROMX
 
 ParryNothingCanMatchText::
 	text "Nothing can match"

@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/ecruteakcity.asm", ROMX
+SECTION "audio/music/ecruteakcity", ROMX
 
 Music_EcruteakCity::
 	channel_count 3

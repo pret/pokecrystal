@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/suicunebattle.asm", ROMX
+SECTION "audio/music/suicunebattle", ROMX
 
 Music_SuicuneBattle::
 	channel_count 3

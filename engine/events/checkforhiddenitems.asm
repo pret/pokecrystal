@@ -3,7 +3,7 @@ INCLUDE "constants/misc_constants.inc"
 INCLUDE "constants/script_constants.inc"
 
 
-SECTION "engine/events/checkforhiddenitems.asm", ROMX
+SECTION "engine/events/checkforhiddenitems", ROMX
 
 CheckForHiddenItems::
 ; Checks to see if there are hidden items on the screen that have not yet been found.  If it finds one, returns carry.

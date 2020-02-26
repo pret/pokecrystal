@@ -8,7 +8,7 @@ INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/menus/save.asm", ROMX
+SECTION "engine/menus/save", ROMX
 
 SaveMenu::
 	call LoadStandardMenuHeader

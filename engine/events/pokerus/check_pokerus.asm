@@ -1,7 +1,7 @@
 INCLUDE "constants/pokemon_data_constants.inc"
 
 
-SECTION "engine/events/pokerus/check_pokerus.asm", ROMX
+SECTION "engine/events/pokerus/check_pokerus", ROMX
 
 _CheckPokerus::
 ; Return carry if a monster in your party has Pokerus

@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/chad_caller.asm", ROMX
+SECTION "data/phone/text/chad_caller", ROMX
 
 ChadObservingWildText::
 	text "I recently began"

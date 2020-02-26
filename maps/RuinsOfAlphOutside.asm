@@ -8,7 +8,7 @@ INCLUDE "constants/maps_common.inc"
 	const RUINSOFALPHOUTSIDE_YOUNGSTER3
 
 
-SECTION "maps/RuinsOfAlphOutside.asm", ROMX
+SECTION "maps/RuinsOfAlphOutside", ROMX
 
 RuinsOfAlphOutside_MapScripts::
 	db 2 ; scene scripts

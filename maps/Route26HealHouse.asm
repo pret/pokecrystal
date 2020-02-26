@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE26HEALHOUSE_TEACHER
 
 
-SECTION "maps/Route26HealHouse.asm", ROMX
+SECTION "maps/Route26HealHouse", ROMX
 
 Route26HealHouse_MapScripts::
 	db 0 ; scene scripts

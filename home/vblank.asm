@@ -10,7 +10,7 @@ INCLUDE "constants/hardware_constants.inc"
 ; This prevents the display and audio output from lagging.
 
 
-SECTION "home/vblank.asm", ROM0
+SECTION "home/vblank", ROM0
 
 VBlank::
 	push af

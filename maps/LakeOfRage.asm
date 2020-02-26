@@ -15,7 +15,7 @@ INCLUDE "constants/maps_common.inc"
 	const LAKEOFRAGE_POKE_BALL2
 
 
-SECTION "maps/LakeOfRage.asm", ROMX
+SECTION "maps/LakeOfRage", ROMX
 
 LakeOfRage_MapScripts::
 	db 2 ; scene scripts

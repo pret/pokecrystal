@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const VIOLETGYM_GYM_GUY
 
 
-SECTION "maps/VioletGym.asm", ROMX
+SECTION "maps/VioletGym", ROMX
 
 VioletGym_MapScripts::
 	db 0 ; scene scripts

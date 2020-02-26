@@ -9,7 +9,7 @@ INCLUDE "constants/maps_common.inc"
 	const GOLDENRODGYM_GYM_GUY
 
 
-SECTION "maps/GoldenrodGym.asm", ROMX
+SECTION "maps/GoldenrodGym", ROMX
 
 GoldenrodGym_MapScripts::
 	db 2 ; scene scripts

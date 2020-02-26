@@ -10,7 +10,7 @@ INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/events/pokecenter_pc.asm", ROMX
+SECTION "engine/events/pokecenter_pc", ROMX
 
 PokemonCenterPC::
 	call PC_CheckPartyForPokemon

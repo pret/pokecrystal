@@ -8,7 +8,7 @@ INCLUDE "constants/maps_common.inc"
 	const MAHOGANYMART1F_GRANNY
 
 
-SECTION "maps/MahoganyMart1F.asm", ROMX
+SECTION "maps/MahoganyMart1F", ROMX
 
 MahoganyMart1F_MapScripts::
 	db 2 ; scene scripts

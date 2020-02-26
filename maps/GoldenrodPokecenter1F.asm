@@ -9,7 +9,7 @@ INCLUDE "constants/maps_common.inc"
 	const GOLDENRODPOKECENTER1F_POKEFAN_F
 
 
-SECTION "maps/GoldenrodPokecenter1F.asm", ROMX
+SECTION "maps/GoldenrodPokecenter1F", ROMX
 
 GoldenrodPokecenter1F_MapScripts::
 	db 0 ; scene scripts

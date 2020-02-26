@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/unknown_callee.asm", ROMX
+SECTION "data/phone/text/unknown_callee", ROMX
 
 UnknownGenericText::
 	text "How are your"

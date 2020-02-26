@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const RUINSOFALPHKABUTOCHAMBER_SCIENTIST
 
 
-SECTION "maps/RuinsOfAlphKabutoChamber.asm", ROMX, BANK[BANK_MAP_RUINS_OF_ALPH_RESEARCH_CENTER]
+SECTION "maps/RuinsOfAlphKabutoChamber", ROMX, BANK[BANK_MAP_RUINS_OF_ALPH_RESEARCH_CENTER]
 
 RuinsOfAlphKabutoChamber_MapScripts::
 	db 2 ; scene scripts

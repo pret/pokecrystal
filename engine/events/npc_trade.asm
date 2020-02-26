@@ -10,7 +10,7 @@ INCLUDE "constants/pokemon_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 
 
-SECTION "engine/events/npc_trade.asm", ROMX
+SECTION "engine/events/npc_trade", ROMX
 
 NPCTrade::
 	ld a, e

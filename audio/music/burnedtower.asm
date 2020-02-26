@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/burnedtower.asm", ROMX
+SECTION "audio/music/burnedtower", ROMX
 
 Music_BurnedTower::
 	channel_count 4

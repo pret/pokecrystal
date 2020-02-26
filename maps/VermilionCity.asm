@@ -9,7 +9,7 @@ INCLUDE "constants/maps_common.inc"
 	const VERMILIONCITY_POKEFAN_M
 
 
-SECTION "maps/VermilionCity.asm", ROMX
+SECTION "maps/VermilionCity", ROMX
 
 VermilionCity_MapScripts::
 	db 0 ; scene scripts

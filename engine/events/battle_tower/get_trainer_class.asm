@@ -2,7 +2,7 @@ INCLUDE "constants/misc_constants.inc"
 INCLUDE "constants/trainer_constants.inc"
 
 
-SECTION "engine/events/battle_tower/get_trainer_class.asm", ROMX
+SECTION "engine/events/battle_tower/get_trainer_class", ROMX
 
 GetMobileOTTrainerClass:: ; mobile function
 	ld h, b

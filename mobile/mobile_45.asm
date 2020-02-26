@@ -4,7 +4,7 @@ INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/text_constants.inc"
 
 
-SECTION "mobile/mobile_45.asm@String_114000 - Function115d80", ROMX
+SECTION "mobile/mobile_45@String_114000 - Function115d80", ROMX
 
 pushc
 setcharmap ascii

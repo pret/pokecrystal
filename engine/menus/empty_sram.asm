@@ -1,7 +1,7 @@
 INCLUDE "constants/hardware_constants.inc"
 
 
-SECTION "engine/menus/empty_sram.asm", ROMX
+SECTION "engine/menus/empty_sram", ROMX
 
 EmptyAllSRAMBanks::
 	ld a, 0

@@ -10,7 +10,7 @@ INCLUDE "constants/wram_constants.inc"
 MANIA_OT_ID EQU 00518
 
 
-SECTION "engine/events/shuckle.asm", ROMX
+SECTION "engine/events/shuckle", ROMX
 
 GiveShuckle::
 ; Adding to the party.

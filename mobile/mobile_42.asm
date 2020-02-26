@@ -15,7 +15,7 @@ INCLUDE "constants/text_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "mobile/mobile_42.asm", ROMX
+SECTION "mobile/mobile_42", ROMX
 
 MobileTradeAnimation_SendGivemonToGTS::
 	ld a, $80

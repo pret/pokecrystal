@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/bike_shop.asm", ROMX
+SECTION "data/phone/text/bike_shop", ROMX
 
 BikeShopPhoneCallerText::
 	text "Hi, <PLAY_G>!"

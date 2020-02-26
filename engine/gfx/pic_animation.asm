@@ -9,7 +9,7 @@ INCLUDE "constants/misc_constants.inc"
 INCLUDE "constants/pokemon_constants.inc"
 
 
-SECTION "engine/gfx/pic_animation.asm", ROMX
+SECTION "engine/gfx/pic_animation", ROMX
 
 ; Pic animation arrangement.
 

@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE10SOUTH_POKEFAN_M2
 
 
-SECTION "maps/Route10South.asm", ROMX
+SECTION "maps/Route10South", ROMX
 
 Route10South_MapScripts::
 	db 0 ; scene scripts

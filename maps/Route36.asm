@@ -12,7 +12,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE36_SUICUNE
 
 
-SECTION "maps/Route36.asm", ROMX
+SECTION "maps/Route36", ROMX
 
 Route36_MapScripts::
 	db 2 ; scene scripts

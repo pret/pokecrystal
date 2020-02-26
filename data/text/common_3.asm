@@ -2,7 +2,7 @@ INCLUDE "macros/data.inc"
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/text/common_3.asm", ROMX
+SECTION "data/text/common_3", ROMX
 
 _OakText6::
 	text "Now, what did you"

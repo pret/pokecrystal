@@ -12,7 +12,7 @@ INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/text_constants.inc"
 
 
-SECTION "mobile/mobile_22_2.asm@Function8b342", ROMX
+SECTION "mobile/mobile_22_2@Function8b342", ROMX
 
 Function8b342::
 ; Loads the map data pointer, then runs through a
@@ -49,7 +49,7 @@ Function8b342::
 	ret
 
 
-SECTION "mobile/mobile_22_2.asm@Function8b35d", ROMX
+SECTION "mobile/mobile_22_2@Function8b35d", ROMX
 
 Function8b35d:
 	ld a, h
@@ -60,7 +60,7 @@ Function8b35d:
 	ret
 
 
-SECTION "mobile/mobile_22_2.asm@Function8b363", ROMX
+SECTION "mobile/mobile_22_2@Function8b363", ROMX
 
 Function8b363:
 	push bc
@@ -69,7 +69,7 @@ Function8b363:
 	ret
 
 
-SECTION "mobile/mobile_22_2.asm", ROMX, BANK[BANK_MOBILE_22]
+SECTION "mobile/mobile_22_2", ROMX, BANK[BANK_MOBILE_22]
 
 Function8b36c::
 	; [bc + (0:4)] = -1

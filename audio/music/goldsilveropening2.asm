@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/goldsilveropening2.asm", ROMX
+SECTION "audio/music/goldsilveropening2", ROMX
 
 Music_GoldSilverOpening2::
 	channel_count 4

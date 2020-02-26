@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/battletowerlobby.asm", ROMX
+SECTION "audio/music/battletowerlobby", ROMX
 
 Music_BattleTowerLobby::
 	channel_count 4

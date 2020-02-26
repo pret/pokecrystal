@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const VICTORYROADGATE_BLACK_BELT2
 
 
-SECTION "maps/VictoryRoadGate.asm", ROMX
+SECTION "maps/VictoryRoadGate", ROMX
 
 VictoryRoadGate_MapScripts::
 	db 2 ; scene scripts

@@ -8,7 +8,7 @@ INCLUDE "constants/phone_constants.inc"
 INCLUDE "constants/script_constants.inc"
 
 
-SECTION "engine/phone/scripts/mom.asm", ROMX
+SECTION "engine/phone/scripts/mom", ROMX
 
 MomPhoneCalleeScript::
 	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST

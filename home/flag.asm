@@ -6,7 +6,7 @@ INCLUDE "constants/misc_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "home/flag.asm", ROM0
+SECTION "home/flag", ROM0
 
 ResetMapBufferEventFlags::
 	xor a

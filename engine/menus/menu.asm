@@ -7,7 +7,7 @@ INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/input_constants.inc"
 
 
-SECTION "engine/menus/menu.asm@_2DMenu_", ROMX
+SECTION "engine/menus/menu@_2DMenu_", ROMX
 
 _2DMenu_::
 	ld hl, CopyMenuData
@@ -566,7 +566,7 @@ Place2DMenuCursor:
 	ret
 
 
-SECTION "engine/menus/menu.asm@_PushWindow", ROMX
+SECTION "engine/menus/menu@_PushWindow", ROMX
 
 _PushWindow::
 	ldh a, [rSVBK]
@@ -668,7 +668,7 @@ _PushWindow::
 	ret
 
 
-SECTION "engine/menus/menu.asm@_ExitMenu", ROMX
+SECTION "engine/menus/menu@_ExitMenu", ROMX
 
 _ExitMenu::
 	xor a
@@ -753,7 +753,7 @@ Error_Cant_ExitMenu:
 	text_end
 
 
-SECTION "engine/menus/menu.asm@_InitVerticalMenuCursor", ROMX
+SECTION "engine/menus/menu@_InitVerticalMenuCursor", ROMX
 
 _InitVerticalMenuCursor::
 	ld a, [wMenuDataFlags]

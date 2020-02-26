@@ -11,7 +11,7 @@ INCLUDE "constants/maps_common.inc"
 	const GOLDENRODDEPTSTOREB1F_MACHOP
 
 
-SECTION "maps/GoldenrodDeptStoreB1F.asm", ROMX
+SECTION "maps/GoldenrodDeptStoreB1F", ROMX
 
 GoldenrodDeptStoreB1F_MapScripts::
 	db 0 ; scene scripts

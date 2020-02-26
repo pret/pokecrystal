@@ -1,7 +1,7 @@
 INCLUDE "macros/data.inc"
 
 
-SECTION "engine/predef.asm", ROMX
+SECTION "engine/predef", ROMX
 
 GetPredefPointer::
 ; Return the bank and address of wPredefID in a and wPredefAddress.

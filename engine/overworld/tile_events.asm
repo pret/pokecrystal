@@ -2,7 +2,7 @@ INCLUDE "constants/collision_constants.inc"
 INCLUDE "constants/sfx_constants.inc"
 
 
-SECTION "engine/overworld/tile_events.asm@CheckWarpCollision", ROMX
+SECTION "engine/overworld/tile_events@CheckWarpCollision", ROMX
 
 CheckWarpCollision::
 ; Is this tile a warp?
@@ -22,7 +22,7 @@ CheckWarpCollision::
 	ret
 
 
-SECTION "engine/overworld/tile_events.asm@CheckDirectionalWarp", ROMX
+SECTION "engine/overworld/tile_events@CheckDirectionalWarp", ROMX
 
 CheckDirectionalWarp::
 ; If this is a directional warp, clear carry (press the designated button to warp).
@@ -44,7 +44,7 @@ CheckDirectionalWarp::
 	ret
 
 
-SECTION "engine/overworld/tile_events.asm@CheckWarpFacingDown", ROMX
+SECTION "engine/overworld/tile_events@CheckWarpFacingDown", ROMX
 
 CheckWarpFacingDown::
 	ld de, 1
@@ -66,7 +66,7 @@ CheckWarpFacingDown::
 	db -1
 
 
-SECTION "engine/overworld/tile_events.asm@CheckGrassCollision", ROMX
+SECTION "engine/overworld/tile_events@CheckGrassCollision", ROMX
 
 CheckGrassCollision::
 	ld a, [wPlayerStandingTile]
@@ -89,7 +89,7 @@ CheckGrassCollision::
 	db -1
 
 
-SECTION "engine/overworld/tile_events.asm@CheckCutCollision", ROMX
+SECTION "engine/overworld/tile_events@CheckCutCollision", ROMX
 
 CheckCutCollision::
 	ld a, c
@@ -108,7 +108,7 @@ CheckCutCollision::
 	db -1
 
 
-SECTION "engine/overworld/tile_events.asm@GetWarpSFX", ROMX
+SECTION "engine/overworld/tile_events@GetWarpSFX", ROMX
 
 GetWarpSFX::
 	ld a, [wPlayerStandingTile]

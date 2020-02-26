@@ -9,7 +9,7 @@ INCLUDE "constants/wram_constants.inc"
 ; Audio interfaces.
 
 
-SECTION "home/audio.asm", ROM0
+SECTION "home/audio", ROM0
 
 InitSound::
 	push hl

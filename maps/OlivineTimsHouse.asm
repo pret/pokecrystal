@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const OLIVINETIMSHOUSE_TIM
 
 
-SECTION "maps/OlivineTimsHouse.asm", ROMX
+SECTION "maps/OlivineTimsHouse", ROMX
 
 OlivineTimsHouse_MapScripts::
 	db 0 ; scene scripts

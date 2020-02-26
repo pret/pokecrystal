@@ -7,7 +7,7 @@ INCLUDE "constants/maps_common.inc"
 	const LAVENDERTOWN_YOUNGSTER
 
 
-SECTION "maps/LavenderTown.asm", ROMX
+SECTION "maps/LavenderTown", ROMX
 
 LavenderTown_MapScripts::
 	db 0 ; scene scripts

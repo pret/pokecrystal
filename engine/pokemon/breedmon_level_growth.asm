@@ -3,7 +3,7 @@ INCLUDE "constants/floating_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 
 
-SECTION "engine/pokemon/breedmon_level_growth.asm", ROMX, BANK[BANK_MOVE_MON]
+SECTION "engine/pokemon/breedmon_level_growth", ROMX, BANK[BANK_MOVE_MON]
 
 GetBreedMon1LevelGrowth::
 	ld hl, wBreedMon1Stats

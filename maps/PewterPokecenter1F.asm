@@ -8,7 +8,7 @@ INCLUDE "constants/maps_common.inc"
 	const PEWTERPOKECENTER1F_CHRIS
 
 
-SECTION "maps/PewterPokecenter1F.asm", ROMX
+SECTION "maps/PewterPokecenter1F", ROMX
 
 PewterPokecenter1F_MapScripts::
 	db 0 ; scene scripts

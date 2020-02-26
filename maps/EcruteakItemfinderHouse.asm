@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const ECRUTEAKITEMFINDERHOUSE_POKEDEX
 
 
-SECTION "maps/EcruteakItemfinderHouse.asm", ROMX
+SECTION "maps/EcruteakItemfinderHouse", ROMX
 
 EcruteakItemfinderHouse_MapScripts::
 	db 0 ; scene scripts

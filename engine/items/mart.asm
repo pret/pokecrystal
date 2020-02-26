@@ -22,7 +22,7 @@ INCLUDE "constants/wram_constants.inc"
 	const MARTTEXT_SOLD_OUT
 
 
-SECTION "engine/items/mart.asm", ROMX
+SECTION "engine/items/mart", ROMX
 
 OpenMartDialog::
 	call GetMart

@@ -8,7 +8,7 @@ INCLUDE "constants/maps_common.inc"
 	const VIOLETPOKECENTER1F_ELMS_AIDE
 
 
-SECTION "maps/VioletPokecenter1F.asm", ROMX
+SECTION "maps/VioletPokecenter1F", ROMX
 
 VioletPokecenter1F_MapScripts::
 	db 0 ; scene scripts

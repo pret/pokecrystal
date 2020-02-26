@@ -20,7 +20,7 @@ NAMINGSCREEN_MIDDLELINE EQU "→" ; $eb
 NAMINGSCREEN_UNDERLINE  EQU "<DOT>" ; $f2
 
 
-SECTION "engine/menus/naming_screen.asm", ROMX
+SECTION "engine/menus/naming_screen", ROMX
 
 _NamingScreen::
 	call DisableSpriteUpdates

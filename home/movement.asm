@@ -2,7 +2,7 @@ INCLUDE "macros/scripts/movement.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "home/movement.asm", ROM0
+SECTION "home/movement", ROM0
 
 InitMovementBuffer::
 	ld [wMovementBufferObject], a

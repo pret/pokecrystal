@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/SaffronPokecenter2FBeta.asm", ROMX
+SECTION "maps/SaffronPokecenter2FBeta", ROMX
 
 SaffronPokecenter2FBeta_MapScripts::
 	db 0 ; scene scripts

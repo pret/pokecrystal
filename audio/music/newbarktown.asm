@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/newbarktown.asm", ROMX
+SECTION "audio/music/newbarktown", ROMX
 
 Music_NewBarkTown::
 	channel_count 3

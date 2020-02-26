@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const CINNABARISLAND_BLUE
 
 
-SECTION "maps/CinnabarIsland.asm", ROMX
+SECTION "maps/CinnabarIsland", ROMX
 
 CinnabarIsland_MapScripts::
 	db 0 ; scene scripts

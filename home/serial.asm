@@ -4,7 +4,7 @@ INCLUDE "constants/misc_constants.inc"
 INCLUDE "constants/serial_constants.inc"
 
 
-SECTION "home/serial.asm", ROM0
+SECTION "home/serial", ROM0
 
 Serial::
 ; The serial interrupt.

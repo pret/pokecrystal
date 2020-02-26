@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const ICEPATH1F_POKE_BALL3
 
 
-SECTION "maps/IcePath1F.asm", ROMX
+SECTION "maps/IcePath1F", ROMX
 
 IcePath1F_MapScripts::
 	db 0 ; scene scripts

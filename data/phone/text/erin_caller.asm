@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/erin_caller.asm", ROMX
+SECTION "data/phone/text/erin_caller", ROMX
 
 ErinMonIsMuchStrongerText::
 	text_ram wStringBuffer3

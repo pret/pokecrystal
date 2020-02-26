@@ -15,7 +15,7 @@ INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/pokemon/bills_pc.asm", ROMX
+SECTION "engine/pokemon/bills_pc", ROMX
 
 _DepositPKMN::
 	ld hl, wOptions
@@ -2247,7 +2247,7 @@ PCString_PartyFull: db "The party's full!@"
 PCString_NoReleasingEGGS: db "No releasing EGGS!@"
 
 
-SECTION "engine/pokemon/bills_pc.asm@_ChangeBox", ROMX
+SECTION "engine/pokemon/bills_pc@_ChangeBox", ROMX
 
 _ChangeBox::
 	call LoadStandardMenuHeader

@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/buenaspassword.asm", ROMX
+SECTION "audio/music/buenaspassword", ROMX
 
 Music_BuenasPassword::
 	channel_count 4

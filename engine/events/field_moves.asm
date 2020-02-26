@@ -14,7 +14,7 @@ FIELDMOVE_TREE EQU $84
 FIELDMOVE_FLY EQU $84
 
 
-SECTION "engine/events/field_moves.asm@PlayWhirlpoolSound", ROMX
+SECTION "engine/events/field_moves@PlayWhirlpoolSound", ROMX
 
 PlayWhirlpoolSound::
 	call WaitSFX
@@ -24,7 +24,7 @@ PlayWhirlpoolSound::
 	ret
 
 
-SECTION "engine/events/field_moves.asm@BlindingFlash", ROMX
+SECTION "engine/events/field_moves@BlindingFlash", ROMX
 
 BlindingFlash::
 	farcall FadeOutPalettes
@@ -39,7 +39,7 @@ BlindingFlash::
 	ret
 
 
-SECTION "engine/events/field_moves.asm@Trees", ROMX
+SECTION "engine/events/field_moves@Trees", ROMX
 
 ShakeHeadbuttTree::
 	farcall ClearSpriteAnims
@@ -326,7 +326,7 @@ Cut_Headbutt_GetPixelFacing:
 	dbpixel 12, 11
 
 
-SECTION "engine/events/field_moves.asm@Fly", ROMX
+SECTION "engine/events/field_moves@Fly", ROMX
 
 FlyFromAnim::
 	call DelayFrame

@@ -18,7 +18,7 @@ INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/items/item_effects.asm", ROMX
+SECTION "engine/items/item_effects", ROMX
 
 _DoItemEffect::
 	ld a, [wCurItem]
@@ -783,10 +783,10 @@ GetPokedexEntryBank:
 	ret
 
 .PokedexEntryBanks:
-	db BANK("data/pokemon/dex_entries.asm@Pokedex Entries 001-064")
-	db BANK("data/pokemon/dex_entries.asm@Pokedex Entries 065-128")
-	db BANK("data/pokemon/dex_entries.asm@Pokedex Entries 129-192")
-	db BANK("data/pokemon/dex_entries.asm@Pokedex Entries 193-251")
+	db BANK("data/pokemon/dex_entries@Pokedex Entries 001-064")
+	db BANK("data/pokemon/dex_entries@Pokedex Entries 065-128")
+	db BANK("data/pokemon/dex_entries@Pokedex Entries 129-192")
+	db BANK("data/pokemon/dex_entries@Pokedex Entries 193-251")
 
 HeavyBallMultiplier:
 ; subtract 20 from catch rate if weight < 102.4 kg
@@ -923,7 +923,7 @@ MoonBallMultiplier:
 	pop bc
 
 	push bc
-	ld a, BANK("engine/pokemon/evolve.asm")
+	ld a, BANK("engine/pokemon/evolve")
 	call GetFarByte
 	cp EVOLVE_ITEM
 	pop bc
@@ -937,7 +937,7 @@ MoonBallMultiplier:
 ; No Pokémon evolve with Burn Heal,
 ; so Moon Balls always have a catch rate of 1×.
 	push bc
-	ld a, BANK("engine/pokemon/evolve.asm")
+	ld a, BANK("engine/pokemon/evolve")
 	call GetFarByte
 	cp MOON_STONE_RED ; BURN_HEAL
 	pop bc

@@ -1,7 +1,7 @@
 INCLUDE "constants/gfx_constants.inc"
 
 
-SECTION "home/clear_sprites.asm", ROM0
+SECTION "home/clear_sprites", ROM0
 
 ClearSprites::
 ; Erase OAM data

@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/gym.asm", ROMX
+SECTION "audio/music/gym", ROMX
 
 Music_Gym::
 	channel_count 4

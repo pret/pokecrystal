@@ -2,7 +2,7 @@ INCLUDE "macros/gfx.inc"
 INCLUDE "constants/gfx_constants.inc"
 
 
-SECTION "engine/events/print_unown_2.asm", ROMX
+SECTION "engine/events/print_unown_2", ROMX
 
 RotateUnownFrontpic::
 ; something to do with Unown printer

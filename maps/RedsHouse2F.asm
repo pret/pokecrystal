@@ -1,7 +1,7 @@
 INCLUDE "constants/maps_common.inc"
 
 
-SECTION "maps/RedsHouse2F.asm", ROMX
+SECTION "maps/RedsHouse2F", ROMX
 
 RedsHouse2F_MapScripts::
 	db 0 ; scene scripts

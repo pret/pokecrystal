@@ -7,7 +7,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/pokemon/bills_pc_top.asm", ROMX
+SECTION "engine/pokemon/bills_pc_top", ROMX
 
 _BillsPC::
 	call .CheckCanUsePC
@@ -260,7 +260,7 @@ ClearPCItemScreen::
 	ret
 
 
-SECTION "engine/pokemon/bills_pc_top.asm@CopyBoxmonToTempMon", ROMX
+SECTION "engine/pokemon/bills_pc_top@CopyBoxmonToTempMon", ROMX
 
 CopyBoxmonToTempMon::
 	ld a, [wCurPartyMon]
@@ -276,7 +276,7 @@ CopyBoxmonToTempMon::
 	ret
 
 
-SECTION "engine/pokemon/bills_pc_top.asm@Unreferenced_Functione5d9", ROMX
+SECTION "engine/pokemon/bills_pc_top@Unreferenced_Functione5d9", ROMX
 
 Unreferenced_LoadBoxMonListing:
 	ld a, [wCurBox]

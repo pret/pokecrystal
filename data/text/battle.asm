@@ -2,7 +2,7 @@ INCLUDE "macros/data.inc"
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/text/battle.asm", ROMX
+SECTION "data/text/battle", ROMX
 
 BattleText:: ; used only for BANK(BattleText)
 

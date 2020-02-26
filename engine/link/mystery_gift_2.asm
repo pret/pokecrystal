@@ -4,7 +4,7 @@ INCLUDE "constants/item_constants.inc"
 INCLUDE "constants/text_constants.inc"
 
 
-SECTION "engine/link/mystery_gift_2.asm@PrepMysteryGiftDataToSend", ROMX
+SECTION "engine/link/mystery_gift_2@PrepMysteryGiftDataToSend", ROMX
 
 PrepMysteryGiftDataToSend::
 	ld de, wMysteryGiftStaging
@@ -130,7 +130,7 @@ PrepMysteryGiftDataToSend::
 	ret
 
 
-SECTION "engine/link/mystery_gift_2.asm@MysteryGiftGetItemHeldEffect", ROMX
+SECTION "engine/link/mystery_gift_2@MysteryGiftGetItemHeldEffect", ROMX
 
 MysteryGiftGetItemHeldEffect::
 	ld a, c

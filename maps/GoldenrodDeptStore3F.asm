@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const GOLDENRODDEPTSTORE3F_ROCKER
 
 
-SECTION "maps/GoldenrodDeptStore3F.asm", ROMX
+SECTION "maps/GoldenrodDeptStore3F", ROMX
 
 GoldenrodDeptStore3F_MapScripts::
 	db 0 ; scene scripts

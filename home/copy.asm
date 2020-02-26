@@ -2,7 +2,7 @@ INCLUDE "macros/rst.inc"
 INCLUDE "constants/hardware_constants.inc"
 
 
-SECTION "home/copy.asm", ROM0
+SECTION "home/copy", ROM0
 
 CopyBytes::
 ; copy bc bytes from hl to de

@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const POKECOMCENTERADMINOFFICEMOBILE_SCIENTIST3
 
 
-SECTION "maps/PokecomCenterAdminOfficeMobile.asm", ROMX
+SECTION "maps/PokecomCenterAdminOfficeMobile", ROMX
 
 PokecomCenterAdminOfficeMobile_MapScripts::
 	db 0 ; scene scripts

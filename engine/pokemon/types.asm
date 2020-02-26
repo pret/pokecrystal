@@ -3,7 +3,7 @@ INCLUDE "constants/battle_constants.inc"
 INCLUDE "constants/text_constants.inc"
 
 
-SECTION "engine/pokemon/types.asm", ROMX
+SECTION "engine/pokemon/types", ROMX
 
 PrintMonTypes::
 ; Print one or both types of [wCurSpecies]

@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const VIRIDIANGYM_GYM_GUY
 
 
-SECTION "maps/ViridianGym.asm", ROMX
+SECTION "maps/ViridianGym", ROMX
 
 ViridianGym_MapScripts::
 	db 0 ; scene scripts

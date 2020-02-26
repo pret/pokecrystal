@@ -1,7 +1,7 @@
 INCLUDE "macros/scripts/text.inc"
 
 
-SECTION "data/phone/text/arnie_caller.asm", ROMX
+SECTION "data/phone/text/arnie_caller", ROMX
 
 ArnieMonIsSoCuteText::
 	text "I'm always with my"

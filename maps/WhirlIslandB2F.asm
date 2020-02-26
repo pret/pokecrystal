@@ -6,7 +6,7 @@ INCLUDE "constants/maps_common.inc"
 	const WHIRLISLANDB2F_POKE_BALL3
 
 
-SECTION "maps/WhirlIslandB2F.asm", ROMX
+SECTION "maps/WhirlIslandB2F", ROMX
 
 WhirlIslandB2F_MapScripts::
 	db 0 ; scene scripts

@@ -2,7 +2,7 @@ INCLUDE "charmap.inc"
 INCLUDE "constants/text_constants.inc"
 
 
-SECTION "engine/pokemon/correct_nick_errors.asm", ROMX
+SECTION "engine/pokemon/correct_nick_errors", ROMX
 
 CorrectNickErrors::
 ; error-check monster nick before use

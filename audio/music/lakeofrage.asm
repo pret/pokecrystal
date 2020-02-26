@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/lakeofrage.asm", ROMX
+SECTION "audio/music/lakeofrage", ROMX
 
 Music_LakeOfRage::
 	channel_count 4

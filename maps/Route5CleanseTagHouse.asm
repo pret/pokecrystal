@@ -5,7 +5,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE5CLEANSETAGHOUSE_TEACHER
 
 
-SECTION "maps/Route5CleanseTagHouse.asm", ROMX
+SECTION "maps/Route5CleanseTagHouse", ROMX
 
 Route5CleanseTagHouse_MapScripts::
 	db 0 ; scene scripts

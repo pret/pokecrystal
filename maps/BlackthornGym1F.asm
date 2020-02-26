@@ -8,7 +8,7 @@ INCLUDE "constants/maps_common.inc"
 	const BLACKTHORNGYM1F_GYM_GUY
 
 
-SECTION "maps/BlackthornGym1F.asm", ROMX
+SECTION "maps/BlackthornGym1F", ROMX
 
 BlackthornGym1F_MapScripts::
 	db 0 ; scene scripts

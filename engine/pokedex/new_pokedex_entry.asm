@@ -2,7 +2,7 @@ INCLUDE "macros/rst.inc"
 INCLUDE "constants/scgb_constants.inc"
 
 
-SECTION "engine/pokedex/new_pokedex_entry.asm", ROMX
+SECTION "engine/pokedex/new_pokedex_entry", ROMX
 
 NewPokedexEntry::
 	ldh a, [hMapAnims]

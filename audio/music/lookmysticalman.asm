@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/lookmysticalman.asm", ROMX
+SECTION "audio/music/lookmysticalman", ROMX
 
 Music_LookMysticalMan::
 	channel_count 4

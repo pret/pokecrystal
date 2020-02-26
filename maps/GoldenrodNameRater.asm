@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const GOLDENRODNAMERATER_NAME_RATER
 
 
-SECTION "maps/GoldenrodNameRater.asm", ROMX
+SECTION "maps/GoldenrodNameRater", ROMX
 
 GoldenrodNameRater_MapScripts::
 	db 0 ; scene scripts

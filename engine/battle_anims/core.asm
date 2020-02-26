@@ -18,7 +18,7 @@ INCLUDE "constants/sfx_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/battle_anims/core.asm", ROMX
+SECTION "engine/battle_anims/core", ROMX
 
 PlayBattleAnim::
 	ldh a, [rSVBK]

@@ -9,7 +9,7 @@ INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/sfx_constants.inc"
 
 
-SECTION "engine/pokemon/mon_submenu.asm", ROMX
+SECTION "engine/pokemon/mon_submenu", ROMX
 
 INCLUDE "data/mon_menu.inc"
 
@@ -258,7 +258,7 @@ AddMonMenuItem:
 	ret
 
 
-SECTION "engine/pokemon/mon_submenu.asm@BattleMonMenu", ROMX
+SECTION "engine/pokemon/mon_submenu@BattleMonMenu", ROMX
 
 BattleMonMenu::
 	ld hl, MenuHeader_0x24ed4

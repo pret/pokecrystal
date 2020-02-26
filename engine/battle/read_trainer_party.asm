@@ -10,7 +10,7 @@ INCLUDE "constants/trainer_data_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/battle/read_trainer_party.asm", ROMX
+SECTION "engine/battle/read_trainer_party", ROMX
 
 ReadTrainerParty::
 	ld a, [wInBattleTowerBattle]

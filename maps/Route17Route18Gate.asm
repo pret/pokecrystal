@@ -4,7 +4,7 @@ INCLUDE "constants/maps_common.inc"
 	const ROUTE17ROUTE18GATE_OFFICER
 
 
-SECTION "maps/Route17Route18Gate.asm", ROMX
+SECTION "maps/Route17Route18Gate", ROMX
 
 Route17Route18Gate_MapScripts::
 	db 1 ; scene scripts

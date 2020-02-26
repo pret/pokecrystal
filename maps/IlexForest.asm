@@ -14,7 +14,7 @@ INCLUDE "constants/maps_common.inc"
 	const ILEXFOREST_POKE_BALL4
 
 
-SECTION "maps/IlexForest.asm", ROMX
+SECTION "maps/IlexForest", ROMX
 
 IlexForest_MapScripts::
 	db 0 ; scene scripts

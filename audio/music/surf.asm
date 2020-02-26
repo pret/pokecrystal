@@ -1,7 +1,7 @@
 INCLUDE "constants/music_common.inc"
 
 
-SECTION "audio/music/surf.asm", ROMX
+SECTION "audio/music/surf", ROMX
 
 Music_Surf::
 	channel_count 3
