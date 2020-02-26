@@ -1,5 +1,5 @@
 CC := gcc
-CFLAGS := -O3 -march=native -std=c99 -Wall -Wextra -Wno-missing-field-initializers
+CFLAGS := -O3 -std=c99 -Wall -Wextra -Wno-missing-field-initializers
 
 # The directory containing the _built_ tools
 # Use $(dir_source)/tools/ to locate scripts

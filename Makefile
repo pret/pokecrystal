@@ -37,7 +37,7 @@ POKECRYSTAL_OUTPUT ?= .
 dir_output := $(POKECRYSTAL_OUTPUT)
 
 .PHONY: all
-all: $(dir_build)/$(version)
+all: $(version)
 
 .PHONY: compare
 compare: $(versions)
@@ -52,6 +52,7 @@ clean:
 # `tidy` will be passed through MAKECMDGOALS
 .PHONY: tidy
 tidy: $(dirs_versions)
+	rm -f $(foreach version,$(versions),"$(dir_output)/$(name).gbc" "$(dir_output)/$(name).sym" "$(dir_output)/$(name).map")
 
 # Create the build directory and run make inside of it.
 .PHONY: $(dirs_versions)
@@ -146,7 +147,7 @@ all: $(name).gbc
 
 .PHONY: tidy
 tidy:
-	rm -f $(foreach f,gbc sym map,"$(dir_output)/$(name).$f" $(name).$f)
+	rm -f $(foreach f,gbc sym map,$(name).$f)
 	@rm -f $(objects) $(deps)
 
 $(name).gbc: layout.link $(objects)
