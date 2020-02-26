@@ -1,3 +1,16 @@
+INCLUDE "macros/code.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/gfx.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/floating_constants.inc"
+INCLUDE "constants/map_data_constants.inc"
+INCLUDE "constants/pokemon_data_constants.inc"
+INCLUDE "constants/scgb_constants.inc"
+INCLUDE "constants/tileset_constants.inc"
+
+
+SECTION "engine/gfx/crystal_layouts", ROMX, BANK[BANK_CRYSTAL]
+
 GetMysteryGift_MobileAdapterLayout::
 	ld a, b
 	cp SCGB_RAM
@@ -62,7 +75,7 @@ MG_Mobile_Layout_LoadPals::
 	call FarCopyWRAM
 	ret
 
-MG_Mobile_Layout00:
+MG_Mobile_Layout00::
 	call MG_Mobile_Layout_LoadPals
 	call MG_Mobile_Layout_WipeAttrmap
 	call MG_Mobile_Layout_CreatePalBoxes

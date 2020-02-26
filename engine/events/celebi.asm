@@ -1,3 +1,14 @@
+INCLUDE "macros/code.inc"
+INCLUDE "macros/gfx.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/battle_constants.inc"
+INCLUDE "constants/misc_constants.inc"
+INCLUDE "constants/pokemon_data_constants.inc"
+INCLUDE "constants/sprite_anim_constants.inc"
+
+
+SECTION "engine/events/celebi", ROMX
+
 SPECIALCELEBIEVENT_CELEBI EQU $84
 
 CelebiShrineEvent::

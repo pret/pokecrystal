@@ -1,3 +1,39 @@
+INCLUDE "macros/code.inc"
+INCLUDE "macros/coords.inc"
+INCLUDE "macros/gfx.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "macros/scripts/text.inc"
+INCLUDE "constants/floating_constants.inc"
+INCLUDE "constants/input_constants.inc"
+INCLUDE "constants/menu_constants.inc"
+INCLUDE "constants/music_constants.inc"
+INCLUDE "constants/pokemon_data_constants.inc"
+INCLUDE "constants/scgb_constants.inc"
+INCLUDE "constants/wram_constants.inc"
+
+
+SECTION "mobile/mobile_12", ROMX, BANK[BANK_CRYSTAL]
+
+InitCrystalData:
+	ld a, $1
+	ld [wd474], a
+	xor a
+	ld [wd473], a
+	ld [wPlayerGender], a
+	ld [wd475], a
+	ld [wd476], a
+	ld [wd477], a
+	ld [wd478], a
+	ld [wd002], a
+	ld [wd003], a
+	ld a, [wd479]
+	res 0, a ; ???
+	ld [wd479], a
+	ld a, [wd479]
+	res 1, a ; ???
+	ld [wd479], a
+	ret
+
 InitMobileProfile::
 	xor a
 	set 6, a
@@ -1656,7 +1692,7 @@ Function48cda::
 	ld h, d
 	ld l, e
 
-Function48cdc:
+Function48cdc::
 	push bc
 	push hl
 	call Function48cfd
@@ -1817,3 +1853,5 @@ Function48d94:
 	or b
 	ld [hl], a
 	ret
+
+INCLUDE "engine/menus/init_gender.inc"

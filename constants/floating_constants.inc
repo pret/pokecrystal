@@ -44,6 +44,14 @@ BANK_BUG_CONTEST_RESULTS EQU $2f ; BugContestResultsWarpScript -> Movement_Conte
 BANK_PHONE_TIFFANY       EQU $2f ; TiffanysFamilyMemebers -> {GrandmaString, GrandpaString, MomString, DadString, SisterString, BrotherString}
 BANK_DUMMY_GAME          EQU $38 ; _DummyGame -> {Unknown_e00ed, ret_e00ed}
 
+; Function48689 -> GetMysteryGift_MobileAdapterLayout
+; Function4a098 -> MG_Mobile_Layout_LoadPals
+; Function4a0c2 -> InitMobileProfile
+; Function4a492 -> MG_Mobile_Layout00
+; InitMobileProfile -> {Function4a3a7, GetMysteryGift_MobileAdapterLayout}
+; {Function49f16, Function4a149, Function4a28a, Function4a4c4} -> Function48cdc
+BANK_CRYSTAL             EQU $12
+
 ; The Unown pic pointers should start at the same address as the others
 ADDR_PIC_POINTERS EQU $4000
 

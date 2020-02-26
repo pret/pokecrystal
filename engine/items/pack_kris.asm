@@ -1,3 +1,10 @@
+INCLUDE "macros/code.inc"
+INCLUDE "macros/gfx.inc"
+INCLUDE "constants/pokemon_data_constants.inc"
+
+
+SECTION "engine/items/pack_kris", ROMX
+
 DrawKrisPackGFX::
 	ld hl, PackFGFXPointers
 	add hl, de

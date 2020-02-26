@@ -1,3 +1,15 @@
+INCLUDE "macros/predef.inc"
+INCLUDE "macros/rst.inc"
+INCLUDE "constants/menu_constants.inc"
+INCLUDE "constants/move_constants.inc"
+INCLUDE "constants/pokemon_data_constants.inc"
+INCLUDE "constants/scgb_constants.inc"
+INCLUDE "constants/script_constants.inc"
+INCLUDE "constants/sfx_constants.inc"
+
+
+SECTION "engine/events/move_tutor", ROMX
+
 MoveTutor::
 	call FadeToMenu
 	call ClearBGPalettes
