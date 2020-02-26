@@ -299,6 +299,3 @@ INCLUDE "gfx/trade/border.pal"
 InitMG_Mobile_LinkTradePalMap:
 	call _InitMG_Mobile_LinkTradePalMap
 	ret
-
-; unused
-INCLUDE "gfx/unknown/4985a.asm"
