@@ -56,7 +56,7 @@ OpponentPartyAttr::
 	jr OTPartyAttr
 
 BattlePartyAttr::
-; Get attribute a from the party struct of the active battle mon. 
+; Get attribute a from the party struct of the active battle mon.
 	push bc
 	ld c, a
 	ld b, 0
