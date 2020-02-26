@@ -1,7 +1,7 @@
-INCLUDE "charmap.inc"
 INCLUDE "macros/predef.inc"
 INCLUDE "macros/rst.inc"
 INCLUDE "constants/battle_constants.inc"
+INCLUDE "constants/charmap.inc"
 INCLUDE "constants/misc_constants.inc"
 INCLUDE "constants/move_constants.inc"
 INCLUDE "constants/pokemon_constants.inc"

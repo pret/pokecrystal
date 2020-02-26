@@ -1,5 +1,5 @@
-INCLUDE "charmap.inc"
 INCLUDE "macros/data.inc"
+INCLUDE "constants/charmap.inc"
 INCLUDE "constants/landmark_constants.inc"
 
 

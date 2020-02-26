@@ -1,5 +1,5 @@
-INCLUDE "charmap.inc"
 INCLUDE "constants/battle_constants.inc"
+INCLUDE "constants/charmap.inc"
 INCLUDE "constants/text_constants.inc"
 
 

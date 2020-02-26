@@ -1,4 +1,4 @@
-INCLUDE "charmap.inc"
+INCLUDE "constants/charmap.inc"
 
 
 SECTION "data/items/names", ROMX

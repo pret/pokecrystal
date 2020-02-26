@@ -1,4 +1,4 @@
-INCLUDE "charmap.inc"
+INCLUDE "constants/charmap.inc"
 
 
 SECTION "data/pokemon/names", ROMX

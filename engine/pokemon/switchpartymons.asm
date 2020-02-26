@@ -1,5 +1,5 @@
-INCLUDE "charmap.inc"
 INCLUDE "macros/coords.inc"
+INCLUDE "constants/charmap.inc"
 INCLUDE "constants/item_data_constants.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 INCLUDE "constants/sfx_constants.inc"

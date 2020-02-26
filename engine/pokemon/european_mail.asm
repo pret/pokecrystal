@@ -1,4 +1,4 @@
-INCLUDE "charmap.inc"
+INCLUDE "constants/charmap.inc"
 
 
 SECTION "engine/pokemon/european_mail@IsMailEuropean", ROMX

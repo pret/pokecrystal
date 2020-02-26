@@ -1,6 +1,6 @@
-INCLUDE "charmap.inc"
 INCLUDE "macros/code.inc"
 INCLUDE "macros/coords.inc"
+INCLUDE "constants/charmap.inc"
 INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/input_constants.inc"
 INCLUDE "constants/scgb_constants.inc"

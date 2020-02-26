@@ -1,7 +1,7 @@
-INCLUDE "charmap.inc"
 INCLUDE "macros/code.inc"
 INCLUDE "macros/data.inc"
 INCLUDE "macros/rst.inc"
+INCLUDE "constants/charmap.inc"
 INCLUDE "constants/floating_constants.inc"
 INCLUDE "constants/input_constants.inc"
 INCLUDE "constants/menu_constants.inc"

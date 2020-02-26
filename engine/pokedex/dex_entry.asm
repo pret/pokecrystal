@@ -1,6 +1,6 @@
-INCLUDE "charmap.inc"
 INCLUDE "macros/code.inc"
 INCLUDE "macros/coords.inc"
+INCLUDE "constants/charmap.inc"
 INCLUDE "constants/pokemon_data_constants.inc"
 
 

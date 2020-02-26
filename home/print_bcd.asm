@@ -1,4 +1,4 @@
-INCLUDE "charmap.inc"
+INCLUDE "constants/charmap.inc"
 INCLUDE "constants/text_constants.inc"
 
 

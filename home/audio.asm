@@ -1,5 +1,5 @@
-INCLUDE "charmap.inc"
 INCLUDE "constants/audio_constants.inc"
+INCLUDE "constants/charmap.inc"
 INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/map_constants.inc"

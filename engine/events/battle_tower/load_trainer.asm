@@ -1,6 +1,6 @@
-INCLUDE "charmap.inc"
 INCLUDE "macros/code.inc"
 INCLUDE "constants/battle_tower_constants.inc"
+INCLUDE "constants/charmap.inc"
 INCLUDE "constants/hardware_constants.inc"
 INCLUDE "constants/item_constants.inc"
 INCLUDE "constants/move_constants.inc"

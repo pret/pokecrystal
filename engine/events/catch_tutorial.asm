@@ -1,5 +1,5 @@
-INCLUDE "charmap.inc"
 INCLUDE "macros/rst.inc"
+INCLUDE "constants/charmap.inc"
 INCLUDE "constants/input_constants.inc"
 INCLUDE "constants/item_constants.inc"
 INCLUDE "constants/text_constants.inc"
