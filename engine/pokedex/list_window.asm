@@ -1,43 +1,11 @@
 INCLUDE "macros/code.inc"
 INCLUDE "macros/coords.inc"
-INCLUDE "macros/gfx.inc"
 INCLUDE "macros/scripts/text.inc"
 INCLUDE "constants/gfx_constants.inc"
 INCLUDE "constants/wram_constants.inc"
 
 
-SECTION "engine/pokedex/pokedex_3@LoadSGBPokedexGFX", ROMX
-
-LoadSGBPokedexGFX::
-	ld hl, SGBPokedexGFX_LZ
-	ld de, vTiles2 tile $31
-	call Decompress
-	ret
-
-LoadSGBPokedexGFX2::
-	ld hl, SGBPokedexGFX_LZ
-	ld de, vTiles2 tile $31
-	lb bc, BANK(SGBPokedexGFX_LZ), 58
-	call DecompressRequest2bpp
-	ret
-
-SGBPokedexGFX_LZ:
-INCBIN "gfx/pokedex/sgb.2bpp.lz"
-
-
-SECTION "engine/pokedex/pokedex_3@LoadQuestionMarkPic", ROMX
-
-LoadQuestionMarkPic::
-	ld hl, .QuestionMarkLZ
-	ld de, sScratch
-	call Decompress
-	ret
-
-.QuestionMarkLZ:
-INCBIN "gfx/pokedex/question_mark.2bpp.lz"
-
-
-SECTION "engine/pokedex/pokedex_3@DrawPokedexWindow", ROMX
+SECTION "engine/pokedex/list_window", ROMX
 
 DrawPokedexListWindow::
 	ld a, $32
