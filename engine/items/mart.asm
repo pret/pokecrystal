@@ -883,3 +883,4 @@ MartTextbox:
 	ret
 
 INCLUDE "engine/events/money.inc"
+INCLUDE "data/items/marts.inc"

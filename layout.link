@@ -210,7 +210,6 @@ ROMX $05
 	"engine/overworld/map_setup@ForceMapMusic"
 	"engine/events/pokecenter_pc"
 	"engine/items/mart"
-	"data/items/marts"
 	"engine/events/mom"
 	"engine/events/daycare"
 	"engine/events/print_unown"

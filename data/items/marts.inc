@@ -1,8 +1,3 @@
-INCLUDE "constants/item_constants.inc"
-
-
-SECTION "data/items/marts", ROMX
-
 Marts::
 ; entries correspond to MART_* constants
 	dw MartCherrygrove
