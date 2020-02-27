@@ -1,5 +1,5 @@
 NUM_STARTER_CATEGORIES EQU 12
-NUM_TOTAL_STARTERS EQU 107
+NUM_TOTAL_STARTERS EQU 106 ; 106 isnt the actual total, but this is the highest number that consistently works. Is my algorithm incrementing the accumulator between categories
 
 NUM_BASIC_STARTERS EQU 8
 NUM_ROCKET_STARTERS EQU 4
@@ -210,16 +210,16 @@ CommonStarters:
 	dw TENTACOOL
 
 UncommonStarters:
-	dw SANDSHREW
+	dw SANDSHREW ; 1
 	dw VULPIX
 	dw ODDISH
 	dw PARAS
-	dw VENONAT
+	dw VENONAT ; 5
 	dw DIGLETT
 	dw GROWLITHE
 	dw POLIWAG
 	dw BELLSPROUT
-	dw PONYTA
+	dw PONYTA ; 10
 	dw SLOWPOKE
 	dw DODUO
 	dw SEEL
@@ -229,7 +229,7 @@ UncommonStarters:
 	dw VOLTORB
 	dw CUBONE
 	dw HORSEA
-	dw GOLDEEN
+	dw GOLDEEN ;20
 	dw STARYU
 	dw MR__MIME
 	dw LAPRAS
@@ -239,7 +239,7 @@ UncommonStarters:
 	dw MAREEP
 	dw MARILL
 	dw SUDOWOODO
-	dw HOPPIP
+	dw HOPPIP ;30
 	dw WOOPER
 	dw GIRAFARIG 
 	dw PINECO
@@ -249,7 +249,7 @@ UncommonStarters:
 	dw TEDDIURSA
 	dw SLUGMA
 	dw SWINUB
-	dw CORSOLA 
+	dw CORSOLA ; 40
 	dw REMORAID
 	dw DELIBIRD
 	dw MANTINE
@@ -257,7 +257,7 @@ UncommonStarters:
 	dw HOUNDOUR
 	dw PHANPY
 	dw STANTLER
-	dw MILTANK 
+	dw MILTANK
 
 FossilStarters:
 	dw OMANYTE

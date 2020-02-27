@@ -360,7 +360,6 @@ StarterSelectionScreen_JoypadAction:
 	; begin from the first starter in the first category
 	ld [wStarterCursorPositionMon], a
 	ld [wStarterCursorPositionCategory], a
-	call PopulateStarterInfo
 	jr .get_random_starter_loop
 	ret
 
@@ -430,6 +429,7 @@ StarterSelectionScreen_JoypadAction:
 	ld a, e
 	add a, 1
 	ld e, a
+
 	call .get_random_starter_loop
 	ret
 .move_to_next_mon
