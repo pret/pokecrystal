@@ -205,15 +205,15 @@ Slash:
 
 PlaceInstructions:
 	ld de, .mon_label
-	hlcoord 2, 15
+	hlcoord 2, 14
 	call PlaceString
 
 	ld de, .category_label
-	hlcoord 1, 16
+	hlcoord 1, 15
 	call PlaceString
 
 	ld de, .random_label
-	hlcoord 3, 17
+	hlcoord 3, 16
 	call PlaceString
 
 	ret
