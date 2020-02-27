@@ -600,9 +600,9 @@ Function4a449:
 	ret
 
 Function4a485:
-	ld de, GFX_49c0c
+	ld de, MobileMenuGFX
 	ld hl, vTiles2 tile $00
-	lb bc, BANK(GFX_49c0c), 13
+	lb bc, BANK(MobileMenuGFX), 13
 	call Get2bpp
 	ret
 

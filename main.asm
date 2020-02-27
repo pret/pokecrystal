@@ -262,9 +262,9 @@ INCLUDE "data/pokemon/base_stats.asm"
 INCLUDE "data/pokemon/names.asm"
 INCLUDE "data/pokemon/unused_pic_banks.asm"
 
-UnknownEggPic::
+UnusedEggFrontpic::
 ; Another egg pic. This is shifted up a few pixels.
-INCBIN "gfx/unknown/unknown_egg.2bpp.lz"
+INCBIN "gfx/pokemon/egg/unused_front.2bpp.lz"
 
 
 SECTION "Crystal Phone Text", ROMX

@@ -157,6 +157,8 @@ gfx/pokemon/%/back.2bpp: rgbgfx += -h
 
 gfx/trainers/%.2bpp: rgbgfx += -h
 
+gfx/pokemon/egg/unused_front.2bpp: rgbgfx += -h
+
 gfx/new_game/shrink1.2bpp: rgbgfx += -h
 gfx/new_game/shrink2.2bpp: rgbgfx += -h
 
@@ -181,7 +183,6 @@ gfx/title/old_fg.2bpp: tools/gfx += --interleave --png=$<
 gfx/title/logo.2bpp: rgbgfx += -x 4
 
 gfx/trade/ball.2bpp: tools/gfx += --remove-whitespace
-gfx/trade/game_boy_n64.2bpp: tools/gfx += --trim-whitespace
 
 gfx/slots/slots_1.2bpp: tools/gfx += --trim-whitespace
 gfx/slots/slots_2.2bpp: tools/gfx += --interleave --png=$<
@@ -226,13 +227,17 @@ gfx/font/unused_bold_font.1bpp: tools/gfx += --trim-whitespace
 gfx/sgb/sgb_border.2bpp: tools/gfx += --trim-whitespace
 
 gfx/mobile/ascii_font.2bpp: tools/gfx += --trim-whitespace
+gfx/mobile/dialpad.2bpp: tools/gfx += --trim-whitespace
+gfx/mobile/dialpad_cursor.2bpp: tools/gfx += --trim-whitespace
 gfx/mobile/electro_ball.2bpp: tools/gfx += --trim-whitespace
 gfx/mobile/electro_ball_nonmatching.2bpp: tools/gfx += --remove-duplicates --remove-xflip
-gfx/mobile/mobile_adapter.2bpp: tools/gfx += --trim-whitespace
 gfx/mobile/mobile_splash.2bpp: tools/gfx += --remove-duplicates --remove-xflip
+gfx/mobile/card.2bpp: tools/gfx += --trim-whitespace
+gfx/mobile/card_2.2bpp: tools/gfx += --trim-whitespace
+gfx/mobile/card_folder.2bpp: tools/gfx += --trim-whitespace
+gfx/mobile/phone_tiles.2bpp: tools/gfx += --remove-whitespace
 gfx/mobile/pichu_animated.2bpp: tools/gfx += --trim-whitespace
-
-gfx/unknown/unknown_egg.2bpp: rgbgfx += -h
+gfx/mobile/stadium2_n64.2bpp: tools/gfx += --trim-whitespace
 
 
 ### Catch-all graphics rules

@@ -311,11 +311,11 @@ Function11c1b9:
 	call Function11d323
 	call SetPalettes
 	call DisableLCD
-	ld hl, GFX_11d67e
+	ld hl, SelectStartGFX
 	ld de, vTiles2
 	ld bc, $60
 	call CopyBytes
-	ld hl, LZ_11d6de
+	ld hl, EZChatSlowpokeLZ
 	ld de, vTiles0
 	call Decompress
 	call EnableLCD
@@ -3236,14 +3236,14 @@ EZChat_GetCategoryWordsByKana:
 
 INCLUDE "data/pokemon/ezchat_order.asm"
 
-GFX_11d67e:
-INCBIN "gfx/pokedex/select_start.2bpp"
+SelectStartGFX:
+INCBIN "gfx/mobile/select_start.2bpp"
 
-LZ_11d6de:
+EZChatSlowpokeLZ:
 INCBIN "gfx/pokedex/slowpoke.2bpp.lz"
 
 MobileEZChatCategoryNames:
-; Fixed message categories
+; entries correspond to EZCHAT_* constants
 	db "ポケモン@@" ; 00
 	db "タイプ@@@" ; 01
 	db "あいさつ@@" ; 02
