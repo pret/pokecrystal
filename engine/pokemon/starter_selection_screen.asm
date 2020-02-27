@@ -180,7 +180,7 @@ PlaceIndex:
 	ld d, h
 	ld e, l
 
-	hlcoord 14, 4
+	hlcoord 13, 4
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 
@@ -191,11 +191,11 @@ PlaceIndex:
 	ld [hl], a
 
 	ld de, Slash
-	hlcoord 16, 4
+	hlcoord 15, 4
 	call PlaceString
 
 	ld de, wNumStartersInCategory
-	hlcoord 17, 4
+	hlcoord 16, 4
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ret
@@ -205,7 +205,7 @@ Slash:
 
 PlaceInstructions:
 	ld de, .mon_label
-	hlcoord 2, 14
+	hlcoord 1, 14
 	call PlaceString
 
 	ld de, .category_label
@@ -213,7 +213,7 @@ PlaceInstructions:
 	call PlaceString
 
 	ld de, .random_label
-	hlcoord 3, 16
+	hlcoord 1, 16
 	call PlaceString
 
 	ret
