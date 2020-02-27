@@ -349,7 +349,7 @@ StarterSelectionScreen_JoypadAction:
 
 .select_button
 	; d = random # between 0 and NUM_TOTAL_STARTERS (not inclusive)
-	ld a, 107;NUM_TOTAL_STARTERS
+	ld a, NUM_TOTAL_STARTERS
 	call RandomRange
 	ld d, a
 
