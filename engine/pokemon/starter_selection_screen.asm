@@ -411,7 +411,6 @@ StarterSelectionScreen_JoypadAction:
 	; is random # greater/equal than accumulator?
 	cp e
 	jr z, .load_mon
-	jr z, .done
 
 	
 	call GetStarterCategory
