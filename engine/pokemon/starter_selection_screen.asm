@@ -190,8 +190,6 @@ PlaceIndex:
 	sub 1
 	ld [hl], a
 
-
-
 	ld de, Slash
 	hlcoord 16, 4
 	call PlaceString
@@ -213,11 +211,18 @@ PlaceInstructions:
 	ld de, .category_label
 	hlcoord 1, 16
 	call PlaceString
+
+	ld de, .random_label
+	hlcoord 3, 17
+	call PlaceString
+
 	ret
 .mon_label
 	db "MON: LEFT/RIGHT@"
 .category_label
 	db "CATEGORY: UP/DOWN@"
+.random_label
+	db "RANDOM: SELECT@"
 
 StarterSelectionScreen_LoadPage:
 	call StarterSelectionScreen_LoadGFX
@@ -236,7 +241,7 @@ StarterSelectionJoypad:
 	ret
 
 .next
-	and D_DOWN | D_UP | D_LEFT | D_RIGHT | A_BUTTON
+	and D_DOWN | D_UP | D_LEFT | D_RIGHT | A_BUTTON | SELECT
 	jp StarterSelectionScreen_JoypadAction
 
 StarterSelectionScreenNoCry
@@ -286,15 +291,20 @@ StarterSelectionScreen_JoypadAction:
 	jr nz, .d_right
 	bit A_BUTTON_F, a
 	jr nz, .a_button
-	jr .done
+	bit SELECT_F, a
+	jr nz, .select_button
+	ret
 
 .d_right
+	; is last starter in category?
 	ld a, [wNumStartersInCategory]
 	sub a, 1
 	ld e, a
 	ld a, [wStarterCursorPositionMon]
 	cp e ; last page
+	; if last in category, go to next category
 	jr z, .d_down
+	; else, move to the next mon
 	ld a, [wStarterCursorPositionMon]
 	add a, 1
 	ld [wStarterCursorPositionMon], a
@@ -304,7 +314,6 @@ StarterSelectionScreen_JoypadAction:
 .d_left
 	ld a, [wStarterCursorPositionMon]
 	cp 0 ; first page
-	;jr z, .go_to_last_starter
 	jr z, .go_to_last_starter_in_prev_category
 	ld a, [wStarterCursorPositionMon]
 	sub a, 1
@@ -336,6 +345,23 @@ StarterSelectionScreen_JoypadAction:
 	add a, 1
 	ld [wStarterCursorPositionCategory], a
 	call .load_mon
+	ret
+
+.select_button
+	; d = random # between 0 and NUM_TOTAL_STARTERS (not inclusive)
+	ld a, 107;NUM_TOTAL_STARTERS
+	call RandomRange
+	ld d, a
+
+	; e = our accumulator (TODO: is accumulator the right word?)
+	xor a
+	ld e, a
+
+	; begin from the first starter in the first category
+	ld [wStarterCursorPositionMon], a
+	ld [wStarterCursorPositionCategory], a
+	call PopulateStarterInfo
+	jr .get_random_starter_loop
 	ret
 
 .a_button
@@ -372,6 +398,53 @@ StarterSelectionScreen_JoypadAction:
 .mon_selected
 	ld h, 4 ; StarterSelectionScreen_Exit
 	call StarterSelectionScreen_SetJumptableIndex
+	ret
+
+.get_random_starter_loop
+	; d = random #
+	; e = accumulator
+	; navigates jagged array of pokemon across categories to locate the Nth pokemon
+
+	; load random # into a
+	ld a, d
+
+	; is random # greater/equal than accumulator?
+	cp e
+	jr z, .load_mon
+	jr z, .done
+
+	
+	call GetStarterCategory
+
+	; is the mon position greater/equal to num starters in category
+	ld a, [wNumStartersInCategory]
+	sub a, 1
+	ld b, a
+
+	ld a, [wStarterCursorPositionMon]
+	cp b
+
+	call z, .move_to_next_category
+	call nz, .move_to_next_mon
+
+	; increment accumulator
+	ld a, e
+	add a, 1
+	ld e, a
+	call .get_random_starter_loop
+	ret
+.move_to_next_mon
+	ld a, [wStarterCursorPositionMon]
+	add a, 1
+	ld [wStarterCursorPositionMon], a
+	ret
+.move_to_next_category
+	xor a
+	ld [wStarterCursorPositionMon], a
+
+	ld a, [wStarterCursorPositionCategory]
+	add a, 1
+	ld [wStarterCursorPositionCategory], a
 	ret
 
 StarterSelectionScreen_LoadGFX:

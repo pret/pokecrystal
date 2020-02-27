@@ -1,4 +1,5 @@
 NUM_STARTER_CATEGORIES EQU 11
+NUM_TOTAL_STARTERS EQU 117
 
 NUM_BASIC_STARTERS EQU 8
 NUM_ROCKET_STARTERS EQU 4
@@ -13,6 +14,7 @@ NUM_BABY_STARTERS EQU 9
 NUM_CHALLENGE_STARTERS EQU 6
 
 PopulateStarterInfo:
+	push de
 	; store mon in hl
 	; set wram variables to allow for endless scroll in each category
 	ld a, [wStarterCursorPositionMon]
@@ -21,6 +23,7 @@ PopulateStarterInfo:
  	call GetStarterCategory
 	add hl, de
 	add hl, de
+	pop de
 	ret
 
 GetStarterCategory:
