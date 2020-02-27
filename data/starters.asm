@@ -1,5 +1,5 @@
 NUM_STARTER_CATEGORIES EQU 12
-NUM_TOTAL_STARTERS EQU 106 ; 106 isnt the actual total, but this is the highest number that consistently works. Is my algorithm incrementing the accumulator between categories
+NUM_TOTAL_STARTERS EQU 106 ; 106 isnt the actual total, but this is the highest number that consistently works. Is my algorithm incrementing the accumulator between categories?
 
 NUM_BASIC_STARTERS EQU 8
 NUM_ROCKET_STARTERS EQU 4
