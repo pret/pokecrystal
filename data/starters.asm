@@ -1,17 +1,18 @@
-NUM_STARTER_CATEGORIES EQU 11
-NUM_TOTAL_STARTERS EQU 117
+NUM_STARTER_CATEGORIES EQU 12
+NUM_TOTAL_STARTERS EQU 107
 
 NUM_BASIC_STARTERS EQU 8
 NUM_ROCKET_STARTERS EQU 4
 NUM_ANIME_STARTERS EQU 3
+NUM_NEW_EVO_STARTERS EQU 10
 NUM_COMMON_STARTERS EQU 13
-NUM_UNCOMMON_STARTERS EQU 58
+NUM_UNCOMMON_STARTERS EQU 48
 NUM_FOSSIL_STARTERS EQU  3
 NUM_SAFARI_STARTERS EQU 7
 NUM_TRADE_STARTERS EQU 4
 NUM_PSEUDO_LEGEND_STARTERS EQU 2
-NUM_BABY_STARTERS EQU 9
-NUM_CHALLENGE_STARTERS EQU 6
+NUM_BABY_STARTERS EQU 8
+NUM_CHALLENGE_STARTERS EQU 7
 
 PopulateStarterInfo:
 	push de
@@ -37,6 +38,7 @@ GetStarterCategory:
 	dw GetBasicStarters
 	dw GetRocketStarters
 	dw GetAnimeStarters
+	dw GetNewEvoStarters
 	dw GetCommonStarters
 	dw GetUncommonStarters
 	dw GetFossilStarters
@@ -62,6 +64,12 @@ GetRocketStarters:
 GetAnimeStarters:
 	ld hl, AnimeStarters
 	ld a, NUM_ANIME_STARTERS
+	ld [wNumStartersInCategory], a
+	ret
+
+GetNewEvoStarters
+	ld hl, NewEvoStarters
+	ld a, NUM_NEW_EVO_STARTERS
 	ld [wNumStartersInCategory], a
 	ret
 
@@ -131,6 +139,7 @@ CategoryNames:
 	dw .basic
 	dw .rocket
 	dw .anime
+	dw .new_evo
 	dw .common
 	dw .uncommon
 	dw .fossil
@@ -142,6 +151,7 @@ CategoryNames:
 .basic db "BASIC@"
 .rocket db "ROCKET@"
 .anime db "ANIME@"
+.new_evo db "NEW EVO@"
 .common db "COMMON@"
 .uncommon db "UNCOMMON@"
 .fossil db "FOSSIL@"
@@ -172,6 +182,18 @@ AnimeStarters:
 	dw MAGIKARP
 	dw MANKEY
 
+NewEvoStarters:
+	dw GLIGAR
+	dw MAGNEMITE
+	dw RHYHORN
+	dw TANGELA
+	dw PORYGON
+	dw AIPOM
+	dw YANMA
+	dw MURKROW
+	dw MISDREAVUS
+	dw SNEASEL
+
 CommonStarters:
 	dw CATERPIE
 	dw WEEDLE
@@ -197,9 +219,8 @@ UncommonStarters:
 	dw GROWLITHE
 	dw POLIWAG
 	dw BELLSPROUT
-	dw PONYTA ;10
+	dw PONYTA
 	dw SLOWPOKE
-	dw MAGNEMITE
 	dw DODUO
 	dw SEEL
 	dw SHELLDER
@@ -207,37 +228,28 @@ UncommonStarters:
 	dw KRABBY
 	dw VOLTORB
 	dw CUBONE
-	dw RHYHORN ; 20
-	dw TANGELA
 	dw HORSEA
 	dw GOLDEEN
 	dw STARYU
 	dw MR__MIME
 	dw LAPRAS
 	dw SNORLAX
-	dw PORYGON
 	dw CHINCHOU
-	dw NATU ; 30
+	dw NATU 
 	dw MAREEP
 	dw MARILL
 	dw SUDOWOODO
 	dw HOPPIP
-	dw AIPOM
-	dw YANMA
 	dw WOOPER
-	dw MURKROW
-	dw MISDREAVUS
-	dw GIRAFARIG ; 40
+	dw GIRAFARIG 
 	dw PINECO
-	dw GLIGAR
 	dw SNUBBULL
 	dw QWILFISH
 	dw HERACROSS
-	dw SNEASEL
 	dw TEDDIURSA
 	dw SLUGMA
 	dw SWINUB
-	dw CORSOLA ; 50
+	dw CORSOLA 
 	dw REMORAID
 	dw DELIBIRD
 	dw MANTINE
@@ -245,7 +257,7 @@ UncommonStarters:
 	dw HOUNDOUR
 	dw PHANPY
 	dw STANTLER
-	dw MILTANK ; 58
+	dw MILTANK 
 
 FossilStarters:
 	dw OMANYTE
@@ -280,10 +292,10 @@ BabyStarters:
 	dw CLEFFA
 	dw IGGLYBUFF
 	dw SMOOCHUM
-	dw SUNKERN
 
 ChallengeStarters:
 	dw FARFETCH_D
+	dw SUNKERN
 	dw SHUCKLE
 	dw WOBBUFFET
 	dw SMEARGLE
