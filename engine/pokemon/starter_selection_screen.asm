@@ -302,6 +302,7 @@ StarterSelectionScreen_JoypadAction:
 	ld e, a
 	ld a, [wStarterCursorPositionMon]
 	cp e ; last page
+	; TODO: if last category, do nothing
 	; if last in category, go to next category
 	jr z, .d_down
 	; else, move to the next mon
@@ -335,12 +336,13 @@ StarterSelectionScreen_JoypadAction:
 	ret
 
 .d_down
-	xor a
-	ld [wStarterCursorPositionMon], a ; start from first mon in category
-
 	ld a, [wStarterCursorPositionCategory]
 	cp NUM_STARTER_CATEGORIES - 1 ; last category
 	jr z, .done
+
+	xor a
+	ld [wStarterCursorPositionMon], a ; start from first mon in category
+
 	ld a, [wStarterCursorPositionCategory]
 	add a, 1
 	ld [wStarterCursorPositionCategory], a
