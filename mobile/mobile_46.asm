@@ -183,7 +183,7 @@ Function118180:
 	ld a, [wcd38]
 	and a
 	ret z
-	ld a, BANK(s5_a89c) ; and BANK(s5_a8b2)
+	ld a, BANK(s5_a89c) ; aka BANK(s5_a8b2)
 	call GetSRAMBank
 	ld hl, wcd69
 	ld de, s5_a89c

@@ -501,9 +501,9 @@ Function893e2:
 
 Function893ef:
 	ld de, vTiles0
-	ld hl, GFX_8940b
+	ld hl, EZChatCursorGFX
 	ld bc, $20
-	ld a, BANK(GFX_8940b)
+	ld a, BANK(EZChatCursorGFX)
 	call FarCopyBytes
 	ret
 
@@ -514,19 +514,19 @@ Function893fe:
 	call DelayFrame
 	ret
 
-GFX_8940b:
-INCBIN "gfx/unknown/08940b.2bpp"
+EZChatCursorGFX:
+INCBIN "gfx/mobile/ez_chat_cursor.2bpp"
 
 Function8942b:
 	ld de, vTiles0 tile $02
-	ld hl, MobileAdapterGFX + $7d tiles
+	ld hl, CardLargeSpriteGFX
 	ld bc, 8 tiles
-	ld a, BANK(MobileAdapterGFX)
+	ld a, BANK(CardLargeSpriteGFX)
 	call FarCopyBytes
 	ld de, vTiles0 tile $0a
-	ld hl, MobileAdapterGFX + $c6 tiles
+	ld hl, CardSpriteGFX
 	ld bc, 4 tiles
-	ld a, BANK(MobileAdapterGFX)
+	ld a, BANK(CardSpriteGFX)
 	call FarCopyBytes
 	ret
 
@@ -544,23 +544,23 @@ Function89448:
 	ret
 
 Function89455:
-	ld hl, MobileAdapterGFX + $7d tiles
+	ld hl, CardLargeSpriteGFX
 	ld de, vTiles2 tile $0c
-	ld bc, $49 tiles
-	ld a, BANK(MobileAdapterGFX)
+	ld bc, (8 + 65) tiles
+	ld a, BANK(CardLargeSpriteGFX) ; aka BANK(CardFolderGFX)
 	call FarCopyBytes
 	ret
 
 Function89464:
-	ld hl, MobileAdapterGFX
+	ld hl, MobileCardGFX
 	ld de, vTiles2
 	ld bc, $20 tiles
-	ld a, BANK(MobileAdapterGFX)
+	ld a, BANK(MobileCardGFX)
 	call FarCopyBytes
-	ld hl, MobileAdapterGFX + $66 tiles
+	ld hl, MobileCard2GFX
 	ld de, vTiles2 tile $20
 	ld bc, $17 tiles
-	ld a, BANK(MobileAdapterGFX)
+	ld a, BANK(MobileCard2GFX)
 	call FarCopyBytes
 	ret
 
@@ -1193,16 +1193,16 @@ Function897d5:
 	ret
 
 Function89807:
-	ld hl, MobileAdapterGFX + $20 tiles
+	ld hl, ChrisSilhouetteGFX
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .asm_89814
-	ld hl, MobileAdapterGFX + $43 tiles
+	ld hl, KrisSilhouetteGFX
 .asm_89814
 	call DisableLCD
 	ld de, vTiles2 tile $37
-	ld bc, $23 tiles
-	ld a, BANK(MobileAdapterGFX)
+	ld bc, (5 * 7) tiles
+	ld a, BANK(ChrisSilhouetteGFX) ; aka BANK(KrisSilhouetteGFX)
 	call FarCopyBytes
 	call EnableLCD
 	call DelayFrame

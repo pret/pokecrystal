@@ -1,5 +1,5 @@
-GFX_49c0c:
-INCBIN "gfx/unknown/049c0c.2bpp"
+MobileMenuGFX:
+INCBIN "gfx/mobile/mobile_menu.2bpp"
 
 MainMenu:
 	xor a

@@ -6439,16 +6439,16 @@ Function102dc3:
 
 Function102dd3:
 	call DisableLCD
-	ld de, GFX_1032a2
+	ld de, MobileTradeLightsGFX
 	ld hl, vTiles0
-	lb bc, BANK(GFX_1032a2), 4
+	lb bc, BANK(MobileTradeLightsGFX), 4
 	call Get2bpp
 	farcall __LoadTradeScreenBorder
 	call EnableLCD
 	ret
 
 Function102dec:
-	ld hl, Palettes_1032e2
+	ld hl, MobileTradeLightsPalettes
 	ld de, wOBPals1
 	ld bc, 4 palettes
 	ld a, $05
@@ -6890,29 +6890,11 @@ Unknown_10327a:
 	db $00, $00, $03, $02
 	db $00, $00, $01, $03
 
-GFX_1032a2:
-INCBIN "gfx/unknown/1032a2.2bpp"
+MobileTradeLightsGFX:
+INCBIN "gfx/mobile/mobile_trade_lights.2bpp"
 
-Palettes_1032e2:
-	RGB  0,  0,  0
-	RGB 31, 31,  7
-	RGB 20, 31,  6
-	RGB 13, 20, 16
-
-	RGB  0,  0,  0
-	RGB  7, 11, 17
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-
-	RGB  0,  0,  0
-	RGB 31, 24,  4
-	RGB 25, 12,  0
-	RGB 31,  7,  4
-
-	RGB  0,  0,  0
-	RGB 25,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
+MobileTradeLightsPalettes:
+INCLUDE "gfx/mobile/mobile_trade_lights.pal"
 
 Function103302:
 	call Function103309

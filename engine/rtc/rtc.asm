@@ -136,7 +136,7 @@ Function140ae:
 .time_overflow
 	farcall ClearDailyTimers
 	farcall Function170923
-	ld a, BANK(s5_aa8c) ; and BANK(s5_b2fa)
+	ld a, BANK(s5_aa8c) ; aka BANK(s5_b2fa)
 	call GetSRAMBank
 	ld a, [s5_aa8c]
 	inc a

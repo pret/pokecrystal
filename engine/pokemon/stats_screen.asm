@@ -942,9 +942,8 @@ StatsScreen_LoadTextboxSpaceGFX:
 	pop hl
 	ret
 
-Unreferenced_4e32a:
-; A blank space tile?
-	ds 16
+Unreferenced_StatsScreenSpaceGFX:
+INCBIN "gfx/font/space.2bpp"
 
 EggStatsScreen:
 	xor a
