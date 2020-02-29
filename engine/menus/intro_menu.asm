@@ -80,27 +80,21 @@ ChooseStartingLocation:
 	call ClearSprites
 
 	ld a, [wStartingLocationSelector]
-	set 0, a
+	set 0, a ; starting location selection menu is active
 	ld [wStartingLocationSelector], a
+
 	farcall _FlyMap
+
 	ld a, [wStartingLocationSelector]
-	res 0, a
+	res 0, a ; starting location selection menu is inactive
 	ld [wStartingLocationSelector], a
 
+	; set starting location to result of _FlyMap
 	ld a, e
-	cp -1
-	jr z, .illegal
-	cp NUM_SPAWNS
-	jr nc, .illegal
-
 	ld [wDefaultSpawnpoint], a
 
 	ld a, MAPSETUP_WARP
 	ldh [hMapEntryMethod], a
-	ret
-.illegal ; TODO: remove this function after everything is set up
-	ld hl, OakText8
-	call PrintText
 	ret
 
 AddInitialCellNums::
