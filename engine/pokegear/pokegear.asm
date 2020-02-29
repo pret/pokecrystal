@@ -2017,9 +2017,9 @@ _FlyMap:
 	ld a, [hl]
 	and A_BUTTON
 	jr nz, .pressedA
-	;ld a, [hl]
-	;and SELECT
-	;jr nz, .pressedSelect
+	ld a, [hl]
+	and SELECT
+	jr nz, .pressedSelect
 
 	call FlyMapScroll
 	call GetMapCursorCoordinates
@@ -2031,10 +2031,8 @@ _FlyMap:
 	ld a, [wStartingLocationSelector]
 	bit 0, a ;isStartingTownMap
 	jr z, .leave_map_screen
-	ld a, [wStartFlypoint]
-	ld [hl], a
-	call TownMapBubble
-	call WaitBGMap
+
+	; continue with location selector
 	xor a
 	ldh [hBGMapMode], a
 	call GetMapCursorCoordinates
@@ -2044,6 +2042,31 @@ _FlyMap:
 .leave_map_screen
 	ld a, -1
 	jr .exit
+
+.pressedSelect
+	ld a, [wStartingLocationSelector]
+	bit 0, a; isStartingTownMap
+	jr nz, .toggleRegion
+
+	; continue with location selector
+	xor a
+	ldh [hBGMapMode], a
+	call GetMapCursorCoordinates
+	farcall PlaySpriteAnimations
+	call DelayFrame
+	jr .loop
+.toggleRegion
+	; continue with location selector
+	xor a
+	ldh [hBGMapMode], a
+	call GetMapCursorCoordinates
+	farcall PlaySpriteAnimations
+	call DelayFrame
+	jr .loop
+	;ld a, [wStartingLocationSelector]
+	;bit 1, a ; if(isJohto)
+	;jp nz, .reset_bit_1 ; switch to Kanto
+	;jp z, .set_bit_1 ; else, switch to Johto
 
 .pressedA
 	ld a, [wTownMapPlayerIconLandmark]
@@ -2067,28 +2090,6 @@ _FlyMap:
 	ld a, [wTownMapPlayerIconLandmark]
 	ld e, a
 	ret
-;.pressedSelect
-;	;ld a, [wStartingLocationSelector]
-;	;bit 0, a; isStartingTownMap
-;	;jr z, .toggleRegion
-;	; continue on map screen
-;	ld a, [wStartFlypoint]
-;	ld [hl], a
-;	call TownMapBubble
-;	call WaitBGMap
-;	xor a
-;	ldh [hBGMapMode], a
-;	call GetMapCursorCoordinates
-;	farcall PlaySpriteAnimations
-;	call DelayFrame
-;	call .loop
-;	ret
-;.toggleRegion
-;	ld a, [wStartingLocationSelector]
-;	bit 1, a ; if(isJohto)
-;	jp nz, .reset_bit_1 ; switch to Kanto
-;	jp z, .set_bit_1 ; else, switch to Johto
-;	ret
 ;.set_bit_1
 ;	set 1, a
 ;	ld [wStartingLocationSelector], a
