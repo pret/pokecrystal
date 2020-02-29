@@ -66,17 +66,42 @@ NewGame:
 	call AreYouABoyOrAreYouAGirl
 	call OakSpeech
 	call InitializeWorld
+	call ChooseStartingLocation
+	jp FinishContinueFunction
+	ret
+
+ChooseStartingLocation:
 	ld a, 1
 	ld [wPrevLandmark], a
 
-	; TODO: determine spawn point based on player town selection
-	ld a, SPAWN_HOME
+	xor a
+	ldh [hMapAnims], a
+	call LoadStandardMenuHeader
+	call ClearSprites
+
+	ld a, [wStartingLocationSelector]
+	set 0, a
+	ld [wStartingLocationSelector], a
+	farcall _FlyMap
+	ld a, [wStartingLocationSelector]
+	res 0, a
+	ld [wStartingLocationSelector], a
+
+	ld a, e
+	cp -1
+	jr z, .illegal
+	cp NUM_SPAWNS
+	jr nc, .illegal
+
 	ld [wDefaultSpawnpoint], a
 
 	ld a, MAPSETUP_WARP
 	ldh [hMapEntryMethod], a
-
-	jp FinishContinueFunction
+	ret
+.illegal ; TODO: remove this function after everything is set up
+	ld hl, OakText8
+	call PrintText
+	ret
 
 AddInitialCellNums::
 	ld c, PHONE_MOM
@@ -743,7 +768,7 @@ OakSpeech:
 	call Intro_WipeInFrontpic
 	call GiveStarterMon
 	call ClearTilemap
-	
+
 	; Display Player
 	xor a
 	ld [wCurPartySpecies], a

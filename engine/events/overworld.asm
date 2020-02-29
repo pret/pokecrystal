@@ -550,6 +550,9 @@ FlyFunction:
 	ldh [hMapAnims], a
 	call LoadStandardMenuHeader
 	call ClearSprites
+	ld a, [wStartingLocationSelector]
+	res 0, a
+	ld [wStartingLocationSelector], a
 	farcall _FlyMap
 	ld a, e
 	cp -1

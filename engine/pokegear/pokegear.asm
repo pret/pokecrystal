@@ -2017,6 +2017,10 @@ _FlyMap:
 	ld a, [hl]
 	and A_BUTTON
 	jr nz, .pressedA
+	;ld a, [hl]
+	;and SELECT
+	;jr nz, .pressedSelect
+
 	call FlyMapScroll
 	call GetMapCursorCoordinates
 	farcall PlaySpriteAnimations
@@ -2024,6 +2028,20 @@ _FlyMap:
 	jr .loop
 
 .pressedB
+	ld a, [wStartingLocationSelector]
+	bit 0, a ;isStartingTownMap
+	jr z, .leave_map_screen
+	ld a, [wStartFlypoint]
+	ld [hl], a
+	call TownMapBubble
+	call WaitBGMap
+	xor a
+	ldh [hBGMapMode], a
+	call GetMapCursorCoordinates
+	farcall PlaySpriteAnimations
+	call DelayFrame
+	jr .loop
+.leave_map_screen
 	ld a, -1
 	jr .exit
 
@@ -2049,6 +2067,28 @@ _FlyMap:
 	ld a, [wTownMapPlayerIconLandmark]
 	ld e, a
 	ret
+;.pressedSelect
+;	ld a, [wStartingLocationSelector]
+;	bit 0, a; isStartingTownMap
+;	jr z, .toggleRegion
+;	ld a, [wTownMapPlayerIconLandmark]
+;	jr .exit
+;	ret
+;.toggleRegion
+;	ld a, [wStartingLocationSelector]
+;	bit 1, a ; if(isJohto)
+;	jp z, .reset_bit_1 ; switch to Kanto
+;	jp nz, .set_bit_1 ; else, switch to Johto
+;	ld [wStartingLocationSelector], a
+;	jr .exit
+;	ret
+;.set_bit_1
+;	set 1, a
+;	ret
+;.reset_bit_1
+;	res 1, a
+;	ret
+
 
 FlyMapScroll:
 	ld a, [wStartFlypoint]
@@ -2224,6 +2264,7 @@ FlyMap:
 	call FillJohtoMap
 	call .MapHud
 	pop af
+
 	call TownMapPlayerIcon
 	ret
 
@@ -2243,6 +2284,7 @@ FlyMap:
 	call FillKantoMap
 	call .MapHud
 	pop af
+
 	call TownMapPlayerIcon
 	ret
 
@@ -2675,6 +2717,9 @@ TownMapPlayerIcon:
 ; Draw the player icon at town map location in a
 	push af
 	farcall GetPlayerIcon
+	ld a, [wStartingLocationSelector]
+	bit 0, a ; isStartingTownMap
+	ret nz
 ; Standing icon
 	ld hl, vTiles0 tile $10
 	ld c, 4 ; # tiles
