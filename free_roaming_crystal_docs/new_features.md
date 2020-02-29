@@ -4,10 +4,14 @@
 
 ### Open World Features - DONE
 
-- Start with any base or baby pokemon
+- Starter Selection
+  - Start with any non-legendary base or baby pokemon.
+  - Easy to navigate starter selection menu that includes categories.
+  - Press SELECT to choose a random starter!
+- Start from any flypoint!
+  - Press SELECT to toggle region
 - Start with all HMs
 - Badges are not required to use HMs
-- Once you can use FLY, you can fly anywhere within the current region!
 - Start with complete Pokegear
 
 ### Forms - DONE
@@ -34,19 +38,21 @@
 
 ### Open World Features - TODO
 
-#### OPF - High Priority
+#### OWF - High Priority
 
-- Start from any town
-- Scaling Trainers
+- Scaling Trainers based on Rangi's code
   - Define 16 different sets??
   - Define 8 different sets??
   - Define certain pokemon and level/evolve those Pokemon after each badge??
-
-#### OPF - Medium Priority
-
-- Scaling Wildmon
 - Replace HMs with tools
-- Rebattleable Gyms
+- Scaling Wildmon
+- Add back - Can only fly somewhere if you've been there.
+- Remove ability to start the game from places like Mt. Silver
+
+#### OWF - Medium Priority
+
+- Rebattleable Gym Leaders
+- "Karma" (how many trainers and Pokemon have you helped?)
 
 ### Forms - TODO
 
@@ -56,6 +62,7 @@
   - Add Forms
     - Surfing Pikachu
     - Flying Pikachu
+    - Pikachu Libre
     - Kabutops Skeleton
     - Aerodactyl Skeleton
     - Squirtle/Wartortle/Blastoise Squirtle Squad
@@ -81,14 +88,15 @@
 - Display kanto badges on trainer card
 - Add Menu Icons For Each Pokemon
 - Add Menu Icon Palettes For Each Pokemon Menu Icon
+- Kanto Gym Leader Trainer Card
+- Physical/Special Split
+- Shiny icon in battle and on naming screen
   
 #### QOL - Medium Priority
 
 - Hidden Power always deals max damage
 - Temtem Key Item that gives you a single party heal once after every pokecenter visit
 - Catch all 251!
-- Fourth Stats Screen
-  - Display Pokeball caught in?
 - Breeding
   - Rejecting an egg from the Daycare Man no longer stops egg production
   - Day Care man is outside fence
@@ -99,6 +107,26 @@
   - Eggs appear quicker
   - Eggs hatch faster
 - Stone & Trade Evo pokemon can appear in the wild
+- Moves
+  - Learnsets mostly updated to Gen 8
+  - Some egg moves added to level-up learnsets
+  - Expanded learnsets
+  - New Moves
+- Pressing 'B' in wild battles places the cursor on 'RUN'
+- Transportation between regions is available every day
+- Bug catching contest available more often?
+- Colored trainer badges
+- Move relearner/deleter available at every Pokecenter
+- Able to rename mons through the party menu
+- Clock reset on intro menu
+- Toggleable run button
+- Pack size increase
+- Bottle caps
+- Certain mon pick up items as you adventure
+- Display starter with correct colors/shininess based on DVs after starter selection
+- Choose player color palette
+- Following Mons (based on yenatch's design)
+- Choose form during starter selection
 
 ### Returning Areas - TODO
 
@@ -118,6 +146,9 @@
 
 - Eviolite
   - Should also prevent Mon fom evolving
+- Pinkan Berry
+- Exp All = Modern Exp. Share
+- Shiny Charm?
 
 ### Endgame - TODO
 
@@ -127,11 +158,15 @@
 - Mewtwo in Cerulean Cave
 - Mew in Pokemon Mansion
 - Celebi in Ilex Forest
+- Post Kanto Rematch
+- Kanto league (R/B/Y)
+- Item or ball that make a pokemon shiny (rare/one-of-a-kind)
 
 ### Bugfixes - TODO
 
 - Fix apricorn ball effects
   - Love Ball's vanilla effect is unchanged
+- Slow animation bar glitch
 
 ### New Pokemon - TODO
 
