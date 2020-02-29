@@ -2068,25 +2068,50 @@ _FlyMap:
 	ld e, a
 	ret
 ;.pressedSelect
-;	ld a, [wStartingLocationSelector]
-;	bit 0, a; isStartingTownMap
-;	jr z, .toggleRegion
-;	ld a, [wTownMapPlayerIconLandmark]
-;	jr .exit
+;	;ld a, [wStartingLocationSelector]
+;	;bit 0, a; isStartingTownMap
+;	;jr z, .toggleRegion
+;	; continue on map screen
+;	ld a, [wStartFlypoint]
+;	ld [hl], a
+;	call TownMapBubble
+;	call WaitBGMap
+;	xor a
+;	ldh [hBGMapMode], a
+;	call GetMapCursorCoordinates
+;	farcall PlaySpriteAnimations
+;	call DelayFrame
+;	call .loop
 ;	ret
 ;.toggleRegion
 ;	ld a, [wStartingLocationSelector]
 ;	bit 1, a ; if(isJohto)
-;	jp z, .reset_bit_1 ; switch to Kanto
-;	jp nz, .set_bit_1 ; else, switch to Johto
-;	ld [wStartingLocationSelector], a
-;	jr .exit
+;	jp nz, .reset_bit_1 ; switch to Kanto
+;	jp z, .set_bit_1 ; else, switch to Johto
 ;	ret
 ;.set_bit_1
 ;	set 1, a
+;	ld [wStartingLocationSelector], a
+;	call .exit
+;	xor a
+;	ldh [hMapAnims], a
+;	call LoadStandardMenuHeader
+;	call ClearSprites
+;	farcall _FlyMap
+;	call CloseWindow
+;	ld a, $1
 ;	ret
 ;.reset_bit_1
 ;	res 1, a
+;	ld [wStartingLocationSelector], a
+;	call .exit
+;	xor a
+;	ldh [hMapAnims], a
+;	call LoadStandardMenuHeader
+;	call ClearSprites
+;	farcall _FlyMap
+;	call CloseWindow
+;	ld a, $1
 ;	ret
 
 
@@ -2244,11 +2269,25 @@ FlyMap:
 	ld b, a
 	ld a, [wBackupMapNumber]
 	ld c, a
-	call GetWorldMapLocation
 .CheckRegion:
+	ld a, [wStartingLocationSelector]
+	bit 0, a ; is starting town selector active?
+	jr nz, .HandleStartingLocationSelectorMenu
+
+	call GetWorldMapLocation
 ; The first 46 locations are part of Johto. The rest are in Kanto.
 	cp KANTO_LANDMARK
 	jr nc, .KantoFlyMap
+	jr c, .JohtoFlyMap
+.HandleStartingLocationSelectorMenu
+	ld a, [wStartingLocationSelector]
+	bit 1, a ; isJohto?
+	jr z, .StartingLocationSelectorKantoMap
+	call GetWorldMapLocation
+	jr .JohtoFlyMap
+.StartingLocationSelectorKantoMap
+	call GetWorldMapLocation
+	jr .KantoFlyMap
 .JohtoFlyMap:
 ; Note that .NoKanto should be modified in tandem with this branch
 	push af
