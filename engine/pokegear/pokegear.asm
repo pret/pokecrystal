@@ -2017,6 +2017,10 @@ _FlyMap:
 	ld a, [hl]
 	and A_BUTTON
 	jr nz, .pressedA
+	ld a, [hl]
+	and SELECT
+	jr nz, .pressedSelect
+
 	call FlyMapScroll
 	call GetMapCursorCoordinates
 	farcall PlaySpriteAnimations
@@ -2024,8 +2028,35 @@ _FlyMap:
 	jr .loop
 
 .pressedB
+	ld a, [wStartingLocationSelector]
+	bit 0, a ;isStartingTownMap
+	jr z, .leaveMapScreen
+	jr .continueMapMenu
+
+.leaveMapScreen
 	ld a, -1
 	jr .exit
+
+
+.pressedSelect
+	ld a, [wStartingLocationSelector]
+	bit 0, a; isStartingTownMap
+	jr nz, .toggleRegion
+	jr .continueMapMenu
+
+.toggleRegion
+	ld a, [wStartingLocationSelector]
+	bit 1, a ; if(isJohto)
+	jr nz, .switchToKanto
+	jr .switchToJohto
+
+.continueMapMenu
+	xor a
+	ldh [hBGMapMode], a
+	call GetMapCursorCoordinates
+	farcall PlaySpriteAnimations
+	call DelayFrame
+	jr .loop
 
 .pressedA
 	ld a, [wTownMapPlayerIconLandmark]
@@ -2049,6 +2080,35 @@ _FlyMap:
 	ld a, [wTownMapPlayerIconLandmark]
 	ld e, a
 	ret
+.switchToJohto
+	; set the isJohto flag
+	ld a, [wStartingLocationSelector]
+	set 1, a
+	ld [wStartingLocationSelector], a
+	jr .switchRegionScreen
+
+.switchToKanto
+	; reset the isJohto flag
+	ld a, [wStartingLocationSelector]
+	res 1, a
+	ld [wStartingLocationSelector], a
+
+.switchRegionScreen
+	call ClearBGPalettes
+	call ClearTilemap
+	call ClearSprites
+	farcall ClearSpriteAnims
+	call LoadTownMapGFX
+	ld de, FlyMapLabelBorderGFX
+	ld hl, vTiles2 tile $30
+	lb bc, BANK(FlyMapLabelBorderGFX), 6
+	call Request1bpp
+	call FlyMap
+	call ret_91c8f
+	ld b, SCGB_POKEGEAR_PALS
+	call GetSGBLayout
+	call SetPalettes
+	jr .continueMapMenu
 
 FlyMapScroll:
 	ld a, [wStartFlypoint]
@@ -2204,11 +2264,25 @@ FlyMap:
 	ld b, a
 	ld a, [wBackupMapNumber]
 	ld c, a
-	call GetWorldMapLocation
 .CheckRegion:
+	ld a, [wStartingLocationSelector]
+	bit 0, a ; is starting town selector active?
+	jr nz, .HandleStartingLocationSelectorMenu
+
+	call GetWorldMapLocation
 ; The first 46 locations are part of Johto. The rest are in Kanto.
 	cp KANTO_LANDMARK
 	jr nc, .KantoFlyMap
+	jr c, .JohtoFlyMap
+.HandleStartingLocationSelectorMenu
+	ld a, [wStartingLocationSelector]
+	bit 1, a ; isJohto?
+	jr z, .StartingLocationSelectorKantoMap
+	call GetWorldMapLocation
+	jr .JohtoFlyMap
+.StartingLocationSelectorKantoMap
+	call GetWorldMapLocation
+	jr .KantoFlyMap
 .JohtoFlyMap:
 ; Note that .NoKanto should be modified in tandem with this branch
 	push af
@@ -2224,6 +2298,7 @@ FlyMap:
 	call FillJohtoMap
 	call .MapHud
 	pop af
+
 	call TownMapPlayerIcon
 	ret
 
@@ -2243,6 +2318,7 @@ FlyMap:
 	call FillKantoMap
 	call .MapHud
 	pop af
+
 	call TownMapPlayerIcon
 	ret
 
@@ -2675,6 +2751,9 @@ TownMapPlayerIcon:
 ; Draw the player icon at town map location in a
 	push af
 	farcall GetPlayerIcon
+	ld a, [wStartingLocationSelector]
+	bit 0, a ; isStartingTownMap
+	ret nz
 ; Standing icon
 	ld hl, vTiles0 tile $10
 	ld c, 4 ; # tiles

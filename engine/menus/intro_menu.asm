@@ -66,17 +66,36 @@ NewGame:
 	call AreYouABoyOrAreYouAGirl
 	call OakSpeech
 	call InitializeWorld
+	call ChooseStartingLocation
+	jp FinishContinueFunction
+	ret
+
+ChooseStartingLocation:
 	ld a, 1
 	ld [wPrevLandmark], a
 
-	; TODO: determine spawn point based on player town selection
-	ld a, SPAWN_HOME
+	xor a
+	ldh [hMapAnims], a
+	call LoadStandardMenuHeader
+	call ClearSprites
+
+	ld a, [wStartingLocationSelector]
+	set 0, a ; starting location selection menu is active
+	ld [wStartingLocationSelector], a
+
+	farcall _FlyMap
+
+	ld a, [wStartingLocationSelector]
+	res 0, a ; starting location selection menu is inactive
+	ld [wStartingLocationSelector], a
+
+	; set starting location to result of _FlyMap
+	ld a, e
 	ld [wDefaultSpawnpoint], a
 
 	ld a, MAPSETUP_WARP
 	ldh [hMapEntryMethod], a
-
-	jp FinishContinueFunction
+	ret
 
 AddInitialCellNums::
 	ld c, PHONE_MOM
@@ -306,8 +325,6 @@ InitializeNPCNames:
 .Mom:    db "MOM@"
 
 InitializeWorld:
-	call ShrinkPlayer
-	farcall SpawnPlayer
 	farcall _InitializeStartDay
 	ret
 
@@ -743,7 +760,7 @@ OakSpeech:
 	call Intro_WipeInFrontpic
 	call GiveStarterMon
 	call ClearTilemap
-	
+
 	; Display Player
 	xor a
 	ld [wCurPartySpecies], a
@@ -897,57 +914,6 @@ StorePlayerName:
 	call CopyName2
 	ret
 
-ShrinkPlayer:
-	ldh a, [hROMBank]
-	push af
-
-	ld a, 32 ; fade time
-	ld [wMusicFade], a
-	ld de, MUSIC_NONE
-	ld a, e
-	ld [wMusicFadeID], a
-	ld a, d
-	ld [wMusicFadeID + 1], a
-
-	ld de, SFX_ESCAPE_ROPE
-	call PlaySFX
-	pop af
-	rst Bankswitch
-
-	ld c, 8
-	call DelayFrames
-
-	ld hl, Shrink1Pic
-	ld b, BANK(Shrink1Pic)
-	call ShrinkFrame
-
-	ld c, 8
-	call DelayFrames
-
-	ld hl, Shrink2Pic
-	ld b, BANK(Shrink2Pic)
-	call ShrinkFrame
-
-	ld c, 8
-	call DelayFrames
-
-	hlcoord 6, 5
-	ld b, 7
-	ld c, 7
-	call ClearBox
-
-	ld c, 3
-	call DelayFrames
-
-	call Intro_PlacePlayerSprite
-	call LoadFontsExtra
-
-	ld c, 50
-	call DelayFrames
-
-	call RotateThreePalettesRight
-	call ClearTilemap
-	ret
 
 Intro_RotatePalettesLeftFrontpic:
 	ld hl, IntroFadePalettes
