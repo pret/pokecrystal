@@ -1358,46 +1358,12 @@ Unknown_1172e9:
 	db $0, $8, $0, $2
 	db $4, $10, $10, $6
 
-Palette_11730e:
-	RGB 31, 31, 31
-	RGB  7,  5,  4
-	RGB 31, 28,  4
-	RGB 31,  5,  5
-	RGB 31, 31, 31
-	RGB  7,  5,  4
-	RGB 31, 23,  0
-	RGB 31, 28,  4
-	RGB 31, 31, 31
-	RGB 16, 19, 31
-	RGB 17, 31, 31
-	RGB 31, 31, 31
-	RGB  5,  5,  5
-	RGB  7,  5,  4
-	RGB 31, 28,  4
-	RGB 19, 11,  6
-	RGB 31, 31, 31
-	RGB  3, 15, 31
-	RGB  4, 25, 25
-	RGB  0,  7, 12
-	RGB 31, 31, 31
-	RGB  0, 16,  0
-	RGB  0, 16,  0
-	RGB  0, 16,  0
-	RGB  4, 11, 22
-	RGB  0, 16,  0
-	RGB  0, 16,  0
-	RGB  0, 16,  0
-	RGB 22, 11,  8
-	RGB  0, 16,  0
-	RGB  0, 16,  0
-	RGB  0, 16,  0
+PichuBorderMobileOBPalettes:
+INCLUDE "gfx/mobile/pichu_border_ob.pal"
 
-Palette_11734e:
-	RGB 31, 30, 30
-	RGB  2,  0,  0
-	RGB 10,  9,  9
-	RGB 15, 14, 14
+PichuBorderMobileBGPalettes:
+INCLUDE "gfx/mobile/pichu_border_bg.pal"
 
-Unknown_117356:
-INCBIN "gfx/unknown/117356.tilemap"
-INCBIN "gfx/unknown/1174d6.attrmap"
+PichuBorderMobileTilemapAttrmap:
+INCBIN "gfx/mobile/pichu_border.tilemap"
+INCBIN "gfx/mobile/pichu_border.attrmap"

@@ -61,7 +61,7 @@ StatsScreenInit_gotaddress:
 StatsScreenMain:
 	xor a
 	ld [wJumptableIndex], a
-	; stupid interns
+; ???
 	ld [wcf64], a
 .loop
 	ld a, [wJumptableIndex]
@@ -77,7 +77,7 @@ StatsScreenMain:
 StatsScreenMobile:
 	xor a
 	ld [wJumptableIndex], a
-	; stupid interns
+; ???
 	ld [wcf64], a
 	ld a, [wcf64]
 	and %11111100
@@ -1091,9 +1091,8 @@ StatsScreen_LoadTextboxSpaceGFX:
 	pop hl
 	ret
 
-Unreferenced_4e32a:
-; A blank space tile?
-	ds 16
+Unreferenced_StatsScreenSpaceGFX:
+INCBIN "gfx/font/space.2bpp"
 
 EggStatsScreen:
 	xor a

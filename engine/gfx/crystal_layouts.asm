@@ -222,7 +222,7 @@ MG_Mobile_Layout02:
 	RGB 31, 31, 31
 
 Function49742:
-	ld hl, .Palette_49757
+	ld hl, .MobileBorderPalettes
 	ld de, wBGPals1
 	ld bc, 8 palettes
 	ld a, BANK(wBGPals1)
@@ -230,8 +230,8 @@ Function49742:
 	farcall ApplyPals
 	ret
 
-.Palette_49757:
-INCLUDE "gfx/unknown/49757.pal"
+.MobileBorderPalettes:
+INCLUDE "gfx/trade/mobile_border.pal"
 
 _InitMG_Mobile_LinkTradePalMap:
 	hlcoord 0, 0, wAttrmap
@@ -299,6 +299,3 @@ INCLUDE "gfx/trade/border.pal"
 InitMG_Mobile_LinkTradePalMap:
 	call _InitMG_Mobile_LinkTradePalMap
 	ret
-
-; unused
-INCLUDE "gfx/unknown/4985a.asm"

@@ -122,9 +122,10 @@ RefreshPlayerCoords:
 	ld hl, wPlayerLastMapY
 	ld [hl], e
 	ld e, a
+; the next three lines are useless
 	ld a, [wObjectFollow_Leader]
 	cp $0
-	ret nz ; wtf
+	ret nz
 	ret
 
 CopyObjectStruct::

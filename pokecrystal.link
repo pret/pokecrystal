@@ -1,6 +1,7 @@
 ROM0
 	org $0000
 	"NULL"
+	org $0000
 	"rst0"
 	org $0008
 	"rst8"

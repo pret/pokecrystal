@@ -325,9 +325,9 @@ ListMovePP:
 
 Unreferenced_Function50cd0:
 .loop
-	ld [hl], $32
+	ld [hl], $32 ; typo for P?
 	inc hl
-	ld [hl], $3e
+	ld [hl], $3e ; P
 	dec hl
 	add hl, de
 	dec c

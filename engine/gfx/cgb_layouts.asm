@@ -603,7 +603,7 @@ _CGB_Evolution:
 	ld hl, wPartyMon1DVs
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [wCurPartyMon]
-	rst AddNTimes
+	call AddNTimes
 	; b = species
 	ld a, [wCurPartySpecies]
 	ld b, a

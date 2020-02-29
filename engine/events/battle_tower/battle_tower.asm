@@ -17,7 +17,7 @@ Function1700c4:
 
 	call Function17042c
 
-	ld a, BANK(s5_be45) ; aka BANK(s5_be46) and BANK(s5_aa41) and BANK(s5_aa5d)
+	ld a, BANK(s5_be45) ; aka BANK(s5_be46), BANK(s5_aa41), and BANK(s5_aa5d)
 	call GetSRAMBank
 	ld a, 1
 	ld [s5_be45], a
@@ -29,7 +29,7 @@ Function1700c4:
 	call CopyBytes
 	ld hl, w3_d202Name
 	ld de, s5_aa8e
-	ld bc, 7 * $cc ; length of battle tower struct from japanese games?
+	ld bc, BATTLETOWER_STREAK_LENGTH * $cc ; length of battle tower struct from japanese games?
 	call CopyBytes
 	ld hl, s5_aa5d ; some sort of count
 	ld a, [hl]
@@ -1193,7 +1193,7 @@ CheckMobileEventIndex: ; BattleTowerAction $0b something to do with GS Ball
 
 Function1708c8: ; BattleTowerAction $0c
 	call UpdateTime
-	ld a, BANK(s5_aa8b) ; aka BANK(s5_aa8c) and BANK(s5_aa5d) and BANK(s5_aa48) and BANK(s5_aa47)
+	ld a, BANK(s5_aa8b) ; aka BANK(s5_aa8c), BANK(s5_aa5d), BANK(s5_aa48), and BANK(s5_aa47)
 	call GetSRAMBank
 	ld a, [wCurDay]
 	ld [s5_aa8b], a

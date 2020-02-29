@@ -1,5 +1,23 @@
-MobileAdapterGFX::
-INCBIN "gfx/mobile/mobile_adapter.2bpp"
+MobileCardGFX::
+INCBIN "gfx/mobile/card.2bpp"
+
+ChrisSilhouetteGFX::
+INCBIN "gfx/mobile/chris_silhouette.2bpp"
+
+KrisSilhouetteGFX::
+INCBIN "gfx/mobile/kris_silhouette.2bpp"
+
+MobileCard2GFX::
+INCBIN "gfx/mobile/card_2.2bpp"
+
+CardLargeSpriteGFX::
+INCBIN "gfx/mobile/card_large_sprite.2bpp"
+
+CardFolderGFX::
+INCBIN "gfx/mobile/card_folder.2bpp"
+
+CardSpriteGFX::
+INCBIN "gfx/mobile/card_sprite.2bpp"
 
 Function17a68f::
 	call Function17a6a8
@@ -730,21 +748,21 @@ Function17aba0:
 	ldh [rVBK], a
 
 	ld hl, vTiles5 tile $00
-	ld de, GFX_17afa5
-	lb bc, BANK(GFX_17afa5), $80
+	ld de, DialpadGFX
+	lb bc, BANK(DialpadGFX), $80 ; includes first 4 tiles of DialpadCursorGFX
 	call Get2bpp
 
 	pop af
 	ldh [rVBK], a
 
 	ld hl, vTiles0 tile $00
-	ld de, GFX_17afa5 + $4c0
-	lb bc, BANK(GFX_17afa5), 5
+	ld de, DialpadCursorGFX
+	lb bc, BANK(DialpadCursorGFX), 5
 	call Get2bpp
 
 	ld hl, vTiles0 tile $05
-	ld de, GFX_11601a
-	lb bc, BANK(GFX_11601a), 4
+	ld de, MobileDialingGFX
+	lb bc, BANK(MobileDialingGFX), 4
 	call Get2bpp
 	ret
 
@@ -764,7 +782,7 @@ Function17abcf:
 	ld bc, 8 palettes
 	call CopyBytes
 
-	ld hl, GFX_17afa5 + $510
+	ld hl, Palette_17b4b5
 	ld de, wOBPals1 palette 1
 	ld bc, 2 palettes
 	call CopyBytes
@@ -789,14 +807,14 @@ Function17ac0c:
 	ret
 
 Function17ac1d:
-	ld hl, Tilemap_17acd5
+	ld hl, DialpadTilemap
 	decoord 0, 4
 	ld bc, (SCREEN_HEIGHT - 4) * SCREEN_WIDTH
 	call CopyBytes
 	ret
 
 Function17ac2a:
-	ld hl, Tilemap_17ae3d
+	ld hl, DialpadAttrmap
 	decoord 0, 4, wAttrmap
 	ld bc, (SCREEN_HEIGHT - 4) * SCREEN_WIDTH
 	call CopyBytes
@@ -905,11 +923,21 @@ Palette_17ac95:
 	RGB 27, 31,  0
 	RGB 31, 31,  0
 
-Tilemap_17acd5:
-INCBIN "gfx/unknown/17acd5.tilemap"
+DialpadTilemap:
+INCBIN "gfx/mobile/dialpad.tilemap"
 
-Tilemap_17ae3d:
-INCBIN "gfx/unknown/17ae3d.tilemap"
+DialpadAttrmap:
+INCBIN "gfx/mobile/dialpad.attrmap"
 
-GFX_17afa5::
-INCBIN "gfx/unknown/17afa5.2bpp"
+DialpadGFX:
+INCBIN "gfx/mobile/dialpad.2bpp"
+
+DialpadCursorGFX:
+INCBIN "gfx/mobile/dialpad_cursor.2bpp"
+
+Palette_17b4b5:
+	RGB  2,  6, 10
+	RGB 24, 30, 29
+
+MobileCardListGFX::
+INCBIN "gfx/mobile/card_list.2bpp"

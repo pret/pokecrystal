@@ -146,7 +146,7 @@ MobileMenu_InitMenuBuffers:
 	ld [hli], a
 	ld a, $20 ; w2DMenuCursorOffsets
 	ld [hli], a
-	; this is a stupid way to load $c3
+	; could have done "ld a, A_BUTTON | D_UP | D_DOWN | B_BUTTON" instead
 	ld a, A_BUTTON
 	add D_UP
 	add D_DOWN
@@ -600,9 +600,9 @@ Function4a449:
 	ret
 
 Function4a485:
-	ld de, GFX_49c0c
+	ld de, MobileMenuGFX
 	ld hl, vTiles2 tile $00
-	lb bc, BANK(GFX_49c0c), 13
+	lb bc, BANK(MobileMenuGFX), 13
 	call Get2bpp
 	ret
 

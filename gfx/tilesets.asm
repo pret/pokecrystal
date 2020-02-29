@@ -190,11 +190,11 @@ INCLUDE "data/tilesets/underground_collision.asm"
 TilesetDarkCaveGFX::
 INCBIN "gfx/tilesets/dark_cave.2bpp.lz"
 
-UnusedTilesetDarkCaveMeta::
-INCBIN "data/tilesets/unused_dark_cave_metatiles.bin"
+UnusedTilesetJohtoMeta::
+INCBIN "data/tilesets/unused_johto_metatiles.bin"
 
-UnusedTilesetDarkCaveColl::
-INCLUDE "data/tilesets/unused_dark_cave_collision.asm"
+UnusedTilesetJohtoColl::
+INCLUDE "data/tilesets/unused_johto_collision.asm"
 
 
 SECTION "Tileset Data 5", ROMX

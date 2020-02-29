@@ -136,15 +136,14 @@ Function140ae:
 .time_overflow
 	farcall ClearDailyTimers
 	farcall Function170923
-; mobile
-	ld a, 5 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
+	ld a, BANK(s5_aa8c) ; aka BANK(s5_b2fa)
 	call GetSRAMBank
-	ld a, [$aa8c] ; address of MBC30 bank
+	ld a, [s5_aa8c]
 	inc a
-	ld [$aa8c], a ; address of MBC30 bank
-	ld a, [$b2fa] ; address of MBC30 bank
+	ld [s5_aa8c], a
+	ld a, [s5_b2fa]
 	inc a
-	ld [$b2fa], a ; address of MBC30 bank
+	ld [s5_b2fa], a
 	call CloseSRAM
 	ret
 

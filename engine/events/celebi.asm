@@ -1,5 +1,8 @@
 SPECIALCELEBIEVENT_CELEBI EQU $84
 
+UnusedForestTreeFrames:
+INCBIN "gfx/tilesets/forest-tree/unused.2bpp"
+
 CelebiShrineEvent:
 	call DelayFrame
 	ld a, [wVramState]

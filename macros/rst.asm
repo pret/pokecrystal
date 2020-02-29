@@ -1,6 +1,5 @@
 FarCall    EQU $08
 Bankswitch EQU $10
-AddNTimes  EQU $18
 JumpTable  EQU $28
 
 farcall: MACRO ; bank, address

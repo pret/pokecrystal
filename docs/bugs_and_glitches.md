@@ -30,6 +30,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 - [A Disabled but PP Up–enhanced move may not trigger Struggle](#a-disabled-but-pp-upenhanced-move-may-not-trigger-struggle)
 - [A Pokémon that fainted from Pursuit will have its old status condition when revived](#a-pokémon-that-fainted-from-pursuit-will-have-its-old-status-condition-when-revived)
 - [Lock-On and Mind Reader don't always bypass Fly and Dig](#lock-on-and-mind-reader-dont-always-bypass-fly-and-dig)
+- [Wild Pokémon can always Teleport regardless of level difference](#wild-pokémon-can-always-teleport-regardless-of-level-difference)
 - [Beat Up can desynchronize link battles](#beat-up-can-desynchronize-link-battles)
 - [Beat Up works incorrectly with only one Pokémon in the party](#beat-up-works-incorrectly-with-only-one-pokémon-in-the-party)
 - [Beat Up may fail to raise Substitute](#beat-up-may-fail-to-raise-substitute)
@@ -690,6 +691,25 @@ This bug affects Attract, Curse, Foresight, Mean Look, Mimic, Nightmare, Spider 
 -	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 +	xor a
  	ret
+```
+
+
+## Wild Pokémon can always Teleport regardless of level difference
+
+**Fix:** Edit `BattleCommand_Teleport` in [engine/battle/move_effects/teleport.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/teleport.asm):
+
+```diff
+ .loop_enemy
+ 	call BattleRandom
+ 	cp c
+ 	jr nc, .loop_enemy
+ 	srl b
+ 	srl b
+ 	cp b
+-	; This should be jr c, .failed
+-	; As written, it makes enemy use of Teleport always succeed if able
+-	jr nc, .run_away
++	jr c, .failed
 ```
 
 

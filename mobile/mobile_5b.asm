@@ -173,7 +173,7 @@ MobileSystemSplashScreen_InitGFX:
 
 .LoadPals:
 	ld de, wBGPals1
-	ld hl, UnknownMobilePalettes_16c903
+	ld hl, MobileSplashScreenPalettes
 	ld bc, 8
 	ld a, $5
 	call FarCopyWRAM
@@ -211,8 +211,8 @@ INCBIN "gfx/mobile/mobile_splash.tilemap"
 .Attrmap:
 INCBIN "gfx/mobile/mobile_splash.attrmap"
 
-UnknownMobilePalettes_16c903:
-INCLUDE "gfx/unknown/16c903.pal"
+MobileSplashScreenPalettes:
+INCLUDE "gfx/mobile/mobile_splash.pal"
 
 Function16c943:
 	ld a, [wd003]
@@ -237,7 +237,7 @@ Function16c943:
 	ld e, $0
 	ld a, $0
 .asm_16c969
-	ld hl, UnknownMobilePalettes_16c903
+	ld hl, MobileSplashScreenPalettes
 	call Function16cab6
 	call Function16cabb
 	ld d, a
@@ -260,7 +260,7 @@ Function16c943:
 	call Function16cadc
 
 .asm_16c991
-	ld hl, UnknownMobilePalettes_16c903
+	ld hl, MobileSplashScreenPalettes
 	call Function16cab6
 	call Function16cad8
 	ld d, a
@@ -283,7 +283,7 @@ Function16c943:
 	call Function16cb08
 
 .asm_16c9b9
-	ld hl, UnknownMobilePalettes_16c903
+	ld hl, MobileSplashScreenPalettes
 	call Function16cab6
 	call Function16cac4
 	ld d, a
@@ -669,8 +669,8 @@ Function16cc02:
 
 Function16cc18:
 	ld hl, vTiles1
-	ld de, GFX_16cca3
-	lb bc, BANK(GFX_16cca3), 46
+	ld de, MobileAdapterCheckGFX
+	lb bc, BANK(MobileAdapterCheckGFX), 46
 	call Get2bpp
 	ret
 
@@ -754,8 +754,8 @@ Function16cc90:
 	jr nz, .asm_16cc93
 	ret
 
-GFX_16cca3:
-INCBIN "gfx/unknown/16cca3.2bpp"
+MobileAdapterCheckGFX:
+INCBIN "gfx/mobile/mobile_splash_check.2bpp"
 
 Unknown_16cfa3:
 	RGB 31, 31, 31
