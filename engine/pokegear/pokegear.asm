@@ -2030,39 +2030,29 @@ _FlyMap:
 .pressedB
 	ld a, [wStartingLocationSelector]
 	bit 0, a ;isStartingTownMap
-	jr z, .leave_map_screen
+	jr z, .leaveMapScreen
+	jr .continueWithLocationSelector
 
-	; continue with location selector
+.leaveMapScreen
+	ld a, -1
+	jr .exit
+
+.continueWithLocationSelector
 	xor a
 	ldh [hBGMapMode], a
 	call GetMapCursorCoordinates
 	farcall PlaySpriteAnimations
 	call DelayFrame
 	jr .loop
-.leave_map_screen
-	ld a, -1
-	jr .exit
 
 .pressedSelect
 	ld a, [wStartingLocationSelector]
 	bit 0, a; isStartingTownMap
 	jr nz, .toggleRegion
+	jr .continueWithLocationSelector
 
-	; continue with location selector
-	xor a
-	ldh [hBGMapMode], a
-	call GetMapCursorCoordinates
-	farcall PlaySpriteAnimations
-	call DelayFrame
-	jr .loop
 .toggleRegion
-	; continue with location selector
-	xor a
-	ldh [hBGMapMode], a
-	call GetMapCursorCoordinates
-	farcall PlaySpriteAnimations
-	call DelayFrame
-	jr .loop
+	jr .continueWithLocationSelector
 	;ld a, [wStartingLocationSelector]
 	;bit 1, a ; if(isJohto)
 	;jp nz, .reset_bit_1 ; switch to Kanto
