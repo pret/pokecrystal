@@ -3108,7 +3108,10 @@ wStarterCursorPositionMon:: db
 wStarterCursorPositionCategory:: db
 wNumStartersInCategory:: db
 
-	ds 98
+wStartingLocationSelector:: db
+; bit 0 = starting town selector is active
+; bit 1 = isJohto
+	ds 97
 
 wLYOverridesBackup:: ds SCREEN_HEIGHT_PX ; d200
 wLYOverridesBackupEnd::
