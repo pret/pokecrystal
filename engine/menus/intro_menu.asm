@@ -331,8 +331,6 @@ InitializeNPCNames:
 .Mom:    db "MOM@"
 
 InitializeWorld:
-	call ShrinkPlayer
-	farcall SpawnPlayer
 	farcall _InitializeStartDay
 	ret
 
@@ -922,57 +920,6 @@ StorePlayerName:
 	call CopyName2
 	ret
 
-ShrinkPlayer:
-	ldh a, [hROMBank]
-	push af
-
-	ld a, 32 ; fade time
-	ld [wMusicFade], a
-	ld de, MUSIC_NONE
-	ld a, e
-	ld [wMusicFadeID], a
-	ld a, d
-	ld [wMusicFadeID + 1], a
-
-	ld de, SFX_ESCAPE_ROPE
-	call PlaySFX
-	pop af
-	rst Bankswitch
-
-	ld c, 8
-	call DelayFrames
-
-	ld hl, Shrink1Pic
-	ld b, BANK(Shrink1Pic)
-	call ShrinkFrame
-
-	ld c, 8
-	call DelayFrames
-
-	ld hl, Shrink2Pic
-	ld b, BANK(Shrink2Pic)
-	call ShrinkFrame
-
-	ld c, 8
-	call DelayFrames
-
-	hlcoord 6, 5
-	ld b, 7
-	ld c, 7
-	call ClearBox
-
-	ld c, 3
-	call DelayFrames
-
-	call Intro_PlacePlayerSprite
-	call LoadFontsExtra
-
-	ld c, 50
-	call DelayFrames
-
-	call RotateThreePalettesRight
-	call ClearTilemap
-	ret
 
 Intro_RotatePalettesLeftFrontpic:
 	ld hl, IntroFadePalettes
