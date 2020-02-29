@@ -2031,32 +2031,32 @@ _FlyMap:
 	ld a, [wStartingLocationSelector]
 	bit 0, a ;isStartingTownMap
 	jr z, .leaveMapScreen
-	jr .continueWithLocationSelector
+	jr .continueMapMenu
 
 .leaveMapScreen
 	ld a, -1
 	jr .exit
 
-.continueWithLocationSelector
+
+.pressedSelect
+	ld a, [wStartingLocationSelector]
+	bit 0, a; isStartingTownMap
+	jr nz, .toggleRegion
+	jr .continueMapMenu
+
+.toggleRegion
+	ld a, [wStartingLocationSelector]
+	bit 1, a ; if(isJohto)
+	jr nz, .switchToKanto
+	jr .switchToJohto
+
+.continueMapMenu
 	xor a
 	ldh [hBGMapMode], a
 	call GetMapCursorCoordinates
 	farcall PlaySpriteAnimations
 	call DelayFrame
 	jr .loop
-
-.pressedSelect
-	ld a, [wStartingLocationSelector]
-	bit 0, a; isStartingTownMap
-	jr nz, .toggleRegion
-	jr .continueWithLocationSelector
-
-.toggleRegion
-	jr .continueWithLocationSelector
-	;ld a, [wStartingLocationSelector]
-	;bit 1, a ; if(isJohto)
-	;jp nz, .reset_bit_1 ; switch to Kanto
-	;jp z, .set_bit_1 ; else, switch to Johto
 
 .pressedA
 	ld a, [wTownMapPlayerIconLandmark]
@@ -2080,31 +2080,35 @@ _FlyMap:
 	ld a, [wTownMapPlayerIconLandmark]
 	ld e, a
 	ret
-;.set_bit_1
-;	set 1, a
-;	ld [wStartingLocationSelector], a
-;	call .exit
-;	xor a
-;	ldh [hMapAnims], a
-;	call LoadStandardMenuHeader
-;	call ClearSprites
-;	farcall _FlyMap
-;	call CloseWindow
-;	ld a, $1
-;	ret
-;.reset_bit_1
-;	res 1, a
-;	ld [wStartingLocationSelector], a
-;	call .exit
-;	xor a
-;	ldh [hMapAnims], a
-;	call LoadStandardMenuHeader
-;	call ClearSprites
-;	farcall _FlyMap
-;	call CloseWindow
-;	ld a, $1
-;	ret
+.switchToJohto
+	; set the isJohto flag
+	ld a, [wStartingLocationSelector]
+	set 1, a
+	ld [wStartingLocationSelector], a
+	jr .switchRegionScreen
 
+.switchToKanto
+	; reset the isJohto flag
+	ld a, [wStartingLocationSelector]
+	res 1, a
+	ld [wStartingLocationSelector], a
+
+.switchRegionScreen
+	call ClearBGPalettes
+	call ClearTilemap
+	call ClearSprites
+	farcall ClearSpriteAnims
+	call LoadTownMapGFX
+	ld de, FlyMapLabelBorderGFX
+	ld hl, vTiles2 tile $30
+	lb bc, BANK(FlyMapLabelBorderGFX), 6
+	call Request1bpp
+	call FlyMap
+	call ret_91c8f
+	ld b, SCGB_POKEGEAR_PALS
+	call GetSGBLayout
+	call SetPalettes
+	jr .continueMapMenu
 
 FlyMapScroll:
 	ld a, [wStartFlypoint]
