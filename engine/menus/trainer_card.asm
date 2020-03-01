@@ -658,7 +658,7 @@ TrainerCard_KantoBadgesOAM:
 CardStatusGFX: INCBIN "gfx/trainer_card/card_status.2bpp"
 
 LeaderGFX:  INCBIN "gfx/trainer_card/leaders_johto.2bpp"
-LeaderGFX2: INCBIN "gfx/trainer_card/leaders_johto.2bpp"
+LeaderGFX2: INCBIN "gfx/trainer_card/leaders_kanto.2bpp"
 BadgeGFX:   INCBIN "gfx/trainer_card/badges.2bpp"
 BadgeGFX2:  INCBIN "gfx/trainer_card/badges.2bpp"
 
