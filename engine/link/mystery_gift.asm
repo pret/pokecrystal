@@ -1261,7 +1261,7 @@ InitMysteryGiftLayout:
 	ld hl, MysteryGiftGFX
 	ld de, vTiles2 tile $00
 	ld a, BANK(MysteryGiftGFX)
-	ld bc, MysteryGiftGFX.End - MysteryGiftGFX
+	ld bc, $43 tiles
 	call FarCopyBytes
 	hlcoord 0, 0
 	ld a, $42
@@ -1347,11 +1347,11 @@ InitMysteryGiftLayout:
 	ret
 
 .Load5GFX:
-	ld b,  5
+	ld b, 5
 	jr .gfx_loop
 
 .Unreferenced_Load6GFX:
-	ld b,  6
+	ld b, 6
 	jr .gfx_loop
 
 .Load16GFX:
@@ -1365,7 +1365,7 @@ InitMysteryGiftLayout:
 	ret
 
 .Load9Column:
-	ld b,  9
+	ld b, 9
 	jr .col_loop
 
 .Load11Column:
@@ -1393,7 +1393,6 @@ InitMysteryGiftLayout:
 
 MysteryGiftGFX:
 INCBIN "gfx/mystery_gift/mystery_gift.2bpp"
-.End
 
 Function105688:
 	call ClearTilemap
@@ -1552,15 +1551,15 @@ Function10578c:
 Function1057d7:
 	call ClearBGPalettes
 	call DisableLCD
-	ld hl, MysteryGiftJP_GFX
+	ld hl, CardTradeGFX
 	ld de, vTiles2 tile $00
-	ld a, BANK(MysteryGiftJP_GFX)
-	lb bc, 4, 0
+	ld a, BANK(CardTradeGFX)
+	ld bc, $40 tiles
 	call FarCopyBytes
-	ld hl, MysteryGiftJP_GFX + $40 tiles
+	ld hl, CardTradeSpriteGFX
 	ld de, vTiles0 tile $00
-	ld a, BANK(MysteryGiftJP_GFX)
-	ld bc, $80
+	ld a, BANK(CardTradeSpriteGFX)
+	ld bc, 8 tiles
 	call FarCopyBytes
 	hlcoord 0, 0
 	ld a, $3f
@@ -1706,6 +1705,8 @@ Function1057d7:
 	dsprite  1, 1, 13, 4, $06, 0
 	dsprite  1, 1, 14, 4, $07, 0
 
-; japanese mystery gift gfx
-MysteryGiftJP_GFX:
-INCBIN "gfx/mystery_gift/mystery_gift_jp.2bpp"
+CardTradeGFX:
+INCBIN "gfx/mystery_gift/card_trade.2bpp"
+
+CardTradeSpriteGFX:
+INCBIN "gfx/mystery_gift/card_sprite.2bpp"

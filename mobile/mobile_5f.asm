@@ -68,7 +68,7 @@ Function17c000:
 	ld bc, $80 tiles
 	call CopyBytes
 
-	ld hl, HaveWantGFX + $800
+	ld hl, HaveWantGFX + $80 tiles
 	ld de, vTiles1
 	ld bc, $10 tiles
 	call CopyBytes
