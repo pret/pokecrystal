@@ -893,7 +893,7 @@ _CGB_TrainerCardPage3:
 	ldh [hCGBPalUpdate], a
 	ret
 .BadgePalettes
-INCLUDE "gfx/trainer_card/badges.pal"
+INCLUDE "gfx/trainer_card/kanto_badges.pal"
 
 _CGB_MoveList:
 	ld de, wBGPals1
