@@ -141,6 +141,13 @@ TrainerCard_Page1_Joypad:
 
 TrainerCard_Page2_LoadGFX:
 	call ClearSprites
+	call TrainerCard_ClearBottomHalf
+	call WaitBGMap
+
+	ld b, SCGB_TRAINER_CARD
+	call GetSGBLayout
+	call SetPalettes
+	call WaitBGMap
 
 	hlcoord 0, 8
 	ld d, 6
@@ -186,6 +193,13 @@ TrainerCard_Page2_Joypad:
 
 TrainerCard_Page3_LoadGFX:
 	call ClearSprites
+	call TrainerCard_ClearBottomHalf
+	call WaitBGMap
+
+	ld b, SCGB_TRAINER_CARD_PAGE_3
+	call GetSGBLayout
+	call SetPalettes
+	call WaitBGMap
 
 	hlcoord 0, 8
 	ld d, 6
@@ -271,6 +285,11 @@ TrainerCard_PrintTopHalfOfCard:
 .HorizontalDivider:
 	db $25, $25, $25, $25, $25, $25, $25, $25, $25, $25, $25, $25, $26, -1 ; ____________>
 
+TrainerCard_ClearBottomHalf
+	hlcoord 2, 10
+	lb bc, 6, 17
+	jp ClearBox
+
 TrainerCard_Page1_PrintDexCaught_GameTime:
 	hlcoord 2, 10
 	ld de, .Dex_PlayTime
@@ -339,7 +358,7 @@ endr
 	ret
 
 .BadgesTilemap:
-	db $79, $7a, $7b, $7c, $7d, -1 ; "BADGES"
+	db $79, $7a, $7b, $7c, $7d, $7e, -1 ; "BADGES"
 
 TrainerCardSetup_PlaceTilemapString:
 .loop
