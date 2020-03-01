@@ -795,7 +795,7 @@ ROMX $2f
 	"engine/phone/scripts/parry"
 	"engine/phone/scripts/erin"
 	"engine/phone/scripts/generic_callee"
-	"engine/phone/scripts/generic_callee@TiffanysFamilyMembers"
+	"data/phone/text/tiffany_family"
 	"engine/events/trainer_scripts"
 ROMX $30
 	"Sprites 1"

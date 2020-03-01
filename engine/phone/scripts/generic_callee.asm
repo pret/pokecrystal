@@ -1265,13 +1265,3 @@ PhoneScript_MonFlavorText::
 	farwritetext UnknownTougherThanEverText
 	promptbutton
 	farsjump PhoneScript_HangUpText_Male
-
-
-SECTION "engine/phone/scripts/generic_callee@TiffanysFamilyMembers", ROMX, BANK[BANK_PHONE_TIFFANY]
-
-GrandmaString:: db "Grandma@"
-GrandpaString:: db "Grandpa@"
-MomString:: db "Mom@"
-DadString:: db "Dad@"
-SisterString:: db "Sister@"
-BrotherString:: db "Brother@"
