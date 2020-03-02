@@ -31,6 +31,9 @@
 - Nurse Joy turns you around after talking to her (prevents accidentally talking to her again)
 - Remove artificial save delay
 - In-Game Trade Pokemon are renamable
+- Trainer Card
+  - Colored trainer badges
+  - Kanto Gym Leader Trainer Card ported and modified from Polished Crystal
 
 ---
 
@@ -46,13 +49,22 @@
   - Define certain pokemon and level/evolve those Pokemon after each badge??
 - Replace HMs with tools
 - Scaling Wildmon
+  - Wildmon based on team levels
+  - Caps on wildmon levels are raised after each badge
 - Add back - Can only fly somewhere if you've been there.
-- Remove ability to start the game from places like Mt. Silver
+- Starting Selector
+  - Fix bug when pressing left on first pokemon of first category
+- Starting Location Selector
+  - Remove ability to start the game from places like Mt. Silver
+  - Prompt for confirmation in case user accidentally clicked A
+  - Able to rename mons through the party menu
+  - Inform player that SELECT toggles the regions
 
 #### OWF - Medium Priority
 
 - Rebattleable Gym Leaders
-- "Karma" (how many trainers and Pokemon have you helped?)
+- "Karma" (how many trainers and Pokemon have you helped?) 
+- Choose form during starter selection
 
 ### Forms - TODO
 
@@ -79,7 +91,7 @@
 - Poison overworld effect should be removed
 - Bill calls and switches your box when its full
 - Pressing B in a wild battle moves the cursor to RUN
-- Name Rater/Move Relearner/Move Deleter at every pokecenter
+- Move Relearner/Move Deleter at every pokecenter
 - Replace trade evolutions with different methods
   - Trade stone?
   - Atk, Def, or Spc reach a certain stat?
@@ -88,7 +100,6 @@
 - Display kanto badges on trainer card
 - Add Menu Icons For Each Pokemon
 - Add Menu Icon Palettes For Each Pokemon Menu Icon
-- Kanto Gym Leader Trainer Card
 - Physical/Special Split
 - Shiny icon in battle and on naming screen
   
@@ -115,9 +126,7 @@
 - Pressing 'B' in wild battles places the cursor on 'RUN'
 - Transportation between regions is available every day
 - Bug catching contest available more often?
-- Colored trainer badges
 - Move relearner/deleter available at every Pokecenter
-- Able to rename mons through the party menu
 - Clock reset on intro menu
 - Toggleable run button
 - Pack size increase
@@ -126,7 +135,9 @@
 - Display starter with correct colors/shininess based on DVs after starter selection
 - Choose player color palette
 - Following Mons (based on yenatch's design)
-- Choose form during starter selection
+- Separate shininess from DVs
+- Every time a mon receives enough stat exp, they can level up the IV and reset the DVs
+- Store Hidden Power type in wram. Make it changable
 
 ### Returning Areas - TODO
 
