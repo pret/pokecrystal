@@ -54,60 +54,6 @@ StdScripts::
 	dba HappinessCheckScript
 
 PokecenterNurseScript:
-; EVENT_WELCOMED_TO_POKECOM_CENTER is never set
-
-	opentext
-	checktime MORN
-	iftrue .morn
-	checktime DAY
-	iftrue .day
-	checktime NITE
-	iftrue .nite
-	sjump .ok
-
-.morn
-	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
-	iftrue .morn_comcenter
-	farwritetext NurseMornText
-	promptbutton
-	sjump .ok
-.morn_comcenter
-	farwritetext PokeComNurseMornText
-	promptbutton
-	sjump .ok
-
-.day
-	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
-	iftrue .day_comcenter
-	farwritetext NurseDayText
-	promptbutton
-	sjump .ok
-.day_comcenter
-	farwritetext PokeComNurseDayText
-	promptbutton
-	sjump .ok
-
-.nite
-	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
-	iftrue .nite_comcenter
-	farwritetext NurseNiteText
-	promptbutton
-	sjump .ok
-.nite_comcenter
-	farwritetext PokeComNurseNiteText
-	promptbutton
-	sjump .ok
-
-.ok
-	; only do this once
-	clearevent EVENT_WELCOMED_TO_POKECOM_CENTER
-
-	farwritetext NurseAskHealText
-	yesorno
-	iffalse .done
-
-	farwritetext NurseTakePokemonText
-	pause 20
 	special StubbedTrainerRankings_Healings
 	turnobject LAST_TALKED, LEFT
 	pause 10
@@ -119,48 +65,13 @@ PokecenterNurseScript:
 	special RestartMapMusic
 	turnobject LAST_TALKED, DOWN
 	pause 10
-
-	checkphonecall ; elm already called about pokerus
-	iftrue .no
-	checkflag ENGINE_CAUGHT_POKERUS
-	iftrue .no
-	special CheckPokerus
-	iftrue .pokerus
-.no
-
-	farwritetext NurseReturnPokemonText
-	pause 20
-
 .done
-	farwritetext NurseGoodbyeText
 
 	turnobject LAST_TALKED, UP
 	pause 10
 	turnobject LAST_TALKED, DOWN
 	pause 10
 	turnobject PLAYER, DOWN
-
-	waitbutton
-	closetext
-	end
-
-.pokerus
-	; already cleared earlier in the script
-	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
-	iftrue .pokerus_comcenter
-	farwritetext NursePokerusText
-	waitbutton
-	closetext
-	sjump .pokerus_done
-
-.pokerus_comcenter
-	farwritetext PokeComNursePokerusText
-	waitbutton
-	closetext
-
-.pokerus_done
-	setflag ENGINE_CAUGHT_POKERUS
-	specialphonecall SPECIALCALL_POKERUS
 	end
 
 DifficultBookshelfScript:

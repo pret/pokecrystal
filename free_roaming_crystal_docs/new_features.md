@@ -29,6 +29,7 @@
 - Wild Pokemon have held items more often
 - Wild mon will sometimes hold a BERRY
 - Removed poison's overworld effect
+- Sped up healing mon at the pokecenter
 - Fourth Stats Screen
   - DVs
   - Happiness
