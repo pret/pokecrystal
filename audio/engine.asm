@@ -235,6 +235,8 @@ UpdateChannels:
 
 .Channel1:
 	ld a, [wLowHealthAlarm]
+	cp $ff
+	jr z, .Channel5
 	bit DANGER_ON_F, a
 	ret nz
 .Channel5:
@@ -525,29 +527,24 @@ PlayDanger:
 	ld a, [wLowHealthAlarm]
 	bit DANGER_ON_F, a
 	ret z
+	cp $ff
+	ret z
 
 	; Don't do anything if SFX is being played
-	and $ff ^ (1 << DANGER_ON_F)
 	ld d, a
 	call _CheckSFX
 	jr c, .increment
+	ld a, d
 
 	; Play the high tone
-	and a
-	jr z, .begin
+	and $1f
+	ld hl, DangerSoundHigh
+	jr z, .applychannel
 
 	; Play the low tone
 	cp 16
-	jr z, .halfway
-
-	jr .increment
-
-.halfway
+	jr nz, .increment
 	ld hl, DangerSoundLow
-	jr .applychannel
-
-.begin
-	ld hl, DangerSoundHigh
 
 .applychannel
 	xor a
@@ -563,13 +560,19 @@ PlayDanger:
 
 .increment
 	ld a, d
+	and $e0
+	ld e, a
+	ld a, d
+	and $1f
 	inc a
 	cp 30 ; Ending frame
 	jr c, .noreset
-	xor a
+	add 2
 .noreset
-	; Make sure the danger sound is kept on
-	or 1 << DANGER_ON_F
+	add e
+	jr nz, .load
+	dec a
+.load
 	ld [wLowHealthAlarm], a
 
 	; Enable channel 1 if it's off

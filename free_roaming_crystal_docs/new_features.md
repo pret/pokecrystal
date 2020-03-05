@@ -40,6 +40,7 @@
   - Kanto Gym Leader Trainer Card ported and modified from Polished Crystal
 - Pokedex
   - Pressing SELECT toggles shiny palette
+- Low HP beeping noise is less annoying
 
 ---
 
