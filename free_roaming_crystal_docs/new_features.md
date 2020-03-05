@@ -37,6 +37,7 @@
 - In-Game Trade Pokemon are renamable
 - Trainer Card
   - Colored trainer badges
+  - Show the tops of leaders' heads
   - Kanto Gym Leader Trainer Card ported and modified from Polished Crystal
 - Pokedex
   - Pressing SELECT toggles shiny palette
