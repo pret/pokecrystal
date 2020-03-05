@@ -199,10 +199,10 @@ EngineFlags:
 	engine_flag wSwarmFlags, SWARMFLAGS_YANMA_SWARM_F
 	
 	; battle tower flags
-	engine_flag wBTShopFlags, ENGINE_SHOP_INITIALIZED
-	engine_flag wBTShopFlags, ENGINE_SHOP_BOUGHT1
-	engine_flag wBTShopFlags, ENGINE_SHOP_BOUGHT2
-	engine_flag wBTShopFlags, ENGINE_SHOP_BOUGHT3
-	engine_flag wBTShopFlags, ENGINE_SHOP_BOUGHT4
-	engine_flag wBTShopFlags, ENGINE_SHOP_BOUGHT5
-	engine_flag wBTShopFlags, ENGINE_SHOP_BOUGHT6
+	engine_flag wBTShopFlags, ENGINE_SHOP_INITIALIZED_F
+	engine_flag wBTShopFlags, ENGINE_SHOP_BOUGHT1_F
+	engine_flag wBTShopFlags, ENGINE_SHOP_BOUGHT2_F
+	engine_flag wBTShopFlags, ENGINE_SHOP_BOUGHT3_F
+	engine_flag wBTShopFlags, ENGINE_SHOP_BOUGHT4_F
+	engine_flag wBTShopFlags, ENGINE_SHOP_BOUGHT5_F
+	engine_flag wBTShopFlags, ENGINE_SHOP_BOUGHT6_F

@@ -932,13 +932,14 @@ ENDU ; c7e8
 
 wDayLastSet:: db
 wBTShopFlags:: db
-wRandMon1::
-wRandMon2::
-wRandMon3::
-wRandMon4::
-wRandMon5::
-wRandMon6::
-	ds 16
+wTempRandMon:: db
+wRandMon1:: db
+wRandMon2:: db
+wRandMon3:: db
+wRandMon4:: db
+wRandMon5:: db
+wRandMon6:: db
+	ds 15
 
 wUnusedMapBufferEnd::
 
@@ -2709,8 +2710,7 @@ wMobileBattleRoomSceneID::                        db ; d9c0
 
 ; fight counts
 wJackFightCount::    db ; d9f2
-;wBeverlyFightCount:: db ; unused
-wRandMon:: db
+wBeverlyFightCount:: db ; unused
 wHueyFightCount::    db
 wGavenFightCount::   db
 wBethFightCount::    db

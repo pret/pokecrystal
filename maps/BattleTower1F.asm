@@ -273,10 +273,26 @@ BattleTower1FBugCatcherScript:
 BattleTower1FGrannyScript:
 	jumptextfaceplayer Text_BattleTowerGranny
 
+
+
+
+
 BattleTower1FTeacherScript:
+	faceplayer
+	opentext
+	writetext Text_BattleTowerTeacher
+	waitbutton
 	givecoins 500
 	setflag ENGINE_POKEGEAR
-	jumptextfaceplayer Text_BattleTowerTeacher
+	randomizeshop
+	clearflag ENGINE_SHOP_BOUGHT1
+	clearflag ENGINE_SHOP_BOUGHT2
+	clearflag ENGINE_SHOP_BOUGHT3
+	clearflag ENGINE_SHOP_BOUGHT4
+	clearflag ENGINE_SHOP_BOUGHT5
+	clearflag ENGINE_SHOP_BOUGHT6	
+	closetext
+	end
 
 
 
@@ -312,35 +328,26 @@ Clerk_ConfirmPurchaseScript:
 	yesorno
 	end
 	
-
-
+	
 BattleTower1FClerkScript:
-	checkflag ENGINE_SHOP_INITIALIZED
-	iffalse .rand
 	checksameday	
-	iftrue .norand
+	iftrue .start
 .rand
-	setflag ENGINE_SHOP_INITIALIZED
+	randomizeshop
 	clearflag ENGINE_SHOP_BOUGHT1
 	clearflag ENGINE_SHOP_BOUGHT2
 	clearflag ENGINE_SHOP_BOUGHT3
 	clearflag ENGINE_SHOP_BOUGHT4
 	clearflag ENGINE_SHOP_BOUGHT5
-	clearflag ENGINE_SHOP_BOUGHT6
-	;randomizeshop
-	random 251
-	addval 1
-	writemem wRandMon1
-.norand	
+	clearflag ENGINE_SHOP_BOUGHT6	
+.start
 	faceplayer
 	opentext
 	writetext ClerkIntroText
 	waitbutton
-	checkitem COIN_CASE
-	iffalse Clerk_NoCoinCaseScript
+	; checkitem COIN_CASE
+	; iffalse Clerk_NoCoinCaseScript
 .loop
-	;writetext ClerkWhichPrizeText
-	;waitbutton
 	writetext ClerkClearText
 	special DisplayCoinCaseBalance
 	loadmenu .MenuHeader
@@ -359,17 +366,15 @@ BattleTower1FClerkScript:
 	iftrue .alreadybought
 	checkcoins BATTLETOWER_MILD_COINS
 	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
-	readvar VAR_PARTYCOUNT
-	ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
+	; readvar VAR_PARTYCOUNT
+	; ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
 	readmem wRandMon1
-	
 	refreshscreen
 	pokepic USE_SCRIPT_VAR
 	cry USE_SCRIPT_VAR
 	waitbutton
 	closepokepic
 	opentext
-	
 	getmonname STRING_BUFFER_3, USE_SCRIPT_VAR
 	scall Clerk_ConfirmPurchaseScript
 	iffalse .loop ;Clerk_CancelPurchaseScript
@@ -378,7 +383,6 @@ BattleTower1FClerkScript:
 	writetext ClerkHereYouGoText
 	waitbutton
 	readmem wRandMon1
-	;setval USE_SCRIPT_VAR
 	special GameCornerPrizeMonCheckDex
 	readmem wRandMon1
 	givepoke USE_SCRIPT_VAR, 40 
@@ -391,18 +395,26 @@ BattleTower1FClerkScript:
 	iftrue .alreadybought
 	checkcoins BATTLETOWER_MILD_COINS
 	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
-	readvar VAR_PARTYCOUNT
-	ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
-	getmonname STRING_BUFFER_3, SKARMORY
+	; readvar VAR_PARTYCOUNT
+	; ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
+	readmem wRandMon2
+	refreshscreen
+	pokepic USE_SCRIPT_VAR
+	cry USE_SCRIPT_VAR
+	waitbutton
+	closepokepic
+	opentext
+	getmonname STRING_BUFFER_3, USE_SCRIPT_VAR
 	scall Clerk_ConfirmPurchaseScript
-	iffalse .loop ;Clerk_CancelPurchaseScript
+	iffalse .loop
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext ClerkHereYouGoText
 	waitbutton
-	setval SKARMORY
+	readmem wRandMon2
 	special GameCornerPrizeMonCheckDex
-	givepoke SKARMORY, 50, MINT_BERRY
+	readmem wRandMon2
+	givepoke USE_SCRIPT_VAR, 40 
 	takecoins BATTLETOWER_MILD_COINS
 	setflag ENGINE_SHOP_BOUGHT2
 	sjump .loop
@@ -412,18 +424,26 @@ BattleTower1FClerkScript:
 	iftrue .alreadybought
 	checkcoins BATTLETOWER_MILD_COINS
 	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
-	readvar VAR_PARTYCOUNT
-	ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
-	getmonname STRING_BUFFER_3, BLISSEY
+	; readvar VAR_PARTYCOUNT
+	; ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
+	readmem wRandMon3
+	refreshscreen
+	pokepic USE_SCRIPT_VAR
+	cry USE_SCRIPT_VAR
+	waitbutton
+	closepokepic
+	opentext
+	getmonname STRING_BUFFER_3, USE_SCRIPT_VAR
 	scall Clerk_ConfirmPurchaseScript
-	iffalse .loop ;Clerk_CancelPurchaseScript
+	iffalse .loop
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext ClerkHereYouGoText
 	waitbutton
-	setval BLISSEY
+	readmem wRandMon3
 	special GameCornerPrizeMonCheckDex
-	givepoke BLISSEY, 50, LEFTOVERS
+	readmem wRandMon3
+	givepoke USE_SCRIPT_VAR, 40 
 	takecoins BATTLETOWER_MILD_COINS
 	setflag ENGINE_SHOP_BOUGHT3
 	sjump .loop
@@ -433,65 +453,89 @@ BattleTower1FClerkScript:
 	iftrue .alreadybought
 	checkcoins BATTLETOWER_MILD_COINS
 	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
-	readvar VAR_PARTYCOUNT
-	ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
-	getmonname STRING_BUFFER_3, TYRANITAR
+	; readvar VAR_PARTYCOUNT
+	; ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
+	readmem wRandMon4
+	refreshscreen
+	pokepic USE_SCRIPT_VAR
+	cry USE_SCRIPT_VAR
+	waitbutton
+	closepokepic
+	opentext
+	getmonname STRING_BUFFER_3, USE_SCRIPT_VAR
 	scall Clerk_ConfirmPurchaseScript
-	iffalse .loop ;Clerk_CancelPurchaseScript
+	iffalse .loop
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext ClerkHereYouGoText
 	waitbutton
-	setval TYRANITAR
+	readmem wRandMon4
 	special GameCornerPrizeMonCheckDex
-	givepoke TYRANITAR, 50, MIRACLEBERRY
+	readmem wRandMon4
+	givepoke USE_SCRIPT_VAR, 40 
 	takecoins BATTLETOWER_MILD_COINS
 	setflag ENGINE_SHOP_BOUGHT4
-	sjump .loop	
+	sjump .loop
 	
 .Mega:
 	checkflag ENGINE_SHOP_BOUGHT5
 	iftrue .alreadybought
-	checkcoins BATTLETOWER_MEGA_COINS
+	checkcoins BATTLETOWER_MILD_COINS
 	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
-	readvar VAR_PARTYCOUNT
-	ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
-	getmonname STRING_BUFFER_3, CHINCHOU
+	; readvar VAR_PARTYCOUNT
+	; ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
+	readmem wRandMon5
+	refreshscreen
+	pokepic USE_SCRIPT_VAR
+	cry USE_SCRIPT_VAR
+	waitbutton
+	closepokepic
+	opentext
+	getmonname STRING_BUFFER_3, USE_SCRIPT_VAR
 	scall Clerk_ConfirmPurchaseScript
-	iffalse .loop ;Clerk_CancelPurchaseScript
+	iffalse .loop
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext ClerkHereYouGoText
 	waitbutton
-	setval CHINCHOU
+	readmem wRandMon5
 	special GameCornerPrizeMonCheckDex
-	givepoke CHINCHOU, 69
-	takecoins BATTLETOWER_MEGA_COINS
+	readmem wRandMon5
+	givepoke USE_SCRIPT_VAR, 40 
+	takecoins BATTLETOWER_MILD_COINS
 	setflag ENGINE_SHOP_BOUGHT5
-	sjump .loop		
+	sjump .loop
 
 .Mythic:
 	checkflag ENGINE_SHOP_BOUGHT6
 	iftrue .alreadybought
-	checkcoins BATTLETOWER_MYTHIC_COINS
+	checkcoins BATTLETOWER_MILD_COINS
 	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
-	readvar VAR_PARTYCOUNT
-	ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
-	getmonname STRING_BUFFER_3, LUGIA
+	; readvar VAR_PARTYCOUNT
+	; ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
+	readmem wRandMon6
+	refreshscreen
+	pokepic USE_SCRIPT_VAR
+	cry USE_SCRIPT_VAR
+	waitbutton
+	closepokepic
+	opentext
+	getmonname STRING_BUFFER_3, USE_SCRIPT_VAR
 	scall Clerk_ConfirmPurchaseScript
-	iffalse .loop ;Clerk_CancelPurchaseScript
+	iffalse .loop
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext ClerkHereYouGoText
 	waitbutton
-	setval LUGIA
+	readmem wRandMon6
 	special GameCornerPrizeMonCheckDex
-	givepoke LUGIA, 15
-	takecoins BATTLETOWER_MYTHIC_COINS
+	readmem wRandMon6
+	givepoke USE_SCRIPT_VAR, 40 
+	takecoins BATTLETOWER_MILD_COINS
 	setflag ENGINE_SHOP_BOUGHT6
-	sjump .loop		
+	sjump .loop
 
-.alreadybought
+.alreadybought:
 	writetext ClerkAlreadyBoughtText
 	waitbutton
 	sjump .loop
@@ -505,10 +549,10 @@ BattleTower1FClerkScript:
 .MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 7 ; items
-	db "MILD         20@"
-	db "MILD         20@"
-	db "MILD         20@"
-	db "MILD         20@"
+	db "COMMON       20@"
+	db "COMMON       20@"
+	db "COMMON       20@"
+	db "COMMON       20@"
 	db "MEGA         70@"
 	db "MYTHIC      100@"
 	db "CANCEL@"
@@ -1048,6 +1092,11 @@ Text_BattleTowerTeacher:
 	text "Hello! Welcome to"
 	line "the battle tower!"
 	done
+	
+Text_BattleTowerTeacherOneMoment:
+	text "One moment please."
+	done
+	
 
 Text_BattleTowerBugCatcher:
 	text "I'm trying to see"
@@ -1081,7 +1130,7 @@ ClerkClearText:
 	done
 
 ClerkQuitText:
-	text "Have fun!"
+	text "Enjoy!"
 	done
 
 ClerkNeedMoreCoinsText:
@@ -1095,9 +1144,9 @@ ClerkNoMoreRoomText:
 	done
 
 ClerkConfirmPrizeText:
+	text "Will "
 	text_ram wStringBuffer3
-	text "."
-	line "Is that right?"
+	line "join you?"
 	done
 	
 ClerkHereYouGoText:
@@ -1130,6 +1179,6 @@ BattleTower1F_MapEvents:
 	object_event  8,  9, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BattleTower1FCooltrainerFScript, -1
 	object_event  5,  3, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BattleTower1FBugCatcherScript, -1
 	object_event 18,  3, SPRITE_GRANNY, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTower1FGrannyScript, -1
-	object_event 21, 10, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, PAL_NPC_RED, BattleTower1FTeacherScript, -1
+	object_event 21, 10, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BattleTower1FTeacherScript, -1
 	object_event 2, 10, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BattleTower1FClerkScript, -1
 	object_event  4, 11, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, BattleTowerCoinCase, EVENT_GOLDENROD_UNDERGROUND_COIN_CASE

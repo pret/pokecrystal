@@ -2836,23 +2836,45 @@ Script_checksameday:
 	ld [wScriptVar], a
 	ret
 .same
-	ld a, 1
+	ld a, TRUE
 	ld [wScriptVar], a
 	ret
 
 Script_randomizeshop:
 ; script command 0xab
 
-	random 251
-	addval 1
-	writemem wRandMon
+; ATTEMPT 3
+
+	ldh a, [hRandomAdd]
+	ld b, a
+	ld c, 6
+	ld hl, wRandMon1
+.sample
+	call Random
+	ldh a, [hRandomAdd]
+	add b
+	ld b, a
+	maskbits 250
+	cp 250
+	jr nc, .sample
+	ld a, b
+	add 1
+	ld [wTempRandMon], a
+	ld a, [hl]
+	ld b, a
+	ld a, [wTempRandMon]
+	cp b
+	jr z, .sample
+	ld [hli], a
+	dec c
+	jr nz, .sample
 	ret
 
 
-; unused
-	ld a, [.byte]
-	ld [wScriptVar], a
-	ret
+; ; unused
+	; ld a, [.byte]
+	; ld [wScriptVar], a
+	; ret
 
 .byte
 	db 0
