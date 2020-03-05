@@ -6012,24 +6012,27 @@ LoadEnemyMon:
 	ld a, [wBaseItem1]
 	jr z, .UpdateItem
 
-; Failing that, it's all up to chance
-;  Effective chances:
-;    75% None
-;    23% Item1
-;     2% Item2
+; Sometimes Pokemon will have a berry
 
-; 25% chance of getting an item
+	; 50% chance to get any item at all
 	call BattleRandom
-	cp 75 percent + 1
+	cp 50 percent + 1
 	ld a, NO_ITEM
 	jr c, .UpdateItem
 
-; From there, an 8% chance for Item2
+	; 25% chance of getting item 1
 	call BattleRandom
-	cp 8 percent ; 8% of 25% = 2% Item2
+	cp 50 percent
 	ld a, [wBaseItem1]
 	jr nc, .UpdateItem
+
+	; 12.5% chance of getting item 2
+	cp 50 percent
 	ld a, [wBaseItem2]
+	jr nc, .UpdateItem
+
+	; 13.5% chance of getting a berry
+	ld a, BERRY
 
 .UpdateItem:
 	ld [wEnemyMonItem], a
