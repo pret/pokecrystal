@@ -48,6 +48,7 @@
 
 ### Bugfixes - DONE
 
+- BRN/PSN/PAR now affect catch rate
 - High HP no longer depletes slowly
 
 ---
