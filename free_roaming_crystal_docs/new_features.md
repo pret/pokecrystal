@@ -38,6 +38,8 @@
 - Trainer Card
   - Colored trainer badges
   - Kanto Gym Leader Trainer Card ported and modified from Polished Crystal
+- Pokedex
+  - Pressing SELECT toggles shiny palette
 
 ---
 
