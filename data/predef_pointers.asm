@@ -54,7 +54,6 @@ PredefPointers::
 	add_predef PrintType
 	add_predef PrintMonTypes
 	add_predef GetUnownLetter
-	add_predef LoadPoisonBGPals
 	add_predef DummyPredef2F
 	add_predef InitSGBBorder ; $30
 	add_predef LoadSGBLayout

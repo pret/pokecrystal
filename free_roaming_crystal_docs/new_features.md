@@ -28,6 +28,7 @@
 - Remove boosts given by badges
 - Wild Pokemon have held items more often
 - Wild mon will sometimes hold a BERRY
+- Removed poison's overworld effect
 - Fourth Stats Screen
   - DVs
   - Happiness
@@ -41,7 +42,7 @@
   - Kanto Gym Leader Trainer Card ported and modified from Polished Crystal
 - Pokedex
   - Pressing SELECT toggles shiny palette
-- Low HP beeping noise is less annoying
+- HP beeping noise is less annoying
 
 ---
 

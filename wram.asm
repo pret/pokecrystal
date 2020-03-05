@@ -1910,10 +1910,10 @@ wMenuScrollPositionBackup:: db
 
 NEXTU ; d03e
 ; poison step data
-wPoisonStepData::
-wPoisonStepFlagSum:: db
-wPoisonStepPartyFlags:: ds PARTY_LENGTH
-wPoisonStepDataEnd::
+wPoisonStepData:: ; unused
+wPoisonStepFlagSum:: db ; unused
+wPoisonStepPartyFlags:: ds PARTY_LENGTH ; unused
+wPoisonStepDataEnd:: ; unused
 ENDU ; d04f
 
 	ds 23
@@ -2819,7 +2819,7 @@ wdc60:: db
 	ds 18
 
 wStepCount:: db ; dc73
-wPoisonStepCount:: db ; dc74
+wPoisonStepCount:: db ; dc74 ; unused
 	ds 2
 wHappinessStepCount:: db
 	ds 1
