@@ -24,6 +24,10 @@
 - Reusable TMs
 - Hold B to Run
 - Instant text speed option
+- Gain Exp for catching Pokemon
+- Remove boosts given by badges
+- Wild Pokemon have held items more often
+- Wild mon will sometimes hold a BERRY
 - Fourth Stats Screen
   - DVs
   - Happiness
