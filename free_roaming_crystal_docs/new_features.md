@@ -46,6 +46,10 @@
 - HP beeping noise is less annoying
 - When repel runs out, the user will be prompted to use another
 
+### Bugfixes - DONE
+
+- High HP no longer depletes slowly
+
 ---
 
 ## TODO
