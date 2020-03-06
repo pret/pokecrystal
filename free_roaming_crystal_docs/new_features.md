@@ -45,6 +45,7 @@
   - Pressing SELECT toggles shiny palette
 - HP beeping noise is less annoying
 - When repel runs out, the user will be prompted to use another
+- Pokemon who evolve from Happiness evolve quicker
 
 ### Bugfixes - DONE
 
