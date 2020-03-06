@@ -47,6 +47,7 @@
 - When repel runs out, the user will be prompted to use another
 - Pokemon who evolve from Happiness evolve quicker
 - Sped up teaching a mon TMs by removing some unnecessary text
+- Added pack space, removed some PC item storage space
 
 ### Bugfixes - DONE
 
