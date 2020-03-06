@@ -9,4 +9,6 @@ HappinessData_YoungerHaircutBrother:
 	db $ff, 4, HAPPINESS_YOUNGCUT3 ; 30% chance
 
 HappinessData_DaisysGrooming:
-	db $ff, 2, HAPPINESS_GROOMING ; 99.6% chance
+	; These entries add up to 100% and fix a bug
+	db $80, 2, HAPPINESS_GROOMING ; 50% chance
+	db $ff, 2, HAPPINESS_GROOMING ; 50% chance

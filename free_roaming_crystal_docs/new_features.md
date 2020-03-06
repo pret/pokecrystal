@@ -50,6 +50,18 @@
 
 - BRN/PSN/PAR now affect catch rate
 - High HP no longer depletes slowly
+- Secondary effects no longer have a 1/256 chance to fail
+- Belly Drum doesn't work if mon has less than 50% HP
+- Wild Pokemon can't teleport if level difference is large enough
+- Fix AI that checks type matchup
+- 5 digit EXP gain now prints correctly
+- Moon Ball works now
+- Fast Ball works now
+- Dragon Fang boosts Dragon-type moves
+- Daisy's grooming never fails
+- Team Rocket battle music plays for executives and scientists
+- Surfing NPCs no longer wonder aimlessly
+- Catching a transformed Pokemon no longer turns it into Ditto
 
 ---
 
