@@ -278,7 +278,7 @@ DoPlayerMovement::
 
 ; Downhill riding is slower when not moving down.
 	call .RunCheck
-	jr z, .fast
+	jr z, .run
 	call .BikeCheck
 	jr nz, .walk
 
@@ -319,11 +319,11 @@ DoPlayerMovement::
 .run
 	ld a, STEP_RUN
 	call .DoStep
-	push af
-	ld a, [wWalkingDirection]
-	cp STANDING
-	call nz, CheckTrainerRun
-	pop af
+	;push af
+	;ld a, [wWalkingDirection]
+	;cp STANDING
+	;call nz, CheckTrainerRun
+	;pop af
 	scf
 	ret
 
