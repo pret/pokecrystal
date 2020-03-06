@@ -965,26 +965,12 @@ _LearnedMoveText::
 
 	text_end ; unused
 
-_MoveAskForgetText::
-	text "Which move should"
-	next "be forgotten?"
-	done
-
 _StopLearningMoveText::
 	text "Stop learning"
 	line "@"
 	text_ram wStringBuffer2
 	text "?"
 	done
-
-_DidNotLearnMoveText::
-	text_ram wMonOrItemNameBuffer
-	text_start
-	line "did not learn"
-	cont "@"
-	text_ram wStringBuffer2
-	text "."
-	prompt
 
 _AskForgetMoveText::
 	text_ram wMonOrItemNameBuffer
