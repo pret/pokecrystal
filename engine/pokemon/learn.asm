@@ -107,8 +107,8 @@ LearnMove:
 	call YesNoBox
 	jp c, .loop
 
-	ld hl, DidNotLearnMoveText
-	call PrintText
+	;ld hl, DidNotLearnMoveText
+	;call PrintText
 	ld b, 0
 	ret
 
@@ -134,8 +134,8 @@ ForgetMove:
 	pop hl
 .loop
 	push hl
-	ld hl, MoveAskForgetText
-	call PrintText
+	;ld hl, MoveAskForgetText
+	;call PrintText
 	hlcoord 5, 2
 	ld b, NUM_MOVES * 2
 	ld c, MOVE_NAME_LENGTH

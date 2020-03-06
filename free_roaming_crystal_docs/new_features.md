@@ -46,6 +46,7 @@
 - HP beeping noise is less annoying
 - When repel runs out, the user will be prompted to use another
 - Pokemon who evolve from Happiness evolve quicker
+- Sped up teaching a mon TMs by removing some unnecessary text
 
 ### Bugfixes - DONE
 
