@@ -684,7 +684,7 @@ OakSpeech:
 	call ClearTilemap
 
 	; Display Wooper
-	ld a, WOOPER
+	ld a, EEVEE
 	ld [wCurSpecies], a
 	ld [wCurPartySpecies], a
 	call GetBaseData
