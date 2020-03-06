@@ -319,11 +319,6 @@ DoPlayerMovement::
 .run
 	ld a, STEP_RUN
 	call .DoStep
-	;push af
-	;ld a, [wWalkingDirection]
-	;cp STANDING
-	;call nz, CheckTrainerRun
-	;pop af
 	scf
 	ret
 
