@@ -32,3 +32,9 @@
 ## 60 fps
 
 - Merged from hyperdriveguy's 60 fps repo of pokecrystal
+
+--
+
+## Hold B to Run
+
+- From Polished Crystal
