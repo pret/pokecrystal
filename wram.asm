@@ -2289,6 +2289,8 @@ wTimeOfDay:: db ; d269
 
 	ds 1
 
+TrainerGroupBank::
+	ds 1
 
 SECTION "Enemy Party", WRAMX
 
