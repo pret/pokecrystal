@@ -683,8 +683,8 @@ OakSpeech:
 	call RotateThreePalettesRight
 	call ClearTilemap
 
-	; Display ESPEON
-	ld a, ESPEON
+	; Display EEVEE
+	ld a, EEVEE
 	ld [wCurSpecies], a
 	ld [wCurPartySpecies], a
 	call GetBaseData
