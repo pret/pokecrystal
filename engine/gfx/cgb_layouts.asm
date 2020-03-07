@@ -240,7 +240,7 @@ _CGB_StatsScreenHPPals:
 
 	ld hl, StatsScreenPagePals
 	ld de, wBGPals1 palette 3
-	ld bc, 4 palettes ; pink, green, and blue page palettes
+	ld bc, 4 palettes ; pink, green, blue, and orange page palettes
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	call WipeAttrmap
