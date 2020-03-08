@@ -7,6 +7,10 @@ INCLUDE "data/trainers/party_pointers.asm"
 ;    * for TRAINERTYPE_MOVES:      db level, species, 4 moves
 ;    * for TRAINERTYPE_ITEM:       db level, species, item
 ;    * for TRAINERTYPE_ITEM_MOVES: db level, species, item, 4 moves
+;	 * for TRAINERTYPE_SCALING:	   db trainertype
+;	 * 							   <trainertype_parameters>
+;	 * 							   db $fe ; delimiter
+;    *							   ... ; 17 sets total
 ; -  db $ff ; end
 
 SECTION "Enemy Trainers 1", ROMX
