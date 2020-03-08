@@ -183,24 +183,8 @@ Text_ReceivedHiveBadge:
 	done
 
 BugsyText_HiveBadgeSpeech:
-	text "Do you know the"
-	line "benefits of HIVE-"
-	cont "BADGE?"
-
-	para "If you have it,"
-	line "#MON up to L30"
-
-	para "will obey you,"
-	line "even traded ones."
-
-	para "#MON that know"
-	line "CUT will be able"
-
-	para "to use it outside"
-	line "of battle too."
-
-	para "Here, I also want"
-	line "you to have this."
+	text "Here, I want you"
+	line "to have this."
 	done
 
 BugsyText_FuryCutterSpeech:
