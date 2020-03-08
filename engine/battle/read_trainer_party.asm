@@ -89,6 +89,7 @@ TrainerTypes:
 	dw TrainerType2 ; level, species, moves
 	dw TrainerType3 ; level, species, item
 	dw TrainerType4 ; level, species, item, moves
+	dw TrainerType5 ; scaling trainer
 
 TrainerType1:
 ; normal (level, species)
@@ -96,13 +97,15 @@ TrainerType1:
 	ld l, e
 .loop
 ; level
-	call GetNextTrainerDataByte ; CORRECT
+	call GetNextTrainerDataByte
 	cp $ff
+	ret z
+	cp $fe
 	ret z
 	ld [wCurPartyLevel], a
 
 ; species
-	call GetNextTrainerDataByte ; CORRECT
+	call GetNextTrainerDataByte
 	ld [wCurPartySpecies], a
 	ld a, OTPARTYMON
 	ld [wMonType], a
@@ -119,6 +122,8 @@ TrainerType2:
 ; level
 	call GetNextTrainerDataByte
 	cp $ff
+	ret z
+	cp $fe
 	ret z
 	ld [wCurPartyLevel], a
 
@@ -141,7 +146,7 @@ TrainerType2:
 
 	ld b, NUM_MOVES
 .copy_moves
-	call GetNextTrainerDataByte ; CORRECT
+	call GetNextTrainerDataByte
 	ld [de], a
 	inc de
 	dec b
@@ -198,6 +203,8 @@ TrainerType3:
 	call GetNextTrainerDataByte
 	cp $ff
 	ret z
+	cp $fe
+	ret z
 	ld [wCurPartyLevel], a
 
 ; species
@@ -229,6 +236,8 @@ TrainerType4:
 	call GetNextTrainerDataByte
 	cp $ff
 	ret z
+	cp $fe
+	ret z 
 	ld [wCurPartyLevel], a
 
 ; species
@@ -314,6 +323,48 @@ TrainerType4:
 	call .loop
 	ret
 
+; variable trainer code by Rangi
+TrainerType5:
+	; variable
+    ld h, d
+    ld l, e
+
+    ; Get the number of badges in a, c, and [wd265]
+    push hl
+    ld hl, wBadges
+    ld b, 2 ; check 2 bytes starting at wBadges
+    call CountSetBits
+    pop hl
+
+    ; For each badge, skip up to an $fe delimiter
+.outerloop
+    ld a, c
+    and a
+    jr z, .continue
+.innerloop
+	call GetNextTrainerDataByte
+    cp $fe
+    jr nz, .innerloop
+    dec c
+    jr .outerloop
+
+.continue
+    ; Get the actual trainer type of the variable stage for this badge count
+    call GetNextTrainerDataByte
+    ld c, a
+    ld b, 0
+    ld d, h
+    ld e, l
+    ld hl, TrainerTypes
+    add hl, bc
+    add hl, bc
+    ; Jump to it
+    ld a, [hli]
+    ld h, [hl]
+    ld l, a
+    ld bc, ComputeTrainerReward
+    jp hl
+
 ComputeTrainerReward:
 	ld hl, hProduct
 	xor a
@@ -372,9 +423,9 @@ GetTrainerName::
 	ld hl, TrainerGroups
 	add hl, bc
 	add hl, bc
-	add hl, bc	; CORRECT
-	ld a, [hli]	; CORRECT
-	ld [TrainerGroupBank], a ; CORRECT
+	add hl, bc
+	ld a, [hli]
+	ld [TrainerGroupBank], a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -385,7 +436,7 @@ GetTrainerName::
 	jr z, CopyTrainerName
 
 .skip
-	call GetNextTrainerDataByte ; CORRECT
+	call GetNextTrainerDataByte
 	cp $ff
 	jr nz, .skip
 	jr .loop

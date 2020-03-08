@@ -1,6 +1,6 @@
 INCLUDE "data/trainers/party_pointers.asm"
 
-; Trainer data structure:
+; Trainer data structure:a
 ; - db "NAME@", TRAINERTYPE_* constant
 ; - 1 to 6 Pokémon:
 ;    * for TRAINERTYPE_NORMAL:     db level, species
@@ -13,10 +13,254 @@ SECTION "Enemy Trainers 1", ROMX
 
 FalknerGroup:
 	; FALKNER (1)
-	db "FALKNER@", TRAINERTYPE_MOVES
-	db  7, PIDGEY,     TACKLE, MUD_SLAP, NO_MOVE, NO_MOVE
-	db  9, PIDGEOTTO,  TACKLE, MUD_SLAP, GUST, NO_MOVE
-	
+	db "FALKNER@"
+	db 4 ; variable
+
+	; stage 0
+	db 1 ; moves
+	; party
+	db 7, PIDGEY, TACKLE, MUD_SLAP, NO_MOVE, NO_MOVE
+	db 9, PIDGEOTTO, TACKLE, MUD_SLAP, GUST, NO_MOVE
+	db $fe ; delimiter
+
+	; stage 1
+	db 1 ; moves
+	; party
+	db 14, PIDGEY
+		db TACKLE
+		db MUD_SLAP
+		db GUST
+		db NO_MOVE
+	db 16, PIDGEOTTO
+		db TACKLE
+		db MUD_SLAP
+		db GUST
+		db QUICK_ATTACK
+	db $fe ; delimiter
+
+	; stage 2
+	db 1 ; moves
+	; party
+	db 18, PIDGEOTTO
+		db TACKLE
+		db MUD_SLAP
+		db GUST
+		db QUICK_ATTACK
+	db 20, PIDGEOTTO
+		db TACKLE
+		db MUD_SLAP
+		db GUST
+		db QUICK_ATTACK
+	db $fe ; delimiter
+
+	; stage 3
+	db 1 ; moves
+	; party
+	db 23, PIDGEOTTO
+		db TACKLE
+		db MUD_SLAP
+		db GUST
+		db QUICK_ATTACK
+	db 25, PIDGEOT
+		db TACKLE
+		db MUD_SLAP
+		db GUST
+		db QUICK_ATTACK
+	db $fe ; delimiter
+
+	; stage 4
+	db 1 ; moves
+	; party
+	db 28, PIDGEOTTO
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WHIRLWIND
+	db 30, PIDGEOT
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WHIRLWIND
+	db $fe ; delimiter
+
+	; stage 5
+	db 1 ; moves
+	; party
+	db 30, PIDGEOTTO
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WHIRLWIND
+	db 32, PIDGEOT
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WHIRLWIND
+	db $fe ; delimiter
+
+	; stage 6
+	db 3 ; item + moves
+	; party
+	db 33, PIDGEOTTO, NO_ITEM
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WING_ATTACK
+	db 35, PIDGEOT, SHARP_BEAK
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WING_ATTACK
+	db $fe ; delimiter
+
+	; stage 7
+	db 3 ; item + moves
+	; party
+	db 38, PIDGEOT, NO_ITEM
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WING_ATTACK
+	db 40, PIDGEOT, SHARP_BEAK
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WING_ATTACK
+	db $fe ; delimiter
+
+	; stage 8
+	db 3 ; item + moves
+	; party
+	db 42, PIDGEOT, NO_ITEM
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WING_ATTACK
+	db 44, PIDGEOT, SHARP_BEAK
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WING_ATTACK
+	db $fe ; delimiter
+
+	; stage 9
+	db 3 ; item + moves
+	; party
+	db 44, PIDGEOT, NO_ITEM
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WING_ATTACK
+	db 46, PIDGEOT, SHARP_BEAK
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WING_ATTACK
+	db $fe ; delimiter
+
+	; stage 10
+	db 3 ; item + moves
+	; party
+	db 46, PIDGEOT, NO_ITEM
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WING_ATTACK
+	db 48, PIDGEOT, SHARP_BEAK
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WING_ATTACK
+	db $fe ; delimiter
+
+	; stage 11
+	db 3 ; item + moves
+	; party
+	db 48, PIDGEOT, NO_ITEM
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WING_ATTACK
+	db 50, PIDGEOT, SHARP_BEAK
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WING_ATTACK
+	db $fe ; delimiter
+
+	; stage 12
+	db 3 ; item + moves
+	; party
+	db 50, PIDGEOT, NO_ITEM
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WING_ATTACK
+	db 52, PIDGEOT, SHARP_BEAK
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WING_ATTACK
+	db $fe ; delimiter
+
+	; stage 13
+	db 3 ; item + moves
+	; party
+	db 52, PIDGEOT, NO_ITEM
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WING_ATTACK
+	db 54, PIDGEOT, SHARP_BEAK
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WING_ATTACK
+	db $fe ; delimiter
+
+	; stage 14
+	db 3 ; item + moves
+	; party
+	db 54, PIDGEOT, NO_ITEM
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WING_ATTACK
+	db 56, PIDGEOT, SHARP_BEAK
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WING_ATTACK
+	db $fe ; delimiter
+
+	; stage 15
+	db 3 ; item + moves
+	; party
+	db 56, PIDGEOT, NO_ITEM
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WING_ATTACK
+	db 58, PIDGEOT, SHARP_BEAK
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WING_ATTACK
+	db $fe ; delimiter
+
+	; stage 16
+	db 3 ; item + moves
+	; party
+	db 58, PIDGEOT, NO_ITEM
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WING_ATTACK
+	db 60, PIDGEOT, SHARP_BEAK
+		db MUD_SLAP
+		db FLY
+		db QUICK_ATTACK
+		db WING_ATTACK
 	db $ff ; end
 
 WhitneyGroup:
