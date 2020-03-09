@@ -13,6 +13,7 @@
 - Start with all HMs
 - Badges are not required to use HMs
 - Start with complete Pokegear
+- Gym Leaders scale based on # of badges
 
 ### Forms - DONE
 
@@ -75,10 +76,11 @@
 #### OWF - High Priority
 
 - Scaling Trainers based on Rangi's code
-  - Define 16 different sets??
-  - Define 8 different sets??
-  - Define certain pokemon and level/evolve those Pokemon after each badge??
+  - Fill in teams for gym leader scaling
+  - Add trainer type for scaling E4 and fill teams
+  - Add trainer type for normal trainers and fill teams
 - Replace HMs with tools
+- Able to rename mons through the party menu
 - Scaling Wildmon
   - Wildmon based on team levels
   - Caps on wildmon levels are raised after each badge
@@ -88,7 +90,6 @@
 - Starting Location Selector
   - Remove ability to start the game from places like Mt. Silver
   - Prompt for confirmation in case user accidentally clicked A
-  - Able to rename mons through the party menu
   - Inform player that SELECT toggles the regions
 
 #### OWF - Medium Priority
@@ -119,16 +120,13 @@
 
 #### QOL - High Priority
 
-- Poison overworld effect should be removed
 - Bill calls and switches your box when its full
 - Pressing B in a wild battle moves the cursor to RUN
 - Move Relearner/Move Deleter at every pokecenter
 - Replace trade evolutions with different methods
   - Trade stone?
   - Atk, Def, or Spc reach a certain stat?
-- Low HP beeping
 - Remove useless moves and replace with useful moves
-- Display kanto badges on trainer card
 - Add Menu Icons For Each Pokemon
 - Add Menu Icon Palettes For Each Pokemon Menu Icon
 - Physical/Special Split
@@ -160,7 +158,6 @@
 - Move relearner/deleter available at every Pokecenter
 - Clock reset on intro menu
 - Toggleable run button
-- Pack size increase
 - Bottle caps
 - Certain mon pick up items as you adventure
 - Display starter with correct colors/shininess based on DVs after starter selection
@@ -203,12 +200,6 @@
 - Post Kanto Rematch
 - Kanto league (R/B/Y)
 - Item or ball that make a pokemon shiny (rare/one-of-a-kind)
-
-### Bugfixes - TODO
-
-- Fix apricorn ball effects
-  - Love Ball's vanilla effect is unchanged
-- Slow animation bar glitch
 
 ### New Pokemon - TODO
 
