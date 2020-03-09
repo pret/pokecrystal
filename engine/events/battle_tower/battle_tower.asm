@@ -292,19 +292,17 @@ RunBattleTowerTrainer:
 	ld a, "@"
 	ld [hli], a
 	ld a, b
-	add "0"
+	add "1"
 	ld [hli], a
 	ld a, "@"
 	ld [hl], a
 	jr .lost
 .nine	
-	ld b, a
 	ld a, c
 	add "1"
 	ld [hli], a
 	ld a, "@"
 	ld [hli], a
-	ld a, b
 	ld a, "0"
 	ld [hli], a
 	ld a, "@"
