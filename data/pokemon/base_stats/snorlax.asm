@@ -1,6 +1,7 @@
 	db SNORLAX ; 143
 
-	db 160, 110,  65,  30,  65, 110
+	;db 160, 110,  65,  30,  65, 110
+	db 255, 255,  255,  255,  255, 255
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL ; type

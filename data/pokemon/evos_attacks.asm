@@ -1938,11 +1938,11 @@ SnorlaxEvosAttacks:
 	db 1, TACKLE
 	db 8, AMNESIA
 	db 15, DEFENSE_CURL
-	db 22, BELLY_DRUM
-	db 29, HEADBUTT
-	db 36, SNORE
-	db 36, REST
-	db 43, BODY_SLAM
+	db 22, BODY_SLAM
+	db 29, FLAMETHROWER
+	db 36, EARTHQUAKE
+	db 37, RECOVER
+	;db 43, BODY_SLAM
 	db 50, ROLLOUT
 	db 57, HYPER_BEAM
 	db 0 ; no more level-up moves

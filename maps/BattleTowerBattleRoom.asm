@@ -34,8 +34,8 @@ Script_BattleRoomLoop:
 	special FadeOutPalettes
 	reloadmap
 	ifnotequal $0, Script_FailedBattleTowerChallenge
-	readmem wNrOfBeatenBattleTowerTrainers
-	ifequal BATTLETOWER_STREAK_LENGTH, Script_BeatenAllTrainers
+	; readmem wNrOfBeatenBattleTowerTrainers
+	; ifequal BATTLETOWER_STREAK_LENGTH, Script_BeatenAllTrainers
 	applymovement BATTLETOWERBATTLEROOM_YOUNGSTER, MovementData_BattleTowerBattleRoomOpponentWalksOut
 	warpsound
 	disappear BATTLETOWERBATTLEROOM_YOUNGSTER

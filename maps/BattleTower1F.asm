@@ -385,7 +385,7 @@ BattleTower1FClerkScript:
 	readmem wRandMon1
 	special GameCornerPrizeMonCheckDex
 	readmem wRandMon1
-	givepoke USE_SCRIPT_VAR, 40 
+	givepoke SNORLAX, 40 
 	takecoins BATTLETOWER_MILD_COINS
 	setflag ENGINE_SHOP_BOUGHT1
 	sjump .loop
@@ -944,6 +944,7 @@ Text_NextUpOpponentNo:
 	text "Next up, opponent"
 	line "no.@"
 	text_ram wStringBuffer3
+	text_ram (wStringBuffer3 + 2)
 	text ". Ready?"
 	done
 
@@ -1144,8 +1145,9 @@ ClerkNoMoreRoomText:
 	done
 
 ClerkConfirmPrizeText:
-	text "Will "
+	text "Will @"
 	text_ram wStringBuffer3
+	text " "
 	line "join you?"
 	done
 	

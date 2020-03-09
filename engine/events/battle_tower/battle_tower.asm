@@ -250,14 +250,68 @@ RunBattleTowerTrainer:
 	ld a, [sNrOfBeatenBattleTowerTrainers]
 	ld [wNrOfBeatenBattleTowerTrainers], a
 	call CloseSRAM
+	; ld hl, wStringBuffer3
+	; ld a, [wNrOfBeatenBattleTowerTrainers]
+	; add "1"
+	; ld [hli], a
+	; ld a, "@"
+	; ld [hl], a
+	
+	push bc
 	ld hl, wStringBuffer3
 	ld a, [wNrOfBeatenBattleTowerTrainers]
+	cp 9
+	jr nc, .tens
+	ld b, a
+	ld a, " "
+	ld [hli], a
+	ld a, "@"
+	ld [hli], a
+	ld a, b
 	add "1"
+	ld [hli], a
+	ld a, "@"
+	ld [hl], a
+	jr .lost
+.tens
+	xor a
+	ld c, a
+	ld a, [wNrOfBeatenBattleTowerTrainers]
+.gettens
+	inc c
+	sub 10
+	jr nc, .gettens
+	dec c
+	add 10
+	cp 9
+	jr z, .nine
+	ld b, a
+	ld a, c
+	add "0"
+	ld [hli], a
+	ld a, "@"
+	ld [hli], a
+	ld a, b
+	add "0"
+	ld [hli], a
+	ld a, "@"
+	ld [hl], a
+	jr .lost
+.nine	
+	ld b, a
+	ld a, c
+	add "1"
+	ld [hli], a
+	ld a, "@"
+	ld [hli], a
+	ld a, b
+	ld a, "0"
 	ld [hli], a
 	ld a, "@"
 	ld [hl], a
 
 .lost
+	pop bc
 	pop af
 	ld [wInBattleTowerBattle], a
 	pop af
