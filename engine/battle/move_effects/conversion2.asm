@@ -18,6 +18,7 @@ BattleCommand_Conversion2:
 	dec a
 	ld hl, Moves + MOVE_TYPE
 	call GetMoveAttr
+	and TYPE_MASK
 	ld d, a
 	pop hl
 	cp CURSE_T
