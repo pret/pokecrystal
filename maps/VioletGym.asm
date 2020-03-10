@@ -157,17 +157,7 @@ FalknerZephyrBadgeText:
 	done
 
 FalknerTMMudSlapText:
-	text "By using a TM, a"
-	line "#MON will"
-
-	para "instantly learn a"
-	line "new move."
-
-	para "Think before you"
-	line "act--a TM can be"
-	cont "used only once."
-
-	para "TM31 contains"
+	text "TM31 contains"
 	line "MUD-SLAP."
 
 	para "It reduces the"
