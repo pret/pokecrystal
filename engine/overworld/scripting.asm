@@ -235,6 +235,8 @@ ScriptCommandTable:
 	dw Script_checksave                  ; a9
 	dw Script_checksameday				 ; aa
 	dw Script_randomizeshop				 ; ab
+	dw Script_getBTcoins				 ; ac
+	dw Script_updateBTcoinsStringBuffer	 ; ad
 
 StartScript:
 	ld hl, wScriptFlags
@@ -726,14 +728,14 @@ Script_describedecoration:
 	jp ScriptJump
 
 Script_fruittree:
-; script command 0x9b
-; parameters: tree_id
+; ; script command 0x9b
+; ; parameters: tree_id
 
-	call GetScriptByte
-	ld [wCurFruitTree], a
-	ld b, BANK(FruitTreeScript)
-	ld hl, FruitTreeScript
-	jp ScriptJump
+	; call GetScriptByte
+	; ld [wCurFruitTree], a
+	; ld b, BANK(FruitTreeScript)
+	; ld hl, FruitTreeScript
+	; jp ScriptJump
 
 Script_swarm:
 ; script command 0xa0
@@ -2183,6 +2185,10 @@ Script_checkcoins:
 
 LoadCoinAmountToMem:
 	call GetScriptByte
+	and a ;USE_SCRIPT_VAR
+	jr nz, .gotit
+	ld a, [wScriptVar]
+.gotit
 	ldh [hMoneyTemp + 1], a
 	call GetScriptByte
 	ldh [hMoneyTemp], a
@@ -2777,16 +2783,16 @@ Script_endall:
 	ret
 
 Script_halloffame:
-; script command 0xa1
+; ; script command 0xa1
 
-	ld hl, wGameTimerPause
-	res GAMETIMERPAUSE_TIMER_PAUSED_F, [hl]
-	farcall StubbedTrainerRankings_HallOfFame
-	farcall StubbedTrainerRankings_HallOfFame2
-	farcall HallOfFame
-	ld hl, wGameTimerPause
-	set GAMETIMERPAUSE_TIMER_PAUSED_F, [hl]
-	jr ReturnFromCredits
+	; ld hl, wGameTimerPause
+	; res GAMETIMERPAUSE_TIMER_PAUSED_F, [hl]
+	; farcall StubbedTrainerRankings_HallOfFame
+	; farcall StubbedTrainerRankings_HallOfFame2
+	; farcall HallOfFame
+	; ld hl, wGameTimerPause
+	; set GAMETIMERPAUSE_TIMER_PAUSED_F, [hl]
+	; jr ReturnFromCredits
 
 Script_credits:
 ; script command 0xa2
@@ -2870,6 +2876,74 @@ Script_randomizeshop:
 	jr nz, .sample
 	ret
 
+Script_getBTcoins:
+; script command 0xac
+
+	push bc
+	xor a
+	ld c, a
+	ld a, [wNrOfBeatenBattleTowerTrainers]
+.gettens
+	inc c
+	sub 10
+	jr nc, .gettens
+	dec c
+	add 10
+	and a
+	jr nz, .skip
+	dec c
+.skip	
+	ld a, c
+	add 2
+	ld [wScriptVar], a
+	pop bc
+	ret
+
+Script_updateBTcoinsStringBuffer:
+; script command 0xad
+
+	ld hl, wStringBuffer3
+	inc hl
+	inc hl
+	inc hl
+	inc hl
+	ld a, [wScriptVar]
+	cp 10
+	jr nc, .tens
+	ld a, " "
+	ld [hli], a
+	ld a, "@"
+	ld [hli], a
+	ld a, [wScriptVar]
+	add "0"
+	ld [hli], a
+	ld a, "@"
+	ld [hl], a
+	ret
+.tens
+	push bc
+	xor a
+	ld c, a
+	ld a, [wScriptVar]
+.gettens
+	inc c
+	sub 10
+	jr nc, .gettens
+	dec c
+	add 10
+	ld b, a
+	ld a, c
+	add "0"
+	ld [hli], a
+	ld a, "@"
+	ld [hli], a
+	ld a, b
+	add "0"
+	ld [hli], a
+	ld a, "@"
+	ld [hl], a
+	pop bc
+	ret
 
 ; ; unused
 	; ld a, [.byte]

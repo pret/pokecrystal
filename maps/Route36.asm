@@ -362,7 +362,7 @@ Route36TrainerTips2:
 	jumptext Route36TrainerTips2Text
 
 Route36FruitTree:
-	fruittree FRUITTREE_ROUTE_36
+	; fruittree FRUITTREE_ROUTE_36
 
 SudowoodoShakeMovement:
 	tree_shake ; shake

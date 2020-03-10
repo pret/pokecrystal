@@ -272,7 +272,7 @@ Route35TMRollout:
 	itemball TM_ROLLOUT
 
 Route35FruitTree:
-	fruittree FRUITTREE_ROUTE_35
+	; fruittree FRUITTREE_ROUTE_35
 
 CamperIvanSeenText:
 	text "I've been getting"

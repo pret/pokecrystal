@@ -52,6 +52,17 @@ Script_BattleRoomLoop:
 	special FadeInPalettes
 	special RestartMapMusic
 	opentext
+	getBTcoins
+	updateBTcoinsStringBuffer
+	givecoins USE_SCRIPT_VAR
+	writetext Text_BTCoins
+	waitbutton
+	refreshscreen
+	special DisplayCoinCaseBalance
+	playsound SFX_TRANSACTION
+	waitbutton
+	refreshscreen
+	opentext
 	writetext Text_NextUpOpponentNo
 	yesorno
 	iffalse Script_DontBattleNextOpponent

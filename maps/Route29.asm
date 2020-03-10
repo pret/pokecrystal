@@ -207,7 +207,7 @@ Route29Sign2:
 	jumptext Route29Sign2Text
 
 Route29FruitTree:
-	fruittree FRUITTREE_ROUTE_29
+	; fruittree FRUITTREE_ROUTE_29
 
 Route29Potion:
 	itemball POTION

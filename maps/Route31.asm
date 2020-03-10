@@ -257,7 +257,7 @@ Route31CooltrainerMScript:
 	jumptextfaceplayer Route31CooltrainerMText
 
 Route31FruitTree:
-	fruittree FRUITTREE_ROUTE_31
+	; fruittree FRUITTREE_ROUTE_31
 
 Route31Potion:
 	itemball POTION

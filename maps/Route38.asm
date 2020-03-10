@@ -318,7 +318,7 @@ Route38TrainerTips:
 	jumptext Route38TrainerTipsText
 
 Route38FruitTree:
-	fruittree FRUITTREE_ROUTE_38
+	; fruittree FRUITTREE_ROUTE_38
 
 BirdKeeperTobySeenText:
 	text "Fly high into the"

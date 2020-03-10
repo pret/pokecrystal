@@ -247,7 +247,7 @@ Route26Sign:
 	jumptext Route26SignText
 
 Route26FruitTree:
-	fruittree FRUITTREE_ROUTE_26
+	; fruittree FRUITTREE_ROUTE_26
 
 Route26MaxElixer:
 	itemball MAX_ELIXER

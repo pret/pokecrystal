@@ -140,7 +140,7 @@ Route33Sign:
 	jumptext Route33SignText
 
 Route33FruitTree:
-	fruittree FRUITTREE_ROUTE_33
+	; fruittree FRUITTREE_ROUTE_33
 
 HikerAnthony2SeenText:
 	text "I came through the"

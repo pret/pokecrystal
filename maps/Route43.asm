@@ -317,7 +317,7 @@ Route43TrainerTips:
 	jumptext Route43TrainerTipsText
 
 Route43FruitTree:
-	fruittree FRUITTREE_ROUTE_43
+	; fruittree FRUITTREE_ROUTE_43
 
 Route43MaxEther:
 	itemball MAX_ETHER

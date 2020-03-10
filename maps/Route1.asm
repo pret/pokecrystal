@@ -34,7 +34,7 @@ Route1Sign:
 	jumptext Route1SignText
 
 Route1FruitTree:
-	fruittree FRUITTREE_ROUTE_1
+	; fruittree FRUITTREE_ROUTE_1
 
 SchoolboyDannySeenText:
 	text "If trainers meet,"

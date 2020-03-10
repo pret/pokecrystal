@@ -65,7 +65,7 @@ Route2Elixer:
 	itemball ELIXER
 
 Route2FruitTree:
-	fruittree FRUITTREE_ROUTE_2
+	; fruittree FRUITTREE_ROUTE_2
 
 Route2HiddenMaxEther:
 	hiddenitem MAX_ETHER, EVENT_ROUTE_2_HIDDEN_MAX_ETHER

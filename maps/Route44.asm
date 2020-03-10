@@ -304,7 +304,7 @@ Route44Sign2:
 	jumptext Route44Sign2Text
 
 Route44FruitTree:
-	fruittree FRUITTREE_ROUTE_44
+	; fruittree FRUITTREE_ROUTE_44
 
 Route44MaxRevive:
 	itemball MAX_REVIVE

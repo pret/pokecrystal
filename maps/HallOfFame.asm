@@ -42,7 +42,7 @@ HallOfFame_MapScripts:
 	iftrue .SkipPhoneCall
 	specialphonecall SPECIALCALL_SSTICKET
 .SkipPhoneCall:
-	halloffame
+	; halloffame
 	end
 
 HallOfFame_WalkUpWithLance:

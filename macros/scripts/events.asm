@@ -1073,4 +1073,14 @@ randomizeshop: MACRO
 	db randomizeshop_command
 ENDM
 
+	enum getBTcoins_command ; $ac
+getBTcoins: MACRO
+	db getBTcoins_command
+ENDM
+
+	enum updateBTcoinsStringBuffer_command ; $ac
+updateBTcoinsStringBuffer: MACRO
+	db updateBTcoinsStringBuffer_command
+ENDM
+
 

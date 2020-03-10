@@ -201,13 +201,13 @@ Route42SuperPotion:
 	itemball SUPER_POTION
 
 Route42FruitTree1:
-	fruittree FRUITTREE_ROUTE_42_1
+	; fruittree FRUITTREE_ROUTE_42_1
 
 Route42FruitTree2:
-	fruittree FRUITTREE_ROUTE_42_2
+	; fruittree FRUITTREE_ROUTE_42_2
 
 Route42FruitTree3:
-	fruittree FRUITTREE_ROUTE_42_3
+	; fruittree FRUITTREE_ROUTE_42_3
 
 Route42HiddenMaxPotion:
 	hiddenitem MAX_POTION, EVENT_ROUTE_42_HIDDEN_MAX_POTION

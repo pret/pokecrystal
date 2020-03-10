@@ -103,13 +103,13 @@ Route37Sign:
 	jumptext Route37SignText
 
 Route37FruitTree1:
-	fruittree FRUITTREE_ROUTE_37_1
+	; fruittree FRUITTREE_ROUTE_37_1
 
 Route37FruitTree2:
-	fruittree FRUITTREE_ROUTE_37_2
+	; fruittree FRUITTREE_ROUTE_37_2
 
 Route37FruitTree3:
-	fruittree FRUITTREE_ROUTE_37_3
+	; fruittree FRUITTREE_ROUTE_37_3
 
 Route37HiddenEther:
 	hiddenitem ETHER, EVENT_ROUTE_37_HIDDEN_ETHER

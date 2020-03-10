@@ -240,10 +240,10 @@ Route30Antidote:
 	itemball ANTIDOTE
 
 Route30FruitTree1:
-	fruittree FRUITTREE_ROUTE_30_1
+	; fruittree FRUITTREE_ROUTE_30_1
 
 Route30FruitTree2:
-	fruittree FRUITTREE_ROUTE_30_2
+	; fruittree FRUITTREE_ROUTE_30_2
 
 Route30HiddenPotion:
 	hiddenitem POTION, EVENT_ROUTE_30_HIDDEN_POTION

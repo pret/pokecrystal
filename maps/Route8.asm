@@ -73,7 +73,7 @@ Route8UndergroundPathSign:
 	jumptext Route8UndergroundPathSignText
 
 Route8FruitTree:
-	fruittree FRUITTREE_ROUTE_8
+	; fruittree FRUITTREE_ROUTE_8
 
 BikerDwayneSeenText:
 	text "We're the KANTO"

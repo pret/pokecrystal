@@ -48,7 +48,7 @@ FuchsiaCityMartSign:
 	jumpstd martsign
 
 FuchsiaCityFruitTree:
-	fruittree FRUITTREE_FUCHSIA_CITY
+	; fruittree FRUITTREE_FUCHSIA_CITY
 
 FuchsiaCityYoungsterText:
 	text "One of the ELITE"

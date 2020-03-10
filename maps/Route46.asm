@@ -163,10 +163,10 @@ Route46XSpeed:
 	itemball X_SPEED
 
 Route46FruitTree1:
-	fruittree FRUITTREE_ROUTE_46_1
+	; fruittree FRUITTREE_ROUTE_46_1
 
 Route46FruitTree2:
-	fruittree FRUITTREE_ROUTE_46_2
+	; fruittree FRUITTREE_ROUTE_46_2
 
 HikerBaileySeenText:
 	text "Awright! I'll show"

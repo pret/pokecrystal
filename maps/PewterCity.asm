@@ -61,10 +61,10 @@ PewterCityMartSign:
 	jumpstd martsign
 
 PewterCityFruitTree1:
-	fruittree FRUITTREE_PEWTER_CITY_1
+	; fruittree FRUITTREE_PEWTER_CITY_1
 
 PewterCityFruitTree2:
-	fruittree FRUITTREE_PEWTER_CITY_2
+	; fruittree FRUITTREE_PEWTER_CITY_2
 
 PewterCityCooltrainerFText:
 	text "Have you visited"

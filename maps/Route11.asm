@@ -58,7 +58,7 @@ Route11Sign:
 	jumptext Route11SignText
 
 Route11FruitTree:
-	fruittree FRUITTREE_ROUTE_11
+	; fruittree FRUITTREE_ROUTE_11
 
 Route11HiddenRevive:
 	hiddenitem REVIVE, EVENT_ROUTE_11_HIDDEN_REVIVE

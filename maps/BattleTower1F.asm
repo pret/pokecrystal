@@ -385,7 +385,7 @@ BattleTower1FClerkScript:
 	readmem wRandMon1
 	special GameCornerPrizeMonCheckDex
 	readmem wRandMon1
-	givepoke SNORLAX, 40 
+	givepoke SNORLAX, 40, PINK_BOW
 	takecoins BATTLETOWER_MILD_COINS
 	setflag ENGINE_SHOP_BOUGHT1
 	sjump .loop
@@ -938,6 +938,14 @@ Text_YourMonWillBeHealedToFullHealth:
 	text "Your #MON will"
 	line "be healed to full"
 	cont "health."
+	done
+
+Text_BTCoins:
+	text "Congratulations!"
+	line "You get @"
+	text_ram (wStringBuffer3 + 4)
+	text_ram (wStringBuffer3 + 6)
+	text " coins!"
 	done
 
 Text_NextUpOpponentNo:
