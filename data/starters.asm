@@ -124,7 +124,7 @@ GetChallengeStarters:
 GetStarterCategoryName:
 	push hl
 	ld a, [wStarterCursorPositionCategory]
-	ld hl, CategoryNames
+	ld hl, StarterCategoryNames
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -135,7 +135,7 @@ GetStarterCategoryName:
 	pop hl
 	ret
 
-CategoryNames:
+StarterCategoryNames:
 	dw .basic
 	dw .rocket
 	dw .anime
