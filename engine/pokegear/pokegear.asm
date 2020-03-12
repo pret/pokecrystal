@@ -2282,9 +2282,8 @@ FlyMap:
 	ld a, [wBackupMapNumber]
 	ld c, a
 .CheckRegion:
-.HandleStartingLocationSelectorMenu ; TODO: rename
 	ld a, [wStartingLocationSelector]
-	bit 1, a ; isJohto?
+	bit 1, a ; isJohto
 	jr z, .StartingLocationSelectorKantoMap
 .StartingLocationSelectorJohtoMap
 	call GetWorldMapLocation
@@ -2757,14 +2756,37 @@ TownMapMon:
 TownMapPlayerIcon:
 ; Draw the player icon at town map location in a
 	push af
-	farcall GetPlayerIcon
+
 	ld a, [wStartingLocationSelector]
-	bit 0, a ; isStartingTownMap
-	jr z, .DisplayIcon
+	bit 0, a
+	jr nz, .done
+
+	ld a, [wStartingLocationSelector]
+	bit 1, a
+	jr nz, .johto
+.kanto
+	ld a, [wPrevLandmark]
+	cp KANTO_LANDMARK
+	jr nc, .DisplayIcon
+	jr .done
+	ret
+.johto
+	ld a, [wPrevLandmark]
+	cp KANTO_LANDMARK
+	jr c, .DisplayIcon
+	jr .done
+	ret
 .done
 	pop af
 	ret
+
 .DisplayIcon
+	farcall GetPlayerIcon
+
+	ld a, [wStartingLocationSelector]
+	bit 0, a ; isStartingTownMap
+	jr nz, .done
+
 ; Standing icon
 	ld hl, vTiles0 tile $10
 	ld c, 4 ; # tiles
