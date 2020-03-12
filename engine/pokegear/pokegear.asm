@@ -2440,9 +2440,6 @@ Pokedex_GetArea:
 	ret
 
 .right
-	ld a, [wStatusFlags]
-	bit STATUSFLAGS_HALL_OF_FAME_F, a
-	ret z
 	ldh a, [hWY]
 	and a
 	ret z
