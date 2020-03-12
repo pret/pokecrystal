@@ -85,10 +85,6 @@ ChooseStartingLocation:
 
 	farcall _FlyMap
 
-	ld a, [wStartingLocationSelector]
-	res 0, a ; starting location selection menu is inactive
-	ld [wStartingLocationSelector], a
-
 	; set starting location to result of _FlyMap
 	ld a, e
 	ld [wDefaultSpawnpoint], a

@@ -1988,6 +1988,21 @@ PokegearMap:
 	ret
 
 _FlyMap:
+	ld a, [wPrevLandmark]
+	cp KANTO_LANDMARK
+	jr nc, .ResetLocationBit
+	jr .SetLocationBit
+.ResetLocationBit
+	ld a, [wStartingLocationSelector]
+	res 1, a ; isJohto
+	ld [wStartingLocationSelector], a
+	jr .GotCurrentRegion
+	;ret
+.SetLocationBit
+	ld a, [wStartingLocationSelector]
+	set 1, a ; isJohto
+	ld [wStartingLocationSelector], a
+.GotCurrentRegion
 	call ClearBGPalettes
 	call ClearTilemap
 	call ClearSprites
@@ -2018,8 +2033,12 @@ _FlyMap:
 	and A_BUTTON
 	jr nz, .pressedA
 	ld a, [hl]
-	and SELECT
-	jr nz, .pressedSelect
+	and D_LEFT
+	jr nz, .pressedLeft
+	ld a, [hl]
+	and D_RIGHT
+	jr nz, .pressedRight
+	ld a, [hl]
 
 	call FlyMapScroll
 	call GetMapCursorCoordinates
@@ -2037,18 +2056,16 @@ _FlyMap:
 	ld a, -1
 	jr .exit
 
-
-.pressedSelect
+.pressedRight
 	ld a, [wStartingLocationSelector]
-	bit 0, a; isStartingTownMap
-	jr nz, .toggleRegion
+	bit 1, a; isJohto
+	jr nz, .switchToKanto
 	jr .continueMapMenu
 
-.toggleRegion
+.pressedLeft
 	ld a, [wStartingLocationSelector]
-	bit 1, a ; if(isJohto)
-	jr nz, .switchToKanto
-	jr .switchToJohto
+	bit 1, a; isJohto
+	jr z, .switchToJohto
 
 .continueMapMenu
 	xor a
@@ -2265,22 +2282,14 @@ FlyMap:
 	ld a, [wBackupMapNumber]
 	ld c, a
 .CheckRegion:
-	ld a, [wStartingLocationSelector]
-	bit 0, a ; is starting town selector active?
-	jr nz, .HandleStartingLocationSelectorMenu
-
-	call GetWorldMapLocation
-; The first 46 locations are part of Johto. The rest are in Kanto.
-	cp KANTO_LANDMARK
-	jr nc, .KantoFlyMap
-	jr c, .JohtoFlyMap
-.HandleStartingLocationSelectorMenu
+.HandleStartingLocationSelectorMenu ; TODO: rename
 	ld a, [wStartingLocationSelector]
 	bit 1, a ; isJohto?
 	jr z, .StartingLocationSelectorKantoMap
+.StartingLocationSelectorJohtoMap
 	call GetWorldMapLocation
 	jr .JohtoFlyMap
-.StartingLocationSelectorKantoMap
+.StartingLocationSelectorKantoMap ; TODO: rename
 	call GetWorldMapLocation
 	jr .KantoFlyMap
 .JohtoFlyMap:
@@ -2308,12 +2317,10 @@ FlyMap:
 ; Flypoints begin at Pallet Town...
 	ld a, FLY_PALLET
 	ld [wStartFlypoint], a
+	ld [wTownMapPlayerIconLandmark], a
 ; ...and end at Indigo Plateau
 	ld a, FLY_INDIGO
 	ld [wEndFlypoint], a
-; Because Indigo Plateau is the first flypoint the player
-; visits, it's made the default flypoint.
-	ld [wTownMapPlayerIconLandmark], a
 ; Fill out the map
 	call FillKantoMap
 	call .MapHud
@@ -2753,7 +2760,11 @@ TownMapPlayerIcon:
 	farcall GetPlayerIcon
 	ld a, [wStartingLocationSelector]
 	bit 0, a ; isStartingTownMap
-	ret nz
+	jr z, .DisplayIcon
+.done
+	pop af
+	ret
+.DisplayIcon
 ; Standing icon
 	ld hl, vTiles0 tile $10
 	ld c, 4 ; # tiles
