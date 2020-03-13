@@ -203,6 +203,8 @@ GetMonSprite:
 	jr z, .BreedMon1
 	cp SPRITE_DAY_CARE_MON_2
 	jr z, .BreedMon2
+	cp SPRITE_PARTYMON_1
+	jr z, .PartyMon1
 	cp SPRITE_VARS
 	jr nc, .Variable
 	jr .Icon
@@ -226,6 +228,11 @@ GetMonSprite:
 
 .BreedMon2
 	ld a, [wBreedMon2Species]
+	jr .Mon
+
+.PartyMon1
+	ld a, [wPartyMon1]
+	jr .Mon
 
 .Mon:
 	ld e, a
