@@ -10,7 +10,7 @@ OlivineMart_MapScripts:
 
 OlivineMartClerkScript:
 	opentext
-	pokemart MARTTYPE_STANDARD, MART_OLIVINE
+	pokemart MARTTYPE_SCALING, 0
 	closetext
 	end
 

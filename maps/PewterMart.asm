@@ -10,7 +10,7 @@ PewterMart_MapScripts:
 
 PewterMartClerkScript:
 	opentext
-	pokemart MARTTYPE_STANDARD, MART_PEWTER
+	pokemart MARTTYPE_SCALING, 0
 	closetext
 	end
 

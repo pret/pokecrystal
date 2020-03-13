@@ -10,7 +10,7 @@ CherrygroveMart_MapScripts:
 
 CherrygroveMartClerkScript:
 	opentext
-	pokemart MARTTYPE_STANDARD, MART_CHERRYGROVE_DEX
+	pokemart MARTTYPE_SCALING, 0 ; doesn't matter what mart you pass in
 	closetext
 	end
 

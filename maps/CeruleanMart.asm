@@ -10,7 +10,7 @@ CeruleanMart_MapScripts:
 
 CeruleanMart_Clerk:
 	opentext
-	pokemart MARTTYPE_STANDARD, MART_CERULEAN
+	pokemart MARTTYPE_SCALING, 0
 	closetext
 	end
 

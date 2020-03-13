@@ -10,7 +10,7 @@ EcruteakMart_MapScripts:
 
 EcruteakMartClerkScript:
 	opentext
-	pokemart MARTTYPE_STANDARD, MART_ECRUTEAK
+	pokemart MARTTYPE_SCALING, 0
 	closetext
 	end
 

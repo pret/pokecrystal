@@ -1,35 +1,20 @@
 Marts:
 ; entries correspond to MART_* constants
-	dw MartCherrygrove ; TODO: Remove
-	dw MartCherrygroveDex ; TODO: Remove
-	dw MartViolet ; TODO: Remove
-	dw MartAzalea ; TODO: Remove
-	dw MartCianwood ; TODO: Remove
+	dw MartCianwoodPharmacy
 	dw MartGoldenrod2F1
 	dw MartGoldenrod2F2
 	dw MartGoldenrod3F
 	dw MartGoldenrod4F
 	dw MartGoldenrod5F
-	dw MartOlivine ; TODO: Remove
-	dw MartEcruteak ; TODO: Remove
 	dw MartMahogany1
 	dw MartMahogany2
-	dw MartBlackthorn ; TODO: Remove
-	dw MartViridian ; TODO: Remove
-	dw MartPewter ; TODO: Remove
-	dw MartCerulean ; TODO: Remove
-	dw MartLavender ; TODO: Remove
-	dw MartVermilion ; TODO: Remove
 	dw MartCeladon2F1
 	dw MartCeladon2F2
 	dw MartCeladon3F
 	dw MartCeladon4F
 	dw MartCeladon5F1
 	dw MartCeladon5F2
-	dw MartFuchsia ; TODO: Remove
-	dw MartSaffron ; TODO: Remove
 	dw MartMtMoon
-	dw MartIndigoPlateau ; TODO: Remove
 	dw MartUnderground
 .End
 
@@ -120,49 +105,7 @@ EightBadgeMart
 	db MAX_REPEL
 	db -1
 
-MartCherrygrove:
-	db 4 ; # items
-	db POTION
-	db ANTIDOTE
-	db PARLYZ_HEAL
-	db AWAKENING
-	db -1 ; end
-
-MartCherrygroveDex:
-	db 5 ; # items
-	db POKE_BALL
-	db POTION
-	db ANTIDOTE
-	db PARLYZ_HEAL
-	db AWAKENING
-	db -1 ; end
-
-MartViolet:
-	db 9 ; # items
-	db POKE_BALL
-	db POTION
-	db ESCAPE_ROPE
-	db ANTIDOTE
-	db PARLYZ_HEAL
-	db AWAKENING
-	db X_DEFEND
-	db X_ATTACK
-	db X_SPEED
-	db -1 ; end
-
-MartAzalea:
-	db 8 ; # items
-	db CHARCOAL
-	db POKE_BALL
-	db POTION
-	db SUPER_POTION
-	db ESCAPE_ROPE
-	db REPEL
-	db ANTIDOTE
-	db PARLYZ_HEAL
-	db -1 ; end
-
-MartCianwood:
+MartCianwoodPharmacy:
 	db 5 ; # items
 	db POTION
 	db SUPER_POTION
@@ -221,32 +164,6 @@ MartGoldenrod5F:
 	db TM_ICE_PUNCH
 	db -1 ; end
 
-MartOlivine:
-	db 8 ; # items
-	db GREAT_BALL
-	db SUPER_POTION
-	db HYPER_POTION
-	db ANTIDOTE
-	db PARLYZ_HEAL
-	db AWAKENING
-	db ICE_HEAL
-	db SUPER_REPEL
-	db -1 ; end
-
-MartEcruteak:
-	db 10 ; # items
-	db POKE_BALL
-	db GREAT_BALL
-	db POTION
-	db SUPER_POTION
-	db ANTIDOTE
-	db PARLYZ_HEAL
-	db AWAKENING
-	db BURN_HEAL
-	db ICE_HEAL
-	db REVIVE
-	db -1 ; end
-
 MartMahogany1:
 	db 4 ; # items
 	db TINYMUSHROOM
@@ -265,77 +182,6 @@ MartMahogany2:
 	db PARLYZ_HEAL
 	db SUPER_REPEL
 	db REVIVE
-	db -1 ; end
-
-MartBlackthorn:
-	db 9 ; # items
-	db GREAT_BALL
-	db ULTRA_BALL
-	db HYPER_POTION
-	db FULL_RESTORE
-	db FULL_HEAL
-	db REVIVE
-	db MAX_REPEL
-	db X_DEFEND
-	db X_ATTACK
-	db -1 ; end
-
-MartViridian:
-	db 8 ; # items
-	db ULTRA_BALL
-	db HYPER_POTION
-	db FULL_HEAL
-	db REVIVE
-	db ANTIDOTE
-	db PARLYZ_HEAL
-	db AWAKENING
-	db BURN_HEAL
-	db -1 ; end
-
-MartPewter:
-	db 7 ; # items
-	db GREAT_BALL
-	db SUPER_POTION
-	db SUPER_REPEL
-	db ANTIDOTE
-	db PARLYZ_HEAL
-	db AWAKENING
-	db BURN_HEAL
-	db -1 ; end
-
-MartCerulean:
-	db 8 ; # items
-	db GREAT_BALL
-	db ULTRA_BALL
-	db SUPER_POTION
-	db SUPER_REPEL
-	db FULL_HEAL
-	db X_DEFEND
-	db X_ATTACK
-	db DIRE_HIT
-	db -1 ; end
-
-MartLavender:
-	db 8 ; # items
-	db GREAT_BALL
-	db POTION
-	db SUPER_POTION
-	db MAX_REPEL
-	db ANTIDOTE
-	db PARLYZ_HEAL
-	db AWAKENING
-	db BURN_HEAL
-	db -1 ; end
-
-MartVermilion: ; TODO: Replace with sccaling mart
-	db 7 ; # items
-	db ULTRA_BALL
-	db SUPER_POTION
-	db HYPER_POTION
-	db REVIVE
-	db PARLYZ_HEAL
-	db AWAKENING
-	db BURN_HEAL
 	db -1 ; end
 
 MartCeladon2F1: ; TODO: FILL IN (keep Charcoal!)
@@ -398,27 +244,6 @@ MartCeladon5F2:
 	db X_SPECIAL
 	db -1 ; end
 
-MartFuchsia:
-	db 6 ; # items
-	db GREAT_BALL
-	db ULTRA_BALL
-	db SUPER_POTION
-	db HYPER_POTION
-	db FULL_HEAL
-	db MAX_REPEL
-	db -1 ; end
-
-MartSaffron:
-	db 7 ; # items
-	db GREAT_BALL
-	db ULTRA_BALL
-	db HYPER_POTION
-	db FULL_RESTORE
-	db FULL_HEAL
-	db X_ATTACK
-	db X_DEFEND
-	db -1 ; end
-
 MartMtMoon:
 	db 5 ; # items
 	db POKE_DOLL
@@ -426,16 +251,6 @@ MartMtMoon:
 	db SODA_POP
 	db LEMONADE
 	db REPEL
-	db -1 ; end
-
-MartIndigoPlateau:
-	db 7 ; # items
-	db ULTRA_BALL
-	db MAX_REPEL
-	db HYPER_POTION
-	db FULL_RESTORE
-	db REVIVE
-	db FULL_HEAL
 	db -1 ; end
 
 MartUnderground:

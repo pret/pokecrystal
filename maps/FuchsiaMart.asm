@@ -10,7 +10,7 @@ FuchsiaMart_MapScripts:
 
 FuchsiaMartClerkScript:
 	opentext
-	pokemart MARTTYPE_STANDARD, MART_FUCHSIA
+	pokemart MARTTYPE_SCALING, 0
 	closetext
 	end
 

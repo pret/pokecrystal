@@ -22,6 +22,7 @@ OpenMartDialog::
 	dw BargainShop
 	dw Pharmacist
 	dw RooftopSale
+	dw ScalingMart
 
 MartDialog:
 	ld a, MARTTYPE_STANDARD
@@ -433,6 +434,7 @@ GetMartDialogGroup:
 	dwb .BargainShopPointers, 1
 	dwb .PharmacyPointers, 0
 	dwb .StandardMartPointers, 2
+	dwb .StandardMartPointers, 0
 
 .StandardMartPointers:
 	dw MartHowManyText
@@ -619,6 +621,52 @@ RooftopSaleAskPurchaseQuantity:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
+	ret
+
+ScalingMart:
+    ld hl, wBadges
+    ld b, 2 ; check 2 bytes starting at wBadges
+    call CountSetBits
+
+	; c = # of badges
+	ld a, c
+
+	cp 8
+	jr nc, .eight
+	cp 6
+	jr nc, .six
+	cp 4
+	jr nc, .four
+	cp 2
+	jr nc, .two
+	jr .zero
+.zero
+	ld b, BANK(ZeroBadgeMart)
+	ld de, ZeroBadgeMart
+	jr .ok
+.two
+	ld b, BANK(TwoBadgeMart)
+	ld de, TwoBadgeMart
+	jr .ok
+.four
+	ld b, BANK(FourBadgeMart)
+	ld de, FourBadgeMart
+	jr .ok
+.six
+	ld b, BANK(SixBadgeMart)
+	ld de, SixBadgeMart
+	jr .ok
+.eight
+	ld b, BANK(EightBadgeMart)
+	ld de, EightBadgeMart
+.ok
+
+	call LoadMartPointer
+	call FarReadMart
+
+	xor a
+	ld [wMartJumptableIndex], a
+	call StandardMart
 	ret
 
 MartHowManyText:
