@@ -4,16 +4,17 @@
 
 ### Open World Features - DONE
 
-- Starter Selection
+- NEW Starter Selector
   - Start with any non-legendary base or baby pokemon.
   - Easy to navigate starter selection menu that includes categories.
   - Press SELECT to choose a random starter!
+- Scaling Trainers
 - Start from any flypoint!
-  - Press SELECT to toggle region
-- Start with all HMs
-- Badges are not required to use HMs
+  - Press LEFT/RIGHT to toggle region
+- Start with all HMs - no badges required!
 - Start with complete Pokegear
-- Gym Leaders scale based on # of badges
+- Start with more $
+- Marts scale with # of trainer badges
 
 ### Forms - DONE
 
@@ -22,13 +23,15 @@
 
 ### Quality of Life Improvements - DONE
 
+- Updated Mon Sprites to better match official art
+  - Mon Sprite Updates made by SoupPotato
 - Reusable TMs
 - Hold B to Run
 - Instant text speed option
 - Gain Exp for catching Pokemon
 - Remove boosts given by badges
 - Wild Pokemon have held items more often
-- Wild mon will sometimes hold a BERRY
+- Wild mon will sometimes hold a random berry
 - Removed poison's overworld effect
 - Sped up healing mon at the pokecenter
 - Fourth Stats Screen
@@ -49,6 +52,7 @@
 - Pokemon who evolve from Happiness evolve quicker
 - Sped up teaching a mon TMs by removing some unnecessary text
 - Added pack space, removed some PC item storage space
+- Physical/Special Split
 
 ### Bugfixes - DONE
 
@@ -75,7 +79,7 @@
 
 #### OWF - High Priority
 
-- Scaling Trainers based on Rangi's code
+- Scaling Trainers
   - Fill in teams for gym leader scaling
   - Add trainer type for scaling E4 and fill teams
   - Add trainer type for normal trainers and fill teams
@@ -90,7 +94,6 @@
 - Starting Location Selector
   - Remove ability to start the game from places like Mt. Silver
   - Prompt for confirmation in case user accidentally clicked A
-  - Inform player that SELECT toggles the regions
 
 #### OWF - Medium Priority
 
@@ -129,8 +132,15 @@
 - Remove useless moves and replace with useful moves
 - Add Menu Icons For Each Pokemon
 - Add Menu Icon Palettes For Each Pokemon Menu Icon
-- Physical/Special Split
 - Shiny icon in battle and on naming screen
+- Remove Gender
+- Remove footprints
+- Modern Exp Share
+- Random Starting Town by pressing SELECT
+- Stone/Trade evos can learn all the moves their previous iterations can
+- Add eviolite-like items to make weaker pokemon better
+- Bug Catching event available more often
+- Cross-regional transportation available daily
   
 #### QOL - Medium Priority
 
@@ -166,6 +176,7 @@
 - Separate shininess from DVs
 - Every time a mon receives enough stat exp, they can level up the IV and reset the DVs
 - Store Hidden Power type in wram. Make it changable
+- Trade for regional forms in pokecenters
 
 ### Returning Areas - TODO
 
