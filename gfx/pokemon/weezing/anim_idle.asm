@@ -1,7 +1,5 @@
-	frame 0, 12
 	setrepeat 3
-	frame 1, 08
+	frame 0, 08
 	frame 5, 08
-	dorepeat 2
-	frame 1, 12
+	dorepeat 1
 	endanim

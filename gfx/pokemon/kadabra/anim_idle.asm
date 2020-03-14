@@ -1,4 +1,4 @@
-	setrepeat 3
+	setrepeat 2
 	frame 0, 07
 	frame 4, 07
 	dorepeat 1

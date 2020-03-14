@@ -1,5 +1,9 @@
 # CREDITS
 
+## Beautiful Mon Sprites Updated to Better Match Offical Art
+
+- Origin: SoupPotato's Sprite Base
+
 ---
 
 ## Vary Colors By DVs

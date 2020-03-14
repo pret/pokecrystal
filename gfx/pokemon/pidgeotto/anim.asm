@@ -1,7 +1,7 @@
-	frame 1, 07
-	frame 2, 07
-	frame 3, 07
-	frame 2, 30
+	frame 1, 06
+	frame 2, 06
+	frame 3, 06
+	frame 2, 20
 	setrepeat 2
 	frame 3, 06
 	frame 2, 06
