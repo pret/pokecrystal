@@ -29,11 +29,11 @@ AzaleaPokecenter1FGentlemanText:
 	text "Do your #MON"
 	line "know HM moves?"
 
-	para "Those moves can"
-	line "be used even if"
+	para "Most of them"
+	line "have no use."
 
-	para "your #MON has"
-	line "fainted."
+	para "Except FLY and"
+	line "SURF, of course!."
 	done
 
 AzaleaPokecenter1FUnusedText:

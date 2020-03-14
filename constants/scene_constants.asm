@@ -73,8 +73,7 @@ SCENE_FINISHED EQU 1
 ; wAzaleaTownSceneID
 	const_def
 	const SCENE_AZALEATOWN_NOTHING              ; 0
-	const SCENE_AZALEATOWN_RIVAL_BATTLE         ; 1
-	const SCENE_AZALEATOWN_KURT_RETURNS_GS_BALL ; 2
+	const SCENE_AZALEATOWN_KURT_RETURNS_GS_BALL ; 1
 
 ; wGoldenrodGymSceneID
 	const_def

@@ -303,7 +303,6 @@ IlexForestFarfetchdScript:
 	appear ILEXFOREST_FARFETCHD
 	loadmem wFarfetchdPosition, 10
 	appear ILEXFOREST_BLACK_BELT
-	setevent EVENT_CHARCOAL_KILN_BOSS
 	setevent EVENT_HERDED_FARFETCHD
 	end
 
@@ -357,9 +356,6 @@ IlexForestCharcoalMasterScript:
 	setevent EVENT_ILEX_FOREST_FARFETCHD
 	setevent EVENT_ILEX_FOREST_APPRENTICE
 	setevent EVENT_ILEX_FOREST_CHARCOAL_MASTER
-	clearevent EVENT_CHARCOAL_KILN_FARFETCH_D
-	clearevent EVENT_CHARCOAL_KILN_APPRENTICE
-	clearevent EVENT_CHARCOAL_KILN_BOSS
 	end
 
 .AlreadyGotCut:
@@ -449,7 +445,7 @@ IlexForestShrineScript:
 .CelebiEvent:
 	takeitem GS_BALL
 	clearevent EVENT_FOREST_IS_RESTLESS
-	setevent EVENT_AZALEA_TOWN_KURT
+	;setevent EVENT_AZALEA_TOWN_KURT
 	disappear ILEXFOREST_LASS
 	clearevent EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
 	writetext Text_InsertGSBall

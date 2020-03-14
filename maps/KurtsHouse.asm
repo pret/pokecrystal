@@ -12,8 +12,6 @@ KurtsHouse_MapScripts:
 	callback MAPCALLBACK_OBJECTS, .KurtCallback
 
 .KurtCallback:
-	checkevent EVENT_CLEARED_SLOWPOKE_WELL
-	iffalse .Done
 	checkevent EVENT_FOREST_IS_RESTLESS
 	iftrue .Done
 	checkflag ENGINE_KURT_MAKING_BALLS
@@ -37,35 +35,12 @@ Kurt1:
 	opentext
 	checkevent EVENT_KURT_GAVE_YOU_LURE_BALL
 	iftrue .GotLureBall
-	checkevent EVENT_CLEARED_SLOWPOKE_WELL
-	iftrue .ClearedSlowpokeWell
-	writetext KurtsHouseKurtMakingBallsMustWaitText
+	sjump .GetLureBall
 	waitbutton
 	closetext
-	special FadeOutMusic
-	setevent EVENT_AZALEA_TOWN_SLOWPOKETAIL_ROCKET
-	readvar VAR_FACING
-	ifequal UP, .RunAround
-	turnobject PLAYER, DOWN
-	playsound SFX_FLY
-	applymovement KURTSHOUSE_KURT1, KurtsHouseKurtExitHouseMovement
-	playsound SFX_EXIT_BUILDING
-	disappear KURTSHOUSE_KURT1
-	waitsfx
-	special RestartMapMusic
 	end
 
-.RunAround:
-	turnobject PLAYER, DOWN
-	playsound SFX_FLY
-	applymovement KURTSHOUSE_KURT1, KurtsHouseKurtGoAroundPlayerThenExitHouseMovement
-	playsound SFX_EXIT_BUILDING
-	disappear KURTSHOUSE_KURT1
-	waitsfx
-	special RestartMapMusic
-	end
-
-.ClearedSlowpokeWell:
+.GetLureBall:
 	writetext KurtsHouseKurtHonoredToMakeBallsText
 	promptbutton
 	verbosegiveitem LURE_BALL
@@ -306,7 +281,7 @@ Kurt1:
 .KurtHasLeftTheBuilding:
 	playsound SFX_EXIT_BUILDING
 	disappear KURTSHOUSE_KURT1
-	clearevent EVENT_AZALEA_TOWN_KURT
+	;clearevent EVENT_AZALEA_TOWN_KURT
 	waitsfx
 	special RestartMapMusic
 	setmapscene AZALEA_TOWN, SCENE_AZALEATOWN_KURT_RETURNS_GS_BALL
@@ -353,21 +328,6 @@ KurtsGranddaughter1:
 	iftrue .Lonely
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue .Dad
-	checkevent EVENT_CLEARED_SLOWPOKE_WELL
-	iftrue .SlowpokeBack
-	checkevent EVENT_AZALEA_TOWN_SLOWPOKETAIL_ROCKET
-	iftrue .Lonely
-	opentext
-	writetext KurtsGranddaughterSlowpokeGoneText
-	waitbutton
-	closetext
-	end
-
-.SlowpokeBack:
-	opentext
-	writetext KurtsGranddaughterSlowpokeBackText
-	waitbutton
-	closetext
 	end
 
 .Lonely:
@@ -448,55 +408,8 @@ KurtsHouseKurtGoAroundPlayerThenExitHouseMovement:
 	big_step DOWN
 	step_end
 
-KurtsHouseKurtMakingBallsMustWaitText:
-	text "Hm? Who are you?"
-
-	para "<PLAYER>, eh? You"
-	line "want me to make"
-	cont "some BALLS?"
-
-	para "Sorry, but that'll"
-	line "have to wait."
-
-	para "Do you know TEAM"
-	line "ROCKET? Ah, don't"
-
-	para "worry. I'll tell"
-	line "you anyhow."
-
-	para "TEAM ROCKET's an"
-	line "evil gang that"
-
-	para "uses #MON for"
-	line "their dirty work."
-
-	para "They're supposed"
-	line "to have disbanded"
-	cont "three years ago."
-
-	para "Anyway, they're at"
-	line "the WELL, cutting"
-
-	para "off SLOWPOKETAILS"
-	line "for sale!"
-
-	para "So I'm going to"
-	line "go give them a"
-	cont "lesson in pain!"
-
-	para "Hang on, SLOWPOKE!"
-	line "Old KURT is on his"
-	cont "way!"
-	done
-
 KurtsHouseKurtHonoredToMakeBallsText:
 	text "KURT: Hi, <PLAYER>!"
-
-	para "You handled your-"
-	line "self like a real"
-	cont "hero at the WELL."
-
-	para "I like your style!"
 
 	para "I would be honored"
 	line "to make BALLS for"
@@ -605,25 +518,9 @@ KurtsHouseKurtThisBallStartedToShakeText:
 	line "something to this!"
 	done
 
-KurtsGranddaughterSlowpokeGoneText:
-	text "The SLOWPOKE are"
-	line "gone… Were they"
-
-	para "taken away by bad"
-	line "people?"
-	done
-
 KurtsGranddaughterLonelyText:
 	text "Grandpa's gone…"
 	line "I'm so lonely…"
-	done
-
-KurtsGranddaughterSlowpokeBackText:
-	text "The SLOWPOKE my"
-	line "dad gave me came"
-
-	para "back! Its TAIL is"
-	line "growing back too!"
 	done
 
 KurtsGranddaughterDadText:

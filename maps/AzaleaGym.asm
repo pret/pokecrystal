@@ -257,13 +257,11 @@ BugCatcherAlAfterBattleText:
 	done
 
 BugCatcherJoshSeenText:
-	text "You saved all the"
-	line "SLOWPOKE? Whew,"
-	cont "you're mighty!"
+	text "I don't play with"
+	line "BUG-haters."
 
-	para "But my grown-up"
-	line "#MON are pretty"
-	cont "tough too!"
+	para "They're wrong"
+	line "and I'm right!"
 	done
 
 BugCatcherJoshBeatenText:
