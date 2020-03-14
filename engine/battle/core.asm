@@ -6016,25 +6016,44 @@ LoadEnemyMon:
 
 ; Sometimes Pokemon will have a berry
 
-	; 50% chance to get any item at all
+	; ??% chance to get any item at all
 	call BattleRandom
 	cp 50 percent + 1
 	ld a, NO_ITEM
 	jr c, .UpdateItem
 
-	; 25% chance of getting item 1
+	; ??% chance of getting item 1
 	call BattleRandom
 	cp 50 percent
 	ld a, [wBaseItem1]
 	jr nc, .UpdateItem
 
-	; 12.5% chance of getting item 2
+	; ??% chance of getting item 2
 	cp 50 percent
 	ld a, [wBaseItem2]
 	jr nc, .UpdateItem
 
-	; 13.5% chance of getting a berry
+	; ??% chance of getting a berry
+.GetRandomBerry ; TODO: should this be loot instead so wild mon don't randomly heal?
+	ld a, 3
+	call RandomRange
+	maskbits 3 ; # of berries in jumptable
+	ld hl, .Jumptable
+	rst JumpTable
+	ret
+
+.Jumptable
+	dw .GetBerry
+	dw .GetPoisonCureBerry
+	dw .GetIceBerry
+.GetBerry:
 	ld a, BERRY
+	jr .UpdateItem
+.GetPoisonCureBerry:
+	ld a, PSNCUREBERRY
+	jr .UpdateItem
+.GetIceBerry:
+	ld a, ICE_BERRY
 
 .UpdateItem:
 	ld [wEnemyMonItem], a
