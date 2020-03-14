@@ -828,13 +828,6 @@ _2DMenu::
 	ld a, [wMenuCursorBuffer]
 	ret
 
-InterpretBattleMenu::
-	ldh a, [hROMBank]
-	ld [wMenuData_2DMenuItemStringsBank], a
-	farcall _InterpretBattleMenu
-	ld a, [wMenuCursorBuffer]
-	ret
-
 InterpretMobileMenu::
 	ldh a, [hROMBank]
 	ld [wMenuData_2DMenuItemStringsBank], a

@@ -42,3 +42,9 @@
 ## Hold B to Run
 
 - From Polished Crystal
+
+---
+
+## Press B in battle to highlight RUN
+
+- Ported from Polished Crystal

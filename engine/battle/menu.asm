@@ -1,25 +1,17 @@
 LoadBattleMenu:
 	ld hl, BattleMenuHeader
-	call LoadMenuHeader
-	ld a, [wBattleMenuCursorBuffer]
-	ld [wMenuCursorBuffer], a
-	call InterpretBattleMenu
-	ld a, [wMenuCursorBuffer]
-	ld [wBattleMenuCursorBuffer], a
-	call ExitMenu
+	jr _BattleMenuCommon
 	ret
 
-SafariBattleMenu:
+SafariBattleMenu: ; Leftover Safari Menu
 ; untranslated
 	ld hl, MenuHeader_0x24f4e
-	call LoadMenuHeader
-	jr Function24f19
+	jr _BattleMenuCommon
 
 ContestBattleMenu:
 	ld hl, MenuHeader_0x24f89
+_BattleMenuCommon:
 	call LoadMenuHeader
-
-Function24f19:
 	ld a, [wBattleMenuCursorBuffer]
 	ld [wMenuCursorBuffer], a
 	call _2DMenu
@@ -35,7 +27,7 @@ BattleMenuHeader:
 	db 1 ; default option
 
 MenuData_0x24f34:
-	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
+	db $91 ; flags
 	dn 2, 2 ; rows, columns
 	db 6 ; spacing
 	dba Strings24f3d
@@ -47,7 +39,7 @@ Strings24f3d:
 	db "PACK@"
 	db "RUN@"
 
-MenuHeader_0x24f4e:
+MenuHeader_0x24f4e: ; Safari
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw MenuData_0x24f56
@@ -73,14 +65,14 @@ Function24f7c:
 	call PrintNum
 	ret
 
-MenuHeader_0x24f89:
+MenuHeader_0x24f89: ; Contest
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 2, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw MenuData_0x24f91
 	db 1 ; default option
 
 MenuData_0x24f91:
-	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
+	db $91 ; flags
 	dn 2, 2 ; rows, columns
 	db 12 ; spacing
 	dba Strings24f9a

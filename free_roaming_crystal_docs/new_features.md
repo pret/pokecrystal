@@ -53,6 +53,7 @@
 - Sped up teaching a mon TMs by removing some unnecessary text
 - Added pack space, removed some PC item storage space
 - Physical/Special Split
+- Press B to highlight RUN
 
 ### Bugfixes - DONE
 

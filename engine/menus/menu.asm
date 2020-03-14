@@ -9,18 +9,6 @@ _2DMenu_::
 	call Get2DMenuSelection
 	ret
 
-_InterpretBattleMenu::
-	ld hl, CopyMenuData
-	ld a, [wMenuData_2DMenuItemStringsBank]
-	rst FarCall
-
-	call Draw2DMenu
-	farcall MobileTextBorder
-	call UpdateSprites
-	call ApplyTilemap
-	call Get2DMenuSelection
-	ret
-
 _InterpretMobileMenu::
 	ld hl, CopyMenuData
 	ld a, [wMenuData_2DMenuItemStringsBank]
@@ -55,13 +43,6 @@ _InterpretMobileMenu::
 	and a
 	ret
 
-Draw2DMenu:
-	xor a
-	ldh [hBGMapMode], a
-	call MenuBox
-	call Place2DMenuItemStrings
-	ret
-
 Get2DMenuSelection:
 	call Init2DMenuCursorPosition
 	call StaticMenuJoypad
@@ -72,7 +53,7 @@ Mobile_GetMenuSelection:
 	jr z, .skip
 	call GetMenuJoypad
 	bit SELECT_F, a
-	jr nz, .quit1
+	jr nz, .quit
 
 .skip
 	ld a, [wMenuDataFlags]
@@ -80,7 +61,7 @@ Mobile_GetMenuSelection:
 	jr nz, .skip2
 	call GetMenuJoypad
 	bit B_BUTTON_F, a
-	jr nz, .quit2
+	jr nz, .quit
 
 .skip2
 	ld a, [w2DMenuNumCols]
@@ -95,11 +76,7 @@ Mobile_GetMenuSelection:
 	and a
 	ret
 
-.quit1
-	scf
-	ret
-
-.quit2
+.quit
 	scf
 	ret
 
@@ -113,6 +90,11 @@ Get2DMenuNumberOfRows:
 	swap a
 	and $f
 	ret
+
+Draw2DMenu:
+	xor a
+	ld [hBGMapMode], a
+	call MenuBox
 
 Place2DMenuItemStrings:
 	ld hl, wMenuData_2DMenuItemStringsAddr
@@ -332,13 +314,13 @@ Menu_WasButtonPressed:
 _2DMenuInterpretJoypad:
 	call GetMenuJoypad
 	bit A_BUTTON_F, a
-	jp nz, .a_b_start_select
+	jp nz, .a_start_select
 	bit B_BUTTON_F, a
-	jp nz, .a_b_start_select
+	jp nz, .b_button
 	bit SELECT_F, a
-	jp nz, .a_b_start_select
+	jp nz, .a_start_select
 	bit START_F, a
-	jp nz, .a_b_start_select
+	jp nz, .a_start_select
 	bit D_RIGHT_F, a
 	jr nz, .d_right
 	bit D_LEFT_F, a
@@ -450,7 +432,14 @@ _2DMenuInterpretJoypad:
 	xor a
 	ret
 
-.a_b_start_select
+.a_start_select
+	xor a
+	ret
+
+.b_button
+	ld a, $2
+	ld [wMenuCursorX], a
+	ld [wMenuCursorY], a
 	xor a
 	ret
 
