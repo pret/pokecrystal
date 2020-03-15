@@ -218,9 +218,9 @@ GetCaughtLocation:
 	ld a, [wSeerCaughtGender]
 	and CAUGHT_LOCATION_MASK
 	jr z, .Unknown
-	cp EVENT_LOCATION
+	cp LANDMARK_EVENT
 	jr z, .event
-	cp GIFT_LOCATION
+	cp LANDMARK_GIFT
 	jr z, .fail
 	ld e, a
 	farcall GetLandmarkName
@@ -390,7 +390,7 @@ GetCaughtGender:
 	ld a, [hl]
 	and CAUGHT_LOCATION_MASK
 	jr z, .genderless
-	cp EVENT_LOCATION
+	cp LANDMARK_EVENT
 	jr z, .genderless
 
 	ld a, [hl]

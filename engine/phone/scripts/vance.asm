@@ -14,7 +14,7 @@ VancePhoneCalleeScript:
 	farsjump VanceLookingForwardScript
 
 .WantsBattle:
-	getlandmarkname STRING_BUFFER_5, ROUTE_44
+	getlandmarkname STRING_BUFFER_5, LANDMARK_ROUTE_44
 	farsjump VanceHurryHurryScript
 
 VancePhoneCallerScript:
@@ -35,6 +35,6 @@ VanceWednesdayNight:
 	setflag ENGINE_VANCE_WEDNESDAY_NIGHT
 
 VanceWantsRematch:
-	getlandmarkname STRING_BUFFER_5, ROUTE_44
+	getlandmarkname STRING_BUFFER_5, LANDMARK_ROUTE_44
 	setflag ENGINE_VANCE
 	farsjump PhoneScript_WantsToBattle_Male
