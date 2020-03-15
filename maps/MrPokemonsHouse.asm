@@ -132,20 +132,20 @@ MrPokemonsHouse_StrangeCoins:
 MrPokemonsHouse_PlayerWalksToMrPokemon:
 	step RIGHT
 	step UP
-	step_end
+	step_resume
 
 MrPokemonsHouse_OakWalksToPlayer:
 	step DOWN
 	step LEFT
 	step LEFT
-	step_end
+	step_resume
 
 MrPokemonsHouse_OakExits:
 	step DOWN
 	step LEFT
 	turn_head DOWN
 	step_sleep 2
-	step_end
+	step_resume
 
 MrPokemonIntroText1:
 	text "Hello, hello! You"

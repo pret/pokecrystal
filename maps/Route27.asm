@@ -308,11 +308,11 @@ Route27RareCandy:
 MovementData_0x1a0a66:
 	step LEFT
 	step LEFT
-	step_end
+	step_resume
 
 MovementData_0x1a0a69:
 	step LEFT
-	step_end
+	step_resume
 
 Route27FisherHeyText:
 	text "Hey!"

@@ -83,38 +83,38 @@ MtMoonSquareRock:
 
 PlayerWalksUpToDancingClefairies:
 	step UP
-	step_end
+	step_resume
 
 ClefairyDanceStep1:
 	slow_step DOWN
 	slow_jump_step DOWN
-	step_end
+	step_resume
 
 ClefairyDanceStep2:
 	slow_jump_step RIGHT
-	step_end
+	step_resume
 
 ClefairyDanceStep3:
 	slow_step UP
 	slow_jump_step UP
-	step_end
+	step_resume
 
 ClefairyDanceStep4:
 	slow_jump_step LEFT
-	step_end
+	step_resume
 
 ClefairyDanceStep5:
 	slow_step DOWN
 	slow_jump_step DOWN
-	step_end
+	step_resume
 
 ClefairyDanceStep6:
 	slow_step DOWN
-	step_end
+	step_resume
 
 ClefairyDanceStep7:
 	slow_step RIGHT
-	step_end
+	step_resume
 
 ClefairyFleeMovement:
 	step RIGHT
@@ -123,7 +123,7 @@ ClefairyFleeMovement:
 	jump_step RIGHT
 	step RIGHT
 	step RIGHT
-	step_end
+	step_resume
 
 DontLitterSignText:
 	text "MT.MOON SQUARE"

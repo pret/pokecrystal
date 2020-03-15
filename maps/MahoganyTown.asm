@@ -127,18 +127,18 @@ MovementData_0x1900a4:
 	turn_head DOWN
 MovementData_0x1900a7:
 	step LEFT
-	step_end
+	step_resume
 
 MovementData_0x1900a9:
 	step RIGHT
 	step DOWN
 	turn_head LEFT
-	step_end
+	step_resume
 
 MovementData_0x1900ad:
 	step UP
 	turn_head DOWN
-	step_end
+	step_resume
 
 RageCandyBarMerchantTryOneText:
 	text "Hiya, kid!"

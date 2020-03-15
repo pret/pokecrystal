@@ -232,13 +232,13 @@ TinTowerPlayerMovement1:
 	slow_step UP
 	slow_step UP
 	slow_step UP
-	step_end
+	step_resume
 
 TinTowerRaikouMovement1:
 	set_sliding
 	fast_jump_step DOWN
 	remove_sliding
-	step_end
+	step_resume
 
 TinTowerRaikouMovement2:
 	set_sliding
@@ -246,13 +246,13 @@ TinTowerRaikouMovement2:
 	fast_jump_step RIGHT
 	fast_jump_step DOWN
 	remove_sliding
-	step_end
+	step_resume
 
 TinTowerEnteiMovement1:
 	set_sliding
 	fast_jump_step DOWN
 	remove_sliding
-	step_end
+	step_resume
 
 TinTowerEnteiMovement2:
 	set_sliding
@@ -260,32 +260,32 @@ TinTowerEnteiMovement2:
 	fast_jump_step LEFT
 	fast_jump_step DOWN
 	remove_sliding
-	step_end
+	step_resume
 
 TinTowerSuicuneMovement:
 	set_sliding
 	fast_jump_step DOWN
 	remove_sliding
-	step_end
+	step_resume
 
 TinTowerPlayerMovement2:
 	fix_facing
 	big_step DOWN
 	remove_fixed_facing
-	step_end
+	step_resume
 
 MovementData_0x1851ec:
 	step UP
 	step UP
 	step UP
 	turn_head LEFT
-	step_end
+	step_resume
 
 MovementData_0x1851f1:
 	step DOWN
 	step DOWN
 	step DOWN
-	step_end
+	step_resume
 
 MovementData_0x1851f5:
 	step UP
@@ -293,19 +293,19 @@ MovementData_0x1851f5:
 	step LEFT
 	step LEFT
 	turn_head UP
-	step_end
+	step_resume
 
 MovementData_0x1851fb:
 	step UP
 	step UP
-	step_end
+	step_resume
 
 MovementData_0x1851fe:
 	step UP
 	step RIGHT
 	step RIGHT
 	step UP
-	step_end
+	step_resume
 
 TinTowerEusineSuicuneText:
 	text "EUSINE: Awesome!"

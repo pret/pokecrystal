@@ -141,11 +141,11 @@ MovementData_0x580ba:
 	step RIGHT
 	step UP
 	step UP
-	step_end
+	step_resume
 
 MovementData_0x580c5:
 	step UP
-	step_end
+	step_resume
 
 RuinsOfAlphOutsideScientistText:
 	text "Hm? That's a #-"

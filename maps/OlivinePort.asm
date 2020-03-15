@@ -236,16 +236,16 @@ OlivinePortHiddenProtein:
 
 MovementData_0x74a30:
 	step DOWN
-	step_end
+	step_resume
 
 MovementData_0x74a32:
 	step UP
-	step_end
+	step_resume
 
 MovementData_0x74a34:
 	step RIGHT
 	turn_head LEFT
-	step_end
+	step_resume
 
 MovementData_0x74a37:
 	step DOWN
@@ -255,7 +255,7 @@ MovementData_0x74a37:
 	step DOWN
 	step DOWN
 	step DOWN
-	step_end
+	step_resume
 
 MovementData_0x74a3f:
 	step RIGHT
@@ -267,7 +267,7 @@ MovementData_0x74a3f:
 	step DOWN
 	step DOWN
 	step DOWN
-	step_end
+	step_resume
 
 MovementData_0x74a49:
 	step UP
@@ -281,7 +281,7 @@ MovementData_0x74a49:
 	step DOWN
 	step DOWN
 	step DOWN
-	step_end
+	step_resume
 
 OlivinePortSailorGetOnBoardText:
 	text "We're departing"

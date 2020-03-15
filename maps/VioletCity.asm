@@ -155,11 +155,11 @@ VioletCityFollowEarl_MovementData:
 	turn_head UP
 	big_step UP
 	turn_head DOWN
-	step_end
+	step_resume
 
 VioletCityFinishFollowEarl_MovementData:
 	step UP
-	step_end
+	step_resume
 
 VioletCitySpinningEarl_MovementData:
 	turn_head DOWN
@@ -175,7 +175,7 @@ VioletCitySpinningEarl_MovementData:
 	turn_head UP
 	turn_head RIGHT
 	turn_head DOWN
-	step_end
+	step_resume
 
 Text_EarlAsksIfYouBeatFalkner:
 	text "Hello!"

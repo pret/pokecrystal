@@ -81,7 +81,7 @@ EcruteakPokecenter1FBillMovement1:
 	step RIGHT
 	step RIGHT
 	turn_head UP
-	step_end
+	step_resume
 
 EcruteakPokecenter1FBillMovement2:
 	step RIGHT
@@ -89,13 +89,13 @@ EcruteakPokecenter1FBillMovement2:
 	step DOWN
 	step DOWN
 	step DOWN
-	step_end
+	step_resume
 
 EcruteakPokecenter1FPlayerMovement1:
 	step UP
 	step UP
 	step UP
-	step_end
+	step_resume
 
 EcruteakPokecenter1F_BillText1:
 	text "Hi, I'm BILL. And"

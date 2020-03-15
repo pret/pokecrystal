@@ -133,62 +133,62 @@ LancesRoom_EnterMovement:
 	step UP
 	step UP
 	step UP
-	step_end
+	step_resume
 
 MovementData_ApproachLanceFromLeft:
 	step UP
 	step UP
 	turn_head RIGHT
-	step_end
+	step_resume
 
 MovementData_ApproachLanceFromRight:
 	step UP
 	step LEFT
 	step UP
 	turn_head RIGHT
-	step_end
+	step_resume
 
 LancesRoomMovementData_MaryRushesIn:
 	big_step UP
 	big_step UP
 	big_step UP
 	turn_head DOWN
-	step_end
+	step_resume
 
 LancesRoomMovementData_OakWalksIn:
 	step UP
 	step UP
-	step_end
+	step_resume
 
 LancesRoomMovementData_MaryYieldsToOak:
 	step LEFT
 	turn_head RIGHT
-	step_end
+	step_resume
 
 LancesRoomMovementData_MaryInterviewChampion:
 	big_step UP
 	turn_head RIGHT
-	step_end
+	step_resume
 
 LancesRoomMovementData_LancePositionsSelfToGuidePlayerAway:
 	step UP
 	step LEFT
 	turn_head DOWN
-	step_end
+	step_resume
 
 LancesRoomMovementData_LanceLeadsPlayerToHallOfFame:
 	step UP
-	step_end
+	step_resume
 
 LancesRoomMovementData_PlayerExits:
 	step UP
-	step_end
+	step_resume
 
 LancesRoomMovementData_MaryTriesToFollow:
 	step UP
 	step RIGHT
 	turn_head UP
-	step_end
+	step_resume
 
 LancesRoomMovementData_MaryRunsBackAndForth:
 	big_step RIGHT
@@ -202,7 +202,7 @@ LancesRoomMovementData_MaryRunsBackAndForth:
 	big_step LEFT
 	big_step LEFT
 	turn_head UP
-	step_end
+	step_resume
 
 LanceBattleIntroText:
 	text "LANCE: I've been"

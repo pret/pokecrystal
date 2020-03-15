@@ -106,7 +106,7 @@ RuinsOfAlphOmanyteChamberWallPatternRight:
 
 RuinsOfAlphOmanyteChamberSkyfallTopMovement:
 	skyfall_top
-	step_end
+	step_resume
 
 RuinsOfAlphOmanyteChamberWallPatternLeftText:
 	text "Patterns appeared"

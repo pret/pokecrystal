@@ -76,7 +76,7 @@ BrunosRoom_EnterMovement:
 	step UP
 	step UP
 	step UP
-	step_end
+	step_resume
 
 BrunoScript_BrunoBeforeText:
 	text "I am BRUNO of the"

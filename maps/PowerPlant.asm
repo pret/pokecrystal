@@ -202,7 +202,7 @@ PowerPlantOfficer1ApproachGymGuy2Movement:
 	step RIGHT
 	step UP
 	step UP
-	step_end
+	step_resume
 
 PowerPlantOfficer1ReturnToPostMovement:
 	step DOWN
@@ -210,7 +210,7 @@ PowerPlantOfficer1ReturnToPostMovement:
 	step LEFT
 	step LEFT
 	turn_head DOWN
-	step_end
+	step_resume
 
 PowerPlantOfficer1AThiefBrokeInText:
 	text "A thief broke into"

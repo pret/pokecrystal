@@ -147,12 +147,12 @@ RadioTower1FLuckyChannelSign:
 RadioTower1FLuckyNumberManGoToPCMovement:
 	step RIGHT
 	turn_head UP
-	step_end
+	step_resume
 
 RadioTower1FLuckyNumberManReturnToPlayerMovement:
 	step LEFT
 	turn_head UP
-	step_end
+	step_resume
 
 RadioTower1FReceptionistWelcomeText:
 	text "Welcome!"

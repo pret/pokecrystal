@@ -42,7 +42,7 @@ GoldenrodMagnetTrainStationOfficerScript:
 
 .MovementBoardTheTrain:
 	turn_head DOWN
-	step_end
+	step_resume
 
 .PassNotInBag:
 	writetext GoldenrodMagnetTrainStationOfficerYouDontHaveARailPassText
@@ -74,13 +74,13 @@ GoldenrodMagnetTrainStationOfficerApproachTrainDoorMovement:
 	step UP
 	step RIGHT
 	turn_head LEFT
-	step_end
+	step_resume
 
 GoldenrodMagnetTrainStationOfficerReturnToBoardingGateMovement:
 	step LEFT
 	step DOWN
 	step DOWN
-	step_end
+	step_resume
 
 GoldenrodMagnetTrainStationPlayerApproachAndEnterTrainMovement:
 	step UP
@@ -91,7 +91,7 @@ GoldenrodMagnetTrainStationPlayerApproachAndEnterTrainMovement:
 	step LEFT
 	step UP
 	step UP
-	step_end
+	step_resume
 
 GoldenrodMagnetTrainStationPlayerLeaveTrainAndEnterStationMovement:
 	step LEFT
@@ -101,7 +101,7 @@ GoldenrodMagnetTrainStationPlayerLeaveTrainAndEnterStationMovement:
 	step DOWN
 	step DOWN
 	turn_head UP
-	step_end
+	step_resume
 
 GoldenrodMagnetTrainStationOfficerTheTrainHasntComeInText:
 	text "The train hasn't"

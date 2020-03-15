@@ -366,12 +366,12 @@ Route36FruitTree:
 
 SudowoodoShakeMovement:
 	tree_shake ; shake
-	step_end
+	step_resume
 
 WeirdTreeMovement_Flee:
 	fast_jump_step UP
 	fast_jump_step UP
-	step_end
+	step_resume
 
 FloriaMovement1:
 	step DOWN
@@ -383,7 +383,7 @@ FloriaMovement1:
 	step LEFT
 	step LEFT
 	step LEFT
-	step_end
+	step_resume
 
 FloriaMovement2:
 	step LEFT
@@ -395,7 +395,7 @@ FloriaMovement2:
 	step LEFT
 	step LEFT
 	step LEFT
-	step_end
+	step_resume
 
 Route36SuicuneMovement:
 	set_sliding
@@ -406,7 +406,7 @@ Route36SuicuneMovement:
 	fast_jump_step RIGHT
 	fast_jump_step RIGHT
 	remove_sliding
-	step_end
+	step_resume
 
 UseSquirtbottleText:
 	text "It's a weird tree."

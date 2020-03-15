@@ -133,20 +133,20 @@ MovementData_0x6ef4e:
 	step UP
 	step UP
 	step UP
-	step_end
+	step_resume
 
 MovementData_0x6ef53:
 	step DOWN
 	step DOWN
 	step DOWN
 	step DOWN
-	step_end
+	step_resume
 
 MovementData_0x6ef58:
 	fix_facing
 	slow_step DOWN
 	remove_fixed_facing
-	step_end
+	step_resume
 
 Text_HeadbuttIntro:
 	text "What am I doing?"

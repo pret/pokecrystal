@@ -56,7 +56,7 @@ FuchsiaPokecenter1FJanineImpersonatorSpinMovement:
 	turn_head UP
 	turn_head RIGHT
 	turn_head DOWN
-	step_end
+	step_resume
 
 FuchsiaPokecenter1FCooltrainerMText:
 	text "Hey! You have a"

@@ -127,7 +127,7 @@ BurnedTowerRaikouMovement:
 	fast_jump_step DOWN
 	fast_jump_step LEFT
 	remove_sliding
-	step_end
+	step_resume
 
 BurnedTowerEnteiMovement:
 	set_sliding
@@ -135,7 +135,7 @@ BurnedTowerEnteiMovement:
 	fast_jump_step DOWN
 	fast_jump_step RIGHT
 	remove_sliding
-	step_end
+	step_resume
 
 BurnedTowerSuicuneMovement1:
 	set_sliding
@@ -144,7 +144,7 @@ BurnedTowerSuicuneMovement1:
 	fast_jump_step DOWN
 	fast_jump_step LEFT
 	remove_sliding
-	step_end
+	step_resume
 
 BurnedTowerSuicuneMovement2:
 	set_sliding
@@ -153,14 +153,14 @@ BurnedTowerSuicuneMovement2:
 	big_step UP
 	fast_jump_step RIGHT
 	remove_sliding
-	step_end
+	step_resume
 
 BurnedTowerUnusedMovement:
 ; unreferenced
 	set_sliding
 	big_step DOWN
 	remove_sliding
-	step_end
+	step_resume
 
 BurnedTowerSuicuneMovement3:
 	set_sliding
@@ -171,7 +171,7 @@ BurnedTowerSuicuneMovement3:
 	fast_jump_step DOWN
 	fast_jump_step DOWN
 	remove_sliding
-	step_end
+	step_resume
 
 BurnedTowerB1FEusineMovement2:
 	step LEFT
@@ -180,7 +180,7 @@ BurnedTowerB1FEusineMovement2:
 	step DOWN
 	step LEFT
 	step DOWN
-	step_end
+	step_resume
 
 BurnedTowerB1FEusineMovement1:
 	step DOWN
@@ -189,7 +189,7 @@ BurnedTowerB1FEusineMovement1:
 	step LEFT
 	step DOWN
 	step DOWN
-	step_end
+	step_resume
 
 BurnedTowerB1FEusineText:
 	text "EUSINE: I dug a"

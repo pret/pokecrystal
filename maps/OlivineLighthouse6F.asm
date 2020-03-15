@@ -137,7 +137,7 @@ MovementData_0x60c68:
 	slow_step UP
 	step_sleep 8
 	step_sleep 8
-	step_end
+	step_resume
 
 MovementData_0x60c70:
 	slow_step DOWN
@@ -148,7 +148,7 @@ MovementData_0x60c70:
 	slow_step RIGHT
 	slow_step RIGHT
 	slow_step RIGHT
-	step_end
+	step_resume
 
 MovementData_0x60c79:
 	slow_step UP
@@ -158,7 +158,7 @@ MovementData_0x60c79:
 	slow_step UP
 	slow_step UP
 	step_sleep 8
-	step_end
+	step_resume
 
 JasmineCianwoodPharmacyText:
 	text "JASMINE: … This"

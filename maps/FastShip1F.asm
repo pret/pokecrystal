@@ -139,34 +139,34 @@ WorriedGrandpaSceneLeft:
 MovementData_0x7520e:
 	slow_step LEFT
 	turn_head RIGHT
-	step_end
+	step_resume
 
 MovementData_0x75211:
 	slow_step RIGHT
 	turn_head DOWN
-	step_end
+	step_resume
 
 MovementData_0x75214:
 	slow_step DOWN
 	turn_head UP
-	step_end
+	step_resume
 
 MovementData_0x75217:
 	step DOWN
 	step DOWN
 	turn_head DOWN
-	step_end
+	step_resume
 
 MovementData_0x7521b:
 	big_step RIGHT
 	big_step RIGHT
 	big_step RIGHT
 	big_step RIGHT
-	step_end
+	step_resume
 
 MovementData_0x75220:
 	step RIGHT
-	step_end
+	step_resume
 
 MovementData_0x75222:
 	big_step DOWN
@@ -180,30 +180,30 @@ MovementData_0x75222:
 	big_step DOWN
 	big_step DOWN
 	big_step DOWN
-	step_end
+	step_resume
 
 MovementData_0x7522e:
 	big_step RIGHT
 	turn_head LEFT
-	step_end
+	step_resume
 
 MovementData_0x75231:
 	step UP
-	step_end
+	step_resume
 
 MovementData_0x75233:
 	step DOWN
-	step_end
+	step_resume
 
 MovementData_0x75235:
 	step UP
 	step UP
-	step_end
+	step_resume
 
 MovementData_0x75238:
 	step RIGHT
 	step UP
-	step_end
+	step_resume
 
 FastShip1FSailor1Text_ToVermilion:
 	text "FAST SHIP S.S.AQUA"

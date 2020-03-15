@@ -35,11 +35,11 @@ BattleTowerElevator_MapScripts:
 MovementData_BattleTowerElevatorReceptionistWalksIn:
 	step RIGHT
 	turn_head DOWN
-	step_end
+	step_resume
 
 MovementData_BattleTowerElevatorPlayerWalksIn:
 	turn_head DOWN
-	step_end
+	step_resume
 
 BattleTowerElevator_MapEvents:
 	db 0, 0 ; filler

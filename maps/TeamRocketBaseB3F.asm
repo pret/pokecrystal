@@ -219,7 +219,7 @@ TeamRocketBaseB3FUltraBall:
 
 MovementData_0x6e12a:
 	step RIGHT
-	step_end
+	step_resume
 
 MovementData_0x6e12c:
 	step DOWN
@@ -228,7 +228,7 @@ MovementData_0x6e12c:
 	step LEFT
 	step LEFT
 	step LEFT
-	step_end
+	step_resume
 
 MovementData_0x6e133:
 	step UP
@@ -237,7 +237,7 @@ MovementData_0x6e133:
 	step LEFT
 	step LEFT
 	turn_head UP
-	step_end
+	step_resume
 
 MovementData_0x6e13a:
 	step UP
@@ -247,16 +247,16 @@ MovementData_0x6e13a:
 	step LEFT
 	step LEFT
 	turn_head UP
-	step_end
+	step_resume
 
 MovementData_0x6e142:
 	step DOWN
-	step_end
+	step_resume
 
 MovementData_0x6e144:
 	big_step RIGHT
 	big_step RIGHT
-	step_end
+	step_resume
 
 MovementData_0x6e147:
 	fix_facing
@@ -287,7 +287,7 @@ MovementData_0x6e147:
 	big_step UP
 	big_step LEFT
 	big_step LEFT
-	step_end
+	step_resume
 
 RocketBaseRivalEnterMovement:
 	step DOWN
@@ -298,7 +298,7 @@ RocketBaseRivalEnterMovement:
 	step RIGHT
 	step RIGHT
 	step RIGHT
-	step_end
+	step_resume
 
 RocketBaseRivalLeaveMovement:
 	step LEFT
@@ -308,13 +308,13 @@ RocketBaseRivalLeaveMovement:
 	step UP
 	step UP
 	step UP
-	step_end
+	step_resume
 
 RocketBaseRivalShovesPlayerMovement:
 	fix_facing
 	big_step RIGHT
 	remove_fixed_facing
-	step_end
+	step_resume
 
 LanceGetPasswordText:
 	text "LANCE: It takes"

@@ -326,31 +326,31 @@ ElmsLab_WalkUpToElmMovement:
 	step UP
 	step UP
 	turn_head LEFT
-	step_end
+	step_resume
 
 ElmJumpUpMovement:
 	fix_facing
 	big_step UP
 	remove_fixed_facing
-	step_end
+	step_resume
 
 ElmJumpDownMovement:
 	fix_facing
 	big_step DOWN
 	remove_fixed_facing
-	step_end
+	step_resume
 
 ElmJumpLeftMovement:
 	fix_facing
 	big_step LEFT
 	remove_fixed_facing
-	step_end
+	step_resume
 
 ElmJumpRightMovement:
 	fix_facing
 	big_step RIGHT
 	remove_fixed_facing
-	step_end
+	step_resume
 
 
 ElmText_MissionFromMrPokemon:

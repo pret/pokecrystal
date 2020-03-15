@@ -117,14 +117,14 @@ MovementData_0x1a88d2:
 	step DOWN
 	step RIGHT
 	step RIGHT
-	step_end
+	step_resume
 
 MovementData_0x1a88d6:
 	step DOWN
 	step DOWN
 	step RIGHT
 	step RIGHT
-	step_end
+	step_resume
 
 MovementData_0x1a88db:
 	step RIGHT
@@ -139,7 +139,7 @@ MovementData_0x1a88db:
 	step UP
 	step UP
 	step UP
-	step_end
+	step_resume
 
 MovementData_0x1a88e8:
 	step RIGHT
@@ -153,17 +153,17 @@ MovementData_0x1a88e8:
 	step UP
 	step UP
 	step UP
-	step_end
+	step_resume
 
 MovementData_0x1a88f4:
 	step DOWN
 	turn_head UP
-	step_end
+	step_resume
 
 MovementData_0x1a88f7:
 	step UP
 	turn_head DOWN
-	step_end
+	step_resume
 
 OlivineCityRivalText:
 	text "…"

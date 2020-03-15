@@ -61,14 +61,14 @@ CeladonEusine:
 	step DOWN
 	step DOWN
 	step DOWN
-	step_end
+	step_resume
 
 .Movement1:
 	step DOWN
 	step DOWN
 	step DOWN
 	step DOWN
-	step_end
+	step_resume
 
 CeladonPokecenter1FCooltrainerFText:
 	text "ERIKA is a master"

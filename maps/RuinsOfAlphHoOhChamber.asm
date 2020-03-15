@@ -106,7 +106,7 @@ RuinsOfAlphHoOhChamberWallPatternRight:
 
 RuinsOfAlphHoOhChamberSkyfallTopMovement:
 	skyfall_top
-	step_end
+	step_resume
 
 RuinsOfAlphHoOhChamberWallPatternLeftText:
 	text "Patterns appeared"

@@ -145,7 +145,7 @@ CianwoodGymMovement_ChuckChucksBoulder:
 	big_step UP
 	fast_jump_step RIGHT
 	remove_sliding
-	step_end
+	step_resume
 
 ChuckIntroText1:
 	text "WAHAHAH!"

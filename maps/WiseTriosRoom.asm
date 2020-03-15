@@ -116,17 +116,17 @@ TrainerSageKoji:
 MovementData_0x98622:
 	step LEFT
 	step LEFT
-	step_end
+	step_resume
 
 MovementData_0x98625:
 	step RIGHT
 	step DOWN
-	step_end
+	step_resume
 
 MovementData_0x98628:
 	step RIGHT
 	step DOWN
-	step_end
+	step_resume
 
 WiseTriosRoomSage1Text:
 	text "Astounding…"

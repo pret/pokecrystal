@@ -86,7 +86,7 @@ AzaleaTownPlayerLeavesKurtsHouseMovement:
 	step LEFT
 	step UP
 	turn_head LEFT
-	step_end
+	step_resume
 
 AzaleaTownGrampsText:
 	text "The SLOWPOKE love"

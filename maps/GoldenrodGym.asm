@@ -175,12 +175,12 @@ GoldenrodGymStatue:
 BridgetWalksUpMovement:
 	step LEFT
 	turn_head UP
-	step_end
+	step_resume
 
 BridgetWalksAwayMovement:
 	step RIGHT
 	turn_head LEFT
-	step_end
+	step_resume
 
 WhitneyBeforeText:
 	text "Hi! I'm WHITNEY!"

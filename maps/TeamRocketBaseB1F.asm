@@ -545,7 +545,7 @@ SecurityCameraMovement1:
 	big_step RIGHT
 	big_step RIGHT
 	big_step RIGHT
-	step_end
+	step_resume
 
 SecurityCameraMovement2:
 	big_step UP
@@ -555,7 +555,7 @@ SecurityCameraMovement2:
 	big_step UP
 	big_step UP
 	turn_head RIGHT
-	step_end
+	step_resume
 
 SecurityCameraMovement3:
 	big_step LEFT
@@ -566,7 +566,7 @@ SecurityCameraMovement3:
 	big_step UP
 	big_step LEFT
 	big_step LEFT
-	step_end
+	step_resume
 
 SecurityCameraMovement4:
 ; he jumps over a trap
@@ -576,7 +576,7 @@ SecurityCameraMovement4:
 	big_step UP
 	big_step UP
 	turn_head RIGHT
-	step_end
+	step_resume
 
 SecurityCameraMovement5:
 	big_step LEFT
@@ -586,7 +586,7 @@ SecurityCameraMovement5:
 	big_step UP
 	big_step LEFT
 	big_step LEFT
-	step_end
+	step_resume
 
 SecurityCameraMovement6:
 	big_step UP
@@ -596,7 +596,7 @@ SecurityCameraMovement6:
 	big_step UP
 	big_step UP
 	big_step LEFT
-	step_end
+	step_resume
 
 SecurityCameraMovement7:
 	big_step UP
@@ -606,7 +606,7 @@ SecurityCameraMovement7:
 	big_step UP
 	big_step UP
 	big_step LEFT
-	step_end
+	step_resume
 
 SecurityCameraMovement8:
 	big_step DOWN
@@ -618,7 +618,7 @@ SecurityCameraMovement8:
 	big_step LEFT
 	big_step LEFT
 	big_step LEFT
-	step_end
+	step_resume
 
 SecurityCameraMovement9:
 	big_step LEFT
@@ -626,7 +626,7 @@ SecurityCameraMovement9:
 	big_step LEFT
 	big_step LEFT
 	big_step LEFT
-	step_end
+	step_resume
 
 CameraGrunt1SeenText:
 	text "Hey!"

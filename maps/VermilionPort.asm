@@ -197,16 +197,16 @@ VermilionPortHiddenIron:
 
 MovementData_0x74ef1:
 	step DOWN
-	step_end
+	step_resume
 
 MovementData_0x74ef3:
 	step UP
-	step_end
+	step_resume
 
 MovementData_0x74ef5:
 	step RIGHT
 	turn_head LEFT
-	step_end
+	step_resume
 
 MovementData_0x74ef8:
 	step DOWN
@@ -214,7 +214,7 @@ MovementData_0x74ef8:
 	step DOWN
 	step DOWN
 	step DOWN
-	step_end
+	step_resume
 
 MovementData_0x74efe:
 	step RIGHT
@@ -224,7 +224,7 @@ MovementData_0x74efe:
 	step DOWN
 	step DOWN
 	step DOWN
-	step_end
+	step_resume
 
 VermilionPortDepartingText:
 	text "We're departing"

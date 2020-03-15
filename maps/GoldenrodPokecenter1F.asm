@@ -123,14 +123,14 @@ GoldenrodPokeCenter1FLinkReceptionistApproachPlayerAtLeftDoorwayTileMovement:
 	step RIGHT
 	step RIGHT
 	turn_head DOWN
-	step_end
+	step_resume
 
 GoldenrodPokeCenter1FLinkReceptionistWalkToStairsFromLeftDoorwayTileMovement:
 	step LEFT
 	step LEFT
 	step LEFT
 	step DOWN
-	step_end
+	step_resume
 
 GoldenrodPokeCenter1FLinkReceptionistApproachPlayerAtRightDoorwayTileMovement:
 	step UP
@@ -139,7 +139,7 @@ GoldenrodPokeCenter1FLinkReceptionistApproachPlayerAtRightDoorwayTileMovement:
 	step RIGHT
 	step RIGHT
 	turn_head DOWN
-	step_end
+	step_resume
 
 GoldenrodPokeCenter1FLinkReceptionistWalkToStairsFromRightDoorwayTileMovement:
 	step LEFT
@@ -147,7 +147,7 @@ GoldenrodPokeCenter1FLinkReceptionistWalkToStairsFromRightDoorwayTileMovement:
 	step LEFT
 	step LEFT
 	step DOWN
-	step_end
+	step_resume
 
 ; unused
 UnknownText_0x61072:

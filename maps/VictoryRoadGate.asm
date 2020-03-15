@@ -49,7 +49,7 @@ VictoryRoadGateRightBlackBeltScript:
 
 VictoryRoadGateStepDownMovement:
 	step DOWN
-	step_end
+	step_resume
 
 VictoryRoadGateOfficerText:
 	text "Only trainers who"

@@ -128,7 +128,7 @@ OfficerScript_GuardWithSludgeBomb:
 
 PlayerStepsIn:
 	step DOWN
-	step_end
+	step_resume
 
 Rocket1Script_BlocksYouSouth:
 	big_step UP
@@ -136,14 +136,14 @@ Rocket1Script_BlocksYouSouth:
 	big_step RIGHT
 	big_step RIGHT
 	turn_head UP
-	step_end
+	step_resume
 
 Rocket1Script_LetsYouPassSouth:
 	big_step LEFT
 	big_step LEFT
 	big_step DOWN
 	big_step DOWN
-	step_end
+	step_resume
 
 Rocket1Script_BlocksYouNorth:
 	big_step DOWN
@@ -151,7 +151,7 @@ Rocket1Script_BlocksYouNorth:
 	big_step RIGHT
 	big_step RIGHT
 	turn_head DOWN
-	step_end
+	step_resume
 
 Rocket1Script_LetsYouPassNorth:
 	big_step LEFT
@@ -159,7 +159,7 @@ Rocket1Script_LetsYouPassNorth:
 	big_step UP
 	big_step UP
 	turn_head DOWN
-	step_end
+	step_resume
 
 Rocket2Script_BlocksYouSouth:
 	big_step UP
@@ -167,7 +167,7 @@ Rocket2Script_BlocksYouSouth:
 	big_step LEFT
 	big_step LEFT
 	turn_head UP
-	step_end
+	step_resume
 
 Rocket2Script_LetsYouPassSouth:
 	big_step RIGHT
@@ -175,7 +175,7 @@ Rocket2Script_LetsYouPassSouth:
 	big_step DOWN
 	big_step DOWN
 	turn_head UP
-	step_end
+	step_resume
 
 Rocket2Script_BlocksYouNorth:
 	big_step DOWN
@@ -183,14 +183,14 @@ Rocket2Script_BlocksYouNorth:
 	big_step LEFT
 	big_step LEFT
 	turn_head DOWN
-	step_end
+	step_resume
 
 Rocket2Script_LetsYouPassNorth:
 	big_step RIGHT
 	big_step RIGHT
 	big_step UP
 	big_step UP
-	step_end
+	step_resume
 
 RocketText_TollFee:
 	text "Hold it there,"

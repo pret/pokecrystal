@@ -159,7 +159,7 @@ AcademyEarlSpinMovement:
 	turn_head UP
 	turn_head RIGHT
 	turn_head DOWN
-	step_end
+	step_resume
 
 AcademyEarlIntroText:
 	text "EARL, I am!"

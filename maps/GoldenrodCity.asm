@@ -265,7 +265,7 @@ GoldenrodCityMoveTutorEnterGameCornerMovement:
 	step RIGHT
 	step RIGHT
 	step UP
-	step_end
+	step_resume
 
 GoldenrodCityMoveTutorWalkAroundPlayerThenEnterGameCornerMovement:
 	step DOWN
@@ -273,7 +273,7 @@ GoldenrodCityMoveTutorWalkAroundPlayerThenEnterGameCornerMovement:
 	step RIGHT
 	step UP
 	step UP
-	step_end
+	step_resume
 
 GoldenrodCityPokefanMText:
 	text "They built the new"

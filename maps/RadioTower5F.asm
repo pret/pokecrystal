@@ -157,7 +157,7 @@ FakeDirectorMovement:
 	step LEFT
 	step UP
 	step UP
-	step_end
+	step_resume
 
 RadioTower5FDirectorWalksIn:
 	step DOWN
@@ -170,7 +170,7 @@ RadioTower5FDirectorWalksIn:
 	step DOWN
 	step DOWN
 	step LEFT
-	step_end
+	step_resume
 
 RadioTower5FDirectorWalksOut:
 	step RIGHT
@@ -183,12 +183,12 @@ RadioTower5FDirectorWalksOut:
 	step LEFT
 	step UP
 	step UP
-	step_end
+	step_resume
 
 RadioTower5FPlayerTwoStepsLeftMovement:
 	step LEFT
 	step LEFT
-	step_end
+	step_resume
 
 FakeDirectorTextBefore1:
 	text "Y-you! You came to"

@@ -120,7 +120,7 @@ FastShipLazySailorLeavesMovement1:
 	step LEFT
 	step UP
 	step UP
-	step_end
+	step_resume
 
 FastShipLazySailorLeavesMovement2:
 	step DOWN
@@ -129,7 +129,7 @@ FastShipLazySailorLeavesMovement2:
 	step UP
 	step UP
 	step UP
-	step_end
+	step_resume
 
 CooltrainermSeanSeenText:
 	text "I'm going to KANTO"

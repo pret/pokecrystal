@@ -139,15 +139,15 @@ BurnedTower1FHPUp:
 
 BurnedTowerMovement_PlayerWalksToSilver:
 	step LEFT
-	step_end
+	step_resume
 
 BurnedTowerMovement_SilverWalksToPlayer:
 	step RIGHT
-	step_end
+	step_resume
 
 BurnedTower1FMovement_PlayerStartsToFall:
 	skyfall_top
-	step_end
+	step_resume
 
 BurnedTower1FEusineMovement:
 	step DOWN
@@ -155,7 +155,7 @@ BurnedTower1FEusineMovement:
 	step LEFT
 	step LEFT
 	step DOWN
-	step_end
+	step_resume
 
 BurnedTowerSilver_BeforeText:
 	text "<……> <……> <……>"

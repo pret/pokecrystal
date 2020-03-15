@@ -226,17 +226,17 @@ MovementData_0x76004:
 	big_step UP
 	big_step UP
 	big_step UP
-	step_end
+	step_resume
 
 MovementData_0x7600c:
 	step UP
 	step UP
 	turn_head LEFT
-	step_end
+	step_resume
 
 MovementData_0x76010:
 	step DOWN
-	step_end
+	step_resume
 
 SSAquaCaptainExhaustingText:
 	text "Whew! Thanks for"

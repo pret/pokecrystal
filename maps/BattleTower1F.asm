@@ -270,11 +270,11 @@ MovementData_BattleTower1FWalkToElevator:
 	step UP
 MovementData_BattleTowerHallwayPlayerEntersBattleRoom:
 	step UP
-	step_end
+	step_resume
 
 MovementData_BattleTowerElevatorExitElevator:
 	step DOWN
-	step_end
+	step_resume
 
 MovementData_BattleTowerHallwayWalkTo1020Room:
 	step RIGHT
@@ -285,7 +285,7 @@ MovementData_BattleTowerHallwayWalkTo3040Room:
 	step UP
 	step RIGHT
 	turn_head LEFT
-	step_end
+	step_resume
 
 MovementData_BattleTowerHallwayWalkTo90100Room:
 	step LEFT
@@ -299,7 +299,7 @@ MovementData_BattleTowerHallwayWalkTo5060Room:
 	step UP
 	step LEFT
 	turn_head RIGHT
-	step_end
+	step_resume
 
 MovementData_BattleTowerBattleRoomPlayerWalksIn:
 	step UP
@@ -307,28 +307,28 @@ MovementData_BattleTowerBattleRoomPlayerWalksIn:
 	step UP
 	step UP
 	turn_head RIGHT
-	step_end
+	step_resume
 
 MovementData_BattleTowerBattleRoomOpponentWalksIn:
 	slow_step DOWN
 	slow_step DOWN
 	slow_step DOWN
 	turn_head LEFT
-	step_end
+	step_resume
 
 MovementData_BattleTowerBattleRoomOpponentWalksOut:
 	turn_head UP
 	slow_step UP
 	slow_step UP
 	slow_step UP
-	step_end
+	step_resume
 
 MovementData_BattleTowerBattleRoomReceptionistWalksToPlayer:
 	slow_step RIGHT
 	slow_step RIGHT
 	slow_step UP
 	slow_step UP
-	step_end
+	step_resume
 
 MovementData_BattleTowerBattleRoomReceptionistWalksAway:
 	slow_step DOWN
@@ -336,15 +336,15 @@ MovementData_BattleTowerBattleRoomReceptionistWalksAway:
 	slow_step LEFT
 	slow_step LEFT
 	turn_head RIGHT
-	step_end
+	step_resume
 
 MovementData_BattleTowerBattleRoomPlayerTurnsToFaceReceptionist:
 	turn_head DOWN
-	step_end
+	step_resume
 
 MovementData_BattleTowerBattleRoomPlayerTurnsToFaceNextOpponent:
 	turn_head RIGHT
-	step_end
+	step_resume
 
 Text_BattleTowerWelcomesYou:
 	text "BATTLE TOWER"

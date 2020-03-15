@@ -105,7 +105,7 @@ RuinsOfAlphAerodactylChamberWallPatternRight:
 
 RuinsOfAlphAerodactylChamberSkyfallTopMovement:
 	skyfall_top
-	step_end
+	step_resume
 
 RuinsOfAlphAerodactylChamberWallPatternLeftText:
 	text "Patterns appeared"

@@ -240,7 +240,7 @@ LakeOfRageHiddenMaxPotion:
 
 LakeOfRageLanceTeleportIntoSkyMovement:
 	teleport_from
-	step_end
+	step_resume
 
 LakeOfRageLanceForcedToEvolveText:
 	text "This lake is full"

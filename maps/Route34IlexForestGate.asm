@@ -79,12 +79,12 @@ Route34IlexForestGateLassScript:
 MovementData_0x62d97:
 	step UP
 	step UP
-	step_end
+	step_resume
 
 MovementData_0x62d9a:
 	step DOWN
 	step RIGHT
-	step_end
+	step_resume
 
 Route34IlexForestGateTeacherText:
 	text "Oh, honey. You're"

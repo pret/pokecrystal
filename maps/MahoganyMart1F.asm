@@ -115,7 +115,7 @@ MahoganyMart1FDragoniteTackleMovement:
 	big_step LEFT
 	big_step RIGHT
 	remove_fixed_facing
-	step_end
+	step_resume
 
 MahoganyMart1FBlackBeltKnockedBackMovement:
 	fix_facing
@@ -125,34 +125,34 @@ MahoganyMart1FBlackBeltKnockedBackMovement:
 	turn_head LEFT
 	turn_head UP
 	turn_head RIGHT
-	step_end
+	step_resume
 
 MahoganyMart1FPharmacistShovedAsideMovement:
 	fix_facing
 	big_step LEFT
 	remove_fixed_facing
-	step_end
+	step_resume
 
 MahoganyMart1FLanceApproachPlayerMovement:
 	slow_step LEFT
 	turn_head DOWN
-	step_end
+	step_resume
 
 MahoganyMart1FLanceApproachPharmacistMovement:
 	slow_step RIGHT
 	slow_step UP
 	slow_step UP
-	step_end
+	step_resume
 
 MahoganyMart1FLanceApproachHiddenStairsMovement:
 	slow_step UP
 	slow_step RIGHT
 	slow_step RIGHT
-	step_end
+	step_resume
 
 MahoganyMart1FLanceGoDownStairsMovement:
 	slow_step RIGHT
-	step_end
+	step_resume
 
 UnknownText_0x6c414:
 	text "Hello, kiddo!"

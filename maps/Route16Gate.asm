@@ -31,7 +31,7 @@ Route16GateBicycleCheck:
 Route16GateCannotPassMovement:
 	step RIGHT
 	turn_head LEFT
-	step_end
+	step_resume
 
 Route16GateOfficerText:
 	text "CYCLING ROAD"

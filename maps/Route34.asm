@@ -496,7 +496,7 @@ Route34MovementData_DayCareManWalksBackInside:
 	slow_step LEFT
 	slow_step LEFT
 	slow_step UP
-	step_end
+	step_resume
 
 Route34MovementData_DayCareManWalksBackInside_WalkAroundPlayer:
 	slow_step DOWN
@@ -504,7 +504,7 @@ Route34MovementData_DayCareManWalksBackInside_WalkAroundPlayer:
 	slow_step LEFT
 	slow_step UP
 	slow_step UP
-	step_end
+	step_resume
 
 YoungsterSamuelSeenText:
 	text "This is where I do"

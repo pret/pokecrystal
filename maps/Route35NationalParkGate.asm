@@ -210,17 +210,17 @@ Route35NationalParkGate_GetDayOfWeek:
 Route35NationalParkGatePlayerApproachOfficer1Movement:
 	step DOWN
 	turn_head LEFT
-	step_end
+	step_resume
 
 Route35NationalParkGatePlayerGoAroundOfficerAndEnterParkMovement:
 	step RIGHT
 	step UP
 	step UP
-	step_end
+	step_resume
 
 Route35NationalParkGatePlayerEnterParkMovement:
 	step UP
-	step_end
+	step_resume
 
 Route35NationalParkGateOfficer1AskToParticipateText:
 	text "Today's @"

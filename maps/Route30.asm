@@ -252,13 +252,13 @@ Route30_JoeysRattataAttacksMovement:
 	fix_facing
 	big_step UP
 	big_step DOWN
-	step_end
+	step_resume
 
 Route30_MikeysRattataAttacksMovement:
 	fix_facing
 	big_step DOWN
 	big_step UP
-	step_end
+	step_resume
 
 Text_UseTackle:
 	text "Go, RATTATA!"

@@ -145,7 +145,7 @@ CeladonGameCornerUnusedMovementData:
 ; unreferenced
 	step RIGHT
 	turn_head LEFT
-	step_end
+	step_resume
 
 CeladonGameCornerReceptionistText:
 	text "Welcome!"

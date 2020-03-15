@@ -76,7 +76,7 @@ WillsRoom_EnterMovement:
 	step UP
 	step UP
 	step UP
-	step_end
+	step_resume
 
 WillScript_WillBeforeText:
 	text "Welcome to #MON"

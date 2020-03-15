@@ -72,19 +72,19 @@ FridgeScript:
 
 MomTurnsTowardPlayerMovement:
 	turn_head RIGHT
-	step_end
+	step_resume
 
 MomWalksToPlayerMovement:
 	slow_step RIGHT
-	step_end
+	step_resume
 
 MomTurnsBackMovement:
 	turn_head LEFT
-	step_end
+	step_resume
 
 MomWalksBackMovement:
 	slow_step LEFT
-	; step_end causes moving artifacts, so we use:
+	; step_resume causes moving artifacts, so we use:
 	step_resume
 
 NeighborMornIntroText:

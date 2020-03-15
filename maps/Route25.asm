@@ -193,12 +193,12 @@ Route25HiddenPotion:
 
 MovementData_0x19efe8:
 	big_step DOWN
-	step_end
+	step_resume
 
 MovementData_0x19efea:
 	big_step DOWN
 	big_step DOWN
-	step_end
+	step_resume
 
 MovementData_0x19efed:
 	step UP
@@ -207,7 +207,7 @@ MovementData_0x19efed:
 	step LEFT
 	step LEFT
 	step LEFT
-	step_end
+	step_resume
 
 MovementData_0x19eff4:
 	step UP
@@ -215,17 +215,17 @@ MovementData_0x19eff4:
 	step LEFT
 	step LEFT
 	step LEFT
-	step_end
+	step_resume
 
 MovementData_0x19effa:
 	step DOWN
 	step LEFT
-	step_end
+	step_resume
 
 MovementData_0x19effd:
 	step UP
 	step LEFT
-	step_end
+	step_resume
 
 MovementData_0x19f000:
 	step LEFT
@@ -233,7 +233,7 @@ MovementData_0x19f000:
 	step LEFT
 	step LEFT
 	step LEFT
-	step_end
+	step_resume
 
 Route25MistyDateText:
 	text "MISTY: Aww! Why"

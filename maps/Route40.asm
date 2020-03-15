@@ -143,7 +143,7 @@ MovementData_0x1a621c:
 	step UP
 	step UP
 	step UP
-	step_end
+	step_resume
 
 MovementData_0x1a6224:
 	step UP
@@ -151,14 +151,14 @@ MovementData_0x1a6224:
 	step UP
 	step UP
 	step UP
-	step_end
+	step_resume
 
 MovementData_0x1a622a:
 	step UP
 	step UP
 	step UP
 	step UP
-	step_end
+	step_resume
 
 SwimmermSimonSeenText:
 	text "You have to warm"

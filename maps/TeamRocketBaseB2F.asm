@@ -363,7 +363,7 @@ MovementData_0x6d212:
 	step RIGHT
 	step RIGHT
 	step RIGHT
-	step_end
+	step_resume
 
 MovementData_0x6d219:
 	step RIGHT
@@ -371,14 +371,14 @@ MovementData_0x6d219:
 	step RIGHT
 	step RIGHT
 	step RIGHT
-	step_end
+	step_resume
 
 MovementData_0x6d21f:
 	step DOWN
 	step DOWN
 	step DOWN
 	turn_head RIGHT
-	step_end
+	step_resume
 
 MovementData_0x6d224:
 	big_step LEFT
@@ -391,7 +391,7 @@ MovementData_0x6d224:
 	big_step LEFT
 	big_step LEFT
 	turn_head DOWN
-	step_end
+	step_resume
 
 MovementData_0x6d22f:
 	big_step LEFT
@@ -400,14 +400,14 @@ MovementData_0x6d22f:
 	big_step UP
 	big_step LEFT
 	big_step LEFT
-	step_end
+	step_resume
 
 MovementData_0x6d236:
 	big_step RIGHT
 	big_step RIGHT
 	big_step RIGHT
 	big_step RIGHT
-	step_end
+	step_resume
 
 MovementData_0x6d23b:
 	fix_facing
@@ -415,44 +415,44 @@ MovementData_0x6d23b:
 	jump_step RIGHT
 	remove_sliding
 	remove_fixed_facing
-	step_end
+	step_resume
 
 MovementData_0x6d241:
 	slow_step DOWN
 	turn_head LEFT
-	step_end
+	step_resume
 
 MovementData_0x6d244:
 	step RIGHT
 	step RIGHT
 	step RIGHT
-	step_end
+	step_resume
 
 MovementData_0x6d248:
 	big_step LEFT
-	step_end
+	step_resume
 
 MovementData_0x6d24a:
 	big_step LEFT
-	step_end
+	step_resume
 
 MovementData_0x6d24c:
 	big_step LEFT
 	big_step UP
 	turn_head LEFT
-	step_end
+	step_resume
 
 MovementData_0x6d250:
 	step RIGHT
 	step RIGHT
 	turn_head DOWN
-	step_end
+	step_resume
 
 MovementData_0x6d254:
 	step UP
 	step UP
 	step UP
-	step_end
+	step_resume
 
 MovementData_0x6d258:
 	step_sleep 8
@@ -469,7 +469,7 @@ MovementData_0x6d258:
 	step LEFT
 	step LEFT
 	turn_head DOWN
-	step_end
+	step_resume
 
 MovementData_0x6d267:
 	step RIGHT
@@ -481,7 +481,7 @@ MovementData_0x6d267:
 	step UP
 	step UP
 	step UP
-	step_end
+	step_resume
 
 MovementData_0x6d271:
 	step UP
@@ -490,11 +490,11 @@ MovementData_0x6d271:
 	step LEFT
 	step LEFT
 	turn_head UP
-	step_end
+	step_resume
 
 MovementData_0x6d278:
 	step LEFT
-	step_end
+	step_resume
 
 MovementData_0x6d27a:
 	step DOWN
@@ -505,7 +505,7 @@ MovementData_0x6d27a:
 	step LEFT
 	step LEFT
 	step LEFT
-	step_end
+	step_resume
 
 MovementData_0x6d283:
 	step DOWN
@@ -516,7 +516,7 @@ MovementData_0x6d283:
 	step LEFT
 	step LEFT
 	step LEFT
-	step_end
+	step_resume
 
 MovementData_0x6d28c:
 	step RIGHT
@@ -531,7 +531,7 @@ MovementData_0x6d28c:
 	step RIGHT
 	step RIGHT
 	step RIGHT
-	step_end
+	step_resume
 
 MovementData_0x6d299:
 	step RIGHT
@@ -544,7 +544,7 @@ MovementData_0x6d299:
 	step RIGHT
 	step RIGHT
 	step RIGHT
-	step_end
+	step_resume
 
 MovementData_0x6d2a4:
 	step RIGHT
@@ -555,7 +555,7 @@ MovementData_0x6d2a4:
 	step RIGHT
 	step RIGHT
 	step RIGHT
-	step_end
+	step_resume
 
 RocketBaseExecutiveFHoldItText:
 	text "Hold it right"

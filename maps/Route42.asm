@@ -221,7 +221,7 @@ Route42SuicuneMovement:
 	fast_jump_step RIGHT
 	fast_jump_step RIGHT
 	remove_sliding
-	step_end
+	step_resume
 
 FisherTullySeenText:
 	text "Let me demonstrate"

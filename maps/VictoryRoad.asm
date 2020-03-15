@@ -124,7 +124,7 @@ MovementData_0x74539:
 	step LEFT
 	step UP
 	step UP
-	step_end
+	step_resume
 
 MovementData_0x74542:
 	step UP
@@ -136,7 +136,7 @@ MovementData_0x74542:
 	step LEFT
 	step UP
 	step UP
-	step_end
+	step_resume
 
 MovementData_0x7454c:
 	step DOWN
@@ -147,7 +147,7 @@ MovementData_0x7454c:
 	step RIGHT
 	step RIGHT
 	step RIGHT
-	step_end
+	step_resume
 
 MovementData_0x74555:
 	step DOWN
@@ -159,7 +159,7 @@ MovementData_0x74555:
 	step RIGHT
 	step DOWN
 	step DOWN
-	step_end
+	step_resume
 
 VictoryRoadRivalBeforeText:
 	text "Hold it."

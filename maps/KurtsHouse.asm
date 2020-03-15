@@ -397,7 +397,7 @@ KurtsHouseKurtExitHouseMovement:
 	big_step DOWN
 	big_step DOWN
 	big_step DOWN
-	step_end
+	step_resume
 
 KurtsHouseKurtGoAroundPlayerThenExitHouseMovement:
 	big_step RIGHT
@@ -406,7 +406,7 @@ KurtsHouseKurtGoAroundPlayerThenExitHouseMovement:
 	big_step DOWN
 	big_step DOWN
 	big_step DOWN
-	step_end
+	step_resume
 
 KurtsHouseKurtHonoredToMakeBallsText:
 	text "KURT: Hi, <PLAYER>!"

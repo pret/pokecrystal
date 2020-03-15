@@ -166,12 +166,12 @@ CeruleanGymGruntRunsDownMovement:
 	big_step DOWN
 	big_step DOWN
 	big_step DOWN
-	step_end
+	step_resume
 
 CeruleanGymGruntRunsOutMovement:
 	big_step RIGHT
 	big_step DOWN
-	step_end
+	step_resume
 
 CeruleanGymGruntRunsIntoYouMovement:
 	fix_facing
@@ -183,17 +183,17 @@ CeruleanGymGruntRunsIntoYouMovement:
 	step_sleep 8
 	step DOWN
 	step DOWN
-	step_end
+	step_resume
 
 CeruleanGymGruntMovesCloseMovement:
 	big_step DOWN
-	step_end
+	step_resume
 
 CeruleanGymGruntBacksAwayMovement:
 	fix_facing
 	slow_step UP
 	remove_fixed_facing
-	step_end
+	step_resume
 
 CeruleanGymGruntIntroText:
 	text "Oops! I so sorry!"

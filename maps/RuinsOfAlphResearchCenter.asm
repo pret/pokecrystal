@@ -179,15 +179,15 @@ MovementData_0x5926f:
 	step UP
 	step LEFT
 	turn_head UP
-	step_end
+	step_resume
 
 MovementData_0x59274:
 	step DOWN
-	step_end
+	step_resume
 
 MovementData_0x59276:
 	step UP
-	step_end
+	step_resume
 
 RuinsOfAlphResearchCenterModifiedDexText:
 	text "Done!"

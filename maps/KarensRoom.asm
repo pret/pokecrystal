@@ -76,7 +76,7 @@ KarensRoom_EnterMovement:
 	step UP
 	step UP
 	step UP
-	step_end
+	step_resume
 
 KarenScript_KarenBeforeText:
 	text "I am KAREN of the"

@@ -639,7 +639,7 @@ UndergroundSilverApproachMovement1:
 	step LEFT
 	step LEFT
 	step LEFT
-	step_end
+	step_resume
 
 UndergroundSilverApproachMovement2:
 	step DOWN
@@ -647,14 +647,14 @@ UndergroundSilverApproachMovement2:
 	step LEFT
 	step LEFT
 	step LEFT
-	step_end
+	step_resume
 
 UndergroundSilverRetreatMovement1:
 	step RIGHT
 	step RIGHT
 	step RIGHT
 	step UP
-	step_end
+	step_resume
 
 UndergroundSilverRetreatMovement2:
 	step RIGHT
@@ -662,7 +662,7 @@ UndergroundSilverRetreatMovement2:
 	step RIGHT
 	step UP
 	step UP
-	step_end
+	step_resume
 
 UndergroundSilverBeforeText:
 	text "Hold it!"

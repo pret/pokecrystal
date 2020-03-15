@@ -471,7 +471,7 @@ Route36NationalParkGatePlayerWaitWithContestantsMovement:
 	big_step DOWN
 	big_step RIGHT
 	turn_head UP
-	step_end
+	step_resume
 
 Route36NationalParkGateOfficer1AskToParticipateText:
 	text "Today's @"

@@ -31,7 +31,7 @@ Route17Route18GateBicycleCheck:
 Route17Route18GateCannotPassMovement:
 	step RIGHT
 	turn_head LEFT
-	step_end
+	step_resume
 
 Route17Route18GateOfficerText:
 	text "CYCLING ROAD"

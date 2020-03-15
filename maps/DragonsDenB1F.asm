@@ -193,14 +193,14 @@ MovementDragonsDen_ClairWalksToYou:
 	slow_step RIGHT
 	slow_step RIGHT
 	slow_step RIGHT
-	step_end
+	step_resume
 
 MovementDragonsDen_ClairWalksAway:
 	slow_step LEFT
 	slow_step LEFT
 	slow_step LEFT
 	slow_step LEFT
-	step_end
+	step_resume
 
 ClairText_Wait:
 	text "Wait!"

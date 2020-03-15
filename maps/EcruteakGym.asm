@@ -165,17 +165,17 @@ EcruteakGymStatue:
 
 EcruteakGymPlayerStepUpMovement:
 	step UP
-	step_end
+	step_resume
 
 EcruteakGymPlayerSlowStepDownMovement:
 	fix_facing
 	slow_step DOWN
 	remove_fixed_facing
-	step_end
+	step_resume
 
 EcruteakGymGrampsSlowStepDownMovement:
 	slow_step DOWN
-	step_end
+	step_resume
 
 MortyIntroText:
 	text "Good of you to"

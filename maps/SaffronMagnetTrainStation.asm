@@ -44,7 +44,7 @@ SaffronMagnetTrainStationOfficerScript:
 
 .MovementBoardTheTrain:
 	turn_head DOWN
-	step_end
+	step_resume
 
 .PassNotInBag:
 	writetext SaffronMagnetTrainStationOfficerYouDontHaveAPassText
@@ -95,13 +95,13 @@ SaffronMagnetTrainStationOfficerApproachTrainDoorMovement:
 	step UP
 	step RIGHT
 	turn_head LEFT
-	step_end
+	step_resume
 
 SaffronMagnetTrainStationOfficerReturnToBoardingGateMovement:
 	step LEFT
 	step DOWN
 	step DOWN
-	step_end
+	step_resume
 
 SaffronMagnetTrainStationPlayerApproachAndEnterTrainMovement:
 	step UP
@@ -112,7 +112,7 @@ SaffronMagnetTrainStationPlayerApproachAndEnterTrainMovement:
 	step LEFT
 	step UP
 	step UP
-	step_end
+	step_resume
 
 SaffronMagnetTrainStationPlayerLeaveTrainAndEnterStationMovement:
 	step LEFT
@@ -122,7 +122,7 @@ SaffronMagnetTrainStationPlayerLeaveTrainAndEnterStationMovement:
 	step DOWN
 	step DOWN
 	turn_head UP
-	step_end
+	step_resume
 
 SaffronMagnetTrainStationOfficerTrainIsntOperatingText:
 	text "I'm sorry, but the"

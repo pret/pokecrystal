@@ -182,7 +182,7 @@ PlateauRivalMovement1:
 	step UP
 	step UP
 	turn_head LEFT
-	step_end
+	step_resume
 
 PlateauRivalMovement2:
 	step UP
@@ -191,7 +191,7 @@ PlateauRivalMovement2:
 	step UP
 	step UP
 	turn_head RIGHT
-	step_end
+	step_resume
 
 PlateauRivalLeavesMovement:
 	step DOWN
@@ -199,7 +199,7 @@ PlateauRivalLeavesMovement:
 	step DOWN
 	step DOWN
 	step DOWN
-	step_end
+	step_resume
 
 IndigoPlateauPokecenter1FCooltrainerMText:
 	text "At the #MON"

@@ -140,14 +140,14 @@ MovementData_0x980c7:
 	big_step LEFT
 	remove_fixed_facing
 	turn_head DOWN
-	step_end
+	step_resume
 
 MovementData_0x980cc:
 	fix_facing
 	big_step RIGHT
 	remove_fixed_facing
 	turn_head DOWN
-	step_end
+	step_resume
 
 EcruteakTinTowerEntranceSageText:
 	text "TIN TOWER is off"

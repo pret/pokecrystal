@@ -624,131 +624,131 @@ Pokecenter2FMovementData_ReceptionistWalksUpAndLeft_LookRight:
 	slow_step UP
 	slow_step LEFT
 	turn_head RIGHT
-	step_end
+	step_resume
 
 Pokecenter2FMobileMobileMovementData_ReceptionistWalksUpAndLeft_LookDown:
 	slow_step UP
 	slow_step LEFT
 	turn_head DOWN
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_ReceptionistStepsLeftLooksDown:
 	slow_step LEFT
 	turn_head DOWN
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_ReceptionistStepsRightLooksDown:
 	slow_step RIGHT
 	turn_head DOWN
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_ReceptionistWalksUpAndLeft_LookRight_2:
 	slow_step UP
 	slow_step LEFT
 	turn_head RIGHT
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_ReceptionistLooksRight:
 	turn_head RIGHT
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_PlayerTakesThreeStepsUp:
 	step UP
 	step UP
 	step UP
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_PlayerTakesTwoStepsUp:
 	step UP
 	step UP
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_PlayerTakesOneStepUp:
 	step UP
-	step_end
+	step_resume
 
 Pokecenter2FMobileMovementData_PlayerWalksIntoMobileBattleRoom:
 	step UP
 	step UP
 	step RIGHT
 	step UP
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_PlayerTakesTwoStepsUp_2:
 	step UP
 	step UP
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_PlayerWalksLeftAndUp:
 	step LEFT
 	step UP
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_PlayerWalksRightAndUp:
 	step RIGHT
 	step UP
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_PlayerTakesThreeStepsDown:
 	step DOWN
 	step DOWN
 	step DOWN
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_PlayerTakesTwoStepsDown:
 	step DOWN
 	step DOWN
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_PlayerTakesOneStepDown:
 	step DOWN
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_ReceptionistStepsRightAndDown:
 	slow_step RIGHT
 	slow_step DOWN
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_ReceptionistStepsRightLooksDown_2:
 	slow_step RIGHT
 	turn_head DOWN
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_ReceptionistStepsRightLooksDown_3:
 	slow_step UP
 	slow_step LEFT
 	turn_head RIGHT
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_ReceptionistStepsLeftLooksRight:
 	slow_step LEFT
 	turn_head RIGHT
-	step_end
+	step_resume
 
 Pokecenter2FMobileMovementData_ReceptionistWalksUpAndLeft:
 	slow_step UP
 	slow_step LEFT
 	turn_head RIGHT
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_PlayerWalksOutOfMobileRoom:
 	step DOWN
 	step LEFT
 	step DOWN
 	step DOWN
-	step_end
+	step_resume
 
 Pokecenter2FMobileMovementData_ReceptionistWalksRightAndDown:
 	slow_step RIGHT
 	slow_step DOWN
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingRight:
 	turn_head DOWN
 	turn_head LEFT
 	turn_head UP
 	turn_head RIGHT
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingLeft:
 	turn_head DOWN
@@ -756,7 +756,7 @@ Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingLeft:
 	turn_head UP
 	turn_head RIGHT
 	turn_head LEFT
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingDown:
 	turn_head DOWN
@@ -764,38 +764,38 @@ Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingDown:
 	turn_head UP
 	turn_head RIGHT
 	turn_head DOWN
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_PlayerTakesOneStepDown_2:
 	step DOWN
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_PlayerTakesTwoStepsDown_2:
 	step DOWN
 	step DOWN
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_PlayerTakesOneStepUp_2:
 	step UP
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_PlayerTakesOneStepRight:
 	step RIGHT
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_PlayerTakesOneStepLeft:
 	step LEFT
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_ReceptionistStepsLeftLooksRight_2:
 	slow_step LEFT
 	turn_head RIGHT
-	step_end
+	step_resume
 
 Pokecenter2FMovementData_ReceptionistStepsRightLooksLeft_2:
 	slow_step RIGHT
 	turn_head LEFT
-	step_end
+	step_resume
 
 Text_BattleReceptionistMobile:
 	text "Would you like to"

@@ -56,11 +56,11 @@ HallOfFame_WalkUpWithLance:
 	step UP
 	step RIGHT
 	turn_head LEFT
-	step_end
+	step_resume
 
 HallOfFame_SlowlyApproachMachine:
 	slow_step UP
-	step_end
+	step_resume
 
 HallOfFame_LanceText:
 	text "LANCE: It's been a"

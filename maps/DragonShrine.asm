@@ -336,28 +336,28 @@ DragonShrinePlayerWalkInMovement:
 	slow_step UP
 	slow_step UP
 	slow_step UP
-	step_end
+	step_resume
 
 DragonShrineElderStepDownMovement:
 	slow_step DOWN
-	step_end
+	step_resume
 
 DragonShrineElderWalkToClairMovement:
 	slow_step LEFT
 	slow_step LEFT
 	slow_step LEFT
 	turn_head DOWN
-	step_end
+	step_resume
 
 DragonShrineElderWalkAway1Movement:
 	slow_step RIGHT
 	slow_step RIGHT
-	step_end
+	step_resume
 
 DragonShrineElderWalkAway2Movement:
 	slow_step RIGHT
 	turn_head DOWN
-	step_end
+	step_resume
 
 DragonShrineClairWalkInMovement:
 	slow_step UP
@@ -365,22 +365,22 @@ DragonShrineClairWalkInMovement:
 	slow_step UP
 	slow_step UP
 	slow_step UP
-	step_end
+	step_resume
 
 DragonShrineClairBigStepLeftMovement:
 	fix_facing
 	big_step LEFT
-	step_end
+	step_resume
 
 DragonShrineClairSlowStepLeftMovement:
 	slow_step LEFT
 	remove_fixed_facing
-	step_end
+	step_resume
 
 DragonShrineClairTwoSlowStepsRightMovement:
 	slow_step RIGHT
 	slow_step RIGHT
-	step_end
+	step_resume
 
 DragonShrineClairWalkOutMovement:
 	step DOWN
@@ -389,7 +389,7 @@ DragonShrineClairWalkOutMovement:
 	step DOWN
 	step DOWN
 	step DOWN
-	step_end
+	step_resume
 
 DragonShrineElderGreetingText:
 	text "Hm… Good to see"

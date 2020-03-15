@@ -37,7 +37,7 @@ CinnabarIslandHiddenRareCandy:
 
 CinnabarIslandBlueTeleport:
 	teleport_from
-	step_end
+	step_resume
 
 CinnabarIslandBlueText:
 	text "Who are you?"

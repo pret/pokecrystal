@@ -86,7 +86,7 @@ Movement_EnterTrainerHouseBattleRoom:
 	step DOWN
 	step LEFT
 	turn_head RIGHT
-	step_end
+	step_resume
 
 Movement_ExitTrainerHouseBattleRoom:
 	step UP
@@ -102,12 +102,12 @@ Movement_ExitTrainerHouseBattleRoom:
 	step RIGHT
 	step RIGHT
 	step RIGHT
-	step_end
+	step_resume
 
 Movement_TrainerHouseTurnBack:
 	step RIGHT
 	turn_head LEFT
-	step_end
+	step_resume
 
 TrainerHouseB1FIntroText:
 	text "Hi. Welcome to our"

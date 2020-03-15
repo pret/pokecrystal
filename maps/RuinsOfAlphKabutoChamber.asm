@@ -143,7 +143,7 @@ RuinsOfAlphKabutoChamberWallPatternRight:
 
 RuinsOfAlphKabutoChamberSkyfallTopMovement:
 	skyfall_top
-	step_end
+	step_resume
 
 RuinsOfAlphKabutoChamberReceptionistText:
 	text "Welcome to this"

@@ -73,7 +73,7 @@ MountMoonSilverMovementBefore:
 	step LEFT
 	step LEFT
 	step LEFT
-	step_end
+	step_resume
 
 MountMoonSilverMovementAfter:
 	step RIGHT
@@ -83,7 +83,7 @@ MountMoonSilverMovementAfter:
 	step DOWN
 	step DOWN
 	step DOWN
-	step_end
+	step_resume
 
 MountMoonSilverTextBefore:
 	text "<……> <……> <……>"

@@ -140,16 +140,16 @@ MovementData_0x184a1d:
 	step UP
 	step UP
 	step UP
-	step_end
+	step_resume
 
 MovementData_0x184a22:
 	step UP
-	step_end
+	step_resume
 
 MovementData_0x184a24:
 	step RIGHT
 	step DOWN
-	step_end
+	step_resume
 
 SproutTowerElderLecturesRivalText:
 	text "ELDER: You are in-"

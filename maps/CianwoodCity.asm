@@ -155,7 +155,7 @@ CianwoodCitySuicuneApproachMovement:
 	fast_jump_step DOWN
 	fast_jump_step RIGHT
 	remove_sliding
-	step_end
+	step_resume
 
 CianwoodCitySuicuneDepartMovement:
 	set_sliding
@@ -164,21 +164,21 @@ CianwoodCitySuicuneDepartMovement:
 	fast_jump_step RIGHT
 	fast_jump_step RIGHT
 	remove_sliding
-	step_end
+	step_resume
 
 CianwoodCityEusineApproachMovement:
 	step UP
 	step UP
 	step UP
 	step UP
-	step_end
+	step_resume
 
 CianwoodCityEusineDepartMovement:
 	step DOWN
 	step DOWN
 	step DOWN
 	step DOWN
-	step_end
+	step_resume
 
 ChucksWifeEasierToFlyText:
 	text "You crossed the"
