@@ -281,7 +281,7 @@ Kurt1:
 .KurtHasLeftTheBuilding:
 	playsound SFX_EXIT_BUILDING
 	disappear KURTSHOUSE_KURT1
-	;clearevent EVENT_AZALEA_TOWN_KURT
+	clearevent EVENT_AZALEA_TOWN_KURT
 	waitsfx
 	special RestartMapMusic
 	setmapscene AZALEA_TOWN, SCENE_AZALEATOWN_KURT_RETURNS_GS_BALL

@@ -7,6 +7,7 @@
 	const AZALEATOWN_SLOWPOKE3
 	const AZALEATOWN_SLOWPOKE4
 	const AZALEATOWN_FRUIT_TREE
+	const AZALEATOWN_KURT_OUTSIDE
 
 AzaleaTown_MapScripts:
 	db 2 ; scene scripts
@@ -124,6 +125,34 @@ AzaleaTownSlowpokeText2:
 	text "<……> <……>Yawn?"
 	done
 
+AzaleaTownCelebiScene:	
+	applymovement PLAYER, AzaleaTownPlayerLeavesKurtsHouseMovement	
+	opentext	
+	writetext AzaleaTownKurtText1	
+	promptbutton	
+	turnobject AZALEATOWN_KURT_OUTSIDE, RIGHT	
+	writetext AzaleaTownKurtText2	
+	promptbutton	
+	writetext AzaleaTownKurtText3	
+	waitbutton	
+	verbosegiveitem GS_BALL	
+	turnobject AZALEATOWN_KURT_OUTSIDE, LEFT	
+	setflag ENGINE_FOREST_IS_RESTLESS	
+	clearevent EVENT_ILEX_FOREST_LASS	
+	setevent EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS	
+	setscene SCENE_AZALEATOWN_NOTHING	
+	closetext	
+	end	
+
+AzaleaTownKurtScript:	
+	faceplayer	
+	opentext	
+	writetext AzaleaTownKurtText3	
+	waitbutton	
+	turnobject AZALEATOWN_KURT_OUTSIDE, LEFT	
+	closetext	
+	end
+
 AzaleaTownKurtText1:
 	text "ILEX FOREST is"
 	line "restless!"
@@ -205,7 +234,8 @@ AzaleaTown_MapEvents:
 	warp_event  2, 10, ILEX_FOREST_AZALEA_GATE, 3
 	warp_event  2, 11, ILEX_FOREST_AZALEA_GATE, 4
 
-	db 0 ; coord events
+	db 1 ; coord events
+	coord_event  9,  6, SCENE_AZALEATOWN_KURT_RETURNS_GS_BALL, AzaleaTownCelebiScene
 
 	db 9 ; bg events
 	bg_event 19,  9, BGEVENT_READ, AzaleaTownSign
@@ -218,7 +248,7 @@ AzaleaTown_MapEvents:
 	bg_event  3,  9, BGEVENT_READ, AzaleaTownIlextForestSign
 	bg_event 31,  6, BGEVENT_ITEM, AzaleaTownHiddenFullHeal
 
-	db 8 ; object events
+	db 9 ; object events
 	object_event 21,  9, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaTownGrampsScript, -1
 	object_event 15, 13, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, AzaleaTownTeacherScript, -1
 	object_event  7,  9, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, AzaleaTownYoungsterScript, -1
@@ -227,3 +257,4 @@ AzaleaTown_MapEvents:
 	object_event 29,  9, SPRITE_SLOWPOKE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaTownSlowpokeScript, EVENT_AZALEA_TOWN_SLOWPOKES
 	object_event 15, 15, SPRITE_SLOWPOKE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaTownSlowpokeScript, EVENT_AZALEA_TOWN_SLOWPOKES
 	object_event  8,  2, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, WhiteApricornTree, -1
+	object_event  6,  5, SPRITE_KURT_OUTSIDE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaTownKurtScript, EVENT_AZALEA_TOWN_KURT
