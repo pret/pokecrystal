@@ -123,38 +123,10 @@ GetTreeMons:
 INCLUDE "data/wild/treemons.asm"
 
 GetTreeMon:
-	push hl
-	call GetTreeScore
-	pop hl
-	and a ; TREEMON_SCORE_BAD
-	jr z, .bad
-	cp TREEMON_SCORE_GOOD
-	jr z, .good
-	cp TREEMON_SCORE_RARE
-	jr z, .rare
-	ret
-
-.bad
-	; 10% chance of an encounter
+	; 70% chance of an encounter
 	ld a, 10
 	call RandomRange
-	and a
-	jr nz, NoTreeMon
-	jr SelectTreeMon
-
-.good
-	; 50% chance of an encounter
-	ld a, 10
-	call RandomRange
-	cp 5
-	jr nc, NoTreeMon
-	jr SelectTreeMon
-
-.rare
-	; 80% chance of an encounter
-	ld a, 10
-	call RandomRange
-	cp 8
+	cp 7
 	jr nc, NoTreeMon
 	jr .skip
 .skip
@@ -193,83 +165,4 @@ NoTreeMon:
 	xor a
 	ld [wTempWildMonSpecies], a
 	ld [wCurPartyLevel], a
-	ret
-
-GetTreeScore:
-	call .CoordScore
-	ld [wBuffer1], a
-	call .OTIDScore
-	ld [wBuffer2], a
-	ld c, a
-	ld a, [wBuffer1]
-	sub c
-	jr z, .rare
-	jr nc, .ok
-	add 10
-.ok
-	cp 5
-	jr c, .good
-
-.bad
-	xor a ; TREEMON_SCORE_BAD
-	ret
-
-.good
-	ld a, TREEMON_SCORE_GOOD
-	ret
-
-.rare
-	ld a, TREEMON_SCORE_RARE
-	ret
-
-.CoordScore:
-	call GetFacingTileCoord
-	ld hl, 0
-	ld c, e
-	ld b, 0
-	ld a, d
-
-	and a
-	jr z, .next
-.loop
-	add hl, bc
-	dec a
-	jr nz, .loop
-.next
-
-	add hl, bc
-	ld c, d
-	add hl, bc
-
-	ld a, h
-	ldh [hDividend], a
-	ld a, l
-	ldh [hDividend + 1], a
-	ld a, 5
-	ldh [hDivisor], a
-	ld b, 2
-	call Divide
-
-	ldh a, [hQuotient + 2]
-	ldh [hDividend], a
-	ldh a, [hQuotient + 3]
-	ldh [hDividend + 1], a
-	ld a, 10
-	ldh [hDivisor], a
-	ld b, 2
-	call Divide
-
-	ldh a, [hRemainder]
-	ret
-
-.OTIDScore:
-	ld a, [wPlayerID]
-	ldh [hDividend], a
-	ld a, [wPlayerID + 1]
-	ldh [hDividend + 1], a
-	ld a, 10
-	ldh [hDivisor], a
-	ld b, 2
-	call Divide
-	ldh a, [hRemainder]
 	ret
