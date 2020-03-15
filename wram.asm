@@ -188,7 +188,7 @@ wTempObjectCopyX:: db ; c2f6
 wTempObjectCopyY:: db ; c2f7
 wTempObjectCopyRadius:: db ; c2f8
 
-wLastStepDirection:: db
+wLastStepDirection:: db ; 60fps
 
 wTileDown::  db ; c2fa
 wTileUp::    db ; c2fb
@@ -1942,7 +1942,7 @@ wBallsPocketCursor::    db
 wTMHMPocketCursor::     db
 
 wPCItemsScrollPosition::        db
-wUnused::                       db
+wPartyMenuScrollPosition::      db ; unused
 wItemsPocketScrollPosition::    db
 wKeyItemsPocketScrollPosition:: db
 wBallsPocketScrollPosition::    db
@@ -3107,7 +3107,7 @@ wNumStartersInCategory:: db
 wStartingLocationSelector:: db
 ; bit 0 = starting town selector is active
 ; bit 1 = isJohto
-	ds 97
+	ds 98
 
 wLYOverridesBackup:: ds SCREEN_HEIGHT_PX ; d200
 wLYOverridesBackupEnd::

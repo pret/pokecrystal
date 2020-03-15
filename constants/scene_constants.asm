@@ -46,7 +46,7 @@ SCENE_FINISHED EQU 1
 ; wCherrygroveCitySceneID
 	const_def
 	const SCENE_CHERRYGROVECITY_NOTHING    ; 0
-	const SCENE_CHERRYGROVECITY_MEET_RIVAL ; 1
+;	const SCENE_CHERRYGROVECITY_MEET_RIVAL ; 1
 
 ; wRoute32SceneID
 	const_def 1
