@@ -48,3 +48,10 @@
 ## Press B in battle to highlight RUN
 
 - Ported from Polished Crystal
+
+---
+
+## Event/Flag/Variable Sprite Initialization
+
+- 7Soul helped identify that events weren't being initialized correctly when changin initial spawn point
+- ISSOtm wrote asm for initializing events from the start of the game instead of from the player's bedroom

@@ -25,7 +25,6 @@
 	enum daytotext
 	enum bugcontestresultswarp
 	enum bugcontestresults
-	enum initializeevents
 	enum asknumber1m
 	enum asknumber2m
 	enum registerednumberm

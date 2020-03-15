@@ -67,6 +67,7 @@ NewGame:
 	call OakSpeech
 	call InitializeWorld
 	call ChooseStartingLocation
+	call InitEvents
 	jp FinishContinueFunction
 	ret
 
@@ -956,6 +957,54 @@ Intro_PrepTrainerPic:
 	lb bc, 7, 7
 	predef PlaceGraphic
 	ret
+
+; ISSOTm's Event Initialization code
+InitEvents:
+  	ld hl, EventInitTable
+  	ld a, [hli]
+.initEvent
+  	ld d, a
+  	ld a, [hli]
+  	ld e, a
+  	ld b, SET_FLAG
+  	push hl
+  	call EventFlagAction
+  	pop hl
+.startEventInit
+  	ld a, [hli]
+  	cp -1
+  	jr nz, .initEvent
+
+  	ld hl, FlagInitTable
+  	ld a, [hli]
+.initFlag
+  	ld d, a
+  	ld a, [hli]
+  	ld e, a
+  	ld b, SET_FLAG
+  	push hl
+  	farcall EngineFlagAction
+  	pop hl
+  	ld a, [hli]
+  	cp -1
+  	jr nz, .initFlag
+
+  	ld hl, VarSpriteInitTable
+  	ld a, [hli]
+.initSprite
+  	add a, LOW(wVariableSprites)
+  	ld e, a
+  	adc a, HIGH(wVariableSprites)
+  	sub e
+  	ld d, a
+  	ld a, [hli]
+  	ld [de], a
+  	ld a, [hli]
+  	cp -1
+  	jr nz, .initSprite
+  	ret
+
+INCLUDE "data/initial_events.asm"
 
 ShrinkFrame:
 	ld de, vTiles2
