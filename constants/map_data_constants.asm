@@ -99,4 +99,34 @@ const_value = -1
 	const SPAWN_FAST_SHIP
 NUM_SPAWNS EQU const_value
 
+; Flypoints indexes (see data/maps/flypoints.asm)
+	const_def
+; johto
+	const FLY_NEW_BARK
+	const FLY_CHERRYGROVE
+	const FLY_VIOLET
+	const FLY_AZALEA
+	const FLY_GOLDENROD
+	const FLY_ECRUTEAK
+	const FLY_OLIVINE
+	const FLY_CIANWOOD
+	const FLY_MAHOGANY
+	const FLY_LAKE_OF_RAGE
+	const FLY_BLACKTHORN
+	const FLY_MT_SILVER
+; kanto
+KANTO_FLYPOINT EQU const_value
+	const FLY_PALLET
+	const FLY_VIRIDIAN
+	const FLY_PEWTER
+	const FLY_CERULEAN
+	const FLY_VERMILION
+	const FLY_ROCK_TUNNEL
+	const FLY_LAVENDER
+	const FLY_CELADON
+	const FLY_SAFFRON
+	const FLY_FUCHSIA
+	const FLY_CINNABAR
+	const FLY_INDIGO
+
 MAX_OUTDOOR_SPRITES EQU 23 ; see engine/overworld/overworld.asm

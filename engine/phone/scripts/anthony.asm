@@ -16,11 +16,11 @@ AnthonyPhoneCalleeScript:
 	farsjump AnthonyHangUpScript
 
 .WantsBattle:
-	getlandmarkname STRING_BUFFER_5, ROUTE_33
+	getlandmarkname STRING_BUFFER_5, LANDMARK_ROUTE_33
 	farsjump AnthonyReminderScript
 
 .AlreadySwarming:
-	getlandmarkname STRING_BUFFER_5, ROUTE_33
+	getlandmarkname STRING_BUFFER_5, LANDMARK_ROUTE_33
 	farsjump AnthonyHurryScript
 
 AnthonyPhoneCallerScript:
@@ -44,7 +44,7 @@ AnthonyFridayNight:
 	setflag ENGINE_ANTHONY_FRIDAY_NIGHT
 
 AnthonyWantsBattle:
-	getlandmarkname STRING_BUFFER_5, ROUTE_33
+	getlandmarkname STRING_BUFFER_5, LANDMARK_ROUTE_33
 	setflag ENGINE_ANTHONY
 	farsjump PhoneScript_WantsToBattle_Male
 
@@ -54,7 +54,7 @@ AnthonyTriesDunsparceSwarm:
 	setflag ENGINE_DUNSPARCE_SWARM
 	getmonname STRING_BUFFER_4, DUNSPARCE
 	swarm SWARM_DUNSPARCE, DARK_CAVE_VIOLET_ENTRANCE
-	getlandmarkname STRING_BUFFER_5, DARK_CAVE
+	getlandmarkname STRING_BUFFER_5, LANDMARK_DARK_CAVE
 	farsjump AnthonySwarmScript
 
 .Generic:

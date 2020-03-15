@@ -47,13 +47,13 @@ MomPhonePalette1:
 	sjump MomSavingMoney
 
 .violet
-	getlandmarkname STRING_BUFFER_4, SPROUT_TOWER
+	getlandmarkname STRING_BUFFER_4, LANDMARK_SPROUT_TOWER
 	sjump MomPhoneLandmark
 .azalea
-	getlandmarkname STRING_BUFFER_4, SLOWPOKE_WELL
+	getlandmarkname STRING_BUFFER_4, LANDMARK_SLOWPOKE_WELL
 	sjump MomPhoneLandmark
 .goldenrod
-	getlandmarkname STRING_BUFFER_4, RADIO_TOWER
+	getlandmarkname STRING_BUFFER_4, LANDMARK_RADIO_TOWER
 	sjump MomPhoneLandmark
 
 MomPhonePalette2:

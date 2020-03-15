@@ -54,9 +54,9 @@ RegionCheck:
 	ld a, [wMapNumber]
 	ld c, a
 	call GetWorldMapLocation
-	cp FAST_SHIP ; S.S. Aqua
+	cp LANDMARK_FAST_SHIP ; S.S. Aqua
 	jr z, .johto
-	cp SPECIAL_MAP
+	cp LANDMARK_SPECIAL
 	jr nz, .checkagain
 
 ; In a special map, get the backup map group / map id
@@ -71,7 +71,7 @@ RegionCheck:
 	jr c, .johto
 
 ; Victory Road area is considered to be Johto.
-	cp VICTORY_ROAD
+	cp LANDMARK_VICTORY_ROAD
 	jr c, .kanto
 
 .johto

@@ -63,24 +63,24 @@ InitMapNameSign::
 	ld a, [wPrevLandmark]
 	cp c
 	ret z
-	cp SPECIAL_MAP
+	cp LANDMARK_SPECIAL
 	ret
 
 .CheckSpecialMap:
 ; These landmarks do not get pop-up signs.
 	cp -1
 	ret z
-	cp SPECIAL_MAP ; redundant check
+	cp LANDMARK_SPECIAL ; redundant check
 	ret z
-	cp RADIO_TOWER
+	cp LANDMARK_RADIO_TOWER
 	ret z
-	cp LAV_RADIO_TOWER
+	cp LANDMARK_LAV_RADIO_TOWER
 	ret z
-	cp UNDERGROUND_PATH
+	cp LANDMARK_UNDERGROUND_PATH
 	ret z
-	cp INDIGO_PLATEAU
+	cp LANDMARK_INDIGO_PLATEAU
 	ret z
-	cp POWER_PLANT
+	cp LANDMARK_POWER_PLANT
 	ret z
 	ld a, 1
 	and a

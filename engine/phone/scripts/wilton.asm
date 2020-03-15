@@ -16,11 +16,11 @@ WiltonPhoneCalleeScript:
 	farsjump WiltonHaventFoundAnythingScript
 
 .WantsBattle:
-	getlandmarkname STRING_BUFFER_5, ROUTE_44
+	getlandmarkname STRING_BUFFER_5, LANDMARK_ROUTE_44
 	farsjump WiltonNotBitingScript
 
 .HasItem:
-	getlandmarkname STRING_BUFFER_5, ROUTE_44
+	getlandmarkname STRING_BUFFER_5, LANDMARK_ROUTE_44
 	farsjump WiltonWantThisScript
 
 WiltonPhoneCallerScript:
@@ -44,13 +44,13 @@ WiltonThursdayMorning:
 	setflag ENGINE_WILTON_THURSDAY_MORNING
 
 WiltonWantsBattle:
-	getlandmarkname STRING_BUFFER_5, ROUTE_44
+	getlandmarkname STRING_BUFFER_5, LANDMARK_ROUTE_44
 	setflag ENGINE_WILTON
 	farsjump PhoneScript_WantsToBattle_Male
 
 WiltonHasItem:
 	setflag ENGINE_WILTON_HAS_ITEM
-	getlandmarkname STRING_BUFFER_5, ROUTE_44
+	getlandmarkname STRING_BUFFER_5, LANDMARK_ROUTE_44
 	clearevent EVENT_WILTON_HAS_ULTRA_BALL
 	clearevent EVENT_WILTON_HAS_GREAT_BALL
 	clearevent EVENT_WILTON_HAS_POKE_BALL

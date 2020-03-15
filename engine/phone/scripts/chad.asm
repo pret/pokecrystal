@@ -14,7 +14,7 @@ ChadPhoneCalleeScript:
 	farsjump ChadHangUpScript
 
 .WantsBattle:
-	getlandmarkname STRING_BUFFER_5, ROUTE_38
+	getlandmarkname STRING_BUFFER_5, LANDMARK_ROUTE_38
 	farsjump ChadReminderScript
 
 ChadPhoneCallerScript:
@@ -38,7 +38,7 @@ ChadFridayMorning:
 	setflag ENGINE_CHAD_FRIDAY_MORNING
 
 ChadWantsBattle:
-	getlandmarkname STRING_BUFFER_5, ROUTE_38
+	getlandmarkname STRING_BUFFER_5, LANDMARK_ROUTE_38
 	setflag ENGINE_CHAD
 	farsjump PhoneScript_WantsToBattle_Male
 

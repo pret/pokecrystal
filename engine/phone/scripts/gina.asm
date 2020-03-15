@@ -21,11 +21,11 @@ GinaPhoneCalleeScript:
 	farsjump GinaRocketRumorScript
 
 .WantsBattle:
-	getlandmarkname STRING_BUFFER_5, ROUTE_34
+	getlandmarkname STRING_BUFFER_5, LANDMARK_ROUTE_34
 	farsjump GinaReminderScript
 
 .HasLeafStone:
-	getlandmarkname STRING_BUFFER_5, ROUTE_34
+	getlandmarkname STRING_BUFFER_5, LANDMARK_ROUTE_34
 	farsjump GinaComePickUpScript
 
 GinaPhoneCallerScript:
@@ -59,7 +59,7 @@ GinaSundayDay:
 	setflag ENGINE_GINA_SUNDAY_AFTERNOON
 
 GinaWantsBattle:
-	getlandmarkname STRING_BUFFER_5, ROUTE_34
+	getlandmarkname STRING_BUFFER_5, LANDMARK_ROUTE_34
 	setflag ENGINE_GINA
 	farsjump PhoneScript_WantsToBattle_Female
 
@@ -68,5 +68,5 @@ GinaRockets:
 
 GinaHasLeafStone:
 	setflag ENGINE_GINA_HAS_LEAF_STONE
-	getlandmarkname STRING_BUFFER_5, ROUTE_34
+	getlandmarkname STRING_BUFFER_5, LANDMARK_ROUTE_34
 	farsjump PhoneScript_FoundItem_Female
