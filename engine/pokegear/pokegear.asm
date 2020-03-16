@@ -2076,6 +2076,11 @@ _FlyMap:
 	jr .loop
 
 .pressedA
+	; TODO: uncomment below once .askPlayerIsSure gets better UI
+	;ld a, [wStartingLocationSelector]
+	;bit 0, a
+	;jr nz, .askPlayerIsSure
+.goHere
 	ld a, [wTownMapPlayerIconLandmark]
 	ld l, a
 	ld h, 0
@@ -2102,7 +2107,7 @@ _FlyMap:
 	ld a, [wStartingLocationSelector]
 	set 1, a
 	ld [wStartingLocationSelector], a
-	jr .switchRegionScreen
+	jr .reloadMapScreen
 
 .switchToKanto
 	; reset the isJohto flag
@@ -2110,10 +2115,8 @@ _FlyMap:
 	res 1, a
 	ld [wStartingLocationSelector], a
 
-.switchRegionScreen
+.reloadMapScreen
 	call ClearBGPalettes
-	call ClearTilemap
-	call ClearSprites
 	farcall ClearSpriteAnims
 	call LoadTownMapGFX
 	ld de, FlyMapLabelBorderGFX
@@ -2126,6 +2129,36 @@ _FlyMap:
 	call GetSGBLayout
 	call SetPalettes
 	jr .continueMapMenu
+
+.askPlayerIsSure ; this is ugly, but keep this for reference
+	push hl
+	push bc
+	push de
+	call ClearSprites
+
+	call ClearBGPalettes
+	ld b, SCGB_POKEGEAR_PALS
+	call GetSGBLayout
+	call SetPalettes
+	
+	hlcoord 0, 12
+	ld b, 4
+	ld c, 18
+	call Textbox
+	hlcoord 1, 14
+	ld de, .startHereText
+	call PlaceString
+
+	call YesNoBox
+	;ld hl, IsThisWhereYourAdventuresBegins
+	;call PrintText
+	pop de
+	pop bc
+	pop hl
+	jp nc, .goHere
+	jp .reloadMapScreen
+.startHereText:
+	db "Start here?@"
 
 FlyMapScroll:
 	ld a, [wStartFlypoint]
@@ -2169,6 +2202,10 @@ FlyMapScroll:
 	xor a
 	ldh [hBGMapMode], a
 	ret
+
+IsThisWhereYourAdventuresBegins:
+	text_far _IsThisWhereYourAdventuresBeginsText
+	text_end
 
 TownMapBubble:
 ; Draw the bubble containing the location text in the town map HUD
