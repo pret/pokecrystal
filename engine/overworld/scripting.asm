@@ -2837,7 +2837,6 @@ Script_checksameday:
 	ld a, [wCurDay]
 	cp b
 	jr z, .same
-	ld [wDayLastSet], a
 	xor a
 	ld [wScriptVar], a
 	ret
@@ -2864,7 +2863,7 @@ Script_randomizeshop:
 	cp 250
 	jr nc, .sample
 	ld a, b
-	add 1
+	inc a
 	ld [wTempRandMon], a
 	ld a, [hl]
 	ld b, a
@@ -2874,14 +2873,15 @@ Script_randomizeshop:
 	ld [hli], a
 	dec c
 	jr nz, .sample
+	ld a, [wCurDay]
+	ld [wDayLastSet], a
 	ret
 
 Script_getBTcoins:
 ; script command 0xac
 
 	push bc
-	xor a
-	ld c, a
+	ld c, 0
 	ld a, [wNrOfBeatenBattleTowerTrainers]
 .gettens
 	inc c
@@ -2922,8 +2922,7 @@ Script_updateBTcoinsStringBuffer:
 	ret
 .tens
 	push bc
-	xor a
-	ld c, a
+	ld c, 0
 	ld a, [wScriptVar]
 .gettens
 	inc c

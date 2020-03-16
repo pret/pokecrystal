@@ -282,15 +282,8 @@ BattleTower1FTeacherScript:
 	opentext
 	writetext Text_BattleTowerTeacher
 	waitbutton
-	givecoins 500
+	givecoins 20
 	setflag ENGINE_POKEGEAR
-	randomizeshop
-	clearflag ENGINE_SHOP_BOUGHT1
-	clearflag ENGINE_SHOP_BOUGHT2
-	clearflag ENGINE_SHOP_BOUGHT3
-	clearflag ENGINE_SHOP_BOUGHT4
-	clearflag ENGINE_SHOP_BOUGHT5
-	clearflag ENGINE_SHOP_BOUGHT6	
 	closetext
 	end
 
@@ -330,6 +323,8 @@ Clerk_ConfirmPurchaseScript:
 	
 	
 BattleTower1FClerkScript:
+	checkflag ENGINE_SHOP_INITIALIZED
+	iffalse .rand
 	checksameday	
 	iftrue .start
 .rand
@@ -340,6 +335,7 @@ BattleTower1FClerkScript:
 	clearflag ENGINE_SHOP_BOUGHT4
 	clearflag ENGINE_SHOP_BOUGHT5
 	clearflag ENGINE_SHOP_BOUGHT6	
+	setflag ENGINE_SHOP_INITIALIZED
 .start
 	faceplayer
 	opentext
@@ -364,8 +360,6 @@ BattleTower1FClerkScript:
 .Mild1:
 	checkflag ENGINE_SHOP_BOUGHT1
 	iftrue .alreadybought
-	checkcoins BATTLETOWER_MILD_COINS
-	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
 	; readvar VAR_PARTYCOUNT
 	; ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
 	readmem wRandMon1
@@ -378,6 +372,8 @@ BattleTower1FClerkScript:
 	getmonname STRING_BUFFER_3, USE_SCRIPT_VAR
 	scall Clerk_ConfirmPurchaseScript
 	iffalse .loop ;Clerk_CancelPurchaseScript
+	checkcoins BATTLETOWER_MILD_COINS
+	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext ClerkHereYouGoText
@@ -393,8 +389,6 @@ BattleTower1FClerkScript:
 .Mild2:
 	checkflag ENGINE_SHOP_BOUGHT2
 	iftrue .alreadybought
-	checkcoins BATTLETOWER_MILD_COINS
-	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
 	; readvar VAR_PARTYCOUNT
 	; ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
 	readmem wRandMon2
@@ -407,6 +401,8 @@ BattleTower1FClerkScript:
 	getmonname STRING_BUFFER_3, USE_SCRIPT_VAR
 	scall Clerk_ConfirmPurchaseScript
 	iffalse .loop
+	checkcoins BATTLETOWER_MILD_COINS
+	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext ClerkHereYouGoText
@@ -422,8 +418,6 @@ BattleTower1FClerkScript:
 .Mild3:
 	checkflag ENGINE_SHOP_BOUGHT3
 	iftrue .alreadybought
-	checkcoins BATTLETOWER_MILD_COINS
-	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
 	; readvar VAR_PARTYCOUNT
 	; ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
 	readmem wRandMon3
@@ -436,6 +430,8 @@ BattleTower1FClerkScript:
 	getmonname STRING_BUFFER_3, USE_SCRIPT_VAR
 	scall Clerk_ConfirmPurchaseScript
 	iffalse .loop
+	checkcoins BATTLETOWER_MILD_COINS
+	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext ClerkHereYouGoText
@@ -451,8 +447,6 @@ BattleTower1FClerkScript:
 .Mild4:
 	checkflag ENGINE_SHOP_BOUGHT4
 	iftrue .alreadybought
-	checkcoins BATTLETOWER_MILD_COINS
-	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
 	; readvar VAR_PARTYCOUNT
 	; ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
 	readmem wRandMon4
@@ -465,6 +459,8 @@ BattleTower1FClerkScript:
 	getmonname STRING_BUFFER_3, USE_SCRIPT_VAR
 	scall Clerk_ConfirmPurchaseScript
 	iffalse .loop
+	checkcoins BATTLETOWER_MILD_COINS
+	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext ClerkHereYouGoText
@@ -480,8 +476,6 @@ BattleTower1FClerkScript:
 .Mega:
 	checkflag ENGINE_SHOP_BOUGHT5
 	iftrue .alreadybought
-	checkcoins BATTLETOWER_MILD_COINS
-	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
 	; readvar VAR_PARTYCOUNT
 	; ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
 	readmem wRandMon5
@@ -494,6 +488,8 @@ BattleTower1FClerkScript:
 	getmonname STRING_BUFFER_3, USE_SCRIPT_VAR
 	scall Clerk_ConfirmPurchaseScript
 	iffalse .loop
+	checkcoins BATTLETOWER_MILD_COINS
+	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext ClerkHereYouGoText
@@ -509,8 +505,6 @@ BattleTower1FClerkScript:
 .Mythic:
 	checkflag ENGINE_SHOP_BOUGHT6
 	iftrue .alreadybought
-	checkcoins BATTLETOWER_MILD_COINS
-	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
 	; readvar VAR_PARTYCOUNT
 	; ifequal PARTY_LENGTH, Clerk_NoRoomForPrizeScript
 	readmem wRandMon6
@@ -523,6 +517,8 @@ BattleTower1FClerkScript:
 	getmonname STRING_BUFFER_3, USE_SCRIPT_VAR
 	scall Clerk_ConfirmPurchaseScript
 	iffalse .loop
+	checkcoins BATTLETOWER_MILD_COINS
+	ifequal HAVE_LESS, Clerk_NotEnoughCoinsScript
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext ClerkHereYouGoText
