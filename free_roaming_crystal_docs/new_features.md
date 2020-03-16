@@ -54,6 +54,8 @@
 - Added pack space, removed some PC item storage space
 - Physical/Special Split
 - Press B to highlight RUN
+- All headbutt trees have a 70% encounter chance
+- Stone evos with lacking movepools have been updated
 
 ### Bugfixes - DONE
 
@@ -89,7 +91,7 @@
 - Scaling Wildmon
   - Wildmon based on team levels
   - Caps on wildmon levels are raised after each badge
-- Add back - Can only fly somewhere if you've been there.
+- Make certain areas impossible to FLY to until visited.
 - Starting Selector
   - Fix bug when pressing left on first pokemon of first category
 - Starting Location Selector
@@ -99,7 +101,7 @@
 #### OWF - Medium Priority
 
 - Rebattleable Gym Leaders
-- "Karma" (how many trainers and Pokemon have you helped?) 
+- "Karma" (how many trainers and Pokemon have you helped?)
 - Choose form during starter selection
 
 ### Forms - TODO
@@ -125,7 +127,6 @@
 #### QOL - High Priority
 
 - Bill calls and switches your box when its full
-- Pressing B in a wild battle moves the cursor to RUN
 - Move Relearner/Move Deleter at every pokecenter
 - Replace trade evolutions with different methods
   - Trade stone?
