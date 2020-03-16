@@ -33,7 +33,7 @@ DaisyScript:
 	closetext
 	special FadeOutPalettes
 	playmusic MUSIC_HEAL
-	pause 60
+	pause 30
 	special FadeInPalettes
 	special RestartMapMusic
 	opentext
