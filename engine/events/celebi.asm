@@ -120,10 +120,7 @@ SpecialCelebiLeafGFX:
 INCBIN "gfx/overworld/cut_grass.2bpp"
 
 SpecialCelebiGFX:
-INCBIN "gfx/overworld/celebi/1.2bpp"
-INCBIN "gfx/overworld/celebi/2.2bpp"
-INCBIN "gfx/overworld/celebi/3.2bpp"
-INCBIN "gfx/overworld/celebi/4.2bpp"
+INCBIN "gfx/overworld/celebi.2bpp"
 
 UpdateCelebiPosition:
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
