@@ -1454,7 +1454,7 @@ ExeggutorEvosAttacks:
 	db 1, BARRAGE
 	db 1, HYPNOSIS
 	db 7, REFLECT
-	db 13, LEECH_SEEDv
+	db 13, LEECH_SEED
 	db 19, STOMP
 	db 22, CONFUSION
 	db 25, STUN_SPORE
