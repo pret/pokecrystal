@@ -23,6 +23,7 @@
 
 ### Quality of Life Improvements - DONE
 
+- Each mon has its own menu sprite
 - Updated Mon Sprites to better match official art
   - Mon Sprite Updates made by SoupPotato
 - Reusable TMs
@@ -92,7 +93,7 @@
   - Wildmon based on team levels
   - Caps on wildmon levels are raised after each badge
 - Make certain areas impossible to FLY to until visited.
-- Starting Selector
+- Starter Selector
   - Fix bug when pressing left on first pokemon of first category
 - Starting Location Selector
   - Remove ability to start the game from places like Mt. Silver
