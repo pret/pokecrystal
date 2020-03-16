@@ -2203,9 +2203,10 @@ FlyMapScroll:
 	ldh [hBGMapMode], a
 	ret
 
-IsThisWhereYourAdventuresBegins:
-	text_far _IsThisWhereYourAdventuresBeginsText
-	text_end
+; TODO: uncomment once starting location confirmation UI is ready
+;IsThisWhereYourAdventuresBegins:
+;	text_far _IsThisWhereYourAdventuresBeginsText
+;	text_end
 
 TownMapBubble:
 ; Draw the bubble containing the location text in the town map HUD
