@@ -87,8 +87,8 @@ Route40PokefanMScript:
 Route40Lass2Script:
 	jumptextfaceplayer Route40Lass2Text
 
-Route40StandingYoungsterScript:
-	jumptextfaceplayer Route40StandingYoungsterText
+Route40YoungsterScript:
+	jumptextfaceplayer Route40YoungsterText
 
 MonicaScript:
 	faceplayer
@@ -269,7 +269,7 @@ Route40Lass2Text:
 	cont "from a big city."
 	done
 
-Route40StandingYoungsterText:
+Route40YoungsterText:
 	text "Have you gone to"
 	line "the BATTLE TOWER?"
 
@@ -359,4 +359,4 @@ Route40_MapEvents:
 	object_event  8, 10, SPRITE_BUENA, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MonicaScript, EVENT_ROUTE_40_MONICA_OF_MONDAY
 	object_event  7,  6, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route40PokefanMScript, -1
 	object_event 13,  4, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route40Lass2Script, -1
-	object_event 16,  9, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route40StandingYoungsterScript, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
+	object_event 16,  9, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route40YoungsterScript, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR

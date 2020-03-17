@@ -7,7 +7,7 @@
 	const AZALEATOWN_SLOWPOKE3
 	const AZALEATOWN_SLOWPOKE4
 	const AZALEATOWN_FRUIT_TREE
-	const AZALEATOWN_KURT_OUTSIDE
+	const AZALEATOWN_KURT
 
 AzaleaTown_MapScripts:
 	db 2 ; scene scripts
@@ -130,13 +130,13 @@ AzaleaTownCelebiScene:
 	opentext	
 	writetext AzaleaTownKurtText1	
 	promptbutton	
-	turnobject AZALEATOWN_KURT_OUTSIDE, RIGHT	
+	turnobject AZALEATOWN_KURT, RIGHT	
 	writetext AzaleaTownKurtText2	
 	promptbutton	
 	writetext AzaleaTownKurtText3	
 	waitbutton	
 	verbosegiveitem GS_BALL	
-	turnobject AZALEATOWN_KURT_OUTSIDE, LEFT	
+	turnobject AZALEATOWN_KURT, LEFT	
 	setflag ENGINE_FOREST_IS_RESTLESS	
 	clearevent EVENT_ILEX_FOREST_LASS	
 	setevent EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS	
@@ -149,7 +149,7 @@ AzaleaTownKurtScript:
 	opentext	
 	writetext AzaleaTownKurtText3	
 	waitbutton	
-	turnobject AZALEATOWN_KURT_OUTSIDE, LEFT	
+	turnobject AZALEATOWN_KURT, LEFT	
 	closetext	
 	end
 
@@ -257,4 +257,4 @@ AzaleaTown_MapEvents:
 	object_event 29,  9, SPRITE_SLOWPOKE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaTownSlowpokeScript, EVENT_AZALEA_TOWN_SLOWPOKES
 	object_event 15, 15, SPRITE_SLOWPOKE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaTownSlowpokeScript, EVENT_AZALEA_TOWN_SLOWPOKES
 	object_event  8,  2, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, WhiteApricornTree, -1
-	object_event  6,  5, SPRITE_KURT_OUTSIDE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaTownKurtScript, EVENT_AZALEA_TOWN_KURT
+	object_event  6,  5, SPRITE_KURT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaTownKurtScript, EVENT_AZALEA_TOWN_KURT

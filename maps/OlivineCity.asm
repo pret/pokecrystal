@@ -73,18 +73,18 @@ OlivineCityRivalSceneBottom:
 OlivineCitySailor1Script:
 	jumptextfaceplayer OlivineCitySailor1Text
 
-OlivineCityStandingYoungsterScript:
+OlivineCityYoungsterScript:
 	faceplayer
 	opentext
 	random 2
 	ifequal 0, .FiftyFifty
-	writetext OlivineCityStandingYoungsterPokegearText
+	writetext OlivineCityYoungsterPokegearText
 	waitbutton
 	closetext
 	end
 
 .FiftyFifty:
-	writetext OlivineCityStandingYoungsterPokedexText
+	writetext OlivineCityYoungsterPokedexText
 	waitbutton
 	closetext
 	end
@@ -223,14 +223,14 @@ OlivineCitySailor1Text:
 	line "ship can sail."
 	done
 
-OlivineCityStandingYoungsterPokegearText:
+OlivineCityYoungsterPokegearText:
 	text "That thing you"
 	line "have--it's a #-"
 	cont "GEAR, right? Wow,"
 	cont "that's cool."
 	done
 
-OlivineCityStandingYoungsterPokedexText:
+OlivineCityYoungsterPokedexText:
 	text "Wow, you have a"
 	line "#DEX!"
 
@@ -317,6 +317,6 @@ OlivineCity_MapEvents:
 
 	db 4 ; object events
 	object_event 26, 27, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineCitySailor1Script, -1
-	object_event 20, 13, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineCityStandingYoungsterScript, -1
+	object_event 20, 13, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineCityYoungsterScript, -1
 	object_event 17, 21, SPRITE_SAILOR, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineCitySailor2Script, -1
 	object_event 10, 11, SPRITE_OLIVINE_RIVAL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_OLIVINE_CITY

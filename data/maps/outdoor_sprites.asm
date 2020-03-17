@@ -174,7 +174,7 @@ AzaleaGroupSprites:
 	; 6 of max 9 walking sprites
 	db SPRITE_FRUIT_TREE
 	db SPRITE_SLOWPOKE
-	db SPRITE_KURT_OUTSIDE ; non-walking version of SPRITE_KURT
+	db SPRITE_KURT ; non-walking version of SPRITE_KURT
 	db 0 ; end
 
 GoldenrodGroupSprites:
@@ -209,7 +209,7 @@ CianwoodGroupSprites:
 	db SPRITE_TAUROS
 	db SPRITE_FRUIT_TREE
 	db SPRITE_ROCK
-	db SPRITE_STANDING_YOUNGSTER ; non-walking version of SPRITE_YOUNGSTER
+	db SPRITE_YOUNGSTER ; non-walking version of SPRITE_YOUNGSTER
 	db SPRITE_SUICUNE
 	db 0 ; end
 
