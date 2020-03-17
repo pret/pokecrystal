@@ -98,5 +98,3 @@ const_value = -1
 	const SPAWN_MT_SILVER
 	const SPAWN_FAST_SHIP
 NUM_SPAWNS EQU const_value
-
-MAX_OUTDOOR_SPRITES EQU 23 ; see engine/overworld/overworld.asm
