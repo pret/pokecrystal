@@ -123,6 +123,13 @@
     - Pinkan Berry item transformation
     - Megas (look at armored mewtwo in Polished Crystal)
 
+## Bugfixes - TODO
+
+- Sometimes, newly caught mon data uses the shiny palette
+  - Is this linked to the shiny toggle in the pokedex?
+- Some variablesprite issues occur when you navigate the map in ways the game doesn't intend
+  - Example: if you don't battle the SUDOWOODO on route 36, the Twins on route 37 will have WEIRD_TREE sprites
+
 ### Quality of Life Improvements - TODO
 
 #### QOL - High Priority
