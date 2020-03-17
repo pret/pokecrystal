@@ -157,7 +157,8 @@ EcruteakGroupSprites:
 	db SPRITE_BUG_CATCHER
 	db SPRITE_SUPER_NERD
 	; 8 of max 9 walking sprites
-	db SPRITE_WEIRD_TREE ; variable sprite: becomes SPRITE_SUDOWOODO and SPRITE_TWIN
+	db SPRITE_TWIN
+	db SPRITE_SUDOWOODO
 	db SPRITE_POKE_BALL
 	db SPRITE_FRUIT_TREE
 	db SPRITE_SUICUNE
@@ -169,9 +170,10 @@ AzaleaGroupSprites:
 	db SPRITE_YOUNGSTER
 	db SPRITE_POKEFAN_M
 	db SPRITE_TEACHER
-	db SPRITE_AZALEA_ROCKET ; variable sprite: becomes SPRITE_ROCKET and SPRITE_SILVER
+	db SPRITE_ROCKET
+	db SPRITE_SILVER
 	db SPRITE_LASS
-	; 6 of max 9 walking sprites
+	; 7 of max 9 walking sprites
 	db SPRITE_FRUIT_TREE
 	db SPRITE_SLOWPOKE
 	db SPRITE_KURT ; non-walking version of SPRITE_KURT
@@ -197,7 +199,8 @@ OlivineGroupSprites:
 ; Route38, Route39, OlivineCity
 CianwoodGroupSprites:
 ; Route40, Route41, CianwoodCity, BattleTowerOutside
-	db SPRITE_OLIVINE_RIVAL ; variable sprite: becomes SPRITE_SILVER and SPRITE_SWIMMER_GUY
+	db SPRITE_SILVER
+	db SPRITE_ROCKET
 	db SPRITE_POKEFAN_M
 	db SPRITE_LASS
 	db SPRITE_BUENA
@@ -205,7 +208,7 @@ CianwoodGroupSprites:
 	db SPRITE_SAILOR
 	db SPRITE_POKEFAN_F
 	db SPRITE_SUPER_NERD
-	; 8 of max 9 walking sprites
+	; 9 of max 9 walking sprites
 	db SPRITE_TAUROS
 	db SPRITE_FRUIT_TREE
 	db SPRITE_ROCK
