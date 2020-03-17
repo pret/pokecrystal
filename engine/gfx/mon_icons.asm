@@ -336,10 +336,10 @@ endr
 
 GetIconBank:
 	ld a, [wCurIcon]
-	cp TAUROS ; last mon in first icon bank
-	lb bc, BANK("MON ICONS 1"), 8
+	cp TAUROS ; first mon in second icon bank
+	lb bc, BANK("Mon Icons 1"), 8
 	ret c
-	ld b, BANK("MON ICONS 2")
+	ld b, BANK("Mon Icons 2")
 	ret
 
 GetGFXUnlessMobile:
