@@ -13,8 +13,7 @@ INCLUDE "data/trainers/party_pointers.asm"
 ;    *							   ... ; 17 sets total
 ; -  db $ff ; end
 
-SECTION "Enemy Trainers 1", ROMX
-
+SECTION "Falkner", ROMX
 FalknerGroup:
 	; FALKNER (1)
 	db "FALKNER@"
@@ -267,6 +266,7 @@ FalknerGroup:
 		db WING_ATTACK
 	db $ff ; end
 
+SECTION "Whitney", ROMX
 WhitneyGroup:
 	; WHITNEY (1)
 	db "WHITNEY@", TRAINERTYPE_MOVES
@@ -275,6 +275,7 @@ WhitneyGroup:
 	
 	db $ff ; end
 
+SECTION "Bugsy", ROMX
 BugsyGroup:
 	; BUGSY (1)
 	db "BUGSY@", TRAINERTYPE_MOVES
@@ -284,6 +285,7 @@ BugsyGroup:
 	
 	db $ff ; end
 
+SECTION "Morty", ROMX
 MortyGroup:
 	; MORTY (1)
 	db "MORTY@", TRAINERTYPE_MOVES
@@ -294,6 +296,7 @@ MortyGroup:
 	
 	db $ff ; end
 
+SECTION "Pryce", ROMX
 PryceGroup:
 	; PRYCE (1)
 	db "PRYCE@", TRAINERTYPE_MOVES
@@ -303,6 +306,7 @@ PryceGroup:
 	
 	db $ff ; end
 
+SECTION "Jasmine", ROMX
 JasmineGroup:
 	; JASMINE (1)
 	db "JASMINE@", TRAINERTYPE_MOVES
@@ -312,6 +316,7 @@ JasmineGroup:
 	
 	db $ff ; end
 
+SECTION "Chuck", ROMX
 ChuckGroup:
 	; CHUCK (1)
 	db "CHUCK@", TRAINERTYPE_MOVES
@@ -320,6 +325,7 @@ ChuckGroup:
 	
 	db $ff ; end
 
+SECTION "Clair", ROMX
 ClairGroup:
 	; CLAIR (1)
 	db "CLAIR@", TRAINERTYPE_MOVES
@@ -330,6 +336,7 @@ ClairGroup:
 	
 	db $ff ; end
 
+SECTION "Rival1", ROMX
 Rival1Group:
 	; RIVAL1 (1)
 	db "?@", TRAINERTYPE_NORMAL
@@ -463,8 +470,10 @@ Rival1Group:
 	
 	db $ff ; end
 
+SECTION "Pokemon Prof", ROMX ; what's going on here?
 PokemonProfGroup:
 
+SECTION "Will", ROMX
 WillGroup:
 	; WILL (1)
 	db "WILL@", TRAINERTYPE_MOVES
@@ -476,6 +485,7 @@ WillGroup:
 	
 	db $ff ; end
 
+SECTION "PKMNTrainer", ROMX
 PKMNTrainerGroup:
 	; CAL (1)
 	db "CAL@", TRAINERTYPE_NORMAL
@@ -501,6 +511,7 @@ PKMNTrainerGroup:
 	
 	db $ff ; end
 
+SECTION "Bruno", ROMX
 BrunoGroup:
 	; BRUNO (1)
 	db "BRUNO@", TRAINERTYPE_MOVES
@@ -512,6 +523,7 @@ BrunoGroup:
 	
 	db $ff ; end
 
+SECTION "Karen", ROMX
 KarenGroup:
 	; KAREN (1)
 	db "KAREN@", TRAINERTYPE_MOVES
@@ -523,6 +535,7 @@ KarenGroup:
 	
 	db $ff ; end
 
+SECTION "Koga", ROMX
 KogaGroup:
 	; KOGA (1)
 	db "KOGA@", TRAINERTYPE_MOVES
@@ -534,6 +547,8 @@ KogaGroup:
 	
 	db $ff ; end
 
+
+SECTION "Champion", ROMX
 ChampionGroup:
 	; CHAMPION (1)
 	db "LANCE@", TRAINERTYPE_MOVES
@@ -546,6 +561,7 @@ ChampionGroup:
 	
 	db $ff ; end
 
+SECTION "Brock", ROMX
 BrockGroup:
 	; BROCK (1)
 	db "BROCK@", TRAINERTYPE_MOVES
@@ -557,6 +573,7 @@ BrockGroup:
 	
 	db $ff ; end
 
+SECTION "Misty", ROMX
 MistyGroup:
 	; MISTY (1)
 	db "MISTY@", TRAINERTYPE_MOVES
@@ -567,6 +584,7 @@ MistyGroup:
 	
 	db $ff ; end
 
+SECTION "Surge", ROMX
 LtSurgeGroup:
 	; LT_SURGE (1)
 	db "LT.SURGE@", TRAINERTYPE_MOVES
@@ -578,6 +596,7 @@ LtSurgeGroup:
 	
 	db $ff ; end
 
+SECTION "Scientist", ROMX
 ScientistGroup:
 	; SCIENTIST (1)
 	db "ROSS@", TRAINERTYPE_NORMAL
@@ -614,6 +633,7 @@ ScientistGroup:
 	
 	db $ff ; end
 
+SECTION "Erika", ROMX
 ErikaGroup:
 	; ERIKA (1)
 	db "ERIKA@", TRAINERTYPE_MOVES
@@ -624,6 +644,7 @@ ErikaGroup:
 	
 	db $ff ; end
 
+SECTION "Youngster", ROMX
 YoungsterGroup:
 	; YOUNGSTER (1)
 	db "JOEY@", TRAINERTYPE_NORMAL
@@ -717,6 +738,7 @@ YoungsterGroup:
 	
 	db $ff ; end
 
+SECTION "Schoolboy", ROMX
 SchoolboyGroup:
 	; SCHOOLBOY (1)
 	db "JACK@", TRAINERTYPE_NORMAL
@@ -897,6 +919,7 @@ SchoolboyGroup:
 	
 	db $ff ; end
 
+SECTION "Bird Keeper", ROMX
 BirdKeeperGroup:
 	; BIRD_KEEPER (1)
 	db "ROD@", TRAINERTYPE_NORMAL
@@ -1032,6 +1055,7 @@ BirdKeeperGroup:
 	
 	db $ff ; end
 
+SECTION "Lass", ROMX
 LassGroup:
 	; LASS (1)
 	db "CARRIE@", TRAINERTYPE_MOVES
@@ -1154,6 +1178,7 @@ LassGroup:
 	
 	db $ff ; end
 
+SECTION "Janine", ROMX
 JanineGroup:
 	; JANINE (1)
 	db "JANINE@", TRAINERTYPE_MOVES
@@ -1165,6 +1190,7 @@ JanineGroup:
 	
 	db $ff ; end
 
+SECTION "Cool Trainer M", ROMX
 CooltrainerMGroup:
 	; COOLTRAINERM (1)
 	db "NICK@", TRAINERTYPE_MOVES
@@ -1315,6 +1341,7 @@ CooltrainerMGroup:
 	
 	db $ff ; end
 
+SECTION "Cool Trainer F", ROMX
 CooltrainerFGroup:
 	; COOLTRAINERF (1)
 	db "GWEN@", TRAINERTYPE_NORMAL
@@ -1467,6 +1494,7 @@ CooltrainerFGroup:
 	
 	db $ff ; end
 
+SECTION "Beauty", ROMX
 BeautyGroup:
 	; BEAUTY (1)
 	db "VICTORIA@", TRAINERTYPE_NORMAL
@@ -1579,6 +1607,7 @@ BeautyGroup:
 	
 	db $ff ; end
 
+SECTION "Pokemaniac", ROMX
 PokemaniacGroup:
 	; POKEMANIAC (1)
 	db "LARRY@", TRAINERTYPE_NORMAL
@@ -1675,6 +1704,7 @@ PokemaniacGroup:
 	
 	db $ff ; end
 
+SECTION "Grunt M", ROMX
 GruntMGroup:
 	; GRUNTM (1)
 	db "GRUNT@", TRAINERTYPE_NORMAL
@@ -1897,6 +1927,7 @@ GruntMGroup:
 	
 	db $ff ; end
 
+SECTION "Gentleman", ROMX
 GentlemanGroup:
 	; GENTLEMAN (1)
 	db "PRESTON@", TRAINERTYPE_NORMAL
@@ -1930,6 +1961,7 @@ GentlemanGroup:
 	
 	db $ff ; end
 
+SECTION "Skier", ROMX
 SkierGroup:
 	; SKIER (1)
 	db "ROXANNE@", TRAINERTYPE_NORMAL
@@ -1943,6 +1975,7 @@ SkierGroup:
 	
 	db $ff ; end
 
+SECTION "Teacher", ROMX
 TeacherGroup:
 	; TEACHER (1)
 	db "COLETTE@", TRAINERTYPE_NORMAL
@@ -1963,6 +1996,7 @@ TeacherGroup:
 	
 	db $ff ; end
 
+SECTION "Sabrina", ROMX
 SabrinaGroup:
 	; SABRINA (1)
 	db "SABRINA@", TRAINERTYPE_MOVES
@@ -1972,6 +2006,7 @@ SabrinaGroup:
 	
 	db $ff ; end
 
+SECTION "Bug Catcher", ROMX
 BugCatcherGroup:
 	; BUG_CATCHER (1)
 	db "DON@", TRAINERTYPE_NORMAL
@@ -2111,8 +2146,7 @@ BugCatcherGroup:
 	
 	db $ff ; end
 
-SECTION "Enemy Trainers 2", ROMX
-
+SECTION "Fisher", ROMX
 FisherGroup:
 	; FISHER (1)
 	db "JUSTIN@", TRAINERTYPE_NORMAL
@@ -2301,6 +2335,7 @@ FisherGroup:
 	
 	db $ff ; end
 
+SECTION "Swimmer M", ROMX
 SwimmerMGroup:
 	; SWIMMERM (1)
 	db "HAROLD@", TRAINERTYPE_NORMAL
@@ -2463,6 +2498,7 @@ SwimmerMGroup:
 	
 	db $ff ; end
 
+SECTION "Swimmer F", ROMX
 SwimmerFGroup:
 	; SWIMMERF (1)
 	db "ELAINE@", TRAINERTYPE_NORMAL
@@ -2591,6 +2627,7 @@ SwimmerFGroup:
 	
 	db $ff ; end
 
+SECTION "Sailor", ROMX
 SailorGroup:
 	; SAILOR (1)
 	db "EUGENE@", TRAINERTYPE_NORMAL
@@ -2685,6 +2722,7 @@ SailorGroup:
 	
 	db $ff ; end
 
+SECTION "Super Nerd", ROMX
 SuperNerdGroup:
 	; SUPER_NERD (1)
 	db "STAN@", TRAINERTYPE_NORMAL
@@ -2784,6 +2822,7 @@ SuperNerdGroup:
 	
 	db $ff ; end
 
+SECTION "Rival2", ROMX
 Rival2Group:
 	; RIVAL2 (1)
 	db "?@", TRAINERTYPE_MOVES
@@ -2851,6 +2890,7 @@ Rival2Group:
 	
 	db $ff ; end
 
+SECTION "Guitarist", ROMX
 GuitaristGroup:
 	; GUITARIST (1)
 	db "CLYDE@", TRAINERTYPE_NORMAL
@@ -2867,6 +2907,7 @@ GuitaristGroup:
 	
 	db $ff ; end
 
+SECTION "Hiker", ROMX
 HikerGroup:
 	; HIKER (1)
 	db "ANTHONY@", TRAINERTYPE_NORMAL
@@ -3034,6 +3075,7 @@ HikerGroup:
 	
 	db $ff ; end
 
+SECTION "Biker", ROMX
 BikerGroup:
 	; BIKER (1)
 	db "BENNY@", TRAINERTYPE_NORMAL
@@ -3102,6 +3144,7 @@ BikerGroup:
 	
 	db $ff ; end
 
+SECTION "Blaine", ROMX
 BlaineGroup:
 	; BLAINE (1)
 	db "BLAINE@", TRAINERTYPE_MOVES
@@ -3111,6 +3154,8 @@ BlaineGroup:
 	
 	db $ff ; end
 
+
+SECTION "Burglar", ROMX
 BurglarGroup:
 	; BURGLAR (1)
 	db "DUNCAN@", TRAINERTYPE_NORMAL
@@ -3136,6 +3181,7 @@ BurglarGroup:
 	
 	db $ff ; end
 
+SECTION "Firebreather", ROMX
 FirebreatherGroup:
 	; FIREBREATHER (1)
 	db "OTIS@", TRAINERTYPE_NORMAL
@@ -3194,6 +3240,7 @@ FirebreatherGroup:
 	
 	db $ff ; end
 
+SECTION "Juggler", ROMX
 JugglerGroup:
 	; JUGGLER (1)
 	db "IRWIN@", TRAINERTYPE_NORMAL
@@ -3248,6 +3295,7 @@ JugglerGroup:
 	
 	db $ff ; end
 
+SECTION "Blackbelt", ROMX
 BlackbeltGroup:
 	; BLACKBELT_T (1)
 	db "KENJI@", TRAINERTYPE_NORMAL
@@ -3315,6 +3363,7 @@ BlackbeltGroup:
 	
 	db $ff ; end
 
+SECTION "Executive M", ROMX
 ExecutiveMGroup:
 	; EXECUTIVEM (1)
 	db "EXECUTIVE@", TRAINERTYPE_MOVES
@@ -3349,6 +3398,7 @@ ExecutiveMGroup:
 	
 	db $ff ; end
 
+SECTION "Psychic", ROMX
 PsychicGroup:
 	; PSYCHIC_T (1)
 	db "NATHAN@", TRAINERTYPE_NORMAL
@@ -3433,6 +3483,7 @@ PsychicGroup:
 	
 	db $ff ; end
 
+SECTION "Picknicker", ROMX
 PicnickerGroup:
 	; PICNICKER (1)
 	db "LIZ@", TRAINERTYPE_NORMAL
@@ -3614,6 +3665,7 @@ PicnickerGroup:
 	
 	db $ff ; end
 
+SECTION "Camper", ROMX
 CamperGroup:
 	; CAMPER (1)
 	db "ROLAND@", TRAINERTYPE_NORMAL
@@ -3779,6 +3831,7 @@ CamperGroup:
 	
 	db $ff ; end
 
+SECTION "Executive F", ROMX
 ExecutiveFGroup:
 	; EXECUTIVEF (1)
 	db "EXECUTIVE@", TRAINERTYPE_MOVES
@@ -3796,6 +3849,7 @@ ExecutiveFGroup:
 	
 	db $ff ; end
 
+SECTION "Sage", ROMX
 SageGroup:
 	; SAGE (1)
 	db "CHOW@", TRAINERTYPE_NORMAL
@@ -3885,6 +3939,7 @@ SageGroup:
 	
 	db $ff ; end
 
+SECTION "Medium", ROMX
 MediumGroup:
 	; MEDIUM (1)
 	db "MARTHA@", TRAINERTYPE_NORMAL
@@ -3933,6 +3988,7 @@ MediumGroup:
 	
 	db $ff ; end
 
+SECTION "Boarder", ROMX
 BoarderGroup:
 	; BOARDER (1)
 	db "RONALD@", TRAINERTYPE_NORMAL
@@ -3957,6 +4013,7 @@ BoarderGroup:
 	
 	db $ff ; end
 
+SECTION "Pokefan M", ROMX
 PokefanMGroup:
 	; POKEFANM (1)
 	db "WILLIAM@", TRAINERTYPE_ITEM
@@ -4053,6 +4110,7 @@ PokefanMGroup:
 	
 	db $ff ; end
 
+SECTION "Kimono Girl", ROMX
 KimonoGirlGroup:
 	; KIMONO_GIRL (1)
 	db "NAOKO@", TRAINERTYPE_NORMAL
@@ -4092,6 +4150,7 @@ KimonoGirlGroup:
 	
 	db $ff ; end
 
+SECTION "Twins", ROMX
 TwinsGroup:
 	; TWINS (1)
 	db "AMY & MAY@", TRAINERTYPE_NORMAL
@@ -4163,6 +4222,7 @@ TwinsGroup:
 	
 	db $ff ; end
 
+SECTION "Pokefan F", ROMX
 PokefanFGroup:
 	; POKEFANF (1)
 	db "BEVERLY@", TRAINERTYPE_ITEM
@@ -4204,6 +4264,8 @@ PokefanFGroup:
 	
 	db $ff ; end
 
+
+SECTION "Red", ROMX
 RedGroup:
 	; RED (1)
 	db "RED@", TRAINERTYPE_MOVES
@@ -4216,6 +4278,7 @@ RedGroup:
 	
 	db $ff ; end
 
+SECTION "Blue", ROMX
 BlueGroup:
 	; BLUE (1)
 	db "BLUE@", TRAINERTYPE_MOVES
@@ -4228,6 +4291,7 @@ BlueGroup:
 	
 	db $ff ; end
 
+SECTION "Officer", ROMX
 OfficerGroup:
 	; OFFICER (1)
 	db "KEITH@", TRAINERTYPE_NORMAL
@@ -4242,6 +4306,7 @@ OfficerGroup:
 	
 	db $ff ; end
 
+SECTION "Grunt F", ROMX
 GruntFGroup:
 	; GRUNTF (1)
 	db "GRUNT@", TRAINERTYPE_NORMAL
@@ -4279,6 +4344,7 @@ GruntFGroup:
 	
 	db $ff ; end
 
+SECTION "Mystical Man", ROMX
 MysticalmanGroup:
 	; MYSTICALMAN (1)
 	db "EUSINE@", TRAINERTYPE_MOVES
