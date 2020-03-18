@@ -25,7 +25,7 @@
 
 - Each mon has its own menu sprite
 - Updated Mon Sprites to better match official art
-  - Mon Sprite Updates made by SoupPotato
+  - Mon Sprites created and modified by SoupPotato
 - Reusable TMs
 - Hold B to Run
 - Instant text speed option
@@ -127,8 +127,6 @@
 
 - Sometimes, newly caught mon data uses the shiny palette
   - Is this linked to the shiny toggle in the pokedex?
-- Some variablesprite issues occur when you navigate the map in ways the game doesn't intend
-  - Example: if you don't battle the SUDOWOODO on route 36, the Twins on route 37 will have WEIRD_TREE sprites
 
 ### Quality of Life Improvements - TODO
 
@@ -166,18 +164,18 @@
   - Remove weird DV based breeding restrictions
   - Eggs appear quicker
   - Eggs hatch faster
+  - Make the map with the daycare have a long stretch of uninterupted space to ride on
 - Stone & Trade Evo pokemon can appear in the wild
 - Moves
   - Learnsets mostly updated to Gen 8
   - Some egg moves added to level-up learnsets
   - Expanded learnsets
   - New Moves
-- Pressing 'B' in wild battles places the cursor on 'RUN'
 - Transportation between regions is available every day
 - Bug catching contest available more often?
 - Move relearner/deleter available at every Pokecenter
 - Clock reset on intro menu
-- Toggleable run button
+- Toggleable run button (for the mobile users)
 - Bottle caps
 - Certain mon pick up items as you adventure
 - Display starter with correct colors/shininess based on DVs after starter selection
