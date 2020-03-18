@@ -277,12 +277,6 @@ ROMX $6d
 	"Special Phone Text"
 ROMX $6e
 	"Pokedex Entries 065-128"
-ROMX $6f
-	"Text 1"
-ROMX $70
-	"Text 2"
-ROMX $71
-	"Text 3"
 ROMX $72
 	"Miscellaneous Text"
 ROMX $73
