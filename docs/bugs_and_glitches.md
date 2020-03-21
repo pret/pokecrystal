@@ -901,8 +901,12 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
  	ld hl, wEnemyMonType1
  	ldh a, [hBattleTurn]
  	and a
-	jr z, CheckTypeMatchup
+-	jr z, CheckTypeMatchup
++	jr z, .get_type
  	ld hl, wBattleMonType1
++.get_type
++	ld a, BATTLE_VARS_MOVE_TYPE
++	call GetBattleVar ; preserves hl, de, and bc
  CheckTypeMatchup:
 -; There is an incorrect assumption about this function made in the AI related code: when
 -; the AI calls CheckTypeMatchup (not BattleCheckTypeMatchup), it assumes that placing the
@@ -910,8 +914,6 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 -; this assumption is incorrect. A simple fix would be to load the move type for the
 -; current move into a in BattleCheckTypeMatchup, before falling through, which is
 -; consistent with how the rest of the code assumes this code works like.
-+	ld a, BATTLE_VARS_MOVE_TYPE
-+	call GetBattleVar ; preserves hl, de, and bc
  	push hl
  	push de
  	push bc
