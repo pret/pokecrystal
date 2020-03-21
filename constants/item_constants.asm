@@ -103,7 +103,7 @@
 	const MYSTIC_WATER ; 5f
 	const TWISTEDSPOON ; 60
 	const WHT_APRICORN ; 61
-	const BLACKBELT    ; 62
+	const BLACKBELT_I  ; 62
 	const BLK_APRICORN ; 63
 	const ITEM_64      ; 64
 	const PNK_APRICORN ; 65

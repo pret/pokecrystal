@@ -202,7 +202,7 @@ WesleyScript:
 .MetWesley:
 	writetext WesleyGivesGiftText
 	promptbutton
-	verbosegiveitem BLACKBELT
+	verbosegiveitem BLACKBELT_I
 	iffalse WesleyDoneScript
 	setevent EVENT_GOT_BLACKBELT_FROM_WESLEY
 	writetext WesleyGaveGiftText

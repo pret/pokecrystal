@@ -10,7 +10,7 @@ PokedexTypeSearchConversionTable:
 	db POISON
 	db GROUND
 	db FLYING
-	db PSYCHIC
+	db PSYCHIC_TYPE
 	db BUG
 	db ROCK
 	db GHOST
