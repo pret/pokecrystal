@@ -163,7 +163,7 @@ LoadMetatiles::
 	ld h, a
 
 	; copy the 4x4 metatile
-rept METATILE_WIDTH + -1
+rept METATILE_WIDTH - 1
 rept METATILE_WIDTH
 	ld a, [hli]
 	ld [de], a

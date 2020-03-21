@@ -244,7 +244,7 @@ BattleAnim_ClearOAM:
 	ld a, [hl]
 	and $ff ^ (PALETTE_MASK | VRAM_BANK_1) ; PAL_BATTLE_OB_ENEMY (0)
 	ld [hli], a
-rept SPRITEOAMSTRUCT_LENGTH + -1
+rept SPRITEOAMSTRUCT_LENGTH - 1
 	inc hl
 endr
 	dec c

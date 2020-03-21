@@ -1840,8 +1840,8 @@ This bug can allow you to talk to Eusine in Celadon City and encounter Ho-Oh wit
 
  	ld hl, wPlayerName
 
--rept NAME_LENGTH_JAPANESE + -2 ; should be PLAYER_NAME_LENGTH + -2
-+rept PLAYER_NAME_LENGTH + -2
+-rept NAME_LENGTH_JAPANESE - 2 ; should be PLAYER_NAME_LENGTH - 2
++rept PLAYER_NAME_LENGTH - 2
  	ld a, [de]
  	cp [hl]
  	jr nz, .notfound

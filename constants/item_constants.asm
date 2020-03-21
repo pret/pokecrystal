@@ -287,7 +287,7 @@ ENDM
 	add_mt FLAMETHROWER
 	add_mt THUNDERBOLT
 	add_mt ICE_BEAM
-NUM_TM_HM_TUTOR EQU __enum__ + -1
+NUM_TM_HM_TUTOR EQU __enum__ - 1
 
 	const ITEM_FA       ; fa
 

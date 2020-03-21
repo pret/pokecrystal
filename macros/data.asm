@@ -51,7 +51,7 @@ dx: MACRO
 x = 8 * ((\1) - 1)
 rept \1
 	db ((\2) >> x) & $ff
-x = x + -8
+x = x - 8
 endr
 ENDM
 

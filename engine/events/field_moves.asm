@@ -383,7 +383,7 @@ FlyToAnim:
 	ld c, 4
 .OAMloop
 	ld [hli], a ; tile id
-rept SPRITEOAMSTRUCT_LENGTH + -1
+rept SPRITEOAMSTRUCT_LENGTH - 1
 	inc hl
 endr
 	inc a
