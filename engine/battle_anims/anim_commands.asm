@@ -237,12 +237,12 @@ BattleAnim_ClearOAM:
 	bit BATTLEANIM_KEEPSPRITES_F, a
 	jr z, .delete
 
-	; Instead of deleting the sprites, make them all use palette 0 (monochrome)
+	; Instead of deleting the sprites, make them all use PAL_BATTLE_OB_ENEMY
 	ld hl, wVirtualOAMSprite00Attributes
 	ld c, NUM_SPRITE_OAM_STRUCTS
 .loop
 	ld a, [hl]
-	and $ff ^ (PALETTE_MASK | VRAM_BANK_1)
+	and $ff ^ (PALETTE_MASK | VRAM_BANK_1) ; PAL_BATTLE_OB_ENEMY (0)
 	ld [hli], a
 rept SPRITEOAMSTRUCT_LENGTH + -1
 	inc hl

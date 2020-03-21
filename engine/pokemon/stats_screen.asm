@@ -4,6 +4,8 @@
 	const BLUE_PAGE  ; 3
 NUM_STAT_PAGES EQU const_value + -1
 
+STAT_PAGE_MASK EQU %00000011
+
 BattleStatsScreenInit:
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
@@ -63,15 +65,15 @@ StatsScreenMain:
 ; ???
 	ld [wcf64], a
 	ld a, [wcf64]
-	and %11111100
-	or 1
+	and $ff ^ STAT_PAGE_MASK
+	or PINK_PAGE ; first_page
 	ld [wcf64], a
 .loop
 	ld a, [wJumptableIndex]
 	and $ff ^ (1 << 7)
 	ld hl, StatsScreenPointerTable
 	rst JumpTable
-	call StatsScreen_WaitAnim ; check for keys?
+	call StatsScreen_WaitAnim
 	ld a, [wJumptableIndex]
 	bit 7, a
 	jr z, .loop
@@ -83,13 +85,13 @@ StatsScreenMobile:
 ; ???
 	ld [wcf64], a
 	ld a, [wcf64]
-	and %11111100
-	or 1
+	and $ff ^ STAT_PAGE_MASK
+	or PINK_PAGE ; first_page
 	ld [wcf64], a
 .loop
 	farcall Mobile_SetOverworldDelay
 	ld a, [wJumptableIndex]
-	and $ff ^ (1 << 7)
+	and $7f
 	ld hl, StatsScreenPointerTable
 	rst JumpTable
 	call StatsScreen_WaitAnim
@@ -355,7 +357,7 @@ StatsScreen_JoypadAction:
 
 .set_page
 	ld a, [wcf64]
-	and %11111100
+	and $ff ^ STAT_PAGE_MASK
 	or c
 	ld [wcf64], a
 	ld h, 4
@@ -759,7 +761,7 @@ StatsScreen_LoadGFX:
 	jr z, .done
 	cp $7f
 	jr z, .done
-	and $80
+	and CAUGHT_GENDER_MASK
 	ld a, "♂"
 	jr z, .got_gender
 	ld a, "♀"
