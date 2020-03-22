@@ -149,7 +149,8 @@ sLinkBattleStatsEnd::
 SECTION "SRAM Hall of Fame", SRAM
 
 sHallOfFame:: ; b2c0
-sHallOfFame01:: hall_of_fame sHallOfFame01
+; sHallOfFame01:: hall_of_fame sHallOfFame01
+sBTData:: ds 104
 sHallOfFame02:: hall_of_fame sHallOfFame02
 sHallOfFame03:: hall_of_fame sHallOfFame03
 sHallOfFame04:: hall_of_fame sHallOfFame04

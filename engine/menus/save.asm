@@ -261,6 +261,7 @@ _SaveGameData:
 	call SaveOptions
 	call SavePlayerData
 	call SavePokemonData
+	call SaveBTData
 	call SaveBox
 	call SaveChecksum
 	call ValidateBackupSave
@@ -504,6 +505,16 @@ SavePokemonData:
 	call CloseSRAM
 	ret
 
+SaveBTData:
+	ld a, BANK(sBTData)
+	call GetSRAMBank
+	ld hl, wDayLastSet
+	ld de, sBTData
+	ld bc, 9
+	call CopyBytes
+	call CloseSRAM
+	ret
+
 SaveBox:
 	call GetBoxAddress
 	call SaveBoxAddress
@@ -584,6 +595,7 @@ TryLoadSaveFile:
 	jr nz, .backup
 	call LoadPlayerData
 	call LoadPokemonData
+	call LoadBTData
 	call LoadBox
 	farcall RestorePartyMonMail
 	farcall RestoreMobileEventIndex
@@ -745,6 +757,16 @@ LoadPokemonData:
 	ld hl, sPokemonData
 	ld de, wPokemonData
 	ld bc, wPokemonDataEnd - wPokemonData
+	call CopyBytes
+	call CloseSRAM
+	ret
+
+LoadBTData:
+	ld a, BANK(sBTData)
+	call GetSRAMBank
+	ld hl, sBTData
+	ld de, wDayLastSet
+	ld bc, 9
 	call CopyBytes
 	call CloseSRAM
 	ret
