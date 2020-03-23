@@ -2902,18 +2902,10 @@ Script_getBTcoins:
 Script_updateBTcoinsStringBuffer:
 ; script command 0xad
 
-	ld hl, wStringBuffer3
-	inc hl
-	inc hl
-	inc hl
-	inc hl
+	ld hl, wStringBuffer3 + 3
 	ld a, [wScriptVar]
 	cp 10
 	jr nc, .tens
-	ld a, " "
-	ld [hli], a
-	ld a, "@"
-	ld [hli], a
 	ld a, [wScriptVar]
 	add "0"
 	ld [hli], a
@@ -2933,8 +2925,6 @@ Script_updateBTcoinsStringBuffer:
 	ld b, a
 	ld a, c
 	add "0"
-	ld [hli], a
-	ld a, "@"
 	ld [hli], a
 	ld a, b
 	add "0"

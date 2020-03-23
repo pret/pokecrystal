@@ -262,20 +262,13 @@ RunBattleTowerTrainer:
 	ld a, [wNrOfBeatenBattleTowerTrainers]
 	cp 9
 	jr nc, .tens
-	ld b, a
-	ld a, " "
-	ld [hli], a
-	ld a, "@"
-	ld [hli], a
-	ld a, b
 	add "1"
 	ld [hli], a
 	ld a, "@"
 	ld [hl], a
 	jr .lost
 .tens
-	xor a
-	ld c, a
+	ld c, 0
 	ld a, [wNrOfBeatenBattleTowerTrainers]
 .gettens
 	inc c
@@ -289,8 +282,6 @@ RunBattleTowerTrainer:
 	ld a, c
 	add "0"
 	ld [hli], a
-	ld a, "@"
-	ld [hli], a
 	ld a, b
 	add "1"
 	ld [hli], a
@@ -300,8 +291,6 @@ RunBattleTowerTrainer:
 .nine	
 	ld a, c
 	add "1"
-	ld [hli], a
-	ld a, "@"
 	ld [hli], a
 	ld a, "0"
 	ld [hli], a

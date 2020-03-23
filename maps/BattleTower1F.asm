@@ -949,16 +949,14 @@ Text_YourMonWillBeHealedToFullHealth:
 Text_BTCoins:
 	text "Congratulations!"
 	line "You get @"
-	text_ram (wStringBuffer3 + 4)
-	text_ram (wStringBuffer3 + 6)
+	text_ram (wStringBuffer3 + 3)
 	text " coins!"
 	done
 
 Text_NextUpOpponentNo:
 	text "Next up, opponent"
-	line "no.@"
+	line "no. @"
 	text_ram wStringBuffer3
-	text_ram (wStringBuffer3 + 2)
 	text ". Ready?"
 	done
 

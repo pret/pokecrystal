@@ -42,16 +42,6 @@ Script_BattleRoomLoop:
 	applymovement BATTLETOWERBATTLEROOM_RECEPTIONIST, MovementData_BattleTowerBattleRoomReceptionistWalksToPlayer
 	applymovement PLAYER, MovementData_BattleTowerBattleRoomPlayerTurnsToFaceReceptionist
 	opentext
-	writetext Text_YourMonWillBeHealedToFullHealth
-	waitbutton
-	closetext
-	playmusic MUSIC_HEAL
-	special FadeOutPalettes
-	special LoadMapPalettes
-	pause 60
-	special FadeInPalettes
-	special RestartMapMusic
-	opentext
 	getBTcoins
 	updateBTcoinsStringBuffer
 	givecoins USE_SCRIPT_VAR
@@ -62,6 +52,16 @@ Script_BattleRoomLoop:
 	playsound SFX_TRANSACTION
 	waitbutton
 	refreshscreen
+	opentext
+	writetext Text_YourMonWillBeHealedToFullHealth
+	waitbutton
+	closetext
+	playmusic MUSIC_HEAL
+	special FadeOutPalettes
+	special LoadMapPalettes
+	pause 60
+	special FadeInPalettes
+	special RestartMapMusic
 	opentext
 	writetext Text_NextUpOpponentNo
 	yesorno
