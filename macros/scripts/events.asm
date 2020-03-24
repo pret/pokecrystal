@@ -1083,4 +1083,7 @@ updateBTcoinsStringBuffer: MACRO
 	db updateBTcoinsStringBuffer_command
 ENDM
 
-
+	enum realquicksave_command ; $ac
+realquicksave: MACRO
+	db realquicksave_command
+ENDM

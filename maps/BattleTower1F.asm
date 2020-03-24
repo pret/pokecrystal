@@ -30,6 +30,7 @@ BattleTower1F_MapScripts:
 	setval BATTLETOWERACTION_GET_CHALLENGE_STATE ; readmem sBattleTowerChallengeState
 	special BattleTowerAction
 	ifequal $0, .SkipEverything
+	ifequal $1, .SkipEverything
 	ifequal $2, .LeftWithoutSaving
 	ifequal $3, .SkipEverything
 	ifequal $4, .SkipEverything
@@ -63,10 +64,11 @@ BattleTower1FRulesSign:
 	end
 
 BattleTower1FReceptionistScript:
+	opentext
 	setval BATTLETOWERACTION_GET_CHALLENGE_STATE ; readmem sBattleTowerChallengeState
 	special BattleTowerAction
-	ifequal $3, Script_BeatenAllTrainers2 ; maps/BattleTowerBattleRoom.asm
-	opentext
+	; ifequal $3, Script_BeatenAllTrainers2 ; maps/BattleTowerBattleRoom.asm
+	ifequal $1, Script_AskToResume
 	writetext Text_BattleTowerWelcomesYou
 	promptbutton
 	setval BATTLETOWERACTION_CHECK_EXPLANATION_READ ; if new save file: bit 1, [sBattleTowerSaveFileFlags]
@@ -107,6 +109,28 @@ Script_ChooseChallenge:
 	setval BATTLETOWERACTION_CHOOSEREWARD
 	special BattleTowerAction
 	sjump Script_WalkToBattleTowerElevator
+
+Script_AskToStartNewChallenge:
+	writetext Text_AskToStartNewChallenge
+	yesorno
+	iffalse Script_BattleTowerHopeToServeYouAgain
+	writetext Text_AskToStartNewChallenge2
+	yesorno
+	iffalse Script_BattleTowerHopeToServeYouAgain
+	setval BATTLETOWERACTION_CHALLENGECANCELED
+	special BattleTowerAction
+	setval BATTLETOWERACTION_06
+	special BattleTowerAction
+	writetext Text_AskToStartNewChallenge3
+	waitbutton
+	sjump Script_ChooseChallenge
+
+Script_AskToResume:
+	writetext Text_AskToContinue
+	yesorno
+	iffalse Script_AskToStartNewChallenge
+	writetext Text_WeveBeenWaitingForYou
+	waitbutton
 
 Script_ResumeBattleTowerChallenge:
 	closetext
@@ -282,7 +306,7 @@ BattleTower1FTeacherScript:
 	opentext
 	writetext Text_BattleTowerTeacher
 	waitbutton
-	givecoins 20
+	givecoins 60
 	setflag ENGINE_POKEGEAR
 	closetext
 	end
@@ -325,6 +349,7 @@ Clerk_ConfirmPurchaseScript:
 	
 BattleTower1FClerkScript:
 	opentext
+	writetext ClerkIntroText
 	checkflag ENGINE_SHOP_INITIALIZED
 	iffalse .rand
 	checksameday	
@@ -338,13 +363,13 @@ BattleTower1FClerkScript:
 	clearflag ENGINE_SHOP_BOUGHT5
 	clearflag ENGINE_SHOP_BOUGHT6	
 	setflag ENGINE_SHOP_INITIALIZED
-	writetext ClerkMustSaveText
-	yesorno
-	iffalse Clerk_NoSaveScript
-	special TryQuickSave
-	iffalse Clerk_NoSaveScript
+	; writetext ClerkMustSaveText
+	; yesorno
+	; iffalse Clerk_NoSaveScript
+	; special TryQuickSave
+	; iffalse Clerk_NoSaveScript
+	realquicksave
 .start
-	writetext ClerkIntroText
 	waitbutton
 	; checkitem COIN_CASE
 	; iffalse Clerk_NoCoinCaseScript
@@ -383,12 +408,13 @@ BattleTower1FClerkScript:
 	playsound SFX_TRANSACTION
 	writetext ClerkHereYouGoText
 	waitbutton
-	readmem wRandMon1
-	special GameCornerPrizeMonCheckDex
+	; readmem wRandMon1
+	; special GameCornerPrizeMonCheckDex
 	readmem wRandMon1
 	givepoke SNORLAX, 40, PINK_BOW
 	takecoins BATTLETOWER_MILD_COINS
 	setflag ENGINE_SHOP_BOUGHT1
+	realquicksave
 	sjump .loop
 
 .Mild2:
@@ -412,12 +438,13 @@ BattleTower1FClerkScript:
 	playsound SFX_TRANSACTION
 	writetext ClerkHereYouGoText
 	waitbutton
-	readmem wRandMon2
-	special GameCornerPrizeMonCheckDex
+	; readmem wRandMon2
+	; special GameCornerPrizeMonCheckDex
 	readmem wRandMon2
 	givepoke USE_SCRIPT_VAR, 40 
 	takecoins BATTLETOWER_MILD_COINS
 	setflag ENGINE_SHOP_BOUGHT2
+	realquicksave
 	sjump .loop
 
 .Mild3:
@@ -441,12 +468,13 @@ BattleTower1FClerkScript:
 	playsound SFX_TRANSACTION
 	writetext ClerkHereYouGoText
 	waitbutton
-	readmem wRandMon3
-	special GameCornerPrizeMonCheckDex
+	; readmem wRandMon3
+	; special GameCornerPrizeMonCheckDex
 	readmem wRandMon3
 	givepoke USE_SCRIPT_VAR, 40 
 	takecoins BATTLETOWER_MILD_COINS
 	setflag ENGINE_SHOP_BOUGHT3
+	realquicksave
 	sjump .loop
 	
 .Mild4:
@@ -470,12 +498,13 @@ BattleTower1FClerkScript:
 	playsound SFX_TRANSACTION
 	writetext ClerkHereYouGoText
 	waitbutton
-	readmem wRandMon4
-	special GameCornerPrizeMonCheckDex
+	; readmem wRandMon4
+	; special GameCornerPrizeMonCheckDex
 	readmem wRandMon4
 	givepoke USE_SCRIPT_VAR, 40 
 	takecoins BATTLETOWER_MILD_COINS
 	setflag ENGINE_SHOP_BOUGHT4
+	realquicksave
 	sjump .loop
 	
 .Mega:
@@ -499,12 +528,13 @@ BattleTower1FClerkScript:
 	playsound SFX_TRANSACTION
 	writetext ClerkHereYouGoText
 	waitbutton
-	readmem wRandMon5
-	special GameCornerPrizeMonCheckDex
+	; readmem wRandMon5
+	; special GameCornerPrizeMonCheckDex
 	readmem wRandMon5
 	givepoke USE_SCRIPT_VAR, 40 
 	takecoins BATTLETOWER_MILD_COINS
 	setflag ENGINE_SHOP_BOUGHT5
+	realquicksave
 	sjump .loop
 
 .Mythic:
@@ -528,12 +558,13 @@ BattleTower1FClerkScript:
 	playsound SFX_TRANSACTION
 	writetext ClerkHereYouGoText
 	waitbutton
-	readmem wRandMon6
-	special GameCornerPrizeMonCheckDex
+	; readmem wRandMon6
+	; special GameCornerPrizeMonCheckDex
 	readmem wRandMon6
 	givepoke USE_SCRIPT_VAR, 40 
 	takecoins BATTLETOWER_MILD_COINS
 	setflag ENGINE_SHOP_BOUGHT6
+	realquicksave
 	sjump .loop
 
 .alreadybought:
@@ -658,6 +689,10 @@ MovementData_BattleTowerBattleRoomPlayerTurnsToFaceReceptionist:
 
 MovementData_BattleTowerBattleRoomPlayerTurnsToFaceNextOpponent:
 	turn_head RIGHT
+	step_end
+
+MovementData_PlayerStepsDown:
+	step DOWN
 	step_end
 
 Text_BattleTowerWelcomesYou:
@@ -989,9 +1024,24 @@ Text_SaveBeforeReentry:
 	line "the previous ROOM."
 	done
 
-Text_CancelYourBattleRoomChallenge:
-	text "Cancel your BATTLE"
-	line "ROOM challenge?"
+; Text_CancelYourBattleRoomChallenge:
+	; text "Cancel your BATTLE"
+	; line "ROOM challenge?"
+	; done
+
+Text_AskToStartNewChallenge:
+	text "Begin a new"
+	line "BATTLE CHALLENGE?"
+	done
+	
+Text_AskToStartNewChallenge2:
+	text "This will reset"
+	line "your streak."
+	para "Are you sure?"
+	done
+
+Text_AskToStartNewChallenge3:
+	text "Then it's done!"
 	done
 
 Text_RegisterRecordOnFile_Mobile:
@@ -1009,6 +1059,11 @@ Text_WeveBeenWaitingForYou:
 
 	para "to a BATTLE ROOM,"
 	line "please."
+	done
+
+Text_AskToContinue:
+	text "Resume your BATTLE"
+	line "ROOM challenge?"
 	done
 
 Text_FiveDayBattleLimit_Mobile:

@@ -237,6 +237,7 @@ ScriptCommandTable:
 	dw Script_randomizeshop				 ; ab
 	dw Script_getBTcoins				 ; ac
 	dw Script_updateBTcoinsStringBuffer	 ; ad
+	dw Script_realquicksave				 ; ae
 
 StartScript:
 	ld hl, wScriptFlags
@@ -2932,6 +2933,12 @@ Script_updateBTcoinsStringBuffer:
 	ld a, "@"
 	ld [hl], a
 	pop bc
+	ret
+
+Script_realquicksave:
+; script command 0xae
+
+	farcall RealQuickSave
 	ret
 
 ; ; unused

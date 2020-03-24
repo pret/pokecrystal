@@ -60,7 +60,7 @@ ChangeBoxSaveGame:
 	pop de
 	ret
 
-Link_SaveGame:
+Link_SaveGame::
 	call AskOverwriteSaveFile
 	jr c, .refused
 	call PauseGameLogic
@@ -70,6 +70,31 @@ Link_SaveGame:
 
 .refused
 	ret
+
+
+RealQuickSave::
+	ld a, [wSaveFileExists]
+	and a
+	jr z, .erase
+	call CompareLoadedAndSavedPlayerID
+	jr z, .ok
+	
+.erase
+	call ErasePreviousSave
+
+.ok
+	and a
+	call PauseGameLogic
+	xor a
+	ldh [hJoypadReleased], a
+	ldh [hJoypadPressed], a
+	ldh [hJoypadSum], a
+	ldh [hJoypadDown], a
+	call _SaveGameData
+	call ResumeGameLogic
+	and a
+	ret
+
 
 MoveMonWOMail_SaveGame:
 	call PauseGameLogic

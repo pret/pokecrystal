@@ -14,6 +14,10 @@ BattleTowerBattleRoom_MapScripts:
 	prioritysjump Script_BattleRoom
 	setscene SCENE_FINISHED
 .DummyScene:
+	; setval BATTLETOWERACTION_GET_CHALLENGE_STATE
+	; special BattleTowerAction
+	; ifequal $1, Script_ShutGameOff
+	; ifequal $2, Script_ShutGameOffEarly
 	end
 
 Script_BattleRoom:
@@ -63,9 +67,22 @@ Script_BattleRoomLoop:
 	special FadeInPalettes
 	special RestartMapMusic
 	opentext
+Script_AskToContinue:
 	writetext Text_NextUpOpponentNo
 	yesorno
 	iffalse Script_DontBattleNextOpponent
+	; writetext Text_AskSaveBeforeContinue
+	; yesorno
+	; iffalse Script_ContinueAndBattleNextOpponent
+	; special TryQuickSave
+	; iffalse Script_ContinueAndBattleNextOpponent
+	; setval BATTLETOWERACTION_SAVELEVELGROUP ; save level group
+	; special BattleTowerAction
+	; setval BATTLETOWERACTION_SAVEOPTIONS ; choose reward
+	; special BattleTowerAction
+	; setval BATTLETOWERACTION_SAVE_AND_QUIT ; set challenge state to saved and left
+	; special BattleTowerAction
+	
 Script_ContinueAndBattleNextOpponent:
 	closetext
 	applymovement PLAYER, MovementData_BattleTowerBattleRoomPlayerTurnsToFaceNextOpponent
@@ -75,30 +92,45 @@ Script_ContinueAndBattleNextOpponent:
 Script_DontBattleNextOpponent:
 	writetext Text_SaveAndEndTheSession
 	yesorno
-	iffalse Script_DontSaveAndEndTheSession
+	; iffalse Script_DontSaveAndEndTheSession
+	iffalse Script_AskToContinue
+	; playsound SFX_SAVE
+	; waitsfx
+	; special Reset
+; Script_DontSaveAndEndTheSession:
+	; writetext Text_CancelYourBattleRoomChallenge
+	; yesorno
+	; iffalse Script_ContinueAndBattleNextOpponent
+	; setval BATTLETOWERACTION_CHALLENGECANCELED
+	; special BattleTowerAction
+	; setval BATTLETOWERACTION_06
+	; special BattleTowerAction
+	; closetext
+	; special FadeOutPalettes
+	closetext
 	setval BATTLETOWERACTION_SAVELEVELGROUP ; save level group
 	special BattleTowerAction
 	setval BATTLETOWERACTION_SAVEOPTIONS ; choose reward
 	special BattleTowerAction
-	setval BATTLETOWERACTION_SAVE_AND_QUIT ; quicksave
+	setval BATTLETOWERACTION_SAVE_AND_QUIT ; set challenge state to saved and left
 	special BattleTowerAction
-	playsound SFX_SAVE
-	waitsfx
-	special FadeOutPalettes
-	special Reset
-Script_DontSaveAndEndTheSession:
-	writetext Text_CancelYourBattleRoomChallenge
-	yesorno
-	iffalse Script_ContinueAndBattleNextOpponent
-	setval BATTLETOWERACTION_CHALLENGECANCELED
-	special BattleTowerAction
-	setval BATTLETOWERACTION_06
-	special BattleTowerAction
-	closetext
 	special FadeOutPalettes
 	warpfacing UP, BATTLE_TOWER_1F, 11, 7
 	opentext
-	sjump Script_BattleTowerHopeToServeYouAgain
+	writetext Text_WeHopeToServeYouAgain
+	realquicksave
+	waitbutton
+	closetext
+	end
+	
+; Script_ShutGameOff:
+	; warpfacing DOWN, BATTLE_TOWER_1F, 11, 9
+	; end
+
+; Script_ShutGameOffEarly:
+	; setscene SCENE_DEFAULT
+	; warpfacing UP, BATTLE_TOWER_1F, 11, 7
+	; end
 
 Script_FailedBattleTowerChallenge:
 	pause 60
@@ -112,14 +144,14 @@ Script_FailedBattleTowerChallenge:
 	closetext
 	end
 
-Script_BeatenAllTrainers:
-	pause 60
-	special BattleTowerFade
-	warpfacing UP, BATTLE_TOWER_1F, 11, 7
-Script_BeatenAllTrainers2:
-	opentext
-	writetext Text_CongratulationsYouveBeatenAllTheTrainers
-	sjump Script_GivePlayerHisPrize
+; Script_BeatenAllTrainers:
+	; pause 60
+	; special BattleTowerFade
+	; warpfacing UP, BATTLE_TOWER_1F, 11, 7
+; Script_BeatenAllTrainers2:
+	; opentext
+	; writetext Text_CongratulationsYouveBeatenAllTheTrainers
+	; sjump Script_GivePlayerHisPrize
 
 UnreferencedScript_0x9f4eb:
 	setval BATTLETOWERACTION_CHALLENGECANCELED
