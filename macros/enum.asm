@@ -9,7 +9,7 @@ endc
 if _NARG >= 2
 __enumdir__ = \2
 else
-__enumdir__ = +1
+__enumdir__ = 1
 endc
 ENDM
 

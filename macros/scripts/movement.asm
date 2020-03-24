@@ -1,5 +1,5 @@
 ; MovementPointers indexes (see engine/overworld/movement.asm)
-	enum_start 0, +4
+	enum_start 0, 4
 
 ; Directional movements
 
@@ -73,7 +73,7 @@ fast_jump_step: MACRO
 	db movement_fast_jump_step | \1
 ENDM
 
-__enumdir__ = +1
+__enumdir__ = 1
 
 ; Control
 	enum movement_remove_sliding ; $38

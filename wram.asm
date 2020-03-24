@@ -2399,9 +2399,9 @@ wPlayerSpriteSetupFlags:: ; d45b
 ; bit 2: female player has been transformed into male
 ; bits 0-1: direction facing
 	db
-wMapReentryScriptQueueFlag:: db ; d45c MemScriptFlag
-wMapReentryScriptBank:: db ; d45d MemScriptBank
-wMapReentryScriptAddress:: dw ; d45e MemScriptAddr
+wMapReentryScriptQueueFlag:: db ; d45c
+wMapReentryScriptBank:: db ; d45d
+wMapReentryScriptAddress:: dw ; d45e
 	ds 4
 wTimeCyclesSinceLastCall:: db ; d464
 wReceiveCallDelay_MinsRemaining:: db ; d465
@@ -2868,10 +2868,10 @@ wLastSpawnMapGroup:: db
 wLastSpawnMapNumber:: db
 
 wWarpNumber:: db ; dcb4
-wMapGroup:: db ; dcb5 ; map group of current map
-wMapNumber:: db ; dcb6 ; map number of current map
-wYCoord:: db ; dcb7 ; current y coordinate relative to top-left corner of current map
-wXCoord:: db ; dcb8 ; current x coordinate relative to top-left corner of current map
+wMapGroup:: db ; dcb5
+wMapNumber:: db ; dcb6
+wYCoord:: db ; dcb7
+wXCoord:: db ; dcb8
 wScreenSave:: ds SCREEN_META_WIDTH * SCREEN_META_HEIGHT
 
 wCurMapDataEnd::
@@ -2881,8 +2881,8 @@ SECTION "Party", WRAMX
 
 wPokemonData::
 
-wPartyCount::   db ; dcd7 ; number of Pokémon in party
-wPartySpecies:: ds PARTY_LENGTH ; dcd8 ; species of each Pokémon in party
+wPartyCount::   db ; dcd7
+wPartySpecies:: ds PARTY_LENGTH ; dcd8
 wPartyEnd::     db ; dcde ; older code doesn't check wPartyCount
 
 wPartyMons::

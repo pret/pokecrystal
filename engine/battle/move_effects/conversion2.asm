@@ -20,7 +20,7 @@ BattleCommand_Conversion2:
 	call GetMoveAttr
 	ld d, a
 	pop hl
-	cp CURSE_T
+	cp CURSE_TYPE
 	jr z, .failed
 	call AnimateCurrentMove
 	call BattleCommand_SwitchTurn

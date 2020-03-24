@@ -103,7 +103,7 @@
 	const MYSTIC_WATER ; 5f
 	const TWISTEDSPOON ; 60
 	const WHT_APRICORN ; 61
-	const BLACKBELT    ; 62
+	const BLACKBELT_I  ; 62
 	const BLK_APRICORN ; 63
 	const ITEM_64      ; 64
 	const PNK_APRICORN ; 65
@@ -287,7 +287,7 @@ ENDM
 	add_mt FLAMETHROWER
 	add_mt THUNDERBOLT
 	add_mt ICE_BEAM
-NUM_TM_HM_TUTOR EQU __enum__ + -1
+NUM_TM_HM_TUTOR EQU __enum__ - 1
 
 	const ITEM_FA       ; fa
 

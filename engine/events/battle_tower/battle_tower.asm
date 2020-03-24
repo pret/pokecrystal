@@ -395,10 +395,10 @@ ValidateBTParty:
 	ld a, [hl]
 	and a
 x = $ff
-rept ($ff + -NUM_POKEMON)
+rept ($ff - NUM_POKEMON)
 	jr z, .invalid
 	cp x
-x = x + -1
+x = x - 1
 endr
 	jr nz, .valid
 

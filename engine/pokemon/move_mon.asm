@@ -117,7 +117,7 @@ GeneratePartyMonStats:
 	and a
 	jr nz, .randomlygeneratemoves
 	ld de, wEnemyMonMoves
-rept NUM_MOVES + -1
+rept NUM_MOVES - 1
 	ld a, [de]
 	inc de
 	ld [hli], a
@@ -128,7 +128,7 @@ endr
 
 .randomlygeneratemoves
 	xor a
-rept NUM_MOVES + -1
+rept NUM_MOVES - 1
 	ld [hli], a
 endr
 	ld [hl], a

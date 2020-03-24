@@ -1294,7 +1294,7 @@ GetNoiseSample:
 ; load ptr to sample header in wNoiseSampleAddress
 	; are we on the last channel?
 	ld a, [wCurChannel]
-	and NUM_MUSIC_CHANS + -1
+	and NUM_MUSIC_CHANS - 1
 	cp CHAN4
 	; ret if not
 	ret nz

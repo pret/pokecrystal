@@ -13,7 +13,7 @@ const_value = 1
 	const MAGNAPLANT
 	const TROPICPLANT
 	const JUMBOPLANT
-	const TOWN_MAP_D
+	const TOWN_MAP_POSTER
 	const FAMICOM
 	const SUPER_NES
 	const NINTENDO_64

@@ -339,7 +339,7 @@ EvolutionAnimation:
 	ld a, [hl]
 	or b
 	ld [hli], a ; attributes
-rept SPRITEOAMSTRUCT_LENGTH + -1
+rept SPRITEOAMSTRUCT_LENGTH - 1
 	inc hl
 endr
 	dec c

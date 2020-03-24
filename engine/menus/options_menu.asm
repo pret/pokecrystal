@@ -114,7 +114,7 @@ Options_TextSpeed:
 	ld a, c ; right pressed
 	cp OPT_TEXT_SPEED_SLOW
 	jr c, .Increase
-	ld c, OPT_TEXT_SPEED_FAST + -1
+	ld c, OPT_TEXT_SPEED_FAST - 1
 
 .Increase:
 	inc c
