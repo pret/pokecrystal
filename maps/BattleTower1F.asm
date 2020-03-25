@@ -6,11 +6,10 @@
 	const BATTLETOWER1F_GRANNY
 	const BATTLETOWER1F_TEACHER
 	const BATTLETOWER1F_CLERK
-	; const BATTLETOWER_POKE_BALL
 
 
 
-BATTLETOWER_MILD_COINS EQU 20
+BATTLETOWER_COMMON_COINS EQU 20
 BATTLETOWER_MEGA_COINS EQU 70
 BATTLETOWER_MYTHIC_COINS EQU 100
 
@@ -29,19 +28,7 @@ BattleTower1F_MapScripts:
 	iffalse .SkipEverything
 	setval BATTLETOWERACTION_GET_CHALLENGE_STATE ; readmem sBattleTowerChallengeState
 	special BattleTowerAction
-	ifequal $0, .SkipEverything
-	ifequal $1, .SkipEverything
-	ifequal $2, .LeftWithoutSaving
-	ifequal $3, .SkipEverything
-	ifequal $4, .SkipEverything
-	opentext
-	writetext Text_WeveBeenWaitingForYou
-	waitbutton
-	closetext
-	prioritysjump Script_ResumeBattleTowerChallenge
-	end
-
-.LeftWithoutSaving
+	ifnotequal $2, .SkipEverything
 	prioritysjump BattleTower_LeftWithoutSaving
 	setval BATTLETOWERACTION_CHALLENGECANCELED
 	special BattleTowerAction
@@ -67,7 +54,6 @@ BattleTower1FReceptionistScript:
 	opentext
 	setval BATTLETOWERACTION_GET_CHALLENGE_STATE ; readmem sBattleTowerChallengeState
 	special BattleTowerAction
-	; ifequal $3, Script_BeatenAllTrainers2 ; maps/BattleTowerBattleRoom.asm
 	ifequal $1, Script_AskToResume
 	writetext Text_BattleTowerWelcomesYou
 	promptbutton
@@ -379,15 +365,15 @@ BattleTower1FClerkScript:
 	loadmenu .MenuHeader
 	verticalmenu
 	closewindow
-	ifequal 1, .Mild1
-	ifequal 2, .Mild2
-	ifequal 3, .Mild3
-	ifequal 4, .Mild4
+	ifequal 1, .Common1
+	ifequal 2, .Common2
+	ifequal 3, .Common3
+	ifequal 4, .Common4
 	ifequal 5, .Mega
 	ifequal 6, .Mythic
 	sjump Clerk_CancelPurchaseScript
 
-.Mild1:
+.Common1:
 	checkflag ENGINE_SHOP_BOUGHT1
 	iftrue .alreadybought
 	; readvar VAR_PARTYCOUNT
@@ -402,7 +388,7 @@ BattleTower1FClerkScript:
 	getmonname STRING_BUFFER_3, USE_SCRIPT_VAR
 	scall Clerk_ConfirmPurchaseScript
 	iffalse .loop ;Clerk_CancelPurchaseScript
-	checkcoins BATTLETOWER_MILD_COINS
+	checkcoins BATTLETOWER_COMMON_COINS
 	ifequal HAVE_LESS, .needmorecoins
 	waitsfx
 	playsound SFX_TRANSACTION
@@ -412,12 +398,12 @@ BattleTower1FClerkScript:
 	; special GameCornerPrizeMonCheckDex
 	readmem wRandMon1
 	givepoke SNORLAX, 40, PINK_BOW
-	takecoins BATTLETOWER_MILD_COINS
+	takecoins BATTLETOWER_COMMON_COINS
 	setflag ENGINE_SHOP_BOUGHT1
 	realquicksave
 	sjump .loop
 
-.Mild2:
+.Common2:
 	checkflag ENGINE_SHOP_BOUGHT2
 	iftrue .alreadybought
 	; readvar VAR_PARTYCOUNT
@@ -432,7 +418,7 @@ BattleTower1FClerkScript:
 	getmonname STRING_BUFFER_3, USE_SCRIPT_VAR
 	scall Clerk_ConfirmPurchaseScript
 	iffalse .loop
-	checkcoins BATTLETOWER_MILD_COINS
+	checkcoins BATTLETOWER_COMMON_COINS
 	ifequal HAVE_LESS, .needmorecoins
 	waitsfx
 	playsound SFX_TRANSACTION
@@ -442,12 +428,12 @@ BattleTower1FClerkScript:
 	; special GameCornerPrizeMonCheckDex
 	readmem wRandMon2
 	givepoke USE_SCRIPT_VAR, 40 
-	takecoins BATTLETOWER_MILD_COINS
+	takecoins BATTLETOWER_COMMON_COINS
 	setflag ENGINE_SHOP_BOUGHT2
 	realquicksave
 	sjump .loop
 
-.Mild3:
+.Common3:
 	checkflag ENGINE_SHOP_BOUGHT3
 	iftrue .alreadybought
 	; readvar VAR_PARTYCOUNT
@@ -462,7 +448,7 @@ BattleTower1FClerkScript:
 	getmonname STRING_BUFFER_3, USE_SCRIPT_VAR
 	scall Clerk_ConfirmPurchaseScript
 	iffalse .loop
-	checkcoins BATTLETOWER_MILD_COINS
+	checkcoins BATTLETOWER_COMMON_COINS
 	ifequal HAVE_LESS, .needmorecoins
 	waitsfx
 	playsound SFX_TRANSACTION
@@ -472,12 +458,12 @@ BattleTower1FClerkScript:
 	; special GameCornerPrizeMonCheckDex
 	readmem wRandMon3
 	givepoke USE_SCRIPT_VAR, 40 
-	takecoins BATTLETOWER_MILD_COINS
+	takecoins BATTLETOWER_COMMON_COINS
 	setflag ENGINE_SHOP_BOUGHT3
 	realquicksave
 	sjump .loop
 	
-.Mild4:
+.Common4:
 	checkflag ENGINE_SHOP_BOUGHT4
 	iftrue .alreadybought
 	; readvar VAR_PARTYCOUNT
@@ -492,7 +478,7 @@ BattleTower1FClerkScript:
 	getmonname STRING_BUFFER_3, USE_SCRIPT_VAR
 	scall Clerk_ConfirmPurchaseScript
 	iffalse .loop
-	checkcoins BATTLETOWER_MILD_COINS
+	checkcoins BATTLETOWER_COMMON_COINS
 	ifequal HAVE_LESS, .needmorecoins
 	waitsfx
 	playsound SFX_TRANSACTION
@@ -502,7 +488,7 @@ BattleTower1FClerkScript:
 	; special GameCornerPrizeMonCheckDex
 	readmem wRandMon4
 	givepoke USE_SCRIPT_VAR, 40 
-	takecoins BATTLETOWER_MILD_COINS
+	takecoins BATTLETOWER_COMMON_COINS
 	setflag ENGINE_SHOP_BOUGHT4
 	realquicksave
 	sjump .loop
@@ -522,7 +508,7 @@ BattleTower1FClerkScript:
 	getmonname STRING_BUFFER_3, USE_SCRIPT_VAR
 	scall Clerk_ConfirmPurchaseScript
 	iffalse .loop
-	checkcoins BATTLETOWER_MILD_COINS
+	checkcoins BATTLETOWER_MEGA_COINS
 	ifequal HAVE_LESS, .needmorecoins
 	waitsfx
 	playsound SFX_TRANSACTION
@@ -532,7 +518,7 @@ BattleTower1FClerkScript:
 	; special GameCornerPrizeMonCheckDex
 	readmem wRandMon5
 	givepoke USE_SCRIPT_VAR, 40 
-	takecoins BATTLETOWER_MILD_COINS
+	takecoins BATTLETOWER_MEGA_COINS
 	setflag ENGINE_SHOP_BOUGHT5
 	realquicksave
 	sjump .loop
@@ -552,7 +538,7 @@ BattleTower1FClerkScript:
 	getmonname STRING_BUFFER_3, USE_SCRIPT_VAR
 	scall Clerk_ConfirmPurchaseScript
 	iffalse .loop
-	checkcoins BATTLETOWER_MILD_COINS
+	checkcoins BATTLETOWER_MYTHIC_COINS
 	ifequal HAVE_LESS, .needmorecoins
 	waitsfx
 	playsound SFX_TRANSACTION
@@ -562,7 +548,7 @@ BattleTower1FClerkScript:
 	; special GameCornerPrizeMonCheckDex
 	readmem wRandMon6
 	givepoke USE_SCRIPT_VAR, 40 
-	takecoins BATTLETOWER_MILD_COINS
+	takecoins BATTLETOWER_MYTHIC_COINS
 	setflag ENGINE_SHOP_BOUGHT6
 	realquicksave
 	sjump .loop
@@ -689,10 +675,6 @@ MovementData_BattleTowerBattleRoomPlayerTurnsToFaceReceptionist:
 
 MovementData_BattleTowerBattleRoomPlayerTurnsToFaceNextOpponent:
 	turn_head RIGHT
-	step_end
-
-MovementData_PlayerStepsDown:
-	step DOWN
 	step_end
 
 Text_BattleTowerWelcomesYou:
