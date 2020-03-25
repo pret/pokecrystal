@@ -806,7 +806,7 @@ AddAllHMsToBag:
 
 GiveStarterMon:
 
-	ld a, $30 ; LVL 5
+	ld a, $5 ; LVL 5
 	ld [wCurPartyLevel], a
 
 	; TODO: give item based on starter
