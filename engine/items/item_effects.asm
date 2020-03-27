@@ -149,7 +149,7 @@ ItemEffects:
 	dw NoEffect            ; PASS
 	dw NoEffect            ; ITEM_87
 	dw NoEffect            ; ITEM_88
-	dw NoEffect            ; ITEM_89
+	dw VitaminEffect       ; ZINC
 	dw NoEffect            ; CHARCOAL
 	dw RestoreHPEffect     ; BERRY_JUICE
 	dw NoEffect            ; SCOPE_LENS
@@ -1158,9 +1158,9 @@ VitaminEffect:
 
 	call RareCandy_StatBooster_GetParameters
 
-	call GetStatExpRelativePointer
+	call GetEVRelativePointer
 
-	ld a, MON_STAT_EXP
+	ld a, MON_EVS
 	call GetPartyParamLocation
 
 	add hl, bc
@@ -1172,9 +1172,10 @@ VitaminEffect:
 	ld [hl], a
 	call UpdateStatsAfterItem
 
-	call GetStatExpRelativePointer
+	call GetEVRelativePointer
 
 	ld hl, StatStrings
+	add hl, bc
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -1203,7 +1204,7 @@ UpdateStatsAfterItem:
 	call GetPartyParamLocation
 	ld d, h
 	ld e, l
-	ld a, MON_STAT_EXP - 1
+	ld a, MON_EVS - 1
 	call GetPartyParamLocation
 	ld b, TRUE
 	predef_jump CalcMonStats
@@ -1222,15 +1223,17 @@ StatStrings:
 	dw .attack
 	dw .defense
 	dw .speed
-	dw .special
+	dw .sp_atk
+	dw .sp_def
 
 .health  db "HEALTH@"
 .attack  db "ATTACK@"
 .defense db "DEFENSE@"
 .speed   db "SPEED@"
-.special db "SPECIAL@"
+.sp_atk  db "SPCL.ATK@"
+.sp_def  db "SPCL.DEF@"
 
-GetStatExpRelativePointer:
+GetEVRelativePointer:
 	ld a, [wCurItem]
 	ld hl, Table_eeeb
 .next
@@ -1247,11 +1250,12 @@ GetStatExpRelativePointer:
 	ret
 
 Table_eeeb:
-	db HP_UP,    MON_HP_EXP - MON_STAT_EXP
-	db PROTEIN, MON_ATK_EXP - MON_STAT_EXP
-	db IRON,    MON_DEF_EXP - MON_STAT_EXP
-	db CARBOS,  MON_SPD_EXP - MON_STAT_EXP
-	db CALCIUM, MON_SPC_EXP - MON_STAT_EXP
+	db HP_UP,     MON_HP_EV - MON_EVS
+	db PROTEIN,  MON_ATK_EV - MON_EVS
+	db IRON,     MON_DEF_EV - MON_EVS
+	db CARBOS,   MON_SPD_EV - MON_EVS
+	db CALCIUM,  MON_SAT_EV - MON_EVS
+	db ZINC,	 MON_SDF_EV - MON_EVS
 
 RareCandy_StatBooster_GetParameters:
 	ld a, [wCurPartySpecies]

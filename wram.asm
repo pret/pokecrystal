@@ -2228,6 +2228,9 @@ wBaseDefense:: db ; d239
 wBaseSpeed:: db ; d23a
 wBaseSpecialAttack:: db ; d23b
 wBaseSpecialDefense:: db ; d23c
+wBaseEvs::
+wBaseHPAtkDefSpdEVs:: db
+wBaseSpAtkSpDefEVs:: db
 wBaseType:: ; d23d
 wBaseType1:: db ; d23d
 wBaseType2:: db ; d23e
@@ -2237,9 +2240,7 @@ wBaseItems:: ; d241
 wBaseItem1:: db ; d241
 wBaseItem2:: db ; d242
 wBaseGender:: db ; d243
-wBaseUnknown1:: db ; d244
 wBaseEggSteps:: db ; d245
-wBaseUnknown2:: db ; d246
 wBasePicSize:: db ; d247
 wBaseUnusedFrontpic:: dw ; d248
 wBaseUnusedBackpic:: dw ; d24a
