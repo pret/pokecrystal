@@ -58,3 +58,9 @@
 ## Mon Menu sprites
 
 - Ported from Polished Crystal
+
+---
+
+## A Ton of Bugfixes and Changes
+
+- Too many to list, all thanks to those who contribute to the pret/pokecrystal wiki tutorials.

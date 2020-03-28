@@ -57,6 +57,7 @@
 - Press B to highlight RUN
 - All headbutt trees have a 70% encounter chance
 - Stone evos with lacking movepools have been updated
+- Mon can gain up to 252 EVs in each stat
 
 ### Bugfixes - DONE
 
