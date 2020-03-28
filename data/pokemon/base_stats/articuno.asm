@@ -1,7 +1,7 @@
 	db ARTICUNO ; 144
 
 	db  90,  85, 100,  85,  95, 125
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   0,   0,   3
 	;   hp  atk  def  spd  sat  sdf
 
 	db ICE, FLYING ; type

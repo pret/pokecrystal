@@ -1,7 +1,7 @@
 	db MR__MIME ; 122
 
 	db  40,  45,  65,  90, 100, 120
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   0,   0,   2
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, PSYCHIC ; type

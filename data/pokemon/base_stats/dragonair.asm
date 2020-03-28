@@ -1,7 +1,7 @@
 	db DRAGONAIR ; 148
 
 	db  61,  84,  65,  70,  70,  70
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   2,   0,   0,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db DRAGON, DRAGON ; type

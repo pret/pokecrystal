@@ -1,7 +1,7 @@
 	db DUNSPARCE ; 206
 
 	db 100,  70,  70,  45,  65,  65
-	evs  0,   0,   0,   0,   0,   0
+	evs  1,   0,   0,   0,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL ; type

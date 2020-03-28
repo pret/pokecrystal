@@ -1,7 +1,7 @@
 	db JYNX ; 124
 
 	db  65,  50,  35,  95, 115,  95
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   0,   2,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db ICE, PSYCHIC ; type

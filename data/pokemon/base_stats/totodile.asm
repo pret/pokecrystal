@@ -1,7 +1,7 @@
 	db TOTODILE ; 158
 
 	db  50,  65,  64,  43,  44,  48
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   1,   0,   0,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER ; type

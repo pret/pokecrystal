@@ -1,7 +1,7 @@
 	db CROBAT ; 169
 
 	db  85,  90,  80, 130,  70,  80
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   3,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db POISON, FLYING ; type

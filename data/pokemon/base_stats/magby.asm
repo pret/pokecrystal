@@ -1,7 +1,7 @@
 	db MAGBY ; 240
 
 	db  45,  75,  37,  83,  70,  55
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   1,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FIRE ; type

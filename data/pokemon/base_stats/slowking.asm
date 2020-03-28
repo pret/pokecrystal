@@ -1,7 +1,7 @@
 	db SLOWKING ; 199
 
 	db  95,  75,  80,  30, 100, 110
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   0,   0,   3
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, PSYCHIC ; type

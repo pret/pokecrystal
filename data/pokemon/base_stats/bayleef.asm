@@ -1,7 +1,7 @@
 	db BAYLEEF ; 153
 
 	db  60,  62,  80,  60,  63,  80
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   1,   0,   0,   1
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, GRASS ; type

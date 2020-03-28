@@ -1,7 +1,7 @@
 	db NATU ; 177
 
 	db  40,  50,  45,  70,  70,  45
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   0,   1,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, FLYING ; type

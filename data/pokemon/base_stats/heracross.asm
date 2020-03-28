@@ -1,7 +1,7 @@
 	db HERACROSS ; 214
 
 	db  80, 125,  75,  85,  40,  95
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   2,   0,   0,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, FIGHTING ; type

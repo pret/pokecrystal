@@ -1,7 +1,7 @@
 	db FURRET ; 162
 
 	db  85,  76,  64,  90,  45,  55
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   2,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL ; type

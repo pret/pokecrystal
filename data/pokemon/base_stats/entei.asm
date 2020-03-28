@@ -1,7 +1,7 @@
 	db ENTEI ; 244
 
 	db 115, 115,  85, 100,  90,  75
-	evs  0,   0,   0,   0,   0,   0
+	evs  1,   2,   0,   0,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FIRE ; type

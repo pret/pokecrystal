@@ -1,7 +1,7 @@
 	db GIRAFARIG ; 203
 
 	db  70,  80,  65,  85,  90,  65
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   0,   2,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, PSYCHIC ; type

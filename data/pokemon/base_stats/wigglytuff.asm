@@ -1,7 +1,7 @@
 	db WIGGLYTUFF ; 040
 
 	db 140,  70,  45,  45,  75,  50
-	evs  0,   0,   0,   0,   0,   0
+	evs  3,   0,   0,   0,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL ; type

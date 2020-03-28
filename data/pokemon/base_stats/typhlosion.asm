@@ -1,7 +1,7 @@
 	db TYPHLOSION ; 157
 
 	db  78,  84,  78, 100, 109,  85
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   0,   3,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FIRE ; type

@@ -1,7 +1,7 @@
 	db NIDORINO ; 033
 
 	db  61,  72,  57,  65,  55,  55
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   2,   0,   0,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db POISON, POISON ; type

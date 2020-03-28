@@ -1,7 +1,7 @@
 	db NINETALES ; 038
 
 	db  73,  76,  75, 100,  81, 100
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   1,   0,   1
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FIRE ; type

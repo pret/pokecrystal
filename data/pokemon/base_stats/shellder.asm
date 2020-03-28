@@ -1,7 +1,7 @@
 	db SHELLDER ; 090
 
 	db  30,  65, 100,  40,  45,  25
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   1,   0,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER ; type

@@ -1,7 +1,7 @@
 	db TYRANITAR ; 248
 
 	db 100, 134, 110,  61,  95, 100
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   3,   0,   0,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db ROCK, DARK ; type

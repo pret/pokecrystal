@@ -1,7 +1,7 @@
 	db WOBBUFFET ; 202
 
 	db 190,  33,  58,  33,  33,  58
-	evs  0,   0,   0,   0,   0,   0
+	evs  2,   0,   0,   0,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, PSYCHIC ; type

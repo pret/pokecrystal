@@ -1,7 +1,7 @@
 	db ABRA ; 063
 
 	db  25,  20,  15,  90, 105,  55
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   0,   1,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, PSYCHIC ; type

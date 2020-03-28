@@ -1,7 +1,7 @@
 	db SLUGMA ; 218
 
 	db  40,  40,  40,  20,  70,  40
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   0,   1,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FIRE ; type

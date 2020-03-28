@@ -1,7 +1,7 @@
 	db PICHU ; 172
 
 	db  20,  40,  15,  60,  35,  35
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   1,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db ELECTRIC, ELECTRIC ; type

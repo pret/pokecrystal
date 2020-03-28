@@ -1,7 +1,7 @@
 	db BLISSEY ; 242
 
 	db 255,  10,  10,  55,  75, 135
-	evs  0,   0,   0,   0,   0,   0
+	evs  3,   0,   0,   0,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL ; type

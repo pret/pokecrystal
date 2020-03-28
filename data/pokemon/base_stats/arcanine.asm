@@ -1,7 +1,7 @@
 	db ARCANINE ; 059
 
 	db  90, 110,  80,  95, 100,  80
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   2,   0,   0,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FIRE ; type

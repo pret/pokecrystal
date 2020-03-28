@@ -1,7 +1,7 @@
 	db WEEZING ; 110
 
 	db  65,  90, 120,  60,  85,  70
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   2,   0,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db POISON, POISON ; type

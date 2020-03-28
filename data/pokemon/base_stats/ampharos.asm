@@ -1,7 +1,7 @@
 	db AMPHAROS ; 181
 
 	db  90,  75,  75,  55, 115,  90
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   0,   3,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db ELECTRIC, ELECTRIC ; type

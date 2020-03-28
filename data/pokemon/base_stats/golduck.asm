@@ -1,7 +1,7 @@
 	db GOLDUCK ; 055
 
 	db  80,  82,  78,  85,  95,  80
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   0,   2,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER ; type

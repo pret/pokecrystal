@@ -1,7 +1,7 @@
 	db YANMA ; 193
 
 	db  65,  65,  45,  95,  75,  45
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   1,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, FLYING ; type

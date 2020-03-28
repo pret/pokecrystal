@@ -1,7 +1,7 @@
 	db MEOWTH ; 052
 
 	db  40,  45,  35,  90,  40,  40
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   1,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL ; type

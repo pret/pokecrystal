@@ -1,7 +1,7 @@
 	db VENONAT ; 048
 
 	db  60,  55,  50,  45,  40,  55
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   0,   0,   1
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, POISON ; type

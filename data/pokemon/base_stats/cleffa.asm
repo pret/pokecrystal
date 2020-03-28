@@ -1,7 +1,7 @@
 	db CLEFFA ; 173
 
 	db  50,  25,  28,  15,  45,  55
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   0,   0,   1
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL ; type

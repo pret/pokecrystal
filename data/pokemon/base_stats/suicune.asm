@@ -1,7 +1,7 @@
 	db SUICUNE ; 245
 
 	db 100,  75, 115,  85,  90, 115
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   1,   0,   0,   2
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER ; type

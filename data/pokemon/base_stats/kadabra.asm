@@ -1,7 +1,7 @@
 	db KADABRA ; 064
 
 	db  40,  35,  30, 105, 120,  70
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   0,   2,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, PSYCHIC ; type

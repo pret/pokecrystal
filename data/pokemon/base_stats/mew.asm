@@ -1,7 +1,7 @@
 	db MEW ; 151
 
 	db 100, 100, 100, 100, 100, 100
-	evs  0,   0,   0,   0,   0,   0
+	evs  3,   0,   0,   0,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, PSYCHIC ; type

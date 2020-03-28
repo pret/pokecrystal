@@ -1,7 +1,7 @@
 	db CORSOLA ; 222
 
 	db  55,  55,  85,  35,  65,  85
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   1,   0,   0,   1
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, ROCK ; type

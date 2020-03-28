@@ -1,7 +1,7 @@
 	db IGGLYBUFF ; 174
 
 	db  90,  30,  15,  15,  40,  20
-	evs  0,   0,   0,   0,   0,   0
+	evs  1,   0,   0,   0,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL ; type

@@ -1,7 +1,7 @@
 	db ZUBAT ; 041
 
 	db  40,  45,  35,  55,  30,  40
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   1,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db POISON, FLYING ; type

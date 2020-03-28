@@ -1,7 +1,7 @@
 	db WEEDLE ; 013
 
 	db  40,  35,  30,  50,  20,  20
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   1,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, POISON ; type

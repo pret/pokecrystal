@@ -1,7 +1,7 @@
 	db JIGGLYPUFF ; 039
 
 	db 115,  45,  20,  20,  45,  25
-	evs  0,   0,   0,   0,   0,   0
+	evs  2,   0,   0,   0,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL ; type

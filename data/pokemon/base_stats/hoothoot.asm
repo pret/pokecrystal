@@ -1,7 +1,7 @@
 	db HOOTHOOT ; 163
 
 	db  60,  30,  30,  50,  36,  56
-	evs  0,   0,   0,   0,   0,   0
+	evs  1,   0,   0,   0,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, FLYING ; type

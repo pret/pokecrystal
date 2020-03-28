@@ -1,7 +1,7 @@
 	db HO_OH ; 250
 
 	db 106, 130,  90,  90, 110, 154
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   0,   0,   3
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FLYING ; type

@@ -1,7 +1,7 @@
 	db HYPNO ; 097
 
 	db  85,  73,  70,  67,  73, 115
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   0,   0,   2
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, PSYCHIC ; type

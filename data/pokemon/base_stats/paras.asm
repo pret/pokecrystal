@@ -1,7 +1,7 @@
 	db PARAS ; 046
 
 	db  35,  70,  55,  25,  45,  55
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   1,   0,   0,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, GRASS ; type

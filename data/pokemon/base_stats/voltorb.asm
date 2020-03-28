@@ -1,7 +1,7 @@
 	db VOLTORB ; 100
 
 	db  40,  30,  50, 100,  55,  55
-	evs  0,   0,   0,   0,   0,   0
+	evs  0,   0,   0,   1,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db ELECTRIC, ELECTRIC ; type
