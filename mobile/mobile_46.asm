@@ -956,7 +956,7 @@ Function11878d:
 .asm_118803
 	ld a, $d3
 
-Function118805:
+Mobile46_SetErrorCode:
 	ld [wMobileErrorCodeBuffer], a
 	xor a
 	ld [wMobileErrorCodeBuffer + 1], a
@@ -1388,7 +1388,7 @@ Function118ae4:
 	cp $a6
 	jr c, .asm_118af5
 	ld a, $da
-	jp Function118805
+	jp Mobile46_SetErrorCode
 
 .asm_118b06
 	call Function118b24
@@ -1478,7 +1478,7 @@ Function118b9a:
 	cp $e0
 	ret c
 	ld a, $d3
-	call Function118805
+	call Mobile46_SetErrorCode
 	and a
 	ret
 
@@ -1542,7 +1542,7 @@ Unreferenced_Function118d35:
 
 .asm_118d7b
 	ld a, $d3
-	jp Function118805
+	jp Mobile46_SetErrorCode
 
 Function118d80:
 	call Function118e06
@@ -2117,7 +2117,7 @@ Function119192:
 
 .asm_1191a6
 	ld a, $d3
-	call Function118805
+	call Mobile46_SetErrorCode
 	scf
 	ret
 
@@ -2137,7 +2137,7 @@ Function1191ad:
 	cp $a6
 	jr c, .asm_1191b4
 	ld a, $da
-	call Function118805
+	call Mobile46_SetErrorCode
 	ld a, BANK("Battle Tower RAM")
 	ldh [rSVBK], a
 	pop bc
@@ -2272,7 +2272,7 @@ Function119223:
 	and a
 	jr z, .asm_119266
 	ld a, $d3
-	call Function118805
+	call Mobile46_SetErrorCode
 	scf
 	ret
 
@@ -2537,7 +2537,7 @@ Function119451:
 	and $1
 	jr z, .asm_11945d
 	ld a, $d3
-	jp Function118805
+	jp Mobile46_SetErrorCode
 .asm_11945d
 	xor a
 	ld [wcd50], a
@@ -2717,7 +2717,7 @@ endr
 	ret
 .asm_119571
 	ld a, $d8
-	jp Function118805
+	jp Mobile46_SetErrorCode
 .asm_119576
 	ld a, $10
 	jr .asm_11957c
@@ -2805,7 +2805,7 @@ Function1195c4:
 	ret
 .asm_1195f3
 	ld a, $d8
-	jp Function118805
+	jp Mobile46_SetErrorCode
 
 Function1195f8:
 	ld a, $11
@@ -2991,7 +2991,7 @@ Function1196f2:
 	cp $a
 	jr nz, .asm_119722
 	ld a, $b
-	jp Function118805
+	jp Mobile46_SetErrorCode
 
 .asm_119722
 	call Random
@@ -3055,7 +3055,7 @@ Function1196f2:
 
 .asm_119770
 	ld a, $d3
-	jp Function118805
+	jp Mobile46_SetErrorCode
 
 .asm_119775
 	ld a, b
@@ -3712,27 +3712,27 @@ Function119b6b:
 	call CopyBytes
 	jp BattleTowerRoomMenu_IncrementJumptable
 
-Function119c3e:
-	cp $2b
+Function119c3e: ; Base64
+	cp $2b ; "+"
 	jr c, .asm_119c68
 	jr z, .asm_119c80
-	cp $2f
+	cp $2f ; "/"
 	jr c, .asm_119c68
 	jr z, .asm_119c84
-	cp $30
+	cp $30 ; "0"
 	jr c, .asm_119c68
-	cp $3a
+	cp $3a ; "9" + 1
 	jr c, .asm_119c88
-	cp $3d
+	cp $3d ; "="
 	jr c, .asm_119c68
 	jr z, .asm_119c8c
-	cp $41
+	cp $41 ; "A"
 	jr c, .asm_119c68
-	cp $5b
+	cp $5b ; "Z" + 1
 	jr c, .asm_119c8f
-	cp $61
+	cp $61 ; "a"
 	jr c, .asm_119c68
-	cp $7b
+	cp $7b ; "z" + 1
 	jr c, .asm_119c93
 
 .asm_119c68
@@ -4469,7 +4469,7 @@ Function11a1d6:
 	cp $50
 	jr nz, .asm_11a1e4
 	ld a, $d3
-	call Function118805
+	call Mobile46_SetErrorCode
 	scf
 	ret
 
@@ -4913,16 +4913,16 @@ Function11a4fe:
 Function11a536:
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and $1
+	and A_BUTTON
 	jr nz, .asm_11a5a7
 	ld a, [hl]
-	and $2
+	and B_BUTTON
 	jr nz, .asm_11a5a2
 	ld a, [hl]
-	and $40
+	and D_UP
 	jr nz, .asm_11a564
 	ld a, [hl]
-	and $80
+	and D_DOWN
 	jr nz, .asm_11a583
 .asm_11a54d
 	ld a, [wBattleTowerRoomMenu2JumptableIndex]
@@ -5401,7 +5401,7 @@ Function11a9f4:
 	bit 7, h
 	ret nz
 	ld a, $d6
-	call Function118805
+	call Mobile46_SetErrorCode
 	and a
 	ret
 
@@ -5631,7 +5631,7 @@ Function11ad1b:
 	ld a, BANK(LoadMenuMonIcon)
 	ld e, MONICON_MOBILE2
 	rst FarCall
-	ld hl, $c6d0
+	ld hl, wPokedexOrder
 	ld bc, $0115
 	xor a
 	call ByteFill
@@ -5641,8 +5641,8 @@ Function11ad1b:
 	ld [wcf65], a
 	ld [wcf66], a
 	ld [wcd30], a
-	ld a, $2
-	ld [wc7d4], a
+	ld a, DEXMODE_ABC
+	ld [wCurDexMode], a
 	farcall Pokedex_OrderMonsByMode
 	ret
 
@@ -5696,16 +5696,16 @@ Function11adc4:
 	and a
 	ret z
 	ld a, [hl]
-	and $40
+	and D_UP
 	jr nz, .asm_11ade6
 	ld a, [hl]
-	and $80
+	and D_DOWN
 	jr nz, .asm_11aded
 	ld a, [hl]
-	and $1
+	and A_BUTTON
 	jr nz, .asm_11ae06
 	ld a, [hl]
-	and $2
+	and B_BUTTON
 	ret z
 	call PlayClickSFX
 	xor a
@@ -6119,7 +6119,7 @@ Function11b099:
 	ld a, [wc7d0]
 	ld e, a
 	ld d, $0
-	ld hl, wc6d0
+	ld hl, wPokedexOrder
 	add hl, de
 	ld e, l
 	ld d, h
@@ -6183,10 +6183,10 @@ Function11b099:
 Function11b0ff:
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and $2
+	and B_BUTTON
 	jr nz, .asm_11b141
 	ld a, [hl]
-	and $1
+	and A_BUTTON
 	jr nz, .asm_11b131
 	call Function11b175
 	jr nc, .asm_11b125
@@ -6265,19 +6265,19 @@ Function11b175:
 	ld e, a
 	ld hl, hJoyLast
 	ld a, [hl]
-	and $40
+	and D_UP
 	jr nz, .asm_11b19a
 	ld a, [hl]
-	and $80
+	and D_DOWN
 	jr nz, .asm_11b1ae
 	ld a, d
 	cp e
 	jr nc, .asm_11b1ed
 	ld a, [hl]
-	and $20
+	and D_LEFT
 	jr nz, .asm_11b1c6
 	ld a, [hl]
-	and $10
+	and D_RIGHT
 	jr nz, .asm_11b1d8
 	jr .asm_11b1ed
 

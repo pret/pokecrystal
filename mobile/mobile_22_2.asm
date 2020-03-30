@@ -796,9 +796,9 @@ Function8b7bd:
 	call Function8b703
 	call Function8b75d
 	call UpdateSprites
-	call Function89209
+	call Mobile_EnableSpriteUpdates
 	call ScrollingMenu
-	call Function8920f
+	call Mobile_DisableSpriteUpdates
 	ld a, [wMenuJoypad]
 	cp $2
 	jr z, .asm_8b823

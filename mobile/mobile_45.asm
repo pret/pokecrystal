@@ -5026,27 +5026,27 @@ endr
 	jp nz, .asm_115c64
 	ret
 
-Function115cfd:
-	cp $2b
+Function115cfd: ; Base64
+	cp $2b ; "+"
 	jr c, .asm_115d27
 	jr z, .asm_115d2f
-	cp $2f
+	cp $2f ; "/"
 	jr c, .asm_115d27
 	jr z, .asm_115d32
-	cp $30
+	cp $30 ; "0"
 	jr c, .asm_115d27
-	cp $3a
+	cp $3a ; "9" + 1
 	jr c, .asm_115d35
-	cp $3d
+	cp $3d ; "="
 	jr c, .asm_115d27
 	jr z, .asm_115d38
-	cp $41
+	cp $41 ; "A"
 	jr c, .asm_115d27
-	cp $5b
+	cp $5b ; "Z" + 1
 	jr c, .asm_115d4d
-	cp $61
+	cp $61 ; "a"
 	jr c, .asm_115d27
-	cp $7b
+	cp $7b ; "z" + 1
 	jr c, .asm_115d50
 
 .asm_115d27
