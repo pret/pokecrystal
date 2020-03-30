@@ -8440,9 +8440,9 @@ Function1136c1:
 
 .asm_113734
 	ld hl, $cc0c
-	ld a, LOW(Unknown_113b8e)
+	ld a, LOW(MD5_K_Table)
 	ld [hli], a
-	ld a, HIGH(Unknown_113b8e)
+	ld a, HIGH(MD5_K_Table)
 	ld [hl], a
 	ld hl, $cc0e
 	ld a, LOW(Unknown_113a70)
@@ -8529,7 +8529,7 @@ endr
 	ld [$cc0d], a
 	ld a, l
 	ld [$cc0c], a
-	cp $8e ; XXX LOW(Unknown_113b8e + $100) ???
+	cp $8e ; XXX LOW(MD5_K_Table + $100) ???
 	jp nz, .asm_113751
 	ld de, $cc18
 	ld hl, $cbe7
@@ -8983,7 +8983,7 @@ Unknown_113b7e:
 	db $01, $23, $45, $67, $89, $ab, $cd, $ef
 	db $fe, $dc, $ba, $98, $76, $54, $32, $10
 
-Unknown_113b8e: ; MD5 k table
+MD5_K_Table:
 	dl $d76aa478, $e8c7b756, $242070db, $c1bdceee
 	dl $f57c0faf, $4787c62a, $a8304613, $fd469501
 	dl $698098d8, $8b44f7af, $ffff5bb1, $895cd7be
