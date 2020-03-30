@@ -3524,10 +3524,16 @@ Function119ac9:
 	ld [wBattleTowerRoomMenuJumptableIndex], a
 	ret
 
+pushc
+setcharmap ascii
+
 XGameCode:
-INCBIN "data/mobile/x-game-code.txt"
+	db "CGB-BXTJ-00", $0
+
 XGameResult:
-INCBIN "data/mobile/x-game-result.txt"
+	db "pokemon_crystal", $0
+
+popc
 
 Function119b0d:
 	ld a, $8
@@ -3712,28 +3718,33 @@ Function119b6b:
 	call CopyBytes
 	jp BattleTowerRoomMenu_IncrementJumptable
 
+pushc
+setcharmap ascii
+
 Function119c3e: ; Base64
-	cp $2b ; "+"
+	cp "+"
 	jr c, .asm_119c68
 	jr z, .asm_119c80
-	cp $2f ; "/"
+	cp "/"
 	jr c, .asm_119c68
 	jr z, .asm_119c84
-	cp $30 ; "0"
+	cp "0"
 	jr c, .asm_119c68
-	cp $3a ; "9" + 1
+	cp "9" + 1
 	jr c, .asm_119c88
-	cp $3d ; "="
+	cp "="
 	jr c, .asm_119c68
 	jr z, .asm_119c8c
-	cp $41 ; "A"
+	cp "A"
 	jr c, .asm_119c68
-	cp $5b ; "Z" + 1
+	cp "Z" + 1
 	jr c, .asm_119c8f
-	cp $61 ; "a"
+	cp "a"
 	jr c, .asm_119c68
-	cp $7b ; "z" + 1
+	cp "z" + 1
 	jr c, .asm_119c93
+
+popc
 
 .asm_119c68
 	ld a, $19
@@ -3989,11 +4000,16 @@ BattleTowerRoomMenu_IncrementJumptable:
 	inc [hl]
 	ret
 
+pushc
+setcharmap ascii
+
 XGameCodePrefix:
-INCBIN "data/mobile/x-game-code-prefix.txt"
+	db "X-Game-code:\n"
 
 XGameResultPrefix:
-INCBIN "data/mobile/x-game-result-prefix.txt"
+	db "X-Game-result:\n"
+
+popc
 
 Function119e4f:
 	push bc
