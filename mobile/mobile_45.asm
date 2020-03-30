@@ -124,8 +124,6 @@ String_114228:
 String_114232:
 	db "=?ISO-2022-JP?B?", 0
 
-popc
-
 Function114243::
 	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
@@ -514,9 +512,9 @@ Function114412:
 	jr z, .asm_1144c2
 	inc e
 	call z, Function1144c8
-	cp $61 ; "a"
+	cp "a"
 	jr c, .asm_114462
-	cp $7b ; "z" + 1
+	cp "z" + 1
 	jr nc, .asm_114462
 	sub $20
 
@@ -540,10 +538,10 @@ Function114412:
 	jr .asm_11446e
 
 .asm_114476
-	ld a, $20 ; " "
+	ld a, " "
 	cp b
 	jr z, .asm_114481
-	ld a, $a ; NL
+	ld a, "\n"
 	cp b
 	jr z, .asm_114481
 	dec de
@@ -559,18 +557,18 @@ Function114412:
 	inc bc
 	inc e
 	call z, Function1144c8
-	cp $d ; CR
+	cp $d ; "\r"
 	jr nz, .asm_114486
 	ld a, [de]
 	inc bc
 	inc e
 	call z, Function1144c8
-	cp $a ; NL
+	cp "\n"
 	jr nz, .asm_114486
 	ld a, [de]
-	cp $20 ; " "
+	cp " "
 	jr z, .asm_114486
-	cp $9 ; TAB
+	cp "\t"
 	jr z, .asm_114486
 	ld d, h
 	ld e, l
@@ -5027,26 +5025,26 @@ endr
 	ret
 
 Function115cfd: ; Base64
-	cp $2b ; "+"
+	cp "+"
 	jr c, .asm_115d27
 	jr z, .asm_115d2f
-	cp $2f ; "/"
+	cp "/"
 	jr c, .asm_115d27
 	jr z, .asm_115d32
-	cp $30 ; "0"
+	cp "0"
 	jr c, .asm_115d27
-	cp $3a ; "9" + 1
+	cp "9" + 1
 	jr c, .asm_115d35
-	cp $3d ; "="
+	cp "="
 	jr c, .asm_115d27
 	jr z, .asm_115d38
-	cp $41 ; "A"
+	cp "A"
 	jr c, .asm_115d27
-	cp $5b ; "Z" + 1
+	cp "Z" + 1
 	jr c, .asm_115d4d
-	cp $61 ; "a"
+	cp "a"
 	jr c, .asm_115d27
-	cp $7b ; "z" + 1
+	cp "z" + 1
 	jr c, .asm_115d50
 
 .asm_115d27
@@ -5156,3 +5154,5 @@ Function115d80:
 	ld d, $a0
 	ld e, $0
 	ret
+
+popc
