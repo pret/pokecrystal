@@ -42,7 +42,6 @@ ENDM
 	command forceswitch             ; 23
 	command endloop                 ; 24
 	command flinchtarget            ; 25
-	command ohko                    ; 26
 	command recoil                  ; 27
 	command mist                    ; 28
 	command focusenergy             ; 29
