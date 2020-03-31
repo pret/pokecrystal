@@ -2996,7 +2996,7 @@ AI_Aggressive:
 
 ; Ignore this move if its power is 0 or 1.
 ; Moves such as Seismic Toss, Hidden Power,
-; Counter and Fissure have a base power of 1.
+; Counter has a base power of 1.
 	ld a, [wEnemyMoveStruct + MOVE_POWER]
 	cp 2
 	jr c, .checkmove2

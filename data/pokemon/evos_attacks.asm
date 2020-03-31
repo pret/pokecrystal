@@ -698,7 +698,6 @@ DiglettEvosAttacks:
 	db 25, SAND_ATTACK
 	db 33, SLASH
 	db 41, EARTHQUAKE
-	db 49, FISSURE
 	db 0 ; no more level-up moves
 
 DugtrioEvosAttacks:
@@ -713,7 +712,6 @@ DugtrioEvosAttacks:
 	db 25, SAND_ATTACK
 	db 37, SLASH
 	db 49, EARTHQUAKE
-	db 61, FISSURE
 	db 0 ; no more level-up moves
 
 MeowthEvosAttacks:

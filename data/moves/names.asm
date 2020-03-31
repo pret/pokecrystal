@@ -88,7 +88,7 @@ MoveNames::
 	db "THUNDER@"
 	db "ROCK THROW@"
 	db "EARTHQUAKE@"
-	db "FISSURE@"
+	db "UNUSED4@"
 	db "DIG@"
 	db "TOXIC@"
 	db "CONFUSION@"

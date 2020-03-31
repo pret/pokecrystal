@@ -89,7 +89,7 @@ MoveDescriptions::
 	dw ThunderDescription
 	dw RockThrowDescription
 	dw EarthquakeDescription
-	dw FissureDescription
+	dw Unused4Description ; used to be fissure
 	dw DigDescription
 	dw ToxicDescription
 	dw ConfusionDescription
@@ -620,9 +620,9 @@ EarthquakeDescription:
 	db   "Tough but useless"
 	next "vs. flying foes.@"
 
-FissureDescription:
-	db   "A ground-type,"
-	next "one-hit KO attack.@"
+Unused4Description: ; used to be fissure
+	db   "Unused4 - report"
+	next "to GoldenX.@"
 
 DigDescription:
 	db   "1st turn: Burrow"

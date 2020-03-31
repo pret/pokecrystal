@@ -101,7 +101,7 @@ Moves: ; 41afb
 	move THUNDER,      EFFECT_THUNDER,           120, ELECTRIC, SPECIAL,   70, 10,  30
 	move ROCK_THROW,   EFFECT_NORMAL_HIT,         50, ROCK,     PHYSICAL,  90, 15,   0
 	move EARTHQUAKE,   EFFECT_EARTHQUAKE,        100, GROUND,   PHYSICAL, 100, 10,   0
-	move FISSURE,      EFFECT_OHKO,                1, GROUND,   PHYSICAL,  30,  5,   0
+	move UNUSED4,      EFFECT_SPLASH,              0, NORMAL,   STATUS,   100, 40,   0 ; used to be fissure
 	move DIG,          EFFECT_FLY,                60, GROUND,   PHYSICAL, 100, 10,   0
 	move TOXIC,        EFFECT_TOXIC,               0, POISON,   STATUS,    85, 10,   0
 	move CONFUSION,    EFFECT_CONFUSE_HIT,        50, PSYCHIC,  SPECIAL,  100, 25,  10
