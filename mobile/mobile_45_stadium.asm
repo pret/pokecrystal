@@ -486,11 +486,19 @@ MobilePassword_IncrementJumptable:
 	inc [hl]
 	ret
 
+pushc
+setcharmap ascii
+
 Unknown_117a0f:
-INCBIN "data/mobile/ascii-alpha.txt"
+	db "ABCDEFGHIJKLMNOPQRSTUVWXYZ  "
+	db "abcdefghijklmnopqrstuvwxyz  "
 
 Unknown_117a47:
-INCBIN "data/mobile/ascii-sym.txt"
+	db "0123456789    "
+	db "!\"#$%&'()*+   "
+	db ",-./:;<=>?@   "
+	db "[\\]^_`\{|}~    "
+popc
 
 ; everything from here to the end of the bank is related to the
 ; Mobile Stadium option from the continue/newgame menu.
