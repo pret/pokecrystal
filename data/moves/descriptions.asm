@@ -11,7 +11,7 @@ MoveDescriptions::
 	dw ThunderpunchDescription
 	dw ScratchDescription
 	dw VicegripDescription
-	dw GuillotineDescription
+	dw Unused2Description
 	dw RazorWindDescription
 	dw SwordsDanceDescription
 	dw CutDescription
@@ -308,9 +308,9 @@ VicegripDescription:
 	db   "Grips with power-"
 	next "ful pincers.@"
 
-GuillotineDescription:
-	db   "A one-hit KO,"
-	next "pincer attack.@"
+Unused2Description: ; used to be guillatine
+	db   "Unused1 - report"
+	next "to GoldenX.@"
 
 RazorWindDescription:
 	db   "1st turn: Prepare"
