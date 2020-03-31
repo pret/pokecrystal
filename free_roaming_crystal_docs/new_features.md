@@ -76,6 +76,14 @@
 - Surfing NPCs no longer wonder aimlessly
 - Catching a transformed Pokemon no longer turns it into Ditto
 
+### Move Updates
+
+- Removed Kinesis
+- Removed OHKO moves
+  - Fissure
+  - Horn Drill
+  - Guillatine
+
 ---
 
 ## TODO
