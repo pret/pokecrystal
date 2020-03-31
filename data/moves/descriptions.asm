@@ -31,7 +31,7 @@ MoveDescriptions::
 	dw HeadbuttDescription
 	dw HornAttackDescription
 	dw FuryAttackDescription
-	dw HornDrillDescription
+	dw Unused3Description ; used to be horn drill
 	dw TackleDescription
 	dw BodySlamDescription
 	dw WrapDescription
@@ -309,7 +309,7 @@ VicegripDescription:
 	next "ful pincers.@"
 
 Unused2Description: ; used to be guillatine
-	db   "Unused1 - report"
+	db   "Unused2 - report"
 	next "to GoldenX.@"
 
 RazorWindDescription:
@@ -388,9 +388,9 @@ FuryAttackDescription:
 	db   "Jabs the target"
 	next "2-5 times.@"
 
-HornDrillDescription:
-	db   "A one-hit KO,"
-	next "drill attack.@"
+Unused3Description: ; used to be horn drill
+	db   "Unused3 - report"
+	next "to GoldenX.@"
 
 TackleDescription:
 	db   "A full-body charge"
