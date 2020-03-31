@@ -11,7 +11,7 @@ MoveDescriptions::
 	dw ThunderpunchDescription
 	dw ScratchDescription
 	dw VicegripDescription
-	dw Unused2Description
+	dw Unused2Description ; used to be guillatine
 	dw RazorWindDescription
 	dw SwordsDanceDescription
 	dw CutDescription

@@ -23,7 +23,7 @@ Moves: ; 41afb
 	move THUNDERPUNCH, EFFECT_PARALYZE_HIT,       75, ELECTRIC, PHYSICAL, 100, 15,  10
 	move SCRATCH,      EFFECT_NORMAL_HIT,         40, NORMAL,   PHYSICAL, 100, 35,   0
 	move VICEGRIP,     EFFECT_NORMAL_HIT,         55, NORMAL,   PHYSICAL, 100, 30,   0
-	move UNUSED2,	   EFFECT_OHKO,                0, NORMAL,   PHYSICAL,  30,  5,   0
+	move UNUSED2,	   EFFECT_SPLASH,              0, NORMAL,   STATUS,   100, 40,   0 ; used to be guillatine
 	move RAZOR_WIND,   EFFECT_RAZOR_WIND,         80, NORMAL,   SPECIAL,   75, 10,   0
 	move SWORDS_DANCE, EFFECT_ATTACK_UP_2,         0, NORMAL,   STATUS,   100, 30,   0
 	move CUT,          EFFECT_NORMAL_HIT,         50, NORMAL,   PHYSICAL,  95, 30,   0
@@ -145,7 +145,7 @@ Moves: ; 41afb
 	move SPIKE_CANNON, EFFECT_MULTI_HIT,          20, NORMAL,   PHYSICAL, 100, 15,   0
 	move CONSTRICT,    EFFECT_SPEED_DOWN_HIT,     10, NORMAL,   PHYSICAL, 100, 35,  10
 	move AMNESIA,      EFFECT_SP_DEF_UP_2,         0, PSYCHIC,  STATUS,   100, 20,   0
-	move UNUSED1,      EFFECT_ACCURACY_DOWN,       0, PSYCHIC,  STATUS,    80, 15,   0 ; used to be kinesis
+	move UNUSED1,      EFFECT_ACCURACY_DOWN,       0, NORMAL,   STATUS,   100, 40,   0 ; used to be kinesis
 	move SOFTBOILED,   EFFECT_HEAL,                0, NORMAL,   STATUS,   100, 10,   0
 	move HI_JUMP_KICK, EFFECT_JUMP_KICK,          85, FIGHTING, PHYSICAL,  90, 20,   0
 	move GLARE,        EFFECT_PARALYZE,            0, NORMAL,   STATUS,    75, 30,   0

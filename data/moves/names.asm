@@ -10,7 +10,7 @@ MoveNames::
 	db "THUNDERPUNCH@"
 	db "SCRATCH@"
 	db "VICEGRIP@"
-	db "UNUSED2@"
+	db "UNUSED2@" ; used to be guillatine
 	db "RAZOR WIND@"
 	db "SWORDS DANCE@"
 	db "CUT@"
