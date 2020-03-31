@@ -251,7 +251,7 @@ BattleAnimations::
 	dw BattleAnim_FutureSight
 	dw BattleAnim_RockSmash
 	dw BattleAnim_Whirlpool
-	dw BattleAnim_BeatUp
+	dw BattleAnim_Unused5 ; used to be beat up
 	dw BattleAnim_252
 	dw BattleAnim_253
 	dw BattleAnim_254
@@ -4574,7 +4574,7 @@ BattleAnim_Whirlpool:
 	anim_wait 1
 	anim_ret
 
-BattleAnim_BeatUp:
+BattleAnim_Unused5: ; used to be beat up
 	anim_if_param_equal $0, .current_mon
 	anim_sound 0, 0, SFX_BALL_POOF
 	anim_bgeffect ANIM_BG_RETURN_MON, $0, $1, $0

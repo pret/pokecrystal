@@ -262,4 +262,4 @@ Moves: ; 41afb
 	move FUTURE_SIGHT, EFFECT_FUTURE_SIGHT,       80, PSYCHIC,  SPECIAL,   90, 15,   0
 	move ROCK_SMASH,   EFFECT_DEFENSE_DOWN_HIT,   20, FIGHTING, PHYSICAL, 100, 15,  50
 	move WHIRLPOOL,    EFFECT_TRAP_TARGET,        15, WATER,    SPECIAL,   70, 15,   0
-	move BEAT_UP,      EFFECT_BEAT_UP,            10, DARK,     PHYSICAL, 100, 10,   0
+	move UNUSED5,      EFFECT_SPLASH,              0, NORMAL,   STATUS,   100, 40,   0 ; used to be beat up

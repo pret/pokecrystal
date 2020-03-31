@@ -79,6 +79,7 @@
 ### Move Updates
 
 - Removed Kinesis
+- Removed Beat Up
 - Removed OHKO moves
   - Fissure
   - Horn Drill

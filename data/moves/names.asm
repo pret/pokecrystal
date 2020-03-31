@@ -249,4 +249,4 @@ MoveNames::
 	db "FUTURE SIGHT@"
 	db "ROCK SMASH@"
 	db "WHIRLPOOL@"
-	db "BEAT UP@"
+	db "UNUSED5@"

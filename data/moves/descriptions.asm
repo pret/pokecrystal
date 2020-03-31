@@ -250,7 +250,7 @@ MoveDescriptions::
 	dw FutureSightDescription
 	dw RockSmashDescription
 	dw WhirlpoolDescription
-	dw BeatUpDescription
+	dw Unused5Description ; used to be beat up
 	dw MoveFCDescription
 	dw MoveFDDescription
 	dw MoveFEDescription
@@ -1264,6 +1264,6 @@ WhirlpoolDescription:
 	db   "Traps the foe for"
 	next "2-5 turns.@"
 
-BeatUpDescription:
-	db   "Party #MON join"
-	next "in the attack.@"
+Unused5Description: ; used to be beat up
+	db   "Unused5 - report"
+	next "to GoldenX.@"
