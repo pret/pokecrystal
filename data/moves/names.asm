@@ -132,7 +132,7 @@ MoveNames::
 	db "SPIKE CANNON@"
 	db "CONSTRICT@"
 	db "AMNESIA@"
-	db "KINESIS@"
+	db "UNUSED1@" ; used to be kinesis
 	db "SOFTBOILED@"
 	db "HI JUMP KICK@"
 	db "GLARE@"

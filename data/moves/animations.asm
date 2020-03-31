@@ -134,7 +134,7 @@ BattleAnimations::
 	dw BattleAnim_SpikeCannon
 	dw BattleAnim_Constrict
 	dw BattleAnim_Amnesia
-	dw BattleAnim_Kinesis
+	dw BattleAnim_Unused1 ; used to be kinesis
 	dw BattleAnim_Softboiled
 	dw BattleAnim_HiJumpKick
 	dw BattleAnim_Glare
@@ -2464,10 +2464,10 @@ BattleAnim_SkullBash:
 	anim_call BattleAnim_ShowMon_0
 	anim_ret
 
-BattleAnim_Kinesis:
+BattleAnim_Unused1: ; used to be kinesis
 	anim_2gfx ANIM_GFX_MISC, ANIM_GFX_NOISE
 	anim_bgeffect ANIM_BG_06, $0, $2, $0
-	anim_obj ANIM_OBJ_KINESIS, 80, 76, $0
+	anim_obj ANIM_OBJ_UNUSED1, 80, 76, $0
 	anim_wait 32
 .loop
 	anim_sound 0, 0, SFX_KINESIS
