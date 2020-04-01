@@ -142,12 +142,12 @@ Function891fe:
 	pop bc
 	ret
 
-Function89209:
+Mobile_EnableSpriteUpdates:
 	ld a, 1
 	ld [wSpriteUpdatesEnabled], a
 	ret
 
-Function8920f:
+Mobile_DisableSpriteUpdates:
 	ld a, 0
 	ld [wSpriteUpdatesEnabled], a
 	ret
@@ -237,13 +237,13 @@ Function89261:
 	ld [wMenuCursorBuffer], a
 	call PushWindow
 	call Mobile22_SetBGMapMode0
-	call Function89209
+	call Mobile_EnableSpriteUpdates
 	call VerticalMenu
 	push af
 	ld c, $a
 	call DelayFrames
 	call CloseWindow
-	call Function8920f
+	call Mobile_DisableSpriteUpdates
 	pop af
 	jr c, .done
 	ld a, [wMenuCursorY]
@@ -2514,9 +2514,9 @@ Function89ff6:
 
 Function8a03d:
 	ld hl, MobileCardFolderIntro2Text
-	call Function89209
+	call Mobile_EnableSpriteUpdates
 	call PrintText
-	call Function8920f
+	call Mobile_DisableSpriteUpdates
 	jp Function89e36
 
 Function8a04c:
@@ -2690,9 +2690,9 @@ Function8a116:
 	and a
 	ret
 .asm_8a16b
-	call Function89209
+	call Mobile_EnableSpriteUpdates
 	call CloseWindow
-	call Function8920f
+	call Mobile_DisableSpriteUpdates
 	scf
 	ret
 
@@ -3726,9 +3726,9 @@ Function8a999:
 	pop bc
 	jr .asm_8a9a1
 .asm_8a9bb
-	call Function89209
+	call Mobile_EnableSpriteUpdates
 	call CloseWindow
-	call Function8920f
+	call Mobile_DisableSpriteUpdates
 	ret
 
 Jumptable_8a9c5:

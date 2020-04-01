@@ -3,10 +3,10 @@
 	db $cc, $6b, $1e ; unused
 
 Unreferenced_Function1f4003:
-	ld a, $6
+	ld a, BANK(s6_a000)
 	call GetSRAMBank
 	ld hl, .news_data
-	ld de, $a000
+	ld de, s6_a000
 	ld bc, $1000
 	call CopyBytes
 	call CloseSRAM
@@ -16,10 +16,10 @@ Unreferenced_Function1f4003:
 INCBIN "mobile/news/news_1.bin"
 
 Unreferenced_Function1f4dbe:
-	ld a, $6
+	ld a, BANK(s6_a000)
 	call GetSRAMBank
 	ld hl, .news_data
-	ld de, $a000
+	ld de, s6_a000
 	ld bc, $1000
 	call CopyBytes
 	call CloseSRAM
@@ -29,10 +29,10 @@ Unreferenced_Function1f4dbe:
 INCBIN "mobile/news/news_2.bin"
 
 Function1f5d9f:
-	ld a, $6
+	ld a, BANK(s6_a000)
 	call GetSRAMBank
 	ld hl, .news_data
-	ld de, $a000
+	ld de, s6_a000
 	ld bc, $1000
 	call CopyBytes
 	call CloseSRAM

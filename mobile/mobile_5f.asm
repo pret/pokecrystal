@@ -507,9 +507,9 @@ Function17d2c0:
 	ret
 
 Function17d2ce:
-	ld a, $5
+	ld a, BANK(s5_aa72)
 	call GetSRAMBank
-	ld a, [$aa72]
+	ld a, [s5_aa72]
 	call CloseSRAM
 	and a
 	jr nz, .asm_17d2e2

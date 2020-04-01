@@ -267,24 +267,24 @@ Function4a9d7:
 	call GetNick
 	ld h, d
 	ld l, e
-	ld de, wd006
-	ld bc, 6
+	ld de, wMobileParticipant1Nickname
+	ld bc, NAME_LENGTH_JAPANESE
 	call CopyBytes
 	ld a, [wd003]
 	ld hl, wPartyMonNicknames
 	call GetNick
 	ld h, d
 	ld l, e
-	ld de, wd00c
-	ld bc, 6
+	ld de, wMobileParticipant2Nickname
+	ld bc, NAME_LENGTH_JAPANESE
 	call CopyBytes
 	ld a, [wd004]
 	ld hl, wPartyMonNicknames
 	call GetNick
 	ld h, d
 	ld l, e
-	ld de, wd012
-	ld bc, 6
+	ld de, wMobileParticipant3Nickname
+	ld bc, NAME_LENGTH_JAPANESE
 	call CopyBytes
 	ld hl, MobileUseTheseThreeMonText
 	call PrintText
