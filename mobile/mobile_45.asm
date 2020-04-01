@@ -442,7 +442,7 @@ Function1143b7:
 	jp Function11425c
 
 Function1143f3:
-	call Function114412
+	call .asm_114412
 	and a
 	jr nz, .asm_11440d
 	ld a, $4
@@ -468,7 +468,7 @@ Function1143f3:
 	ld b, $84
 	ret
 
-Function114412:
+.asm_114412:
 	ld a, c
 	ld [$dc00], a
 	ldh [hSRAMBank], a
@@ -4924,7 +4924,7 @@ Function115c49:
 .asm_115c77
 	ld a, [de]
 	inc de
-	call Function115cfd
+	call .asm_115cfd
 	ld [hli], a
 	dec b
 	jr nz, .asm_115c77
@@ -5024,7 +5024,7 @@ endr
 	jp nz, .asm_115c64
 	ret
 
-Function115cfd: ; Base64
+.asm_115cfd
 	cp "+"
 	jr c, .asm_115d27
 	jr z, .asm_115d2f

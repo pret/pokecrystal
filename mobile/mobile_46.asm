@@ -956,7 +956,7 @@ Function11878d:
 .asm_118803
 	ld a, $d3
 
-Mobile46_SetErrorCode:
+SetMobileErrorCode:
 	ld [wMobileErrorCodeBuffer], a
 	xor a
 	ld [wMobileErrorCodeBuffer + 1], a
@@ -1388,7 +1388,7 @@ Function118ae4:
 	cp $a6
 	jr c, .asm_118af5
 	ld a, $da
-	jp Mobile46_SetErrorCode
+	jp SetMobileErrorCode
 
 .asm_118b06
 	call Function118b24
@@ -1478,7 +1478,7 @@ Function118b9a:
 	cp $e0
 	ret c
 	ld a, $d3
-	call Mobile46_SetErrorCode
+	call SetMobileErrorCode
 	and a
 	ret
 
@@ -1542,7 +1542,7 @@ Unreferenced_Function118d35:
 
 .asm_118d7b
 	ld a, $d3
-	jp Mobile46_SetErrorCode
+	jp SetMobileErrorCode
 
 Function118d80:
 	call Function118e06
@@ -2117,7 +2117,7 @@ Function119192:
 
 .asm_1191a6
 	ld a, $d3
-	call Mobile46_SetErrorCode
+	call SetMobileErrorCode
 	scf
 	ret
 
@@ -2137,7 +2137,7 @@ Function1191ad:
 	cp $a6
 	jr c, .asm_1191b4
 	ld a, $da
-	call Mobile46_SetErrorCode
+	call SetMobileErrorCode
 	ld a, BANK("Battle Tower RAM")
 	ldh [rSVBK], a
 	pop bc
@@ -2272,7 +2272,7 @@ Function119223:
 	and a
 	jr z, .asm_119266
 	ld a, $d3
-	call Mobile46_SetErrorCode
+	call SetMobileErrorCode
 	scf
 	ret
 
@@ -2537,7 +2537,7 @@ Function119451:
 	and $1
 	jr z, .asm_11945d
 	ld a, $d3
-	jp Mobile46_SetErrorCode
+	jp SetMobileErrorCode
 .asm_11945d
 	xor a
 	ld [wcd50], a
@@ -2717,7 +2717,7 @@ endr
 	ret
 .asm_119571
 	ld a, $d8
-	jp Mobile46_SetErrorCode
+	jp SetMobileErrorCode
 .asm_119576
 	ld a, $10
 	jr .asm_11957c
@@ -2805,7 +2805,7 @@ Function1195c4:
 	ret
 .asm_1195f3
 	ld a, $d8
-	jp Mobile46_SetErrorCode
+	jp SetMobileErrorCode
 
 Function1195f8:
 	ld a, $11
@@ -2991,7 +2991,7 @@ Function1196f2:
 	cp $a
 	jr nz, .asm_119722
 	ld a, $b
-	jp Mobile46_SetErrorCode
+	jp SetMobileErrorCode
 
 .asm_119722
 	call Random
@@ -3055,7 +3055,7 @@ Function1196f2:
 
 .asm_119770
 	ld a, $d3
-	jp Mobile46_SetErrorCode
+	jp SetMobileErrorCode
 
 .asm_119775
 	ld a, b
@@ -3619,22 +3619,22 @@ Function119b6b:
 	inc de
 	cp $d
 	jr z, .asm_119bfa
-	call Function119c3e
+	call .asm_119c3e
 	ret c
 	ld [hli], a
 	ld a, [de]
 	inc de
-	call Function119c3e
+	call .asm_119c3e
 	ret c
 	ld [hli], a
 	ld a, [de]
 	inc de
-	call Function119c3e
+	call .asm_119c3e
 	ret c
 	ld [hli], a
 	ld a, [de]
 	inc de
-	call Function119c3e
+	call .asm_119c3e
 	ret c
 	ld [hl], a
 	push de
@@ -3721,7 +3721,7 @@ Function119b6b:
 pushc
 setcharmap ascii
 
-Function119c3e: ; Base64
+.asm_119c3e
 	cp "+"
 	jr c, .asm_119c68
 	jr z, .asm_119c80
@@ -4485,7 +4485,7 @@ Function11a1d6:
 	cp $50
 	jr nz, .asm_11a1e4
 	ld a, $d3
-	call Mobile46_SetErrorCode
+	call SetMobileErrorCode
 	scf
 	ret
 
@@ -5417,7 +5417,7 @@ Function11a9f4:
 	bit 7, h
 	ret nz
 	ld a, $d6
-	call Mobile46_SetErrorCode
+	call SetMobileErrorCode
 	and a
 	ret
 
