@@ -3619,22 +3619,22 @@ Function119b6b:
 	inc de
 	cp $d
 	jr z, .asm_119bfa
-	call .asm_119c3e
+	call .decodeBase64Character
 	ret c
 	ld [hli], a
 	ld a, [de]
 	inc de
-	call .asm_119c3e
+	call .decodeBase64Character
 	ret c
 	ld [hli], a
 	ld a, [de]
 	inc de
-	call .asm_119c3e
+	call .decodeBase64Character
 	ret c
 	ld [hli], a
 	ld a, [de]
 	inc de
-	call .asm_119c3e
+	call .decodeBase64Character
 	ret c
 	ld [hl], a
 	push de
@@ -3721,7 +3721,7 @@ Function119b6b:
 pushc
 setcharmap ascii
 
-.asm_119c3e
+.decodeBase64Character
 	cp "+"
 	jr c, .asm_119c68
 	jr z, .asm_119c80

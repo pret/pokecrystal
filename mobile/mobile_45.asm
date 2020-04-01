@@ -4924,7 +4924,7 @@ Function115c49:
 .asm_115c77
 	ld a, [de]
 	inc de
-	call .asm_115cfd
+	call .decodeBase64Character
 	ld [hli], a
 	dec b
 	jr nz, .asm_115c77
@@ -5024,7 +5024,7 @@ endr
 	jp nz, .asm_115c64
 	ret
 
-.asm_115cfd
+.decodeBase64Character
 	cp "+"
 	jr c, .asm_115d27
 	jr z, .asm_115d2f
