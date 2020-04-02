@@ -102,9 +102,13 @@ void trim_whitespace(struct Graphic *graphic) {
 void remove_whitespace(struct Graphic *graphic) {
 	int tile_size = Options.depth * 8;
 	if (Options.interleave) tile_size *= 2;
+	
+	// Make sure we have a whole number of tiles, round down if required
+	graphic->size &= ~(tile_size - 1);
+	
 	int i = 0;
 	for (int j = 0; i < graphic->size && j < graphic->size; i += tile_size, j += tile_size) {
-		while (is_whitespace(&graphic->data[j], tile_size)) {
+		while (j < graphic->size && is_whitespace(&graphic->data[j], tile_size)) {
 			j += tile_size;
 		}
 		if (j >= graphic->size) {
@@ -136,8 +140,12 @@ void remove_duplicates(struct Graphic *graphic) {
 	int tile_size = Options.depth * 8;
 	if (Options.interleave) tile_size *= 2;
 	int num_tiles = 0;
+	
+	// Make sure we have a whole number of tiles, round down if required
+	graphic->size &= ~(tile_size - 1);
+	
 	for (int i = 0, j = 0; i < graphic->size && j < graphic->size; i += tile_size, j += tile_size) {
-		while (tile_exists(&graphic->data[j], graphic->data, tile_size, num_tiles)) {
+		while (j < graphic->size && tile_exists(&graphic->data[j], graphic->data, tile_size, num_tiles)) {
 			if (Options.keep_whitespace && is_whitespace(&graphic->data[j], tile_size)) {
 				break;
 			}
@@ -155,7 +163,8 @@ void remove_duplicates(struct Graphic *graphic) {
 }
 
 bool flip_exists(uint8_t *tile, uint8_t *tiles, int tile_size, int num_tiles, bool xflip, bool yflip) {
-	uint8_t *flip = calloc(tile_size, 1);
+	uint8_t flip[tile_size];
+	memset(flip, 0, sizeof(flip));
 	int half_size = tile_size / 2;
 	for (int i = 0; i < tile_size; i++) {
 		int byte = i;
@@ -183,8 +192,12 @@ void remove_flip(struct Graphic *graphic, bool xflip, bool yflip) {
 	int tile_size = Options.depth * 8;
 	if (Options.interleave) tile_size *= 2;
 	int num_tiles = 0;
+	
+	// Make sure we have a whole number of tiles, round down if required
+	graphic->size &= ~(tile_size - 1);
+	
 	for (int i = 0, j = 0; i < graphic->size && j < graphic->size; i += tile_size, j += tile_size) {
-		while (flip_exists(&graphic->data[j], graphic->data, tile_size, num_tiles, xflip, yflip)) {
+		while (j < graphic->size && flip_exists(&graphic->data[j], graphic->data, tile_size, num_tiles, xflip, yflip)) {
 			if (Options.keep_whitespace && is_whitespace(&graphic->data[j], tile_size)) {
 				break;
 			}
