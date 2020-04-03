@@ -12,6 +12,20 @@ Strongest Move Requirements
 - Stronger than all other moves in the same category that meet the above criteria
 '''
 
+# Define all of the moves that should be ignored while finding which move is "strongest"
+SACRIFICE_EFFECTS = ['EFFECT_SELFDESTRUCT']
+
+LEGENDARY_EXCLUSIVE_MOVES = ['SACRED_FIRE', 'AEROBLAST']
+COOLDOWN_REQUIRED_MOVES = ['HYPER_BEAM']
+SETUP_REQUIRED_MOVES = ['DREAM_EATER']
+MULTI_TURN_MOVES = ['FLY', 'SOLARBEAM', 'DIG', 'SKY_ATTACK']
+
+MOVE_EFFECTS_TO_IGNORE = SACRIFICE_EFFECTS
+MOVES_TO_IGNORE = LEGENDARY_EXCLUSIVE_MOVES \
+					+ COOLDOWN_REQUIRED_MOVES \
+					+ SETUP_REQUIRED_MOVES \
+					+ MULTI_TURN_MOVES
+
 class MoveInfo:
 	def __init__(self):
 		self.name = 'N/A'
@@ -19,19 +33,6 @@ class MoveInfo:
 		self.accuracy = 0
 
 class CategoryInfo:
-	SACRIFICE_EFFECTS = ['EFFECT_SELFDESTRUCT']
-
-	LEGENDARY_EXCLUSIVE_MOVES = ['SACRED_FIRE', 'AEROBLAST']
-	COOLDOWN_REQUIRED_MOVES = ['HYPER_BEAM']
-	SETUP_REQUIRED_MOVES = ['DREAM_EATER']
-	MULTI_TURN_MOVES = ['FLY', 'SOLARBEAM', 'DIG', 'SKY_ATTACK']
-
-	MOVE_EFFECTS_TO_IGNORE = SACRIFICE_EFFECTS
-	MOVES_TO_IGNORE = LEGENDARY_EXCLUSIVE_MOVES \
-						+ COOLDOWN_REQUIRED_MOVES \
-						+ SETUP_REQUIRED_MOVES \
-						+ MULTI_TURN_MOVES
-
 	def __init__(self, name):
 		self.name = name
 		self.strongest_move = MoveInfo()
@@ -40,8 +41,8 @@ class CategoryInfo:
 	def updateInfo(self, move_name, move_power, move_accuracy, move_effect):
 		if(self.strongest_move.power < int(move_power) \
 				and int(move_accuracy) >= 90 \
-				and move_effect not in self.MOVE_EFFECTS_TO_IGNORE \
-				and move_name not in self.MOVES_TO_IGNORE):
+				and move_effect not in MOVE_EFFECTS_TO_IGNORE \
+				and move_name not in MOVES_TO_IGNORE):
 			self.strongest_move.name = move_name
 			self.strongest_move.power = int(move_power)
 			self.strongest_move.accuracy = int(move_accuracy)
