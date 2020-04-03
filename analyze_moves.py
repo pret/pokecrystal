@@ -38,6 +38,7 @@ class CategoryInfo:
 		self.strongest_move = MoveInfo()
 		self.count = 0
 	
+	# TODO: move the functions below out of this class
 	def is_strongest_so_far(self, name, power, accuracy, effect):
 		return self.strongest_move.power < int(power) \
 				and int(accuracy) >= 90 \
