@@ -49,17 +49,17 @@ class CategoryInfo:
 		self.count += 1
 
 	def formatNum(self, label, value):
-		return '{:<11} {:>12}\n'.format('\t\t' + label + ':', value)
+		return '{:<11} {:>12}\n'.format('  - ' + label + ':', value)
 
 	def formatStr(self, label, value):
-		return '{:<11} {:>12}\n'.format('\t\t' + label + ': ', value)
+		return '{:<11} {:>12}\n'.format('  - ' + label + ': ', value)
 
 	def getFormattedInfo(self):
-		return '\tStrongest Move:\n' \
+		return '- Strongest Move:\n' \
 				+ self.formatStr('Name', 		str(self.strongest_move.name)).replace('_', ' ').title() \
 				+ self.formatNum('Power', 		str(self.strongest_move.power)) \
 				+ self.formatNum('Accuracy', 	str(self.strongest_move.accuracy)) \
-				+ '\tMove Count: ' + str(self.count)
+				+ '- Move Count: ' + str(self.count)
 
 class TypeInfo:
 	def __init__(self, name):
@@ -110,18 +110,20 @@ def get_moves_by_type():
 
 def format_and_export_move_analysis_by_type(moves_by_type):
 	# Format and write results to file
-	with open('strongest_moves.txt', 'w', encoding='utf8') as results_file:
+	with open('strongest_moves.md', 'w', encoding='utf8') as results_file:
+		results_file.write('# Strongest Moves')
+		results_file.write('---\n')
 		for key in moves_by_type:
-			results_file.write(str(key).title() + ':\n')
-			results_file.write('------------------------------\n')
+			results_file.write('## ' + str(key).title() + ':\n')
+			#results_file.write('------------------------------\n')
 
-			results_file.write('Physical:\n' + moves_by_type[key].physical.getFormattedInfo() + '\n')
+			results_file.write('#### Physical:\n' + moves_by_type[key].physical.getFormattedInfo() + '\n')
 			results_file.write('\n')
-			results_file.write('Special:\n' + moves_by_type[key].special.getFormattedInfo() + '\n')
+			results_file.write('#### Special:\n' + moves_by_type[key].special.getFormattedInfo() + '\n')
 			results_file.write('\n')
-			results_file.write('Total Moves: ' + str(moves_by_type[key].total) + '\n')
+			results_file.write('#### Total Moves: ' + str(moves_by_type[key].total) + '\n')
 		
-			results_file.write('==============================\n')
+			results_file.write('---\n')
 			results_file.write('\n\n')
 
 def main():
