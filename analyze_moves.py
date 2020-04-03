@@ -53,18 +53,12 @@ class CategoryInfo:
 			self.strongest_move.effect = effect
 		self.count += 1
 
-	def formatNum(self, label, value):
-		return '{:<11} {:>12}\n'.format('  - ' + label + ':', value)
-
-	def formatStr(self, label, value):
-		return '{:<11} {:>12}\n'.format('  - ' + label + ': ', value)
-
 	def getFormattedInfo(self):
 		return '- Strongest Move:\n' \
-				+ self.formatStr('Name', 		str(self.strongest_move.name)).replace('_', ' ').title() \
-				+ self.formatNum('Power', 		str(self.strongest_move.power)) \
-				+ self.formatNum('Accuracy', 	str(self.strongest_move.accuracy)) \
-				+ '- Move Count: ' + str(self.count)
+				+ ('  - Name: ' + self.strongest_move.name + '\n').replace('_', ' ').title() \
+				+ ('  - Power: ' + self.strongest_move.power) \
+				+ ('  - Accuracy: ' + self.strongest_move.accuracy) \
+				+ ('- Move Count: ' + str(self.count))
 
 class TypeInfo:
 	def __init__(self, name):
