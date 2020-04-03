@@ -37,16 +37,19 @@ class CategoryInfo:
 		self.name = name
 		self.strongest_move = MoveInfo()
 		self.count = 0
+	
+	def is_strongest_so_far(self, name, power, accuracy, effect):
+		return self.strongest_move.power < int(power) \
+				and int(accuracy) >= 90 \
+				and effect not in MOVE_EFFECTS_TO_IGNORE \
+				and name not in MOVES_TO_IGNORE
 
-	def updateInfo(self, move_name, move_power, move_accuracy, move_effect):
-		if(self.strongest_move.power < int(move_power) \
-				and int(move_accuracy) >= 90 \
-				and move_effect not in MOVE_EFFECTS_TO_IGNORE \
-				and move_name not in MOVES_TO_IGNORE):
-			self.strongest_move.name = move_name
-			self.strongest_move.power = int(move_power)
-			self.strongest_move.accuracy = int(move_accuracy)
-			self.strongest_move.effect = move_effect
+	def updateInfo(self, name, power, accuracy, effect):
+		if(self.is_strongest_so_far(name, power, accuracy, effect)):
+			self.strongest_move.name = name
+			self.strongest_move.power = int(power)
+			self.strongest_move.accuracy = int(accuracy)
+			self.strongest_move.effect = effect
 		self.count += 1
 
 	def formatNum(self, label, value):
