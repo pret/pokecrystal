@@ -1688,22 +1688,22 @@ Function1057d7:
 	ret
 
 .OAM_data:
-	dsprite  2, 1,  6, 4, $00, 0
-	dsprite  2, 1,  7, 4, $01, 0
-	dsprite  2, 1,  8, 4, $02, 0
-	dsprite  2, 1,  9, 4, $03, 0
-	dsprite  3, 1,  6, 4, $04, 0
-	dsprite  3, 1,  7, 4, $05, 0
-	dsprite  3, 1,  8, 4, $06, 0
-	dsprite  3, 1,  9, 4, $07, 0
-	dsprite  0, 1, 11, 4, $00, 0
-	dsprite  0, 1, 12, 4, $01, 0
-	dsprite  0, 1, 13, 4, $02, 0
-	dsprite  0, 1, 14, 4, $03, 0
-	dsprite  1, 1, 11, 4, $04, 0
-	dsprite  1, 1, 12, 4, $05, 0
-	dsprite  1, 1, 13, 4, $06, 0
-	dsprite  1, 1, 14, 4, $07, 0
+	dbsprite  6,  2, 4, 1, $00, 0
+	dbsprite  7,  2, 4, 1, $01, 0
+	dbsprite  8,  2, 4, 1, $02, 0
+	dbsprite  9,  2, 4, 1, $03, 0
+	dbsprite  6,  3, 4, 1, $04, 0
+	dbsprite  7,  3, 4, 1, $05, 0
+	dbsprite  8,  3, 4, 1, $06, 0
+	dbsprite  9,  3, 4, 1, $07, 0
+	dbsprite 11,  0, 4, 1, $00, 0
+	dbsprite 12,  0, 4, 1, $01, 0
+	dbsprite 13,  0, 4, 1, $02, 0
+	dbsprite 14,  0, 4, 1, $03, 0
+	dbsprite 11,  1, 4, 1, $04, 0
+	dbsprite 12,  1, 4, 1, $05, 0
+	dbsprite 13,  1, 4, 1, $06, 0
+	dbsprite 14,  1, 4, 1, $07, 0
 
 CardTradeGFX:
 INCBIN "gfx/mystery_gift/card_trade.2bpp"

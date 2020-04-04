@@ -44,7 +44,7 @@ ENDM
 depixel EQUS "ldpixel de,"
 bcpixel EQUS "ldpixel bc,"
 
-dsprite: MACRO
-; y tile, y pixel, x tile, x pixel, vtile offset, attributes
-	db (\1 * TILE_WIDTH) % $100 + \2, (\3 * TILE_WIDTH) % $100 + \4, \5, \6
+dbsprite: MACRO
+; x tile, y tile, x pixel, y pixel, vtile offset, attributes
+	db (\2 * TILE_WIDTH) % $100 + \4, (\1 * TILE_WIDTH) % $100 + \3, \5, \6
 ENDM

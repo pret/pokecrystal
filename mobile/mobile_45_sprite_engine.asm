@@ -172,140 +172,140 @@ Unknown_115e86:
 
 Unknown_115ea6:
 	db 4
-	dsprite   1, 0,   0, 0, $60, $01
-	dsprite   1, 0,   1, 0, $61, $01
-	dsprite   2, 0,   0, 0, $62, $01
-	dsprite   2, 0,   1, 0, $63, $01
+	dbsprite   0,   1, 0, 0, $60, $01
+	dbsprite   1,   1, 0, 0, $61, $01
+	dbsprite   0,   2, 0, 0, $62, $01
+	dbsprite   1,   2, 0, 0, $63, $01
 
 Unknown_115eb7:
 	db 5
-	dsprite   0, 0,   1, 0, $64, $00
-	dsprite   1, 0,   0, 0, $60, $01
-	dsprite   1, 0,   1, 0, $61, $01
-	dsprite   2, 0,   0, 0, $62, $01
-	dsprite   2, 0,   1, 0, $63, $01
+	dbsprite   1,   0, 0, 0, $64, $00
+	dbsprite   0,   1, 0, 0, $60, $01
+	dbsprite   1,   1, 0, 0, $61, $01
+	dbsprite   0,   2, 0, 0, $62, $01
+	dbsprite   1,   2, 0, 0, $63, $01
 
 Unknown_115ecc:
 	db 5
-	dsprite   0, 0,   1, 0, $65, $00
-	dsprite   1, 0,   0, 0, $60, $01
-	dsprite   1, 0,   1, 0, $61, $01
-	dsprite   2, 0,   0, 0, $62, $01
-	dsprite   2, 0,   1, 0, $63, $01
+	dbsprite   1,   0, 0, 0, $65, $00
+	dbsprite   0,   1, 0, 0, $60, $01
+	dbsprite   1,   1, 0, 0, $61, $01
+	dbsprite   0,   2, 0, 0, $62, $01
+	dbsprite   1,   2, 0, 0, $63, $01
 
 Unknown_115ee1:
 	db 5
-	dsprite   0, 0,   1, 0, $66, $00
-	dsprite   1, 0,   0, 0, $60, $01
-	dsprite   1, 0,   1, 0, $61, $01
-	dsprite   2, 0,   0, 0, $62, $01
-	dsprite   2, 0,   1, 0, $63, $01
+	dbsprite   1,   0, 0, 0, $66, $00
+	dbsprite   0,   1, 0, 0, $60, $01
+	dbsprite   1,   1, 0, 0, $61, $01
+	dbsprite   0,   2, 0, 0, $62, $01
+	dbsprite   1,   2, 0, 0, $63, $01
 
 Unknown_115ef6:
 	db 7
-	dsprite   0, 0,   0, 0, $67, $01
-	dsprite   1, 0,   0, 0, $68, $01
-	dsprite   2, 0,   0, 0, $6d, $00
-	dsprite   2, 0,   1, 0, $69, $00
-	dsprite   2, 0,   2, 0, $6a, $00
-	dsprite   3, 0,   1, 0, $6b, $00
-	dsprite   3, 0,   2, 0, $6c, $00
+	dbsprite   0,   0, 0, 0, $67, $01
+	dbsprite   0,   1, 0, 0, $68, $01
+	dbsprite   0,   2, 0, 0, $6d, $00
+	dbsprite   1,   2, 0, 0, $69, $00
+	dbsprite   2,   2, 0, 0, $6a, $00
+	dbsprite   1,   3, 0, 0, $6b, $00
+	dbsprite   2,   3, 0, 0, $6c, $00
 
 Unknown_115f13:
 	db 7
-	dsprite   0, 0,   0, 0, $67, $01
-	dsprite   1, 0,   0, 0, $68, $01
-	dsprite   2, 0,   0, 0, $6e, $00
-	dsprite   2, 0,   1, 0, $69, $00
-	dsprite   2, 0,   2, 0, $6a, $00
-	dsprite   3, 0,   1, 0, $6b, $00
-	dsprite   3, 0,   2, 0, $6c, $00
+	dbsprite   0,   0, 0, 0, $67, $01
+	dbsprite   0,   1, 0, 0, $68, $01
+	dbsprite   0,   2, 0, 0, $6e, $00
+	dbsprite   1,   2, 0, 0, $69, $00
+	dbsprite   2,   2, 0, 0, $6a, $00
+	dbsprite   1,   3, 0, 0, $6b, $00
+	dbsprite   2,   3, 0, 0, $6c, $00
 
 Unknown_115f30:
 	db 7
-	dsprite   0, 0,   0, 0, $67, $01
-	dsprite   1, 0,   0, 0, $68, $01
-	dsprite   2, 0,   0, 0, $6f, $00
-	dsprite   2, 0,   1, 0, $69, $00
-	dsprite   2, 0,   2, 0, $6a, $00
-	dsprite   3, 0,   1, 0, $6b, $00
-	dsprite   3, 0,   2, 0, $6c, $00
+	dbsprite   0,   0, 0, 0, $67, $01
+	dbsprite   0,   1, 0, 0, $68, $01
+	dbsprite   0,   2, 0, 0, $6f, $00
+	dbsprite   1,   2, 0, 0, $69, $00
+	dbsprite   2,   2, 0, 0, $6a, $00
+	dbsprite   1,   3, 0, 0, $6b, $00
+	dbsprite   2,   3, 0, 0, $6c, $00
 
 Unknown_115f4d:
 	db 7
-	dsprite   0, 0,   0, 0, $67, $01
-	dsprite   1, 0,   0, 0, $68, $01
-	dsprite   2, 0,   0, 0, $70, $00
-	dsprite   2, 0,   1, 0, $69, $00
-	dsprite   2, 0,   2, 0, $6a, $00
-	dsprite   3, 0,   1, 0, $6b, $00
-	dsprite   3, 0,   2, 0, $6c, $00
+	dbsprite   0,   0, 0, 0, $67, $01
+	dbsprite   0,   1, 0, 0, $68, $01
+	dbsprite   0,   2, 0, 0, $70, $00
+	dbsprite   1,   2, 0, 0, $69, $00
+	dbsprite   2,   2, 0, 0, $6a, $00
+	dbsprite   1,   3, 0, 0, $6b, $00
+	dbsprite   2,   3, 0, 0, $6c, $00
 
 Unknown_115f6a:
 	db 7
-	dsprite   0, 0,   0, 0, $67, $01
-	dsprite   1, 0,   0, 0, $68, $01
-	dsprite   2, 0,   0, 0, $71, $00
-	dsprite   2, 0,   1, 0, $69, $00
-	dsprite   2, 0,   2, 0, $6a, $00
-	dsprite   3, 0,   1, 0, $6b, $00
-	dsprite   3, 0,   2, 0, $6c, $00
+	dbsprite   0,   0, 0, 0, $67, $01
+	dbsprite   0,   1, 0, 0, $68, $01
+	dbsprite   0,   2, 0, 0, $71, $00
+	dbsprite   1,   2, 0, 0, $69, $00
+	dbsprite   2,   2, 0, 0, $6a, $00
+	dbsprite   1,   3, 0, 0, $6b, $00
+	dbsprite   2,   3, 0, 0, $6c, $00
 
 Unknown_115f87:
 	db 5
-	dsprite   0, 0,   1, 0, $72, $00
-	dsprite   1, 0,   0, 0, $60, $01
-	dsprite   1, 0,   1, 0, $61, $01
-	dsprite   2, 0,   0, 0, $62, $01
-	dsprite   2, 0,   1, 0, $63, $01
+	dbsprite   1,   0, 0, 0, $72, $00
+	dbsprite   0,   1, 0, 0, $60, $01
+	dbsprite   1,   1, 0, 0, $61, $01
+	dbsprite   0,   2, 0, 0, $62, $01
+	dbsprite   1,   2, 0, 0, $63, $01
 
 Unknown_115f9c:
 	db 5
-	dsprite   0, 0,   1, 0, $73, $00
-	dsprite   1, 0,   0, 0, $60, $01
-	dsprite   1, 0,   1, 0, $61, $01
-	dsprite   2, 0,   0, 0, $62, $01
-	dsprite   2, 0,   1, 0, $63, $01
+	dbsprite   1,   0, 0, 0, $73, $00
+	dbsprite   0,   1, 0, 0, $60, $01
+	dbsprite   1,   1, 0, 0, $61, $01
+	dbsprite   0,   2, 0, 0, $62, $01
+	dbsprite   1,   2, 0, 0, $63, $01
 
 Unknown_115fb1:
 	db 5
-	dsprite   0, 1,   1, 0, $64, $60
-	dsprite   1, 0,   0, 0, $60, $01
-	dsprite   1, 0,   1, 0, $61, $01
-	dsprite   2, 0,   0, 0, $62, $01
-	dsprite   2, 0,   1, 0, $63, $01
+	dbsprite   1,   0, 0, 1, $64, $60
+	dbsprite   0,   1, 0, 0, $60, $01
+	dbsprite   1,   1, 0, 0, $61, $01
+	dbsprite   0,   2, 0, 0, $62, $01
+	dbsprite   1,   2, 0, 0, $63, $01
 
 Unknown_115fc6:
 	db 5
-	dsprite   0, 1,   1, 0, $65, $60
-	dsprite   1, 0,   0, 0, $60, $01
-	dsprite   1, 0,   1, 0, $61, $01
-	dsprite   2, 0,   0, 0, $62, $01
-	dsprite   2, 0,   1, 0, $63, $01
+	dbsprite   1,   0, 0, 1, $65, $60
+	dbsprite   0,   1, 0, 0, $60, $01
+	dbsprite   1,   1, 0, 0, $61, $01
+	dbsprite   0,   2, 0, 0, $62, $01
+	dbsprite   1,   2, 0, 0, $63, $01
 
 Unknown_115fdb:
 	db 5
-	dsprite   0, 1,   1, 0, $66, $60
-	dsprite   1, 0,   0, 0, $60, $01
-	dsprite   1, 0,   1, 0, $61, $01
-	dsprite   2, 0,   0, 0, $62, $01
-	dsprite   2, 0,   1, 0, $63, $01
+	dbsprite   1,   0, 0, 1, $66, $60
+	dbsprite   0,   1, 0, 0, $60, $01
+	dbsprite   1,   1, 0, 0, $61, $01
+	dbsprite   0,   2, 0, 0, $62, $01
+	dbsprite   1,   2, 0, 0, $63, $01
 
 Unknown_115ff0:
 	db 5
-	dsprite   0, 1,   1, 0, $72, $60
-	dsprite   1, 0,   0, 0, $60, $01
-	dsprite   1, 0,   1, 0, $61, $01
-	dsprite   2, 0,   0, 0, $62, $01
-	dsprite   2, 0,   1, 0, $63, $01
+	dbsprite   1,   0, 0, 1, $72, $60
+	dbsprite   0,   1, 0, 0, $60, $01
+	dbsprite   1,   1, 0, 0, $61, $01
+	dbsprite   0,   2, 0, 0, $62, $01
+	dbsprite   1,   2, 0, 0, $63, $01
 
 Unknown_116005:
 	db 5
-	dsprite   0, 1,   1, 0, $73, $60
-	dsprite   1, 0,   0, 0, $60, $01
-	dsprite   1, 0,   1, 0, $61, $01
-	dsprite   2, 0,   0, 0, $62, $01
-	dsprite   2, 0,   1, 0, $63, $01
+	dbsprite   1,   0, 0, 1, $73, $60
+	dbsprite   0,   1, 0, 0, $60, $01
+	dbsprite   1,   1, 0, 0, $61, $01
+	dbsprite   0,   2, 0, 0, $62, $01
+	dbsprite   1,   2, 0, 0, $63, $01
 
 MobileDialingGFX::
 INCBIN "gfx/mobile/dialing.2bpp"

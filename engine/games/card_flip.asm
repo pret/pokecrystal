@@ -1158,29 +1158,29 @@ PlaceOAMCardBorder:
 
 .SpriteData:
 	db 18
-	dsprite 0, 0, 0, 0, $04, 0
-	dsprite 0, 0, 1, 0, $06, 0
-	dsprite 0, 0, 2, 0, $06, 0
-	dsprite 0, 0, 3, 0, $06, 0
-	dsprite 0, 0, 4, 0, $04, 0 | X_FLIP
+	dbsprite 0, 0, 0, 0, $04, 0
+	dbsprite 1, 0, 0, 0, $06, 0
+	dbsprite 2, 0, 0, 0, $06, 0
+	dbsprite 3, 0, 0, 0, $06, 0
+	dbsprite 4, 0, 0, 0, $04, 0 | X_FLIP
 
-	dsprite 1, 0, 0, 0, $05, 0
-	dsprite 1, 0, 4, 0, $05, 0 | X_FLIP
+	dbsprite 0, 1, 0, 0, $05, 0
+	dbsprite 4, 1, 0, 0, $05, 0 | X_FLIP
 
-	dsprite 2, 0, 0, 0, $05, 0
-	dsprite 2, 0, 4, 0, $05, 0 | X_FLIP
+	dbsprite 0, 2, 0, 0, $05, 0
+	dbsprite 4, 2, 0, 0, $05, 0 | X_FLIP
 
-	dsprite 3, 0, 0, 0, $05, 0
-	dsprite 3, 0, 4, 0, $05, 0 | X_FLIP
+	dbsprite 0, 3, 0, 0, $05, 0
+	dbsprite 4, 3, 0, 0, $05, 0 | X_FLIP
 
-	dsprite 4, 0, 0, 0, $05, $00
-	dsprite 4, 0, 4, 0, $05, 0 | X_FLIP
+	dbsprite 0, 4, 0, 0, $05, $00
+	dbsprite 4, 4, 0, 0, $05, 0 | X_FLIP
 
-	dsprite 5, 0, 0, 0, $04, 0 | Y_FLIP
-	dsprite 5, 0, 1, 0, $06, 0 | Y_FLIP
-	dsprite 5, 0, 2, 0, $06, 0 | Y_FLIP
-	dsprite 5, 0, 3, 0, $06, 0 | Y_FLIP
-	dsprite 5, 0, 4, 0, $04, 0 | X_FLIP | Y_FLIP
+	dbsprite 0, 5, 0, 0, $04, 0 | Y_FLIP
+	dbsprite 1, 5, 0, 0, $06, 0 | Y_FLIP
+	dbsprite 2, 5, 0, 0, $06, 0 | Y_FLIP
+	dbsprite 3, 5, 0, 0, $06, 0 | Y_FLIP
+	dbsprite 4, 5, 0, 0, $04, 0 | X_FLIP | Y_FLIP
 
 ChooseCard_HandleJoypad:
 	ld hl, hJoyLast
@@ -1413,145 +1413,145 @@ ENDM
 
 .SingleTile:
 	db 6
-	dsprite  0, 0,  -1, 7, $00, 0 | PRIORITY
-	dsprite  0, 0,   0, 0, $02, 0 | PRIORITY
-	dsprite  0, 0,   1, 0, $03, 0 | PRIORITY
-	dsprite  0, 5,  -1, 7, $00, 0 | Y_FLIP | PRIORITY
-	dsprite  0, 5,   0, 0, $02, 0 | Y_FLIP | PRIORITY
-	dsprite  0, 5,   1, 0, $03, 0 | PRIORITY
+	dbsprite  -1,  0, 7, 0, $00, 0 | PRIORITY
+	dbsprite   0,  0, 0, 0, $02, 0 | PRIORITY
+	dbsprite   1,  0, 0, 0, $03, 0 | PRIORITY
+	dbsprite  -1,  0, 7, 5, $00, 0 | Y_FLIP | PRIORITY
+	dbsprite   0,  0, 0, 5, $02, 0 | Y_FLIP | PRIORITY
+	dbsprite   1,  0, 0, 5, $03, 0 | PRIORITY
 
 .PokeGroup:
 	db 26
-	dsprite  0, 0,  -1, 7, $00, 0 | PRIORITY
-	dsprite  0, 0,   0, 0, $02, 0 | PRIORITY
-	dsprite  0, 0,   1, 0, $00, 0 | X_FLIP | PRIORITY
-	dsprite  1, 0,  -1, 7, $01, 0 | PRIORITY
-	dsprite  1, 0,   1, 0, $01, 0 | X_FLIP | PRIORITY
-	dsprite  2, 0,  -1, 7, $01, 0 | PRIORITY
-	dsprite  2, 0,   1, 0, $03, 0 | PRIORITY
-	dsprite  3, 0,  -1, 7, $01, 0 | PRIORITY
-	dsprite  3, 0,   1, 0, $03, 0 | PRIORITY
-	dsprite  4, 0,  -1, 7, $01, 0 | PRIORITY
-	dsprite  4, 0,   1, 0, $03, 0 | PRIORITY
-	dsprite  5, 0,  -1, 7, $01, 0 | PRIORITY
-	dsprite  5, 0,   1, 0, $03, 0 | PRIORITY
-	dsprite  6, 0,  -1, 7, $01, 0 | PRIORITY
-	dsprite  6, 0,   1, 0, $03, 0 | PRIORITY
-	dsprite  7, 0,  -1, 7, $01, 0 | PRIORITY
-	dsprite  7, 0,   1, 0, $03, 0 | PRIORITY
-	dsprite  8, 0,  -1, 7, $01, 0 | PRIORITY
-	dsprite  8, 0,   1, 0, $03, 0 | PRIORITY
-	dsprite  9, 0,  -1, 7, $01, 0 | PRIORITY
-	dsprite  9, 0,   1, 0, $03, 0 | PRIORITY
-	dsprite 10, 0,  -1, 7, $01, 0 | PRIORITY
-	dsprite 10, 0,   1, 0, $03, 0 | PRIORITY
-	dsprite 10, 1,  -1, 7, $00, 0 | Y_FLIP | PRIORITY
-	dsprite 10, 1,   0, 0, $02, 0 | Y_FLIP | PRIORITY
-	dsprite 10, 1,   1, 0, $03, 0 | PRIORITY
+	dbsprite  -1,  0, 7, 0, $00, 0 | PRIORITY
+	dbsprite   0,  0, 0, 0, $02, 0 | PRIORITY
+	dbsprite   1,  0, 0, 0, $00, 0 | X_FLIP | PRIORITY
+	dbsprite  -1,  1, 7, 0, $01, 0 | PRIORITY
+	dbsprite   1,  1, 0, 0, $01, 0 | X_FLIP | PRIORITY
+	dbsprite  -1,  2, 7, 0, $01, 0 | PRIORITY
+	dbsprite   1,  2, 0, 0, $03, 0 | PRIORITY
+	dbsprite  -1,  3, 7, 0, $01, 0 | PRIORITY
+	dbsprite   1,  3, 0, 0, $03, 0 | PRIORITY
+	dbsprite  -1,  4, 7, 0, $01, 0 | PRIORITY
+	dbsprite   1,  4, 0, 0, $03, 0 | PRIORITY
+	dbsprite  -1,  5, 7, 0, $01, 0 | PRIORITY
+	dbsprite   1,  5, 0, 0, $03, 0 | PRIORITY
+	dbsprite  -1,  6, 7, 0, $01, 0 | PRIORITY
+	dbsprite   1,  6, 0, 0, $03, 0 | PRIORITY
+	dbsprite  -1,  7, 7, 0, $01, 0 | PRIORITY
+	dbsprite   1,  7, 0, 0, $03, 0 | PRIORITY
+	dbsprite  -1,  8, 7, 0, $01, 0 | PRIORITY
+	dbsprite   1,  8, 0, 0, $03, 0 | PRIORITY
+	dbsprite  -1,  9, 7, 0, $01, 0 | PRIORITY
+	dbsprite   1,  9, 0, 0, $03, 0 | PRIORITY
+	dbsprite  -1, 10, 7, 0, $01, 0 | PRIORITY
+	dbsprite   1, 10, 0, 0, $03, 0 | PRIORITY
+	dbsprite  -1, 10, 7, 1, $00, 0 | Y_FLIP | PRIORITY
+	dbsprite   0, 10, 0, 1, $02, 0 | Y_FLIP | PRIORITY
+	dbsprite   1, 10, 0, 1, $03, 0 | PRIORITY
 
 .NumGroup:
 	db 20
-	dsprite  0, 0,  -1, 7, $00, 0 | PRIORITY
-	dsprite  0, 0,   0, 0, $02, 0 | PRIORITY
-	dsprite  0, 0,   1, 0, $02, 0 | PRIORITY
-	dsprite  0, 0,   2, 0, $03, 0 | PRIORITY
-	dsprite  0, 0,   3, 0, $02, 0 | PRIORITY
-	dsprite  0, 0,   4, 0, $03, 0 | PRIORITY
-	dsprite  0, 0,   5, 0, $02, 0 | PRIORITY
-	dsprite  0, 0,   6, 0, $03, 0 | PRIORITY
-	dsprite  0, 0,   7, 0, $02, 0 | PRIORITY
-	dsprite  0, 0,   8, 0, $03, 0 | PRIORITY
-	dsprite  0, 5,  -1, 7, $00, 0 | Y_FLIP | PRIORITY
-	dsprite  0, 5,   0, 0, $02, 0 | Y_FLIP | PRIORITY
-	dsprite  0, 5,   1, 0, $02, 0 | Y_FLIP | PRIORITY
-	dsprite  0, 5,   2, 0, $03, 0 | PRIORITY
-	dsprite  0, 5,   3, 0, $02, 0 | Y_FLIP | PRIORITY
-	dsprite  0, 5,   4, 0, $03, 0 | PRIORITY
-	dsprite  0, 5,   5, 0, $02, 0 | Y_FLIP | PRIORITY
-	dsprite  0, 5,   6, 0, $03, 0 | PRIORITY
-	dsprite  0, 5,   7, 0, $02, 0 | Y_FLIP | PRIORITY
-	dsprite  0, 5,   8, 0, $03, 0 | PRIORITY
+	dbsprite  -1,  0, 7, 0, $00, 0 | PRIORITY
+	dbsprite   0,  0, 0, 0, $02, 0 | PRIORITY
+	dbsprite   1,  0, 0, 0, $02, 0 | PRIORITY
+	dbsprite   2,  0, 0, 0, $03, 0 | PRIORITY
+	dbsprite   3,  0, 0, 0, $02, 0 | PRIORITY
+	dbsprite   4,  0, 0, 0, $03, 0 | PRIORITY
+	dbsprite   5,  0, 0, 0, $02, 0 | PRIORITY
+	dbsprite   6,  0, 0, 0, $03, 0 | PRIORITY
+	dbsprite   7,  0, 0, 0, $02, 0 | PRIORITY
+	dbsprite   8,  0, 0, 0, $03, 0 | PRIORITY
+	dbsprite  -1,  0, 7, 5, $00, 0 | Y_FLIP | PRIORITY
+	dbsprite   0,  0, 0, 5, $02, 0 | Y_FLIP | PRIORITY
+	dbsprite   1,  0, 0, 5, $02, 0 | Y_FLIP | PRIORITY
+	dbsprite   2,  0, 0, 5, $03, 0 | PRIORITY
+	dbsprite   3,  0, 0, 5, $02, 0 | Y_FLIP | PRIORITY
+	dbsprite   4,  0, 0, 5, $03, 0 | PRIORITY
+	dbsprite   5,  0, 0, 5, $02, 0 | Y_FLIP | PRIORITY
+	dbsprite   6,  0, 0, 5, $03, 0 | PRIORITY
+	dbsprite   7,  0, 0, 5, $02, 0 | Y_FLIP | PRIORITY
+	dbsprite   8,  0, 0, 5, $03, 0 | PRIORITY
 
 .NumGroupPair:
 	db 30
-	dsprite  0, 0,   0, 0, $00, 0 | PRIORITY
-	dsprite  0, 0,   1, 0, $02, 0 | PRIORITY
-	dsprite  0, 0,   2, 0, $02, 0 | PRIORITY
-	dsprite  0, 0,   3, 0, $03, 0 | PRIORITY
-	dsprite  0, 0,   4, 0, $02, 0 | PRIORITY
-	dsprite  0, 0,   5, 0, $03, 0 | PRIORITY
-	dsprite  0, 0,   6, 0, $02, 0 | PRIORITY
-	dsprite  0, 0,   7, 0, $03, 0 | PRIORITY
-	dsprite  0, 0,   8, 0, $02, 0 | PRIORITY
-	dsprite  0, 0,   9, 0, $03, 0 | PRIORITY
-	dsprite  1, 0,   0, 0, $01, 0 | PRIORITY
-	dsprite  1, 0,   3, 0, $03, 0 | PRIORITY
-	dsprite  1, 0,   5, 0, $03, 0 | PRIORITY
-	dsprite  1, 0,   7, 0, $03, 0 | PRIORITY
-	dsprite  1, 0,   9, 0, $03, 0 | PRIORITY
-	dsprite  2, 0,   0, 0, $01, 0 | PRIORITY
-	dsprite  2, 0,   3, 0, $03, 0 | PRIORITY
-	dsprite  2, 0,   5, 0, $03, 0 | PRIORITY
-	dsprite  2, 0,   7, 0, $03, 0 | PRIORITY
-	dsprite  2, 0,   9, 0, $03, 0 | PRIORITY
-	dsprite  2, 1,   0, 0, $00, 0 | Y_FLIP | PRIORITY
-	dsprite  2, 1,   1, 0, $02, 0 | Y_FLIP | PRIORITY
-	dsprite  2, 1,   2, 0, $02, 0 | Y_FLIP | PRIORITY
-	dsprite  2, 1,   3, 0, $03, 0 | PRIORITY
-	dsprite  2, 1,   4, 0, $03, 0 | PRIORITY
-	dsprite  2, 1,   5, 0, $03, 0 | PRIORITY
-	dsprite  2, 1,   6, 0, $03, 0 | PRIORITY
-	dsprite  2, 1,   7, 0, $03, 0 | PRIORITY
-	dsprite  2, 1,   8, 0, $03, 0 | PRIORITY
-	dsprite  2, 1,   9, 0, $03, 0 | PRIORITY
+	dbsprite   0,  0, 0, 0, $00, 0 | PRIORITY
+	dbsprite   1,  0, 0, 0, $02, 0 | PRIORITY
+	dbsprite   2,  0, 0, 0, $02, 0 | PRIORITY
+	dbsprite   3,  0, 0, 0, $03, 0 | PRIORITY
+	dbsprite   4,  0, 0, 0, $02, 0 | PRIORITY
+	dbsprite   5,  0, 0, 0, $03, 0 | PRIORITY
+	dbsprite   6,  0, 0, 0, $02, 0 | PRIORITY
+	dbsprite   7,  0, 0, 0, $03, 0 | PRIORITY
+	dbsprite   8,  0, 0, 0, $02, 0 | PRIORITY
+	dbsprite   9,  0, 0, 0, $03, 0 | PRIORITY
+	dbsprite   0,  1, 0, 0, $01, 0 | PRIORITY
+	dbsprite   3,  1, 0, 0, $03, 0 | PRIORITY
+	dbsprite   5,  1, 0, 0, $03, 0 | PRIORITY
+	dbsprite   7,  1, 0, 0, $03, 0 | PRIORITY
+	dbsprite   9,  1, 0, 0, $03, 0 | PRIORITY
+	dbsprite   0,  2, 0, 0, $01, 0 | PRIORITY
+	dbsprite   3,  2, 0, 0, $03, 0 | PRIORITY
+	dbsprite   5,  2, 0, 0, $03, 0 | PRIORITY
+	dbsprite   7,  2, 0, 0, $03, 0 | PRIORITY
+	dbsprite   9,  2, 0, 0, $03, 0 | PRIORITY
+	dbsprite   0,  2, 0, 1, $00, 0 | Y_FLIP | PRIORITY
+	dbsprite   1,  2, 0, 1, $02, 0 | Y_FLIP | PRIORITY
+	dbsprite   2,  2, 0, 1, $02, 0 | Y_FLIP | PRIORITY
+	dbsprite   3,  2, 0, 1, $03, 0 | PRIORITY
+	dbsprite   4,  2, 0, 1, $03, 0 | PRIORITY
+	dbsprite   5,  2, 0, 1, $03, 0 | PRIORITY
+	dbsprite   6,  2, 0, 1, $03, 0 | PRIORITY
+	dbsprite   7,  2, 0, 1, $03, 0 | PRIORITY
+	dbsprite   8,  2, 0, 1, $03, 0 | PRIORITY
+	dbsprite   9,  2, 0, 1, $03, 0 | PRIORITY
 
 .PokeGroupPair:
 	db 38
-	dsprite  0, 0,  -1, 7, $00, 0 | PRIORITY
-	dsprite  0, 0,   3, 0, $00, 0 | X_FLIP | PRIORITY
-	dsprite  1, 0,  -1, 7, $01, 0 | PRIORITY
-	dsprite  1, 0,   3, 0, $01, 0 | X_FLIP | PRIORITY
-	dsprite  2, 0,  -1, 7, $01, 0 | PRIORITY
-	dsprite  2, 0,   3, 0, $01, 0 | X_FLIP | PRIORITY
-	dsprite  3, 0,  -1, 7, $01, 0 | PRIORITY
-	dsprite  3, 0,   1, 0, $03, 0 | PRIORITY
-	dsprite  3, 0,   3, 0, $03, 0 | PRIORITY
-	dsprite  4, 0,  -1, 7, $01, 0 | PRIORITY
-	dsprite  4, 0,   1, 0, $03, 0 | PRIORITY
-	dsprite  4, 0,   3, 0, $03, 0 | PRIORITY
-	dsprite  5, 0,  -1, 7, $01, 0 | PRIORITY
-	dsprite  5, 0,   1, 0, $03, 0 | PRIORITY
-	dsprite  5, 0,   3, 0, $03, 0 | PRIORITY
-	dsprite  6, 0,  -1, 7, $01, 0 | PRIORITY
-	dsprite  6, 0,   1, 0, $03, 0 | PRIORITY
-	dsprite  6, 0,   3, 0, $03, 0 | PRIORITY
-	dsprite  7, 0,  -1, 7, $01, 0 | PRIORITY
-	dsprite  7, 0,   1, 0, $03, 0 | PRIORITY
-	dsprite  7, 0,   3, 0, $03, 0 | PRIORITY
-	dsprite  8, 0,  -1, 7, $01, 0 | PRIORITY
-	dsprite  8, 0,   1, 0, $03, 0 | PRIORITY
-	dsprite  8, 0,   3, 0, $03, 0 | PRIORITY
-	dsprite  9, 0,  -1, 7, $01, 0 | PRIORITY
-	dsprite  9, 0,   1, 0, $03, 0 | PRIORITY
-	dsprite  9, 0,   3, 0, $03, 0 | PRIORITY
-	dsprite 10, 0,  -1, 7, $01, 0 | PRIORITY
-	dsprite 10, 0,   1, 0, $03, 0 | PRIORITY
-	dsprite 10, 0,   3, 0, $03, 0 | PRIORITY
-	dsprite 11, 0,  -1, 7, $01, 0 | PRIORITY
-	dsprite 11, 0,   1, 0, $03, 0 | PRIORITY
-	dsprite 11, 0,   3, 0, $03, 0 | PRIORITY
-	dsprite 11, 1,  -1, 7, $00, 0 | Y_FLIP | PRIORITY
-	dsprite 11, 1,   0, 0, $02, 0 | Y_FLIP | PRIORITY
-	dsprite 11, 1,   1, 0, $03, 0 | Y_FLIP | PRIORITY
-	dsprite 11, 1,   2, 0, $02, 0 | Y_FLIP | PRIORITY
-	dsprite 11, 1,   3, 0, $03, 0 | X_FLIP | Y_FLIP | PRIORITY
+	dbsprite  -1,  0, 7, 0, $00, 0 | PRIORITY
+	dbsprite   3,  0, 0, 0, $00, 0 | X_FLIP | PRIORITY
+	dbsprite  -1,  1, 7, 0, $01, 0 | PRIORITY
+	dbsprite   3,  1, 0, 0, $01, 0 | X_FLIP | PRIORITY
+	dbsprite  -1,  2, 7, 0, $01, 0 | PRIORITY
+	dbsprite   3,  2, 0, 0, $01, 0 | X_FLIP | PRIORITY
+	dbsprite  -1,  3, 7, 0, $01, 0 | PRIORITY
+	dbsprite   1,  3, 0, 0, $03, 0 | PRIORITY
+	dbsprite   3,  3, 0, 0, $03, 0 | PRIORITY
+	dbsprite  -1,  4, 7, 0, $01, 0 | PRIORITY
+	dbsprite   1,  4, 0, 0, $03, 0 | PRIORITY
+	dbsprite   3,  4, 0, 0, $03, 0 | PRIORITY
+	dbsprite  -1,  5, 7, 0, $01, 0 | PRIORITY
+	dbsprite   1,  5, 0, 0, $03, 0 | PRIORITY
+	dbsprite   3,  5, 0, 0, $03, 0 | PRIORITY
+	dbsprite  -1,  6, 7, 0, $01, 0 | PRIORITY
+	dbsprite   1,  6, 0, 0, $03, 0 | PRIORITY
+	dbsprite   3,  6, 0, 0, $03, 0 | PRIORITY
+	dbsprite  -1,  7, 7, 0, $01, 0 | PRIORITY
+	dbsprite   1,  7, 0, 0, $03, 0 | PRIORITY
+	dbsprite   3,  7, 0, 0, $03, 0 | PRIORITY
+	dbsprite  -1,  8, 7, 0, $01, 0 | PRIORITY
+	dbsprite   1,  8, 0, 0, $03, 0 | PRIORITY
+	dbsprite   3,  8, 0, 0, $03, 0 | PRIORITY
+	dbsprite  -1,  9, 7, 0, $01, 0 | PRIORITY
+	dbsprite   1,  9, 0, 0, $03, 0 | PRIORITY
+	dbsprite   3,  9, 0, 0, $03, 0 | PRIORITY
+	dbsprite  -1, 10, 7, 0, $01, 0 | PRIORITY
+	dbsprite   1, 10, 0, 0, $03, 0 | PRIORITY
+	dbsprite   3, 10, 0, 0, $03, 0 | PRIORITY
+	dbsprite  -1, 11, 7, 0, $01, 0 | PRIORITY
+	dbsprite   1, 11, 0, 0, $03, 0 | PRIORITY
+	dbsprite   3, 11, 0, 0, $03, 0 | PRIORITY
+	dbsprite  -1, 11, 7, 1, $00, 0 | Y_FLIP | PRIORITY
+	dbsprite   0, 11, 0, 1, $02, 0 | Y_FLIP | PRIORITY
+	dbsprite   1, 11, 0, 1, $03, 0 | Y_FLIP | PRIORITY
+	dbsprite   2, 11, 0, 1, $02, 0 | Y_FLIP | PRIORITY
+	dbsprite   3, 11, 0, 1, $03, 0 | X_FLIP | Y_FLIP | PRIORITY
 
 .Impossible:
 	db 4
-	dsprite  0, 0,   0, 0, $00, 0 | PRIORITY
-	dsprite  0, 0,   1, 0, $00, 0 | X_FLIP | PRIORITY
-	dsprite  1, 0,   0, 0, $00, 0 | Y_FLIP | PRIORITY
-	dsprite  1, 0,   1, 0, $00, 0 | X_FLIP | Y_FLIP | PRIORITY
+	dbsprite   0,  0, 0, 0, $00, 0 | PRIORITY
+	dbsprite   1,  0, 0, 0, $00, 0 | X_FLIP | PRIORITY
+	dbsprite   0,  1, 0, 0, $00, 0 | Y_FLIP | PRIORITY
+	dbsprite   1,  1, 0, 0, $00, 0 | X_FLIP | Y_FLIP | PRIORITY
 
 CardFlip_InitAttrPals:
 	ldh a, [hCGB]
