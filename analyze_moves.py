@@ -27,6 +27,30 @@ class Move:
 	def get_default_state():
 		return Move('N/A', 0, 0, 'N/A', 'N/A', 'N/A', 0, 0)
 
+	@staticmethod
+	def convert_file_line_to_move(file_line):
+		# Get the name without the '\tmove' and split line into an array
+		move_attributes = file_line[6:].split(',')
+
+		# Store values into labeled variables
+		move_name = move_attributes[0].strip()
+		move_effect = move_attributes[1].strip()
+		move_power = move_attributes[2].strip()
+		move_type = move_attributes[3].strip()
+		move_category = move_attributes[4].strip()
+		move_accuracy = move_attributes[5].strip()
+		move_pp = move_attributes[6].strip()
+		move_second_effect_chance = move_attributes[7].strip()
+
+		return Move(move_name, \
+					move_power, \
+					move_accuracy, \
+					move_effect, \
+					move_type, \
+					move_category, \
+					move_pp, \
+					move_second_effect_chance)
+
 class CategoryInfo:
 	def __init__(self, category_name):
 		self.category_name = category_name
@@ -72,6 +96,7 @@ class MoveFormatter:
 				+= MoveFormatter.format_strongest_move_in_category(strongest_moves_by_type[key].special)
 
 			formatted_strongest_moves_by_type += '---\n'
+
 		return formatted_strongest_moves_by_type
 
 
@@ -102,30 +127,6 @@ class MoveAnalyzer:
 	def calculate_stronger_move(move1, move2):
 		return move2 if(MoveAnalyzer.is_move_stronger(move1, move2)) else move1
 
-	@staticmethod
-	def build_move_object_from_file_line(file_line):
-		# Get the name without the '\tmove' and split line into an array'
-		move_attributes = file_line[6:].split(',')
-
-		# Store values into labeled variables
-		move_name = move_attributes[0].strip()
-		move_effect = move_attributes[1].strip()
-		move_power = move_attributes[2].strip()
-		move_type = move_attributes[3].strip()
-		move_category = move_attributes[4].strip()
-		move_accuracy = move_attributes[5].strip()
-		move_pp = move_attributes[6].strip()
-		move_second_effect_chance = move_attributes[7].strip()
-
-		return Move(move_name, \
-					move_power, \
-					move_accuracy, \
-					move_effect, \
-					move_type, \
-					move_category, \
-					move_pp, \
-					move_second_effect_chance)
-
 	# Parse moves.asm, build dictionary of StrongestMovesInType objects, and return them when finished
 	@staticmethod
 	def calculate_strongest_moves_per_type():
@@ -133,41 +134,44 @@ class MoveAnalyzer:
 			move_file_lines = move_file.readlines()
 
 		# {{'ELECTRIC': StrongestMovesInType()}, {'FIGHTING': StrongestMovesInType()}}
-		strongest_moves_by_type = {}
+		strongest_moves_by_type_dict = {}
 
 		for move_file_line in move_file_lines:
 
 			# Only read move information from moves.asm
 			if move_file_line.startswith('\tmove '):
-				move_to_compare = MoveAnalyzer.build_move_object_from_file_line(move_file_line)
+				move_to_compare = Move.convert_file_line_to_move(move_file_line)
 
 				# If dictionary entry for type doesn't exist yet, create one
-				dictVal = strongest_moves_by_type.get(move_to_compare.move_type, -1)
+				dictVal = strongest_moves_by_type_dict.get(move_to_compare.move_type, -1)
 				if dictVal == -1:
-					strongest_moves_by_type[move_to_compare.move_type] = StrongestMovesInType(move_to_compare.move_type)
+					strongest_moves_by_type_dict[move_to_compare.move_type] = StrongestMovesInType(move_to_compare.move_type)
 
 				# Update the info for each category
 				if(move_to_compare.category == 'PHYSICAL'):
-					current_strongest_move = strongest_moves_by_type[move_to_compare.move_type].physical.strongest_move
+					current_strongest_move = strongest_moves_by_type_dict[move_to_compare.move_type].physical.strongest_move
 					strongest_move = MoveAnalyzer.calculate_stronger_move(current_strongest_move, move_to_compare)
-					strongest_moves_by_type[move_to_compare.move_type].physical.strongest_move = strongest_move
-					strongest_moves_by_type[move_to_compare.move_type].physical.moves_in_category_count += 1
+					strongest_moves_by_type_dict[move_to_compare.move_type].physical.strongest_move = strongest_move
+					strongest_moves_by_type_dict[move_to_compare.move_type].physical.moves_in_category_count += 1
 				elif(move_to_compare.category == 'SPECIAL'):
-					current_strongest_move = strongest_moves_by_type[move_to_compare.move_type].special.strongest_move
+					current_strongest_move = strongest_moves_by_type_dict[move_to_compare.move_type].special.strongest_move
 					strongest_move = MoveAnalyzer.calculate_stronger_move(current_strongest_move, move_to_compare)
-					strongest_moves_by_type[move_to_compare.move_type].special.strongest_move = strongest_move
-					strongest_moves_by_type[move_to_compare.move_type].special.moves_in_category_count += 1
+					strongest_moves_by_type_dict[move_to_compare.move_type].special.strongest_move = strongest_move
+					strongest_moves_by_type_dict[move_to_compare.move_type].special.moves_in_category_count += 1
 
-		return strongest_moves_by_type
+		return strongest_moves_by_type_dict
 
-def export_strongest_moves_by_type_markdown(formatted_strongest_moves_by_type):
-	with open('strongest_moves.md', 'w', encoding='utf8') as results_file:
-		results_file.write(formatted_strongest_moves_by_type)
+class MarkdownExporter:
+
+	@staticmethod
+	def export_strongest_moves_by_type_markdown(formatted_strongest_moves_by_type):
+		with open('strongest_moves.md', 'w', encoding='utf8') as results_file:
+			results_file.write(formatted_strongest_moves_by_type)
 
 def main():
 		strongest_moves_by_type = MoveAnalyzer.calculate_strongest_moves_per_type()
 		formatted_strongest_moves_by_type = MoveFormatter.format_strongest_moves_by_type(strongest_moves_by_type)
-		export_strongest_moves_by_type_markdown(formatted_strongest_moves_by_type)
+		MarkdownExporter.export_strongest_moves_by_type_markdown(formatted_strongest_moves_by_type)
 
 if __name__ == '__main__':
 	main()
