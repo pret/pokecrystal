@@ -28,8 +28,7 @@ dwcoord: MACRO
 ; x, y
 rept _NARG / 2
 	dw (\2) * SCREEN_WIDTH + (\1) + wTilemap
-	shift
-	shift
+	shift 2
 endr
 ENDM
 

@@ -115,8 +115,7 @@ InitUnownPuzzlePiecePositions:
 initpuzcoord: MACRO
 rept _NARG / 2
 	db \1 puzcoord \2
-	shift
-	shift
+	shift 2
 endr
 ENDM
 	initpuzcoord 0,0, 0,1, 0,2, 0,3, 0,4, 0,5

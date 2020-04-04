@@ -32,18 +32,14 @@ ENDM
 dn: MACRO ; nybbles
 rept _NARG / 2
 	db ((\1) << 4) | (\2)
-	shift
-	shift
+	shift 2
 endr
 ENDM
 
 dc: MACRO ; "crumbs"
 rept _NARG / 4
 	db ((\1) << 6) | ((\2) << 4) | ((\3) << 2) | (\4)
-	shift
-	shift
-	shift
-	shift
+	shift 4
 endr
 ENDM
 

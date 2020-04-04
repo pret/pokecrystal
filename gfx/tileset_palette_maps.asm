@@ -4,8 +4,7 @@ tilepal: MACRO
 x = \1 << OAM_TILE_BANK
 rept (_NARG - 1) / 2
 	dn (x | PAL_BG_\3), (x | PAL_BG_\2)
-	shift
-	shift
+	shift 2
 endr
 ENDM
 
@@ -109,7 +108,4 @@ INCLUDE "gfx/tilesets/battle_tower_inside_palette_map.asm"
 TilesetBattleTowerOutsidePalMap:
 INCLUDE "gfx/tilesets/battle_tower_outside_palette_map.asm"
 
-; unused
-rept 26
-	db $06
-endr
+	ds 26, $06 ; unused

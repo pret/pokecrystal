@@ -4,8 +4,6 @@ INCLUDE "macros/enum.asm"
 INCLUDE "constants/hardware_constants.asm"
 INCLUDE "constants/mobile_constants.asm"
 
-charmap "<CR>", $d
-
 ; Mobile Adapter protocol commands
 MOBILE_COMMAND_BEGIN_SESSION            EQU $10
 MOBILE_COMMAND_END_SESSION              EQU $11
@@ -4943,31 +4941,31 @@ Unknown_1120a4:
 Unknown_1120b0:
 	db "RCPT TO:<", 0
 Unknown_1120ba:
-	db "DATA<CR>\n", 0
+	db "DATA\r\n", 0
 Unknown_1120c1:
-	db "QUIT<CR>\n", 0
+	db "QUIT\r\n", 0
 Unknown_1120c8:
 	db "USER ", 0
 Unknown_1120ce:
 	db "PASS ", 0
 Unknown_1120d4:
-	db "STAT<CR>\n", 0
+	db "STAT\r\n", 0
 Unknown_1120db:
-	db "LIST 00000<CR>\n", 0
+	db "LIST 00000\r\n", 0
 Unknown_1120e8:
-	db "RETR 00000<CR>\n", 0
+	db "RETR 00000\r\n", 0
 Unknown_1120f5:
-	db "DELE 00000<CR>\n", 0
+	db "DELE 00000\r\n", 0
 Unknown_112102:
-	db "TOP 00000 0<CR>\n", 0
+	db "TOP 00000 0\r\n", 0
 Unknown_112110:
 	db "GET ", 0
 Unknown_112115:
-	db " HTTP/1.0<CR>\n", 0
+	db " HTTP/1.0\r\n", 0
 Unknown_112121:
 	db "User-Agent: CGB-", 0
 Unknown_112132:
-	db "<CR>\n<CR>\n", 0
+	db "\r\n\r\n", 0
 Unknown_112137:
 	db "POST ", 0
 Unknown_11213d:
