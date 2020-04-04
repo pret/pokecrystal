@@ -45,8 +45,8 @@ RGBLINK ?= $(RGBDS)rgblink
 .SECONDARY:
 
 all: crystal
-crystal: pokecrystal.gbc
-crystal11: pokecrystal11.gbc
+crystal:    pokecrystal.gbc
+crystal11:  pokecrystal11.gbc
 crystal-au: pokecrystal-au.gbc
 
 clean:
@@ -66,16 +66,17 @@ tools:
 	$(MAKE) -C tools/
 
 
-$(crystal_obj):   RGBASMFLAGS =
-$(crystal11_obj): RGBASMFLAGS = -D _CRYSTAL11
-$(crystal_au_obj): RGBASMFLAGS = -D _CRYSTAL11 -D _CRYSTAL_AU
+RGBASMFLAGS = -L -Weverything
+$(crystal_obj):    RGBASMFLAGS +=
+$(crystal11_obj):  RGBASMFLAGS += -D _CRYSTAL11
+$(crystal_au_obj): RGBASMFLAGS += -D _CRYSTAL11 -D _CRYSTAL_AU
 
 # The dep rules have to be explicit or else missing files won't be reported.
 # As a side effect, they're evaluated immediately instead of when the rule is invoked.
 # It doesn't look like $(shell) can be deferred so there might not be a better way.
 define DEP
 $1: $2 $$(shell tools/scan_includes $2)
-	$$(RGBASM) $$(RGBASMFLAGS) -L -o $$@ $$<
+	$$(RGBASM) $$(RGBASMFLAGS) -o $$@ $$<
 endef
 
 # Build tools when building the rom.

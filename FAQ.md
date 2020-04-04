@@ -8,6 +8,7 @@
 - [I can't build the ROM, `make` just prints an error!](#i-cant-build-the-rom-make-just-prints-an-error)
   - [`gcc`: command not found](#gcc-command-not-found)
   - ["ERROR: `UNION` already defined"](#error-union-already-defined)
+  - ["ERROR: Macro not defined"](#error-macro-not-defined)
   - ["Expression must be 8-bit"](#expression-must-be-8-bit)
   - ["Segmentation fault" from `rgbgfx`](#segmentation-fault-from-rgbgfx)
   - ["Section is too big" or "Unable to place section in bank"](#section-is-too-big-or-unable-to-place-section-in-bank)
@@ -38,6 +39,10 @@ Reread [INSTALL.md](INSTALL.md) carefully, and make sure you're following all it
 You need to install `gcc`. If you're using Cygwin, re-run its setup, and at "Select Packages", choose to install `gcc-core`.
 
 ### "ERROR: `UNION` already defined"
+
+Download [**rgbds 0.4.0**][rgbds] or newer. Older versions will not work.
+
+### "ERROR: Macro not defined"
 
 Download [**rgbds 0.4.0**][rgbds] or newer. Older versions will not work.
 

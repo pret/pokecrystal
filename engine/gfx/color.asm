@@ -241,21 +241,21 @@ LoadTrainerClassPaletteAsNthBGPal:
 	ld a, [wTrainerClass]
 	call GetTrainerPalettePointer
 	ld a, e
-	jr got_palette_pointer_8bd7
+	jr LoadNthMiddleBGPal
 
 LoadMonPaletteAsNthBGPal:
 	ld a, [wCurPartySpecies]
 	call _GetMonPalettePointer
 	ld a, e
 	bit 7, a
-	jr z, got_palette_pointer_8bd7
+	jr z, LoadNthMiddleBGPal
 	and $7f
 	inc hl
 	inc hl
 	inc hl
 	inc hl
 
-got_palette_pointer_8bd7
+LoadNthMiddleBGPal:
 	push hl
 	ld hl, wBGPals1
 	ld de, 1 palettes

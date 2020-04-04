@@ -87,7 +87,7 @@ To install **rgbds**:
 ```bash
 sudo apt-get install pkg-config flex bison libpng-dev
 git clone -b v0.4.0 --depth=1 https://github.com/rednex/rgbds
-sudo make -C rgbds CFLAGS=-O2 install
+sudo make -C rgbds install
 ```
 
 ### OpenSUSE
@@ -103,7 +103,7 @@ To install **rgbds**:
 ```bash
 sudo zypper install pkg-config flex bison libpng16-devel
 git clone -b v0.4.0 --depth=1 https://github.com/rednex/rgbds
-sudo make -C rgbds CFLAGS=-O2 install
+sudo make -C rgbds install
 ```
 
 ### Arch Linux
@@ -121,7 +121,7 @@ Alternatively, to install **rgbds** manually:
 ```bash
 sudo pacman -S pkg-config flex bison libpng
 git clone -b v0.4.0 --depth=1 https://github.com/rednex/rgbds
-sudo make -C rgbds CFLAGS=-O2 install
+sudo make -C rgbds install
 ```
 
 ### Termux
@@ -158,7 +158,7 @@ To install **rgbds**:
 
 ```bash
 git clone -b v0.4.0 --depth=1 https://github.com/rednex/rgbds
-sudo make -C rgbds CFLAGS=-O2 install
+sudo make -C rgbds install
 ```
 
 Now you're ready to [build **pokecrystal**](#build-pokecrystal).

@@ -750,13 +750,13 @@ Script_AskWaterfall:
 EscapeRopeFunction:
 	call FieldMoveJumptableReset
 	ld a, $1
-	jr dig_incave
+	jr EscapeRopeOrDig
 
 DigFunction:
 	call FieldMoveJumptableReset
 	ld a, $2
 
-dig_incave
+EscapeRopeOrDig:
 	ld [wBuffer2], a
 .loop
 	ld hl, .DigTable
