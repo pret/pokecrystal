@@ -22,11 +22,15 @@ class Move:
 		self.category = category
 		self.pp = pp
 		self.second_effect_chance = second_effect_chance
+	
+	@staticmethod
+	def get_default_state():
+		return Move('N/A', 0, 0, 'N/A', 'N/A', 'N/A', 0, 0)
 
 class CategoryInfo:
 	def __init__(self, category_name):
 		self.category_name = category_name
-		self.strongest_move = Move('N/A', 0, 0, 'N/A', 'N/A', 'N/A', 0, 0)
+		self.strongest_move = Move.get_default_state()
 		self.moves_in_category_count = 0
 
 class StrongestMovesInType:
@@ -54,19 +58,22 @@ class MoveFormatter:
 				+	MoveFormatter.format_move(strongest_move_in_category.strongest_move) \
 				+	('- Move Count: ' + str(strongest_move_in_category.moves_in_category_count) + '\n')
 
-	# TODO: separate formatting and exporting into two functions
 	@staticmethod
-	def format_and_export_strongest_moves_by_type(moves_by_type):
+	def format_strongest_moves_by_type(strongest_moves_by_type):
 		# Format and write results to file
-		with open('strongest_moves.md', 'w', encoding='utf8') as results_file:
-			results_file.write('# Strongest Moves\n')
-			for key in moves_by_type:
-				results_file.write('## ' + str(key).title() + ':\n')
+		formatted_strongest_moves_by_type = ''
+		formatted_strongest_moves_by_type += '# Strongest Moves\n'
+		for key in strongest_moves_by_type:
+			formatted_strongest_moves_by_type += ('## ' + str(key).title() + ':\n')
 
-				results_file.write(MoveFormatter.format_strongest_move_in_category(moves_by_type[key].physical))
-				results_file.write(MoveFormatter.format_strongest_move_in_category(moves_by_type[key].special))
+			formatted_strongest_moves_by_type \
+				+= MoveFormatter.format_strongest_move_in_category(strongest_moves_by_type[key].physical)
+			formatted_strongest_moves_by_type \
+				+= MoveFormatter.format_strongest_move_in_category(strongest_moves_by_type[key].special)
 
-				results_file.write('---\n')
+			formatted_strongest_moves_by_type += '---\n'
+		return formatted_strongest_moves_by_type
+
 
 class MoveAnalyzer:
 
@@ -153,10 +160,14 @@ class MoveAnalyzer:
 
 		return strongest_moves_by_type
 
+def export_strongest_moves_by_type_markdown(formatted_strongest_moves_by_type):
+	with open('strongest_moves.md', 'w', encoding='utf8') as results_file:
+		results_file.write(formatted_strongest_moves_by_type)
 
 def main():
 		strongest_moves_by_type = MoveAnalyzer.calculate_strongest_moves_per_type()
-		MoveFormatter.format_and_export_strongest_moves_by_type(strongest_moves_by_type)
+		formatted_strongest_moves_by_type = MoveFormatter.format_strongest_moves_by_type(strongest_moves_by_type)
+		export_strongest_moves_by_type_markdown(formatted_strongest_moves_by_type)
 
 if __name__ == '__main__':
 	main()
