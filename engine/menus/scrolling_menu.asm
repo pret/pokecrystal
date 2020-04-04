@@ -244,16 +244,16 @@ InitScrollingMenuCursor:
 	ld a, [wScrollingMenuListSize]
 	inc a
 	cp b
-	jr c, .asm_2475a
-	jr nc, .asm_24763
+	jr c, .wrap
+	jr nc, .done
 
-.asm_2475a
+.wrap
 	xor a
 	ld [wMenuScrollPosition], a
 	ld a, $1
 	ld [wMenuCursorBuffer], a
 
-.asm_24763
+.done
 	ret
 
 ScrollingMenu_InitFlags:

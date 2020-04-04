@@ -140,7 +140,7 @@ VBlank0::
 	rst Bankswitch
 
 	ldh a, [hSeconds]
-	ldh [hSecondsBackup], a
+	ldh [hUnusedBackup], a
 
 	ret
 
