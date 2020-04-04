@@ -82,27 +82,6 @@ dba_pic: MACRO ; dbw bank, address
 	dw \1
 ENDM
 
-dbpixel: MACRO
-if _NARG >= 4
-; x tile, x pxl, y tile, y pxl
-	db \1 * 8 + \3, \2 * 8 + \4
-else
-; x, y
-	db \1 * 8, \2 * 8
-endc
-ENDM
-
-dsprite: MACRO
-; y tile, y pxl, x tile, x pxl, vtile offset, attributes
-	db (\1 * 8) % $100 + \2, (\3 * 8) % $100 + \4, \5, \6
-ENDM
-
-menu_coords: MACRO
-; x1, y1, x2, y2
-	db \2, \1 ; start coords
-	db \4, \3 ; end coords
-ENDM
-
 bcd: MACRO
 rept _NARG
 	dn ((\1) % 100) / 10, (\1) % 10
