@@ -107,10 +107,10 @@ MobilePrintNum::
 	ret
 
 FarPrintText::
-	ldh [hStackBank], a
+	ldh [hTempBank], a
 	ldh a, [hROMBank]
 	push af
-	ldh a, [hStackBank]
+	ldh a, [hTempBank]
 	rst Bankswitch
 
 	call PrintText

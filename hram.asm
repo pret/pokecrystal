@@ -4,7 +4,7 @@ hTransferVirtualOAM:: ds 10 ; ff80
 
 hROMBankBackup:: db ; ff8a
 hFarByte::
-hStackBank:: db ; ff8b
+hTempBank:: db ; ff8b
 hSRAMBank:: db ; ff8c
 
 hRTCDayHi::   db ; ff8d

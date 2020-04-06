@@ -809,10 +809,10 @@ MenuTextboxWaitButton::
 	ret
 
 Place2DMenuItemName::
-	ldh [hStackBank], a
+	ldh [hTempBank], a
 	ldh a, [hROMBank]
 	push af
-	ldh a, [hStackBank]
+	ldh a, [hTempBank]
 	rst Bankswitch
 
 	call PlaceString
