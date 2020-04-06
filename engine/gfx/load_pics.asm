@@ -247,7 +247,7 @@ FixPicBank:
 ; This is a thing for some reason.
 
 PICS_FIX EQU $36
-GLOBAL PICS_FIX
+EXPORT PICS_FIX
 
 	push hl
 	push bc

@@ -540,17 +540,17 @@ TrainerCard_Page2_3_OAMUpdate:
 	jr .loop2
 
 .facing1
-	dsprite  0,  0,  0,  0, $00, 0
-	dsprite  0,  0,  1,  0, $01, 0
-	dsprite  1,  0,  0,  0, $02, 0
-	dsprite  1,  0,  1,  0, $03, 0
+	dbsprite  0,  0,  0,  0, $00, 0
+	dbsprite  1,  0,  0,  0, $01, 0
+	dbsprite  0,  1,  0,  0, $02, 0
+	dbsprite  1,  1,  0,  0, $03, 0
 	db -1
 
 .facing2
-	dsprite  0,  0,  0,  0, $01, 0 | X_FLIP
-	dsprite  0,  0,  1,  0, $00, 0 | X_FLIP
-	dsprite  1,  0,  0,  0, $03, 0 | X_FLIP
-	dsprite  1,  0,  1,  0, $02, 0 | X_FLIP
+	dbsprite  0,  0,  0,  0, $01, 0 | X_FLIP
+	dbsprite  1,  0,  0,  0, $00, 0 | X_FLIP
+	dbsprite  0,  1,  0,  0, $03, 0 | X_FLIP
+	dbsprite  1,  1,  0,  0, $02, 0 | X_FLIP
 	db -1
 
 TrainerCard_JohtoBadgesOAM:

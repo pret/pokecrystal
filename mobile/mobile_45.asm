@@ -491,17 +491,17 @@ Function1143f3:
 	jp z, .asm_1144c2
 	inc e
 	call z, Function1144c8
-	cp $d ; CR
+	cp "\r"
 	jr nz, .asm_11442b
 	ld a, [de]
 	inc e
 	call z, Function1144c8
-	cp $a ; NL
+	cp "\n"
 	jr nz, .asm_11442b
 	ld a, [de]
-	cp $2e ; .
+	cp "."
 	jr z, .asm_1144ae
-	cp $d  ; CR
+	cp "\r"
 	jr z, .asm_1144b8
 
 .asm_11444a
@@ -557,7 +557,7 @@ Function1143f3:
 	inc bc
 	inc e
 	call z, Function1144c8
-	cp $d ; "\r"
+	cp "\r"
 	jr nz, .asm_114486
 	ld a, [de]
 	inc bc
@@ -581,14 +581,14 @@ Function1143f3:
 	inc e
 	call z, Function1144c8
 	ld a, [de]
-	cp $d ; CR
+	cp "\r"
 	jp nz, .asm_11442b
 
 .asm_1144b8
 	inc e
 	call z, Function1144c8
 	ld a, [de]
-	cp $a ; NL
+	cp "\n"
 	jp nz, .asm_11442b
 
 .asm_1144c2

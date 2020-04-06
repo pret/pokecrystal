@@ -146,7 +146,7 @@ hRandom::
 hRandomAdd:: db ; ffe1
 hRandomSub:: db ; ffe2
 
-hSecondsBackup:: db ; ffe3
+hUnusedBackup:: db ; ffe3
 
 hBattleTurn:: ; ffe4
 ; Which trainer's turn is it? 0: player, 1: opponent trainer

@@ -1128,7 +1128,7 @@ PokegearPhoneContactSubmenu:
 	ld h, a
 	inc de
 	push hl
-	ld bc, hBGMapAddress + 1
+	bccoord -1, -2, 0
 	add hl, bc
 	ld a, [de]
 	inc de

@@ -1480,30 +1480,30 @@ endr
 	jr .loop
 
 .OAM:
-	dsprite 4, 6, 10, 0, $00, 0
-	dsprite 4, 6, 11, 0, $00, 0
-	dsprite 4, 6, 12, 0, $00, 0
-	dsprite 4, 6, 13, 0, $00, 0
-	dsprite 4, 6, 14, 0, $00, 0
-	dsprite 4, 6, 15, 0, $00, 0
-	dsprite 4, 6, 16, 0, $00, 0
-	dsprite 4, 6, 17, 0, $00, 0
-	dsprite 4, 6, 18, 0, $00, 0
-	dsprite 4, 6, 18, 7, $00, 0
-	dsprite 7, 1, 10, 0, $00, 0 | Y_FLIP
-	dsprite 7, 1, 11, 0, $00, 0 | Y_FLIP
-	dsprite 7, 1, 12, 0, $00, 0 | Y_FLIP
-	dsprite 7, 1, 13, 0, $00, 0 | Y_FLIP
-	dsprite 7, 1, 14, 0, $00, 0 | Y_FLIP
-	dsprite 7, 1, 15, 0, $00, 0 | Y_FLIP
-	dsprite 7, 1, 16, 0, $00, 0 | Y_FLIP
-	dsprite 7, 1, 17, 0, $00, 0 | Y_FLIP
-	dsprite 7, 1, 18, 0, $00, 0 | Y_FLIP
-	dsprite 7, 1, 18, 7, $00, 0 | Y_FLIP
-	dsprite 5, 6,  9, 6, $01, 0
-	dsprite 6, 1,  9, 6, $01, 0 | Y_FLIP
-	dsprite 5, 6, 19, 1, $01, 0 | X_FLIP
-	dsprite 6, 1, 19, 1, $01, 0 | X_FLIP | Y_FLIP
+	dbsprite 10, 4, 0, 6, $00, 0
+	dbsprite 11, 4, 0, 6, $00, 0
+	dbsprite 12, 4, 0, 6, $00, 0
+	dbsprite 13, 4, 0, 6, $00, 0
+	dbsprite 14, 4, 0, 6, $00, 0
+	dbsprite 15, 4, 0, 6, $00, 0
+	dbsprite 16, 4, 0, 6, $00, 0
+	dbsprite 17, 4, 0, 6, $00, 0
+	dbsprite 18, 4, 0, 6, $00, 0
+	dbsprite 18, 4, 7, 6, $00, 0
+	dbsprite 10, 7, 0, 1, $00, 0 | Y_FLIP
+	dbsprite 11, 7, 0, 1, $00, 0 | Y_FLIP
+	dbsprite 12, 7, 0, 1, $00, 0 | Y_FLIP
+	dbsprite 13, 7, 0, 1, $00, 0 | Y_FLIP
+	dbsprite 14, 7, 0, 1, $00, 0 | Y_FLIP
+	dbsprite 15, 7, 0, 1, $00, 0 | Y_FLIP
+	dbsprite 16, 7, 0, 1, $00, 0 | Y_FLIP
+	dbsprite 17, 7, 0, 1, $00, 0 | Y_FLIP
+	dbsprite 18, 7, 0, 1, $00, 0 | Y_FLIP
+	dbsprite 18, 7, 7, 1, $00, 0 | Y_FLIP
+	dbsprite  9, 5, 6, 6, $01, 0
+	dbsprite  9, 6, 6, 1, $01, 0 | Y_FLIP
+	dbsprite 19, 5, 1, 6, $01, 0 | X_FLIP
+	dbsprite 19, 6, 1, 1, $01, 0 | X_FLIP | Y_FLIP
 	db -1
 
 BillsPC_UpdateInsertCursor:
@@ -1528,16 +1528,16 @@ endr
 	jr .loop
 
 .OAM:
-	dsprite 4, 7, 10, 0, $06, 0
-	dsprite 5, 3, 11, 0, $00, 0 | Y_FLIP
-	dsprite 5, 3, 12, 0, $00, 0 | Y_FLIP
-	dsprite 5, 3, 13, 0, $00, 0 | Y_FLIP
-	dsprite 5, 3, 14, 0, $00, 0 | Y_FLIP
-	dsprite 5, 3, 15, 0, $00, 0 | Y_FLIP
-	dsprite 5, 3, 16, 0, $00, 0 | Y_FLIP
-	dsprite 5, 3, 17, 0, $00, 0 | Y_FLIP
-	dsprite 5, 3, 18, 0, $00, 0 | Y_FLIP
-	dsprite 4, 7, 19, 0, $07, 0
+	dbsprite 10, 4, 0, 7, $06, 0
+	dbsprite 11, 5, 0, 3, $00, 0 | Y_FLIP
+	dbsprite 12, 5, 0, 3, $00, 0 | Y_FLIP
+	dbsprite 13, 5, 0, 3, $00, 0 | Y_FLIP
+	dbsprite 14, 5, 0, 3, $00, 0 | Y_FLIP
+	dbsprite 15, 5, 0, 3, $00, 0 | Y_FLIP
+	dbsprite 16, 5, 0, 3, $00, 0 | Y_FLIP
+	dbsprite 17, 5, 0, 3, $00, 0 | Y_FLIP
+	dbsprite 18, 5, 0, 3, $00, 0 | Y_FLIP
+	dbsprite 19, 4, 0, 7, $07, 0
 	db -1
 
 Unreferenced_BillsPC_FillBox:

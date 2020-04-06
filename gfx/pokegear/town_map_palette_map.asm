@@ -9,8 +9,7 @@
 townmappals: MACRO
 rept _NARG / 2
 	dn PAL_TOWNMAP_\2, PAL_TOWNMAP_\1
-	shift
-	shift
+	shift 2
 endr
 ENDM
 

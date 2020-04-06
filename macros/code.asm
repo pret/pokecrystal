@@ -8,17 +8,6 @@ ln: MACRO ; r, hi, lo
 	ld \1, ((\2) & $f) << 4 | ((\3) & $f)
 ENDM
 
-ldpixel: MACRO
-if _NARG >= 5
-	lb \1, \2 * 8 + \4, \3 * 8 + \5
-else
-	lb \1, \2 * 8, \3 * 8
-endc
-ENDM
-
-depixel EQUS "ldpixel de,"
-bcpixel EQUS "ldpixel bc,"
-
 ; Design patterns
 
 jumptable: MACRO

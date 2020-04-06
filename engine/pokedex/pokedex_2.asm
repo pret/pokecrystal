@@ -65,15 +65,15 @@ DoDexSearchSlowpokeFrame:
 	jr .loop
 
 .SlowpokeSpriteData:
-	dsprite 11, 0,  9, 0, $00, 0
-	dsprite 11, 0, 10, 0, $01, 0
-	dsprite 11, 0, 11, 0, $02, 0
-	dsprite 12, 0,  9, 0, $10, 0
-	dsprite 12, 0, 10, 0, $11, 0
-	dsprite 12, 0, 11, 0, $12, 0
-	dsprite 13, 0,  9, 0, $20, 0
-	dsprite 13, 0, 10, 0, $21, 0
-	dsprite 13, 0, 11, 0, $22, 0
+	dbsprite  9, 11, 0, 0, $00, 0
+	dbsprite 10, 11, 0, 0, $01, 0
+	dbsprite 11, 11, 0, 0, $02, 0
+	dbsprite  9, 12, 0, 0, $10, 0
+	dbsprite 10, 12, 0, 0, $11, 0
+	dbsprite 11, 12, 0, 0, $12, 0
+	dbsprite  9, 13, 0, 0, $20, 0
+	dbsprite 10, 13, 0, 0, $21, 0
+	dbsprite 11, 13, 0, 0, $22, 0
 	db -1
 
 DisplayDexEntry:

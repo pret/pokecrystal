@@ -6,6 +6,11 @@
 callba EQUS "farcall"
 callab EQUS "callfar"
 
+; macros/gfx.asm
+dsprite: MACRO
+	dbsprite \2, \4, \1, \3, \5, \6
+ENDM
+
 ; macros/scripts/audio.asm
 __ EQU 0
 CC EQU 13

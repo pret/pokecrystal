@@ -134,25 +134,25 @@ ENDM
 	ret
 
 .PC_ElmsLab_OAM:
-	dsprite   4, 0,   4, 2, $7c, PAL_OW_TREE | OBP_NUM
-	dsprite   4, 0,   4, 6, $7c, PAL_OW_TREE | OBP_NUM
-	dsprite   4, 6,   4, 0, $7d, PAL_OW_TREE | OBP_NUM
-	dsprite   4, 6,   5, 0, $7d, PAL_OW_TREE | OBP_NUM | X_FLIP
-	dsprite   5, 3,   4, 0, $7d, PAL_OW_TREE | OBP_NUM
-	dsprite   5, 3,   5, 0, $7d, PAL_OW_TREE | OBP_NUM | X_FLIP
-	dsprite   6, 0,   4, 0, $7d, PAL_OW_TREE | OBP_NUM
-	dsprite   6, 0,   5, 0, $7d, PAL_OW_TREE | OBP_NUM | X_FLIP
+	dbsprite   4,   4, 2, 0, $7c, PAL_OW_TREE | OBP_NUM
+	dbsprite   4,   4, 6, 0, $7c, PAL_OW_TREE | OBP_NUM
+	dbsprite   4,   4, 0, 6, $7d, PAL_OW_TREE | OBP_NUM
+	dbsprite   5,   4, 0, 6, $7d, PAL_OW_TREE | OBP_NUM | X_FLIP
+	dbsprite   4,   5, 0, 3, $7d, PAL_OW_TREE | OBP_NUM
+	dbsprite   5,   5, 0, 3, $7d, PAL_OW_TREE | OBP_NUM | X_FLIP
+	dbsprite   4,   6, 0, 0, $7d, PAL_OW_TREE | OBP_NUM
+	dbsprite   5,   6, 0, 0, $7d, PAL_OW_TREE | OBP_NUM | X_FLIP
 
 .HealMachineGFX:
 INCBIN "gfx/overworld/heal_machine.2bpp"
 
 .HOF_OAM:
-	dsprite   7, 4,  10, 1, $7d, PAL_OW_TREE | OBP_NUM
-	dsprite   7, 4,  10, 6, $7d, PAL_OW_TREE | OBP_NUM
-	dsprite   7, 3,   9, 5, $7d, PAL_OW_TREE | OBP_NUM
-	dsprite   7, 3,  11, 2, $7d, PAL_OW_TREE | OBP_NUM
-	dsprite   7, 1,   9, 1, $7d, PAL_OW_TREE | OBP_NUM
-	dsprite   7, 1,  11, 5, $7d, PAL_OW_TREE | OBP_NUM
+	dbsprite  10,   7, 1, 4, $7d, PAL_OW_TREE | OBP_NUM
+	dbsprite  10,   7, 6, 4, $7d, PAL_OW_TREE | OBP_NUM
+	dbsprite   9,   7, 5, 3, $7d, PAL_OW_TREE | OBP_NUM
+	dbsprite  11,   7, 2, 3, $7d, PAL_OW_TREE | OBP_NUM
+	dbsprite   9,   7, 1, 1, $7d, PAL_OW_TREE | OBP_NUM
+	dbsprite  11,   7, 5, 1, $7d, PAL_OW_TREE | OBP_NUM
 
 .LoadPalettes:
 	call IsCGB

@@ -115,8 +115,7 @@ InitUnownPuzzlePiecePositions:
 initpuzcoord: MACRO
 rept _NARG / 2
 	db \1 puzcoord \2
-	shift
-	shift
+	shift 2
 endr
 ENDM
 	initpuzcoord 0,0, 0,1, 0,2, 0,3, 0,4, 0,5
@@ -553,27 +552,27 @@ RedrawUnownPuzzlePieces:
 	jr .loop
 
 .OAM_HoldingPiece:
-	dsprite -1, -4, -1, -4, $00, 0
-	dsprite -1, -4,  0, -4, $01, 0
-	dsprite -1, -4,  0,  4, $02, 0
-	dsprite  0, -4, -1, -4, $0c, 0
-	dsprite  0, -4,  0, -4, $0d, 0
-	dsprite  0, -4,  0,  4, $0e, 0
-	dsprite  0,  4, -1, -4, $18, 0
-	dsprite  0,  4,  0, -4, $19, 0
-	dsprite  0,  4,  0,  4, $1a, 0
+	dbsprite -1, -1, -4, -4, $00, 0
+	dbsprite  0, -1, -4, -4, $01, 0
+	dbsprite  0, -1,  4, -4, $02, 0
+	dbsprite -1,  0, -4, -4, $0c, 0
+	dbsprite  0,  0, -4, -4, $0d, 0
+	dbsprite  0,  0,  4, -4, $0e, 0
+	dbsprite -1,  0, -4,  4, $18, 0
+	dbsprite  0,  0, -4,  4, $19, 0
+	dbsprite  0,  0,  4,  4, $1a, 0
 	db -1
 
 .OAM_NotHoldingPiece:
-	dsprite -1, -4, -1, -4, $00, 0
-	dsprite -1, -4,  0, -4, $01, 0
-	dsprite -1, -4,  0,  4, $00, 0 | X_FLIP
-	dsprite  0, -4, -1, -4, $02, 0
-	dsprite  0, -4,  0, -4, $03, 0
-	dsprite  0, -4,  0,  4, $02, 0 | X_FLIP
-	dsprite  0,  4, -1, -4, $00, 0 | Y_FLIP
-	dsprite  0,  4,  0, -4, $01, 0 | Y_FLIP
-	dsprite  0,  4,  0,  4, $00, 0 | X_FLIP | Y_FLIP
+	dbsprite -1, -1, -4, -4, $00, 0
+	dbsprite  0, -1, -4, -4, $01, 0
+	dbsprite  0, -1,  4, -4, $00, 0 | X_FLIP
+	dbsprite -1,  0, -4, -4, $02, 0
+	dbsprite  0,  0, -4, -4, $03, 0
+	dbsprite  0,  0,  4, -4, $02, 0 | X_FLIP
+	dbsprite -1,  0, -4,  4, $00, 0 | Y_FLIP
+	dbsprite  0,  0, -4,  4, $01, 0 | Y_FLIP
+	dbsprite  0,  0,  4,  4, $00, 0 | X_FLIP | Y_FLIP
 	db -1
 
 UnownPuzzleCoordData:

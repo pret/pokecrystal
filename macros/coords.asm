@@ -28,8 +28,7 @@ dwcoord: MACRO
 ; x, y
 rept _NARG / 2
 	dw (\2) * SCREEN_WIDTH + (\1) + wTilemap
-	shift
-	shift
+	shift 2
 endr
 ENDM
 
@@ -49,4 +48,10 @@ lda_coord: MACRO
 	else
 	ld a, [(\2) * SCREEN_WIDTH + (\1) + \3]
 	endc
+ENDM
+
+menu_coords: MACRO
+; x1, y1, x2, y2
+	db \2, \1 ; start coords
+	db \4, \3 ; end coords
 ENDM
