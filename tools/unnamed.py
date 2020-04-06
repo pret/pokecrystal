@@ -81,14 +81,14 @@ for objfile in objects:
     elif magic == b'RGB9':
         obj_ver = 10 + unpack_file("<I", f)[0]
 
-    if obj_ver not in [6, 10, 11]:
+    if obj_ver not in [6, 10, 11, 12, 13]:
         print("Error: File '%s' is of an unknown format." % objfile, file=stderr)
         exit(1)
 
     num_symbols = unpack_file("<II", f)[0]
     for x in range(num_symbols):
         sym_name = read_string(f)
-        sym_type = symtype(unpack_file("<B", f)[0])
+        sym_type = symtype(unpack_file("<B", f)[0] & 0x7f)
         if sym_type == symtype.IMPORT:
             continue
         sym_filename = read_string(f)
