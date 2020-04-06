@@ -54,31 +54,31 @@ ByteFill::
 GetFarByte::
 ; retrieve a single byte from a:hl, and return it in a.
 	; bankswitch to new bank
-	ldh [hBuffer], a
+	ldh [hStackBank], a
 	ldh a, [hROMBank]
 	push af
-	ldh a, [hBuffer]
+	ldh a, [hStackBank]
 	rst Bankswitch
 
 	; get byte from new bank
 	ld a, [hl]
-	ldh [hBuffer], a
+	ldh [hFarByte], a
 
 	; bankswitch to previous bank
 	pop af
 	rst Bankswitch
 
 	; return retrieved value in a
-	ldh a, [hBuffer]
+	ldh a, [hFarByte]
 	ret
 
 GetFarHalfword::
 ; retrieve a halfword from a:hl, and return it in hl.
 	; bankswitch to new bank
-	ldh [hBuffer], a
+	ldh [hStackBank], a
 	ldh a, [hROMBank]
 	push af
-	ldh a, [hBuffer]
+	ldh a, [hStackBank]
 	rst Bankswitch
 
 	; get halfword from new bank, put it in hl
@@ -92,10 +92,10 @@ GetFarHalfword::
 	ret
 
 FarCopyWRAM::
-	ldh [hBuffer], a
+	ldh [hStackBank], a
 	ldh a, [rSVBK]
 	push af
-	ldh a, [hBuffer]
+	ldh a, [hStackBank]
 	ldh [rSVBK], a
 
 	call CopyBytes
@@ -105,23 +105,23 @@ FarCopyWRAM::
 	ret
 
 GetFarWRAMByte::
-	ldh [hBuffer], a
+	ldh [hStackBank], a
 	ldh a, [rSVBK]
 	push af
-	ldh a, [hBuffer]
+	ldh a, [hStackBank]
 	ldh [rSVBK], a
 	ld a, [hl]
-	ldh [hBuffer], a
+	ldh [hFarByte], a
 	pop af
 	ldh [rSVBK], a
-	ldh a, [hBuffer]
+	ldh a, [hFarByte]
 	ret
 
 GetFarWRAMWord::
-	ldh [hBuffer], a
+	ldh [hStackBank], a
 	ldh a, [rSVBK]
 	push af
-	ldh a, [hBuffer]
+	ldh a, [hStackBank]
 	ldh [rSVBK], a
 	ld a, [hli]
 	ld h, [hl]

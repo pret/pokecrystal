@@ -19,10 +19,10 @@ Get1bpp_2::
 	ret
 
 FarCopyBytesDouble_DoubleBankSwitch::
-	ldh [hBuffer], a
+	ldh [hStackBank], a
 	ldh a, [hROMBank]
 	push af
-	ldh a, [hBuffer]
+	ldh a, [hStackBank]
 	rst Bankswitch
 
 	call FarCopyBytesDouble
@@ -135,10 +135,10 @@ DecompressRequest2bpp::
 FarCopyBytes::
 ; copy bc bytes from a:hl to de
 
-	ldh [hBuffer], a
+	ldh [hStackBank], a
 	ldh a, [hROMBank]
 	push af
-	ldh a, [hBuffer]
+	ldh a, [hStackBank]
 	rst Bankswitch
 
 	call CopyBytes
@@ -151,10 +151,10 @@ FarCopyBytesDouble:
 ; Copy bc bytes from a:hl to bc*2 bytes at de,
 ; doubling each byte in the process.
 
-	ldh [hBuffer], a
+	ldh [hStackBank], a
 	ldh a, [hROMBank]
 	push af
-	ldh a, [hBuffer]
+	ldh a, [hStackBank]
 	rst Bankswitch
 
 ; switcheroo, de <> hl

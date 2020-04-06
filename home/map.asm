@@ -1043,10 +1043,10 @@ MapTextbox::
 Call_a_de::
 ; Call a:de.
 
-	ldh [hBuffer], a
+	ldh [hStackBank], a
 	ldh a, [hROMBank]
 	push af
-	ldh a, [hBuffer]
+	ldh a, [hStackBank]
 	rst Bankswitch
 
 	call .de
