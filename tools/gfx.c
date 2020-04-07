@@ -8,7 +8,7 @@
 #include "common.h"
 
 static void usage(void) {
-	fprintf(stderr, "Usage: gfx [--trim-whitespace] [--remove-whitespace] [--interleave] [--remove-duplicates [--keep-whitespace]] [--remove-xflip] [--remove-yflip] [--png filename] [-d depth] [-h] [-o outfile] infile\n");
+	fprintf(stderr, "Usage: gfx [--trim-whitespace] [--remove-whitespace] [--interleave] [--remove-duplicates [--keep-whitespace]] [--remove-xflip] [--remove-yflip] [--preserve indexes] [--png filename] [-d depth] [-h] [-o outfile] infile\n");
 }
 
 static void error(char *message) {
@@ -27,6 +27,8 @@ struct Options {
 	int keep_whitespace;
 	int remove_xflip;
 	int remove_yflip;
+	int *preserved;
+	int num_preserved;
 	char *png_file;
 };
 
@@ -43,11 +45,13 @@ void get_args(int argc, char *argv[]) {
 		{"keep-whitespace", no_argument, &Options.keep_whitespace, 1},
 		{"remove-xflip", no_argument, &Options.remove_xflip, 1},
 		{"remove-yflip", no_argument, &Options.remove_yflip, 1},
+		{"preserve", required_argument, 0, 'r'},
 		{"png", required_argument, 0, 'p'},
 		{"depth", required_argument, 0, 'd'},
 		{"help", no_argument, 0, 'h'},
 		{0}
 	};
+	char *token;
 	for (int opt = 0; opt != -1;) {
 		switch (opt = getopt_long(argc, argv, "ho:d:p:", long_options)) {
 		case 'h':
@@ -59,6 +63,15 @@ void get_args(int argc, char *argv[]) {
 		case 'd':
 			Options.depth = strtoul(optarg, NULL, 0);
 			break;
+		case 'r':
+			token = strtok(optarg, ",");
+			while (token) {
+				Options.num_preserved++;
+				Options.preserved = realloc(Options.preserved, Options.num_preserved * sizeof(int));
+				Options.preserved[Options.num_preserved-1] = strtoul(optarg, NULL, 0);
+				token = strtok(NULL, ",");
+			}
+			break;
 		case 'p':
 			Options.png_file = optarg;
 			break;
@@ -69,6 +82,23 @@ void get_args(int argc, char *argv[]) {
 			usage();
 			exit(1);
 			break;
+		}
+	}
+}
+
+bool is_preserved(int index) {
+	for (int i = 0; i < Options.num_preserved; i++) {
+		if (Options.preserved[i] == index) {
+			return true;
+		}
+	}
+	return false;
+}
+
+void shift_preserved(int removed_index) {
+	for (int i = 0; i < Options.num_preserved; i++) {
+		if (Options.preserved[i] >= removed_index) {
+			Options.preserved[i]--;
 		}
 	}
 }
@@ -91,7 +121,7 @@ bool is_whitespace(uint8_t *tile, int tile_size) {
 void trim_whitespace(struct Graphic *graphic) {
 	int tile_size = Options.depth * 8;
 	for (int i = graphic->size - tile_size; i > 0; i -= tile_size) {
-		if (is_whitespace(&graphic->data[i], tile_size)) {
+		if (is_whitespace(&graphic->data[i], tile_size) && !is_preserved(i / tile_size)) {
 			graphic->size = i;
 		} else {
 			break;
@@ -107,8 +137,10 @@ void remove_whitespace(struct Graphic *graphic) {
 	graphic->size &= ~(tile_size - 1);
 	
 	int i = 0;
-	for (int j = 0; i < graphic->size && j < graphic->size; i += tile_size, j += tile_size) {
-		while (j < graphic->size && is_whitespace(&graphic->data[j], tile_size)) {
+	for (int j = 0, d = 0; i < graphic->size && j < graphic->size; i += tile_size, j += tile_size) {
+		while (j < graphic->size && is_whitespace(&graphic->data[j], tile_size) && !is_preserved(j / tile_size - d)) {
+			shift_preserved(j / tile_size);
+			d++;
 			j += tile_size;
 		}
 		if (j >= graphic->size) {
@@ -144,11 +176,13 @@ void remove_duplicates(struct Graphic *graphic) {
 	// Make sure we have a whole number of tiles, round down if required
 	graphic->size &= ~(tile_size - 1);
 	
-	for (int i = 0, j = 0; i < graphic->size && j < graphic->size; i += tile_size, j += tile_size) {
+	for (int i = 0, j = 0, d = 0; i < graphic->size && j < graphic->size; i += tile_size, j += tile_size) {
 		while (j < graphic->size && tile_exists(&graphic->data[j], graphic->data, tile_size, num_tiles)) {
-			if (Options.keep_whitespace && is_whitespace(&graphic->data[j], tile_size)) {
+			if ((Options.keep_whitespace && is_whitespace(&graphic->data[j], tile_size)) || is_preserved(j / tile_size - d)) {
 				break;
 			}
+			shift_preserved(j / tile_size);
+			d++;
 			j += tile_size;
 		}
 		if (j >= graphic->size) {
@@ -196,11 +230,13 @@ void remove_flip(struct Graphic *graphic, bool xflip, bool yflip) {
 	// Make sure we have a whole number of tiles, round down if required
 	graphic->size &= ~(tile_size - 1);
 	
-	for (int i = 0, j = 0; i < graphic->size && j < graphic->size; i += tile_size, j += tile_size) {
+	for (int i = 0, j = 0, d = 0; i < graphic->size && j < graphic->size; i += tile_size, j += tile_size) {
 		while (j < graphic->size && flip_exists(&graphic->data[j], graphic->data, tile_size, num_tiles, xflip, yflip)) {
-			if (Options.keep_whitespace && is_whitespace(&graphic->data[j], tile_size)) {
+			if ((Options.keep_whitespace && is_whitespace(&graphic->data[j], tile_size)) || is_preserved(j / tile_size - d)) {
 				break;
 			}
+			shift_preserved(j / tile_size);
+			d++;
 			j += tile_size;
 		}
 		if (j >= graphic->size) {
