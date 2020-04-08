@@ -5,8 +5,8 @@ os:
 install:
   - |-
     ( cd
-        git clone --depth=1 https://github.com/rednex/rgbds
-        sudo make -C rgbds CFLAGS=-O2 install
+        git clone -b v0.4.0 --depth=1 https://github.com/rednex/rgbds
+        sudo make -C rgbds install
         rm -rf rgbds
     )
 before_script:
