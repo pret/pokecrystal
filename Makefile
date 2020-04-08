@@ -51,7 +51,7 @@ crystal-au: pokecrystal-au.gbc
 
 clean:
 	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(crystal_au_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
-	find gfx \( -name "*.[12]bpp" -o -name "*.lz" -o -name "*.gbcpal" \) -delete
+	find gfx \( -name "*.[12]bpp" -o -name "*.lz" -o -name "*.gbcpal" -o -name "*.sgb.tilemap" \) -delete
 	find gfx/pokemon -mindepth 1 ! -path "gfx/pokemon/unown/*" \( -name "bitmask.asm" -o -name "frames.asm" -o -name "front.animated.tilemap" -o -name "front.dimensions" \) -delete
 	$(MAKE) clean -C tools/
 
@@ -226,12 +226,12 @@ gfx/battle/dude.2bpp: rgbgfx += -h
 gfx/font/unused_bold_font.1bpp: tools/gfx += --trim-whitespace
 
 gfx/sgb/sgb_border.2bpp: tools/gfx += --trim-whitespace
+gfx/sgb/sgb_border.sgb.tilemap: gfx/sgb/sgb_border.bin ; tr < $< -d '\000' > $@
 
 gfx/mobile/ascii_font.2bpp: tools/gfx += --trim-whitespace
 gfx/mobile/dialpad.2bpp: tools/gfx += --trim-whitespace
 gfx/mobile/dialpad_cursor.2bpp: tools/gfx += --trim-whitespace
-gfx/mobile/electro_ball.2bpp: tools/gfx += --trim-whitespace
-gfx/mobile/electro_ball_nonmatching.2bpp: tools/gfx += --remove-duplicates --remove-xflip
+gfx/mobile/electro_ball.2bpp: tools/gfx += --remove-duplicates --remove-xflip --preserve=0x39
 gfx/mobile/mobile_splash.2bpp: tools/gfx += --remove-duplicates --remove-xflip
 gfx/mobile/card.2bpp: tools/gfx += --trim-whitespace
 gfx/mobile/card_2.2bpp: tools/gfx += --trim-whitespace
