@@ -50,7 +50,7 @@ crystal11:  pokecrystal11.gbc
 crystal-au: pokecrystal-au.gbc
 
 clean:
-	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(crystal_au_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
+	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(crystal_au_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym) rgbdstest.o
 	find gfx \( -name "*.[12]bpp" -o -name "*.lz" -o -name "*.gbcpal" -o -name "*.sgb.tilemap" \) -delete
 	find gfx/pokemon -mindepth 1 ! -path "gfx/pokemon/unown/*" \( -name "bitmask.asm" -o -name "frames.asm" -o -name "front.animated.tilemap" -o -name "front.dimensions" \) -delete
 	$(MAKE) clean -C tools/
@@ -65,6 +65,9 @@ compare: $(roms)
 tools:
 	$(MAKE) -C tools/
 
+rgbdstest.o: rgbdstest.asm
+	$(RGBASM) -o $@ $<
+
 
 RGBASMFLAGS = -L -Weverything
 $(crystal_obj):    RGBASMFLAGS +=
@@ -75,7 +78,7 @@ $(crystal_au_obj): RGBASMFLAGS += -D _CRYSTAL11 -D _CRYSTAL_AU
 # As a side effect, they're evaluated immediately instead of when the rule is invoked.
 # It doesn't look like $(shell) can be deferred so there might not be a better way.
 define DEP
-$1: $2 $$(shell tools/scan_includes $2)
+$1: $2 $$(shell tools/scan_includes $2) | rgbdstest.o
 	$$(RGBASM) $$(RGBASMFLAGS) -o $$@ $$<
 endef
 
