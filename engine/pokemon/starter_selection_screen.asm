@@ -112,36 +112,21 @@ StarterStatsInit:
 	farcall GetBaseData
 	pop hl
 
-	call PlaceNavigationArrows
-	call PlaceMonName
-	call PlaceMonTypes
-	call PlaceStarterCategory
-	call PlaceIndex
-	call PlaceInstructions
-
-	ld hl, wcf64
-	set 4, [hl]
-	ld h, 1 ; StarterSelectionScreen_LoadPage
-	call StarterSelectionScreen_SetJumptableIndex
-	ret
-
-PlaceNavigationArrows:
+.placeNavigationArrows:
 	hlcoord 4, 10
 	ld [hl], "◀"
 	hlcoord 15, 10
 	ld [hl], "▶"
-	ret
 
-PlaceMonName:
+.placeMonName:
 	ld a, MON_NAME
 	ld [wNamedObjectTypeBuffer], a
 	farcall GetName
 	ld de, wStringBuffer1
 	hlcoord 1, 1
 	call PlaceString
-	ret
 
-PlaceMonTypes:
+.placeMonTypes:
 	ld a, [wBaseType1]
 	ld [wNamedObjectIndexBuffer], a
 	farcall GetTypeName
@@ -149,7 +134,7 @@ PlaceMonTypes:
 	hlcoord 1, 3
 	call PlaceString
 
-.PrintSecondType
+.printSecondType
 	ld de, Slash
 	hlcoord 1, 4
 	call PlaceString
@@ -161,17 +146,12 @@ PlaceMonTypes:
 	hlcoord 2, 4
 	call PlaceString
 
-	ret
-.done
-	ret
-
-PlaceStarterCategory:
+.placeStarterCategory:
 	call GetStarterCategoryName
 	hlcoord 12, 3
 	call PlaceString
-	ret
 
-PlaceIndex:
+.placeIndex:
 	ld hl, wStarterCursorPositionMon
 
 	ld a, [hl]
@@ -183,7 +163,6 @@ PlaceIndex:
 	hlcoord 13, 4
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
-
 
 	ld hl, wStarterCursorPositionMon
 	ld a, [hl]
@@ -198,31 +177,35 @@ PlaceIndex:
 	hlcoord 16, 4
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
+
+.placeInstructions:
+	ld de, MonLabel
+	hlcoord 1, 14
+	call PlaceString
+
+	ld de, CategoryLabel
+	hlcoord 1, 15
+	call PlaceString
+
+	ld de, RandomLabel
+	hlcoord 1, 16
+	call PlaceString
+
+	ld hl, wcf64
+	set 4, [hl]
+	ld h, 1 ; StarterSelectionScreen_LoadPage
+	jp StarterSelectionScreen_SetJumptableIndex
 	ret
 
 Slash:
 	db "/@"
-
-PlaceInstructions:
-	ld de, .mon_label
-	hlcoord 1, 14
-	call PlaceString
-
-	ld de, .category_label
-	hlcoord 1, 15
-	call PlaceString
-
-	ld de, .random_label
-	hlcoord 1, 16
-	call PlaceString
-
-	ret
-.mon_label
+MonLabel:
 	db "MON: LEFT/RIGHT@"
-.category_label
+CategoryLabel:
 	db "CATEGORY: UP/DOWN@"
-.random_label
+RandomLabel:
 	db "RANDOM: SELECT@"
+
 
 StarterSelectionScreen_LoadPage:
 	call StarterSelectionScreen_LoadGFX
@@ -237,12 +220,12 @@ StarterSelectionJoypad:
 	call StarterSelectionScreen_GetJoypad
 	jr nc, .next
 	ld h, 0 ; StarterStatsInit
-	call StarterSelectionScreen_SetJumptableIndex
+	jp StarterSelectionScreen_SetJumptableIndex
 	ret
 
 .next
 	and D_DOWN | D_UP | D_LEFT | D_RIGHT | A_BUTTON | SELECT
-	jp StarterSelectionScreen_JoypadAction
+	jr StarterSelectionScreen_JoypadAction
 
 StarterSelectionScreenNoCry
 	call IsSFXPlaying
@@ -257,13 +240,7 @@ StarterSelectionScreen_GetJoypad:
 	ld a, [wMonType]
 	cp TEMPMON
 	jr nz, .notbreedmon
-	push hl
-	push de
-	push bc
 	farcall StatsScreenDPad
-	pop bc
-	pop de
-	pop hl
 	ld a, [wMenuJoypad]
 	and D_LEFT | D_RIGHT | D_UP | D_DOWN
 	jr nz, .set_carry
@@ -275,7 +252,6 @@ StarterSelectionScreen_GetJoypad:
 .clear_flags
 	and a
 	ret
-
 .set_carry
 	scf
 	ret
@@ -308,7 +284,7 @@ StarterSelectionScreen_JoypadAction:
 	ld a, [wStarterCursorPositionMon]
 	add a, 1
 	ld [wStarterCursorPositionMon], a
-	call .load_mon
+	jr .load_mon
 	ret
 
 .d_left
@@ -319,7 +295,7 @@ StarterSelectionScreen_JoypadAction:
 	ld a, [wStarterCursorPositionMon]
 	sub a, 1
 	ld [wStarterCursorPositionMon], a
-	call .load_mon
+	jr .load_mon
 	ret
 
 .d_up
@@ -332,7 +308,7 @@ StarterSelectionScreen_JoypadAction:
 	ld a, [wStarterCursorPositionCategory]
 	sub a, 1
 	ld [wStarterCursorPositionCategory], a
-	call .load_mon
+	jr .load_mon
 	ret
 
 .d_down
@@ -346,7 +322,7 @@ StarterSelectionScreen_JoypadAction:
 	ld a, [wStarterCursorPositionCategory]
 	add a, 1
 	ld [wStarterCursorPositionCategory], a
-	call .load_mon
+	jr .load_mon
 	ret
 
 .select_button
@@ -381,7 +357,7 @@ StarterSelectionScreen_JoypadAction:
 	or c
 	ld [wcf64], a
 	ld h, 1 ; StarterSelectionScreen_LoadPage
-	call StarterSelectionScreen_SetJumptableIndex
+	jp StarterSelectionScreen_SetJumptableIndex
 	ret
 
 .go_to_last_starter_in_prev_category
@@ -393,12 +369,12 @@ StarterSelectionScreen_JoypadAction:
 	ld [wStarterCursorPositionMon], a
 .load_mon
 	ld h, 0 ; StarterStatsInit
-	call StarterSelectionScreen_SetJumptableIndex
+	jp StarterSelectionScreen_SetJumptableIndex
 	ret
 
 .mon_selected
 	ld h, 4 ; StarterSelectionScreen_Exit
-	call StarterSelectionScreen_SetJumptableIndex
+	jp StarterSelectionScreen_SetJumptableIndex
 	ret
 
 .get_random_starter_loop
@@ -432,8 +408,7 @@ StarterSelectionScreen_JoypadAction:
 	add a, 1
 	ld e, a
 
-	call .get_random_starter_loop
-	ret
+	jr .get_random_starter_loop
 .move_to_next_mon
 	ld a, [wStarterCursorPositionMon]
 	add a, 1
@@ -465,8 +440,7 @@ StarterSelectionScreen_LoadGFX:
 	ret
 
 .place_frontpic
-	call StarterSelectionScreen_PlaceFrontpic
-	ret
+	jr StarterSelectionScreen_PlaceFrontpic
 
 .LoadPals:
 	ld a, [wcf64]
