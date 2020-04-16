@@ -517,9 +517,9 @@ DoNthMenu::
 	ret
 
 SetUpMenu::
-	call DrawVariableLengthMenuBox ; ???
+	call DrawVariableLengthMenuBox
 	call MenuWriteText
-	call InitMenuCursorAndButtonPermissions ; set up selection pointer
+	call InitMenuCursorAndButtonPermissions
 	ld hl, w2DMenuFlags1
 	set 7, [hl]
 	ret

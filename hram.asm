@@ -33,7 +33,7 @@ hVBlank:: db ; ff9e
 hMapEntryMethod:: db ; ff9f
 hMenuReturn:: db ; ffa0
 
-	ds 1
+hUnusedFFA1:: db ; ffa1
 
 hJoypadReleased:: db ; ffa2
 hJoypadPressed::  db ; ffa3
@@ -107,6 +107,7 @@ hMoneyTemp:: ds 3 ; ffc3
 NEXTU ; ffc3
 hMGJoypadPressed::  db ; ffc3
 hMGJoypadReleased:: db ; ffc4
+hMGPrevTIMA::       db ; ffc5
 ENDU ; ffc6
 
 hLCDCPointer::     db ; ffc6

@@ -985,7 +985,7 @@ Function104faf:
 	cpl
 	ld b, a
 	xor a
-	ldh [hMGJoypadPressed + 2], a
+	ldh [hMGPrevTIMA], a
 	call Function104d86
 .asm_104fd2
 	inc b
@@ -1008,10 +1008,10 @@ Function104faf:
 	bit 1, a
 	jr nz, .asm_104fe5
 .asm_104fed
-	ldh a, [hMGJoypadPressed + 2]
+	ldh a, [hMGPrevTIMA]
 	ld d, a
 	ldh a, [rTIMA]
-	ldh [hMGJoypadPressed + 2], a
+	ldh [hMGPrevTIMA], a
 	sub d
 	cp $12
 	jr c, .asm_104ffd
