@@ -1,5 +1,5 @@
 Joypad::
-; Replaced by Joypad, called from VBlank instead of the useless
+; Replaced by UpdateJoypad, called from VBlank instead of the useless
 ; joypad interrupt.
 
 ; This is a placeholder in case the interrupt is somehow enabled.

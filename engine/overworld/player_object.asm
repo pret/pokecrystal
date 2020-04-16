@@ -20,10 +20,10 @@ SpawnPlayer:
 	ld a, -1
 	ld [wObjectFollow_Leader], a
 	ld [wObjectFollow_Follower], a
-	ld a, $0
+	ld a, PLAYER
 	ld hl, PlayerObjectTemplate
 	call CopyPlayerObjectTemplate
-	ld b, $0
+	ld b, PLAYER
 	call PlayerSpawn_ConvertCoords
 	ld a, PLAYER_OBJECT
 	call GetMapObject

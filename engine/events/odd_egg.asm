@@ -23,13 +23,13 @@ _GiveOddEgg:
 .not_done
 
 	; Break when [hRandom] <= de.
-	ldh a, [hRandom + 1]
+	ldh a, [hRandomSub]
 	cp d
 	jr c, .done
 	jr z, .ok
 	jr .next
 .ok
-	ldh a, [hRandom + 0]
+	ldh a, [hRandomAdd]
 	cp e
 	jr c, .done
 	jr z, .done
