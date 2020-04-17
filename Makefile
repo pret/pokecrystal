@@ -93,16 +93,16 @@ endif
 
 
 pokecrystal.gbc: $(crystal_obj) pokecrystal.link
-	$(RGBLINK) -n pokecrystal.sym -m pokecrystal.map -l pokecrystal.link -o $@ $(crystal_obj)
-	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
+	$(RGBLINK) -n pokecrystal.sym -m pokecrystal.map -l pokecrystal.link -p 0 -o $@ $(crystal_obj)
+	$(RGBFIX) -Cjv -t PM_CRYSTAL -i BYTE -k 01 -l 0x33 -m 0x10 -r 3 -p 0 $@
 
 pokecrystal11.gbc: $(crystal11_obj) pokecrystal.link
-	$(RGBLINK) -n pokecrystal11.sym -m pokecrystal11.map -l pokecrystal.link -o $@ $(crystal11_obj)
-	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 3 -t PM_CRYSTAL $@
+	$(RGBLINK) -n pokecrystal11.sym -m pokecrystal11.map -l pokecrystal.link -p 0 -o $@ $(crystal11_obj)
+	$(RGBFIX) -Cjv -t PM_CRYSTAL -i BYTE -n 1 -k 01 -l 0x33 -m 0x10 -r 3 -p 0 $@
 
 pokecrystal-au.gbc: $(crystal_au_obj) pokecrystal.link
-	$(RGBLINK) -n pokecrystal-au.sym -m pokecrystal-au.map -l pokecrystal.link -o $@ $(crystal_au_obj)
-	$(RGBFIX) -Cjv -i BYTU -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
+	$(RGBLINK) -n pokecrystal-au.sym -m pokecrystal-au.map -l pokecrystal.link -p 0 -o $@ $(crystal_au_obj)
+	$(RGBFIX) -Cjv -t PM_CRYSTAL -i BYTU -k 01 -l 0x33 -m 0x10 -r 3 -p 0 $@
 
 
 # For files that the compressor can't match, there will be a .lz file suffixed with the md5 hash of the correct uncompressed file.

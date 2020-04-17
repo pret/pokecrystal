@@ -704,9 +704,9 @@ Function1163c0:
 .asm_11642a
 	ld a, $8
 	ld [wMusicFade], a
-	ld a, $0
+	ld a, LOW(MUSIC_NONE)
 	ld [wMusicFadeID], a
-	ld a, $0
+	ld a, HIGH(MUSIC_NONE)
 	ld [wMusicFadeID + 1], a
 
 .asm_116439

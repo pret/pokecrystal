@@ -112,7 +112,7 @@ _UnownPrinter:
 	ld a, [hl]
 	and a
 	jr nz, .wrap_around_left
-	ld [hl], 26 + 1
+	ld [hl], NUM_UNOWN + 1
 .wrap_around_left
 	dec [hl]
 	jr .return
@@ -120,7 +120,7 @@ _UnownPrinter:
 .press_right
 	ld hl, wJumptableIndex
 	ld a, [hl]
-	cp 26
+	cp NUM_UNOWN
 	jr c, .wrap_around_right
 	ld [hl], -1
 .wrap_around_right
@@ -132,7 +132,7 @@ _UnownPrinter:
 
 .UpdateUnownFrontpic:
 	ld a, [wJumptableIndex]
-	cp 26
+	cp NUM_UNOWN
 	jr z, .vacant
 	inc a
 	ld [wUnownLetter], a
