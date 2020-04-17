@@ -95,16 +95,16 @@ $(foreach obj, $(crystal_obj), $(eval $(call DEP,$(obj),$(obj:.o=.asm))))
 endif
 
 
-pokecrystal.gbc: $(crystal_obj) pokecrystal.link
-	$(RGBLINK) -n pokecrystal.sym -m pokecrystal.map -l pokecrystal.link -p 0 -o $@ $(crystal_obj)
+pokecrystal.gbc: $(crystal_obj) layout.link
+	$(RGBLINK) -n pokecrystal.sym -m pokecrystal.map -l layout.link -p 0 -o $@ $(crystal_obj)
 	$(RGBFIX) -Cjv -t PM_CRYSTAL -i BYTE -k 01 -l 0x33 -m 0x10 -r 3 -p 0 $@
 
-pokecrystal11.gbc: $(crystal11_obj) pokecrystal.link
-	$(RGBLINK) -n pokecrystal11.sym -m pokecrystal11.map -l pokecrystal.link -p 0 -o $@ $(crystal11_obj)
+pokecrystal11.gbc: $(crystal11_obj) layout.link
+	$(RGBLINK) -n pokecrystal11.sym -m pokecrystal11.map -l layout.link -p 0 -o $@ $(crystal11_obj)
 	$(RGBFIX) -Cjv -t PM_CRYSTAL -i BYTE -n 1 -k 01 -l 0x33 -m 0x10 -r 3 -p 0 $@
 
-pokecrystal-au.gbc: $(crystal_au_obj) pokecrystal.link
-	$(RGBLINK) -n pokecrystal-au.sym -m pokecrystal-au.map -l pokecrystal.link -p 0 -o $@ $(crystal_au_obj)
+pokecrystal-au.gbc: $(crystal_au_obj) layout.link
+	$(RGBLINK) -n pokecrystal-au.sym -m pokecrystal-au.map -l layout.link -p 0 -o $@ $(crystal_au_obj)
 	$(RGBFIX) -Cjv -t PM_CRYSTAL -i BYTU -k 01 -l 0x33 -m 0x10 -r 3 -p 0 $@
 
 

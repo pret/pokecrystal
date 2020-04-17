@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 
 ; PokemonPicPointers and UnownPicPointers are assumed to start at the same
-; address, but in different banks. This is enforced in pokecrystal.link.
+; address, but in different banks. This is enforced in layout.link.
 
 
 SECTION "Pic Pointers", ROMX
