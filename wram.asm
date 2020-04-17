@@ -1176,8 +1176,7 @@ wBGMapBufferEnd::
 
 NEXTU ; cd20
 ; credits
-wCreditsPos:: db
-wCreditsUnusedCD21:: db
+wCreditsPos:: dw
 wCreditsTimer:: db
 
 NEXTU ; cd20

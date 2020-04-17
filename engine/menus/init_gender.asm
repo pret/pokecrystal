@@ -59,9 +59,9 @@ AreYouABoyOrAreYouAGirlText:
 InitGenderScreen:
 	ld a, $10
 	ld [wMusicFade], a
-	ld a, MUSIC_NONE
+	ld a, LOW(MUSIC_NONE)
 	ld [wMusicFadeID], a
-	ld a, $0
+	ld a, HIGH(MUSIC_NONE)
 	ld [wMusicFadeID + 1], a
 	ld c, 8
 	call DelayFrames

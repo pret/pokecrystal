@@ -58,7 +58,7 @@ If you are using 64-bit Windows, download [**64-bit Cygwin**][cygwin] and [**64-
 
 If you have not changed any of the asm, make sure you have the latest version of pokecrystal and the correct version of rgbds (see [INSTALL.md](INSTALL.md)).
 
-If you added or changed any code, it has to fit in the **memory banks**. The 2MB ROM is divided into 128 banks of 4KB ($4000 bytes) each, numbered $00 to $7F. The linkerscript [pokecrystal.link](pokecrystal.link) lists which `SECTION`s go in which banks. Try moving some code into a new section.
+If you added or changed any code, it has to fit in the **memory banks**. The 2MB ROM is divided into 128 banks of 4KB ($4000 bytes) each, numbered $00 to $7F. The linkerscript [layout.link](layout.link) lists which `SECTION`s go in which banks. Try moving some code into a new section.
 
 ### "Invalid file or object file version"
 

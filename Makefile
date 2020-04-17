@@ -50,7 +50,7 @@ crystal11:  pokecrystal11.gbc
 crystal-au: pokecrystal-au.gbc
 
 clean:
-	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(crystal_au_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
+	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(crystal_au_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym) rgbdscheck.o
 	find gfx \( -name "*.[12]bpp" -o -name "*.lz" -o -name "*.gbcpal" -o -name "*.sgb.tilemap" \) -delete
 	find gfx/pokemon -mindepth 1 ! -path "gfx/pokemon/unown/*" \( -name "bitmask.asm" -o -name "frames.asm" -o -name "front.animated.tilemap" -o -name "front.dimensions" \) -delete
 	$(MAKE) clean -C tools/
@@ -71,11 +71,14 @@ $(crystal_obj):    RGBASMFLAGS +=
 $(crystal11_obj):  RGBASMFLAGS += -D _CRYSTAL11
 $(crystal_au_obj): RGBASMFLAGS += -D _CRYSTAL11 -D _CRYSTAL_AU
 
+rgbdscheck.o: rgbdscheck.asm
+	$(RGMASM) -o $@ $<
+
 # The dep rules have to be explicit or else missing files won't be reported.
 # As a side effect, they're evaluated immediately instead of when the rule is invoked.
 # It doesn't look like $(shell) can be deferred so there might not be a better way.
 define DEP
-$1: $2 $$(shell tools/scan_includes $2)
+$1: $2 $$(shell tools/scan_includes $2) | rgbdscheck.o
 	$$(RGBASM) $$(RGBASMFLAGS) -o $$@ $$<
 endef
 
@@ -92,17 +95,17 @@ $(foreach obj, $(crystal_obj), $(eval $(call DEP,$(obj),$(obj:.o=.asm))))
 endif
 
 
-pokecrystal.gbc: $(crystal_obj) pokecrystal.link
-	$(RGBLINK) -n pokecrystal.sym -m pokecrystal.map -l pokecrystal.link -o $@ $(crystal_obj)
-	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
+pokecrystal.gbc: $(crystal_obj) layout.link
+	$(RGBLINK) -n pokecrystal.sym -m pokecrystal.map -l layout.link -p 0 -o $@ $(crystal_obj)
+	$(RGBFIX) -Cjv -t PM_CRYSTAL -i BYTE -k 01 -l 0x33 -m 0x10 -r 3 -p 0 $@
 
-pokecrystal11.gbc: $(crystal11_obj) pokecrystal.link
-	$(RGBLINK) -n pokecrystal11.sym -m pokecrystal11.map -l pokecrystal.link -o $@ $(crystal11_obj)
-	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 3 -t PM_CRYSTAL $@
+pokecrystal11.gbc: $(crystal11_obj) layout.link
+	$(RGBLINK) -n pokecrystal11.sym -m pokecrystal11.map -l layout.link -p 0 -o $@ $(crystal11_obj)
+	$(RGBFIX) -Cjv -t PM_CRYSTAL -i BYTE -n 1 -k 01 -l 0x33 -m 0x10 -r 3 -p 0 $@
 
-pokecrystal-au.gbc: $(crystal_au_obj) pokecrystal.link
-	$(RGBLINK) -n pokecrystal-au.sym -m pokecrystal-au.map -l pokecrystal.link -o $@ $(crystal_au_obj)
-	$(RGBFIX) -Cjv -i BYTU -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
+pokecrystal-au.gbc: $(crystal_au_obj) layout.link
+	$(RGBLINK) -n pokecrystal-au.sym -m pokecrystal-au.map -l layout.link -p 0 -o $@ $(crystal_au_obj)
+	$(RGBFIX) -Cjv -t PM_CRYSTAL -i BYTU -k 01 -l 0x33 -m 0x10 -r 3 -p 0 $@
 
 
 # For files that the compressor can't match, there will be a .lz file suffixed with the md5 hash of the correct uncompressed file.

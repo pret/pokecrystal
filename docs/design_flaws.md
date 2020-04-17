@@ -85,7 +85,7 @@ In [gfx/pics.asm](https://github.com/pret/pokecrystal/blob/master/gfx/pics.asm):
 
 ```asm
 ; PokemonPicPointers and UnownPicPointers are assumed to start at the same
-; address, but in different banks. This is enforced in pokecrystal.link.
+; address, but in different banks. This is enforced in layout.link.
 
 
 SECTION "Pic Pointers", ROMX
@@ -98,7 +98,7 @@ SECTION "Unown Pic Pointers", ROMX
 INCLUDE "data/pokemon/unown_pic_pointers.asm"
 ```
 
-In [pokecrystal.link](https://github.com/pret/pokecrystal/blob/master/pokecrystal.link):
+In [layout.link](https://github.com/pret/pokecrystal/blob/master/layout.link):
 
 ```
 ROMX $48
@@ -113,7 +113,7 @@ ROMX $49
 
 **Fix:**
 
-Don't enforce `org $4000` in [pokecrystal.link](https://github.com/pret/pokecrystal/blob/master/pokecrystal.link).
+Don't enforce `org $4000` in [layout.link](https://github.com/pret/pokecrystal/blob/master/layout.link).
 
 Edit `GetFrontpicPointer`:
 
