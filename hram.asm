@@ -95,12 +95,17 @@ NEXTU ; ffb3
 hMGStatusFlags:: db ; ffbc
 ENDU ; ffbd
 
+UNION
 hUsedSpriteIndex:: db ; ffbd
 hUsedSpriteTile::  db ; ffbe
-hFFBF::            db ; ffbf
-hFFC0::            db ; ffc0
-hFFC1::            db ; ffc1
-hFFC2::            db ; ffc2
+NEXTU
+hCurSpriteXCoord::   db ; ffbd
+hCurSpriteYCoord::   db ; ffbe
+hCurSpriteXPixel::   db ; ffbf
+hCurSpriteYPixel::   db ; ffc0
+hCurSpriteTile::     db ; ffc1
+hCurSpriteOAMFlags:: db ; ffc2
+ENDU
 
 UNION ; ffc3
 hMoneyTemp:: ds 3 ; ffc3

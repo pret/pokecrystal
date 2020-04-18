@@ -126,7 +126,7 @@ INCLUDE "data/events/bug_contest_winners.asm"
 
 BugContest_GetPlayersResult:
 	ld hl, wBugContestThirdPlaceWinnerID
-	ld de, - BUG_CONTESTANT_SIZE
+	ld de, -BUG_CONTESTANT_SIZE
 	ld b, 3 ; 3rd, 2nd, or 1st
 .loop
 	ld a, [hl]

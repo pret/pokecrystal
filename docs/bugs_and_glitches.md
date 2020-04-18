@@ -78,6 +78,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 - [`LoadSpriteGFX` does not limit the capacity of `UsedSprites`](#loadspritegfx-does-not-limit-the-capacity-of-usedsprites)
 - [`ChooseWildEncounter` doesn't really validate the wild Pokémon species](#choosewildencounter-doesnt-really-validate-the-wild-pokémon-species)
 - [`TryObjectEvent` arbitrary code execution](#tryobjectevent-arbitrary-code-execution)
+- [`ReadObjectEvents` overflows into `wObjectMasks`](#readobjectevents-overflows-into-wobjectmasks)
 - [`ClearWRAM` only clears WRAM bank 1](#clearwram-only-clears-wram-bank-1)
 - [`BattleAnimCmd_ClearObjs` only clears the first 6⅔ objects](#battleanimcmd_clearobjs-only-clears-the-first-6-objects)
 
@@ -341,7 +342,7 @@ As Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") impli
  	call GetBattleVarAddr
  	push af
  	set SUBSTATUS_CONFUSED, [hl]
-+	ld a, [hBattleTurn]
++	ldh a, [hBattleTurn]
 +	and a
 +	ld hl, wEnemyConfuseCount
 +	jr z, .set_confuse_count
@@ -349,7 +350,7 @@ As Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") impli
 +.set_confuse_count
 +	call BattleRandom
 +	and %11
-+	add a, 2
++	add 2
 +	ld [hl], a
  	ld a, BATTLE_VARS_MOVE_ANIM
  	call GetBattleVarAddr
@@ -2142,6 +2143,39 @@ This supports up to six entries.
 -	; pop bc
  	xor a
  	ret
+```
+
+
+## `ReadObjectEvents` overflows into `wObjectMasks`
+
+**Fix:** Edit `ReadObjectEvents` in [home/map.asm](https://github.com/pret/pokecrystal/blob/master/home/map.asm):
+
+```diff
+-; get NUM_OBJECTS - [wCurMapObjectEventCount]
++; get NUM_OBJECTS - [wCurMapObjectEventCount] - 1
+ 	ld a, [wCurMapObjectEventCount]
+ 	ld c, a
+-	ld a, NUM_OBJECTS ; - 1
++	ld a, NUM_OBJECTS - 1
+ 	sub c
+ 	jr z, .skip
+-	; jr c, .skip
++	jr c, .skip
+ 
+ 	; could have done "inc hl" instead
+ 	ld bc, 1
+ 	add hl, bc
+-; Fill the remaining sprite IDs and y coords with 0 and -1, respectively.
+-; Bleeds into wObjectMasks due to a bug.  Uncomment the above code to fix.
+ 	ld bc, MAPOBJECT_LENGTH
+ .loop
+ 	ld [hl],  0
+ 	inc hl
+ 	ld [hl], -1
+ 	dec hl
+ 	add hl, bc
+ 	dec a
+ 	jr nz, .loop
 ```
 
 

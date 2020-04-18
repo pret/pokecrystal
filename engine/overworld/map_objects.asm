@@ -2318,7 +2318,7 @@ Function56cd:
 	jr c, .ok3
 	sub BG_MAP_WIDTH
 .ok3
-	ldh [hUsedSpriteIndex], a
+	ldh [hCurSpriteXCoord], a
 	ld a, [wPlayerBGMapOffsetY]
 	ld e, a
 	ld hl, OBJECT_SPRITE_Y_OFFSET
@@ -2347,7 +2347,7 @@ Function56cd:
 	jr c, .ok6
 	sub BG_MAP_HEIGHT
 .ok6
-	ldh [hUsedSpriteTile], a
+	ldh [hCurSpriteYCoord], a
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	bit BIG_OBJECT_F, [hl]
@@ -2360,18 +2360,18 @@ Function56cd:
 	ld e, a
 .ok7
 	ld a, d
-	ldh [hFFBF], a
+	ldh [hCurSpriteXPixel], a
 .loop
-	ldh a, [hFFBF]
+	ldh a, [hCurSpriteXPixel]
 	ld d, a
-	ldh a, [hUsedSpriteTile]
+	ldh a, [hCurSpriteYCoord]
 	add e
 	dec a
 	cp SCREEN_HEIGHT
 	jr nc, .ok9
 	ld b, a
 .next
-	ldh a, [hUsedSpriteIndex]
+	ldh a, [hCurSpriteXCoord]
 	add d
 	dec a
 	cp SCREEN_WIDTH
@@ -2856,7 +2856,7 @@ InitSprites:
 	add hl, bc
 	ld a, [hl]
 	and $ff ^ (1 << 7)
-	ldh [hFFC1], a
+	ldh [hCurSpriteTile], a
 	xor a
 	bit 7, [hl]
 	jr nz, .skip1
@@ -2885,7 +2885,7 @@ InitSprites:
 	jr z, .skip4
 	or PRIORITY
 .skip4
-	ldh [hFFC2], a
+	ldh [hCurSpriteOAMFlags], a
 	ld hl, OBJECT_SPRITE_X
 	add hl, bc
 	ld a, [hl]
@@ -2896,7 +2896,7 @@ InitSprites:
 	ld e, a
 	ld a, [wPlayerBGMapOffsetX]
 	add e
-	ldh [hFFBF], a
+	ldh [hCurSpriteXPixel], a
 	ld hl, OBJECT_SPRITE_Y
 	add hl, bc
 	ld a, [hl]
@@ -2907,7 +2907,7 @@ InitSprites:
 	ld e, a
 	ld a, [wPlayerBGMapOffsetY]
 	add e
-	ldh [hFFC0], a
+	ldh [hCurSpriteYPixel], a
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld a, [hl]
@@ -2932,19 +2932,19 @@ InitSprites:
 	cp LOW(wVirtualOAMEnd)
 	jr nc, .full
 .addsprite
-	ldh a, [hFFC0]
+	ldh a, [hCurSpriteYPixel]
 	add [hl]
 	inc hl
 	ld [bc], a ; y
 	inc c
-	ldh a, [hFFBF]
+	ldh a, [hCurSpriteXPixel]
 	add [hl]
 	inc hl
 	ld [bc], a ; x
 	inc c
 	ld e, [hl]
 	inc hl
-	ldh a, [hFFC1]
+	ldh a, [hCurSpriteTile]
 	bit ABSOLUTE_TILE_ID_F, e
 	jr z, .nope1
 	xor a
@@ -2956,7 +2956,7 @@ InitSprites:
 	ld a, e
 	bit RELATIVE_ATTRIBUTES_F, a
 	jr z, .nope2
-	ldh a, [hFFC2]
+	ldh a, [hCurSpriteOAMFlags]
 	or e
 .nope2
 	and OBP_NUM | X_FLIP | Y_FLIP | PRIORITY
