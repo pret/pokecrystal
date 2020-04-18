@@ -90,7 +90,7 @@ _UnownPuzzle:
 	ret
 
 InitUnownPuzzlePiecePositions:
-	ld c,  1
+	ld c, 1
 	ld b, 16
 .load_loop
 	call Random
