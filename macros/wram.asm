@@ -238,6 +238,7 @@ link_battle_record: MACRO
 \1Wins::   dw
 \1Losses:: dw
 \1Draws::  dw
+\1End::
 ENDM
 
 trademon: MACRO

@@ -6219,7 +6219,7 @@ LoadEnemyMon:
 ; Fill stats
 	ld de, wEnemyMonMaxHP
 	ld b, FALSE
-	ld hl, wEnemyMonDVs - (MON_DVS - MON_STAT_EXP + 1) ; wLinkBattleRNs + 7 ; ?
+	ld hl, wEnemyMonDVs - (MON_DVS - MON_STAT_EXP + 1)
 	predef CalcMonStats
 
 ; If we're in a trainer battle,
@@ -8401,7 +8401,7 @@ DisplayLinkBattleResult:
 	ld a, BANK(sLinkBattleStats)
 	call GetSRAMBank
 
-	call AddLastMobileBattleToLinkRecord
+	call AddLastLinkBattleToLinkRecord
 	call ReadAndPrintLinkBattleRecord
 
 	call CloseSRAM
@@ -8442,6 +8442,9 @@ IsMobileBattle2:
 	cp LINK_MOBILE
 	ret
 
+LINK_BATTLE_RECORD_LENGTH EQUS "(sLinkBattleRecord1End - sLinkBattleRecord1)" ; 18
+NUM_LINK_BATTLE_RECORDS EQUS "((sLinkBattleStatsEnd - sLinkBattleRecord) / LINK_BATTLE_RECORD_LENGTH)" ; 5
+
 _DisplayLinkRecord:
 	ld a, BANK(sLinkBattleStats)
 	call GetSRAMBank
@@ -8467,7 +8470,7 @@ ReadAndPrintLinkBattleRecord:
 	call ClearSprites
 	call .PrintBattleRecord
 	hlcoord 0, 8
-	ld b, 5
+	ld b, NUM_LINK_BATTLE_RECORDS
 	ld de, sLinkBattleRecord + 2
 .loop
 	push bc
@@ -8484,7 +8487,7 @@ ReadAndPrintLinkBattleRecord:
 	ld h, d
 	ld l, e
 	ld de, wd002
-	ld bc, 10
+	ld bc, NAME_LENGTH - 1
 	call CopyBytes
 	ld a, "@"
 	ld [de], a
@@ -8521,7 +8524,7 @@ ReadAndPrintLinkBattleRecord:
 	call PlaceString
 .next
 	pop hl
-	ld bc, 18
+	ld bc, LINK_BATTLE_RECORD_LENGTH
 	add hl, bc
 	ld d, h
 	ld e, l
@@ -8694,7 +8697,7 @@ GetRoamMonSpecies:
 	ld hl, wRoamMon3Species
 	ret
 
-AddLastMobileBattleToLinkRecord:
+AddLastLinkBattleToLinkRecord:
 	ld hl, wOTPlayerID
 	ld de, wStringBuffer1
 	ld bc, 2
@@ -8702,10 +8705,10 @@ AddLastMobileBattleToLinkRecord:
 	ld hl, wOTPlayerName
 	ld bc, NAME_LENGTH - 1
 	call CopyBytes
-	ld hl, sLinkBattleResults
+	ld hl, sLinkBattleStats - (LINK_BATTLE_RECORD_LENGTH - 6)
 	call .StoreResult
 	ld hl, sLinkBattleRecord
-	ld d, 5
+	ld d, NUM_LINK_BATTLE_RECORDS
 .loop
 	push hl
 	inc hl
@@ -8716,17 +8719,17 @@ AddLastMobileBattleToLinkRecord:
 	and a
 	jr z, .copy
 	push de
-	ld bc, 12
+	ld bc, LINK_BATTLE_RECORD_LENGTH - 6
 	ld de, wStringBuffer1
 	call CompareBytesLong
 	pop de
 	pop hl
 	jr c, .done
-	ld bc, 18
+	ld bc, LINK_BATTLE_RECORD_LENGTH
 	add hl, bc
 	dec d
 	jr nz, .loop
-	ld bc, -18
+	ld bc, -LINK_BATTLE_RECORD_LENGTH
 	add hl, bc
 	push hl
 
@@ -8734,7 +8737,7 @@ AddLastMobileBattleToLinkRecord:
 	ld d, h
 	ld e, l
 	ld hl, wStringBuffer1
-	ld bc, 12
+	ld bc, LINK_BATTLE_RECORD_LENGTH - 6
 	call CopyBytes
 	ld b, 6
 	xor a
@@ -8749,16 +8752,17 @@ AddLastMobileBattleToLinkRecord:
 	call .StoreResult
 	call .FindOpponentAndAppendRecord
 	ret
+
 .StoreResult:
 	ld a, [wBattleResult]
 	and $f
 	cp LOSE
-	ld bc, sLinkBattleWins + 1 - sLinkBattleResults
+	ld bc, (sLinkBattleRecord1Wins - sLinkBattleRecord1) + 1
 	jr c, .okay ; WIN
-	ld bc, sLinkBattleLosses + 1 - sLinkBattleResults
+	ld bc, (sLinkBattleRecord1Losses - sLinkBattleRecord1) + 1
 	jr z, .okay ; LOSE
 	; DRAW
-	ld bc, sLinkBattleDraws + 1 - sLinkBattleResults
+	ld bc, (sLinkBattleRecord1Draws - sLinkBattleRecord1) + 1
 .okay
 	add hl, bc
 	call .CheckOverflow
@@ -8780,8 +8784,8 @@ AddLastMobileBattleToLinkRecord:
 	ret
 
 .FindOpponentAndAppendRecord:
-	ld b, 5
-	ld hl, sLinkBattleRecord + 17
+	ld b, NUM_LINK_BATTLE_RECORDS
+	ld hl, sLinkBattleRecord1End - 1
 	ld de, wd002
 .loop3
 	push bc
@@ -8799,7 +8803,7 @@ AddLastMobileBattleToLinkRecord:
 	ld a, c
 	ld [de], a
 	inc de
-	ld bc, 18
+	ld bc, LINK_BATTLE_RECORD_LENGTH
 	add hl, bc
 	pop bc
 	dec b
@@ -8848,26 +8852,26 @@ AddLastMobileBattleToLinkRecord:
 .done2
 	push bc
 	ld a, b
-	ld bc, 18
+	ld bc, LINK_BATTLE_RECORD_LENGTH
 	ld hl, sLinkBattleRecord
 	call AddNTimes
 	push hl
 	ld de, wd002
-	ld bc, 18
+	ld bc, LINK_BATTLE_RECORD_LENGTH
 	call CopyBytes
 	pop hl
 	pop bc
 	push hl
 	ld a, c
-	ld bc, 18
+	ld bc, LINK_BATTLE_RECORD_LENGTH
 	ld hl, sLinkBattleRecord
 	call AddNTimes
 	pop de
 	push hl
-	ld bc, 18
+	ld bc, LINK_BATTLE_RECORD_LENGTH
 	call CopyBytes
 	ld hl, wd002
-	ld bc, 18
+	ld bc, LINK_BATTLE_RECORD_LENGTH
 	pop de
 	call CopyBytes
 	ret

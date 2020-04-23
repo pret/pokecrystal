@@ -125,12 +125,10 @@ SECTION "Active Box", SRAM
 sBox:: box sBox
 ; b160
 
-	ds $f4
+	ds $100
 
 
 SECTION "Link Battle Data", SRAM
-
-sLinkBattleResults:: ds $c
 
 sLinkBattleStats::
 sLinkBattleWins::   dw ; b260

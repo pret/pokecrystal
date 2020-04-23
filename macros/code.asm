@@ -51,7 +51,7 @@ calc_sine_wave: MACRO
 ; input: a = a signed 6-bit value
 ; output: a = d * sin(a * pi/32)
 	and %111111
-	cp  %100000
+	cp %100000
 	jr nc, .negative\@
 	call .apply\@
 	ld a, h

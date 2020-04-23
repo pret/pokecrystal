@@ -2851,15 +2851,15 @@ wCurMapData::
 
 wVisitedSpawns:: flag_array NUM_SPAWNS ; dca5
 
-wDigWarpNumber:: db ; dcaa
-wDigMapGroup::   db ; dcab
-wDigMapNumber::  db ; dcac
+wDigWarpNumber:: db ; dca9
+wDigMapGroup::   db ; dcaa
+wDigMapNumber::  db ; dcab
 
 ; used on maps like second floor pokécenter, which are reused, so we know which
 ; map to return to
-wBackupWarpNumber:: db ; dcad
-wBackupMapGroup::   db ; dcae
-wBackupMapNumber::  db ; dcaf
+wBackupWarpNumber:: db ; dcac
+wBackupMapGroup::   db ; dcad
+wBackupMapNumber::  db ; dcae
 
 	ds 3
 
