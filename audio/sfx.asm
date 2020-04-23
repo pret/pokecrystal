@@ -3327,7 +3327,7 @@ Sfx_DexFanfare170199_Ch8:
 	note B_, 16
 	sound_ret
 
-	db $fd
+	db sound_loop_cmd
 
 Sfx_DexFanfare200229:
 	channel_count 4

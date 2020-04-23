@@ -617,7 +617,7 @@ And edit [engine/pokegear/radio.asm](https://github.com/pret/pokecrystal/blob/ma
  	add hl, bc
  	add hl, bc
 +	add hl, bc
-+	b = bank
++	; b = bank
 +	ld a, BANK(PokedexDataPointerTable)
 +	call GetFarByte
 +	ld b, a
