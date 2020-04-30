@@ -38,7 +38,7 @@ SCGB_RAM EQU -1
 ; PredefPals indexes (see gfx/sgb/predef.pal)
 ; GetPredefPal arguments (see engine/gfx/color.asm)
 	const_def
-	const PREDEFPAL_00
+	const PREDEFPAL_ROUTES
 	const PREDEFPAL_PALLET
 	const PREDEFPAL_VIRIDIAN
 	const PREDEFPAL_PEWTER
