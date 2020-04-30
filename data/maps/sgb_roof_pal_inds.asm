@@ -2,7 +2,7 @@
 
 MapGroupRoofSGBPalInds:
 ; entries correspond to map groups
-	db PREDEFPAL_00
+	db PREDEFPAL_ROUTES
 	db PREDEFPAL_OLIVINE
 	db PREDEFPAL_MAHOGANY
 	db PREDEFPAL_DUNGEONS

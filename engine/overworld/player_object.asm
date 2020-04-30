@@ -124,7 +124,7 @@ RefreshPlayerCoords:
 	ld e, a
 ; the next three lines are useless
 	ld a, [wObjectFollow_Leader]
-	cp $0
+	cp PLAYER
 	ret nz
 	ret
 

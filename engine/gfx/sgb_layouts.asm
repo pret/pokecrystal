@@ -547,7 +547,7 @@ endr
 	ret
 
 .route
-	ld a, PREDEFPAL_00
+	ld a, PREDEFPAL_ROUTES
 	ret
 
 .cave
