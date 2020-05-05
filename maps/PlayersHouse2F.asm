@@ -32,7 +32,7 @@ PlayersHouse2F_MapScripts:
 
 	db 0, 0, 0 ; filler
 
-Doll1Script:
+Doll1Script::
 	describedecoration DECODESC_LEFT_DOLL
 
 Doll2Script:
