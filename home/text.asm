@@ -172,7 +172,8 @@ PlaceNextChar::
 	ld c, l
 	pop hl
 	ret
-	pop de
+
+	pop de ; unused
 
 NextChar::
 	inc de

@@ -887,7 +887,7 @@ Pokedex_UnownModeEraseCursor:
 
 Pokedex_UnownModePlaceCursor:
 	ld a, [wDexCurUnownIndex]
-	ld c, $5a ; diamond cursor
+	ld c, FIRST_UNOWN_CHAR + NUM_UNOWN ; diamond cursor
 
 Pokedex_UnownModeUpdateCursorGfx:
 	ld e, a
@@ -1333,7 +1333,7 @@ endr
 	ld h, [hl]
 	ld l, a
 	pop af
-	add $40 - 1 ; Unown A
+	add FIRST_UNOWN_CHAR - 1 ; Unown A
 	ld [hl], a
 	inc de
 	inc b
@@ -2489,7 +2489,7 @@ Pokedex_LoadUnownFont:
 	ld bc, (NUM_UNOWN + 1) tiles
 	call Pokedex_InvertTiles
 	ld de, sScratch + $188
-	ld hl, vTiles2 tile $40
+	ld hl, vTiles2 tile FIRST_UNOWN_CHAR
 	lb bc, BANK(Pokedex_LoadUnownFont), NUM_UNOWN + 1
 	call Request2bpp
 	call CloseSRAM

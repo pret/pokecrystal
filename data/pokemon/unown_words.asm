@@ -1,7 +1,7 @@
 unownword: MACRO
 x = 1
 rept STRLEN(\1)
-	db STRSUB(\1, x, 1) - $40
+	db STRSUB(\1, x, 1) - "A" + FIRST_UNOWN_CHAR
 x = x + 1
 endr
 	db -1

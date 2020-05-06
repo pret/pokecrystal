@@ -1,6 +1,6 @@
 ; http://forums.glitchcity.info/index.php?topic=7509.msg206449#msg206449
 
-	db $cc, $6b, $1e ; unused
+	dab Doll1Script ; related to "My Room" in Stadium 2?
 
 Unreferenced_Function1f4003:
 	ld a, BANK(s6_a000)
