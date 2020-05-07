@@ -586,7 +586,7 @@ Slots_StopReel2:
 	call .CheckReel1ForASeven
 	jr nz, .dont_jump
 	call Random
-	cp $50 ; 32%
+	cp 31 percent + 1
 	jr nc, .dont_jump
 	ld a, REEL_ACTION_SET_UP_REEL2_SKIP_TO_7
 	ret
@@ -632,20 +632,20 @@ Slots_StopReel3:
 	and a
 	jr nz, .biased
 	call Random
-	cp 180
+	cp 71 percent - 1
 	jr nc, .stop
-	cp 120
+	cp 47 percent + 1
 	jr nc, .slow_advance
-	cp 60
+	cp 24 percent - 1
 	jr nc, .golem
 	ld a, REEL_ACTION_INIT_CHANSEY
 	ret
 
 .biased
 	call Random
-	cp 160
+	cp 63 percent
 	jr nc, .stop
-	cp 80
+	cp 31 percent + 1
 	jr nc, .slow_advance
 .golem
 	ld a, REEL_ACTION_INIT_GOLEM
@@ -1608,7 +1608,7 @@ Slots_GetNumberOfGolems:
 .not_biased_to_seven
 	call Random
 	and $7
-	cp $4 ; ((50 percent) & 7) + 1
+	cp $8 / 2 ; 50%
 	jr c, .not_biased_to_seven
 	ld e, a
 .loop2
@@ -1649,22 +1649,22 @@ Slots_InitBias:
 	ret
 
 .Normal:
-	db $01, SLOTS_SEVEN    ; 1/256
-	db $03, SLOTS_POKEBALL ; 1/128
-	db $0a, SLOTS_STARYU   ; 7/256
-	db $14, SLOTS_SQUIRTLE ; 5/128
-	db $28, SLOTS_PIKACHU  ; 5/64
-	db $30, SLOTS_CHERRY   ; 1/32
-	db $ff, SLOTS_NO_BIAS   ; everything else
+	db   1 percent - 1, SLOTS_SEVEN
+	db   1 percent + 1, SLOTS_POKEBALL
+	db   4 percent,     SLOTS_STARYU
+	db   8 percent,     SLOTS_SQUIRTLE
+	db  16 percent,     SLOTS_PIKACHU
+	db  19 percent,     SLOTS_CHERRY
+	db 100 percent,     SLOTS_NO_BIAS
 
 .Lucky:
-	db $02, SLOTS_SEVEN    ;  1/128
-	db $03, SLOTS_POKEBALL ;  1/256
-	db $08, SLOTS_STARYU   ;  5/256
-	db $10, SLOTS_SQUIRTLE ;  1/32
-	db $1e, SLOTS_PIKACHU  ;  7/128
-	db $50, SLOTS_CHERRY   ; 25/128
-	db $ff, SLOTS_NO_BIAS   ; everything else
+	db   1 percent,     SLOTS_SEVEN
+	db   1 percent + 1, SLOTS_POKEBALL
+	db   3 percent + 1, SLOTS_STARYU
+	db   6 percent + 1, SLOTS_SQUIRTLE
+	db  12 percent,     SLOTS_PIKACHU
+	db  31 percent + 1, SLOTS_CHERRY
+	db 100 percent,     SLOTS_NO_BIAS
 
 Slots_IlluminateBetLights:
 	ld b, $14 ; turned on

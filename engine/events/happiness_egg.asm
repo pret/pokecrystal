@@ -198,7 +198,7 @@ DayCareStep::
 	callfar CheckBreedmonCompatibility
 	ld a, [wBreedingCompatibility]
 	cp 230
-	ld b, 32 percent - 1
+	ld b, 31 percent + 1
 	jr nc, .okay
 	ld a, [wBreedingCompatibility]
 	cp 170
