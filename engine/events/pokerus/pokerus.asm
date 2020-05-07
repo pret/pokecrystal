@@ -26,8 +26,8 @@ GivePokerusAndConvertBerries:
 	and a
 	ret nz
 	ldh a, [hRandomSub]
-	cp $3
-	ret nc                 ; 3/65536 chance (00 00, 00 01 or 00 02)
+	cp 3
+	ret nc ; 3/65536 chance (00 00, 00 01 or 00 02)
 	ld a, [wPartyCount]
 	ld b, a
 .randomMonSelectLoop
@@ -36,11 +36,11 @@ GivePokerusAndConvertBerries:
 	cp b
 	jr nc, .randomMonSelectLoop
 	ld hl, wPartyMon1PokerusStatus
-	call GetPartyLocation  ; get pokerus byte of random mon
+	call GetPartyLocation ; get pokerus byte of random mon
 	ld a, [hl]
 	and $f0
-	ret nz                 ; if it already has pokerus, do nothing
-.randomPokerusLoop         ; Simultaneously sample the strain and duration
+	ret nz ; if it already has pokerus, do nothing
+.randomPokerusLoop ; Simultaneously sample the strain and duration
 	call Random
 	and a
 	jr z, .randomPokerusLoop
@@ -62,20 +62,20 @@ GivePokerusAndConvertBerries:
 .TrySpreadPokerus:
 	call Random
 	cp 33 percent + 1
-	ret nc              ; 1/3 chance
+	ret nc ; 1/3 chance
 
 	ld a, [wPartyCount]
 	cp 1
-	ret z               ; only one mon, nothing to do
+	ret z ; only one mon, nothing to do
 
 	ld c, [hl]
 	ld a, b
 	cp 2
-	jr c, .checkPreviousMonsLoop    ; no more mons after this one, go backwards
+	jr c, .checkPreviousMonsLoop ; no more mons after this one, go backwards
 
 	call Random
 	cp 50 percent + 1
-	jr c, .checkPreviousMonsLoop    ; 1/2 chance, go backwards
+	jr c, .checkPreviousMonsLoop ; 1/2 chance, go backwards
 .checkFollowingMonsLoop
 	add hl, de
 	ld a, [hl]
@@ -83,8 +83,8 @@ GivePokerusAndConvertBerries:
 	jr z, .infectMon
 	ld c, a
 	and $3
-	ret z               ; if mon has cured pokerus, stop searching
-	dec b               ; go on to next mon
+	ret z ; if mon has cured pokerus, stop searching
+	dec b ; go on to next mon
 	ld a, b
 	cp 1
 	jr nz, .checkFollowingMonsLoop ; no more mons left
@@ -93,7 +93,7 @@ GivePokerusAndConvertBerries:
 .checkPreviousMonsLoop
 	ld a, [wPartyCount]
 	cp b
-	ret z               ; no more mons
+	ret z ; no more mons
 	ld a, l
 	sub e
 	ld l, a
@@ -105,8 +105,8 @@ GivePokerusAndConvertBerries:
 	jr z, .infectMon
 	ld c, a
 	and $3
-	ret z               ; if mon has cured pokerus, stop searching
-	inc b               ; go on to next mon
+	ret z ; if mon has cured pokerus, stop searching
+	inc b ; go on to next mon
 	jr .checkPreviousMonsLoop
 
 .infectMon
@@ -128,7 +128,7 @@ ConvertBerriesToBerryJuice:
 	bit STATUSFLAGS2_REACHED_GOLDENROD_F, [hl]
 	ret z
 	call Random
-	cp 6 percent + 1 ; 1/16 chance
+	cp 1 out_of 16 ; 6.25% chance
 	ret nc
 	ld hl, wPartyMons
 	ld a, [wPartyCount]

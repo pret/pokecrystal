@@ -80,7 +80,7 @@ PrepMysteryGiftDataToSend:
 
 .tenpercent
 	call Random
-	cp 20 percent - 1
+	cp 20 percent - 1 ; 50
 	jr c, .twopercent
 	call Random
 	and %011

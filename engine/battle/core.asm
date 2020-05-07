@@ -6200,7 +6200,7 @@ LoadEnemyMon:
 	jr z, .Happiness
 ; 40% chance of not flooring
 	call Random
-	cp 40 percent - 2
+	cp 39 percent + 1
 	jr c, .Happiness
 ; Try again if length < 1024 mm (i.e. if HIGH(length) < 3 feet)
 	ld a, [wMagikarpLength]
