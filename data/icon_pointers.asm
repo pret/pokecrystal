@@ -29,10 +29,10 @@ IconPointers:
 	dw RaichuIcon
 	dw SandshrewIcon
 	dw SandslashIcon
-	dw Nidoran♀Icon
+	dw NidoranFIcon
 	dw NidorinaIcon
 	dw NidoqueenIcon
-	dw Nidoran♂Icon
+	dw NidoranMIcon
 	dw NidorinoIcon
 	dw NidokingIcon
 	dw ClefairyIcon
@@ -122,7 +122,7 @@ IconPointers:
 	dw SeakingIcon
 	dw StaryuIcon
 	dw StarmieIcon
-	dw Mr__MimeIcon
+	dw MrMimeIcon
 	dw ScytherIcon
 	dw JynxIcon
 	dw ElectabuzzIcon
