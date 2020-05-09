@@ -1,6 +1,7 @@
 LoadOverworldMonIcon:
 	ld a, e
 	call ReadMonMenuIcon
+	ld [wCurIcon], a
 	ld l, a
 	ld h, 0
 	add hl, hl
@@ -9,8 +10,7 @@ LoadOverworldMonIcon:
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	ld b, BANK(Icons)
-	ld c, 8
+	call GetIconBank
 	ret
 
 LoadMenuMonIcon:
@@ -337,10 +337,18 @@ endr
 	ld d, [hl]
 	pop hl
 
-	lb bc, BANK(Icons), 8
+	call GetIconBank
 	call GetGFXUnlessMobile
 
 	pop hl
+	ret
+	
+GetIconBank:
+	ld a, [wCurIcon]
+	cp MAGIKARP ; first mon in Icons2
+	lb bc, BANK("Mon Icons 1"), 8
+	ret c
+	ld b, BANK("Mon Icons 2")
 	ret
 
 GetGFXUnlessMobile:
