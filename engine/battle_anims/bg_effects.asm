@@ -2606,7 +2606,7 @@ BattleBGEffect_GetNextDMGPal:
 BattleBGEffects_ClearLYOverrides:
 	xor a
 BattleBGEffects_SetLYOverrides:
-	ld hl, wLYOverrides ; wListPointer
+	ld hl, wLYOverrides
 	ld e, $99
 .loop1
 	ld [hli], a

@@ -1,4 +1,5 @@
 InitList:
+; This entire function is useless.
 	ld a, [wInitListType]
 
 	cp INIT_ENEMYOT_LIST
