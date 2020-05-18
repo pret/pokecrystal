@@ -5,7 +5,7 @@ Get2bpp_2::
 	bit rLCDC_ENABLE, a
 	jp z, Copy2bpp
 
-	homecall _Get2bpp
+	homecall HDMATransfer2bpp
 
 	ret
 
@@ -14,7 +14,7 @@ Get1bpp_2::
 	bit rLCDC_ENABLE, a
 	jp z, Copy1bpp
 
-	homecall _Get1bpp
+	homecall HDMATransfer1bpp
 
 	ret
 

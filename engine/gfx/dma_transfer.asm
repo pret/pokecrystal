@@ -450,7 +450,7 @@ PadMapForHDMATransfer:
 	ldh [hMapObjectIndexBuffer], a
 	ret
 
-_Get2bpp::
+HDMATransfer2bpp::
 	; 2bpp when [rLCDC] & $80
 	; switch to WRAM bank 6
 	ldh a, [rSVBK]
@@ -494,7 +494,7 @@ _Get2bpp::
 	ldh [rSVBK], a
 	ret
 
-_Get1bpp::
+HDMATransfer1bpp::
 	; 1bpp when [rLCDC] & $80
 .loop
 	ld a, c

@@ -277,13 +277,13 @@ Unreferenced_Function8bec:
 	ldh a, [hCGB]
 	and a
 	jr nz, .cgb
-	ld hl, wPlayerLightScreenCount
+	ld hl, wBetaPokerSGBPals
 	jp PushSGBPals
 
 .cgb
-	ld a, [wEnemyLightScreenCount] ; col
+	ld a, [wBetaPokerSGBCol]
 	ld c, a
-	ld a, [wEnemyReflectCount] ; row
+	ld a, [wBetaPokerSGBRow]
 	hlcoord 0, 0, wAttrmap
 	ld de, SCREEN_WIDTH
 .loop
@@ -294,10 +294,10 @@ Unreferenced_Function8bec:
 	jr .loop
 
 .done
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	lb bc, 6, 4
-	ld a, [wEnemySafeguardCount] ; value
+	ld a, [wBetaPokerSGBAttr]
 	and $3
 	call FillBoxCGB
 	call CopyTilemapAtOnce

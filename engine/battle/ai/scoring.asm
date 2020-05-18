@@ -1046,7 +1046,7 @@ AI_Smart_Unused2B:
 .asm_38aaa
 	push hl
 	ld hl, wPlayerUsedMoves
-	ld c, 4
+	ld c, NUM_MOVES
 
 .asm_38ab0
 	ld a, [hli]
@@ -1511,7 +1511,7 @@ AI_Smart_Spite:
 .asm_38ce7
 	push hl
 	ld b, a
-	ld c, 4
+	ld c, NUM_MOVES
 	ld hl, wBattleMonMoves
 	ld de, wBattleMonPP
 
@@ -2147,10 +2147,10 @@ AI_Smart_Rollout:
 	jr nc, .asm_39020
 
 	ld a, [wEnemyAccLevel]
-	cp 7
+	cp BASE_STAT_LEVEL
 	jr c, .asm_39020
 	ld a, [wPlayerEvaLevel]
-	cp 8
+	cp BASE_STAT_LEVEL + 1
 	jr nc, .asm_39020
 
 ; Otherwise, 80% chance to greatly encourage this move.

@@ -640,6 +640,7 @@ wEnemyScreens:: ; c700
 ; see wPlayerScreens
 	db
 
+UNION ; c701
 wPlayerSafeguardCount:: db ; c701
 wPlayerLightScreenCount:: db ; c702
 wPlayerReflectCount:: db ; c703
@@ -648,7 +649,19 @@ wPlayerReflectCount:: db ; c703
 wEnemySafeguardCount:: db ; c705
 wEnemyLightScreenCount:: db ; c706
 wEnemyReflectCount:: db ; c707
-	ds 2
+	ds 1
+
+NEXTU ; c701
+	ds 1
+wBetaPokerSGBPals:: dw ; c702
+	ds 1
+wBetaPokerSGBAttr:: db ; c705
+wBetaPokerSGBCol:: db ; c706
+wBetaPokerSGBRow:: db ; c707
+	ds 1
+ENDU ; c708
+
+	ds 1
 
 wBattleWeather:: ; c70a
 ; 00 normal
