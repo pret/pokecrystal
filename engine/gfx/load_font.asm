@@ -8,13 +8,13 @@ Unreferenced_fb434:
 Unreferenced_Functionfb435:
 	ld a, [Unreferenced_fb434]
 	and a
-	jp nz, Get1bpp_2
+	jp nz, Get1bppViaHDMA
 	jp Get1bpp
 
 Unreferenced_Functionfb43f:
 	ld a, [Unreferenced_fb434]
 	and a
-	jp nz, Get2bpp_2
+	jp nz, Get2bppViaHDMA
 	jp Get2bpp
 ; End unreferenced block
 
@@ -29,34 +29,34 @@ _LoadStandardFont::
 	ld de, Font
 	ld hl, vTiles1
 	lb bc, BANK(Font), 32 ; "A" to "]"
-	call Get1bpp_2
+	call Get1bppViaHDMA
 	ld de, Font + 32 * LEN_1BPP_TILE
 	ld hl, vTiles1 tile $20
 	lb bc, BANK(Font), 32 ; "a" to $bf
-	call Get1bpp_2
+	call Get1bppViaHDMA
 	ld de, Font + 64 * LEN_1BPP_TILE
 	ld hl, vTiles1 tile $40
 	lb bc, BANK(Font), 32 ; "Ä" to "←"
-	call Get1bpp_2
+	call Get1bppViaHDMA
 	ld de, Font + 96 * LEN_1BPP_TILE
 	ld hl, vTiles1 tile $60
 	lb bc, BANK(Font), 32 ; "'" to "9"
-	call Get1bpp_2
+	call Get1bppViaHDMA
 	ret
 
 _LoadFontsExtra1::
 	ld de, FontsExtra_SolidBlackGFX
 	ld hl, vTiles2 tile "■" ; $60
 	lb bc, BANK(FontsExtra_SolidBlackGFX), 1
-	call Get1bpp_2
+	call Get1bppViaHDMA
 	ld de, PokegearPhoneIconGFX
 	ld hl, vTiles2 tile "☎" ; $62
 	lb bc, BANK(PokegearPhoneIconGFX), 1
-	call Get2bpp_2
+	call Get2bppViaHDMA
 	ld de, FontExtra + 3 tiles ; "<BOLD_D>"
 	ld hl, vTiles2 tile "<BOLD_D>"
 	lb bc, BANK(FontExtra), 22 ; "<BOLD_D>" to "ぉ"
-	call Get2bpp_2
+	call Get2bppViaHDMA
 	jr LoadFrame
 
 _LoadFontsExtra2::
@@ -64,14 +64,14 @@ _LoadFontsExtra2::
 	ld hl, vTiles2 tile "▲" ; $61
 	ld b, BANK(FontsExtra2_UpArrowGFX)
 	ld c, 1
-	call Get2bpp_2
+	call Get2bppViaHDMA
 	ret
 
 _LoadFontsBattleExtra::
 	ld de, FontBattleExtra
 	ld hl, vTiles2 tile $60
 	lb bc, BANK(FontBattleExtra), 25
-	call Get2bpp_2
+	call Get2bppViaHDMA
 	jr LoadFrame
 
 LoadFrame:
@@ -84,41 +84,41 @@ LoadFrame:
 	ld e, l
 	ld hl, vTiles2 tile "┌" ; $79
 	lb bc, BANK(Frames), 6 ; "┌" to "┘"
-	call Get1bpp_2
+	call Get1bppViaHDMA
 	ld hl, vTiles2 tile " " ; $7f
 	ld de, TextboxSpaceGFX
 	lb bc, BANK(TextboxSpaceGFX), 1
-	call Get1bpp_2
+	call Get1bppViaHDMA
 	ret
 
 LoadBattleFontsHPBar:
 	ld de, FontBattleExtra
 	ld hl, vTiles2 tile $60
 	lb bc, BANK(FontBattleExtra), 12
-	call Get2bpp_2
+	call Get2bppViaHDMA
 	ld hl, vTiles2 tile $70
 	ld de, FontBattleExtra + 16 tiles ; "<DO>"
 	lb bc, BANK(FontBattleExtra), 3 ; "<DO>" to "『"
-	call Get2bpp_2
+	call Get2bppViaHDMA
 	call LoadFrame
 
 LoadHPBar:
 	ld de, EnemyHPBarBorderGFX
 	ld hl, vTiles2 tile $6c
 	lb bc, BANK(EnemyHPBarBorderGFX), 4
-	call Get1bpp_2
+	call Get1bppViaHDMA
 	ld de, HPExpBarBorderGFX
 	ld hl, vTiles2 tile $73
 	lb bc, BANK(HPExpBarBorderGFX), 6
-	call Get1bpp_2
+	call Get1bppViaHDMA
 	ld de, ExpBarGFX
 	ld hl, vTiles2 tile $55
 	lb bc, BANK(ExpBarGFX), 9
-	call Get2bpp_2
+	call Get2bppViaHDMA
 	ld de, MobilePhoneTilesGFX + 7 tiles ; mobile phone icon
 	ld hl, vTiles2 tile $5e
 	lb bc, BANK(MobilePhoneTilesGFX), 2
-	call Get2bpp_2
+	call Get2bppViaHDMA
 	ret
 
 StatsScreen_LoadFont:
@@ -126,22 +126,22 @@ StatsScreen_LoadFont:
 	ld de, EnemyHPBarBorderGFX
 	ld hl, vTiles2 tile $6c
 	lb bc, BANK(EnemyHPBarBorderGFX), 4
-	call Get1bpp_2
+	call Get1bppViaHDMA
 	ld de, HPExpBarBorderGFX
 	ld hl, vTiles2 tile $78
 	lb bc, BANK(HPExpBarBorderGFX), 1
-	call Get1bpp_2
+	call Get1bppViaHDMA
 	ld de, HPExpBarBorderGFX + 3 * LEN_1BPP_TILE
 	ld hl, vTiles2 tile $76
 	lb bc, BANK(HPExpBarBorderGFX), 2
-	call Get1bpp_2
+	call Get1bppViaHDMA
 	ld de, ExpBarGFX
 	ld hl, vTiles2 tile $55
 	lb bc, BANK(ExpBarGFX), 8
-	call Get2bpp_2
+	call Get2bppViaHDMA
 LoadStatsScreenPageTilesGFX:
 	ld de, StatsScreenPageTilesGFX
 	ld hl, vTiles2 tile $31
 	lb bc, BANK(StatsScreenPageTilesGFX), 17
-	call Get2bpp_2
+	call Get2bppViaHDMA
 	ret

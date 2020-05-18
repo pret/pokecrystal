@@ -574,12 +574,12 @@ _GetMovementByte::
 	ld a, h
 	ret
 
-SetVramState_Bit0::
+UnreferencedSetVramState_Bit0::
 	ld hl, wVramState
 	set 0, [hl]
 	ret
 
-ResetVramState_Bit0::
+UnreferencedResetVramState_Bit0::
 	ld hl, wVramState
 	res 0, [hl]
 	ret

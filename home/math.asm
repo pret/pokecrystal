@@ -48,8 +48,8 @@ Divide::
 	pop hl
 	ret
 
-SubtractSigned::
-; Return a - b, sign in carry.
+UnreferencedSubtractAbsolute::
+; Return |a - b|, sign in carry.
 	sub b
 	ret nc
 	cpl

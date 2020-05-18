@@ -417,7 +417,7 @@ YesNoBox::
 PlaceYesNoBox::
 	jr _YesNoBox
 
-PlaceGenericTwoOptionBox::
+UnreferencedPlaceGenericTwoOptionBox::
 	call LoadMenuHeader
 	jr InterpretTwoOptionMenu
 

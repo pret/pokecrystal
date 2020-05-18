@@ -128,7 +128,7 @@ SpeechTextbox::
 	ld c, TEXTBOX_INNERW
 	jp Textbox
 
-TestText::
+UnreferencedTestText::
 	text "ゲームフりーク！"
 	done
 

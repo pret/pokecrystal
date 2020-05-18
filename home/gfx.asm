@@ -1,6 +1,6 @@
 ; Functions to copy data from ROM.
 
-Get2bpp_2::
+Get2bppViaHDMA::
 	ldh a, [rLCDC]
 	bit rLCDC_ENABLE, a
 	jp z, Copy2bpp
@@ -9,7 +9,7 @@ Get2bpp_2::
 
 	ret
 
-Get1bpp_2::
+Get1bppViaHDMA::
 	ldh a, [rLCDC]
 	bit rLCDC_ENABLE, a
 	jp z, Copy1bpp
@@ -31,7 +31,7 @@ FarCopyBytesDouble_DoubleBankSwitch::
 	rst Bankswitch
 	ret
 
-OldDMATransfer:
+UnreferencedOldDMATransfer:
 	dec c
 	ldh a, [hBGMapMode]
 	push af

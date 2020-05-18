@@ -1374,7 +1374,7 @@ Function108ad4:
 	ldh [rVBK], a
 	ld hl, vTiles2 tile $4a
 	lb bc, BANK(MobileCable1GFX), 16 ; aka BANK(MobileCable2GFX)
-	call Get2bpp_2
+	call Get2bppViaHDMA
 	call DelayFrame
 	ld a, $0
 	ldh [rVBK], a
