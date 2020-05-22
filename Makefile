@@ -20,6 +20,7 @@ lib/mobile/main.o
 crystal11_obj := $(crystal_obj:.o=11.o)
 crystal_au_obj := $(crystal_obj:.o=_au.o)
 
+
 ### Build tools
 
 ifeq (,$(shell which sha1sum))
