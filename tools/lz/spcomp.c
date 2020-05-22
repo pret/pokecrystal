@@ -62,11 +62,11 @@ struct command find_best_copy (const unsigned char * data, unsigned short positi
   struct command simple = {.command = 7};
   struct command flipped = simple, backwards = simple;
   short count, offset;
-  if (count = scan_forwards(data + position, length - position, data, position, &offset))
+  if ((count = scan_forwards(data + position, length - position, data, position, &offset)))
     simple = (struct command) {.command = 4, .count = count, .value = offset};
-  if (count = scan_forwards(data + position, length - position, bitflipped, position, &offset))
+  if ((count = scan_forwards(data + position, length - position, bitflipped, position, &offset)))
     flipped = (struct command) {.command = 5, .count = count, .value = offset};
-  if (count = scan_backwards(data, length - position, position, &offset))
+  if ((count = scan_backwards(data, length - position, position, &offset)))
     backwards = (struct command) {.command = 6, .count = count, .value = offset};
   struct command command;
   switch (flags / 24) {

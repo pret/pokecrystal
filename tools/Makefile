@@ -20,8 +20,9 @@ clean:
 
 gfx md5: common.h
 
+lzcomp: CFLAGS = -O3 -flto -std=c11 -Wall -Wextra -pedantic -Wno-strict-overflow -Wno-sign-compare
 lzcomp: $(wildcard lz/*.c) $(wildcard lz/*.h)
-	$(CC) -O3 -std=c11 lz/*.c -o $@
+	$(CC) $(CFLAGS) -o $@ lzcompsrc/*.c
 
 %: %.c
 	$(CC) $(CFLAGS) -o $@ $<

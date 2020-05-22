@@ -7,7 +7,7 @@
                  (lowest bit to highest: repeat single byte (1), repeat two bytes (2), repeat zeros (3)).
 */
 
-struct command * try_compress_repetitions (const unsigned char * data, const unsigned char * bitflipped, unsigned short * size, unsigned flags) {
+struct command * try_compress_repetitions (const unsigned char * data, (__attribute__((unused)) const unsigned char * bitflipped, unsigned short * size, unsigned flags) {
   unsigned short pos = 0, skipped = 0;
   struct command * result = malloc(*size * sizeof(struct command));
   struct command * current = result;
