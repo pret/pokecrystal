@@ -20,6 +20,7 @@ lib/mobile/main.o
 crystal11_obj := $(crystal_obj:.o=11.o)
 crystal_au_obj := $(crystal_obj:.o=_au.o)
 
+include lz.mk
 
 ### Build tools
 
@@ -112,12 +113,8 @@ pokecrystal-au.gbc: $(crystal_au_obj) layout.link
 # If the hash of the uncompressed file matches, use this .lz instead.
 # This allows pngs to be used for compressed graphics and still match.
 
-%.lz: hash = $(shell tools/md5 $(*D)/$(*F) | sed "s/\(.\{8\}\).*/\1/")
 %.lz: %
-	$(eval filename := $@.$(hash))
-	$(if $(wildcard $(filename)),\
-		cp $(filename) $@,\
-		tools/lzcomp -- $< $@)
+	tools/lzcomp $(LZFLAGS) -- $< $@
 
 
 ### Pokemon pic animation rules
