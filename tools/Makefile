@@ -20,5 +20,8 @@ clean:
 
 gfx md5: common.h
 
+lzcomp: $(wildcard lz/*.c) $(wildcard lz/*.h)
+	$(CC) -O3 -std=c11 lz/*.c -o $@
+
 %: %.c
 	$(CC) $(CFLAGS) -o $@ $<
