@@ -108,16 +108,13 @@ pokecrystal-au.gbc: $(crystal_au_obj) layout.link
 	$(RGBFIX) -Cjv -t PM_CRYSTAL -i BYTU -k 01 -l 0x33 -m 0x10 -r 3 -p 0 $@
 
 
-# For files that the compressor can't match, there will be a .lz file suffixed with the md5 hash of the correct uncompressed file.
-# If the hash of the uncompressed file matches, use this .lz instead.
-# This allows pngs to be used for compressed graphics and still match.
+### LZ compression rules
 
-%.lz: hash = $(shell tools/md5 $(*D)/$(*F) | sed "s/\(.\{8\}\).*/\1/")
+# Delete this line if you don't care about matching and just want optimal compression.
+include gfx/lz.mk
+
 %.lz: %
-	$(eval filename := $@.$(hash))
-	$(if $(wildcard $(filename)),\
-		cp $(filename) $@,\
-		tools/lzcomp -- $< $@)
+	tools/lzcomp $(LZFLAGS) -- $< $@
 
 
 ### Pokemon pic animation rules
