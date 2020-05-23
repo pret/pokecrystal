@@ -1,12 +1,13 @@
 #include "proto.h"
 
 const struct compressor compressors[] = {
-  /* NOTE: the "flags" field for each compressor will be set to the chosen/current method number minus the base
-     number for that particular compressor. That means that each compressor will use a zero-based flags value. */
-  {.methods = 72, .function = &try_compress_single_pass}, //  0-71
-  {.methods =  2, .function = &store_uncompressed},       // 72-73
-  {.methods =  6, .function = &try_compress_repetitions}, // 74-79
-  {.methods = 16, .function = &try_compress_multi_pass}   // 80-95
+  // NOTE: the "flags" field for each compressor will be set to the chosen/current method number minus the base
+  // number for that particular compressor. That means that each compressor will use a zero-based flags value.
+  {.methods = 72, .name = "singlepass",  .function = &try_compress_single_pass}, //  0-71
+  {.methods =  2, .name = "null",        .function = &store_uncompressed},       // 72-73
+  {.methods =  6, .name = "repetitions", .function = &try_compress_repetitions}, // 74-79
+  {.methods = 16, .name = "multipass",   .function = &try_compress_multi_pass},  // 80-95
+  {0} // end of the list
 };
 
 const unsigned char bit_flipping_table[] = {
@@ -30,3 +31,5 @@ const unsigned char bit_flipping_table[] = {
   0x07, 0x87, 0x47, 0xc7, 0x27, 0xa7, 0x67, 0xe7, 0x17, 0x97, 0x57, 0xd7, 0x37, 0xb7, 0x77, 0xf7,
   0x0f, 0x8f, 0x4f, 0xcf, 0x2f, 0xaf, 0x6f, 0xef, 0x1f, 0x9f, 0x5f, 0xdf, 0x3f, 0xbf, 0x7f, 0xff
 };
+
+char option_name_buffer[] = "-?"; // used to extract the name of a short option (separated from its argument)

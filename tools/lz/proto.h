@@ -11,6 +11,13 @@
 #define LOOKAHEAD_LIMIT           3072 /* maximum lookahead distance for the first pass of multi-pass compression */
 #define MULTIPASS_SKIP_THRESHOLD    64
 
+#if __STDC_VERSION__ >= 201112L
+	// <noreturn.h> forces "noreturn void", which is silly and redundant; this is simpler
+	#define noreturn _Noreturn void
+#else
+	#define noreturn void /* fallback */
+#endif
+
 struct command {
   unsigned command: 3; // commands 0-6 as per compression spec; command 7 is used as a dummy placeholder
   unsigned count:  12; // always equals the uncompressed data length
@@ -19,13 +26,14 @@ struct command {
 
 struct compressor {
   unsigned methods;
+  const char * name;
   struct command * (* function) (const unsigned char *, const unsigned char *, unsigned short *, unsigned);
 };
 
 struct options {
   const char * input;
   const char * output;
-  unsigned method;
+  unsigned method; // method to use, or >= COMPRESSION_METHODS to try them all
   unsigned char mode; // 0: compress, 1: compress to text, 2: uncompress, 3: dump commands as text
   unsigned char alignment; // 1 << value
 };
@@ -33,6 +41,7 @@ struct options {
 // global.c
 extern const struct compressor compressors[];
 extern const unsigned char bit_flipping_table[];
+extern char option_name_buffer[];
 
 // main.c
 int main(int, char **);
@@ -55,7 +64,10 @@ struct command * store_uncompressed(const unsigned char *, const unsigned char *
 // options.c
 struct options get_options(int, char **);
 unsigned parse_numeric_option_argument(char ***, unsigned);
-void usage(const char *);
+int parse_compressor_option_argument(char ***);
+const char * get_argument_for_option(char ***, const char **);
+noreturn usage(const char *);
+noreturn list_compressors(void);
 
 // output.c
 void write_commands_to_textfile(const char *, const struct command *, unsigned, const unsigned char *, unsigned char);
@@ -85,7 +97,7 @@ struct command * get_commands_from_file(const unsigned char *, unsigned short * 
 unsigned char * get_uncompressed_data(const struct command *, const unsigned char *, unsigned short *);
 
 // util.c
-void error_exit(int, const char *, ...);
+noreturn error_exit(int, const char *, ...);
 unsigned char * read_file_into_buffer(const char *, unsigned short *);
 struct command pick_best_command(unsigned, struct command, ...);
 int is_better(struct command, struct command);

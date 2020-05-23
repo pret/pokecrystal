@@ -1,6 +1,6 @@
 #include "proto.h"
 
-void error_exit (int error_code, const char * error, ...) {
+noreturn error_exit (int error_code, const char * error, ...) {
   va_list ap;
   va_start(ap, error);
   fputs("error: ", stderr);
