@@ -10,15 +10,14 @@ tools := \
 	palette \
 	pokemon_animation \
 	pokemon_animation_graphics \
-	gfx \
-	md5
+	gfx
 all: $(tools)
 	@:
 
 clean:
 	rm -f $(tools)
 
-gfx md5: common.h
+gfx: common.h
 
 lzcomp: CFLAGS = -O3 -flto -std=c11 -Wall -Wextra -pedantic -Wno-strict-overflow -Wno-sign-compare
 lzcomp: $(wildcard lz/*.c) $(wildcard lz/*.h)
