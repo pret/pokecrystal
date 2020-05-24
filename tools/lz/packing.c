@@ -17,7 +17,7 @@ void optimize (struct command * commands, unsigned short count) {
       next -> command = 7;
       continue;
     }
-    if (next -> command == commands -> command) {
+    if (next -> command == commands -> command)
       switch (commands -> command) {
         case 0:
           if ((commands -> value + commands -> count) != next -> value) break;
@@ -40,9 +40,7 @@ void optimize (struct command * commands, unsigned short count) {
           }
           next -> count = (commands -> count + next -> count) - MAX_COMMAND_COUNT;
           commands -> count = MAX_COMMAND_COUNT;
-          break;
       }
-    }
     commands = next;
   }
 }

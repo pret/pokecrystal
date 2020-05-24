@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdarg.h>
 
+#define NUM_COMPRESSORS              4
 #define COMPRESSION_METHODS         96 /* sum of all values for the methods field in compressors */
 #define MAX_FILE_SIZE            32768
 #define SHORT_COMMAND_COUNT         32
@@ -48,7 +49,8 @@ int main(int, char **);
 struct command * compress(const unsigned char *, unsigned short *, unsigned);
 
 // merging.c
-struct command * select_command_sequence(struct command **, const unsigned short *, unsigned, unsigned short *);
+struct command * select_optimal_sequence(struct command **, const unsigned short *, unsigned short *);
+struct command * select_command_sequence(struct command **, const unsigned short *, int, unsigned short *);
 struct command * merge_command_sequences(const struct command *, unsigned short, const struct command *, unsigned short, unsigned short *);
 
 // mpcomp.c

@@ -37,13 +37,16 @@ struct command * compress (const unsigned char * data, unsigned short * size, un
   } else {
     struct command * compressed_sequences[COMPRESSION_METHODS];
     unsigned short lengths[COMPRESSION_METHODS];
-    unsigned flags = compressor -> methods;
+    unsigned flags = 0;
     for (current = 0; current < COMPRESSION_METHODS; current ++) {
       lengths[current] = *size;
-      if (!flags) flags = (++ compressor) -> methods;
-      compressed_sequences[current] = compressor -> function(data, bitflipped, lengths + current, -- flags);
+      if (flags == compressor -> methods) {
+        flags = 0;
+        compressor ++;
+      }
+      compressed_sequences[current] = compressor -> function(data, bitflipped, lengths + current, flags ++);
     }
-    result = select_command_sequence(compressed_sequences, lengths, COMPRESSION_METHODS, size);
+    result = select_optimal_sequence(compressed_sequences, lengths, size);
     for (current = 0; current < COMPRESSION_METHODS; current ++) free(compressed_sequences[current]);
   }
   free(bitflipped);
