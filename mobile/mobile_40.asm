@@ -1529,7 +1529,7 @@ Function1009f3:
 
 _LinkBattleSendReceiveAction:
 	call .StageForSend
-	ld [wd431], a
+	ld [wLinkBattleSentAction], a
 	farcall PlaceWaitingText
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
@@ -1573,7 +1573,7 @@ _LinkBattleSendReceiveAction:
 	ret
 
 .LinkBattle_SendReceiveAction:
-	ld a, [wd431]
+	ld a, [wLinkBattleSentAction]
 	ld [wPlayerLinkAction], a
 	ld a, $ff
 	ld [wOtherPlayerLinkAction], a
@@ -1642,7 +1642,7 @@ _LinkBattleSendReceiveAction:
 Function100acf:
 	ld de, Unknown_100b0a
 	ld hl, wccb5
-	ld a, [wd431]
+	ld a, [wLinkBattleSentAction]
 	ld [hli], a
 	ld c, $01
 .asm_100adb
