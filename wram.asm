@@ -2365,7 +2365,7 @@ ENDU ; d430
 wd430:: ; mobile
 wBattleAction:: db ; d430
 
-wd431:: db ; mobile
+wLinkBattleSentAction:: db ; d431
 wMapStatus:: db ; d432
 wMapEventStatus:: db ; d433
 
