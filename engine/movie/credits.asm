@@ -245,7 +245,7 @@ ParseCredits:
 	xor a
 	ldh [hBGMapMode], a
 	hlcoord 0, 5
-	ld bc, 20 * 12
+	ld bc, SCREEN_WIDTH * 12
 	ld a, " "
 	call ByteFill
 
@@ -306,7 +306,7 @@ ParseCredits:
 .print
 ; Print strings spaced every two lines.
 	call .get
-	ld bc, 20 * 2
+	ld bc, SCREEN_WIDTH * 2
 	call AddNTimes
 	call PlaceString
 	jr .loop
