@@ -1254,7 +1254,7 @@ BillsPC_RefreshTextboxes:
 	jr nz, .loop
 	ret
 
-.CancelString:
+.cancel_string:
 	db "CANCEL@"
 
 .PlaceNickname:
@@ -1263,7 +1263,7 @@ BillsPC_RefreshTextboxes:
 	ret z
 	cp -1
 	jr nz, .get_nickname
-	ld de, .CancelString
+	ld de, .cancel_string
 	call PlaceString
 	ret
 
