@@ -1571,10 +1571,10 @@ Unreferenced_Function28b42:
 	ld bc, SCREEN_WIDTH - 2
 	call ByteFill
 	hlcoord 2, 16
-	ld de, .Cancel
+	ld de, .cancel_string
 	jp PlaceString
 
-.Cancel:
+.cancel_string:
 	db "CANCEL@"
 
 Function28b68:
