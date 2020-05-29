@@ -6487,12 +6487,12 @@ Function102e07:
 	db "Waiting...!@"
 
 Function102e3e:
-	ld de, .CANCEL
+	ld de, .cancel_string
 	hlcoord 10, 17
 	call PlaceString
 	ret
 
-.CANCEL:
+.cancel_string:
 	db "CANCEL@"
 
 Function102e4f:
