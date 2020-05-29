@@ -3889,8 +3889,7 @@ Strings_Ll0ToL40:
 	db " L:30 @@"
 	db " L:40 @@"
 	db "CANCEL@@"
-
-String_119d8c:
+Unreferenced_CancelString:
 	db "CANCEL@"
 
 BattleTower_LevelCheck:
