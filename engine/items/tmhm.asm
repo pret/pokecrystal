@@ -417,7 +417,7 @@ TMHM_DisplayPocketItems:
 	inc hl
 	inc hl
 	push de
-	ld de, TMHM_String_Cancel
+	ld de, TMHM_CancelString
 	call PlaceString
 	pop de
 .done
@@ -449,7 +449,7 @@ Unreferenced_Function2ca95:
 	pop hl
 	ret
 
-TMHM_String_Cancel:
+TMHM_CancelString:
 	db "CANCEL@"
 
 TMHM_GetCurrentPocketPosition:
@@ -472,7 +472,7 @@ TMHM_GetCurrentPocketPosition:
 Tutorial_TMHMPocket:
 	hlcoord 9, 3
 	push de
-	ld de, TMHM_String_Cancel
+	ld de, TMHM_CancelString
 	call PlaceString
 	pop de
 	ret

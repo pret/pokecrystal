@@ -105,11 +105,11 @@ PlacePartyNicknames:
 .end
 	dec hl
 	dec hl
-	ld de, .CANCEL
+	ld de, .CancelString
 	call PlaceString
 	ret
 
-.CANCEL:
+.CancelString:
 	db "CANCEL@"
 
 PlacePartyHPBar:
