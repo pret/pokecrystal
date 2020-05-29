@@ -115,11 +115,11 @@ InitTradeSpeciesList:
 	farcall InitMG_Mobile_LinkTradePalMap
 	farcall PlaceTradePartnerNamesAndParty
 	hlcoord 10, 17
-	ld de, .cancel_string
+	ld de, .CancelString
 	call PlaceString
 	ret
 
-.cancel_string:
+.CancelString:
 	db "CANCEL@"
 
 _LoadTradeScreenBorder:
