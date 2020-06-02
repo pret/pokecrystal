@@ -38,10 +38,11 @@ class MapReader:
     bank_types = {
         'HRAM'     : { 'size': 0x80,   'banked': False, },
         'OAM'      : { 'size': 0xA0,   'banked': False, },
-        'ROM Bank' : { 'size': 0x4000, 'banked': True,  },
-        'SRAM Bank': { 'size': 0x2000, 'banked': True,  },
-        'VRAM Bank': { 'size': 0x1000, 'banked': True,  },
-        'WRAM Bank': { 'size': 0x2000, 'banked': True,  },
+        'ROM0 bank': { 'size': 0x4000, 'banked': True,  },
+        'ROMX bank': { 'size': 0x4000, 'banked': True,  },
+        'SRAM bank': { 'size': 0x2000, 'banked': True,  },
+        'VRAM bank': { 'size': 0x1000, 'banked': True,  },
+        'WRAM bank': { 'size': 0x2000, 'banked': True,  },
     }
 
     # FSM states
@@ -52,7 +53,7 @@ class MapReader:
     # $506D = TypeMatchups
     section_data_regex = re.compile('\$([0-9A-Fa-f]{4}) = (.*)')
     # $3ED2 bytes
-    slack_regex = re.compile('\$([0-9A-Fa-f]{4}) bytes')
+    slack_regex = re.compile('\$([0-9A-Fa-f]{4}) bytes?')
 
     def __init__(self, *args, **kwargs):
         self.__dict__.update(kwargs)

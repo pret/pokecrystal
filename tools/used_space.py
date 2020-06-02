@@ -38,7 +38,8 @@ def main():
 	default_bank_data = {'sections': [], 'used': 0, 'slack': bank_size}
 	for bank in range(num_banks):
 		hits = [0] * pixels_per_bank
-		data = r.bank_data['ROM Bank'].get(bank, default_bank_data)
+		bank_data = r.bank_data['ROM0 bank'] if bank == 0 else r.bank_data['ROMX bank']
+		data = bank_data.get(bank, default_bank_data)
 		for s in data['sections']:
 			beg = s['beg'] & bank_mask
 			end = s['end'] & bank_mask
