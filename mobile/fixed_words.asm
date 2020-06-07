@@ -4083,7 +4083,7 @@ EZChat_SortedWords:
 ; with the given kana are sorted in memory, and the pre-
 ; allocated size for each.
 ; These arrays are expanded dynamically to accomodate
-; any Pokemon you've seen that starts with each kana.\
+; any Pokemon you've seen that starts with each kana.
 macro_11f23c: MACRO
 	dw x - w3_d000, \1
 x = x + 2 * \1
