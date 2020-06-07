@@ -2846,9 +2846,9 @@ wParkBallsRemaining::
 wSafariBallsRemaining:: db ; dc79
 wSafariTimeRemaining:: dw ; dc7a
 
-wPhoneList:: ds CONTACT_LIST_SIZE ; dc7c
-; dc86
-	ds 23
+wPhoneList:: ds CONTACT_LIST_SIZE + 1 ; dc7c
+
+	ds 22
 
 wLuckyNumberShowFlag:: db ; dc9d
 	ds 1
