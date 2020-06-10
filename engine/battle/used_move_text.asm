@@ -5,9 +5,9 @@ DisplayUsedMoveText:
 	jp WaitBGMap
 
 UsedMoveText:
-; this is a stream of text and asm from 105db9 to 105ef6
 	text_far _ActorNameText
 	text_asm
+
 	ldh a, [hBattleTurn]
 	and a
 	jr nz, .start
