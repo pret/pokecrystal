@@ -1107,7 +1107,7 @@ MysteryGift_CheckAndSetDecorationAlreadyReceived:
 	ld d, $0
 	ld b, CHECK_FLAG
 	ld hl, sMysteryGiftDecorationsReceived
-	predef_id SmallFarFlagAction
+	lda_predef SmallFarFlagAction
 	push hl
 	push bc
 	call Predef
