@@ -15,10 +15,10 @@ GoldenrodNameRater:
 	end
 
 GoldenrodNameRaterBookshelf:
-	jumpstd difficultbookshelf
+	jumpstd DifficultBookshelfScript
 
 GoldenrodNameRaterRadio:
-	jumpstd radio2
+	jumpstd Radio2Script
 
 INCLUDE "data/text/unused_sweet_honey.asm"
 

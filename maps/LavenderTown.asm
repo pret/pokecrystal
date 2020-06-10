@@ -39,10 +39,10 @@ SoulHouseSign:
 	jumptext SoulHouseSignText
 
 LavenderPokecenterSignText:
-	jumpstd pokecentersign
+	jumpstd PokecenterSignScript
 
 LavenderMartSignText:
-	jumpstd martsign
+	jumpstd MartSignScript
 
 LavenderTownPokefanMText:
 	text "That's quite some"

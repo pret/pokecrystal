@@ -10,7 +10,7 @@ BlackthornPokecenter1F_MapScripts:
 	db 0 ; callbacks
 
 BlackthornPokecenter1FNurseScript:
-	jumpstd pokecenternurse
+	jumpstd PokecenterNurseScript
 
 BlackthornPokecenter1FGentlemanScript:
 	jumptextfaceplayer BlackthornPokecenter1FGentlemanText
@@ -19,7 +19,7 @@ BlackthornPokecenter1FTwinScript:
 	jumptextfaceplayer BlackthornPokecenter1FTwinText
 
 BlackthornPokecenter1FCooltrainerMScript:
-	jumpstd happinesschecknpc
+	jumpstd HappinessCheckScript
 
 BlackthornPokecenter1FGentlemanText:
 	text "Deep inside far-"

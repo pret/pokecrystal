@@ -30,7 +30,7 @@ CinnabarIslandSign:
 	jumptext CinnabarIslandSignText
 
 CinnabarIslandPokecenterSign:
-	jumpstd pokecentersign
+	jumpstd PokecenterSignScript
 
 CinnabarIslandHiddenRareCandy:
 	hiddenitem RARE_CANDY, EVENT_CINNABAR_ISLAND_HIDDEN_RARE_CANDY

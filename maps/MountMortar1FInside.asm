@@ -38,7 +38,7 @@ TrainerSupernerdMarkus:
 	end
 
 MountMortar1FBoulder:
-	jumpstd strengthboulder
+	jumpstd StrengthBoulderScript
 
 MountMortar1FInsideEscapeRope:
 	itemball ESCAPE_ROPE

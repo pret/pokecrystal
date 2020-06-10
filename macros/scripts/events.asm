@@ -80,13 +80,13 @@ ENDM
 	enum jumpstd_command ; $0c
 jumpstd: MACRO
 	db jumpstd_command
-	dw \1 ; predefined_script
+	dw (\1StdScript - StdScripts) / 3
 ENDM
 
 	enum callstd_command ; $0d
 callstd: MACRO
 	db callstd_command
-	dw \1 ; predefined_script
+	dw (\1StdScript - StdScripts) / 3
 ENDM
 
 	enum callasm_command ; $0e

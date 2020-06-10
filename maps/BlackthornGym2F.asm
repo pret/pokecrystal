@@ -54,7 +54,7 @@ BlackthornGym2F_MapScripts:
 	end
 
 BlackthornGymBoulder:
-	jumpstd strengthboulder
+	jumpstd StrengthBoulderScript
 
 TrainerCooltrainermCody:
 	trainer COOLTRAINERM, CODY, EVENT_BEAT_COOLTRAINERM_CODY, CooltrainermCodySeenText, CooltrainermCodyBeatenText, 0, .Script

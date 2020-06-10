@@ -39,7 +39,7 @@ CelebritysFearow:
 	end
 
 CelebrityHouseBookshelf:
-	jumpstd magazinebookshelf
+	jumpstd MagazineBookshelfScript
 
 CelebrityText1:
 	text "Oh, dear."

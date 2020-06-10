@@ -64,7 +64,7 @@ Route35NationalParkGate_MapScripts:
 	writetext Route35NationalParkGateOfficer1WaitAtNorthGateText
 	waitbutton
 	closetext
-	jumpstd bugcontestresultswarp
+	jumpstd BugContestResultsWarpScript
 
 .GoBackToContest:
 	writetext Route35NationalParkGateOfficer1OkGoFinishText
@@ -204,7 +204,7 @@ BugCatchingContestExplanationSign:
 	jumptext BugCatchingContestExplanationText
 
 Route35NationalParkGate_GetDayOfWeek:
-	jumpstd daytotext
+	jumpstd DayToTextScript
 	end
 
 Route35NationalParkGatePlayerApproachOfficer1Movement:

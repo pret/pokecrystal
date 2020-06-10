@@ -25,7 +25,7 @@ GoldenrodDeptStore1FDirectory:
 	jumptext GoldenrodDeptStore1FDirectoryText
 
 GoldenrodDeptStore1FElevatorButton:
-	jumpstd elevatorbutton
+	jumpstd ElevatorButtonScript
 
 GoldenrodDeptStore1FReceptionistText:
 	text "Welcome to GOLDEN-"

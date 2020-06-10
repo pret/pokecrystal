@@ -91,7 +91,7 @@ FarmerFScript_NoRoomForSnore:
 	end
 
 FarmhouseBookshelf:
-	jumpstd picturebookshelf
+	jumpstd PictureBookshelfScript
 
 FarmerMText_SickCow:
 	text "My MILTANK ain't"

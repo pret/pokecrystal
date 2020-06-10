@@ -44,7 +44,7 @@ LavRadioTower1FGentlemanScript:
 	end
 
 .receiveitem:
-	jumpstd receiveitem
+	jumpstd ReceiveItemScript
 	end
 
 .expncardname

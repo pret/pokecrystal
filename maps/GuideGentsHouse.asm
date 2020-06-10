@@ -10,7 +10,7 @@ GuideGentsHouseGuideGent:
 	jumptextfaceplayer GuideGentsHouseGuideGentText
 
 GuideGentsHouseBookshelf:
-	jumpstd magazinebookshelf
+	jumpstd MagazineBookshelfScript
 
 GuideGentsHouseGuideGentText:
 	text "When I was a wee"

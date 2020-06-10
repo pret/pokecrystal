@@ -135,7 +135,7 @@ PlateauRivalScriptDone:
 	end
 
 IndigoPlateauPokecenter1FNurseScript:
-	jumpstd pokecenternurse
+	jumpstd PokecenterNurseScript
 
 IndigoPlateauPokecenter1FClerkScript:
 	opentext

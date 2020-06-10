@@ -10,10 +10,10 @@ OlivinePokecenter1F_MapScripts:
 	db 0 ; callbacks
 
 OlivinePokecenter1FNurseScript:
-	jumpstd pokecenternurse
+	jumpstd PokecenterNurseScript
 
 OlivinePokecenter1FFishingGuruScript:
-	jumpstd happinesschecknpc
+	jumpstd HappinessCheckScript
 
 OlivinePokecenter1FFisherScript:
 	jumptextfaceplayer OlivinePokecenter1FFisherText

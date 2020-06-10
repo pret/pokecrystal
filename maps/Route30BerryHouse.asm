@@ -24,7 +24,7 @@ Route30BerryHousePokefanMScript:
 	end
 
 Route30BerryHouseBookshelf:
-	jumpstd magazinebookshelf
+	jumpstd MagazineBookshelfScript
 
 Route30BerrySpeechHouseMonEatBerriesText:
 	text "You know, #MON"

@@ -216,7 +216,7 @@ TrainerSupernerdShawn:
 	end
 
 FastShipCaptainsCabinTrashcan:
-	jumpstd trashcan
+	jumpstd TrashCanScript
 
 MovementData_0x76004:
 	big_step RIGHT

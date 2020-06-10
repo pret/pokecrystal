@@ -130,7 +130,7 @@ Route40Sign:
 	jumptext Route40SignText
 
 Route40Rock:
-	jumpstd smashrock
+	jumpstd SmashRockScript
 
 Route40HiddenHyperPotion:
 	hiddenitem HYPER_POTION, EVENT_ROUTE_40_HIDDEN_HYPER_POTION

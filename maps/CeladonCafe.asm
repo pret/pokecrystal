@@ -114,7 +114,7 @@ CeladonCafeTrashcan:
 	end
 
 .TrashEmpty:
-	jumpstd trashcan
+	jumpstd TrashCanScript
 
 ChefText_Eatathon:
 	text "Hi!"

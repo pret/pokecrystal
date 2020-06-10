@@ -63,7 +63,7 @@ OaksAssistant3Script:
 	jumptextfaceplayer OaksAssistant3Text
 
 OaksLabBookshelf:
-	jumpstd difficultbookshelf
+	jumpstd DifficultBookshelfScript
 
 OaksLabPoster1:
 	jumptext OaksLabPoster1Text

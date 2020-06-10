@@ -8,7 +8,7 @@ SilverCavePokecenter1F_MapScripts:
 	db 0 ; callbacks
 
 SilverCavePokecenter1FNurseScript:
-	jumpstd pokecenternurse
+	jumpstd PokecenterNurseScript
 
 SilverCavePokecenter1FGrannyScript:
 	jumptextfaceplayer SilverCavePokecenter1FGrannyText

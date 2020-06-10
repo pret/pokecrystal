@@ -37,7 +37,7 @@ SandstormHouseWoman:
 	end
 
 SandstormHouseBookshelf:
-	jumpstd magazinebookshelf
+	jumpstd MagazineBookshelfScript
 
 SandstormHouseWomanText1:
 	text "Where are you off"

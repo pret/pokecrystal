@@ -9,7 +9,7 @@ CeruleanPokecenter1F_MapScripts:
 	db 0 ; callbacks
 
 CeruleanPokecenter1FNurseScript:
-	jumpstd pokecenternurse
+	jumpstd PokecenterNurseScript
 
 CeruleanPokecenter1FSuperNerdScript:
 	special Mobile_DummyReturnFalse

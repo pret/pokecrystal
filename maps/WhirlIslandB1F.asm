@@ -27,7 +27,7 @@ WhirlIslandB1FEscapeRope:
 	itemball ESCAPE_ROPE
 
 WhirlIslandB1FBoulder:
-	jumpstd strengthboulder
+	jumpstd StrengthBoulderScript
 
 WhirlIslandB1FHiddenRareCandy:
 	hiddenitem RARE_CANDY, EVENT_WHIRL_ISLAND_B1F_HIDDEN_RARE_CANDY

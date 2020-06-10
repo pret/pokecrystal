@@ -335,7 +335,7 @@ RadioTower2FPokemonRadioSign:
 	jumptext RadioTower2FPokemonRadioSignText
 
 RadioTower2FBookshelf:
-	jumpstd magazinebookshelf
+	jumpstd MagazineBookshelfScript
 
 RadioTower2FPlayerWalksToMicrophoneMovement:
 	slow_step DOWN

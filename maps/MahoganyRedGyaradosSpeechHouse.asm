@@ -28,11 +28,11 @@ MahoganyRedGyaradosSpeechHouseTeacherScript:
 
 MahoganyRedGyaradosSpeechHouseUnusedBookshelf1:
 ; unused
-	jumpstd picturebookshelf
+	jumpstd PictureBookshelfScript
 
 MahoganyRedGyaradosSpeechHouseUnusedBookshelf2:
 ; unused
-	jumpstd magazinebookshelf
+	jumpstd MagazineBookshelfScript
 
 MahoganyRedGyaradosSpeechHouseBlackBeltText:
 	text "I heard that a red"

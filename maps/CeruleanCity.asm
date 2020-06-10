@@ -139,10 +139,10 @@ CeruleanLockedDoor:
 	jumptext CeruleanLockedDoorText
 
 CeruleanCityPokecenterSign:
-	jumpstd pokecentersign
+	jumpstd PokecenterSignScript
 
 CeruleanCityMartSign:
-	jumpstd martsign
+	jumpstd MartSignScript
 
 CeruleanCityHiddenBerserkGene:
 	hiddenitem BERSERK_GENE, EVENT_FOUND_BERSERK_GENE_IN_CERULEAN_CITY

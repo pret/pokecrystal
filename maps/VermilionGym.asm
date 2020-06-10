@@ -97,10 +97,10 @@ VermilionGymTrashCan:
 VermilionGymStatue:
 	checkflag ENGINE_THUNDERBADGE
 	iftrue .Beaten
-	jumpstd gymstatue1
+	jumpstd GymStatue1Script
 .Beaten:
 	gettrainername STRING_BUFFER_4, LT_SURGE, LT_SURGE1
-	jumpstd gymstatue2
+	jumpstd GymStatue2Script
 
 LtSurgeIntroText:
 	text "SURGE: Hey, you"

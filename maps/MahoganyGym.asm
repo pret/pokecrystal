@@ -63,10 +63,10 @@ MahoganyGymActivateRockets:
 	end
 
 .GoldenrodRockets:
-	jumpstd goldenrodrockets
+	jumpstd GoldenrodRocketsScript
 
 .RadioTowerRockets:
-	jumpstd radiotowerrockets
+	jumpstd RadioTowerRocketsScript
 
 TrainerSkierRoxanne:
 	trainer SKIER, ROXANNE, EVENT_BEAT_SKIER_ROXANNE, SkierRoxanneSeenText, SkierRoxanneBeatenText, 0, .Script
@@ -142,10 +142,10 @@ MahoganyGymGuyScript:
 MahoganyGymStatue:
 	checkflag ENGINE_GLACIERBADGE
 	iftrue .Beaten
-	jumpstd gymstatue1
+	jumpstd GymStatue1Script
 .Beaten:
 	gettrainername STRING_BUFFER_4, PRYCE, PRYCE1
-	jumpstd gymstatue2
+	jumpstd GymStatue2Script
 
 PryceText_Intro:
 	text "#MON have many"

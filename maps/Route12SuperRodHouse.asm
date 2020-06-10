@@ -34,7 +34,7 @@ Route12SuperRodHouseFishingGuruScript:
 
 SuperRodHouseBookshelf:
 ; unused
-	jumpstd picturebookshelf
+	jumpstd PictureBookshelfScript
 
 OfferSuperRodText:
 	text "I'm the FISHING"

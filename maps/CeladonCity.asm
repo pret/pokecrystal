@@ -70,7 +70,7 @@ CeladonCityTrainerTips:
 	jumptext CeladonCityTrainerTipsText
 
 CeladonCityPokecenterSign:
-	jumpstd pokecentersign
+	jumpstd PokecenterSignScript
 
 CeladonCityHiddenPpUp:
 	hiddenitem PP_UP, EVENT_CELADON_CITY_HIDDEN_PP_UP

@@ -10,7 +10,7 @@ CherrygrovePokecenter1F_MapScripts:
 	db 0 ; callbacks
 
 CherrygrovePokecenter1FNurseScript:
-	jumpstd pokecenternurse
+	jumpstd PokecenterNurseScript
 
 CherrygrovePokecenter1FFisherScript:
 	jumptextfaceplayer CherrygrovePokecenter1FFisherText

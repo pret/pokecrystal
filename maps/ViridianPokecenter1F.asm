@@ -10,7 +10,7 @@ ViridianPokecenter1F_MapScripts:
 	db 0 ; callbacks
 
 ViridianPokecenter1FNurseScript:
-	jumpstd pokecenternurse
+	jumpstd PokecenterNurseScript
 
 ViridianPokecenter1FCooltrainerMScript:
 	faceplayer

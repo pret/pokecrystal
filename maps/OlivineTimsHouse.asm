@@ -15,7 +15,7 @@ Tim:
 	end
 
 TimsHouseBookshelf:
-	jumpstd magazinebookshelf
+	jumpstd MagazineBookshelfScript
 
 OlivineTimsHouse_MapEvents:
 	db 0, 0 ; filler

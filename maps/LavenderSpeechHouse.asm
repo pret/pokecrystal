@@ -10,7 +10,7 @@ LavenderSpeechHousePokefanFScript:
 	jumptextfaceplayer LavenderSpeechHousePokefanFText
 
 LavenderSpeechHouseBookshelf:
-	jumpstd picturebookshelf
+	jumpstd PictureBookshelfScript
 
 LavenderSpeechHousePokefanFText:
 	text "LAVENDER is a"

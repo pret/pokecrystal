@@ -14,13 +14,13 @@ GoldenrodPPSpeechHouseLassScript:
 	jumptextfaceplayer GoldenrodPPSpeechHouseLassText
 
 GoldenrodPPSpeechHouseBookshelf2:
-	jumpstd difficultbookshelf
+	jumpstd DifficultBookshelfScript
 
 GoldenrodPPSpeechHouseBookshelf1:
-	jumpstd magazinebookshelf
+	jumpstd MagazineBookshelfScript
 
 GoldenrodPPSpeechHouseRadio:
-	jumpstd radio2
+	jumpstd Radio2Script
 
 GoldenrodPPSpeechHouseFisherText:
 	text "Once while I was"

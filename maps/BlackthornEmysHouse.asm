@@ -15,7 +15,7 @@ Emy:
 	end
 
 EmysHouseBookshelf:
-	jumpstd magazinebookshelf
+	jumpstd MagazineBookshelfScript
 
 BlackthornEmysHouse_MapEvents:
 	db 0, 0 ; filler

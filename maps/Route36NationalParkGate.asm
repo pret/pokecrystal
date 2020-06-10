@@ -81,7 +81,7 @@ Route36NationalParkGate_MapScripts:
 	applymovement PLAYER, Route36NationalParkGatePlayerWaitWithContestantsMovement
 	pause 15
 	special FadeInQuickly
-	jumpstd bugcontestresults
+	jumpstd BugContestResultsScript
 
 .GoBackToContest:
 	writetext Route36NationalParkGateOfficer1OkGoFinishText
@@ -300,7 +300,7 @@ Route36NationalParkGateOfficerScript:
 	end
 
 Route36ParkGate_DayToText:
-	jumpstd daytotext
+	jumpstd DayToTextScript
 	end
 
 BugCatchingContestant1BScript:

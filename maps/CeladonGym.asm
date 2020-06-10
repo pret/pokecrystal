@@ -105,10 +105,10 @@ TrainerTwinsJoAndZoe2:
 CeladonGymStatue:
 	checkflag ENGINE_RAINBOWBADGE
 	iftrue .Beaten
-	jumpstd gymstatue1
+	jumpstd GymStatue1Script
 .Beaten:
 	gettrainername STRING_BUFFER_4, ERIKA, ERIKA1
-	jumpstd gymstatue2
+	jumpstd GymStatue2Script
 
 ErikaBeforeBattleText:
 	text "ERIKA: Hello…"

@@ -14,7 +14,7 @@ FishingDudesHousePhoto:
 
 FishingDudesHouseBookshelf:
 ; unused
-	jumpstd picturebookshelf
+	jumpstd PictureBookshelfScript
 
 FishingDudeText:
 	text "I am the FISHING"

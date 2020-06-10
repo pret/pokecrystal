@@ -64,10 +64,10 @@ GoldenrodHappinessRaterTwinScript:
 	jumptextfaceplayer GoldenrodHappinessRaterTwinText
 
 HappinessRatersHouseBookshelf:
-	jumpstd difficultbookshelf
+	jumpstd DifficultBookshelfScript
 
 HappinessRatersHouseRadio:
-	jumpstd radio2
+	jumpstd Radio2Script
 
 GoldenrodHappinessRaterTeacherText:
 	text "If you treat your"

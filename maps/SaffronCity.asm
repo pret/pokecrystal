@@ -100,10 +100,10 @@ SaffronCityMagnetTrainStationSign:
 	jumptext SaffronCityMagnetTrainStationSignText
 
 SaffronCityPokecenterSign:
-	jumpstd pokecentersign
+	jumpstd PokecenterSignScript
 
 SaffronCityMartSign:
-	jumpstd martsign
+	jumpstd MartSignScript
 
 SaffronCityLass1Text:
 	text "A little girl who"

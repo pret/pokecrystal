@@ -20,7 +20,7 @@ PlayersHouse2F_MapScripts:
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_8
 	checkevent EVENT_INITIALIZED_EVENTS
 	iftrue .SkipInitialization
-	jumpstd initializeevents
+	jumpstd InitializeEventsScript
 	return
 
 .SkipInitialization:
@@ -71,7 +71,7 @@ PlayersHouseRadioScript:
 	end
 
 .NormalRadio:
-	jumpstd radio1
+	jumpstd Radio1Script
 
 .AbbreviatedRadio:
 	opentext
@@ -81,7 +81,7 @@ PlayersHouseRadioScript:
 	end
 
 PlayersHouseBookshelfScript:
-	jumpstd picturebookshelf
+	jumpstd PictureBookshelfScript
 
 PlayersHousePCScript:
 	opentext

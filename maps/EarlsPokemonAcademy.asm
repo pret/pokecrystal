@@ -143,7 +143,7 @@ AcademyStickerMachine:
 	jumptext AcademyStickerMachineText
 
 AcademyBookshelf:
-	jumpstd difficultbookshelf
+	jumpstd DifficultBookshelfScript
 
 AcademyEarlSpinMovement:
 	turn_head DOWN

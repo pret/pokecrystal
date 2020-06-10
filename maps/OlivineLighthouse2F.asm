@@ -115,40 +115,40 @@ TrainerSailorHuey:
 	sjump .NumberAccepted
 
 .AskNumber1:
-	jumpstd asknumber1m
+	jumpstd AskNumber1MScript
 	end
 
 .AskNumber2:
-	jumpstd asknumber2m
+	jumpstd AskNumber2MScript
 	end
 
 .RegisteredNumber:
-	jumpstd registerednumberm
+	jumpstd RegisteredNumberMScript
 	end
 
 .NumberAccepted:
-	jumpstd numberacceptedm
+	jumpstd NumberAcceptedMScript
 	end
 
 .NumberDeclined:
-	jumpstd numberdeclinedm
+	jumpstd NumberDeclinedMScript
 	end
 
 .PhoneFull:
-	jumpstd phonefullm
+	jumpstd PhoneFullMScript
 	end
 
 .Rematch:
-	jumpstd rematchm
+	jumpstd RematchMScript
 	end
 
 .PackFull:
 	setevent EVENT_HUEY_PROTEIN
-	jumpstd packfullm
+	jumpstd PackFullMScript
 	end
 
 .RematchGift:
-	jumpstd rematchgiftm
+	jumpstd RematchGiftMScript
 	end
 
 SailorHueySeenText:

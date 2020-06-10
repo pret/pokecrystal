@@ -52,7 +52,7 @@ MountMortarB1FKiyoScript:
 	end
 
 MountMortarB1FBoulder:
-	jumpstd strengthboulder
+	jumpstd StrengthBoulderScript
 
 MountMortarB1FHyperPotion:
 	itemball HYPER_POTION

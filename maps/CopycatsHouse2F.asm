@@ -184,7 +184,7 @@ CopycatsHouse2FDoll:
 	jumptext CopycatsHouse2FDollText
 
 CopycatsHouse2FBookshelf:
-	jumpstd picturebookshelf
+	jumpstd PictureBookshelfScript
 
 CopycatSpinAroundMovementData:
 	turn_head DOWN

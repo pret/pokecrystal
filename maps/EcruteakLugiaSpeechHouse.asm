@@ -14,7 +14,7 @@ EcruteakLugiaSpeechHouseYoungsterScript:
 	jumptextfaceplayer EcruteakLugiaSpeechHouseYoungsterText
 
 LugiaSpeechHouseRadio:
-	jumpstd radio2
+	jumpstd Radio2Script
 
 EcruteakLugiaSpeechHouseGrampsText:
 	text "This happened when"

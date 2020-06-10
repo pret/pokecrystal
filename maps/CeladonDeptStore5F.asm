@@ -37,7 +37,7 @@ CeladonDeptStore5FDirectory:
 	jumptext CeladonDeptStore5FDirectoryText
 
 CeladonDeptStore5FElevatorButton:
-	jumpstd elevatorbutton
+	jumpstd ElevatorButtonScript
 
 CeladonDeptStore5FGentlemanText:
 	text "I want to buy some"

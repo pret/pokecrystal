@@ -42,7 +42,7 @@ CeladonDeptStore3FSuperNerdScript:
 	jumptextfaceplayer CeladonDeptStore3FSuperNerdText
 
 CeladonDeptStore3FElevatorButton:
-	jumpstd elevatorbutton
+	jumpstd ElevatorButtonScript
 
 CeladonDeptStore3FDirectory:
 	jumptext CeladonDeptStore3FDirectoryText

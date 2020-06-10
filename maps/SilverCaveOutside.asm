@@ -9,7 +9,7 @@ SilverCaveOutside_MapScripts:
 	return
 
 MtSilverPokecenterSign:
-	jumpstd pokecentersign
+	jumpstd PokecenterSignScript
 
 MtSilverSign:
 	jumptext MtSilverSignText

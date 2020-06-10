@@ -70,10 +70,10 @@ CharcoalKilnFarfetchd:
 	end
 
 CharcoalKilnBookshelf:
-	jumpstd magazinebookshelf
+	jumpstd MagazineBookshelfScript
 
 CharcoalKilnRadio:
-	jumpstd radio2
+	jumpstd Radio2Script
 
 CharcoalKilnBossText1:
 	text "All the SLOWPOKE"

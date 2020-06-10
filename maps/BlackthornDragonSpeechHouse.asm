@@ -20,11 +20,11 @@ BlackthornDragonSpeechHouseDratiniScript:
 
 ; unused
 BlackthornDragonSpeechHousePictureBookshelf:
-	jumpstd picturebookshelf
+	jumpstd PictureBookshelfScript
 
 ; unused
 BlackthornDragonSpeechHouseMagazineBookshelf:
-	jumpstd magazinebookshelf
+	jumpstd MagazineBookshelfScript
 
 BlackthornDragonSpeechHouseGrannyText:
 	text "A clan of trainers"

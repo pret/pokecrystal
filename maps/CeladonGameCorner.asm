@@ -15,7 +15,7 @@ CeladonGameCorner_MapScripts:
 	db 0 ; callbacks
 
 CeladonGameCornerClerkScript:
-	jumpstd gamecornercoinvendor
+	jumpstd GameCornerCoinVendorScript
 
 CeladonGameCornerReceptionistScript:
 	jumptextfaceplayer CeladonGameCornerReceptionistText
@@ -70,7 +70,7 @@ CeladonGameCornerFisherScript:
 	end
 
 .GiveCoins:
-	jumpstd receiveitem
+	jumpstd ReceiveItemScript
 	end
 
 .coinname

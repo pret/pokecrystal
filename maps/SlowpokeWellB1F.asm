@@ -119,7 +119,7 @@ SlowpokeWellB1FTaillessSlowpokeScript:
 	end
 
 SlowpokeWellB1FBoulder:
-	jumpstd strengthboulder
+	jumpstd StrengthBoulderScript
 
 SlowpokeWellB1FSuperPotion:
 	itemball SUPER_POTION
