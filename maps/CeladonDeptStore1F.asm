@@ -21,7 +21,7 @@ CeladonDeptStore1FDirectory:
 	jumptext CeladonDeptStore1FDirectoryText
 
 CeladonDeptStore1FElevatorButton:
-	jumpstd elevatorbutton
+	jumpstd ElevatorButtonScript
 
 CeladonDeptStore1FReceptionistText:
 	text "Hello! Welcome to"

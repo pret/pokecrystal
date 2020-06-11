@@ -28,7 +28,7 @@ HiddenPowerGuy:
 	end
 
 HiddenPowerHouseBookshelf:
-	jumpstd difficultbookshelf
+	jumpstd DifficultBookshelfScript
 
 HiddenPowerGuyText1:
 	text "…You have strayed"

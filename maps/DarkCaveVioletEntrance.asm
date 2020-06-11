@@ -26,7 +26,7 @@ DarkCaveVioletEntranceDireHit:
 	itemball DIRE_HIT
 
 DarkCaveVioletEntranceRock:
-	jumpstd smashrock
+	jumpstd SmashRockScript
 
 DarkCaveVioletEntranceHiddenElixer:
 	hiddenitem ELIXER, EVENT_DARK_CAVE_VIOLET_ENTRANCE_HIDDEN_ELIXER

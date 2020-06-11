@@ -7,7 +7,7 @@ PowerPlantSign:
 	jumptext PowerPlantSignText
 
 Route10PokecenterSign:
-	jumpstd pokecentersign
+	jumpstd PokecenterSignScript
 
 PowerPlantSignText:
 	text "KANTO POWER PLANT"

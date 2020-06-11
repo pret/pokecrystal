@@ -202,7 +202,7 @@ TrainerSchoolboyRicky:
 	end
 
 FastShipB1FTrashcan:
-	jumpstd trashcan
+	jumpstd TrashCanScript
 
 FastShipB1FSailorBlocksRightMovement:
 	fix_facing

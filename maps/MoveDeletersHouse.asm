@@ -15,7 +15,7 @@ MoveDeleter:
 	end
 
 MoveDeletersHouseBookshelf:
-	jumpstd difficultbookshelf
+	jumpstd DifficultBookshelfScript
 
 MoveDeletersHouse_MapEvents:
 	db 0, 0 ; filler

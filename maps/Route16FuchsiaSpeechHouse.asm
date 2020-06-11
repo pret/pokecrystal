@@ -10,7 +10,7 @@ Route16FuchsiaSpeechHouseSuperNerdScript:
 	jumptextfaceplayer Route16FuchsiaSpeechHouseSuperNerdText
 
 Route16FuchsiaSpeechHouseBookshelf:
-	jumpstd picturebookshelf
+	jumpstd PictureBookshelfScript
 
 Route16FuchsiaSpeechHouseSuperNerdText:
 	text "If you cruise down"

@@ -10,7 +10,7 @@ Route10Pokecenter1F_MapScripts:
 	db 0 ; callbacks
 
 Route10Pokecenter1FNurseScript:
-	jumpstd pokecenternurse
+	jumpstd PokecenterNurseScript
 
 Route10Pokecenter1FGentlemanScript:
 	jumptextfaceplayer Route10Pokecenter1FGentlemanText

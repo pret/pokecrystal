@@ -37,7 +37,7 @@ GoldenrodDeptStore2FDirectory:
 	jumptext GoldenrodDeptStore2FDirectoryText
 
 GoldenrodDeptStore2FElevatorButton:
-	jumpstd elevatorbutton
+	jumpstd ElevatorButtonScript
 
 GoldenrodDeptStore2FUnusedText1:
 ; unused

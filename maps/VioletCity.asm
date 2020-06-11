@@ -81,10 +81,10 @@ EarlsPokemonAcademySign:
 	jumptext EarlsPokemonAcademySignText
 
 VioletCityPokecenterSign:
-	jumpstd pokecentersign
+	jumpstd PokecenterSignScript
 
 VioletCityMartSign:
-	jumpstd martsign
+	jumpstd MartSignScript
 
 VioletCityPPUp:
 	itemball PP_UP

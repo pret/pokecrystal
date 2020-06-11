@@ -55,11 +55,11 @@ ViridianGymGuyScript:
 ViridianGymStatue:
 	checkflag ENGINE_EARTHBADGE
 	iftrue .Beaten
-	jumpstd gymstatue1
+	jumpstd GymStatue1Script
 
 .Beaten:
 	gettrainername STRING_BUFFER_4, BLUE, BLUE1
-	jumpstd gymstatue2
+	jumpstd GymStatue2Script
 
 LeaderBlueBeforeText:
 	text "BLUE: Yo! Finally"

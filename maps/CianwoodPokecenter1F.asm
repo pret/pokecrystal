@@ -10,7 +10,7 @@ CianwoodPokecenter1F_MapScripts:
 	db 0 ; callbacks
 
 CianwoodPokecenter1FNurseScript:
-	jumpstd pokecenternurse
+	jumpstd PokecenterNurseScript
 
 CianwoodPokecenter1FLassScript:
 	jumptextfaceplayer CianwoodPokecenter1FLassText

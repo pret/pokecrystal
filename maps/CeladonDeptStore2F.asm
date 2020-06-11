@@ -33,7 +33,7 @@ CeladonDeptStore2FDirectory:
 	jumptext CeladonDeptStore2FDirectoryText
 
 CeladonDeptStore2FElevatorButton:
-	jumpstd elevatorbutton
+	jumpstd ElevatorButtonScript
 
 CeladonDeptStore2FPokefanMText:
 	text "I just recently"

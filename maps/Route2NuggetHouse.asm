@@ -25,7 +25,7 @@ Route2NuggetHouseFisherScript:
 
 Route2NuggetHouseBookshelf:
 ; unused
-	jumpstd difficultbookshelf
+	jumpstd DifficultBookshelfScript
 
 Route2NuggetHouseFisherText:
 	text "Hi! Wow, I'm glad"

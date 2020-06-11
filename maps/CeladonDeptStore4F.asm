@@ -25,7 +25,7 @@ CeladonDeptStore4FDirectory:
 	jumptext CeladonDeptStore4FDirectoryText
 
 CeladonDeptStore4FElevatorButton:
-	jumpstd elevatorbutton
+	jumpstd ElevatorButtonScript
 
 CeladonDeptStore4FSuperNerdText:
 	text "I'm here to buy"

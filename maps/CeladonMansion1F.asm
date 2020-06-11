@@ -40,7 +40,7 @@ CeladonMansionManagersSuiteSign:
 	jumptext CeladonMansionManagersSuiteSignText
 
 CeladonMansion1FBookshelf:
-	jumpstd picturebookshelf
+	jumpstd PictureBookshelfScript
 
 CeladonMansionManagerText:
 	text "My dear #MON"

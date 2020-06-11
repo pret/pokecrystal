@@ -11,10 +11,10 @@ CeladonPokecenter1F_MapScripts:
 	db 0 ; callbacks
 
 CeladonPokecenter1FNurseScript:
-	jumpstd pokecenternurse
+	jumpstd PokecenterNurseScript
 
 CeladonPokecenter1FGentlemanScript:
-	jumpstd happinesschecknpc
+	jumpstd HappinessCheckScript
 
 CeladonPokecenter1FCooltrainerFScript:
 	jumptextfaceplayer CeladonPokecenter1FCooltrainerFText

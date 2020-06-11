@@ -10,7 +10,7 @@ SaffronPokecenter1F_MapScripts:
 	db 0 ; callbacks
 
 SaffronPokecenter1FNurseScript:
-	jumpstd pokecenternurse
+	jumpstd PokecenterNurseScript
 
 SaffronPokecenter1FTeacherScript:
 	special Mobile_DummyReturnFalse

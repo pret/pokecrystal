@@ -56,7 +56,7 @@ EcruteakPokecenter1F_MapScripts:
 	end
 
 EcruteakPokecenter1FNurseScript:
-	jumpstd pokecenternurse
+	jumpstd PokecenterNurseScript
 
 EcruteakPokecenter1FPokefanMScript:
 	special Mobile_DummyReturnFalse

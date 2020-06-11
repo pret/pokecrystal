@@ -54,7 +54,7 @@ MoveTutorInsideScript:
 	end
 
 GoldenrodGameCornerCoinVendorScript:
-	jumpstd gamecornercoinvendor
+	jumpstd GameCornerCoinVendorScript
 
 GoldenrodGameCornerTMVendorScript:
 	faceplayer

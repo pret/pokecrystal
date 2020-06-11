@@ -60,7 +60,7 @@ IcePathB1F_MapScripts:
 	end
 
 IcePathB1FBoulder:
-	jumpstd strengthboulder
+	jumpstd StrengthBoulderScript
 
 IcePathB1FIron:
 	itemball IRON

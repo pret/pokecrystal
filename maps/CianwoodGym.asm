@@ -79,10 +79,10 @@ CianwoodGymActivateRockets:
 	end
 
 .GoldenrodRockets:
-	jumpstd goldenrodrockets
+	jumpstd GoldenrodRocketsScript
 
 .RadioTowerRockets:
-	jumpstd radiotowerrockets
+	jumpstd RadioTowerRocketsScript
 
 TrainerBlackbeltYoshi:
 	trainer BLACKBELT_T, YOSHI, EVENT_BEAT_BLACKBELT_YOSHI, BlackbeltYoshiSeenText, BlackbeltYoshiBeatenText, 0, .Script
@@ -129,15 +129,15 @@ TrainerBlackbeltLung:
 	end
 
 CianwoodGymBoulder:
-	jumpstd strengthboulder
+	jumpstd StrengthBoulderScript
 
 CianwoodGymStatue:
 	checkflag ENGINE_STORMBADGE
 	iftrue .Beaten
-	jumpstd gymstatue1
+	jumpstd GymStatue1Script
 .Beaten:
 	gettrainername STRING_BUFFER_4, CHUCK, CHUCK1
-	jumpstd gymstatue2
+	jumpstd GymStatue2Script
 
 CianwoodGymMovement_ChuckChucksBoulder:
 	set_sliding

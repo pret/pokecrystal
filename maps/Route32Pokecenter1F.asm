@@ -9,7 +9,7 @@ Route32Pokecenter1F_MapScripts:
 	db 0 ; callbacks
 
 Route32Pokecenter1FNurseScript:
-	jumpstd pokecenternurse
+	jumpstd PokecenterNurseScript
 
 Route32Pokecenter1FFishingGuruScript:
 	faceplayer

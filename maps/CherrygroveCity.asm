@@ -86,7 +86,7 @@ CherrygroveCityGuideGent:
 	end
 
 .JumpstdReceiveItem:
-	jumpstd receiveitem
+	jumpstd ReceiveItemScript
 	end
 
 .mapcardname
@@ -230,10 +230,10 @@ GuideGentsHouseSign:
 	jumptext GuideGentsHouseSignText
 
 CherrygroveCityPokecenterSign:
-	jumpstd pokecentersign
+	jumpstd PokecenterSignScript
 
 CherrygroveCityMartSign:
-	jumpstd martsign
+	jumpstd MartSignScript
 
 GuideGentMovement1:
 	step LEFT

@@ -30,7 +30,7 @@ RedsHouse1FTV:
 	jumptext RedsHouse1FTVText
 
 RedsHouse1FBookshelf:
-	jumpstd picturebookshelf
+	jumpstd PictureBookshelfScript
 
 RedsMomText1:
 	text "Hi!"

@@ -19,10 +19,10 @@ OlivineHouseBetaRhydonScript:
 	end
 
 OlivineHouseBetaBookshelf1:
-	jumpstd picturebookshelf
+	jumpstd PictureBookshelfScript
 
 OlivineHouseBetaBookshelf2:
-	jumpstd magazinebookshelf
+	jumpstd MagazineBookshelfScript
 
 OlivineHouseBetaTeacherText:
 	text "When my #MON"

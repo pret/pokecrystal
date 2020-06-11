@@ -212,10 +212,10 @@ FuchsiaGymGuyScript:
 FuchsiaGymStatue:
 	checkflag ENGINE_SOULBADGE
 	iftrue .Beaten
-	jumpstd gymstatue1
+	jumpstd GymStatue1Script
 .Beaten:
 	gettrainername STRING_BUFFER_4, JANINE, JANINE1
-	jumpstd gymstatue2
+	jumpstd GymStatue2Script
 
 Movement_NinjaSpin:
 	turn_head DOWN

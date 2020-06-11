@@ -29,7 +29,7 @@ SafariZonePhoto:
 	jumptext SafariZonePhotoText
 
 WardensHomeBookshelf:
-	jumpstd picturebookshelf
+	jumpstd PictureBookshelfScript
 
 WardensGranddaughterText1:
 	text "My grandpa is the"

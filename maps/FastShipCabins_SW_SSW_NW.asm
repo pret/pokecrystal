@@ -109,7 +109,7 @@ FastShipBed:
 	end
 
 FastShipCabinsNorthwestCabinTrashcan:
-	jumpstd trashcan
+	jumpstd TrashCanScript
 
 FirebreatherLyleSeenText:
 	text "I'm going to KANTO"

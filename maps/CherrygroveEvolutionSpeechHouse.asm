@@ -22,7 +22,7 @@ CherrygroveEvolutionSpeechHouseLassScript:
 	end
 
 CherrygroveEvolutionSpeechHouseBookshelf:
-	jumpstd magazinebookshelf
+	jumpstd MagazineBookshelfScript
 
 CherrygroveEvolutionSpeechHouseYoungsterText:
 	text "#MON gain expe-"

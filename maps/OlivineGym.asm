@@ -53,10 +53,10 @@ OlivineGymActivateRockets:
 	end
 
 .GoldenrodRockets:
-	jumpstd goldenrodrockets
+	jumpstd GoldenrodRocketsScript
 
 .RadioTowerRockets:
-	jumpstd radiotowerrockets
+	jumpstd RadioTowerRocketsScript
 
 OlivineGymGuyScript:
 	faceplayer
@@ -87,10 +87,10 @@ OlivineGymGuyScript:
 OlivineGymStatue:
 	checkflag ENGINE_MINERALBADGE
 	iftrue .Beaten
-	jumpstd gymstatue1
+	jumpstd GymStatue1Script
 .Beaten:
 	gettrainername STRING_BUFFER_4, JASMINE, JASMINE1
-	jumpstd gymstatue2
+	jumpstd GymStatue2Script
 
 Jasmine_SteelTypeIntro:
 	text "…Thank you for"

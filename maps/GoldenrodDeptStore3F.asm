@@ -25,7 +25,7 @@ GoldenrodDeptStore3FDirectory:
 	jumptext GoldenrodDeptStore3FDirectoryText
 
 GoldenrodDeptStore3FElevatorButton:
-	jumpstd elevatorbutton
+	jumpstd ElevatorButtonScript
 
 GoldenrodDeptStore3FSuperNerdText:
 	text "I, I, I'm really"

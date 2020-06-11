@@ -55,10 +55,10 @@ PewterCityWelcomeSign:
 	jumptext PewterCityWelcomeSignText
 
 PewterCityPokecenterSign:
-	jumpstd pokecentersign
+	jumpstd PokecenterSignScript
 
 PewterCityMartSign:
-	jumpstd martsign
+	jumpstd MartSignScript
 
 PewterCityFruitTree1:
 	fruittree FRUITTREE_PEWTER_CITY_1

@@ -195,7 +195,7 @@ Forest:
 	end
 
 PowerPlantBookshelf:
-	jumpstd difficultbookshelf
+	jumpstd DifficultBookshelfScript
 
 PowerPlantOfficer1ApproachGymGuy2Movement:
 	step RIGHT

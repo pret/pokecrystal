@@ -9,7 +9,7 @@ CinnabarPokecenter1F_MapScripts:
 	db 0 ; callbacks
 
 CinnabarPokecenter1FNurseScript:
-	jumpstd pokecenternurse
+	jumpstd PokecenterNurseScript
 
 CinnabarPokecenter1FCooltrainerFScript:
 	jumptextfaceplayer CinnabarPokecenter1FCooltrainerFText

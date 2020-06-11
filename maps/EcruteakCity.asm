@@ -80,10 +80,10 @@ BurnedTowerSign:
 	jumptext BurnedTowerSignText
 
 EcruteakCityPokecenterSign:
-	jumpstd pokecentersign
+	jumpstd PokecenterSignScript
 
 EcruteakCityMartSign:
-	jumpstd martsign
+	jumpstd MartSignScript
 
 EcruteakCityHiddenHyperPotion:
 	hiddenitem HYPER_POTION, EVENT_ECRUTEAK_CITY_HIDDEN_HYPER_POTION

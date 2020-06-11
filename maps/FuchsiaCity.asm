@@ -42,10 +42,10 @@ NoLitteringSign:
 	jumptext NoLitteringSignText
 
 FuchsiaCityPokecenterSign:
-	jumpstd pokecentersign
+	jumpstd PokecenterSignScript
 
 FuchsiaCityMartSign:
-	jumpstd martsign
+	jumpstd MartSignScript
 
 FuchsiaCityFruitTree:
 	fruittree FRUITTREE_FUCHSIA_CITY

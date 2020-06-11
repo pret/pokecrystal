@@ -24,7 +24,7 @@ MrPsychic:
 	end
 
 MrPsychicsHouseBookshelf:
-	jumpstd difficultbookshelf
+	jumpstd DifficultBookshelfScript
 
 MrPsychicText1:
 	text "…"

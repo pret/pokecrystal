@@ -28,7 +28,7 @@ Route5CleanseTagHouseTeacherScript:
 	jumptextfaceplayer Route5CleanseTagHouseTeacherText
 
 HouseForSaleBookshelf:
-	jumpstd difficultbookshelf
+	jumpstd DifficultBookshelfScript
 
 Route5CleanseTagHouseGrannyText1:
 	text "Eeyaaaah!"

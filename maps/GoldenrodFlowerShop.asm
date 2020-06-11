@@ -75,15 +75,15 @@ FlowerShopFloriaScript:
 
 FlowerShopShelf1:
 ; unused
-	jumpstd picturebookshelf
+	jumpstd PictureBookshelfScript
 
 FlowerShopShelf2:
 ; unused
-	jumpstd magazinebookshelf
+	jumpstd MagazineBookshelfScript
 
 FlowerShopRadio:
 ; unused
-	jumpstd radio2
+	jumpstd Radio2Script
 
 GoldenrodFlowerShopTeacherMySisterWentToSeeWigglyTreeRoute36Text:
 	text "Have you seen that"

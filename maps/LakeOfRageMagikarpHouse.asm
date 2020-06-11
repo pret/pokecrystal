@@ -88,7 +88,7 @@ LakeOfRageMagikarpHouseUnusedRecordSign:
 	jumptext LakeOfRageMagikarpHouseUnusedRecordText
 
 MagikarpHouseBookshelf:
-	jumpstd difficultbookshelf
+	jumpstd DifficultBookshelfScript
 
 MagikarpLengthRaterText_LakeOfRageHistory:
 	text "LAKE OF RAGE is"

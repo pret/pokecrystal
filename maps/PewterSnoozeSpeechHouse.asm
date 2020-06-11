@@ -10,7 +10,7 @@ PewterSnoozeSpeechHouseGrampsScript:
 	jumptextfaceplayer PewterSnoozeSpeechHouseGrampsText
 
 PewterSnoozeSpeechHouseBookshelf:
-	jumpstd picturebookshelf
+	jumpstd PictureBookshelfScript
 
 PewterSnoozeSpeechHouseGrampsText:
 	text "I like snoozing"

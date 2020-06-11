@@ -27,7 +27,7 @@ Route26HealHouseTeacherScript:
 	end
 
 Route26HealHouseBookshelf:
-	jumpstd picturebookshelf
+	jumpstd PictureBookshelfScript
 
 Route26HealHouseRestAWhileText:
 	text "Your #MON look"

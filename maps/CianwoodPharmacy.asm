@@ -36,7 +36,7 @@ CianwoodPharmacist:
 	end
 
 CianwoodPharmacyBookshelf:
-	jumpstd difficultbookshelf
+	jumpstd DifficultBookshelfScript
 
 PharmacistGiveSecretpotionText:
 	text "Your #MON ap-"

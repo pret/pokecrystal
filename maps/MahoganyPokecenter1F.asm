@@ -10,7 +10,7 @@ MahoganyPokecenter1F_MapScripts:
 	db 0 ; callbacks
 
 MahoganyPokecenter1FNurseScript:
-	jumpstd pokecenternurse
+	jumpstd PokecenterNurseScript
 
 MahoganyPokecenter1FPokefanMScript:
 	jumptextfaceplayer MahoganyPokecenter1FPokefanMText

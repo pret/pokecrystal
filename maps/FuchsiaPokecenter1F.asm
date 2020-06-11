@@ -14,7 +14,7 @@ FuchsiaPokecenter1F_MapScripts:
 	end
 
 FuchsiaPokecenter1FNurseScript:
-	jumpstd pokecenternurse
+	jumpstd PokecenterNurseScript
 
 FuchsiaPokecenter1FCooltrainerMScript:
 	jumptextfaceplayer FuchsiaPokecenter1FCooltrainerMText

@@ -138,10 +138,10 @@ CianwoodPokeSeerSign:
 	jumptext CianwoodPokeSeerSignText
 
 CianwoodPokecenterSign:
-	jumpstd pokecentersign
+	jumpstd PokecenterSignScript
 
 CianwoodCityRock:
-	jumpstd smashrock
+	jumpstd SmashRockScript
 
 CianwoodCityHiddenRevive:
 	hiddenitem REVIVE, EVENT_CIANWOOD_CITY_HIDDEN_REVIVE

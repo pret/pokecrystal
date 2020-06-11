@@ -18,7 +18,7 @@ CianwoodLugiaSpeechHouseTwinScript:
 	jumptextfaceplayer CianwoodLugiaSpeechHouseTwinText
 
 CianwoodLugiaSpeechHouseBookshelf:
-	jumpstd picturebookshelf
+	jumpstd PictureBookshelfScript
 
 CianwoodLugiaSpeechHouseTeacherText:
 	text "You came from"

@@ -41,7 +41,7 @@ MrFujisPidgey:
 	end
 
 MrFujisHouseBookshelf:
-	jumpstd difficultbookshelf
+	jumpstd DifficultBookshelfScript
 
 MrFujisHouseSuperNerdText:
 	text "MR.FUJI does live"

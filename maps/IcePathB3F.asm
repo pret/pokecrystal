@@ -11,7 +11,7 @@ IcePathB3FNevermeltice:
 	itemball NEVERMELTICE
 
 IcePathB3FRock:
-	jumpstd smashrock
+	jumpstd SmashRockScript
 
 IcePathB3F_MapEvents:
 	db 0, 0 ; filler

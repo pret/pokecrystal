@@ -79,7 +79,7 @@ DontLitterSign:
 	jumptext DontLitterSignText
 
 MtMoonSquareRock:
-	jumpstd smashrock
+	jumpstd SmashRockScript
 
 PlayerWalksUpToDancingClefairies:
 	step UP

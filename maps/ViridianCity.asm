@@ -80,10 +80,10 @@ TrainerHouseSign:
 	jumptext TrainerHouseSignText
 
 ViridianCityPokecenterSign:
-	jumpstd pokecentersign
+	jumpstd PokecenterSignScript
 
 ViridianCityMartSign:
-	jumpstd martsign
+	jumpstd MartSignScript
 
 ViridianCityCoffeeGrampsQuestionText:
 	text "Hey, kid! I just"

@@ -10,7 +10,7 @@ VermilionPokecenter1F_MapScripts:
 	db 0 ; callbacks
 
 VermilionPokecenter1FNurseScript:
-	jumpstd pokecenternurse
+	jumpstd PokecenterNurseScript
 
 VermilionPokecenter1FFishingGuruScript:
 	faceplayer

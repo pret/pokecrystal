@@ -14,7 +14,7 @@ AzaleaPokecenter1F_MapScripts:
 	end
 
 AzaleaPokecenter1FNurseScript:
-	jumpstd pokecenternurse
+	jumpstd PokecenterNurseScript
 
 AzaleaPokecenter1FGentlemanScript:
 	jumptextfaceplayer AzaleaPokecenter1FGentlemanText

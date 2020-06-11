@@ -107,10 +107,10 @@ SaffronGymGuyScript:
 SaffronGymStatue:
 	checkflag ENGINE_MARSHBADGE
 	iftrue .Beaten
-	jumpstd gymstatue1
+	jumpstd GymStatue1Script
 .Beaten:
 	gettrainername STRING_BUFFER_4, SABRINA, SABRINA1
-	jumpstd gymstatue2
+	jumpstd GymStatue2Script
 
 SabrinaIntroText:
 	text "SABRINA: I knew"

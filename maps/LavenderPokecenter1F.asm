@@ -10,7 +10,7 @@ LavenderPokecenter1F_MapScripts:
 	db 0 ; callbacks
 
 LavenderPokecenter1FNurseScript:
-	jumpstd pokecenternurse
+	jumpstd PokecenterNurseScript
 
 LavenderPokecenter1FGentlemanScript:
 	jumptextfaceplayer LavenderPokecenter1FGentlemanText

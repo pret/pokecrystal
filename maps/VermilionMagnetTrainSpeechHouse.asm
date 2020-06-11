@@ -14,7 +14,7 @@ VermilionMagnetTrainSpeechHouseYoungsterScript:
 	jumptextfaceplayer VermilionMagnetTrainSpeechHouseYoungsterText
 
 VermilionMagnetTrainSpeechHouseBookshelf:
-	jumpstd picturebookshelf
+	jumpstd PictureBookshelfScript
 
 VermilionMagnetTrainSpeechHousePokefanFText:
 	text "Do you know about"

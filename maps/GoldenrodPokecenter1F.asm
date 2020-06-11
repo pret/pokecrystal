@@ -11,7 +11,7 @@ GoldenrodPokecenter1F_MapScripts:
 	db 0 ; callbacks
 
 GoldenrodPokecenter1FNurseScript:
-	jumpstd pokecenternurse
+	jumpstd PokecenterNurseScript
 
 GoldenrodPokecenter1F_GSBallSceneLeft:
 	setval BATTLETOWERACTION_CHECKMOBILEEVENT

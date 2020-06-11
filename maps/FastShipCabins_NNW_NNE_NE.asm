@@ -113,7 +113,7 @@ FastShipLazySailorScript:
 	end
 
 FastShipCabins_NNW_NNE_NETrashcan:
-	jumpstd trashcan
+	jumpstd TrashCanScript
 
 FastShipLazySailorLeavesMovement1:
 	step LEFT

@@ -426,10 +426,10 @@ KurtsHouseCelebiStatue:
 	jumptext KurtsHouseCelebiStatueText
 
 KurtsHouseBookshelf:
-	jumpstd difficultbookshelf
+	jumpstd DifficultBookshelfScript
 
 KurtsHouseRadio:
-	jumpstd radio2
+	jumpstd Radio2Script
 
 KurtsHouseKurtExitHouseMovement:
 	big_step DOWN

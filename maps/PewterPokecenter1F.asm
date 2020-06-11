@@ -11,7 +11,7 @@ PewterPokecenter1F_MapScripts:
 	db 0 ; callbacks
 
 PewterPokecenter1FNurseScript:
-	jumpstd pokecenternurse
+	jumpstd PokecenterNurseScript
 
 PewterPokecenter1FTeacherScript:
 	jumptextfaceplayer PewterPokecenter1FTeacherText

@@ -20,7 +20,7 @@ LavenderNameRater:
 
 LavenderNameRaterUnusedBookshelf:
 ; unused
-	jumpstd difficultbookshelf
+	jumpstd DifficultBookshelfScript
 
 LavenderNameRater_MapEvents:
 	db 0, 0 ; filler

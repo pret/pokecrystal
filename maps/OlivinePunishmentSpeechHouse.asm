@@ -14,10 +14,10 @@ OlivinePunishmentSpeechHouseDaughter:
 	jumptextfaceplayer OlivinePunishmentSpeechHouseDaughterText
 
 OlivinePunishmentSpeechHouseBookshelf2:
-	jumpstd picturebookshelf
+	jumpstd PictureBookshelfScript
 
 OlivinePunishmentSpeechHouseBookshelf1:
-	jumpstd magazinebookshelf
+	jumpstd MagazineBookshelfScript
 
 OlivinePunishmentSpeechHouseDadText:
 	text "Along the way to"

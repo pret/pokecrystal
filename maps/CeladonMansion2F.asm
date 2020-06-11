@@ -10,7 +10,7 @@ CeladonMansion2FMeetingRoomSign:
 	jumptext CeladonMansion2FMeetingRoomSignText
 
 CeladonMansion2FBookshelf:
-	jumpstd difficultbookshelf
+	jumpstd DifficultBookshelfScript
 
 CeladonMansion2FComputerText:
 	text "<PLAYER> turned on"

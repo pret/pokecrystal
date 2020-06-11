@@ -63,7 +63,7 @@ UnionCaveB1FXDefend:
 	itemball X_DEFEND
 
 UnionCaveB1FBoulder:
-	jumpstd strengthboulder
+	jumpstd StrengthBoulderScript
 
 HikerPhillipSeenText:
 	text "It's been a while"
