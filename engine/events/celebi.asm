@@ -1,7 +1,10 @@
 SPECIALCELEBIEVENT_CELEBI EQU $84
 
 UnusedForestTreeFrames:
-INCBIN "gfx/tilesets/forest-tree/unused.2bpp"
+INCBIN "gfx/tilesets/forest-tree/1.2bpp"
+INCBIN "gfx/tilesets/forest-tree/2.2bpp"
+INCBIN "gfx/tilesets/forest-tree/3.2bpp"
+INCBIN "gfx/tilesets/forest-tree/4.2bpp"
 
 CelebiShrineEvent:
 	call DelayFrame
