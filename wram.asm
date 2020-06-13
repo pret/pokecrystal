@@ -774,14 +774,17 @@ wOddEggName:: ds MON_NAME_LENGTH
 wOddEggOTName:: ds NAME_LENGTH
 
 NEXTU ; c608
-wc608:: ds 53
+wc608:: ds 16
+wc618:: ds 37
 wc63d:: ds 5
 wc642:: ds 5
-wc647:: ds 33
+wc647:: ds 1
+wc648:: ds 2
+wc64a:: ds 30
 wc668:: ds 32
 wc688:: ds 2
-wc68a:: ds 4
-	ds 66
+wc68a:: ds 30
+wc6a8:: ds 40
 ENDU ; c6d0
 
 ; This union spans 280 bytes from c6d0 to c7e8.
@@ -2984,7 +2987,7 @@ SECTION "Pic Animations", WRAMX
 
 wTempTilemap::
 ; 20x18 grid of 8x8 tiles
-	ds SCREEN_WIDTH * SCREEN_HEIGHT ; $168 = 360
+	ds SCREEN_WIDTH * SCREEN_HEIGHT
 
 ; PokeAnim data
 wPokeAnimStruct::
@@ -3024,7 +3027,8 @@ SECTION "Battle Tower RAM", WRAMX
 
 w3_d000:: ds 1 ; d000
 w3_d001:: ds 1
-w3_d002:: ds $7e
+w3_d002:: ds 16
+w3_d012:: ds $6e
 w3_d080:: ds 1
 w3_d081:: ds $f
 w3_d090:: ds $70

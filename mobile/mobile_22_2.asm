@@ -118,8 +118,8 @@ Function8b3a4:
 	ret
 
 Function8b3b0:
-	ld bc, $a037 ; 4:a037
-	ld a, [$a60b]
+	ld bc, s4_a037
+	ld a, [s4_a60b]
 	and a
 	jr z, .asm_8b3c2
 	cp $3
@@ -129,9 +129,9 @@ Function8b3b0:
 .asm_8b3c2
 	call Function8b36c
 	xor a
-	ld [$a60b], a
+	ld [s4_a60b], a
 .asm_8b3c9
-	ld a, [$a60b]
+	ld a, [s4_a60b]
 	ret
 
 Function8b3cd:
@@ -441,7 +441,7 @@ Function8b555:
 .strings_equal
 	call OpenSRAMBank4
 	ld hl, wd013
-	ld de, $a037 ; 4:a037
+	ld de, s4_a037
 	ld bc, $4
 	call CopyBytes
 	call CloseSRAM
@@ -498,7 +498,7 @@ Function8b5e7:
 	ld bc, wd013
 	call Function8b493
 	call OpenSRAMBank4
-	ld hl, $a037 ; 4:a037
+	ld hl, s4_a037
 	call Function8b3a4
 	call CloseSRAM
 	jr z, .asm_8b635

@@ -30,7 +30,7 @@ Script_BattleRoomLoop:
 	battletowertext BATTLETOWERTEXT_INTRO
 	promptbutton
 	closetext
-	special BattleTowerBattle ; calls predef startbattle
+	special BattleTowerBattle ; predef StartBattle
 	special FadeOutPalettes
 	reloadmap
 	ifnotequal $0, Script_FailedBattleTowerChallenge

@@ -365,7 +365,7 @@ Route36FruitTree:
 	fruittree FRUITTREE_ROUTE_36
 
 SudowoodoShakeMovement:
-	tree_shake ; shake
+	tree_shake
 	step_end
 
 WeirdTreeMovement_Flee:

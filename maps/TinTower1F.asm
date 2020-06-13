@@ -86,7 +86,7 @@ TinTower1F_MapScripts:
 	pause 15
 	setval RAIKOU
 	special MonCheck
-	iftrue .Next1 ; if player caught Raikou, he doesn't appear in Tin Tower
+	iftrue .Next1 ; if player caught Raikou, it doesn't appear in Tin Tower
 	applymovement TINTOWER1F_RAIKOU, TinTowerRaikouMovement1
 	turnobject PLAYER, LEFT
 	cry RAIKOU
@@ -99,7 +99,7 @@ TinTower1F_MapScripts:
 .Next1:
 	setval ENTEI
 	special MonCheck
-	iftrue .Next2 ; if player caught Entei, he doesn't appear in Tin Tower
+	iftrue .Next2 ; if player caught Entei, it doesn't appear in Tin Tower
 	applymovement TINTOWER1F_ENTEI, TinTowerEnteiMovement1
 	turnobject PLAYER, RIGHT
 	cry ENTEI

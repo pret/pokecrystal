@@ -1537,12 +1537,12 @@ Function10578c:
 	ld a, [sCrystalData + 0]
 	ld [de], a
 	inc de
-	ld a, 4 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
+	ld a, BANK(s4_a603) ; aka BANK(s4_a007) ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call GetSRAMBank
-	ld hl, $a603 ; address of MBC30 bank
+	ld hl, s4_a603 ; address of MBC30 bank
 	ld bc, $8
 	call CopyBytes
-	ld hl, $a007 ; address of MBC30 bank
+	ld hl, s4_a007 ; address of MBC30 bank
 	ld bc, $c
 	call CopyBytes
 	call CloseSRAM

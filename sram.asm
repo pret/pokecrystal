@@ -248,11 +248,15 @@ s4_a007:: ; struct size $30 ; a007
 
 s4_a013:: ds 36 ; a013
 
-	ds $5d5
+s4_a037:: ds 4 ; a037
 
+s4_a03b:: ds 37 * 40 ; a03b
+
+s4_a603:: ds 8 ; a603
+
+s4_a60b:: db ; a60b
 s4_a60c:: db ; a60c
-
-	ds $1
+s4_a60d:: db ; a60d
 
 s4_a60e:: dw ; a60e
 
@@ -328,8 +332,9 @@ s5_a826:: db ; a826
 
 s5_a894:: ds NAME_LENGTH_JAPANESE ; a894
 
-	ds $2
+	ds $1
 
+s5_a89b:: ds 1 ; a89b
 s5_a89c:: ds 22 ; a89c
 s5_a8b2:: ds 150 ; a8b2
 
@@ -408,3 +413,8 @@ s5_bfff:: db ; bfff
 SECTION "SRAM Mobile 3", SRAM
 
 s6_a000:: ; a000
+
+
+SECTION "SRAM Mobile 4", SRAM
+
+s7_a000:: ; a000

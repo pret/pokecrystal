@@ -422,9 +422,9 @@ SaveData:
 	ret
 
 Unreferenced_Function14d6c:
-	ld a, 4 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
+	ld a, BANK(s4_a60b) ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call GetSRAMBank
-	ld a, [$a60b] ; address of MBC30 bank
+	ld a, [s4_a60b] ; address of MBC30 bank
 	ld b, $0
 	and a
 	jr z, .ok
@@ -432,24 +432,24 @@ Unreferenced_Function14d6c:
 
 .ok
 	ld a, b
-	ld [$a60b], a ; address of MBC30 bank
+	ld [s4_a60b], a ; address of MBC30 bank
 	call CloseSRAM
 	ret
 
 Unreferenced_Function14d83:
-	ld a, 4 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
+	ld a, BANK(s4_a60c) ; aka BANK(s4_a60d) ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call GetSRAMBank
 	xor a
-	ld [$a60c], a ; address of MBC30 bank
-	ld [$a60d], a ; address of MBC30 bank
+	ld [s4_a60c], a ; address of MBC30 bank
+	ld [s4_a60d], a ; address of MBC30 bank
 	call CloseSRAM
 	ret
 
 Unreferenced_Function14d93:
-	ld a, 7 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
+	ld a, BANK(s7_a000) ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call GetSRAMBank
 	xor a
-	ld [$a000], a ; address of MBC30 bank
+	ld [s7_a000], a ; address of MBC30 bank
 	call CloseSRAM
 	ret
 

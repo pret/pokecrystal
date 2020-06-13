@@ -1543,7 +1543,7 @@ BattleCommand_DamageVariation:
 	call Multiply
 
 ; ...divide by 100%...
-	ld a, $ff ; 100%
+	ld a, 100 percent
 	ldh [hDivisor], a
 	ld b, $4
 	call Divide

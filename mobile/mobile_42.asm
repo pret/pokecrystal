@@ -1186,7 +1186,7 @@ Function108963:
 asm_108966:
 	call DelayFrame
 	ld hl, vTiles2
-	lb bc, $a, $31 ; $a is the bank of ?????
+	lb bc, BANK(TradeGameBoyLZ), $31
 	call Request2bpp
 	call WaitTop
 	call MobileTradeAnim_ClearTilemap

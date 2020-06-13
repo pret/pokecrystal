@@ -336,7 +336,7 @@ Function89305:
 
 Function8931b:
 	push hl
-	ld hl, $a03b ; 4:a03b
+	ld hl, s4_a03b
 	ld a, [wMenuSelection]
 	dec a
 	ld bc, 37
