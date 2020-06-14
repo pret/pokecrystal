@@ -726,12 +726,12 @@ wBattleEnded:: db ; c734
 wWildMonMoves:: ds NUM_MOVES ; c735
 wWildMonPP:: ds NUM_MOVES ; c739
 
-wAmuletCoin:: db ; c73a
+wAmuletCoin:: db ; c73d
 
-wSomeoneIsRampaging:: db ; c73b
+wSomeoneIsRampaging:: db ; c73e
 
-wPlayerJustGotFrozen:: db ; c73c
-wEnemyJustGotFrozen:: db ; c73d
+wPlayerJustGotFrozen:: db ; c73f
+wEnemyJustGotFrozen:: db ; c740
 wBattleEnd::
 
 NEXTU ; c608
