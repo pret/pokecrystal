@@ -1108,7 +1108,8 @@ CheckMimicUsed:
 	call GetBattleVar
 	cp MIMIC
 	jr z, .mimic
-;
+
+; pointless addition
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
