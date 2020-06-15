@@ -516,7 +516,7 @@ ret_96f76:
 
 GiveItemScript:
 	callasm ret_96f76
-	writetext ReceivedItemText
+	writetext .ReceivedItemText
 	iffalse .Full
 	waitsfx
 	specialsound
@@ -529,7 +529,7 @@ GiveItemScript:
 	pocketisfull
 	end
 
-ReceivedItemText:
+.ReceivedItemText:
 	text_far _ReceivedItemText
 	text_end
 

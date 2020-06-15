@@ -42,11 +42,12 @@ used_space.png
 # osx files
 .DS_STORE
 
-*.dimensions
-*.gbcpal
-*.2bpp
+# compiled graphics
 *.1bpp
+*.2bpp
 *.lz
+*.gbcpal
+*.dimensions
 *.animated.tilemap
 *.sgb.tilemap
 gfx/pokemon/*/bitmask.asm

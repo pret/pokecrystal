@@ -67,6 +67,11 @@ tools:
 
 
 RGBASMFLAGS = -L -Weverything
+# Create a sym/map for debug purposes if `make` run with `DEBUG=1`
+ifeq ($(DEBUG),1)
+RGBASMFLAGS += -E
+endif
+
 $(crystal_obj):    RGBASMFLAGS +=
 $(crystal11_obj):  RGBASMFLAGS += -D _CRYSTAL11
 $(crystal_au_obj): RGBASMFLAGS += -D _CRYSTAL11 -D _CRYSTAL_AU
