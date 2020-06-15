@@ -62,7 +62,7 @@ for line in args.symfile:
         symbols.add(symbol)
 
 # If no object files were provided, just print what we know and exit
-print("Unnamed symbols: %d (%.2f%% complete)" % (len(symbols),
+print("Unnamed pokecrystal symbols: %d (%.2f%% complete)" % (len(symbols),
         (symbols_total - len(symbols)) / symbols_total * 100))
 if not objects:
     for sym in symbols:
