@@ -166,18 +166,26 @@ wScriptVar:: db ; c2dd
 
 wPlayerNextMovement:: db
 wPlayerMovement:: db
+
 	ds 2
+
 wc2e2::
 wMovementObject::
 	db
 wMovementDataBank:: db
 wMovementDataAddress:: dw
-wc2e6:: ds 4
+wc2e6:: dw
+
+	ds 2
+
 wMovementByteWasControlSwitch:: db
+
+UNION ; c2eb
+wObjectPriorities:: ds NUM_OBJECT_STRUCTS ; c2eb
+
+NEXTU ; c2eb
 wMovementPointer:: dw ; c2eb
-
 	ds 3
-
 wTempObjectCopyMapObjectIndex:: db ; c2f0
 wTempObjectCopySprite:: db ; c2f1
 wTempObjectCopySpriteVTile:: db ; c2f2
@@ -187,6 +195,7 @@ wTempObjectCopyRange:: db ; c2f5
 wTempObjectCopyX:: db ; c2f6
 wTempObjectCopyY:: db ; c2f7
 wTempObjectCopyRadius:: db ; c2f8
+ENDU ; c2f8
 
 	ds 1
 
@@ -2466,7 +2475,7 @@ wStartMinute:: db ; d4b8
 wStartSecond:: db ; d4b9
 
 wRTC:: ds 4 ; d4ba
-	
+
 	ds 4
 
 wDST:: ; d4c2
