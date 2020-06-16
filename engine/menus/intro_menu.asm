@@ -363,8 +363,8 @@ Continue:
 	ld c, 20
 	call DelayFrames
 	farcall JumpRoamMons
-	farcall MysteryGift_CopyReceivedDecosToPC ; Mystery Gift
-	farcall Function140ae ; time-related
+	farcall MysteryGift_CopyReceivedDecosToPC
+	farcall ClockContinue
 	ld a, [wSpawnAfterChampion]
 	cp SPAWN_LANCE
 	jr z, .SpawnAfterE4

@@ -108,4 +108,5 @@ INCLUDE "gfx/tilesets/battle_tower_inside_palette_map.asm"
 TilesetBattleTowerOutsidePalMap:
 INCLUDE "gfx/tilesets/battle_tower_outside_palette_map.asm"
 
-	ds 26, $06 ; unused
+Unreferenced_MapGroupPalettes:
+	ds NUM_MAP_GROUPS, PAL_BG_ROOF

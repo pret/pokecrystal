@@ -41,7 +41,7 @@ TwinSpriteGFX::                INCBIN "gfx/sprites/twin.2bpp"
 YoungsterSpriteGFX::           INCBIN "gfx/sprites/youngster.2bpp"
 LassSpriteGFX::                INCBIN "gfx/sprites/lass.2bpp"
 TeacherSpriteGFX::             INCBIN "gfx/sprites/teacher.2bpp"
-BuenaSpriteGFX::               INCBIN "gfx/sprites/buena.2bpp"
+BeautySpriteGFX::              INCBIN "gfx/sprites/beauty.2bpp"
 SuperNerdSpriteGFX::           INCBIN "gfx/sprites/super_nerd.2bpp"
 RockerSpriteGFX::              INCBIN "gfx/sprites/rocker.2bpp"
 

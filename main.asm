@@ -261,7 +261,7 @@ INCLUDE "data/pokemon/base_stats.asm"
 INCLUDE "data/pokemon/names.asm"
 INCLUDE "data/pokemon/unused_pic_banks.asm"
 
-UnusedEggFrontpic::
+UnusedEggPic::
 ; Another egg pic. This is shifted up a few pixels.
 INCBIN "gfx/pokemon/egg/unused_front.2bpp.lz"
 

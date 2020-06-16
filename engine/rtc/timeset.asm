@@ -593,7 +593,7 @@ InitialClearDSTFlag:
 	text_far _TimeAskOkayText
 	text_end
 
-DebugDisplayTime:
+Unreferenced_MrChrono:
 	hlcoord 1, 14
 	lb bc, 3, SCREEN_WIDTH - 2
 	call ClearBox

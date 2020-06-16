@@ -2817,9 +2817,9 @@ Script_checksave:
 	ret
 
 ; unused
-	ld a, [.byte]
+	ld a, [.gs_version]
 	ld [wScriptVar], a
 	ret
 
-.byte
-	db 0
+.gs_version
+	db GS_VERSION

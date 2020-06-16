@@ -1,6 +1,6 @@
 PrepMysteryGiftDataToSend:
 	ld de, wMysteryGiftStaging
-	ld a, $1
+	ld a, $1 + GS_VERSION
 	ld [de], a
 	inc de ; wc801
 	ld a, BANK(sGameData)

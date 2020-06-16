@@ -1,7 +1,7 @@
 	object_const_def ; object_event constants
 	const VERMILIONMART_CLERK
 	const VERMILIONMART_SUPER_NERD
-	const VERMILIONMART_BUENA
+	const VERMILIONMART_BEAUTY
 
 VermilionMart_MapScripts:
 	db 0 ; scene scripts
@@ -17,8 +17,8 @@ VermilionMartClerkScript:
 VermilionMartSuperNerdScript:
 	jumptextfaceplayer VermilionMartSuperNerdText
 
-VermilionMartBuenaScript:
-	jumptextfaceplayer VermilionMartBuenaText
+VermilionMartBeautyScript:
+	jumptextfaceplayer VermilionMartBeautyText
 
 VermilionMartSuperNerdText:
 	text "TEAM ROCKET is no"
@@ -28,7 +28,7 @@ VermilionMartSuperNerdText:
 	line "me happy."
 	done
 
-VermilionMartBuenaText:
+VermilionMartBeautyText:
 	text "I'm thinking about"
 	line "going shopping in"
 	cont "SAFFRON."
@@ -48,4 +48,4 @@ VermilionMart_MapEvents:
 	db 3 ; object events
 	object_event  1,  3, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionMartClerkScript, -1
 	object_event  5,  2, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VermilionMartSuperNerdScript, -1
-	object_event  8,  6, SPRITE_BUENA, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, VermilionMartBuenaScript, -1
+	object_event  8,  6, SPRITE_BEAUTY, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, VermilionMartBeautyScript, -1

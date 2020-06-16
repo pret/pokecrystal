@@ -668,7 +668,7 @@ Function1163c0:
 	ld bc, 16 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
 	call DelayFrame
-	farcall Function14146
+	farcall _RefreshSprites
 	ld b, SCGB_MAPPALS
 	call GetSGBLayout
 	ldh a, [rSVBK]
@@ -686,7 +686,7 @@ Function1163c0:
 	ld a, $90
 	ldh [hWY], a
 	call UpdateSprites
-	farcall Function14157
+	farcall _ClearSprites
 	pop af
 	ldh [rSVBK], a
 	farcall ReloadMapPart

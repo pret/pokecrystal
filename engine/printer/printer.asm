@@ -448,7 +448,7 @@ CheckCancelPrint:
 
 .pressed_b
 	ld a, [wca80]
-	cp $c
+	cp $0c
 	jr nz, .cancel
 .loop
 	ld a, [wPrinterOpcode]

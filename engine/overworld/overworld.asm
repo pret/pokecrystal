@@ -15,7 +15,7 @@ _ReplaceKrisSprite::
 	call GetUsedSprite
 	ret
 
-Function14146: ; mobile
+_RefreshSprites: ; mobile
 	ld hl, wSpriteFlags
 	ld a, [hl]
 	push af
@@ -26,7 +26,7 @@ Function14146: ; mobile
 	ld [wSpriteFlags], a
 	ret
 
-Function14157: ; mobile
+_ClearSprites: ; mobile
 	ld hl, wSpriteFlags
 	ld a, [hl]
 	push af

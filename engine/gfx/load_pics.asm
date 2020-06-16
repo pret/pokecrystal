@@ -287,7 +287,7 @@ EXPORT PICS_FIX
 	db BANK("Pics 23") ; BANK("Pics 1") + 22
 	db BANK("Pics 24") ; BANK("Pics 1") + 23
 
-Function511ec:
+Unreferenced_GSIntro_GetMonFrontpic:
 	ld a, c
 	push de
 	ld hl, PokemonPicPointers

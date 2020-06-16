@@ -76,7 +76,7 @@ Unused_CheckShininess:
 	and a
 	ret
 
-Unreferenced_Function8aa4:
+Unreferenced_SGB_ApplyCreditsPals:
 	push de
 	push bc
 	ld hl, PalPacket_9ce6
@@ -205,7 +205,7 @@ Unreferenced_Function8b67:
 	call GetPredefPal
 	jp LoadHLPaletteIntoDE
 
-Unreferenced_Function8b81:
+Unreferenced_GSIntro_LoadMonPalette:
 	call CheckCGB
 	jr nz, .cgb
 	ldh a, [hSGB]

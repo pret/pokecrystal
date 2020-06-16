@@ -90,7 +90,7 @@ SaveRTC:
 
 StartClock::
 	call GetClock
-	call Function1409b
+	call _FixDays
 	call FixDays
 	jr nc, .skip_set
 	; bit 5: Day count exceeds 139
@@ -101,7 +101,7 @@ StartClock::
 	call StartRTC
 	ret
 
-Function1409b:
+_FixDays:
 	ld hl, hRTCDayHi
 	bit 7, [hl]
 	jr nz, .set_bit_7
@@ -116,7 +116,7 @@ Function1409b:
 	call RecordRTCStatus ; set bit 7 on sRTCStatusFlags
 	ret
 
-Function140ae:
+ClockContinue:
 	call CheckRTCStatus
 	ld c, a
 	and %11000000 ; Day count exceeded 255 or 16383

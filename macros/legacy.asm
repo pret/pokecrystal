@@ -381,3 +381,6 @@ receivetogepiegg      EQUS "ReceiveTogepiEggScript"
 pcscript              EQUS "PCScript"
 gamecornercoinvendor  EQUS "GameCornerCoinVendorScript"
 happinesschecknpc     EQUS "HappinessCheckScript"
+
+; constants/sprite_constants.asm
+SPRITE_BUENA EQUS "SPRITE_BEAUTY"

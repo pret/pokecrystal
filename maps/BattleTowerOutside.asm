@@ -1,6 +1,6 @@
 	object_const_def ; object_event constants
 	const BATTLETOWEROUTSIDE_STANDING_YOUNGSTER
-	const BATTLETOWEROUTSIDE_BUENA
+	const BATTLETOWEROUTSIDE_BEAUTY
 	const BATTLETOWEROUTSIDE_SAILOR
 	const BATTLETOWEROUTSIDE_LASS
 
@@ -21,8 +21,8 @@ BattleTowerOutside_MapScripts:
 BattleTowerOutsideYoungsterScript:
 	jumptextfaceplayer BattleTowerOutsideYoungsterText
 
-BattleTowerOutsideBuenaScript:
-	jumptextfaceplayer BattleTowerOutsideBuenaText
+BattleTowerOutsideBeautyScript:
+	jumptextfaceplayer BattleTowerOutsideBeautyText
 
 BattleTowerOutsideSailorScript:
 	jumptextfaceplayer BattleTowerOutsideSailorText
@@ -63,7 +63,7 @@ BattleTowerOutsideYoungsterText:
 	cont "in there!"
 	done
 
-BattleTowerOutsideBuenaText_NotYetOpen:
+BattleTowerOutsideBeautyText_NotYetOpen:
 ; unreferenced
 	text "What on earth do"
 	line "they do here?"
@@ -75,7 +75,7 @@ BattleTowerOutsideBuenaText_NotYetOpen:
 	line "#MON battles."
 	done
 
-BattleTowerOutsideBuenaText:
+BattleTowerOutsideBeautyText:
 	text "You can use only"
 	line "three #MON."
 
@@ -147,6 +147,6 @@ BattleTowerOutside_MapEvents:
 
 	db 4 ; object events
 	object_event  6, 12, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BattleTowerOutsideYoungsterScript, -1
-	object_event 13, 11, SPRITE_BUENA, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, BattleTowerOutsideBuenaScript, -1
+	object_event 13, 11, SPRITE_BEAUTY, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, BattleTowerOutsideBeautyScript, -1
 	object_event 12, 18, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTowerOutsideSailorScript, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
 	object_event 12, 24, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1

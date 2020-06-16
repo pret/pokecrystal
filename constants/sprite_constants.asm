@@ -43,7 +43,7 @@
 	const SPRITE_YOUNGSTER ; 27
 	const SPRITE_LASS ; 28
 	const SPRITE_TEACHER ; 29
-	const SPRITE_BUENA ; 2a
+	const SPRITE_BEAUTY ; 2a
 	const SPRITE_SUPER_NERD ; 2b
 	const SPRITE_ROCKER ; 2c
 	const SPRITE_POKEFAN_M ; 2d

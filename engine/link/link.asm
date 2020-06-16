@@ -2503,8 +2503,8 @@ CableClubCheckWhichChris:
 	ld [wScriptVar], a
 	ret
 
-Unreferenced_Gen1LinkCommsBorderGFX:
-INCBIN "gfx/trade/unused_gen_1_border_tiles.2bpp"
+Unreferenced_GSLinkCommsBorderGFX:
+INCBIN "gfx/trade/unused_gs_border_tiles.2bpp"
 
 Unreferenced_Function29fe4:
 	ld a, BANK(sPartyMail)

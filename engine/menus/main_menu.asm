@@ -4,7 +4,7 @@ INCBIN "gfx/mobile/mobile_menu.2bpp"
 MainMenu:
 	xor a
 	ld [wDisableTextAcceleration], a
-	call Function49ed0
+	call ClearTilemapEtc
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	call SetPalettes
@@ -310,7 +310,7 @@ MainMenu_PrintCurrentTimeAndDay:
 .Day:
 	db "DAY@"
 
-Function49ed0:
+ClearTilemapEtc:
 	xor a
 	ldh [hMapAnims], a
 	call ClearTilemap

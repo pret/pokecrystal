@@ -23,7 +23,7 @@ AskSerial::
 	xor a
 	ld [hl], a
 
-	ld a, 12
+	ld a, $0c
 	ld [wPrinterOpcode], a
 
 ; handshake
