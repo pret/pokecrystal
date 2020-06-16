@@ -493,7 +493,7 @@ CopyrightGFX::
 INCBIN "gfx/splash/copyright.2bpp"
 
 INCLUDE "engine/menus/options_menu.asm"
-INCLUDE "engine/movie/crystal_intro.asm"
+INCLUDE "engine/movie/intro.asm"
 
 
 SECTION "bank3E", ROMX

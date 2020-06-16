@@ -1,4 +1,7 @@
 Copyright_GFPresents:
+; Play the copyright screen and GameFreak Presents sequence.
+; Return carry if user cancels animation by pressing a button.
+
 	ld de, MUSIC_NONE
 	call PlayMusic
 	call ClearBGPalettes
