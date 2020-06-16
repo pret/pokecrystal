@@ -275,7 +275,7 @@ ParseCredits:
 	push af
 	ld e, a
 	ld d, 0
-	ld hl, CreditsStrings
+	ld hl, CreditsStringsPointers
 	add hl, de
 	add hl, de
 	ld a, [hli]

@@ -1,6 +1,6 @@
 GinaPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, PICNICKER, GINA1
-	checkflag ENGINE_GINA
+	checkflag ENGINE_GINA_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Female
 	checkflag ENGINE_GINA_SUNDAY_AFTERNOON
@@ -33,7 +33,7 @@ GinaPhoneCallerScript:
 	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue GinaRockets
-	checkflag ENGINE_GINA
+	checkflag ENGINE_GINA_READY_FOR_REMATCH
 	iftrue .Generic
 	checkflag ENGINE_GINA_SUNDAY_AFTERNOON
 	iftrue .Generic
@@ -60,7 +60,7 @@ GinaSundayDay:
 
 GinaWantsBattle:
 	getlandmarkname STRING_BUFFER_5, LANDMARK_ROUTE_34
-	setflag ENGINE_GINA
+	setflag ENGINE_GINA_READY_FOR_REMATCH
 	farsjump PhoneScript_WantsToBattle_Female
 
 GinaRockets:

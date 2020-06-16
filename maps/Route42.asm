@@ -41,7 +41,7 @@ TrainerFisherTully:
 	loadvar VAR_CALLERID, PHONE_FISHER_TULLY
 	endifjustbattled
 	opentext
-	checkflag ENGINE_TULLY
+	checkflag ENGINE_TULLY_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	checkflag ENGINE_TULLY_HAS_WATER_STONE
 	iftrue .HasWaterStone
@@ -87,7 +87,7 @@ TrainerFisherTully:
 	startbattle
 	reloadmapafterbattle
 	loadmem wTullyFightCount, 1
-	clearflag ENGINE_TULLY
+	clearflag ENGINE_TULLY_READY_FOR_REMATCH
 	end
 
 .LoadFight1:
@@ -95,7 +95,7 @@ TrainerFisherTully:
 	startbattle
 	reloadmapafterbattle
 	loadmem wTullyFightCount, 2
-	clearflag ENGINE_TULLY
+	clearflag ENGINE_TULLY_READY_FOR_REMATCH
 	end
 
 .LoadFight2:
@@ -103,14 +103,14 @@ TrainerFisherTully:
 	startbattle
 	reloadmapafterbattle
 	loadmem wTullyFightCount, 3
-	clearflag ENGINE_TULLY
+	clearflag ENGINE_TULLY_READY_FOR_REMATCH
 	end
 
 .LoadFight3:
 	loadtrainer FISHER, TULLY4
 	startbattle
 	reloadmapafterbattle
-	clearflag ENGINE_TULLY
+	clearflag ENGINE_TULLY_READY_FOR_REMATCH
 	end
 
 .HasWaterStone:

@@ -29,7 +29,7 @@ TrainerPicnickerErin1:
 	loadvar VAR_CALLERID, PHONE_PICNICKER_ERIN
 	endifjustbattled
 	opentext
-	checkflag ENGINE_ERIN
+	checkflag ENGINE_ERIN_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	checkcellnum PHONE_PICNICKER_ERIN
 	iftrue Route46NumberAcceptedF
@@ -69,7 +69,7 @@ TrainerPicnickerErin1:
 	startbattle
 	reloadmapafterbattle
 	loadmem wErinFightCount, 1
-	clearflag ENGINE_ERIN
+	clearflag ENGINE_ERIN_READY_FOR_REMATCH
 	end
 
 .LoadFight1:
@@ -77,14 +77,14 @@ TrainerPicnickerErin1:
 	startbattle
 	reloadmapafterbattle
 	loadmem wErinFightCount, 2
-	clearflag ENGINE_ERIN
+	clearflag ENGINE_ERIN_READY_FOR_REMATCH
 	end
 
 .LoadFight2:
 	loadtrainer PICNICKER, ERIN3
 	startbattle
 	reloadmapafterbattle
-	clearflag ENGINE_ERIN
+	clearflag ENGINE_ERIN_READY_FOR_REMATCH
 	checkevent EVENT_ERIN_CALCIUM
 	iftrue .HasCalcium
 	checkevent EVENT_GOT_CALCIUM_FROM_ERIN

@@ -31,7 +31,7 @@ TrainerCooltrainermGaven3:
 	loadvar VAR_CALLERID, PHONE_COOLTRAINERM_GAVEN
 	endifjustbattled
 	opentext
-	checkflag ENGINE_GAVEN
+	checkflag ENGINE_GAVEN_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	checkcellnum PHONE_COOLTRAINERM_GAVEN
 	iftrue .NumberAccepted
@@ -71,7 +71,7 @@ TrainerCooltrainermGaven3:
 	startbattle
 	reloadmapafterbattle
 	loadmem wGavenFightCount, 1
-	clearflag ENGINE_GAVEN
+	clearflag ENGINE_GAVEN_READY_FOR_REMATCH
 	end
 
 .LoadFight1:
@@ -79,14 +79,14 @@ TrainerCooltrainermGaven3:
 	startbattle
 	reloadmapafterbattle
 	loadmem wGavenFightCount, 2
-	clearflag ENGINE_GAVEN
+	clearflag ENGINE_GAVEN_READY_FOR_REMATCH
 	end
 
 .LoadFight2:
 	loadtrainer COOLTRAINERM, GAVEN2
 	startbattle
 	reloadmapafterbattle
-	clearflag ENGINE_GAVEN
+	clearflag ENGINE_GAVEN_READY_FOR_REMATCH
 	end
 
 .AskNumber1:
@@ -135,7 +135,7 @@ TrainerCooltrainerfBeth1:
 	loadvar VAR_CALLERID, PHONE_COOLTRAINERF_BETH
 	endifjustbattled
 	opentext
-	checkflag ENGINE_BETH
+	checkflag ENGINE_BETH_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	checkcellnum PHONE_COOLTRAINERF_BETH
 	iftrue .NumberAccepted
@@ -175,7 +175,7 @@ TrainerCooltrainerfBeth1:
 	startbattle
 	reloadmapafterbattle
 	loadmem wBethFightCount, 1
-	clearflag ENGINE_BETH
+	clearflag ENGINE_BETH_READY_FOR_REMATCH
 	end
 
 .LoadFight1:
@@ -183,14 +183,14 @@ TrainerCooltrainerfBeth1:
 	startbattle
 	reloadmapafterbattle
 	loadmem wBethFightCount, 2
-	clearflag ENGINE_BETH
+	clearflag ENGINE_BETH_READY_FOR_REMATCH
 	end
 
 .LoadFight2:
 	loadtrainer COOLTRAINERF, BETH3
 	startbattle
 	reloadmapafterbattle
-	clearflag ENGINE_BETH
+	clearflag ENGINE_BETH_READY_FOR_REMATCH
 	end
 
 .AskNumber1:

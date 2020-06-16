@@ -1,6 +1,6 @@
 JackPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, SCHOOLBOY, JACK1
-	checkflag ENGINE_JACK
+	checkflag ENGINE_JACK_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_JACK_MONDAY_MORNING
@@ -22,7 +22,7 @@ JackPhoneCallerScript:
 	farscall PhoneScript_GreetPhone_Male
 	farscall PhoneScript_Random2
 	ifequal 0, JackBattleTrivia
-	checkflag ENGINE_JACK
+	checkflag ENGINE_JACK_READY_FOR_REMATCH
 	iftrue .WaitingForBattle
 	checkflag ENGINE_JACK_MONDAY_MORNING
 	iftrue .WaitingForBattle
@@ -39,7 +39,7 @@ JackMondayMorning:
 
 JackWantsToBattle:
 	getlandmarkname STRING_BUFFER_5, LANDMARK_NATIONAL_PARK
-	setflag ENGINE_JACK
+	setflag ENGINE_JACK_READY_FOR_REMATCH
 	farsjump PhoneScript_WantsToBattle_Male
 
 JackFindsRare:

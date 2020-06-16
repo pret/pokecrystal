@@ -64,7 +64,7 @@ TrainerBirdKeeperJose2:
 	loadvar VAR_CALLERID, PHONE_BIRDKEEPER_JOSE
 	endifjustbattled
 	opentext
-	checkflag ENGINE_JOSE
+	checkflag ENGINE_JOSE_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	checkflag ENGINE_JOSE_HAS_STAR_PIECE
 	iftrue .HasStarPiece
@@ -106,7 +106,7 @@ TrainerBirdKeeperJose2:
 	startbattle
 	reloadmapafterbattle
 	loadmem wJoseFightCount, 1
-	clearflag ENGINE_JOSE
+	clearflag ENGINE_JOSE_READY_FOR_REMATCH
 	end
 
 .LoadFight1:
@@ -114,14 +114,14 @@ TrainerBirdKeeperJose2:
 	startbattle
 	reloadmapafterbattle
 	loadmem wJoseFightCount, 2
-	clearflag ENGINE_JOSE
+	clearflag ENGINE_JOSE_READY_FOR_REMATCH
 	end
 
 .LoadFight2:
 	loadtrainer BIRD_KEEPER, JOSE3
 	startbattle
 	reloadmapafterbattle
-	clearflag ENGINE_JOSE
+	clearflag ENGINE_JOSE_READY_FOR_REMATCH
 	end
 
 .HasStarPiece:
@@ -199,7 +199,7 @@ TrainerCooltrainerfReena:
 	loadvar VAR_CALLERID, PHONE_COOLTRAINERF_REENA
 	endifjustbattled
 	opentext
-	checkflag ENGINE_REENA
+	checkflag ENGINE_REENA_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	checkcellnum PHONE_COOLTRAINERF_REENA
 	iftrue .NumberAccepted
@@ -239,7 +239,7 @@ TrainerCooltrainerfReena:
 	startbattle
 	reloadmapafterbattle
 	loadmem wReenaFightCount, 1
-	clearflag ENGINE_REENA
+	clearflag ENGINE_REENA_READY_FOR_REMATCH
 	end
 
 .LoadFight1:
@@ -247,14 +247,14 @@ TrainerCooltrainerfReena:
 	startbattle
 	reloadmapafterbattle
 	loadmem wReenaFightCount, 2
-	clearflag ENGINE_REENA
+	clearflag ENGINE_REENA_READY_FOR_REMATCH
 	end
 
 .LoadFight2:
 	loadtrainer COOLTRAINERF, REENA3
 	startbattle
 	reloadmapafterbattle
-	clearflag ENGINE_REENA
+	clearflag ENGINE_REENA_READY_FOR_REMATCH
 	end
 
 .AskNumber1:

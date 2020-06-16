@@ -53,7 +53,7 @@ TrainerPokemaniacBrent:
 	loadvar VAR_CALLERID, PHONE_POKEMANIAC_BRENT
 	endifjustbattled
 	opentext
-	checkflag ENGINE_BRENT
+	checkflag ENGINE_BRENT_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	checkcellnum PHONE_POKEMANIAC_BRENT
 	iftrue .NumberAccepted
@@ -97,7 +97,7 @@ TrainerPokemaniacBrent:
 	startbattle
 	reloadmapafterbattle
 	loadmem wBrentFightCount, 1
-	clearflag ENGINE_BRENT
+	clearflag ENGINE_BRENT_READY_FOR_REMATCH
 	end
 
 .LoadFight1:
@@ -105,7 +105,7 @@ TrainerPokemaniacBrent:
 	startbattle
 	reloadmapafterbattle
 	loadmem wBrentFightCount, 2
-	clearflag ENGINE_BRENT
+	clearflag ENGINE_BRENT_READY_FOR_REMATCH
 	end
 
 .LoadFight2:
@@ -113,14 +113,14 @@ TrainerPokemaniacBrent:
 	startbattle
 	reloadmapafterbattle
 	loadmem wBrentFightCount, 3
-	clearflag ENGINE_BRENT
+	clearflag ENGINE_BRENT_READY_FOR_REMATCH
 	end
 
 .LoadFight3:
 	loadtrainer POKEMANIAC, BRENT4
 	startbattle
 	reloadmapafterbattle
-	clearflag ENGINE_BRENT
+	clearflag ENGINE_BRENT_READY_FOR_REMATCH
 	end
 
 .AskNumber1:
@@ -180,7 +180,7 @@ TrainerPicnickerTiffany:
 	loadvar VAR_CALLERID, PHONE_PICNICKER_TIFFANY
 	endifjustbattled
 	opentext
-	checkflag ENGINE_TIFFANY
+	checkflag ENGINE_TIFFANY_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	checkflag ENGINE_TIFFANY_HAS_PINK_BOW
 	iftrue .HasPinkBow
@@ -228,7 +228,7 @@ TrainerPicnickerTiffany:
 	startbattle
 	reloadmapafterbattle
 	loadmem wTiffanyFightCount, 1
-	clearflag ENGINE_TIFFANY
+	clearflag ENGINE_TIFFANY_READY_FOR_REMATCH
 	end
 
 .LoadFight1:
@@ -236,7 +236,7 @@ TrainerPicnickerTiffany:
 	startbattle
 	reloadmapafterbattle
 	loadmem wTiffanyFightCount, 2
-	clearflag ENGINE_TIFFANY
+	clearflag ENGINE_TIFFANY_READY_FOR_REMATCH
 	end
 
 .LoadFight2:
@@ -244,14 +244,14 @@ TrainerPicnickerTiffany:
 	startbattle
 	reloadmapafterbattle
 	loadmem wTiffanyFightCount, 3
-	clearflag ENGINE_TIFFANY
+	clearflag ENGINE_TIFFANY_READY_FOR_REMATCH
 	end
 
 .LoadFight3:
 	loadtrainer PICNICKER, TIFFANY4
 	startbattle
 	reloadmapafterbattle
-	clearflag ENGINE_TIFFANY
+	clearflag ENGINE_TIFFANY_READY_FOR_REMATCH
 	end
 
 .HasPinkBow:

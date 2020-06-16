@@ -151,7 +151,7 @@ TrainerHikerParry:
 	loadvar VAR_CALLERID, PHONE_HIKER_PARRY
 	endifjustbattled
 	opentext
-	checkflag ENGINE_PARRY
+	checkflag ENGINE_PARRY_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	checkcellnum PHONE_HIKER_PARRY
 	iftrue Route45NumberAcceptedM
@@ -191,7 +191,7 @@ TrainerHikerParry:
 	startbattle
 	reloadmapafterbattle
 	loadmem wParryFightCount, 1
-	clearflag ENGINE_PARRY
+	clearflag ENGINE_PARRY_READY_FOR_REMATCH
 	end
 
 .LoadFight1:
@@ -199,14 +199,14 @@ TrainerHikerParry:
 	startbattle
 	reloadmapafterbattle
 	loadmem wParryFightCount, 2
-	clearflag ENGINE_PARRY
+	clearflag ENGINE_PARRY_READY_FOR_REMATCH
 	end
 
 .LoadFight2:
 	loadtrainer HIKER, PARRY2
 	startbattle
 	reloadmapafterbattle
-	clearflag ENGINE_PARRY
+	clearflag ENGINE_PARRY_READY_FOR_REMATCH
 	checkevent EVENT_PARRY_IRON
 	iftrue .HasIron
 	checkevent EVENT_GOT_IRON_FROM_PARRY

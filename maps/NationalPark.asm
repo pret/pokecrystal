@@ -76,7 +76,7 @@ TrainerSchoolboyJack1:
 	loadvar VAR_CALLERID, PHONE_SCHOOLBOY_JACK
 	endifjustbattled
 	opentext
-	checkflag ENGINE_JACK
+	checkflag ENGINE_JACK_READY_FOR_REMATCH
 	iftrue .Rematch
 	checkcellnum PHONE_SCHOOLBOY_JACK
 	iftrue .NumberAccepted
@@ -124,7 +124,7 @@ TrainerSchoolboyJack1:
 	startbattle
 	reloadmapafterbattle
 	loadmem wJackFightCount, 1
-	clearflag ENGINE_JACK
+	clearflag ENGINE_JACK_READY_FOR_REMATCH
 	end
 
 .LoadFight1:
@@ -132,7 +132,7 @@ TrainerSchoolboyJack1:
 	startbattle
 	reloadmapafterbattle
 	loadmem wJackFightCount, 2
-	clearflag ENGINE_JACK
+	clearflag ENGINE_JACK_READY_FOR_REMATCH
 	end
 
 .LoadFight2:
@@ -140,7 +140,7 @@ TrainerSchoolboyJack1:
 	startbattle
 	reloadmapafterbattle
 	loadmem wJackFightCount, 3
-	clearflag ENGINE_JACK
+	clearflag ENGINE_JACK_READY_FOR_REMATCH
 	end
 
 .LoadFight3:
@@ -148,14 +148,14 @@ TrainerSchoolboyJack1:
 	startbattle
 	reloadmapafterbattle
 	loadmem wJackFightCount, 4
-	clearflag ENGINE_JACK
+	clearflag ENGINE_JACK_READY_FOR_REMATCH
 	end
 
 .LoadFight4:
 	loadtrainer SCHOOLBOY, JACK5
 	startbattle
 	reloadmapafterbattle
-	clearflag ENGINE_JACK
+	clearflag ENGINE_JACK_READY_FOR_REMATCH
 	end
 
 .AskNumber1:

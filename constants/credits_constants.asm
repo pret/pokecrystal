@@ -1,4 +1,4 @@
-; CreditsStrings indexes (see data/credits_strings.asm)
+; CreditsStringsPointers indexes (see data/credits_strings.asm)
 	const_def
 	const SATOSHI_TAJIRI
 	const JUNICHI_MASUDA

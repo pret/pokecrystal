@@ -133,7 +133,7 @@ TrainerBugCatcherArnie:
 	loadvar VAR_CALLERID, PHONE_BUG_CATCHER_ARNIE
 	endifjustbattled
 	opentext
-	checkflag ENGINE_ARNIE
+	checkflag ENGINE_ARNIE_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	checkflag ENGINE_YANMA_SWARM
 	iftrue .YanmaSwarming
@@ -183,7 +183,7 @@ TrainerBugCatcherArnie:
 	startbattle
 	reloadmapafterbattle
 	loadmem wArnieFightCount, 1
-	clearflag ENGINE_ARNIE
+	clearflag ENGINE_ARNIE_READY_FOR_REMATCH
 	end
 
 .LoadFight1:
@@ -191,7 +191,7 @@ TrainerBugCatcherArnie:
 	startbattle
 	reloadmapafterbattle
 	loadmem wArnieFightCount, 2
-	clearflag ENGINE_ARNIE
+	clearflag ENGINE_ARNIE_READY_FOR_REMATCH
 	end
 
 .LoadFight2:
@@ -199,7 +199,7 @@ TrainerBugCatcherArnie:
 	startbattle
 	reloadmapafterbattle
 	loadmem wArnieFightCount, 3
-	clearflag ENGINE_ARNIE
+	clearflag ENGINE_ARNIE_READY_FOR_REMATCH
 	end
 
 .LoadFight3:
@@ -207,14 +207,14 @@ TrainerBugCatcherArnie:
 	startbattle
 	reloadmapafterbattle
 	loadmem wArnieFightCount, 4
-	clearflag ENGINE_ARNIE
+	clearflag ENGINE_ARNIE_READY_FOR_REMATCH
 	end
 
 .LoadFight4:
 	loadtrainer BUG_CATCHER, ARNIE5
 	startbattle
 	reloadmapafterbattle
-	clearflag ENGINE_ARNIE
+	clearflag ENGINE_ARNIE_READY_FOR_REMATCH
 	end
 
 .YanmaSwarming:

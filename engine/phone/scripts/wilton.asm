@@ -1,6 +1,6 @@
 WiltonPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, FISHER, WILTON1
-	checkflag ENGINE_WILTON
+	checkflag ENGINE_WILTON_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_WILTON_THURSDAY_MORNING
@@ -26,7 +26,7 @@ WiltonPhoneCalleeScript:
 WiltonPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, FISHER, WILTON1
 	farscall PhoneScript_GreetPhone_Male
-	checkflag ENGINE_WILTON
+	checkflag ENGINE_WILTON_READY_FOR_REMATCH
 	iftrue .GenericCall
 	checkflag ENGINE_WILTON_THURSDAY_MORNING
 	iftrue .GenericCall
@@ -45,7 +45,7 @@ WiltonThursdayMorning:
 
 WiltonWantsBattle:
 	getlandmarkname STRING_BUFFER_5, LANDMARK_ROUTE_44
-	setflag ENGINE_WILTON
+	setflag ENGINE_WILTON_READY_FOR_REMATCH
 	farsjump PhoneScript_WantsToBattle_Male
 
 WiltonHasItem:

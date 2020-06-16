@@ -41,7 +41,7 @@ TrainerLassDana1:
 	loadvar VAR_CALLERID, PHONE_LASS_DANA
 	endifjustbattled
 	opentext
-	checkflag ENGINE_DANA
+	checkflag ENGINE_DANA_READY_FOR_REMATCH
 	iftrue .DanaRematch
 	checkflag ENGINE_DANA_HAS_THUNDERSTONE
 	iftrue .TryGiveThunderstone
@@ -91,7 +91,7 @@ TrainerLassDana1:
 	startbattle
 	reloadmapafterbattle
 	loadmem wDanaFightCount, 1
-	clearflag ENGINE_DANA
+	clearflag ENGINE_DANA_READY_FOR_REMATCH
 	end
 
 .LoadFight1:
@@ -99,7 +99,7 @@ TrainerLassDana1:
 	startbattle
 	reloadmapafterbattle
 	loadmem wDanaFightCount, 2
-	clearflag ENGINE_DANA
+	clearflag ENGINE_DANA_READY_FOR_REMATCH
 	end
 
 .LoadFight2:
@@ -107,7 +107,7 @@ TrainerLassDana1:
 	startbattle
 	reloadmapafterbattle
 	loadmem wDanaFightCount, 3
-	clearflag ENGINE_DANA
+	clearflag ENGINE_DANA_READY_FOR_REMATCH
 	end
 
 .LoadFight3:
@@ -115,14 +115,14 @@ TrainerLassDana1:
 	startbattle
 	reloadmapafterbattle
 	loadmem wDanaFightCount, 4
-	clearflag ENGINE_DANA
+	clearflag ENGINE_DANA_READY_FOR_REMATCH
 	end
 
 .LoadFight4:
 	loadtrainer LASS, DANA5
 	startbattle
 	reloadmapafterbattle
-	clearflag ENGINE_DANA
+	clearflag ENGINE_DANA_READY_FOR_REMATCH
 	end
 
 .TryGiveThunderstone:
@@ -179,7 +179,7 @@ TrainerSchoolboyChad1:
 	loadvar VAR_CALLERID, PHONE_SCHOOLBOY_CHAD
 	endifjustbattled
 	opentext
-	checkflag ENGINE_CHAD
+	checkflag ENGINE_CHAD_READY_FOR_REMATCH
 	iftrue .ChadRematch
 	checkcellnum PHONE_SCHOOLBOY_CHAD
 	iftrue .HaveChadsNumber
@@ -227,7 +227,7 @@ TrainerSchoolboyChad1:
 	startbattle
 	reloadmapafterbattle
 	loadmem wChadFightCount, 1
-	clearflag ENGINE_CHAD
+	clearflag ENGINE_CHAD_READY_FOR_REMATCH
 	end
 
 .LoadFight1:
@@ -235,7 +235,7 @@ TrainerSchoolboyChad1:
 	startbattle
 	reloadmapafterbattle
 	loadmem wChadFightCount, 2
-	clearflag ENGINE_CHAD
+	clearflag ENGINE_CHAD_READY_FOR_REMATCH
 	end
 
 .LoadFight2:
@@ -243,7 +243,7 @@ TrainerSchoolboyChad1:
 	startbattle
 	reloadmapafterbattle
 	loadmem wChadFightCount, 3
-	clearflag ENGINE_CHAD
+	clearflag ENGINE_CHAD_READY_FOR_REMATCH
 	end
 
 .LoadFight3:
@@ -251,14 +251,14 @@ TrainerSchoolboyChad1:
 	startbattle
 	reloadmapafterbattle
 	loadmem wChadFightCount, 4
-	clearflag ENGINE_CHAD
+	clearflag ENGINE_CHAD_READY_FOR_REMATCH
 	end
 
 .LoadFight4:
 	loadtrainer SCHOOLBOY, CHAD5
 	startbattle
 	reloadmapafterbattle
-	clearflag ENGINE_CHAD
+	clearflag ENGINE_CHAD_READY_FOR_REMATCH
 	end
 
 .AskPhoneNumber1:

@@ -1,6 +1,6 @@
 RalphPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, FISHER, RALPH1
-	checkflag ENGINE_RALPH
+	checkflag ENGINE_RALPH_READY_FOR_REMATCH
 	iftrue .Rematch
 	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_RALPH_WEDNESDAY_MORNING
@@ -27,7 +27,7 @@ RalphPhoneCallerScript:
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_FLYPOINT_GOLDENROD
 	iffalse .CheckSwarm
-	checkflag ENGINE_RALPH
+	checkflag ENGINE_RALPH_READY_FOR_REMATCH
 	iftrue .CheckSwarm
 	checkflag ENGINE_RALPH_WEDNESDAY_MORNING
 	iftrue .CheckSwarm
@@ -42,7 +42,7 @@ Ralph_WednesdayMorning:
 	setflag ENGINE_RALPH_WEDNESDAY_MORNING
 Ralph_FightMe:
 	getlandmarkname STRING_BUFFER_5, LANDMARK_ROUTE_32
-	setflag ENGINE_RALPH
+	setflag ENGINE_RALPH_READY_FOR_REMATCH
 	farsjump PhoneScript_WantsToBattle_Male
 
 Ralph_SetUpSwarm:

@@ -9,10 +9,10 @@ SpriteAnimOAMData:
 	dbw $6e, .OAMData_GSIntroShellder          ; SPRITE_ANIM_OAMSET_GS_INTRO_SHELLDER_2
 	dbw $2d, .OAMData_GSIntroMagikarp          ; SPRITE_ANIM_OAMSET_GS_INTRO_MAGIKARP_1
 	dbw $4d, .OAMData_GSIntroMagikarp          ; SPRITE_ANIM_OAMSET_GS_INTRO_MAGIKARP_2
-	dbw $60, .OAMData_GSIntroLapras            ; SPRITE_ANIM_OAMSET_GS_INTRO_LAPRAS_1
+	dbw $60, .OAMData_GSIntroLapras            ; SPRITE_ANIM_OAMSET_GS_INTRO_UNUSED_LAPRAS
+	dbw $00, .OAMData_GSIntroLapras            ; SPRITE_ANIM_OAMSET_GS_INTRO_LAPRAS_1
 	dbw $00, .OAMData_GSIntroLapras            ; SPRITE_ANIM_OAMSET_GS_INTRO_LAPRAS_2
-	dbw $00, .OAMData_GSIntroLapras            ; SPRITE_ANIM_OAMSET_GS_INTRO_LAPRAS_3
-	dbw $06, .OAMData_GSIntroLapras            ; SPRITE_ANIM_OAMSET_GS_INTRO_LAPRAS_4
+	dbw $06, .OAMData_GSIntroLapras            ; SPRITE_ANIM_OAMSET_GS_INTRO_LAPRAS_3
 	dbw $0c, .OAMData_GSIntroNote              ; SPRITE_ANIM_OAMSET_GS_INTRO_NOTE
 	dbw $0d, .OAMData_1x1_Palette0             ; SPRITE_ANIM_OAMSET_GS_INTRO_INVISIBLE_NOTE
 	dbw $00, .OAMData_GSIntroJigglypuffPikachu ; SPRITE_ANIM_OAMSET_GS_INTRO_JIGGLYPUFF_1
@@ -87,11 +87,11 @@ SpriteAnimOAMData:
 	dbw $00, .OAMData_CutTree4                 ; SPRITE_ANIM_OAMSET_CUT_TREE_4
 	dbw $00, .OAMData_1x1_Palette0             ; SPRITE_ANIM_OAMSET_EGG_CRACK
 	dbw $01, .OAMData_1x1_Palette0             ; SPRITE_ANIM_OAMSET_EGG_HATCH
-	dbw $00, .OAMData_GSIntroHoOh1             ; SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_1
-	dbw $00, .OAMData_GSIntroHoOh2             ; SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_2
-	dbw $00, .OAMData_GSIntroHoOh3             ; SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_3
-	dbw $00, .OAMData_GSIntroHoOh4             ; SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_4
-	dbw $00, .OAMData_GSIntroHoOh5             ; SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_5
+	dbw $00, .OAMData_GSIntroHoOhLugia1        ; SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_1
+	dbw $00, .OAMData_GSIntroHoOhLugia2        ; SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_2
+	dbw $00, .OAMData_GSIntroHoOhLugia3        ; SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_3
+	dbw $00, .OAMData_GSIntroHoOhLugia4        ; SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_4
+	dbw $00, .OAMData_GSIntroHoOhLugia5        ; SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_5
 	dbw $04, .OAMData_Tree                     ; SPRITE_ANIM_OAMSET_HEADBUTT_TREE_2
 	dbw $00, .OAMData_EZChatCursor1            ; SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_1
 	dbw $00, .OAMData_EZChatCursor2            ; SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_2
@@ -586,7 +586,7 @@ SpriteAnimOAMData:
 	dbsprite -2,  0,  0,  0, $02, PAL_OW_TREE
 	dbsprite  1,  0,  0,  0, $03, PAL_OW_TREE
 
-.OAMData_GSIntroHoOh1:
+.OAMData_GSIntroHoOhLugia1:
 	db 19
 	dbsprite -4, -1,  0,  0, $00, 0
 	dbsprite -3, -2,  0,  0, $02, 0
@@ -608,7 +608,7 @@ SpriteAnimOAMData:
 	dbsprite  3, -2,  0,  0, $22, 0
 	dbsprite  3,  0,  0,  0, $24, 0
 
-.OAMData_GSIntroHoOh2:
+.OAMData_GSIntroHoOhLugia2:
 	db 16
 	dbsprite -4, -1,  0,  0, $00, 0
 	dbsprite -3, -2,  0,  0, $02, 0
@@ -627,7 +627,7 @@ SpriteAnimOAMData:
 	dbsprite  3, -2,  0,  0, $22, 0
 	dbsprite  3,  0,  0,  0, $24, 0
 
-.OAMData_GSIntroHoOh3:
+.OAMData_GSIntroHoOhLugia3:
 	db 15
 	dbsprite -4, -1,  0,  0, $00, 0
 	dbsprite -3, -2,  0,  0, $02, 0
@@ -645,7 +645,7 @@ SpriteAnimOAMData:
 	dbsprite  3, -2,  0,  0, $22, 0
 	dbsprite  3,  0,  0,  0, $24, 0
 
-.OAMData_GSIntroHoOh4:
+.OAMData_GSIntroHoOhLugia4:
 	db 17
 	dbsprite -4, -1,  0,  0, $00, 0
 	dbsprite -3, -2,  0,  0, $02, 0
@@ -665,7 +665,7 @@ SpriteAnimOAMData:
 	dbsprite  3, -2,  0,  0, $22, 0
 	dbsprite  3,  0,  0,  0, $24, 0
 
-.OAMData_GSIntroHoOh5:
+.OAMData_GSIntroHoOhLugia5:
 	db 17
 	dbsprite -4, -1,  0,  0, $00, 0
 	dbsprite -3, -2,  0,  0, $02, 0

@@ -18,7 +18,7 @@ TrainerHikerAnthony:
 	loadvar VAR_CALLERID, PHONE_HIKER_ANTHONY
 	endifjustbattled
 	opentext
-	checkflag ENGINE_ANTHONY
+	checkflag ENGINE_ANTHONY_READY_FOR_REMATCH
 	iftrue .Rematch
 	checkflag ENGINE_DUNSPARCE_SWARM
 	iftrue .Swarm
@@ -68,7 +68,7 @@ TrainerHikerAnthony:
 	startbattle
 	reloadmapafterbattle
 	loadmem wAnthonyFightCount, 1
-	clearflag ENGINE_ANTHONY
+	clearflag ENGINE_ANTHONY_READY_FOR_REMATCH
 	end
 
 .LoadFight1:
@@ -76,7 +76,7 @@ TrainerHikerAnthony:
 	startbattle
 	reloadmapafterbattle
 	loadmem wAnthonyFightCount, 2
-	clearflag ENGINE_ANTHONY
+	clearflag ENGINE_ANTHONY_READY_FOR_REMATCH
 	end
 
 .LoadFight2:
@@ -84,7 +84,7 @@ TrainerHikerAnthony:
 	startbattle
 	reloadmapafterbattle
 	loadmem wAnthonyFightCount, 3
-	clearflag ENGINE_ANTHONY
+	clearflag ENGINE_ANTHONY_READY_FOR_REMATCH
 	end
 
 .LoadFight3:
@@ -92,14 +92,14 @@ TrainerHikerAnthony:
 	startbattle
 	reloadmapafterbattle
 	loadmem wAnthonyFightCount, 4
-	clearflag ENGINE_ANTHONY
+	clearflag ENGINE_ANTHONY_READY_FOR_REMATCH
 	end
 
 .LoadFight4:
 	loadtrainer HIKER, ANTHONY5
 	startbattle
 	reloadmapafterbattle
-	clearflag ENGINE_ANTHONY
+	clearflag ENGINE_ANTHONY_READY_FOR_REMATCH
 	end
 
 .Swarm:

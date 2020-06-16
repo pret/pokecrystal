@@ -38,7 +38,7 @@ DoAnimFrame:
 	dw .FlyFrom
 	dw .FlyLeaf
 	dw .FlyTo
-	dw .GSIntroHoOh
+	dw .GSIntroHoOhLugia
 	dw .EZChatCursor
 	dw .MobileTradeSentPulse
 	dw .MobileTradeOTPulse
@@ -198,7 +198,7 @@ DoAnimFrame:
 	call DeinitializeSprite
 	ret
 
-.GSIntroHoOh
+.GSIntroHoOhLugia
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]

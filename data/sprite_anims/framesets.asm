@@ -36,7 +36,7 @@ SpriteAnimFrameData:
 	dw .Frameset_EggHatch2
 	dw .Frameset_EggHatch3
 	dw .Frameset_EggHatch4
-	dw .Frameset_GSIntroHoOh
+	dw .Frameset_GSIntroHoOhLugia
 	dw .Frameset_HeadbuttTree
 	dw .Frameset_EZChatCursor1
 	dw .Frameset_EZChatCursor2
@@ -325,13 +325,13 @@ SpriteAnimFrameData:
 	frame SPRITE_ANIM_OAMSET_EGG_HATCH, 32, OAM_X_FLIP, OAM_Y_FLIP
 	endanim
 
-.Frameset_GSIntroHoOh:
-	frame SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_1, 10
-	frame SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_2,  9
-	frame SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_3, 10
-	frame SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_4, 10
-	frame SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_3,  9
-	frame SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_5, 10
+.Frameset_GSIntroHoOhLugia:
+	frame SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_1, 10
+	frame SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_2,  9
+	frame SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_3, 10
+	frame SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_4, 10
+	frame SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_3,  9
+	frame SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_5, 10
 	dorestart
 
 .Frameset_HeadbuttTree:

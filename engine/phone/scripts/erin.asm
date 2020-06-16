@@ -1,6 +1,6 @@
 ErinPhoneCalleeScript:
 	gettrainername STRING_BUFFER_3, PICNICKER, ERIN1
-	checkflag ENGINE_ERIN
+	checkflag ENGINE_ERIN_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Female
 	checkflag ENGINE_ERIN_SATURDAY_NIGHT
@@ -20,7 +20,7 @@ ErinPhoneCalleeScript:
 ErinPhoneCallerScript:
 	gettrainername STRING_BUFFER_3, PICNICKER, ERIN1
 	farscall PhoneScript_GreetPhone_Female
-	checkflag ENGINE_ERIN
+	checkflag ENGINE_ERIN_READY_FOR_REMATCH
 	iftrue .GenericCall
 	checkflag ENGINE_ERIN_SATURDAY_NIGHT
 	iftrue .GenericCall
@@ -36,5 +36,5 @@ ErinSaturdayNight:
 
 ErinWantsBattle:
 	getlandmarkname STRING_BUFFER_5, LANDMARK_ROUTE_46
-	setflag ENGINE_ERIN
+	setflag ENGINE_ERIN_READY_FOR_REMATCH
 	farsjump PhoneScript_WantsToBattle_Female
