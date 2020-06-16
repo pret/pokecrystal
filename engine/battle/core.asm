@@ -1963,14 +1963,14 @@ RestoreHP:
 	ld b, a
 	ld a, [hl]
 	sbc b
-	jr c, .asm_3cd2d
+	jr c, .overflow
 	ld a, b
 	ld [hli], a
 	ld [wBuffer6], a
 	ld a, c
 	ld [hl], a
 	ld [wBuffer5], a
-.asm_3cd2d
+.overflow
 
 	call SwitchTurnCore
 	call UpdateHPBarBattleHuds
@@ -5958,7 +5958,7 @@ LoadEnemyMon:
 	jp nz, InitEnemyMon
 
 ; and also not in a BattleTower-Battle
-	ld a, [wInBattleTowerBattle] ; ????
+	ld a, [wInBattleTowerBattle]
 	bit 0, a
 	jp nz, InitEnemyMon
 
@@ -7764,7 +7764,6 @@ GoodComeBackText:
 	text_end
 
 Unreferenced_TextJump_ComeBack:
-; this function doesn't seem to be used
 	ld hl, ComeBackText
 	ret
 
@@ -8127,8 +8126,8 @@ InitEnemyTrainer:
 	jr nz, .ok
 	xor a
 	ld [wOTPartyMon1Item], a
-.ok
 
+.ok
 	ld de, vTiles2
 	callfar GetTrainerPic
 	xor a
@@ -8374,21 +8373,21 @@ DisplayLinkBattleResult:
 	ld a, [wBattleResult]
 	and $f
 	cp LOSE
-	jr c, .victory ; WIN
-	jr z, .loss ; LOSE
+	jr c, .win ; WIN
+	jr z, .lose ; LOSE
 	; DRAW
 	farcall StubbedTrainerRankings_ColosseumDraws
 	ld de, .Draw
 	jr .store_result
 
-.victory
+.win
 	farcall StubbedTrainerRankings_ColosseumWins
-	ld de, .Win
+	ld de, .YouWin
 	jr .store_result
 
-.loss
+.lose
 	farcall StubbedTrainerRankings_ColosseumLosses
-	ld de, .Lose
+	ld de, .YouLose
 	jr .store_result
 
 .store_result
@@ -8418,23 +8417,23 @@ DisplayLinkBattleResult:
 	call ClearTilemap
 	ret
 
-.Win:
+.YouWin:
 	db "YOU WIN@"
-.Lose:
+.YouLose:
 	db "YOU LOSE@"
 .Draw:
 	db "  DRAW@"
 
 .Mobile_InvalidBattle:
 	hlcoord 6, 8
-	ld de, .Invalid
+	ld de, .InvalidBattle
 	call PlaceString
 	ld c, 200
 	call DelayFrames
 	call ClearTilemap
 	ret
 
-.Invalid:
+.InvalidBattle:
 	db "INVALID BATTLE@"
 
 IsMobileBattle2:
@@ -9013,7 +9012,7 @@ CopyBackpic:
 	ld de, vTiles2 tile $31
 	ldh a, [hROMBank]
 	ld b, a
-	ld c, $31
+	ld c, 7 * 7
 	call Get2bpp
 	pop af
 	ldh [rSVBK], a

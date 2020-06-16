@@ -349,7 +349,7 @@ SurfFunction:
 .TrySurf:
 	ld de, ENGINE_FOGBADGE
 	call CheckBadge
-	jr c, .asm_c956
+	jr c, .nofogbadge
 	ld hl, wBikeFlags
 	bit BIKEFLAGS_ALWAYS_ON_BIKE_F, [hl]
 	jr nz, .cannotsurf
@@ -368,7 +368,7 @@ SurfFunction:
 	jr c, .cannotsurf
 	ld a, $1
 	ret
-.asm_c956
+.nofogbadge
 	ld a, $80
 	ret
 .alreadyfail
@@ -407,7 +407,7 @@ UsedSurfScript:
 	waitbutton
 	closetext
 
-	callasm .empty_fn ; empty function
+	callasm .stubbed_fn
 
 	readmem wBuffer2
 	writevar VAR_MOVEMENT
@@ -419,7 +419,7 @@ UsedSurfScript:
 	applymovement PLAYER, wMovementBuffer
 	end
 
-.empty_fn
+.stubbed_fn
 	farcall StubbedTrainerRankings_Surf
 	ret
 
@@ -1369,7 +1369,7 @@ RockSmashScript:
 	special WaitSFX
 	playsound SFX_STRENGTH
 	earthquake 84
-	applymovementlasttalked MovementData_0xcf55
+	applymovementlasttalked MovementData_RockSmash
 	disappear -2
 
 	callasm RockMonEncounter
@@ -1381,7 +1381,7 @@ RockSmashScript:
 .done
 	end
 
-MovementData_0xcf55:
+MovementData_RockSmash:
 	rock_smash 10
 	step_end
 
@@ -1591,11 +1591,11 @@ Script_FishCastRod:
 	loademote EMOTE_ROD
 	callasm LoadFishingGFX
 	loademote EMOTE_SHOCK
-	applymovement PLAYER, MovementData_0xd093
+	applymovement PLAYER, MovementData_CastRod
 	pause 40
 	end
 
-MovementData_0xd093:
+MovementData_CastRod:
 	fish_cast_rod
 	step_end
 
@@ -1787,10 +1787,10 @@ AskCutScript:
 	opentext
 	writetext AskCutText
 	yesorno
-	iffalse .script_d1b8
+	iffalse .declined
 	callasm .CheckMap
 	iftrue Script_Cut
-.script_d1b8
+.declined
 	closetext
 	end
 

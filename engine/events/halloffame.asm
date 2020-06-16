@@ -278,7 +278,7 @@ HOF_SlideBackpic:
 	ldh a, [hSCX]
 	cp $70
 	ret z
-	add $4
+	add 4
 	ldh [hSCX], a
 	call DelayFrame
 	jr .backpicloop

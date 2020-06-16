@@ -380,8 +380,7 @@ CopyTrainerName:
 	pop de
 	ret
 
-Function39990:
-; This function is useless.
+Unreferenced_Function39990:
 	ld de, wStringBuffer1
 	push de
 	ld bc, NAME_LENGTH

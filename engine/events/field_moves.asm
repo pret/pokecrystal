@@ -204,7 +204,7 @@ Cut_SpawnAnimateLeaves:
 	ret
 
 Cut_StartWaiting:
-	ld a, $1
+	ld a, 1
 	ldh [hBGMapMode], a
 ; Cut_WaitAnimSFX
 	ld hl, wJumptableIndex
@@ -445,8 +445,8 @@ FlyFunction_FrameTimer:
 	sla a
 	add 8 * 8 ; gives a number in [$40, $50, $60, $70]
 	ld d, a
-	ld e, $0
-	ld a, SPRITE_ANIM_INDEX_FLY_LEAF ; fly land
+	ld e, 0
+	ld a, SPRITE_ANIM_INDEX_FLY_LEAF
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc

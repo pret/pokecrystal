@@ -2839,7 +2839,8 @@ BGEffect_FillLYOverridesBackup:
 	ret
 
 BGEffect_DisplaceLYOverridesBackup:
-	; e = a; d = [hLYOverrideEnd] - [hLYOverrideStart] - a
+	; e = a
+	; d = [hLYOverrideEnd] - [hLYOverrideStart] - a
 	push af
 	ld e, a
 	ldh a, [hLYOverrideStart]

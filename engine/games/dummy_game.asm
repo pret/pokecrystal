@@ -11,7 +11,7 @@ _DummyGame:
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	callfar ClearSpriteAnims
-	ld hl, LZ_e2221
+	ld hl, DummyGameLZ
 	ld de, vTiles2 tile $00
 	call Decompress
 	ld hl, Unknown_e00ed
@@ -586,5 +586,5 @@ DummyGame_InterpretJoypad_AnimateCursor:
 	ld [hl], a
 	ret
 
-LZ_e2221:
+DummyGameLZ:
 INCBIN "gfx/dummy_game/dummy_game.2bpp.lz"

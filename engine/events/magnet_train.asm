@@ -78,6 +78,7 @@ MagnetTrain:
 	ldh [hSCX], a
 	xor a
 	ldh [hBGMapMode], a
+
 	pop af
 	ldh [rSVBK], a
 	ret
@@ -127,7 +128,7 @@ MagnetTrain_LoadGFX_PlayMusic:
 	ldh [hSCX], a
 	ldh [hSCY], a
 
-	; Load the player sprite
+	; Load the player sprite's standing frames
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wPlayerGender)
@@ -139,7 +140,7 @@ MagnetTrain_LoadGFX_PlayMusic:
 	ld c, 4
 	call Request2bpp
 
-	; Load the trainer walking frame
+	; Load the player sprite's walking frames
 	ld hl, 12 tiles
 	add hl, de
 	ld d, h

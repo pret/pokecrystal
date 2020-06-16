@@ -41,7 +41,7 @@ _PlayBattleAnim:
 	pop af
 	ldh [hVBlank], a
 
-	ld a, $1
+	ld a, 1
 	ldh [hBGMapMode], a
 
 	call BattleAnimDelayFrame
@@ -155,9 +155,10 @@ BattleAnimRestoreHuds:
 	ld a, BANK(wCurBattleMon) ; aka BANK(wTempMon), BANK(wPartyMon1), and several others
 	ldh [rSVBK], a
 
+; this block should just be "call UpdateBattleHuds"
 	ld hl, UpdateBattleHuds
 	ld a, BANK(UpdatePlayerHUD)
-	rst FarCall ; Why not "call UpdateBattleHuds"?
+	rst FarCall
 
 	pop af
 	ldh [rSVBK], a
@@ -891,32 +892,34 @@ BattleAnimCmd_Transform:
 	push af
 	ld a, BANK(wCurPartySpecies)
 	ldh [rSVBK], a
-	ld a, [wCurPartySpecies] ; CurPartySpecies
+
+	ld a, [wCurPartySpecies]
 	push af
 
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .player
 
-	ld a, [wTempBattleMonSpecies] ; TempBattleMonSpecies
-	ld [wCurPartySpecies], a ; CurPartySpecies
-	ld hl, wBattleMonDVs ; BattleMonDVs
+	ld a, [wTempBattleMonSpecies]
+	ld [wCurPartySpecies], a
+	ld hl, wBattleMonDVs
 	predef GetUnownLetter
 	ld de, vTiles0 tile $00
 	predef GetMonFrontpic
 	jr .done
 
 .player
-	ld a, [wTempEnemyMonSpecies] ; TempEnemyMonSpecies
-	ld [wCurPartySpecies], a ; CurPartySpecies
-	ld hl, wEnemyMonDVs ; EnemyMonDVs
+	ld a, [wTempEnemyMonSpecies]
+	ld [wCurPartySpecies], a
+	ld hl, wEnemyMonDVs
 	predef GetUnownLetter
 	ld de, vTiles0 tile $00
 	predef GetMonBackpic
 
 .done
 	pop af
-	ld [wCurPartySpecies], a ; CurPartySpecies
+	ld [wCurPartySpecies], a
+
 	pop af
 	ldh [rSVBK], a
 	ret
@@ -945,11 +948,11 @@ BattleAnimCmd_RaiseSub:
 	push af
 	ld a, 1 ; unnecessary bankswitch?
 	ldh [rSVBK], a
-	xor a ; sScratch
+
+	xor a ; BANK(sScratch)
 	call GetSRAMBank
 
 GetSubstitutePic: ; used only for BANK(GetSubstitutePic)
-
 	ld hl, sScratch
 	ld bc, (7 * 7) tiles
 .loop
@@ -1004,6 +1007,7 @@ GetSubstitutePic: ; used only for BANK(GetSubstitutePic)
 
 .done
 	call CloseSRAM
+
 	pop af
 	ldh [rSVBK], a
 	ret
@@ -1019,11 +1023,13 @@ BattleAnimCmd_MinimizeOpp:
 	push af
 	ld a, 1 ; unnecessary bankswitch?
 	ldh [rSVBK], a
-	xor a ; sScratch
+
+	xor a ; BANK(sScratch)
 	call GetSRAMBank
 	call GetMinimizePic
 	call Request2bpp
 	call CloseSRAM
+
 	pop af
 	ldh [rSVBK], a
 	ret
@@ -1073,12 +1079,14 @@ BattleAnimCmd_Minimize:
 	push af
 	ld a, 1 ; unnecessary bankswitch?
 	ldh [rSVBK], a
-	xor a ; sScratch
+
+	xor a ; BANK(sScratch)
 	call GetSRAMBank
 	call GetMinimizePic
 	ld hl, vTiles0 tile $00
 	call Request2bpp
 	call CloseSRAM
+
 	pop af
 	ldh [rSVBK], a
 	ret
@@ -1089,7 +1097,7 @@ BattleAnimCmd_DropSub:
 	ld a, BANK(wCurPartySpecies)
 	ldh [rSVBK], a
 
-	ld a, [wCurPartySpecies] ; CurPartySpecies
+	ld a, [wCurPartySpecies]
 	push af
 	ldh a, [hBattleTurn]
 	and a
@@ -1103,7 +1111,8 @@ BattleAnimCmd_DropSub:
 
 .done
 	pop af
-	ld [wCurPartySpecies], a ; CurPartySpecies
+	ld [wCurPartySpecies], a
+
 	pop af
 	ldh [rSVBK], a
 	ret
@@ -1113,11 +1122,12 @@ BattleAnimCmd_BeatUp:
 	push af
 	ld a, BANK(wCurPartySpecies)
 	ldh [rSVBK], a
-	ld a, [wCurPartySpecies] ; CurPartySpecies
+
+	ld a, [wCurPartySpecies]
 	push af
 
 	ld a, [wBattleAnimParam]
-	ld [wCurPartySpecies], a ; CurPartySpecies
+	ld [wCurPartySpecies], a
 
 	ldh a, [hBattleTurn]
 	and a
@@ -1137,9 +1147,10 @@ BattleAnimCmd_BeatUp:
 
 .done
 	pop af
-	ld [wCurPartySpecies], a ; CurPartySpecies
+	ld [wCurPartySpecies], a
 	ld b, SCGB_BATTLE_COLORS
 	call GetSGBLayout
+
 	pop af
 	ldh [rSVBK], a
 	ret
@@ -1176,7 +1187,7 @@ BattleAnimCmd_Sound:
 	ld [wSFXDuration], a
 	call .GetCryTrack
 	maskbits NUM_NOISE_CHANS
-	ld [wCryTracks], a ; CryTracks
+	ld [wCryTracks], a
 
 	ld e, a
 	ld d, 0
@@ -1220,7 +1231,7 @@ endr
 
 	ldh a, [rSVBK]
 	push af
-	ld a, BANK(wEnemyMon) ; wBattleMon is in WRAM0, but EnemyMon is in WRAMX
+	ld a, BANK(wEnemyMon) ; wBattleMon is in WRAM0, but wEnemyMon is in WRAMX
 	ldh [rSVBK], a
 
 	ldh a, [hBattleTurn]
@@ -1263,14 +1274,14 @@ endr
 	ld a, [hli]
 	ld c, a
 	ld b, [hl]
-	ld hl, wCryLength ; CryLength
+	ld hl, wCryLength
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	add hl, bc
 
 	ld a, l
-	ld [wCryLength], a ; CryLength
+	ld [wCryLength], a
 	ld a, h
 	ld [wCryLength + 1], a
 	ld a, 1
@@ -1347,7 +1358,7 @@ ClearBattleAnims::
 	ld hl, wLYOverrides
 	ld bc, wBattleAnimEnd - wLYOverrides
 .loop
-	ld [hl], $0
+	ld [hl], 0
 	inc hl
 	dec bc
 	ld a, c

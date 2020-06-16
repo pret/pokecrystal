@@ -55,7 +55,7 @@ DoBattleTransition:
 	ldh [hLYOverrideEnd], a
 	ldh [hSCY], a
 
-	ld a, 1 ; unnecessary bankswitch?
+	ld a, $1 ; unnecessary bankswitch?
 	ldh [rSVBK], a
 	pop af
 	ldh [hVBlank], a
@@ -313,7 +313,6 @@ StartTrainerBattle_SetUpForWavyOutro:
 	farcall Function5602
 	ld a, BANK(wLYOverrides)
 	ldh [rSVBK], a
-
 	call StartTrainerBattle_NextScene
 
 	ld a, LOW(rSCX)
@@ -349,7 +348,7 @@ StartTrainerBattle_SineWave:
 	ld [hl], a
 	ld a, wLYOverridesEnd - wLYOverrides
 	ld bc, wLYOverrides
-	ld e, $0
+	ld e, 0
 
 .loop
 	push af
@@ -360,7 +359,7 @@ StartTrainerBattle_SineWave:
 	inc bc
 	pop de
 	ld a, e
-	add $2
+	add 2
 	ld e, a
 	pop af
 	dec a
@@ -391,7 +390,7 @@ endr
 	jr z, .end
 	ld [wcf65], a
 	call .load
-	ld a, $1
+	ld a, 1
 	ldh [hBGMapMode], a
 	call DelayFrame
 	call DelayFrame
@@ -400,7 +399,7 @@ endr
 	ret
 
 .end
-	ld a, $1
+	ld a, 1
 	ldh [hBGMapMode], a
 	call DelayFrame
 	call DelayFrame
@@ -516,7 +515,7 @@ StartTrainerBattle_SetUpForRandomScatterOutro:
 	call StartTrainerBattle_NextScene
 	ld a, $10
 	ld [wcf64], a
-	ld a, $1
+	ld a, 1
 	ldh [hBGMapMode], a
 	ret
 
@@ -585,35 +584,36 @@ StartTrainerBattle_LoadPokeBallGraphics:
 
 	xor a
 	ldh [hBGMapMode], a
+
 	hlcoord 0, 0, wAttrmap
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
 	inc b
 	inc c
 	jr .enter_loop_midway
 
-.loop
+.pal_loop
 ; set all pals to 7
 	ld a, [hl]
-	or %00000111
+	or PAL_BG_TEXT
 	ld [hli], a
 .enter_loop_midway
 	dec c
-	jr nz, .loop
+	jr nz, .pal_loop
 	dec b
-	jr nz, .loop
+	jr nz, .pal_loop
 
 	call .loadpokeballgfx
 	hlcoord 2, 1
 
 	ld b, SCREEN_WIDTH - 4
-.loop2
+.tile_loop
 	push hl
 	ld c, 2
-.loop3
+.row_loop
 	push hl
 	ld a, [de]
 	inc de
-.loop4
+.col_loop
 ; Loading is done bit by bit
 	and a
 	jr z, .done
@@ -622,7 +622,7 @@ StartTrainerBattle_LoadPokeBallGraphics:
 	ld [hl], BATTLETRANSITION_SQUARE
 .no_load
 	inc hl
-	jr .loop4
+	jr .col_loop
 
 .done
 	pop hl
@@ -631,7 +631,7 @@ StartTrainerBattle_LoadPokeBallGraphics:
 	add hl, bc
 	pop bc
 	dec c
-	jr nz, .loop3
+	jr nz, .row_loop
 
 	pop hl
 	push bc
@@ -639,12 +639,12 @@ StartTrainerBattle_LoadPokeBallGraphics:
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .loop2
+	jr nz, .tile_loop
 
 	ldh a, [hCGB]
 	and a
 	jr nz, .cgb
-	ld a, $1
+	ld a, 1
 	ldh [hBGMapMode], a
 	call DelayFrame
 	call DelayFrame
@@ -673,7 +673,7 @@ StartTrainerBattle_LoadPokeBallGraphics:
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
-	ld a, $1
+	ld a, 1
 	ldh [hCGBPalUpdate], a
 	call DelayFrame
 	call BattleStart_CopyTilemapAtOnce
@@ -827,7 +827,7 @@ ENDM
 	ret
 
 Unreferenced_Function8c7c9:
-	ld a, $1
+	ld a, 1
 	ldh [hBGMapMode], a
 	call WaitBGMap
 	xor a
