@@ -94,8 +94,8 @@ Unreferenced_DMATransfer:
 	ldh [hBGMapMode], a
 	ret
 
-ReplaceKrisSprite::
-	farcall _ReplaceKrisSprite
+UpdatePlayerSprite::
+	farcall _UpdatePlayerSprite
 	ret
 
 LoadStandardFont::

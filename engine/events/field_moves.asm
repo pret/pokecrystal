@@ -72,7 +72,7 @@ ShakeHeadbuttTree:
 	ld hl, vTiles1
 	lb bc, BANK(Font), 12
 	call Get1bpp
-	call ReplaceKrisSprite
+	call UpdatePlayerSprite
 	ret
 
 HeadbuttTreeGFX:

@@ -1766,7 +1766,7 @@ First, edit `UsedSurfScript` in [engine/events/overworld.asm](https://github.com
  	readmem wBuffer2
  	writevar VAR_MOVEMENT
 
- 	special ReplaceKrisSprite
+ 	special UpdatePlayerSprite
  	special PlayMapMusic
 -; step into the water (slow_step DIR, step_end)
  	special SurfStartStep

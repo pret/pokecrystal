@@ -412,7 +412,7 @@ UsedSurfScript:
 	readmem wBuffer2
 	writevar VAR_MOVEMENT
 
-	special ReplaceKrisSprite
+	special UpdatePlayerSprite
 	special PlayMapMusic
 ; step into the water (slow_step DIR, step_end)
 	special SurfStartStep
@@ -628,7 +628,7 @@ FlyFunction:
 .ReturnFromFly:
 	farcall Function561d
 	call DelayFrame
-	call ReplaceKrisSprite
+	call UpdatePlayerSprite
 	farcall LoadOverworldFont
 	ret
 
@@ -1605,7 +1605,7 @@ PutTheRodAway:
 	ld a, $1
 	ld [wPlayerAction], a
 	call UpdateSprites
-	call ReplaceKrisSprite
+	call UpdatePlayerSprite
 	ret
 
 RodBiteText:
@@ -1713,13 +1713,13 @@ Script_GetOnBike:
 	writetext GotOnBikeText
 	waitbutton
 	closetext
-	special ReplaceKrisSprite
+	special UpdatePlayerSprite
 	end
 
 Script_GetOnBike_Register:
 	loadvar VAR_MOVEMENT, PLAYER_BIKE
 	closetext
-	special ReplaceKrisSprite
+	special UpdatePlayerSprite
 	end
 
 ; unused
@@ -1735,7 +1735,7 @@ Script_GetOffBike:
 
 FinishGettingOffBike:
 	closetext
-	special ReplaceKrisSprite
+	special UpdatePlayerSprite
 	special PlayMapMusic
 	end
 

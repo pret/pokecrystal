@@ -437,7 +437,7 @@ Pokecenter2F_CheckGender:
 	special SetPlayerPalette
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingLeft
 	setflag ENGINE_KRIS_IN_CABLE_CLUB
-	special ReplaceKrisSprite
+	special UpdatePlayerSprite
 	opentext
 	writetext Text_LikeTheLook
 	waitbutton
@@ -463,7 +463,7 @@ Script_WalkOutOfLinkTradeRoom:
 	setval (PAL_NPC_BLUE << 4)
 	special SetPlayerPalette
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingLeft
-	special ReplaceKrisSprite
+	special UpdatePlayerSprite
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerTakesTwoStepsDown_2
 	applymovement POKECENTER2F_TRADE_RECEPTIONIST, Pokecenter2FMovementData_ReceptionistStepsRightAndDown
 	end
@@ -485,7 +485,7 @@ Script_WalkOutOfLinkBattleRoom:
 	setval (PAL_NPC_BLUE << 4)
 	special SetPlayerPalette
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingLeft
-	special ReplaceKrisSprite
+	special UpdatePlayerSprite
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerTakesTwoStepsDown_2
 	applymovement POKECENTER2F_BATTLE_RECEPTIONIST, Pokecenter2FMovementData_ReceptionistStepsRightAndDown
 	end
@@ -546,7 +546,7 @@ TimeCapsuleScript_CheckPlayerGender:
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingDown
 	faceobject PLAYER, POKECENTER2F_TIME_CAPSULE_RECEPTIONIST
 	setflag ENGINE_KRIS_IN_CABLE_CLUB
-	special ReplaceKrisSprite
+	special UpdatePlayerSprite
 	opentext
 	writetext Text_LikeTheLook
 	waitbutton
@@ -573,7 +573,7 @@ Script_LeftTimeCapsule:
 	setval (PAL_NPC_BLUE << 4)
 	special SetPlayerPalette
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingLeft
-	special ReplaceKrisSprite
+	special UpdatePlayerSprite
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerTakesOneStepDown
 	applymovement POKECENTER2F_TIME_CAPSULE_RECEPTIONIST, Pokecenter2FMovementData_ReceptionistStepsRightLooksDown_2
 .Done:

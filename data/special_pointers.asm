@@ -67,7 +67,7 @@ SpecialsPointers::
 	add_special UpdateTimePals ; bank 0
 	add_special ClearTilemap ; bank 0
 	add_special UpdateSprites ; bank 0
-	add_special ReplaceKrisSprite ; bank 0
+	add_special UpdatePlayerSprite ; bank 0
 	add_special GameCornerPrizeMonCheckDex
 	add_special UnusedSetSeenMon
 	add_special WaitSFX ; bank 0

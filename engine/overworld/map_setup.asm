@@ -142,7 +142,7 @@ SkipUpdateMapSprites:
 	set PLAYERSPRITESETUP_SKIP_RELOAD_GFX_F, [hl]
 	ret
 
-CheckReplaceKrisSprite:
+CheckUpdatePlayerSprite:
 	nop
 	call .CheckBiking
 	jr c, .ok
@@ -153,7 +153,7 @@ CheckReplaceKrisSprite:
 	ret
 
 .ok
-	call ReplaceKrisSprite
+	call UpdatePlayerSprite
 	ret
 
 .CheckBiking:
