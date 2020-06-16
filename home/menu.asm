@@ -116,8 +116,8 @@ RestoreTileBackup::
 	ret
 
 PopWindow::
-	ld b, $10
-	ld de, wMenuFlags
+	ld b, wMenuHeaderEnd - wMenuHeader
+	ld de, wMenuHeader
 .loop
 	ld a, [hld]
 	ld [de], a
@@ -148,8 +148,8 @@ CopyMenuData::
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, wMenuDataFlags
-	ld bc, wMenuDataEnd - wMenuDataFlags
+	ld de, wMenuData
+	ld bc, wMenuDataEnd - wMenuData
 	call CopyBytes
 	pop af
 	pop bc

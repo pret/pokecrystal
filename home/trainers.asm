@@ -15,7 +15,7 @@ _CheckTrainerBattle::
 
 ; Skip the player object.
 	ld a, 1
-	ld de, wMapObjects + MAPOBJECT_LENGTH
+	ld de, wMap1Object
 
 .loop
 

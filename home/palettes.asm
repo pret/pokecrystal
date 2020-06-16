@@ -81,6 +81,7 @@ DmgToCgbBGPals::
 	push hl
 	push de
 	push bc
+
 	ldh a, [rSVBK]
 	push af
 
@@ -102,6 +103,7 @@ DmgToCgbBGPals::
 
 	pop af
 	ldh [rSVBK], a
+
 	pop bc
 	pop de
 	pop hl
@@ -127,6 +129,7 @@ DmgToCgbObjPals::
 	push hl
 	push de
 	push bc
+
 	ldh a, [rSVBK]
 	push af
 
@@ -148,6 +151,7 @@ DmgToCgbObjPals::
 
 	pop af
 	ldh [rSVBK], a
+
 	pop bc
 	pop de
 	pop hl

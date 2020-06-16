@@ -211,7 +211,7 @@
 
 ; Japanese control characters (see home/text.asm)
 
-	charmap "<JP_18>",   $18 ; "ノ゛"? (ungrammatical)
+	charmap "<JP_18>",   $18 ; "ノ゛" (ungrammatical)
 	charmap "<NI>",      $1d ; "に　"
 	charmap "<TTE>",     $1e ; "って"
 	charmap "<WO>",      $1f ; "を　"

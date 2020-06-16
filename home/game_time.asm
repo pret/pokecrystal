@@ -16,13 +16,13 @@ GameTimer::
 	ld a, BANK(wGameTime)
 	ldh [rSVBK], a
 
-	call UpdateGameTimer
+	call .Function
 
 	pop af
 	ldh [rSVBK], a
 	ret
 
-UpdateGameTimer::
+.Function
 ; Increment the game timer by one frame.
 ; The game timer is capped at 999:59:59.00.
 

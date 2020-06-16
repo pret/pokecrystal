@@ -184,8 +184,8 @@ VBlank1::
 	call Serve2bppRequest_VBlank
 
 	call hTransferVirtualOAM
-.done
 
+.done
 	xor a
 	ld [wVBlankOccurred], a
 

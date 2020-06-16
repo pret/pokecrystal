@@ -1,4 +1,5 @@
-; Functions to copy data from ROM.
+TILES_PER_CYCLE EQU 8
+MOBILE_TILES_PER_CYCLE EQU 6
 
 Get2bppViaHDMA::
 	ldh a, [rLCDC]
@@ -31,7 +32,7 @@ FarCopyBytesDouble_DoubleBankSwitch::
 	rst Bankswitch
 	ret
 
-UnreferencedOldDMATransfer:
+Unreferenced_DMATransfer:
 	dec c
 	ldh a, [hBGMapMode]
 	push af
@@ -55,12 +56,12 @@ UnreferencedOldDMATransfer:
 	ld a, l
 	and $f0
 	ldh [rHDMA4], a ; target LSB
-; stop when c < 8
+; stop when c < TILES_PER_CYCLE
 	ld a, c
-	cp $8
+	cp TILES_PER_CYCLE
 	jr c, .done
-; decrease c by 8
-	sub $8
+; decrease c by TILES_PER_CYCLE
+	sub TILES_PER_CYCLE
 	ld c, a
 ; DMA transfer state
 	ld a, $f
@@ -198,7 +199,7 @@ Request2bpp::
 
 	ldh a, [hTilesPerCycle]
 	push af
-	ld a, $8
+	ld a, TILES_PER_CYCLE
 	ldh [hTilesPerCycle], a
 
 	ld a, [wLinkMode]
@@ -207,7 +208,7 @@ Request2bpp::
 	ldh a, [hMobile]
 	and a
 	jr nz, .NotMobile
-	ld a, $6
+	ld a, MOBILE_TILES_PER_CYCLE
 	ldh [hTilesPerCycle], a
 
 .NotMobile:
@@ -223,7 +224,7 @@ Request2bpp::
 	ld a, c
 	ld hl, hTilesPerCycle
 	cp [hl]
-	jr nc, .iterate
+	jr nc, .cycle
 
 	ld [wRequested2bpp], a
 .wait
@@ -242,7 +243,7 @@ Request2bpp::
 	ldh [hBGMapMode], a
 	ret
 
-.iterate
+.cycle
 	ldh a, [hTilesPerCycle]
 	ld [wRequested2bpp], a
 
@@ -272,7 +273,7 @@ Request1bpp::
 
 	ldh a, [hTilesPerCycle]
 	push af
-	ld a, $8
+	ld a, TILES_PER_CYCLE
 	ldh [hTilesPerCycle], a
 
 	ld a, [wLinkMode]
@@ -281,7 +282,7 @@ Request1bpp::
 	ldh a, [hMobile]
 	and a
 	jr nz, .NotMobile
-	ld a, $6
+	ld a, MOBILE_TILES_PER_CYCLE
 	ldh [hTilesPerCycle], a
 
 .NotMobile:
@@ -297,7 +298,7 @@ Request1bpp::
 	ld a, c
 	ld hl, hTilesPerCycle
 	cp [hl]
-	jr nc, .iterate
+	jr nc, .cycle
 
 	ld [wRequested1bpp], a
 .wait
@@ -316,7 +317,7 @@ Request1bpp::
 	ldh [hBGMapMode], a
 	ret
 
-.iterate
+.cycle
 	ldh a, [hTilesPerCycle]
 	ld [wRequested1bpp], a
 
@@ -348,7 +349,7 @@ Copy2bpp:
 ; bank
 	ld a, b
 
-; bc = c * $10
+; bc = c * LEN_2BPP_TILE
 	push af
 	swap c
 	ld a, $f
@@ -376,7 +377,7 @@ Copy1bpp::
 ; bank
 	ld a, b
 
-; bc = c * $10 / 2
+; bc = c * LEN_1BPP_TILE
 	push af
 	ld h, 0
 	ld l, c

@@ -21,15 +21,15 @@ Reset::
 _Start::
 	cp $11
 	jr z, .cgb
-	xor a
+	xor a ; FALSE
 	jr .load
 
 .cgb
-	ld a, $1
+	ld a, TRUE
 
 .load
 	ldh [hCGB], a
-	ld a, $1
+	ld a, TRUE
 	ldh [hSystemBooted], a
 
 Init::
@@ -74,7 +74,7 @@ Init::
 	or c
 	jr nz, .ByteFill
 
-	ld sp, wStack
+	ld sp, wStackTop
 
 ; Clear HRAM
 	ldh a, [hCGB]
@@ -97,7 +97,7 @@ Init::
 	call ClearSprites
 	call ClearsScratch
 
-	ld a, BANK(GameInit) ; aka BANK(WriteOAMDMACodeToHRAM)
+	ld a, BANK(WriteOAMDMACodeToHRAM) ; aka BANK(GameInit)
 	rst Bankswitch
 
 	call WriteOAMDMACodeToHRAM
@@ -142,7 +142,7 @@ Init::
 
 	farcall StartClock
 
-	xor a
+	xor a ; SRAM_DISABLE
 	ld [MBC3LatchClock], a
 	ld [MBC3SRamEnable], a
 
@@ -160,7 +160,7 @@ Init::
 
 	call DelayFrame
 
-	predef InitSGBBorder ; SGB init
+	predef InitSGBBorder
 
 	call InitSound
 	xor a

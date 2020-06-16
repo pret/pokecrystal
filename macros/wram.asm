@@ -242,14 +242,14 @@ link_battle_record: MACRO
 ENDM
 
 trademon: MACRO
-\1Species::     db ; wc6d0 | wc702
-\1SpeciesName:: ds MON_NAME_LENGTH ; wc6d1 | wc703
-\1Nickname::    ds MON_NAME_LENGTH ; wc6dc | wc70e
-\1SenderName::  ds NAME_LENGTH ; wc6e7 | wc719
-\1OTName::      ds NAME_LENGTH ; wc6f2 | wc724
-\1DVs::         dw ; wc6fd | wc72f
-\1ID::          dw ; wc6ff | wc731
-\1CaughtData::  db ; wc701 | wc733
+\1Species::     db
+\1SpeciesName:: ds MON_NAME_LENGTH
+\1Nickname::    ds MON_NAME_LENGTH
+\1SenderName::  ds NAME_LENGTH
+\1OTName::      ds NAME_LENGTH
+\1DVs::         dw
+\1ID::          dw
+\1CaughtData::  db
 \1End::
 ENDM
 
