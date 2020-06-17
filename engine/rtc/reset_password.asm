@@ -13,7 +13,7 @@ _ResetClock:
 	call VerticalMenu
 	ret c
 	ld a, [wMenuCursorY]
-	cp $1
+	cp 1
 	ret z
 	call ClockResetPassword
 	jr c, .wrongpassword
@@ -62,7 +62,7 @@ ClockResetPassword:
 	ld bc, 5
 	xor a
 	call ByteFill
-	ld a, $4
+	ld a, 4
 	ld [wStringBuffer2 + 5], a
 	ld hl, .PasswordAskEnterText
 	call PrintText
@@ -120,7 +120,7 @@ ClockResetPassword:
 	hlcoord 14, 16
 	ld a, [wStringBuffer2 + 5]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld [hl], "▲"
 	ret
@@ -150,7 +150,7 @@ ClockResetPassword:
 
 .right
 	ld a, [wStringBuffer2 + 5]
-	cp $4
+	cp 4
 	ret z
 	inc a
 	ld [wStringBuffer2 + 5], a
@@ -166,7 +166,7 @@ ClockResetPassword:
 	ret
 
 .wraparound_up
-	ld [hl], $0
+	ld [hl], 0
 	ret
 
 .down
@@ -219,13 +219,13 @@ ClockResetPassword:
 	call GetSRAMBank
 	ld de, 0
 	ld hl, sPlayerData + (wPlayerID - wPlayerData)
-	ld c, $2
+	ld c, 2
 	call .ComponentFromNumber
 	ld hl, sPlayerData + (wPlayerName - wPlayerData)
 	ld c, NAME_LENGTH_JAPANESE - 1
 	call .ComponentFromString
 	ld hl, sPlayerData + (wMoney - wPlayerData)
-	ld c, $3
+	ld c, 3
 	call .ComponentFromNumber
 	call CloseSRAM
 	ret
@@ -234,7 +234,7 @@ ClockResetPassword:
 	ld a, [hli]
 	add e
 	ld e, a
-	ld a, $0
+	ld a, 0
 	adc d
 	ld d, a
 	dec c
@@ -247,7 +247,7 @@ ClockResetPassword:
 	ret z
 	add e
 	ld e, a
-	ld a, $0
+	ld a, 0
 	adc d
 	ld d, a
 	dec c

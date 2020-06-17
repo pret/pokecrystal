@@ -2,7 +2,7 @@ _AnimateTileset::
 ; Iterate over a given pointer array of
 ; animation functions (one per frame).
 
-; Typically in wra1, vra0
+; Typically in WRAM bank 1, VRAM bank 0.
 
 	ld a, [wTilesetAnim]
 	ld e, a
@@ -214,16 +214,16 @@ TilesetIcePathAnim:
 	dw NULL,  DoneTileAnimation
 
 TilesetTowerAnim:
-	dw TowerPillarTilePointer9,  AnimateTowerPillarTile
+	dw TowerPillarTilePointer9, AnimateTowerPillarTile
 	dw TowerPillarTilePointer10, AnimateTowerPillarTile
-	dw TowerPillarTilePointer7,  AnimateTowerPillarTile
-	dw TowerPillarTilePointer8,  AnimateTowerPillarTile
-	dw TowerPillarTilePointer5,  AnimateTowerPillarTile
-	dw TowerPillarTilePointer6,  AnimateTowerPillarTile
-	dw TowerPillarTilePointer3,  AnimateTowerPillarTile
-	dw TowerPillarTilePointer4,  AnimateTowerPillarTile
-	dw TowerPillarTilePointer1,  AnimateTowerPillarTile
-	dw TowerPillarTilePointer2,  AnimateTowerPillarTile
+	dw TowerPillarTilePointer7, AnimateTowerPillarTile
+	dw TowerPillarTilePointer8, AnimateTowerPillarTile
+	dw TowerPillarTilePointer5, AnimateTowerPillarTile
+	dw TowerPillarTilePointer6, AnimateTowerPillarTile
+	dw TowerPillarTilePointer3, AnimateTowerPillarTile
+	dw TowerPillarTilePointer4, AnimateTowerPillarTile
+	dw TowerPillarTilePointer1, AnimateTowerPillarTile
+	dw TowerPillarTilePointer2, AnimateTowerPillarTile
 	dw NULL,  StandingTileFrame
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -658,7 +658,6 @@ FlowerTileFrames:
 	INCBIN "gfx/tilesets/flower/cgb_2.2bpp"
 
 LavaBubbleAnim1:
-; Splash in the bottom-right corner of the fountain.
 	ld hl, sp+0
 	ld b, h
 	ld c, l
@@ -678,7 +677,6 @@ LavaBubbleAnim1:
 	jp WriteTile
 
 LavaBubbleAnim2:
-; Splash in the top-left corner of the fountain.
 	ld hl, sp+0
 	ld b, h
 	ld c, l

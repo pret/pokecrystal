@@ -1055,8 +1055,8 @@ Pokedex_ListingPosChanged:
 	ret
 
 Pokedex_FillColumn:
-; Fills a column starting at HL, going downwards.
-; B is the height of the column and A is the tile it's filled with.
+; Fills a column starting at hl, going downwards.
+; b is the height of the column, and a is the tile it's filled with.
 	push de
 	ld de, SCREEN_WIDTH
 .loop
@@ -2305,7 +2305,6 @@ Pokedex_FillBox:
 	jp FillBoxWithByte
 
 Pokedex_BlackOutBG:
-; Make BG palettes black so that the BG becomes all black.
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wBGPals1)

@@ -188,19 +188,19 @@ endr
 ReplaceTimeOfDayPals:
 	ld hl, .BrightnessLevels
 	ld a, [wMapTimeOfDay]
-	cp $4 ; Dark cave, needs Flash
-	jr z, .DarkCave
+	cp PALETTE_DARK
+	jr z, .NeedsFlash
 	and $7
 	add l
 	ld l, a
-	ld a, $0
+	ld a, 0
 	adc h
 	ld h, a
 	ld a, [hl]
 	ld [wTimeOfDayPalset], a
 	ret
 
-.DarkCave:
+.NeedsFlash:
 	ld a, [wStatusFlags]
 	bit STATUSFLAGS_FLASH_F, a
 	jr nz, .UsedFlash
@@ -319,7 +319,7 @@ GetTimePalFade:
 ; get fade table
 	push bc
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, .dmgfades
 	add hl, bc
 	add hl, bc
@@ -329,13 +329,13 @@ GetTimePalFade:
 	pop bc
 
 ; get place in fade table
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ret
 
 .cgb
 	ld hl, .cgbfade
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ret
 

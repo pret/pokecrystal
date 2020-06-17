@@ -71,7 +71,7 @@ PrintDexEntry:
 	ld hl, hVBlank
 	ld a, [hl]
 	push af
-	ld [hl], $4
+	ld [hl], 4
 
 	ld a, 8 ; 16 rows
 	ld [wPrinterQueueLength], a
@@ -904,7 +904,7 @@ Printer_PlaceBottomBorders:
 
 Printer_PlaceEmptyBoxSlotString:
 	hlcoord 2, 0
-	ld c, $6
+	ld c, 6
 .loop
 	push bc
 	push hl

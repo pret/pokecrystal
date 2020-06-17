@@ -74,11 +74,11 @@ StageRTCTimeForSave:
 	ret
 
 SaveRTC:
-	ld a, $a
+	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
 	call LatchClock
 	ld hl, MBC3RTC
-	ld a, $c
+	ld a, RTC_DH
 	ld [MBC3SRamBank], a
 	res 7, [hl]
 	ld a, BANK(sRTCStatusFlags)
