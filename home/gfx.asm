@@ -118,7 +118,7 @@ LoadFontsExtra2:
 DecompressRequest2bpp::
 	push de
 	ld a, BANK(sScratch)
-	call GetSRAMBank
+	call OpenSRAM
 	push bc
 
 	ld de, sScratch

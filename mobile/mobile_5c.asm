@@ -37,7 +37,7 @@ Function170000:
 
 Function17005a:
 	ld a, $5
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [$a824]
 	ld [wOTTrademonSpecies], a
 	ld hl, $a827
@@ -75,7 +75,7 @@ INCLUDE "engine/events/battle_tower/battle_tower.asm"
 
 Function170be4:
 	ld a, $5
-	call GetSRAMBank
+	call OpenSRAM
 	xor a
 	ld hl, $a894
 	ld bc, $0008
@@ -85,7 +85,7 @@ Function170be4:
 
 Clears5_a89a:
 	ld a, $5
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, $a89a
 	xor a
 	ld [hli], a
@@ -95,7 +95,7 @@ Clears5_a89a:
 
 Function170c06:
 	ld a, $5
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, $a894
 	ld a, [wBattleResult]
 	and a ; WIN?
@@ -589,7 +589,7 @@ Function171bdc:
 
 Function171beb:
 	ld a, $5
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [wcd4a]
 	ld [$aa4a], a
 	call CloseSRAM

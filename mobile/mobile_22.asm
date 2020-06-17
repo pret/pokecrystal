@@ -15,7 +15,7 @@ String_89153:
 OpenSRAMBank4:
 	push af
 	ld a, $4
-	call GetSRAMBank
+	call OpenSRAM
 	pop af
 	ret
 

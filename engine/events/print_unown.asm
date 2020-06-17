@@ -159,7 +159,7 @@ _UnownPrinter:
 	ldh [rSVBK], a
 
 	ld a, BANK(sScratch)
-	call GetSRAMBank
+	call OpenSRAM
 	ld de, wDecompressScratch
 	ld hl, sScratch
 	ldh a, [hROMBank]
@@ -180,7 +180,7 @@ _UnownPrinter:
 	ld de, UnownDexVacantString
 	call PlaceString
 	xor a ; sScratch
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, sScratch
 	ld bc, $31 tiles
 	xor a

@@ -1,4 +1,4 @@
-Copyright_GFPresents:
+Copyright_GameFreakPresents:
 ; Play the copyright screen and GameFreak Presents sequence.
 ; Return carry if user cancels animation by pressing a button.
 
@@ -13,7 +13,7 @@ Copyright_GFPresents:
 	ldh [hJoyDown], a
 	ldh [hSCX], a
 	ldh [hSCY], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	call WaitBGMap
 	ld b, SCGB_GAMEFREAK_LOGO
@@ -116,32 +116,23 @@ Copyright_GFPresents:
 	ret
 
 PlaceGameFreakPresents:
-	ld a, [wJumptableIndex]
-	ld e, a
-	ld d, 0
-	ld hl, .dw
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	jumptable .scenes, wJumptableIndex
 
-.dw
-	dw PlaceGameFreakPresents_0
-	dw PlaceGameFreakPresents_1
-	dw PlaceGameFreakPresents_2
-	dw PlaceGameFreakPresents_3
+.scenes
+	dw GameFreakPresentsScene0
+	dw GameFreakPresentsScene1
+	dw GameFreakPresentsScene2
+	dw GameFreakPresentsScene3
 
-PlaceGameFreakPresents_AdvanceIndex:
+PlaceGameFreakPresents_NextScene:
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 
-PlaceGameFreakPresents_0:
+GameFreakPresentsScene0:
 	ret
 
-PlaceGameFreakPresents_1:
+GameFreakPresentsScene1:
 	ld hl, wIntroSceneTimer
 	ld a, [hl]
 	cp $20
@@ -155,7 +146,7 @@ PlaceGameFreakPresents_1:
 	decoord 5, 10
 	ld bc, .end - .GAME_FREAK
 	call CopyBytes
-	call PlaceGameFreakPresents_AdvanceIndex
+	call PlaceGameFreakPresents_NextScene
 	ld de, SFX_GAME_FREAK_PRESENTS
 	call PlaySFX
 	ret
@@ -166,7 +157,7 @@ PlaceGameFreakPresents_1:
 .end
 	db "@"
 
-PlaceGameFreakPresents_2:
+GameFreakPresentsScene2:
 	ld hl, wIntroSceneTimer
 	ld a, [hl]
 	cp $40
@@ -180,7 +171,7 @@ PlaceGameFreakPresents_2:
 	decoord 7, 11
 	ld bc, .end - .presents
 	call CopyBytes
-	call PlaceGameFreakPresents_AdvanceIndex
+	call PlaceGameFreakPresents_NextScene
 	ret
 
 .presents
@@ -188,7 +179,7 @@ PlaceGameFreakPresents_2:
 .end
 	db "@"
 
-PlaceGameFreakPresents_3:
+GameFreakPresentsScene3:
 	ld hl, wIntroSceneTimer
 	ld a, [hl]
 	cp $80
@@ -201,12 +192,12 @@ PlaceGameFreakPresents_3:
 	set 7, [hl]
 	ret
 
-GameFreakLogoJumper:
+PlaceGameFreakLogo:
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
-	ld hl, GameFreakLogoScenes
+	ld hl, .scenes
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -214,7 +205,7 @@ GameFreakLogoJumper:
 	ld l, a
 	jp hl
 
-GameFreakLogoScenes:
+.scenes:
 	dw GameFreakLogoScene1
 	dw GameFreakLogoScene2
 	dw GameFreakLogoScene3
@@ -325,7 +316,7 @@ GameFreakLogoScene4:
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	inc [hl]
-	call PlaceGameFreakPresents_AdvanceIndex
+	call PlaceGameFreakPresents_NextScene
 GameFreakLogoScene5:
 	ret
 

@@ -93,7 +93,7 @@ CalcExpAtLevel:
 	ldh a, [hProduct + 3]
 	sub b
 	ldh [hMultiplicand + 2], a
-	ld b, $0
+	ld b, 0
 	ldh a, [hProduct + 2]
 	sbc b
 	ldh [hMultiplicand + 1], a

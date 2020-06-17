@@ -231,7 +231,7 @@ BattleTurn:
 Stubbed_Function3c1bf:
 	ret
 	ld a, BANK(s5_a89b) ; MBC30 bank used by JP Crystal; inaccessible by MBC3
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, s5_a89b ; address of MBC30 bank
 	inc [hl]
 	jr nz, .finish
@@ -8398,7 +8398,7 @@ DisplayLinkBattleResult:
 	call DelayFrames
 
 	ld a, BANK(sLinkBattleStats)
-	call GetSRAMBank
+	call OpenSRAM
 
 	call AddLastLinkBattleToLinkRecord
 	call ReadAndPrintLinkBattleRecord
@@ -8446,7 +8446,7 @@ NUM_LINK_BATTLE_RECORDS EQUS "((sLinkBattleStatsEnd - sLinkBattleRecord) / LINK_
 
 _DisplayLinkRecord:
 	ld a, BANK(sLinkBattleStats)
-	call GetSRAMBank
+	call OpenSRAM
 
 	call ReadAndPrintLinkBattleRecord
 

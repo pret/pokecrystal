@@ -697,7 +697,7 @@ Unreferenced_Function24423:
 	bit 0, a
 	ret z
 	xor a ; sScratch
-	call GetSRAMBank
+	call OpenSRAM
 	hlcoord 0, 0
 	ld de, sScratch
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
@@ -705,7 +705,7 @@ Unreferenced_Function24423:
 	call CloseSRAM
 	call OverworldTextModeSwitch
 	xor a ; sScratch
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, sScratch
 	decoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT

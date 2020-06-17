@@ -18,7 +18,7 @@ SendMailToPC:
 	call AddNTimes
 	push hl
 	ld a, BANK(sMailboxCount)
-	call GetSRAMBank
+	call OpenSRAM
 	ld bc, MAIL_STRUCT_LENGTH
 	call CopyBytes
 	pop hl
@@ -41,7 +41,7 @@ SendMailToPC:
 DeleteMailFromPC:
 ; Shift all mail messages in the mailbox
 	ld a, BANK(sMailboxCount)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, b
 	push bc
 	ld hl, sMailbox
@@ -83,7 +83,7 @@ ReadMailMessage:
 
 MoveMailFromPCToParty:
 	ld a, BANK(sMailboxCount)
-	call GetSRAMBank
+	call OpenSRAM
 	push bc
 	ld a, b
 	ld bc, MAIL_STRUCT_LENGTH
@@ -115,7 +115,7 @@ MoveMailFromPCToParty:
 
 GetMailboxCount:
 	ld a, BANK(sMailboxCount)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [sMailboxCount]
 	ld c, a
 	jp CloseSRAM
@@ -137,7 +137,7 @@ CheckPokeMail::
 	jr nc, .pop_return
 
 	ld a, BANK(sPartyMail)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [wCurPartyMon]
 	ld hl, sPartyMail
 	ld bc, MAIL_STRUCT_LENGTH
@@ -209,7 +209,7 @@ GivePokeMail::
 	ld hl, wd002
 	ld bc, MAIL_MSG_LENGTH + 1
 	ld a, BANK(sPartyMail)
-	call GetSRAMBank
+	call OpenSRAM
 	call CopyBytes
 	pop af
 	push af
@@ -238,7 +238,7 @@ GivePokeMail::
 
 BackupPartyMonMail:
 	ld a, BANK(sPartyMail)
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, sPartyMail
 	ld de, sPartyMailBackup
 	ld bc, 6 * MAIL_STRUCT_LENGTH
@@ -251,7 +251,7 @@ BackupPartyMonMail:
 
 RestorePartyMonMail:
 	ld a, BANK(sPartyMail)
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, sPartyMailBackup
 	ld de, sPartyMail
 	ld bc, 6 * MAIL_STRUCT_LENGTH
@@ -264,7 +264,7 @@ RestorePartyMonMail:
 
 DeletePartyMonMail:
 	ld a, BANK(sPartyMail)
-	call GetSRAMBank
+	call OpenSRAM
 	xor a
 	ld hl, sPartyMail
 	ld bc, 6 * MAIL_STRUCT_LENGTH
@@ -317,7 +317,7 @@ InitMail:
 ; initialize wMailboxCount and beyond with incrementing values, one per mail
 ; set z if no mail
 	ld a, BANK(sMailboxCount)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [sMailboxCount]
 	call CloseSRAM
 	ld hl, wMailboxCount
@@ -347,7 +347,7 @@ MailboxPC_GetMailAuthor:
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	ld a, BANK(sMailboxCount)
-	call GetSRAMBank
+	call OpenSRAM
 	ld de, wStringBuffer2
 	push de
 	ld bc, NAME_LENGTH - 1
@@ -467,7 +467,7 @@ MailboxPC:
 .GetMailType:
 	push af
 	ld a, BANK(sMailboxCount)
-	call GetSRAMBank
+	call OpenSRAM
 	pop af
 	ld hl, sMailbox1Type
 	ld bc, MAIL_STRUCT_LENGTH

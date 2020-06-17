@@ -2362,7 +2362,7 @@ Pokedex_LoadSelectedMonTiles:
 
 .QuestionMark:
 	ld a, BANK(sScratch)
-	call GetSRAMBank
+	call OpenSRAM
 	farcall LoadQuestionMarkPic
 	ld hl, vTiles2
 	ld de, sScratch
@@ -2478,7 +2478,7 @@ Pokedex_CheckSGB:
 
 Pokedex_LoadUnownFont:
 	ld a, BANK(sScratch)
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, UnownFont
 	ld de, sScratch + $188
 	ld bc, 39 tiles

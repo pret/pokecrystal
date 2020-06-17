@@ -4,7 +4,7 @@ PrepMysteryGiftDataToSend:
 	ld [de], a
 	inc de ; wc801
 	ld a, BANK(sGameData)
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, sPlayerData + wPlayerID - wPlayerData
 	ld a, [hli]
 	ld [de], a
@@ -42,7 +42,7 @@ PrepMysteryGiftDataToSend:
 	ld [de], a
 	inc de ; wc812
 	ld a, BANK(sBackupMysteryGiftItem)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [sBackupMysteryGiftItem]
 	ld [de], a
 	inc de

@@ -47,11 +47,13 @@ EvolutionAnimation:
 	call WaitBGMap
 	xor a
 	ldh [hBGMapMode], a
+
 	ld a, [wEvolutionOldSpecies]
 	ld [wPlayerHPPal], a
 
-	ld c, $0
+	ld c, FALSE
 	call .GetSGBLayout
+
 	ld a, [wEvolutionOldSpecies]
 	ld [wCurPartySpecies], a
 	ld [wCurSpecies], a
@@ -69,41 +71,45 @@ EvolutionAnimation:
 	ld [wCurPartySpecies], a
 	ld [wCurSpecies], a
 	call .LoadFrontpic
+
 	ld a, [wEvolutionOldSpecies]
 	ld [wCurPartySpecies], a
 	ld [wCurSpecies], a
 
-	ld a, $1
+	ld a, 1
 	ldh [hBGMapMode], a
+
 	call .check_statused
 	jr c, .skip_cry
-
 	ld a, [wEvolutionOldSpecies]
 	call PlayMonCry
-
 .skip_cry
+
 	ld de, MUSIC_EVOLUTION
 	call PlayMusic
 
 	ld c, 80
 	call DelayFrames
 
-	ld c, $1
+	ld c, TRUE
 	call .GetSGBLayout
+
 	call .AnimationSequence
 	jr c, .cancel_evo
 
 	ld a, -7 * 7
 	ld [wEvolutionPicOffset], a
 	call .ReplaceFrontpic
+
 	xor a
 	ld [wEvolutionCanceled], a
 
 	ld a, [wEvolutionNewSpecies]
 	ld [wPlayerHPPal], a
 
-	ld c, $0
+	ld c, FALSE
 	call .GetSGBLayout
+
 	call .PlayEvolvedSFX
 	farcall ClearSpriteAnims
 	call .check_statused
@@ -133,14 +139,15 @@ EvolutionAnimation:
 	ret
 
 .cancel_evo
-	ld a, $1
+	ld a, TRUE
 	ld [wEvolutionCanceled], a
 
 	ld a, [wEvolutionOldSpecies]
 	ld [wPlayerHPPal], a
 
-	ld c, $0
+	ld c, FALSE
 	call .GetSGBLayout
+
 	call .PlayEvolvedSFX
 	farcall ClearSpriteAnims
 	call .check_statused

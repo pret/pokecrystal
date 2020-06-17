@@ -155,7 +155,7 @@ MainMenu_GetWhichMenu:
 	ld a, $1
 	ret nz
 	ld a, BANK(sNumDailyMysteryGiftPartnerIDs)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [sNumDailyMysteryGiftPartnerIDs]
 	cp -1
 	call CloseSRAM

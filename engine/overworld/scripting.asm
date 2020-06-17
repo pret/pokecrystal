@@ -2450,7 +2450,7 @@ Script_warpfacing:
 	set PLAYERSPRITESETUP_CUSTOM_FACING_F, a
 	or c
 	ld [wPlayerSpriteSetupFlags], a
-; fall through
+; fallthrough
 
 Script_warp:
 ; script command 0x3c

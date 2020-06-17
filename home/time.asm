@@ -261,7 +261,7 @@ UnreferencedClearRTCStatus::
 	xor a
 	push af
 	ld a, BANK(sRTCStatusFlags)
-	call GetSRAMBank
+	call OpenSRAM
 	pop af
 	ld [sRTCStatusFlags], a
 	call CloseSRAM
@@ -272,7 +272,7 @@ RecordRTCStatus::
 	ld hl, sRTCStatusFlags
 	push af
 	ld a, BANK(sRTCStatusFlags)
-	call GetSRAMBank
+	call OpenSRAM
 	pop af
 	or [hl]
 	ld [hl], a
@@ -282,7 +282,7 @@ RecordRTCStatus::
 CheckRTCStatus::
 ; check sRTCStatusFlags
 	ld a, BANK(sRTCStatusFlags)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [sRTCStatusFlags]
 	call CloseSRAM
 	ret

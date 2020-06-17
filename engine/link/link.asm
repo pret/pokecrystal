@@ -835,7 +835,7 @@ Link_PrepPartyData_Gen2:
 
 ; Copy all the mail messages to wc9f9
 	ld a, BANK(sPartyMail)
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, sPartyMail
 	ld b, PARTY_LENGTH
 .loop2
@@ -1706,7 +1706,7 @@ LinkTrade:
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	ld a, BANK(sPartyMail)
-	call GetSRAMBank
+	call OpenSRAM
 	ld d, h
 	ld e, l
 	ld bc, MAIL_STRUCT_LENGTH
@@ -2508,7 +2508,7 @@ INCBIN "gfx/trade/unused_gs_border_tiles.2bpp"
 
 Unreferenced_Function29fe4:
 	ld a, BANK(sPartyMail)
-	call GetSRAMBank
+	call OpenSRAM
 	ld d, FALSE
 	ld b, CHECK_FLAG
 	predef SmallFarFlagAction

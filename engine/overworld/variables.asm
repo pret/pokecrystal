@@ -126,7 +126,7 @@ _GetVarAction::
 .BoxFreeSpace:
 ; Remaining slots in the current box.
 	ld a, BANK(sBoxCount)
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, sBoxCount
 	ld a, MONS_PER_BOX
 	sub [hl]

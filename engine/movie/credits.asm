@@ -80,7 +80,7 @@ Credits::
 	push af
 	ld a, $5
 	ldh [hVBlank], a
-	ld a, $1
+	ld a, TRUE
 	ldh [hInMenu], a
 	xor a
 	ldh [hBGMapMode], a
@@ -198,7 +198,7 @@ Credits_UpdateGFXRequestPath:
 Credits_RequestGFX:
 	xor a
 	ldh [hBGMapMode], a
-	ld a, $8
+	ld a, 8
 	ld [wRequested2bpp], a
 	jp Credits_Next
 
@@ -572,14 +572,17 @@ Credits_LoadBorderGFX:
 	dw CreditsPichuGFX     + 16 tiles
 	dw CreditsPichuGFX     + 32 tiles
 	dw CreditsPichuGFX     + 48 tiles
+
 	dw CreditsSmoochumGFX
 	dw CreditsSmoochumGFX  + 16 tiles
 	dw CreditsSmoochumGFX  + 32 tiles
 	dw CreditsSmoochumGFX  + 48 tiles
+
 	dw CreditsDittoGFX
 	dw CreditsDittoGFX     + 16 tiles
 	dw CreditsDittoGFX     + 32 tiles
 	dw CreditsDittoGFX     + 48 tiles
+
 	dw CreditsIgglybuffGFX
 	dw CreditsIgglybuffGFX + 16 tiles
 	dw CreditsIgglybuffGFX + 32 tiles

@@ -5,7 +5,7 @@
 StubbedTrainerRankings_HallOfFame2::
 	ret
 	ld a, BANK(sTrainerRankingGameTimeHOF)
-	call GetSRAMBank
+	call OpenSRAM
 
 	ld hl, wGameTimeHours
 	ld de, sTrainerRankingGameTimeHOF
@@ -36,7 +36,7 @@ StubbedTrainerRankings_HallOfFame2::
 StubbedTrainerRankings_MagikarpLength:
 	ret
 	ld a, BANK(sTrainerRankingLongestMagikarp)
-	call GetSRAMBank
+	call OpenSRAM
 	ld de, wBuffer1
 	ld hl, sTrainerRankingLongestMagikarp
 
@@ -104,7 +104,7 @@ StubbedTrainerRankings_MagikarpLength:
 StubbedTrainerRankings_BugContestScore:
 	ret
 	ld a, BANK(sTrainerRankingBugContestScore)
-	call GetSRAMBank
+	call OpenSRAM
 	ldh a, [hProduct]
 	ld hl, sTrainerRankingBugContestScore
 	cp [hl]
@@ -133,7 +133,7 @@ StubbedTrainerRankings_BugContestScore:
 StubbedTrainerRankings_AddToSlotsWinStreak:
 	ret
 	ld a, BANK(sTrainerRankingCurrentSlotsStreak)
-	call GetSRAMBank
+	call OpenSRAM
 
 	; Increment the current streak
 	ld hl, sTrainerRankingCurrentSlotsStreak + 1
@@ -173,7 +173,7 @@ StubbedTrainerRankings_AddToSlotsWinStreak:
 StubbedTrainerRankings_EndSlotsWinStreak:
 	ret
 	ld a, BANK(sTrainerRankingCurrentSlotsStreak)
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, sTrainerRankingCurrentSlotsStreak
 	xor a
 	ld [hli], a
@@ -185,7 +185,7 @@ StubbedTrainerRankings_EndSlotsWinStreak:
 StubbedTrainerRankings_AddToSlotsPayouts:
 	ret
 	ld a, BANK(sTrainerRankingTotalSlotsPayouts)
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, sTrainerRankingTotalSlotsPayouts + 3
 	ld a, e
 	add [hl]
@@ -213,7 +213,7 @@ StubbedTrainerRankings_AddToSlotsPayouts:
 StubbedTrainerRankings_AddToBattlePayouts:
 	ret
 	ld a, BANK(sTrainerRankingTotalBattlePayouts)
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, sTrainerRankingTotalBattlePayouts + 3
 	ld a, [bc]
 	dec bc
@@ -248,7 +248,7 @@ StubbedTrainerRankings_StepCount:
 Unreferenced_StubbedTrainerRankings_BattleTowerWins:
 	ret
 	ld a, $5
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [$aa8d]
 	and a
 	call CloseSRAM
@@ -439,7 +439,7 @@ StubbedTrainerRankings_Increment1Byte:
 ; Increments a big-endian value of bc + 1 bytes at hl
 StubbedTrainerRankings_Increment:
 	ld a, BANK(sTrainerRankings)
-	call GetSRAMBank
+	call OpenSRAM
 	push hl
 	push de
 	ld e, c
@@ -476,7 +476,7 @@ StubbedTrainerRankings_Increment:
 UpdateTrainerRankingsChecksum2:
 	ret
 	ld a, BANK(sTrainerRankings)
-	call GetSRAMBank
+	call OpenSRAM
 	call UpdateTrainerRankingsChecksum
 	call CloseSRAM
 	ret
@@ -515,11 +515,11 @@ CalculateTrainerRankingsChecksum:
 
 BackupMobileEventIndex:
 	ld a, BANK(sMobileEventIndex)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [sMobileEventIndex]
 	push af
 	ld a, BANK(sMobileEventIndexBackup)
-	call GetSRAMBank
+	call OpenSRAM
 	pop af
 	ld [sMobileEventIndexBackup], a
 	call CloseSRAM
@@ -527,11 +527,11 @@ BackupMobileEventIndex:
 
 RestoreMobileEventIndex:
 	ld a, BANK(sMobileEventIndexBackup)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [sMobileEventIndexBackup]
 	push af
 	ld a, BANK(sMobileEventIndex)
-	call GetSRAMBank
+	call OpenSRAM
 	pop af
 	ld [sMobileEventIndex], a
 	call CloseSRAM
@@ -550,7 +550,7 @@ Unreferenced_VerifyTrainerRankingsChecksum:
 
 DeleteMobileEventIndex:
 	ld a, BANK(sMobileEventIndex)
-	call GetSRAMBank
+	call OpenSRAM
 	xor a
 	ld [sMobileEventIndex], a
 	call CloseSRAM
@@ -791,13 +791,13 @@ Mobile_DummyReturnFalse:
 Stubbed_Function106314:
 	ret
 	ld a, $4
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, c
 	cpl
 	ld [$b000], a
 	call CloseSRAM
 	ld a, $7
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, c
 	ld [$a800], a
 	call CloseSRAM
@@ -811,13 +811,13 @@ Function106331:
 ; called by Mobile_DummyReturnFalse in Crystal-J
 	; check ~[4:b000] == [7:a800]
 	ld a, $4
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [$b000]
 	cpl
 	ld b, a
 	call CloseSRAM
 	ld a, $7
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [$a800]
 	ld c, a
 	call CloseSRAM

@@ -340,7 +340,7 @@ Function11c1b9:
 Function11c254:
 	push af
 	ld a, $4
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, s4_a007
 	pop af
 	sla a
@@ -1763,7 +1763,7 @@ Function11cb66:
 	and a
 	jr nz, .asm_11cbd4
 	ld a, $4
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, s4_a007
 	ld a, [wMenuCursorY]
 	dec a

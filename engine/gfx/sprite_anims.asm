@@ -221,7 +221,7 @@ DoAnimFrame:
 	ret
 
 .GameFreakLogo:
-	callfar GameFreakLogoJumper
+	callfar PlaceGameFreakLogo
 	ret
 
 .GSIntroStar

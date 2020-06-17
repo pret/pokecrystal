@@ -184,7 +184,7 @@ Function118180:
 	and a
 	ret z
 	ld a, BANK(s5_a89c) ; aka BANK(s5_a8b2)
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, wcd69
 	ld de, s5_a89c
 	ld bc, 22
@@ -478,7 +478,7 @@ BattleTowerRoomMenu_InitRAM:
 	farcall Function115d99
 	farcall Function11615a
 	ld a, BANK(s5_bfff)
-	call GetSRAMBank
+	call OpenSRAM
 	xor a
 	ld [s5_bfff], a
 	call CloseSRAM
@@ -487,7 +487,7 @@ BattleTowerRoomMenu_InitRAM:
 Function118440:
 	push af
 	ld a, BANK(s5_bfff)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [s5_bfff]
 	inc a
 	ld [s5_bfff], a
@@ -1091,7 +1091,7 @@ Function1188c8:
 Function1188e7:
 	ld de, wc346
 	ld a, BANK(s5_aa4a)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [s5_aa4a]
 	call CloseSRAM
 	and a
@@ -1521,7 +1521,7 @@ Unreferenced_Function118d35:
 	add b
 	ld b, a
 	ld a, BANK(s5_b2fb)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, b
 	ld [s5_b2fb], a
 	call CloseSRAM
@@ -1942,7 +1942,7 @@ Function119009:
 
 Function119054:
 	ld a, $6
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, wd002
 	ld a, [wcd4f]
 	ld e, a
@@ -1972,7 +1972,7 @@ Function119054:
 	ld a, $3 ; ???
 	ldh [rSVBK], a
 	ld a, BANK(s5_b1b3) ; aka BANK(s5_b1b4) and BANK(s5_aa7f) and BANK(s5_b2f3) and BANK(s5_b2f4)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [wcd4f]
 	ld [s5_b1b3], a
 	ld a, [wcd50]
@@ -2012,19 +2012,19 @@ Function1190d0:
 
 Function1190ec:
 	ld a, BANK(s5_aa73)
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, wBGMapBuffer
 	ld de, s5_aa73
 	ld bc, 12
 	call CopyBytes
 	call CloseSRAM
 	ld a, BANK(s5_aa72)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, $1
 	ld [s5_aa72], a
 	call CloseSRAM
 	ld a, BANK(s6_a000)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [w3_d000]
 	ld c, a
 	ld a, [w3_d000 + 1]
@@ -2069,7 +2069,7 @@ Function11915d:
 	ld bc, 12
 	call CopyBytes
 	ld a, BANK(s5_aa7f)
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, wBGMapBuffer
 	ld de, s5_aa7f
 	ld c, 12
@@ -2201,7 +2201,7 @@ Function119223:
 	ld [wcd4b], a
 	ld [wcd4c], a
 	ld a, BANK(s5_b092) ; aka BANK(s5_b1b1) and BANK(s5_b1b2) and BANK(s5_b1d3)
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, wc3cd
 	ld de, s5_b092
 	ld bc, 31
@@ -2237,7 +2237,7 @@ Function119223:
 	jr z, .asm_1192c2
 	cp $fe
 	jr z, .asm_1192a5
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [de]
 	inc de
 	ld c, a
@@ -2308,7 +2308,7 @@ Function119223:
 
 Function1192cc:
 	ld a, BANK(s5_aa73)
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, s5_aa73
 	ld de, wc608
 	ld bc, 12
@@ -2369,7 +2369,7 @@ Function119300:
 	ld [wcd4c], a
 	ld a, [de]
 	inc de
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [de]
 	inc de
 	ld c, a
@@ -2499,7 +2499,7 @@ Function1193fb:
 
 Function119413:
 	ld a, $6 ; ???
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [w3_d000]
 	ld c, a
 	ld a, [w3_d000 + 1]
@@ -3580,7 +3580,7 @@ Function119b52:
 	cp $1
 	jr nz, .asm_119b66
 	ld a, BANK(s5_a800)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, $4
 	ld [s5_a800], a
 	call CloseSRAM
@@ -3680,7 +3680,7 @@ Function119b6b:
 	ld a, $19
 	ld [wBattleTowerRoomMenuJumptableIndex], a
 	ld a, BANK(s5_a800)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, $1
 	ld [s5_a800], a
 	call CloseSRAM
@@ -3700,7 +3700,7 @@ Function119b6b:
 	cp HIGH(w3_d869)
 	jr nz, .asm_119be3
 	ld a, BANK(s5_b090) ; aka BANK(s5_b091) and BANK(s5_b023)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [wcf64]
 	ld [s5_b090], a
 	ld a, [wcf65]
@@ -3750,7 +3750,7 @@ popc
 	ld a, $19
 	ld [wBattleTowerRoomMenuJumptableIndex], a
 	ld a, BANK(s5_a800)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, $1
 	ld [s5_a800], a
 	call CloseSRAM
@@ -4123,7 +4123,7 @@ Function119eb4:
 
 Function119ec2:
 	ld a, BANK(sMobileLoginPassword)
-	call GetSRAMBank
+	call OpenSRAM
 	xor a
 	ld [sMobileLoginPassword + MOBILE_LOGIN_PASSWORD_LENGTH], a
 	ld de, sMobileLoginPassword + 1
@@ -4288,7 +4288,7 @@ Function119f98:
 
 Function11a00e:
 	ld a, BANK(sMobileLoginPassword)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [sMobileLoginPassword]
 	and a
 	jr z, .asm_11a02a
@@ -4297,7 +4297,7 @@ Function11a00e:
 	and a
 	ret nz
 	ld a, BANK(sMobileLoginPassword)
-	call GetSRAMBank
+	call OpenSRAM
 	xor a
 	ld [sMobileLoginPassword], a
 
@@ -6955,7 +6955,7 @@ Function11b483:
 
 .okay4
 	ld a, BANK(sPartyMail)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, MAIL_STRUCT_LENGTH
 .loop9
 	push af
@@ -7033,7 +7033,7 @@ Function11b570:
 	ld a, $1
 	ldh [rSVBK], a
 	ld a, BANK(s5_a800)
-	call GetSRAMBank
+	call OpenSRAM
 
 	ld de, s5_a800
 	ld a, $1
@@ -7079,14 +7079,14 @@ Function11b5e7:
 
 Function11b5e8:
 	ld a, $0
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, wRTC
 	ld de, $c608
 	ld bc, 4
 	call CopyBytes
 	call CloseSRAM
 	ld a, $5
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, $c608
 	ld de, $b08c
 	ld bc, 4
@@ -7174,7 +7174,7 @@ Function11b6b3:
 
 Function11b6b4:
 	ld a, $5
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [wcd30]
 	ld [$c708], a
 	ld a, [wcd31]
@@ -7347,7 +7347,7 @@ Function11b7e5:
 	ld [wLinkMode], a
 	farcall SaveAfterLinkTrade
 	ld a, $5
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, $5
 	ld [$a800], a
 	call CloseSRAM
@@ -7373,7 +7373,7 @@ Function11b879:
 	and a
 	ret z
 	ld a, $5
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [$a800]
 	ld [wScriptVar], a
 	ld a, [$a890]
@@ -7462,7 +7462,7 @@ Function11b879:
 Function11b920:
 	call Mobile46_InitJumptable
 	ld a, $5
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, $a81f
 	ld de, $c626
 	ld bc, 8
@@ -7473,7 +7473,7 @@ Function11b920:
 
 Function11b93b:
 	ld a, $5
-	call GetSRAMBank
+	call OpenSRAM
 	xor a
 	ld [$a800], a
 	ld hl, $a823
@@ -7600,7 +7600,7 @@ AddMobileMonToParty:
 	and a
 	jr nz, .loop5
 	ld a, BANK(sPartyMail)
-	call GetSRAMBank
+	call OpenSRAM
 	ld e, l
 	ld d, h
 	ld a, [wMobileMonMailPointerBuffer]

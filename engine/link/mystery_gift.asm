@@ -1202,14 +1202,14 @@ MysteryGift_ClearTrainerData:
 
 GetMysteryGiftBank:
 	ld a, BANK(sBackupMysteryGiftItem)
-	jp GetSRAMBank
+	jp OpenSRAM
 
 StagePartyDataForMysteryGift:
 ; You will be sending this data to your mystery gift partner.
 ; Structure is the same as a trainer with species and moves
 ; defined.
 	ld a, BANK(sPokemonData)
-	call GetSRAMBank
+	call OpenSRAM
 	ld de, wMysteryGiftStaging
 	ld bc, sPokemonData + wPartyMons - wPokemonData
 	ld hl, sPokemonData + wPartySpecies - wPokemonData
@@ -1521,7 +1521,7 @@ Function105777:
 Function10578c:
 	ld de, wLinkData
 	ld a, BANK(sPlayerData)
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, sPlayerData + wPlayerName - wPlayerData
 	ld bc, NAME_LENGTH
 	call CopyBytes
@@ -1533,12 +1533,12 @@ Function10578c:
 	call CopyBytes
 	call CloseSRAM
 	ld a, BANK(sCrystalData)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [sCrystalData + 0]
 	ld [de], a
 	inc de
 	ld a, BANK(s4_a603) ; aka BANK(s4_a007) ; MBC30 bank used by JP Crystal; inaccessible by MBC3
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, s4_a603 ; address of MBC30 bank
 	ld bc, $8
 	call CopyBytes

@@ -137,7 +137,7 @@ ClockContinue:
 	farcall ClearDailyTimers
 	farcall Function170923
 	ld a, BANK(s5_aa8c) ; aka BANK(s5_b2fa)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [s5_aa8c]
 	inc a
 	ld [s5_aa8c], a

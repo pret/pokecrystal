@@ -716,7 +716,7 @@ PrintPCBox_Page4:
 
 Printer_PrintBoxListSegment:
 	ld a, [wBankOfBoxToPrint]
-	call GetSRAMBank
+	call OpenSRAM
 .loop
 	ld a, c
 	and a

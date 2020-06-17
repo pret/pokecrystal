@@ -1127,7 +1127,7 @@ BillsPC_LoadMonStats:
 	ld b, a
 	call GetBoxPointer
 	ld a, b
-	call GetSRAMBank
+	call OpenSRAM
 	push hl
 	ld bc, sBoxMon1Level - sBox
 	add hl, bc
@@ -1187,7 +1187,7 @@ BillsPC_LoadMonStats:
 
 .sBox
 	ld a, BANK(sBox)
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, sBoxMon1Level
 	ld bc, BOXMON_STRUCT_LENGTH
 	ld a, e
@@ -1282,7 +1282,7 @@ BillsPC_RefreshTextboxes:
 	push hl
 	call GetBoxPointer
 	ld a, b
-	call GetSRAMBank
+	call OpenSRAM
 	push hl
 	ld bc, sBoxMons - sBox
 	add hl, bc
@@ -1339,7 +1339,7 @@ BillsPC_RefreshTextboxes:
 .sBox
 	push hl
 	ld a, BANK(sBox)
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, sBoxSpecies
 	ld d, $0
 	add hl, de
@@ -1421,7 +1421,7 @@ CopyBoxmonSpecies:
 	ld b, a
 	call GetBoxPointer
 	ld a, b
-	call GetSRAMBank
+	call OpenSRAM
 	inc hl
 	copy_box_data 1
 	ret
@@ -1433,7 +1433,7 @@ CopyBoxmonSpecies:
 
 .sBox
 	ld a, BANK(sBox)
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, sBoxSpecies
 	copy_box_data 1
 	ret
@@ -1652,7 +1652,7 @@ BillsPC_IsMonAnEgg:
 BillsPC_StatsScreen:
 	call LowVolume
 	call BillsPC_CopyMon
-	ld a, $3
+	ld a, TEMPMON
 	ld [wMonType], a
 	predef StatsScreenInit
 	call BillsPC_InitGFX
@@ -1704,7 +1704,7 @@ BillsPC_CopyMon:
 	cp NUM_BOXES + 1
 	jr nz, .box
 	ld a, BANK(sBox)
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, sBoxSpecies
 	call CopySpeciesToTemp
 	ld hl, sBoxMonNicknames
@@ -1742,7 +1742,7 @@ BillsPC_CopyMon:
 	ld b, a
 	call GetBoxPointer
 	ld a, b
-	call GetSRAMBank
+	call OpenSRAM
 	push hl
 	inc hl
 	call CopySpeciesToTemp
@@ -1823,7 +1823,7 @@ TryWithdrawPokemon:
 	add [hl]
 	ld [wCurPartyMon], a
 	ld a, BANK(sBoxMonNicknames)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [wCurPartyMon]
 	ld hl, sBoxMonNicknames
 	call GetNick
@@ -2046,7 +2046,7 @@ MovePKMNWitoutMail_InsertMon:
 	add [hl]
 	ld [wCurPartyMon], a
 	ld a, BANK(sBox)
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, sBoxSpecies
 	call CopySpeciesToTemp
 	ld hl, sBoxMonNicknames
@@ -2348,7 +2348,7 @@ GetBoxCount:
 	add hl, bc
 	ld a, [hli]
 	ld b, a
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2368,7 +2368,7 @@ GetBoxCount:
 .activebox
 	ld a, BANK(sBoxCount)
 	ld b, a
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, sBoxCount
 	ld a, [hl]
 	call CloseSRAM

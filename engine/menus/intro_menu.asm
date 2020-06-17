@@ -137,7 +137,7 @@ _ResetWRAM:
 	call SetDefaultBoxNames
 
 	ld a, BANK(sBoxCount)
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, sBoxCount
 	call .InitList
 	call CloseSRAM
@@ -167,7 +167,7 @@ _ResetWRAM:
 	ld [wRoamMon3MapNumber], a
 
 	ld a, BANK(sMysteryGiftItem)
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, sMysteryGiftItem
 	xor a
 	ld [hli], a
@@ -304,7 +304,7 @@ InitializeWorld:
 
 LoadOrRegenerateLuckyIDNumber:
 	ld a, BANK(sLuckyIDNumber)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [wCurDay]
 	inc a
 	ld b, a
@@ -953,7 +953,7 @@ Intro_PlacePlayerSprite:
 	db 10 * 8 + 4, 10 * 8, 3
 
 CrystalIntroSequence:
-	callfar Copyright_GFPresents
+	callfar Copyright_GameFreakPresents
 	jr c, StartTitleScreen
 	farcall CrystalIntro
 

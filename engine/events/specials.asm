@@ -128,7 +128,7 @@ PlayersHousePC:
 
 CheckMysteryGift:
 	ld a, BANK(sMysteryGiftItem)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [sMysteryGiftItem]
 	and a
 	jr z, .no
@@ -141,7 +141,7 @@ CheckMysteryGift:
 
 GetMysteryGiftItem:
 	ld a, BANK(sMysteryGiftItem)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [sMysteryGiftItem]
 	ld [wCurItem], a
 	ld a, 1
@@ -420,7 +420,7 @@ PrintDiploma:
 
 TrainerHouse:
 	ld a, BANK(sMysteryGiftTrainerHouseFlag)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [sMysteryGiftTrainerHouseFlag]
 	ld [wScriptVar], a
 	jp CloseSRAM

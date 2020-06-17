@@ -116,7 +116,7 @@ _SwitchPartyMons:
 	ld de, wd002
 	ld bc, MAIL_STRUCT_LENGTH
 	ld a, BANK(sPartyMail)
-	call GetSRAMBank
+	call OpenSRAM
 	call CopyBytes
 	ld hl, sPartyMail
 	ld a, [wBuffer3]

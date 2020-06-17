@@ -174,7 +174,7 @@ GetGender:
 	ld a, [wMonType]
 	cp BOXMON
 	ld a, BANK(sBox)
-	call z, GetSRAMBank
+	call z, OpenSRAM
 
 ; Attack DV
 	ld a, [hli]

@@ -244,7 +244,7 @@ _CheckLuckyNumberShowFlag:
 
 DoMysteryGiftIfDayHasPassed:
 	ld a, BANK(sMysteryGiftTimer)
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, sMysteryGiftTimer
 	ld a, [hli]
 	ld [wBuffer1], a
@@ -262,7 +262,7 @@ DoMysteryGiftIfDayHasPassed:
 
 .not_timed_out
 	ld a, BANK(sMysteryGiftTimer)
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, wBuffer1
 	ld a, [hli]
 	ld [sMysteryGiftTimer], a

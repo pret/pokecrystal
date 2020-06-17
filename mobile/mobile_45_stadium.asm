@@ -20,7 +20,7 @@ Function11766b:
 	ldh [rSVBK], a
 	call Function1176ee
 	ld a, $5
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, $b1f3
 	ld de, wcd49
 	ld bc, $8
@@ -35,7 +35,7 @@ Function11766b:
 
 Function117699:
 	ld a, $5
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, wcd49
 	ld de, $b1f3
 	ld bc, $8
@@ -408,7 +408,7 @@ Function117942:
 	ld a, $1e
 	ld [wcd4e], a
 	ld a, BANK(sMobileLoginPassword)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [wcd4f]
 	ld [sMobileLoginPassword], a
 	ld hl, $c708
@@ -729,7 +729,7 @@ Function117bb6:
 	ld a, $3
 	ldh [rSVBK], a
 	ld a, $7
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, w3_d002
 	ld de, $b000
 	ld bc, $1000
@@ -773,7 +773,7 @@ Function117c4a:
 
 Function117c89:
 	ld a, $7
-	call GetSRAMBank
+	call OpenSRAM
 	ld l, $0
 	ld h, l
 	ld de, $b000

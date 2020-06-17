@@ -950,7 +950,7 @@ BattleAnimCmd_RaiseSub:
 	ldh [rSVBK], a
 
 	xor a ; BANK(sScratch)
-	call GetSRAMBank
+	call OpenSRAM
 
 GetSubstitutePic: ; used only for BANK(GetSubstitutePic)
 	ld hl, sScratch
@@ -1025,7 +1025,7 @@ BattleAnimCmd_MinimizeOpp:
 	ldh [rSVBK], a
 
 	xor a ; BANK(sScratch)
-	call GetSRAMBank
+	call OpenSRAM
 	call GetMinimizePic
 	call Request2bpp
 	call CloseSRAM
@@ -1081,7 +1081,7 @@ BattleAnimCmd_Minimize:
 	ldh [rSVBK], a
 
 	xor a ; BANK(sScratch)
-	call GetSRAMBank
+	call OpenSRAM
 	call GetMinimizePic
 	ld hl, vTiles0 tile $00
 	call Request2bpp

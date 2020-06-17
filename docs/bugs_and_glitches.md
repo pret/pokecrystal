@@ -521,7 +521,7 @@ Then create two new routines, `InvalidateSave` and `InvalidateBackupSave`:
 ```diff
  ValidateSave:
  	ld a, BANK(sCheckValue1) ; aka BANK(sCheckValue2)
- 	call GetSRAMBank
+ 	call OpenSRAM
  	ld a, SAVE_CHECK_VALUE_1
  	ld [sCheckValue1], a
  	ld a, SAVE_CHECK_VALUE_2
@@ -530,7 +530,7 @@ Then create two new routines, `InvalidateSave` and `InvalidateBackupSave`:
 
 +InvalidateSave:
 +	ld a, BANK(sCheckValue1) ; aka BANK(sCheckValue2)
-+	call GetSRAMBank
++	call OpenSRAM
 +	xor a
 +	ld [sCheckValue1], a
 +	ld [sCheckValue2], a
@@ -540,7 +540,7 @@ Then create two new routines, `InvalidateSave` and `InvalidateBackupSave`:
 ```diff
  ValidateBackupSave:
  	ld a, BANK(sBackupCheckValue1) ; aka BANK(sBackupCheckValue2)
- 	call GetSRAMBank
+ 	call OpenSRAM
  	ld a, SAVE_CHECK_VALUE_1
  	ld [sBackupCheckValue1], a
  	ld a, SAVE_CHECK_VALUE_2
@@ -549,7 +549,7 @@ Then create two new routines, `InvalidateSave` and `InvalidateBackupSave`:
 
 +InvalidateBackupSave:
 +	ld a, BANK(sBackupCheckValue1) ; aka BANK(sBackupCheckValue2)
-+	call GetSRAMBank
++	call OpenSRAM
 +	xor a
 +	ld [sBackupCheckValue1], a
 +	ld [sBackupCheckValue2], a
@@ -1924,7 +1924,7 @@ This bug can affect Mew or Pokémon other than Ditto that used Transform via Mir
      jr nz, .room_in_party
  
      ld a, BANK(sBoxCount)
-     call GetSRAMBank
+     call OpenSRAM
      ld a, [sBoxCount]
      cp MONS_PER_BOX
      call CloseSRAM

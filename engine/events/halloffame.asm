@@ -412,7 +412,7 @@ LoadHOFTeam:
 	ld bc, wHallOfFameTempEnd - wHallOfFameTemp + 1
 	call AddNTimes
 	ld a, BANK(sHallOfFame)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [hl]
 	and a
 	jr z, .absent

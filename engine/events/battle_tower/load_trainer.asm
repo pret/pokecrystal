@@ -39,7 +39,7 @@ endc
 	ld b, a
 
 	ld a, BANK(sBTTrainers)
-	call GetSRAMBank
+	call OpenSRAM
 
 	ld c, BATTLETOWER_STREAK_LENGTH
 	ld hl, sBTTrainers
@@ -96,7 +96,7 @@ Function_LoadRandomBattleTowerMon:
 .loop
 	push bc
 	ld a, BANK(sBTMonPrevTrainer1)
-	call GetSRAMBank
+	call OpenSRAM
 
 .FindARandomBattleTowerMon:
 	; From Which LevelGroup are the mon loaded

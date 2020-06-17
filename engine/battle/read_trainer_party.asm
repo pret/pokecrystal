@@ -74,7 +74,7 @@ ReadTrainerParty:
 
 .cal2
 	ld a, BANK(sMysteryGiftTrainer)
-	call GetSRAMBank
+	call OpenSRAM
 	ld de, sMysteryGiftTrainer
 	call TrainerType2
 	call CloseSRAM
@@ -338,14 +338,14 @@ GetTrainerName::
 	jr nz, .not_cal2
 
 	ld a, BANK(sMysteryGiftTrainerHouseFlag)
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [sMysteryGiftTrainerHouseFlag]
 	and a
 	call CloseSRAM
 	jr z, .not_cal2
 
 	ld a, BANK(sMysteryGiftPartnerName)
-	call GetSRAMBank
+	call OpenSRAM
 	ld hl, sMysteryGiftPartnerName
 	call CopyTrainerName
 	jp CloseSRAM

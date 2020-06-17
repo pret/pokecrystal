@@ -209,11 +209,11 @@ BillsPC_WithdrawMenu:
 Unreferenced_Functione56d:
 	ld a, [wPartyCount]
 	cp PARTY_LENGTH
-	jr nc, .asm_e576
+	jr nc, .party_full
 	and a
 	ret
 
-.asm_e576
+.party_full
 	ld hl, PCCantTakeText
 	call MenuTextboxBackup
 	scf
@@ -256,7 +256,7 @@ CopyBoxmonToTempMon:
 	ld de, wTempMonSpecies
 	ld bc, BOXMON_STRUCT_LENGTH
 	ld a, BANK(sBoxMon1Species)
-	call GetSRAMBank
+	call OpenSRAM
 	call CopyBytes
 	call CloseSRAM
 	ret
@@ -282,7 +282,7 @@ Unreferenced_LoadBoxMonListing:
 	ld hl, sBoxCount
 
 .okay
-	call GetSRAMBank
+	call OpenSRAM
 	ld a, [hl]
 	ld bc, sBoxMons - sBox
 	add hl, bc
