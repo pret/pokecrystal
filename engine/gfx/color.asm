@@ -446,23 +446,6 @@ INCLUDE "gfx/mail/mail.pal"
 
 INCLUDE "engine/gfx/cgb_layouts.asm"
 
-Unreferenced_Function95f0:
-	ld hl, .Palette
-	ld de, wBGPals1
-	ld bc, 1 palettes
-	ld a, BANK(wBGPals1)
-	call FarCopyWRAM
-	call ApplyPals
-	call WipeAttrmap
-	call ApplyAttrmap
-	ret
-
-.Palette:
-	RGB 31, 31, 31
-	RGB 09, 31, 31
-	RGB 10, 12, 31
-	RGB 00, 03, 19
-
 CopyFourPalettes:
 	ld de, wBGPals1
 	ld c, 4
@@ -992,7 +975,7 @@ PushSGBBorder:
 	ret
 
 .LoadSGBBorderPointers:
-	ld hl, SGBBorder
+	ld hl, SGBBorderGFX
 	ld de, SGBBorderMap
 	ret
 
@@ -1198,7 +1181,7 @@ SGBBorderPalettes:
 ; assumed to come after SGBBorderMap
 INCLUDE "gfx/sgb/sgb_border.pal"
 
-SGBBorder:
+SGBBorderGFX:
 INCBIN "gfx/sgb/sgb_border.2bpp"
 
 HPBarPals:
@@ -1237,7 +1220,6 @@ LoadMapPals:
 	add hl, de
 	ld e, l
 	ld d, h
-	; Switch to palettes WRAM bank
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wBGPals1)

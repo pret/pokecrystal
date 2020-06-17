@@ -1,22 +1,19 @@
 INCLUDE "gfx/font.asm"
 
-; This and the following two functions are unreferenced.
-; Debug, perhaps?
-Unreferenced_fb434:
-	db 0
+Unused_EnableHDMA:
+	db FALSE
 
-Unreferenced_Functionfb435:
-	ld a, [Unreferenced_fb434]
+Unreferenced_Get1bppOptionalHDMA:
+	ld a, [Unused_EnableHDMA]
 	and a
 	jp nz, Get1bppViaHDMA
 	jp Get1bpp
 
-Unreferenced_Functionfb43f:
-	ld a, [Unreferenced_fb434]
+Unreferenced_Get2bppOptionalHDMA:
+	ld a, [Unused_EnableHDMA]
 	and a
 	jp nz, Get2bppViaHDMA
 	jp Get2bpp
-; End unreferenced block
 
 _LoadStandardFont::
 	ld de, Font

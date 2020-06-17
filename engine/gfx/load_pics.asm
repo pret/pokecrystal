@@ -344,12 +344,12 @@ GetTrainerPic:
 	pop af
 	ldh [rSVBK], a
 	call WaitBGMap
-	ld a, $1
+	ld a, 1
 	ldh [hBGMapMode], a
 	ret
 
 DecompressGet2bpp:
-; Decompress lz data from b:hl to scratch space at 6:d000, then copy it to address de.
+; Decompress lz data from b:hl to wDecompressScratch, then copy it to address de.
 
 	ldh a, [rSVBK]
 	push af

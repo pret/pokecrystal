@@ -2097,9 +2097,9 @@ XAccuracyEffect:
 
 PokeDollEffect:
 	ld a, [wBattleMode]
-	dec a
-	jr nz, .asm_f4a6
-	inc a
+	dec a ; WILD_BATTLE?
+	jr nz, .not_wild
+	inc a ; TRUE
 	ld [wForcedSwitch], a
 	ld a, [wBattleResult]
 	and BATTLERESULT_BITMASK
@@ -2107,7 +2107,7 @@ PokeDollEffect:
 	ld [wBattleResult], a
 	jp UseItemText
 
-.asm_f4a6
+.not_wild
 	xor a
 	ld [wItemEffectSucceeded], a
 	ret

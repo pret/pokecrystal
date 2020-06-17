@@ -117,7 +117,7 @@ PlaceTradePartnerNamesAndParty:
 	hlcoord 7, 9
 	ld de, wOTPartySpecies
 .PlaceSpeciesNames:
-	ld c, $0
+	ld c, 0
 .loop
 	ld a, [de]
 	cp -1
