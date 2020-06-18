@@ -148,7 +148,7 @@ CMDQUEUE_CAPACITY EQU 4
 ; HandleQueuedCommand.Jumptable indexes (see engine/overworld/events.asm)
 	const_def
 	const CMDQUEUE_NULL
-	const CMDQUEUE_NULL2
+	const CMDQUEUE_TYPE1
 	const CMDQUEUE_STONETABLE
 	const CMDQUEUE_TYPE3
 	const CMDQUEUE_TYPE4

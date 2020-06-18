@@ -142,10 +142,10 @@ LoadUsedSpritesGFX:
 	ld a, MAPCALLBACK_SPRITES
 	call RunMapCallback
 	call GetUsedSprites
-	call .LoadMiscTiles
+	call LoadMiscTiles
 	ret
 
-.LoadMiscTiles:
+LoadMiscTiles:
 	ld a, [wSpriteFlags]
 	bit 6, a
 	ret nz
@@ -234,7 +234,7 @@ GetMonSprite:
 
 	farcall LoadOverworldMonIcon
 
-	ld l, 1
+	ld l, WALKING_SPRITE
 	ld h, 0
 	scf
 	ret
@@ -250,8 +250,8 @@ GetMonSprite:
 	jp nz, GetMonSprite
 
 .NoBreedmon:
-	ld a, 1
-	ld l, 1
+	ld a, WALKING_SPRITE
+	ld l, WALKING_SPRITE
 	ld h, 0
 	and a
 	ret

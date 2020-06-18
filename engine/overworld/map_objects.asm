@@ -1846,7 +1846,7 @@ Function5015:
 	ld e, [hl]
 	inc [hl]
 	ld d, 0
-	ld hl, wc2e2
+	ld hl, wMovementObject
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

@@ -106,11 +106,11 @@ _GetVarAction::
 
 .UnownCaught:
 ; Number of unique Unown caught.
-	call .count
+	call .count_unown
 	ld a, b
 	jp .loadstringbuffer2
 
-.count
+.count_unown
 	ld hl, wUnownDex
 	ld b, 0
 .loop
