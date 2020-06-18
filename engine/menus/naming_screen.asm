@@ -193,7 +193,7 @@ NamingScreen:
 .LoadSprite:
 	push de
 	ld hl, vTiles0 tile $00
-	ld c, $4
+	ld c, 4
 	push bc
 	call Request2bpp
 	pop bc
@@ -698,7 +698,7 @@ NamingScreen_AdvanceCursor_CheckEndOfString:
 	scf
 	ret
 
-; unused
+Unreferenced_AddDakutenToCharacter:
 	ld a, [wNamingScreenCurNameLength]
 	and a
 	ret z
@@ -711,7 +711,7 @@ NamingScreen_AdvanceCursor_CheckEndOfString:
 
 .loop
 	ld a, [hli]
-	cp $ff
+	cp -1
 	jr z, NamingScreen_AdvanceCursor_CheckEndOfString
 	cp c
 	jr z, .done
@@ -975,7 +975,7 @@ INCBIN "gfx/icons/mail_big.2bpp"
 	ld [wNamingScreenMaxNameLength], a
 	ret
 
-.UnusedString11f7a:
+.Unreferenced_PleaseWriteAMailString:
 	db "メールを　かいてね@"
 
 .InitCharset:

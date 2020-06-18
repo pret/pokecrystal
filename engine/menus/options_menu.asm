@@ -10,7 +10,7 @@
 	const OPT_CANCEL       ; 7
 NUM_OPTIONS EQU const_value    ; 8
 
-_OptionsMenu:
+_Option:
 	ld hl, hInMenu
 	ld a, [hl]
 	push af

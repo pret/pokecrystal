@@ -277,7 +277,6 @@ Unreferenced_Function241d5:
 .loop
 	call Move2DMenuCursor
 	call HDMATransferTilemapToWRAMBank3 ; BUG: This function is in another bank.
-	                    ; Pointer in current bank (9) is bogus.
 	call .loop2
 	jr nc, .done
 	call _2DMenuInterpretJoypad
@@ -300,7 +299,6 @@ Unreferenced_Function241d5:
 	ld c, 1
 	ld b, 3
 	call AdvanceMobileInactivityTimerAndCheckExpired ; BUG: This function is in another bank.
-	                    ; Pointer in current bank (9) is bogus.
 	ret c
 	farcall Function100337
 	ret c
@@ -566,8 +564,8 @@ _PushWindow::
 	ld d, [hl]
 	push de
 
-	ld b, $10
-	ld hl, wMenuFlags
+	ld b, wMenuHeaderEnd - wMenuHeader
+	ld hl, wMenuHeader
 .loop
 	ld a, [hli]
 	ld [de], a

@@ -1,7 +1,29 @@
+	; MainMenuItems indexes
+	const_def
+	const MAINMENU_NEW_GAME               ; 0
+	const MAINMENU_CONTINUE               ; 1
+	const MAINMENU_MOBILE_MYSTERY         ; 2
+	const MAINMENU_MOBILE                 ; 3
+	const MAINMENU_MOBILE_STUDIUM         ; 4
+	const MAINMENU_MYSTERY_MOBILE_STUDIUM ; 5
+	const MAINMENU_MYSTERY                ; 6
+	const MAINMENU_MYSTERY_STUDIUM        ; 7
+	const MAINMENU_STUDIUM                ; 8
+
+	; MainMenu.Strings and MainMenu.Jumptable indexes
+	const_def
+	const MAINMENUITEM_CONTINUE       ; 0
+	const MAINMENUITEM_NEW_GAME       ; 1
+	const MAINMENUITEM_OPTION         ; 2
+	const MAINMENUITEM_MYSTERY_GIFT   ; 3
+	const MAINMENUITEM_MOBILE         ; 4
+	const MAINMENUITEM_MOBILE_STUDIUM ; 5
+
 MobileMenuGFX:
 INCBIN "gfx/mobile/mobile_menu.2bpp"
 
 MainMenu:
+.loop
 	xor a
 	ld [wDisableTextAcceleration], a
 	call ClearTilemapEtc
@@ -22,7 +44,7 @@ MainMenu:
 	ld a, [wMenuSelection]
 	ld hl, .Jumptable
 	rst JumpTable
-	jr MainMenu
+	jr .loop
 
 .quit
 	ret
@@ -41,6 +63,7 @@ MainMenu:
 	dw .Strings
 
 .Strings:
+; entries correspond to MAINMENUITEM_* constants
 	db "CONTINUE@"
 	db "NEW GAME@"
 	db "OPTION@"
@@ -49,94 +72,89 @@ MainMenu:
 	db "MOBILE STUDIUM@"
 
 .Jumptable:
+; entries correspond to MAINMENUITEM_* constants
 	dw MainMenu_Continue
 	dw MainMenu_NewGame
-	dw MainMenu_Options
+	dw MainMenu_Option
 	dw MainMenu_MysteryGift
 	dw MainMenu_Mobile
 	dw MainMenu_MobileStudium
 
-CONTINUE       EQU 0
-NEW_GAME       EQU 1
-OPTION         EQU 2
-MYSTERY_GIFT   EQU 3
-MOBILE         EQU 4
-MOBILE_STUDIUM EQU 5
-
 MainMenuItems:
+; entries correspond to MAINMENU_* constants
 
-NewGameMenu:
+	; MAINMENU_NEW_GAME
 	db 2
-	db NEW_GAME
-	db OPTION
+	db MAINMENUITEM_NEW_GAME
+	db MAINMENUITEM_OPTION
 	db -1
 
-ContinueMenu:
+	; MAINMENU_CONTINUE
 	db 3
-	db CONTINUE
-	db NEW_GAME
-	db OPTION
+	db MAINMENUITEM_CONTINUE
+	db MAINMENUITEM_NEW_GAME
+	db MAINMENUITEM_OPTION
 	db -1
 
-MobileMysteryMenu:
+	; MAINMENU_MOBILE_MYSTERY
 	db 5
-	db CONTINUE
-	db NEW_GAME
-	db OPTION
-	db MYSTERY_GIFT
-	db MOBILE
+	db MAINMENUITEM_CONTINUE
+	db MAINMENUITEM_NEW_GAME
+	db MAINMENUITEM_OPTION
+	db MAINMENUITEM_MYSTERY_GIFT
+	db MAINMENUITEM_MOBILE
 	db -1
 
-MobileMenu:
+	; MAINMENU_MOBILE
 	db 4
-	db CONTINUE
-	db NEW_GAME
-	db OPTION
-	db MOBILE
+	db MAINMENUITEM_CONTINUE
+	db MAINMENUITEM_NEW_GAME
+	db MAINMENUITEM_OPTION
+	db MAINMENUITEM_MOBILE
 	db -1
 
-MobileStudiumMenu:
+	; MAINMENU_MOBILE_STUDIUM
 	db 5
-	db CONTINUE
-	db NEW_GAME
-	db OPTION
-	db MOBILE
-	db MOBILE_STUDIUM
+	db MAINMENUITEM_CONTINUE
+	db MAINMENUITEM_NEW_GAME
+	db MAINMENUITEM_OPTION
+	db MAINMENUITEM_MOBILE
+	db MAINMENUITEM_MOBILE_STUDIUM
 	db -1
 
-MysteryMobileStudiumMenu:
+	; MAINMENU_MYSTERY_MOBILE_STUDIUM
 	db 6
-	db CONTINUE
-	db NEW_GAME
-	db OPTION
-	db MYSTERY_GIFT
-	db MOBILE
-	db MOBILE_STUDIUM
+	db MAINMENUITEM_CONTINUE
+	db MAINMENUITEM_NEW_GAME
+	db MAINMENUITEM_OPTION
+	db MAINMENUITEM_MYSTERY_GIFT
+	db MAINMENUITEM_MOBILE
+	db MAINMENUITEM_MOBILE_STUDIUM
 	db -1
 
-MysteryMenu:
+	; MAINMENU_MYSTERY
 	db 4
-	db CONTINUE
-	db NEW_GAME
-	db OPTION
-	db MYSTERY_GIFT
+	db MAINMENUITEM_CONTINUE
+	db MAINMENUITEM_NEW_GAME
+	db MAINMENUITEM_OPTION
+	db MAINMENUITEM_MYSTERY_GIFT
 	db -1
 
-MysteryStudiumMenu:
+	; MAINMENU_MYSTERY_STUDIUM
 	db 5
-	db CONTINUE
-	db NEW_GAME
-	db OPTION
-	db MYSTERY_GIFT
-	db MOBILE_STUDIUM
+	db MAINMENUITEM_CONTINUE
+	db MAINMENUITEM_NEW_GAME
+	db MAINMENUITEM_OPTION
+	db MAINMENUITEM_MYSTERY_GIFT
+	db MAINMENUITEM_MOBILE_STUDIUM
 	db -1
 
-StudiumMenu:
+	; MAINMENU_STUDIUM
 	db 4
-	db CONTINUE
-	db NEW_GAME
-	db OPTION
-	db MOBILE_STUDIUM
+	db MAINMENUITEM_CONTINUE
+	db MAINMENUITEM_NEW_GAME
+	db MAINMENUITEM_OPTION
+	db MAINMENUITEM_MOBILE_STUDIUM
 	db -1
 
 MainMenu_GetWhichMenu:
@@ -146,13 +164,13 @@ MainMenu_GetWhichMenu:
 	ld a, [wSaveFileExists]
 	and a
 	jr nz, .next
-	ld a, $0 ; New Game
+	ld a, MAINMENU_NEW_GAME
 	ret
 
 .next
 	ldh a, [hCGB]
-	cp $1
-	ld a, $1
+	cp TRUE
+	ld a, MAINMENU_CONTINUE
 	ret nz
 	ld a, BANK(sNumDailyMysteryGiftPartnerIDs)
 	call OpenSRAM
@@ -163,7 +181,7 @@ MainMenu_GetWhichMenu:
 	; This check makes no difference.
 	ld a, [wStatusFlags]
 	bit STATUSFLAGS_MAIN_MENU_MOBILE_CHOICES_F, a
-	ld a, $1 ; Continue
+	ld a, MAINMENU_CONTINUE
 	jr z, .ok
 	jr .ok
 
@@ -171,7 +189,7 @@ MainMenu_GetWhichMenu:
 	jr .ok2
 
 .ok2
-	ld a, $1 ; Continue
+	ld a, MAINMENU_CONTINUE
 	ret
 
 .mystery_gift
@@ -185,7 +203,7 @@ MainMenu_GetWhichMenu:
 	jr .ok4
 
 .ok4
-	ld a, $6 ; Mystery Gift
+	ld a, MAINMENU_MYSTERY
 	ret
 
 MainMenuJoypadLoop:
@@ -232,7 +250,7 @@ MainMenu_PrintCurrentTimeAndDay:
 
 .PlaceBox:
 	call CheckRTCStatus
-	and $80
+	and %10000000 ; Day count exceeded 16383
 	jr nz, .TimeFail
 	hlcoord 0, 14
 	ld b, 2
@@ -255,7 +273,7 @@ MainMenu_PrintCurrentTimeAndDay:
 	call GetWeekday
 	ld b, a
 	decoord 1, 15
-	call .PlaceCurrentDay
+	call .PrintDayOfWeek
 	decoord 4, 16
 	ldh a, [hHours]
 	ld c, a
@@ -284,7 +302,7 @@ MainMenu_PrintCurrentTimeAndDay:
 	text_far _MainMenuTimeUnknownText
 	text_end
 
-.PlaceCurrentDay:
+.PrintDayOfWeek:
 	push de
 	ld hl, .Days
 	ld a, b
@@ -323,8 +341,8 @@ MainMenu_NewGame:
 	farcall NewGame
 	ret
 
-MainMenu_Options:
-	farcall OptionsMenu
+MainMenu_Option:
+	farcall Option
 	ret
 
 MainMenu_Continue:

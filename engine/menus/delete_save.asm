@@ -13,7 +13,7 @@ _DeleteSaveData:
 	call VerticalMenu
 	ret c
 	ld a, [wMenuCursorY]
-	cp $1
+	cp 1
 	ret z
 	farcall EmptyAllSRAMBanks
 	ret

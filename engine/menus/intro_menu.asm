@@ -1,4 +1,4 @@
-_MainMenu:
+Intro_MainMenu:
 	ld de, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
@@ -54,8 +54,8 @@ MysteryGift:
 	farcall DoMysteryGift
 	ret
 
-OptionsMenu:
-	farcall _OptionsMenu
+Option:
+	farcall _Option
 	ret
 
 NewGame:
@@ -66,7 +66,8 @@ NewGame:
 	call AreYouABoyOrAreYouAGirl
 	call OakSpeech
 	call InitializeWorld
-	ld a, 1
+
+	ld a, LANDMARK_NEW_BARK_TOWN
 	ld [wPrevLandmark], a
 
 	ld a, SPAWN_HOME
@@ -77,7 +78,7 @@ NewGame:
 	jp FinishContinueFunction
 
 AreYouABoyOrAreYouAGirl:
-	farcall Mobile_AlwaysReturnNotCarry ; some mobile stuff
+	farcall Mobile_AlwaysReturnNotCarry ; mobile
 	jr c, .ok
 	farcall InitGender
 	ret
@@ -780,7 +781,7 @@ NamePlayer:
 .Kris:
 	db "KRIS@@@@@@@"
 
-Unreferenced_Function60e9:
+Unreferenced_GSShowPlayerNamingChoices:
 	call LoadMenuHeader
 	call VerticalMenu
 	ld a, [wMenuCursorY]
@@ -910,7 +911,7 @@ ShrinkFrame:
 
 Intro_PlacePlayerSprite:
 	farcall GetPlayerIcon
-	ld c, $c
+	ld c, 12
 	ld hl, vTiles0
 	call Request2bpp
 
@@ -939,7 +940,7 @@ Intro_PlacePlayerSprite:
 .male
 	ld a, b
 
-	ld [hli], a
+	ld [hli], a ; attributes
 	dec c
 	jr nz, .loop
 	ret
@@ -952,7 +953,7 @@ Intro_PlacePlayerSprite:
 	db 10 * 8 + 4,  9 * 8, 2
 	db 10 * 8 + 4, 10 * 8, 3
 
-CrystalIntroSequence:
+IntroSequence:
 	callfar Copyright_GameFreakPresents
 	jr c, StartTitleScreen
 	farcall CrystalIntro
@@ -1008,10 +1009,10 @@ StartTitleScreen:
 	jp hl
 
 .dw
-	dw _MainMenu
+	dw Intro_MainMenu
 	dw DeleteSaveData
-	dw CrystalIntroSequence
-	dw CrystalIntroSequence
+	dw IntroSequence
+	dw IntroSequence
 	dw ResetClock
 
 .TitleScreen:
@@ -1258,12 +1259,12 @@ Unreferenced_Function639b:
 	ret nz
 	ld bc, wSpriteAnim10
 	ld hl, SPRITEANIMSTRUCT_FRAME
-	add hl, bc ; over-the-top compicated way to load wc3ae into hl
+	add hl, bc
 	ld l, [hl]
 	ld h, 0
 	add hl, hl
 	add hl, hl
-	ld de, .Data63ca
+	ld de, .Data_63ca
 	add hl, de
 	; If bit 2 of [wTitleScreenTimer] is set, get the second dw; else, get the first dw
 	ld a, [wTitleScreenTimer]
@@ -1283,7 +1284,7 @@ Unreferenced_Function639b:
 	call InitSpriteAnimStruct
 	ret
 
-.Data63ca:
+.Data_63ca:
 ; frame 0 y, x; frame 1 y, x
 	db 11 * 8 + 4, 10 * 8,  0 * 8,      0 * 8
 	db 11 * 8 + 4, 13 * 8, 11 * 8 + 4, 11 * 8
@@ -1333,4 +1334,4 @@ GameInit::
 	ld a, $90
 	ldh [hWY], a
 	call WaitBGMap
-	jp CrystalIntroSequence
+	jp IntroSequence
