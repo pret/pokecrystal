@@ -56,7 +56,7 @@ ENDM
 
 unknownmusic0xde EQUS "sound_duty"
 sound_duty: MACRO
-	db $de
+	db duty_cycle_pattern_cmd
 IF _NARG == 4
 	db \1 | (\2 << 2) | (\3 << 4) | (\4 << 6)
 ELSE
