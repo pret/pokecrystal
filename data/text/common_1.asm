@@ -97,7 +97,7 @@ _GrewToLevelText::
 	text_promptbutton
 	text_end
 
-	text_end ; unused
+	text_end ; unreferenced
 
 _CameToItsSensesText::
 	text_ram wStringBuffer1
@@ -246,23 +246,23 @@ UnknownText_0x1bc404::
 	cont "adapter."
 	done
 
-UnknownText_0x1bc42c::
+; Mobile Adapter End
+
+_ThePasswordIsText:: ; unreferenced
 	text "The password is:"
 	line ""
 	done
 
-UnknownText_0x1bc43f::
+_IsThisOKText:: ; unreferenced
 	text "Is this OK?"
 	done
 
-UnknownText_0x1bc44c::
+_EnterTheIDNoText:: ; unreferenced
 	text "Enter the"
 	line "ID no."
 	done
 
-; Mobile Adapter End
-
-UnknownText_0x1bc45e::
+_EnterTheAmountText:: ; unreferenced
 	text "Enter the"
 	line "amount."
 	done
@@ -434,7 +434,7 @@ _WillTradeText::
 	text_ram wOTTrademonSpeciesName
 	text_end
 
-	text_end ; unused
+	text_end ; unreferenced
 
 _ForYourMonWillTradeText::
 	text "for @"
@@ -452,7 +452,7 @@ _MobilePlayerWillTradeMonText::
 	text_ram wPlayerTrademonSpeciesName
 	text_end
 
-	text_end ; unused
+	text_end ; unreferenced
 
 _MobileForPartnersMonText::
 	text "for @"
@@ -463,7 +463,7 @@ _MobileForPartnersMonText::
 	text "."
 	done
 
-; unused
+; unreferenced
 _MobilePlayersMonTradeText::
 	text_ram wPlayerTrademonSenderName
 	text "'s"
@@ -523,7 +523,7 @@ _OPT_OakText1::
 	text_ram wMonOrItemNameBuffer
 	text_end
 
-	text_end ; unused
+	text_end ; unreferenced
 
 _OPT_OakText2::
 	text_start
@@ -714,7 +714,7 @@ _PokedexShowText::
 	text_ram wStringBuffer1
 	text_end
 
-	text_end ; unused
+	text_end ; unreferenced
 
 ; Pokémon Music Channel / Pokémusic
 
@@ -865,7 +865,7 @@ _PnP_Text4::
 	text_ram wStringBuffer1
 	text_end
 
-	text_end ; unused
+	text_end ; unreferenced
 
 _PnP_CuteText::
 	text_start
@@ -953,7 +953,7 @@ _PnP_Text5::
 	text_ram wStringBuffer1
 	text_end
 
-	text_end ; unused
+	text_end ; unreferenced
 
 _RocketRadioText1::
 	text_start
@@ -1121,17 +1121,17 @@ _EnemyUsedOnText::
 	text "!"
 	prompt
 
-Text_ThatCantBeUsedRightNow::
+_ThatCantBeUsedRightNowText:: ; unreferenced
 	text "That can't be used"
 	line "right now."
 	prompt
 
-Text_ThatItemCantBePutInThePack::
+_ThatItemCantBePutInThePackText:: ; unreferenced
 	text "That item can't be"
 	line "put in the PACK."
 	done
 
-Text_TheItemWasPutInThePack::
+_TheItemWasPutInThePackText:: ; unreferenced
 	text "The @"
 	text_ram wStringBuffer1
 	text_start
@@ -1139,42 +1139,42 @@ Text_TheItemWasPutInThePack::
 	cont "PACK."
 	done
 
-Text_RemainingTime::
+_RemainingTimeText:: ; unreferenced
 	text "Remaining Time"
 	done
 
-Text_YourMonsHPWasHealed::
+_YourMonsHPWasHealedText:: ; unreferenced
 	text "Your #MON's HP"
 	line "was healed."
 	prompt
 
-Text_Warping::
+_WarpingText:: ; unreferenced
 	text "Warping…"
 	done
 
-UnknownText_0x1bd05e::
+_ChangeWhichNumberText:: ; unreferenced
 	text "Which number"
 	line "should be changed?"
 	done
 
-UnknownText_0x1bd07f::
+_WillYouPlayWithMonText:: ; unreferenced
 	text "Will you play with"
 	line "@"
 	text_ram wStringBuffer2
 	text "?"
 	done
 
-UnknownText_0x1bd09a::
+_YouNeedTwoMonForBreedingText:: ; unreferenced
 	text "You need two #-"
 	line "MON for breeding."
 	prompt
 
-Text_BreedingIsNotPossible::
+_BreedingIsNotPossibleText:: ; unreferenced
 	text "Breeding is not"
 	line "possible."
 	prompt
 
-UnknownText_0x1bd0d8::
+_CompatibilityShouldTheyBreedText:: ; unreferenced
 	text "The compatibility"
 	line "is @"
 	text_decimal wBreedingCompatibility, 1, 3
@@ -1182,47 +1182,49 @@ UnknownText_0x1bd0d8::
 	cont "Should they breed?"
 	done
 
-UnknownText_0x1bd109::
+_ThereIsNoEggText:: ; unreferenced
 	text "There is no EGG."
 	line ""
 	prompt
 
-UnknownText_0x1bd11c::
+_ItsGoingToHatchText:: ; unreferenced
 	text "It's going to"
 	line "hatch!"
 	prompt
 
-UnknownText_0x1bd131::
+_TestEventText:: ; unreferenced
 	text "Test event"
 	line "@"
 	text_decimal wStringBuffer2, 1, 2
 	text "?"
 	done
 
-UnknownText_0x1bd145::
+_StartText:: ; unreferenced
 	text "Start!"
 	done
 
-UnknownText_0x1bd14d::
+_EndText:: ; unreferenced
 	text "End!"
 	done
 
-UnknownText_0x1bd153::
+_ForABoyText:: ; unreferenced
 	text "For a boy!"
 	done
 
-UnknownText_0x1bd15f::
+_ForAGirlText:: ; unreferenced
 	text "For a girl!"
 	done
 
-UnknownText_0x1bd16c::
+_DoesntConcernABoyText:: ; unreferenced
 	text "This doesn't"
 	line "concern a boy!"
 	done
 
-UnknownText_0x1bd188::
+_TheBoxIsFullText:: ; unreferenced
 	text "The BOX is full!"
 	done
+
+; Mobile Adapter
 
 UnknownText_0x1bd19a::
 	text "A new CARD arrived"
@@ -1280,7 +1282,9 @@ UnknownText_0x1bd286::
 	text "…"
 	done
 
-UnknownText_0x1bd2a0::
+; Mobile Adapter End
+
+_ObtainedTheVoltorbBadgeText:: ; unreferenced
 	text "Obtained the"
 	line "VOLTORBBADGE!"
 	done
@@ -1346,7 +1350,7 @@ _ReceiveItemText::
 	text_promptbutton
 	text_end
 
-	text_end ; unused
+	text_end ; unreferenced
 
 _NoCoinsText::
 	text "You have no coins."
@@ -1377,7 +1381,7 @@ _NPCTradeFanfareText::
 	text_pause
 	text_end
 
-	text_end ; unused
+	text_end ; unreferenced
 
 _NPCTradeIntroText1::
 	text "I collect #MON."

@@ -317,7 +317,7 @@ _BlindingFlashText::
 	text_promptbutton
 	text_end
 
-	text_end ; unused
+	text_end ; unreferenced
 
 _UsedSurfText::
 	text_ram wStringBuffer2
@@ -487,7 +487,7 @@ _RodNothingText::
 	text "Not even a nibble!"
 	prompt
 
-; unused
+; unreferenced
 _UnusedNothingHereText::
 	text "Looks like there's"
 	line "nothing here."
@@ -672,7 +672,7 @@ Text_BattleEffectActivate::
 	text_ram wStringBuffer2
 	text_end
 
-	text_end ; unused
+	text_end ; unreferenced
 
 _BattleStatWentWayUpText::
 	text_pause
@@ -689,7 +689,7 @@ Text_BattleFoeEffectActivate::
 	text_ram wStringBuffer2
 	text_end
 
-	text_end ; unused
+	text_end ; unreferenced
 
 _BattleStatSharplyFellText::
 	text_pause
@@ -757,7 +757,7 @@ _MoveNameText::
 	text_ram wStringBuffer2
 	text_end
 
-	text_end ; unused
+	text_end ; unreferenced
 
 _EndUsedMove1Text::
 	text "!"
@@ -797,7 +797,7 @@ _BreedEggHatchText::
 	text_promptbutton
 	text_end
 
-	text_end ; unused
+	text_end ; unreferenced
 
 _BreedAskNicknameText::
 	text "Give a nickname to"
@@ -889,17 +889,17 @@ _MailMovedFromBoxText::
 	line "from the MAILBOX."
 	prompt
 
-; unused
+; unreferenced
 _YesPromptText::
 	text "Yes"
 	prompt
 
-; unused
+; unreferenced
 _NoPromptText::
 	text "No"
 	prompt
 
-; unused
+; unreferenced
 _AnimationTypeText::
 	text_decimal wcf64, 1, 3
 	text " @"
@@ -909,9 +909,9 @@ _AnimationTypeText::
 	text_ram wStringBuffer2
 	text_end
 
-	text_end ; unused
+	text_end ; unreferenced
 
-; unused
+; unreferenced
 _MonNumberText::
 	text "#MON number?"
 	done
@@ -1058,7 +1058,7 @@ _KarpGuruRecordText::
 	text_promptbutton
 	text_end
 
-	text_end ; unused
+	text_end ; unreferenced
 
 _LuckyNumberMatchPartyText::
 	text "Congratulations!"
@@ -1352,7 +1352,7 @@ _OakPCText4::
 	line "OAK's PC closed."
 	done
 
-; unused
+; unreferenced
 _TrainerRankingExplanationText::
 	text "Triple-theme"
 	line "trainer ranking!"
@@ -1364,7 +1364,7 @@ _TrainerRankingExplanationText::
 	para ""
 	done
 
-; unused
+; unreferenced
 _TrainerRankingNoDataText::
 	text "There is no"
 	line "ranking data."
@@ -1554,7 +1554,7 @@ _OakText3::
 	text_promptbutton
 	text_end
 
-	text_end ; unused
+	text_end ; unreferenced
 
 _OakText4::
 	text "People and #MON"
