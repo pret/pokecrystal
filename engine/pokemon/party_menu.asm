@@ -612,8 +612,8 @@ InitPartyMenuWithCancel:
 ; with cancel
 	xor a
 	ld [wSwitchMon], a
-	ld de, PartyMenuAttributes
-	call SetMenuAttributes
+	ld de, PartyMenu2DMenuData
+	call Load2DMenuData
 	ld a, [wPartyCount]
 	inc a
 	ld [w2DMenuNumRows], a ; list length
@@ -637,8 +637,8 @@ InitPartyMenuWithCancel:
 
 InitPartyMenuNoCancel:
 ; no cancel
-	ld de, PartyMenuAttributes
-	call SetMenuAttributes
+	ld de, PartyMenu2DMenuData
+	call Load2DMenuData
 	ld a, [wPartyCount]
 	ld [w2DMenuNumRows], a ; list length
 	ld b, a
@@ -656,20 +656,12 @@ InitPartyMenuNoCancel:
 	ld [wMenuJoypadFilter], a
 	ret
 
-PartyMenuAttributes:
-; cursor y
-; cursor x
-; num rows
-; num cols
-; bit 6: animate sprites  bit 5: wrap around
-; ?
-; distance between items (hi: y, lo: x)
-; allowed buttons (mask)
-	db 1, 0
-	db 0, 1
-	db $60, $00
-	dn 2, 0
-	db 0
+PartyMenu2DMenuData:
+	db 1, 0 ; cursor start y, x
+	db 0, 1 ; rows, columns
+	db $60, $00 ; flags
+	dn 2, 0 ; cursor offset
+	db 0 ; accepted buttons
 
 PartyMenuSelect:
 ; sets carry if exitted menu.
