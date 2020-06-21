@@ -367,8 +367,8 @@
 00:13c7 LoadBlinkingCursor
 00:13cd UnloadBlinkingCursor
 00:13d4 FarString
-00:13e0 PokeFluteTerminatorCharacter
-00:13e4 PokeFluteTerminatorCharacter.stop
+00:13e0 PokeFluteTerminator
+00:13e4 PokeFluteTerminator.stop
 00:13e5 PlaceHLTextAtBC
 00:13f6 DoTextUntilTerminator
 00:13ff DoTextUntilTerminator.TextCommand
