@@ -641,7 +641,7 @@ FarString::
 	rst Bankswitch
 	ret
 
-PokeFluteTerminatorCharacter::
+PokeFluteTerminator::
 	ld hl, .stop
 	ret
 

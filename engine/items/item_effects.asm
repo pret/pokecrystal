@@ -2247,7 +2247,7 @@ PokeFluteEffect:
 	pop de
 
 .battle
-	jp PokeFluteTerminatorCharacter
+	jp PokeFluteTerminator
 
 BlueCardEffect:
 	ld hl, .BlueCardBalanceText
