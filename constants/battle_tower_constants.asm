@@ -25,10 +25,10 @@ BATTLE_TOWER_STRUCT_LENGTH EQUS "(NAME_LENGTH + BATTLETOWER_PARTY_LENGTH * NICKN
 	const BATTLETOWERACTION_0D ; more time stuff in SRAM bank 5
 	const BATTLETOWERACTION_EGGTICKET
 	const BATTLETOWERACTION_0F ; check w3_d090
-	const BATTLETOWERACTION_10 ; dw based on 5:a800
-	const BATTLETOWERACTION_11 ; store 0 in 5:aa8d
-	const BATTLETOWERACTION_12 ; store 1 in 5:aa8d
-	const BATTLETOWERACTION_13 ; check 5:aa8d
+	const BATTLETOWERACTION_10 ; dw based on s5_a800
+	const BATTLETOWERACTION_11 ; store 0 in s5_aa8d
+	const BATTLETOWERACTION_12 ; store 1 in s5_aa8d
+	const BATTLETOWERACTION_13 ; check s5_aa8d
 	const BATTLETOWERACTION_14 ; if save file is yours: bit 0, [sBattleTowerSaveFileFlags]
 	const BATTLETOWERACTION_15 ; set 0, [sBattleTowerSaveFileFlags]
 	const BATTLETOWERACTION_16 ; update time in SRAM bank 5

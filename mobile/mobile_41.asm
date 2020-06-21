@@ -247,9 +247,9 @@ StubbedTrainerRankings_StepCount:
 
 Unreferenced_StubbedTrainerRankings_BattleTowerWins:
 	ret
-	ld a, $5
+	ld a, BANK(s5_aa8d)
 	call OpenSRAM
-	ld a, [$aa8d]
+	ld a, [s5_aa8d]
 	and a
 	call CloseSRAM
 	ret nz
@@ -790,16 +790,16 @@ Mobile_DummyReturnFalse:
 
 Stubbed_Function106314:
 	ret
-	ld a, $4
+	ld a, BANK(s4_b000)
 	call OpenSRAM
 	ld a, c
 	cpl
-	ld [$b000], a
+	ld [s4_b000], a
 	call CloseSRAM
-	ld a, $7
+	ld a, BANK(s7_a800)
 	call OpenSRAM
 	ld a, c
-	ld [$a800], a
+	ld [s7_a800], a
 	call CloseSRAM
 	ret
 
@@ -809,27 +809,27 @@ Mobile_AlwaysReturnNotCarry:
 
 Function106331:
 ; called by Mobile_DummyReturnFalse in Crystal-J
-	; check ~[4:b000] == [7:a800]
-	ld a, $4
+	; check ~[s4_b000] == [s7_a800]
+	ld a, BANK(s4_b000)
 	call OpenSRAM
-	ld a, [$b000]
+	ld a, [s4_b000]
 	cpl
 	ld b, a
 	call CloseSRAM
-	ld a, $7
+	ld a, BANK(s7_a800)
 	call OpenSRAM
-	ld a, [$a800]
+	ld a, [s7_a800]
 	ld c, a
 	call CloseSRAM
 	ld a, c
 	cp b
 	jr nz, .nope
 
-	; check [7:a800] != 0
+	; check [s7_a800] != 0
 	and a
 	jr z, .nope
 
-	; check !([7:a800] & %01110000)
+	; check !([s7_a800] & %01110000)
 	and %10001111
 	cp c
 	jr nz, .nope
@@ -1023,7 +1023,7 @@ Function106464::
 	call Get2bpp
 	ld de, $40b0
 	ld hl, vTiles2 tile $6b
-	ld b, $f ; XXX no graphics at 0f:40b0
+	ld b, $0f ; XXX no graphics at 0f:40b0
 	call Get2bpp
 	farcall LoadFrame
 	ret

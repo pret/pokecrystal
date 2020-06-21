@@ -253,6 +253,10 @@ s4_a60e:: dw
 
 sMobileBattleTimer:: ds 3
 
+	ds $7fd
+
+s4_b000:: db
+
 
 SECTION "SRAM Mobile 2", SRAM
 
@@ -407,3 +411,7 @@ s6_a000::
 SECTION "SRAM Mobile 4", SRAM
 
 s7_a000::
+
+	ds $800
+
+s7_a800:: db

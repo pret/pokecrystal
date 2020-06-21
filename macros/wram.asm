@@ -126,7 +126,6 @@ map_connection_struct: MACRO
 ENDM
 
 channel_struct: MACRO
-; Addreses are wChannel1 (c101).
 \1MusicID::           dw
 \1MusicBank::         db
 \1Flags1::            db ; 0:on/off 1:subroutine 2:looping 3:sfx 4:noise 5:rest

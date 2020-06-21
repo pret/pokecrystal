@@ -8050,11 +8050,11 @@ BattleIntro:
 	ld b, SCGB_BATTLE_GRAYSCALE
 	call GetSGBLayout
 	ld hl, rLCDC
-	res rLCDC_WINDOW_TILEMAP, [hl] ; select 9800-9BFF
+	res rLCDC_WINDOW_TILEMAP, [hl] ; select vBGMap0/vBGMap2
 	call InitBattleDisplay
 	call BattleStartMessage
 	ld hl, rLCDC
-	set rLCDC_WINDOW_TILEMAP, [hl] ; select 9C00-9FFF
+	set rLCDC_WINDOW_TILEMAP, [hl] ; select vBGMap1/vBGMap3
 	xor a
 	ldh [hBGMapMode], a
 	call EmptyBattleTextbox

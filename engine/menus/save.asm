@@ -826,7 +826,7 @@ _SaveData:
 	call CopyBytes
 
 	; This block originally had some mobile functionality, but since we're still in
-	; BANK(sCrystalData), it instead overwrites the sixteen wEventFlags starting at 1:a603 with
+	; BANK(sCrystalData), it instead overwrites the sixteen wEventFlags starting at 1:s4_a60e with
 	; garbage from wd479. This isn't an issue, since ErasePreviousSave is followed by a regular
 	; save that unwrites the garbage.
 

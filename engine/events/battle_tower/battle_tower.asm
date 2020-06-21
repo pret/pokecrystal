@@ -68,7 +68,7 @@ Function170114:
 	ret
 
 Function170139:
-; Convert the 4-digit decimal number at 5:aa41 into binary
+; Convert the 4-digit decimal number at s5_aa41 into binary
 	ld a, BANK(s5_aa41)
 	call OpenSRAM
 	ld de, s5_aa41
