@@ -44123,6 +44123,7 @@
 04:a60d s4_a60d
 04:a60e s4_a60e
 04:a800 sMobileBattleTimer
+04:b000 s4_b000
 05:a001 sTrainerRankingGameTimeHOF
 05:a001 sTrainerRankings
 05:a005 sTrainerRankingStepCountHOF
@@ -44210,6 +44211,7 @@
 05:bfff s5_bfff
 06:a000 s6_a000
 07:a000 s7_a000
+07:a800 s7_a800
 00:c000 wStackBottom
 00:c0ff wStackTop
 00:c0ff wStack
