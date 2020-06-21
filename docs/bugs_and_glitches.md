@@ -371,12 +371,12 @@ This makes the Berserk Gene use the regular confusion duration (2-5 turns).
 First, edit [wram.asm](https://github.com/pret/pokecrystal/blob/master/wram.asm):
 
 ```diff
- wTurnEnded:: db ; c6b4
+ wTurnEnded:: db
 
 -	ds 1
-+wIsConfusionDamage:: db ; c6b5
++wIsConfusionDamage:: db
 
- wPlayerStats:: ; c6b6
+ wPlayerStats::
 ```
 
 Then edit four routines in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm):

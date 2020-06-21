@@ -514,7 +514,6 @@ CheckPrinterStatus:
 	cp -1
 	jr z, .error_2
 .printer_connected
-; ca89 contains printer status flags
 	ld a, [wPrinterStatusFlags]
 	and %11100000
 	ret z ; no error
