@@ -273,7 +273,7 @@ FlyFunction_GetMonIcon:
 	call GetIcon_a
 	ret
 
-Unreferenced_GetMonIcon2:
+GetMonIconDE: ; unreferenced
 	push de
 	ld a, [wTempIconSpecies]
 	call ReadMonMenuIcon

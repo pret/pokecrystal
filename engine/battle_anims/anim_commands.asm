@@ -216,7 +216,7 @@ ClearActorHud:
 	call ClearBox
 	ret
 
-Unreferenced_Functioncc220:
+Functioncc220: ; unreferenced
 	xor a
 	ldh [hBGMapMode], a
 	ld a, LOW(vBGMap0 tile $28)

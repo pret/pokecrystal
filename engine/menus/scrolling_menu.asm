@@ -78,7 +78,7 @@ ScrollingMenuJoyAction:
 	jp nz, .d_down
 	jr .loop
 
-.unreferenced ; unused
+.no_zero_no_carry ; unreferenced
 	ld a, -1
 	and a
 	ret

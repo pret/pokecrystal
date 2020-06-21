@@ -362,7 +362,7 @@ CopyPlayerObjectTemplate::
 	call CopyBytes
 	ret
 
-Unreferenced_Function19b8:
+Function19b8: ; unreferenced
 	call GetMapObject
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
@@ -574,12 +574,12 @@ _GetMovementByte::
 	ld a, h
 	ret
 
-UnreferencedSetVramState_Bit0::
+SetVramState_Bit0:: ; unreferenced
 	ld hl, wVramState
 	set 0, [hl]
 	ret
 
-UnreferencedResetVramState_Bit0::
+ResetVramState_Bit0:: ; unreferenced
 	ld hl, wVramState
 	res 0, [hl]
 	ret

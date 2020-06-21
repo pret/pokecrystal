@@ -1,4 +1,4 @@
-Unreferenced_Function88248:
+Function88248: ; unreferenced
 	ld c, CAL
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
@@ -72,7 +72,7 @@ ShowPlayerNamingChoices:
 
 INCLUDE "data/player_names.asm"
 
-Unreferenced_GetPlayerNameArray:
+GetPlayerNameArray: ; unreferenced
 	ld hl, wPlayerName
 	ld de, MalePlayerNameArray
 	ld a, [wPlayerGender]

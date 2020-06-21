@@ -781,7 +781,7 @@ NamePlayer:
 .Kris:
 	db "KRIS@@@@@@@"
 
-Unreferenced_GSShowPlayerNamingChoices:
+GSShowPlayerNamingChoices: ; unreferenced
 	call LoadMenuHeader
 	call VerticalMenu
 	ld a, [wMenuCursorY]
@@ -1033,7 +1033,7 @@ RunTitleScreen:
 	scf
 	ret
 
-Unreferenced_Function6292:
+Function6292: ; unreferenced
 	ldh a, [hVBlankCounter]
 	and $7
 	ret nz
@@ -1061,7 +1061,7 @@ TitleScreenScene:
 	dw TitleScreenMain
 	dw TitleScreenEnd
 
-.Unreferenced_NextScene:
+TitleScreenNextScene: ; unreferenced
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
@@ -1252,7 +1252,7 @@ ResetClock:
 	farcall _ResetClock
 	jp Init
 
-Unreferenced_Function639b:
+Function639b: ; unreferenced
 	; If bit 0 or 1 of [wTitleScreenTimer] is set, we don't need to be here.
 	ld a, [wTitleScreenTimer]
 	and %00000011

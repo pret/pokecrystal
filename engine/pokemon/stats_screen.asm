@@ -446,7 +446,7 @@ StatsScreen_InitUpperHalf:
 	dw sBoxMonNicknames
 	dw wBufferMonNick
 
-Unreferenced_Function4df7f:
+Function4df7f: ; unreferenced
 	hlcoord 7, 0
 	ld bc, SCREEN_WIDTH
 	ld d, SCREEN_HEIGHT
@@ -944,7 +944,7 @@ StatsScreen_LoadTextboxSpaceGFX:
 	pop hl
 	ret
 
-Unreferenced_StatsScreenSpaceGFX:
+StatsScreenSpaceGFX: ; unreferenced
 INCBIN "gfx/font/space.2bpp"
 
 EggStatsScreen:

@@ -234,7 +234,7 @@ Print8BitNumLeftAlign::
 	ld b, PRINTNUM_LEFTALIGN | 1
 	jp PrintNum
 
-Unreferenced_GetNthMove::
+GetNthMove:: ; unreferenced
 	ld hl, wListMoves_MoveIndicesBuffer
 	ld c, a
 	ld b, 0

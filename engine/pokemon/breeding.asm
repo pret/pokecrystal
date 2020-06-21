@@ -943,7 +943,7 @@ DayCareMonCompatibilityText:
 	text_far _BreedShowsInterestText
 	text_end
 
-Unreferenced_DayCareMonPrintEmptyString:
+DayCareMonPrintEmptyString: ; unreferenced
 	ld hl, .string
 	ret
 

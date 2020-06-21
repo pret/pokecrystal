@@ -1693,7 +1693,7 @@ LoadStation_EvolutionRadio:
 	ld de, UnownStationName
 	ret
 
-Unreferenced_LoadStation:
+DummyLoadStation: ; unreferenced
 	ret
 
 RadioMusicRestartDE:
@@ -2813,7 +2813,7 @@ INCBIN "gfx/pokegear/dexmap_nest_icon.2bpp"
 FlyMapLabelBorderGFX:
 INCBIN "gfx/pokegear/flymap_label_border.1bpp"
 
-Unreferenced_Function92311:
+Function92311:
 	xor a
 	ld [wTownMapPlayerIconLandmark], a
 	call ClearBGPalettes

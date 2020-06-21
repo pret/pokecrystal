@@ -31,5 +31,5 @@ IsInJohto::
 	ld a, KANTO_REGION
 	ret
 
-ret_2f3e::
+Function2f3e:: ; dummied out
 	ret

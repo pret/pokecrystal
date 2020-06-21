@@ -368,8 +368,7 @@ CheckIndoorMap::
 	cp GATE
 	ret
 
-; unused
-UnreferencedCheckEnvironment::
+CheckUnknownMap:: ; unreferenced
 	cp INDOOR
 	ret z
 	cp GATE
@@ -1313,7 +1312,7 @@ UpdateBGMapColumn::
 	ldh [hBGMapTileCount], a
 	ret
 
-Unreferenced_Function2816::
+Function2816:: ; unreferenced
 	ld hl, wBGMapBuffer
 	ld bc, wBGMapBufferEnd - wBGMapBuffer
 	xor a
@@ -1904,7 +1903,7 @@ CloseSubmenu::
 	call ReloadTilesetAndPalettes
 	call UpdateSprites
 	call Call_ExitMenu
-	call ret_d90
+	call GSReloadPalettes
 	jr FinishExitMenu
 
 ExitAllMenus::
@@ -1912,7 +1911,7 @@ ExitAllMenus::
 	call Call_ExitMenu
 	call ReloadTilesetAndPalettes
 	call UpdateSprites
-	call ret_d90
+	call GSReloadPalettes
 FinishExitMenu::
 	ld b, SCGB_MAPPALS
 	call GetSGBLayout

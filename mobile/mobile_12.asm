@@ -1598,7 +1598,7 @@ Function48c63:
 	scf
 	ret
 
-Unreferenced_Function48c8e:
+Function48c8e: ; unreferenced
 	ld hl, wd019 + $11
 	ld d, h
 	ld e, l

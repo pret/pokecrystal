@@ -1502,7 +1502,7 @@ IndexDownloadURL:
 
 popc
 
-Unreferenced_Function118d35:
+Function118d35: ; unreferenced
 	ld hl, $d200
 	ld a, [wcd38]
 	and a
@@ -3889,8 +3889,8 @@ Strings_Ll0ToL40:
 	db " L:30 @@"
 	db " L:40 @@"
 	db "CANCEL@@"
-	
-Unreferenced_CancelString:
+
+BattleTowerCancelString: ; unreferenced
 	db "CANCEL@"
 
 BattleTower_LevelCheck:
@@ -5392,7 +5392,7 @@ Function11a9ce:
 	call Call_ExitMenu
 	farcall Stubbed_Function106462
 	farcall Function106464
-	call ret_d90
+	call GSReloadPalettes
 	farcall FinishExitMenu
 	call UpdateSprites
 	ret
@@ -6695,7 +6695,7 @@ Function11b397:
 	inc de
 	jr .loop
 
-Unreferenced_Function11b3b6:
+Function11b3b6: ; unreferenced
 .loop
 	ld a, [hl]
 	cp -1

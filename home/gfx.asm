@@ -32,7 +32,7 @@ FarCopyBytesDouble_DoubleBankSwitch::
 	rst Bankswitch
 	ret
 
-Unreferenced_DMATransfer:
+SafeHDMATransfer: ; unreferenced
 	dec c
 	ldh a, [hBGMapMode]
 	push af

@@ -110,7 +110,7 @@ Script_BeatenAllTrainers2:
 	writetext Text_CongratulationsYouveBeatenAllTheTrainers
 	sjump Script_GivePlayerHisPrize
 
-UnreferencedScript_0x9f4eb:
+Script_TooMuchTimeElapsedNoRegister: ; unreferenced
 	setval BATTLETOWERACTION_CHALLENGECANCELED
 	special BattleTowerAction
 	opentext
@@ -119,7 +119,7 @@ UnreferencedScript_0x9f4eb:
 	closetext
 	end
 
-UnreferencedScript_0x9f4f7:
+Script_ChallengeCanceled: ; unreferenced
 	setval BATTLETOWERACTION_CHALLENGECANCELED
 	special BattleTowerAction
 	setval BATTLETOWERACTION_06

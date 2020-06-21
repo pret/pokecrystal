@@ -33,7 +33,7 @@ HandleCmdQueue::
 	jr nz, .loop
 	ret
 
-Unreferenced_GetNthCmdQueueEntry:
+GetNthCmdQueueEntry: ; unreferenced
 	ld hl, wCmdQueue
 	ld bc, CMDQUEUE_ENTRY_SIZE
 	call AddNTimes
@@ -158,7 +158,7 @@ CmdQueue_Null:
 	ret
 
 CmdQueue_Type1:
-	call ret_2f3e
+	call Function2f3e
 	ret
 
 CmdQueue_Type4:

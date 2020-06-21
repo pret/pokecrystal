@@ -76,7 +76,7 @@ Unused_CheckShininess:
 	and a
 	ret
 
-Unreferenced_SGB_ApplyCreditsPals:
+SGB_ApplyCreditsPals: ; unreferenced
 	push de
 	push bc
 	ld hl, PalPacket_9ce6
@@ -133,7 +133,7 @@ SGB_ApplyPartyMenuHPPals:
 	ld [hl], e
 	ret
 
-Unreferenced_Function8b07:
+Function8b07: ; unreferenced
 	call CheckCGB
 	ret z
 ; CGB only
@@ -166,7 +166,7 @@ Unreferenced_Function8b07:
 	RGB 08, 16, 28
 	RGB 00, 00, 00
 
-Unreferenced_Function8b3f:
+Function8b3f: ; unreferenced
 	call CheckCGB
 	ret nz
 	ldh a, [hSGB]
@@ -175,7 +175,7 @@ Unreferenced_Function8b3f:
 	ld hl, BlkPacket_9a86
 	jp PushSGBPals
 
-Unreferenced_Function8b4d:
+Function8b4d: ; unreferenced
 	call CheckCGB
 	jr nz, .cgb
 	ldh a, [hSGB]
@@ -190,7 +190,7 @@ Unreferenced_Function8b4d:
 	call GetPredefPal
 	jp LoadHLPaletteIntoDE
 
-Unreferenced_Function8b67:
+Function8b67: ; unreferenced
 	call CheckCGB
 	jr nz, .cgb
 	ldh a, [hSGB]
@@ -205,7 +205,7 @@ Unreferenced_Function8b67:
 	call GetPredefPal
 	jp LoadHLPaletteIntoDE
 
-Unreferenced_GSIntro_LoadMonPalette:
+GSIntro_LoadMonPalette: ; unreferenced
 	call CheckCGB
 	jr nz, .cgb
 	ldh a, [hSGB]
@@ -273,7 +273,7 @@ LoadNthMiddleBGPal:
 	call LoadPalette_White_Col1_Col2_Black
 	ret
 
-Unreferenced_Function8bec:
+Function8bec: ; unreferenced
 	ldh a, [hCGB]
 	and a
 	jr nz, .cgb
@@ -719,7 +719,7 @@ GetMonPalettePointer:
 	call _GetMonPalettePointer
 	ret
 
-Unreferenced_Function9779:
+Function9779: ; unreferenced
 	ret
 	call CheckCGB
 	ret z
@@ -742,7 +742,7 @@ Unreferenced_Function9779:
 BattleObjectPals:
 INCLUDE "gfx/battle_anims/battle_anims.pal"
 
-Unreferenced_Function97cc:
+Function97cc: ; unreferenced
 	call CheckCGB
 	ret z
 	ld a, $90
@@ -952,7 +952,7 @@ _InitSGBBorderPals:
 	dw DataSndPacket7
 	dw DataSndPacket8
 
-Unreferenced_Function9911:
+Function9911: ; unreferenced
 	di
 	xor a
 	ldh [rJOYP], a

@@ -113,12 +113,12 @@ EnableTextAcceleration:
 	ret
 
 ActivateMapAnims:
-	ld a, $1
+	ld a, TRUE
 	ldh [hMapAnims], a
 	ret
 
 SuspendMapAnims:
-	xor a
+	xor a ; FALSE
 	ldh [hMapAnims], a
 	ret
 

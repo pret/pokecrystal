@@ -57,7 +57,7 @@ Route32CooltrainerMContinueScene:
 	closetext
 	end
 
-.Unreferenced:
+.GoToSproutTower: ; unreferenced
 	writetext Route32CooltrainerMText_UnusedSproutTower
 	waitbutton
 	closetext

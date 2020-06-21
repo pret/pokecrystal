@@ -214,8 +214,7 @@ DisplayDexEntry:
 	call FarString
 	ret
 
-UnreferencedPOKeString:
-; unused
+POKeString: ; unreferenced
 	db "#@"
 
 GetDexEntryPointer:

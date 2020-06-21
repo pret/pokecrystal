@@ -18,7 +18,7 @@ SaveMenu:
 
 .refused
 	call ExitMenu
-	call ret_d90
+	call GSReloadPalettes
 	farcall SaveMenu_CopyTilemapAtOnce
 	scf
 	ret
@@ -205,7 +205,7 @@ SaveTheGame_yesorno:
 	dec a
 	call CloseWindow
 	push af
-	call ret_d90
+	call GSReloadPalettes
 	pop af
 	and a
 	ret
@@ -390,7 +390,7 @@ EraseHallOfFame:
 	call ByteFill
 	jp CloseSRAM
 
-Unreferenced_Function14d18:
+Function14d18: ; unreferenced
 	ld a, BANK(s4_a007)
 	call OpenSRAM
 	ld hl, .Data
@@ -421,7 +421,7 @@ SaveData:
 	call _SaveData
 	ret
 
-Unreferenced_Function14d6c:
+Function14d6c: ; unreferenced
 	ld a, BANK(s4_a60b) ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call OpenSRAM
 	ld a, [s4_a60b] ; address of MBC30 bank
@@ -436,7 +436,7 @@ Unreferenced_Function14d6c:
 	call CloseSRAM
 	ret
 
-Unreferenced_Function14d83:
+Function14d83: ; unreferenced
 	ld a, BANK(s4_a60c) ; aka BANK(s4_a60d) ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call OpenSRAM
 	xor a
@@ -445,7 +445,7 @@ Unreferenced_Function14d83:
 	call CloseSRAM
 	ret
 
-Unreferenced_Function14d93:
+Function14d93: ; unreferenced
 	ld a, BANK(s7_a000) ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call OpenSRAM
 	xor a

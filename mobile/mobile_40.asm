@@ -2925,7 +2925,7 @@ Function1013dd:
 	call CGBOnly_CopyTilemapAtOnce
 	ret
 
-Unreferenced_Function1013e1:
+Function1013e1: ; unreferenced
 	push de
 	inc de
 	ld b, a
@@ -2960,7 +2960,7 @@ Function1013f5:
 	jr nz, .asm_1013f9
 	ret
 
-Unreferenced_Function101400:
+Function101400: ; unreferenced
 	ld a, [de]
 	inc de
 	cp [hl]
@@ -3135,7 +3135,7 @@ Function101507:
 	ld [wMobileCommsJumptableIndex], a
 	ret
 
-Unreferenced_Function10151d:
+Function10151d: ; unreferenced
 	ld a, $34
 	call Function3e32
 	ld a, [wMobileCommsJumptableIndex]
@@ -3312,7 +3312,7 @@ Function101663:
 	call MobileCopyTransferData2
 	ret
 
-Unreferenced_Function101674:
+Function101674: ; unreferenced
 	ld a, BANK(w5_dc00)
 	ld hl, w5_dc00
 	call MobileCopyTransferData
@@ -4146,7 +4146,7 @@ Function101cbc:
 	ld [wcd2b], a
 	ret
 
-Unreferenced_Function101cc2:
+Function101cc2: ; unreferenced
 	ld a, $02
 	ld [wcd2b], a
 	ret
@@ -4407,14 +4407,14 @@ Function101e64:
 	ld [wcd2b], a
 	ret
 
-Unreferenced_Function101e82:
+Function101e82: ; unreferenced
 	call Function101ecc
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
 	ld [wMobileCommsJumptableIndex], a
 	ret
 
-Unreferenced_Function101e8d:
+Function101e8d: ; unreferenced
 	call Function101ed3
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
@@ -6123,7 +6123,7 @@ Function102b4e:
 	ld [w2DMenuNumRows], a
 	ret
 
-Unreferenced_Function102b68:
+Function102b68: ; unreferenced
 	xor a
 	ld hl, wWindowStackPointer
 	ld bc, $10

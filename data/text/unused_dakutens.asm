@@ -1,4 +1,4 @@
-UnreferencedDakutens:
+Dakutens: ; unreferenced
 	db "かが", "きぎ", "くぐ", "けげ", "こご"
 	db "さざ", "しじ", "すず", "せぜ", "そぞ"
 	db "ただ", "ちぢ", "つづ", "てで", "とど"
@@ -9,7 +9,7 @@ UnreferencedDakutens:
 	db "ハバ", "ヒビ", "フブ", "へべ", "ホボ"
 	db -1 ; end
 
-UnreferencedHandakutens:
+Handakutens: ; unreferenced
 	db "はぱ", "ひぴ", "ふぷ", "へぺ", "ほぽ"
 	db "ハパ", "ヒピ", "フプ", "へぺ", "ホポ"
 	db -1 ; end

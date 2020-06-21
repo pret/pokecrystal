@@ -1,4 +1,4 @@
-Unreferenced_Function1dd6a9:
+Function1dd6a9: ; unreferenced
 	ld a, b
 	ld b, c
 	ld c, a

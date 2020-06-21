@@ -245,7 +245,7 @@ StubbedTrainerRankings_StepCount:
 	ld hl, sTrainerRankingStepCount
 	jp StubbedTrainerRankings_Increment4Byte
 
-Unreferenced_StubbedTrainerRankings_BattleTowerWins:
+StubbedTrainerRankings_BattleTowerWins: ; unreferenced
 	ret
 	ld a, BANK(s5_aa8d)
 	call OpenSRAM
@@ -537,7 +537,7 @@ RestoreMobileEventIndex:
 	call CloseSRAM
 	ret
 
-Unreferenced_VerifyTrainerRankingsChecksum:
+VerifyTrainerRankingsChecksum: ; unreferenced
 	call CalculateTrainerRankingsChecksum
 	ld hl, sTrainerRankingsChecksum
 	ld a, d

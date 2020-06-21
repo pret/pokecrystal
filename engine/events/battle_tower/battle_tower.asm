@@ -581,7 +581,7 @@ CopyBTTrainer_FromBT_OT_TowBT_OTTemp:
 SkipBattleTowerTrainer:
 	ret
 
-Unreferenced_Function1704ca:
+Function1704ca: ; unreferenced
 	ld a, [s5_be46]
 	cp BATTLETOWER_STREAK_LENGTH
 	jr c, .not_max

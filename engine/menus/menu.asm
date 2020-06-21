@@ -272,7 +272,7 @@ MobileMenuJoypad:
 	ld c, a
 	ret
 
-Unreferenced_Function241d5:
+Function241d5: ; unreferenced
 	call Place2DMenuCursor
 .loop
 	call Move2DMenuCursor
@@ -690,7 +690,7 @@ _ExitMenu::
 	dec [hl]
 	ret
 
-Unreferenced_Function24423:
+Function24423: ; unreferenced
 	ld a, [wVramState]
 	bit 0, a
 	ret z

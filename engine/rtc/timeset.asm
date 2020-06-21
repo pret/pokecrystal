@@ -196,7 +196,7 @@ DisplayHourOClock:
 	pop hl
 	ret
 
-UnreferencedFunction907f1:
+Function907f1: ; unreferenced
 	ld h, d
 	ld l, e
 	push hl
@@ -593,7 +593,7 @@ InitialClearDSTFlag:
 	text_far _TimeAskOkayText
 	text_end
 
-Unreferenced_MrChrono:
+MrChrono: ; unreferenced
 	hlcoord 1, 14
 	lb bc, 3, SCREEN_WIDTH - 2
 	call ClearBox

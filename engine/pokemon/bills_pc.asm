@@ -239,7 +239,7 @@ BillsPCDepositMenuHeader:
 	db "RELEASE@"
 	db "CANCEL@"
 
-Unreferenced_BillsPCClearThreeBoxes:
+BillsPCClearThreeBoxes: ; unreferenced
 	hlcoord 0, 0
 	ld b, 4
 	ld c, 8
@@ -1540,7 +1540,7 @@ endr
 	dbsprite 19, 4, 0, 7, $07, 0
 	db -1
 
-Unreferenced_BillsPC_FillBox:
+BillsPC_FillBox: ; unreferenced
 .row
 	push bc
 	push hl

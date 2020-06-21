@@ -399,7 +399,7 @@ SetMinTwoStepWildEncounterCooldown:
 Dummy_CheckScriptFlags3Bit5:
 	call CheckBit5_ScriptFlags3
 	ret z
-	call ret_2f3e
+	call Function2f3e
 	ret
 
 RunSceneScript:
@@ -928,8 +928,7 @@ CountStep:
 	scf
 	ret
 
-; unused
-.unreferenced
+.whiteout ; unreferenced
 	ld a, PLAYEREVENT_WHITEOUT
 	scf
 	ret

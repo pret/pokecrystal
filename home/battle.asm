@@ -15,7 +15,7 @@ GetPartyLocation::
 	ld bc, PARTYMON_STRUCT_LENGTH
 	jp AddNTimes
 
-Unreferenced_GetDexNumber::
+GetDexNumber:: ; unreferenced
 ; Probably used in gen 1 to convert index number to dex number
 ; Not required in gen 2 because index number == dex number
 	push hl

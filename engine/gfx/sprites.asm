@@ -508,7 +508,7 @@ GetFrameOAMPointer:
 	add hl, de
 	ret
 
-Unreferenced_BrokenGetStdGraphics:
+BrokenGetStdGraphics: ; unreferenced
 	push hl
 	ld l, a
 	ld h, 0

@@ -2053,6 +2053,7 @@ wWhichHPBar::
 ; 1: Player
 ; 2: Party Menu
 	db
+
 wPokemonWithdrawDepositParameter::
 ; 0: Take from PC
 ; 1: Put into PC
@@ -2077,7 +2078,9 @@ wItemAttributeParamBuffer:: db
 
 wCurPartyLevel:: db
 
-wScrollingMenuListSize:: dw
+wScrollingMenuListSize:: db
+
+	ds 1
 
 ; used when following a map warp
 wNextWarp:: db
@@ -2409,6 +2412,7 @@ wScriptTextAddr::
 	ds 1
 wWildEncounterCooldown:: db
 wXYComparePointer:: dw
+
 	ds 4
 
 wBattleScriptFlags:: dw
@@ -2422,14 +2426,20 @@ wPlayerSpriteSetupFlags::
 wMapReentryScriptQueueFlag:: db
 wMapReentryScriptBank:: db
 wMapReentryScriptAddress:: dw
+
 	ds 4
+
 wTimeCyclesSinceLastCall:: db
 wReceiveCallDelay_MinsRemaining:: db
 wReceiveCallDelay_StartTime:: ds 3
+
 	ds 3
+
 wBugContestMinsRemaining:: db
 wBugContestSecsRemaining:: db
+
 	ds 2
+
 wMapStatusEnd::
 
 	ds 2
@@ -2452,8 +2462,7 @@ wd479:: ds 2
 
 wGameData::
 wPlayerData::
-wPlayerID::
-	dw
+wPlayerID:: dw
 
 wPlayerName:: ds NAME_LENGTH
 wMomsName::   ds NAME_LENGTH

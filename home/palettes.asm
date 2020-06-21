@@ -301,7 +301,7 @@ ClearVBank1::
 	ldh [rVBK], a
 	ret
 
-ret_d90::
+GSReloadPalettes:: ; dummied out
 	ret
 
 ReloadSpritesNoPalettes::

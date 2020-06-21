@@ -709,7 +709,7 @@ MailGFX_PlaceMessage:
 .place_author
 	jp PlaceString
 
-Unreferenced_Functionb984e:
+Functionb984e: ; unreferenced
 .loop
 	ld a, [hl]
 	xor $ff

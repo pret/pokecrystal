@@ -380,7 +380,7 @@ CopyTrainerName:
 	pop de
 	ret
 
-Unreferenced_Function39990:
+Function39990: ; unreferenced
 	ld de, wStringBuffer1
 	push de
 	ld bc, NAME_LENGTH

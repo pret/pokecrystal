@@ -417,7 +417,7 @@ YesNoBox::
 PlaceYesNoBox::
 	jr _YesNoBox
 
-UnreferencedPlaceGenericTwoOptionBox::
+PlaceGenericTwoOptionBox:: ; unreferenced
 	call LoadMenuHeader
 	jr InterpretTwoOptionMenu
 
@@ -719,7 +719,7 @@ PlaceNthMenuStrings::
 	call PlaceString
 	ret
 
-Unreferenced_Function1f9e::
+Function1f9e:: ; unreferenced
 	call GetMenuDataPointerTableEntry
 	inc hl
 	inc hl

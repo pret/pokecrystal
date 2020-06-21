@@ -1561,7 +1561,7 @@ Function28b22:
 	ldh [rSC], a
 	ret
 
-Unreferenced_Function28b42:
+Function28b42: ; unreferenced
 	hlcoord 0, 16
 	ld a, "┘"
 	ld bc, 2 * SCREEN_WIDTH
@@ -1971,7 +1971,7 @@ SetTradeRoomBGPals:
 	call SetPalettes
 	ret
 
-Unreferenced_Function28f09:
+Function28f09: ; unreferenced
 	hlcoord 0, 0
 	ld b, 6
 	ld c, 18
@@ -2503,10 +2503,10 @@ CableClubCheckWhichChris:
 	ld [wScriptVar], a
 	ret
 
-Unreferenced_GSLinkCommsBorderGFX:
+GSLinkCommsBorderGFX: ; unreferenced
 INCBIN "gfx/trade/unused_gs_border_tiles.2bpp"
 
-Unreferenced_Function29fe4:
+Function29fe4: ; unreferenced
 	ld a, BANK(sPartyMail)
 	call OpenSRAM
 	ld d, FALSE

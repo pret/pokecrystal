@@ -971,7 +971,7 @@ StrengthFunction:
 	jr c, .Failed
 	jr .UseStrength
 
-.Unreferenced_AlreadyUsing:
+.AlreadyUsingStrength: ; unreferenced
 	ld hl, .AlreadyUsingStrengthText
 	call MenuTextboxBackup
 	ld a, $80

@@ -31,7 +31,7 @@ Function11c075:
 	call Function11c08f
 	ret
 
-Unreferenced_Function11c082:
+Function11c082: ; unreferenced
 	push de
 	ld a, c
 	call Function11c254

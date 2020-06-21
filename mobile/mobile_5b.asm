@@ -1,4 +1,4 @@
-Unreferenced_Function16c000:
+Function16c000: ; unreferenced
 	; Only for CGB
 	ldh a, [hCGB]
 	and a

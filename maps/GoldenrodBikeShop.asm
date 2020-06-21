@@ -6,7 +6,7 @@ GoldenrodBikeShop_MapScripts:
 
 	db 0 ; callbacks
 
-.UnreferencedDummyScene:
+.DummyScene: ; unreferenced
 	end
 
 GoldenrodBikeShopClerkScript:

@@ -1,16 +1,16 @@
 INCLUDE "gfx/font.asm"
 
-Unused_EnableHDMA:
+EnableHDMAForGraphics:
 	db FALSE
 
-Unreferenced_Get1bppOptionalHDMA:
-	ld a, [Unused_EnableHDMA]
+Get1bppOptionalHDMA: ; unreferenced
+	ld a, [EnableHDMAForGraphics]
 	and a
 	jp nz, Get1bppViaHDMA
 	jp Get1bpp
 
-Unreferenced_Get2bppOptionalHDMA:
-	ld a, [Unused_EnableHDMA]
+Get2bppOptionalHDMA: ; unreferenced
+	ld a, [EnableHDMAForGraphics]
 	and a
 	jp nz, Get2bppViaHDMA
 	jp Get2bpp

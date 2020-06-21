@@ -980,7 +980,7 @@ _CGB_MysteryGift:
 .MysteryGiftPalettes:
 INCLUDE "gfx/mystery_gift/mystery_gift.pal"
 
-Unreferenced_GS_CGB_MysteryGift:
+GS_CGB_MysteryGift: ; unreferenced
 	ld hl, .MysteryGiftPalette
 	ld de, wBGPals1
 	ld bc, 1 palettes
