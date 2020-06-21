@@ -37,7 +37,7 @@ MapSetupScript_Warp:
 	db map_spawn_in_facing_down
 	db map_refresh_sprites
 	db map_play_music_bike
-	db map_fade_in_music
+	db map_fade_in_to_music
 	db map_fade_in_palettes
 	db map_activate_anims
 	db map_load_wild_mon_data

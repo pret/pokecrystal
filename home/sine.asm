@@ -1,4 +1,4 @@
-Cosine::
+Cosine:: ; unreferenced
 ; a = d * cos(a * pi/32)
 	add %010000 ; cos(x) = sin(x + pi/2)
 	; fallthrough

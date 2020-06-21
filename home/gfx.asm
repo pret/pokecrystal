@@ -337,6 +337,7 @@ Get2bpp::
 	ldh a, [rLCDC]
 	bit rLCDC_ENABLE, a
 	jp nz, Request2bpp
+	; fallthrough
 
 Copy2bpp:
 ; copy c 2bpp tiles from b:de to hl
@@ -366,6 +367,7 @@ Get1bpp::
 	ldh a, [rLCDC]
 	bit rLCDC_ENABLE, a
 	jp nz, Request1bpp
+	; fallthrough
 
 Copy1bpp::
 ; copy c 1bpp tiles from b:de to hl

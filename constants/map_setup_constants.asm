@@ -25,7 +25,7 @@
 	const map_fade_music_and_palettes    ; 06
 	const map_play_music_bike            ; 07
 	const map_force_music                ; 08
-	const map_fade_in_music              ; 09
+	const map_fade_in_to_music           ; 09
 	const map_load_block_data            ; 0a
 	const map_load_connection_block_data ; 0b
 	const map_save_screen                ; 0c

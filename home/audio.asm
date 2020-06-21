@@ -286,12 +286,12 @@ MinVolume::
 	ld [wVolume], a
 	ret
 
-Unused_FadeOutMusic::
+FadeOutToMusic:: ; unreferenced
 	ld a, 4
 	ld [wMusicFade], a
 	ret
 
-FadeInMusic::
+FadeInToMusic::
 	ld a, 4 | (1 << MUSIC_FADE_IN_F)
 	ld [wMusicFade], a
 	ret

@@ -215,32 +215,32 @@ _OakTimeIsItText::
 
 ; Mobile Adapter
 
-UnknownText_0x1bc384::
+UnknownText_0x1bc384:: ; unreferenced
 	text "There is nothing"
 	line "connected."
 	done
 
-UnknownText_0x1bc3a1::
+UnknownText_0x1bc3a1:: ; unreferenced
 	text "Check cell phone"
 	line "adapter."
 	done
 
-UnknownText_0x1bc3bc::
+UnknownText_0x1bc3bc:: ; unreferenced
 	text "Check CDMA"
 	line "adapter."
 	done
 
-UnknownText_0x1bc3d1::
+UnknownText_0x1bc3d1:: ; unreferenced
 	text "Check DOCOMO PHS"
 	line "adapter."
 	done
 
-UnknownText_0x1bc3ec::
+UnknownText_0x1bc3ec:: ; unreferenced
 	text "Check DDI PHS"
 	line "adapter."
 	done
 
-UnknownText_0x1bc404::
+UnknownText_0x1bc404:: ; unreferenced
 	text "Check unlimited"
 	line "battle mobile"
 	cont "adapter."
@@ -1258,17 +1258,17 @@ UnknownText_0x1bd223::
 	text "Closing link."
 	done
 
-UnknownText_0x1bd232::
+UnknownText_0x1bd232:: ; unreferenced
 	text "Clear the time"
 	line "limit?"
 	done
 
-UnknownText_0x1bd249::
+UnknownText_0x1bd249:: ; unreferenced
 	text "The time limit was"
 	line "cleared."
 	done
 
-UnknownText_0x1bd266::
+UnknownText_0x1bd266:: ; unreferenced
 	text "Pick which packet"
 	line "as an error?"
 	done

@@ -190,10 +190,10 @@ INCLUDE "data/tilesets/underground_collision.asm"
 TilesetDarkCaveGFX::
 INCBIN "gfx/tilesets/dark_cave.2bpp.lz"
 
-UnusedTilesetJohtoMeta::
+UnusedTilesetJohtoMeta:: ; unreferenced
 INCBIN "data/tilesets/unused_johto_metatiles.bin"
 
-UnusedTilesetJohtoColl::
+UnusedTilesetJohtoColl:: ; unreferenced
 INCLUDE "data/tilesets/unused_johto_collision.asm"
 
 

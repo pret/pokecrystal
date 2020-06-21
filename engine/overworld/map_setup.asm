@@ -69,7 +69,7 @@ MapSetupCommands:
 	dba FadeMapMusicAndPalettes ; 06
 	dba PlayMapMusicBike ; 07
 	dba ForceMapMusic ; 08
-	dba FadeInMusic ; 09
+	dba FadeInToMusic ; 09
 	dba LoadBlockData ; 0a (callback 1)
 	dba LoadConnectionBlockData ; 0b
 	dba SaveScreen ; 0c

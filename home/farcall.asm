@@ -24,6 +24,7 @@ FarCall_hl::
 	ldh a, [hTempBank]
 	rst Bankswitch
 	call FarCall_JumpToHL
+	; fallthrough
 
 ReturnFarCall::
 ; We want to retain the contents of f.

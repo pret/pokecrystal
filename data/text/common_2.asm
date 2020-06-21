@@ -889,18 +889,15 @@ _MailMovedFromBoxText::
 	line "from the MAILBOX."
 	prompt
 
-; unreferenced
-_YesPromptText::
+_YesPromptText:: ; unreferenced
 	text "Yes"
 	prompt
 
-; unreferenced
-_NoPromptText::
+_NoPromptText:: ; unreferenced
 	text "No"
 	prompt
 
-; unreferenced
-_AnimationTypeText::
+_AnimationTypeText:: ; unreferenced
 	text_decimal wcf64, 1, 3
 	text " @"
 	text_ram wStringBuffer1
@@ -911,8 +908,7 @@ _AnimationTypeText::
 
 	text_end ; unreferenced
 
-; unreferenced
-_MonNumberText::
+_MonNumberText:: ; unreferenced
 	text "#MON number?"
 	done
 
@@ -1352,8 +1348,7 @@ _OakPCText4::
 	line "OAK's PC closed."
 	done
 
-; unreferenced
-_TrainerRankingExplanationText::
+_TrainerRankingExplanationText:: ; unreferenced
 	text "Triple-theme"
 	line "trainer ranking!"
 
@@ -1364,8 +1359,7 @@ _TrainerRankingExplanationText::
 	para ""
 	done
 
-; unreferenced
-_TrainerRankingNoDataText::
+_TrainerRankingNoDataText:: ; unreferenced
 	text "There is no"
 	line "ranking data."
 

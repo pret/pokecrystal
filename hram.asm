@@ -149,7 +149,6 @@ hTileAnimFrame:: db
 
 hLastTalked:: db
 
-hRandom::
 hRandomAdd:: db
 hRandomSub:: db
 

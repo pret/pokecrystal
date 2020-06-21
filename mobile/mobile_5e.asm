@@ -10,10 +10,8 @@ INCBIN "gfx/mobile/kris_silhouette.2bpp"
 MobileCard2GFX::
 INCBIN "gfx/mobile/card_2.2bpp"
 
-CardLargeSpriteGFX::
+CardLargeSpriteAndFolderGFX::
 INCBIN "gfx/mobile/card_large_sprite.2bpp"
-
-CardFolderGFX::
 INCBIN "gfx/mobile/card_folder.2bpp"
 
 CardSpriteGFX::

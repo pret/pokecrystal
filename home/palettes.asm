@@ -16,6 +16,7 @@ UpdateCGBPals::
 	ldh a, [hCGBPalUpdate]
 	and a
 	ret z
+	; fallthrough
 
 ForceUpdateCGBPals::
 	ldh a, [rSVBK]

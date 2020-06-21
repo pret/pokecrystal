@@ -1109,14 +1109,14 @@ ObjectEventText::
 	text_far _ObjectEventText
 	text_end
 
-BGEvent::
+BGEvent:: ; unreferenced
 	jumptext BGEventText
 
 BGEventText::
 	text_far _BGEventText
 	text_end
 
-CoordinatesEvent::
+CoordinatesEvent:: ; unreferenced
 	jumptext CoordinatesEventText
 
 CoordinatesEventText::
@@ -2047,7 +2047,7 @@ SwitchToAnyMapAttributesBank::
 	rst Bankswitch
 	ret
 
-GetMapAttributesBank::
+GetMapAttributesBank:: ; unreferenced
 	ld a, [wMapGroup]
 	ld b, a
 	ld a, [wMapNumber]

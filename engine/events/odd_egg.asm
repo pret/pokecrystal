@@ -22,7 +22,7 @@ _GiveOddEgg:
 	jr z, .done
 .not_done
 
-	; Break when [hRandom] <= de.
+	; Break when the random word <= the next probability in de.
 	ldh a, [hRandomSub]
 	cp d
 	jr c, .done
