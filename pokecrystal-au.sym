@@ -1157,8 +1157,8 @@
 00:3c97 MaxVolume
 00:3c9d LowVolume
 00:3ca3 MinVolume
-00:3ca8 Unused_FadeOutMusic
-00:3cae FadeInMusic
+00:3ca8 FadeOutToMusic
+00:3cae FadeInToMusic
 00:3cb4 SkipMusic
 00:3cb4 SkipMusic.loop
 00:3cbc FadeToMapMusic
@@ -15450,9 +15450,9 @@
 20:5eca Function81eca
 20:5ee3 Function81ee3
 20:5ee3 Function81ee3.asm_81ee3
-20:5efc Bank20_FillBoxWithByte
-20:5efc Bank20_FillBoxWithByte.row
-20:5efe Bank20_FillBoxWithByte.col
+20:5efc DebugColor_FillBoxWithByte
+20:5efc DebugColor_FillBoxWithByte.row
+20:5efe DebugColor_FillBoxWithByte.col
 20:5f0c Function81f0c
 20:5f1d Function81f1d
 20:5f22 Function81f1d.asm_81f22
@@ -34937,8 +34937,7 @@
 5e:5bef ChrisSilhouetteGFX
 5e:5e1f KrisSilhouetteGFX
 5e:604f MobileCard2GFX
-5e:61bf CardLargeSpriteGFX
-5e:623f CardFolderGFX
+5e:61bf CardLargeSpriteAndFolderGFX
 5e:664f CardSpriteGFX
 5e:668f Function17a68f
 5e:66a6 Function17a68f.asm_17a6a6
@@ -49917,7 +49916,6 @@
 00:ffdf hTileAnimFrame
 00:ffe0 hLastTalked
 00:ffe1 hRandomAdd
-00:ffe1 hRandom
 00:ffe2 hRandomSub
 00:ffe3 hUnusedBackup
 00:ffe4 hBattleTurn
