@@ -8968,7 +8968,7 @@
 0f:660b MoveSelectionScreen.move_disabled
 0f:6610 MoveSelectionScreen.no_pp_left
 0f:6613 MoveSelectionScreen.place_textbox_start_over
-0f:661c MoveSelectionScreen.string_3e61c
+0f:661c MoveSelectionScreen.empty_string
 0f:661d MoveSelectionScreen.pressed_up
 0f:662e MoveSelectionScreen.pressed_down
 0f:6643 MoveSelectionScreen.pressed_select
