@@ -24,5 +24,8 @@ script:
 after_success:
   - |-
     if [ "$TRAVIS_BRANCH" = master -a "$TRAVIS_PULL_REQUEST" = false -a "$TRAVIS_OS_NAME" = linux ]; then
-        ./.travis/webhook.sh
+      ./.travis/webhook.sh
+      if [ -n "$GITHUB_API_KEY" ]; then
+        ./.travis/upload_symbols.sh
+      fi
     fi
