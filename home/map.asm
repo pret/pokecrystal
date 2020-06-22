@@ -1312,7 +1312,7 @@ UpdateBGMapColumn::
 	ldh [hBGMapTileCount], a
 	ret
 
-Function2816:: ; unreferenced
+ClearBGMapBuffer:: ; unreferenced
 	ld hl, wBGMapBuffer
 	ld bc, wBGMapBufferEnd - wBGMapBuffer
 	xor a

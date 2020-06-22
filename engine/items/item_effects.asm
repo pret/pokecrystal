@@ -1241,7 +1241,7 @@ StatStrings:
 
 GetStatExpRelativePointer:
 	ld a, [wCurItem]
-	ld hl, Table_eeeb
+	ld hl, StatExpItemPointerOffsets
 .next
 	cp [hl]
 	inc hl
@@ -1255,7 +1255,7 @@ GetStatExpRelativePointer:
 	ld b, 0
 	ret
 
-Table_eeeb:
+StatExpItemPointerOffsets:
 	db HP_UP,    MON_HP_EXP - MON_STAT_EXP
 	db PROTEIN, MON_ATK_EXP - MON_STAT_EXP
 	db IRON,    MON_DEF_EXP - MON_STAT_EXP

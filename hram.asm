@@ -31,8 +31,8 @@ hVBlankCounter:: db
 hROMBank:: db
 hVBlank:: db
 hMapEntryMethod:: db
-hMenuReturn:: db
 
+hMenuReturn:: db
 hUnusedFFA1:: db
 
 hJoypadReleased:: db

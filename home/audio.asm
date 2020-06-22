@@ -467,9 +467,8 @@ GetMapMusic_MaybeSpecial::
 	call GetMapMusic
 	ret
 
-Function3d9f:: ; unreferenced
-; Places a BCD number at the
-; upper center of the screen.
+PlaceBCDNumberSprite:: ; unreferenced
+; Places a BCD number at the upper center of the screen.
 	ld a, 4 * TILE_WIDTH
 	ld [wVirtualOAMSprite38YCoord], a
 	ld [wVirtualOAMSprite39YCoord], a
