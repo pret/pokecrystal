@@ -461,7 +461,8 @@
 00:193f CheckObjectTime.check_timeofday
 00:1949 CheckObjectTime.yes
 00:194b CheckObjectTime.no
-00:1956 _CopyObjectStruct
+00:194d CopyMapObjectStruct
+00:1956 UnmaskCopyMapObjectStruct
 00:1967 ApplyDeletionToMapObject
 00:1985 ApplyDeletionToMapObject.CheckStopFollow
 00:1990 ApplyDeletionToMapObject.ok
@@ -582,7 +583,7 @@
 00:1f6d ContinueGettingMenuJoypad.b_start
 00:1f79 PlaceMenuStrings
 00:1f8d PlaceNthMenuStrings
-00:1f9e Function1f9e
+00:1f9e GetNthMenuStrings
 00:1fa7 MenuJumptable
 00:1fb1 GetMenuDataPointerTableEntry
 00:1fbf ClearWindowData
@@ -727,7 +728,7 @@
 00:27f8 UpdateBGMapColumn
 00:27fd UpdateBGMapColumn.loop
 00:280e UpdateBGMapColumn.skip
-00:2816 Function2816
+00:2816 ClearBGMapBuffer
 00:2821 LoadTilesetGFX
 00:286f LoadTilesetGFX.load_roof
 00:2875 LoadTilesetGFX.skip_roof
@@ -1175,8 +1176,8 @@
 00:3d80 SpecialMapMusic.contest
 00:3d92 SpecialMapMusic.ranking
 00:3d97 GetMapMusic_MaybeSpecial
-00:3d9f Function3d9f
-00:3dd5 Function3d9f.max
+00:3d9f PlaceBCDNumberSprite
+00:3dd5 PlaceBCDNumberSprite.max
 00:3dde CheckSFX
 00:3dfc CheckSFX.playing
 00:3dfe TerminateExpBarSound
@@ -3324,7 +3325,7 @@
 03:6ed9 GetStatExpRelativePointer
 03:6edf GetStatExpRelativePointer.next
 03:6ee6 GetStatExpRelativePointer.got_it
-03:6eeb Table_eeeb
+03:6eeb StatExpItemPointerOffsets
 03:6ef5 RareCandy_StatBooster_GetParameters
 03:6f14 RareCandyEffect
 03:6fad HealPowderEffect
@@ -11591,8 +11592,8 @@
 16:40b1 RuinsOfAlphOutsideMysteryChamberSign
 16:40b4 RuinsOfAlphSign
 16:40b7 RuinsOfAlphResearchCenterSign
-16:40ba MovementData_0x580ba
-16:40c5 MovementData_0x580c5
+16:40ba RuinsOfAlphOutsideScientistWalkToLabMovement
+16:40c5 RuinsOfAlphOutsidePlayerEnterLabMovement
 16:40c7 RuinsOfAlphOutsideScientistText
 16:41e5 SuperNerdStanSeenText
 16:4217 SuperNerdStanBeatenText
@@ -38505,8 +38506,8 @@
 68:4a5f TohjoFallsSign
 68:4a62 Route27TMSolarbeam
 68:4a64 Route27RareCandy
-68:4a66 MovementData_0x1a0a66
-68:4a69 MovementData_0x1a0a69
+68:4a66 Route27FisherStepLeftTwiceMovement
+68:4a69 Route27FisherStepLeftOnceMovement
 68:4a6b Route27FisherHeyText
 68:4a71 Route27FisherText
 68:4ad9 CooltrainermBlakeSeenText
@@ -42197,7 +42198,6 @@
 00:abfb sMysteryGiftTimerStartDay
 00:abfd sMysteryGiftTrainerHouseFlag
 00:abfe sMysteryGiftPartnerName
-00:ac09 s0_ac09
 00:ac0a sMysteryGiftTrainer
 00:ac30 sBackupMysteryGiftItemEnd
 00:ac60 sRTCStatusFlags
