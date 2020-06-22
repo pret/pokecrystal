@@ -9,4 +9,4 @@ cd symbols
 cp ../*.sym .
 git add *.sym
 git -c user.name='travis' -c user.email='travis@travis-ci.org' commit -m "$commit_message"
-git push -f -q https://Rangi42:$GITHUB_API_KEY@github.com/pret/pokecrystal symbols &>/dev/null
+git push -f -q https://pokepret:$GITHUB_API_KEY@github.com/pret/pokecrystal symbols &>/dev/null
