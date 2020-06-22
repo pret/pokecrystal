@@ -13857,10 +13857,10 @@
 1d:4531 VictoryRoadHPUp
 1d:4533 VictoryRoadHiddenMaxPotion
 1d:4536 VictoryRoadHiddenFullHeal
-1d:4539 MovementData_0x74539
-1d:4542 MovementData_0x74542
-1d:454c MovementData_0x7454c
-1d:4555 MovementData_0x74555
+1d:4539 VictoryRoadRivalBattleApproachMovement1
+1d:4542 VictoryRoadRivalBattleApproachMovement2
+1d:454c VictoryRoadRivalBattleExitMovement1
+1d:4555 VictoryRoadRivalBattleExitMovement2
 1d:455f VictoryRoadRivalBeforeText
 1d:463d VictoryRoadRivalDefeatText
 1d:46ce VictoryRoadRivalAfterText
