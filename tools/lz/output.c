@@ -28,8 +28,16 @@ void write_commands_and_padding_to_textfile (const char * file, const struct com
   if (fputs("\tlzend\n", fp) < 0) error_exit(1, "could not write terminator to compressed output");
   if (padding_size) {
     input_stream += padding_offset;
-    int rv = fprintf(fp, "\tdb $%02hhx", *(input_stream ++));
-    while ((rv >= 0) && (-- padding_size)) rv = fprintf(fp, ", $%02hhx", *(input_stream ++));
+    int rv = 0;
+    unsigned pos;
+    const char * prefix = "\tdb";
+    for (pos = 0; (rv >= 0) && (pos < padding_size); pos ++) {
+      if (input_stream[pos])
+        rv = fprintf(fp, "%s $%02hhx", prefix, input_stream[pos]);
+      else
+        rv = fprintf(fp, "%s 0", prefix);
+      prefix = ",";
+    }
     if (rv >= 0) rv = -(putc('\n', fp) == EOF);
     if (rv < 0) error_exit(1, "could not write padding to compressed output");
   }
