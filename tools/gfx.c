@@ -68,7 +68,7 @@ void get_args(int argc, char *argv[]) {
 			while (token) {
 				Options.num_preserved++;
 				Options.preserved = realloc(Options.preserved, Options.num_preserved * sizeof(int));
-				Options.preserved[Options.num_preserved-1] = strtoul(optarg, NULL, 0);
+				Options.preserved[Options.num_preserved-1] = strtoul(token, NULL, 0);
 				token = strtok(NULL, ",");
 			}
 			break;
@@ -139,7 +139,7 @@ void remove_whitespace(struct Graphic *graphic) {
 	int i = 0;
 	for (int j = 0, d = 0; i < graphic->size && j < graphic->size; i += tile_size, j += tile_size) {
 		while (j < graphic->size && is_whitespace(&graphic->data[j], tile_size) && !is_preserved(j / tile_size - d)) {
-			shift_preserved(j / tile_size);
+			shift_preserved(j / tile_size - d);
 			d++;
 			j += tile_size;
 		}
@@ -181,7 +181,7 @@ void remove_duplicates(struct Graphic *graphic) {
 			if ((Options.keep_whitespace && is_whitespace(&graphic->data[j], tile_size)) || is_preserved(j / tile_size - d)) {
 				break;
 			}
-			shift_preserved(j / tile_size);
+			shift_preserved(j / tile_size - d);
 			d++;
 			j += tile_size;
 		}
@@ -235,7 +235,7 @@ void remove_flip(struct Graphic *graphic, bool xflip, bool yflip) {
 			if ((Options.keep_whitespace && is_whitespace(&graphic->data[j], tile_size)) || is_preserved(j / tile_size - d)) {
 				break;
 			}
-			shift_preserved(j / tile_size);
+			shift_preserved(j / tile_size - d);
 			d++;
 			j += tile_size;
 		}
