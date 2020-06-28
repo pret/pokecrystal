@@ -49,7 +49,7 @@ struct command * get_commands_from_file (const unsigned char * data, unsigned sh
   }
   if (slack) *slack = *size - (rp - data);
   *size = current - result;
-  return realloc(result, *size * sizeof(struct command));
+  return realloc(result, (*size ? *size : 1) * sizeof(struct command));
   error:
   free(result);
   return NULL;
@@ -88,5 +88,5 @@ unsigned char * get_uncompressed_data (const struct command * commands, const un
     }
   }
   *size = current - result;
-  return result;
+  return realloc(result, *size ? *size : 1);
 }

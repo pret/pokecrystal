@@ -101,7 +101,7 @@ struct command pick_copy_for_pass (const unsigned char * data, const unsigned ch
       current = buffer + refpos - (length - 3);
     else
       current = reference + refpos;
-    if (memcmp(data + position, current, 4)) continue;
+    if (memcmp(data + position, current, ((position + 4) > length) ? length - position : 4)) continue;
     for (count = 4; (count < (length - position)) && (count < (length - refpos)); count ++) if (data[position + count] != current[count]) break;
     if (count > (length - refpos)) count = length - refpos;
     if (count > (length - position)) count = length - position;
