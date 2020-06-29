@@ -247,21 +247,21 @@ UpdateChannels:
 	ldh [rNR10], a
 .noPitchSweep
 	bit NOTE_REST, [hl] ; rest
-	jr nz, .ch1rest
+	jr nz, .ch1_rest
 	bit NOTE_NOISE_SAMPLING, [hl]
-	jr nz, .asm_e81a2
+	jr nz, .ch1_noise_sampling
 	bit NOTE_FREQ_OVERRIDE, [hl]
-	jr nz, .frequency_override
+	jr nz, .ch1_frequency_override
 	bit NOTE_VIBRATO_OVERRIDE, [hl]
-	jr nz, .asm_e8184
-	jr .check_duty_override
+	jr nz, .ch1_vibrato_override
+	jr .ch1_check_duty_override
 
-.frequency_override
+.ch1_frequency_override
 	ld a, [wCurTrackFrequency]
 	ldh [rNR13], a
 	ld a, [wCurTrackFrequency + 1]
 	ldh [rNR14], a
-.check_duty_override
+.ch1_check_duty_override
 	bit NOTE_DUTY_OVERRIDE, [hl]
 	ret z
 	ld a, [wCurTrackDuty]
@@ -272,7 +272,7 @@ UpdateChannels:
 	ldh [rNR11], a
 	ret
 
-.asm_e8184
+.ch1_vibrato_override
 	ld a, [wCurTrackDuty]
 	ld d, a
 	ldh a, [rNR11]
@@ -283,7 +283,7 @@ UpdateChannels:
 	ldh [rNR13], a
 	ret
 
-.ch1rest
+.ch1_rest
 	ldh a, [rNR52]
 	and %10001110 ; ch1 off
 	ldh [rNR52], a
@@ -291,7 +291,7 @@ UpdateChannels:
 	call ClearChannel
 	ret
 
-.asm_e81a2
+.ch1_noise_sampling
 	ld hl, wCurTrackDuty
 	ld a, $3f ; sound length
 	or [hl]
@@ -310,11 +310,11 @@ UpdateChannels:
 	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
 	bit NOTE_REST, [hl] ; rest
-	jr nz, .ch2rest
+	jr nz, .ch2_rest
 	bit NOTE_NOISE_SAMPLING, [hl]
-	jr nz, .asm_e8204
+	jr nz, .ch2_noise_sampling
 	bit NOTE_VIBRATO_OVERRIDE, [hl]
-	jr nz, .asm_e81e6
+	jr nz, .ch2_vibrato_override
 	bit NOTE_DUTY_OVERRIDE, [hl]
 	ret z
 	ld a, [wCurTrackDuty]
@@ -325,14 +325,14 @@ UpdateChannels:
 	ldh [rNR21], a
 	ret
 
-.asm_e81db ; unused
+.ch2_frequency_override ; unreferenced
 	ld a, [wCurTrackFrequency]
 	ldh [rNR23], a
 	ld a, [wCurTrackFrequency + 1]
 	ldh [rNR24], a
 	ret
 
-.asm_e81e6
+.ch2_vibrato_override
 	ld a, [wCurTrackDuty]
 	ld d, a
 	ldh a, [rNR21]
@@ -343,7 +343,7 @@ UpdateChannels:
 	ldh [rNR23], a
 	ret
 
-.ch2rest
+.ch2_rest
 	ldh a, [rNR52]
 	and %10001101 ; ch2 off
 	ldh [rNR52], a
@@ -351,7 +351,7 @@ UpdateChannels:
 	call ClearChannel
 	ret
 
-.asm_e8204
+.ch2_noise_sampling
 	ld hl, wCurTrackDuty
 	ld a, $3f ; sound length
 	or [hl]
@@ -369,27 +369,27 @@ UpdateChannels:
 .Channel7:
 	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
-	bit NOTE_REST, [hl] ; rest
-	jr nz, .ch3rest
+	bit NOTE_REST, [hl]
+	jr nz, .ch3_rest
 	bit NOTE_NOISE_SAMPLING, [hl]
-	jr nz, .asm_e824d
+	jr nz, .ch3_noise_sampling
 	bit NOTE_VIBRATO_OVERRIDE, [hl]
-	jr nz, .asm_e823a
+	jr nz, .ch3_vibrato_override
 	ret
 
-.asm_e822f ; unused
+.ch3_frequency_override ; unreferenced
 	ld a, [wCurTrackFrequency]
 	ldh [rNR33], a
 	ld a, [wCurTrackFrequency + 1]
 	ldh [rNR34], a
 	ret
 
-.asm_e823a
+.ch3_vibrato_override
 	ld a, [wCurTrackFrequency]
 	ldh [rNR33], a
 	ret
 
-.ch3rest
+.ch3_rest
 	ldh a, [rNR52]
 	and %10001011 ; ch3 off
 	ldh [rNR52], a
@@ -397,12 +397,12 @@ UpdateChannels:
 	call ClearChannel
 	ret
 
-.asm_e824d
+.ch3_noise_sampling
 	ld a, $3f ; sound length
 	ldh [rNR31], a
 	xor a
 	ldh [rNR30], a
-	call .asm_e8268
+	call .load_wave_pattern
 	ld a, $80
 	ldh [rNR30], a
 	ld a, [wCurTrackFrequency]
@@ -412,7 +412,7 @@ UpdateChannels:
 	ldh [rNR34], a
 	ret
 
-.asm_e8268
+.load_wave_pattern
 	push hl
 	ld a, [wCurTrackVolumeEnvelope]
 	and $f ; only 0-9 are valid
@@ -470,18 +470,18 @@ endr
 .Channel8:
 	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
-	bit NOTE_REST, [hl] ; rest
-	jr nz, .ch4rest
+	bit NOTE_REST, [hl]
+	jr nz, .ch4_rest
 	bit NOTE_NOISE_SAMPLING, [hl]
-	jr nz, .asm_e82d4
+	jr nz, .ch4_noise_sampling
 	ret
 
-.asm_e82c1 ; unused
+.ch4_frequency_override ; unreferenced
 	ld a, [wCurTrackFrequency]
 	ldh [rNR43], a
 	ret
 
-.ch4rest
+.ch4_rest
 	ldh a, [rNR52]
 	and %10000111 ; ch4 off
 	ldh [rNR52], a
@@ -489,7 +489,7 @@ endr
 	call ClearChannel
 	ret
 
-.asm_e82d4
+.ch4_noise_sampling
 	ld a, $3f ; sound length
 	ldh [rNR41], a
 	ld a, [wCurTrackVolumeEnvelope]

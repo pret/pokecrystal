@@ -14,7 +14,7 @@ FarDecompress::
 	ret
 
 Decompress::
-; Pokemon Crystal uses an lz variant for compression.
+; Pokemon GSC uses an lz variant (lz3) for compression.
 ; This is mainly (but not necessarily) used for graphics.
 
 ; This function decompresses lz-compressed data from hl to de.
