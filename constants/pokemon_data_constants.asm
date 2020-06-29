@@ -96,8 +96,8 @@ MON_DEF                EQUS "(wPartyMon1Defense - wPartyMon1)"
 MON_SPD                EQUS "(wPartyMon1Speed - wPartyMon1)"
 MON_SAT                EQUS "(wPartyMon1SpclAtk - wPartyMon1)"
 MON_SDF                EQUS "(wPartyMon1SpclDef - wPartyMon1)"
-BOXMON_STRUCT_LENGTH   EQUS "(wPartyMon1End - wPartyMon1)"
-PARTYMON_STRUCT_LENGTH EQUS "(wPartyMon1StatsEnd - wPartyMon1)"
+BOXMON_STRUCT_LENGTH   EQUS "(wPartyMon1BoxEnd - wPartyMon1)"
+PARTYMON_STRUCT_LENGTH EQUS "(wPartyMon1StructEnd - wPartyMon1)"
 
 NICKNAMED_MON_STRUCT_LENGTH EQUS "(PARTYMON_STRUCT_LENGTH + MON_NAME_LENGTH)"
 REDMON_STRUCT_LENGTH EQU 44

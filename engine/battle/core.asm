@@ -6403,7 +6403,7 @@ LoadEnemyMon:
 
 	ld hl, wEnemyMonStats
 	ld de, wEnemyStats
-	ld bc, wEnemyMonStatsEnd - wEnemyMonStats
+	ld bc, NUM_EXP_STATS * 2
 	call CopyBytes
 
 	ret
