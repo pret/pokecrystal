@@ -2455,16 +2455,7 @@ Function11d035:
 AnimateEZChatCursor:
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
-	ld a, [hl]
-	ld e, a
-	ld d, 0
-	ld hl, .Jumptable
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	jumptable .Jumptable, hl
 
 .Jumptable:
 	dw .zero

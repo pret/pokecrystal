@@ -228,16 +228,7 @@ DoTradeAnimation:
 	ret
 
 .DoTradeAnimCommand:
-	ld a, [wJumptableIndex]
-	ld e, a
-	ld d, 0
-	ld hl, .JumpTable
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	jumptable .JumpTable, wJumptableIndex
 
 .JumpTable:
 ; entries correspond to macros/scripts/trade_anims.asm enumeration

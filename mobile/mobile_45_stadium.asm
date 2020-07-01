@@ -81,16 +81,7 @@ Function1176ee:
 	ret
 
 Function117719:
-	ld a, [wcd49]
-	ld e, a
-	ld d, 0
-	ld hl, Jumptable_117728
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	jumptable Jumptable_117728, wcd49
 
 Jumptable_117728:
 	dw Function117738
@@ -553,16 +544,7 @@ Function117acd:
 	ret
 
 Function117ae9:
-	ld a, [wJumptableIndex]
-	ld e, a
-	ld d, $0
-	ld hl, .Jumptable
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	jumptable .Jumptable, wJumptableIndex
 
 .Jumptable:
 	dw Function117b06

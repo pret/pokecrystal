@@ -1661,8 +1661,9 @@ wDaysSince:: db
 
 SECTION "WRAM 1", WRAMX
 
-wGBCOnlyDecompressBuffer:: ds 1 ; also uses the next $53f bytes for $540 total
+wGBCOnlyDecompressBuffer:: ; a $540-byte buffer that continues past this SECTION
 
+wd000:: db
 wDefaultSpawnpoint:: db
 
 UNION

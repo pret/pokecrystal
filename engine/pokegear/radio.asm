@@ -16,16 +16,7 @@ PlayRadioShow:
 	ld [wCurRadioLine], a
 .ok
 ; Jump to the currently loaded station.  The index to which we need to jump is in wCurRadioLine.
-	ld a, [wCurRadioLine]
-	ld e, a
-	ld d, 0
-	ld hl, RadioJumptable
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	jumptable RadioJumptable, wCurRadioLine
 
 RadioJumptable:
 ; entries correspond to constants/radio_constants.asm

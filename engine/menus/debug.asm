@@ -230,16 +230,7 @@ Function81a74:
 	jr nz, .asm_81aab
 
 .asm_81a8b
-	ld a, [wJumptableIndex]
-	ld e, a
-	ld d, 0
-	ld hl, Jumptable_81acf
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	jumptable Jumptable_81acf, wJumptableIndex
 
 .asm_81a9a
 	call Function81eca

@@ -384,16 +384,7 @@ CrystalIntro:
 	ret
 
 IntroSceneJumper:
-	ld a, [wJumptableIndex]
-	ld e, a
-	ld d, 0
-	ld hl, IntroScenes
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	jumptable IntroScenes, wJumptableIndex
 
 IntroScenes:
 	dw IntroScene1

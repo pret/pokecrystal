@@ -363,16 +363,7 @@ NamingScreenJoypadLoop:
 	ret
 
 .RunJumptable:
-	ld a, [wJumptableIndex]
-	ld e, a
-	ld d, $0
-	ld hl, .Jumptable
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	jumptable .Jumptable, wJumptableIndex
 
 .Jumptable:
 	dw .InitCursor
@@ -1050,16 +1041,7 @@ INCBIN "gfx/icons/mail_big.2bpp"
 	ret
 
 .DoJumptable:
-	ld a, [wJumptableIndex]
-	ld e, a
-	ld d, 0
-	ld hl, .Jumptable
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	jumptable .Jumptable, wJumptableIndex
 
 .Jumptable:
 	dw .init_blinking_cursor

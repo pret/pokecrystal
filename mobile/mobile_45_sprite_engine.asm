@@ -354,16 +354,7 @@ Function11619d:
 	ret
 
 Function1161b8:
-	ld a, [wc319]
-	ld e, a
-	ld d, 0
-	ld hl, .Jumptable
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	jumptable .Jumptable, wc319
 
 .Jumptable:
 	dw Function1161d5

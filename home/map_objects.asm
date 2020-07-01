@@ -237,7 +237,7 @@ CheckObjectTime::
 	ld a, [hl]
 	cp -1
 	jr z, .timeofday_always
-	ld hl, .TimeOfDayValues_191e
+	ld hl, .TimesOfDay
 	ld a, [wTimeOfDay]
 	add l
 	ld l, a
@@ -257,7 +257,7 @@ CheckObjectTime::
 	and a
 	ret
 
-.TimeOfDayValues_191e:
+.TimesOfDay:
 ; entries correspond to TimeOfDay values
 	db MORN
 	db DAY
@@ -362,7 +362,7 @@ CopyPlayerObjectTemplate::
 	call CopyBytes
 	ret
 
-Function19b8: ; unreferenced
+DeleteFollowerMapObject: ; unreferenced
 	call GetMapObject
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
@@ -376,7 +376,7 @@ Function19b8: ; unreferenced
 	pop af
 	cp -1
 	ret z
-	cp $d
+	cp NUM_OBJECT_STRUCTS
 	ret nc
 	ld b, a
 	ld a, [wObjectFollow_Leader]

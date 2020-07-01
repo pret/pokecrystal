@@ -272,16 +272,7 @@ SetMagnetTrainPals:
 	ret
 
 MagnetTrain_Jumptable:
-	ld a, [wJumptableIndex]
-	ld e, a
-	ld d, 0
-	ld hl, .Jumptable
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	jumptable .Jumptable, wJumptableIndex
 
 .Jumptable:
 	dw .InitPlayerSpriteAnim

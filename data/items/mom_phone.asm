@@ -25,3 +25,5 @@ MomItems_2:
 	momitem  50000,  8000, MOM_DOLL, DECO_PIKACHU_DOLL
 	momitem 100000, 22800, MOM_DOLL, DECO_BIG_SNORLAX_DOLL
 .End
+
+	dt 0 ; unused

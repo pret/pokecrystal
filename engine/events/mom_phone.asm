@@ -204,8 +204,6 @@ endr
 
 INCLUDE "data/items/mom_phone.asm"
 
-	db 0, 0, 0 ; unused
-
 MomHiHowAreYouText:
 	text_far _MomHiHowAreYouText
 	text_end

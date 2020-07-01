@@ -346,16 +346,7 @@ Function171a11:
 	ret
 
 Function171a36:
-	ld a, [wcd49]
-	ld e, a
-	ld d, 0
-	ld hl, Jumptable_171a45
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	jumptable Jumptable_171a45, wcd49
 
 Jumptable_171a45:
 	dw Function171a95

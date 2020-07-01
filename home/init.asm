@@ -50,7 +50,7 @@ Init::
 	ldh [rOBP1], a
 	ldh [rTMA], a
 	ldh [rTAC], a
-	ld [WRAM1_Begin], a
+	ld [wd000], a
 
 	ld a, %100 ; Start timer at 4096Hz
 	ldh [rTAC], a

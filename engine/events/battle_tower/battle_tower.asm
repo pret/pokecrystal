@@ -204,16 +204,7 @@ _BattleTowerBattle:
 	ret
 
 .do_dw
-	ld a, [wBattleTowerBattleEnded]
-	ld e, a
-	ld d, 0
-	ld hl, .dw
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	jumptable .dw, wBattleTowerBattleEnded
 
 .dw
 	dw RunBattleTowerTrainer
@@ -625,16 +616,7 @@ Function1704e1:
 	ret
 
 .DoJumptable:
-	ld a, [wJumptableIndex]
-	ld e, a
-	ld d, 0
-	ld hl, .dw
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	jumptable .dw, wJumptableIndex
 
 .dw
 	dw .Jumptable_0
@@ -869,16 +851,7 @@ Function1704e1:
 	db "れきだいりーダーいちらん@"
 
 BattleTowerAction:
-	ld a, [wScriptVar]
-	ld e, a
-	ld d, 0
-	ld hl, .dw
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	jumptable .dw, wScriptVar
 
 .dw
 	dw BattleTowerAction_CheckExplanationRead
