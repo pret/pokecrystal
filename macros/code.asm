@@ -11,7 +11,7 @@ ENDM
 ; Design patterns
 
 jumptable: MACRO
-if "\2" == "hl"
+if !STRCMP("\2", "hl")
 	ld a, [hl]
 else
 	ld a, [\2]

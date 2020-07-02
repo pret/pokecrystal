@@ -1664,6 +1664,7 @@ SECTION "WRAM 1", WRAMX
 wGBCOnlyDecompressBuffer:: ; a $540-byte buffer that continues past this SECTION
 
 wd000:: db
+
 wDefaultSpawnpoint:: db
 
 UNION
