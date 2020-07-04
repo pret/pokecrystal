@@ -106,7 +106,7 @@ InitPartyMenuPalettes:
 	call WipeAttrmap
 	ret
 
-; SGB layout for SCGB_PARTY_MENU_HP_PALS
+; SGB layout for SCGB_PARTY_MENU_HP_BARS
 SGB_ApplyPartyMenuHPPals:
 	ld hl, wHPPals
 	ld a, [wSGBPals]
@@ -630,7 +630,7 @@ ApplyAttrmap:
 	ldh [rVBK], a
 	ret
 
-; CGB layout for SCGB_PARTY_MENU_HP_PALS
+; CGB layout for SCGB_PARTY_MENU_HP_BARS
 CGB_ApplyPartyMenuHPPals:
 	ld hl, wHPPals
 	ld a, [wSGBPals]

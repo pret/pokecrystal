@@ -1,8 +1,8 @@
 GetMysteryGift_MobileAdapterLayout:
 	ld a, b
-	cp SCGB_RAM
+	cp SCGB_DEFAULT
 	jr nz, .not_ram
-	ld a, [wSGBPredef]
+	ld a, [wDefaultSGBLayout]
 .not_ram
 	push af
 	farcall ResetBGPals

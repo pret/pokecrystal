@@ -3,11 +3,11 @@ LoadSGBLayout:
 	jp nz, LoadSGBLayoutCGB
 
 	ld a, b
-	cp SCGB_RAM
-	jr nz, .not_ram
-	ld a, [wSGBPredef]
-.not_ram
-	cp SCGB_PARTY_MENU_HP_PALS
+	cp SCGB_DEFAULT
+	jr nz, .not_default
+	ld a, [wDefaultSGBLayout]
+.not_default
+	cp SCGB_PARTY_MENU_HP_BARS
 	jp z, SGB_ApplyPartyMenuHPPals
 	ld l, a
 	ld h, 0
@@ -130,7 +130,7 @@ LoadSGBLayout:
 	ld hl, wSGBPals
 	ld de, wSGBPals + PALPACKET_LENGTH
 	ld a, SCGB_BATTLE_COLORS
-	ld [wSGBPredef], a
+	ld [wDefaultSGBLayout], a
 	ret
 
 .SGB_MoveList:
@@ -318,7 +318,7 @@ endr
 	ld hl, PalPacket_GSTitleScreen
 	ld de, BlkPacket_GSTitleScreen
 	ld a, SCGB_DIPLOMA
-	ld [wSGBPredef], a
+	ld [wDefaultSGBLayout], a
 	ret
 
 .SGB_MagnetTrain:
@@ -350,7 +350,7 @@ endr
 	ld [hld], a
 	ld de, BlkPacket_9a86
 	ld a, SCGB_MAPPALS
-	ld [wSGBPredef], a
+	ld [wDefaultSGBLayout], a
 	ret
 
 .SGB_Evolution:

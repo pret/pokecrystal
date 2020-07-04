@@ -7,11 +7,11 @@ CheckCGB:
 
 LoadSGBLayoutCGB:
 	ld a, b
-	cp SCGB_RAM
-	jr nz, .not_ram
-	ld a, [wSGBPredef]
-.not_ram
-	cp SCGB_PARTY_MENU_HP_PALS
+	cp SCGB_DEFAULT
+	jr nz, .not_default
+	ld a, [wDefaultSGBLayout]
+.not_default
+	cp SCGB_PARTY_MENU_HP_BARS
 	jp z, CGB_ApplyPartyMenuHPPals
 	call ResetBGPals
 	ld l, a
@@ -109,7 +109,7 @@ _CGB_BattleColors:
 	pop hl
 	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_OB_PLAYER
 	ld a, SCGB_BATTLE_COLORS
-	ld [wSGBPredef], a
+	ld [wDefaultSGBLayout], a
 	call ApplyPals
 _CGB_FinishBattleScreenLayout:
 	call InitPartyMenuBGPal7
@@ -531,7 +531,7 @@ _CGB_Diploma:
 _CGB_MapPals:
 	call LoadMapPals
 	ld a, SCGB_MAPPALS
-	ld [wSGBPredef], a
+	ld [wDefaultSGBLayout], a
 	ret
 
 _CGB_PartyMenu:
@@ -589,7 +589,7 @@ _CGB_GSTitleScreen:
 	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 	ld a, SCGB_DIPLOMA
-	ld [wSGBPredef], a
+	ld [wDefaultSGBLayout], a
 	call ApplyPals
 	ld a, $1
 	ldh [hCGBPalUpdate], a

@@ -1336,7 +1336,7 @@ wcd8c:: ds 1
 wcd8d:: ds 11
 ENDU
 
-wSGBPredef:: db
+wDefaultSGBLayout:: db
 
 wPlayerHPPal:: db
 wEnemyHPPal:: db

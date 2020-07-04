@@ -202,7 +202,7 @@ ClearPalettes::
 	ret
 
 GetMemSGBLayout::
-	ld b, SCGB_RAM
+	ld b, SCGB_DEFAULT
 GetSGBLayout::
 ; load sgb packets unless dmg
 
