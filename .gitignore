@@ -13,7 +13,7 @@
 *.gbc
 *.gb
 
-# for any of the poor souls with save game files in their working directory
+# save game files
 *.sgm
 *.sav
 *.rtc
@@ -32,14 +32,15 @@ pokecrystal.txt
 # used_space.py
 used_space.png
 
-# for vim configuration
-# url: http://www.vim.org/scripts/script.php?script_id=441
+# vim configuration
+# http://www.vim.org/scripts/script.php?script_id=441
 .lvimrc
-# swap files for vim
+
+# swap files for vim and gedit
 .*.swp
-# swap files for gedit
 *~
-# osx files
+
+# macos files
 .DS_STORE
 
 # compiled graphics

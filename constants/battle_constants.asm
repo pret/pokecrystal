@@ -10,8 +10,9 @@ NUM_MOVES EQU 4
 BASE_STAT_LEVEL EQU 7
 MAX_STAT_LEVEL EQU 13
 
-; minimum damage before type effectiveness
+; damage limits before type effectiveness
 MIN_NEUTRAL_DAMAGE EQU 2
+MAX_NEUTRAL_DAMAGE EQU 999
 
 ; turns that sleep lasts
 REST_SLEEP_TURNS EQU 2
