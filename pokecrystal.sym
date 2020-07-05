@@ -2079,7 +2079,7 @@
 02:4643 Unused_HOF_AnimateAlignedFrontpicPredef
 02:4646 HOF_AnimateFrontpicPredef
 02:464c LoadSGBLayout
-02:465a LoadSGBLayout.not_ram
+02:465a LoadSGBLayout.not_default
 02:466f LoadSGBLayout.Jumptable
 02:46ad LoadSGBLayout.SGB_BattleGrayscale
 02:46b4 LoadSGBLayout.SGB_BattleColors
@@ -2159,7 +2159,7 @@
 02:4d05 LoadMailPalettes.MailPals
 02:4d55 CheckCGB
 02:4d59 LoadSGBLayoutCGB
-02:4d61 LoadSGBLayoutCGB.not_ram
+02:4d61 LoadSGBLayoutCGB.not_default
 02:4d79 LoadSGBLayoutCGB.ReturnFromJumpTable
 02:4d7a LoadSGBLayoutCGB.dw
 02:4db8 _CGB_BattleGrayscale
@@ -46286,8 +46286,8 @@
 00:cd8b wcd8b
 00:cd8c wcd8c
 00:cd8d wcd8d
-00:cd98 wSGBPredef
 00:cd98 wBGMapBufferEnd
+00:cd98 wDefaultSGBLayout
 00:cd99 wPlayerHPPal
 00:cd9a wEnemyHPPal
 00:cd9b wHPPals
