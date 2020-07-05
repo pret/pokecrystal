@@ -10,6 +10,7 @@ It builds the following ROMs:
 
 To set up the repository, see [INSTALL.md](INSTALL.md).
 
+
 ## See also
 
 - [**FAQ**](FAQ.md)
@@ -22,11 +23,11 @@ Other disassembly projects:
 
 - [**Pokémon Red/Blue**][pokered]
 - [**Pokémon Yellow**][pokeyellow]
-- [**Pokémon Gold**][pokegold]
+- [**Pokémon Gold/Silver**][pokegold]
 - [**Pokémon Pinball**][pokepinball]
 - [**Pokémon TCG**][poketcg]
 - [**Pokémon Ruby**][pokeruby]
-- [**Pokémon Fire Red**][pokefirered]
+- [**Pokémon FireRed**][pokefirered]
 - [**Pokémon Emerald**][pokeemerald]
 
 [pokered]: https://github.com/pret/pokered
