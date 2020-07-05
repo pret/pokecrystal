@@ -1,47 +1,5 @@
-# generated
-*.tx
+# compiled objects
 *.o
-
-# precompiled python
-*.pyc
-*$py.class
-
-# no binaries
-*.exe
-
-# roms
-*.gbc
-*.gb
-
-# save game files
-*.sgm
-*.sav
-*.rtc
-*.sn*
-*.sa*
-*.sg1
-
-# rgbds extras
-*.map
-*.sym
-
-# compare.sh
-baserom.txt
-pokecrystal.txt
-
-# used_space.py
-used_space.png
-
-# vim configuration
-# http://www.vim.org/scripts/script.php?script_id=441
-.lvimrc
-
-# swap files for vim and gedit
-.*.swp
-*~
-
-# macos files
-.DS_STORE
 
 # compiled graphics
 *.1bpp
@@ -55,3 +13,44 @@ gfx/pokemon/*/bitmask.asm
 gfx/pokemon/*/frames.asm
 !gfx/pokemon/unown/bitmask.asm
 !gfx/pokemon/unown/frames.asm
+
+# compiled roms
+*.gbc
+*.gb
+
+# rgbds extras
+*.map
+*.sym
+
+# tool binaries
+*.exe
+
+# precompiled python
+*.pyc
+*$py.class
+
+# compare.sh
+baserom.txt
+pokecrystal.txt
+
+# used_space.py
+used_space.png
+
+# save game files
+*.sgm
+*.sav
+*.rtc
+*.sn*
+*.sa*
+*.sg1
+
+# vim configuration
+# http://www.vim.org/scripts/script.php?script_id=441
+.lvimrc
+
+# swap files for vim and gedit
+.*.swp
+*~
+
+# macos files
+.DS_STORE
