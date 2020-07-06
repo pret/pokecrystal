@@ -687,29 +687,29 @@ DoTextUntilTerminator::
 
 TextCommands::
 ; entries correspond to TX_* constants (see macros/scripts/text.asm)
-	dw TextCommand_START              ; TX_START
-	dw TextCommand_RAM                ; TX_RAM
-	dw TextCommand_BCD                ; TX_BCD
-	dw TextCommand_MOVE               ; TX_MOVE
-	dw TextCommand_BOX                ; TX_BOX
-	dw TextCommand_LOW                ; TX_LOW
-	dw TextCommand_PROMPT_BUTTON      ; TX_PROMPT_BUTTON
-	dw TextCommand_SCROLL             ; TX_SCROLL
-	dw TextCommand_START_ASM          ; TX_START_ASM
-	dw TextCommand_NUM                ; TX_NUM
-	dw TextCommand_PAUSE              ; TX_PAUSE
-	dw TextCommand_SOUND              ; TX_SOUND_DEX_FANFARE_50_79
-	dw TextCommand_DOTS               ; TX_DOTS
-	dw TextCommand_LINK_PROMPT_BUTTON ; TX_LINK_PROMPT_BUTTON
-	dw TextCommand_SOUND              ; TX_SOUND_DEX_FANFARE_20_49
-	dw TextCommand_SOUND              ; TX_SOUND_ITEM
-	dw TextCommand_SOUND              ; TX_SOUND_CAUGHT_MON
-	dw TextCommand_SOUND              ; TX_SOUND_DEX_FANFARE_80_109
-	dw TextCommand_SOUND              ; TX_SOUND_FANFARE
-	dw TextCommand_SOUND              ; TX_SOUND_SLOT_MACHINE_START
-	dw TextCommand_STRINGBUFFER       ; TX_STRINGBUFFER
-	dw TextCommand_DAY                ; TX_DAY
-	dw TextCommand_FAR                ; TX_FAR
+	dw TextCommand_START         ; TX_START
+	dw TextCommand_RAM           ; TX_RAM
+	dw TextCommand_BCD           ; TX_BCD
+	dw TextCommand_MOVE          ; TX_MOVE
+	dw TextCommand_BOX           ; TX_BOX
+	dw TextCommand_LOW           ; TX_LOW
+	dw TextCommand_PROMPT_BUTTON ; TX_PROMPT_BUTTON
+	dw TextCommand_SCROLL        ; TX_SCROLL
+	dw TextCommand_START_ASM     ; TX_START_ASM
+	dw TextCommand_NUM           ; TX_NUM
+	dw TextCommand_PAUSE         ; TX_PAUSE
+	dw TextCommand_SOUND         ; TX_SOUND_DEX_FANFARE_50_79
+	dw TextCommand_DOTS          ; TX_DOTS
+	dw TextCommand_WAIT_BUTTON   ; TX_WAIT_BUTTON
+	dw TextCommand_SOUND         ; TX_SOUND_DEX_FANFARE_20_49
+	dw TextCommand_SOUND         ; TX_SOUND_ITEM
+	dw TextCommand_SOUND         ; TX_SOUND_CAUGHT_MON
+	dw TextCommand_SOUND         ; TX_SOUND_DEX_FANFARE_80_109
+	dw TextCommand_SOUND         ; TX_SOUND_FANFARE
+	dw TextCommand_SOUND         ; TX_SOUND_SLOT_MACHINE_START
+	dw TextCommand_STRINGBUFFER  ; TX_STRINGBUFFER
+	dw TextCommand_DAY           ; TX_DAY
+	dw TextCommand_FAR           ; TX_FAR
 
 TextCommand_START::
 ; write text until "@"
@@ -814,9 +814,9 @@ TextCommand_PROMPT_BUTTON::
 ; wait for button press; show arrow
 	ld a, [wLinkMode]
 	cp LINK_COLOSSEUM
-	jp z, TextCommand_LINK_PROMPT_BUTTON
+	jp z, TextCommand_WAIT_BUTTON
 	cp LINK_MOBILE
-	jp z, TextCommand_LINK_PROMPT_BUTTON
+	jp z, TextCommand_WAIT_BUTTON
 
 	push hl
 	call LoadBlinkingCursor
@@ -970,8 +970,8 @@ TextCommand_DOTS::
 	pop hl
 	ret
 
-TextCommand_LINK_PROMPT_BUTTON::
-; wait for button press; display arrow
+TextCommand_WAIT_BUTTON::
+; wait for button press; don't show arrow
 	push hl
 	push bc
 	call PromptButton

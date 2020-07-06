@@ -71,9 +71,9 @@ Play `SFX_DEX_FANFARE_50_79`.
 Print *n* `"…"`s, pausing for 10 frames after each; interrupt if A or B is pressed.
 
 
-## `$0D`: `text_linkpromptbutton`
+## `$0D`: `text_waitbutton`
 
-Wait for button press; show arrow.
+Wait for button press; don't show arrow.
 
 
 ## `$0E`: `sound_dex_fanfare_20_49`
