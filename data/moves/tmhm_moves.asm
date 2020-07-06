@@ -1,66 +1,46 @@
+; The add_tm, add_hm, and add_mt macros in constants/item_constants.asm simultaneously
+; define constants for the item IDs and for the corresponding move values.
+
 TMHMMoves:
 ; entries correspond to *_TMNUM enums (see constants/item_constants.asm)
+
 ; TMs
-	db DYNAMICPUNCH
-	db HEADBUTT
-	db CURSE
-	db ROLLOUT
-	db ROAR
-	db TOXIC
-	db ZAP_CANNON
-	db ROCK_SMASH
-	db PSYCH_UP
-	db HIDDEN_POWER
-	db SUNNY_DAY
-	db SWEET_SCENT
-	db SNORE
-	db BLIZZARD
-	db HYPER_BEAM
-	db ICY_WIND
-	db PROTECT
-	db RAIN_DANCE
-	db GIGA_DRAIN
-	db ENDURE
-	db FRUSTRATION
-	db SOLARBEAM
-	db IRON_TAIL
-	db DRAGONBREATH
-	db THUNDER
-	db EARTHQUAKE
-	db RETURN
-	db DIG
-	db PSYCHIC_M
-	db SHADOW_BALL
-	db MUD_SLAP
-	db DOUBLE_TEAM
-	db ICE_PUNCH
-	db SWAGGER
-	db SLEEP_TALK
-	db SLUDGE_BOMB
-	db SANDSTORM
-	db FIRE_BLAST
-	db SWIFT
-	db DEFENSE_CURL
-	db THUNDERPUNCH
-	db DREAM_EATER
-	db DETECT
-	db REST
-	db ATTRACT
-	db THIEF
-	db STEEL_WING
-	db FIRE_PUNCH
-	db FURY_CUTTER
-	db NIGHTMARE
+n = 1
+rept NUM_TMS
+if n < 10
+MOVE_FOR_TM EQUS "TM0{d:n}_MOVE"
+else
+MOVE_FOR_TM EQUS "TM{d:n}_MOVE"
+endc
+	db MOVE_FOR_TM
+PURGE MOVE_FOR_TM
+n = n + 1
+endr
+
 ; HMs
-	db CUT
-	db FLY
-	db SURF
-	db STRENGTH
-	db FLASH
-	db WHIRLPOOL
-	db WATERFALL
+n = 1
+rept NUM_HMS
+if n < 10
+MOVE_FOR_HM EQUS "HM0{d:n}_MOVE"
+else
+MOVE_FOR_HM EQUS "HM{d:n}_MOVE"
+endc
+	db MOVE_FOR_HM
+PURGE MOVE_FOR_HM
+n = n + 1
+endr
+
 ; Move tutor
-	db FLAMETHROWER
-	db THUNDERBOLT
-	db ICE_BEAM
+n = 1
+rept NUM_TUTORS
+if n < 10
+MOVE_FOR_MT EQUS "MT0{d:n}_MOVE"
+else
+MOVE_FOR_MT EQUS "MT{d:n}_MOVE"
+endc
+	db MOVE_FOR_MT
+PURGE MOVE_FOR_MT
+n = n + 1
+endr
+
 	db 0 ; end

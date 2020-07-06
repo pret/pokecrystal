@@ -40,15 +40,15 @@ MoveTutor:
 	cp MOVETUTOR_THUNDERBOLT
 	jr z, .thunderbolt
 	; MOVETUTOR_ICE_BEAM
-	ld a, ICE_BEAM
+	ld a, MT03_MOVE ; ICE_BEAM
 	ret
 
 .flamethrower
-	ld a, FLAMETHROWER
+	ld a, MT01_MOVE ; FLAMETHROWER
 	ret
 
 .thunderbolt
-	ld a, THUNDERBOLT
+	ld a, MT02_MOVE ; THUNDERBOLT
 	ret
 
 CheckCanLearnMoveTutorMove:
