@@ -632,7 +632,7 @@ FixDataForLinkTransfer:
 Link_PrepPartyData_Gen1:
 	ld de, wLinkData
 	ld a, SERIAL_PREAMBLE_BYTE
-	ld b, PARTY_LENGTH
+	ld b, SERIAL_PREAMBLE_LENGTH
 .loop1
 	ld [de], a
 	inc de
@@ -798,7 +798,7 @@ Link_PrepPartyData_Gen1:
 Link_PrepPartyData_Gen2:
 	ld de, wLinkData
 	ld a, SERIAL_PREAMBLE_BYTE
-	ld b, PARTY_LENGTH
+	ld b, SERIAL_PREAMBLE_LENGTH
 .loop1
 	ld [de], a
 	inc de
