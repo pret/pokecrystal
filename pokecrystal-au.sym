@@ -396,7 +396,7 @@
 00:1543 TextCommand_DOTS
 00:1548 TextCommand_DOTS.loop
 00:155a TextCommand_DOTS.next
-00:1562 TextCommand_LINK_PROMPT_BUTTON
+00:1562 TextCommand_WAIT_BUTTON
 00:156a TextCommand_STRINGBUFFER
 00:1582 TextCommand_DAY
 00:15a2 TextCommand_DAY.Days
