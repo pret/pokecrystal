@@ -231,7 +231,7 @@ DoTradeAnimation:
 	jumptable .JumpTable, wJumptableIndex
 
 .JumpTable:
-; entries correspond to macros/scripts/trade_anims.asm enumeration
+; entries correspond to tradeanim_* constants (see macros/scripts/trade_anims.asm)
 	dw TradeAnim_AdvanceScriptPointer ; 00
 	dw TradeAnim_ShowGivemonData      ; 01
 	dw TradeAnim_ShowGetmonData       ; 02

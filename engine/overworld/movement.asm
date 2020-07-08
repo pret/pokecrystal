@@ -1,5 +1,5 @@
 MovementPointers:
-; entries correspond to macros/scripts/movement.asm enumeration
+; entries correspond to movement_* constants (see macros/scripts/movement.asm)
 	dw Movement_turn_head_down        ; 00
 	dw Movement_turn_head_up          ; 01
 	dw Movement_turn_head_left        ; 02

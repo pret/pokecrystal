@@ -2,7 +2,7 @@
 ; define constants for the item IDs and for the corresponding move values.
 
 TMHMMoves:
-; entries correspond to *_TMNUM enums (see constants/item_constants.asm)
+; entries correspond to *_TMNUM constants (see constants/item_constants.asm)
 
 ; TMs
 n = 1
