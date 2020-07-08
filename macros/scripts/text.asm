@@ -137,7 +137,7 @@ text_far: MACRO
 	db BANK(\1)
 ENDM
 
-	const_def $50
+	const_next $50
 
 	const TX_END ; $50
 text_end: MACRO

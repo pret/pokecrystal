@@ -33,8 +33,8 @@
 	const OBJECT_1E                  ; 1e
 	const OBJECT_1F                  ; 1f
 	const OBJECT_RANGE               ; 20
-	; 21-27 are not used
-OBJECT_LENGTH EQU 40
+	const_skip 7
+OBJECT_LENGTH EQU const_value
 NUM_OBJECT_STRUCTS EQU 13 ; see wObjectStructs
 
 ; object_struct OBJECT_FACING values
@@ -99,21 +99,20 @@ ABSOLUTE_TILE_ID    EQU 1 << ABSOLUTE_TILE_ID_F
 ; map_object struct members (see macros/wram.asm)
 	const_def
 	const MAPOBJECT_OBJECT_STRUCT_ID ; 0
-	const MAPOBJECT_SPRITE ; 1
-	const MAPOBJECT_Y_COORD ; 2
-	const MAPOBJECT_X_COORD ; 3
-	const MAPOBJECT_MOVEMENT ; 4
-	const MAPOBJECT_RADIUS ; 5
-	const MAPOBJECT_HOUR ; 6
-	const MAPOBJECT_TIMEOFDAY ; 7
-	const MAPOBJECT_COLOR ; 8
-	const MAPOBJECT_RANGE ; 9
-	const MAPOBJECT_SCRIPT_POINTER ; a
-	const MAPOBJECT_POINTER_HI ; b
-	const MAPOBJECT_EVENT_FLAG ; c
-	const MAPOBJECT_FLAG_HI ; d
-	const MAPOBJECT_E ; unused
-	const MAPOBJECT_F ; unused
+	const MAPOBJECT_SPRITE           ; 1
+	const MAPOBJECT_Y_COORD          ; 2
+	const MAPOBJECT_X_COORD          ; 3
+	const MAPOBJECT_MOVEMENT         ; 4
+	const MAPOBJECT_RADIUS           ; 5
+	const MAPOBJECT_HOUR             ; 6
+	const MAPOBJECT_TIMEOFDAY        ; 7
+	const MAPOBJECT_COLOR            ; 8
+	const MAPOBJECT_RANGE            ; 9
+	const MAPOBJECT_SCRIPT_POINTER   ; a
+	const_skip ; high MAPOBJECT_SCRIPT_POINTER byte
+	const MAPOBJECT_EVENT_FLAG       ; c
+	const_skip ; high MAPOBJECT_EVENT_FLAG byte
+	const_skip 2 ; unused
 MAPOBJECT_LENGTH EQU const_value
 
 ; SpriteMovementData struct members (see data/sprites/map_objects.asm)

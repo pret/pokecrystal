@@ -41,7 +41,7 @@ noise_note: MACRO
 ENDM
 
 ; MusicCommands indexes (see audio/engine.asm)
-	const_def $d0, 8
+	const_def $d0
 FIRST_MUSIC_CMD EQU const_value
 
 	const octave_cmd ; $d0
@@ -49,7 +49,7 @@ octave: MACRO
 	db octave_cmd | 8 - (\1) ; octave
 ENDM
 
-const_inc = 1
+	const_skip 7 ; all octave values
 
 	const note_type_cmd ; $d8
 note_type: MACRO

@@ -2752,8 +2752,6 @@ wErinFightCount::    db
 
 wEventFlags:: flag_array NUM_EVENTS
 
-	ds 6
-
 wCurBox:: db
 
 	ds 2

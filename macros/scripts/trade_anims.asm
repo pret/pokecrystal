@@ -21,7 +21,7 @@ tradeanim_enter_link_tube: MACRO
 	db tradeanim_enter_link_tube_command
 ENDM
 
-	const_def $05
+	const_skip ; continues tradeanim_enter_link_tube_command
 
 	const tradeanim_exit_link_tube_command ; $05
 tradeanim_exit_link_tube: MACRO
@@ -33,14 +33,14 @@ tradeanim_tube_to_ot: MACRO
 	db tradeanim_tube_to_ot_command
 ENDM
 
-	const_def $0e
+	const_skip 7 ; continues tradeanim_tube_to_ot_command
 
 	const tradeanim_tube_to_player_command ; $0e
 tradeanim_tube_to_player: MACRO
 	db tradeanim_tube_to_player_command
 ENDM
 
-	const_def $16
+	const_skip 7 ; continues tradeanim_tube_to_player_command
 
 	const tradeanim_sent_to_ot_text_command ; $16
 tradeanim_sent_to_ot_text: MACRO
@@ -92,7 +92,7 @@ tradeanim_scroll_out_right: MACRO
 	db tradeanim_scroll_out_right_command
 ENDM
 
-	const_def $21
+	const_skip ; continues tradeanim_scroll_out_right_command
 
 	const tradeanim_wait_80_command ; $21
 tradeanim_wait_80: MACRO
@@ -119,7 +119,7 @@ tradeanim_wait_anim: MACRO
 	db tradeanim_wait_anim_command
 ENDM
 
-	const_def $27
+	const_skip ; continues tradeanim_wait_anim_command
 
 	const tradeanim_poof_command ; $27
 tradeanim_poof: MACRO
@@ -184,7 +184,7 @@ mobiletradeanim_sendmon: MACRO
 	db mobiletradeanim_sendmon_command
 ENDM
 
-	const_def $05
+	const_skip ; continues mobiletradeanim_sendmon_command
 
 	const mobiletradeanim_05_command ; $05
 mobiletradeanim_05: MACRO
@@ -206,7 +206,7 @@ mobiletradeanim_receivemon: MACRO
 	db mobiletradeanim_receivemon_command
 ENDM
 
-	const_def $0b
+	const_skip 2 ; continues mobiletradeanim_receivemon_command
 
 	const mobiletradeanim_showgetmon_command ; $0b
 mobiletradeanim_showgetmon: MACRO

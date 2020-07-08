@@ -117,7 +117,7 @@ else
 endc
 ENDM
 
-const_value = const_value + 8
+	const_skip 8 ; all step_sleep values
 
 	const movement_step_end ; $47
 step_end: MACRO

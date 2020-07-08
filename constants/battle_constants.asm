@@ -192,7 +192,7 @@ ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP
 	const SUBSTATUS_X_ACCURACY
 	const SUBSTATUS_MIST
 	const SUBSTATUS_FOCUS_ENERGY
-	const SUBSTATUS_UNKNOWN_1
+	const_skip
 	const SUBSTATUS_SUBSTITUTE
 	const SUBSTATUS_RECHARGE
 	const SUBSTATUS_RAGE
@@ -201,8 +201,8 @@ ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP
 ; wPlayerSubStatus5 or wEnemySubStatus5 bit flags
 	const_def
 	const SUBSTATUS_TOXIC
-	const SUBSTATUS_UNKNOWN_2
-	const SUBSTATUS_UNKNOWN_3
+	const_skip
+	const_skip
 	const SUBSTATUS_TRANSFORMED
 	const SUBSTATUS_ENCORED
 	const SUBSTATUS_LOCK_ON
@@ -212,7 +212,7 @@ ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP
 ; wPlayerScreens or wEnemyScreens bit flags
 	const_def
 	const SCREENS_SPIKES
-	const SCREENS_UNUSED
+	const_skip
 	const SCREENS_SAFEGUARD
 	const SCREENS_LIGHT_SCREEN
 	const SCREENS_REFLECT
@@ -239,9 +239,9 @@ ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP
 	const BATTLEACTION_SWITCH4
 	const BATTLEACTION_SWITCH5
 	const BATTLEACTION_SWITCH6
-	const BATTLEACTION_A
-	const BATTLEACTION_B
-	const BATTLEACTION_C
+	const_skip
+	const_skip
+	const_skip
 	const BATTLEACTION_SKIPTURN
 	const BATTLEACTION_STRUGGLE
 	const BATTLEACTION_FORFEIT

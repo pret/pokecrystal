@@ -181,6 +181,6 @@ ENDM
 	command startloop               ; ae
 	command curl                    ; af
 
-	const_def $fe
-	command endturn                 ; fe
+	const_def -1, -1
 	command endmove                 ; ff
+	command endturn                 ; fe
