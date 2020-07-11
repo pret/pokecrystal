@@ -12,42 +12,42 @@ endc
 	db x
 ENDM
 
-	enum_start $fc
+	const_def -1, -1
 
-	enum delanim_command ; $fc
-delanim: MACRO
-; Removes the object from the screen, as opposed to `endanim` which just stops all motion
-	db delanim_command
+	const endanim_command ; $ff
+endanim: MACRO
+	db endanim_command
 ENDM
 
-	enum dowait_command ; $fd
+	const dorestart_command ; $fe
+dorestart: MACRO
+	db dorestart_command
+ENDM
+
+	const dowait_command ; $fd
 dowait: MACRO
 	db dowait_command
 	db \1 ; frames
 ENDM
 
-	enum dorestart_command ; $fe
-dorestart: MACRO
-	db dorestart_command
-ENDM
-
-	enum endanim_command ; $ff
-endanim: MACRO
-	db endanim_command
+	const delanim_command ; $fc
+delanim: MACRO
+; Removes the object from the screen, as opposed to `endanim` which just stops all motion
+	db delanim_command
 ENDM
 
 
 ; Used for pic animations
-__enum__ = $fd
+	const_def -2, -1
 
-	enum dorepeat_command ; $fd
-dorepeat: MACRO
-	db dorepeat_command
-	db \1 ; command offset to jump to
-ENDM
-
-	enum setrepeat_command ; $fe
+	const setrepeat_command ; $fe
 setrepeat: MACRO
 	db setrepeat_command
 	db \1 ; amount of times to repeat
+ENDM
+
+	const dorepeat_command ; $fd
+dorepeat: MACRO
+	db dorepeat_command
+	db \1 ; command offset to jump to
 ENDM

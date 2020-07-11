@@ -1,7 +1,7 @@
 ; overworld_sprite struct members (see data/sprites.asm)
 	const_def
 	const SPRITEDATA_ADDR    ; 0
-	const SPRITEDATA_ADDR_HI ; 1
+	const_skip ; high SPRITEDATA_ADDR byte
 	const SPRITEDATA_SIZE    ; 2
 	const SPRITEDATA_BANK    ; 3
 	const SPRITEDATA_TYPE    ; 4

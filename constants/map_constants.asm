@@ -1,6 +1,6 @@
 newgroup: MACRO
 const_value = const_value + 1
-	enum_start 1
+__map_value__ = 1
 ENDM
 
 map_const: MACRO
@@ -8,7 +8,8 @@ map_const: MACRO
 ;\2: width: in blocks
 ;\3: height: in blocks
 GROUP_\1 EQU const_value
-	enum MAP_\1
+MAP_\1 EQU __map_value__
+__map_value__ = __map_value__ + 1
 \1_WIDTH EQU \2
 \1_HEIGHT EQU \3
 ENDM

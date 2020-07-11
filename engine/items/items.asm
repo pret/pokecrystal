@@ -570,7 +570,7 @@ GetItemPrice:
 ; Return the price of wCurItem in de.
 	push hl
 	push bc
-	ld a, ITEMATTR_PRICE
+	ld a, ITEMATTR_PRICE_LO
 	call GetItemAttr
 	ld e, a
 	ld a, ITEMATTR_PRICE_HI

@@ -326,7 +326,7 @@ RunBattleAnimCommand:
 	jp hl
 
 BattleAnimCommands::
-; entries correspond to macros/scripts/battle_anims.asm enumeration
+; entries correspond to anim_* constants (see macros/scripts/battle_anims.asm)
 	dw BattleAnimCmd_Obj
 	dw BattleAnimCmd_1GFX
 	dw BattleAnimCmd_2GFX

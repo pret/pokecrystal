@@ -62,7 +62,7 @@ RunScriptCommand:
 	ret
 
 ScriptCommandTable:
-; entries correspond to macros/scripts/events.asm enumeration
+; entries correspond to *_command constants (see macros/scripts/events.asm)
 	dw Script_scall                      ; 00
 	dw Script_farscall                   ; 01
 	dw Script_memcall                    ; 02

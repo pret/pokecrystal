@@ -445,58 +445,52 @@ wAttackMissed::
 
 wPlayerSubStatus1::
 ; bit
-; 7 in love
-; 6 rollout
-; 5 endure
-; 4 perish song
-; 3 identified
-; 2 protect
-; 1 curse
 ; 0 nightmare
+; 1 curse
+; 2 protect
+; 3 identified
+; 4 perish song
+; 5 endure
+; 6 rollout
+; 7 in love
 	db
 wPlayerSubStatus2::
 ; bit
-; 7
-; 6
-; 5
-; 4
-; 3
-; 2
-; 1
 ; 0 curled
+; 1-7 unused
 	db
 wPlayerSubStatus3::
 ; bit
-; 7 confused
-; 6 flying
-; 5 underground
-; 4 charged
-; 3 flinched
-; 2 in loop
-; 1 rampage
 ; 0 bide
+; 1 rampage
+; 2 in loop
+; 3 flinched
+; 4 charged
+; 5 underground
+; 6 flying
+; 7 confused
 	db
 wPlayerSubStatus4::
 ; bit
-; 7 leech seed
-; 6 rage
-; 5 recharge
-; 4 substitute
-; 3
-; 2 focus energy
-; 1 mist
 ; 0 x accuracy
+; 1 mist
+; 2 focus energy
+; 3
+; 4 substitute
+; 5 recharge
+; 6 rage
+; 7 leech seed
 	db
 wPlayerSubStatus5::
 ; bit
-; 7 can't run
-; 6 destiny bond
-; 5 lock-on
-; 4 encored
-; 3 transformed
-; 2
-; 1
 ; 0 toxic
+; 1
+; 2
+; 3 transformed
+; 4 encored
+; 5 lock-on
+; 6 destiny bond
+; 7 can't run
 	db
 
 wEnemySubStatus1::
@@ -635,14 +629,12 @@ wBattleLowHealthAlarm:: db
 wPlayerMinimized:: db
 wPlayerScreens::
 ; bit
-; 7
-; 6
-; 5
-; 4 reflect
-; 3 light screen
-; 2 safeguard
-; 1
 ; 0 spikes
+; 1
+; 2 safeguard
+; 3 light screen
+; 4 reflect
+; 5-7 unused
 	db
 
 wEnemyScreens::
@@ -2759,8 +2751,6 @@ wErinFightCount::    db
 	ds 100
 
 wEventFlags:: flag_array NUM_EVENTS
-
-	ds 6
 
 wCurBox:: db
 

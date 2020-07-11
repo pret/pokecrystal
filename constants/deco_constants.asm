@@ -1,5 +1,5 @@
 ; decoration types
-const_value = 1
+	const_def 1
 	const DECO_PLANT
 	const DECO_BED
 	const DECO_CARPET
@@ -8,7 +8,7 @@ const_value = 1
 	const DECO_BIGDOLL
 
 ; DecorationNames indexes (see data/decorations/names.asm)
-const_value = 1
+	const_def 1
 	const PUT_IT_AWAY
 	const MAGNAPLANT
 	const TROPICPLANT
@@ -36,7 +36,7 @@ const_value = 1
 	const GREEN_CARPET
 
 ; DoDecorationAction2.DecoActions indexes (see engine/overworld/decorations.asm)
-const_value = 1
+	const_def 1
 	const SET_UP_BED
 	const PUT_AWAY_BED
 	const SET_UP_CARPET
@@ -54,16 +54,18 @@ const_value = 1
 	const SET_UP_ORNAMENT
 	const PUT_AWAY_ORNAMENT
 
+__deco_value__ = 0
+
 deco: MACRO
 	const DECO_\1
-	enum DECOFLAG_\1
+DECOFLAG_\1 EQU __deco_value__
+__deco_value__ = __deco_value__ + 1
 ENDM
 
 ; decorations:
 ; - DecorationAttributes (see data/decorations/attributes.asm)
 ; - DecorationIDs (see data/decorations/decorations.asm)
 	const_def 1
-	enum_start
 ; FindOwnedBeds.beds values (see engine/overworld/decorations.asm)
 	const BEDS
 	deco  FEATHERY_BED
@@ -121,7 +123,7 @@ ENDM
 	deco  GEODUDE_DOLL
 	deco  MACHOP_DOLL
 	deco  TENTACOOL_DOLL
-NUM_NON_TROPHY_DECOS EQU __enum__
+NUM_NON_TROPHY_DECOS EQU __deco_value__
 	deco  GOLD_TROPHY_DOLL
 	deco  SILVER_TROPHY_DOLL
-NUM_DECOS EQU __enum__
+NUM_DECOS EQU __deco_value__
