@@ -1,4 +1,4 @@
-roms := pokecrystal.gbc pokecrystal11.gbc pokecrystal-au.gbc
+roms := pokecrystal.gbc pokecrystal11.gbc pokecrystal-au.gbc pokecrystal-debug.gbc pokecrystal11-debug.gbc
 
 crystal_obj := \
 audio.o \
@@ -17,8 +17,10 @@ gfx/sprites.o \
 gfx/tilesets.o \
 lib/mobile/main.o
 
-crystal11_obj := $(crystal_obj:.o=11.o)
-crystal_au_obj := $(crystal_obj:.o=_au.o)
+crystal11_obj       := $(crystal_obj:.o=11.o)
+crystal_au_obj      := $(crystal_obj:.o=_au.o)
+crystal_debug_obj   := $(crystal_obj:.o=_debug.o)
+crystal11_debug_obj := $(crystal_obj:.o=11_debug.o)
 
 
 ### Build tools
@@ -39,24 +41,26 @@ RGBLINK ?= $(RGBDS)rgblink
 ### Build targets
 
 .SUFFIXES:
-.PHONY: all crystal crystal11 crystal_au clean tidy compare tools
+.PHONY: all crystal crystal11 crystal-au crystal-debug crystal11-debug clean tidy compare tools
 .SECONDEXPANSION:
 .PRECIOUS:
 .SECONDARY:
 
 all: crystal
-crystal:    pokecrystal.gbc
-crystal11:  pokecrystal11.gbc
-crystal-au: pokecrystal-au.gbc
+crystal:         pokecrystal.gbc
+crystal11:       pokecrystal11.gbc
+crystal-au:      pokecrystal-au.gbc
+crystal-debug:   pokecrystal-debug.gbc
+crystal11-debug: pokecrystal11-debug.gbc
 
 clean:
-	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(crystal_au_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym) rgbdscheck.o
+	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(crystal_au_obj) $(crystal_debug_obj) $(crystal11_debug_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym) rgbdscheck.o
 	find gfx \( -name "*.[12]bpp" -o -name "*.lz" -o -name "*.gbcpal" -o -name "*.sgb.tilemap" \) -delete
 	find gfx/pokemon -mindepth 1 ! -path "gfx/pokemon/unown/*" \( -name "bitmask.asm" -o -name "frames.asm" -o -name "front.animated.tilemap" -o -name "front.dimensions" \) -delete
 	$(MAKE) clean -C tools/
 
 tidy:
-	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(crystal_au_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym) rgbdscheck.o
+	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(crystal_au_obj) $(crystal_debug_obj) $(crystal11_debug_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym) rgbdscheck.o
 	$(MAKE) clean -C tools/
 
 compare: $(roms)
@@ -72,9 +76,11 @@ ifeq ($(DEBUG),1)
 RGBASMFLAGS += -E
 endif
 
-$(crystal_obj):    RGBASMFLAGS +=
-$(crystal11_obj):  RGBASMFLAGS += -D _CRYSTAL11
-$(crystal_au_obj): RGBASMFLAGS += -D _CRYSTAL11 -D _CRYSTAL_AU
+$(crystal_obj):         RGBASMFLAGS +=
+$(crystal11_obj):       RGBASMFLAGS += -D _CRYSTAL11
+$(crystal_au_obj):      RGBASMFLAGS += -D _CRYSTAL11 -D _CRYSTAL_AU
+$(crystal_debug_obj):   RGBASMFLAGS += -D _DEBUG
+$(crystal11_debug_obj): RGBASMFLAGS += -D _CRYSTAL11 -D _DEBUG
 
 rgbdscheck.o: rgbdscheck.asm
 	$(RGBASM) -o $@ $<
@@ -93,9 +99,11 @@ ifeq (,$(filter clean tools,$(MAKECMDGOALS)))
 
 $(info $(shell $(MAKE) -C tools))
 
-$(foreach obj, $(crystal_au_obj), $(eval $(call DEP,$(obj),$(obj:_au.o=.asm))))
-$(foreach obj, $(crystal11_obj), $(eval $(call DEP,$(obj),$(obj:11.o=.asm))))
 $(foreach obj, $(crystal_obj), $(eval $(call DEP,$(obj),$(obj:.o=.asm))))
+$(foreach obj, $(crystal11_obj), $(eval $(call DEP,$(obj),$(obj:11.o=.asm))))
+$(foreach obj, $(crystal_au_obj), $(eval $(call DEP,$(obj),$(obj:_au.o=.asm))))
+$(foreach obj, $(crystal_debug_obj), $(eval $(call DEP,$(obj),$(obj:_debug.o=.asm))))
+$(foreach obj, $(crystal11_debug_obj), $(eval $(call DEP,$(obj),$(obj:11_debug.o=.asm))))
 
 endif
 
@@ -111,6 +119,14 @@ pokecrystal11.gbc: $(crystal11_obj) layout.link
 pokecrystal-au.gbc: $(crystal_au_obj) layout.link
 	$(RGBLINK) -n pokecrystal-au.sym -m pokecrystal-au.map -l layout.link -p 0 -o $@ $(crystal_au_obj)
 	$(RGBFIX) -Cjv -t PM_CRYSTAL -i BYTU -k 01 -l 0x33 -m 0x10 -r 3 -p 0 $@
+
+pokecrystal-debug.gbc: $(crystal_debug_obj) layout.link
+	$(RGBLINK) -n pokecrystal-debug.sym -m pokecrystal-debug.map -l layout.link -p 0 -o $@ $(crystal_debug_obj)
+	$(RGBFIX) -Cjv -t PM_CRYSTAL -i BYTE -k 01 -l 0x33 -m 0x10 -r 3 -p 0 $@
+
+pokecrystal11-debug.gbc: $(crystal11_debug_obj) layout.link
+	$(RGBLINK) -n pokecrystal11-debug.sym -m pokecrystal11-debug.map -l layout.link -p 0 -o $@ $(crystal11_debug_obj)
+	$(RGBFIX) -Cjv -t PM_CRYSTAL -i BYTE -n 1 -k 01 -l 0x33 -m 0x10 -r 3 -p 0 $@
 
 
 ### LZ compression rules

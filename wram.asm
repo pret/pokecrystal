@@ -1177,6 +1177,49 @@ wccb5:: ds 3
 wccb8:: ds 1
 wccb9:: ds 1
 wccba:: ds 102
+
+if DEF(_DEBUG)
+NEXTU
+; debug room
+
+; debug room RTC values
+wDebugRoomRTCSec::  db
+wDebugRoomRTCMin::  db
+wDebugRoomRTCHour:: db
+wDebugRoomRTCDay::  dw
+wDebugRoomRTCCurSec::  db
+wDebugRoomRTCCurMin::  db
+wDebugRoomRTCCurHour:: db
+wDebugRoomRTCCurDay::  dw
+
+; debug room paged values
+wDebugRoomCurPage::        db
+wDebugRoomCurValue::       db
+wDebugRoomAFunction::      dw
+wDebugRoomStartFunction::  dw
+wDebugRoomSelectFunction:: dw
+wDebugRoomAutoFunction::   dw
+wDebugRoomPageCount::      db
+wDebugRoomPagedValuesPtr:: dw
+
+wDebugRoomROMChecksum:: dw
+wDebugRoomCurChecksumBank:: db
+
+UNION
+; debug room new item values
+wDebugRoomItemID::       db
+wDebugRoomItemQuantity:: db
+NEXTU
+; debug room new pokemon values
+wDebugRoomMon::    box_struct wDebugRoomMon
+wDebugRoomMonBox:: db
+NEXTU
+; debug room GB ID values
+wDebugRoomGBID:: dw
+ENDU
+
+endc
+
 ENDU
 
 

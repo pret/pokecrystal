@@ -25,6 +25,20 @@ NextCallReceiveDelay:
 	ld hl, .ReceiveCallDelays
 	add hl, de
 	ld a, [hl]
+if DEF(_DEBUG)
+	ld h, a
+	ld a, BANK(sDebugTimeCyclesSinceLastCall)
+	call OpenSRAM
+	ld a, [sDebugTimeCyclesSinceLastCall]
+	call CloseSRAM
+	dec a
+	cp 2
+	jr nc, .debug_ok
+	xor 1
+	ld h, a
+.debug_ok
+	ld a, h
+endc
 	jp RestartReceiveCallDelay
 
 .ReceiveCallDelays:

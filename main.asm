@@ -290,7 +290,7 @@ INCLUDE "engine/overworld/player_movement.asm"
 INCLUDE "engine/events/engine_flags.asm"
 INCLUDE "engine/overworld/variables.asm"
 INCLUDE "data/text/battle.asm"
-INCLUDE "engine/menus/debug.asm"
+INCLUDE "engine/debug/color_picker.asm"
 
 
 SECTION "bank21", ROMX
@@ -696,6 +696,13 @@ INCBIN "gfx/pokegear/pokegear.2bpp.lz"
 INCLUDE "engine/pokemon/european_mail.asm"
 
 
+SECTION "Debug Room", ROMX
+
+if DEF(_DEBUG)
+INCLUDE "engine/debug/debug_room.asm"
+endc
+
+
 SECTION "Battle Tower Text", ROMX
 
 INCLUDE "data/battle_tower/trainer_text.asm"
@@ -722,7 +729,15 @@ SECTION "Mobile Stadium 2", ROMX
 if DEF(_CRYSTAL_AU)
 INCBIN "mobile/stadium/stadium2_au.bin"
 elif DEF(_CRYSTAL11)
+if DEF(_DEBUG)
+INCBIN "mobile/stadium/stadium2_11_debug.bin"
+else
 INCBIN "mobile/stadium/stadium2_11.bin"
+endc
+else
+if DEF(_DEBUG)
+INCBIN "mobile/stadium/stadium2_debug.bin"
 else
 INCBIN "mobile/stadium/stadium2.bin"
+endc
 endc

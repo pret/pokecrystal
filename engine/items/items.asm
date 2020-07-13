@@ -168,7 +168,7 @@ PutItemInPocket:
 	jr z, .terminator
 	cp c
 	jr nz, .next
-	ld a, 99
+	ld a, MAX_ITEM_STACK
 	sub [hl]
 	add b
 	ld b, a
@@ -205,14 +205,14 @@ PutItemInPocket:
 	jr nz, .loop2
 	ld a, [wItemQuantityBuffer]
 	add [hl]
-	cp 100
+	cp MAX_ITEM_STACK + 1
 	jr nc, .newstack
 	ld [hl], a
 	jr .done
 
 .newstack
-	ld [hl], 99
-	sub 99
+	ld [hl], MAX_ITEM_STACK
+	sub MAX_ITEM_STACK
 	ld [wItemQuantityBuffer], a
 	jr .loop2
 
@@ -408,7 +408,7 @@ ReceiveTMHM:
 	add hl, bc
 	ld a, [wItemQuantityChangeBuffer]
 	add [hl]
-	cp 100
+	cp MAX_ITEM_STACK + 1
 	jr nc, .toomany
 	ld [hl], a
 	scf

@@ -90,6 +90,14 @@ sBackupCheckValue2:: db ; loaded with SAVE_CHECK_VALUE_2, used to check save cor
 
 sStackTop:: dw
 
+if DEF(_DEBUG)
+sRTCHaltCheckValue:: dw
+sSkipBattle:: db
+sDebugTimeCyclesSinceLastCall:: db
+sOpenedInvalidSRAM:: db
+sIsBugMon:: db
+endc
+
 
 SECTION "Save", SRAM
 
