@@ -96,11 +96,11 @@ Function249a7:
 	jr nz, .asm_249cd
 	ld a, [wScrollingMenuCursorPosition]
 	call Function24a97
-	cp 99
+	cp MAX_ITEM_STACK
 	jr z, .asm_249cd
 	ld a, [wSwitchItem]
 	call Function24a97
-	cp 99
+	cp MAX_ITEM_STACK
 	jr nz, .asm_249cf
 .asm_249cd
 	and a
@@ -121,14 +121,14 @@ Function249d1:
 	ld a, [hl]
 	pop hl
 	add [hl]
-	cp 100
+	cp MAX_ITEM_STACK + 1
 	jr c, .asm_24a01
-	sub 99
+	sub MAX_ITEM_STACK
 	push af
 	ld a, [wScrollingMenuCursorPosition]
 	call ItemSwitch_GetNthItem
 	inc hl
-	ld [hl], 99
+	ld [hl], MAX_ITEM_STACK
 	ld a, [wSwitchItem]
 	call ItemSwitch_GetNthItem
 	inc hl
