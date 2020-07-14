@@ -39,8 +39,8 @@ objects = None
 if args.rootdir:
     for line in Popen(["make", "-C", args.rootdir, "-s", "-p", "DEBUG=1"],
             stdout=PIPE).stdout.read().decode().split("\n"):
-        if line.startswith("crystal_obj := "):
-            objects = line[15:].strip().split()
+        if line.startswith("pokecrystal_obj := "):
+            objects = line[19:].strip().split()
             break
     else:
         print("Error: Object files not found!", file=stderr)
