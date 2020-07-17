@@ -113,6 +113,8 @@ if_not_equal    EQUS "ifnotequal"
 if_greater_than EQUS "ifgreater"
 if_less_than    EQUS "ifless"
 end_all         EQUS "endall"
+return          EQUS "endcallback"
+reloadandreturn EQUS "reloadend"
 
 checkmaptriggers EQUS "checkmapscene"
 domaptrigger     EQUS "setmapscene"

@@ -30,19 +30,19 @@ GoldenrodDeptStoreB1F_MapScripts:
 	checkevent EVENT_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
 	iftrue .Layout3
 	changeblock 10, 8, $0d ; floor
-	return
+	endcallback
 
 .Layout2:
 	changeblock 4, 10, $0d ; floor
-	return
+	endcallback
 
 .Layout3:
 	changeblock 10, 12, $0d ; floor
-	return
+	endcallback
 
 .Unblock:
 	clearevent EVENT_GOLDENROD_UNDERGROUND_WAREHOUSE_BLOCKED_OFF
-	return
+	endcallback
 
 GoldenrodDeptStoreB1FBlackBelt1Script:
 	jumptextfaceplayer GoldenrodDeptStoreB1FBlackBelt1Text

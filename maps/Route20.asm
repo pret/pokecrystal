@@ -11,7 +11,7 @@ Route20_MapScripts:
 
 .ClearRocks:
 	setevent EVENT_CINNABAR_ROCKS_CLEARED
-	return
+	endcallback
 
 TrainerSwimmerfNicole:
 	trainer SWIMMERF, NICOLE, EVENT_BEAT_SWIMMERF_NICOLE, SwimmerfNicoleSeenText, SwimmerfNicoleBeatenText, 0, .Script

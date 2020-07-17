@@ -31,7 +31,7 @@ GoldenrodUndergroundWarehouse_MapScripts:
 	clearevent EVENT_SWITCH_14
 	setval 0
 	writemem wUndergroundSwitchPositions
-	return
+	endcallback
 
 TrainerGruntM24:
 	trainer GRUNTM, GRUNTM_24, EVENT_BEAT_ROCKET_GRUNTM_24, GruntM24SeenText, GruntM24BeatenText, 0, .Script

@@ -22,12 +22,12 @@ TradeCenter_MapScripts:
 	iffalse .Chris2
 	disappear TRADECENTER_CHRIS2
 	appear TRADECENTER_CHRIS1
-	return
+	endcallback
 
 .Chris2:
 	disappear TRADECENTER_CHRIS1
 	appear TRADECENTER_CHRIS2
-	return
+	endcallback
 
 .InitializeAndPreparePokecenter2F:
 	setscene SCENE_FINISHED

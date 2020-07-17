@@ -22,7 +22,7 @@ Route19_MapScripts:
 	changeblock  4,  8, $7a ; rock
 	changeblock 10, 10, $7a ; rock
 .Done:
-	return
+	endcallback
 
 TrainerSwimmerfDawn:
 	trainer SWIMMERF, DAWN, EVENT_BEAT_SWIMMERF_DAWN, SwimmerfDawnSeenText, SwimmerfDawnBeatenText, 0, .Script

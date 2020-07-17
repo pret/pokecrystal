@@ -10,7 +10,7 @@ Route40BattleTowerGate_MapScripts:
 
 .ShowSailor:
 	clearevent EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
-	return
+	endcallback
 
 Route40BattleTowerGateRockerScript:
 	jumptextfaceplayer Route40BattleTowerGateRockerText

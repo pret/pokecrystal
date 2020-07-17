@@ -20,7 +20,7 @@ VermilionPort_MapScripts:
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_VERMILION
-	return
+	endcallback
 
 .LeaveFastShipScript:
 	applymovement PLAYER, MovementData_0x74ef3

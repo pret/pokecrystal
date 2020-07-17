@@ -40,11 +40,11 @@ TeamRocketBaseB3F_MapScripts:
 .CheckGiovanniDoor:
 	checkevent EVENT_OPENED_DOOR_TO_GIOVANNIS_OFFICE
 	iftrue .OpenSesame
-	return
+	endcallback
 
 .OpenSesame:
 	changeblock 10, 8, $07 ; floor
-	return
+	endcallback
 
 LanceGetPasswordScript:
 	turnobject PLAYER, LEFT

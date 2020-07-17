@@ -25,7 +25,7 @@ EcruteakTinTowerEntrance_MapScripts:
 	iftrue .DontBlockTower
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .BlockTower
-	return
+	endcallback
 
 .BlockTower:
 	clearevent EVENT_RANG_CLEAR_BELL_1
@@ -35,11 +35,11 @@ EcruteakTinTowerEntrance_MapScripts:
 	iftrue .NoClearBell
 	setscene SCENE_DEFAULT
 .NoClearBell:
-	return
+	endcallback
 
 .DontBlockTower:
 	clearevent EVENT_ECRUTEAK_TIN_TOWER_ENTRANCE_WANDERING_SAGE
-	return
+	endcallback
 
 EcruteakTinTowerEntrance_CoordEvent1:
 	checkevent EVENT_RANG_CLEAR_BELL_2

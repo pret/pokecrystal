@@ -6,7 +6,7 @@ Route23_MapScripts:
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_INDIGO_PLATEAU
-	return
+	endcallback
 
 IndigoPlateauSign:
 	jumptext IndigoPlateauSignText

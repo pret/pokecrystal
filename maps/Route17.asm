@@ -13,7 +13,7 @@ Route17_MapScripts:
 .AlwaysOnBike:
 	setflag ENGINE_ALWAYS_ON_BIKE
 	setflag ENGINE_DOWNHILL
-	return
+	endcallback
 
 TrainerBikerCharles:
 	trainer BIKER, CHARLES, EVENT_BEAT_BIKER_CHARLES, BikerCharlesSeenText, BikerCharlesBeatenText, 0, .Script

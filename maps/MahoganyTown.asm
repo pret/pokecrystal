@@ -22,7 +22,7 @@ MahoganyTown_MapScripts:
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_MAHOGANY
-	return
+	endcallback
 
 MahoganyTownTryARageCandyBarScript:
 	showemote EMOTE_SHOCK, MAHOGANYTOWN_POKEFAN_M, 15

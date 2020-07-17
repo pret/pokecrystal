@@ -12,11 +12,11 @@ BattleTowerOutside_MapScripts:
 	callback MAPCALLBACK_OBJECTS, .Callback2
 
 .Callback1:
-	return
+	endcallback
 
 .Callback2:
 	clearevent EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
-	return
+	endcallback
 
 BattleTowerOutsideYoungsterScript:
 	jumptextfaceplayer BattleTowerOutsideYoungsterText

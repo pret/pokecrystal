@@ -21,14 +21,14 @@ PlayersHouse2F_MapScripts:
 	checkevent EVENT_INITIALIZED_EVENTS
 	iftrue .SkipInitialization
 	jumpstd InitializeEventsScript
-	return
+	endcallback
 
 .SkipInitialization:
-	return
+	endcallback
 
 .SetUpTileDecorations:
 	special ToggleMaptileDecorations
-	return
+	endcallback
 
 	db 0, 0, 0 ; filler
 

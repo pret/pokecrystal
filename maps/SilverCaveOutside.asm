@@ -6,7 +6,7 @@ SilverCaveOutside_MapScripts:
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_SILVER_CAVE
-	return
+	endcallback
 
 MtSilverPokecenterSign:
 	jumpstd PokecenterSignScript

@@ -16,7 +16,7 @@ BlackthornGym2F_MapScripts:
 
 .SetUpStoneTable:
 	writecmdqueue .CommandQueue
-	return
+	endcallback
 
 .CommandQueue:
 	cmdqueue CMDQUEUE_STONETABLE, .StoneTable ; check if any stones are sitting on a warp

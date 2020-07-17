@@ -42,7 +42,7 @@ ElmsLab_MapScripts:
 	iftrue .Skip ; not SCENE_DEFAULT
 	moveobject ELMSLAB_ELM, 3, 4
 .Skip:
-	return
+	endcallback
 
 .WalkUpToElm:
 	applymovement PLAYER, ElmsLab_WalkUpToElmMovement

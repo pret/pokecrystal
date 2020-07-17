@@ -36,11 +36,11 @@ Route32_MapScripts:
 	readvar VAR_WEEKDAY
 	ifequal FRIDAY, .FriedaAppears
 	disappear ROUTE32_FRIEDA
-	return
+	endcallback
 
 .FriedaAppears:
 	appear ROUTE32_FRIEDA
-	return
+	endcallback
 
 Route32CooltrainerMScript:
 	faceplayer

@@ -29,17 +29,17 @@ LakeOfRage_MapScripts:
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_LAKE_OF_RAGE
-	return
+	endcallback
 
 .Wesley:
 	readvar VAR_WEEKDAY
 	ifequal WEDNESDAY, .WesleyAppears
 	disappear LAKEOFRAGE_WESLEY
-	return
+	endcallback
 
 .WesleyAppears:
 	appear LAKEOFRAGE_WESLEY
-	return
+	endcallback
 
 LakeOfRageLanceScript:
 	checkevent EVENT_REFUSED_TO_HELP_LANCE_AT_LAKE_OF_RAGE

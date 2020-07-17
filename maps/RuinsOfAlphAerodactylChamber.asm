@@ -25,12 +25,12 @@ RuinsOfAlphAerodactylChamber_MapScripts:
 .WallOpen:
 	checkevent EVENT_SOLVED_AERODACTYL_PUZZLE
 	iffalse .FloorClosed
-	return
+	endcallback
 
 .FloorClosed:
 	changeblock 2, 2, $01 ; left floor
 	changeblock 4, 2, $02 ; right floor
-	return
+	endcallback
 
 .WallOpenScript:
 	pause 30

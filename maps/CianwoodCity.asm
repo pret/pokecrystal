@@ -33,7 +33,7 @@ CianwoodCity_MapScripts:
 	iffalse .Done
 	disappear CIANWOODCITY_EUSINE
 .Done:
-	return
+	endcallback
 
 CianwoodCitySuicuneAndEusine:
 	turnobject PLAYER, UP

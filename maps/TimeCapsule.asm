@@ -22,12 +22,12 @@ TimeCapsule_MapScripts:
 	iffalse .Chris2
 	disappear TIMECAPSULE_CHRIS2
 	appear TIMECAPSULE_CHRIS1
-	return
+	endcallback
 
 .Chris2:
 	disappear TIMECAPSULE_CHRIS1
 	appear TIMECAPSULE_CHRIS2
-	return
+	endcallback
 
 .InitializeAndPreparePokecenter2F:
 	setscene SCENE_FINISHED

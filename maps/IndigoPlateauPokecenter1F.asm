@@ -39,7 +39,7 @@ IndigoPlateauPokecenter1F_MapScripts:
 	clearevent EVENT_BEAT_ELITE_4_KAREN
 	clearevent EVENT_BEAT_CHAMPION_LANCE
 	setevent EVENT_LANCES_ROOM_OAK_AND_MARY
-	return
+	endcallback
 
 PlateauRivalBattle1:
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON

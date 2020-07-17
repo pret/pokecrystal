@@ -33,7 +33,7 @@ BurnedTower1F_MapScripts:
 	iftrue .HideBasement
 	changeblock 6, 14, $09 ; ladder
 .HideBasement:
-	return
+	endcallback
 
 .MeetEusine:
 	turnobject BURNEDTOWER1F_EUSINE, DOWN

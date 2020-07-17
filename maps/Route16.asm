@@ -10,11 +10,11 @@ Route16_MapScripts:
 	readvar VAR_XCOORD
 	ifgreater 13, .CanWalk
 	setflag ENGINE_ALWAYS_ON_BIKE
-	return
+	endcallback
 
 .CanWalk:
 	clearflag ENGINE_ALWAYS_ON_BIKE
-	return
+	endcallback
 
 CyclingRoadSign:
 	jumptext CyclingRoadSignText

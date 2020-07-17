@@ -16,12 +16,12 @@ RadioTower3F_MapScripts:
 .CardKeyShutterCallback:
 	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	iftrue .Change
-	return
+	endcallback
 
 .Change:
 	changeblock 14, 2, $2a ; open shutter
 	changeblock 14, 4, $01 ; floor
-	return
+	endcallback
 
 RadioTower3FSuperNerdScript:
 	jumptextfaceplayer RadioTower3FSuperNerdText

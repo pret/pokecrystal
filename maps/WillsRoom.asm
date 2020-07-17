@@ -25,7 +25,7 @@ WillsRoom_MapScripts:
 	iffalse .KeepExitClosed
 	changeblock 4, 2, $16 ; open door
 .KeepExitClosed:
-	return
+	endcallback
 
 .WillsDoorLocksBehindYou:
 	applymovement PLAYER, WillsRoom_EnterMovement

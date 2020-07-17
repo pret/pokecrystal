@@ -10,7 +10,7 @@ PalletTown_MapScripts:
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_PALLET
-	return
+	endcallback
 
 PalletTownTeacherScript:
 	jumptextfaceplayer PalletTownTeacherText

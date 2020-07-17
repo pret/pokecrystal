@@ -18,24 +18,24 @@ GoldenrodDeptStoreRoof_MapScripts:
 .CheckSaleChangeBlock:
 	checkflag ENGINE_GOLDENROD_DEPT_STORE_SALE_IS_ON
 	iftrue .SaleIsOn
-	return
+	endcallback
 
 .SaleIsOn:
 	changeblock 0, 2, $3f ; cardboard boxes
 	changeblock 0, 4, $0f ; vendor booth
-	return
+	endcallback
 
 .CheckSaleChangeClerk:
 	checkflag ENGINE_GOLDENROD_DEPT_STORE_SALE_IS_ON
 	iftrue .ChangeClerk
 	setevent EVENT_GOLDENROD_SALE_OFF
 	clearevent EVENT_GOLDENROD_SALE_ON
-	return
+	endcallback
 
 .ChangeClerk:
 	clearevent EVENT_GOLDENROD_SALE_OFF
 	setevent EVENT_GOLDENROD_SALE_ON
-	return
+	endcallback
 
 GoldenrodDeptStoreRoofClerkScript:
 	opentext

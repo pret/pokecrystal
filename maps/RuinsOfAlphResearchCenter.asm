@@ -21,12 +21,12 @@ RuinsOfAlphResearchCenter_MapScripts:
 .ScientistCallback:
 	checkscene
 	ifequal SCENE_RUINSOFALPHRESEARCHCENTER_GET_UNOWN_DEX, .ShowScientist
-	return
+	endcallback
 
 .ShowScientist:
 	moveobject RUINSOFALPHRESEARCHCENTER_SCIENTIST3, 3, 7
 	appear RUINSOFALPHRESEARCHCENTER_SCIENTIST3
-	return
+	endcallback
 
 .GetUnownDexScript:
 	applymovement RUINSOFALPHRESEARCHCENTER_SCIENTIST3, MovementData_0x5926f

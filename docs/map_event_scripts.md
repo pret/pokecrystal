@@ -68,7 +68,7 @@
 
 .Boulders:
 	writecmdqueue .BoulderCmdQueue
-	return
+	endcallback
 
 .BoulderCmdQueue:
 	cmdqueue CMDQUEUE_STONETABLE, .BoulderTable

@@ -21,7 +21,7 @@ CherrygroveCity_MapScripts:
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_CHERRYGROVE
-	return
+	endcallback
 
 CherrygroveCityGuideGent:
 	faceplayer

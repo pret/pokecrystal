@@ -18,11 +18,11 @@ Route43_MapScripts:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue .NoRockets
 	setmapscene ROUTE_43_GATE, SCENE_DEFAULT
-	return
+	endcallback
 
 .NoRockets:
 	setmapscene ROUTE_43_GATE, SCENE_FINISHED
-	return
+	endcallback
 
 TrainerCamperSpencer:
 	trainer CAMPER, SPENCER, EVENT_BEAT_CAMPER_SPENCER, CamperSpencerSeenText, CamperSpencerBeatenText, 0, .Script

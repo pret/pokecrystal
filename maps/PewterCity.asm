@@ -13,7 +13,7 @@ PewterCity_MapScripts:
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_PEWTER
-	return
+	endcallback
 
 PewterCityCooltrainerFScript:
 	jumptextfaceplayer PewterCityCooltrainerFText

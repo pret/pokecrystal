@@ -16,11 +16,11 @@ WhirlIslandLugiaChamber_MapScripts:
 
 .Appear:
 	appear WHIRLISLANDLUGIACHAMBER_LUGIA
-	return
+	endcallback
 
 .NoAppear:
 	disappear WHIRLISLANDLUGIACHAMBER_LUGIA
-	return
+	endcallback
 
 Lugia:
 	faceplayer

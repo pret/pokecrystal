@@ -27,11 +27,11 @@ Route35NationalParkGate_MapScripts:
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue .BugContestIsRunning
 	setscene SCENE_ROUTE35NATIONALPARKGATE_NOTHING
-	return
+	endcallback
 
 .BugContestIsRunning:
 	setscene SCENE_ROUTE35NATIONALPARKGATE_LEAVE_CONTEST_EARLY
-	return
+	endcallback
 
 .CheckIfContestAvailable:
 	readvar VAR_WEEKDAY
@@ -43,13 +43,13 @@ Route35NationalParkGate_MapScripts:
 	disappear ROUTE35NATIONALPARKGATE_OFFICER1
 	appear ROUTE35NATIONALPARKGATE_YOUNGSTER
 	appear ROUTE35NATIONALPARKGATE_OFFICER2
-	return
+	endcallback
 
 .SetContestOfficer:
 	appear ROUTE35NATIONALPARKGATE_OFFICER1
 	disappear ROUTE35NATIONALPARKGATE_YOUNGSTER
 	disappear ROUTE35NATIONALPARKGATE_OFFICER2
-	return
+	endcallback
 
 .LeavingContestEarly:
 	applymovement PLAYER, Route35NationalParkGatePlayerApproachOfficer1Movement

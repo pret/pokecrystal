@@ -16,11 +16,11 @@ Route31_MapScripts:
 .CheckMomCall:
 	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	iffalse .DoMomCall
-	return
+	endcallback
 
 .DoMomCall:
 	specialphonecall SPECIALCALL_WORRIED
-	return
+	endcallback
 
 TrainerBugCatcherWade1:
 	trainer BUG_CATCHER, WADE1, EVENT_BEAT_BUG_CATCHER_WADE, BugCatcherWade1SeenText, BugCatcherWade1BeatenText, 0, .Script

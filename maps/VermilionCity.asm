@@ -14,7 +14,7 @@ VermilionCity_MapScripts:
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_VERMILION
-	return
+	endcallback
 
 VermilionCityTeacherScript:
 	jumptextfaceplayer VermilionCityTeacherText

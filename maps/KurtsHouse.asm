@@ -22,7 +22,7 @@ KurtsHouse_MapScripts:
 	appear KURTSHOUSE_KURT1
 	disappear KURTSHOUSE_TWIN2
 	appear KURTSHOUSE_TWIN1
-	return
+	endcallback
 
 .MakingBalls:
 	disappear KURTSHOUSE_KURT1
@@ -30,7 +30,7 @@ KurtsHouse_MapScripts:
 	disappear KURTSHOUSE_TWIN1
 	appear KURTSHOUSE_TWIN2
 .Done:
-	return
+	endcallback
 
 Kurt1:
 	faceplayer

@@ -19,11 +19,11 @@ UnionCaveB2F_MapScripts:
 	ifequal FRIDAY, .Appear
 .NoAppear:
 	disappear UNIONCAVEB2F_LAPRAS
-	return
+	endcallback
 
 .Appear:
 	appear UNIONCAVEB2F_LAPRAS
-	return
+	endcallback
 
 UnionCaveLapras:
 	faceplayer

@@ -27,16 +27,16 @@ Colosseum_MapScripts:
 	iffalse .Chris2
 	disappear COLOSSEUM_CHRIS2
 	appear COLOSSEUM_CHRIS1
-	return
+	endcallback
 
 .Chris2:
 	disappear COLOSSEUM_CHRIS1
 	appear COLOSSEUM_CHRIS2
-	return
+	endcallback
 
 .PreparePokecenter2F:
 	setmapscene POKECENTER_2F, SCENE_POKECENTER2F_LEAVE_COLOSSEUM
-	return
+	endcallback
 
 .InitializeAndPreparePokecenter2F:
 	setscene SCENE_FINISHED

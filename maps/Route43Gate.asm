@@ -24,11 +24,11 @@ Route43Gate_MapScripts:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue .NoRockets
 	setmapscene ROUTE_43, 0 ; Route 43 does not have a scene variable
-	return
+	endcallback
 
 .NoRockets:
 	setmapscene ROUTE_43, 1 ; Route 43 does not have a scene variable
-	return
+	endcallback
 
 .RocketTakeover:
 	playmusic MUSIC_ROCKET_ENCOUNTER

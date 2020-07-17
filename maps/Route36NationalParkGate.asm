@@ -36,11 +36,11 @@ Route36NationalParkGate_MapScripts:
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue .BugContestIsRunning
 	setscene SCENE_ROUTE36NATIONALPARKGATE_NOTHING
-	return
+	endcallback
 
 .BugContestIsRunning:
 	setscene SCENE_ROUTE36NATIONALPARKGATE_LEAVE_CONTEST_EARLY
-	return
+	endcallback
 
 .CheckIfContestAvailable:
 	checkevent EVENT_WARPED_FROM_ROUTE_35_NATIONAL_PARK_GATE
@@ -53,13 +53,13 @@ Route36NationalParkGate_MapScripts:
 	iftrue .SetContestOfficer
 	disappear ROUTE36NATIONALPARKGATE_OFFICER1
 	appear ROUTE36NATIONALPARKGATE_OFFICER2
-	return
+	endcallback
 
 .SetContestOfficer:
 	appear ROUTE36NATIONALPARKGATE_OFFICER1
 	disappear ROUTE36NATIONALPARKGATE_OFFICER2
 .Return:
-	return
+	endcallback
 
 .LeavingContestEarly:
 	turnobject PLAYER, UP

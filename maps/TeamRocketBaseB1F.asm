@@ -18,7 +18,7 @@ TeamRocketBaseB1F_MapScripts:
 
 .HideSecurityGrunt:
 	disappear TEAMROCKETBASEB1F_ROCKET1
-	return
+	endcallback
 
 SecurityCamera1a:
 	checkevent EVENT_SECURITY_CAMERA_1

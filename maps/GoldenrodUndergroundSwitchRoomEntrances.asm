@@ -108,7 +108,7 @@ GoldenrodUndergroundSwitchRoomEntrances_MapScripts:
 	doorstate 15, CLOSED1
 	doorstate 16, OPEN1
 .false14
-	return
+	endcallback
 
 GoldenrodUndergroundSwitchRoomEntrancesSuperNerdScript:
 	jumptextfaceplayer GoldenrodUndergroundSwitchRoomEntrances_SuperNerdText

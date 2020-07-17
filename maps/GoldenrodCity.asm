@@ -29,7 +29,7 @@ GoldenrodCity_MapScripts:
 	iftrue .FloriaDone
 	clearevent EVENT_FLORIA_AT_SUDOWOODO
 .FloriaDone:
-	return
+	endcallback
 
 .MoveTutor:
 	checkevent EVENT_BEAT_ELITE_FOUR
@@ -41,14 +41,14 @@ GoldenrodCity_MapScripts:
 	ifequal SATURDAY, .MoveTutorAppear
 .MoveTutorDisappear:
 	disappear GOLDENRODCITY_MOVETUTOR
-	return
+	endcallback
 
 .MoveTutorAppear:
 	checkflag ENGINE_DAILY_MOVE_TUTOR
 	iftrue .MoveTutorDone
 	appear GOLDENRODCITY_MOVETUTOR
 .MoveTutorDone:
-	return
+	endcallback
 
 MoveTutorScript:
 	faceplayer

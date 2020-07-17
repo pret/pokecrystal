@@ -16,11 +16,11 @@ GoldenrodDeptStore5F_MapScripts:
 	readvar VAR_WEEKDAY
 	ifequal SUNDAY, .yes
 	disappear GOLDENRODDEPTSTORE5F_RECEPTIONIST
-	return
+	endcallback
 
 .yes
 	appear GOLDENRODDEPTSTORE5F_RECEPTIONIST
-	return
+	endcallback
 
 GoldenrodDeptStore5FClerkScript:
 	faceplayer

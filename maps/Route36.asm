@@ -27,11 +27,11 @@ Route36_MapScripts:
 	readvar VAR_WEEKDAY
 	ifequal THURSDAY, .ArthurAppears
 	disappear ROUTE36_ARTHUR
-	return
+	endcallback
 
 .ArthurAppears:
 	appear ROUTE36_ARTHUR
-	return
+	endcallback
 
 Route36SuicuneScript:
 	showemote EMOTE_SHOCK, PLAYER, 15

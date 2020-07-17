@@ -12,7 +12,7 @@ LavenderTown_MapScripts:
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_LAVENDER
-	return
+	endcallback
 
 LavenderTownPokefanMScript:
 	jumptextfaceplayer LavenderTownPokefanMText

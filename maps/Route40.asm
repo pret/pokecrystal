@@ -23,11 +23,11 @@ Route40_MapScripts:
 	readvar VAR_WEEKDAY
 	ifequal MONDAY, .MonicaAppears
 	disappear ROUTE40_MONICA
-	return
+	endcallback
 
 .MonicaAppears:
 	appear ROUTE40_MONICA
-	return
+	endcallback
 
 TrainerSwimmerfElaine:
 	trainer SWIMMERF, ELAINE, EVENT_BEAT_SWIMMERF_ELAINE, SwimmerfElaineSeenText, SwimmerfElaineBeatenText, 0, .Script

@@ -17,7 +17,7 @@ CeladonCity_MapScripts:
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_CELADON
-	return
+	endcallback
 
 CeladonCityFisherScript:
 	jumptextfaceplayer CeladonCityFisherText

@@ -38,16 +38,16 @@ GoldenrodUnderground_MapScripts:
 	clearevent EVENT_SWITCH_14
 	setval 0
 	writemem wUndergroundSwitchPositions
-	return
+	endcallback
 
 .CheckBasementKey:
 	checkevent EVENT_USED_BASEMENT_KEY
 	iffalse .LockBasementDoor
-	return
+	endcallback
 
 .LockBasementDoor:
 	changeblock 18, 6, $3d ; locked door
-	return
+	endcallback
 
 .CheckDayOfWeek:
 	readvar VAR_WEEKDAY
@@ -63,7 +63,7 @@ GoldenrodUnderground_MapScripts:
 	disappear GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
 	appear GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_BROTHER
 	appear GOLDENRODUNDERGROUND_GRANNY
-	return
+	endcallback
 
 .Monday:
 	disappear GOLDENRODUNDERGROUND_GRAMPS
@@ -74,42 +74,42 @@ GoldenrodUnderground_MapScripts:
 	disappear GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
 	disappear GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_BROTHER
 	disappear GOLDENRODUNDERGROUND_GRANNY
-	return
+	endcallback
 
 .Tuesday:
 	disappear GOLDENRODUNDERGROUND_GRAMPS
 	appear GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
 	disappear GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_BROTHER
 	disappear GOLDENRODUNDERGROUND_GRANNY
-	return
+	endcallback
 
 .Wednesday:
 	disappear GOLDENRODUNDERGROUND_GRAMPS
 	disappear GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
 	appear GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_BROTHER
 	disappear GOLDENRODUNDERGROUND_GRANNY
-	return
+	endcallback
 
 .Thursday:
 	disappear GOLDENRODUNDERGROUND_GRAMPS
 	appear GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
 	disappear GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_BROTHER
 	disappear GOLDENRODUNDERGROUND_GRANNY
-	return
+	endcallback
 
 .Friday:
 	disappear GOLDENRODUNDERGROUND_GRAMPS
 	disappear GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
 	appear GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_BROTHER
 	disappear GOLDENRODUNDERGROUND_GRANNY
-	return
+	endcallback
 
 .Saturday:
 	disappear GOLDENRODUNDERGROUND_GRAMPS
 	appear GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
 	disappear GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_BROTHER
 	appear GOLDENRODUNDERGROUND_GRANNY
-	return
+	endcallback
 
 TrainerSupernerdEric:
 	trainer SUPER_NERD, ERIC, EVENT_BEAT_SUPER_NERD_ERIC, SupernerdEricSeenText, SupernerdEricBeatenText, 0, .Script

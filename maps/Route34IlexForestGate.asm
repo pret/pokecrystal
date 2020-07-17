@@ -15,12 +15,12 @@ Route34IlexForestGate_MapScripts:
 	iffalse .Normal
 	disappear ROUTE34ILEXFORESTGATE_TEACHER1
 	appear ROUTE34ILEXFORESTGATE_TEACHER2
-	return
+	endcallback
 
 .Normal:
 	disappear ROUTE34ILEXFORESTGATE_TEACHER2
 	appear ROUTE34ILEXFORESTGATE_TEACHER1
-	return
+	endcallback
 
 Route34IlexForestGateCelebiEvent:
 	checkevent EVENT_FOREST_IS_RESTLESS

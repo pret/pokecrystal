@@ -20,7 +20,7 @@ OlivineCity_MapScripts:
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_OLIVINE
-	return
+	endcallback
 
 OlivineCityRivalSceneTop:
 	turnobject PLAYER, LEFT

@@ -17,11 +17,11 @@ Route37_MapScripts:
 	readvar VAR_WEEKDAY
 	ifequal SUNDAY, .SunnyAppears
 	disappear ROUTE37_SUNNY
-	return
+	endcallback
 
 .SunnyAppears:
 	appear ROUTE37_SUNNY
-	return
+	endcallback
 
 TrainerTwinsAnnandanne1:
 	trainer TWINS, ANNANDANNE1, EVENT_BEAT_TWINS_ANN_AND_ANNE, TwinsAnnandanne1SeenText, TwinsAnnandanne1BeatenText, 0, .Script

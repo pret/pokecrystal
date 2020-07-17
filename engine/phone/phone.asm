@@ -380,11 +380,11 @@ Function90199:
 
 LoadPhoneScriptBank:
 	memcall wPhoneScriptBank
-	return
+	endcallback
 
 LoadOutOfAreaScript:
 	scall PhoneOutOfAreaScript
-	return
+	endcallback
 
 LoadCallerScript:
 	nop

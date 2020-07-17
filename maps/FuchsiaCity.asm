@@ -12,7 +12,7 @@ FuchsiaCity_MapScripts:
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_FUCHSIA
-	return
+	endcallback
 
 FuchsiaCityYoungster:
 	jumptextfaceplayer FuchsiaCityYoungsterText

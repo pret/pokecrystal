@@ -34,12 +34,12 @@ RuinsOfAlphOutside_MapScripts:
 .YesScientist:
 	appear RUINSOFALPHOUTSIDE_SCIENTIST
 	setscene SCENE_RUINSOFALPHOUTSIDE_GET_UNOWN_DEX
-	return
+	endcallback
 
 .NoScientist:
 	disappear RUINSOFALPHOUTSIDE_SCIENTIST
 	setscene SCENE_RUINSOFALPHOUTSIDE_NOTHING
-	return
+	endcallback
 
 RuinsOfAlphOutsideScientistScene1:
 	turnobject RUINSOFALPHOUTSIDE_SCIENTIST, UP

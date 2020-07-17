@@ -16,11 +16,11 @@ TinTowerRoof_MapScripts:
 
 .Appear:
 	appear TINTOWERROOF_HO_OH
-	return
+	endcallback
 
 .NoAppear:
 	disappear TINTOWERROOF_HO_OH
-	return
+	endcallback
 
 TinTowerHoOh:
 	faceplayer

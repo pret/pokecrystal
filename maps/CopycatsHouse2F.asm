@@ -22,7 +22,7 @@ CopycatsHouse2F_MapScripts:
 	disappear COPYCATSHOUSE2F_COPYCAT1
 	appear COPYCATSHOUSE2F_COPYCAT2
 .Done:
-	return
+	endcallback
 
 Copycat:
 	faceplayer

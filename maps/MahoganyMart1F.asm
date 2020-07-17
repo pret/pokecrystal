@@ -23,11 +23,11 @@ MahoganyMart1F_MapScripts:
 .MahoganyMart1FStaircase:
 	checkevent EVENT_UNCOVERED_STAIRCASE_IN_MAHOGANY_MART
 	iftrue .ShowStairs
-	return
+	endcallback
 
 .ShowStairs:
 	changeblock 6, 2, $1e ; stairs
-	return
+	endcallback
 
 MahoganyMart1FPharmacistScript:
 	faceplayer

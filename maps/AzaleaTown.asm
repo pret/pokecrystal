@@ -32,7 +32,7 @@ AzaleaTown_MapScripts:
 
 .Flypoint:
 	setflag ENGINE_FLYPOINT_AZALEA
-	return
+	endcallback
 
 AzaleaTownRivalBattleScene1:
 	moveobject AZALEATOWN_SILVER, 11, 11

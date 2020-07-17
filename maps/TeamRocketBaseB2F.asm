@@ -39,11 +39,11 @@ TeamRocketBaseB2F_MapScripts:
 .TransmitterDoorCallback:
 	checkevent EVENT_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER
 	iftrue .OpenDoor
-	return
+	endcallback
 
 .OpenDoor:
 	changeblock 14, 12, $07 ; floor
-	return
+	endcallback
 
 RocketBaseBossFLeft:
 	moveobject TEAMROCKETBASEB2F_LANCE, 9, 13

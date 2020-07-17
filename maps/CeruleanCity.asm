@@ -14,7 +14,7 @@ CeruleanCity_MapScripts:
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_CERULEAN
-	return
+	endcallback
 
 CeruleanCityCooltrainerMScript:
 	faceplayer

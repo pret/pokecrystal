@@ -29,17 +29,17 @@ WiseTriosRoom_MapScripts:
 	iftrue .WiseTrio2
 	clearevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
 	setevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
-	return
+	endcallback
 
 .WiseTrio2:
 	setevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
 	clearevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
-	return
+	endcallback
 
 .NoWiseTrio:
 	setevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
 	setevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
-	return
+	endcallback
 
 WiseTriosRoomSage1Script:
 	jumptextfaceplayer WiseTriosRoomSage1Text

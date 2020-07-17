@@ -28,7 +28,7 @@ BurnedTowerB1F_MapScripts:
 	iftrue .HideLadder
 	changeblock 6, 14, $02 ; floor
 .HideLadder:
-	return
+	endcallback
 
 ReleaseTheBeasts:
 	playmusic MUSIC_NONE

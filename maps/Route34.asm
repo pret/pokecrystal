@@ -45,11 +45,11 @@ Route34_MapScripts:
 	checkflag ENGINE_DAY_CARE_LADY_HAS_MON
 	iffalse .HideMon2
 	clearevent EVENT_DAY_CARE_MON_2
-	return
+	endcallback
 
 .HideMon2:
 	setevent EVENT_DAY_CARE_MON_2
-	return
+	endcallback
 
 DayCareManScript_Outside:
 	faceplayer

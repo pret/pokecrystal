@@ -40,7 +40,7 @@ TinTower1F_MapScripts:
 	iffalse .Done
 	appear TINTOWER1F_EUSINE
 .Done:
-	return
+	endcallback
 
 .FaceBeasts:
 	checkevent EVENT_FOUGHT_SUICUNE
@@ -64,7 +64,7 @@ TinTower1F_MapScripts:
 .NoEntei:
 	disappear TINTOWER1F_ENTEI
 .BeastsDone:
-	return
+	endcallback
 
 .FoughtSuicune:
 	disappear TINTOWER1F_SUICUNE
@@ -72,14 +72,14 @@ TinTower1F_MapScripts:
 	disappear TINTOWER1F_ENTEI
 	clearevent EVENT_TIN_TOWER_1F_WISE_TRIO_1
 	setevent EVENT_TIN_TOWER_1F_WISE_TRIO_2
-	return
+	endcallback
 
 .StairsCallback:
 	checkevent EVENT_GOT_RAINBOW_WING
 	iftrue .DontHideStairs
 	changeblock 10, 2, $09 ; floor
 .DontHideStairs:
-	return
+	endcallback
 
 .SuicuneBattle:
 	applymovement PLAYER, TinTowerPlayerMovement1

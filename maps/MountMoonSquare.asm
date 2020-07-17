@@ -16,11 +16,11 @@ MountMoonSquare_MapScripts:
 
 .DisappearMoonStone:
 	setevent EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE
-	return
+	endcallback
 
 .DisappearRock:
 	disappear MOUNTMOONSQUARE_ROCK
-	return
+	endcallback
 
 ClefairyDance:
 	checkflag ENGINE_MT_MOON_SQUARE_CLEFAIRY

@@ -16,7 +16,7 @@ SaffronCity_MapScripts:
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_SAFFRON
-	return
+	endcallback
 
 SaffronCityLass1Script:
 	faceplayer

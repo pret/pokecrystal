@@ -18,17 +18,17 @@ BlackthornCity_MapScripts:
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_BLACKTHORN
-	return
+	endcallback
 
 .Santos:
 	readvar VAR_WEEKDAY
 	ifequal SATURDAY, .SantosAppears
 	disappear BLACKTHORNCITY_SANTOS
-	return
+	endcallback
 
 .SantosAppears:
 	appear BLACKTHORNCITY_SANTOS
-	return
+	endcallback
 
 BlackthornSuperNerdScript:
 	faceplayer

@@ -14,7 +14,7 @@ CeladonDeptStore6F_MapScripts:
 
 .HideRooftopStairs:
 	changeblock 12, 0, $03 ; wall
-	return
+	endcallback
 
 CeladonDeptStore6FSuperNerdScript:
 	jumptextfaceplayer CeladonDeptStore6FSuperNerdText

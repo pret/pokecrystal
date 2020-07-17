@@ -28,13 +28,13 @@ Route29_MapScripts:
 
 .TuscanyDisappears:
 	disappear ROUTE29_TUSCANY
-	return
+	endcallback
 
 .DoesTuscanyAppear:
 	readvar VAR_WEEKDAY
 	ifnotequal TUESDAY, .TuscanyDisappears
 	appear ROUTE29_TUSCANY
-	return
+	endcallback
 
 Route29Tutorial1:
 	turnobject ROUTE29_COOLTRAINER_M1, UP

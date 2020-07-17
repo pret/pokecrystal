@@ -27,7 +27,7 @@ LancesRoom_MapScripts:
 	iffalse .KeepExitClosed
 	changeblock 4, 0, $0b ; open door
 .KeepExitClosed:
-	return
+	endcallback
 
 .LancesDoorLocksBehindYou:
 	applymovement PLAYER, LancesRoom_EnterMovement

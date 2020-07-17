@@ -479,13 +479,13 @@ If <code><i>item_id</i></code> = `USE_SCRIPT_VAR`, then it uses `[wScriptVar]` i
 ## `$8F`: <code>stopandsjump <i>script</i></code>
 
 
-## `$90`: `return`
+## `$90`: `endcallback`
 
 
 ## `$91`: `end`
 
 
-## `$92`: <code>reloadandreturn <i>which_method</i></code>
+## `$92`: <code>reloadend <i>which_method</i></code>
 
 
 ## `$93`: `endall`

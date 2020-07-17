@@ -35,14 +35,14 @@ GoldenrodGameCorner_MapScripts:
 	ifequal SATURDAY, .move_tutor_outside
 .move_tutor_inside
 	appear GOLDENRODGAMECORNER_MOVETUTOR
-	return
+	endcallback
 
 .move_tutor_outside
 	checkflag ENGINE_DAILY_MOVE_TUTOR
 	iftrue .finish
 	disappear GOLDENRODGAMECORNER_MOVETUTOR
 .finish
-	return
+	endcallback
 
 MoveTutorInsideScript:
 	faceplayer

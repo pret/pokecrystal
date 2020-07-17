@@ -16,7 +16,7 @@ VioletCity_MapScripts:
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_VIOLET
-	return
+	endcallback
 
 VioletCityEarlScript:
 	applymovement VIOLETCITY_EARL, VioletCitySpinningEarl_MovementData

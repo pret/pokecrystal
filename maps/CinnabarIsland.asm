@@ -9,7 +9,7 @@ CinnabarIsland_MapScripts:
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_CINNABAR
-	return
+	endcallback
 
 CinnabarIslandBlue:
 	faceplayer

@@ -25,7 +25,7 @@ KogasRoom_MapScripts:
 	iffalse .KeepExitClosed
 	changeblock 4, 2, $16 ; open door
 .KeepExitClosed:
-	return
+	endcallback
 
 .KogasDoorLocksBehindYou:
 	applymovement PLAYER, KogasRoom_EnterMovement

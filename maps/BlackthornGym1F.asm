@@ -24,7 +24,7 @@ BlackthornGym1F_MapScripts:
 	iffalse .skip3
 	changeblock 8, 6, $3b ; fallen boulder 2
 .skip3
-	return
+	endcallback
 
 BlackthornGymClairScript:
 	faceplayer

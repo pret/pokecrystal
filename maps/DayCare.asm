@@ -13,12 +13,12 @@ DayCare_MapScripts:
 	iftrue .PutDayCareManOutside
 	clearevent EVENT_DAY_CARE_MAN_IN_DAY_CARE
 	setevent EVENT_DAY_CARE_MAN_ON_ROUTE_34
-	return
+	endcallback
 
 .PutDayCareManOutside:
 	setevent EVENT_DAY_CARE_MAN_IN_DAY_CARE
 	clearevent EVENT_DAY_CARE_MAN_ON_ROUTE_34
-	return
+	endcallback
 
 DayCareManScript_Inside:
 	faceplayer

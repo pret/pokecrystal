@@ -115,7 +115,7 @@ DoPoisonStep::
 	end
 
 .whiteout
-	farsjump Script_OverworldWhiteout
+	farsjump OverworldWhiteoutScript
 
 .CheckWhitedOut:
 	xor a

@@ -207,9 +207,9 @@ ScriptCommandTable:
 	dw Script_prioritysjump              ; 8d
 	dw Script_warpcheck                  ; 8e
 	dw Script_stopandsjump               ; 8f
-	dw Script_return                     ; 90
+	dw Script_endcallback                ; 90
 	dw Script_end                        ; 91
-	dw Script_reloadandreturn            ; 92
+	dw Script_reloadend                  ; 92
 	dw Script_endall                     ; 93
 	dw Script_pokemart                   ; 94
 	dw Script_elevator                   ; 95
@@ -2186,7 +2186,7 @@ Script_newloadmap:
 	call StopScript
 	ret
 
-Script_reloadandreturn:
+Script_reloadend:
 	call Script_newloadmap
 	jp Script_end
 
@@ -2265,7 +2265,7 @@ Script_end:
 	call StopScript
 	ret
 
-Script_return:
+Script_endcallback:
 	call ExitScriptSubroutine
 	jr c, .dummy
 .dummy

@@ -12,7 +12,7 @@ ViridianCity_MapScripts:
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_VIRIDIAN
-	return
+	endcallback
 
 ViridianCityCoffeeGramps:
 	faceplayer

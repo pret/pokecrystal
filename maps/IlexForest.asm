@@ -32,57 +32,57 @@ IlexForest_MapScripts:
 	ifequal  9, .PositionNine
 	ifequal 10, .PositionTen
 .Static:
-	return
+	endcallback
 
 .PositionOne:
 	moveobject ILEXFOREST_FARFETCHD, 14, 31
 	appear ILEXFOREST_FARFETCHD
-	return
+	endcallback
 
 .PositionTwo:
 	moveobject ILEXFOREST_FARFETCHD, 15, 25
 	appear ILEXFOREST_FARFETCHD
-	return
+	endcallback
 
 .PositionThree:
 	moveobject ILEXFOREST_FARFETCHD, 20, 24
 	appear ILEXFOREST_FARFETCHD
-	return
+	endcallback
 
 .PositionFour:
 	moveobject ILEXFOREST_FARFETCHD, 29, 22
 	appear ILEXFOREST_FARFETCHD
-	return
+	endcallback
 
 .PositionFive:
 	moveobject ILEXFOREST_FARFETCHD, 28, 31
 	appear ILEXFOREST_FARFETCHD
-	return
+	endcallback
 
 .PositionSix:
 	moveobject ILEXFOREST_FARFETCHD, 24, 35
 	appear ILEXFOREST_FARFETCHD
-	return
+	endcallback
 
 .PositionSeven:
 	moveobject ILEXFOREST_FARFETCHD, 22, 31
 	appear ILEXFOREST_FARFETCHD
-	return
+	endcallback
 
 .PositionEight:
 	moveobject ILEXFOREST_FARFETCHD, 15, 29
 	appear ILEXFOREST_FARFETCHD
-	return
+	endcallback
 
 .PositionNine:
 	moveobject ILEXFOREST_FARFETCHD, 10, 35
 	appear ILEXFOREST_FARFETCHD
-	return
+	endcallback
 
 .PositionTen:
 	moveobject ILEXFOREST_FARFETCHD, 6, 28
 	appear ILEXFOREST_FARFETCHD
-	return
+	endcallback
 
 IlexForestCharcoalApprenticeScript:
 	faceplayer
