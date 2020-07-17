@@ -1,7 +1,7 @@
 	object_const_def ; object_event constants
 	const PEWTERGYM_BROCK
 	const PEWTERGYM_YOUNGSTER
-	const PEWTERGYM_GYM_GUY
+	const PEWTERGYM_GYM_GUIDE
 
 PewterGym_MapScripts:
 	db 0 ; scene scripts
@@ -49,18 +49,18 @@ TrainerCamperJerry:
 	closetext
 	end
 
-PewterGymGuyScript:
+PewterGymGuideScript:
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_BROCK
-	iftrue .PewterGymGuyWinScript
-	writetext PewterGymGuyText
+	iftrue .PewterGymGuideWinScript
+	writetext PewterGymGuideText
 	waitbutton
 	closetext
 	end
 
-.PewterGymGuyWinScript:
-	writetext PewterGymGuyWinText
+.PewterGymGuideWinScript:
+	writetext PewterGymGuideWinText
 	waitbutton
 	closetext
 	end
@@ -175,7 +175,7 @@ CamperJerryAfterBattleText:
 	line "seriously."
 	done
 
-PewterGymGuyText:
+PewterGymGuideText:
 	text "Yo! CHAMP in"
 	line "making! You're"
 
@@ -192,7 +192,7 @@ PewterGymGuyText:
 	line "GYM LEADERS."
 	done
 
-PewterGymGuyWinText:
+PewterGymGuideWinText:
 	text "Yo! CHAMP in"
 	line "making! That GYM"
 
@@ -222,4 +222,4 @@ PewterGym_MapEvents:
 	db 3 ; object events
 	object_event  5,  1, SPRITE_BROCK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, PewterGymBrockScript, -1
 	object_event  2,  5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerCamperJerry, -1
-	object_event  6, 11, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 1, PewterGymGuyScript, -1
+	object_event  6, 11, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 1, PewterGymGuideScript, -1

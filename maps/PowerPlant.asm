@@ -1,9 +1,9 @@
 	object_const_def ; object_event constants
 	const POWERPLANT_OFFICER1
-	const POWERPLANT_GYM_GUY1
-	const POWERPLANT_GYM_GUY2
+	const POWERPLANT_GYM_GUIDE1
+	const POWERPLANT_GYM_GUIDE2
 	const POWERPLANT_OFFICER2
-	const POWERPLANT_GYM_GUY3
+	const POWERPLANT_GYM_GUIDE3
 	const POWERPLANT_MANAGER
 	const POWERPLANT_FOREST
 
@@ -25,9 +25,9 @@ PowerPlantGuardPhoneScript:
 	showemote EMOTE_SHOCK, POWERPLANT_OFFICER1, 15
 	waitsfx
 	pause 30
-	applymovement POWERPLANT_OFFICER1, PowerPlantOfficer1ApproachGymGuy2Movement
-	turnobject POWERPLANT_GYM_GUY1, DOWN
-	turnobject POWERPLANT_GYM_GUY2, DOWN
+	applymovement POWERPLANT_OFFICER1, PowerPlantOfficer1ApproachGymGuide2Movement
+	turnobject POWERPLANT_GYM_GUIDE1, DOWN
+	turnobject POWERPLANT_GYM_GUIDE2, DOWN
 	opentext
 	writetext PowerPlantOfficer1CeruleanShadyCharacterText
 	waitbutton
@@ -67,34 +67,34 @@ PowerPlantOfficerScript:
 	closetext
 	end
 
-PowerPlantGymGuy1Script:
+PowerPlantGymGuide1Script:
 	faceplayer
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .ReturnedMachinePart
-	writetext PowerPlantGymGuy1SomeoneStoleAPartText
+	writetext PowerPlantGymGuide1SomeoneStoleAPartText
 	waitbutton
 	closetext
 	end
 
 .ReturnedMachinePart:
-	writetext PowerPlantGymGuy1GeneratorUpAndRunningText
+	writetext PowerPlantGymGuide1GeneratorUpAndRunningText
 	waitbutton
 	closetext
 	end
 
-PowerPlantGymGuy2Script:
+PowerPlantGymGuide2Script:
 	faceplayer
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .ReturnedMachinePart
-	writetext PowerPlantGymGuy2PowerPlantUpAndRunningText
+	writetext PowerPlantGymGuide2PowerPlantUpAndRunningText
 	waitbutton
 	closetext
 	end
 
 .ReturnedMachinePart:
-	writetext PowerPlantGymGuy2GeneratorIsRunningAgainText
+	writetext PowerPlantGymGuide2GeneratorIsRunningAgainText
 	waitbutton
 	closetext
 	end
@@ -115,18 +115,18 @@ PowerPlantOfficer2Script:
 	closetext
 	end
 
-PowerPlantGymGuy4Script:
+PowerPlantGymGuide4Script:
 	faceplayer
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .ReturnedMachinePart
-	writetext PowerPlantGymGuy4MagnetTrainConsumesElectricityText
+	writetext PowerPlantGymGuide4MagnetTrainConsumesElectricityText
 	waitbutton
 	closetext
 	end
 
 .ReturnedMachinePart:
-	writetext PowerPlantGymGuy4WeCanGetMagnetTrainRunningText
+	writetext PowerPlantGymGuide4WeCanGetMagnetTrainRunningText
 	waitbutton
 	closetext
 	end
@@ -197,7 +197,7 @@ Forest:
 PowerPlantBookshelf:
 	jumpstd DifficultBookshelfScript
 
-PowerPlantOfficer1ApproachGymGuy2Movement:
+PowerPlantOfficer1ApproachGymGuide2Movement:
 	step RIGHT
 	step RIGHT
 	step UP
@@ -242,7 +242,7 @@ PowerPlantOfficer1HaveToBeefUpSecurityText:
 	cont "presence."
 	done
 
-PowerPlantGymGuy1SomeoneStoleAPartText:
+PowerPlantGymGuide1SomeoneStoleAPartText:
 	text "Someone made off"
 	line "with a part that's"
 
@@ -254,7 +254,7 @@ PowerPlantGymGuy1SomeoneStoleAPartText:
 	cont "useless!"
 	done
 
-PowerPlantGymGuy1GeneratorUpAndRunningText:
+PowerPlantGymGuide1GeneratorUpAndRunningText:
 	text "The generator's up"
 	line "and running. It's"
 
@@ -262,7 +262,7 @@ PowerPlantGymGuy1GeneratorUpAndRunningText:
 	line "to spare."
 	done
 
-PowerPlantGymGuy2PowerPlantUpAndRunningText:
+PowerPlantGymGuide2PowerPlantUpAndRunningText:
 	text "This POWER PLANT"
 	line "had been abandoned"
 	cont "in the past."
@@ -274,7 +274,7 @@ PowerPlantGymGuy2PowerPlantUpAndRunningText:
 	line "the MAGNET TRAIN."
 	done
 
-PowerPlantGymGuy2GeneratorIsRunningAgainText:
+PowerPlantGymGuide2GeneratorIsRunningAgainText:
 	text "The generator's"
 	line "running again!"
 	done
@@ -299,7 +299,7 @@ PowerPlantOfficer2ManagerHasBeenCheerfulText:
 	line "been cheerful."
 	done
 
-PowerPlantGymGuy4MagnetTrainConsumesElectricityText:
+PowerPlantGymGuide4MagnetTrainConsumesElectricityText:
 	text "The MAGNET TRAIN"
 	line "consumes a lot of"
 	cont "electricity."
@@ -309,7 +309,7 @@ PowerPlantGymGuy4MagnetTrainConsumesElectricityText:
 	cont "isn't operating."
 	done
 
-PowerPlantGymGuy4WeCanGetMagnetTrainRunningText:
+PowerPlantGymGuide4WeCanGetMagnetTrainRunningText:
 	text "All right! We can"
 	line "finally get the"
 
@@ -402,9 +402,9 @@ PowerPlant_MapEvents:
 
 	db 7 ; object events
 	object_event  4, 14, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PowerPlantOfficerScript, -1
-	object_event  2,  9, SPRITE_GYM_GUY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PowerPlantGymGuy1Script, -1
-	object_event  6, 11, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PowerPlantGymGuy2Script, -1
+	object_event  2,  9, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PowerPlantGymGuide1Script, -1
+	object_event  6, 11, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PowerPlantGymGuide2Script, -1
 	object_event  9,  3, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PowerPlantOfficer2Script, -1
-	object_event  7,  2, SPRITE_GYM_GUY, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PowerPlantGymGuy4Script, -1
+	object_event  7,  2, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PowerPlantGymGuide4Script, -1
 	object_event 14, 10, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PowerPlantManager, -1
-	object_event  5,  5, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Forest, -1
+	object_event  5,  5, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Forest, -1

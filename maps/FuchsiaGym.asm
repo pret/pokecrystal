@@ -4,7 +4,7 @@
 	const FUCHSIAGYM_FUCHSIA_GYM_2
 	const FUCHSIAGYM_FUCHSIA_GYM_3
 	const FUCHSIAGYM_FUCHSIA_GYM_4
-	const FUCHSIAGYM_GYM_GUY
+	const FUCHSIAGYM_GYM_GUIDE
 
 FuchsiaGym_MapScripts:
 	db 0 ; scene scripts
@@ -193,18 +193,18 @@ CamperBarryScript:
 	closetext
 	end
 
-FuchsiaGymGuyScript:
+FuchsiaGymGuideScript:
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_JANINE
-	iftrue .FuchsiaGymGuyWinScript
-	writetext FuchsiaGymGuyText
+	iftrue .FuchsiaGymGuideWinScript
+	writetext FuchsiaGymGuideText
 	waitbutton
 	closetext
 	end
 
-.FuchsiaGymGuyWinScript:
-	writetext FuchsiaGymGuyWinText
+.FuchsiaGymGuideWinScript:
+	writetext FuchsiaGymGuideWinText
 	waitbutton
 	closetext
 	end
@@ -357,7 +357,7 @@ CamperBarryAfterText:
 	cont "what, huh?"
 	done
 
-FuchsiaGymGuyText:
+FuchsiaGymGuideText:
 	text "Yo, CHAMP in"
 	line "making!"
 
@@ -372,7 +372,7 @@ FuchsiaGymGuyText:
 	line "the real JANINE?"
 	done
 
-FuchsiaGymGuyWinText:
+FuchsiaGymGuideWinText:
 	text "That was a great"
 	line "battle, trainer"
 	cont "from JOHTO!"
@@ -397,4 +397,4 @@ FuchsiaGym_MapEvents:
 	object_event  5, 11, SPRITE_FUCHSIA_GYM_2, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, LassLindaScript, -1
 	object_event  9,  4, SPRITE_FUCHSIA_GYM_3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PicnickerCindyScript, -1
 	object_event  4,  2, SPRITE_FUCHSIA_GYM_4, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CamperBarryScript, -1
-	object_event  7, 15, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FuchsiaGymGuyScript, -1
+	object_event  7, 15, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FuchsiaGymGuideScript, -1

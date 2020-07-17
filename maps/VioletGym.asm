@@ -2,7 +2,7 @@
 	const VIOLETGYM_FALKNER
 	const VIOLETGYM_YOUNGSTER1
 	const VIOLETGYM_YOUNGSTER2
-	const VIOLETGYM_GYM_GUY
+	const VIOLETGYM_GYM_GUIDE
 
 VioletGym_MapScripts:
 	db 0 ; scene scripts
@@ -86,18 +86,18 @@ TrainerBirdKeeperAbe:
 	closetext
 	end
 
-VioletGymGuyScript:
+VioletGymGuideScript:
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_FALKNER
-	iftrue .VioletGymGuyWinScript
-	writetext VioletGymGuyText
+	iftrue .VioletGymGuideWinScript
+	writetext VioletGymGuideText
 	waitbutton
 	closetext
 	end
 
-.VioletGymGuyWinScript:
-	writetext VioletGymGuyWinText
+.VioletGymGuideWinScript:
+	writetext VioletGymGuideWinText
 	waitbutton
 	closetext
 	end
@@ -250,7 +250,7 @@ BirdKeeperAbeAfterBattleText:
 	cont "rookie trainer…"
 	done
 
-VioletGymGuyText:
+VioletGymGuideText:
 	text "Hey! I'm no train-"
 	line "er but I can give"
 	cont "some advice!"
@@ -271,7 +271,7 @@ VioletGymGuyText:
 	line "this in mind."
 	done
 
-VioletGymGuyWinText:
+VioletGymGuideWinText:
 	text "Nice battle! Keep"
 	line "it up, and you'll"
 
@@ -296,4 +296,4 @@ VioletGym_MapEvents:
 	object_event  5,  1, SPRITE_FALKNER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, VioletGymFalknerScript, -1
 	object_event  7,  6, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBirdKeeperRod, -1
 	object_event  2, 10, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBirdKeeperAbe, -1
-	object_event  7, 13, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VioletGymGuyScript, -1
+	object_event  7, 13, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VioletGymGuideScript, -1

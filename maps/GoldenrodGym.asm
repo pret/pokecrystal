@@ -4,7 +4,7 @@
 	const GOLDENRODGYM_LASS2
 	const GOLDENRODGYM_BEAUTY1
 	const GOLDENRODGYM_BEAUTY2
-	const GOLDENRODGYM_GYM_GUY
+	const GOLDENRODGYM_GYM_GUIDE
 
 GoldenrodGym_MapScripts:
 	db 2 ; scene scripts
@@ -147,19 +147,19 @@ TrainerBeautySamantha:
 	closetext
 	end
 
-GoldenrodGymGuyScript:
+GoldenrodGymGuideScript:
 	faceplayer
 	checkevent EVENT_BEAT_WHITNEY
-	iftrue .GoldenrodGymGuyWinScript
+	iftrue .GoldenrodGymGuideWinScript
 	opentext
-	writetext GoldenrodGymGuyText
+	writetext GoldenrodGymGuideText
 	waitbutton
 	closetext
 	end
 
-.GoldenrodGymGuyWinScript:
+.GoldenrodGymGuideWinScript:
 	opentext
-	writetext GoldenrodGymGuyWinText
+	writetext GoldenrodGymGuideWinText
 	waitbutton
 	closetext
 	end
@@ -358,7 +358,7 @@ BeautySamanthaAfterBattleText:
 	cont "on any type…"
 	done
 
-GoldenrodGymGuyText:
+GoldenrodGymGuideText:
 	text "Yo! CHAMP in"
 	line "making!"
 
@@ -371,7 +371,7 @@ GoldenrodGymGuyText:
 	cont "#MON."
 	done
 
-GoldenrodGymGuyWinText:
+GoldenrodGymGuideWinText:
 	text "You won? Great! I"
 	line "was busy admiring"
 	cont "the ladies here."
@@ -397,4 +397,4 @@ GoldenrodGym_MapEvents:
 	object_event  9,  6, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerLassBridget, -1
 	object_event  0,  2, SPRITE_BEAUTY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBeautyVictoria, -1
 	object_event 19,  5, SPRITE_BEAUTY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBeautySamantha, -1
-	object_event  5, 15, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodGymGuyScript, -1
+	object_event  5, 15, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodGymGuideScript, -1

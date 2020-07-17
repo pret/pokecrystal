@@ -1,6 +1,6 @@
 	object_const_def ; object_event constants
 	const OLIVINEGYM_JASMINE
-	const OLIVINEGYM_GYM_GUY
+	const OLIVINEGYM_GYM_GUIDE
 
 OlivineGym_MapScripts:
 	db 0 ; scene scripts
@@ -58,28 +58,28 @@ OlivineGymActivateRockets:
 .RadioTowerRockets:
 	jumpstd RadioTowerRocketsScript
 
-OlivineGymGuyScript:
+OlivineGymGuideScript:
 	faceplayer
 	checkevent EVENT_BEAT_JASMINE
-	iftrue .OlivineGymGuyWinScript
+	iftrue .OlivineGymGuideWinScript
 	checkevent EVENT_JASMINE_RETURNED_TO_GYM
-	iffalse .OlivineGymGuyPreScript
+	iffalse .OlivineGymGuidePreScript
 	opentext
-	writetext OlivineGymGuyText
+	writetext OlivineGymGuideText
 	waitbutton
 	closetext
 	end
 
-.OlivineGymGuyWinScript:
+.OlivineGymGuideWinScript:
 	opentext
-	writetext OlivineGymGuyWinText
+	writetext OlivineGymGuideWinText
 	waitbutton
 	closetext
 	end
 
-.OlivineGymGuyPreScript:
+.OlivineGymGuidePreScript:
 	opentext
-	writetext OlivineGymGuyPreText
+	writetext OlivineGymGuidePreText
 	waitbutton
 	closetext
 	end
@@ -162,7 +162,7 @@ Jasmine_GoodLuck:
 	cont "but good luck…"
 	done
 
-OlivineGymGuyText:
+OlivineGymGuideText:
 	text "JASMINE uses the"
 	line "newly discovered"
 	cont "steel-type."
@@ -171,7 +171,7 @@ OlivineGymGuyText:
 	line "much about it."
 	done
 
-OlivineGymGuyWinText:
+OlivineGymGuideWinText:
 	text "That was awesome."
 
 	para "The steel-type,"
@@ -182,7 +182,7 @@ OlivineGymGuyWinText:
 	cont "unknown kind!"
 	done
 
-OlivineGymGuyPreText:
+OlivineGymGuidePreText:
 	text "JASMINE, the GYM"
 	line "LEADER, is at the"
 	cont "LIGHTHOUSE."
@@ -210,4 +210,4 @@ OlivineGym_MapEvents:
 
 	db 2 ; object events
 	object_event  5,  3, SPRITE_JASMINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineGymJasmineScript, EVENT_OLIVINE_GYM_JASMINE
-	object_event  7, 13, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineGymGuyScript, -1
+	object_event  7, 13, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineGymGuideScript, -1

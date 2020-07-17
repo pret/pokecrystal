@@ -1,6 +1,6 @@
 	object_const_def ; object_event constants
 	const RADIOTOWER3F_SUPER_NERD
-	const RADIOTOWER3F_GYM_GUY
+	const RADIOTOWER3F_GYM_GUIDE
 	const RADIOTOWER3F_COOLTRAINER_F
 	const RADIOTOWER3F_ROCKET1
 	const RADIOTOWER3F_ROCKET2
@@ -26,18 +26,18 @@ RadioTower3F_MapScripts:
 RadioTower3FSuperNerdScript:
 	jumptextfaceplayer RadioTower3FSuperNerdText
 
-RadioTower3FGymGuyScript:
+RadioTower3FGymGuideScript:
 	faceplayer
 	opentext
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .NoRockets
-	writetext RadioTower3FGymGuyText_Rockets
+	writetext RadioTower3FGymGuideText_Rockets
 	waitbutton
 	closetext
 	end
 
 .NoRockets:
-	writetext RadioTower3FGymGuyText
+	writetext RadioTower3FGymGuideText
 	waitbutton
 	closetext
 	end
@@ -165,7 +165,7 @@ RadioTower3FSuperNerdText:
 	line "200 kinds."
 	done
 
-RadioTower3FGymGuyText_Rockets:
+RadioTower3FGymGuideText_Rockets:
 	text "To trainers, #-"
 	line "MON are their"
 	cont "beloved partners."
@@ -177,7 +177,7 @@ RadioTower3FGymGuyText_Rockets:
 	line "#MON."
 	done
 
-RadioTower3FGymGuyText:
+RadioTower3FGymGuideText:
 	text "We run 24 hours a"
 	line "day to broadcast"
 
@@ -343,7 +343,7 @@ RadioTower3F_MapEvents:
 
 	db 7 ; object events
 	object_event  7,  4, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RadioTower3FSuperNerdScript, EVENT_RADIO_TOWER_CIVILIANS_AFTER
-	object_event  3,  4, SPRITE_GYM_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower3FGymGuyScript, -1
+	object_event  3,  4, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower3FGymGuideScript, -1
 	object_event 11,  3, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, RadioTower3FCooltrainerFScript, -1
 	object_event  5,  1, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 2, TrainerGruntM7, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event  6,  2, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM8, EVENT_RADIO_TOWER_ROCKET_TAKEOVER

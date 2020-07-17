@@ -5,7 +5,7 @@
 	const AZALEAGYM_BUG_CATCHER3
 	const AZALEAGYM_TWIN1
 	const AZALEAGYM_TWIN2
-	const AZALEAGYM_GYM_GUY
+	const AZALEAGYM_GYM_GUIDE
 
 AzaleaGym_MapScripts:
 	db 0 ; scene scripts
@@ -122,19 +122,19 @@ TrainerBugCatcherJosh:
 	closetext
 	end
 
-AzaleaGymGuyScript:
+AzaleaGymGuideScript:
 	faceplayer
 	checkevent EVENT_BEAT_BUGSY
-	iftrue .AzaleaGymGuyWinScript
+	iftrue .AzaleaGymGuideWinScript
 	opentext
-	writetext AzaleaGymGuyText
+	writetext AzaleaGymGuideText
 	waitbutton
 	closetext
 	end
 
-.AzaleaGymGuyWinScript:
+.AzaleaGymGuideWinScript:
 	opentext
-	writetext AzaleaGymGuyWinText
+	writetext AzaleaGymGuideWinText
 	waitbutton
 	closetext
 	end
@@ -325,7 +325,7 @@ TwinsAmyandmay2AfterBattleText:
 	cont "a shame."
 	done
 
-AzaleaGymGuyText:
+AzaleaGymGuideText:
 	text "Yo, challenger!"
 
 	para "BUGSY's young, but"
@@ -347,7 +347,7 @@ AzaleaGymGuyText:
 	cont "tive too."
 	done
 
-AzaleaGymGuyWinText:
+AzaleaGymGuideWinText:
 	text "Well done! That"
 	line "was a great clash"
 
@@ -379,4 +379,4 @@ AzaleaGym_MapEvents:
 	object_event  0,  2, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBugCatcherJosh, -1
 	object_event  4, 10, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsAmyandmay1, -1
 	object_event  5, 10, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsAmyandmay2, -1
-	object_event  7, 13, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, AzaleaGymGuyScript, -1
+	object_event  7, 13, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, AzaleaGymGuideScript, -1

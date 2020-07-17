@@ -3,7 +3,7 @@
 	const VERMILIONGYM_GENTLEMAN
 	const VERMILIONGYM_ROCKER
 	const VERMILIONGYM_SUPER_NERD
-	const VERMILIONGYM_GYM_GUY
+	const VERMILIONGYM_GYM_GUIDE
 
 VermilionGym_MapScripts:
 	db 0 ; scene scripts
@@ -75,18 +75,18 @@ TrainerJugglerHorton:
 	closetext
 	end
 
-VermilionGymGuyScript:
+VermilionGymGuideScript:
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_LTSURGE
-	iftrue .VermilionGymGuyWinScript
-	writetext VermilionGymGuyText
+	iftrue .VermilionGymGuideWinScript
+	writetext VermilionGymGuideText
 	waitbutton
 	closetext
 	end
 
-.VermilionGymGuyWinScript:
-	writetext VermilionGymGuyWinText
+.VermilionGymGuideWinScript:
+	writetext VermilionGymGuideWinText
 	waitbutton
 	closetext
 	end
@@ -223,7 +223,7 @@ JugglerHortonAfterBattleText:
 	line "LT.SURGE is tough."
 	done
 
-VermilionGymGuyText:
+VermilionGymGuideText:
 	text "Yo! CHAMP in"
 	line "making!"
 
@@ -245,7 +245,7 @@ VermilionGymGuyText:
 	cont "LT.SURGE."
 	done
 
-VermilionGymGuyWinText:
+VermilionGymGuideWinText:
 	text "Whew! That was an"
 	line "electrifying bout!"
 
@@ -291,4 +291,4 @@ VermilionGym_MapEvents:
 	object_event  8,  8, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerGentlemanGregory, -1
 	object_event  4,  7, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_DOWN, 3, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerGuitaristVincent, -1
 	object_event  0, 10, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerJugglerHorton, -1
-	object_event  7, 15, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 1, VermilionGymGuyScript, -1
+	object_event  7, 15, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 1, VermilionGymGuideScript, -1

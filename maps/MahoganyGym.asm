@@ -5,7 +5,7 @@
 	const MAHOGANYGYM_BEAUTY2
 	const MAHOGANYGYM_ROCKER2
 	const MAHOGANYGYM_ROCKER3
-	const MAHOGANYGYM_GYM_GUY
+	const MAHOGANYGYM_GYM_GUIDE
 
 MahoganyGym_MapScripts:
 	db 0 ; scene scripts
@@ -123,18 +123,18 @@ TrainerBoarderDouglas:
 	closetext
 	end
 
-MahoganyGymGuyScript:
+MahoganyGymGuideScript:
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_PRYCE
-	iftrue .MahoganyGymGuyWinScript
-	writetext MahoganyGymGuyText
+	iftrue .MahoganyGymGuideWinScript
+	writetext MahoganyGymGuideText
 	waitbutton
 	closetext
 	end
 
-.MahoganyGymGuyWinScript:
-	writetext MahoganyGymGuyWinText
+.MahoganyGymGuideWinScript:
+	writetext MahoganyGymGuideWinText
 	waitbutton
 	closetext
 	end
@@ -338,7 +338,7 @@ SkierClarissaAfterBattleText:
 	cont "about my skiing…"
 	done
 
-MahoganyGymGuyText:
+MahoganyGymGuideText:
 	text "PRYCE is a veteran"
 	line "who has trained"
 
@@ -358,7 +358,7 @@ MahoganyGymGuyText:
 	line "ambition!"
 	done
 
-MahoganyGymGuyWinText:
+MahoganyGymGuideWinText:
 	text "PRYCE is some-"
 	line "thing, but you're"
 	cont "something else!"
@@ -390,4 +390,4 @@ MahoganyGym_MapEvents:
 	object_event  9, 17, SPRITE_BEAUTY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerSkierClarissa, -1
 	object_event  5,  9, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBoarderBrad, -1
 	object_event  2,  4, SPRITE_ROCKER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBoarderDouglas, -1
-	object_event  7, 15, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, MahoganyGymGuyScript, -1
+	object_event  7, 15, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, MahoganyGymGuideScript, -1

@@ -1,6 +1,6 @@
 	object_const_def ; object_event constants
 	const SAFFRONMAGNETTRAINSTATION_OFFICER
-	const SAFFRONMAGNETTRAINSTATION_GYM_GUY
+	const SAFFRONMAGNETTRAINSTATION_GYM_GUIDE
 	const SAFFRONMAGNETTRAINSTATION_TEACHER
 	const SAFFRONMAGNETTRAINSTATION_LASS
 
@@ -68,18 +68,18 @@ Script_ArriveFromGoldenrod:
 	closetext
 	end
 
-SaffronMagnetTrainStationGymGuyScript:
+SaffronMagnetTrainStationGymGuideScript:
 	faceplayer
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .ReturnedMachinePart
-	writetext SaffronMagnetTrainStationGymGuyText
+	writetext SaffronMagnetTrainStationGymGuideText
 	waitbutton
 	closetext
 	end
 
 .ReturnedMachinePart:
-	writetext SaffronMagnetTrainStationGymGuyText_ReturnedMachinePart
+	writetext SaffronMagnetTrainStationGymGuideText_ReturnedMachinePart
 	waitbutton
 	closetext
 	end
@@ -164,7 +164,7 @@ SaffronMagnetTrainStationOfficerArrivedInSaffronText:
 	line "again."
 	done
 
-SaffronMagnetTrainStationGymGuyText:
+SaffronMagnetTrainStationGymGuideText:
 	text "The MAGNET TRAIN"
 	line "is a super-modern"
 
@@ -180,7 +180,7 @@ SaffronMagnetTrainStationGymGuyText:
 	cont "tricity…"
 	done
 
-SaffronMagnetTrainStationGymGuyText_ReturnedMachinePart:
+SaffronMagnetTrainStationGymGuideText_ReturnedMachinePart:
 	text "Whew…"
 
 	para "How many times"
@@ -229,6 +229,6 @@ SaffronMagnetTrainStation_MapEvents:
 
 	db 4 ; object events
 	object_event  9,  9, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationOfficerScript, -1
-	object_event 10, 14, SPRITE_GYM_GUY, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationGymGuyScript, -1
+	object_event 10, 14, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationGymGuideScript, -1
 	object_event  6, 11, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationTeacherScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION
 	object_event  6, 10, SPRITE_LASS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationLassScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION

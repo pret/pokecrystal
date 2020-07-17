@@ -4,7 +4,7 @@
 	const SAFFRONGYM_YOUNGSTER1
 	const SAFFRONGYM_GRANNY2
 	const SAFFRONGYM_YOUNGSTER2
-	const SAFFRONGYM_GYM_GUY
+	const SAFFRONGYM_GYM_GUIDE
 
 SaffronGym_MapScripts:
 	db 0 ; scene scripts
@@ -88,18 +88,18 @@ TrainerPsychicJared:
 	closetext
 	end
 
-SaffronGymGuyScript:
+SaffronGymGuideScript:
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_SABRINA
-	iftrue .SaffronGymGuyWinScript
-	writetext SaffronGymGuyText
+	iftrue .SaffronGymGuideWinScript
+	writetext SaffronGymGuideText
 	waitbutton
 	closetext
 	end
 
-.SaffronGymGuyWinScript:
-	writetext SaffronGymGuyWinText
+.SaffronGymGuideWinScript:
+	writetext SaffronGymGuideWinText
 	waitbutton
 	closetext
 	end
@@ -264,7 +264,7 @@ PsychicJaredAfterBattleText:
 	cont "SABRINA."
 	done
 
-SaffronGymGuyText:
+SaffronGymGuideText:
 	text "Yo, CHAMP in"
 	line "making!"
 
@@ -283,7 +283,7 @@ SaffronGymGuyText:
 	para "Good luck!"
 	done
 
-SaffronGymGuyWinText:
+SaffronGymGuideWinText:
 	text "That was another"
 	line "fantastic battle!"
 	done
@@ -336,4 +336,4 @@ SaffronGym_MapEvents:
 	object_event  3, 16, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPsychicFranklin, -1
 	object_event  3,  4, SPRITE_GRANNY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerMediumDoris, -1
 	object_event 17,  4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerPsychicJared, -1
-	object_event  9, 14, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SaffronGymGuyScript, -1
+	object_event  9, 14, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SaffronGymGuideScript, -1

@@ -1,6 +1,6 @@
 	object_const_def ; object_event constants
 	const SEAFOAMGYM_BLAINE
-	const SEAFOAMGYM_GYM_GUY
+	const SEAFOAMGYM_GYM_GUIDE
 
 SeafoamGym_MapScripts:
 	db 1 ; scene scripts
@@ -23,7 +23,7 @@ SeafoamGymBlaineScript:
 	loadtrainer BLAINE, BLAINE1
 	startbattle
 	iftrue .ReturnAfterBattle
-	appear SEAFOAMGYM_GYM_GUY
+	appear SEAFOAMGYM_GYM_GUIDE
 .ReturnAfterBattle:
 	reloadmapafterbattle
 	setevent EVENT_BEAT_BLAINE
@@ -43,19 +43,19 @@ SeafoamGymBlaineScript:
 	closetext
 	end
 
-SeafoamGymGuyScript:
+SeafoamGymGuideScript:
 	faceplayer
 	opentext
-	checkevent EVENT_TALKED_TO_SEAFOAM_GYM_GUY_ONCE
-	iftrue .TalkedToSeafoamGymGuyScript
-	writetext SeafoamGymGuyWinText
+	checkevent EVENT_TALKED_TO_SEAFOAM_GYM_GUIDE_ONCE
+	iftrue .TalkedToSeafoamGymGuideScript
+	writetext SeafoamGymGuideWinText
 	waitbutton
 	closetext
-	setevent EVENT_TALKED_TO_SEAFOAM_GYM_GUY_ONCE
+	setevent EVENT_TALKED_TO_SEAFOAM_GYM_GUIDE_ONCE
 	end
 
-.TalkedToSeafoamGymGuyScript:
-	writetext SeafoamGymGuyWinText2
+.TalkedToSeafoamGymGuideScript:
+	writetext SeafoamGymGuideWinText2
 	waitbutton
 	closetext
 	end
@@ -123,7 +123,7 @@ BlaineFightDoneText:
 	line "Just you watch!"
 	done
 
-SeafoamGymGuyWinText:
+SeafoamGymGuideWinText:
 	text "Yo!"
 
 	para "… Huh? It's over"
@@ -144,7 +144,7 @@ SeafoamGymGuyWinText:
 	line "I knew you'd win!"
 	done
 
-SeafoamGymGuyWinText2:
+SeafoamGymGuideWinText2:
 	text "A #MON GYM can"
 	line "be anywhere as"
 
@@ -167,4 +167,4 @@ SeafoamGym_MapEvents:
 
 	db 2 ; object events
 	object_event  5,  2, SPRITE_BLAINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, SeafoamGymBlaineScript, -1
-	object_event  6,  5, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SeafoamGymGuyScript, EVENT_SEAFOAM_GYM_GYM_GUY
+	object_event  6,  5, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SeafoamGymGuideScript, EVENT_SEAFOAM_GYM_GYM_GUIDE

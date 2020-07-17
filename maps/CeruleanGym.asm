@@ -4,7 +4,7 @@
 	const CERULEANGYM_SWIMMER_GIRL1
 	const CERULEANGYM_SWIMMER_GIRL2
 	const CERULEANGYM_SWIMMER_GUY
-	const CERULEANGYM_GYM_GUY
+	const CERULEANGYM_GYM_GUIDE
 
 CeruleanGym_MapScripts:
 	db 2 ; scene scripts
@@ -116,18 +116,18 @@ TrainerSwimmermParker:
 	closetext
 	end
 
-CeruleanGymGuyScript:
+CeruleanGymGuideScript:
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_MISTY
-	iftrue .CeruleanGymGuyWinScript
-	writetext CeruleanGymGuyText
+	iftrue .CeruleanGymGuideWinScript
+	writetext CeruleanGymGuideText
 	waitbutton
 	closetext
 	end
 
-.CeruleanGymGuyWinScript:
-	writetext CeruleanGymGuyWinText
+.CeruleanGymGuideWinScript:
+	writetext CeruleanGymGuideWinText
 	waitbutton
 	closetext
 	end
@@ -340,7 +340,7 @@ SwimmermParkerAfterBattleText:
 	cont "you'll be crushed!"
 	done
 
-CeruleanGymGuyText:
+CeruleanGymGuideText:
 	text "Yo! CHAMP in"
 	line "making!"
 
@@ -351,7 +351,7 @@ CeruleanGymGuyText:
 	line "He-he-he."
 	done
 
-CeruleanGymGuyWinText:
+CeruleanGymGuideWinText:
 	text "Hoo, you showed me"
 	line "how tough you are."
 
@@ -380,4 +380,4 @@ CeruleanGym_MapEvents:
 	object_event  4,  6, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerSwimmerfDiana, EVENT_TRAINERS_IN_CERULEAN_GYM
 	object_event  1,  9, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerSwimmerfBriana, EVENT_TRAINERS_IN_CERULEAN_GYM
 	object_event  8,  9, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermParker, EVENT_TRAINERS_IN_CERULEAN_GYM
-	object_event  7, 13, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeruleanGymGuyScript, EVENT_TRAINERS_IN_CERULEAN_GYM
+	object_event  7, 13, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeruleanGymGuideScript, EVENT_TRAINERS_IN_CERULEAN_GYM
