@@ -4048,7 +4048,7 @@
 04:64b8 HealMachineAnim.PlaceHealingMachineTile
 04:64c6 HealMachineAnim.okay
 04:64d6 Script_BattleWhiteout
-04:64dd Script_OverworldWhiteout
+04:64dd OverworldWhiteoutScript
 04:64e3 Script_Whiteout
 04:6507 Script_Whiteout.bug_contest
 04:650a Script_Whiteout.WhitedOutText
@@ -19005,7 +19005,7 @@
 25:7af6 Script_warpcheck
 25:7b01 Script_enableevents
 25:7b08 Script_newloadmap
-25:7b16 Script_reloadandreturn
+25:7b16 Script_reloadend
 25:7b1c Script_opentext
 25:7b20 Script_refreshscreen
 25:7b27 Script_writeunusedbytebuffer
@@ -19018,8 +19018,8 @@
 25:7b6e Script_stopandsjump
 25:7b74 Script_end
 25:7b7a Script_end.resume
-25:7b8c Script_return
-25:7b91 Script_return.dummy
+25:7b8c Script_endcallback
+25:7b91 Script_endcallback.dummy
 25:7b9a ExitScriptSubroutine
 25:7bbe ExitScriptSubroutine.done
 25:7bc0 Script_endall
