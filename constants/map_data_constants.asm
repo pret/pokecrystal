@@ -102,6 +102,7 @@ NUM_SPAWNS EQU const_value
 ; Flypoints indexes (see data/maps/flypoints.asm)
 	const_def
 ; johto
+JOHTO_FLYPOINT EQU const_value
 	const FLY_NEW_BARK
 	const FLY_CHERRYGROVE
 	const FLY_VIOLET
