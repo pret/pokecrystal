@@ -2290,7 +2290,7 @@ ExitScriptSubroutine:
 	add hl, de
 	ld a, [hli]
 	ld b, a
-	and " "
+	and $7f
 	ld [wScriptBank], a
 	ld a, [hli]
 	ld e, a
