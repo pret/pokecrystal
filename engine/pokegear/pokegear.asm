@@ -65,7 +65,7 @@ PokeGear:
 	ldh [hBGMapAddress], a
 	ld a, HIGH(vBGMap0)
 	ldh [hBGMapAddress + 1], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	call ExitPokegearRadio_HandleMusic
 	ret
@@ -269,7 +269,7 @@ InitPokegearTilemap:
 	ld a, HIGH(vBGMap0)
 	ldh [hBGMapAddress + 1], a
 	call .UpdateBGMap
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	jr .finish
 
 .kanto_0
@@ -2077,7 +2077,7 @@ _FlyMap:
 	pop af
 	ldh [hInMenu], a
 	call ClearBGPalettes
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	xor a ; LOW(vBGMap0)
 	ldh [hBGMapAddress], a
@@ -2420,10 +2420,10 @@ Pokedex_GetArea:
 
 .left
 	ldh a, [hWY]
-	cp $90
+	cp SCREEN_HEIGHT_PX
 	ret z
 	call ClearSprites
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	xor a ; JOHTO_REGION
 	call .GetAndPlaceNest
@@ -2872,7 +2872,7 @@ Function92311:
 	pop af
 	ldh [hInMenu], a
 	call ClearBGPalettes
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	xor a ; LOW(vBGMap0)
 	ldh [hBGMapAddress], a
@@ -2895,7 +2895,7 @@ Function92311:
 .down_right
 	ld hl, wTownMapPlayerIconLandmark
 	ld a, [hl]
-	cp FLY_INDIGO
+	cp NUM_FLYPOINTS - 1
 	jr c, .okay_dr
 	ld [hl], -1
 .okay_dr
@@ -2907,7 +2907,7 @@ Function92311:
 	ld a, [hl]
 	and a
 	jr nz, .okay_ul
-	ld [hl], FLY_INDIGO + 1
+	ld [hl], NUM_FLYPOINTS
 .okay_ul
 	dec [hl]
 .continue
@@ -2916,13 +2916,13 @@ Function92311:
 	jr c, .johto
 	call FillKantoMap
 	xor a
-	ld b, $9c
+	ld b, HIGH(vBGMap1)
 	jr .finish
 
 .johto
 	call FillJohtoMap
-	ld a, $90
-	ld b, $98
+	ld a, SCREEN_HEIGHT_PX
+	ld b, HIGH(vBGMap0)
 .finish
 	ldh [hWY], a
 	ld a, b
