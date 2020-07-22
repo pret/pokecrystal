@@ -1,7 +1,5 @@
 SECTION "HRAM", HRAM
 
-hTransferVirtualOAM:: ds 10
-
 hROMBankBackup:: db
 hFarByte::
 hTempBank:: db
