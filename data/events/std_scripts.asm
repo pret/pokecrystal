@@ -1,0 +1,58 @@
+add_stdscript: MACRO
+\1StdScript::
+	dba \1
+ENDM
+
+StdScripts::
+	add_stdscript PokecenterNurseScript
+	add_stdscript DifficultBookshelfScript
+	add_stdscript PictureBookshelfScript
+	add_stdscript MagazineBookshelfScript
+	add_stdscript TeamRocketOathScript
+	add_stdscript IncenseBurnerScript
+	add_stdscript MerchandiseShelfScript
+	add_stdscript TownMapScript
+	add_stdscript WindowScript
+	add_stdscript TVScript
+	add_stdscript HomepageScript ; unused
+	add_stdscript Radio1Script
+	add_stdscript Radio2Script
+	add_stdscript TrashCanScript
+	add_stdscript StrengthBoulderScript
+	add_stdscript SmashRockScript
+	add_stdscript PokecenterSignScript
+	add_stdscript MartSignScript
+	add_stdscript GoldenrodRocketsScript
+	add_stdscript RadioTowerRocketsScript
+	add_stdscript ElevatorButtonScript
+	add_stdscript DayToTextScript
+	add_stdscript BugContestResultsWarpScript
+	add_stdscript BugContestResultsScript
+	add_stdscript InitializeEventsScript
+	add_stdscript AskNumber1MScript
+	add_stdscript AskNumber2MScript
+	add_stdscript RegisteredNumberMScript
+	add_stdscript NumberAcceptedMScript
+	add_stdscript NumberDeclinedMScript
+	add_stdscript PhoneFullMScript
+	add_stdscript RematchMScript
+	add_stdscript GiftMScript
+	add_stdscript PackFullMScript
+	add_stdscript RematchGiftMScript
+	add_stdscript AskNumber1FScript
+	add_stdscript AskNumber2FScript
+	add_stdscript RegisteredNumberFScript
+	add_stdscript NumberAcceptedFScript
+	add_stdscript NumberDeclinedFScript
+	add_stdscript PhoneFullFScript
+	add_stdscript RematchFScript
+	add_stdscript GiftFScript
+	add_stdscript PackFullFScript
+	add_stdscript RematchGiftFScript
+	add_stdscript GymStatue1Script
+	add_stdscript GymStatue2Script
+	add_stdscript ReceiveItemScript
+	add_stdscript ReceiveTogepiEggScript
+	add_stdscript PCScript
+	add_stdscript GameCornerCoinVendorScript
+	add_stdscript HappinessCheckScript

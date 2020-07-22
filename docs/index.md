@@ -13,7 +13,6 @@ These pages are for documenting pieces of the [pokecrystal](https://github.com/p
 - [event_commands.md](event_commands.md)
 - [movement_commands.md](movement_commands.md)
 - [text_commands.md](text_commands.md)
-- [map_setup_scripts.md](map_setup_scripts.md)
 
 
 ## Other types of scripts

@@ -1,4 +1,4 @@
-; Tilesets indexes (see data/tilesets.asm)
+; Tilesets indexes (see data/overworld/tilesets.asm)
 	const_def 1
 	const TILESET_JOHTO                ; 01
 	const TILESET_JOHTO_MODERN         ; 02
