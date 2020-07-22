@@ -18,7 +18,7 @@ INCLUDE "data/maps/setup_scripts.asm"
 ReadMapSetupScript:
 .loop
 	ld a, [hli]
-	cp map_end_command
+	cp -1 ; end?
 	ret z
 
 	push hl
