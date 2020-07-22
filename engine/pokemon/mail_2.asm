@@ -87,7 +87,7 @@ ReadAnyMail:
 	cp b
 	jr z, .got_pointer
 	cp -1
-	jr z, .invalid
+	jr z, .invalid ; BUG: This error handling will not be reached if the Mail type is $FF. Put this check before the pointer check to fix this.
 	inc c
 	inc hl
 	inc hl
