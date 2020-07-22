@@ -1229,10 +1229,9 @@
 01:4017 PlaceWaitingText.proceed
 01:4025 PlaceWaitingText.Waiting
 01:4031 WriteOAMDMACodeToHRAM
-01:4038 WriteOAMDMACodeToHRAM.loop
-01:403f WriteOAMDMACodeToHRAM.PushOAM
-01:4045 WriteOAMDMACodeToHRAM.pushoam_loop
-01:4049 WriteOAMDMACodeToHRAM.PushOAMEnd
+01:4038 WriteOAMDMACodeToHRAM.copy
+01:403f OAMDMACode
+01:4049 OAMDMACodeEnd
 01:4049 Facings
 01:4089 Facings.End
 01:408b FacingStepDown0
@@ -50699,6 +50698,7 @@
 07:d000 wWindowStack
 07:dfff wWindowStackBottom
 00:ff80 hTransferVirtualOAM
+00:ff86 hTransferVirtualOAM.wait
 00:ff8a hROMBankBackup
 00:ff8b hTempBank
 00:ff8b hFarByte
