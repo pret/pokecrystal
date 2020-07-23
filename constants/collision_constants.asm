@@ -1,11 +1,11 @@
-; collision permissions (see data/overworld/collision_permissions.asm)
+; collision permissions (see data/collision_permissions.asm)
 LAND_TILE  EQU $00
 WATER_TILE EQU $01
 WALL_TILE  EQU $0f
 TALK       EQU $10
 
 ; collision data types (see data/tilesets/*_collision.asm)
-; TileCollisionTable indexes (see data/overworld/collision_permissions.asm)
+; TileCollisionTable indexes (see data/collision_permissions.asm)
 COLL_FLOOR             EQU $00
 COLL_01                EQU $01 ; garbage
 COLL_03                EQU $03 ; garbage

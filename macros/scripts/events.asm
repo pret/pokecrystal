@@ -1,4 +1,4 @@
-; ScriptCommandTable indexes (see data/overworld/scripting.asm)
+; ScriptCommandTable indexes (see engine/overworld/scripting.asm)
 	const_def
 
 	const scall_command ; $00

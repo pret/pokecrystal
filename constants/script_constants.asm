@@ -41,7 +41,7 @@ NUM_STRING_BUFFERS EQU const_value
 	const TRAINERTEXT_LOSS
 
 ; readvar/writevar/loadvar arguments
-; VarActionTable indexes (see data/overworld/variables.asm)
+; _GetVarAction.VarActionTable indexes (see engine/overworld/variables.asm)
 	const_def
 	const VAR_STRINGBUFFER2    ; 00
 	const VAR_PARTYCOUNT       ; 01
