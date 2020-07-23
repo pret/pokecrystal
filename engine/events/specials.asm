@@ -13,7 +13,7 @@ Special::
 	rst FarCall
 	ret
 
-INCLUDE "data/special_pointers.asm"
+INCLUDE "data/events/special_pointers.asm"
 
 DummySpecial_c224:
 	ret
