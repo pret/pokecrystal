@@ -724,20 +724,12 @@ INCLUDE "engine/events/battle_tower/load_trainer.asm"
 INCLUDE "engine/events/odd_egg.asm"
 
 
-SECTION "Mobile Stadium 2", ROMX
+SECTION "Stadium 2 Checksums", ROMX[$7DE0], BANK[$7F]
 
-if DEF(_CRYSTAL_AU)
-INCBIN "mobile/stadium/stadium2_au.bin"
-elif DEF(_CRYSTAL11)
-if DEF(_DEBUG)
-INCBIN "mobile/stadium/stadium2_11_debug.bin"
-else
-INCBIN "mobile/stadium/stadium2_11.bin"
-endc
-else
-if DEF(_DEBUG)
-INCBIN "mobile/stadium/stadium2_debug.bin"
-else
-INCBIN "mobile/stadium/stadium2.bin"
-endc
-endc
+; The end of the ROM is taken up by checksums of the content, apparently used
+; by Pokémon Stadium 2 due to the checksums' "N64PS3" header. (In Japan,
+; Pokémon Stadium Gold and Silver was the third Stadium release for N64.)
+; This SECTION reserves space for those checksums.
+; If it is removed, also remove the "tools/stadium" command in the Makefile.
+
+	ds $220
