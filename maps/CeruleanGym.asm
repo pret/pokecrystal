@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const CERULEANGYM_ROCKET
 	const CERULEANGYM_MISTY
 	const CERULEANGYM_SWIMMER_GIRL1
@@ -7,11 +7,11 @@
 	const CERULEANGYM_GYM_GUIDE
 
 CeruleanGym_MapScripts:
-	db 2 ; scene scripts
+	def_scene_scripts
 	scene_script .DummyScene0 ; SCENE_CERULEANGYM_NOTHING
 	scene_script .GruntRunsOut ; SCENE_CERULEANGYM_GRUNT_RUNS_OUT
 
-	db 0 ; callbacks
+	def_callbacks
 
 .DummyScene0:
 	end
@@ -363,18 +363,18 @@ CeruleanGymGuideWinText:
 CeruleanGym_MapEvents:
 	db 0, 0 ; filler
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  4, 15, CERULEAN_CITY, 5
 	warp_event  5, 15, CERULEAN_CITY, 5
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 3 ; bg events
+	def_bg_events
 	bg_event  3,  8, BGEVENT_ITEM, CeruleanGymHiddenMachinePart
 	bg_event  2, 13, BGEVENT_READ, CeruleanGymStatue1
 	bg_event  6, 13, BGEVENT_READ, CeruleanGymStatue2
 
-	db 6 ; object events
+	def_object_events
 	object_event  4, 10, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_CERULEAN_GYM_ROCKET
 	object_event  5,  3, SPRITE_MISTY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeruleanGymMistyScript, EVENT_TRAINERS_IN_CERULEAN_GYM
 	object_event  4,  6, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerSwimmerfDiana, EVENT_TRAINERS_IN_CERULEAN_GYM

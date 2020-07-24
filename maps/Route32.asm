@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const ROUTE32_FISHER1
 	const ROUTE32_FISHER2
 	const ROUTE32_FISHER3
@@ -15,12 +15,12 @@
 	const ROUTE32_POKE_BALL2
 
 Route32_MapScripts:
-	db 3 ; scene scripts
+	def_scene_scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_ROUTE32_OFFER_SLOWPOKETAIL
 	scene_script .DummyScene2 ; SCENE_ROUTE32_NOTHING
 
-	db 1 ; callbacks
+	def_callbacks
 	callback MAPCALLBACK_OBJECTS, .Frieda
 
 .DummyScene0:
@@ -929,17 +929,17 @@ Route32UnionCaveSignText:
 Route32_MapEvents:
 	db 0, 0 ; filler
 
-	db 4 ; warp events
+	def_warp_events
 	warp_event 11, 73, ROUTE_32_POKECENTER_1F, 1
 	warp_event  4,  2, ROUTE_32_RUINS_OF_ALPH_GATE, 3
 	warp_event  4,  3, ROUTE_32_RUINS_OF_ALPH_GATE, 4
 	warp_event  6, 79, UNION_CAVE_1F, 4
 
-	db 2 ; coord events
+	def_coord_events
 	coord_event 18,  8, SCENE_DEFAULT, Route32CooltrainerMStopsYouScene
 	coord_event  7, 71, SCENE_ROUTE32_OFFER_SLOWPOKETAIL, Route32WannaBuyASlowpokeTailScript
 
-	db 6 ; bg events
+	def_bg_events
 	bg_event 13,  5, BGEVENT_READ, Route32Sign
 	bg_event  9,  1, BGEVENT_READ, Route32RuinsSign
 	bg_event 10, 84, BGEVENT_READ, Route32UnionCaveSign
@@ -947,7 +947,7 @@ Route32_MapEvents:
 	bg_event 12, 67, BGEVENT_ITEM, Route32HiddenGreatBall
 	bg_event 11, 40, BGEVENT_ITEM, Route32HiddenSuperPotion
 
-	db 14 ; object events
+	def_object_events
 	object_event  8, 49, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerFisherJustin, -1
 	object_event 12, 56, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerFisherRalph1, -1
 	object_event  6, 48, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerFisherHenry, -1

@@ -1,11 +1,11 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const ROUTE40BATTLETOWERGATE_ROCKER
 	const ROUTE40BATTLETOWERGATE_TWIN
 
 Route40BattleTowerGate_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 1 ; callbacks
+	def_callbacks
 	callback MAPCALLBACK_OBJECTS, .ShowSailor
 
 .ShowSailor:
@@ -71,16 +71,16 @@ Route40BattleTowerGateTwinText:
 Route40BattleTowerGate_MapEvents:
 	db 0, 0 ; filler
 
-	db 4 ; warp events
+	def_warp_events
 	warp_event  4,  7, ROUTE_40, 1
 	warp_event  5,  7, ROUTE_40, 1
 	warp_event  4,  0, BATTLE_TOWER_OUTSIDE, 1
 	warp_event  5,  0, BATTLE_TOWER_OUTSIDE, 2
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 2 ; object events
+	def_object_events
 	object_event  3,  3, SPRITE_ROCKER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route40BattleTowerGateRockerScript, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
 	object_event  7,  5, SPRITE_TWIN, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route40BattleTowerGateTwinScript, -1

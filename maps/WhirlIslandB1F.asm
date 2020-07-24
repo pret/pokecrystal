@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const WHIRLISLANDB1F_POKE_BALL1
 	const WHIRLISLANDB1F_POKE_BALL2
 	const WHIRLISLANDB1F_POKE_BALL3
@@ -7,9 +7,9 @@
 	const WHIRLISLANDB1F_BOULDER
 
 WhirlIslandB1F_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 WhirlIslandB1FFullRestore:
 	itemball FULL_RESTORE
@@ -41,7 +41,7 @@ WhirlIslandB1FHiddenFullRestore:
 WhirlIslandB1F_MapEvents:
 	db 0, 0 ; filler
 
-	db 9 ; warp events
+	def_warp_events
 	warp_event  5,  5, WHIRL_ISLAND_NW, 2
 	warp_event 35,  3, WHIRL_ISLAND_NE, 2
 	warp_event 29,  9, WHIRL_ISLAND_NE, 3
@@ -52,14 +52,14 @@ WhirlIslandB1F_MapEvents:
 	warp_event 13, 27, WHIRL_ISLAND_B2F, 2
 	warp_event 17, 21, WHIRL_ISLAND_CAVE, 1
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 3 ; bg events
+	def_bg_events
 	bg_event 30,  4, BGEVENT_ITEM, WhirlIslandB1FHiddenRareCandy
 	bg_event 36, 18, BGEVENT_ITEM, WhirlIslandB1FHiddenUltraBall
 	bg_event  2, 23, BGEVENT_ITEM, WhirlIslandB1FHiddenFullRestore
 
-	db 6 ; object events
+	def_object_events
 	object_event  7, 13, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, WhirlIslandB1FFullRestore, EVENT_WHIRL_ISLAND_B1F_FULL_RESTORE
 	object_event  2, 18, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, WhirlIslandB1FCarbos, EVENT_WHIRL_ISLAND_B1F_CARBOS
 	object_event 33, 23, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, WhirlIslandB1FCalcium, EVENT_WHIRL_ISLAND_B1F_CALCIUM

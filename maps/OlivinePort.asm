@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const OLIVINEPORT_SAILOR1
 	const OLIVINEPORT_SAILOR2
 	const OLIVINEPORT_SAILOR3
@@ -8,11 +8,11 @@
 	const OLIVINEPORT_COOLTRAINER_F
 
 OlivinePort_MapScripts:
-	db 2 ; scene scripts
+	def_scene_scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .LeaveFastShip ; SCENE_OLIVINEPORT_LEAVE_SHIP
 
-	db 0 ; callbacks
+	def_callbacks
 
 .DummyScene0:
 	end
@@ -385,17 +385,17 @@ OlivinePortSailorBeforeHOFText:
 OlivinePort_MapEvents:
 	db 0, 0 ; filler
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event 11,  7, OLIVINE_PORT_PASSAGE, 5
 	warp_event  7, 23, FAST_SHIP_1F, 1
 
-	db 1 ; coord events
+	def_coord_events
 	coord_event  7, 15, SCENE_DEFAULT, OlivinePortWalkUpToShipScript
 
-	db 1 ; bg events
+	def_bg_events
 	bg_event  1, 22, BGEVENT_ITEM, OlivinePortHiddenProtein
 
-	db 7 ; object events
+	def_object_events
 	object_event  7, 23, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivinePortSailorAtGangwayScript, EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
 	object_event  7, 15, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivinePortSailorBeforeHOFScript, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
 	object_event  6, 15, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivinePortSailorAfterHOFScript, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME

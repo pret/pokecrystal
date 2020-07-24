@@ -1,11 +1,11 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const ROUTE17ROUTE18GATE_OFFICER
 
 Route17Route18Gate_MapScripts:
-	db 1 ; scene scripts
+	def_scene_scripts
 	scene_script .DummyScene ; SCENE_DEFAULT
 
-	db 0 ; callbacks
+	def_callbacks
 
 .DummyScene:
 	end
@@ -52,17 +52,17 @@ Route17Route18GateCannotPassText:
 Route17Route18Gate_MapEvents:
 	db 0, 0 ; filler
 
-	db 4 ; warp events
+	def_warp_events
 	warp_event  0,  4, ROUTE_17, 1
 	warp_event  0,  5, ROUTE_17, 2
 	warp_event  9,  4, ROUTE_18, 1
 	warp_event  9,  5, ROUTE_18, 2
 
-	db 2 ; coord events
+	def_coord_events
 	coord_event  5,  4, SCENE_DEFAULT, Route17Route18GateBicycleCheck
 	coord_event  5,  5, SCENE_DEFAULT, Route17Route18GateBicycleCheck
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 1 ; object events
+	def_object_events
 	object_event  5,  2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route17Route18GateOfficerScript, -1

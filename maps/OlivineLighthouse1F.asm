@@ -1,11 +1,11 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const OLIVINELIGHTHOUSE1F_SAILOR
 	const OLIVINELIGHTHOUSE1F_POKEFAN_F
 
 OlivineLighthouse1F_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 OlivineLighthouse1FSailorScript:
 	jumptextfaceplayer OlivineLighthouse1FSailorText
@@ -37,17 +37,17 @@ OlivineLighthouse1FPokefanFText:
 OlivineLighthouse1F_MapEvents:
 	db 0, 0 ; filler
 
-	db 5 ; warp events
+	def_warp_events
 	warp_event 10, 17, OLIVINE_CITY, 9
 	warp_event 11, 17, OLIVINE_CITY, 9
 	warp_event  3, 11, OLIVINE_LIGHTHOUSE_2F, 1
 	warp_event 16, 13, OLIVINE_LIGHTHOUSE_2F, 3
 	warp_event 17, 13, OLIVINE_LIGHTHOUSE_2F, 4
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 2 ; object events
+	def_object_events
 	object_event  8,  2, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineLighthouse1FSailorScript, -1
 	object_event 16,  9, SPRITE_POKEFAN_F, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineLighthouse1FPokefanFScript, -1

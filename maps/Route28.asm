@@ -1,7 +1,7 @@
 Route28_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 Route28Sign:
 	jumptext Route28SignText
@@ -16,14 +16,14 @@ Route28SignText:
 Route28_MapEvents:
 	db 0, 0 ; filler
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  7,  3, ROUTE_28_STEEL_WING_HOUSE, 1
 	warp_event 33,  5, VICTORY_ROAD_GATE, 7
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 2 ; bg events
+	def_bg_events
 	bg_event 31,  5, BGEVENT_READ, Route28Sign
 	bg_event 25,  2, BGEVENT_ITEM, Route28HiddenRareCandy
 
-	db 0 ; object events
+	def_object_events

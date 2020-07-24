@@ -1,13 +1,13 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const FASTSHIPCABINS_SW_SSW_NW_FISHER
 	const FASTSHIPCABINS_SW_SSW_NW_BUG_CATCHER
 	const FASTSHIPCABINS_SW_SSW_NW_BEAUTY
 	const FASTSHIPCABINS_SW_SSW_NW_ROCKER
 
 FastShipCabins_SW_SSW_NW_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 TrainerFirebreatherLyle:
 	trainer FIREBREATHER, LYLE, EVENT_BEAT_FIREBREATHER_LYLE, FirebreatherLyleSeenText, FirebreatherLyleBeatenText, 0, .Script
@@ -223,21 +223,21 @@ FastShipArrivedVermilionText:
 FastShipCabins_SW_SSW_NW_MapEvents:
 	db 0, 0 ; filler
 
-	db 5 ; warp events
+	def_warp_events
 	warp_event  2,  0, FAST_SHIP_1F, 5
 	warp_event  2, 19, FAST_SHIP_1F, 6
 	warp_event  3, 19, FAST_SHIP_1F, 6
 	warp_event  2, 31, FAST_SHIP_1F, 7
 	warp_event  3, 31, FAST_SHIP_1F, 7
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 3 ; bg events
+	def_bg_events
 	bg_event  7,  1, BGEVENT_READ, FastShipBed
 	bg_event  7,  2, BGEVENT_READ, FastShipBed
 	bg_event  7,  7, BGEVENT_READ, FastShipCabinsNorthwestCabinTrashcan
 
-	db 4 ; object events
+	def_object_events
 	object_event  1, 15, SPRITE_FISHER, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerFirebreatherLyle, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
 	object_event  6, 15, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerBugCatcherKen, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
 	object_event  1, 26, SPRITE_BEAUTY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBeautyCassie, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND

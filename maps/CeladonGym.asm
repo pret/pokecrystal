@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const CELADONGYM_ERIKA
 	const CELADONGYM_LASS1
 	const CELADONGYM_LASS2
@@ -7,9 +7,9 @@
 	const CELADONGYM_TWIN2
 
 CeladonGym_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 CeladonGymErikaScript:
 	faceplayer
@@ -268,17 +268,17 @@ TwinsJoAndZoe2AfterBattleText:
 CeladonGym_MapEvents:
 	db 0, 0 ; filler
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  4, 17, CELADON_CITY, 8
 	warp_event  5, 17, CELADON_CITY, 8
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 2 ; bg events
+	def_bg_events
 	bg_event  3, 15, BGEVENT_READ, CeladonGymStatue
 	bg_event  6, 15, BGEVENT_READ, CeladonGymStatue
 
-	db 6 ; object events
+	def_object_events
 	object_event  5,  3, SPRITE_ERIKA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonGymErikaScript, -1
 	object_event  7,  8, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerLassMichelle, -1
 	object_event  2,  8, SPRITE_LASS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerPicnickerTanya, -1

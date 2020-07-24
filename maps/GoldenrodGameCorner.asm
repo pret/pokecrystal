@@ -5,7 +5,7 @@ GOLDENRODGAMECORNER_ABRA_COINS      EQU 100
 GOLDENRODGAMECORNER_CUBONE_COINS    EQU 800
 GOLDENRODGAMECORNER_WOBBUFFET_COINS EQU 1500
 
-	object_const_def ; object_event constants
+	object_const_def
 	const GOLDENRODGAMECORNER_CLERK
 	const GOLDENRODGAMECORNER_RECEPTIONIST1
 	const GOLDENRODGAMECORNER_RECEPTIONIST2
@@ -20,9 +20,9 @@ GOLDENRODGAMECORNER_WOBBUFFET_COINS EQU 1500
 	const GOLDENRODGAMECORNER_MOVETUTOR
 
 GoldenrodGameCorner_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 1 ; callbacks
+	def_callbacks
 	callback MAPCALLBACK_OBJECTS, .MoveTutor
 
 .MoveTutor:
@@ -479,13 +479,13 @@ GoldenrodGameCornerLeftTheirDrinkText:
 GoldenrodGameCorner_MapEvents:
 	db 0, 0 ; filler
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  2, 13, GOLDENROD_CITY, 10
 	warp_event  3, 13, GOLDENROD_CITY, 10
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 31 ; bg events
+	def_bg_events
 	bg_event  6,  6, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
 	bg_event  6,  7, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
 	bg_event  6,  8, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
@@ -518,7 +518,7 @@ GoldenrodGameCorner_MapEvents:
 	bg_event 18, 11, BGEVENT_RIGHT, GoldenrodGameCornerCardFlipMachineScript
 	bg_event 12,  1, BGEVENT_LEFT, GoldenrodGameCornerLeftTheirDrinkScript
 
-	db 12 ; object events
+	def_object_events
 	object_event  3,  2, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerCoinVendorScript, -1
 	object_event 16,  2, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerTMVendorScript, -1
 	object_event 18,  2, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerPrizeMonVendorScript, -1

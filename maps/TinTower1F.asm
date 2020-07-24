@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const TINTOWER1F_SUICUNE
 	const TINTOWER1F_RAIKOU
 	const TINTOWER1F_ENTEI
@@ -11,11 +11,11 @@
 	const TINTOWER1F_SAGE6
 
 TinTower1F_MapScripts:
-	db 2 ; scene scripts
+	def_scene_scripts
 	scene_script .FaceSuicune ; SCENE_DEFAULT
 	scene_script .DummyScene ; SCENE_FINISHED
 
-	db 2 ; callbacks
+	def_callbacks
 	callback MAPCALLBACK_OBJECTS, .NPCsCallback
 	callback MAPCALLBACK_TILES, .StairsCallback
 
@@ -523,16 +523,16 @@ TinTower1FSage6Text2:
 TinTower1F_MapEvents:
 	db 0, 0 ; filler
 
-	db 3 ; warp events
+	def_warp_events
 	warp_event  9, 15, ECRUTEAK_CITY, 12
 	warp_event 10, 15, ECRUTEAK_CITY, 12
 	warp_event 10,  2, TIN_TOWER_2F, 2
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 10 ; object events
+	def_object_events
 	object_event  9,  9, SPRITE_SUICUNE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TIN_TOWER_1F_SUICUNE
 	object_event  7,  9, SPRITE_RAIKOU, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TIN_TOWER_1F_RAIKOU
 	object_event 12,  9, SPRITE_ENTEI, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TIN_TOWER_1F_ENTEI

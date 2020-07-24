@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const TEAMROCKETBASEB3F_LANCE
 	const TEAMROCKETBASEB3F_ROCKET1
 	const TEAMROCKETBASEB3F_MOLTRES
@@ -15,13 +15,13 @@
 	const TEAMROCKETBASEB3F_POKE_BALL5
 
 TeamRocketBaseB3F_MapScripts:
-	db 4 ; scene scripts
+	def_scene_scripts
 	scene_script .LanceGetsPassword ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_TEAMROCKETBASEB3F_RIVAL_ENCOUNTER
 	scene_script .DummyScene2 ; SCENE_TEAMROCKETBASEB3F_ROCKET_BOSS
 	scene_script .DummyScene3 ; SCENE_TEAMROCKETBASEB3F_NOTHING
 
-	db 1 ; callbacks
+	def_callbacks
 	callback MAPCALLBACK_TILES, .CheckGiovanniDoor
 
 .LanceGetsPassword:
@@ -566,18 +566,18 @@ TeamRocketBaseB3FLockedDoorOpenSesameText:
 TeamRocketBaseB3F_MapEvents:
 	db 0, 0 ; filler
 
-	db 4 ; warp events
+	def_warp_events
 	warp_event  3,  2, TEAM_ROCKET_BASE_B2F, 2
 	warp_event 27,  2, TEAM_ROCKET_BASE_B2F, 3
 	warp_event  3,  6, TEAM_ROCKET_BASE_B2F, 4
 	warp_event 27, 14, TEAM_ROCKET_BASE_B2F, 5
 
-	db 3 ; coord events
+	def_coord_events
 	coord_event 10,  8, SCENE_TEAMROCKETBASEB3F_ROCKET_BOSS, RocketBaseBossLeft
 	coord_event 11,  8, SCENE_TEAMROCKETBASEB3F_ROCKET_BOSS, RocketBaseBossRight
 	coord_event  8, 10, SCENE_TEAMROCKETBASEB3F_RIVAL_ENCOUNTER, RocketBaseRival
 
-	db 10 ; bg events
+	def_bg_events
 	bg_event 10,  9, BGEVENT_IFNOTSET, TeamRocketBaseB3FLockedDoor
 	bg_event 11,  9, BGEVENT_IFNOTSET, TeamRocketBaseB3FLockedDoor
 	bg_event 10,  1, BGEVENT_READ, TeamRocketBaseB3FOathScript
@@ -589,7 +589,7 @@ TeamRocketBaseB3F_MapEvents:
 	bg_event  6, 13, BGEVENT_READ, TeamRocketBaseB3FOathScript
 	bg_event  7, 13, BGEVENT_READ, TeamRocketBaseB3FOathScript
 
-	db 14 ; object events
+	def_object_events
 	object_event 25, 14, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LanceGetPasswordScript, EVENT_TEAM_ROCKET_BASE_B3F_LANCE_PASSWORDS
 	object_event  8,  3, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B3F_EXECUTIVE
 	object_event  7,  2, SPRITE_MOLTRES, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RocketBaseMurkrow, EVENT_TEAM_ROCKET_BASE_POPULATION

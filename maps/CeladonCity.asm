@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const CELADONCITY_FISHER
 	const CELADONCITY_POLIWAG
 	const CELADONCITY_TEACHER1
@@ -10,9 +10,9 @@
 	const CELADONCITY_LASS
 
 CeladonCity_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 1 ; callbacks
+	def_callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
@@ -248,7 +248,7 @@ CeladonCityTrainerTipsText:
 CeladonCity_MapEvents:
 	db 0, 0 ; filler
 
-	db 9 ; warp events
+	def_warp_events
 	warp_event  4,  9, CELADON_DEPT_STORE_1F, 1
 	warp_event 16,  9, CELADON_MANSION_1F, 1
 	warp_event 16,  3, CELADON_MANSION_1F, 3
@@ -259,9 +259,9 @@ CeladonCity_MapEvents:
 	warp_event 10, 29, CELADON_GYM, 1
 	warp_event 25, 29, CELADON_CAFE, 1
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 8 ; bg events
+	def_bg_events
 	bg_event 23, 21, BGEVENT_READ, CeladonCitySign
 	bg_event 11, 31, BGEVENT_READ, CeladonGymSign
 	bg_event  6,  9, BGEVENT_READ, CeladonCityDeptStoreSign
@@ -271,7 +271,7 @@ CeladonCity_MapEvents:
 	bg_event 30,  9, BGEVENT_READ, CeladonCityPokecenterSign
 	bg_event 37, 21, BGEVENT_ITEM, CeladonCityHiddenPpUp
 
-	db 9 ; object events
+	def_object_events
 	object_event 26, 11, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonCityFisherScript, -1
 	object_event 27, 11, SPRITE_POLIWAG, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonCityPoliwrath, -1
 	object_event 20, 24, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonCityTeacher1Script, -1

@@ -1,11 +1,11 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const ROUTE10SOUTH_POKEFAN_M1
 	const ROUTE10SOUTH_POKEFAN_M2
 
 Route10South_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 TrainerHikerJim:
 	trainer HIKER, JIM, EVENT_BEAT_HIKER_JIM, HikerJimSeenText, HikerJimBeatenText, 0, .Script
@@ -76,14 +76,14 @@ Route10SignText:
 Route10South_MapEvents:
 	db 0, 0 ; filler
 
-	db 1 ; warp events
+	def_warp_events
 	warp_event  6,  1, ROCK_TUNNEL_1F, 2
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 1 ; bg events
+	def_bg_events
 	bg_event  5,  3, BGEVENT_READ, Route10Sign
 
-	db 2 ; object events
+	def_object_events
 	object_event 17,  3, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerHikerJim, -1
 	object_event  8, 10, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerPokefanmRobert, -1

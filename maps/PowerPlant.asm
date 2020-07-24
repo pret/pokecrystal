@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const POWERPLANT_OFFICER1
 	const POWERPLANT_GYM_GUIDE1
 	const POWERPLANT_GYM_GUIDE2
@@ -8,11 +8,11 @@
 	const POWERPLANT_FOREST
 
 PowerPlant_MapScripts:
-	db 2 ; scene scripts
+	def_scene_scripts
 	scene_script .DummyScene0 ; SCENE_POWERPLANT_NOTHING
 	scene_script .DummyScene1 ; SCENE_POWERPLANT_GUARD_GETS_PHONE_CALL
 
-	db 0 ; callbacks
+	def_callbacks
 
 .DummyScene0:
 	end
@@ -389,18 +389,18 @@ PowerPlantManagerMyBelovedGeneratorText:
 PowerPlant_MapEvents:
 	db 0, 0 ; filler
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  2, 17, ROUTE_10_NORTH, 2
 	warp_event  3, 17, ROUTE_10_NORTH, 2
 
-	db 1 ; coord events
+	def_coord_events
 	coord_event  5, 12, SCENE_POWERPLANT_GUARD_GETS_PHONE_CALL, PowerPlantGuardPhoneScript
 
-	db 2 ; bg events
+	def_bg_events
 	bg_event  0,  1, BGEVENT_READ, PowerPlantBookshelf
 	bg_event  1,  1, BGEVENT_READ, PowerPlantBookshelf
 
-	db 7 ; object events
+	def_object_events
 	object_event  4, 14, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PowerPlantOfficerScript, -1
 	object_event  2,  9, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PowerPlantGymGuide1Script, -1
 	object_event  6, 11, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PowerPlantGymGuide2Script, -1

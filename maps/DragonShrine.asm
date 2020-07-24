@@ -1,15 +1,15 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const DRAGONSHRINE_ELDER1
 	const DRAGONSHRINE_ELDER2
 	const DRAGONSHRINE_ELDER3
 	const DRAGONSHRINE_CLAIR
 
 DragonShrine_MapScripts:
-	db 2 ; scene scripts
+	def_scene_scripts
 	scene_script .DragonShrineTest ; SCENE_DEFAULT
 	scene_script .DummyScene ; SCENE_FINISHED
 
-	db 0 ; callbacks
+	def_callbacks
 
 .DragonShrineTest:
 	prioritysjump .DragonShrineTestScript
@@ -658,15 +658,15 @@ DragonShrineSpeechlessText:
 DragonShrine_MapEvents:
 	db 0, 0 ; filler
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  4,  9, DRAGONS_DEN_B1F, 2
 	warp_event  5,  9, DRAGONS_DEN_B1F, 2
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 4 ; object events
+	def_object_events
 	object_event  5,  1, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonShrineElder1Script, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	object_event  2,  4, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonShrineElder2Script, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	object_event  7,  4, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonShrineElder3Script, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1

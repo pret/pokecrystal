@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const ICEPATHB1F_BOULDER1
 	const ICEPATHB1F_BOULDER2
 	const ICEPATHB1F_BOULDER3
@@ -6,9 +6,9 @@
 	const ICEPATHB1F_POKE_BALL
 
 IcePathB1F_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 1 ; callbacks
+	def_callbacks
 	callback MAPCALLBACK_CMDQUEUE, .SetUpStoneTable
 
 .SetUpStoneTable:
@@ -76,7 +76,7 @@ IcePathBoulderFellThroughText:
 IcePathB1F_MapEvents:
 	db 0, 0 ; filler
 
-	db 8 ; warp events
+	def_warp_events
 	warp_event  3, 15, ICE_PATH_1F, 3
 	warp_event 17,  3, ICE_PATH_B2F_MAHOGANY_SIDE, 1
 	warp_event 11,  2, ICE_PATH_B2F_MAHOGANY_SIDE, 3 ; hole
@@ -86,12 +86,12 @@ IcePathB1F_MapEvents:
 	warp_event  5, 25, ICE_PATH_1F, 4
 	warp_event 11, 27, ICE_PATH_B2F_BLACKTHORN_SIDE, 1
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 1 ; bg events
+	def_bg_events
 	bg_event 17, 30, BGEVENT_ITEM, IcePathB1FHiddenMaxPotion
 
-	db 5 ; object events
+	def_object_events
 	object_event 11,  7, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_1
 	object_event  7,  8, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_2
 	object_event  8,  9, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_3

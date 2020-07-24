@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const UNIONCAVEB1F_POKEFAN_M1
 	const UNIONCAVEB1F_POKEFAN_M2
 	const UNIONCAVEB1F_SUPER_NERD1
@@ -8,9 +8,9 @@
 	const UNIONCAVEB1F_POKE_BALL2
 
 UnionCaveB1F_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 TrainerPokemaniacAndrew:
 	trainer POKEMANIAC, ANDREW, EVENT_BEAT_POKEMANIAC_ANDREW, PokemaniacAndrewSeenText, PokemaniacAndrewBeatenText, 0, .Script
@@ -153,18 +153,18 @@ PokemaniacCalvinAfterBattleText:
 UnionCaveB1F_MapEvents:
 	db 0, 0 ; filler
 
-	db 5 ; warp events
+	def_warp_events
 	warp_event  3,  3, RUINS_OF_ALPH_OUTSIDE, 7
 	warp_event  3, 11, RUINS_OF_ALPH_OUTSIDE, 8
 	warp_event  7, 19, UNION_CAVE_1F, 1
 	warp_event  3, 33, UNION_CAVE_1F, 2
 	warp_event 17, 31, UNION_CAVE_B2F, 1
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 7 ; object events
+	def_object_events
 	object_event  9,  4, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerHikerPhillip, -1
 	object_event 16,  7, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerHikerLeonard, -1
 	object_event  5, 32, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPokemaniacAndrew, -1

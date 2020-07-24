@@ -1,12 +1,12 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const TRAINERHOUSEB1F_RECEPTIONIST
 	const TRAINERHOUSEB1F_CHRIS
 
 TrainerHouseB1F_MapScripts:
-	db 1 ; scene scripts
+	def_scene_scripts
 	scene_script .DummyScene ; SCENE_DEFAULT
 
-	db 0 ; callbacks
+	def_callbacks
 
 .DummyScene:
 	end
@@ -170,14 +170,14 @@ TrainerHouseB1FCalBeforeText:
 TrainerHouseB1F_MapEvents:
 	db 0, 0 ; filler
 
-	db 1 ; warp events
+	def_warp_events
 	warp_event  9,  4, TRAINER_HOUSE_1F, 3
 
-	db 1 ; coord events
+	def_coord_events
 	coord_event  7,  3, SCENE_DEFAULT, TrainerHouseReceptionistScript
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 2 ; object events
+	def_object_events
 	object_event  7,  1, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
 	object_event  6, 11, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1

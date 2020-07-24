@@ -1,18 +1,18 @@
 Route6UndergroundPathEntrance_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 Route6UndergroundPathEntrance_MapEvents:
 	db 0, 0 ; filler
 
-	db 3 ; warp events
+	def_warp_events
 	warp_event  3,  7, ROUTE_6, 1
 	warp_event  4,  7, ROUTE_6, 1
 	warp_event  4,  3, UNDERGROUND_PATH, 2
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; object events
+	def_object_events

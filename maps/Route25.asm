@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const ROUTE25_MISTY
 	const ROUTE25_COOLTRAINER_M1
 	const ROUTE25_YOUNGSTER1
@@ -12,11 +12,11 @@
 	const ROUTE25_POKE_BALL
 
 Route25_MapScripts:
-	db 2 ; scene scripts
+	def_scene_scripts
 	scene_script .DummyScene0 ; SCENE_ROUTE25_NOTHING
 	scene_script .DummyScene1 ; SCENE_ROUTE25_MISTYS_DATE
 
-	db 0 ; callbacks
+	def_callbacks
 
 .DummyScene0:
 	end
@@ -430,18 +430,18 @@ BillsHouseSignText:
 Route25_MapEvents:
 	db 0, 0 ; filler
 
-	db 1 ; warp events
+	def_warp_events
 	warp_event 47,  5, BILLS_HOUSE, 1
 
-	db 2 ; coord events
+	def_coord_events
 	coord_event 42,  6, SCENE_ROUTE25_MISTYS_DATE, Route25MistyDate1Script
 	coord_event 42,  7, SCENE_ROUTE25_MISTYS_DATE, Route25MistyDate2Script
 
-	db 2 ; bg events
+	def_bg_events
 	bg_event 45,  5, BGEVENT_READ, BillsHouseSign
 	bg_event  4,  5, BGEVENT_ITEM, Route25HiddenPotion
 
-	db 11 ; object events
+	def_object_events
 	object_event 46,  9, SPRITE_MISTY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
 	object_event 46, 10, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
 	object_event 12,  8, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSchoolboyDudley, -1

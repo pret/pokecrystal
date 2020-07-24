@@ -1,13 +1,13 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const FUCHSIACITY_YOUNGSTER
 	const FUCHSIACITY_POKEFAN_M
 	const FUCHSIACITY_TEACHER
 	const FUCHSIACITY_FRUIT_TREE
 
 FuchsiaCity_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 1 ; callbacks
+	def_callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
@@ -125,7 +125,7 @@ NoLitteringSignText:
 FuchsiaCity_MapEvents:
 	db 0, 0 ; filler
 
-	db 11 ; warp events
+	def_warp_events
 	warp_event  5, 13, FUCHSIA_MART, 2
 	warp_event 22, 13, SAFARI_ZONE_MAIN_OFFICE, 1
 	warp_event  8, 27, FUCHSIA_GYM, 1
@@ -138,9 +138,9 @@ FuchsiaCity_MapEvents:
 	warp_event  7, 35, ROUTE_19_FUCHSIA_GATE, 1
 	warp_event  8, 35, ROUTE_19_FUCHSIA_GATE, 2
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 8 ; bg events
+	def_bg_events
 	bg_event 21, 15, BGEVENT_READ, FuchsiaCitySign
 	bg_event  5, 29, BGEVENT_READ, FuchsiaGymSign
 	bg_event 25, 15, BGEVENT_READ, SafariZoneOfficeSign
@@ -150,7 +150,7 @@ FuchsiaCity_MapEvents:
 	bg_event 20, 27, BGEVENT_READ, FuchsiaCityPokecenterSign
 	bg_event  6, 13, BGEVENT_READ, FuchsiaCityMartSign
 
-	db 4 ; object events
+	def_object_events
 	object_event 23, 18, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, FuchsiaCityYoungster, -1
 	object_event 13,  8, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, FuchsiaCityPokefanM, -1
 	object_event 16, 14, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FuchsiaCityTeacher, -1

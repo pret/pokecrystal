@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const GOLDENRODPOKECENTER1F_NURSE
 	const GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	const GOLDENRODPOKECENTER1F_GAMEBOY_KID
@@ -6,9 +6,9 @@
 	const GOLDENRODPOKECENTER1F_POKEFAN_F
 
 GoldenrodPokecenter1F_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 GoldenrodPokecenter1FNurseScript:
 	jumpstd PokecenterNurseScript
@@ -805,19 +805,19 @@ GoldenrodPokecenter1FPlayerGaveAwayTheEonMailText:
 GoldenrodPokecenter1F_MapEvents:
 	db 0, 0 ; filler
 
-	db 4 ; warp events
+	def_warp_events
 	warp_event  3,  7, GOLDENROD_CITY, 15
 	warp_event  4,  7, GOLDENROD_CITY, 15
 	warp_event  0,  6, POKECOM_CENTER_ADMIN_OFFICE_MOBILE, 1
 	warp_event  0,  7, POKECENTER_2F, 1
 
-	db 2 ; coord events
+	def_coord_events
 	coord_event  3,  7, SCENE_DEFAULT, GoldenrodPokecenter1F_GSBallSceneLeft
 	coord_event  4,  7, SCENE_DEFAULT, GoldenrodPokecenter1F_GSBallSceneRight
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 5 ; object events
+	def_object_events
 	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FNurseScript, -1
 	object_event 16,  8, SPRITE_LINK_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
 	object_event  6,  1, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FGameboyKidScript, -1

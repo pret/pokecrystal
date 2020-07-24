@@ -1,10 +1,10 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const SILVERCAVEROOM3_RED
 
 SilverCaveRoom3_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 Red:
 	special FadeOutMusic
@@ -51,12 +51,12 @@ RedLeavesText:
 SilverCaveRoom3_MapEvents:
 	db 0, 0 ; filler
 
-	db 1 ; warp events
+	def_warp_events
 	warp_event  9, 33, SILVER_CAVE_ROOM_2, 2
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 1 ; object events
+	def_object_events
 	object_event  9, 10, SPRITE_RED, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Red, EVENT_RED_IN_MT_SILVER

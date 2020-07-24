@@ -1,14 +1,14 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const COLOSSEUM_CHRIS1
 	const COLOSSEUM_CHRIS2
 
 Colosseum_MapScripts:
-	db 3 ; scene scripts
+	def_scene_scripts
 	scene_script .InitializeColosseum ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_FINISHED
 	scene_script .DummyScene2 ; unused
 
-	db 2 ; callbacks
+	def_callbacks
 	callback MAPCALLBACK_OBJECTS, .SetWhichChris
 	callback MAPCALLBACK_NEWMAP, .PreparePokecenter2F
 
@@ -63,16 +63,16 @@ CableClubFriendScript:
 Colosseum_MapEvents:
 	db 0, 0 ; filler
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  4,  7, POKECENTER_2F, 3
 	warp_event  5,  7, POKECENTER_2F, 3
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 2 ; bg events
+	def_bg_events
 	bg_event  4,  4, BGEVENT_RIGHT, ColosseumConsoleScript
 	bg_event  5,  4, BGEVENT_LEFT, ColosseumConsoleScript
 
-	db 2 ; object events
+	def_object_events
 	object_event  3,  4, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CableClubFriendScript, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	object_event  6,  4, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CableClubFriendScript, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2

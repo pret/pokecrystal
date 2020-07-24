@@ -1,13 +1,13 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const ROUTE17_BIKER1
 	const ROUTE17_BIKER2
 	const ROUTE17_BIKER3
 	const ROUTE17_BIKER4
 
 Route17_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 1 ; callbacks
+	def_callbacks
 	callback MAPCALLBACK_NEWMAP, .AlwaysOnBike
 
 .AlwaysOnBike:
@@ -133,17 +133,17 @@ BikerCharlesAfterBattleText:
 Route17_MapEvents:
 	db 0, 0 ; filler
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event 17, 82, ROUTE_17_ROUTE_18_GATE, 1
 	warp_event 17, 83, ROUTE_17_ROUTE_18_GATE, 2
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 2 ; bg events
+	def_bg_events
 	bg_event  9, 54, BGEVENT_ITEM, Route17HiddenMaxEther
 	bg_event  8, 77, BGEVENT_ITEM, Route17HiddenMaxElixer
 
-	db 4 ; object events
+	def_object_events
 	object_event  4, 17, SPRITE_BIKER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerBikerRiley, -1
 	object_event  9, 68, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerBikerJoel, -1
 	object_event  3, 53, SPRITE_BIKER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBikerGlenn, -1

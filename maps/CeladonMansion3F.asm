@@ -1,13 +1,13 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const CELADONMANSION3F_COOLTRAINER_M
 	const CELADONMANSION3F_GYM_GUIDE
 	const CELADONMANSION3F_SUPER_NERD
 	const CELADONMANSION3F_FISHER
 
 CeladonMansion3F_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 GameFreakGameDesignerScript:
 	faceplayer
@@ -191,21 +191,21 @@ CeladonMansion3FReferenceMaterialText:
 CeladonMansion3F_MapEvents:
 	db 0, 0 ; filler
 
-	db 4 ; warp events
+	def_warp_events
 	warp_event  0,  0, CELADON_MANSION_ROOF, 1
 	warp_event  1,  0, CELADON_MANSION_2F, 2
 	warp_event  6,  0, CELADON_MANSION_2F, 3
 	warp_event  7,  0, CELADON_MANSION_ROOF, 2
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 4 ; bg events
+	def_bg_events
 	bg_event  5,  8, BGEVENT_UP, CeladonMansion3FDevRoomSign
 	bg_event  4,  3, BGEVENT_UP, CeladonMansion3FDrawing
 	bg_event  1,  6, BGEVENT_UP, CeladonMansion3FGameProgram
 	bg_event  1,  3, BGEVENT_UP, CeladonMansion3FReferenceMaterial
 
-	db 4 ; object events
+	def_object_events
 	object_event  3,  6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GameFreakGameDesignerScript, -1
 	object_event  3,  4, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GameFreakGraphicArtistScript, -1
 	object_event  0,  7, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GameFreakProgrammerScript, -1

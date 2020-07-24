@@ -1,13 +1,13 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const CELADONDEPTSTORE2F_CLERK1
 	const CELADONDEPTSTORE2F_CLERK2
 	const CELADONDEPTSTORE2F_POKEFAN_M
 	const CELADONDEPTSTORE2F_YOUNGSTER
 
 CeladonDeptStore2F_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 CeladonDeptStore2FClerk1Script:
 	faceplayer
@@ -69,18 +69,18 @@ CeladonDeptStore2FDirectoryText:
 CeladonDeptStore2F_MapEvents:
 	db 0, 0 ; filler
 
-	db 3 ; warp events
+	def_warp_events
 	warp_event 12,  0, CELADON_DEPT_STORE_3F, 1
 	warp_event 15,  0, CELADON_DEPT_STORE_1F, 3
 	warp_event  2,  0, CELADON_DEPT_STORE_ELEVATOR, 1
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 2 ; bg events
+	def_bg_events
 	bg_event 14,  0, BGEVENT_READ, CeladonDeptStore2FDirectory
 	bg_event  3,  0, BGEVENT_READ, CeladonDeptStore2FElevatorButton
 
-	db 4 ; object events
+	def_object_events
 	object_event 13,  5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore2FClerk1Script, -1
 	object_event 14,  5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore2FClerk2Script, -1
 	object_event  5,  2, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore2FPokefanMScript, -1

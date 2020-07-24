@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const COPYCATSHOUSE2F_COPYCAT1 ; if player is male
 	const COPYCATSHOUSE2F_DODRIO
 	const COPYCATSHOUSE2F_FAIRYDOLL ; lost item
@@ -7,9 +7,9 @@
 	const COPYCATSHOUSE2F_COPYCAT2 ; if player is female
 
 CopycatsHouse2F_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 1 ; callbacks
+	def_callbacks
 	callback MAPCALLBACK_OBJECTS, .Callback
 
 .Callback:
@@ -361,16 +361,16 @@ CopycatsHouse2FDollText:
 CopycatsHouse2F_MapEvents:
 	db 0, 0 ; filler
 
-	db 1 ; warp events
+	def_warp_events
 	warp_event  3,  0, COPYCATS_HOUSE_1F, 3
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 2 ; bg events
+	def_bg_events
 	bg_event  0,  1, BGEVENT_READ, CopycatsHouse2FBookshelf
 	bg_event  1,  1, BGEVENT_READ, CopycatsHouse2FBookshelf
 
-	db 6 ; object events
+	def_object_events
 	object_event  4,  3, SPRITE_COPYCAT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Copycat, EVENT_COPYCAT_1
 	object_event  6,  4, SPRITE_MOLTRES, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, CopycatsDodrio, -1
 	object_event  6,  1, SPRITE_FAIRY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CopycatsHouse2FDoll, EVENT_COPYCATS_HOUSE_2F_DOLL

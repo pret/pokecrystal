@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const ROUTE11_YOUNGSTER1
 	const ROUTE11_YOUNGSTER2
 	const ROUTE11_YOUNGSTER3
@@ -6,9 +6,9 @@
 	const ROUTE11_FRUIT_TREE
 
 Route11_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 TrainerYoungsterOwen:
 	trainer YOUNGSTER, OWEN, EVENT_BEAT_YOUNGSTER_OWEN, YoungsterOwenSeenText, YoungsterOwenBeatenText, 0, .Script
@@ -146,15 +146,15 @@ Route11SignText:
 Route11_MapEvents:
 	db 0, 0 ; filler
 
-	db 0 ; warp events
+	def_warp_events
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 2 ; bg events
+	def_bg_events
 	bg_event  3,  7, BGEVENT_READ, Route11Sign
 	bg_event 32,  5, BGEVENT_ITEM, Route11HiddenRevive
 
-	db 5 ; object events
+	def_object_events
 	object_event 22, 14, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerYoungsterOwen, -1
 	object_event 20,  4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerYoungsterJason, -1
 	object_event 28,  7, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerPsychicHerman, -1

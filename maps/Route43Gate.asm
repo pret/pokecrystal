@@ -1,16 +1,16 @@
 ROUTE43GATE_TOLL EQU 1000
 
-	object_const_def ; object_event constants
+	object_const_def
 	const ROUTE43GATE_OFFICER
 	const ROUTE43GATE_ROCKET1
 	const ROUTE43GATE_ROCKET2
 
 Route43Gate_MapScripts:
-	db 2 ; scene scripts
+	def_scene_scripts
 	scene_script .RocketShakedown ; SCENE_DEFAULT
 	scene_script .DummyScene ; SCENE_FINISHED
 
-	db 1 ; callbacks
+	def_callbacks
 	callback MAPCALLBACK_NEWMAP, .CheckIfRockets
 
 .RocketShakedown:
@@ -248,17 +248,17 @@ OfficerText_AvoidGrass:
 Route43Gate_MapEvents:
 	db 0, 0 ; filler
 
-	db 4 ; warp events
+	def_warp_events
 	warp_event  4,  0, ROUTE_43, 4
 	warp_event  5,  0, ROUTE_43, 5
 	warp_event  4,  7, ROUTE_43, 3
 	warp_event  5,  7, ROUTE_43, 3
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 3 ; object events
+	def_object_events
 	object_event  0,  4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OfficerScript_GuardWithSludgeBomb, EVENT_LAKE_OF_RAGE_CIVILIANS
 	object_event  2,  4, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RocketScript_MakingABundle, EVENT_ROUTE_43_GATE_ROCKETS
 	object_event  7,  4, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RocketScript_MakingABundle, EVENT_ROUTE_43_GATE_ROCKETS

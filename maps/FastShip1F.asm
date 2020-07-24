@@ -1,16 +1,16 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const FASTSHIP1F_SAILOR1
 	const FASTSHIP1F_SAILOR2
 	const FASTSHIP1F_SAILOR3
 	const FASTSHIP1F_GENTLEMAN
 
 FastShip1F_MapScripts:
-	db 3 ; scene scripts
+	def_scene_scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .EnterFastShip ; SCENE_FASTSHIP1F_ENTER_SHIP
 	scene_script .DummyScene2 ; SCENE_FASTSHIP1F_MEET_GRANDPA
 
-	db 0 ; callbacks
+	def_callbacks
 
 .DummyScene0:
 	end
@@ -286,7 +286,7 @@ FastShip1FSailor1Text_InVermilion:
 FastShip1F_MapEvents:
 	db 0, 0 ; filler
 
-	db 12 ; warp events
+	def_warp_events
 	warp_event 25,  1, FAST_SHIP_1F, -1
 	warp_event 27,  8, FAST_SHIP_CABINS_NNW_NNE_NE, 1
 	warp_event 23,  8, FAST_SHIP_CABINS_NNW_NNE_NE, 2
@@ -300,13 +300,13 @@ FastShip1F_MapEvents:
 	warp_event  6, 12, FAST_SHIP_B1F, 1
 	warp_event 30, 14, FAST_SHIP_B1F, 2
 
-	db 2 ; coord events
+	def_coord_events
 	coord_event 24,  6, SCENE_FASTSHIP1F_MEET_GRANDPA, WorriedGrandpaSceneLeft
 	coord_event 25,  6, SCENE_FASTSHIP1F_MEET_GRANDPA, WorriedGrandpaSceneRight
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 4 ; object events
+	def_object_events
 	object_event 25,  2, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FastShip1FSailor1Script, -1
 	object_event 14,  7, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FastShip1FSailor2Script, -1
 	object_event 22, 17, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FastShip1FSailor3Script, -1

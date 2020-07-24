@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const DANCETHEATRE_KIMONO_GIRL1
 	const DANCETHEATRE_KIMONO_GIRL2
 	const DANCETHEATRE_KIMONO_GIRL3
@@ -10,9 +10,9 @@
 	const DANCETHEATRE_GRANNY
 
 DanceTheatre_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 TrainerKimonoGirlNaoko2:
 	trainer KIMONO_GIRL, NAOKO2, EVENT_BEAT_KIMONO_GIRL_NAOKO, KimonoGirlNaoko2SeenText, KimonoGirlNaoko2BeatenText, 0, .Script
@@ -338,17 +338,17 @@ DanceTheatreFancyPanelText:
 DanceTheatre_MapEvents:
 	db 0, 0 ; filler
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  5, 13, ECRUTEAK_CITY, 8
 	warp_event  6, 13, ECRUTEAK_CITY, 8
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 2 ; bg events
+	def_bg_events
 	bg_event  5,  6, BGEVENT_UP, DanceTheatreFancyPanel
 	bg_event  6,  6, BGEVENT_UP, DanceTheatreFancyPanel
 
-	db 9 ; object events
+	def_object_events
 	object_event  0,  2, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlNaoko2, -1
 	object_event  2,  1, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlSayo, -1
 	object_event  6,  2, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlZuki, -1

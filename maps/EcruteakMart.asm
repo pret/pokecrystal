@@ -1,12 +1,12 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const ECRUTEAKMART_CLERK
 	const ECRUTEAKMART_SUPER_NERD
 	const ECRUTEAKMART_GRANNY
 
 EcruteakMart_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 EcruteakMartClerkScript:
 	opentext
@@ -46,15 +46,15 @@ EcruteakMartGrannyText:
 EcruteakMart_MapEvents:
 	db 0, 0 ; filler
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  2,  7, ECRUTEAK_CITY, 9
 	warp_event  3,  7, ECRUTEAK_CITY, 9
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 3 ; object events
+	def_object_events
 	object_event  1,  3, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakMartClerkScript, -1
 	object_event  5,  2, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, EcruteakMartSuperNerdScript, -1
 	object_event  6,  6, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakMartGrannyScript, -1

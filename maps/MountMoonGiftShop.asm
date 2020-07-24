@@ -1,13 +1,13 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const MOUNTMOONGIFTSHOP_GRAMPS1 ; morning only
 	const MOUNTMOONGIFTSHOP_GRAMPS2 ; day only
 	const MOUNTMOONGIFTSHOP_LASS1 ; morning only
 	const MOUNTMOONGIFTSHOP_LASS2 ; day only
 
 MountMoonGiftShop_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 MountMoonGiftShopClerkScript:
 	faceplayer
@@ -28,15 +28,15 @@ MountMoonGiftShopLassText:
 MountMoonGiftShop_MapEvents:
 	db 0, 0 ; filler
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  3,  7, MOUNT_MOON_SQUARE, 3
 	warp_event  4,  7, MOUNT_MOON_SQUARE, 3
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 4 ; object events
+	def_object_events
 	object_event  4,  3, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, MORN, 0, OBJECTTYPE_SCRIPT, 0, MountMoonGiftShopClerkScript, -1
 	object_event  1,  2, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, DAY, 0, OBJECTTYPE_SCRIPT, 0, MountMoonGiftShopClerkScript, -1
 	object_event  1,  6, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, MORN, 0, OBJECTTYPE_SCRIPT, 0, MountMoonGiftShopLassScript, -1

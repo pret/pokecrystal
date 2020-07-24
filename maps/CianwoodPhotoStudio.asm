@@ -1,10 +1,10 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const CIANWOODPHOTOSTUDIO_FISHING_GURU
 
 CianwoodPhotoStudio_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 CianwoodPhotoStudioFishingGuruScript:
 	faceplayer
@@ -49,13 +49,13 @@ CianwoodPhotoStudioFishingGuruText_No:
 CianwoodPhotoStudio_MapEvents:
 	db 0, 0 ; filler
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  2,  7, CIANWOOD_CITY, 5
 	warp_event  3,  7, CIANWOOD_CITY, 5
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 1 ; object events
+	def_object_events
 	object_event  2,  3, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CianwoodPhotoStudioFishingGuruScript, -1

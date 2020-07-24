@@ -1,12 +1,12 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const ROUTE28STEELWINGHOUSE_CELEBRITY
 	const ROUTE28STEELWINGHOUSE_FEAROW
 
 Route28SteelWingHouse_MapScripts:
-	db 1 ; scene scripts
+	def_scene_scripts
 	scene_script .DummyScene
 
-	db 0 ; callbacks
+	def_callbacks
 
 .DummyScene:
 	end
@@ -71,16 +71,16 @@ CelebritysFearowText:
 Route28SteelWingHouse_MapEvents:
 	db 0, 0 ; filler
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  2,  7, ROUTE_28, 1
 	warp_event  3,  7, ROUTE_28, 1
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 2 ; bg events
+	def_bg_events
 	bg_event  0,  1, BGEVENT_READ, CelebrityHouseBookshelf
 	bg_event  1,  1, BGEVENT_READ, CelebrityHouseBookshelf
 
-	db 2 ; object events
+	def_object_events
 	object_event  2,  3, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Celebrity, -1
 	object_event  6,  5, SPRITE_MOLTRES, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, CelebritysFearow, -1

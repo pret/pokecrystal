@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const ROUTE19_SWIMMER_GIRL
 	const ROUTE19_SWIMMER_GUY1
 	const ROUTE19_SWIMMER_GUY2
@@ -7,9 +7,9 @@
 	const ROUTE19_FISHER2
 
 Route19_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 1 ; callbacks
+	def_callbacks
 	callback MAPCALLBACK_TILES, .ClearRocks
 
 .ClearRocks:
@@ -235,16 +235,16 @@ CarefulSwimmingSignText:
 Route19_MapEvents:
 	db 0, 0 ; filler
 
-	db 1 ; warp events
+	def_warp_events
 	warp_event  7,  3, ROUTE_19_FUCHSIA_GATE, 3
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 2 ; bg events
+	def_bg_events
 	bg_event 11, 13, BGEVENT_READ, Route19Sign
 	bg_event 11,  1, BGEVENT_READ, CarefulSwimmingSign
 
-	db 6 ; object events
+	def_object_events
 	object_event  9, 23, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 0, TrainerSwimmerfDawn, -1
 	object_event 13, 28, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermHarold, -1
 	object_event 11, 17, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermJerome, -1
