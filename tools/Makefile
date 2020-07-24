@@ -10,7 +10,8 @@ tools := \
 	palette \
 	pokemon_animation \
 	pokemon_animation_graphics \
-	gfx
+	gfx \
+	stadium
 all: $(tools)
 	@:
 
