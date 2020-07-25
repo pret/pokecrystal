@@ -188,10 +188,10 @@ DoNPCTrade:
 	ld e, NPCTRADE_DIALOG
 	call GetTradeAttribute
 	ld a, [hl]
-	cp TRADE_DIALOG_COMPLETE
-	ld b, RESET_FLAG
+	cp TRADE_DIALOGSET_GIRL
+	ld b, CAUGHT_BY_UNKNOWN
 	jr c, .incomplete
-	ld b, SET_FLAG
+	ld b, CAUGHT_BY_GIRL
 .incomplete
 	farcall SetGiftPartyMonCaughtData
 
