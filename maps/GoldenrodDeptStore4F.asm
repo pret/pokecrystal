@@ -1,13 +1,13 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const GOLDENRODDEPTSTORE4F_CLERK
 	const GOLDENRODDEPTSTORE4F_COOLTRAINER_M
 	const GOLDENRODDEPTSTORE4F_BUG_CATCHER
 	const GOLDENRODDEPTSTORE4F_GAMEBOY_KID
 
 GoldenrodDeptStore4F_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 GoldenrodDeptStore4FClerkScript:
 	faceplayer
@@ -78,18 +78,18 @@ GoldenrodDeptStore4FDirectoryText:
 GoldenrodDeptStore4F_MapEvents:
 	db 0, 0 ; filler
 
-	db 3 ; warp events
+	def_warp_events
 	warp_event 12,  0, GOLDENROD_DEPT_STORE_5F, 1
 	warp_event 15,  0, GOLDENROD_DEPT_STORE_3F, 2
 	warp_event  2,  0, GOLDENROD_DEPT_STORE_ELEVATOR, 1
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 2 ; bg events
+	def_bg_events
 	bg_event 14,  0, BGEVENT_READ, GoldenrodDeptStore4FDirectory
 	bg_event  3,  0, BGEVENT_READ, GoldenrodDeptStore4FElevatorButton
 
-	db 4 ; object events
+	def_object_events
 	object_event 13,  5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore4FClerkScript, -1
 	object_event 11,  7, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore4FCooltrainerMScript, -1
 	object_event  7,  2, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore4FBugCatcherScript, -1

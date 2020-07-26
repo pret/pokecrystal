@@ -1,10 +1,10 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const BILLSHOUSE_GRAMPS
 
 BillsHouse_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 BillsGrandpa:
 	faceplayer
@@ -354,13 +354,13 @@ BillsGrandpaPichuText:
 BillsHouse_MapEvents:
 	db 0, 0 ; filler
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  2,  7, ROUTE_25, 1
 	warp_event  3,  7, ROUTE_25, 1
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 1 ; object events
+	def_object_events
 	object_event  2,  3, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_UP, 0, 2, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BillsGrandpa, -1

@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const CELADONDEPTSTORE5F_CLERK1
 	const CELADONDEPTSTORE5F_CLERK2
 	const CELADONDEPTSTORE5F_GENTLEMAN
@@ -6,9 +6,9 @@
 	const CELADONDEPTSTORE5F_TEACHER
 
 CeladonDeptStore5F_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 CeladonDeptStore5FClerk1Script:
 	faceplayer
@@ -72,18 +72,18 @@ CeladonDeptStore5FDirectoryText:
 CeladonDeptStore5F_MapEvents:
 	db 0, 0 ; filler
 
-	db 3 ; warp events
+	def_warp_events
 	warp_event 12,  0, CELADON_DEPT_STORE_4F, 1
 	warp_event 15,  0, CELADON_DEPT_STORE_6F, 1
 	warp_event  2,  0, CELADON_DEPT_STORE_ELEVATOR, 1
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 2 ; bg events
+	def_bg_events
 	bg_event 14,  0, BGEVENT_READ, CeladonDeptStore5FDirectory
 	bg_event  3,  0, BGEVENT_READ, CeladonDeptStore5FElevatorButton
 
-	db 5 ; object events
+	def_object_events
 	object_event  7,  5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore5FClerk1Script, -1
 	object_event  8,  5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore5FClerk2Script, -1
 	object_event 13,  5, SPRITE_GENTLEMAN, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore5FGentlemanScript, -1

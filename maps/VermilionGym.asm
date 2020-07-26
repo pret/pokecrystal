@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const VERMILIONGYM_SURGE
 	const VERMILIONGYM_GENTLEMAN
 	const VERMILIONGYM_ROCKER
@@ -6,9 +6,9 @@
 	const VERMILIONGYM_GYM_GUIDE
 
 VermilionGym_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 VermilionGymSurgeScript:
 	faceplayer
@@ -261,13 +261,13 @@ VermilionGymTrashCanText:
 VermilionGym_MapEvents:
 	db 0, 0 ; filler
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  4, 17, VERMILION_CITY, 7
 	warp_event  5, 17, VERMILION_CITY, 7
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 17 ; bg events
+	def_bg_events
 	bg_event  1,  7, BGEVENT_READ, VermilionGymTrashCan
 	bg_event  3,  7, BGEVENT_READ, VermilionGymTrashCan
 	bg_event  5,  7, BGEVENT_READ, VermilionGymTrashCan
@@ -286,7 +286,7 @@ VermilionGym_MapEvents:
 	bg_event  3, 15, BGEVENT_READ, VermilionGymStatue
 	bg_event  6, 15, BGEVENT_READ, VermilionGymStatue
 
-	db 5 ; object events
+	def_object_events
 	object_event  5,  2, SPRITE_SURGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, VermilionGymSurgeScript, -1
 	object_event  8,  8, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerGentlemanGregory, -1
 	object_event  4,  7, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_DOWN, 3, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerGuitaristVincent, -1

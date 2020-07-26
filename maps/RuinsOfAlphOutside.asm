@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const RUINSOFALPHOUTSIDE_YOUNGSTER1
 	const RUINSOFALPHOUTSIDE_SCIENTIST
 	const RUINSOFALPHOUTSIDE_FISHER
@@ -6,11 +6,11 @@
 	const RUINSOFALPHOUTSIDE_YOUNGSTER3
 
 RuinsOfAlphOutside_MapScripts:
-	db 2 ; scene scripts
+	def_scene_scripts
 	scene_script .DummyScene0 ; SCENE_RUINSOFALPHOUTSIDE_NOTHING
 	scene_script .DummyScene1 ; SCENE_RUINSOFALPHOUTSIDE_GET_UNOWN_DEX
 
-	db 1 ; callbacks
+	def_callbacks
 	callback MAPCALLBACK_OBJECTS, .ScientistCallback
 
 .DummyScene0:
@@ -281,7 +281,7 @@ RuinsOfAlphOutsideYoungster2Text:
 RuinsOfAlphOutside_MapEvents:
 	db 0, 0 ; filler
 
-	db 11 ; warp events
+	def_warp_events
 	warp_event  2, 17, RUINS_OF_ALPH_HO_OH_CHAMBER, 1
 	warp_event 14,  7, RUINS_OF_ALPH_KABUTO_CHAMBER, 1
 	warp_event  2, 29, RUINS_OF_ALPH_OMANYTE_CHAMBER, 1
@@ -294,16 +294,16 @@ RuinsOfAlphOutside_MapEvents:
 	warp_event 13, 20, ROUTE_32_RUINS_OF_ALPH_GATE, 1
 	warp_event 13, 21, ROUTE_32_RUINS_OF_ALPH_GATE, 2
 
-	db 2 ; coord events
+	def_coord_events
 	coord_event 11, 14, SCENE_RUINSOFALPHOUTSIDE_GET_UNOWN_DEX, RuinsOfAlphOutsideScientistScene1
 	coord_event 10, 15, SCENE_RUINSOFALPHOUTSIDE_GET_UNOWN_DEX, RuinsOfAlphOutsideScientistScene2
 
-	db 3 ; bg events
+	def_bg_events
 	bg_event 16,  8, BGEVENT_READ, RuinsOfAlphOutsideMysteryChamberSign
 	bg_event 12, 16, BGEVENT_READ, RuinsOfAlphSign
 	bg_event 18, 12, BGEVENT_READ, RuinsOfAlphResearchCenterSign
 
-	db 5 ; object events
+	def_object_events
 	object_event  4, 20, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 1, TrainerPsychicNathan, -1
 	object_event 11, 15, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphOutsideScientistScript, EVENT_RUINS_OF_ALPH_OUTSIDE_SCIENTIST
 	object_event 13, 17, SPRITE_FISHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphOutsideFisherScript, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_FISHER

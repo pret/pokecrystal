@@ -24,7 +24,7 @@
 ## Object constants
 
 <pre>
-	object_const_def ; object_event constants
+	object_const_def
 	const <i>MAPNAME</i>_<i>OBJECTNAME</i>
 </pre>
 
@@ -39,7 +39,7 @@
 ### Scene scripts
 
 <pre>
-	db <i>N</i> ; scene scripts
+	def_scene_scripts
 	scene_script <i>script</i>
 </pre>
 
@@ -47,7 +47,7 @@
 ### Callbacks
 
 <pre>
-	db <i>N</i> ; callbacks
+	def_callbacks
 	callback <i>type</i>, <i>script</i>
 </pre>
 
@@ -105,7 +105,7 @@
 ### Warp events
 
 <pre>
-	db <i>N</i> ; warp events
+	def_warp_events
 	warp_event <i>x</i>, <i>y</i>, <i>map</i>, <i>warp_id</i>
 </pre>
 
@@ -113,7 +113,7 @@
 ### Coord events
 
 <pre>
-	db <i>N</i> ; coord events
+	def_coord_events
 	coord_event <i>x</i>, <i>y</i>, <i>scene_id</i>, <i>script</i>
 </pre>
 
@@ -121,7 +121,7 @@
 ### BG events
 
 <pre>
-	db <i>N</i> ; bg events
+	def_bg_events
 	bg_event <i>x</i>, <i>y</i>, <i>type</i>, <i>script</i>
 </pre>
 
@@ -148,7 +148,7 @@
 ### Object events
 
 <pre>
-	db <i>N</i> ; object events
+	def_object_events
 	object_event <i>x</i>, <i>y</i>, <i>sprite</i>, <i>movement</i>, <i>rx</i>, <i>ry</i>, <i>h1</i>, <i>h2</i>, <i>palette</i>, <i>type</i>, <i>range</i>, <i>script</i>, <i>event_flag</i>
 </pre>
 

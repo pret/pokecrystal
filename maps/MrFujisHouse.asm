@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const MRFUJISHOUSE_SUPER_NERD
 	const MRFUJISHOUSE_LASS
 	const MRFUJISHOUSE_PSYDUCK
@@ -6,9 +6,9 @@
 	const MRFUJISHOUSE_PIDGEY
 
 MrFujisHouse_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 MrFujisHouseSuperNerdScript:
 	jumptextfaceplayer MrFujisHouseSuperNerdText
@@ -80,17 +80,17 @@ MrFujisPidgeyText:
 MrFujisHouse_MapEvents:
 	db 0, 0 ; filler
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  2,  7, LAVENDER_TOWN, 2
 	warp_event  3,  7, LAVENDER_TOWN, 2
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 2 ; bg events
+	def_bg_events
 	bg_event  0,  1, BGEVENT_READ, MrFujisHouseBookshelf
 	bg_event  1,  1, BGEVENT_READ, MrFujisHouseBookshelf
 
-	db 5 ; object events
+	def_object_events
 	object_event  4,  1, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, MrFujisHouseSuperNerdScript, -1
 	object_event  3,  4, SPRITE_LASS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MrFujisHouseLassScript, -1
 	object_event  7,  4, SPRITE_RHYDON, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MrFujisPsyduck, -1

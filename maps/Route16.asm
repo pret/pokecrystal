@@ -1,7 +1,7 @@
 Route16_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 1 ; callbacks
+	def_callbacks
 	callback MAPCALLBACK_NEWMAP, .AlwaysOnBike
 
 .AlwaysOnBike:
@@ -29,16 +29,16 @@ CyclingRoadSignText:
 Route16_MapEvents:
 	db 0, 0 ; filler
 
-	db 5 ; warp events
+	def_warp_events
 	warp_event  3,  1, ROUTE_16_FUCHSIA_SPEECH_HOUSE, 1
 	warp_event 14,  6, ROUTE_16_GATE, 3
 	warp_event 14,  7, ROUTE_16_GATE, 4
 	warp_event  9,  6, ROUTE_16_GATE, 1
 	warp_event  9,  7, ROUTE_16_GATE, 2
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 1 ; bg events
+	def_bg_events
 	bg_event  5,  5, BGEVENT_READ, CyclingRoadSign
 
-	db 0 ; object events
+	def_object_events

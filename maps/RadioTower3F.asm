@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const RADIOTOWER3F_SUPER_NERD
 	const RADIOTOWER3F_GYM_GUIDE
 	const RADIOTOWER3F_COOLTRAINER_F
@@ -8,9 +8,9 @@
 	const RADIOTOWER3F_SCIENTIST
 
 RadioTower3F_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 1 ; callbacks
+	def_callbacks
 	callback MAPCALLBACK_TILES, .CardKeyShutterCallback
 
 .CardKeyShutterCallback:
@@ -329,19 +329,19 @@ RadioTower3FPokemonMusicSignText:
 RadioTower3F_MapEvents:
 	db 0, 0 ; filler
 
-	db 3 ; warp events
+	def_warp_events
 	warp_event  0,  0, RADIO_TOWER_2F, 1
 	warp_event  7,  0, RADIO_TOWER_4F, 2
 	warp_event 17,  0, RADIO_TOWER_4F, 4
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 3 ; bg events
+	def_bg_events
 	bg_event  3,  0, BGEVENT_READ, RadioTower3FPersonnelSign
 	bg_event  9,  0, BGEVENT_READ, RadioTower3FPokemonMusicSign
 	bg_event 14,  2, BGEVENT_UP, CardKeySlotScript
 
-	db 7 ; object events
+	def_object_events
 	object_event  7,  4, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RadioTower3FSuperNerdScript, EVENT_RADIO_TOWER_CIVILIANS_AFTER
 	object_event  3,  4, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower3FGymGuideScript, -1
 	object_event 11,  3, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, RadioTower3FCooltrainerFScript, -1

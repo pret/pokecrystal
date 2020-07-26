@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const WISETRIOSROOM_SAGE1
 	const WISETRIOSROOM_SAGE2
 	const WISETRIOSROOM_SAGE3
@@ -7,11 +7,11 @@
 	const WISETRIOSROOM_SAGE6
 
 WiseTriosRoom_MapScripts:
-	db 2 ; scene scripts
+	def_scene_scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
 	scene_script .DummyScene1 ; SCENE_FINISHED
 
-	db 1 ; callbacks
+	def_callbacks
 	callback MAPCALLBACK_OBJECTS, .WiseTrioCallback
 
 .DummyScene0:
@@ -345,17 +345,17 @@ SageKojiAfterBattleFinalText:
 WiseTriosRoom_MapEvents:
 	db 0, 0 ; filler
 
-	db 3 ; warp events
+	def_warp_events
 	warp_event  7,  4, ECRUTEAK_CITY, 4
 	warp_event  7,  5, ECRUTEAK_CITY, 5
 	warp_event  1,  4, ECRUTEAK_TIN_TOWER_ENTRANCE, 5
 
-	db 1 ; coord events
+	def_coord_events
 	coord_event  7,  4, SCENE_DEFAULT, WiseTriosRoom_CannotEnterTinTowerScript
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 6 ; object events
+	def_object_events
 	object_event  6,  2, SPRITE_SAGE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, WiseTriosRoomSage1Script, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
 	object_event  6,  7, SPRITE_SAGE, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, WiseTriosRoomSage2Script, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
 	object_event  7,  5, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, WiseTriosRoomSage3Script, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1

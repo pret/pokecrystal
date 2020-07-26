@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const LAVRADIOTOWER1F_RECEPTIONIST
 	const LAVRADIOTOWER1F_OFFICER
 	const LAVRADIOTOWER1F_SUPER_NERD1
@@ -6,9 +6,9 @@
 	const LAVRADIOTOWER1F_SUPER_NERD2
 
 LavRadioTower1F_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 LavRadioTower1FReceptionistScript:
 	jumptextfaceplayer LavRadioTower1FReceptionistText
@@ -223,17 +223,17 @@ LavRadioTower1FReferenceLibraryText:
 LavRadioTower1F_MapEvents:
 	db 0, 0 ; filler
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  2,  7, LAVENDER_TOWN, 7
 	warp_event  3,  7, LAVENDER_TOWN, 7
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 2 ; bg events
+	def_bg_events
 	bg_event 11,  0, BGEVENT_READ, LavRadioTower1FDirectory
 	bg_event  5,  0, BGEVENT_READ, LavRadioTower1FPokeFluteSign
 
-	db 5 ; object events
+	def_object_events
 	object_event  6,  6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FReceptionistScript, -1
 	object_event 15,  1, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FOfficerScript, -1
 	object_event  1,  3, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FSuperNerd1Script, -1

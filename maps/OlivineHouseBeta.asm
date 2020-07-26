@@ -1,11 +1,11 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const OLIVINEHOUSEBETA_TEACHER
 	const OLIVINEHOUSEBETA_RHYDON
 
 OlivineHouseBeta_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 OlivineHouseBetaTeacherScript:
 	jumptextfaceplayer OlivineHouseBetaTeacherText
@@ -40,16 +40,16 @@ OlivineHouseBetaRhydonText:
 OlivineHouseBeta_MapEvents:
 	db 0, 0 ; filler
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  2,  7, OLIVINE_CITY, 4
 	warp_event  3,  7, OLIVINE_CITY, 4
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 2 ; bg events
+	def_bg_events
 	bg_event  0,  1, BGEVENT_READ, OlivineHouseBetaBookshelf1
 	bg_event  1,  1, BGEVENT_READ, OlivineHouseBetaBookshelf2
 
-	db 2 ; object events
+	def_object_events
 	object_event  2,  3, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineHouseBetaTeacherScript, -1
 	object_event  6,  4, SPRITE_RHYDON, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineHouseBetaRhydonScript, -1

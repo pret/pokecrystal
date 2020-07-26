@@ -1,10 +1,10 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const ROUTE7SAFFRONGATE_OFFICER
 
 Route7SaffronGate_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 Route7SaffronGuardScript:
 	faceplayer
@@ -46,15 +46,15 @@ Route7SaffronGuardSeriousText:
 Route7SaffronGate_MapEvents:
 	db 0, 0 ; filler
 
-	db 4 ; warp events
+	def_warp_events
 	warp_event  0,  4, ROUTE_7, 1
 	warp_event  0,  5, ROUTE_7, 2
 	warp_event  9,  4, SAFFRON_CITY, 10
 	warp_event  9,  5, SAFFRON_CITY, 11
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 1 ; object events
+	def_object_events
 	object_event  5,  2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route7SaffronGuardScript, -1

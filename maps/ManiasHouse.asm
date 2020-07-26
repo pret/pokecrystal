@@ -1,10 +1,10 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const MANIASHOUSE_ROCKER
 
 ManiasHouse_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 ManiaScript:
 	faceplayer
@@ -201,13 +201,13 @@ ManiaText_ShuckleIsYourLastMon:
 ManiasHouse_MapEvents:
 	db 0, 0 ; filler
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  2,  7, CIANWOOD_CITY, 1
 	warp_event  3,  7, CIANWOOD_CITY, 1
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 1 ; object events
+	def_object_events
 	object_event  2,  4, SPRITE_ROCKER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ManiaScript, -1

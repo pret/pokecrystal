@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const SPROUTTOWER1F_SAGE1
 	const SPROUTTOWER1F_SAGE2
 	const SPROUTTOWER1F_GRANNY
@@ -7,9 +7,9 @@
 	const SPROUTTOWER1F_POKE_BALL
 
 SproutTower1F_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 SproutTower1FSage1Script:
 	jumptextfaceplayer SproutTower1FSage1Text
@@ -103,20 +103,20 @@ SproutTower1FStatueText:
 SproutTower1F_MapEvents:
 	db 0, 0 ; filler
 
-	db 5 ; warp events
+	def_warp_events
 	warp_event  9, 15, VIOLET_CITY, 7
 	warp_event 10, 15, VIOLET_CITY, 7
 	warp_event  6,  4, SPROUT_TOWER_2F, 1
 	warp_event  2,  6, SPROUT_TOWER_2F, 2
 	warp_event 17,  3, SPROUT_TOWER_2F, 3
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 2 ; bg events
+	def_bg_events
 	bg_event  7, 15, BGEVENT_READ, SproutTower1FStatue
 	bg_event 12, 15, BGEVENT_READ, SproutTower1FStatue
 
-	db 6 ; object events
+	def_object_events
 	object_event  7,  4, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SproutTower1FSage1Script, -1
 	object_event  6,  7, SPRITE_SAGE, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SproutTower1FSage2Script, -1
 	object_event 11, 12, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SproutTower1FGrannyScript, -1

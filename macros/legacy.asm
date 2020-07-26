@@ -223,18 +223,12 @@ signpost: MACRO
 ENDM
 
 person_event: MACRO
-;	object_event \3, \2, \1, \4, \5, \6, \7, \8, \9, \10, \11, \12, \13
-	db \1, \2 + 4, \3 + 4, \4
-	dn \6, \5
-	db \7, \8
-	shift
-	dn \8, \9
-	shift
-	db \9
-	shift
-	dw \9
-	shift
-	dw \9
+_s = \1
+_y = \2
+_x = \3
+_m = \4
+	shift 4
+	object_event _x, _y, _s, _m, \1, \2, \3, \4, \5, \6, \7, \8, \9
 ENDM
 
 PERSONTYPE_SCRIPT   EQUS "OBJECTTYPE_SCRIPT"

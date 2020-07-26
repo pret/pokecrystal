@@ -1,12 +1,12 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const GOLDENRODMAGNETTRAINSTATION_OFFICER
 	const GOLDENRODMAGNETTRAINSTATION_GENTLEMAN
 
 GoldenrodMagnetTrainStation_MapScripts:
-	db 1 ; scene scripts
+	def_scene_scripts
 	scene_script .DummyScene ; SCENE_DEFAULT
 
-	db 0 ; callbacks
+	def_callbacks
 
 .DummyScene:
 	end
@@ -165,17 +165,17 @@ GoldenrodMagnetTrainStationGentlemanText:
 GoldenrodMagnetTrainStation_MapEvents:
 	db 0, 0 ; filler
 
-	db 4 ; warp events
+	def_warp_events
 	warp_event  8, 17, GOLDENROD_CITY, 5
 	warp_event  9, 17, GOLDENROD_CITY, 5
 	warp_event  6,  5, SAFFRON_MAGNET_TRAIN_STATION, 4
 	warp_event 11,  5, SAFFRON_MAGNET_TRAIN_STATION, 3
 
-	db 1 ; coord events
+	def_coord_events
 	coord_event 11,  6, SCENE_DEFAULT, Script_ArriveFromSaffron
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 2 ; object events
+	def_object_events
 	object_event  9,  9, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodMagnetTrainStationOfficerScript, -1
 	object_event 11, 14, SPRITE_GENTLEMAN, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodMagnetTrainStationGentlemanScript, EVENT_GOLDENROD_TRAIN_STATION_GENTLEMAN

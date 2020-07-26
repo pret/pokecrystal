@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const OLIVINELIGHTHOUSE5F_SAILOR
 	const OLIVINELIGHTHOUSE5F_YOUNGSTER
 	const OLIVINELIGHTHOUSE5F_POKE_BALL1
@@ -6,9 +6,9 @@
 	const OLIVINELIGHTHOUSE5F_POKE_BALL3
 
 OlivineLighthouse5F_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 TrainerBirdKeeperDenis:
 	trainer BIRD_KEEPER, DENIS, EVENT_BEAT_BIRD_KEEPER_DENIS, BirdKeeperDenisSeenText, BirdKeeperDenisBeatenText, 0, .Script
@@ -91,7 +91,7 @@ BirdKeeperDenisAfterBattleText:
 OlivineLighthouse5F_MapEvents:
 	db 0, 0 ; filler
 
-	db 7 ; warp events
+	def_warp_events
 	warp_event  9, 15, OLIVINE_LIGHTHOUSE_6F, 1
 	warp_event  3,  5, OLIVINE_LIGHTHOUSE_4F, 2
 	warp_event  9,  7, OLIVINE_LIGHTHOUSE_4F, 3
@@ -100,12 +100,12 @@ OlivineLighthouse5F_MapEvents:
 	warp_event 16,  5, OLIVINE_LIGHTHOUSE_6F, 2
 	warp_event 17,  5, OLIVINE_LIGHTHOUSE_6F, 3
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 1 ; bg events
+	def_bg_events
 	bg_event  3, 13, BGEVENT_ITEM, OlivineLighthouse5FHiddenHyperPotion
 
-	db 5 ; object events
+	def_object_events
 	object_event  8, 11, SPRITE_SAILOR, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSailorErnest, -1
 	object_event  8,  3, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerBirdKeeperDenis, -1
 	object_event 15, 12, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse5FRareCandy, EVENT_OLIVINE_LIGHTHOUSE_5F_RARE_CANDY

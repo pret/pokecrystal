@@ -1,10 +1,10 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const DIGLETTSCAVE_POKEFAN_M
 
 DiglettsCave_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 DiglettsCavePokefanMScript:
 	jumptextfaceplayer DiglettsCavePokefanMText
@@ -23,7 +23,7 @@ DiglettsCavePokefanMText:
 DiglettsCave_MapEvents:
 	db 0, 0 ; filler
 
-	db 6 ; warp events
+	def_warp_events
 	warp_event  3, 33, VERMILION_CITY, 10
 	warp_event  5, 31, DIGLETTS_CAVE, 5
 	warp_event 15,  5, ROUTE_2, 5
@@ -31,10 +31,10 @@ DiglettsCave_MapEvents:
 	warp_event 17, 33, DIGLETTS_CAVE, 2
 	warp_event  3,  3, DIGLETTS_CAVE, 4
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 1 ; bg events
+	def_bg_events
 	bg_event  6, 11, BGEVENT_ITEM, DiglettsCaveHiddenMaxRevive
 
-	db 1 ; object events
+	def_object_events
 	object_event  3, 31, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DiglettsCavePokefanMScript, -1

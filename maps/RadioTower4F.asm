@@ -1,4 +1,4 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const RADIOTOWER4F_FISHER
 	const RADIOTOWER4F_TEACHER
 	const RADIOTOWER4F_GROWLITHE
@@ -8,9 +8,9 @@
 	const RADIOTOWER4F_SCIENTIST
 
 RadioTower4F_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 RadioTower4FFisherScript:
 	jumptextfaceplayer RadioTower4FFisherText
@@ -246,19 +246,19 @@ RadioTower4FStudio2SignText:
 RadioTower4F_MapEvents:
 	db 0, 0 ; filler
 
-	db 4 ; warp events
+	def_warp_events
 	warp_event  0,  0, RADIO_TOWER_5F, 1
 	warp_event  9,  0, RADIO_TOWER_3F, 2
 	warp_event 12,  0, RADIO_TOWER_5F, 2
 	warp_event 17,  0, RADIO_TOWER_3F, 3
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 2 ; bg events
+	def_bg_events
 	bg_event  7,  0, BGEVENT_READ, RadioTower4FProductionSign
 	bg_event 15,  0, BGEVENT_READ, RadioTower4FStudio2Sign
 
-	db 7 ; object events
+	def_object_events
 	object_event  6,  4, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower4FFisherScript, EVENT_RADIO_TOWER_CIVILIANS_AFTER
 	object_event 14,  6, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, RadioTower4FDJMaryScript, -1
 	object_event 12,  7, SPRITE_GROWLITHE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTowerMeowth, -1

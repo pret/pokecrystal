@@ -1,19 +1,19 @@
 WhirlIslandNW_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 WhirlIslandNW_MapEvents:
 	db 0, 0 ; filler
 
-	db 4 ; warp events
+	def_warp_events
 	warp_event  5,  7, ROUTE_41, 1
 	warp_event  5,  3, WHIRL_ISLAND_B1F, 1
 	warp_event  3, 15, WHIRL_ISLAND_SW, 4
 	warp_event  7, 15, WHIRL_ISLAND_CAVE, 2
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; object events
+	def_object_events

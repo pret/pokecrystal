@@ -1,10 +1,10 @@
-	object_const_def ; object_event constants
+	object_const_def
 	const TINTOWER3F_POKE_BALL
 
 TinTower3F_MapScripts:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
 TinTower3FFullHeal:
 	itemball FULL_HEAL
@@ -12,13 +12,13 @@ TinTower3FFullHeal:
 TinTower3F_MapEvents:
 	db 0, 0 ; filler
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event 10, 14, TIN_TOWER_2F, 1
 	warp_event 16,  2, TIN_TOWER_4F, 2
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 1 ; object events
+	def_object_events
 	object_event  3, 14, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TinTower3FFullHeal, EVENT_TIN_TOWER_3F_FULL_HEAL
