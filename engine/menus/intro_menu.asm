@@ -969,7 +969,7 @@ IntroSequence:
 StartTitleScreen:
 	ldh a, [rSVBK]
 	push af
-	ld a, BANK(wBGPals1)
+	ld a, BANK(wLYOverrides)
 	ldh [rSVBK], a
 
 	call .TitleScreen

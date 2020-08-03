@@ -74,7 +74,7 @@ _TitleScreen:
 
 ; 'CRYSTAL VERSION'
 	hlbgcoord 5, 9
-	ld bc, NAME_LENGTH ; length of version text
+	ld bc, 11 ; length of version text
 	ld a, 1
 	call ByteFill
 
@@ -85,7 +85,7 @@ _TitleScreen:
 	call ByteFill
 
 ; Back to VRAM bank 0
-	ld a, $0
+	ld a, 0
 	ldh [rVBK], a
 
 ; Decompress logo
@@ -108,14 +108,14 @@ _TitleScreen:
 	hlcoord 0, 3
 	lb bc, 7, 20
 	ld d, $80
-	ld e, $14
+	ld e, 20
 	call DrawTitleGraphic
 
 ; Draw copyright text
 	hlbgcoord 3, 0, vBGMap1
 	lb bc, 1, 13
 	ld d, $c
-	ld e, $10
+	ld e, 16
 	call DrawTitleGraphic
 
 ; Initialize running Suicune?
@@ -125,14 +125,12 @@ _TitleScreen:
 ; Initialize background crystal
 	call InitializeBackground
 
-; Save WRAM bank
+; Update palette colors
 	ldh a, [rSVBK]
 	push af
-; WRAM bank 5
 	ld a, BANK(wBGPals1)
 	ldh [rSVBK], a
 
-; Update palette colors
 	ld hl, TitleScreenPalettes
 	ld de, wBGPals1
 	ld bc, 16 palettes
@@ -143,7 +141,6 @@ _TitleScreen:
 	ld bc, 16 palettes
 	call CopyBytes
 
-; Restore WRAM bank
 	pop af
 	ldh [rSVBK], a
 
@@ -201,7 +198,7 @@ _TitleScreen:
 	ld a, -112
 	ldh [hWY], a
 
-	ld a, $1
+	ld a, 1
 	ldh [hCGBPalUpdate], a
 
 ; Update BG Map 0 (bank 0)
