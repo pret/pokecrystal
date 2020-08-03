@@ -88,7 +88,7 @@ UnusedTitleScreen:
 	pop af
 	ldh [rSVBK], a
 
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 
 	ld de, MUSIC_TITLE

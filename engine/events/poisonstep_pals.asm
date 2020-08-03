@@ -39,7 +39,7 @@ LoadPoisonBGPals:
 	jr nz, .loop
 	pop af
 	ldh [rSVBK], a
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ld c, 4
 	call DelayFrames

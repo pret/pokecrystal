@@ -197,7 +197,7 @@ ClearPalettes::
 	ldh [rSVBK], a
 
 ; Request palette update
-	ld a, 1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 

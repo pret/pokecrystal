@@ -409,7 +409,7 @@ Function1002dc:
 Function1002ed:
 	farcall LoadOW_BGPal7
 	farcall ApplyPals
-	ld a, $01
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	call DelayFrame
 	ret
@@ -2210,7 +2210,7 @@ Function100eca:
 
 Function100ed4:
 	farcall ApplyPals
-	ld a, $01
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 

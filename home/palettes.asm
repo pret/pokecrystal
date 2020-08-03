@@ -99,7 +99,7 @@ DmgToCgbBGPals::
 	ld c, 8
 	call CopyPals
 ; request pal update
-	ld a, 1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 
 	pop af
@@ -147,7 +147,7 @@ DmgToCgbObjPals::
 	ld c, 8
 	call CopyPals
 ; request pal update
-	ld a, 1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 
 	pop af
@@ -182,7 +182,7 @@ DmgToCgbObjPal0::
 	ld b, a
 	ld c, 1
 	call CopyPals
-	ld a, 1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 
 	pop af
@@ -219,7 +219,7 @@ DmgToCgbObjPal1::
 	ld b, a
 	ld c, 1
 	call CopyPals
-	ld a, 1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 
 	pop af
@@ -319,7 +319,7 @@ ReloadSpritesNoPalettes::
 	call ByteFill
 	pop af
 	ldh [rSVBK], a
-	ld a, 1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	call DelayFrame
 	ret

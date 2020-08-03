@@ -198,7 +198,7 @@ _TitleScreen:
 	ld a, -112
 	ldh [hWY], a
 
-	ld a, 1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 
 ; Update BG Map 0 (bank 0)

@@ -1450,7 +1450,7 @@ Function108b5a:
 	jr nz, .loop
 	pop af
 	ldh [rSVBK], a
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -1474,7 +1474,7 @@ Function108b78:
 	ld [hld], a
 	pop af
 	ldh [rSVBK], a
-	ld a, $1
+	ld a, TRUE 
 	ldh [hCGBPalUpdate], a
 	ret
 

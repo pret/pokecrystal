@@ -189,7 +189,7 @@ _CGB_PokegearPals:
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	call ApplyPals
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -243,7 +243,7 @@ _CGB_StatsScreenHPPals:
 
 	call ApplyAttrmap
 	call ApplyPals
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -282,7 +282,7 @@ _CGB_Pokedex:
 	call FarCopyWRAM
 	call ApplyAttrmap
 	call ApplyPals
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -317,7 +317,7 @@ _CGB_BillsPC:
 	call InitPartyMenuOBPals
 	call ApplyAttrmap
 	call ApplyPals
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -339,7 +339,7 @@ Function9009:
 	call InitPartyMenuOBPals
 	call ApplyAttrmap
 	call ApplyPals
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -362,7 +362,7 @@ _CGB_PokedexUnownMode:
 	call InitPartyMenuOBPals
 	call ApplyAttrmap
 	call ApplyPals
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -415,7 +415,7 @@ _CGB_SlotMachine:
 	call ByteFill
 	call ApplyAttrmap
 	call ApplyPals
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -433,7 +433,7 @@ _CGB_BetaTitleScreen:
 	call FillBoxCGB
 	call ApplyAttrmap
 	call ApplyPals
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -573,7 +573,7 @@ _CGB_Evolution:
 	call WipeAttrmap
 	call ApplyAttrmap
 	call ApplyPals
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -591,7 +591,7 @@ _CGB_GSTitleScreen:
 	ld a, SCGB_DIPLOMA
 	ld [wDefaultSGBLayout], a
 	call ApplyPals
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -725,7 +725,7 @@ _CGB_TrainerCard:
 	ld [hl], a
 	call ApplyAttrmap
 	call ApplyPals
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -749,7 +749,7 @@ _CGB_MoveList:
 	call FillBoxCGB
 	call ApplyAttrmap
 	call ApplyPals
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -759,7 +759,7 @@ _CGB_BetaPikachuMinigame:
 	call WipeAttrmap
 	call ApplyAttrmap
 	call ApplyPals
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -771,7 +771,7 @@ _CGB_PokedexSearchOption:
 	call WipeAttrmap
 	call ApplyAttrmap
 	call ApplyPals
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -819,7 +819,7 @@ _CGB_PackPals:
 	call FillBoxCGB
 	call ApplyAttrmap
 	call ApplyPals
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -877,7 +877,7 @@ _CGB_MagnetTrain:
 	call FillBoxCGB
 	call ApplyAttrmap
 	call ApplyPals
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 

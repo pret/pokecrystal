@@ -1417,7 +1417,7 @@ BattleAnim_SetBGPals:
 	call CopyPals
 	pop af
 	ldh [rSVBK], a
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -1438,7 +1438,7 @@ BattleAnim_SetOBPals:
 	call CopyPals
 	pop af
 	ldh [rSVBK], a
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
