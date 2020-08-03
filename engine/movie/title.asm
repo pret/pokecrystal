@@ -10,7 +10,7 @@ _TitleScreen:
 ; Reset timing variables
 	ld hl, wJumptableIndex
 	ld [hli], a ; wJumptableIndex
-	ld [hli], a ; wIntroSceneFrameCounter
+	ld [hli], a ; wTitleScreenSelectedOption
 	ld [hli], a ; wTitleScreenTimer
 	ld [hl], a  ; wTitleScreenTimer + 1
 
