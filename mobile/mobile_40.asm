@@ -1689,7 +1689,7 @@ Unknown_100b0a:
 
 popc
 
-Function100b12:
+Mobile_LoadBattleMenu:
 	call Function100dd8
 	ret c
 	ld hl, BattleMenuHeader
@@ -1747,7 +1747,7 @@ Function100b7a:
 	set 7, [hl]
 	ret
 
-MobileMoveSelectionScreen:
+Mobile_MoveSelectionScreen:
 	xor a
 	ld [wMoveSwapBuffer], a
 	farcall CheckPlayerHasUsableMoves
