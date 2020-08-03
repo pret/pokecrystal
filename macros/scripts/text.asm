@@ -61,9 +61,9 @@ text_asm: MACRO
 	db TX_START_ASM
 ENDM
 
-	const TX_NUM ; $09
+	const TX_DECIMAL ; $09
 text_decimal: MACRO
-	db TX_NUM
+	db TX_DECIMAL
 	dw \1 ; address
 	dn \2, \3 ; bytes, digits
 ENDM

@@ -696,7 +696,7 @@ TextCommands::
 	dw TextCommand_PROMPT_BUTTON ; TX_PROMPT_BUTTON
 	dw TextCommand_SCROLL        ; TX_SCROLL
 	dw TextCommand_START_ASM     ; TX_START_ASM
-	dw TextCommand_NUM           ; TX_NUM
+	dw TextCommand_DECIMAL       ; TX_DECIMAL
 	dw TextCommand_PAUSE         ; TX_PAUSE
 	dw TextCommand_SOUND         ; TX_SOUND_DEX_FANFARE_50_79
 	dw TextCommand_DOTS          ; TX_DOTS
@@ -849,8 +849,8 @@ TextCommand_START_ASM::
 	ld [hl], a
 	ret
 
-TextCommand_NUM::
-; print a number
+TextCommand_DECIMAL::
+; print a decimal number
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]

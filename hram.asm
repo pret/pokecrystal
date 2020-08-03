@@ -89,7 +89,7 @@ hPrintNumBuffer:: ds 10
 
 NEXTU
 ; miscellaneous
-    ds 9
+	ds 9
 hMGStatusFlags:: db
 ENDU
 
