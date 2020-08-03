@@ -246,10 +246,11 @@ NamingScreen:
 	ret
 
 NamingScreen_IsTargetBox:
+; Return z if [wNamingScreenType] == NAME_BOX.
 	push bc
 	push af
 	ld a, [wNamingScreenType]
-	sub $3
+	sub NAME_BOX - 1
 	ld b, a
 	pop af
 	dec b
