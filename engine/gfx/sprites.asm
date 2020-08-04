@@ -135,16 +135,16 @@ _InitSpriteAnimStruct::
 ; Back up the structure address to bc.
 	ld c, l
 	ld b, h
-; Value [wSpriteAnimCount] is initially set to -1. Set it to
-; the number of objects loaded into this array.
+
+; Increment [wSpriteAnimCount], skipping a 0 value.
 	ld hl, wSpriteAnimCount
 	inc [hl]
 	ld a, [hl]
 	and a
-	jr nz, .initialized
+	jr nz, .nonzero
 	inc [hl]
+.nonzero
 
-.initialized
 ; Get row a of SpriteAnimSeqData, copy the pointer into de
 	pop af
 	ld e, a
@@ -228,9 +228,9 @@ DeinitializeAllSprites:
 UpdateAnimFrame:
 	call InitSpriteAnimBuffer ; init WRAM
 	call GetSpriteAnimFrame ; read from a memory array
-	cp -3
+	cp dowait_command
 	jr z, .done
-	cp -4
+	cp delanim_command
 	jr z, .delete
 	call GetFrameOAMPointer
 	; add byte to [wCurAnimVTile]
