@@ -111,12 +111,10 @@ sudo make -C rgbds install
 To install the software required for **pokecrystal**:
 
 ```bash
-sudo pacman -S make gcc git
+sudo pacman -S make gcc git rgbds
 ```
 
-**rgbds** is available on the [AUR](https://aur.archlinux.org/packages/rgbds/).
-
-Alternatively, to install **rgbds** manually:
+If you want to compile and install **rgbds** manually instead of using the Arch package:
 
 ```bash
 sudo pacman -S pkg-config flex bison libpng
