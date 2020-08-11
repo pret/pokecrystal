@@ -925,7 +925,7 @@ FlickeringCaveEntrancePalette:
 	ret nz
 ; We only want to be here if we're in a dark cave.
 	ld a, [wTimeOfDayPalset]
-	cp %11111111 ; 3,3,3,3
+	cp DARKNESS_PALSET
 	ret nz
 
 	ldh a, [rSVBK]

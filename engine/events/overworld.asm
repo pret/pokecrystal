@@ -289,7 +289,7 @@ FlashFunction:
 	pop hl
 	jr c, .useflash
 	ld a, [wTimeOfDayPalset]
-	cp %11111111 ; 3, 3, 3, 3
+	cp DARKNESS_PALSET
 	jr nz, .notadarkcave
 .useflash
 	call UseFlash

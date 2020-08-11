@@ -123,6 +123,9 @@ DARKNESS EQU 1 << DARKNESS_F
 
 ANYTIME EQU MORN | DAY | NITE
 
+; wTimeOfDayPalset::
+DARKNESS_PALSET EQU (DARKNESS_F << 6) | (DARKNESS_F << 4) | (DARKNESS_F << 2) | DARKNESS_F
+
 ; wBattleAnimFlags::
 	const_def
 	const BATTLEANIM_STOP_F          ; 0
