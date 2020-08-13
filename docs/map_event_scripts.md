@@ -19,6 +19,7 @@
   - [Object events](#object-events)
     - [Movement types](#movement-types)
     - [Object types](#object-types)
+- [Template](#template)
 
 
 ## Object constants
@@ -202,4 +203,34 @@
 
 <pre>
 	trainer <i>group_id</i>, <i>trainer_id</i>, <i>event_flag</i>, <i>seen_text</i>, <i>beaten_text</i>, <i>loss_text</i>, <i>script</i>
+</pre>
+
+
+## Template
+
+<pre>
+	object_const_def
+;	const <i>MAPNAME</i>_<i>OBJECTNAME</i>
+
+<i>MapName</i>_MapScripts:
+	def_scene_scripts
+;	scene_script <i>script</i>
+
+	def_callbacks
+;	callback <i>type</i>, <i>script</i>
+
+<i>MapName</i>_MapEvents:
+	db 0, 0 ; filler
+
+	def_warp_events
+;	warp_event <i>x</i>, <i>y</i>, <i>map</i>, <i>warp_id</i>
+
+	def_coord_events
+;	coord_event <i>x</i>, <i>y</i>, <i>scene_id</i>, <i>script</i>
+
+	def_bg_events
+;	bg_event <i>x</i>, <i>y</i>, <i>type</i>, <i>script</i>
+
+	def_object_events
+;	object_event <i>x</i>, <i>y</i>, <i>sprite</i>, <i>movement</i>, <i>rx</i>, <i>ry</i>, <i>h1</i>, <i>h2</i>, <i>palette</i>, <i>type</i>, <i>range</i>, <i>script</i>, <i>event_flag</i>
 </pre>
