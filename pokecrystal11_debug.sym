@@ -16782,7 +16782,6 @@
 22:7154 Buena_getprize
 22:715e BuenaPrizeItems
 22:7170 GiveDratini
-22:7170 BuenaPrizeItems.End
 22:7185 GiveDratini.CheckForDratini
 22:7194 GiveDratini.GiveMoveset
 22:71a4 GiveDratini.GiveMoves
@@ -20959,7 +20958,6 @@
 2e:47ec OaksPKMNTalk4.overflow
 2e:47f2 OaksPKMNTalkRoutes
 2e:4810 OaksPKMNTalk5
-2e:4810 OaksPKMNTalkRoutes.End
 2e:4818 OaksPKMNTalk6
 2e:4820 OPT_IntroText1
 2e:4825 OPT_IntroText2
