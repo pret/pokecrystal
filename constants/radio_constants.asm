@@ -106,16 +106,22 @@
 	const MAPRADIO_LETS_ALL_SING
 	const MAPRADIO_ROCKET
 
+; OaksPKMNTalkRoutes size (see data/radio/oaks_pkmn_talk_routes.asm)
+NUM_OAKS_POKEMON_TALK_ROUTES EQU 15
+
 ; These tables in engine/pokegear/radio.asm are all sized to a power of 2
 ; so there's no need for a rejection sampling loop
 NUM_OAKS_POKEMON_TALK_ADVERBS    EQU 16 ; OaksPKMNTalk8.Adverbs
 NUM_OAKS_POKEMON_TALK_ADJECTIVES EQU 16 ; OaksPKMNTalk9.Adjectives
-NUM_PNP_PEOPLE_ADJECTIVES    EQU 16 ; PeoplePlaces5.Adjectives
-NUM_PNP_PLACES_ADJECTIVES    EQU 16 ; PeoplePlaces7.Adjectives
+NUM_PNP_PEOPLE_ADJECTIVES        EQU 16 ; PeoplePlaces5.Adjectives
+NUM_PNP_PLACES_ADJECTIVES        EQU 16 ; PeoplePlaces7.Adjectives
 
 ; BuenasPasswordTable sizes (see data/radio/buenas_passwords.asm)
 NUM_PASSWORD_CATEGORIES    EQU 11
 NUM_PASSWORDS_PER_CATEGORY EQU  3
+
+; BuenaPrizeItems size (see data/items/buena_prizes.asm)
+NUM_BUENA_PRIZES EQU 9
 
 ; GetBuenasPassword.StringFunctionJumpTable indexes (see engine/pokegear/radio.asm)
 	const_def

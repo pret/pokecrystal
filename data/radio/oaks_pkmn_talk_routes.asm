@@ -1,6 +1,7 @@
 ; Oak's Pokémon Talk will list wild Pokémon on these maps.
 
 OaksPKMNTalkRoutes:
+; there are NUM_OAKS_POKEMON_TALK_ROUTES entries
 	map_id ROUTE_29
 	map_id ROUTE_46
 	map_id ROUTE_30
@@ -16,4 +17,3 @@ OaksPKMNTalkRoutes:
 	map_id ROUTE_45
 	map_id ROUTE_36
 	map_id ROUTE_31
-.End
