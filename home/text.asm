@@ -181,7 +181,7 @@ NextChar::
 
 CheckDict::
 dict: MACRO
-if \1 == "<NULL>"
+if \1 == 0
 	and a
 else
 	cp \1
