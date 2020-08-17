@@ -187,7 +187,7 @@ else
 	cp \1
 endc
 
-if STRSUB("\2", 1, 1) == "\""
+if ISCONST(\2)
 ; Replace a character with another one
 	jr nz, ._\@
 	ld a, \2
