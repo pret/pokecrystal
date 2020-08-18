@@ -4920,7 +4920,7 @@ LoadBattleMenu2:
 	ret
 
 .mobile
-	farcall Function100b12
+	farcall Mobile_LoadBattleMenu
 	ld a, [wcd2b]
 	and a
 	ret z
@@ -5311,7 +5311,7 @@ CheckAmuletCoin:
 MoveSelectionScreen:
 	call IsMobileBattle
 	jr nz, .not_mobile
-	farcall MobileMoveSelectionScreen
+	farcall Mobile_MoveSelectionScreen
 	ret
 
 .not_mobile

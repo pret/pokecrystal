@@ -673,7 +673,7 @@ StartTrainerBattle_LoadPokeBallGraphics:
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
-	ld a, 1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	call DelayFrame
 	call BattleStart_CopyTilemapAtOnce

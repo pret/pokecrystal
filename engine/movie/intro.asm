@@ -308,7 +308,7 @@ GameFreakLogoScene4:
 	ld [wOBPals2 + 13], a
 	pop af
 	ldh [rSVBK], a
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -1508,7 +1508,7 @@ Intro_Scene24_ApplyPaletteFade:
 	jr nz, .loop1
 	pop af
 	ldh [rSVBK], a
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -1632,7 +1632,7 @@ CrystalIntro_UnownFade:
 
 	pop af
 	ldh [rSVBK], a
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -1710,7 +1710,7 @@ Intro_Scene20_AppearUnown:
 
 	pop af
 	ldh [rSVBK], a
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -1773,7 +1773,7 @@ endr
 
 	pop af
 	ldh [rSVBK], a
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -1886,7 +1886,7 @@ Intro_RustleGrass:
 	dw IntroGrass2GFX
 
 Intro_SetCGBPalUpdate:
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -1903,7 +1903,7 @@ Intro_ClearBGPals:
 
 	pop af
 	ldh [rSVBK], a
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	call DelayFrame
 	call DelayFrame

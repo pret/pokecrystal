@@ -282,6 +282,7 @@
 	charmap "「", $70
 	charmap "」", $71
 	charmap "』", $73
+	charmap "・", $74
 	charmap "⋯", $75
 
 	charmap "　", $7f

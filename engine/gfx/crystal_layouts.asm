@@ -157,7 +157,7 @@ MG_Mobile_Layout01:
 .asm_49467
 	farcall ApplyAttrmap
 	farcall ApplyPals
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 

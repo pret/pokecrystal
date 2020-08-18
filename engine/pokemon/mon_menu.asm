@@ -811,8 +811,8 @@ ChooseMoveToDelete:
 
 .ChooseMoveToDelete
 	call SetUpMoveScreenBG
-	ld de, DeleteMoveScreenAttrs
-	call SetMenuAttributes
+	ld de, DeleteMoveScreen2DMenuData
+	call Load2DMenuData
 	call SetUpMoveList
 	ld hl, w2DMenuFlags1
 	set 6, [hl]
@@ -848,12 +848,12 @@ ChooseMoveToDelete:
 	pop af
 	ret
 
-DeleteMoveScreenAttrs:
-	db 3, 1
-	db 3, 1
-	db $40, $00
-	dn 2, 0
-	db D_UP | D_DOWN | A_BUTTON | B_BUTTON
+DeleteMoveScreen2DMenuData:
+	db 3, 1 ; cursor start y, x
+	db 3, 1 ; rows, columns
+	db $40, $00 ; flags
+	dn 2, 0 ; cursor offset
+	db D_UP | D_DOWN | A_BUTTON | B_BUTTON ; accepted buttons
 
 ManagePokemonMoves:
 	ld a, [wCurPartySpecies]
@@ -878,8 +878,8 @@ MoveScreenLoop:
 	ld [wPartyMenuCursor], a
 	call SetUpMoveScreenBG
 	call PlaceMoveScreenArrows
-	ld de, MoveScreenAttributes
-	call SetMenuAttributes
+	ld de, MoveScreen2DMenuData
+	call Load2DMenuData
 .loop
 	call SetUpMoveList
 	ld hl, w2DMenuFlags1
@@ -1077,12 +1077,12 @@ MoveScreenLoop:
 	call ClearSprites
 	jp ClearTilemap
 
-MoveScreenAttributes:
-	db 3, 1
-	db 3, 1
-	db $40, $00
-	dn 2, 0
-	db D_UP | D_DOWN | D_LEFT | D_RIGHT | A_BUTTON | B_BUTTON
+MoveScreen2DMenuData:
+	db 3, 1 ; cursor start y, x
+	db 3, 1 ; rows, columns
+	db $40, $00 ; flags
+	dn 2, 0 ; cursor offsets
+	db D_UP | D_DOWN | D_LEFT | D_RIGHT | A_BUTTON | B_BUTTON ; accepted buttons
 
 String_MoveWhere:
 	db "Where?@"

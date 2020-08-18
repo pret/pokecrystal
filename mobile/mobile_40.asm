@@ -409,7 +409,7 @@ Function1002dc:
 Function1002ed:
 	farcall LoadOW_BGPal7
 	farcall ApplyPals
-	ld a, $01
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	call DelayFrame
 	ret
@@ -1689,7 +1689,7 @@ Unknown_100b0a:
 
 popc
 
-Function100b12:
+Mobile_LoadBattleMenu:
 	call Function100dd8
 	ret c
 	ld hl, BattleMenuHeader
@@ -1747,7 +1747,7 @@ Function100b7a:
 	set 7, [hl]
 	ret
 
-MobileMoveSelectionScreen:
+Mobile_MoveSelectionScreen:
 	xor a
 	ld [wMoveSwapBuffer], a
 	farcall CheckPlayerHasUsableMoves
@@ -1765,7 +1765,7 @@ MobileMoveSelectionScreen:
 .GetMoveSelection:
 	xor a
 	ldh [hBGMapMode], a
-	call Function100c74
+	call .ListMoves
 	call Function100c98
 .master_loop
 	farcall MoveInfoBox
@@ -1860,7 +1860,7 @@ MobileMoveSelectionScreen:
 	call SafeLoadTempTilemapToTilemap
 	jp .GetMoveSelection
 
-Function100c74:
+.ListMoves:
 	hlcoord 0, 8
 	ld b, 8
 	ld c, 8
@@ -1876,8 +1876,8 @@ Function100c74:
 	ret
 
 Function100c98:
-	ld de, .attrs
-	call SetMenuAttributes
+	ld de, .data
+	call Load2DMenuData
 	ld a, [wNumMoves]
 	inc a
 	ld [w2DMenuNumRows], a
@@ -1886,12 +1886,12 @@ Function100c98:
 	ld [wMenuCursorY], a
 	ret
 
-.attrs
-	db 10, 1
-	db 255, 1
-	db $a0, $00
-	dn 2, 0
-	db D_UP | D_DOWN | A_BUTTON | B_BUTTON
+.data:
+	db 10, 1 ; cursor start y, x
+	db -1, 1 ; rows, columns
+	db $a0, $00 ; flags
+	dn 2, 0 ; cursor offsets
+	db D_UP | D_DOWN | A_BUTTON | B_BUTTON ; accepted buttons
 
 Mobile_PartyMenuSelect:
 	call Function100dd8
@@ -2210,7 +2210,7 @@ Function100eca:
 
 Function100ed4:
 	farcall ApplyPals
-	ld a, $01
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -5944,7 +5944,7 @@ Function1029cf:
 	ld hl, wcd4b
 	set 1, [hl]
 	ld de, MenuData3_102a33
-	call SetMenuAttributes
+	call Load2DMenuData
 	ld a, [wcd4a]
 	inc a
 	ld [wcd4a], a
@@ -5981,11 +5981,11 @@ String_102a26:
 	db   "@"
 
 MenuData3_102a33:
-	db 8, 11
-	db 2,  1
-	db $80, $00
-	dn 2, 0
-	db A_BUTTON
+	db 8, 11 ; cursor start y, x
+	db 2, 1 ; rows, columns
+	db $80, $00 ; flags
+	dn 2, 0 ; cursor offset
+	db A_BUTTON ; accepted buttons
 
 Function102a3b:
 	ld a, [wcd30]
@@ -6115,8 +6115,8 @@ Function102b4e:
 	ld [wMonType], a
 	ld a, [wMenuCursorY]
 	push af
-	ld de, Unknown_102b73
-	call SetMenuAttributes
+	ld de, MenuData_102b73
+	call Load2DMenuData
 	pop af
 	ld [wMenuCursorY], a
 	ld a, [wOTPartyCount]
@@ -6130,32 +6130,32 @@ Function102b68: ; unreferenced
 	call ByteFill
 	ret
 
-Unknown_102b73:
-	db 9, 6
-	db 255, 1
-	db $a0, $00
-	dn 1, 0
-	db D_UP | D_DOWN | A_BUTTON
+MenuData_102b73:
+	db 9, 6 ; cursor start y, x
+	db -1, 1 ; rows, columns
+	db $a0, $00 ; flags
+	dn 1, 0 ; cursor offset
+	db D_UP | D_DOWN | A_BUTTON ; accepted buttons
 
 Function102b7b:
 	xor a
 	ld [wMonType], a
 	ld a, [wMenuCursorY]
 	push af
-	ld de, Unknown_102b94
-	call SetMenuAttributes
+	ld de, MenuData_102b94
+	call Load2DMenuData
 	pop af
 	ld [wMenuCursorY], a
 	ld a, [wPartyCount]
 	ld [w2DMenuNumRows], a
 	ret
 
-Unknown_102b94:
-	db 1, 6
-	db 255, 1
-	db $a0, $00
-	dn 1, 0
-	db D_UP | D_DOWN | A_BUTTON
+MenuData_102b94:
+	db 1, 6 ; cursor start y, x
+	db 255, 1 ; rows, columns
+	db $a0, $00 ; flags
+	dn 1, 0 ; cursor offset
+	db D_UP | D_DOWN | A_BUTTON ; accepted buttons
 
 Function102b9c:
 	ld a, [wcd4d]

@@ -2546,7 +2546,7 @@ BGEffects_LoadBGPal0_OBPal1:
 	pop bc
 	pop af
 	ldh [rSVBK], a
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -2573,7 +2573,7 @@ BGEffects_LoadBGPal1_OBPal0:
 	pop bc
 	pop af
 	ldh [rSVBK], a
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 

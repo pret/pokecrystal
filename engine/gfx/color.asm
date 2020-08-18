@@ -150,7 +150,7 @@ Function8b07: ; unreferenced
 	call FarCopyWRAM
 
 	call ApplyPals
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
@@ -352,7 +352,7 @@ ApplyHPBarPals:
 	ld bc, 4
 	ld a, BANK(wBGPals2)
 	call FarCopyWRAM
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 

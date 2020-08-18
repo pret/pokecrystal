@@ -1,20 +1,22 @@
-SetMenuAttributes::
+Load2DMenuData::
 	push hl
 	push bc
-	ld hl, w2DMenuCursorInitY
-	ld b, $8
+	ld hl, w2DMenuData
+	ld b, w2DMenuDataEnd - w2DMenuData
 .loop
 	ld a, [de]
 	inc de
 	ld [hli], a
 	dec b
 	jr nz, .loop
+
+	; Reset menu state
 	ld a, $1
-	ld [hli], a
-	ld [hli], a
+	ld [hli], a ; wMenuCursorY
+	ld [hli], a ; wMenuCursorX
 	xor a
-	ld [hli], a
-	ld [hli], a
+	ld [hli], a ; wCursorOffCharacter
+	ld [hli], a ; wCursorCurrentTile
 	ld [hli], a
 	pop bc
 	pop hl

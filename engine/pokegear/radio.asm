@@ -246,7 +246,7 @@ endr
 .loop3
 	; Choose one of the middle three Pokemon.
 	call Random
-	and NUM_GRASSMON
+	maskbits NUM_GRASSMON
 	cp 2
 	jr c, .loop3
 	cp 5

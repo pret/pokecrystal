@@ -180,12 +180,12 @@ DoAnimFrame:
 	ld a, [hl]
 	sla a
 	sla a
-	ld d, $2
 
+	ld d, 2
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
-	add $3
+	add 3
 	ld [hl], a
 	call .Sprites_Sine
 
@@ -204,7 +204,7 @@ DoAnimFrame:
 	ld a, [hl]
 	inc a
 	ld [hl], a
-	ld d, $2
+	ld d, 2
 	call .Sprites_Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
@@ -391,7 +391,7 @@ DoAnimFrame:
 	inc [hl]
 .move_vertical
 	ld a, e
-	ld d, $20
+	ld d, 32
 	call .Sprites_Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
@@ -456,10 +456,10 @@ DoAnimFrame:
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
-	cp $30
+	cp 48
 	jr c, .asm_8d4cd
 	dec [hl]
-	ld d, $28
+	ld d, 40
 	call .Sprites_Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
@@ -492,8 +492,8 @@ DoAnimFrame:
 	ld a, [hl]
 	and a
 	jr z, .asm_8d51c
-	ld d, a
 
+	ld d, a
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
@@ -759,11 +759,11 @@ DoAnimFrame:
 	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
-	add $2
+	add 2
 	ld [hl], a
 	xor $ff
 	inc a
-	ld d, $20
+	ld d, 32
 	call .Sprites_Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
@@ -777,13 +777,13 @@ DoAnimFrame:
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
-	cp $14
+	cp 20
 	jr nc, .asm_8d67f
-	add $2
+	add 2
 	ld [hl], a
 	xor $ff
 	inc a
-	ld d, $20
+	ld d, 32
 	call .Sprites_Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
@@ -799,7 +799,6 @@ DoAnimFrame:
 	inc [hl]
 	inc [hl]
 	inc [hl]
-
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]

@@ -448,7 +448,7 @@ Function81c33:
 	hlcoord 15, 2
 	ld de, wc608 + 2
 	call Function81ca7
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ld a, $3
 	ld [wJumptableIndex], a
@@ -1227,7 +1227,7 @@ Function822a3:
 	call Function81ca7
 	pop af
 	ldh [rSVBK], a
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	call DelayFrame
 	ret

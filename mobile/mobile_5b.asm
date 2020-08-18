@@ -650,7 +650,7 @@ Function16cbd1:
 	ld a, $5
 	call FarCopyWRAM
 	farcall ApplyPals
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
