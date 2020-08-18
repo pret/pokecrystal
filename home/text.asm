@@ -192,11 +192,13 @@ if ISCONST(\2)
 	jr nz, ._\@
 	ld a, \2
 ._\@:
-elif STRSUB("\2", 1, 1) == "."
-; Locals can use a short jump
-	jr z, \2
 else
+	if STRSUB("\2", 1, 1) == "."
+	; Locals can use a short jump
+	jr z, \2
+	else
 	jp z, \2
+	endc
 endc
 ENDM
 
