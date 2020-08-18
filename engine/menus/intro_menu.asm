@@ -959,6 +959,15 @@ Intro_PlacePlayerSprite:
 	db 10 * 8 + 4,  9 * 8, 2
 	db 10 * 8 + 4, 10 * 8, 3
 
+
+	const_def
+	const TITLESCREENOPTION_MAIN_MENU
+	const TITLESCREENOPTION_DELETE_SAVE_DATA
+	const TITLESCREENOPTION_RESTART
+	const TITLESCREENOPTION_UNUSED
+	const TITLESCREENOPTION_RESET_CLOCK
+NUM_TITLESCREENOPTIONS EQU const_value
+
 IntroSequence:
 	callfar Copyright_GameFreakPresents
 	jr c, StartTitleScreen
@@ -1000,7 +1009,7 @@ StartTitleScreen:
 	call GetSGBLayout
 	call UpdateTimePals
 	ld a, [wTitleScreenSelectedOption]
-	cp 5
+	cp NUM_TITLESCREENOPTIONS
 	jr c, .ok
 	xor a
 .ok
@@ -1183,7 +1192,7 @@ TitleScreenMain:
 	ld a, [hl]
 	and D_LEFT + D_UP
 	cp  D_LEFT + D_UP
-	jr z, .clock_reset
+	jr z, .reset_clock
 
 ; Press Start or A to start the game.
 .check_start
@@ -1193,11 +1202,11 @@ TitleScreenMain:
 	ret
 
 .incave
-	ld a, 0
+	ld a, TITLESCREENOPTION_MAIN_MENU
 	jr .done
 
 .delete_save_data
-	ld a, 1
+	ld a, TITLESCREENOPTION_DELETE_SAVE_DATA
 
 .done
 	ld [wTitleScreenSelectedOption], a
@@ -1223,8 +1232,8 @@ TitleScreenMain:
 	inc [hl]
 	ret
 
-.clock_reset
-	ld a, 4
+.reset_clock
+	ld a, TITLESCREENOPTION_RESET_CLOCK
 	ld [wTitleScreenSelectedOption], a
 
 ; Return to the intro sequence.
@@ -1242,7 +1251,7 @@ TitleScreenEnd:
 	and a
 	ret nz
 
-	ld a, 2
+	ld a, TITLESCREENOPTION_RESTART
 	ld [wTitleScreenSelectedOption], a
 
 ; Back to the intro.
