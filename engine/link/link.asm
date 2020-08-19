@@ -1882,24 +1882,31 @@ LinkTrade:
 	call LoadTradeScreenBorder
 	call SetTradeRoomBGPals
 	farcall Link_WaitBGMap
-	ld b, $1
+
+; Check if either of the Pokémon sent was a Mew or Celebi, and send a different
+; byte depending on that. Presumably this would've been some prevention against
+; illicit trade machines, but it doesn't seem like a very effective one.
+; Removing this code breaks link compatibility with the vanilla gen2 games, but
+; has otherwise no consequence.
+	ld b, 1
 	pop af
 	ld c, a
 	cp MEW
-	jr z, .loop
+	jr z, .send_checkbyte
 	ld a, [wCurPartySpecies]
 	cp MEW
-	jr z, .loop
-	ld b, $2
+	jr z, .send_checkbyte
+	ld b, 2
 	ld a, c
 	cp CELEBI
-	jr z, .loop
+	jr z, .send_checkbyte
 	ld a, [wCurPartySpecies]
 	cp CELEBI
-	jr z, .loop
-	ld b, $0
+	jr z, .send_checkbyte
 
-.loop
+; Send the byte in a loop until the desired byte has been received.
+	ld b, 0
+.send_checkbyte
 	ld a, b
 	ld [wPlayerLinkAction], a
 	push bc
@@ -1913,7 +1920,7 @@ LinkTrade:
 	jr z, .save
 	ld a, [wOtherPlayerLinkAction]
 	cp b
-	jr nz, .loop
+	jr nz, .send_checkbyte
 
 .save
 	farcall SaveAfterLinkTrade
