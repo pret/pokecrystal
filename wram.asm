@@ -2453,7 +2453,8 @@ wXYComparePointer:: dw
 
 	ds 4
 
-wBattleScriptFlags:: dw
+wBattleScriptFlags:: db
+	ds 1
 wPlayerSpriteSetupFlags::
 ; bit 7: if set, cancel wPlayerAction
 ; bit 6: RefreshMapSprites doesn't reload player sprite
@@ -2461,6 +2462,7 @@ wPlayerSpriteSetupFlags::
 ; bit 2: female player has been transformed into male
 ; bits 0-1: direction facing
 	db
+
 wMapReentryScriptQueueFlag:: db
 wMapReentryScriptBank:: db
 wMapReentryScriptAddress:: dw
