@@ -11,7 +11,6 @@ gfx/diploma/diploma.2bpp.lz: LZFLAGS += --method 8 --align 1
 gfx/dummy_game/dummy_game.2bpp.lz: LZFLAGS += --method 2 --align 4
 
 gfx/intro/%.lz: LZFLAGS += --align 4
-gfx/intro/logo.2bpp.lz: LZFLAGS += --method 2 --align 4
 gfx/intro/suicune_close.2bpp.lz: LZFLAGS += --method 2 --align 4
 gfx/intro/unown_back.2bpp.lz: LZFLAGS += --method 2 --align 4
 
@@ -47,6 +46,8 @@ gfx/sgb/gbc_only.2bpp.lz: LZFLAGS = --compressor null --method 1 --align 1
 gfx/slots/slots_1.2bpp.lz: LZFLAGS += --method 2 --align 4
 gfx/slots/slots_2.2bpp.lz: LZFLAGS += --align 4
 gfx/slots/slots_3.2bpp.lz: LZFLAGS += --align 4
+
+gfx/splash/ditto.2bpp.lz: LZFLAGS += --method 2 --align 4
 
 gfx/tilesets/%.lz: LZFLAGS += --align 4
 gfx/tilesets/aerodactyl_word_room.2bpp.lz: LZFLAGS = --compressor null --method 1 --align 1

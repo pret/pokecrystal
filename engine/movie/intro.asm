@@ -52,9 +52,9 @@ Copyright_GameFreakPresents:
 	ret
 
 .GetGFLogoGFX:
-	ld de, GameFreakLogo
+	ld de, GameFreakLogoGFX
 	ld hl, vTiles2
-	lb bc, BANK(GameFreakLogo), 28
+	lb bc, BANK(GameFreakLogoGFX), 28
 	call Get1bpp
 
 	ldh a, [rSVBK]
@@ -62,9 +62,9 @@ Copyright_GameFreakPresents:
 	ld a, BANK(wDecompressScratch)
 	ldh [rSVBK], a
 
-	ld hl, IntroLogoGFX
+	ld hl, GameFreakDittoGFX
 	ld de, wDecompressScratch
-	ld a, BANK(IntroLogoGFX)
+	ld a, BANK(GameFreakDittoGFX)
 	call FarDecompress
 
 	ld hl, vTiles0
@@ -295,7 +295,7 @@ GameFreakLogoScene4:
 	srl a
 	ld e, a
 	ld d, $0
-	ld hl, GameFreakLogoPalettes
+	ld hl, GameFreakDittoPaletteFade
 	add hl, de
 	add hl, de
 	ldh a, [rSVBK]
@@ -320,12 +320,12 @@ GameFreakLogoScene4:
 GameFreakLogoScene5:
 	ret
 
-GameFreakLogoPalettes:
-INCLUDE "gfx/intro/gamefreak_logo.pal"
+GameFreakDittoPaletteFade:
+INCLUDE "gfx/splash/ditto_fade.pal"
 
-GameFreakLogo:
-INCBIN "gfx/splash/logo1.1bpp"
-INCBIN "gfx/splash/logo2.1bpp"
+GameFreakLogoGFX:
+INCBIN "gfx/splash/gamefreak_presents.1bpp"
+INCBIN "gfx/splash/gamefreak_logo.1bpp"
 
 CrystalIntro:
 	ldh a, [rSVBK]

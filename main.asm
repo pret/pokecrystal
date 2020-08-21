@@ -540,8 +540,8 @@ INCLUDE "mobile/mobile_42.asm"
 
 SECTION "Intro Logo", ROMX
 
-IntroLogoGFX:
-INCBIN "gfx/intro/logo.2bpp.lz"
+GameFreakDittoGFX:
+INCBIN "gfx/splash/ditto.2bpp.lz"
 
 
 SECTION "Title", ROMX
