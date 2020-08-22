@@ -969,7 +969,7 @@ Intro_PlacePlayerSprite:
 NUM_TITLESCREENOPTIONS EQU const_value
 
 IntroSequence:
-	callfar Copyright_GameFreakPresents
+	callfar SplashScreen
 	jr c, StartTitleScreen
 	farcall CrystalIntro
 
