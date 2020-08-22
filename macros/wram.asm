@@ -356,16 +356,16 @@ sprite_anim_struct: MACRO
 \1DurationOffset:: db
 \1FrameIndex::     db
 \1JumptableIndex:: db
-\1Field0c::        ds 1
-\1Field0d::        ds 1
-\1Field0e::        ds 1
-\1Field0f::        ds 1
+\1Var1::           ds 1
+\1Var2::           ds 1
+\1Var3::           ds 1
+\1Var4::           ds 1
 ENDM
 
 battle_anim_struct: MACRO
 ; Placeholder until we can figure out what it all means
 \1Index::              db
-\1Field01::            ds 1
+\1OAMFlags::           db
 \1Field02::            ds 1
 \1FramesetID::         db
 \1Function::           db
@@ -375,19 +375,13 @@ battle_anim_struct: MACRO
 \1YCoord::             db
 \1XOffset::            db
 \1YOffset::            db
-\1Field0b::            ds 1
+\1Param::              db
 \1Duration::           db
 \1Frame::              db
-\1AnonJumptableIndex:: db
-\1Field0f::            ds 1
-\1Field10::            ds 1
-\1Field11::            ds 1
-\1Field12::            ds 1
-\1Field13::            ds 1
-\1Field14::            ds 1
-\1Field15::            ds 1
-\1Field16::            ds 1
-\1Field17::            ds 1
+\1JumptableIndex::     db
+\1Var1::               db
+\1Var2::               db
+	ds 7
 ENDM
 
 battle_bg_effect: MACRO
