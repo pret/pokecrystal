@@ -22,7 +22,7 @@ CelebiShrineEvent:
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
 	ld [hl], SPRITE_ANIM_SEQ_CELEBI
-	ld hl, SPRITEANIMSTRUCT_0F
+	ld hl, SPRITEANIMSTRUCT_VAR4
 	add hl, bc
 	ld a, $80
 	ld [hl], a
@@ -138,7 +138,7 @@ UpdateCelebiPosition:
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	inc [hl]
-	ld hl, SPRITEANIMSTRUCT_0F
+	ld hl, SPRITEANIMSTRUCT_VAR4
 	add hl, bc
 	ld a, [hl]
 	ld d, a
@@ -148,7 +148,7 @@ UpdateCelebiPosition:
 	sub $3
 	ld [hl], a
 .skip
-	ld hl, SPRITEANIMSTRUCT_0E
+	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
 	ld a, [hl]
 	inc [hl]

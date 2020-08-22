@@ -485,7 +485,7 @@ Function171b4b:
 	depixel 8, 2
 	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
 	call InitSpriteAnimStruct
-	ld hl, SPRITEANIMSTRUCT_0C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, $8
 	ld [hl], a
@@ -493,7 +493,7 @@ Function171b4b:
 	depixel 8, 19
 	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
 	call InitSpriteAnimStruct
-	ld hl, SPRITEANIMSTRUCT_0C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, $9
 	ld [hl], a
@@ -501,7 +501,7 @@ Function171b4b:
 	depixel 17, 14, 2, 0
 	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
 	call InitSpriteAnimStruct
-	ld hl, SPRITEANIMSTRUCT_0C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, $a
 	ld [hl], a

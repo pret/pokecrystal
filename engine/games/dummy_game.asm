@@ -523,7 +523,7 @@ DummyGame_InterpretJoypad_AnimateCursor:
 	ret
 
 .pressed_a
-	ld hl, SPRITEANIMSTRUCT_0C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
 	inc a
@@ -538,7 +538,7 @@ DummyGame_InterpretJoypad_AnimateCursor:
 	ret z
 	sub 1 tiles
 	ld [hl], a
-	ld hl, SPRITEANIMSTRUCT_0C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	dec [hl]
 	ret
@@ -551,7 +551,7 @@ DummyGame_InterpretJoypad_AnimateCursor:
 	ret z
 	add 1 tiles
 	ld [hl], a
-	ld hl, SPRITEANIMSTRUCT_0C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	inc [hl]
 	ret
@@ -564,7 +564,7 @@ DummyGame_InterpretJoypad_AnimateCursor:
 	ret z
 	sub 1 tiles
 	ld [hl], a
-	ld hl, SPRITEANIMSTRUCT_0C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
 	sub 9
@@ -579,7 +579,7 @@ DummyGame_InterpretJoypad_AnimateCursor:
 	ret z
 	add 1 tiles
 	ld [hl], a
-	ld hl, SPRITEANIMSTRUCT_0C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
 	add 9

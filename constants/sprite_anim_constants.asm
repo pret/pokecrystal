@@ -12,10 +12,10 @@
 	const SPRITEANIMSTRUCT_DURATIONOFFSET  ; 9
 	const SPRITEANIMSTRUCT_FRAME           ; a
 	const SPRITEANIMSTRUCT_JUMPTABLE_INDEX ; b
-	const SPRITEANIMSTRUCT_0C              ; c
-	const SPRITEANIMSTRUCT_0D              ; d
-	const SPRITEANIMSTRUCT_0E              ; e
-	const SPRITEANIMSTRUCT_0F              ; f
+	const SPRITEANIMSTRUCT_VAR1            ; c
+	const SPRITEANIMSTRUCT_VAR2            ; d
+	const SPRITEANIMSTRUCT_VAR3            ; e
+	const SPRITEANIMSTRUCT_VAR4            ; f
 SPRITEANIMSTRUCT_LENGTH EQU const_value
 NUM_SPRITE_ANIM_STRUCTS EQU 10 ; see wSpriteAnimationStructs
 
