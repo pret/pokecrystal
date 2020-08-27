@@ -418,7 +418,7 @@ EZChat_MasterLoop:
 
 	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
 	call InitSpriteAnimStruct
-	ld hl, SPRITEANIMSTRUCT_0C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, $1
 	ld [hl], a
@@ -426,7 +426,7 @@ EZChat_MasterLoop:
 	depixel 9, 2, 2, 0
 	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
 	call InitSpriteAnimStruct
-	ld hl, SPRITEANIMSTRUCT_0C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, $3
 	ld [hl], a
@@ -434,7 +434,7 @@ EZChat_MasterLoop:
 	depixel 10, 16
 	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
 	call InitSpriteAnimStruct
-	ld hl, SPRITEANIMSTRUCT_0C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, $4
 	ld [hl], a
@@ -442,7 +442,7 @@ EZChat_MasterLoop:
 	depixel 10, 4
 	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
 	call InitSpriteAnimStruct
-	ld hl, SPRITEANIMSTRUCT_0C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, $5
 	ld [hl], a
@@ -450,7 +450,7 @@ EZChat_MasterLoop:
 	depixel 10, 2
 	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
 	call InitSpriteAnimStruct
-	ld hl, SPRITEANIMSTRUCT_0C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, $2
 	ld [hl], a
@@ -2453,7 +2453,7 @@ Function11d035:
 	ret
 
 AnimateEZChatCursor:
-	ld hl, SPRITEANIMSTRUCT_0C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	jumptable .Jumptable, hl
 
@@ -2820,7 +2820,7 @@ AnimateEZChatCursor:
 	ld hl, wcd23
 	and [hl]
 	jr z, .reset_y_offset
-	ld hl, SPRITEANIMSTRUCT_0E
+	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
 	ld a, [hl]
 	and a

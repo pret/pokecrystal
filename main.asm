@@ -493,6 +493,7 @@ CopyrightGFX::
 INCBIN "gfx/splash/copyright.2bpp"
 
 INCLUDE "engine/menus/options_menu.asm"
+INCLUDE "engine/movie/splash.asm"
 INCLUDE "engine/movie/intro.asm"
 
 
@@ -540,8 +541,8 @@ INCLUDE "mobile/mobile_42.asm"
 
 SECTION "Intro Logo", ROMX
 
-IntroLogoGFX:
-INCBIN "gfx/intro/logo.2bpp.lz"
+GameFreakDittoGFX:
+INCBIN "gfx/splash/ditto.2bpp.lz"
 
 
 SECTION "Title", ROMX
