@@ -129,7 +129,7 @@ GameFreakPresentsScene:
 	dw GameFreakPresents_WaitSpriteAnim
 	dw GameFreakPresents_PlaceGameFreak
 	dw GameFreakPresents_PlacePresents
-	dw GameFreakPresents_DelayEnd
+	dw GameFreakPresents_WaitForTimer
 
 GameFreakPresents_NextScene:
 	ld hl, wJumptableIndex
@@ -149,17 +149,16 @@ GameFreakPresents_PlaceGameFreak:
 
 .PlaceGameFreak:
 	ld [hl], 0
-	ld hl, .GAME_FREAK
+	ld hl, .game_freak
 	decoord 5, 10
-	ld bc, .end - .GAME_FREAK
+	ld bc, .end - .game_freak
 	call CopyBytes
 	call GameFreakPresents_NextScene
 	ld de, SFX_GAME_FREAK_PRESENTS
 	call PlaySFX
 	ret
 
-.GAME_FREAK:
-	;  G  A  M  E   _  F  R  E  A  K
+.game_freak
 	db 0, 1, 2, 3, 13, 4, 5, 3, 1, 6
 .end
 	db "@"
@@ -186,7 +185,7 @@ GameFreakPresents_PlacePresents:
 .end
 	db "@"
 
-GameFreakPresents_DelayEnd:
+GameFreakPresents_WaitForTimer:
 	ld hl, wIntroSceneTimer
 	ld a, [hl]
 	cp 128

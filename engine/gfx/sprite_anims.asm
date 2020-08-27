@@ -220,7 +220,7 @@ DoAnimFrame:
 	callfar ComposeMail_AnimateCursor
 	ret
 
-.GameFreakLogo:
+.GameFreakLogo
 	callfar GameFreakLogoSpriteAnim
 	ret
 
