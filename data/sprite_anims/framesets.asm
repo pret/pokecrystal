@@ -11,8 +11,8 @@ SpriteAnimFrameData:
 	dw .Frameset_TextEntryCursor
 	dw .Frameset_TextEntryCursorBig
 	dw .Frameset_GameFreakLogo
-	dw .Frameset_GSIntroStar
-	dw .Frameset_GSIntroSparkle
+	dw .Frameset_GSGameFreakLogoStar
+	dw .Frameset_GSGameFreakLogoSparkle
 	dw .Frameset_SlotsGolem
 	dw .Frameset_SlotsChansey
 	dw .Frameset_SlotsChansey2
@@ -155,16 +155,16 @@ SpriteAnimFrameData:
 	frame SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_11,  7
 	endanim
 
-.Frameset_GSIntroStar:
-	frame SPRITE_ANIM_OAMSET_GS_INTRO_STAR,  3
-	frame SPRITE_ANIM_OAMSET_GS_INTRO_STAR,  3, OAM_Y_FLIP
+.Frameset_GSGameFreakLogoStar:
+	frame SPRITE_ANIM_OAMSET_GS_GAMEFREAK_LOGO_STAR,  3
+	frame SPRITE_ANIM_OAMSET_GS_GAMEFREAK_LOGO_STAR,  3, OAM_Y_FLIP
 	dorestart
 
-.Frameset_GSIntroSparkle:
-	frame SPRITE_ANIM_OAMSET_GS_INTRO_SPARKLE_1,  2
-	frame SPRITE_ANIM_OAMSET_GS_INTRO_SPARKLE_2,  2
-	frame SPRITE_ANIM_OAMSET_GS_INTRO_SPARKLE_3,  2
-	frame SPRITE_ANIM_OAMSET_GS_INTRO_SPARKLE_2,  2
+.Frameset_GSGameFreakLogoSparkle:
+	frame SPRITE_ANIM_OAMSET_GS_GAMEFREAK_LOGO_SPARKLE_1,  2
+	frame SPRITE_ANIM_OAMSET_GS_GAMEFREAK_LOGO_SPARKLE_2,  2
+	frame SPRITE_ANIM_OAMSET_GS_GAMEFREAK_LOGO_SPARKLE_3,  2
+	frame SPRITE_ANIM_OAMSET_GS_GAMEFREAK_LOGO_SPARKLE_2,  2
 	dorestart
 
 .Frameset_SlotsGolem:

@@ -20,8 +20,8 @@ DoAnimFrame:
 	dw .GSTitleTrail
 	dw .NamingScreenCursor
 	dw .GameFreakLogo
-	dw .GSIntroStar
-	dw .GSIntroSparkle
+	dw .GSGameFreakLogoStar
+	dw .GSGameFreakLogoSparkle
 	dw .SlotsGolem
 	dw .SlotsChansey
 	dw .SlotsChanseyEgg
@@ -224,7 +224,7 @@ DoAnimFrame:
 	callfar GameFreakLogoSpriteAnim
 	ret
 
-.GSIntroStar
+.GSGameFreakLogoStar
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
@@ -274,7 +274,7 @@ DoAnimFrame:
 	call DeinitializeSprite
 	ret
 
-.GSIntroSparkle
+.GSGameFreakLogoSparkle
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hli]
