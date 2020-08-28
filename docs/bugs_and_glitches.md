@@ -59,6 +59,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 - [A "HOF Master!" title for 200-Time Famers is defined but inaccessible](#a-hof-master-title-for-200-time-famers-is-defined-but-inaccessible)
 - [Slot machine payout sound effects cut each other off](#slot-machine-payout-sound-effects-cut-each-other-off)
 - [Team Rocket battle music is not used for Executives or Scientists](#team-rocket-battle-music-is-not-used-for-executives-or-scientists)
+- [Some trainer NPCs have inconsistent overworld sprites](#some-trainer-npcs-have-inconsistent-overworld-sprites)
 - [No bump noise if standing on tile `$3E`](#no-bump-noise-if-standing-on-tile-3e)
 - [Playing Entei's Pokédex cry can distort Raikou's and Suicune's](#playing-enteis-pokédex-cry-can-distort-raikous-and-suicunes)
 - [In-battle “`…`” ellipsis is too high](#in-battle--ellipsis-is-too-high)
@@ -68,6 +69,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 - [Surfing directly across a map connection does not load the new map](#surfing-directly-across-a-map-connection-does-not-load-the-new-map)
 - [Swimming NPCs aren't limited by their movement radius](#swimming-npcs-arent-limited-by-their-movement-radius)
 - [`CheckOwnMon` only checks the first five letters of OT names](#checkownmon-only-checks-the-first-five-letters-of-ot-names)
+- [`CheckOwnMonAnywhere` does not check the Day-Care](#checkownmonanywhere-does-not-check-the-day-care)
 - [Catching a Transformed Pokémon always catches a Ditto](#catching-a-transformed-pokémon-always-catches-a-ditto)
 - [If your party and current PC box are full during the Dude's catching tutorial, his Poké Ball can't be used and may crash the game](#if-your-party-and-current-pc-box-are-full-during-the-dudes-catching-tutorial-his-poké-ball-cant-be-used-and-may-crash-the-game)
 - [Using a Park Ball in normal battles has a corrupt animation](#using-a-park-ball-in-normal-battles-has-a-corrupt-animation)
@@ -1587,6 +1589,34 @@ Finally, edit [engine/battle/read_trainer_party.asm](https://github.com/pret/pok
 ```
 
 
+## Some trainer NPCs have inconsistent overworld sprites
+
+Most trainer classes always use the same sprite and color for their overworld NPCs. There are some exceptions:
+
+- [maps/FastShipCabins_SE_SSE_CaptainsCabin.asm](https://github.com/pret/pokecrystal/blob/master/maps/FastShipCabins_SE_SSE_CaptainsCabin.asm): `TrainerPsychicRodney` should use `SPRITE_YOUNGSTER`, not `SPRITE_SUPER_NERD`
+- [maps/LakeOfRage.asm](https://github.com/pret/pokecrystal/blob/master/maps/LakeOfRage.asm): `TrainerFisherAndre` and `TrainerFisherRaymond` should use `PAL_NPC_GREEN`, not `PAL_NPC_BLUE`
+- [maps/Route13.asm](https://github.com/pret/pokecrystal/blob/master/maps/Route13.asm): `TrainerHikerKenny` should use `PAL_NPC_BROWN`, not `PAL_NPC_RED`
+- [maps/Route44.asm](https://github.com/pret/pokecrystal/blob/master/maps/Route44.asm): `TrainerBirdKeeperVance1` should use `PAL_NPC_BLUE`, not `PAL_NPC_GREEN`
+- [maps/Route44.asm](https://github.com/pret/pokecrystal/blob/master/maps/Route44.asm): `TrainerPokemaniacZach` should use `PAL_NPC_BLUE`, not `PAL_NPC_GREEN`
+- [maps/UnionCaveB2F.asm](https://github.com/pret/pokecrystal/blob/master/maps/UnionCaveB2F.asm): `TrainerCooltrainermNick` should use `SPRITE_COOLTRAINER_M`, not `SPRITE_ROCKER`
+- [maps/FuchsiaPokecenter1F.asm](https://github.com/pret/pokecrystal/blob/master/maps/FuchsiaPokecenter1F.asm): `FuchsiaPokecenter1FNurseScript` should use `PAL_NPC_RED`, not `PAL_NPC_GREEN`
+
+Most of the NPCs in [maps/NationalParkBugContest.asm](https://github.com/pret/pokecrystal/blob/master/maps/NationalParkBugContest.asm) and [maps/Route36NationalParkGate.asm](https://github.com/pret/pokecrystal/blob/master/maps/Route36NationalParkGate.asm) are also inconsistent with their trainers from other maps:
+
+- `BugCatchingContestant1AScript` and `BugCatchingContestant1BScript`: `BUG_CATCHER DON` from [maps/Route30.asm](https://github.com/pret/pokecrystal/blob/master/maps/Route30.asm) should use `SPRITE_BUG_CATCHER` and `PAL_NPC_BROWN`, not `SPRITE_YOUNGSTER` and `PAL_NPC_RED`
+- `BugCatchingContestant2AScript` and `BugCatchingContestant2BScript`: `BUG_CATCHER ED` from [maps/Route2.asm](https://github.com/pret/pokecrystal/blob/master/maps/Route2.asm) should use `SPRITE_BUG_CATCHER` and `PAL_NPC_BROWN`, not `SPRITE_YOUNGSTER` and `PAL_NPC_GREEN`
+- `BugCatchingContestant3AScript` and `BugCatchingContestant3BScript`: `COOLTRAINERM NICK` from [maps/UnionCaveB2F.asm](https://github.com/pret/pokecrystal/blob/master/maps/UnionCaveB2F.asm) should use `SPRITE_COOLTRAINER_M` and `PAL_NPC_RED`, not `SPRITE_ROCKER` and `PAL_NPC_BLUE`
+- `BugCatchingContestant4AScript` and `BugCatchingContestant4BScript`: `POKEFANM WILLIAM` from [maps/NationalPark.asm](https://github.com/pret/pokecrystal/blob/master/maps/NationalPark.asm) should use `PAL_NPC_RED`, not `PAL_NPC_BROWN`
+- `BugCatchingContestant5AScript` and `BugCatchingContestant5BScript`: `BUG_CATCHER BENNY` from [maps/AzaleaGym.asm](https://github.com/pret/pokecrystal/blob/master/maps/AzaleaGym.asm) should use `SPRITE_BUG_CATCHER` and `PAL_NPC_BROWN`, not `SPRITE_YOUNGSTER` and `PAL_NPC_RED`
+- `BugCatchingContestant7AScript` and `BugCatchingContestant7BScript`: `PICNICKER CINDY` from [maps/FuchsiaGym.asm](https://github.com/pret/pokecrystal/blob/master/maps/FuchsiaGym.asm) should use `PAL_NPC_GREEN`, not `PAL_NPC_BLUE`
+- `BugCatchingContestant8AScript` and `BugCatchingContestant8BScript`: `BUG_CATCHER JOSH` from [maps/AzaleaGym.asm](https://github.com/pret/pokecrystal/blob/master/maps/AzaleaGym.asm) should use `SPRITE_BUG_CATCHER` and `PAL_NPC_BROWN`, not `SPRITE_YOUNGSTER` and `PAL_NPC_RED`
+- `BugCatchingContestant9AScript` and `BugCatchingContestant9BScript`: `YOUNGSTER SAMUEL` from [maps/Route34.asm](https://github.com/pret/pokecrystal/blob/master/maps/Route34.asm) should use `PAL_NPC_BLUE`, not `PAL_NPC_GREEN`
+
+(Note that [maps/Route8.asm](https://github.com/pret/pokecrystal/blob/master/maps/Route8.asm) has three `BIKER`s, `DWAYNE`, `HARRIS`, and `ZEKE`, that use `PAL_NPC_RED`, `PAL_NPC_GREEN`, and `PAL_NPC_BLUE` instead of `PAL_NPC_BROWN`; this is intentional since they're the "Kanto Pokémon Federation".)
+
+(The use of `SPRITE_ROCKER` instead of `SPRITE_COOLTRAINER_M` for `COOLTRAINERM NICK` may also be an intentional reference to the player's brother from the [Space World '97 beta](https://github.com/pret/pokegold-spaceworld).)
+
+
 ## No bump noise if standing on tile `$3E`
 
 **Fix:** Edit `DoPlayerMovement.CheckWarp` in [engine/overworld/player_movement.asm](https://github.com/pret/pokecrystal/blob/master/engine/overworld/player_movement.asm):
@@ -1857,6 +1887,31 @@ This bug can allow you to talk to Eusine in Celadon City and encounter Ho-Oh wit
  	ld a, [de]
  	cp [hl]
  	jr z, .found
+```
+
+
+## `CheckOwnMonAnywhere` does not check the Day-Care
+
+This bug can prevent you from talking to Eusine in Celadon City or encountering Ho-Oh when a caught legendary beast is in the Day-Care.
+
+**Fix:** Edit `CheckOwnMonAnywhere` in [engine/pokemon/search.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/search.asm):
+
+```diff
+ 	; If there are no monsters in the party,
+ 	; the player must not own any yet.
+ 	ld a, [wPartyCount]
+ 	and a
+ 	ret z
++
++	ld hl, wBreedMon1Species
++	ld bc, wBreedMon1OT
++	call CheckOwnMon
++	ret c ; found!
++
++	ld hl, wBreedMon2Species
++	ld bc, wBreedMon2OT
++	call CheckOwnMon
++	ret c ; found!
 ```
 
 
