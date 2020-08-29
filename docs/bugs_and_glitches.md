@@ -1591,6 +1591,8 @@ Finally, edit [engine/battle/read_trainer_party.asm](https://github.com/pret/pok
 
 ## Some trainer NPCs have inconsistent overworld sprites
 
+*Some of these may have been intentional behavior; use your own judgment for whether to fix them.*
+
 Most trainer classes always use the same sprite and color for their overworld NPCs. There are some exceptions:
 
 - [maps/FastShipCabins_SE_SSE_CaptainsCabin.asm](https://github.com/pret/pokecrystal/blob/master/maps/FastShipCabins_SE_SSE_CaptainsCabin.asm): `TrainerPsychicRodney` should use `SPRITE_YOUNGSTER`, not `SPRITE_SUPER_NERD`
@@ -1684,6 +1686,8 @@ This is a mistake with the “`…`” tile in [gfx/battle/hp_exp_bar_border.png
 
 
 ## Move selection menu doesn't handle joypad properly
+
+*This may have been intentional behavior; use your own judgment for whether to fix it.*
 
 ([Video](https://www.youtube.com/watch?v=vjFUo6Jr4po&t=438))
 
@@ -1891,6 +1895,8 @@ This bug can allow you to talk to Eusine in Celadon City and encounter Ho-Oh wit
 
 
 ## `CheckOwnMonAnywhere` does not check the Day-Care
+
+*This may have been intentional behavior; use your own judgment for whether to fix it.*
 
 This bug can prevent you from talking to Eusine in Celadon City or encountering Ho-Oh when a caught legendary beast is in the Day-Care.
 
