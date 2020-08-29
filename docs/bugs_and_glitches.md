@@ -63,7 +63,7 @@ Some fixes are mentioned as breaking compatibility with link battles. This can b
 - [No bump noise if standing on tile `$3E`](#no-bump-noise-if-standing-on-tile-3e)
 - [Playing Entei's Pokédex cry can distort Raikou's and Suicune's](#playing-enteis-pokédex-cry-can-distort-raikous-and-suicunes)
 - [In-battle “`…`” ellipsis is too high](#in-battle--ellipsis-is-too-high)
-- [Move selection menu doesn't handle joypad properly](#move-selection-menu-doesnt-handle-joypad-properly)
+- [Credits sequence changes move selection menu behavior](#credits-sequence-changes-move-selection-menu-behavior)
 - [Two tiles in the `port` tileset are drawn incorrectly](#two-tiles-in-the-port-tileset-are-drawn-incorrectly)
 - [`LoadMetatiles` wraps around past 128 blocks](#loadmetatiles-wraps-around-past-128-blocks)
 - [Surfing directly across a map connection does not load the new map](#surfing-directly-across-a-map-connection-does-not-load-the-new-map)
@@ -1685,14 +1685,11 @@ This is a mistake with the “`…`” tile in [gfx/battle/hp_exp_bar_border.png
 ![image](https://raw.githubusercontent.com/pret/pokecrystal/master/docs/images/hp_exp_bar_border.png)
 
 
-## Move selection menu doesn't handle joypad properly
-
-*This may have been intentional behavior; use your own judgment for whether to fix it.*
+## Credits sequence changes move selection menu behavior
 
 ([Video](https://www.youtube.com/watch?v=vjFUo6Jr4po&t=438))
 
-`hInMenu` isn't defined in the menu that handles selecting moves in a battle. Because of this, your cursor is usually rendered unable to keep scrolling when one of the directional keys is being held. It's up for debate whether this behavior was intentional or not, but this value should be defined when in the move selection menu. A value of 1 will allow it to keep scrolling, though it's usually 0 by default.
-There exists one way in which this behaviour would be temporarily changed in-game, and that's when the credits sequence is triggered, `hInMenu` will be set but never unset. This can be fixed with the following:
+To select a move in battle, you have to press and release the Up or Down buttons. However, after playing the credits sequence, holding down either button will continuously scroll through the moves.
 
 **Fix:** Edit `Credits` in [engine/movie/credits.asm](https://github.com/pret/pokecrystal/blob/master/engine/movie/credits.asm):
 
@@ -1718,16 +1715,15 @@ There exists one way in which this behaviour would be temporarily changed in-gam
  	ldh [rSVBK], a
 ```
 
+The `[hInMenu]` value determines this button behavior. However, the battle moves menu doesn't actually set `[hInMenu]` to anything, so either behavior *may* have been intentional. The default 0 prevents continuous scrolling; a value of 1 allows it. (The Japanese release sets it to 0.)
 
-If you want to make sure `hInMenu` always has a defined value in the move selection menu, the following code will set it to 1:
-
-**Fix:** Edit `BattleTurn` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
+**Optional fix:** To explicitly set a `[hInMenu]` for the moves menu, edit `BattleTurn` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
 
 ```diff
  BattleTurn:
 +	ldh a, [hInMenu]
 +	push af
-+	ld a, 1
++	ld a, 1 ; or "xor a" for the value 0
 +	ldh [hInMenu], a
 +
  .loop
