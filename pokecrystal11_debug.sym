@@ -46439,9 +46439,7 @@
 00:c689 wBT_OTTempMon2NameEnd
 00:c689 wBT_OTTempMon3Species
 00:c689 wBattleAnimParam
-00:c689 wPresentPower
 00:c689 wBT_OTTempMon3
-00:c689 wKickCounter
 00:c68a wc68a
 00:c68a wBT_OTTempMon3Item
 00:c68a wBattleScriptBuffer
