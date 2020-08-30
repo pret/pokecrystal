@@ -41,7 +41,7 @@ BattleCommand_Present:
 
 .got_power
 	ld a, c
-	ld [wPresentPower], a
+	ld [wBattleAnimParam], a
 	call AnimateCurrentMoveEitherSide
 	ld d, [hl]
 	pop bc
@@ -49,8 +49,8 @@ BattleCommand_Present:
 
 .heal_effect
 	pop bc
-	ld a, 3
-	ld [wPresentPower], a
+	ld a, $3 ; heal animation
+	ld [wBattleAnimParam], a
 	call AnimateCurrentMove
 	call BattleCommand_SwitchTurn
 	ld hl, AICheckPlayerMaxHP

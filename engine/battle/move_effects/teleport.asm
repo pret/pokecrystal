@@ -75,7 +75,7 @@ BattleCommand_Teleport:
 	ld [wNumHits], a
 	inc a
 	ld [wForcedSwitch], a
-	ld [wKickCounter], a
+	ld [wBattleAnimParam], a
 	call SetBattleDraw
 	call BattleCommand_LowerSub
 	call LoadMoveAnim

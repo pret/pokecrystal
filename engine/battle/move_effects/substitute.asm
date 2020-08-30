@@ -62,7 +62,7 @@ BattleCommand_Substitute:
 	xor a
 	ld [wNumHits], a
 	ld [wFXAnimID + 1], a
-	ld [wKickCounter], a
+	ld [wBattleAnimParam], a
 	ld a, SUBSTITUTE
 	call LoadAnim
 	jr .finish

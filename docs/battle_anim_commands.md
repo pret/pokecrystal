@@ -221,7 +221,7 @@ Does nothing. Unused.
 
 ## `$F8`: <code>anim_if_param_equal <i>value</i>, <i>address</i></code>
 
-Jumps to another script if `wBattleAnimParam` (aka `wKickCounter` or `wPresentPower`) is equal to *value*.
+Jumps to another script if `wBattleAnimParam` is equal to *value*.
 
 
 ## `$F9`: <code>anim_setvar <i>value</i></code>

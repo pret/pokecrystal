@@ -40,11 +40,11 @@ BattleCommand_MirrorMove:
 	call CheckUserIsCharging
 	jr nz, .done
 
-	ld a, [wKickCounter]
+	ld a, [wBattleAnimParam]
 	push af
 	call BattleCommand_LowerSub
 	pop af
-	ld [wKickCounter], a
+	ld [wBattleAnimParam], a
 
 .done
 	call BattleCommand_MoveDelay

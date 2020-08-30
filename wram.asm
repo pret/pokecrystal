@@ -531,10 +531,9 @@ wPlayerDamageTaken:: dw
 wEnemyDamageTaken:: dw
 
 wBattleReward:: ds 3
-wBattleAnimParam::
-wKickCounter::
-wPresentPower::
-	db
+
+wBattleAnimParam:: db
+
 wBattleScriptBuffer:: ds 40
 
 wBattleScriptBufferAddress:: dw
