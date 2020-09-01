@@ -5,7 +5,7 @@
 sgb_pal_set: MACRO
 	db (SGB_PAL_SET << 3) + 1
 	dw PREDEFPAL_\1, PREDEFPAL_\2, PREDEFPAL_\3, PREDEFPAL_\4
-	ds 7
+	ds 7, 0
 ENDM
 
 sgb_pal01: MACRO
@@ -85,7 +85,7 @@ PalPacket_9ce6:
 rept 6
 	RGB 00, 00, 00
 endr
-	ds 1
+	db 0
 
 PalPacket_9cf6:
 	sgb_pal23
@@ -93,4 +93,4 @@ PalPacket_9cf6:
 rept 6
 	RGB 00, 00, 00
 endr
-	ds 1
+	db 0

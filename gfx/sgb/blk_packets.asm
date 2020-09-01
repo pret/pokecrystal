@@ -16,12 +16,12 @@ ENDM
 BlkPacket_9a86:
 	attr_blk 1
 	attr_blk_data %011, 0,0,0, 00,00, 19,17
-	ds 8
+	ds 8, 0
 
 BlkPacket_GSIntroJigglypuffPikachu:
 	attr_blk 1
 	attr_blk_data %111, 1,1,0, 00,10, 19,13
-	ds 8
+	ds 8, 0
 
 BlkPacket_Battle:
 	attr_blk 5
@@ -34,22 +34,22 @@ BlkPacket_Battle:
 BlkPacket_StatsScreen:
 	attr_blk 1
 	attr_blk_data %111, 1,1,0, 00,01, 07,07 ; mon: pal 1
-	ds 8
+	ds 8, 0
 
 BlkPacket_MoveList:
 	attr_blk 1
 	attr_blk_data %111, 1,1,0, 11,01, 19,02
-	ds 8
+	ds 8, 0
 
 BlkPacket_Pokedex_PC:
 	attr_blk 1
 	attr_blk_data %111, 1,1,0, 01,01, 08,08 ; mon: pal 1
-	ds 8
+	ds 8, 0
 
 BlkPacket_PokedexUnownMode:
 	attr_blk 1
 	attr_blk_data %111, 1,1,0, 07,05, 13,11 ; unown: pal 1
-	ds 8
+	ds 8, 0
 
 BlkPacket_SlotMachine:
 	attr_blk 5
@@ -68,22 +68,22 @@ BlkPacket_PartyMenu: ; unreferenced
 	attr_blk_data %010, 0,0,0, 12,06, 18,07
 	attr_blk_data %010, 0,0,0, 12,08, 18,09
 	attr_blk_data %010, 0,0,0, 12,10, 18,11
-	ds 4
+	ds 4, 0
 
 BlkPacket_GSTitleScreen:
 	attr_blk 3
 	attr_blk_data %111, 0,0,2, 00,00, 19,04
 	attr_blk_data %011, 3,3,0, 00,06, 19,17
 	attr_blk_data %011, 1,1,0, 15,01, 18,04
-	ds 12
+	ds 12, 0
 
 BlkPacket_BetaTitleScreen:
 	attr_blk 1
 	attr_blk_data %111, 0,0,1, 00,00, 19,05 ; logo
-	ds 8
+	ds 8, 0
 
 BlkPacket_MagnetTrain:
 	attr_blk 2
 	attr_blk_data %111, 2,2,0, 00,04, 19,13 ; fence
 	attr_blk_data %011, 1,1,0, 00,06, 19,11 ; train
-	ds 2
+	ds 2, 0
