@@ -107,7 +107,7 @@ If your code is on GitHub, you can [link to specific lines][snippethelp]. Put "`
 Try asking on Discord or IRC (see [README.md](README.md)).
 
 [cygwin]: https://cygwin.com/install.html
-[rgbds]: https://github.com/rednex/rgbds/releases
+[rgbds]: https://github.com/gbdev/rgbds/releases
 [polished-map]: https://github.com/Rangi42/polished-map
 [gimp]: https://www.gimp.org/
 [paintdotnet]: https://www.getpaint.net/
