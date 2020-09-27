@@ -46,6 +46,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Moon Ball does not boost catch rate](#moon-ball-does-not-boost-catch-rate)
   - [Love Ball boosts catch rate for the wrong gender](#love-ball-boosts-catch-rate-for-the-wrong-gender)
   - [Fast Ball only boosts catch rate for three Pokémon](#fast-ball-only-boosts-catch-rate-for-three-pokémon)
+  - [Heavy Ball uses wrong weight value for three Pokémon](#heavy-ball-uses-wrong-weight-value-for-three-pokémon)
   - [Glacier Badge may not boost Special Defense depending on the value of Special Attack](#glacier-badge-may-not-boost-special-defense-depending-on-the-value-of-special-attack)
   - ["Smart" AI encourages Mean Look if its own Pokémon is badly poisoned](#smart-ai-encourages-mean-look-if-its-own-pokémon-is-badly-poisoned)
   - [AI makes a false assumption about `CheckTypeMatchup`](#ai-makes-a-false-assumption-about-checktypematchup)
@@ -971,6 +972,40 @@ This can occur if your party and current PC box are both full when you start the
 +	jr nz, .loop
  	sla b
  	jr c, .max
+```
+
+
+### Heavy Ball uses wrong weight value for three Pokémon
+
+**Fix:** Edit `GetPokedexEntryBank` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
+
+```diff
+ GetPokedexEntryBank:
+-; This function is buggy.
+-; It gets the wrong bank for Kadabra (64), Tauros (128), and Sunflora (192).
+-; Uncomment the line below to fix this.
+ 	push hl
+ 	push de
+ 	ld a, [wEnemyMonSpecies]
+-; dec a
++	dec a
+ 	rlca
+ 	rlca
+ 	maskbits NUM_DEX_ENTRY_BANKS
+ 	ld hl, .PokedexEntryBanks
+ 	ld d, 0
+ 	ld e, a
+ 	add hl, de
+ 	ld a, [hl]
+ 	pop de
+ 	pop hl
+ 	ret
+
+ .PokedexEntryBanks:
+ 	db BANK("Pokedex Entries 001-064")
+ 	db BANK("Pokedex Entries 065-128")
+ 	db BANK("Pokedex Entries 129-192")
+ 	db BANK("Pokedex Entries 193-251")
 ```
 
 
@@ -2222,7 +2257,7 @@ Then create two new routines, `InvalidateSave` and `InvalidateBackupSave`:
  	jr z, .skip
 -	; jr c, .skip
 +	jr c, .skip
- 
+
  	; could have done "inc hl" instead
  	ld bc, 1
  	add hl, bc
