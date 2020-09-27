@@ -839,10 +839,9 @@ This can bring Pokémon straight from level 1 to 100 by gaining just a few exper
  CalcExpAtLevel:
  ; (a/b)*n**3 + c*n**2 + d*n - e
 +	ld a, d
-+	cp 1
++	dec a
 +	jr nz, .UseExpFormula
 +; Pokémon have 0 experience at level 1
-+	xor a
 +	ld hl, hProduct
 +	ld [hli], a
 +	ld [hli], a
