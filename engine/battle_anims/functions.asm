@@ -14,10 +14,10 @@ DoBattleAnimFrame:
 .Jumptable:
 ; entries correspond to BATTLEANIMFUNC_* constants
 	dw BattleAnimFunction_Null ; 00
-	dw BattleAnimFunction_01 ; 01
-	dw BattleAnimFunction_02 ; 02
-	dw BattleAnimFunction_03 ; 03
-	dw BattleAnimFunction_04 ; 04
+	dw BattleAnimFunction_DiagonalMoveStop ; 01
+	dw BattleAnimFunction_DiagonalMoveClear ; 02
+	dw BattleAnimFunction_TranslateSmallRadius ; 03
+	dw BattleAnimFunction_DiagonalSineMove ; 04
 	dw BattleAnimFunction_ThrowFromPlayerToEnemy ; 05
 	dw BattleAnimFunction_ThrowFromPlayerToEnemyAndDisappear ; 06
 	dw BattleAnimFunction_07 ; 07
@@ -142,7 +142,8 @@ BattleAnimFunction_ThrowFromPlayerToEnemy:
 	scf
 	ret
 
-BattleAnimFunction_04:
+BattleAnimFunction_DiagonalSineMove:
+; Wave motion from one mon to another. Obj is cleared when it reaches x coord $88. Examples: Shadow Ball, Dragon Rage
 	ld hl, BATTLEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld a, [hl]
@@ -183,7 +184,8 @@ BattleAnimFunction_04:
 	ld [hl], a
 	ret
 
-BattleAnimFunction_03:
+BattleAnimFunction_TranslateSmallRadius:
+; Slow circular motion around a small radius center. Examples: Thunderbolt, Flamethrower
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
@@ -229,7 +231,8 @@ BattleAnimFunction_03:
 	inc [hl]
 	ret
 
-BattleAnimFunction_01:
+BattleAnimFunction_DiagonalMoveStop:
+; Moves object diagonally at a ~30° angle towards opponent and stops when it reaches x coord $84. Obj Param changes the speed
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
@@ -250,7 +253,8 @@ BattleAnimFunction_01:
 	call Functionce70a
 	ret
 
-BattleAnimFunction_02:
+BattleAnimFunction_DiagonalMoveClear:
+; Same as BattleAnimFunction_01 but objs are cleared when they reach x coord $84
 	ld hl, BATTLEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld a, [hl]
@@ -1932,7 +1936,7 @@ Functioncdaf9:
 	ret
 
 BattleAnimFunction_1A:
-	call BattleAnimFunction_03
+	call BattleAnimFunction_TranslateSmallRadius
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
