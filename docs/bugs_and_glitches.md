@@ -987,7 +987,7 @@ This can occur if your party and current PC box are both full when you start the
  	push hl
  	push de
  	ld a, [wEnemyMonSpecies]
--; dec a
+-	; dec a
 +	dec a
  	rlca
  	rlca
@@ -1361,6 +1361,8 @@ Then edit `SurfStartStep` in [engine/overworld/player_object.asm](https://github
 +	db D_LEFT,  0, -1
 +	db D_RIGHT, 0, -1
 ```
+
+This fix will make the player enter the water at a normal walking speed, not with a slow step.
 
 
 ### Swimming NPCs aren't limited by their movement radius
