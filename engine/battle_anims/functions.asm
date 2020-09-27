@@ -13,86 +13,86 @@ DoBattleAnimFrame:
 
 .Jumptable:
 ; entries correspond to BATTLEANIMFUNC_* constants
-	dw BattleAnimFunction_Null ; 00
-	dw BattleAnimFunction_DiagonalMoveStop ; 01
-	dw BattleAnimFunction_DiagonalMoveClear ; 02
-	dw BattleAnimFunction_TranslateSmallRadius ; 03
-	dw BattleAnimFunction_DiagonalSineMove ; 04
-	dw BattleAnimFunction_ThrowFromPlayerToEnemy ; 05
-	dw BattleAnimFunction_ThrowFromPlayerToEnemyAndDisappear ; 06
-	dw BattleAnimFunction_07 ; 07
-	dw BattleAnimFunction_08 ; 08
-	dw BattleAnimFunction_09 ; 09
-	dw BattleAnimFunction_0A ; 0a
-	dw BattleAnimFunction_RazorLeaf ; 0b
-	dw BattleAnimFunction_0C ; 0c
-	dw BattleAnimFunction_0D ; 0d
-	dw BattleAnimFunction_0E ; 0e
-	dw BattleAnimFunction_0F ; 0f
-	dw BattleAnimFunction_10 ; 10
-	dw BattleAnimFunction_11 ; 11
-	dw BattleAnimFunction_PokeBall ; 12
-	dw BattleAnimFunction_PokeBallBlocked ; 13
-	dw BattleAnimFunction_14 ; 14
-	dw BattleAnimFunction_15 ; 15
-	dw BattleAnimFunction_16 ; 16
-	dw BattleAnimFunction_17 ; 17
-	dw BattleAnimFunction_18 ; 18
-	dw BattleAnimFunction_19 ; 19
-	dw BattleAnimFunction_1A ; 1a
-	dw BattleAnimFunction_1B ; 1b
-	dw BattleAnimFunction_1C ; 1c
-	dw BattleAnimFunction_1D ; 1d
-	dw BattleAnimFunction_1E ; 1e
-	dw BattleAnimFunction_1F ; 1f
-	dw BattleAnimFunction_LeechSeed ; 20
-	dw BattleAnimFunction_21 ; 21
-	dw BattleAnimFunction_22 ; 22
-	dw BattleAnimFunction_23 ; 23
-	dw BattleAnimFunction_24 ; 24
-	dw BattleAnimFunction_25 ; 25
-	dw BattleAnimFunction_26 ; 26
-	dw BattleAnimFunction_27 ; 27
-	dw BattleAnimFunction_28 ; 28
-	dw BattleAnimFunction_SpiralDescent ; 29
-	dw BattleAnimFunction_PoisonGas ; 2a
-	dw BattleAnimFunction_Horn ; 2b
-	dw BattleAnimFunction_2C ; 2c
-	dw BattleAnimFunction_2D ; 2d
-	dw BattleAnimFunction_2E ; 2e
-	dw BattleAnimFunction_2F ; 2f
-	dw BattleAnimFunction_30 ; 30
-	dw BattleAnimFunction_31 ; 31
-	dw BattleAnimFunction_32 ; 32
-	dw BattleAnimFunction_33 ; 33
-	dw BattleAnimFunction_34 ; 34
-	dw BattleAnimFunction_35 ; 35
-	dw BattleAnimFunction_36 ; 36
-	dw BattleAnimFunction_37 ; 37
-	dw BattleAnimFunction_38 ; 38
-	dw BattleAnimFunction_39 ; 39
-	dw BattleAnimFunction_3A ; 3a
-	dw BattleAnimFunction_3B ; 3b
-	dw BattleAnimFunction_3C ; 3c
-	dw BattleAnimFunction_3D ; 3d
-	dw BattleAnimFunction_3E ; 3e
-	dw BattleAnimFunction_3F ; 3f
-	dw BattleAnimFunction_40 ; 40
-	dw BattleAnimFunction_41 ; 41
-	dw BattleAnimFunction_42 ; 42
-	dw BattleAnimFunction_43 ; 43
-	dw BattleAnimFunction_44 ; 44
-	dw BattleAnimFunction_45 ; 45
-	dw BattleAnimFunction_46 ; 46
-	dw BattleAnimFunction_47 ; 47
-	dw BattleAnimFunction_48 ; 48
-	dw BattleAnimFunction_49 ; 49
-	dw BattleAnimFunction_4A ; 4a
-	dw BattleAnimFunction_4B ; 4b
-	dw BattleAnimFunction_4C ; 4c
-	dw BattleAnimFunction_4D ; 4d
-	dw BattleAnimFunction_4E ; 4e
-	dw BattleAnimFunction_4F ; 4f
+	dw BattleAnimFunction_Null                              ; 00
+	dw BattleAnimFunction_MoveFromUserToTarget              ; BATTLEANIMFUNC_01
+	dw BattleAnimFunction_MoveFromUserToTargetAndDisappear  ; BATTLEANIMFUNC_02
+	dw BattleAnimFunction_MoveInCircle                      ; BATTLEANIMFUNC_03
+	dw BattleAnimFunction_MoveVerticalWaveToTarget          ; BATTLEANIMFUNC_04
+	dw BattleAnimFunction_ThrowFromUserToTarget             ; BATTLEANIMFUNC_05
+	dw BattleAnimFunction_ThrowFromUserToTargetAndDisappear ; BATTLEANIMFUNC_06
+	dw BattleAnimFunction_DropObject                        ; BATTLEANIMFUNC_07
+	dw BattleAnimFunction_MoveFromUserToTargetSpinAround    ; BATTLEANIMFUNC_08
+	dw BattleAnimFunction_Shake                             ; BATTLEANIMFUNC_09
+	dw BattleAnimFunction_FireBlast                         ; BATTLEANIMFUNC_0a
+	dw BattleAnimFunction_RazorLeaf                         ; BATTLEANIMFUNC_0b
+	dw BattleAnimFunction_Bubble                            ; BATTLEANIMFUNC_0c
+	dw BattleAnimFunction_Surf                              ; BATTLEANIMFUNC_0d
+	dw BattleAnimFunction_Sing                              ; BATTLEANIMFUNC_0e
+	dw BattleAnimFunction_WaterGun                          ; BATTLEANIMFUNC_0f
+	dw BattleAnimFunction_Ember                             ; BATTLEANIMFUNC_10
+	dw BattleAnimFunction_Powder                            ; BATTLEANIMFUNC_11
+	dw BattleAnimFunction_PokeBall                          ; BATTLEANIMFUNC_12
+	dw BattleAnimFunction_PokeBallBlocked                   ; BATTLEANIMFUNC_13
+	dw BattleAnimFunction_Recover                           ; BATTLEANIMFUNC_14
+	dw BattleAnimFunction_ThunderWave                       ; BATTLEANIMFUNC_15
+	dw BattleAnimFunction_Clamp                             ; BATTLEANIMFUNC_16
+	dw BattleAnimFunction_Bite                              ; BATTLEANIMFUNC_17
+	dw BattleAnimFunction_SolarBeam                         ; BATTLEANIMFUNC_18
+	dw BattleAnimFunction_Gust                              ; BATTLEANIMFUNC_19
+	dw BattleAnimFunction_RazorWind                         ; BATTLEANIMFUNC_1a
+	dw BattleAnimFunction_Kick                              ; BATTLEANIMFUNC_1b
+	dw BattleAnimFunction_Absorb                            ; BATTLEANIMFUNC_1c
+	dw BattleAnimFunction_Egg                               ; BATTLEANIMFUNC_1d
+	dw BattleAnimFunction_MoveUp                            ; BATTLEANIMFUNC_1e
+	dw BattleAnimFunction_Wrap                              ; BATTLEANIMFUNC_1f
+	dw BattleAnimFunction_LeechSeed                         ; BATTLEANIMFUNC_20
+	dw BattleAnimFunction_21 ; BATTLEANIMFUNC_21
+	dw BattleAnimFunction_22 ; BATTLEANIMFUNC_22
+	dw BattleAnimFunction_23 ; BATTLEANIMFUNC_23
+	dw BattleAnimFunction_24 ; BATTLEANIMFUNC_24
+	dw BattleAnimFunction_25 ; BATTLEANIMFUNC_25
+	dw BattleAnimFunction_26 ; BATTLEANIMFUNC_26
+	dw BattleAnimFunction_27 ; BATTLEANIMFUNC_27
+	dw BattleAnimFunction_28 ; BATTLEANIMFUNC_28
+	dw BattleAnimFunction_SpiralDescent ; BATTLEANIMFUNC_29
+	dw BattleAnimFunction_PoisonGas ; BATTLEANIMFUNC_2a
+	dw BattleAnimFunction_Horn ; BATTLEANIMFUNC_2b
+	dw BattleAnimFunction_2C ; BATTLEANIMFUNC_2c
+	dw BattleAnimFunction_2D ; BATTLEANIMFUNC_2d
+	dw BattleAnimFunction_2E ; BATTLEANIMFUNC_2e
+	dw BattleAnimFunction_2F ; BATTLEANIMFUNC_2f
+	dw BattleAnimFunction_30 ; BATTLEANIMFUNC_30
+	dw BattleAnimFunction_31 ; BATTLEANIMFUNC_31
+	dw BattleAnimFunction_32 ; BATTLEANIMFUNC_32
+	dw BattleAnimFunction_33 ; BATTLEANIMFUNC_33
+	dw BattleAnimFunction_34 ; BATTLEANIMFUNC_34
+	dw BattleAnimFunction_35 ; BATTLEANIMFUNC_35
+	dw BattleAnimFunction_36 ; BATTLEANIMFUNC_36
+	dw BattleAnimFunction_37 ; BATTLEANIMFUNC_37
+	dw BattleAnimFunction_38 ; BATTLEANIMFUNC_38
+	dw BattleAnimFunction_39 ; BATTLEANIMFUNC_39
+	dw BattleAnimFunction_3A ; BATTLEANIMFUNC_3a
+	dw BattleAnimFunction_3B ; BATTLEANIMFUNC_3b
+	dw BattleAnimFunction_3C ; BATTLEANIMFUNC_3c
+	dw BattleAnimFunction_3D ; BATTLEANIMFUNC_3d
+	dw BattleAnimFunction_3E ; BATTLEANIMFUNC_3e
+	dw BattleAnimFunction_3F ; BATTLEANIMFUNC_3f
+	dw BattleAnimFunction_40 ; BATTLEANIMFUNC_40
+	dw BattleAnimFunction_41 ; BATTLEANIMFUNC_41
+	dw BattleAnimFunction_42 ; BATTLEANIMFUNC_42
+	dw BattleAnimFunction_43 ; BATTLEANIMFUNC_43
+	dw BattleAnimFunction_44 ; BATTLEANIMFUNC_44
+	dw BattleAnimFunction_45 ; BATTLEANIMFUNC_45
+	dw BattleAnimFunction_46 ; BATTLEANIMFUNC_46
+	dw BattleAnimFunction_47 ; BATTLEANIMFUNC_47
+	dw BattleAnimFunction_48 ; BATTLEANIMFUNC_48
+	dw BattleAnimFunction_49 ; BATTLEANIMFUNC_49
+	dw BattleAnimFunction_4A ; BATTLEANIMFUNC_4a
+	dw BattleAnimFunction_4B ; BATTLEANIMFUNC_4b
+	dw BattleAnimFunction_4C ; BATTLEANIMFUNC_4c
+	dw BattleAnimFunction_4D ; BATTLEANIMFUNC_4d
+	dw BattleAnimFunction_4E ; BATTLEANIMFUNC_4e
+	dw BattleAnimFunction_4F ; BATTLEANIMFUNC_4f
 
 BattleAnimFunction_Null:
 	call BattleAnim_AnonJumptable
@@ -104,13 +104,13 @@ BattleAnimFunction_Null:
 .zero
 	ret
 
-BattleAnimFunction_ThrowFromPlayerToEnemyAndDisappear:
-	call BattleAnimFunction_ThrowFromPlayerToEnemy
+BattleAnimFunction_ThrowFromUserToTargetAndDisappear:
+	call BattleAnimFunction_ThrowFromUserToTarget
 	ret c
 	call DeinitBattleAnimation
 	ret
 
-BattleAnimFunction_ThrowFromPlayerToEnemy:
+BattleAnimFunction_ThrowFromUserToTarget:
 	; If x coord at $88 or beyond, abort.
 	ld hl, BATTLEANIMSTRUCT_XCOORD
 	add hl, bc
@@ -142,7 +142,7 @@ BattleAnimFunction_ThrowFromPlayerToEnemy:
 	scf
 	ret
 
-BattleAnimFunction_DiagonalSineMove:
+BattleAnimFunction_MoveVerticalWaveToTarget:
 ; Wave motion from one mon to another. Obj is cleared when it reaches x coord $88. Examples: Shadow Ball, Dragon Rage
 	ld hl, BATTLEANIMSTRUCT_XCOORD
 	add hl, bc
@@ -184,8 +184,9 @@ BattleAnimFunction_DiagonalSineMove:
 	ld [hl], a
 	ret
 
-BattleAnimFunction_TranslateSmallRadius:
-; Slow circular motion around a small radius center. Examples: Thunderbolt, Flamethrower
+BattleAnimFunction_MoveInCircle:
+; Slow circular motion. Examples: Thunderbolt, Flamethrower
+; Obj Param: Distance from center (masked with $7F). Bit 7 causes object to start on other side of the circle
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
@@ -231,7 +232,7 @@ BattleAnimFunction_TranslateSmallRadius:
 	inc [hl]
 	ret
 
-BattleAnimFunction_DiagonalMoveStop:
+BattleAnimFunction_MoveFromUserToTarget:
 ; Moves object diagonally at a ~30° angle towards opponent and stops when it reaches x coord $84. Obj Param changes the speed
 	call BattleAnim_AnonJumptable
 .anon_dw
@@ -253,7 +254,7 @@ BattleAnimFunction_DiagonalMoveStop:
 	call Functionce70a
 	ret
 
-BattleAnimFunction_DiagonalMoveClear:
+BattleAnimFunction_MoveFromUserToTargetAndDisappear:
 ; Same as BattleAnimFunction_01 but objs are cleared when they reach x coord $84
 	ld hl, BATTLEANIMSTRUCT_XCOORD
 	add hl, bc
@@ -291,7 +292,7 @@ BattleAnimFunction_PokeBall:
 	ret
 
 .one
-	call BattleAnimFunction_ThrowFromPlayerToEnemy
+	call BattleAnimFunction_ThrowFromUserToTarget
 	ret c
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
 	add hl, bc
@@ -404,7 +405,7 @@ BattleAnimFunction_PokeBallBlocked:
 	ld a, [hl]
 	cp $70
 	jr nc, .next
-	call BattleAnimFunction_ThrowFromPlayerToEnemy
+	call BattleAnimFunction_ThrowFromUserToTarget
 	ret
 
 .next
@@ -455,7 +456,7 @@ GetBallAnimPal:
 
 INCLUDE "data/battle_anims/ball_colors.asm"
 
-BattleAnimFunction_10:
+BattleAnimFunction_Ember:
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
@@ -497,7 +498,8 @@ BattleAnimFunction_10:
 .four
 	ret
 
-BattleAnimFunction_07:
+BattleAnimFunction_DropObject:
+; Drops obj. The Obj Param dictates how fast it is (lower value is faster) and how long it stays bouncing (lower value is longer). Example: Rock Slide
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
@@ -544,7 +546,8 @@ BattleAnimFunction_07:
 	call DeinitBattleAnimation
 	ret
 
-BattleAnimFunction_08:
+BattleAnimFunction_MoveFromUserToTargetSpinAround:
+; Object moves from user to target target and spins around it once. Example: Fire Spin, Swift
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
@@ -656,7 +659,9 @@ BattleAnimFunction_08:
 	jr nz, .loop
 	ret
 
-BattleAnimFunction_09:
+BattleAnimFunction_Shake:
+; Object switches position side to side. Obj Param defines how far to move it. Example: Dynamic Punch
+; Some objects use this function with a Param of 0
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
@@ -704,7 +709,7 @@ BattleAnimFunction_09:
 	call DeinitBattleAnimation
 	ret
 
-BattleAnimFunction_0A:
+BattleAnimFunction_FireBlast:
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
@@ -773,27 +778,32 @@ BattleAnimFunction_0A:
 	call DeinitBattleAnimation
 	ret
 
-.one
+.one 
+	; Flame that moves upward
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
 	add hl, bc
 	dec [hl]
 	ret
 
 .four
+	; Flame that moves down and left
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
 	add hl, bc
 	inc [hl]
 .two
+	; Flame that moves left
 	ld hl, BATTLEANIMSTRUCT_XOFFSET
 	add hl, bc
 	dec [hl]
 	ret
 
 .five
+	; Flame that moves down and right
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
 	add hl, bc
 	inc [hl]
 .three
+	; Flame that moves right
 	ld hl, BATTLEANIMSTRUCT_XOFFSET
 	add hl, bc
 	inc [hl]
@@ -948,6 +958,7 @@ BattleAnimFunction_RazorLeaf:
 	ret
 
 Functioncd557:
+; Affects sine movement based on bit 7 of Obj Param
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
 	ld a, [hl]
@@ -1047,7 +1058,7 @@ BattleAnimFunction_4E:
 	ld [hl], e
 	ret
 
-BattleAnimFunction_0C:
+BattleAnimFunction_Bubble:
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
@@ -1131,7 +1142,7 @@ BattleAnimFunction_0C:
 	ld [hl], d
 	ret
 
-BattleAnimFunction_0D:
+BattleAnimFunction_Surf:
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
@@ -1216,7 +1227,7 @@ asm_cd6da:
 	ldh [hLYOverrideStart], a
 	ret
 
-BattleAnimFunction_0E:
+BattleAnimFunction_Sing:
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw Functioncd6ea
@@ -1253,7 +1264,7 @@ Functioncd6f7:
 	ld [hl], a
 	ret
 
-BattleAnimFunction_0F:
+BattleAnimFunction_WaterGun:
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw Functioncd725
@@ -1268,7 +1279,7 @@ Functioncd728:
 	add hl, bc
 	ld a, [hl]
 	cp $30
-	jr c, .asm_cd747
+	jr c, .run_down
 	ld a, $2
 	call Functionce70a
 	ld hl, BATTLEANIMSTRUCT_VAR1
@@ -1282,7 +1293,7 @@ Functioncd728:
 	ld [hl], a
 	ret
 
-.asm_cd747
+.run_down
 	call BattleAnim_IncAnonJumptableIndex
 	ld a, BATTLEANIMFRAMESET_28
 	call ReinitBattleAnimFrameset
@@ -1302,27 +1313,28 @@ Functioncd763:
 	add hl, bc
 	ld a, [hl]
 	cp $18
-	jr nc, .asm_cd76e
+	jr nc, .splash
 	inc [hl]
 	ret
 
-.asm_cd76e
+.splash
 	call BattleAnim_IncAnonJumptableIndex
 	ld a, BATTLEANIMFRAMESET_29
 	call ReinitBattleAnimFrameset
 Functioncd776:
 	ret
 
-BattleAnimFunction_11:
+BattleAnimFunction_Powder:
+; Obj moves down and disappears at position $38
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld a, [hl]
 	cp $38
-	jr c, .asm_cd784
+	jr c, .move
 	call DeinitBattleAnimation
 	ret
 
-.asm_cd784
+.move
 	ld a, [hl]
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
@@ -1338,6 +1350,7 @@ BattleAnimFunction_11:
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], d
+	; Shakes object back and forth 16 pixels
 	ld hl, BATTLEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld a, [hl]
@@ -1345,7 +1358,8 @@ BattleAnimFunction_11:
 	ld [hl], a
 	ret
 
-BattleAnimFunction_14:
+BattleAnimFunction_Recover:
+; Obj moves in an ever shrinking circle. Obj Param defines initial position in the circle
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw Functioncd7ab
@@ -1413,7 +1427,7 @@ Functioncd7d2:
 	dec [hl]
 	ret
 
-BattleAnimFunction_15:
+BattleAnimFunction_ThunderWave:
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw Functioncd81f
@@ -1432,7 +1446,10 @@ Functioncd820:
 	call DeinitBattleAnimation
 	ret
 
-BattleAnimFunction_16:
+BattleAnimFunction_Clamp:
+; Claps two objects together, twice. Also used by Encore
+; Second object's frameset and position relative to first are both defined via this function
+; Obj Param: Distance from center (masked with $7F). Bit 7 flips object horizontally by switching to a different frameset
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw Functioncd835
@@ -1454,17 +1471,17 @@ Functioncd835:
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
 	bit 7, [hl]
-	jr nz, .asm_cd852
+	jr nz, .encore
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
 	ld [hl], $10
-	jr .asm_cd858
+	jr .clamp
 
-.asm_cd852
+.encore
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
 	ld [hl], $30
-.asm_cd858
+.clamp
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
 	ld a, [hl]
@@ -1486,15 +1503,15 @@ Functioncd860:
 	ld hl, BATTLEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hl]
-	inc a ; BATTLEANIMFRAMESET_3B
-	      ; BATTLEANIMFRAMESET_A1
+	inc a ; BATTLEANIMFRAMESET_3B (Clamp Flipped)
+	      ; BATTLEANIMFRAMESET_A1 (Hands Flipped)
 	jr .reinit
 
 .load_no_inc
 	ld hl, BATTLEANIMSTRUCT_VAR2
 	add hl, bc
-	ld a, [hl] ; BATTLEANIMFRAMESET_3A
-	           ; BATTLEANIMFRAMESET_A0
+	ld a, [hl] ; BATTLEANIMFRAMESET_3A (Clamp)
+	           ; BATTLEANIMFRAMESET_A0 (Hands)
 .reinit
 	call ReinitBattleAnimFrameset
 	ld hl, BATTLEANIMSTRUCT_VAR1
@@ -1513,7 +1530,10 @@ Functioncd893:
 	ld [hl], $1
 	ret
 
-BattleAnimFunction_17:
+BattleAnimFunction_Bite:
+; Claps two objects together (vertically), twice
+; Second object's frameset and position relative to first are both defined via this function
+; Obj Param: Distance from center (masked with $7F). Bit 7 flips object vertically by switching to a different frameset
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw Functioncd8ab
@@ -1584,7 +1604,8 @@ Functioncd8f9:
 	ld [hl], $1
 	ret
 
-BattleAnimFunction_18:
+BattleAnimFunction_SolarBeam:
+; Solar Beam charge up animation
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw Functioncd907
@@ -1641,7 +1662,7 @@ Functioncd913:
 	call DeinitBattleAnimation
 	ret
 
-BattleAnimFunction_19:
+BattleAnimFunction_Gust:
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw Functioncd961
@@ -1763,7 +1784,9 @@ Functioncd9f4:
 Unknown_cda01:
 	db 8, 6, 5, 4, 5, 6, 8, 12, 16
 
-BattleAnimFunction_1C:
+BattleAnimFunction_Absorb:
+; Moves object from target to user and disappears when reaches x coord $30. Example: Absorb, Mega Drain, Leech Seed status
+; Obj Param: Speed in the X axis
 	ld hl, BATTLEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld a, [hl]
@@ -1792,7 +1815,8 @@ BattleAnimFunction_1C:
 	jr nz, .asm_cda2c
 	ret
 
-BattleAnimFunction_1F:
+BattleAnimFunction_Wrap:
+; Plays out object Frameset. Use anim_incobj to move to next frameset
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw Functioncda4c
@@ -1807,7 +1831,7 @@ Functioncda3a:
 	      ; BATTLEANIMFRAMESET_55
 	call ReinitBattleAnimFrameset
 	call BattleAnim_IncAnonJumptableIndex
-	ld hl, BATTLEANIMSTRUCT_VAR1
+	ld hl, BATTLEANIMSTRUCT_VAR1 ; Unused?
 	add hl, bc
 	ld [hl], $8
 Functioncda4c:
@@ -1935,8 +1959,9 @@ Functioncdae9:
 Functioncdaf9:
 	ret
 
-BattleAnimFunction_1A:
-	call BattleAnimFunction_TranslateSmallRadius
+BattleAnimFunction_RazorWind:
+	call BattleAnimFunction_MoveInCircle
+	; Causes object to skip ahead the circular motion every frame
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
@@ -1944,19 +1969,20 @@ BattleAnimFunction_1A:
 	ld [hl], a
 	ret
 
-BattleAnimFunction_1B:
+BattleAnimFunction_Kick:
+; Uses anim_setobj for different kick types
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw Functioncdb13
 	dw Functioncdb14
-	dw Functioncdb28
-	dw Functioncdb50
+	dw Functioncdb28 ; 2 (Jump Kick, Hi Jump Kick)
+	dw Functioncdb50 ; 3 (Rolling Kick)
 	dw Functioncdb65
 
 Functioncdb13:
 	ret
 
-Functioncdb14:
+Functioncdb14: ; Unused?
 	ld hl, BATTLEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld a, [hl]
@@ -2027,7 +2053,8 @@ Functioncdb65:
 	ld [hl], a
 	ret
 
-BattleAnimFunction_1D:
+BattleAnimFunction_Egg:
+; Used in Egg Bomb and Softboiled
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw Functioncdb9f
@@ -2230,7 +2257,9 @@ Functioncdc75:
 	call BattleAnim_IncAnonJumptableIndex
 	ret
 
-BattleAnimFunction_1E:
+BattleAnimFunction_MoveUp:
+; Moves object up for 41 frames
+; Obj Param: Movement speed
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld a, [hl]
