@@ -3053,7 +3053,7 @@ Functionce0f8:
 	call DeinitBattleAnimation
 	ret
 
-.asm_ce105
+.move_to_target
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
 	ld a, [hl]
