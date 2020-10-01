@@ -45,7 +45,7 @@ endr
 	ld [hli], a ; BATTLEANIMSTRUCT_OAMFLAGS
 	ld a, [de]
 	inc de
-	ld [hli], a ; BATTLEANIMSTRUCT_02
+	ld [hli], a ; BATTLEANIMSTRUCT_FIX_Y
 	ld a, [de]
 	inc de
 	ld [hli], a ; BATTLEANIMSTRUCT_FRAMESET_ID
@@ -211,10 +211,10 @@ InitBattleAnimBuffer:
 	add hl, bc
 	ld a, [hl]
 	ld [wBattleAnimTempPalette], a
-	ld hl, BATTLEANIMSTRUCT_02
+	ld hl, BATTLEANIMSTRUCT_FIX_Y
 	add hl, bc
 	ld a, [hl]
-	ld [wBattleAnimTempField02], a
+	ld [wBattleAnimTempFixY], a
 	ld hl, BATTLEANIMSTRUCT_TILEID
 	add hl, bc
 	ld a, [hli]
@@ -248,7 +248,7 @@ InitBattleAnimBuffer:
 	ld [wBattleAnimTempXCoord], a
 	ld a, [hli]
 	ld d, a
-	ld a, [wBattleAnimTempField02]
+	ld a, [wBattleAnimTempFixY]
 	cp $ff
 	jr nz, .check_kinesis_softboiled_milkdrink
 	ld a, 5 * 8

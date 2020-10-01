@@ -13,86 +13,86 @@ DoBattleAnimFrame:
 
 .Jumptable:
 ; entries correspond to BATTLEANIMFUNC_* constants
-	dw BattleAnimFunction_Null                              ; 00
-	dw BattleAnimFunction_MoveFromUserToTarget              ; BATTLEANIMFUNC_01
-	dw BattleAnimFunction_MoveFromUserToTargetAndDisappear  ; BATTLEANIMFUNC_02
-	dw BattleAnimFunction_MoveInCircle                      ; BATTLEANIMFUNC_03
-	dw BattleAnimFunction_MoveVerticalWaveToTarget          ; BATTLEANIMFUNC_04
-	dw BattleAnimFunction_ThrowFromUserToTarget             ; BATTLEANIMFUNC_05
-	dw BattleAnimFunction_ThrowFromUserToTargetAndDisappear ; BATTLEANIMFUNC_06
-	dw BattleAnimFunction_DropObject                        ; BATTLEANIMFUNC_07
-	dw BattleAnimFunction_MoveFromUserToTargetSpinAround    ; BATTLEANIMFUNC_08
-	dw BattleAnimFunction_Shake                             ; BATTLEANIMFUNC_09
-	dw BattleAnimFunction_FireBlast                         ; BATTLEANIMFUNC_0a
-	dw BattleAnimFunction_RazorLeaf                         ; BATTLEANIMFUNC_0b
-	dw BattleAnimFunction_Bubble                            ; BATTLEANIMFUNC_0c
-	dw BattleAnimFunction_Surf                              ; BATTLEANIMFUNC_0d
-	dw BattleAnimFunction_Sing                              ; BATTLEANIMFUNC_0e
-	dw BattleAnimFunction_WaterGun                          ; BATTLEANIMFUNC_0f
-	dw BattleAnimFunction_Ember                             ; BATTLEANIMFUNC_10
-	dw BattleAnimFunction_Powder                            ; BATTLEANIMFUNC_11
-	dw BattleAnimFunction_PokeBall                          ; BATTLEANIMFUNC_12
-	dw BattleAnimFunction_PokeBallBlocked                   ; BATTLEANIMFUNC_13
-	dw BattleAnimFunction_Recover                           ; BATTLEANIMFUNC_14
-	dw BattleAnimFunction_ThunderWave                       ; BATTLEANIMFUNC_15
-	dw BattleAnimFunction_Clamp                             ; BATTLEANIMFUNC_16
-	dw BattleAnimFunction_Bite                              ; BATTLEANIMFUNC_17
-	dw BattleAnimFunction_SolarBeam                         ; BATTLEANIMFUNC_18
-	dw BattleAnimFunction_Gust                              ; BATTLEANIMFUNC_19
-	dw BattleAnimFunction_RazorWind                         ; BATTLEANIMFUNC_1a
-	dw BattleAnimFunction_Kick                              ; BATTLEANIMFUNC_1b
-	dw BattleAnimFunction_Absorb                            ; BATTLEANIMFUNC_1c
-	dw BattleAnimFunction_Egg                               ; BATTLEANIMFUNC_1d
-	dw BattleAnimFunction_MoveUp                            ; BATTLEANIMFUNC_1e
-	dw BattleAnimFunction_Wrap                              ; BATTLEANIMFUNC_1f
-	dw BattleAnimFunction_LeechSeed                         ; BATTLEANIMFUNC_20
-	dw BattleAnimFunction_Sound                             ; BATTLEANIMFUNC_21
-	dw BattleAnimFunction_ConfuseRay                        ; BATTLEANIMFUNC_22
-	dw BattleAnimFunction_Dizzy                             ; BATTLEANIMFUNC_23
-	dw BattleAnimFunction_Amnesia                           ; BATTLEANIMFUNC_24
-	dw BattleAnimFunction_Sleep                             ; BATTLEANIMFUNC_25
-	dw BattleAnimFunction_Dig                               ; BATTLEANIMFUNC_26
-	dw BattleAnimFunction_String                            ; BATTLEANIMFUNC_27
-	dw BattleAnimFunction_Paralyzed                         ; BATTLEANIMFUNC_28
-	dw BattleAnimFunction_SpiralDescent                     ; BATTLEANIMFUNC_29
-	dw BattleAnimFunction_PoisonGas                         ; BATTLEANIMFUNC_2a
-	dw BattleAnimFunction_Horn                              ; BATTLEANIMFUNC_2b
-	dw BattleAnimFunction_Needle                            ; BATTLEANIMFUNC_2c
-	dw BattleAnimFunction_PetalDance                        ; BATTLEANIMFUNC_2d
-	dw BattleAnimFunction_ThiefPayday                       ; BATTLEANIMFUNC_2e
-	dw BattleAnimFunction_AbsorbCircle                      ; BATTLEANIMFUNC_2f
-	dw BattleAnimFunction_Bonemerang                        ; BATTLEANIMFUNC_30
-	dw BattleAnimFunction_Shiny                             ; BATTLEANIMFUNC_31
-	dw BattleAnimFunction_SkyAttack                         ; BATTLEANIMFUNC_32
-	dw BattleAnimFunction_GrowthSwordsDance                 ; BATTLEANIMFUNC_33
-	dw BattleAnimFunction_SmokeFlameWheel                   ; BATTLEANIMFUNC_34
-	dw BattleAnimFunction_PresentSmokescreen                ; BATTLEANIMFUNC_35
-	dw BattleAnimFunction_StrengthSeismicToss               ; BATTLEANIMFUNC_36
-	dw BattleAnimFunction_SpeedLine                         ; BATTLEANIMFUNC_37
-	dw BattleAnimFunction_Sludge                            ; BATTLEANIMFUNC_38
-	dw BattleAnimFunction_MetronomeHand                     ; BATTLEANIMFUNC_39
-	dw BattleAnimFunction_MetronomeSparkleSketch            ; BATTLEANIMFUNC_3a
-	dw BattleAnimFunction_Agility                           ; BATTLEANIMFUNC_3b
-	dw BattleAnimFunction_SacredFire                        ; BATTLEANIMFUNC_3c
-	dw BattleAnimFunction_SafeguardProtect                  ; BATTLEANIMFUNC_3d
-	dw BattleAnimFunction_LockOnMindReader                  ; BATTLEANIMFUNC_3e
-	dw BattleAnimFunction_Spikes                            ; BATTLEANIMFUNC_3f
-	dw BattleAnimFunction_HealBellNotes                     ; BATTLEANIMFUNC_40
-	dw BattleAnimFunction_BatonPass                         ; BATTLEANIMFUNC_41
-	dw BattleAnimFunction_Conversion                        ; BATTLEANIMFUNC_42
-	dw BattleAnimFunction_EncoreBellyDrum                   ; BATTLEANIMFUNC_43
-	dw BattleAnimFunction_SwaggerMorningSun                 ; BATTLEANIMFUNC_44
-	dw BattleAnimFunction_HiddenPower                       ; BATTLEANIMFUNC_45
-	dw BattleAnimFunction_Curse                             ; BATTLEANIMFUNC_46
-	dw BattleAnimFunction_PerishSong                        ; BATTLEANIMFUNC_47
-	dw BattleAnimFunction_RapidSpin                         ; BATTLEANIMFUNC_48
-	dw BattleAnimFunction_Pursuit                           ; BATTLEANIMFUNC_49
-	dw BattleAnimFunction_RainSandstorm                     ; BATTLEANIMFUNC_4a
-	dw BattleAnimFunction_Unused1                           ; BATTLEANIMFUNC_4b
-	dw BattleAnimFunction_PsychUp                           ; BATTLEANIMFUNC_4c
-	dw BattleAnimFunction_AncientPower                      ; BATTLEANIMFUNC_4d
-	dw BattleAnimFunction_RockSmash                         ; BATTLEANIMFUNC_4e
-	dw BattleAnimFunction_Cotton                            ; BATTLEANIMFUNC_4f
+	dw BattleAnimFunction_Null
+	dw BattleAnimFunction_MoveFromUserToTarget
+	dw BattleAnimFunction_MoveFromUserToTargetAndDisappear
+	dw BattleAnimFunction_MoveInCircle
+	dw BattleAnimFunction_MoveWaveToTarget
+	dw BattleAnimFunction_ThrowFromUserToTarget
+	dw BattleAnimFunction_ThrowFromUserToTargetAndDisappear
+	dw BattleAnimFunction_Drop
+	dw BattleAnimFunction_MoveFromUserToTargetSpinAround
+	dw BattleAnimFunction_Shake
+	dw BattleAnimFunction_FireBlast
+	dw BattleAnimFunction_RazorLeaf
+	dw BattleAnimFunction_Bubble
+	dw BattleAnimFunction_Surf
+	dw BattleAnimFunction_Sing
+	dw BattleAnimFunction_WaterGun
+	dw BattleAnimFunction_Ember
+	dw BattleAnimFunction_Powder
+	dw BattleAnimFunction_PokeBall
+	dw BattleAnimFunction_PokeBallBlocked
+	dw BattleAnimFunction_Recover
+	dw BattleAnimFunction_ThunderWave
+	dw BattleAnimFunction_Clamp_Encore
+	dw BattleAnimFunction_Bite
+	dw BattleAnimFunction_SolarBeam
+	dw BattleAnimFunction_Gust
+	dw BattleAnimFunction_RazorWind
+	dw BattleAnimFunction_Kick
+	dw BattleAnimFunction_Absorb
+	dw BattleAnimFunction_Egg
+	dw BattleAnimFunction_MoveUp
+	dw BattleAnimFunction_Wrap
+	dw BattleAnimFunction_LeechSeed
+	dw BattleAnimFunction_Sound
+	dw BattleAnimFunction_ConfuseRay
+	dw BattleAnimFunction_Dizzy
+	dw BattleAnimFunction_Amnesia
+	dw BattleAnimFunction_FloatUp
+	dw BattleAnimFunction_Dig
+	dw BattleAnimFunction_String
+	dw BattleAnimFunction_Paralyzed
+	dw BattleAnimFunction_SpiralDescent
+	dw BattleAnimFunction_PoisonGas
+	dw BattleAnimFunction_Horn
+	dw BattleAnimFunction_Needle
+	dw BattleAnimFunction_PetalDance
+	dw BattleAnimFunction_ThiefPayday
+	dw BattleAnimFunction_AbsorbCircle
+	dw BattleAnimFunction_Bonemerang
+	dw BattleAnimFunction_Shiny
+	dw BattleAnimFunction_SkyAttack
+	dw BattleAnimFunction_GrowthSwordsDance
+	dw BattleAnimFunction_SmokeFlameWheel
+	dw BattleAnimFunction_PresentSmokescreen
+	dw BattleAnimFunction_StrengthSeismicToss
+	dw BattleAnimFunction_SpeedLine
+	dw BattleAnimFunction_Sludge
+	dw BattleAnimFunction_MetronomeHand
+	dw BattleAnimFunction_MetronomeSparkleSketch
+	dw BattleAnimFunction_Agility
+	dw BattleAnimFunction_SacredFire
+	dw BattleAnimFunction_SafeguardProtect
+	dw BattleAnimFunction_LockOnMindReader
+	dw BattleAnimFunction_Spikes
+	dw BattleAnimFunction_HealBellNotes
+	dw BattleAnimFunction_BatonPass
+	dw BattleAnimFunction_Conversion
+	dw BattleAnimFunction_EncoreBellyDrum
+	dw BattleAnimFunction_SwaggerMorningSun
+	dw BattleAnimFunction_HiddenPower
+	dw BattleAnimFunction_Curse
+	dw BattleAnimFunction_PerishSong
+	dw BattleAnimFunction_RapidSpin
+	dw BattleAnimFunction_BetaPursuit
+	dw BattleAnimFunction_RainSandstorm
+	dw BattleAnimFunction_AnimObjB0
+	dw BattleAnimFunction_PsychUp
+	dw BattleAnimFunction_AncientPower
+	dw BattleAnimFunction_RockSmash
+	dw BattleAnimFunction_Cotton
 
 BattleAnimFunction_Null:
 	call BattleAnim_AnonJumptable
@@ -142,7 +142,7 @@ BattleAnimFunction_ThrowFromUserToTarget:
 	scf
 	ret
 
-BattleAnimFunction_MoveVerticalWaveToTarget:
+BattleAnimFunction_MoveWaveToTarget:
 ; Wave motion from one mon to another. Obj is cleared when it reaches x coord $88. Examples: Shadow Ball, Dragon Rage
 	ld hl, BATTLEANIMSTRUCT_XCOORD
 	add hl, bc
@@ -498,7 +498,7 @@ BattleAnimFunction_Ember:
 .four
 	ret
 
-BattleAnimFunction_DropObject:
+BattleAnimFunction_Drop:
 ; Drops obj. The Obj Param dictates how fast it is (lower value is faster) and how long it stays bouncing (lower value is longer). Example: Rock Slide
 	call BattleAnim_AnonJumptable
 .anon_dw
@@ -1450,7 +1450,7 @@ Functioncd820:
 	call DeinitBattleAnimation
 	ret
 
-BattleAnimFunction_Clamp:
+BattleAnimFunction_Clamp_Encore:
 ; Claps two objects together, twice. Also used by Encore
 ; Second object's frameset and position relative to first are both defined via this function
 ; Obj Param: Distance from center (masked with $7F). Bit 7 flips object horizontally by switching to a different frameset
@@ -1895,7 +1895,7 @@ BattleAnim_StepThrownToTarget:
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
-	ld hl, BATTLEANIMSTRUCT_02
+	ld hl, BATTLEANIMSTRUCT_FIX_Y
 	add hl, bc
 	ld a, [hl]
 	add $2
@@ -2015,7 +2015,7 @@ Functioncdb28:
 	ld hl, BATTLEANIMSTRUCT_OAMFLAGS
 	add hl, bc
 	set 0, [hl]
-	ld hl, BATTLEANIMSTRUCT_02
+	ld hl, BATTLEANIMSTRUCT_FIX_Y
 	add hl, bc
 	ld [hl], $90
 	ld hl, BATTLEANIMSTRUCT_FRAME
@@ -2549,7 +2549,7 @@ Functioncde21:
 AmnesiaOffsets: ; Hardcoded Y Offsets for each Obj Param
 	db $ec, $f8, $00
 
-BattleAnimFunction_Sleep:
+BattleAnimFunction_FloatUp:
 ; Object moves horizontally in a sine wave, while also moving up. Also used by Charm and the Nightmare status
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
@@ -3884,7 +3884,7 @@ Functionce564:
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
-	jr step_circle
+	jr .step_circle
 
 Functionce56e:
 	call BattleAnim_IncAnonJumptableIndex
@@ -3903,13 +3903,13 @@ Functionce577:
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
 	ld a, [hl]
-	jr step_circle
+	jr .step_circle
 
 .done
 	call DeinitBattleAnimation
 	ret
 
-step_circle:
+.step_circle
 	call BattleAnim_StepCircle
 	ret
 
@@ -3987,7 +3987,7 @@ BattleAnimFunction_RapidSpin:
 	call DeinitBattleAnimation
 	ret
 
-BattleAnimFunction_Pursuit:
+BattleAnimFunction_BetaPursuit:
 ; Working but unused animation
 ; Object moves either down or up 4 pixels per frame, depending on Obj Param. Object disappears after 23 frames when going down, or at y coord $d8 when going up
 ; Obj Param: 0 moves downwards, 1 moves upwards
@@ -4003,7 +4003,7 @@ Functionce5f9:
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr nz, move_up
+	jr nz, .move_up
 	call BattleAnim_IncAnonJumptableIndex
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
 	add hl, bc
@@ -4024,7 +4024,7 @@ Functionce618:
 	call DeinitBattleAnimation
 	ret
 
-move_up:
+.move_up
 	call BattleAnim_IncAnonJumptableIndex
 	call BattleAnim_IncAnonJumptableIndex
 Functionce622:
@@ -4112,7 +4112,7 @@ Functionce672: ; Obj Param 2
 	ld [hl], a
 	ret
 
-BattleAnimFunction_Unused1:
+BattleAnimFunction_AnimObjB0 ; unused:
 ; Used by object ANIM_OBJ_B0, with itself is not used in any animation
 ; Obj Param: Lower nybble is added to VAR1 while upper nybble is added to XCOORD
 	ld hl, BATTLEANIMSTRUCT_XCOORD
