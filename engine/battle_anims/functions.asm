@@ -3884,7 +3884,7 @@ Functionce564:
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
-	jr .step_circle
+	jr step_circle
 
 Functionce56e:
 	call BattleAnim_IncAnonJumptableIndex
@@ -3903,13 +3903,13 @@ Functionce577:
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
 	ld a, [hl]
-	jr .step_circle
+	jr step_circle
 
 .done
 	call DeinitBattleAnimation
 	ret
 
-.step_circle
+step_circle:
 	call BattleAnim_StepCircle
 	ret
 
@@ -4003,7 +4003,7 @@ Functionce5f9:
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr nz, .move_up
+	jr nz, move_up
 	call BattleAnim_IncAnonJumptableIndex
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
 	add hl, bc
@@ -4024,7 +4024,7 @@ Functionce618:
 	call DeinitBattleAnimation
 	ret
 
-.move_up
+move_up:
 	call BattleAnim_IncAnonJumptableIndex
 	call BattleAnim_IncAnonJumptableIndex
 Functionce622:
@@ -4112,7 +4112,7 @@ Functionce672: ; Obj Param 2
 	ld [hl], a
 	ret
 
-BattleAnimFunction_AnimObjB0 ; unused:
+BattleAnimFunction_AnimObjB0: ; unused
 ; Used by object ANIM_OBJ_B0, with itself is not used in any animation
 ; Obj Param: Lower nybble is added to VAR1 while upper nybble is added to XCOORD
 	ld hl, BATTLEANIMSTRUCT_XCOORD
