@@ -1437,7 +1437,7 @@ BattleAnimFunction_ThunderWave:
 	dw .zero
 	dw .one
 	dw .zero
-	dw .two
+	dw .three
 
 .one
 	call BattleAnim_IncAnonJumptableIndex
@@ -1446,7 +1446,7 @@ BattleAnimFunction_ThunderWave:
 .zero
 	ret
 
-.two
+.three
 	call DeinitBattleAnimation
 	ret
 
@@ -1459,10 +1459,10 @@ BattleAnimFunction_Clamp_Encore:
 	dw .zero
 	dw .one
 	dw .two
-	dw .two
-	dw .two
-	dw .two
 	dw .three
+	dw .four
+	dw .five
+	dw .six
 
 .zero
 	call BattleAnim_IncAnonJumptableIndex
@@ -1525,10 +1525,13 @@ BattleAnimFunction_Clamp_Encore:
 	and $1f
 	ret nz
 .two
+.three
+.four
+.five
 	call BattleAnim_IncAnonJumptableIndex
 	ret
 
-.three
+.six
 	ld hl, BATTLEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld [hl], $1
@@ -1543,10 +1546,10 @@ BattleAnimFunction_Bite:
 	dw .zero
 	dw .one
 	dw .two
-	dw .two
-	dw .two
-	dw .two
 	dw .three
+	dw .four
+	dw .five
+	dw .six
 
 .zero
 	call BattleAnim_IncAnonJumptableIndex
@@ -1599,10 +1602,13 @@ BattleAnimFunction_Bite:
 	ret nz
 
 .two
+.three
+.four
+.five
 	call BattleAnim_IncAnonJumptableIndex
 	ret
 
-.three
+.six
 	ld hl, BATTLEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld [hl], $1
@@ -2068,19 +2074,19 @@ BattleAnimFunction_Egg:
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
-	dw .one  ; Egg Bomb start
+	dw .one ; Egg Bomb start
 	dw .two
 	dw .three
 	dw .four ; ret
-	dw .five 
-	dw .six  ; Softboiled obj 1 start
+	dw .five
+	dw .six ; Softboiled obj 1 start
 	dw .seven
 	dw .eight
 	dw .nine
-	dw .four ; ret
-	dw .ten  ; Softboiled obj 2 start
-	dw .eleven 
-	dw .four ; ret
+	dw .ten ; ret
+	dw .eleven ; Softboiled obj 2 start
+	dw .twelve
+	dw .thirteen ; ret
 
 .zero
 	; Object starts here then jumps to the jumptable index defined by the Obj Param
@@ -2215,7 +2221,7 @@ BattleAnimFunction_Egg:
 	call BattleAnim_IncAnonJumptableIndex
 	ret
 
-.ten
+.eleven
 	; Second Softboiled ANIM_OBJ_EGG
 	ld a, BATTLEANIMFRAMESET_4F ; Cracked egg top
 	call ReinitBattleAnimFrameset
@@ -2225,7 +2231,7 @@ BattleAnimFunction_Egg:
 	ld [hl], $40
 	ret
 
-.eleven
+.twelve
 	; Top half of egg moves upward for $30 frames
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
@@ -2246,6 +2252,8 @@ BattleAnimFunction_Egg:
 .done_top_shell
 	call BattleAnim_IncAnonJumptableIndex
 .four
+.ten
+.thirteen
 	ret
 
 .EggVerticalWaveMotion:
