@@ -1436,7 +1436,7 @@ BattleAnimFunction_ThunderWave:
 .anon_dw
 	dw .zero
 	dw .one
-	dw .zero
+	dw .two
 	dw .three
 
 .one
@@ -1444,6 +1444,7 @@ BattleAnimFunction_ThunderWave:
 	ld a, BATTLEANIMFRAMESET_35
 	call ReinitBattleAnimFrameset
 .zero
+.two
 	ret
 
 .three
@@ -1678,8 +1679,8 @@ BattleAnimFunction_Gust:
 	dw .zero
 	dw .one
 	dw .two
-	dw .one
 	dw .three
+	dw .four
 
 .zero
 	call BattleAnim_IncAnonJumptableIndex
@@ -1687,6 +1688,7 @@ BattleAnimFunction_Gust:
 	add hl, bc
 	ld [hl], $0
 .one
+.three
 	call .GustWobble
 	ret
 
@@ -1699,7 +1701,7 @@ BattleAnimFunction_Gust:
 	call BattleAnim_IncAnonJumptableIndex
 	ret
 
-.three
+.four
 	ld hl, BATTLEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld a, [hl]
@@ -1834,7 +1836,7 @@ BattleAnimFunction_Wrap:
 .anon_dw
 	dw .zero
 	dw .one
-	dw .zero
+	dw .two
 
 .one
 	ld hl, BATTLEANIMSTRUCT_FRAMESET_ID
@@ -1848,6 +1850,7 @@ BattleAnimFunction_Wrap:
 	add hl, bc
 	ld [hl], $8
 .zero
+.two
 	ret
 
 BattleAnimFunction_LeechSeed:
