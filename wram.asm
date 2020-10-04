@@ -2448,8 +2448,8 @@ wScriptTextAddr::
 	dw
 	ds 1
 wWildEncounterCooldown:: db
-wXYComparePointer:: dw
 
+wXYComparePointer:: dw
 	ds 4
 
 wBattleScriptFlags:: db

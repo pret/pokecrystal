@@ -3,7 +3,7 @@ BattleCommand_Metronome:
 
 	call ClearLastMove
 	call CheckUserIsCharging
-	jr nz, .asm_3742b
+	jr nz, .charging
 
 	ld a, [wBattleAnimParam]
 	push af
@@ -11,7 +11,7 @@ BattleCommand_Metronome:
 	pop af
 	ld [wBattleAnimParam], a
 
-.asm_3742b
+.charging
 	call LoadMoveAnim
 
 .GetMove:

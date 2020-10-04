@@ -211,7 +211,7 @@ _PlayersHousePC:
 	ld b, PLAYERSPC_HOUSE
 	call _PlayersPC
 	and a
-	jr nz, .asm_156f9
+	jr nz, .changed_deco_tiles
 	call OverworldTextModeSwitch
 	call ApplyTilemap
 	call UpdateSprites
@@ -219,7 +219,7 @@ _PlayersHousePC:
 	ld c, FALSE
 	ret
 
-.asm_156f9
+.changed_deco_tiles
 	call ClearBGPalettes
 	ld c, TRUE
 	ret

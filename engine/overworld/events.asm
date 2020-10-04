@@ -399,7 +399,7 @@ SetMinTwoStepWildEncounterCooldown:
 Dummy_CheckScriptFlags3Bit5:
 	call CheckBit5_ScriptFlags3
 	ret z
-	call Function2f3e
+	call SetXYCompareFlags
 	ret
 
 RunSceneScript:
@@ -975,7 +975,7 @@ DoPlayerEvent:
 
 PlayerEventScriptPointers:
 ; entries correspond to PLAYEREVENT_* constants
-	dba Invalid_0x96c2d         ; PLAYEREVENT_NONE
+	dba InvalidEventScript      ; PLAYEREVENT_NONE
 	dba SeenByTrainerScript     ; PLAYEREVENT_SEENBYTRAINER
 	dba TalkToTrainerScript     ; PLAYEREVENT_TALKTOTRAINER
 	dba FindItemInBallScript    ; PLAYEREVENT_ITEMBALL
@@ -985,12 +985,12 @@ PlayerEventScriptPointers:
 	dba OverworldWhiteoutScript ; PLAYEREVENT_WHITEOUT
 	dba HatchEggScript          ; PLAYEREVENT_HATCH
 	dba ChangeDirectionScript   ; PLAYEREVENT_JOYCHANGEFACING
-	dba Invalid_0x96c2d         ; (NUM_PLAYER_EVENTS)
+	dba InvalidEventScript      ; (NUM_PLAYER_EVENTS)
 
-Invalid_0x96c2d:
+InvalidEventScript:
 	end
 
-; unused
+UnusedPlayerEventScript: ; unreferenced
 	end
 
 HatchEggScript:
@@ -1005,12 +1005,12 @@ WarpToNewMapScript:
 FallIntoMapScript:
 	newloadmap MAPSETUP_FALL
 	playsound SFX_KINESIS
-	applymovement PLAYER, MovementData_0x96c48
+	applymovement PLAYER, .SkyfallMovement
 	playsound SFX_STRENGTH
 	scall LandAfterPitfallScript
 	end
 
-MovementData_0x96c48:
+.SkyfallMovement:
 	skyfall
 	step_end
 
@@ -1018,10 +1018,10 @@ LandAfterPitfallScript:
 	earthquake 16
 	end
 
-EdgeWarpScript: ; 4
+EdgeWarpScript:
 	reloadend MAPSETUP_CONNECTION
 
-ChangeDirectionScript: ; 9
+ChangeDirectionScript:
 	deactivatefacing 3
 	callasm EnableWildEncounters
 	end

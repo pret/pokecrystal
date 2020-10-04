@@ -245,7 +245,7 @@ AddMonMenuItem:
 	ret
 
 BattleMonMenu:
-	ld hl, MenuHeader_0x24ed4
+	ld hl, .MenuHeader
 	call CopyMenuHeader
 	xor a
 	ldh [hBGMapMode], a
@@ -276,13 +276,13 @@ BattleMonMenu:
 	and a
 	ret
 
-MenuHeader_0x24ed4:
+.MenuHeader:
 	db 0 ; flags
 	menu_coords 11, 11, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
-	dw MenuData_0x24edc
+	dw .MenuData
 	db 1 ; default option
 
-MenuData_0x24edc:
+.MenuData:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3 ; items
 	db "SWITCH@"

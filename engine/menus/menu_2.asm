@@ -28,17 +28,17 @@ PlaceMenuItemQuantity:
 	ret
 
 PlaceMoneyTopRight:
-	ld hl, MenuHeader_0x24b15
+	ld hl, MoneyTopRightMenuHeader
 	call CopyMenuHeader
 	jr PlaceMoneyTextbox
 
 PlaceMoneyBottomLeft:
-	ld hl, MenuHeader_0x24b1d
+	ld hl, MoneyBottomLeftMenuHeader
 	call CopyMenuHeader
 	jr PlaceMoneyTextbox
 
 PlaceMoneyAtTopLeftOfTextbox:
-	ld hl, MenuHeader_0x24b15
+	ld hl, MoneyTopRightMenuHeader
 	lb de, 0, 11
 	call OffsetMenuHeader
 
@@ -52,13 +52,13 @@ PlaceMoneyTextbox:
 	call PrintNum
 	ret
 
-MenuHeader_0x24b15:
+MoneyTopRightMenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 11, 0, SCREEN_WIDTH - 1, 2
 	dw NULL
 	db 1 ; default option
 
-MenuHeader_0x24b1d:
+MoneyBottomLeftMenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 11, 8, 13
 	dw NULL

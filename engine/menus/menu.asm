@@ -690,7 +690,7 @@ _ExitMenu::
 	dec [hl]
 	ret
 
-Function24423: ; unreferenced
+RestoreOverworldMapTiles: ; unreferenced
 	ld a, [wVramState]
 	bit 0, a
 	ret z

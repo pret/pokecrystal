@@ -1435,7 +1435,7 @@ Function28926:
 	call DelayFrames
 	farcall ValidateOTTrademon
 	jr c, .abnormal
-	farcall Functionfb5dd
+	farcall CheckAnyOtherAliveMonsForTrade
 	jp nc, LinkTrade
 	xor a
 	ld [wcf57], a

@@ -28,7 +28,7 @@ PalPacket_BetaPoker:
 PalPacket_UnownPuzzle:
 	sgb_pal_set UNOWN_PUZZLE, UNOWN_PUZZLE, UNOWN_PUZZLE, UNOWN_PUZZLE
 
-PalPacket_Routes:
+PalPacket_AllPal0:
 	sgb_pal_set ROUTES, ROUTES, ROUTES, ROUTES
 
 PalPacket_GSIntroShellderLapras:

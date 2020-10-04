@@ -5276,7 +5276,7 @@ Function10250c:
 	call Function102b9c
 	call Function102bdc
 	jr c, .asm_10256d
-	farcall Functionfb5dd
+	farcall CheckAnyOtherAliveMonsForTrade
 	jr c, .asm_102568
 	ld hl, wcd4b
 	set 1, [hl]

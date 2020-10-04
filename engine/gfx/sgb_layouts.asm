@@ -134,7 +134,7 @@ LoadSGBLayout:
 	ret
 
 .SGB_MoveList:
-	ld hl, PalPacket_Routes
+	ld hl, PalPacket_AllPal0
 	ld de, wSGBPals
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
@@ -341,7 +341,7 @@ endr
 	ret
 
 .SGB_MapPals:
-	ld hl, PalPacket_Routes
+	ld hl, PalPacket_AllPal0
 	ld de, wSGBPals
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
@@ -409,7 +409,7 @@ endr
 	ret
 
 .SGB_Pokepic:
-	ld hl, PalPacket_Routes
+	ld hl, PalPacket_AllPal0
 	ld de, wSGBPals
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes

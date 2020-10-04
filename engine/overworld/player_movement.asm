@@ -364,7 +364,7 @@ DoPlayerMovement::
 	and 7
 	ld e, a
 	ld d, 0
-	ld hl, .data_8021e
+	ld hl, .ledge_table
 	add hl, de
 	ld a, [wFacingDirection]
 	and [hl]
@@ -382,7 +382,7 @@ DoPlayerMovement::
 	xor a
 	ret
 
-.data_8021e
+.ledge_table
 	db FACE_RIGHT             ; COLL_HOP_RIGHT
 	db FACE_LEFT              ; COLL_HOP_LEFT
 	db FACE_UP                ; COLL_HOP_UP

@@ -834,7 +834,7 @@ WhichSidePutAwayText:
 
 DecoAction_AskWhichSide:
 	call MenuTextbox
-	ld hl, MenuHeader_0x26eab
+	ld hl, DecoSideMenuHeader
 	call GetMenu2
 	call ExitMenu
 	call CopyMenuData
@@ -867,13 +867,13 @@ QueryWhichSide:
 	pop de
 	ret
 
-MenuHeader_0x26eab:
+DecoSideMenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 13, 7
-	dw MenuData_0x26eb3
+	dw .MenuData
 	db 1 ; default option
 
-MenuData_0x26eb3:
+.MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 3 ; items
 	db "RIGHT SIDE@"
