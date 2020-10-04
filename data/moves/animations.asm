@@ -731,17 +731,17 @@ BattleAnim_MegaPunch:
 BattleAnim_Stomp:
 	anim_1gfx ANIM_GFX_HIT
 	anim_sound 0, 1, SFX_STOMP
-	anim_obj ANIM_OBJ_FOOT, 136, 40, $0
+	anim_obj ANIM_OBJ_KICK, 136, 40, $0
 	anim_wait 6
 	anim_obj ANIM_OBJ_HIT_YFIX, 136, 40, $0
 	anim_wait 6
 	anim_sound 0, 1, SFX_STOMP
-	anim_obj ANIM_OBJ_FOOT, 136, 44, $0
+	anim_obj ANIM_OBJ_KICK, 136, 44, $0
 	anim_wait 6
 	anim_obj ANIM_OBJ_HIT_YFIX, 136, 44, $0
 	anim_wait 6
 	anim_sound 0, 1, SFX_STOMP
-	anim_obj ANIM_OBJ_FOOT, 136, 48, $0
+	anim_obj ANIM_OBJ_KICK, 136, 48, $0
 	anim_wait 6
 	anim_obj ANIM_OBJ_HIT_YFIX, 136, 48, $0
 	anim_wait 16
@@ -751,7 +751,7 @@ BattleAnim_DoubleKick:
 	anim_1gfx ANIM_GFX_HIT
 	anim_if_param_equal $1, .alternate
 	anim_sound 0, 1, SFX_DOUBLE_KICK
-	anim_obj ANIM_OBJ_FOOT, 144, 48, $0
+	anim_obj ANIM_OBJ_KICK, 144, 48, $0
 	anim_wait 6
 	anim_obj ANIM_OBJ_HIT_YFIX, 144, 48, $0
 	anim_wait 8
@@ -759,7 +759,7 @@ BattleAnim_DoubleKick:
 
 .alternate:
 	anim_sound 0, 1, SFX_DOUBLE_KICK
-	anim_obj ANIM_OBJ_FOOT, 120, 64, $0
+	anim_obj ANIM_OBJ_KICK, 120, 64, $0
 	anim_wait 6
 	anim_obj ANIM_OBJ_HIT_YFIX, 120, 64, $0
 	anim_wait 8
@@ -769,8 +769,8 @@ BattleAnim_JumpKick:
 	anim_1gfx ANIM_GFX_HIT
 	anim_if_param_equal $1, .alternate
 	anim_sound 0, 1, SFX_JUMP_KICK
-	anim_obj ANIM_OBJ_FOOT, 112, 72, $0
-	anim_obj ANIM_OBJ_FOOT, 100, 60, $0
+	anim_obj ANIM_OBJ_KICK, 112, 72, $0
+	anim_obj ANIM_OBJ_KICK, 100, 60, $0
 	anim_setobj $1, $2
 	anim_setobj $2, $2
 	anim_wait 24
@@ -792,7 +792,7 @@ BattleAnim_HiJumpKick:
 	anim_if_param_equal $1, .alternate
 	anim_wait 32
 	anim_sound 0, 1, SFX_JUMP_KICK
-	anim_obj ANIM_OBJ_FOOT, 112, 72, $0
+	anim_obj ANIM_OBJ_KICK, 112, 72, $0
 	anim_setobj $1, $2
 	anim_wait 16
 	anim_sound 0, 1, SFX_DOUBLE_KICK
@@ -810,7 +810,7 @@ BattleAnim_HiJumpKick:
 BattleAnim_RollingKick:
 	anim_1gfx ANIM_GFX_HIT
 	anim_sound 0, 1, SFX_DOUBLE_KICK
-	anim_obj ANIM_OBJ_FOOT, 112, 56, $0
+	anim_obj ANIM_OBJ_KICK, 112, 56, $0
 	anim_setobj $1, $3
 	anim_wait 12
 	anim_obj ANIM_OBJ_HIT_YFIX, 136, 48, $0
@@ -824,10 +824,10 @@ BattleAnim_MegaKick:
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $3
 .loop
 	anim_sound 0, 1, SFX_MEGA_KICK
-	anim_obj ANIM_OBJ_FOOT, 136, 56, $0
+	anim_obj ANIM_OBJ_KICK, 136, 56, $0
 	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 56, $0
 	anim_wait 6
-	anim_obj ANIM_OBJ_FOOT, 136, 56, $0
+	anim_obj ANIM_OBJ_KICK, 136, 56, $0
 	anim_wait 6
 	anim_loop 3, .loop
 	anim_ret
@@ -2738,7 +2738,7 @@ BattleAnim_Thrash:
 	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 56, $0
 	anim_wait 6
 	anim_sound 0, 1, SFX_DOUBLE_KICK
-	anim_obj ANIM_OBJ_FOOT, 152, 40, $0
+	anim_obj ANIM_OBJ_KICK, 152, 40, $0
 	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 152, 40, $0
 	anim_wait 16
 	anim_ret
@@ -3022,7 +3022,7 @@ BattleAnim_Counter:
 	anim_wait 6
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $6, $2
 	anim_sound 0, 1, SFX_MEGA_KICK
-	anim_obj ANIM_OBJ_FOOT, 152, 56, $0
+	anim_obj ANIM_OBJ_KICK, 152, 56, $0
 	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 152, 56, $0
 	anim_wait 6
 	anim_loop 3, .loop
@@ -3033,17 +3033,17 @@ BattleAnim_LowKick:
 	anim_1gfx ANIM_GFX_HIT
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
 	anim_sound 0, 1, SFX_DOUBLE_KICK
-	anim_obj ANIM_OBJ_FOOT, 124, 64, $0
+	anim_obj ANIM_OBJ_KICK, 124, 64, $0
 	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 124, 64, $0
 	anim_wait 6
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
 	anim_sound 0, 1, SFX_DOUBLE_KICK
-	anim_obj ANIM_OBJ_FOOT, 132, 64, $0
+	anim_obj ANIM_OBJ_KICK, 132, 64, $0
 	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 132, 64, $0
 	anim_wait 6
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
 	anim_sound 0, 1, SFX_DOUBLE_KICK
-	anim_obj ANIM_OBJ_FOOT, 140, 64, $0
+	anim_obj ANIM_OBJ_KICK, 140, 64, $0
 	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 140, 64, $0
 	anim_wait 16
 	anim_ret
@@ -3117,7 +3117,7 @@ BattleAnim_TripleKick:
 	anim_if_param_equal $1, .alternate1
 	anim_if_param_equal $2, .alternate2
 	anim_sound 0, 1, SFX_MEGA_KICK
-	anim_obj ANIM_OBJ_FOOT, 144, 48, $0
+	anim_obj ANIM_OBJ_KICK, 144, 48, $0
 	anim_wait 6
 	anim_obj ANIM_OBJ_HIT_YFIX, 144, 48, $0
 	anim_wait 8
@@ -3125,7 +3125,7 @@ BattleAnim_TripleKick:
 
 .alternate1:
 	anim_sound 0, 1, SFX_DOUBLE_KICK
-	anim_obj ANIM_OBJ_FOOT, 120, 64, $0
+	anim_obj ANIM_OBJ_KICK, 120, 64, $0
 	anim_wait 6
 	anim_obj ANIM_OBJ_HIT_YFIX, 120, 64, $0
 	anim_wait 8
@@ -3133,7 +3133,7 @@ BattleAnim_TripleKick:
 
 .alternate2:
 	anim_sound 0, 1, SFX_DOUBLE_KICK
-	anim_obj ANIM_OBJ_FOOT, 132, 32, $0
+	anim_obj ANIM_OBJ_KICK, 132, 32, $0
 	anim_wait 6
 	anim_obj ANIM_OBJ_HIT_YFIX, 132, 32, $0
 	anim_wait 8
