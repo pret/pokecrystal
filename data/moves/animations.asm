@@ -620,7 +620,7 @@ BattleAnim_EnemyDamage:
 
 BattleAnim_EnemyStatDown:
 	anim_call BattleAnim_UserObj_1Row
-	anim_bgeffect ANIM_BG_VIBRATE_TARGET, $0, $0, $0
+	anim_bgeffect ANIM_BG_VIBRATE_MON, $0, $0, $0
 	anim_wait 40
 	anim_call BattleAnim_ShowMon_1
 	anim_wait 1
