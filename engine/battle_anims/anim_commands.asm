@@ -112,7 +112,7 @@ RunBattleAnimScript:
 	cp ROLLOUT
 	jr nz, .not_rollout
 
-	ld a, ANIM_BG_2E
+	ld a, ANIM_BG_ROLLOUT
 	ld b, NUM_BG_EFFECTS
 	ld de, BG_EFFECT_STRUCT_LENGTH
 	ld hl, wBGEffect1Function
