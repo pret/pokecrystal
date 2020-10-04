@@ -29,21 +29,21 @@ Route25MistyDate1Script:
 	pause 30
 	showemote EMOTE_SHOCK, ROUTE25_COOLTRAINER_M1, 10
 	turnobject ROUTE25_MISTY, DOWN
-	applymovement ROUTE25_COOLTRAINER_M1, MovementData_0x19efe8
+	applymovement ROUTE25_COOLTRAINER_M1, Route25MistysDateLeavesMovement1
 	disappear ROUTE25_COOLTRAINER_M1
 	pause 15
 	playmusic MUSIC_BEAUTY_ENCOUNTER
 	turnobject ROUTE25_MISTY, UP
 	pause 10
-	applymovement ROUTE25_MISTY, MovementData_0x19efed
+	applymovement ROUTE25_MISTY, Route25MistyApproachesPlayerMovement1
 	opentext
 	writetext Route25MistyDateText
 	waitbutton
 	closetext
 	turnobject PLAYER, DOWN
-	applymovement ROUTE25_MISTY, MovementData_0x19effa
+	applymovement ROUTE25_MISTY, Route25MistyLeavesPlayerMovement1
 	turnobject PLAYER, LEFT
-	applymovement ROUTE25_MISTY, MovementData_0x19f000
+	applymovement ROUTE25_MISTY, Route25MistyLeavesMovement
 	disappear ROUTE25_MISTY
 	clearevent EVENT_TRAINERS_IN_CERULEAN_GYM
 	setscene SCENE_ROUTE25_NOTHING
@@ -55,21 +55,21 @@ Route25MistyDate2Script:
 	pause 30
 	showemote EMOTE_SHOCK, ROUTE25_COOLTRAINER_M1, 10
 	turnobject ROUTE25_MISTY, DOWN
-	applymovement ROUTE25_COOLTRAINER_M1, MovementData_0x19efea
+	applymovement ROUTE25_COOLTRAINER_M1, Route25MistysDateLeavesMovement2
 	disappear ROUTE25_COOLTRAINER_M1
 	pause 15
 	playmusic MUSIC_BEAUTY_ENCOUNTER
 	turnobject ROUTE25_MISTY, UP
 	pause 10
-	applymovement ROUTE25_MISTY, MovementData_0x19eff4
+	applymovement ROUTE25_MISTY, Route25MistyApproachesPlayerMovement2
 	opentext
 	writetext Route25MistyDateText
 	waitbutton
 	closetext
 	turnobject PLAYER, UP
-	applymovement ROUTE25_MISTY, MovementData_0x19effd
+	applymovement ROUTE25_MISTY, Route25MistyLeavesPlayerMovement2
 	turnobject PLAYER, LEFT
-	applymovement ROUTE25_MISTY, MovementData_0x19f000
+	applymovement ROUTE25_MISTY, Route25MistyLeavesMovement
 	disappear ROUTE25_MISTY
 	clearevent EVENT_TRAINERS_IN_CERULEAN_GYM
 	setscene SCENE_ROUTE25_NOTHING
@@ -191,16 +191,16 @@ Route25Protein:
 Route25HiddenPotion:
 	hiddenitem POTION, EVENT_ROUTE_25_HIDDEN_POTION
 
-MovementData_0x19efe8:
+Route25MistysDateLeavesMovement1:
 	big_step DOWN
 	step_end
 
-MovementData_0x19efea:
+Route25MistysDateLeavesMovement2:
 	big_step DOWN
 	big_step DOWN
 	step_end
 
-MovementData_0x19efed:
+Route25MistyApproachesPlayerMovement1:
 	step UP
 	step UP
 	step UP
@@ -209,7 +209,7 @@ MovementData_0x19efed:
 	step LEFT
 	step_end
 
-MovementData_0x19eff4:
+Route25MistyApproachesPlayerMovement2:
 	step UP
 	step UP
 	step LEFT
@@ -217,17 +217,17 @@ MovementData_0x19eff4:
 	step LEFT
 	step_end
 
-MovementData_0x19effa:
+Route25MistyLeavesPlayerMovement1:
 	step DOWN
 	step LEFT
 	step_end
 
-MovementData_0x19effd:
+Route25MistyLeavesPlayerMovement2:
 	step UP
 	step LEFT
 	step_end
 
-MovementData_0x19f000:
+Route25MistyLeavesMovement:
 	step LEFT
 	step LEFT
 	step LEFT

@@ -23,7 +23,7 @@ VermilionPort_MapScripts:
 	endcallback
 
 .LeaveFastShipScript:
-	applymovement PLAYER, MovementData_0x74ef3
+	applymovement PLAYER, VermilionPortLeaveFastShipMovement
 	appear VERMILIONPORT_SAILOR1
 	setscene SCENE_DEFAULT
 	setevent EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1
@@ -48,7 +48,7 @@ VermilionPortSailorAtGangwayScript:
 	playsound SFX_EXIT_BUILDING
 	disappear VERMILIONPORT_SAILOR1
 	waitsfx
-	applymovement PLAYER, MovementData_0x74ef1
+	applymovement PLAYER, VermilionPortEnterFastShipMovement
 	playsound SFX_EXIT_BUILDING
 	special FadeOutPalettes
 	waitsfx
@@ -101,28 +101,28 @@ VermilionPortWalkUpToShipScript:
 	waitbutton
 	closetext
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
-	applymovement PLAYER, MovementData_0x74ef8
+	applymovement PLAYER, VermilionPortApproachFastShipMovement
 	sjump VermilionPortSailorAtGangwayScript
 
 .NoTicket:
 	writetext VermilionPortNoTicketText
 	waitbutton
 	closetext
-	applymovement PLAYER, MovementData_0x74ef5
+	applymovement PLAYER, VermilionPortCannotEnterFastShipMovement
 	end
 
 .NextShipWednesday:
 	writetext VermilionPortSailMondayText
 	waitbutton
 	closetext
-	applymovement PLAYER, MovementData_0x74ef5
+	applymovement PLAYER, VermilionPortCannotEnterFastShipMovement
 	end
 
 .NextShipSunday:
 	writetext VermilionPortSailSundayText
 	waitbutton
 	closetext
-	applymovement PLAYER, MovementData_0x74ef5
+	applymovement PLAYER, VermilionPortCannotEnterFastShipMovement
 	end
 
 .skip:
@@ -138,7 +138,7 @@ VermilionPortNotRidingMoveAwayScript:
 	writetext VermilionPortComeAgainText
 	waitbutton
 	closetext
-	applymovement PLAYER, MovementData_0x74ef5
+	applymovement PLAYER, VermilionPortCannotEnterFastShipMovement
 	end
 
 VermilionPortSailorScript:
@@ -163,7 +163,7 @@ VermilionPortSailorScript:
 	waitbutton
 	closetext
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
-	applymovement PLAYER, MovementData_0x74efe
+	applymovement PLAYER, VermilionPortApproachFastShipRightMovement
 	sjump VermilionPortSailorAtGangwayScript
 
 .NoTicket:
@@ -195,20 +195,20 @@ VermilionPortSuperNerdScript:
 VermilionPortHiddenIron:
 	hiddenitem IRON, EVENT_VERMILION_PORT_HIDDEN_IRON
 
-MovementData_0x74ef1:
+VermilionPortEnterFastShipMovement:
 	step DOWN
 	step_end
 
-MovementData_0x74ef3:
+VermilionPortLeaveFastShipMovement:
 	step UP
 	step_end
 
-MovementData_0x74ef5:
+VermilionPortCannotEnterFastShipMovement:
 	step RIGHT
 	turn_head LEFT
 	step_end
 
-MovementData_0x74ef8:
+VermilionPortApproachFastShipMovement:
 	step DOWN
 	step DOWN
 	step DOWN
@@ -216,7 +216,7 @@ MovementData_0x74ef8:
 	step DOWN
 	step_end
 
-MovementData_0x74efe:
+VermilionPortApproachFastShipRightMovement:
 	step RIGHT
 	step DOWN
 	step DOWN

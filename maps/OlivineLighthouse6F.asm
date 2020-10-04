@@ -70,17 +70,17 @@ OlivineLighthouseJasmine:
 	readvar VAR_FACING
 	ifequal DOWN, .FacingDown
 	ifequal RIGHT, .FacingRight
-	applymovement OLIVINELIGHTHOUSE6F_JASMINE, MovementData_0x60c68
+	applymovement OLIVINELIGHTHOUSE6F_JASMINE, OlivineLighthouseJasmineLeavesUpMovement
 	disappear OLIVINELIGHTHOUSE6F_JASMINE
 	end
 
 .FacingDown:
-	applymovement OLIVINELIGHTHOUSE6F_JASMINE, MovementData_0x60c70
+	applymovement OLIVINELIGHTHOUSE6F_JASMINE, OlivineLighthouseJasmineLeavesDownMovement
 	disappear OLIVINELIGHTHOUSE6F_JASMINE
 	end
 
 .FacingRight:
-	applymovement OLIVINELIGHTHOUSE6F_JASMINE, MovementData_0x60c79
+	applymovement OLIVINELIGHTHOUSE6F_JASMINE, OlivineLighthouseJasmineLeavesRightMovement
 	disappear OLIVINELIGHTHOUSE6F_JASMINE
 	end
 
@@ -129,7 +129,7 @@ OlivineLighthouseAmphy:
 OlivineLighthouse6FSuperPotion:
 	itemball SUPER_POTION
 
-MovementData_0x60c68:
+OlivineLighthouseJasmineLeavesUpMovement:
 	slow_step UP
 	slow_step UP
 	slow_step RIGHT
@@ -139,7 +139,7 @@ MovementData_0x60c68:
 	step_sleep 8
 	step_end
 
-MovementData_0x60c70:
+OlivineLighthouseJasmineLeavesDownMovement:
 	slow_step DOWN
 	slow_step RIGHT
 	slow_step RIGHT
@@ -150,7 +150,7 @@ MovementData_0x60c70:
 	slow_step RIGHT
 	step_end
 
-MovementData_0x60c79:
+OlivineLighthouseJasmineLeavesRightMovement:
 	slow_step UP
 	slow_step UP
 	slow_step RIGHT

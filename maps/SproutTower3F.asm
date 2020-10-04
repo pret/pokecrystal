@@ -31,8 +31,8 @@ SproutTower3FRivalScene:
 	playsound SFX_TACKLE
 	playsound SFX_ELEVATOR
 	earthquake 79
-	applymovement PLAYER, MovementData_0x184a1d
-	applymovement SPROUTTOWER3F_SILVER, MovementData_0x184a22
+	applymovement PLAYER, SproutTower3FPlayerApproachesRivalMovement
+	applymovement SPROUTTOWER3F_SILVER, SproutTower3FRivalApproachesElderMovement
 	opentext
 	writetext SproutTowerElderLecturesRivalText
 	waitbutton
@@ -40,7 +40,7 @@ SproutTower3FRivalScene:
 	showemote EMOTE_SHOCK, SPROUTTOWER3F_SILVER, 15
 	turnobject SPROUTTOWER3F_SILVER, DOWN
 	pause 15
-	applymovement SPROUTTOWER3F_SILVER, MovementData_0x184a24
+	applymovement SPROUTTOWER3F_SILVER, SproutTower3FRivalLeavesElderMovement
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	opentext
 	writetext SproutTowerRivalOnlyCareAboutStrongText
@@ -135,18 +135,18 @@ SproutTower3FPotion:
 SproutTower3FEscapeRope:
 	itemball ESCAPE_ROPE
 
-MovementData_0x184a1d:
+SproutTower3FPlayerApproachesRivalMovement:
 	step UP
 	step UP
 	step UP
 	step UP
 	step_end
 
-MovementData_0x184a22:
+SproutTower3FRivalApproachesElderMovement:
 	step UP
 	step_end
 
-MovementData_0x184a24:
+SproutTower3FRivalLeavesElderMovement:
 	step RIGHT
 	step DOWN
 	step_end

@@ -63,11 +63,11 @@ RocketBaseBossFScript:
 	closetext
 	turnobject PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
-	applymovement PLAYER, MovementData_0x6d21f
+	applymovement PLAYER, RocketBasePlayerApproachesBossFMovement
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, MovementData_0x6d224
+	applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, RocketBaseBossFApproachesPlayerMovement
 	turnobject PLAYER, UP
-	applymovement TEAMROCKETBASEB2F_ROCKET1, MovementData_0x6d22f
+	applymovement TEAMROCKETBASEB2F_ROCKET1, RocketBaseGruntApproachesPlayerMovement
 	opentext
 	writetext RocketBaseBossFThrashText
 	waitbutton
@@ -76,23 +76,23 @@ RocketBaseBossFScript:
 	turnobject TEAMROCKETBASEB2F_ROCKET_GIRL, LEFT
 	turnobject PLAYER, LEFT
 	appear TEAMROCKETBASEB2F_DRAGON
-	applymovement TEAMROCKETBASEB2F_DRAGON, MovementData_0x6d236
-	applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, MovementData_0x6d23b
-	applymovement TEAMROCKETBASEB2F_ROCKET1, MovementData_0x6d24c
+	applymovement TEAMROCKETBASEB2F_DRAGON, RocketBaseDragoniteAttacksMovement
+	applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, RocketBaseBossFHitMovement
+	applymovement TEAMROCKETBASEB2F_ROCKET1, RocketBaseGruntProtectsBossFMovement
 	appear TEAMROCKETBASEB2F_LANCE
-	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d244
+	applymovement TEAMROCKETBASEB2F_LANCE, RocketBaseLanceApproachesBossFMovement
 	opentext
 	writetext RocketBaseLanceShareFunText
 	waitbutton
 	closetext
 	turnobject PLAYER, RIGHT
-	applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, MovementData_0x6d241
+	applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, RocketBaseBossFFacesPlayerMovement
 	opentext
 	writetext RocketBaseBossDontMeddleText
 	waitbutton
 	closetext
-	applymovement TEAMROCKETBASEB2F_ROCKET1, MovementData_0x6d24a
-	applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, MovementData_0x6d248
+	applymovement TEAMROCKETBASEB2F_ROCKET1, RocketBaseGruntBattlesLanceMovement
+	applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, RocketBaseBossFBattlesPlayerMovement
 	winlosstext RocketBaseBossWinText, 0
 	setlasttalked TEAMROCKETBASEB2F_ROCKET_GIRL
 	loadtrainer EXECUTIVEF, EXECUTIVEF_2
@@ -123,25 +123,25 @@ RocketBaseBossFScript:
 	writetext RocketBaseLancePostBattleText
 	waitbutton
 	closetext
-	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d250
+	applymovement TEAMROCKETBASEB2F_LANCE, RocketBaseLanceChecksPlayerMovement
 	turnobject PLAYER, UP
 	opentext
 	writetext RocketBaseLancePowerOffText
 	waitbutton
 	closetext
 	follow TEAMROCKETBASEB2F_LANCE, PLAYER
-	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d254
+	applymovement TEAMROCKETBASEB2F_LANCE, RocketBaseLanceApproachesMachineMovement
 	stopfollow
-	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d258
+	applymovement TEAMROCKETBASEB2F_LANCE, RocketBaseLancePacesMovement
 	opentext
 	writetext RockerBaseLanceElectrodeFaintText
 	waitbutton
 	closetext
-	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d267
+	applymovement TEAMROCKETBASEB2F_LANCE, RocketBaseLanceApproachesElectrodesMovement
 	disappear TEAMROCKETBASEB2F_LANCE
 
 RocketBaseCantLeaveScript:
-	applymovement PLAYER, MovementData_0x6d271
+	applymovement PLAYER, RocketBasePlayerCantLeaveElectrodesMovement
 	end
 
 RocketBaseLancesSideScript:
@@ -149,7 +149,7 @@ RocketBaseLancesSideScript:
 	writetext RocketBaseLancesSideText
 	waitbutton
 	closetext
-	applymovement PLAYER, MovementData_0x6d278
+	applymovement PLAYER, RocketBasePlayerCantGoRightMovement
 	end
 
 LanceHealsScript1:
@@ -177,12 +177,12 @@ LanceHealsCommon:
 	setevent EVENT_LANCE_HEALED_YOU_IN_TEAM_ROCKET_BASE
 	readvar VAR_FACING
 	ifequal RIGHT, .FacingRight
-	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d212
+	applymovement TEAMROCKETBASEB2F_LANCE, RocketBaseLanceLeavesAfterHealMovement
 	disappear TEAMROCKETBASEB2F_LANCE
 	end
 
 .FacingRight:
-	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d219
+	applymovement TEAMROCKETBASEB2F_LANCE, RocketBaseLanceLeavesAfterHealRightMovement
 	disappear TEAMROCKETBASEB2F_LANCE
 	end
 
@@ -234,7 +234,7 @@ RocketElectrode1:
 	iffalse TeamRocketBaseB2FReloadMap
 	reloadmapafterbattle
 	special PlayMapMusic
-	applymovement PLAYER, MovementData_0x6d28c
+	applymovement PLAYER, RocketBasePlayerLeavesElectrodesMovement1
 	sjump RocketBaseElectrodeScript
 
 RocketElectrode2:
@@ -252,7 +252,7 @@ RocketElectrode2:
 	iffalse TeamRocketBaseB2FReloadMap
 	reloadmapafterbattle
 	special PlayMapMusic
-	applymovement PLAYER, MovementData_0x6d299
+	applymovement PLAYER, RocketBasePlayerLeavesElectrodesMovement2
 	sjump RocketBaseElectrodeScript
 
 RocketElectrode3:
@@ -270,7 +270,7 @@ RocketElectrode3:
 	iffalse TeamRocketBaseB2FReloadMap
 	reloadmapafterbattle
 	special PlayMapMusic
-	applymovement PLAYER, MovementData_0x6d2a4
+	applymovement PLAYER, RocketBasePlayerLeavesElectrodesMovement3
 	sjump RocketBaseElectrodeScript
 
 TeamRocketBaseB2FReloadMap:
@@ -280,7 +280,7 @@ TeamRocketBaseB2FReloadMap:
 RocketBaseElectrodeScript:
 	moveobject TEAMROCKETBASEB2F_LANCE, 18, 6
 	appear TEAMROCKETBASEB2F_LANCE
-	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d27a
+	applymovement TEAMROCKETBASEB2F_LANCE, RocketBaseLanceLeavesElectrodesMovement
 	turnobject PLAYER, RIGHT
 	opentext
 	writetext RocketBaseLanceElectrodeDoneText
@@ -296,7 +296,7 @@ RocketBaseElectrodeScript:
 	waitbutton
 	closetext
 	turnobject PLAYER, DOWN
-	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d283
+	applymovement TEAMROCKETBASEB2F_LANCE, RocketBaseLanceLeavesBaseMovement
 	disappear TEAMROCKETBASEB2F_LANCE
 	setevent EVENT_CLEARED_ROCKET_HIDEOUT
 	clearflag ENGINE_ROCKET_SIGNAL_ON_CH20
@@ -356,7 +356,7 @@ TeamRocketBaseB2FTMThief:
 TeamRocketBaseB2FHiddenFullHeal:
 	hiddenitem FULL_HEAL, EVENT_TEAM_ROCKET_BASE_B2F_HIDDEN_FULL_HEAL
 
-MovementData_0x6d212:
+RocketBaseLanceLeavesAfterHealMovement:
 	step RIGHT
 	step RIGHT
 	step RIGHT
@@ -365,7 +365,7 @@ MovementData_0x6d212:
 	step RIGHT
 	step_end
 
-MovementData_0x6d219:
+RocketBaseLanceLeavesAfterHealRightMovement:
 	step RIGHT
 	step RIGHT
 	step RIGHT
@@ -373,14 +373,14 @@ MovementData_0x6d219:
 	step RIGHT
 	step_end
 
-MovementData_0x6d21f:
+RocketBasePlayerApproachesBossFMovement:
 	step DOWN
 	step DOWN
 	step DOWN
 	turn_head RIGHT
 	step_end
 
-MovementData_0x6d224:
+RocketBaseBossFApproachesPlayerMovement:
 	big_step LEFT
 	big_step LEFT
 	big_step UP
@@ -393,7 +393,7 @@ MovementData_0x6d224:
 	turn_head DOWN
 	step_end
 
-MovementData_0x6d22f:
+RocketBaseGruntApproachesPlayerMovement:
 	big_step LEFT
 	big_step LEFT
 	big_step UP
@@ -402,14 +402,14 @@ MovementData_0x6d22f:
 	big_step LEFT
 	step_end
 
-MovementData_0x6d236:
+RocketBaseDragoniteAttacksMovement:
 	big_step RIGHT
 	big_step RIGHT
 	big_step RIGHT
 	big_step RIGHT
 	step_end
 
-MovementData_0x6d23b:
+RocketBaseBossFHitMovement:
 	fix_facing
 	set_sliding
 	jump_step RIGHT
@@ -417,44 +417,44 @@ MovementData_0x6d23b:
 	remove_fixed_facing
 	step_end
 
-MovementData_0x6d241:
+RocketBaseBossFFacesPlayerMovement:
 	slow_step DOWN
 	turn_head LEFT
 	step_end
 
-MovementData_0x6d244:
+RocketBaseLanceApproachesBossFMovement:
 	step RIGHT
 	step RIGHT
 	step RIGHT
 	step_end
 
-MovementData_0x6d248:
+RocketBaseBossFBattlesPlayerMovement:
 	big_step LEFT
 	step_end
 
-MovementData_0x6d24a:
+RocketBaseGruntBattlesLanceMovement:
 	big_step LEFT
 	step_end
 
-MovementData_0x6d24c:
+RocketBaseGruntProtectsBossFMovement:
 	big_step LEFT
 	big_step UP
 	turn_head LEFT
 	step_end
 
-MovementData_0x6d250:
+RocketBaseLanceChecksPlayerMovement:
 	step RIGHT
 	step RIGHT
 	turn_head DOWN
 	step_end
 
-MovementData_0x6d254:
+RocketBaseLanceApproachesMachineMovement:
 	step UP
 	step UP
 	step UP
 	step_end
 
-MovementData_0x6d258:
+RocketBaseLancePacesMovement:
 	step_sleep 8
 	step LEFT
 	step LEFT
@@ -471,7 +471,7 @@ MovementData_0x6d258:
 	turn_head DOWN
 	step_end
 
-MovementData_0x6d267:
+RocketBaseLanceApproachesElectrodesMovement:
 	step RIGHT
 	step RIGHT
 	step RIGHT
@@ -483,7 +483,7 @@ MovementData_0x6d267:
 	step UP
 	step_end
 
-MovementData_0x6d271:
+RocketBasePlayerCantLeaveElectrodesMovement:
 	step UP
 	step LEFT
 	step LEFT
@@ -492,50 +492,37 @@ MovementData_0x6d271:
 	turn_head UP
 	step_end
 
-MovementData_0x6d278:
+RocketBasePlayerCantGoRightMovement:
 	step LEFT
 	step_end
 
-MovementData_0x6d27a:
+RocketBaseLanceLeavesElectrodesMovement:
 	step DOWN
 	step DOWN
 	step DOWN
 	step DOWN
 	step DOWN
-	step LEFT
-	step LEFT
-	step LEFT
-	step_end
-
-MovementData_0x6d283:
-	step DOWN
-	step DOWN
-	step LEFT
-	step LEFT
-	step LEFT
 	step LEFT
 	step LEFT
 	step LEFT
 	step_end
 
-MovementData_0x6d28c:
-	step RIGHT
-	step RIGHT
+RocketBaseLanceLeavesBaseMovement:
 	step DOWN
 	step DOWN
-	step DOWN
-	step DOWN
-	step DOWN
-	step DOWN
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step RIGHT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
 	step_end
 
-MovementData_0x6d299:
+RocketBasePlayerLeavesElectrodesMovement1:
 	step RIGHT
 	step RIGHT
+	step DOWN
+	step DOWN
 	step DOWN
 	step DOWN
 	step DOWN
@@ -546,7 +533,20 @@ MovementData_0x6d299:
 	step RIGHT
 	step_end
 
-MovementData_0x6d2a4:
+RocketBasePlayerLeavesElectrodesMovement2:
+	step RIGHT
+	step RIGHT
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step_end
+
+RocketBasePlayerLeavesElectrodesMovement3:
 	step RIGHT
 	step RIGHT
 	step DOWN

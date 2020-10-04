@@ -30,13 +30,13 @@ NewBarkTown_TeacherStopsYouScene1:
 	waitbutton
 	closetext
 	turnobject PLAYER, RIGHT
-	applymovement NEWBARKTOWN_TEACHER, Movement_TeacherRunsToYou1_NBT
+	applymovement NEWBARKTOWN_TEACHER, NewBarkTown_TeacherRunsToYouMovement1
 	opentext
 	writetext Text_WhatDoYouThinkYoureDoing
 	waitbutton
 	closetext
 	follow NEWBARKTOWN_TEACHER, PLAYER
-	applymovement NEWBARKTOWN_TEACHER, Movement_TeacherBringsYouBack1_NBT
+	applymovement NEWBARKTOWN_TEACHER, NewBarkTown_TeacherBringsYouBackMovement1
 	stopfollow
 	opentext
 	writetext Text_ItsDangerousToGoAlone
@@ -53,14 +53,14 @@ NewBarkTown_TeacherStopsYouScene2:
 	waitbutton
 	closetext
 	turnobject PLAYER, RIGHT
-	applymovement NEWBARKTOWN_TEACHER, Movement_TeacherRunsToYou2_NBT
+	applymovement NEWBARKTOWN_TEACHER, NewBarkTown_TeacherRunsToYouMovement2
 	turnobject PLAYER, UP
 	opentext
 	writetext Text_WhatDoYouThinkYoureDoing
 	waitbutton
 	closetext
 	follow NEWBARKTOWN_TEACHER, PLAYER
-	applymovement NEWBARKTOWN_TEACHER, Movement_TeacherBringsYouBack2_NBT
+	applymovement NEWBARKTOWN_TEACHER, NewBarkTown_TeacherBringsYouBackMovement2
 	stopfollow
 	opentext
 	writetext Text_ItsDangerousToGoAlone
@@ -115,14 +115,14 @@ NewBarkTownSilverScript:
 	waitbutton
 	closetext
 	follow PLAYER, NEWBARKTOWN_SILVER
-	applymovement PLAYER, Movement_SilverPushesYouAway_NBT
+	applymovement PLAYER, NewBarkTown_SilverPushesYouAwayMovement
 	stopfollow
 	pause 5
 	turnobject NEWBARKTOWN_SILVER, DOWN
 	pause 5
 	playsound SFX_TACKLE
-	applymovement PLAYER, Movement_SilverShovesYouOut_NBT
-	applymovement NEWBARKTOWN_SILVER, Movement_SilverReturnsToTheShadows_NBT
+	applymovement PLAYER, NewBarkTown_SilverShovesYouOutMovement
+	applymovement NEWBARKTOWN_SILVER, NewBarkTown_SilverReturnsToTheShadowsMovement
 	end
 
 NewBarkTownSign:
@@ -137,14 +137,14 @@ NewBarkTownElmsLabSign:
 NewBarkTownElmsHouseSign:
 	jumptext NewBarkTownElmsHouseSignText
 
-Movement_TeacherRunsToYou1_NBT:
+NewBarkTown_TeacherRunsToYouMovement1:
 	step LEFT
 	step LEFT
 	step LEFT
 	step LEFT
 	step_end
 
-Movement_TeacherRunsToYou2_NBT:
+NewBarkTown_TeacherRunsToYouMovement2:
 	step LEFT
 	step LEFT
 	step LEFT
@@ -153,7 +153,7 @@ Movement_TeacherRunsToYou2_NBT:
 	turn_head DOWN
 	step_end
 
-Movement_TeacherBringsYouBack1_NBT:
+NewBarkTown_TeacherBringsYouBackMovement1:
 	step RIGHT
 	step RIGHT
 	step RIGHT
@@ -161,7 +161,7 @@ Movement_TeacherBringsYouBack1_NBT:
 	turn_head LEFT
 	step_end
 
-Movement_TeacherBringsYouBack2_NBT:
+NewBarkTown_TeacherBringsYouBackMovement2:
 	step RIGHT
 	step RIGHT
 	step RIGHT
@@ -170,19 +170,19 @@ Movement_TeacherBringsYouBack2_NBT:
 	turn_head LEFT
 	step_end
 
-Movement_SilverPushesYouAway_NBT:
+NewBarkTown_SilverPushesYouAwayMovement:
 	turn_head UP
 	step DOWN
 	step_end
 
-Movement_SilverShovesYouOut_NBT:
+NewBarkTown_SilverShovesYouOutMovement:
 	turn_head UP
 	fix_facing
 	jump_step DOWN
 	remove_fixed_facing
 	step_end
 
-Movement_SilverReturnsToTheShadows_NBT:
+NewBarkTown_SilverReturnsToTheShadowsMovement:
 	step RIGHT
 	step_end
 

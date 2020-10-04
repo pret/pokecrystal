@@ -30,15 +30,15 @@ OlivineCityRivalSceneTop:
 	playsound SFX_ENTER_DOOR
 	appear OLIVINECITY_OLIVINE_RIVAL
 	waitsfx
-	applymovement OLIVINECITY_OLIVINE_RIVAL, MovementData_0x1a88d2
+	applymovement OLIVINECITY_OLIVINE_RIVAL, OlivineCityRivalApproachesTopMovement
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	opentext
 	writetext OlivineCityRivalText
 	waitbutton
 	closetext
-	applymovement PLAYER, MovementData_0x1a88f4
+	applymovement PLAYER, OlivineCityPlayerStepsAsideTopMovement
 	turnobject PLAYER, RIGHT
-	applymovement OLIVINECITY_OLIVINE_RIVAL, MovementData_0x1a88db
+	applymovement OLIVINECITY_OLIVINE_RIVAL, OlivineCityRivalLeavesTopMovement
 	setscene SCENE_FINISHED
 	disappear OLIVINECITY_OLIVINE_RIVAL
 	special RestartMapMusic
@@ -54,15 +54,15 @@ OlivineCityRivalSceneBottom:
 	playsound SFX_ENTER_DOOR
 	appear OLIVINECITY_OLIVINE_RIVAL
 	waitsfx
-	applymovement OLIVINECITY_OLIVINE_RIVAL, MovementData_0x1a88d6
+	applymovement OLIVINECITY_OLIVINE_RIVAL, OlivineCityRivalApproachesBottomMovement
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	opentext
 	writetext OlivineCityRivalText
 	waitbutton
 	closetext
-	applymovement PLAYER, MovementData_0x1a88f7
+	applymovement PLAYER, OlivineCityPlayerStepsAsideBottomMovement
 	turnobject PLAYER, RIGHT
-	applymovement OLIVINECITY_OLIVINE_RIVAL, MovementData_0x1a88e8
+	applymovement OLIVINECITY_OLIVINE_RIVAL, OlivineCityRivalLeavesBottomMovement
 	disappear OLIVINECITY_OLIVINE_RIVAL
 	setscene SCENE_FINISHED
 	special RestartMapMusic
@@ -113,20 +113,20 @@ OlivineCityPokecenterSign:
 OlivineCityMartSign:
 	jumpstd MartSignScript
 
-MovementData_0x1a88d2:
+OlivineCityRivalApproachesTopMovement:
 	step DOWN
 	step RIGHT
 	step RIGHT
 	step_end
 
-MovementData_0x1a88d6:
+OlivineCityRivalApproachesBottomMovement:
 	step DOWN
 	step DOWN
 	step RIGHT
 	step RIGHT
 	step_end
 
-MovementData_0x1a88db:
+OlivineCityRivalLeavesTopMovement:
 	step RIGHT
 	step RIGHT
 	step RIGHT
@@ -141,7 +141,7 @@ MovementData_0x1a88db:
 	step UP
 	step_end
 
-MovementData_0x1a88e8:
+OlivineCityRivalLeavesBottomMovement:
 	step RIGHT
 	step RIGHT
 	step RIGHT
@@ -155,12 +155,12 @@ MovementData_0x1a88e8:
 	step UP
 	step_end
 
-MovementData_0x1a88f4:
+OlivineCityPlayerStepsAsideTopMovement:
 	step DOWN
 	turn_head UP
 	step_end
 
-MovementData_0x1a88f7:
+OlivineCityPlayerStepsAsideBottomMovement:
 	step UP
 	turn_head DOWN
 	step_end
