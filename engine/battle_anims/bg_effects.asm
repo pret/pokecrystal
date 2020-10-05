@@ -87,7 +87,7 @@ BattleBGEffects:
 	dw BattleBGEffect_AlternateHues
 	dw BattleBGEffect_CycleOBPalsGrayAndYellow
 	dw BattleBGEffect_CycleMidOBPalsGrayAndYellow
-	dw BattleBGEffect_CycleWBGPals_Inverted
+	dw BattleBGEffect_CycleBGPals_Inverted
 	dw BattleBGEffect_HideMon
 	dw BattleBGEffect_ShowMon
 	dw BattleBGEffect_EnterMon
@@ -326,7 +326,7 @@ BattleBGEffect_CycleMidOBPalsGrayAndYellow:
 	dc 3, 0, 3, 0
 	db -2
 
-BattleBGEffect_CycleWBGPals_Inverted:
+BattleBGEffect_CycleBGPals_Inverted:
 	ld de, .Pals
 	call BattleBGEffect_GetNthDMGPal
 	ld [wBGP], a
@@ -1044,6 +1044,7 @@ BattleBGEffect_EndWater:
 	ret
 
 BattleBGEffect_Psychic:
+; Hardcoded to always affect opponent
 	call BattleBGEffects_AnonJumptable
 .anon_dw
 	dw .zero
@@ -1574,7 +1575,7 @@ Functionc88a5:
 	jr nz, .loop
 	ret
 
-BattleBGEffect_BetaPursuit:
+BattleBGEffect_BetaPursuit: ; unused
 	call BattleBGEffects_AnonJumptable
 .anon_dw
 	dw VitalThrow_MoveBackwards
@@ -2111,7 +2112,7 @@ BattleBGEffect_FadeMonsToBlackRepeating:
 	db $40, $fc
 	db $90, $f8
 
-BattleBGEffect_RapidFlash:
+BattleBGEffect_RapidFlash: ; unused
 	ld de, .FlashPals
 	call BGEffect_RapidCyclePals
 	ret
@@ -2164,7 +2165,7 @@ BattleBGEffect_CycleMonLightDarkRepeating:
 .Pals:
 	db $e4, $f8, $fc, $f8, $e4, $90, $40, $90, $fe
 
-BattleBGEffect_FlashMonRepeating:
+BattleBGEffect_FlashMonRepeating: ; unused
 ; BG_EFFECT_STRUCT_BATTLE_TURN: 0 = target of animation, 1 = user
 	ld de, .Pals
 	call BGEffect_RapidCyclePals
@@ -2395,9 +2396,7 @@ BattleBGEffect_GetNthDMGPal:
 	ret
 
 BGEffect_RapidCyclePals:
-; Last index in DE:
-;                   $fe signals a loop
-;                   $ff signals end
+; Last index in DE: $fe signals a loop, $ff signals end
 	ldh a, [hCGB]
 	and a
 	jr nz, .cgb

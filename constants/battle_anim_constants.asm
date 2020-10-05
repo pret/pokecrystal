@@ -714,7 +714,7 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const ANIM_BG_ALTERNATE_HUES
 	const ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW
 	const ANIM_BG_CYCLE_MID_OBPALS_GRAY_AND_YELLOW
-	const ANIM_BG_CYCLE_WBGPALS_INVERTED
+	const ANIM_BG_CYCLE_BGPALS_INVERTED
 	const ANIM_BG_HIDE_MON
 	const ANIM_BG_SHOW_MON
 	const ANIM_BG_ENTER_MON
@@ -813,6 +813,11 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BG_EFFECT_STRUCT_03
 BG_EFFECT_STRUCT_LENGTH EQU const_value
 NUM_BG_EFFECTS EQU 5 ; see wActiveBGEffects
+
+; 
+	const_def
+	const BG_EFFECT_TARGET ; 0
+	const BG_EFFECT_USER   ; 1
 
 ; battle palettes
 	const_def
