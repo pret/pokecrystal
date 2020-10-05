@@ -8,12 +8,12 @@ PrintPage1:
 	hlcoord 17, 1, wPrinterTilemapBuffer
 	ld a, $62
 	ld [hli], a
-	inc a
+	inc a ; $63
 	ld [hl], a
 	hlcoord 17, 2, wPrinterTilemapBuffer
 	ld a, $64
 	ld [hli], a
-	inc a
+	inc a ; $65
 	ld [hl], a
 	hlcoord 1, 9, wPrinterTilemapBuffer
 	ld a, " "
@@ -173,7 +173,7 @@ PrintPartyMonPage1:
 	ld [wNamedObjectIndexBuffer], a
 	ld [wCurSpecies], a
 	ld hl, wPartyMonNicknames
-	call Function1dc50e
+	call GetCurPartyMonName
 	hlcoord 8, 4
 	call PlaceString
 	hlcoord 9, 6
@@ -190,26 +190,26 @@ PrintPartyMonPage1:
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
 	hlcoord 1, 9
-	ld de, String1dc550
+	ld de, PrintParty_OTString
 	call PlaceString
 	ld hl, wPartyMonOT
-	call Function1dc50e
+	call GetCurPartyMonName
 	hlcoord 4, 9
 	call PlaceString
 	hlcoord 1, 11
-	ld de, String1dc559
+	ld de, PrintParty_IDNoString
 	call PlaceString
 	hlcoord 4, 11
 	ld de, wTempMonID
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
 	hlcoord 1, 14
-	ld de, String1dc554
+	ld de, PrintParty_MoveString
 	call PlaceString
 	hlcoord 7, 14
 	ld a, [wTempMonMoves + 0]
-	call Function1dc51a
-	call Function1dc52c
+	call PlaceMoveNameString
+	call PlaceGenderAndShininess
 	ld hl, wTempMonDVs
 	predef GetUnownLetter
 	ld hl, wBoxAlignment
@@ -249,15 +249,15 @@ PrintPartyMonPage2:
 	call CopyBytes
 	hlcoord 7, 0
 	ld a, [wTempMonMoves + 1]
-	call Function1dc51a
+	call PlaceMoveNameString
 	hlcoord 7, 2
 	ld a, [wTempMonMoves + 2]
-	call Function1dc51a
+	call PlaceMoveNameString
 	hlcoord 7, 4
 	ld a, [wTempMonMoves + 3]
-	call Function1dc51a
+	call PlaceMoveNameString
 	hlcoord 7, 7
-	ld de, String1dc55d
+	ld de, PrintParty_StatsString
 	call PlaceString
 	hlcoord 16, 7
 	ld de, wTempMonAttack
@@ -285,7 +285,7 @@ PrintPartyMonPage2:
 	call PrintNum
 	ret
 
-Function1dc50e:
+GetCurPartyMonName:
 	ld bc, NAME_LENGTH
 	ld a, [wCurPartyMon]
 	call AddNTimes
@@ -293,7 +293,7 @@ Function1dc50e:
 	ld d, h
 	ret
 
-Function1dc51a:
+PlaceMoveNameString:
 	and a
 	jr z, .no_move
 
@@ -302,13 +302,13 @@ Function1dc51a:
 	jr .got_string
 
 .no_move
-	ld de, String1dc584
+	ld de, PrintParty_NoMoveString
 
 .got_string
 	call PlaceString
 	ret
 
-Function1dc52c:
+PlaceGenderAndShininess:
 	farcall GetGender
 	ld a, " "
 	jr c, .got_gender
@@ -326,16 +326,16 @@ Function1dc52c:
 	ld [hl], "⁂"
 	ret
 
-String1dc550:
+PrintParty_OTString:
 	db "OT/@"
 
-String1dc554:
+PrintParty_MoveString:
 	db "MOVE@"
 
-String1dc559:
+PrintParty_IDNoString:
 	db "<ID>№.@"
 
-String1dc55d:
+PrintParty_StatsString:
 	db   "ATTACK"
 	next "DEFENSE"
 	next "SPCL.ATK"
@@ -343,7 +343,7 @@ String1dc55d:
 	next "SPEED"
 	db   "@"
 
-String1dc584:
+PrintParty_NoMoveString:
 	db "------------@"
 
 GBPrinterHPIcon:

@@ -905,7 +905,7 @@ PokegearPhone_MakePhoneCall:
 	call WaitSFX
 	ld a, [wPokegearPhoneSelectedPerson]
 	ld b, a
-	call Function90199
+	call MakePhoneCallFromPokegear
 	ld c, 10
 	call DelayFrames
 	ld hl, wOptions
@@ -1050,7 +1050,7 @@ PokegearPhone_UpdateDisplayList:
 	ld e, l
 	pop af
 	ld b, a
-	call Function90380
+	call GetCallerClassAndName
 	pop hl
 	ld a, [wPokegearPhoneLoadNameBuffer]
 	inc a

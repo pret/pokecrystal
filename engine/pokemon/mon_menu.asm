@@ -346,11 +346,11 @@ TakePartyItem:
 	call GetPartyItemLocation
 	ld a, [hl]
 	and a
-	jr z, .asm_12c8c
+	jr z, .not_holding_item
 
 	ld [wCurItem], a
 	call ReceiveItemFromPokemon
-	jr nc, .asm_12c94
+	jr nc, .item_storage_full
 
 	farcall ItemIsMail
 	call GetPartyItemLocation
@@ -360,18 +360,18 @@ TakePartyItem:
 	call GetItemName
 	ld hl, PokemonTookItemText
 	call MenuTextboxBackup
-	jr .asm_12c9a
+	jr .done
 
-.asm_12c8c
+.not_holding_item
 	ld hl, PokemonNotHoldingText
 	call MenuTextboxBackup
-	jr .asm_12c9a
+	jr .done
 
-.asm_12c94
+.item_storage_full
 	ld hl, ItemStorageFullText
 	call MenuTextboxBackup
 
-.asm_12c9a
+.done
 	ret
 
 GiveTakeItemMenuData:

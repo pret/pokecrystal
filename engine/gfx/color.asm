@@ -133,7 +133,7 @@ SGB_ApplyPartyMenuHPPals:
 	ld [hl], e
 	ret
 
-Function8b07: ; unreferenced
+Intro_LoadMagikarpPalettes: ; unreferenced
 	call CheckCGB
 	ret z
 ; CGB only
@@ -166,7 +166,7 @@ Function8b07: ; unreferenced
 	RGB 08, 16, 28
 	RGB 00, 00, 00
 
-Function8b3f: ; unreferenced
+Intro_LoadAllPal0: ; unreferenced
 	call CheckCGB
 	ret nz
 	ldh a, [hSGB]
@@ -175,7 +175,7 @@ Function8b3f: ; unreferenced
 	ld hl, BlkPacket_AllPal0
 	jp PushSGBPals
 
-Function8b4d: ; unreferenced
+Intro_LoadBetaIntroVenusaurPalettes: ; unreferenced
 	call CheckCGB
 	jr nz, .cgb
 	ldh a, [hSGB]
@@ -190,7 +190,7 @@ Function8b4d: ; unreferenced
 	call GetPredefPal
 	jp LoadHLPaletteIntoDE
 
-Function8b67: ; unreferenced
+Intro_LoadPackPalettes: ; unreferenced
 	call CheckCGB
 	jr nz, .cgb
 	ldh a, [hSGB]
@@ -273,7 +273,7 @@ LoadNthMiddleBGPal:
 	call LoadPalette_White_Col1_Col2_Black
 	ret
 
-Function8bec: ; unreferenced
+LoadBetaPokerPalettes: ; unreferenced
 	ldh a, [hCGB]
 	and a
 	jr nz, .cgb

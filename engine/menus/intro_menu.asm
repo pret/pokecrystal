@@ -1267,7 +1267,7 @@ ResetClock:
 	farcall _ResetClock
 	jp Init
 
-Function639b: ; unreferenced
+UpdateTitleTrailSprite: ; unreferenced
 	; If bit 0 or 1 of [wTitleScreenTimer] is set, we don't need to be here.
 	ld a, [wTitleScreenTimer]
 	and %00000011
@@ -1279,9 +1279,9 @@ Function639b: ; unreferenced
 	ld h, 0
 	add hl, hl
 	add hl, hl
-	ld de, .Data_63ca
+	ld de, .TitleTrailCoords
 	add hl, de
-	; If bit 2 of [wTitleScreenTimer] is set, get the second dw; else, get the first dw
+	; If bit 2 of [wTitleScreenTimer] is set, get the second coords; else, get the first coords
 	ld a, [wTitleScreenTimer]
 	and %00000100
 	srl a
@@ -1299,14 +1299,25 @@ Function639b: ; unreferenced
 	call InitSpriteAnimStruct
 	ret
 
-.Data_63ca:
-; frame 0 y, x; frame 1 y, x
-	db 11 * 8 + 4, 10 * 8,  0 * 8,      0 * 8
-	db 11 * 8 + 4, 13 * 8, 11 * 8 + 4, 11 * 8
-	db 11 * 8 + 4, 13 * 8, 11 * 8 + 4, 15 * 8
-	db 11 * 8 + 4, 17 * 8, 11 * 8 + 4, 15 * 8
-	db  0 * 8,      0 * 8, 11 * 8 + 4, 15 * 8
-	db  0 * 8,      0 * 8, 11 * 8 + 4, 11 * 8
+.TitleTrailCoords:
+trail_coords: MACRO
+rept _NARG / 2
+_dx = 4
+if \1 == 0 && \2 == 0
+_dx = 0
+endc
+	dbpixel \1, \2, _dx, 0
+	shift
+	shift
+endr
+ENDM
+	; frame 0 y, x; frame 1 y, x
+	trail_coords 11, 10,  0,  0
+	trail_coords 11, 13, 11, 11
+	trail_coords 11, 13, 11, 15
+	trail_coords 11, 17, 11, 15
+	trail_coords  0,  0, 11, 15
+	trail_coords  0,  0, 11, 11
 
 Copyright:
 	call ClearTilemap
