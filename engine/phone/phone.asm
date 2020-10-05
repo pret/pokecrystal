@@ -528,7 +528,7 @@ Phone_CallEnd:
 	call HangUp_Wait20Frames
 	ret
 
-Function90316:
+HangUp_ShutDown: ; unreferenced
 	ld de, SFX_SHUT_DOWN_PC
 	call PlaySFX
 	ret

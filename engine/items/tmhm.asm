@@ -484,7 +484,7 @@ TMHM_PlaySFX_ReadText2:
 	pop de
 	ret
 
-Function2cadf: ; unreferenced
+VerboseReceiveTMHM: ; unreferenced
 	call ConvertCurItemIntoCurTMHM
 	call .CheckHaveRoomForTMHM
 	ld hl, .NoRoomTMHMText
@@ -510,7 +510,7 @@ Function2cadf: ; unreferenced
 	add hl, bc
 	ld a, [hl]
 	inc a
-	cp NUM_TMS * 2
+	cp MAX_ITEM_STACK + 1
 	ret nc
 	ld [hl], a
 	ret

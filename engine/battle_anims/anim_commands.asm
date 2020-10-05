@@ -216,16 +216,18 @@ ClearActorHud:
 	call ClearBox
 	ret
 
-Functioncc220: ; unreferenced
+PlaceWindowOverBattleTextbox: ; unreferenced
 	xor a
 	ldh [hBGMapMode], a
-	ld a, LOW(vBGMap0 tile $28)
+	; bgcoord hBGMapAddress, 0, 20
+	ld a, LOW(vBGMap0 + 20 * BG_MAP_WIDTH)
 	ldh [hBGMapAddress], a
-	ld a, HIGH(vBGMap0 tile $28)
+	ld a, HIGH(vBGMap0 + 20 * BG_MAP_WIDTH)
 	ldh [hBGMapAddress + 1], a
 	call WaitBGMap2
-	ld a, $60
+	ld a, (SCREEN_HEIGHT - TEXTBOX_HEIGHT) * TILE_WIDTH
 	ldh [hWY], a
+	; bgcoord hBGMapAddress, 0, 0
 	xor a ; LOW(vBGMap0)
 	ldh [hBGMapAddress], a
 	ld a, HIGH(vBGMap0)

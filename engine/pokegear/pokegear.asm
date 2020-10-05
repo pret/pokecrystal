@@ -2789,7 +2789,7 @@ INCBIN "gfx/pokegear/dexmap_nest_icon.2bpp"
 FlyMapLabelBorderGFX:
 INCBIN "gfx/pokegear/flymap_label_border.1bpp"
 
-Function92311:
+Function92311: ; unreferenced
 	xor a
 	ld [wTownMapPlayerIconLandmark], a
 	call ClearBGPalettes

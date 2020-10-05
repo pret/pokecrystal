@@ -26,7 +26,7 @@ DeleteMapObject::
 	pop bc
 	ret
 
-Function437b:
+HandleObjectStep:
 	call .CheckObjectStillVisible
 	ret c
 	call .HandleStepType
@@ -609,7 +609,7 @@ MapObjectMovementPattern:
 	ret
 
 .ObeyDPad:
-	ld hl, Function5000
+	ld hl, ApplyPlayerMovementByte
 	jp HandleMovementData
 
 .Movement08:
@@ -630,7 +630,7 @@ MapObjectMovementPattern:
 	jp _GetMovementObject
 
 .Movement0d:
-	ld hl, Function5000
+	ld hl, ApplyPlayerMovementByte
 	jp HandleMovementData
 
 .Movement0e:
@@ -1823,7 +1823,7 @@ UpdateJumpPosition:
 	db  -4,  -6,  -8, -10, -11, -12, -12, -12
 	db -11, -10,  -9,  -8,  -6,  -4,   0,   0
 
-Function5000: ; unscripted?
+ApplyPlayerMovementByte:
 ; copy [wPlayerNextMovement] to [wPlayerMovement]
 	ld a, [wPlayerNextMovement]
 	ld hl, wPlayerMovement
@@ -2419,7 +2419,7 @@ HandleNPCStep::
 	ldh [hMapObjectIndexBuffer], a
 	call DoesObjectHaveASprite
 	jr z, .next
-	call Function437b
+	call HandleObjectStep
 .next
 	ld hl, OBJECT_LENGTH
 	add hl, bc

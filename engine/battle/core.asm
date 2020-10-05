@@ -8201,7 +8201,7 @@ InitEnemyWildmon:
 	predef PlaceGraphic
 	ret
 
-Function3f662: ; unreferenced
+FillEnemyMovesFromMoveIndicesBuffer: ; unreferenced
 	ld hl, wEnemyMonMoves
 	ld de, wListMoves_MoveIndicesBuffer
 	ld b, NUM_MOVES
