@@ -1492,9 +1492,9 @@ Sfx_2ndPlace_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 3
 	drum_speed 8
-Sfx_2ndPlace_branch_f0fd7:
+.loop1:
 	note C#, 1
-	sound_loop 6, Sfx_2ndPlace_branch_f0fd7
+	sound_loop 6, .loop1
 	note B_, 12
 	note B_, 12
 	note B_, 12
@@ -1889,10 +1889,10 @@ Sfx_GetBadge_Ch5:
 	note_type 6, 9, 2
 	octave 4
 	note F_, 3
-	sound_call Sfx_GetBadge_branch_f11aa
+	sound_call .sub1
 	note A#, 3
 	transpose 0, 2
-	sound_call Sfx_GetBadge_branch_f11aa
+	sound_call .sub1
 	transpose 0, 0
 	volume_envelope 10, 7
 	note A_, 16
@@ -1901,7 +1901,7 @@ Sfx_GetBadge_Ch5:
 
 	toggle_sfx ; unused
 
-Sfx_GetBadge_branch_f11aa:
+.sub1:
 	rest 5
 	octave 3
 	note F_, 2
@@ -2015,7 +2015,7 @@ Sfx_GetBadge_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
 	drum_speed 6
-Sfx_GetBadge_branch_f1220:
+.loop1:
 	note B_, 12
 	note D_, 1
 	note D_, 1
@@ -2030,7 +2030,7 @@ Sfx_GetBadge_branch_f1220:
 	note C#, 1
 	note C#, 1
 	note C#, 1
-	sound_loop 2, Sfx_GetBadge_branch_f1220
+	sound_loop 2, .loop1
 	note B_, 16
 	rest 6
 	sound_ret
@@ -2163,7 +2163,7 @@ Sfx_Protect_Ch5:
 	toggle_sfx
 	note_type 1, 15, 1
 	duty_cycle 0
-Sfx_Protect_branch_f12c0:
+.loop1:
 	octave 5
 	note F_, 5
 	note A_, 5
@@ -2176,7 +2176,7 @@ Sfx_Protect_branch_f12c0:
 	octave 6
 	note C#, 5
 	note E_, 5
-	sound_loop 3, Sfx_Protect_branch_f12c0
+	sound_loop 3, .loop1
 	volume_envelope 12, 1
 	octave 5
 	note F_, 5
@@ -2210,12 +2210,12 @@ Sfx_Sketch:
 Sfx_Sketch_Ch5:
 	duty_cycle 1
 	pitch_sweep 10, 5
-Sfx_Sketch_branch_f12fd:
+.loop1:
 	square_note 2, 15, 1, 1760
 	square_note 13, 10, -7, 1456
 	square_note 4, 0, 0, 0
 	square_note 9, 15, 4, 1816
-	sound_loop 3, Sfx_Sketch_branch_f12fd
+	sound_loop 3, .loop1
 	pitch_sweep 0, 8
 	sound_ret
 
@@ -2392,7 +2392,7 @@ Sfx_Nightmare:
 Sfx_Nightmare_Ch5:
 	duty_cycle 0
 	pitch_sweep 3, 4
-Sfx_Nightmare_branch_f1424:
+.loop1:
 	square_note 3, 11, -2, 1585
 	square_note 2, 0, 0, 0
 	square_note 3, 15, 8, 1569
@@ -2403,7 +2403,7 @@ Sfx_Nightmare_branch_f1424:
 	square_note 2, 0, 0, 0
 	square_note 3, 14, 8, 1521
 	square_note 2, 0, 0, 0
-	sound_loop 2, Sfx_Nightmare_branch_f1424
+	sound_loop 2, .loop1
 	pitch_sweep 0, 8
 	sound_ret
 
@@ -2426,10 +2426,10 @@ Sfx_SweetKiss:
 
 Sfx_SweetKiss_Ch5:
 	duty_cycle 2
-Sfx_SweetKiss_branch_f146e:
+.loop1:
 	square_note 2, 12, 1, 1992
 	square_note 2, 13, 1, 2010
-	sound_loop 2, Sfx_SweetKiss_branch_f146e
+	sound_loop 2, .loop1
 	square_note 26, 15, 1, 2018
 	sound_ret
 
@@ -2657,10 +2657,10 @@ Sfx_MeanLook_Ch5:
 	pitch_sweep 7, 7
 	duty_cycle 3
 	square_note 2, 15, 8, 1824
-Sfx_MeanLook_branch_f15fa:
+.loop1:
 	square_note 1, 8, 8, 1632
 	square_note 2, 15, 8, 1936
-	sound_loop 5, Sfx_MeanLook_branch_f15fa
+	sound_loop 5, .loop1
 	square_note 12, 15, 8, 1792
 	square_note 12, 12, 8, 1824
 	square_note 12, 10, 8, 1792
@@ -2688,13 +2688,13 @@ Sfx_Return:
 
 Sfx_Return_Ch5:
 	duty_cycle 0
-Sfx_Return_branch_f163c:
+.loop1:
 	pitch_sweep 11, -7
 	square_note 8, 15, 1, 1881
 	pitch_sweep 5, 7
 	square_note 8, 15, 1, 1881
 	square_note 16, 0, 0, 0
-	sound_loop 2, Sfx_Return_branch_f163c
+	sound_loop 2, .loop1
 	pitch_sweep 0, 8
 	sound_ret
 
@@ -2723,14 +2723,14 @@ Sfx_MilkDrink:
 
 Sfx_MilkDrink_Ch5:
 	duty_cycle 2
-Sfx_MilkDrink_branch_f1684:
+.loop1:
 	pitch_sweep 10, 4
 	square_note 2, 14, -2, 1248
 	square_note 13, 15, 7, 656
 	pitch_sweep 9, -6
 	square_note 4, 12, -1, 1505
 	square_note 2, 0, 0, 0
-	sound_loop 6, Sfx_MilkDrink_branch_f1684
+	sound_loop 6, .loop1
 	pitch_sweep 0, 8
 	sound_ret
 
@@ -2741,10 +2741,10 @@ Sfx_Present:
 Sfx_Present_Ch5:
 	duty_cycle 2
 	pitch_sweep 13, 6
-Sfx_Present_branch_f16a6:
+.loop1:
 	square_note 2, 15, 1, 1856
 	square_note 1, 0, 0, 0
-	sound_loop 3, Sfx_Present_branch_f16a6
+	sound_loop 3, .loop1
 	square_note 16, 15, 1, 1920
 	pitch_sweep 0, 8
 	sound_ret
@@ -2755,11 +2755,11 @@ Sfx_MorningSun:
 
 Sfx_MorningSun_Ch5:
 	duty_cycle 3
-Sfx_MorningSun_branch_f16be:
+.loop1:
 	square_note 2, 15, 1, 2020
 	square_note 2, 15, 1, 2016
 	square_note 5, 15, 2, 2023
-	sound_loop 3, Sfx_MorningSun_branch_f16be
+	sound_loop 3, .loop1
 	square_note 1, 0, 0, 0
 	square_note 8, 12, 2, 2023
 	square_note 1, 0, 0, 0
@@ -2772,10 +2772,10 @@ Sfx_Moonlight:
 
 Sfx_Moonlight_Ch5:
 	duty_cycle 2
-Sfx_Moonlight_branch_f16e4:
+.loop1:
 	square_note 1, 15, 8, 2000
 	square_note 4, 15, 1, 2016
-	sound_loop 2, Sfx_Moonlight_branch_f16e4
+	sound_loop 2, .loop1
 	square_note 16, 15, 1, 2016
 	square_note 16, 13, 1, 2016
 	square_note 16, 8, 1, 2016
@@ -2790,10 +2790,10 @@ Sfx_Encore_Ch5:
 	duty_cycle 2
 	pitch_sweep 12, -6
 	square_note 16, 0, 0, 0
-Sfx_Encore_branch_f170b:
+.loop1:
 	square_note 2, 15, 8, 1908
 	square_note 36, 0, 0, 0
-	sound_loop 2, Sfx_Encore_branch_f170b
+	sound_loop 2, .loop1
 	pitch_sweep 0, 8
 	sound_ret
 
@@ -2951,12 +2951,12 @@ Sfx_GsIntroCharizardFireball:
 Sfx_GsIntroCharizardFireball_Ch8:
 	noise_note 8, 12, -7, 77
 	noise_note 8, 15, 1, 55
-Sfx_GsIntroCharizardFireball_branch_f17e2:
+.loop1:
 	noise_note 1, 15, 8, 79
 	noise_note 0, 12, 8, 38
 	noise_note 1, 13, 8, 95
 	noise_note 0, 10, 8, 55
-	sound_loop 12, Sfx_GsIntroCharizardFireball_branch_f17e2
+	sound_loop 12, .loop1
 	noise_note 3, 15, 8, 111
 	noise_note 4, 13, 8, 95
 	noise_note 12, 13, 8, 92
@@ -3203,13 +3203,13 @@ Sfx_DexFanfare140169_Ch8:
 	sfx_toggle_noise 4
 	drum_speed 12
 	note C_, 4
-Sfx_DexFanfare140169_branch_f1945:
+.loop1:
 	note D_, 4
 	note C#, 1
 	note C#, 1
 	note C#, 1
 	note C#, 1
-	sound_loop 3, Sfx_DexFanfare140169_branch_f1945
+	sound_loop 3, .loop1
 	note D_, 8
 	sound_ret
 
@@ -3605,7 +3605,7 @@ Sfx_DexFanfare230Plus_Ch8:
 	note D_, 2
 	note D_, 2
 	note D_, 2
-Sfx_DexFanfare230Plus_branch_f1b14:
+.loop1:
 	note D_, 6
 	note D_, 2
 	note D_, 2
@@ -3617,7 +3617,7 @@ Sfx_DexFanfare230Plus_branch_f1b14:
 	note C#, 1
 	note C#, 1
 	note C#, 1
-	sound_loop 2, Sfx_DexFanfare230Plus_branch_f1b14
+	sound_loop 2, .loop1
 	note D_, 6
 	note D_, 2
 	note D_, 2
@@ -3626,9 +3626,9 @@ Sfx_DexFanfare230Plus_branch_f1b14:
 	note D_, 4
 	note D_, 4
 	note D_, 4
-Sfx_DexFanfare230Plus_branch_f1b2b:
+.loop2:
 	note C#, 1
-	sound_loop 18, Sfx_DexFanfare230Plus_branch_f1b2b
+	sound_loop 18, .loop2
 	note D_, 6
 	sound_ret
 
@@ -3714,11 +3714,11 @@ Sfx_SweetScent2_Ch5:
 Sfx_SweetScent2_Ch8:
 	noise_note 2, 14, 8, 34
 	noise_note 17, 10, -2, 0
-Sfx_SweetScent2_branch_f1bd2:
+.loop1:
 	noise_note 4, 13, -1, 16
 	noise_note 8, 9, 1, 0
 	noise_note 2, 6, 1, 7
-	sound_loop 5, Sfx_SweetScent2_branch_f1bd2
+	sound_loop 5, .loop1
 	noise_note 4, 9, -1, 0
 	noise_note 10, 6, 1, 0
 	noise_note 6, 5, -1, 0
@@ -3819,13 +3819,13 @@ Sfx_2Boops:
 
 Sfx_2Boops_Ch5:
 	duty_cycle 2
-Sfx_2Boops_branch_f1cb9:
+.loop1:
 	pitch_sweep 7, -1
 	square_note 1, 9, -1, 1379
 	square_note 4, 15, 2, 1205
 	pitch_sweep 4, 3
 	square_note 16, 15, 8, 1485
-	sound_loop 2, Sfx_2Boops_branch_f1cb9
+	sound_loop 2, .loop1
 	pitch_sweep 0, 8
 	sound_ret
 

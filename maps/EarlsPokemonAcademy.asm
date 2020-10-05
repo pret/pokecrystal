@@ -111,7 +111,7 @@ AcademyBlackboard:
 	dn 3, 2 ; rows, columns
 	db 5 ; spacing
 	dba .Text
-	dbw BANK(AcademyBlackboard), 0
+	dbw BANK(@), NULL
 
 .Text:
 	db "PSN@"

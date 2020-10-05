@@ -253,7 +253,7 @@ Serial_ExchangeLinkMenuSelection::
 	ld c, 2
 	ld a, TRUE
 	ldh [hSerialIgnoringInitialData], a
-.asm_847
+.exchange
 	call DelayFrame
 	ld a, [hl]
 	ldh [hSerialSend], a
@@ -264,12 +264,12 @@ Serial_ExchangeLinkMenuSelection::
 	and a
 	ld a, FALSE
 	ldh [hSerialIgnoringInitialData], a
-	jr nz, .asm_847
+	jr nz, .exchange
 	ld a, b
 	ld [de], a
 	inc de
 	dec c
-	jr nz, .asm_847
+	jr nz, .exchange
 	ret
 
 Serial_PrintWaitingTextAndSyncAndExchangeNybble::
