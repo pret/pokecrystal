@@ -2051,7 +2051,7 @@ _FlyMap:
 	ld a, [hl]
 	and A_BUTTON
 	jr nz, .pressedA
-	call FlyMapScroll
+	call .HandleDPad
 	call GetMapCursorCoordinates
 	farcall PlaySpriteAnimations
 	call DelayFrame
@@ -2084,7 +2084,7 @@ _FlyMap:
 	ld e, a
 	ret
 
-FlyMapScroll:
+.HandleDPad:
 	ld a, [wStartFlypoint]
 	ld e, a
 	ld a, [wEndFlypoint]
@@ -2789,7 +2789,9 @@ INCBIN "gfx/pokegear/dexmap_nest_icon.2bpp"
 FlyMapLabelBorderGFX:
 INCBIN "gfx/pokegear/flymap_label_border.1bpp"
 
-Function92311: ; unreferenced
+EntireFlyMap: ; unreferenced
+; Similar to _FlyMap, but scrolls through the entire
+; Flypoints data of both regions. A debug function?
 	xor a
 	ld [wTownMapPlayerIconLandmark], a
 	call ClearBGPalettes
@@ -2842,7 +2844,7 @@ Function92311: ; unreferenced
 
 .pressedB
 	ld a, -1
-	jr .finished_a_b
+	jr .exit
 
 .pressedA
 	ld a, [wTownMapPlayerIconLandmark]
@@ -2852,7 +2854,7 @@ Function92311: ; unreferenced
 	ld de, Flypoints + 1
 	add hl, de
 	ld a, [hl]
-.finished_a_b
+.exit
 	ld [wTownMapPlayerIconLandmark], a
 	pop af
 	ldh [hInMenu], a
@@ -2871,44 +2873,44 @@ Function92311: ; unreferenced
 	ld hl, hJoyLast
 	ld a, [hl]
 	and D_DOWN | D_RIGHT
-	jr nz, .down_right
+	jr nz, .ScrollNext
 	ld a, [hl]
 	and D_UP | D_LEFT
-	jr nz, .up_left
+	jr nz, .ScrollPrev
 	ret
 
-.down_right
+.ScrollNext:
 	ld hl, wTownMapPlayerIconLandmark
 	ld a, [hl]
 	cp NUM_FLYPOINTS - 1
-	jr c, .okay_dr
+	jr c, .NotAtEndYet
 	ld [hl], -1
-.okay_dr
+.NotAtEndYet:
 	inc [hl]
-	jr .continue
+	jr .FillMap
 
-.up_left
+.ScrollPrev:
 	ld hl, wTownMapPlayerIconLandmark
 	ld a, [hl]
 	and a
-	jr nz, .okay_ul
+	jr nz, .NotAtStartYet
 	ld [hl], NUM_FLYPOINTS
-.okay_ul
+.NotAtStartYet:
 	dec [hl]
-.continue
+.FillMap:
 	ld a, [wTownMapPlayerIconLandmark]
 	cp KANTO_FLYPOINT
-	jr c, .johto
+	jr c, .InJohto
 	call FillKantoMap
 	xor a
 	ld b, HIGH(vBGMap1)
-	jr .finish
+	jr .Finally
 
-.johto
+.InJohto:
 	call FillJohtoMap
 	ld a, SCREEN_HEIGHT_PX
 	ld b, HIGH(vBGMap0)
-.finish
+.Finally:
 	ldh [hWY], a
 	ld a, b
 	ldh [hBGMapAddress + 1], a

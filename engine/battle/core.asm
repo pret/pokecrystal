@@ -3111,7 +3111,7 @@ ForceEnemySwitch:
 	call ClearEnemyMonBox
 	call NewEnemyMonStatus
 	call ResetEnemyStatLevels
-	call Function_SetEnemyMonAndSendOutAnimation
+	call ShowSetEnemyMonAndSendOutAnimation
 	call BreakAttraction
 	call ResetBattleParticipants
 	ret
@@ -3130,8 +3130,8 @@ EnemySwitch:
 	call OfferSwitch
 	push af
 	call ClearEnemyMonBox
-	call Function_BattleTextEnemySentOut
-	call Function_SetEnemyMonAndSendOutAnimation
+	call ShowBattleTextEnemySentOut
+	call ShowSetEnemyMonAndSendOutAnimation
 	pop af
 	ret c
 	; If we're here, then we're switching too
@@ -3155,8 +3155,8 @@ EnemySwitch_SetMode:
 	ld a, 1
 	ld [wEnemyIsSwitching], a
 	call ClearEnemyMonBox
-	call Function_BattleTextEnemySentOut
-	jp Function_SetEnemyMonAndSendOutAnimation
+	call ShowBattleTextEnemySentOut
+	jp ShowSetEnemyMonAndSendOutAnimation
 
 CheckWhetherSwitchmonIsPredetermined:
 ; returns carry if: ???
@@ -3526,13 +3526,13 @@ ClearEnemyMonBox:
 	call WaitBGMap
 	jp FinishBattleAnim
 
-Function_BattleTextEnemySentOut:
+ShowBattleTextEnemySentOut:
 	callfar Battle_GetTrainerName
 	ld hl, BattleText_EnemySentOut
 	call StdBattleTextbox
 	jp WaitBGMap
 
-Function_SetEnemyMonAndSendOutAnimation:
+ShowSetEnemyMonAndSendOutAnimation:
 	ld a, [wTempEnemyMonSpecies]
 	ld [wCurPartySpecies], a
 	ld [wCurSpecies], a

@@ -814,7 +814,7 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 BG_EFFECT_STRUCT_LENGTH EQU const_value
 NUM_BG_EFFECTS EQU 5 ; see wActiveBGEffects
 
-; 
+; anim_bgeffect battle turn values for some effects
 	const_def
 	const BG_EFFECT_TARGET ; 0
 	const BG_EFFECT_USER   ; 1
