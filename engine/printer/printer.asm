@@ -575,7 +575,9 @@ PlacePrinterStatusString:
 	ld [wPrinterStatus], a
 	ret
 
-Function847bd: ; unreferenced
+PlacePrinterStatusStringBorderless: ; unreferenced
+; Similar to PlacePrinterStatusString, but with different hlcoords
+; and ClearBox instead of TextBox.
 	ld a, [wPrinterStatus]
 	and a
 	ret z

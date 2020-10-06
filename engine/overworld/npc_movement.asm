@@ -274,14 +274,14 @@ WillObjectBumpIntoSomeoneElse:
 	ld e, [hl]
 	jr IsNPCAtCoord
 
-Function7015: ; unreferenced
+IsObjectFacingSomeoneElse: ; unreferenced
 	ldh a, [hMapObjectIndexBuffer]
 	call GetObjectStruct
-	call .CheckWillBeFacingNPC
+	call .GetFacingCoords
 	call IsNPCAtCoord
 	ret
 
-.CheckWillBeFacingNPC:
+.GetFacingCoords:
 	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld d, [hl]
@@ -289,12 +289,13 @@ Function7015: ; unreferenced
 	add hl, bc
 	ld e, [hl]
 	call GetSpriteDirection
-	and a
+	and a ; OW_DOWN?
 	jr z, .down
 	cp OW_UP
 	jr z, .up
 	cp OW_LEFT
 	jr z, .left
+	; OW_RIGHT
 	inc d
 	ret
 
@@ -326,32 +327,31 @@ IsNPCAtCoord:
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	bit BIG_OBJECT_F, [hl]
-	jr z, .got
-
+	jr z, .not_big
 	call WillObjectIntersectBigObject
-	jr nc, .ok
-	jr .ok2
+	jr nc, .check_current_coords
+	jr .continue
 
-.got
+.not_big
 	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	cp d
-	jr nz, .ok
+	jr nz, .check_current_coords
 	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
-	jr nz, .ok
+	jr nz, .check_current_coords
 
-.ok2
+.continue
 	ldh a, [hMapObjectIndexBuffer]
 	ld l, a
 	ldh a, [hObjectStructIndexBuffer]
 	cp l
-	jr nz, .setcarry
+	jr nz, .yes
 
-.ok
+.check_current_coords
 	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld a, [hl]
@@ -366,7 +366,7 @@ IsNPCAtCoord:
 	ld l, a
 	ldh a, [hObjectStructIndexBuffer]
 	cp l
-	jr nz, .setcarry
+	jr nz, .yes
 
 .next
 	ld hl, OBJECT_LENGTH
@@ -380,7 +380,7 @@ IsNPCAtCoord:
 	and a
 	ret
 
-.setcarry
+.yes
 	scf
 	ret
 
@@ -473,7 +473,7 @@ IsObjectMovingOffEdgeOfScreen:
 	scf
 	ret
 
-Function7113: ; unreferenced
+IsNPCAtPlayerCoord: ; unreferenced
 	ld a, [wPlayerStandingMapX]
 	ld d, a
 	ld a, [wPlayerStandingMapY]
@@ -484,16 +484,17 @@ Function7113: ; unreferenced
 	ldh [hObjectStructIndexBuffer], a
 	call DoesObjectHaveASprite
 	jr z, .next
+
 	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, bc
 	ld a, [hl]
 	cp SPRITEMOVEDATA_BIGDOLLSYM
-	jr nz, .not_snorlax
+	jr nz, .not_big
 	call WillObjectIntersectBigObject
 	jr c, .yes
 	jr .next
 
-.not_snorlax
+.not_big
 	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld a, [hl]

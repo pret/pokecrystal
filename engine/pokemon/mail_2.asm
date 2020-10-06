@@ -709,7 +709,8 @@ MailGFX_PlaceMessage:
 .place_author
 	jp PlaceString
 
-Functionb984e: ; unreferenced
+InvertBytes: ; unreferenced
+; invert bc bytes starting at hl
 .loop
 	ld a, [hl]
 	xor $ff

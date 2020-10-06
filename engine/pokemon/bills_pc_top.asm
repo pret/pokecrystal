@@ -139,7 +139,7 @@ BillsPC_DepositMenu:
 	and a
 	ret
 
-Functione512: ; unreferenced
+BillsPC_Deposit_CheckPartySize: ; unreferenced
 	ld a, [wPartyCount]
 	and a
 	jr z, .no_mon
@@ -206,7 +206,7 @@ BillsPC_WithdrawMenu:
 	and a
 	ret
 
-Functione56d: ; unreferenced
+BillsPC_Withdraw_CheckPartySize: ; unreferenced
 	ld a, [wPartyCount]
 	cp PARTY_LENGTH
 	jr nc, .party_full
