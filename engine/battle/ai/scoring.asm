@@ -483,7 +483,7 @@ AI_Smart_LockOn:
 	call AIGetEnemyMove
 
 	ld a, [wEnemyMoveStruct + MOVE_ACC]
-	cp 180
+	cp 71 percent - 1
 	jr nc, .asm_3884f
 
 	ld a, $1
@@ -535,7 +535,7 @@ AI_Smart_LockOn:
 	call AIGetEnemyMove
 
 	ld a, [wEnemyMoveStruct + MOVE_ACC]
-	cp 180
+	cp 71 percent - 1
 	jr nc, .asm_3888b
 
 	dec [hl]

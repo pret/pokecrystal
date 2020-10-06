@@ -150,7 +150,7 @@ HandleObjectStep:
 	bit OBJ_FLAGS2_6, [hl]
 	jr nz, SetFacingStanding
 	bit OBJ_FLAGS2_5, [hl]
-	jr nz, asm_4448
+	jr nz, _UseSecondObjectAction
 	ld de, ObjectActionPairPointers ; use first column
 	jr _HandleObjectAction
 
@@ -159,7 +159,7 @@ Function4440:
 	add hl, bc
 	bit INVISIBLE_F, [hl]
 	jr nz, SetFacingStanding
-asm_4448:
+_UseSecondObjectAction:
 	ld de, ObjectActionPairPointers + 2 ; use second column
 	jr _HandleObjectAction
 

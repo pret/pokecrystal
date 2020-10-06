@@ -397,7 +397,10 @@ AI_Items:
 	call EnemyUsedPotion
 	jp .Use
 
-.asm_382ae ; This appears to be unused
+; Everything up to "End unused" is unused
+
+.UnusedHealItem: ; unreferenced
+; This has similar conditions to .HealItem
 	callfar AICheckEnemyMaxHP
 	jr c, .dont_use
 	push bc
@@ -439,6 +442,8 @@ AI_Items:
 	cp 39 percent + 1
 	jp c, .Use
 	jp .DontUse
+
+; End unused
 
 .XAccuracy:
 	call .XItem

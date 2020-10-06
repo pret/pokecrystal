@@ -1776,7 +1776,7 @@ DepositPokemon:
 	ld a, PC_DEPOSIT
 	ld [wPokemonWithdrawDepositParameter], a
 	predef SendGetMonIntoFromBox
-	jr c, .asm_boxisfull
+	jr c, .BoxFull
 	xor a ; REMOVE_PARTY
 	ld [wPokemonWithdrawDepositParameter], a
 	farcall RemoveMonFromPartyOrBox
@@ -1806,7 +1806,7 @@ DepositPokemon:
 	and a
 	ret
 
-.asm_boxisfull
+.BoxFull:
 	ld de, PCString_BoxFull
 	call BillsPC_PlaceString
 	ld de, SFX_WRONG
