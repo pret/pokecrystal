@@ -135,7 +135,7 @@ Route40Rock:
 Route40HiddenHyperPotion:
 	hiddenitem HYPER_POTION, EVENT_ROUTE_40_HIDDEN_HYPER_POTION
 
-MovementData_0x1a621c:
+Route40_StepRightUp6Movement: ; unreferenced
 	step RIGHT
 	step UP
 	step UP
@@ -145,7 +145,7 @@ MovementData_0x1a621c:
 	step UP
 	step_end
 
-MovementData_0x1a6224:
+Route40_StepUp5Movement: ; unreferenced
 	step UP
 	step UP
 	step UP
@@ -153,7 +153,7 @@ MovementData_0x1a6224:
 	step UP
 	step_end
 
-MovementData_0x1a622a:
+Route40_StepUp4Movement: ; unreferenced
 	step UP
 	step UP
 	step UP
