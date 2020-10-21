@@ -6,26 +6,27 @@ UNDERGROUND_DOOR_OPEN1   EQU $2d
 UNDERGROUND_DOOR_OPEN2   EQU $3d
 
 ugdoor: MACRO
-\1_YCOORD EQU \2
-\1_XCOORD EQU \3
+UGDOOR_\1_XCOORD EQU \2
+UGDOOR_\1_YCOORD EQU \3
 ENDM
 
-	ugdoor UGDOOR_1,  $10, $06
-	ugdoor UGDOOR_2,  $0a, $06
-	ugdoor UGDOOR_3,  $02, $06
-	ugdoor UGDOOR_4,  $02, $0a
-	ugdoor UGDOOR_5,  $0a, $0a
-	ugdoor UGDOOR_6,  $10, $0a
-	ugdoor UGDOOR_7,  $0c, $06
-	ugdoor UGDOOR_8,  $0c, $08
-	ugdoor UGDOOR_9,  $06, $06
-	ugdoor UGDOOR_10, $06, $08
-	ugdoor UGDOOR_11, $0c, $0a
-	ugdoor UGDOOR_12, $0c, $0c
-	ugdoor UGDOOR_13, $06, $0a
-	ugdoor UGDOOR_14, $06, $0c
-	ugdoor UGDOOR_15, $12, $0a
-	ugdoor UGDOOR_16, $12, $0c
+	;      id,  x,  y
+	ugdoor  1,  6, 16
+	ugdoor  2,  6, 10
+	ugdoor  3,  6,  2
+	ugdoor  4, 10,  2
+	ugdoor  5, 10, 10
+	ugdoor  6, 10, 16
+	ugdoor  7,  6, 12
+	ugdoor  8,  8, 12
+	ugdoor  9,  6,  6
+	ugdoor 10,  8,  6
+	ugdoor 11, 10, 12
+	ugdoor 12, 12, 12
+	ugdoor 13, 10,  6
+	ugdoor 14, 12,  6
+	ugdoor 15, 10, 18
+	ugdoor 16, 12, 18
 
 doorstate: MACRO
 	changeblock UGDOOR_\1_YCOORD, UGDOOR_\1_XCOORD, UNDERGROUND_DOOR_\2
