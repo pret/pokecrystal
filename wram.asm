@@ -1815,6 +1815,10 @@ NEXTU
 wEarthquakeMovementDataBuffer:: ds 5
 
 NEXTU
+; switching items in pack
+wSwitchItemBuffer:: ds 2 ; may store 1 or 2 bytes
+
+NEXTU
 ; miscellaneous
 wTempDayOfWeek::
 wApricorns::
