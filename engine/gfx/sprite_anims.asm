@@ -738,11 +738,11 @@ AnimSeq_FlyTo:
 	ret
 
 AnimSeq_MobileTradeSentPulse:
-	farcall Function108bc7
+	farcall MobileTradeAnim_AnimateSentPulse
 	ret
 
 AnimSeq_MobileTradeOTPulse:
-	farcall Function108be0
+	farcall MobileTradeAnim_AnimateOTPulse
 	ret
 
 AnimSeq_IntroSuicune:

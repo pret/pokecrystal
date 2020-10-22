@@ -235,7 +235,7 @@ DebugColorMain:
 	call JoyTextDelay
 	ld a, [wJumptableIndex]
 	cp 4
-	jr nc, .asm_81a8b
+	jr nc, .no_start_select
 	ld hl, hJoyLast
 	ld a, [hl]
 	and SELECT
@@ -244,7 +244,7 @@ DebugColorMain:
 	and START
 	jr nz, .PreviousMon
 
-.asm_81a8b
+.no_start_select
 	jumptable Jumptable_81acf, wJumptableIndex
 
 .NextMon
@@ -998,14 +998,14 @@ DebugColor_PlaceCursor:
 	jr nz, .clearsprites
 	ld a, [wcf64]
 	and a
-	jr z, .asm_81f8d
+	jr z, .place_cursor
 	dec a
 	hlcoord 1, 11
 	ld bc, 2 * SCREEN_WIDTH
 	call AddNTimes
 	ld [hl], "▶"
 
-.asm_81f8d
+.place_cursor
 	ld a, [wcf65]
 	and a
 	jr z, .lightcolor

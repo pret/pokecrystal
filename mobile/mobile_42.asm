@@ -1509,7 +1509,7 @@ MobileTradeAnim_DeleteSprites:
 	call ClearSprites
 	ret
 
-Function108bc7:
+MobileTradeAnim_AnimateSentPulse:
 	ld a, [wcf64]
 	and a
 	ret z
@@ -1526,7 +1526,7 @@ Function108bc7:
 	farcall DeinitializeSprite
 	ret
 
-Function108be0:
+MobileTradeAnim_AnimateOTPulse:
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld a, [hl]
