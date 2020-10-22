@@ -131,7 +131,7 @@ Movement_step_dig:
 	ld [hl], a
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_03
+	ld [hl], STEP_TYPE_SLEEP
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld [hl], STANDING
@@ -184,7 +184,7 @@ Movement_fish_cast_rod:
 	ld [hl], OBJECT_ACTION_FISHING
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_SLEEP
+	ld [hl], STEP_TYPE_FROM_MOVEMENT
 	ret
 
 Movement_step_loop:
@@ -208,7 +208,7 @@ Movement_step_end:
 
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_SLEEP
+	ld [hl], STEP_TYPE_FROM_MOVEMENT
 	ret
 
 Movement_48:
@@ -228,7 +228,7 @@ Movement_48:
 
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_03
+	ld [hl], STEP_TYPE_SLEEP
 
 	ld hl, wVramState
 	res 7, [hl]
@@ -254,7 +254,7 @@ Movement_4b:
 
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_04
+	ld [hl], STEP_TYPE_STANDING
 
 	ld hl, wVramState
 	res 7, [hl]
@@ -306,7 +306,7 @@ Movement_step_sleep_common:
 
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_03
+	ld [hl], STEP_TYPE_SLEEP
 
 	ld hl, OBJECT_ACTION
 	add hl, bc
@@ -344,7 +344,7 @@ Movement_tree_shake:
 
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_03
+	ld [hl], STEP_TYPE_SLEEP
 
 	ld hl, OBJECT_ACTION
 	add hl, bc
@@ -656,7 +656,7 @@ TurnStep:
 
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_HALF_STEP
+	ld [hl], STEP_TYPE_TURN
 	ret
 
 NormalStep:

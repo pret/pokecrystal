@@ -97,16 +97,16 @@ SpriteMovementData::
 	db 0 ; flags2
 	db 0 ; palette flags
 
-; SPRITEMOVEDATA_0C
-	db SPRITEMOVEFN_08 ; movement function
+; SPRITEMOVEDATA_INDEXED_1
+	db SPRITEMOVEFN_INDEXED_1 ; movement function
 	db DOWN ; facing
 	db OBJECT_ACTION_STAND ; action
 	db 0 ; flags1
 	db 0 ; flags2
 	db 0 ; palette flags
 
-; SPRITEMOVEDATA_0D
-	db SPRITEMOVEFN_09 ; movement function
+; SPRITEMOVEDATA_INDEXED_2
+	db SPRITEMOVEFN_INDEXED_2 ; movement function
 	db DOWN ; facing
 	db OBJECT_ACTION_STAND ; action
 	db 0 ; flags1
