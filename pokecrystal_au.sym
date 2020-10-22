@@ -15820,7 +15820,7 @@
 20:59f4 Palette_DebugBG
 20:5a34 Palette_DebugOB
 20:5a74 DebugColorMain
-20:5a8b DebugColorMain.asm_81a8b
+20:5a8b DebugColorMain.no_start_select
 20:5a9a DebugColorMain.NextMon
 20:5aab DebugColorMain.PreviousMon
 20:5aba DebugColorMain.SwitchMon
@@ -15894,7 +15894,7 @@
 20:5f38 DebugColor_PushSGBPals.okay
 20:5f51 DebugColor_PushSGBPals.wait
 20:5f5e DebugColor_PlaceCursor
-20:5f8d DebugColor_PlaceCursor.asm_81f8d
+20:5f8d DebugColor_PlaceCursor.place_cursor
 20:5f98 DebugColor_PlaceCursor.lightcolor
 20:5f9b DebugColor_PlaceCursor.place
 20:5fb7 DebugColor_PlaceCursor.placesprite
@@ -31440,9 +31440,9 @@
 42:4bad Function108b98.asm_108bad
 42:4bb0 Function108b98.asm_108bb0
 42:4bbd MobileTradeAnim_DeleteSprites
-42:4bc7 Function108bc7
-42:4bd9 Function108bc7.delete
-42:4be0 Function108be0
+42:4bc7 MobileTradeAnim_AnimateSentPulse
+42:4bd9 MobileTradeAnim_AnimateSentPulse.delete
+42:4be0 MobileTradeAnim_AnimateOTPulse
 42:4bec Function108bec
 42:4c07 Function108bec.MobilePlayerWillTradeMonText
 42:4c0c Function108bec.MobileForPartnersMonText
