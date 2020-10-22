@@ -5,7 +5,7 @@ CheckPlayerMoveTypeMatchups:
 	push hl
 	push de
 	push bc
-	ld a, 10
+	ld a, BASE_AI_SWITCH_SCORE
 	ld [wEnemyAISwitchScore], a
 	ld hl, wPlayerUsedMoves
 	ld a, [hl]
@@ -37,7 +37,7 @@ CheckPlayerMoveTypeMatchups:
 	cp EFFECTIVE ; 1.0
 	jr nc, .neutral
 
-.not_very_effective
+; not very effective
 	ld a, e
 	cp 1 ; 0.1
 	jr nc, .next

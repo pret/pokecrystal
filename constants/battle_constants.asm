@@ -28,6 +28,9 @@ EFFECTIVE          EQU 10
 NOT_VERY_EFFECTIVE EQU 05
 NO_EFFECT          EQU 00
 
+; enemy AI behavior
+BASE_AI_SWITCH_SCORE EQU 10
+
 ; wPlayerStatLevels and wEnemyStatLevels indexes (see wram.asm)
 ; GetStatName arguments (see data/battle/stat_names.asm)
 	const_def
