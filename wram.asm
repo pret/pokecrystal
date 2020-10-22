@@ -1056,8 +1056,13 @@ ENDU
 
 NEXTU
 ; mystery gift data
-wMysteryGiftPartyTemp:: ; ds PARTY_LENGTH * (1 + 1 + NUM_MOVES)
-wMysteryGiftStaging::
+UNION
+wMysteryGiftPartyTemp:: ds (1 + 1 + NUM_MOVES) * PARTY_LENGTH
+
+NEXTU
+wMysteryGiftStaging:: ds 80
+
+NEXTU
 wc800:: ds 1
 wc801:: ds 1
 wc802:: ds 1
@@ -1076,6 +1081,7 @@ wMobileSDK_SendCommandID:: db
 wc820:: ds 1
 wc821:: ds 1
 wc822:: ds 46
+ENDU
 
 UNION
 wMysteryGiftTrainerData:: ds (1 + 1 + NUM_MOVES) * PARTY_LENGTH + 2
@@ -1830,6 +1836,13 @@ wStartFlypoint:: db
 wEndFlypoint:: db
 
 NEXTU
+; link battle record data
+wLinkBattleRecordName::   ds NAME_LENGTH
+wLinkBattleRecordWins::   dw
+wLinkBattleRecordLosses:: dw
+wLinkBattleRecordDraws::  dw
+
+NEXTU
 ; unidentified
 wd002:: db
 wd003:: db
@@ -1837,13 +1850,9 @@ wd004:: db
 
 ; mobile?
 	ds 1
-wd006:: ds 2
-wd008:: ds 2
 	ds 2
-wd00c:: ds 1
-wd00d:: ds 1
-	ds 1
-wd00f:: ds 1
+wd008:: ds 2
+	ds 6
 wd010:: ds 1
 wd011:: ds 1
 wd012:: ds 1
@@ -2331,7 +2340,6 @@ wPutativeTMHMMove:: db
 wInitListType:: db
 wBattleHasJustStarted:: db
 
-; wd265 has many different short-term uses
 wNamedObjectIndexBuffer::
 wDeciramBuffer::
 wTempByteValue::

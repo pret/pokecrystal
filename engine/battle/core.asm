@@ -8470,7 +8470,7 @@ ReadAndPrintLinkBattleRecord:
 	call .PrintBattleRecord
 	hlcoord 0, 8
 	ld b, NUM_LINK_BATTLE_RECORDS
-	ld de, sLinkBattleRecord + 2
+	ld de, sLinkBattleRecord1Name
 .loop
 	push bc
 	push hl
@@ -8485,35 +8485,35 @@ ReadAndPrintLinkBattleRecord:
 	push hl
 	ld h, d
 	ld l, e
-	ld de, wd002
+	ld de, wLinkBattleRecordName
 	ld bc, NAME_LENGTH - 1
 	call CopyBytes
 	ld a, "@"
 	ld [de], a
-	inc de
+	inc de ; wLinkBattleRecordWins
 	ld bc, 6
 	call CopyBytes
-	ld de, wd002
+	ld de, wLinkBattleRecordName
 	pop hl
 	call PlaceString
 	pop hl
 	ld de, 26
 	add hl, de
 	push hl
-	ld de, wd00d
+	ld de, wLinkBattleRecordWins
 	lb bc, 2, 4
 	call PrintNum
 	pop hl
 	ld de, 5
 	add hl, de
 	push hl
-	ld de, wd00f
+	ld de, wLinkBattleRecordLosses
 	lb bc, 2, 4
 	call PrintNum
 	pop hl
 	ld de, 5
 	add hl, de
-	ld de, wd011
+	ld de, wLinkBattleRecordDraws
 	lb bc, 2, 4
 	call PrintNum
 	jr .next

@@ -2159,7 +2159,7 @@ SetBitsForBattleRequest:
 	ret
 
 SetBitsForTimeCapsuleRequest:
-	ld a, $2
+	ld a, USING_INTERNAL_CLOCK
 	ldh [rSB], a
 	xor a
 	ldh [hSerialReceive], a
@@ -2176,7 +2176,7 @@ WaitForLinkedFriend:
 	ld a, [wPlayerLinkAction]
 	and a
 	jr z, .no_link_action
-	ld a, $2
+	ld a, USING_INTERNAL_CLOCK
 	ldh [rSB], a
 	xor a
 	ldh [hSerialReceive], a
@@ -2201,7 +2201,7 @@ WaitForLinkedFriend:
 	jr z, .connected
 	ld a, CONNECTION_NOT_ESTABLISHED
 	ldh [hSerialConnectionStatus], a
-	ld a, $2
+	ld a, USING_INTERNAL_CLOCK
 	ldh [rSB], a
 	xor a
 	ldh [hSerialReceive], a
@@ -2219,7 +2219,7 @@ WaitForLinkedFriend:
 	jr z, .done
 
 .not_done
-	ld a, $1
+	ld a, USING_EXTERNAL_CLOCK
 	ldh [rSB], a
 	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
 	ldh [rSC], a
@@ -2464,7 +2464,7 @@ Link_ResetSerialRegistersAfterLinkClosure:
 	call DelayFrames
 	ld a, CONNECTION_NOT_ESTABLISHED
 	ldh [hSerialConnectionStatus], a
-	ld a, $2
+	ld a, USING_INTERNAL_CLOCK
 	ldh [rSB], a
 	xor a
 	ldh [hSerialReceive], a

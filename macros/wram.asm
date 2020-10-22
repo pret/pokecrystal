@@ -230,8 +230,8 @@ hall_of_fame: MACRO
 ENDM
 
 link_battle_record: MACRO
-\1Name::   ds NAME_LENGTH - 1
 \1ID::     dw
+\1Name::   ds NAME_LENGTH - 1
 \1Wins::   dw
 \1Losses:: dw
 \1Draws::  dw
