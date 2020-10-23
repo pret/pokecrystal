@@ -774,6 +774,24 @@ wOddEggName:: ds MON_NAME_LENGTH
 wOddEggOTName:: ds NAME_LENGTH
 
 NEXTU
+; debug mon color picker
+wDebugMiddleColors::
+wDebugLightColor:: ds 2
+wDebugDarkColor::  ds 2
+	ds 6
+wDebugRedChannel::   db
+wDebugGreenChannel:: db
+wDebugBlueChannel::  db
+
+NEXTU
+; debug tileset color picker
+wDebugPalette::
+wDebugWhiteTileColor:: ds 2
+wDebugLightTileColor:: ds 2
+wDebugDarkTileColor::  ds 2
+wDebugBlackTileColor:: ds 2
+
+NEXTU
 wc608:: ds 16
 wc618:: ds 37
 wc63d:: ds 5
@@ -1014,6 +1032,10 @@ wBillsPCDataEnd::
 NEXTU
 ; Hall of Fame data
 wHallOfFamePokemonList:: hall_of_fame wHallOfFamePokemonList
+
+NEXTU
+; debug color picker
+wDebugOriginalColors:: ds 256 * 4
 
 NEXTU
 ; raw link data
@@ -1502,6 +1524,18 @@ wUnownPuzzleCursorPosition:: db
 wUnownPuzzleHeldPiece:: db
 
 NEXTU
+; debug mon color picker
+wDebugColorRGBJumptableIndex:: db
+wDebugColorCurColor:: db
+wDebugColorCurMon:: db
+
+NEXTU
+; debug tileset color picker
+wDebugTilesetCurPalette:: db
+wDebugTilesetRGBJumptableIndex:: db
+wDebugTilesetCurColor:: db
+
+NEXTU
 ; battle tower
 	ds $2
 wBattleTowerRoomMenuJumptableIndex:: db
@@ -1834,6 +1868,12 @@ wSuicuneFrame::
 	ds 2
 wStartFlypoint:: db
 wEndFlypoint:: db
+
+NEXTU
+; debug color picker
+wDebugColorIsTrainer:: db
+wDebugColorIsShiny:: db
+wDebugColorCurTMHM:: db
 
 NEXTU
 ; link battle record data

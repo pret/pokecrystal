@@ -605,13 +605,14 @@ Function104d5e:
 	xor a
 	ldh [rIF], a
 	call Function104d96
+; runs for ~$40400 cycles
 	xor a
 	ld b, a
-.asm_104d6d
+.busy_wait
 	inc a
-	jr nz, .asm_104d6d
+	jr nz, .busy_wait
 	inc b
-	jr nz, .asm_104d6d
+	jr nz, .busy_wait
 	ret
 
 Function104d74:
@@ -846,9 +847,9 @@ Function104ed6:
 	ld b, a
 	ld a, $f4
 	ldh [rTMA], a
-.asm_104eee
+.main_loop
 	inc b
-	jr z, .asm_104f2e
+	jr z, .done
 	ld a, $8
 	ldh [hPrintNumBuffer + 3], a
 	ld a, [hli]
@@ -859,7 +860,7 @@ Function104ed6:
 	ldh a, [hPrintNumBuffer + 5]
 	adc 0
 	ldh [hPrintNumBuffer + 5], a
-.asm_104f02
+.inner_loop
 	xor a
 	ldh [rIF], a
 	halt
@@ -869,26 +870,27 @@ Function104ed6:
 	ld a, e
 	rlca
 	ld e, a
-	jr nc, .asm_104f13
+	jr nc, .wait
 	inc d
-.asm_104f13
+.wait
 	ldh a, [rTIMA]
 	cp $f8
-	jr c, .asm_104f13
+	jr c, .wait
 	ld a, $c0
 	ldh [rRP], a
 	dec d
-	jr z, .asm_104f25
+	jr z, .no_halt
 	xor a
 	ldh [rIF], a
 	halt
-.asm_104f25
+.no_halt
 	ldh a, [hPrintNumBuffer + 3]
 	dec a
-	jr z, .asm_104eee
+	jr z, .main_loop
 	ldh [hPrintNumBuffer + 3], a
-	jr .asm_104f02
-.asm_104f2e
+	jr .inner_loop
+
+.done
 	ld a, $fe
 	ldh [rTMA], a
 	xor a
@@ -987,48 +989,50 @@ Function104faf:
 	xor a
 	ldh [hMGPrevTIMA], a
 	call Function104d86
-.asm_104fd2
+.main_loop
 	inc b
-	jr z, .asm_10501a
+	jr z, .done
 	ld a, $8
 	ldh [hPrintNumBuffer + 3], a
-.asm_104fd9
+.inner_loop
 	ld d, $0
-.asm_104fdb
+.wait_one
 	inc d
-	jr z, .asm_104fe5
+	jr z, .got_one
 	ldh a, [c]
 	bit 1, a
-	jr z, .asm_104fdb
+	jr z, .wait_one
 	ld d, $0
-.asm_104fe5
+.got_one
+.wait_zero
 	inc d
-	jr z, .asm_104fed
+	jr z, .got_zero
 	ldh a, [c]
 	bit 1, a
-	jr nz, .asm_104fe5
-.asm_104fed
+	jr nz, .wait_zero
+.got_zero
 	ldh a, [hMGPrevTIMA]
 	ld d, a
 	ldh a, [rTIMA]
 	ldh [hMGPrevTIMA], a
 	sub d
 	cp $12
-	jr c, .asm_104ffd
+	jr c, .zero
 	set 0, e
-	jr .asm_104fff
-.asm_104ffd
+	jr .ok
+.zero
 	res 0, e
-.asm_104fff
+.ok
 	ldh a, [hPrintNumBuffer + 3]
 	dec a
 	ldh [hPrintNumBuffer + 3], a
-	jr z, .asm_10500b
+	jr z, .continue
 	ld a, e
 	rlca
 	ld e, a
-	jr .asm_104fd9
-.asm_10500b
+	jr .inner_loop
+
+.continue
 	ld a, e
 	ld [hli], a
 	ldh a, [hPrintNumBuffer + 4]
@@ -1037,8 +1041,9 @@ Function104faf:
 	ldh a, [hPrintNumBuffer + 5]
 	adc 0
 	ldh [hPrintNumBuffer + 5], a
-	jr .asm_104fd2
-.asm_10501a
+	jr .main_loop
+
+.done
 	call Function104d74
 	xor a
 	ldh [rIF], a
