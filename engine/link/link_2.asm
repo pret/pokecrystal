@@ -10,7 +10,7 @@ LinkMonStatsScreen:
 	call ClearScreen
 	call ClearBGPalettes
 	call MaxVolume
-	farcall LoadTradeScreenBorder
+	farcall LoadTradeScreenBorderGFX
 	farcall Link_WaitBGMap
 	farcall InitTradeSpeciesList
 	farcall SetTradeRoomBGPals

@@ -182,7 +182,7 @@ Gen2ToGen2LinkComms:
 	call ClearLinkData
 	call Link_PrepPartyData_Gen2
 	call FixDataForLinkTransfer
-	call Function29dba
+	call CheckLinkTimeout_Gen2
 	ld a, [wScriptVar]
 	and a
 	jp z, LinkTimeout
@@ -1170,7 +1170,7 @@ Link_FindFirstNonControlCharacter_AllowZero:
 
 InitTradeMenuDisplay:
 	call ClearScreen
-	call LoadTradeScreenBorder
+	call LoadTradeScreenBorderGFX
 	farcall InitTradeSpeciesList
 	xor a
 	ld hl, wOtherPlayerLinkMode
@@ -1879,7 +1879,7 @@ LinkTrade:
 	ld [wCurPartyMon], a
 	callfar EvolvePokemon
 	call ClearScreen
-	call LoadTradeScreenBorder
+	call LoadTradeScreenBorderGFX
 	call SetTradeRoomBGPals
 	farcall Link_WaitBGMap
 
@@ -1969,8 +1969,8 @@ LinkTextboxAtHL:
 	farcall LinkTextbox
 	ret
 
-LoadTradeScreenBorder:
-	farcall _LoadTradeScreenBorder
+LoadTradeScreenBorderGFX:
+	farcall _LoadTradeScreenBorderGFX
 	ret
 
 SetTradeRoomBGPals:
@@ -1978,7 +1978,7 @@ SetTradeRoomBGPals:
 	call SetPalettes
 	ret
 
-Function28f09: ; unreferenced
+PlaceTradeScreenTextbox: ; unreferenced
 	hlcoord 0, 0
 	ld b, 6
 	ld c, 18
@@ -2061,19 +2061,20 @@ CheckTimeCapsuleCompatibility:
 	call GetMoveName
 	call CopyName1
 	pop bc
-	call Function29c67
+	call GetIncompatibleMonName
 	ld a, $2
 	jr .done
 
 .mon_has_mail
-	call Function29c67
+	call GetIncompatibleMonName
 	ld a, $3
 
 .done
 	ld [wScriptVar], a
 	ret
 
-Function29c67:
+GetIncompatibleMonName:
+; Calulate which pokemon is incompatible, and get that pokemon's name
 	ld a, [wPartyCount]
 	sub b
 	ld c, a
@@ -2243,7 +2244,7 @@ WaitForLinkedFriend:
 	ld [wScriptVar], a
 	ret
 
-CheckLinkTimeout:
+CheckLinkTimeout_Receptionist:
 	ld a, $1
 	ld [wPlayerLinkAction], a
 	ld hl, wLinkTimeoutFrames
@@ -2264,11 +2265,12 @@ CheckLinkTimeout:
 	ret nz
 	jp Link_ResetSerialRegistersAfterLinkClosure
 
-Function29dba:
+CheckLinkTimeout_Gen2:
+; if wScriptVar = 0 on exit, link connection is closed
 	ld a, $5
 	ld [wPlayerLinkAction], a
 	ld hl, wLinkTimeoutFrames
-	ld a, $3
+	ld a, 3
 	ld [hli], a
 	xor a
 	ld [hl], a
@@ -2280,33 +2282,39 @@ Function29dba:
 	call Link_CheckCommunicationError
 	ld a, [wScriptVar]
 	and a
-	jr z, .vblank
-	ld bc, -1
+	jr z, .exit
+
+; Wait for ~$70000 cycles to give the other GB time to be ready
+	ld bc, $ffff
 .wait
 	dec bc
 	ld a, b
 	or c
 	jr nz, .wait
+
+; If other GB is not ready at this point, disconnect due to timeout
 	ld a, [wOtherPlayerLinkMode]
 	cp $5
-	jr nz, .script_var
+	jr nz, .timeout
+
+; Another check to increase reliability
 	ld a, $6
 	ld [wPlayerLinkAction], a
 	ld hl, wLinkTimeoutFrames
-	ld a, $1
+	ld a, 1
 	ld [hli], a
-	ld [hl], $32
+	ld [hl], 50
 	call Link_CheckCommunicationError
 	ld a, [wOtherPlayerLinkMode]
 	cp $6
-	jr z, .vblank
+	jr z, .exit
 
-.script_var
+.timeout
 	xor a
 	ld [wScriptVar], a
 	ret
 
-.vblank
+.exit
 	xor a
 	ldh [hVBlank], a
 	ret
@@ -2327,13 +2335,13 @@ Link_CheckCommunicationError:
 	call .CheckConnected
 	jr nz, .load_true
 	call .AcknowledgeSerial
-	xor a
-	jr .load_scriptvar
+	xor a ; FALSE
+	jr .done
 
 .load_true
-	ld a, $1
+	ld a, TRUE
 
-.load_scriptvar
+.done
 	ld [wScriptVar], a
 	ld hl, wLinkTimeoutFrames
 	xor a
@@ -2513,10 +2521,11 @@ CableClubCheckWhichChris:
 GSLinkCommsBorderGFX: ; unreferenced
 INCBIN "gfx/trade/unused_gs_border_tiles.2bpp"
 
-Function29fe4: ; unreferenced
-	ld a, BANK(sPartyMail)
+CheckSRAM0Flag: ; unreferenced
+; input: hl = unknown flag array in "SRAM Bank 0"
+	ld a, BANK("SRAM Bank 0")
 	call OpenSRAM
-	ld d, FALSE
+	ld d, 0
 	ld b, CHECK_FLAG
 	predef SmallFarFlagAction
 	call CloseSRAM

@@ -1,7 +1,7 @@
 LinkCommsBorderGFX:
 INCBIN "gfx/trade/border_tiles.2bpp"
 
-__LoadTradeScreenBorder:
+__LoadTradeScreenBorderGFX:
 	ld de, LinkCommsBorderGFX
 	ld hl, vTiles2
 	lb bc, BANK(LinkCommsBorderGFX), 70
@@ -20,7 +20,7 @@ Function16d43b:
 	call ClearBGPalettes
 	call ClearTilemap
 	call ClearSprites
-	farcall __LoadTradeScreenBorder ; useless to farcall
+	farcall __LoadTradeScreenBorderGFX ; useless to farcall
 	farcall Function16d42e ; useless to farcall
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
@@ -110,7 +110,7 @@ _LinkTextbox:
 	ret
 
 InitTradeSpeciesList:
-	call _LoadTradeScreenBorder
+	call _LoadTradeScreenBorderGFX
 	call Function16d6ae
 	farcall InitMG_Mobile_LinkTradePalMap
 	farcall PlaceTradePartnerNamesAndParty
@@ -122,8 +122,8 @@ InitTradeSpeciesList:
 .CancelString:
 	db "CANCEL@"
 
-_LoadTradeScreenBorder:
-	call __LoadTradeScreenBorder
+_LoadTradeScreenBorderGFX:
+	call __LoadTradeScreenBorderGFX
 	ret
 
 LinkComms_LoadPleaseWaitTextboxBorderGFX:

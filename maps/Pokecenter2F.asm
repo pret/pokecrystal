@@ -91,7 +91,7 @@ LinkReceptionistScript_Trade:
 	special TryQuickSave
 	iffalse .DidNotSave
 	writetext Text_PleaseWait
-	special CheckLinkTimeout
+	special CheckLinkTimeout_Receptionist
 	iffalse .LinkTimedOut
 	readmem wOtherPlayerLinkMode
 	iffalse .LinkedToFirstGen
@@ -193,7 +193,7 @@ LinkReceptionistScript_Battle:
 	special TryQuickSave
 	iffalse .DidNotSave
 	writetext Text_PleaseWait
-	special CheckLinkTimeout
+	special CheckLinkTimeout_Receptionist
 	iffalse .LinkTimedOut
 	readmem wOtherPlayerLinkMode
 	iffalse .LinkedToFirstGen
@@ -320,7 +320,7 @@ LinkReceptionistScript_TimeCapsule:
 	special TryQuickSave
 	iffalse .DidNotSave
 	writetext Text_PleaseWait
-	special CheckLinkTimeout
+	special CheckLinkTimeout_Receptionist
 	iffalse .LinkTimedOut
 	readmem wOtherPlayerLinkMode
 	iffalse .OK
