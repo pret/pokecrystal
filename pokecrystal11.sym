@@ -2451,7 +2451,7 @@
 03:4029 WarpToSpawnPointSpecial
 03:402c SetBitsForLinkTradeRequestSpecial
 03:402f WaitForLinkedFriendSpecial
-03:4032 CheckLinkTimeoutSpecial
+03:4032 CheckLinkTimeout_ReceptionistSpecial
 03:4035 TryQuickSaveSpecial
 03:4038 CheckBothSelectedSameRoomSpecial
 03:403b FailedLinkToPastSpecial
@@ -6449,9 +6449,9 @@
 0a:4ebd String28ebd
 0a:4ece String_TooBadTheTradeWasCanceled
 0a:4eef LinkTextboxAtHL
-0a:4ef8 LoadTradeScreenBorder
+0a:4ef8 LoadTradeScreenBorderGFX
 0a:4eff SetTradeRoomBGPals
-0a:4f09 Function28f09
+0a:4f09 PlaceTradeScreenTextbox
 0a:4f24 TradeAnimation
 0a:4f3f TradeAnimation.script
 0a:4f63 TradeAnimationPlayer2
@@ -6659,7 +6659,7 @@
 0a:5c4c CheckTimeCapsuleCompatibility.move_too_new
 0a:5c5e CheckTimeCapsuleCompatibility.mon_has_mail
 0a:5c63 CheckTimeCapsuleCompatibility.done
-0a:5c67 Function29c67
+0a:5c67 GetIncompatibleMonName
 0a:5c7b EnterTimeCapsule
 0a:5c92 WaitForOtherPlayerToExit
 0a:5ce8 SetBitsForLinkTradeRequest
@@ -6671,14 +6671,14 @@
 0a:5d68 WaitForLinkedFriend.not_done
 0a:5d79 WaitForLinkedFriend.connected
 0a:5d8d WaitForLinkedFriend.done
-0a:5d92 CheckLinkTimeout
-0a:5dba Function29dba
-0a:5de0 Function29dba.wait
-0a:5e03 Function29dba.script_var
-0a:5e08 Function29dba.vblank
+0a:5d92 CheckLinkTimeout_Receptionist
+0a:5dba CheckLinkTimeout_Gen2
+0a:5de0 CheckLinkTimeout_Gen2.wait
+0a:5e03 CheckLinkTimeout_Gen2.timeout
+0a:5e08 CheckLinkTimeout_Gen2.exit
 0a:5e0c Link_CheckCommunicationError
 0a:5e2f Link_CheckCommunicationError.load_true
-0a:5e31 Link_CheckCommunicationError.load_scriptvar
+0a:5e31 Link_CheckCommunicationError.done
 0a:5e3b Link_CheckCommunicationError.CheckConnected
 0a:5e47 Link_CheckCommunicationError.AcknowledgeSerial
 0a:5e49 Link_CheckCommunicationError.loop
@@ -6699,7 +6699,7 @@
 0a:5f47 CableClubCheckWhichChris
 0a:5f50 CableClubCheckWhichChris.yes
 0a:5f54 GSLinkCommsBorderGFX
-0a:5fe4 Function29fe4
+0a:5fe4 CheckSRAM0Flag
 0a:5ff8 LoadWildMonData
 0a:6006 LoadWildMonData.copy
 0a:6011 LoadWildMonData.done_copy
@@ -35180,7 +35180,7 @@
 5b:4fb1 Unknown_16cfb1
 5b:4fb9 Unknown_16cfb9
 5b:4fc1 LinkCommsBorderGFX
-5b:5421 __LoadTradeScreenBorder
+5b:5421 __LoadTradeScreenBorderGFX
 5b:542e Function16d42e
 5b:543b Function16d43b
 5b:5465 Tilemap_MobileTradeBorderFullscreen
@@ -35195,7 +35195,7 @@
 5b:566e _LinkTextbox.row_loop
 5b:5673 InitTradeSpeciesList
 5b:568f InitTradeSpeciesList.CancelString
-5b:5696 _LoadTradeScreenBorder
+5b:5696 _LoadTradeScreenBorderGFX
 5b:569a LinkComms_LoadPleaseWaitTextboxBorderGFX
 5b:56a7 LoadTradeRoomBGPals
 5b:56ae Function16d6ae
