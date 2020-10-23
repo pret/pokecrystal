@@ -174,7 +174,7 @@ wMovementObject::
 	db
 wMovementDataBank:: db
 wMovementDataAddress:: dw
-wc2e6:: dw
+wIndexedMovement2Pointer:: dw
 
 	ds 2
 

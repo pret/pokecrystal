@@ -626,7 +626,7 @@ FlyFunction:
 	end
 
 .ReturnFromFly:
-	farcall Function561d
+	farcall RespawnPlayer
 	call DelayFrame
 	call UpdatePlayerSprite
 	farcall LoadOverworldFont

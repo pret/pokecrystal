@@ -589,7 +589,7 @@ UpdateSprites::
 	bit 0, a
 	ret z
 
-	farcall Function55e0
+	farcall UpdateAllObjectsFrozen
 	farcall _UpdateSprites
 	ret
 

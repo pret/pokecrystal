@@ -310,7 +310,7 @@ StartTrainerBattle_Flash:
 	dc 0, 0, 0, 1
 
 StartTrainerBattle_SetUpForWavyOutro:
-	farcall Function5602
+	farcall RespawnPlayerAndOpponent
 	ld a, BANK(wLYOverrides)
 	ldh [rSVBK], a
 	call StartTrainerBattle_NextScene
@@ -367,7 +367,7 @@ StartTrainerBattle_SineWave:
 	ret
 
 StartTrainerBattle_SetUpForSpinOutro:
-	farcall Function5602
+	farcall RespawnPlayerAndOpponent
 	ld a, BANK(wLYOverrides)
 	ldh [rSVBK], a
 	call StartTrainerBattle_NextScene
@@ -509,7 +509,7 @@ ENDM
 .wedge5: db 4, 0, 3, 0, 3, 0, 2, 0, 2, 0, 1, 0, 1, 0, 1, -1
 
 StartTrainerBattle_SetUpForRandomScatterOutro:
-	farcall Function5602
+	farcall RespawnPlayerAndOpponent
 	ld a, BANK(wLYOverrides)
 	ldh [rSVBK], a
 	call StartTrainerBattle_NextScene
@@ -763,7 +763,7 @@ StartTrainerBattle_DrawSineWave:
 	calc_sine_wave
 
 StartTrainerBattle_ZoomToBlack:
-	farcall Function5602
+	farcall RespawnPlayerAndOpponent
 	ld de, .boxes
 
 .loop
