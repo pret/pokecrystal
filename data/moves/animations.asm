@@ -481,7 +481,7 @@ BattleAnim_SendOutMon:
 
 BattleAnim_ReturnMon:
 	anim_sound 0, 0, SFX_BALL_POOF
-.anim:
+BattleAnimSub_Return:
 	anim_bgeffect ANIM_BG_RETURN_MON, $0, BG_EFFECT_USER, $0
 	anim_wait 32
 	anim_ret
@@ -1314,7 +1314,7 @@ BattleAnim_RazorWind:
 	anim_wait 24
 	anim_ret
 
-BattleAnim_Sonicboom_JP:
+BattleAnim_Sonicboom_JP: ; unreferenced
 	anim_2gfx ANIM_GFX_WHIP, ANIM_GFX_HIT
 .loop
 	anim_sound 3, 0, SFX_RAZOR_WIND
@@ -4106,7 +4106,7 @@ BattleAnim_BatonPass:
 	anim_1gfx ANIM_GFX_MISC
 	anim_obj ANIM_OBJ_BATON_PASS, 44, 104, $20
 	anim_sound 0, 0, SFX_BATON_PASS
-	anim_call BattleAnim_ReturnMon.anim
+	anim_call BattleAnimSub_Return
 	anim_wait 64
 	anim_ret
 

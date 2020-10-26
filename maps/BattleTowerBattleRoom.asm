@@ -131,7 +131,7 @@ Script_ChallengeCanceled: ; unreferenced
 	closetext
 	end
 
-Text_ReturnedAfterSave_Mobile:
+Text_ReturnedAfterSave_Mobile: ; unreferenced
 	text "You'll be returned"
 	line "after you SAVE."
 	done

@@ -10,25 +10,22 @@ SECTION "Stack", WRAM0
 
 wStackBottom::
 	ds $100 - 1
-wStack::
 wStackTop::
 	ds 1
 
 
 SECTION "Audio RAM", WRAM0
 
-wMusic::
-
 ; nonzero if playing
 wMusicPlaying:: db
 
-wChannels::
+wAudio::
+
 wChannel1:: channel_struct wChannel1
 wChannel2:: channel_struct wChannel2
 wChannel3:: channel_struct wChannel3
 wChannel4:: channel_struct wChannel4
 
-wSFXChannels::
 wChannel5:: channel_struct wChannel5
 wChannel6:: channel_struct wChannel6
 wChannel7:: channel_struct wChannel7
@@ -118,12 +115,12 @@ wSFXDuration:: db
 wCurSFX::
 ; id of sfx currently playing
 	db
-wChannelsEnd::
+
+wAudioEnd::
 
 wMapMusic:: db
 
 wDontPlayMapMusicOnReload:: db
-wMusicEnd::
 
 
 SECTION "WRAM", WRAM0
@@ -169,7 +166,6 @@ wPlayerMovement:: db
 
 	ds 2
 
-wc2e2::
 wMovementObject::
 	db
 wMovementDataBank:: db
@@ -238,10 +234,6 @@ wSpriteAnim8::  sprite_anim_struct wSpriteAnim8
 wSpriteAnim9::  sprite_anim_struct wSpriteAnim9
 wSpriteAnim10:: sprite_anim_struct wSpriteAnim10
 wSpriteAnimationStructsEnd::
-
-NEXTU
-; dummy game
-wc300::
 
 NEXTU
 ; mobile data
@@ -410,6 +402,7 @@ wBattleMon:: battle_struct wBattleMon
 
 wWildMon:: db
 	ds 1
+
 wEnemyTrainerItem1:: db
 wEnemyTrainerItem2:: db
 wEnemyTrainerBaseReward:: db
@@ -443,71 +436,17 @@ wAttackMissed::
 ; nonzero for a miss
 	db
 
-wPlayerSubStatus1::
-; bit
-; 0 nightmare
-; 1 curse
-; 2 protect
-; 3 identified
-; 4 perish song
-; 5 endure
-; 6 rollout
-; 7 in love
-	db
-wPlayerSubStatus2::
-; bit
-; 0 curled
-; 1-7 unused
-	db
-wPlayerSubStatus3::
-; bit
-; 0 bide
-; 1 rampage
-; 2 in loop
-; 3 flinched
-; 4 charged
-; 5 underground
-; 6 flying
-; 7 confused
-	db
-wPlayerSubStatus4::
-; bit
-; 0 x accuracy
-; 1 mist
-; 2 focus energy
-; 3
-; 4 substitute
-; 5 recharge
-; 6 rage
-; 7 leech seed
-	db
-wPlayerSubStatus5::
-; bit
-; 0 toxic
-; 1
-; 2
-; 3 transformed
-; 4 encored
-; 5 lock-on
-; 6 destiny bond
-; 7 can't run
-	db
+wPlayerSubStatus1:: db
+wPlayerSubStatus2:: db
+wPlayerSubStatus3:: db
+wPlayerSubStatus4:: db
+wPlayerSubStatus5:: db
 
-wEnemySubStatus1::
-; see wPlayerSubStatus1
-	db
-wEnemySubStatus2::
-; see wPlayerSubStatus2
-	db
-wEnemySubStatus3::
-; see wPlayerSubStatus3
-	db
-wEnemySubStatus4::
-; see wPlayerSubStatus4
-	db
-wEnemySubStatus5::
-; see wPlayerSubStatus5
-	db
+wEnemySubStatus1:: db
+wEnemySubStatus2:: db
+wEnemySubStatus3:: db
+wEnemySubStatus4:: db
+wEnemySubStatus5:: db
 
 wPlayerRolloutCount:: db
 wPlayerConfuseCount:: db
@@ -528,7 +467,7 @@ wEnemyFuryCutterCount:: db
 wEnemyProtectCount:: db
 
 wPlayerDamageTaken:: dw
-wEnemyDamageTaken:: dw
+wEnemyDamageTaken::  dw
 
 wBattleReward:: ds 3
 
@@ -543,56 +482,53 @@ wTurnEnded:: db
 	ds 1
 
 wPlayerStats::
-wPlayerAttack:: dw
+wPlayerAttack::  dw
 wPlayerDefense:: dw
-wPlayerSpeed:: dw
-wPlayerSpAtk:: dw
-wPlayerSpDef:: dw
+wPlayerSpeed::   dw
+wPlayerSpAtk::   dw
+wPlayerSpDef::   dw
 	ds 1
 
 wEnemyStats::
-wEnemyAttack:: dw
+wEnemyAttack::  dw
 wEnemyDefense:: dw
-wEnemySpeed:: dw
-wEnemySpAtk:: dw
-wEnemySpDef:: dw
+wEnemySpeed::   dw
+wEnemySpAtk::   dw
+wEnemySpDef::   dw
 	ds 1
 
 wPlayerStatLevels::
-; 07 neutral
-wPlayerAtkLevel:: db
-wPlayerDefLevel:: db
-wPlayerSpdLevel:: db
+wPlayerAtkLevel::  db
+wPlayerDefLevel::  db
+wPlayerSpdLevel::  db
 wPlayerSAtkLevel:: db
 wPlayerSDefLevel:: db
-wPlayerAccLevel:: db
-wPlayerEvaLevel:: db
+wPlayerAccLevel::  db
+wPlayerEvaLevel::  db
 	ds 1
-wPlayerStatLevelsEnd::
 
 wEnemyStatLevels::
-; 07 neutral
-wEnemyAtkLevel:: db
-wEnemyDefLevel:: db
-wEnemySpdLevel:: db
+wEnemyAtkLevel::  db
+wEnemyDefLevel::  db
+wEnemySpdLevel::  db
 wEnemySAtkLevel:: db
 wEnemySDefLevel:: db
-wEnemyAccLevel:: db
-wEnemyEvaLevel:: db
+wEnemyAccLevel::  db
+wEnemyEvaLevel::  db
 	ds 1
 
-wEnemyTurnsTaken:: db
+wEnemyTurnsTaken::  db
 wPlayerTurnsTaken:: db
 	ds 1
 
 wPlayerSubstituteHP:: db
-wEnemySubstituteHP:: db
+wEnemySubstituteHP::  db
 
 wUnusedPlayerLockedMove:: db
 	ds 1
 
 wCurPlayerMove:: db
-wCurEnemyMove:: db
+wCurEnemyMove::  db
 
 wLinkBattleRNCount::
 ; how far through the prng stream
@@ -605,7 +541,7 @@ wCurEnemyMoveNum:: db
 wEnemyHPAtTimeOfPlayerSwitch:: dw
 wPayDayMoney:: ds 3
 
-wSafariMonAngerCount:: db
+wSafariMonAngerCount:: db ; unreferenced
 wSafariMonEating:: db
 	ds 1
 wEnemyBackupDVs:: dw ; used when enemy is transformed
@@ -703,7 +639,7 @@ wEnemyFutureSightCount:: db
 
 wGivingExperienceToExpShareHolders:: db
 
-wBackupEnemyMonBaseStats:: ds 5
+wBackupEnemyMonBaseStats:: ds NUM_EXP_STATS
 wBackupEnemyMonCatchRate:: db
 wBackupEnemyMonBaseExp:: db
 
@@ -859,7 +795,6 @@ NEXTU
 wTrademons::
 wPlayerTrademon:: trademon wPlayerTrademon
 wOTTrademon::     trademon wOTTrademon
-wTrademonsEnd::
 wTradeAnimAddress:: dw
 wLinkPlayer1Name:: ds NAME_LENGTH
 wLinkPlayer2Name:: ds NAME_LENGTH
@@ -902,18 +837,15 @@ wSlotsEnd::
 
 NEXTU
 ; card flip
-wCardFlip::
-wDeck:: ds 24
+wDeck:: ds 4 * 6
 wDeckEnd::
 wCardFlipNumCardsPlayed:: db
 wCardFlipFaceUpCard:: db
-wDiscardPile:: ds 24
+wDiscardPile:: ds 4 * 6
 wDiscardPileEnd::
-wCardFlipEnd::
 
 NEXTU
 ; dummy game
-wDummyGame::
 wDummyGameCards:: ds 9 * 5
 wDummyGameCardsEnd::
 wDummyGameLastCardPicked:: db
@@ -925,7 +857,6 @@ wDummyGameNumberTriesRemaining:: db
 wDummyGameLastMatches:: ds 5
 wDummyGameCounter:: db
 wDummyGameNumCardsMatched:: db
-wDummyGameEnd::
 
 NEXTU
 ; mobile data
@@ -950,8 +881,7 @@ wc7bd:: ds 19
 wc7d0:: ds 1
 wc7d1:: ds 1
 wc7d2:: ds 1
-wc7d3:: ds 1
-wc7d4:: ds 1
+wc7d3:: ds 2
 ENDU
 
 ENDU
@@ -970,13 +900,8 @@ wOverworldMapBlocks:: ds 1300
 wOverworldMapBlocksEnd::
 
 NEXTU
-; GB Printer screen RAM
-wGameboyPrinterRAM::
-wGameboyPrinterScreen:: ds SCREEN_HEIGHT * SCREEN_WIDTH
-wGameboyPrinterScreenEnd::
-
-NEXTU
 ; GB Printer data
+wGameboyPrinterRAM::
 wGameboyPrinter2bppSource:: ds 40 tiles
 wGameboyPrinter2bppSourceEnd::
 wca80:: db
@@ -1000,7 +925,6 @@ wPrinterSendByteCounter:: dw
 
 ; tilemap backup?
 wPrinterTilemapBuffer:: ds SCREEN_HEIGHT * SCREEN_WIDTH
-wPrinterTilemapBufferEnd::
 wPrinterStatus:: db
 	ds 1
 ; High nibble is for margin before the image, low nibble is for after.
@@ -1060,7 +984,6 @@ wTimeCapsulePartyMon5:: red_party_struct wTimeCapsulePartyMon5
 wTimeCapsulePartyMon6:: red_party_struct wTimeCapsulePartyMon6
 wTimeCapsulePartyMonOTNames:: ds PARTY_LENGTH * NAME_LENGTH
 wTimeCapsulePartyMonNicks:: ds PARTY_LENGTH * MON_NAME_LENGTH
-wTimeCapsulePlayerDataEnd::
 
 NEXTU
 ; link player data
@@ -1073,7 +996,6 @@ wLinkPlayerPartyMon5:: party_struct wLinkPlayerPartyMon5
 wLinkPlayerPartyMon6:: party_struct wLinkPlayerPartyMon6
 wLinkPlayerPartyMonOTNames:: ds PARTY_LENGTH * NAME_LENGTH
 wLinkPlayerPartyMonNicks:: ds PARTY_LENGTH * MON_NAME_LENGTH
-wLinkPlayerDataEnd::
 ENDU
 
 NEXTU
@@ -1085,22 +1007,15 @@ NEXTU
 wMysteryGiftStaging:: ds 80
 
 NEXTU
-wc800:: ds 1
-wc801:: ds 1
-wc802:: ds 1
-wc803:: ds 4
-wc807:: ds 7
-wc80e:: ds 1
-wc80f:: ds 1
-wc810:: ds 1
-wc811:: ds 1
+	ds 7
+wc807:: ds 1
+	ds 10
 wMobileSDK_PacketChecksum:: dw
-wc814:: ds 4
+	ds 4
 wMobileSDK_AdapterType:: db
 	ds 5
 wMobileSDK_SendCommandID:: db
-	ds 1
-wc820:: ds 1
+	ds 2
 wc821:: ds 1
 wc822:: ds 46
 ENDU
@@ -1110,18 +1025,10 @@ wMysteryGiftTrainerData:: ds (1 + 1 + NUM_MOVES) * PARTY_LENGTH + 2
 wMysteryGiftTrainerDataEnd::
 
 NEXTU
-wc850:: ds 16
-wc860:: ds 16
-wc870:: ds 16
-wc880:: ds 16
-wc890:: ds 16
-wc8a0:: ds 16
-wc8b0:: ds 16
-wc8c0:: ds 16
-wc8d0:: ds 16
-wc8e0:: ds 16
-wc8f0:: ds 16
+wMysteryGiftCardHolderName:: ds PLAYER_NAME_LENGTH
 ENDU
+
+	ds 138
 
 wMysteryGiftPartnerData::
 wc900:: db
@@ -1181,12 +1088,8 @@ ENDU
 
 	ds 14
 wcb0e:: ds 5
-wcb13:: ds 50
-wcb45:: ds 2
-wMobileSDK_PacketBuffer:: ds 18
-wcb59:: ds 20
-wcb6d:: ds 1
-wcb6e:: ds 22
+wcb13:: ds 52
+wMobileSDK_PacketBuffer:: ds 61
 wcb84:: ds 100
 wcbe8:: dw
 wLinkOTPartyMonTypes:: ds 2 * PARTY_LENGTH
@@ -1553,12 +1456,10 @@ wPrinterQueueLength::
 	db
 ENDU
 
-wRequested2bpp::
 wRequested2bppSize:: db
 wRequested2bppSource:: dw
 wRequested2bppDest:: dw
 
-wRequested1bpp::
 wRequested1bppSize:: db
 wRequested1bppSource:: dw
 wRequested1bppDest:: dw
@@ -1815,7 +1716,6 @@ wNumRadioLinesPrinted:: db
 wOaksPKMNTalkSegmentCounter:: db
 	ds 5
 wRadioText:: ds 2 * SCREEN_WIDTH
-wRadioTextEnd::
 
 NEXTU
 ; lucky number show
@@ -2060,7 +1960,7 @@ wBallsPocketCursor::    db
 wTMHMPocketCursor::     db
 
 wPCItemsScrollPosition::        db
-wPartyMenuScrollPosition::      db ; unused
+	ds 1
 wItemsPocketScrollPosition::    db
 wKeyItemsPocketScrollPosition:: db
 wBallsPocketScrollPosition::    db
@@ -2118,7 +2018,6 @@ wCurMessageScrollPosition:: db
 wCurMessageIndex:: db
 wMailboxCount:: db
 wMailboxItems:: ds MAILBOX_CAPACITY
-wMailboxEnd::
 ENDU
 
 wListPointer:: dw
@@ -2303,7 +2202,7 @@ wTempEnemyMonSpecies::  db
 wTempBattleMonSpecies:: db
 
 wEnemyMon:: battle_struct wEnemyMon
-wEnemyMonBaseStats:: ds 5
+wEnemyMonBaseStats:: ds NUM_EXP_STATS
 wEnemyMonCatchRate:: db
 wEnemyMonBaseExp::   db
 wEnemyMonEnd::
@@ -2443,24 +2342,20 @@ wOTPartyMonsEnd::
 wOTPartyMonOT:: ds NAME_LENGTH * PARTY_LENGTH
 wOTPartyMonNicknames:: ds MON_NAME_LENGTH * PARTY_LENGTH
 wOTPartyDataEnd::
-	ds 4
 
 NEXTU
 ; catch tutorial dude pack
-wDudeBag::
 wDudeNumItems:: db
-wDudeItems:: ds 2 * 4
-wDudeItemsEnd:: db
+wDudeItems:: ds 2 * 4 + 1
 
 wDudeNumKeyItems:: db
-wDudeKeyItems:: ds 18
-wDudeKeyItemsEnd:: db
+wDudeKeyItems:: ds 18 + 1
 
 wDudeNumBalls:: db
-wDudeBalls:: ds 2 * 4
-wDudeBallsEnd:: db
-wDudeBagEnd::
+wDudeBalls:: ds 2 * 4 + 1
 ENDU
+
+	ds 4
 
 wd430:: ; mobile
 wBattleAction:: db
@@ -2472,9 +2367,8 @@ wMapEventStatus:: db
 wScriptFlags::
 ; bit 3: priority jump
 	db
+	ds 1
 wScriptFlags2::
-	db
-wScriptFlags3::
 ; bit 0: count steps
 ; bit 1: coord events
 ; bit 2: warps and connections
@@ -2565,8 +2459,8 @@ wSavedAtLeastOnce:: db
 wSpawnAfterChampion:: db
 
 ; init time set at newgame
-wStartDay:: db
-wStartHour:: db
+wStartDay::    db
+wStartHour::   db
 wStartMinute:: db
 wStartSecond:: db
 
@@ -2611,7 +2505,6 @@ wObject9Struct::  object_struct wObject9
 wObject10Struct:: object_struct wObject10
 wObject11Struct:: object_struct wObject11
 wObject12Struct:: object_struct wObject12
-wObjectStructsEnd::
 
 wCmdQueue:: ds CMDQUEUE_CAPACITY * CMDQUEUE_ENTRY_SIZE
 
@@ -2634,7 +2527,6 @@ wMap12Object::  map_object wMap12
 wMap13Object::  map_object wMap13
 wMap14Object::  map_object wMap14
 wMap15Object::  map_object wMap15
-wMapObjectsEnd::
 
 wObjectMasks:: ds NUM_OBJECTS
 
@@ -2690,23 +2582,18 @@ wJohtoBadges:: flag_array NUM_JOHTO_BADGES
 wKantoBadges:: flag_array NUM_KANTO_BADGES
 
 wTMsHMs:: ds NUM_TMS + NUM_HMS
-wTMsHMsEnd::
 
 wNumItems:: db
 wItems:: ds MAX_ITEMS * 2 + 1
-wItemsEnd::
 
 wNumKeyItems:: db
 wKeyItems:: ds MAX_KEY_ITEMS + 1
-wKeyItemsEnd::
 
 wNumBalls:: db
 wBalls:: ds MAX_BALLS * 2 + 1
-wBallsEnd::
 
 wNumPCItems:: db
 wPCItems:: ds MAX_PC_ITEMS * 2 + 1
-wPCItemsEnd::
 
 wPokegearFlags::
 ; bit 0: map
@@ -2818,7 +2705,7 @@ wMobileBattleRoomSceneID::                        db
 
 ; fight counts
 wJackFightCount::    db
-wBeverlyFightCount:: db ; unused
+wBeverlyFightCount:: db ; unreferenced
 wHueyFightCount::    db
 wGavenFightCount::   db
 wBethFightCount::    db
@@ -2831,18 +2718,18 @@ wLizFightCount::     db
 wAnthonyFightCount:: db
 wToddFightCount::    db
 wGinaFightCount::    db
-wIrwinFightCount::   db ; unused
+wIrwinFightCount::   db ; unreferenced
 wArnieFightCount::   db
 wAlanFightCount::    db
 wDanaFightCount::    db
 wChadFightCount::    db
-wDerekFightCount::   db ; unused
+wDerekFightCount::   db ; unreferenced
 wTullyFightCount::   db
 wBrentFightCount::   db
 wTiffanyFightCount:: db
 wVanceFightCount::   db
 wWiltonFightCount::  db
-wKenjiFightCount::   db ; unused
+wKenjiFightCount::   db ; unreferenced
 wParryFightCount::   db
 wErinFightCount::    db
 
@@ -3034,10 +2921,9 @@ wDayCareMan::
 ; bit 0: monster 1 in day-care
 	db
 
-wBreedMon1::
-wBreedMon1Nick::  ds MON_NAME_LENGTH
-wBreedMon1OT::    ds NAME_LENGTH
-wBreedMon1Stats:: box_struct wBreedMon1
+wBreedMon1Nick:: ds MON_NAME_LENGTH
+wBreedMon1OT::   ds NAME_LENGTH
+wBreedMon1::     box_struct wBreedMon1
 
 wDayCareLady::
 ; bit 7: active
@@ -3051,10 +2937,9 @@ wBreedMotherOrNonDitto::
 ; nz: no
 	db
 
-wBreedMon2::
-wBreedMon2Nick::  ds MON_NAME_LENGTH
-wBreedMon2OT::    ds NAME_LENGTH
-wBreedMon2Stats:: box_struct wBreedMon2
+wBreedMon2Nick:: ds MON_NAME_LENGTH
+wBreedMon2OT::   ds NAME_LENGTH
+wBreedMon2::     box_struct wBreedMon2
 
 wEggNick:: ds MON_NAME_LENGTH
 wEggOT::   ds NAME_LENGTH
@@ -3237,7 +3122,6 @@ wAnimObject07:: battle_anim_struct wAnimObject07
 wAnimObject08:: battle_anim_struct wAnimObject08
 wAnimObject09:: battle_anim_struct wAnimObject09
 wAnimObject10:: battle_anim_struct wAnimObject10
-wActiveAnimObjectsEnd::
 
 wActiveBGEffects::
 wBGEffect1:: battle_bg_effect wBGEffect1
@@ -3245,7 +3129,6 @@ wBGEffect2:: battle_bg_effect wBGEffect2
 wBGEffect3:: battle_bg_effect wBGEffect3
 wBGEffect4:: battle_bg_effect wBGEffect4
 wBGEffect5:: battle_bg_effect wBGEffect5
-wActiveBGEffectsEnd::
 
 wLastAnimObjectIndex:: db
 

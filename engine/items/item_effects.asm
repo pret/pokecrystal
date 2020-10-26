@@ -1062,14 +1062,13 @@ LevelBallMultiplier:
 	ld b, $ff
 	ret
 
-; These two texts were carried over from gen 1.
-; They are not used in gen 2, and are dummied out.
+; BallDodgedText and BallMissedText were used in Gen 1.
 
-BallDodgedText:
+BallDodgedText: ; unreferenced
 	text_far _BallDodgedText
 	text_end
 
-BallMissedText:
+BallMissedText: ; unreferenced
 	text_far _BallMissedText
 	text_end
 
@@ -1896,14 +1895,14 @@ LoadCurHPIntoBuffer5:
 	ld [wBuffer5], a
 	ret
 
-LoadHPIntoBuffer5:
+LoadHPIntoBuffer5: ; unreferenced
 	ld a, d
 	ld [wBuffer6], a
 	ld a, e
 	ld [wBuffer5], a
 	ret
 
-LoadHPFromBuffer5:
+LoadHPFromBuffer5: ; unreferenced
 	ld a, [wBuffer6]
 	ld d, a
 	ld a, [wBuffer5]
@@ -2353,7 +2352,6 @@ RestorePPEffect:
 	jr c, .do_ppup
 
 .CantUsePPUpOnSketch:
-.pp_is_maxed_out
 	ld hl, PPIsMaxedOutText
 	call PrintText
 	jr .loop2
@@ -2650,16 +2648,17 @@ WontHaveAnyEffectMessage:
 	ld hl, ItemWontHaveEffectText
 	jr CantUseItemMessage
 
-BelongsToSomeoneElseMessage:
+BelongsToSomeoneElseMessage: ; unreferenced
 	ld hl, ItemBelongsToSomeoneElseText
 	jr CantUseItemMessage
 
-CyclingIsntAllowedMessage:
+CyclingIsntAllowedMessage: ; unreferenced
 	ld hl, NoCyclingText
 	jr CantUseItemMessage
 
-CantGetOnYourBikeMessage:
+CantGetOnYourBikeMessage: ; unreferenced
 	ld hl, ItemCantGetOnText
+	; fallthrough
 
 CantUseItemMessage:
 ; Item couldn't be used.
@@ -2711,11 +2710,11 @@ ItemUsedText:
 	text_far _ItemUsedText
 	text_end
 
-ItemGotOnText:
+ItemGotOnText: ; unreferenced
 	text_far _ItemGotOnText
 	text_end
 
-ItemGotOffText:
+ItemGotOffText: ; unreferenced
 	text_far _ItemGotOffText
 	text_end
 

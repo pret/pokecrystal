@@ -66,7 +66,7 @@ NUM_MAP_PALETTES EQU const_value
 	shift_const NORTH
 
 ; SpawnPoints indexes (see data/maps/spawn_points.asm)
-const_value = -1
+	const_def -1
 	const SPAWN_N_A
 	const SPAWN_HOME
 	const SPAWN_DEBUG

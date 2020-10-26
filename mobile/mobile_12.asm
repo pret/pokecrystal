@@ -1080,7 +1080,7 @@ asm_48922:
 	call DelayFrames
 	jr asm_48972
 
-Function4895a:
+Function4895a: ; unreferenced
 	ldh a, [hJoyPressed]
 	and a
 	jr z, .asm_48965
@@ -1608,7 +1608,7 @@ Function48c8e: ; unreferenced
 	call WaitBGMap
 	ret
 
-Function48ca3:
+Function48ca3: ; unreferenced
 	push af
 	push bc
 	push de

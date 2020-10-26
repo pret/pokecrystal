@@ -145,7 +145,7 @@ Jasmine_BadgeSpeech:
 	line "this too…"
 	done
 
-Text_ReceivedTM09:
+Text_ReceivedTM09: ; unreferenced
 	text "<PLAYER> received"
 	line "TM09."
 	done

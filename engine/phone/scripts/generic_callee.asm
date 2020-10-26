@@ -1103,7 +1103,7 @@ PhoneScript_Generic_Male:
 	promptbutton
 	end
 
-.Unknown:
+.Unknown: ; unreferenced
 	farwritetext UnknownGenericText
 	promptbutton
 	end

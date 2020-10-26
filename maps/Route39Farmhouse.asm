@@ -172,7 +172,7 @@ FarmerFText_HealedMiltank:
 	line "fer your trouble."
 	done
 
-Text_ReceivedTM13:
+Text_ReceivedTM13: ; unreferenced
 	text "<PLAYER> received"
 	line "TM13."
 	done

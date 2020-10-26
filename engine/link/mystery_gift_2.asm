@@ -2,23 +2,23 @@ PrepMysteryGiftDataToSend:
 	ld de, wMysteryGiftStaging
 	ld a, $1 + GS_VERSION
 	ld [de], a
-	inc de ; wc801
+	inc de ; wMysteryGiftStaging+1
 	ld a, BANK(sGameData)
 	call OpenSRAM
 	ld hl, sPlayerData + wPlayerID - wPlayerData
 	ld a, [hli]
 	ld [de], a
 	ld b, a
-	inc de ; wc802
+	inc de ; wMysteryGiftStaging+2
 	ld a, [hl]
 	ld [de], a
 	ld c, a
-	inc de ; wc803
+	inc de ; wMysteryGiftStaging+3
 	push bc
 	ld hl, sPlayerData + wPlayerName - wPlayerData
 	ld bc, NAME_LENGTH
 	call CopyBytes
-	push de ; wc80e
+	push de ; wMysteryGiftStaging+14
 	ld hl, sPokemonData + wPokedexCaught - wPokemonData
 	ld b, wEndPokedexCaught - wPokedexCaught
 	call CountSetBits
@@ -26,21 +26,21 @@ PrepMysteryGiftDataToSend:
 	pop bc
 	ld a, [wNumSetBits]
 	ld [de], a
-	inc de ; wc80f
+	inc de ; wMysteryGiftStaging+15
 	call CloseSRAM
 	call Random
 	and 1
 	ld [de], a
-	inc de ; wc810
+	inc de ; wMysteryGiftStaging+16
 	call .RandomSample
 	ld [de], a
-	inc de ; wc811
+	inc de ; wMysteryGiftStaging+17
 	ld a, c
 	ld c, b
 	ld b, a
 	call .RandomSample
 	ld [de], a
-	inc de ; wc812
+	inc de ; wMysteryGiftStaging+18
 	ld a, BANK(sBackupMysteryGiftItem)
 	call OpenSRAM
 	ld a, [sBackupMysteryGiftItem]

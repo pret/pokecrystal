@@ -58,7 +58,7 @@ GoldenrodUnderground_MapScripts:
 	ifequal FRIDAY, .Friday
 	ifequal SATURDAY, .Saturday
 
-.Sunday:
+; Sunday
 	disappear GOLDENRODUNDERGROUND_GRAMPS
 	disappear GOLDENRODUNDERGROUND_OLDER_HAIRCUT_BROTHER
 	appear GOLDENRODUNDERGROUND_YOUNGER_HAIRCUT_BROTHER

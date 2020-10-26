@@ -57,8 +57,7 @@ GameFreakGraphicArtistScript:
 	closetext
 	end
 
-.CancelPrinting:
-; unused
+.CancelPrinting: ; unreferenced
 	writetext GameFreakGraphicArtistErrorText
 	waitbutton
 	closetext

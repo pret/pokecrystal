@@ -549,7 +549,7 @@ GetDecoName:
 	ld a, e
 	jr .getpokename
 
-.unused
+.unused ; unreferenced
 	push de
 	call .getdeconame
 	pop de
@@ -939,7 +939,7 @@ GetDecorationID:
 	pop hl
 	ret
 
-SetAllDecorationFlags:
+SetAllDecorationFlags: ; unreferenced
 	ld hl, DecorationIDs
 .loop
 	ld a, [hli]

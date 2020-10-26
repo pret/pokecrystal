@@ -141,8 +141,7 @@ CeladonGameCornerSodaCanScript:
 	closetext
 	end
 
-CeladonGameCornerUnusedMovementData:
-; unreferenced
+CeladonGameCornerUnusedMovementData: ; unreferenced
 	step RIGHT
 	turn_head LEFT
 	step_end

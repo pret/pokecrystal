@@ -39,8 +39,7 @@ GoldenrodBikeShopClerkScript:
 	closetext
 	end
 
-GoldenrodBikeShopJustReleasedCompactBike:
-; unused
+GoldenrodBikeShopJustReleasedCompactBike: ; unreferenced
 	jumptext GoldenrodBikeShopJustReleasedCompactBikeText
 
 GoldenrodBikeShopBicycle:

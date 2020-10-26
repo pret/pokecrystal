@@ -15,7 +15,7 @@ Function16d42e:
 	call CopyBytes
 	ret
 
-Function16d43b:
+Function16d43b: ; unreferenced
 	call LoadStandardMenuHeader
 	call ClearBGPalettes
 	call ClearTilemap

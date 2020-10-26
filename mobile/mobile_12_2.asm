@@ -332,7 +332,7 @@ Function4aa34:
 	pop af
 	ret
 
-Function4aa6e:
+Function4aa6e: ; unreferenced
 	pop af
 	ld de, SFX_WRONG
 	call PlaySFX
@@ -803,7 +803,7 @@ Function4ad60:
 	farcall ManagePokemonMoves
 	ret
 
-Function4ad67:
+Function4ad67: ; unreferenced
 	ret
 
 Function4ad68:

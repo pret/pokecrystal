@@ -449,7 +449,7 @@ ENDM
 	spin_quadrant LOWER_LEFT,  .wedge1,  1, 11
 	db -1
 
-.load
+.load:
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]

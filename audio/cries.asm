@@ -464,7 +464,7 @@ Cry_Sentret_Ch6:
 	square_note 8, 15, 1, 1824
 	sound_ret
 
-Cry_Sentret_Ch8:
+Cry_Sentret_Ch8: ; unreferenced
 	noise_note 8, 3, -3, 0
 	noise_note 8, 9, 2, 0
 	sound_ret
@@ -1082,7 +1082,7 @@ Cry_Weepinbell:
 	channel 6, Cry_Weepinbell_Ch6
 	channel 8, Cry_Weepinbell_Ch8
 
-Cry_Unused_Ch5:
+Cry_Unused_Ch5: ; unreferenced
 	duty_cycle_pattern 3, 3, 0, 0
 	square_note 15, 14, 0, 1920
 	square_note 15, 15, 0, 1924
@@ -1092,7 +1092,7 @@ Cry_Unused_Ch5:
 	square_note 8, 7, 1, 1924
 	sound_ret
 
-Cry_Unused_Ch6:
+Cry_Unused_Ch6: ; unreferenced
 	duty_cycle_pattern 0, 0, 1, 1
 	square_note 15, 10, 0, 1857
 	square_note 15, 11, 0, 1859
@@ -1102,7 +1102,7 @@ Cry_Unused_Ch6:
 	square_note 8, 3, 1, 1862
 	sound_ret
 
-Cry_Unused_Ch8:
+Cry_Unused_Ch8: ; unreferenced
 	noise_note 2, 15, 2, 76
 	noise_note 6, 14, 0, 58
 	noise_note 15, 13, 0, 58

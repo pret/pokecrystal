@@ -463,7 +463,6 @@ _MobileForPartnersMonText::
 	text "."
 	done
 
-; unreferenced
 _MobilePlayersMonTradeText::
 	text_ram wPlayerTrademonSenderName
 	text "'s"

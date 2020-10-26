@@ -20,7 +20,7 @@ _DummyGame:
 	ld a, BANK(DummyGameGFX)
 	call FarCopyBytes
 	ld a, $8
-	ld hl, wc300
+	ld hl, wSpriteAnimDict
 	ld [hli], a
 	ld [hl], $0
 	hlcoord 0, 0

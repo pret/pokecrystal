@@ -33,10 +33,11 @@ PrintBCDNumber::
 	jr nz, .loop
 	bit PRINTNUM_LEADINGZEROS_F, b
 	jr z, .done ; if so, we are done
-.numberEqualsZero ; if every digit of the BCD number is zero
+; every digit of the BCD number is zero
 	bit PRINTNUM_LEFTALIGN_F, b
 	jr nz, .skipLeftAlignmentAdjustment
-	dec hl ; if the string is left-aligned, it needs to be moved back one space
+; the string is left-aligned; it needs to be moved back one space
+	dec hl
 .skipLeftAlignmentAdjustment
 	bit PRINTNUM_MONEY_F, b
 	jr z, .skipCurrencySymbol
@@ -53,7 +54,7 @@ PrintBCDDigit::
 	and %00001111
 	and a
 	jr z, .zeroDigit
-.nonzeroDigit
+; nonzero digit
 	bit PRINTNUM_LEADINGZEROS_F, b ; have any non-space characters been printed?
 	jr z, .outputDigit
 ; if bit 7 is set, then no numbers have been printed yet

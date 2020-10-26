@@ -39,15 +39,14 @@ TradeCenterConsoleScript:
 	newloadmap MAPSETUP_LINKRETURN
 	end
 
-TradeCenterFriendScript:
-; unreferenced
+TradeCenterFriendScript: ; unreferenced
 	opentext
-	writetext .FriendReadyText
+	writetext TradeCenterFriendReadyText
 	waitbutton
 	closetext
 	end
 
-.FriendReadyText:
+TradeCenterFriendReadyText:
 	text "Your friend is"
 	line "ready."
 	done

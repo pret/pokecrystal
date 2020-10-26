@@ -304,7 +304,7 @@ Printer_ResetData:
 	xor a
 	ld [wPrinterSendByteCounter], a
 	ld [wPrinterSendByteCounter + 1], a
-	ld hl, wGameboyPrinterRAM
+	ld hl, wGameboyPrinter2bppSource
 	ld bc, wGameboyPrinter2bppSourceEnd - wGameboyPrinter2bppSource
 	call Printer_ByteFill
 	ret
@@ -435,10 +435,10 @@ PrinterDataPacket3:
 PrinterDataPacket4:
 	db  4, 0, $00, 0
 	dw 4
-PrinterDataPacket5: ; unused
+PrinterDataPacket5: ; unreferenced
 	db  8, 0, $00, 0
 	dw 8
-PrinterDataPacket6: ; unused
+PrinterDataPacket6: ; unreferenced
 	db 15, 0, $00, 0
 	dw 15
 

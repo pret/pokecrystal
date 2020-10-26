@@ -8,7 +8,7 @@ SendMailToPC:
 	cp MAILBOX_CAPACITY
 	jr nc, .full
 	ld bc, MAIL_STRUCT_LENGTH
-	ld hl, sMailbox
+	ld hl, sMailboxes
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -44,7 +44,7 @@ DeleteMailFromPC:
 	call OpenSRAM
 	ld a, b
 	push bc
-	ld hl, sMailbox
+	ld hl, sMailboxes
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	push hl
@@ -73,7 +73,7 @@ DeleteMailFromPC:
 
 ReadMailMessage:
 	ld a, b
-	ld hl, sMailbox
+	ld hl, sMailboxes
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
@@ -87,7 +87,7 @@ MoveMailFromPCToParty:
 	push bc
 	ld a, b
 	ld bc, MAIL_STRUCT_LENGTH
-	ld hl, sMailbox
+	ld hl, sMailboxes
 	call AddNTimes
 	push hl
 	ld a, [wCurPartyMon]
@@ -314,19 +314,19 @@ _PlayerMailBoxMenu:
 	text_end
 
 InitMail:
-; initialize wMailboxCount and beyond with incrementing values, one per mail
-; set z if no mail
+; return z if no mail
 	ld a, BANK(sMailboxCount)
 	call OpenSRAM
 	ld a, [sMailboxCount]
 	call CloseSRAM
-	ld hl, wMailboxCount
-	ld [hli], a
-	and a
 
+; initialize wMailboxCount from sMailboxCount
+	ld hl, wMailboxCount
+	ld [hli], a ; now hl = wMailboxItems
+	and a
 	jr z, .done ; if no mail, we're done
 
-	; load values in memory with incrementing values starting at wMailboxCount
+; initialize wMailboxItems with incrementing values starting at 1
 	ld b, a
 	ld a, 1
 .loop
@@ -334,6 +334,7 @@ InitMail:
 	inc a
 	dec b
 	jr nz, .loop
+
 .done
 	ld [hl], -1 ; terminate
 

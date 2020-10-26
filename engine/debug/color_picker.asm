@@ -32,7 +32,7 @@
 	const DEBUGCOLORMAIN_INITTMHM       ; 4
 	const DEBUGCOLORMAIN_TMHMJOYPAD     ; 5
 
-DebugColorPicker:
+DebugColorPicker: ; unreferenced
 ; A debug menu to test monster and trainer palettes at runtime.
 	ldh a, [hCGB]
 	and a
@@ -1069,7 +1069,7 @@ INCBIN "gfx/debug/up_arrow.2bpp"
 DebugColor_GFX:
 INCBIN "gfx/debug/color_test.2bpp"
 
-TilesetColorPicker:
+TilesetColorPicker: ; unreferenced
 ; A debug menu to test tileset palettes at runtime.
 ; dummied out
 	ret

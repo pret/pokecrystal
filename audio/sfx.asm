@@ -21,7 +21,7 @@ Sfx_Menu:
 Sfx_ReadText:
 Sfx_ReadText2:
 	channel_count 1
-	channel 5, Sfx_ReadText2_Ch5
+	channel 5, Sfx_ReadText_Ch5 ; aka Sfx_ReadText2_Ch5
 
 Sfx_Poison:
 	channel_count 1
@@ -486,10 +486,10 @@ Sfx_Elevator:
 Sfx_LevelUp:
 Sfx_DexFanfare5079:
 	channel_count 4
-	channel 5, Sfx_LevelUp_Ch5
-	channel 6, Sfx_LevelUp_Ch6
-	channel 7, Sfx_LevelUp_Ch7
-	channel 8, Sfx_LevelUp_Ch8
+	channel 5, Sfx_LevelUp_Ch5 ; aka Sfx_DexFanfare5079_Ch5
+	channel 6, Sfx_LevelUp_Ch6 ; aka Sfx_DexFanfare5079_Ch6
+	channel 7, Sfx_LevelUp_Ch7 ; aka Sfx_DexFanfare5079_Ch7
+	channel 8, Sfx_LevelUp_Ch8 ; aka Sfx_DexFanfare5079_Ch8
 
 Sfx_LevelUp_Ch5:
 Sfx_DexFanfare5079_Ch5:
@@ -942,7 +942,7 @@ Sfx_Fanfare2:
 	channel 6, Sfx_Fanfare2_Ch6
 	channel 8, Sfx_Fanfare2_Ch8
 
-Sfx_Unused:
+Sfx_Unused: ; unreferenced
 	channel_count 4
 	channel 5, Sfx_Unused_Ch5
 	channel 6, Sfx_Unused_Ch6

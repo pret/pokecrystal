@@ -263,12 +263,12 @@ _MysteryGiftSentHomeText::
 _MysteryGiftReceivedCardText::
 	text "Received"
 	line "@"
-	text_ram wc850
+	text_ram wMysteryGiftCardHolderName
 	text "'s CARD."
 	prompt
 
 _MysteryGiftListedCardText::
-	text_ram wc850
+	text_ram wMysteryGiftCardHolderName
 	text "'s CARD was"
 	line "listed as no.@"
 	text_decimal wDeciramBuffer, 1, 2
@@ -487,7 +487,6 @@ _RodNothingText::
 	text "Not even a nibble!"
 	prompt
 
-; unreferenced
 _UnusedNothingHereText::
 	text "Looks like there's"
 	line "nothing here."

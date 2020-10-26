@@ -149,6 +149,6 @@ DoPoisonStep::
 	text_far _PoisonFaintText
 	text_end
 
-.PoisonWhiteoutText:
+.PoisonWhiteoutText: ; unreferenced
 	text_far _PoisonWhiteoutText
 	text_end

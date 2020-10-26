@@ -317,7 +317,7 @@ CherrygroveCity_RivalPushesYouOutOfTheWay:
 	turn_head UP
 	step_end
 
-CherrygroveCity_UnusedMovementData:
+CherrygroveCity_UnusedMovementData: ; unreferenced
 	step LEFT
 	turn_head DOWN
 	step_end

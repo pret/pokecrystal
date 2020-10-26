@@ -404,7 +404,7 @@ LoadBlueSkyMailGFX:
 	ld de, BlueSkyMailGrassGFX
 	ld c, 1 * LEN_1BPP_TILE
 	call LoadMailGFX_Color3
-	ld de, MailDragoniteGFX
+	ld de, MailDragoniteAndSentretGFX
 	ld c, 23 * LEN_1BPP_TILE
 	call LoadMailGFX_Color3
 	ld de, MailCloudGFX
@@ -767,7 +767,7 @@ Mail_Place14TileAlternatingRow:
 	ld b, 14 / 2
 	jr Mail_PlaceAlternatingRow
 
-Mail_Place16TileAlternatingRow:
+Mail_Place16TileAlternatingRow: ; unreferenced
 	push af
 	ld b, 16 / 2
 	jr Mail_PlaceAlternatingRow
@@ -775,6 +775,7 @@ Mail_Place16TileAlternatingRow:
 Mail_Place18TileAlternatingRow:
 	push af
 	ld b, 18 / 2
+	; fallthrough
 
 Mail_PlaceAlternatingRow:
 .loop
@@ -812,16 +813,16 @@ Mail_PlaceAlternatingColumn:
 	pop af
 	ret
 
-Mail_Draw7TileRow:
-	ld b, $7
+Mail_Draw7TileRow: ; unreferenced
+	ld b, 7
 	jr Mail_DrawRowLoop
 
 Mail_Draw13TileRow:
-	ld b, $d
+	ld b, 13
 	jr Mail_DrawRowLoop
 
 Mail_Draw16TileRow:
-	ld b, $10
+	ld b, 16
 	jr Mail_DrawRowLoop
 
 Mail_DrawTopBottomBorder:
@@ -830,6 +831,7 @@ Mail_DrawTopBottomBorder:
 
 Mail_DrawFullWidthBorder:
 	ld b, SCREEN_WIDTH
+	; fallthrough
 
 Mail_DrawRowLoop:
 .loop

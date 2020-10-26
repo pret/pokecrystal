@@ -33,13 +33,13 @@ INCBIN "gfx/battle/expbar.2bpp"
 TownMapGFX:
 INCBIN "gfx/pokegear/town_map.2bpp.lz"
 
-UnusedWeekdayKanjiGFX:
+UnusedWeekdayKanjiGFX: ; unreferenced
 INCBIN "gfx/font/unused_weekday_kanji.2bpp"
 
 PokegearPhoneIconGFX:
 INCBIN "gfx/font/phone_icon.2bpp"
 
-UnusedBoldFontGFX:
+UnusedBoldFontGFX: ; unreferenced
 INCBIN "gfx/font/unused_bold_font.1bpp"
 
 TextboxSpaceGFX:
@@ -49,7 +49,7 @@ INCBIN "gfx/font/space.2bpp"
 FontsExtra_SolidBlackGFX:
 INCBIN "gfx/font/black.1bpp"
 
-UnusedUpArrowGFX:
+UnusedUpArrowGFX: ; unreferenced
 INCBIN "gfx/font/unused_up_arrow.1bpp"
 
 MobilePhoneTilesGFX:

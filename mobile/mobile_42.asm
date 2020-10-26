@@ -309,7 +309,7 @@ Function108201:
 	predef GetAnimatedFrontpic
 	ret
 
-Function108219:
+Function108219: ; unreferenced
 	ld [wCurPartySpecies], a
 	hlcoord 7, 2
 	ld d, $0
@@ -1557,7 +1557,7 @@ Function108bec:
 	text_far _MobileForPartnersMonText
 	text_end
 
-.MobilePlayersMonTradeText:
+.MobilePlayersMonTradeText: ; unreferenced
 	text_far _MobilePlayersMonTradeText
 	text_end
 
@@ -1636,7 +1636,7 @@ Function108c80:
 	ldh [rVBK], a
 	ret
 
-DebugMobileTrade:
+DebugMobileTrade: ; unreferenced
 ; localization error: NAME_LENGTH (11) should be NAME_LENGTH_JAPANESE (6) here
 
 	ld hl, .DebugTradeData
@@ -1741,7 +1741,7 @@ INCBIN "gfx/mobile/mobile_trade.tilemap.lz"
 MobileTradeAttrmapLZ:
 INCBIN "gfx/mobile/mobile_trade.attrmap.lz"
 
-UnusedMobilePulsePalettes:
+UnusedMobilePulsePalettes: ; unreferenced
 INCLUDE "gfx/mobile/unused_mobile_pulses.pal"
 
 MobileTradeBGPalettes:

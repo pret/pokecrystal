@@ -27,7 +27,7 @@ OlivineLighthouseJasmine:
 .BroughtSecretpotion:
 	writetext JasmineCureAmphyText
 	yesorno
-	iffalse .no
+	iffalse .Refused
 	writetext PlayerHandedSecretpotionText
 	promptbutton
 	takeitem SECRETPOTION
@@ -84,7 +84,7 @@ OlivineLighthouseJasmine:
 	disappear OLIVINELIGHTHOUSE6F_JASMINE
 	end
 
-.no:
+.Refused:
 	writetext JasmineISeeText
 	waitbutton
 	closetext
@@ -97,8 +97,7 @@ OlivineLighthouseJasmine:
 	closetext
 	end
 
-OlivineLighthouseUnusedDummyScript:
-; unused
+.Unused: ; unreferenced
 	end
 
 OlivineLighthouseAmphy:

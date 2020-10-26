@@ -43,15 +43,13 @@ ElmsSonText:
 	cont "professor!"
 	done
 
-ElmsHouseLabFoodText:
-; unused
+ElmsHouseLabFoodText: ; unreferenced
 	text "There's some food"
 	line "here. It must be"
 	cont "for the LAB."
 	done
 
-ElmsHousePokemonFoodText:
-; unused
+ElmsHousePokemonFoodText: ; unreferenced
 	text "There's some food"
 	line "here. This must be"
 	cont "for #MON."

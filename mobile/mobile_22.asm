@@ -507,7 +507,7 @@ Function893ef:
 	call FarCopyBytes
 	ret
 
-Function893fe:
+Function893fe: ; unreferenced
 	call DisableLCD
 	call Function893ef
 	call EnableLCD
@@ -792,7 +792,7 @@ Palette_895de:
 	RGB 07, 07, 06
 	RGB 00, 00, 00
 
-Function895e6:
+Function895e6: ; unreferenced
 	ld a, 7
 	hlcoord 0, 0, wAttrmap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
@@ -989,32 +989,33 @@ Function896f5:
 	inc hl
 	ld b, 2
 
-ClearScreenArea:
-; clears an area of the screen
+Function896ff: ; unreferenced
 ; INPUT:
 ; hl = address of upper left corner of the area
 ; b = height
 ; c = width
 
-	ld a, " " ; blank tile
-	ld de, 20 ; screen width
-.loop
+; clears an area of the screen
+	ld a, " "
+	ld de, SCREEN_WIDTH
+.row_loop
 	push bc
 	push hl
-.innerLoop
+.col_loop
 	ld [hli], a
 	dec c
-	jr nz, .innerLoop
+	jr nz, .col_loop
 	pop hl
 	pop bc
 	add hl, de
 	dec b
-	jr nz, .loop
+	jr nz, .row_loop
 
+; alternates tiles $36 and $18 at the bottom of the area
 	dec hl
 	inc c
 	inc c
-.asm_89713
+.bottom_loop
 	ld a, $36
 	ld [hli], a
 	dec c
@@ -1022,7 +1023,7 @@ ClearScreenArea:
 	ld a, $18
 	ld [hli], a
 	dec c
-	jr nz, .asm_89713
+	jr nz, .bottom_loop
 	ret
 
 Function8971f:
@@ -1695,7 +1696,7 @@ Function89b07:
 	farcall Function4a3a7
 	ret
 
-Function89b14:
+Function89b14: ; unreferenced
 	call ClearBGPalettes
 	call Function89b07
 	call Function89b00
@@ -4225,7 +4226,7 @@ Function8adb3:
 	pop af
 	ret
 
-Function8adbf:
+Function8adbf: ; unreferenced
 	call OpenSRAMBank4
 	ld hl, $a603
 	call Function89b45

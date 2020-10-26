@@ -322,8 +322,7 @@ Route29FisherText:
 	line "progress."
 	done
 
-; unused
-Text_WaitingForDay:
+Text_WaitingForDay: ; unreferenced
 	text "I'm waiting for"
 	line "#MON that"
 

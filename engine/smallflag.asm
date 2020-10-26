@@ -36,9 +36,9 @@ SmallFarFlagAction:
 	jr z, .set ; 1 = SET_FLAG
 	dec b
 	jr z, .check ; 2 = CHECK_FLAG
-; 0 = RESET_FLAG
+	; 0 = RESET_FLAG
 
-.reset
+; reset
 	ld a, c
 	cpl
 	and [hl]

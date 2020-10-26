@@ -731,7 +731,7 @@ RocketBaseLanceElectrodeDoneText:
 	cont "any need for it."
 	done
 
-RocketBaseReceivedHM06Text: ; unused
+RocketBaseReceivedHM06Text: ; unreferenced
 	text "<PLAYER> received"
 	line "HM06."
 	done

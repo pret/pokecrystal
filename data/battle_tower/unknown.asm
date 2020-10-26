@@ -1,8 +1,8 @@
-BattleTowerTrainerData:: ; What exactly it is, I don't know
-; Size is 70 (Nr of Trainers in BattleTower) * 0x24 (Nr of Bytes that are copied)
+BattleTowerTrainerData:: ; ???
+; 70 tables (BATTLETOWER_NUM_UNIQUE_TRAINERS) of 18 two-argument entries (total size BATTLETOWER_TRAINERDATALENGTH).
 ; Second argument points to an entry in Unknown_170470, to which the first argument is compared.
 
-BattleTowerTrainer1DataTable:
+; BattleTowerTrainerData table 1:
 	db $37,  3
 	db $0e,  9
 	db $25, 11
@@ -22,7 +22,7 @@ BattleTowerTrainer1DataTable:
 	db $34,  3
 	db $06,  5
 
-BattleTowerTrainer2DataTable:
+; BattleTowerTrainerData table 2:
 	db $36,  3
 	db $ca,  0
 	db $22,  8
@@ -42,7 +42,7 @@ BattleTowerTrainer2DataTable:
 	db $28, 11
 	db $0c, 13
 
-BattleTowerTrainer3DataTable:
+; BattleTowerTrainerData table 3:
 	db $32,  6
 	db $31,  4
 	db $02,  2
@@ -62,7 +62,7 @@ BattleTowerTrainer3DataTable:
 	db $22,  2
 	db $13, 13
 
-BattleTowerTrainer4DataTable:
+; BattleTowerTrainerData table 4:
 	db $22, 12
 	db $22, 12
 	db $0a,  9
@@ -82,7 +82,7 @@ BattleTowerTrainer4DataTable:
 	db $1c, 11
 	db $41, 11
 
-BattleTowerTrainer5DataTable:
+; BattleTowerTrainerData table 5:
 	db $a3,  0
 	db $41,  3
 	db $1f,  4
@@ -102,7 +102,7 @@ BattleTowerTrainer5DataTable:
 	db $d1,  0
 	db $0a,  6
 
-BattleTowerTrainer6DataTable:
+; BattleTowerTrainerData table 6:
 	db $13,  2
 	db $31,  6
 	db $04,  2
@@ -122,7 +122,7 @@ BattleTowerTrainer6DataTable:
 	db $08,  5
 	db $1a, 13
 
-BattleTowerTrainer7DataTable:
+; BattleTowerTrainerData table 7:
 	db $0d,  2
 	db $07,  2
 	db $00,  5
@@ -142,7 +142,7 @@ BattleTowerTrainer7DataTable:
 	db $20,  4
 	db $23, 13
 
-BattleTowerTrainer8DataTable:
+; BattleTowerTrainerData table 8:
 	db $1e,  2
 	db $22,  2
 	db $00,  5
@@ -162,7 +162,7 @@ BattleTowerTrainer8DataTable:
 	db $14,  8
 	db $00,  5
 
-BattleTowerTrainer9DataTable:
+; BattleTowerTrainerData table 9:
 	db $06, 12
 	db $09,  6
 	db $00,  0
@@ -182,7 +182,7 @@ BattleTowerTrainer9DataTable:
 	db $31, 13
 	db $01,  5
 
-BattleTowerTrainer10DataTable:
+; BattleTowerTrainerData table 10:
 	db $22, 12
 	db $30,  4
 	db $01,  5
@@ -202,7 +202,7 @@ BattleTowerTrainer10DataTable:
 	db $30, 13
 	db $06,  5
 
-BattleTowerTrainer11DataTable:
+; BattleTowerTrainerData table 11:
 	db $0e,  6
 	db $04,  5
 	db $2c,  4
@@ -222,7 +222,7 @@ BattleTowerTrainer11DataTable:
 	db $26, 13
 	db $04,  5
 
-BattleTowerTrainer12DataTable:
+; BattleTowerTrainerData table 12:
 	db $18,  2
 	db $33,  3
 	db $28,  4
@@ -242,7 +242,7 @@ BattleTowerTrainer12DataTable:
 	db $0f,  2
 	db $00,  5
 
-BattleTowerTrainer13DataTable:
+; BattleTowerTrainerData table 13:
 	db $3a, 11
 	db $3a, 11
 	db $00,  5
@@ -262,7 +262,7 @@ BattleTowerTrainer13DataTable:
 	db $3a,  8
 	db $2a, 13
 
-BattleTowerTrainer14DataTable:
+; BattleTowerTrainerData table 14:
 	db $31,  5
 	db $11, 14
 	db $30,  4
@@ -282,7 +282,7 @@ BattleTowerTrainer14DataTable:
 	db $3b,  7
 	db $0e, 13
 
-BattleTowerTrainer15DataTable:
+; BattleTowerTrainerData table 15:
 	db $1b,  2
 	db $2c,  4
 	db $0d, 13
@@ -302,7 +302,7 @@ BattleTowerTrainer15DataTable:
 	db $06,  5
 	db $00,  0
 
-BattleTowerTrainer16DataTable:
+; BattleTowerTrainerData table 16:
 	db $42,  3
 	db $30,  4
 	db $1f, 11
@@ -322,7 +322,7 @@ BattleTowerTrainer16DataTable:
 	db $36,  8
 	db $41, 13
 
-BattleTowerTrainer17DataTable:
+; BattleTowerTrainerData table 17:
 	db $18,  3
 	db $42,  3
 	db $43,  4
@@ -342,7 +342,7 @@ BattleTowerTrainer17DataTable:
 	db $3f,  4
 	db $20, 14
 
-BattleTowerTrainer18DataTable:
+; BattleTowerTrainerData table 18:
 	db $0c,  5
 	db $36,  7
 	db $30,  4
@@ -362,7 +362,7 @@ BattleTowerTrainer18DataTable:
 	db $30,  7
 	db $06,  5
 
-BattleTowerTrainer19DataTable:
+; BattleTowerTrainerData table 19:
 	db $36,  3
 	db $06,  6
 	db $44,  4
@@ -382,7 +382,7 @@ BattleTowerTrainer19DataTable:
 	db $05, 13
 	db $00,  0
 
-BattleTowerTrainer20DataTable:
+; BattleTowerTrainerData table 20:
 	db $3f,  6
 	db $2c,  4
 	db $34, 13
@@ -402,7 +402,7 @@ BattleTowerTrainer20DataTable:
 	db $34,  7
 	db $04, 13
 
-BattleTowerTrainer21DataTable:
+; BattleTowerTrainerData table 21:
 	db $12,  3
 	db $02,  4
 	db $07,  7
@@ -422,7 +422,7 @@ BattleTowerTrainer21DataTable:
 	db $28, 11
 	db $02,  5
 
-BattleTowerTrainer22DataTable:
+; BattleTowerTrainerData table 22:
 	db $41,  4
 	db $3c, 11
 	db $34, 13
@@ -442,7 +442,7 @@ BattleTowerTrainer22DataTable:
 	db $0c,  4
 	db $3b, 13
 
-BattleTowerTrainer23DataTable:
+; BattleTowerTrainerData table 23:
 	db $03, 10
 	db $3a, 13
 	db $2c,  4
@@ -462,7 +462,7 @@ BattleTowerTrainer23DataTable:
 	db $13,  4
 	db $04,  5
 
-BattleTowerTrainer24DataTable:
+; BattleTowerTrainerData table 24:
 	db $06,  5
 	db $06,  5
 	db $06,  5
@@ -482,7 +482,7 @@ BattleTowerTrainer24DataTable:
 	db $33,  4
 	db $03,  5
 
-BattleTowerTrainer25DataTable:
+; BattleTowerTrainerData table 25:
 	db $27,  5
 	db $01,  5
 	db $00,  0
@@ -502,7 +502,7 @@ BattleTowerTrainer25DataTable:
 	db $0c,  4
 	db $19, 13
 
-BattleTowerTrainer26DataTable:
+; BattleTowerTrainerData table 26:
 	db $03,  2
 	db $43,  3
 	db $27,  4
@@ -522,7 +522,7 @@ BattleTowerTrainer26DataTable:
 	db $20,  4
 	db $41, 13
 
-BattleTowerTrainer27DataTable:
+; BattleTowerTrainerData table 27:
 	db $34,  3
 	db $00,  3
 	db $11, 13
@@ -542,7 +542,7 @@ BattleTowerTrainer27DataTable:
 	db $0d,  6
 	db $20,  6
 
-BattleTowerTrainer28DataTable:
+; BattleTowerTrainerData table 28:
 	db $19,  3
 	db $17, 11
 	db $20,  6
@@ -562,7 +562,7 @@ BattleTowerTrainer28DataTable:
 	db $06, 12
 	db $1a, 11
 
-BattleTowerTrainer29DataTable:
+; BattleTowerTrainerData table 29:
 	db $0a,  3
 	db $0c, 12
 	db $25, 10
@@ -582,7 +582,7 @@ BattleTowerTrainer29DataTable:
 	db $0a,  9
 	db $2f, 13
 
-BattleTowerTrainer30DataTable:
+; BattleTowerTrainerData table 30:
 	db $15,  2
 	db $2c,  4
 	db $03,  2
@@ -602,7 +602,7 @@ BattleTowerTrainer30DataTable:
 	db $0c,  4
 	db $3b, 13
 
-BattleTowerTrainer31DataTable:
+; BattleTowerTrainerData table 31:
 	db $10, 11
 	db $04,  4
 	db $00,  5
@@ -622,7 +622,7 @@ BattleTowerTrainer31DataTable:
 	db $13,  7
 	db $16, 13
 
-BattleTowerTrainer32DataTable:
+; BattleTowerTrainerData table 32:
 	db $0f, 14
 	db $19, 13
 	db $00,  5
@@ -642,7 +642,7 @@ BattleTowerTrainer32DataTable:
 	db $19, 13
 	db $01,  5
 
-BattleTowerTrainer33DataTable:
+; BattleTowerTrainerData table 33:
 	db $35,  3
 	db $06,  4
 	db $0d,  6
@@ -662,7 +662,7 @@ BattleTowerTrainer33DataTable:
 	db $29,  8
 	db $03,  5
 
-BattleTowerTrainer34DataTable:
+; BattleTowerTrainerData table 34:
 	db $18,  4
 	db $03,  5
 	db $0b, 13
@@ -682,7 +682,7 @@ BattleTowerTrainer34DataTable:
 	db $0c,  6
 	db $1a, 13
 
-BattleTowerTrainer35DataTable:
+; BattleTowerTrainerData table 35:
 	db $0c, 12
 	db $37,  3
 	db $1a,  3
@@ -702,7 +702,7 @@ BattleTowerTrainer35DataTable:
 	db $3b,  8
 	db $1b,  7
 
-BattleTowerTrainer36DataTable:
+; BattleTowerTrainerData table 36:
 	db $18,  3
 	db $1b,  8
 	db $29, 11
@@ -722,7 +722,7 @@ BattleTowerTrainer36DataTable:
 	db $2f,  8
 	db $27,  6
 
-BattleTowerTrainer37DataTable:
+; BattleTowerTrainerData table 37:
 	db $1c,  3
 	db $02, 14
 	db $31,  3
@@ -742,7 +742,7 @@ BattleTowerTrainer37DataTable:
 	db $27,  4
 	db $34, 13
 
-BattleTowerTrainer38DataTable:
+; BattleTowerTrainerData table 38:
 	db $33,  3
 	db $30,  4
 	db $2c,  4
@@ -762,7 +762,7 @@ BattleTowerTrainer38DataTable:
 	db $40,  6
 	db $22,  7
 
-BattleTowerTrainer39DataTable:
+; BattleTowerTrainerData table 39:
 	db $22, 12
 	db $22, 12
 	db $16, 10
@@ -782,7 +782,7 @@ BattleTowerTrainer39DataTable:
 	db $2c,  4
 	db $26,  7
 
-BattleTowerTrainer40DataTable:
+; BattleTowerTrainerData table 40:
 	db $0e,  6
 	db $05,  8
 	db $04, 13
@@ -802,7 +802,7 @@ BattleTowerTrainer40DataTable:
 	db $00,  0
 	db $00,  0
 
-BattleTowerTrainer41DataTable:
+; BattleTowerTrainerData table 41:
 	db $18,  3
 	db $27,  3
 	db $03,  5
@@ -822,7 +822,7 @@ BattleTowerTrainer41DataTable:
 	db $2f,  8
 	db $06,  5
 
-BattleTowerTrainer42DataTable:
+; BattleTowerTrainerData table 42:
 	db $36,  3
 	db $30,  4
 	db $17,  4
@@ -842,7 +842,7 @@ BattleTowerTrainer42DataTable:
 	db $07, 13
 	db $3b, 13
 
-BattleTowerTrainer43DataTable:
+; BattleTowerTrainerData table 43:
 	db $0b,  5
 	db $14,  6
 	db $24,  4
@@ -862,7 +862,7 @@ BattleTowerTrainer43DataTable:
 	db $00,  2
 	db $07,  5
 
-BattleTowerTrainer44DataTable:
+; BattleTowerTrainerData table 44:
 	db $0a,  3
 	db $32,  7
 	db $0b, 14
@@ -882,7 +882,7 @@ BattleTowerTrainer44DataTable:
 	db $1e,  6
 	db $14,  7
 
-BattleTowerTrainer45DataTable:
+; BattleTowerTrainerData table 45:
 	db $0e,  6
 	db $2c,  4
 	db $00, 13
@@ -902,7 +902,7 @@ BattleTowerTrainer45DataTable:
 	db $31,  4
 	db $21, 13
 
-BattleTowerTrainer46DataTable:
+; BattleTowerTrainerData table 46:
 	db $22,  5
 	db $07, 14
 	db $30,  4
@@ -922,7 +922,7 @@ BattleTowerTrainer46DataTable:
 	db $3f,  4
 	db $06,  5
 
-BattleTowerTrainer47DataTable:
+; BattleTowerTrainerData table 47:
 	db $3a,  7
 	db $3b,  7
 	db $36,  3
@@ -942,7 +942,7 @@ BattleTowerTrainer47DataTable:
 	db $3f,  4
 	db $0c, 13
 
-BattleTowerTrainer48DataTable:
+; BattleTowerTrainerData table 48:
 	db $43,  3
 	db $20,  4
 	db $41, 13
@@ -962,7 +962,7 @@ BattleTowerTrainer48DataTable:
 	db $39,  4
 	db $41, 13
 
-BattleTowerTrainer49DataTable:
+; BattleTowerTrainerData table 49:
 	db $36,  3
 	db $16,  4
 	db $08,  6
@@ -982,7 +982,7 @@ BattleTowerTrainer49DataTable:
 	db $2c, 13
 	db $00,  5
 
-BattleTowerTrainer50DataTable:
+; BattleTowerTrainerData table 50:
 	db $11,  5
 	db $25,  3
 	db $33,  4
@@ -1002,7 +1002,7 @@ BattleTowerTrainer50DataTable:
 	db $19, 13
 	db $06,  5
 
-BattleTowerTrainer51DataTable:
+; BattleTowerTrainerData table 51:
 	db $2c,  4
 	db $0a, 13
 	db $04,  5
@@ -1022,7 +1022,7 @@ BattleTowerTrainer51DataTable:
 	db $29,  8
 	db $05, 13
 
-BattleTowerTrainer52DataTable:
+; BattleTowerTrainerData table 52:
 	db $05,  3
 	db $1b,  4
 	db $41,  3
@@ -1042,7 +1042,7 @@ BattleTowerTrainer52DataTable:
 	db $1d, 11
 	db $03,  5
 
-BattleTowerTrainer53DataTable:
+; BattleTowerTrainerData table 53:
 	db $1c, 12
 	db $20,  6
 	db $05,  8
@@ -1062,7 +1062,7 @@ BattleTowerTrainer53DataTable:
 	db $06,  5
 	db $1f,  8
 
-BattleTowerTrainer54DataTable:
+; BattleTowerTrainerData table 54:
 	db $37,  3
 	db $0e,  1
 	db $08,  1
@@ -1082,7 +1082,7 @@ BattleTowerTrainer54DataTable:
 	db $41,  8
 	db $3b, 13
 
-BattleTowerTrainer55DataTable:
+; BattleTowerTrainerData table 55:
 	db $06,  2
 	db $00,  5
 	db $34,  3
@@ -1102,7 +1102,7 @@ BattleTowerTrainer55DataTable:
 	db $1b,  4
 	db $0c, 13
 
-BattleTowerTrainer56DataTable:
+; BattleTowerTrainerData table 56:
 	db $2c,  4
 	db $13,  9
 	db $20,  6
@@ -1122,7 +1122,7 @@ BattleTowerTrainer56DataTable:
 	db $06, 13
 	db $3b, 13
 
-BattleTowerTrainer57DataTable:
+; BattleTowerTrainerData table 57:
 	db $06,  3
 	db $20,  4
 	db $24, 13
@@ -1142,7 +1142,7 @@ BattleTowerTrainer57DataTable:
 	db $09,  6
 	db $06,  5
 
-BattleTowerTrainer58DataTable:
+; BattleTowerTrainerData table 58:
 	db $44,  7
 	db $23, 11
 	db $33, 13
@@ -1162,7 +1162,7 @@ BattleTowerTrainer58DataTable:
 	db $11,  8
 	db $41, 13
 
-BattleTowerTrainer59DataTable:
+; BattleTowerTrainerData table 59:
 	db $36,  3
 	db $06,  6
 	db $30,  4
@@ -1182,7 +1182,7 @@ BattleTowerTrainer59DataTable:
 	db $0b,  6
 	db $27,  6
 
-BattleTowerTrainer60DataTable:
+; BattleTowerTrainerData table 60:
 	db $14,  5
 	db $04,  2
 	db $09, 14
@@ -1202,7 +1202,7 @@ BattleTowerTrainer60DataTable:
 	db $39,  4
 	db $00,  5
 
-BattleTowerTrainer61DataTable:
+; BattleTowerTrainerData table 61:
 	db $34,  3
 	db $00,  3
 	db $11, 13
@@ -1222,7 +1222,7 @@ BattleTowerTrainer61DataTable:
 	db $1e,  6
 	db $14, 13
 
-BattleTowerTrainer62DataTable:
+; BattleTowerTrainerData table 62:
 	db $37,  5
 	db $37,  5
 	db $00,  5
@@ -1242,7 +1242,7 @@ BattleTowerTrainer62DataTable:
 	db $16,  5
 	db $01,  5
 
-BattleTowerTrainer63DataTable:
+; BattleTowerTrainerData table 63:
 	db $1f, 14
 	db $36,  4
 	db $40, 13
@@ -1262,7 +1262,7 @@ BattleTowerTrainer63DataTable:
 	db $27, 13
 	db $00,  0
 
-BattleTowerTrainer64DataTable:
+; BattleTowerTrainerData table 64:
 	db $41,  8
 	db $0b,  6
 	db $37,  3
@@ -1282,7 +1282,7 @@ BattleTowerTrainer64DataTable:
 	db $28,  6
 	db $06,  5
 
-BattleTowerTrainer65DataTable:
+; BattleTowerTrainerData table 65:
 	db $0c,  8
 	db $2c,  4
 	db $1c, 11
@@ -1302,7 +1302,7 @@ BattleTowerTrainer65DataTable:
 	db $20,  6
 	db $22,  7
 
-BattleTowerTrainer66DataTable:
+; BattleTowerTrainerData table 66:
 	db $22, 12
 	db $22, 12
 	db $0a,  9
@@ -1322,7 +1322,7 @@ BattleTowerTrainer66DataTable:
 	db $02,  7
 	db $04,  5
 
-BattleTowerTrainer67DataTable:
+; BattleTowerTrainerData table 67:
 	db $2d, 11
 	db $02,  8
 	db $37, 13
@@ -1342,7 +1342,7 @@ BattleTowerTrainer67DataTable:
 	db $10,  5
 	db $04,  5
 
-BattleTowerTrainer68DataTable:
+; BattleTowerTrainerData table 68:
 	db $3f,  3
 	db $16, 14
 	db $3f,  8
@@ -1362,7 +1362,7 @@ BattleTowerTrainer68DataTable:
 	db $26,  7
 	db $03,  5
 
-BattleTowerTrainer69DataTable:
+; BattleTowerTrainerData table 69:
 	db $3a,  6
 	db $2c,  3
 	db $12,  3
@@ -1382,7 +1382,7 @@ BattleTowerTrainer69DataTable:
 	db $1b,  7
 	db $00,  5
 
-BattleTowerTrainer70DataTable:
+; BattleTowerTrainerData table 70:
 	db $1b,  2
 	db $00,  5
 	db $0c,  8
@@ -1401,4 +1401,3 @@ BattleTowerTrainer70DataTable:
 	db $22,  7
 	db $d1,  0
 	db $32, 13
-BattleTowerTrainerDataEnd:

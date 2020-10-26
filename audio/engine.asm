@@ -38,15 +38,16 @@ _InitSound::
 	dec e
 	jr nz, .clearsound
 
-	ld hl, wChannels ; start of channel data
-	ld de, wChannelsEnd - wChannels ; length of area to clear (entire sound wram area)
-.clearchannels
+	ld hl, wAudio
+	ld de, wAudioEnd - wAudio
+.clearaudio
 	xor a
 	ld [hli], a
 	dec de
 	ld a, e
 	or d
-	jr nz, .clearchannels
+	jr nz, .clearaudio
+
 	ld a, MAX_VOLUME
 	ld [wVolume], a
 	call MusicOn

@@ -364,7 +364,7 @@ Text_RightThisWayToYourBattleRoom:
 	line "your BATTLE ROOM."
 	done
 
-Text_BattleTowerIntroduction_1:
+Text_BattleTowerIntroduction_1: ; unreferenced
 	text "BATTLE TOWER is a"
 	line "facility made for"
 	cont "#MON battles."
@@ -473,7 +473,7 @@ Text_PleaseConfirmOnThisMonitor:
 	line "this monitor."
 	done
 
-Text_ThankYou:
+Text_ThankYou: ; unreferenced
 	text "Thank you!"
 
 	para ""
@@ -484,7 +484,7 @@ Text_ThanksForVisiting:
 	line "visiting!"
 	done
 
-Text_BeatenAllTheTrainers_Mobile:
+Text_BeatenAllTheTrainers_Mobile: ; unreferenced
 	text "Congratulations!"
 
 	para "You've beaten all"
@@ -514,7 +514,7 @@ Text_CongratulationsYouveBeatenAllTheTrainers:
 	para ""
 	done
 
-Text_AskRegisterRecord_Mobile:
+Text_AskRegisterRecord_Mobile: ; unreferenced
 	text "Would you like to"
 	line "register your"
 
@@ -539,7 +539,7 @@ Text_YourPackIsStuffedFull:
 	line "and come back."
 	done
 
-Text_YourRegistrationIsComplete:
+Text_YourRegistrationIsComplete: ; unreferenced
 	text "Your registration"
 	line "is complete."
 
@@ -582,7 +582,7 @@ Text_CantBeRegistered_PreviousRecordDeleted:
 	cont "deleted. OK?"
 	done
 
-Text_CheckTheLeaderHonorRoll:
+Text_CheckTheLeaderHonorRoll: ; unreferenced
 	text "Check the LEADER"
 	line "HONOR ROLL?"
 	done
@@ -639,7 +639,7 @@ Text_NextUpOpponentNo:
 	text ". Ready?"
 	done
 
-Text_SaveBeforeConnecting_Mobile:
+Text_SaveBeforeConnecting_Mobile: ; unreferenced
 	text "Your session will"
 	line "be SAVED before"
 
@@ -673,7 +673,7 @@ Text_CancelYourBattleRoomChallenge:
 	line "ROOM challenge?"
 	done
 
-Text_RegisterRecordOnFile_Mobile:
+Text_RegisterRecordOnFile_Mobile: ; unreferenced
 	text "We have your"
 	line "previous record on"
 
@@ -714,8 +714,8 @@ Text_TooMuchTimeElapsedNoRegister:
 	cont "challenge."
 	done
 
-; a dupe?
-Text_RegisterRecordTimedOut_Mobile:
+Text_RegisterRecordTimedOut_Mobile: ; unreferenced
+; duplicate of Text_TooMuchTimeElapsedNoRegister
 	text "Sorry, but it's"
 	line "not possible to"
 

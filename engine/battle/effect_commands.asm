@@ -134,7 +134,7 @@ BattleCommand_CheckTurn:
 	and a
 	jp nz, CheckEnemyTurn
 
-CheckPlayerTurn:
+; check player turn
 	ld hl, wPlayerSubStatus4
 	bit SUBSTATUS_RECHARGE, [hl]
 	jr z, .no_recharge
@@ -2586,7 +2586,7 @@ PlayerAttackDamage:
 	cp SPECIAL
 	jr nc, .special
 
-.physical
+; physical
 	ld hl, wEnemyMonDefense
 	ld a, [hli]
 	ld b, a
@@ -2826,9 +2826,9 @@ EnemyAttackDamage:
 
 	ld a, [hl]
 	cp SPECIAL
-	jr nc, .Special
+	jr nc, .special
 
-.physical
+; physical
 	ld hl, wBattleMonDefense
 	ld a, [hli]
 	ld b, a
@@ -2852,7 +2852,7 @@ EnemyAttackDamage:
 	ld hl, wEnemyAttack
 	jr .thickclub
 
-.Special:
+.special
 	ld hl, wBattleMonSpclDef
 	ld a, [hli]
 	ld b, a
@@ -6124,7 +6124,7 @@ INCLUDE "engine/battle/move_effects/conversion.asm"
 BattleCommand_ResetStats:
 ; resetstats
 
-	ld a, 7 ; neutral
+	ld a, BASE_STAT_LEVEL
 	ld hl, wPlayerStatLevels
 	call .Fill
 	ld hl, wEnemyStatLevels
@@ -6147,7 +6147,7 @@ BattleCommand_ResetStats:
 	jp StdBattleTextbox
 
 .Fill:
-	ld b, wPlayerStatLevelsEnd - wPlayerStatLevels
+	ld b, NUM_LEVEL_STATS
 .next
 	ld [hli], a
 	dec b

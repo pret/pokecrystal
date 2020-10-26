@@ -1148,7 +1148,7 @@ MysteryGift_CopyReceivedDecosToPC:
 .skip
 	inc c
 	ld a, c
-	cp TrophyIDs - DecorationIDs
+	cp NUM_NON_TROPHY_DECOS
 	jr c, .loop
 	jp CloseSRAM
 

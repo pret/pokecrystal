@@ -83,7 +83,7 @@ ManiaScript:
 	closetext
 	end
 
-.nothingleft
+.nothingleft ; unreferenced
 	writetext ManiaText_ShuckleIsYourLastMon
 	waitbutton
 	closetext
@@ -95,8 +95,7 @@ ManiaScript:
 	closetext
 	end
 
-ManiasHouseUnusedBookshelf:
-; unused
+ManiasHouseUnusedBookshelf: ; unreferenced
 	jumpstd PictureBookshelfScript
 
 ManiaText_AskLookAfterShuckle:

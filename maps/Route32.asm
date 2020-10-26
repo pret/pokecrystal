@@ -542,7 +542,6 @@ Route32CooltrainerMText_AideIsWaiting:
 	done
 
 Route32CooltrainerMText_UnusedSproutTower:
-; unused
 	text "Have you gone to"
 	line "SPROUT TOWER?"
 
@@ -679,9 +678,7 @@ FisherRalphSwarmText:
 	line "as you can, kid!"
 	done
 
-; --- start a segment of unused text
-
-Route32UnusedFisher1SeenText:
+Route32UnusedFisher1SeenText: ; unreferenced
 	text "I keep catching"
 	line "the same #MON…"
 
@@ -690,37 +687,35 @@ Route32UnusedFisher1SeenText:
 	cont "around for me."
 	done
 
-Route32UnusedFisher1BeatenText:
+Route32UnusedFisher1BeatenText: ; unreferenced
 	text "Nothing ever goes"
 	line "right for me now…"
 	done
 
-Route32UnusedFisher1AfterText:
+Route32UnusedFisher1AfterText: ; unreferenced
 	text "How come the guy"
 	line "next to me catches"
 	cont "good #MON?"
 	done
 
-Route32UnusedFisher2SeenText:
+Route32UnusedFisher2SeenText: ; unreferenced
 	text "Heh, I'm on a roll"
 	line "today. How about a"
 	cont "battle, kid?"
 	done
 
-Route32UnusedFisher2BeatenText:
+Route32UnusedFisher2BeatenText: ; unreferenced
 	text "Oof. I wasn't"
 	line "lucky that time."
 	done
 
-Route32UnusedFisher2AfterText:
+Route32UnusedFisher2AfterText: ; unreferenced
 	text "You have to have a"
 	line "good ROD if you"
 
 	para "want to catch good"
 	line "#MON."
 	done
-
-; --- end a segment of unused texts
 
 FisherHenrySeenText:
 	text "My #MON?"
@@ -835,8 +830,7 @@ BirdKeeperPeterAfterText:
 	cont "in VIOLET CITY."
 	done
 
-Route32UnusedText:
-; unused
+Route32UnusedText: ; unreferenced
 	text "The fishermen"
 	line "yelled at me for"
 	cont "bugging them…"

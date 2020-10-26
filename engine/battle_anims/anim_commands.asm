@@ -1050,7 +1050,7 @@ GetMinimizePic:
 	and a
 	jr z, .player
 
-	ld de, sScratch + $1a tiles
+	ld de, sScratch + (3 * 7 + 5) tiles
 	call CopyMinimizePic
 	ld hl, vTiles2 tile $00
 	ld de, sScratch
@@ -1058,7 +1058,7 @@ GetMinimizePic:
 	ret
 
 .player
-	ld de, sScratch + $160
+	ld de, sScratch + (3 * 6 + 4) tiles
 	call CopyMinimizePic
 	ld hl, vTiles2 tile $31
 	ld de, sScratch

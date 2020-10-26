@@ -138,8 +138,7 @@ AcademyNotebook:
 	closetext
 	end
 
-AcademyStickerMachine:
-; unused
+AcademyStickerMachine: ; unreferenced
 	jumptext AcademyStickerMachineText
 
 AcademyBookshelf:
@@ -271,8 +270,7 @@ AcademyBlackboardText:
 	line "battle."
 	done
 
-AcademyBlackboardText2:
-; unused
+AcademyBlackboardText2: ; unreferenced
 	text "Read which topic?"
 	done
 

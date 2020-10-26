@@ -1,4 +1,4 @@
-UnusedTitleScreen:
+UnusedTitleScreen: ; unreferenced
 	call ClearBGPalettes
 	call ClearTilemap
 	call DisableLCD
@@ -154,7 +154,7 @@ UnusedTitleFG_OAM:
 	dbsprite 13, 11,  0,  0, $4c, 1
 	dbsprite 14, 11,  0,  0, $4e, 1
 
-Function10ed51:
+Function10ed51: ; unreferenced
 	call _TitleScreen
 .loop
 	call JoyTextDelay

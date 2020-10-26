@@ -199,7 +199,7 @@ Credits_RequestGFX:
 	xor a
 	ldh [hBGMapMode], a
 	ld a, 8
-	ld [wRequested2bpp], a
+	ld [wRequested2bppSize], a
 	jp Credits_Next
 
 Credits_LYOverride:

@@ -56,7 +56,7 @@ DragonsDenB1F_ClairScene:
 	giveitem TM_DRAGONBREATH
 	iffalse .BagFull
 	getitemname STRING_BUFFER_3, TM_DRAGONBREATH
-	writetext NotifyReceiveDragonbreath
+	writetext Text_ReceivedTM24
 	playsound SFX_ITEM
 	waitsfx
 	itemnotify
@@ -214,7 +214,7 @@ ClairText_GiveDragonbreathDragonDen:
 	line "my apology."
 	done
 
-NotifyReceiveDragonbreath:
+Text_ReceivedTM24:
 	text "<PLAYER> received"
 	line "TM24."
 	done

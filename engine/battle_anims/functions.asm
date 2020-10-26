@@ -4299,14 +4299,14 @@ BattleAnim_Cosine_e:
 	ld e, a
 	ret
 
-BattleAnim_AbsSinePrecise:
+BattleAnim_AbsSinePrecise: ; unreferenced
 	ld a, e
 	call BattleAnim_Sine
 	ld e, l
 	ld d, h
 	ret
 
-BattleAnim_AbsCosinePrecise:
+BattleAnim_AbsCosinePrecise: ; unreferenced
 	ld a, e
 	call BattleAnim_Cosine
 	ld e, l

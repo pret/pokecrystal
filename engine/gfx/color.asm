@@ -15,31 +15,31 @@ CheckShininess:
 ; Attack
 	ld a, [hl]
 	and 1 << SHINY_ATK_BIT
-	jr z, .NotShiny
+	jr z, .not_shiny
 
 ; Defense
 	ld a, [hli]
 	and $f
 	cp  SHINY_DEF_VAL
-	jr nz, .NotShiny
+	jr nz, .not_shiny
 
 ; Speed
 	ld a, [hl]
 	and $f0
 	cp  SHINY_SPD_VAL << 4
-	jr nz, .NotShiny
+	jr nz, .not_shiny
 
 ; Special
 	ld a, [hl]
 	and $f
 	cp  SHINY_SPC_VAL
-	jr nz, .NotShiny
+	jr nz, .not_shiny
 
-.Shiny:
+; shiny
 	scf
 	ret
 
-.NotShiny:
+.not_shiny
 	and a
 	ret
 
@@ -49,30 +49,30 @@ Unused_CheckShininess:
 ; Attack
 	ld a, [hl]
 	cp 10 << 4
-	jr c, .NotShiny
+	jr c, .not_shiny
 
 ; Defense
 	ld a, [hli]
 	and $f
 	cp 10
-	jr c, .NotShiny
+	jr c, .not_shiny
 
 ; Speed
 	ld a, [hl]
 	cp 10 << 4
-	jr c, .NotShiny
+	jr c, .not_shiny
 
 ; Special
 	ld a, [hl]
 	and $f
 	cp 10
-	jr c, .NotShiny
+	jr c, .not_shiny
 
-.Shiny:
+; shiny
 	scf
 	ret
 
-.NotShiny:
+.not_shiny
 	and a
 	ret
 
@@ -977,7 +977,7 @@ PushSGBBorder:
 
 .LoadSGBBorderPointers:
 	ld hl, SGBBorderGFX
-	ld de, SGBBorderMap
+	ld de, SGBBorderMapAndPalettes
 	ret
 
 SGB_ClearVRAM:
@@ -1174,12 +1174,10 @@ INCLUDE "data/sgb_ctrl_packets.asm"
 PredefPals:
 INCLUDE "gfx/sgb/predef.pal"
 
-SGBBorderMap:
+SGBBorderMapAndPalettes:
 ; interleaved tile ids and palette ids, without the center 20x18 screen area
 INCBIN "gfx/sgb/sgb_border.sgb.tilemap"
-
-SGBBorderPalettes:
-; assumed to come after SGBBorderMap
+; four SGB palettes of 16 colors each; only the first 4 colors are used
 INCLUDE "gfx/sgb/sgb_border.pal"
 
 SGBBorderGFX:
@@ -1317,7 +1315,7 @@ INCLUDE "gfx/diploma/diploma.pal"
 PartyMenuOBPals:
 INCLUDE "gfx/stats/party_menu_ob.pal"
 
-UnusedBattleObjectPals:
+UnusedBattleObjectPals: ; unreferenced
 INCLUDE "gfx/battle_anims/unused_battle_anims.pal"
 
 UnusedGSTitleBGPals:

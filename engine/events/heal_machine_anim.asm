@@ -56,7 +56,7 @@ HealMachineAnim:
 .Pointers:
 ; entries correspond to HEALMACHINE_* constants
 	dw .Pokecenter
-	dw .ElmLab
+	dw .ElmsLab
 	dw .HallOfFame
 
 healmachineanimseq: MACRO
@@ -68,7 +68,7 @@ ENDM
 
 .Pokecenter:
 	healmachineanimseq LOADGFX, PCLOADBALLS, PLAYMUSIC, FINISH
-.ElmLab:
+.ElmsLab:
 	healmachineanimseq LOADGFX, PCLOADBALLS, PLAYMUSIC, FINISH
 .HallOfFame:
 	healmachineanimseq LOADGFX, HOFLOADBALLS, HOFPLAYSFX, FINISH

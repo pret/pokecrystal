@@ -83,8 +83,7 @@ MagikarpLengthRaterScript:
 	closetext
 	end
 
-LakeOfRageMagikarpHouseUnusedRecordSign:
-; unused
+LakeOfRageMagikarpHouseUnusedRecordSign: ; unreferenced
 	jumptext LakeOfRageMagikarpHouseUnusedRecordText
 
 MagikarpHouseBookshelf:

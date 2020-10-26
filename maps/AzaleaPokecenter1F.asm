@@ -36,8 +36,7 @@ AzaleaPokecenter1FGentlemanText:
 	line "fainted."
 	done
 
-AzaleaPokecenter1FUnusedText:
-; unreferenced
+AzaleaPokecenter1FUnusedText: ; unreferenced
 	text "This BILL guy"
 	line "created the system"
 

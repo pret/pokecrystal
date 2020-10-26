@@ -67,7 +67,7 @@ Function170114:
 	call Function170c8b
 	ret
 
-Function170139:
+Function170139: ; unreferenced
 ; Convert the 4-digit decimal number at s5_aa41 into binary
 	ld a, BANK(s5_aa41)
 	call OpenSRAM
@@ -374,7 +374,7 @@ ReadBTTrainerParty:
 	ld [bc], a
 	ret
 
-ValidateBTParty:
+ValidateBTParty: ; unreferenced
 ; Check for and fix errors in party data
 	ld hl, wBT_OTTempMon1Species
 	ld d, BATTLETOWER_PARTY_LENGTH
@@ -386,7 +386,7 @@ ValidateBTParty:
 	ld a, [hl]
 	and a
 x = $ff
-rept ($ff - NUM_POKEMON)
+rept $ff - NUM_POKEMON
 	jr z, .invalid
 	cp x
 x = x - 1

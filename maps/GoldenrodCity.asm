@@ -476,8 +476,7 @@ GoldenrodCityUndergroundSignSouthText:
 	line "ENTRANCE"
 	done
 
-GoldenrodCityPokeComCenterSignText:
-; unused
+GoldenrodCityPokeComCenterSignText: ; unreferenced
 	text "For Mobile Tips!"
 	line "#COM CENTER"
 	done

@@ -278,7 +278,7 @@ Serial_PrintWaitingTextAndSyncAndExchangeNybble::
 	call WaitLinkTransfer
 	jp SafeLoadTempTilemapToTilemap
 
-Serial_SyncAndExchangeNybble::
+Serial_SyncAndExchangeNybble:: ; unreferenced
 	call LoadTilemapToTempTilemap
 	callfar PlaceWaitingText
 	jp WaitLinkTransfer

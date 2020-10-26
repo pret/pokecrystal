@@ -601,8 +601,7 @@ ElmsLabTrashcan:
 ElmsLabPC:
 	jumptext ElmsLabPCText
 
-ElmsLabTrashcan2:
-; unused
+ElmsLabTrashcan2: ; unreferenced
 	jumpstd TrashCanScript
 
 ElmsLabBookshelf:
@@ -1209,7 +1208,7 @@ ElmGiveTicketText2:
 	line "PROF.OAK in KANTO!"
 	done
 
-ElmsLabSignpostText_Egg:
+ElmsLabMonEggText: ; unreferenced
 	text "It's the #MON"
 	line "EGG being studied"
 	cont "by PROF.ELM."
