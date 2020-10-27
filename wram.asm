@@ -1000,29 +1000,11 @@ ENDU
 
 NEXTU
 ; mystery gift data
-UNION
-wMysteryGiftPartyTemp:: ds (1 + 1 + NUM_MOVES) * PARTY_LENGTH
-
-NEXTU
 wMysteryGiftStaging:: ds 80
 
-NEXTU
-	ds 7
-wc807:: ds 1
-	ds 10
-wMobileSDK_PacketChecksum:: dw
-	ds 4
-wMobileSDK_AdapterType:: db
-	ds 5
-wMobileSDK_SendCommandID:: db
-	ds 2
-wc821:: ds 1
-wc822:: ds 46
-ENDU
-
 UNION
-wMysteryGiftTrainerData:: ds (1 + 1 + NUM_MOVES) * PARTY_LENGTH + 2
-wMysteryGiftTrainerDataEnd::
+wMysteryGiftTrainer:: ds 1 + (1 + 1 + NUM_MOVES) * PARTY_LENGTH + 1
+wMysteryGiftTrainerEnd::
 
 NEXTU
 wMysteryGiftCardHolderName:: ds PLAYER_NAME_LENGTH
@@ -1031,7 +1013,7 @@ ENDU
 	ds 138
 
 wMysteryGiftPartnerData::
-wc900:: db
+wMysteryGiftGameVersion:: db
 wMysteryGiftPartnerID:: dw
 wMysteryGiftPartnerName:: ds NAME_LENGTH
 wMysteryGiftPartnerDexCaught:: db
@@ -1069,9 +1051,9 @@ wCreditsBlankFrame2bppEnd::
 
 NEXTU
 ; mystery gift data
-wca00:: db
-wca01:: db
-wca02:: db
+wUnusedMysteryGiftStagedDataLength:: db
+wMysteryGiftMessageCount:: db
+wMysteryGiftStagedDataLength:: db
 
 NEXTU
 ; link data
@@ -1107,6 +1089,20 @@ wccb5:: ds 3
 wccb8:: ds 1
 wccb9:: ds 1
 wccba:: ds 102
+
+NEXTU
+; mobile
+	ds 7
+wc807:: ds 1
+	ds 10
+wMobileSDK_PacketChecksum:: dw
+	ds 4
+wMobileSDK_AdapterType:: db
+	ds 5
+wMobileSDK_SendCommandID:: db
+	ds 2
+wc821:: ds 1
+wc822:: ds 46
 
 if DEF(_DEBUG)
 NEXTU

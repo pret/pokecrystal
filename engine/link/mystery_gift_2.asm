@@ -1,6 +1,6 @@
-PrepMysteryGiftDataToSend:
+StageDataForMysteryGift:
 	ld de, wMysteryGiftStaging
-	ld a, $1 + GS_VERSION
+	ld a, GS_VERSION + 1
 	ld [de], a
 	inc de ; wMysteryGiftStaging+1
 	ld a, BANK(sGameData)
@@ -46,10 +46,10 @@ PrepMysteryGiftDataToSend:
 	ld a, [sBackupMysteryGiftItem]
 	ld [de], a
 	inc de
-	ld a, [sBackupMysteryGiftItem + 1]
+	ld a, [sNumDailyMysteryGiftPartnerIDs]
 	ld [de], a
-	ld a, $14
-	ld [wca00], a
+	ld a, wMysteryGiftPlayerDataEnd - wMysteryGiftPlayerData
+	ld [wUnusedMysteryGiftStagedDataLength], a
 	call CloseSRAM
 	ld hl, wMysteryGiftStaging
 	ld de, wMysteryGiftPlayerData
@@ -121,7 +121,7 @@ PrepMysteryGiftDataToSend:
 	pop de
 	ret
 
-MysteryGiftGetItemHeldEffect:
+MysteryGiftGetItem:
 	ld a, c
 	cp MysteryGiftItems.End - MysteryGiftItems
 	jr nc, MysteryGiftFallbackItem

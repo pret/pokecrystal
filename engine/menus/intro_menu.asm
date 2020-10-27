@@ -173,12 +173,13 @@ _ResetWRAM:
 	ld [wRoamMon2MapNumber], a
 	ld [wRoamMon3MapNumber], a
 
-	ld a, BANK(sMysteryGiftItem)
+	ld a, BANK(sMysteryGiftItem) ; aka BANK(sMysteryGiftUnlocked)
 	call OpenSRAM
 	ld hl, sMysteryGiftItem
 	xor a
 	ld [hli], a
-	dec a
+	assert sMysteryGiftItem + 1 == sMysteryGiftUnlocked
+	dec a ; -1
 	ld [hl], a
 	call CloseSRAM
 
@@ -370,7 +371,7 @@ Continue:
 	ld c, 20
 	call DelayFrames
 	farcall JumpRoamMons
-	farcall MysteryGift_CopyReceivedDecosToPC
+	farcall CopyMysteryGiftReceivedDecorationsToPC
 	farcall ClockContinue
 	ld a, [wSpawnAfterChampion]
 	cp SPAWN_LANCE

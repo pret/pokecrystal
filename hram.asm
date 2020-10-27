@@ -88,8 +88,14 @@ NEXTU
 hPrintNumBuffer:: ds 10
 
 NEXTU
-; miscellaneous
-	ds 9
+; Mystery Gift
+hMGExchangedByte:: db
+hMGExchangedWord:: dw
+hMGNumBits:: db
+hMGChecksum:: dw
+	ds 1
+hMGUnusedMsgLength:: db
+hMGRole:: db
 hMGStatusFlags:: db
 ENDU
 

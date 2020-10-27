@@ -206,7 +206,7 @@ MainMenu_GetWhichMenu:
 	ld a, BANK(sNumDailyMysteryGiftPartnerIDs)
 	call OpenSRAM
 	ld a, [sNumDailyMysteryGiftPartnerIDs]
-	cp -1
+	cp -1 ; locked?
 	call CloseSRAM
 	jr nz, .mystery_gift
 	; This check makes no difference.
