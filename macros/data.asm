@@ -25,6 +25,10 @@ percent EQUS "* $ff / 100"
 ; e.g. 1 out_of 2 == 50 percent + 1 == $80
 out_of EQUS "* $100 /"
 
+assert_power_of_2: MACRO
+	assert (\1) & ((\1) - 1) == 0, "\1 must be a power of 2"
+ENDM
+
 ; Constant data (db, dw, dl) macros
 
 dwb: MACRO

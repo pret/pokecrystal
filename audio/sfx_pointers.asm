@@ -144,7 +144,7 @@ SFX:
 	dba Sfx_MilkDrink
 	dba Sfx_Present
 	dba Sfx_MorningSun
-	dba Sfx_LevelUp ; aka Sfx_DexFanfare5079
+	dba Sfx_LevelUp
 	dba Sfx_KeyItem
 	dba Sfx_Fanfare2
 	dba Sfx_RegisterPhoneNumber

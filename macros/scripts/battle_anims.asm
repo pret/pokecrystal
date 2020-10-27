@@ -1,7 +1,5 @@
 anim_wait: MACRO
-if \1 >= $d0
-	fail "anim_wait argument must be less than $d0."
-endc
+	assert (\1) < $d0, "anim_wait argument must be less than $d0"
 	db \1
 ENDM
 
