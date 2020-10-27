@@ -203,7 +203,7 @@ SECTION "bank13", ROMX
 
 INCLUDE "engine/tilesets/map_palettes.asm"
 INCLUDE "gfx/tileset_palette_maps.asm"
-INCLUDE "data/collision_permissions.asm"
+INCLUDE "data/collision/collision_permissions.asm"
 INCLUDE "engine/menus/empty_sram.asm"
 INCLUDE "engine/menus/savemenu_copytilemapatonce.asm"
 INCLUDE "engine/events/checksave.asm"
