@@ -204,7 +204,8 @@ LakeOfRageMagikarpHouseUnusedRecordText:
 	text_ram wStringBuffer4
 	text_end
 
-	text_end ; unused
+LakeOfRageMagikarpHouseUnusedDummyText: ; unreferenced
+	text_end
 
 LakeOfRageMagikarpHouse_MapEvents:
 	db 0, 0 ; filler

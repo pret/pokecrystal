@@ -60,7 +60,7 @@ CGBOnly_CopyTilemapAtOnce::
 CopyTilemapAtOnce::
 	jr _CopyTilemapAtOnce
 
-; unused
+CopyAttrmapAndTilemapToWRAMBank3: ; unreferenced
 	farcall HDMATransferAttrmapAndTilemapToWRAMBank3
 	ret
 

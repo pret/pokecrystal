@@ -1615,9 +1615,9 @@ Music_JumpIf:
 	ret
 
 MusicEE:
+; unused
 ; conditional jump
 ; checks a byte in ram corresponding to the current channel
-; doesn't seem to be set by any commands
 ; params: 2
 ;		ll hh ; pointer
 
@@ -1667,15 +1667,15 @@ MusicEE:
 	ret
 
 MusicF9:
+; unused
 ; sets some flag
-; seems to be unused
 ; params: 0
 	ld a, TRUE
 	ld [wUnusedMusicF9Flag], a
 	ret
 
 MusicE2:
-; seems to have been dummied out
+; unused
 ; params: 1
 	call GetMusicByte
 	ld hl, CHANNEL_FIELD2C

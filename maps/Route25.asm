@@ -423,7 +423,7 @@ BillsHouseSignText:
 	line "BILL'S HOUSE"
 	done
 
-; unused
+UnusedBillsHouseSignText: ; unreferenced
 	text "BILL'S HOUSE"
 	done
 

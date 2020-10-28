@@ -9,7 +9,7 @@ Intro_MainMenu:
 	farcall MainMenu
 	jp StartTitleScreen
 
-; unused
+IntroMenu_DummyFunction: ; unreferenced
 	ret
 
 PrintDayOfWeek:

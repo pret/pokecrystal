@@ -2203,7 +2203,8 @@ Script_writeunusedbytebuffer:
 	ld [wUnusedScriptByteBuffer], a
 	ret
 
-	db closetext_command ; unused
+UnusedClosetextScript: ; unreferenced
+	closetext
 
 Script_closetext:
 	call _OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
@@ -2352,7 +2353,7 @@ Script_checksave:
 	ld [wScriptVar], a
 	ret
 
-; unused
+Script_checkver_duplicate: ; unreferenced
 	ld a, [.gs_version]
 	ld [wScriptVar], a
 	ret

@@ -1334,7 +1334,7 @@ MailComposition_TryAddLastCharacter:
 	ld a, [wNamingScreenLastCharacter]
 	jp MailComposition_TryAddCharacter
 
-; unused
+.add_dakuten ; unreferenced
 	ld a, [wNamingScreenCurNameLength]
 	and a
 	ret z

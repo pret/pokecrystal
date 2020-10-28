@@ -5714,8 +5714,7 @@ BattleCommand_Charge:
 	text_far _BattleDugText
 	text_end
 
-BattleCommand3c:
-; unused
+BattleCommand_Unused3C: ; unreferenced
 	ret
 
 BattleCommand_TrapTarget:
@@ -6489,8 +6488,7 @@ INCLUDE "engine/battle/move_effects/sandstorm.asm"
 
 INCLUDE "engine/battle/move_effects/rollout.asm"
 
-BattleCommand5d:
-; unused
+BattleCommand_Unused5D: ; unreferenced
 	ret
 
 INCLUDE "engine/battle/move_effects/fury_cutter.asm"

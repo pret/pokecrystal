@@ -141,12 +141,15 @@ RadioTerminator::
 
 PrintText::
 	call SetUpTextbox
+	; fallthrough
+
 BuenaPrintText::
 	push hl
 	hlcoord TEXTBOX_INNERX, TEXTBOX_INNERY
 	lb bc, TEXTBOX_INNERH - 1, TEXTBOX_INNERW
 	call ClearBox
 	pop hl
+	; fallthrough
 
 PrintTextboxText::
 	bccoord TEXTBOX_INNERX, TEXTBOX_INNERY
@@ -163,6 +166,7 @@ SetUpTextbox::
 
 PlaceString::
 	push hl
+	; fallthrough
 
 PlaceNextChar::
 	ld a, [de]
@@ -173,7 +177,9 @@ PlaceNextChar::
 	pop hl
 	ret
 
-	pop de ; unused
+DummyChar:: ; unreferenced
+	pop de
+	; fallthrough
 
 NextChar::
 	inc de
@@ -319,12 +325,13 @@ PlaceKokoWa:  print_name PlaceKokoWaText
 PlaceMoveTargetsName::
 	ldh a, [hBattleTurn]
 	xor 1
-	jr PlaceMoveUsersName.place
+	jr PlaceBattlersName
 
 PlaceMoveUsersName::
 	ldh a, [hBattleTurn]
+	; fallthrough
 
-.place:
+PlaceBattlersName:
 	push de
 	and a
 	jr nz, .enemy

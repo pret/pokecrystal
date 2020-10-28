@@ -1437,8 +1437,8 @@ DebugTileset_CalculatePalette:
 	ld [hl], d
 	ret
 
-; unused
+.dummy1: ; unreferenced
 	ret
 
-; unused
+.dummy2: ; unreferenced
 	ret

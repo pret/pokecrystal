@@ -181,7 +181,7 @@ SpriteAnimOAMData:
 	dbsprite -1,  0,  0,  0, $00, 7 | Y_FLIP
 	dbsprite  0,  0,  0,  0, $00, 7 | X_FLIP | Y_FLIP
 
-; unused
+.OAMData_Unknown1: ; unreferenced
 	db 4
 	dbsprite -1, -1,  0,  0, $00, 0 | PRIORITY
 	dbsprite  0, -1,  0,  0, $00, 0 | X_FLIP | PRIORITY
@@ -305,7 +305,7 @@ SpriteAnimOAMData:
 	dbsprite  1,  0,  4,  4, $17, 0
 	dbsprite  1,  1,  4,  4, $18, 0
 
-; unused
+.OAMData_Unknown2: ; unreferenced
 	db 36
 	dbsprite -3, -3,  0,  0, $00, 0
 	dbsprite -2, -3,  0,  0, $01, 0

@@ -330,7 +330,7 @@ MenuTextbox::
 	pop hl
 	jp PrintText
 
-; unused
+Menu_DummyFunction:: ; unreferenced
 	ret
 
 LoadMenuTextbox::

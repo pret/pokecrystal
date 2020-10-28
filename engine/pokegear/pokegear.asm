@@ -1271,7 +1271,7 @@ PokegearPhoneContactSubmenu:
 	dw .Call
 	dw .Cancel
 
-; unused
+GetAMPMHours: ; unreferenced
 	ldh a, [hHours]
 	cp 12
 	jr c, .am
@@ -1442,7 +1442,7 @@ UpdateRadioStation:
 	ldh [hBGMapMode], a
 	ret
 
-; unused
+LoadPokegearRadioChannelPointer: ; unreferenced
 	ld [wPokegearRadioChannelBank], a
 	ld a, [hli]
 	ld [wPokegearRadioChannelAddr], a

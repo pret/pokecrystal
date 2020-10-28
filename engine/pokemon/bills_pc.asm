@@ -2475,7 +2475,7 @@ BillsPC_ChangeBoxSubmenu:
 	call CopyName2
 	ret
 
-	hlcoord 11, 7 ; unused
+	hlcoord 11, 7 ; unreferenced
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags

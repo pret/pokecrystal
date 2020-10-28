@@ -228,9 +228,12 @@ MomItsInYourRoomText:
 	text_far _MomItsInYourRoomText
 	text_end
 
-	db 0 ; unused
+
+DummyPredef3A_DummyData: ; unreferenced
+	db 0
 
 DummyPredef3A:
 	ret
 
-	ret ; unused
+DummyPredef3A_DummyFunction: ; unreferenced
+	ret
