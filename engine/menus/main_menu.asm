@@ -31,8 +31,8 @@ MainMenu:
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	call SetPalettes
-	ld hl, wGameTimerPause
-	res GAMETIMERPAUSE_TIMER_PAUSED_F, [hl]
+	ld hl, wGameTimerPaused
+	res GAME_TIMER_PAUSED_F, [hl]
 	call MainMenu_GetWhichMenu
 	ld [wWhichIndexSet], a
 	call MainMenu_PrintCurrentTimeAndDay

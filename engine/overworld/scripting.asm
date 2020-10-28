@@ -458,11 +458,11 @@ Script_verbosegiveitem:
 	ld de, GiveItemScript
 	jp ScriptCall
 
-ret_96f76:
+GiveItemScript_DummyFunction:
 	ret
 
 GiveItemScript:
-	callasm ret_96f76
+	callasm GiveItemScript_DummyFunction
 	writetext .ReceivedItemText
 	iffalse .Full
 	waitsfx
@@ -2316,13 +2316,13 @@ Script_endall:
 	ret
 
 Script_halloffame:
-	ld hl, wGameTimerPause
-	res GAMETIMERPAUSE_TIMER_PAUSED_F, [hl]
+	ld hl, wGameTimerPaused
+	res GAME_TIMER_PAUSED_F, [hl]
 	farcall StubbedTrainerRankings_HallOfFame
 	farcall StubbedTrainerRankings_HallOfFame2
 	farcall HallOfFame
-	ld hl, wGameTimerPause
-	set GAMETIMERPAUSE_TIMER_PAUSED_F, [hl]
+	ld hl, wGameTimerPaused
+	set GAME_TIMER_PAUSED_F, [hl]
 	jr ReturnFromCredits
 
 Script_credits:

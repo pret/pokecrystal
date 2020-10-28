@@ -133,11 +133,11 @@ endr
 .next_try
 	dec [hl]
 	xor a
-	ld [wcf64], a
+	ld [wDummyGameCardChoice], a
 	ld hl, wJumptableIndex
 	inc [hl]
 .PickCard1:
-	ld a, [wcf64]
+	ld a, [wDummyGameCardChoice]
 	and a
 	ret z
 	dec a
@@ -155,13 +155,13 @@ endr
 	call DummyGame_Card2Coord
 	call DummyGame_PlaceCard
 	xor a
-	ld [wcf64], a
+	ld [wDummyGameCardChoice], a
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 
 .PickCard2:
-	ld a, [wcf64]
+	ld a, [wDummyGameCardChoice]
 	and a
 	ret z
 	dec a
@@ -527,7 +527,7 @@ DummyGame_InterpretJoypad_AnimateCursor:
 	add hl, bc
 	ld a, [hl]
 	inc a
-	ld [wcf64], a
+	ld [wDummyGameCardChoice], a
 	ret
 
 .pressed_left

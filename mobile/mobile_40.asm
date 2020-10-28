@@ -2660,8 +2660,8 @@ Function1011f1:
 	call CloseSRAM
 	ld hl, wdc41
 	res 4, [hl]
-	ld hl, wGameTimerPause
-	bit GAMETIMERPAUSE_MOBILE_7_F, [hl]
+	ld hl, wGameTimerPaused
+	bit GAME_TIMER_MOBILE_F, [hl]
 	jr z, .skip
 	ld hl, wdc41
 	set 4, [hl]
@@ -4425,15 +4425,15 @@ Function101e98:
 	call ClearSprites
 	farcall Function8adb3
 	ret c
-	ld hl, wGameTimerPause
-	set GAMETIMERPAUSE_MOBILE_7_F, [hl]
+	ld hl, wGameTimerPaused
+	set GAME_TIMER_MOBILE_F, [hl]
 	ld hl, wdc41
 	set 4, [hl]
 	ret
 
 Function101ead:
-	ld hl, wGameTimerPause
-	bit GAMETIMERPAUSE_MOBILE_7_F, [hl]
+	ld hl, wGameTimerPaused
+	bit GAME_TIMER_MOBILE_F, [hl]
 	jr nz, .asm_101ec8
 	ld hl, wdc41
 	bit 2, [hl]

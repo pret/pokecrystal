@@ -165,9 +165,9 @@ Gen2ToGen1LinkComms:
 	ld hl, wTimeCapsulePlayerData
 	call Function2868a
 	ld a, LOW(wOTPartyMonOT)
-	ld [wUnusedD102], a
+	ld [wUnusedNamesPointer], a
 	ld a, HIGH(wOTPartyMonOT)
-	ld [wUnusedD102 + 1], a
+	ld [wUnusedNamesPointer + 1], a
 	ld de, MUSIC_NONE
 	call PlayMusic
 	ldh a, [hSerialConnectionStatus]
@@ -407,9 +407,9 @@ Gen2ToGen2LinkComms:
 	ld bc, wOTPartyDataEnd - wOTPartyMons
 	call CopyBytes
 	ld a, LOW(wOTPartyMonOT)
-	ld [wUnusedD102], a
+	ld [wUnusedNamesPointer], a
 	ld a, HIGH(wOTPartyMonOT)
-	ld [wUnusedD102 + 1], a
+	ld [wUnusedNamesPointer + 1], a
 	ld de, MUSIC_NONE
 	call PlayMusic
 	ldh a, [hSerialConnectionStatus]

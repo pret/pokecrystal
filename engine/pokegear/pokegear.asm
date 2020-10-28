@@ -92,7 +92,7 @@ PokeGear:
 	ld [wJumptableIndex], a ; POKEGEARSTATE_CLOCKINIT
 	ld [wPokegearCard], a ; POKEGEARCARD_CLOCK
 	ld [wPokegearMapRegion], a ; JOHTO_REGION
-	ld [wcf66], a
+	ld [wUnusedPokegearByte], a
 	ld [wPokegearPhoneScrollPosition], a
 	ld [wPokegearPhoneCursorPosition], a
 	ld [wPokegearPhoneSelectedPerson], a
@@ -2038,7 +2038,7 @@ _FlyMap:
 	lb bc, BANK(FlyMapLabelBorderGFX), 6
 	call Request1bpp
 	call FlyMap
-	call ret_91c8f
+	call Pokegear_DummyFunction
 	ld b, SCGB_POKEGEAR_PALS
 	call GetSGBLayout
 	call SetPalettes
@@ -2243,7 +2243,7 @@ HasVisitedSpawn:
 
 INCLUDE "data/maps/flypoints.asm"
 
-ret_91c8f:
+Pokegear_DummyFunction:
 	ret
 
 FlyMap:

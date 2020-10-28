@@ -3006,10 +3006,11 @@ PlayerMonFaintedAnimation:
 	jp MonFaintedAnimation
 
 MonFaintedAnimation:
-	ld a, [wcfbe]
+	ld a, [wJoypadDisable]
 	push af
-	set 6, a
-	ld [wcfbe], a
+	set JOYPAD_DISABLE_MON_FAINT_F, a
+	ld [wJoypadDisable], a
+
 	ld b, 7
 
 .OuterLoop:
@@ -3052,7 +3053,7 @@ MonFaintedAnimation:
 	jr nz, .OuterLoop
 
 	pop af
-	ld [wcfbe], a
+	ld [wJoypadDisable], a
 	ret
 
 .Spaces:
@@ -4639,7 +4640,7 @@ CheckDanger:
 PrintPlayerHUD:
 	ld de, wBattleMonNick
 	hlcoord 10, 7
-	call ret_3e138
+	call Battle_DummyFunction
 	call PlaceString
 
 	push bc
@@ -4725,7 +4726,7 @@ DrawEnemyHUD:
 	call GetBaseData
 	ld de, wEnemyMonNick
 	hlcoord 1, 0
-	call ret_3e138
+	call Battle_DummyFunction
 	call PlaceString
 	ld h, b
 	ld l, c
@@ -4854,7 +4855,8 @@ UpdateHPPal:
 	ret z
 	jp FinishBattleAnim
 
-ret_3e138:
+Battle_DummyFunction:
+; called before placing either battler's nickname in the HUD
 	ret
 
 BattleMenu:

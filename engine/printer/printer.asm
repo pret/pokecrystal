@@ -447,9 +447,11 @@ CheckCancelPrint:
 	ret
 
 .pressed_b
-	ld a, [wca80]
+	ld a, [wUnusedGameboyPrinterSafeCancelFlag]
 	cp $0c
 	jr nz, .cancel
+
+; wait for printer activity to finish before canceling?
 .loop
 	ld a, [wPrinterOpcode]
 	and a

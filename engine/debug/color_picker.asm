@@ -929,13 +929,13 @@ DebugColor_FillBoxWithByte:
 	ret
 
 DebugColor_PushSGBPals:
-	ld a, [wcfbe]
+	ld a, [wJoypadDisable]
 	push af
-	set 7, a
-	ld [wcfbe], a
+	set JOYPAD_DISABLE_SGB_TRANSFER_F, a
+	ld [wJoypadDisable], a
 	call _DebugColor_PushSGBPals
 	pop af
-	ld [wcfbe], a
+	ld [wJoypadDisable], a
 	ret
 
 _DebugColor_PushSGBPals:

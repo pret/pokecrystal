@@ -15,7 +15,7 @@ Special::
 
 INCLUDE "data/events/special_pointers.asm"
 
-DummySpecial_c224:
+UnusedDummySpecial:
 	ret
 
 SetPlayerPalette:
@@ -207,7 +207,7 @@ CardFlip:
 	call StartGameCornerGame
 	ret
 
-DummyNonfunctionalGameCornerGame:
+UnusedDummyGame:
 	call CheckCoinsAndCoinCase
 	ret c
 	ld a, BANK(_DummyGame)

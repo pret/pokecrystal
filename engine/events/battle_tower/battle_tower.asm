@@ -183,7 +183,7 @@ BattleTowerBattle:
 	call _BattleTowerBattle
 	ret
 
-DummySpecial_17021d:
+UnusedBattleTowerDummySpecial1:
 	ret
 
 InitBattleTowerChallengeRAM:
@@ -1008,11 +1008,11 @@ BattleTowerAction_SetExplanationRead:
 
 BattleTowerAction_SetByteToQuickSaveChallenge:
 	ld c, BATTLETOWER_SAVED_AND_LEFT
-	jr asm_17079f
+	jr SetBattleTowerChallengeState
 
 BattleTowerAction_SetByteToCancelChallenge:
 	ld c, BATTLETOWER_NO_CHALLENGE
-asm_17079f:
+SetBattleTowerChallengeState:
 	ld a, BANK(sBattleTowerChallengeState)
 	call OpenSRAM
 	ld a, c
@@ -1447,11 +1447,11 @@ Function1709bb: ; BattleTowerAction $10
 
 Function170a9c:
 	ld c, FALSE
-	jr asm_170aa2
+	jr Set_s5_aa8d
 
 Function170aa0:
 	ld c, TRUE
-asm_170aa2:
+Set_s5_aa8d:
 	ld a, BANK(s5_aa8d)
 	call OpenSRAM
 	ld a, c
@@ -1576,7 +1576,7 @@ LoadOpponentTrainerAndPokemonWithOTSprite:
 
 INCLUDE "data/trainers/sprites.asm"
 
-DummySpecial_170bd2:
+UnusedBattleTowerDummySpecial2:
 	ret
 
 CheckForBattleTowerRules:

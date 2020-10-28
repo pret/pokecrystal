@@ -10,8 +10,8 @@ Reset::
 	ldh [rIE], a
 	ei
 
-	ld hl, wcfbe
-	set 7, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_SGB_TRANSFER_F, [hl]
 
 	ld c, 32
 	call DelayFrames
@@ -50,7 +50,7 @@ Init::
 	ldh [rOBP1], a
 	ldh [rTMA], a
 	ldh [rTAC], a
-	ld [wd000], a
+	ld [wUnusedInitializedToZero], a
 
 	ld a, %100 ; Start timer at 4096Hz
 	ldh [rTAC], a

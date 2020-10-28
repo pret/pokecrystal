@@ -904,7 +904,7 @@ NEXTU
 wGameboyPrinterRAM::
 wGameboyPrinter2bppSource:: ds 40 tiles
 wGameboyPrinter2bppSourceEnd::
-wca80:: db
+wUnusedGameboyPrinterSafeCancelFlag:: db
 wPrinterRowIndex:: db
 
 ; Printer data
@@ -1356,12 +1356,6 @@ wBattleTowerBattleEnded::
 	db
 
 UNION
-; unidentified
-wcf64:: db
-wcf65:: db
-wcf66:: db
-
-NEXTU
 ; intro data
 wIntroSceneFrameCounter:: db
 wIntroSceneTimer:: db
@@ -1386,11 +1380,13 @@ else
 wPrevDexEntryBackup::
 wPokedexStatus:: db
 endc
+wUnusedPokedexByte:: db
 
 NEXTU
 ; pokegear
 wPokegearCard:: db
 wPokegearMapRegion:: db
+wUnusedPokegearByte:: db
 
 NEXTU
 ; pack
@@ -1405,10 +1401,20 @@ wTrainerCardBadgeTileID:: db
 wTrainerCardBadgeAttributes:: db
 
 NEXTU
-; card flip data
+; slot machine
+wSlotsDelay:: db
+	ds 1
+wUnusedSlotReelIconDelay:: db
+
+NEXTU
+; card flip
 wCardFlipCursorY:: db
 wCardFlipCursorX:: db
 wCardFlipWhichCard:: db
+
+NEXTU
+; dummy game
+wDummyGameCardChoice:: db
 
 NEXTU
 ; magnet train
@@ -1423,6 +1429,16 @@ wUnownPuzzleCursorPosition:: db
 wUnownPuzzleHeldPiece:: db
 
 NEXTU
+; battle transitions
+wBattleTransitionCounter:: db
+wBattleTransitionSineWaveOffset::
+wBattleTransitionSpinQuadrant:: db
+
+NEXTU
+; bill's pc
+wUnusedBillsPCData:: ds 3
+
+NEXTU
 ; debug mon color picker
 wDebugColorRGBJumptableIndex:: db
 wDebugColorCurColor:: db
@@ -1435,21 +1451,34 @@ wDebugTilesetRGBJumptableIndex:: db
 wDebugTilesetCurColor:: db
 
 NEXTU
+; stats screen
+wStatsScreenFlags:: db
+
+NEXTU
 ; battle tower
-	ds $2
+wNrOfBeatenBattleTowerTrainers:: db
+	ds 1
 wBattleTowerRoomMenuJumptableIndex:: db
 
 NEXTU
 ; miscellaneous
 wFrameCounter::
-wNrOfBeatenBattleTowerTrainers::
 wMomBankDigitCursorPosition::
 wNamingScreenLetterCase::
 wHallOfFameMonCounter::
-wSlotsDelay::
+wTradeDialog::
 	db
+wFrameCounter2::
 wPrinterQueueLength::
+wUnusedSGB1eColorOffset::
 	db
+wUnusedTradeAnimPlayEvolutionMusic:: db
+
+NEXTU
+; mobile
+wcf64:: db
+wcf65:: db
+wcf66:: db
 ENDU
 
 wRequested2bppSize:: db
@@ -1553,18 +1582,18 @@ wFarCallBCBuffer:: dw
 
 wcfbb:: db
 
-wGameTimerPause::
+wGameTimerPaused::
 ; bit 0: game timer paused
 ; bit 7: something mobile
 	db
 
 	ds 1
 
-wcfbe::
+wJoypadDisable::
 ; bits 4, 6, or 7 can be used to disable joypad input
 ; bit 4
-; bit 6: mon fainted?
-; bit 7: SGB flag?
+; bit 6: ongoing mon faint animation
+; bit 7: ongoing sgb data transfer
 	db
 
 	ds 1
@@ -1635,7 +1664,7 @@ SECTION "WRAM 1", WRAMX
 
 wGBCOnlyDecompressBuffer:: ; a $540-byte buffer that continues past this SECTION
 
-wd000:: db
+wUnusedInitializedToZero:: db
 
 wDefaultSpawnpoint:: db
 
@@ -1732,6 +1761,11 @@ wFinishedPrintingBox:: db
 wAddrOfBoxToPrint:: dw
 wBankOfBoxToPrint:: db
 wWhichBoxToPrint:: db
+
+NEXTU
+; Unown printing
+wPrintedUnownTileSource:: ds 1 tiles
+wPrintedUnownTileDest:: ds 1 tiles
 
 NEXTU
 ; trainer HUD data
@@ -2017,7 +2051,8 @@ wMailboxItems:: ds MAILBOX_CAPACITY
 ENDU
 
 wListPointer:: dw
-wUnusedD102:: dw
+wUnusedNamesPointer:: dw
+
 wItemAttributesPtr:: dw
 
 wCurItem:: db

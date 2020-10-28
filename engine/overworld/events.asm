@@ -812,7 +812,7 @@ PlayerMovement:
 CheckMenuOW:
 	xor a
 	ldh [hMenuReturn], a
-	ldh [hUnusedFFA1], a
+	ldh [hUnusedByte], a
 	ldh a, [hJoyPressed]
 
 	bit SELECT_F, a

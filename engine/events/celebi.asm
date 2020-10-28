@@ -100,7 +100,7 @@ CelebiEvent_CountDown:
 	ret
 
 CelebiEvent_SpawnLeaf: ; unreferenced
-	ld hl, wcf65
+	ld hl, wFrameCounter2
 	ld a, [hl]
 	inc [hl]
 	and $7

@@ -132,7 +132,7 @@ Function49420::
 MG_Mobile_Layout01:
 	call MG_Mobile_Layout_LoadPals
 	ld de, wBGPals1 palette PAL_BG_TEXT
-	ld hl, .Palette_49478
+	ld hl, .TextPalette
 	ld bc, 1 palettes
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
@@ -149,19 +149,18 @@ MG_Mobile_Layout01:
 	bit 6, a
 	jr z, .asm_49464
 	call Function49480
-	jr .asm_49467
+	jr .done
 
 .asm_49464
 	call Function49496
-
-.asm_49467
+.done
 	farcall ApplyAttrmap
 	farcall ApplyPals
 	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
-.Palette_49478:
+.TextPalette:
 	RGB 31, 31, 31
 	RGB 26, 31, 00
 	RGB 20, 16, 03
@@ -194,7 +193,7 @@ Function49496:
 INCLUDE "engine/tilesets/tileset_palettes.asm"
 
 MG_Mobile_Layout02:
-	ld hl, .Palette_49732
+	ld hl, .BGPalette
 	ld de, wBGPals1
 	ld bc, 1 palettes
 	ld a, BANK(wBGPals1)
@@ -202,20 +201,20 @@ MG_Mobile_Layout02:
 	farcall ApplyPals
 	call MG_Mobile_Layout_WipeAttrmap
 	farcall ApplyAttrmap
-	ld hl, .Palette_4973a
+	ld hl, .OBPalette
 	ld de, wOBPals1
 	ld bc, 1 palettes
 	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 	ret
 
-.Palette_49732:
+.BGPalette:
 	RGB 31, 31, 31
 	RGB 23, 16, 07
 	RGB 23, 07, 07
 	RGB 03, 07, 20
 
-.Palette_4973a:
+.OBPalette:
 	RGB 00, 00, 00
 	RGB 07, 05, 31
 	RGB 14, 18, 31

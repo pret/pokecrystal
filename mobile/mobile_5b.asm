@@ -7,11 +7,11 @@ Function16c000: ; unreferenced
 	ldh a, [hSystemBooted]
 	and a
 	ret z
-	; Set some flag, preserving the old state
-	ld a, [wcfbe]
+	; Disable the joypad during mobile setup
+	ld a, [wJoypadDisable]
 	push af
-	set 7, a
-	ld [wcfbe], a
+	set JOYPAD_DISABLE_SGB_TRANSFER_F, a
+	ld [wJoypadDisable], a
 	; Do stuff
 	call MobileSystemSplashScreen_InitGFX ; Load GFX
 	farcall SetRAMStateForMobile
@@ -24,7 +24,7 @@ Function16c000: ; unreferenced
 	ldh [hSystemBooted], a
 	; Restore the flag state
 	pop af
-	ld [wcfbe], a
+	ld [wJoypadDisable], a
 	ret
 
 .RunJumptable:

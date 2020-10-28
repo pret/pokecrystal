@@ -43,7 +43,7 @@ LoadSGBLayoutCGB:
 	dw _CGB_PartyMenu
 	dw _CGB_Evolution
 	dw _CGB_GSTitleScreen
-	dw _CGB0d
+	dw _CGB_Unused0D
 	dw _CGB_MoveList
 	dw _CGB_BetaPikachuMinigame
 	dw _CGB_PokedexSearchOption
@@ -60,7 +60,7 @@ LoadSGBLayoutCGB:
 	dw _CGB_TradeTube
 	dw _CGB_TrainerOrMonFrontpicPals
 	dw _CGB_MysteryGift
-	dw _CGB1e
+	dw _CGB_Unused1E
 
 _CGB_BattleGrayscale:
 	ld hl, PalPacket_BattleGrayscale + 1
@@ -321,7 +321,7 @@ _CGB_BillsPC:
 	ldh [hCGBPalUpdate], a
 	ret
 
-Function9009: ; unreferenced
+_CGB_Unknown: ; unreferenced
 	ld hl, BillsPCOrangePalette
 	call LoadHLPaletteIntoDE
 	jr .GotPalette
@@ -595,7 +595,7 @@ _CGB_GSTitleScreen:
 	ldh [hCGBPalUpdate], a
 	ret
 
-_CGB0d:
+_CGB_Unused0D:
 	ld hl, PalPacket_Diploma + 1
 	call CopyFourPalettes
 	call WipeAttrmap
@@ -911,7 +911,7 @@ _CGB_PlayerOrMonFrontpicPals:
 	call ApplyPals
 	ret
 
-_CGB1e:
+_CGB_Unused1E:
 	ld de, wBGPals1
 	ld a, [wCurPartySpecies]
 	call GetMonPalettePointer

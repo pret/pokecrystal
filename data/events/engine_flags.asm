@@ -125,7 +125,7 @@ EngineFlags:
 	engine_flag wSwarmFlags, SWARMFLAGS_BUENAS_PASSWORD_F
 	engine_flag wSwarmFlags, SWARMFLAGS_GOLDENROD_DEPT_STORE_SALE_F
 
-	engine_flag wGameTimerPause, GAMETIMERPAUSE_MOBILE_7_F
+	engine_flag wGameTimerPaused, GAME_TIMER_MOBILE_F
 
 	engine_flag wPlayerGender, PLAYERGENDER_FEMALE_F
 

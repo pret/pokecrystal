@@ -136,6 +136,7 @@ SGB_ApplyPartyMenuHPPals:
 Intro_LoadMagikarpPalettes: ; unreferenced
 	call CheckCGB
 	ret z
+
 ; CGB only
 	ld hl, .BGPal
 	ld de, wBGPals1
@@ -789,13 +790,13 @@ endr
 	ret
 
 PushSGBPals:
-	ld a, [wcfbe]
+	ld a, [wJoypadDisable]
 	push af
-	set 7, a
-	ld [wcfbe], a
+	set JOYPAD_DISABLE_SGB_TRANSFER_F, a
+	ld [wJoypadDisable], a
 	call _PushSGBPals
 	pop af
-	ld [wcfbe], a
+	ld [wJoypadDisable], a
 	ret
 
 _PushSGBPals:
@@ -841,12 +842,14 @@ _PushSGBPals:
 InitSGBBorder:
 	call CheckCGB
 	ret nz
+
 ; SGB/DMG only
 	di
-	ld a, [wcfbe]
+	ld a, [wJoypadDisable]
 	push af
-	set 7, a
-	ld [wcfbe], a
+	set JOYPAD_DISABLE_SGB_TRANSFER_F, a
+	ld [wJoypadDisable], a
+
 	xor a
 	ldh [rJOYP], a
 	ldh [hSGB], a
@@ -866,13 +869,14 @@ InitSGBBorder:
 
 .skip
 	pop af
-	ld [wcfbe], a
+	ld [wJoypadDisable], a
 	ei
 	ret
 
 InitCGBPals::
 	call CheckCGB
 	ret z
+
 ; CGB only
 	ld a, BANK(vTiles3)
 	ldh [rVBK], a
