@@ -504,13 +504,13 @@ CheckSolvedUnownPuzzle:
 
 RedrawUnownPuzzlePieces:
 	call GetCurrentPuzzlePieceVTileCorner
-	ld [wd002], a
+	ld [wUnownPuzzleCornerTile], a
 	xor a
 	call GetUnownPuzzleCoordData ; get pixel positions
 	ld a, [hli]
 	ld b, [hl]
 	ld c, a
-	ld a, [wd002]
+	ld a, [wUnownPuzzleCornerTile]
 	cp $e0
 	jr z, .NoPiece
 	ld hl, .OAM_HoldingPiece
@@ -532,7 +532,7 @@ RedrawUnownPuzzlePieces:
 	add c
 	ld [de], a ; x
 	inc de
-	ld a, [wd002]
+	ld a, [wUnownPuzzleCornerTile]
 	add [hl]
 	ld [de], a ; tile id
 	inc hl

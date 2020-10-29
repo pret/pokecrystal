@@ -1341,7 +1341,7 @@ wPlayerLinkAction:: db
 wcf57:: db
 	ds 3
 wLinkTimeoutFrames:: dw
-wcf5d:: dw
+wLinkByteTimeout:: dw
 
 wMonType:: db
 
@@ -1664,13 +1664,19 @@ SECTION "WRAM 1", WRAMX
 
 wGBCOnlyDecompressBuffer:: ; a $540-byte buffer that continues past this SECTION
 
-wUnusedInitializedToZero:: db
+wBetaTitleSequenceOpeningType::
+; This selected the title screen animation (fire/notes) in pokegold-spaceworld.
+	db
 
 wDefaultSpawnpoint:: db
 
 UNION
-; mail temp storage
-wTempMail:: mailmsg wTempMail
+; mon buffer
+wBufferMonNick:: ds MON_NAME_LENGTH
+wBufferMonOT:: ds NAME_LENGTH
+wBufferMon:: party_struct wBufferMon
+	ds 8
+wMonOrItemNameBuffer:: ds 22
 
 NEXTU
 ; poke seer
@@ -1686,12 +1692,8 @@ wSeerCaughtData:: db
 wSeerCaughtGender:: db
 
 NEXTU
-; mon buffer
-wBufferMonNick:: ds MON_NAME_LENGTH
-wBufferMonOT:: ds NAME_LENGTH
-wBufferMon:: party_struct wBufferMon
-	ds 8
-wMonOrItemNameBuffer::
+; mail temp storage
+wTempMail:: mailmsg wTempMail
 
 NEXTU
 ; bug-catching contest
@@ -1725,6 +1727,8 @@ wTownMapCursorLandmark:: db
 wTownMapCursorObjectPointer:: dw
 NEXTU
 wTownMapCursorCoordinates:: dw
+wStartFlypoint:: db
+wEndFlypoint:: db
 ENDU
 
 NEXTU
@@ -1781,6 +1785,10 @@ wMobileParticipant2Nickname:: ds NAME_LENGTH_JAPANESE
 wMobileParticipant3Nickname:: ds NAME_LENGTH_JAPANESE
 
 NEXTU
+; battle exp gain
+wExperienceGained:: ds 3
+
+NEXTU
 ; earthquake data buffer
 wEarthquakeMovementDataBuffer:: ds 5
 
@@ -1789,15 +1797,64 @@ NEXTU
 wSwitchItemBuffer:: ds 2 ; may store 1 or 2 bytes
 
 NEXTU
+; switching pokemon in party
+; may store NAME_LENGTH, PARTYMON_STRUCT_LENGTH, or MAIL_STRUCT_LENGTH bytes
+wSwitchMonBuffer:: ds 48
+
+NEXTU
+; giving pokemon mail
+wMonMailMessageBuffer:: ds MAIL_MSG_LENGTH + 1
+
+NEXTU
+; bill's pc
+UNION
+wBoxNameBuffer:: ds BOX_NAME_LENGTH
+NEXTU
+	ds 1
+wBillsPCTempListIndex:: db
+wBillsPCTempBoxCount:: db
+ENDU
+
+NEXTU
+; prof. oak's pc
+wTempPokedexSeenCount:: db
+wTempPokedexCaughtCount:: db
+
+NEXTU
+; player's room pc
+UNION
+wDecoNameBuffer:: ds ITEM_NAME_LENGTH
+NEXTU
+wNumOwnedDecoCategories:: db
+wOwnedDecoCategories:: ds 16
+ENDU
+
+NEXTU
+; trade
+wCurTradePartyMon:: db
+wCurOTTradePartyMon:: db
+wBufferTrademonNick:: ds MON_NAME_LENGTH
+
+NEXTU
+; link battle record data
+wLinkBattleRecordBuffer::
+wLinkBattleRecordName::   ds NAME_LENGTH
+wLinkBattleRecordWins::   dw
+wLinkBattleRecordLosses:: dw
+wLinkBattleRecordDraws::  dw
+
+NEXTU
 ; miscellaneous
 wTempDayOfWeek::
+wPrevPartyLevel::
+wCurBeatUpPartyMon::
+wUnownPuzzleCornerTile::
+wKeepSevenBiasChance::
+wPokeFluteCuredSleep::
+wTempRestorePPItem::
 wApricorns::
-wKeepSevenBiasChance:: ; used in the slots to handle the favoring of 7 symbol streaks
 wSuicuneFrame::
 	db
-	ds 2
-wStartFlypoint:: db
-wEndFlypoint:: db
 
 NEXTU
 ; debug color picker
@@ -1806,21 +1863,11 @@ wDebugColorIsShiny:: db
 wDebugColorCurTMHM:: db
 
 NEXTU
-; link battle record data
-wLinkBattleRecordName::   ds NAME_LENGTH
-wLinkBattleRecordWins::   dw
-wLinkBattleRecordLosses:: dw
-wLinkBattleRecordDraws::  dw
-
-NEXTU
-; unidentified
-wd002:: db
-wd003:: db
-wd004:: db
-
 ; mobile?
-	ds 1
-	ds 2
+wd002:: ds 1
+wd003:: ds 1
+wd004:: ds 1
+	ds 3
 wd008:: ds 2
 	ds 6
 wd010:: ds 1
@@ -1842,7 +1889,11 @@ wd032:: ds 1
 wd033:: ds 1
 wd034:: ds 2
 wd036:: ds 2
-	ds 6
+
+NEXTU
+; Every previous NEXTU takes up 60 or fewer bytes,
+; except the initial "mon buffer" UNION.
+	ds 60
 
 UNION
 ; trainer data

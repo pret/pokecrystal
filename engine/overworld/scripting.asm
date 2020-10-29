@@ -1703,7 +1703,7 @@ Script_givepokemail:
 	push bc
 	inc hl
 	ld bc, MAIL_MSG_LENGTH
-	ld de, wd002
+	ld de, wMonMailMessageBuffer
 	ld a, [wScriptBank]
 	call FarCopyBytes
 	pop bc

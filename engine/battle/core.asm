@@ -7438,13 +7438,13 @@ AnimateExpBar:
 	jp nc, .finish
 
 	ldh a, [hProduct + 3]
-	ld [wd004], a
+	ld [wExperienceGained + 2], a
 	push af
 	ldh a, [hProduct + 2]
-	ld [wd003], a
+	ld [wExperienceGained + 1], a
 	push af
 	xor a
-	ld [wd002], a
+	ld [wExperienceGained], a
 	xor a ; PARTYMON
 	ld [wMonType], a
 	predef CopyMonToTempMon
@@ -7456,10 +7456,10 @@ AnimateExpBar:
 	call CalcExpBar
 	push bc
 	ld hl, wTempMonExp + 2
-	ld a, [wd004]
+	ld a, [wExperienceGained + 2]
 	add [hl]
 	ld [hld], a
-	ld a, [wd003]
+	ld a, [wExperienceGained + 1]
 	adc [hl]
 	ld [hld], a
 	jr nc, .NoOverflow
@@ -8788,7 +8788,7 @@ AddLastLinkBattleToLinkRecord:
 .FindOpponentAndAppendRecord:
 	ld b, NUM_LINK_BATTLE_RECORDS
 	ld hl, sLinkBattleRecord1End - 1
-	ld de, wd002
+	ld de, wLinkBattleRecordBuffer
 .loop3
 	push bc
 	push de
@@ -8817,16 +8817,16 @@ AddLastLinkBattleToLinkRecord:
 	add b
 	add b
 	ld e, a
-	ld d, $0
-	ld hl, wd002
+	ld d, 0
+	ld hl, wLinkBattleRecordBuffer
 	add hl, de
 	push hl
 	ld a, c
 	add c
 	add c
 	ld e, a
-	ld d, $0
-	ld hl, wd002
+	ld d, 0
+	ld hl, wLinkBattleRecordBuffer
 	add hl, de
 	ld d, h
 	ld e, l
@@ -8858,7 +8858,7 @@ AddLastLinkBattleToLinkRecord:
 	ld hl, sLinkBattleRecord
 	call AddNTimes
 	push hl
-	ld de, wd002
+	ld de, wLinkBattleRecordBuffer
 	ld bc, LINK_BATTLE_RECORD_LENGTH
 	call CopyBytes
 	pop hl
@@ -8872,7 +8872,7 @@ AddLastLinkBattleToLinkRecord:
 	push hl
 	ld bc, LINK_BATTLE_RECORD_LENGTH
 	call CopyBytes
-	ld hl, wd002
+	ld hl, wLinkBattleRecordBuffer
 	ld bc, LINK_BATTLE_RECORD_LENGTH
 	pop de
 	call CopyBytes

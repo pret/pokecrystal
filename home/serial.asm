@@ -57,13 +57,13 @@ Serial::
 
 	xor a
 	ldh [rSB], a
+
 	ld a, 3
 	ldh [rDIV], a
-
-.wait_bit_7
+.delay_loop
 	ldh a, [rDIV]
 	bit 7, a
-	jr nz, .wait_bit_7
+	jr nz, .delay_loop
 
 	ld a, (0 << rSC_ON) | (0 << rSC_CLOCK)
 	ldh [rSC], a
@@ -89,8 +89,9 @@ Serial::
 	reti
 
 Serial_ExchangeBytes::
-	ld a, $1
+	ld a, TRUE
 	ldh [hSerialIgnoringInitialData], a
+
 .loop
 	ld a, [hl]
 	ldh [hSerialSend], a
@@ -98,10 +99,12 @@ Serial_ExchangeBytes::
 	push bc
 	ld b, a
 	inc hl
-	ld a, $30
+
+	ld a, 48
 .wait
 	dec a
 	jr nz, .wait
+
 	ldh a, [hSerialIgnoringInitialData]
 	and a
 	ld a, b
@@ -124,7 +127,7 @@ Serial_ExchangeBytes::
 	ret
 
 Serial_ExchangeByte::
-.loop
+.timeout_loop
 	xor a
 	ldh [hSerialReceivedNewData], a
 	ldh a, [hSerialConnectionStatus]
@@ -135,16 +138,16 @@ Serial_ExchangeByte::
 	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
 	ldh [rSC], a
 .not_player_2
-.loop2
+.loop
 	ldh a, [hSerialReceivedNewData]
 	and a
-	jr nz, .reset_ffca
+	jr nz, .await_new_data
 	ldh a, [hSerialConnectionStatus]
 	cp USING_EXTERNAL_CLOCK
-	jr nz, .not_player_1_or_wLinkTimeoutFrames_zero
-	call CheckwLinkTimeoutFramesNonzero
-	jr z, .not_player_1_or_wLinkTimeoutFrames_zero
-	call .delay_15_cycles
+	jr nz, .not_player_1_or_timed_out
+	call CheckLinkTimeoutFramesNonzero
+	jr z, .not_player_1_or_timed_out
+	call .ShortDelay
 	push hl
 	ld hl, wLinkTimeoutFrames + 1
 	inc [hl]
@@ -154,51 +157,51 @@ Serial_ExchangeByte::
 
 .no_rollover_up
 	pop hl
-	call CheckwLinkTimeoutFramesNonzero
-	jr nz, .loop2
+	call CheckLinkTimeoutFramesNonzero
+	jr nz, .loop
 	jp SerialDisconnected
 
-.not_player_1_or_wLinkTimeoutFrames_zero
+.not_player_1_or_timed_out
 	ldh a, [rIE]
 	and (1 << SERIAL) | (1 << TIMER) | (1 << LCD_STAT) | (1 << VBLANK)
 	cp 1 << SERIAL
-	jr nz, .loop2
-	ld a, [wcf5d]
+	jr nz, .loop
+	ld a, [wLinkByteTimeout]
 	dec a
-	ld [wcf5d], a
-	jr nz, .loop2
-	ld a, [wcf5d + 1]
+	ld [wLinkByteTimeout], a
+	jr nz, .loop
+	ld a, [wLinkByteTimeout + 1]
 	dec a
-	ld [wcf5d + 1], a
-	jr nz, .loop2
+	ld [wLinkByteTimeout + 1], a
+	jr nz, .loop
 	ldh a, [hSerialConnectionStatus]
 	cp USING_EXTERNAL_CLOCK
-	jr z, .reset_ffca
+	jr z, .await_new_data
 
 	ld a, 255
-.delay_255_cycles
+.long_delay_loop
 	dec a
-	jr nz, .delay_255_cycles
+	jr nz, .long_delay_loop
 
-.reset_ffca
+.await_new_data
 	xor a
 	ldh [hSerialReceivedNewData], a
 	ldh a, [rIE]
 	and (1 << SERIAL) | (1 << TIMER) | (1 << LCD_STAT) | (1 << VBLANK)
 	sub 1 << SERIAL
-	jr nz, .rIE_not_equal_8
+	jr nz, .non_serial_interrupts_enabled
 
-	; LOW($5000)
-	ld [wcf5d], a
+	; a == LOW($5000)
+	ld [wLinkByteTimeout], a
 	ld a, HIGH($5000)
-	ld [wcf5d + 1], a
+	ld [wLinkByteTimeout + 1], a
 
-.rIE_not_equal_8
+.non_serial_interrupts_enabled
 	ldh a, [hSerialReceive]
 	cp SERIAL_NO_DATA_BYTE
 	ret nz
-	call CheckwLinkTimeoutFramesNonzero
-	jr z, .linkTimeoutFrames_zero
+	call CheckLinkTimeoutFramesNonzero
+	jr z, .timed_out
 	push hl
 	ld hl, wLinkTimeoutFrames + 1
 	ld a, [hl]
@@ -210,10 +213,10 @@ Serial_ExchangeByte::
 
 .no_rollover
 	pop hl
-	call CheckwLinkTimeoutFramesNonzero
+	call CheckLinkTimeoutFramesNonzero
 	jr z, SerialDisconnected
 
-.linkTimeoutFrames_zero
+.timed_out
 	ldh a, [rIE]
 	and (1 << SERIAL) | (1 << TIMER) | (1 << LCD_STAT) | (1 << VBLANK)
 	cp 1 << SERIAL
@@ -222,16 +225,16 @@ Serial_ExchangeByte::
 	ld a, [hl]
 	ldh [hSerialSend], a
 	call DelayFrame
-	jp .loop
+	jp .timeout_loop
 
-.delay_15_cycles
+.ShortDelay:
 	ld a, 15
-.delay_cycles
+.short_delay_loop
 	dec a
-	jr nz, .delay_cycles
+	jr nz, .short_delay_loop
 	ret
 
-CheckwLinkTimeoutFramesNonzero::
+CheckLinkTimeoutFramesNonzero::
 	push hl
 	ld hl, wLinkTimeoutFrames
 	ld a, [hli]
@@ -239,8 +242,10 @@ CheckwLinkTimeoutFramesNonzero::
 	pop hl
 	ret
 
+; This sets wLinkTimeoutFrames to $ffff, since
+; a is always 0 when it is called.
 SerialDisconnected::
-	dec a ; a is always 0 when this is called
+	dec a
 	ld [wLinkTimeoutFrames], a
 	ld [wLinkTimeoutFrames + 1], a
 	ret
@@ -281,9 +286,7 @@ Serial_PrintWaitingTextAndSyncAndExchangeNybble::
 Serial_SyncAndExchangeNybble:: ; unreferenced
 	call LoadTilemapToTempTilemap
 	callfar PlaceWaitingText
-	jp WaitLinkTransfer
-
-; One "giant" leap for machinekind
+	jp WaitLinkTransfer ; pointless
 
 WaitLinkTransfer::
 	ld a, $ff
@@ -291,7 +294,7 @@ WaitLinkTransfer::
 .loop
 	call LinkTransfer
 	call DelayFrame
-	call CheckwLinkTimeoutFramesNonzero
+	call CheckLinkTimeoutFramesNonzero
 	jr z, .check
 	push hl
 	ld hl, wLinkTimeoutFrames + 1

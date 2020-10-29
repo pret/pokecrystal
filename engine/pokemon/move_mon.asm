@@ -780,7 +780,7 @@ RetrieveMonFromDayCareMan:
 	call WaitSFX
 	call GetBreedMon1LevelGrowth
 	ld a, b
-	ld [wd002], a
+	ld [wPrevPartyLevel], a
 	ld a, e
 	ld [wCurPartyLevel], a
 	xor a
@@ -795,12 +795,12 @@ RetrieveMonFromDayCareLady:
 	call WaitSFX
 	call GetBreedMon2LevelGrowth
 	ld a, b
-	ld [wd002], a
+	ld [wPrevPartyLevel], a
 	ld a, e
 	ld [wCurPartyLevel], a
 	ld a, PC_DEPOSIT
 	ld [wPokemonWithdrawDepositParameter], a
-	jp RetrieveBreedmon
+	jp RetrieveBreedmon ; pointless
 
 RetrieveBreedmon:
 	ld hl, wPartyCount

@@ -1377,20 +1377,20 @@ copy_box_data: MACRO
 	jr z, .done\@
 	and a
 	jr z, .done\@
-	ld [de], a
+	ld [de], a ; species
 	inc de
 	ld a, [wBillsPC_LoadedBox]
-	ld [de], a
+	ld [de], a ; box number
 	inc de
-	ld a, [wd003]
-	ld [de], a
+	ld a, [wBillsPCTempListIndex]
+	ld [de], a ; list index
 	inc a
-	ld [wd003], a
+	ld [wBillsPCTempListIndex], a
 	inc de
 	inc hl
-	ld a, [wd004]
+	ld a, [wBillsPCTempBoxCount]
 	inc a
-	ld [wd004], a
+	ld [wBillsPCTempBoxCount], a
 	jr .loop\@
 
 .done\@
@@ -1399,7 +1399,7 @@ if \1
 endc
 	ld a, -1
 	ld [de], a
-	ld a, [wd004]
+	ld a, [wBillsPCTempBoxCount]
 	inc a
 	ld [wBillsPC_NumMonsInBox], a
 ENDM
@@ -1411,8 +1411,8 @@ CopyBoxmonSpecies:
 	call ByteFill
 	ld de, wBillsPCPokemonList
 	xor a
-	ld [wd003], a
-	ld [wd004], a
+	ld [wBillsPCTempListIndex], a
+	ld [wBillsPCTempBoxCount], a
 	ld a, [wBillsPC_LoadedBox]
 	and a
 	jr z, .party
@@ -2455,7 +2455,7 @@ BillsPC_ChangeBoxSubmenu:
 
 .Name:
 	ld b, NAME_BOX
-	ld de, wd002
+	ld de, wBoxNameBuffer
 	farcall NamingScreen
 	call ClearTilemap
 	call LoadStandardFont
@@ -2465,13 +2465,13 @@ BillsPC_ChangeBoxSubmenu:
 	call GetBoxName
 	ld e, l
 	ld d, h
-	ld hl, wd002
+	ld hl, wBoxNameBuffer
 	ld c, BOX_NAME_LENGTH - 1
 	call InitString
 	ld a, [wMenuSelection]
 	dec a
 	call GetBoxName
-	ld de, wd002
+	ld de, wBoxNameBuffer
 	call CopyName2
 	ret
 

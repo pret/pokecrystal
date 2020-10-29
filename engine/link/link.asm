@@ -27,7 +27,7 @@ LinkCommunications:
 	call PlaceString
 	call SetTradeRoomBGPals
 	call WaitBGMap2
-	ld hl, wcf5d
+	ld hl, wLinkByteTimeout
 	xor a ; LOW($5000)
 	ld [hli], a
 	ld [hl], HIGH($5000)
@@ -510,6 +510,8 @@ LinkTimeout:
 	text_end
 
 ExchangeBytes:
+; This is similar to Serial_ExchangeBytes,
+; but without a SERIAL_PREAMBLE_BYTE check.
 	ld a, TRUE
 	ldh [hSerialIgnoringInitialData], a
 .loop
@@ -520,9 +522,9 @@ ExchangeBytes:
 	ld b, a
 	inc hl
 	ld a, 48
-.delay_cycles
+.wait
 	dec a
-	jr nz, .delay_cycles
+	jr nz, .wait
 	ldh a, [hSerialIgnoringInitialData]
 	and a
 	ld a, b
@@ -1423,13 +1425,13 @@ Function28926:
 	pop af
 	ld [wMenuCursorY], a
 	dec a
-	ld [wd002], a
+	ld [wCurTradePartyMon], a
 	ld [wPlayerLinkAction], a
 	farcall Function16d6ce
 	ld a, [wOtherPlayerLinkMode]
 	cp $f
 	jp z, InitTradeMenuDisplay
-	ld [wd003], a
+	ld [wCurOTTradePartyMon], a
 	call Function28b68
 	ld c, 100
 	call DelayFrames
@@ -1454,7 +1456,7 @@ Function28926:
 	xor a
 	ld [wcf57], a
 	ld [wOtherPlayerLinkAction], a
-	ld a, [wd003]
+	ld a, [wCurOTTradePartyMon]
 	ld hl, wOTPartySpecies
 	ld c, a
 	ld b, 0
@@ -1610,7 +1612,7 @@ LinkTrade:
 	ld c, 18
 	call LinkTextboxAtHL
 	farcall Link_WaitBGMap
-	ld a, [wd002]
+	ld a, [wCurTradePartyMon]
 	ld hl, wPartySpecies
 	ld c, a
 	ld b, 0
@@ -1619,10 +1621,10 @@ LinkTrade:
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, wStringBuffer1
-	ld de, wd004
+	ld de, wBufferTrademonNick
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
-	ld a, [wd003]
+	ld a, [wCurOTTradePartyMon]
 	ld hl, wOTPartySpecies
 	ld c, a
 	ld b, 0
@@ -1702,7 +1704,7 @@ LinkTrade:
 
 .asm_28c7b
 	ld hl, sPartyMail
-	ld a, [wd002]
+	ld a, [wCurTradePartyMon]
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	ld a, BANK(sPartyMail)
@@ -1711,7 +1713,7 @@ LinkTrade:
 	ld e, l
 	ld bc, MAIL_STRUCT_LENGTH
 	add hl, bc
-	ld a, [wd002]
+	ld a, [wCurTradePartyMon]
 	ld c, a
 .asm_28c96
 	inc c
@@ -1732,7 +1734,7 @@ LinkTrade:
 	call AddNTimes
 	push hl
 	ld hl, wc9f4
-	ld a, [wd003]
+	ld a, [wCurOTTradePartyMon]
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	pop de
@@ -1743,7 +1745,7 @@ LinkTrade:
 	ld de, wPlayerTrademonSenderName
 	ld bc, NAME_LENGTH
 	call CopyBytes
-	ld a, [wd002]
+	ld a, [wCurTradePartyMon]
 	ld hl, wPartySpecies
 	ld b, 0
 	ld c, a
@@ -1751,27 +1753,27 @@ LinkTrade:
 	ld a, [hl]
 	ld [wPlayerTrademonSpecies], a
 	push af
-	ld a, [wd002]
+	ld a, [wCurTradePartyMon]
 	ld hl, wPartyMonOT
 	call SkipNames
 	ld de, wPlayerTrademonOTName
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	ld hl, wPartyMon1ID
-	ld a, [wd002]
+	ld a, [wCurTradePartyMon]
 	call GetPartyLocation
 	ld a, [hli]
 	ld [wPlayerTrademonID], a
 	ld a, [hl]
 	ld [wPlayerTrademonID + 1], a
 	ld hl, wPartyMon1DVs
-	ld a, [wd002]
+	ld a, [wCurTradePartyMon]
 	call GetPartyLocation
 	ld a, [hli]
 	ld [wPlayerTrademonDVs], a
 	ld a, [hl]
 	ld [wPlayerTrademonDVs + 1], a
-	ld a, [wd002]
+	ld a, [wCurTradePartyMon]
 	ld hl, wPartyMon1Species
 	call GetPartyLocation
 	ld b, h
@@ -1783,34 +1785,34 @@ LinkTrade:
 	ld de, wOTTrademonSenderName
 	ld bc, NAME_LENGTH
 	call CopyBytes
-	ld a, [wd003]
+	ld a, [wCurOTTradePartyMon]
 	ld hl, wOTPartySpecies
 	ld b, 0
 	ld c, a
 	add hl, bc
 	ld a, [hl]
 	ld [wOTTrademonSpecies], a
-	ld a, [wd003]
+	ld a, [wCurOTTradePartyMon]
 	ld hl, wOTPartyMonOT
 	call SkipNames
 	ld de, wOTTrademonOTName
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	ld hl, wOTPartyMon1ID
-	ld a, [wd003]
+	ld a, [wCurOTTradePartyMon]
 	call GetPartyLocation
 	ld a, [hli]
 	ld [wOTTrademonID], a
 	ld a, [hl]
 	ld [wOTTrademonID + 1], a
 	ld hl, wOTPartyMon1DVs
-	ld a, [wd003]
+	ld a, [wCurOTTradePartyMon]
 	call GetPartyLocation
 	ld a, [hli]
 	ld [wOTTrademonDVs], a
 	ld a, [hl]
 	ld [wOTTrademonDVs + 1], a
-	ld a, [wd003]
+	ld a, [wCurOTTradePartyMon]
 	ld hl, wOTPartyMon1Species
 	call GetPartyLocation
 	ld b, h
@@ -1818,14 +1820,14 @@ LinkTrade:
 	farcall GetCaughtGender
 	ld a, c
 	ld [wOTTrademonCaughtData], a
-	ld a, [wd002]
+	ld a, [wCurTradePartyMon]
 	ld [wCurPartyMon], a
 	ld hl, wPartySpecies
 	ld b, 0
 	ld c, a
 	add hl, bc
 	ld a, [hl]
-	ld [wd002], a
+	ld [wCurTradePartyMon], a
 	xor a ; REMOVE_PARTY
 	ld [wPokemonWithdrawDepositParameter], a
 	callfar RemoveMonFromPartyOrBox
@@ -1834,14 +1836,14 @@ LinkTrade:
 	ld [wCurPartyMon], a
 	ld a, TRUE
 	ld [wForceEvolution], a
-	ld a, [wd003]
+	ld a, [wCurOTTradePartyMon]
 	push af
 	ld hl, wOTPartySpecies
 	ld b, 0
 	ld c, a
 	add hl, bc
 	ld a, [hl]
-	ld [wd003], a
+	ld [wCurOTTradePartyMon], a
 	ld c, 100
 	call DelayFrames
 	call ClearTilemap
@@ -2248,7 +2250,7 @@ CheckLinkTimeout_Receptionist:
 	ld a, $1
 	ld [wPlayerLinkAction], a
 	ld hl, wLinkTimeoutFrames
-	ld a, $3
+	ld a, 3
 	ld [hli], a
 	xor a
 	ld [hl], a

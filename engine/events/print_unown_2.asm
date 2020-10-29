@@ -65,7 +65,7 @@ RotateUnownFrontpic:
 	ld a, b
 	ld [hli], a
 	push hl
-	ld hl, wd003
+	ld hl, wPrintedUnownTileSource + 1
 	call .CountSetBit
 	pop hl
 	ld a, b

@@ -1,11 +1,11 @@
 ; These functions seem to be related to backwards compatibility
 
 ValidateOTTrademon:
-	ld a, [wd003]
+	ld a, [wCurOTTradePartyMon]
 	ld hl, wOTPartyMon1Species
 	call GetPartyLocation
 	push hl
-	ld a, [wd003]
+	ld a, [wCurOTTradePartyMon]
 	inc a
 	ld c, a
 	ld b, 0
@@ -30,7 +30,7 @@ ValidateOTTrademon:
 	cp LINK_TIMECAPSULE
 	jr nz, .normal
 	ld hl, wOTPartySpecies
-	ld a, [wd003]
+	ld a, [wCurOTTradePartyMon]
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -65,11 +65,11 @@ ValidateOTTrademon:
 	ret
 
 CheckAnyOtherAliveMonsForTrade:
-	ld a, [wd002]
+	ld a, [wCurTradePartyMon]
 	ld d, a
 	ld a, [wPartyCount]
 	ld b, a
-	ld c, $0
+	ld c, 0
 .loop
 	ld a, c
 	cp d
@@ -87,7 +87,7 @@ CheckAnyOtherAliveMonsForTrade:
 	inc c
 	dec b
 	jr nz, .loop
-	ld a, [wd003]
+	ld a, [wCurOTTradePartyMon]
 	ld hl, wOTPartyMon1HP
 	call GetPartyLocation
 	ld a, [hli]

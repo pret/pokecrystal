@@ -2166,11 +2166,12 @@ INCLUDE "data/items/x_stats.asm"
 PokeFluteEffect:
 	ld a, [wBattleMode]
 	and a
-	jr nz, .dummy
-.dummy
+	jr nz, .in_battle
+	; overworld flute code was dummied out here
 
+.in_battle
 	xor a
-	ld [wd002], a
+	ld [wPokeFluteCuredSleep], a
 
 	ld b, $ff ^ SLP
 
@@ -2193,7 +2194,7 @@ PokeFluteEffect:
 	and b
 	ld [hl], a
 
-	ld a, [wd002]
+	ld a, [wPokeFluteCuredSleep]
 	and a
 	ld hl, .PlayedFluteText
 	jp z, PrintText
@@ -2202,22 +2203,22 @@ PokeFluteEffect:
 
 	ld a, [wLowHealthAlarm]
 	and 1 << DANGER_ON_F
-	jr nz, .dummy2
-.dummy2
+	jr nz, .dummy
+	; more code was dummied out here
+.dummy
 	ld hl, .FluteWakeUpText
 	jp PrintText
 
 .CureSleep:
 	ld de, PARTYMON_STRUCT_LENGTH
 	ld c, PARTY_LENGTH
-
 .loop
 	ld a, [hl]
 	push af
 	and SLP
 	jr z, .not_asleep
-	ld a, 1
-	ld [wd002], a
+	ld a, TRUE
+	ld [wPokeFluteCuredSleep], a
 .not_asleep
 	pop af
 	and b
@@ -2290,7 +2291,7 @@ ItemfinderEffect:
 
 RestorePPEffect:
 	ld a, [wCurItem]
-	ld [wd002], a
+	ld [wTempRestorePPItem], a
 
 .loop
 	; Party Screen opens to choose on which mon to use the Item
@@ -2299,14 +2300,14 @@ RestorePPEffect:
 	jp c, PPRestoreItem_Cancel
 
 .loop2
-	ld a, [wd002]
+	ld a, [wTempRestorePPItem]
 	cp MAX_ELIXER
 	jp z, Elixer_RestorePPofAllMoves
 	cp ELIXER
 	jp z, Elixer_RestorePPofAllMoves
 
 	ld hl, RaiseThePPOfWhichMoveText
-	ld a, [wd002]
+	ld a, [wTempRestorePPItem]
 	cp PP_UP
 	jr z, .ppup
 	ld hl, RestoreThePPOfWhichMoveText
@@ -2337,7 +2338,7 @@ RestorePPEffect:
 	call CopyName1
 	pop hl
 
-	ld a, [wd002]
+	ld a, [wTempRestorePPItem]
 	cp PP_UP
 	jp nz, Not_PP_Up
 
@@ -2486,7 +2487,7 @@ RestorePP:
 	cp b
 	jr nc, .dont_restore
 
-	ld a, [wd002]
+	ld a, [wTempRestorePPItem]
 	cp MAX_ELIXER
 	jr z, .restore_all
 	cp MAX_ETHER

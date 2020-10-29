@@ -44,7 +44,7 @@ _PlayerDecorationMenu:
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 0 ; items
-	dw wd002
+	dw wNumOwnedDecoCategories
 	dw PlaceNthMenuStrings
 	dw .pointers
 
@@ -75,7 +75,7 @@ _PlayerDecorationMenu:
 	ld a, 7
 	call .AppendToStringBuffer2
 	ld hl, wStringBuffer2
-	ld de, wd002
+	ld de, wDecoNameBuffer
 	ld bc, ITEM_NAME_LENGTH
 	call CopyBytes
 	ret
@@ -133,10 +133,11 @@ _PlayerDecorationMenu:
 
 Deco_FillTempWithMinusOne:
 	xor a
-	ld hl, wd002
+	ld hl, wNumOwnedDecoCategories
 	ld [hli], a
+	assert wNumOwnedDecoCategories + 1 == wOwnedDecoCategories
 	ld a, -1
-	ld bc, $10
+	ld bc, 16
 	call ByteFill
 	ret
 
@@ -161,10 +162,11 @@ CheckAllDecorationFlags:
 	ret
 
 AppendDecoIndex:
-	ld hl, wd002
+	ld hl, wNumOwnedDecoCategories
 	inc [hl]
+	assert wNumOwnedDecoCategories + 1 == wOwnedDecoCategories
 	ld e, [hl]
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld [hl], a
 	ret
@@ -176,7 +178,7 @@ FindOwnedDecosInCategory:
 	pop hl
 	call CheckAllDecorationFlags
 	pop bc
-	ld a, [wd002]
+	ld a, [wNumOwnedDecoCategories]
 	and a
 	ret z
 
@@ -335,7 +337,7 @@ DecoExitMenu:
 	ret
 
 PopulateDecoCategoryMenu:
-	ld a, [wd002]
+	ld a, [wNumOwnedDecoCategories]
 	and a
 	jr z, .empty
 	cp 8
@@ -353,9 +355,10 @@ PopulateDecoCategoryMenu:
 	ret
 
 .beyond_eight
-	ld hl, wd002
+	ld hl, wNumOwnedDecoCategories
 	ld e, [hl]
 	dec [hl]
+	assert wNumOwnedDecoCategories + 1 == wOwnedDecoCategories
 	ld d, 0
 	add hl, de
 	ld [hl], -1
@@ -395,7 +398,7 @@ PopulateDecoCategoryMenu:
 .NonscrollingMenuData:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 0 ; items
-	dw wd002
+	dw wDecoNameBuffer
 	dw DecorationMenuFunction
 	dw DecorationAttributes
 
@@ -409,10 +412,10 @@ PopulateDecoCategoryMenu:
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 8, 0 ; rows, columns
 	db SCROLLINGMENU_ITEMS_NORMAL ; item format
-	dbw 0, wd002 ; text pointer
+	dbw 0, wDecoNameBuffer ; text pointer
 	dba DecorationMenuFunction
-	dbw 0, 0
-	dbw 0, 0
+	dbw 0, NULL
+	dbw 0, NULL
 
 GetDecorationData:
 	ld hl, DecorationAttributes
