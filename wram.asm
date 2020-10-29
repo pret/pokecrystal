@@ -1580,7 +1580,7 @@ wPredefTemp:: dw
 wPredefAddress:: dw
 wFarCallBCBuffer:: dw
 
-wcfbb:: db
+wUnusedLinkCommunicationByte:: db
 
 wGameTimerPaused::
 ; bit 0: game timer paused
