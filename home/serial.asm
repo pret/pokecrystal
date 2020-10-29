@@ -191,9 +191,10 @@ Serial_ExchangeByte::
 	sub 1 << SERIAL
 	jr nz, .non_serial_interrupts_enabled
 
-	; a == LOW($5000)
+	; a == 0
+	assert LOW(SERIAL_LINK_BYTE_TIMEOUT) == 0
 	ld [wLinkByteTimeout], a
-	ld a, HIGH($5000)
+	ld a, HIGH(SERIAL_LINK_BYTE_TIMEOUT)
 	ld [wLinkByteTimeout + 1], a
 
 .non_serial_interrupts_enabled

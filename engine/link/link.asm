@@ -28,9 +28,10 @@ LinkCommunications:
 	call SetTradeRoomBGPals
 	call WaitBGMap2
 	ld hl, wLinkByteTimeout
-	xor a ; LOW($5000)
+	assert LOW(SERIAL_LINK_BYTE_TIMEOUT) == 0
+	xor a ; LOW(SERIAL_LINK_BYTE_TIMEOUT)
 	ld [hli], a
-	ld [hl], HIGH($5000)
+	ld [hl], HIGH(SERIAL_LINK_BYTE_TIMEOUT)
 	ld a, [wLinkMode]
 	cp LINK_TIMECAPSULE
 	jp nz, Gen2ToGen2LinkComms
