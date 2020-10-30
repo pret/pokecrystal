@@ -764,6 +764,7 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const ANIM_BG_WOBBLE_PLAYER
 	const ANIM_BG_WOBBLE_SCREEN
 
+; wBattleAnimTileDict keys (see wram.asm)
 ; AnimObjGFX indexes (see data/battle_anims/object_gfx.asm)
 	const_def 1
 	const ANIM_GFX_HIT

@@ -1,5 +1,5 @@
 anim_obj_gfx: MACRO
-; # tiles, label
+; # tiles, gfx pointer
 	db \1
 	dba \2
 ENDM

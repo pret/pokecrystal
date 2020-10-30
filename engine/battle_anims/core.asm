@@ -313,3 +313,5 @@ _ExecuteBGEffects:
 _QueueBGEffect:
 	callfar QueueBGEffect
 	ret
+
+INCLUDE "data/battle_anims/objects.asm"

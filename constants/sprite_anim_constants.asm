@@ -20,6 +20,7 @@ SPRITEANIMSTRUCT_LENGTH EQU const_value
 NUM_SPRITE_ANIM_STRUCTS EQU 10 ; see wSpriteAnimationStructs
 
 ; wSpriteAnimDict keys (see wram.asm)
+; UnusedSpriteAnimGFX indexes (see data/sprite_anims/unused_gfx.asm)
 	const_def
 	const SPRITE_ANIM_DICT_DEFAULT      ; 0
 	const_skip 4                        ; unused

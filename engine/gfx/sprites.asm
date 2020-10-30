@@ -415,9 +415,9 @@ GetSpriteAnimFrame:
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .next_frame ; finished the current sequence
+	jr z, .next_frame
 	dec [hl]
-	call .GetPointer ; load pointer from SpriteAnimFrameData
+	call .GetPointer
 	ld a, [hli]
 	push af
 	jr .okay
@@ -426,7 +426,7 @@ GetSpriteAnimFrame:
 	ld hl, SPRITEANIMSTRUCT_FRAME
 	add hl, bc
 	inc [hl]
-	call .GetPointer ; load pointer from SpriteAnimFrameData
+	call .GetPointer
 	ld a, [hli]
 	cp dorestart_command
 	jr z, .restart
@@ -477,9 +477,6 @@ GetSpriteAnimFrame:
 	jr .loop
 
 .GetPointer:
-	; Get the data for the current frame for the current animation sequence
-
-	; SpriteAnimFrameData[SpriteAnim[SPRITEANIMSTRUCT_FRAMESET_ID]][SpriteAnim[SPRITEANIMSTRUCT_FRAME]]
 	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld e, [hl]
@@ -499,7 +496,6 @@ GetSpriteAnimFrame:
 	ret
 
 GetFrameOAMPointer:
-; Load OAM data pointer
 	ld e, a
 	ld d, 0
 	ld hl, SpriteAnimOAMData
@@ -508,13 +504,13 @@ GetFrameOAMPointer:
 	add hl, de
 	ret
 
-BrokenGetStdGraphics: ; unreferenced
+UnusedLoadSpriteAnimGFX: ; unreferenced
 	push hl
 	ld l, a
 	ld h, 0
 	add hl, hl
 	add hl, hl
-	ld de, BrokenStdGFXPointers ; broken 2bpp pointers
+	ld de, UnusedSpriteAnimGFX
 	add hl, de
 	ld c, [hl]
 	inc hl
@@ -537,20 +533,7 @@ INCLUDE "data/sprite_anims/framesets.asm"
 
 INCLUDE "data/sprite_anims/oam.asm"
 
-BrokenStdGFXPointers:
-	; tile count, bank, pointer
-	; (all pointers were dummied out to .deleted)
-	dbbw 128, $01, .deleted
-	dbbw 128, $01, .deleted
-	dbbw 128, $01, .deleted
-	dbbw 128, $01, .deleted
-	dbbw 16, $37, .deleted
-	dbbw 16, $11, .deleted
-	dbbw 16, $39, .deleted
-	dbbw 16, $24, .deleted
-	dbbw 16, $21, .deleted
-
-.deleted
+INCLUDE "data/sprite_anims/unused_gfx.asm"
 
 Sprites_Cosine:
 ; a = d * cos(a * pi/32)
