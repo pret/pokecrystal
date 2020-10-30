@@ -163,10 +163,7 @@ _CrystalCGB_MobileLayout1:
 	ret
 
 .TextPalette:
-	RGB 31, 31, 31
-	RGB 26, 31, 00
-	RGB 20, 16, 03
-	RGB 00, 00, 00
+INCLUDE "gfx/mystery_gift/mobile_text.pal"
 
 Function49480:
 	hlcoord 0, 0, wAttrmap
@@ -211,16 +208,10 @@ _CrystalCGB_NameCard:
 	ret
 
 .BGPalette:
-	RGB 31, 31, 31
-	RGB 23, 16, 07
-	RGB 23, 07, 07
-	RGB 03, 07, 20
+INCLUDE "gfx/mystery_gift/name_card_bg.pal"
 
 .OBPalette:
-	RGB 00, 00, 00
-	RGB 07, 05, 31
-	RGB 14, 18, 31
-	RGB 31, 31, 31
+INCLUDE "gfx/mystery_gift/name_card_ob.pal"
 
 Function49742:
 	ld hl, .MobileBorderPalettes

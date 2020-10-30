@@ -1386,17 +1386,11 @@ Intro_Scene20_AppearUnown:
 	ldh [hCGBPalUpdate], a
 	ret
 
-.pal1
-	RGB 24, 12, 09
-	RGB 31, 31, 31
-	RGB 12, 00, 31
-	RGB 00, 00, 00
+.pal1:
+INCLUDE "gfx/intro/unown_1.pal"
 
-.pal2
-	RGB 24, 12, 09
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
+.pal2:
+INCLUDE "gfx/intro/unown_2.pal"
 
 Intro_FadeUnownWordPals:
 	add a
