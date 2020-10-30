@@ -288,7 +288,7 @@ GetBattleAnimTileOffset:
 	push bc
 	ld hl, wBattleAnimTileDict
 	ld b, a
-	ld c, 10 / 2
+	ld c, NUM_BATTLEANIMTILEDICT_ENTRIES
 .loop
 	ld a, [hli]
 	cp b

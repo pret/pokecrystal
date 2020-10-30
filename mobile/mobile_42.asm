@@ -191,10 +191,10 @@ Function1080b7:
 	lb bc, BANK(TradePoofGFX), 12
 	call Request2bpp
 
-	xor a
+	xor a ; SPRITE_ANIM_DICT_DEFAULT
 	ld hl, wSpriteAnimDict
 	ld [hli], a
-	ld [hl], $0
+	ld [hl], $00
 
 	ld a, [wPlayerTrademonSpecies]
 	ld hl, wPlayerTrademonDVs
@@ -239,10 +239,10 @@ Function108157:
 	ld a, $90
 	ldh [hWY], a
 	farcall ClearSpriteAnims
-	xor a
+	xor a ; SPRITE_ANIM_DICT_DEFAULT
 	ld hl, wSpriteAnimDict
 	ld [hli], a
-	ld [hl], $0
+	ld [hl], $00
 	call DelayFrame
 	ld a, [wPlayerTrademonSpecies]
 	ld de, wPlayerTrademonSpeciesName

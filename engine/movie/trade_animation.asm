@@ -1355,7 +1355,7 @@ LoadTradeBallAndCableGFX:
 	ld hl, vTiles0 tile $74
 	lb bc, BANK(TradeCableGFX), 4
 	call Request2bpp
-	xor a
+	xor a ; SPRITE_ANIM_DICT_DEFAULT
 	ld hl, wSpriteAnimDict
 	ld [hli], a
 	ld [hl], $62
@@ -1369,7 +1369,7 @@ LoadTradeBubbleGFX:
 	ld hl, vTiles0 tile $72
 	lb bc, BANK(TradeBubbleGFX), 4
 	call Request2bpp
-	xor a
+	xor a ; SPRITE_ANIM_DICT_DEFAULT
 	ld hl, wSpriteAnimDict
 	ld [hli], a
 	ld [hl], $62

@@ -19,10 +19,10 @@ _DummyGame:
 	ld bc, 4 tiles
 	ld a, BANK(DummyGameGFX)
 	call FarCopyBytes
-	ld a, $8
+	ld a, SPRITE_ANIM_DICT_ARROW_CURSOR
 	ld hl, wSpriteAnimDict
 	ld [hli], a
-	ld [hl], $0
+	ld [hl], $00
 	hlcoord 0, 0
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
 	xor a

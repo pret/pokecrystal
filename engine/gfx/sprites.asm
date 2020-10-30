@@ -1,6 +1,6 @@
 ClearSpriteAnims:
-	ld hl, wSpriteAnimDict
-	ld bc, wSpriteAnimsEnd - wSpriteAnimDict
+	ld hl, wSpriteAnimData
+	ld bc, wSpriteAnimDataEnd - wSpriteAnimData
 .loop
 	ld [hl], 0
 	inc hl
@@ -168,8 +168,8 @@ _InitSpriteAnimStruct::
 	ld a, [de]
 	ld [hli], a ; SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	inc de
-; Look up the third field from the table in the wSpriteAnimDict array (10x2).
-; Take the value and load it in
+; Look up the third field in the wSpriteAnimDict mapping.
+; Take the mapped value and load it in.
 	ld a, [de]
 	call GetSpriteAnimVTile
 	ld [hli], a ; SPRITEANIMSTRUCT_TILE_ID
@@ -373,13 +373,12 @@ InitSpriteAnimBuffer:
 	ret
 
 GetSpriteAnimVTile:
-; a = wSpriteAnimDict[a] if a in wSpriteAnimDict else 0
-; vTiles offset
+; a = wSpriteAnimDict[a] if a in wSpriteAnimDict else vtile offset $00
 	push hl
 	push bc
 	ld hl, wSpriteAnimDict
 	ld b, a
-	ld c, NUM_SPRITE_ANIM_STRUCTS
+	ld c, NUM_SPRITEANIMDICT_ENTRIES
 .loop
 	ld a, [hli]
 	cp b
@@ -634,8 +633,8 @@ ClearSpriteAnims2:
 	push de
 	push bc
 	push af
-	ld hl, wSpriteAnimDict
-	ld bc, wSpriteAnimsEnd - wSpriteAnimDict
+	ld hl, wSpriteAnimData
+	ld bc, wSpriteAnimDataEnd - wSpriteAnimData
 .loop
 	ld [hl], 0
 	inc hl

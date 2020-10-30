@@ -19,6 +19,18 @@
 SPRITEANIMSTRUCT_LENGTH EQU const_value
 NUM_SPRITE_ANIM_STRUCTS EQU 10 ; see wSpriteAnimationStructs
 
+; wSpriteAnimDict keys (see wram.asm)
+	const_def
+	const SPRITE_ANIM_DICT_DEFAULT      ; 0
+	const_skip 4                        ; unused
+	const SPRITE_ANIM_DICT_TEXT_CURSOR  ; 5
+	const SPRITE_ANIM_DICT_GS_SPLASH    ; 6
+	const SPRITE_ANIM_DICT_SLOTS        ; 7
+	const SPRITE_ANIM_DICT_ARROW_CURSOR ; 8
+
+; wSpriteAnimDict size (see wram.asm)
+NUM_SPRITEANIMDICT_ENTRIES EQU 10
+
 ; SpriteAnimSeqData indexes (see data/sprite_anims/sequences.asm)
 	const_def
 	const SPRITE_ANIM_INDEX_PARTY_MON                 ; 00

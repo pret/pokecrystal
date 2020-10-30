@@ -926,7 +926,7 @@ IntroScene19:
 	ldh [hWY], a
 	farcall ClearSpriteAnims
 	ld hl, wSpriteAnimDict
-	xor a
+	xor a ; SPRITE_ANIM_DICT_DEFAULT
 	ld [hli], a
 	ld [hl], $7f
 	call Intro_SetCGBPalUpdate
