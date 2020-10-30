@@ -22,7 +22,7 @@ GameTimer::
 	ldh [rSVBK], a
 	ret
 
-.Function
+.Function:
 ; Increment the game timer by one frame.
 ; The game timer is capped at 999:59:59.00.
 

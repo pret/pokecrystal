@@ -1085,7 +1085,7 @@ BeatUpAttackText:
 	line "attack!"
 	done
 
-RefusedGiftText:
+PresentFailedText:
 	text "<TARGET>"
 	line "refused the gift!"
 	prompt

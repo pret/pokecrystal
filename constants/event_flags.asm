@@ -136,9 +136,9 @@
 	const EVENT_TIN_TOWER_5F_HIDDEN_FULL_RESTORE
 	const EVENT_TIN_TOWER_5F_HIDDEN_CARBOS
 	const EVENT_BURNED_TOWER_1F_HIDDEN_ETHER
-	const_skip ; unused
-	const_skip ; unused
-	const_skip ; unused
+	const_skip ; unused in Crystal
+	const_skip ; unused in Crystal
+	const_skip ; unused in Crystal
 	const EVENT_NATIONAL_PARK_HIDDEN_FULL_HEAL
 	const EVENT_OLIVINE_LIGHTHOUSE_5F_HIDDEN_HYPER_POTION
 	const EVENT_TEAM_ROCKET_BASE_B1F_HIDDEN_REVIVE
@@ -281,11 +281,11 @@
 	const EVENT_GAVE_KURT_PNK_APRICORN
 ; Phone events
 	const EVENT_JACK_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_BEVERLY_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_HUEY_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_GOT_PROTEIN_FROM_HUEY
 	const EVENT_GOT_HP_UP_FROM_JOEY
 	const EVENT_GOT_CARBOS_FROM_VANCE
@@ -293,55 +293,55 @@
 	const EVENT_GOT_CALCIUM_FROM_ERIN
 	const EVENT_KENJI_ON_BREAK
 	const EVENT_GAVEN_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_BETH_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_JOSE_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_REENA_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_JOEY_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_WADE_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_RALPH_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_LIZ_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_ANTHONY_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_TODD_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_GINA_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_IRWIN_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_ARNIE_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_ALAN_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const_skip ; unused
 	const_skip ; unused
 	const EVENT_DANA_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_CHAD_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_DEREK_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_TULLY_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_BRENT_ASKED_FOR_PHONE_NUMBER
 	const_skip ; unused
 	const EVENT_TIFFANY_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_VANCE_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_WILTON_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_KENJI_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_PARRY_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_ERIN_ASKED_FOR_PHONE_NUMBER
 	const EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
 	const_skip ; unused
@@ -1229,7 +1229,7 @@
 	const EVENT_COPYCAT_2
 	const EVENT_GOLDENROD_SALE_OFF
 	const EVENT_GOLDENROD_SALE_ON
-	const_skip ; unused
+	const_skip ; unused in Crystal
 	const EVENT_ILEX_FOREST_APPRENTICE
 	const EVENT_ILEX_FOREST_CHARCOAL_MASTER
 	const EVENT_CHARCOAL_KILN_FARFETCH_D

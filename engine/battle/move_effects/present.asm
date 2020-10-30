@@ -80,7 +80,7 @@ BattleCommand_Present:
 	call _CheckBattleScene
 	jr nc, .do_animation
 	call AnimateFailedMove
-	ld hl, RefusedGiftText
+	ld hl, PresentFailedText
 	call StdBattleTextbox
 .do_animation
 	jp EndMoveEffect

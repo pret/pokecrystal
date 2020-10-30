@@ -468,6 +468,7 @@ Sfx_Unknown5F:
 	channel 6, Sfx_Unknown5F_Ch6
 Sfx_Sandstorm:
 	channel 8, Sfx_Sandstorm_Ch8
+	assert Sfx_Sandstorm_Ch8 == Sfx_Unknown5F_Ch8
 
 Sfx_HangUp:
 	channel_count 1

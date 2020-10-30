@@ -84,11 +84,12 @@ LEFT_MASK  EQU 1 << LEFT
 RIGHT_MASK EQU 1 << RIGHT
 
 ; wFacingDirection::
+	const_def NUM_DIRECTIONS - 1, -1
+	shift_const FACE_DOWN  ; 8
+	shift_const FACE_UP    ; 4
+	shift_const FACE_LEFT  ; 2
+	shift_const FACE_RIGHT ; 1
 FACE_CURRENT EQU 0
-FACE_DOWN    EQU 8
-FACE_UP      EQU 4
-FACE_LEFT    EQU 2
-FACE_RIGHT   EQU 1
 
 ; wPokemonWithdrawDepositParameter::
 PC_WITHDRAW       EQU 0

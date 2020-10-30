@@ -19,9 +19,9 @@ cd /mnt/c/Users/<user>/Desktop
 
 (The Windows `C:\` drive is called `/mnt/c/` in WSL. Replace *\<user>* in the example path with your username.)
 
-Then follow [the instructions for **Linux**](#linux).
+If this works, then follow [the instructions for **Linux**](#linux) below for whatever distribution you installed for WSL.
 
-If this doesn't work, try following [the regular Windows instructions](#windows) below.
+Otherwise, continue reading below for [the older Windows instructions](#windows).
 
 
 ## Windows
@@ -55,7 +55,7 @@ cd /cygdrive/c/Users/<user>/Desktop
 Now you're ready to [build **pokecrystal**](#build-pokecrystal).
 
 
-## Mac OS X
+## macOS
 
 Install [**Homebrew**](https://brew.sh/). Follow the official instructions.
 

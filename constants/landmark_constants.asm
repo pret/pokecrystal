@@ -102,8 +102,9 @@ KANTO_LANDMARK EQU const_value
 	const LANDMARK_FAST_SHIP         ; 5f
 
 ; used in CaughtData
-LANDMARK_GIFT  EQU $7e
-LANDMARK_EVENT EQU $7f
+	const_def $7f, -1
+	const LANDMARK_EVENT             ; $7f
+	const LANDMARK_GIFT              ; $7e
 
 ; Regions
 	const_def
