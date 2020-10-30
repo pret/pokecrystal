@@ -113,8 +113,7 @@ RuinsOfAlphOmanyteChamberWallPatternLeftText:
 	line "on the walls…"
 	done
 
-RuinsOfAlphOmanyteChamberUnownText:
-; unused
+RuinsOfAlphOmanyteChamberUnownText: ; unreferenced
 	text "It's UNOWN text!"
 	done
 

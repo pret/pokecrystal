@@ -481,7 +481,7 @@ GetNumberedTMHM:
 	jr c, .done
 	cp ITEM_DC - (TM01 - 1) - 1
 	jr c, .skip_one
-.skip_two
+; skip two
 	inc a
 .skip_one
 	inc a

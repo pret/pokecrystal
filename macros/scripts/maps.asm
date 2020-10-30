@@ -1,5 +1,7 @@
 map_id: MACRO
 ;\1: map id
+	assert DEF(GROUP_\1) && DEF(MAP_\1), \
+		"Missing 'map_const \1' in constants/map_constants.asm"
 	db GROUP_\1, MAP_\1
 ENDM
 

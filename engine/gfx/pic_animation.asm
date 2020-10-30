@@ -648,7 +648,7 @@ PokeAnim_ConvertAndApplyBitmask:
 .skip2
 	ret
 
-; unused
+.UnusedSizeData: ; unreferenced
 	db 6, 5, 4
 
 .GetTilemap:

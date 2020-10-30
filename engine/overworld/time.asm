@@ -203,7 +203,7 @@ CheckPokerusTick::
 	xor a
 	ret
 
-SetUnusedTwoDayTimer:
+SetUnusedTwoDayTimer: ; unreferenced
 	ld a, 2
 	ld hl, wUnusedTwoDayTimer
 	ld [hl], a
@@ -220,12 +220,12 @@ CheckUnusedTwoDayTimer:
 	call UpdateTimeRemaining
 	ret
 
-; unused
+UnusedSetSwarmFlag: ; unreferenced
 	ld hl, wDailyFlags1
 	set DAILYFLAGS1_FISH_SWARM_F, [hl]
 	ret
 
-; unused
+UnusedCheckSwarmFlag: ; unreferenced
 	and a
 	ld hl, wDailyFlags1
 	bit DAILYFLAGS1_FISH_SWARM_F, [hl]
@@ -272,7 +272,7 @@ DoMysteryGiftIfDayHasPassed:
 	ld hl, wBuffer1
 	call InitOneDayCountdown
 	call CloseSRAM
-	farcall Function1050c8
+	farcall ResetDailyMysteryGiftLimitIfUnlocked
 
 .not_timed_out
 	ld a, BANK(sMysteryGiftTimer)
@@ -308,7 +308,7 @@ UpdateTimeRemaining:
 	scf
 	ret
 
-GetSecondsSinceIfLessThan60:
+GetSecondsSinceIfLessThan60: ; unreferenced
 	ld a, [wDaysSince]
 	and a
 	jr nz, GetTimeElapsed_ExceedsUnitLimit
@@ -330,7 +330,7 @@ GetMinutesSinceIfLessThan60:
 	ld a, [wMinutesSince]
 	ret
 
-GetHoursSinceIfLessThan24:
+GetHoursSinceIfLessThan24: ; unreferenced
 	ld a, [wDaysSince]
 	and a
 	jr nz, GetTimeElapsed_ExceedsUnitLimit
@@ -349,7 +349,7 @@ CalcDaysSince:
 	xor a
 	jr _CalcDaysSince
 
-CalcHoursDaysSince:
+CalcHoursDaysSince: ; unreferenced
 	inc hl
 	xor a
 	jr _CalcHoursDaysSince
@@ -423,7 +423,7 @@ CopyDayToHL:
 	ld [hl], a
 	ret
 
-CopyDayHourToHL:
+CopyDayHourToHL: ; unreferenced
 	ld a, [wCurDay]
 	ld [hli], a
 	ldh a, [hHours]

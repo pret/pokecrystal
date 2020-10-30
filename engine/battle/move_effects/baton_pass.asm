@@ -17,7 +17,7 @@ BattleCommand_BatonPass:
 
 ; Transition into switchmon menu
 	call LoadStandardMenuHeader
-	farcall SetUpBattlePartyMenu_NoLoop
+	farcall SetUpBattlePartyMenu
 
 	farcall ForcePickSwitchMonInBattle
 

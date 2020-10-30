@@ -57,7 +57,7 @@ EngineFlagAction::
 	jr z, .set   ; b = 1
 
 ; Return the given flag in c.
-.check
+; check
 	ld a, [de]
 	and c
 	ld c, a

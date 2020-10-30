@@ -257,6 +257,7 @@ MenuBoxCoord2Tile::
 	ld c, a
 	ld a, [wMenuBorderTopCoord]
 	ld b, a
+	; fallthrough
 
 Coord2Tile::
 ; Return the address of wTilemap(c, b) in hl.
@@ -330,7 +331,7 @@ MenuTextbox::
 	pop hl
 	jp PrintText
 
-; unused
+Menu_DummyFunction:: ; unreferenced
 	ret
 
 LoadMenuTextbox::
@@ -430,12 +431,12 @@ _YesNoBox::
 	ld hl, YesNoMenuHeader
 	call CopyMenuHeader
 	pop bc
-; This seems to be an overflow prevention, but
-; it was coded wrong.
+; This seems to be an overflow prevention,
+; but it was coded wrong.
 	ld a, b
-	cp SCREEN_WIDTH - 6
+	cp SCREEN_WIDTH - 1 - 5
 	jr nz, .okay ; should this be "jr nc"?
-	ld a, SCREEN_WIDTH - 6
+	ld a, SCREEN_WIDTH - 1 - 5
 	ld b, a
 
 .okay

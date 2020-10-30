@@ -15,7 +15,7 @@ Special::
 
 INCLUDE "data/events/special_pointers.asm"
 
-DummySpecial_c224:
+UnusedDummySpecial:
 	ret
 
 SetPlayerPalette:
@@ -207,7 +207,7 @@ CardFlip:
 	call StartGameCornerGame
 	ret
 
-DummyNonfunctionalGameCornerGame:
+UnusedDummyGame:
 	call CheckCoinsAndCoinCase
 	ret c
 	ld a, BANK(_DummyGame)
@@ -380,17 +380,17 @@ GameboyCheck:
 	ldh a, [hCGB]
 	and a
 	jr nz, .cgb
-
 	ldh a, [hSGB]
 	and a
 	jr nz, .sgb
-
-.gb
+; gb
 	xor a ; GBCHECK_GB
 	jr .done
+
 .sgb
 	ld a, GBCHECK_SGB
 	jr .done
+
 .cgb
 	ld a, GBCHECK_CGB
 .done

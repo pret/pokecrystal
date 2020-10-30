@@ -156,18 +156,18 @@ StartMenu_PrintBugContestStatus:
 	set NO_TEXT_SCROLL, [hl]
 	call StartMenu_DrawBugContestStatusBox
 	hlcoord 1, 5
-	ld de, .Balls_EN
+	ld de, .BallsString
 	call PlaceString
 	hlcoord 8, 5
 	ld de, wParkBallsRemaining
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
 	call PrintNum
 	hlcoord 1, 1
-	ld de, .CAUGHT
+	ld de, .CaughtString
 	call PlaceString
 	ld a, [wContestMon]
 	and a
-	ld de, .None
+	ld de, .NoneString
 	jr z, .no_contest_mon
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
@@ -179,7 +179,7 @@ StartMenu_PrintBugContestStatus:
 	and a
 	jr z, .skip_level
 	hlcoord 1, 3
-	ld de, .LEVEL
+	ld de, .LevelString
 	call PlaceString
 	ld a, [wContestMonLevel]
 	ld h, b
@@ -193,15 +193,15 @@ StartMenu_PrintBugContestStatus:
 	ld [wOptions], a
 	ret
 
-.Balls_JP:
+.BallsJPString: ; unreferenced
 	db "ボール　　　こ@"
-.CAUGHT:
+.CaughtString:
 	db "CAUGHT@"
-.Balls_EN:
+.BallsString:
 	db "BALLS:@"
-.None:
+.NoneString:
 	db "None@"
-.LEVEL:
+.LevelString:
 	db "LEVEL@"
 
 FindApricornsInBag:

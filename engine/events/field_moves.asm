@@ -426,7 +426,7 @@ FlyFunction_FrameTimer:
 	ret
 
 .SpawnLeaf:
-	ld hl, wcf65
+	ld hl, wFrameCounter2
 	ld a, [hl]
 	inc [hl]
 	and $7

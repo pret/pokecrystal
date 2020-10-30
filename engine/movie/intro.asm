@@ -21,7 +21,7 @@ CrystalIntro:
 	call DelayFrame
 	jp .loop
 
-.ShutOffMusic:
+.ShutOffMusic
 	ld de, MUSIC_NONE
 	call PlayMusic
 
@@ -152,14 +152,14 @@ IntroScene2:
 	cp $80
 	jr nc, .endscene
 	cp $60
-	jr nz, .DontPlaySound
+	jr nz, .nosound
 	push af
 	depixel 11, 11
 	call CrystalIntro_InitUnownAnim
 	ld de, SFX_INTRO_UNOWN_1
 	call PlaySFX
 	pop af
-.DontPlaySound:
+.nosound
 	ld [wIntroSceneTimer], a
 	xor a
 	call CrystalIntro_UnownFade
@@ -971,7 +971,8 @@ IntroScene20:
 	xor a
 	call Intro_Scene20_AppearUnown
 	ret
-; unused
+
+.AppearUnownPal2: ; unreferenced
 	ld a, c
 	and $1c
 	srl a
@@ -981,7 +982,7 @@ IntroScene20:
 	call Intro_Scene20_AppearUnown
 	ret
 
-.finished
+.finished:
 	call NextIntroScene
 	ret
 

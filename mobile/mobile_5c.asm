@@ -93,7 +93,7 @@ Clears5_a89a:
 	call CloseSRAM
 	ret
 
-Function170c06:
+Function170c06: ; unreferenced
 	ld a, $5
 	call OpenSRAM
 	ld hl, $a894

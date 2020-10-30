@@ -108,7 +108,8 @@ box: MACRO
 \1MonOT::           ds NAME_LENGTH * MONS_PER_BOX
 \1MonNicknames::    ds MON_NAME_LENGTH * MONS_PER_BOX
 \1MonNicknamesEnd::
-\1End::             ds 2 ; padding
+\1End::
+	ds 2 ; padding
 ENDM
 
 map_connection_struct: MACRO

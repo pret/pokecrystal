@@ -167,8 +167,7 @@ RuinsOfAlphResearchCenterPrinter:
 	closetext
 	end
 
-RuinsOfAlphResearchCenterPhoto:
-; unreferenced
+RuinsOfAlphResearchCenterPhoto: ; unreferenced
 	jumptext RuinsOfAlphResearchCenterProfSilktreePhotoText
 
 RuinsOfAlphResearchCenterBookshelf:
@@ -307,8 +306,7 @@ RuinsOfAlphResearchCenterScientist2Text_UnownAppeared:
 	cont "kinds of them…"
 	done
 
-RuinsOfAlphResearchCenterUnusedText1:
-; unused
+RuinsOfAlphResearchCenterUnusedText1: ; unreferenced
 	text "We think something"
 	line "caused the cryptic"
 
@@ -319,8 +317,7 @@ RuinsOfAlphResearchCenterUnusedText1:
 	line "studies on that."
 	done
 
-RuinsOfAlphResearchCenterUnusedText2:
-; unused
+RuinsOfAlphResearchCenterUnusedText2: ; unreferenced
 	text "According to my"
 	line "research…"
 
@@ -374,7 +371,6 @@ RuinsOfAlphResearchCenterUnownPrinterText:
 	done
 
 RuinsOfAlphResearchCenterProfSilktreePhotoText:
-; unused
 	text "It's a photo of"
 	line "the RESEARCH"
 

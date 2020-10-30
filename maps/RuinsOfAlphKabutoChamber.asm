@@ -200,8 +200,7 @@ RuinsOfAlphKabutoChamberScientistTremorText:
 	cont "this wall here…"
 	done
 
-RuinsOfAlphKabutoChamberUnusedText:
-; unused
+RuinsOfAlphKabutoChamberUnusedText: ; unreferenced
 	text "The patterns on"
 	line "the wall appear to"
 	cont "be words!"
@@ -224,8 +223,7 @@ RuinsOfAlphKabutoChamberWallPatternLeftText:
 	line "on the walls…"
 	done
 
-RuinsOfAlphKabutoChamberUnownText:
-; unused
+RuinsOfAlphKabutoChamberUnownText: ; unreferenced
 	text "It's UNOWN text!"
 	done
 

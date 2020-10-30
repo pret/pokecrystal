@@ -112,8 +112,7 @@ RuinsOfAlphAerodactylChamberWallPatternLeftText:
 	line "on the walls…"
 	done
 
-RuinsOfAlphAerodactylChamberUnownText:
-; unused
+RuinsOfAlphAerodactylChamberUnownText: ; unreferenced
 	text "It's UNOWN text!"
 	done
 

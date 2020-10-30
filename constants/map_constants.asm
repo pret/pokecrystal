@@ -1,5 +1,5 @@
 newgroup: MACRO
-const_value = const_value + 1
+	const_skip
 __map_value__ = 1
 ENDM
 

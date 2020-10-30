@@ -15,7 +15,7 @@ Function16d42e:
 	call CopyBytes
 	ret
 
-Function16d43b:
+Function16d43b: ; unreferenced
 	call LoadStandardMenuHeader
 	call ClearBGPalettes
 	call ClearTilemap
@@ -153,15 +153,15 @@ LinkTextbox:
 	call _LinkTextbox
 	ret
 
-Function16d6ce:
+PrintWaitingTextAndSyncAndExchangeNybble:
 	call LoadStandardMenuHeader
-	call Function16d6e1
+	call .PrintWaitingText
 	farcall WaitLinkTransfer
 	call Call_ExitMenu
 	call WaitBGMap2
 	ret
 
-Function16d6e1:
+.PrintWaitingText:
 	hlcoord 4, 10
 	ld b, 1
 	ld c, 10

@@ -1,6 +1,6 @@
 SECTION "Scratch", SRAM
 
-sScratch:: ds $600
+sScratch:: ds $60 tiles
 
 
 SECTION "SRAM Bank 0", SRAM
@@ -22,7 +22,7 @@ sPartyMon5MailBackup:: mailmsg sPartyMon5MailBackup
 sPartyMon6MailBackup:: mailmsg sPartyMon6MailBackup
 
 sMailboxCount:: db
-sMailbox::
+sMailboxes::
 sMailbox1::  mailmsg sMailbox1
 sMailbox2::  mailmsg sMailbox2
 sMailbox3::  mailmsg sMailbox3
@@ -35,7 +35,7 @@ sMailbox9::  mailmsg sMailbox9
 sMailbox10:: mailmsg sMailbox10
 
 sMailboxCountBackup:: db
-sMailboxBackup::
+sMailboxesBackup::
 sMailbox1Backup::  mailmsg sMailbox1Backup
 sMailbox2Backup::  mailmsg sMailbox2Backup
 sMailbox3Backup::  mailmsg sMailbox3Backup
@@ -47,20 +47,20 @@ sMailbox8Backup::  mailmsg sMailbox8Backup
 sMailbox9Backup::  mailmsg sMailbox9Backup
 sMailbox10Backup:: mailmsg sMailbox10Backup
 
+sMysteryGiftData::
 sMysteryGiftItem:: db
 sMysteryGiftUnlocked:: db
 sBackupMysteryGiftItem:: db
 sNumDailyMysteryGiftPartnerIDs:: db
-sDailyMysteryGiftPartnerIDs:: ds 5 * 2 ; maximum 5 per day, 2 bytes per ID
+sDailyMysteryGiftPartnerIDs:: ds MAX_MYSTERY_GIFT_PARTNERS * 2
 sMysteryGiftDecorationsReceived:: flag_array NUM_NON_TROPHY_DECOS
 	ds 4
-sMysteryGiftTimer:: db
-sMysteryGiftTimerStartDay:: db
+sMysteryGiftTimer:: dw
 	ds 1
 sMysteryGiftTrainerHouseFlag:: db
 sMysteryGiftPartnerName:: ds NAME_LENGTH
-	ds 1
-sMysteryGiftTrainer:: ds (1 + 1 + NUM_MOVES) * PARTY_LENGTH + 2
+sMysteryGiftUnusedFlag:: db
+sMysteryGiftTrainer:: ds wMysteryGiftTrainerEnd - wMysteryGiftTrainer
 sBackupMysteryGiftItemEnd::
 
 	ds $30
@@ -194,7 +194,6 @@ sBattleTowerChallengeState::
 ; 2: battle tower
 	db
 
-sBattleTower::
 sNrOfBeatenBattleTowerTrainers:: db
 sBTChoiceOfLevelGroup:: db
 ; Battle Tower trainers are saved here, so nobody appears more than once

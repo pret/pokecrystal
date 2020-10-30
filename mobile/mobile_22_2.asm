@@ -32,7 +32,7 @@ Function8b342::
 .two
 	ret
 
-Function8b35d:
+Function8b35d: ; unreferenced
 	ld a, h
 	cp d
 	ret nz
@@ -40,7 +40,7 @@ Function8b35d:
 	cp e
 	ret
 
-Function8b363:
+Function8b363: ; unreferenced
 	push bc
 	farcall Mobile_AlwaysReturnNotCarry
 	pop bc
@@ -719,7 +719,7 @@ Function8b75d:
 	jr nz, .asm_8b780
 	jr Function8b79e
 
-Function8b787:
+Function8b787: ; unreferenced
 	ret
 
 Function8b788:

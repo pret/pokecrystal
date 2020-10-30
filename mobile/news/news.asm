@@ -28,7 +28,7 @@ Function1f4dbe: ; unreferenced
 .news_data
 INCBIN "mobile/news/news_2.bin"
 
-Function1f5d9f:
+Function1f5d9f: ; unreferenced
 	ld a, BANK(s6_a000)
 	call OpenSRAM
 	ld hl, .news_data

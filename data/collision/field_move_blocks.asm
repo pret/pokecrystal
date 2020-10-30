@@ -1,3 +1,4 @@
+; these blocks all use COLL_CUT_TREE in one quadrant
 CutTreeBlockPointers:
 ; tileset, block list pointer
 	dbw TILESET_JOHTO,        .johto
@@ -42,6 +43,8 @@ CutTreeBlockPointers:
 	db $0f, $17, 0
 	db -1 ; end
 
+
+; these blocks all use COLL_WHIRLPOOL in one quadrant
 WhirlpoolBlockPointers:
 	dbw TILESET_JOHTO, .johto
 	db -1 ; end

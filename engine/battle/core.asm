@@ -1697,7 +1697,7 @@ HandleWeather:
 	cp USING_EXTERNAL_CLOCK
 	jr z, .enemy_first
 
-.player_first
+; player first
 	call SetPlayerTurn
 	call .SandstormDamage
 	call SetEnemyTurn
@@ -2711,7 +2711,7 @@ AskUseNextPokemon:
 ForcePlayerMonChoice:
 	call EmptyBattleTextbox
 	call LoadStandardMenuHeader
-	call SetUpBattlePartyMenu_NoLoop
+	call SetUpBattlePartyMenu
 	call ForcePickPartyMonInBattle
 	ld a, [wLinkMode]
 	and a
@@ -2810,9 +2810,9 @@ IsMobileBattle:
 	cp LINK_MOBILE
 	ret
 
-SetUpBattlePartyMenu_NoLoop:
+SetUpBattlePartyMenu:
 	call ClearBGPalettes
-SetUpBattlePartyMenu: ; switch to fullscreen menu?
+SetUpBattlePartyMenu_Loop: ; switch to fullscreen menu?
 	farcall LoadPartyMenuGFX
 	farcall InitPartyMenuWithCancel
 	farcall InitPartyMenuBGPal7
@@ -3006,10 +3006,11 @@ PlayerMonFaintedAnimation:
 	jp MonFaintedAnimation
 
 MonFaintedAnimation:
-	ld a, [wcfbe]
+	ld a, [wJoypadDisable]
 	push af
-	set 6, a
-	ld [wcfbe], a
+	set JOYPAD_DISABLE_MON_FAINT_F, a
+	ld [wJoypadDisable], a
+
 	ld b, 7
 
 .OuterLoop:
@@ -3052,7 +3053,7 @@ MonFaintedAnimation:
 	jr nz, .OuterLoop
 
 	pop af
-	ld [wcfbe], a
+	ld [wJoypadDisable], a
 	ret
 
 .Spaces:
@@ -3486,7 +3487,7 @@ OfferSwitch:
 	ld a, [wMenuCursorY]
 	dec a
 	jr nz, .said_no
-	call SetUpBattlePartyMenu_NoLoop
+	call SetUpBattlePartyMenu
 	call PickSwitchMonInBattle
 	jr c, .canceled_switch
 	ld a, [wCurBattleMon]
@@ -4639,7 +4640,7 @@ CheckDanger:
 PrintPlayerHUD:
 	ld de, wBattleMonNick
 	hlcoord 10, 7
-	call ret_3e138
+	call Battle_DummyFunction
 	call PlaceString
 
 	push bc
@@ -4725,7 +4726,7 @@ DrawEnemyHUD:
 	call GetBaseData
 	ld de, wEnemyMonNick
 	hlcoord 1, 0
-	call ret_3e138
+	call Battle_DummyFunction
 	call PlaceString
 	ld h, b
 	ld l, c
@@ -4854,7 +4855,8 @@ UpdateHPPal:
 	ret z
 	jp FinishBattleAnim
 
-ret_3e138:
+Battle_DummyFunction:
+; called before placing either battler's nickname in the HUD
 	ret
 
 BattleMenu:
@@ -5043,7 +5045,7 @@ BattleMenuPKMN_ReturnFromStats:
 	call LoadStandardMenuHeader
 	call ClearBGPalettes
 BattleMenuPKMN_Loop:
-	call SetUpBattlePartyMenu
+	call SetUpBattlePartyMenu_Loop
 	xor a
 	ld [wPartyMenuActionText], a
 	call JumpToPartyMenuAndPrintText
@@ -7436,13 +7438,13 @@ AnimateExpBar:
 	jp nc, .finish
 
 	ldh a, [hProduct + 3]
-	ld [wd004], a
+	ld [wExperienceGained + 2], a
 	push af
 	ldh a, [hProduct + 2]
-	ld [wd003], a
+	ld [wExperienceGained + 1], a
 	push af
 	xor a
-	ld [wd002], a
+	ld [wExperienceGained], a
 	xor a ; PARTYMON
 	ld [wMonType], a
 	predef CopyMonToTempMon
@@ -7454,10 +7456,10 @@ AnimateExpBar:
 	call CalcExpBar
 	push bc
 	ld hl, wTempMonExp + 2
-	ld a, [wd004]
+	ld a, [wExperienceGained + 2]
 	add [hl]
 	ld [hld], a
-	ld a, [wd003]
+	ld a, [wExperienceGained + 1]
 	adc [hl]
 	ld [hld], a
 	jr nc, .NoOverflow
@@ -7781,7 +7783,8 @@ HandleSafariAngerEatingStatus: ; unreferenced
 	jr .finish
 
 .angry
-	dec hl ; wSafariMonAngerCount
+	dec hl
+	assert wSafariMonEating - 1 == wSafariMonAngerCount
 	ld a, [hl]
 	and a
 	ret z
@@ -8785,7 +8788,7 @@ AddLastLinkBattleToLinkRecord:
 .FindOpponentAndAppendRecord:
 	ld b, NUM_LINK_BATTLE_RECORDS
 	ld hl, sLinkBattleRecord1End - 1
-	ld de, wd002
+	ld de, wLinkBattleRecordBuffer
 .loop3
 	push bc
 	push de
@@ -8814,16 +8817,16 @@ AddLastLinkBattleToLinkRecord:
 	add b
 	add b
 	ld e, a
-	ld d, $0
-	ld hl, wd002
+	ld d, 0
+	ld hl, wLinkBattleRecordBuffer
 	add hl, de
 	push hl
 	ld a, c
 	add c
 	add c
 	ld e, a
-	ld d, $0
-	ld hl, wd002
+	ld d, 0
+	ld hl, wLinkBattleRecordBuffer
 	add hl, de
 	ld d, h
 	ld e, l
@@ -8855,7 +8858,7 @@ AddLastLinkBattleToLinkRecord:
 	ld hl, sLinkBattleRecord
 	call AddNTimes
 	push hl
-	ld de, wd002
+	ld de, wLinkBattleRecordBuffer
 	ld bc, LINK_BATTLE_RECORD_LENGTH
 	call CopyBytes
 	pop hl
@@ -8869,7 +8872,7 @@ AddLastLinkBattleToLinkRecord:
 	push hl
 	ld bc, LINK_BATTLE_RECORD_LENGTH
 	call CopyBytes
-	ld hl, wd002
+	ld hl, wLinkBattleRecordBuffer
 	ld bc, LINK_BATTLE_RECORD_LENGTH
 	pop de
 	call CopyBytes
@@ -8952,13 +8955,13 @@ InitBattleDisplay:
 	ldh [rSVBK], a
 
 	ld hl, wDecompressScratch
-	ld bc, wScratchAttrmap - wDecompressScratch
+	ld bc, BG_MAP_WIDTH * BG_MAP_HEIGHT
 	ld a, " "
 	call ByteFill
 
 	ld de, wDecompressScratch
 	hlbgcoord 0, 0
-	lb bc, BANK(.BlankBGMap), $40
+	lb bc, BANK(@), (BG_MAP_WIDTH * BG_MAP_HEIGHT) / LEN_2BPP_TILE
 	call Request2bpp
 
 	pop af

@@ -6858,7 +6858,7 @@ Function112d33:
 	dec a
 	jp .asm_112e46
 
-; unused
+.asm_112d4c ; unreferenced
 	ret
 
 .asm_112d4d

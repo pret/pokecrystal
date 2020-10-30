@@ -463,7 +463,6 @@ _MobileForPartnersMonText::
 	text "."
 	done
 
-; unreferenced
 _MobilePlayersMonTradeText::
 	text_ram wPlayerTrademonSenderName
 	text "'s"
@@ -1665,7 +1664,7 @@ _DayCareManIntroText::
 	cont "raise a #MON?"
 	done
 
-_DayCareManOddEggText::
+_DayCareManIntroEggText::
 	text "I'm the DAY-CARE"
 	line "MAN. Do you know"
 	cont "about EGGS?"
@@ -1692,7 +1691,7 @@ _DayCareLadyIntroText::
 	line "#MON for you?"
 	done
 
-_DayCareLadyOddEggText::
+_DayCareLadyIntroEggText::
 	text "I'm the DAY-CARE"
 	line "LADY. Do you know"
 	cont "about EGGS?"

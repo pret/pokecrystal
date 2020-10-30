@@ -88,8 +88,7 @@ EcruteakCityMartSign:
 EcruteakCityHiddenHyperPotion:
 	hiddenitem HYPER_POTION, EVENT_ECRUTEAK_CITY_HIDDEN_HYPER_POTION
 
-UnusedMissingDaughterText:
-; unused
+UnusedMissingDaughterText: ; unreferenced
 	text "Oh, no. Oh, no…"
 
 	para "My daughter is"

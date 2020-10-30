@@ -125,8 +125,7 @@ TrainerSwimmermMathew:
 	closetext
 	end
 
-Route41Rock:
-; unused
+Route41Rock: ; unreferenced
 	jumpstd SmashRockScript
 
 Route41HiddenMaxEther:

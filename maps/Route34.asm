@@ -470,8 +470,7 @@ TrainerCooltrainerfKate:
 	closetext
 	end
 
-Route34IlexForestSign:
-; unused
+Route34IlexForestSign: ; unreferenced
 	jumptext Route34IlexForestSignText
 
 Route34Sign:
@@ -516,7 +515,7 @@ YoungsterSamuelBeatenText:
 	line "passing stranger!"
 	done
 
-YoungsterSamuelMobileText:
+YoungsterSamuelMobileText: ; unreferenced
 	text "Have you been to"
 	line "GOLDENROD CITY?"
 
@@ -726,7 +725,6 @@ CooltrainerfKateAfterText:
 	done
 
 Route34IlexForestSignText:
-; unused
 	text "ILEX FOREST"
 	line "THROUGH THE GATE"
 	done

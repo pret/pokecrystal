@@ -35,7 +35,7 @@ LoadSGBLayout:
 	dw .SGB_PartyMenu
 	dw .SGB_Evolution
 	dw .SGB_GSTitleScreen
-	dw .SGB0d
+	dw .SGB_Unused0D
 	dw .SGB_MoveList
 	dw .SGB_BetaPikachuMinigame
 	dw .SGB_PokedexSearchOption
@@ -52,7 +52,7 @@ LoadSGBLayout:
 	dw .SGB_TradeTube
 	dw .SGB_TrainerOrMonFrontpicPals
 	dw .SGB_MysteryGift
-	dw .SGB1e
+	dw .SGB_Unused1E
 
 .SGB_BattleGrayscale:
 	ld hl, PalPacket_BattleGrayscale
@@ -397,7 +397,7 @@ endr
 	ld de, BlkPacket_AllPal0
 	ret
 
-.SGB0d:
+.SGB_Unused0D:
 .SGB_TrainerCard:
 	ld hl, PalPacket_Diploma
 	ld de, BlkPacket_AllPal0
@@ -437,7 +437,7 @@ endr
 	ld de, wSGBPals + PALPACKET_LENGTH
 	ret
 
-.SGB1e:
+.SGB_Unused1E:
 	ld hl, PalPacket_Pal01
 	ld de, wSGBPals
 	ld bc, PALPACKET_LENGTH
@@ -450,7 +450,7 @@ endr
 	add hl, hl
 	ld de, PokemonPalettes
 	add hl, de
-	ld a, [wcf65]
+	ld a, [wUnusedSGB1eColorOffset]
 	and 3
 	sla a
 	sla a

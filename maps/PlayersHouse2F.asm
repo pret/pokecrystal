@@ -11,8 +11,7 @@ PlayersHouse2F_MapScripts:
 	callback MAPCALLBACK_NEWMAP, .InitializeRoom
 	callback MAPCALLBACK_TILES, .SetUpTileDecorations
 
-; unused
-.Null:
+.DummyScene: ; unreferenced
 	end
 
 .InitializeRoom:

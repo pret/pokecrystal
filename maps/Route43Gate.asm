@@ -234,7 +234,7 @@ OfficerText_FoundTM:
 	cont "you take it away?"
 	done
 
-Text_ReceivedTM30:
+Text_ReceivedTM30: ; unreferenced
 	text "<PLAYER> received"
 	line "TM30."
 	done

@@ -9,7 +9,7 @@ Intro_MainMenu:
 	farcall MainMenu
 	jp StartTitleScreen
 
-; unused
+IntroMenu_DummyFunction: ; unreferenced
 	ret
 
 PrintDayOfWeek:
@@ -173,12 +173,13 @@ _ResetWRAM:
 	ld [wRoamMon2MapNumber], a
 	ld [wRoamMon3MapNumber], a
 
-	ld a, BANK(sMysteryGiftItem)
+	ld a, BANK(sMysteryGiftItem) ; aka BANK(sMysteryGiftUnlocked)
 	call OpenSRAM
 	ld hl, sMysteryGiftItem
 	xor a
 	ld [hli], a
-	dec a
+	assert sMysteryGiftItem + 1 == sMysteryGiftUnlocked
+	dec a ; -1
 	ld [hl], a
 	call CloseSRAM
 
@@ -370,7 +371,7 @@ Continue:
 	ld c, 20
 	call DelayFrames
 	farcall JumpRoamMons
-	farcall MysteryGift_CopyReceivedDecosToPC
+	farcall CopyMysteryGiftReceivedDecorationsToPC
 	farcall ClockContinue
 	ld a, [wSpawnAfterChampion]
 	cp SPAWN_LANCE
@@ -464,9 +465,9 @@ FinishContinueFunction:
 	xor a
 	ld [wDontPlayMapMusicOnReload], a
 	ld [wLinkMode], a
-	ld hl, wGameTimerPause
-	set GAMETIMERPAUSE_TIMER_PAUSED_F, [hl]
-	res GAMETIMERPAUSE_MOBILE_7_F, [hl]
+	ld hl, wGameTimerPaused
+	set GAME_TIMER_PAUSED_F, [hl]
+	res GAME_TIMER_MOBILE_F, [hl]
 	ld hl, wEnteredMapFromContinue
 	set 1, [hl]
 	farcall OverworldLoop

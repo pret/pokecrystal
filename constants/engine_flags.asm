@@ -15,7 +15,7 @@
 	const ENGINE_MOM_SAVING_MONEY
 	const ENGINE_MOM_ACTIVE
 ; wUnusedTwoDayTimerOn
-	const ENGINE_0A
+	const ENGINE_UNUSED_TWO_DAY_TIMER_ON
 ; wStatusFlags
 	const ENGINE_POKEDEX
 	const ENGINE_UNOWN_DEX
@@ -115,7 +115,7 @@
 ; wSwarmFlags
 	const ENGINE_BUENAS_PASSWORD_2
 	const ENGINE_GOLDENROD_DEPT_STORE_SALE_IS_ON
-; wGameTimerPause
+; wGameTimerPaused
 	const ENGINE_62
 ; wPlayerGender
 	const ENGINE_PLAYER_IS_FEMALE

@@ -1,6 +1,6 @@
 SPECIALCELEBIEVENT_CELEBI EQU $84
 
-UnusedForestTreeFrames:
+UnusedForestTreeFrames: ; unreferenced
 INCBIN "gfx/tilesets/forest-tree/1.2bpp"
 INCBIN "gfx/tilesets/forest-tree/2.2bpp"
 INCBIN "gfx/tilesets/forest-tree/3.2bpp"
@@ -99,9 +99,8 @@ CelebiEvent_CountDown:
 	set 7, [hl]
 	ret
 
-CelebiEvent_SpawnLeaf:
-; unused
-	ld hl, wcf65
+CelebiEvent_SpawnLeaf: ; unreferenced
+	ld hl, wFrameCounter2
 	ld a, [hl]
 	inc [hl]
 	and $7

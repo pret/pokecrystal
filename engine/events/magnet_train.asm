@@ -69,7 +69,7 @@ MagnetTrain:
 	ld [wRequested2bppSource + 1], a
 	ld [wRequested2bppDest], a
 	ld [wRequested2bppDest + 1], a
-	ld [wRequested2bpp], a
+	ld [wRequested2bppSize], a
 	call ClearTilemap
 
 	pop af

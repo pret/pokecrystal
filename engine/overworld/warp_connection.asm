@@ -175,7 +175,8 @@ EnterMapWarp:
 ; MOUNT_MOON_SQUARE and TIN_TOWER_ROOF are outdoor maps within indoor maps.
 ; Dig and Escape Rope should not take you to them.
 	ld a, [wPrevMapGroup]
-	cp GROUP_MOUNT_MOON_SQUARE ; aka GROUP_TIN_TOWER_ROOF
+	cp GROUP_MOUNT_MOON_SQUARE
+	assert GROUP_MOUNT_MOON_SQUARE == GROUP_TIN_TOWER_ROOF
 	jr nz, .not_mt_moon_or_tin_tower
 	ld a, [wPrevMapNumber]
 	cp MAP_MOUNT_MOON_SQUARE
@@ -390,44 +391,42 @@ GetMapScreenCoords::
 	ld hl, wOverworldMapBlocks
 	ld a, [wXCoord]
 	bit 0, a
-	jr nz, .increment_then_halve1
+	jr nz, .odd_x
+; even x
 	srl a
-	add $1
-	jr .resume
-
-.increment_then_halve1
-	add $1
+	add 1
+	jr .got_block_x
+.odd_x
+	add 1
 	srl a
-
-.resume
+.got_block_x
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [wMapWidth]
-	add $6
+	add MAP_CONNECTION_PADDING_WIDTH * 2
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld a, [wYCoord]
 	bit 0, a
-	jr nz, .increment_then_halve2
+	jr nz, .odd_y
+; even y
 	srl a
-	add $1
-	jr .resume2
-
-.increment_then_halve2
-	add $1
+	add 1
+	jr .got_block_y
+.odd_y
+	add 1
 	srl a
-
-.resume2
+.got_block_y
 	call AddNTimes
 	ld a, l
 	ld [wOverworldMapAnchor], a
 	ld a, h
 	ld [wOverworldMapAnchor + 1], a
 	ld a, [wYCoord]
-	and $1
+	and 1
 	ld [wMetatileStandingY], a
 	ld a, [wXCoord]
-	and $1
+	and 1
 	ld [wMetatileStandingX], a
 	ret

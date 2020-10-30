@@ -68,7 +68,8 @@ ContestJudging_ThirdPlaceScoreText:
 
 LoadContestantName:
 ; If a = 1, get your name.
-	dec a ; BUG_CONTEST_PLAYER
+	assert BUG_CONTEST_PLAYER == 1
+	dec a
 	jr z, .player
 ; Find the pointer for the trainer class of the Bug Catching Contestant whose ID is in a.
 	ld c, a

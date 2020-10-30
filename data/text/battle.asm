@@ -349,7 +349,7 @@ BattleText_StringBuffer1GrewToLevel:
 	sound_dex_fanfare_50_79
 	text_end
 
-	text_end ; unused
+	text_end ; unreferenced
 
 BattleText_WildMonIsEating:
 	text "Wild @"
@@ -1085,7 +1085,7 @@ BeatUpAttackText:
 	line "attack!"
 	done
 
-RefusedGiftText:
+PresentFailedText:
 	text "<TARGET>"
 	line "refused the gift!"
 	prompt
@@ -1102,7 +1102,7 @@ BattleText_LinkErrorBattleCanceled:
 	line "been canceled…"
 	prompt
 
-BattleText_0x8188e:
+BattleText_NoTimeLeftToday: ; unreferenced
 	text "There is no time"
 	line "left today!"
 	done

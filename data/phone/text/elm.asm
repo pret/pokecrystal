@@ -197,7 +197,6 @@ ElmPhoneGiftText:
 	para "See you later!"
 	done
 
-; unused
 ElmPhoneGotAholdOfSomethingNeatText:
 	text "Hello, <PLAY_G>?"
 	line "How's it going?"

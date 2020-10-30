@@ -32,8 +32,7 @@ Route12SuperRodHouseFishingGuruScript:
 	closetext
 	end
 
-SuperRodHouseBookshelf:
-; unused
+SuperRodHouseBookshelf: ; unreferenced
 	jumpstd PictureBookshelfScript
 
 OfferSuperRodText:

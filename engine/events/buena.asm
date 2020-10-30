@@ -85,7 +85,7 @@ BuenaPrize:
 	call Buena_PrizeMenu
 	jr z, .done
 	ld [wMenuSelectionQuantity], a
-	call Buena_getprize
+	call Buena_GetPrize
 	ld a, [hl]
 	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
@@ -95,7 +95,7 @@ BuenaPrize:
 	jr c, .loop
 
 	ld a, [wMenuSelectionQuantity]
-	call Buena_getprize
+	call Buena_GetPrize
 	inc hl
 	ld a, [hld]
 	ld c, a
@@ -258,11 +258,11 @@ Buena_PrizeMenu:
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 13 ; rows, columns
 	db SCROLLINGMENU_ITEMS_NORMAL ; item format
-	dba .indices
-	dba .prizeitem
-	dba .prizepoints
+	dba .Prizes
+	dba .PrintPrizeItem
+	dba .PrintPrizePoints
 
-.indices:
+.Prizes:
 	db NUM_BUENA_PRIZES
 x = 1
 rept NUM_BUENA_PRIZES
@@ -271,9 +271,9 @@ x = x + 1
 endr
 	db -1
 
-.prizeitem:
+.PrintPrizeItem:
 	ld a, [wMenuSelection]
-	call Buena_getprize
+	call Buena_GetPrize
 	ld a, [hl]
 	push de
 	ld [wNamedObjectIndexBuffer], a
@@ -282,9 +282,9 @@ endr
 	call PlaceString
 	ret
 
-.prizepoints:
+.PrintPrizePoints:
 	ld a, [wMenuSelection]
-	call Buena_getprize
+	call Buena_GetPrize
 	inc hl
 	ld a, [hl]
 	ld c, "0"
@@ -292,7 +292,7 @@ endr
 	ld [de], a
 	ret
 
-Buena_getprize:
+Buena_GetPrize:
 	dec a
 	ld hl, BuenaPrizeItems
 	ld b, 0

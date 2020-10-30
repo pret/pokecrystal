@@ -164,8 +164,7 @@ CeladonCityTeacher2Text:
 	line "a sales clerk."
 	done
 
-CeladonCityLassText_Mobile:
-; unused
+CeladonCityLassText_Mobile: ; unreferenced
 	text "I love being"
 	line "surrounded by tall"
 	cont "buildings!"

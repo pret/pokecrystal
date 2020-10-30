@@ -18,12 +18,10 @@ BlackthornDragonSpeechHouseDratiniScript:
 	closetext
 	end
 
-; unused
-BlackthornDragonSpeechHousePictureBookshelf:
+BlackthornDragonSpeechHousePictureBookshelf: ; unreferenced
 	jumpstd PictureBookshelfScript
 
-; unused
-BlackthornDragonSpeechHouseMagazineBookshelf:
+BlackthornDragonSpeechHouseMagazineBookshelf: ; unreferenced
 	jumpstd MagazineBookshelfScript
 
 BlackthornDragonSpeechHouseGrannyText:

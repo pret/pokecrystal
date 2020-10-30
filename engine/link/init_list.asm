@@ -44,9 +44,9 @@ InitList:
 	ld a, h
 	ld [wListPointer + 1], a
 	ld a, e
-	ld [wUnusedD102], a
+	ld [wUnusedNamesPointer], a
 	ld a, d
-	ld [wUnusedD102 + 1], a
+	ld [wUnusedNamesPointer + 1], a
 	ld bc, ItemAttributes
 	ld a, c
 	ld [wItemAttributesPtr], a

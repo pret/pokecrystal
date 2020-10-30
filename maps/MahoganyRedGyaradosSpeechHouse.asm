@@ -26,12 +26,10 @@ MahoganyRedGyaradosSpeechHouseTeacherScript:
 	closetext
 	end
 
-MahoganyRedGyaradosSpeechHouseUnusedBookshelf1:
-; unused
+MahoganyRedGyaradosSpeechHouseUnusedBookshelf1: ; unreferenced
 	jumpstd PictureBookshelfScript
 
-MahoganyRedGyaradosSpeechHouseUnusedBookshelf2:
-; unused
+MahoganyRedGyaradosSpeechHouseUnusedBookshelf2: ; unreferenced
 	jumpstd MagazineBookshelfScript
 
 MahoganyRedGyaradosSpeechHouseBlackBeltText:

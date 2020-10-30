@@ -82,7 +82,7 @@ LoadMapObjects:
 	farcall InitializeVisibleSprites
 	ret
 
-; unused
+MapSetup_DummyFunction: ; unreferenced
 	ret
 
 ResetPlayerObjectAction:

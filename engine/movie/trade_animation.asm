@@ -20,7 +20,7 @@ ENDM
 
 TradeAnimation:
 	xor a
-	ld [wcf66], a
+	ld [wUnusedTradeAnimPlayEvolutionMusic], a
 	ld hl, wPlayerTrademonSenderName
 	ld de, wOTTrademonSenderName
 	call LinkTradeAnim_LoadTradePlayerNames
@@ -71,7 +71,7 @@ TradeAnimation:
 
 TradeAnimationPlayer2:
 	xor a
-	ld [wcf66], a
+	ld [wUnusedTradeAnimPlayEvolutionMusic], a
 	ld hl, wOTTrademonSenderName
 	ld de, wPlayerTrademonSenderName
 	call LinkTradeAnim_LoadTradePlayerNames
@@ -137,7 +137,7 @@ RunTradeAnimScript:
 	push af
 	set NO_TEXT_SCROLL, [hl]
 	call .TradeAnimLayout
-	ld a, [wcf66]
+	ld a, [wUnusedTradeAnimPlayEvolutionMusic]
 	and a
 	jr nz, .anim_loop
 	ld de, MUSIC_EVOLUTION
@@ -225,7 +225,7 @@ DoTradeAnimation:
 	jr nz, .finished
 	call .DoTradeAnimCommand
 	callfar PlaySpriteAnimations
-	ld hl, wcf65
+	ld hl, wFrameCounter2
 	inc [hl]
 	call DelayFrame
 	and a
@@ -273,8 +273,8 @@ DoTradeAnimation:
 	add_tradeanim TradeAnim_TextboxScrollStart   ; 1e
 	add_tradeanim TradeAnim_ScrollOutRight       ; 1f
 	add_tradeanim TradeAnim_ScrollOutRight2      ; 20
-	add_tradeanim TradeAnim_Wait80              ; 21
-	add_tradeanim TradeAnim_Wait40              ; 22
+	add_tradeanim TradeAnim_Wait80               ; 21
+	add_tradeanim TradeAnim_Wait40               ; 22
 	add_tradeanim TradeAnim_RockingBall          ; 23
 	add_tradeanim TradeAnim_DropBall             ; 24
 	add_tradeanim TradeAnim_WaitAnim             ; 25
@@ -285,9 +285,9 @@ DoTradeAnimation:
 	add_tradeanim TradeAnim_GetTrademonSFX       ; 2a
 	add_tradeanim TradeAnim_End                  ; 2b
 	add_tradeanim TradeAnim_AnimateFrontpic      ; 2c
-	add_tradeanim TradeAnim_Wait96              ; 2d
-	add_tradeanim TradeAnim_Wait80IfOTEgg       ; 2e
-	add_tradeanim TradeAnim_Wait180IfOTEgg      ; 2f
+	add_tradeanim TradeAnim_Wait96               ; 2d
+	add_tradeanim TradeAnim_Wait80IfOTEgg        ; 2e
+	add_tradeanim TradeAnim_Wait180IfOTEgg       ; 2f
 
 TradeAnim_IncrementJumptableIndex:
 	ld hl, wJumptableIndex
@@ -1333,7 +1333,7 @@ LinkTradeAnim_LoadTradeMonSpecies:
 	ret
 
 TradeAnim_FlashBGPals:
-	ld a, [wcf65]
+	ld a, [wFrameCounter2]
 	and $7
 	ret nz
 	ldh a, [rBGP]

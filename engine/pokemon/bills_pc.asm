@@ -101,7 +101,7 @@ _DepositPKMN:
 	ld [wJumptableIndex], a
 	ret
 
-.go_back
+.go_back ; unreferenced
 	ld hl, wJumptableIndex
 	dec [hl]
 	ret
@@ -358,7 +358,7 @@ _WithdrawPKMN:
 	ld [wJumptableIndex], a
 	ret
 
-.unused
+.go_back ; unreferenced
 	ld hl, wJumptableIndex
 	dec [hl]
 	ret
@@ -609,7 +609,7 @@ _MovePKMNWithoutMail:
 	ld [wJumptableIndex], a
 	ret
 
-.unused
+.go_back ; unreferenced
 	ld hl, wJumptableIndex
 	dec [hl]
 	ret
@@ -782,9 +782,9 @@ BillsPC_InitRAM:
 	call ByteFill
 	xor a
 	ld [wJumptableIndex], a
-	ld [wcf64], a
-	ld [wcf65], a
-	ld [wcf66], a
+	ld [wUnusedBillsPCData], a
+	ld [wUnusedBillsPCData+1], a
+	ld [wUnusedBillsPCData+2], a
 	ld [wBillsPC_CursorPosition], a
 	ld [wBillsPC_ScrollPosition], a
 	ret
@@ -1377,20 +1377,20 @@ copy_box_data: MACRO
 	jr z, .done\@
 	and a
 	jr z, .done\@
-	ld [de], a
+	ld [de], a ; species
 	inc de
 	ld a, [wBillsPC_LoadedBox]
-	ld [de], a
+	ld [de], a ; box number
 	inc de
-	ld a, [wd003]
-	ld [de], a
+	ld a, [wBillsPCTempListIndex]
+	ld [de], a ; list index
 	inc a
-	ld [wd003], a
+	ld [wBillsPCTempListIndex], a
 	inc de
 	inc hl
-	ld a, [wd004]
+	ld a, [wBillsPCTempBoxCount]
 	inc a
-	ld [wd004], a
+	ld [wBillsPCTempBoxCount], a
 	jr .loop\@
 
 .done\@
@@ -1399,7 +1399,7 @@ if \1
 endc
 	ld a, -1
 	ld [de], a
-	ld a, [wd004]
+	ld a, [wBillsPCTempBoxCount]
 	inc a
 	ld [wBillsPC_NumMonsInBox], a
 ENDM
@@ -1411,8 +1411,8 @@ CopyBoxmonSpecies:
 	call ByteFill
 	ld de, wBillsPCPokemonList
 	xor a
-	ld [wd003], a
-	ld [wd004], a
+	ld [wBillsPCTempListIndex], a
+	ld [wBillsPCTempBoxCount], a
 	ld a, [wBillsPC_LoadedBox]
 	and a
 	jr z, .party
@@ -2222,7 +2222,7 @@ PCString_ReleasedPKMN: db "Released <PK><MN>.@"
 PCString_Bye: db "Bye,@"
 PCString_Stored: db "Stored @"
 PCString_Got: db "Got @"
-PCString_Non: db "Non.@"
+PCString_Non: db "Non.@" ; unreferenced
 PCString_BoxFull: db "The BOX is full.@"
 PCString_PartyFull: db "The party's full!@"
 PCString_NoReleasingEGGS: db "No releasing EGGS!@"
@@ -2268,16 +2268,16 @@ _ChangeBox_MenuHeader:
 	dw .MenuData
 	db 1 ; default option
 
-.MenuData
+.MenuData:
 	db SCROLLINGMENU_CALL_FUNCTION3_NO_SWITCH | SCROLLINGMENU_ENABLE_FUNCTION3 ; flags
 	db 4, 0 ; rows, columns
 	db SCROLLINGMENU_ITEMS_NORMAL ; item format
-	dba .boxes
-	dba .boxnames
+	dba .Boxes
+	dba .PrintBoxNames
 	dba NULL
 	dba BillsPC_PrintBoxCountAndCapacity
 
-.boxes
+.Boxes:
 	db NUM_BOXES
 x = 1
 rept NUM_BOXES
@@ -2286,7 +2286,7 @@ x = x + 1
 endr
 	db -1
 
-.boxnames
+.PrintBoxNames:
 	push de
 	ld a, [wMenuSelection]
 	dec a
@@ -2455,7 +2455,7 @@ BillsPC_ChangeBoxSubmenu:
 
 .Name:
 	ld b, NAME_BOX
-	ld de, wd002
+	ld de, wBoxNameBuffer
 	farcall NamingScreen
 	call ClearTilemap
 	call LoadStandardFont
@@ -2465,17 +2465,17 @@ BillsPC_ChangeBoxSubmenu:
 	call GetBoxName
 	ld e, l
 	ld d, h
-	ld hl, wd002
+	ld hl, wBoxNameBuffer
 	ld c, BOX_NAME_LENGTH - 1
 	call InitString
 	ld a, [wMenuSelection]
 	dec a
 	call GetBoxName
-	ld de, wd002
+	ld de, wBoxNameBuffer
 	call CopyName2
 	ret
 
-	hlcoord 11, 7 ; unused
+	hlcoord 11, 7 ; unreferenced
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags

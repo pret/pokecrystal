@@ -97,7 +97,7 @@ LinkReceptionistScript_Trade:
 	iffalse .LinkedToFirstGen
 	special CheckBothSelectedSameRoom
 	iffalse .IncompatibleRooms
-	writetext Text_PleaseComeIn2
+	writetext Text_PleaseComeIn
 	waitbutton
 	closetext
 	scall Pokecenter2F_CheckGender
@@ -152,7 +152,7 @@ LinkReceptionistScript_Trade:
 	special TryQuickSave
 	iffalse .Mobile_DidNotSave
 	special Function1011f1
-	writetext Text_PleaseComeIn2
+	writetext Text_PleaseComeIn
 	waitbutton
 	closetext
 	setval FALSE
@@ -199,7 +199,7 @@ LinkReceptionistScript_Battle:
 	iffalse .LinkedToFirstGen
 	special CheckBothSelectedSameRoom
 	iffalse .IncompatibleRooms
-	writetext Text_PleaseComeIn2
+	writetext Text_PleaseComeIn
 	waitbutton
 	closetext
 	scall Pokecenter2F_CheckGender
@@ -256,7 +256,7 @@ LinkReceptionistScript_Battle:
 	special Function103780
 	iffalse .Mobile_DidNotSave
 	special Function1011f1
-	writetext Text_PleaseComeIn2
+	writetext Text_PleaseComeIn
 	waitbutton
 	closetext
 	setval FALSE
@@ -332,7 +332,7 @@ LinkReceptionistScript_TimeCapsule:
 
 .OK:
 	special EnterTimeCapsule
-	writetext Text_PleaseComeIn2
+	writetext Text_PleaseComeIn
 	waitbutton
 	closetext
 	scall TimeCapsuleScript_CheckPlayerGender
@@ -813,7 +813,7 @@ Text_TradeReceptionistMobile:
 	line "mobile phone?"
 	done
 
-Text_ThisWayToMobileRoom:
+Text_ThisWayToMobileRoom: ; unreferenced
 	text "This way to the"
 	line "MOBILE ROOM."
 	done
@@ -882,11 +882,11 @@ Text_PleaseComeAgain:
 	text "Please come again."
 	prompt
 
-Text_PleaseComeIn:
+Text_PleaseComeInDuplicate: ; unreferenced
 	text "Please come in."
 	prompt
 
-Text_TemporaryStagingInLinkRoom:
+Text_TemporaryStagingInLinkRoom: ; unreferenced
 	text "We'll put you in"
 	line "the link room for"
 	cont "the time being."
@@ -902,11 +902,11 @@ Text_IncompatibleRooms:
 	line "were chosen."
 	prompt
 
-Text_PleaseComeIn2:
+Text_PleaseComeIn:
 	text "Please come in."
 	done
 
-Text_PleaseEnter:
+Text_PleaseEnter: ; unreferenced
 	text "Please enter."
 	prompt
 

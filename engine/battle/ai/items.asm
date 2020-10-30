@@ -20,8 +20,9 @@ AI_SwitchOrTryItem:
 	and a
 	jr nz, DontSwitch
 
+	; always load the first trainer class in wTrainerClass for Battle Tower trainers
 	ld hl, TrainerClassAttributes + TRNATTR_AI_ITEM_SWITCH
-	ld a, [wInBattleTowerBattle] ; always load the first trainer class in wTrainerClass for BattleTower-Trainers
+	ld a, [wInBattleTowerBattle]
 	and a
 	jr nz, .ok
 
@@ -29,6 +30,7 @@ AI_SwitchOrTryItem:
 	dec a
 	ld bc, NUM_TRAINER_ATTRIBUTES
 	call AddNTimes
+
 .ok
 	bit SWITCH_OFTEN_F, [hl]
 	jp nz, SwitchOften
@@ -145,13 +147,13 @@ SwitchSometimes:
 	ld [wEnemySwitchMonIndex], a
 	jp AI_TrySwitch
 
-CheckSubstatusCantRun:
+CheckSubstatusCantRun: ; unreferenced
 	ld a, [wEnemySubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
 	ret
 
 AI_TryItem:
-	; items are not allowed in the BattleTower
+	; items are not allowed in the Battle Tower
 	ld a, [wInBattleTowerBattle]
 	and a
 	ret nz
@@ -213,7 +215,7 @@ AI_TryItem:
 	inc hl
 	jr c, .loop
 
-.used_item
+; used item
 	xor a
 	ld [de], a
 	inc a
@@ -259,7 +261,7 @@ AI_TryItem:
 	cp e
 	jr nc, .yes
 
-.no
+.no ; unreferenced
 	and a
 	ret
 

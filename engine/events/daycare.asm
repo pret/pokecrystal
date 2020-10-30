@@ -1,9 +1,9 @@
 ; PrintDayCareText.TextTable indexes
 	const_def
 	const DAYCARETEXT_MAN_INTRO
-	const DAYCARETEXT_MAN_ODD_EGG
+	const DAYCARETEXT_MAN_INTRO_EGG
 	const DAYCARETEXT_LADY_INTRO
-	const DAYCARETEXT_LADY_ODD_EGG
+	const DAYCARETEXT_LADY_INTRO_EGG
 	const DAYCARETEXT_WHICH_ONE
 	const DAYCARETEXT_DEPOSIT
 	const DAYCARETEXT_CANT_BREED_EGG
@@ -166,7 +166,7 @@ DayCareAskDepositPokemon:
 	scf
 	ret
 
-.DaycareDummyText:
+.DaycareDummyText: ; unreferenced
 	text_far _DaycareDummyText
 	text_end
 
@@ -274,9 +274,9 @@ PrintDayCareText:
 .TextTable:
 ; entries correspond to DAYCARETEXT_* constants
 	dw .DayCareManIntroText ; 00
-	dw .DayCareManOddEggText ; 01
+	dw .DayCareManIntroEggText ; 01
 	dw .DayCareLadyIntroText ; 02
-	dw .DayCareLadyOddEggText ; 03
+	dw .DayCareLadyIntroEggText ; 03
 	dw .WhatShouldIRaiseText ; 04
 	dw .IllRaiseYourMonText ; 05
 	dw .CantAcceptEggText ; 06
@@ -298,16 +298,16 @@ PrintDayCareText:
 	text_far _DayCareManIntroText
 	text_end
 
-.DayCareManOddEggText:
-	text_far _DayCareManOddEggText
+.DayCareManIntroEggText:
+	text_far _DayCareManIntroEggText
 	text_end
 
 .DayCareLadyIntroText:
 	text_far _DayCareLadyIntroText
 	text_end
 
-.DayCareLadyOddEggText:
-	text_far _DayCareLadyOddEggText
+.DayCareLadyIntroEggText:
+	text_far _DayCareLadyIntroEggText
 	text_end
 
 .WhatShouldIRaiseText:

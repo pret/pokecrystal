@@ -33,7 +33,7 @@ StatsScreenInit_gotaddress:
 	push af
 	ld a, [wJumptableIndex]
 	ld b, a
-	ld a, [wcf64]
+	ld a, [wStatsScreenFlags]
 	ld c, a
 
 	push bc
@@ -52,7 +52,7 @@ StatsScreenInit_gotaddress:
 	ld a, b
 	ld [wJumptableIndex], a
 	ld a, c
-	ld [wcf64], a
+	ld [wStatsScreenFlags], a
 	pop af
 	ld [wBoxAlignment], a
 	pop af
@@ -63,11 +63,11 @@ StatsScreenMain:
 	xor a
 	ld [wJumptableIndex], a
 ; ???
-	ld [wcf64], a
-	ld a, [wcf64]
+	ld [wStatsScreenFlags], a
+	ld a, [wStatsScreenFlags]
 	and $ff ^ STAT_PAGE_MASK
 	or PINK_PAGE ; first_page
-	ld [wcf64], a
+	ld [wStatsScreenFlags], a
 .loop
 	ld a, [wJumptableIndex]
 	and $ff ^ (1 << 7)
@@ -83,11 +83,11 @@ StatsScreenMobile:
 	xor a
 	ld [wJumptableIndex], a
 ; ???
-	ld [wcf64], a
-	ld a, [wcf64]
+	ld [wStatsScreenFlags], a
+	ld a, [wStatsScreenFlags]
 	and $ff ^ STAT_PAGE_MASK
 	or PINK_PAGE ; first_page
-	ld [wcf64], a
+	ld [wStatsScreenFlags], a
 .loop
 	farcall Mobile_SetOverworldDelay
 	ld a, [wJumptableIndex]
@@ -115,7 +115,7 @@ StatsScreenPointerTable:
 	dw StatsScreen_Exit
 
 StatsScreen_WaitAnim:
-	ld hl, wcf64
+	ld hl, wStatsScreenFlags
 	bit 6, [hl]
 	jr nz, .try_anim
 	bit 5, [hl]
@@ -126,10 +126,10 @@ StatsScreen_WaitAnim:
 .try_anim
 	farcall SetUpPokeAnim
 	jr nc, .finish
-	ld hl, wcf64
+	ld hl, wStatsScreenFlags
 	res 6, [hl]
 .finish
-	ld hl, wcf64
+	ld hl, wStatsScreenFlags
 	res 5, [hl]
 	farcall HDMATransferTilemapToWRAMBank3
 	ret
@@ -147,7 +147,7 @@ StatsScreen_Exit:
 	ret
 
 MonStatsInit:
-	ld hl, wcf64
+	ld hl, wStatsScreenFlags
 	res 6, [hl]
 	call ClearBGPalettes
 	call ClearTilemap
@@ -157,7 +157,7 @@ MonStatsInit:
 	cp EGG
 	jr z, .egg
 	call StatsScreen_InitUpperHalf
-	ld hl, wcf64
+	ld hl, wStatsScreenFlags
 	set 4, [hl]
 	ld h, 4
 	call StatsScreen_SetJumptableIndex
@@ -217,7 +217,7 @@ if DEF(_DEBUG)
 	ld de, .HatchSoonString
 	hlcoord 8, 17
 	call PlaceString
-	ld hl, wcf64
+	ld hl, wStatsScreenFlags
 	set 5, [hl]
 	pop hl
 	pop de
@@ -232,7 +232,7 @@ endc
 
 StatsScreen_LoadPage:
 	call StatsScreen_LoadGFX
-	ld hl, wcf64
+	ld hl, wStatsScreenFlags
 	res 4, [hl]
 	ld a, [wJumptableIndex]
 	inc a
@@ -314,7 +314,7 @@ StatsScreen_GetJoypad:
 
 StatsScreen_JoypadAction:
 	push af
-	ld a, [wcf64]
+	ld a, [wStatsScreenFlags]
 	maskbits NUM_STAT_PAGES
 	ld c, a
 	pop af
@@ -393,10 +393,10 @@ StatsScreen_JoypadAction:
 	ret
 
 .set_page
-	ld a, [wcf64]
+	ld a, [wStatsScreenFlags]
 	and $ff ^ STAT_PAGE_MASK
 	or c
-	ld [wcf64], a
+	ld [wStatsScreenFlags], a
 	ld h, 4
 	call StatsScreen_SetJumptableIndex
 	ret
@@ -530,7 +530,7 @@ StatsScreen_LoadGFX:
 	call .ClearBox
 	call .PageTilemap
 	call .LoadPals
-	ld hl, wcf64
+	ld hl, wStatsScreenFlags
 	bit 4, [hl]
 	jr nz, .place_frontpic
 	call SetPalettes
@@ -541,7 +541,7 @@ StatsScreen_LoadGFX:
 	ret
 
 .ClearBox:
-	ld a, [wcf64]
+	ld a, [wStatsScreenFlags]
 	maskbits NUM_STAT_PAGES
 	ld c, a
 	call StatsScreen_LoadPageIndicators
@@ -551,17 +551,17 @@ StatsScreen_LoadGFX:
 	ret
 
 .LoadPals:
-	ld a, [wcf64]
+	ld a, [wStatsScreenFlags]
 	maskbits NUM_STAT_PAGES
 	ld c, a
 	farcall LoadStatsScreenPals
 	call DelayFrame
-	ld hl, wcf64
+	ld hl, wStatsScreenFlags
 	set 5, [hl]
 	ret
 
 .PageTilemap:
-	ld a, [wcf64]
+	ld a, [wStatsScreenFlags]
 	maskbits NUM_STAT_PAGES
 	dec a
 	ld hl, .Jumptable
@@ -848,7 +848,7 @@ StatsScreen_PlaceFrontpic:
 	ret
 
 .AnimateMon:
-	ld hl, wcf64
+	ld hl, wStatsScreenFlags
 	set 5, [hl]
 	ld a, [wCurPartySpecies]
 	cp UNOWN
@@ -890,7 +890,7 @@ StatsScreen_PlaceFrontpic:
 	ld d, $0
 	ld e, ANIM_MON_MENU
 	predef LoadMonAnimation
-	ld hl, wcf64
+	ld hl, wStatsScreenFlags
 	set 6, [hl]
 	ret
 
@@ -1033,7 +1033,7 @@ endc
 .picked
 	hlcoord 1, 9
 	call PlaceString
-	ld hl, wcf64
+	ld hl, wStatsScreenFlags
 	set 5, [hl]
 	call SetPalettes ; pals
 	call DelayFrame
@@ -1099,7 +1099,7 @@ StatsScreen_AnimateEgg:
 	hlcoord 0, 0
 	ld d, $0
 	predef LoadMonAnimation
-	ld hl, wcf64
+	ld hl, wStatsScreenFlags
 	set 6, [hl]
 	ret
 

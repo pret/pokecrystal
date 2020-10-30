@@ -27,8 +27,8 @@ UpdateJoypad::
 ; hJoypadSum: pressed so far
 
 ; Any of these three bits can be used to disable input.
-	ld a, [wcfbe]
-	and %11010000
+	ld a, [wJoypadDisable]
+	and (1 << JOYPAD_DISABLE_MON_FAINT_F) | (1 << JOYPAD_DISABLE_SGB_TRANSFER_F) | (1 << 4)
 	ret nz
 
 ; If we're saving, input is disabled.

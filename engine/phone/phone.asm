@@ -437,7 +437,7 @@ Script_SpecialBillCall::
 	ld e, PHONE_BILL
 	jp LoadCallerScript
 
-LoadElmCallScript:
+Script_SpecialElmCall: ; unreferenced
 	callasm .LoadElmScript
 	pause 30
 	sjump Script_ReceivePhoneCall
@@ -720,7 +720,7 @@ PhoneJustTalkToThemText:
 	text_far _PhoneJustTalkToThemText
 	text_end
 
-PhoneThankYouTextScript:
+PhoneThankYouTextScript: ; unreferenced
 	writetext PhoneThankYouText
 	end
 

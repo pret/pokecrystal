@@ -92,7 +92,7 @@ PokeGear:
 	ld [wJumptableIndex], a ; POKEGEARSTATE_CLOCKINIT
 	ld [wPokegearCard], a ; POKEGEARCARD_CLOCK
 	ld [wPokegearMapRegion], a ; JOHTO_REGION
-	ld [wcf66], a
+	ld [wUnusedPokegearByte], a
 	ld [wPokegearPhoneScrollPosition], a
 	ld [wPokegearPhoneCursorPosition], a
 	ld [wPokegearPhoneSelectedPerson], a
@@ -1271,7 +1271,7 @@ PokegearPhoneContactSubmenu:
 	dw .Call
 	dw .Cancel
 
-; unused
+GetAMPMHours: ; unreferenced
 	ldh a, [hHours]
 	cp 12
 	jr c, .am
@@ -1442,7 +1442,7 @@ UpdateRadioStation:
 	ldh [hBGMapMode], a
 	ret
 
-; unused
+LoadPokegearRadioChannelPointer: ; unreferenced
 	ld [wPokegearRadioChannelBank], a
 	ld a, [hli]
 	ld [wPokegearRadioChannelAddr], a
@@ -1546,7 +1546,7 @@ RadioChannels:
 	jr z, .johto
 	cp KANTO_LANDMARK
 	jr c, .johto
-.kanto
+; kanto
 	and a
 	ret
 
@@ -2038,7 +2038,7 @@ _FlyMap:
 	lb bc, BANK(FlyMapLabelBorderGFX), 6
 	call Request1bpp
 	call FlyMap
-	call ret_91c8f
+	call Pokegear_DummyFunction
 	ld b, SCGB_POKEGEAR_PALS
 	call GetSGBLayout
 	call SetPalettes
@@ -2243,7 +2243,7 @@ HasVisitedSpawn:
 
 INCLUDE "data/maps/flypoints.asm"
 
-ret_91c8f:
+Pokegear_DummyFunction:
 	ret
 
 FlyMap:
@@ -2265,7 +2265,7 @@ FlyMap:
 ; The first 46 locations are part of Johto. The rest are in Kanto.
 	cp KANTO_LANDMARK
 	jr nc, .KantoFlyMap
-.JohtoFlyMap:
+; Johto fly map
 ; Note that .NoKanto should be modified in tandem with this branch
 	push af
 	ld a, JOHTO_FLYPOINT ; first Johto flypoint
@@ -2569,7 +2569,7 @@ Pokedex_GetArea:
 	jr z, .johto
 	cp KANTO_LANDMARK
 	jr c, .johto
-.kanto
+; kanto
 	ld a, [wTownMapCursorLandmark]
 	and a
 	jr z, .clear

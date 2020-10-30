@@ -305,7 +305,7 @@ ScrollTileRightLeft:
 	jr nz, ScrollTileLeft
 	jr ScrollTileRight
 
-ScrollTileUpDown:
+ScrollTileUpDown: ; unreferenced
 ; Scroll up for 4 ticks, then down for 4 ticks.
 	ld a, [wTileAnimationTimer]
 	inc a
@@ -891,7 +891,7 @@ AnimateWaterPalette:
 	cp %100 ; frame 4
 	jr z, .color2
 
-.color1
+; color1
 	ld hl, wBGPals1 palette PAL_BG_WATER color 1
 	ld a, [hli]
 	ldh [rBGPD], a

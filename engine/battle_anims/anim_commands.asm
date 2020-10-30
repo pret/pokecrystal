@@ -245,7 +245,8 @@ BattleAnim_ClearOAM:
 	ld c, NUM_SPRITE_OAM_STRUCTS
 .loop
 	ld a, [hl]
-	and $ff ^ (PALETTE_MASK | VRAM_BANK_1) ; PAL_BATTLE_OB_ENEMY (0)
+	and $ff ^ (PALETTE_MASK | VRAM_BANK_1) ; zeros out the palette bits
+	assert PAL_BATTLE_OB_ENEMY == 0
 	ld [hli], a
 rept SPRITEOAMSTRUCT_LENGTH - 1
 	inc hl
@@ -1050,7 +1051,7 @@ GetMinimizePic:
 	and a
 	jr z, .player
 
-	ld de, sScratch + $1a tiles
+	ld de, sScratch + (3 * 7 + 5) tiles
 	call CopyMinimizePic
 	ld hl, vTiles2 tile $00
 	ld de, sScratch
@@ -1058,7 +1059,7 @@ GetMinimizePic:
 	ret
 
 .player
-	ld de, sScratch + $160
+	ld de, sScratch + (3 * 6 + 4) tiles
 	call CopyMinimizePic
 	ld hl, vTiles2 tile $31
 	ld de, sScratch

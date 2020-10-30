@@ -48,7 +48,8 @@ DecorationIDs:
 	db DECO_BIG_SNORLAX_DOLL ; 1a
 	db DECO_BIG_ONIX_DOLL ; 1b
 	db DECO_BIG_LAPRAS_DOLL ; 1c
-TrophyIDs:
+
 	db DECO_GOLD_TROPHY_DOLL ; 33
 	db DECO_SILVER_TROPHY_DOLL ; 34
-	db -1
+
+	db -1 ; end

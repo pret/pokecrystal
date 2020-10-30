@@ -1,8 +1,12 @@
 channel_count: MACRO
+	assert 0 < (\1) && (\1) <= NUM_MUSIC_CHANS, \
+		"channel_count must be 1-{d:NUM_MUSIC_CHANS}"
 _num_channels = \1 - 1
 ENDM
 
 channel: MACRO
+	assert 0 < (\1) && (\1) <= NUM_CHANNELS, \
+		"channel id must be 1-{d:NUM_CHANNELS}"
 	dn (_num_channels << 2), \1 - 1 ; channel id
 	dw \2 ; address
 _num_channels = 0
@@ -46,6 +50,7 @@ FIRST_MUSIC_CMD EQU const_value
 
 	const octave_cmd ; $d0
 octave: MACRO
+	assert 0 < (\1) && (\1) < 8, "octave must be 1-8"
 	db octave_cmd | 8 - (\1) ; octave
 ENDM
 

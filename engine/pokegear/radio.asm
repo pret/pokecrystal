@@ -141,7 +141,7 @@ PrintRadioLine:
 	ld [wRadioTextDelay], a
 	ret
 
-ReplacePeriodsWithSpaces:
+ReplacePeriodsWithSpaces: ; unreferenced
 	push hl
 	ld b, SCREEN_WIDTH * 2
 .loop
@@ -149,7 +149,6 @@ ReplacePeriodsWithSpaces:
 	cp "."
 	jr nz, .next
 	ld [hl], " "
-
 .next
 	inc hl
 	dec b
@@ -335,6 +334,7 @@ OaksPKMNTalk8:
 	; so no need for a retry loop
 	call Random
 	maskbits NUM_OAKS_POKEMON_TALK_ADVERBS
+	assert_power_of_2 NUM_OAKS_POKEMON_TALK_ADVERBS
 	ld e, a
 	ld d, 0
 	ld hl, .Adverbs
@@ -434,6 +434,7 @@ OaksPKMNTalk9:
 	; so no need for a retry loop
 	call Random
 	maskbits NUM_OAKS_POKEMON_TALK_ADJECTIVES
+	assert_power_of_2 NUM_OAKS_POKEMON_TALK_ADJECTIVES
 	ld e, a
 	ld d, 0
 	ld hl, .Adjectives
@@ -1131,6 +1132,7 @@ PeoplePlaces5:
 	; so no need for a retry loop
 	call Random
 	maskbits NUM_PNP_PEOPLE_ADJECTIVES
+	assert_power_of_2 NUM_PNP_PEOPLE_ADJECTIVES
 	ld e, a
 	ld d, 0
 	ld hl, .Adjectives
@@ -1264,6 +1266,7 @@ PeoplePlaces7:
 	; so no need for a retry loop
 	call Random
 	maskbits NUM_PNP_PLACES_ADJECTIVES
+	assert_power_of_2 NUM_PNP_PLACES_ADJECTIVES
 	ld e, a
 	ld d, 0
 	ld hl, .Adjectives
@@ -1779,7 +1782,7 @@ CopyRadioTextToRAM:
 	cp TX_FAR
 	jp z, FarCopyRadioText
 	ld de, wRadioText
-	ld bc, SCREEN_WIDTH * 2
+	ld bc, 2 * SCREEN_WIDTH
 	jp CopyBytes
 
 StartRadioStation:

@@ -162,8 +162,7 @@ SailorHueyBeatenText:
 	line "I lose!"
 	done
 
-SailorHueyUnusedText:
-; unused
+SailorHueyUnusedText: ; unreferenced
 	text "What power!"
 	line "How would you like"
 

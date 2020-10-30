@@ -56,9 +56,9 @@ GetName::
 
 .done
 	ld a, e
-	ld [wUnusedD102], a
+	ld [wUnusedNamesPointer], a
 	ld a, d
-	ld [wUnusedD102 + 1], a
+	ld [wUnusedNamesPointer + 1], a
 
 	pop de
 	pop bc

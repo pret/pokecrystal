@@ -245,45 +245,45 @@ SpriteAnimFrameData:
 	frame SPRITE_ANIM_OAMSET_MAGNET_TRAIN_RED_2,  8, OAM_X_FLIP
 	dorestart
 
-; unused
+.Frameset_Unknown1: ; unreferenced
 	frame SPRITE_ANIM_OAMSET_UNUSED_43,  8
 	frame SPRITE_ANIM_OAMSET_UNUSED_44,  8
 	dorestart
 
-; unused
+.Frameset_Unknown2: ; unreferenced
 	frame SPRITE_ANIM_OAMSET_UNUSED_45,  8
 	frame SPRITE_ANIM_OAMSET_UNUSED_46,  8
 	dorestart
 
-; unused
+.Frameset_Unknown3: ; unreferenced
 	frame SPRITE_ANIM_OAMSET_UNUSED_47,  8
 	frame SPRITE_ANIM_OAMSET_UNUSED_48,  8
 	dorestart
 
-; unused
+.Frameset_Unknown4: ; unreferenced
 	frame SPRITE_ANIM_OAMSET_UNUSED_49,  1
 	frame SPRITE_ANIM_OAMSET_UNUSED_49,  1, OAM_X_FLIP
 	frame SPRITE_ANIM_OAMSET_UNUSED_49,  1, OAM_X_FLIP, OAM_Y_FLIP
 	frame SPRITE_ANIM_OAMSET_UNUSED_49,  1, OAM_Y_FLIP
 	dorestart
 
-; unused
+.Frameset_Unknown5: ; unreferenced
 	frame SPRITE_ANIM_OAMSET_UNUSED_4A, 32
 	endanim
 
-; unused
+.Frameset_Unknown6: ; unreferenced
 	frame SPRITE_ANIM_OAMSET_UNUSED_4B, 32
 	endanim
 
-; unused
+.Frameset_Unknown7: ; unreferenced
 	frame SPRITE_ANIM_OAMSET_UNUSED_4C, 32
 	endanim
 
-; unused
+.Frameset_Unknown8: ; unreferenced
 	frame SPRITE_ANIM_OAMSET_UNUSED_4D, 32
 	endanim
 
-; unused
+.Frameset_Unknown9: ; unreferenced
 	frame SPRITE_ANIM_OAMSET_UNUSED_4E,  3
 	dowait 3
 	dorestart

@@ -72,7 +72,7 @@ _LinkAbnormalMonText::
 
 _LinkAskTradeForText::
 	text "Trade @"
-	text_ram wd004
+	text_ram wBufferTrademonNick
 	text_start
 	line "for @"
 	text_ram wStringBuffer1
@@ -620,7 +620,6 @@ _PharmacyComeAgainText::
 	line "See you around."
 	done
 
-; unreferenced
 _NothingToSellText::
 	text "You don't have"
 	line "anything to sell."
@@ -744,25 +743,21 @@ _MainMenuTimeUnknownText::
 	text "Clock time unknown"
 	done
 
-; unreferenced mobile
 _DeleteSavedLoginPasswordText::
 	text "Delete the saved"
 	line "LOG-IN PASSWORD?"
 	done
 
-; unreferenced mobile
 _DeletedTheLoginPasswordText::
 	text "Deleted the LOG-IN"
 	line "PASSWORD."
 	done
 
-; unreferenced mobile
 _MobilePickThreeMonForBattle::
 	text "Pick three #MON"
 	line "for battle."
 	prompt
 
-; unreferenced mobile
 _MobileUseTheseThreeMonText::
 	text_ram wMobileParticipant1Nickname
 	text ","
@@ -776,13 +771,11 @@ _MobileUseTheseThreeMonText::
 	para "Use these three?"
 	done
 
-; unreferenced mobile
 _MobileOnlyThreeMonMayEnterText::
 	text "Only three #MON"
 	line "may enter."
 	prompt
 
-; unreferenced mobile
 _MobileCardFolderIntro1Text::
 	text "The CARD FOLDER"
 	line "stores your and"
@@ -800,7 +793,6 @@ _MobileCardFolderIntro1Text::
 	para ""
 	done
 
-; unreferenced mobile
 _MobileCardFolderIntro2Text::
 	text "This is your CARD."
 
@@ -814,7 +806,6 @@ _MobileCardFolderIntro2Text::
 	para ""
 	done
 
-; unreferenced mobile
 _MobileCardFolderIntro3Text::
 	text "If you have your"
 	line "friend's CARD, you"
@@ -829,7 +820,6 @@ _MobileCardFolderIntro3Text::
 	para ""
 	done
 
-; unreferenced mobile
 _MobileCardFolderIntro4Text::
 	text "To safely store"
 	line "your collection of"
@@ -841,7 +831,6 @@ _MobileCardFolderIntro4Text::
 	para ""
 	done
 
-; unreferenced mobile
 _MobileCardFolderAskDeleteText::
 	text "If the CARD FOLDER"
 	line "is deleted, all"
@@ -858,13 +847,11 @@ _MobileCardFolderAskDeleteText::
 	line "your CARD FOLDER?"
 	done
 
-; unreferenced mobile
 _MobileCardFolderDeleteAreYouSureText::
 	text "Are you sure you"
 	line "want to delete it?"
 	done
 
-; unreferenced mobile
 _MobileCardFolderDeletedText::
 	text "The CARD FOLDER"
 	line "has been deleted."
@@ -872,7 +859,6 @@ _MobileCardFolderDeletedText::
 	para ""
 	done
 
-; unreferenced mobile
 _MobileCardFolderAskOpenOldText::
 	text "There is an older"
 	line "CARD FOLDER from a"
@@ -882,13 +868,11 @@ _MobileCardFolderAskOpenOldText::
 	line "open it?"
 	done
 
-; unreferenced mobile
 _MobileCardFolderAskDeleteOldText::
 	text "Delete the old"
 	line "CARD FOLDER?"
 	done
 
-; unreferenced mobile
 _MobileCardFolderFinishRegisteringCardsText::
 	text "Finish registering"
 	line "CARDS?"

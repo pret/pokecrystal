@@ -81,8 +81,7 @@ UnionCave1FPotion:
 UnionCave1FAwakening:
 	itemball AWAKENING
 
-UnionCave1FUnusedSign:
-; unused
+UnionCave1FUnusedSign: ; unreferenced
 	jumptext UnionCave1FUnusedSignText
 
 HikerRussellSeenText:

@@ -21,9 +21,13 @@ AUTO_INPUT EQU $ff
 	const TEMPMON    ; 3
 	const WILDMON    ; 4
 
-; wGameTimerPause::
-GAMETIMERPAUSE_TIMER_PAUSED_F EQU 0
-GAMETIMERPAUSE_MOBILE_7_F     EQU 7
+; wGameTimerPaused::
+GAME_TIMER_PAUSED_F EQU 0
+GAME_TIMER_MOBILE_F EQU 7
+
+; wJoypadDisable::
+JOYPAD_DISABLE_MON_FAINT_F    EQU 6
+JOYPAD_DISABLE_SGB_TRANSFER_F EQU 7
 
 ; wOptions::
 TEXT_DELAY_MASK EQU %111
@@ -80,11 +84,12 @@ LEFT_MASK  EQU 1 << LEFT
 RIGHT_MASK EQU 1 << RIGHT
 
 ; wFacingDirection::
+	const_def NUM_DIRECTIONS - 1, -1
+	shift_const FACE_DOWN  ; 8
+	shift_const FACE_UP    ; 4
+	shift_const FACE_LEFT  ; 2
+	shift_const FACE_RIGHT ; 1
 FACE_CURRENT EQU 0
-FACE_DOWN    EQU 8
-FACE_UP      EQU 4
-FACE_LEFT    EQU 2
-FACE_RIGHT   EQU 1
 
 ; wPokemonWithdrawDepositParameter::
 PC_WITHDRAW       EQU 0

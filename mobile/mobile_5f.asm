@@ -1882,7 +1882,7 @@ Function17dc1f:
 	call Function17e40f
 	ret
 
-MenuData_17dc96:
+MenuData_17dc96: ; unreferenced
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING | STATICMENU_WRAP ; flags
 	db 2
 	db "はい@"
@@ -4645,7 +4645,7 @@ Table_17f699:
 	dw MobileErrorCode_101_009_Text
 	dw MobileErrorCode_101_009_Text
 
-Palette_17f6af:
+Palette_17f6af: ; unreferenced
 	RGB  5,  5, 16
 	RGB  8, 19, 28
 	RGB  0,  0,  0
@@ -4678,7 +4678,7 @@ Function17f6b7:
 MobileCommunicationErrorText:
 	db "つうしんエラー　　　ー@"
 
-String_17f6e8:
+String_17f6e8: ; unreferenced
 	db   "みていぎ<NO>エラーです"
 	next "プログラム<WO>"
 	next "かくにん　してください"
@@ -5115,7 +5115,7 @@ MobileErrorCode_101_005_Text:
 	next "せつめいしょを　ごらんください"
 	db   "@"
 
-String_17fe9a: ; unused
+String_17fe9a: ; unreferenced
 ; Cannot send your save data because Pokémon News is being updated.
 ; Please send your save data after loading new Pokémon News.
 	db   "ポケモンニュースが"

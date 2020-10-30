@@ -9,7 +9,7 @@ RotateUnownFrontpic:
 	push bc
 	push hl
 	push bc
-	ld de, wd002
+	ld de, wPrintedUnownTileSource
 	call .Copy
 	call .Rotate
 	ld hl, UnownPrinter_GBPrinterRectangle
@@ -19,10 +19,10 @@ RotateUnownFrontpic:
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	ld hl, wd012
+	ld hl, wPrintedUnownTileDest
 	call .Copy
 	pop hl
-	ld bc, $10
+	ld bc, LEN_2BPP_TILE
 	add hl, bc
 	pop bc
 	inc c
@@ -30,7 +30,7 @@ RotateUnownFrontpic:
 	cp 7 * 7
 	jr c, .loop
 
-	ld hl, wGameboyPrinterRAM
+	ld hl, wGameboyPrinter2bppSource
 	ld de, sScratch
 	ld bc, 7 * 7 tiles
 	call CopyBytes
@@ -44,7 +44,7 @@ RotateUnownFrontpic:
 	ret
 
 .Copy:
-	ld c, $10
+	ld c, LEN_2BPP_TILE
 .loop_copy
 	ld a, [hli]
 	ld [de], a
@@ -54,18 +54,18 @@ RotateUnownFrontpic:
 	ret
 
 .Rotate:
-	ld hl, wd012
+	ld hl, wPrintedUnownTileDest
 	ld e, %10000000
 	ld d, 8
 .loop_decompress
 	push hl
-	ld hl, wd002
+	ld hl, wPrintedUnownTileSource
 	call .CountSetBit
 	pop hl
 	ld a, b
 	ld [hli], a
 	push hl
-	ld hl, wd003
+	ld hl, wPrintedUnownTileSource + 1
 	call .CountSetBit
 	pop hl
 	ld a, b
@@ -100,7 +100,7 @@ y = 0
 rept \1
 x = \1 * (\2 - 1) + y
 rept \2
-	dw wGameboyPrinterRAM tile x
+	dw wGameboyPrinter2bppSource tile x
 x = x - \2
 endr
 y = y + 1

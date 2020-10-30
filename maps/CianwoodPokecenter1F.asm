@@ -89,8 +89,7 @@ CianwoodGymGuideWinText:
 	cont "looking at you!"
 	done
 
-CianwoodPokecenter1FUnusedText1:
-; unreferenced
+CianwoodPokecenter1FUnusedText1: ; unreferenced
 	text "Don't you get the"
 	line "urge to show off"
 
@@ -104,8 +103,7 @@ CianwoodPokecenter1FUnusedText1:
 	line "in VIOLET."
 	done
 
-CianwoodPokecenter1FUnusedText2:
-; unreferenced
+CianwoodPokecenter1FUnusedText2: ; unreferenced
 	text "I've been battling"
 	line "my pal in VIOLET"
 

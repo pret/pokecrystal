@@ -275,6 +275,7 @@ NamingScreen_InitText:
 NamingScreen_ApplyTextInputMode:
 	call NamingScreen_IsTargetBox
 	jr nz, .not_box
+	assert BoxNameInputLower - NameInputLower == BoxNameInputUpper - NameInputUpper
 	ld hl, BoxNameInputLower - NameInputLower
 	add hl, de
 	ld d, h
@@ -880,7 +881,7 @@ INCBIN "gfx/naming_screen/cursor.2bpp"
 
 INCLUDE "data/text/name_input_chars.asm"
 
-NamingScreenGFX_End: ; unused
+NamingScreenGFX_End: ; unreferenced
 INCBIN "gfx/naming_screen/end.1bpp"
 
 NamingScreenGFX_MiddleLine:
@@ -1333,7 +1334,7 @@ MailComposition_TryAddLastCharacter:
 	ld a, [wNamingScreenLastCharacter]
 	jp MailComposition_TryAddCharacter
 
-; unused
+.add_dakuten ; unreferenced
 	ld a, [wNamingScreenCurNameLength]
 	and a
 	ret z

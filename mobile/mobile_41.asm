@@ -282,7 +282,7 @@ StubbedTrainerRankings_TrainerBattles:
 	ld hl, sTrainerRankingTrainerBattles
 	jp StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_Unused1:
+StubbedTrainerRankings_Unused1: ; unreferenced
 	ret
 	ld hl, sTrainerRankingUnused1
 	jp StubbedTrainerRankings_Increment3Byte
@@ -362,7 +362,7 @@ StubbedTrainerRankings_PhoneCalls:
 	ld hl, sTrainerRankingPhoneCalls
 	jr StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_Unused2:
+StubbedTrainerRankings_Unused2: ; unreferenced
 	ret
 	ld hl, sTrainerRankingUnused2
 	jr StubbedTrainerRankings_Increment3Byte
@@ -386,7 +386,7 @@ StubbedTrainerRankings_TreeEncounters:
 	ld hl, sTrainerRankingTreeEncounters
 	jr StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_Unused3:
+StubbedTrainerRankings_Unused3: ; unreferenced
 	ret
 	ld hl, sTrainerRankingUnused3
 	jr StubbedTrainerRankings_Increment3Byte
@@ -431,8 +431,7 @@ StubbedTrainerRankings_Increment2Byte:
 	ld bc, 1
 	jr StubbedTrainerRankings_Increment
 
-; unused
-StubbedTrainerRankings_Increment1Byte:
+StubbedTrainerRankings_Increment1Byte: ; unreferenced
 	push bc
 	ld bc, 0
 
@@ -556,9 +555,8 @@ DeleteMobileEventIndex:
 	call CloseSRAM
 	ret
 
-; Used in the Japanese version to initialize Trainer Rankings data
-; for a new save file. Unreferenced in the English version.
-InitializeTrainerRankings:
+InitializeTrainerRankings: ; unreferenced
+; Initializes Trainer Rankings data for a new save file in JP Crystal.
 	ld hl, sTrainerRankings
 	ld bc, sTrainerRankingsEnd - sTrainerRankings
 	xor a
@@ -807,8 +805,8 @@ Mobile_AlwaysReturnNotCarry:
 	or a
 	ret
 
-Function106331:
-; called by Mobile_DummyReturnFalse in Crystal-J
+Function106331: ; unreferenced
+; called by Mobile_DummyReturnFalse in JP Crystal
 	; check ~[s4_b000] == [s7_a800]
 	ld a, BANK(s4_b000)
 	call OpenSRAM
@@ -1028,7 +1026,7 @@ Function106464::
 	farcall LoadFrame
 	ret
 
-Function10649b:
+Function10649b: ; unreferenced
 	ld a, [wTextboxFrame]
 	maskbits NUM_FRAMES
 	ld bc, 6 * LEN_1BPP_TILE
@@ -1063,7 +1061,7 @@ Function1064c3:
 	ldh [rSVBK], a
 	jr asm_1064ed
 
-Function1064d8:
+Function1064d8: ; unreferenced
 	ldh a, [rSVBK]
 	push af
 	ld a, $6
@@ -1097,7 +1095,7 @@ asm_1064ed:
 	ldh [rSVBK], a
 	ret
 
-Function10650a:
+Function10650a: ; unreferenced
 	ld de, MobilePhoneTilesGFX
 	lb bc, BANK(MobilePhoneTilesGFX), 17
 	call Get2bpp

@@ -110,7 +110,7 @@ TrainerPsychicNathan:
 	closetext
 	end
 
-TrainerSuperNerdStan:
+TrainerSuperNerdStan: ; unreferenced
 	trainer SUPER_NERD, STAN, EVENT_BEAT_SUPER_NERD_STAN, SuperNerdStanSeenText, SuperNerdStanBeatenText, 0, .Script
 
 .Script:

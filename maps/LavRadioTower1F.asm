@@ -72,8 +72,7 @@ LavRadioTower1FDirectory:
 LavRadioTower1FPokeFluteSign:
 	jumptext LavRadioTower1FPokeFluteSignText
 
-LavRadioTower1FReferenceLibrary:
-; unreferenced
+LavRadioTower1FReferenceLibrary: ; unreferenced
 	jumptext LavRadioTower1FReferenceLibraryText
 
 LavRadioTower1FReceptionistText:

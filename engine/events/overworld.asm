@@ -271,7 +271,7 @@ CheckOverworldTileArrays:
 	xor a
 	ret
 
-INCLUDE "data/events/field_move_blocks.asm"
+INCLUDE "data/collision/field_move_blocks.asm"
 
 FlashFunction:
 	call .CheckUseFlash
@@ -1414,7 +1414,7 @@ HasRockSmash:
 	ld d, ROCK_SMASH
 	call CheckPartyMove
 	jr nc, .yes
-.no
+; no
 	ld a, 1
 	jr .done
 .yes
@@ -1616,7 +1616,7 @@ RodNothingText:
 	text_far _RodNothingText
 	text_end
 
-UnusedNothingHereText: ; unused
+UnusedNothingHereText: ; unreferenced
 	text_far _UnusedNothingHereText
 	text_end
 
@@ -1722,7 +1722,7 @@ Script_GetOnBike_Register:
 	special UpdatePlayerSprite
 	end
 
-; unused
+Overworld_DummyFunction: ; unreferenced
 	nop
 	ret
 

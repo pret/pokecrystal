@@ -18,7 +18,7 @@ Route40BattleTowerGateRockerScript:
 Route40BattleTowerGateTwinScript:
 	jumptextfaceplayer Route40BattleTowerGateTwinText
 
-UnknownText_0x9f66f:
+Route40BattleTowerGateUnusedText1: ; unreferenced
 	text "Did you come to"
 	line "see the BATTLE"
 	cont "TOWER too?"
@@ -27,7 +27,7 @@ UnknownText_0x9f66f:
 	line "can't go in yet."
 	done
 
-UnknownText_0x9f6ba:
+Route40BattleTowerGateUnusedText2: ; unreferenced
 	text "BATTLE TOWER has"
 	line "opened."
 
@@ -49,7 +49,7 @@ Route40BattleTowerGateRockerText:
 	line "win special gifts."
 	done
 
-UnknownText_0x9f783:
+Route40BattleTowerGateUnusedText3: ; unreferenced
 	text "I'm going to train"
 	line "my #MON so I'll"
 

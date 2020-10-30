@@ -159,7 +159,7 @@ TeachTMHM:
 	and a
 	ret
 
-.unused
+.didnt_use ; unreferenced
 	ld a, 2
 	ld [wItemEffectSucceeded], a
 .learned_move

@@ -281,8 +281,8 @@ OlivineCityBattleTowerSignText:
 	line "Opening Now!"
 	done
 
-OlivineCityBattleTowerSignText_NotYetOpen:
-; unused; originally shown when the Battle Tower was closed
+OlivineCityBattleTowerSignText_NotYetOpen: ; unreferenced
+; originally shown when the Battle Tower was closed
 	text "BATTLE TOWER AHEAD"
 	done
 

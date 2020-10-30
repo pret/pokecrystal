@@ -69,6 +69,7 @@ PascalCase: ; label
 PascalCase:: ; global label
 .snake_case ; local jump
 .PascalCase: ; an atomic chunk of code or data that's local
+; don't define unused labels when a comment would do
 
 ; Labels are prefixed with lower case letters depending on location
 wPascalCase: ; wram
@@ -151,9 +152,7 @@ endr
 
 	; do
 	db \1, \2, \3, \4, \5
-rept 5
-	shift
-endr
+	shift 5
 	db \1, \2, \3, \4, \5
 
 ENDM
@@ -161,7 +160,7 @@ ENDM
 
 UPPER_CASE_IS_OK_SOMETIMES: MACRO
 
-; but i can't think of any examples
+; but I can't think of any examples besides ACRONYMS
 
 ENDM
 

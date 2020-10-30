@@ -560,7 +560,7 @@ This bug affects Attract, Curse, Foresight, Mean Look, Mimic, Nightmare, Spider 
 
 ```diff
  .got_mon
- 	ld a, [wd002]
+ 	ld a, [wCurBeatUpPartyMon]
  	ld hl, wPartyMonNicknames
  	call GetNick
  	ld a, MON_HP
@@ -568,7 +568,7 @@ This bug affects Attract, Curse, Foresight, Mean Look, Mimic, Nightmare, Spider 
  	ld a, [hli]
  	or [hl]
  	jp z, .beatup_fail ; fainted
- 	ld a, [wd002]
+ 	ld a, [wCurBeatUpPartyMon]
  	ld c, a
  	ld a, [wCurBattleMon]
 -	; BUG: this can desynchronize link battles

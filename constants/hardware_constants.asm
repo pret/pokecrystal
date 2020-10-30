@@ -71,10 +71,10 @@ rTIMA       EQU $ff05 ; Timer counter (R/W)
 rTMA        EQU $ff06 ; Timer Modulo (R/W)
 rTAC        EQU $ff07 ; Timer Control (R/W)
 rTAC_ON        EQU 2
-rTAC_4096_HZ   EQU 0
-rTAC_262144_HZ EQU 1
-rTAC_65536_HZ  EQU 2
-rTAC_16384_HZ  EQU 3
+rTAC_4096_HZ   EQU %00
+rTAC_262144_HZ EQU %01
+rTAC_65536_HZ  EQU %10
+rTAC_16384_HZ  EQU %11
 rIF         EQU $ff0f ; Interrupt Flag (R/W)
 rNR10       EQU $ff10 ; Channel 1 Sweep register (R/W)
 rNR11       EQU $ff11 ; Channel 1 Sound length/Wave pattern duty (R/W)
@@ -147,6 +147,9 @@ rHDMA3      EQU $ff53 ; CGB Mode Only - New DMA Destination, High
 rHDMA4      EQU $ff54 ; CGB Mode Only - New DMA Destination, Low
 rHDMA5      EQU $ff55 ; CGB Mode Only - New DMA Length/Mode/Start
 rRP         EQU $ff56 ; CGB Mode Only - Infrared Communications Port
+rRP_LED_ON EQU 0
+rRP_RECEIVING EQU 1
+rRP_ENABLE_READ_MASK EQU %11000000
 rBGPI       EQU $ff68 ; CGB Mode Only - Background Palette Index
 rBGPI_AUTO_INCREMENT EQU 7 ; increment rBGPI after write to rBGPD
 rBGPD       EQU $ff69 ; CGB Mode Only - Background Palette Data

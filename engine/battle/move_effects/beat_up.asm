@@ -14,7 +14,7 @@ BattleCommand_BeatUp:
 	call DelayFrames
 	xor a
 	ld [wPlayerRolloutCount], a
-	ld [wd002], a
+	ld [wCurBeatUpPartyMon], a
 	ld [wBeatUpHitAtLeastOnce], a
 	jr .got_mon
 
@@ -23,10 +23,10 @@ BattleCommand_BeatUp:
 	ld b, a
 	ld a, [wPartyCount]
 	sub b
-	ld [wd002], a
+	ld [wCurBeatUpPartyMon], a
 
 .got_mon
-	ld a, [wd002]
+	ld a, [wCurBeatUpPartyMon]
 	ld hl, wPartyMonNicknames
 	call GetNick
 	ld a, MON_HP
@@ -34,7 +34,7 @@ BattleCommand_BeatUp:
 	ld a, [hli]
 	or [hl]
 	jp z, .beatup_fail ; fainted
-	ld a, [wd002]
+	ld a, [wCurBeatUpPartyMon]
 	ld c, a
 	ld a, [wCurBattleMon]
 	; BUG: this can desynchronize link battles
@@ -88,7 +88,7 @@ BattleCommand_BeatUp:
 
 	xor a
 	ld [wEnemyRolloutCount], a
-	ld [wd002], a
+	ld [wCurBeatUpPartyMon], a
 	ld [wBeatUpHitAtLeastOnce], a
 	jr .enemy_got_mon
 
@@ -97,7 +97,7 @@ BattleCommand_BeatUp:
 	ld b, a
 	ld a, [wOTPartyCount]
 	sub b
-	ld [wd002], a
+	ld [wCurBeatUpPartyMon], a
 
 .enemy_got_mon
 	ld a, [wBattleMode]
@@ -112,7 +112,7 @@ BattleCommand_BeatUp:
 	and a
 	jr nz, .link_or_tower
 
-	ld a, [wd002]
+	ld a, [wCurBeatUpPartyMon]
 	ld c, a
 	ld b, 0
 	ld hl, wOTPartySpecies
@@ -123,7 +123,7 @@ BattleCommand_BeatUp:
 	jr .got_enemy_nick
 
 .link_or_tower
-	ld a, [wd002]
+	ld a, [wCurBeatUpPartyMon]
 	ld hl, wOTPartyMonNicknames
 	ld bc, NAME_LENGTH
 	call AddNTimes
@@ -137,7 +137,7 @@ BattleCommand_BeatUp:
 	or [hl]
 	jp z, .beatup_fail
 
-	ld a, [wd002]
+	ld a, [wCurBeatUpPartyMon]
 	ld b, a
 	ld a, [wCurOTMon]
 	cp b
@@ -217,7 +217,7 @@ GetBeatupMonLocation:
 	ld hl, wOTPartyMon1Species
 
 .got_species
-	ld a, [wd002]
+	ld a, [wCurBeatUpPartyMon]
 	add hl, bc
 	call GetPartyLocation
 	pop bc

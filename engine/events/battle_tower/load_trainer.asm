@@ -95,7 +95,7 @@ Function_LoadRandomBattleTowerMon:
 	ld c, BATTLETOWER_PARTY_LENGTH
 .loop
 	push bc
-	ld a, BANK(sBTMonPrevTrainer1)
+	ld a, BANK(sBTMonOfTrainers)
 	call OpenSRAM
 
 .FindARandomBattleTowerMon:

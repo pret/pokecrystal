@@ -429,7 +429,7 @@ Function100320:
 	farcall Mobile_ReloadMapPart
 	ret
 
-Function100327:
+Function100327: ; unreferenced
 	farcall HDMATransferTilemapToWRAMBank3
 	ret
 
@@ -523,7 +523,7 @@ Function10039c:
 	call FarCopyWRAM
 	ret
 
-Function1003ab:
+Function1003ab: ; unreferenced
 	ld hl, w3_d000
 	ld de, wcc60
 	ld bc, $54
@@ -2217,29 +2217,29 @@ Function100ed4:
 Function100edf:
 	ld hl, Unknown_100fc0
 	ld c, 1
-	jr asm_100f02
+	jr Function100f02
 
 Function100ee6:
 	ld hl, Unknown_100fc0
 	ld c, 2
-	jr asm_100f02
+	jr Function100f02
 
 Function100eed:
 	ld hl, Unknown_100feb
 	ld c, 1
-	jr asm_100f02
+	jr Function100f02
 
 Function100ef4:
 	ld hl, Unknown_100ff3
 	ld c, 1
-	jr asm_100f02
+	jr Function100f02
 
-Function100efb:
+Function100efb: ; unreferenced
 	ld hl, Unknown_10102c
 	ld c, 1
-	jr asm_100f02
+	jr Function100f02
 
-asm_100f02:
+Function100f02:
 	ld a, c
 	ld [wStringBuffer2], a
 	; someting that was previously stored in de gets backed up to here
@@ -2660,8 +2660,8 @@ Function1011f1:
 	call CloseSRAM
 	ld hl, wdc41
 	res 4, [hl]
-	ld hl, wGameTimerPause
-	bit GAMETIMERPAUSE_MOBILE_7_F, [hl]
+	ld hl, wGameTimerPaused
+	bit GAME_TIMER_MOBILE_F, [hl]
 	jr z, .skip
 	ld hl, wdc41
 	set 4, [hl]
@@ -4425,15 +4425,15 @@ Function101e98:
 	call ClearSprites
 	farcall Function8adb3
 	ret c
-	ld hl, wGameTimerPause
-	set GAMETIMERPAUSE_MOBILE_7_F, [hl]
+	ld hl, wGameTimerPaused
+	set GAME_TIMER_MOBILE_F, [hl]
 	ld hl, wdc41
 	set 4, [hl]
 	ret
 
 Function101ead:
-	ld hl, wGameTimerPause
-	bit GAMETIMERPAUSE_MOBILE_7_F, [hl]
+	ld hl, wGameTimerPaused
+	bit GAME_TIMER_MOBILE_F, [hl]
 	jr nz, .asm_101ec8
 	ld hl, wdc41
 	bit 2, [hl]
@@ -4812,7 +4812,7 @@ Function1021e0:
 	call ExitMenu
 	ret
 
-UnknownText_0x1021ea:
+UnknownText_0x1021ea: ; unreferenced
 	text_far UnknownText_0x1bd201
 	text_end
 
@@ -5169,7 +5169,7 @@ Function10246a:
 	ld [wcd49], a
 	ret
 
-Function102480:
+Function102480: ; unreferenced
 	ld c, $32
 	call DelayFrames
 	ld a, [wcd49]
@@ -5183,7 +5183,7 @@ Function10248d:
 	ld [wcd49], a
 	ret
 
-Function102496:
+Function102496: ; unreferenced
 	ld hl, wcd4e
 	dec [hl]
 	ret nz
