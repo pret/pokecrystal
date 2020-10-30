@@ -17214,7 +17214,7 @@
 23:517b GetSpriteAnimFrame.restart
 23:5189 GetSpriteAnimFrame.GetPointer
 23:51a2 GetFrameOAMPointer
-23:51ac BrokenGetStdGraphics
+23:51ac UnusedLoadSpriteAnimGFX
 23:51c4 SpriteAnimSeqData
 23:524b DoAnimFrame
 23:525b DoAnimFrame.Jumptable
@@ -17441,9 +17441,9 @@
 23:666f SpriteAnimOAMData.OAMData_Celebi
 23:6680 SpriteAnimOAMData.OAMData_GameFreakLogo1_3
 23:66a5 SpriteAnimOAMData.OAMData_GameFreakLogo4_11
-23:6706 BrokenStdGFXPointers
+23:6706 UnusedSpriteAnimGFX
 23:672a Sprites_Cosine
-23:672a BrokenStdGFXPointers.deleted
+23:672a UnusedSpriteAnimGFX.DeletedGFX
 23:672c Sprites_Sine
 23:6737 Sprites_Sine.negative_53491
 23:6741 Sprites_Sine.apply_53491
