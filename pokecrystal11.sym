@@ -2170,8 +2170,8 @@
 02:4ade SGB_ApplyPartyMenuHPPals
 02:4af7 SGB_ApplyPartyMenuHPPals.okay
 02:4b07 Intro_LoadMagikarpPalettes
-02:4b2f Intro_LoadMagikarpPalettes.BGPal
-02:4b37 Intro_LoadMagikarpPalettes.OBPal
+02:4b2f Intro_LoadMagikarpPalettes.MagikarpBGPal
+02:4b37 Intro_LoadMagikarpPalettes.MagikarpOBPal
 02:4b3f Intro_LoadAllPal0
 02:4b4d Intro_LoadBetaIntroVenusaurPalettes
 02:4b5c Intro_LoadBetaIntroVenusaurPalettes.cgb
