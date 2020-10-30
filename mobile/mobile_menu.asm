@@ -603,7 +603,7 @@ Function4a485:
 	ret
 
 Function4a492:
-	call MG_Mobile_Layout00
+	call _CrystalCGB_MobileLayout0
 	ret
 
 MainMenu_MobileStudium:

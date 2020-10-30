@@ -1007,6 +1007,10 @@ wMysteryGiftTrainer:: ds 1 + (1 + 1 + NUM_MOVES) * PARTY_LENGTH + 1
 wMysteryGiftTrainerEnd::
 
 NEXTU
+wNameCardData:: ds NAME_LENGTH + 2 + 2 + 1 + 8 + 12
+wNameCardDataEnd::
+
+NEXTU
 wMysteryGiftCardHolderName:: ds PLAYER_NAME_LENGTH
 ENDU
 

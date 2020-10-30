@@ -3964,7 +3964,7 @@ Function8ab3b:
 Function8ab93:
 	call ClearBGPalettes
 	call LoadStandardMenuHeader
-	farcall Function105688
+	farcall DoNameCardSwap
 	call ClearSprites
 	call Function891fe
 	call Function89b28

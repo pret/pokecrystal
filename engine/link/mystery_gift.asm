@@ -22,6 +22,8 @@ REGION_CODE   EQU $90 ; USA
 
 MESSAGE_PREFIX EQU $5a
 
+NAME_CARD_PREFIX EQU $3c
+
 DoMysteryGift:
 	call ClearTilemap
 	call ClearSprites
@@ -260,14 +262,14 @@ DoMysteryGift:
 ExchangeMysteryGiftData:
 	di
 	farcall ClearChannels
-	call InitializeMysteryGiftInterrupts
+	call InitializeIRCommunicationInterrupts
 
 .restart
 	call BeginIRCommunication
 	call InitializeIRCommunicationRoles
 	ldh a, [hMGStatusFlags]
 	cp MG_CANCELED
-	jp z, EndOrContinueIRCommunication
+	jp z, EndOrContinueMysteryGiftIRCommunication
 	cp MG_OKAY
 	jr nz, .restart
 
@@ -279,8 +281,8 @@ ExchangeMysteryGiftData:
 	ld b, 1
 	call TryReceivingIRDataBlock
 	jr nz, .failed
-	call ReceiveIRDataPayload_GotRegionPrefix
-	jp nz, EndOrContinueIRCommunication
+	call ReceiveMysteryGiftDataPayload_GotRegionPrefix
+	jp nz, EndOrContinueMysteryGiftIRCommunication
 	jr ReceiverExchangeMysteryGiftDataPayloads_GotPayload
 
 .failed
@@ -328,52 +330,52 @@ ExchangeMysteryGiftData:
 	jr z, .continue
 	ld a, MG_CANCELED
 	ldh [hMGStatusFlags], a
-	jp EndOrContinueIRCommunication
+	jp EndOrContinueMysteryGiftIRCommunication
 
 ReceiverExchangeMysteryGiftDataPayloads:
 	; Receive the data payload
-	call ReceiveIRDataPayload
-	jp nz, EndOrContinueIRCommunication
+	call ReceiveMysteryGiftDataPayload
+	jp nz, EndOrContinueMysteryGiftIRCommunication
 	; fallthrough
 ReceiverExchangeMysteryGiftDataPayloads_GotPayload:
 	; Switch roles
 	call BeginSendingIRCommunication
-	jp nz, EndOrContinueIRCommunication
+	jp nz, EndOrContinueMysteryGiftIRCommunication
 	; Send the data payload
-	call SendIRDataPayload
-	jp nz, EndOrContinueIRCommunication
+	call SendMysteryGiftDataPayload
+	jp nz, EndOrContinueMysteryGiftIRCommunication
 	; Switch roles
 	call BeginReceivingIRCommunication
-	jp nz, EndOrContinueIRCommunication
+	jp nz, EndOrContinueMysteryGiftIRCommunication
 	; Receive an empty block
 	call ReceiveEmptyIRDataBlock
-	jp EndOrContinueIRCommunication
+	jp EndOrContinueMysteryGiftIRCommunication
 
 SenderExchangeMysteryGiftDataPayloads:
 	; Send the data payload
-	call SendIRDataPayload
-	jp nz, EndOrContinueIRCommunication
+	call SendMysteryGiftDataPayload
+	jp nz, EndOrContinueMysteryGiftIRCommunication
 	; Switch roles
 	call BeginReceivingIRCommunication
-	jp nz, EndOrContinueIRCommunication
+	jp nz, EndOrContinueMysteryGiftIRCommunication
 	; Receive the data payload
-	call ReceiveIRDataPayload
-	jp nz, EndOrContinueIRCommunication
+	call ReceiveMysteryGiftDataPayload
+	jp nz, EndOrContinueMysteryGiftIRCommunication
 	; Switch roles
 	call BeginSendingIRCommunication
-	jp nz, EndOrContinueIRCommunication
+	jp nz, EndOrContinueMysteryGiftIRCommunication
 	; Send an empty block
 	call SendEmptyIRDataBlock
-	jp EndOrContinueIRCommunication
+	jp EndOrContinueMysteryGiftIRCommunication
 
-ReceiveIRDataPayload:
+ReceiveMysteryGiftDataPayload:
 	; Receive the region prefix
 	ld hl, hMGExchangedByte
 	ld b, 1
 	call TryReceivingIRDataBlock
 	ret nz
 	; fallthrough
-ReceiveIRDataPayload_GotRegionPrefix:
+ReceiveMysteryGiftDataPayload_GotRegionPrefix:
 	; Receive an empty block
 	call ReceiveEmptyIRDataBlock
 	ldh a, [hMGStatusFlags]
@@ -413,7 +415,7 @@ ReceiveIRDataPayload_GotRegionPrefix:
 	cp MG_OKAY
 	ret
 
-SendIRDataPayload:
+SendMysteryGiftDataPayload:
 	; Send the region prefix
 	ld a, REGION_PREFIX
 	ldh [hMGExchangedByte], a
@@ -458,7 +460,7 @@ SendIRDataPayload:
 	cp MG_OKAY
 	ret
 
-EndOrContinueIRCommunication:
+EndOrContinueMysteryGiftIRCommunication:
 	nop
 	ldh a, [hMGStatusFlags]
 	; Quit if player canceled
@@ -491,12 +493,12 @@ EndOrContinueIRCommunication:
 	jr z, .sender
 ; receiver
 	call BeginReceivingIRCommunication
-	jr nz, EndOrContinueIRCommunication
+	jr nz, EndOrContinueMysteryGiftIRCommunication
 	jp ReceiverExchangeMysteryGiftDataPayloads
 
 .sender
 	call BeginSendingIRCommunication
-	jr nz, EndOrContinueIRCommunication
+	jr nz, EndOrContinueMysteryGiftIRCommunication
 	jp SenderExchangeMysteryGiftDataPayloads
 
 .quit
@@ -513,121 +515,149 @@ EndOrContinueIRCommunication:
 	pop af
 	ret
 
-Function104c2d:
+ExchangeNameCardData:
 	di
 	farcall ClearChannels
-	call InitializeMysteryGiftInterrupts
+	call InitializeIRCommunicationInterrupts
 
-.loop2
+.restart
 	call BeginIRCommunication
 	call InitializeIRCommunicationRoles
 	ldh a, [hMGStatusFlags]
 	cp MG_CANCELED
-	jp z, Function104d1c
+	jp z, EndNameCardIRCommunication
 	cp MG_OKAY
-	jr nz, .loop2
+	jr nz, .restart
 
 	ldh a, [hMGRole]
 	cp IR_SENDER
 	jr z, .sender
 ; receiver
-	call Function104c8a
-	jp nz, Function104d1c
+	; Receive the data payload
+	call ReceiveNameCardDataPayload
+	jp nz, EndNameCardIRCommunication
+	; Switch roles
 	call BeginSendingIRCommunication
-	jp nz, Function104d1c
-	call Function104cd2
-	jp nz, Function104d1c
+	jp nz, EndNameCardIRCommunication
+	; Send the data payload
+	call SendNameCardDataPayload
+	jp nz, EndNameCardIRCommunication
+	; Switch roles
 	call BeginReceivingIRCommunication
-	jp nz, Function104d1c
+	jp nz, EndNameCardIRCommunication
+	; Receive an empty block
 	call ReceiveEmptyIRDataBlock
-	jp Function104d1c
+	jp EndNameCardIRCommunication
 
 .sender
-	call Function104cd2
-	jp nz, Function104d1c
+	; Send the data payload
+	call SendNameCardDataPayload
+	jp nz, EndNameCardIRCommunication
+	; Switch roles
 	call BeginReceivingIRCommunication
-	jp nz, Function104d1c
-	call Function104c8a
-	jp nz, Function104d1c
+	jp nz, EndNameCardIRCommunication
+	; Receive the data payload
+	call ReceiveNameCardDataPayload
+	jp nz, EndNameCardIRCommunication
+	; Switch roles
 	call BeginSendingIRCommunication
-	jp nz, Function104d1c
+	jp nz, EndNameCardIRCommunication
+	; Send an empty block
 	call SendEmptyIRDataBlock
-	jp Function104d1c
+	jp EndNameCardIRCommunication
 
-Function104c8a:
+ReceiveNameCardDataPayload:
+	; Receive the Name Card prefix
 	ld hl, hMGExchangedByte
 	ld b, 1
 	call TryReceivingIRDataBlock
 	ret nz
+	; Receive an empty block
 	call ReceiveEmptyIRDataBlock
 	ldh a, [hMGStatusFlags]
 	cp MG_OKAY
 	ret nz
+	; Verify the received Name Card prefix
 	ldh a, [hMGExchangedByte]
-	cp $3c
+	cp NAME_CARD_PREFIX
 	jp nz, WrongMysteryGiftRegion
 	swap a
 	ldh [hMGExchangedByte], a
+	; Switch roles
 	call BeginSendingIRCommunication
 	ret nz
+	; Send the swapped Name Card prefix
 	ld hl, hMGExchangedByte
 	ld b, 1
 	call TrySendingIRDataBlock
 	ret nz
+	; Send an empty block
 	call SendEmptyIRDataBlock
 	ldh a, [hMGStatusFlags]
 	cp MG_OKAY
 	ret nz
+	; Switch roles
 	call BeginReceivingIRCommunication
 	ret nz
-	ld hl, wMysteryGiftTrainer
+	; Receive the staged data
+	ld hl, wNameCardData
 	ld a, [wMysteryGiftStagedDataLength]
 	ld b, a
 	call TryReceivingIRDataBlock
 	ret nz
+	; Receive an empty block
 	call ReceiveEmptyIRDataBlock
 	ldh a, [hMGStatusFlags]
 	cp MG_OKAY
 	ret
 
-Function104cd2:
-	ld a, $3c
+SendNameCardDataPayload:
+	; Send the Name Card prefix
+	ld a, NAME_CARD_PREFIX
 	ldh [hMGExchangedByte], a
 	ld hl, hMGExchangedByte
 	ld b, 1
 	call TrySendingIRDataBlock
 	ret nz
+	; Send an empty block
 	call SendEmptyIRDataBlock
 	ldh a, [hMGStatusFlags]
 	cp MG_OKAY
 	ret nz
+	; Switch roles
 	call BeginReceivingIRCommunication
 	ret nz
+	; Receive the swapped Name Card prefix
 	ld hl, hMGExchangedByte
 	ld b, 1
 	call TryReceivingIRDataBlock
 	ret nz
+	; Receive an empty block
 	call ReceiveEmptyIRDataBlock
 	ldh a, [hMGStatusFlags]
 	cp MG_OKAY
 	ret nz
+	; Verify the received swapped Name Card prefix
 	ldh a, [hMGExchangedByte]
 	swap a
-	cp $3c
+	cp NAME_CARD_PREFIX
 	jp nz, WrongMysteryGiftRegion
+	; Switch roles
 	call BeginSendingIRCommunication
 	ret nz
+	; Send the staged data
 	ld hl, wMysteryGiftStaging
 	ld a, [wMysteryGiftStagedDataLength]
 	ld b, a
 	call TrySendingIRDataBlock
 	ret nz
+	; Send an empty block
 	call SendEmptyIRDataBlock
 	ldh a, [hMGStatusFlags]
 	cp MG_OKAY
 	ret
 
-Function104d1c:
+EndNameCardIRCommunication:
 	nop
 	ldh a, [hMGStatusFlags]
 	push af
@@ -674,7 +704,7 @@ TryReceivingIRDataBlock:
 	cp MG_OKAY
 	ret
 
-InitializeMysteryGiftInterrupts:
+InitializeIRCommunicationInterrupts:
 	call StartFastIRTimer
 	ld a, 1 << TIMER
 	ldh [rIE], a
@@ -1175,6 +1205,7 @@ ReceiveIRDataMessage:
 	ld d, 0
 	call ReceiveInfraredLEDOn
 	jp z, InfraredLEDReceiveTimedOut
+
 	ld d, 16
 	call SendInfraredLEDOff
 	ret
@@ -1536,22 +1567,22 @@ InitMysteryGiftLayout:
 MysteryGiftGFX:
 INCBIN "gfx/mystery_gift/mystery_gift.2bpp"
 
-Function105688:
+DoNameCardSwap:
 	call ClearTilemap
 	call ClearSprites
 	call WaitBGMap
-	call Function1057d7
+	call InitNameCardLayout
 	hlcoord 3, 8
-	ld de, String_PressAToLink_BToCancel_JP
+	ld de, .String_PressAToLink_BToCancel_JP
 	call PlaceString
 	call WaitBGMap
-	call Function10578c
+	call StageDataForNameCard
 	call ClearMysteryGiftTrainer
-	ld a, $24
+	ld a, wNameCardDataEnd - wNameCardData
 	ld [wMysteryGiftStagedDataLength], a
 	ldh a, [rIE]
 	push af
-	call Function104c2d
+	call ExchangeNameCardData
 	ld d, a
 	xor a
 	ldh [rIF], a
@@ -1559,25 +1590,25 @@ Function105688:
 	ldh [rIE], a
 	ld a, d
 	cp $10
-	jp z, Function105712
-	cp %01101100
-	jp nz, Function10571a
-	call Function1056eb
+	jp z, .LinkCanceled
+	cp MG_OKAY
+	jp nz, .CommunicationError
+	call .SlideNameCardUpOffScreen
 	ld c, 60
 	call DelayFrames
-	call Function105777
-	ld hl, MysteryGiftReceivedCardText
+	call .ClearScreen
+	ld hl, .NameCardReceivedCardText
 	call PrintText
-	ld de, wMysteryGiftTrainer
+	ld de, wNameCardData
 	farcall Function8ac70
 	ld a, c
 	ld [wDeciramBuffer], a
-	ld hl, MysteryGiftNotRegisteredCardText
-	jr c, PrintTextAndExit_JP
-	ld hl, MysteryGiftListedCardText
-	jr PrintTextAndExit_JP
+	ld hl, .NameCardNotRegisteredCardText
+	jr c, .PrintTextAndExit
+	ld hl, .NameCardListedCardText
+	jr .PrintTextAndExit
 
-Function1056eb:
+.SlideNameCardUpOffScreen:
 	ld c, 16
 .loop
 	ld hl, wVirtualOAMSprite00YCoord
@@ -1606,51 +1637,51 @@ endr
 	pop bc
 	jr .loop
 
-Function105712:
-	call Function105777
-	ld hl, MysteryGiftLinkCancelledText
-	jr PrintTextAndExit_JP
+.LinkCanceled:
+	call .ClearScreen
+	ld hl, .NameCardLinkCancelledText
+	jr .PrintTextAndExit
 
-Function10571a:
-	call Function105777
-	ld hl, MysteryGiftLinkCommErrorText
+.CommunicationError:
+	call .ClearScreen
+	ld hl, .NameCardCommErrorText
 	call PrintText
-	jp Function105688
+	jp DoNameCardSwap
 
-PrintTextAndExit_JP:
+.PrintTextAndExit:
 	call PrintText
 	ld a, LCDC_DEFAULT
 	ldh [rLCDC], a
 	ret
 
-String_PressAToLink_BToCancel_JP:
+.String_PressAToLink_BToCancel_JP:
 	db   "エーボタン<WO>おすと"
 	next "つうしん<PKMN>おこなわれるよ！"
 	next "ビーボタン<WO>おすと"
 	next "つうしん<WO>ちゅうし　します"
 	db   "@"
 
-MysteryGiftReceivedCardText:
-	text_far _MysteryGiftReceivedCardText
+.NameCardReceivedCardText:
+	text_far _NameCardReceivedCardText
 	text_end
 
-MysteryGiftListedCardText:
-	text_far _MysteryGiftListedCardText
+.NameCardListedCardText:
+	text_far _NameCardListedCardText
 	text_end
 
-MysteryGiftNotRegisteredCardText:
-	text_far _MysteryGiftNotRegisteredCardText
+.NameCardNotRegisteredCardText:
+	text_far _NameCardNotRegisteredCardText
 	text_end
 
-MysteryGiftLinkCancelledText:
-	text_far _MysteryGiftLinkCancelledText
+.NameCardLinkCancelledText:
+	text_far _NameCardLinkCancelledText
 	text_end
 
-MysteryGiftLinkCommErrorText:
-	text_far _MysteryGiftLinkCommErrorText
+.NameCardCommErrorText:
+	text_far _NameCardLinkCommErrorText
 	text_end
 
-Function105777:
+.ClearScreen:
 	call ClearSprites
 	call ClearTilemap
 	call EnableLCD
@@ -1660,8 +1691,8 @@ Function105777:
 	call SetPalettes
 	ret
 
-Function10578c:
-	ld de, wLinkData
+StageDataForNameCard:
+	ld de, wMysteryGiftStaging
 	ld a, BANK(sPlayerData)
 	call OpenSRAM
 	ld hl, sPlayerData + wPlayerName - wPlayerData
@@ -1682,15 +1713,15 @@ Function10578c:
 	ld a, BANK(s4_a603) ; aka BANK(s4_a007) ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call OpenSRAM
 	ld hl, s4_a603 ; address of MBC30 bank
-	ld bc, $8
+	ld bc, 8
 	call CopyBytes
 	ld hl, s4_a007 ; address of MBC30 bank
-	ld bc, $c
+	ld bc, 12
 	call CopyBytes
 	call CloseSRAM
 	ret
 
-Function1057d7:
+InitNameCardLayout:
 	call ClearBGPalettes
 	call DisableLCD
 	ld hl, CardTradeGFX
@@ -1775,13 +1806,13 @@ Function1057d7:
 	hlcoord 17, 15
 	ld [hl], $3e
 	ld de, wVirtualOAMSprite00
-	ld hl, .OAM_data
+	ld hl, .NameCardOAMData
 	ld bc, 16 * SPRITEOAMSTRUCT_LENGTH
 	call CopyBytes
 	call EnableLCD
 	call WaitBGMap
-	ld b, $2
-	farcall GetMysteryGift_MobileAdapterLayout
+	ld b, CRYSTAL_CGB_NAME_CARD
+	farcall GetCrystalCGBLayout
 	jp SetPalettes
 
 .Load6Row:
@@ -1829,7 +1860,7 @@ Function1057d7:
 	jr nz, .row_loop_no_inc
 	ret
 
-.OAM_data:
+.NameCardOAMData:
 	dbsprite  6,  2, 4, 1, $00, 0
 	dbsprite  7,  2, 4, 1, $01, 0
 	dbsprite  8,  2, 4, 1, $02, 0

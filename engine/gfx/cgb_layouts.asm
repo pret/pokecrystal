@@ -17,19 +17,18 @@ LoadSGBLayoutCGB:
 	ld l, a
 	ld h, 0
 	add hl, hl
-	ld de, .dw
+	ld de, .Jumptable
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, .ReturnFromJumpTable
+	ld de, .done
 	push de
 	jp hl
-
-.ReturnFromJumpTable:
+.done:
 	ret
 
-.dw
+.Jumptable:
 	dw _CGB_BattleGrayscale
 	dw _CGB_BattleColors
 	dw _CGB_PokegearPals

@@ -260,14 +260,14 @@ _MysteryGiftSentHomeText::
 	text "'s home."
 	prompt
 
-_MysteryGiftReceivedCardText::
+_NameCardReceivedCardText::
 	text "Received"
 	line "@"
 	text_ram wMysteryGiftCardHolderName
 	text "'s CARD."
 	prompt
 
-_MysteryGiftListedCardText::
+_NameCardListedCardText::
 	text_ram wMysteryGiftCardHolderName
 	text "'s CARD was"
 	line "listed as no.@"
@@ -275,17 +275,17 @@ _MysteryGiftListedCardText::
 	text "."
 	prompt
 
-_MysteryGiftNotRegisteredCardText::
+_NameCardNotRegisteredCardText::
 	text "The CARD was not"
 	line "registered."
 	prompt
 
-_MysteryGiftLinkCancelledText::
+_NameCardLinkCancelledText::
 	text "The link has been"
 	line "cancelled."
 	prompt
 
-_MysteryGiftLinkCommErrorText::
+_NameCardLinkCommErrorText::
 	text "Communication"
 	line "error."
 	prompt

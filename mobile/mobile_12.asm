@@ -45,8 +45,8 @@ InitMobileProfile:
 	ld [wMusicFadeID + 1], a
 	ld c, 20
 	call DelayFrames
-	ld b, $1
-	call GetMysteryGift_MobileAdapterLayout
+	ld b, CRYSTAL_CGB_MOBILE_1
+	call GetCrystalCGBLayout
 	call ClearBGPalettes
 	hlcoord 0, 0
 	ld b,  2
@@ -652,8 +652,8 @@ Wakayama:  db "わかやまけん@" ; Wakayama
 Function48689:
 	ld c, 7
 	call DelayFrames
-	ld b, $1
-	call GetMysteryGift_MobileAdapterLayout
+	ld b, CRYSTAL_CGB_MOBILE_1
+	call GetCrystalCGBLayout
 	call ClearBGPalettes
 	hlcoord 0, 0
 	ld b, 4
