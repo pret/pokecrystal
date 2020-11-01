@@ -391,24 +391,19 @@ EraseHallOfFame:
 	jp CloseSRAM
 
 Function14d18: ; unreferenced
-	ld a, BANK(s4_a007)
+	ld a, BANK(s4_a007) ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call OpenSRAM
 	ld hl, .Data
 	ld de, s4_a007
-	ld bc, .DataEnd - .Data
+	ld bc, 4 * 12
 	call CopyBytes
 	jp CloseSRAM
 
 .Data:
-	db $0d, $02, $00, $05, $00, $00
-	db $22, $02, $01, $05, $00, $00
-	db $03, $04, $05, $08, $03, $05
-	db $0e, $06, $03, $02, $00, $00
-	db $39, $07, $07, $04, $00, $05
-	db $04, $07, $01, $05, $00, $00
-	db $0f, $05, $14, $07, $05, $05
-	db $11, $0c, $0c, $06, $06, $04
-.DataEnd
+	db $0d, $02, $00, $05, $00, $00, $22, $02, $01, $05, $00, $00
+	db $03, $04, $05, $08, $03, $05, $0e, $06, $03, $02, $00, $00
+	db $39, $07, $07, $04, $00, $05, $04, $07, $01, $05, $00, $00
+	db $0f, $05, $14, $07, $05, $05, $11, $0c, $0c, $06, $06, $04
 
 EraseBattleTowerStatus:
 	ld a, BANK(sBattleTowerChallengeState)

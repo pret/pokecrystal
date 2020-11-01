@@ -1049,7 +1049,8 @@ RunTitleScreen:
 	scf
 	ret
 
-Function6292: ; unreferenced
+UnusedTitlePerspectiveScroll: ; unreferenced
+; Similar behavior to Intro_PerspectiveScrollBG.
 	ldh a, [hVBlankCounter]
 	and $7
 	ret nz

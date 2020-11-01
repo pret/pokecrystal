@@ -1249,7 +1249,7 @@ LinkTradeOTPartymonMenuLoop:
 .not_d_up
 	bit D_DOWN_F, a
 	jp z, LinkTradePartiesMenuMasterLoop
-	jp LinkTradeCheckCancel
+	jp LinkTradeOTPartymonMenuCheckCancel
 
 LinkTrade_PlayerPartyMenu:
 	farcall InitMG_Mobile_LinkTradePalMap
@@ -1323,7 +1323,7 @@ LinkTradePartymonMenuLoop:
 	ld [hl], " "
 	pop bc
 	pop hl
-	jp Function28ade
+	jp LinkTradePartymonMenuCheckCancel
 
 LinkTradePartiesMenuMasterLoop:
 	ld a, [wMonType]
@@ -1501,11 +1501,12 @@ LinkTrade_TradeStatsMenu:
 	text_far _LinkAbnormalMonText
 	text_end
 
-LinkTradeCheckCancel:
+LinkTradeOTPartymonMenuCheckCancel:
 	ld a, [wMenuCursorY]
 	cp 1
 	jp nz, LinkTradePartiesMenuMasterLoop
 	call HideCursor
+
 	push hl
 	push bc
 	ld bc, NAME_LENGTH
@@ -1513,7 +1514,9 @@ LinkTradeCheckCancel:
 	ld [hl], " "
 	pop bc
 	pop hl
-Function28ade:
+	; fallthrough
+
+LinkTradePartymonMenuCheckCancel:
 .loop1
 	ld a, "▶"
 	ldcoord_a 9, 17
@@ -1548,6 +1551,8 @@ Function28ade:
 	ld a, [wOtherPlayerLinkMode]
 	cp $f
 	jr nz, .loop1
+	; fallthrough
+
 ExitLinkCommunications:
 	call RotateThreePalettesRight
 	call ClearScreen

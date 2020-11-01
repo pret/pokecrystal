@@ -1,11 +1,10 @@
-Function88248: ; unreferenced
+BetaLoadPlayerTrainerClass: ; unreferenced
 	ld c, CAL
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
-	jr z, .okay
-	ld c, KAREN
-
-.okay
+	jr z, .got_class
+	ld c, KAREN ; not KRIS?
+.got_class
 	ld a, c
 	ld [wTrainerClass], a
 	ret
@@ -59,9 +58,9 @@ ShowPlayerNamingChoices:
 	ld hl, ChrisNameMenuHeader
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
-	jr z, .GotGender
+	jr z, .got_header
 	ld hl, KrisNameMenuHeader
-.GotGender:
+.got_header
 	call LoadMenuHeader
 	call VerticalMenu
 	ld a, [wMenuCursorY]
@@ -77,38 +76,30 @@ GetPlayerNameArray: ; unreferenced
 	ld de, MalePlayerNameArray
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
-	jr z, .done
+	jr z, .got_array
 	ld de, FemalePlayerNameArray
-
-.done
+.got_array
 	call InitName
 	ret
 
 GetPlayerIcon:
-; Get the player icon corresponding to gender
-
-; Male
 	ld de, ChrisSpriteGFX
 	ld b, BANK(ChrisSpriteGFX)
-
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
-	jr z, .done
-
-; Female
+	jr z, .got_gfx
 	ld de, KrisSpriteGFX
 	ld b, BANK(KrisSpriteGFX)
-
-.done
+.got_gfx
 	ret
 
 GetCardPic:
 	ld hl, ChrisCardPic
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
-	jr z, .GotClass
+	jr z, .got_pic
 	ld hl, KrisCardPic
-.GotClass:
+.got_pic
 	ld de, vTiles2 tile $00
 	ld bc, $23 tiles
 	ld a, BANK(ChrisCardPic) ; aka BANK(KrisCardPic)
@@ -148,26 +139,29 @@ HOF_LoadTrainerFrontpic:
 	call WaitBGMap
 	xor a
 	ldh [hBGMapMode], a
-	ld e, 0
+
+; Get class
+	ld e, CHRIS
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
-	jr z, .GotClass
-	ld e, 1
-
-.GotClass:
+	jr z, .got_class
+	ld e, KRIS
+.got_class
 	ld a, e
 	ld [wTrainerClass], a
+
+; Load pic
 	ld de, ChrisPic
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
-	jr z, .GotPic
+	jr z, .got_pic
 	ld de, KrisPic
-
-.GotPic:
+.got_pic
 	ld hl, vTiles2
 	ld b, BANK(ChrisPic) ; aka BANK(KrisPic)
 	ld c, 7 * 7
 	call Get2bpp
+
 	call WaitBGMap
 	ld a, $1
 	ldh [hBGMapMode], a
@@ -180,9 +174,9 @@ DrawIntroPlayerPic:
 	ld e, CHRIS
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
-	jr z, .GotClass
+	jr z, .got_class
 	ld e, KRIS
-.GotClass:
+.got_class
 	ld a, e
 	ld [wTrainerClass], a
 
@@ -190,9 +184,9 @@ DrawIntroPlayerPic:
 	ld de, ChrisPic
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
-	jr z, .GotPic
+	jr z, .got_pic
 	ld de, KrisPic
-.GotPic:
+.got_pic
 	ld hl, vTiles2
 	ld b, BANK(ChrisPic) ; aka BANK(KrisPic)
 	ld c, 7 * 7 ; dimensions

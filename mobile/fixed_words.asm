@@ -339,7 +339,7 @@ Function11c1b9:
 
 Function11c254:
 	push af
-	ld a, $4
+	ld a, BANK(s4_a007)
 	call OpenSRAM
 	ld hl, s4_a007
 	pop af
@@ -349,7 +349,7 @@ Function11c254:
 	sla a
 	add c
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld de, wcd36
 	ld bc, 12
@@ -1762,7 +1762,7 @@ Function11cb66:
 	ld a, [hl]
 	and a
 	jr nz, .asm_11cbd4
-	ld a, $4
+	ld a, BANK(s4_a007)
 	call OpenSRAM
 	ld hl, s4_a007
 	ld a, [wMenuCursorY]
@@ -1773,10 +1773,10 @@ Function11cb66:
 	sla a
 	add c
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld de, wcd36
-	ld c, $c
+	ld c, 12
 .asm_11cba2
 	ld a, [de]
 	ld [hli], a

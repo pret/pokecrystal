@@ -114,20 +114,20 @@ _ExpPointsText::
 	text " EXP. Points!"
 	prompt
 
-Text_GoMon::
+_GoMonText::
 	text "Go! @"
 	text_end
 
-Text_DoItMon::
+_DoItMonText::
 	text "Do it! @"
 	text_end
 
-Text_GoForItMon::
+_GoForItMonText::
 	text "Go for it,"
 	line "@"
 	text_end
 
-Text_YourFoesWeakGetmMon::
+_YourFoesWeakGetmMonText::
 	text "Your foe's weak!"
 	line "Get'm, @"
 	text_end
@@ -137,7 +137,7 @@ _BattleMonNicknameText::
 	text "!"
 	done
 
-Text_BattleMonNickComma::
+_BattleMonNickCommaText::
 	text_ram wBattleMonNick
 	text ",@"
 	text_end

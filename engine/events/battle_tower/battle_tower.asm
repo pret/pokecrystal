@@ -1531,7 +1531,7 @@ BattleTowerAction_UbersCheck:
 	ret
 
 LoadOpponentTrainerAndPokemonWithOTSprite:
-	farcall Function_LoadOpponentTrainerAndPokemons
+	farcall LoadOpponentTrainerAndPokemon
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wBT_OTTrainerClass)

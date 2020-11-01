@@ -1,4 +1,4 @@
-Function_LoadOpponentTrainerAndPokemons:
+LoadOpponentTrainerAndPokemon:
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wBT_OTTrainer)
@@ -68,7 +68,7 @@ endc
 	ld bc, NAME_LENGTH
 	call CopyBytes
 
-	call Function_LoadRandomBattleTowerMon
+	call LoadRandomBattleTowerMon
 	pop af
 
 	ld hl, BattleTowerTrainerData
@@ -91,7 +91,7 @@ endc
 
 	ret
 
-Function_LoadRandomBattleTowerMon:
+LoadRandomBattleTowerMon:
 	ld c, BATTLETOWER_PARTY_LENGTH
 .loop
 	push bc

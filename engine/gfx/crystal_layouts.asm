@@ -150,11 +150,11 @@ _CrystalCGB_MobileLayout1:
 	ld a, [wd002]
 	bit 6, a
 	jr z, .asm_49464
-	call Function49480
+	call .Function49480
 	jr .done
 
 .asm_49464
-	call Function49496
+	call .Function49496
 .done
 	farcall ApplyAttrmap
 	farcall ApplyPals
@@ -165,7 +165,7 @@ _CrystalCGB_MobileLayout1:
 .TextPalette:
 INCLUDE "gfx/mystery_gift/mobile_text.pal"
 
-Function49480:
+.Function49480:
 	hlcoord 0, 0, wAttrmap
 	lb bc, 4, SCREEN_WIDTH
 	ld a, $7
@@ -177,7 +177,7 @@ Function49480:
 	ld [hl], a
 	ret
 
-Function49496:
+.Function49496:
 	hlcoord 0, 0, wAttrmap
 	lb bc, 2, SCREEN_WIDTH
 	ld a, $7

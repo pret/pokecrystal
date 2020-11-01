@@ -6496,7 +6496,7 @@ Function102e3e:
 	db "CANCEL@"
 
 Function102e4f:
-	farcall Function16d42e
+	farcall LoadMobileTradeBorderTilemap
 	farcall _InitMG_Mobile_LinkTradePalMap
 	ld de, wPlayerName
 	hlcoord 4, 0

@@ -380,7 +380,8 @@ CopyTrainerName:
 	pop de
 	ret
 
-Function39990: ; unreferenced
+IncompleteCopyNameFunction: ; unreferenced
+; Copy of CopyTrainerName but without "call CopyBytes"
 	ld de, wStringBuffer1
 	push de
 	ld bc, NAME_LENGTH

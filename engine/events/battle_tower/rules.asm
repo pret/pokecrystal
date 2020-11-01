@@ -42,10 +42,10 @@ _CheckForBattleTowerRules:
 	dw .TextPointers
 
 .Functions:
-	dw Function_PartyCountEq3
-	dw Function_PartySpeciesAreUnique
-	dw Function_PartyItemsAreUnique
-	dw Function_HasPartyAnEgg
+	dw CheckBTRule_PartyCountEq3
+	dw CheckBTRule_PartySpeciesAreUnique
+	dw CheckBTRule_PartyItemsAreUnique
+	dw CheckBTRule_HasPartyAnEgg
 
 .TextPointers:
 	dw ExcuseMeYoureNotReadyText
@@ -203,19 +203,19 @@ BattleTower_CheckPartyHasThreeMonsThatAreNotEggs:
 	cp BATTLETOWER_PARTY_LENGTH
 	ret
 
-Function_PartyCountEq3:
+CheckBTRule_PartyCountEq3:
 	ld a, [wPartyCount]
 	cp BATTLETOWER_PARTY_LENGTH
 	ret z
 	scf
 	ret
 
-Function_PartySpeciesAreUnique:
+CheckBTRule_PartySpeciesAreUnique:
 	ld hl, wPartyMon1Species
-	call VerifyUniqueness
+	call CheckPartyValueIsUnique
 	ret
 
-VerifyUniqueness:
+CheckPartyValueIsUnique:
 	ld de, wPartyCount
 	ld a, [de]
 	inc de
@@ -276,12 +276,12 @@ VerifyUniqueness:
 	pop bc
 	ret
 
-Function_PartyItemsAreUnique:
+CheckBTRule_PartyItemsAreUnique:
 	ld hl, wPartyMon1Item
-	call VerifyUniqueness
+	call CheckPartyValueIsUnique
 	ret
 
-Function_HasPartyAnEgg:
+CheckBTRule_HasPartyAnEgg:
 	ld hl, wPartyCount
 	ld a, [hli]
 	ld c, a

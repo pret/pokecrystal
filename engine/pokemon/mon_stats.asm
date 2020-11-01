@@ -323,7 +323,11 @@ ListMovePP:
 	jr nz, .load_loop
 	ret
 
-Function50cd0: ; unreferenced
+BrokenPlacePPUnits: ; unreferenced
+; Probably would have these parameters:
+; hl = starting coordinate
+; de = SCREEN_WIDTH or SCREEN_WIDTH * 2
+; c = the number of moves (1-4)
 .loop
 	ld [hl], $32 ; typo for P?
 	inc hl

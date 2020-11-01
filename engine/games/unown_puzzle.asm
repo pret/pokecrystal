@@ -171,7 +171,7 @@ PlaceStartCancelBoxBorder:
 UnownPuzzleJumptable:
 	jumptable .Jumptable, wJumptableIndex
 
-.Jumptable:
+.Jumptable: ; redundant one-entry jumptable
 	dw .Function
 
 .Function:
