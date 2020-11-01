@@ -34,7 +34,7 @@ AI_Basic:
 	pop bc
 	pop de
 	pop hl
-	jr nz, .discourage
+	jr nz, .dismiss
 
 ; Dismiss status-only moves if the player can't be statused.
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
@@ -52,15 +52,15 @@ AI_Basic:
 
 	ld a, [wBattleMonStatus]
 	and a
-	jr nz, .discourage
+	jr nz, .dismiss
 
 ; Dismiss Safeguard if it's already active.
 	ld a, [wPlayerScreens]
 	bit SCREENS_SAFEGUARD, a
 	jr z, .checkmove
 
-.discourage
-	call AIDiscourageMove
+.dismiss
+	call AIDismissMove
 	jr .checkmove
 
 INCLUDE "data/battle/ai/status_only_effects.asm"
@@ -227,7 +227,7 @@ AI_Types:
 	jr .checkmove
 
 .immune
-	call AIDiscourageMove
+	call AIDismissMove
 	jr .checkmove
 
 
@@ -544,7 +544,7 @@ AI_Smart_LockOn:
 
 .dismiss
 	pop hl
-	jp AIDiscourageMove
+	jp AIDismissMove
 
 AI_Smart_Selfdestruct:
 ; Selfdestruct, Explosion
@@ -598,7 +598,7 @@ AI_Smart_EvasionUp:
 ; Dismiss this move if enemy's evasion can't raise anymore.
 	ld a, [wEnemyEvaLevel]
 	cp MAX_STAT_LEVEL
-	jp nc, AIDiscourageMove
+	jp nc, AIDismissMove
 
 ; If enemy's HP is full...
 	call AICheckEnemyMaxHP
@@ -736,7 +736,7 @@ AI_Smart_MirrorMove:
 	ret nc
 
 ; ...or dismiss this move if enemy is faster than player.
-	jp AIDiscourageMove
+	jp AIDismissMove
 
 ; If the player did use a move last turn...
 .usedmove
@@ -990,7 +990,7 @@ AI_Smart_Ohko:
 	ld b, a
 	ld a, [wEnemyMonLevel]
 	cp b
-	jp c, AIDiscourageMove
+	jp c, AIDismissMove
 	call AICheckPlayerHalfHP
 	ret c
 	inc [hl]
@@ -1216,7 +1216,7 @@ AI_Smart_Substitute:
 
 	call AICheckEnemyHalfHP
 	ret c
-	jp AIDiscourageMove
+	jp AIDismissMove
 
 AI_Smart_HyperBeam:
 	call AICheckEnemyHalfHP
@@ -1324,7 +1324,7 @@ AI_Smart_Mimic:
 .dismiss
 ; Dismiss this move if the enemy is faster than the player.
 	call AICompareSpeed
-	jp c, AIDiscourageMove
+	jp c, AIDismissMove
 
 .discourage
 	inc [hl]
@@ -1395,11 +1395,11 @@ AI_Smart_Counter:
 
 AI_Smart_Encore:
 	call AICompareSpeed
-	jr nc, .discourage
+	jr nc, .greatly_discourage
 
 	ld a, [wLastPlayerMove]
 	and a
-	jp z, AIDiscourageMove
+	jp z, AIDismissMove
 
 	call AIGetEnemyMove
 
@@ -1419,7 +1419,7 @@ AI_Smart_Encore:
 
 	and a
 	ret nz
-	jr .encourage
+	jr .greatly_encourage
 
 .weakmove
 	push hl
@@ -1428,9 +1428,9 @@ AI_Smart_Encore:
 	ld de, 1
 	call IsInArray
 	pop hl
-	jr nc, .discourage
+	jr nc, .greatly_discourage
 
-.encourage
+.greatly_encourage
 	call Random
 	cp 28 percent - 1
 	ret c
@@ -1438,7 +1438,7 @@ AI_Smart_Encore:
 	dec [hl]
 	ret
 
-.discourage
+.greatly_discourage
 	inc [hl]
 	inc [hl]
 	inc [hl]
@@ -1505,7 +1505,7 @@ AI_Smart_Spite:
 	jr nz, .usedmove
 
 	call AICompareSpeed
-	jp c, AIDiscourageMove
+	jp c, AIDismissMove
 
 	call AI_50_50
 	ret c
@@ -1535,7 +1535,7 @@ AI_Smart_Spite:
 	pop hl
 	ld a, [de]
 	cp 6
-	jr c, .encourage
+	jr c, .greatly_encourage
 	cp 15
 	jr nc, .discourage
 
@@ -1547,7 +1547,7 @@ AI_Smart_Spite:
 	inc [hl]
 	ret
 
-.encourage
+.greatly_encourage
 	call Random
 	cp 39 percent + 1
 	ret c
@@ -1556,7 +1556,7 @@ AI_Smart_Spite:
 	ret
 
 .dismiss ; unreferenced
-	jp AIDiscourageMove
+	jp AIDismissMove
 
 AI_Smart_DestinyBond:
 AI_Smart_Reversal:
@@ -1622,7 +1622,7 @@ AI_Smart_HealBell:
 	ld a, [wEnemyMonStatus]
 	and a
 	ret nz
-	jp AIDiscourageMove
+	jp AIDismissMove
 
 
 AI_Smart_PriorityHit:
@@ -1632,7 +1632,7 @@ AI_Smart_PriorityHit:
 ; Dismiss this move if the player is flying or underground.
 	ld a, [wPlayerSubStatus3]
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
-	jp nz, AIDiscourageMove
+	jp nz, AIDismissMove
 
 ; Greatly encourage this move if it will KO the player.
 	ld a, 1
@@ -1741,19 +1741,19 @@ AI_Smart_MeanLook:
 	push hl
 	call AICheckLastPlayerMon
 	pop hl
-	jp z, AIDiscourageMove
+	jp z, AIDismissMove
 
 ; 80% chance to greatly encourage this move if the enemy is badly poisoned (buggy).
 ; Should check wPlayerSubStatus5 instead.
 	ld a, [wEnemySubStatus5]
 	bit SUBSTATUS_TOXIC, a
-	jr nz, .encourage
+	jr nz, .greatly_encourage
 
 ; 80% chance to greatly encourage this move if the player is either
 ; in love, identified, stuck in Rollout, or has a Nightmare.
 	ld a, [wPlayerSubStatus1]
 	and 1 << SUBSTATUS_IN_LOVE | 1 << SUBSTATUS_ROLLOUT | 1 << SUBSTATUS_IDENTIFIED | 1 << SUBSTATUS_NIGHTMARE
-	jr nz, .encourage
+	jr nz, .greatly_encourage
 
 ; Otherwise, discourage this move unless the player only has not very effective moves against the enemy.
 	push hl
@@ -1767,7 +1767,7 @@ AI_Smart_MeanLook:
 	inc [hl]
 	ret
 
-.encourage
+.greatly_encourage
 	call AI_80_20
 	ret c
 	dec [hl]
@@ -1830,17 +1830,17 @@ AI_Smart_Curse:
 	jr z, .ghost_curse
 
 	call AICheckEnemyHalfHP
-	jr nc, .encourage
+	jr nc, .discourage
 
 	ld a, [wEnemyAtkLevel]
 	cp BASE_STAT_LEVEL + 4
-	jr nc, .encourage
+	jr nc, .discourage
 	cp BASE_STAT_LEVEL + 2
 	ret nc
 
 	ld a, [wBattleMonType1]
 	cp GHOST
-	jr z, .greatly_encourage
+	jr z, .greatly_discourage
 	cp SPECIAL
 	ret nc
 	ld a, [wBattleMonType2]
@@ -1852,19 +1852,19 @@ AI_Smart_Curse:
 	dec [hl]
 	ret
 
-.approve
+.disapprove
 	inc [hl]
 	inc [hl]
-.greatly_encourage
+.greatly_discourage
 	inc [hl]
-.encourage
+.discourage
 	inc [hl]
 	ret
 
 .ghost_curse
 	ld a, [wPlayerSubStatus1]
 	bit SUBSTATUS_CURSE, a
-	jp nz, AIDiscourageMove
+	jp nz, AIDismissMove
 
 	push hl
 	farcall FindAliveEnemyMons
@@ -1874,7 +1874,7 @@ AI_Smart_Curse:
 	push hl
 	call AICheckLastPlayerMon
 	pop hl
-	jr nz, .approve
+	jr nz, .disapprove
 
 	jr .ghost_continue
 
@@ -1886,10 +1886,10 @@ AI_Smart_Curse:
 
 .ghost_continue
 	call AICheckEnemyQuarterHP
-	jp nc, .approve
+	jp nc, .disapprove
 
 	call AICheckEnemyHalfHP
-	jr nc, .greatly_encourage
+	jr nc, .greatly_discourage
 
 	call AICheckEnemyMaxHP
 	ret nc
@@ -3153,7 +3153,7 @@ AI_Status:
 	jr nz, .checkmove
 
 .immune
-	call AIDiscourageMove
+	call AIDismissMove
 	jr .checkmove
 
 
@@ -3229,7 +3229,7 @@ INCLUDE "data/battle/ai/risky_effects.asm"
 AI_None:
 	ret
 
-AIDiscourageMove:
+AIDismissMove:
 	ld a, [hl]
 	add 10
 	ld [hl], a
