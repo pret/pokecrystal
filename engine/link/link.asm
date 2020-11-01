@@ -73,9 +73,9 @@ Gen2ToGen1LinkComms:
 	ldh [rIF], a
 	ld a, 1 << SERIAL
 	ldh [rIE], a
-	ld hl, wd1f3
+	ld hl, wLinkBattleRNPreamble
 	ld de, wEnemyMonSpecies
-	ld bc, $11
+	ld bc, SERIAL_RN_PREAMBLE_LENGTH + SERIAL_RNS_LENGTH
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
@@ -87,7 +87,7 @@ Gen2ToGen1LinkComms:
 	ld [de], a
 	ld hl, wLink_c608
 	ld de, wTrademons
-	ld bc, wTrademons - wLink_c608
+	ld bc, 200
 	call Serial_ExchangeBytes
 	xor a
 	ldh [rIF], a
@@ -217,9 +217,9 @@ Gen2ToGen2LinkComms:
 	ldh [rIF], a
 	ld a, 1 << SERIAL
 	ldh [rIE], a
-	ld hl, wd1f3
+	ld hl, wLinkBattleRNPreamble
 	ld de, wEnemyMonSpecies
-	ld bc, $11
+	ld bc, SERIAL_RN_PREAMBLE_LENGTH + SERIAL_RNS_LENGTH
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
@@ -231,7 +231,7 @@ Gen2ToGen2LinkComms:
 	ld [de], a
 	ld hl, wLink_c608
 	ld de, wTrademons
-	ld bc, wTrademons - wLink_c608
+	ld bc, 200
 	call Serial_ExchangeBytes
 	ld a, [wLinkMode]
 	cp LINK_TRADECENTER
@@ -561,36 +561,41 @@ ClearLinkData:
 	ret
 
 FixDataForLinkTransfer:
-	ld hl, wd1f3
+	ld hl, wLinkBattleRNPreamble
 	ld a, SERIAL_PREAMBLE_BYTE
-	ld b, wLinkBattleRNs - wd1f3
-.loop1
+	ld b, SERIAL_RN_PREAMBLE_LENGTH
+.preamble_loop
 	ld [hli], a
 	dec b
-	jr nz, .loop1
-	ld b, wTempEnemyMonSpecies - wLinkBattleRNs
-.loop2
+	jr nz, .preamble_loop
+
+	assert wLinkBattleRNPreamble + SERIAL_RN_PREAMBLE_LENGTH == wLinkBattleRNs
+	ld b, SERIAL_RNS_LENGTH
+.rn_loop
 	call Random
 	cp SERIAL_PREAMBLE_BYTE
-	jr nc, .loop2
+	jr nc, .rn_loop
 	ld [hli], a
 	dec b
-	jr nz, .loop2
+	jr nz, .rn_loop
+
 	ld hl, wLink_c608
 	ld a, SERIAL_PREAMBLE_BYTE
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
-	ld b, $c8
+
+	ld b, 200
 	xor a
-.loop3
+.loop1
 	ld [hli], a
 	dec b
-	jr nz, .loop3
+	jr nz, .loop1
+
 	ld hl, wTimeCapsulePlayerData - 1 + PARTY_LENGTH
 	ld de, wc612
 	lb bc, 0, 0
-.loop4
+.loop2
 	inc c
 	ld a, c
 	cp SERIAL_PREAMBLE_BYTE
@@ -613,19 +618,19 @@ FixDataForLinkTransfer:
 	inc hl
 	ld a, [hl]
 	cp SERIAL_NO_DATA_BYTE
-	jr nz, .loop4
+	jr nz, .loop2
 	ld a, c
 	ld [de], a
 	inc de
 	ld [hl], SERIAL_PATCH_LIST_PART_TERMINATOR
-	jr .loop4
+	jr .loop2
 
 .next1
 	ld a, SERIAL_PATCH_LIST_PART_TERMINATOR
 	ld [de], a
 	inc de
 	lb bc, 1, 0
-	jr .loop4
+	jr .loop2
 
 .done
 	ld a, SERIAL_PATCH_LIST_PART_TERMINATOR

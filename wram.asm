@@ -2264,6 +2264,12 @@ wEvolutionPicOffset:: db
 wEvolutionCanceled:: db
 
 NEXTU
+; link
+	ds 9
+wLinkBattleRNPreamble:: ds SERIAL_RN_PREAMBLE_LENGTH
+wLinkBattleRNs:: ds SERIAL_RNS_LENGTH
+
+NEXTU
 ; mobile
 	ds 2
 wd1ec:: ds 1
@@ -2273,7 +2279,7 @@ wd1ef:: ds 1
 wd1f0:: ds 1
 wd1f1:: ds 1
 wd1f2:: ds 1
-wd1f3:: ds 4
+wd1f3:: ds 1
 
 NEXTU
 ; miscellaneous
@@ -2283,10 +2289,6 @@ wOtherDecoration::    db
 	ds 3
 wCurEnemyItem:: db
 ENDU
-
-	ds 3
-
-wLinkBattleRNs:: ds 10
 
 wTempEnemyMonSpecies::  db
 wTempBattleMonSpecies:: db
