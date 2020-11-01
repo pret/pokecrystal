@@ -6345,10 +6345,10 @@
 0a:4426 ClearLinkData
 0a:442c ClearLinkData.loop
 0a:4434 FixDataForLinkTransfer
-0a:443b FixDataForLinkTransfer.loop1
-0a:4441 FixDataForLinkTransfer.loop2
-0a:4457 FixDataForLinkTransfer.loop3
-0a:4464 FixDataForLinkTransfer.loop4
+0a:443b FixDataForLinkTransfer.preamble_loop
+0a:4441 FixDataForLinkTransfer.rn_loop
+0a:4457 FixDataForLinkTransfer.loop1
+0a:4464 FixDataForLinkTransfer.loop2
 0a:447a FixDataForLinkTransfer.got_value
 0a:447f FixDataForLinkTransfer.next2
 0a:448c FixDataForLinkTransfer.next1
@@ -47736,6 +47736,7 @@
 01:d1f1 wCurHPBarPixels
 01:d1f2 wd1f2
 01:d1f2 wNewHPBarPixels
+01:d1f3 wLinkBattleRNPreamble
 01:d1f3 wd1f3
 01:d1f3 wCurHPAnimDeltaHP
 01:d1f5 wCurHPAnimLowHP
