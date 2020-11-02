@@ -967,7 +967,29 @@ wDebugOriginalColors:: ds 256 * 4
 
 NEXTU
 ; raw link data
-wLinkData:: ds $514
+wLinkData:: ds 271
+wc90f:: ds 229
+wc9f4:: ds 5
+wc9f9:: ds 198
+wcabf:: ds 79
+wcb0e:: ds 5
+wcb13:: ds 113
+wcb84:: ds 100
+wcbe8:: dw
+wLinkOTPartyMonTypes:: ds 2 * PARTY_LENGTH
+	ds 84
+wcc4a:: ds 22
+wcc60:: ds 1
+wcc61:: ds 1
+wcc62:: ds 2
+wcc64:: ds 1
+wcc65:: ds 57
+wcc9e:: ds 22
+wccb4:: ds 1
+wccb5:: ds 3
+wccb8:: ds 1
+wccb9:: ds 1
+wccba:: ds 90
 wLinkDataEnd::
 
 NEXTU
@@ -1025,7 +1047,6 @@ wMysteryGiftGameVersion:: db
 wMysteryGiftPartnerID:: dw
 wMysteryGiftPartnerName:: ds NAME_LENGTH
 wMysteryGiftPartnerDexCaught:: db
-wc90f::
 wMysteryGiftPartnerSentDeco:: db
 wMysteryGiftPartnerWhichItem:: db
 wMysteryGiftPartnerWhichDeco:: db
@@ -1047,10 +1068,8 @@ wMysteryGiftPlayerBackupItem:: db
 	ds 1
 wMysteryGiftPlayerDataEnd::
 
-	ds 144
-
-wc9f4:: ds 5
-wc9f9:: ds 7
+NEXTU
+	ds $200
 
 UNION
 ; blank credits tile buffer
@@ -1062,41 +1081,7 @@ NEXTU
 wUnusedMysteryGiftStagedDataLength:: db
 wMysteryGiftMessageCount:: db
 wMysteryGiftStagedDataLength:: db
-
-NEXTU
-; link data
-	ds 191
-wcabf:: ds 1
-
-NEXTU
-	ds $2f
-wMobileSDK_ReceivePacketBufferAlt:: ds 11
-wMobileSDK_ReceivedBytes:: dw
-wMobileSDK_ReceivePacketBuffer::
-
 ENDU
-
-	ds 14
-wcb0e:: ds 5
-wcb13:: ds 52
-wMobileSDK_PacketBuffer:: ds 61
-wcb84:: ds 100
-wcbe8:: dw
-wLinkOTPartyMonTypes:: ds 2 * PARTY_LENGTH
-	ds 84
-wcc4a:: ds 22
-
-wcc60:: ds 1
-wcc61:: ds 1
-wcc62:: ds 2
-wcc64:: ds 1
-wcc65:: ds 57
-wcc9e:: ds 22
-wccb4:: ds 1
-wccb5:: ds 3
-wccb8:: ds 1
-wccb9:: ds 1
-wccba:: ds 102
 
 NEXTU
 ; mobile
@@ -1110,7 +1095,11 @@ wMobileSDK_AdapterType:: db
 wMobileSDK_SendCommandID:: db
 	ds 2
 wc821:: ds 1
-wc822:: ds 46
+wc822:: ds 525
+wMobileSDK_ReceivePacketBufferAlt:: ds 11
+wMobileSDK_ReceivedBytes:: dw
+wMobileSDK_ReceivePacketBuffer:: ds 267
+wMobileSDK_PacketBuffer:: ds 461
 
 if DEF(_DEBUG)
 NEXTU
@@ -1155,6 +1144,8 @@ ENDU
 endc
 
 ENDU
+
+	ds 12
 
 
 SECTION "Video", WRAM0
