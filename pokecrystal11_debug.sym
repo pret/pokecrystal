@@ -2628,7 +2628,7 @@
 03:4292 FoundOne
 03:4298 FoundNone
 03:429d NameRival
-03:42b2 NameRival.default
+03:42b2 NameRival.DefaultName
 03:42b9 NameRater
 03:42c0 OverworldTownMap
 03:42cd UnownPrinter
@@ -5041,7 +5041,6 @@
 05:609f TakeCoins.okay
 05:60a1 CheckCoins
 05:60a9 Marts
-05:60ed Marts.End
 05:60ed MartCherrygrove
 05:60f3 MartCherrygroveDex
 05:60fa MartViolet
@@ -13243,7 +13242,7 @@
 1a:5dd4 Route35GoldenrodGatePokefanFScript.FoughtSudowoodo
 1a:5dda Route35GoldenrodGateFisherScript
 1a:5ddd Route35GoldenrodGateRandyAskTakeThisMonToMyFriendText
-1a:5e48 Route35GoldenrodGateRandyThanksKidText
+1a:5e48 Route35GoldenrodGateRandyThanksText
 1a:5eb8 Route35GoldenrodGatePlayerReceivedAMonWithMailText
 1a:5ed6 Route35GoldenrodGateRandyWeirdTreeBlockingRoadText
 1a:5f56 Route35GoldenrodGateRandyCantCarryAnotherMonText
@@ -19299,8 +19298,8 @@
 26:53ec EcruteakLugiaSpeechHouseYoungsterText
 26:5431 EcruteakLugiaSpeechHouse_MapEvents
 26:5460 DanceTheatre_MapScripts
-26:5462 TrainerKimonoGirlNaoko2
-26:546e TrainerKimonoGirlNaoko2.Script
+26:5462 TrainerKimonoGirlNaoko
+26:546e TrainerKimonoGirlNaoko.Script
 26:5476 TrainerKimonoGirlSayo
 26:5482 TrainerKimonoGirlSayo.Script
 26:548a TrainerKimonoGirlZuki
@@ -19318,9 +19317,9 @@
 26:5525 DanceTheatreCooltrainerMScript
 26:5528 DanceTheatreGrannyScript
 26:552b DanceTheatreFancyPanel
-26:552e KimonoGirlNaoko2SeenText
-26:555f KimonoGirlNaoko2BeatenText
-26:5579 KimonoGirlNaoko2AfterBattleText
+26:552e KimonoGirlNaokoSeenText
+26:555f KimonoGirlNaokoBeatenText
+26:5579 KimonoGirlNaokoAfterBattleText
 26:55ae KimonoGirlSayoSeenText
 26:55ea KimonoGirlSayoBeatenText
 26:560b KimonoGirlSayoAfterBattleText
@@ -39421,7 +39420,7 @@
 68:5214 Route29YoungsterText
 68:526c Route29TeacherText
 68:52d9 Route29FisherText
-68:5316 Text_WaitingForDay
+68:5316 Route29CooltrainerMText_WaitingForDay
 68:534c Route29CooltrainerMText_WaitingForNight
 68:537c Route29CooltrainerMText_WaitingForMorning
 68:53b2 MeetTuscanyText
