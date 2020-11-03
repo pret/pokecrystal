@@ -3652,17 +3652,17 @@ BattleCommand_SleepTarget:
 	jr nz, .fail
 
 	call AnimateCurrentMove
-	ld b, $7
+	ld b, SLP
 	ld a, [wInBattleTowerBattle]
 	and a
 	jr z, .random_loop
-	ld b, $3
+	ld b, %011
 
 .random_loop
 	call BattleRandom
 	and b
 	jr z, .random_loop
-	cp 7
+	cp SLP
 	jr z, .random_loop
 	inc a
 	ld [de], a
@@ -5714,7 +5714,8 @@ BattleCommand_Charge:
 	text_far _BattleDugText
 	text_end
 
-BattleCommand_Unused3C: ; unreferenced
+BattleCommand_Unused3C:
+; effect0x3c
 	ret
 
 BattleCommand_TrapTarget:
@@ -6488,7 +6489,8 @@ INCLUDE "engine/battle/move_effects/sandstorm.asm"
 
 INCLUDE "engine/battle/move_effects/rollout.asm"
 
-BattleCommand_Unused5D: ; unreferenced
+BattleCommand_Unused5D:
+; effect0x5d
 	ret
 
 INCLUDE "engine/battle/move_effects/fury_cutter.asm"

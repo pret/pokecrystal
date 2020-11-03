@@ -34,7 +34,6 @@ Marts:
 	dw MartMtMoon
 	dw MartIndigoPlateau
 	dw MartUnderground
-.End
 
 MartCherrygrove:
 	db 4 ; # items

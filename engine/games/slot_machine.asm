@@ -206,7 +206,7 @@ SlotsLoop:
 	ld a, [wFirstTwoReelsMatchingSevens]
 	and a
 	jr nz, .matching_sevens
-	ld a, %11100100 ; alternates two palettes
+	ld a, %11100100
 	call DmgToCgbBGPals
 	ret
 
@@ -215,7 +215,7 @@ SlotsLoop:
 	and $7
 	ret nz
 	ldh a, [rBGP]
-	xor %00001100
+	xor %00001100 ; alternates two palettes
 	call DmgToCgbBGPals
 	ret
 

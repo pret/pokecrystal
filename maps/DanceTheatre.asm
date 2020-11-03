@@ -14,13 +14,13 @@ DanceTheatre_MapScripts:
 
 	def_callbacks
 
-TrainerKimonoGirlNaoko2:
-	trainer KIMONO_GIRL, NAOKO2, EVENT_BEAT_KIMONO_GIRL_NAOKO, KimonoGirlNaoko2SeenText, KimonoGirlNaoko2BeatenText, 0, .Script
+TrainerKimonoGirlNaoko:
+	trainer KIMONO_GIRL, NAOKO, EVENT_BEAT_KIMONO_GIRL_NAOKO, KimonoGirlNaokoSeenText, KimonoGirlNaokoBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext KimonoGirlNaoko2AfterBattleText
+	writetext KimonoGirlNaokoAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -135,18 +135,18 @@ DanceTheatreGrannyScript:
 DanceTheatreFancyPanel:
 	jumptext DanceTheatreFancyPanelText
 
-KimonoGirlNaoko2SeenText:
+KimonoGirlNaokoSeenText:
 	text "You have lovely"
 	line "#MON. May I see"
 	cont "them in battle?"
 	done
 
-KimonoGirlNaoko2BeatenText:
+KimonoGirlNaokoBeatenText:
 	text "Oh, you are very"
 	line "strong."
 	done
 
-KimonoGirlNaoko2AfterBattleText:
+KimonoGirlNaokoAfterBattleText:
 	text "I enjoyed that"
 	line "bout. I would like"
 	cont "to see you again."
@@ -349,7 +349,7 @@ DanceTheatre_MapEvents:
 	bg_event  6,  6, BGEVENT_UP, DanceTheatreFancyPanel
 
 	def_object_events
-	object_event  0,  2, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlNaoko2, -1
+	object_event  0,  2, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlNaoko, -1
 	object_event  2,  1, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlSayo, -1
 	object_event  6,  2, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlZuki, -1
 	object_event  9,  1, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlKuni, -1

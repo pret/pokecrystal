@@ -20,7 +20,7 @@ RandyScript:
 	writetext Route35GoldenrodGateRandyAskTakeThisMonToMyFriendText
 	yesorno
 	iffalse .refused
-	writetext Route35GoldenrodGateRandyThanksKidText
+	writetext Route35GoldenrodGateRandyThanksText
 	promptbutton
 	waitsfx
 	readvar VAR_PARTYCOUNT
@@ -73,7 +73,7 @@ GiftSpearowName:
 GiftSpearowOTName:
 	db "RANDY@"
 
-	db 0 ; filler
+	db 0 ; unused
 
 Route35GoldenrodGatePokefanFScript:
 	faceplayer
@@ -106,7 +106,7 @@ Route35GoldenrodGateRandyAskTakeThisMonToMyFriendText:
 	para "He's on ROUTE 31."
 	done
 
-Route35GoldenrodGateRandyThanksKidText:
+Route35GoldenrodGateRandyThanksText:
 	text "You will? Perfect!"
 	line "Thanks, kid!"
 

@@ -87,13 +87,12 @@ NameRival:
 	ld b, NAME_RIVAL
 	ld de, wRivalName
 	farcall _NamingScreen
-	; default to "SILVER"
 	ld hl, wRivalName
-	ld de, .default
+	ld de, .DefaultName
 	call InitName
 	ret
 
-.default
+.DefaultName:
 	db "SILVER@"
 
 NameRater:
