@@ -2406,19 +2406,19 @@ BattleCommand_CheckFaint:
 .got_max_hp
 	ld [wWhichHPBar], a
 	ld a, [hld]
-	ld [wBuffer1], a
+	ld [wHPBuffer1], a
 	ld a, [hld]
-	ld [wBuffer2], a
+	ld [wHPBuffer1 + 1], a
 	ld a, [hl]
-	ld [wBuffer3], a
+	ld [wHPBuffer2], a
 	xor a
 	ld [hld], a
 	ld a, [hl]
-	ld [wBuffer4], a
+	ld [wHPBuffer2 + 1], a
 	xor a
 	ld [hl], a
-	ld [wBuffer5], a
-	ld [wBuffer6], a
+	ld [wHPBuffer3], a
+	ld [wHPBuffer3 + 1], a
 	ld h, b
 	ld l, c
 	predef AnimateHPBar
@@ -3418,18 +3418,18 @@ DoEnemyDamage:
 	jp nz, DoSubstituteDamage
 
 .ignore_substitute
-	; Substract wCurDamage from wEnemyMonHP.
-	;  store original HP in little endian wBuffer3/4
+	; Subtract wCurDamage from wEnemyMonHP.
+	;  store original HP in little endian wHPBuffer2
 	ld a, [hld]
 	ld b, a
 	ld a, [wEnemyMonHP + 1]
-	ld [wBuffer3], a
+	ld [wHPBuffer2], a
 	sub b
 	ld [wEnemyMonHP + 1], a
 	ld a, [hl]
 	ld b, a
 	ld a, [wEnemyMonHP]
-	ld [wBuffer4], a
+	ld [wHPBuffer2 + 1], a
 	sbc b
 	ld [wEnemyMonHP], a
 if DEF(_DEBUG)
@@ -3451,9 +3451,9 @@ else
 	jr nc, .no_underflow
 endc
 
-	ld a, [wBuffer4]
+	ld a, [wHPBuffer2 + 1]
 	ld [hli], a
-	ld a, [wBuffer3]
+	ld a, [wHPBuffer2]
 	ld [hl], a
 	xor a
 	ld hl, wEnemyMonHP
@@ -3463,14 +3463,14 @@ endc
 .no_underflow
 	ld hl, wEnemyMonMaxHP
 	ld a, [hli]
-	ld [wBuffer2], a
+	ld [wHPBuffer1 + 1], a
 	ld a, [hl]
-	ld [wBuffer1], a
+	ld [wHPBuffer1], a
 	ld hl, wEnemyMonHP
 	ld a, [hli]
-	ld [wBuffer6], a
+	ld [wHPBuffer3 + 1], a
 	ld a, [hl]
-	ld [wBuffer5], a
+	ld [wHPBuffer3], a
 
 	hlcoord 2, 2
 	xor a
@@ -3495,42 +3495,42 @@ DoPlayerDamage:
 	jp nz, DoSubstituteDamage
 
 .ignore_substitute
-	; Substract wCurDamage from wBattleMonHP.
-	;  store original HP in little endian wBuffer3/4
-	;  store new HP in little endian wBuffer5/6
+	; Subtract wCurDamage from wBattleMonHP.
+	;  store original HP in little endian wHPBuffer2
+	;  store new HP in little endian wHPBuffer3
 	ld a, [hld]
 	ld b, a
 	ld a, [wBattleMonHP + 1]
-	ld [wBuffer3], a
+	ld [wHPBuffer2], a
 	sub b
 	ld [wBattleMonHP + 1], a
-	ld [wBuffer5], a
+	ld [wHPBuffer3], a
 	ld b, [hl]
 	ld a, [wBattleMonHP]
-	ld [wBuffer4], a
+	ld [wHPBuffer2 + 1], a
 	sbc b
 	ld [wBattleMonHP], a
-	ld [wBuffer6], a
+	ld [wHPBuffer3 + 1], a
 	jr nc, .no_underflow
 
-	ld a, [wBuffer4]
+	ld a, [wHPBuffer2 + 1]
 	ld [hli], a
-	ld a, [wBuffer3]
+	ld a, [wHPBuffer2]
 	ld [hl], a
 	xor a
 	ld hl, wBattleMonHP
 	ld [hli], a
 	ld [hl], a
-	ld hl, wBuffer5
+	ld hl, wHPBuffer3
 	ld [hli], a
 	ld [hl], a
 
 .no_underflow
 	ld hl, wBattleMonMaxHP
 	ld a, [hli]
-	ld [wBuffer2], a
+	ld [wHPBuffer1 + 1], a
 	ld a, [hl]
-	ld [wBuffer1], a
+	ld [wHPBuffer1], a
 
 	hlcoord 10, 9
 	ld a, 1
@@ -3911,15 +3911,15 @@ SapHealth:
 	ld de, wEnemyMonMaxHP
 .battlemonhp
 
-	; Store current HP in little endian wBuffer3/4
-	ld bc, wBuffer4
+	; Store current HP in little endian wHPBuffer2
+	ld bc, wHPBuffer2 + 1
 	ld a, [hli]
 	ld [bc], a
 	ld a, [hl]
 	dec bc
 	ld [bc], a
 
-	; Store max HP in little endian wBuffer1/2
+	; Store max HP in little endian wHPBuffer1
 	ld a, [de]
 	dec bc
 	ld [bc], a
@@ -3928,20 +3928,20 @@ SapHealth:
 	dec bc
 	ld [bc], a
 
-	; Add hDividend to current HP and copy it to little endian wBuffer5/6
+	; Add hDividend to current HP and copy it to little endian wHPBuffer3
 	ldh a, [hDividend + 1]
 	ld b, [hl]
 	add b
 	ld [hld], a
-	ld [wBuffer5], a
+	ld [wHPBuffer3], a
 	ldh a, [hDividend]
 	ld b, [hl]
 	adc b
 	ld [hli], a
-	ld [wBuffer6], a
+	ld [wHPBuffer3 + 1], a
 	jr c, .max_hp
 
-	; Substract current HP from max HP (to see if we have more than max HP)
+	; Subtract current HP from max HP (to see if we have more than max HP)
 	ld a, [hld]
 	ld b, a
 	ld a, [de]
@@ -3955,14 +3955,14 @@ SapHealth:
 	jr nc, .finish
 
 .max_hp
-	; Load max HP into current HP and copy it to little endian wBuffer5/6
+	; Load max HP into current HP and copy it to little endian wHPBuffer3
 	ld a, [de]
 	ld [hld], a
-	ld [wBuffer5], a
+	ld [wHPBuffer3], a
 	dec de
 	ld a, [de]
 	ld [hli], a
-	ld [wBuffer6], a
+	ld [wHPBuffer3 + 1], a
 	inc de
 
 .finish
@@ -5805,26 +5805,26 @@ BattleCommand_Recoil:
 	inc c
 .min_damage
 	ld a, [hli]
-	ld [wBuffer2], a
+	ld [wHPBuffer1 + 1], a
 	ld a, [hl]
-	ld [wBuffer1], a
+	ld [wHPBuffer1], a
 	dec hl
 	dec hl
 	ld a, [hl]
-	ld [wBuffer3], a
+	ld [wHPBuffer2], a
 	sub c
 	ld [hld], a
-	ld [wBuffer5], a
+	ld [wHPBuffer3], a
 	ld a, [hl]
-	ld [wBuffer4], a
+	ld [wHPBuffer2 + 1], a
 	sbc b
 	ld [hl], a
-	ld [wBuffer6], a
+	ld [wHPBuffer3 + 1], a
 	jr nc, .dont_ko
 	xor a
 	ld [hli], a
 	ld [hl], a
-	ld hl, wBuffer5
+	ld hl, wHPBuffer3
 	ld [hli], a
 	ld [hl], a
 .dont_ko

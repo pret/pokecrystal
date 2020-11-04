@@ -1797,26 +1797,26 @@ SubtractHP:
 .ok
 	inc hl
 	ld a, [hl]
-	ld [wBuffer3], a
+	ld [wHPBuffer2], a
 	sub c
 	ld [hld], a
-	ld [wBuffer5], a
+	ld [wHPBuffer3], a
 	ld a, [hl]
-	ld [wBuffer4], a
+	ld [wHPBuffer2 + 1], a
 	sbc b
 	ld [hl], a
-	ld [wBuffer6], a
+	ld [wHPBuffer3 + 1], a
 	ret nc
 
-	ld a, [wBuffer3]
+	ld a, [wHPBuffer2]
 	ld c, a
-	ld a, [wBuffer4]
+	ld a, [wHPBuffer2 + 1]
 	ld b, a
 	xor a
 	ld [hli], a
 	ld [hl], a
-	ld [wBuffer5], a
-	ld [wBuffer6], a
+	ld [wHPBuffer3], a
+	ld [wHPBuffer3 + 1], a
 	ret
 
 GetSixteenthMaxHP:
@@ -1882,7 +1882,7 @@ GetHalfMaxHP:
 	ret
 
 GetMaxHP:
-; output: bc, wBuffer1-2
+; output: bc, wHPBuffer1
 
 	ld hl, wBattleMonMaxHP
 	ldh a, [hBattleTurn]
@@ -1891,11 +1891,11 @@ GetMaxHP:
 	ld hl, wEnemyMonMaxHP
 .ok
 	ld a, [hli]
-	ld [wBuffer2], a
+	ld [wHPBuffer1 + 1], a
 	ld b, a
 
 	ld a, [hl]
-	ld [wBuffer1], a
+	ld [wHPBuffer1], a
 	ld c, a
 	ret
 
@@ -1913,9 +1913,9 @@ GetHalfHP: ; unreferenced
 	srl b
 	rr c
 	ld a, [hli]
-	ld [wBuffer2], a
+	ld [wHPBuffer1 + 1], a
 	ld a, [hl]
-	ld [wBuffer1], a
+	ld [wHPBuffer1], a
 	ret
 
 CheckUserHasEnoughHP:
@@ -1940,36 +1940,36 @@ RestoreHP:
 	ld hl, wBattleMonMaxHP
 .ok
 	ld a, [hli]
-	ld [wBuffer2], a
+	ld [wHPBuffer1 + 1], a
 	ld a, [hld]
-	ld [wBuffer1], a
+	ld [wHPBuffer1], a
 	dec hl
 	ld a, [hl]
-	ld [wBuffer3], a
+	ld [wHPBuffer2], a
 	add c
 	ld [hld], a
-	ld [wBuffer5], a
+	ld [wHPBuffer3], a
 	ld a, [hl]
-	ld [wBuffer4], a
+	ld [wHPBuffer2 + 1], a
 	adc b
 	ld [hli], a
-	ld [wBuffer6], a
+	ld [wHPBuffer3 + 1], a
 
-	ld a, [wBuffer1]
+	ld a, [wHPBuffer1]
 	ld c, a
 	ld a, [hld]
 	sub c
-	ld a, [wBuffer2]
+	ld a, [wHPBuffer1 + 1]
 	ld b, a
 	ld a, [hl]
 	sbc b
 	jr c, .overflow
 	ld a, b
 	ld [hli], a
-	ld [wBuffer6], a
+	ld [wHPBuffer3 + 1], a
 	ld a, c
 	ld [hl], a
-	ld [wBuffer5], a
+	ld [wHPBuffer3], a
 .overflow
 
 	call SwitchTurnCore
@@ -4270,13 +4270,13 @@ HandleHPHealingItem:
 ; Store current HP in Buffer 3/4
 	push bc
 	ld a, [de]
-	ld [wBuffer3], a
+	ld [wHPBuffer2], a
 	add a
 	ld c, a
 	dec de
 	ld a, [de]
 	inc de
-	ld [wBuffer4], a
+	ld [wHPBuffer2 + 1], a
 	adc a
 	ld b, a
 	ld a, b
@@ -4295,19 +4295,19 @@ HandleHPHealingItem:
 
 .less
 	call ItemRecoveryAnim
-	; store max HP in wBuffer1/2
+	; store max HP in wHPBuffer1
 	ld a, [hli]
-	ld [wBuffer2], a
+	ld [wHPBuffer1 + 1], a
 	ld a, [hl]
-	ld [wBuffer1], a
+	ld [wHPBuffer1], a
 	ld a, [de]
 	add c
-	ld [wBuffer5], a
+	ld [wHPBuffer3], a
 	ld c, a
 	dec de
 	ld a, [de]
 	adc 0
-	ld [wBuffer6], a
+	ld [wHPBuffer3 + 1], a
 	ld b, a
 	ld a, [hld]
 	cp c
@@ -4315,15 +4315,15 @@ HandleHPHealingItem:
 	sbc b
 	jr nc, .okay
 	ld a, [hli]
-	ld [wBuffer6], a
+	ld [wHPBuffer3 + 1], a
 	ld a, [hl]
-	ld [wBuffer5], a
+	ld [wHPBuffer3], a
 
 .okay
-	ld a, [wBuffer6]
+	ld a, [wHPBuffer3 + 1]
 	ld [de], a
 	inc de
-	ld a, [wBuffer5]
+	ld a, [wHPBuffer3]
 	ld [de], a
 	ldh a, [hBattleTurn]
 	ld [wWhichHPBar], a

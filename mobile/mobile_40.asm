@@ -6904,7 +6904,7 @@ Function103302:
 Function103309:
 	xor a
 	ldh [hBGMapMode], a
-	ld hl, wBuffer1
+	ld hl, wd1ea
 	ld bc, 10
 	xor a
 	call ByteFill
@@ -6912,7 +6912,7 @@ Function103309:
 	call OpenSRAM
 	ld a, [wdc41]
 	ld [s4_a60c], a
-	ld [wBuffer1], a
+	ld [wd1ea], a
 	call CloseSRAM
 	call Function1035c6
 	ld a, [hli]
@@ -6954,15 +6954,15 @@ Function103362:
 	call Function10339a
 	call Function10342c
 	farcall HDMATransferTilemapToWRAMBank3
-	ld a, [wBuffer2]
+	ld a, [wd1eb]
 	bit 7, a
 	jr z, .asm_103362
-	ld hl, wBuffer2
+	ld hl, wd1eb
 	bit 6, [hl]
 	jr z, .asm_103398
 	ld a, BANK(s4_a60c)
 	call OpenSRAM
-	ld a, [wBuffer1]
+	ld a, [wd1ea]
 	ld [s4_a60c], a
 	ld [wdc41], a
 	call CloseSRAM
@@ -7028,7 +7028,7 @@ Function1033af:
 
 .b
 	call PlayClickSFX
-	ld hl, wBuffer2
+	ld hl, wd1eb
 	set 7, [hl]
 	ret
 
@@ -7038,9 +7038,9 @@ Function1033af:
 	jr nz, .a_return
 	ld de, SFX_TRANSACTION
 	call PlaySFX
-	ld hl, wBuffer2
+	ld hl, wd1eb
 	set 7, [hl]
-	ld hl, wBuffer2
+	ld hl, wd1eb
 	set 6, [hl]
 	ret
 
@@ -7054,9 +7054,9 @@ Function1033af:
 	call PlaySFX
 	ld bc, 8
 	call Function10350f
-	ld a, [wBuffer1]
+	ld a, [wd1ea]
 	xor e
-	ld [wBuffer1], a
+	ld [wd1ea], a
 	ret
 
 Function10342c:
@@ -7092,7 +7092,7 @@ Function10343c:
 	call Function103487
 	ld bc, 8
 	call Function10350f
-	ld a, [wBuffer1]
+	ld a, [wd1ea]
 	and e
 	ld bc, 2
 	jr z, .asm_10347d
