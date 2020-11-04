@@ -2227,7 +2227,7 @@ wEvolvableFlags:: flag_array PARTY_LENGTH
 wForceEvolution:: db
 
 UNION
-; general-purpose buffers
+; unidentified
 wBuffer1:: db
 wBuffer2:: db
 wBuffer3:: db
@@ -2248,11 +2248,76 @@ wCurHPAnimLowHP::   db
 wCurHPAnimHighHP::  db
 
 NEXTU
+; battle AI
+wEnemyAIMoveScores:: ds NUM_MOVES
+
+NEXTU
+; battle HUD
+wBattleHUDTiles:: ds PARTY_LENGTH
+
+NEXTU
 ; evolution data
 wEvolutionOldSpecies:: db
 wEvolutionNewSpecies:: db
-wEvolutionPicOffset:: db
-wEvolutionCanceled:: db
+wEvolutionPicOffset::  db
+wEvolutionCanceled::   db
+
+NEXTU
+; experience
+wExpToNextLevel:: ds 3
+
+NEXTU
+; lucky number show
+wMonIDDigitsBuffer:: ds 5
+
+NEXTU
+; mon submenu
+wMonSubmenuCount:: db
+wMonSubmenuItems:: ds NUM_MONMENU_ITEMS + 1
+
+NEXTU
+; heal machine anim
+wHealMachineAnimType::  db
+wHealMachineTempOBP1::  db
+wHealMachineAnimState:: db
+
+NEXTU
+; decorations
+wCurDecoration::          db
+wSelectedDecorationSide:: db
+wSelectedDecoration::     db
+wOtherDecoration::        db
+wChangedDecorations::     db
+wCurDecorationCategory::  db
+
+NEXTU
+; withdraw/deposit items
+wPCItemQuantityChangeBuffer:: db
+wPCItemQuantity:: db
+
+NEXTU
+; mail
+wCurMailAuthorID:: dw
+wCurMailIndex:: db
+
+NEXTU
+; kurt
+wKurtApricornCount:: db
+wKurtApricornItems:: ds 10
+
+NEXTU
+; tree mons
+wTreeMonCoordScore:: db
+wTreeMonOTIDScore::  db
+
+NEXTU
+; restart clock
+wRestartClockCurDivision::   db
+wRestartClockPrevDivision::  db
+wRestartClockUpArrowYCoord:: db
+wRestartClockDay::  db
+wRestartClockHour:: db
+wRestartClockMin::  db
 
 NEXTU
 ; link
@@ -2273,12 +2338,20 @@ wd1f2:: ds 1
 wd1f3:: ds 1
 
 NEXTU
-; miscellaneous
-wMagikarpLength:: dw
-wSelectedDecoration:: db
-wOtherDecoration::    db
-	ds 3
+; miscellaneous bytes
+wSkipMovesBeforeLevelUp::
+wRegisteredPhoneNumbers::
+wListMovesLineSpacing:: db
+wSwitchMonTo:: db
+wSwitchMonFrom:: db
+	ds 4
 wCurEnemyItem:: db
+
+NEXTU
+; miscellaneous words
+wBuySellItemPrice::
+wTempMysteryGiftTimer::
+wMagikarpLength:: dw
 ENDU
 
 wTempEnemyMonSpecies::  db
@@ -3254,7 +3327,7 @@ wBattleAnimTempPalette:: db
 ENDU
 
 UNION
-	ds $32
+	ds 50
 wBattleAnimEnd::
 
 NEXTU

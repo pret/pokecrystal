@@ -1,17 +1,17 @@
 _SwitchPartyMons:
 	ld a, [wSwitchMon]
 	dec a
-	ld [wBuffer3], a
+	ld [wSwitchMonFrom], a
 	ld b, a
 	ld a, [wMenuCursorY]
 	dec a
-	ld [wBuffer2], a
+	ld [wSwitchMonTo], a
 	cp b
 	jr z, .skip
 	call .SwapMonAndMail
-	ld a, [wBuffer3]
+	ld a, [wSwitchMonFrom]
 	call .ClearSprite
-	ld a, [wBuffer2]
+	ld a, [wSwitchMonTo]
 	call .ClearSprite
 .skip
 	ret
@@ -44,13 +44,13 @@ _SwitchPartyMons:
 	push de
 	push bc
 	ld bc, wPartySpecies
-	ld a, [wBuffer2]
+	ld a, [wSwitchMonTo]
 	ld l, a
 	ld h, $0
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld a, [wBuffer3]
+	ld a, [wSwitchMonFrom]
 	ld l, a
 	ld h, $0
 	add hl, bc
@@ -60,7 +60,7 @@ _SwitchPartyMons:
 	ld [hl], a
 	pop af
 	ld [de], a
-	ld a, [wBuffer2]
+	ld a, [wSwitchMonTo]
 	ld hl, wPartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
@@ -68,7 +68,7 @@ _SwitchPartyMons:
 	ld de, wSwitchMonBuffer
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-	ld a, [wBuffer3]
+	ld a, [wSwitchMonFrom]
 	ld hl, wPartyMon1
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
@@ -80,12 +80,12 @@ _SwitchPartyMons:
 	ld hl, wSwitchMonBuffer
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-	ld a, [wBuffer2]
+	ld a, [wSwitchMonTo]
 	ld hl, wPartyMonOT
 	call SkipNames
 	push hl
 	call .CopyNameToSwitchMonBuffer
-	ld a, [wBuffer3]
+	ld a, [wSwitchMonFrom]
 	ld hl, wPartyMonOT
 	call SkipNames
 	pop de
@@ -95,12 +95,12 @@ _SwitchPartyMons:
 	ld hl, wSwitchMonBuffer
 	call .CopyName
 	ld hl, wPartyMonNicknames
-	ld a, [wBuffer2]
+	ld a, [wSwitchMonTo]
 	call SkipNames
 	push hl
 	call .CopyNameToSwitchMonBuffer
 	ld hl, wPartyMonNicknames
-	ld a, [wBuffer3]
+	ld a, [wSwitchMonFrom]
 	call SkipNames
 	pop de
 	push hl
@@ -109,7 +109,7 @@ _SwitchPartyMons:
 	ld hl, wSwitchMonBuffer
 	call .CopyName
 	ld hl, sPartyMail
-	ld a, [wBuffer2]
+	ld a, [wSwitchMonTo]
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	push hl
@@ -119,7 +119,7 @@ _SwitchPartyMons:
 	call OpenSRAM
 	call CopyBytes
 	ld hl, sPartyMail
-	ld a, [wBuffer3]
+	ld a, [wSwitchMonFrom]
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	pop de

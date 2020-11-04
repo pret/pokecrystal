@@ -509,7 +509,7 @@ FillMoves:
 	ld a, [wCurPartyLevel]
 	cp b
 	jp c, .done
-	ld a, [wEvolutionOldSpecies]
+	ld a, [wSkipMovesBeforeLevelUp]
 	and a
 	jr z, .CheckMove
 	ld a, [wPrevPartyLevel]

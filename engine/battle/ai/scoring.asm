@@ -6,7 +6,7 @@ AI_Basic:
 ;  -Using status-only moves if the player can't be statused
 ;  -Using moves that fail if they've already been used
 
-	ld hl, wBuffer1 - 1
+	ld hl, wEnemyAIMoveScores - 1
 	ld de, wEnemyMonMoves
 	ld b, NUM_MOVES + 1
 .checkmove
@@ -73,7 +73,7 @@ AI_Setup:
 ; 50% chance to greatly encourage stat-down moves during the first turn of player's Pokemon.
 ; Almost 90% chance to greatly discourage stat-modifying moves otherwise.
 
-	ld hl, wBuffer1 - 1
+	ld hl, wEnemyAIMoveScores - 1
 	ld de, wEnemyMonMoves
 	ld b, NUM_MOVES + 1
 .checkmove
@@ -147,7 +147,7 @@ AI_Types:
 ; Discourage not very effective moves unless
 ; all damaging moves are of the same type.
 
-	ld hl, wBuffer1 - 1
+	ld hl, wEnemyAIMoveScores - 1
 	ld de, wEnemyMonMoves
 	ld b, NUM_MOVES + 1
 .checkmove
@@ -234,7 +234,7 @@ AI_Types:
 AI_Offensive:
 ; Greatly discourage non-damaging moves.
 
-	ld hl, wBuffer1 - 1
+	ld hl, wEnemyAIMoveScores - 1
 	ld de, wEnemyMonMoves
 	ld b, NUM_MOVES + 1
 .checkmove
@@ -261,7 +261,7 @@ AI_Offensive:
 AI_Smart:
 ; Context-specific scoring.
 
-	ld hl, wBuffer1
+	ld hl, wEnemyAIMoveScores
 	ld de, wEnemyMonMoves
 	ld b, NUM_MOVES + 1
 .checkmove
@@ -518,7 +518,7 @@ AI_Smart_LockOn:
 
 .player_locked_on
 	push hl
-	ld hl, wBuffer1 - 1
+	ld hl, wEnemyAIMoveScores - 1
 	ld de, wEnemyMonMoves
 	ld c, NUM_MOVES + 1
 
@@ -2893,7 +2893,7 @@ AI_Opportunist:
 	ret c
 
 .lowhp
-	ld hl, wBuffer1 - 1
+	ld hl, wEnemyAIMoveScores - 1
 	ld de, wEnemyMonMoves
 	ld c, NUM_MOVES + 1
 .checkmove
@@ -2987,7 +2987,7 @@ AI_Aggressive:
 	jr z, .done
 
 ; Discourage moves that do less damage unless they're reckless too.
-	ld hl, wBuffer1 - 1
+	ld hl, wEnemyAIMoveScores - 1
 	ld de, wEnemyMonMoves
 	ld b, 0
 .checkmove2
@@ -3060,7 +3060,7 @@ AI_Cautious:
 	and a
 	ret z
 
-	ld hl, wBuffer1 - 1
+	ld hl, wEnemyAIMoveScores - 1
 	ld de, wEnemyMonMoves
 	ld c, NUM_MOVES + 1
 .loop
@@ -3098,7 +3098,7 @@ INCLUDE "data/battle/ai/residual_moves.asm"
 AI_Status:
 ; Dismiss status moves that don't affect the player.
 
-	ld hl, wBuffer1 - 1
+	ld hl, wEnemyAIMoveScores - 1
 	ld de, wEnemyMonMoves
 	ld b, NUM_MOVES + 1
 .checkmove
@@ -3161,7 +3161,7 @@ AI_Risky:
 ; Use any move that will KO the target.
 ; Risky moves will often be an exception (see below).
 
-	ld hl, wBuffer1 - 1
+	ld hl, wEnemyAIMoveScores - 1
 	ld de, wEnemyMonMoves
 	ld c, NUM_MOVES + 1
 .checkmove

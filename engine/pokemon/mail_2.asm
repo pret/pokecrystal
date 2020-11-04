@@ -1,3 +1,17 @@
+; MailGFXPointers indexes
+; LoadMailPalettes.MailPals indexes (see gfx/mail/mail.pal)
+	const_def
+	const FLOWER_MAIL_INDEX  ; 0
+	const SURF_MAIL_INDEX    ; 1
+	const LITEBLUEMAIL_INDEX ; 2
+	const PORTRAITMAIL_INDEX ; 3
+	const LOVELY_MAIL_INDEX  ; 4
+	const EON_MAIL_INDEX     ; 5
+	const MORPH_MAIL_INDEX   ; 6
+	const BLUESKY_MAIL_INDEX ; 7
+	const MUSIC_MAIL_INDEX   ; 8
+	const MIRAGE_MAIL_INDEX  ; 9
+
 ReadPartyMonMail:
 	ld a, [wCurPartyMon]
 	ld hl, sPartyMail
@@ -35,7 +49,7 @@ ReadAnyMail:
 	call .LoadGFX
 	call EnableLCD
 	call WaitBGMap
-	ld a, [wBuffer3]
+	ld a, [wCurMailIndex]
 	ld e, a
 	farcall LoadMailPalettes
 	call SetPalettes
@@ -72,13 +86,13 @@ ReadAnyMail:
 	call OpenSRAM
 	ld de, sPartyMon1MailAuthorID - sPartyMon1Mail
 	add hl, de
+	ld a, [hli] ; author id
+	ld [wCurMailAuthorID], a
 	ld a, [hli]
-	ld [wBuffer1], a
-	ld a, [hli]
-	ld [wBuffer2], a
-	ld a, [hli]
+	ld [wCurMailAuthorID + 1], a
+	ld a, [hli] ; species
 	ld [wCurPartySpecies], a
-	ld b, [hl]
+	ld b, [hl] ; type
 	call CloseSRAM
 	ld hl, MailGFXPointers
 	ld c, 0
@@ -99,7 +113,7 @@ ReadAnyMail:
 
 .got_pointer
 	ld a, c
-	ld [wBuffer3], a
+	ld [wCurMailIndex], a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -111,6 +125,7 @@ ReadAnyMail:
 	ret
 
 MailGFXPointers:
+; entries correspond to *MAIL_INDEX constants
 	dbw FLOWER_MAIL,  LoadFlowerMailGFX
 	dbw SURF_MAIL,    LoadSurfMailGFX
 	dbw LITEBLUEMAIL, LoadLiteBlueMailGFX
@@ -121,7 +136,7 @@ MailGFXPointers:
 	dbw BLUESKY_MAIL, LoadBlueSkyMailGFX
 	dbw MUSIC_MAIL,   LoadMusicMailGFX
 	dbw MIRAGE_MAIL,  LoadMirageMailGFX
-	db -1
+	db -1 ; end
 
 LoadSurfMailGFX:
 	push bc
@@ -697,12 +712,12 @@ MailGFX_PlaceMessage:
 	ld a, [de]
 	and a
 	ret z
-	ld a, [wBuffer3]
+	ld a, [wCurMailIndex]
 	hlcoord 8, 14
-	cp $3 ; PORTRAITMAIL
+	cp PORTRAITMAIL_INDEX
 	jr z, .place_author
 	hlcoord 6, 14
-	cp $6 ; MORPH_MAIL
+	cp MORPH_MAIL_INDEX
 	jr z, .place_author
 	hlcoord 5, 14
 

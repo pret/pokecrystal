@@ -132,7 +132,7 @@ rept NUM_MOVES - 1
 	ld [hli], a
 endr
 	ld [hl], a
-	ld [wEvolutionOldSpecies], a
+	ld [wSkipMovesBeforeLevelUp], a
 	predef FillMoves
 
 .next
@@ -876,8 +876,8 @@ RetrieveBreedmon:
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld a, $1
-	ld [wBuffer1], a
+	ld a, TRUE
+	ld [wSkipMovesBeforeLevelUp], a
 	predef FillMoves
 	ld a, [wPartyCount]
 	dec a

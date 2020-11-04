@@ -5358,7 +5358,7 @@ MoveSelectionScreen:
 	hlcoord 6, 17 - NUM_MOVES - 4
 .got_start_coord
 	ld a, SCREEN_WIDTH
-	ld [wBuffer1], a
+	ld [wListMovesLineSpacing], a
 	predef ListMoves
 
 	ld b, 5
@@ -6334,8 +6334,7 @@ LoadEnemyMon:
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
-; Make sure the predef knows this isn't a partymon
-	ld [wEvolutionOldSpecies], a
+	ld [wSkipMovesBeforeLevelUp], a
 ; Fill moves based on level
 	predef FillMoves
 
@@ -7616,9 +7615,10 @@ SendOutMonText:
 	and a
 	jr z, .not_linked
 
-	ld hl, GoMonText ; If we're in a LinkBattle print just "Go <PlayerMon>"
-
-	ld a, [wBattleHasJustStarted] ; unless this (unidentified) variable is set
+; If we're in a LinkBattle print just "Go <PlayerMon>"
+; unless DoBattle already set [wBattleHasJustStarted]
+	ld hl, GoMonText
+	ld a, [wBattleHasJustStarted]
 	and a
 	jr nz, .skip_to_textbox
 

@@ -1,5 +1,5 @@
 AIChooseMove:
-; Score each move in wEnemyMonMoves starting from wBuffer1. Lower is better.
+; Score each move of wEnemyMonMoves in wEnemyAIMoveScores. Lower is better.
 ; Pick the move with the lowest score.
 
 ; Wildmons attack at random.
@@ -17,7 +17,7 @@ AIChooseMove:
 
 ; The default score is 20. Unusable moves are given a score of 80.
 	ld a, 20
-	ld hl, wBuffer1
+	ld hl, wEnemyAIMoveScores
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
@@ -37,14 +37,14 @@ AIChooseMove:
 	inc hl
 	jr .CheckDisabledMove
 .ScoreDisabledMove:
-	ld hl, wBuffer1
+	ld hl, wEnemyAIMoveScores
 	ld b, 0
 	add hl, bc
 	ld [hl], 80
 
 ; Don't pick moves with 0 PP.
 .CheckPP:
-	ld hl, wBuffer1 - 1
+	ld hl, wEnemyAIMoveScores - 1
 	ld de, wEnemyMonPP
 	ld b, 0
 .CheckMovePP:
@@ -117,7 +117,7 @@ AIChooseMove:
 
 ; Decrement the scores of all moves one by one until one reaches 0.
 .DecrementScores:
-	ld hl, wBuffer1
+	ld hl, wEnemyAIMoveScores
 	ld de, wEnemyMonMoves
 	ld c, NUM_MOVES
 
@@ -152,7 +152,7 @@ AIChooseMove:
 	cp NUM_MOVES + 1
 	jr nz, .move_loop
 
-	ld hl, wBuffer1
+	ld hl, wEnemyAIMoveScores
 	ld de, wEnemyMonMoves
 	ld c, NUM_MOVES
 
@@ -182,7 +182,7 @@ AIChooseMove:
 
 ; Randomly choose one of the moves with a score of 1
 .ChooseMove:
-	ld hl, wBuffer1
+	ld hl, wEnemyAIMoveScores
 	call Random
 	maskbits NUM_MOVES
 	ld c, a

@@ -62,7 +62,7 @@ Phone_FindOpenSlot:
 
 GetRemainingSpaceInPhoneList:
 	xor a
-	ld [wBuffer1], a
+	ld [wRegisteredPhoneNumbers], a
 	ld hl, PermanentNumbers
 .loop
 	ld a, [hli]
@@ -76,7 +76,7 @@ GetRemainingSpaceInPhoneList:
 	ld c, a
 	call _CheckCellNum
 	jr c, .permanent
-	ld hl, wBuffer1
+	ld hl, wRegisteredPhoneNumbers
 	inc [hl]
 .permanent
 	pop hl
@@ -87,7 +87,7 @@ GetRemainingSpaceInPhoneList:
 
 .done
 	ld a, CONTACT_LIST_SIZE
-	ld hl, wBuffer1
+	ld hl, wRegisteredPhoneNumbers
 	sub [hl]
 	ret
 

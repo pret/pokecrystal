@@ -206,9 +206,10 @@ StartMenu_PrintBugContestStatus:
 
 FindApricornsInBag:
 ; Checks the bag for Apricorns.
-	ld hl, wBuffer1
+	ld hl, wKurtApricornCount
 	xor a
 	ld [hli], a
+	assert wKurtApricornCount + 1 == wKurtApricornItems
 	dec a
 	ld bc, 10
 	call ByteFill
@@ -232,15 +233,15 @@ FindApricornsInBag:
 	jr .loop
 
 .done
-	ld a, [wBuffer1]
+	ld a, [wKurtApricornCount]
 	and a
 	ret nz
 	scf
 	ret
 
-.addtobuffer
+.addtobuffer:
 	push hl
-	ld hl, wBuffer1
+	ld hl, wKurtApricornCount
 	inc [hl]
 	ld e, [hl]
 	ld d, 0
