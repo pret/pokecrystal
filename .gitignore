@@ -54,3 +54,10 @@ used_space.png
 
 # macos files
 .DS_STORE
+.vs/pokecrystal/v16/.suo
+.vs/pokecrystal/v16/Browse.VC.db
+.vs/pokecrystal/v16/Browse.VC.db-shm
+.vs/pokecrystal/v16/Browse.VC.db-wal
+.vs/pokecrystal/v16/Browse.VC.opendb
+.vs/slnx.sqlite
+.vs/VSWorkspaceState.json
