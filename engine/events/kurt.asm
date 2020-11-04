@@ -87,7 +87,7 @@ Kurt_SelectApricorn:
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 7 ; rows, columns
 	db SCROLLINGMENU_ITEMS_NORMAL ; item format
-	dbw 0, wBuffer1
+	dbw 0, wKurtApricornCount
 	dba .Name
 	dba .Quantity
 	dba NULL

@@ -1870,7 +1870,7 @@ Mobile_MoveSelectionScreen:
 	ld bc, NUM_MOVES
 	call CopyBytes
 	ld a, SCREEN_WIDTH * 2
-	ld [wBuffer1], a
+	ld [wListMovesLineSpacing], a
 	hlcoord 2, 10
 	predef ListMoves
 	ret
