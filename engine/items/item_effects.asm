@@ -360,7 +360,7 @@ PokeBallEffect:
 
 .skip_hp_calc
 	ld b, a
-	ld [wBuffer1], a
+	ld [wFinalCatchRate], a
 	call Random
 
 	cp b
@@ -390,28 +390,28 @@ PokeBallEffect:
 	ld [wFXAnimID + 1], a
 	xor a
 	ldh [hBattleTurn], a
-	ld [wBuffer2], a
+	ld [wThrownBallWobbleCount], a
 	ld [wNumHits], a
 	predef PlayBattleAnim
 
 	ld a, [wWildMon]
 	and a
 	jr nz, .caught
-	ld a, [wBuffer2]
-	cp $1
+	ld a, [wThrownBallWobbleCount]
+	cp 1
 	ld hl, BallBrokeFreeText
 	jp z, .shake_and_break_free
-	cp $2
+	cp 2
 	ld hl, BallAppearedCaughtText
 	jp z, .shake_and_break_free
-	cp $3
+	cp 3
 	ld hl, BallAlmostHadItText
 	jp z, .shake_and_break_free
-	cp $4
+	cp 4
 	ld hl, BallSoCloseText
 	jp z, .shake_and_break_free
-.caught
 
+.caught
 	ld hl, wEnemyMonStatus
 	ld a, [hli]
 	push af
@@ -2723,12 +2723,12 @@ ApplyPPUp:
 	ld a, MON_MOVES
 	call GetPartyParamLocation
 	push hl
-	ld de, wBuffer1
+	ld de, wPPUpPPBuffer
 	predef FillPP
 	pop hl
 	ld bc, MON_PP - MON_MOVES
 	add hl, bc
-	ld de, wBuffer1
+	ld de, wPPUpPPBuffer
 	ld b, 0
 .loop
 	inc b

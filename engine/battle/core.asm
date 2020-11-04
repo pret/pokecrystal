@@ -3226,13 +3226,13 @@ AddBattleParticipant:
 
 FindMonInOTPartyToSwitchIntoBattle:
 	ld b, -1
-	ld a, $1
-	ld [wBuffer1], a
-	ld [wBuffer2], a
+	ld a, %000001
+	ld [wEnemyEffectivenessVsPlayerMons], a
+	ld [wPlayerEffectivenessVsEnemyMons], a
 .loop
-	ld hl, wBuffer1
+	ld hl, wEnemyEffectivenessVsPlayerMons
 	sla [hl]
-	inc hl
+	inc hl ; wPlayerEffectivenessVsEnemyMons
 	sla [hl]
 	inc b
 	ld a, [wOTPartyCount]
@@ -3256,7 +3256,7 @@ FindMonInOTPartyToSwitchIntoBattle:
 	jr .loop
 
 .discourage
-	ld hl, wBuffer2
+	ld hl, wPlayerEffectivenessVsEnemyMons
 	set 0, [hl]
 	jr .loop
 
@@ -3291,7 +3291,7 @@ LookUpTheEffectivenessOfEveryMove:
 	ld a, [wTypeMatchup]
 	cp EFFECTIVE + 1
 	jr c, .loop
-	ld hl, wBuffer1
+	ld hl, wEnemyEffectivenessVsPlayerMons
 	set 0, [hl]
 	ret
 .done
@@ -3334,10 +3334,10 @@ IsThePlayerMonTypesEffectiveAgainstOTMon:
 
 .super_effective
 	pop bc
-	ld hl, wBuffer1
+	ld hl, wEnemyEffectivenessVsPlayerMons
 	bit 0, [hl]
 	jr nz, .reset
-	inc hl
+	inc hl ; wPlayerEffectivenessVsEnemyMons
 	set 0, [hl]
 	ret
 
@@ -3347,9 +3347,9 @@ IsThePlayerMonTypesEffectiveAgainstOTMon:
 
 ScoreMonTypeMatchups:
 .loop1
-	ld hl, wBuffer1
+	ld hl, wEnemyEffectivenessVsPlayerMons
 	sla [hl]
-	inc hl
+	inc hl ; wPlayerEffectivenessVsEnemyMons
 	sla [hl]
 	jr nc, .loop1
 	ld a, [wOTPartyCount]
@@ -3363,7 +3363,7 @@ ScoreMonTypeMatchups:
 	jr .loop2
 
 .okay
-	ld a, [wBuffer1]
+	ld a, [wEnemyEffectivenessVsPlayerMons]
 	and a
 	jr z, .okay2
 	ld b, -1
@@ -3376,7 +3376,7 @@ ScoreMonTypeMatchups:
 
 .okay2
 	ld b, -1
-	ld a, [wBuffer2]
+	ld a, [wPlayerEffectivenessVsEnemyMons]
 	ld c, a
 .loop4
 	inc b

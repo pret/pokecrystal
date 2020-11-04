@@ -2248,12 +2248,22 @@ wCurHPAnimLowHP::   db
 wCurHPAnimHighHP::  db
 
 NEXTU
-; battle AI
+; move AI
 wEnemyAIMoveScores:: ds NUM_MOVES
+
+NEXTU
+; switch AI
+wEnemyEffectivenessVsPlayerMons:: flag_array PARTY_LENGTH
+wPlayerEffectivenessVsEnemyMons:: flag_array PARTY_LENGTH
 
 NEXTU
 ; battle HUD
 wBattleHUDTiles:: ds PARTY_LENGTH
+
+NEXTU
+; thrown ball data
+wFinalCatchRate:: db
+wThrownBallWobbleCount:: db
 
 NEXTU
 ; evolution data
@@ -2267,6 +2277,10 @@ NEXTU
 wExpToNextLevel:: ds 3
 
 NEXTU
+; PP Up
+wPPUpPPBuffer:: ds NUM_MOVES
+
+NEXTU
 ; lucky number show
 wMonIDDigitsBuffer:: ds 5
 
@@ -2274,6 +2288,28 @@ NEXTU
 ; mon submenu
 wMonSubmenuCount:: db
 wMonSubmenuItems:: ds NUM_MONMENU_ITEMS + 1
+
+NEXTU
+; field move data
+wFieldMoveData::
+wFieldMoveJumptableIndex:: db
+wEscapeRopeOrDigType::
+wSurfingPlayerState::
+wFishingRodUsed:: db
+wCutWhirlpoolOverworldBlockAddr:: dw
+wCutWhirlpoolReplacementBlock:: db
+wCutWhirlpoolAnimationType::
+wStrengthSpecies::
+wFishingResult:: db
+	ds 1
+wFieldMoveDataEnd::
+
+NEXTU
+; hidden items
+wCurMapScriptBank:: db
+wRemainingBGEventCount:: db
+wBottomRightYCoord:: db
+wBottomRightXCoord:: db
 
 NEXTU
 ; heal machine anim

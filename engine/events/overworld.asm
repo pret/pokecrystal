@@ -1,14 +1,14 @@
 FieldMoveJumptableReset:
 	xor a
-	ld hl, wBuffer1
-	ld bc, 7
+	ld hl, wFieldMoveData
+	ld bc, wFieldMoveDataEnd - wFieldMoveData
 	call ByteFill
 	ret
 
 FieldMoveJumptable:
-	ld a, [wBuffer1]
+	ld a, [wFieldMoveJumptableIndex]
 	rst JumpTable
-	ld [wBuffer1], a
+	ld [wFieldMoveJumptableIndex], a
 	bit 7, a
 	jr nz, .okay
 	and a
@@ -183,17 +183,15 @@ CheckMapForSomethingToCut:
 	call CheckOverworldTileArrays
 	pop hl
 	jr nc, .fail
-	; Back up the wOverworldMapBlocks address to wBuffer3
+	; Save the Cut field move data
 	ld a, l
-	ld [wBuffer3], a
+	ld [wCutWhirlpoolOverworldBlockAddr], a
 	ld a, h
-	ld [wBuffer4], a
-	; Back up the replacement tile to wBuffer5
+	ld [wCutWhirlpoolOverworldBlockAddr + 1], a
 	ld a, b
-	ld [wBuffer5], a
-	; Back up the animation index to wBuffer6
+	ld [wCutWhirlpoolReplacementBlock], a
 	ld a, c
-	ld [wBuffer6], a
+	ld [wCutWhirlpoolAnimationType], a
 	xor a
 	ret
 
@@ -214,18 +212,18 @@ Script_Cut:
 	end
 
 CutDownTreeOrGrass:
-	ld hl, wBuffer3 ; OverworldMapTile
+	ld hl, wCutWhirlpoolOverworldBlockAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wBuffer5] ; ReplacementTile
+	ld a, [wCutWhirlpoolReplacementBlock]
 	ld [hl], a
 	xor a
 	ldh [hBGMapMode], a
 	call OverworldTextModeSwitch
 	call UpdateSprites
 	call DelayFrame
-	ld a, [wBuffer6] ; Animation type
+	ld a, [wCutWhirlpoolAnimationType]
 	ld e, a
 	farcall OWCutAnimation
 	call BufferScreen
@@ -380,7 +378,7 @@ SurfFunction:
 
 .DoSurf:
 	call GetSurfType
-	ld [wBuffer2], a
+	ld [wSurfingPlayerState], a
 	call GetPartyNick
 	ld hl, SurfFromMenuScript
 	call QueueScript
@@ -409,7 +407,7 @@ UsedSurfScript:
 
 	callasm .stubbed_fn
 
-	readmem wBuffer2
+	readmem wSurfingPlayerState
 	writevar VAR_MOVEMENT
 
 	special UpdatePlayerSprite
@@ -517,7 +515,7 @@ TrySurfOW::
 	jr nz, .quit
 
 	call GetSurfType
-	ld [wBuffer2], a
+	ld [wSurfingPlayerState], a
 	call GetPartyNick
 
 	ld a, BANK(AskSurfScript)
@@ -757,7 +755,7 @@ DigFunction:
 	ld a, $2
 
 EscapeRopeOrDig:
-	ld [wBuffer2], a
+	ld [wEscapeRopeOrDigType], a
 .loop
 	ld hl, .DigTable
 	call FieldMoveJumptable
@@ -801,7 +799,7 @@ EscapeRopeOrDig:
 	ld bc, 3
 	call CopyBytes
 	call GetPartyNick
-	ld a, [wBuffer2]
+	ld a, [wEscapeRopeOrDigType]
 	cp $2
 	jr nz, .escaperope
 	ld hl, .UsedDigScript
@@ -817,7 +815,7 @@ EscapeRopeOrDig:
 	ret
 
 .FailDig:
-	ld a, [wBuffer2]
+	ld a, [wEscapeRopeOrDigType]
 	cp $2
 	jr nz, .failescaperope
 	ld hl, .CantUseDigText
@@ -1000,7 +998,7 @@ SetStrengthFlag:
 	ld hl, wPartySpecies
 	add hl, de
 	ld a, [hl]
-	ld [wBuffer6], a
+	ld [wStrengthSpecies], a
 	call GetPartyNick
 	ret
 
@@ -1011,8 +1009,8 @@ Script_StrengthFromMenu:
 Script_UsedStrength:
 	callasm SetStrengthFlag
 	writetext .UseStrengthText
-	readmem wBuffer6
-	cry 0
+	readmem wStrengthSpecies
+	cry 0 ; plays [wStrengthSpecies] cry
 	pause 3
 	writetext .MoveBoulderText
 	closetext
@@ -1147,14 +1145,15 @@ TryWhirlpoolMenu:
 	call CheckOverworldTileArrays
 	pop hl
 	jr nc, .failed
+	; Save the Whirlpool field move data
 	ld a, l
-	ld [wBuffer3], a
+	ld [wCutWhirlpoolOverworldBlockAddr], a
 	ld a, h
-	ld [wBuffer4], a
+	ld [wCutWhirlpoolOverworldBlockAddr + 1], a
 	ld a, b
-	ld [wBuffer5], a
+	ld [wCutWhirlpoolReplacementBlock], a
 	ld a, c
-	ld [wBuffer6], a
+	ld [wCutWhirlpoolAnimationType], a
 	xor a
 	ret
 
@@ -1175,16 +1174,16 @@ Script_UsedWhirlpool:
 	end
 
 DisappearWhirlpool:
-	ld hl, wBuffer3
+	ld hl, wCutWhirlpoolOverworldBlockAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wBuffer5]
+	ld a, [wCutWhirlpoolReplacementBlock]
 	ld [hl], a
 	xor a
 	ldh [hBGMapMode], a
 	call OverworldTextModeSwitch
-	ld a, [wBuffer6]
+	ld a, [wCutWhirlpoolAnimationType]
 	ld e, a
 	farcall PlayWhirlpoolSound
 	call BufferScreen
@@ -1429,7 +1428,7 @@ FishFunction:
 	push af
 	call FieldMoveJumptableReset
 	pop af
-	ld [wBuffer2], a
+	ld [wFishingRodUsed], a
 .loop
 	ld hl, .FishTable
 	call FieldMoveJumptable
@@ -1468,7 +1467,7 @@ FishFunction:
 
 .goodtofish
 	ld d, a
-	ld a, [wBuffer2]
+	ld a, [wFishingRodUsed]
 	ld e, a
 	farcall Fish
 	ld a, d
@@ -1492,7 +1491,7 @@ FishFunction:
 
 .FishGotSomething:
 	ld a, $1
-	ld [wBuffer6], a
+	ld [wFishingResult], a
 	ld hl, Script_GotABite
 	call QueueScript
 	ld a, $81
@@ -1500,7 +1499,7 @@ FishFunction:
 
 .FishNoBite:
 	ld a, $2
-	ld [wBuffer6], a
+	ld [wFishingResult], a
 	ld hl, Script_NotEvenANibble
 	call QueueScript
 	ld a, $81
@@ -1508,7 +1507,7 @@ FishFunction:
 
 .FishNoFish:
 	ld a, $0
-	ld [wBuffer6], a
+	ld [wFishingResult], a
 	ld hl, Script_NotEvenANibble2
 	call QueueScript
 	ld a, $81
