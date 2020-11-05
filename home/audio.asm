@@ -48,8 +48,12 @@ UpdateSound::
 	pop hl
 	ret
 
+; input: 
+	; a = channel music bank
+	; de = channel music address
+; output:
+	; wCurMusicByte = [a:de]
 _LoadMusicByte::
-; wCurMusicByte = [a:de]
 	ldh [hROMBank], a
 	ld [MBC3RomBank], a
 

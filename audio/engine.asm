@@ -3,43 +3,56 @@
 ; Interfaces are in bank 0.
 
 ; Notable functions:
-; 	FadeMusic
-; 	PlayStereoSFX
+  ; FadeMusic
+  ; PlayStereoSFX
 
-_InitSound::
 ; restart sound operation
 ; clear all relevant hardware registers & wram
+_InitSound::
 	push hl
 	push de
 	push bc
 	push af
 	call MusicOff
-	ld hl, rNR50 ; channel control registers
+	; channel control registers
+	ld hl, rNR50 
 	xor a
-	ld [hli], a ; rNR50 ; volume/vin
-	ld [hli], a ; rNR51 ; sfx channels
-	ld a, $80 ; all channels on
-	ld [hli], a ; rNR52 ; music channels
-
-	ld hl, rNR10 ; sound channel registers
+	; rNR50 ; volume/vin
+	ld [hli], a 
+	; rNR51 ; sfx channels
+	ld [hli], a 
+	; all channels on
+	ld a, $80 
+	; rNR52 ; music channels
+	ld [hli], a 
+  ; sound channel registers
+	ld hl, rNR10
 	ld e, NUM_MUSIC_CHANS
+	
 .clearsound
-;   sound channel   1      2      3      4
+	; sound channels  
+	;   1      2      3      4
 	xor a
-	ld [hli], a ; rNR10, rNR20, rNR30, rNR40 ; sweep = 0
-
-	ld [hli], a ; rNR11, rNR21, rNR31, rNR41 ; length/wavepattern = 0
+	; rNR10, rNR20, rNR30, rNR40 ; sweep = 0
+	ld [hli], a
+	; rNR11, rNR21, rNR31, rNR41 ; length/wavepattern = 0
+	ld [hli], a
 	ld a, $8
-	ld [hli], a ; rNR12, rNR22, rNR32, rNR42 ; envelope = 0
+	; rNR12, rNR22, rNR32, rNR42 ; envelope = 0
+	ld [hli], a 
 	xor a
-	ld [hli], a ; rNR13, rNR23, rNR33, rNR43 ; frequency lo = 0
+	; rNR13, rNR23, rNR33, rNR43 ; frequency lo = 0
+	ld [hli], a 
 	ld a, $80
-	ld [hli], a ; rNR14, rNR24, rNR34, rNR44 ; restart sound (freq hi = 0)
+	; rNR14, rNR24, rNR34, rNR44 ; restart sound (freq hi = 0)
+	ld [hli], a 
+	; clear the rest of the channels
 	dec e
 	jr nz, .clearsound
 
 	ld hl, wAudio
 	ld de, wAudioEnd - wAudio
+	
 .clearaudio
 	xor a
 	ld [hli], a
@@ -57,8 +70,8 @@ _InitSound::
 	pop hl
 	ret
 
-MusicFadeRestart:
 ; restart but keep the music id to fade in to
+MusicFadeRestart:
 	ld a, [wMusicFadeID + 1]
 	push af
 	ld a, [wMusicFadeID]
@@ -80,17 +93,19 @@ MusicOff:
 	ld [wMusicPlaying], a
 	ret
 
-_UpdateSound::
 ; called once per frame
+_UpdateSound::
 	; no use updating audio if it's not playing
 	ld a, [wMusicPlaying]
 	and a
 	ret z
-	; start at ch1
 	xor a
-	ld [wCurChannel], a ; just
-	ld [wSoundOutput], a ; off
+	; start at ch1
+	ld [wCurChannel], a 
+	; off
+	ld [wSoundOutput], a 
 	ld bc, wChannel1
+	
 .loop
 	; is the channel active?
 	ld hl, CHANNEL_FLAGS1
@@ -101,7 +116,8 @@ _UpdateSound::
 	ld hl, CHANNEL_NOTE_DURATION
 	add hl, bc
 	ld a, [hl]
-	cp $2 ; 1 or 0?
+	; 1 or 0? 
+	cp $2 
 	jr c, .noteover
 	dec [hl]
 	jr .continue_sound_update
@@ -120,6 +136,7 @@ _UpdateSound::
 	res SOUND_PITCH_SLIDE, [hl]
 	; get next note
 	call ParseMusic
+
 .continue_sound_update
 	call ApplyPitchSlide
 	; duty cycle
@@ -1134,14 +1151,16 @@ ReadNoiseSample:
 .quit
 	ret
 
-ParseMusic:
 ; parses until a note is read or the song is ended
-	call GetMusicByte ; store next byte in a
+ParseMusic:
+	; store next byte in a
+	call GetMusicByte 
 	cp sound_ret_cmd
 	jr z, .sound_ret
 	cp FIRST_MUSIC_CMD
 	jr c, .readnote
-	; then it's a command
+
+; then it's a command
 .readcommand
 	call ParseMusicCommand
 	jr ParseMusic ; start over
@@ -1197,12 +1216,15 @@ ParseMusic:
 	set NOTE_REST, [hl] ; Rest
 	ret
 
+; $ff was read from music data
+; aka sound_ret_cmd
 .sound_ret
-; $ff is reached in music data
 	ld hl, CHANNEL_FLAGS1
 	add hl, bc
-	bit SOUND_SUBROUTINE, [hl] ; in a subroutine?
-	jr nz, .readcommand ; execute
+	; in a subroutine?
+	bit SOUND_SUBROUTINE, [hl] 
+	; execute
+	jr nz, .readcommand 
 	ld a, [wCurChannel]
 	cp CHAN5
 	jr nc, .chan_5to8
@@ -1211,6 +1233,7 @@ ParseMusic:
 	add hl, bc
 	bit SOUND_CHANNEL_ON, [hl]
 	jr nz, .ok
+
 .chan_5to8
 	ld hl, CHANNEL_FLAGS1
 	add hl, bc
@@ -1356,6 +1379,7 @@ ParseMusicCommand:
 	ld d, 0
 	; seek command pointer
 	ld hl, MusicCommands
+	; each command takes up two bytes
 	add hl, de
 	add hl, de
 	; jump to the new pointer
@@ -1364,8 +1388,8 @@ ParseMusicCommand:
 	ld l, a
 	jp hl
 
-MusicCommands:
 ; entries correspond to audio constants (see macros/scripts/audio.asm)
+MusicCommands:
 	dw Music_Octave8 ; octave 8
 	dw Music_Octave7 ; octave 7
 	dw Music_Octave6 ; octave 6
@@ -1446,9 +1470,14 @@ Music_Ret:
 	ld [hl], d
 	ret
 
-Music_Call:
 ; call music stream (subroutine)
-; parameters: ll hh ; pointer to subroutine
+; input: 
+	; bc = start of current channel
+; output: 
+	; CHANNEL_LAST_MUSIC_ADDRESS = CHANNEL_MUSIC_ADDRESS
+	; CHANNEL_MUSIC_ADDRESS = pointer to subroutine (ll hh)
+	; Sets the SOUND_SUBROUTINE flag in CHANNEL_FLAGS1 
+Music_Call:
 	; get pointer from next 2 bytes
 	call GetMusicByte
 	ld e, a
@@ -1479,9 +1508,13 @@ Music_Call:
 	set SOUND_SUBROUTINE, [hl]
 	ret
 
-Music_Jump:
 ; jump
-; parameters: ll hh ; pointer
+; input: 
+	; bc = start of current channel
+; output: 
+	; CHANNEL_MUSIC_ADDRESS = pointer to 
+	; music address to jump to (ll hh)
+Music_Jump:
 	; get pointer from next 2 bytes
 	call GetMusicByte
 	ld e, a
@@ -2101,10 +2134,13 @@ Music_NewSong:
 	pop bc
 	ret
 
-GetMusicByte:
 ; returns byte from current address in a
 ; advances to next byte in music data
-; input: bc = start of current channel
+; input: 
+	; bc = start of current channel
+; output: 
+	; a = music byte
+GetMusicByte:
 	push hl
 	push de
 	; load address into de
@@ -2117,19 +2153,18 @@ GetMusicByte:
 	ld hl, CHANNEL_MUSIC_BANK
 	add hl, bc
 	ld a, [hl]
-	; get byte
-	call _LoadMusicByte ; load data into wCurMusicByte
-	inc de ; advance to next byte for next time this is called
+	; load byte into wCurMusicByte
+	call _LoadMusicByte
+	; advance to next byte for next time this is called and
 	; update channeldata address
+	inc de 
 	ld hl, CHANNEL_MUSIC_ADDRESS
 	add hl, bc
 	ld a, e
 	ld [hli], a
 	ld [hl], d
-	; cleanup
 	pop de
 	pop hl
-	; store channeldata in a
 	ld a, [wCurMusicByte]
 	ret
 
@@ -2744,11 +2779,11 @@ ChannelInit:
 	pop de
 	ret
 
-LoadMusicByte::
 ; input:
-;   de = current music address
+	; de = current music address
 ; output:
-;   a = wCurMusicByte
+	; a = wCurMusicByte
+LoadMusicByte::
 	ld a, [wMusicBank]
 	call _LoadMusicByte
 	ld a, [wCurMusicByte]
