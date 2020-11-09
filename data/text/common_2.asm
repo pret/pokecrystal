@@ -1368,11 +1368,11 @@ _TrainerRankingNoDataText:: ; unreferenced
 	para ""
 	done
 
-_DummyGameYeahText::
+_MemoryGameYeahText::
 	text " , yeah!"
 	done
 
-_DummyGameDarnText::
+_MemoryGameDarnText::
 	text "Darn…"
 	done
 

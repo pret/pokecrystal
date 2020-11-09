@@ -55,7 +55,7 @@ SpecialsPointers::
 	add_special UnownPuzzle
 	add_special SlotMachine
 	add_special CardFlip
-	add_special UnusedDummyGame ; unused
+	add_special UnusedMemoryGame ; unused
 	add_special ClearBGPalettesBufferScreen ; unused
 	add_special FadeOutPalettes
 	add_special BattleTowerFade

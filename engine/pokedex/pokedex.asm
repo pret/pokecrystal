@@ -374,7 +374,7 @@ Pokedex_UpdateDexEntryScreen:
 	ld a, [wLastVolume]
 	and a
 	jr z, .max_volume
-	ld a, $77
+	ld a, MAX_VOLUME
 	ld [wLastVolume], a
 
 .max_volume
