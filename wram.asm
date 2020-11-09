@@ -849,18 +849,18 @@ wDiscardPile:: ds 4 * 6
 wDiscardPileEnd::
 
 NEXTU
-; dummy game
-wDummyGameCards:: ds 9 * 5
-wDummyGameCardsEnd::
-wDummyGameLastCardPicked:: db
-wDummyGameCard1:: db
-wDummyGameCard2:: db
-wDummyGameCard1Location:: db
-wDummyGameCard2Location:: db
-wDummyGameNumberTriesRemaining:: db
-wDummyGameLastMatches:: ds 5
-wDummyGameCounter:: db
-wDummyGameNumCardsMatched:: db
+; unused memory game
+wMemoryGameCards:: ds 9 * 5
+wMemoryGameCardsEnd::
+wMemoryGameLastCardPicked:: db
+wMemoryGameCard1:: db
+wMemoryGameCard2:: db
+wMemoryGameCard1Location:: db
+wMemoryGameCard2Location:: db
+wMemoryGameNumberTriesRemaining:: db
+wMemoryGameLastMatches:: ds 5
+wMemoryGameCounter:: db
+wMemoryGameNumCardsMatched:: db
 
 NEXTU
 ; mobile data
@@ -1412,8 +1412,8 @@ wCardFlipCursorX:: db
 wCardFlipWhichCard:: db
 
 NEXTU
-; dummy game
-wDummyGameCardChoice:: db
+; unused memory game
+wMemoryGameCardChoice:: db
 
 NEXTU
 ; magnet train
