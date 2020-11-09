@@ -456,7 +456,7 @@ Function17a943:
 	dec a
 	ld [$d08c], a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, wd1ea
 	add hl, bc
 	ld [hl], $ff
@@ -476,7 +476,7 @@ Function17a964:
 	cp $10
 	jr nc, .asm_17a979
 	ld c, a
-	ld b, $0
+	ld b, 0
 	inc a
 	ld [$d08c], a
 	ld hl, wd1ea
@@ -671,7 +671,7 @@ Function17aaa9:
 	ld a, $3
 	call Function17aae3
 	ld c, a
-	ld b, $0
+	ld b, 0
 	hlcoord 0, 0, wAttrmap
 	add hl, bc
 	push hl
@@ -719,7 +719,7 @@ Function17aae3:
 	call AddNTimes
 	pop af
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [hl]
 	ret

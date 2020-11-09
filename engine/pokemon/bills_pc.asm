@@ -1114,7 +1114,7 @@ BillsPC_LoadMonStats:
 	ld hl, wBillsPC_ScrollPosition
 	add [hl]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, wBillsPCPokemonList + 1 ; box number
 	add hl, de
 	add hl, de
@@ -1443,7 +1443,7 @@ BillsPC_GetSelectedPokemonSpecies:
 	ld hl, wBillsPC_ScrollPosition
 	add [hl]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, wBillsPCPokemonList
 	add hl, de
 	add hl, de
@@ -2105,7 +2105,7 @@ MovePKMNWitoutMail_InsertMon:
 CopySpeciesToTemp:
 	ld a, [wCurPartyMon]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [hl]
 	ld [wCurPartySpecies], a
@@ -2179,7 +2179,7 @@ BillsPC_ApplyPalettes:
 
 BillsPC_Jumptable:
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	add hl, de
 	ld a, [hli]

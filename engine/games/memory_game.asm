@@ -216,7 +216,7 @@ endr
 	pop af
 	push hl
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, wMemoryGameCards
 	add hl, de
 	ld a, [hl]
@@ -259,7 +259,7 @@ MemoryGame_CheckMatch:
 
 	ld a, [wMemoryGameCard1Location]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, wMemoryGameCards
 	add hl, de
 	ld [hl], -1

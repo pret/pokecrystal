@@ -425,7 +425,7 @@ ScrollingMenu_CallFunctions1and2:
 	and a
 	jr z, .done
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld d, h
 	ld e, l
@@ -491,7 +491,7 @@ ScrollingMenu_GetListItemCoordAndFunctionArgs:
 	ld a, [wMenuScrollPosition]
 	add e
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, wMenuData_ItemsPointerAddr
 	ld a, [hli]
 	ld h, [hl]

@@ -951,7 +951,7 @@ ApplyObjectFacing:
 Script_variablesprite:
 	call GetScriptByte
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, wVariableSprites
 	add hl, de
 	call GetScriptByte

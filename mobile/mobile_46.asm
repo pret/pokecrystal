@@ -5580,7 +5580,7 @@ Function11acb7:
 	ld hl, TilemapPack_11ba44
 	ld a, [wcd49]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	sla c
 	rl b
 	sla c
@@ -5606,7 +5606,7 @@ Function11acb7:
 	ld hl, TilemapPack_11bb7d
 	ld a, [wcd4a]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	sla c
 	rl b
 	sla c
@@ -6134,7 +6134,7 @@ Function11b099:
 	call Function11b236
 	ld a, [wc7d0]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, wPokedexOrder
 	add hl, de
 	ld e, l
@@ -6400,7 +6400,7 @@ Function11b20b:
 	ld hl, wc7d0
 	add [hl]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, $c6d0
 	add hl, de
 	ld a, [hl]

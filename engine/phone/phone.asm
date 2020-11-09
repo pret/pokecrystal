@@ -223,7 +223,7 @@ GetAvailableCallers:
 .different_map
 	ld a, [wNumAvailableCallers]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	inc a
 	ld [wNumAvailableCallers], a
 	ld hl, wAvailableCallers

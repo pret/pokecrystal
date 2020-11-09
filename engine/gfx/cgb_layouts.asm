@@ -86,7 +86,7 @@ _CGB_BattleColors:
 	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_ENEMY
 	ld a, [wEnemyHPPal]
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, hl
 	add hl, hl
 	ld bc, HPBarPals
@@ -94,7 +94,7 @@ _CGB_BattleColors:
 	call LoadPalette_White_Col1_Col2_Black ; PAL_BATTLE_BG_ENEMY_HP
 	ld a, [wPlayerHPPal]
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, hl
 	add hl, hl
 	ld bc, HPBarPals
@@ -196,7 +196,7 @@ _CGB_StatsScreenHPPals:
 	ld de, wBGPals1
 	ld a, [wCurHPPal]
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, hl
 	add hl, hl
 	ld bc, HPBarPals
@@ -832,7 +832,7 @@ _CGB_Pokepic:
 .found_top
 	ld a, [wMenuBorderLeftCoord]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld a, [wMenuBorderTopCoord]
 	ld b, a

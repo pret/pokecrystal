@@ -477,7 +477,7 @@ Function1143f3:
 	ld a, b
 	add a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]

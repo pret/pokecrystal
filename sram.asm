@@ -65,7 +65,8 @@ sBackupMysteryGiftItemEnd::
 
 	ds $30
 
-sRTCStatusFlags:: ds 8
+sRTCStatusFlags:: db
+	ds 7
 sLuckyNumberDay:: db
 sLuckyIDNumber::  dw
 

@@ -852,7 +852,7 @@ Printer_GetMonGender:
 Printer_GetBoxMonSpecies:
 	push hl
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld a, [wAddrOfBoxToPrint]
 	ld l, a
 	ld a, [wAddrOfBoxToPrint + 1]

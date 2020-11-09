@@ -240,7 +240,7 @@ RemoveItemFromPocket:
 	cp c
 	jr nc, .ok ; memory
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	add hl, bc
 	ld a, [wCurItem]

@@ -3066,8 +3066,11 @@ BattleCommand_DamageCalc:
 ; Critical hits
 	call .CriticalMultiplier
 
-; Update wCurDamage. 
-; Capped at MAX_NEUTRAL_DAMAGE - MIN_NEUTRAL_DAMAGE: 999 - 2 = 997.
+; Update wCurDamage. Max 999 (capped at 997, then add 2).
+MAX_DAMAGE EQU 999
+MIN_DAMAGE EQU 2
+DAMAGE_CAP EQU MAX_DAMAGE - MIN_DAMAGE
+
 	ld hl, wCurDamage
 	ld b, [hl]
 	ldh a, [hQuotient + 3]
@@ -3089,14 +3092,14 @@ BattleCommand_DamageCalc:
 	jr nz, .Cap
 
 	ldh a, [hQuotient + 2]
-	cp HIGH(MAX_NEUTRAL_DAMAGE - MIN_NEUTRAL_DAMAGE + 1)
+	cp HIGH(DAMAGE_CAP + 1)
 	jr c, .dont_cap_2
 
-	cp HIGH(MAX_NEUTRAL_DAMAGE - MIN_NEUTRAL_DAMAGE + 1) + 1
+	cp HIGH(DAMAGE_CAP + 1) + 1
 	jr nc, .Cap
 
 	ldh a, [hQuotient + 3]
-	cp LOW(MAX_NEUTRAL_DAMAGE - MIN_NEUTRAL_DAMAGE + 1)
+	cp LOW(DAMAGE_CAP + 1)
 	jr nc, .Cap
 
 .dont_cap_2
@@ -3114,28 +3117,28 @@ BattleCommand_DamageCalc:
 	jr c, .Cap
 
 	ld a, [hl]
-	cp HIGH(MAX_NEUTRAL_DAMAGE - MIN_NEUTRAL_DAMAGE + 1)
+	cp HIGH(DAMAGE_CAP + 1)
 	jr c, .dont_cap_3
 
-	cp HIGH(MAX_NEUTRAL_DAMAGE - MIN_NEUTRAL_DAMAGE + 1) + 1
+	cp HIGH(DAMAGE_CAP + 1) + 1
 	jr nc, .Cap
 
 	inc hl
 	ld a, [hld]
-	cp LOW(MAX_NEUTRAL_DAMAGE - MIN_NEUTRAL_DAMAGE + 1)
+	cp LOW(DAMAGE_CAP + 1)
 	jr c, .dont_cap_3
 
 .Cap:
-	ld a, HIGH(MAX_NEUTRAL_DAMAGE - MIN_NEUTRAL_DAMAGE)
+	ld a, HIGH(DAMAGE_CAP)
 	ld [hli], a
-	ld a, LOW(MAX_NEUTRAL_DAMAGE - MIN_NEUTRAL_DAMAGE)
+	ld a, LOW(DAMAGE_CAP)
 	ld [hld], a
 
 .dont_cap_3
-; Add back MIN_NEUTRAL_DAMAGE (capping at 999).
+; Add back MIN_DAMAGE (capping at 999).
 	inc hl
 	ld a, [hl]
-	add MIN_NEUTRAL_DAMAGE
+	add MIN_DAMAGE
 	ld [hld], a
 	jr nc, .dont_floor
 	inc [hl]

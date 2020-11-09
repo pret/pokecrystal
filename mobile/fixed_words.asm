@@ -1184,7 +1184,7 @@ Function11c7bc:
 	push de
 	ld a, [hli]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	push hl
 	ld a, [bc]
 	ld l, a
@@ -1215,7 +1215,7 @@ Function11c7bc:
 	ld hl, wc648
 	ld a, [wcd22]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -1226,7 +1226,7 @@ Function11c7bc:
 	pop hl
 	ld a, [wcd26]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	add hl, de
 	ld a, [wcd26]
@@ -1388,7 +1388,7 @@ Function11c8f6:
 	pop de
 	ld a, [wcd20]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, wcd36
 	add hl, bc
 	add hl, bc
@@ -1402,7 +1402,7 @@ Function11c8f6:
 	ld a, [wMobileCommsJumptableIndex]
 	add [hl]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, wListPointer
 	add hl, bc
 	ld a, [hl]
@@ -1411,7 +1411,7 @@ Function11c8f6:
 	ld hl, wc648
 	ld a, [wcd22]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -1422,7 +1422,7 @@ Function11c8f6:
 	pop hl
 	ld a, [wcd26]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	add hl, de
 	ld a, [wMobileCommsJumptableIndex]
@@ -1613,7 +1613,7 @@ Function11ca5e:
 Function11ca6a:
 	ld hl, wcd36
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	add hl, bc
 	ld [hl], b
@@ -2363,7 +2363,7 @@ Function11d035:
 .done_add_n_times
 	pop af
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	push hl
 	ld a, $79
@@ -2414,7 +2414,7 @@ Function11d035:
 	ld a, [de]
 	dec a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	pop bc
 	inc de
@@ -2488,7 +2488,7 @@ AnimateEZChatCursor:
 	ld hl, .FramesetsIDs_Two
 	ld a, [wcd22]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld a, [hl]
 	call ReinitSpriteAnimFrame
@@ -2509,7 +2509,7 @@ AnimateEZChatCursor:
 .load
 	push de
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	push hl
 	pop de

@@ -190,7 +190,7 @@ Function117764_b_button:
 	dec a
 	ld [wcd4a], a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, $c708
 	add hl, de
 	xor a
@@ -300,7 +300,7 @@ Function117764_a_button:
 	call SimpleMultiply
 	add b
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [hl]
 	ld hl, $c708
@@ -765,7 +765,7 @@ Function117c89:
 	ld a, [de]
 	inc de
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	pop bc
 	dec bc

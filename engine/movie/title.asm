@@ -229,7 +229,7 @@ SuicuneFrameIterator:
 	sla a
 	swap a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, .Frames
 	add hl, de
 	ld d, [hl]

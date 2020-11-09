@@ -1660,7 +1660,7 @@ Function110af4:
 	sub e
 	dec a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld a, [$c829]
 	ld e, a
@@ -1706,7 +1706,7 @@ Function110af4:
 	sub e
 	dec a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld a, [$c829]
 	ld e, a
@@ -1764,7 +1764,7 @@ Function110af4:
 	ld a, $80
 	sub e
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, $c880
 	add hl, de
 	ld a, [$c829]
@@ -1790,7 +1790,7 @@ Function110af4:
 	ld a, $80
 	sub e
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, $c880
 	add hl, de
 	ld a, [$c829]
@@ -2434,7 +2434,7 @@ Function111044:
 	sub e
 	dec a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld a, [$c829]
 	ld e, a
@@ -2444,7 +2444,7 @@ Function111044:
 	pop bc
 	ld a, [$c991]
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, bc
 	ld c, l
 	ld b, h
@@ -2488,7 +2488,7 @@ Function111044:
 	sub e
 	dec a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld a, [$c829]
 	ld e, a
@@ -2577,7 +2577,7 @@ Function11115f:
 	ld a, [$c993]
 	sub e
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, $c880
 	add hl, de
 	ld a, [$c829]
@@ -2616,7 +2616,7 @@ Function11115f:
 	ld a, [$c993]
 	sub e
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, $c880
 	add hl, de
 	ld a, [$c829]
@@ -3123,7 +3123,7 @@ Function11148c:
 	jr nz, .asm_111507
 	ld a, [$c993]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, $ca40
 	add hl, bc
 	ld a, [hli]
@@ -3785,7 +3785,7 @@ Function1118bc:
 Function1118c2:
 	ldh a, [rSB]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, wMobileSDK_PacketChecksum
 	ld a, [hli]
 	ld l, [hl]
@@ -3919,7 +3919,7 @@ _Timer::
 	ld a, [$cb4c]
 	add $a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld a, MOBILE_COMMAND_TRANSFER_DATA | $80
 	ld [wMobileSDK_SendCommandID], a
 	ld hl, wMobileSDK_PacketBuffer
@@ -5223,7 +5223,7 @@ Function112271:
 	ld c, a
 	sub $8
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, $cb7a
 	add hl, de
 	ld e, l
@@ -5294,7 +5294,7 @@ Function11234b:
 	ld a, [$cb4c]
 	add $a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, wMobileSDK_PacketBuffer
 	ld a, b
 	jp Function111f02
@@ -5923,7 +5923,7 @@ Function11273a:
 	ld a, [$cbbc]
 	add $a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld a, $95
 	ld hl, $cbb7
 	jp Function111f02
@@ -6049,7 +6049,7 @@ Function112807:
 .asm_112830
 	sub $5
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, $ca41
 	add hl, bc
 	ld b, $5
@@ -6286,7 +6286,7 @@ Function11299c:
 	ld a, [$cbac]
 	add $a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld a, $95
 	ld hl, $cba7
 	jp Function111f02
@@ -6740,7 +6740,7 @@ Function112bec:
 	push de
 	ld hl, $ca40
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	pop de
 	ld b, c
@@ -6772,7 +6772,7 @@ Function112bec:
 	push de
 	ld hl, $ca40
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	pop de
 	ld b, c
@@ -7604,7 +7604,7 @@ Function1131a9:
 	ld a, $ff
 	sub b
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, $ca40
 	add hl, bc
 	pop bc
@@ -8291,7 +8291,7 @@ Function113626:
 	ld a, [$cb4c]
 	add $a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld a, $9a
 	ld hl, wMobileSDK_PacketBuffer
 	jp Function111f02
@@ -8527,7 +8527,7 @@ endr
 	ld [$cc0d], a
 	ld a, l
 	ld [$cc0c], a
-	cp $8e ; XXX LOW(MD5_K_Table + $100) ???
+	cp $8e ; LOW(MD5_K_Table + $100) ???
 	jp nz, .asm_113751
 	ld de, $cc18
 	ld hl, $cbe7
@@ -8745,7 +8745,7 @@ Function113909:
 Function11391e:
 	and $f
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, Unknown_113b70
 	add hl, de
 	ld de, $cbf7
