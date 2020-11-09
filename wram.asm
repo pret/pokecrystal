@@ -3337,17 +3337,16 @@ wBattleAnimByte:: db
 wBattleAnimOAMPointerLo:: db
 
 UNION
-; unidentified
-wBattleAnimTemp0:: db
-wBattleAnimTemp1:: db
-wBattleAnimTemp2:: db
-wBattleAnimTemp3:: db
-
-NEXTU
 wBattleObjectTempID:: db
 wBattleObjectTempXCoord:: db
 wBattleObjectTempYCoord:: db
 wBattleObjectTempParam:: db
+
+NEXTU
+wBattleBGEffectTempID:: db
+wBattleBGEffectTempJumptableIndex:: db
+wBattleBGEffectTempTurn:: db
+wBattleBGEffectTempParam:: db
 
 NEXTU
 wBattleAnimTempOAMFlags:: db
@@ -3359,6 +3358,20 @@ wBattleAnimTempXOffset:: db
 wBattleAnimTempYOffset:: db
 wBattleAnimTempFrameOAMFlags:: db
 wBattleAnimTempPalette:: db
+
+NEXTU
+wBattleAnimGFXTempTileID::
+wBattleAnimGFXTempPicHeight:: db
+
+NEXTU
+wBattleSineWaveTempProgress:: db
+wBattleSineWaveTempOffset:: db
+wBattleSineWaveTempAmplitude:: db
+wBattleSineWaveTempTimer:: db
+
+NEXTU
+wBattlePicResizeTempBaseTileID:: db
+wBattlePicResizeTempPointer:: dw
 ENDU
 
 UNION
