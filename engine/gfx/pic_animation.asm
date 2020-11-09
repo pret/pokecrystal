@@ -413,7 +413,7 @@ PokeAnim_End:
 PokeAnim_GetDuration:
 ; a * (1 + [wPokeAnimSpeed] / 16)
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, 0
 	ld a, [wPokeAnimSpeed]
 	call AddNTimes
@@ -466,7 +466,7 @@ PokeAnim_GetPointer:
 	push hl
 	ld a, [wPokeAnimFrame]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, wPokeAnimPointerAddr
 	ld a, [hli]
 	ld h, [hl]
@@ -488,7 +488,7 @@ PokeAnim_GetBitmaskIndex:
 	ld a, [wPokeAnimCommand]
 	dec a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, wPokeAnimFramesAddr
 	ld a, [hli]
 	ld h, [hl]

@@ -778,7 +778,7 @@ BattleAnimFunction_FireBlast:
 	call DeinitBattleAnimation
 	ret
 
-.one 
+.one
 	; Flame that moves upward
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
 	add hl, bc
@@ -2145,13 +2145,13 @@ BattleAnimFunction_Egg:
 	call BattleAnim_IncAnonJumptableIndex ; jumps to three
 	ret
 
-.egg_bomb_done 
+.egg_bomb_done
 	; Increases jumptable index twice to four
 	call BattleAnim_IncAnonJumptableIndex
 	inc [hl]
 	ret
 
-.three 
+.three
 	; Waits in place
 	ld hl, BATTLEANIMSTRUCT_VAR2
 	add hl, bc
@@ -3387,7 +3387,7 @@ BattleAnimFunction_SkyAttack:
 	call DeinitBattleAnimation
 	ret
 
-.SkyAttack_CyclePalette: 
+.SkyAttack_CyclePalette:
 ; Cycles wOBP0 pallete
 	ld hl, BATTLEANIMSTRUCT_VAR2
 	add hl, bc
@@ -3396,7 +3396,7 @@ BattleAnimFunction_SkyAttack:
 	inc [hl]
 	srl a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ldh a, [hSGB]
 	and a
 	jr nz, .sgb

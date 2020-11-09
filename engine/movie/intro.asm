@@ -1232,7 +1232,7 @@ CrystalIntro_UnownFade:
 	add a
 	add a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, wBGPals2
 	add hl, de
 	inc hl
@@ -1248,7 +1248,7 @@ CrystalIntro_UnownFade:
 .okay
 
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wBGPals2)
@@ -1397,7 +1397,7 @@ Intro_FadeUnownWordPals:
 	add a
 	add a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, wBGPals2
 	add hl, de
 rept 4
@@ -1406,7 +1406,7 @@ endr
 	ld a, [wIntroSceneTimer]
 	add a
 	ld c, a
-	ld b, $0
+	ld b, 0
 
 	ldh a, [rSVBK]
 	push af
@@ -1530,7 +1530,7 @@ Intro_RustleGrass:
 	and $c
 	srl a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, .RustlingGrassPointers
 	add hl, de
 	ld a, [hli]

@@ -20,7 +20,7 @@ Function116567:
 	ld a, [wc3f6]
 	sla a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [hli]
 	cp $fe
@@ -392,7 +392,7 @@ asm_1167af:
 	ld a, [wc312]
 	sla a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [hli]
 	cp $ff

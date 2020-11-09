@@ -147,7 +147,7 @@ PlaceMapNameCenterAlign:
 	ld a, SCREEN_WIDTH
 	sub c
 	srl a
-	ld b, $0
+	ld b, 0
 	ld c, a
 	hlcoord 0, 2
 	add hl, bc

@@ -4964,7 +4964,7 @@ Function1022d0:
 	ld a, 30
 	sub c
 	ld c, a
-	ld b, $03
+	ld b, 03
 	farcall AdvanceMobileInactivityTimerAndCheckExpired
 	jr c, .asm_1022f3
 	xor a

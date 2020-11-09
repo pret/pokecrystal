@@ -1990,7 +1990,7 @@ BattleBGEffect_FadeMonsToBlackRepeating:
 	swap a
 	sla a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	push bc
 	call BGEffect_CheckBattleTurn
 	jr nz, .player
@@ -2614,7 +2614,7 @@ BattleBGEffect_GetFirstDMGPal:
 	inc [hl]
 BattleBGEffect_GetNextDMGPal:
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, de
 	ld a, [hl]
 	cp -1
@@ -2823,7 +2823,7 @@ DeformWater:
 	ld a, [wBattleSineWaveTempProgress]
 	add e
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ret
 
 BattleBGEffect_WavyScreenFX:

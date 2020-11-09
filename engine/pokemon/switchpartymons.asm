@@ -46,13 +46,13 @@ _SwitchPartyMons:
 	ld bc, wPartySpecies
 	ld a, [wSwitchMonTo]
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, bc
 	ld d, h
 	ld e, l
 	ld a, [wSwitchMonFrom]
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, bc
 	ld a, [hl]
 	push af

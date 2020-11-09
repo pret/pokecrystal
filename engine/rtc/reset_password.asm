@@ -185,7 +185,7 @@ ClockResetPassword:
 .getcurrentdigit
 	ld a, [wStringBuffer2 + 5]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, wStringBuffer2
 	add hl, de
 	ret

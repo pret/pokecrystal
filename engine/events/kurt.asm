@@ -176,7 +176,7 @@ Kurt_GetQuantityOfApricorn:
 	ld hl, wNumItems
 	ld a, [wCurItem]
 	ld c, a
-	ld b, $0
+	ld b, 0
 .loop
 	inc hl
 	ld a, [hli]
@@ -344,7 +344,7 @@ Kurt_GetAddressOfApricornQuantity:
 	ld hl, wNumItems
 	inc hl
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	add hl, bc
 	inc hl
@@ -358,7 +358,7 @@ Kurt_GetRidOfItem:
 	ld hl, wNumItems
 	ld a, [wCurItemQuantity]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	inc hl
 	add hl, bc
 	add hl, bc

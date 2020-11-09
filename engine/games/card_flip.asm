@@ -339,7 +339,7 @@ CardFlip_ShuffleDeck:
 	cp CARDFLIP_DECK_SIZE
 	jr nc, .loop
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, de
 	ld a, [hl]
 	and a
