@@ -206,11 +206,11 @@ CardFlip:
 	call StartGameCornerGame
 	ret
 
-UnusedDummyGame:
+UnusedMemoryGame:
 	call CheckCoinsAndCoinCase
 	ret c
-	ld a, BANK(_DummyGame)
-	ld hl, _DummyGame
+	ld a, BANK(_MemoryGame)
+	ld hl, _MemoryGame
 	call StartGameCornerGame
 	ret
 

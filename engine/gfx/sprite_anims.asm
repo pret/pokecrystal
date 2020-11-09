@@ -27,7 +27,7 @@ DoAnimFrame:
 	dw AnimSeq_SlotsChanseyEgg
 	dw AnimSeq_MailCursor
 	dw AnimSeq_UnusedCursor
-	dw AnimSeq_DummyGameCursor
+	dw AnimSeq_MemoryGameCursor
 	dw AnimSeq_PokegearArrow
 	dw AnimSeq_TradePokeBall
 	dw AnimSeq_TradeTubeBulge
@@ -407,8 +407,8 @@ AnimSeq_PokegearArrow:
 	callfar AnimatePokegearModeIndicatorArrow
 	ret
 
-AnimSeq_DummyGameCursor:
-	callfar DummyGame_InterpretJoypad_AnimateCursor
+AnimSeq_MemoryGameCursor:
+	callfar MemoryGame_InterpretJoypad_AnimateCursor
 	ret
 
 AnimSeq_TradePokeBall:
