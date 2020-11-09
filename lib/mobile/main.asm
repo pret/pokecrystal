@@ -8527,7 +8527,7 @@ endr
 	ld [$cc0d], a
 	ld a, l
 	ld [$cc0c], a
-	cp $8e ; XXX LOW(MD5_K_Table + $100) ???
+	cp $8e ; LOW(MD5_K_Table + $100) ???
 	jp nz, .asm_113751
 	ld de, $cc18
 	ld hl, $cbe7

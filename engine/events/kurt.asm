@@ -81,7 +81,7 @@ Kurt_SelectApricorn:
 	dw .MenuData
 	db 1 ; default option
 
-	db 0 ; XXX
+	db 0 ; unused
 
 .MenuData:
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
