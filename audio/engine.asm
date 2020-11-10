@@ -212,7 +212,7 @@ _UpdateSound::
 UpdateChannels:
 	ld hl, .ChannelFnPtrs
 	ld a, [wCurChannel]
-	maskbits NUM_CHANNELS; bit 0-2 (current channel)
+	maskbits NUM_CHANNELS
 	add a
 	ld e, a
 	ld d, 0
@@ -2666,7 +2666,7 @@ LoadChannel:
 ; sets bc to current channel pointer
 	call LoadMusicByte
 	inc de
-	maskbits NUM_CHANNELS ; bit 0-2 (current channel)
+	maskbits NUM_CHANNELS
 	ld [wCurChannel], a
 	ld c, a
 	ld b, 0
