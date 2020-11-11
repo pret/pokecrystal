@@ -2013,7 +2013,7 @@ AI_Smart_Protect:
 ; Discourage this move if the player is locked on.
 	ld a, [wPlayerSubStatus5]
 	bit SUBSTATUS_LOCK_ON, a
-	jr nz, .discourage
+	jr nz, .certainly_discourage
 
 ; Encourage this move if the player's Fury Cutter is boosted enough.
 	ld a, [wPlayerFuryCutterCount]
