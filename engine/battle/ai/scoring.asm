@@ -35,7 +35,7 @@ AI_Basic:
 ;                        └ (can) ┬ (player has active Safeguard) ─► dismiss (-10)   
 ;                                └ (not) ─► nothing
 
-	ld hl, wBuffer1 - 1
+	ld hl, wEnemyAIMoveScores - 1
 	ld de, wEnemyMonMoves
 	ld b, NUM_MOVES + 1
 .checkmove
@@ -117,7 +117,7 @@ AI_Setup:
 ;               └ (else) ┐       └ (not) ┬► 88% greatly discourage (+2)
 ;                        └► nothing      └► 12% nothing
 
-	ld hl, wBuffer1 - 1
+	ld hl, wEnemyAIMoveScores - 1
 	ld de, wEnemyMonMoves
 	ld b, NUM_MOVES + 1
 .checkmove
@@ -205,7 +205,7 @@ AI_Types:
 ;                        │ (... power > 0 and a different type) ─► discourage (+1)
 ;                        └ (else) ─► nothing 
 
-	ld hl, wBuffer1 - 1
+	ld hl, wEnemyAIMoveScores - 1
 	ld de, wEnemyMonMoves
 	ld b, NUM_MOVES + 1
 .checkmove
@@ -299,7 +299,7 @@ AI_Offensive:
 ; for each move ┬ (is power = 0) ─► nothing
 ;               └ (is power > 0) ─► greatly encourage (-2)
 
-	ld hl, wBuffer1 - 1
+	ld hl, wEnemyAIMoveScores - 1
 	ld de, wEnemyMonMoves
 	ld b, NUM_MOVES + 1
 .checkmove
@@ -329,7 +329,7 @@ AI_Smart:
 
 ; Context-specific scoring.
 
-	ld hl, wBuffer1
+	ld hl, wEnemyAIMoveScores
 	ld de, wEnemyMonMoves
 	ld b, NUM_MOVES + 1
 .checkmove
@@ -629,7 +629,7 @@ AI_Smart_LockOn:
 
 .player_locked_on
 	push hl
-	ld hl, wBuffer1 - 1
+	ld hl, wEnemyAIMoveScores - 1
 	ld de, wEnemyMonMoves
 	ld c, NUM_MOVES + 1
 
@@ -3732,7 +3732,7 @@ AI_Opportunist:
 	ret c
 
 .lowhp
-	ld hl, wBuffer1 - 1
+	ld hl, wEnemyAIMoveScores - 1
 	ld de, wEnemyMonMoves
 	ld c, NUM_MOVES + 1
 .checkmove
@@ -3961,7 +3961,7 @@ AI_Status:
 ;               │ (... type-immuned) ─► dismiss (+10)
 ;               └ (else) ─► nothing
 
-	ld hl, wBuffer1 - 1
+	ld hl, wEnemyAIMoveScores - 1
 	ld de, wEnemyMonMoves
 	ld b, NUM_MOVES + 1
 .checkmove
@@ -4033,7 +4033,7 @@ AI_Risky:
 ; [A] ┬ (damage > player HP) ─► approve (-5)
 ;     └ (else) ─► nothing
 
-	ld hl, wBuffer1 - 1
+	ld hl, wEnemyAIMoveScores - 1
 	ld de, wEnemyMonMoves
 	ld c, NUM_MOVES + 1
 .checkmove
