@@ -913,7 +913,7 @@ AI_Smart_MirrorMove:
 ; ...or dismiss this move if enemy is faster than player.
 	jp AIDismissMove
 
-; If the player did use a useful move last turn...
+; If the player did use a move in UsefulMoves last turn...
 .usedmove
 	push hl
 	ld hl, UsefulMoves
