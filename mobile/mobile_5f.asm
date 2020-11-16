@@ -562,7 +562,7 @@ Function17d314:
 	ld a, [de]
 	inc de
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	pop bc
 	dec bc
@@ -876,7 +876,7 @@ Function17d48d:
 	ld [wcd4a], a
 	ld a, [wcd42]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	add hl, bc
 	ld a, l
@@ -1038,7 +1038,7 @@ Function17d6a1:
 	push hl
 	ld a, [wcd6e]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld a, $5
 	call OpenSRAM
 	ld hl, $b1d3
@@ -1193,7 +1193,7 @@ Function17d7b4:
 	call IncCrashCheckPointer
 	ld a, [hli]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	call PlayMusic2
 	call HlToCrashCheckPointer
 	ret
@@ -1202,7 +1202,7 @@ Function17d7c2:
 	call IncCrashCheckPointer
 	ld a, [hli]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	call PlaySFX
 	call WaitSFX
 	call HlToCrashCheckPointer
@@ -1213,7 +1213,7 @@ Function17d7d3:
 	ld a, [hli]
 	dec a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	call PlayCry
 	call WaitSFX
 	call HlToCrashCheckPointer
@@ -1580,7 +1580,7 @@ Function17da31:
 	ld a, c
 	and $7f
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [de]
 	and [hl]
@@ -1928,7 +1928,7 @@ Function17dccf:
 	ld h, a
 	ld a, [wcd2e]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -1993,7 +1993,7 @@ Function17dd30:
 	ld d, a
 	ld a, [hli]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld a, [hli]
 	push af
 	call HlToCrashCheckPointer
@@ -2010,7 +2010,7 @@ Function17dd49:
 	call CopyBytes
 	ld a, [wc711]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	call CopyBytes
 	ld a, [wc70a]
 	cp $c0
@@ -2031,7 +2031,7 @@ Function17dd49:
 	ld de, wc688
 	ld a, [wc711]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	call CopyBytes
 	ld a, [wc70a]
 	cp $c0
@@ -2108,7 +2108,7 @@ Function17ddcd:
 	ld [wc710], a
 	ld a, [wc70b]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld a, [wc70a]
 	cp $c0
 	jr c, .asm_17de0c
@@ -2151,7 +2151,7 @@ Function17de32:
 	call CopyBytes
 	ld a, [wc710]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	call CopyBytes
 	ld a, $6
 	call OpenSRAM
@@ -2219,7 +2219,7 @@ Function17de91:
 	ld d, h
 	ld a, [wc70a]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, Unknown_17da8c
 	add hl, bc
 	ld a, [hl]
@@ -2706,7 +2706,7 @@ Function17e1a1:
 	ld de, wc608
 	ld a, [wc70b]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	call CopyBytes
 	ld a, [wc70a]
 	cp $c0
@@ -2738,7 +2738,7 @@ Function17e1a1:
 	ld de, wc688
 	ld a, [wc70b]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	call CopyBytes
 	ld a, [wc70e]
 	cp $c0
@@ -3079,7 +3079,7 @@ Function17e451:
 	ld a, [wcd2f]
 	ld [wcd2e], a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	add hl, bc
 	push hl
@@ -3089,7 +3089,7 @@ Function17e451:
 	call AddNTimes
 	ld a, [wCreditsTimer]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	pop bc
 	ld a, [wMobileCommsJumptableIndex]
@@ -3121,7 +3121,7 @@ Function17e451:
 	pop hl
 	ld a, [wcd26]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld a, [wcd2e]
 	inc a
@@ -3165,7 +3165,7 @@ Function17e4dd:
 	call AddNTimes
 	ld a, [wcd28]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [wcd2f]
 	and a
@@ -3203,7 +3203,7 @@ Function17e51b:
 	call AddNTimes
 	ld a, [wCreditsTimer]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [wMobileCommsJumptableIndex]
 	ld c, a
@@ -3214,7 +3214,7 @@ Function17e51b:
 	push hl
 	ld a, [wcd4f]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld a, $7f
 	call ByteFill
 	pop hl
@@ -3249,7 +3249,7 @@ Function17e571:
 	call AddNTimes
 	ld a, [wCreditsTimer]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	dec hl
 	push hl
@@ -3268,7 +3268,7 @@ Function17e571:
 	ld a, [wcd26]
 	call SimpleMultiply
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	pop bc
 	add hl, bc
@@ -3290,12 +3290,12 @@ Function17e5af:
 	add hl, bc
 	ld a, [wMobileInactivityTimerSeconds]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld a, [wMobileInactivityTimerFrames]
 	call Function17e600
 	ld a, [wcd2e]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld a, [wcd4d]
 	ld l, a
 	ld a, [wcd4e]
@@ -3357,7 +3357,7 @@ Function17e613:
 .asm_17e626
 	pop af
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	push hl
 	ld a, [wcd53]
@@ -3459,7 +3459,7 @@ Function17e691:
 .asm_17e6a5
 	pop af
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [de]
 	dec de
@@ -3607,7 +3607,7 @@ Function17f081:
 	ld l, c
 	ld h, b
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [de]
 	cp "@"
@@ -3692,7 +3692,7 @@ Function17f0f8:
 	ld l, c
 	ld h, b
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [de]
 	cp "@"
@@ -3721,7 +3721,7 @@ Function17f0f8:
 	ld de, wc608
 	ld a, [wcd56]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	call CopyBytes
 	ld a, "@"
 	ld [de], a
@@ -3789,7 +3789,7 @@ Function17f181:
 	ld l, c
 	ld h, b
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [de]
 	cp "@"
@@ -3843,7 +3843,7 @@ Function17f1d0:
 	ld l, c
 	ld h, b
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [de]
 	cp "@"
@@ -3899,7 +3899,7 @@ Function17f220:
 	ld l, c
 	ld h, b
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [de]
 	cp "@"
@@ -3962,7 +3962,7 @@ Function17f27b:
 	ld l, c
 	ld h, b
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [de]
 	cp "@"
@@ -4183,7 +4183,7 @@ Function17f3f0:
 	ld d, a
 	ld a, [de]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -4198,7 +4198,7 @@ Function17f3f0:
 	call PlaceString
 	pop af
 	ld e, a
-	ld d, $0
+	ld d, 0
 	pop hl
 	add hl, de
 	add hl, de
@@ -4309,7 +4309,7 @@ Function17f44f:
 	ld de, wc608
 	ld a, [wcd57]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	call CopyBytes
 	ld a, [wcd56]
 	cp $c0
@@ -4389,7 +4389,7 @@ Function17f50f:
 	and a
 	jr z, .asm_17f519
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld c, l
 	ld b, h
@@ -4562,7 +4562,7 @@ Function17f5e4:
 	cp $24
 	jr nc, .asm_17f679
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, MobileErrorCodeTable
 	add hl, de
 	add hl, de

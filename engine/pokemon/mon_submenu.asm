@@ -25,8 +25,8 @@ MonSubmenu:
 	db 1 ; default option
 
 .GetTopCoord:
-; TopCoord = 1 + BottomCoord - 2 * (NumSubmenuItems + 1)
-	ld a, [wBuffer1]
+; [wMenuBorderTopCoord] = 1 + [wMenuBorderBottomCoord] - 2 * ([wMonSubmenuCount] + 1)
+	ld a, [wMonSubmenuCount]
 	inc a
 	add a
 	ld b, a
@@ -41,7 +41,7 @@ MonMenuLoop:
 .loop
 	ld a, MENU_UNUSED_3 | MENU_BACKUP_TILES_2 ; flags
 	ld [wMenuDataFlags], a
-	ld a, [wBuffer1] ; items
+	ld a, [wMonSubmenuCount] ; items
 	ld [wMenuDataItems], a
 	call InitVerticalMenuCursor
 	ld hl, w2DMenuFlags1
@@ -65,7 +65,7 @@ MonMenuLoop:
 	dec a
 	ld c, a
 	ld b, 0
-	ld hl, wBuffer2
+	ld hl, wMonSubmenuItems
 	add hl, bc
 	ld a, [hl]
 	ret
@@ -74,7 +74,7 @@ PopulateMonMenu:
 	call MenuBoxCoord2Tile
 	ld bc, 2 * SCREEN_WIDTH + 2
 	add hl, bc
-	ld de, wBuffer2
+	ld de, wMonSubmenuItems
 .loop
 	ld a, [de]
 	inc de
@@ -170,7 +170,7 @@ GetMonSubmenuItems:
 	call AddMonMenuItem
 
 .skip2
-	ld a, [wBuffer1]
+	ld a, [wMonSubmenuCount]
 	cp NUM_MONMENU_ITEMS
 	jr z, .ok2
 	ld a, MONMENUITEM_CANCEL
@@ -212,17 +212,17 @@ IsFieldMove:
 
 ResetMonSubmenu:
 	xor a
-	ld [wBuffer1], a
-	ld hl, wBuffer2
+	ld [wMonSubmenuCount], a
+	ld hl, wMonSubmenuItems
 	ld bc, NUM_MONMENU_ITEMS + 1
 	call ByteFill
 	ret
 
 TerminateMonSubmenu:
-	ld a, [wBuffer1]
+	ld a, [wMonSubmenuCount]
 	ld e, a
 	ld d, 0
-	ld hl, wBuffer2
+	ld hl, wMonSubmenuItems
 	add hl, de
 	ld [hl], -1
 	ret
@@ -231,12 +231,12 @@ AddMonMenuItem:
 	push hl
 	push de
 	push af
-	ld a, [wBuffer1]
+	ld a, [wMonSubmenuCount]
 	ld e, a
 	inc a
-	ld [wBuffer1], a
+	ld [wMonSubmenuCount], a
 	ld d, 0
-	ld hl, wBuffer2
+	ld hl, wMonSubmenuItems
 	add hl, de
 	pop af
 	ld [hl], a

@@ -78,7 +78,7 @@ Function16c000: ; unreferenced
 
 Function16c089:
 	ld a, $1
-	ld [wBuffer2], a
+	ld [wd1eb], a
 	ld [wd1f1], a
 	xor a
 	ldh [hWY], a
@@ -96,7 +96,7 @@ Function16c09e:
 
 Function16c0a8:
 	xor a
-	ld [wBuffer2], a
+	ld [wd1eb], a
 	ld [wd1f1], a
 	call ClearSprites
 	ld a, $90
@@ -515,8 +515,8 @@ Function16cb08:
 
 Function16cb0f:
 	xor a
-	ld [wBuffer1], a
-	ld [wBuffer2], a
+	ld [wd1ea], a
+	ld [wd1eb], a
 	xor a
 	ld [wd1ec], a
 	ld a, $70
@@ -530,7 +530,7 @@ Function16cb0f:
 	ret
 
 Function16cb2e:
-	ld a, [wBuffer2]
+	ld a, [wd1eb]
 	and a
 	ret z
 	call Function16cb40

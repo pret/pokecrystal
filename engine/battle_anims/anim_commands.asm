@@ -611,13 +611,13 @@ BattleAnimCmd_Obj:
 
 BattleAnimCmd_BGEffect:
 	call GetBattleAnimByte
-	ld [wBattleAnimTemp0], a
+	ld [wBattleBGEffectTempID], a
 	call GetBattleAnimByte
-	ld [wBattleAnimTemp1], a
+	ld [wBattleBGEffectTempJumptableIndex], a
 	call GetBattleAnimByte
-	ld [wBattleAnimTemp2], a
+	ld [wBattleBGEffectTempTurn], a
 	call GetBattleAnimByte
-	ld [wBattleAnimTemp3], a
+	ld [wBattleBGEffectTempParam], a
 	call _QueueBGEffect
 	ret
 
@@ -667,19 +667,19 @@ BattleAnimCmd_5GFX:
 	ld c, a
 	ld hl, wBattleAnimTileDict
 	xor a
-	ld [wBattleAnimTemp0], a
+	ld [wBattleAnimGFXTempTileID], a
 .loop
-	ld a, [wBattleAnimTemp0]
+	ld a, [wBattleAnimGFXTempTileID]
 	cp (vTiles1 - vTiles0) / LEN_2BPP_TILE - BATTLEANIM_BASE_TILE
 	ret nc
 	call GetBattleAnimByte
 	ld [hli], a
-	ld a, [wBattleAnimTemp0]
+	ld a, [wBattleAnimGFXTempTileID]
 	ld [hli], a
 	push bc
 	push hl
 	ld l, a
-	ld h, $0
+	ld h, 0
 rept 4
 	add hl, hl
 endr
@@ -687,9 +687,9 @@ endr
 	add hl, de
 	ld a, [wBattleAnimByte]
 	call LoadBattleAnimGFX
-	ld a, [wBattleAnimTemp0]
+	ld a, [wBattleAnimGFXTempTileID]
 	add c
-	ld [wBattleAnimTemp0], a
+	ld [wBattleAnimGFXTempTileID], a
 	pop hl
 	pop bc
 	dec c
@@ -795,12 +795,12 @@ BattleAnimCmd_BattlerGFX_1Row:
 	ld hl, vTiles0 tile ($80 - 6 - 7)
 	ld de, vTiles2 tile $06 ; Enemy feet start tile
 	ld a, 7 tiles ; Enemy pic height
-	ld [wBattleAnimTemp0], a
+	ld [wBattleAnimGFXTempPicHeight], a
 	ld a, 7 ; Copy 7x1 tiles
 	call .LoadFeet
 	ld de, vTiles2 tile $31 ; Player head start tile
 	ld a, 6 tiles ; Player pic height
-	ld [wBattleAnimTemp0], a
+	ld [wBattleAnimGFXTempPicHeight], a
 	ld a, 6 ; Copy 6x1 tiles
 	call .LoadFeet
 	ret
@@ -812,7 +812,7 @@ BattleAnimCmd_BattlerGFX_1Row:
 	lb bc, BANK(@), 1
 	call Request2bpp
 	pop de
-	ld a, [wBattleAnimTemp0]
+	ld a, [wBattleAnimGFXTempPicHeight]
 	ld l, a
 	ld h, 0
 	add hl, de
@@ -849,12 +849,12 @@ BattleAnimCmd_BattlerGFX_2Row:
 	ld hl, vTiles0 tile ($80 - 6 * 2 - 7 * 2)
 	ld de, vTiles2 tile $05 ; Enemy feet start tile
 	ld a, 7 tiles ; Enemy pic height
-	ld [wBattleAnimTemp0], a
+	ld [wBattleAnimGFXTempPicHeight], a
 	ld a, 7 ; Copy 7x2 tiles
 	call .LoadHead
 	ld de, vTiles2 tile $31 ; Player head start tile
 	ld a, 6 tiles ; Player pic height
-	ld [wBattleAnimTemp0], a
+	ld [wBattleAnimGFXTempPicHeight], a
 	ld a, 6 ; Copy 6x2 tiles
 	call .LoadHead
 	ret
@@ -866,7 +866,7 @@ BattleAnimCmd_BattlerGFX_2Row:
 	lb bc, BANK(@), 2
 	call Request2bpp
 	pop de
-	ld a, [wBattleAnimTemp0]
+	ld a, [wBattleAnimGFXTempPicHeight]
 	ld l, a
 	ld h, 0
 	add hl, de

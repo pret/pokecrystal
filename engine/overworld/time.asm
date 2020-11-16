@@ -261,15 +261,15 @@ DoMysteryGiftIfDayHasPassed:
 	call OpenSRAM
 	ld hl, sMysteryGiftTimer
 	ld a, [hli]
-	ld [wBuffer1], a
+	ld [wTempMysteryGiftTimer], a
 	ld a, [hl]
-	ld [wBuffer2], a
+	ld [wTempMysteryGiftTimer + 1], a
 	call CloseSRAM
 
-	ld hl, wBuffer1
+	ld hl, wTempMysteryGiftTimer
 	call CheckDayDependentEventHL
 	jr nc, .not_timed_out
-	ld hl, wBuffer1
+	ld hl, wTempMysteryGiftTimer
 	call InitOneDayCountdown
 	call CloseSRAM
 	farcall ResetDailyMysteryGiftLimitIfUnlocked
@@ -277,7 +277,7 @@ DoMysteryGiftIfDayHasPassed:
 .not_timed_out
 	ld a, BANK(sMysteryGiftTimer)
 	call OpenSRAM
-	ld hl, wBuffer1
+	ld hl, wTempMysteryGiftTimer
 	ld a, [hli]
 	ld [sMysteryGiftTimer], a
 	ld a, [hl]

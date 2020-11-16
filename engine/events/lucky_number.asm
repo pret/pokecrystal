@@ -125,7 +125,7 @@ CheckForLuckyNumberWinners:
 	push hl
 	ld d, h
 	ld e, l
-	ld hl, wBuffer1
+	ld hl, wMonIDDigitsBuffer
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
 	ld hl, wLuckyNumberDigitsBuffer
@@ -135,7 +135,7 @@ CheckForLuckyNumberWinners:
 	ld b, 5
 	ld c, 0
 	ld hl, wLuckyNumberDigitsBuffer + 4
-	ld de, wBuffer1 + 4
+	ld de, wMonIDDigitsBuffer + 4
 .loop
 	ld a, [de]
 	cp [hl]

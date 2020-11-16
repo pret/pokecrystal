@@ -1313,7 +1313,7 @@ First, edit `UsedSurfScript` in [engine/events/overworld.asm](https://github.com
 
  	callasm .empty_fn ; empty function
 
- 	readmem wBuffer2
+ 	readmem wSurfingPlayerState
  	writevar VAR_MOVEMENT
 
  	special UpdatePlayerSprite

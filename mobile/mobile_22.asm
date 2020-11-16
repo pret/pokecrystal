@@ -1819,7 +1819,7 @@ Function89b97:
 	cp $ff
 	ret z
 	ld c, a
-	ld b, $0
+	ld b, 0
 .asm_89bbb
 	push hl
 	ld a, [hli]
@@ -2962,7 +2962,7 @@ Function8a3a2:
 	dec a
 	ld hl, wd002
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld a, [hl]
 	ld [wMenuSelection], a

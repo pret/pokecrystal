@@ -849,18 +849,18 @@ wDiscardPile:: ds 4 * 6
 wDiscardPileEnd::
 
 NEXTU
-; dummy game
-wDummyGameCards:: ds 9 * 5
-wDummyGameCardsEnd::
-wDummyGameLastCardPicked:: db
-wDummyGameCard1:: db
-wDummyGameCard2:: db
-wDummyGameCard1Location:: db
-wDummyGameCard2Location:: db
-wDummyGameNumberTriesRemaining:: db
-wDummyGameLastMatches:: ds 5
-wDummyGameCounter:: db
-wDummyGameNumCardsMatched:: db
+; unused memory game
+wMemoryGameCards:: ds 9 * 5
+wMemoryGameCardsEnd::
+wMemoryGameLastCardPicked:: db
+wMemoryGameCard1:: db
+wMemoryGameCard2:: db
+wMemoryGameCard1Location:: db
+wMemoryGameCard2Location:: db
+wMemoryGameNumberTriesRemaining:: db
+wMemoryGameLastMatches:: ds 5
+wMemoryGameCounter:: db
+wMemoryGameNumCardsMatched:: db
 
 NEXTU
 ; mobile data
@@ -967,7 +967,29 @@ wDebugOriginalColors:: ds 256 * 4
 
 NEXTU
 ; raw link data
-wLinkData:: ds $514
+wLinkData:: ds 271
+wc90f:: ds 229
+wc9f4:: ds 5
+wc9f9:: ds 198
+wcabf:: ds 79
+wcb0e:: ds 5
+wcb13:: ds 113
+wcb84:: ds 100
+wcbe8:: dw
+wLinkOTPartyMonTypes:: ds 2 * PARTY_LENGTH
+	ds 84
+wcc4a:: ds 22
+wcc60:: ds 1
+wcc61:: ds 1
+wcc62:: ds 2
+wcc64:: ds 1
+wcc65:: ds 57
+wcc9e:: ds 22
+wccb4:: ds 1
+wccb5:: ds 3
+wccb8:: ds 1
+wccb9:: ds 1
+wccba:: ds 90
 wLinkDataEnd::
 
 NEXTU
@@ -1025,7 +1047,6 @@ wMysteryGiftGameVersion:: db
 wMysteryGiftPartnerID:: dw
 wMysteryGiftPartnerName:: ds NAME_LENGTH
 wMysteryGiftPartnerDexCaught:: db
-wc90f::
 wMysteryGiftPartnerSentDeco:: db
 wMysteryGiftPartnerWhichItem:: db
 wMysteryGiftPartnerWhichDeco:: db
@@ -1047,10 +1068,8 @@ wMysteryGiftPlayerBackupItem:: db
 	ds 1
 wMysteryGiftPlayerDataEnd::
 
-	ds 144
-
-wc9f4:: ds 5
-wc9f9:: ds 7
+NEXTU
+	ds $200
 
 UNION
 ; blank credits tile buffer
@@ -1062,41 +1081,7 @@ NEXTU
 wUnusedMysteryGiftStagedDataLength:: db
 wMysteryGiftMessageCount:: db
 wMysteryGiftStagedDataLength:: db
-
-NEXTU
-; link data
-	ds 191
-wcabf:: ds 1
-
-NEXTU
-	ds $2f
-wMobileSDK_ReceivePacketBufferAlt:: ds 11
-wMobileSDK_ReceivedBytes:: dw
-wMobileSDK_ReceivePacketBuffer::
-
 ENDU
-
-	ds 14
-wcb0e:: ds 5
-wcb13:: ds 52
-wMobileSDK_PacketBuffer:: ds 61
-wcb84:: ds 100
-wcbe8:: dw
-wLinkOTPartyMonTypes:: ds 2 * PARTY_LENGTH
-	ds 84
-wcc4a:: ds 22
-
-wcc60:: ds 1
-wcc61:: ds 1
-wcc62:: ds 2
-wcc64:: ds 1
-wcc65:: ds 57
-wcc9e:: ds 22
-wccb4:: ds 1
-wccb5:: ds 3
-wccb8:: ds 1
-wccb9:: ds 1
-wccba:: ds 102
 
 NEXTU
 ; mobile
@@ -1110,7 +1095,11 @@ wMobileSDK_AdapterType:: db
 wMobileSDK_SendCommandID:: db
 	ds 2
 wc821:: ds 1
-wc822:: ds 46
+wc822:: ds 525
+wMobileSDK_ReceivePacketBufferAlt:: ds 11
+wMobileSDK_ReceivedBytes:: dw
+wMobileSDK_ReceivePacketBuffer:: ds 267
+wMobileSDK_PacketBuffer:: ds 461
 
 if DEF(_DEBUG)
 NEXTU
@@ -1155,6 +1144,8 @@ ENDU
 endc
 
 ENDU
+
+	ds 12
 
 
 SECTION "Video", WRAM0
@@ -1421,8 +1412,8 @@ wCardFlipCursorX:: db
 wCardFlipWhichCard:: db
 
 NEXTU
-; dummy game
-wDummyGameCardChoice:: db
+; unused memory game
+wMemoryGameCardChoice:: db
 
 NEXTU
 ; magnet train
@@ -2236,13 +2227,10 @@ wEvolvableFlags:: flag_array PARTY_LENGTH
 wForceEvolution:: db
 
 UNION
-; general-purpose buffers
-wBuffer1:: db
-wBuffer2:: db
-wBuffer3:: db
-wBuffer4:: db
-wBuffer5:: db
-wBuffer6:: db
+; general-purpose HP buffers
+wHPBuffer1:: dw
+wHPBuffer2:: dw
+wHPBuffer3:: dw
 
 NEXTU
 ; HP bar animations
@@ -2257,11 +2245,112 @@ wCurHPAnimLowHP::   db
 wCurHPAnimHighHP::  db
 
 NEXTU
+; move AI
+wEnemyAIMoveScores:: ds NUM_MOVES
+
+NEXTU
+; switch AI
+wEnemyEffectivenessVsPlayerMons:: flag_array PARTY_LENGTH
+wPlayerEffectivenessVsEnemyMons:: flag_array PARTY_LENGTH
+
+NEXTU
+; battle HUD
+wBattleHUDTiles:: ds PARTY_LENGTH
+
+NEXTU
+; thrown ball data
+wFinalCatchRate:: db
+wThrownBallWobbleCount:: db
+
+NEXTU
 ; evolution data
 wEvolutionOldSpecies:: db
 wEvolutionNewSpecies:: db
-wEvolutionPicOffset:: db
-wEvolutionCanceled:: db
+wEvolutionPicOffset::  db
+wEvolutionCanceled::   db
+
+NEXTU
+; experience
+wExpToNextLevel:: ds 3
+
+NEXTU
+; PP Up
+wPPUpPPBuffer:: ds NUM_MOVES
+
+NEXTU
+; lucky number show
+wMonIDDigitsBuffer:: ds 5
+
+NEXTU
+; mon submenu
+wMonSubmenuCount:: db
+wMonSubmenuItems:: ds NUM_MONMENU_ITEMS + 1
+
+NEXTU
+; field move data
+wFieldMoveData::
+wFieldMoveJumptableIndex:: db
+wEscapeRopeOrDigType::
+wSurfingPlayerState::
+wFishingRodUsed:: db
+wCutWhirlpoolOverworldBlockAddr:: dw
+wCutWhirlpoolReplacementBlock:: db
+wCutWhirlpoolAnimationType::
+wStrengthSpecies::
+wFishingResult:: db
+	ds 1
+wFieldMoveDataEnd::
+
+NEXTU
+; hidden items
+wCurMapScriptBank:: db
+wRemainingBGEventCount:: db
+wBottomRightYCoord:: db
+wBottomRightXCoord:: db
+
+NEXTU
+; heal machine anim
+wHealMachineAnimType::  db
+wHealMachineTempOBP1::  db
+wHealMachineAnimState:: db
+
+NEXTU
+; decorations
+wCurDecoration::          db
+wSelectedDecorationSide:: db
+wSelectedDecoration::     db
+wOtherDecoration::        db
+wChangedDecorations::     db
+wCurDecorationCategory::  db
+
+NEXTU
+; withdraw/deposit items
+wPCItemQuantityChangeBuffer:: db
+wPCItemQuantity:: db
+
+NEXTU
+; mail
+wCurMailAuthorID:: dw
+wCurMailIndex:: db
+
+NEXTU
+; kurt
+wKurtApricornCount:: db
+wKurtApricornItems:: ds 10
+
+NEXTU
+; tree mons
+wTreeMonCoordScore:: db
+wTreeMonOTIDScore::  db
+
+NEXTU
+; restart clock
+wRestartClockCurDivision::   db
+wRestartClockPrevDivision::  db
+wRestartClockUpArrowYCoord:: db
+wRestartClockDay::  db
+wRestartClockHour:: db
+wRestartClockMin::  db
 
 NEXTU
 ; link
@@ -2271,7 +2360,8 @@ wLinkBattleRNs:: ds SERIAL_RNS_LENGTH
 
 NEXTU
 ; mobile
-	ds 2
+wd1ea:: ds 1
+wd1eb:: ds 1
 wd1ec:: ds 1
 wd1ed:: ds 1
 wd1ee:: ds 1
@@ -2280,14 +2370,23 @@ wd1f0:: ds 1
 wd1f1:: ds 1
 wd1f2:: ds 1
 wd1f3:: ds 1
+	ds 6
 
 NEXTU
-; miscellaneous
-wMagikarpLength:: dw
-wSelectedDecoration:: db
-wOtherDecoration::    db
-	ds 3
+; miscellaneous bytes
+wSkipMovesBeforeLevelUp::
+wRegisteredPhoneNumbers::
+wListMovesLineSpacing:: db
+wSwitchMonTo:: db
+wSwitchMonFrom:: db
+	ds 4
 wCurEnemyItem:: db
+
+NEXTU
+; miscellaneous words
+wBuySellItemPrice::
+wTempMysteryGiftTimer::
+wMagikarpLength:: dw
 ENDU
 
 wTempEnemyMonSpecies::  db
@@ -3238,17 +3337,16 @@ wBattleAnimByte:: db
 wBattleAnimOAMPointerLo:: db
 
 UNION
-; unidentified
-wBattleAnimTemp0:: db
-wBattleAnimTemp1:: db
-wBattleAnimTemp2:: db
-wBattleAnimTemp3:: db
-
-NEXTU
 wBattleObjectTempID:: db
 wBattleObjectTempXCoord:: db
 wBattleObjectTempYCoord:: db
 wBattleObjectTempParam:: db
+
+NEXTU
+wBattleBGEffectTempID:: db
+wBattleBGEffectTempJumptableIndex:: db
+wBattleBGEffectTempTurn:: db
+wBattleBGEffectTempParam:: db
 
 NEXTU
 wBattleAnimTempOAMFlags:: db
@@ -3260,10 +3358,24 @@ wBattleAnimTempXOffset:: db
 wBattleAnimTempYOffset:: db
 wBattleAnimTempFrameOAMFlags:: db
 wBattleAnimTempPalette:: db
+
+NEXTU
+wBattleAnimGFXTempTileID::
+wBattleAnimGFXTempPicHeight:: db
+
+NEXTU
+wBattleSineWaveTempProgress:: db
+wBattleSineWaveTempOffset:: db
+wBattleSineWaveTempAmplitude:: db
+wBattleSineWaveTempTimer:: db
+
+NEXTU
+wBattlePicResizeTempBaseTileID:: db
+wBattlePicResizeTempPointer:: dw
 ENDU
 
 UNION
-	ds $32
+	ds 50
 wBattleAnimEnd::
 
 NEXTU

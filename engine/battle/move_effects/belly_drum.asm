@@ -17,7 +17,7 @@ BattleCommand_BellyDrum:
 	pop bc
 	callfar SubtractHPFromUser
 	call UpdateUserInParty
-	ld a, 5
+	ld a, MAX_STAT_LEVEL - BASE_STAT_LEVEL - 1
 
 .max_attack_loop
 	push af

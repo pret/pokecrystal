@@ -386,8 +386,8 @@ battle_anim_struct: MACRO
 ENDM
 
 battle_bg_effect: MACRO
-\1Function:: db
-\1Field01::  ds 1
-\1Field02::  ds 1
-\1Field03::  ds 1
+\1Function::       db
+\1JumptableIndex:: db
+\1BattleTurn::     db
+\1Param::          db
 ENDM

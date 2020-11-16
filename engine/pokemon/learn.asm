@@ -142,7 +142,7 @@ ForgetMove:
 	call Textbox
 	hlcoord 5 + 2, 2 + 2
 	ld a, SCREEN_WIDTH * 2
-	ld [wBuffer1], a
+	ld [wListMovesLineSpacing], a
 	predef ListMoves
 	; w2DMenuData
 	ld a, $4

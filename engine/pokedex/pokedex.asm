@@ -1482,7 +1482,7 @@ Pokedex_PrintListing:
 ; Load de with wPokedexOrder + [wDexListingScrollOffset]
 	ld a, [wDexListingScrollOffset]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, wPokedexOrder
 	add hl, de
 	ld e, l
@@ -1581,7 +1581,7 @@ Pokedex_GetSelectedMon:
 	ld hl, wDexListingScrollOffset
 	add [hl]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, wPokedexOrder
 	add hl, de
 	ld a, [hl]

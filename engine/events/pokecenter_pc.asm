@@ -361,15 +361,15 @@ PlayerWithdrawItemMenu:
 
 .withdraw
 	ld a, [wItemQuantityChangeBuffer]
-	ld [wBuffer1], a ; quantity
+	ld [wPCItemQuantityChangeBuffer], a
 	ld a, [wCurItemQuantity]
-	ld [wBuffer2], a
+	ld [wPCItemQuantity], a
 	ld hl, wNumItems
 	call ReceiveItem
 	jr nc, .PackFull
-	ld a, [wBuffer1]
+	ld a, [wPCItemQuantityChangeBuffer]
 	ld [wItemQuantityChangeBuffer], a
-	ld a, [wBuffer2]
+	ld a, [wPCItemQuantity]
 	ld [wCurItemQuantity], a
 	ld hl, wNumPCItems
 	call TossItem
@@ -490,15 +490,15 @@ PlayerDepositItemMenu:
 	ret
 
 .tossable
-	ld a, [wBuffer1]
+	ld a, [wPCItemQuantityChangeBuffer]
 	push af
-	ld a, [wBuffer2]
+	ld a, [wPCItemQuantity]
 	push af
 	call .DepositItem
 	pop af
-	ld [wBuffer2], a
+	ld [wPCItemQuantity], a
 	pop af
-	ld [wBuffer1], a
+	ld [wPCItemQuantityChangeBuffer], a
 	ret
 
 .DepositItem:
@@ -522,15 +522,15 @@ PlayerDepositItemMenu:
 
 .ContinueDeposit:
 	ld a, [wItemQuantityChangeBuffer]
-	ld [wBuffer1], a
+	ld [wPCItemQuantityChangeBuffer], a
 	ld a, [wCurItemQuantity]
-	ld [wBuffer2], a
+	ld [wPCItemQuantity], a
 	ld hl, wNumPCItems
 	call ReceiveItem
 	jr nc, .NoRoomInPC
-	ld a, [wBuffer1]
+	ld a, [wPCItemQuantityChangeBuffer]
 	ld [wItemQuantityChangeBuffer], a
-	ld a, [wBuffer2]
+	ld a, [wPCItemQuantity]
 	ld [wCurItemQuantity], a
 	ld hl, wNumItems
 	call TossItem

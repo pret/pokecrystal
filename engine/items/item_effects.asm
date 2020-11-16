@@ -360,7 +360,7 @@ PokeBallEffect:
 
 .skip_hp_calc
 	ld b, a
-	ld [wBuffer1], a
+	ld [wFinalCatchRate], a
 	call Random
 
 	cp b
@@ -390,28 +390,28 @@ PokeBallEffect:
 	ld [wFXAnimID + 1], a
 	xor a
 	ldh [hBattleTurn], a
-	ld [wBuffer2], a
+	ld [wThrownBallWobbleCount], a
 	ld [wNumHits], a
 	predef PlayBattleAnim
 
 	ld a, [wWildMon]
 	and a
 	jr nz, .caught
-	ld a, [wBuffer2]
-	cp $1
+	ld a, [wThrownBallWobbleCount]
+	cp 1
 	ld hl, BallBrokeFreeText
 	jp z, .shake_and_break_free
-	cp $2
+	cp 2
 	ld hl, BallAppearedCaughtText
 	jp z, .shake_and_break_free
-	cp $3
+	cp 3
 	ld hl, BallAlmostHadItText
 	jp z, .shake_and_break_free
-	cp $4
+	cp 4
 	ld hl, BallSoCloseText
 	jp z, .shake_and_break_free
-.caught
 
+.caught
 	ld hl, wEnemyMonStatus
 	ld a, [hli]
 	push af
@@ -1817,7 +1817,7 @@ ContinueRevive:
 	ld [hl], d
 	inc hl
 	ld [hl], e
-	jp LoadCurHPIntoBuffer5
+	jp LoadCurHPIntoBuffer3
 
 RestoreHealth:
 	ld a, MON_HP + 1
@@ -1829,7 +1829,7 @@ RestoreHealth:
 	adc d
 	ld [hl], a
 	jr c, .full_hp
-	call LoadCurHPIntoBuffer5
+	call LoadCurHPIntoBuffer3
 	ld a, MON_HP + 1
 	call GetPartyParamLocation
 	ld d, h
@@ -1862,21 +1862,21 @@ RemoveHP:
 	ld [hld], a
 	ld [hl], a
 .okay
-	call LoadCurHPIntoBuffer5
+	call LoadCurHPIntoBuffer3
 	ret
 
 IsMonFainted:
 	push de
-	call LoadMaxHPToBuffer1
-	call LoadCurHPToBuffer3
-	call LoadHPFromBuffer3
+	call LoadMaxHPIntoBuffer1
+	call LoadCurHPIntoBuffer2
+	call LoadHPFromBuffer2
 	ld a, d
 	or e
 	pop de
 	ret
 
 IsMonAtFullHealth:
-	call LoadHPFromBuffer3
+	call LoadHPFromBuffer2
 	ld h, d
 	ld l, e
 	call LoadHPFromBuffer1
@@ -1886,60 +1886,60 @@ IsMonAtFullHealth:
 	sbc d
 	ret
 
-LoadCurHPIntoBuffer5:
+LoadCurHPIntoBuffer3:
 	ld a, MON_HP
 	call GetPartyParamLocation
 	ld a, [hli]
-	ld [wBuffer6], a
+	ld [wHPBuffer3 + 1], a
 	ld a, [hl]
-	ld [wBuffer5], a
+	ld [wHPBuffer3], a
 	ret
 
-LoadHPIntoBuffer5: ; unreferenced
+LoadHPIntoBuffer3: ; unreferenced
 	ld a, d
-	ld [wBuffer6], a
+	ld [wHPBuffer3 + 1], a
 	ld a, e
-	ld [wBuffer5], a
+	ld [wHPBuffer3], a
 	ret
 
-LoadHPFromBuffer5: ; unreferenced
-	ld a, [wBuffer6]
+LoadHPFromBuffer3: ; unreferenced
+	ld a, [wHPBuffer3 + 1]
 	ld d, a
-	ld a, [wBuffer5]
+	ld a, [wHPBuffer3]
 	ld e, a
 	ret
 
-LoadCurHPToBuffer3:
+LoadCurHPIntoBuffer2:
 	ld a, MON_HP
 	call GetPartyParamLocation
 	ld a, [hli]
-	ld [wBuffer4], a
+	ld [wHPBuffer2 + 1], a
 	ld a, [hl]
-	ld [wBuffer3], a
+	ld [wHPBuffer2], a
 	ret
 
-LoadHPFromBuffer3:
-	ld a, [wBuffer4]
+LoadHPFromBuffer2:
+	ld a, [wHPBuffer2 + 1]
 	ld d, a
-	ld a, [wBuffer3]
+	ld a, [wHPBuffer2]
 	ld e, a
 	ret
 
-LoadMaxHPToBuffer1:
+LoadMaxHPIntoBuffer1:
 	push hl
 	ld a, MON_MAXHP
 	call GetPartyParamLocation
 	ld a, [hli]
-	ld [wBuffer2], a
+	ld [wHPBuffer1 + 1], a
 	ld a, [hl]
-	ld [wBuffer1], a
+	ld [wHPBuffer1], a
 	pop hl
 	ret
 
 LoadHPFromBuffer1:
-	ld a, [wBuffer2]
+	ld a, [wHPBuffer1 + 1]
 	ld d, a
-	ld a, [wBuffer1]
+	ld a, [wHPBuffer1]
 	ld e, a
 	ret
 
@@ -2723,12 +2723,12 @@ ApplyPPUp:
 	ld a, MON_MOVES
 	call GetPartyParamLocation
 	push hl
-	ld de, wBuffer1
+	ld de, wPPUpPPBuffer
 	predef FillPP
 	pop hl
 	ld bc, MON_PP - MON_MOVES
 	add hl, bc
-	ld de, wBuffer1
+	ld de, wPPUpPPBuffer
 	ld b, 0
 .loop
 	inc b

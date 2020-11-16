@@ -1019,7 +1019,7 @@ Function8b99f:
 	ld hl, wd002
 	dec a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [hl]
 	cp $ff

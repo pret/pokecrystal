@@ -132,7 +132,7 @@ rept NUM_MOVES - 1
 	ld [hli], a
 endr
 	ld [hl], a
-	ld [wEvolutionOldSpecies], a
+	ld [wSkipMovesBeforeLevelUp], a
 	predef FillMoves
 
 .next
@@ -876,8 +876,8 @@ RetrieveBreedmon:
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld a, $1
-	ld [wBuffer1], a
+	ld a, TRUE
+	ld [wSkipMovesBeforeLevelUp], a
 	predef FillMoves
 	ld a, [wPartyCount]
 	dec a
@@ -1815,7 +1815,7 @@ InitNickname:
 	pop hl
 	ld de, wStringBuffer1
 	call InitName
-	ld a, $4 ; ExitAllMenus is in bank 0, XXX could this be in bank 4 in pokered?
+	ld a, $4 ; ExitAllMenus is in bank 0; maybe it used to be in bank 4
 	ld hl, ExitAllMenus
 	rst FarCall
 	ret

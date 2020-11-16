@@ -41,7 +41,7 @@ Function17a6a8:
 	ld bc, $a
 	xor a
 	call ByteFill
-	ld hl, wBuffer1
+	ld hl, wd1ea
 	ld bc, $10
 	ld a, $ff
 	call ByteFill
@@ -66,7 +66,7 @@ Function17a6a8:
 	ret
 
 Function17a6f5:
-	ld hl, wBuffer1
+	ld hl, wd1ea
 	ld c, $0
 	ld b, $8
 .asm_17a6fc
@@ -107,7 +107,7 @@ Function17a721:
 	ld a, $ff
 	call ByteFill
 	pop de
-	ld hl, wBuffer1
+	ld hl, wd1ea
 	ld b, $8
 .asm_17a732
 	ld c, $0
@@ -456,8 +456,8 @@ Function17a943:
 	dec a
 	ld [$d08c], a
 	ld c, a
-	ld b, $0
-	ld hl, wBuffer1
+	ld b, 0
+	ld hl, wd1ea
 	add hl, bc
 	ld [hl], $ff
 	ld a, $2
@@ -476,10 +476,10 @@ Function17a964:
 	cp $10
 	jr nc, .asm_17a979
 	ld c, a
-	ld b, $0
+	ld b, 0
 	inc a
 	ld [$d08c], a
-	ld hl, wBuffer1
+	ld hl, wd1ea
 	add hl, bc
 	ld [hl], e
 	and a
@@ -494,7 +494,7 @@ Function17a97b:
 	lb bc, 2, 18
 	call ClearBox
 	hlcoord 3, 2
-	ld de, wBuffer1
+	ld de, wd1ea
 	ld a, [$d08c]
 	and a
 	ret z
@@ -671,7 +671,7 @@ Function17aaa9:
 	ld a, $3
 	call Function17aae3
 	ld c, a
-	ld b, $0
+	ld b, 0
 	hlcoord 0, 0, wAttrmap
 	add hl, bc
 	push hl
@@ -719,7 +719,7 @@ Function17aae3:
 	call AddNTimes
 	pop af
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [hl]
 	ret

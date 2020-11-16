@@ -37,7 +37,7 @@ StubbedTrainerRankings_MagikarpLength:
 	ret
 	ld a, BANK(sTrainerRankingLongestMagikarp)
 	call OpenSRAM
-	ld de, wBuffer1
+	ld de, wMagikarpLength
 	ld hl, sTrainerRankingLongestMagikarp
 
 	; Is this Magikarp the longest measured?
@@ -1021,7 +1021,7 @@ Function106464::
 	call Get2bpp
 	ld de, $40b0
 	ld hl, vTiles2 tile $6b
-	ld b, $0f ; XXX no graphics at 0f:40b0
+	ld b, $0f ; no graphics at 0f:40b0; JP leftover???
 	call Get2bpp
 	farcall LoadFrame
 	ret

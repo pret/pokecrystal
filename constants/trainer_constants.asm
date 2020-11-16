@@ -655,8 +655,8 @@ KRIS EQU __trainer_class__
 	const ALLAN
 
 	trainerclass KIMONO_GIRL ; 3c
-	const NAOKO1
-	const NAOKO2
+	const NAOKO_UNUSED
+	const NAOKO
 	const SAYO
 	const ZUKI
 	const KUNI

@@ -322,7 +322,7 @@ Route29FisherText:
 	line "progress."
 	done
 
-Text_WaitingForDay: ; unreferenced
+Route29CooltrainerMText_WaitingForDay: ; unreferenced
 	text "I'm waiting for"
 	line "#MON that"
 

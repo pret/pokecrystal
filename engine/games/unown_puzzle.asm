@@ -97,7 +97,7 @@ InitUnownPuzzlePiecePositions:
 	and $f
 	ld hl, .PuzzlePieceInitialPositions
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld e, [hl]
 	ld hl, wPuzzlePieces
@@ -449,7 +449,7 @@ UnownPuzzle_CheckCurrentTileOccupancy:
 	ld hl, wPuzzlePieces
 	ld a, [wUnownPuzzleCursorPosition]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld a, [hl]
 	ret

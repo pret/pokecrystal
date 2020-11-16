@@ -2406,19 +2406,19 @@ BattleCommand_CheckFaint:
 .got_max_hp
 	ld [wWhichHPBar], a
 	ld a, [hld]
-	ld [wBuffer1], a
+	ld [wHPBuffer1], a
 	ld a, [hld]
-	ld [wBuffer2], a
+	ld [wHPBuffer1 + 1], a
 	ld a, [hl]
-	ld [wBuffer3], a
+	ld [wHPBuffer2], a
 	xor a
 	ld [hld], a
 	ld a, [hl]
-	ld [wBuffer4], a
+	ld [wHPBuffer2 + 1], a
 	xor a
 	ld [hl], a
-	ld [wBuffer5], a
-	ld [wBuffer6], a
+	ld [wHPBuffer3], a
+	ld [wHPBuffer3 + 1], a
 	ld h, b
 	ld l, c
 	predef AnimateHPBar
@@ -3066,8 +3066,11 @@ BattleCommand_DamageCalc:
 ; Critical hits
 	call .CriticalMultiplier
 
-; Update wCurDamage. 
-; Capped at MAX_NEUTRAL_DAMAGE - MIN_NEUTRAL_DAMAGE: 999 - 2 = 997.
+; Update wCurDamage. Max 999 (capped at 997, then add 2).
+MAX_DAMAGE EQU 999
+MIN_DAMAGE EQU 2
+DAMAGE_CAP EQU MAX_DAMAGE - MIN_DAMAGE
+
 	ld hl, wCurDamage
 	ld b, [hl]
 	ldh a, [hQuotient + 3]
@@ -3089,14 +3092,14 @@ BattleCommand_DamageCalc:
 	jr nz, .Cap
 
 	ldh a, [hQuotient + 2]
-	cp HIGH(MAX_NEUTRAL_DAMAGE - MIN_NEUTRAL_DAMAGE + 1)
+	cp HIGH(DAMAGE_CAP + 1)
 	jr c, .dont_cap_2
 
-	cp HIGH(MAX_NEUTRAL_DAMAGE - MIN_NEUTRAL_DAMAGE + 1) + 1
+	cp HIGH(DAMAGE_CAP + 1) + 1
 	jr nc, .Cap
 
 	ldh a, [hQuotient + 3]
-	cp LOW(MAX_NEUTRAL_DAMAGE - MIN_NEUTRAL_DAMAGE + 1)
+	cp LOW(DAMAGE_CAP + 1)
 	jr nc, .Cap
 
 .dont_cap_2
@@ -3114,28 +3117,28 @@ BattleCommand_DamageCalc:
 	jr c, .Cap
 
 	ld a, [hl]
-	cp HIGH(MAX_NEUTRAL_DAMAGE - MIN_NEUTRAL_DAMAGE + 1)
+	cp HIGH(DAMAGE_CAP + 1)
 	jr c, .dont_cap_3
 
-	cp HIGH(MAX_NEUTRAL_DAMAGE - MIN_NEUTRAL_DAMAGE + 1) + 1
+	cp HIGH(DAMAGE_CAP + 1) + 1
 	jr nc, .Cap
 
 	inc hl
 	ld a, [hld]
-	cp LOW(MAX_NEUTRAL_DAMAGE - MIN_NEUTRAL_DAMAGE + 1)
+	cp LOW(DAMAGE_CAP + 1)
 	jr c, .dont_cap_3
 
 .Cap:
-	ld a, HIGH(MAX_NEUTRAL_DAMAGE - MIN_NEUTRAL_DAMAGE)
+	ld a, HIGH(DAMAGE_CAP)
 	ld [hli], a
-	ld a, LOW(MAX_NEUTRAL_DAMAGE - MIN_NEUTRAL_DAMAGE)
+	ld a, LOW(DAMAGE_CAP)
 	ld [hld], a
 
 .dont_cap_3
-; Add back MIN_NEUTRAL_DAMAGE (capping at 999).
+; Add back MIN_DAMAGE (capping at 999).
 	inc hl
 	ld a, [hl]
-	add MIN_NEUTRAL_DAMAGE
+	add MIN_DAMAGE
 	ld [hld], a
 	jr nc, .dont_floor
 	inc [hl]
@@ -3418,18 +3421,18 @@ DoEnemyDamage:
 	jp nz, DoSubstituteDamage
 
 .ignore_substitute
-	; Substract wCurDamage from wEnemyMonHP.
-	;  store original HP in little endian wBuffer3/4
+	; Subtract wCurDamage from wEnemyMonHP.
+	;  store original HP in little endian wHPBuffer2
 	ld a, [hld]
 	ld b, a
 	ld a, [wEnemyMonHP + 1]
-	ld [wBuffer3], a
+	ld [wHPBuffer2], a
 	sub b
 	ld [wEnemyMonHP + 1], a
 	ld a, [hl]
 	ld b, a
 	ld a, [wEnemyMonHP]
-	ld [wBuffer4], a
+	ld [wHPBuffer2 + 1], a
 	sbc b
 	ld [wEnemyMonHP], a
 if DEF(_DEBUG)
@@ -3451,9 +3454,9 @@ else
 	jr nc, .no_underflow
 endc
 
-	ld a, [wBuffer4]
+	ld a, [wHPBuffer2 + 1]
 	ld [hli], a
-	ld a, [wBuffer3]
+	ld a, [wHPBuffer2]
 	ld [hl], a
 	xor a
 	ld hl, wEnemyMonHP
@@ -3463,14 +3466,14 @@ endc
 .no_underflow
 	ld hl, wEnemyMonMaxHP
 	ld a, [hli]
-	ld [wBuffer2], a
+	ld [wHPBuffer1 + 1], a
 	ld a, [hl]
-	ld [wBuffer1], a
+	ld [wHPBuffer1], a
 	ld hl, wEnemyMonHP
 	ld a, [hli]
-	ld [wBuffer6], a
+	ld [wHPBuffer3 + 1], a
 	ld a, [hl]
-	ld [wBuffer5], a
+	ld [wHPBuffer3], a
 
 	hlcoord 2, 2
 	xor a
@@ -3495,42 +3498,42 @@ DoPlayerDamage:
 	jp nz, DoSubstituteDamage
 
 .ignore_substitute
-	; Substract wCurDamage from wBattleMonHP.
-	;  store original HP in little endian wBuffer3/4
-	;  store new HP in little endian wBuffer5/6
+	; Subtract wCurDamage from wBattleMonHP.
+	;  store original HP in little endian wHPBuffer2
+	;  store new HP in little endian wHPBuffer3
 	ld a, [hld]
 	ld b, a
 	ld a, [wBattleMonHP + 1]
-	ld [wBuffer3], a
+	ld [wHPBuffer2], a
 	sub b
 	ld [wBattleMonHP + 1], a
-	ld [wBuffer5], a
+	ld [wHPBuffer3], a
 	ld b, [hl]
 	ld a, [wBattleMonHP]
-	ld [wBuffer4], a
+	ld [wHPBuffer2 + 1], a
 	sbc b
 	ld [wBattleMonHP], a
-	ld [wBuffer6], a
+	ld [wHPBuffer3 + 1], a
 	jr nc, .no_underflow
 
-	ld a, [wBuffer4]
+	ld a, [wHPBuffer2 + 1]
 	ld [hli], a
-	ld a, [wBuffer3]
+	ld a, [wHPBuffer2]
 	ld [hl], a
 	xor a
 	ld hl, wBattleMonHP
 	ld [hli], a
 	ld [hl], a
-	ld hl, wBuffer5
+	ld hl, wHPBuffer3
 	ld [hli], a
 	ld [hl], a
 
 .no_underflow
 	ld hl, wBattleMonMaxHP
 	ld a, [hli]
-	ld [wBuffer2], a
+	ld [wHPBuffer1 + 1], a
 	ld a, [hl]
-	ld [wBuffer1], a
+	ld [wHPBuffer1], a
 
 	hlcoord 10, 9
 	ld a, 1
@@ -3652,17 +3655,17 @@ BattleCommand_SleepTarget:
 	jr nz, .fail
 
 	call AnimateCurrentMove
-	ld b, $7
+	ld b, SLP
 	ld a, [wInBattleTowerBattle]
 	and a
 	jr z, .random_loop
-	ld b, $3
+	ld b, %011
 
 .random_loop
 	call BattleRandom
 	and b
 	jr z, .random_loop
-	cp 7
+	cp SLP
 	jr z, .random_loop
 	inc a
 	ld [de], a
@@ -3911,15 +3914,15 @@ SapHealth:
 	ld de, wEnemyMonMaxHP
 .battlemonhp
 
-	; Store current HP in little endian wBuffer3/4
-	ld bc, wBuffer4
+	; Store current HP in little endian wHPBuffer2
+	ld bc, wHPBuffer2 + 1
 	ld a, [hli]
 	ld [bc], a
 	ld a, [hl]
 	dec bc
 	ld [bc], a
 
-	; Store max HP in little endian wBuffer1/2
+	; Store max HP in little endian wHPBuffer1
 	ld a, [de]
 	dec bc
 	ld [bc], a
@@ -3928,20 +3931,20 @@ SapHealth:
 	dec bc
 	ld [bc], a
 
-	; Add hDividend to current HP and copy it to little endian wBuffer5/6
+	; Add hDividend to current HP and copy it to little endian wHPBuffer3
 	ldh a, [hDividend + 1]
 	ld b, [hl]
 	add b
 	ld [hld], a
-	ld [wBuffer5], a
+	ld [wHPBuffer3], a
 	ldh a, [hDividend]
 	ld b, [hl]
 	adc b
 	ld [hli], a
-	ld [wBuffer6], a
+	ld [wHPBuffer3 + 1], a
 	jr c, .max_hp
 
-	; Substract current HP from max HP (to see if we have more than max HP)
+	; Subtract current HP from max HP (to see if we have more than max HP)
 	ld a, [hld]
 	ld b, a
 	ld a, [de]
@@ -3955,14 +3958,14 @@ SapHealth:
 	jr nc, .finish
 
 .max_hp
-	; Load max HP into current HP and copy it to little endian wBuffer5/6
+	; Load max HP into current HP and copy it to little endian wHPBuffer3
 	ld a, [de]
 	ld [hld], a
-	ld [wBuffer5], a
+	ld [wHPBuffer3], a
 	dec de
 	ld a, [de]
 	ld [hli], a
-	ld [wBuffer6], a
+	ld [wHPBuffer3 + 1], a
 	inc de
 
 .finish
@@ -5714,7 +5717,8 @@ BattleCommand_Charge:
 	text_far _BattleDugText
 	text_end
 
-BattleCommand_Unused3C: ; unreferenced
+BattleCommand_Unused3C:
+; effect0x3c
 	ret
 
 BattleCommand_TrapTarget:
@@ -5804,26 +5808,26 @@ BattleCommand_Recoil:
 	inc c
 .min_damage
 	ld a, [hli]
-	ld [wBuffer2], a
+	ld [wHPBuffer1 + 1], a
 	ld a, [hl]
-	ld [wBuffer1], a
+	ld [wHPBuffer1], a
 	dec hl
 	dec hl
 	ld a, [hl]
-	ld [wBuffer3], a
+	ld [wHPBuffer2], a
 	sub c
 	ld [hld], a
-	ld [wBuffer5], a
+	ld [wHPBuffer3], a
 	ld a, [hl]
-	ld [wBuffer4], a
+	ld [wHPBuffer2 + 1], a
 	sbc b
 	ld [hl], a
-	ld [wBuffer6], a
+	ld [wHPBuffer3 + 1], a
 	jr nc, .dont_ko
 	xor a
 	ld [hli], a
 	ld [hl], a
-	ld hl, wBuffer5
+	ld hl, wHPBuffer3
 	ld [hli], a
 	ld [hl], a
 .dont_ko
@@ -6488,7 +6492,8 @@ INCLUDE "engine/battle/move_effects/sandstorm.asm"
 
 INCLUDE "engine/battle/move_effects/rollout.asm"
 
-BattleCommand_Unused5D: ; unreferenced
+BattleCommand_Unused5D:
+; effect0x5d
 	ret
 
 INCLUDE "engine/battle/move_effects/fury_cutter.asm"

@@ -89,6 +89,7 @@ Serial::
 	reti
 
 Serial_ExchangeBytes::
+; send bc bytes from hl, receive bc bytes to de
 	ld a, TRUE
 	ldh [hSerialIgnoringInitialData], a
 

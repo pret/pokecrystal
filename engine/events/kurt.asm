@@ -81,13 +81,13 @@ Kurt_SelectApricorn:
 	dw .MenuData
 	db 1 ; default option
 
-	db 0 ; XXX
+	db 0 ; unused
 
 .MenuData:
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 7 ; rows, columns
 	db SCROLLINGMENU_ITEMS_NORMAL ; item format
-	dbw 0, wBuffer1
+	dbw 0, wKurtApricornCount
 	dba .Name
 	dba .Quantity
 	dba NULL
@@ -176,7 +176,7 @@ Kurt_GetQuantityOfApricorn:
 	ld hl, wNumItems
 	ld a, [wCurItem]
 	ld c, a
-	ld b, $0
+	ld b, 0
 .loop
 	inc hl
 	ld a, [hli]
@@ -344,7 +344,7 @@ Kurt_GetAddressOfApricornQuantity:
 	ld hl, wNumItems
 	inc hl
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	add hl, bc
 	inc hl
@@ -358,7 +358,7 @@ Kurt_GetRidOfItem:
 	ld hl, wNumItems
 	ld a, [wCurItemQuantity]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	inc hl
 	add hl, bc
 	add hl, bc

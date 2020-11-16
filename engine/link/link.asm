@@ -73,27 +73,33 @@ Gen2ToGen1LinkComms:
 	ldh [rIF], a
 	ld a, 1 << SERIAL
 	ldh [rIE], a
+
 	ld hl, wLinkBattleRNPreamble
-	ld de, wEnemyMonSpecies
+	ld de, wEnemyMon
 	ld bc, SERIAL_RN_PREAMBLE_LENGTH + SERIAL_RNS_LENGTH
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
+
 	ld hl, wLinkData
 	ld de, wOTPlayerName
 	ld bc, $1a8
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
+
 	ld hl, wLink_c608
 	ld de, wTrademons
 	ld bc, 200
 	call Serial_ExchangeBytes
+
 	xor a
 	ldh [rIF], a
 	ld a, (1 << JOYPAD) | (1 << SERIAL) | (1 << TIMER) | (1 << VBLANK)
 	ldh [rIE], a
+
 	call Link_CopyRandomNumbers
+
 	ld hl, wOTPlayerName
 	call Link_FindFirstNonControlCharacter_SkipZero
 	push hl
@@ -105,9 +111,11 @@ Gen2ToGen1LinkComms:
 	jp z, ExitLinkCommunications
 	cp $7
 	jp nc, ExitLinkCommunications
+
 	ld de, wLinkData
 	ld bc, $1a2
 	call Link_CopyOTData
+
 	ld de, wPlayerTrademon
 	ld hl, wTimeCapsulePlayerData
 	ld c, 2
@@ -138,10 +146,12 @@ Gen2ToGen1LinkComms:
 	ld hl, wc90f
 	dec c
 	jr nz, .loop
+
 	ld hl, wLinkPlayerName
 	ld de, wOTPlayerName
 	ld bc, NAME_LENGTH
 	call CopyBytes
+
 	ld de, wOTPartyCount
 	ld a, [hli]
 	ld [de], a
@@ -165,10 +175,12 @@ Gen2ToGen1LinkComms:
 	ld [de], a
 	ld hl, wTimeCapsulePlayerData
 	call Link_ConvertPartyStruct1to2
+
 	ld a, LOW(wOTPartyMonOT)
 	ld [wUnusedNamesPointer], a
 	ld a, HIGH(wOTPartyMonOT)
 	ld [wUnusedNamesPointer + 1], a
+
 	ld de, MUSIC_NONE
 	call PlayMusic
 	ldh a, [hSerialConnectionStatus]
@@ -189,7 +201,7 @@ Gen2ToGen2LinkComms:
 	jp z, LinkTimeout
 	ldh a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
-	jr nz, .Player1
+	jr nz, .player_1
 
 	ld c, 3
 	call DelayFrames
@@ -208,7 +220,7 @@ Gen2ToGen2LinkComms:
 	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
 	ldh [rSC], a
 
-.Player1:
+.player_1
 	ld de, MUSIC_NONE
 	call PlayMusic
 	ld c, 3
@@ -217,22 +229,26 @@ Gen2ToGen2LinkComms:
 	ldh [rIF], a
 	ld a, 1 << SERIAL
 	ldh [rIE], a
+
 	ld hl, wLinkBattleRNPreamble
-	ld de, wEnemyMonSpecies
+	ld de, wEnemyMon
 	ld bc, SERIAL_RN_PREAMBLE_LENGTH + SERIAL_RNS_LENGTH
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
+
 	ld hl, wLinkData
 	ld de, wOTPlayerName
 	ld bc, $1c2
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
+
 	ld hl, wLink_c608
 	ld de, wTrademons
 	ld bc, 200
 	call Serial_ExchangeBytes
+
 	ld a, [wLinkMode]
 	cp LINK_TRADECENTER
 	jr nz, .not_trading
@@ -248,12 +264,15 @@ Gen2ToGen2LinkComms:
 	ldh [rIE], a
 	ld de, MUSIC_NONE
 	call PlayMusic
+
 	call Link_CopyRandomNumbers
+
 	ld hl, wOTPlayerName
 	call Link_FindFirstNonControlCharacter_SkipZero
 	ld de, wLinkData
 	ld bc, $1b9
 	call Link_CopyOTData
+
 	ld de, wPlayerTrademon
 	ld hl, wLinkPlayerData
 	ld c, 2
@@ -284,6 +303,7 @@ Gen2ToGen2LinkComms:
 	ld hl, wc90f
 	dec c
 	jr nz, .loop1
+
 	ld a, [wLinkMode]
 	cp LINK_TRADECENTER
 	jp nz, .skip_mail
@@ -323,7 +343,7 @@ Gen2ToGen2LinkComms:
 	jr z, .start_copying_mail
 	ld hl, wcc4a
 	dec a
-	ld b, $0
+	ld b, 0
 	ld c, a
 	add hl, bc
 	ld [hl], SERIAL_NO_DATA_BYTE
@@ -398,19 +418,24 @@ Gen2ToGen2LinkComms:
 	ld de, wOTPlayerName
 	ld bc, NAME_LENGTH
 	call CopyBytes
+
 	ld de, wOTPartyCount
 	ld bc, 1 + PARTY_LENGTH + 1
 	call CopyBytes
+
 	ld de, wOTPlayerID
 	ld bc, 2
 	call CopyBytes
+
 	ld de, wOTPartyMons
 	ld bc, wOTPartyDataEnd - wOTPartyMons
 	call CopyBytes
+
 	ld a, LOW(wOTPartyMonOT)
 	ld [wUnusedNamesPointer], a
 	ld a, HIGH(wOTPartyMonOT)
 	ld [wUnusedNamesPointer + 1], a
+
 	ld de, MUSIC_NONE
 	call PlayMusic
 	ldh a, [hSerialConnectionStatus]
@@ -424,6 +449,7 @@ Gen2ToGen2LinkComms:
 	ld [wOtherTrainerClass], a
 	call ClearScreen
 	farcall Link_WaitBGMap
+
 	ld hl, wOptions
 	ld a, [hl]
 	push af
@@ -435,8 +461,6 @@ Gen2ToGen2LinkComms:
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	call ReturnToMapFromSubmenu
-
-	; LET'S DO THIS
 	ld a, [wDisableTextAcceleration]
 	push af
 	ld a, 1
@@ -453,6 +477,7 @@ Gen2ToGen2LinkComms:
 	pop af
 	ldh [rIF], a
 
+	; LET'S DO THIS
 	predef StartBattle
 
 	ldh a, [rIF]
@@ -467,6 +492,7 @@ Gen2ToGen2LinkComms:
 	ld [wDisableTextAcceleration], a
 	pop af
 	ld [wOptions], a
+
 	farcall LoadPokemonData
 	jp ExitLinkCommunications
 
@@ -646,9 +672,11 @@ Link_PrepPartyData_Gen1:
 	inc de
 	dec b
 	jr nz, .loop1
+
 	ld hl, wPlayerName
 	ld bc, NAME_LENGTH
 	call CopyBytes
+
 	push de
 	ld hl, wPartyCount
 	ld a, [hli]
@@ -668,12 +696,12 @@ Link_PrepPartyData_Gen1:
 	ld [de], a
 	inc de
 	jr .loop2
-
 .done_party
 	ld [de], a
 	pop de
 	ld hl, 1 + PARTY_LENGTH + 1
 	add hl, de
+
 	ld d, h
 	ld e, l
 	ld hl, wPartyMon1Species
@@ -686,8 +714,10 @@ Link_PrepPartyData_Gen1:
 	pop bc
 	dec c
 	jr nz, .mon_loop
+
 	ld hl, wPartyMonOT
 	call .copy_ot_nicks
+
 	ld hl, wPartyMonNicknames
 .copy_ot_nicks
 	ld bc, PARTY_LENGTH * NAME_LENGTH
@@ -812,21 +842,27 @@ Link_PrepPartyData_Gen2:
 	inc de
 	dec b
 	jr nz, .loop1
+
 	ld hl, wPlayerName
 	ld bc, NAME_LENGTH
 	call CopyBytes
+
 	ld hl, wPartyCount
 	ld bc, 1 + PARTY_LENGTH + 1
 	call CopyBytes
+
 	ld hl, wPlayerID
 	ld bc, 2
 	call CopyBytes
+
 	ld hl, wPartyMon1Species
 	ld bc, PARTY_LENGTH * PARTYMON_STRUCT_LENGTH
 	call CopyBytes
+
 	ld hl, wPartyMonOT
 	ld bc, PARTY_LENGTH * NAME_LENGTH
 	call CopyBytes
+
 	ld hl, wPartyMonNicknames
 	ld bc, PARTY_LENGTH * MON_NAME_LENGTH
 	call CopyBytes
@@ -867,7 +903,6 @@ Link_PrepPartyData_Gen2:
 	pop bc
 	dec b
 	jr nz, .loop3
-
 	ld b, PARTY_LENGTH
 	ld de, sPartyMail
 	ld hl, wc9f9
@@ -885,12 +920,10 @@ Link_PrepPartyData_Gen2:
 	jr nc, .italian_spanish
 	farcall ConvertFrenchGermanMailToEnglish
 	jr .next
-
 .italian_spanish
 	cp $2
 	jr nc, .next
 	farcall ConvertSpanishItalianMailToEnglish
-
 .next
 	pop de
 	ld hl, MAIL_STRUCT_LENGTH
@@ -904,6 +937,7 @@ Link_PrepPartyData_Gen2:
 	dec b
 	jr nz, .loop4
 	call CloseSRAM
+
 	ld hl, wc9f9
 	ld bc, PARTY_LENGTH * (sPartyMon1MailAuthor - sPartyMon1Mail)
 .loop5
@@ -911,13 +945,13 @@ Link_PrepPartyData_Gen2:
 	cp SERIAL_NO_DATA_BYTE
 	jr nz, .skip2
 	ld [hl], sPartyMon1MailAuthor - sPartyMon1Mail
-
 .skip2
 	inc hl
 	dec bc
 	ld a, b
 	or c
 	jr nz, .loop5
+
 	ld hl, wcabf
 	ld de, wcb13
 	ld b, PARTY_LENGTH * (sPartyMon1MailEnd - sPartyMon1MailAuthor)
@@ -931,11 +965,11 @@ Link_PrepPartyData_Gen2:
 	ld a, c
 	ld [de], a
 	inc de
-
 .skip3
 	inc hl
 	dec b
 	jr nz, .loop6
+
 	ld a, SERIAL_PATCH_LIST_PART_TERMINATOR
 	ld [de], a
 	ret
