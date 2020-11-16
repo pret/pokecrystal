@@ -3837,7 +3837,7 @@ AI_Aggressive:
 	jr z, .done
 
 ; Discourage (+1) moves that do less damage unless they're reckless too.
-	ld hl, wBuffer1 - 1
+	ld hl, wEnemyAIMoveScores - 1
 	ld de, wEnemyMonMoves
 	ld b, 0
 .checkmove2
@@ -3916,7 +3916,7 @@ AI_Cautious:
 	and a
 	ret z
 
-	ld hl, wBuffer1 - 1
+	ld hl, wEnemyAIMoveScores - 1
 	ld de, wEnemyMonMoves
 	ld c, NUM_MOVES + 1
 .loop
