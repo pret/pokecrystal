@@ -824,7 +824,7 @@
 00:2d0d GetPhoneServiceTimeOfDayByte
 00:2d19 GetFishingGroup
 00:2d27 LoadMapTileset
-00:2d43 InexplicablyEmptyFunction
+00:2d43 DummyEndPredef
 00:2d54 FarCall_de
 00:2d61 FarCall_JumpToDE
 00:2d63 FarCall_hl
@@ -8914,7 +8914,7 @@
 0f:4ff2 WinTrainerBattle.skip_win_loss_text
 0f:4ff5 WinTrainerBattle.mobile
 0f:5006 WinTrainerBattle.battle_tower
-0f:502b WinTrainerBattle.GiveMoney
+0f:502b WinTrainerBattle.give_money
 0f:5044 WinTrainerBattle.okay
 0f:5047 WinTrainerBattle.loop
 0f:5052 WinTrainerBattle.loop2
