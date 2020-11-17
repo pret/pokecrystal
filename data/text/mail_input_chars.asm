@@ -1,4 +1,4 @@
-; see engine/naming_screen.asm
+; see engine/menus/naming_screen.asm
 
 MailEntry_Uppercase:
 	db "A B C D E F G H I J"

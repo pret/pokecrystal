@@ -204,7 +204,7 @@ HandleMapTimeAndJoypad:
 	ret
 
 HandleMapObjects:
-	farcall HandleNPCStep ; engine/map_objects.asm
+	farcall HandleNPCStep
 	farcall _HandlePlayerStep
 	call _CheckObjectEnteringVisibleRange
 	ret

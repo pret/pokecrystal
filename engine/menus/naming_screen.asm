@@ -1152,7 +1152,7 @@ INCBIN "gfx/icons/mail_big.2bpp"
 	call .PlaceMailCharset
 	ret
 
-; called from engine/sprite_anims.asm
+; called from engine/gfx/sprite_anims.asm
 
 ComposeMail_AnimateCursor:
 	call .GetDPad

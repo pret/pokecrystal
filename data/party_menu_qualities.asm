@@ -1,4 +1,4 @@
-; WritePartyMenuTilemap.Jumptable indexes (see engine/party_menu.asm)
+; WritePartyMenuTilemap.Jumptable indexes (see engine/pokemon/party_menu.asm)
 	const_def
 	const PARTYMENUQUALITY_NICKNAMES
 	const PARTYMENUQUALITY_HP_BAR

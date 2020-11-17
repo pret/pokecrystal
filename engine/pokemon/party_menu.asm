@@ -36,7 +36,7 @@ InitPartyMenuLayout:
 
 LoadPartyMenuGFX:
 	call LoadFontsBattleExtra
-	callfar InitPartyMenuPalettes ; engine/color.asm
+	callfar InitPartyMenuPalettes
 	callfar ClearSpriteAnims2
 	ret
 
