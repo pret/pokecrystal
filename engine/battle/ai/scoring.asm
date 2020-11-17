@@ -1793,7 +1793,7 @@ AI_Smart_Encore:
 ; - Contrarily to the general comment of this routine, since `wEnemyMoveStruct` is
 ;     populated with the last player move, this will be used properly in
 ;     `CheckTypeMatchup` (putting it in `a` is indeed not how to use the matchup
-;     routine, but it is irrrelevant in that case).
+;     routine, but it is irrelevant in that case).
 ; - However, if the AI flow can lead to this clause being called with a 
 ;     `hBattleTurn` set to 0, the type matchup will consider the player types
 ;     instead of the enemy types.
