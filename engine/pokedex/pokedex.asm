@@ -513,7 +513,8 @@ Pokedex_InitOptionScreen:
 	call ClearSprites
 	call Pokedex_DrawOptionScreenBG
 	call Pokedex_InitArrowCursor
-	ld a, [wCurDexMode] ; Index of the topmost visible item in a scrolling menu ???
+	; point cursor to the current dex mode (modes == menu item indexes)
+	ld a, [wCurDexMode]
 	ld [wDexArrowCursorPosIndex], a
 	call Pokedex_DisplayModeDescription
 	call WaitBGMap
@@ -1171,7 +1172,7 @@ Pokedex_DrawDexEntryScreenBG:
 .Height:
 	db "HT  ?", $5e, "??", $5f, -1 ; HT  ?'??"
 .Weight:
-	db "WT   ???lb", -1 ; WT   ???lb
+	db "WT   ???lb", -1
 .MenuItems:
 	db $3b, " PAGE AREA CRY PRNT", -1
 

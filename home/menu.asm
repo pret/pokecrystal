@@ -200,7 +200,7 @@ PlaceVerticalMenuItems::
 	ld a, [de]
 	ld c, a
 	inc de
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	jp PlaceString
 

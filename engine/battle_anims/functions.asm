@@ -124,17 +124,17 @@ BattleAnimFunction_ThrowFromUserToTarget:
 	ld hl, BATTLEANIMSTRUCT_YCOORD
 	add hl, bc
 	dec [hl]
-	; Decrease ??? and hold onto its previous value (argument of the sine function)
+	; Decrease var1 and hold onto its previous value (argument of the sine function)
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
 	dec [hl]
-	; Get ???, which is the amplitude of the sine function
+	; Get param (amplitude of the sine function)
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
 	ld d, [hl]
 	call BattleAnim_Sine
-	; Store the result in the Y offset
+	; Store the sine result in the Y offset
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a

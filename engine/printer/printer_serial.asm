@@ -85,7 +85,7 @@ Print_InitPrinterHandshake:
 
 Printer_StartTransmittingTilemap:
 	call Printer_ResetData
-	; check ???
+	; check remaining tile data
 	ld hl, wPrinterRowIndex
 	ld a, [hl]
 	and a

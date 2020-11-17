@@ -33,5 +33,5 @@ FemalePlayerNameArray:
 	db "AMANDA@"
 	db "JUANA@"
 	db "JODI@"
-	db 2 ; displacement
+	db 2 ; title indent
 	db " NAME @" ; title
