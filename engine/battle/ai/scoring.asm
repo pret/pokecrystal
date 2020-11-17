@@ -2172,7 +2172,7 @@ AI_Smart_Conversion2:
 ; FIX : change "jr nz, .certainly_discourage" to "jr z, .certainly_discourage",
 ; in order to 90% discourage (+1) Conversion2 when the player hasn't used a move yet,
 ;   or a move that is not very effective or has no effect on the enemy,
-; or 50% encourage (-1) if last player move super effective against the enemy.
+; or 50% encourage (-1) if last player move is super effective against the enemy.
 
 	ld a, [wLastPlayerMove]
 	and a
