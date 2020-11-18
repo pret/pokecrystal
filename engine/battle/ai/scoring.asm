@@ -30,9 +30,9 @@ AI_Basic:
 ; - Using status-only moves if the player can't be statused.
 ; - Using moves that fail if they've already been used.
 
-;  for each move ┬ (is redundant) ─► dismiss (-10)
-;                └ (not) ┬ (can't status) ─► dismiss (-10)
-;                        └ (can) ┬ (player has active Safeguard) ─► dismiss (-10)   
+;  for each move ┬ (is redundant) ─► dismiss (+10)
+;                └ (not) ┬ (can't status) ─► dismiss (+10)
+;                        └ (can) ┬ (player has active Safeguard) ─► dismiss (+10)   
 ;                                └ (not) ─► nothing
 
 	ld hl, wEnemyAIMoveScores - 1
@@ -189,15 +189,15 @@ AI_Types:
 ; Modifiable scores : ALL_MOVES | Randomness : NO
 
 ; Dismiss (+10) any move that the player is immune to.
-; Encourage (+1) super-effective moves.
-; Discourage (-1) not very effective moves unless
+; Encourage (-1) super-effective moves.
+; Discourage (+1) not very effective moves unless
 ;   all damaging moves are of the same type.
 
 ; NOTE : non-damaging immune moves are also dismissed.
 ;   Super effective and not very effective moves include those
 ;   with only 1 power, such as Horn Drill, Night Shade, Flail, etc.
 
-; for each move ┬ (is player immune) ─► dismiss (-10)
+; for each move ┬ (is player immune) ─► dismiss (+10)
 ;               ├ (is move neutral) ─► nothing
 ;               ├ (is move super effective) ┬ (is power = 0) ─► nothing
 ;               │                           └ (is power > 0) ─► encourage (-1)
@@ -294,7 +294,7 @@ AI_Types:
 AI_Offensive:
 ; Modifiable scores : ALL_MOVES | Randomness : NO
 
-; Greatly discourage (-2) non-damaging moves (power = 0).
+; Greatly discourage (+2) non-damaging moves (power = 0).
 
 ; for each move ┬ (is power = 0) ─► nothing
 ;               └ (is power > 0) ─► greatly encourage (-2)
@@ -744,7 +744,7 @@ AI_Smart_EvasionUp:
 ;             └ (not) ┬ (enemy evasion > player accuracy) ─► discourage (+1)
 ;                     └ (not) ┬ (player is using Fury...)
 ;                             │ (...Cutter or Rollout) ─► greatly encourage (-2)
-;                             └ (not) ─► discourage (-1)
+;                             └ (not) ─► discourage (+1)
 
 ; NOTE : 70% (178/256), 30% ( 78/256)
 ;        96% (246/256),  4% ( 10/256)
@@ -948,7 +948,7 @@ AI_Smart_AccuracyDown:
 ; move ┬ (is player full HP) ┬ (is enemy HP > 50%) ┬ (is player toxic'd) ┘
 ;      └─ [B]                └─ [B]                └ (not) ┬► 70% greatly encourage (-2)
 ;                                                          └► 30% ── [A]
-; [B] ┬ (is player HP <= 25%) ─ greatly discourage (-2) ── [A]
+; [B] ┬ (is player HP <= 25%) ─ greatly discourage (+2) ── [A]
 ;     └ (else) ┬► 4% greatly encourage (-2)         ┌ 50% ── [A]
 ;              └─ 96% ┬ (is player HP in ]25%;50%]) ┴ 50% greatly encourage (-2) ─ [A]
 ;                     └ (player HP > 50%) ┬► 20% greatly encourage (-2)
@@ -1425,7 +1425,7 @@ AI_Smart_Fly:
 ; Fly, Dig
 ; Modifiable scores : SELECTED_MOVE | Randomness : NO
 
-; Greatly encourage (+3) this move if the player is
+; Greatly encourage (-3) this move if the player is
 ;   flying or underground, and slower than the enemy or speedtied.
 
 ;                                          greatly encourage (-3) ◄┐
@@ -2339,7 +2339,7 @@ AICheckLastPlayerMon:
 AI_Smart_Nightmare:
 ; Modifiable scores : SELECTED_MOVE | Randomness : YES
 
-; 50% chance to encourage (+1) this move.
+; 50% chance to encourage (-1) this move.
 ; The AI_Basic layer will make sure that
 ; Dream Eater is only used against sleeping targets.
 
@@ -2723,7 +2723,7 @@ AI_Smart_Endure:
 ; Modifiable scores : SELECTED_MOVE | Randomness : YES
 
 ; move ┬ (enemy has used Protect) ┐
-;      ├ (enemy HP = 100%) ───────┴─► greatly discourage (-2)
+;      ├ (enemy HP = 100%) ───────┴─► greatly discourage (+2)
 ;      ├ (enemy HP > 25%) ─► discourage (+1)
 ;      └ (else) ┬ (enemy has Reversal) ┬► 80% greatly encourage (-3)
 ;               │                      └► 20% nothing
@@ -4065,7 +4065,7 @@ AI_Risky:
 	call AICheckEnemyMaxHP
 	jr c, .nextmove
 
-; Else, 78% chance to approve (+5) them if damage is strictly more than player HP.
+; Else, 78% chance to approve (-5) them if damage is strictly more than player HP.
 	call Random
 	cp 79 percent - 1
 	jr c, .nextmove
