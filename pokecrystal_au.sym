@@ -11503,6 +11503,7 @@
 14:5415 InsertDataIntoBoxOrParty.insert
 14:5424 BaseData
 14:7384 PokemonNames
+14:7384 BaseData.End
 14:7d84 BetaMonPicBanks
 14:7d9c UnusedEggPic
 15:4000 GoldenrodGym_MapScripts
