@@ -19,13 +19,11 @@ def main():
 	print_bank = 'none'
 	mapfile = 'pokecrystal.map'
 
-	if len(sys.argv) >= 2 and sys.argv[1].startswith('BANK='):
-		print_bank = sys.argv[1].split('=', 1)[-1]
-		if len(sys.argv) >= 3:
-			mapfile = sys.argv[2]
-	elif len(sys.argv) >= 3 and sys.argv[2].startswith('BANK='):
-		print_bank = sys.argv[2].split('=', 1)[-1]
-		mapfile = sys.argv[1]
+	for arg in sys.argv[1:]:
+		if arg.startswith('BANK='):
+			print_bank = arg.split('=', 1)[-1]
+		else:
+			mapfile = arg
 
 	if print_bank not in {'all', 'none'}:
 		try:
