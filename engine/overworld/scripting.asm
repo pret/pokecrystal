@@ -1590,7 +1590,7 @@ GetStringBuffer:
 
 CopyConvertedText:
 	ld hl, wStringBuffer3
-	ld bc, wStringBuffer4 - wStringBuffer3
+	ld bc, STRING_BUFFER_LENGTH
 	call AddNTimes
 	call CopyName2
 	ret

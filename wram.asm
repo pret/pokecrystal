@@ -1675,7 +1675,8 @@ wBufferMonNick:: ds MON_NAME_LENGTH
 wBufferMonOT:: ds NAME_LENGTH
 wBufferMon:: party_struct wBufferMon
 	ds 8
-wMonOrItemNameBuffer:: ds 22
+wMonOrItemNameBuffer:: ds NAME_LENGTH
+	ds NAME_LENGTH
 
 NEXTU
 ; poke seer
@@ -2019,11 +2020,11 @@ ENDU
 
 wTMHMMoveNameBackup:: ds MOVE_NAME_LENGTH
 
-wStringBuffer1:: ds 19
-wStringBuffer2:: ds 19
-wStringBuffer3:: ds 19
-wStringBuffer4:: ds 19
-wStringBuffer5:: ds 19
+wStringBuffer1:: ds STRING_BUFFER_LENGTH
+wStringBuffer2:: ds STRING_BUFFER_LENGTH
+wStringBuffer3:: ds STRING_BUFFER_LENGTH
+wStringBuffer4:: ds STRING_BUFFER_LENGTH
+wStringBuffer5:: ds STRING_BUFFER_LENGTH
 
 wBattleMenuCursorBuffer:: dw
 

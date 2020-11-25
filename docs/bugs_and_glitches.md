@@ -1750,7 +1750,7 @@ The exact cause of this bug is unknown.
  	ld de, wStringBuffer1
  	ld a, BANK("Evolutions and Attacks")
 -	ld bc, 10
-+	ld bc, wStringBuffer2 - wStringBuffer1
++	ld bc, STRING_BUFFER_LENGTH
  	call FarCopyBytes
 ```
 

@@ -9,6 +9,8 @@ LAST_TALKED EQU -2
 	const STRING_BUFFER_5 ; use wStringBuffer5
 NUM_STRING_BUFFERS EQU const_value
 
+STRING_BUFFER_LENGTH EQU 19
+
 ; checkmoney/takemoney accounts
 	const_def
 	const YOUR_MONEY ; 0
