@@ -950,7 +950,7 @@ AI_Smart_AccuracyDown:
 ;                                                          └► 30% ── [A]
 ; [B] ┬ (is player HP <= 25%) ─ greatly discourage (+2) ── [A]
 ;     └ (else) ┬► 4% greatly encourage (-2)         ┌ 50% ── [A]
-;              └─ 96% ┬ (is player HP in ]25%;50%]) ┴ 50% greatly encourage (-2) ─ [A]
+;              └─ 96% ┬ (is player HP in ]25%;50%]) ┴ 50% greatly discourage (+2) ─ [A]
 ;                     └ (player HP > 50%) ┬► 20% greatly encourage (-2)
 ;                                         └─ 80% ── [A]
 ; [A] ┬ (is player toxic'd) ┬► 69% greatly encourage (-2)
@@ -2267,7 +2267,7 @@ AI_Smart_MeanLook:
 ;                                │ (... in Rollout or Nightmare) ── [A]
 ;                                └ (not) ┬ (player only has used not very...
 ; [A] ┬► 80% greatly encourage (-3)      │ (...effective moves) ─► nothing
-;     └► 20% nothing                     └ (has) ─► discourage (+1)
+;     └► 20% nothing                     └ (hasn't) ─► discourage (+1)
 
 	call AICheckEnemyHalfHP
 	jr nc, .discourage
