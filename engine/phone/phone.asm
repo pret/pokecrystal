@@ -93,7 +93,8 @@ GetRemainingSpaceInPhoneList:
 
 INCLUDE "data/phone/permanent_numbers.asm"
 
-FarPlaceString:
+BrokenPlaceFarString:
+; This routine is not in bank 0 and will fail or crash if called.
 	ldh a, [hROMBank]
 	push af
 	ld a, b
@@ -455,14 +456,14 @@ RingTwice_StartCall:
 .Ring:
 	call Phone_StartRinging
 	call Phone_Wait20Frames
-	call Phone_CallerTextboxWithName
+	call .CallerTextboxWithName
 	call Phone_Wait20Frames
 	call Phone_CallerTextbox
 	call Phone_Wait20Frames
-	call Phone_CallerTextboxWithName
+	call .CallerTextboxWithName
 	ret
 
-Phone_CallerTextboxWithName:
+.CallerTextboxWithName:
 	ld a, [wCurCaller]
 	ld b, a
 	call Phone_TextboxWithName
@@ -475,22 +476,22 @@ PhoneCall::
 	ld [wPhoneCaller], a
 	ld a, d
 	ld [wPhoneCaller + 1], a
-	call Phone_FirstOfTwoRings
-	call Phone_FirstOfTwoRings
+	call .Ring
+	call .Ring
 	farcall StubbedTrainerRankings_PhoneCalls
 	ret
 
-Phone_FirstOfTwoRings:
+.Ring:
 	call Phone_StartRinging
 	call Phone_Wait20Frames
-	call Phone_CallerTextboxWithName2
+	call .CallerTextboxWithName
 	call Phone_Wait20Frames
 	call Phone_CallerTextbox
 	call Phone_Wait20Frames
-	call Phone_CallerTextboxWithName2
+	call .CallerTextboxWithName
 	ret
 
-Phone_CallerTextboxWithName2:
+.CallerTextboxWithName:
 	call Phone_CallerTextbox
 	hlcoord 1, 2
 	ld [hl], "☎"
@@ -502,7 +503,7 @@ Phone_CallerTextboxWithName2:
 	ld e, a
 	ld a, [wPhoneCaller + 1]
 	ld d, a
-	call FarPlaceString
+	call BrokenPlaceFarString
 	ret
 
 Phone_NoSignal:

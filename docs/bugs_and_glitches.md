@@ -84,6 +84,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Magikarp lengths can be miscalculated](#magikarp-lengths-can-be-miscalculated)
   - [`CheckOwnMon` only checks the first five letters of OT names](#checkownmon-only-checks-the-first-five-letters-of-ot-names)
   - [`CheckOwnMonAnywhere` does not check the Day-Care](#checkownmonanywhere-does-not-check-the-day-care)
+  - [The unused `phonecall` script command may crash](#the-unused-phonecall-script-command-may-crash)
 - [Internal engine routines](#internal-engine-routines)
   - [Saves corrupted by mid-save shutoff are not handled](#saves-corrupted-by-mid-save-shutoff-are-not-handled)
   - [`ScriptCall` can overflow `wScriptStack` and crash](#scriptcall-can-overflow-wscriptstack-and-crash)
@@ -2024,6 +2025,28 @@ This bug can prevent you from talking to Eusine in Celadon City or encountering 
 +	call CheckOwnMon
 +	ret c ; found!
 ```
+
+
+### The unused `phonecall` script command may crash
+
+The `phonecall` script command calls the `PhoneCall` routine, which calls the `BrokenPlaceFarString` routine; this switches banks without being in bank 0, so it would start running arbitrary data as code.
+
+**Fix:** Edit `PhoneCall.CallerTextboxWithName` in [engine/phone/phone.asm](https://github.com/pret/pokecrystal/blob/master/engine/phone/phone.asm):
+
+```diff
+-	ld a, [wPhoneScriptBank]
+-	ld b, a
+ 	ld a, [wPhoneCaller]
+ 	ld e, a
+ 	ld a, [wPhoneCaller + 1]
+ 	ld d, a
+-	call BrokenPlaceFarString
++	ld a, [wPhoneScriptBank]
++	call PlaceFarString
+ 	ret
+```
+
+You can also delete the now-unused `BrokenPlaceFarString` routine.
 
 
 ## Internal engine routines

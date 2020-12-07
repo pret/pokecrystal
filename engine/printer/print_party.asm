@@ -37,7 +37,7 @@ PrintPage1:
 	pop af
 	ld a, b
 	hlcoord 1, 11, wPrinterTilemapBuffer
-	call nz, FarString
+	call nz, PlaceFarString
 	hlcoord 19, 0, wPrinterTilemapBuffer
 	ld [hl], $35
 	ld de, SCREEN_WIDTH
@@ -86,7 +86,7 @@ PrintPage2:
 	pop af
 	hlcoord 1, 1, wPrinterTilemapBuffer
 	ld a, b
-	call nz, FarString
+	call nz, PlaceFarString
 	ret
 
 .FillColumn:

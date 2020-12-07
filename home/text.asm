@@ -640,7 +640,7 @@ UnloadBlinkingCursor::
 	ldcoord_a 18, 17
 	ret
 
-FarString::
+PlaceFarString::
 	ld b, a
 	ldh a, [hROMBank]
 	push af

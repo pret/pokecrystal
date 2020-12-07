@@ -86,7 +86,7 @@ DisplayDexEntry:
 	ld a, b
 	push af
 	hlcoord 9, 5
-	call FarString ; dex species
+	call PlaceFarString ; dex species
 	ld h, b
 	ld l, c
 	push de
@@ -182,7 +182,7 @@ DisplayDexEntry:
 	pop af
 	hlcoord 2, 11
 	push af
-	call FarString
+	call PlaceFarString
 	pop bc
 	ld a, [wPokedexStatus]
 	or a ; check for page 2
@@ -211,7 +211,7 @@ DisplayDexEntry:
 	inc de
 	pop af
 	hlcoord 2, 11
-	call FarString
+	call PlaceFarString
 	ret
 
 POKeString: ; unreferenced
