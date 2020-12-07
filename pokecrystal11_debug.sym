@@ -370,7 +370,7 @@
 00:13c6 Diacritic
 00:13c7 LoadBlinkingCursor
 00:13cd UnloadBlinkingCursor
-00:13d4 FarString
+00:13d4 PlaceFarString
 00:13e0 PokeFluteTerminator
 00:13e4 PokeFluteTerminator.stop
 00:13e5 PlaceHLTextAtBC
@@ -17564,7 +17564,7 @@
 24:405d GetRemainingSpaceInPhoneList.continue
 24:405f GetRemainingSpaceInPhoneList.done
 24:4066 PermanentNumbers
-24:4069 FarPlaceString
+24:4069 BrokenPlaceFarString
 24:4074 CheckPhoneCall
 24:40a4 CheckPhoneCall.no_call
 24:40a6 CheckPhoneCall.timecheck
@@ -17601,10 +17601,10 @@
 24:426a Script_SpecialElmCall.LoadElmScript
 24:426f RingTwice_StartCall
 24:427c RingTwice_StartCall.Ring
-24:4292 Phone_CallerTextboxWithName
+24:4292 RingTwice_StartCall.CallerTextboxWithName
 24:429a PhoneCall
-24:42b3 Phone_FirstOfTwoRings
-24:42c9 Phone_CallerTextboxWithName2
+24:42b3 PhoneCall.Ring
+24:42c9 PhoneCall.CallerTextboxWithName
 24:42e3 Phone_NoSignal
 24:42eb HangUp
 24:42f1 Phone_CallEnd
