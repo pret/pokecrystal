@@ -49,6 +49,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Heavy Ball uses wrong weight value for three Pokémon](#heavy-ball-uses-wrong-weight-value-for-three-pokémon)
   - [Glacier Badge may not boost Special Defense depending on the value of Special Attack](#glacier-badge-may-not-boost-special-defense-depending-on-the-value-of-special-attack)
   - ["Smart" AI encourages Mean Look if its own Pokémon is badly poisoned](#smart-ai-encourages-mean-look-if-its-own-pokémon-is-badly-poisoned)
+  - ["Smart" AI discourages Conversion2 after the first turn](#smart-ai-discourages-conversion2-after-the-first-turn)
   - [AI makes a false assumption about `CheckTypeMatchup`](#ai-makes-a-false-assumption-about-checktypematchup)
   - [AI use of Full Heal or Full Restore does not cure Nightmare status](#ai-use-of-full-heal-or-full-restore-does-not-cure-nightmare-status)
   - [AI use of Full Heal does not cure confusion status](#ai-use-of-full-heal-does-not-cure-confusion-status)
@@ -1051,6 +1052,19 @@ As Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") impli
 +	ld a, [wPlayerSubStatus5]
  	bit SUBSTATUS_TOXIC, a
  	jr nz, .asm_38e26
+```
+
+
+### "Smart" AI discourages Conversion2 after the first turn
+
+**Fix:** Edit `AI_Smart_Conversion2` in [engine/battle/ai/scoring.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/scoring.asm):
+
+```diff
+ AI_Smart_Conversion2:
+ 	ld a, [wLastPlayerMove]
+ 	and a
+-	jr nz, .discourage ; should be jr z
++	jr z, .discourage
 ```
 
 
