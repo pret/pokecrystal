@@ -2954,7 +2954,7 @@ LostBattle:
 	and a
 	jr nz, .LostLinkBattle
 
-; Greyscale
+; Grayscale
 	ld b, SCGB_BATTLE_GRAYSCALE
 	call GetSGBLayout
 	call SetPalettes
