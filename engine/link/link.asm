@@ -82,14 +82,14 @@ Gen2ToGen1LinkComms:
 	ld [de], a
 
 	ld hl, wLinkData
-	ld de, wOTPlayerName
-	ld bc, $1a8
+	ld de, wOTPartyData
+	ld bc, SERIAL_PREAMBLE_LENGTH + NAME_LENGTH + 1 + PARTY_LENGTH + 1 + (REDMON_STRUCT_LENGTH + NAME_LENGTH * 2) * PARTY_LENGTH + 3
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
 
-	ld hl, wLink_c608
-	ld de, wTrademons
+	ld hl, wPlayerPatchLists
+	ld de, wOTPatchLists
 	ld bc, 200
 	call Serial_ExchangeBytes
 
@@ -100,7 +100,7 @@ Gen2ToGen1LinkComms:
 
 	call Link_CopyRandomNumbers
 
-	ld hl, wOTPlayerName
+	ld hl, wOTPartyData
 	call Link_FindFirstNonControlCharacter_SkipZero
 	push hl
 	ld bc, NAME_LENGTH
@@ -113,11 +113,11 @@ Gen2ToGen1LinkComms:
 	jp nc, ExitLinkCommunications
 
 	ld de, wLinkData
-	ld bc, $1a2
+	ld bc, NAME_LENGTH + 1 + PARTY_LENGTH + 1 + (REDMON_STRUCT_LENGTH + NAME_LENGTH * 2) * PARTY_LENGTH + 3
 	call Link_CopyOTData
 
-	ld de, wPlayerTrademon
-	ld hl, wTimeCapsulePlayerData
+	ld de, wOTPatchLists
+	ld hl, wLinkPatchList1
 	ld c, 2
 .loop
 	ld a, [de]
@@ -143,7 +143,7 @@ Gen2ToGen1LinkComms:
 	jr .loop
 
 .next
-	ld hl, wc90f
+	ld hl, wLinkPatchList2
 	dec c
 	jr nz, .loop
 
@@ -156,6 +156,7 @@ Gen2ToGen1LinkComms:
 	ld a, [hli]
 	ld [de], a
 	inc de
+
 .party_loop
 	ld a, [hli]
 	cp -1
@@ -238,23 +239,23 @@ Gen2ToGen2LinkComms:
 	ld [de], a
 
 	ld hl, wLinkData
-	ld de, wOTPlayerName
-	ld bc, $1c2
+	ld de, wOTPartyData
+	ld bc, SERIAL_PREAMBLE_LENGTH + NAME_LENGTH + 1 + PARTY_LENGTH + 1 + 2 + (PARTYMON_STRUCT_LENGTH + NAME_LENGTH * 2) * PARTY_LENGTH + 3
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
 
-	ld hl, wLink_c608
-	ld de, wTrademons
+	ld hl, wPlayerPatchLists
+	ld de, wOTPatchLists
 	ld bc, 200
 	call Serial_ExchangeBytes
 
 	ld a, [wLinkMode]
 	cp LINK_TRADECENTER
 	jr nz, .not_trading
-	ld hl, wc9f4
-	ld de, wcb84
-	ld bc, $186
+	ld hl, wLinkPlayerMail
+	ld de, wLinkOTMail
+	ld bc, wLinkPlayerMailEnd - wLinkPlayerMail
 	call ExchangeBytes
 
 .not_trading
@@ -267,14 +268,14 @@ Gen2ToGen2LinkComms:
 
 	call Link_CopyRandomNumbers
 
-	ld hl, wOTPlayerName
+	ld hl, wOTPartyData
 	call Link_FindFirstNonControlCharacter_SkipZero
 	ld de, wLinkData
-	ld bc, $1b9
+	ld bc, NAME_LENGTH + 1 + PARTY_LENGTH + 1 + 2 + (PARTYMON_STRUCT_LENGTH + NAME_LENGTH * 2) * PARTY_LENGTH
 	call Link_CopyOTData
 
 	ld de, wPlayerTrademon
-	ld hl, wLinkPlayerData
+	ld hl, wLinkPatchList1
 	ld c, 2
 .loop1
 	ld a, [de]
@@ -300,33 +301,33 @@ Gen2ToGen2LinkComms:
 	jr .loop1
 
 .next1
-	ld hl, wc90f
+	ld hl, wLinkPatchList2
 	dec c
 	jr nz, .loop1
 
 	ld a, [wLinkMode]
 	cp LINK_TRADECENTER
 	jp nz, .skip_mail
-	ld hl, wcb84
+	ld hl, wLinkOTMail
 .loop2
 	ld a, [hli]
-	cp MAIL_MSG_LENGTH
+	cp SERIAL_MAIL_PREAMBLE_BYTE
 	jr nz, .loop2
 .loop3
 	ld a, [hli]
 	cp SERIAL_NO_DATA_BYTE
 	jr z, .loop3
-	cp MAIL_MSG_LENGTH
+	cp SERIAL_MAIL_PREAMBLE_BYTE
 	jr z, .loop3
 	dec hl
-	ld de, wcb84
-	ld bc, $190 ; 400
+	ld de, wLinkOTMail
+	ld bc, wLinkDataEnd - wLinkOTMail ; should be wLinkOTMailEnd - wLinkOTMail
 	call CopyBytes
-	ld hl, wcb84
-	ld bc, $c6 ; 198
+	ld hl, wLinkOTMail
+	ld bc, (MAIL_MSG_LENGTH + 1) * PARTY_LENGTH
 .loop4
 	ld a, [hl]
-	cp MAIL_MSG_LENGTH + 1
+	cp SERIAL_MAIL_REPLACEMENT_BYTE
 	jr nz, .okay1
 	ld [hl], SERIAL_NO_DATA_BYTE
 .okay1
@@ -335,13 +336,13 @@ Gen2ToGen2LinkComms:
 	ld a, b
 	or c
 	jr nz, .loop4
-	ld de, wcc9e
+	ld de, wOTPlayerMailPatchSet
 .loop5
 	ld a, [de]
 	inc de
 	cp SERIAL_PATCH_LIST_PART_TERMINATOR
 	jr z, .start_copying_mail
-	ld hl, wcc4a
+	ld hl, wLinkOTMailMetadata
 	dec a
 	ld b, 0
 	ld c, a
@@ -350,8 +351,8 @@ Gen2ToGen2LinkComms:
 	jr .loop5
 
 .start_copying_mail
-	ld hl, wcb84
-	ld de, wc9f4
+	ld hl, wLinkOTMail
+	ld de, wLinkReceivedMail
 	ld b, PARTY_LENGTH
 .copy_mail_loop
 	push bc
@@ -366,7 +367,7 @@ Gen2ToGen2LinkComms:
 	pop bc
 	dec b
 	jr nz, .copy_mail_loop
-	ld de, wc9f4
+	ld de, wLinkReceivedMail
 	ld b, PARTY_LENGTH
 .copy_author_loop
 	push bc
@@ -382,7 +383,7 @@ Gen2ToGen2LinkComms:
 	dec b
 	jr nz, .copy_author_loop
 	ld b, PARTY_LENGTH
-	ld de, wc9f4
+	ld de, wLinkReceivedMail
 .fix_mail_loop
 	push bc
 	push de
@@ -409,7 +410,7 @@ Gen2ToGen2LinkComms:
 	pop bc
 	dec b
 	jr nz, .fix_mail_loop
-	ld de, wcb0e
+	ld de, wLinkReceivedMailEnd
 	xor a
 	ld [de], a
 
@@ -605,7 +606,7 @@ FixDataForLinkTransfer:
 	dec b
 	jr nz, .rn_loop
 
-	ld hl, wLink_c608
+	ld hl, wPlayerPatchLists
 	ld a, SERIAL_PREAMBLE_BYTE
 	ld [hli], a
 	ld [hli], a
@@ -618,13 +619,13 @@ FixDataForLinkTransfer:
 	dec b
 	jr nz, .loop1
 
-	ld hl, wTimeCapsulePlayerData - 1 + PARTY_LENGTH
-	ld de, wc612
+	ld hl, (wLinkData + SERIAL_PREAMBLE_LENGTH + NAME_LENGTH + 1 + PARTY_LENGTH + 1) - 1
+	ld de, wPlayerPatchLists + 10 ; ???
 	lb bc, 0, 0
 .loop2
 	inc c
 	ld a, c
-	cp SERIAL_PREAMBLE_BYTE
+	cp SERIAL_PATCH_LIST_LENGTH + 1
 	jr z, .next1
 	ld a, b
 	dec a
@@ -632,9 +633,9 @@ FixDataForLinkTransfer:
 	push bc
 	ld a, [wLinkMode]
 	cp LINK_TIMECAPSULE
-	ld b, $d
+	ld b, REDMON_STRUCT_LENGTH * PARTY_LENGTH - SERIAL_PATCH_LIST_LENGTH + 1
 	jr z, .got_value
-	ld b, $27
+	ld b, 2 + PARTYMON_STRUCT_LENGTH * PARTY_LENGTH - SERIAL_PATCH_LIST_LENGTH + 1
 .got_value
 	ld a, c
 	cp b
@@ -648,7 +649,7 @@ FixDataForLinkTransfer:
 	ld a, c
 	ld [de], a
 	inc de
-	ld [hl], SERIAL_PATCH_LIST_PART_TERMINATOR
+	ld [hl], SERIAL_PATCH_REPLACEMENT_BYTE
 	jr .loop2
 
 .next1
@@ -872,12 +873,12 @@ Link_PrepPartyData_Gen2:
 	cp LINK_TRADECENTER
 	ret nz
 
-; Fill 5 bytes at wc9f4 with $20
-	ld de, wc9f4
-	ld a, $20
+; Fill 5 bytes at wLinkPlayerMailPreamble with $20
+	ld de, wLinkPlayerMailPreamble
+	ld a, SERIAL_MAIL_PREAMBLE_BYTE
 	call Link_CopyMailPreamble
 
-; Copy all the mail messages to wc9f9
+; Copy all the mail messages to wLinkPlayerMailMessages
 	ld a, BANK(sPartyMail)
 	call OpenSRAM
 	ld hl, sPartyMail
@@ -886,26 +887,26 @@ Link_PrepPartyData_Gen2:
 	push bc
 	ld bc, MAIL_MSG_LENGTH + 1
 	call CopyBytes
-	ld bc, sPartyMon1MailEnd - sPartyMon1MailAuthor
+	ld bc, MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 1)
 	add hl, bc
 	pop bc
 	dec b
 	jr nz, .loop2
-; Copy the mail data to wcabf
+; Copy the mail data to wLinkPlayerMailMetadata
 	ld hl, sPartyMail
 	ld b, PARTY_LENGTH
 .loop3
 	push bc
 	ld bc, MAIL_MSG_LENGTH + 1
 	add hl, bc
-	ld bc, sPartyMon1MailEnd - sPartyMon1MailAuthor
+	ld bc, MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 1)
 	call CopyBytes
 	pop bc
 	dec b
 	jr nz, .loop3
 	ld b, PARTY_LENGTH
 	ld de, sPartyMail
-	ld hl, wc9f9
+	ld hl, wLinkPlayerMailMessages
 .loop4
 	push bc
 	push hl
@@ -931,20 +932,20 @@ Link_PrepPartyData_Gen2:
 	ld d, h
 	ld e, l
 	pop hl
-	ld bc, sPartyMon1MailAuthor - sPartyMon1Mail
+	ld bc, MAIL_MSG_LENGTH + 1
 	add hl, bc
 	pop bc
 	dec b
 	jr nz, .loop4
 	call CloseSRAM
 
-	ld hl, wc9f9
-	ld bc, PARTY_LENGTH * (sPartyMon1MailAuthor - sPartyMon1Mail)
+	ld hl, wLinkPlayerMailMessages
+	ld bc, (MAIL_MSG_LENGTH + 1) * PARTY_LENGTH
 .loop5
 	ld a, [hl]
 	cp SERIAL_NO_DATA_BYTE
 	jr nz, .skip2
-	ld [hl], sPartyMon1MailAuthor - sPartyMon1Mail
+	ld [hl], SERIAL_MAIL_REPLACEMENT_BYTE
 .skip2
 	inc hl
 	dec bc
@@ -952,16 +953,16 @@ Link_PrepPartyData_Gen2:
 	or c
 	jr nz, .loop5
 
-	ld hl, wcabf
-	ld de, wcb13
-	ld b, PARTY_LENGTH * (sPartyMon1MailEnd - sPartyMon1MailAuthor)
-	ld c, $0
+	ld hl, wLinkPlayerMailMetadata
+	ld de, wLinkPlayerMailPatchSet
+	ld b, (MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 1)) * PARTY_LENGTH
+	ld c, 0
 .loop6
 	inc c
 	ld a, [hl]
 	cp SERIAL_NO_DATA_BYTE
 	jr nz, .skip3
-	ld [hl], SERIAL_PATCH_LIST_PART_TERMINATOR
+	ld [hl], SERIAL_PATCH_REPLACEMENT_BYTE
 	ld a, c
 	ld [de], a
 	inc de
@@ -976,7 +977,7 @@ Link_PrepPartyData_Gen2:
 
 Link_CopyMailPreamble:
 ; fill 5 bytes with the value of a, starting at de
-	ld c, 5
+	ld c, SERIAL_MAIL_PREAMBLE_LENGTH
 .loop
 	ld [de], a
 	inc de
@@ -989,7 +990,7 @@ Link_ConvertPartyStruct1to2:
 	ld d, h
 	ld e, l
 	ld bc, wLinkOTPartyMonTypes
-	ld hl, wcbe8
+	ld hl, wCurLinkOTPartyMonTypePtr
 	ld a, c
 	ld [hli], a
 	ld [hl], b
@@ -1039,7 +1040,7 @@ Link_ConvertPartyStruct1to2:
 	ld a, [de]
 	inc de
 	ld [hl], a
-	ld hl, wcbe8
+	ld hl, wCurLinkOTPartyMonTypePtr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1050,9 +1051,9 @@ Link_ConvertPartyStruct1to2:
 	ld [hli], a
 	inc de
 	ld a, l
-	ld [wcbe8], a
+	ld [wCurLinkOTPartyMonTypePtr], a
 	ld a, h
-	ld [wcbe8 + 1], a
+	ld [wCurLinkOTPartyMonTypePtr + 1], a
 	push bc
 	ld hl, MON_ITEM
 	add hl, bc
@@ -1481,7 +1482,7 @@ LinkTrade_TradeStatsMenu:
 	farcall CheckAnyOtherAliveMonsForTrade
 	jp nc, LinkTrade
 	xor a
-	ld [wcf57], a
+	ld [wUnusedLinkAction], a
 	ld [wOtherPlayerLinkAction], a
 	hlcoord 0, 12
 	ld b, 4
@@ -1495,7 +1496,7 @@ LinkTrade_TradeStatsMenu:
 
 .abnormal
 	xor a
-	ld [wcf57], a
+	ld [wUnusedLinkAction], a
 	ld [wOtherPlayerLinkAction], a
 	ld a, [wCurOTTradePartyMon]
 	ld hl, wOTPartySpecies
@@ -1655,7 +1656,7 @@ LinkEngine_FillBox:
 
 LinkTrade:
 	xor a
-	ld [wcf57], a
+	ld [wUnusedLinkAction], a
 	ld [wOtherPlayerLinkAction], a
 	hlcoord 0, 12
 	ld b, 4
@@ -1784,7 +1785,7 @@ LinkTrade:
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	push hl
-	ld hl, wc9f4
+	ld hl, wLinkPlayerMail
 	ld a, [wCurOTTradePartyMon]
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
@@ -2554,7 +2555,7 @@ Link_ResetSerialRegistersAfterLinkClosure:
 Link_EnsureSync:
 	add $d0
 	ld [wPlayerLinkAction], a
-	ld [wcf57], a
+	ld [wUnusedLinkAction], a
 	ld a, $2
 	ldh [hVBlank], a
 	call DelayFrame
