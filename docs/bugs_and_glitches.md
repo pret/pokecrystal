@@ -776,16 +776,7 @@ The `checkfaint` routine skips the stats increasing effects if the opponent is K
   checkobedience
   usedmovetext
   doturn
-  critical
-  damagestats
-  damagecalc
-  stab
-  damagevariation
-  checkhit
-  effectchance
-  moveanim
-  failuretext
-  applydamage
+  ...
   criticaltext
   supereffectivetext
 + defenseup
@@ -800,16 +791,7 @@ The `checkfaint` routine skips the stats increasing effects if the opponent is K
   checkobedience
   usedmovetext
   doturn
-  critical
-  damagestats
-  damagecalc
-  stab
-  damagevariation
-  checkhit
-  effectchance
-  moveanim
-  failuretext
-  applydamage
+  ...
   criticaltext
   supereffectivetext
 + attackup
@@ -823,16 +805,7 @@ The `checkfaint` routine skips the stats increasing effects if the opponent is K
   checkobedience
   usedmovetext
   doturn
-  critical
-  damagestats
-  damagecalc
-  stab
-  damagevariation
-  checkhit
-  effectchance
-  moveanim
-  failuretext
-  applydamage
+  ...
   criticaltext
   supereffectivetext
 + allstatsup
