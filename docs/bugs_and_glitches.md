@@ -767,53 +767,44 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ### Moves that do damage and increase your stats do not increase stats after a KO
 
-The `checkfaint` routine skips the stats increasing effects if the opponent is KO'd, unlike in modern pokemon games.  Note that this can lead to stats being increased at the end of battle, but will not have any negative effects.
+`BattleCommand_CheckFaint` "ends the move effect if the opponent faints", and these moves attempt to raise the user's stats *after* `checkfaint`. Note that fixing this can lead to stats being increased at the end of battle, but will not have any negative effects.
 
-**Fix:** Make the following changes in [data/moves/effects.asm](https://github.com/pret/pokecrystal/blob/master/data/moves/effects.asm)
+**Fix:** Edit [data/moves/effects.asm](https://github.com/pret/pokecrystal/blob/master/data/moves/effects.asm):
 
 ```diff
  DefenseUpHit:
-  checkobedience
-  usedmovetext
-  doturn
-  ...
-  criticaltext
-  supereffectivetext
-+ defenseup
-  checkfaint
-  buildopponentrage
-- defenseup
-  statupmessage
-  endmove
-
+ 	...
+ 	criticaltext
+ 	supereffectivetext
++	defenseup
+ 	checkfaint
+ 	buildopponentrage
+-	defenseup
+ 	statupmessage
+ 	endmove
 
  AttackUpHit:
-  checkobedience
-  usedmovetext
-  doturn
-  ...
-  criticaltext
-  supereffectivetext
-+ attackup
-  checkfaint
-  buildopponentrage
-- attackup
-  statupmessage
-  endmove
+ 	...
+ 	criticaltext
+ 	supereffectivetext
++	attackup
+ 	checkfaint
+ 	buildopponentrage
+-	attackup
+ 	statupmessage
+ 	endmove
 
  AllUpHit:
-  checkobedience
-  usedmovetext
-  doturn
-  ...
-  criticaltext
-  supereffectivetext
-+ allstatsup
-  checkfaint
-  buildopponentrage
-- allstatsup
-  endmove
+ 	...
+ 	criticaltext
+ 	supereffectivetext
++	allstatsup
+ 	checkfaint
+ 	buildopponentrage
+-	allstatsup
+ 	endmove
 ```
+
 
 ## Single-player battle engine
 
