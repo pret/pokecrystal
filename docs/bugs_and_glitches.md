@@ -37,6 +37,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Dragon Scale, not Dragon Fang, boosts Dragon-type moves](#dragon-scale-not-dragon-fang-boosts-dragon-type-moves)
   - [HP bar animation is slow for high HP](#hp-bar-animation-is-slow-for-high-hp)
   - [HP bar animation off-by-one error for low HP](#hp-bar-animation-off-by-one-error-for-low-hp)
+  - [Moves that do damage and increase your stats do not increase stats after a KO](#moves-that-do-damage-and-increase-your-stats-do-not-increase-stats-after-a-ko)
 - [Single-player battle engine](#single-player-battle-engine)
   - [A Transformed Pokémon can use Sketch and learn otherwise unobtainable moves](#a-transformed-pokémon-can-use-sketch-and-learn-otherwise-unobtainable-moves)
   - [Catching a Transformed Pokémon always catches a Ditto](#catching-a-transformed-pokémon-always-catches-a-ditto)
@@ -762,6 +763,46 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
  	jr c, .done
  	inc b
  	jr .loop
+```
+
+### Moves that do damage and increase your stats do not increase stats after a KO
+
+`BattleCommand_CheckFaint` "ends the move effect if the opponent faints", and these moves attempt to raise the user's stats *after* `checkfaint`. Note that fixing this can lead to stats being increased at the end of battle, but will not have any negative effects.
+
+**Fix:** Edit [data/moves/effects.asm](https://github.com/pret/pokecrystal/blob/master/data/moves/effects.asm):
+
+```diff
+ DefenseUpHit:
+ 	...
+ 	criticaltext
+ 	supereffectivetext
++	defenseup
+ 	checkfaint
+ 	buildopponentrage
+-	defenseup
+ 	statupmessage
+ 	endmove
+
+ AttackUpHit:
+ 	...
+ 	criticaltext
+ 	supereffectivetext
++	attackup
+ 	checkfaint
+ 	buildopponentrage
+-	attackup
+ 	statupmessage
+ 	endmove
+
+ AllUpHit:
+ 	...
+ 	criticaltext
+ 	supereffectivetext
++	allstatsup
+ 	checkfaint
+ 	buildopponentrage
+-	allstatsup
+ 	endmove
 ```
 
 
