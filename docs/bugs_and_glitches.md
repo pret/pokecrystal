@@ -777,10 +777,11 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
  	criticaltext
  	supereffectivetext
 +	defenseup
++	statupmessage
  	checkfaint
  	buildopponentrage
 -	defenseup
- 	statupmessage
+-	statupmessage
  	endmove
 
  AttackUpHit:
@@ -788,10 +789,11 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
  	criticaltext
  	supereffectivetext
 +	attackup
++	statupmessage
  	checkfaint
  	buildopponentrage
 -	attackup
- 	statupmessage
+-	statupmessage
  	endmove
 
  AllUpHit:
