@@ -130,7 +130,7 @@ _DepositPKMN:
 	ld hl, BillsPCDepositMenuHeader
 	call CopyMenuHeader
 	ld a, [wMenuCursorY]
-	call StoreTo_wMenuCursorBuffer
+	call StoreMenuCursorPosition
 	call VerticalMenu
 	jp c, BillsPCDepositFuncCancel
 	ld a, [wMenuCursorY]
@@ -387,7 +387,7 @@ BillsPC_Withdraw:
 	ld hl, .MenuHeader
 	call CopyMenuHeader
 	ld a, [wMenuCursorY]
-	call StoreTo_wMenuCursorBuffer
+	call StoreMenuCursorPosition
 	call VerticalMenu
 	jp c, .cancel
 	ld a, [wMenuCursorY]
@@ -638,7 +638,7 @@ _MovePKMNWithoutMail:
 	ld hl, .MenuHeader
 	call CopyMenuHeader
 	ld a, [wMenuCursorY]
-	call StoreTo_wMenuCursorBuffer
+	call StoreMenuCursorPosition
 	call VerticalMenu
 	jp c, .Cancel
 	ld a, [wMenuCursorY]
@@ -2314,9 +2314,9 @@ BillsPC_PrintBoxCountAndCapacity:
 	ld de, .Pokemon
 	call PlaceString
 	call GetBoxCount
-	ld [wDeciramBuffer], a
+	ld [wTextDecimalByte], a
 	hlcoord 13, 11
-	ld de, wDeciramBuffer
+	ld de, wTextDecimalByte
 	lb bc, 1, 2
 	call PrintNum
 	ld de, .out_of_20

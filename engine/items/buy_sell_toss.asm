@@ -29,7 +29,7 @@ SelectQuantityToSell:
 
 Toss_Sell_Loop:
 	ld a, 1
-	ld [wItemQuantityChangeBuffer], a
+	ld [wItemQuantityChange], a
 .loop
 	call BuySellToss_UpdateQuantityDisplay ; update display
 	call BuySellToss_InterpretJoypad       ; joy action
@@ -71,10 +71,10 @@ BuySellToss_InterpretJoypad:
 	ret
 
 .down
-	ld hl, wItemQuantityChangeBuffer
+	ld hl, wItemQuantityChange
 	dec [hl]
 	jr nz, .finish_down
-	ld a, [wItemQuantityBuffer]
+	ld a, [wItemQuantity]
 	ld [hl], a
 
 .finish_down
@@ -82,9 +82,9 @@ BuySellToss_InterpretJoypad:
 	ret
 
 .up
-	ld hl, wItemQuantityChangeBuffer
+	ld hl, wItemQuantityChange
 	inc [hl]
-	ld a, [wItemQuantityBuffer]
+	ld a, [wItemQuantity]
 	cp [hl]
 	jr nc, .finish_up
 	ld [hl], 1
@@ -94,7 +94,7 @@ BuySellToss_InterpretJoypad:
 	ret
 
 .left
-	ld a, [wItemQuantityChangeBuffer]
+	ld a, [wItemQuantityChange]
 	sub 10
 	jr c, .load_1
 	jr z, .load_1
@@ -104,22 +104,22 @@ BuySellToss_InterpretJoypad:
 	ld a, 1
 
 .finish_left
-	ld [wItemQuantityChangeBuffer], a
+	ld [wItemQuantityChange], a
 	and a
 	ret
 
 .right
-	ld a, [wItemQuantityChangeBuffer]
+	ld a, [wItemQuantityChange]
 	add 10
 	ld b, a
-	ld a, [wItemQuantityBuffer]
+	ld a, [wItemQuantity]
 	cp b
 	jr nc, .finish_right
 	ld b, a
 
 .finish_right
 	ld a, b
-	ld [wItemQuantityChangeBuffer], a
+	ld [wItemQuantityChange], a
 	and a
 	ret
 
@@ -130,7 +130,7 @@ BuySellToss_UpdateQuantityDisplay:
 	add hl, de
 	ld [hl], "×"
 	inc hl
-	ld de, wItemQuantityChangeBuffer
+	ld de, wItemQuantityChange
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ld a, [wMenuDataPointer]
@@ -163,7 +163,7 @@ BuySell_MultiplyPrice:
 	ldh [hMultiplicand + 1], a
 	ld a, [wBuySellItemPrice + 1]
 	ldh [hMultiplicand + 2], a
-	ld a, [wItemQuantityChangeBuffer]
+	ld a, [wItemQuantityChange]
 	ldh [hMultiplier], a
 	push hl
 	call Multiply

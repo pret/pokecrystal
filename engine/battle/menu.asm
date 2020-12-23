@@ -1,11 +1,11 @@
 LoadBattleMenu:
 	ld hl, BattleMenuHeader
 	call LoadMenuHeader
-	ld a, [wBattleMenuCursorBuffer]
-	ld [wMenuCursorBuffer], a
+	ld a, [wBattleMenuCursorPosition]
+	ld [wMenuCursorPosition], a
 	call InterpretBattleMenu
-	ld a, [wMenuCursorBuffer]
-	ld [wBattleMenuCursorBuffer], a
+	ld a, [wMenuCursorPosition]
+	ld [wBattleMenuCursorPosition], a
 	call ExitMenu
 	ret
 
@@ -20,11 +20,11 @@ ContestBattleMenu:
 	; fallthrough
 
 CommonBattleMenu:
-	ld a, [wBattleMenuCursorBuffer]
-	ld [wMenuCursorBuffer], a
+	ld a, [wBattleMenuCursorPosition]
+	ld [wMenuCursorPosition], a
 	call _2DMenu
-	ld a, [wMenuCursorBuffer]
-	ld [wBattleMenuCursorBuffer], a
+	ld a, [wMenuCursorPosition]
+	ld [wBattleMenuCursorPosition], a
 	call ExitMenu
 	ret
 

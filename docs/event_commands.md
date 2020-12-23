@@ -263,9 +263,9 @@ If <code><i>item_id</i></code> = `USE_SCRIPT_VAR`, then it uses `[wScriptVar]` i
 ## `$49`: `closetext`
 
 
-## `$4A`: <code>writeunusedbytebuffer <i>byte</i></code>
+## `$4A`: <code>writeunusedbyte <i>byte</i></code>
 
-<code>[<i>wUnusedScriptByteBuffer</i>] = <i>byte</i></code>
+<code>[<i>wUnusedScriptByte</i>] = <i>byte</i></code>
 
 
 ## `$4B`: <code>farwritetext <i>text_pointer</i></code>

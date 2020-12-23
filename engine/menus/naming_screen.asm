@@ -91,7 +91,7 @@ NamingScreen:
 	ld e, MONICON_NAMINGSCREEN
 	rst FarCall
 	ld a, [wCurPartySpecies]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	hlcoord 5, 2
 	call PlaceString

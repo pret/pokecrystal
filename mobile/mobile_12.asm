@@ -295,7 +295,7 @@ asm_4828d:
 	call WaitBGMap
 	ld a, [wPlayerGender]
 	inc a
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	call StaticMenuJoypad
 	call PlayClickSFX
 	call ExitMenu
@@ -339,7 +339,7 @@ Function48304:
 	ld b, $c
 	ld c, $8
 	call Function48cdc
-	ld a, [wMenuCursorBuffer]
+	ld a, [wMenuCursorPosition]
 	ld b, a
 	ld a, [wMenuScrollPosition]
 	ld c, a
@@ -350,7 +350,7 @@ Function48304:
 	jr c, .asm_4833f
 	sub $29
 	inc a
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	ld a, $29
 .asm_4833f
 	ld [wMenuScrollPosition], a
@@ -363,7 +363,7 @@ Function48304:
 	ld d, a
 	pop bc
 	ld a, b
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	ld a, c
 	ld [wMenuScrollPosition], a
 	ld a, d
@@ -412,7 +412,7 @@ Function48383:
 .asm_483af
 	ld hl, wMenuCursorY
 	ld a, [hl]
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	scf
 .asm_483b7
 	pop bc

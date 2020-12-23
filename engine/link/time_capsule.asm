@@ -122,7 +122,7 @@ PlaceTradePartnerNamesAndParty:
 	ld a, [de]
 	cp -1
 	ret z
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	push bc
 	push hl
 	push de

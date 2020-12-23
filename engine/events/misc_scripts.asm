@@ -39,14 +39,14 @@ FindItemInBallScript::
 	xor a
 	ld [wScriptVar], a
 	ld a, [wItemBallItemID]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetItemName
 	ld hl, wStringBuffer3
 	call CopyName2
 	ld a, [wItemBallItemID]
 	ld [wCurItem], a
 	ld a, [wItemBallQuantity]
-	ld [wItemQuantityChangeBuffer], a
+	ld [wItemQuantityChange], a
 	ld hl, wNumItems
 	call ReceiveItem
 	ret nc

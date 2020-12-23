@@ -2596,7 +2596,7 @@ Function17e0fd:
 	ld a, [hli]
 	ld [wCurItem], a
 	ld a, [hli]
-	ld [wItemQuantityChangeBuffer], a
+	ld [wItemQuantityChange], a
 	push hl
 	ld hl, wNumItems
 	call ReceiveItem
@@ -3871,7 +3871,7 @@ Function17f1d0:
 	ld a, [hl]
 	ld a, $1
 	ldh [rSVBK], a
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	pop hl
 	call PlaceString
@@ -3990,7 +3990,7 @@ Function17f27b:
 	ld a, [hl]
 	ld a, $1
 	ldh [rSVBK], a
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetItemName
 	pop hl
 	call PlaceString

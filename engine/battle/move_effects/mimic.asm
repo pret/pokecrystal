@@ -37,7 +37,7 @@ BattleCommand_Mimic:
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
 	call GetBattleVar
 	ld [hl], a
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	ld bc, wBattleMonPP - wBattleMonMoves
 	add hl, bc
 	ld [hl], 5

@@ -27,8 +27,8 @@ StartMenu::
 .GotMenuData:
 	call LoadMenuHeader
 	call .SetUpMenuItems
-	ld a, [wBattleMenuCursorBuffer]
-	ld [wMenuCursorBuffer], a
+	ld a, [wBattleMenuCursorPosition]
+	ld [wMenuCursorPosition], a
 	call .DrawMenuAccount
 	call DrawVariableLengthMenuBox
 	call .DrawBugContestStatusBox
@@ -43,15 +43,15 @@ StartMenu::
 	call UpdateSprites
 	call UpdateTimePals
 	call .SetUpMenuItems
-	ld a, [wBattleMenuCursorBuffer]
-	ld [wMenuCursorBuffer], a
+	ld a, [wBattleMenuCursorPosition]
+	ld [wMenuCursorPosition], a
 
 .Select:
 	call .GetInput
 	jr c, .Exit
 	call ._DrawMenuAccount
-	ld a, [wMenuCursorBuffer]
-	ld [wBattleMenuCursorBuffer], a
+	ld a, [wMenuCursorPosition]
+	ld [wBattleMenuCursorPosition], a
 	call PlayClickSFX
 	call PlaceHollowCursor
 	call .OpenMenu

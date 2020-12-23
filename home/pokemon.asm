@@ -229,8 +229,8 @@ PrintLevel_Force3Digits::
 	ld c, 3
 
 Print8BitNumLeftAlign::
-	ld [wDeciramBuffer], a
-	ld de, wDeciramBuffer
+	ld [wTextDecimalByte], a
+	ld de, wTextDecimalByte
 	ld b, PRINTNUM_LEFTALIGN | 1
 	jp PrintNum
 

@@ -15,7 +15,7 @@ TMHMPocket:
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
-	ld [wItemQuantityBuffer], a
+	ld [wItemQuantity], a
 	call .ConvertItemToTMHMNumber
 	scf
 	ret
@@ -377,7 +377,7 @@ TMHM_DisplayPocketItems:
 	ld [wTempTMHM], a
 .okay
 	predef GetTMHMMove
-	ld a, [wNamedObjectIndexBuffer]
+	ld a, [wNamedObjectIndex]
 	ld [wPutativeTMHMMove], a
 	call GetMoveName
 	pop hl

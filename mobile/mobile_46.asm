@@ -3979,7 +3979,7 @@ BattleTower_UbersCheck:
 .uber_under_70
 	pop af
 	ld a, [de]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	ld hl, wStringBuffer1
 	ld de, wcd49
@@ -7181,29 +7181,29 @@ Function11b6b4:
 	ld [$c709], a
 
 	ld a, LOW($c708) ; Species
-	ld [wMobileMonSpeciesPointerBuffer], a
+	ld [wMobileMonSpeciesPointer], a
 	ld a, HIGH($c708)
-	ld [wMobileMonSpeciesPointerBuffer + 1], a
+	ld [wMobileMonSpeciesPointer + 1], a
 
 	ld a, LOW($c60d) ; Partymon Struct
-	ld [wMobileMonStructurePointerBuffer], a
+	ld [wMobileMonStructPointer], a
 	ld a, HIGH($c60d)
-	ld [wMobileMonStructurePointerBuffer + 1], a
+	ld [wMobileMonStructPointer + 1], a
 
 	ld a, LOW($c63d) ; OT
-	ld [wMobileMonOTNamePointerBuffer], a
+	ld [wMobileMonOTNamePointer], a
 	ld a, HIGH($c63d)
-	ld [wMobileMonOTNamePointerBuffer + 1], a
+	ld [wMobileMonOTNamePointer + 1], a
 
 	ld a, LOW($c642) ; Nickname
-	ld [wMobileMonNicknamePointerBuffer], a
+	ld [wMobileMonNicknamePointer], a
 	ld a, HIGH($c642)
-	ld [wMobileMonNicknamePointerBuffer + 1], a
+	ld [wMobileMonNicknamePointer + 1], a
 
 	ld a, LOW($c647) ; Mail
-	ld [wMobileMonMailPointerBuffer], a
+	ld [wMobileMonMailPointer], a
 	ld a, HIGH($c647)
-	ld [wMobileMonMailPointerBuffer + 1], a
+	ld [wMobileMonMailPointer + 1], a
 
 	ld a, $46
 	ld [$c628], a
@@ -7483,29 +7483,29 @@ Function11b93b:
 	call CloseSRAM
 
 	ld a, LOW($c608)
-	ld [wMobileMonSpeciesPointerBuffer], a
+	ld [wMobileMonSpeciesPointer], a
 	ld a, HIGH($c608)
-	ld [wMobileMonSpeciesPointerBuffer + 1], a
+	ld [wMobileMonSpeciesPointer + 1], a
 
 	ld a, LOW($c611)
-	ld [wMobileMonStructurePointerBuffer], a
+	ld [wMobileMonStructPointer], a
 	ld a, HIGH($c611)
-	ld [wMobileMonStructurePointerBuffer + 1], a
+	ld [wMobileMonStructPointer + 1], a
 
 	ld a, LOW($c641)
-	ld [wMobileMonOTNamePointerBuffer], a
+	ld [wMobileMonOTNamePointer], a
 	ld a, HIGH($c641)
-	ld [wMobileMonOTNamePointerBuffer + 1], a
+	ld [wMobileMonOTNamePointer + 1], a
 
 	ld a, LOW($c646)
-	ld [wMobileMonNicknamePointerBuffer], a
+	ld [wMobileMonNicknamePointer], a
 	ld a, HIGH($c646)
-	ld [wMobileMonNicknamePointerBuffer + 1], a
+	ld [wMobileMonNicknamePointer + 1], a
 
 	ld a, LOW($c64b)
-	ld [wMobileMonMailPointerBuffer], a
+	ld [wMobileMonMailPointer], a
 	ld a, HIGH($c64b)
-	ld [wMobileMonMailPointerBuffer + 1], a
+	ld [wMobileMonMailPointer + 1], a
 	call AddMobileMonToParty
 	farcall SaveAfterLinkTrade
 	ret
@@ -7516,9 +7516,9 @@ AddMobileMonToParty:
 	ld e, a
 	inc [hl]
 
-	ld a, [wMobileMonSpeciesPointerBuffer]
+	ld a, [wMobileMonSpeciesPointer]
 	ld l, a
-	ld a, [wMobileMonSpeciesPointerBuffer + 1]
+	ld a, [wMobileMonSpeciesPointer + 1]
 	ld h, a
 	inc hl
 	ld bc, wPartySpecies
@@ -7538,7 +7538,7 @@ AddMobileMonToParty:
 	ld hl, wPartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, e
-	ld [wMobileMonSpeciesBuffer], a
+	ld [wMobileMonSpecies], a
 .loop2
 	add hl, bc
 	dec a
@@ -7546,16 +7546,16 @@ AddMobileMonToParty:
 	jr nz, .loop2
 	ld e, l
 	ld d, h
-	ld a, [wMobileMonStructurePointerBuffer]
+	ld a, [wMobileMonStructPointer]
 	ld l, a
-	ld a, [wMobileMonStructurePointerBuffer + 1]
+	ld a, [wMobileMonStructPointer + 1]
 	ld h, a
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 
 	ld hl, wPartyMonOT
 	ld bc, NAME_LENGTH
-	ld a, [wMobileMonSpeciesBuffer]
+	ld a, [wMobileMonSpecies]
 .loop3
 	add hl, bc
 	dec a
@@ -7563,9 +7563,9 @@ AddMobileMonToParty:
 	jr nz, .loop3
 	ld e, l
 	ld d, h
-	ld a, [wMobileMonOTNamePointerBuffer]
+	ld a, [wMobileMonOTNamePointer]
 	ld l, a
-	ld a, [wMobileMonOTNamePointerBuffer + 1]
+	ld a, [wMobileMonOTNamePointer + 1]
 	ld h, a
 	ld bc, MON_NAME_LENGTH - 1
 	call CopyBytes
@@ -7574,7 +7574,7 @@ AddMobileMonToParty:
 
 	ld hl, wPartyMonNicknames
 	ld bc, MON_NAME_LENGTH
-	ld a, [wMobileMonSpeciesBuffer]
+	ld a, [wMobileMonSpecies]
 .loop4
 	add hl, bc
 	dec a
@@ -7582,9 +7582,9 @@ AddMobileMonToParty:
 	jr nz, .loop4
 	ld e, l
 	ld d, h
-	ld a, [wMobileMonNicknamePointerBuffer]
+	ld a, [wMobileMonNicknamePointer]
 	ld l, a
-	ld a, [wMobileMonNicknamePointerBuffer + 1]
+	ld a, [wMobileMonNicknamePointer + 1]
 	ld h, a
 	ld bc, MON_NAME_LENGTH - 1
 	call CopyBytes
@@ -7593,7 +7593,7 @@ AddMobileMonToParty:
 
 	ld hl, sPartyMail
 	ld bc, MAIL_STRUCT_LENGTH
-	ld a, [wMobileMonSpeciesBuffer]
+	ld a, [wMobileMonSpecies]
 .loop5
 	add hl, bc
 	dec a
@@ -7603,9 +7603,9 @@ AddMobileMonToParty:
 	call OpenSRAM
 	ld e, l
 	ld d, h
-	ld a, [wMobileMonMailPointerBuffer]
+	ld a, [wMobileMonMailPointer]
 	ld l, a
-	ld a, [wMobileMonMailPointerBuffer + 1]
+	ld a, [wMobileMonMailPointer + 1]
 	ld h, a
 	ld bc, MAIL_STRUCT_LENGTH
 	call CopyBytes

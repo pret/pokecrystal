@@ -719,7 +719,7 @@ Function4acaa:
 	ld a, $b
 	ld [wMenuBorderLeftCoord], a
 	ld a, $1
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	call InitVerticalMenuCursor
 	ld hl, w2DMenuFlags1
 	set 6, [hl]

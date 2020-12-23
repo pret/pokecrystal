@@ -990,7 +990,7 @@ Link_ConvertPartyStruct1to2:
 	ld d, h
 	ld e, l
 	ld bc, wLinkOTPartyMonTypes
-	ld hl, wCurLinkOTPartyMonTypePtr
+	ld hl, wCurLinkOTPartyMonTypePointer
 	ld a, c
 	ld [hli], a
 	ld [hl], b
@@ -1040,7 +1040,7 @@ Link_ConvertPartyStruct1to2:
 	ld a, [de]
 	inc de
 	ld [hl], a
-	ld hl, wCurLinkOTPartyMonTypePtr
+	ld hl, wCurLinkOTPartyMonTypePointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1051,9 +1051,9 @@ Link_ConvertPartyStruct1to2:
 	ld [hli], a
 	inc de
 	ld a, l
-	ld [wCurLinkOTPartyMonTypePtr], a
+	ld [wCurLinkOTPartyMonTypePointer], a
 	ld a, h
-	ld [wCurLinkOTPartyMonTypePtr + 1], a
+	ld [wCurLinkOTPartyMonTypePointer + 1], a
 	push bc
 	ld hl, MON_ITEM
 	add hl, bc
@@ -1504,7 +1504,7 @@ LinkTrade_TradeStatsMenu:
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	hlcoord 0, 12
 	ld b, 4
@@ -1669,7 +1669,7 @@ LinkTrade:
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	ld hl, wStringBuffer1
 	ld de, wBufferTrademonNick
@@ -1681,7 +1681,7 @@ LinkTrade:
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	ld hl, LinkAskTradeForText
 	bccoord 1, 14
@@ -2123,14 +2123,14 @@ CheckTimeCapsuleCompatibility:
 	jr .done
 
 .mon_too_new
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	ld a, $1
 	jr .done
 
 .move_too_new
 	push bc
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetMoveName
 	call CopyName1
 	pop bc
@@ -2156,7 +2156,7 @@ GetIncompatibleMonName:
 	ld hl, wPartyCount
 	add hl, bc
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	ret
 

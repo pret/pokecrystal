@@ -123,7 +123,7 @@ DoMysteryGift:
 	farcall MysteryGiftGetItem
 	ld a, c
 	ld [sBackupMysteryGiftItem], a
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call CloseSRAM
 	call GetItemName
 	ld hl, .MysteryGiftSentText ; sent item/decoration
@@ -1602,7 +1602,7 @@ DoNameCardSwap:
 	ld de, wNameCardData
 	farcall Function8ac70
 	ld a, c
-	ld [wDeciramBuffer], a
+	ld [wTextDecimalByte], a
 	ld hl, .NameCardNotRegisteredCardText
 	jr c, .PrintTextAndExit
 	ld hl, .NameCardListedCardText

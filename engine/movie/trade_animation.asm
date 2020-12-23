@@ -819,7 +819,7 @@ TradeAnim_GetFrontpic:
 
 TradeAnim_GetNickname:
 	push de
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	ld hl, wStringBuffer1
 	pop de

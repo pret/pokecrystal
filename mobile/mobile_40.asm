@@ -1698,14 +1698,14 @@ Mobile_LoadBattleMenu:
 	call FarCall_de
 	ld a, BANK(BattleMenuHeader)
 	ld [wMenuData_2DMenuItemStringsBank], a
-	ld a, [wBattleMenuCursorBuffer]
-	ld [wMenuCursorBuffer], a
+	ld a, [wBattleMenuCursorPosition]
+	ld [wMenuCursorPosition], a
 	call Function100e72
 	call Function100b45
 	farcall InitPartyMenuBGPal7
 	call Function100ed4
-	ld a, [wMenuCursorBuffer]
-	ld [wBattleMenuCursorBuffer], a
+	ld a, [wMenuCursorPosition]
+	ld [wBattleMenuCursorPosition], a
 	call ExitMenu
 	ret
 
@@ -1730,7 +1730,7 @@ Function100b45:
 	ld c, a
 	ld a, [w2DMenuNumRows]
 	call SimpleMultiply
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	and a
 	ret
 
@@ -1749,7 +1749,7 @@ Function100b7a:
 
 Mobile_MoveSelectionScreen:
 	xor a
-	ld [wMoveSwapBuffer], a
+	ld [wSwappingMove], a
 	farcall CheckPlayerHasUsableMoves
 	ret z
 	call Function100dd8
@@ -6522,7 +6522,7 @@ Function102e4f:
 	ld a, [de]
 	cp $ff
 	ret z
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	push bc
 	push hl
 	push de
@@ -6550,7 +6550,7 @@ Function102ea8:
 	ld hl, wPartySpecies
 	add hl, bc
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	ld hl, wStringBuffer1
 	ld de, wStringBuffer2
@@ -6563,7 +6563,7 @@ Function102ea8:
 	ld hl, wOTPartySpecies
 	add hl, bc
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	ld hl, UnknownText_0x102ee2
 	call PrintTextboxText
@@ -6632,7 +6632,7 @@ Function102f85:
 	ld hl, wOTPartySpecies
 	add hl, bc
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	call Function102dc3
 	ld de, String_102fb2
@@ -7288,7 +7288,7 @@ AskMobileOrCable:
 	ld a, [wMobileOrCable_LastSelection]
 	and $0f
 	jr z, .skip_load
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 
 .skip_load
 	call VerticalMenu

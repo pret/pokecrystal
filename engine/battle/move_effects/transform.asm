@@ -99,7 +99,7 @@ BattleCommand_Transform:
 	jr nz, .pp_loop
 	pop hl
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	ld hl, wEnemyStats
 	ld de, wPlayerStats

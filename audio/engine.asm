@@ -210,7 +210,7 @@ _UpdateSound::
 	ret
 
 UpdateChannels:
-	ld hl, .ChannelFnPtrs
+	ld hl, .ChannelFunctions
 	ld a, [wCurChannel]
 	maskbits NUM_CHANNELS
 	add a
@@ -222,7 +222,7 @@ UpdateChannels:
 	ld l, a
 	jp hl
 
-.ChannelFnPtrs:
+.ChannelFunctions:
 	dw .Channel1
 	dw .Channel2
 	dw .Channel3

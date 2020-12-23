@@ -2,7 +2,7 @@ BugContest_SetCaughtContestMon:
 	ld a, [wContestMon]
 	and a
 	jr z, .firstcatch
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	farcall DisplayAlreadyCaughtText
 	farcall DisplayCaughtContestMonStats
 	lb bc, 14, 7
@@ -12,7 +12,7 @@ BugContest_SetCaughtContestMon:
 .firstcatch
 	call .generatestats
 	ld a, [wTempEnemyMonSpecies]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	ld hl, .ContestCaughtMonText
 	call PrintText

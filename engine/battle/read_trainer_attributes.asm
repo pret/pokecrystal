@@ -6,7 +6,7 @@ GetTrainerClassName:
 
 	ld [wCurSpecies], a
 	ld a, TRAINER_NAME
-	ld [wNamedObjectTypeBuffer], a
+	ld [wNamedObjectType], a
 	call GetName
 	ld de, wStringBuffer1
 	ret
@@ -32,7 +32,7 @@ GetOTName:
 
 	ld [wCurSpecies], a
 	ld a, TRAINER_NAME
-	ld [wNamedObjectTypeBuffer], a
+	ld [wNamedObjectType], a
 	call GetName
 	ld hl, wStringBuffer1
 

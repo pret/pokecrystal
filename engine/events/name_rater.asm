@@ -29,7 +29,7 @@ _NameRater:
 	xor a ; PARTYMON
 	ld [wMonType], a
 	ld a, [wCurPartySpecies]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	ld [wCurSpecies], a
 	call GetBaseData
 	ld b, NAME_MON

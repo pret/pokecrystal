@@ -321,8 +321,8 @@ CopyMenuHeader::
 	ld [wMenuDataBank], a
 	ret
 
-StoreTo_wMenuCursorBuffer::
-	ld [wMenuCursorBuffer], a
+StoreMenuCursorPosition::
+	ld [wMenuCursorPosition], a
 	ret
 
 MenuTextbox::
@@ -684,7 +684,7 @@ ContinueGettingMenuJoypad:
 	ld a, [hl]
 	ld [wMenuSelection], a
 	ld a, [wMenuCursorY]
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	and a
 	ret
 
@@ -829,19 +829,19 @@ _2DMenu::
 	ldh a, [hROMBank]
 	ld [wMenuData_2DMenuItemStringsBank], a
 	farcall _2DMenu_
-	ld a, [wMenuCursorBuffer]
+	ld a, [wMenuCursorPosition]
 	ret
 
 InterpretBattleMenu::
 	ldh a, [hROMBank]
 	ld [wMenuData_2DMenuItemStringsBank], a
 	farcall _InterpretBattleMenu
-	ld a, [wMenuCursorBuffer]
+	ld a, [wMenuCursorPosition]
 	ret
 
 InterpretMobileMenu:: ; unreferenced
 	ldh a, [hROMBank]
 	ld [wMenuData_2DMenuItemStringsBank], a
 	farcall _InterpretMobileMenu
-	ld a, [wMenuCursorBuffer]
+	ld a, [wMenuCursorPosition]
 	ret

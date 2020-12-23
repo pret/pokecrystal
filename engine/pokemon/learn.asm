@@ -36,7 +36,7 @@ LearnMove:
 
 	push hl
 	push de
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 
 	ld b, a
 	ld a, [wBattleMode]

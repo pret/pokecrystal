@@ -137,7 +137,7 @@ ScriptCommandTable:
 	dw Script_opentext                   ; 47
 	dw Script_refreshscreen              ; 48
 	dw Script_closetext                  ; 49
-	dw Script_writeunusedbytebuffer      ; 4a
+	dw Script_writeunusedbyte      ; 4a
 	dw Script_farwritetext               ; 4b
 	dw Script_writetext                  ; 4c
 	dw Script_repeattext                 ; 4d
@@ -434,7 +434,7 @@ Script__2dmenu:
 	ld a, [wScriptBank]
 	ld hl, _2DMenu
 	rst FarCall
-	ld a, [wMenuCursorBuffer]
+	ld a, [wMenuCursorPosition]
 	jr nc, .ok
 	xor a
 .ok
@@ -490,7 +490,7 @@ Script_verbosegiveitemvar:
 	call GetScriptByte
 	call GetVarAction
 	ld a, [de]
-	ld [wItemQuantityChangeBuffer], a
+	ld [wItemQuantityChange], a
 	ld hl, wNumItems
 	call ReceiveItem
 	ld a, TRUE
@@ -524,7 +524,7 @@ Script_pocketisfull:
 
 Script_specialsound:
 	farcall CheckItemPocket
-	ld a, [wItemAttributeParamBuffer]
+	ld a, [wItemAttributeValue]
 	cp TM_HM
 	ld de, SFX_GET_TM
 	jr z, .play
@@ -536,7 +536,7 @@ Script_specialsound:
 
 GetPocketName:
 	farcall CheckItemPocket
-	ld a, [wItemAttributeParamBuffer]
+	ld a, [wItemAttributeValue]
 	dec a
 	ld hl, ItemPocketNames
 	maskbits NUM_POCKETS
@@ -555,7 +555,7 @@ INCLUDE "data/items/pocket_names.asm"
 
 CurItemName:
 	ld a, [wCurItem]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetItemName
 	ret
 
@@ -1577,7 +1577,7 @@ Script_getmonname:
 	jr nz, .gotit
 	ld a, [wScriptVar]
 .gotit
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	ld de, wStringBuffer1
 
@@ -1601,7 +1601,7 @@ Script_getitemname:
 	jr nz, .ok
 	ld a, [wScriptVar]
 .ok
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetItemName
 	ld de, wStringBuffer1
 	jr GetStringBuffer
@@ -1633,7 +1633,7 @@ Script_gettrainername:
 
 Script_getname:
 	call GetScriptByte
-	ld [wNamedObjectTypeBuffer], a
+	ld [wNamedObjectType], a
 
 ContinueToGetName:
 	call GetScriptByte
@@ -1644,7 +1644,7 @@ ContinueToGetName:
 
 Script_gettrainerclassname:
 	ld a, TRAINER_NAME
-	ld [wNamedObjectTypeBuffer], a
+	ld [wNamedObjectType], a
 	jr ContinueToGetName
 
 Script_getmoney:
@@ -1728,7 +1728,7 @@ Script_giveitem:
 .ok
 	ld [wCurItem], a
 	call GetScriptByte
-	ld [wItemQuantityChangeBuffer], a
+	ld [wItemQuantityChange], a
 	ld hl, wNumItems
 	call ReceiveItem
 	jr nc, .full
@@ -1746,7 +1746,7 @@ Script_takeitem:
 	call GetScriptByte
 	ld [wCurItem], a
 	call GetScriptByte
-	ld [wItemQuantityChangeBuffer], a
+	ld [wItemQuantityChange], a
 	ld a, -1
 	ld [wCurItemQuantity], a
 	ld hl, wNumItems
@@ -2198,9 +2198,9 @@ Script_refreshscreen:
 	call GetScriptByte
 	ret
 
-Script_writeunusedbytebuffer:
+Script_writeunusedbyte:
 	call GetScriptByte
-	ld [wUnusedScriptByteBuffer], a
+	ld [wUnusedScriptByte], a
 	ret
 
 UnusedClosetextScript: ; unreferenced

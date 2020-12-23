@@ -595,7 +595,7 @@ MoveDisabled:
 
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVar
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetMoveName
 
 	ld hl, DisabledMoveText
@@ -2186,7 +2186,7 @@ BattleCommand_ApplyDamage:
 .focus_band_text
 	call GetOpponentItem
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetItemName
 	ld hl, HungOnText
 	jp StdBattleTextbox
@@ -3608,7 +3608,7 @@ UpdateMoveData:
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVar
 	ld [wCurSpecies], a
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 
 	dec a
 	call GetMoveData
@@ -3624,7 +3624,7 @@ BattleCommand_SleepTarget:
 	jr nz, .not_protected_by_item
 
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetItemName
 	ld hl, ProtectedByText
 	jr .fail
@@ -3772,7 +3772,7 @@ BattleCommand_Poison:
 	cp HELD_PREVENT_POISON
 	jr nz, .do_poison
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetItemName
 	ld hl, ProtectedByText
 	jr .failed
@@ -4826,7 +4826,6 @@ BattleCommand_TriStatusChance:
 ; tristatuschance
 
 	call BattleCommand_EffectChance
-
 .loop
 	; 1/3 chance of each status
 	call BattleRandom
@@ -4834,11 +4833,11 @@ BattleCommand_TriStatusChance:
 	and %11
 	jr z, .loop
 	dec a
-	ld hl, .ptrs
+	ld hl, .StatusCommands
 	rst JumpTable
 	ret
 
-.ptrs
+.StatusCommands:
 	dw BattleCommand_ParalyzeTarget ; paralyze
 	dw BattleCommand_FreezeTarget ; freeze
 	dw BattleCommand_BurnTarget ; burn
@@ -5873,7 +5872,7 @@ BattleCommand_Confuse:
 	cp HELD_PREVENT_CONFUSE
 	jr nz, .no_item_protection
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetItemName
 	call AnimateFailedMove
 	ld hl, ProtectedByText
@@ -5963,7 +5962,7 @@ BattleCommand_Paralyze:
 	cp HELD_PREVENT_PARALYZE
 	jr nz, .no_item_protection
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetItemName
 	call AnimateFailedMove
 	ld hl, ProtectedByText

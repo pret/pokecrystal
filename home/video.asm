@@ -19,7 +19,7 @@ DMATransfer::
 
 UpdateBGMapBuffer::
 ; Copy [hBGMapTileCount] 16x8 tiles from wBGMapBuffer
-; to bg map addresses in wBGMapBufferPtrs.
+; to bg map addresses in wBGMapBufferPointers.
 
 ; [hBGMapTileCount] must be even since this is done in pairs.
 
@@ -32,9 +32,9 @@ UpdateBGMapBuffer::
 	ldh a, [rVBK]
 	push af
 
-; Relocate the stack pointer to wBGMapBufferPtrs
+; Relocate the stack pointer to wBGMapBufferPointers
 	ld [hSPBuffer], sp
-	ld hl, wBGMapBufferPtrs
+	ld hl, wBGMapBufferPointers
 	ld sp, hl
 
 ; We can now pop the addresses of affected spots on the BG Map

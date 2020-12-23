@@ -1,7 +1,7 @@
 PlaceMenuItemName:
 	push de
 	ld a, [wMenuSelection]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetItemName
 	pop hl
 	call PlaceString
@@ -12,7 +12,7 @@ PlaceMenuItemQuantity:
 	ld a, [wMenuSelection]
 	ld [wCurItem], a
 	farcall _CheckTossableItem
-	ld a, [wItemAttributeParamBuffer]
+	ld a, [wItemAttributeValue]
 	pop hl
 	and a
 	jr nz, .done
@@ -169,7 +169,7 @@ StartMenu_PrintBugContestStatus:
 	and a
 	ld de, .NoneString
 	jr z, .no_contest_mon
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetPokemonName
 
 .no_contest_mon

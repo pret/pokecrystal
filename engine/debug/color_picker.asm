@@ -320,9 +320,9 @@ DebugColor_InitScreen:
 	ld a, [wDebugColorCurMon]
 	inc a
 	ld [wCurPartySpecies], a
-	ld [wDeciramBuffer], a
+	ld [wTextDecimalByte], a
 	hlcoord 0, 1
-	ld de, wDeciramBuffer
+	ld de, wTextDecimalByte
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
 	ld a, [wDebugColorIsTrainer]
@@ -364,7 +364,7 @@ DebugColor_InitScreen:
 	jr .done
 
 .trainer
-	ld a, [wDeciramBuffer]
+	ld a, [wTextDecimalByte]
 	ld [wTrainerClass], a
 	callfar GetTrainerAttributes
 	ld de, wStringBuffer1

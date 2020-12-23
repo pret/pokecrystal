@@ -234,7 +234,7 @@ Function89261:
 	add $5
 	ld [hl], a
 	pop af
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	call PushWindow
 	call Mobile22_SetBGMapMode0
 	call Mobile_EnableSpriteUpdates
@@ -2087,7 +2087,7 @@ Function89d5e:
 	push af
 	call CopyMenuHeader
 	pop af
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	call Mobile22_SetBGMapMode0
 	call PlaceVerticalMenuItems
 	call InitVerticalMenuCursor
@@ -2904,7 +2904,7 @@ Function8a31c:
 	call Function8a3b2
 	pop bc
 	ld a, c
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	ld [wMenuSelection], a
 	call PlaceVerticalMenuItems
 	call InitVerticalMenuCursor

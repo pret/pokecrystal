@@ -47,14 +47,14 @@ _BillsPC:
 	call LoadMenuHeader
 	ld a, $1
 .loop
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	call SetPalettes
 	xor a
 	ld [wWhichIndexSet], a
 	ldh [hBGMapMode], a
 	call DoNthMenu
 	jr c, .cancel
-	ld a, [wMenuCursorBuffer]
+	ld a, [wMenuCursorPosition]
 	push af
 	ld a, [wMenuSelection]
 	ld hl, .Jumptable

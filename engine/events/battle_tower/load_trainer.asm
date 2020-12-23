@@ -168,13 +168,13 @@ LoadRandomBattleTowerMon:
 	ld bc, NICKNAMED_MON_STRUCT_LENGTH
 	call CopyBytes
 
-	ld a, [wNamedObjectIndexBuffer]
+	ld a, [wNamedObjectIndex]
 	push af
 	push de
 	ld hl, -NICKNAMED_MON_STRUCT_LENGTH
 	add hl, de
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	push hl
@@ -187,7 +187,7 @@ LoadRandomBattleTowerMon:
 
 	pop de
 	pop af
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	pop bc
 	dec c
 	jp nz, .loop

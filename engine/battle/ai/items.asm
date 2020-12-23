@@ -836,7 +836,7 @@ PrintText_UsedItemOn_AND_AIUpdateHUD:
 
 PrintText_UsedItemOn:
 	ld a, [wCurEnemyItem]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetItemName
 	ld hl, wStringBuffer1
 	ld de, wMonOrItemNameBuffer

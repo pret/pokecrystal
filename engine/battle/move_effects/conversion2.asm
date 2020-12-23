@@ -55,7 +55,7 @@ BattleCommand_Conversion2:
 	call BattleCommand_SwitchTurn
 
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	predef GetTypeName
 	ld hl, TransformedTypeText
 	jp StdBattleTextbox

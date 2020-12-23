@@ -63,7 +63,7 @@ BattleCommand_Disable:
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
 	call GetBattleVar
 	ld [hl], a
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetMoveName
 	ld hl, WasDisabledText
 	jp StdBattleTextbox

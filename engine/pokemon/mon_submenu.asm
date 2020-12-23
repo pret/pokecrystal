@@ -100,7 +100,7 @@ GetMonMenuString:
 	jr z, .NotMove
 	inc hl
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetMoveName
 	ret
 

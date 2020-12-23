@@ -109,7 +109,7 @@ CheckRegisteredItem:
 
 UseRegisteredItem:
 	farcall CheckItemMenu
-	ld a, [wItemAttributeParamBuffer]
+	ld a, [wItemAttributeValue]
 	ld hl, .SwitchTo
 	rst JumpTable
 	ret

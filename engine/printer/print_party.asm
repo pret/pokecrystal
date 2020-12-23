@@ -170,7 +170,7 @@ PrintPartyMonPage1:
 	lb bc, 2, 3
 	call PrintNum
 	ld a, [wCurPartySpecies]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	ld [wCurSpecies], a
 	ld hl, wPartyMonNicknames
 	call GetCurPartyMonName
@@ -186,7 +186,7 @@ PrintPartyMonPage1:
 	inc hl
 	ld [hl], "."
 	inc hl
-	ld de, wNamedObjectIndexBuffer
+	ld de, wNamedObjectIndex
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
 	hlcoord 1, 9
@@ -297,7 +297,7 @@ PlaceMoveNameString:
 	and a
 	jr z, .no_move
 
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetMoveName
 	jr .got_string
 

@@ -271,7 +271,7 @@ _NameCardListedCardText::
 	text_ram wMysteryGiftCardHolderName
 	text "'s CARD was"
 	line "listed as no.@"
-	text_decimal wDeciramBuffer, 1, 2
+	text_decimal wTextDecimalByte, 1, 2
 	text "."
 	prompt
 
@@ -609,7 +609,7 @@ _AskThrowAwayText::
 
 _AskQuantityThrowAwayText::
 	text "Throw away @"
-	text_decimal wItemQuantityChangeBuffer, 1, 2
+	text_decimal wItemQuantityChange, 1, 2
 	text_start
 	line "@"
 	text_ram wStringBuffer2
@@ -1110,7 +1110,7 @@ _PlayersPCHowManyWithdrawText::
 
 _PlayersPCWithdrewItemsText::
 	text "Withdrew @"
-	text_decimal wItemQuantityChangeBuffer, 1, 2
+	text_decimal wItemQuantityChange, 1, 2
 	text_start
 	line "@"
 	text_ram wStringBuffer2
@@ -1133,7 +1133,7 @@ _PlayersPCHowManyDepositText::
 
 _PlayersPCDepositItemsText::
 	text "Deposited @"
-	text_decimal wItemQuantityChangeBuffer, 1, 2
+	text_decimal wItemQuantityChange, 1, 2
 	text_start
 	line "@"
 	text_ram wStringBuffer2
@@ -1390,7 +1390,7 @@ _ItemsTossOutHowManyText::
 
 _ItemsThrowAwayText::
 	text "Throw away @"
-	text_decimal wItemQuantityChangeBuffer, 1, 2
+	text_decimal wItemQuantityChange, 1, 2
 	text_start
 	line "@"
 	text_ram wStringBuffer2

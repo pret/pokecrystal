@@ -38,7 +38,7 @@ InitList:
 	ld de, ItemNames
 	ld a, ITEM_NAME
 .done
-	ld [wNamedObjectTypeBuffer], a
+	ld [wNamedObjectType], a
 	ld a, l
 	ld [wListPointer], a
 	ld a, h
@@ -49,7 +49,7 @@ InitList:
 	ld [wUnusedNamesPointer + 1], a
 	ld bc, ItemAttributes
 	ld a, c
-	ld [wItemAttributesPtr], a
+	ld [wItemAttributesPointer], a
 	ld a, b
-	ld [wItemAttributesPtr + 1], a
+	ld [wItemAttributesPointer + 1], a
 	ret

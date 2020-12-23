@@ -261,7 +261,7 @@ CopyMobileEZChatToC608:
 
 .get_name
 	ld a, e
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	ld hl, wStringBuffer1
 	ld bc, MON_NAME_LENGTH - 1

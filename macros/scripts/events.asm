@@ -489,9 +489,9 @@ closetext: MACRO
 	db closetext_command
 ENDM
 
-	const writeunusedbytebuffer_command ; $4a
-writeunusedbytebuffer: MACRO
-	db writeunusedbytebuffer_command
+	const writeunusedbyte_command ; $4a
+writeunusedbyte: MACRO
+	db writeunusedbyte_command
 	db \1 ; byte
 ENDM
 

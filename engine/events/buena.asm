@@ -87,7 +87,7 @@ BuenaPrize:
 	ld [wMenuSelectionQuantity], a
 	call Buena_GetPrize
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetItemName
 	ld hl, .BuenaIsThatRightText
 	call BuenaPrintText
@@ -107,7 +107,7 @@ BuenaPrize:
 	push hl
 	ld [wCurItem], a
 	ld a, $1
-	ld [wItemQuantityChangeBuffer], a
+	ld [wItemQuantityChange], a
 	ld hl, wNumItems
 	call ReceiveItem
 	pop hl
@@ -224,7 +224,7 @@ Buena_PrizeMenu:
 	ld hl, .MenuHeader
 	call CopyMenuHeader
 	ld a, [wMenuSelection]
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	xor a
 	ld [wWhichIndexSet], a
 	ldh [hBGMapMode], a
@@ -276,7 +276,7 @@ endr
 	call Buena_GetPrize
 	ld a, [hl]
 	push de
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetItemName
 	pop hl
 	call PlaceString

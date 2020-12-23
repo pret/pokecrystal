@@ -10,7 +10,7 @@ NamesPointers::
 	dbw 4, MoveDescriptions ; MOVE_DESC_NAME_BROKEN (wrong bank)
 
 GetName::
-; Return name wCurSpecies from name list wNamedObjectTypeBuffer in wStringBuffer1.
+; Return name wCurSpecies from name list wNamedObjectType in wStringBuffer1.
 
 	ldh a, [hROMBank]
 	push af
@@ -18,12 +18,12 @@ GetName::
 	push bc
 	push de
 
-	ld a, [wNamedObjectTypeBuffer]
+	ld a, [wNamedObjectType]
 	cp MON_NAME
 	jr nz, .NotPokeName
 
 	ld a, [wCurSpecies]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	ld hl, MON_NAME_LENGTH
 	add hl, de
@@ -32,7 +32,7 @@ GetName::
 	jr .done
 
 .NotPokeName:
-	ld a, [wNamedObjectTypeBuffer]
+	ld a, [wNamedObjectType]
 	dec a
 	ld e, a
 	ld d, 0
@@ -110,7 +110,7 @@ GetBasePokemonName::
 	ret
 
 GetPokemonName::
-; Get Pokemon name for wNamedObjectIndexBuffer.
+; Get Pokemon name for wNamedObjectIndex.
 
 	ldh a, [hROMBank]
 	push af
@@ -119,7 +119,7 @@ GetPokemonName::
 	rst Bankswitch
 
 ; Each name is ten characters
-	ld a, [wNamedObjectIndexBuffer]
+	ld a, [wNamedObjectIndex]
 	dec a
 	ld d, 0
 	ld e, a
@@ -147,18 +147,18 @@ GetPokemonName::
 	ret
 
 GetItemName::
-; Get item name for wNamedObjectIndexBuffer.
+; Get item name for wNamedObjectIndex.
 
 	push hl
 	push bc
-	ld a, [wNamedObjectIndexBuffer]
+	ld a, [wNamedObjectIndex]
 
 	cp TM01
 	jr nc, .TM
 
 	ld [wCurSpecies], a
 	ld a, ITEM_NAME
-	ld [wNamedObjectTypeBuffer], a
+	ld [wNamedObjectType], a
 	call GetName
 	jr .Copied
 .TM:
@@ -170,12 +170,12 @@ GetItemName::
 	ret
 
 GetTMHMName::
-; Get TM/HM name for item wNamedObjectIndexBuffer.
+; Get TM/HM name for item wNamedObjectIndex.
 
 	push hl
 	push de
 	push bc
-	ld a, [wNamedObjectIndexBuffer]
+	ld a, [wNamedObjectIndex]
 	push af
 
 ; TM/HM prefix
@@ -197,7 +197,7 @@ GetTMHMName::
 
 ; TM/HM number
 	push de
-	ld a, [wNamedObjectIndexBuffer]
+	ld a, [wNamedObjectIndex]
 	ld c, a
 	callfar GetTMHMNumber
 	pop de
@@ -235,7 +235,7 @@ GetTMHMName::
 	ld [de], a
 
 	pop af
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	pop bc
 	pop de
 	pop hl
@@ -257,9 +257,9 @@ GetMoveName::
 	push hl
 
 	ld a, MOVE_NAME
-	ld [wNamedObjectTypeBuffer], a
+	ld [wNamedObjectType], a
 
-	ld a, [wNamedObjectIndexBuffer] ; move id
+	ld a, [wNamedObjectIndex] ; move id
 	ld [wCurSpecies], a
 
 	call GetName

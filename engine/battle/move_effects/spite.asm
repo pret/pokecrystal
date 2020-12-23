@@ -24,7 +24,7 @@ BattleCommand_Spite:
 	ld a, [hli]
 	cp b
 	jr nz, .loop
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	dec hl
 	ld b, 0
 	push bc
@@ -78,7 +78,7 @@ BattleCommand_Spite:
 	call AnimateCurrentMove
 	pop de
 	ld a, d
-	ld [wDeciramBuffer], a
+	ld [wTextDecimalByte], a
 	ld hl, SpiteEffectText
 	jp StdBattleTextbox
 

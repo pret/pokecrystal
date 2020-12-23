@@ -51,7 +51,7 @@ _InterpretMobileMenu::
 	ld c, a
 	ld a, [w2DMenuNumRows]
 	call SimpleMultiply
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	and a
 	ret
 
@@ -91,7 +91,7 @@ Mobile_GetMenuSelection:
 	ld c, a
 	ld a, [wMenuCursorX]
 	add c
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	and a
 	ret
 
@@ -172,7 +172,7 @@ Init2DMenuCursorPosition:
 	call .InitFlags_c
 	ld a, [w2DMenuNumCols]
 	ld e, a
-	ld a, [wMenuCursorBuffer]
+	ld a, [wMenuCursorPosition]
 	ld b, a
 	xor a
 	ld d, 0
@@ -780,7 +780,7 @@ _InitVerticalMenuCursor::
 .skip_bit_1
 	ld [hli], a
 ; wMenuCursorY
-	ld a, [wMenuCursorBuffer]
+	ld a, [wMenuCursorPosition]
 	and a
 	jr z, .load_at_the_top
 	ld c, a

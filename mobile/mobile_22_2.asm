@@ -772,7 +772,7 @@ Function8b7bd:
 	ld hl, MenuHeader_0x8b867
 	call CopyMenuHeader
 	ld a, [wd030]
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	ld a, [wd031]
 	ld [wMenuScrollPosition], a
 	ld a, [wd032]
@@ -848,7 +848,7 @@ Function8b83e:
 Function8b84b:
 	ld [wMenuScrollPosition], a
 	ld a, [wMenuCursorY]
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	ret
 
 Function8b855:

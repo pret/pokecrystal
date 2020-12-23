@@ -5,21 +5,21 @@ _BugContestJudging:
 	ld a, [wBugContestThirdPlaceWinnerID]
 	call LoadContestantName
 	ld a, [wBugContestThirdPlaceMon]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	ld hl, ContestJudging_ThirdPlaceText
 	call PrintText
 	ld a, [wBugContestSecondPlaceWinnerID]
 	call LoadContestantName
 	ld a, [wBugContestSecondPlaceMon]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	ld hl, ContestJudging_SecondPlaceText
 	call PrintText
 	ld a, [wBugContestFirstPlaceWinnerID]
 	call LoadContestantName
 	ld a, [wBugContestFirstPlaceMon]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	ld hl, ContestJudging_FirstPlaceText
 	call PrintText

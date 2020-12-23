@@ -1037,13 +1037,13 @@ PokegearPhone_UpdateDisplayList:
 	ld hl, wPhoneList
 	add hl, de
 	xor a
-	ld [wPokegearPhoneLoadNameBuffer], a
+	ld [wPokegearPhoneDisplayPosition], a
 .loop
 	ld a, [hli]
 	push hl
 	push af
 	hlcoord 2, 4
-	ld a, [wPokegearPhoneLoadNameBuffer]
+	ld a, [wPokegearPhoneDisplayPosition]
 	ld bc, 2 * SCREEN_WIDTH
 	call AddNTimes
 	ld d, h
@@ -1052,9 +1052,9 @@ PokegearPhone_UpdateDisplayList:
 	ld b, a
 	call GetCallerClassAndName
 	pop hl
-	ld a, [wPokegearPhoneLoadNameBuffer]
+	ld a, [wPokegearPhoneDisplayPosition]
 	inc a
-	ld [wPokegearPhoneLoadNameBuffer], a
+	ld [wPokegearPhoneDisplayPosition], a
 	cp PHONE_DISPLAY_HEIGHT
 	jr c, .loop
 	call PokegearPhone_UpdateCursor

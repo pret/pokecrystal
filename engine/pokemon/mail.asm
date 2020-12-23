@@ -382,7 +382,7 @@ MailboxPC:
 	call UpdateSprites
 
 	ld a, [wCurMessageIndex]
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	ld a, [wCurMessageScrollPosition]
 	ld [wMenuScrollPosition], a
 	call ScrollingMenu
@@ -439,7 +439,7 @@ MailboxPC:
 	dec a
 	call .GetMailType
 	ld a, 1
-	ld [wItemQuantityChangeBuffer], a
+	ld [wItemQuantityChange], a
 	ld hl, wNumItems
 	call ReceiveItem
 	jr c, .put_in_bag

@@ -87,7 +87,7 @@ SandstormHitsText:
 PerishCountText:
 	text "<USER>'s"
 	line "PERISH count is @"
-	text_decimal wDeciramBuffer, 1, 1
+	text_decimal wTextDecimalByte, 1, 1
 	text "!"
 	prompt
 
@@ -670,7 +670,7 @@ SpiteEffectText:
 	text_ram wStringBuffer1
 	text " was"
 	cont "reduced by @"
-	text_decimal wDeciramBuffer, 1, 1
+	text_decimal wTextDecimalByte, 1, 1
 	text "!"
 	prompt
 
@@ -1030,7 +1030,7 @@ SafeguardProtectText:
 
 MagnitudeText:
 	text "Magnitude @"
-	text_decimal wDeciramBuffer, 1, 1
+	text_decimal wTextDecimalByte, 1, 1
 	text "!"
 	prompt
 

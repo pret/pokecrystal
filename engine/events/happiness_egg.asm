@@ -11,7 +11,7 @@ GetFirstPokemonHappiness:
 	jr .loop
 
 .done
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	ld a, [hl]
 	ld [wScriptVar], a
 	call GetPokemonName
@@ -19,7 +19,7 @@ GetFirstPokemonHappiness:
 
 CheckFirstMonIsEgg:
 	ld a, [wPartySpecies]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	cp EGG
 	ld a, TRUE
 	jr z, .egg

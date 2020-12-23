@@ -91,7 +91,7 @@ ScrollingMenuJoyAction:
 	ld a, [wMenuSelection]
 	ld [wCurItem], a
 	ld a, [wMenuSelectionQuantity]
-	ld [wItemQuantityBuffer], a
+	ld [wItemQuantity], a
 	call ScrollingMenu_GetCursorPosition
 	dec a
 	ld [wScrollingMenuCursorPosition], a
@@ -238,7 +238,7 @@ InitScrollingMenuCursor:
 .skip
 	ld a, [wMenuScrollPosition]
 	ld c, a
-	ld a, [wMenuCursorBuffer]
+	ld a, [wMenuCursorPosition]
 	add c
 	ld b, a
 	ld a, [wScrollingMenuListSize]
@@ -251,7 +251,7 @@ InitScrollingMenuCursor:
 	xor a
 	ld [wMenuScrollPosition], a
 	ld a, $1
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 
 .done
 	ret
@@ -307,7 +307,7 @@ ScrollingMenu_InitFlags:
 	ld [wMenuJoypadFilter], a
 	ld a, [w2DMenuNumRows]
 	ld b, a
-	ld a, [wMenuCursorBuffer]
+	ld a, [wMenuCursorPosition]
 	and a
 	jr z, .reset_cursor
 	cp b

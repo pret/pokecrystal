@@ -34,7 +34,7 @@ GameCornerPrizeMonCheckDex:
 	call SetSeenAndCaughtMon
 	call FadeToMenu
 	ld a, [wScriptVar]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	farcall NewPokedexEntry
 	call ExitAllMenus
 	ret
@@ -144,7 +144,7 @@ GetMysteryGiftItem:
 	ld a, [sMysteryGiftItem]
 	ld [wCurItem], a
 	ld a, 1
-	ld [wItemQuantityChangeBuffer], a
+	ld [wItemQuantityChange], a
 	ld hl, wNumItems
 	call ReceiveItem
 	jr nc, .no_room
@@ -152,7 +152,7 @@ GetMysteryGiftItem:
 	ld [sMysteryGiftItem], a
 	call CloseSRAM
 	ld a, [wCurItem]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetItemName
 	ld hl, .ReceiveItemText
 	call PrintText

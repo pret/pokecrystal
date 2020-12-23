@@ -54,7 +54,7 @@ TryAddMonToParty:
 	and a
 	jr nz, .skipnickname
 	ld a, [wCurPartySpecies]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	ld hl, wPartyMonNicknames
 	ldh a, [hMoveMon]
@@ -444,7 +444,7 @@ AddTempmonToParty:
 	call CopyBytes
 
 	ld a, [wCurPartySpecies]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	cp EGG
 	jr z, .egg
 	dec a
@@ -972,7 +972,7 @@ SendMonIntoBox:
 	call CopyBytes
 
 	ld a, [wCurPartySpecies]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetPokemonName
 
 	ld de, sBoxMonNicknames
@@ -1671,7 +1671,7 @@ GivePoke::
 
 .done
 	ld a, [wCurPartySpecies]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	ld [wTempEnemyMonSpecies], a
 	call GetPokemonName
 	ld hl, wStringBuffer1
