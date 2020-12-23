@@ -1339,7 +1339,7 @@ GetFacingObject:
 	farcall CheckFacingObject
 	jr nc, .fail
 
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 	call GetObjectStruct
 	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc

@@ -422,15 +422,15 @@ Function4aad3:
 
 	ld c, a
 	xor a
-	ldh [hObjectStructIndexBuffer], a
+	ldh [hObjectStructIndex], a
 .loop
 	push bc
 	push hl
 	ld e, MONICON_PARTYMENU
 	farcall LoadMenuMonIcon
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 	inc a
-	ldh [hObjectStructIndexBuffer], a
+	ldh [hObjectStructIndex], a
 	pop hl
 	pop bc
 	dec c

@@ -1124,7 +1124,7 @@ CoordinatesEventText::
 	text_end
 
 CheckObjectMask::
-	ldh a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndex]
 	ld e, a
 	ld d, 0
 	ld hl, wObjectMasks
@@ -1133,7 +1133,7 @@ CheckObjectMask::
 	ret
 
 MaskObject::
-	ldh a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndex]
 	ld e, a
 	ld d, 0
 	ld hl, wObjectMasks
@@ -1142,7 +1142,7 @@ MaskObject::
 	ret
 
 UnmaskObject::
-	ldh a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndex]
 	ld e, a
 	ld d, 0
 	ld hl, wObjectMasks
@@ -1433,7 +1433,7 @@ SaveScreen::
 	ld de, wScreenSave
 	ld a, [wMapWidth]
 	add 6
-	ldh [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndex], a
 	ld a, [wPlayerStepDirection]
 	and a
 	jr z, .down
@@ -1447,7 +1447,7 @@ SaveScreen::
 
 .up
 	ld de, wScreenSave + SCREEN_META_WIDTH
-	ldh a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndex]
 	ld c, a
 	ld b, 0
 	add hl, bc

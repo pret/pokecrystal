@@ -3063,7 +3063,7 @@ MonFaintedAnimation:
 	db "       @"
 
 SlideBattlePicOut:
-	ldh [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndex], a
 	ld c, a
 .loop
 	push bc
@@ -3086,7 +3086,7 @@ SlideBattlePicOut:
 	ret
 
 .DoFrame:
-	ldh a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndex]
 	ld c, a
 	cp $8
 	jr nz, .back
@@ -9034,7 +9034,7 @@ CopyBackpic:
 .LoadTrainerBackpicAsOAM:
 	ld hl, wVirtualOAMSprite00
 	xor a
-	ldh [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndex], a
 	ld b, 6
 	ld e, (SCREEN_WIDTH + 1) * TILE_WIDTH
 .outer_loop
@@ -9045,10 +9045,10 @@ CopyBackpic:
 	inc hl
 	ld [hl], e ; x
 	inc hl
-	ldh a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndex]
 	ld [hli], a ; tile id
 	inc a
-	ldh [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndex], a
 	ld a, PAL_BATTLE_OB_PLAYER
 	ld [hli], a ; attributes
 	ld a, d
@@ -9056,9 +9056,9 @@ CopyBackpic:
 	ld d, a
 	dec c
 	jr nz, .inner_loop
-	ldh a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndex]
 	add $3
-	ldh [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndex], a
 	ld a, e
 	add 1 * TILE_WIDTH
 	ld e, a

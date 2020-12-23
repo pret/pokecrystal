@@ -590,7 +590,7 @@ InitPartyMenuGFX:
 	ret z
 	ld c, a
 	xor a
-	ldh [hObjectStructIndexBuffer], a
+	ldh [hObjectStructIndex], a
 .loop
 	push bc
 	push hl
@@ -598,9 +598,9 @@ InitPartyMenuGFX:
 	ld a, BANK(LoadMenuMonIcon)
 	ld e, MONICON_PARTYMENU
 	rst FarCall
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 	inc a
-	ldh [hObjectStructIndexBuffer], a
+	ldh [hObjectStructIndex], a
 	pop hl
 	pop bc
 	dec c

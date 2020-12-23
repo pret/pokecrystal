@@ -250,7 +250,7 @@ CheckFacingObject::
 .not_counter
 	ld bc, wObjectStructs ; redundant
 	ld a, 0
-	ldh [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndex], a
 	call IsNPCAtCoord
 	ret nc
 	ld hl, OBJECT_DIRECTION_WALKING
@@ -275,7 +275,7 @@ WillObjectBumpIntoSomeoneElse:
 	jr IsNPCAtCoord
 
 IsObjectFacingSomeoneElse: ; unreferenced
-	ldh a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndex]
 	call GetObjectStruct
 	call .GetFacingCoords
 	call IsNPCAtCoord
@@ -315,7 +315,7 @@ IsNPCAtCoord:
 	ld bc, wObjectStructs
 	xor a
 .loop
-	ldh [hObjectStructIndexBuffer], a
+	ldh [hObjectStructIndex], a
 	call DoesObjectHaveASprite
 	jr z, .next
 
@@ -345,9 +345,9 @@ IsNPCAtCoord:
 	jr nz, .check_current_coords
 
 .continue
-	ldh a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndex]
 	ld l, a
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 	cp l
 	jr nz, .yes
 
@@ -362,9 +362,9 @@ IsNPCAtCoord:
 	ld a, [hl]
 	cp e
 	jr nz, .next
-	ldh a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndex]
 	ld l, a
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 	cp l
 	jr nz, .yes
 
@@ -373,7 +373,7 @@ IsNPCAtCoord:
 	add hl, bc
 	ld b, h
 	ld c, l
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
@@ -481,7 +481,7 @@ IsNPCAtPlayerCoord: ; unreferenced
 	ld bc, wObjectStructs
 	xor a
 .loop
-	ldh [hObjectStructIndexBuffer], a
+	ldh [hObjectStructIndex], a
 	call DoesObjectHaveASprite
 	jr z, .next
 
@@ -505,7 +505,7 @@ IsNPCAtPlayerCoord: ; unreferenced
 	ld a, [hl]
 	cp d
 	jr nz, .check_current_coords
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 	cp PLAYER_OBJECT
 	jr z, .next
 	jr .yes
@@ -528,7 +528,7 @@ IsNPCAtPlayerCoord: ; unreferenced
 	add hl, bc
 	ld b, h
 	ld c, l
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop

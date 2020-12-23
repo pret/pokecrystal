@@ -5636,7 +5636,7 @@ Function11ad1b:
 	ld a, [wMenuCursorY]
 	ld [wcd82], a
 	dec a
-	ldh [hObjectStructIndexBuffer], a
+	ldh [hObjectStructIndex], a
 	ld a, $10
 	ld [wCurIconTile], a
 	ld hl, LoadMenuMonIcon

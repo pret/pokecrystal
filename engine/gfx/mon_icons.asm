@@ -51,7 +51,7 @@ Unused_GetPartyMenuMonIcon:
 
 .GetPartyMonItemGFX:
 	push bc
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 	ld hl, wPartyMon1Item
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
@@ -125,7 +125,7 @@ PartyMenu_InitAnimatedMonIcon:
 
 .SpawnItemIcon:
 	push bc
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 	ld hl, wPartyMon1Item
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
@@ -154,7 +154,7 @@ PartyMenu_InitAnimatedMonIcon:
 InitPartyMenuIcon:
 	ld a, [wCurIconTile]
 	push af
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 	ld hl, wPartySpecies
 	ld e, a
 	ld d, 0
@@ -163,7 +163,7 @@ InitPartyMenuIcon:
 	call ReadMonMenuIcon
 	ld [wCurIcon], a
 	call GetMemIconGFX
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 ; y coord
 	add a
 	add a
@@ -184,7 +184,7 @@ InitPartyMenuIcon:
 
 SetPartyMonIconAnimSpeed:
 	push bc
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 	ld b, a
 	call .getspeed
 	ld a, b

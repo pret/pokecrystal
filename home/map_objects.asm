@@ -20,7 +20,7 @@ GetSpriteVTile::
 	ld hl, wUsedSprites + 2
 	ld c, SPRITE_GFX_LIST_CAPACITY - 1
 	ld b, a
-	ldh a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndex]
 	cp 0
 	jr z, .nope
 	ld a, b
@@ -210,14 +210,14 @@ GetMapObject::
 
 CheckObjectVisibility::
 ; Sets carry if the object is not visible on the screen.
-	ldh [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndex], a
 	call GetMapObject
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	cp -1
 	jr z, .not_visible
-	ldh [hObjectStructIndexBuffer], a
+	ldh [hObjectStructIndex], a
 	call GetObjectStruct
 	and a
 	ret
@@ -301,21 +301,21 @@ CheckObjectTime::
 	ret
 
 CopyMapObjectStruct:: ; unreferenced
-	ldh [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndex], a
 	call GetMapObject
 	call CopyObjectStruct
 	ret
 
 UnmaskCopyMapObjectStruct::
-	ldh [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndex], a
 	call UnmaskObject
-	ldh a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndex]
 	call GetMapObject
 	farcall CopyObjectStruct
 	ret
 
 ApplyDeletionToMapObject::
-	ldh [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndex], a
 	call GetMapObject
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc

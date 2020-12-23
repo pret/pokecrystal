@@ -1040,7 +1040,7 @@ _RandomWalkContinue:
 	add hl, bc
 	ld [hl], OBJECT_ACTION_STEP
 	ld hl, wCenteredObject
-	ldh a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndex]
 	cp [hl]
 	jr z, .centered
 	ld hl, OBJECT_STEP_TYPE
@@ -1945,7 +1945,7 @@ ApplyMovementToFollower:
 	ret z
 	ld a, [wObjectFollow_Leader]
 	ld d, a
-	ldh a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndex]
 	cp d
 	ret nz
 	ld a, e
@@ -2085,7 +2085,7 @@ ShakeScreen:
 
 DespawnEmote:
 	push bc
-	ldh a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndex]
 	ld c, a
 	call .DeleteEmote
 	pop bc
@@ -2130,7 +2130,7 @@ InitTempObject:
 
 CopyTempObjectData:
 ; load into wTempObjectCopy:
-; -1, -1, [de], [de + 1], [de + 2], [hMapObjectIndexBuffer], [NextMapX], [NextMapY], -1
+; -1, -1, [de], [de + 1], [de + 2], [hMapObjectIndex], [NextMapX], [NextMapY], -1
 ; This spawns the object at the same place as whichever object is loaded into bc.
 	ld hl, wTempObjectCopyMapObjectIndex
 	ld [hl], -1
@@ -2145,7 +2145,7 @@ CopyTempObjectData:
 	ld [hli], a
 	ld a, [de]
 	ld [hli], a
-	ldh a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndex]
 	ld [hli], a
 	push hl
 	ld hl, OBJECT_NEXT_MAP_X
@@ -2169,7 +2169,7 @@ UpdateAllObjectsFrozen::
 	ld bc, wObjectStructs
 	xor a
 .loop
-	ldh [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndex], a
 	call DoesObjectHaveASprite
 	jr z, .ok
 	call UpdateObjectFrozen
@@ -2178,7 +2178,7 @@ UpdateAllObjectsFrozen::
 	add hl, bc
 	ld b, h
 	ld c, l
-	ldh a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndex]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
@@ -2228,13 +2228,13 @@ HideAllObjects:
 	xor a
 	ld bc, wObjectStructs
 .loop
-	ldh [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndex], a
 	call SetFacing_Standing
 	ld hl, OBJECT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
-	ldh a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndex]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
@@ -2452,7 +2452,7 @@ DoStepsForAllObjects:
 	ld bc, wObjectStructs
 	xor a
 .loop
-	ldh [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndex], a
 	call DoesObjectHaveASprite
 	jr z, .next
 	call HandleObjectStep
@@ -2461,7 +2461,7 @@ DoStepsForAllObjects:
 	add hl, bc
 	ld b, h
 	ld c, l
-	ldh a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndex]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
@@ -2545,7 +2545,7 @@ StartFollow::
 SetLeaderIfVisible:
 	call CheckObjectVisibility
 	ret c
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 	ld [wObjectFollow_Leader], a
 	ret
 
@@ -2571,7 +2571,7 @@ SetFollowerIfVisible:
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], STEP_TYPE_RESET
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 	ld [wObjectFollow_Follower], a
 	ret
 

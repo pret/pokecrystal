@@ -14,7 +14,7 @@ HandleCmdQueue::
 	ld hl, wCmdQueue
 	xor a
 .loop
-	ldh [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndex], a
 	ld a, [hl]
 	and a
 	jr z, .skip
@@ -27,7 +27,7 @@ HandleCmdQueue::
 .skip
 	ld de, CMDQUEUE_ENTRY_SIZE
 	add hl, de
-	ldh a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndex]
 	inc a
 	cp CMDQUEUE_CAPACITY
 	jr nz, .loop
