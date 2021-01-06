@@ -1,33 +1,33 @@
-tmhm: MACRO
 ; used in data/pokemon/base_stats/*.asm
-_tms1 = 0 ; TM01-TM24 (24)
-_tms2 = 0 ; TM25-TM48 (24)
-_tms3 = 0 ; TM49-TM50 + HM01-HM07 + MT01-MT03 (12/24)
+tmhm: MACRO
+; initialize bytes to 0
+n = 0
+rept (NUM_TM_HM_TUTOR + 7) / 8
+_TM_BYTE EQUS "_tm{d:n}"
+_TM_BYTE = 0
+PURGE _TM_BYTE
+n = n + 1
+endr
+; set bits of bytes
 rept _NARG
 	if DEF(\1_TMNUM)
-	if \1_TMNUM < 24 + 1
-_tms1 = _tms1 | (1 << ((\1_TMNUM) - 1))
-	elif \1_TMNUM < 48 + 1
-_tms2 = _tms2 | (1 << ((\1_TMNUM) - 1 - 24))
+n = (\1_TMNUM - 1) / 8
+i = (\1_TMNUM - 1) % 8
+_TM_BYTE EQUS "_tm{d:n}"
+_TM_BYTE = _TM_BYTE | (1 << i)
+PURGE _TM_BYTE
 	else
-_tms3 = _tms3 | (1 << ((\1_TMNUM) - 1 - 48))
-	endc
-	else
-		fail "\1 is not a TM, HM, or move tutor move"
+		fail "\1 is not a TM, HM, or tutor move"
 	endc
 	shift
 endr
-rept 3 ; TM01-TM24 (24/24)
-	db _tms1 & $ff
-_tms1 = _tms1 >> 8
-endr
-rept 3 ; TM25-TM48 (24/24)
-	db _tms2 & $ff
-_tms2 = _tms2 >> 8
-endr
-rept 2 ; TM49-TM50 + HM01-HM07 + MT01-MT03 (12/16)
-	db _tms3 & $ff
-_tms3 = _tms3 >> 8
+; output bytes
+n = 0
+rept (NUM_TM_HM_TUTOR + 7) / 8
+_TM_BYTE EQUS "_tm{d:n}"
+	db _TM_BYTE
+PURGE _TM_BYTE
+n = n + 1
 endr
 ENDM
 
