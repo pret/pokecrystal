@@ -899,7 +899,7 @@
 00:3045 ByteFill.PutByte
 00:3046 ByteFill.HandleLoop
 00:304d GetFarByte
-00:305d GetFarHalfword
+00:305d GetFarWord
 00:306b FarCopyWRAM
 00:307b GetFarWRAMByte
 00:308d GetFarWRAMWord
