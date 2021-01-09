@@ -422,7 +422,7 @@ rept SCENE_SCRIPT_SIZE
 endr
 
 	call GetMapScriptsBank
-	call GetFarHalfword
+	call GetFarWord
 	call GetMapScriptsBank
 	call CallScript
 
@@ -722,7 +722,7 @@ TryBGEvent:
 	inc hl
 	inc hl
 	call GetMapScriptsBank
-	call GetFarHalfword
+	call GetFarWord
 	call GetMapScriptsBank
 	call CallScript
 	scf
@@ -739,7 +739,7 @@ CheckBGEventFlag:
 	ld l, a
 	push hl
 	call GetMapScriptsBank
-	call GetFarHalfword
+	call GetFarWord
 	ld e, l
 	ld d, h
 	ld b, CHECK_FLAG

@@ -117,7 +117,7 @@ Function1000ba:
 	add hl, de
 	add hl, de
 	ld a, [wcd22]
-	call GetFarHalfword
+	call GetFarWord
 	ld a, [wcd22]
 	rst FarCall
 

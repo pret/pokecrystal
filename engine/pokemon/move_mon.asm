@@ -1687,7 +1687,7 @@ GivePoke::
 	push bc
 	push hl
 	ld a, [wScriptBank]
-	call GetFarHalfword
+	call GetFarWord
 	ld bc, MON_NAME_LENGTH
 	ld a, [wScriptBank]
 	call FarCopyBytes
@@ -1695,7 +1695,7 @@ GivePoke::
 	inc hl
 	inc hl
 	ld a, [wScriptBank]
-	call GetFarHalfword
+	call GetFarWord
 	pop bc
 	ld a, b
 	and a

@@ -586,7 +586,7 @@ Edit [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/ma
 +	push af
 +	inc hl
  	ld a, BANK(PokedexDataPointerTable)
- 	call GetFarHalfword
+ 	call GetFarWord
 +	pop de
  
  .SkipText:
@@ -602,7 +602,7 @@ Edit [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/ma
  	push bc
  	inc hl
  	inc hl
- 	call GetFarHalfword
+ 	call GetFarWord
 ```
 
 And edit [engine/pokegear/radio.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokegear/radio.asm):
@@ -624,7 +624,7 @@ And edit [engine/pokegear/radio.asm](https://github.com/pret/pokecrystal/blob/ma
 +	inc hl
 +	; hl = address
  	ld a, BANK(PokedexDataPointerTable)
- 	call GetFarHalfword
+ 	call GetFarWord
 -	call PokedexShow_GetDexEntryBank
 +	ld a, b
  	push af

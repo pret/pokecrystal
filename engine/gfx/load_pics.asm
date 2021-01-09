@@ -125,7 +125,7 @@ GetFrontpicPointer:
 	push af
 	inc hl
 	ld a, d
-	call GetFarHalfword
+	call GetFarWord
 	pop bc
 	ret
 
@@ -228,7 +228,7 @@ GetMonBackpic:
 	push af
 	inc hl
 	ld a, d
-	call GetFarHalfword
+	call GetFarWord
 	ld de, wDecompressScratch
 	pop af
 	call FarDecompress
@@ -301,7 +301,7 @@ GSIntro_GetMonFrontpic: ; unreferenced
 	push af
 	inc hl
 	ld a, BANK(PokemonPicPointers)
-	call GetFarHalfword
+	call GetFarWord
 	pop af
 	pop de
 	call FarDecompress
@@ -332,7 +332,7 @@ GetTrainerPic:
 	push af
 	inc hl
 	ld a, BANK(TrainerPicPointers)
-	call GetFarHalfword
+	call GetFarWord
 	pop af
 	ld de, wDecompressScratch
 	call FarDecompress

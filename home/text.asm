@@ -1008,7 +1008,7 @@ TextCommand_STRINGBUFFER::
 	add hl, de
 	add hl, de
 	ld a, BANK(StringBufferPointers)
-	call GetFarHalfword
+	call GetFarWord
 	ld d, h
 	ld e, l
 	ld h, b

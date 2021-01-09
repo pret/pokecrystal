@@ -47,7 +47,7 @@ DoMove:
 	add hl, bc
 	add hl, bc
 	ld a, BANK(MoveEffectsPointers)
-	call GetFarHalfword
+	call GetFarWord
 
 	ld de, wBattleScriptBuffer
 
@@ -98,7 +98,7 @@ DoMove:
 	pop bc
 
 	ld a, BANK(BattleCommandPointers)
-	call GetFarHalfword
+	call GetFarWord
 
 	call .DoMoveEffectCommand
 
@@ -6731,7 +6731,7 @@ GetItemHeldEffect:
 	ld a, ITEMATTR_STRUCT_LENGTH
 	call AddNTimes
 	ld a, BANK(ItemAttributes)
-	call GetFarHalfword
+	call GetFarWord
 	ld b, l
 	ld c, h
 	pop hl

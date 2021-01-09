@@ -46,9 +46,9 @@ CheckForHiddenItems:
 	jr nz, .next
 ; Has this item already been found?  If not, set off the Itemfinder.
 	ld a, [wCurMapScriptBank]
-	call GetFarHalfword
+	call GetFarWord
 	ld a, [wCurMapScriptBank]
-	call GetFarHalfword
+	call GetFarWord
 	ld d, h
 	ld e, l
 	ld b, CHECK_FLAG

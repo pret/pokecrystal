@@ -474,7 +474,7 @@ PokeAnim_GetPointer:
 	add hl, de
 	add hl, de
 	ld a, [wPokeAnimPointerBank]
-	call GetFarHalfword
+	call GetFarWord
 	ld a, l
 	ld [wPokeAnimCommand], a
 	ld a, h
@@ -496,7 +496,7 @@ PokeAnim_GetBitmaskIndex:
 	add hl, bc
 	add hl, bc
 	ld a, [wPokeAnimFramesBank]
-	call GetFarHalfword
+	call GetFarWord
 	ld a, [wPokeAnimFramesBank]
 	call GetFarByte
 	ld [wPokeAnimCurBitmask], a
@@ -915,7 +915,7 @@ GetMonAnimPointer:
 	add hl, de
 	ld a, c
 	ld [wPokeAnimPointerBank], a
-	call GetFarHalfword
+	call GetFarWord
 	ld a, l
 	ld [wPokeAnimPointerAddr], a
 	ld a, h
@@ -982,7 +982,7 @@ GetMonFramesPointer:
 	add hl, de
 	add hl, de
 	ld a, b
-	call GetFarHalfword
+	call GetFarWord
 	ld a, l
 	ld [wPokeAnimFramesAddr], a
 	ld a, h
@@ -1020,7 +1020,7 @@ GetMonBitmaskPointer:
 	add hl, de
 	add hl, de
 	ld a, [wPokeAnimBitmaskBank]
-	call GetFarHalfword
+	call GetFarWord
 	ld a, l
 	ld [wPokeAnimBitmaskAddr], a
 	ld a, h

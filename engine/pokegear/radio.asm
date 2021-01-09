@@ -689,7 +689,7 @@ PokedexShow2:
 	add hl, bc
 	add hl, bc
 	ld a, BANK(PokedexDataPointerTable)
-	call GetFarHalfword
+	call GetFarWord
 	call PokedexShow_GetDexEntryBank
 	push af
 	push hl
