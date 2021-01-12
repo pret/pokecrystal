@@ -19,7 +19,7 @@ MoveDescriptions::
 	dw WingAttackDescription
 	dw WhirlwindDescription
 	dw FlyDescription
-	dw BindDescription
+	dw MirrorShotDescription
 	dw SlamDescription
 	dw VineWhipDescription
 	dw StompDescription
@@ -251,14 +251,12 @@ MoveDescriptions::
 	dw RockSmashDescription
 	dw WhirlpoolDescription
 	dw BeatUpDescription
-	dw MoveFCDescription
-	dw MoveFDDescription
+	dw XScissorDescription
+	dw FlashCannonDescription
 	dw MoveFEDescription
 	dw MoveFFDescription
 	dw Move00Description
 
-MoveFCDescription:
-MoveFDDescription:
 MoveFEDescription:
 MoveFFDescription:
 Move00Description:
@@ -339,10 +337,6 @@ WhirlwindDescription:
 FlyDescription:
 	db   "1st turn: Fly"
 	next "2nd turn: Attack@"
-
-BindDescription:
-	db   "Binds the target"
-	next "for 2-5 turns.@"
 
 SlamDescription:
 	db   "Slams the foe with"
@@ -912,6 +906,7 @@ SuperFangDescription:
 	db   "Cuts the foe's HP"
 	next "by 1/2.@"
 
+XScissorDescription:
 SlashDescription:
 	db   "Has a high criti-"
 	next "cal hit ratio.@"
@@ -1020,6 +1015,7 @@ MudSlapDescription:
 	db   "Reduces the foe's"
 	next "accuracy.@"
 
+MirrorShotDescription:
 OctazookaDescription:
 	db   "An attack that may"
 	next "reduce accuracy.@"
@@ -1248,6 +1244,7 @@ AncientpowerDescription:
 	db   "An attack that may"
 	next "raise all stats.@"
 
+FlashCannonDescription:
 ShadowBallDescription:
 	db   "An attack that may"
 	next "lower SPCL.DEF.@"

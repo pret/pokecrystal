@@ -33,6 +33,9 @@ MoveGrammar:
 	db HIDDEN_POWER
 	db PSYCH_UP
 	db EXTREMESPEED
+	db MIRROR_SHOT
+	db FLASH_CANNON
+	db X_SCISSOR
 	db 0 ; end set
 
 ; 1: originally "[mon]の¯[move]した!" ("[mon]¯did [move]!")
@@ -61,7 +64,6 @@ MoveGrammar:
 	db VICEGRIP
 	db WING_ATTACK
 	db FLY
-	db BIND
 	db SLAM
 	db HORN_ATTACK
 	db WRAP

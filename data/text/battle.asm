@@ -444,12 +444,6 @@ BattleText_UserWasReleasedFromStringBuffer1:
 	text "!"
 	prompt
 
-UsedBindText:
-	text "<USER>"
-	line "used BIND on"
-	cont "<TARGET>!"
-	prompt
-
 WhirlpoolTrapText:
 	text "<TARGET>"
 	line "was trapped!"
