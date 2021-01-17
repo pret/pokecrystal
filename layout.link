@@ -65,7 +65,6 @@ ROMX $0f
 	"Battle Core"
 ROMX $10
 	"bank10"
-	"Evolutions and Attacks"
 ROMX $11
 	"bank11"
 ROMX $12
@@ -297,6 +296,7 @@ ROMX $78
 	"Debug Room"
 	"Tileset Data 8"
 ROMX $7b
+	"Evolutions and Attacks"
 	"Battle Tower Text"
 ROMX $7c
 	"Battle Tower Trainer Data"
