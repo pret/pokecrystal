@@ -1,6 +1,6 @@
 	db SUNFLORA ; 192
 
-	db  75,  75,  55,  30, 105,  85
+	db  75,  75,  85,  30, 105,  85
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, GRASS ; type
