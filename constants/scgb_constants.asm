@@ -144,7 +144,7 @@ SCGB_DEFAULT EQU $ff
 	const SGB_ICON_EN
 	const SGB_DATA_SND
 	const SGB_DATA_TRN
-	const SGB_MLT_REG
+	const SGB_MLT_REQ
 	const SGB_JUMP
 	const SGB_CHR_TRN
 	const SGB_PCT_TRN
