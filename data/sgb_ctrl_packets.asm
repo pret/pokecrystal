@@ -8,7 +8,7 @@ sgb_pal_trn: MACRO
 ENDM
 
 sgb_mlt_req: MACRO
-	db (SGB_MLT_REG << 3) + 1
+	db (SGB_MLT_REQ << 3) + 1
 	db \1 - 1
 	ds 14
 ENDM
