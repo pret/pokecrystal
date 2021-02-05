@@ -2712,7 +2712,7 @@ Jumptable_101247:
 Function101251:
 	call UpdateSprites
 	call RefreshScreen
-	ld hl, UnknownText_0x1021f4
+	ld hl, ClosingLinkText
 	call Function1021e0
 	call Function1020ea
 	ret c
@@ -2720,14 +2720,14 @@ Function101251:
 	ret
 
 Function101265:
-	ld hl, UnknownText_0x1021ef
+	ld hl, LinkTerminatedText
 	call Function1021e0
 	ret
 
 Function10126c:
 	call UpdateSprites
 	farcall Script_reloadmappart
-	ld hl, UnknownText_0x1021f4
+	ld hl, ClosingLinkText
 	call Function1021e0
 	ret
 
@@ -4733,14 +4733,14 @@ Function102112:
 Function102142:
 	call Function10218d
 	call Function102180
-	ld hl, UnknownText_0x1021d1
+	ld hl, NewCardArrivedText
 	call MenuTextbox
 	ld de, SFX_LEVEL_UP
 	call PlaySFX
 	call JoyWaitAorB
 	call ExitMenu
 	call Function10219f
-	ld hl, UnknownText_0x1021d6
+	ld hl, PutCardInCardFolderText
 	call MenuTextbox
 	call YesNoBox
 	call ExitMenu
@@ -4749,7 +4749,7 @@ Function102142:
 	jr c, .asm_10217c
 	call Function10218d
 	call Function102180
-	ld hl, UnknownText_0x1021db
+	ld hl, CardWasListedText
 	call PrintText
 
 .asm_10217c
@@ -4794,16 +4794,16 @@ Function1021b8:
 	pop af
 	ret
 
-UnknownText_0x1021d1:
-	text_far UnknownText_0x1bd19a
+NewCardArrivedText:
+	text_far _NewCardArrivedText
 	text_end
 
-UnknownText_0x1021d6:
-	text_far UnknownText_0x1bd1ba
+PutCardInCardFolderText:
+	text_far _PutCardInCardFolderText
 	text_end
 
-UnknownText_0x1021db:
-	text_far UnknownText_0x1bd1dd
+CardWasListedText:
+	text_far _CardWasListedText
 	text_end
 
 Function1021e0:
@@ -4812,16 +4812,16 @@ Function1021e0:
 	call ExitMenu
 	ret
 
-UnknownText_0x1021ea: ; unreferenced
-	text_far UnknownText_0x1bd201
+StartingLinkText: ; unreferenced
+	text_far _StartingLinkText
 	text_end
 
-UnknownText_0x1021ef:
-	text_far UnknownText_0x1bd211
+LinkTerminatedText:
+	text_far _LinkTerminatedText
 	text_end
 
-UnknownText_0x1021f4:
-	text_far UnknownText_0x1bd223
+ClosingLinkText:
+	text_far _ClosingLinkText
 	text_end
 
 Function1021f9:
@@ -6565,12 +6565,12 @@ Function102ea8:
 	ld a, [hl]
 	ld [wNamedObjectIndex], a
 	call GetPokemonName
-	ld hl, UnknownText_0x102ee2
+	ld hl, TradingMonForOTMonText
 	call PrintTextboxText
 	ret
 
-UnknownText_0x102ee2:
-	text_far UnknownText_0x1bd286
+TradingMonForOTMonText:
+	text_far _TradingMonForOTMonText
 	text_end
 
 Function102ee7:
@@ -7339,7 +7339,7 @@ Mobile_SelectThreeMons:
 	farcall Mobile_AlwaysReturnNotCarry
 	bit 7, c
 	jr z, .asm_10369b
-	ld hl, UnknownText_0x10375d
+	ld hl, MobileBattleMustPickThreeMonText
 	call PrintText
 	call YesNoBox
 	jr c, .asm_103696
@@ -7363,7 +7363,7 @@ Mobile_SelectThreeMons:
 	bit 7, [hl]
 	set 7, [hl]
 	jr nz, .asm_1036b5
-	ld hl, UnknownText_0x103762
+	ld hl, MobileBattleMoreInfoText
 	call PrintText
 	call YesNoBox
 	jr c, .asm_1036b5
@@ -7409,49 +7409,48 @@ Mobile_SelectThreeMons:
 	ret
 
 Function1036f9:
-	ld hl, UnknownText_0x103767
+	ld hl, MobileBattleRulesText
 	call PrintText
 	ret
 
 Function103700:
-	ld c, $0a
+	ld c, 10
 	ld hl, wSwarmFlags
 	bit SWARMFLAGS_MOBILE_4_F, [hl]
 	jr z, .asm_10370f
 	farcall MobileBattleGetRemainingTime
-
 .asm_10370f
 	ld a, c
 	ld [wStringBuffer2], a
 	ld a, [wStringBuffer2]
-	cp $05
-	jr nc, .asm_103724
-	cp $02
-	jr nc, .asm_10372c
-	cp $01
-	jr nc, .asm_103734
-	jr .asm_10373c
+	cp 5
+	jr nc, .five_or_more_mins
+	cp 2
+	jr nc, .two_to_five_mins
+	cp 1
+	jr nc, .one_min
+	jr .times_up
 
-.asm_103724
-	ld hl, UnknownText_0x10376c
+.five_or_more_mins
+	ld hl, WouldYouLikeToMobileBattleText
 	call PrintText
 	and a
 	ret
 
-.asm_10372c
-	ld hl, UnknownText_0x103771
+.two_to_five_mins
+	ld hl, WantAQuickMobileBattleText
 	call PrintText
 	and a
 	ret
 
-.asm_103734
-	ld hl, UnknownText_0x103776
+.one_min
+	ld hl, WantToRushThroughAMobileBattleText
 	call PrintText
 	and a
 	ret
 
-.asm_10373c
-	ld hl, UnknownText_0x10377b
+.times_up
+	ld hl, PleaseTryAgainTomorrowText
 	call PrintText
 	call JoyWaitAorB
 	scf
@@ -7470,32 +7469,32 @@ MenuData_10374f:
 	db "やめる@"
 	db "せつめい@"
 
-UnknownText_0x10375d:
-	text_far UnknownText_0x1c422a
+MobileBattleMustPickThreeMonText:
+	text_far _MobileBattleMustPickThreeMonText
 	text_end
 
-UnknownText_0x103762:
-	text_far UnknownText_0x1c4275
+MobileBattleMoreInfoText:
+	text_far _MobileBattleMoreInfoText
 	text_end
 
-UnknownText_0x103767:
-	text_far UnknownText_0x1c4298
+MobileBattleRulesText:
+	text_far _MobileBattleRulesText
 	text_end
 
-UnknownText_0x10376c:
-	text_far UnknownText_0x1c439c
+WouldYouLikeToMobileBattleText:
+	text_far _WouldYouLikeToMobileBattleText
 	text_end
 
-UnknownText_0x103771:
-	text_far UnknownText_0x1c43dc
+WantAQuickMobileBattleText:
+	text_far _WantAQuickMobileBattleText
 	text_end
 
-UnknownText_0x103776:
-	text_far UnknownText_0x1c4419
+WantToRushThroughAMobileBattleText:
+	text_far _WantToRushThroughAMobileBattleText
 	text_end
 
-UnknownText_0x10377b:
-	text_far UnknownText_0x1c445a
+PleaseTryAgainTomorrowText:
+	text_far _PleaseTryAgainTomorrowText
 	text_end
 
 Function103780:
@@ -7544,7 +7543,7 @@ Function1037c2:
 	ld a, [wdc5f]
 	and a
 	jr z, .nope
-	ld hl, UnknownText_0x1037e6
+	ld hl, TryAgainUsingSameSettingsText
 	call PrintText
 	call YesNoBox
 	jr c, .nope
@@ -7558,8 +7557,8 @@ Function1037c2:
 	ld [wScriptVar], a
 	ret
 
-UnknownText_0x1037e6:
-	text_far UnknownText_0x1c449c
+TryAgainUsingSameSettingsText:
+	text_far _TryAgainUsingSameSettingsText
 	text_end
 
 Function1037eb:
@@ -7622,7 +7621,7 @@ Function10383c:
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
-	ld hl, UnknownText_0x103876
+	ld hl, PickThreeMonForMobileBattleText
 	call PrintText
 	call JoyWaitAorB
 	farcall Script_reloadmappart
@@ -7641,8 +7640,8 @@ Function10383c:
 	ld [wScriptVar], a
 	ret
 
-UnknownText_0x103876:
-	text_far UnknownText_0x1c4508
+PickThreeMonForMobileBattleText:
+	text_far _PickThreeMonForMobileBattleText
 	text_end
 
 Function10387b:
@@ -7652,11 +7651,11 @@ Function10387b:
 	farcall MobileBattleGetRemainingTime
 	ld a, c
 	ld [wStringBuffer2], a
-	ld hl, UnknownText_0x103898
+	ld hl, MobileBattleRemainingTimeText
 	call PrintText
 	call JoyWaitAorB
 	ret
 
-UnknownText_0x103898:
-	text_far UnknownText_0x1c4525
+MobileBattleRemainingTimeText:
+	text_far _MobileBattleRemainingTimeText
 	text_end

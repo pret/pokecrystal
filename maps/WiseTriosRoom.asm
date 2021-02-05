@@ -55,14 +55,14 @@ WiseTriosRoom_CannotEnterTinTowerScript:
 	turnobject PLAYER, DOWN
 	showemote EMOTE_SHOCK, WISETRIOSROOM_SAGE3, 20
 	follow PLAYER, WISETRIOSROOM_SAGE3
-	applymovement PLAYER, MovementData_0x98622
+	applymovement PLAYER, WiseTriosRoomSageBlocksPlayerMovement
 	stopfollow
 	turnobject PLAYER, RIGHT
 	opentext
 	writetext WiseTriosRoomSage3BlocksExitText
 	waitbutton
 	closetext
-	applymovement WISETRIOSROOM_SAGE3, MovementData_0x98625
+	applymovement WISETRIOSROOM_SAGE3, WiseTriosRoomSageReturnsMovement
 	turnobject WISETRIOSROOM_SAGE3, LEFT
 	end
 
@@ -100,7 +100,7 @@ TrainerSageKoji:
 	writetext SageKojiAfterBattleSpeechText
 	waitbutton
 	closetext
-	applymovement WISETRIOSROOM_SAGE6, MovementData_0x98628
+	applymovement WISETRIOSROOM_SAGE6, WiseTriosRoomSageAllowsPassageMovement
 	turnobject WISETRIOSROOM_SAGE6, UP
 	setevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	setscene SCENE_FINISHED
@@ -113,17 +113,17 @@ TrainerSageKoji:
 	closetext
 	end
 
-MovementData_0x98622:
+WiseTriosRoomSageBlocksPlayerMovement:
 	step LEFT
 	step LEFT
 	step_end
 
-MovementData_0x98625:
+WiseTriosRoomSageReturnsMovement:
 	step RIGHT
 	step DOWN
 	step_end
 
-MovementData_0x98628:
+WiseTriosRoomSageAllowsPassageMovement:
 	step RIGHT
 	step DOWN
 	step_end

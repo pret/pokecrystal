@@ -74,19 +74,19 @@ Function17005a:
 INCLUDE "engine/events/battle_tower/battle_tower.asm"
 
 Function170be4:
-	ld a, $5
+	ld a, BANK(s5_a894)
 	call OpenSRAM
 	xor a
-	ld hl, $a894
-	ld bc, $0008
+	ld hl, s5_a894
+	ld bc, 6 + 2
 	call ByteFill
 	call CloseSRAM
 	ret
 
 Clears5_a89a:
-	ld a, $5
+	ld a, BANK(s5_a89a)
 	call OpenSRAM
-	ld hl, $a89a
+	ld hl, s5_a89a
 	xor a
 	ld [hli], a
 	ld [hl], a
@@ -94,9 +94,9 @@ Clears5_a89a:
 	ret
 
 Function170c06: ; unreferenced
-	ld a, $5
+	ld a, BANK(s5_a894)
 	call OpenSRAM
-	ld hl, $a894
+	ld hl, s5_a894
 	ld a, [wBattleResult]
 	and a ; WIN?
 	jr nz, .asm_170c15
@@ -105,10 +105,10 @@ Function170c06: ; unreferenced
 .asm_170c15
 	inc hl
 	inc hl
-	ld a, [$a89b]
+	ld a, [s5_a89a + 1]
 	add [hl]
 	ld [hld], a
-	ld a, [$a89a]
+	ld a, [s5_a89a]
 	adc [hl]
 	ld [hli], a
 	jr nc, .asm_170c27

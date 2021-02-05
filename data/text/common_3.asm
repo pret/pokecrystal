@@ -79,7 +79,7 @@ _LinkAskTradeForText::
 	text "?"
 	done
 
-UnknownText_0x1c422a::
+_MobileBattleMustPickThreeMonText::
 	text "To enter a mobile"
 	line "battle, you must"
 
@@ -89,12 +89,12 @@ UnknownText_0x1c422a::
 	para "Is that OK?"
 	done
 
-UnknownText_0x1c4275::
+_MobileBattleMoreInfoText::
 	text "Need more info on"
 	line "mobile battles?"
 	done
 
-UnknownText_0x1c4298::
+_MobileBattleRulesText::
 	text "For a mobile"
 	line "battle, choose"
 	cont "three #MON."
@@ -121,7 +121,7 @@ UnknownText_0x1c4298::
 	line "wins."
 	done
 
-UnknownText_0x1c439c::
+_WouldYouLikeToMobileBattleText::
 	text "Today's remaining"
 	line "time is @"
 	text_decimal wStringBuffer2, 1, 2
@@ -131,7 +131,7 @@ UnknownText_0x1c439c::
 	line "battle?"
 	done
 
-UnknownText_0x1c43dc::
+_WantAQuickMobileBattleText::
 	text "There are only @"
 	text_decimal wStringBuffer2, 1, 2
 	text_start
@@ -141,7 +141,7 @@ UnknownText_0x1c43dc::
 	line "battle?"
 	done
 
-UnknownText_0x1c4419::
+_WantToRushThroughAMobileBattleText::
 	text "There is only"
 	line "1 min. left today!"
 
@@ -149,7 +149,7 @@ UnknownText_0x1c4419::
 	line "through a battle?"
 	done
 
-UnknownText_0x1c445a::
+_PleaseTryAgainTomorrowText::
 	text "There is less than"
 	line "1 min. left today!"
 
@@ -157,7 +157,7 @@ UnknownText_0x1c445a::
 	line "tomorrow."
 	done
 
-UnknownText_0x1c449c::
+_TryAgainUsingSameSettingsText::
 	text "Try again using"
 	line "the same settings?"
 	done
@@ -172,12 +172,12 @@ _MobileBattleNoTimeLeftForLinkingText::
 	line "linking today."
 	done
 
-UnknownText_0x1c4508::
+_PickThreeMonForMobileBattleText::
 	text "Pick three #MON"
 	line "for battle."
 	done
 
-UnknownText_0x1c4525::
+_MobileBattleRemainingTimeText::
 	text "Today's remaining"
 	line "time is @"
 	text_decimal wStringBuffer2, 1, 2
@@ -753,7 +753,7 @@ _DeletedTheLoginPasswordText::
 	line "PASSWORD."
 	done
 
-_MobilePickThreeMonForBattle::
+_MobilePickThreeMonForBattleText::
 	text "Pick three #MON"
 	line "for battle."
 	prompt

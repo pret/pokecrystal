@@ -5,6 +5,7 @@ BattleTowerRoomMenu:
 	ret
 
 Function1700ba:
+; special
 	call InitBattleTowerChallengeRAM
 	farcall Function11811a
 	ret
@@ -136,7 +137,7 @@ Function170139: ; unreferenced
 	ld l, a
 	ld a, [wcd4c]
 	ld h, a
-	ld bc, $0006
+	ld bc, 6
 	call CopyBytes
 	ld a, l
 	ld [wcd4b], a
@@ -156,7 +157,7 @@ Function170139: ; unreferenced
 	ld a, BANK(s5_a894) ; aka BANK(s5_a948)
 	call OpenSRAM
 	ld hl, s5_a894
-	ld bc, NAME_LENGTH_JAPANESE
+	ld bc, 6
 	call CopyBytes
 	ld hl, wc608
 	ld de, s5_a948

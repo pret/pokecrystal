@@ -41,27 +41,27 @@ EcruteakTinTowerEntrance_MapScripts:
 	clearevent EVENT_ECRUTEAK_TIN_TOWER_ENTRANCE_WANDERING_SAGE
 	endcallback
 
-EcruteakTinTowerEntrance_CoordEvent1:
+EcruteakTinTowerEntranceSageBlocksLeft:
 	checkevent EVENT_RANG_CLEAR_BELL_2
-	iftrue EcruteakTinTowerEntrance_CoordEvent_DontMove
-	applymovement ECRUTEAKTINTOWERENTRANCE_SAGE2, MovementData_0x980c7
+	iftrue EcruteakTinTowerEntranceAlreadyBlocked
+	applymovement ECRUTEAKTINTOWERENTRANCE_SAGE2, EcruteakTinTowerEntranceSageBlocksLeftMovement
 	moveobject ECRUTEAKTINTOWERENTRANCE_SAGE1, 4, 6
 	appear ECRUTEAKTINTOWERENTRANCE_SAGE1
 	pause 5
 	disappear ECRUTEAKTINTOWERENTRANCE_SAGE2
 	end
 
-EcruteakTinTowerEntrance_CoordEvent2:
+EcruteakTinTowerEntranceSageBlocksRight:
 	checkevent EVENT_RANG_CLEAR_BELL_1
-	iftrue EcruteakTinTowerEntrance_CoordEvent_DontMove
-	applymovement ECRUTEAKTINTOWERENTRANCE_SAGE1, MovementData_0x980cc
+	iftrue EcruteakTinTowerEntranceAlreadyBlocked
+	applymovement ECRUTEAKTINTOWERENTRANCE_SAGE1, EcruteakTinTowerEntranceSageBlocksRightMovement
 	moveobject ECRUTEAKTINTOWERENTRANCE_SAGE2, 5, 6
 	appear ECRUTEAKTINTOWERENTRANCE_SAGE2
 	pause 5
 	disappear ECRUTEAKTINTOWERENTRANCE_SAGE1
 	end
 
-EcruteakTinTowerEntrance_CoordEvent_DontMove:
+EcruteakTinTowerEntranceAlreadyBlocked:
 	end
 
 EcruteakTinTowerEntranceSageScript:
@@ -135,14 +135,14 @@ EcruteakTinTowerEntranceWanderingSageScript:
 EcruteakTinTowerEntranceGrampsScript:
 	jumptextfaceplayer EcruteakTinTowerEntranceGrampsText
 
-MovementData_0x980c7:
+EcruteakTinTowerEntranceSageBlocksLeftMovement:
 	fix_facing
 	big_step LEFT
 	remove_fixed_facing
 	turn_head DOWN
 	step_end
 
-MovementData_0x980cc:
+EcruteakTinTowerEntranceSageBlocksRightMovement:
 	fix_facing
 	big_step RIGHT
 	remove_fixed_facing
@@ -286,8 +286,8 @@ EcruteakTinTowerEntrance_MapEvents:
 	warp_event 17,  3, WISE_TRIOS_ROOM, 3
 
 	def_coord_events
-	coord_event  4,  7, SCENE_DEFAULT, EcruteakTinTowerEntrance_CoordEvent1
-	coord_event  5,  7, SCENE_DEFAULT, EcruteakTinTowerEntrance_CoordEvent2
+	coord_event  4,  7, SCENE_DEFAULT, EcruteakTinTowerEntranceSageBlocksLeft
+	coord_event  5,  7, SCENE_DEFAULT, EcruteakTinTowerEntranceSageBlocksRight
 
 	def_bg_events
 

@@ -477,11 +477,11 @@ ForestTreeLeftAnimation:
 ; Only during the Celebi event.
 	ld a, [wCelebiEvent]
 	bit CELEBIEVENT_FOREST_IS_RESTLESS_F, a
-	jr nz, .asm_fc46c
+	jr nz, .do_animation
 	ld hl, ForestTreeLeftFrames
-	jr .asm_fc47d
+	jr .got_frames
 
-.asm_fc46c
+.do_animation
 	ld a, [wTileAnimationTimer]
 	call GetForestTreeFrame
 	add a
@@ -493,7 +493,7 @@ ForestTreeLeftAnimation:
 	adc HIGH(ForestTreeLeftFrames)
 	ld h, a
 
-.asm_fc47d
+.got_frames
 	ld sp, hl
 	ld hl, vTiles2 tile $0c
 	jp WriteTile
@@ -514,11 +514,11 @@ ForestTreeRightAnimation:
 ; Only during the Celebi event.
 	ld a, [wCelebiEvent]
 	bit CELEBIEVENT_FOREST_IS_RESTLESS_F, a
-	jr nz, .asm_fc4d4
+	jr nz, .do_animation
 	ld hl, ForestTreeRightFrames
-	jr .asm_fc4eb
+	jr .got_frames
 
-.asm_fc4d4
+.do_animation
 	ld a, [wTileAnimationTimer]
 	call GetForestTreeFrame
 	add a
@@ -534,7 +534,7 @@ ForestTreeRightAnimation:
 	add hl, bc
 	pop bc
 
-.asm_fc4eb
+.got_frames
 	ld sp, hl
 	ld hl, vTiles2 tile $0f
 	jp WriteTile
@@ -547,14 +547,14 @@ ForestTreeLeftAnimation2:
 ; Only during the Celebi event.
 	ld a, [wCelebiEvent]
 	bit CELEBIEVENT_FOREST_IS_RESTLESS_F, a
-	jr nz, .asm_fc502
+	jr nz, .do_animation
 	ld hl, ForestTreeLeftFrames
-	jr .asm_fc515
+	jr .got_frames
 
-.asm_fc502
+.do_animation
 	ld a, [wTileAnimationTimer]
 	call GetForestTreeFrame
-	xor 2
+	xor %10
 	add a
 	add a
 	add a
@@ -564,7 +564,7 @@ ForestTreeLeftAnimation2:
 	adc HIGH(ForestTreeLeftFrames)
 	ld h, a
 
-.asm_fc515
+.got_frames
 	ld sp, hl
 	ld hl, vTiles2 tile $0c
 	jp WriteTile
@@ -577,14 +577,14 @@ ForestTreeRightAnimation2:
 ; Only during the Celebi event.
 	ld a, [wCelebiEvent]
 	bit CELEBIEVENT_FOREST_IS_RESTLESS_F, a
-	jr nz, .asm_fc52c
+	jr nz, .do_animation
 	ld hl, ForestTreeRightFrames
-	jr .asm_fc545
+	jr .got_frames
 
-.asm_fc52c
+.do_animation
 	ld a, [wTileAnimationTimer]
 	call GetForestTreeFrame
-	xor 2
+	xor %10
 	add a
 	add a
 	add a
@@ -598,7 +598,7 @@ ForestTreeRightAnimation2:
 	add hl, bc
 	pop bc
 
-.asm_fc545
+.got_frames
 	ld sp, hl
 	ld hl, vTiles2 tile $0f
 	jp WriteTile

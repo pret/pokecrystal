@@ -457,7 +457,7 @@ IlexForestShrineScript:
 	pause 20
 	showemote EMOTE_SHOCK, PLAYER, 20
 	special FadeOutMusic
-	applymovement PLAYER, MovementData_0x6ef58
+	applymovement PLAYER, IlexForestPlayerStepsDownMovement
 	pause 30
 	turnobject PLAYER, DOWN
 	pause 20
@@ -470,12 +470,12 @@ IlexForestShrineScript:
 	special CheckCaughtCelebi
 	iffalse .DidntCatchCelebi
 	appear ILEXFOREST_KURT
-	applymovement ILEXFOREST_KURT, MovementData_0x6ef4e
+	applymovement ILEXFOREST_KURT, IlexForestKurtStepsUpMovement
 	opentext
 	writetext Text_KurtCaughtCelebi
 	waitbutton
 	closetext
-	applymovement ILEXFOREST_KURT, MovementData_0x6ef53
+	applymovement ILEXFOREST_KURT, IlexFOrestKurtStepsDownMovement
 	disappear ILEXFOREST_KURT
 .DidntCatchCelebi:
 	end
@@ -715,21 +715,21 @@ MovementData_Farfetched_Pos9_Pos8_Down:
 	big_step UP
 	step_end
 
-MovementData_0x6ef4e:
+IlexForestKurtStepsUpMovement:
 	step UP
 	step UP
 	step UP
 	step UP
 	step_end
 
-MovementData_0x6ef53:
+IlexFOrestKurtStepsDownMovement:
 	step DOWN
 	step DOWN
 	step DOWN
 	step DOWN
 	step_end
 
-MovementData_0x6ef58:
+IlexForestPlayerStepsDownMovement:
 	fix_facing
 	slow_step DOWN
 	remove_fixed_facing

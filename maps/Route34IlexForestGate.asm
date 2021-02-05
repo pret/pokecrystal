@@ -29,14 +29,14 @@ Route34IlexForestGateCelebiEvent:
 	turnobject ROUTE34ILEXFORESTGATE_TEACHER2, LEFT
 	turnobject PLAYER, RIGHT
 	follow PLAYER, ROUTE34ILEXFORESTGATE_TEACHER2
-	applymovement PLAYER, MovementData_0x62d97
+	applymovement PLAYER, Route34IlexForestGateTeacherBlocksPlayerMovement
 	stopfollow
 	turnobject PLAYER, DOWN
 	opentext
 	writetext Route34IlexForestGateTeacher_ForestIsRestless
 	waitbutton
 	closetext
-	applymovement ROUTE34ILEXFORESTGATE_TEACHER2, MovementData_0x62d9a
+	applymovement ROUTE34ILEXFORESTGATE_TEACHER2, Route34IlexForestGateTeacherReturnsMovement
 .skip:
 	end
 
@@ -76,12 +76,12 @@ Route34IlexForestGateButterfreeScript:
 Route34IlexForestGateLassScript:
 	jumptextfaceplayer Route34IlexForestGateLassText
 
-MovementData_0x62d97:
+Route34IlexForestGateTeacherBlocksPlayerMovement:
 	step UP
 	step UP
 	step_end
 
-MovementData_0x62d9a:
+Route34IlexForestGateTeacherReturnsMovement:
 	step DOWN
 	step RIGHT
 	step_end

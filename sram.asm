@@ -331,11 +331,8 @@ s5_a826:: db
 
 	ds $6d
 
-s5_a894:: ds NAME_LENGTH_JAPANESE
-
-	ds $1
-
-s5_a89b:: ds 1
+s5_a894:: ds 6
+s5_a89a:: dw
 s5_a89c:: ds 22
 s5_a8b2:: ds 150
 

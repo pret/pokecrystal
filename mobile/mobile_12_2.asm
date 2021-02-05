@@ -235,12 +235,12 @@ Function4a94e:
 .asm_4a9b0
 	ld de, SFX_WRONG
 	call PlaySFX
-	ld hl, MobilePickThreeMonForBattle
+	ld hl, MobilePickThreeMonForBattleText
 	call PrintText
 	jr .asm_4a974
 
-MobilePickThreeMonForBattle:
-	text_far _MobilePickThreeMonForBattle
+MobilePickThreeMonForBattleText:
+	text_far _MobilePickThreeMonForBattleText
 	text_end
 
 Function4a9c3:
