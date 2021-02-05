@@ -734,13 +734,10 @@ ParkBallMultiplier:
 	ret
 
 GetPokedexEntryBank:
-; This function is buggy.
-; It gets the wrong bank for Kadabra (64), Tauros (128), and Sunflora (192).
-; Uncomment the line below to fix this.
 	push hl
 	push de
 	ld a, [wEnemyMonSpecies]
-	; dec a
+	dec a
 	rlca
 	rlca
 	maskbits NUM_DEX_ENTRY_BANKS
