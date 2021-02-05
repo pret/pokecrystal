@@ -149,7 +149,7 @@ GoldenrodPokeCenter1FLinkReceptionistWalkToStairsFromRightDoorwayTileMovement:
 	step DOWN
 	step_end
 
-UnknownText_0x61072: ; unreferenced
+GoldenrodPokecomCenterWelcomeToTradeCornerText: ; unreferenced
 	text "Hello! Welcome to"
 	line "#COM CENTER"
 	cont "TRADE CORNER."
@@ -159,7 +159,7 @@ UnknownText_0x61072: ; unreferenced
 	cont "people far away."
 	done
 
-UnknownText_0x610ce: ; unreferenced
+GoldenrodPokecomCenterWeMustHoldYourMonText: ; unreferenced
 	text "To make a trade,"
 	line "we must hold your"
 	cont "#MON."
@@ -168,13 +168,13 @@ UnknownText_0x610ce: ; unreferenced
 	line "trade?"
 	done
 
-UnknownText_0x61111: ; unreferenced
+GoldenrodPokecomCenterWhatMonDoYouWantText: ; unreferenced
 	text "What kind of"
 	line "#MON do you"
 	cont "want in return?"
 	done
 
-UnknownText_0x6113b: ; unreferenced
+GoldenrodPokecomCenterWeWillTradeYourMonForMonText: ; unreferenced
 	text "Fine. We will try"
 	line "to trade your"
 
@@ -194,7 +194,7 @@ UnknownText_0x6113b: ; unreferenced
 	cont "room for it."
 	done
 
-UnknownText_0x611c9: ; unreferenced
+GoldenrodPokecomCenterWeWillTradeYourMonForNewText: ; unreferenced
 	text "Fine. We will try"
 	line "to trade your"
 
@@ -213,7 +213,7 @@ UnknownText_0x611c9: ; unreferenced
 	cont "room for it."
 	done
 
-UnknownText_0x61271: ; unreferenced
+GoldenrodPokecomCenterYourMonHasBeenReceivedText: ; unreferenced
 	text "Your trade #MON"
 	line "has been received."
 
@@ -224,7 +224,7 @@ UnknownText_0x61271: ; unreferenced
 	line "come back later."
 	done
 
-UnknownText_0x612d8: ; unreferenced
+GoldenrodPokecomCenterYouHaveOnlyOneMonText: ; unreferenced
 	text "Oh? You have only"
 	line "one #MON in"
 	cont "your party. "
@@ -235,28 +235,28 @@ UnknownText_0x612d8: ; unreferenced
 	cont "of your party."
 	done
 
-UnknownText_0x61344: ; unreferenced
+GoldenrodPokecomCenterWeHopeToSeeYouAgainText: ; unreferenced
 	text "We hope to see you"
 	line "again."
 	done
 
-UnknownText_0x6135f: ; unreferenced
+GoldenrodPokecomCenterCommunicationErrorText: ; unreferenced
 	text "Communication"
 	line "error…"
 	done
 
-UnknownText_0x61375: ; unreferenced
+GoldenrodPokecomCenterCantAcceptLastMonText: ; unreferenced
 	text "If we accept that"
 	line "#MON, what will"
 	cont "you battle with?"
 	done
 
-UnknownText_0x613a9: ; unreferenced
+GoldenrodPokecomCenterCantAcceptEggText: ; unreferenced
 	text "Sorry. We can't"
 	line "accept an EGG."
 	done
 
-UnknownText_0x613c8: ; unreferenced
+GoldenrodPokecomCenterCantAcceptAbnormalMonText: ; unreferenced
 	text "Sorry, but your"
 	line "#MON appears to"
 
@@ -264,20 +264,20 @@ UnknownText_0x613c8: ; unreferenced
 	line "can't accept it."
 	done
 
-UnknownText_0x61409: ; unreferenced
+GoldenrodPokecomCenterAlreadyHoldingMonText: ; unreferenced
 	text "Oh? Aren't we"
 	line "already holding a"
 	cont "#MON of yours?"
 	done
 
-UnknownText_0x61438: ; unreferenced
+GoldenrodPokecomCenterCheckingTheRoomsText: ; unreferenced
 	text "We'll check the"
 	line "rooms."
 
 	para "Please wait."
 	done
 
-UnknownText_0x6145c: ; unreferenced
+GoldenrodPokecomCenterTradePartnerHasBeenFoundText: ; unreferenced
 	text "Thank you for your"
 	line "patience."
 
@@ -285,7 +285,7 @@ UnknownText_0x6145c: ; unreferenced
 	line "has been found."
 	done
 
-UnknownText_0x6149a: ; unreferenced
+GoldenrodPokecomCenterItsYourNewPartnerText: ; unreferenced
 	text "It's your new"
 	line "partner."
 
@@ -296,7 +296,7 @@ UnknownText_0x6149a: ; unreferenced
 	line "again."
 	done
 
-UnknownText_0x614ed: ; unreferenced
+GoldenrodPokecomCenterYourPartyIsFullText: ; unreferenced
 	text "Uh-oh. Your party"
 	line "is already full."
 
@@ -305,7 +305,7 @@ UnknownText_0x614ed: ; unreferenced
 	cont "in your party."
 	done
 
-UnknownText_0x61544: ; unreferenced
+GoldenrodPokecomCenterNoTradePartnerFoundText: ; unreferenced
 	text "It's unfortunate,"
 	line "but no one has"
 
@@ -316,12 +316,12 @@ UnknownText_0x61544: ; unreferenced
 	line "your #MON back?"
 	done
 
-UnknownText_0x615a5: ; unreferenced
+GoldenrodPokecomCenterReturnedYourMonText: ; unreferenced
 	text "We have returned"
 	line "your #MON."
 	done
 
-UnknownText_0x615c2: ; unreferenced
+GoldenrodPokecomCenterYourMonIsLonelyText: ; unreferenced
 	text "It's unfortunate,"
 	line "but no one has"
 
@@ -338,18 +338,18 @@ UnknownText_0x615c2: ; unreferenced
 	line "return it to you."
 	done
 
-UnknownText_0x6166e: ; unreferenced
+GoldenrodPokecenter1FWeHopeToSeeYouAgainText_2: ; unreferenced
 	text "We hope to see you"
 	line "again."
 	done
 
-UnknownText_0x61689: ; unreferenced
+GoldenrodPokecomCenterContinueToHoldYourMonText: ; unreferenced
 	text "Fine. We will"
 	line "continue to hold"
 	cont "your #MON."
 	done
 
-UnknownText_0x616b4: ; unreferenced
+GoldenrodPokecomCenterRecentlyLeftYourMonText: ; unreferenced
 	text "Oh? You left your"
 	line "#MON with us"
 	cont "only recently."
@@ -358,23 +358,23 @@ UnknownText_0x616b4: ; unreferenced
 	line "later."
 	done
 
-UnknownText_0x616fb: ; unreferenced
+GoldenrodPokecomCenterSaveBeforeTradeCornetText: ; unreferenced
 	text "We'll SAVE before"
 	line "connecting to the"
 	cont "CENTER."
 	done
 
-UnknownText_0x61727: ; unreferenced
+GoldenrodPokecomCenterWhichMonToTradeText: ; unreferenced
 	text "Which #MON do"
 	line "you want to trade?"
 	done
 
-UnknownText_0x61749: ; unreferenced
+GoldenrodPokecomCenterTradeCanceledText: ; unreferenced
 	text "Sorry, but we must"
 	line "cancel the trade."
 	done
 
-UnknownText_0x6176f: ; unreferenced
+GoldenrodPokecomCenterEggTicketText: ; unreferenced
 	text "Oh!"
 
 	para "I see you have an"
@@ -387,7 +387,7 @@ UnknownText_0x6176f: ; unreferenced
 	line "special #MON!"
 	done
 
-UnknownText_0x617d2: ; unreferenced
+GoldenrodPokecomCenterOddEggBriefingText: ; unreferenced
 	text "Let me give you a"
 	line "quick briefing."
 
@@ -420,12 +420,12 @@ UnknownText_0x617d2: ; unreferenced
 	line "chosen room."
 	done
 
-UnknownText_0x6191f: ; unreferenced
+GoldenrodPokecomCenterPleaseWaitAMomentText: ; unreferenced
 	text "Please wait a"
 	line "moment."
 	done
 
-UnknownText_0x61936: ; unreferenced
+GoldenrodPokecomCenterHereIsYourOddEggText: ; unreferenced
 	text "Thank you for"
 	line "waiting."
 
@@ -438,7 +438,7 @@ UnknownText_0x61936: ; unreferenced
 	line "with loving care."
 	done
 
-UnknownText_0x61996: ; unreferenced
+GoldenrodPokecomCenterNoEggTicketServiceText: ; unreferenced
 	text "I'm awfully sorry."
 
 	para "The EGG TICKET"
@@ -446,17 +446,17 @@ UnknownText_0x61996: ; unreferenced
 	cont "isn't running now."
 	done
 
-UnknownText_0x619db: ; unreferenced
+GoldenrodPokecomCenterNewsMachineText: ; unreferenced
 	text "It's a #MON"
 	line "NEWS MACHINE."
 	done
 
-UnknownText_0x619f5: ; unreferenced
+GoldenrodPokecomCenterWhatToDoText: ; unreferenced
 	text "What would you"
 	line "like to do?"
 	done
 
-UnknownText_0x61a11: ; unreferenced
+GoldenrodPokecomCenterNewsMachineExplanationText: ; unreferenced
 	text "#MON NEWS is"
 	line "news compiled from"
 
@@ -491,22 +491,22 @@ UnknownText_0x61a11: ; unreferenced
 	line "in the NEWS!"
 	done
 
-UnknownText_0x61b7c: ; unreferenced
+GoldenrodPokecomCenterWouldYouLikeTheNewsText: ; unreferenced
 	text "Would you like to"
 	line "get the NEWS?"
 	done
 
-UnknownText_0x61b9d: ; unreferenced
+GoldenrodPokecomCenterReadingTheLatestNewsText: ; unreferenced
 	text "Reading the latest"
 	line "NEWS… Please wait."
 	done
 
-UnknownText_0x61bc4: ; unreferenced
+GoldenrodPokecomCenterNoOldNewsText: ; unreferenced
 	text "There is no old"
 	line "NEWS…"
 	done
 
-UnknownText_0x61bdb: ; unreferenced
+GoldenrodPokecomCenterCorruptedNewsDataText: ; unreferenced
 	text "The NEWS data is"
 	line "corrupted."
 
@@ -514,7 +514,7 @@ UnknownText_0x61bdb: ; unreferenced
 	line "the NEWS again."
 	done
 
-UnknownText_0x61c18: ; unreferenced
+GoldenrodPokecomCenterMakingPreparationsText: ; unreferenced
 	text "We're making"
 	line "preparations."
 
@@ -522,7 +522,7 @@ UnknownText_0x61c18: ; unreferenced
 	line "later."
 	done
 
-UnknownText_0x61c4b: ; unreferenced
+GoldenrodPokecomCenterSaveBeforeNewsMachineText: ; unreferenced
 	text "We will SAVE your"
 	line "progress before"
 
@@ -530,7 +530,7 @@ UnknownText_0x61c4b: ; unreferenced
 	line "MACHINE."
 	done
 
-UnknownText_0x61c89: ; unreferenced
+GoldenrodPokecomCenterPerson1Text: ; unreferenced
 	text "Whoa, this #MON"
 	line "CENTER is huge."
 
@@ -541,7 +541,7 @@ UnknownText_0x61c89: ; unreferenced
 	line "new machines too."
 	done
 
-UnknownText_0x61cef: ; unreferenced
+GoldenrodPokecomCenterPerson2Text: ; unreferenced
 	text "I thought up a fun"
 	line "new thing for the"
 	cont "TRADE CORNER!"
@@ -569,7 +569,7 @@ UnknownText_0x61cef: ; unreferenced
 	line "friends!"
 	done
 
-UnknownText_0x61dfd: ; unreferenced
+GoldenrodPokecomCenterPerson3Text: ; unreferenced
 	text "They said you can"
 	line "trade #MON with"
 
@@ -580,7 +580,7 @@ UnknownText_0x61dfd: ; unreferenced
 	line "adjusting things."
 	done
 
-UnknownText_0x61e5c: ; unreferenced
+GoldenrodPokecomCenterPerson4Text: ; unreferenced
 	text "Some girl I don't"
 	line "know sent me her"
 
@@ -591,7 +591,7 @@ UnknownText_0x61e5c: ; unreferenced
 	line "you want."
 	done
 
-UnknownText_0x61eb2: ; unreferenced
+GoldenrodPokecomCenterPerson5Text: ; unreferenced
 	text "I received a"
 	line "female HOPPIP, but"
 	cont "its named STANLEY!"
@@ -600,7 +600,7 @@ UnknownText_0x61eb2: ; unreferenced
 	line "name!"
 	done
 
-UnknownText_0x61efa: ; unreferenced
+GoldenrodPokecomCenterPerson6Text: ; unreferenced
 	text "What is the NEWS"
 	line "MACHINE?"
 
@@ -609,7 +609,7 @@ UnknownText_0x61efa: ; unreferenced
 	cont "than the radio?"
 	done
 
-UnknownText_0x61f48: ; unreferenced
+GoldenrodPokecomCenterPerson7Text: ; unreferenced
 	text "The #COM CENTER"
 	line "will link with all"
 
@@ -623,7 +623,7 @@ UnknownText_0x61f48: ; unreferenced
 	line "sorts of people."
 	done
 
-UnknownText_0x61fc9: ; unreferenced
+GoldenrodPokecomCenterPerson8Text: ; unreferenced
 	text "The machines here"
 	line "can't be used yet."
 
@@ -634,7 +634,7 @@ UnknownText_0x61fc9: ; unreferenced
 	line "people."
 	done
 
-UnknownText_0x6202c: ; unreferenced
+GoldenrodPokecomCenterPerson9Text: ; unreferenced
 	text "My friend was in"
 	line "the NEWS a while"
 
@@ -642,13 +642,13 @@ UnknownText_0x6202c: ; unreferenced
 	line "surprised!"
 	done
 
-UnknownText_0x6206d: ; unreferenced
+GoldenrodPokecomCenterPerson10Text: ; unreferenced
 	text "I get anxious if I"
 	line "don't check out"
 	cont "the latest NEWS!"
 	done
 
-UnknownText_0x620a1: ; unreferenced
+GoldenrodPokecomCenterPerson11Text: ; unreferenced
 	text "If I get in the"
 	line "NEWS and become"
 
@@ -672,7 +672,7 @@ GoldenrodPokecenter1FGameboyKidText:
 	line "afford to lose."
 	done
 
-UnknownText_0x62173: ; unreferenced
+GoldenrodPokecomCenterPerson12Text: ; unreferenced
 	text "I came over here"
 	line "when I got word"
 
@@ -690,7 +690,7 @@ UnknownText_0x62173: ; unreferenced
 	line "preparations…"
 	done
 
-UnknownText_0x62222: ; unreferenced
+GoldenrodPokecomCenterPerson13Text: ; unreferenced
 	text "Just seeing all"
 	line "these new things"
 
@@ -731,7 +731,7 @@ GoldenrodPokeCenter1FLinkReceptionistPleaseDoComeAgainText:
 	line "again!"
 	done
 
-UnknownText_0x62370: ; unreferenced
+GoldenrodPokecomCenterSignText: ; unreferenced
 	text "#COM CENTER"
 	line "1F INFORMATION"
 
@@ -745,7 +745,7 @@ UnknownText_0x62370: ; unreferenced
 	line "#MON NEWS"
 	done
 
-UnknownText_0x623c7: ; unreferenced
+GoldenrodPokecomCenterNewsMachineNotYetText: ; unreferenced
 	text "It's a #MON"
 	line "NEWS MACHINE!"
 
