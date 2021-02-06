@@ -66,9 +66,7 @@ BattleCommand_Teleport:
 	srl b
 	srl b
 	cp b
-	; This should be jr c, .failed
-	; As written, it makes enemy use of Teleport always succeed if able
-	jr nc, .run_away
+	jr c, .failed
 .run_away
 	call UpdateBattleMonInParty
 	xor a
