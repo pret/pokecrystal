@@ -80,6 +80,8 @@ Credits::
 	push af
 	ld a, $5
 	ldh [hVBlank], a
+	ldh a, [hInMenu]
+	push af
 	ld a, TRUE
 	ldh [hInMenu], a
 	xor a
@@ -102,6 +104,8 @@ Credits::
 	xor a
 	ldh [hLCDCPointer], a
 	ldh [hBGMapAddress], a
+	pop af
+	ldh [hInMenu], a
 	pop af
 	ldh [hVBlank], a
 	pop af

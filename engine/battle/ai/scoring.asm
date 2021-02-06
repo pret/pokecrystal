@@ -1667,7 +1667,7 @@ AI_Smart_Thief:
 AI_Smart_Conversion2:
 	ld a, [wLastPlayerMove]
 	and a
-	jr nz, .discourage ; should be jr z
+	jr z, .discourage
 
 	push hl
 	dec a
@@ -1743,9 +1743,8 @@ AI_Smart_MeanLook:
 	pop hl
 	jp z, AIDiscourageMove
 
-; 80% chance to greatly encourage this move if the enemy is badly poisoned (buggy).
-; Should check wPlayerSubStatus5 instead.
-	ld a, [wEnemySubStatus5]
+; 80% chance to greatly encourage this move if the enemy is badly poisoned.
+	ld a, [wPlayerSubStatus5]
 	bit SUBSTATUS_TOXIC, a
 	jr nz, .encourage
 
