@@ -1667,7 +1667,7 @@ AI_Smart_Thief:
 AI_Smart_Conversion2:
 	ld a, [wLastPlayerMove]
 	and a
-	jr nz, .discourage ; should be jr z
+	jr z, .discourage
 
 	push hl
 	dec a
