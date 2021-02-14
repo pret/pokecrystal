@@ -57,6 +57,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Wild Pokémon can always Teleport regardless of level difference](#wild-pokémon-can-always-teleport-regardless-of-level-difference)
   - [`HELD_CATCH_CHANCE` has no effect](#held_catch_chance-has-no-effect)
   - [Credits sequence changes move selection menu behavior](#credits-sequence-changes-move-selection-menu-behavior)
+  - [AI doesn't register Future Sight as redundant move](#ai-doesnt-register-future-sight-as-redundant-move)
 - [Overworld engine](#overworld-engine)
   - [`LoadMetatiles` wraps around past 128 blocks](#loadmetatiles-wraps-around-past-128-blocks)
   - [Surfing directly across a map connection does not load the new map](#surfing-directly-across-a-map-connection-does-not-load-the-new-map)
@@ -1322,6 +1323,22 @@ The `[hInMenu]` value determines this button behavior. However, the battle moves
 +	pop af
 +	ldh [hInMenu], a
  	ret
+```
+
+
+### AI doesn't register Future Sight as redundant move
+
+There's a bug in the routine which checks the AI's redundant moves. Since it never deems Future Sight redundant, the AI might use it again even though it has already been used (e.g. the turn before), and thus the move will fail.
+
+**Fix:** Edit `AI_Redundant` in [engine/battle/ai/redundant.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/redundant.asm)
+
+```diff
+.FutureSight:
+-	ld a, [wEnemyScreens]
+-	bit 5, a
++	ld a, [wEnemyFutureSightCount]
++	and a
+	ret
 ```
 
 
