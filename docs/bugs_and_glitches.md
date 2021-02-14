@@ -1330,7 +1330,7 @@ The `[hInMenu]` value determines this button behavior. However, the battle moves
 
 There's a bug in the routine which checks the AI's redundant moves. Since it never deems Future Sight redundant, the AI might use it again even though it has already been used (e.g. the turn before), and thus the move will fail.
 
-**Fix:** Edit `AI_Redundant` in [engine/battle/ai/redundant.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/redundant.asm)
+**Fix:** Edit `AI_Redundant` in [engine/battle/ai/redundant.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/redundant.asm):
 
 ```diff
 .FutureSight:
