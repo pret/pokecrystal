@@ -128,8 +128,8 @@
 00:0827 Serial_ExchangeByte.short_delay_loop
 00:082b CheckLinkTimeoutFramesNonzero
 00:0833 SerialDisconnected
-00:083b Serial_ExchangeLinkMenuSelection
-00:0847 Serial_ExchangeLinkMenuSelection.exchange
+00:083b Serial_ExchangeSyncBytes
+00:0847 Serial_ExchangeSyncBytes.exchange
 00:0862 Serial_PrintWaitingTextAndSyncAndExchangeNybble
 00:0871 Serial_SyncAndExchangeNybble
 00:087d WaitLinkTransfer
@@ -47404,8 +47404,10 @@
 00:cf42 wcf42
 00:cf44 wcf44
 00:cf45 wcf45
+00:cf51 wLinkReceivedSyncBuffer
 00:cf51 wOtherPlayerLinkMode
 00:cf52 wOtherPlayerLinkAction
+00:cf56 wLinkPlayerSyncBuffer
 00:cf56 wPlayerLinkAction
 00:cf57 wUnusedLinkAction
 00:cf5b wLinkTimeoutFrames
