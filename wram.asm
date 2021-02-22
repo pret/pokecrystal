@@ -1357,12 +1357,17 @@ wTileAnimBuffer:: ds 1 tiles
 ENDU
 
 ; link data
+UNION
 wOtherPlayerLinkMode:: db
 wOtherPlayerLinkAction:: db
 	ds 3
 wPlayerLinkAction:: db
 wUnusedLinkAction:: db
 	ds 3
+NEXTU
+wLinkReceivedSyncBuffer:: ds 5
+wLinkPlayerSyncBuffer:: ds 5
+ENDU
 wLinkTimeoutFrames:: dw
 wLinkByteTimeout:: dw
 
