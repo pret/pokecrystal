@@ -51,6 +51,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Glacier Badge may not boost Special Defense depending on the value of Special Attack](#glacier-badge-may-not-boost-special-defense-depending-on-the-value-of-special-attack)
   - ["Smart" AI encourages Mean Look if its own Pokémon is badly poisoned](#smart-ai-encourages-mean-look-if-its-own-pokémon-is-badly-poisoned)
   - ["Smart" AI discourages Conversion2 after the first turn](#smart-ai-discourages-conversion2-after-the-first-turn)
+  - [AI does not discourage Future Sight when it's already been used](#ai-does-not-discourage-future-sight-when-its-already-been-used)
   - [AI makes a false assumption about `CheckTypeMatchup`](#ai-makes-a-false-assumption-about-checktypematchup)
   - [AI use of Full Heal or Full Restore does not cure Nightmare status](#ai-use-of-full-heal-or-full-restore-does-not-cure-nightmare-status)
   - [AI use of Full Heal does not cure confusion status](#ai-use-of-full-heal-does-not-cure-confusion-status)
@@ -1109,6 +1110,20 @@ As Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") impli
  	and a
 -	jr nz, .discourage ; should be jr z
 +	jr z, .discourage
+```
+
+
+### AI does not discourage Future Sight when it's already been used
+
+**Fix:** Edit `AI_Redundant` in [engine/battle/ai/redundant.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/redundant.asm):
+
+```diff
+ .FutureSight:
+-	ld a, [wEnemyScreens]
+-	bit 5, a
++	ld a, [wEnemyFutureSightCount]
++	and a
+ 	ret
 ```
 
 
