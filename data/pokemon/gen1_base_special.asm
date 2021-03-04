@@ -1,6 +1,7 @@
 ; The original base Special stat for each Pokémon from Red/Blue
 
 KantoMonSpecials:
+	table_width 1, KantoMonSpecials
 	db  65 ; BULBASAUR
 	db  80 ; IVYSAUR
 	db 100 ; VENUSAUR
@@ -152,3 +153,4 @@ KantoMonSpecials:
 	db 100 ; DRAGONITE
 	db 154 ; MEWTWO
 	db 100 ; MEW
+	assert_table_length JOHTO_POKEMON - 1

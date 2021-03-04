@@ -1,4 +1,5 @@
 UnownFramesPointers:
+	table_width 2, UnownFramesPointers
 	dw UnownAFrames
 	dw UnownBFrames
 	dw UnownCFrames
@@ -25,3 +26,4 @@ UnownFramesPointers:
 	dw UnownXFrames
 	dw UnownYFrames
 	dw UnownZFrames
+	assert_table_length NUM_UNOWN

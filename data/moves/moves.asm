@@ -11,7 +11,8 @@ move: MACRO
 ENDM
 
 Moves:
-; entries correspond to constants/move_constants.asm
+; entries correspond to move ids (see constants/move_constants.asm)
+	table_width MOVE_LENGTH, Moves
 	move POUND,        EFFECT_NORMAL_HIT,         40, NORMAL,       100, 35,   0
 	move KARATE_CHOP,  EFFECT_NORMAL_HIT,         50, FIGHTING,     100, 25,   0
 	move DOUBLESLAP,   EFFECT_MULTI_HIT,          15, NORMAL,        85, 10,   0
@@ -263,3 +264,4 @@ Moves:
 	move ROCK_SMASH,   EFFECT_DEFENSE_DOWN_HIT,   20, FIGHTING,     100, 15,  50
 	move WHIRLPOOL,    EFFECT_TRAP_TARGET,        15, WATER,         70, 15,   0
 	move BEAT_UP,      EFFECT_BEAT_UP,            10, DARK,         100, 10,   0
+	assert_table_length NUM_ATTACKS

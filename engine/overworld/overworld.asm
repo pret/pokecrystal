@@ -636,7 +636,7 @@ endr
 LoadEmote::
 ; Get the address of the pointer to emote c.
 	ld a, c
-	ld bc, 6 ; sizeof(emote)
+	ld bc, EMOTE_LENGTH
 	ld hl, Emotes
 	call AddNTimes
 ; Load the emote address into de

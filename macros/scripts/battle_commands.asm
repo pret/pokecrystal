@@ -180,6 +180,7 @@ ENDM
 	command supereffectivelooptext  ; ad
 	command startloop               ; ae
 	command curl                    ; af
+NUM_EFFECT_COMMANDS EQU const_value - 1
 
 	const_def -1, -1
 	command endmove                 ; ff

@@ -6,7 +6,7 @@ NUM_PAL_COLORS EQU 4
 PAL_COLOR_SIZE EQU 2
 PALETTE_SIZE EQU NUM_PAL_COLORS * PAL_COLOR_SIZE
 
-PALRGB_WHITE EQUS "palred 31 + palgreen 31 + palblue 31" ; $7fff
+PALRGB_WHITE EQU palred 31 + palgreen 31 + palblue 31 ; $7fff
 
 SCREEN_WIDTH  EQU 20 ; tiles
 SCREEN_HEIGHT EQU 18 ; tiles

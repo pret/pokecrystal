@@ -1,4 +1,5 @@
 AnimationIdlePointers:
+	table_width 2, AnimationIdlePointers
 	dw BulbasaurAnimationIdle
 	dw IvysaurAnimationIdle
 	dw VenusaurAnimationIdle
@@ -250,3 +251,4 @@ AnimationIdlePointers:
 	dw LugiaAnimationIdle
 	dw HoOhAnimationIdle
 	dw CelebiAnimationIdle
+	assert_table_length NUM_POKEMON

@@ -12,7 +12,8 @@ _DoItemEffect::
 	ret
 
 ItemEffects:
-; entries correspond to item ids
+; entries correspond to item ids (see constants/item_constants.asm)
+	table_width 2, ItemEffects
 	dw PokeBallEffect      ; MASTER_BALL
 	dw PokeBallEffect      ; ULTRA_BALL
 	dw NoEffect            ; BRIGHTPOWDER
@@ -192,6 +193,21 @@ ItemEffects:
 	dw PokeBallEffect      ; PARK_BALL
 	dw NoEffect            ; RAINBOW_WING
 	dw NoEffect            ; ITEM_B3
+	assert_table_length ITEM_B3
+; The items past ITEM_B3 do not have effect entries:
+;	BRICK_PIECE
+;	SURF_MAIL
+;	LITEBLUEMAIL
+;	PORTRAITMAIL
+;	LOVELY_MAIL
+;	EON_MAIL
+;	MORPH_MAIL
+;	BLUESKY_MAIL
+;	MUSIC_MAIL
+;	MIRAGE_MAIL
+;	ITEM_BE
+; They all have the ITEMMENU_NOUSE attribute so they can't be used anyway.
+; NoEffect would be appropriate, with the table then being NUM_ITEMS long.
 
 PokeBallEffect:
 	ld a, [wBattleMode]

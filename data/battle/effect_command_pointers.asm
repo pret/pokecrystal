@@ -4,6 +4,7 @@
 
 BattleCommandPointers:
 ; entries correspond to macros/scripts/battle_commands.asm
+	table_width 2, BattleCommandPointers
 	dw BattleCommand_CheckTurn
 	dw BattleCommand_CheckObedience
 	dw BattleCommand_UsedMoveText
@@ -179,3 +180,4 @@ BattleCommandPointers:
 	dw BattleCommand_SuperEffectiveLoopText
 	dw BattleCommand_StartLoop
 	dw BattleCommand_Curl
+	assert_table_length NUM_EFFECT_COMMANDS

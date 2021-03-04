@@ -1,5 +1,6 @@
 TrainerClassAttributes:
 ; entries correspond to trainer classes (see constants/trainer_constants.asm)
+	table_width NUM_TRAINER_ATTRIBUTES, TrainerClassAttributes
 
 ; Falkner
 	db NO_ITEM, NO_ITEM ; items
@@ -402,3 +403,5 @@ TrainerClassAttributes:
 	db 25 ; base reward
 	dw AI_BASIC | AI_SETUP | AI_SMART | AI_AGGRESSIVE | AI_CAUTIOUS | AI_STATUS | AI_RISKY
 	dw CONTEXT_USE | SWITCH_SOMETIMES
+
+	assert_table_length NUM_TRAINER_CLASSES

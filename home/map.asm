@@ -2285,12 +2285,12 @@ LoadMapTileset::
 	push bc
 
 	ld hl, Tilesets
-	ld bc, wTilesetEnd - wTileset
+	ld bc, TILESET_LENGTH
 	ld a, [wMapTileset]
 	call AddNTimes
 
 	ld de, wTilesetBank
-	ld bc, wTilesetEnd - wTileset
+	ld bc, TILESET_LENGTH
 
 	ld a, BANK(Tilesets)
 	call FarCopyBytes

@@ -3,6 +3,7 @@
 
 OutdoorSprites:
 ; entries correspond to map groups
+	table_width 2, OutdoorSprites
 	dw OlivineGroupSprites
 	dw MahoganyGroupSprites
 	dw DungeonsGroupSprites
@@ -29,6 +30,7 @@ OutdoorSprites:
 	dw NewBarkGroupSprites
 	dw SaffronGroupSprites
 	dw CherrygroveGroupSprites
+	assert_table_length NUM_MAP_GROUPS
 
 PalletGroupSprites:
 	db SPRITE_SUICUNE

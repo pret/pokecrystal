@@ -523,7 +523,8 @@ StepFunction_FromMovement:
 	ret
 
 .Pointers:
-; entries correspond to SPRITEMOVEFN_* constants
+; entries correspond to SPRITEMOVEFN_* constants (see constants/map_object_constants.asm)
+	table_width 2, StepFunction_FromMovement.Pointers
 	dw MovementFunction_Null                 ; 00
 	dw MovementFunction_RandomWalkY          ; 01
 	dw MovementFunction_RandomWalkX          ; 02
@@ -552,6 +553,7 @@ StepFunction_FromMovement:
 	dw MovementFunction_SpinCounterclockwise ; 19
 	dw MovementFunction_BoulderDust          ; 1a
 	dw MovementFunction_ShakingGrass         ; 1b
+	assert_table_length NUM_SPRITEMOVEFN
 
 MovementFunction_Null:
 	ret
@@ -1085,7 +1087,8 @@ _SetRandomStepDuration:
 	ret
 
 StepTypesJumptable:
-; entries correspond to STEP_TYPE_* constants
+; entries correspond to STEP_TYPE_* constants (see constants/map_object_constants.asm)
+	table_width 2, StepTypesJumptable
 	dw StepFunction_Reset           ; 00
 	dw StepFunction_FromMovement    ; 01
 	dw StepFunction_NPCWalk         ; 02
@@ -1112,6 +1115,7 @@ StepTypesJumptable:
 	dw StepFunction_17              ; 17
 	dw StepFunction_Delete          ; 18
 	dw StepFunction_SkyfallTop      ; 19
+	assert_table_length NUM_STEP_TYPES
 
 WaitStep_InPlace:
 	ld hl, OBJECT_STEP_DURATION

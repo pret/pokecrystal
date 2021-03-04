@@ -1,6 +1,7 @@
 ; party menu icons
 
 MonMenuIcons:
+	table_width 1, MonMenuIcons
 	db ICON_BULBASAUR   ; BULBASAUR
 	db ICON_BULBASAUR   ; IVYSAUR
 	db ICON_BULBASAUR   ; VENUSAUR
@@ -252,3 +253,4 @@ MonMenuIcons:
 	db ICON_LUGIA       ; LUGIA
 	db ICON_HO_OH       ; HO_OH
 	db ICON_HUMANSHAPE  ; CELEBI
+	assert_table_length NUM_POKEMON

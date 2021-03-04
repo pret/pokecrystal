@@ -9,7 +9,8 @@ ENDM
 
 UnownWords:
 ; entries correspond to UNOWN_* form constants
-	dw UnownWordA
+	table_width 2, UnownWords
+	dw UnownWordA ; unused
 	dw UnownWordA
 	dw UnownWordB
 	dw UnownWordC
@@ -36,6 +37,7 @@ UnownWords:
 	dw UnownWordX
 	dw UnownWordY
 	dw UnownWordZ
+	assert_table_length NUM_UNOWN + 1
 
 UnownWordA: unownword "ANGRY"
 UnownWordB: unownword "BEAR"

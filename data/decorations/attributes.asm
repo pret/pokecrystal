@@ -1,5 +1,5 @@
 decoration: MACRO
-	; type, name, command, event flag, tile/sprite
+	; type, name, action, event flag, tile/sprite
 	db \1, \2, \3
 	dw \4
 	db \5
@@ -7,6 +7,7 @@ ENDM
 
 DecorationAttributes:
 ; entries correspond to deco constants
+	table_width DECOATTR_STRUCT_LENGTH, DecorationAttributes
 	decoration DECO_PLANT,   0,               0,                 EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1, 0
 	decoration DECO_PLANT,   PUT_IT_AWAY,     PUT_AWAY_BED,      EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1, 0
 	decoration DECO_BED,     FEATHERY_BED,    SET_UP_BED,        EVENT_DECO_BED_1,                   $1b
@@ -60,3 +61,4 @@ DecorationAttributes:
 	decoration DECO_DOLL,    TENTACOOL,       SET_UP_DOLL,       EVENT_DECO_TENTACOOL_DOLL,          SPRITE_TENTACOOL
 	decoration DECO_PLANT,   GOLD_TROPHY,     SET_UP_DOLL,       EVENT_DECO_GOLD_TROPHY,             SPRITE_GOLD_TROPHY
 	decoration DECO_PLANT,   SILVER_TROPHY,   SET_UP_DOLL,       EVENT_DECO_SILVER_TROPHY,           SPRITE_SILVER_TROPHY
+	assert_table_length NUM_DECOS + NUM_DECO_CATEGORIES + 1

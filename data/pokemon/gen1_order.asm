@@ -1,4 +1,5 @@
 Pokered_MonIndices:
+	table_width 1, Pokered_MonIndices
 	db RHYDON
 	db KANGASKHAN
 	db NIDORAN_M
@@ -189,7 +190,7 @@ Pokered_MonIndices:
 	db BELLSPROUT
 	db WEEPINBELL
 	db VICTREEBEL
-
+	assert_table_length 190 ; gen 1 mon indexes
 	db CHIKORITA
 	db BAYLEEF
 	db MEGANIUM
@@ -252,3 +253,4 @@ Pokered_MonIndices:
 	db QWILFISH
 	db WOBBUFFET
 	db WOBBUFFET
+	assert_table_length NUM_POKEMON + 1

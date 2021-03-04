@@ -1,5 +1,4 @@
 DoPlayerMovement::
-
 	call .GetDPad
 	ld a, movement_step_sleep
 	ld [wMovementAnimation], a
@@ -12,7 +11,6 @@ DoPlayerMovement::
 	ret
 
 .GetDPad:
-
 	ldh a, [hJoyDown]
 	ld [wCurInput], a
 
@@ -469,7 +467,8 @@ DoPlayerMovement::
 	ret
 
 .Steps:
-; entries correspond to STEP_* constants
+; entries correspond to STEP_* constants (see constants/map_object_constants.asm)
+	table_width 2, DoPlayerMovement.Steps
 	dw .SlowStep
 	dw .NormalStep
 	dw .FastStep
@@ -478,6 +477,7 @@ DoPlayerMovement::
 	dw .TurningStep
 	dw .BackJumpStep
 	dw .FinishFacing
+	assert_table_length NUM_STEPS
 
 .SlowStep:
 	slow_step DOWN

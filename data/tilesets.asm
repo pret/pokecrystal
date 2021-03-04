@@ -11,7 +11,8 @@ ENDM
 ; - The *Anim are defined in engine/tilesets/tileset_anims.asm
 
 Tilesets::
-; entries correspond to TILESET_* constants
+; entries correspond to TILESET_* constants (see constants/tileset_constants.asm)
+	table_width TILESET_LENGTH, Tilesets
 	tileset Tileset0
 	tileset TilesetJohto
 	tileset TilesetJohtoModern
@@ -49,3 +50,4 @@ Tilesets::
 	tileset TilesetKabutoWordRoom
 	tileset TilesetOmanyteWordRoom
 	tileset TilesetAerodactylWordRoom
+	assert_table_length NUM_TILESETS + 1

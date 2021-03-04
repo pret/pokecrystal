@@ -247,7 +247,7 @@ CheckSpecialPhoneCall::
 	ld c, a
 	ld b, 0
 	ld hl, SpecialPhoneCallList
-	ld a, 6
+	ld a, SPECIALCALL_SIZE
 	call AddNTimes
 	ld a, [hli]
 	ld h, [hl]
@@ -291,7 +291,7 @@ CheckSpecialPhoneCall::
 	ld c, a
 	ld b, 0
 	ld hl, SpecialPhoneCallList
-	ld a, 6
+	ld a, SPECIALCALL_SIZE
 	call AddNTimes
 	ret
 

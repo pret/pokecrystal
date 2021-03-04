@@ -6,6 +6,7 @@ ENDM
 
 OverworldSprites:
 ; entries correspond to SPRITE_* constants
+	table_width NUM_SPRITEDATA_FIELDS, OverworldSprites
 	overworld_sprite ChrisSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite ChrisBikeSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite GameboyKidSpriteGFX, 12, STANDING_SPRITE, PAL_OW_GREEN
@@ -108,3 +109,4 @@ OverworldSprites:
 	overworld_sprite EnteiSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
 	overworld_sprite RaikouSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
 	overworld_sprite StandingYoungsterSpriteGFX, 12, STANDING_SPRITE, PAL_OW_BLUE
+	assert_table_length NUM_OVERWORLD_SPRITES

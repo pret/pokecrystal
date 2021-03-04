@@ -1,4 +1,5 @@
 AnimationPointers:
+	table_width 2, AnimationPointers
 	dw BulbasaurAnimation
 	dw IvysaurAnimation
 	dw VenusaurAnimation
@@ -250,3 +251,4 @@ AnimationPointers:
 	dw LugiaAnimation
 	dw HoOhAnimation
 	dw CelebiAnimation
+	assert_table_length NUM_POKEMON

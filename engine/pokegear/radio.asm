@@ -20,6 +20,7 @@ PlayRadioShow:
 
 RadioJumptable:
 ; entries correspond to constants/radio_constants.asm
+	table_width 2, RadioJumptable
 	dw OaksPKMNTalk1     ; $00
 	dw PokedexShow1      ; $01
 	dw BenMonMusic1      ; $02
@@ -31,6 +32,7 @@ RadioJumptable:
 	dw PokeFluteRadio    ; $08
 	dw UnownRadio        ; $09
 	dw EvolutionRadio    ; $0a
+	assert_table_length NUM_RADIO_CHANNELS
 ; OaksPKMNTalk
 	dw OaksPKMNTalk2     ; $0b
 	dw OaksPKMNTalk3     ; $0c
@@ -116,6 +118,7 @@ RadioJumptable:
 	dw PokedexShow6      ; $55
 	dw PokedexShow7      ; $56
 	dw PokedexShow8      ; $57
+	assert_table_length NUM_RADIO_SEGMENTS
 
 PrintRadioLine:
 	ld [wNextRadioLine], a
@@ -193,10 +196,9 @@ OaksPKMNTalk4:
 ; Choose a random route, and a random Pokemon from that route.
 .sample
 	call Random
-	and %11111 ; maskbits NUM_OAKS_POKEMON_TALK_ROUTES would be more efficient
-	cp NUM_OAKS_POKEMON_TALK_ROUTES
+	and %11111
+	cp (OaksPKMNTalkRoutes.End - OaksPKMNTalkRoutes) / 2
 	jr nc, .sample
-	; We now have a number between 0 and NUM_OAKS_POKEMON_TALK_ROUTES - 1.
 	ld hl, OaksPKMNTalkRoutes
 	ld c, a
 	ld b, 0
@@ -347,7 +349,7 @@ OaksPKMNTalk8:
 	jp NextRadioLine
 
 .Adverbs:
-; there are NUM_OAKS_POKEMON_TALK_ADVERBS entries
+	table_width 2, OaksPKMNTalk8.Adverbs
 	dw .OPT_SweetAdorablyText
 	dw .OPT_WigglySlicklyText
 	dw .OPT_AptlyNamedText
@@ -364,6 +366,7 @@ OaksPKMNTalk8:
 	dw .OPT_ProvocativelyText
 	dw .OPT_FlippedOutText
 	dw .OPT_HeartMeltinglyText
+	assert_table_length NUM_OAKS_POKEMON_TALK_ADVERBS
 
 .OPT_SweetAdorablyText:
 	text_far _OPT_SweetAdorablyText
@@ -455,7 +458,7 @@ OaksPKMNTalk9:
 	jp NextRadioLine
 
 .Adjectives:
-; there are NUM_OAKS_POKEMON_TALK_ADJECTIVES entries
+	table_width 2, OaksPKMNTalk9.Adjectives
 	dw .OPT_CuteText
 	dw .OPT_WeirdText
 	dw .OPT_PleasantText
@@ -472,6 +475,7 @@ OaksPKMNTalk9:
 	dw .OPT_GuardedText
 	dw .OPT_LovelyText
 	dw .OPT_SpeedyText
+	assert_table_length NUM_OAKS_POKEMON_TALK_ADJECTIVES
 
 .OPT_CuteText:
 	text_far _OPT_CuteText
@@ -1090,7 +1094,7 @@ PeoplePlaces4: ; People
 	call Random
 	maskbits NUM_TRAINER_CLASSES
 	inc a
-	cp NUM_TRAINER_CLASSES - 1 ; omit MYSTICALMAN
+	cp NUM_TRAINER_CLASSES
 	jr nc, PeoplePlaces4
 	push af
 	ld hl, PnP_HiddenPeople
@@ -1154,7 +1158,7 @@ PeoplePlaces5:
 	jp NextRadioLine
 
 .Adjectives:
-; there are NUM_PNP_PEOPLE_ADJECTIVES entries
+	table_width 2, PeoplePlaces5.Adjectives
 	dw PnP_CuteText
 	dw PnP_LazyText
 	dw PnP_HappyText
@@ -1171,6 +1175,7 @@ PeoplePlaces5:
 	dw PnP_WeirdText
 	dw PnP_RightForMeText
 	dw PnP_OddText
+	assert_table_length NUM_PNP_PEOPLE_ADJECTIVES
 
 PnP_CuteText:
 	text_far _PnP_CuteText
@@ -1289,7 +1294,7 @@ PeoplePlaces7:
 	jp PrintRadioLine
 
 .Adjectives:
-; there are NUM_PNP_PLACES_ADJECTIVES entries
+	table_width 2, PeoplePlaces7.Adjectives
 	dw PnP_CuteText
 	dw PnP_LazyText
 	dw PnP_HappyText
@@ -1306,6 +1311,7 @@ PeoplePlaces7:
 	dw PnP_WeirdText
 	dw PnP_RightForMeText
 	dw PnP_OddText
+	assert_table_length NUM_PNP_PLACES_ADJECTIVES
 
 RocketRadio1:
 	call StartRadioStation
