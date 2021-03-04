@@ -1,12 +1,11 @@
 ; decoration attributes
-	const_def
-	const DECOATTR_TYPE
-	const DECOATTR_NAME
-	const DECOATTR_ACTION
-	const DECOATTR_EVENT_FLAG
-	const_skip ; high DECOATTR_EVENT_FLAG byte
-	const DECOATTR_SPRITE
-DECOATTR_STRUCT_LENGTH EQU const_value
+rsreset
+DECOATTR_TYPE       rb
+DECOATTR_NAME       rb
+DECOATTR_ACTION     rb
+DECOATTR_EVENT_FLAG rw
+DECOATTR_SPRITE     rb
+DECOATTR_STRUCT_LENGTH EQU _RS
 
 ; decoration types
 	const_def 1

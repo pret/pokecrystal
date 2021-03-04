@@ -1,13 +1,15 @@
 ; item_attributes struct members (see data/items/attributes.asm)
-	const_def
-	const ITEMATTR_PRICE_LO
-	const ITEMATTR_PRICE_HI
-	const ITEMATTR_EFFECT
-	const ITEMATTR_PARAM
-	const ITEMATTR_PERMISSIONS
-	const ITEMATTR_POCKET
-	const ITEMATTR_HELP
-ITEMATTR_STRUCT_LENGTH EQU const_value
+rsreset
+ITEMATTR_PRICE       rw
+rsset ITEMATTR_PRICE
+ITEMATTR_PRICE_LO    rb
+ITEMATTR_PRICE_HI    rb
+ITEMATTR_EFFECT      rb
+ITEMATTR_PARAM       rb
+ITEMATTR_PERMISSIONS rb
+ITEMATTR_POCKET      rb
+ITEMATTR_HELP        rb
+ITEMATTR_STRUCT_LENGTH EQU _RS
 
 ; item types
 	const_def 1

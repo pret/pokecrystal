@@ -20,9 +20,9 @@ rsset BASE_ITEMS
 BASE_ITEM_1      rb
 BASE_ITEM_2      rb
 BASE_GENDER      rb
-BASE_UNKNOWN_1   rb
+                 rb_skip
 BASE_EGG_STEPS   rb
-BASE_UNKNOWN_2   rb
+                 rb_skip
 BASE_PIC_SIZE    rb
 BASE_FRONTPIC    rw
 BASE_BACKPIC     rw
@@ -98,7 +98,8 @@ MON_CAUGHTLEVEL        rb
 MON_CAUGHTLOCATION     rb
 MON_LEVEL              rb
 BOXMON_STRUCT_LENGTH EQU _RS
-MON_STATUS             rb 2
+MON_STATUS             rb
+                       rb_skip
 MON_HP                 rw
 MON_MAXHP              rw
 MON_ATK                rw

@@ -37,7 +37,8 @@ CHANNEL_FLAGS1                      rb
 CHANNEL_FLAGS2                      rb
 CHANNEL_FLAGS3                      rb
 CHANNEL_MUSIC_ADDRESS               rw
-CHANNEL_LAST_MUSIC_ADDRESS          rw 2
+CHANNEL_LAST_MUSIC_ADDRESS          rw
+                                    rb_skip 2
 CHANNEL_NOTE_FLAGS                  rb
 CHANNEL_CONDITION                   rb
 CHANNEL_DUTY_CYCLE                  rb
@@ -47,7 +48,8 @@ CHANNEL_PITCH                       rb
 CHANNEL_OCTAVE                      rb
 CHANNEL_TRANSPOSITION               rb
 CHANNEL_NOTE_DURATION               rb
-CHANNEL_FIELD16                     rb 2
+CHANNEL_FIELD16                     rb
+                                    rb_skip
 CHANNEL_LOOP_COUNT                  rb
 CHANNEL_TEMPO                       rw
 CHANNEL_TRACKS                      rb
@@ -59,7 +61,8 @@ CHANNEL_VIBRATO_RATE                rb
 CHANNEL_PITCH_SLIDE_TARGET          rw
 CHANNEL_PITCH_SLIDE_AMOUNT          rb
 CHANNEL_PITCH_SLIDE_AMOUNT_FRACTION rb
-CHANNEL_FIELD25                     rb 2
+CHANNEL_FIELD25                     rb
+                                    rb_skip
 CHANNEL_PITCH_OFFSET                rw
 CHANNEL_FIELD29                     rb
 CHANNEL_FIELD2A                     rw
@@ -67,7 +70,8 @@ CHANNEL_FIELD2C                     rb
 CHANNEL_NOTE_LENGTH                 rb
 CHANNEL_FIELD2E                     rb
 CHANNEL_FIELD2F                     rb
-CHANNEL_FIELD30                     rb 2
+CHANNEL_FIELD30                     rb
+                                    rb_skip
 CHANNEL_STRUCT_LENGTH EQU _RS
 
 NOISE_CHAN_F EQU 2 ; bit set in CHAN5-CHAN7
