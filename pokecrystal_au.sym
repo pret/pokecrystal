@@ -47567,14 +47567,14 @@
 01:d0ed wVramState
 01:d0ee wBattleResult
 01:d0ef wUsingItemWithSelect
+01:d0f0 wCurElevatorCount
 01:d0f0 wCurMessageScrollPosition
-01:d0f0 wCurElevator
-01:d0f0 wCurMart
+01:d0f0 wCurMartCount
 01:d0f1 wCurElevatorFloors
+01:d0f1 wCurMartItems
 01:d0f1 wCurMessageIndex
 01:d0f2 wMailboxCount
 01:d0f3 wMailboxItems
-01:d100 wCurMartEnd
 01:d100 wListPointer
 01:d102 wUnusedNamesPointer
 01:d104 wItemAttributesPointer
