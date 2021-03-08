@@ -31,7 +31,7 @@ InitBattleAnimation:
 	ld e, a
 	ld d, 0
 	ld hl, BattleAnimObjects
-rept 6
+rept BATTLEANIMOBJ_LENGTH
 	add hl, de
 endr
 	ld e, l

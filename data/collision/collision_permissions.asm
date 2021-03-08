@@ -1,5 +1,6 @@
 TileCollisionTable::
 ; entries correspond to COLL_* constants
+	table_width 1, TileCollisionTable
 	db LAND_TILE         ; COLL_FLOOR
 	db LAND_TILE         ; COLL_01
 	db LAND_TILE         ; 02
@@ -256,3 +257,4 @@ TileCollisionTable::
 	db LAND_TILE         ; fd
 	db LAND_TILE         ; fe
 	db WALL_TILE         ; COLL_FF
+	assert_table_length $100

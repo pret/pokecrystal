@@ -1,6 +1,7 @@
 BattleTowerTrainerData:: ; ???
 ; 70 tables (BATTLETOWER_NUM_UNIQUE_TRAINERS) of 18 two-argument entries (total size BATTLETOWER_TRAINERDATALENGTH).
 ; Second argument points to an entry in Unknown_170470, to which the first argument is compared.
+	table_width BATTLETOWER_TRAINERDATALENGTH, BattleTowerTrainerData
 
 ; BattleTowerTrainerData table 1:
 	db $37,  3
@@ -1401,3 +1402,5 @@ BattleTowerTrainerData:: ; ???
 	db $22,  7
 	db $d1,  0
 	db $32, 13
+
+	assert_table_length BATTLETOWER_NUM_UNIQUE_TRAINERS

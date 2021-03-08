@@ -49,6 +49,7 @@ GetBattleVarAddr::
 
 BattleVarPairs:
 ; entries correspond to BATTLE_VARS_* constants
+	table_width 2, BattleVarPairs
 	dw .Substatus1
 	dw .Substatus2
 	dw .Substatus3
@@ -70,6 +71,7 @@ BattleVarPairs:
 	dw .LastCounterOpp
 	dw .LastMove
 	dw .LastMoveOpp
+	assert_table_length NUM_BATTLE_VARS
 
 ;                   player                 enemy
 .Substatus1:     db PLAYER_SUBSTATUS_1,    ENEMY_SUBSTATUS_1
@@ -96,6 +98,7 @@ BattleVarPairs:
 
 BattleVarLocations:
 ; entries correspond to PLAYER_* and ENEMY_* constants
+	table_width 2 + 2, BattleVarLocations
 	dw wPlayerSubStatus1,          wEnemySubStatus1
 	dw wPlayerSubStatus2,          wEnemySubStatus2
 	dw wPlayerSubStatus3,          wEnemySubStatus3
@@ -109,3 +112,4 @@ BattleVarLocations:
 	dw wCurPlayerMove,             wCurEnemyMove
 	dw wLastPlayerCounterMove,     wLastEnemyCounterMove
 	dw wLastPlayerMove,            wLastEnemyMove
+	assert_table_length NUM_BATTLE_VAR_LOCATION_PAIRS

@@ -1,5 +1,6 @@
 BattleTowerMons:
 ; 10 groups (one per floor level) of 21 mons (BATTLETOWER_NUM_UNIQUE_MON).
+	table_width NICKNAMED_MON_STRUCT_LENGTH, BattleTowerMons
 
 ; BattleTowerMons group 1
 
@@ -5489,3 +5490,5 @@ BattleTowerMons:
 	bigdw 214 ; SAtk
 	bigdw 214 ; SDef
 	db "RANTA-N@@@@"
+
+	assert_table_length 10 * BATTLETOWER_NUM_UNIQUE_MON

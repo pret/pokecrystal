@@ -1,5 +1,5 @@
 BugCatchingContestantEventFlagTable:
-; there are NUM_BUG_CONTESTANTS entries
+	table_width 2, BugCatchingContestantEventFlagTable
 	dw EVENT_BUG_CATCHING_CONTESTANT_1A
 	dw EVENT_BUG_CATCHING_CONTESTANT_2A
 	dw EVENT_BUG_CATCHING_CONTESTANT_3A
@@ -10,3 +10,4 @@ BugCatchingContestantEventFlagTable:
 	dw EVENT_BUG_CATCHING_CONTESTANT_8A
 	dw EVENT_BUG_CATCHING_CONTESTANT_9A
 	dw EVENT_BUG_CATCHING_CONTESTANT_10A
+	assert_table_length NUM_BUG_CONTESTANTS

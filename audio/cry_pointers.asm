@@ -1,4 +1,6 @@
 Cries:
+; entries correspond to CRY_* constants (see constants/cry_constants.asm)
+	table_width 3, Cries
 	dba Cry_Nidoran_M
 	dba Cry_Nidoran_F
 	dba Cry_Slowpoke
@@ -67,3 +69,4 @@ Cries:
 	dba Cry_Aipom
 	dba Cry_Dunsparce
 	dba Cry_Donphan
+	assert_table_length NUM_CRIES

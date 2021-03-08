@@ -1,5 +1,5 @@
 BuenasPasswordTable:
-; there are NUM_PASSWORD_CATEGORIES entries
+	table_width 2, BuenasPasswordTable
 	dw .JohtoStarters
 	dw .Beverages
 	dw .HealingItems
@@ -11,6 +11,7 @@ BuenasPasswordTable:
 	dw .Moves
 	dw .XItems
 	dw .RadioStations
+	assert_table_length NUM_PASSWORD_CATEGORIES
 
                ; string type, points, option 1, option 2, option 3
 .JohtoStarters: db BUENA_MON,    10, CYNDAQUIL, TOTODILE, CHIKORITA

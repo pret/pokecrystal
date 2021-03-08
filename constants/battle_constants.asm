@@ -120,6 +120,7 @@ SPDSPCDV_SHINY EQU $AA
 	const BATTLE_VARS_LAST_COUNTER_MOVE_OPP
 	const BATTLE_VARS_LAST_MOVE
 	const BATTLE_VARS_LAST_MOVE_OPP
+NUM_BATTLE_VARS EQU const_value
 
 ; BattleVarLocations indexes (see home/battle.asm)
 	const_def
@@ -149,6 +150,8 @@ SPDSPCDV_SHINY EQU $AA
 	const ENEMY_COUNTER_MOVE
 	const PLAYER_LAST_MOVE
 	const ENEMY_LAST_MOVE
+assert const_value % 2 == 0
+NUM_BATTLE_VAR_LOCATION_PAIRS EQU const_value / 2
 
 ; status condition bit flags
 SLP EQU %111 ; 0-7 turns

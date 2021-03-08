@@ -25,6 +25,7 @@ CHRIS EQU __trainer_class__
 	const PHONECONTACT_BILL
 	const PHONECONTACT_ELM
 	const PHONECONTACT_BUENA
+NUM_NONTRAINER_PHONECONTACTS EQU const_value - 1
 
 KRIS EQU __trainer_class__
 	trainerclass FALKNER ; 1
@@ -702,4 +703,4 @@ KRIS EQU __trainer_class__
 	trainerclass MYSTICALMAN ; 43
 	const EUSINE
 
-NUM_TRAINER_CLASSES EQU __trainer_class__
+NUM_TRAINER_CLASSES EQU __trainer_class__ - 1

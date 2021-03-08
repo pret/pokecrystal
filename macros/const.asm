@@ -38,3 +38,11 @@ else
 const_value = \1
 endc
 ENDM
+
+rb_skip: MACRO
+if _NARG == 1
+rsset _RS + \1
+else
+rsset _RS + 1
+endc
+ENDM

@@ -2,6 +2,7 @@
 
 BTTrainerClassGenders:
 ; entries correspond to trainer classes
+	table_width 1, BTTrainerClassGenders
 	db MALE   ; FALKNER
 	db FEMALE ; WHITNEY
 	db FEMALE ; BUGSY
@@ -68,3 +69,4 @@ BTTrainerClassGenders:
 	db MALE   ; BLUE
 	db MALE   ; OFFICER
 	db FEMALE ; GRUNTF
+	assert_table_length NUM_TRAINER_CLASSES - 1 ; exclude MYSTICALMAN

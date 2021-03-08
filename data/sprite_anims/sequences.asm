@@ -1,5 +1,6 @@
 SpriteAnimSeqData:
-; entries correspond to SPRITE_ANIM_INDEX_* constants
+; entries correspond to SPRITE_ANIM_INDEX_* constants (see constants/sprite_anim_constants.asm)
+	table_width 3, SpriteAnimSeqData
 	; frameset, sequence, tile
 ; SPRITE_ANIM_INDEX_PARTY_MON
 	db SPRITE_ANIM_FRAMESET_PARTY_MON,                 SPRITE_ANIM_SEQ_PARTY_MON,                 SPRITE_ANIM_DICT_DEFAULT
@@ -91,3 +92,4 @@ SpriteAnimSeqData:
 	db SPRITE_ANIM_FRAMESET_INTRO_SUICUNE_AWAY,        SPRITE_ANIM_SEQ_INTRO_SUICUNE_AWAY,        SPRITE_ANIM_DICT_DEFAULT
 ; SPRITE_ANIM_INDEX_CELEBI
 	db SPRITE_ANIM_FRAMESET_CELEBI_LEFT,               SPRITE_ANIM_SEQ_NULL,                      SPRITE_ANIM_DICT_DEFAULT
+	assert_table_length NUM_SPRITE_ANIM_INDEXES

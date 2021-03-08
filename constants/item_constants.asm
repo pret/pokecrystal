@@ -196,6 +196,7 @@
 	const MUSIC_MAIL   ; bc
 	const MIRAGE_MAIL  ; bd
 	const ITEM_BE      ; be
+NUM_ITEMS EQU const_value - 1
 
 __tmhm_value__ = 1
 

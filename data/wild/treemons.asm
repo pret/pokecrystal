@@ -1,5 +1,6 @@
 TreeMons:
 ; entries correspond to TREEMON_SET_* constants
+	table_width 2, TreeMons
 	dw TreeMonSet_City
 	dw TreeMonSet_Canyon
 	dw TreeMonSet_Town
@@ -8,7 +9,8 @@ TreeMons:
 	dw TreeMonSet_Lake
 	dw TreeMonSet_Forest
 	dw TreeMonSet_Rock
-	dw TreeMonSet_City
+	assert_table_length NUM_TREEMON_SETS
+	dw TreeMonSet_City ; unused
 
 ; Two tables each (common, rare).
 ; Structure:

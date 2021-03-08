@@ -20,6 +20,7 @@ ENDM
 
 PartyMenuQualityPointers:
 ; entries correspond to PARTYMENUACTION_* constants
+	table_width 2, PartyMenuQualityPointers
 	dw .Default  ; PARTYMENUACTION_CHOOSE_POKEMON
 	dw .Default  ; PARTYMENUACTION_HEALING_ITEM
 	dw .Default  ; PARTYMENUACTION_SWITCH
@@ -30,6 +31,7 @@ PartyMenuQualityPointers:
 	dw .Gender   ; PARTYMENUACTION_GIVE_MON_FEMALE
 	dw .Default  ; PARTYMENUACTION_GIVE_ITEM
 	dw .Mobile   ; PARTYMENUACTION_MOBILE
+	assert_table_length NUM_PARTYMENUACTIONS
 
 .Default:  partymenuqualities NICKNAMES, HP_BAR, HP_DIGITS, LEVEL, STATUS
 .TMHM:     partymenuqualities NICKNAMES, TMHM_COMPAT,       LEVEL, STATUS

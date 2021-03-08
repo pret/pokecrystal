@@ -1,5 +1,6 @@
 BattleAnimFrameData:
 ; entries correspond to BATTLEANIMFRAMESET_* constants
+	table_width 2, BattleAnimFrameData
 	dw .Frameset_00 ; BATTLEANIMFRAMESET_00
 	dw .Frameset_01 ; BATTLEANIMFRAMESET_01
 	dw .Frameset_02 ; BATTLEANIMFRAMESET_02
@@ -185,6 +186,7 @@ BattleAnimFrameData:
 	dw .Frameset_b6 ; BATTLEANIMFRAMESET_B6
 	dw .Frameset_b7 ; BATTLEANIMFRAMESET_B7
 	dw .Frameset_b8 ; BATTLEANIMFRAMESET_B8
+	assert_table_length NUM_BATTLEANIMFRAMESETS
 
 .Frameset_00:
 	frame BATTLEANIMOAMSET_00,  6

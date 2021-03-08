@@ -30,44 +30,49 @@ NUM_NOISE_CHANS EQU const_value - NUM_MUSIC_CHANS
 NUM_CHANNELS EQU const_value
 
 ; channel_struct members (see macros/wram.asm)
-CHANNEL_MUSIC_ID                    EQUS "(wChannel1MusicID - wChannel1)"
-CHANNEL_MUSIC_BANK                  EQUS "(wChannel1MusicBank - wChannel1)"
-CHANNEL_FLAGS1                      EQUS "(wChannel1Flags1 - wChannel1)"
-CHANNEL_FLAGS2                      EQUS "(wChannel1Flags2 - wChannel1)"
-CHANNEL_FLAGS3                      EQUS "(wChannel1Flags3 - wChannel1)"
-CHANNEL_MUSIC_ADDRESS               EQUS "(wChannel1MusicAddress - wChannel1)"
-CHANNEL_LAST_MUSIC_ADDRESS          EQUS "(wChannel1LastMusicAddress - wChannel1)"
-CHANNEL_NOTE_FLAGS                  EQUS "(wChannel1NoteFlags - wChannel1)"
-CHANNEL_CONDITION                   EQUS "(wChannel1Condition - wChannel1)"
-CHANNEL_DUTY_CYCLE                  EQUS "(wChannel1DutyCycle - wChannel1)"
-CHANNEL_VOLUME_ENVELOPE             EQUS "(wChannel1VolumeEnvelope - wChannel1)"
-CHANNEL_FREQUENCY                   EQUS "(wChannel1Frequency - wChannel1)"
-CHANNEL_PITCH                       EQUS "(wChannel1Pitch - wChannel1)"
-CHANNEL_OCTAVE                      EQUS "(wChannel1Octave - wChannel1)"
-CHANNEL_TRANSPOSITION               EQUS "(wChannel1Transposition - wChannel1)"
-CHANNEL_NOTE_DURATION               EQUS "(wChannel1NoteDuration - wChannel1)"
-CHANNEL_FIELD16                     EQUS "(wChannel1Field16 - wChannel1)"
-CHANNEL_LOOP_COUNT                  EQUS "(wChannel1LoopCount - wChannel1)"
-CHANNEL_TEMPO                       EQUS "(wChannel1Tempo - wChannel1)"
-CHANNEL_TRACKS                      EQUS "(wChannel1Tracks - wChannel1)"
-CHANNEL_DUTY_CYCLE_PATTERN          EQUS "(wChannel1DutyCyclePattern - wChannel1)"
-CHANNEL_VIBRATO_DELAY_COUNT         EQUS "(wChannel1VibratoDelayCount - wChannel1)"
-CHANNEL_VIBRATO_DELAY               EQUS "(wChannel1VibratoDelay - wChannel1)"
-CHANNEL_VIBRATO_EXTENT              EQUS "(wChannel1VibratoExtent - wChannel1)"
-CHANNEL_VIBRATO_RATE                EQUS "(wChannel1VibratoRate - wChannel1)"
-CHANNEL_PITCH_SLIDE_TARGET          EQUS "(wChannel1PitchSlideTarget - wChannel1)"
-CHANNEL_PITCH_SLIDE_AMOUNT          EQUS "(wChannel1PitchSlideAmount - wChannel1)"
-CHANNEL_PITCH_SLIDE_AMOUNT_FRACTION EQUS "(wChannel1PitchSlideAmountFraction - wChannel1)"
-CHANNEL_FIELD25                     EQUS "(wChannel1Field25 - wChannel1)"
-CHANNEL_PITCH_OFFSET                EQUS "(wChannel1PitchOffset - wChannel1)"
-CHANNEL_FIELD29                     EQUS "(wChannel1Field29 - wChannel1)"
-CHANNEL_FIELD2A                     EQUS "(wChannel1Field2a - wChannel1)"
-CHANNEL_FIELD2C                     EQUS "(wChannel1Field2c - wChannel1)"
-CHANNEL_NOTE_LENGTH                 EQUS "(wChannel1NoteLength - wChannel1)"
-CHANNEL_FIELD2E                     EQUS "(wChannel1Field2e - wChannel1)"
-CHANNEL_FIELD2F                     EQUS "(wChannel1Field2f - wChannel1)"
-CHANNEL_FIELD30                     EQUS "(wChannel1Field30 - wChannel1)"
-CHANNEL_STRUCT_LENGTH               EQUS "(wChannel2 - wChannel1)"
+rsreset
+CHANNEL_MUSIC_ID                    rw
+CHANNEL_MUSIC_BANK                  rb
+CHANNEL_FLAGS1                      rb
+CHANNEL_FLAGS2                      rb
+CHANNEL_FLAGS3                      rb
+CHANNEL_MUSIC_ADDRESS               rw
+CHANNEL_LAST_MUSIC_ADDRESS          rw
+                                    rb_skip 2
+CHANNEL_NOTE_FLAGS                  rb
+CHANNEL_CONDITION                   rb
+CHANNEL_DUTY_CYCLE                  rb
+CHANNEL_VOLUME_ENVELOPE             rb
+CHANNEL_FREQUENCY                   rw
+CHANNEL_PITCH                       rb
+CHANNEL_OCTAVE                      rb
+CHANNEL_TRANSPOSITION               rb
+CHANNEL_NOTE_DURATION               rb
+CHANNEL_FIELD16                     rb
+                                    rb_skip
+CHANNEL_LOOP_COUNT                  rb
+CHANNEL_TEMPO                       rw
+CHANNEL_TRACKS                      rb
+CHANNEL_DUTY_CYCLE_PATTERN          rb
+CHANNEL_VIBRATO_DELAY_COUNT         rb
+CHANNEL_VIBRATO_DELAY               rb
+CHANNEL_VIBRATO_EXTENT              rb
+CHANNEL_VIBRATO_RATE                rb
+CHANNEL_PITCH_SLIDE_TARGET          rw
+CHANNEL_PITCH_SLIDE_AMOUNT          rb
+CHANNEL_PITCH_SLIDE_AMOUNT_FRACTION rb
+CHANNEL_FIELD25                     rb
+                                    rb_skip
+CHANNEL_PITCH_OFFSET                rw
+CHANNEL_FIELD29                     rb
+CHANNEL_FIELD2A                     rw
+CHANNEL_FIELD2C                     rb
+CHANNEL_NOTE_LENGTH                 rb
+CHANNEL_FIELD2E                     rb
+CHANNEL_FIELD2F                     rb
+CHANNEL_FIELD30                     rb
+                                    rb_skip
+CHANNEL_STRUCT_LENGTH EQU _RS
 
 NOISE_CHAN_F EQU 2 ; bit set in CHAN5-CHAN7
 

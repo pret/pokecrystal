@@ -1,5 +1,6 @@
 SFX:
 ; entries correspond to SFX_* constants
+	table_width 3, SFX
 	dba Sfx_DexFanfare5079
 	dba Sfx_Item
 	dba Sfx_CaughtMon
@@ -208,3 +209,4 @@ SFX:
 	dba Sfx_TwoPcBeeps
 	dba Sfx_4NoteDitty
 	dba Sfx_Twinkle
+	assert_table_length NUM_SFX
