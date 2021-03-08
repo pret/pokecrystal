@@ -412,7 +412,7 @@ PopulateDecoCategoryMenu:
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 8, 0 ; rows, columns
 	db SCROLLINGMENU_ITEMS_NORMAL ; item format
-	dbw 0, wDecoNameBuffer ; text pointer
+	dbw 0, wNumOwnedDecoCategories
 	dba DecorationMenuFunction
 	dbw 0, NULL
 	dbw 0, NULL

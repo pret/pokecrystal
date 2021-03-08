@@ -27,7 +27,7 @@ Elevator::
 	ret
 
 .LoadFloors:
-	ld de, wCurElevator
+	ld de, wCurElevatorCount
 	ld bc, wElevatorDataEnd - wElevatorData
 	ld hl, wElevatorPointer
 	ld a, [hli]
@@ -38,6 +38,7 @@ Elevator::
 	inc hl
 	ld [de], a
 	inc de
+	assert wCurElevatorCount + 1 == wCurElevatorFloors
 .loop
 	ld a, [wElevatorPointerBank]
 	call GetFarByte
@@ -184,7 +185,7 @@ Elevator_MenuData:
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 0 ; rows, columns
 	db SCROLLINGMENU_ITEMS_NORMAL ; item format
-	dbw 0, wCurElevator
+	dbw 0, wCurElevatorCount
 	dba GetElevatorFloorStrings
 	dba NULL
 	dba NULL

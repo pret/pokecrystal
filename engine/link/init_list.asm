@@ -20,7 +20,7 @@ InitList:
 .check_mon_name
 	cp INIT_MON_LIST
 	jr nz, .check_item_name
-	ld hl, wCurMart
+	ld hl, wCurMartCount
 	ld de, PokemonNames
 	ld a, MON_NAME
 	jr .done
@@ -34,7 +34,7 @@ InitList:
 	jr .done
 
 .check_ob_item_name
-	ld hl, wCurMart
+	ld hl, wCurMartCount
 	ld de, ItemNames
 	ld a, ITEM_NAME
 .done

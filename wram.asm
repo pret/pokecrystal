@@ -2117,13 +2117,13 @@ wUsingItemWithSelect:: db
 
 UNION
 ; mart data
-wCurMart:: ds 16
-wCurMartEnd::
+wCurMartCount:: db
+wCurMartItems:: ds 15
 
 NEXTU
 ; elevator data
-wCurElevator:: db
-wCurElevatorFloors:: db
+wCurElevatorCount:: db
+wCurElevatorFloors:: ds 15
 
 NEXTU
 ; mailbox data
