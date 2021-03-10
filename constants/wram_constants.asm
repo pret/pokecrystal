@@ -184,10 +184,6 @@ SPAWN_RED   EQU 2
 	const FRIDAY    ; 5
 	const SATURDAY  ; 6
 
-; wMapObjects::
-PLAYER_OBJECT EQU 0
-NUM_OBJECTS   EQU 16
-
 ; wStatusFlags::
 	const_def
 	const STATUSFLAGS_POKEDEX_F                  ; 0

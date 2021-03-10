@@ -6,23 +6,28 @@ sScratch:: ds $60 tiles
 SECTION "SRAM Bank 0", SRAM
 
 sPartyMail::
+	table_width MAIL_STRUCT_LENGTH, sPartyMail
 sPartyMon1Mail:: mailmsg sPartyMon1Mail
 sPartyMon2Mail:: mailmsg sPartyMon2Mail
 sPartyMon3Mail:: mailmsg sPartyMon3Mail
 sPartyMon4Mail:: mailmsg sPartyMon4Mail
 sPartyMon5Mail:: mailmsg sPartyMon5Mail
 sPartyMon6Mail:: mailmsg sPartyMon6Mail
+	assert_table_length PARTY_LENGTH
 
 sPartyMailBackup::
+	table_width MAIL_STRUCT_LENGTH, sPartyMailBackup
 sPartyMon1MailBackup:: mailmsg sPartyMon1MailBackup
 sPartyMon2MailBackup:: mailmsg sPartyMon2MailBackup
 sPartyMon3MailBackup:: mailmsg sPartyMon3MailBackup
 sPartyMon4MailBackup:: mailmsg sPartyMon4MailBackup
 sPartyMon5MailBackup:: mailmsg sPartyMon5MailBackup
 sPartyMon6MailBackup:: mailmsg sPartyMon6MailBackup
+	assert_table_length PARTY_LENGTH
 
 sMailboxCount:: db
 sMailboxes::
+	table_width MAIL_STRUCT_LENGTH, sMailboxes
 sMailbox1::  mailmsg sMailbox1
 sMailbox2::  mailmsg sMailbox2
 sMailbox3::  mailmsg sMailbox3
@@ -33,9 +38,11 @@ sMailbox7::  mailmsg sMailbox7
 sMailbox8::  mailmsg sMailbox8
 sMailbox9::  mailmsg sMailbox9
 sMailbox10:: mailmsg sMailbox10
+	assert_table_length MAILBOX_CAPACITY
 
 sMailboxCountBackup:: db
 sMailboxesBackup::
+	table_width MAIL_STRUCT_LENGTH, sMailboxesBackup
 sMailbox1Backup::  mailmsg sMailbox1Backup
 sMailbox2Backup::  mailmsg sMailbox2Backup
 sMailbox3Backup::  mailmsg sMailbox3Backup
@@ -46,6 +53,7 @@ sMailbox7Backup::  mailmsg sMailbox7Backup
 sMailbox8Backup::  mailmsg sMailbox8Backup
 sMailbox9Backup::  mailmsg sMailbox9Backup
 sMailbox10Backup:: mailmsg sMailbox10Backup
+	assert_table_length MAILBOX_CAPACITY
 
 sMysteryGiftData::
 sMysteryGiftItem:: db
@@ -145,6 +153,7 @@ sLinkBattleStatsEnd::
 SECTION "SRAM Hall of Fame", SRAM
 
 sHallOfFame::
+	table_width HOF_LENGTH, sHallOfFame
 sHallOfFame01:: hall_of_fame sHallOfFame01
 sHallOfFame02:: hall_of_fame sHallOfFame02
 sHallOfFame03:: hall_of_fame sHallOfFame03
@@ -175,6 +184,7 @@ sHallOfFame27:: hall_of_fame sHallOfFame27
 sHallOfFame28:: hall_of_fame sHallOfFame28
 sHallOfFame29:: hall_of_fame sHallOfFame29
 sHallOfFame30:: hall_of_fame sHallOfFame30
+	assert_table_length NUM_HOF_TEAMS
 sHallOfFameEnd::
 
 

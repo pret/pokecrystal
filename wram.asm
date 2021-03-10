@@ -20,16 +20,17 @@ SECTION "Audio RAM", WRAM0
 wMusicPlaying:: db
 
 wAudio::
-
+	table_width CHANNEL_STRUCT_LENGTH, wAudio
 wChannel1:: channel_struct wChannel1
 wChannel2:: channel_struct wChannel2
 wChannel3:: channel_struct wChannel3
 wChannel4:: channel_struct wChannel4
-
+	assert_table_length NUM_MUSIC_CHANS
 wChannel5:: channel_struct wChannel5
 wChannel6:: channel_struct wChannel6
 wChannel7:: channel_struct wChannel7
 wChannel8:: channel_struct wChannel8
+	assert_table_length NUM_CHANNELS
 
 	ds 1
 
@@ -224,6 +225,7 @@ wSpriteAnimDict::
 	ds NUM_SPRITEANIMDICT_ENTRIES * 2
 
 wSpriteAnimationStructs::
+	table_width SPRITEANIMSTRUCT_LENGTH, wSpriteAnimationStructs
 ; field  0:   index
 ; fields 1-3: loaded from SpriteAnimSeqData
 wSpriteAnim1::  sprite_anim_struct wSpriteAnim1
@@ -236,6 +238,7 @@ wSpriteAnim7::  sprite_anim_struct wSpriteAnim7
 wSpriteAnim8::  sprite_anim_struct wSpriteAnim8
 wSpriteAnim9::  sprite_anim_struct wSpriteAnim9
 wSpriteAnim10:: sprite_anim_struct wSpriteAnim10
+	assert_table_length NUM_SPRITE_ANIM_STRUCTS
 wSpriteAnimationStructsEnd::
 
 NEXTU
@@ -322,6 +325,7 @@ wMobileWRAMEnd::
 SECTION "Sprites", WRAM0
 
 wVirtualOAM::
+	table_width SPRITEOAMSTRUCT_LENGTH, wVirtualOAM
 wVirtualOAMSprite00:: sprite_oam_struct wVirtualOAMSprite00
 wVirtualOAMSprite01:: sprite_oam_struct wVirtualOAMSprite01
 wVirtualOAMSprite02:: sprite_oam_struct wVirtualOAMSprite02
@@ -362,6 +366,7 @@ wVirtualOAMSprite36:: sprite_oam_struct wVirtualOAMSprite36
 wVirtualOAMSprite37:: sprite_oam_struct wVirtualOAMSprite37
 wVirtualOAMSprite38:: sprite_oam_struct wVirtualOAMSprite38
 wVirtualOAMSprite39:: sprite_oam_struct wVirtualOAMSprite39
+	assert_table_length NUM_SPRITE_OAM_STRUCTS
 wVirtualOAMEnd::
 
 
@@ -981,24 +986,28 @@ wLinkPartyEnd:: db ; older code doesn't check PartyCount
 UNION
 ; link player data
 wLinkPlayerData::
+	table_width PARTYMON_STRUCT_LENGTH, wLinkPlayerData
 wLinkPlayerPartyMon1:: party_struct wLinkPlayerPartyMon1
 wLinkPlayerPartyMon2:: party_struct wLinkPlayerPartyMon2
 wLinkPlayerPartyMon3:: party_struct wLinkPlayerPartyMon3
 wLinkPlayerPartyMon4:: party_struct wLinkPlayerPartyMon4
 wLinkPlayerPartyMon5:: party_struct wLinkPlayerPartyMon5
 wLinkPlayerPartyMon6:: party_struct wLinkPlayerPartyMon6
+	assert_table_length PARTY_LENGTH
 wLinkPlayerPartyMonOTNames:: ds NAME_LENGTH * PARTY_LENGTH
 wLinkPlayerPartyMonNicks:: ds MON_NAME_LENGTH * PARTY_LENGTH
 
 NEXTU
 ; time capsule party data
 wTimeCapsulePlayerData::
+	table_width REDMON_STRUCT_LENGTH, wTimeCapsulePlayerData
 wTimeCapsulePartyMon1:: red_party_struct wTimeCapsulePartyMon1
 wTimeCapsulePartyMon2:: red_party_struct wTimeCapsulePartyMon2
 wTimeCapsulePartyMon3:: red_party_struct wTimeCapsulePartyMon3
 wTimeCapsulePartyMon4:: red_party_struct wTimeCapsulePartyMon4
 wTimeCapsulePartyMon5:: red_party_struct wTimeCapsulePartyMon5
 wTimeCapsulePartyMon6:: red_party_struct wTimeCapsulePartyMon6
+	assert_table_length PARTY_LENGTH
 wTimeCapsulePartyMonOTNames:: ds NAME_LENGTH * PARTY_LENGTH
 wTimeCapsulePartyMonNicks:: ds MON_NAME_LENGTH * PARTY_LENGTH
 
@@ -2558,12 +2567,14 @@ ENDU
 UNION
 ; ot party mons
 wOTPartyMons::
+	table_width PARTYMON_STRUCT_LENGTH, wOTPartyMons
 wOTPartyMon1:: party_struct wOTPartyMon1
 wOTPartyMon2:: party_struct wOTPartyMon2
 wOTPartyMon3:: party_struct wOTPartyMon3
 wOTPartyMon4:: party_struct wOTPartyMon4
 wOTPartyMon5:: party_struct wOTPartyMon5
 wOTPartyMon6:: party_struct wOTPartyMon6
+	assert_table_length PARTY_LENGTH
 wOTPartyMonsEnd::
 
 wOTPartyMonOT:: ds NAME_LENGTH * PARTY_LENGTH
@@ -2719,6 +2730,7 @@ wFollowerMovementQueueLength:: db
 wFollowMovementQueue:: ds 5
 
 wObjectStructs::
+	table_width OBJECT_LENGTH, wObjectStructs
 wPlayerStruct::   object_struct wPlayer
 wObject1Struct::  object_struct wObject1
 wObject2Struct::  object_struct wObject2
@@ -2732,12 +2744,14 @@ wObject9Struct::  object_struct wObject9
 wObject10Struct:: object_struct wObject10
 wObject11Struct:: object_struct wObject11
 wObject12Struct:: object_struct wObject12
+	assert_table_length NUM_OBJECT_STRUCTS
 
 wCmdQueue:: ds CMDQUEUE_CAPACITY * CMDQUEUE_ENTRY_SIZE
 
 	ds 40
 
 wMapObjects::
+	table_width MAPOBJECT_LENGTH, wMapObjects
 wPlayerObject:: map_object wPlayer
 wMap1Object::   map_object wMap1
 wMap2Object::   map_object wMap2
@@ -2754,6 +2768,7 @@ wMap12Object::  map_object wMap12
 wMap13Object::  map_object wMap13
 wMap14Object::  map_object wMap14
 wMap15Object::  map_object wMap15
+	assert_table_length NUM_OBJECTS
 
 wObjectMasks:: ds NUM_OBJECTS
 
@@ -3117,12 +3132,14 @@ wPartySpecies:: ds PARTY_LENGTH
 wPartyEnd::     db ; older code doesn't check wPartyCount
 
 wPartyMons::
+	table_width PARTYMON_STRUCT_LENGTH, wPartyMons
 wPartyMon1:: party_struct wPartyMon1
 wPartyMon2:: party_struct wPartyMon2
 wPartyMon3:: party_struct wPartyMon3
 wPartyMon4:: party_struct wPartyMon4
 wPartyMon5:: party_struct wPartyMon5
 wPartyMon6:: party_struct wPartyMon6
+	assert_table_length PARTY_LENGTH
 
 wPartyMonOT:: ds NAME_LENGTH * PARTY_LENGTH
 
@@ -3343,6 +3360,7 @@ wBattleAnimTileDict::
 	ds NUM_BATTLEANIMTILEDICT_ENTRIES * 2
 
 wActiveAnimObjects::
+	table_width BATTLEANIMSTRUCT_LENGTH, wActiveAnimObjects
 wAnimObject01:: battle_anim_struct wAnimObject01
 wAnimObject02:: battle_anim_struct wAnimObject02
 wAnimObject03:: battle_anim_struct wAnimObject03
@@ -3353,13 +3371,16 @@ wAnimObject07:: battle_anim_struct wAnimObject07
 wAnimObject08:: battle_anim_struct wAnimObject08
 wAnimObject09:: battle_anim_struct wAnimObject09
 wAnimObject10:: battle_anim_struct wAnimObject10
+	assert_table_length NUM_ANIM_OBJECTS
 
 wActiveBGEffects::
+	table_width BG_EFFECT_STRUCT_LENGTH, wActiveBGEffects
 wBGEffect1:: battle_bg_effect wBGEffect1
 wBGEffect2:: battle_bg_effect wBGEffect2
 wBGEffect3:: battle_bg_effect wBGEffect3
 wBGEffect4:: battle_bg_effect wBGEffect4
 wBGEffect5:: battle_bg_effect wBGEffect5
+	assert_table_length NUM_BG_EFFECTS
 
 wLastAnimObjectIndex:: db
 
