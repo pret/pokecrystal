@@ -163,7 +163,7 @@ CmdQueue_Type1:
 
 CmdQueue_Type4:
 	call CmdQueues_AnonJumptable
-	; anonymous dw
+.anon_dw
 	dw .zero
 	dw .one
 
@@ -207,7 +207,7 @@ CmdQueue_Type4:
 
 CmdQueue_Type3:
 	call CmdQueues_AnonJumptable
-	; anonymous dw
+.anon_dw
 	dw .zero
 	dw .one
 	dw .two

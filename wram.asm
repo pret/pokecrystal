@@ -2112,6 +2112,7 @@ wSolvedUnownPuzzle::
 
 wVramState::
 ; bit 0: overworld sprite updating on/off
+; bit 1: something to do with sprite updates
 ; bit 6: something to do with text
 ; bit 7: on when surf initiates
 ;        flickers when climbing waterfall
