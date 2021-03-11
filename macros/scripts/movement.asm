@@ -218,3 +218,5 @@ ENDM
 skyfall_top: MACRO
 	db movement_skyfall_top
 ENDM
+
+NUM_MOVEMENT_CMDS EQU const_value

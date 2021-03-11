@@ -1365,6 +1365,7 @@ ParseMusicCommand:
 
 MusicCommands:
 ; entries correspond to audio constants (see macros/scripts/audio.asm)
+	table_width 2, MusicCommands
 	dw Music_Octave8
 	dw Music_Octave7
 	dw Music_Octave6
@@ -1413,6 +1414,7 @@ MusicCommands:
 	dw Music_Loop
 	dw Music_Call
 	dw Music_Ret
+	assert_table_length $100 - FIRST_MUSIC_CMD
 
 MusicF1:
 MusicF2:

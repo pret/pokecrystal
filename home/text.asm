@@ -699,6 +699,7 @@ DoTextUntilTerminator::
 
 TextCommands::
 ; entries correspond to TX_* constants (see macros/scripts/text.asm)
+	table_width 2, TextCommands
 	dw TextCommand_START         ; TX_START
 	dw TextCommand_RAM           ; TX_RAM
 	dw TextCommand_BCD           ; TX_BCD
@@ -722,6 +723,7 @@ TextCommands::
 	dw TextCommand_STRINGBUFFER  ; TX_STRINGBUFFER
 	dw TextCommand_DAY           ; TX_DAY
 	dw TextCommand_FAR           ; TX_FAR
+	assert_table_length NUM_TEXT_CMDS
 
 TextCommand_START::
 ; write text until "@"

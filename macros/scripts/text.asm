@@ -137,6 +137,8 @@ text_far: MACRO
 	db BANK(\1)
 ENDM
 
+NUM_TEXT_CMDS EQU const_value
+
 	const_next $50
 
 	const TX_END ; $50

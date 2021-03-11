@@ -5,6 +5,7 @@ ENDM
 
 ; BattleAnimCommands indexes (see engine/battle_anims/anim_commands.asm)
 	const_def $d0
+FIRST_BATTLE_ANIM_CMD EQU const_value
 
 	const anim_obj_command ; $d0
 anim_obj: MACRO
