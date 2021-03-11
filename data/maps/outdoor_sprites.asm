@@ -2,7 +2,7 @@
 ; Maps with environment ROUTE or TOWN can only use these sprites.
 
 OutdoorSprites:
-; entries correspond to map groups
+; entries correspond to MAPGROUP_* constants
 	table_width 2, OutdoorSprites
 	dw OlivineGroupSprites
 	dw MahoganyGroupSprites

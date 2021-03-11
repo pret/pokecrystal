@@ -8,7 +8,7 @@
 NUM_ROOFS EQU const_value
 
 MapGroupRoofs:
-; entries correspond to map groups
+; entries correspond to MAPGROUP_* constants
 ; values are indexes for Roofs (see below)
 	table_width 1, MapGroupRoofs
 	db -1             ;  0

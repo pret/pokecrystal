@@ -15,9 +15,9 @@ MomPhoneCalleeScript:
 	farwritetext MomPhoneGreetingText
 	promptbutton
 	getcurlandmarkname STRING_BUFFER_3
-	readvar VAR_ROOFPALETTE
-	ifequal 1, MomPhonePalette1
-	ifequal 2, MomPhonePalette2
+	readvar VAR_ENVIRONMENT
+	ifequal TOWN, MomPhoneInTown
+	ifequal ROUTE, MomPhoneOnRoute
 	sjump MomPhoneOther
 
 MomPhoneLandmark:
@@ -25,7 +25,7 @@ MomPhoneLandmark:
 	promptbutton
 	sjump MomSavingMoney
 
-MomPhonePalette1:
+MomPhoneInTown:
 	readvar VAR_MAPGROUP
 	ifequal GROUP_NEW_BARK_TOWN, .newbark
 	ifequal GROUP_CHERRYGROVE_CITY, .cherrygrove
@@ -56,7 +56,7 @@ MomPhonePalette1:
 	getlandmarkname STRING_BUFFER_4, LANDMARK_RADIO_TOWER
 	sjump MomPhoneLandmark
 
-MomPhonePalette2:
+MomPhoneOnRoute:
 	farwritetext MomOtherAreaText
 	promptbutton
 	sjump MomSavingMoney

@@ -60,7 +60,7 @@ STRING_BUFFER_LENGTH EQU 19
 	const VAR_MAPGROUP         ; 0c
 	const VAR_MAPNUMBER        ; 0d
 	const VAR_UNOWNCOUNT       ; 0e
-	const VAR_ROOFPALETTE      ; 0f
+	const VAR_ENVIRONMENT      ; 0f
 	const VAR_BOXSPACE         ; 10
 	const VAR_CONTESTMINUTES   ; 11
 	const VAR_XCOORD           ; 12
