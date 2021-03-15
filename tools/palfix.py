@@ -12,7 +12,7 @@ def rgb8_to_rgb5(c):
 
 def rgb5_to_rgb8(c):
 	r, g, b = c
-	return ((r * 8) | (r // 4), (g * 8) | (g // 4), (b * 8) | (b // 4))
+	return (r * 8 + r // 4, g * 8 + g // 4, b * 8 + b // 4)
 
 def invert(c):
 	r, g, b = c
@@ -20,7 +20,7 @@ def invert(c):
 
 def luminance(c):
 	r, g, b = c
-	return (0.299 * r**2 + 0.587 * g**2 + 0.114 * b**2)**0.5
+	return 0.299 * r**2 + 0.587 * g**2 + 0.114 * b**2
 
 def rgb5_pixels(row):
 	for x in range(0, len(row), 4):
@@ -33,7 +33,7 @@ def fix_pal(filename):
 	b_and_w = {(0, 0, 0), (31, 31, 31)}
 	colors = set(c for row in data for c in rgb5_pixels(row)) - b_and_w
 	if not colors:
-		colors = {(20, 20, 20), (10, 10, 10)}
+		colors = {(21, 21, 21), (10, 10, 10)}
 	elif len(colors) == 1:
 		c = colors.pop()
 		colors = {c, invert(c)}
@@ -42,8 +42,12 @@ def fix_pal(filename):
 	palette = tuple(sorted(colors | b_and_w, key=luminance, reverse=True))
 	assert len(palette) == 4
 	data = [list(map(palette.index, rgb5_pixels(row))) for row in data]
-	palette = tuple(map(rgb5_to_rgb8, palette))
-	writer = png.Writer(width, height, palette=palette, compression=9)
+	if palette == ((31, 31, 31), (21, 21, 21), (10, 10, 10), (0, 0, 0)):
+		data = [[3 - c for c in row] for row in data]
+		writer = png.Writer(width, height, greyscale=True, bitdepth=2, compression=9)
+	else:
+		palette = tuple(map(rgb5_to_rgb8, palette))
+		writer = png.Writer(width, height, palette=palette, bitdepth=8, compression=9)
 	with open(filename, 'wb') as file:
 		writer.write(file, data)
 	return True
