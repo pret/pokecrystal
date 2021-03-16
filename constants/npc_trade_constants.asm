@@ -1,4 +1,4 @@
-	; npctrade struct members (see data/events/npc_trades.asm)
+; npctrade struct members (see data/events/npc_trades.asm)
 rsreset
 NPCTRADE_DIALOG  rb
 NPCTRADE_GIVEMON rb

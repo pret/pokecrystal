@@ -28,7 +28,7 @@ EXP_BAR_LENGTH EQU 8 ; tiles
 HP_BAR_LENGTH_PX  EQU HP_BAR_LENGTH  * TILE_WIDTH ; pixels
 EXP_BAR_LENGTH_PX EQU EXP_BAR_LENGTH * TILE_WIDTH ; pixels
 
-; GetHPPal return values (see home.asm)
+; GetHPPal return values (see home/tilemap.asm)
 HP_GREEN  EQU 0
 HP_YELLOW EQU 1
 HP_RED    EQU 2

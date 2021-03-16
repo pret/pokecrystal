@@ -1,7 +1,7 @@
 ; Landmarks indexes (see data/maps/landmarks.asm)
 	const_def
-; Johto landmarks
 	const LANDMARK_SPECIAL           ; 00
+; Johto landmarks
 	const LANDMARK_NEW_BARK_TOWN     ; 01
 	const LANDMARK_ROUTE_29          ; 02
 	const LANDMARK_CHERRYGROVE_CITY  ; 03

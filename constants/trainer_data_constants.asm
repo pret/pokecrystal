@@ -1,13 +1,11 @@
 ; TrainerClassAttributes struct members (see data/trainers/attributes.asm)
-	const_def
-	const TRNATTR_ITEM1           ; 0
-	const TRNATTR_ITEM2           ; 1
-	const TRNATTR_BASEMONEY       ; 2
-	const TRNATTR_AI_MOVE_WEIGHTS ; 3
-	const_skip ; high TRNATTR_AI_MOVE_WEIGHTS byte
-	const TRNATTR_AI_ITEM_SWITCH  ; 5
-	const_skip ; high TRNATTR_AI_ITEM_SWITCH byte
-NUM_TRAINER_ATTRIBUTES EQU const_value
+rsreset
+TRNATTR_ITEM1           rb ; 0
+TRNATTR_ITEM2           rb ; 1
+TRNATTR_BASEMONEY       rb ; 2
+TRNATTR_AI_MOVE_WEIGHTS rw ; 3
+TRNATTR_AI_ITEM_SWITCH  rw ; 5
+NUM_TRAINER_ATTRIBUTES EQU _RS
 
 ; TRNATTR_AI_MOVE_WEIGHTS bit flags (wEnemyTrainerAIFlags)
 ; AIScoringPointers indexes (see engine/battle/ai/move.asm)

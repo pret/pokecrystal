@@ -12,7 +12,7 @@ LoadSGBLayout:
 	ld l, a
 	ld h, 0
 	add hl, hl
-	ld de, .Jumptable
+	ld de, SGBLayoutJumptable
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
@@ -21,7 +21,8 @@ LoadSGBLayout:
 	push de
 	jp hl
 
-.Jumptable:
+SGBLayoutJumptable:
+	table_width 2, SGBLayoutJumptable
 	dw .SGB_BattleGrayscale
 	dw .SGB_BattleColors
 	dw .SGB_PokegearPals
@@ -53,6 +54,7 @@ LoadSGBLayout:
 	dw .SGB_TrainerOrMonFrontpicPals
 	dw .SGB_MysteryGift
 	dw .SGB_Unused1E
+	assert_table_length NUM_SCGB_LAYOUTS
 
 .SGB_BattleGrayscale:
 	ld hl, PalPacket_BattleGrayscale

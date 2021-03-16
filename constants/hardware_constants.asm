@@ -1,5 +1,6 @@
-; Graciously aped from:
-; http://nocash.emubase.de/pandocs.htm
+; Graciously derived from:
+; https://gbdev.io/pandocs/
+; https://github.com/gbdev/hardware.inc
 ; http://gameboy.mongenel.com/dmg/asmmemmap.html
 
 ; memory map

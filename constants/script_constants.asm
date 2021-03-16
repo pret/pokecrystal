@@ -1,4 +1,4 @@
-; person constants
+; object constants
 PLAYER      EQU  0
 LAST_TALKED EQU -2
 

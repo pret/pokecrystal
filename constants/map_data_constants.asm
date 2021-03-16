@@ -18,6 +18,7 @@ MAP_FISHGROUP          rb ; 8
 MAP_LENGTH EQU _RS
 
 ; map environments (wEnvironment)
+; EnvironmentColorsPointers indexes (see data/maps/environment_colors.asm)
 	const_def 1
 	const TOWN
 	const ROUTE
@@ -26,6 +27,7 @@ MAP_LENGTH EQU _RS
 	const ENVIRONMENT_5
 	const GATE
 	const DUNGEON
+NUM_ENVIRONMENTS EQU const_value - 1
 
 ; map palettes (wEnvironment)
 	const_def

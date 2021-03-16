@@ -13,6 +13,7 @@
 	const A_ ; a
 	const A# ; b
 	const B_ ; c
+NUM_NOTES EQU const_value - 1
 
 ; channel
 ; ChannelPointers indexes (see audio/engine.asm)

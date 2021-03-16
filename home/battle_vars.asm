@@ -1,5 +1,4 @@
 GetBattleVar::
-; Preserves hl.
 	push hl
 	call GetBattleVarAddr
 	pop hl
@@ -8,7 +7,6 @@ GetBattleVar::
 GetBattleVarAddr::
 ; Get variable from pair a, depending on whose turn it is.
 ; There are 21 variable pairs.
-
 	push bc
 
 	ld hl, BattleVarPairs

@@ -1,4 +1,5 @@
 FrequencyTable:
+	table_width 2, FrequencyTable
 	dw 0     ; __
 	dw $f82c ; C_
 	dw $f89d ; C#
@@ -12,6 +13,7 @@ FrequencyTable:
 	dw $fb58 ; A_
 	dw $fb9b ; A#
 	dw $fbda ; B_
+	assert_table_length NUM_NOTES + 1
 	dw $fc16 ; C_
 	dw $fc4e ; C#
 	dw $fc83 ; D_
@@ -24,3 +26,4 @@ FrequencyTable:
 	dw $fdac ; A_
 	dw $fdcd ; A#
 	dw $fded ; B_
+	assert_table_length NUM_NOTES * 2 + 1

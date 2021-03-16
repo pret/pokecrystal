@@ -17,7 +17,7 @@ LoadSGBLayoutCGB:
 	ld l, a
 	ld h, 0
 	add hl, hl
-	ld de, .Jumptable
+	ld de, CGBLayoutJumptable
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
@@ -28,7 +28,8 @@ LoadSGBLayoutCGB:
 .done:
 	ret
 
-.Jumptable:
+CGBLayoutJumptable:
+	table_width 2, CGBLayoutJumptable
 	dw _CGB_BattleGrayscale
 	dw _CGB_BattleColors
 	dw _CGB_PokegearPals
@@ -60,6 +61,7 @@ LoadSGBLayoutCGB:
 	dw _CGB_TrainerOrMonFrontpicPals
 	dw _CGB_MysteryGift
 	dw _CGB_Unused1E
+	assert_table_length NUM_SCGB_LAYOUTS
 
 _CGB_BattleGrayscale:
 	ld hl, PalPacket_BattleGrayscale + 1

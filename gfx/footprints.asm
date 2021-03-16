@@ -7,8 +7,8 @@
 footprint_top    EQUS "0,                 2 * LEN_1BPP_TILE"
 footprint_bottom EQUS "2 * LEN_1BPP_TILE, 2 * LEN_1BPP_TILE"
 
+Footprints:
 ; Entries correspond to Pokémon species, two apiece, 8 tops then 8 bottoms
-
 	table_width LEN_1BPP_TILE * 4, Footprints
 
 ; 001-008 top halves
