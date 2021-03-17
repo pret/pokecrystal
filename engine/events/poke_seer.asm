@@ -249,10 +249,10 @@ GetCaughtLocation:
 
 GetCaughtOT:
 	ld a, [wCurPartyMon]
-	ld hl, wPartyMonOT
+	ld hl, wPartyMonOTs
 	ld bc, NAME_LENGTH
 	call AddNTimes
-	ld de, wSeerOTName
+	ld de, wSeerOT
 	ld bc, NAME_LENGTH
 	call CopyBytes
 
@@ -264,7 +264,7 @@ GetCaughtOT:
 	ld hl, .female
 
 .got_grammar
-	ld de, wSeerOTNameGrammar
+	ld de, wSeerOTGrammar
 	ld a, "@"
 	ld [de], a
 	ret

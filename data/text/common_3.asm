@@ -72,7 +72,7 @@ _LinkAbnormalMonText::
 
 _LinkAskTradeForText::
 	text "Trade @"
-	text_ram wBufferTrademonNick
+	text_ram wBufferTrademonNickname
 	text_start
 	line "for @"
 	text_ram wStringBuffer1
@@ -322,7 +322,7 @@ _SeerTradeText::
 	text_ram wSeerNickname
 	text_start
 	line "came from @"
-	text_ram wSeerOTName
+	text_ram wSeerOT
 	text_start
 	cont "in a trade?"
 
@@ -330,7 +330,7 @@ _SeerTradeText::
 	text_ram wSeerCaughtLocation
 	text_start
 	line "was where @"
-	text_ram wSeerOTName
+	text_ram wSeerOT
 	text_start
 	cont "met @"
 	text_ram wSeerNickname
@@ -1216,7 +1216,7 @@ _BallSoCloseText::
 
 Text_BallCaught::
 	text "Gotcha! @"
-	text_ram wEnemyMonNick
+	text_ram wEnemyMonNickname
 	text_start
 	line "was caught!@"
 	sound_caught_mon
@@ -1237,7 +1237,7 @@ _BallSentToPCText::
 	prompt
 
 _NewDexDataText::
-	text_ram wEnemyMonNick
+	text_ram wEnemyMonNickname
 	text "'s data"
 	line "was newly added to"
 	cont "the #DEX.@"

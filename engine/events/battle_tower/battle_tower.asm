@@ -1258,7 +1258,7 @@ BattleTowerAction_EggTicket: ; BattleTowerAction $0e
 	cp EGG
 	jr nz, .not_egg
 	push hl
-	ld hl, wPartyMonOT
+	ld hl, wPartyMonOTs
 	ld de, NAME_LENGTH_JAPANESE
 	ld a, b
 	and a

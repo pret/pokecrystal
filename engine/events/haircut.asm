@@ -33,7 +33,7 @@ HaircutOrGrooming:
 	cp EGG
 	jr z, .egg
 	push hl
-	call GetCurNick
+	call GetCurNickname
 	call CopyPokemonName_Buffer1_Buffer3
 	pop hl
 	call Random

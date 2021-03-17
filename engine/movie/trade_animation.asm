@@ -212,10 +212,10 @@ RunTradeAnimScript:
 	call TradeAnim_GetFrontpic
 	ld a, [wPlayerTrademonSpecies]
 	ld de, wPlayerTrademonSpeciesName
-	call TradeAnim_GetNickname
+	call TradeAnim_GetNicknamename
 	ld a, [wOTTrademonSpecies]
 	ld de, wOTTrademonSpeciesName
-	call TradeAnim_GetNickname
+	call TradeAnim_GetNicknamename
 	call TradeAnim_NormalPals
 	ret
 
@@ -817,7 +817,7 @@ TradeAnim_GetFrontpic:
 	predef GetMonFrontpic
 	ret
 
-TradeAnim_GetNickname:
+TradeAnim_GetNicknamename:
 	push de
 	ld [wNamedObjectIndex], a
 	call GetPokemonName

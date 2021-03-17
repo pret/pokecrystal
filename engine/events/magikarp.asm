@@ -49,7 +49,7 @@ CheckMagikarpLength:
 	ld [de], a
 	inc de
 	ld a, [wCurPartyMon]
-	ld hl, wPartyMonOT
+	ld hl, wPartyMonOTs
 	call SkipNames
 	call CopyBytes
 	ld a, MAGIKARPLENGTH_BEAT_RECORD

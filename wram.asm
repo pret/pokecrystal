@@ -404,8 +404,8 @@ wBattle::
 wEnemyMoveStruct::  move_struct wEnemyMoveStruct
 wPlayerMoveStruct:: move_struct wPlayerMoveStruct
 
-wEnemyMonNick::  ds MON_NAME_LENGTH
-wBattleMonNick:: ds MON_NAME_LENGTH
+wEnemyMonNickname::  ds MON_NAME_LENGTH
+wBattleMonNickname:: ds MON_NAME_LENGTH
 
 wBattleMon:: battle_struct wBattleMon
 
@@ -718,7 +718,7 @@ NEXTU
 ; odd egg
 wOddEgg:: party_struct wOddEgg
 wOddEggName:: ds MON_NAME_LENGTH
-wOddEggOTName:: ds NAME_LENGTH
+wOddEggOT:: ds NAME_LENGTH
 
 NEXTU
 ; debug mon color picker
@@ -994,8 +994,26 @@ wLinkPlayerPartyMon4:: party_struct wLinkPlayerPartyMon4
 wLinkPlayerPartyMon5:: party_struct wLinkPlayerPartyMon5
 wLinkPlayerPartyMon6:: party_struct wLinkPlayerPartyMon6
 	assert_table_length PARTY_LENGTH
-wLinkPlayerPartyMonOTNames:: ds NAME_LENGTH * PARTY_LENGTH
-wLinkPlayerPartyMonNicks:: ds MON_NAME_LENGTH * PARTY_LENGTH
+
+wLinkPlayerPartyMonOTs::
+	table_width NAME_LENGTH, wLinkPlayerPartyMonOTs
+wLinkPlayerPartyMon1OT:: ds NAME_LENGTH
+wLinkPlayerPartyMon2OT:: ds NAME_LENGTH
+wLinkPlayerPartyMon3OT:: ds NAME_LENGTH
+wLinkPlayerPartyMon4OT:: ds NAME_LENGTH
+wLinkPlayerPartyMon5OT:: ds NAME_LENGTH
+wLinkPlayerPartyMon6OT:: ds NAME_LENGTH
+	assert_table_length PARTY_LENGTH
+
+wLinkPlayerPartyMonNicknames::
+	table_width MON_NAME_LENGTH, wLinkPlayerPartyMonNicknames
+wLinkPlayerPartyMon1Nickname:: ds MON_NAME_LENGTH
+wLinkPlayerPartyMon2Nickname:: ds MON_NAME_LENGTH
+wLinkPlayerPartyMon3Nickname:: ds MON_NAME_LENGTH
+wLinkPlayerPartyMon4Nickname:: ds MON_NAME_LENGTH
+wLinkPlayerPartyMon5Nickname:: ds MON_NAME_LENGTH
+wLinkPlayerPartyMon6Nickname:: ds MON_NAME_LENGTH
+	assert_table_length PARTY_LENGTH
 
 NEXTU
 ; time capsule party data
@@ -1008,8 +1026,26 @@ wTimeCapsulePartyMon4:: red_party_struct wTimeCapsulePartyMon4
 wTimeCapsulePartyMon5:: red_party_struct wTimeCapsulePartyMon5
 wTimeCapsulePartyMon6:: red_party_struct wTimeCapsulePartyMon6
 	assert_table_length PARTY_LENGTH
-wTimeCapsulePartyMonOTNames:: ds NAME_LENGTH * PARTY_LENGTH
-wTimeCapsulePartyMonNicks:: ds MON_NAME_LENGTH * PARTY_LENGTH
+
+wTimeCapsulePartyMonOTs::
+	table_width NAME_LENGTH, wTimeCapsulePartyMonOTs
+wTimeCapsulePartyMon1OT:: ds NAME_LENGTH
+wTimeCapsulePartyMon2OT:: ds NAME_LENGTH
+wTimeCapsulePartyMon3OT:: ds NAME_LENGTH
+wTimeCapsulePartyMon4OT:: ds NAME_LENGTH
+wTimeCapsulePartyMon5OT:: ds NAME_LENGTH
+wTimeCapsulePartyMon6OT:: ds NAME_LENGTH
+	assert_table_length PARTY_LENGTH
+
+wTimeCapsulePartyMonNicknames::
+	table_width MON_NAME_LENGTH, wTimeCapsulePartyMonNicknames
+wTimeCapsulePartyMon1Nickname:: ds MON_NAME_LENGTH
+wTimeCapsulePartyMon2Nickname:: ds MON_NAME_LENGTH
+wTimeCapsulePartyMon3Nickname:: ds MON_NAME_LENGTH
+wTimeCapsulePartyMon4Nickname:: ds MON_NAME_LENGTH
+wTimeCapsulePartyMon5Nickname:: ds MON_NAME_LENGTH
+wTimeCapsulePartyMon6Nickname:: ds MON_NAME_LENGTH
+	assert_table_length PARTY_LENGTH
 
 NEXTU
 ; link patch lists
@@ -1021,7 +1057,16 @@ NEXTU
 ; link data prep
 	ds 1000
 wCurLinkOTPartyMonTypePointer:: dw
-wLinkOTPartyMonTypes:: ds 2 * PARTY_LENGTH
+
+wLinkOTPartyMonTypes::
+	table_width 2, wLinkOTPartyMonTypes
+wLinkOTPartyMon1Type:: dw
+wLinkOTPartyMon2Type:: dw
+wLinkOTPartyMon3Type:: dw
+wLinkOTPartyMon4Type:: dw
+wLinkOTPartyMon5Type:: dw
+wLinkOTPartyMon6Type:: dw
+	assert_table_length PARTY_LENGTH
 
 NEXTU
 ; link mail data
@@ -1199,7 +1244,7 @@ NEXTU
 ; mobile data
 wMobileMonSpeciesPointer:: dw
 wMobileMonStructPointer:: dw
-wMobileMonOTNamePointer:: dw
+wMobileMonOTPointer:: dw
 wMobileMonNicknamePointer:: dw
 wMobileMonMailPointer:: dw
 
@@ -1219,7 +1264,9 @@ wcd29:: ds 1
 wMobileMonSpecies::
 wcd2a:: db
 
-wTempOddEggNickname:: ; ds 11
+UNION
+wTempOddEggNickname:: ds MON_NAME_LENGTH
+NEXTU
 wcd2b:: ds 1
 wcd2c:: ds 1
 wcd2d:: ds 1
@@ -1231,6 +1278,7 @@ wcd32:: ds 1
 wcd33:: ds 1
 wcd34:: ds 1
 wcd35:: ds 1
+ENDU
 
 ; current time for link/mobile?
 wcd36:: db ; hours
@@ -1710,7 +1758,7 @@ wDefaultSpawnpoint:: db
 
 UNION
 ; mon buffer
-wBufferMonNick:: ds MON_NAME_LENGTH
+wBufferMonNickname:: ds MON_NAME_LENGTH
 wBufferMonOT:: ds NAME_LENGTH
 wBufferMon:: party_struct wBufferMon
 	ds 8
@@ -1723,8 +1771,8 @@ wSeerAction:: db
 wSeerNickname:: ds MON_NAME_LENGTH
 wSeerCaughtLocation:: ds 17
 wSeerTimeOfDay:: ds NAME_LENGTH
-wSeerOTName:: ds NAME_LENGTH
-wSeerOTNameGrammar:: db
+wSeerOT:: ds NAME_LENGTH
+wSeerOTGrammar:: db
 wSeerCaughtLevelString:: ds 4
 wSeerCaughtLevel:: db
 wSeerCaughtData:: db
@@ -1872,7 +1920,7 @@ NEXTU
 ; trade
 wCurTradePartyMon:: db
 wCurOTTradePartyMon:: db
-wBufferTrademonNick:: ds MON_NAME_LENGTH
+wBufferTrademonNickname:: ds MON_NAME_LENGTH
 
 NEXTU
 ; link battle record data
@@ -2576,10 +2624,26 @@ wOTPartyMon4:: party_struct wOTPartyMon4
 wOTPartyMon5:: party_struct wOTPartyMon5
 wOTPartyMon6:: party_struct wOTPartyMon6
 	assert_table_length PARTY_LENGTH
-wOTPartyMonsEnd::
 
-wOTPartyMonOT:: ds NAME_LENGTH * PARTY_LENGTH
-wOTPartyMonNicknames:: ds MON_NAME_LENGTH * PARTY_LENGTH
+wOTPartyMonOTs::
+	table_width NAME_LENGTH, wOTPartyMonOTs
+wOTPartyMon1OT:: ds NAME_LENGTH
+wOTPartyMon2OT:: ds NAME_LENGTH
+wOTPartyMon3OT:: ds NAME_LENGTH
+wOTPartyMon4OT:: ds NAME_LENGTH
+wOTPartyMon5OT:: ds NAME_LENGTH
+wOTPartyMon6OT:: ds NAME_LENGTH
+	assert_table_length PARTY_LENGTH
+
+wOTPartyMonNicknames::
+	table_width MON_NAME_LENGTH, wOTPartyMonNicknames
+wOTPartyMon1Nickname:: ds MON_NAME_LENGTH
+wOTPartyMon2Nickname:: ds MON_NAME_LENGTH
+wOTPartyMon3Nickname:: ds MON_NAME_LENGTH
+wOTPartyMon4Nickname:: ds MON_NAME_LENGTH
+wOTPartyMon5Nickname:: ds MON_NAME_LENGTH
+wOTPartyMon6Nickname:: ds MON_NAME_LENGTH
+	assert_table_length PARTY_LENGTH
 wOTPartyDataEnd::
 
 NEXTU
@@ -3142,9 +3206,25 @@ wPartyMon5:: party_struct wPartyMon5
 wPartyMon6:: party_struct wPartyMon6
 	assert_table_length PARTY_LENGTH
 
-wPartyMonOT:: ds NAME_LENGTH * PARTY_LENGTH
+wPartyMonOTs::
+	table_width NAME_LENGTH, wPartyMonOTs
+wPartyMon1OT:: ds NAME_LENGTH
+wPartyMon2OT:: ds NAME_LENGTH
+wPartyMon3OT:: ds NAME_LENGTH
+wPartyMon4OT:: ds NAME_LENGTH
+wPartyMon5OT:: ds NAME_LENGTH
+wPartyMon6OT:: ds NAME_LENGTH
+	assert_table_length PARTY_LENGTH
 
-wPartyMonNicknames:: ds MON_NAME_LENGTH * PARTY_LENGTH
+wPartyMonNicknames::
+	table_width MON_NAME_LENGTH, wPartyMonNicknames
+wPartyMon1Nickname:: ds MON_NAME_LENGTH
+wPartyMon2Nickname:: ds MON_NAME_LENGTH
+wPartyMon3Nickname:: ds MON_NAME_LENGTH
+wPartyMon4Nickname:: ds MON_NAME_LENGTH
+wPartyMon5Nickname:: ds MON_NAME_LENGTH
+wPartyMon6Nickname:: ds MON_NAME_LENGTH
+	assert_table_length PARTY_LENGTH
 wPartyMonNicknamesEnd::
 
 	ds 22
@@ -3166,9 +3246,9 @@ wDayCareMan::
 ; bit 0: monster 1 in day-care
 	db
 
-wBreedMon1Nick:: ds MON_NAME_LENGTH
-wBreedMon1OT::   ds NAME_LENGTH
-wBreedMon1::     box_struct wBreedMon1
+wBreedMon1Nickname:: ds MON_NAME_LENGTH
+wBreedMon1OT:: ds NAME_LENGTH
+wBreedMon1:: box_struct wBreedMon1
 
 wDayCareLady::
 ; bit 7: active
@@ -3182,13 +3262,13 @@ wBreedMotherOrNonDitto::
 ; nz: no
 	db
 
-wBreedMon2Nick:: ds MON_NAME_LENGTH
-wBreedMon2OT::   ds NAME_LENGTH
-wBreedMon2::     box_struct wBreedMon2
+wBreedMon2Nickname:: ds MON_NAME_LENGTH
+wBreedMon2OT:: ds NAME_LENGTH
+wBreedMon2:: box_struct wBreedMon2
 
-wEggNick:: ds MON_NAME_LENGTH
-wEggOT::   ds NAME_LENGTH
-wEggMon::  box_struct wEggMon
+wEggMonNickname:: ds MON_NAME_LENGTH
+wEggMonOT:: ds NAME_LENGTH
+wEggMon:: box_struct wEggMon
 
 wBugContestSecondPartySpecies:: db
 wContestMon:: party_struct wContestMon

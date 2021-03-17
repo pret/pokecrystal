@@ -31,7 +31,7 @@ CheckPartyFullAfterContest:
 	call CopyBytes
 	ld a, [wPartyCount]
 	dec a
-	ld hl, wPartyMonOT
+	ld hl, wPartyMonOTs
 	call SkipNames
 	ld d, h
 	ld e, l

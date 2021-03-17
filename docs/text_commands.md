@@ -110,13 +110,13 @@ Play `SFX_SLOT_MACHINE_START`.
 
 Write text from one of the following addresses (listed in [data/text_buffers.asm](https://github.com/pret/pokecrystal/blob/master/data/text_buffers.asm)):
 
-0. `StringBuffer3`
-1. `StringBuffer4`
-2. `StringBuffer5`
-3. `StringBuffer2`
-4. `StringBuffer1`
-5. `EnemyMonNick`
-6. `BattleMonNick`
+0. `wStringBuffer3`
+1. `wStringBuffer4`
+2. `wStringBuffer5`
+3. `wStringBuffer2`
+4. `wStringBuffer1`
+5. `wEnemyMonNickname`
+6. `wBattleMonNickname`
 
 
 ## `$15`: `text_today`

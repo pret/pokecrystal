@@ -590,7 +590,7 @@ GiveItem:
 	push af
 	ld a, [wPackJumptableIndex]
 	push af
-	call GetCurNick
+	call GetCurNickname
 	ld hl, wStringBuffer1
 	ld de, wMonOrItemNameBuffer
 	ld bc, MON_NAME_LENGTH

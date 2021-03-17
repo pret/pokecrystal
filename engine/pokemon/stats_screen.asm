@@ -430,7 +430,7 @@ StatsScreen_InitUpperHalf:
 	hlcoord 14, 0
 	call PrintLevel
 	ld hl, .NicknamePointers
-	call GetNicknamePointer
+	call GetNicknamenamePointer
 	call CopyNickname
 	hlcoord 8, 2
 	call PlaceString
@@ -481,7 +481,7 @@ StatsScreen_InitUpperHalf:
 	dw wPartyMonNicknames
 	dw wOTPartyMonNicknames
 	dw sBoxMonNicknames
-	dw wBufferMonNick
+	dw wBufferMonNickname
 
 StatsScreen_PlaceVerticalDivider: ; unreferenced
 ; The Japanese stats screen has a vertical divider.
@@ -789,7 +789,7 @@ LoadBluePage:
 	ld de, wTempMonID
 	call PrintNum
 	ld hl, .OTNamePointers
-	call GetNicknamePointer
+	call GetNicknamenamePointer
 	call CopyNickname
 	farcall CorrectNickErrors
 	hlcoord 2, 13
@@ -810,9 +810,9 @@ LoadBluePage:
 	ret
 
 .OTNamePointers:
-	dw wPartyMonOT
-	dw wOTPartyMonOT
-	dw sBoxMonOT
+	dw wPartyMonOTs
+	dw wOTPartyMonOTs
+	dw sBoxMonOTs
 	dw wBufferMonOT
 
 IDNoString:
@@ -1157,7 +1157,7 @@ CopyNickname:
 	pop de
 	ret
 
-GetNicknamePointer:
+GetNicknamenamePointer:
 	ld a, [wMonType]
 	add a
 	ld c, a

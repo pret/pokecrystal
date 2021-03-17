@@ -6900,7 +6900,7 @@ Function11b483:
 	ld [hl], a
 	pop bc
 	ld de, NAME_LENGTH
-	ld hl, wPartyMonOT
+	ld hl, wPartyMonOTs
 	pop af
 	push af
 .loop4
@@ -7191,9 +7191,9 @@ Function11b6b4:
 	ld [wMobileMonStructPointer + 1], a
 
 	ld a, LOW($c63d) ; OT
-	ld [wMobileMonOTNamePointer], a
+	ld [wMobileMonOTPointer], a
 	ld a, HIGH($c63d)
-	ld [wMobileMonOTNamePointer + 1], a
+	ld [wMobileMonOTPointer + 1], a
 
 	ld a, LOW($c642) ; Nickname
 	ld [wMobileMonNicknamePointer], a
@@ -7493,9 +7493,9 @@ Function11b93b:
 	ld [wMobileMonStructPointer + 1], a
 
 	ld a, LOW($c641)
-	ld [wMobileMonOTNamePointer], a
+	ld [wMobileMonOTPointer], a
 	ld a, HIGH($c641)
-	ld [wMobileMonOTNamePointer + 1], a
+	ld [wMobileMonOTPointer + 1], a
 
 	ld a, LOW($c646)
 	ld [wMobileMonNicknamePointer], a
@@ -7553,7 +7553,7 @@ AddMobileMonToParty:
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 
-	ld hl, wPartyMonOT
+	ld hl, wPartyMonOTs
 	ld bc, NAME_LENGTH
 	ld a, [wMobileMonSpecies]
 .loop3
@@ -7563,9 +7563,9 @@ AddMobileMonToParty:
 	jr nz, .loop3
 	ld e, l
 	ld d, h
-	ld a, [wMobileMonOTNamePointer]
+	ld a, [wMobileMonOTPointer]
 	ld l, a
-	ld a, [wMobileMonOTNamePointer + 1]
+	ld a, [wMobileMonOTPointer + 1]
 	ld h, a
 	ld bc, MON_NAME_LENGTH - 1
 	call CopyBytes

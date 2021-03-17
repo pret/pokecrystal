@@ -2388,7 +2388,7 @@ Unknown_100fc0:
 	dbwww $80, wPartyCount, 1 + PARTY_LENGTH + 1, wOTPartyCount
 	dbwww $80, wPlayerID, 2, wOTPlayerID
 	dbwww $80, wPartyMons, PARTYMON_STRUCT_LENGTH * PARTY_LENGTH, wOTPartyMons
-	dbwww $80, wPartyMonOT, NAME_LENGTH * PARTY_LENGTH, wOTPartyMonOT
+	dbwww $80, wPartyMonOTs, NAME_LENGTH * PARTY_LENGTH, wOTPartyMonOTs
 	dbwww $80, wPartyMonNicknames, MON_NAME_LENGTH * PARTY_LENGTH, wOTPartyMonNicknames
 	db -1
 
@@ -2411,7 +2411,7 @@ Unknown_10102c:
 	dbwww $80, wOTPlayerName, NAME_LENGTH, NULL
 	dbwww $80, wOTPlayerID, 2, NULL
 	dbwww $80, wOTPartyMonNicknames, MON_NAME_LENGTH * PARTY_LENGTH, NULL
-	dbwww $80, wOTPartyMonOT, NAME_LENGTH * PARTY_LENGTH, NULL
+	dbwww $80, wOTPartyMonOTs, NAME_LENGTH * PARTY_LENGTH, NULL
 	dbwww $80, wOTPartyMons, PARTYMON_STRUCT_LENGTH * PARTY_LENGTH, NULL
 	db -1
 
@@ -2454,7 +2454,7 @@ Function10107d:
 	ld de, wc608 + 13
 	ld bc, NAME_LENGTH
 	call .CopyAllFromOT
-	ld hl, wOTPartyMonOT
+	ld hl, wOTPartyMonOTs
 	ld de, wOTClassName + 1
 	ld bc, NAME_LENGTH
 	call .CopyAllFromOT
@@ -2510,7 +2510,7 @@ LoadSelectedPartiesForColosseum:
 	ld de, wPartyMon1Species
 	call .CopyPartyStruct
 	ld hl, wPlayerMonSelection
-	ld de, wPartyMonOT
+	ld de, wPartyMonOTs
 	call .CopyName
 	ld hl, wPlayerMonSelection
 	ld de, wPartyMonNicknames
@@ -2522,7 +2522,7 @@ LoadSelectedPartiesForColosseum:
 	ld de, wOTPartyMon1Species
 	call .CopyPartyStruct
 	ld hl, wOTMonSelection
-	ld de, wOTPartyMonOT
+	ld de, wOTPartyMonOTs
 	call .CopyName
 	ld hl, wOTMonSelection
 	ld de, wOTPartyMonNicknames
@@ -6004,7 +6004,7 @@ Function102a3b:
 	ld [wPlayerTrademonSpecies], a
 	ld a, [wcd4c]
 	dec a
-	ld hl, wPartyMonOT
+	ld hl, wPartyMonOTs
 	call SkipNames
 	ld de, wPlayerTrademonOTName
 	ld bc, NAME_LENGTH
@@ -6049,7 +6049,7 @@ Function102a3b:
 	ld [wOTTrademonSpecies], a
 	ld a, [wcd4d]
 	dec a
-	ld hl, wOTPartyMonOT
+	ld hl, wOTPartyMonOTs
 	call SkipNames
 	ld de, wOTTrademonOTName
 	ld bc, NAME_LENGTH
@@ -6238,8 +6238,8 @@ Function102c21:
 	ret
 
 Function102c2e:
-	ld hl, wPartyMonOT
-	ld de, wOTPartyMonOT
+	ld hl, wPartyMonOTs
+	ld de, wOTPartyMonOTs
 	ld bc, 11
 	call Function102c71
 	ret

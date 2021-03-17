@@ -58,7 +58,7 @@ CheckOwnMonAnywhere:
 	ld d, a
 	ld e, 0
 	ld hl, wPartyMon1Species
-	ld bc, wPartyMonOT
+	ld bc, wPartyMonOTs
 
 	; Run CheckOwnMon on each Pokémon in the party.
 .partymon
@@ -82,7 +82,7 @@ CheckOwnMonAnywhere:
 
 	ld d, a
 	ld hl, sBoxMon1Species
-	ld bc, sBoxMonOT
+	ld bc, sBoxMonOTs
 .openboxmon
 	call CheckOwnMon
 	jr nc, .loop
@@ -138,7 +138,7 @@ CheckOwnMonAnywhere:
 	ld e, l
 	pop hl
 	push de
-	ld de, sBoxMonOT - sBoxCount
+	ld de, sBoxMonOTs - sBoxCount
 	add hl, de
 	ld b, h
 	ld c, l

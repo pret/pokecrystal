@@ -42,8 +42,8 @@ _GiveOddEgg:
 	ld a, NICKNAMED_MON_STRUCT_LENGTH
 	call AddNTimes
 
-	; Writes to wOddEgg, wOddEggName, and wOddEggOTName,
-	; even though OddEggs does not have data for wOddEggOTName
+	; Writes to wOddEgg, wOddEggName, and wOddEggOT,
+	; even though OddEggs does not have data for wOddEggOT
 	ld de, wOddEgg
 	ld bc, NICKNAMED_MON_STRUCT_LENGTH + NAME_LENGTH
 	call CopyBytes
@@ -78,11 +78,11 @@ _GiveOddEgg:
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
-	; load pointer to wTempOddEggNickname in wMobileMonOTNamePointer
+	; load pointer to wTempOddEggNickname in wMobileMonOTPointer
 	ld a, LOW(wTempOddEggNickname)
-	ld [wMobileMonOTNamePointer], a
+	ld [wMobileMonOTPointer], a
 	ld a, HIGH(wTempOddEggNickname)
-	ld [wMobileMonOTNamePointer + 1], a
+	ld [wMobileMonOTPointer + 1], a
 	; load pointer to wOddEggName in wMobileMonNicknamePointer
 	ld a, LOW(wOddEggName)
 	ld [wMobileMonNicknamePointer], a

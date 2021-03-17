@@ -213,7 +213,7 @@ GivePokeMail::
 	call CopyBytes
 	pop af
 	push af
-	ld hl, wPartyMonOT
+	ld hl, wPartyMonOTs
 	ld bc, NAME_LENGTH
 	call AddNTimes
 	ld bc, NAME_LENGTH - 1

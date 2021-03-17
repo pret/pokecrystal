@@ -14,7 +14,7 @@ ReadTrainerParty:
 	ld [hl], a
 
 	ld hl, wOTPartyMons
-	ld bc, wOTPartyMonsEnd - wOTPartyMons
+	ld bc, PARTYMON_STRUCT_LENGTH * PARTY_LENGTH
 	xor a
 	call ByteFill
 

@@ -192,7 +192,7 @@ PrintPartyMonPage1:
 	hlcoord 1, 9
 	ld de, PrintParty_OTString
 	call PlaceString
-	ld hl, wPartyMonOT
+	ld hl, wPartyMonOTs
 	call GetCurPartyMonName
 	hlcoord 4, 9
 	call PlaceString

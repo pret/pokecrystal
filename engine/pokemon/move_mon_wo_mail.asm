@@ -8,12 +8,12 @@ InsertPokemonIntoBox:
 	ld [wNextBoxOrPartyIndex], a
 	ld hl, sBoxMonNicknames
 	ld bc, MON_NAME_LENGTH
-	ld de, wBufferMonNick
+	ld de, wBufferMonNickname
 	call InsertDataIntoBoxOrParty
 	ld a, [sBoxCount]
 	dec a
 	ld [wNextBoxOrPartyIndex], a
-	ld hl, sBoxMonOT
+	ld hl, sBoxMonOTs
 	ld bc, NAME_LENGTH
 	ld de, wBufferMonOT
 	call InsertDataIntoBoxOrParty
@@ -45,12 +45,12 @@ InsertPokemonIntoParty:
 	ld [wNextBoxOrPartyIndex], a
 	ld hl, wPartyMonNicknames
 	ld bc, MON_NAME_LENGTH
-	ld de, wBufferMonNick
+	ld de, wBufferMonNickname
 	call InsertDataIntoBoxOrParty
 	ld a, [wPartyCount]
 	dec a
 	ld [wNextBoxOrPartyIndex], a
-	ld hl, wPartyMonOT
+	ld hl, wPartyMonOTs
 	ld bc, NAME_LENGTH
 	ld de, wBufferMonOT
 	call InsertDataIntoBoxOrParty

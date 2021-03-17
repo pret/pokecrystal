@@ -14,7 +14,7 @@ _NameRater:
 	cp EGG
 	jr z, .egg
 ; ... or a Pokemon you got from a trade.
-	call GetCurNick
+	call GetCurNickname
 	call CheckIfMonIsYourOT
 	jr c, .traded
 ; This name is good, but we can do better.  How about it?
@@ -57,7 +57,7 @@ _NameRater:
 
 .samename
 	push hl
-	call GetCurNick
+	call GetCurNickname
 	ld hl, NameRaterNamedText
 	call PrintText
 	pop hl
@@ -80,7 +80,7 @@ _NameRater:
 
 CheckIfMonIsYourOT:
 ; Checks to see if the partymon loaded in [wCurPartyMon] has the different OT as you.  Returns carry if not.
-	ld hl, wPartyMonOT
+	ld hl, wPartyMonOTs
 	ld bc, NAME_LENGTH
 	ld a, [wCurPartyMon]
 	call AddNTimes
@@ -138,10 +138,10 @@ CompareNewToOld:
 	ld a, [wCurPartyMon]
 	call AddNTimes
 	push hl
-	call GetNicknameLength
+	call GetNicknamenameLength
 	ld b, c
 	ld hl, wStringBuffer2
-	call GetNicknameLength
+	call GetNicknamenameLength
 	pop hl
 	ld a, c
 	cp b
@@ -165,7 +165,7 @@ CompareNewToOld:
 	scf
 	ret
 
-GetNicknameLength:
+GetNicknamenameLength:
 ; Gets the length of the name starting at hl and returns it in c.
 	ld c, 0
 .loop

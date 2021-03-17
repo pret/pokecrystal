@@ -19,13 +19,13 @@ FieldMoveJumptable:
 	scf
 	ret
 
-GetPartyNick:
+GetPartyNickname:
 ; write wCurPartyMon nickname to wStringBuffer1-3
 	ld hl, wPartyMonNicknames
 	ld a, BOXMON
 	ld [wMonType], a
 	ld a, [wCurPartyMon]
-	call GetNick
+	call GetNickname
 	call CopyName1
 ; copy text from wStringBuffer2 to wStringBuffer3
 	ld de, wStringBuffer2
@@ -204,7 +204,7 @@ Script_CutFromMenu:
 	special UpdateTimePals
 
 Script_Cut:
-	callasm GetPartyNick
+	callasm GetPartyNickname
 	writetext UseCutText
 	reloadmappart
 	callasm CutDownTreeOrGrass
@@ -379,7 +379,7 @@ SurfFunction:
 .DoSurf:
 	call GetSurfType
 	ld [wSurfingPlayerState], a
-	call GetPartyNick
+	call GetPartyNickname
 	ld hl, SurfFromMenuScript
 	call QueueScript
 	ld a, $81
@@ -516,7 +516,7 @@ TrySurfOW::
 
 	call GetSurfType
 	ld [wSurfingPlayerState], a
-	call GetPartyNick
+	call GetPartyNickname
 
 	ld a, BANK(AskSurfScript)
 	ld hl, AskSurfScript
@@ -674,7 +674,7 @@ Script_WaterfallFromMenu:
 	special UpdateTimePals
 
 Script_UsedWaterfall:
-	callasm GetPartyNick
+	callasm GetPartyNickname
 	writetext .UseWaterfallText
 	waitbutton
 	closetext
@@ -798,7 +798,7 @@ EscapeRopeOrDig:
 	ld de, wNextWarp
 	ld bc, 3
 	call CopyBytes
-	call GetPartyNick
+	call GetPartyNickname
 	ld a, [wEscapeRopeOrDigType]
 	cp $2
 	jr nz, .escaperope
@@ -911,7 +911,7 @@ TeleportFunction:
 	ret
 
 .DoTeleport:
-	call GetPartyNick
+	call GetPartyNickname
 	ld hl, .TeleportScript
 	call QueueScript
 	ld a, $81
@@ -999,7 +999,7 @@ SetStrengthFlag:
 	add hl, de
 	ld a, [hl]
 	ld [wStrengthSpecies], a
-	call GetPartyNick
+	call GetPartyNickname
 	ret
 
 Script_StrengthFromMenu:
@@ -1166,7 +1166,7 @@ Script_WhirlpoolFromMenu:
 	special UpdateTimePals
 
 Script_UsedWhirlpool:
-	callasm GetPartyNick
+	callasm GetPartyNickname
 	writetext UseWhirlpoolText
 	reloadmappart
 	callasm DisappearWhirlpool
@@ -1265,7 +1265,7 @@ HeadbuttFromMenuScript:
 	special UpdateTimePals
 
 HeadbuttScript:
-	callasm GetPartyNick
+	callasm GetPartyNickname
 	writetext UseHeadbuttText
 
 	reloadmappart
@@ -1362,7 +1362,7 @@ RockSmashFromMenuScript:
 	special UpdateTimePals
 
 RockSmashScript:
-	callasm GetPartyNick
+	callasm GetPartyNickname
 	writetext UseRockSmashText
 	closetext
 	special WaitSFX

@@ -303,7 +303,7 @@ HatchEggs:
 	ld a, [wPlayerID + 1]
 	ld [hl], a
 	ld a, [wCurPartyMon]
-	ld hl, wPartyMonOT
+	ld hl, wPartyMonOTs
 	ld bc, NAME_LENGTH
 	call AddNTimes
 	ld d, h
@@ -870,7 +870,7 @@ DayCareMon1:
 	bit DAYCARELADY_HAS_MON_F, a
 	jr z, DayCareMonCursor
 	call PromptButton
-	ld hl, wBreedMon2Nick
+	ld hl, wBreedMon2Nickname
 	call DayCareMonCompatibilityText
 	jp PrintText
 
@@ -883,7 +883,7 @@ DayCareMon2:
 	bit DAYCAREMAN_HAS_MON_F, a
 	jr z, DayCareMonCursor
 	call PromptButton
-	ld hl, wBreedMon1Nick
+	ld hl, wBreedMon1Nickname
 	call DayCareMonCompatibilityText
 	jp PrintText
 

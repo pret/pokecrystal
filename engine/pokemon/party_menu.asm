@@ -91,7 +91,7 @@ PlacePartyNicknames:
 	push hl
 	ld hl, wPartyMonNicknames
 	ld a, b
-	call GetNick
+	call GetNickname
 	pop hl
 	call PlaceString
 	pop hl
@@ -773,7 +773,7 @@ YouHaveNoPKMNString:
 PrintPartyMenuActionText:
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
-	call GetNick
+	call GetNickname
 	ld a, [wPartyMenuActionText]
 	and $f
 	ld hl, .MenuActionTexts

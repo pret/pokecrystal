@@ -343,7 +343,7 @@ Unused_PlaceEnemyHPLevel:
 	push hl
 	ld hl, wPartyMonNicknames
 	ld a, [wCurPartyMon]
-	call GetNick
+	call GetNickname
 	pop hl
 	call PlaceString
 	call CopyMonToTempMon

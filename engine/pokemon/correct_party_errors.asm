@@ -137,7 +137,7 @@ CorrectPartyErrors: ; unreferenced
 	dec b
 	jr nz, .loop3
 
-	ld de, wPartyMonOT
+	ld de, wPartyMonOTs
 	ld a, [wPartyCount]
 	ld b, a
 	ld c, 0

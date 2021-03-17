@@ -566,7 +566,7 @@ This bug affects Attract, Curse, Foresight, Mean Look, Mimic, Nightmare, Spider 
  .got_mon
  	ld a, [wCurBeatUpPartyMon]
  	ld hl, wPartyMonNicknames
- 	call GetNick
+ 	call GetNickname
  	ld a, MON_HP
  	call GetBeatupMonLocation
  	ld a, [hli]

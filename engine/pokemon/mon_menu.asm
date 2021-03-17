@@ -109,7 +109,7 @@ PokemonActionSubmenu:
 	lb bc, 2, 18
 	call ClearBox
 	farcall MonSubmenu
-	call GetCurNick
+	call GetCurNickname
 	ld a, [wMenuSelection]
 	ld hl, .Actions
 	ld de, 3
@@ -210,7 +210,7 @@ GiveTakePartyMonItem:
 	call ExitMenu
 	jr c, .cancel
 
-	call GetCurNick
+	call GetCurNickname
 	ld hl, wStringBuffer1
 	ld de, wMonOrItemNameBuffer
 	ld bc, MON_NAME_LENGTH
@@ -529,7 +529,7 @@ MonMailAction:
 	jr nc, .BagIsFull
 	call GetPartyItemLocation
 	ld [hl], $0
-	call GetCurNick
+	call GetCurNickname
 	ld hl, .MailDetachedText
 	call MenuTextboxBackup
 	jr .done
@@ -1119,7 +1119,7 @@ SetUpMoveScreenBG:
 	ld [wMonType], a
 	ld hl, wPartyMonNicknames
 	ld a, [wCurPartyMon]
-	call GetNick
+	call GetNickname
 	hlcoord 5, 1
 	call PlaceString
 	push bc

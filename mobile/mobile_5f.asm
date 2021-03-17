@@ -2299,7 +2299,7 @@ Function17ded9:
 	push hl
 	ld a, [wPartyCount]
 	dec a
-	ld hl, wPartyMonOT
+	ld hl, wPartyMonOTs
 	call SkipNames
 	ld d, h
 	ld e, l
@@ -2486,7 +2486,7 @@ Function17e026:
 	jr z, .asm_17e08e
 	push bc
 	ld bc, $6
-	ld de, sBoxMonOT
+	ld de, sBoxMonOTs
 	call CopyBytes
 	ld a, [hli]
 	ld b, a

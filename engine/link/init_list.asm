@@ -5,7 +5,7 @@ InitList:
 	cp INIT_ENEMYOT_LIST
 	jr nz, .check_party_ot_name
 	ld hl, wOTPartyCount
-	ld de, wOTPartyMonOT
+	ld de, wOTPartyMonOTs
 	ld a, ENEMY_OT_NAME
 	jr .done
 
@@ -13,7 +13,7 @@ InitList:
 	cp INIT_PLAYEROT_LIST
 	jr nz, .check_mon_name
 	ld hl, wPartyCount
-	ld de, wPartyMonOT
+	ld de, wPartyMonOTs
 	ld a, PARTY_OT_NAME
 	jr .done
 

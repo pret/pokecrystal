@@ -133,12 +133,12 @@ _YourFoesWeakGetmMonText::
 	text_end
 
 _BattleMonNicknameText::
-	text_ram wBattleMonNick
+	text_ram wBattleMonNickname
 	text "!"
 	done
 
 _BattleMonNickCommaText::
-	text_ram wBattleMonNick
+	text_ram wBattleMonNickname
 	text ",@"
 	text_end
 
@@ -807,7 +807,7 @@ _BreedAskNicknameText::
 
 _LeftWithDayCareLadyText::
 	text "It's @"
-	text_ram wBreedMon2Nick
+	text_ram wBreedMon2Nickname
 	text_start
 	line "that was left with"
 	cont "the DAY-CARE LADY."
@@ -815,7 +815,7 @@ _LeftWithDayCareLadyText::
 
 _LeftWithDayCareManText::
 	text "It's @"
-	text_ram wBreedMon1Nick
+	text_ram wBreedMon1Nickname
 	text_start
 	line "that was left with"
 	cont "the DAY-CARE MAN."

@@ -54,7 +54,7 @@ red_box_struct: MACRO
 \1Type2::      db
 \1CatchRate::  db
 \1Moves::      ds NUM_MOVES
-\1OTID::       dw
+\1ID::         dw
 \1Exp::        ds 3
 \1HPExp::      dw
 \1AttackExp::  dw
@@ -100,13 +100,13 @@ battle_struct: MACRO
 ENDM
 
 box: MACRO
-\1Count::           db
-\1Species::         ds MONS_PER_BOX + 1
+\1Count::        db
+\1Species::      ds MONS_PER_BOX + 1
 \1Mons::
-\1Mon1::            box_struct \1Mon1
-\1Mon2::            ds BOXMON_STRUCT_LENGTH * (MONS_PER_BOX - 1)
-\1MonOT::           ds NAME_LENGTH * MONS_PER_BOX
-\1MonNicknames::    ds MON_NAME_LENGTH * MONS_PER_BOX
+\1Mon1::         box_struct \1Mon1
+\1Mon2::         ds BOXMON_STRUCT_LENGTH * (MONS_PER_BOX - 1)
+\1MonOTs::       ds NAME_LENGTH * MONS_PER_BOX
+\1MonNicknames:: ds MON_NAME_LENGTH * MONS_PER_BOX
 \1MonNicknamesEnd::
 \1End::
 	ds 2 ; padding
@@ -154,7 +154,7 @@ channel_struct: MACRO
 \1VibratoRate::       db ; hi:frames for each alt lo:frames to the next alt
 \1PitchSlideTarget::  dw ; frequency endpoint for pitch slide
 \1PitchSlideAmount::  db
-\1PitchSlideAmountFraction::   db
+\1PitchSlideAmountFraction:: db
 \1Field25::           db
                       ds 1
 \1PitchOffset::       dw
@@ -169,29 +169,29 @@ channel_struct: MACRO
 ENDM
 
 battle_tower_struct: MACRO
-\1Name:: ds NAME_LENGTH - 1
-\1TrainerClass:: ds 1
-\1Mon1:: party_struct \1Mon1
-\1Mon1Name:: ds MON_NAME_LENGTH
+\1Name::         ds NAME_LENGTH - 1
+\1TrainerClass:: db
+\1Mon1::         party_struct \1Mon1
+\1Mon1Name::     ds MON_NAME_LENGTH
 \1Mon1NameEnd::
-\1Mon2:: party_struct \1Mon2
-\1Mon2Name:: ds MON_NAME_LENGTH
+\1Mon2::         party_struct \1Mon2
+\1Mon2Name::     ds MON_NAME_LENGTH
 \1Mon2NameEnd::
-\1Mon3:: party_struct \1Mon3
-\1Mon3Name:: ds MON_NAME_LENGTH
+\1Mon3::         party_struct \1Mon3
+\1Mon3Name::     ds MON_NAME_LENGTH
 \1Mon3NameEnd::
-\1TrainerData:: ds BATTLETOWER_TRAINERDATALENGTH
+\1TrainerData::  ds BATTLETOWER_TRAINERDATALENGTH
 \1TrainerEnd::
 ENDM
 
 mailmsg: MACRO
-\1Message::    ds MAIL_MSG_LENGTH
-\1MessageEnd:: ds 1
-\1Author::     ds PLAYER_NAME_LENGTH
-\1AuthorNationality:: ds 2
-\1AuthorID::   dw
-\1Species::    db
-\1Type::       db
+\1Message::     ds MAIL_MSG_LENGTH
+\1MessageEnd::  db
+\1Author::      ds PLAYER_NAME_LENGTH
+\1Nationality:: dw
+\1AuthorID::    dw
+\1Species::     db
+\1Type::        db
 \1End::
 ENDM
 
@@ -364,24 +364,23 @@ sprite_anim_struct: MACRO
 ENDM
 
 battle_anim_struct: MACRO
-; Placeholder until we can figure out what it all means
-\1Index::              db
-\1OAMFlags::           db
-\1Field02::            ds 1
-\1FramesetID::         db
-\1Function::           db
-\1Palette::            db
-\1TileID::             db
-\1XCoord::             db
-\1YCoord::             db
-\1XOffset::            db
-\1YOffset::            db
-\1Param::              db
-\1Duration::           db
-\1Frame::              db
-\1JumptableIndex::     db
-\1Var1::               db
-\1Var2::               db
+\1Index::          db
+\1OAMFlags::       db
+\1FixY::           db
+\1FramesetID::     db
+\1Function::       db
+\1Palette::        db
+\1TileID::         db
+\1XCoord::         db
+\1YCoord::         db
+\1XOffset::        db
+\1YOffset::        db
+\1Param::          db
+\1Duration::       db
+\1Frame::          db
+\1JumptableIndex:: db
+\1Var1::           db
+\1Var2::           db
 	ds 7
 ENDM
 

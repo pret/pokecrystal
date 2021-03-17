@@ -1709,7 +1709,7 @@ BillsPC_CopyMon:
 	call CopySpeciesToTemp
 	ld hl, sBoxMonNicknames
 	call CopyNicknameToTemp
-	ld hl, sBoxMonOT
+	ld hl, sBoxMonOTs
 	call CopyOTNameToTemp
 	ld hl, sBoxMons
 	ld bc, BOXMON_STRUCT_LENGTH
@@ -1727,7 +1727,7 @@ BillsPC_CopyMon:
 	call CopySpeciesToTemp
 	ld hl, wPartyMonNicknames
 	call CopyNicknameToTemp
-	ld hl, wPartyMonOT
+	ld hl, wPartyMonOTs
 	call CopyOTNameToTemp
 	ld hl, wPartyMon1
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -1753,7 +1753,7 @@ BillsPC_CopyMon:
 	call CopyNicknameToTemp
 	pop hl
 	push hl
-	ld bc, sBoxMonOT - sBox
+	ld bc, sBoxMonOTs - sBox
 	add hl, bc
 	call CopyOTNameToTemp
 	pop hl
@@ -1772,7 +1772,7 @@ DepositPokemon:
 	ld [wCurPartyMon], a
 	ld hl, wPartyMonNicknames
 	ld a, [wCurPartyMon]
-	call GetNick
+	call GetNickname
 	ld a, PC_DEPOSIT
 	ld [wPokemonWithdrawDepositParameter], a
 	predef SendGetMonIntoFromBox
@@ -1826,7 +1826,7 @@ TryWithdrawPokemon:
 	call OpenSRAM
 	ld a, [wCurPartyMon]
 	ld hl, sBoxMonNicknames
-	call GetNick
+	call GetNickname
 	call CloseSRAM
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
@@ -2051,7 +2051,7 @@ MovePKMNWitoutMail_InsertMon:
 	call CopySpeciesToTemp
 	ld hl, sBoxMonNicknames
 	call CopyNicknameToTemp
-	ld hl, sBoxMonOT
+	ld hl, sBoxMonOTs
 	call CopyOTNameToTemp
 	ld hl, sBoxMons
 	ld bc, BOXMON_STRUCT_LENGTH
@@ -2084,7 +2084,7 @@ MovePKMNWitoutMail_InsertMon:
 	call CopySpeciesToTemp
 	ld hl, wPartyMonNicknames
 	call CopyNicknameToTemp
-	ld hl, wPartyMonOT
+	ld hl, wPartyMonOTs
 	call CopyOTNameToTemp
 	ld hl, wPartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -2115,7 +2115,7 @@ CopyNicknameToTemp:
 	ld bc, MON_NAME_LENGTH
 	ld a, [wCurPartyMon]
 	call AddNTimes
-	ld de, wBufferMonNick
+	ld de, wBufferMonNickname
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	ret

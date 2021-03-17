@@ -81,12 +81,12 @@ _SwitchPartyMons:
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 	ld a, [wSwitchMonTo]
-	ld hl, wPartyMonOT
+	ld hl, wPartyMonOTs
 	call SkipNames
 	push hl
 	call .CopyNameToSwitchMonBuffer
 	ld a, [wSwitchMonFrom]
-	ld hl, wPartyMonOT
+	ld hl, wPartyMonOTs
 	call SkipNames
 	pop de
 	push hl

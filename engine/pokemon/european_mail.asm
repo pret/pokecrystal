@@ -5,7 +5,7 @@ IsMailEuropean:
 ; return 4 if Spanish
 ; return 0 if none of the above
 	ld c, $0
-	ld hl, sPartyMon1MailAuthorNationality - sPartyMon1Mail
+	ld hl, sPartyMon1MailNationality - sPartyMon1Mail
 	add hl, de
 	ld a, [hli]
 	cp "E"
