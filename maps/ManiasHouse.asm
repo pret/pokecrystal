@@ -52,7 +52,7 @@ ManiaScript:
 	writetext ManiaText_CanIHaveMyMonBack
 	yesorno
 	iffalse .refused
-	special ReturnShuckle
+	special ReturnShuckie
 	ifequal SHUCKIE_WRONG_MON, .wrong
 	ifequal SHUCKIE_REFUSED, .refused
 	ifequal SHUCKIE_HAPPY, .superhappy

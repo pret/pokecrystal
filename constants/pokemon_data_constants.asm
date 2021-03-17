@@ -102,6 +102,8 @@ MON_STATUS             rb
                        rb_skip
 MON_HP                 rw
 MON_MAXHP              rw
+MON_STATS              rw NUM_BATTLE_STATS
+rsset MON_STATS
 MON_ATK                rw
 MON_DEF                rw
 MON_SPD                rw
@@ -190,7 +192,7 @@ NUM_TREEMON_SETS EQU const_value
 	const TREEMON_SCORE_GOOD ; 1
 	const TREEMON_SCORE_RARE ; 2
 
-; ChangeHappiness arguments (see data/happiness_changes.asm)
+; ChangeHappiness arguments (see data/events/happiness_changes.asm)
 	const_def 1
 	const HAPPINESS_GAINLEVEL         ; 01
 	const HAPPINESS_USEDITEM          ; 02

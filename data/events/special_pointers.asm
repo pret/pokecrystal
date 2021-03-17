@@ -87,7 +87,7 @@ SpecialsPointers::
 	add_special ToggleMaptileDecorations
 	add_special ToggleDecorationsVisibility
 	add_special GiveShuckle
-	add_special ReturnShuckle
+	add_special ReturnShuckie
 	add_special BillsGrandfather
 	add_special CheckPokerus
 	add_special DisplayCoinCaseBalance

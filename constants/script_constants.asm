@@ -72,12 +72,12 @@ STRING_BUFFER_LENGTH EQU 19
 	const VAR_BLUECARDBALANCE  ; 18
 	const VAR_BUENASPASSWORD   ; 19
 	const VAR_KENJI_BREAK      ; 1a
-NUM_VARS EQU const_value       ; 1b
+NUM_VARS EQU const_value           ; 1b
 
 ; variable action types
-RETVAR_STRBUF2 EQU (0 << 6)
-RETVAR_ADDR_DE EQU (1 << 6)
-RETVAR_EXECUTE EQU (2 << 6)
+RETVAR_STRBUF2 EQU 0 << 6
+RETVAR_ADDR_DE EQU 1 << 6
+RETVAR_EXECUTE EQU 2 << 6
 
 ; PlayerEventScriptPointers indexes (see engine/overworld/events.asm)
 	const_def -1
@@ -94,7 +94,7 @@ RETVAR_EXECUTE EQU (2 << 6)
 	const PLAYEREVENT_JOYCHANGEFACING
 NUM_PLAYER_EVENTS EQU const_value
 
-; PlayerMovement.pointers indexes (see engine/overworld/events.asm)
+; PlayerMovementPointers indexes (see engine/overworld/events.asm)
 	const_def
 	const PLAYERMOVEMENT_NORMAL
 	const PLAYERMOVEMENT_WARP
@@ -104,17 +104,18 @@ NUM_PLAYER_EVENTS EQU const_value
 	const PLAYERMOVEMENT_CONTINUE
 	const PLAYERMOVEMENT_EXIT_WATER
 	const PLAYERMOVEMENT_JUMP
+NUM_PLAYER_MOVEMENTS EQU const_value
 
 ; script data sizes (see macros/scripts/maps.asm)
-SCENE_SCRIPT_SIZE EQU 4 ; scene_script
-CALLBACK_SIZE     EQU 3 ; callback
-WARP_EVENT_SIZE   EQU 5 ; warp_event
-COORD_EVENT_SIZE  EQU 8 ; coord_event
-BG_EVENT_SIZE     EQU 5 ; bg_event
+SCENE_SCRIPT_SIZE EQU  4 ; scene_script
+CALLBACK_SIZE     EQU  3 ; callback
+WARP_EVENT_SIZE   EQU  5 ; warp_event
+COORD_EVENT_SIZE  EQU  8 ; coord_event
+BG_EVENT_SIZE     EQU  5 ; bg_event
 OBJECT_EVENT_SIZE EQU 13 ; object_event
 
 ; bg_event types
-; TryBGEvent arguments (see engine/overworld/events.asm)
+; BGEventJumptable indexes (see engine/overworld/events.asm)
 	const_def
 	const BGEVENT_READ
 	const BGEVENT_UP
@@ -125,9 +126,10 @@ OBJECT_EVENT_SIZE EQU 13 ; object_event
 	const BGEVENT_IFNOTSET
 	const BGEVENT_ITEM
 	const BGEVENT_COPY
+NUM_BGEVENTS EQU const_value
 
 ; object_event types
-; TryObjectEvent arguments (see engine/overworld/events.asm)
+; ObjectEventTypeArray indexes (see engine/overworld/events.asm)
 	const_def
 	const OBJECTTYPE_SCRIPT
 	const OBJECTTYPE_ITEMBALL
@@ -136,6 +138,7 @@ OBJECT_EVENT_SIZE EQU 13 ; object_event
 	const OBJECTTYPE_4
 	const OBJECTTYPE_5
 	const OBJECTTYPE_6
+NUM_OBJECT_TYPES EQU const_value
 
 ; command queue members
 CMDQUEUE_TYPE  EQU 0
@@ -180,18 +183,18 @@ NUM_FLOORS EQU const_value
 ; showemote arguments
 ; Emotes indexes (see data/sprites/emotes.asm)
 	const_def
-	const EMOTE_SHOCK ; 0
-	const EMOTE_QUESTION ; 1
-	const EMOTE_HAPPY ; 2
-	const EMOTE_SAD ; 3
-	const EMOTE_HEART ; 4
-	const EMOTE_BOLT ; 5
-	const EMOTE_SLEEP ; 6
-	const EMOTE_FISH ; 7
-	const EMOTE_SHADOW ; 8
-	const EMOTE_ROD ; 9
-	const EMOTE_BOULDER_DUST ; 10
-	const EMOTE_GRASS_RUSTLE ; 11
+	const EMOTE_SHOCK
+	const EMOTE_QUESTION
+	const EMOTE_HAPPY
+	const EMOTE_SAD
+	const EMOTE_HEART
+	const EMOTE_BOLT
+	const EMOTE_SLEEP
+	const EMOTE_FISH
+	const EMOTE_SHADOW
+	const EMOTE_ROD
+	const EMOTE_BOULDER_DUST
+	const EMOTE_GRASS_RUSTLE
 NUM_EMOTES EQU const_value
 EMOTE_FROM_MEM EQU -1
 EMOTE_LENGTH EQU 6
@@ -266,7 +269,7 @@ NUM_DECODESCS EQU const_value
 	const MAGIKARPLENGTH_TOO_SHORT    ; 2
 	const MAGIKARPLENGTH_BEAT_RECORD  ; 3
 
-; SpecialReturnShuckle return values
+; ReturnShuckie return values
 	const_def
 	const SHUCKIE_WRONG_MON ; 0
 	const SHUCKIE_REFUSED   ; 1
