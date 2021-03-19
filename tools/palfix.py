@@ -54,7 +54,7 @@ def fix_pal(filename):
 
 def main():
 	if len(sys.argv) < 2:
-		print('Usage: %s pic.png' % sys.argv[0], file=sys.stderr)
+		print('Usage:', sys.argv[0], 'pic.png', file=sys.stderr)
 		sys.exit(1)
 	for filename in sys.argv[1:]:
 		if not filename.lower().endswith('.png'):
