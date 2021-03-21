@@ -113,7 +113,7 @@ CheckOwnMonAnywhere:
 	jr z, .loopbox
 
 	; Load the box.
-	ld hl, BoxAddressTable
+	ld hl, SearchBoxAddressTable
 	ld b, 0
 	add hl, bc
 	add hl, bc
@@ -244,7 +244,8 @@ endr
 	scf
 	ret
 
-BoxAddressTable:
+SearchBoxAddressTable:
+	table_width 3, SearchBoxAddressTable
 	dba sBox1
 	dba sBox2
 	dba sBox3
@@ -259,6 +260,7 @@ BoxAddressTable:
 	dba sBox12
 	dba sBox13
 	dba sBox14
+	assert_table_length NUM_BOXES
 
 UpdateOTPointer:
 	push hl

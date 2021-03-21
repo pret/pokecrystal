@@ -2140,7 +2140,7 @@ GetBoxPointer:
 	dec b
 	ld c, b
 	ld b, 0
-	ld hl, .boxes
+	ld hl, .BoxBankAddresses
 	add hl, bc
 	add hl, bc
 	add hl, bc
@@ -2151,8 +2151,8 @@ GetBoxPointer:
 	ld l, a
 	ret
 
-.boxes
-	;  bank, address
+.BoxBankAddresses:
+	table_width 3, GetBoxPointer.BoxBankAddresses
 	dba sBox1
 	dba sBox2
 	dba sBox3
@@ -2167,6 +2167,7 @@ GetBoxPointer:
 	dba sBox12
 	dba sBox13
 	dba sBox14
+	assert_table_length NUM_BOXES
 
 BillsPC_ApplyPalettes:
 	ld b, a
@@ -2319,19 +2320,15 @@ BillsPC_PrintBoxCountAndCapacity:
 	ld de, wTextDecimalByte
 	lb bc, 1, 2
 	call PrintNum
-	ld de, .out_of_20
+	ld de, .OutOf20
 	call PlaceString
 	ret
 
 .Pokemon:
 	db "#MON@"
 
-.out_of_20
-	; db "/20@"
-	db "/"
-	db "0" + MONS_PER_BOX / 10 ; "2"
-	db "0" + MONS_PER_BOX % 10 ; "0"
-	db "@"
+.OutOf20:
+	db "/{d:MONS_PER_BOX}@" ; "/20@"
 
 GetBoxCount:
 	ld a, [wCurBox]
@@ -2342,7 +2339,7 @@ GetBoxCount:
 	jr z, .activebox
 	ld c, a
 	ld b, 0
-	ld hl, .boxbanks
+	ld hl, .BoxBankAddresses
 	add hl, bc
 	add hl, bc
 	add hl, bc
@@ -2374,7 +2371,8 @@ GetBoxCount:
 	call CloseSRAM
 	ret
 
-.boxbanks
+.BoxBankAddresses:
+	table_width 3, GetBoxCount.BoxBankAddresses
 	dba sBox1
 	dba sBox2
 	dba sBox3
@@ -2389,6 +2387,7 @@ GetBoxCount:
 	dba sBox12
 	dba sBox13
 	dba sBox14
+	assert_table_length NUM_BOXES
 
 BillsPC_PrintBoxName:
 	hlcoord 0, 0

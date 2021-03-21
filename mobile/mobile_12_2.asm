@@ -51,7 +51,7 @@ MobileCheckOwnMonAnywhere:
 	and $f
 	cp c
 	jr z, .asm_4a8d1
-	ld hl, .BoxAddrs
+	ld hl, .BoxAddresses
 	ld b, 0
 	add hl, bc
 	add hl, bc
@@ -130,7 +130,8 @@ MobileCheckOwnMonAnywhere:
 	scf
 	ret
 
-.BoxAddrs:
+.BoxAddresses:
+	table_width 3, MobileCheckOwnMonAnywhere.BoxAddresses
 	dba sBox1
 	dba sBox2
 	dba sBox3
@@ -145,6 +146,7 @@ MobileCheckOwnMonAnywhere:
 	dba sBox12
 	dba sBox13
 	dba sBox14
+	assert_table_length NUM_BOXES
 
 .AdvanceOTName:
 	push hl

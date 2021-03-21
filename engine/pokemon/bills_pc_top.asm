@@ -266,7 +266,7 @@ LoadBoxMonListing: ; unreferenced
 	cp b
 	jr z, .same_box
 	ld a, b
-	ld hl, .BoxAddrs
+	ld hl, .BoxAddresses
 	ld bc, 3
 	call AddNTimes
 	ld a, [hli]
@@ -364,7 +364,8 @@ LoadBoxMonListing: ; unreferenced
 	call CloseSRAM
 	ret
 
-.BoxAddrs:
+.BoxAddresses:
+	table_width 3, LoadBoxMonListing.BoxAddresses
 	dba sBox1
 	dba sBox2
 	dba sBox3
@@ -379,3 +380,4 @@ LoadBoxMonListing: ; unreferenced
 	dba sBox12
 	dba sBox13
 	dba sBox14
+	assert_table_length NUM_BOXES

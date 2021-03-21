@@ -192,6 +192,7 @@ CheckForLuckyNumberWinners:
 	ret
 
 .BoxBankAddresses:
+	table_width 3, CheckForLuckyNumberWinners.BoxBankAddresses
 	dba sBox1
 	dba sBox2
 	dba sBox3
@@ -206,6 +207,7 @@ CheckForLuckyNumberWinners:
 	dba sBox12
 	dba sBox13
 	dba sBox14
+	assert_table_length NUM_BOXES
 
 .LuckyNumberMatchPartyText:
 	text_far _LuckyNumberMatchPartyText
