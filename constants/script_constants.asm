@@ -283,6 +283,14 @@ NUM_DECODESCS EQU const_value
 	const BUGCONTEST_BOXED_MON  ; 1
 	const BUGCONTEST_NO_CATCH   ; 2
 
+; Bug-Catching Contest values
+BUG_CONTEST_BALLS EQU 20
+BUG_CONTEST_MINUTES EQU 20
+BUG_CONTEST_SECONDS EQU 0
+BUG_CONTEST_PLAYER EQU 1
+NUM_BUG_CONTESTANTS EQU 10 ; not counting the player
+BUG_CONTESTANT_SIZE EQU 4
+
 ; HealMachineAnim setval arguments
 ; HealMachineAnim.Pointers indexes (see engine/events/heal_machine_anim.asm)
 	const_def

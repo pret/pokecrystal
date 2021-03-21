@@ -122,7 +122,7 @@ FarmerMText_BuyMilk:
 	line "to restore HP!"
 
 	para "I'll give it to ya"
-	line "fer just ¥500."
+	line "fer just ¥{d:ROUTE39FARMHOUSE_MILK_PRICE}."
 	done
 
 FarmerMText_GotMilk:

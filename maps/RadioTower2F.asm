@@ -1,3 +1,5 @@
+BLUE_CARD_POINT_CAP EQU 30
+
 	object_const_def
 	const RADIOTOWER2F_SUPER_NERD
 	const RADIOTOWER2F_TEACHER
@@ -112,7 +114,7 @@ Buena:
 	checkitem BLUE_CARD
 	iffalse .NoBlueCard
 	readvar VAR_BLUECARDBALANCE
-	ifequal 30, .BlueCardCapped0
+	ifequal BLUE_CARD_POINT_CAP, .BlueCardCapped0
 	playmusic MUSIC_BUENAS_PASSWORD
 	writetext RadioTower2FBuenaDoYouKnowPasswordText
 	special AskRememberPassword
@@ -155,7 +157,7 @@ Buena:
 	pause 20
 	special RestartMapMusic
 	readvar VAR_BLUECARDBALANCE
-	ifequal 30, .BlueCardCapped1
+	ifequal BLUE_CARD_POINT_CAP, .BlueCardCapped1
 	end
 
 .Introduction:
@@ -625,12 +627,12 @@ RadioTower2FBuenaOfferPhoneNumberText:
 	text "BUENA: Oh! Your"
 	line "BLUE CARD reached"
 
-	para "30 points today!"
+	para "{d:BLUE_CARD_POINT_CAP} points today!"
 	line "That's so wild!"
 
 	para "Hmm… There isn't a"
 	line "prize for hitting"
-	cont "30 points, but…"
+	cont "{d:BLUE_CARD_POINT_CAP} points, but…"
 
 	para "You came by so"
 	line "often, <PLAY_G>."
