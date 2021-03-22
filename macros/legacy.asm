@@ -33,11 +33,11 @@ noise: MACRO
 ENDM
 
 notetype: MACRO
-IF _NARG >= 2
+if _NARG >= 2
 	note_type \1, \2 >> 4, \2 & $0f
-ELSE
+else
 	note_type \1
-ENDC
+endc
 ENDM
 
 pitchoffset: MACRO
@@ -57,11 +57,11 @@ ENDM
 unknownmusic0xde EQUS "sound_duty"
 sound_duty: MACRO
 	db duty_cycle_pattern_cmd
-IF _NARG == 4
+if _NARG == 4
 	db \1 | (\2 << 2) | (\3 << 4) | (\4 << 6)
-ELSE
+else
 	db \1
-ENDC
+endc
 ENDM
 
 togglesfx EQUS "toggle_sfx"

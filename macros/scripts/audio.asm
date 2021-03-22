@@ -26,21 +26,21 @@ ENDM
 
 square_note: MACRO
 	db \1 ; length
-	IF \3 < 0
+	if \3 < 0
 		dn \2, %1000 | (\3 * -1) ; volume envelope
-	ELSE
+	else
 		dn \2, \3 ; volume envelope
-	ENDC
+	endc
 	dw \4 ; frequency
 ENDM
 
 noise_note: MACRO
 	db \1 ; length
-	IF \3 < 0
+	if \3 < 0
 		dn \2, %1000 | (\3 * -1) ; volume envelope
-	ELSE
+	else
 		dn \2, \3 ; volume envelope
-	ENDC
+	endc
 	db \4 ; frequency
 ENDM
 
@@ -60,13 +60,13 @@ ENDM
 note_type: MACRO
 	db note_type_cmd
 	db \1 ; note length
-	IF _NARG >= 2
-		IF \3 < 0
+	if _NARG >= 2
+		if \3 < 0
 			dn \2, %1000 | (\3 * -1) ; volume envelope
-		ELSE
+		else
 			dn \2, \3 ; volume envelope
-		ENDC
-	ENDC
+		endc
+	endc
 ENDM
 
 ; only valid on the noise channel
@@ -95,21 +95,21 @@ ENDM
 	const volume_envelope_cmd ; $dc
 volume_envelope: MACRO
 	db volume_envelope_cmd
-	IF \2 < 0
+	if \2 < 0
 		dn \1, %1000 | (\2 * -1) ; volume envelope
-	ELSE
+	else
 		dn \1, \2 ; volume envelope
-	ENDC
+	endc
 ENDM
 
 	const pitch_sweep_cmd ; $dd
 pitch_sweep: MACRO
 	db pitch_sweep_cmd
-	IF \2 < 0
+	if \2 < 0
 		dn \1, %1000 | (\2 * -1) ; pitch sweep
-	ELSE
+	else
 		dn \1, \2 ; pitch sweep
-	ENDC
+	endc
 ENDM
 
 	const duty_cycle_pattern_cmd ; $de
@@ -134,11 +134,11 @@ ENDM
 vibrato: MACRO
 	db vibrato_cmd
 	db \1 ; delay
-	IF _NARG > 2
+	if _NARG > 2
 		dn \2, \3 ; extent, rate
-	ELSE
+	else
 		db \2 ; LEGACY: Support for 1-arg extent
-	ENDC
+	endc
 ENDM
 
 	const unknownmusic0xe2_cmd ; $e2
@@ -150,9 +150,9 @@ ENDM
 	const toggle_noise_cmd ; $e3
 toggle_noise: MACRO
 	db toggle_noise_cmd
-	IF _NARG > 0
+	if _NARG > 0
 		db \1 ; drum kit
-	ENDC
+	endc
 ENDM
 
 	const force_stereo_panning_cmd ; $e4
@@ -164,11 +164,11 @@ ENDM
 	const volume_cmd ; $e5
 volume: MACRO
 	db volume_cmd
-	IF _NARG > 1
+	if _NARG > 1
 		dn \1, \2 ; left volume, right volume
-	ELSE
+	else
 		db \1 ; LEGACY: Support for 1-arg volume
-	ENDC
+	endc
 ENDM
 
 	const pitch_offset_cmd ; $e6
@@ -232,9 +232,9 @@ ENDM
 	const sfx_toggle_noise_cmd ; $f0
 sfx_toggle_noise: MACRO
 	db sfx_toggle_noise_cmd
-	IF _NARG > 0
+	if _NARG > 0
 		db \1 ; drum kit
-	ENDC
+	endc
 ENDM
 
 	const music0xf1_cmd ; $f1

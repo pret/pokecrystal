@@ -49,6 +49,7 @@ GENDER_UNKNOWN EQU -1
 	const GROWTH_MEDIUM_SLOW
 	const GROWTH_FAST
 	const GROWTH_SLOW
+NUM_GROWTH_RATES EQU const_value
 
 ; wBaseEggGroups values
 	const_def 1

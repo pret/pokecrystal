@@ -804,7 +804,6 @@ PlayerMovementPointers:
 	ld a, BANK(Script_ForcedMovement)
 	ld hl, Script_ForcedMovement
 	call CallScript
-;	ld a, -1
 	ld c, a
 	scf
 	ret

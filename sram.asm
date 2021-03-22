@@ -142,11 +142,13 @@ sLinkBattleLosses:: dw
 sLinkBattleDraws::  dw
 
 sLinkBattleRecord::
+	table_width LINK_BATTLE_RECORD_LENGTH, sLinkBattleRecord
 sLinkBattleRecord1:: link_battle_record sLinkBattleRecord1
 sLinkBattleRecord2:: link_battle_record sLinkBattleRecord2
 sLinkBattleRecord3:: link_battle_record sLinkBattleRecord3
 sLinkBattleRecord4:: link_battle_record sLinkBattleRecord4
 sLinkBattleRecord5:: link_battle_record sLinkBattleRecord5
+	assert_table_length NUM_LINK_BATTLE_RECORDS
 sLinkBattleStatsEnd::
 
 
