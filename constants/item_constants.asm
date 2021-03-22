@@ -200,6 +200,11 @@ NUM_ITEMS EQU const_value - 1
 
 __tmhm_value__ = 1
 
+add_tmnum: MACRO
+\1_TMNUM EQU __tmhm_value__
+__tmhm_value__ = __tmhm_value__ + 1
+ENDM
+
 add_tm: MACRO
 ; Defines three constants:
 ; - TM_\1: the item id, starting at $bf
@@ -217,8 +222,7 @@ endc
 MOVE_FOR_TM = \1
 PURGE MOVE_FOR_TM
 	const TM_\1
-\1_TMNUM EQU __tmhm_value__
-__tmhm_value__ = __tmhm_value__ + 1
+	add_tmnum \1
 ENDM
 
 ; see data/moves/tmhm_moves.asm for moves
@@ -295,8 +299,7 @@ MOVE_FOR_HM = \1
 PURGE MOVE_FOR_HM
 PURGE HM_VALUE
 	const HM_\1
-\1_TMNUM EQU __tmhm_value__
-__tmhm_value__ = __tmhm_value__ + 1
+	add_tmnum \1
 ENDM
 
 	add_hm CUT          ; f3
@@ -321,8 +324,7 @@ endc
 MOVE_FOR_MT = \1
 PURGE MOVE_FOR_MT
 PURGE MT_VALUE
-\1_TMNUM EQU __tmhm_value__
-__tmhm_value__ = __tmhm_value__ + 1
+	add_tmnum \1
 ENDM
 
 	add_mt FLAMETHROWER
@@ -330,7 +332,7 @@ ENDM
 	add_mt ICE_BEAM
 NUM_TUTORS = __tmhm_value__ - NUM_TMS - NUM_HMS - 1
 
-NUM_TM_HM_TUTOR EQU __tmhm_value__ - 1
+NUM_TM_HM_TUTOR EQU NUM_TMS + NUM_HMS + NUM_TUTORS
 
 	const ITEM_FA       ; fa
 

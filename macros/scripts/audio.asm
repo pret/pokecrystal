@@ -50,8 +50,8 @@ FIRST_MUSIC_CMD EQU const_value
 
 	const octave_cmd ; $d0
 octave: MACRO
-	assert 0 < (\1) && (\1) < 8, "octave must be 1-8"
-	db octave_cmd | 8 - (\1) ; octave
+	assert 1 <= (\1) && (\1) <= 8, "octave must be 1-8"
+	db octave_cmd + 8 - (\1) ; octave
 ENDM
 
 	const_skip 7 ; all octave values
