@@ -14,7 +14,7 @@ MalePlayerNameArray:
 	db "MAT@"
 	db "ALLAN@"
 	db "JON@"
-	db 2 ; displacement
+	db 2 ; title indent
 	db " NAME @" ; title
 
 KrisNameMenuHeader:

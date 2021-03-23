@@ -18,7 +18,8 @@ DECOATTR_STRUCT_LENGTH EQU _RS
 NUM_DECO_TYPES EQU const_value - 1
 
 ; DecorationNames indexes (see data/decorations/names.asm)
-	const_def 1
+	const_def
+	const CANCEL_DECO
 	const PUT_IT_AWAY
 	const MAGNAPLANT
 	const TROPICPLANT
@@ -44,6 +45,7 @@ NUM_DECO_TYPES EQU const_value - 1
 	const BLUE_CARPET
 	const YELLOW_CARPET
 	const GREEN_CARPET
+NUM_DECO_NAMES EQU const_value
 
 ; DoDecorationAction2.DecoActions indexes (see engine/overworld/decorations.asm)
 	const_def 1
