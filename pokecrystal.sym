@@ -24308,8 +24308,8 @@
 34:43b7 PokeAnim_ConvertAndApplyBitmask.finish
 34:43bd PokeAnim_ConvertAndApplyBitmask.ApplyFrame
 34:43cd PokeAnim_ConvertAndApplyBitmask.GetCoord
-34:43e8 PokeAnim_ConvertAndApplyBitmask.go
-34:43f3 PokeAnim_ConvertAndApplyBitmask.skip2
+34:43e8 PokeAnim_ConvertAndApplyBitmask.subtract
+34:43f3 PokeAnim_ConvertAndApplyBitmask.done
 34:43f4 PokeAnim_ConvertAndApplyBitmask.UnusedSizeData
 34:43f7 PokeAnim_ConvertAndApplyBitmask.GetTilemap
 34:4405 PokeAnim_ConvertAndApplyBitmask.check_add_24
