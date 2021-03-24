@@ -41,7 +41,7 @@ MonMenuLoop:
 .loop
 	ld a, MENU_UNUSED_3 | MENU_BACKUP_TILES_2 ; flags
 	ld [wMenuDataFlags], a
-	ld a, [wMonSubmenuCount] ; items
+	ld a, [wMonSubmenuCount]
 	ld [wMenuDataItems], a
 	call InitVerticalMenuCursor
 	ld hl, w2DMenuFlags1

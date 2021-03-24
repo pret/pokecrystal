@@ -93,7 +93,7 @@ TilesetJohtoAnim:
 	dw NULL,  DoneTileAnimation
 
 UnusedTilesetAnim1: ; unreferenced
-; Scrolls tile $03 like water, but also has the standard $03 flower tile.
+; Scrolls tile $03 like cave water, but also has the standard $03 flower tile.
 	dw vTiles2 tile $03, ReadTileToAnimBuffer
 	dw wTileAnimBuffer, ScrollTileRightLeft
 	dw vTiles2 tile $03, WriteTileFromAnimBuffer

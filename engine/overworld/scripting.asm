@@ -2360,5 +2360,5 @@ Script_checkver_duplicate: ; unreferenced
 	ld [wScriptVar], a
 	ret
 
-.gs_version
+.gs_version:
 	db GS_VERSION

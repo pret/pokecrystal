@@ -392,7 +392,7 @@ DoPlayerMovement::
 
 .CheckWarp:
 ; Bug: Since no case is made for STANDING here, it will check
-; [.edgewarps + $ff]. This resolves to $3e at $8035a.
+; [.EdgeWarps + $ff]. This resolves to $3e.
 ; This causes wWalkingIntoEdgeWarp to be nonzero when standing on tile $3e,
 ; making bumps silent.
 
