@@ -982,6 +982,7 @@ ApplyPitchSlide:
 	add hl, bc
 	add [hl]
 	ld [hl], a
+	; could have done "jr nc, .no_rollover / inc de / .no_rollover"
 	ld a, 0
 	adc e
 	ld e, a
@@ -1022,6 +1023,7 @@ ApplyPitchSlide:
 	ld a, [hl]
 	add a
 	ld [hl], a
+	; could have done "jr nc, .no_rollover / dec de / .no_rollover"
 	ld a, e
 	sbc 0
 	ld e, a

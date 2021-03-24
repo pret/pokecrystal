@@ -628,14 +628,16 @@ PokeAnim_ConvertAndApplyBitmask:
 	call AddNTimes
 	ld a, [wBoxAlignment]
 	and a
-	jr nz, .go
+	jr nz, .subtract
+	; hl += [wPokeAnimBitmaskCurCol]
 	ld a, [wPokeAnimBitmaskCurCol]
 	ld e, a
 	ld d, 0
 	add hl, de
-	jr .skip2
+	jr .done
 
-.go
+.subtract
+	; hl -= [wPokeAnimBitmaskCurCol]
 	ld a, [wPokeAnimBitmaskCurCol]
 	ld e, a
 	ld a, l
@@ -645,7 +647,7 @@ PokeAnim_ConvertAndApplyBitmask:
 	sbc 0
 	ld h, a
 
-.skip2
+.done
 	ret
 
 .UnusedSizeData: ; unreferenced
