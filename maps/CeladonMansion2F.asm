@@ -32,7 +32,7 @@ CeladonMansion2FComputerText:
 	line "changed here."
 
 	para "You'll also see"
-	line "many #MON that"
+	line "many POKéMON that"
 
 	para "aren't native to"
 	line "JOHTO."

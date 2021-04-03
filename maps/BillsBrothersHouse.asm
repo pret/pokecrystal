@@ -21,7 +21,7 @@ BillsBrotherText:
 
 BillsBrothersHouseYoungsterText:
 	text "I saw these weird,"
-	line "slow #MON on"
+	line "slow POKéMON on"
 	cont "CYCLING ROAD."
 	done
 

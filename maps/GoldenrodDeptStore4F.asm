@@ -39,7 +39,7 @@ GoldenrodDeptStore4FElevatorButton:
 
 GoldenrodDeptStore4FCooltrainerMText:
 	text "Hey. I love strong"
-	line "#MON."
+	line "POKéMON."
 
 	para "I feed them PRO-"
 	line "TEIN to crank up"
@@ -48,11 +48,11 @@ GoldenrodDeptStore4FCooltrainerMText:
 
 GoldenrodDeptStore4FBugCatcherText:
 	text "IRON adds to your"
-	line "#MON's DEFENSE."
+	line "POKéMON's DEFENSE."
 	done
 
 GoldenrodDeptStore4FGameboyKidText:
-	text "Some #MON"
+	text "Some POKéMON"
 	line "evolve only by"
 
 	para "being traded via a"
@@ -70,7 +70,7 @@ GoldenrodDeptStore4FGameboyKidText:
 
 GoldenrodDeptStore4FDirectoryText:
 	text "Let Us Pump Up"
-	line "Your #MON!"
+	line "Your POKéMON!"
 
 	para "4F MEDICINE BOX"
 	done

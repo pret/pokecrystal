@@ -2,7 +2,7 @@
 	dw 507, 340 ; height, weight
 
 	db   "Once ingested into"
-	next "this #MON's"
+	next "this POKéMON's"
 	next "body, even the"
 
 	page "hardest object"

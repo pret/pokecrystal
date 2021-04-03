@@ -148,17 +148,17 @@ RuinsOfAlphOutsidePlayerEnterLabMovement:
 	step_end
 
 RuinsOfAlphOutsideScientistText:
-	text "Hm? That's a #-"
+	text "Hm? That's a POKé-"
 	line "DEX, isn't it?"
 	cont "May I see it?"
 
 	para "There are so many"
-	line "kinds of #MON."
+	line "kinds of POKéMON."
 
 	para "Hm? What's this?"
 
 	para "What is this"
-	line "#MON?"
+	line "POKéMON?"
 
 	para "It looks like the"
 	line "strange writing on"
@@ -167,12 +167,12 @@ RuinsOfAlphOutsideScientistText:
 	line "RUINS."
 
 	para "If those drawings"
-	line "are really #-"
+	line "are really POKé-"
 	cont "MON, there should"
 	cont "be many more."
 
 	para "I know! Let me up-"
-	line "grade your #-"
+	line "grade your POKé-"
 	cont "DEX. Follow me."
 	done
 
@@ -199,7 +199,7 @@ SuperNerdStanAfterBattleText:
 	line "built them."
 
 	para "It's also not"
-	line "known if the #-"
+	line "known if the POKé-"
 	cont "MON statues have"
 	cont "any meaning."
 

@@ -152,7 +152,7 @@ RuinsOfAlphKabutoChamberReceptionistText:
 	para "There are sliding"
 	line "panels that depict"
 
-	para "a #MON drawn by"
+	para "a POKéMON drawn by"
 	line "the ancients."
 
 	para "Slide the panels"
@@ -161,7 +161,7 @@ RuinsOfAlphKabutoChamberReceptionistText:
 
 	para "To the right is a"
 	line "description of the"
-	cont "#MON."
+	cont "POKéMON."
 
 	para "Scientists in the"
 	line "back are examining"
@@ -212,7 +212,7 @@ RuinsOfAlphKabutoChamberUnusedText: ; unreferenced
 	line "some kind."
 
 	para "I think they make"
-	line "#MON appear,"
+	line "POKéMON appear,"
 
 	para "but it's not clear"
 	line "yet…"
@@ -239,12 +239,12 @@ RuinsOfAlphKabutoChamberWallHoleText:
 
 RuinsOfAlphKabutoChamberAncientReplicaText:
 	text "It's a replica of"
-	line "an ancient #-"
+	line "an ancient POKé-"
 	cont "MON."
 	done
 
 RuinsOfAlphKabutoChamberDescriptionText:
-	text "A #MON that hid"
+	text "A POKéMON that hid"
 	line "on the sea floor."
 
 	para "Eyes on its back"

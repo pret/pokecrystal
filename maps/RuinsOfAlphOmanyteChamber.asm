@@ -129,12 +129,12 @@ RuinsOfAlphOmanyteChamberWallHoleText:
 
 RuinsOfAlphOmanyteChamberAncientReplicaText:
 	text "It's a replica of"
-	line "an ancient #-"
+	line "an ancient POKé-"
 	cont "MON."
 	done
 
 RuinsOfAlphOmanyteChamberDescriptionText:
-	text "This #MON"
+	text "This POKéMON"
 	line "drifted in the"
 
 	para "sea by twisting"

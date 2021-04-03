@@ -85,7 +85,7 @@ Route32Pokecenter1FFishingGuruText_After:
 
 Route32Pokecenter1FCooltrainerFText:
 	text "What should I make"
-	line "my #MON hold?"
+	line "my POKéMON hold?"
 
 	para "Maybe an item that"
 	line "increases ATTACK"

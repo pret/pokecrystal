@@ -34,7 +34,7 @@ ReenaDefeatedMonText:
 ReenaLostAMonText:
 	text "Have I ever failed"
 	line "to catch a wild"
-	cont "#MON?"
+	cont "POKéMON?"
 
 	para "You need to ask?"
 

@@ -57,7 +57,7 @@ ToddGreetNiteText:
 
 ToddGenericText:
 	text "How do you raise"
-	line "your #MON?"
+	line "your POKéMON?"
 
 	para "I do all sorts"
 	line "of things, like"

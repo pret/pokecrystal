@@ -5,7 +5,7 @@ ElmPhoneHealYourMonText:
 	line "it."
 
 	para "Be sure to heal"
-	line "your #MON if"
+	line "your POKéMON if"
 	cont "they are hurt."
 	done
 
@@ -13,7 +13,7 @@ ElmPhoneSawMrPokemonText:
 	text "Hello, <PLAY_G>?"
 
 	para "Did you meet MR."
-	line "#MON? Great!"
+	line "POKéMON? Great!"
 	cont "Come back safely!"
 	done
 
@@ -21,7 +21,7 @@ ElmPhonePokemonStolenText:
 	text "<PLAY_G>? I'm very"
 	line "upset now."
 
-	para "We had a #MON"
+	para "We had a POKéMON"
 	line "stolen from here."
 
 	para "How could anyone"
@@ -35,7 +35,7 @@ ElmPhoneCheckingTheEggText:
 	line "EGG now. It does"
 
 	para "appear to be a"
-	line "#MON EGG."
+	line "POKéMON EGG."
 	done
 
 ElmPhoneAssistantText:
@@ -44,7 +44,7 @@ ElmPhoneAssistantText:
 	para "Did you see my"
 	line "assistant? He's at"
 
-	para "the #MON CENTER"
+	para "the POKéMON CENTER"
 	line "in VIOLET CITY."
 	done
 
@@ -64,7 +64,7 @@ ElmPhoneEggHatchedText:
 
 	para "What? It hatched?"
 	line "Wow! What kind of"
-	cont "#MON is it?"
+	cont "POKéMON is it?"
 
 	para "Please come show"
 	line "me now!"
@@ -80,7 +80,7 @@ ElmPhoneDiscoveredHatchTimeText:
 	line "for an EGG to"
 
 	para "hatch depends on"
-	line "the #MON."
+	line "the POKéMON."
 	done
 
 ElmPhoneInvestigatingEggMovesText:
@@ -90,7 +90,7 @@ ElmPhoneInvestigatingEggMovesText:
 	line "mystery what kinds"
 
 	para "of moves hatched"
-	line "#MON have."
+	line "POKéMON have."
 
 	para "We're investigat-"
 	line "ing that now."
@@ -105,17 +105,17 @@ ElmPhoneDiscoveredPokerusText:
 	para "Apparently there's"
 	line "something called"
 
-	para "#RUS that in-"
-	line "fects #MON."
+	para "POKéRUS that in-"
+	line "fects POKéMON."
 
 	para "Yes, it's like a"
 	line "virus, so it's"
-	cont "called #RUS."
+	cont "called POKéRUS."
 
 	para "It multiplies fast"
 	line "and infects other"
 
-	para "#MON too. But"
+	para "POKéMON too. But"
 	line "that's all."
 
 	para "It doesn't seem to"
@@ -151,7 +151,7 @@ ElmPhoneEggAssistantText:
 	line "EGG!"
 
 	para "My assistant is at"
-	line "the #MON CENTER"
+	line "the POKéMON CENTER"
 
 	para "in VIOLET CITY. "
 	line "Could you talk to"

@@ -56,7 +56,7 @@ ErinGreetNiteText:
 
 ErinGenericText:
 	text "Are you raising"
-	line "your #MON?"
+	line "your POKéMON?"
 
 	para "Hey, @"
 	text_ram wStringBuffer3

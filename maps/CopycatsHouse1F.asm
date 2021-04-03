@@ -56,7 +56,7 @@ CopycatsHouse1FPokefanFText:
 
 CopycatsHouse1FPokefanFText_ReturnedMachinePart:
 	text "She recently lost"
-	line "the # DOLL that"
+	line "the POKé DOLL that"
 
 	para "a boy gave her"
 	line "three years ago."

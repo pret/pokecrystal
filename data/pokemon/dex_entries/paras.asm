@@ -3,7 +3,7 @@
 
 	db   "The tochukaso"
 	next "growing on this"
-	next "#MON's back"
+	next "POKéMON's back"
 
 	page "orders it to"
 	next "extract juice from"

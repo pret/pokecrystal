@@ -19,7 +19,7 @@ GuideGentsHouseGuideGentText:
 
 	para "Here's a word of"
 	line "advice: Catch lots"
-	cont "of #MON!"
+	cont "of POKéMON!"
 
 	para "Treat them all"
 	line "with kindness!"

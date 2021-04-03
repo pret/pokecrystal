@@ -61,7 +61,7 @@ FuchsiaPokecenter1FJanineImpersonatorSpinMovement:
 FuchsiaPokecenter1FCooltrainerMText:
 	text "Hey! You have a"
 	line "brand new kind of"
-	cont "#DEX."
+	cont "POKéDEX."
 
 	para "Did PROF.OAK give"
 	line "that to you?"

@@ -181,7 +181,7 @@ SabrinaMarshBadgeText:
 
 SabrinaFightDoneText:
 	text "SABRINA: Your love"
-	line "for your #MON"
+	line "for your POKéMON"
 
 	para "overwhelmed my"
 	line "psychic power…"
@@ -275,7 +275,7 @@ SaffronGymGuideText:
 	line "told how to deal"
 
 	para "with psychic-type"
-	line "#MON, right?"
+	line "POKéMON, right?"
 
 	para "I expect great"
 	line "things from you!"

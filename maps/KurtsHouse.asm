@@ -467,7 +467,7 @@ KurtsHouseKurtMakingBallsMustWaitText:
 	para "TEAM ROCKET's an"
 	line "evil gang that"
 
-	para "uses #MON for"
+	para "uses POKéMON for"
 	line "their dirty work."
 
 	para "They're supposed"
@@ -557,7 +557,7 @@ KurtsHouseKurtTurnedOutGreatText:
 	line "out great."
 
 	para "Try catching"
-	line "#MON with it."
+	line "POKéMON with it."
 	done
 
 KurtsHouseKurtGranddaughterHelpingWorkFasterText:
@@ -575,7 +575,7 @@ KurtsHouseKurtWhatIsThatText:
 	line "one before."
 
 	para "It looks a lot"
-	line "like a # BALL,"
+	line "like a POKé BALL,"
 
 	para "but it appears to"
 	line "be something else."
@@ -629,7 +629,7 @@ KurtsGranddaughterSlowpokeBackText:
 KurtsGranddaughterDadText:
 	text "Dad works at SILPH"
 	line "where he studies"
-	cont "# BALLS."
+	cont "POKé BALLS."
 
 	para "I have to stay"
 	line "home with Grandpa"

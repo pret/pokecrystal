@@ -2,7 +2,7 @@ WadeAskNumber1Text:
 	text "You're awesome!"
 	line "I like you!"
 
-	para "I look for #MON"
+	para "I look for POKéMON"
 	line "here every day."
 
 	para "When I'm in the"

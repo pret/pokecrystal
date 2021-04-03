@@ -23,12 +23,12 @@ EcruteakLugiaSpeechHouseGrampsText:
 	para "The sky suddenly"
 	line "turned black. A"
 
-	para "giant flying #-"
+	para "giant flying POKé-"
 	line "MON was blocking"
 	cont "out the sun."
 
 	para "I wonder what that"
-	line "#MON was? "
+	line "POKéMON was? "
 
 	para "It was like a bird"
 	line "and a dragon."
@@ -36,7 +36,7 @@ EcruteakLugiaSpeechHouseGrampsText:
 
 EcruteakLugiaSpeechHouseYoungsterText:
 	text "Is there really a"
-	line "#MON that big?"
+	line "POKéMON that big?"
 
 	para "If it exists, it"
 	line "must be powerful."

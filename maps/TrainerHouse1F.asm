@@ -97,7 +97,7 @@ TrainerHouse1FYoungsterText:
 
 TrainerHouse1FGentlemanText:
 	text "Whew… I'm taking a"
-	line "rest from #MON"
+	line "rest from POKéMON"
 	cont "battles."
 	done
 

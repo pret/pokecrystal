@@ -46,7 +46,7 @@ LavenderPokecenter1FGentlemanText:
 LavenderPokecenter1FTeacherText:
 	text "There's a radio"
 	line "program that plays"
-	cont "# FLUTE music."
+	cont "POKé FLUTE music."
 
 	para "Oh? Ah, your radio"
 	line "needs an EXPN CARD"

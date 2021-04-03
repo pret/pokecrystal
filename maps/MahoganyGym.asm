@@ -148,7 +148,7 @@ MahoganyGymStatue:
 	jumpstd GymStatue2Script
 
 PryceText_Intro:
-	text "#MON have many"
+	text "POKéMON have many"
 	line "experiences in"
 
 	para "their lives, just "
@@ -163,7 +163,7 @@ PryceText_Intro:
 	cont "you what I mean."
 
 	para "I have been with"
-	line "#MON since"
+	line "POKéMON since"
 
 	para "before you were"
 	line "born."
@@ -200,10 +200,10 @@ Text_ReceivedGlacierBadge:
 PryceText_GlacierBadgeSpeech:
 	text "That BADGE will"
 	line "raise the SPECIAL"
-	cont "stats of #MON."
+	cont "stats of POKéMON."
 
 	para "It also lets your"
-	line "#MON use WHIRL-"
+	line "POKéMON use WHIRL-"
 	cont "POOL to get across"
 	cont "real whirlpools."
 
@@ -228,7 +228,7 @@ PryceText_CherishYourPokemon:
 	line "snow melt, spring"
 	cont "arrives."
 
-	para "You and your #-"
+	para "You and your POKé-"
 	line "MON will be to-"
 
 	para "gether for many"
@@ -240,7 +240,7 @@ PryceText_CherishYourPokemon:
 
 BoarderRonaldSeenText:
 	text "I'll freeze your"
-	line "#MON, so you"
+	line "POKéMON, so you"
 	cont "can't do a thing!"
 	done
 
@@ -251,7 +251,7 @@ BoarderRonaldBeatenText:
 
 BoarderRonaldAfterBattleText:
 	text "I think there's a"
-	line "move a #MON"
+	line "move a POKéMON"
 
 	para "can use while it's"
 	line "frozen."
@@ -277,7 +277,7 @@ BoarderBradBeatenText:
 BoarderBradAfterBattleText:
 	text "This GYM is great."
 	line "I love boarding"
-	cont "with my #MON!"
+	cont "with my POKéMON!"
 	done
 
 BoarderDouglasSeenText:
@@ -342,7 +342,7 @@ MahoganyGymGuideText:
 	text "PRYCE is a veteran"
 	line "who has trained"
 
-	para "#MON for some"
+	para "POKéMON for some"
 	line "50 years."
 
 	para "He's said to be"

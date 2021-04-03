@@ -154,7 +154,7 @@ SwimmermCharlieAfterBattleText:
 SwimmermGeorgeSeenText:
 	text "I'm a bit tired."
 	line "If I win, lend me"
-	cont "your #MON."
+	cont "your POKéMON."
 	done
 
 SwimmermGeorgeBeatenText:
@@ -191,7 +191,7 @@ SwimmermBerkeAfterBattleText:
 	line "stormy night…"
 
 	para "I saw this giant"
-	line "#MON flying"
+	line "POKéMON flying"
 	cont "from the islands."
 
 	para "It was scattering"
@@ -251,7 +251,7 @@ SwimmerfKayleeBeatenText:
 
 SwimmerfKayleeAfterBattleText:
 	text "There's supposed"
-	line "to be a big #-"
+	line "to be a big POKé-"
 	cont "MON deep beneath"
 	cont "WHIRL ISLANDS."
 
@@ -262,7 +262,7 @@ SwimmerfKayleeAfterBattleText:
 SwimmerfSusieSeenText:
 	text "You look so ele-"
 	line "gant, riding your"
-	cont "#MON."
+	cont "POKéMON."
 	done
 
 SwimmerfSusieBeatenText:

@@ -120,13 +120,13 @@ BattleText_SafeguardFaded:
 
 BattleText_MonsLightScreenFell:
 	text_ram wStringBuffer1
-	text " #MON's"
+	text " POKéMON's"
 	line "LIGHT SCREEN fell!"
 	prompt
 
 BattleText_MonsReflectFaded:
 	text_ram wStringBuffer1
-	text " #MON's"
+	text " POKéMON's"
 	line "REFLECT faded!"
 	prompt
 
@@ -202,7 +202,7 @@ SentAllToMomText:
 UnusedRivalLossText: ; unreferenced
 	text "<RIVAL>: Huh? I"
 	line "should've chosen"
-	cont "your #MON!"
+	cont "your POKéMON!"
 	prompt
 
 BattleText_MonFainted:
@@ -212,13 +212,13 @@ BattleText_MonFainted:
 	prompt
 
 BattleText_UseNextMon:
-	text "Use next #MON?"
+	text "Use next POKéMON?"
 	done
 
 UnusedRivalWinText: ; unreferenced
 	text "<RIVAL>: Yes!"
 	line "I guess I chose a"
-	cont "good #MON!"
+	cont "good POKéMON!"
 	prompt
 
 LostAgainstText:
@@ -234,7 +234,7 @@ BattleText_EnemyIsAboutToUseWillPlayerChangeMon:
 	text "."
 
 	para "Will <PLAYER>"
-	line "change #MON?"
+	line "change POKéMON?"
 	done
 
 BattleText_EnemySentOut:
@@ -998,7 +998,7 @@ IdentifiedText:
 	prompt
 
 StartPerishText:
-	text "Both #MON will"
+	text "Both POKéMON will"
 	line "faint in 3 turns!"
 	prompt
 

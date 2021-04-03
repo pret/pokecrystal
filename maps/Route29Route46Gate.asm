@@ -24,7 +24,7 @@ Route29Route46GateOfficerText:
 
 Route29Route46GateYoungsterText:
 	text "Different kinds of"
-	line "#MON appear"
+	line "POKéMON appear"
 	cont "past here."
 
 	para "If you want to"

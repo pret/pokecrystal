@@ -137,7 +137,7 @@ DanceTheatreFancyPanel:
 
 KimonoGirlNaokoSeenText:
 	text "You have lovely"
-	line "#MON. May I see"
+	line "POKéMON. May I see"
 	cont "them in battle?"
 	done
 
@@ -154,7 +154,7 @@ KimonoGirlNaokoAfterBattleText:
 
 KimonoGirlSayoSeenText:
 	text "I always dance"
-	line "with my #MON."
+	line "with my POKéMON."
 
 	para "Of course, I also"
 	line "train them."
@@ -169,7 +169,7 @@ KimonoGirlSayoAfterBattleText:
 	text "Rhythm is impor-"
 	line "tant for both"
 
-	para "dancing and #-"
+	para "dancing and POKé-"
 	line "MON."
 	done
 
@@ -177,13 +177,13 @@ KimonoGirlZukiSeenText:
 	text "Isn't my barrette"
 	line "pretty?"
 
-	para "Oh. A #MON"
+	para "Oh. A POKéMON"
 	line "battle?"
 	done
 
 KimonoGirlZukiBeatenText:
 	text "I don't have any"
-	line "#MON left…"
+	line "POKéMON left…"
 	done
 
 KimonoGirlZukiAfterBattleText:
@@ -214,12 +214,12 @@ KimonoGirlKuniAfterBattleText:
 KimonoGirlMikiSeenText:
 	text "Do you like my"
 	line "dancing? I'm good"
-	cont "at #MON too."
+	cont "at POKéMON too."
 	done
 
 KimonoGirlMikiBeatenText:
 	text "Ooh, you're good"
-	line "at #MON too."
+	line "at POKéMON too."
 	done
 
 KimonoGirlMikiAfterBattleText:
@@ -229,7 +229,7 @@ KimonoGirlMikiAfterBattleText:
 	para "people who enjoy"
 	line "what I do."
 
-	para "My #MON keep my"
+	para "My POKéMON keep my"
 	line "spirits up too."
 	done
 
@@ -239,7 +239,7 @@ SurfGuyNeverLeftAScratchText:
 
 	para "dancers, they're"
 	line "also skilled at"
-	cont "#MON."
+	cont "POKéMON."
 
 	para "I always challenge"
 	line "them, but I've"
@@ -281,12 +281,12 @@ SurfGuySurfExplanationText:
 	text "That's SURF."
 
 	para "It's a move that"
-	line "lets #MON swim"
+	line "lets POKéMON swim"
 	cont "across water."
 	done
 
 SurfGuyElegantKimonoGirlsText:
-	text "I wish my #MON"
+	text "I wish my POKéMON"
 	line "were as elegant as"
 	cont "the KIMONO GIRLS…"
 	done
@@ -301,13 +301,13 @@ DanceTheatreCooltrainerMText:
 	line "with his RHYDON."
 
 	para "Says he wants a"
-	line "#MON that can"
+	line "POKéMON that can"
 	cont "SURF and dance."
 
 	para "Is he trying to"
 	line "make a synchro-"
 	cont "nized swimming"
-	cont "#MON?"
+	cont "POKéMON?"
 	done
 
 DanceTheatreGrannyText:

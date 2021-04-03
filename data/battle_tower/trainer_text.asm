@@ -47,7 +47,7 @@ _BTWinM3Text:
 	done
 
 _BTGreetingM4Text:
-	text "Heh, your #MON"
+	text "Heh, your POKéMON"
 	line "look pretty cool."
 	done
 
@@ -62,7 +62,7 @@ _BTWinM4Text:
 	done
 
 _BTGreetingM5Text:
-	text "#MON every day!"
+	text "POKéMON every day!"
 	line "I love battling!"
 	done
 
@@ -214,13 +214,13 @@ _BTGreetingM14Text:
 	done
 
 _BTLossM14Text:
-	text "Those #MON"
+	text "Those POKéMON"
 	line "aren't enough!"
 	done
 
 _BTWinM14Text:
 	text "I want your"
-	line "#MON. Please?"
+	line "POKéMON. Please?"
 	done
 
 _BTGreetingM15Text:
@@ -254,7 +254,7 @@ _BTWinM16Text:
 	done
 
 _BTGreetingM17Text:
-	text "My #MON skills"
+	text "My POKéMON skills"
 	line "are phenomenal!"
 	done
 
@@ -323,17 +323,17 @@ _BTGreetingM21Text:
 	text "I'm scared about"
 	line "what might happen."
 
-	para "My #MON are way"
+	para "My POKéMON are way"
 	line "too strong."
 	done
 
 _BTLossM21Text:
-	text "See? My #MON"
+	text "See? My POKéMON"
 	line "were too strong."
 	done
 
 _BTWinM21Text:
-	text "Graa! My #MON"
+	text "Graa! My POKéMON"
 	line "were total wimps!"
 	done
 
@@ -388,7 +388,7 @@ _BTGreetingM25Text:
 	done
 
 _BTLossM25Text:
-	text "Yeah! My #MON"
+	text "Yeah! My POKéMON"
 	line "rule!"
 	done
 
@@ -413,7 +413,7 @@ _BTWinF1Text:
 	done
 
 _BTGreetingF2Text:
-	text "Look! My #MON"
+	text "Look! My POKéMON"
 	line "are really cute!"
 	done
 
@@ -459,22 +459,22 @@ _BTWinF4Text:
 
 _BTGreetingF5Text:
 	text "Oh, you have some"
-	line "rare #MON."
+	line "rare POKéMON."
 	done
 
 _BTLossF5Text:
 	text "May I have one of"
-	line "your #MON?"
+	line "your POKéMON?"
 	done
 
 _BTWinF5Text:
 	text "…I want one of"
-	line "your #MON."
+	line "your POKéMON."
 	done
 
 _BTGreetingF6Text:
 	text "Want to hear about"
-	line "my cute #MON?"
+	line "my cute POKéMON?"
 	done
 
 _BTLossF6Text:

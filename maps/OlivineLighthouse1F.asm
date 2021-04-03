@@ -23,7 +23,7 @@ OlivineLighthouse1FSailorText:
 	done
 
 OlivineLighthouse1FPokefanFText:
-	text "In the past, #-"
+	text "In the past, POKé-"
 	line "MON used to light"
 
 	para "the sea around"
@@ -31,7 +31,7 @@ OlivineLighthouse1FPokefanFText:
 
 	para "The LIGHTHOUSE was"
 	line "made in honor of"
-	cont "those #MON."
+	cont "those POKéMON."
 	done
 
 OlivineLighthouse1F_MapEvents:

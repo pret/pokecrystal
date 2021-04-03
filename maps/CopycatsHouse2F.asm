@@ -200,7 +200,7 @@ CopycatSpinAroundMovementData:
 
 CopycatText_Male_1:
 	text "<PLAYER>: Hi! Do"
-	line "you like #MON?"
+	line "you like POKéMON?"
 
 	para "<PLAYER>: Uh, no, I"
 	line "just asked you."
@@ -222,7 +222,7 @@ CopycatText_Male_2:
 	line "I heard that you"
 
 	para "lost your favorite"
-	line "# DOLL."
+	line "POKé DOLL."
 
 	para "<PLAYER>: If I find"
 	line "it, you'll give me"
@@ -251,7 +251,7 @@ CopycatText_Worried:
 CopycatText_GiveDoll:
 	text "COPYCAT: Yay!"
 	line "That's my CLEFAIRY"
-	cont "# DOLL!"
+	cont "POKé DOLL!"
 
 	para "See the tear where"
 	line "the right leg is"
@@ -298,7 +298,7 @@ CopycatText_ItsAScream:
 
 CopycatText_Female_1:
 	text "<PLAYER>: Hi. You"
-	line "must like #MON."
+	line "must like POKéMON."
 
 	para "<PLAYER>: No, not"
 	line "me. I asked you."
@@ -310,7 +310,7 @@ CopycatText_Female_1:
 CopycatText_Female_2:
 	text "<PLAYER>: Hi. Did"
 	line "you really lose"
-	cont "your # DOLL?"
+	cont "your POKé DOLL?"
 
 	para "<PLAYER>: You'll"
 	line "really give me a"
@@ -353,7 +353,7 @@ CopycatsDodrioText2:
 
 CopycatsHouse2FDollText:
 	text "This is a rare"
-	line "#MON! Huh?"
+	line "POKéMON! Huh?"
 
 	para "It's only a doll…"
 	done

@@ -175,7 +175,7 @@ WiseTriosRoomSage3Text:
 	line "are the protectors"
 
 	para "of the legendary"
-	line "#MON."
+	line "POKéMON."
 	done
 
 SageGakuSeenText:
@@ -186,7 +186,7 @@ SageGakuSeenText:
 	line "has the ability to"
 
 	para "touch the souls of"
-	line "#MON, a #MON"
+	line "POKéMON, a POKéMON"
 
 	para "will come forth to"
 	line "put that trainer"
@@ -198,7 +198,7 @@ SageGakuSeenText:
 	line "come true!"
 
 	para "The legendary"
-	line "#MON SUICUNE"
+	line "POKéMON SUICUNE"
 	cont "has arrived!"
 
 	para "We, the WISE TRIO,"
@@ -249,10 +249,10 @@ SageMasaAfterBattleText:
 	para "The BRASS TOWER,"
 	line "which was said to"
 
-	para "awaken #MON,"
+	para "awaken POKéMON,"
 	line "and the TIN TOWER,"
 
-	para "where #MON were"
+	para "where POKéMON were"
 	line "said to rest."
 
 	para "The view from the"
@@ -264,7 +264,7 @@ SageMasaAfterBattleText:
 	para "At the time, an"
 	line "immense, silver-"
 
-	para "colored #MON"
+	para "colored POKéMON"
 	line "was said to make"
 
 	para "its roost atop the"
@@ -306,7 +306,7 @@ SageKojiAfterBattleQuestionText:
 	line "trainer who is"
 
 	para "awaited by the"
-	line "legendary #MON?"
+	line "legendary POKéMON?"
 	done
 
 SageKojiAfterBattleSpeechText:
@@ -318,7 +318,7 @@ SageKojiAfterBattleSpeechText:
 	para "the responsibility"
 	line "of protecting the"
 
-	para "legendary #MON."
+	para "legendary POKéMON."
 	line "We are to allow"
 
 	para "passage only to"

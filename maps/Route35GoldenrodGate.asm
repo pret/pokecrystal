@@ -100,7 +100,7 @@ Route35GoldenrodGateRandyAskTakeThisMonToMyFriendText:
 	cont "a favor?"
 
 	para "Can you take this"
-	line "#MON with MAIL"
+	line "POKéMON with MAIL"
 	cont "to my friend?"
 
 	para "He's on ROUTE 31."
@@ -120,7 +120,7 @@ Route35GoldenrodGateRandyThanksText:
 
 Route35GoldenrodGatePlayerReceivedAMonWithMailText:
 	text "<PLAYER> received a"
-	line "#MON with MAIL."
+	line "POKéMON with MAIL."
 	done
 
 Route35GoldenrodGateRandyWeirdTreeBlockingRoadText:
@@ -138,7 +138,7 @@ Route35GoldenrodGateRandyWeirdTreeBlockingRoadText:
 
 Route35GoldenrodGateRandyCantCarryAnotherMonText:
 	text "You can't carry"
-	line "another #MON…"
+	line "another POKéMON…"
 	done
 
 Route35GoldenrodGateRandyOhNeverMindThenText:
@@ -176,14 +176,14 @@ Route35GoldenrodGatePokefanFText:
 	done
 
 Route35GoldenrodGatePokefanFText_FoughtSudowoodo:
-	text "I like the #MON"
+	text "I like the POKéMON"
 	line "Lullaby they play"
 	cont "on the radio."
 	done
 
 Route35GoldenrodGateFisherText:
 	text "I wonder how many"
-	line "kinds of #MON"
+	line "kinds of POKéMON"
 
 	para "there are in the"
 	line "world."

@@ -1746,14 +1746,14 @@ NoRadioName:
 	ret
 
 OaksPKMNTalkName:     db "OAK's <PK><MN> Talk@"
-PokedexShowName:      db "#DEX Show@"
-PokemonMusicName:     db "#MON Music@"
+PokedexShowName:      db "POKéDEX Show@"
+PokemonMusicName:     db "POKéMON Music@"
 LuckyChannelName:     db "Lucky Channel@"
 UnownStationName:     db "?????@"
 
 PlacesAndPeopleName:  db "Places & People@"
 LetsAllSingName:      db "Let's All Sing!@"
-PokeFluteStationName: db "# FLUTE@"
+PokeFluteStationName: db "POKé FLUTE@"
 
 _TownMap:
 	ld hl, wOptions

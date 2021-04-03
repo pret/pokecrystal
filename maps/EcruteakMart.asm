@@ -37,7 +37,7 @@ EcruteakMartSuperNerdText:
 
 EcruteakMartGrannyText:
 	text "If you use REVIVE,"
-	line "a #MON that's"
+	line "a POKéMON that's"
 
 	para "fainted will wake"
 	line "right up."

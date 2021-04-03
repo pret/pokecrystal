@@ -5,6 +5,6 @@
 	next "etly in an"
 	next "undiscovered cave,"
 
-	page "this #MON was"
+	page "this POKéMON was"
 	next "created solely for"
 	next "battling.@"

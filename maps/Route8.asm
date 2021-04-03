@@ -77,7 +77,7 @@ Route8FruitTree:
 
 BikerDwayneSeenText:
 	text "We're the KANTO"
-	line "#MON FEDERATION"
+	line "POKéMON FEDERATION"
 	cont "trainer group."
 
 	para "We'll drive you"
@@ -89,7 +89,7 @@ BikerDwayneBeatenText:
 	done
 
 BikerDwayneAfterBattleText:
-	text "The KANTO #MON"
+	text "The KANTO POKéMON"
 	line "FEDERATION will"
 	cont "never fall!"
 	done
@@ -113,7 +113,7 @@ BikerHarrisAfterBattleText:
 
 BikerZekeSeenText:
 	text "We're the KANTO"
-	line "#MON FEDERA-"
+	line "POKéMON FEDERA-"
 	cont "TION!"
 	cont "Right on!"
 	done

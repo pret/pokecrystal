@@ -2,7 +2,7 @@ BrentRareTradeText:
 	text "Oh yeah, I got an"
 	line "extremely rare"
 
-	para "#MON in a trade"
+	para "POKéMON in a trade"
 	line "a while back."
 
 	para "Do you want to"
@@ -27,14 +27,14 @@ BrentDefeatedMonText:
 
 BrentLostAMonText:
 	text "Oh yeah, I saw a"
-	line "rare #MON about"
+	line "rare POKéMON about"
 	cont "an hour ago."
 
 	para "It was my first"
 	line "sighting. But I"
 
 	para "didn't have any"
-	line "# BALLS…"
+	line "POKé BALLS…"
 
 	para "Would BILL laugh"
 	line "at my mistakes?"
@@ -50,7 +50,7 @@ BrentBattleRematchText:
 	para "It'll be a chance"
 	line "to see my rare"
 
-	para "#MON. It'll be"
+	para "POKéMON. It'll be"
 	line "worth your time!"
 
 	para "You know where--"
@@ -68,7 +68,7 @@ BrentFatherGossipText:
 	line "BILL's father is"
 
 	para "supposed to be a"
-	line "great #MANIAC."
+	line "great POKéMANIAC."
 	done
 
 BrentGrandpaGossipText:
@@ -76,7 +76,7 @@ BrentGrandpaGossipText:
 	line "Apparently BILL's"
 
 	para "grandpa isn't a"
-	line "#MANIAC."
+	line "POKéMANIAC."
 	done
 
 BrentGoldenrodGossipText:
@@ -97,7 +97,7 @@ BrentAbraGossipText:
 	text "Did you know…?"
 	line "ABRA was the first"
 
-	para "#MON that BILL"
+	para "POKéMON that BILL"
 	line "ostensibly caught."
 	done
 
@@ -154,7 +154,7 @@ BrentSorryImTooBusyText:
 
 BrentReminderText:
 	text "You want to see my"
-	line "rare #MON."
+	line "rare POKéMON."
 
 	para "Hurry over to"
 	line "@"

@@ -85,7 +85,7 @@ DaisyOfferGroomingText:
 	para "Would you like to"
 	line "join me?"
 
-	para "Oh, your #MON"
+	para "Oh, your POKéMON"
 	line "are a bit dirty."
 
 	para "Would you like me"
@@ -117,7 +117,7 @@ DaisyAllDoneText:
 	line "look nice?"
 
 	para "It's such a cute"
-	line "#MON."
+	line "POKéMON."
 	done
 
 DaisyAlreadyGroomedText:

@@ -161,7 +161,7 @@ LavRadioTower1FSuperNerd2Text:
 	para "I am the super"
 	line "MUSIC DIRECTOR!"
 
-	para "Huh? Your #GEAR"
+	para "Huh? Your POKéGEAR"
 	line "can't tune into my"
 
 	para "music programs."
@@ -203,16 +203,16 @@ LavRadioTower1FDirectoryText:
 	done
 
 LavRadioTower1FPokeFluteSignText:
-	text "Perk Up #MON"
+	text "Perk Up POKéMON"
 	line "with Mellow Sounds"
 
-	para "of the # FLUTE"
+	para "of the POKé FLUTE"
 	line "on CHANNEL 20"
 	done
 
 LavRadioTower1FReferenceLibraryText:
 	text "Wow! A full rack"
-	line "of #MON CDs and"
+	line "of POKéMON CDs and"
 	cont "videos."
 
 	para "This must be the"

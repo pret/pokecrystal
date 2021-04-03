@@ -46,7 +46,7 @@ BethLostAMonText:
 	line "catch it when I"
 
 	para "noticed that I was"
-	line "all out of #"
+	line "all out of POKé"
 	cont "BALLS."
 
 	para "If you don't check"

@@ -65,15 +65,15 @@ BethGenericText:
 	text "Are you the kind"
 	line "of person who goes"
 
-	para "to #MON CENTERS"
+	para "to POKéMON CENTERS"
 	line "often?"
 
 	para "I go every day."
 	line "Watching out for"
 
 	para "the health of your"
-	line "#MON is a basic"
+	line "POKéMON is a basic"
 
 	para "part of being a"
-	line "#MON trainer."
+	line "POKéMON trainer."
 	done

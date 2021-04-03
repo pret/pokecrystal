@@ -39,7 +39,7 @@ RalphLostAMonText:
 	para "I was feeling down"
 	line "about it until he"
 
-	para "shared his #"
+	para "shared his POKé"
 	line "BALLS with me."
 
 	para "Hahah, that sure"
@@ -100,7 +100,7 @@ RalphNoItemText:
 	text "Yeah, I know."
 
 	para "You're looking for"
-	line "rare #MON."
+	line "rare POKéMON."
 
 	para "Recently, all I've"
 	line "been catching are"

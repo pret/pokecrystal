@@ -26,12 +26,12 @@ CeruleanPokecenter1FSuperNerdText:
 	text "For battles, I'd"
 	line "much rather use"
 
-	para "#MON I've been"
+	para "POKéMON I've been"
 	line "raising, even if"
 
 	para "they're weaker"
 	line "than some newly"
-	cont "caught #MON."
+	cont "caught POKéMON."
 	done
 
 CeruleanPokecenter1FSuperNerdText_Mobile:

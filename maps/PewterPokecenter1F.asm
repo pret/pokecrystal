@@ -52,7 +52,7 @@ PewterJigglypuffText:
 	done
 
 PewterPokecenter1FBugCatcherText:
-	text "Most #MON get"
+	text "Most POKéMON get"
 	line "drowsy if they"
 
 	para "hear a JIGGLYPUFF"
@@ -62,7 +62,7 @@ PewterPokecenter1FBugCatcherText:
 	line "moves that can be"
 
 	para "used only while a"
-	line "#MON is asleep."
+	line "POKéMON is asleep."
 	done
 
 PewterPokecenter1F_MapEvents:

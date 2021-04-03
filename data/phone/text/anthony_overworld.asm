@@ -6,7 +6,7 @@ AnthonyAskNumber1Text:
 	line "and caves."
 
 	para "I occasionally see"
-	line "rare #MON."
+	line "rare POKéMON."
 
 	para "I could call you"
 	line "the next time I"
@@ -19,7 +19,7 @@ AnthonyAskNumber1Text:
 AnthonyAskNumber2Text:
 	text "I could call you"
 	line "when I see some"
-	cont "rare #MON."
+	cont "rare POKéMON."
 
 	para "Feel like swapping"
 	line "phone numbers?"
@@ -28,7 +28,7 @@ AnthonyAskNumber2Text:
 AnthonyNumberAcceptedText:
 	text "Be patient. I'll"
 	line "find some rare"
-	cont "#MON for you!"
+	cont "POKéMON for you!"
 	done
 
 AnthonyNumberDeclinedText:
@@ -47,6 +47,6 @@ AnthonyPhoneFullText:
 AnthonyRematchText:
 	text "All righty, then!"
 
-	para "My #MON and I"
+	para "My POKéMON and I"
 	line "are raring to go!"
 	done

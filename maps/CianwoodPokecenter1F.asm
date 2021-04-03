@@ -37,15 +37,15 @@ CianwoodPokecenter1FSuperNerdScript:
 
 CianwoodPokecenter1FLassText:
 	text "Did you meet the"
-	line "#MANIAC?"
+	line "POKéMANIAC?"
 
 	para "He's always brag-"
 	line "ging about his"
-	cont "rare #MON."
+	cont "rare POKéMON."
 	done
 
 CianwoodGymGuideText:
-	text "The #MON GYM"
+	text "The POKéMON GYM"
 	line "trainers here are"
 	cont "macho bullies."
 
@@ -61,9 +61,9 @@ CianwoodGymGuideText:
 
 	para "So you should"
 	line "confound him with"
-	cont "psychic #MON."
+	cont "psychic POKéMON."
 
-	para "Wipe out his #-"
+	para "Wipe out his POKé-"
 	line "MON before they"
 
 	para "can use their"
@@ -93,11 +93,11 @@ CianwoodPokecenter1FUnusedText1: ; unreferenced
 	text "Don't you get the"
 	line "urge to show off"
 
-	para "your #MON to"
+	para "your POKéMON to"
 	line "friends?"
 
 	para "I wish I could"
-	line "show the #MON I"
+	line "show the POKéMON I"
 
 	para "raised to my pal"
 	line "in VIOLET."
@@ -117,7 +117,7 @@ CianwoodPokecenter1FUnusedText2: ; unreferenced
 
 CianwoodPokecenter1FSuperNerdText:
 	text "I love showing off"
-	line "the #MON that"
+	line "the POKéMON that"
 
 	para "I've raised."
 	line "Don't you?"
@@ -126,7 +126,7 @@ CianwoodPokecenter1FSuperNerdText:
 	line "into a bunch of"
 
 	para "battles, and show"
-	line "off my #MON!"
+	line "off my POKéMON!"
 	done
 
 CianwoodPokecenter1F_MapEvents:

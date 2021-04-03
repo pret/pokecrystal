@@ -17,7 +17,7 @@ IndigoPlateauSignText:
 	para "The Ultimate Goal"
 	line "for Trainers!"
 
-	para "#MON LEAGUE HQ"
+	para "POKéMON LEAGUE HQ"
 	done
 
 Route23_MapEvents:

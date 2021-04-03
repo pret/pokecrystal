@@ -161,7 +161,7 @@ OlivineLighthouseJasmineLeavesRightMovement:
 
 JasmineCianwoodPharmacyText:
 	text "JASMINE: … This"
-	line "#MON always"
+	line "POKéMON always"
 
 	para "kept the sea lit"
 	line "at night."

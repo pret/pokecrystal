@@ -42,28 +42,28 @@ CherrygroveMartYoungsterScript:
 
 CherrygroveMartCooltrainerMText:
 	text "They're fresh out"
-	line "of # BALLS!"
+	line "of POKé BALLS!"
 
 	para "When will they get"
 	line "more of them?"
 	done
 
 CherrygroveMartCooltrainerMText_PokeBallsInStock:
-	text "# BALLS are in"
+	text "POKé BALLS are in"
 	line "stock! Now I can"
-	cont "catch #MON!"
+	cont "catch POKéMON!"
 	done
 
 CherrygroveMartYoungsterText:
 	text "When I was walking"
 	line "in the grass, a"
 
-	para "bug #MON poi-"
-	line "soned my #MON!"
+	para "bug POKéMON poi-"
+	line "soned my POKéMON!"
 
 	para "I just kept going,"
 	line "but then my"
-	cont "#MON fainted."
+	cont "POKéMON fainted."
 
 	para "You should keep an"
 	line "ANTIDOTE with you."

@@ -156,7 +156,7 @@ ChuckIntroText1:
 	para "Let me tell you,"
 	line "I'm tough!"
 
-	para "My #MON will"
+	para "My POKéMON will"
 	line "crush stones and"
 	cont "shatter bones!"
 
@@ -177,7 +177,7 @@ ChuckIntroText3:
 	para "What?"
 	line "It has nothing to"
 
-	para "do with #MON?"
+	para "do with POKéMON?"
 	line "That's true!"
 
 	para "Come on. We shall"
@@ -200,13 +200,13 @@ GetStormBadgeText:
 
 ChuckExplainBadgeText:
 	text "STORMBADGE makes"
-	line "all #MON up to"
+	line "all POKéMON up to"
 
 	para "L70 obey, even"
 	line "traded ones."
 
 	para "It also lets your"
-	line "#MON use FLY"
+	line "POKéMON use FLY"
 
 	para "when you're not in"
 	line "a battle."
@@ -239,7 +239,7 @@ ChuckAfterText:
 	done
 
 BlackbeltYoshiSeenText:
-	text "My #MON and I"
+	text "My POKéMON and I"
 	line "are bound togeth-"
 	cont "er by friendship."
 
@@ -254,7 +254,7 @@ BlackbeltYoshiBeatenText:
 BlackbeltYoshiAfterText:
 	text "You seem to have a"
 	line "strong bond with"
-	cont "your #MON too!"
+	cont "your POKéMON too!"
 	done
 
 BlackbeltLaoSeenText:
@@ -267,7 +267,7 @@ BlackbeltLaoBeatenText:
 	done
 
 BlackbeltLaoAfterText:
-	text "Fighting #MON"
+	text "Fighting POKéMON"
 	line "are afraid of psy-"
 	cont "chics…"
 	done
@@ -290,7 +290,7 @@ BlackbeltNobAfterText:
 BlackbeltLungSeenText:
 	text "My raging fists"
 	line "will shatter your"
-	cont "#MON!"
+	cont "POKéMON!"
 	done
 
 BlackbeltLungBeatenText:
@@ -298,7 +298,7 @@ BlackbeltLungBeatenText:
 	done
 
 BlackbeltLungAfterText:
-	text "My #MON lost…"
+	text "My POKéMON lost…"
 	line "My… my pride is"
 	cont "shattered…"
 	done

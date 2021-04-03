@@ -81,7 +81,7 @@ CinnabarIslandBlueText:
 	para "We can go on win-"
 	line "ning and losing in"
 
-	para "#MON. But if"
+	para "POKéMON. But if"
 	line "nature so much as"
 
 	para "twitches, we can"

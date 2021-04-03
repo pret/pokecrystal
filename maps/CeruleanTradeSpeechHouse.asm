@@ -33,7 +33,7 @@ CeruleanTradeSpeechHouseZubatScript:
 
 CeruleanTradeSpeechHouseGrannyText:
 	text "My husband lives"
-	line "happily with #-"
+	line "happily with POKé-"
 	cont "MON he got through"
 	cont "trades."
 	done

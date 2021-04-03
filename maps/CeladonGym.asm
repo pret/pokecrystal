@@ -169,7 +169,7 @@ ErikaExplainTMText:
 
 	para "half the damage it"
 	line "inflicts to heal"
-	cont "your #MON."
+	cont "your POKéMON."
 
 	para "Please use it if"
 	line "it pleases you…"
@@ -238,7 +238,7 @@ BeautyJuliaAfterBattleText:
 
 TwinsJoAndZoe1SeenText:
 	text "We'll show you"
-	line "#MON moves that"
+	line "POKéMON moves that"
 	cont "ERIKA taught us!"
 	done
 

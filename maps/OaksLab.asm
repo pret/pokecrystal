@@ -92,7 +92,7 @@ OakWelcomeKantoText:
 	done
 
 OakLabDexCheckText:
-	text "How is your #-"
+	text "How is your POKé-"
 	line "DEX coming?"
 
 	para "Let's see…"
@@ -126,7 +126,7 @@ OakOpenMtSilverText:
 	line "mountain that is"
 
 	para "home to many wild"
-	line "#MON."
+	line "POKéMON."
 
 	para "It's too dangerous"
 	line "for your average"
@@ -183,7 +183,7 @@ OakYesKantoBadgesText:
 	done
 
 OaksAssistant1Text:
-	text "The PROF's #MON"
+	text "The PROF's POKéMON"
 	line "TALK radio program"
 
 	para "isn't aired here"
@@ -195,7 +195,7 @@ OaksAssistant1Text:
 
 OaksAssistant2Text:
 	text "Thanks to your"
-	line "work on the #-"
+	line "work on the POKé-"
 	cont "DEX, the PROF's"
 
 	para "research is coming"
@@ -206,7 +206,7 @@ OaksAssistant3Text:
 	text "Don't tell anyone,"
 	line "but PROF.OAK'S"
 
-	para "#MON TALK isn't"
+	para "POKéMON TALK isn't"
 	line "a live broadcast."
 	done
 

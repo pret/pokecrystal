@@ -121,7 +121,7 @@ LizEarlGossipText:
 	para "Do you know EARL,"
 	line "the teacher who"
 
-	para "runs the #MON"
+	para "runs the POKéMON"
 	line "ACADEMY in VIOLET?"
 
 	para "I saw him doing"
@@ -134,7 +134,7 @@ LizEarlGossipText:
 LizSurfPikachuGossipText:
 	text "Listen, listen!"
 
-	para "I collect #MON"
+	para "I collect POKéMON"
 	line "plush dolls."
 
 	para "But I can't seem"
@@ -173,7 +173,7 @@ LizMooMooMilkGossipText:
 LizSalonGossipText:
 	text "Listen, listen!"
 
-	para "There's a #MON"
+	para "There's a POKéMON"
 	line "SALON in GOLDENROD"
 
 	para "that's run by two"
@@ -207,7 +207,7 @@ LizWhitneyGossipText:
 	para "battling only a"
 	line "little while ago!"
 
-	para "But the #MON"
+	para "But the POKéMON"
 	line "LEAGUE chose her"
 	cont "as a GYM LEADER!"
 

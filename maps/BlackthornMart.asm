@@ -25,7 +25,7 @@ BlackthornMartCooltrainerMText:
 	line "REVIVE, but it"
 
 	para "fully restores a"
-	line "fainted #MON."
+	line "fainted POKéMON."
 
 	para "Beware--it won't"
 	line "restore PP, the"
@@ -36,7 +36,7 @@ BlackthornMartCooltrainerMText:
 
 BlackthornMartBlackBeltText:
 	text "MAX REPEL keeps"
-	line "weak #MON away"
+	line "weak POKéMON away"
 	cont "from you."
 
 	para "It's the longest"

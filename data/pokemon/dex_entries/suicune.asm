@@ -2,7 +2,7 @@
 	dw 607, 4120 ; height, weight
 
 	db   "This divine"
-	next "#MON blows"
+	next "POKéMON blows"
 	next "around the world,"
 
 	page "always in search"

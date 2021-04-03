@@ -61,11 +61,11 @@ BeverlyFoundItemText:
 	done
 
 BeverlyLetsChatAboutMonAgainText:
-	text "Are your #MON"
+	text "Are your POKéMON"
 	line "in prime form?"
 
 	para "Let's chat about"
-	line "#MON again."
+	line "POKéMON again."
 	done
 
 BeverlyComePickUpText:

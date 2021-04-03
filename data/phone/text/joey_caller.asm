@@ -6,7 +6,7 @@ JoeyMonLookingSharperText:
 	cont "than before!"
 
 	para "I doubt there's a"
-	line "#MON as cool as"
+	line "POKéMON as cool as"
 
 	para "this guy in your"
 	line "party!"

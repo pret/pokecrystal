@@ -27,7 +27,7 @@ CianwoodPhotoStudioFishingGuruScript:
 
 CianwoodPhotoStudioFishingGuruText_Question:
 	text "You have magnifi-"
-	line "cent #MON with"
+	line "cent POKéMON with"
 	cont "you."
 
 	para "How about a photo"

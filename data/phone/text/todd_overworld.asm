@@ -54,7 +54,7 @@ ToddRematchText:
 	line "I even cut back my"
 
 	para "shopping to raise"
-	line "my #MON better!"
+	line "my POKéMON better!"
 	done
 
 ToddSaleText: ; unreferenced

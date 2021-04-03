@@ -7,4 +7,4 @@
 
 	page "research to see if"
 	next "it is the ancestor"
-	next "of all #MON.@"
+	next "of all POKéMON.@"

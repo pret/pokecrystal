@@ -215,7 +215,7 @@ DisplayDexEntry:
 	ret
 
 POKeString: ; unreferenced
-	db "#@"
+	db "POKé@"
 
 GetDexEntryPointer:
 ; return dex entry pointer b:de

@@ -37,7 +37,7 @@ Route7SaffronGuardSeriousText:
 	line "job seriously."
 
 	para "Hey! You have a"
-	line "#DEX."
+	line "POKéDEX."
 
 	para "OK. You can go"
 	line "through."

@@ -63,7 +63,7 @@ HueyRematchGiftText:
 	para "I bought tons of"
 	line "items to toughen"
 
-	para "up my #MON, but"
+	para "up my POKéMON, but"
 	line "to no avail…"
 
 	para "Items alone aren't"

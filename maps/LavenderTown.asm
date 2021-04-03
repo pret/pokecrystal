@@ -63,13 +63,13 @@ LavenderTownGrampsText:
 
 	para "their respects to"
 	line "the departed souls"
-	cont "of #MON."
+	cont "of POKéMON."
 	done
 
 LavenderTownYoungsterText:
-	text "You need a #"
+	text "You need a POKé"
 	line "FLUTE to wake"
-	cont "sleeping #MON."
+	cont "sleeping POKéMON."
 
 	para "Every trainer has"
 	line "to know that!"
@@ -93,14 +93,14 @@ KantoRadioStationSignText:
 
 VolunteerPokemonHouseSignText:
 	text "LAVENDER VOLUNTEER"
-	line "#MON HOUSE"
+	line "POKéMON HOUSE"
 	done
 
 SoulHouseSignText:
 	text "SOUL HOUSE"
 
 	para "May the Souls of"
-	line "#MON Rest Easy"
+	line "POKéMON Rest Easy"
 	done
 
 LavenderTown_MapEvents:

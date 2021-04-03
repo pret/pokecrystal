@@ -2,7 +2,7 @@
 	dw 108, 230 ; height, weight
 
 	db   "During the study"
-	next "of this #MON,"
+	next "of this POKéMON,"
 	next "it was discovered"
 
 	page "that its compo-"

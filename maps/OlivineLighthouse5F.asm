@@ -70,7 +70,7 @@ BirdKeeperDenisSeenText:
 	text "We're pretty high"
 	line "up here. My bird"
 
-	para "#MON are in"
+	para "POKéMON are in"
 	line "prime form."
 	done
 
@@ -79,7 +79,7 @@ BirdKeeperDenisBeatenText:
 	done
 
 BirdKeeperDenisAfterBattleText:
-	text "My #MON learned"
+	text "My POKéMON learned"
 	line "how to use FLY in"
 	cont "CIANWOOD."
 

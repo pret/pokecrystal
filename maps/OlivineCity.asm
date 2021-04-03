@@ -185,14 +185,14 @@ OlivineCityRivalText:
 	para "Supposedly taking"
 	line "care of a sick"
 
-	para "#MON at the"
+	para "POKéMON at the"
 	line "LIGHTHOUSE."
 
 	para "Humph! Boo-hoo!"
 	line "Just let sick"
-	cont "#MON go!"
+	cont "POKéMON go!"
 
-	para "A #MON that"
+	para "A POKéMON that"
 	line "can't battle is"
 	cont "worthless!"
 
@@ -225,14 +225,14 @@ OlivineCitySailor1Text:
 
 OlivineCityStandingYoungsterPokegearText:
 	text "That thing you"
-	line "have--it's a #-"
+	line "have--it's a POKé-"
 	cont "GEAR, right? Wow,"
 	cont "that's cool."
 	done
 
 OlivineCityStandingYoungsterPokedexText:
 	text "Wow, you have a"
-	line "#DEX!"
+	line "POKéDEX!"
 
 	para "That is just so"
 	line "awesome."
@@ -263,7 +263,7 @@ OlivineCityPortSignText:
 
 OlivineGymSignText:
 	text "OLIVINE CITY"
-	line "#MON GYM"
+	line "POKéMON GYM"
 	cont "LEADER: JASMINE"
 
 	para "The Steel-Clad"

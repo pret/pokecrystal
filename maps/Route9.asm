@@ -93,14 +93,14 @@ CamperDeanBeatenText:
 	done
 
 CamperDeanAfterBattleText:
-	text "My #MON were"
+	text "My POKéMON were"
 	line "hurt before even"
 
 	para "entering ROCK"
 	line "TUNNEL."
 
 	para "I'd better take"
-	line "them to a #MON"
+	line "them to a POKéMON"
 	cont "CENTER right away."
 	done
 

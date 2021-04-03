@@ -53,7 +53,7 @@ Route4HiddenUltraBall:
 
 BirdKeeperHankSeenText:
 	text "I'm raising my"
-	line "#MON. Want to"
+	line "POKéMON. Want to"
 	cont "battle with me?"
 	done
 
@@ -64,7 +64,7 @@ BirdKeeperHankBeatenText:
 
 BirdKeeperHankAfterBattleText:
 	text "If you have a"
-	line "specific #MON"
+	line "specific POKéMON"
 
 	para "that you want to"
 	line "raise, put it out"

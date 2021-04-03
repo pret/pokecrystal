@@ -1,6 +1,6 @@
 BrentAskNumber1Text:
 	text "By the way, you're"
-	line "a #MANIAC…"
+	line "a POKéMANIAC…"
 
 	para "I can tell."
 	line "Yes, you are."
@@ -11,7 +11,7 @@ BrentAskNumber1Text:
 	para "Do you know BILL?"
 	line "He's an incredible"
 
-	para "#MANIAC."
+	para "POKéMANIAC."
 	line "I revere him."
 
 	para "I'll teach you all"
@@ -33,7 +33,7 @@ BrentNumberAcceptedText:
 	text "BILL--he's more"
 	line "than amazing!"
 
-	para "To be a #MANIAC"
+	para "To be a POKéMANIAC"
 	line "like him someday…"
 
 	para "That's my dream."
@@ -50,7 +50,7 @@ BrentPhoneFullText:
 	text "Huh? Your phone"
 	line "list's full."
 
-	para "A #MANIAC has"
+	para "A POKéMANIAC has"
 	line "to be more tidy!"
 	done
 
@@ -58,5 +58,5 @@ BrentRematchText:
 	text "I've been waiting."
 
 	para "Look, check out my"
-	line "#MON!"
+	line "POKéMON!"
 	done

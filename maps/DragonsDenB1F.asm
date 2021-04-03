@@ -248,7 +248,7 @@ ClairText_WhatsTheMatterDragonDen:
 	line "matter? Aren't you"
 
 	para "going on to the"
-	line "#MON LEAGUE?"
+	line "POKéMON LEAGUE?"
 
 	para "Do you know how to"
 	line "get there?"
@@ -257,13 +257,13 @@ ClairText_WhatsTheMatterDragonDen:
 	line "NEW BARK TOWN."
 
 	para "Then SURF east to"
-	line "#MON LEAGUE."
+	line "POKéMON LEAGUE."
 
 	para "The route there is"
 	line "very tough."
 
 	para "Don't you dare"
-	line "lose at the #-"
+	line "lose at the POKé-"
 	cont "MON LEAGUE!"
 
 	para "If you do, I'll"
@@ -280,7 +280,7 @@ DragonShrineSignpostText:
 	text "DRAGON SHRINE"
 
 	para "A shrine honoring"
-	line "the dragon #MON"
+	line "the dragon POKéMON"
 
 	para "said to have lived"
 	line "in DRAGON'S DEN."
@@ -293,7 +293,7 @@ SilverText_Training1:
 	para "…No, I won't"
 	line "battle you now…"
 
-	para "My #MON aren't"
+	para "My POKéMON aren't"
 	line "ready to beat you."
 
 	para "I can't push them"
@@ -302,7 +302,7 @@ SilverText_Training1:
 	para "I have to be dis-"
 	line "ciplined to become"
 
-	para "the greatest #-"
+	para "the greatest POKé-"
 	line "MON trainer…"
 	done
 

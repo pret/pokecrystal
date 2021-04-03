@@ -128,12 +128,12 @@ RuinsOfAlphAerodactylChamberWallHoleText:
 
 RuinsOfAlphAerodactylChamberAncientReplicaText:
 	text "It's a replica of"
-	line "an ancient #-"
+	line "an ancient POKé-"
 	cont "MON."
 	done
 
 RuinsOfAlphAerodactylChamberDescriptionText:
-	text "This flying #-"
+	text "This flying POKé-"
 	line "MON attacked its"
 
 	para "prey with saw-like"

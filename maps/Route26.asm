@@ -256,7 +256,7 @@ CooltrainermJakeSeenText:
 	text "I'm making my"
 	line "final preparations"
 
-	para "for the #MON"
+	para "for the POKéMON"
 	line "LEAGUE."
 	done
 
@@ -291,7 +291,7 @@ CooltrainermGaven3BeatenText:
 	done
 
 CooltrainermGavenAfterText:
-	text "To get to #MON"
+	text "To get to POKéMON"
 	line "LEAGUE, you have"
 
 	para "to get through"
@@ -342,16 +342,16 @@ CooltrainerfBeth1SeenText:
 	cont "win at any cost."
 
 	para "I felt sorry for"
-	line "his #MON."
+	line "his POKéMON."
 	done
 
 CooltrainerfBeth1BeatenText:
-	text "#MON aren't"
+	text "POKéMON aren't"
 	line "tools of war."
 	done
 
 CooltrainerfBethAfterText:
-	text "#MON are in-"
+	text "POKéMON are in-"
 	line "valuable, lifelong"
 	cont "partners."
 	done
@@ -373,7 +373,7 @@ PsychicRichardBeatenText:
 	done
 
 PsychicRichardAfterBattleText:
-	text "People and #MON"
+	text "People and POKéMON"
 	line "grow from their"
 	cont "experiences."
 
@@ -399,14 +399,14 @@ FisherScottAfterBattleText:
 	text "Just like in fish-"
 	line "ing, it's all over"
 
-	para "in #MON if you"
+	para "in POKéMON if you"
 	line "give up."
 	done
 
 Route26SignText:
 	text "ROUTE 26"
 
-	para "#MON LEAGUE"
+	para "POKéMON LEAGUE"
 	line "RECEPTION GATE"
 	done
 

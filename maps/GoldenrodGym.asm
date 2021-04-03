@@ -186,10 +186,10 @@ WhitneyBeforeText:
 	text "Hi! I'm WHITNEY!"
 
 	para "Everyone was into"
-	line "#MON, so I got"
+	line "POKéMON, so I got"
 	cont "into it too!"
 
-	para "#MON are"
+	para "POKéMON are"
 	line "super-cute!"
 
 	para "You want to bat-"
@@ -235,13 +235,13 @@ PlayerReceivedPlainBadgeText:
 
 WhitneyPlainBadgeText:
 	text "PLAINBADGE lets"
-	line "your #MON use"
+	line "your POKéMON use"
 
 	para "STRENGTH outside"
 	line "of battle."
 
 	para "It also boosts"
-	line "your #MON's"
+	line "your POKéMON's"
 	cont "SPEED."
 
 	para "Oh, you can have"
@@ -252,7 +252,7 @@ WhitneyAttractText:
 	text "It's ATTRACT!"
 	line "It makes full use"
 
-	para "of a #MON's"
+	para "of a POKéMON's"
 	line "charm."
 
 	para "Isn't it just per-"
@@ -270,7 +270,7 @@ WhitneyGoodCryText:
 
 LassCarrieSeenText:
 	text "Don't let my"
-	line "#MON's cute"
+	line "POKéMON's cute"
 
 	para "looks fool you."
 	line "They can whip you!"
@@ -282,17 +282,17 @@ LassCarrieBeatenText:
 	done
 
 LassCarrieAfterBattleText:
-	text "Do my #MON"
+	text "Do my POKéMON"
 	line "think I'm cute?"
 	done
 
 LassBridgetSeenText:
-	text "I like cute #-"
+	text "I like cute POKé-"
 	line "MON better than"
-	cont "strong #MON."
+	cont "strong POKéMON."
 
 	para "But I have strong"
-	line "and cute #MON!"
+	line "and cute POKéMON!"
 	done
 
 LassBridgetBeatenText:
@@ -364,11 +364,11 @@ GoldenrodGymGuideText:
 
 	para "This GYM is home"
 	line "to normal-type"
-	cont "#MON trainers."
+	cont "POKéMON trainers."
 
 	para "I recommend you"
 	line "use fighting-type"
-	cont "#MON."
+	cont "POKéMON."
 	done
 
 GoldenrodGymGuideWinText:

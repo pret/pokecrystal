@@ -43,7 +43,7 @@ HiddenPowerGuyText1:
 	para "Let me share my"
 	line "power with your"
 
-	para "#MON."
+	para "POKéMON."
 	line "Take this, child."
 	done
 
@@ -52,12 +52,12 @@ HiddenPowerGuyText2:
 	line "is HIDDEN POWER!"
 
 	para "It draws out the"
-	line "power of #MON"
+	line "power of POKéMON"
 	cont "for attacking."
 
 	para "Remember this: its"
 	line "type and power de-"
-	cont "pend on the #-"
+	cont "pend on the POKé-"
 	cont "MON using it."
 	done
 

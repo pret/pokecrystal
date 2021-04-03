@@ -182,13 +182,13 @@ MortyIntroText:
 	line "have come."
 
 	para "Here in ECRUTEAK,"
-	line "#MON have been"
+	line "POKéMON have been"
 	cont "revered."
 
 	para "It's said that a"
 	line "rainbow-colored"
 
-	para "#MON will come"
+	para "POKéMON will come"
 	line "down to appear"
 
 	para "before a truly"
@@ -210,7 +210,7 @@ MortyIntroText:
 	line "more, I could see"
 
 	para "a future in which"
-	line "I meet the #MON"
+	line "I meet the POKéMON"
 	cont "of rainbow colors."
 
 	para "You're going to"
@@ -233,12 +233,12 @@ Text_ReceivedFogBadge:
 
 MortyText_FogBadgeSpeech:
 	text "By having FOG-"
-	line "BADGE, #MON up"
+	line "BADGE, POKéMON up"
 
 	para "to L50 will obey"
 	line "you."
 
-	para "Also, #MON that"
+	para "Also, POKéMON that"
 	line "know SURF will be"
 
 	para "able to use that"
@@ -276,7 +276,7 @@ MortyFightDoneText:
 
 SageJeffreySeenText:
 	text "I spent the spring"
-	line "with my #MON."
+	line "with my POKéMON."
 
 	para "Then summer, fall"
 	line "and winter…"
@@ -294,14 +294,14 @@ SageJeffreyBeatenText:
 	done
 
 SageJeffreyAfterBattleText:
-	text "Where did #MON"
+	text "Where did POKéMON"
 	line "come from?"
 	done
 
 SagePingSeenText:
 	text "Can you inflict"
 	line "any damage on our"
-	cont "#MON?"
+	cont "POKéMON?"
 	done
 
 SagePingBeatenText:
@@ -310,7 +310,7 @@ SagePingBeatenText:
 
 SagePingAfterBattleText:
 	text "We use only ghost-"
-	line "type #MON."
+	line "type POKéMON."
 
 	para "No normal-type"
 	line "attack can harm"

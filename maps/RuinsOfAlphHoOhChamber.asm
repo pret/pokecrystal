@@ -129,12 +129,12 @@ RuinsOfAlphHoOhChamberWallHoleText:
 
 RuinsOfAlphHoOhChamberAncientReplicaText:
 	text "It's a replica of"
-	line "an ancient #-"
+	line "an ancient POKé-"
 	cont "MON."
 	done
 
 RuinsOfAlphHoOhChamberDescriptionText:
-	text "A #MON that"
+	text "A POKéMON that"
 	line "flew gracefully on"
 
 	para "rainbow-colored"

@@ -367,9 +367,9 @@ Text_RightThisWayToYourBattleRoom:
 Text_BattleTowerIntroduction_1: ; unreferenced
 	text "BATTLE TOWER is a"
 	line "facility made for"
-	cont "#MON battles."
+	cont "POKéMON battles."
 
-	para "Countless #MON"
+	para "Countless POKéMON"
 	line "trainers gather"
 
 	para "from all over to"
@@ -427,9 +427,9 @@ Text_BattleTowerIntroduction_1: ; unreferenced
 Text_BattleTowerIntroduction_2:
 	text "BATTLE TOWER is a"
 	line "facility made for"
-	cont "#MON battles."
+	cont "POKéMON battles."
 
-	para "Countless #MON"
+	para "Countless POKéMON"
 	line "trainers gather"
 
 	para "from all over to"
@@ -595,7 +595,7 @@ Text_ReadBattleTowerRules:
 	done
 
 Text_BattleTowerRules:
-	text "Three #MON may"
+	text "Three POKéMON may"
 	line "enter battles."
 
 	para "All three must be"
@@ -605,7 +605,7 @@ Text_BattleTowerRules:
 	line "hold must also be"
 	cont "different."
 
-	para "Certain #MON"
+	para "Certain POKéMON"
 	line "may also have"
 
 	para "level restrictions"
@@ -627,7 +627,7 @@ Text_BattleTower_LeftWithoutSaving:
 	done
 
 Text_YourMonWillBeHealedToFullHealth:
-	text "Your #MON will"
+	text "Your POKéMON will"
 	line "be healed to full"
 	cont "health."
 	done
@@ -732,7 +732,7 @@ Text_RegisterRecordTimedOut_Mobile: ; unreferenced
 
 Text_AMonLevelExceeds:
 	text "One or more of"
-	line "your #MON's"
+	line "your POKéMON's"
 	cont "levels exceeds @"
 	text_decimal wScriptVar, 1, 3
 	text "."
@@ -774,7 +774,7 @@ Text_BattleTowerGranny:
 	line "in battle."
 
 	para "Making your"
-	line "#MON hold items"
+	line "POKéMON hold items"
 
 	para "is the key to"
 	line "winning battles."
@@ -785,10 +785,10 @@ Text_BattleTowerBugCatcher:
 	line "how far I can go"
 
 	para "using just bug"
-	line "#MON."
+	line "POKéMON."
 
 	para "Don't let there be"
-	line "any fire #MON…"
+	line "any fire POKéMON…"
 	done
 
 BattleTower1F_MapEvents:

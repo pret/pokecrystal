@@ -226,7 +226,7 @@ Route42SuicuneMovement:
 FisherTullySeenText:
 	text "Let me demonstrate"
 	line "the power of the"
-	cont "#MON I caught!"
+	cont "POKéMON I caught!"
 	done
 
 FisherTullyBeatenText:
@@ -238,7 +238,7 @@ FisherTullyAfterBattleText:
 	text "I want to become"
 	line "the trainer CHAMP"
 
-	para "using the #MON"
+	para "using the POKéMON"
 	line "I caught."
 
 	para "That's the best"
@@ -278,11 +278,11 @@ PokemaniacShaneBeatenText:
 
 PokemaniacShaneAfterBattleText:
 	text "You're working on"
-	line "a #DEX?"
+	line "a POKéDEX?"
 
 	para "Wow, you must know"
 	line "some pretty rare"
-	cont "#MON!"
+	cont "POKéMON!"
 
 	para "May I please see"
 	line "it. Please?"

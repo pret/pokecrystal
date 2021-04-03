@@ -39,7 +39,7 @@ CianwoodPharmacyBookshelf:
 	jumpstd DifficultBookshelfScript
 
 PharmacistGiveSecretpotionText:
-	text "Your #MON ap-"
+	text "Your POKéMON ap-"
 	line "pear to be fine."
 
 	para "Is something wor- "
@@ -48,7 +48,7 @@ PharmacistGiveSecretpotionText:
 	para "…"
 
 	para "The LIGHTHOUSE"
-	line "#MON is in"
+	line "POKéMON is in"
 	cont "trouble?"
 
 	para "I got it!"

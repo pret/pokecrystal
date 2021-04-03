@@ -130,7 +130,7 @@ RadioTower4FDJMaryText_ClearedRockets:
 
 RadioTower4FDJMaryText_GivePinkBow:
 	text "MARY: It's just"
-	line "right for #MON"
+	line "right for POKéMON"
 
 	para "that know normal-"
 	line "type moves."
@@ -140,7 +140,7 @@ RadioTower4FDJMaryText_After:
 	text "MARY: Please tune"
 	line "into me on PROF."
 
-	para "OAK'S #MON TALK"
+	para "OAK'S POKéMON TALK"
 	line "show."
 	done
 
@@ -192,10 +192,10 @@ Executivem2AfterBattleText:
 
 GruntF4SeenText:
 	text "Don't I think"
-	line "#MON are cute?"
+	line "POKéMON are cute?"
 
 	para "I'll think my"
-	line "#MON are cute--"
+	line "POKéMON are cute--"
 
 	para "after they beat"
 	line "yours!"
@@ -211,7 +211,7 @@ GruntF4AfterBattleText:
 	line "beautiful self!"
 
 	para "Who cares about"
-	line "#MON?"
+	line "POKéMON?"
 	done
 
 ScientistRichSeenText:

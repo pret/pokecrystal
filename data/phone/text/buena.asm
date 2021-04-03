@@ -349,13 +349,13 @@ BuenaPhoneWhenDoYouRelaxText:
 
 BuenaPhoneStarterPokemonText:
 	text "<PLAY_G>, what was"
-	line "the first #MON"
+	line "the first POKéMON"
 	cont "you ever caught?"
 
 	para "…Oh, really?"
 
 	para "I've seen lots of"
-	line "#MON around,"
+	line "POKéMON around,"
 
 	para "but I've never"
 	line "caught one."
@@ -364,7 +364,7 @@ BuenaPhoneStarterPokemonText:
 	line "try sometime."
 
 	para "Did you know that"
-	line "the first #MON"
+	line "the first POKéMON"
 
 	para "MARY caught was a"
 	line "DROWZEE?"
@@ -382,7 +382,7 @@ BuenaPhoneStarterPokemonText:
 	line "MEOWTH."
 
 	para "Let's chat about"
-	line "#MON again!"
+	line "POKéMON again!"
 
 	para "Bye-bye!"
 	done
@@ -422,7 +422,7 @@ BuenaPhoneBenAndFernText:
 	line "on the phone for"
 
 	para "hours about what"
-	line "#MON music they"
+	line "POKéMON music they"
 
 	para "should play on"
 	line "different days of"
@@ -491,7 +491,7 @@ endc
 
 BuenaPhonePokegearAnswerText:
 	text "Hey, <PLAY_G>. You"
-	line "use your #GEAR"
+	line "use your POKéGEAR"
 
 	para "to listen to the"
 	line "radio, right?"
@@ -500,12 +500,12 @@ BuenaPhonePokegearAnswerText:
 	line "can even display"
 
 	para "town maps with"
-	line "#GEAR."
+	line "POKéGEAR."
 
 	para "I have a bad sense"
 	line "of direction, so"
 
-	para "#GEAR would be"
+	para "POKéGEAR would be"
 	line "handy…"
 
 	para "Anyway, thanks for"

@@ -49,7 +49,7 @@ BattleTowerOutsideYoungsterText_Mobile: ; unreferenced
 	line "there must also be"
 
 	para "a wide variety of"
-	line "#MON."
+	line "POKéMON."
 	done
 
 BattleTowerOutsideYoungsterText:
@@ -57,7 +57,7 @@ BattleTowerOutsideYoungsterText:
 	line "TOWER is huge!"
 
 	para "There must be many"
-	line "kinds of #MON"
+	line "kinds of POKéMON"
 	cont "in there!"
 	done
 
@@ -69,12 +69,12 @@ BattleTowerOutsideBeautyText_NotYetOpen: ; unreferenced
 	line "anything, I guess"
 
 	para "it must be for"
-	line "#MON battles."
+	line "POKéMON battles."
 	done
 
 BattleTowerOutsideBeautyText:
 	text "You can use only"
-	line "three #MON."
+	line "three POKéMON."
 
 	para "It's so hard to"
 	line "decide which three"

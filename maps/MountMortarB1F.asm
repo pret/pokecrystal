@@ -105,7 +105,7 @@ MountMortarB1FTyrogueRewardText:
 	line "defeated me, I'll"
 
 	para "give you a rare"
-	line "fighting #MON."
+	line "fighting POKéMON."
 	done
 
 MountMortarB1FReceiveMonText:
@@ -118,7 +118,7 @@ MountMortarB1FKiyoGotTyrogueText:
 	line "fighting-type."
 
 	para "It evolves into a"
-	line "tougher #MON."
+	line "tougher POKéMON."
 
 	para "Keep up the hard"
 	line "work. I'll keep"

@@ -80,7 +80,7 @@ Route2HiddenRevive:
 	hiddenitem REVIVE, EVENT_ROUTE_2_HIDDEN_REVIVE
 
 BugCatcherRobSeenText:
-	text "My bug #MON are"
+	text "My bug POKéMON are"
 	line "tough. Prepare to"
 	cont "lose!"
 	done
@@ -92,7 +92,7 @@ BugCatcherRobBeatenText:
 BugCatcherRobAfterBattleText:
 	text "I'm going to look"
 	line "for stronger bug"
-	cont "#MON."
+	cont "POKéMON."
 	done
 
 BugCatcherEdSeenText:
@@ -115,7 +115,7 @@ BugCatcherEdAfterBattleText:
 
 BugCatcherDougSeenText:
 	text "Why don't girls"
-	line "like bug #MON?"
+	line "like bug POKéMON?"
 	done
 
 BugCatcherDougBeatenText:
@@ -123,7 +123,7 @@ BugCatcherDougBeatenText:
 	done
 
 BugCatcherDougAfterBattleText:
-	text "Bug #MON squish"
+	text "Bug POKéMON squish"
 	line "like plush toys"
 
 	para "when you squeeze"

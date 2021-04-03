@@ -109,7 +109,7 @@ DayCareManText_GiveOddEgg:
 	line "EGGS?"
 
 	para "I was raising"
-	line "#MON with my"
+	line "POKéMON with my"
 	cont "wife, you see."
 
 	para "We were shocked to"
@@ -138,7 +138,7 @@ DayCareText_DescribeOddEgg:
 	text "I found that when"
 	line "I was caring for"
 
-	para "someone's #MON"
+	para "someone's POKéMON"
 	line "before."
 
 	para "But the trainer"

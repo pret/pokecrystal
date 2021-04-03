@@ -2,7 +2,7 @@
 	dw 200, 170 ; height, weight
 
 	db   "In truth, it is a"
-	next "cowardly #MON."
+	next "cowardly POKéMON."
 	next "It growls eagerly"
 
 	page "in order to hide"

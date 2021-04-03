@@ -187,7 +187,7 @@ SchoolboyBillyBeatenText:
 	done
 
 SchoolboyBillyAfterBattleText:
-	text "If #MON were a"
+	text "If POKéMON were a"
 	line "subject at school,"
 	cont "I'd be the best!"
 	done

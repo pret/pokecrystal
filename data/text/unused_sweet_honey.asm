@@ -9,7 +9,7 @@
 ; The last text is associated with a second NPC, probably a Butterfree.
 
 UnusedSweetHoneyText: ; unreferenced
-	text "My #MON is an"
+	text "My POKéMON is an"
 	line "expert at collect-"
 	cont "ing SWEET HONEY."
 
@@ -59,7 +59,7 @@ UnusedSweetHoneyAfterText3: ; unreferenced
 	line "HONEY on a tree?"
 
 	para "It takes about a"
-	line "day for #MON to"
+	line "day for POKéMON to"
 	cont "be drawn to it."
 	done
 

@@ -155,7 +155,7 @@ GoldenrodMagnetTrainStationGentlemanText:
 	line "build a train that"
 
 	para "is faster than any"
-	line "#MON."
+	line "POKéMON."
 
 	para "It really brings"
 	line "JOHTO much closer"

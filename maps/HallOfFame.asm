@@ -74,7 +74,7 @@ HallOfFame_LanceText:
 	line "eternity."
 
 	para "Their courageous"
-	line "#MON are also"
+	line "POKéMON are also"
 	cont "inducted."
 
 	para "Here today, we"
@@ -87,7 +87,7 @@ HallOfFame_LanceText:
 	line "compassion for,"
 
 	para "and trust toward,"
-	line "all #MON."
+	line "all POKéMON."
 
 	para "A trainer who"
 	line "succeeded through"

@@ -138,7 +138,7 @@ Text_ReceivedMineralBadge:
 
 Jasmine_BadgeSpeech:
 	text "MINERALBADGE"
-	line "raises #MON's"
+	line "raises POKéMON's"
 	cont "DEFENSE."
 
 	para "…Um… Please take"
@@ -188,7 +188,7 @@ OlivineGymGuidePreText:
 	cont "LIGHTHOUSE."
 
 	para "She's been tending"
-	line "to a sick #MON."
+	line "to a sick POKéMON."
 
 	para "A strong trainer"
 	line "has to be compas-"

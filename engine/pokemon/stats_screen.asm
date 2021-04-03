@@ -714,7 +714,7 @@ LoadPinkPage:
 	db "TO@"
 
 .PkrsStr:
-	db "#RUS@"
+	db "POKéRUS@"
 
 LoadGreenPage:
 	ld de, .Item

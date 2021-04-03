@@ -7,4 +7,4 @@
 
 	page "people have made"
 	next "an effort to breed"
-	next "these #MON.@"
+	next "these POKéMON.@"

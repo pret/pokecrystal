@@ -93,13 +93,13 @@ PlayersHousePCScript:
 	end
 
 PlayersRadioText1:
-	text "PROF.OAK'S #MON"
+	text "PROF.OAK'S POKéMON"
 	line "TALK! Please tune"
 	cont "in next time!"
 	done
 
 PlayersRadioText2:
-	text "#MON CHANNEL!"
+	text "POKéMON CHANNEL!"
 	done
 
 PlayersRadioText3:
@@ -108,8 +108,8 @@ PlayersRadioText3:
 	done
 
 PlayersRadioText4:
-	text "#MON!"
-	line "#MON CHANNEL…"
+	text "POKéMON!"
+	line "POKéMON CHANNEL…"
 	done
 
 PlayersHouse2F_MapEvents:

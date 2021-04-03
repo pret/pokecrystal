@@ -1,7 +1,7 @@
 BillPhoneMornGreetingText:
 	text "Good morning!"
 
-	para "This is the #-"
+	para "This is the POKé-"
 	line "MON STORAGE SYSTEM"
 
 	para "ADMINISTRATION"
@@ -11,7 +11,7 @@ BillPhoneMornGreetingText:
 BillPhoneDayGreetingText:
 	text "Good day!"
 
-	para "This is the #-"
+	para "This is the POKé-"
 	line "MON STORAGE SYSTEM"
 
 	para "ADMINISTRATION"
@@ -21,7 +21,7 @@ BillPhoneDayGreetingText:
 BillPhoneNiteGreetingText:
 	text "Good evening!"
 
-	para "This is the #-"
+	para "This is the POKé-"
 	line "MON STORAGE SYSTEM"
 
 	para "ADMINISTRATION"
@@ -46,7 +46,7 @@ BillPhoneNotFullText:
 	line "has room for @"
 	text_ram wStringBuffer3
 	text_start
-	cont "more #MON."
+	cont "more POKéMON."
 
 	para "Get out there and"
 	line "fill it up!"
@@ -60,7 +60,7 @@ BillPhoneNearlyFullText:
 	line "has room for only"
 	cont "@"
 	text_ram wStringBuffer3
-	text " more #MON."
+	text " more POKéMON."
 
 	para "Maybe you should"
 	line "switch your BOX."
@@ -77,7 +77,7 @@ BillPhoneFullText:
 	line "switch BOXES if"
 
 	para "you want to catch"
-	line "more #MON."
+	line "more POKéMON."
 	done
 
 BillPhoneNewlyFullText:
@@ -87,7 +87,7 @@ BillPhoneNewlyFullText:
 	para "Thanks for using"
 	line "my STORAGE SYSTEM."
 
-	para "That last #MON"
+	para "That last POKéMON"
 	line "you sent filled"
 	cont "your BOX up."
 
@@ -95,7 +95,7 @@ BillPhoneNewlyFullText:
 	line "switch BOXES if"
 
 	para "you want to catch"
-	line "more #MON."
+	line "more POKéMON."
 
 	para "Bye now!"
 	done

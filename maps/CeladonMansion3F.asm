@@ -88,14 +88,14 @@ GameFreakGameDesignerText:
 	line "DESIGNER!"
 
 	para "Filling up your"
-	line "#DEX is tough,"
+	line "POKéDEX is tough,"
 	cont "but don't give up!"
 	done
 
 GameFreakGameDesignerCompletedPokedexText:
 	text "Wow! Excellent!"
 	line "You completed your"
-	cont "#DEX!"
+	cont "POKéDEX!"
 
 	para "Congratulations!"
 	done
@@ -125,7 +125,7 @@ GameFreakGraphicArtistPrintDiplomaText:
 	line "ARTIST."
 
 	para "Oh, you completed"
-	line "your #DEX?"
+	line "your POKéDEX?"
 
 	para "Want me to print"
 	line "out your DIPLOMA?"
@@ -184,7 +184,7 @@ CeladonMansion3FReferenceMaterialText:
 	text "It's crammed with"
 	line "reference materi-"
 	cont "als. There's even"
-	cont "a # DOLL."
+	cont "a POKé DOLL."
 	done
 
 CeladonMansion3F_MapEvents:

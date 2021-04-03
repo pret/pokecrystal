@@ -32,7 +32,7 @@ TrainerSailorKent:
 SailorKentSeenText:
 	text "JASMINE must be"
 	line "worried sick about"
-	cont "the #MON here."
+	cont "the POKéMON here."
 
 	para "She won't even"
 	line "smile these days."
@@ -63,17 +63,17 @@ LassConnie1SeenText:
 	done
 
 LassConnie1BeatenText:
-	text "Aaack! My #MON!"
+	text "Aaack! My POKéMON!"
 	done
 
 LassConnie1AfterBattleText:
 	text "Right. Anybody"
 	line "would be worried"
 	cont "if his or her own"
-	cont "#MON were hurt."
+	cont "POKéMON were hurt."
 
 	para "I'll pray for the"
-	line "#MON here, so"
+	line "POKéMON here, so"
 
 	para "JASMINE can come"
 	line "back to the GYM."

@@ -124,7 +124,7 @@ SaffronCityLass1Text_ReturnedMachinePart:
 	line "looked unhappy."
 
 	para "She said she lost"
-	line "her favorite #"
+	line "her favorite POKé"
 	cont "DOLL--CLEFAIRY."
 	done
 
@@ -163,7 +163,7 @@ SaffronCityCooltrainerMText:
 
 SaffronCityCooltrainerFText:
 	text "This is SILPH CO.,"
-	line "famous for #MON"
+	line "famous for POKéMON"
 	cont "merchandise."
 
 	para "In the past, TEAM"
@@ -235,11 +235,11 @@ SaffronCitySignText:
 
 SaffronGymSignText:
 	text "SAFFRON CITY"
-	line "#MON GYM"
+	line "POKéMON GYM"
 	cont "LEADER: SABRINA"
 
 	para "The Master of"
-	line "Psychic #MON!"
+	line "Psychic POKéMON!"
 	done
 
 FightingDojoSignText:

@@ -41,7 +41,7 @@ SaffronPokecenter1FYoungsterScript:
 
 SaffronPokecenter1FTeacherText:
 	text "What are JOHTO's"
-	line "#MON CENTERS"
+	line "POKéMON CENTERS"
 	cont "like?"
 
 	para "…Oh, I see. So"
@@ -57,7 +57,7 @@ SaffronPokecenter1FTeacherText:
 
 SaffronPokecenter1FTeacherMobileText:
 	text "What are JOHTO's"
-	line "#MON CENTERS"
+	line "POKéMON CENTERS"
 	cont "like?"
 
 	para "…Oh, I see."

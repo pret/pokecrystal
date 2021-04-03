@@ -30,7 +30,7 @@ OlivineCafeSailorScript:
 	jumptextfaceplayer OlivineCafeSailorText
 
 OlivineCafeStrengthSailorText:
-	text "Hah! Your #MON"
+	text "Hah! Your POKéMON"
 	line "sure look like"
 	cont "lightweights!"
 

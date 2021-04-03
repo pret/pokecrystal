@@ -758,7 +758,7 @@ IlexForestApprenticeAfterText:
 	text "Wow! Thanks a"
 	line "whole bunch!"
 
-	para "My boss's #MON"
+	para "My boss's POKéMON"
 	line "won't obey me be-"
 	cont "cause I don't have"
 	cont "a BADGE."
@@ -766,7 +766,7 @@ IlexForestApprenticeAfterText:
 
 Text_ItsTheMissingPokemon:
 	text "It's the missing"
-	line "#MON!"
+	line "POKéMON!"
 	done
 
 Text_Kwaaaa:
@@ -798,7 +798,7 @@ Text_CharcoalMasterOutro:
 	text "That's the CUT HM."
 	line "Teach that to a"
 
-	para "#MON to clear"
+	para "POKéMON to clear"
 	line "small trees."
 
 	para "Of course, you"
@@ -833,7 +833,7 @@ Text_HeadbuttOutro:
 	text "Rattle trees with"
 	line "HEADBUTT. Some-"
 	cont "times, sleeping"
-	cont "#MON fall out."
+	cont "POKéMON fall out."
 	done
 
 Text_IlexForestLass:
@@ -913,16 +913,16 @@ BugCatcherWayneSeenText:
 	line "me like that!"
 
 	para "You frightened a"
-	line "#MON away!"
+	line "POKéMON away!"
 	done
 
 BugCatcherWayneBeatenText:
 	text "I hadn't seen that"
-	line "#MON before…"
+	line "POKéMON before…"
 	done
 
 BugCatcherWayneAfterBattleText:
-	text "A #MON I've"
+	text "A POKéMON I've"
 	line "never seen before"
 
 	para "fell out of the"

@@ -380,7 +380,7 @@ SailorKennethSeenText:
 	text "I'm a sailor man!"
 
 	para "But I'm training"
-	line "#MON, so I can"
+	line "POKéMON, so I can"
 	cont "become the CHAMP!"
 	done
 

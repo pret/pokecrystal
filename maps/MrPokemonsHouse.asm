@@ -191,7 +191,7 @@ MrPokemonsHouse_GotEggText:
 
 MrPokemonIntroText3:
 	text "I know a couple"
-	line "who run a #MON"
+	line "who run a POKéMON"
 	cont "DAY-CARE service."
 
 	para "They gave me that"
@@ -201,7 +201,7 @@ MrPokemonIntroText3:
 	line "so I sent mail to"
 	cont "PROF.ELM."
 
-	para "For #MON evolu-"
+	para "For POKéMON evolu-"
 	line "tion, PROF.ELM is"
 	cont "the authority."
 	done
@@ -221,7 +221,7 @@ MrPokemonsHouse_MrPokemonHealText:
 	text "You are returning"
 	line "to PROF.ELM?"
 
-	para "Here. Your #MON"
+	para "Here. Your POKéMON"
 	line "should have some"
 	cont "rest."
 	done
@@ -243,12 +243,12 @@ MrPokemonsHouse_OakText1:
 	text "OAK: Aha! So"
 	line "you're <PLAY_G>!"
 
-	para "I'm OAK! A #MON"
+	para "I'm OAK! A POKéMON"
 	line "researcher."
 
 	para "I was just visit-"
 	line "ing my old friend"
-	cont "MR.#MON."
+	cont "MR.POKéMON."
 
 	para "I heard you were"
 	line "running an errand"
@@ -257,7 +257,7 @@ MrPokemonsHouse_OakText1:
 	line "waited here."
 
 	para "Oh! What's this?"
-	line "A rare #MON!"
+	line "A rare POKéMON!"
 
 	para "Let's see…"
 
@@ -266,19 +266,19 @@ MrPokemonsHouse_OakText1:
 	para "I understand why"
 	line "PROF.ELM gave you"
 
-	para "a #MON for this"
+	para "a POKéMON for this"
 	line "errand."
 
 	para "To researchers"
 	line "like PROF.ELM and"
 
-	para "I, #MON are our"
+	para "I, POKéMON are our"
 	line "friends."
 
 	para "He saw that you"
 	line "would treat your"
 
-	para "#MON with love"
+	para "POKéMON with love"
 	line "and care."
 
 	para "…Ah!"
@@ -291,12 +291,12 @@ MrPokemonsHouse_OakText1:
 
 	para "See? This is the"
 	line "latest version of"
-	cont "#DEX."
+	cont "POKéDEX."
 
 	para "It automatically"
 	line "records data on"
 
-	para "#MON you've"
+	para "POKéMON you've"
 	line "seen or caught."
 
 	para "It's a hi-tech"
@@ -305,15 +305,15 @@ MrPokemonsHouse_OakText1:
 
 MrPokemonsHouse_GetDexText:
 	text "<PLAYER> received"
-	line "#DEX!"
+	line "POKéDEX!"
 	done
 
 MrPokemonsHouse_OakText2:
 	text "Go meet many kinds"
-	line "of #MON and"
+	line "of POKéMON and"
 
 	para "complete that"
-	line "#DEX!"
+	line "POKéDEX!"
 
 	para "But I've stayed"
 	line "too long."

@@ -5,6 +5,6 @@
 	next "approaches, the"
 	next "petals on this"
 
-	page "#MON's face"
+	page "POKéMON's face"
 	next "become more vivid"
 	next "and lively.@"

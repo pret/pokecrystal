@@ -262,19 +262,19 @@ AzaleaTownRivalBeforeText:
 
 AzaleaTownRivalWinText:
 	text "… Humph! Useless"
-	line "#MON!"
+	line "POKéMON!"
 
 	para "Listen, you. You"
 	line "only won because"
 
-	para "my #MON were"
+	para "my POKéMON were"
 	line "weak."
 	done
 
 AzaleaTownRivalAfterText:
 	text "I hate the weak."
 
-	para "#MON, trainers."
+	para "POKéMON, trainers."
 	line "It doesn't matter"
 	cont "who or what."
 
@@ -366,7 +366,7 @@ AzaleaTownYoungsterText:
 	line "through."
 
 	para "The CHARCOAL MAN's"
-	line "#MON can CUT"
+	line "POKéMON can CUT"
 	cont "down trees."
 	done
 
@@ -406,7 +406,7 @@ AzaleaTownSignText:
 	text "AZALEA TOWN"
 	line "Where People and"
 
-	para "#MON Live in"
+	para "POKéMON Live in"
 	line "Happy Harmony"
 	done
 
@@ -416,11 +416,11 @@ KurtsHouseSignText:
 
 AzaleaGymSignText:
 	text "AZALEA TOWN"
-	line "#MON GYM"
+	line "POKéMON GYM"
 	cont "LEADER: BUGSY"
 
 	para "The Walking"
-	line "Bug #MON"
+	line "Bug POKéMON"
 	cont "Encyclopedia"
 	done
 

@@ -73,7 +73,7 @@ Route12HiddenElixer:
 FisherMartinSeenText:
 	text "Patience is the"
 	line "key to both fish-"
-	cont "ing and #MON."
+	cont "ing and POKéMON."
 	done
 
 FisherMartinBeatenText:
@@ -145,7 +145,7 @@ FisherKyleAfterBattleText:
 	text "The tug you feel"
 	line "on the ROD when"
 
-	para "you hook a #-"
+	para "you hook a POKé-"
 	line "MON…"
 
 	para "That's the best"

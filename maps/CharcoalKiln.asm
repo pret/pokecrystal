@@ -128,7 +128,7 @@ CharcoalKilnApprenticeText2:
 	para "This is CHARCOAL"
 	line "that I made."
 
-	para "Fire-type #MON"
+	para "Fire-type POKéMON"
 	line "would be happy to"
 	cont "hold that."
 	done

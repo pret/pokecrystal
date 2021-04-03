@@ -34,7 +34,7 @@ Route18Sign:
 
 BirdKeeperBorisSeenText:
 	text "If you're looking"
-	line "for #MON, you"
+	line "for POKéMON, you"
 
 	para "have to look in"
 	line "the tall grass."

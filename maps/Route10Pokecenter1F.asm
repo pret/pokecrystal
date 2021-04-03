@@ -35,7 +35,7 @@ Route10Pokecenter1FCooltrainerFScript:
 	jumptextfaceplayer Route10Pokecenter1FCooltrainerFText
 
 Route10Pokecenter1FGentlemanText:
-	text "A #MON CENTER"
+	text "A POKéMON CENTER"
 	line "near a cave?"
 
 	para "That's mighty"
@@ -46,7 +46,7 @@ Route10Pokecenter1FGymGuideText:
 	text "The POWER PLANT's"
 	line "MANAGER is looking"
 
-	para "for a strong #-"
+	para "for a strong POKé-"
 	line "MON trainer."
 
 	para "He needs help"

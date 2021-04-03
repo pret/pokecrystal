@@ -151,7 +151,7 @@ GoldenrodFlowerShopFloriaYouBeatWhitneyText:
 
 GoldenrodFlowerShopFloriaItReallyWasAMonText:
 	text "So it really was a"
-	line "#MON!"
+	line "POKéMON!"
 	done
 
 GoldenrodFlowerShop_MapEvents:

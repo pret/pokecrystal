@@ -326,7 +326,7 @@ Route27FisherText:
 	line "first step into"
 	cont "KANTO."
 
-	para "Check your #-"
+	para "Check your POKé-"
 	line "GEAR MAP and see."
 	done
 
@@ -371,7 +371,7 @@ CooltrainerfReenaSeenText:
 	text "You shouldn't"
 	line "underestimate the"
 
-	para "wild #MON in"
+	para "wild POKéMON in"
 	line "these parts."
 	done
 
@@ -404,10 +404,10 @@ CooltrainerfMeganBeatenText:
 CooltrainerfMeganAfterBattleText:
 	text "I'm checking out"
 	line "pre- and post-"
-	cont "evolution #MON."
+	cont "evolution POKéMON."
 
 	para "Evolution really"
-	line "does make #MON"
+	line "does make POKéMON"
 	cont "stronger."
 
 	para "But evolved forms"
@@ -424,7 +424,7 @@ PsychicGilbertSeenText:
 	para "Mmmmmmm…"
 
 	para "I got it! You're"
-	line "on the #MON"
+	line "on the POKéMON"
 	cont "LEAGUE challenge!"
 	done
 
@@ -455,7 +455,7 @@ BirdKeeperJose2AfterBattleText:
 	line "me mimic bird"
 
 	para "whistles to com-"
-	line "mand #MON."
+	line "mand POKéMON."
 	done
 
 TohjoFallsSignText:

@@ -43,7 +43,7 @@ CeladonDeptStore5FGentlemanText:
 	text "I want to buy some"
 	line "items that raise"
 
-	para "#MON stats, but"
+	para "POKéMON stats, but"
 	line "I don't have"
 	cont "enough money…"
 	done
@@ -58,7 +58,7 @@ CeladonDeptStore5FSailorText:
 
 CeladonDeptStore5FTeacherText:
 	text "Using items on"
-	line "them makes #-"
+	line "them makes POKé-"
 	cont "MON happy."
 
 	para "They hate certain"

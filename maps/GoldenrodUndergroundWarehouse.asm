@@ -195,7 +195,7 @@ DirectorAfterText:
 	para "They may even be"
 	line "able to control"
 
-	para "#MON using a"
+	para "POKéMON using a"
 	line "special signal!"
 
 	para "You're the only"
@@ -204,7 +204,7 @@ DirectorAfterText:
 	para "Please save the"
 	line "RADIO TOWER…"
 
-	para "And all the #-"
+	para "And all the POKé-"
 	line "MON nationwide!"
 	done
 

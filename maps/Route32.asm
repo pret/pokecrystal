@@ -537,7 +537,7 @@ Route32CooltrainerMText_AideIsWaiting:
 	para "See for yourself."
 	line "He's waiting for"
 
-	para "you at the #MON"
+	para "you at the POKéMON"
 	line "CENTER."
 	done
 
@@ -558,10 +558,10 @@ Route32CooltrainerMText_UnusedSproutTower:
 
 Route32CooltrainerMText_VioletGym:
 	text "Have you gone to"
-	line "the #MON GYM?"
+	line "the POKéMON GYM?"
 
 	para "You can test your"
-	line "#MON and your-"
+	line "POKéMON and your-"
 	cont "self there."
 
 	para "It's a rite of"
@@ -571,7 +571,7 @@ Route32CooltrainerMText_VioletGym:
 
 Route32CooltrainerMText_HaveThisSeed:
 	text "You have some good"
-	line "#MON there."
+	line "POKéMON there."
 
 	para "It must be from"
 	line "the training you"
@@ -641,14 +641,14 @@ FisherJustinAfterText:
 	text "Calm, collected…"
 	line "The essence of"
 
-	para "fishing and #-"
+	para "fishing and POKé-"
 	line "MON is the same."
 	done
 
 FisherRalph1SeenText:
 	text "I'm really good at"
 	line "both fishing and"
-	cont "#MON."
+	cont "POKéMON."
 
 	para "I'm not about to"
 	line "lose to any kid!"
@@ -663,7 +663,7 @@ FisherRalphAfterText:
 	text "Fishing is a life-"
 	line "long passion."
 
-	para "#MON are life-"
+	para "POKéMON are life-"
 	line "long friends!"
 	done
 
@@ -680,7 +680,7 @@ FisherRalphSwarmText:
 
 Route32UnusedFisher1SeenText: ; unreferenced
 	text "I keep catching"
-	line "the same #MON…"
+	line "the same POKéMON…"
 
 	para "Maybe a battle"
 	line "will turn things"
@@ -695,7 +695,7 @@ Route32UnusedFisher1BeatenText: ; unreferenced
 Route32UnusedFisher1AfterText: ; unreferenced
 	text "How come the guy"
 	line "next to me catches"
-	cont "good #MON?"
+	cont "good POKéMON?"
 	done
 
 Route32UnusedFisher2SeenText: ; unreferenced
@@ -714,11 +714,11 @@ Route32UnusedFisher2AfterText: ; unreferenced
 	line "good ROD if you"
 
 	para "want to catch good"
-	line "#MON."
+	line "POKéMON."
 	done
 
 FisherHenrySeenText:
-	text "My #MON?"
+	text "My POKéMON?"
 	line "Freshly caught!"
 	done
 
@@ -728,7 +728,7 @@ FisherHenryBeatenText:
 
 FisherHenryAfterText:
 	text "Freshly caught"
-	line "#MON are no"
+	line "POKéMON are no"
 
 	para "match for properly"
 	line "raised ones."
@@ -752,13 +752,13 @@ YoungsterAlbertAfterText:
 	cont "with my favorites."
 
 	para "I'm not using the"
-	line "same tough #MON"
+	line "same tough POKéMON"
 	cont "as everyone else."
 	done
 
 YoungsterGordonSeenText:
 	text "I found some good"
-	line "#MON in the"
+	line "POKéMON in the"
 	cont "grass!"
 
 	para "I think they'll do"
@@ -851,7 +851,7 @@ Text_RoarOutro:
 	text "WROOOAR!"
 	line "IT'S ROAR!"
 
-	para "EVEN #MON RUN"
+	para "EVEN POKéMON RUN"
 	line "FROM A GOOD ROAR!"
 	done
 
@@ -872,7 +872,7 @@ FriedaGivesGiftText:
 
 FriedaGaveGiftText:
 	text "FRIEDA: Give it to"
-	line "a #MON that has"
+	line "a POKéMON that has"
 	cont "poison-type moves."
 
 	para "Oh!"

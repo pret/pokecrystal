@@ -59,7 +59,7 @@ JackGreetNiteText:
 
 JackGenericText:
 	text "How are your"
-	line "#MON doing?"
+	line "POKéMON doing?"
 
 	para "My @"
 	text_ram wStringBuffer4

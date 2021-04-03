@@ -129,7 +129,7 @@ TwinsAnnandanne1AfterBattleText:
 	text "ANN: I can tell"
 	line "what my sister and"
 
-	para "my #MON are"
+	para "my POKéMON are"
 	line "thinking."
 	done
 
@@ -147,11 +147,11 @@ TwinsAnnandanne2BeatenText:
 TwinsAnnandanne2AfterBattleText:
 	text "ANNE: We share the"
 	line "same feelings as"
-	cont "our #MON."
+	cont "our POKéMON."
 	done
 
 PsychicGregSeenText:
-	text "#MON can't do a"
+	text "POKéMON can't do a"
 	line "thing if they are"
 	cont "asleep."
 
@@ -165,7 +165,7 @@ PsychicGregBeatenText:
 	done
 
 PsychicGregAfterBattleText:
-	text "Putting #MON to"
+	text "Putting POKéMON to"
 	line "sleep or paralyz-"
 	cont "ing them are good"
 	cont "battle techniques."
@@ -203,7 +203,7 @@ SunnyGaveGiftText:
 	para "Oh! I remember"
 	line "now!"
 
-	para "A #MON that"
+	para "A POKéMON that"
 	line "knows electric"
 
 	para "moves should hold"

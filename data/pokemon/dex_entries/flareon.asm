@@ -3,7 +3,7 @@
 
 	db   "Once it has stored"
 	next "up enough heat,"
-	next "this #MON's"
+	next "this POKéMON's"
 
 	page "body temperature"
 	next "can reach up to"

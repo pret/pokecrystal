@@ -84,9 +84,9 @@ BrockIntroText:
 	line "PEWTER GYM LEADER."
 
 	para "I'm an expert on"
-	line "rock-type #MON."
+	line "rock-type POKéMON."
 
-	para "My #MON are im-"
+	para "My POKéMON are im-"
 	line "pervious to most"
 
 	para "physical attacks."
@@ -99,7 +99,7 @@ BrockIntroText:
 	done
 
 BrockWinLossText:
-	text "BROCK: Your #-"
+	text "BROCK: Your POKé-"
 	line "MON's powerful at-"
 	cont "tacks overcame my"
 	cont "rock-hard defense…"
@@ -127,7 +127,7 @@ BrockBoulderBadgeText:
 	para "That BOULDERBADGE"
 	line "will make your"
 
-	para "#MON even more"
+	para "POKéMON even more"
 	line "powerful."
 	done
 
@@ -147,7 +147,7 @@ BrockFightDoneText:
 CamperJerrySeenText:
 	text "The trainers of"
 	line "this GYM use rock-"
-	cont "type #MON."
+	cont "type POKéMON."
 
 	para "The rock-type has"
 	line "high DEFENSE."

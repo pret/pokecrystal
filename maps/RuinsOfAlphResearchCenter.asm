@@ -192,10 +192,10 @@ RuinsOfAlphResearchCenterModifiedDexText:
 	text "Done!"
 
 	para "I modified your"
-	line "#DEX."
+	line "POKéDEX."
 
 	para "I added an"
-	line "optional #DEX"
+	line "optional POKéDEX"
 
 	para "to store UNOWN"
 	line "data."
@@ -206,7 +206,7 @@ RuinsOfAlphResearchCenterModifiedDexText:
 	done
 
 RuinsOfAlphResearchCenterDexUpgradedText:
-	text "<PLAYER>'s #DEX"
+	text "<PLAYER>'s POKéDEX"
 	line "was upgraded."
 	done
 
@@ -246,12 +246,12 @@ RuinsOfAlphResearchCenterScientist1Text:
 
 RuinsOfAlphResearchCenterScientist1Text_GotUnownDex:
 	text "I wonder how many"
-	line "kinds of #MON"
+	line "kinds of POKéMON"
 	cont "are in the RUINS?"
 	done
 
 RuinsOfAlphResearchCenterScientist1Text_UnownAppeared:
-	text "#MON appeared"
+	text "POKéMON appeared"
 	line "in the RUINS?"
 
 	para "That's incredible"
@@ -272,7 +272,7 @@ RuinsOfAlphResearchCenterScientist1Text_GotAllUnown:
 	line "to have been built"
 
 	para "as a habitat for"
-	line "#MON."
+	line "POKéMON."
 	done
 
 RuinsOfAlphResearchCenterScientist2Text:
@@ -289,7 +289,7 @@ RuinsOfAlphResearchCenterScientist2Text:
 	done
 
 RuinsOfAlphResearchCenterScientist2Text_UnownAppeared:
-	text "The strange #-"
+	text "The strange POKé-"
 	line "MON you saw in the"
 	cont "RUINS?"
 
@@ -324,7 +324,7 @@ RuinsOfAlphResearchCenterUnusedText2: ; unreferenced
 	para "Those mysterious"
 	line "patterns appeared"
 
-	para "when the #COM"
+	para "when the POKéCOM"
 	line "CENTER was built."
 
 	para "It must mean that"
@@ -353,7 +353,7 @@ RuinsOfAlphResearchCenterComputerText:
 	done
 
 RuinsOfAlphResearchCenterComputerText_GotAllUnown:
-	text "Mystery #MON"
+	text "Mystery POKéMON"
 	line "Name: UNOWN"
 
 	para "A total of {d:NUM_UNOWN}"

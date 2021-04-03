@@ -123,13 +123,13 @@ BugCatchingContestant1AText:
 
 BugCatchingContestant2AText:
 	text "ED: My PARASECT"
-	line "puts #MON to"
+	line "puts POKéMON to"
 	cont "sleep with SPORE."
 	done
 
 BugCatchingContestant3AText:
 	text "NICK: I'm raising"
-	line "fast #MON for"
+	line "fast POKéMON for"
 	cont "battles."
 	done
 
@@ -139,7 +139,7 @@ BugCatchingContestant4AText:
 	cont "winning."
 
 	para "I'm just looking"
-	line "for rare #MON."
+	line "for rare POKéMON."
 	done
 
 BugCatchingContestant5AText:
@@ -152,7 +152,7 @@ BugCatchingContestant5AText:
 
 BugCatchingContestant6AText:
 	text "BARRY: You should"
-	line "weaken bug #MON"
+	line "weaken bug POKéMON"
 
 	para "first, then throw"
 	line "a BALL."
@@ -160,7 +160,7 @@ BugCatchingContestant6AText:
 
 BugCatchingContestant7AText:
 	text "CINDY: I love bug"
-	line "#MON."
+	line "POKéMON."
 
 	para "I guess you must"
 	line "like them too."
@@ -170,7 +170,7 @@ BugCatchingContestant8AText:
 	text "JOSH: I've been"
 	line "collecting bug"
 
-	para "#MON since I"
+	para "POKéMON since I"
 	line "was just a baby."
 
 	para "There's no way I'm"
@@ -182,12 +182,12 @@ BugCatchingContestant9AText:
 	line "got the time to"
 
 	para "chat, go find some"
-	line "bug #MON."
+	line "bug POKéMON."
 	done
 
 BugCatchingContestant10AText:
 	text "KIPP: I've studied"
-	line "about bug #MON"
+	line "about bug POKéMON"
 	cont "a lot."
 
 	para "I'm going to win"

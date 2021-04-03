@@ -63,7 +63,7 @@ BirdKeeperTheoAfterBattleText:
 	line "you go up?"
 
 	para "I want to visit"
-	line "the sick #MON,"
+	line "the sick POKéMON,"
 
 	para "but I can't get up"
 	line "there…"
@@ -86,7 +86,7 @@ SailorTerrellAfterBattleText:
 	cont "visit the GYM."
 
 	para "The GYM LEADER's"
-	line "#MON type has"
+	line "POKéMON type has"
 
 	para "changed without me"
 	line "noticing."
@@ -94,7 +94,7 @@ SailorTerrellAfterBattleText:
 
 GentlemanPrestonSeenText:
 	text "I travel the world"
-	line "to train my #-"
+	line "to train my POKé-"
 	cont "MON. I wish to"
 	cont "battle with you."
 	done
@@ -106,7 +106,7 @@ GentlemanPrestonBeatenText:
 
 GentlemanPrestonAfterBattleText:
 	text "JASMINE used to"
-	line "use rock #MON"
+	line "use rock POKéMON"
 	cont "like ONIX."
 	done
 

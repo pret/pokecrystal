@@ -76,7 +76,7 @@ SageEdmondAfterBattleText:
 	done
 
 SproutTower2FStatueText:
-	text "A #MON statue…"
+	text "A POKéMON statue…"
 
 	para "It looks very"
 	line "distinguished."

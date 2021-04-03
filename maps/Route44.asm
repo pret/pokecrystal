@@ -349,7 +349,7 @@ FisherEdgarSeenText:
 
 	para "That's my"
 	line "relationship"
-	cont "with my #MON."
+	cont "with my POKéMON."
 	done
 
 FisherEdgarBeatenText:
@@ -368,7 +368,7 @@ FisherEdgarAfterBattleText:
 BirdKeeperVance1SeenText:
 	text "Do you know about"
 	line "the legendary bird"
-	cont "#MON?"
+	cont "POKéMON?"
 	done
 
 BirdKeeperVance1BeatenText:
@@ -381,7 +381,7 @@ BirdKeeperVanceLegendaryBirdsText:
 	line "and MOLTRES are"
 
 	para "the three legend-"
-	line "ary bird #MON."
+	line "ary bird POKéMON."
 
 	para "I heard there are"
 	line "other legendary"
@@ -418,16 +418,16 @@ PsychicPhilAfterBattleText:
 PokemaniacZachSeenText:
 	text "I'll do anything"
 	line "to get my hands on"
-	cont "rare #MON!"
+	cont "rare POKéMON!"
 	done
 
 PokemaniacZachBeatenText:
-	text "Oooh, your #MON"
+	text "Oooh, your POKéMON"
 	line "are so appealing."
 	done
 
 PokemaniacZachAfterBattleText:
-	text "If a #MON has"
+	text "If a POKéMON has"
 	line "different colors"
 
 	para "from usual, it's"
@@ -442,7 +442,7 @@ CooltrainermAllenSeenText:
 	line "a good trainer by"
 	cont "looking at you."
 
-	para "I'm good at #-"
+	para "I'm good at POKé-"
 	line "MON, and I can see"
 	cont "that you are too."
 	done

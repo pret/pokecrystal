@@ -71,7 +71,7 @@ HappinessRatersHouseRadio:
 
 GoldenrodHappinessRaterTeacherText:
 	text "If you treat your"
-	line "#MON nicely,"
+	line "POKéMON nicely,"
 
 	para "they will love you"
 	line "in return."
@@ -120,17 +120,17 @@ GoldenrodHappinessRaterPokefanMText:
 	text "I keep losing in"
 	line "battles, and my"
 
-	para "#MON end up"
+	para "POKéMON end up"
 	line "fainting…"
 
 	para "Maybe that's why"
-	line "my #MON don't"
+	line "my POKéMON don't"
 	cont "like me much…"
 	done
 
 GoldenrodHappinessRaterTwinText:
 	text "When I use an item"
-	line "on my #MON, it"
+	line "on my POKéMON, it"
 	cont "acts really glad!"
 	done
 

@@ -32,7 +32,7 @@ MahoganyPokecenter1FPokefanMText:
 	done
 
 MahoganyPokecenter1FYoungsterText:
-	text "I stop my #MON"
+	text "I stop my POKéMON"
 	line "from evolving too"
 	cont "early."
 
@@ -43,7 +43,7 @@ MahoganyPokecenter1FYoungsterText:
 	done
 
 MahoganyPokecenter1FCooltrainerFText:
-	text "#MON do become"
+	text "POKéMON do become"
 	line "stronger when they"
 
 	para "evolve, but they"

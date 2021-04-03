@@ -79,7 +79,7 @@ WillsRoom_EnterMovement:
 	step_end
 
 WillScript_WillBeforeText:
-	text "Welcome to #MON"
+	text "Welcome to POKéMON"
 	line "LEAGUE, <PLAYER>."
 
 	para "Allow me to intro-"
@@ -90,7 +90,7 @@ WillScript_WillBeforeText:
 	line "around the world,"
 
 	para "making my psychic"
-	line "#MON powerful."
+	line "POKéMON powerful."
 
 	para "And, at last, I've"
 	line "been accepted into"

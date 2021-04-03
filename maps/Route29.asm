@@ -247,7 +247,7 @@ DudeMovementData2b:
 	step_end
 
 CatchingTutorialBoxFullText:
-	text "#MON hide in"
+	text "POKéMON hide in"
 	line "the grass. Who"
 
 	para "knows when they'll"
@@ -258,12 +258,12 @@ CatchingTutorialIntroText:
 	text "I've seen you a"
 	line "couple times. How"
 
-	para "many #MON have"
+	para "many POKéMON have"
 	line "you caught?"
 
 	para "Would you like me"
 	line "to show you how to"
-	cont "catch #MON?"
+	cont "catch POKéMON?"
 	done
 
 CatchingTutorialDebriefText:
@@ -271,7 +271,7 @@ CatchingTutorialDebriefText:
 	line "it."
 
 	para "If you weaken them"
-	line "first, #MON are"
+	line "first, POKéMON are"
 	cont "easier to catch."
 	done
 
@@ -281,19 +281,19 @@ CatchingTutorialDeclinedText:
 	para "Anyway, if you"
 	line "want to catch"
 
-	para "#MON, you have"
+	para "POKéMON, you have"
 	line "to walk a lot."
 	done
 
 CatchingTutorialRepeatText:
 	text "Huh? You want me"
 	line "to show you how to"
-	cont "catch #MON?"
+	cont "catch POKéMON?"
 	done
 
 Route29YoungsterText:
 	text "Yo. How are your"
-	line "#MON?"
+	line "POKéMON?"
 
 	para "If they're weak"
 	line "and not ready for"
@@ -324,7 +324,7 @@ Route29FisherText:
 
 Route29CooltrainerMText_WaitingForDay: ; unreferenced
 	text "I'm waiting for"
-	line "#MON that"
+	line "POKéMON that"
 
 	para "appear only in the"
 	line "daytime."
@@ -332,7 +332,7 @@ Route29CooltrainerMText_WaitingForDay: ; unreferenced
 
 Route29CooltrainerMText_WaitingForNight:
 	text "I'm waiting for"
-	line "#MON that"
+	line "POKéMON that"
 
 	para "appear only at"
 	line "night."
@@ -340,7 +340,7 @@ Route29CooltrainerMText_WaitingForNight:
 
 Route29CooltrainerMText_WaitingForMorning:
 	text "I'm waiting for"
-	line "#MON that"
+	line "POKéMON that"
 
 	para "appear only in the"
 	line "morning."

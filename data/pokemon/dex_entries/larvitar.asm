@@ -3,7 +3,7 @@
 
 	db   "Born deep under-"
 	next "ground, this"
-	next "#MON becomes a"
+	next "POKéMON becomes a"
 
 	page "pupa after eating"
 	next "enough dirt to"

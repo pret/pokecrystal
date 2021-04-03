@@ -48,12 +48,12 @@ AlanGreetNiteText:
 AlanGenericText:
 	text "<PLAY_G>, are you"
 	line "raising your"
-	cont "#MON properly?"
+	cont "POKéMON properly?"
 
 	para "I read in a book"
 	line "that you should"
 
-	para "raise any #MON"
+	para "raise any POKéMON"
 	line "you catch with"
 	cont "love and care."
 	done

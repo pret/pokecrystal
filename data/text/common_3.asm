@@ -8,7 +8,7 @@ _OakText7::
 	line "ready?"
 
 	para "Your very own"
-	line "#MON story is"
+	line "POKéMON story is"
 	cont "about to unfold."
 
 	para "You'll face fun"
@@ -18,7 +18,7 @@ _OakText7::
 	para "A world of dreams"
 	line "and adventures"
 
-	para "with #MON"
+	para "with POKéMON"
 	line "awaits! Let's go!"
 
 	para "I'll be seeing you"
@@ -58,7 +58,7 @@ _LinkTimeoutText::
 
 _LinkTradeCantBattleText::
 	text "If you trade that"
-	line "#MON, you won't"
+	line "POKéMON, you won't"
 	cont "be able to battle."
 	prompt
 
@@ -84,7 +84,7 @@ _MobileBattleMustPickThreeMonText::
 	line "battle, you must"
 
 	para "pick a team of"
-	line "three #MON."
+	line "three POKéMON."
 
 	para "Is that OK?"
 	done
@@ -97,7 +97,7 @@ _MobileBattleMoreInfoText::
 _MobileBattleRulesText::
 	text "For a mobile"
 	line "battle, choose"
-	cont "three #MON."
+	cont "three POKéMON."
 
 	para "The maximum daily"
 	line "play time is ten"
@@ -112,7 +112,7 @@ _MobileBattleRulesText::
 	line "the player with"
 
 	para "the fewest fainted"
-	line "#MON wins."
+	line "POKéMON wins."
 
 	para "If tied, the team"
 	line "that lost the"
@@ -173,7 +173,7 @@ _MobileBattleNoTimeLeftForLinkingText::
 	done
 
 _PickThreeMonForMobileBattleText::
-	text "Pick three #MON"
+	text "Pick three POKéMON"
 	line "for battle."
 	done
 
@@ -218,13 +218,13 @@ _SaveFileCorruptedText::
 
 _ChangeBoxSaveText::
 	text "When you change a"
-	line "#MON BOX, data"
+	line "POKéMON BOX, data"
 	cont "will be saved. OK?"
 	done
 
 _MoveMonWOMailSaveText::
 	text "Each time you move"
-	line "a #MON, data"
+	line "a POKéMON, data"
 	cont "will be saved. OK?"
 	done
 
@@ -283,7 +283,7 @@ _SeerSeeAllText::
 	line "I know all…"
 
 	para "Certainly, I know"
-	line "of your #MON!"
+	line "of your POKéMON!"
 	done
 
 _SeerCantTellAThingText::
@@ -375,7 +375,7 @@ _SeerMoreCareText::
 	para "It would be wise"
 	line "to raise your"
 
-	para "#MON with a"
+	para "POKéMON with a"
 	line "little more care."
 	done
 
@@ -414,7 +414,7 @@ _SeerMightyText::
 	line "must have come"
 
 	para "through numerous"
-	line "#MON battles."
+	line "POKéMON battles."
 
 	para "It looks brimming"
 	line "with confidence."
@@ -429,7 +429,7 @@ _SeerImpressedText::
 	para "It's been a long"
 	line "time since I've"
 
-	para "seen a #MON as"
+	para "seen a POKéMON as"
 	line "mighty as this"
 	cont "@"
 	text_ram wSeerNickname
@@ -498,7 +498,7 @@ _HerbShopLadyIntroText::
 	para "They're good, but"
 	line "a trifle bitter."
 
-	para "Your #MON may"
+	para "Your POKéMON may"
 	line "not like them."
 
 	para "Hehehehe…"
@@ -719,7 +719,7 @@ _MobileStadiumEntryText::
 	text "Data for use in"
 	line "the MOBILE STADIUM"
 
-	para "of the N64 #MON"
+	para "of the N64 POKéMON"
 	line "STADIUM 2 can be"
 	cont "read here."
 
@@ -734,7 +734,7 @@ _MobileStadiumSuccessText::
 	line "MOBILE STADIUM"
 
 	para "battles in the N64"
-	line "#MON STADIUM 2."
+	line "POKéMON STADIUM 2."
 
 	para ""
 	done
@@ -754,7 +754,7 @@ _DeletedTheLoginPasswordText::
 	done
 
 _MobilePickThreeMonForBattleText::
-	text "Pick three #MON"
+	text "Pick three POKéMON"
 	line "for battle."
 	prompt
 
@@ -772,7 +772,7 @@ _MobileUseTheseThreeMonText::
 	done
 
 _MobileOnlyThreeMonMayEnterText::
-	text "Only three #MON"
+	text "Only three POKéMON"
 	line "may enter."
 	prompt
 
@@ -815,7 +815,7 @@ _MobileCardFolderIntro3Text::
 
 	para "mobile phone on"
 	line "the 2nd floor of a"
-	cont "#MON CENTER."
+	cont "POKéMON CENTER."
 
 	para ""
 	done
@@ -1135,7 +1135,7 @@ _BattleTowerReturnWhenReadyText::
 
 _NeedAtLeastThreeMonText::
 	text "You need at least"
-	line "three #MON."
+	line "three POKéMON."
 
 	para ""
 	done
@@ -1148,7 +1148,7 @@ _EggDoesNotQualifyText::
 	done
 
 _OnlyThreeMonMayBeEnteredText::
-	text "Only three #MON"
+	text "Only three POKéMON"
 	line "may be entered."
 
 	para ""
@@ -1157,7 +1157,7 @@ _OnlyThreeMonMayBeEnteredText::
 _TheMonMustAllBeDifferentKindsText::
 	text "The @"
 	text_ram wStringBuffer2
-	text " #MON"
+	text " POKéMON"
 	line "must all be"
 	cont "different kinds."
 
@@ -1167,7 +1167,7 @@ _TheMonMustAllBeDifferentKindsText::
 _TheMonMustNotHoldTheSameItemsText::
 	text "The @"
 	text_ram wStringBuffer2
-	text " #MON"
+	text " POKéMON"
 	line "must not hold the"
 	cont "same items."
 
@@ -1185,17 +1185,17 @@ _BallDodgedText::
 	text "It dodged the"
 	line "thrown BALL!"
 
-	para "This #MON"
+	para "This POKéMON"
 	line "can't be caught!"
 	prompt
 
 _BallMissedText::
 	text "You missed the"
-	line "#MON!"
+	line "POKéMON!"
 	prompt
 
 _BallBrokeFreeText::
-	text "Oh no! The #MON"
+	text "Oh no! The POKéMON"
 	line "broke free!"
 	prompt
 
@@ -1240,7 +1240,7 @@ _NewDexDataText::
 	text_ram wEnemyMonNickname
 	text "'s data"
 	line "was newly added to"
-	cont "the #DEX.@"
+	cont "the POKéDEX.@"
 	sound_slot_machine_start
 	text_promptbutton
 	text_end
@@ -1264,7 +1264,7 @@ _ItemStatRoseText::
 
 _ItemCantUseOnMonText::
 	text "That can't be used"
-	line "on this #MON."
+	line "on this POKéMON."
 	prompt
 
 _RepelUsedEarlierIsStillInEffectText::
@@ -1274,7 +1274,7 @@ _RepelUsedEarlierIsStillInEffectText::
 	prompt
 
 _PlayedFluteText::
-	text "Played the #"
+	text "Played the POKé"
 	line "FLUTE."
 
 	para "Now, that's a"
@@ -1283,12 +1283,12 @@ _PlayedFluteText::
 
 _FluteWakeUpText::
 	text "All sleeping"
-	line "#MON woke up."
+	line "POKéMON woke up."
 	prompt
 
 Text_PlayedPokeFlute::
 	text "<PLAYER> played the"
-	line "# FLUTE.@"
+	line "POKé FLUTE.@"
 	text_promptbutton
 	text_end
 
@@ -1394,7 +1394,7 @@ _ItemCantGetOnText::
 	prompt
 
 _BallBoxFullText::
-	text "The #MON BOX"
+	text "The POKéMON BOX"
 	line "is full. That"
 	cont "can't be used now."
 	prompt
@@ -1430,7 +1430,7 @@ _KnowsMoveText::
 	prompt
 
 _MoveKnowsOneText::
-	text "That #MON knows"
+	text "That POKéMON knows"
 	line "only one move."
 	done
 
@@ -1442,7 +1442,7 @@ _AskDeleteMoveText::
 	done
 
 _DeleterForgotMoveText::
-	text "Done! Your #MON"
+	text "Done! Your POKéMON"
 	line "forgot the move."
 	done
 
@@ -1465,15 +1465,15 @@ _DeleterIntroText::
 	text "Um… Oh, yes, I'm"
 	line "the MOVE DELETER."
 
-	para "I can make #MON"
+	para "I can make POKéMON"
 	line "forget moves."
 
 	para "Shall I make a"
-	line "#MON forget?"
+	line "POKéMON forget?"
 	done
 
 _DeleterAskWhichMonText::
-	text "Which #MON?"
+	text "Which POKéMON?"
 	prompt
 
 _DSTIsThatOKText::
@@ -1519,7 +1519,7 @@ _TimesetAskAdjustDSTText::
 _MomLostGearBookletText::
 	text "I lost the in-"
 	line "struction booklet"
-	cont "for the #GEAR."
+	cont "for the POKéGEAR."
 
 	para "Come back again in"
 	line "a while."

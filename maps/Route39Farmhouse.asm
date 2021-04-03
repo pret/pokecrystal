@@ -118,7 +118,7 @@ FarmerMText_BuyMilk:
 	para "It's my pride and"
 	line "joy, there."
 
-	para "Give it to #MON"
+	para "Give it to POKéMON"
 	line "to restore HP!"
 
 	para "I'll give it to ya"
@@ -184,7 +184,7 @@ FarmerFText_SnoreSpeech:
 	para "It's a rare move"
 	line "that only works"
 
-	para "while the #MON"
+	para "while the POKéMON"
 	line "is asleep."
 
 	para "You best think how"

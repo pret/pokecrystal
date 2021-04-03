@@ -11,7 +11,7 @@ Route15FuchsiaGateOfficerScript:
 
 Route15FuchsiaGateOfficerText:
 	text "You're working on"
-	line "a #DEX? That's"
+	line "a POKéDEX? That's"
 
 	para "really something."
 	line "Don't give up!"

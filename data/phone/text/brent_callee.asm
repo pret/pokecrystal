@@ -59,11 +59,11 @@ BrentGenericText:
 	text "Oh yeah, I saw you"
 	line "coming out of a"
 
-	para "#MON CENTER the"
+	para "POKéMON CENTER the"
 	line "other day."
 
 	para "You heal your"
-	line "#MON regularly,"
+	line "POKéMON regularly,"
 
 	para "don't you?"
 	line "I'm impressed."
@@ -74,6 +74,6 @@ BrentGenericText:
 	line "is so tough, it"
 
 	para "doesn't need to go"
-	line "to #MON CENTERS"
+	line "to POKéMON CENTERS"
 	cont "often. Heheh!"
 	done
