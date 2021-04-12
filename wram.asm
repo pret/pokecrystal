@@ -210,7 +210,6 @@ wTilePermissions::
 ; bit 0: right
 	db
 
-	ds 1
 
 
 SECTION "wSpriteAnims", WRAM0
@@ -1222,8 +1221,6 @@ ENDU
 endc
 
 ENDU
-
-	ds 12
 
 
 SECTION "Video", WRAM0
