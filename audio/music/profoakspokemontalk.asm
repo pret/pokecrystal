@@ -4,7 +4,7 @@ Music_ProfOaksPokemonTalk:
 	channel 2, Music_ProfOaksPokemonTalk_Ch2
 	channel 3, Music_ProfOaksPokemonTalk_Ch3
 
-	db $3 ; unused
+	db $3 ; unused, leftover from a channel 4
 
 Music_ProfOaksPokemonTalk_Ch1:
 	tempo 164

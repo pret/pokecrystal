@@ -3,7 +3,7 @@ Music_PostCredits:
 	channel 1, Music_PostCredits_Ch1
 	channel 2, Music_PostCredits_Ch2
 
-	db $2 ; unused
+	db $2 ; unused, leftover from a channel 3
 
 Music_PostCredits_Ch1:
 	tempo 271

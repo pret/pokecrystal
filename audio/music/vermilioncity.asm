@@ -4,7 +4,7 @@ Music_VermilionCity:
 	channel 2, Music_VermilionCity_Ch2
 	channel 3, Music_VermilionCity_Ch3
 
-	db $3 ; unused
+	db $3 ; unused, leftover from a channel 4
 
 Music_VermilionCity_Ch1:
 	stereo_panning FALSE, TRUE

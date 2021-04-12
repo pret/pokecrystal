@@ -4,7 +4,7 @@ Music_KantoWildBattle:
 	channel 2, Music_KantoWildBattle_Ch2
 	channel 3, Music_KantoWildBattle_Ch3
 
-	db $3 ; unused
+	db $3 ; unused, leftover from a channel 4
 
 Music_KantoWildBattle_Ch1:
 	tempo 112

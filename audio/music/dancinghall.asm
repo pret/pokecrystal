@@ -4,7 +4,7 @@ Music_DancingHall:
 	channel 2, Music_DancingHall_Ch2
 	channel 3, Music_DancingHall_Ch3
 
-	db $3 ; unused
+	db $3 ; unused, leftover from a channel 4
 
 Music_DancingHall_Ch1:
 	tempo 208
