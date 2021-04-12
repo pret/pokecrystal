@@ -27571,7 +27571,7 @@
 3a:4651 ParseMusic.chan_5to8
 3a:4664 ParseMusic.ok
 3a:4679 RestoreVolume
-3a:4698 ParseSFXOrRest
+3a:4698 ParseSFXOrCry
 3a:46c5 GetNoiseSample
 3a:46e7 GetNoiseSample.sfx
 3a:46ea GetNoiseSample.next
