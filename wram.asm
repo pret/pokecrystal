@@ -211,7 +211,6 @@ wTilePermissions::
 	db
 
 
-
 SECTION "wSpriteAnims", WRAM0
 
 UNION
