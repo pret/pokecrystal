@@ -311,6 +311,7 @@ WRAM0
 	"Stack"
 	"Audio RAM"
 	"WRAM"
+	align 8
 	"wSpriteAnims"
 	align 8
 	"Sprites"
@@ -318,6 +319,7 @@ WRAM0
 	"Miscellaneous"
 	align 8
 	"Overworld Map"
+	align 4
 	"Video"
 WRAMX 1
 	"WRAM 1"
