@@ -130,12 +130,6 @@ INCLUDE "engine/link/link.asm"
 INCLUDE "engine/overworld/wildmons.asm"
 INCLUDE "engine/battle/link_result.asm"
 
-ChrisBackpic:
-INCBIN "gfx/player/chris_back.2bpp.lz"
-
-DudeBackpic:
-INCBIN "gfx/battle/dude.2bpp.lz"
-
 
 SECTION "bankB", ROMX
 
@@ -211,11 +205,8 @@ INCLUDE "data/maps/scenes.asm"
 INCLUDE "engine/overworld/load_map_part.asm"
 INCLUDE "engine/phone/phonering_copytilemapatonce.asm"
 
-Shrink1Pic:
-INCBIN "gfx/new_game/shrink1.2bpp.lz"
 
-Shrink2Pic:
-INCBIN "gfx/new_game/shrink2.2bpp.lz"
+SECTION "bank13_2", ROMX
 
 INCLUDE "engine/link/link_2.asm"
 INCLUDE "engine/rtc/reset_password.asm"
@@ -260,10 +251,6 @@ INCLUDE "engine/pokemon/move_mon_wo_mail.asm"
 INCLUDE "data/pokemon/base_stats.asm"
 INCLUDE "data/pokemon/names.asm"
 INCLUDE "data/pokemon/unused_pic_banks.asm"
-
-UnusedEggPic::
-; The G/S Egg pic. This is shifted up a few pixels.
-INCBIN "gfx/pokemon/egg/unused_front.2bpp.lz"
 
 
 SECTION "Crystal Phone Text", ROMX
@@ -425,9 +412,6 @@ INCLUDE "engine/battle_anims/bg_effects.asm"
 INCLUDE "data/moves/animations.asm"
 INCLUDE "engine/events/poisonstep_pals.asm"
 
-TheEndGFX::
-INCBIN "gfx/credits/theend.2bpp"
-
 
 SECTION "Move Animations", ROMX
 
@@ -461,12 +445,6 @@ INCLUDE "gfx/pokemon/frame_pointers.asm"
 INCLUDE "gfx/pokemon/kanto_frames.asm"
 
 
-SECTION "Font Inversed", ROMX
-
-FontInversed:
-INCBIN "gfx/font/font_inversed.1bpp"
-
-
 SECTION "Pic Animations 3", ROMX
 
 INCLUDE "gfx/pokemon/johto_frames.asm"
@@ -484,9 +462,6 @@ INCLUDE "engine/pokemon/bills_pc.asm"
 
 
 SECTION "bank39", ROMX
-
-CopyrightGFX::
-INCBIN "gfx/splash/copyright.2bpp"
 
 INCLUDE "engine/menus/options_menu.asm"
 INCLUDE "engine/movie/splash.asm"
@@ -533,12 +508,6 @@ INCLUDE "engine/gfx/load_overworld_font.asm"
 SECTION "mobile42", ROMX
 
 INCLUDE "mobile/mobile_42.asm"
-
-
-SECTION "Intro Logo", ROMX
-
-GameFreakDittoGFX:
-INCBIN "gfx/splash/ditto.2bpp.lz"
 
 
 SECTION "Title", ROMX
@@ -671,15 +640,12 @@ INCLUDE "data/moves/names.asm"
 INCLUDE "engine/overworld/landmarks.asm"
 
 
-SECTION "bank77", ROMX
-
-UnownFont:
-INCBIN "gfx/font/unown_font.2bpp"
+SECTION "Print Party", ROMX
 
 INCLUDE "engine/printer/print_party.asm"
 
 
-SECTION "bank77_2", ROMX
+SECTION "bank77", ROMX
 
 INCLUDE "engine/rtc/print_hours_mins.asm"
 INCLUDE "engine/events/diploma.asm"
@@ -687,8 +653,8 @@ INCLUDE "engine/pokedex/pokedex_3.asm"
 INCLUDE "engine/events/catch_tutorial_input.asm"
 INCLUDE "engine/pokegear/townmap_convertlinebreakcharacters.asm"
 
-PokegearGFX:
-INCBIN "gfx/pokegear/pokegear.2bpp.lz"
+
+SECTION "European Mail", ROMX
 
 INCLUDE "engine/pokemon/european_mail.asm"
 

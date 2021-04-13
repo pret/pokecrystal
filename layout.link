@@ -53,6 +53,7 @@ ROMX $09
 	"bank9"
 ROMX $0a
 	"bankA"
+	"Trainer Backpics"
 ROMX $0b
 	"bankB"
 ROMX $0c
@@ -72,8 +73,11 @@ ROMX $12
 	"Crystal Features 1"
 ROMX $13
 	"bank13"
+	"Shrink Pics"
+	"bank13_2"
 ROMX $14
 	"bank14"
+	"Unused Egg Pic"
 ROMX $15
 	"Map Scripts 1"
 ROMX $16
@@ -135,6 +139,7 @@ ROMX $31
 	"Sprites 2"
 ROMX $32
 	"bank32"
+	"The End"
 ROMX $33
 	"Move Animations"
 	"Extra Songs 2"
@@ -150,6 +155,7 @@ ROMX $37
 ROMX $38
 	"bank38"
 ROMX $39
+	"Copyright"
 	"bank39"
 ROMX $3a
 	"Audio"
@@ -290,9 +296,12 @@ ROMX $73
 ROMX $74
 	"Pokedex Entries 193-251"
 ROMX $77
-	"bank77"
+	"Unown Font"
+	"Print Party"
 	"Tileset Data 7"
-	"bank77_2"
+	"bank77"
+	"Pokégear GFX"
+	"European Mail"
 ROMX $78
 	"Debug Room"
 	"Tileset Data 8"
