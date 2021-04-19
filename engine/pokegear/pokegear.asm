@@ -1004,11 +1004,9 @@ PokegearPhone_GetDPad:
 
 PokegearPhone_UpdateCursor:
 	ld a, " "
-x = 4
-rept PHONE_DISPLAY_HEIGHT
-	hlcoord 1, x
+for y, PHONE_DISPLAY_HEIGHT
+	hlcoord 1, 4 + y * 2
 	ld [hl], a
-x = x + 2
 endr
 	hlcoord 1, 4
 	ld a, [wPokegearPhoneCursorPosition]

@@ -1601,17 +1601,13 @@ Function17da31:
 	ret
 
 Unknown_17da8c:
-x = 0
-rept 8
+for x, 8
 	db 1 << x
-x = x + 1
 endr
 
 Unknown_17da94:
-x = 0
-rept 8
+for x, 8
 	db $ff ^ (1 << x)
-x = x + 1
 endr
 
 Function17da9c:

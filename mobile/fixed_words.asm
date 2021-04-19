@@ -4048,11 +4048,7 @@ macro_11f220: MACRO
 ; parameter: number of words
 	db \1
 ; 12 words per page (0-based indexing)
-x = \1 / 12
-if \1 % 12 == 0
-x = x - 1
-endc
-	db x
+	db (\1 - 1) / 12
 ENDM
 	macro_11f220 18 ; 01: Types
 	macro_11f220 36 ; 02: Greetings
@@ -4076,10 +4072,10 @@ EZChat_SortedWords:
 ; These arrays are expanded dynamically to accomodate
 ; any Pokemon you've seen that starts with each kana.
 macro_11f23c: MACRO
-	dw x - w3_d000, \1
+	dw w3_d012 - w3_d000 + x, \1
 x = x + 2 * \1
 ENDM
-x = $d012 ; w3_d012
+x = 0
 	macro_11f23c $2f ; a
 	macro_11f23c $1e ; i
 	macro_11f23c $11 ; u
@@ -4124,6 +4120,5 @@ x = $d012 ; w3_d012
 	macro_11f23c $02 ; re
 	macro_11f23c $02 ; ro
 	macro_11f23c $15 ; wa
-x = $d000 ; w3_d000
-	macro_11f23c $09 ; end
+	dw NULL,     $09 ; end
 .End

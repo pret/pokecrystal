@@ -534,14 +534,10 @@ PokeAnim_CopyBitmaskToBuffer:
 .Sizes: db 4, 5, 7
 
 poke_anim_box: MACRO
-y = 7
-rept \1
-x = 7 - \1
-rept \1
-	db x + y
-x = x + 1
+for y, 1, \1 + 1
+for x, 7 - \1, 7
+	db y * 7 + x
 endr
-y = y + 7
 endr
 ENDM
 

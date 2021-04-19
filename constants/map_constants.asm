@@ -18,7 +18,7 @@ __map_value__ = __map_value__ + 1
 ENDM
 
 endgroup: MACRO
-CURRENT_NUM_MAPGROUP_MAPS EQU __map_value__ - 1
+{CURRENT_NUM_MAPGROUP_MAPS} EQU __map_value__ - 1
 PURGE CURRENT_NUM_MAPGROUP_MAPS
 ENDM
 

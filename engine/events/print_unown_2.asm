@@ -95,17 +95,9 @@ RotateUnownFrontpic:
 	jr nz, .loop_count
 	ret
 
-gbprinterrect: MACRO
-y = 0
-rept \1
-x = \1 * (\2 - 1) + y
-rept \2
-	dw wGameboyPrinter2bppSource tile x
-x = x - \2
-endr
-y = y + 1
-endr
-ENDM
-
 UnownPrinter_GBPrinterRectangle:
-	gbprinterrect 7, 7
+for y, 7
+for x, 7 - 1, -1, -1
+	dw wGameboyPrinter2bppSource tile (x * 7 + y)
+endr
+endr

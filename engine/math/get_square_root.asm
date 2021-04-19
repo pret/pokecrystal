@@ -25,8 +25,6 @@ GetSquareRoot:
 	ret
 
 .Squares:
-x = 1
-rept NUM_SQUARE_ROOTS
-	dw x * x
-x = x + 1
+for x, 1, NUM_SQUARE_ROOTS + 1
+	dw x**2
 endr

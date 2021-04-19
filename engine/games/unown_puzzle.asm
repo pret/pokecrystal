@@ -721,10 +721,8 @@ ConvertLoadedPuzzlePieces:
 	ret
 
 .EnlargedTiles:
-x = 0
-rept 16
+for x, 16
 	db ((x & %1000) * %11000) + ((x & %0100) * %1100) + ((x & %0010) * %110) + ((x & %0001) * %11)
-x = x + 1
 endr
 
 UnownPuzzle_AddPuzzlePieceBorders:

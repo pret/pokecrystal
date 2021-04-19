@@ -210,22 +210,13 @@ add_tm: MACRO
 ; - TM_\1: the item id, starting at $bf
 ; - \1_TMNUM: the learnable TM/HM flag, starting at 1
 ; - TM##_MOVE: alias for the move id, equal to the value of \1
-; The first usage also defines TM01 as the first TM item id.
-if !DEF(TM01)
-TM01 EQU const_value
-endc
-if __tmhm_value__ < 10
-MOVE_FOR_TM EQUS "TM0{d:__tmhm_value__}_MOVE"
-else
-MOVE_FOR_TM EQUS "TM{d:__tmhm_value__}_MOVE"
-endc
-MOVE_FOR_TM = \1
-PURGE MOVE_FOR_TM
 	const TM_\1
+TM{02d:__tmhm_value__}_MOVE = \1
 	add_tmnum \1
 ENDM
 
 ; see data/moves/tmhm_moves.asm for moves
+TM01 EQU const_value
 	add_tm DYNAMICPUNCH ; bf
 	add_tm HEADBUTT     ; c0
 	add_tm CURSE        ; c1
@@ -285,23 +276,13 @@ add_hm: MACRO
 ; - HM_\1: the item id, starting at $f3
 ; - \1_TMNUM: the learnable TM/HM flag, starting at 51
 ; - HM##_MOVE: alias for the move id, equal to the value of \1
-; The first usage also defines HM01 as the first TM item id.
-if !DEF(HM01)
-HM01 EQU const_value
-endc
-HM_VALUE EQU __tmhm_value__ - NUM_TMS
-if HM_VALUE < 10
-MOVE_FOR_HM EQUS "HM0{d:HM_VALUE}_MOVE"
-else
-MOVE_FOR_HM EQUS "HM{d:HM_VALUE}_MOVE"
-endc
-MOVE_FOR_HM = \1
-PURGE MOVE_FOR_HM
-PURGE HM_VALUE
 	const HM_\1
+HM_VALUE = __tmhm_value__ - NUM_TMS
+HM{02d:HM_VALUE}_MOVE = \1
 	add_tmnum \1
 ENDM
 
+HM01 EQU const_value
 	add_hm CUT          ; f3
 	add_hm FLY          ; f4
 	add_hm SURF         ; f5
@@ -315,18 +296,12 @@ add_mt: MACRO
 ; Defines two constants:
 ; - \1_TMNUM: the learnable TM/HM flag, starting at 58
 ; - MT##_MOVE: alias for the move id, equal to the value of \1
-MT_VALUE EQU __tmhm_value__ - NUM_TMS - NUM_HMS
-if MT_VALUE < 10
-MOVE_FOR_MT EQUS "MT0{d:MT_VALUE}_MOVE"
-else
-MOVE_FOR_MT EQUS "MT{d:MT_VALUE}_MOVE"
-endc
-MOVE_FOR_MT = \1
-PURGE MOVE_FOR_MT
-PURGE MT_VALUE
+MT_VALUE = __tmhm_value__ - NUM_TMS - NUM_HMS
+MT{02d:MT_VALUE}_MOVE = \1
 	add_tmnum \1
 ENDM
 
+MT01 EQU const_value
 	add_mt FLAMETHROWER
 	add_mt THUNDERBOLT
 	add_mt ICE_BEAM

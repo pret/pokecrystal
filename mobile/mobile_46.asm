@@ -5240,24 +5240,18 @@ Function11a88c:
 	ret
 
 Unknown_11a89a:
-x = 0
-rept 16
+for x, 16
 	bcd x % 100, x / 100
-x = x + 1
 endr
 
 Unknown_11a8ba:
-x = 0
-rept 16
+for x, 0, 16**2, 16
 	bcd x % 100, x / 100
-x = x + 16
 endr
 
 Unknown_11a8da:
-x = 0
-rept 16
+for x, 0, 16**3, 16**2
 	bcd x % 100, x / 100
-x = x + 256
 endr
 
 BattleTowerRoomMenu_WriteMessage:

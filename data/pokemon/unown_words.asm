@@ -1,8 +1,6 @@
 unownword: MACRO
-x = 1
-rept STRLEN(\1)
-	db STRSUB(\1, x, 1) - "A" + FIRST_UNOWN_CHAR
-x = x + 1
+for x, STRLEN(\1)
+	db STRSUB(\1, x + 1, 1) - "A" + FIRST_UNOWN_CHAR
 endr
 	db -1
 ENDM

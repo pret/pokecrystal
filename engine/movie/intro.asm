@@ -1310,26 +1310,20 @@ CrystalIntro_UnownFade:
 
 .BWFade:
 ; Fade between black and white.
-hue = 0
-rept 32
+for hue, 32
 	RGB hue, hue, hue
-hue = hue + 1
 endr
 
 .BlackLBlueFade:
 ; Fade between black and light blue.
-hue = 0
-rept 32
+for hue, 32
 	RGB 0, hue / 2, hue
-hue = hue + 1
 endr
 
 .BlackBlueFade:
 ; Fade between black and blue.
-hue = 0
-rept 32
+for hue, 32
 	RGB 0, 0, hue
-hue = hue + 1
 endr
 
 Intro_Scene20_AppearUnown:

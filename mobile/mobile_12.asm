@@ -593,10 +593,8 @@ MenuData_0x4851b:
 
 .Items:
 	db 46
-x = 0
-rept 46
+for x, 46
 	db x
-x = x + 1
 endr
 	db -1
 

@@ -6,44 +6,21 @@ TMHMMoves:
 	table_width 1, TMHMMoves
 
 ; TMs
-n = 1
-rept NUM_TMS
-if n < 10
-MOVE_FOR_TM EQUS "TM0{d:n}_MOVE"
-else
-MOVE_FOR_TM EQUS "TM{d:n}_MOVE"
-endc
-	db MOVE_FOR_TM
-PURGE MOVE_FOR_TM
-n = n + 1
+for n, 1, NUM_TMS + 1
+	db TM{02d:n}_MOVE
 endr
 	assert_table_length NUM_TMS
 
 ; HMs
-n = 1
-rept NUM_HMS
-if n < 10
-MOVE_FOR_HM EQUS "HM0{d:n}_MOVE"
-else
-MOVE_FOR_HM EQUS "HM{d:n}_MOVE"
-endc
-	db MOVE_FOR_HM
-PURGE MOVE_FOR_HM
-n = n + 1
+for n, 1, NUM_HMS + 1
+	db HM{02d:n}_MOVE
 endr
 	assert_table_length NUM_TMS + NUM_HMS
 
-; Move tutor
+; Move tutors
 n = 1
-rept NUM_TUTORS
-if n < 10
-MOVE_FOR_MT EQUS "MT0{d:n}_MOVE"
-else
-MOVE_FOR_MT EQUS "MT{d:n}_MOVE"
-endc
-	db MOVE_FOR_MT
-PURGE MOVE_FOR_MT
-n = n + 1
+for n, 1, NUM_TUTORS + 1
+	db MT{02d:n}_MOVE
 endr
 	assert_table_length NUM_TM_HM_TUTOR
 
