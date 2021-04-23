@@ -20,17 +20,10 @@ SECTION "Audio RAM", WRAM0
 wMusicPlaying:: db
 
 wAudio::
-	table_width CHANNEL_STRUCT_LENGTH, wAudio
-wChannel1:: channel_struct wChannel1
-wChannel2:: channel_struct wChannel2
-wChannel3:: channel_struct wChannel3
-wChannel4:: channel_struct wChannel4
-	assert_table_length NUM_MUSIC_CHANS
-wChannel5:: channel_struct wChannel5
-wChannel6:: channel_struct wChannel6
-wChannel7:: channel_struct wChannel7
-wChannel8:: channel_struct wChannel8
-	assert_table_length NUM_CHANNELS
+; wChannel1 - wChannel8
+for n, 1, NUM_CHANNELS + 1
+wChannel{d:n}:: channel_struct wChannel{d:n}
+endr
 
 	ds 1
 
@@ -223,20 +216,12 @@ wSpriteAnimDict::
 	ds NUM_SPRITEANIMDICT_ENTRIES * 2
 
 wSpriteAnimationStructs::
-	table_width SPRITEANIMSTRUCT_LENGTH, wSpriteAnimationStructs
+; wSpriteAnim1 - wSpriteAnim10
+for n, 1, NUM_SPRITE_ANIM_STRUCTS + 1
 ; field  0:   index
 ; fields 1-3: loaded from SpriteAnimSeqData
-wSpriteAnim1::  sprite_anim_struct wSpriteAnim1
-wSpriteAnim2::  sprite_anim_struct wSpriteAnim2
-wSpriteAnim3::  sprite_anim_struct wSpriteAnim3
-wSpriteAnim4::  sprite_anim_struct wSpriteAnim4
-wSpriteAnim5::  sprite_anim_struct wSpriteAnim5
-wSpriteAnim6::  sprite_anim_struct wSpriteAnim6
-wSpriteAnim7::  sprite_anim_struct wSpriteAnim7
-wSpriteAnim8::  sprite_anim_struct wSpriteAnim8
-wSpriteAnim9::  sprite_anim_struct wSpriteAnim9
-wSpriteAnim10:: sprite_anim_struct wSpriteAnim10
-	assert_table_length NUM_SPRITE_ANIM_STRUCTS
+wSpriteAnim{d:n}:: sprite_anim_struct wSpriteAnim{d:n}
+endr
 wSpriteAnimationStructsEnd::
 
 NEXTU
@@ -323,48 +308,10 @@ wMobileWRAMEnd::
 SECTION "Sprites", WRAM0
 
 wVirtualOAM::
-	table_width SPRITEOAMSTRUCT_LENGTH, wVirtualOAM
-wVirtualOAMSprite00:: sprite_oam_struct wVirtualOAMSprite00
-wVirtualOAMSprite01:: sprite_oam_struct wVirtualOAMSprite01
-wVirtualOAMSprite02:: sprite_oam_struct wVirtualOAMSprite02
-wVirtualOAMSprite03:: sprite_oam_struct wVirtualOAMSprite03
-wVirtualOAMSprite04:: sprite_oam_struct wVirtualOAMSprite04
-wVirtualOAMSprite05:: sprite_oam_struct wVirtualOAMSprite05
-wVirtualOAMSprite06:: sprite_oam_struct wVirtualOAMSprite06
-wVirtualOAMSprite07:: sprite_oam_struct wVirtualOAMSprite07
-wVirtualOAMSprite08:: sprite_oam_struct wVirtualOAMSprite08
-wVirtualOAMSprite09:: sprite_oam_struct wVirtualOAMSprite09
-wVirtualOAMSprite10:: sprite_oam_struct wVirtualOAMSprite10
-wVirtualOAMSprite11:: sprite_oam_struct wVirtualOAMSprite11
-wVirtualOAMSprite12:: sprite_oam_struct wVirtualOAMSprite12
-wVirtualOAMSprite13:: sprite_oam_struct wVirtualOAMSprite13
-wVirtualOAMSprite14:: sprite_oam_struct wVirtualOAMSprite14
-wVirtualOAMSprite15:: sprite_oam_struct wVirtualOAMSprite15
-wVirtualOAMSprite16:: sprite_oam_struct wVirtualOAMSprite16
-wVirtualOAMSprite17:: sprite_oam_struct wVirtualOAMSprite17
-wVirtualOAMSprite18:: sprite_oam_struct wVirtualOAMSprite18
-wVirtualOAMSprite19:: sprite_oam_struct wVirtualOAMSprite19
-wVirtualOAMSprite20:: sprite_oam_struct wVirtualOAMSprite20
-wVirtualOAMSprite21:: sprite_oam_struct wVirtualOAMSprite21
-wVirtualOAMSprite22:: sprite_oam_struct wVirtualOAMSprite22
-wVirtualOAMSprite23:: sprite_oam_struct wVirtualOAMSprite23
-wVirtualOAMSprite24:: sprite_oam_struct wVirtualOAMSprite24
-wVirtualOAMSprite25:: sprite_oam_struct wVirtualOAMSprite25
-wVirtualOAMSprite26:: sprite_oam_struct wVirtualOAMSprite26
-wVirtualOAMSprite27:: sprite_oam_struct wVirtualOAMSprite27
-wVirtualOAMSprite28:: sprite_oam_struct wVirtualOAMSprite28
-wVirtualOAMSprite29:: sprite_oam_struct wVirtualOAMSprite29
-wVirtualOAMSprite30:: sprite_oam_struct wVirtualOAMSprite30
-wVirtualOAMSprite31:: sprite_oam_struct wVirtualOAMSprite31
-wVirtualOAMSprite32:: sprite_oam_struct wVirtualOAMSprite32
-wVirtualOAMSprite33:: sprite_oam_struct wVirtualOAMSprite33
-wVirtualOAMSprite34:: sprite_oam_struct wVirtualOAMSprite34
-wVirtualOAMSprite35:: sprite_oam_struct wVirtualOAMSprite35
-wVirtualOAMSprite36:: sprite_oam_struct wVirtualOAMSprite36
-wVirtualOAMSprite37:: sprite_oam_struct wVirtualOAMSprite37
-wVirtualOAMSprite38:: sprite_oam_struct wVirtualOAMSprite38
-wVirtualOAMSprite39:: sprite_oam_struct wVirtualOAMSprite39
-	assert_table_length NUM_SPRITE_OAM_STRUCTS
+; wVirtualOAMSprite00 - wVirtualOAMSprite39
+for n, NUM_SPRITE_OAM_STRUCTS
+wVirtualOAMSprite{02d:n}:: sprite_oam_struct wVirtualOAMSprite{02d:n}
+endr
 wVirtualOAMEnd::
 
 
@@ -984,66 +931,42 @@ wLinkPartyEnd:: db ; older code doesn't check PartyCount
 UNION
 ; link player data
 wLinkPlayerData::
-	table_width PARTYMON_STRUCT_LENGTH, wLinkPlayerData
-wLinkPlayerPartyMon1:: party_struct wLinkPlayerPartyMon1
-wLinkPlayerPartyMon2:: party_struct wLinkPlayerPartyMon2
-wLinkPlayerPartyMon3:: party_struct wLinkPlayerPartyMon3
-wLinkPlayerPartyMon4:: party_struct wLinkPlayerPartyMon4
-wLinkPlayerPartyMon5:: party_struct wLinkPlayerPartyMon5
-wLinkPlayerPartyMon6:: party_struct wLinkPlayerPartyMon6
-	assert_table_length PARTY_LENGTH
+; wLinkPlayerPartyMon1 - wLinkPlayerPartyMon6
+for n, 1, PARTY_LENGTH + 1
+wLinkPlayerPartyMon{d:n}:: party_struct wLinkPlayerPartyMon{d:n}
+endr
 
 wLinkPlayerPartyMonOTs::
-	table_width NAME_LENGTH, wLinkPlayerPartyMonOTs
-wLinkPlayerPartyMon1OT:: ds NAME_LENGTH
-wLinkPlayerPartyMon2OT:: ds NAME_LENGTH
-wLinkPlayerPartyMon3OT:: ds NAME_LENGTH
-wLinkPlayerPartyMon4OT:: ds NAME_LENGTH
-wLinkPlayerPartyMon5OT:: ds NAME_LENGTH
-wLinkPlayerPartyMon6OT:: ds NAME_LENGTH
-	assert_table_length PARTY_LENGTH
+; wLinkPlayerPartyMon1OT - wLinkPlayerPartyMon6OT
+for n, 1, PARTY_LENGTH + 1
+wLinkPlayerPartyMon{d:n}OT:: ds NAME_LENGTH
+endr
 
 wLinkPlayerPartyMonNicknames::
-	table_width MON_NAME_LENGTH, wLinkPlayerPartyMonNicknames
-wLinkPlayerPartyMon1Nickname:: ds MON_NAME_LENGTH
-wLinkPlayerPartyMon2Nickname:: ds MON_NAME_LENGTH
-wLinkPlayerPartyMon3Nickname:: ds MON_NAME_LENGTH
-wLinkPlayerPartyMon4Nickname:: ds MON_NAME_LENGTH
-wLinkPlayerPartyMon5Nickname:: ds MON_NAME_LENGTH
-wLinkPlayerPartyMon6Nickname:: ds MON_NAME_LENGTH
-	assert_table_length PARTY_LENGTH
+; wLinkPlayerPartyMon1Nickname - wLinkPlayerPartyMon6Nickname
+for n, 1, PARTY_LENGTH + 1
+wLinkPlayerPartyMon{d:n}Nickname:: ds MON_NAME_LENGTH
+endr
 
 NEXTU
 ; time capsule party data
 wTimeCapsulePlayerData::
-	table_width REDMON_STRUCT_LENGTH, wTimeCapsulePlayerData
-wTimeCapsulePartyMon1:: red_party_struct wTimeCapsulePartyMon1
-wTimeCapsulePartyMon2:: red_party_struct wTimeCapsulePartyMon2
-wTimeCapsulePartyMon3:: red_party_struct wTimeCapsulePartyMon3
-wTimeCapsulePartyMon4:: red_party_struct wTimeCapsulePartyMon4
-wTimeCapsulePartyMon5:: red_party_struct wTimeCapsulePartyMon5
-wTimeCapsulePartyMon6:: red_party_struct wTimeCapsulePartyMon6
-	assert_table_length PARTY_LENGTH
+; wTimeCapsulePartyMon1 - wTimeCapsulePartyMon6
+for n, 1, PARTY_LENGTH + 1
+wTimeCapsulePartyMon{d:n}:: red_party_struct wTimeCapsulePartyMon{d:n}
+endr
 
 wTimeCapsulePartyMonOTs::
-	table_width NAME_LENGTH, wTimeCapsulePartyMonOTs
-wTimeCapsulePartyMon1OT:: ds NAME_LENGTH
-wTimeCapsulePartyMon2OT:: ds NAME_LENGTH
-wTimeCapsulePartyMon3OT:: ds NAME_LENGTH
-wTimeCapsulePartyMon4OT:: ds NAME_LENGTH
-wTimeCapsulePartyMon5OT:: ds NAME_LENGTH
-wTimeCapsulePartyMon6OT:: ds NAME_LENGTH
-	assert_table_length PARTY_LENGTH
+; wTimeCapsulePartyMon1OT - wTimeCapsulePartyMon6OT
+for n, 1, PARTY_LENGTH + 1
+wTimeCapsulePartyMon{d:n}OT:: ds NAME_LENGTH
+endr
 
 wTimeCapsulePartyMonNicknames::
-	table_width MON_NAME_LENGTH, wTimeCapsulePartyMonNicknames
-wTimeCapsulePartyMon1Nickname:: ds MON_NAME_LENGTH
-wTimeCapsulePartyMon2Nickname:: ds MON_NAME_LENGTH
-wTimeCapsulePartyMon3Nickname:: ds MON_NAME_LENGTH
-wTimeCapsulePartyMon4Nickname:: ds MON_NAME_LENGTH
-wTimeCapsulePartyMon5Nickname:: ds MON_NAME_LENGTH
-wTimeCapsulePartyMon6Nickname:: ds MON_NAME_LENGTH
-	assert_table_length PARTY_LENGTH
+; wTimeCapsulePartyMon1Nickname - wTimeCapsulePartyMon6Nickname
+for n, 1, PARTY_LENGTH + 1
+wTimeCapsulePartyMon{d:n}Nickname:: ds MON_NAME_LENGTH
+endr
 
 NEXTU
 ; link patch lists
@@ -1057,14 +980,10 @@ NEXTU
 wCurLinkOTPartyMonTypePointer:: dw
 
 wLinkOTPartyMonTypes::
-	table_width 2, wLinkOTPartyMonTypes
-wLinkOTPartyMon1Type:: dw
-wLinkOTPartyMon2Type:: dw
-wLinkOTPartyMon3Type:: dw
-wLinkOTPartyMon4Type:: dw
-wLinkOTPartyMon5Type:: dw
-wLinkOTPartyMon6Type:: dw
-	assert_table_length PARTY_LENGTH
+; wLinkOTPartyMon1Type - wLinkOTPartyMon6Type
+for n, 1, PARTY_LENGTH + 1
+wLinkOTPartyMon{d:n}Type:: dw
+endr
 
 NEXTU
 ; link mail data
@@ -2612,34 +2531,22 @@ ENDU
 UNION
 ; ot party mons
 wOTPartyMons::
-	table_width PARTYMON_STRUCT_LENGTH, wOTPartyMons
-wOTPartyMon1:: party_struct wOTPartyMon1
-wOTPartyMon2:: party_struct wOTPartyMon2
-wOTPartyMon3:: party_struct wOTPartyMon3
-wOTPartyMon4:: party_struct wOTPartyMon4
-wOTPartyMon5:: party_struct wOTPartyMon5
-wOTPartyMon6:: party_struct wOTPartyMon6
-	assert_table_length PARTY_LENGTH
+; wOTPartyMon1 - wOTPartyMon6
+for n, 1, PARTY_LENGTH + 1
+wOTPartyMon{d:n}:: party_struct wOTPartyMon{d:n}
+endr
 
 wOTPartyMonOTs::
-	table_width NAME_LENGTH, wOTPartyMonOTs
-wOTPartyMon1OT:: ds NAME_LENGTH
-wOTPartyMon2OT:: ds NAME_LENGTH
-wOTPartyMon3OT:: ds NAME_LENGTH
-wOTPartyMon4OT:: ds NAME_LENGTH
-wOTPartyMon5OT:: ds NAME_LENGTH
-wOTPartyMon6OT:: ds NAME_LENGTH
-	assert_table_length PARTY_LENGTH
+; wOTPartyMon1OT - wOTPartyMon6OT
+for n, 1, PARTY_LENGTH + 1
+wOTPartyMon{d:n}OT:: ds NAME_LENGTH
+endr
 
 wOTPartyMonNicknames::
-	table_width MON_NAME_LENGTH, wOTPartyMonNicknames
-wOTPartyMon1Nickname:: ds MON_NAME_LENGTH
-wOTPartyMon2Nickname:: ds MON_NAME_LENGTH
-wOTPartyMon3Nickname:: ds MON_NAME_LENGTH
-wOTPartyMon4Nickname:: ds MON_NAME_LENGTH
-wOTPartyMon5Nickname:: ds MON_NAME_LENGTH
-wOTPartyMon6Nickname:: ds MON_NAME_LENGTH
-	assert_table_length PARTY_LENGTH
+; wOTPartyMon1Nickname - wOTPartyMon6Nickname
+for n, 1, PARTY_LENGTH + 1
+wOTPartyMon{d:n}Nickname:: ds MON_NAME_LENGTH
+endr
 wOTPartyDataEnd::
 
 NEXTU
@@ -2791,45 +2698,22 @@ wFollowerMovementQueueLength:: db
 wFollowMovementQueue:: ds 5
 
 wObjectStructs::
-	table_width OBJECT_LENGTH, wObjectStructs
-wPlayerStruct::   object_struct wPlayer
-wObject1Struct::  object_struct wObject1
-wObject2Struct::  object_struct wObject2
-wObject3Struct::  object_struct wObject3
-wObject4Struct::  object_struct wObject4
-wObject5Struct::  object_struct wObject5
-wObject6Struct::  object_struct wObject6
-wObject7Struct::  object_struct wObject7
-wObject8Struct::  object_struct wObject8
-wObject9Struct::  object_struct wObject9
-wObject10Struct:: object_struct wObject10
-wObject11Struct:: object_struct wObject11
-wObject12Struct:: object_struct wObject12
-	assert_table_length NUM_OBJECT_STRUCTS
+wPlayerStruct:: object_struct wPlayer ; player is object struct 0
+; wObjectStruct1 - wObjectStruct12
+for n, 1, NUM_OBJECT_STRUCTS
+wObject{d:n}Struct:: object_struct wObject{d:n}
+endr
 
 wCmdQueue:: ds CMDQUEUE_CAPACITY * CMDQUEUE_ENTRY_SIZE
 
 	ds 40
 
 wMapObjects::
-	table_width MAPOBJECT_LENGTH, wMapObjects
-wPlayerObject:: map_object wPlayer
-wMap1Object::   map_object wMap1
-wMap2Object::   map_object wMap2
-wMap3Object::   map_object wMap3
-wMap4Object::   map_object wMap4
-wMap5Object::   map_object wMap5
-wMap6Object::   map_object wMap6
-wMap7Object::   map_object wMap7
-wMap8Object::   map_object wMap8
-wMap9Object::   map_object wMap9
-wMap10Object::  map_object wMap10
-wMap11Object::  map_object wMap11
-wMap12Object::  map_object wMap12
-wMap13Object::  map_object wMap13
-wMap14Object::  map_object wMap14
-wMap15Object::  map_object wMap15
-	assert_table_length NUM_OBJECTS
+wPlayerObject:: map_object wPlayer ; player is map object 0
+; wMap1Object - wMap15Object
+for n, 1, NUM_OBJECTS
+wMap{d:n}Object:: map_object wMap{d:n}
+endr
 
 wObjectMasks:: ds NUM_OBJECTS
 
@@ -3193,34 +3077,22 @@ wPartySpecies:: ds PARTY_LENGTH
 wPartyEnd::     db ; older code doesn't check wPartyCount
 
 wPartyMons::
-	table_width PARTYMON_STRUCT_LENGTH, wPartyMons
-wPartyMon1:: party_struct wPartyMon1
-wPartyMon2:: party_struct wPartyMon2
-wPartyMon3:: party_struct wPartyMon3
-wPartyMon4:: party_struct wPartyMon4
-wPartyMon5:: party_struct wPartyMon5
-wPartyMon6:: party_struct wPartyMon6
-	assert_table_length PARTY_LENGTH
+; wPartyMon1 - wPartyMon6
+for n, 1, PARTY_LENGTH + 1
+wPartyMon{d:n}:: party_struct wPartyMon{d:n}
+endr
 
 wPartyMonOTs::
-	table_width NAME_LENGTH, wPartyMonOTs
-wPartyMon1OT:: ds NAME_LENGTH
-wPartyMon2OT:: ds NAME_LENGTH
-wPartyMon3OT:: ds NAME_LENGTH
-wPartyMon4OT:: ds NAME_LENGTH
-wPartyMon5OT:: ds NAME_LENGTH
-wPartyMon6OT:: ds NAME_LENGTH
-	assert_table_length PARTY_LENGTH
+; wPartyMon1OT - wPartyMon6OT
+for n, 1, PARTY_LENGTH + 1
+wPartyMon{d:n}OT:: ds NAME_LENGTH
+endr
 
 wPartyMonNicknames::
-	table_width MON_NAME_LENGTH, wPartyMonNicknames
-wPartyMon1Nickname:: ds MON_NAME_LENGTH
-wPartyMon2Nickname:: ds MON_NAME_LENGTH
-wPartyMon3Nickname:: ds MON_NAME_LENGTH
-wPartyMon4Nickname:: ds MON_NAME_LENGTH
-wPartyMon5Nickname:: ds MON_NAME_LENGTH
-wPartyMon6Nickname:: ds MON_NAME_LENGTH
-	assert_table_length PARTY_LENGTH
+; wPartyMon1Nickname - wPartyMon6Nickname
+for n, 1, PARTY_LENGTH + 1
+wPartyMon{d:n}Nickname:: ds MON_NAME_LENGTH
+endr
 wPartyMonNicknamesEnd::
 
 	ds 22
@@ -3437,27 +3309,16 @@ wBattleAnimTileDict::
 	ds NUM_BATTLEANIMTILEDICT_ENTRIES * 2
 
 wActiveAnimObjects::
-	table_width BATTLEANIMSTRUCT_LENGTH, wActiveAnimObjects
-wAnimObject01:: battle_anim_struct wAnimObject01
-wAnimObject02:: battle_anim_struct wAnimObject02
-wAnimObject03:: battle_anim_struct wAnimObject03
-wAnimObject04:: battle_anim_struct wAnimObject04
-wAnimObject05:: battle_anim_struct wAnimObject05
-wAnimObject06:: battle_anim_struct wAnimObject06
-wAnimObject07:: battle_anim_struct wAnimObject07
-wAnimObject08:: battle_anim_struct wAnimObject08
-wAnimObject09:: battle_anim_struct wAnimObject09
-wAnimObject10:: battle_anim_struct wAnimObject10
-	assert_table_length NUM_ANIM_OBJECTS
+; wAnimObject1 - wAnimObject10
+for n, 1, NUM_ANIM_OBJECTS + 1
+wAnimObject{d:n}:: battle_anim_struct wAnimObject{d:n}
+endr
 
 wActiveBGEffects::
-	table_width BG_EFFECT_STRUCT_LENGTH, wActiveBGEffects
-wBGEffect1:: battle_bg_effect wBGEffect1
-wBGEffect2:: battle_bg_effect wBGEffect2
-wBGEffect3:: battle_bg_effect wBGEffect3
-wBGEffect4:: battle_bg_effect wBGEffect4
-wBGEffect5:: battle_bg_effect wBGEffect5
-	assert_table_length NUM_BG_EFFECTS
+; wBGEffect1 - wBGEffect5
+for n, 1, NUM_BG_EFFECTS + 1
+wBGEffect{d:n}:: battle_bg_effect wBGEffect{d:n}
+endr
 
 wLastAnimObjectIndex:: db
 

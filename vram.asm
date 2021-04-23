@@ -1,16 +1,16 @@
 SECTION "VRAM0", VRAM
 
-vTiles0:: ds $800
-vTiles1:: ds $800
-vTiles2:: ds $800
-vBGMap0:: ds $400
-vBGMap1:: ds $400
+vTiles0:: ds $80 tiles
+vTiles1:: ds $80 tiles
+vTiles2:: ds $80 tiles
+vBGMap0:: ds BG_MAP_WIDTH * BG_MAP_HEIGHT
+vBGMap1:: ds BG_MAP_WIDTH * BG_MAP_HEIGHT
 
 
 SECTION "VRAM1", VRAM
 
-vTiles3:: ds $800
-vTiles4:: ds $800
-vTiles5:: ds $800
-vBGMap2:: ds $400
-vBGMap3:: ds $400
+vTiles3:: ds $80 tiles
+vTiles4:: ds $80 tiles
+vTiles5:: ds $80 tiles
+vBGMap2:: ds BG_MAP_WIDTH * BG_MAP_HEIGHT
+vBGMap3:: ds BG_MAP_WIDTH * BG_MAP_HEIGHT

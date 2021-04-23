@@ -6,54 +6,30 @@ sScratch:: ds $60 tiles
 SECTION "SRAM Bank 0", SRAM
 
 sPartyMail::
-	table_width MAIL_STRUCT_LENGTH, sPartyMail
-sPartyMon1Mail:: mailmsg sPartyMon1Mail
-sPartyMon2Mail:: mailmsg sPartyMon2Mail
-sPartyMon3Mail:: mailmsg sPartyMon3Mail
-sPartyMon4Mail:: mailmsg sPartyMon4Mail
-sPartyMon5Mail:: mailmsg sPartyMon5Mail
-sPartyMon6Mail:: mailmsg sPartyMon6Mail
-	assert_table_length PARTY_LENGTH
+; sPartyMon1Mail - sPartyMon6Mail
+for n, 1, PARTY_LENGTH + 1
+sPartyMon{d:n}Mail:: mailmsg sPartyMon{d:n}Mail
+endr
 
 sPartyMailBackup::
-	table_width MAIL_STRUCT_LENGTH, sPartyMailBackup
-sPartyMon1MailBackup:: mailmsg sPartyMon1MailBackup
-sPartyMon2MailBackup:: mailmsg sPartyMon2MailBackup
-sPartyMon3MailBackup:: mailmsg sPartyMon3MailBackup
-sPartyMon4MailBackup:: mailmsg sPartyMon4MailBackup
-sPartyMon5MailBackup:: mailmsg sPartyMon5MailBackup
-sPartyMon6MailBackup:: mailmsg sPartyMon6MailBackup
-	assert_table_length PARTY_LENGTH
+; sPartyMon1MailBackup - sPartyMon6MailBackup
+for n, 1, PARTY_LENGTH + 1
+sPartyMon{d:n}MailBackup:: mailmsg sPartyMon{d:n}MailBackup
+endr
 
 sMailboxCount:: db
 sMailboxes::
-	table_width MAIL_STRUCT_LENGTH, sMailboxes
-sMailbox1::  mailmsg sMailbox1
-sMailbox2::  mailmsg sMailbox2
-sMailbox3::  mailmsg sMailbox3
-sMailbox4::  mailmsg sMailbox4
-sMailbox5::  mailmsg sMailbox5
-sMailbox6::  mailmsg sMailbox6
-sMailbox7::  mailmsg sMailbox7
-sMailbox8::  mailmsg sMailbox8
-sMailbox9::  mailmsg sMailbox9
-sMailbox10:: mailmsg sMailbox10
-	assert_table_length MAILBOX_CAPACITY
+; sMailbox1 - sMailbox10
+for n, 1, MAILBOX_CAPACITY + 1
+sMailbox{d:n}:: mailmsg sMailbox{d:n}
+endr
 
 sMailboxCountBackup:: db
 sMailboxesBackup::
-	table_width MAIL_STRUCT_LENGTH, sMailboxesBackup
-sMailbox1Backup::  mailmsg sMailbox1Backup
-sMailbox2Backup::  mailmsg sMailbox2Backup
-sMailbox3Backup::  mailmsg sMailbox3Backup
-sMailbox4Backup::  mailmsg sMailbox4Backup
-sMailbox5Backup::  mailmsg sMailbox5Backup
-sMailbox6Backup::  mailmsg sMailbox6Backup
-sMailbox7Backup::  mailmsg sMailbox7Backup
-sMailbox8Backup::  mailmsg sMailbox8Backup
-sMailbox9Backup::  mailmsg sMailbox9Backup
-sMailbox10Backup:: mailmsg sMailbox10Backup
-	assert_table_length MAILBOX_CAPACITY
+; sMailbox1Backup - sMailbox10Backup
+for n, 1, MAILBOX_CAPACITY + 1
+sMailbox{d:n}Backup:: mailmsg sMailbox{d:n}Backup
+endr
 
 sMysteryGiftData::
 sMysteryGiftItem:: db
@@ -142,51 +118,20 @@ sLinkBattleLosses:: dw
 sLinkBattleDraws::  dw
 
 sLinkBattleRecord::
-	table_width LINK_BATTLE_RECORD_LENGTH, sLinkBattleRecord
-sLinkBattleRecord1:: link_battle_record sLinkBattleRecord1
-sLinkBattleRecord2:: link_battle_record sLinkBattleRecord2
-sLinkBattleRecord3:: link_battle_record sLinkBattleRecord3
-sLinkBattleRecord4:: link_battle_record sLinkBattleRecord4
-sLinkBattleRecord5:: link_battle_record sLinkBattleRecord5
-	assert_table_length NUM_LINK_BATTLE_RECORDS
+; sLinkBattleRecord1 - sLinkBattleRecord5
+for n, 1, NUM_LINK_BATTLE_RECORDS + 1
+sLinkBattleRecord{d:n}:: link_battle_record sLinkBattleRecord{d:n}
+endr
 sLinkBattleStatsEnd::
 
 
 SECTION "SRAM Hall of Fame", SRAM
 
 sHallOfFame::
-	table_width HOF_LENGTH, sHallOfFame
-sHallOfFame01:: hall_of_fame sHallOfFame01
-sHallOfFame02:: hall_of_fame sHallOfFame02
-sHallOfFame03:: hall_of_fame sHallOfFame03
-sHallOfFame04:: hall_of_fame sHallOfFame04
-sHallOfFame05:: hall_of_fame sHallOfFame05
-sHallOfFame06:: hall_of_fame sHallOfFame06
-sHallOfFame07:: hall_of_fame sHallOfFame07
-sHallOfFame08:: hall_of_fame sHallOfFame08
-sHallOfFame09:: hall_of_fame sHallOfFame09
-sHallOfFame10:: hall_of_fame sHallOfFame10
-sHallOfFame11:: hall_of_fame sHallOfFame11
-sHallOfFame12:: hall_of_fame sHallOfFame12
-sHallOfFame13:: hall_of_fame sHallOfFame13
-sHallOfFame14:: hall_of_fame sHallOfFame14
-sHallOfFame15:: hall_of_fame sHallOfFame15
-sHallOfFame16:: hall_of_fame sHallOfFame16
-sHallOfFame17:: hall_of_fame sHallOfFame17
-sHallOfFame18:: hall_of_fame sHallOfFame18
-sHallOfFame19:: hall_of_fame sHallOfFame19
-sHallOfFame20:: hall_of_fame sHallOfFame20
-sHallOfFame21:: hall_of_fame sHallOfFame21
-sHallOfFame22:: hall_of_fame sHallOfFame22
-sHallOfFame23:: hall_of_fame sHallOfFame23
-sHallOfFame24:: hall_of_fame sHallOfFame24
-sHallOfFame25:: hall_of_fame sHallOfFame25
-sHallOfFame26:: hall_of_fame sHallOfFame26
-sHallOfFame27:: hall_of_fame sHallOfFame27
-sHallOfFame28:: hall_of_fame sHallOfFame28
-sHallOfFame29:: hall_of_fame sHallOfFame29
-sHallOfFame30:: hall_of_fame sHallOfFame30
-	assert_table_length NUM_HOF_TEAMS
+; sHallOfFame1 - sHallOfFame30
+for n, 1, NUM_HOF_TEAMS + 1
+sHallOfFame{d:n}:: hall_of_fame sHallOfFame{d:n}
+endr
 sHallOfFameEnd::
 
 
@@ -214,37 +159,42 @@ sBTTrainers:: ds BATTLETOWER_STREAK_LENGTH ; sbe48
 sBattleTowerSaveFileFlags:: db
 sBattleTowerReward:: db
 
-; team of previous trainer
 sBTMonOfTrainers::
-sBTMonPrevTrainer1:: db
-sBTMonPrevTrainer2:: db
-sBTMonPrevTrainer3:: db
+; team of previous trainer
+; sBTMonPrevTrainer1 - sBTMonPrevTrainer3
+for n, 1, BATTLETOWER_PARTY_LENGTH + 1
+sBTMonPrevTrainer{d:n}:: db
+endr
 ; team of preprevious trainer
-sBTMonPrevPrevTrainer1:: db
-sBTMonPrevPrevTrainer2:: db
-sBTMonPrevPrevTrainer3:: db
+; sBTMonPrevPrevTrainer1 - sBTMonPrevPrevTrainer3
+for n, 1, BATTLETOWER_PARTY_LENGTH + 1
+sBTMonPrevPrevTrainer{d:n}:: db
+endr
 
+
+; The PC boxes will not fit into one SRAM bank,
+; so they use multiple SECTIONs
+box_n = 0
+boxes: MACRO
+rept \1
+box_n = box_n + 1
+sBox{d:box_n}:: box sBox{d:box_n}
+endr
+ENDM
 
 SECTION "Boxes 1-7", SRAM
 
-sBox1::  box sBox1
-sBox2::  box sBox2
-sBox3::  box sBox3
-sBox4::  box sBox4
-sBox5::  box sBox5
-sBox6::  box sBox6
-sBox7::  box sBox7
-
+; sBox1 - sBox7
+	boxes 7
 
 SECTION "Boxes 8-14", SRAM
 
-sBox8::  box sBox8
-sBox9::  box sBox9
-sBox10:: box sBox10
-sBox11:: box sBox11
-sBox12:: box sBox12
-sBox13:: box sBox13
-sBox14:: box sBox14
+; sBox8 - sBox14
+	boxes 7
+
+; All 14 boxes fit exactly within 2 SRAM banks
+	assert box_n == NUM_BOXES, \
+		"boxes: Expected {d:NUM_BOXES} total boxes, got {d:box_n}"
 
 
 SECTION "SRAM Mobile 1", SRAM
@@ -280,7 +230,7 @@ s4_b000:: db
 
 SECTION "SRAM Mobile 2", SRAM
 
-	ds 1 ; former location for sMobileEventIndex, moved to 1:BE3C in English
+	ds 1 ; JP: location of sMobileEventIndex
 
 sTrainerRankings::
 sTrainerRankingGameTimeHOF:: ds 4
@@ -328,7 +278,7 @@ sTrainerRankingBugContestScore:: ds 2
 sTrainerRankingsChecksum:: ds 2
 sTrainerRankingsEnd::
 
-	ds 1 ; Former location for sMobileEventIndexBackup, moved to 1:BE44 in English
+	ds 1 ; JP: location of sMobileEventIndexBackup
 
 sTrainerRankingsBackup:: ds sTrainerRankingsEnd - sTrainerRankings
 
