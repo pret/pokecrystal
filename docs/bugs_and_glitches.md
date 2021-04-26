@@ -1209,10 +1209,9 @@ As Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") impli
  EnemyUsedFullHeal:
  	call AIUsedItemSound
  	call AI_HealStatus
- 	ld a, FULL_HEAL
-+	ld [wCurEnemyItem], a
 +	xor a
 +	ld [wEnemyConfuseCount], a
+ 	ld a, FULL_HEAL
  	jp PrintText_UsedItemOn_AND_AIUpdateHUD
 ```
 
