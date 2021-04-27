@@ -2294,7 +2294,7 @@ BattleBGEffect_Rollout:
 	ldh [hSCY], a
 	xor $ff
 	inc a
-	ld [wAnimObject01YOffset], a
+	ld [wAnimObject1YOffset], a
 	ret
 
 BattleBGEffect_ShakeScreenX:

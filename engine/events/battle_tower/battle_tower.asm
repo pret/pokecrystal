@@ -309,9 +309,9 @@ ReadBTTrainerParty:
 .skip_mon_3
 ; Add the terminator character to each of these names
 	ld a, "@"
-	ld [wBT_OTTempMon1NameEnd - 1], a
-	ld [wBT_OTTempMon2NameEnd - 1], a
-	ld [wBT_OTTempMon3NameEnd - 1], a
+	ld [wBT_OTTempMon1Name + MON_NAME_LENGTH - 1], a
+	ld [wBT_OTTempMon2Name + MON_NAME_LENGTH - 1], a
+	ld [wBT_OTTempMon3Name + MON_NAME_LENGTH - 1], a
 ; Fix errors in the movesets
 	call CheckBTMonMovesForErrors
 ; Repair the trainer name if needed, then copy it to wOTPlayerName
