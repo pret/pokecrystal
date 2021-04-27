@@ -5,6 +5,7 @@ NameInputLower:
 	db "j k l m n o p q r"
 	db "s t u v w x y z  "
 	db "× ( ) : ; [ ] <PK> <MN>"
+	db "1 2 3 4 5 6 7 8 9 0
 	db "UPPER  DEL   END "
 
 BoxNameInputLower:
@@ -20,6 +21,7 @@ NameInputUpper:
 	db "J K L M N O P Q R"
 	db "S T U V W X Y Z  "
 	db "- ? ! / . ,      "
+	db "1 2 3 4 5 6 7 8 9 0"
 	db "lower  DEL   END "
 
 BoxNameInputUpper:
