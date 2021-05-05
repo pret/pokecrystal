@@ -1724,7 +1724,7 @@ Most of the NPCs in [maps/NationalParkBugContest.asm](https://github.com/pret/po
 
 ### No bump noise if standing on tile `$3E`
 
-**Fix:** Edit `DoPlayerMovement.CheckWarp` in [engine/overworld/player_movement.asm](https://github.com/pret/pokecrystal/blob/master/engine/overworld/player_movement.asm):
+**Fix:** Edit `CheckWarp` in [engine/overworld/player_movement.asm](https://github.com/pret/pokecrystal/blob/master/engine/overworld/player_movement.asm):
 
 ```diff
  .CheckWarp:
