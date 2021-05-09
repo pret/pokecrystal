@@ -1,6 +1,6 @@
 unownword: MACRO
-for x, STRLEN(\1)
-	db STRSUB(\1, x + 1, 1) - "A" + FIRST_UNOWN_CHAR
+for n, CHARLEN(\1)
+	db CHARSUB(\1, n + 1) - "A" + FIRST_UNOWN_CHAR
 endr
 	db -1
 ENDM

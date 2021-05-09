@@ -102,21 +102,16 @@ object_event: MACRO
 ;  * if h1 == -1, h2 is treated as a time-of-day value:
 ;    a combo of MORN, DAY, and/or NITE, or -1 to always appear
 ;\9: color: a PAL_NPC_* constant, or 0 for sprite default
-;\10: function: a OBJECTTYPE_* constant
-;\11: sight range: applies to OBJECTTYPE_TRAINER
-;\12: script pointer
-;\13: event flag: an EVENT_* constant, or -1 to always appear
+;\<10>: function: a OBJECTTYPE_* constant
+;\<11>: sight range: applies to OBJECTTYPE_TRAINER
+;\<12>: script pointer
+;\<13>: event flag: an EVENT_* constant, or -1 to always appear
 	db \3, \2 + 4, \1 + 4, \4
 	dn \6, \5
 	db \7, \8
-	shift
-	dn \8, \9
-	shift
-	db \9
-	shift
-	dw \9
-	shift
-	dw \9
+	dn \9, \<10>
+	db \<11>
+	dw \<12>, \<13>
 ; the dummy PlayerObjectTemplate object_event has no def_object_events
 if DEF(_NUM_OBJECT_EVENTS)
 {_NUM_OBJECT_EVENTS} = {_NUM_OBJECT_EVENTS} + 1

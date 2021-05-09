@@ -323,27 +323,32 @@ wTilemap::
 wTilemapEnd::
 
 
-SECTION "Miscellaneous", WRAM0
-
 ; This union spans 480 bytes.
-UNION
+SECTION UNION "Miscellaneous", WRAM0
+
 ; surrounding tiles
 ; This buffer determines the size for the rest of the union;
 ; it uses exactly 480 bytes.
 wSurroundingTiles:: ds SURROUNDING_WIDTH * SURROUNDING_HEIGHT
 
-NEXTU
+
+SECTION UNION "Miscellaneous", WRAM0
+
 ; box save buffer
 ; SaveBoxAddress uses this buffer in three steps because it
 ; needs more space than the buffer can hold.
 wBoxPartialData:: ds 480
 wBoxPartialDataEnd::
 
-NEXTU
+
+SECTION UNION "Miscellaneous", WRAM0
+
 ; battle tower temp struct
 wBT_OTTemp:: battle_tower_struct wBT_OTTemp
 
-NEXTU
+
+SECTION UNION "Miscellaneous", WRAM0
+
 ; battle data
 wBattle::
 wEnemyMoveStruct::  move_struct wEnemyMoveStruct
@@ -626,23 +631,21 @@ wPlayerJustGotFrozen:: db
 wEnemyJustGotFrozen:: db
 wBattleEnd::
 
-NEXTU
-; unown puzzle
-wUnownPuzzle::
-	ds 200
-wPuzzlePieces:: ds 6 * 6
-	ds 244
-wUnownPuzzleEnd::
 
-NEXTU
+SECTION UNION "Miscellaneous", WRAM0
+
 ; link patch lists
 wPlayerPatchLists:: ds 200
 wOTPatchLists:: ds 200
 
-NEXTU
+
+SECTION UNION "Miscellaneous", WRAM0
+
+; mobile
 wMobileTransferData:: ds 480
 
-NEXTU
+
+SECTION UNION "Miscellaneous", WRAM0
 
 ; This union spans 200 bytes.
 UNION
@@ -814,6 +817,10 @@ wMemoryGameCounter:: db
 wMemoryGameNumCardsMatched:: db
 
 NEXTU
+; unown puzzle
+wPuzzlePieces:: ds 6 * 6
+
+NEXTU
 ; mobile data
 wc6d0:: ds 56
 wc708:: db
@@ -839,7 +846,8 @@ wc7d2:: ds 1
 wc7d3:: ds 2
 ENDU
 
-ENDU
+
+SECTION "Unused Map Buffer", WRAM0
 
 ; This was a buffer for map-related pointers in the 1997 G/S prototype.
 ; See wMapBuffer in pokegold-spaceworld's wram.asm.
@@ -847,14 +855,15 @@ wUnusedMapBuffer:: ds 24
 wUnusedMapBufferEnd::
 
 
-SECTION "Overworld Map", WRAM0
+SECTION UNION "Overworld Map", WRAM0
 
-UNION
 ; overworld map blocks
 wOverworldMapBlocks:: ds 1300
 wOverworldMapBlocksEnd::
 
-NEXTU
+
+SECTION UNION "Overworld Map", WRAM0
+
 ; GB Printer data
 wGameboyPrinterRAM::
 wGameboyPrinter2bppSource:: ds 40 tiles
@@ -888,7 +897,9 @@ wPrinterExposureTime:: db
 	ds 16
 wGameboyPrinterRAMEnd::
 
-NEXTU
+
+SECTION UNION "Overworld Map", WRAM0
+
 ; bill's pc data
 wBillsPCData::
 wBillsPCPokemonList::
@@ -908,20 +919,27 @@ wBillsPC_MonHasMail:: db
 wBillsPCDataEnd::
 
 
-NEXTU
+SECTION UNION "Overworld Map", WRAM0
+
 ; Hall of Fame data
 wHallOfFamePokemonList:: hall_of_fame wHallOfFamePokemonList
 
-NEXTU
+
+SECTION UNION "Overworld Map", WRAM0
+
 ; debug color picker
 wDebugOriginalColors:: ds 256 * 4
 
-NEXTU
+
+SECTION UNION "Overworld Map", WRAM0
+
 ; raw link data
 wLinkData:: ds 1300
 wLinkDataEnd::
 
-NEXTU
+
+SECTION UNION "Overworld Map", WRAM0
+
 ; link data members
 wLinkPlayerName:: ds NAME_LENGTH
 wLinkPartyCount:: db
@@ -974,7 +992,9 @@ wLinkPatchList1:: ds SERIAL_PATCH_LIST_LENGTH
 wLinkPatchList2:: ds SERIAL_PATCH_LIST_LENGTH
 ENDU
 
-NEXTU
+
+SECTION UNION "Overworld Map", WRAM0
+
 ; link data prep
 	ds 1000
 wCurLinkOTPartyMonTypePointer:: dw
@@ -985,7 +1005,9 @@ for n, 1, PARTY_LENGTH + 1
 wLinkOTPartyMon{d:n}Type:: dw
 endr
 
-NEXTU
+
+SECTION UNION "Overworld Map", WRAM0
+
 ; link mail data
 	ds 500
 wLinkPlayerMail::
@@ -1002,13 +1024,17 @@ wOTPlayerMailPatchSet:: ds 103 + SERIAL_MAIL_PREAMBLE_LENGTH
 wLinkOTMailEnd::
 	ds 10
 
-NEXTU
+
+SECTION UNION "Overworld Map", WRAM0
+
 ; received link mail data
 	ds 500
 wLinkReceivedMail:: ds MAIL_STRUCT_LENGTH * PARTY_LENGTH
 wLinkReceivedMailEnd:: db
 
-NEXTU
+
+SECTION UNION "Overworld Map", WRAM0
+
 ; mystery gift data
 wMysteryGiftStaging:: ds 80
 
@@ -1052,22 +1078,28 @@ wMysteryGiftPlayerBackupItem:: db
 	ds 1
 wMysteryGiftPlayerDataEnd::
 
-NEXTU
+
+SECTION UNION "Overworld Map", WRAM0
+
 	ds $200
 
-UNION
-; blank credits tile buffer
-wCreditsBlankFrame2bpp:: ds 4 * 4 tiles
-wCreditsBlankFrame2bppEnd::
-
-NEXTU
 ; mystery gift data
 wUnusedMysteryGiftStagedDataLength:: db
 wMysteryGiftMessageCount:: db
 wMysteryGiftStagedDataLength:: db
-ENDU
 
-NEXTU
+
+SECTION UNION "Overworld Map", WRAM0
+
+	ds $200
+
+; blank credits tile buffer
+wCreditsBlankFrame2bpp:: ds 4 * 4 tiles
+wCreditsBlankFrame2bppEnd::
+
+
+SECTION UNION "Overworld Map", WRAM0
+
 ; mobile
 	ds 7
 wc807:: ds 1
@@ -1096,9 +1128,9 @@ wccb8:: ds 1
 wccb9:: ds 1
 wccba:: ds 90
 
+
 if DEF(_DEBUG)
-NEXTU
-; debug room
+SECTION UNION "Overworld Map", WRAM0
 
 ; debug room RTC values
 wDebugRoomRTCSec::  db
@@ -1137,8 +1169,6 @@ wDebugRoomGBID:: dw
 ENDU
 
 endc
-
-ENDU
 
 
 SECTION "Video", WRAM0
@@ -1671,7 +1701,9 @@ wBetaTitleSequenceOpeningType::
 
 wDefaultSpawnpoint:: db
 
-UNION
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; mon buffer
 wBufferMonNickname:: ds MON_NAME_LENGTH
 wBufferMonOT:: ds NAME_LENGTH
@@ -1680,7 +1712,9 @@ wBufferMon:: party_struct wBufferMon
 wMonOrItemNameBuffer:: ds NAME_LENGTH
 	ds NAME_LENGTH
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; poke seer
 wSeerAction:: db
 wSeerNickname:: ds MON_NAME_LENGTH
@@ -1693,11 +1727,15 @@ wSeerCaughtLevel:: db
 wSeerCaughtData:: db
 wSeerCaughtGender:: db
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; mail temp storage
 wTempMail:: mailmsg wTempMail
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; bug-catching contest
 wBugContestResults::
 	bugcontestwinner wBugContestFirstPlace
@@ -1708,7 +1746,9 @@ wBugContestWinnersEnd::
 	ds 4
 wBugContestWinnerName:: ds NAME_LENGTH
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; mart items
 wMartItem1BCD:: ds 3
 wMartItem2BCD:: ds 3
@@ -1721,7 +1761,9 @@ wMartItem8BCD:: ds 3
 wMartItem9BCD:: ds 3
 wMartItem10BCD:: ds 3
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; town map data
 wTownMapPlayerIconLandmark:: db
 UNION
@@ -1733,12 +1775,16 @@ wStartFlypoint:: db
 wEndFlypoint:: db
 ENDU
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; phone call data
 wPhoneScriptBank:: db
 wPhoneCaller:: dw
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; radio data
 wCurRadioLine:: db
 wNextRadioLine:: db
@@ -1748,11 +1794,15 @@ wOaksPKMNTalkSegmentCounter:: db
 	ds 5
 wRadioText:: ds 2 * SCREEN_WIDTH
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; lucky number show
 wLuckyNumberDigitsBuffer:: ds 5
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; movement buffer data
 wMovementBufferCount:: db
 wMovementBufferObject:: db
@@ -1760,7 +1810,9 @@ wUnusedMovementBufferBank:: db
 wUnusedMovementBufferPointer:: dw
 wMovementBuffer:: ds 55
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; box printing
 wWhichBoxMonToPrint:: db
 wFinishedPrintingBox:: db
@@ -1768,46 +1820,64 @@ wAddrOfBoxToPrint:: dw
 wBankOfBoxToPrint:: db
 wWhichBoxToPrint:: db
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; Unown printing
 wPrintedUnownTileSource:: ds 1 tiles
 wPrintedUnownTileDest:: ds 1 tiles
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; trainer HUD data
 	ds 1
 wPlaceBallsDirection:: db
 wTrainerHUDTiles:: ds 4
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; mobile participant nicknames
 	ds 4
 wMobileParticipant1Nickname:: ds NAME_LENGTH_JAPANESE
 wMobileParticipant2Nickname:: ds NAME_LENGTH_JAPANESE
 wMobileParticipant3Nickname:: ds NAME_LENGTH_JAPANESE
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; battle exp gain
 wExperienceGained:: ds 3
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; earthquake data buffer
 wEarthquakeMovementDataBuffer:: ds 5
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; switching items in pack
 wSwitchItemBuffer:: ds 2 ; may store 1 or 2 bytes
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; switching pokemon in party
 ; may store NAME_LENGTH, PARTYMON_STRUCT_LENGTH, or MAIL_STRUCT_LENGTH bytes
 wSwitchMonBuffer:: ds 48
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; giving pokemon mail
 wMonMailMessageBuffer:: ds MAIL_MSG_LENGTH + 1
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; bill's pc
 UNION
 wBoxNameBuffer:: ds BOX_NAME_LENGTH
@@ -1817,12 +1887,16 @@ wBillsPCTempListIndex:: db
 wBillsPCTempBoxCount:: db
 ENDU
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; prof. oak's pc
 wTempPokedexSeenCount:: db
 wTempPokedexCaughtCount:: db
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; player's room pc
 UNION
 wDecoNameBuffer:: ds ITEM_NAME_LENGTH
@@ -1831,13 +1905,17 @@ wNumOwnedDecoCategories:: db
 wOwnedDecoCategories:: ds 16
 ENDU
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; trade
 wCurTradePartyMon:: db
 wCurOTTradePartyMon:: db
 wBufferTrademonNickname:: ds MON_NAME_LENGTH
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; link battle record data
 wLinkBattleRecordBuffer::
 wLinkBattleRecordName::   ds NAME_LENGTH
@@ -1845,7 +1923,9 @@ wLinkBattleRecordWins::   dw
 wLinkBattleRecordLosses:: dw
 wLinkBattleRecordDraws::  dw
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; miscellaneous
 wTempDayOfWeek::
 wPrevPartyLevel::
@@ -1858,13 +1938,17 @@ wApricorns::
 wSuicuneFrame::
 	db
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; debug color picker
 wDebugColorIsTrainer:: db
 wDebugColorIsShiny:: db
 wDebugColorCurTMHM:: db
 
-NEXTU
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
 ; mobile?
 wd002:: ds 1
 wd003:: ds 1
@@ -1892,9 +1976,11 @@ wd033:: ds 1
 wd034:: ds 2
 wd036:: ds 2
 
-NEXTU
-; Every previous NEXTU takes up 60 or fewer bytes,
-; except the initial "mon buffer" UNION.
+
+SECTION UNION "Miscellaneous WRAM 1", WRAMX
+
+; Every previous SECTION UNION takes up 60 or fewer bytes,
+; except the initial "mon buffer" one.
 	ds 60
 
 UNION
@@ -2018,7 +2104,9 @@ wPoisonStepDataEnd::
 ENDU
 
 	ds 23
-ENDU
+
+
+SECTION "More WRAM 1", WRAMX
 
 wTMHMMoveNameBackup:: ds MOVE_NAME_LENGTH
 
@@ -2928,7 +3016,6 @@ wCurBox:: db
 
 	ds 2
 
-; 8 chars + $50
 wBoxNames:: ds BOX_NAME_LENGTH * NUM_BOXES
 
 wCelebiEvent::

@@ -1,35 +1,34 @@
 unownwall: MACRO
-rept _NARG
-if \1 == "-"
-x = $64
-elif \1 >= "Y"
-x = 2 * (\1 - "Y") + $60
-elif \1 >= "Q"
-x = 2 * (\1 - "Q") + $40
-elif \1 >= "I"
-x = 2 * (\1 - "I") + $20
+for n, CHARLEN(\1)
+x = CHARSUB(\1, n + 1)
+if x == "-"
+	db $64
+elif x >= "Y"
+	db 2 * (x - "Y") + $60
+elif x >= "Q"
+	db 2 * (x - "Q") + $40
+elif x >= "I"
+	db 2 * (x - "I") + $20
 else
-x = 2 * (\1 - "A")
+	db 2 * (x - "A")
 endc
-	db x
-	shift
 endr
 	db -1 ; end
 ENDM
 
 UnownWalls:
 ; UNOWNWORDS_ESCAPE
-	; db      $08, $44, $04, $00, $2e, $08, -1
-	unownwall "E", "S", "C", "A", "P", "E"
+	; db $08, $44, $04, $00, $2e, $08, -1
+	unownwall "ESCAPE"
 ; UNOWNWORDS_LIGHT
-	; db      $26, $20, $0c, $0e, $46, -1
-	unownwall "L", "I", "G", "H", "T"
+	; db $26, $20, $0c, $0e, $46, -1
+	unownwall "LIGHT"
 ; UNOWNWORDS_WATER
-	; db      $4c, $00, $46, $08, $42, -1
-	unownwall "W", "A", "T", "E", "R"
+	; db $4c, $00, $46, $08, $42, -1
+	unownwall "WATER"
 ; UNOWNWORDS_HO_OH
-	; db      $0e, $2c, $64, $2c, $0e, -1
-	unownwall "H", "O", "-", "O", "H"
+	; db $0e, $2c, $64, $2c, $0e, -1
+	unownwall "HO-OH"
 
 MenuHeaders_UnownWalls:
 ; UNOWNWORDS_ESCAPE

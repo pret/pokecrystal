@@ -326,12 +326,15 @@ WRAM0
 	"Sprites"
 	"Tilemap"
 	"Miscellaneous"
+	"Unused Map Buffer"
 	align 8
 	"Overworld Map"
 	align 4
 	"Video"
 WRAMX 1
 	"WRAM 1"
+	"Miscellaneous WRAM 1"
+	"More WRAM 1"
 	"Enemy Party"
 	"Party"
 WRAMX 2
