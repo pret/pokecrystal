@@ -172,5 +172,6 @@ stonetable: MACRO
 ;\1: warp id
 ;\2: object_event id
 ;\3: script pointer
-	dbbw \1, \2, \3
+	db \1, \2
+	dw \3
 ENDM

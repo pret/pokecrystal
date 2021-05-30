@@ -1057,22 +1057,29 @@ EraseBoxes:
 	jr nz, .next
 	ret
 
+box_address: MACRO
+	assert BANK(\1) == BANK(\2)
+	db BANK(\1)
+	dw \1, \2
+ENDM
+
 BoxAddresses:
-; dbww bank, address, address
-	dbww BANK(sBox1),  sBox1,  sBox1End
-	dbww BANK(sBox2),  sBox2,  sBox2End
-	dbww BANK(sBox3),  sBox3,  sBox3End
-	dbww BANK(sBox4),  sBox4,  sBox4End
-	dbww BANK(sBox5),  sBox5,  sBox5End
-	dbww BANK(sBox6),  sBox6,  sBox6End
-	dbww BANK(sBox7),  sBox7,  sBox7End
-	dbww BANK(sBox8),  sBox8,  sBox8End
-	dbww BANK(sBox9),  sBox9,  sBox9End
-	dbww BANK(sBox10), sBox10, sBox10End
-	dbww BANK(sBox11), sBox11, sBox11End
-	dbww BANK(sBox12), sBox12, sBox12End
-	dbww BANK(sBox13), sBox13, sBox13End
-	dbww BANK(sBox14), sBox14, sBox14End
+	table_width 5, BoxAddresses
+	box_address sBox1,  sBox1End
+	box_address sBox2,  sBox2End
+	box_address sBox3,  sBox3End
+	box_address sBox4,  sBox4End
+	box_address sBox5,  sBox5End
+	box_address sBox6,  sBox6End
+	box_address sBox7,  sBox7End
+	box_address sBox8,  sBox8End
+	box_address sBox9,  sBox9End
+	box_address sBox10, sBox10End
+	box_address sBox11, sBox11End
+	box_address sBox12, sBox12End
+	box_address sBox13, sBox13End
+	box_address sBox14, sBox14End
+	assert_table_length NUM_BOXES
 
 Checksum:
 	ld de, 0

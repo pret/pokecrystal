@@ -7,7 +7,7 @@ ENDM
 Landmarks:
 ; entries correspond to constants/landmark_constants.asm
 	table_width 4, Landmarks
-	dbbw       0,   0, SpecialMapName
+	landmark  -8, -16, SpecialMapName
 	landmark 140, 100, NewBarkTownName
 	landmark 128, 100, Route29Name
 	landmark 100, 100, CherrygroveCityName

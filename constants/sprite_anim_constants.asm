@@ -28,6 +28,7 @@ NUM_SPRITE_ANIM_STRUCTS EQU 10 ; see wSpriteAnimationStructs
 	const SPRITE_ANIM_DICT_GS_SPLASH    ; 6
 	const SPRITE_ANIM_DICT_SLOTS        ; 7
 	const SPRITE_ANIM_DICT_ARROW_CURSOR ; 8
+NUM_SPRITE_ANIM_GFX EQU const_value
 
 ; wSpriteAnimDict size (see wram.asm)
 NUM_SPRITEANIMDICT_ENTRIES EQU 10

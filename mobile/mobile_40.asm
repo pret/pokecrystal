@@ -2379,41 +2379,51 @@ Function100f8d:
 	call CloseSRAM
 	ret
 
-Unknown_100fc0:
+macro_100fc0: MACRO
 	; first byte:
 	;     Bit 7 set: Not SRAM
-	;     Lower 7 bits: Bank
-	; Address, size (dw), address
-	dbwww $80, wPlayerName, NAME_LENGTH, wOTPlayerName
-	dbwww $80, wPartyCount, 1 + PARTY_LENGTH + 1, wOTPartyCount
-	dbwww $80, wPlayerID, 2, wOTPlayerID
-	dbwww $80, wPartyMons, PARTYMON_STRUCT_LENGTH * PARTY_LENGTH, wOTPartyMons
-	dbwww $80, wPartyMonOTs, NAME_LENGTH * PARTY_LENGTH, wOTPartyMonOTs
-	dbwww $80, wPartyMonNicknames, MON_NAME_LENGTH * PARTY_LENGTH, wOTPartyMonNicknames
-	db -1
+	;     Lower 7 bits: Bank if SRAM
+	; address, size[, OT address]
+	db ($80 * (\1 >= SRAM_End)) | (BANK(\1) * (\1 < SRAM_End))
+	dw \1, \2
+	if _NARG == 3
+		dw \3
+	else
+		dw NULL
+	endc
+ENDM
+
+Unknown_100fc0:
+	macro_100fc0 wPlayerName,          NAME_LENGTH,                           wOTPlayerName
+	macro_100fc0 wPartyCount,          1 + PARTY_LENGTH + 1,                  wOTPartyCount
+	macro_100fc0 wPlayerID,            2,                                     wOTPlayerID
+	macro_100fc0 wPartyMons,           PARTYMON_STRUCT_LENGTH * PARTY_LENGTH, wOTPartyMons
+	macro_100fc0 wPartyMonOTs,         NAME_LENGTH * PARTY_LENGTH,            wOTPartyMonOTs
+	macro_100fc0 wPartyMonNicknames,   MON_NAME_LENGTH * PARTY_LENGTH,        wOTPartyMonNicknames
+	db -1 ; end
 
 Unknown_100feb:
-	dbwww $00, sPartyMail, MAIL_STRUCT_LENGTH * PARTY_LENGTH, NULL
-	db -1
+	macro_100fc0 sPartyMail,           MAIL_STRUCT_LENGTH * PARTY_LENGTH
+	db -1 ; end
 
 Unknown_100ff3:
-	dbwww $80, wdc41, 1, NULL
-	dbwww $80, wPlayerName, NAME_LENGTH, NULL
-	dbwww $80, wPlayerName, NAME_LENGTH, NULL
-	dbwww $80, wPlayerID, 2, NULL
-	dbwww $80, wSecretID, 2, NULL
-	dbwww $80, wPlayerGender, 1, NULL
-	dbwww $04, $a603, 8, NULL
-	dbwww $04, $a007, PARTYMON_STRUCT_LENGTH, NULL
-	db -1
+	macro_100fc0 wdc41,                1
+	macro_100fc0 wPlayerName,          NAME_LENGTH
+	macro_100fc0 wPlayerName,          NAME_LENGTH
+	macro_100fc0 wPlayerID,            2
+	macro_100fc0 wSecretID,            2
+	macro_100fc0 wPlayerGender,        1
+	macro_100fc0 s4_a603,              8
+	macro_100fc0 s4_a007,              PARTYMON_STRUCT_LENGTH
+	db -1 ; end
 
 Unknown_10102c:
-	dbwww $80, wOTPlayerName, NAME_LENGTH, NULL
-	dbwww $80, wOTPlayerID, 2, NULL
-	dbwww $80, wOTPartyMonNicknames, MON_NAME_LENGTH * PARTY_LENGTH, NULL
-	dbwww $80, wOTPartyMonOTs, NAME_LENGTH * PARTY_LENGTH, NULL
-	dbwww $80, wOTPartyMons, PARTYMON_STRUCT_LENGTH * PARTY_LENGTH, NULL
-	db -1
+	macro_100fc0 wOTPlayerName,        NAME_LENGTH
+	macro_100fc0 wOTPlayerID,          2
+	macro_100fc0 wOTPartyMonNicknames, MON_NAME_LENGTH * PARTY_LENGTH
+	macro_100fc0 wOTPartyMonOTs,       NAME_LENGTH * PARTY_LENGTH
+	macro_100fc0 wOTPartyMons,         PARTYMON_STRUCT_LENGTH * PARTY_LENGTH
+	db -1 ; end
 
 Function101050:
 	call Function10107d
