@@ -922,7 +922,7 @@ AnimateWaterPalette:
 	ret nz
 
 ; Ready for BGPD input
-	ld a, (1 << rBGPI_AUTO_INCREMENT) palette PAL_BG_WATER
+	ld a, (1 << rBGPI_AUTO_INCREMENT) palette PAL_BG_WATER color 0
 	ldh [rBGPI], a
 
 	ldh a, [rSVBK]
@@ -936,6 +936,8 @@ AnimateWaterPalette:
 	jr z, .color0
 	cp %100
 	jr z, .color2
+
+; Copy one color from hl to rBGPI via rBGPD
 
 ; color1
 	ld hl, wBGPals1 palette PAL_BG_WATER color 1
@@ -987,13 +989,15 @@ FlickeringCaveEntrancePalette:
 	ldh [rSVBK], a
 
 ; Ready for BGPD input
-	ld a, (1 << rBGPI_AUTO_INCREMENT) palette PAL_BG_YELLOW
+	ld a, (1 << rBGPI_AUTO_INCREMENT) palette PAL_BG_YELLOW color 0
 	ldh [rBGPI], a
 
 ; A cycle of 2 colors (0 2), updating every other vblank
 	ldh a, [hVBlankCounter]
 	and %10
 	jr nz, .color1
+
+; Copy one color from hl to rBGPI via rBGPD
 
 ; color0
 	ld hl, wBGPals1 palette PAL_BG_YELLOW color 0
