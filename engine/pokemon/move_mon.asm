@@ -1373,7 +1373,7 @@ ComputeNPCTrademonStats:
 	ld a, MON_LEVEL
 	call GetPartyParamLocation
 	ld a, [hl]
-	ld [MON_LEVEL], a ; wow
+	ld [MON_LEVEL], a ; should be "ld [wCurPartyLevel], a"
 	ld a, MON_SPECIES
 	call GetPartyParamLocation
 	ld a, [hl]
