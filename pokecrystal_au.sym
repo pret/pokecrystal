@@ -19144,7 +19144,7 @@
 25:757b StdScript
 25:7596 SkipTwoScriptBytes
 25:759d ScriptJump
-25:75aa Script_prioritysjump
+25:75aa Script_sdefer
 25:75c2 Script_checkscene
 25:75cb Script_checkscene.no_scene
 25:75d1 Script_checkmapscene
@@ -55466,9 +55466,9 @@
 01:d43d wScriptStack
 01:d44d wScriptDelay
 01:d44e wScriptTextBank
-01:d44e wPriorityScriptBank
-01:d44f wPriorityScriptAddr
+01:d44e wDeferredScriptBank
 01:d44f wScriptTextAddr
+01:d44f wDeferredScriptAddr
 01:d452 wWildEncounterCooldown
 01:d453 wXYComparePointer
 01:d459 wBattleScriptFlags
