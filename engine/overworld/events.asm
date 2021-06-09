@@ -436,11 +436,11 @@ endr
 	bit 3, [hl]
 	jr z, .nope
 
-	ld hl, wPriorityScriptAddr
+	ld hl, wDeferredScriptAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wPriorityScriptBank]
+	ld a, [wDeferredScriptBank]
 	call CallScript
 	scf
 	ret

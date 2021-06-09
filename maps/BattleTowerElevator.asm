@@ -9,7 +9,7 @@ BattleTowerElevator_MapScripts:
 	def_callbacks
 
 .Scene0:
-	prioritysjump .RideElevator
+	sdefer .RideElevator
 	setscene SCENE_FINISHED
 .Scene1:
 	end

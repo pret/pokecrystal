@@ -9,7 +9,7 @@ HallOfFame_MapScripts:
 	def_callbacks
 
 .EnterHallOfFame:
-	prioritysjump .EnterHallOfFameScript
+	sdefer .EnterHallOfFameScript
 	end
 
 .DummyScene:

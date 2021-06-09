@@ -10,7 +10,7 @@ MrPokemonsHouse_MapScripts:
 	def_callbacks
 
 .MeetMrPokemon:
-	prioritysjump .MrPokemonEvent
+	sdefer .MrPokemonEvent
 	end
 
 .DummyScene:

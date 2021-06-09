@@ -16,7 +16,7 @@ FastShip1F_MapScripts:
 	end
 
 .EnterFastShip:
-	prioritysjump .EnterFastShipScript
+	sdefer .EnterFastShipScript
 	end
 
 .DummyScene2:

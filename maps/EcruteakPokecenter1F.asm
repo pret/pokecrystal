@@ -13,7 +13,7 @@ EcruteakPokecenter1F_MapScripts:
 	def_callbacks
 
 .MeetBill:
-	prioritysjump .BillActivatesTimeCapsule
+	sdefer .BillActivatesTimeCapsule
 	end
 
 .DummyScene:

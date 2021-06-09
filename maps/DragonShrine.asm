@@ -12,7 +12,7 @@ DragonShrine_MapScripts:
 	def_callbacks
 
 .DragonShrineTest:
-	prioritysjump .DragonShrineTestScript
+	sdefer .DragonShrineTestScript
 	end
 
 .DummyScene:

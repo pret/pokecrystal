@@ -18,7 +18,7 @@ OlivinePort_MapScripts:
 	end
 
 .LeaveFastShip:
-	prioritysjump .LeaveFastShipScript
+	sdefer .LeaveFastShipScript
 	end
 
 .LeaveFastShipScript:

@@ -14,7 +14,7 @@ RuinsOfAlphInnerChamber_MapScripts:
 	end
 
 .UnownAppear:
-	prioritysjump .StrangePresenceScript
+	sdefer .StrangePresenceScript
 	end
 
 .StrangePresenceScript:

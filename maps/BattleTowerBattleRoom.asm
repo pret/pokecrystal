@@ -11,7 +11,7 @@ BattleTowerBattleRoom_MapScripts:
 
 .EnterBattleRoom:
 	disappear BATTLETOWERBATTLEROOM_YOUNGSTER
-	prioritysjump Script_BattleRoom
+	sdefer Script_BattleRoom
 	setscene SCENE_FINISHED
 .DummyScene:
 	end

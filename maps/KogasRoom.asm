@@ -10,7 +10,7 @@ KogasRoom_MapScripts:
 	callback MAPCALLBACK_TILES, .KogasRoomDoors
 
 .LockDoor:
-	prioritysjump .KogasDoorLocksBehindYou
+	sdefer .KogasDoorLocksBehindYou
 	end
 
 .DummyScene:

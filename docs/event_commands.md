@@ -470,7 +470,7 @@ If <code><i>item_id</i></code> = `USE_SCRIPT_VAR`, then it uses `[wScriptVar]` i
 ## `$8C`: <code>deactivatefacing <i>length</i></code>
 
 
-## `$8D`: <code>prioritysjump <i>script</i></code>
+## `$8D`: <code>sdefer <i>script</i></code>
 
 
 ## `$8E`: `warpcheck`

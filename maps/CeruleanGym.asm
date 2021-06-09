@@ -17,7 +17,7 @@ CeruleanGym_MapScripts:
 	end
 
 .GruntRunsOut:
-	prioritysjump .GruntRunsOutScript
+	sdefer .GruntRunsOutScript
 	end
 
 .GruntRunsOutScript:

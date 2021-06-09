@@ -11,7 +11,7 @@ TimeCapsule_MapScripts:
 	callback MAPCALLBACK_OBJECTS, .SetWhichChris
 
 .InitializeTimeCapsule:
-	prioritysjump .InitializeAndPreparePokecenter2F
+	sdefer .InitializeAndPreparePokecenter2F
 	end
 
 .DummyScene:

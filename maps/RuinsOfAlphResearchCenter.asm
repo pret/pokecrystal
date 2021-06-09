@@ -15,7 +15,7 @@ RuinsOfAlphResearchCenter_MapScripts:
 	end
 
 .GetUnownDex:
-	prioritysjump .GetUnownDexScript
+	sdefer .GetUnownDexScript
 	end
 
 .ScientistCallback:

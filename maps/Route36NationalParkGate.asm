@@ -29,7 +29,7 @@ Route36NationalParkGate_MapScripts:
 	end
 
 .LeaveContestEarly:
-	prioritysjump .LeavingContestEarly
+	sdefer .LeavingContestEarly
 	end
 
 .CheckIfContestRunning:

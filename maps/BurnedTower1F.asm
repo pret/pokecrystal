@@ -15,7 +15,7 @@ BurnedTower1F_MapScripts:
 	callback MAPCALLBACK_TILES, .HoleAndLadder
 
 .EusineScene:
-	prioritysjump .MeetEusine
+	sdefer .MeetEusine
 	end
 
 .DummyScene1:

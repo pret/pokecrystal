@@ -21,29 +21,29 @@ Pokecenter2F_MapScripts:
 	clearevent EVENT_MYSTERY_GIFT_DELIVERY_GUY
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	iftrue .Scene0Done
-	prioritysjump Pokecenter2F_AppearMysteryGiftDeliveryGuy
+	sdefer Pokecenter2F_AppearMysteryGiftDeliveryGuy
 
 .Scene0Done:
 	end
 
 .Scene1:
-	prioritysjump Script_LeftCableTradeCenter
+	sdefer Script_LeftCableTradeCenter
 	end
 
 .Scene2:
-	prioritysjump Script_LeftCableColosseum
+	sdefer Script_LeftCableColosseum
 	end
 
 .Scene3:
-	prioritysjump Script_LeftTimeCapsule
+	sdefer Script_LeftTimeCapsule
 	end
 
 .Scene4:
-	prioritysjump Script_LeftMobileTradeRoom
+	sdefer Script_LeftMobileTradeRoom
 	end
 
 .Scene5:
-	prioritysjump Script_LeftMobileBattleRoom
+	sdefer Script_LeftMobileBattleRoom
 	end
 
 Pokecenter2F_AppearMysteryGiftDeliveryGuy:

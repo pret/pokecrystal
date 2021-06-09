@@ -9,7 +9,7 @@ BattleTowerHallway_MapScripts:
 	def_callbacks
 
 .Scene0:
-	prioritysjump .ChooseBattleRoom
+	sdefer .ChooseBattleRoom
 	setscene SCENE_FINISHED
 .Scene1:
 	end

@@ -9,7 +9,7 @@ MountMoon_MapScripts:
 	def_callbacks
 
 .RivalEncounter:
-	prioritysjump .RivalBattle
+	sdefer .RivalBattle
 	end
 
 .DummyScene:

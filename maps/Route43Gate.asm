@@ -14,7 +14,7 @@ Route43Gate_MapScripts:
 	callback MAPCALLBACK_NEWMAP, .CheckIfRockets
 
 .RocketShakedown:
-	prioritysjump .RocketTakeover
+	sdefer .RocketTakeover
 	end
 
 .DummyScene:

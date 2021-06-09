@@ -11,7 +11,7 @@ TradeCenter_MapScripts:
 	callback MAPCALLBACK_OBJECTS, .SetWhichChris
 
 .InitializeTradeCenter:
-	prioritysjump .InitializeAndPreparePokecenter2F
+	sdefer .InitializeAndPreparePokecenter2F
 	end
 
 .DummyScene:

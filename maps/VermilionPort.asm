@@ -15,7 +15,7 @@ VermilionPort_MapScripts:
 	end
 
 .LeaveFastShip:
-	prioritysjump .LeaveFastShipScript
+	sdefer .LeaveFastShipScript
 	end
 
 .FlyPoint:

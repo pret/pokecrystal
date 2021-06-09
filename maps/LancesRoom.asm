@@ -12,7 +12,7 @@ LancesRoom_MapScripts:
 	callback MAPCALLBACK_TILES, .LancesRoomDoors
 
 .LockDoor:
-	prioritysjump .LancesDoorLocksBehindYou
+	sdefer .LancesDoorLocksBehindYou
 	end
 
 .DummyScene:

@@ -10,7 +10,7 @@ WillsRoom_MapScripts:
 	callback MAPCALLBACK_TILES, .WillsRoomDoors
 
 .LockDoor:
-	prioritysjump .WillsDoorLocksBehindYou
+	sdefer .WillsDoorLocksBehindYou
 	end
 
 .DummyScene:

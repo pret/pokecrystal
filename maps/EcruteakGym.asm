@@ -15,7 +15,7 @@ EcruteakGym_MapScripts:
 	def_callbacks
 
 .ForcedToLeave:
-	prioritysjump EcruteakGymClosed
+	sdefer EcruteakGymClosed
 	end
 
 .DummyScene:

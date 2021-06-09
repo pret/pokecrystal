@@ -13,7 +13,7 @@ Colosseum_MapScripts:
 	callback MAPCALLBACK_NEWMAP, .PreparePokecenter2F
 
 .InitializeColosseum:
-	prioritysjump .InitializeAndPreparePokecenter2F
+	sdefer .InitializeAndPreparePokecenter2F
 	end
 
 .DummyScene1:

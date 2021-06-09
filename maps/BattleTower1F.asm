@@ -26,11 +26,11 @@ BattleTower1F_MapScripts:
 	writetext Text_WeveBeenWaitingForYou
 	waitbutton
 	closetext
-	prioritysjump Script_ResumeBattleTowerChallenge
+	sdefer Script_ResumeBattleTowerChallenge
 	end
 
 .LeftWithoutSaving
-	prioritysjump BattleTower_LeftWithoutSaving
+	sdefer BattleTower_LeftWithoutSaving
 	setval BATTLETOWERACTION_CHALLENGECANCELED
 	special BattleTowerAction
 	setval BATTLETOWERACTION_06

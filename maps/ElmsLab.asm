@@ -19,7 +19,7 @@ ElmsLab_MapScripts:
 	callback MAPCALLBACK_OBJECTS, .MoveElmCallback
 
 .MeetElm:
-	prioritysjump .WalkUpToElm
+	sdefer .WalkUpToElm
 	end
 
 .DummyScene1:

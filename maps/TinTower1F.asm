@@ -20,7 +20,7 @@ TinTower1F_MapScripts:
 	callback MAPCALLBACK_TILES, .StairsCallback
 
 .FaceSuicune:
-	prioritysjump .SuicuneBattle
+	sdefer .SuicuneBattle
 	end
 
 .DummyScene:

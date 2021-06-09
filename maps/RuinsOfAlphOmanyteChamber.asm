@@ -13,7 +13,7 @@ RuinsOfAlphOmanyteChamber_MapScripts:
 	end
 
 .OpenWall:
-	prioritysjump .WallOpenScript
+	sdefer .WallOpenScript
 	end
 
 .DummyScene:
