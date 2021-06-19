@@ -970,13 +970,13 @@ INCLUDE "data/decorations/decorations.asm"
 
 DescribeDecoration::
 	ld a, b
-	ld hl, .JumpTable
+	ld hl, .Jumptable
 	rst JumpTable
 	ret
 
-.JumpTable:
+.Jumptable:
 ; entries correspond to DECODESC_* constants
-	table_width 2, DescribeDecoration.JumpTable
+	table_width 2, DescribeDecoration.Jumptable
 	dw DecorationDesc_Poster
 	dw DecorationDesc_LeftOrnament
 	dw DecorationDesc_RightOrnament

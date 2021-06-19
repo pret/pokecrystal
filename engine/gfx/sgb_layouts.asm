@@ -17,7 +17,7 @@ LoadSGBLayout:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, _LoadSGBLayout_ReturnFromJumpTable
+	ld de, _LoadSGBLayout_ReturnFromJumptable
 	push de
 	jp hl
 
@@ -566,7 +566,7 @@ endr
 
 INCLUDE "data/maps/sgb_roof_pal_inds.asm"
 
-_LoadSGBLayout_ReturnFromJumpTable:
+_LoadSGBLayout_ReturnFromJumptable:
 	push de
 	call PushSGBPals
 	pop hl

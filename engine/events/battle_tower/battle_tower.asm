@@ -1331,7 +1331,7 @@ Function1709bb: ; BattleTowerAction $10
 	jr nc, .invalid
 	ld e, a
 	ld d, 0
-	ld hl, .jumptable
+	ld hl, .Jumptable
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -1347,7 +1347,7 @@ Function1709bb: ; BattleTowerAction $10
 	call CloseSRAM
 	ret
 
-.jumptable:
+.Jumptable:
 	dw .NoAction
 	dw .NoAction
 	dw .DoAction1

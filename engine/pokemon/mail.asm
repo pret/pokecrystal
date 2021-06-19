@@ -409,13 +409,13 @@ MailboxPC:
 	jr c, .subexit
 	ld a, [wMenuCursorY]
 	dec a
-	ld hl, .JumpTable
+	ld hl, .Jumptable
 	rst JumpTable
 
 .subexit
 	ret
 
-.JumpTable:
+.Jumptable:
 	dw .ReadMail
 	dw .PutInPack
 	dw .AttachMail

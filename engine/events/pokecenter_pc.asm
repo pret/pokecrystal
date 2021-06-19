@@ -4,7 +4,7 @@
 	const PCPC_BEFORE_HOF     ; 1
 	const PCPC_POSTGAME       ; 2
 
-	; PokemonCenterPC.JumpTable indexes
+	; PokemonCenterPC.Jumptable indexes
 	const_def
 	const PCPCITEM_PLAYERS_PC   ; 0
 	const PCPCITEM_BILLS_PC     ; 1
@@ -30,7 +30,7 @@ PokemonCenterPC:
 	call DoNthMenu
 	jr c, .shutdown
 	ld a, [wMenuSelection]
-	ld hl, .JumpTable
+	ld hl, .Jumptable
 	call MenuJumptable
 	jr nc, .loop
 
@@ -51,9 +51,9 @@ PokemonCenterPC:
 	db 0 ; items
 	dw .WhichPC
 	dw PlaceNthMenuStrings
-	dw .JumpTable
+	dw .Jumptable
 
-.JumpTable:
+.Jumptable:
 ; entries correspond to PCPCITEM_* constants
 	dw PlayersPC,    .String_PlayersPC
 	dw BillsPC,      .String_BillsPC
