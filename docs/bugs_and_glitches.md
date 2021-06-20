@@ -1250,11 +1250,13 @@ As Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") impli
  	call BattleRandom
  	cp c
  	jr nc, .loop_enemy
+ 	; b = player level / 4
  	srl b
  	srl b
- 	cp b
--	; This should be jr c, .failed
+-	; This should be "jr c, .failed"
 -	; As written, it makes enemy use of Teleport always succeed if able
++	; If the random number >= player level / 4, Teleport will succeed
+ 	cp b
 -	jr nc, .run_away
 +	jr c, .failed
 ```
