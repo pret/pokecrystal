@@ -18,52 +18,67 @@ BattleCommand_Teleport:
 	ldh a, [hBattleTurn]
 	and a
 	jr nz, .enemy_turn
+
+	; Can't teleport from a trainer battle
 	ld a, [wBattleMode]
 	dec a
-	jr nz, .failed ; Can't teleport from a trainer battle
+	jr nz, .failed
+	; b = player level
 	ld a, [wCurPartyLevel]
 	ld b, a
+	; If player level >= enemy level, Teleport will succeed
 	ld a, [wBattleMonLevel]
 	cp b
-	jr nc, .run_away ; If the player's level is greater than or equal the opponent's, Teleport will succeed
+	jr nc, .run_away
+	; c = player level + enemy level + 1
 	add b
 	ld c, a
-	inc c ; c = playerLevel + enemyLevel + 1
+	inc c
+	; Generate a number less than c
 .loop_player
 	call BattleRandom
-	cp c ; Generate a number between 0 and c
+	cp c
 	jr nc, .loop_player
+	; b = enemy level / 4
 	srl b
-	srl b ; b = enemyLevel / 4
-	cp b ; is rand[0, playerLevel + enemyLevel] >= (enemyLevel / 4)?
-	jr nc, .run_away ; if so, allow teleporting
+	srl b
+	; If the random number >= enemy level / 4, Teleport will succeed
+	cp b
+	jr nc, .run_away
 
 .failed
 	call AnimateFailedMove
 	jp PrintButItFailed
 
 .enemy_turn
+	; Can't teleport from a trainer battle
 	ld a, [wBattleMode]
 	dec a
-	jr nz, .failed ; Can't teleport from a trainer battle
+	jr nz, .failed
+	; b = enemy level
 	ld a, [wBattleMonLevel]
 	ld b, a
+	; If enemy level >= player level, Teleport will succeed
 	ld a, [wCurPartyLevel]
 	cp b
-	jr nc, .run_away ; If the opponent's level is greater than or equal the player's, Teleport will succeed
+	jr nc, .run_away
+	; c = enemy level + player level + 1
 	add b
 	ld c, a
 	inc c
+	; Generate a number less than c
 .loop_enemy
 	call BattleRandom
 	cp c
 	jr nc, .loop_enemy
+	; b = player level / 4
 	srl b
 	srl b
-	cp b
-	; This should be jr c, .failed
+	; This should be "jr c, .failed"
 	; As written, it makes enemy use of Teleport always succeed if able
+	cp b
 	jr nc, .run_away
+
 .run_away
 	call UpdateBattleMonInParty
 	xor a
