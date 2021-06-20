@@ -1,4 +1,4 @@
-# Pokémon Crystal [![Build Status][travis-badge]][travis]
+# Pokémon Crystal [![Build Status][ci-badge]][ci]
 
 This is a disassembly of Pokémon Crystal.
 
@@ -45,5 +45,5 @@ Other disassembly projects:
 [tutorials]: https://github.com/pret/pokecrystal/wiki/Tutorials
 [discord]: https://discord.gg/d5dubZ3
 [irc]: https://kiwiirc.com/client/irc.freenode.net/?#pret
-[travis]: https://travis-ci.org/pret/pokecrystal
-[travis-badge]: https://travis-ci.org/pret/pokecrystal.svg?branch=master
+[ci]: https://github.com/pret/pokecrystal/actions
+[ci-badge]: https://github.com/pret/pokecrystal/actions/workflows/main.yml/badge.svg
