@@ -15,33 +15,28 @@ BattleCommand_Teleport:
 	call GetBattleVar
 	bit SUBSTATUS_CANT_RUN, a
 	jr nz, .failed
-; Only need to check these next things if it's your turn
 	ldh a, [hBattleTurn]
 	and a
 	jr nz, .enemy_turn
-; Can't teleport from a trainer battle
 	ld a, [wBattleMode]
 	dec a
-	jr nz, .failed
-; If your level is greater than the opponent's, you run without fail.
+	jr nz, .failed ; Can't teleport from a trainer battle
 	ld a, [wCurPartyLevel]
 	ld b, a
 	ld a, [wBattleMonLevel]
 	cp b
-	jr nc, .run_away
-; Generate a number between 0 and (YourLevel + TheirLevel).
+	jr nc, .run_away ; If the player's level is greater than or equal the opponent's, Teleport will succeed
 	add b
 	ld c, a
-	inc c
+	inc c ; c = playerLevel + enemyLevel + 1
 .loop_player
 	call BattleRandom
-	cp c
+	cp c ; Generate a number between 0 and c
 	jr nc, .loop_player
-; If that number is greater than 4 times your level, run away.
 	srl b
-	srl b
-	cp b
-	jr nc, .run_away
+	srl b ; b = enemyLevel / 4
+	cp b ; is rand[0, playerLevel + enemyLevel] >= (enemyLevel / 4)?
+	jr nc, .run_away ; if so, allow teleporting
 
 .failed
 	call AnimateFailedMove
@@ -50,12 +45,12 @@ BattleCommand_Teleport:
 .enemy_turn
 	ld a, [wBattleMode]
 	dec a
-	jr nz, .failed
+	jr nz, .failed ; Can't teleport from a trainer battle
 	ld a, [wBattleMonLevel]
 	ld b, a
 	ld a, [wCurPartyLevel]
 	cp b
-	jr nc, .run_away
+	jr nc, .run_away ; If the opponent's level is greater than or equal the player's, Teleport will succeed
 	add b
 	ld c, a
 	inc c
