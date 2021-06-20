@@ -15,31 +15,34 @@ BattleCommand_Teleport:
 	call GetBattleVar
 	bit SUBSTATUS_CANT_RUN, a
 	jr nz, .failed
-; Only need to check these next things if it's your turn
 	ldh a, [hBattleTurn]
 	and a
 	jr nz, .enemy_turn
-; Can't teleport from a trainer battle
+
+	; Can't teleport from a trainer battle
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .failed
-; If your level is greater than the opponent's, you run without fail.
+	; b = player level
 	ld a, [wCurPartyLevel]
 	ld b, a
+	; If player level >= enemy level, Teleport will succeed
 	ld a, [wBattleMonLevel]
 	cp b
 	jr nc, .run_away
-; Generate a number between 0 and (YourLevel + TheirLevel).
+	; c = player level + enemy level + 1
 	add b
 	ld c, a
 	inc c
+	; Generate a number less than c
 .loop_player
 	call BattleRandom
 	cp c
 	jr nc, .loop_player
-; If that number is greater than 4 times your level, run away.
+	; b = enemy level / 4
 	srl b
 	srl b
+	; If the random number >= enemy level / 4, Teleport will succeed
 	cp b
 	jr nc, .run_away
 
@@ -48,27 +51,34 @@ BattleCommand_Teleport:
 	jp PrintButItFailed
 
 .enemy_turn
+	; Can't teleport from a trainer battle
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .failed
+	; b = enemy level
 	ld a, [wBattleMonLevel]
 	ld b, a
+	; If enemy level >= player level, Teleport will succeed
 	ld a, [wCurPartyLevel]
 	cp b
 	jr nc, .run_away
+	; c = enemy level + player level + 1
 	add b
 	ld c, a
 	inc c
+	; Generate a number less than c
 .loop_enemy
 	call BattleRandom
 	cp c
 	jr nc, .loop_enemy
+	; b = player level / 4
 	srl b
 	srl b
-	cp b
-	; This should be jr c, .failed
+	; This should be "jr c, .failed"
 	; As written, it makes enemy use of Teleport always succeed if able
+	cp b
 	jr nc, .run_away
+
 .run_away
 	call UpdateBattleMonInParty
 	xor a
