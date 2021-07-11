@@ -26,7 +26,8 @@
 
 typedef enum Base { BASE_NONE, BASE_US, BASE_EU, BASE_DEBUG } Base;
 
-// Base data format: "base", 1, version, CRC (big-endian), 16 unknown bytes
+// Base data format: "base", 1, version byte, CRC (big-endian),
+// 16 bytes = a 128-bit mask of which banks Stadium can skip comparing
 
 uint8_t us_base[BASESIZE] = {'b', 'a', 's', 'e', 1, 0, 0, 0,
 	0x40, 0x11, 0x00, 0x22, 0x00, 0x3A, 0xF3, 0x38,
