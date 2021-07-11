@@ -1,66 +1,66 @@
 Function3e32::
 ; Mobile
 	cp $2
-	ld [$c988], a
+	ld [wc988], a
 	ld a, l
-	ld [$c986], a
+	ld [wc986], a
 	ld a, h
-	ld [$c987], a
+	ld [wc987], a
 	jr nz, .okay
 
-	ld [$c982], a
+	ld [wc982], a
 	ld a, l
-	ld [$c981], a
-	ld hl, $c983
+	ld [wc981], a
+	ld hl, wc983
 	ld a, c
 	ld [hli], a
 	ld a, b
 	ld [hl], a
 
 .okay
-	ld hl, $c822
+	ld hl, wc822
 	set 6, [hl]
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(Function110030)
-	ld [$c981], a
+	ld [wc981], a
 	rst Bankswitch
 
 	jp Function110030
 
 Function3e60::
 ; Return from Function110030
-	ld [$c986], a
+	ld [wc986], a
 	ld a, l
-	ld [$c987], a
+	ld [wc987], a
 	ld a, h
-	ld [$c988], a
+	ld [wc988], a
 
 	pop bc
 	ld a, b
-	ld [$c981], a
+	ld [wc981], a
 	rst Bankswitch
 
-	ld hl, $c822
+	ld hl, wc822
 	res 6, [hl]
-	ld hl, $c987
+	ld hl, wc987
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [$c986]
+	ld a, [wc986]
 	ret
 
 MobileReceive::
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(_MobileReceive)
-	ld [$c981], a
+	ld [wc981], a
 	rst Bankswitch
 
 	call _MobileReceive
 	pop bc
 	ld a, b
-	ld [$c981], a
+	ld [wc981], a
 	rst Bankswitch
 
 	ret
@@ -83,11 +83,11 @@ MobileTimer::
 	and 1 << VBLANK | 1 << LCD_STAT | 1 << SERIAL | 1 << JOYPAD
 	ldh [rIF], a
 
-	ld a, [$c86a]
+	ld a, [wc86a]
 	or a
 	jr z, .pop_ret
 
-	ld a, [$c822]
+	ld a, [wc822]
 	bit 1, a
 	jr nz, .skip_timer
 
@@ -98,14 +98,14 @@ MobileTimer::
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(_Timer)
-	ld [$c981], a
+	ld [wc981], a
 	rst Bankswitch
 
 	call _Timer
 
 	pop bc
 	ld a, b
-	ld [$c981], a
+	ld [wc981], a
 	rst Bankswitch
 
 .skip_timer
