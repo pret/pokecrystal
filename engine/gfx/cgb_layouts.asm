@@ -313,7 +313,7 @@ _CGB_BillsPC:
 	call WipeAttrmap
 	hlcoord 1, 4, wAttrmap
 	lb bc, 7, 7
-	ld a, $1
+	ld a, $1 ; mon palette
 	call FillBoxCGB
 	call InitPartyMenuOBPals
 	call ApplyAttrmap
@@ -335,7 +335,7 @@ _CGB_Unknown: ; unreferenced
 	call WipeAttrmap
 	hlcoord 1, 1, wAttrmap
 	lb bc, 7, 7
-	ld a, $1
+	ld a, $1 ; mon palette
 	call FillBoxCGB
 	call InitPartyMenuOBPals
 	call ApplyAttrmap
@@ -358,7 +358,7 @@ _CGB_PokedexUnownMode:
 	call WipeAttrmap
 	hlcoord 7, 5, wAttrmap
 	lb bc, 7, 7
-	ld a, $1
+	ld a, $1 ; mon palette
 	call FillBoxCGB
 	call InitPartyMenuOBPals
 	call ApplyAttrmap
@@ -376,43 +376,43 @@ _CGB_SlotMachine:
 	call WipeAttrmap
 	hlcoord 0, 2, wAttrmap
 	lb bc, 10, 3
-	ld a, $2
+	ld a, $2 ; "3" palette
 	call FillBoxCGB
 	hlcoord 17, 2, wAttrmap
 	lb bc, 10, 3
-	ld a, $2
+	ld a, $2 ; "3" palette
 	call FillBoxCGB
 	hlcoord 0, 4, wAttrmap
 	lb bc, 6, 3
-	ld a, $3
+	ld a, $3 ; "2" palette
 	call FillBoxCGB
 	hlcoord 17, 4, wAttrmap
 	lb bc, 6, 3
-	ld a, $3
+	ld a, $3 ; "2" palette
 	call FillBoxCGB
 	hlcoord 0, 6, wAttrmap
 	lb bc, 2, 3
-	ld a, $4
+	ld a, $4 ; "1" palette
 	call FillBoxCGB
 	hlcoord 17, 6, wAttrmap
 	lb bc, 2, 3
-	ld a, $4
+	ld a, $4 ; "1" palette
 	call FillBoxCGB
 	hlcoord 4, 2, wAttrmap
 	lb bc, 2, 12
-	ld a, $1
+	ld a, $1 ; Vileplume palette
 	call FillBoxCGB
 	hlcoord 3, 2, wAttrmap
 	lb bc, 10, 1
-	ld a, $1
+	ld a, $1 ; lights palette
 	call FillBoxCGB
 	hlcoord 16, 2, wAttrmap
 	lb bc, 10, 1
-	ld a, $1
+	ld a, $1 ; lights palette
 	call FillBoxCGB
 	hlcoord 0, 12, wAttrmap
-	ld bc, $78
-	ld a, $7
+	ld bc, 6 * SCREEN_WIDTH
+	ld a, $7 ; text palette
 	call ByteFill
 	call ApplyAttrmap
 	call ApplyPals
@@ -848,22 +848,22 @@ _CGB_Pokepic:
 	sub c
 	inc a
 	ld c, a
-	ld a, $0
+	ld a, PAL_BG_GRAY
 	call FillBoxCGB
 	call ApplyAttrmap
 	ret
 
-_CGB_MagnetTrain:
+_CGB_MagnetTrain: ; unused
 	ld hl, PalPacket_MagnetTrain + 1
 	call CopyFourPalettes
 	call WipeAttrmap
 	hlcoord 0, 4, wAttrmap
 	lb bc, 10, SCREEN_WIDTH
-	ld a, $2
+	ld a, PAL_BG_GREEN
 	call FillBoxCGB
 	hlcoord 0, 6, wAttrmap
 	lb bc, 6, SCREEN_WIDTH
-	ld a, $1
+	ld a, PAL_BG_RED
 	call FillBoxCGB
 	call ApplyAttrmap
 	call ApplyPals
