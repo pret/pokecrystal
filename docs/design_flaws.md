@@ -13,6 +13,8 @@ These are parts of the code that do not work *incorrectly*, like [bugs and glitc
 - [Pokédex entry banks are derived from their species IDs](#pokédex-entry-banks-are-derived-from-their-species-ids)
 - [Identical sine wave code and data is repeated five times](#identical-sine-wave-code-and-data-is-repeated-five-times)
 - [`GetForestTreeFrame` works, but it's still bad](#getforesttreeframe-works-but-its-still-bad)
+- [Second rival battle's DVs are lower than the first](#second-rival-battles-dvs-are-lower-than-the-first)
+- [The Ruins of Alph research center's roof color at night looks wrong](#the-ruins-of-alph-research-centers-roof-color-at-night-looks-wrong)
 
 
 ## Pic banks are offset by `PICS_FIX`
@@ -790,4 +792,66 @@ Edit `GetForestTreeFrame`:
 +	and 1
 +	add a
  	ret
+```
+
+
+## Second rival battle's DVs are lower than the first
+
+The second rival battle has Pokémon whose DVs are actually *lower* than the DVs of the Pokémon from the first rival battle, which doesn't align with Silver's beliefs throughout the game.
+
+**Fix:**
+
+Edit [data/trainers/dvs.asm](https://github.com/pret/pokecrystal/blob/master/data/trainers/dvs.asm) to adjust the DVs of RIVAL2 to those of RIVAL1:
+
+```diff
+	dn 13, 13, 13, 13 ; RIVAL1
+	dn  9,  8,  8,  8 ; POKEMON_PROF
+	dn 13, 12, 13, 13 ; WILL
+	dn 13, 12, 13, 13 ; CAL
+	dn 13, 12, 13, 13 ; BRUNO
+	dn  7, 15, 13, 15 ; KAREN
+	dn 13, 12, 13, 13 ; KOGA
+	dn 13, 12, 13, 13 ; CHAMPION
+	dn  9,  8,  8,  8 ; BROCK
+	dn  7,  8,  8,  8 ; MISTY
+	dn  9,  8,  8,  8 ; LT_SURGE
+	dn  9,  8,  8,  8 ; SCIENTIST
+	dn  7,  8,  8,  8 ; ERIKA
+	dn  9,  8,  8,  8 ; YOUNGSTER
+	dn  9,  8,  8,  8 ; SCHOOLBOY
+	dn  9,  8,  8,  8 ; BIRD_KEEPER
+	dn  5,  8,  8,  8 ; LASS
+	dn  9,  8,  8,  8 ; JANINE
+	dn 13,  8, 12,  8 ; COOLTRAINERM
+	dn  7, 12, 12,  8 ; COOLTRAINERF
+	dn  6,  9, 12,  8 ; BEAUTY
+	dn  9,  8,  8,  8 ; POKEMANIAC
+	dn 13,  8, 10,  8 ; GRUNTM
+	dn  9,  8,  8,  8 ; GENTLEMAN
+	dn  9,  8,  8,  8 ; SKIER
+	dn  6,  8,  8,  8 ; TEACHER
+	dn  7, 13,  8,  7 ; SABRINA
+	dn  9,  8,  8,  8 ; BUG_CATCHER
+	dn  9,  8,  8,  8 ; FISHER
+	dn  9,  8,  8,  8 ; SWIMMERM
+	dn  7,  8,  8,  8 ; SWIMMERF
+	dn  9,  8,  8,  8 ; SAILOR
+	dn  9,  8,  8,  8 ; SUPER_NERD
+-	dn  9,  8,  8,  8 ; RIVAL2
++	dn 13, 13, 13, 13 ; RIVAL2
+```
+
+## The Ruins of Alph research center's roof color at night looks wrong
+
+The Ruins of Alph research center's roof looks wonky during the night, making it look unprofessional.
+
+**Fix:**
+
+Edit [gfx/tilesets/roofs.pal](https://github.com/pret/pokecrystal/blob/master/gfx/tilesets/roofs.pal) to adjust Group 3's night palette to a suitable one (that of Pewter City's roofs in this instance):
+
+```diff
+; group 3 (dungeons)
+	RGB 21,21,21, 11,11,11 ; morn/day
+-	RGB 21,21,21, 17,08,07 ; nite
++	RGB 09,09,11, 04,05,07 ; nite
 ```
