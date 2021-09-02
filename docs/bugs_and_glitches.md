@@ -1192,7 +1192,7 @@ As Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") impli
 
 ### AI use of Full Heal does not cure confusion status
 
-**Fix:** Edit `EnemyUsedFullRestore`, `EnemyUsedFullHeal`, and `AI_HealStatus` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/items.asm):
+**Fix:** Edit `EnemyUsedFullRestore` and `AI_HealStatus` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/items.asm):
 
 ```diff
  EnemyUsedFullRestore:
@@ -1201,19 +1201,8 @@ As Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") impli
  	ld [wCurEnemyItem], a
 -	ld hl, wEnemySubStatus3
 -	res SUBSTATUS_CONFUSED, [hl]
- 	xor a
- 	ld [wEnemyConfuseCount], a
-```
-
-```diff
- EnemyUsedFullHeal:
- 	call AIUsedItemSound
- 	call AI_HealStatus
- 	ld a, FULL_HEAL
-+	ld [wCurEnemyItem], a
-+	xor a
-+	ld [wEnemyConfuseCount], a
- 	jp PrintText_UsedItemOn_AND_AIUpdateHUD
+-	xor a
+-	ld [wEnemyConfuseCount], a
 ```
 
 ```diff
@@ -1225,6 +1214,7 @@ As Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") impli
  	xor a
  	ld [hl], a
  	ld [wEnemyMonStatus], a
++	ld [wEnemyConfuseCount], a
 	; Bug: this should reset SUBSTATUS_NIGHTMARE
 	; Uncomment the 2 lines below to fix
 	; ld hl, wEnemySubStatus1
