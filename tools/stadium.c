@@ -1,10 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdint.h>
-#include <stdbool.h>
-#include <getopt.h>
-
 #include "common.h"
 
 // The Game Boy cartridge header stores a global checksum at 0x014E-0x014F
@@ -160,7 +153,7 @@ int main(int argc, char *argv[]) {
 	}
 
 	char *filename = argv[0];
-	int filesize;
+	long filesize;
 	uint8_t *file = read_u8(filename, &filesize);
 	calculate_checksums(file, filesize, base);
 	write_u8(filename, file, filesize);

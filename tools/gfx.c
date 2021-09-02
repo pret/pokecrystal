@@ -104,7 +104,7 @@ void shift_preserved(int removed_index) {
 }
 
 struct Graphic {
-	int size;
+	long size;
 	uint8_t *data;
 };
 
@@ -270,31 +270,6 @@ void interleave(struct Graphic *graphic, int width) {
 	free(interleaved);
 }
 
-int png_get_width(char *filename) {
-	FILE *f = fopen_verbose(filename, "rb");
-	if (!f) {
-		exit(1);
-	}
-
-	const int OFFSET_WIDTH = 16;
-	uint8_t bytes[4];
-	fseek(f, OFFSET_WIDTH, SEEK_SET);
-	size_t size = 4;
-	size_t result = fread(bytes, 1, size, f);
-	fclose(f);
-	if (result != size) {
-		fprintf(stderr, "Could not read file at offset 0x%x: \"%s\"\n", OFFSET_WIDTH, filename);
-		exit(1);
-	}
-
-	int width = 0;
-	for (int i = 0; i < 4; i++) {
-		width |= bytes[i] << (8 * (3 - i));
-	}
-	return width;
-}
-
-
 int main(int argc, char *argv[]) {
 	get_args(argc, argv);
 	argc -= optind;
@@ -319,7 +294,7 @@ int main(int argc, char *argv[]) {
 			usage();
 			exit(1);
 		}
-		int width = png_get_width(Options.png_file);
+		int width = read_png_width_verbose(Options.png_file);
 		interleave(&graphic, width);
 	}
 	if (Options.remove_duplicates) {
