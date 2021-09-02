@@ -25,6 +25,15 @@ void *malloc_verbose(size_t size) {
 	return m;
 }
 
+void *calloc_verbose(size_t size) {
+	errno = 0;
+	void *m = calloc(size, 1);
+	if (!m) {
+		error_exit("Could not allocate %zu bytes: %s\n", size, strerror(errno));
+	}
+	return m;
+}
+
 FILE *fopen_verbose(const char *filename, char rw) {
 	char mode[3] = {rw, 'b', '\0'};
 	errno = 0;
@@ -98,6 +107,21 @@ uint32_t read_png_width_verbose(const char *filename) {
 	fread_verbose(bytes, sizeof(bytes), filename, f);
 	fclose(f);
 	return (bytes[0] << 24) | (bytes[1] << 16) | (bytes[2] << 8) | bytes[3];
+}
+
+void read_dimensions(const char *filename, int *width) {
+	long filesize;
+	uint8_t *bytes = read_u8(filename, &filesize);
+	if (filesize != 1) {
+		error_exit("%s: invalid dimensions file\n", filename);
+	}
+	uint8_t dimensions = bytes[0];
+	free(bytes);
+	*width = dimensions & 0xF;
+	int height = dimensions >> 4;
+	if (*width != height || (*width != 5 && *width != 6 && *width != 7)) {
+		error_exit("%s: invalid dimensions: %dx%d tiles\n", filename, *width, height);
+	}
 }
 
 #endif // GUARD_COMMON_H

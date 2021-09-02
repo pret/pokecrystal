@@ -67,19 +67,8 @@ int get_tile_index(const uint8_t *tile, const uint8_t *tiles, int num_tiles, int
 	return -1;
 }
 
-uint8_t read_dimensions(const char *filename) {
-	long filesize;
-	uint8_t *bytes = read_u8(filename, &filesize);
-	if (filesize != 1) {
-		error_exit("%s: invalid dimensions file\n", filename);
-	}
-	uint8_t dimensions = bytes[0];
-	free(bytes);
-	return dimensions;
-}
-
-uint8_t *read_tiles(const char *filename, int width, int height, long *tiles_size) {
-	int frame_size = width * height * TILE_SIZE;
+uint8_t *read_tiles(const char *filename, int width, long *tiles_size) {
+	int frame_size = width * width * TILE_SIZE;
 
 	uint8_t *tiles = read_u8(filename, tiles_size);
 	if (!*tiles_size) {
@@ -87,7 +76,7 @@ uint8_t *read_tiles(const char *filename, int width, int height, long *tiles_siz
 	} else if (*tiles_size % TILE_SIZE) {
 		error_exit("%s: not divisible into 8x8-px 2bpp tiles\n", filename);
 	} else if (*tiles_size % frame_size) {
-		error_exit("%s: not divisible into %dx%d-tile frames\n", filename, width, height);
+		error_exit("%s: not divisible into %dx%d-tile frames\n", filename, width, width);
 	}
 
 	int num_frames = *tiles_size / frame_size;
@@ -169,18 +158,16 @@ int main(int argc, char *argv[]) {
 		exit(1);
 	}
 
-	uint8_t dimensions = read_dimensions(argv[1]);
-	int width = dimensions & 0xF;
-	int height = dimensions >> 4;
-
+	int width;
+	read_dimensions(argv[1], &width);
 	long tiles_size;
-	uint8_t *tiles = read_tiles(argv[0], width, height, &tiles_size);
+	uint8_t *tiles = read_tiles(argv[0], width, &tiles_size);
 
 	if (options.out_filename) {
-		write_graphics(options.out_filename, tiles, tiles_size, width * height, options.girafarig);
+		write_graphics(options.out_filename, tiles, tiles_size, width * width, options.girafarig);
 	}
 	if (options.map_filename) {
-		write_tilemap(options.map_filename, tiles, tiles_size, width * height, options.girafarig);
+		write_tilemap(options.map_filename, tiles, tiles_size, width * width, options.girafarig);
 	}
 
 	free(tiles);
