@@ -1,5 +1,36 @@
 #include "common.h"
 
+enum Base { BASE_NONE, BASE_US, BASE_EU, BASE_DEBUG };
+
+void usage() {
+	fputs("Usage: stadium [-h|--help] [-b|--base us|eu|dbg] pokecrystal.gbc\n", stderr);
+}
+
+void parse_args(int argc, char *argv[], enum Base *base) {
+	struct option long_options[] = {
+		{"base", required_argument, 0, 'b'},
+		{"help", no_argument, 0, 'h'},
+		{0}
+	};
+	for (int opt; (opt = getopt_long(argc, argv, "b:h", long_options)) != -1;) {
+		switch (opt) {
+		case 'b':
+			*base = !strcmp(optarg, "us") ? BASE_US :
+				!strcmp(optarg, "eu") ? BASE_EU :
+				!strcmp(optarg, "dbg") ? BASE_DEBUG :
+				BASE_NONE;
+			break;
+		case 'h':
+			usage();
+			exit(0);
+			break;
+		default:
+			usage();
+			exit(1);
+		}
+	}
+}
+
 // The Game Boy cartridge header stores a global checksum at 0x014E-0x014F
 #define GLOBALOFF 0x014E
 // "base" data; Crystal-only
@@ -16,8 +47,6 @@
 #define CRC_INIT 0xFEFE
 // The CRC initial value for Crystal base data
 #define CRC_INIT_BASE 0xACDE
-
-typedef enum Base { BASE_NONE, BASE_US, BASE_EU, BASE_DEBUG } Base;
 
 // Base data format: "base", 1, version byte, CRC (big-endian),
 // 16 bytes = a 128-bit mask of which banks Stadium can skip comparing
@@ -36,41 +65,12 @@ uint8_t dbg_base[BASESIZE] = {'b', 'a', 's', 'e', 1, 0, 0, 0,
 
 uint8_t n64ps3[N64PS3SIZE] = {'N', '6', '4', 'P', 'S', '3'};
 
-static void usage(void) {
-	fputs("Usage: stadium [-h|--help] [-b|--base us|eu|dbg] romfile\n", stderr);
-}
-
-void parse_args(int argc, char *argv[], Base *b) {
-	struct option long_options[] = {
-		{"base", required_argument, 0, 'b'},
-		{"help", no_argument, 0, 'h'},
-		{0}
-	};
-	for (int opt; (opt = getopt_long(argc, argv, "hb:", long_options)) != -1;) {
-		switch (opt) {
-		case 'h':
-			usage();
-			exit(0);
-			break;
-		case 'b':
-			*b = !strcmp(optarg, "us") ? BASE_US :
-				!strcmp(optarg, "eu") ? BASE_EU :
-				!strcmp(optarg, "dbg") ? BASE_DEBUG :
-				BASE_NONE;
-			break;
-		default:
-			usage();
-			exit(1);
-		}
-	}
-}
-
 #define SET_U16BE(file, off, v) do { \
 	file[(off) + 0] = (uint8_t)(((v) & 0xFF00) >> 8); \
 	file[(off) + 1] = (uint8_t)(((v) & 0x00FF) >> 0); \
 } while (0)
 
-void calculate_checksums(uint8_t *file, int filesize, Base base) {
+void calculate_checksums(uint8_t *file, int filesize, enum Base base) {
 	int NUMCHECKS = filesize / CHECKSIZE;
 	int DATASIZE = HEADERSIZE + NUMCHECKS * 2; // 2 bytes per checksum
 	int ORIGIN = filesize - DATASIZE; // Stadium data goes at the end of the file
@@ -138,7 +138,7 @@ void calculate_checksums(uint8_t *file, int filesize, Base base) {
 }
 
 int main(int argc, char *argv[]) {
-	Base base = BASE_NONE;
+	enum Base base = BASE_NONE;
 	parse_args(argc, argv, &base);
 
 	argc -= optind;
