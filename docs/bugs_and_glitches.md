@@ -1362,7 +1362,6 @@ SunnyDayMoves:
 	db -1 ; end
 ```
 
-
 ## Overworld engine
 
 
