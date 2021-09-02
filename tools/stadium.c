@@ -37,7 +37,7 @@ uint8_t dbg_base[BASESIZE] = {'b', 'a', 's', 'e', 1, 0, 0, 0,
 uint8_t n64ps3[N64PS3SIZE] = {'N', '6', '4', 'P', 'S', '3'};
 
 static void usage(void) {
-	fprintf(stderr, "Usage: stadium [-h|--help] [-b|--base us|eu|dbg] romfile\n");
+	fputs("Usage: stadium [-h|--help] [-b|--base us|eu|dbg] romfile\n", stderr);
 }
 
 void parse_args(int argc, char *argv[], Base *b) {
@@ -46,8 +46,8 @@ void parse_args(int argc, char *argv[], Base *b) {
 		{"help", no_argument, 0, 'h'},
 		{0}
 	};
-	for (int opt = 0; opt != -1;) {
-		switch (opt = getopt_long(argc, argv, "hb:", long_options)) {
+	for (int opt; (opt = getopt_long(argc, argv, "hb:", long_options)) != -1;) {
+		switch (opt) {
 		case 'h':
 			usage();
 			exit(0);
@@ -58,13 +58,9 @@ void parse_args(int argc, char *argv[], Base *b) {
 				!strcmp(optarg, "dbg") ? BASE_DEBUG :
 				BASE_NONE;
 			break;
-		case 0:
-		case -1:
-			break;
 		default:
 			usage();
 			exit(1);
-			break;
 		}
 	}
 }
@@ -157,6 +153,5 @@ int main(int argc, char *argv[]) {
 	uint8_t *file = read_u8(filename, &filesize);
 	calculate_checksums(file, filesize, base);
 	write_u8(filename, file, filesize);
-
 	return 0;
 }

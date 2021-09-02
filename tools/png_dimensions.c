@@ -1,7 +1,7 @@
 #include "common.h"
 
 void usage() {
-	fprintf(stderr, "Usage: png_dimensions in.png out.dimensions\n");
+	fputs("Usage: png_dimensions in.png out.dimensions\n", stderr);
 }
 
 uint8_t read_dimensions(const char *filename) {
@@ -19,6 +19,7 @@ int main(int argc, char *argv[]) {
 		usage();
 		exit(1);
 	}
+
 	uint8_t output_byte = read_dimensions(argv[1]);
 	write_u8(argv[2], &output_byte, 1);
 	return 0;

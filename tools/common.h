@@ -12,9 +12,10 @@
 #include <getopt.h>
 
 int getopt_long_index;
-#define getopt_long(c, v, s, l) getopt_long(c, v, s, l, &getopt_long_index)
+#define getopt_long(argc, argv, optstring, longopts) getopt_long(argc, argv, optstring, longopts, &getopt_long_index)
 
 void *malloc_verbose(size_t size) {
+	errno = 0;
 	void *m = malloc(size);
 	if (!m) {
 		fprintf(stderr, "Could not allocate %zu bytes: %s\n", size, strerror(errno));
@@ -25,6 +26,7 @@ void *malloc_verbose(size_t size) {
 
 FILE *fopen_verbose(const char *filename, char rw) {
 	char mode[3] = {rw, 'b', '\0'};
+	errno = 0;
 	FILE *f = fopen(filename, mode);
 	if (!f) {
 		fprintf(stderr, "Could not open file \"%s\": %s\n", filename, strerror(errno));
@@ -34,6 +36,7 @@ FILE *fopen_verbose(const char *filename, char rw) {
 }
 
 void fread_verbose(uint8_t *data, size_t size, const char *filename, FILE *f) {
+	errno = 0;
 	if (fread(data, 1, size, f) != size) {
 		fprintf(stderr, "Could not read from file \"%s\": %s\n", filename, strerror(errno));
 		fclose(f);
@@ -42,6 +45,7 @@ void fread_verbose(uint8_t *data, size_t size, const char *filename, FILE *f) {
 }
 
 void fwrite_verbose(const uint8_t *data, size_t size, const char *filename, FILE *f) {
+	errno = 0;
 	if (fwrite(data, 1, size, f) != size) {
 		fprintf(stderr, "Could not write to file \"%s\": %s\n", filename, strerror(errno));
 		fclose(f);
@@ -49,15 +53,16 @@ void fwrite_verbose(const uint8_t *data, size_t size, const char *filename, FILE
 	}
 }
 
-long file_size(const char *filename, FILE *f) {
-	long size = 0;
+long file_size_verbose(const char *filename, FILE *f) {
+	long size = -1;
+	errno = 0;
 	if (!fseek(f, 0, SEEK_END)) {
 		size = ftell(f);
 		if (size != -1) {
 			rewind(f);
 		}
 	}
-	if (errno) {
+	if (size == -1) {
 		fprintf(stderr, "Could not measure file \"%s\": %s\n", filename, strerror(errno));
 		exit(1);
 	}
@@ -66,7 +71,7 @@ long file_size(const char *filename, FILE *f) {
 
 uint8_t *read_u8(const char *filename, long *size) {
 	FILE *f = fopen_verbose(filename, 'r');
-	*size = file_size(filename, f);
+	*size = file_size_verbose(filename, f);
 	uint8_t *data = malloc_verbose(*size);
 	fread_verbose(data, *size, filename, f);
 	fclose(f);
