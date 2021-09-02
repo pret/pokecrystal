@@ -11,6 +11,8 @@
 #include <unistd.h>
 #include <getopt.h>
 
+#define error_exit(...) exit((fprintf(stderr, __VA_ARGS__), 1))
+
 int getopt_long_index;
 #define getopt_long(argc, argv, optstring, longopts) getopt_long(argc, argv, optstring, longopts, &getopt_long_index)
 
@@ -18,8 +20,7 @@ void *malloc_verbose(size_t size) {
 	errno = 0;
 	void *m = malloc(size);
 	if (!m) {
-		fprintf(stderr, "Could not allocate %zu bytes: %s\n", size, strerror(errno));
-		exit(1);
+		error_exit("Could not allocate %zu bytes: %s\n", size, strerror(errno));
 	}
 	return m;
 }
@@ -29,8 +30,7 @@ FILE *fopen_verbose(const char *filename, char rw) {
 	errno = 0;
 	FILE *f = fopen(filename, mode);
 	if (!f) {
-		fprintf(stderr, "Could not open file \"%s\": %s\n", filename, strerror(errno));
-		exit(1);
+		error_exit("Could not open file \"%s\": %s\n", filename, strerror(errno));
 	}
 	return f;
 }
@@ -38,18 +38,16 @@ FILE *fopen_verbose(const char *filename, char rw) {
 void fread_verbose(uint8_t *data, size_t size, const char *filename, FILE *f) {
 	errno = 0;
 	if (fread(data, 1, size, f) != size) {
-		fprintf(stderr, "Could not read from file \"%s\": %s\n", filename, strerror(errno));
 		fclose(f);
-		exit(1);
+		error_exit("Could not read from file \"%s\": %s\n", filename, strerror(errno));
 	}
 }
 
 void fwrite_verbose(const uint8_t *data, size_t size, const char *filename, FILE *f) {
 	errno = 0;
 	if (fwrite(data, 1, size, f) != size) {
-		fprintf(stderr, "Could not write to file \"%s\": %s\n", filename, strerror(errno));
 		fclose(f);
-		exit(1);
+		error_exit("Could not write to file \"%s\": %s\n", filename, strerror(errno));
 	}
 }
 
@@ -63,8 +61,7 @@ long file_size_verbose(const char *filename, FILE *f) {
 		}
 	}
 	if (size == -1) {
-		fprintf(stderr, "Could not measure file \"%s\": %s\n", filename, strerror(errno));
-		exit(1);
+		error_exit("Could not measure file \"%s\": %s\n", filename, strerror(errno));
 	}
 	return size;
 }
@@ -94,9 +91,8 @@ uint32_t read_png_width_verbose(const char *filename) {
 		'I', 'H', 'D', 'R',                          // IHDR chunk type
 	};
 	if (memcmp(header, expected_header, sizeof(header))) {
-		fprintf(stderr, "Not a valid PNG file: \"%s\"\n", filename);
 		fclose(f);
-		exit(1);
+		error_exit("Not a valid PNG file: \"%s\"\n", filename);
 	}
 	uint8_t bytes[4] = {0};
 	fread_verbose(bytes, sizeof(bytes), filename, f);

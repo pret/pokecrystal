@@ -9,8 +9,7 @@ void scan_file(const char *filename, bool strict) {
 	FILE *f = fopen(filename, "rb");
 	if (!f) {
 		if (strict) {
-			fprintf(stderr, "Could not open file \"%s\": %s\n", filename, strerror(errno));
-			exit(1);
+			error_exit("Could not open file \"%s\": %s\n", filename, strerror(errno));
 		} else {
 			return;
 		}
