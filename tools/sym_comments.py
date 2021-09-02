@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Usage: ./sym_comments.py file.asm [pokecrystal.sym] > file_commented.asm
+Usage: python3 sym_comments.py file.asm [pokecrystal.sym] > file_commented.asm
 
 Comments each label in file.asm with its bank:address from the sym file.
 """

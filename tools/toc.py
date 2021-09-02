@@ -3,6 +3,7 @@
 
 """
 Usage: python3 toc.py [-n] files.md...
+
 Replace a "## TOC" heading in a Markdown file with a table of contents,
 generated from the other headings in the file. Supports multiple files.
 Headings must start with "##" signs to be detected.
