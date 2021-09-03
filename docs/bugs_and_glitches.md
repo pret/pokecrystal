@@ -58,6 +58,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Wild Pokémon can always Teleport regardless of level difference](#wild-pokémon-can-always-teleport-regardless-of-level-difference)
   - [`HELD_CATCH_CHANCE` has no effect](#held_catch_chance-has-no-effect)
   - [Credits sequence changes move selection menu behavior](#credits-sequence-changes-move-selection-menu-behavior)
+  - [Solar Beam, Flame Wheel, and Moonlight are not in the "Smart" AI's list of moves that encourage Sunny Day](#solar-beam-flame-wheel-and-moonlight-are-not-in-the-smart-ais-list-of-moves-that-encourage-sunny-day)
 - [Overworld engine](#overworld-engine)
   - [`LoadMetatiles` wraps around past 128 blocks](#loadmetatiles-wraps-around-past-128-blocks)
   - [Surfing directly across a map connection does not load the new map](#surfing-directly-across-a-map-connection-does-not-load-the-new-map)
@@ -1341,6 +1342,25 @@ The `[hInMenu]` value determines this button behavior. However, the battle moves
  	ret
 ```
 
+### Solar Beam, Flame Wheel, and Moonlight are not in the "Smart" AI's list of moves that encourage Sunny Day
+
+**Fix:** Edit [data/battle/ai/sunny_day_moves.asm])(https://github.com/pret/pokecrystal/blob/master/data/battle/ai/sunny_day_moves.asm):
+
+```diff
+SunnyDayMoves:
+	db FIRE_PUNCH
+	db EMBER
+	db FLAMETHROWER
++	db SOLARBEAM
+	db FIRE_SPIN
+	db FIRE_BLAST
++	db FLAME_WHEEL
+	db SACRED_FIRE
+	db MORNING_SUN
+	db SYNTHESIS
++	db MOONLIGHT
+	db -1 ; end
+```
 
 ## Overworld engine
 
