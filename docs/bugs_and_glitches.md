@@ -87,6 +87,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [`CheckOwnMon` only checks the first five letters of OT names](#checkownmon-only-checks-the-first-five-letters-of-ot-names)
   - [`CheckOwnMonAnywhere` does not check the Day-Care](#checkownmonanywhere-does-not-check-the-day-care)
   - [The unused `phonecall` script command may crash](#the-unused-phonecall-script-command-may-crash)
+  - [Fast Ship does not load the Town Map with the cursor at the Fast Ship icon](#fast-ship-does-not-load-the-town-map-with-the-cursor-at-the-fast-ship-icon)
 - [Internal engine routines](#internal-engine-routines)
   - [Saves corrupted by mid-save shutoff are not handled](#saves-corrupted-by-mid-save-shutoff-are-not-handled)
   - [`ScriptCall` can overflow `wScriptStack` and crash](#scriptcall-can-overflow-wscriptstack-and-crash)
@@ -2107,6 +2108,22 @@ The `phonecall` script command calls the `PhoneCall` routine, which calls the `B
 ```
 
 You can also delete the now-unused `BrokenPlaceFarString` routine.
+
+
+### Fast Ship does not load the Town Map with the cursor at the Fast Ship icon
+
+The Fast Ship doesn't load the Town Map with the cursor at the Fast Ship icon due to an oversight, which places the icon at *New Bark Town* instead.
+
+**Fix:** Edit `TownMap_InitCursorAndPlayerIconPositions` in [engine/pokegear/pokegear.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokegear/pokegear.asm):
+
+```diff
+.FastShip:
+    ld [wPokegearMapPlayerIconLandmark], a
+-    ld a, LANDMARK_NEW_BARK_TOWN
++    ld a, LANDMARK_FAST_SHIP
+    ld [wPokegearMapCursorLandmark], a
+    ret
+```
 
 
 ## Internal engine routines
