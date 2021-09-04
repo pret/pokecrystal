@@ -2112,7 +2112,7 @@ You can also delete the now-unused `BrokenPlaceFarString` routine.
 
 ### Fast Ship does not load the Town Map with the cursor at the Fast Ship icon
 
-The Fast Ship doesn't load the Town Map with the cursor at the Fast Ship icon due to an oversight, which places the icon at *New Bark Town* instead.
+The Fast Ship doesn't load the Town Map with the cursor at the Fast Ship icon due to an oversight, which places the cursor at *New Bark Town* instead.
 
 **Fix:** Edit `TownMap_InitCursorAndPlayerIconPositions` in [engine/pokegear/pokegear.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokegear/pokegear.asm):
 
