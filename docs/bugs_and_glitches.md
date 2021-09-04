@@ -1344,7 +1344,7 @@ The `[hInMenu]` value determines this button behavior. However, the battle moves
 
 ### Solar Beam, Flame Wheel, and Moonlight are not in the "Smart" AI's list of moves that encourage Sunny Day
 
-**Fix:** Edit [data/battle/ai/sunny_day_moves.asm])(https://github.com/pret/pokecrystal/blob/master/data/battle/ai/sunny_day_moves.asm):
+**Fix:** Edit [data/battle/ai/sunny_day_moves.asm](https://github.com/pret/pokecrystal/blob/master/data/battle/ai/sunny_day_moves.asm):
 
 ```diff
 SunnyDayMoves:
