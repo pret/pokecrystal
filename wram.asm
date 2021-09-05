@@ -1101,20 +1101,135 @@ wCreditsBlankFrame2bppEnd::
 SECTION UNION "Overworld Map", WRAM0
 
 ; mobile
-	ds 7
-wc807:: ds 1
-	ds 10
+wc800:: db
+wc801:: db
+wc802:: db
+wc803:: db
+wc804:: db
+wc805:: db
+wc806:: db
+wc807:: db
+wc808:: dw
+wc80a:: db
+wc80b:: db
+wc80c:: dw
+wc80e:: db
+wc80f:: db
+wc810:: db
+wc811:: db
 wMobileSDK_PacketChecksum:: dw
-	ds 4
+wc814:: db
+wc815:: db
+wc816:: dw
 wMobileSDK_AdapterType:: db
-	ds 5
+wc819:: db
+wc81a:: db
+wc81b:: db
+wc81c:: db
+wc81d:: db
 wMobileSDK_SendCommandID:: db
-	ds 2
-wc821:: ds 1
-wc822:: ds 525
+wc81f:: db
+wc820:: db
+wc821:: db
+wc822:: db
+wc823:: ds 4
+wc827:: dw
+wc829:: db
+wc82a:: db
+wc82b:: db
+wc82c:: db
+wc82d:: db
+wc82e:: db
+wc82f:: ds 3
+wc832:: db
+wc833:: db
+wc834:: db
+wc835:: db
+wc836:: ds 8
+wc83e:: ds 20
+wc852:: ds 20
+wc866:: ds 4
+wc86a:: db
+wc86b:: db
+wc86c:: db
+wc86d:: db
+wc86e:: db
+wc86f:: db
+wc870:: db
+wc871:: db
+wc872:: db
+wc873:: db
+wc874:: db
+wc875:: db
+wc876:: db
+wc877:: db
+wc878:: dw
+wc87a:: db
+wc87b:: db
+wc87c:: db
+wc87d:: db
+wc87e:: db
+wc87f:: db
+wc880:: db
+wc881:: db
+wc882:: db
+wc883:: db
+wc884:: ds 8
+wc88c:: ds 32
+wc8ac:: ds 26
+wc8c6:: db
+wc8c7:: db
+wc8c8:: db
+wc8c9:: db
+wc8ca:: ds 44
+wc8f6:: ds 8
+wc8fe:: db
+wc8ff:: ds 15
+wc90e:: ds 8
+wc916:: ds 16
+wc926:: ds 8
+wc92e:: ds 75
+wc979:: db
+wc97a:: ds 5
+wc97f:: db
+wc980:: db
+wc981:: db
+wc982:: db
+wc983:: dw
+wc985:: db
+wc986:: db
+wc987:: db
+wc988:: db
+wc989:: db
+wc98a:: db
+wc98b:: db
+wc98c:: db
+wc98d:: db
+wc98e:: db
+wc98f:: db
+wc990:: db
+wc991:: db
+wc992:: db
+wc993:: db
+wc994:: db
+wc995:: ds 16
+wc9a5:: ds 5
+wc9aa:: db
+wc9ab:: db
+wc9ac:: db
+wc9ad:: db
+wc9ae:: db
+wc9af:: dw
+wc9b1:: db
+wc9b2:: ds 3
+wc9b5:: db
+wc9b6:: ds 121
+
 wMobileSDK_ReceivePacketBufferAlt:: ds 11
 wMobileSDK_ReceivedBytes:: dw
-wMobileSDK_ReceivePacketBuffer:: ds 267
+wMobileSDK_ReceivePacketBuffer:: ds 250
+wcb36:: db
+	ds 16
 wMobileSDK_PacketBuffer:: ds 281
 wcc60:: ds 1
 wcc61:: ds 1
