@@ -51,14 +51,15 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Glacier Badge may not boost Special Defense depending on the value of Special Attack](#glacier-badge-may-not-boost-special-defense-depending-on-the-value-of-special-attack)
   - ["Smart" AI encourages Mean Look if its own Pokémon is badly poisoned](#smart-ai-encourages-mean-look-if-its-own-pokémon-is-badly-poisoned)
   - ["Smart" AI discourages Conversion2 after the first turn](#smart-ai-discourages-conversion2-after-the-first-turn)
+  - ["Smart" AI does not encourage Solar Beam, Flame Wheel, or Moonlight during Sunny Day](#smart-ai-does-not-encourage-solar-beam-flame-wheel-or-moonlight-during-sunny-day)
   - [AI does not discourage Future Sight when it's already been used](#ai-does-not-discourage-future-sight-when-its-already-been-used)
   - [AI makes a false assumption about `CheckTypeMatchup`](#ai-makes-a-false-assumption-about-checktypematchup)
   - [AI use of Full Heal or Full Restore does not cure Nightmare status](#ai-use-of-full-heal-or-full-restore-does-not-cure-nightmare-status)
   - [AI use of Full Heal does not cure confusion status](#ai-use-of-full-heal-does-not-cure-confusion-status)
   - [Wild Pokémon can always Teleport regardless of level difference](#wild-pokémon-can-always-teleport-regardless-of-level-difference)
+  - [`RIVAL2` has lower DVs than `RIVAL1`](#rival2-has-lower-dvs-than-rival1)
   - [`HELD_CATCH_CHANCE` has no effect](#held_catch_chance-has-no-effect)
   - [Credits sequence changes move selection menu behavior](#credits-sequence-changes-move-selection-menu-behavior)
-  - [Solar Beam, Flame Wheel, and Moonlight are not in the "Smart" AI's list of moves that encourage Sunny Day](#solar-beam-flame-wheel-and-moonlight-are-not-in-the-smart-ais-list-of-moves-that-encourage-sunny-day)
 - [Overworld engine](#overworld-engine)
   - [`LoadMetatiles` wraps around past 128 blocks](#loadmetatiles-wraps-around-past-128-blocks)
   - [Surfing directly across a map connection does not load the new map](#surfing-directly-across-a-map-connection-does-not-load-the-new-map)
@@ -66,6 +67,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
 - [Graphics](#graphics)
   - [In-battle “`…`” ellipsis is too high](#in-battle--ellipsis-is-too-high)
   - [Two tiles in the `port` tileset are drawn incorrectly](#two-tiles-in-the-port-tileset-are-drawn-incorrectly)
+  - [The Ruins of Alph research center's roof color at night looks wrong](#the-ruins-of-alph-research-centers-roof-color-at-night-looks-wrong)
   - [Using a Park Ball in non-Contest battles has a corrupt animation](#using-a-park-ball-in-non-contest-battles-has-a-corrupt-animation)
   - [Battle transitions fail to account for the enemy's level](#battle-transitions-fail-to-account-for-the-enemys-level)
   - [Some trainer NPCs have inconsistent overworld sprites](#some-trainer-npcs-have-inconsistent-overworld-sprites)
@@ -1114,6 +1116,27 @@ As Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") impli
 ```
 
 
+### "Smart" AI does not encourage Solar Beam, Flame Wheel, and Moonlight during Sunny Day
+
+**Fix:** Edit `SunnyDayMoves` in [data/battle/ai/sunny_day_moves.asm](https://github.com/pret/pokecrystal/blob/master/data/battle/ai/sunny_day_moves.asm):
+
+```diff
+SunnyDayMoves:
+ 	db FIRE_PUNCH
+ 	db EMBER
+ 	db FLAMETHROWER
++	db SOLARBEAM
+ 	db FIRE_SPIN
+ 	db FIRE_BLAST
++	db FLAME_WHEEL
+ 	db SACRED_FIRE
+ 	db MORNING_SUN
+ 	db SYNTHESIS
++	db MOONLIGHT
+ 	db -1 ; end
+```
+
+
 ### AI does not discourage Future Sight when it's already been used
 
 **Fix:** Edit `AI_Redundant` in [engine/battle/ai/redundant.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/redundant.asm):
@@ -1263,6 +1286,20 @@ As Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") impli
 ```
 
 
+### `RIVAL2` has lower DVs than `RIVAL1`
+
+`RIVAL1` is battled throughout the game. `RIVAL2` is battled at Indigo Plateau, and would not be expected to have worse DVs.
+
+**Fix:** Edit `TrainerClassDVs` in [data/trainers/dvs.asm](https://github.com/pret/pokecrystal/blob/master/data/trainers/dvs.asm):
+
+```diff
+ 	dn 13, 13, 13, 13 ; RIVAL1
+ 	...
+-	dn  9,  8,  8,  8 ; RIVAL2
++	dn 13, 13, 13, 13 ; RIVAL2
+```
+
+
 ### `HELD_CATCH_CHANCE` has no effect
 
 **Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
@@ -1342,25 +1379,6 @@ The `[hInMenu]` value determines this button behavior. However, the battle moves
  	ret
 ```
 
-### Solar Beam, Flame Wheel, and Moonlight are not in the "Smart" AI's list of moves that encourage Sunny Day
-
-**Fix:** Edit [data/battle/ai/sunny_day_moves.asm](https://github.com/pret/pokecrystal/blob/master/data/battle/ai/sunny_day_moves.asm):
-
-```diff
-SunnyDayMoves:
-	db FIRE_PUNCH
-	db EMBER
-	db FLAMETHROWER
-+	db SOLARBEAM
-	db FIRE_SPIN
-	db FIRE_BLAST
-+	db FLAME_WHEEL
-	db SACRED_FIRE
-	db MORNING_SUN
-	db SYNTHESIS
-+	db MOONLIGHT
-	db -1 ; end
-```
 
 ## Overworld engine
 
@@ -1498,6 +1516,25 @@ This is a mistake with the left-hand warp carpet corner tiles in [gfx/tilesets/p
 **Fix:** Adjust them to match the right-hand corner tiles:
 
 ![image](https://raw.githubusercontent.com/pret/pokecrystal/master/docs/images/port.png)
+
+
+## The Ruins of Alph research center's roof color at night looks wrong
+
+The dungeons' map group mostly has indoor maps that don't need roof colors, but [maps/RuinsOfAlphOutside.blk](https://github.com/pret/pokecrystal/blob/master/maps/RuinsOfAlphOutside.blk) is an exception. It appears to have poorly-chosen roof colors: the morning/day colors are the same default gray as the unused group 0, and the night colors combine the light default gray and the dark red of Cinnabar's night roofs.
+
+![image](https://raw.githubusercontent.com/pret/pokecrystal/master/docs/images/ruins_of_alph_outside.png)
+
+**Fix:** Edit [gfx/tilesets/roofs.pal](https://github.com/pret/pokecrystal/blob/master/gfx/tilesets/roofs.pal) to use the same red colors as Cinnabar (which are not actually seen in-game):
+
+```diff
+; group 3 (dungeons)
+-	RGB 21,21,21, 11,11,11 ; morn/day
+-	RGB 21,21,21, 17,08,07 ; nite
++	RGB 31,10,00, 18,06,00 ; morn/day
++	RGB 18,05,09, 17,08,07 ; nite
+```
+
+![image](https://raw.githubusercontent.com/pret/pokecrystal/master/docs/images/ruins_of_alph_outside_cinnabar.png)
 
 
 ### Using a Park Ball in non-Contest battles has a corrupt animation
