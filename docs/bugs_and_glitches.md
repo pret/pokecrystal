@@ -1527,7 +1527,7 @@ The dungeons' map group mostly has indoor maps that don't need roof colors, but 
 **Fix:** Edit [gfx/tilesets/roofs.pal](https://github.com/pret/pokecrystal/blob/master/gfx/tilesets/roofs.pal) to use the same red colors as Cinnabar (which are not actually seen in-game):
 
 ```diff
-; group 3 (dungeons)
+ ; group 3 (dungeons)
 -	RGB 21,21,21, 11,11,11 ; morn/day
 -	RGB 21,21,21, 17,08,07 ; nite
 +	RGB 31,10,00, 18,06,00 ; morn/day
@@ -1938,13 +1938,12 @@ This supports up to six entries.
 **Fix:** Edit `DragonsDen1F_MapScripts` in [maps/DragonsDen1F.asm](https://github.com/pret/pokecrystal/blob/master/maps/DragonsDen1F.asm):
 
 ```diff
--	db 0 ; callbacks
-+	db 1 ; callbacks
+ 	def_callbacks
 +	callback MAPCALLBACK_NEWMAP, .UnsetClairScene
 +
 +.UnsetClairScene:
 +	setmapscene DRAGONS_DEN_B1F, SCENE_DRAGONSDENB1F_NOTHING
-+	return
++	endcallback
 ```
 
 
