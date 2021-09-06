@@ -60,6 +60,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [`RIVAL2` has lower DVs than `RIVAL1`](#rival2-has-lower-dvs-than-rival1)
   - [`HELD_CATCH_CHANCE` has no effect](#held_catch_chance-has-no-effect)
   - [Credits sequence changes move selection menu behavior](#credits-sequence-changes-move-selection-menu-behavior)
+  - [AI Pokémon sometimes do not carry over stat debuffs when PAR/BRN](#ai-pokémon-sometimes-do-not-carry-over-stat-debuffs-when-par-brn)
 - [Overworld engine](#overworld-engine)
   - [`LoadMetatiles` wraps around past 128 blocks](#loadmetatiles-wraps-around-past-128-blocks)
   - [Surfing directly across a map connection does not load the new map](#surfing-directly-across-a-map-connection-does-not-load-the-new-map)
@@ -1377,6 +1378,38 @@ The `[hInMenu]` value determines this button behavior. However, the battle moves
 +	pop af
 +	ldh [hInMenu], a
  	ret
+```
+
+
+### AI Pokémon sometimes do not carry over stat debuffs when PAR/BRN
+
+Sometimes during battle, the AI doesn't get inflicted with the stat debuffs associated with PAR/BRN, especially when switched out and back in for any reason.
+
+**Fix:** Edit `ShowSetEnemyMonAndSendOutAnimation` and `InitEnemyMon` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
+
+```diff
+ShowSetEnemyMonAndSendOutAnimation:
+	...
+	predef CopyMonToTempMon
+	call GetEnemyMonFrontpic
+
++	call ApplyStatusEffectOnEnemyStats
+	; set flag to not switch if statused
+	ld a, [wEnemyMonStatus]
+	and SLP
+```
+
+
+```diff
+InitEnemyMon:
+	...
+	ld de, wEnemyStats
+	ld bc, PARTYMON_STRUCT_LENGTH - MON_ATK
+	call CopyBytes
+-	call ApplyStatusEffectOnEnemyStats
+	ld hl, wBaseType1
+	ld de, wEnemyMonType1
+	ld a, [hli]
 ```
 
 
