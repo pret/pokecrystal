@@ -1,7 +1,7 @@
 #include "common.h"
 
-static void usage(void) {
-	fprintf(stderr, "Usage: gfx [-h|--help] [--trim-whitespace] [--remove-whitespace] [--interleave] [--remove-duplicates [--keep-whitespace]] [--remove-xflip] [--remove-yflip] [--preserve indexes] [-p|--png filename.png] [-d|--depth depth] [-o outfile] infile\n");
+void usage(void) {
+	fprintf(stderr, "Usage: gfx [-h|--help] [--trim-whitespace] [--remove-whitespace] [--interleave] [--remove-duplicates [--keep-whitespace]] [--remove-xflip] [--remove-yflip] [--preserve indexes] [-d|--depth depth] [-p|--png filename.png] [-o|--out outfile] infile\n");
 }
 
 struct Options {
@@ -14,8 +14,8 @@ struct Options {
 	bool remove_yflip;
 	int *preserved;
 	int num_preserved;
-	char *png_file;
 	int depth;
+	char *png_file;
 	char *outfile;
 };
 
@@ -33,6 +33,7 @@ void parse_args(int argc, char *argv[]) {
 		{"preserve", required_argument, 0, 'r'},
 		{"png", required_argument, 0, 'p'},
 		{"depth", required_argument, 0, 'd'},
+		{"out", required_argument, 0, 'o'},
 		{"help", no_argument, 0, 'h'},
 		{0}
 	};
@@ -68,11 +69,11 @@ void parse_args(int argc, char *argv[]) {
 		case 'd':
 			options.depth = strtoul(optarg, NULL, 0);
 			break;
-		case 'o':
-			options.outfile = optarg;
-			break;
 		case 'p':
 			options.png_file = optarg;
+			break;
+		case 'o':
+			options.outfile = optarg;
 			break;
 		case 'h':
 			usage();
@@ -157,6 +158,7 @@ bool tile_exists(const uint8_t *tile, const uint8_t *tiles, int tile_size, int n
 		for (int j = 0; j < tile_size; j++) {
 			if (tile[j] != tiles[i * tile_size + j]) {
 				match = false;
+				break;
 			}
 		}
 		if (match) {
@@ -280,7 +282,7 @@ int main(int argc, char *argv[]) {
 	}
 	if (options.interleave) {
 		if (!options.png_file) {
-			error_exit("interleave: need --png to infer dimensions");
+			error_exit("--interleave needs --png to infer dimensions");
 		}
 		int width = read_png_width_verbose(options.png_file);
 		interleave(&graphic, width);
