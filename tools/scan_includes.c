@@ -1,8 +1,7 @@
-#include "common.h"
+#define PROGRAM_NAME "scan_includes"
+#define USAGE_OPTS "[-h|--help] [-s|--strict] filename.asm"
 
-void usage() {
-	fputs("Usage: scan_includes [-h|--help] [-s|--strict] filename.asm\n", stderr);
-}
+#include "common.h"
 
 void parse_args(int argc, char *argv[], bool *strict) {
 	struct option long_options[] = {
@@ -16,12 +15,10 @@ void parse_args(int argc, char *argv[], bool *strict) {
 			*strict = true;
 			break;
 		case 'h':
-			usage();
-			exit(0);
+			usage_exit(0);
 			break;
 		default:
-			usage();
-			exit(1);
+			usage_exit(1);
 		}
 	}
 }
@@ -95,8 +92,7 @@ int main(int argc, char *argv[]) {
 	argc -= optind;
 	argv += optind;
 	if (argc < 1) {
-		usage();
-		exit(1);
+		usage_exit(1);
 	}
 
 	scan_file(argv[0], strict);

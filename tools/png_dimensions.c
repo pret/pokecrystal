@@ -1,8 +1,7 @@
-#include "common.h"
+#define PROGRAM_NAME "png_dimensions"
+#define USAGE_OPTS "front.png front.dimensions"
 
-void usage() {
-	fputs("Usage: png_dimensions front.png front.dimensions\n", stderr);
-}
+#include "common.h"
 
 uint8_t read_png_dimensions(const char *filename) {
 	uint32_t width_px = read_png_width_verbose(filename);
@@ -15,8 +14,7 @@ uint8_t read_png_dimensions(const char *filename) {
 
 int main(int argc, char *argv[]) {
 	if (argc < 3) {
-		usage();
-		exit(1);
+		usage_exit(1);
 	}
 
 	uint8_t output_byte = read_png_dimensions(argv[1]);

@@ -1,13 +1,12 @@
+#define PROGRAM_NAME "pokemon_animation"
+#define USAGE_OPTS "[-h|--help] [-b|--bitmasks] [-f|--frames] front.animated.tilemap front.dimensions"
+
 #include "common.h"
 
 struct Options {
 	bool use_bitmasks;
 	bool use_frames;
 };
-
-void usage() {
-	fputs("Usage: pokemon_animation [-b|--bitmasks] [-f|--frames] front.animated.tilemap front.dimensions\n", stderr);
-}
 
 void parse_args(int argc, char *argv[], struct Options *options) {
 	struct option long_options[] = {
@@ -25,12 +24,10 @@ void parse_args(int argc, char *argv[], struct Options *options) {
 			options->use_frames = true;
 			break;
 		case 'h':
-			usage();
-			exit(0);
+			usage_exit(0);
 			break;
 		default:
-			usage();
-			exit(1);
+			usage_exit(1);
 		}
 	}
 }
@@ -175,8 +172,7 @@ int main(int argc, char *argv[]) {
 	argc -= optind;
 	argv += optind;
 	if (argc < 2) {
-		usage();
-		exit(1);
+		usage_exit(1);
 	}
 
 	int width;

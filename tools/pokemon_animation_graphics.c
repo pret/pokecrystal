@@ -1,3 +1,6 @@
+#define PROGRAM_NAME "pokemon_animation_graphics"
+#define USAGE_OPTS "[-h|--help] [-o|--output front.animated.2bpp] [-t|--tilemap front.animated.tilemap] [--girafarig] front.2bpp front.dimensions"
+
 #include "common.h"
 
 struct Options {
@@ -5,10 +8,6 @@ struct Options {
 	const char *map_filename;
 	bool girafarig;
 };
-
-void usage() {
-	fputs("Usage: pokemon_animation_graphics [-h|--help] [-o|--output front.animated.2bpp] [-t|--tilemap front.animated.tilemap] [--girafarig] front.2bpp front.dimensions\n", stderr);
-}
 
 void parse_args(int argc, char *argv[], struct Options *options) {
 	struct option long_options[] = {
@@ -30,12 +29,10 @@ void parse_args(int argc, char *argv[], struct Options *options) {
 			options->girafarig = true;
 			break;
 		case 'h':
-			usage();
-			exit(0);
+			usage_exit(0);
 			break;
 		default:
-			usage();
-			exit(1);
+			usage_exit(1);
 		}
 	}
 }
@@ -154,8 +151,7 @@ int main(int argc, char *argv[]) {
 	argc -= optind;
 	argv += optind;
 	if (argc < 2) {
-		usage();
-		exit(1);
+		usage_exit(1);
 	}
 
 	int width;

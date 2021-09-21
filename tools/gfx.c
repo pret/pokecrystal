@@ -1,8 +1,7 @@
-#include "common.h"
+#define PROGRAM_NAME "gfx"
+#define USAGE_OPTS "[-h|--help] [--trim-whitespace] [--remove-whitespace] [--interleave] [--remove-duplicates [--keep-whitespace]] [--remove-xflip] [--remove-yflip] [--preserve indexes] [-d|--depth depth] [-p|--png filename.png] [-o|--out outfile] infile"
 
-void usage(void) {
-	fprintf(stderr, "Usage: gfx [-h|--help] [--trim-whitespace] [--remove-whitespace] [--interleave] [--remove-duplicates [--keep-whitespace]] [--remove-xflip] [--remove-yflip] [--preserve indexes] [-d|--depth depth] [-p|--png filename.png] [-o|--out outfile] infile\n");
-}
+#include "common.h"
 
 struct Options {
 	bool trim_whitespace;
@@ -76,12 +75,10 @@ void parse_args(int argc, char *argv[]) {
 			options.outfile = optarg;
 			break;
 		case 'h':
-			usage();
-			exit(0);
+			usage_exit(0);
 			break;
 		default:
-			usage();
-			exit(1);
+			usage_exit(1);
 		}
 	}
 }
@@ -128,7 +125,7 @@ void trim_whitespace(struct Graphic *graphic) {
 	}
 }
 
-int get_tile_size() {
+int get_tile_size(void) {
 	return options.depth * (options.interleave ? 16 : 8);
 }
 
@@ -270,8 +267,7 @@ int main(int argc, char *argv[]) {
 	argc -= optind;
 	argv += optind;
 	if (argc < 1) {
-		usage();
-		exit(1);
+		usage_exit(1);
 	}
 
 	struct Graphic graphic;
