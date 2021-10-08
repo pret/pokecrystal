@@ -19,7 +19,7 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 - [**Documentation**][docs]
 - [**Wiki**][wiki] (includes [tutorials][tutorials])
 - **Discord:** [pret][discord]
-- **IRC:** [freenode#pret][irc]
+- **IRC:** [libera#pret][irc]
 
 Other disassembly projects:
 
@@ -44,6 +44,6 @@ Other disassembly projects:
 [wiki]: https://github.com/pret/pokecrystal/wiki
 [tutorials]: https://github.com/pret/pokecrystal/wiki/Tutorials
 [discord]: https://discord.gg/d5dubZ3
-[irc]: https://kiwiirc.com/client/irc.freenode.net/?#pret
+[irc]: https://web.libera.chat/?#pret
 [ci]: https://github.com/pret/pokecrystal/actions
 [ci-badge]: https://github.com/pret/pokecrystal/actions/workflows/main.yml/badge.svg
