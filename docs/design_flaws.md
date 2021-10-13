@@ -494,7 +494,7 @@ PokedexShow_GetDexEntryBank:
 
 **Fix:**
 
-Use `dba` instead of `dw` in `PokedexDataPointerTable`.
+Use `dba` instead of `dw` in `PokedexDataPointerTable`. Make sure to edit the `table_width` line to specify a width of 3 instead of 2.
 
 Delete `GetPokedexEntryBank` and `PokedexShow_GetDexEntryBank`. You can also delete `NUM_DEX_ENTRY_BANKS` from [constants/pokemon_data_constants.asm](https://github.com/pret/pokecrystal/blob/master/constants/pokemon_data_constants.asm).
 
