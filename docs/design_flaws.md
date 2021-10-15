@@ -340,12 +340,12 @@ NUM_TMS EQU const_value - TM01 - 2 ; discount ITEM_C3 and ITEM_DC
 > - $AA = 170: `POLKADOT_BOW` is for Jigglypuff
 > - $B4 = 180: `BRICK_PIECE` is for Machop
 >
-> Yellow was also being developed then, and it did the reverse, altering some catch rates to correspond to appropriate Gen 2 items:
+> Yellow was also being developed then, and it did the reverse, altering some Pokémon's data after they're caught to correspond to appropriate Gen 2 items:
 >
-> - Starter Pikachu's catch rate became 163 = $A3 for `LIGHT_BALL`
-> - Wild Kadabra's catch rate became 96 = $60 for `TWISTEDSPOON`
-> - Wild Dragonair's catch rate became 27 = $1B for `PROTEIN`
-> - Wild Dragonite's catch rate became 9 = $09 for `ANTIDOTE`
+> - Starter Pikachu's catch rate byte is overwritten with 163 = $A3 for `LIGHT_BALL`
+> - Wild-caught Kadabra's catch rate byte is overwritten with 96 = $60 for `TWISTEDSPOON`
+>
+> (Yellow also directly changed Dragonair's catch rate to 27 and Dragonite's to 9, but this seems to have been only for adjusting their difficulty, since those meaninglessly correspond to `PROTEIN` and `ANTIDOTE`.)
 >
 > Most catch rates were left as gaps in the item list, and transformed into held items via the `TimeCapsule_CatchRateItems` table in [data/items/catch_rate_items.asm](https://github.com/pret/pokecrystal/blob/master/data/items/catch_rate_items.asm). For example, the 52 Pokémon with catch rate 45 would hold the gap `ITEM_2D`, except that gets transformed into `BITTER_BERRY`.
 >
