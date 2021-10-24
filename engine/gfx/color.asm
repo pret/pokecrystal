@@ -1170,7 +1170,9 @@ INCLUDE "gfx/sgb/pal_packets.asm"
 INCLUDE "data/sgb_ctrl_packets.asm"
 
 PredefPals:
+	table_width PALETTE_SIZE, PredefPals
 INCLUDE "gfx/sgb/predef.pal"
+	assert_table_length NUM_PREDEF_PALS
 
 SGBBorderMapAndPalettes:
 ; interleaved tile ids and palette ids, without the center 20x18 screen area
