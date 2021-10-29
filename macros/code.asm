@@ -24,8 +24,8 @@ jumptable: MACRO
 ENDM
 
 maskbits: MACRO
-; masks just enough bits to cover the first argument
-; the second argument is an optional shift amount
+; masks just enough bits to cover values 0 to \1 - 1
+; \2 is an optional shift amount
 ; e.g. "maskbits 26" becomes "and %00011111" (since 26 - 1 = %00011001)
 ; and "maskbits 3, 2" becomes "and %00001100" (since "maskbits 3" becomes %00000011)
 ; example usage in rejection sampling:
