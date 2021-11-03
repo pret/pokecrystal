@@ -20265,7 +20265,7 @@
 28:472c LizGossipRandomScript.Salon
 28:4734 LizGossipRandomScript.Whitney
 28:473c LizGossipRandomScript.BugCatchingContest
-28:4744 LizGossipRandomScript.BeautifulMon
+28:4744 LizGossipRandomScript.BeautifulTrainer
 28:474c LizGossipRandomScript.Forgot
 28:4754 ChadOakGossipScript
 28:477e ChadOakGossipScript.Blue
@@ -35718,7 +35718,7 @@
 5d:6599 LizSalonGossipText
 5d:66ac LizWhitneyGossipText
 5d:674f LizBugCatchingContestGossipText
-5d:6816 LizBeautifulMonGossipText
+5d:6816 LizBeautifulTrainerGossipText
 5d:686d LizForgotGossipText
 5d:68b0 LizFawningOverMonText
 5d:69da LizReminderText
