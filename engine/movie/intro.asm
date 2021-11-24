@@ -1441,16 +1441,16 @@ endr
 hue = 31
 rept 8
 	RGB hue, hue, hue
-hue = hue - 1
+hue -= 1
 	RGB hue, hue, hue
-hue = hue - 2
+hue -= 2
 endr
 
 .SlowFadePalettes:
 hue = 31
 rept 16
 	RGB hue, hue, hue
-hue = hue - 1
+hue -= 1
 endr
 
 Intro_LoadTilemap:

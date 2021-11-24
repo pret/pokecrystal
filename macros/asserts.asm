@@ -29,7 +29,7 @@ ENDM
 li: MACRO
 	assert !STRIN(\1, "@"), STRCAT("String terminator \"@\" in list entry: ", \1)
 	db \1, "@"
-list_index = list_index + 1
+list_index += 1
 ENDM
 
 assert_list_length: MACRO

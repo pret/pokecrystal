@@ -38,7 +38,7 @@ maskbits: MACRO
 x = 1
 rept 8
 if x + 1 < (\1)
-x = x << 1 | 1
+x = (x << 1) | 1
 endc
 endr
 if _NARG == 2

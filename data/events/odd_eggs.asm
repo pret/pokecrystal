@@ -1,7 +1,7 @@
 NUM_ODD_EGGS EQU 14
 
 prob: MACRO
-prob_total = prob_total + (\1)
+prob_total += \1
 	dw prob_total * $ffff / 100
 ENDM
 

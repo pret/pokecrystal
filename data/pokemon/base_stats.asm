@@ -9,7 +9,7 @@ rept _NARG
 	if DEF(\1_TMNUM)
 n = (\1_TMNUM - 1) / 8
 i = (\1_TMNUM - 1) % 8
-_tm{d:n} = _tm{d:n} | (1 << i)
+_tm{d:n} |= 1 << i
 	else
 		fail "\1 is not a TM, HM, or tutor move"
 	endc

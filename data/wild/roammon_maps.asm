@@ -9,7 +9,7 @@ rept _NARG - 1
 	shift
 endr
 	db 0
-list_index = list_index + 1
+list_index += 1
 ENDM
 
 RoamMaps:
