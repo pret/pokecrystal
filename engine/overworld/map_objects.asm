@@ -2530,7 +2530,7 @@ _SetPlayerPalette:
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	ld a, [hl]
-	and $ff ^ PALETTE_MASK
+	and ~PALETTE_MASK
 	or d
 	ld [hl], a
 	ret
@@ -2895,7 +2895,7 @@ InitSprites:
 	ld hl, OBJECT_SPRITE_TILE
 	add hl, bc
 	ld a, [hl]
-	and $ff ^ (1 << 7)
+	and ~(1 << 7)
 	ldh [hCurSpriteTile], a
 	xor a
 	bit 7, [hl]

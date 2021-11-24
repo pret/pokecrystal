@@ -65,12 +65,12 @@ StatsScreenMain:
 ; ???
 	ld [wStatsScreenFlags], a
 	ld a, [wStatsScreenFlags]
-	and $ff ^ STAT_PAGE_MASK
+	and ~STAT_PAGE_MASK
 	or PINK_PAGE ; first_page
 	ld [wStatsScreenFlags], a
 .loop
 	ld a, [wJumptableIndex]
-	and $ff ^ (1 << 7)
+	and ~(1 << 7)
 	ld hl, StatsScreenPointerTable
 	rst JumpTable
 	call StatsScreen_WaitAnim
@@ -85,7 +85,7 @@ StatsScreenMobile:
 ; ???
 	ld [wStatsScreenFlags], a
 	ld a, [wStatsScreenFlags]
-	and $ff ^ STAT_PAGE_MASK
+	and ~STAT_PAGE_MASK
 	or PINK_PAGE ; first_page
 	ld [wStatsScreenFlags], a
 .loop
@@ -394,7 +394,7 @@ StatsScreen_JoypadAction:
 
 .set_page
 	ld a, [wStatsScreenFlags]
-	and $ff ^ STAT_PAGE_MASK
+	and ~STAT_PAGE_MASK
 	or c
 	ld [wStatsScreenFlags], a
 	ld h, 4

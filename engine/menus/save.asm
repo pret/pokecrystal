@@ -472,7 +472,7 @@ SaveOptions:
 	ld bc, wOptionsEnd - wOptions
 	call CopyBytes
 	ld a, [wOptions]
-	and $ff ^ (1 << NO_TEXT_SCROLL)
+	and ~(1 << NO_TEXT_SCROLL)
 	ld [sOptions], a
 	jp CloseSRAM
 
