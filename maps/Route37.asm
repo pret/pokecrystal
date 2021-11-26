@@ -69,15 +69,8 @@ SunnyScript:
 	promptbutton
 	setevent EVENT_MET_SUNNY_OF_SUNDAY
 .MetSunny:
-	checkflag ENGINE_PLAYER_IS_FEMALE
-	iftrue .Kris
-	writetext SunnyGivesGiftText1
+	writetext SunnyGivesGiftText
 	promptbutton
-	sjump .next
-.Kris:
-	writetext SunnyGivesGiftText2
-	promptbutton
-.next
 	verbosegiveitem MAGNET
 	iffalse SunnyDoneScript
 	setevent EVENT_GOT_MAGNET_FROM_SUNNY
@@ -179,13 +172,7 @@ MeetSunnyText:
 	cont "Sunday today!"
 	done
 
-SunnyGivesGiftText1:
-	text "I was told to give"
-	line "you this if I saw"
-	cont "you!"
-	done
-
-SunnyGivesGiftText2:
+SunnyGivesGiftText:
 	text "I was told to give"
 	line "you this if I saw"
 	cont "you!"

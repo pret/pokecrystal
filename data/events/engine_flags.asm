@@ -128,8 +128,6 @@ EngineFlags:
 
 	engine_flag wGameTimerPaused, GAME_TIMER_MOBILE_F
 
-	engine_flag wPlayerGender, PLAYERGENDER_FEMALE_F
-
 	engine_flag wCelebiEvent, CELEBIEVENT_FOREST_IS_RESTLESS_F
 
 	; rematches

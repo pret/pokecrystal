@@ -298,9 +298,12 @@ MagnetTrain_Jumptable:
 	ld a, BANK(wPlayerGender)
 	ldh [rSVBK], a
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a ; MALE
 	jr z, .got_gender
 	ld b, SPRITE_ANIM_INDEX_MAGNET_TRAIN_BLUE
+	dec a ; FEMALE
+	jr z, .got_gender
+	ld b, SPRITE_ANIM_INDEX_MAGNET_TRAIN_GREEN
 .got_gender
 	pop af
 	ldh [rSVBK], a

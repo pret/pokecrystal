@@ -35,3 +35,22 @@ FemalePlayerNameArray:
 	db "JODI@"
 	db 2 ; title indent
 	db " NAME @" ; title
+
+EnbyNameMenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 0, 10, TEXTBOX_Y - 1
+	dw .EnbyNames
+	db 1
+	db 0
+
+.EnbyNames:
+	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B ; flags
+	db 5 ; items
+	db "NEW NAME@"
+EnbyPlayerNameArray:
+	db "ARI@"
+	db "JORDYN@"
+	db "CHRYS@"
+	db "FRISK@"
+	db 2 ; title indent
+	db " NAME @" ; title

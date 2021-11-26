@@ -53,15 +53,18 @@ RefreshSprites::
 	ret
 
 GetPlayerSprite:
-; Get Chris or Kris's sprite.
+; Get Chris, Chrys, or Kris's sprite.
 	ld hl, ChrisStateSprites
 	ld a, [wPlayerSpriteSetupFlags]
 	bit PLAYERSPRITESETUP_FEMALE_TO_MALE_F, a
 	jr nz, .go
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a ; MALE
 	jr z, .go
 	ld hl, KrisStateSprites
+	dec a ; FEMALE
+	jr z, .go
+	ld hl, EnbyStateSprites
 
 .go
 	ld a, [wPlayerState]
@@ -346,9 +349,6 @@ AddSpriteGFX:
 	ret
 
 LoadSpriteGFX:
-; Bug: b is not preserved, so it's useless as a next count.
-; Uncomment the lines below to fix.
-
 	ld hl, wUsedSprites
 	ld b, SPRITE_GFX_LIST_CAPACITY
 .loop
@@ -366,9 +366,9 @@ LoadSpriteGFX:
 	ret
 
 .LoadSprite:
-	; push bc
+	push bc
 	call GetSprite
-	; pop bc
+	pop bc
 	ld a, l
 	ret
 

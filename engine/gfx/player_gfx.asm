@@ -1,14 +1,3 @@
-BetaLoadPlayerTrainerClass: ; unreferenced
-	ld c, CAL
-	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
-	jr z, .got_class
-	ld c, KAREN ; not KRIS?
-.got_class
-	ld a, c
-	ld [wTrainerClass], a
-	ret
-
 MovePlayerPicRight:
 	hlcoord 6, 4
 	ld de, 1
@@ -57,9 +46,12 @@ MovePlayerPic:
 ShowPlayerNamingChoices:
 	ld hl, ChrisNameMenuHeader
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a ; MALE
 	jr z, .got_header
 	ld hl, KrisNameMenuHeader
+	dec a ; FEMALE
+	jr z, .GotGender
+	ld hl, EnbyNameMenuHeader
 .got_header
 	call LoadMenuHeader
 	call VerticalMenu
@@ -71,34 +63,30 @@ ShowPlayerNamingChoices:
 
 INCLUDE "data/player_names.asm"
 
-GetPlayerNameArray: ; unreferenced
-	ld hl, wPlayerName
-	ld de, MalePlayerNameArray
-	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
-	jr z, .got_array
-	ld de, FemalePlayerNameArray
-.got_array
-	call InitName
-	ret
-
 GetPlayerIcon:
 	ld de, ChrisSpriteGFX
 	ld b, BANK(ChrisSpriteGFX)
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a ; MALE
 	jr z, .got_gfx
 	ld de, KrisSpriteGFX
 	ld b, BANK(KrisSpriteGFX)
+	dec a ; FEMALE
+	jr z, .done
+	ld de, EnbySpriteGFX
+	ld b, BANK(EnbySpriteGFX)
 .got_gfx
 	ret
 
 GetCardPic:
 	ld hl, ChrisCardPic
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a ; MALE
 	jr z, .got_pic
 	ld hl, KrisCardPic
+	dec a ; FEMALE
+	jr z, .got_class
+	ld hl, EnbyCardPic
 .got_pic
 	ld de, vTiles2 tile $00
 	ld bc, $23 tiles
@@ -117,14 +105,19 @@ INCBIN "gfx/trainer_card/chris_card.2bpp"
 KrisCardPic:
 INCBIN "gfx/trainer_card/kris_card.2bpp"
 
+EnbyCardPic:
+INCBIN "gfx/trainer_card/enby_card.2bpp"
+
 TrainerCardGFX:
 INCBIN "gfx/trainer_card/trainer_card.2bpp"
 
 GetPlayerBackpic:
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a ; MALE
 	jr z, GetChrisBackpic
-	call GetKrisBackpic
+	dec a ; FEMALE
+	jp z, GetKrisBackpic
+	call GetEnbyBackpic
 	ret
 
 GetChrisBackpic:
@@ -143,9 +136,12 @@ HOF_LoadTrainerFrontpic:
 ; Get class
 	ld e, CHRIS
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a ; MALE
 	jr z, .got_class
 	ld e, KRIS
+	dec a ; FEMALE
+	jr z, .got_class
+	ld e, CHRYS
 .got_class
 	ld a, e
 	ld [wTrainerClass], a
@@ -153,9 +149,13 @@ HOF_LoadTrainerFrontpic:
 ; Load pic
 	ld de, ChrisPic
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a ; MALE
 	jr z, .got_pic
 	ld de, KrisPic
+	dec a ; FEMALE
+	jr z, .got_pic
+	ld de, EnbyPic
+
 .got_pic
 	ld hl, vTiles2
 	ld b, BANK(ChrisPic) ; aka BANK(KrisPic)
@@ -173,9 +173,12 @@ DrawIntroPlayerPic:
 ; Get class
 	ld e, CHRIS
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a ; MALE
 	jr z, .got_class
 	ld e, KRIS
+	dec a ; FEMALE
+	jr z, .got_class
+	ld e, CHRYS
 .got_class
 	ld a, e
 	ld [wTrainerClass], a
@@ -183,9 +186,12 @@ DrawIntroPlayerPic:
 ; Load pic
 	ld de, ChrisPic
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a ; MALE
 	jr z, .got_pic
 	ld de, KrisPic
+	dec a ; FEMALE
+	jr z, .got_pic
+	ld de, EnbyPic
 .got_pic
 	ld hl, vTiles2
 	ld b, BANK(ChrisPic) ; aka BANK(KrisPic)
@@ -206,6 +212,9 @@ INCBIN "gfx/player/chris.2bpp"
 KrisPic:
 INCBIN "gfx/player/kris.2bpp"
 
+EnbyPic:
+INCBIN "gfx/player/enby.2bpp"
+
 GetKrisBackpic:
 ; Kris's backpic is uncompressed.
 	ld de, KrisBackpic
@@ -216,3 +225,13 @@ GetKrisBackpic:
 
 KrisBackpic:
 INCBIN "gfx/player/kris_back.2bpp"
+
+GetEnbyBackpic:
+	ld de, EnbyBackpic
+	ld hl, vTiles2 tile $31
+	lb bc, BANK(EnbyBackpic), 7 * 7 ; dimensions
+	call Get2bpp
+	ret
+
+EnbyBackpic:
+INCBIN "gfx/player/enby_back.2bpp"

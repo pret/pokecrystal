@@ -18,3 +18,24 @@ PackFGFXPointers:
 
 PackFGFX:
 INCBIN "gfx/pack/pack_f.2bpp"
+
+DrawEnbyPackGFX:
+	ld hl, PackNBGFXPointers
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	ld hl, vTiles2 tile $50
+	lb bc, BANK(PackNBGFX), 15
+	call Request2bpp
+	ret
+
+PackNBGFXPointers:
+	dw PackNBGFX + (15 tiles) * 1 ; ITEM_POCKET
+	dw PackNBGFX + (15 tiles) * 3 ; BALL_POCKET
+	dw PackNBGFX + (15 tiles) * 0 ; KEY_ITEM_POCKET
+	dw PackNBGFX + (15 tiles) * 2 ; TM_HM_POCKET
+
+PackNBGFX:
+INCBIN "gfx/pack/pack_nb.2bpp"
