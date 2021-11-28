@@ -409,7 +409,7 @@ KRIS EQU __trainer_class__
 	const WENDY
 	const LISA ; unused
 	const JILL ; unused
-	const MARY
+	const MARY ; unused
 	const KATIE ; unused
 	const DAWN
 	const TARA ; unused
