@@ -169,7 +169,7 @@ MAPOBJECT_SCREEN_HEIGHT EQU (SCREEN_HEIGHT / 2) + 2
 	const SPRITEMOVEDATA_SWIM_WANDER          ; 24
 NUM_SPRITEMOVEDATA EQU const_value
 
-; MapObjectMovementPattern.Pointers indexes (see engine/overworld/map_objects.asm)
+; StepFunction_FromMovement.Pointers indexes (see engine/overworld/map_objects.asm)
 	const_def
 	const SPRITEMOVEFN_00                    ; 00
 	const SPRITEMOVEFN_RANDOM_WALK_Y         ; 01
