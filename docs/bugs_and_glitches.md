@@ -51,7 +51,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Glacier Badge may not boost Special Defense depending on the value of Special Attack](#glacier-badge-may-not-boost-special-defense-depending-on-the-value-of-special-attack)
   - ["Smart" AI encourages Mean Look if its own Pokémon is badly poisoned](#smart-ai-encourages-mean-look-if-its-own-pokémon-is-badly-poisoned)
   - ["Smart" AI discourages Conversion2 after the first turn](#smart-ai-discourages-conversion2-after-the-first-turn)
-  - ["Smart" AI does not encourage Solar Beam, Flame Wheel, or Moonlight during Sunny Day](#smart-ai-does-not-encourage-solar-beam-flame-wheel-or-moonlight-during-sunny-day)
+  - ["Smart" AI does not encourage Solar Beam, Flame Wheel, and Moonlight during Sunny Day](#smart-ai-does-not-encourage-solar-beam-flame-wheel-and-moonlight-during-sunny-day)
   - [AI does not discourage Future Sight when it's already been used](#ai-does-not-discourage-future-sight-when-its-already-been-used)
   - [AI makes a false assumption about `CheckTypeMatchup`](#ai-makes-a-false-assumption-about-checktypematchup)
   - [AI use of Full Heal or Full Restore does not cure Nightmare status](#ai-use-of-full-heal-or-full-restore-does-not-cure-nightmare-status)
@@ -71,6 +71,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Using a Park Ball in non-Contest battles has a corrupt animation](#using-a-park-ball-in-non-contest-battles-has-a-corrupt-animation)
   - [Battle transitions fail to account for the enemy's level](#battle-transitions-fail-to-account-for-the-enemys-level)
   - [Some trainer NPCs have inconsistent overworld sprites](#some-trainer-npcs-have-inconsistent-overworld-sprites)
+  - [A hatching Unown egg would not show the right letter](#a-hatching-unown-egg-would-not-show-the-right-letter)
 - [Audio](#audio)
   - [Slot machine payout sound effects cut each other off](#slot-machine-payout-sound-effects-cut-each-other-off)
   - [Team Rocket battle music is not used for Executives or Scientists](#team-rocket-battle-music-is-not-used-for-executives-or-scientists)
@@ -98,7 +99,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [`TryObjectEvent` arbitrary code execution](#tryobjectevent-arbitrary-code-execution)
   - [`ReadObjectEvents` overflows into `wObjectMasks`](#readobjectevents-overflows-into-wobjectmasks)
   - [`ClearWRAM` only clears WRAM bank 1](#clearwram-only-clears-wram-bank-1)
-  - [`BattleAnimCmd_ClearObjs` only clears the first 6⅔ objects](#battleanimcmd_clearobjs-only-clears-the-first-6⅔-objects)
+  - [`BattleAnimCmd_ClearObjs` only clears the first 6⅔ objects](#battleanimcmd_clearobjs-only-clears-the-first-6-objects)
 
 
 ## Multi-player battle engine
@@ -1736,6 +1737,39 @@ Most of the NPCs in [maps/NationalParkBugContest.asm](https://github.com/pret/po
 (Note that [maps/Route8.asm](https://github.com/pret/pokecrystal/blob/master/maps/Route8.asm) has three `BIKER`s, `DWAYNE`, `HARRIS`, and `ZEKE`, that use `PAL_NPC_RED`, `PAL_NPC_GREEN`, and `PAL_NPC_BLUE` instead of `PAL_NPC_BROWN`; this is intentional since they're the "Kanto Pokémon Federation".)
 
 (The use of `SPRITE_ROCKER` instead of `SPRITE_COOLTRAINER_M` for `COOLTRAINERM NICK` may also be an intentional reference to the player's brother from the [Space World '97 beta](https://github.com/pret/pokegold-spaceworld).)
+
+
+### A hatching Unown egg would not show the right letter
+
+This happens because both `GetEggFrontpic` and `GetHatchlingFrontpic` use `wBattleMonDVs`, but that's not initialized. They should use the `wCurPartyMon`th `wPartyMon#DVs` instead.
+
+**Fix:** Edit both functions in [engine/pokemon/breeding.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/breeding.asm):
+
+```diff
+ GetEggFrontpic:
+	push de
+	ld [wCurPartySpecies], a
+	ld [wCurSpecies], a
+	call GetBaseData
+-	ld hl, wBattleMonDVs
++	ld a, MON_DVS
++	call GetPartyParamLocation
+	predef GetUnownLetter
+	pop de
+	predef_jump GetMonFrontpic
+
+ GetHatchlingFrontpic:
+	push de
+	ld [wCurPartySpecies], a
+	ld [wCurSpecies], a
+	call GetBaseData
+-	ld hl, wBattleMonDVs
++	ld a, MON_DVS
++	call GetPartyParamLocation
+	predef GetUnownLetter
+	pop de
+	predef_jump GetAnimatedFrontpic
+```
 
 
 ## Audio
