@@ -51,7 +51,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Glacier Badge may not boost Special Defense depending on the value of Special Attack](#glacier-badge-may-not-boost-special-defense-depending-on-the-value-of-special-attack)
   - ["Smart" AI encourages Mean Look if its own Pokémon is badly poisoned](#smart-ai-encourages-mean-look-if-its-own-pokémon-is-badly-poisoned)
   - ["Smart" AI discourages Conversion2 after the first turn](#smart-ai-discourages-conversion2-after-the-first-turn)
-  - ["Smart" AI does not encourage Solar Beam, Flame Wheel, and Moonlight during Sunny Day](#smart-ai-does-not-encourage-solar-beam-flame-wheel-and-moonlight-during-sunny-day)
+  - ["Smart" AI does not encourage Solar Beam, Flame Wheel, or Moonlight during Sunny Day](#smart-ai-does-not-encourage-solar-beam-flame-wheel-or-moonlight-during-sunny-day)
   - [AI does not discourage Future Sight when it's already been used](#ai-does-not-discourage-future-sight-when-its-already-been-used)
   - [AI makes a false assumption about `CheckTypeMatchup`](#ai-makes-a-false-assumption-about-checktypematchup)
   - [AI use of Full Heal or Full Restore does not cure Nightmare status](#ai-use-of-full-heal-or-full-restore-does-not-cure-nightmare-status)
@@ -1117,7 +1117,7 @@ As Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") impli
 ```
 
 
-### "Smart" AI does not encourage Solar Beam, Flame Wheel, and Moonlight during Sunny Day
+### "Smart" AI does not encourage Solar Beam, Flame Wheel, or Moonlight during Sunny Day
 
 **Fix:** Edit `SunnyDayMoves` in [data/battle/ai/sunny_day_moves.asm](https://github.com/pret/pokecrystal/blob/master/data/battle/ai/sunny_day_moves.asm):
 
@@ -1741,7 +1741,7 @@ Most of the NPCs in [maps/NationalParkBugContest.asm](https://github.com/pret/po
 
 ### A hatching Unown egg would not show the right letter
 
-This happens because both `GetEggFrontpic` and `GetHatchlingFrontpic` use `wBattleMonDVs`, but that's not initialized. They should use the `wCurPartyMon`th `wPartyMon#DVs` instead.
+This happens because both `GetEggFrontpic` and `GetHatchlingFrontpic` use `wBattleMonDVs`, but that's not initialized. They should use the current party mon's DVs instead.
 
 **Fix:** Edit both functions in [engine/pokemon/breeding.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/breeding.asm):
 
