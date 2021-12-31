@@ -1254,6 +1254,8 @@ SunnyDayMoves:
 -	; Uncomment the 2 lines below to fix
 -	; ld hl, wEnemySubStatus1
 -	; res SUBSTATUS_NIGHTMARE, [hl]
++	ld hl, wEnemySubStatus1
++	res SUBSTATUS_NIGHTMARE, [hl]
 -	; Bug: this should reset SUBSTATUS_CONFUSED
 -	; Uncomment the 2 lines below to fix
 -	; ld hl, wEnemySubStatus3
