@@ -68,6 +68,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [In-battle “`…`” ellipsis is too high](#in-battle--ellipsis-is-too-high)
   - [Two tiles in the `port` tileset are drawn incorrectly](#two-tiles-in-the-port-tileset-are-drawn-incorrectly)
   - [The Ruins of Alph research center's roof color at night looks wrong](#the-ruins-of-alph-research-centers-roof-color-at-night-looks-wrong)
+  - [A hatching Unown egg would not show the right letter](#a-hatching-unown-egg-would-not-show-the-right-letter)
   - [Using a Park Ball in non-Contest battles has a corrupt animation](#using-a-park-ball-in-non-contest-battles-has-a-corrupt-animation)
   - [Battle transitions fail to account for the enemy's level](#battle-transitions-fail-to-account-for-the-enemys-level)
   - [Some trainer NPCs have inconsistent overworld sprites](#some-trainer-npcs-have-inconsistent-overworld-sprites)
@@ -98,7 +99,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [`TryObjectEvent` arbitrary code execution](#tryobjectevent-arbitrary-code-execution)
   - [`ReadObjectEvents` overflows into `wObjectMasks`](#readobjectevents-overflows-into-wobjectmasks)
   - [`ClearWRAM` only clears WRAM bank 1](#clearwram-only-clears-wram-bank-1)
-  - [`BattleAnimCmd_ClearObjs` only clears the first 6⅔ objects](#battleanimcmd_clearobjs-only-clears-the-first-6⅔-objects)
+  - [`BattleAnimCmd_ClearObjs` only clears the first 6⅔ objects](#battleanimcmd_clearobjs-only-clears-the-first-6-objects)
 
 
 ## Multi-player battle engine
@@ -687,7 +688,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
  	push de
 -.colosseum_skippush
 -
-	call BattleCommand_Stab
+ 	call BattleCommand_Stab
 -
 -	ld a, [wLinkMode]
 -	cp LINK_COLOSSEUM
@@ -1116,7 +1117,7 @@ As Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") impli
 ```
 
 
-### "Smart" AI does not encourage Solar Beam, Flame Wheel, and Moonlight during Sunny Day
+### "Smart" AI does not encourage Solar Beam, Flame Wheel, or Moonlight during Sunny Day
 
 **Fix:** Edit `SunnyDayMoves` in [data/battle/ai/sunny_day_moves.asm](https://github.com/pret/pokecrystal/blob/master/data/battle/ai/sunny_day_moves.asm):
 
@@ -1204,12 +1205,12 @@ SunnyDayMoves:
 -	; res SUBSTATUS_NIGHTMARE, [hl]
 +	ld hl, wEnemySubStatus1
 +	res SUBSTATUS_NIGHTMARE, [hl]
-	; Bug: this should reset SUBSTATUS_CONFUSED
-	; Uncomment the 2 lines below to fix
-	; ld hl, wEnemySubStatus3
-	; res SUBSTATUS_CONFUSED, [hl]
- 	ld hl, wEnemySubStatus5
- 	res SUBSTATUS_TOXIC, [hl]
+-	; Bug: this should reset SUBSTATUS_CONFUSED
+-	; Uncomment the 2 lines below to fix
+-	; ld hl, wEnemySubStatus3
+-	; res SUBSTATUS_CONFUSED, [hl]
++	ld hl, wEnemySubStatus5
++	res SUBSTATUS_TOXIC, [hl]
  	ret
 ```
 
@@ -1249,10 +1250,12 @@ SunnyDayMoves:
  	xor a
  	ld [hl], a
  	ld [wEnemyMonStatus], a
-	; Bug: this should reset SUBSTATUS_NIGHTMARE
-	; Uncomment the 2 lines below to fix
-	; ld hl, wEnemySubStatus1
-	; res SUBSTATUS_NIGHTMARE, [hl]
+-	; Bug: this should reset SUBSTATUS_NIGHTMARE
+-	; Uncomment the 2 lines below to fix
+-	; ld hl, wEnemySubStatus1
+-	; res SUBSTATUS_NIGHTMARE, [hl]
++	ld hl, wEnemySubStatus1
++	res SUBSTATUS_NIGHTMARE, [hl]
 -	; Bug: this should reset SUBSTATUS_CONFUSED
 -	; Uncomment the 2 lines below to fix
 -	; ld hl, wEnemySubStatus3
@@ -1537,6 +1540,39 @@ The dungeons' map group mostly has indoor maps that don't need roof colors, but 
 ![image](https://raw.githubusercontent.com/pret/pokecrystal/master/docs/images/ruins_of_alph_outside_cinnabar.png)
 
 
+### A hatching Unown egg would not show the right letter
+
+This happens because both `GetEggFrontpic` and `GetHatchlingFrontpic` use `wBattleMonDVs`, but that's not initialized. They should use the current party mon's DVs instead.
+
+**Fix:** Edit both functions in [engine/pokemon/breeding.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/breeding.asm):
+
+```diff
+ GetEggFrontpic:
+ 	push de
+ 	ld [wCurPartySpecies], a
+ 	ld [wCurSpecies], a
+ 	call GetBaseData
+-	ld hl, wBattleMonDVs
++	ld a, MON_DVS
++	call GetPartyParamLocation
+ 	predef GetUnownLetter
+ 	pop de
+ 	predef_jump GetMonFrontpic
+
+ GetHatchlingFrontpic:
+ 	push de
+ 	ld [wCurPartySpecies], a
+ 	ld [wCurSpecies], a
+ 	call GetBaseData
+-	ld hl, wBattleMonDVs
++	ld a, MON_DVS
++	call GetPartyParamLocation
+ 	predef GetUnownLetter
+ 	pop de
+ 	predef_jump GetAnimatedFrontpic
+```
+
+
 ### Using a Park Ball in non-Contest battles has a corrupt animation
 
 ([Video](https://www.youtube.com/watch?v=v1ErZdLCIyU))
@@ -1596,7 +1632,7 @@ First, edit [engine/battle/battle_transition.asm](https://github.com/pret/pokecr
 +.okay
 +	ld de, MON_LEVEL - MON_HP - 1
 +	add hl, de
-	ld de, 0
+ 	ld de, 0
 -	ld a, [wBattleMonLevel]
 +	ld a, [hl]
  	add 3
