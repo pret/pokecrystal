@@ -68,10 +68,10 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [In-battle “`…`” ellipsis is too high](#in-battle--ellipsis-is-too-high)
   - [Two tiles in the `port` tileset are drawn incorrectly](#two-tiles-in-the-port-tileset-are-drawn-incorrectly)
   - [The Ruins of Alph research center's roof color at night looks wrong](#the-ruins-of-alph-research-centers-roof-color-at-night-looks-wrong)
+  - [A hatching Unown egg would not show the right letter](#a-hatching-unown-egg-would-not-show-the-right-letter)
   - [Using a Park Ball in non-Contest battles has a corrupt animation](#using-a-park-ball-in-non-contest-battles-has-a-corrupt-animation)
   - [Battle transitions fail to account for the enemy's level](#battle-transitions-fail-to-account-for-the-enemys-level)
   - [Some trainer NPCs have inconsistent overworld sprites](#some-trainer-npcs-have-inconsistent-overworld-sprites)
-  - [A hatching Unown egg would not show the right letter](#a-hatching-unown-egg-would-not-show-the-right-letter)
 - [Audio](#audio)
   - [Slot machine payout sound effects cut each other off](#slot-machine-payout-sound-effects-cut-each-other-off)
   - [Team Rocket battle music is not used for Executives or Scientists](#team-rocket-battle-music-is-not-used-for-executives-or-scientists)
@@ -688,7 +688,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
  	push de
 -.colosseum_skippush
 -
-	call BattleCommand_Stab
+ 	call BattleCommand_Stab
 -
 -	ld a, [wLinkMode]
 -	cp LINK_COLOSSEUM
@@ -1205,10 +1205,10 @@ SunnyDayMoves:
 -	; res SUBSTATUS_NIGHTMARE, [hl]
 +	ld hl, wEnemySubStatus1
 +	res SUBSTATUS_NIGHTMARE, [hl]
-	; Bug: this should reset SUBSTATUS_CONFUSED
-	; Uncomment the 2 lines below to fix
-	; ld hl, wEnemySubStatus3
-	; res SUBSTATUS_CONFUSED, [hl]
+-	; Bug: this should reset SUBSTATUS_CONFUSED
+-	; Uncomment the 2 lines below to fix
+-	; ld hl, wEnemySubStatus3
+-	; res SUBSTATUS_CONFUSED, [hl]
  	ld hl, wEnemySubStatus5
  	res SUBSTATUS_TOXIC, [hl]
  	ret
@@ -1250,10 +1250,10 @@ SunnyDayMoves:
  	xor a
  	ld [hl], a
  	ld [wEnemyMonStatus], a
-	; Bug: this should reset SUBSTATUS_NIGHTMARE
-	; Uncomment the 2 lines below to fix
-	; ld hl, wEnemySubStatus1
-	; res SUBSTATUS_NIGHTMARE, [hl]
+-	; Bug: this should reset SUBSTATUS_NIGHTMARE
+-	; Uncomment the 2 lines below to fix
+-	; ld hl, wEnemySubStatus1
+-	; res SUBSTATUS_NIGHTMARE, [hl]
 -	; Bug: this should reset SUBSTATUS_CONFUSED
 -	; Uncomment the 2 lines below to fix
 -	; ld hl, wEnemySubStatus3
@@ -1538,6 +1538,39 @@ The dungeons' map group mostly has indoor maps that don't need roof colors, but 
 ![image](https://raw.githubusercontent.com/pret/pokecrystal/master/docs/images/ruins_of_alph_outside_cinnabar.png)
 
 
+### A hatching Unown egg would not show the right letter
+
+This happens because both `GetEggFrontpic` and `GetHatchlingFrontpic` use `wBattleMonDVs`, but that's not initialized. They should use the current party mon's DVs instead.
+
+**Fix:** Edit both functions in [engine/pokemon/breeding.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/breeding.asm):
+
+```diff
+ GetEggFrontpic:
+ 	push de
+ 	ld [wCurPartySpecies], a
+ 	ld [wCurSpecies], a
+ 	call GetBaseData
+-	ld hl, wBattleMonDVs
++	ld a, MON_DVS
++	call GetPartyParamLocation
+ 	predef GetUnownLetter
+ 	pop de
+ 	predef_jump GetMonFrontpic
+
+ GetHatchlingFrontpic:
+ 	push de
+ 	ld [wCurPartySpecies], a
+ 	ld [wCurSpecies], a
+ 	call GetBaseData
+-	ld hl, wBattleMonDVs
++	ld a, MON_DVS
++	call GetPartyParamLocation
+ 	predef GetUnownLetter
+ 	pop de
+ 	predef_jump GetAnimatedFrontpic
+```
+
+
 ### Using a Park Ball in non-Contest battles has a corrupt animation
 
 ([Video](https://www.youtube.com/watch?v=v1ErZdLCIyU))
@@ -1597,7 +1630,7 @@ First, edit [engine/battle/battle_transition.asm](https://github.com/pret/pokecr
 +.okay
 +	ld de, MON_LEVEL - MON_HP - 1
 +	add hl, de
-	ld de, 0
+ 	ld de, 0
 -	ld a, [wBattleMonLevel]
 +	ld a, [hl]
  	add 3
@@ -1737,39 +1770,6 @@ Most of the NPCs in [maps/NationalParkBugContest.asm](https://github.com/pret/po
 (Note that [maps/Route8.asm](https://github.com/pret/pokecrystal/blob/master/maps/Route8.asm) has three `BIKER`s, `DWAYNE`, `HARRIS`, and `ZEKE`, that use `PAL_NPC_RED`, `PAL_NPC_GREEN`, and `PAL_NPC_BLUE` instead of `PAL_NPC_BROWN`; this is intentional since they're the "Kanto Pokémon Federation".)
 
 (The use of `SPRITE_ROCKER` instead of `SPRITE_COOLTRAINER_M` for `COOLTRAINERM NICK` may also be an intentional reference to the player's brother from the [Space World '97 beta](https://github.com/pret/pokegold-spaceworld).)
-
-
-### A hatching Unown egg would not show the right letter
-
-This happens because both `GetEggFrontpic` and `GetHatchlingFrontpic` use `wBattleMonDVs`, but that's not initialized. They should use the current party mon's DVs instead.
-
-**Fix:** Edit both functions in [engine/pokemon/breeding.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/breeding.asm):
-
-```diff
- GetEggFrontpic:
-	push de
-	ld [wCurPartySpecies], a
-	ld [wCurSpecies], a
-	call GetBaseData
--	ld hl, wBattleMonDVs
-+	ld a, MON_DVS
-+	call GetPartyParamLocation
-	predef GetUnownLetter
-	pop de
-	predef_jump GetMonFrontpic
-
- GetHatchlingFrontpic:
-	push de
-	ld [wCurPartySpecies], a
-	ld [wCurSpecies], a
-	call GetBaseData
--	ld hl, wBattleMonDVs
-+	ld a, MON_DVS
-+	call GetPartyParamLocation
-	predef GetUnownLetter
-	pop de
-	predef_jump GetAnimatedFrontpic
-```
 
 
 ## Audio
