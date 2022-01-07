@@ -3982,7 +3982,7 @@ InitEnemyMon:
 	ld [de], a
 	ld hl, wBaseStats
 	ld de, wEnemyMonBaseStats
-	ld b, 5
+	ld b, wBaseSpecialDefense - wBaseStats
 .loop
 	ld a, [hli]
 	ld [de], a
