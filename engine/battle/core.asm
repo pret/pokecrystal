@@ -3980,9 +3980,10 @@ InitEnemyMon:
 	inc de
 	ld a, [hl]
 	ld [de], a
+; The enemy mon's base Sp. Def isn't needed since its base Sp. Atk is also used to calculate Sp. Def stat experience.
 	ld hl, wBaseStats
 	ld de, wEnemyMonBaseStats
-	ld b, wBaseSpecialDefense - wBaseStats
+	ld b, NUM_STATS -1
 .loop
 	ld a, [hli]
 	ld [de], a
@@ -6364,10 +6365,11 @@ LoadEnemyMon:
 	call CopyBytes
 
 .Finish:
-; Only the first five base stats are copied..
+; Only the first five base stats are copied since the enemy mon's base Sp. Atk
+; is also used to calculate Sp. Def stat experience.
 	ld hl, wBaseStats
 	ld de, wEnemyMonBaseStats
-	ld b, wBaseSpecialDefense - wBaseStats
+	ld b, NUM_STATS - 1
 .loop
 	ld a, [hli]
 	ld [de], a
