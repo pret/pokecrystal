@@ -1271,9 +1271,9 @@ PokegearPhoneContactSubmenu:
 
 GetAMPMHours: ; unreferenced
 	ldh a, [hHours]
-	cp 12
+	cp NOON_HOUR
 	jr c, .am
-	sub 12
+	sub NOON_HOUR
 	ld [wTempByteValue], a
 	scf
 	ret

@@ -1083,7 +1083,7 @@ Function1006dc:
 	ldh a, [hHours]
 	sbc c
 	jr nc, .asm_1006fb
-	add $18
+	add MAX_HOUR
 
 .asm_1006fb
 	ld [de], a
