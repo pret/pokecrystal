@@ -37,6 +37,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Dragon Scale, not Dragon Fang, boosts Dragon-type moves](#dragon-scale-not-dragon-fang-boosts-dragon-type-moves)
   - [HP bar animation is slow for high HP](#hp-bar-animation-is-slow-for-high-hp)
   - [HP bar animation off-by-one error for low HP](#hp-bar-animation-off-by-one-error-for-low-hp)
+  - [Switching out or switching against a Pokémon with max HP below 4 freezes the game](#switching-out-or-switching-against-a-pokémon-with-max-HP-below-4-freezes-the-game)
   - [Moves that do damage and increase your stats do not increase stats after a KO](#moves-that-do-damage-and-increase-your-stats-do-not-increase-stats-after-a-ko)
 - [Single-player battle engine](#single-player-battle-engine)
   - [A Transformed Pokémon can use Sketch and learn otherwise unobtainable moves](#a-transformed-pokémon-can-use-sketch-and-learn-otherwise-unobtainable-moves)
@@ -769,6 +770,126 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
  	inc b
  	jr .loop
 ```
+
+### Switching out or switching against a Pokémon with max HP below 4 freezes the game
+
+This happens because switching involves calculating a percentage of maximum enemy HP. Directly calculating _HP × 100 / max HP_ would require a two-byte denominator, so instead the game calculates _HP × 25 / (max HP / 4)_, since even a maximum HP of 999 divided by 4 is 249, which fits in one byte. However, if the maximum HP is below 4 this will divide by 0, which enters an infinite loop in `_Divide`.
+
+**Fix:** First, edit `SendOutMonText` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
+
+```diff
+ SendOutMonText:
+	...
+
+ .not_linked
+-; Depending on the HP of the enemy mon, the game prints a different text
++; Depending on the remaining HP of the enemy mon, 
++; the game prints a different text
+	ld hl, wEnemyMonHP
+	ld a, [hli]
+	or [hl]
+	ld hl, GoMonText
+	jr z, .skip_to_textbox
+
+-; compute enemy helth remaining as a percentage
++; compute enemy health remaining as a percentage
+ 	xor a
+ 	ldh [hMultiplicand + 0], a
+ 	ld hl, wEnemyMonHP
+ 	ld a, [hli]
+ 	ld [wEnemyHPAtTimeOfPlayerSwitch], a
+ 	ldh [hMultiplicand + 1], a
+ 	ld a, [hl]
+ 	ld [wEnemyHPAtTimeOfPlayerSwitch + 1], a
+ 	ldh [hMultiplicand + 2], a
+-	ld a, 25
+-	ldh [hMultiplier], a
+-	call Multiply
+ 	ld hl, wEnemyMonMaxHP
+ 	ld a, [hli]
+ 	ld b, [hl]
+-	srl a
+-	rr b
+-	srl a
+-	rr b
++	ld c, 100
++	and a
++	jr z, .shift_done
++.shift
++	rra
++	rr b
++	srl c
++	and a
++	jr nz, .shift
++.shift_done
++	ld a, c
++	ldh [hMultiplier], a
++	call Multiply
+ 	ld a, b
+ 	ld b, 4
+ 	ldh [hDivisor], a
+ 	call Divide
+	...
+```
+
+Then edit `WithdrawMonText`:
+
+```diff
+ WithdrawMonText:
+	...
+
+-; Print text to withdraw mon
+-; depending on HP the message is different
++; Print text to withdraw mon. The message
++; changes depending on how much HP the enemy mon 
++; has lost since the last switch (from either 
++; the player's or the opponent's side)
+	push de
+	push bc
+	ld hl, wEnemyMonHP + 1
+ 	ld de, wEnemyHPAtTimeOfPlayerSwitch + 1
+ 	ld b, [hl]
+ 	dec hl
+ 	ld a, [de]
+ 	sub b
+ 	ldh [hMultiplicand + 2], a
+ 	dec de
+ 	ld b, [hl]
+ 	ld a, [de]
+ 	sbc b
+ 	ldh [hMultiplicand + 1], a
+-	ld a, 25
+-	ldh [hMultiplier], a
+-	call Multiply
+ 	ld hl, wEnemyMonMaxHP
+ 	ld a, [hli]
+ 	ld b, [hl]
+-	srl a
+-	rr b
+-	srl a
+-	rr b
++	ld c, 100
++	and a
++	jr z, .shift_done
++.shift
++	rra
++	rr b
++	srl c
++	and a
++	jr nz, .shift
++.shift_done
++	ld a, c
++	ldh [hMultiplier], a
++	call Multiply
+ 	ld a, b
+ 	ld b, 4
+ 	ldh [hDivisor], a
+ 	call Divide
+	...
+```
+
+This changes both calculations to _HP × (100 / N) / (max HP / N)_ for the smallest necessary _N_, which will be at least 1, so it avoids dividing by zero and is also more accurate.
+
 
 ### Moves that do damage and increase your stats do not increase stats after a KO
 
