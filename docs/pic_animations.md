@@ -7,7 +7,7 @@ Pic animations are assembled in 3 parts:
 - Top-level animations:
    - <code>frame <i>N</i>, <i>duration</i></code>: Frame #0 is the original pic (no change)
    - <code>setrepeat <i>N</i></code>: Sets the number of times to repeat
-   - <code>dorepeat <i>I</i></code>: Repeats from command #<i>I</i> (starting from 0)
+   - <code>dorepeat <i>I</i></code>: Repeats from command #<i>I</i> (with the first command being #0)
    - `end`
 
 - Bitmasks:
