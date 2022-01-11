@@ -7637,7 +7637,7 @@ SendOutMonText:
 	ld hl, GoMonText
 	jr z, .skip_to_textbox
 
-	; compute enemy helth remaining as a percentage
+	; compute enemy health remaining as a percentage
 	xor a
 	ldh [hMultiplicand + 0], a
 	ld hl, wEnemyMonHP
@@ -7712,10 +7712,10 @@ WithdrawMonText:
 .WithdrawMonText:
 	text_far _BattleMonNickCommaText
 	text_asm
-; Print text to withdraw mon
-; depending on HP the message is different
+; Depending on the HP lost since the enemy mon was sent out, the game prints a different text
 	push de
 	push bc
+	; compute enemy health lost as a percentage
 	ld hl, wEnemyMonHP + 1
 	ld de, wEnemyHPAtTimeOfPlayerSwitch + 1
 	ld b, [hl]
