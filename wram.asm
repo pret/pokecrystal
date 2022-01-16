@@ -1195,7 +1195,7 @@ wc983:: dw
 wc985:: db
 wc986:: db
 wc987:: db
-wc988:: db
+wMobileAPIIndex:: db
 wc989:: db
 wc98a:: db
 wc98b:: db

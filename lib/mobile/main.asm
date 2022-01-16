@@ -88,40 +88,40 @@ ResetReceivePacketBuffer:
 	ld [hl], a
 	ret
 
-Function110030::
-; Use the byte at wc988 as a parameter
+_MobileAPI::
+; Use the byte at wMobileAPIIndex as a parameter
 ; for a dw.
-; If [wc988] not in {12, 14, 16},
+; If [wMobileAPIIndex] not in {MOBILEAPI_06, MOBILEAPI_07, MOBILEAPI_08},
 ; clear [wc835].
 	push de
-	ld a, [wc988]
-	cp $0c
+	ld a, [wMobileAPIIndex]
+	cp MOBILEAPI_06
 	jr z, .noreset
-	cp $0e
+	cp MOBILEAPI_07
 	jr z, .noreset
-	cp $10
+	cp MOBILEAPI_08
 	jr z, .noreset
 	xor a
 	ld [wc835], a
-	ld a, [wc988]
+	ld a, [wMobileAPIIndex]
 .noreset
 	; Get the pointer
 	ld d, 0
 	ld e, a
 	ld hl, .dw
 	add hl, de
-	; Store the low byte in [wc988]
+	; Store the low byte in [wMobileAPIIndex]
 	ld a, [hli]
-	ld [wc988], a
+	ld [wMobileAPIIndex], a
 	ld a, [hl]
 	; restore de
 	pop de
-	ld hl, Function3e60 ; return here
+	ld hl, ReturnMobileAPI ; return here
 	push hl
 	; If the destination function is not Function110236,
 	; call Function1100b4.
 	ld h, a
-	ld a, [wc988]
+	ld a, [wMobileAPIIndex]
 	ld l, a
 	push hl
 	ld a, LOW(Function110236)
@@ -135,7 +135,7 @@ Function110030::
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ret ; indirectly jump to the function loaded from the dw, which returns to Function3e60.
+	ret ; indirectly jump to the function loaded from the dw, which returns to ReturnMobileAPI.
 
 .dw
 	dw Function110115
@@ -162,7 +162,7 @@ Function110030::
 	dw Function110ddd
 	dw Function1111fe
 	dw Function1113fe
-	dw Function1100dc
+	dw MobileAPI_SetTimer
 	dw Function111541
 	dw Function111596
 	dw Function11162d
@@ -201,7 +201,7 @@ Function1100b4:
 	pop bc
 	ret
 
-Function1100dc:
+MobileAPI_SetTimer:
 	xor a
 	ldh [rTAC], a
 	ld e, c
@@ -231,10 +231,10 @@ Function1100dc:
 	ld a, [hl]
 	ld [wc820], a
 	ld [wc815], a
-	ld c, $7
-	ld a, $2
+	ld c, LOW(rTAC)
+	ld a, rTAC_65536_HZ
 	ldh [c], a
-	ld a, $6
+	ld a, 1 << rTAC_ON | rTAC_65536_HZ
 	ldh [c], a
 	ret
 
@@ -413,7 +413,7 @@ Function110235:
 	nop
 
 Function110236:
-	ld a, [wc988]
+	ld a, [wMobileAPIIndex]
 	push af
 	push bc
 	push hl
@@ -453,7 +453,7 @@ Function110236:
 	xor a
 	ld [wc819], a
 	ld c, $c
-	call Function1100dc
+	call MobileAPI_SetTimer
 	call Function1104b0
 	pop af
 	cp $35
@@ -505,7 +505,7 @@ Function110291:
 	ld [hl], a
 	ld a, [wc870]
 	ld c, a
-	call Function1100dc
+	call MobileAPI_SetTimer
 	ld hl, wc829
 	ld a, $72
 	ld [hli], a
@@ -590,7 +590,7 @@ Function11032c:
 	ld [hl], a
 	ld a, [wc870]
 	ld c, a
-	call Function1100dc
+	call MobileAPI_SetTimer
 	ld de, wMobileSDK_PacketBuffer
 	ld b, 6 ; header size
 	ld hl, MobilePacket_ReadConfigurationDataPart1
@@ -676,7 +676,7 @@ Function1103ac:
 	ld [wc97a], a
 	ld a, [wc870]
 	ld c, a
-	call Function1100dc
+	call MobileAPI_SetTimer
 	ld hl, wc829
 	ld a, $80
 	ld [hli], a
@@ -741,7 +741,7 @@ Function110438:
 	ld [wc97a], a
 	ld a, [wc870]
 	ld c, a
-	call Function1100dc
+	call MobileAPI_SetTimer
 	ld hl, wc98f
 	ld a, $81
 	ld [hli], a
@@ -929,7 +929,7 @@ Function110596:
 	ld [wc819], a
 	ld a, [wc870]
 	ld c, a
-	call Function1100dc
+	call MobileAPI_SetTimer
 	ld hl, wc829
 	ld a, $80
 	ld [hli], a
@@ -956,7 +956,7 @@ Function1105dd:
 	ldh [rTAC], a
 	ld a, [wc870]
 	ld c, a
-	call Function1100dc
+	call MobileAPI_SetTimer
 	ld hl, wc98f
 	ld a, $81
 	ld [hli], a
@@ -3252,7 +3252,7 @@ Function111541:
 	ld hl, MobilePacket_TelephoneStatus
 	call PacketSendEmptyBody
 .asm_11156f
-	ld a, [wc988]
+	ld a, [wMobileAPIIndex]
 	cp $40
 	jr nz, .asm_11157a
 	ld a, $2c
@@ -3270,7 +3270,7 @@ Function111541:
 	ldh [rTAC], a
 	ld a, [wc870]
 	ld c, a
-	call Function1100dc
+	call MobileAPI_SetTimer
 	call Function1104b0
 	ld a, $1
 	ld [wc86b], a
@@ -4926,13 +4926,13 @@ MobilePacket_CloseTCPConnection:
 .End
 
 Unknown_112089:
-	db $ec, $14, $c9
-	db $e4, $0f, $0e
-	db $e0, $0c, $53
-	db $c4, $07, $94
-	db $b0, $05, $ee
-	db $ec, $10, $b4
-	db $e4, $0c, $dd
+	db -20, $14, $c9
+	db -28, $0f, $0e
+	db -32, $0c, $53
+	db -60, $07, $94
+	db -80, $05, $ee
+	db -20, $10, $b4
+	db -28, $0c, $dd
 
 Unknown_11209e:
 	db "HELO ", 0

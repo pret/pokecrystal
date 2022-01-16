@@ -371,15 +371,15 @@ Function171a5d:
 	jp Function171c66
 
 .asm_171a6a
-	ld a, $0
-	call Function3e32
+	ld a, MOBILEAPI_00
+	call MobileAPI
 	ld [wMobileErrorCodeBuffer], a
 	ld a, l
 	ld [wMobileErrorCodeBuffer + 1], a
 	ld a, h
 	ld [wMobileErrorCodeBuffer + 2], a
-	ld a, $a
-	call Function3e32
+	ld a, MOBILEAPI_05
+	call MobileAPI
 	ldh a, [rSVBK]
 	push af
 	ld a, $1
@@ -407,8 +407,8 @@ String_171aa7:
 Function171ac9:
 	ld de, wcd81
 	ld hl, $5c
-	ld a, $2
-	call Function3e32
+	ld a, MOBILEAPI_01
+	call MobileAPI
 	jp Function171c66
 
 Function171ad7:
@@ -417,8 +417,8 @@ Function171ad7:
 	ld bc, $66
 	call ByteFill
 	ld de, $c608
-	ld a, $c
-	call Function3e32
+	ld a, MOBILEAPI_06
+	call MobileAPI
 	jp Function171c66
 
 Function171aec:
