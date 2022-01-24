@@ -35,9 +35,10 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Beat Up may trigger King's Rock even if it failed](#beat-up-may-trigger-kings-rock-even-if-it-failed)
   - [Present damage is incorrect in link battles](#present-damage-is-incorrect-in-link-battles)
   - [Dragon Scale, not Dragon Fang, boosts Dragon-type moves](#dragon-scale-not-dragon-fang-boosts-dragon-type-moves)
+  - [Switching out or switching against a Pokémon with max HP below 4 freezes the game](#switching-out-or-switching-against-a-pokémon-with-max-HP-below-4-freezes-the-game)
+  - [Moves that do damage and increase your stats do not increase stats after a KO](#moves-that-do-damage-and-increase-your-stats-do-not-increase-stats-after-a-ko)
   - [HP bar animation is slow for high HP](#hp-bar-animation-is-slow-for-high-hp)
   - [HP bar animation off-by-one error for low HP](#hp-bar-animation-off-by-one-error-for-low-hp)
-  - [Moves that do damage and increase your stats do not increase stats after a KO](#moves-that-do-damage-and-increase-your-stats-do-not-increase-stats-after-a-ko)
 - [Single-player battle engine](#single-player-battle-engine)
   - [A Transformed Pokémon can use Sketch and learn otherwise unobtainable moves](#a-transformed-pokémon-can-use-sketch-and-learn-otherwise-unobtainable-moves)
   - [Catching a Transformed Pokémon always catches a Ditto](#catching-a-transformed-pokémon-always-catches-a-ditto)
@@ -68,6 +69,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [In-battle “`…`” ellipsis is too high](#in-battle--ellipsis-is-too-high)
   - [Two tiles in the `port` tileset are drawn incorrectly](#two-tiles-in-the-port-tileset-are-drawn-incorrectly)
   - [The Ruins of Alph research center's roof color at night looks wrong](#the-ruins-of-alph-research-centers-roof-color-at-night-looks-wrong)
+  - [A hatching Unown egg would not show the right letter](#a-hatching-unown-egg-would-not-show-the-right-letter)
   - [Using a Park Ball in non-Contest battles has a corrupt animation](#using-a-park-ball-in-non-contest-battles-has-a-corrupt-animation)
   - [Battle transitions fail to account for the enemy's level](#battle-transitions-fail-to-account-for-the-enemys-level)
   - [Some trainer NPCs have inconsistent overworld sprites](#some-trainer-npcs-have-inconsistent-overworld-sprites)
@@ -98,7 +100,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [`TryObjectEvent` arbitrary code execution](#tryobjectevent-arbitrary-code-execution)
   - [`ReadObjectEvents` overflows into `wObjectMasks`](#readobjectevents-overflows-into-wobjectmasks)
   - [`ClearWRAM` only clears WRAM bank 1](#clearwram-only-clears-wram-bank-1)
-  - [`BattleAnimCmd_ClearObjs` only clears the first 6⅔ objects](#battleanimcmd_clearobjs-only-clears-the-first-6⅔-objects)
+  - [`BattleAnimCmd_ClearObjs` only clears the first 6⅔ objects](#battleanimcmd_clearobjs-only-clears-the-first-6-objects)
 
 
 ## Multi-player battle engine
@@ -323,9 +325,9 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
  	set SUBSTATUS_CONFUSED, [hl]
 +	ldh a, [hBattleTurn]
 +	and a
-+	ld hl, wEnemyConfuseCount
-+	jr z, .set_confuse_count
 +	ld hl, wPlayerConfuseCount
++	jr z, .set_confuse_count
++	ld hl, wEnemyConfuseCount
 +.set_confuse_count
 +	call BattleRandom
 +	and %11
@@ -687,7 +689,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
  	push de
 -.colosseum_skippush
 -
-	call BattleCommand_Stab
+ 	call BattleCommand_Stab
 -
 -	ld a, [wLinkMode]
 -	cp LINK_COLOSSEUM
@@ -710,6 +712,143 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
  ; DRAGON_SCALE
 -	item_attribute 2100, HELD_DRAGON_BOOST, 10, CANT_SELECT, ITEM, ITEMMENU_NOUSE, ITEMMENU_NOUSE
 +	item_attribute 2100, HELD_NONE, 0, CANT_SELECT, ITEM, ITEMMENU_NOUSE, ITEMMENU_NOUSE
+```
+
+
+### Switching out or switching against a Pokémon with max HP below 4 freezes the game
+
+This happens because switching involves calculating a percentage of maximum enemy HP. Directly calculating *HP* × 100 / *max HP* would require a two-byte denominator, so instead the game calculates *HP* × 25 / (*max HP* / 4), since even a maximum HP of 999 divided by 4 is 249, which fits in one byte. However, if the maximum HP is below 4 this will divide by 0, which enters an infinite loop in `_Divide`.
+
+**Fix:** First, edit `SendOutMonText` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
+
+```diff
+ 	; compute enemy health remaining as a percentage
+ 	xor a
+ 	ldh [hMultiplicand + 0], a
+ 	ld hl, wEnemyMonHP
+ 	ld a, [hli]
+ 	ld [wEnemyHPAtTimeOfPlayerSwitch], a
+ 	ldh [hMultiplicand + 1], a
+ 	ld a, [hl]
+ 	ld [wEnemyHPAtTimeOfPlayerSwitch + 1], a
+ 	ldh [hMultiplicand + 2], a
+-	ld a, 25
+-	ldh [hMultiplier], a
+-	call Multiply
+ 	ld hl, wEnemyMonMaxHP
+ 	ld a, [hli]
+ 	ld b, [hl]
+-	srl a
+-	rr b
+-	srl a
+-	rr b
++	ld c, 100
++	and a
++	jr z, .shift_done
++.shift
++	rra
++	rr b
++	srl c
++	and a
++	jr nz, .shift
++.shift_done
++	ld a, c
++	ldh [hMultiplier], a
++	call Multiply
+ 	ld a, b
+ 	ld b, 4
+ 	ldh [hDivisor], a
+ 	call Divide
+```
+
+Then edit `WithdrawMonText` in the same file:
+
+```diff
+ 	; compute enemy health lost as a percentage
+ 	ld hl, wEnemyMonHP + 1
+ 	ld de, wEnemyHPAtTimeOfPlayerSwitch + 1
+ 	ld b, [hl]
+ 	dec hl
+ 	ld a, [de]
+ 	sub b
+ 	ldh [hMultiplicand + 2], a
+ 	dec de
+ 	ld b, [hl]
+ 	ld a, [de]
+ 	sbc b
+ 	ldh [hMultiplicand + 1], a
+-	ld a, 25
+-	ldh [hMultiplier], a
+-	call Multiply
+ 	ld hl, wEnemyMonMaxHP
+ 	ld a, [hli]
+ 	ld b, [hl]
+-	srl a
+-	rr b
+-	srl a
+-	rr b
++	ld c, 100
++	and a
++	jr z, .shift_done
++.shift
++	rra
++	rr b
++	srl c
++	and a
++	jr nz, .shift
++.shift_done
++	ld a, c
++	ldh [hMultiplier], a
++	call Multiply
+ 	ld a, b
+ 	ld b, 4
+ 	ldh [hDivisor], a
+ 	call Divide
+```
+
+This changes both calculations to *HP* × (100 / *N*) / (*max HP* / *N*) for the smallest necessary *N*, which will be at least 1, so it avoids dividing by zero and is also more accurate.
+
+
+### Moves that do damage and increase your stats do not increase stats after a KO
+
+`BattleCommand_CheckFaint` "ends the move effect if the opponent faints", and these moves attempt to raise the user's stats *after* `checkfaint`. Note that fixing this can lead to stats being increased at the end of battle, but will not have any negative effects.
+
+**Fix:** Edit [data/moves/effects.asm](https://github.com/pret/pokecrystal/blob/master/data/moves/effects.asm):
+
+```diff
+ DefenseUpHit:
+ 	...
+ 	criticaltext
+ 	supereffectivetext
++	defenseup
++	statupmessage
+ 	checkfaint
+ 	buildopponentrage
+-	defenseup
+-	statupmessage
+ 	endmove
+
+ AttackUpHit:
+ 	...
+ 	criticaltext
+ 	supereffectivetext
++	attackup
++	statupmessage
+ 	checkfaint
+ 	buildopponentrage
+-	attackup
+-	statupmessage
+ 	endmove
+
+ AllUpHit:
+ 	...
+ 	criticaltext
+ 	supereffectivetext
++	allstatsup
+ 	checkfaint
+ 	buildopponentrage
+-	allstatsup
+ 	endmove
 ```
 
 
@@ -767,48 +906,6 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
  	jr c, .done
  	inc b
  	jr .loop
-```
-
-### Moves that do damage and increase your stats do not increase stats after a KO
-
-`BattleCommand_CheckFaint` "ends the move effect if the opponent faints", and these moves attempt to raise the user's stats *after* `checkfaint`. Note that fixing this can lead to stats being increased at the end of battle, but will not have any negative effects.
-
-**Fix:** Edit [data/moves/effects.asm](https://github.com/pret/pokecrystal/blob/master/data/moves/effects.asm):
-
-```diff
- DefenseUpHit:
- 	...
- 	criticaltext
- 	supereffectivetext
-+	defenseup
-+	statupmessage
- 	checkfaint
- 	buildopponentrage
--	defenseup
--	statupmessage
- 	endmove
-
- AttackUpHit:
- 	...
- 	criticaltext
- 	supereffectivetext
-+	attackup
-+	statupmessage
- 	checkfaint
- 	buildopponentrage
--	attackup
--	statupmessage
- 	endmove
-
- AllUpHit:
- 	...
- 	criticaltext
- 	supereffectivetext
-+	allstatsup
- 	checkfaint
- 	buildopponentrage
--	allstatsup
- 	endmove
 ```
 
 
@@ -1116,7 +1213,7 @@ As Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") impli
 ```
 
 
-### "Smart" AI does not encourage Solar Beam, Flame Wheel, and Moonlight during Sunny Day
+### "Smart" AI does not encourage Solar Beam, Flame Wheel, or Moonlight during Sunny Day
 
 **Fix:** Edit `SunnyDayMoves` in [data/battle/ai/sunny_day_moves.asm](https://github.com/pret/pokecrystal/blob/master/data/battle/ai/sunny_day_moves.asm):
 
@@ -1204,12 +1301,12 @@ SunnyDayMoves:
 -	; res SUBSTATUS_NIGHTMARE, [hl]
 +	ld hl, wEnemySubStatus1
 +	res SUBSTATUS_NIGHTMARE, [hl]
-	; Bug: this should reset SUBSTATUS_CONFUSED
-	; Uncomment the 2 lines below to fix
-	; ld hl, wEnemySubStatus3
-	; res SUBSTATUS_CONFUSED, [hl]
- 	ld hl, wEnemySubStatus5
- 	res SUBSTATUS_TOXIC, [hl]
+-	; Bug: this should reset SUBSTATUS_CONFUSED
+-	; Uncomment the 2 lines below to fix
+-	; ld hl, wEnemySubStatus3
+-	; res SUBSTATUS_CONFUSED, [hl]
++	ld hl, wEnemySubStatus5
++	res SUBSTATUS_TOXIC, [hl]
  	ret
 ```
 
@@ -1249,10 +1346,12 @@ SunnyDayMoves:
  	xor a
  	ld [hl], a
  	ld [wEnemyMonStatus], a
-	; Bug: this should reset SUBSTATUS_NIGHTMARE
-	; Uncomment the 2 lines below to fix
-	; ld hl, wEnemySubStatus1
-	; res SUBSTATUS_NIGHTMARE, [hl]
+-	; Bug: this should reset SUBSTATUS_NIGHTMARE
+-	; Uncomment the 2 lines below to fix
+-	; ld hl, wEnemySubStatus1
+-	; res SUBSTATUS_NIGHTMARE, [hl]
++	ld hl, wEnemySubStatus1
++	res SUBSTATUS_NIGHTMARE, [hl]
 -	; Bug: this should reset SUBSTATUS_CONFUSED
 -	; Uncomment the 2 lines below to fix
 -	; ld hl, wEnemySubStatus3
@@ -1537,6 +1636,39 @@ The dungeons' map group mostly has indoor maps that don't need roof colors, but 
 ![image](https://raw.githubusercontent.com/pret/pokecrystal/master/docs/images/ruins_of_alph_outside_cinnabar.png)
 
 
+### A hatching Unown egg would not show the right letter
+
+This happens because both `GetEggFrontpic` and `GetHatchlingFrontpic` use `wBattleMonDVs`, but that's not initialized. They should use the current party mon's DVs instead.
+
+**Fix:** Edit both functions in [engine/pokemon/breeding.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/breeding.asm):
+
+```diff
+ GetEggFrontpic:
+ 	push de
+ 	ld [wCurPartySpecies], a
+ 	ld [wCurSpecies], a
+ 	call GetBaseData
+-	ld hl, wBattleMonDVs
++	ld a, MON_DVS
++	call GetPartyParamLocation
+ 	predef GetUnownLetter
+ 	pop de
+ 	predef_jump GetMonFrontpic
+
+ GetHatchlingFrontpic:
+ 	push de
+ 	ld [wCurPartySpecies], a
+ 	ld [wCurSpecies], a
+ 	call GetBaseData
+-	ld hl, wBattleMonDVs
++	ld a, MON_DVS
++	call GetPartyParamLocation
+ 	predef GetUnownLetter
+ 	pop de
+ 	predef_jump GetAnimatedFrontpic
+```
+
+
 ### Using a Park Ball in non-Contest battles has a corrupt animation
 
 ([Video](https://www.youtube.com/watch?v=v1ErZdLCIyU))
@@ -1596,7 +1728,7 @@ First, edit [engine/battle/battle_transition.asm](https://github.com/pret/pokecr
 +.okay
 +	ld de, MON_LEVEL - MON_HP - 1
 +	add hl, de
-	ld de, 0
+ 	ld de, 0
 -	ld a, [wBattleMonLevel]
 +	ld a, [hl]
  	add 3

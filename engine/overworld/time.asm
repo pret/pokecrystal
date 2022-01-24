@@ -390,7 +390,7 @@ _CalcHoursDaysSince:
 	ld c, a
 	sbc [hl]
 	jr nc, .skip
-	add 24
+	add MAX_HOUR
 .skip
 	ld [hl], c ; current hours
 	dec hl

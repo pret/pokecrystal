@@ -300,6 +300,8 @@ if _NARG == 2
 	givepoke \1, \2, NO_ITEM, FALSE
 elif _NARG == 3
 	givepoke \1, \2, \3, FALSE
+elif _NARG == 5
+	givepoke \1, \2, \3, TRUE, \4, \5
 else
 	db givepoke_command
 	db \1 ; pokemon
@@ -307,8 +309,8 @@ else
 	db \3 ; item
 	db \4 ; trainer
 if \4
-	dw \5 ; trainer_name_pointer
-	dw \6 ; pkmn_nickname
+	dw \5 ; nickname_pointer
+	dw \6 ; ot_name_pointer
 endc
 endc
 ENDM

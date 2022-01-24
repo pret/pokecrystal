@@ -1,3 +1,40 @@
+; MobileAPI calls (see lib/mobile/main.asm:_MobileAPI)
+	const_def 0, 2
+	const MOBILEAPI_00
+	const MOBILEAPI_01
+	const MOBILEAPI_02
+	const MOBILEAPI_03
+	const MOBILEAPI_04
+	const MOBILEAPI_05
+	const MOBILEAPI_06
+	const MOBILEAPI_07
+	const MOBILEAPI_08
+	const MOBILEAPI_09
+	const MOBILEAPI_0A
+	const MOBILEAPI_0B
+	const MOBILEAPI_0C
+	const MOBILEAPI_0D
+	const MOBILEAPI_0E
+	const MOBILEAPI_0F
+	const MOBILEAPI_10
+	const MOBILEAPI_11
+	const MOBILEAPI_12
+	const MOBILEAPI_13
+	const MOBILEAPI_14
+	const MOBILEAPI_15
+	const MOBILEAPI_16
+	const MOBILEAPI_17
+	const MOBILEAPI_SETTIMER
+	const MOBILEAPI_19
+	const MOBILEAPI_1A
+	const MOBILEAPI_1B
+	const MOBILEAPI_1C
+	const MOBILEAPI_1D
+	const MOBILEAPI_1E
+	const MOBILEAPI_1F
+	const MOBILEAPI_20
+	const MOBILEAPI_21
+
 ; MobileEZChatCategoryPointers indexes (see mobile/fixed_words.asm)
 	const_def
 	const EZCHAT_POKEMON
