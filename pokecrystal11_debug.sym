@@ -8269,7 +8269,7 @@
 0d:7916 BattleCommand_Present.do_animation
 0d:7919 PresentPower
 0d:7920 BattleCommand_FrustrationPower
-0d:792c BattleCommand_FrustrationPower.got_happiness
+0d:792c BattleCommand_FrustrationPower.ok
 0d:794b BattleCommand_Safeguard
 0d:795c BattleCommand_Safeguard.ok
 0d:796e BattleCommand_Safeguard.failed
