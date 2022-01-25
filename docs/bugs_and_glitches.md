@@ -703,48 +703,50 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ## Return and Frustration deal no damage when the user's happiness is 0 and 255, respectively
 
-This bug happens because the formulas used don't account for such extreme values and output 0 damage.
+**Fix:**
 
-**Fix:** Edit both [engine/battle/move_effects/frustration.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/frustration.asm) and [engine/battle/move_effects/return.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/return.asm) to add a check in case the damage calculation results in 0.
-
-```diff
- BattleCommand_FrustrationPower:
- ; frustrationpower
-	...
-
-	call Multiply
-	ld a, 25
-	ldh [hDivisor], a
-	ld b, 4
-	call Divide
-	ldh a, [hQuotient + 3]
-+	and a
-+	jr nz, .calc_done
-+	inc a
-+.calc_done
-	ld d, a
-	pop bc
-	ret
-```
+Edit [engine/battle/move_effects/return.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/return.asm):
 
 ```diff
  BattleCommand_HappinessPower:
  ; happinesspower
-	...
+ 	...
 
-	call Multiply
-	ld a, 25
-	ldh [hDivisor], a
-	ld b, 4
-	call Divide
-	ldh a, [hQuotient + 3]
+ 	call Multiply
+ 	ld a, 25
+ 	ldh [hDivisor], a
+ 	ld b, 4
+ 	call Divide
+ 	ldh a, [hQuotient + 3]
 +	and a
 +	jr nz, .calc_done
 +	inc a
 +.calc_done
-	ld d, a
-	pop bc
-	ret
+ 	ld d, a
+ 	pop bc
+ 	ret
+```
+
+And edit [engine/battle/move_effects/frustration.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/frustration.asm):
+
+```diff
+ BattleCommand_FrustrationPower:
+ ; frustrationpower
+ 	...
+
+ 	call Multiply
+ 	ld a, 25
+ 	ldh [hDivisor], a
+ 	ld b, 4
+ 	call Divide
+ 	ldh a, [hQuotient + 3]
++	and a
++	jr nz, .calc_done
++	inc a
++.calc_done
+ 	ld d, a
+ 	pop bc
+ 	ret
 ```
 
 
