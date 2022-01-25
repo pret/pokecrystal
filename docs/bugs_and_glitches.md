@@ -701,7 +701,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 ```
 
 
-## Return and Frustration deal no damage when the user's happiness is low or high, respectively
+### Return and Frustration deal no damage when the user's happiness is low or high, respectively
 
 This happens because the user's happiness (or 255 − happiness for Frustration) is multiplied by 10 and divided by 25, which rounds down to zero when the happiness is 0–2 (or 253–255 for Frustration).
 
