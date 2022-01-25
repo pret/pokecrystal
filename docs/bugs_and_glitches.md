@@ -34,6 +34,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Beat Up may fail to raise Substitute](#beat-up-may-fail-to-raise-substitute)
   - [Beat Up may trigger King's Rock even if it failed](#beat-up-may-trigger-kings-rock-even-if-it-failed)
   - [Present damage is incorrect in link battles](#present-damage-is-incorrect-in-link-battles)
+  - [Return and Frustration deal no damage when the user's happiness is 0 and 255, respectively](#return-and-frustration-deal-no-damage-when-the-users-happiness-is-0-and-255-respectively)
   - [Dragon Scale, not Dragon Fang, boosts Dragon-type moves](#dragon-scale-not-dragon-fang-boosts-dragon-type-moves)
   - [Switching out or switching against a Pokémon with max HP below 4 freezes the game](#switching-out-or-switching-against-a-pokémon-with-max-HP-below-4-freezes-the-game)
   - [Moves that do damage and increase your stats do not increase stats after a KO](#moves-that-do-damage-and-increase-your-stats-do-not-increase-stats-after-a-ko)
@@ -697,6 +698,53 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
  	pop de
  	pop bc
 -.colosseum_skippop
+```
+
+
+## Return and Frustration deal no damage when the user's happiness is 0 and 255, respectively
+
+This bug happens because the formulas used don't account for such extreme values and output 0 damage.
+
+**Fix:** Edit both [engine/battle/move_effects/frustration.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/frustration.asm) and [engine/battle/move_effects/return.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/return.asm) to add a check in case the damage calculation results in 0.
+
+```diff
+ BattleCommand_FrustrationPower:
+ ; frustrationpower
+	...
+
+	call Multiply
+	ld a, 25
+	ldh [hDivisor], a
+	ld b, 4
+	call Divide
+	ldh a, [hQuotient + 3]
++	and a
++	jr nz, .calc_done
++	inc a
++.calc_done
+	ld d, a
+	pop bc
+	ret
+```
+
+```diff
+ BattleCommand_HappinessPower:
+ ; happinesspower
+	...
+
+	call Multiply
+	ld a, 25
+	ldh [hDivisor], a
+	ld b, 4
+	call Divide
+	ldh a, [hQuotient + 3]
++	and a
++	jr nz, .calc_done
++	inc a
++.calc_done
+	ld d, a
+	pop bc
+	ret
 ```
 
 
