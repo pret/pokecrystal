@@ -34,6 +34,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Beat Up may fail to raise Substitute](#beat-up-may-fail-to-raise-substitute)
   - [Beat Up may trigger King's Rock even if it failed](#beat-up-may-trigger-kings-rock-even-if-it-failed)
   - [Present damage is incorrect in link battles](#present-damage-is-incorrect-in-link-battles)
+  - [Return and Frustration deal no damage when the user's happiness is low or high, respectively](#return-and-frustration-deal-no-damage-when-the-users-happiness-is-low-or-high-respectively)
   - [Dragon Scale, not Dragon Fang, boosts Dragon-type moves](#dragon-scale-not-dragon-fang-boosts-dragon-type-moves)
   - [Switching out or switching against a Pokémon with max HP below 4 freezes the game](#switching-out-or-switching-against-a-pokémon-with-max-HP-below-4-freezes-the-game)
   - [Moves that do damage and increase your stats do not increase stats after a KO](#moves-that-do-damage-and-increase-your-stats-do-not-increase-stats-after-a-ko)
@@ -697,6 +698,53 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
  	pop de
  	pop bc
 -.colosseum_skippop
+```
+
+
+## Return and Frustration deal no damage when the user's happiness is low or high, respectively
+
+This happens because the user's happiness (or 255 − happiness for Frustration) is multiplied by 10 and divided by 25, which rounds down to zero when the happiness is 0–2 (or 253–255 for Frustration).
+
+**Fix:**
+
+Edit [engine/battle/move_effects/return.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/return.asm):
+
+```diff
+ BattleCommand_HappinessPower:
+ 	...
+ 	call Multiply
+ 	ld a, 25
+ 	ldh [hDivisor], a
+ 	ld b, 4
+ 	call Divide
+ 	ldh a, [hQuotient + 3]
++	and a
++	jr nz, .done
++	inc a
++.done
+ 	ld d, a
+ 	pop bc
+ 	ret
+```
+
+And edit [engine/battle/move_effects/frustration.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/frustration.asm):
+
+```diff
+ BattleCommand_FrustrationPower:
+ 	...
+ 	call Multiply
+ 	ld a, 25
+ 	ldh [hDivisor], a
+ 	ld b, 4
+ 	call Divide
+ 	ldh a, [hQuotient + 3]
++	and a
++	jr nz, .done
++	inc a
++.done
+ 	ld d, a
+ 	pop bc
+ 	ret
 ```
 
 
