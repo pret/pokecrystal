@@ -709,9 +709,7 @@ Edit [engine/battle/move_effects/return.asm](https://github.com/pret/pokecrystal
 
 ```diff
  BattleCommand_HappinessPower:
- ; happinesspower
  	...
-
  	call Multiply
  	ld a, 25
  	ldh [hDivisor], a
@@ -719,9 +717,9 @@ Edit [engine/battle/move_effects/return.asm](https://github.com/pret/pokecrystal
  	call Divide
  	ldh a, [hQuotient + 3]
 +	and a
-+	jr nz, .calc_done
++	jr nz, .done
 +	inc a
-+.calc_done
++.done
  	ld d, a
  	pop bc
  	ret
@@ -731,9 +729,7 @@ And edit [engine/battle/move_effects/frustration.asm](https://github.com/pret/po
 
 ```diff
  BattleCommand_FrustrationPower:
- ; frustrationpower
  	...
-
  	call Multiply
  	ld a, 25
  	ldh [hDivisor], a
@@ -741,9 +737,9 @@ And edit [engine/battle/move_effects/frustration.asm](https://github.com/pret/po
  	call Divide
  	ldh a, [hQuotient + 3]
 +	and a
-+	jr nz, .calc_done
++	jr nz, .done
 +	inc a
-+.calc_done
++.done
  	ld d, a
  	pop bc
  	ret
