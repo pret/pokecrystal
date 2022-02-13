@@ -13939,7 +13939,7 @@
 1b:6f33 MovementData_Farfetched_Pos9_Pos8_Right
 1b:6f3d MovementData_Farfetched_Pos9_Pos8_Down
 1b:6f4e IlexForestKurtStepsUpMovement
-1b:6f53 IlexFOrestKurtStepsDownMovement
+1b:6f53 IlexForestKurtStepsDownMovement
 1b:6f58 IlexForestPlayerStepsDownMovement
 1b:6f5c IlexForestApprenticeIntroText
 1b:7019 IlexForestApprenticeAfterText
