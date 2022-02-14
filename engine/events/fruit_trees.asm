@@ -61,9 +61,9 @@ PickedFruitTree:
 ResetFruitTrees:
 	xor a
 	ld hl, wFruitTreeFlags
+rept (NUM_FRUIT_TREES + 7) / 8 - 1
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld [hl], a
 	ld hl, wDailyFlags1
 	set DAILYFLAGS1_ALL_FRUIT_TREES_F, [hl]
