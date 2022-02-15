@@ -2233,7 +2233,12 @@ wBattleMenuCursorPosition:: db
 
 	ds 1
 
-wCurBattleMon:: db
+wCurBattleMon:: 
+; contains which monster in a party
+; is currently in battle
+; 0-5
+	db
+
 wCurMoveNum:: db
 
 wLastPocket:: db
