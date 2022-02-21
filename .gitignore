@@ -17,6 +17,7 @@ gfx/pokemon/*/frames.asm
 # compiled roms
 *.gbc
 *.gb
+*.patch
 
 # rgbds extras
 *.map
@@ -54,3 +55,6 @@ used_space.png
 
 # macos files
 .DS_STORE
+
+#Ignore VC directory for building CIAs
+vc/

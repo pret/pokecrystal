@@ -33,18 +33,25 @@ DoMysteryGift:
 	ld de, .String_PressAToLink_BToCancel
 	call PlaceString
 	call WaitBGMap
-
-	; Prepare the first of two messages for wMysteryGiftPartnerData
 	farcall StageDataForMysteryGift
 	call ClearMysteryGiftTrainer
+	vc_hook infrared_fake_0
+if DEF(_CRYSTALVC)
+	; Prepare the first of two messages for wMysteryGiftPartnerData
+	farcall StagePartyDataForMysteryGift
+	call ClearMysteryGiftTrainer
+	nop
+else
 	ld a, 2
 	ld [wMysteryGiftMessageCount], a
 	ld a, wMysteryGiftPartnerDataEnd - wMysteryGiftPartnerData
 	ld [wMysteryGiftStagedDataLength], a
+endc
 
 	ldh a, [rIE]
 	push af
 	call ExchangeMysteryGiftData
+	vc_hook infrared_fake_4
 	ld d, a
 	xor a
 	ldh [rIF], a
@@ -260,6 +267,26 @@ DoMysteryGift:
 	jp CloseSRAM
 
 ExchangeMysteryGiftData:
+	vc_hook infrared_fake_2 ; hook
+	vc_hook infrared_fake_1 ; patch
+if DEF(_CRYSTALVC)
+	ld d, $ef
+.loop
+	dec d
+	ld a, d
+	or a
+	jr nz, .loop
+	vc_hook infrared_fake_3 ; hook
+	nop
+	cp MG_CANCELED
+.restart ; same location as original .loop2
+	ret z
+	nop
+	nop
+	cp MG_OKAY
+	jr nz, ExchangeMysteryGiftData
+	ret
+else
 	di
 	farcall ClearChannels
 	call InitializeIRCommunicationInterrupts
@@ -268,6 +295,7 @@ ExchangeMysteryGiftData:
 	call BeginIRCommunication
 	call InitializeIRCommunicationRoles
 	ldh a, [hMGStatusFlags]
+endc
 	cp MG_CANCELED
 	jp z, EndOrContinueMysteryGiftIRCommunication
 	cp MG_OKAY

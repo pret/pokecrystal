@@ -356,6 +356,7 @@ Pokedex_UpdateDexEntryScreen:
 	ld a, [hl]
 	and B_BUTTON
 	jr nz, .return_to_prev_screen
+	vc_hook print_forbid_5
 	ld a, [hl]
 	and A_BUTTON
 	jr nz, .do_menu_action

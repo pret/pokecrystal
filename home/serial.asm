@@ -290,6 +290,7 @@ Serial_SyncAndExchangeNybble:: ; unreferenced
 	jp WaitLinkTransfer ; pointless
 
 WaitLinkTransfer::
+	vc_hook send_send_buf2
 	ld a, $ff
 	ld [wOtherPlayerLinkAction], a
 .loop
@@ -317,14 +318,24 @@ WaitLinkTransfer::
 	inc a
 	jr z, .loop
 
+	vc_hook Network10
+if DEF(_CRYSTALVC)
+	ld b, 26
+else
 	ld b, 10
+endc
 .receive
 	call DelayFrame
 	call LinkTransfer
 	dec b
 	jr nz, .receive
 
+	vc_hook Network11
+if DEF(_CRYSTALVC)
+	ld b, 26
+else
 	ld b, 10
+endc
 .acknowledge
 	call DelayFrame
 	call LinkDataReceived
@@ -333,6 +344,7 @@ WaitLinkTransfer::
 
 	ld a, [wOtherPlayerLinkAction]
 	ld [wOtherPlayerLinkMode], a
+	vc_hook send_send_buf2_ret
 	ret
 
 LinkTransfer::

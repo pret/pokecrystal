@@ -10,7 +10,9 @@ tools := \
 	pokemon_animation \
 	pokemon_animation_graphics \
 	scan_includes \
-	stadium
+	stadium \
+	gfx \
+	make_patch
 all: $(tools)
 	@:
 
