@@ -161,7 +161,7 @@ AddHallOfFameEntry:
 	ld bc, wHallOfFamePokemonListEnd - wHallOfFamePokemonList + 1
 	call CopyBytes
 	call CloseSRAM
-; Causes the emulator to set sMobileEventIndex and sMobileEventIndexBackup to $b
+; Causes the emulator to set sMobileEventIndex and sMobileEventIndexBackup to MOBILE_EVENT_OBJECT_GS_BALL
 	vc_hook BiographySave_ret
 	ret
 

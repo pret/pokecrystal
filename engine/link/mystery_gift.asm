@@ -33,11 +33,12 @@ DoMysteryGift:
 	ld de, .String_PressAToLink_BToCancel
 	call PlaceString
 	call WaitBGMap
+	
+	; Prepare the first of two messages for wMysteryGiftPartnerData
 	farcall StageDataForMysteryGift
 	call ClearMysteryGiftTrainer
 	vc_hook infrared_fake_0
 if DEF(_CRYSTALVC)
-	; Prepare the first of two messages for wMysteryGiftPartnerData
 	farcall StagePartyDataForMysteryGift
 	call ClearMysteryGiftTrainer
 	nop
