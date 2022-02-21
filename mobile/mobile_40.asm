@@ -1530,11 +1530,8 @@ Function1009f3:
 _LinkBattleSendReceiveAction:
 	call .StageForSend
 	ld [wLinkBattleSentAction], a
-;	farcall PlaceWaitingText
-	ld a, BANK(PlaceWaitingText)
-	ld hl, PlaceWaitingText
 	vc_hook send_byt2
-	rst FarCall
+	farcall PlaceWaitingText
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
 	jr nz, .not_mobile

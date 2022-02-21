@@ -121,7 +121,7 @@ Type = 7
 
 [send_byt2]
 Mode = 2
-Address = {{Address}}
+Address = {{Address:5}}
 Type = 31
 
 [send_byt2_ret]
