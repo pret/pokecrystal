@@ -39,7 +39,6 @@ hJoypadDown::     db
 hJoypadSum::      db
 hJoyReleased::    db
 hJoyPressed::     db
-        vc_hJoyPressed_assert ;Virtual Console assert
 hJoyDown::        db
 hJoyLast::        db
 
