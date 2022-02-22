@@ -84,7 +84,7 @@ $(pokecrystal11_obj):       RGBASMFLAGS += -D _CRYSTAL11
 $(pokecrystal_au_obj):      RGBASMFLAGS += -D _CRYSTAL11 -D _CRYSTAL_AU
 $(pokecrystal_debug_obj):   RGBASMFLAGS += -D _DEBUG
 $(pokecrystal11_debug_obj): RGBASMFLAGS += -D _CRYSTAL11 -D _DEBUG
-$(pokecrystalvc_obj):       RGBASMFLAGS += -D _CRYSTAL -D _CRYSTAL11 -D _CRYSTALVC
+$(pokecrystalvc_obj):       RGBASMFLAGS += -D _CRYSTAL11 -D _CRYSTALVC
 
 %.patch: %.patch.template %.gbc pokecrystal11.gbc
 	tools/make_patch .VC_ $*.sym $*.gbc pokecrystal11.gbc $< > $@
