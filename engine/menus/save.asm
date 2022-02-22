@@ -163,8 +163,10 @@ AddHallOfFameEntry:
 	call CloseSRAM
 ; Causes the emulator to set sMobileEventIndex and sMobileEventIndexBackup to MOBILE_EVENT_OBJECT_GS_BALL
 	vc_hook BiographySave_ret
-	vc_assert (BANK(sMobileEventIndex) == $1) && (sMobileEventIndex == $be3c), "sMobileEventIndex is no longer located at 01:be3c. You will need to patch the GS Ball event instead of relying on the VC hook."
-	vc_assert (BANK(sMobileEventIndexBackup) == $1) && (sMobileEventIndexBackup == $be44), "sMobileEventIndexBackup is no longer located at 01:be44. You will need to patch the GS Ball event instead of relying on the VC hook."
+	vc_assert BANK(sMobileEventIndex) == $1 && sMobileEventIndex == $be3c, \
+		"sMobileEventIndex is no longer located at 01:be3c. You will need to patch the GS Ball event instead of relying on the VC hook."
+	vc_assert BANK(sMobileEventIndexBackup) == $1 && sMobileEventIndexBackup == $be44, \
+		"sMobileEventIndexBackup is no longer located at 01:be44. You will need to patch the GS Ball event instead of relying on the VC hook."
 	ret
 
 SaveGameData:
