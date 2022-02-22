@@ -67,7 +67,7 @@ Gen2ToGen1LinkComms:
 .player_1
 	ld de, MUSIC_NONE
 	call PlayMusic
-	vc_hook NetworkDelay1
+	vc_patch NetworkDelay1
 if DEF(_CRYSTALVC)
 	ld c, 26
 else
@@ -232,7 +232,7 @@ Gen2ToGen2LinkComms:
 .player_1
 	ld de, MUSIC_NONE
 	call PlayMusic
-	vc_hook NetworkDelay4
+	vc_patch NetworkDelay4
 if DEF(_CRYSTALVC)
 	ld c, 26
 else
@@ -2180,7 +2180,7 @@ GetIncompatibleMonName:
 	ret
 
 EnterTimeCapsule:
-	vc_hook NetworkDelay2
+	vc_patch NetworkDelay2
 if DEF(_CRYSTALVC)
 	ld c, 26
 else
@@ -2400,7 +2400,7 @@ CheckLinkTimeout_Gen2:
 	ld a, $6
 	ld [wPlayerLinkAction], a
 	ld hl, wLinkTimeoutFrames
-	vc_hook NetworkDelay6
+	vc_patch NetworkDelay6
 if DEF(_CRYSTALVC)
 	ld a, $3
 else
@@ -2466,7 +2466,7 @@ Link_CheckCommunicationError:
 	ret
 
 .AcknowledgeSerial:
-	vc_hook NetworkDelay3
+	vc_patch NetworkDelay3
 if DEF(_CRYSTALVC)
 	ld b, 26
 else

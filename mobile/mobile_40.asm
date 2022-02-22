@@ -1585,8 +1585,8 @@ _LinkBattleSendReceiveAction:
 	inc a
 	jr z, .waiting
 
-	vc_hook send_byt2_ret ; hook
-	vc_hook send_byt2_wait ; patch
+	vc_hook send_byt2_ret
+	vc_patch send_byt2_wait
 if DEF(_CRYSTALVC)
 	ld b, 26
 else
@@ -1598,8 +1598,8 @@ endc
 	dec b
 	jr nz, .receive
 
-	vc_hook send_dummy ; hook
-	vc_hook send_dummy_wait ; patch
+	vc_hook send_dummy
+	vc_patch send_dummy_wait
 if DEF(_CRYSTALVC)
 	ld b, 26
 else

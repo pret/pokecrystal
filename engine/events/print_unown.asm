@@ -74,7 +74,7 @@ _UnownPrinter:
 	jr nz, .pressed_b
 
 	ldh a, [hJoyPressed]
-	vc_hook print_forbid_1
+	vc_patch print_forbid_1
 if DEF(_CRYSTALVC)
 	and 0
 else

@@ -318,7 +318,7 @@ WaitLinkTransfer::
 	inc a
 	jr z, .loop
 
-	vc_hook Network10
+	vc_patch Network10
 if DEF(_CRYSTALVC)
 	ld b, 26
 else
@@ -330,7 +330,7 @@ endc
 	dec b
 	jr nz, .receive
 
-	vc_hook Network11
+	vc_patch Network11
 if DEF(_CRYSTALVC)
 	ld b, 26
 else
