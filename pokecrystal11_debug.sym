@@ -3332,8 +3332,8 @@
 03:6c2f GreatBallMultiplier
 03:6c2f SafariBallMultiplier
 03:6c2f ParkBallMultiplier
-03:6c38 GetPokedexEntryBank
-03:6c4c GetPokedexEntryBank.PokedexEntryBanks
+03:6c38 HeavyBall_GetDexEntryBank
+03:6c4c HeavyBall_GetDexEntryBank.PokedexEntryBanks
 03:6c50 HeavyBallMultiplier
 03:6c61 HeavyBallMultiplier.SkipText
 03:6c99 HeavyBallMultiplier.subbc
