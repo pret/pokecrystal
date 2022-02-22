@@ -280,7 +280,7 @@ if DEF(_CRYSTALVC)
 	vc_hook infrared_fake_3
 	nop
 	cp MG_CANCELED
-.restart ; same location as original .loop2
+.restart ; same location as unpatched .restart
 	ret z
 	nop
 	nop
