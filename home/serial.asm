@@ -324,6 +324,7 @@ if DEF(_CRYSTALVC)
 else
 	ld b, 10
 endc
+	vc_patch_end Network10
 .receive
 	call DelayFrame
 	call LinkTransfer
@@ -336,6 +337,7 @@ if DEF(_CRYSTALVC)
 else
 	ld b, 10
 endc
+	vc_patch_end Network11
 .acknowledge
 	call DelayFrame
 	call LinkDataReceived

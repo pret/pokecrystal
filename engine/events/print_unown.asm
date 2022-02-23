@@ -80,6 +80,7 @@ if DEF(_CRYSTALVC)
 else
 	and A_BUTTON
 endc
+	vc_patch_end print_forbid_1
 	jr nz, .pressed_a
 
 	call .LeftRight

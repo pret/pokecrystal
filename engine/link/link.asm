@@ -73,6 +73,7 @@ if DEF(_CRYSTALVC)
 else
 	ld c, 3
 endc
+	vc_patch_end NetworkDelay1
 	call DelayFrames
 	xor a
 	ldh [rIF], a
@@ -238,6 +239,7 @@ if DEF(_CRYSTALVC)
 else
 	ld c, 3
 endc
+	vc_patch_end NetworkDelay4
 	call DelayFrames
 	xor a
 	ldh [rIF], a
@@ -2186,6 +2188,7 @@ if DEF(_CRYSTALVC)
 else
 	ld c, 10
 endc
+	vc_patch_end NetworkDelay2
 	call DelayFrames
 	ld a, $4
 	call Link_EnsureSync
@@ -2406,6 +2409,7 @@ if DEF(_CRYSTALVC)
 else
 	ld a, 1
 endc
+	vc_patch_end NetworkDelay6
 	ld [hli], a
 	ld [hl], 50
 	call Link_CheckCommunicationError
@@ -2472,6 +2476,7 @@ if DEF(_CRYSTALVC)
 else
 	ld b, 10
 endc
+	vc_patch_end NetworkDelay3
 .loop
 	call DelayFrame
 	call LinkDataReceived

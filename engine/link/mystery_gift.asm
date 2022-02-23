@@ -48,6 +48,7 @@ else
 	ld a, wMysteryGiftPartnerDataEnd - wMysteryGiftPartnerData
 	ld [wMysteryGiftStagedDataLength], a
 endc
+	vc_patch_end infrared_fake_0
 
 	ldh a, [rIE]
 	push af
@@ -297,6 +298,7 @@ else
 	call InitializeIRCommunicationRoles
 	ldh a, [hMGStatusFlags]
 endc
+	vc_patch_end infrared_fake_3
 	cp MG_CANCELED
 	jp z, EndOrContinueMysteryGiftIRCommunication
 	cp MG_OKAY
