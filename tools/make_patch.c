@@ -108,9 +108,21 @@ int create_symbol(struct symbol **tip, const int value, const char *name)
 const struct symbol *find_symbol(const struct symbol *symbols, const char *name)
 {
 	const struct symbol *symbol = symbols;
+	int namelen = strlen(name);
+	int symbolnamelen = 0;
+	const char *equalLastCharacters = NULL;
 	while (symbol) {
-		if (strcmp(symbol->name, name) == 0) {
-			return symbol;
+		symbolnamelen = strlen(symbol->name);
+		if (namelen > symbolnamelen) {symbol = symbol->next; continue;}
+		equalLastCharacters = &symbol->name[symbolnamelen - namelen];
+		if (name[0] == '.') { // We are looking for a local label.
+			if (strcmp(equalLastCharacters, name) == 0) {
+				return symbol;
+			} 
+		} else {
+			if (strcmp(symbol->name, name) == 0) {
+					return symbol;
+			}
 		}
 		symbol = symbol->next;
 	}
@@ -145,7 +157,7 @@ int parse_address(char *buffer)
 	}
 
 	// If it's not a ROM address, (silently) ignore it.
-	if (address > 0x7FFF) return 0;
+	//if (address > 0x7FFF) return 0;    <-- This was filtering out hJoyPressed and a lot of other stuff. Turned off for now...
 
 	// Calculate the absolute offset in the ROM
 	if (bank == 0) {
@@ -157,7 +169,7 @@ int parse_address(char *buffer)
 	return offset;
 }
 
-struct symbol *parse_symfile(FILE *file, const char *prefix)
+struct symbol *parse_symfile(FILE *file)
 {
 	struct symbol *symbols = NULL;
 	char *buffer;
@@ -168,7 +180,7 @@ struct symbol *parse_symfile(FILE *file, const char *prefix)
 	buffer = create_buffer();
 	if (!buffer) goto error;
 
-	// Parse the symfile, to get the symbols we want.
+	// Parse the entire symfile, to the the symbols we want.
 	while ((c = getc(file)) != EOF) {
 		buffer = expand_buffer(buffer, buffer_index);
 		if (!buffer) goto error;
@@ -177,7 +189,7 @@ struct symbol *parse_symfile(FILE *file, const char *prefix)
 		case ';':
 		case '\n':
 			// If we encounter a newline or comment,
-			//   we've reached the end of the label name.
+			// we've reached the end of the label name.
 			buffer[buffer_index] = '\0';
 
 			// Only do stuff if we managed to read a valid offset.
@@ -190,22 +202,9 @@ struct symbol *parse_symfile(FILE *file, const char *prefix)
 			buffer_index = SIZE_MAX;
 			if (offset == -1) break;
 
-			// Check if the symbol starts with the requested prefix
-			if (strncmp(prefix, buffer, strlen(prefix)) != 0) break;
-
-			if (create_symbol(&symbols, offset, buffer + strlen(prefix))) goto error;
+			if (create_symbol(&symbols, offset, buffer)) goto error;
 
 			offset = -1;
-			break;
-
-		case '.':
-			// If a local symbol has been requested,
-			//   we can clear the buffer at the first '.'
-			if (offset != -1 && prefix[0] == '.' && buffer[0] != '.') {
-				buffer_index = 0;
-			}
-
-			buffer[buffer_index++] = c;
 			break;
 
 		case ' ':
@@ -241,7 +240,7 @@ struct symbol *parse_symfile(FILE *file, const char *prefix)
 	}
 
 	if (!symbols) {
-		fprintf(stderr, "Error: No symbols found starting with: %s\n", prefix);
+			fprintf(stderr, "Error: No symbols found.");
 	}
 
 	free_buffer(buffer);
@@ -464,13 +463,17 @@ error:
 	return value;
 }
 
-void interpret_command(char *command, const struct symbol *symbol, struct patch *patch,
-                       FILE *new_rom, FILE *orig_rom, FILE *output)
+void interpret_command(char *command, const struct symbol *lastFoundSymbol, const struct symbol *symbols, struct patch *patch,
+						FILE *new_rom, FILE *orig_rom, FILE *output)
 {
 	int argc = 0;
-	int offset = symbol->value;
+	int offset = -1;
+	if (lastFoundSymbol) {
+		offset = lastFoundSymbol->value;
+	}
 	char *s;
 
+	const struct symbol *getsymbol = NULL;
 	// Count the arguments
 	s = command;
 	while (*s) if (*s++ == ':') argc++;
@@ -510,19 +513,19 @@ void interpret_command(char *command, const struct symbol *symbol, struct patch 
 		if (argc > 0) offset += strtol(argv[0], NULL, 0);
 
 		if (fseek(orig_rom, offset, SEEK_SET) != 0) {
-			fprintf(stderr, "Error: Could not seek to the offset of %s in the original ROM\n", symbol->name);
+			fprintf(stderr, "Error: Could not seek to the offset of %s in the original ROM\n", lastFoundSymbol->name);
 			return;
 		}
 
 		if (fseek(new_rom, offset, SEEK_SET) != 0) {
-			fprintf(stderr, "Error: Could not seek to offset of %s in the new ROM\n", symbol->name);
+			fprintf(stderr, "Error: Could not seek to offset of %s in the new ROM\n", lastFoundSymbol->name);
 			return;
 		}
 
 		if (argc <= 1 || strcmp(argv[1], "big") != 0) {
 			int c = getc(new_rom);
 			if (c == getc(orig_rom)) {
-				fprintf(stderr, "Warning: %s doesn't actually contain any differences\n", symbol->name);
+				fprintf(stderr, "Warning: %s doesn't actually contain any differences\n", lastFoundSymbol->name);
 			}
 
 			patch->offset = offset;
@@ -559,17 +562,24 @@ void interpret_command(char *command, const struct symbol *symbol, struct patch 
 		if (value == -1) return;
 
 		fprintf(output, isupper(command[0]) ? "%X": "%x", value);
+	} else if (strcmp(command, "findaddress") == 0) {
+		if (argc != 1) {
+			fprintf(stderr, "Error: Missing argument for %s", command);
+		}
+		getsymbol = find_symbol(symbols, argv[0]);
+		if (!getsymbol) return;
+		fprintf(output, "0x%x", getsymbol->value);
 	} else {
 		fprintf(stderr, "Error: Unknown command: %s\n", command);
 	}
 }
 
 struct patch *process_template(FILE *file, FILE *new_rom, FILE *orig_rom, FILE *output,
-                               const struct symbol *symbols)
+								const struct symbol *symbols, const char *prefix)
 {
 	struct patch *patches = NULL;
 	struct patch *patch = NULL;
-	const struct symbol *symbol = NULL;
+	const struct symbol *lastFoundSymbol = NULL;
 	char *buffer;
 	size_t buffer_index = 0;
 	int c;
@@ -583,7 +593,7 @@ struct patch *process_template(FILE *file, FILE *new_rom, FILE *orig_rom, FILE *
 	patch = patches;
 
 	// Implicitly add the ROM checksum to the patch list,
-	//   since that will always differ.
+	// since that will always differ.
 	patch->offset = 0x14e;
 	patch->size = 2;
 	patch++;
@@ -595,7 +605,7 @@ struct patch *process_template(FILE *file, FILE *new_rom, FILE *orig_rom, FILE *
 
 		switch (c) {
 		case '\n':
-			// A newline simply resets line_pos
+			// A newline simply resets the line_pos
 			putc(c, output);
 			line_pos = 0;
 			break;
@@ -645,12 +655,9 @@ struct patch *process_template(FILE *file, FILE *new_rom, FILE *orig_rom, FILE *
 
 			buffer[buffer_index] = '\0';
 
-			// If we didn't manage to find the symbol,
-			//   we can just end inmediately.
-			if (!symbol) break;
 
 			patch->offset = 0;
-			interpret_command(buffer, symbol, patch, new_rom, orig_rom, output);
+			interpret_command(buffer, lastFoundSymbol, symbols, patch, new_rom, orig_rom, output);
 			if (patch->offset) patch++;
 			patches = expand_buffer(patches, (uintptr_t)patch - (uintptr_t)patches);
 			if (!patches) goto error;
@@ -658,7 +665,7 @@ struct patch *process_template(FILE *file, FILE *new_rom, FILE *orig_rom, FILE *
 			break;
 
 		case '[':
-			// End inmediately if this is not the beginning of the line.
+			// End immediately if this is not the beginning of the line.
 			if (line_pos) {
 				putc(c, output);
 				line_pos++;
@@ -681,13 +688,16 @@ struct patch *process_template(FILE *file, FILE *new_rom, FILE *orig_rom, FILE *
 						if (*p == ' ') *p = '_';
 					}
 
-					// Look for the symbol
-					symbol = find_symbol(symbols, buffer);
-					if (!symbol) {
-						fprintf(stderr, "Error: Cannot find symbol: %s\n",
-						        buffer);
+					// Look for the symbol starting with prefix
+					char *searchlabel = malloc(strlen(prefix) + strlen(buffer) + 1);
+					strcpy(searchlabel, prefix);
+					strcat((char *)searchlabel, buffer);
+					lastFoundSymbol = find_symbol(symbols, searchlabel);
+					if (!lastFoundSymbol) {
+						fprintf(stderr, "Error: Cannot find symbol: %s %s\n", prefix, buffer);
 					}
 
+					memset(searchlabel, 0, (strlen(prefix) + strlen(buffer)));
 					// Skip until the next newline
 					while ((c = getc(file)) != EOF) {
 						putc(c, output);
@@ -781,7 +791,7 @@ int main(int argc, char *argv[])
 		goto error;
 	}
 
-	if (!(symbols = parse_symfile(file, argv[1]))) goto error;
+	if (!(symbols = parse_symfile(file))) goto error;
 
 	fclose(file);
 	file = NULL;
@@ -804,7 +814,7 @@ int main(int argc, char *argv[])
 		goto error;
 	}
 
-	if (!(patches = process_template(file, new_rom, orig_rom, stdout, symbols))) goto error;
+	if (!(patches = process_template(file, new_rom, orig_rom, stdout, symbols, argv[1]))) goto error;
 	if (verify_completeness(orig_rom, new_rom, patches)) {
 		fprintf(stderr, "Warning: Not all differences in the ROM are defined in the patch\n");
 	}
