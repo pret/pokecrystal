@@ -15,7 +15,7 @@ ENDM
 vc_patch_end: MACRO
     if DEF(_CRYSTALVC)
         assert DEF(CURRENT_VC_PATCH), "No vc_patch started"
-        .VC_End_{CURRENT_VC_PATCH}::
+        .VC_{CURRENT_VC_PATCH}_End::
 PURGE CURRENT_VC_PATCH
     endc
 ENDM

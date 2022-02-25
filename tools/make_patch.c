@@ -536,9 +536,12 @@ void interpret_command(char *command, const struct symbol *lastFoundSymbol, cons
 			int length = 0;
 
 			// Figure out the length of the patch
-			while(getc(orig_rom) == getc(new_rom)) length++;
-			length++;
-			while(getc(orig_rom) != getc(new_rom)) length++;
+			char *searchend = malloc(strlen(lastFoundSymbol->name) + 5);
+			strcpy(searchend, lastFoundSymbol->name);
+			strcat(searchend, "_End");
+			lastFoundSymbol = find_symbol(symbols, searchend);
+			length = lastFoundSymbol->value - offset;
+			memset(searchend, 0, (strlen(lastFoundSymbol->name)));
 
 			// We've got the length, now go back
 			fseek(new_rom, offset, SEEK_SET);
