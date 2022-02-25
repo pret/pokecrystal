@@ -595,11 +595,15 @@ struct patch *process_template(FILE *file, FILE *new_rom, FILE *orig_rom, FILE *
 	if (!patches) goto error;
 	patch = patches;
 
-	// Implicitly add the ROM checksum to the patch list,
+	// Implicitly add the ROM checksum and the stadium checksum to the patch list,
 	// since that will always differ.
 	patch->offset = 0x14e;
 	patch->size = 2;
 	patch++;
+	patch->offset = 0x1FFDE0;
+	patch->size = 0xFFFFFF - 0x1FFDE0;
+	patch++;
+
 
 	// Fill in the template
 	while ((c = getc(file)) != EOF) {
@@ -763,7 +767,7 @@ int verify_completeness(FILE *orig_rom, FILE *new_rom, struct patch *patches)
 			continue;
 		}
 		offset++;
-		if (c != d && ((offset-1) < 2096608)) { // offset higher than 2096608 is stadium checksum...
+		if (c != d) {
 			fprintf(stderr, "Value Mismatch at decimal offset: %li\n", offset-1);
 			fprintf(stderr, "Orig_rom value: %x\n", c);
 			fprintf(stderr, "New_rom value: %x\n", d);
