@@ -130,13 +130,13 @@ const struct symbol *find_symbol(const struct symbol *symbols, const char *name)
 	return NULL;
 }
 
-int parse_address(char *buffer)
-{
-	int offset;
-	int bank, address;
-	char *endptr_bank, *endptr_address;
+int parse_address_bank(char *buffer_input){
+	int bank;
+	char *buffer = malloc(strlen(buffer_input));
+	char *endptr_bank;
 	char *buffer_address;
 
+	strcpy(buffer, buffer_input);
 	buffer_address = strchr(buffer, ':');
 	if (buffer_address) *buffer_address++ = '\0';
 
@@ -147,26 +147,105 @@ int parse_address(char *buffer)
 		return -1;
 	}
 
-	// Parse the bank and address parts
+	// Parse the bank part
 	bank = strtol(buffer, &endptr_bank, 16);
-	address = strtol(buffer_address, &endptr_address, 16);
-	if (endptr_bank != buffer + strlen(buffer) ||
-			endptr_address != buffer_address + strlen(buffer_address)) {
-		fprintf(stderr, "Error: Cannot parse %s:%s\n", buffer, buffer_address);
+	if (endptr_bank != buffer + strlen(buffer)){
+		fprintf(stderr, "Error: Cannot parse bank %s:%s\n", buffer, buffer_address);
+		return -1;
+	}
+	
+	return bank;
+}
+
+int parse_address_address(char *buffer_input){
+	int address;
+	char *buffer = malloc(strlen(buffer_input));
+	char *endptr_address;
+	char *buffer_address;
+
+	strcpy(buffer, buffer_input);
+	buffer_address = strchr(buffer, ':');
+	if (buffer_address) *buffer_address++ = '\0';
+
+	//Verify it consists of expected elements
+	if (strlen(buffer) > 2 || !buffer_address || strlen(buffer_address) > 4){
+		if (buffer_address) *--buffer_address = ':';
+		fprintf(stderr, "Error: Unexpected %s\n", buffer);
 		return -1;
 	}
 
-	// If it's not a ROM address, (silently) ignore it.
-	//if (address > 0x7FFF) return 0;    <-- This was filtering out hJoyPressed and a lot of other stuff. Turned off for now...
+	// Parse the address part
+	address = strtol(buffer_address, &endptr_address, 16);
+	if (endptr_address != buffer_address + strlen(buffer_address)){
+		fprintf(stderr, "Error: Cannot parse bank %s:%s\n", buffer, buffer_address);
+		return -1;
+	}
+
+	return address;
+}
+
+int parse_abs_offset(int bank, int address, char type)
+{
+	int offset;
 
 	// Calculate the absolute offset in the ROM
-	if (bank == 0) {
+	if (type == 'w') {
+		if (bank == 0) {
+			offset = address;
+		} else {
+			offset = bank * 0xd000 + (address - 0xd000);
+		}
+	} else if (type == 's') {
+		if (bank == 0) {
+			offset = address;
+		} else {
+			offset = bank * 0xc000 + (address - 0xc000);
+		}
+	} else if (type == 'h') {
 		offset = address;
 	} else {
-		offset = bank * 0x4000 + (address - 0x4000);
+		if (bank == 0) {
+			offset = address;
+		} else {
+			offset = bank * 0x4000 + (address - 0x4000);
+		}
 	}
 
 	return offset;
+}
+
+int parse_offset(int offset, char type)
+{
+	int address;
+
+	if (type == 'w') {
+		if ((offset - 0xd000) <= 0) {
+			return offset;
+		} else {
+			address = offset % 0xd000;
+			address = address + 0xd000;
+			return address;
+		}
+	} else if (type == 's') {
+		if ((offset - 0xc000) <= 0) {
+			return offset;
+		} else {
+			address = offset % 0xc000;
+			address = address + 0xc000;
+			return address;
+		}
+	} else if (type == 'h') {
+		return offset;
+	} else {
+		if ((offset - 0x4000) <= 0) {
+			return offset;
+		} else {
+			address = offset % 0x4000;
+			address = address + 0x4000;
+			return address;
+		}
+	}
+	return -1;
 }
 
 struct symbol *parse_symfile(FILE *file)
@@ -175,6 +254,8 @@ struct symbol *parse_symfile(FILE *file)
 	char *buffer;
 	size_t buffer_index = 0;
 	int c;
+	int bank = 0;
+	int address = 0;
 	int offset = -1;
 
 	buffer = create_buffer();
@@ -193,13 +274,14 @@ struct symbol *parse_symfile(FILE *file)
 			buffer[buffer_index] = '\0';
 
 			// Only do stuff if we managed to read a valid offset.
-			if (offset == -1 && buffer_index > 0) {
-				fprintf(stderr, "Error: Cannot parse %s\n", buffer);
-				goto error;
-			}
+			//if (offset == -1 && buffer_index > 0) {
+			//	fprintf(stderr, "Error: Cannot parse %s\n", buffer);
+			//	goto error;
+			//}
 
 			// This is the end of the parsable line
 			buffer_index = SIZE_MAX;
+			offset = parse_abs_offset(bank, address, buffer[0]);
 			if (offset == -1) break;
 
 			if (create_symbol(&symbols, offset, buffer)) goto error;
@@ -218,8 +300,9 @@ struct symbol *parse_symfile(FILE *file)
 
 			// If we encounter a space, we've reached the end of the address.
 			buffer[buffer_index] = '\0';
-			offset = parse_address(buffer);
-			if (offset == -1) goto error;
+			bank = parse_address_bank(buffer);
+			address = parse_address_address(buffer);
+			//if (offset == -1) goto error;
 			buffer_index = offset ? 0 : SIZE_MAX;
 
 			break;
@@ -572,6 +655,22 @@ void interpret_command(char *command, const struct symbol *lastFoundSymbol, cons
 		getsymbol = find_symbol(symbols, argv[0]);
 		if (!getsymbol) return;
 		fprintf(output, "0x%x", getsymbol->value);
+	} else if (strcmp(command, "conaddress") == 0) {
+		if (argc != 2) {
+			fprintf(stderr, "Error: Missing argument for %s", command);
+		}
+		getsymbol = find_symbol(symbols, argv[1]);
+		if (!getsymbol) return;
+		if (strcmp(argv[0], "dw") == 0) {
+			fprintf(output, "%x ", (parse_offset(getsymbol->value, getsymbol->name[0]) % 0x100));
+			fprintf(output, "%x ", (parse_offset(getsymbol->value, getsymbol->name[0]) / 0x100));
+			fprintf(output, "%x ", ((parse_offset(getsymbol->value, getsymbol->name[0]) + 0x1) % 0x100));
+			fprintf(output, "%x", ((parse_offset(getsymbol->value, getsymbol->name[0]) + 0x1) / 0x100));
+		} else {
+			fprintf(output, "%x ", (parse_offset(getsymbol->value, getsymbol->name[0]) % 0x100));
+			fprintf(output, "%x", (parse_offset(getsymbol->value, getsymbol->name[0]) / 0x100));
+		}
+	
 	} else {
 		fprintf(stderr, "Error: Unknown command: %s\n", command);
 	}
