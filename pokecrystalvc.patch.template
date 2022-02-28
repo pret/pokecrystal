@@ -472,7 +472,7 @@ MotionBlur0 = 11
 ConditionType = 0                                                 
 ConditionValueA = a2: {{conaddress::wFXAnimID}}
 ConditionValueB = a2: {{EQUAL}}
-ConditionValueC = a2: {{constant:constants/move_constants.asm:FISSURE}} 00
+ConditionValueC = a2: {{constant:constants/move_constants.asm:FISSURE}}
 
 ;ROM:35D09                 ld      [byte_CFB6], a
 ;ROM:35D0C                 ld      a, d
@@ -506,7 +506,7 @@ MotionBlur0 = 11
 ConditionType = 0                                                 
 ConditionValueA = a2: {{conaddress::wFXAnimID}}
 ConditionValueB = a2: {{EQUAL}}
-ConditionValueC = a2: {{constant:constants/move_constants.asm:SELFDESTRUCT}} 00
+ConditionValueC = a2: {{constant:constants/move_constants.asm:SELFDESTRUCT}}
 
 
 ; lightening    
@@ -522,7 +522,7 @@ MotionBlur0 = 15
 ConditionType = 0                                                 
 ConditionValueA = a2: {{conaddress::wFXAnimID}}  
 ConditionValueB = a2: {{EQUAL}}
-ConditionValueC = a2: {{constant:constants/move_constants.asm:THUNDER}} 00      
+ConditionValueC = a2: {{constant:constants/move_constants.asm:THUNDER}}      
                                              
 
 
@@ -540,7 +540,7 @@ MotionBlur0 = 15
 ConditionType = 0                                                 
 ConditionValueA = a2: {{conaddress::wFXAnimID}}  
 ConditionValueB = a2: {{EQUAL}}
-ConditionValueC = a2: {{constant:constants/move_constants.asm:FLASH}} 00
+ConditionValueC = a2: {{constant:constants/move_constants.asm:FLASH}}
 
 
 ;skill name 1 : ..............Mem Write: pc32 = 0x30db addr = 0xcf87 value = 0x2c
@@ -563,7 +563,7 @@ MotionBlur0 = 15
 ConditionType = 0                                                 
 ConditionValueA = a2: {{conaddress::wFXAnimID}}  
 ConditionValueB = a2: {{EQUAL}}
-ConditionValueC = a2: {{constant:constants/move_constants.asm:EXPLOSION}} 00
+ConditionValueC = a2: {{constant:constants/move_constants.asm:EXPLOSION}}
 
 
 ;skill name 1 : ..............Mem Write: pc32 = 0x30db addr = 0xcf87 value = 0x30
@@ -585,7 +585,7 @@ MotionBlur0 = 11
 ConditionType = 0                                                 
 ConditionValueA = a2: {{conaddress::wFXAnimID}}  
 ConditionValueB = a2: {{EQUAL}}
-ConditionValueC = a2: {{constant:constants/move_constants.asm:HORN_DRILL}} 00
+ConditionValueC = a2: {{constant:constants/move_constants.asm:HORN_DRILL}}
 
 
 
@@ -608,7 +608,7 @@ MotionBlur0 = 7
 ConditionType = 0                                                 
 ConditionValueA = a2: {{conaddress::wFXAnimID}}  
 ConditionValueB = a2: {{EQUAL}}
-ConditionValueC = a2: {{constant:constants/move_constants.asm:HYPER_BEAM}} 00                                                          
+ConditionValueC = a2: {{constant:constants/move_constants.asm:HYPER_BEAM}}                                                          
 
 
                         
@@ -631,7 +631,7 @@ MotionBlur0 = 11
 ConditionType = 0                                                                                                                                
 ConditionValueA = a4: {{conaddress::wFXAnimID}} {{conaddress::wBattleAnimByte}}                                                                              
 ConditionValueB = a4: {{EQUAL}} {{EQUAL}}                                                                                 
-ConditionValueC = a4: d9 00 d1 00                                                                                 
+ConditionValueC = a4: {{constant:constants/move_constants.asm:PRESENT}} d1 00                                                                                 
 
     
 

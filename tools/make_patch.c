@@ -647,7 +647,7 @@ void interpret_command(char *command, const struct symbol *lastFoundSymbol, cons
 		int value = get_constant(argv[0], argv[1]);
 		if (value == -1) return;
 
-		fprintf(output, isupper(command[0]) ? "%X": "%x", value);
+		fprintf(output, isupper(command[0]) ? "%X 00": "%x 00", value);
 	} else if (strcmp(command, "findaddress") == 0) {
 		if (argc != 1) {
 			fprintf(stderr, "Error: Missing argument for %s", command);
