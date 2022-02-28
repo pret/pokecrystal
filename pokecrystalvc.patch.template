@@ -303,7 +303,7 @@ MemAddress={{findaddress:hJoyPressed}}
 Fixcode=a1:00   /* Clears pressed keys? */                                                                               
 ConditionType = 0                                                                              
 ConditionValueA = a20: {{conaddress:dw:wWindowStackPointer}} {{conaddress::wMenuJoypad}} {{conaddress::wMenuSelection}} {{conaddress::wMenuSelection}} {{conaddress::wMenuCursorY}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}}                   
-ConditionValueB = a20: 00 00 00 00 00 00 03 00 04 00 00 00 05 00 05 00 05 00 05 00                   
+ConditionValueB = a20: {{EQUAL}} {{EQUAL}} {{EQUAL}} {{GREATER_THAN_OR_EQUAL}} {{LESS_THAN_OR_EQUAL}} {{EQUAL}} {{NOT_EQUAL}} {{NOT_EQUAL}} {{NOT_EQUAL}} {{NOT_EQUAL}}                   
 ConditionValueC = a20: dd 00 d3 00 01 00 00 00 0f 00 03 00 80 00 40 00 02 00 00 00                   
     
 ; -----ddddfffffff99999ccccc77777----0xd9c7 no ..............Mem Write: pc32 = 0x230b addr = 0xd9c7 value = 0x8
@@ -318,7 +318,7 @@ MemAddress={{findaddress:hJoyPressed}}
 Fixcode=a1:00   /* Clears pressed keys? */                                                              
 ConditionType = 0                                                             
 ConditionValueA = a26: {{conaddress:dw:wWindowStackPointer}} {{conaddress::wMenuJoypad}} {{conaddress::wMenuSelection}} {{conaddress::wMenuCursorY}} {{conaddress::wMapGroup}} {{conaddress::wMapNumber}} {{conaddress::wYCoord}} {{conaddress::wXCoord}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}}  
-ConditionValueB = a26: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 05 00 05 00 05 00 05 00  
+ConditionValueB = a26: {{EQUAL}} {{EQUAL}} {{EQUAL}} {{EQUAL}} {{EQUAL}} {{EQUAL}} {{EQUAL}} {{EQUAL}} {{EQUAL}} {{NOT_EQUAL}} {{NOT_EQUAL}} {{NOT_EQUAL}} {{NOT_EQUAL}}  
 ConditionValueC = a26: af 00 df 00 00 00 00 00 01 00 16 00 08 00 04 00 02 00 80 00 40 00 02 00 00 00  
 
                                                
@@ -361,7 +361,7 @@ MemAddress={{findaddress:hJoyPressed}}
 Fixcode=a1:00   /* Clears pressed keys? */                                                                                  
 ConditionType = 0                                                                                 
 ConditionValueA = a18: {{conaddress:dw:wWindowStackPointer}} {{conaddress::wMenuJoypad}} {{conaddress::wMenuSelection}} {{conaddress::wDexArrowCursorPosIndex}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}}                      
-ConditionValueB = a18: 00 00 00 00 00 00 00 00 00 00 05 00 05 00 05 00 05 00                      
+ConditionValueB = a18: {{EQUAL}} {{EQUAL}} {{EQUAL}} {{EQUAL}} {{EQUAL}} {{NOT_EQUAL}} {{NOT_EQUAL}} {{NOT_EQUAL}} {{NOT_EQUAL}}                      
 ConditionValueC = a18: a1 00 db 00 01 00 00 00 03 00 80 00 40 00 02 00 00 00                      
 
 
@@ -471,7 +471,7 @@ MotionBEnable0 = 3
 MotionBlur0 = 11                                                                                                         
 ConditionType = 0                                                 
 ConditionValueA = a2: {{conaddress::wFXAnimID}}
-ConditionValueB = a2: 00 00
+ConditionValueB = a2: {{EQUAL}}
 ConditionValueC = a2: {{constant:constants/move_constants.asm:FISSURE}} 00
 
 ;ROM:35D09                 ld      [byte_CFB6], a
@@ -505,7 +505,7 @@ MotionBEnable0 = 3
 MotionBlur0 = 11                                               
 ConditionType = 0                                                 
 ConditionValueA = a2: {{conaddress::wFXAnimID}}
-ConditionValueB = a2: 00 00
+ConditionValueB = a2: {{EQUAL}}
 ConditionValueC = a2: {{constant:constants/move_constants.asm:SELFDESTRUCT}} 00
 
 
@@ -521,7 +521,7 @@ MotionBEnable0 = 3
 MotionBlur0 = 15                                               
 ConditionType = 0                                                 
 ConditionValueA = a2: {{conaddress::wFXAnimID}}  
-ConditionValueB = a2: 00 00
+ConditionValueB = a2: {{EQUAL}}
 ConditionValueC = a2: {{constant:constants/move_constants.asm:THUNDER}} 00      
                                              
 
@@ -539,7 +539,7 @@ MotionBEnable0 = 3
 MotionBlur0 = 15                                          
 ConditionType = 0                                                 
 ConditionValueA = a2: {{conaddress::wFXAnimID}}  
-ConditionValueB = a2: 00 00
+ConditionValueB = a2: {{EQUAL}}
 ConditionValueC = a2: {{constant:constants/move_constants.asm:FLASH}} 00
 
 
@@ -562,7 +562,7 @@ MotionBEnable0 = 3
 MotionBlur0 = 15                                                   
 ConditionType = 0                                                 
 ConditionValueA = a2: {{conaddress::wFXAnimID}}  
-ConditionValueB = a2: 00 00
+ConditionValueB = a2: {{EQUAL}}
 ConditionValueC = a2: {{constant:constants/move_constants.asm:EXPLOSION}} 00
 
 
@@ -584,7 +584,7 @@ MotionBEnable0 = 3
 MotionBlur0 = 11                                              
 ConditionType = 0                                                 
 ConditionValueA = a2: {{conaddress::wFXAnimID}}  
-ConditionValueB = a2: 00 00
+ConditionValueB = a2: {{EQUAL}}
 ConditionValueC = a2: {{constant:constants/move_constants.asm:HORN_DRILL}} 00
 
 
@@ -607,7 +607,7 @@ MotionBEnable0 = 3
 MotionBlur0 = 7                                              
 ConditionType = 0                                                 
 ConditionValueA = a2: {{conaddress::wFXAnimID}}  
-ConditionValueB = a2: 00 00
+ConditionValueB = a2: {{EQUAL}}
 ConditionValueC = a2: {{constant:constants/move_constants.asm:HYPER_BEAM}} 00                                                          
 
 
@@ -630,7 +630,7 @@ MotionBEnable0 = 3
 MotionBlur0 = 11                                                                                                                                 
 ConditionType = 0                                                                                                                                
 ConditionValueA = a4: {{conaddress::wFXAnimID}} {{conaddress::wBattleAnimByte}}                                                                              
-ConditionValueB = a4: 00 00 00 00                                                                                 
+ConditionValueB = a4: {{EQUAL}} {{EQUAL}}                                                                                 
 ConditionValueC = a4: d9 00 d1 00                                                                                 
 
     
