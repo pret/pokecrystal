@@ -31,7 +31,7 @@ struct asmfile {
 struct asmfile *asmfiles = NULL;
 
 void free_buffer(void *buf) {
-	struct buffer *buffer = buf - sizeof(struct buffer);
+	struct buffer *buffer = (struct buffer *)((char *)buf - sizeof(struct buffer));
 	free(buffer);
 }
 
@@ -47,7 +47,7 @@ void *create_buffer() {
 }
 
 void *expand_buffer(void *buf, const size_t size) {
-	struct buffer *buffer = buf - sizeof(struct buffer);
+	struct buffer *buffer = (struct buffer *)((char *)buf - sizeof(struct buffer));
 
 	if (size > buffer->size) {
 		buffer = realloc(buffer, (buffer->size += 0x100));
