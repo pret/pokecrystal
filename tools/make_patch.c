@@ -642,7 +642,7 @@ void interpret_command(char *command, const struct symbol *currentpatch, const s
 		int value = get_constant(argv[0], argv[1]);
 		if (value == -1) return;
 
-		fprintf(output, isupper(command[0]) ? "%02X 00": "%02x 00", value);
+		fprintf(output, isupper(command[0]) ? "%02X %02X": "%02x %02x", value, value >> 8);
 	} else if (strcmp(command, "findaddress") == 0) {
 		if (argc != 1) {
 			fprintf(stderr, "Error: Missing argument for %s", command);
@@ -657,13 +657,13 @@ void interpret_command(char *command, const struct symbol *currentpatch, const s
 		getsymbol = find_symbol(symbols, argv[1]);
 		if (!getsymbol) return;
 		if (strcmp(argv[0], "dw") == 0) {
-			fprintf(output, "%x ", (parse_offset(getsymbol->value, getsymbol->name[0]) % 0x100));
-			fprintf(output, "%x ", (parse_offset(getsymbol->value, getsymbol->name[0]) / 0x100));
-			fprintf(output, "%x ", ((parse_offset(getsymbol->value, getsymbol->name[0]) + 0x1) % 0x100));
-			fprintf(output, "%x", ((parse_offset(getsymbol->value, getsymbol->name[0]) + 0x1) / 0x100));
+			fprintf(output, "%02x ", (parse_offset(getsymbol->value, getsymbol->name[0]) % 0x100));
+			fprintf(output, "%02x ", (parse_offset(getsymbol->value, getsymbol->name[0]) / 0x100));
+			fprintf(output, "%02x ", ((parse_offset(getsymbol->value, getsymbol->name[0]) + 0x1) % 0x100));
+			fprintf(output, "%02x", ((parse_offset(getsymbol->value, getsymbol->name[0]) + 0x1) / 0x100));
 		} else {
-			fprintf(output, "%x ", (parse_offset(getsymbol->value, getsymbol->name[0]) % 0x100));
-			fprintf(output, "%x", (parse_offset(getsymbol->value, getsymbol->name[0]) / 0x100));
+			fprintf(output, "%02x ", (parse_offset(getsymbol->value, getsymbol->name[0]) % 0x100));
+			fprintf(output, "%02x", (parse_offset(getsymbol->value, getsymbol->name[0]) / 0x100));
 		}
 	
 	} else if (strcmp(command, "EQUAL") == 0) {
