@@ -218,6 +218,7 @@ struct symbol *parse_symfile(FILE *file) {
 
 		switch (c) {
 		case ';':
+		case '\r':
 		case '\n':
 			// If we encounter a newline or comment,
 			// we've reached the end of the label name.
@@ -259,7 +260,7 @@ struct symbol *parse_symfile(FILE *file) {
 			buffer_index = 0;
 			offset = -1;
 
-			while (c != '\n') {
+			while (c != '\n' && c != '\r') {
 				if ((c = getc(file)) == EOF) break;
 			}
 		}
@@ -370,6 +371,7 @@ struct symbol *parse_asm(FILE *file) {
 			buffer[buffer_index++] = c;
 			break;
 
+		case '\r':
 		case '\n':
 		case ';':
 			buffer[buffer_index] = '\0';
@@ -416,7 +418,7 @@ struct symbol *parse_asm(FILE *file) {
 			if (label) free(label);
 			label = NULL;
 
-			while (c != '\n') {
+			while (c != '\n' && c != '\r') {
 				if ((c = getc(file)) == EOF) break;
 			}
 		}
@@ -662,6 +664,7 @@ struct patch *process_template(FILE *file, FILE *new_rom, FILE *orig_rom, FILE *
 		if (!buffer) goto error;
 
 		switch (c) {
+		case '\r':
 		case '\n':
 			// A newline simply resets the line_pos
 			putc(c, output);
@@ -759,7 +762,7 @@ struct patch *process_template(FILE *file, FILE *new_rom, FILE *orig_rom, FILE *
 					// Skip until the next newline
 					while ((c = getc(file)) != EOF) {
 						putc(c, output);
-						if (c == '\n') break;
+						if (c == '\n' || c == '\r') break;
 					}
 					buffer_index = 0;
 					break;
