@@ -35,7 +35,7 @@ void free_buffer(void *buf) {
 	free(buffer);
 }
 
-void *create_buffer() {
+void *create_buffer(void) {
 	struct buffer *buffer = malloc(sizeof(struct buffer) + 0x100);
 	if (!buffer) {
 		fprintf(stderr, "Error: Cannot allocate memory\n");
@@ -106,7 +106,7 @@ const struct symbol *find_symbol(const struct symbol *symbols, const char *name)
 			continue;
 		}
 		// If we're looking for a local label, only compare the part starting from the period
-		char *compare = (char *)symbol->name;
+		const char *compare = symbol->name;
 		if (name[0] == '.') compare += symbolnamelen - namelen;
 		if (!strcmp(compare, name)) return symbol;
 		symbol = symbol->next;
@@ -117,7 +117,7 @@ const struct symbol *find_symbol(const struct symbol *symbols, const char *name)
 
 int parse_address_bank(char *buffer_input) {
 	int bank;
-	char *buffer = malloc(strlen(buffer_input));
+	char *buffer = malloc(strlen(buffer_input) + 1);
 	char *endptr_bank;
 	char *buffer_address;
 
@@ -144,7 +144,7 @@ int parse_address_bank(char *buffer_input) {
 
 int parse_address_address(char *buffer_input) {
 	int address;
-	char *buffer = malloc(strlen(buffer_input));
+	char *buffer = malloc(strlen(buffer_input) + 1);
 	char *endptr_address;
 	char *buffer_address;
 
@@ -375,7 +375,7 @@ struct symbol *parse_asm(FILE *file) {
 			buffer[buffer_index] = '\0';
 
 			// Trim ending whitespace
-			while (isspace(buffer[--buffer_index])) buffer[buffer_index] = '\0';
+			while (isspace((unsigned char)buffer[--buffer_index])) buffer[buffer_index] = '\0';
 			buffer_index++;
 
 			if (parsing == PARSING_INSTRUCTION) {
@@ -529,7 +529,7 @@ void interpret_command(char *command, const struct symbol *current_patch, const 
 			}
 		}
 
-		fprintf(output, isupper(command[0]) ? "%X" : "%x", offset);
+		fprintf(output, isupper((unsigned char)command[0]) ? "%X" : "%x", offset);
 	} else if (!strcmp(command, "Patch") ||
 			   !strcmp(command, "patch")) {
 		if (argc > 0) offset += strtol(argv[0], NULL, 0);
@@ -553,28 +553,30 @@ void interpret_command(char *command, const struct symbol *current_patch, const 
 			patch->offset = offset;
 			patch->size = 1;
 			fprintf(output, "0x");
-			fprintf(output, isupper(command[0]) ? "%02X" : "%02x", c);
+			fprintf(output, isupper((unsigned char)command[0]) ? "%02X" : "%02x", c);
 		} else {
-			int length = 0;
-
-			// Figure out the length of the patch
 			char *searchend = malloc(strlen(current_patch->name) + 5);
 			strcpy(searchend, current_patch->name);
 			strcat(searchend, "_End");
 			current_patch = find_symbol(symbols, searchend);
-			length = current_patch->value - offset;
-			memset(searchend, 0, (strlen(current_patch->name)));
+			if (!current_patch) {
+				fprintf(stderr, "Error: Could not find symbol: %s", searchend);
+			} else {
+				// Figure out the length of the patch
+				int length = current_patch->value - offset;
+				memset(searchend, 0, (strlen(current_patch->name)));
 
-			// We've got the length, now go back
-			fseek(new_rom, offset, SEEK_SET);
+				// We've got the length, now go back
+				fseek(new_rom, offset, SEEK_SET);
 
-			// Print out the patch
-			patch->offset = offset;
-			patch->size = length;
-			fprintf(output, "a%d:", length);
-			for (int i = 0; i < length; i++) {
-				if (i != 0) putc(' ', output);
-				fprintf(output, isupper(command[0]) ? "%02X" : "%02x", getc(new_rom));
+				// Print out the patch
+				patch->offset = offset;
+				patch->size = length;
+				fprintf(output, "a%d:", length);
+				for (int i = 0; i < length; i++) {
+					if (i != 0) putc(' ', output);
+					fprintf(output, isupper((unsigned char)command[0]) ? "%02X" : "%02x", getc(new_rom));
+				}
 			}
 		}
 	} else if (!strcmp(command, "Constant") ||
@@ -586,7 +588,7 @@ void interpret_command(char *command, const struct symbol *current_patch, const 
 		int value = get_constant(argv[0], argv[1]);
 		if (value == -1) return;
 
-		fprintf(output, isupper(command[0]) ? "%02X %02X": "%02x %02x", value, value >> 8);
+		fprintf(output, isupper((unsigned char)command[0]) ? "%02X %02X": "%02x %02x", value, value >> 8);
 	} else if (!strcmp(command, "findaddress")) {
 		if (argc != 1) {
 			fprintf(stderr, "Error: Missing argument for %s", command);
@@ -750,7 +752,7 @@ struct patch *process_template(FILE *file, FILE *new_rom, FILE *orig_rom, FILE *
 					strcat(searchlabel, buffer);
 					current_patch = find_symbol(symbols, searchlabel);
 					if (!current_patch) {
-						fprintf(stderr, "Error: Cannot find symbol: %s %s\n", prefix, buffer);
+						fprintf(stderr, "Error: Cannot find symbol: %s\n", searchlabel);
 					}
 
 					free(searchlabel);
