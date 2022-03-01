@@ -118,7 +118,7 @@ const struct symbol *find_symbol(const struct symbol *symbols, const char *name)
 		// If we're looking for a local label, only compare the part starting from the period
 		char *compare = (char *)symbol->name;
 		if (name[0] == '.') compare += symbolnamelen - namelen;
-		if (strcmp(compare, name) == 0) return symbol;
+		if (!strcmp(compare, name)) return symbol;
 		symbol = symbol->next;
 	}
 
@@ -185,25 +185,13 @@ int parse_abs_offset(int bank, int address, char type)
 
 	// Calculate the absolute offset in the ROM
 	if (type == 'w') {
-		if (bank == 0) {
-			offset = address;
-		} else {
-			offset = bank * 0xd000 + (address - 0xd000);
-		}
+		offset = bank ? bank * 0xd000 + (address - 0xd000) : address;
 	} else if (type == 's') {
-		if (bank == 0) {
-			offset = address;
-		} else {
-			offset = bank * 0xc000 + (address - 0xc000);
-		}
+		offset = bank ? bank * 0xc000 + (address - 0xc000) : address;
 	} else if (type == 'h') {
 		offset = address;
 	} else {
-		if (bank == 0) {
-			offset = address;
-		} else {
-			offset = bank * 0x4000 + (address - 0x4000);
-		}
+		offset = bank ? bank * 0x4000 + (address - 0x4000) : address;
 	}
 
 	return offset;
@@ -211,34 +199,14 @@ int parse_abs_offset(int bank, int address, char type)
 
 int parse_offset(int offset, char type)
 {
-	int address;
-
 	if (type == 'w') {
-		if ((offset - 0xd000) <= 0) {
-			return offset;
-		} else {
-			address = offset % 0xd000;
-			address = address + 0xd000;
-			return address;
-		}
+		return offset > 0xd000 ? 0xd000 + offset % 0xd000 : offset;
 	} else if (type == 's') {
-		if ((offset - 0xc000) <= 0) {
-			return offset;
-		} else {
-			address = offset % 0xc000;
-			address = address + 0xc000;
-			return address;
-		}
+		return offset > 0xc000 ? 0xc000 + offset % 0xc000 : offset;
 	} else if (type == 'h') {
 		return offset;
 	} else {
-		if ((offset - 0x4000) <= 0) {
-			return offset;
-		} else {
-			address = offset % 0x4000;
-			address = address + 0x4000;
-			return address;
-		}
+		return offset > 0x4000 ? 0x4000 + offset % 0x4000 : offset;
 	}
 	return -1;
 }
@@ -563,7 +531,7 @@ void interpret_command(char *command, const struct symbol *currentpatch, const s
 
 	// Now we finally can do stuff with it
 	if (strcmp(command, "ADDREss") == 0) {
-		// Shitty hack, shouldn't be used anyway
+		// This is only necessary to match the exact upper/lower casing in the original patch
 		int high = offset >> 8;
 		int low = offset & 0xFF;
 		fprintf(output, "0x%X%x", high, low);
