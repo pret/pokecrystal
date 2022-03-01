@@ -102,7 +102,7 @@ const struct symbol *find_symbol(const struct symbol *symbols, const char *name)
 	while (symbol) {
 		int symbolnamelen = strlen(symbol->name);
 		if (namelen > symbolnamelen) {
-			symbol = symbol->next; 
+			symbol = symbol->next;
 			continue;
 		}
 		// If we're looking for a local label, only compare the part starting from the period
@@ -195,7 +195,7 @@ int parse_offset(int offset, char type) {
 	default:
 		return offset > 0x4000 ? 0x4000 + offset % 0x4000 : offset;
 	}
-	
+
 	return -1;
 }
 
@@ -486,7 +486,7 @@ error:
 	return value;
 }
 
-void interpret_command(char *command, const struct symbol *current_patch, const struct symbol *symbols, 
+void interpret_command(char *command, const struct symbol *current_patch, const struct symbol *symbols,
                        struct patch *patch, FILE *new_rom, FILE *orig_rom, FILE *output) {
 	int argc = 0;
 	int offset = -1;
@@ -609,7 +609,7 @@ void interpret_command(char *command, const struct symbol *current_patch, const 
 			fprintf(output, "%02x ", (parse_offset(getsymbol->value, getsymbol->name[0]) % 0x100));
 			fprintf(output, "%02x", (parse_offset(getsymbol->value, getsymbol->name[0]) / 0x100));
 		}
-	
+
 	} else if (!strcmp(command, "EQUAL")) {
 		fprintf(output, "00 00");
 	} else if (!strcmp(command, "GREATER_THAN")) {
