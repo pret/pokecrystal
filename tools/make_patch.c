@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdint.h>
@@ -82,14 +83,14 @@ void free_asmfiles(struct asmfile *list)
 	}
 }
 
-int create_symbol(struct symbol **tip, const int value, const char *name)
+bool create_symbol(struct symbol **tip, const int value, const char *name)
 {
 	struct symbol *symbol;
 
 	symbol = malloc(sizeof(struct symbol) + strlen(name) + 1);
 	if (!symbol) {
 		fprintf(stderr, "Error: Cannot allocate memory\n");
-		return -1;
+		return true;
 	}
 	symbol->value = value;
 	strcpy(symbol->name, name);
@@ -98,7 +99,7 @@ int create_symbol(struct symbol **tip, const int value, const char *name)
 	symbol->next = *tip;
 	*tip = symbol;
 
-	return 0;
+	return false;
 }
 
 const struct symbol *find_symbol(const struct symbol *symbols, const char *name)
