@@ -541,13 +541,13 @@ error:
 	return value;
 }
 
-void interpret_command(char *command, const struct symbol *lastFoundSymbol, const struct symbol *symbols, 
+void interpret_command(char *command, const struct symbol *currentpatch, const struct symbol *symbols, 
                        struct patch *patch, FILE *new_rom, FILE *orig_rom, FILE *output)
 {
 	int argc = 0;
 	int offset = -1;
-	if (lastFoundSymbol) {
-		offset = lastFoundSymbol->value;
+	if (currentpatch) {
+		offset = currentpatch->value;
 	}
 	char *s;
 
@@ -591,19 +591,19 @@ void interpret_command(char *command, const struct symbol *lastFoundSymbol, cons
 		if (argc > 0) offset += strtol(argv[0], NULL, 0);
 
 		if (fseek(orig_rom, offset, SEEK_SET) != 0) {
-			fprintf(stderr, "Error: Could not seek to the offset of %s in the original ROM\n", lastFoundSymbol->name);
+			fprintf(stderr, "Error: Could not seek to the offset of %s in the original ROM\n", currentpatch->name);
 			return;
 		}
 
 		if (fseek(new_rom, offset, SEEK_SET) != 0) {
-			fprintf(stderr, "Error: Could not seek to offset of %s in the new ROM\n", lastFoundSymbol->name);
+			fprintf(stderr, "Error: Could not seek to offset of %s in the new ROM\n", currentpatch->name);
 			return;
 		}
 
 		if (argc <= 1 || strcmp(argv[1], "big") != 0) {
 			int c = getc(new_rom);
 			if (c == getc(orig_rom)) {
-				fprintf(stderr, "Warning: %s doesn't actually contain any differences\n", lastFoundSymbol->name);
+				fprintf(stderr, "Warning: %s doesn't actually contain any differences\n", currentpatch->name);
 			}
 
 			patch->offset = offset;
@@ -614,12 +614,12 @@ void interpret_command(char *command, const struct symbol *lastFoundSymbol, cons
 			int length = 0;
 
 			// Figure out the length of the patch
-			char *searchend = malloc(strlen(lastFoundSymbol->name) + 5);
-			strcpy(searchend, lastFoundSymbol->name);
+			char *searchend = malloc(strlen(currentpatch->name) + 5);
+			strcpy(searchend, currentpatch->name);
 			strcat(searchend, "_End");
-			lastFoundSymbol = find_symbol(symbols, searchend);
-			length = lastFoundSymbol->value - offset;
-			memset(searchend, 0, (strlen(lastFoundSymbol->name)));
+			currentpatch = find_symbol(symbols, searchend);
+			length = currentpatch->value - offset;
+			memset(searchend, 0, (strlen(currentpatch->name)));
 
 			// We've got the length, now go back
 			fseek(new_rom, offset, SEEK_SET);
@@ -688,7 +688,7 @@ struct patch *process_template(FILE *file, FILE *new_rom, FILE *orig_rom, FILE *
 {
 	struct patch *patches = NULL;
 	struct patch *patch = NULL;
-	const struct symbol *lastFoundSymbol = NULL;
+	const struct symbol *currentpatch = NULL;
 	char *buffer;
 	size_t buffer_index = 0;
 	int c;
@@ -770,7 +770,7 @@ struct patch *process_template(FILE *file, FILE *new_rom, FILE *orig_rom, FILE *
 
 
 			patch->offset = 0;
-			interpret_command(buffer, lastFoundSymbol, symbols, patch, new_rom, orig_rom, output);
+			interpret_command(buffer, currentpatch, symbols, patch, new_rom, orig_rom, output);
 			if (patch->offset) patch++;
 			patches = expand_buffer(patches, (uintptr_t)patch - (uintptr_t)patches);
 			if (!patches) goto error;
@@ -804,13 +804,13 @@ struct patch *process_template(FILE *file, FILE *new_rom, FILE *orig_rom, FILE *
 					// Look for the symbol starting with prefix
 					char *searchlabel = malloc(strlen(prefix) + strlen(buffer) + 1);
 					strcpy(searchlabel, prefix);
-					strcat((char *)searchlabel, buffer);
-					lastFoundSymbol = find_symbol(symbols, searchlabel);
-					if (!lastFoundSymbol) {
+					strcat(searchlabel, buffer);
+					currentpatch = find_symbol(symbols, searchlabel);
+					if (!currentpatch) {
 						fprintf(stderr, "Error: Cannot find symbol: %s %s\n", prefix, buffer);
 					}
 
-					memset(searchlabel, 0, (strlen(prefix) + strlen(buffer)));
+					free(searchlabel);
 					// Skip until the next newline
 					while ((c = getc(file)) != EOF) {
 						putc(c, output);
