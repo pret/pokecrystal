@@ -354,13 +354,13 @@ struct symbol *parse_asm(FILE *file) {
 				buffer[buffer_index] = '\0';
 				buffer_index = SIZE_MAX;
 
-				if (label && strcmp(buffer, "EQU") == 0) {
+				if (label && !strcmp(buffer, "EQU")) {
 					buffer_index = 0;
 					parsing = PARSING_EQU;
-				} else if (strcmp(buffer, "const_def") == 0) {
+				} else if (!strcmp(buffer, "const_def")) {
 					buffer_index = 0;
 					parsing = PARSING_CONST_DEF;
-				} else if (strcmp(buffer, "const") == 0) {
+				} else if (!strcmp(buffer, "const")) {
 					buffer_index = 0;
 					parsing = PARSING_CONST;
 				}
@@ -380,7 +380,7 @@ struct symbol *parse_asm(FILE *file) {
 
 			if (parsing == PARSING_INSTRUCTION) {
 				// const_def may also take 0 arguments
-				if (strcmp(buffer, "const_def") == 0) {
+				if (!strcmp(buffer, "const_def")) {
 					const_value = 0;
 				}
 			} else if (parsing == PARSING_EQU) {
@@ -441,7 +441,7 @@ int get_constant(const char *filename, const char *constant) {
 
 	// Check if we've already loaded the symbols
 	while (asmfile) {
-		if (strcmp(asmfile->name, filename) == 0) {
+		if (!strcmp(asmfile->name, filename)) {
 			symbols = asmfile->symbols;
 			break;
 		}
@@ -513,13 +513,13 @@ void interpret_command(char *command, const struct symbol *current_patch, const 
 	}
 
 	// Now we finally can do stuff with it
-	if (strcmp(command, "ADDREss") == 0) {
+	if (!strcmp(command, "ADDREss")) {
 		// This is only necessary to match the exact upper/lower casing in the original patch
 		int high = offset >> 8;
 		int low = offset & 0xFF;
 		fprintf(output, "0x%X%x", high, low);
-	} else if (strcmp(command, "Address") == 0 ||
-			   strcmp(command, "address") == 0) {
+	} else if (!strcmp(command, "Address") ||
+			   !strcmp(command, "address")) {
 		if (argc > 0) offset += strtol(argv[0], NULL, 0);
 
 		fprintf(output, "0x");
@@ -530,8 +530,8 @@ void interpret_command(char *command, const struct symbol *current_patch, const 
 		}
 
 		fprintf(output, isupper(command[0]) ? "%X" : "%x", offset);
-	} else if (strcmp(command, "Patch") == 0 ||
-			   strcmp(command, "patch") == 0) {
+	} else if (!strcmp(command, "Patch") ||
+			   !strcmp(command, "patch")) {
 		if (argc > 0) offset += strtol(argv[0], NULL, 0);
 
 		if (fseek(orig_rom, offset, SEEK_SET) != 0) {
@@ -544,7 +544,7 @@ void interpret_command(char *command, const struct symbol *current_patch, const 
 			return;
 		}
 
-		if (argc <= 1 || strcmp(argv[1], "big") != 0) {
+		if (argc <= 1 || strcmp(argv[1], "big")) {
 			int c = getc(new_rom);
 			if (c == getc(orig_rom)) {
 				fprintf(stderr, "Warning: %s doesn't actually contain any differences\n", current_patch->name);
@@ -577,8 +577,8 @@ void interpret_command(char *command, const struct symbol *current_patch, const 
 				fprintf(output, isupper(command[0]) ? "%02X" : "%02x", getc(new_rom));
 			}
 		}
-	} else if (strcmp(command, "Constant") == 0 ||
-			   strcmp(command, "constant") == 0) {
+	} else if (!strcmp(command, "Constant") ||
+			   !strcmp(command, "constant")) {
 		if (argc <= 1) {
 			fprintf(stderr, "Error: Missing arguments for %s", command);
 		}
@@ -587,20 +587,20 @@ void interpret_command(char *command, const struct symbol *current_patch, const 
 		if (value == -1) return;
 
 		fprintf(output, isupper(command[0]) ? "%02X %02X": "%02x %02x", value, value >> 8);
-	} else if (strcmp(command, "findaddress") == 0) {
+	} else if (!strcmp(command, "findaddress")) {
 		if (argc != 1) {
 			fprintf(stderr, "Error: Missing argument for %s", command);
 		}
 		getsymbol = find_symbol(symbols, argv[0]);
 		if (!getsymbol) return;
 		fprintf(output, "0x%x", getsymbol->value);
-	} else if (strcmp(command, "conaddress") == 0) {
+	} else if (!strcmp(command, "conaddress")) {
 		if (argc != 2) {
 			fprintf(stderr, "Error: Missing argument for %s", command);
 		}
 		getsymbol = find_symbol(symbols, argv[1]);
 		if (!getsymbol) return;
-		if (strcmp(argv[0], "dw") == 0) {
+		if (!strcmp(argv[0], "dw")) {
 			fprintf(output, "%02x ", (parse_offset(getsymbol->value, getsymbol->name[0]) % 0x100));
 			fprintf(output, "%02x ", (parse_offset(getsymbol->value, getsymbol->name[0]) / 0x100));
 			fprintf(output, "%02x ", ((parse_offset(getsymbol->value, getsymbol->name[0]) + 0x1) % 0x100));
@@ -610,17 +610,17 @@ void interpret_command(char *command, const struct symbol *current_patch, const 
 			fprintf(output, "%02x", (parse_offset(getsymbol->value, getsymbol->name[0]) / 0x100));
 		}
 	
-	} else if (strcmp(command, "EQUAL") == 0) {
+	} else if (!strcmp(command, "EQUAL")) {
 		fprintf(output, "00 00");
-	} else if (strcmp(command, "GREATER_THAN") == 0) {
+	} else if (!strcmp(command, "GREATER_THAN")) {
 		fprintf(output, "01 00");
-	} else if (strcmp(command, "LESS_THAN") == 0) {
+	} else if (!strcmp(command, "LESS_THAN")) {
 		fprintf(output, "02 00");
-	} else if (strcmp(command, "GREATER_THAN_OR_EQUAL") == 0) {
+	} else if (!strcmp(command, "GREATER_THAN_OR_EQUAL")) {
 		fprintf(output, "03 00");
-	} else if (strcmp(command, "LESS_THAN_OR_EQUAL") == 0) {
+	} else if (!strcmp(command, "LESS_THAN_OR_EQUAL")) {
 		fprintf(output, "04 00");
-	} else if (strcmp(command, "NOT_EQUAL") == 0) {
+	} else if (!strcmp(command, "NOT_EQUAL")) {
 		fprintf(output, "05 00");
 	} else {
 		fprintf(stderr, "Error: Unknown command: %s\n", command);
