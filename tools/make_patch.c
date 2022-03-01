@@ -109,19 +109,21 @@ const struct symbol *find_symbol(const struct symbol *symbols, const char *name)
 {
 	const struct symbol *symbol = symbols;
 	int namelen = strlen(name);
-	int symbolnamelen = 0;
-	const char *equalLastCharacters = NULL;
+	const char *equallastcharacters = NULL;
 	while (symbol) {
-		symbolnamelen = strlen(symbol->name);
-		if (namelen > symbolnamelen) {symbol = symbol->next; continue;}
-		equalLastCharacters = &symbol->name[symbolnamelen - namelen];
+		int symbolnamelen = strlen(symbol->name);
+		if (namelen > symbolnamelen) {
+			symbol = symbol->next; 
+			continue;
+		}
+		equallastcharacters = &symbol->name[symbolnamelen - namelen];
 		if (name[0] == '.') { // We are looking for a local label.
-			if (strcmp(equalLastCharacters, name) == 0) {
+			if (strcmp(equallastcharacters, name) == 0) {
 				return symbol;
 			} 
 		} else {
 			if (strcmp(symbol->name, name) == 0) {
-					return symbol;
+				return symbol;
 			}
 		}
 		symbol = symbol->next;
