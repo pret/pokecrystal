@@ -63,26 +63,22 @@ void *expand_buffer(void *buf, const size_t size)
 	return buffer->buffer;
 }
 
-void free_list(void *list)
+void free_symbols(struct symbol *list)
 {
-	// Frees an entire linked list
-	// Expects the ->next entry to be the first element!
-
 	while (list) {
-		void *next = *(void **)list;
+		struct symbol *next = list->next;
 		free(list);
 		list = next;
 	}
 }
 
-void free_asmfiles(struct asmfile *asmfile)
+void free_asmfiles(struct asmfile *list)
 {
-	void *temp;
-	while (asmfile) {
-		if (asmfile->symbols) free_list(asmfile->symbols);
-		temp = asmfile;
-		asmfile = asmfile->next;
-		free(temp);
+	while (list) {
+		if (list->symbols) free_symbols(list->symbols);
+		struct asmfile *next = list->next;
+		free(list);
+		list = next;
 	}
 }
 
@@ -479,7 +475,7 @@ int get_constant(const char *filename, const char *constant)
 		asmfile = malloc(sizeof(struct asmfile) + strlen(filename) + 1);
 		if (!asmfile) {
 			fprintf(stderr, "Error: Cannot allocate memory\n");
-			if (symbols) free_list(symbols);
+			if (symbols) free_symbols(symbols);
 			goto error;
 		}
 		asmfile->symbols = symbols;
@@ -894,7 +890,7 @@ int main(int argc, char *argv[])
 	}
 
 	free_asmfiles(asmfiles);
-	free_list(symbols);
+	free_symbols(symbols);
 	fclose(file);
 	fclose(new_rom);
 	fclose(orig_rom);
@@ -903,7 +899,7 @@ int main(int argc, char *argv[])
 
 error:
 	free_asmfiles(asmfiles);
-	free_list(symbols);
+	free_symbols(symbols);
 	if (file) fclose(file);
 	if (new_rom) fclose(new_rom);
 	if (orig_rom) fclose(orig_rom);
