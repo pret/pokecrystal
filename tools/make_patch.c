@@ -170,32 +170,32 @@ int parse_address_address(char *buffer_input) {
 }
 
 int parse_abs_offset(int bank, int address, char type) {
-	int offset;
-
-	// Calculate the absolute offset in the ROM
-	if (type == 'w') {
-		offset = bank ? bank * 0xd000 + (address - 0xd000) : address;
-	} else if (type == 's') {
-		offset = bank ? bank * 0xc000 + (address - 0xc000) : address;
-	} else if (type == 'h') {
-		offset = address;
-	} else {
-		offset = bank ? bank * 0x4000 + (address - 0x4000) : address;
+	switch (type) {
+	case('w'):
+		return bank ? bank * 0xd000 + (address - 0xd000) : address;
+	case('s'):
+		return bank ? bank * 0xc000 + (address - 0xc000) : address;
+	case('h'):
+		return address;
+	default:
+		return bank ? bank * 0x4000 + (address - 0x4000) : address;
 	}
 
-	return offset;
+	return -1;
 }
 
 int parse_offset(int offset, char type) {
-	if (type == 'w') {
+	switch(type) {
+	case('w'):
 		return offset > 0xd000 ? 0xd000 + offset % 0xd000 : offset;
-	} else if (type == 's') {
+	case('s'):
 		return offset > 0xc000 ? 0xc000 + offset % 0xc000 : offset;
-	} else if (type == 'h') {
+	case('h'):
 		return offset;
-	} else {
+	default:
 		return offset > 0x4000 ? 0x4000 + offset % 0x4000 : offset;
 	}
+	
 	return -1;
 }
 
