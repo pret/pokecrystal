@@ -1171,10 +1171,10 @@ This can occur if your party and current PC box are both full when you start the
 
 ### Heavy Ball uses wrong weight value for three Pokémon
 
-**Fix:** Edit `GetPokedexEntryBank` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
+**Fix:** Edit `HeavyBall_GetDexEntryBank` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
 
 ```diff
- GetPokedexEntryBank:
+ HeavyBall_GetDexEntryBank:
 -; This function is buggy.
 -; It gets the wrong bank for Kadabra (64), Tauros (128), and Sunflora (192).
 -; Uncomment the line below to fix this.

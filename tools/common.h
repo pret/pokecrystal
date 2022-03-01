@@ -8,7 +8,6 @@
 #include <inttypes.h>
 #include <string.h>
 #include <errno.h>
-#include <unistd.h>
 #include <getopt.h>
 
 #ifndef PROGRAM_NAME

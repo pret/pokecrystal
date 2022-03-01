@@ -107,8 +107,7 @@ void make_frames(const uint8_t *tilemap, long tilemap_size, int width, struct Fr
 			}
 			bitmask->bitlength++;
 		}
-		// I don't remember exactly why this works.
-		// I think it was that the bits are read backwards, but not indexed backwards.
+		// tile order ABCDEFGHIJKLMNOP... becomes db order %HGFEDCBA %PONMLKJI ...
 		int last = bitmask->bitlength - 1;
 		bitmask->data[last / 8] >>= (7 - (last % 8));
 

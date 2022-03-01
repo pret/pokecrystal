@@ -403,7 +403,7 @@ Edit [engine/items/items.asm](https://github.com/pret/pokecrystal/blob/master/en
 
 `PokedexDataPointerTable` in [data/pokemon/dex_entry_pointers.asm](https://github.com/pret/pokecrystal/blob/master/data/pokemon/dex_entry_pointers.asm) is a table of `dw`, not `dba`, yet there are four banks used for Pokédex entries. The correct bank is derived from the species ID at the beginning of each Pokémon's base stats. (This is the only use the base stat species ID has.)
 
-Three separate routines do the same derivation; `GetDexEntryPointer` in [engine/pokedex/pokedex_2.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokedex/pokedex_2.asm):
+Three separate routines do the same derivation: `GetDexEntryPointer` in [engine/pokedex/pokedex_2.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokedex/pokedex_2.asm):
 
 ```asm
 GetDexEntryPointer:
@@ -439,10 +439,10 @@ GetDexEntryPointer:
 	db BANK("Pokedex Entries 193-251")
 ```
 
-`GetPokedexEntryBank` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
+`HeavyBall_GetDexEntryBank` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
 
 ```asm
-GetPokedexEntryBank:
+HeavyBall_GetDexEntryBank:
 	push hl
 	push de
 	ld a, [wEnemyMonSpecies]
@@ -496,7 +496,7 @@ PokedexShow_GetDexEntryBank:
 
 Use `dba` instead of `dw` in `PokedexDataPointerTable`. Make sure to edit the `table_width` line to specify a width of 3 instead of 2.
 
-Delete `GetPokedexEntryBank` and `PokedexShow_GetDexEntryBank`. You can also delete `NUM_DEX_ENTRY_BANKS` from [constants/pokemon_data_constants.asm](https://github.com/pret/pokecrystal/blob/master/constants/pokemon_data_constants.asm).
+Delete `HeavyBall_GetDexEntryBank` and `PokedexShow_GetDexEntryBank`. You can also delete `NUM_DEX_ENTRY_BANKS` from [constants/pokemon_data_constants.asm](https://github.com/pret/pokecrystal/blob/master/constants/pokemon_data_constants.asm).
 
 Edit [engine/pokedex/pokedex_2.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokedex/pokedex_2.asm):
 
@@ -569,14 +569,14 @@ Edit [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/ma
 +	pop de
 
  .SkipText:
--	call GetPokedexEntryBank
+-	call HeavyBall_GetDexEntryBank
 +	ld a, d
  	call GetFarByte
  	inc hl
  	cp "@"
  	jr nz, .SkipText
 
--	call GetPokedexEntryBank
+-	call HeavyBall_GetDexEntryBank
 +	ld a, d
  	push bc
  	inc hl
