@@ -30,14 +30,12 @@ struct asmfile {
 
 struct asmfile *asmfiles = NULL;
 
-void free_buffer(void *buf)
-{
+void free_buffer(void *buf) {
 	struct buffer *buffer = buf - sizeof(struct buffer);
 	free(buffer);
 }
 
-void *create_buffer()
-{
+void *create_buffer() {
 	struct buffer *buffer = malloc(sizeof(struct buffer) + 0x100);
 	if (!buffer) {
 		fprintf(stderr, "Error: Cannot allocate memory\n");
@@ -48,8 +46,7 @@ void *create_buffer()
 	return buffer->buffer;
 }
 
-void *expand_buffer(void *buf, const size_t size)
-{
+void *expand_buffer(void *buf, const size_t size) {
 	struct buffer *buffer = buf - sizeof(struct buffer);
 
 	if (size > buffer->size) {
@@ -64,8 +61,7 @@ void *expand_buffer(void *buf, const size_t size)
 	return buffer->buffer;
 }
 
-void free_symbols(struct symbol *list)
-{
+void free_symbols(struct symbol *list) {
 	while (list) {
 		struct symbol *next = list->next;
 		free(list);
@@ -73,8 +69,7 @@ void free_symbols(struct symbol *list)
 	}
 }
 
-void free_asmfiles(struct asmfile *list)
-{
+void free_asmfiles(struct asmfile *list) {
 	while (list) {
 		if (list->symbols) free_symbols(list->symbols);
 		struct asmfile *next = list->next;
@@ -83,8 +78,7 @@ void free_asmfiles(struct asmfile *list)
 	}
 }
 
-bool create_symbol(struct symbol **tip, const int value, const char *name)
-{
+bool create_symbol(struct symbol **tip, const int value, const char *name) {
 	struct symbol *symbol;
 
 	symbol = malloc(sizeof(struct symbol) + strlen(name) + 1);
@@ -102,8 +96,7 @@ bool create_symbol(struct symbol **tip, const int value, const char *name)
 	return false;
 }
 
-const struct symbol *find_symbol(const struct symbol *symbols, const char *name)
-{
+const struct symbol *find_symbol(const struct symbol *symbols, const char *name) {
 	const struct symbol *symbol = symbols;
 	int namelen = strlen(name);
 	while (symbol) {
@@ -122,7 +115,7 @@ const struct symbol *find_symbol(const struct symbol *symbols, const char *name)
 	return NULL;
 }
 
-int parse_address_bank(char *buffer_input){
+int parse_address_bank(char *buffer_input) {
 	int bank;
 	char *buffer = malloc(strlen(buffer_input));
 	char *endptr_bank;
@@ -149,7 +142,7 @@ int parse_address_bank(char *buffer_input){
 	return bank;
 }
 
-int parse_address_address(char *buffer_input){
+int parse_address_address(char *buffer_input) {
 	int address;
 	char *buffer = malloc(strlen(buffer_input));
 	char *endptr_address;
@@ -176,8 +169,7 @@ int parse_address_address(char *buffer_input){
 	return address;
 }
 
-int parse_abs_offset(int bank, int address, char type)
-{
+int parse_abs_offset(int bank, int address, char type) {
 	int offset;
 
 	// Calculate the absolute offset in the ROM
@@ -194,8 +186,7 @@ int parse_abs_offset(int bank, int address, char type)
 	return offset;
 }
 
-int parse_offset(int offset, char type)
-{
+int parse_offset(int offset, char type) {
 	if (type == 'w') {
 		return offset > 0xd000 ? 0xd000 + offset % 0xd000 : offset;
 	} else if (type == 's') {
@@ -208,8 +199,7 @@ int parse_offset(int offset, char type)
 	return -1;
 }
 
-struct symbol *parse_symfile(FILE *file)
-{
+struct symbol *parse_symfile(FILE *file) {
 	struct symbol *symbols = NULL;
 	char *buffer;
 	size_t buffer_index = 0;
@@ -287,8 +277,7 @@ error:
 	return NULL;
 }
 
-int parse_rgbds_int(char *string)
-{
+int parse_rgbds_int(char *string) {
 	char *start = string;
 	char *end;
 	int base = 10;
@@ -313,8 +302,7 @@ int parse_rgbds_int(char *string)
 	return value;
 }
 
-struct symbol *parse_asm(FILE *file)
-{
+struct symbol *parse_asm(FILE *file) {
 	struct symbol *symbols = NULL;
 	char *label = NULL;
 	char *buffer;
@@ -444,8 +432,7 @@ error:
 	return NULL;
 }
 
-int get_constant(const char *filename, const char *constant)
-{
+int get_constant(const char *filename, const char *constant) {
 	int value = -1;
 	FILE *file = NULL;
 	struct symbol *symbols = NULL;
@@ -500,8 +487,7 @@ error:
 }
 
 void interpret_command(char *command, const struct symbol *current_patch, const struct symbol *symbols, 
-                       struct patch *patch, FILE *new_rom, FILE *orig_rom, FILE *output)
-{
+                       struct patch *patch, FILE *new_rom, FILE *orig_rom, FILE *output) {
 	int argc = 0;
 	int offset = -1;
 	if (current_patch) {
@@ -642,8 +628,7 @@ void interpret_command(char *command, const struct symbol *current_patch, const 
 }
 
 struct patch *process_template(FILE *file, FILE *new_rom, FILE *orig_rom, FILE *output,
-								const struct symbol *symbols, const char *prefix)
-{
+								const struct symbol *symbols, const char *prefix) {
 	struct patch *patches = NULL;
 	struct patch *patch = NULL;
 	const struct symbol *current_patch = NULL;
@@ -799,15 +784,13 @@ error:
 	return NULL;
 }
 
-int compare_patch(const void *_patch1, const void *_patch2)
-{
+int compare_patch(const void *_patch1, const void *_patch2) {
 	const struct patch *patch1 = _patch1;
 	const struct patch *patch2 = _patch2;
 	return patch1->offset - patch2->offset;
 }
 
-int verify_completeness(FILE *orig_rom, FILE *new_rom, struct patch *patches)
-{
+int verify_completeness(FILE *orig_rom, FILE *new_rom, struct patch *patches) {
 	struct patch *patch = patches;
 	size_t offset = 0;
 	int c, d;
@@ -843,8 +826,7 @@ int verify_completeness(FILE *orig_rom, FILE *new_rom, struct patch *patches)
 	return c != d;
 }
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
 	struct symbol *symbols = NULL;
 	struct patch *patches = NULL;
 	FILE *file = NULL;
