@@ -73,7 +73,7 @@ if DEF(_CRYSTALVC)
 else
 	and START
 endc
-	vc_patch_end print_forbid_4
+	vc_patch_end
 	jr nz, .pressed_start
 	ret
 

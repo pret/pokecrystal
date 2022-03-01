@@ -1592,7 +1592,7 @@ if DEF(_CRYSTALVC)
 else
 	ld b, 10
 endc
-	vc_patch_end send_byt2_wait
+	vc_patch_end
 .receive
 	call DelayFrame
 	call LinkTransfer
@@ -1606,7 +1606,7 @@ if DEF(_CRYSTALVC)
 else
 	ld b, 10
 endc
-	vc_patch_end send_dummy_wait
+	vc_patch_end
 .acknowledge
 	call DelayFrame
 	call LinkDataReceived
