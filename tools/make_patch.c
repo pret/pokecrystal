@@ -148,7 +148,7 @@ int parse_address_bank(char *buffer_input){
 		fprintf(stderr, "Error: Cannot parse bank %s:%s\n", buffer, buffer_address);
 		return -1;
 	}
-	
+
 	return bank;
 }
 
@@ -268,12 +268,6 @@ struct symbol *parse_symfile(FILE *file)
 			// we've reached the end of the label name.
 			buffer[buffer_index] = '\0';
 
-			// Only do stuff if we managed to read a valid offset.
-			//if (offset == -1 && buffer_index > 0) {
-			//	fprintf(stderr, "Error: Cannot parse %s\n", buffer);
-			//	goto error;
-			//}
-
 			// This is the end of the parsable line
 			buffer_index = SIZE_MAX;
 			offset = parse_abs_offset(bank, address, buffer[0]);
@@ -297,7 +291,6 @@ struct symbol *parse_symfile(FILE *file)
 			buffer[buffer_index] = '\0';
 			bank = parse_address_bank(buffer);
 			address = parse_address_address(buffer);
-			//if (offset == -1) goto error;
 			buffer_index = offset ? 0 : SIZE_MAX;
 
 			break;
