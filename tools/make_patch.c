@@ -109,23 +109,16 @@ const struct symbol *find_symbol(const struct symbol *symbols, const char *name)
 {
 	const struct symbol *symbol = symbols;
 	int namelen = strlen(name);
-	const char *equallastcharacters = NULL;
 	while (symbol) {
 		int symbolnamelen = strlen(symbol->name);
 		if (namelen > symbolnamelen) {
 			symbol = symbol->next; 
 			continue;
 		}
-		equallastcharacters = &symbol->name[symbolnamelen - namelen];
-		if (name[0] == '.') { // We are looking for a local label.
-			if (strcmp(equallastcharacters, name) == 0) {
-				return symbol;
-			} 
-		} else {
-			if (strcmp(symbol->name, name) == 0) {
-				return symbol;
-			}
-		}
+		// If we're looking for a local label, only compare the part starting from the period
+		char *compare = symbol->name;
+		if (name[0] == '.') compare += symbolnamelen - namelen;
+		if (strcmp(compare, name) == 0) return symbol;
 		symbol = symbol->next;
 	}
 
