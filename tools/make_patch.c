@@ -167,7 +167,7 @@ int parse_address_address(char *buffer_input){
 	buffer_address = strchr(buffer, ':');
 	if (buffer_address) *buffer_address++ = '\0';
 
-	//Verify it consists of expected elements
+	// Verify it consists of expected elements
 	if (strlen(buffer) > 2 || !buffer_address || strlen(buffer_address) > 4){
 		if (buffer_address) *--buffer_address = ':';
 		fprintf(stderr, "Error: Unexpected %s\n", buffer);
@@ -261,7 +261,7 @@ struct symbol *parse_symfile(FILE *file)
 	buffer = create_buffer();
 	if (!buffer) goto error;
 
-	// Parse the entire symfile, to the the symbols we want.
+	// Parse the entire symfile, to gather the symbols
 	while ((c = getc(file)) != EOF) {
 		buffer = expand_buffer(buffer, buffer_index);
 		if (!buffer) goto error;
@@ -323,7 +323,7 @@ struct symbol *parse_symfile(FILE *file)
 	}
 
 	if (!symbols) {
-			fprintf(stderr, "Error: No symbols found.");
+		fprintf(stderr, "Error: No symbols found.");
 	}
 
 	free_buffer(buffer);
@@ -353,7 +353,7 @@ int parse_rgbds_int(char *string)
 	if (errno || end != string + strlen(string)) {
 		// Parsing complex things is out of this program's scope.
 		// Warning the user would be a good thing, but warning
-		//  for things we just can't parse would be annoying...
+		// for things we just can't parse would be annoying...
 		return -1;
 	}
 
@@ -391,7 +391,7 @@ struct symbol *parse_asm(FILE *file)
 			// Eat these characters if we haven't picked up anything else yet
 			if (!buffer_index) {
 				// If the line starts with one of these characters,
-				//  we're parsing an instruction.
+				// we're parsing an instruction.
 				if (parsing == PARSING_LABEL) parsing = PARSING_INSTRUCTION;
 				break;
 			}
@@ -546,8 +546,8 @@ error:
 	return value;
 }
 
-void interpret_command(char *command, const struct symbol *lastFoundSymbol, const struct symbol *symbols, struct patch *patch,
-						FILE *new_rom, FILE *orig_rom, FILE *output)
+void interpret_command(char *command, const struct symbol *lastFoundSymbol, const struct symbol *symbols, 
+                       struct patch *patch, FILE *new_rom, FILE *orig_rom, FILE *output)
 {
 	int argc = 0;
 	int offset = -1;
@@ -647,7 +647,7 @@ void interpret_command(char *command, const struct symbol *lastFoundSymbol, cons
 		int value = get_constant(argv[0], argv[1]);
 		if (value == -1) return;
 
-		fprintf(output, isupper(command[0]) ? "%X 00": "%x 00", value);
+		fprintf(output, isupper(command[0]) ? "%02X 00": "%02x 00", value);
 	} else if (strcmp(command, "findaddress") == 0) {
 		if (argc != 1) {
 			fprintf(stderr, "Error: Missing argument for %s", command);
