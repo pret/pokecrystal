@@ -116,7 +116,7 @@ const struct symbol *find_symbol(const struct symbol *symbols, const char *name)
 			continue;
 		}
 		// If we're looking for a local label, only compare the part starting from the period
-		char *compare = symbol->name;
+		char *compare = (char *)symbol->name;
 		if (name[0] == '.') compare += symbolnamelen - namelen;
 		if (strcmp(compare, name) == 0) return symbol;
 		symbol = symbol->next;
@@ -887,7 +887,7 @@ int main(int argc, char *argv[])
 	FILE *orig_rom = NULL;
 
 	if (argc < 6) {
-		fprintf(stderr, "Usage: %s <label prefix> <symfile> <patched rom> <original rom>\n", argv[0]);
+		fprintf(stderr, "Usage: %s <label prefix> <symfile> <patched rom> <original rom> <patch template>\n", argv[0]);
 		return 1;
 	}
 
