@@ -784,10 +784,10 @@ error:
 	return NULL;
 }
 
-int compare_patch(const void *_patch1, const void *_patch2) {
-	const struct patch *patch1 = _patch1;
-	const struct patch *patch2 = _patch2;
-	return patch1->offset - patch2->offset;
+int compare_patch(const void *patch1, const void *patch2) {
+	unsigned int patch1_offset = ((const struct patch *)patch1)->offset;
+	unsigned int patch2_offset = ((const struct patch *)patch2)->offset;
+	return patch1_offset > patch2_offset ? 1 : patch1_offset < patch2_offset ? -1 : 0;
 }
 
 int verify_completeness(FILE *orig_rom, FILE *new_rom, struct patch *patches) {
