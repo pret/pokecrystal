@@ -620,17 +620,17 @@ void interpret_command(char *command, const struct symbol *current_patch, const 
 			fprintf(output, "%02x", (parse_offset(getsymbol->value, getsymbol->name[0]) / 0x100));
 		}
 
-	} else if (!strcmp(command, "EQUAL")) {
+	} else if (!strcmp(command, "==")) {
 		fprintf(output, "00 00");
-	} else if (!strcmp(command, "GREATER_THAN")) {
+	} else if (!strcmp(command, ">")) {
 		fprintf(output, "01 00");
-	} else if (!strcmp(command, "LESS_THAN")) {
+	} else if (!strcmp(command, "<")) {
 		fprintf(output, "02 00");
-	} else if (!strcmp(command, "GREATER_THAN_OR_EQUAL")) {
+	} else if (!strcmp(command, ">=")) {
 		fprintf(output, "03 00");
-	} else if (!strcmp(command, "LESS_THAN_OR_EQUAL")) {
+	} else if (!strcmp(command, "<=")) {
 		fprintf(output, "04 00");
-	} else if (!strcmp(command, "NOT_EQUAL")) {
+	} else if (!strcmp(command, "!=")) {
 		fprintf(output, "05 00");
 	} else {
 		fprintf(stderr, "Error: Unknown command: %s\n", command);
