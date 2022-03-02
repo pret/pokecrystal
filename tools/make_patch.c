@@ -22,14 +22,6 @@ struct buffer {
 	char buffer[];
 };
 
-struct asmfile {
-	struct asmfile *next;
-	struct symbol *symbols;
-	char name[];
-};
-
-struct asmfile *asmfiles = NULL;
-
 void free_buffer(void *buf) {
 	struct buffer *buffer = (struct buffer *)((char *)buf - sizeof(struct buffer));
 	free(buffer);
@@ -64,15 +56,6 @@ void *expand_buffer(void *buf, const size_t size) {
 void free_symbols(struct symbol *list) {
 	while (list) {
 		struct symbol *next = list->next;
-		free(list);
-		list = next;
-	}
-}
-
-void free_asmfiles(struct asmfile *list) {
-	while (list) {
-		if (list->symbols) free_symbols(list->symbols);
-		struct asmfile *next = list->next;
 		free(list);
 		list = next;
 	}
@@ -278,136 +261,55 @@ error:
 	return NULL;
 }
 
-int parse_rgbds_int(char *string) {
-	char *start = string;
-	char *end;
-	int base = 10;
-	int value;
-
-	// Figure out the base
-	if (*start == '$') {
-		base = 16;
-		start++;
-	} else if (*start == '%') {
-		base = 2;
-		start++;
-	}
-
-	errno = 0;
-	value = strtol(start, &end, base);
-
-	if (errno || end != string + strlen(string)) {
-		// Parsing complex things is out of this program's scope.
-		// Warning the user would be a good thing, but warning
-		// for things we just can't parse would be annoying...
-		return -1;
-	}
-
-	return value;
-}
-
-struct symbol *parse_asm(FILE *file) {
-	struct symbol *symbols = NULL;
-	char *label = NULL;
+struct symbol *parse_constfile(FILE *file, struct symbol **symbols) {
 	char *buffer;
 	size_t buffer_index = 0;
-	int const_value = -1;
+	char *endvalue;
 	int c;
-
-	enum {
-		PARSING_LABEL,
-		PARSING_INSTRUCTION,
-		PARSING_EQU,
-		PARSING_CONST_DEF,
-		PARSING_CONST
-	} parsing = PARSING_LABEL;
+	int value = -1;
 
 	buffer = create_buffer();
 	if (!buffer) goto error;
 
-	// Get all the constants defined in a file
+	// Parse the entire const file, to gather the symbols
 	while ((c = getc(file)) != EOF) {
 		buffer = expand_buffer(buffer, buffer_index);
 		if (!buffer) goto error;
 
-		switch(c) {
-		case ' ':
-		case '\t':
-			// Eat these characters if we haven't picked up anything else yet
-			if (!buffer_index) {
-				// If the line starts with one of these characters,
-				// we're parsing an instruction.
-				if (parsing == PARSING_LABEL) parsing = PARSING_INSTRUCTION;
-				break;
-			}
-
-			if (parsing == PARSING_LABEL) {
-				// A label starts with its name
-				buffer[buffer_index] = '\0';
-				buffer_index = 0;
-				label = malloc(strlen(buffer) + 1);
-				if (!label) {
-					fprintf(stderr, "Error: Cannot allocate memory\n");
-					goto error;
-				}
-				strcpy(label, buffer);
-				parsing = PARSING_INSTRUCTION;
-				break;
-			} else if (parsing == PARSING_INSTRUCTION) {
-				// Figure out what instruction we've encountered
-				buffer[buffer_index] = '\0';
-				buffer_index = SIZE_MAX;
-
-				if (label && !strcmp(buffer, "EQU")) {
-					buffer_index = 0;
-					parsing = PARSING_EQU;
-				} else if (!strcmp(buffer, "const_def")) {
-					buffer_index = 0;
-					parsing = PARSING_CONST_DEF;
-				} else if (!strcmp(buffer, "const")) {
-					buffer_index = 0;
-					parsing = PARSING_CONST;
-				}
-				break;
-			}
-
-			buffer[buffer_index++] = c;
-			break;
-
+		switch (c) {
+		case ';':
 		case '\r':
 		case '\n':
-		case ';':
+			// If we encounter a newline or comment,
+			// we've reached the end of the label name.
 			buffer[buffer_index] = '\0';
 
-			// Trim ending whitespace
-			while (isspace((unsigned char)buffer[--buffer_index])) buffer[buffer_index] = '\0';
-			buffer_index++;
+			// This is the end of the parsable line
+			buffer_index = SIZE_MAX;
+			if (value == -1) break;
 
-			if (parsing == PARSING_INSTRUCTION) {
-				// const_def may also take 0 arguments
-				if (!strcmp(buffer, "const_def")) {
-					const_value = 0;
+			if (create_symbol(symbols, value, buffer)) goto error;
+
+			value = -1;
+			break;
+
+		case ' ':
+			// If we've just encountered a space, ignore this one
+			if (value != -1) {
+				if (buffer_index) {
+					buffer[buffer_index++] = c;
 				}
-			} else if (parsing == PARSING_EQU) {
-				int value = parse_rgbds_int(buffer);
-				if (value != -1) {
-					if (create_symbol(&symbols, value, label)) goto error;
-				}
-			} else if (parsing == PARSING_CONST_DEF) {
-				int value = parse_rgbds_int(buffer);
-				if (value != -1) {
-					const_value = value;
-				}
-			} else if (parsing == PARSING_CONST) {
-				if (const_value == -1) {
-					fprintf(stderr, "Error: Found `const` before `const_def`\n");
-					goto error;
-				}
-				if (create_symbol(&symbols, const_value++, buffer)) goto error;
+				break;
 			}
 
-			buffer_index = SIZE_MAX;
-			parsing = PARSING_LABEL;
+			// If we encounter a space, we've reached the end of the value.
+			buffer[buffer_index] = '\0';
+			value = strtol(buffer, &endvalue, 10);
+			if (endvalue != buffer + strlen(buffer)) {
+				value = -1;
+			}
+			buffer_index = 0;
+
 			break;
 
 		default:
@@ -417,9 +319,7 @@ struct symbol *parse_asm(FILE *file) {
 		// We were requested to skip to the next line
 		if (buffer_index == SIZE_MAX) {
 			buffer_index = 0;
-			parsing = PARSING_LABEL;
-			if (label) free(label);
-			label = NULL;
+			value = -1;
 
 			while (c != '\n' && c != '\r') {
 				if ((c = getc(file)) == EOF) break;
@@ -428,67 +328,11 @@ struct symbol *parse_asm(FILE *file) {
 	}
 
 	free_buffer(buffer);
-	if (label) free(label);
-	return symbols;
+	return *symbols;
 
 error:
 	if (buffer) free_buffer(buffer);
-	if (label) free(label);
-	return NULL;
-}
-
-int get_constant(const char *filename, const char *constant) {
-	int value = -1;
-	FILE *file = NULL;
-	struct symbol *symbols = NULL;
-	struct asmfile *asmfile = asmfiles;
-	const struct symbol *symbol;
-
-	// Check if we've already loaded the symbols
-	while (asmfile) {
-		if (!strcmp(asmfile->name, filename)) {
-			symbols = asmfile->symbols;
-			break;
-		}
-		asmfile = asmfile->next;
-	}
-
-	// If not, well, load them
-	if (!symbols) {
-		file = fopen(filename, "r");
-		if (!file) {
-			fprintf(stderr, "Error: Cannot open file: %s\n", filename);
-			goto error;
-		}
-		symbols = parse_asm(file);
-		fclose(file);
-		file = NULL;
-
-		// Save them for later re-use
-		asmfile = malloc(sizeof(struct asmfile) + strlen(filename) + 1);
-		if (!asmfile) {
-			fprintf(stderr, "Error: Cannot allocate memory\n");
-			if (symbols) free_symbols(symbols);
-			goto error;
-		}
-		asmfile->symbols = symbols;
-		strcpy(asmfile->name, filename);
-		asmfile->next = asmfiles;
-		asmfiles = asmfile;
-	}
-
-	// Look for the symbol
-	symbol = find_symbol(symbols, constant);
-	if (!symbol) {
-		fprintf(stderr, "Error: Could not find constant %s in file %s\n", constant, filename);
-		goto error;
-	}
-
-	value = symbol->value;
-
-error:
-	if (file) fclose(file);
-	return value;
+	return *symbols;
 }
 
 void interpret_command(char *command, const struct symbol *current_patch, const struct symbol *symbols,
@@ -585,17 +429,18 @@ void interpret_command(char *command, const struct symbol *current_patch, const 
 			}
 		}
 	} else if (!strcmp(command, "Constant") || !strcmp(command, "constant")) {
-		if (argc != 3) {
+		if (argc != 2) {
 			fprintf(stderr, "Error: Missing argument for %s", command);
 		}
-
-		int value = get_constant(argv[1], argv[2]);
-		if (value == -1) return;
-
+		getsymbol = find_symbol(symbols, argv[1]);
+		if (!getsymbol) return;
 		if (!strcmp(argv[0], "db")) {
-			fprintf(output, isupper((unsigned char)command[0]) ? "%02X": "%02x", value);
+			fprintf(output, isupper((unsigned char)command[0]) ? "%02X": "%02x",
+				parse_offset(getsymbol->value, getsymbol->name[0]));
 		} else {
-			fprintf(output, isupper((unsigned char)command[0]) ? "%02X %02X": "%02x %02x", value, value >> 8);
+			fprintf(output, isupper((unsigned char)command[0]) ? "%02X %02X": "%02x %02x",
+				parse_offset(getsymbol->value, getsymbol->name[0]),
+				parse_offset(getsymbol->value, getsymbol->name[0]) >> 8);
 		}
 	} else if (!strcmp(command, "findaddress")) {
 		if (argc != 1) {
@@ -637,8 +482,7 @@ void interpret_command(char *command, const struct symbol *current_patch, const 
 	}
 }
 
-struct patch *process_template(FILE *file, FILE *new_rom, FILE *orig_rom, FILE *output,
-								const struct symbol *symbols, const char *prefix) {
+struct patch *process_template(FILE *file, FILE *new_rom, FILE *orig_rom, FILE *output, const struct symbol *symbols) {
 	struct patch *patches = NULL;
 	struct patch *patch = NULL;
 	const struct symbol *current_patch = NULL;
@@ -735,9 +579,9 @@ struct patch *process_template(FILE *file, FILE *new_rom, FILE *orig_rom, FILE *
 						if (*p == ' ') *p = '_';
 					}
 
-					// Look for the symbol starting with prefix
-					char *searchlabel = malloc(strlen(prefix) + strlen(buffer) + 1);
-					strcpy(searchlabel, prefix);
+					// Look for the symbol starting with .VC_
+					char *searchlabel = malloc(strlen(".VC_") + strlen(buffer) + 1);
+					strcpy(searchlabel, ".VC_");
 					strcat(searchlabel, buffer);
 					current_patch = find_symbol(symbols, searchlabel);
 					if (!current_patch) {
@@ -820,25 +664,32 @@ int verify_completeness(FILE *orig_rom, FILE *new_rom, struct patch *patches) {
 int main(int argc, char *argv[]) {
 	struct symbol *symbols = NULL;
 	struct patch *patches = NULL;
-	FILE *file = NULL;
+	FILE *sym_file = NULL;
+	FILE *const_file = NULL;
 	FILE *new_rom = NULL;
 	FILE *orig_rom = NULL;
+	FILE *template_file = NULL;
 
 	if (argc < 6) {
-		fprintf(stderr, "Usage: %s <label prefix> <symfile> <patched rom> <original rom> <patch template>\n", argv[0]);
+		fprintf(stderr, "Usage: %s <const file> <symfile> <patched rom> <original rom> <patch template>\n", argv[0]);
 		return 1;
 	}
 
-	file = fopen(argv[2], "r");
-	if (!file) {
+	sym_file = fopen(argv[2], "r");
+	if (!sym_file) {
 		fprintf(stderr, "Error: Cannot open file: %s\n", argv[2]);
 		goto error;
 	}
 
-	if (!(symbols = parse_symfile(file))) goto error;
+	if (!(symbols = parse_symfile(sym_file))) goto error;
 
-	fclose(file);
-	file = NULL;
+	const_file = fopen(argv[1], "r");
+	if (!const_file) {
+		fprintf(stderr, "Error: Cannot open file: %s\n", argv[1]);
+		goto error;
+	}
+
+	if (!(symbols = parse_constfile(const_file, &symbols))) goto error;
 
 	new_rom = fopen(argv[3], "r");
 	if (!new_rom) {
@@ -852,31 +703,34 @@ int main(int argc, char *argv[]) {
 		goto error;
 	}
 
-	file = fopen(argv[5], "r");
-	if (!file) {
+	template_file = fopen(argv[5], "r");
+	if (!template_file) {
 		fprintf(stderr, "Error: Cannot open file: %s\n", argv[5]);
 		goto error;
 	}
 
-	if (!(patches = process_template(file, new_rom, orig_rom, stdout, symbols, argv[1]))) goto error;
+	if (!(patches = process_template(template_file, new_rom, orig_rom, stdout, symbols))) goto error;
+
 	if (verify_completeness(orig_rom, new_rom, patches)) {
 		fprintf(stderr, "Warning: Not all differences in the ROM are defined in the patch\n");
 	}
 
-	free_asmfiles(asmfiles);
 	free_symbols(symbols);
-	fclose(file);
+	fclose(sym_file);
+	fclose(const_file);
 	fclose(new_rom);
 	fclose(orig_rom);
+	fclose(template_file);
 
 	return 0;
 
 error:
-	free_asmfiles(asmfiles);
 	free_symbols(symbols);
-	if (file) fclose(file);
+	if (sym_file) fclose(sym_file);
+	if (const_file) fclose(const_file);
 	if (new_rom) fclose(new_rom);
 	if (orig_rom) fclose(orig_rom);
+	if (template_file) fclose(template_file);
 
 	return 1;
 }

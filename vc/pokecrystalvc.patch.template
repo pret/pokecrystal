@@ -232,7 +232,7 @@ Mode = 11
 Type = 0                        
 Index = 1                       
 Address = {{ADDREss}}            
-Fixcode=a1:{{constant:db:constants/hardware_constants.asm:LY_VBLANK}}   {{comment: This should be input_constants.asm:SCREEN_HEIGHT_PX but that can't be parsed. }}     
+Fixcode=a1:{{constant:db:SCREEN_HEIGHT_PX}}        
               
 ;12 1b 0b 79 b0  find next C9
 [BiographySave_ret]
@@ -264,7 +264,7 @@ Mode = 6
 Type = 0                                                                                       
 Address = {{address}}                                                                        
 MemAddress={{findaddress:hJoyPressed}}                                                                           
-Fixcode=a1:{{constant:db:constants/input_constants.asm:NO_INPUT}}                                                                                  
+Fixcode=a1:{{constant:db:NO_INPUT}}                                                                                  
 ConditionType = 0                                                                              
 ConditionValueA = a20: {{conaddress:dw:wWindowStackPointer}} {{conaddress::wMenuJoypad}} {{conaddress::wMenuSelection}} {{conaddress::wMenuSelection}} {{conaddress::wMenuCursorY}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}}                   
 ConditionValueB = a20: {{==}} {{==}} {{==}} {{>=}} {{<=}} {{==}} {{!=}} {{!=}} {{!=}} {{!=}}                   
@@ -279,7 +279,7 @@ Mode = 6
 Type = 0                                                                      
 Address = {{address}}                                                           
 MemAddress={{findaddress:hJoyPressed}}                                                            
-Fixcode=a1:{{constant:db:constants/input_constants.asm:NO_INPUT}}                                                                 
+Fixcode=a1:{{constant:db:NO_INPUT}}                                                                 
 ConditionType = 0                                                             
 ConditionValueA = a26: {{conaddress:dw:wWindowStackPointer}} {{conaddress::wMenuJoypad}} {{conaddress::wMenuSelection}} {{conaddress::wMenuCursorY}} {{conaddress::wMapGroup}} {{conaddress::wMapNumber}} {{conaddress::wYCoord}} {{conaddress::wXCoord}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}}  
 ConditionValueB = a26: {{==}} {{==}} {{==}} {{==}} {{==}} {{==}} {{==}} {{==}} {{==}} {{!=}} {{!=}} {{!=}} {{!=}}  
@@ -322,7 +322,7 @@ Mode = 6
 Type = 0                                                                                          
 Address = {{address}}                                                                            
 MemAddress={{findaddress:hJoyPressed}}                                                                                 
-Fixcode=a1:{{constant:db:constants/input_constants.asm:NO_INPUT}}                                                                                     
+Fixcode=a1:{{constant:db:NO_INPUT}}                                                                                     
 ConditionType = 0                                                                                 
 ConditionValueA = a18: {{conaddress:dw:wWindowStackPointer}} {{conaddress::wMenuJoypad}} {{conaddress::wMenuSelection}} {{conaddress::wDexArrowCursorPosIndex}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}}                      
 ConditionValueB = a18: {{==}} {{==}} {{==}} {{==}} {{==}} {{!=}} {{!=}} {{!=}} {{!=}}                      
@@ -436,7 +436,7 @@ MotionBlur0 = 11
 ConditionType = 0                                                 
 ConditionValueA = a2: {{conaddress::wFXAnimID}}
 ConditionValueB = a2: {{==}}
-ConditionValueC = a2: {{constant::constants/move_constants.asm:FISSURE}}
+ConditionValueC = a2: {{constant::FISSURE}}
 
 ;ROM:35D09                 ld      [byte_CFB6], a
 ;ROM:35D0C                 ld      a, d
@@ -470,7 +470,7 @@ MotionBlur0 = 11
 ConditionType = 0                                                 
 ConditionValueA = a2: {{conaddress::wFXAnimID}}
 ConditionValueB = a2: {{==}}
-ConditionValueC = a2: {{constant::constants/move_constants.asm:SELFDESTRUCT}}
+ConditionValueC = a2: {{constant::SELFDESTRUCT}}
 
 
 ; lightening    
@@ -486,7 +486,7 @@ MotionBlur0 = 15
 ConditionType = 0                                                 
 ConditionValueA = a2: {{conaddress::wFXAnimID}}  
 ConditionValueB = a2: {{==}}
-ConditionValueC = a2: {{constant::constants/move_constants.asm:THUNDER}}      
+ConditionValueC = a2: {{constant::THUNDER}}      
                                              
 
 
@@ -504,7 +504,7 @@ MotionBlur0 = 15
 ConditionType = 0                                                 
 ConditionValueA = a2: {{conaddress::wFXAnimID}}  
 ConditionValueB = a2: {{==}}
-ConditionValueC = a2: {{constant::constants/move_constants.asm:FLASH}}
+ConditionValueC = a2: {{constant::FLASH}}
 
 
 ;skill name 1 : ..............Mem Write: pc32 = 0x30db addr = 0xcf87 value = 0x2c
@@ -527,7 +527,7 @@ MotionBlur0 = 15
 ConditionType = 0                                                 
 ConditionValueA = a2: {{conaddress::wFXAnimID}}  
 ConditionValueB = a2: {{==}}
-ConditionValueC = a2: {{constant::constants/move_constants.asm:EXPLOSION}}
+ConditionValueC = a2: {{constant::EXPLOSION}}
 
 
 ;skill name 1 : ..............Mem Write: pc32 = 0x30db addr = 0xcf87 value = 0x30
@@ -549,7 +549,7 @@ MotionBlur0 = 11
 ConditionType = 0                                                 
 ConditionValueA = a2: {{conaddress::wFXAnimID}}  
 ConditionValueB = a2: {{==}}
-ConditionValueC = a2: {{constant::constants/move_constants.asm:HORN_DRILL}}
+ConditionValueC = a2: {{constant::HORN_DRILL}}
 
 
 
@@ -572,7 +572,7 @@ MotionBlur0 = 7
 ConditionType = 0                                                 
 ConditionValueA = a2: {{conaddress::wFXAnimID}}  
 ConditionValueB = a2: {{==}}
-ConditionValueC = a2: {{constant::constants/move_constants.asm:HYPER_BEAM}}                                                          
+ConditionValueC = a2: {{constant::HYPER_BEAM}}                                                          
 
 
                         
@@ -595,7 +595,7 @@ MotionBlur0 = 11
 ConditionType = 0                                                                                                                                
 ConditionValueA = a4: {{conaddress::wFXAnimID}} {{conaddress::wBattleAnimByte}}                                                                              
 ConditionValueB = a4: {{==}} {{==}}                                                                                 
-ConditionValueC = a4: {{constant::constants/move_constants.asm:PRESENT}} d1 00  {{comment: this is anim_1gfx_command }}                                                                               
+ConditionValueC = a4: {{constant::PRESENT}} {{constant::anim_1gfx_command}}                                                                                 
 
     
 
