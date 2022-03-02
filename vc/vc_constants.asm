@@ -31,3 +31,4 @@ ENDM
 
 ; [FPA 042801 Begin]
 	vc_const PRESENT
+	vc_const anim_1gfx_command

@@ -595,7 +595,7 @@ MotionBlur0 = 11
 ConditionType = 0                                                                                                                                
 ConditionValueA = a4: {{conaddress::wFXAnimID}} {{conaddress::wBattleAnimByte}}                                                                              
 ConditionValueB = a4: {{==}} {{==}}                                                                                 
-ConditionValueC = a4: {{constant::constants/move_constants.asm:PRESENT}} d1 00                                                                                 
+ConditionValueC = a4: {{constant::constants/move_constants.asm:PRESENT}} d1 00  {{comment: this is anim_1gfx_command }}                                                                               
 
     
 
