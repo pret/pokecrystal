@@ -268,7 +268,7 @@ Fixcode=a1:{{constant:db:NO_INPUT}}
 ConditionType = 0                                                                              
 ConditionValueA = a20: {{conaddress:dw:wWindowStackPointer}} {{conaddress::wMenuJoypad}} {{conaddress::wMenuSelection}} {{conaddress::wMenuSelection}} {{conaddress::wMenuCursorY}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}}                   
 ConditionValueB = a20: {{==}} {{==}} {{==}} {{>=}} {{<=}} {{==}} {{!=}} {{!=}} {{!=}} {{!=}}                   
-ConditionValueC = a20: dd 00 d3 00 01 00 00 00 0f 00 03 00 80 00 40 00 02 00 00 00                   
+ConditionValueC = a20: dd 00 d3 00 01 00 00 00 0f 00 03 00 {{constant::D_DOWN}} {{constant::D_UP}} {{constant::B_BUTTON}} {{constant::NO_INPUT}}                   
     
 ; -----ddddfffffff99999ccccc77777----0xd9c7 no ..............Mem Write: pc32 = 0x230b addr = 0xd9c7 value = 0x8
 ; 0xd9c7 is the room number.
@@ -283,7 +283,7 @@ Fixcode=a1:{{constant:db:NO_INPUT}}
 ConditionType = 0                                                             
 ConditionValueA = a26: {{conaddress:dw:wWindowStackPointer}} {{conaddress::wMenuJoypad}} {{conaddress::wMenuSelection}} {{conaddress::wMenuCursorY}} {{conaddress::wMapGroup}} {{conaddress::wMapNumber}} {{conaddress::wYCoord}} {{conaddress::wXCoord}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}}  
 ConditionValueB = a26: {{==}} {{==}} {{==}} {{==}} {{==}} {{==}} {{==}} {{==}} {{==}} {{!=}} {{!=}} {{!=}} {{!=}}  
-ConditionValueC = a26: af 00 df 00 00 00 00 00 01 00 16 00 08 00 04 00 02 00 80 00 40 00 02 00 00 00  
+ConditionValueC = a26: af 00 df 00 00 00 00 00 01 00 16 00 08 00 04 00 02 00 {{constant::D_DOWN}} {{constant::D_UP}} {{constant::B_BUTTON}} {{constant::NO_INPUT}}  
 
                                                
 ;ROM:BB29C                 call    unk_934       
@@ -326,7 +326,7 @@ Fixcode=a1:{{constant:db:NO_INPUT}}
 ConditionType = 0                                                                                 
 ConditionValueA = a18: {{conaddress:dw:wWindowStackPointer}} {{conaddress::wMenuJoypad}} {{conaddress::wMenuSelection}} {{conaddress::wDexArrowCursorPosIndex}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}}                      
 ConditionValueB = a18: {{==}} {{==}} {{==}} {{==}} {{==}} {{!=}} {{!=}} {{!=}} {{!=}}                      
-ConditionValueC = a18: a1 00 db 00 01 00 00 00 03 00 80 00 40 00 02 00 00 00                      
+ConditionValueC = a18: a1 00 db 00 01 00 00 00 03 00 {{constant::D_DOWN}} {{constant::D_UP}} {{constant::B_BUTTON}} {{constant::NO_INPUT}}                      
 
 
 

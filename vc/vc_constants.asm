@@ -13,6 +13,9 @@ ENDM
 ; [print forbid 3]
 ; [print forbid 5]
 	vc_const NO_INPUT
+	vc_const B_BUTTON
+	vc_const D_UP
+	vc_const D_DOWN
 
 ; [FPA 001 Begin]
 	vc_const FISSURE
