@@ -161,9 +161,10 @@ AddHallOfFameEntry:
 	ld bc, wHallOfFamePokemonListEnd - wHallOfFamePokemonList + 1
 	call CopyBytes
 	call CloseSRAM
-; This vc_hook causes the Virtual Console emulator to set sMobileEventIndex and sMobileEventIndexBackup
-; to MOBILE_EVENT_OBJECT_GS_BALL, which enables you to get the GS Ball, take it to Kurt, and encounter
-; Celebi. It assumes that sMobileEventIndex and sMobileEventIndexBackup are at their original addresses.
+; This vc_hook causes the Virtual Console to set [sMobileEventIndex] and [sMobileEventIndexBackup]
+; to MOBILE_EVENT_OBJECT_GS_BALL ($b), which enables you to get the GS Ball, take it to Kurt, and
+; encounter Celebi. It assumes that sMobileEventIndex and sMobileEventIndexBackup are at their
+; original addresses.
 	vc_hook BiographySave_ret
 	vc_assert BANK(sMobileEventIndex) == $1 && sMobileEventIndex == $be3c, \
 		"sMobileEventIndex is no longer located at 01:be3c."
