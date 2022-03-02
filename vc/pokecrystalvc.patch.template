@@ -235,11 +235,7 @@ Address = {{ADDREss}}
 Fixcode=a1:{{constant:db:constants/hardware_constants.asm:LY_VBLANK}}   {{comment: This should be input_constants.asm:SCREEN_HEIGHT_PX but that can't be parsed. }}     
               
 ;12 1b 0b 79 b0  find next C9
-{{comment:
-    This is ran whenever you enter the Hall of Fame.
-    It sets sMobileEventIndex and sMobileEventIndexBackup to $b.
-    essentially enabling the Celebi event.
-}}[BiographySave_ret]
+[BiographySave_ret]
 Mode = 2
 Address = {{Address}}
 Type = 60
