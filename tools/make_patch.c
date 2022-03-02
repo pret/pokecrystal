@@ -288,6 +288,9 @@ int parse_rgbds_int(char *string) {
 	if (*start == '$') {
 		base = 16;
 		start++;
+	} else if (*start == '%') {
+		base = 2;
+		start++;
 	}
 
 	errno = 0;
@@ -582,14 +585,18 @@ void interpret_command(char *command, const struct symbol *current_patch, const 
 			}
 		}
 	} else if (!strcmp(command, "Constant") || !strcmp(command, "constant")) {
-		if (argc <= 1) {
-			fprintf(stderr, "Error: Missing arguments for %s", command);
+		if (argc != 3) {
+			fprintf(stderr, "Error: Missing argument for %s", command);
 		}
 
-		int value = get_constant(argv[0], argv[1]);
+		int value = get_constant(argv[1], argv[2]);
 		if (value == -1) return;
 
-		fprintf(output, isupper((unsigned char)command[0]) ? "%02X %02X": "%02x %02x", value, value >> 8);
+		if (!strcmp(argv[0], "db")) {
+			fprintf(output, isupper((unsigned char)command[0]) ? "%02X": "%02x", value);
+		} else {
+			fprintf(output, isupper((unsigned char)command[0]) ? "%02X %02X": "%02x %02x", value, value >> 8);
+		}
 	} else if (!strcmp(command, "findaddress")) {
 		if (argc != 1) {
 			fprintf(stderr, "Error: Missing argument for %s", command);
