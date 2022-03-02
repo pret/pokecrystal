@@ -515,13 +515,14 @@ void interpret_command(char *command, const struct symbol *current_patch, const 
 	}
 
 	// Now we finally can do stuff with it
-	if (!strcmp(command, "ADDREss")) {
+	if (!strcmp(command, "comment")) {
+		// Comments do nothing
+	} else if (!strcmp(command, "ADDREss")) {
 		// This is only necessary to match the exact upper/lower casing in the original patch
 		int high = offset >> 8;
 		int low = offset & 0xFF;
 		fprintf(output, "0x%X%x", high, low);
-	} else if (!strcmp(command, "Address") ||
-			   !strcmp(command, "address")) {
+	} else if (!strcmp(command, "Address") || !strcmp(command, "address")) {
 		if (argc > 0) offset += strtol(argv[0], NULL, 0);
 
 		fprintf(output, "0x");
@@ -532,8 +533,7 @@ void interpret_command(char *command, const struct symbol *current_patch, const 
 		}
 
 		fprintf(output, isupper((unsigned char)command[0]) ? "%X" : "%x", offset);
-	} else if (!strcmp(command, "Patch") ||
-			   !strcmp(command, "patch")) {
+	} else if (!strcmp(command, "Patch") || !strcmp(command, "patch")) {
 		if (argc > 0) offset += strtol(argv[0], NULL, 0);
 
 		if (fseek(orig_rom, offset, SEEK_SET) != 0) {
@@ -581,8 +581,7 @@ void interpret_command(char *command, const struct symbol *current_patch, const 
 				}
 			}
 		}
-	} else if (!strcmp(command, "Constant") ||
-			   !strcmp(command, "constant")) {
+	} else if (!strcmp(command, "Constant") || !strcmp(command, "constant")) {
 		if (argc <= 1) {
 			fprintf(stderr, "Error: Missing arguments for %s", command);
 		}
@@ -669,26 +668,6 @@ struct patch *process_template(FILE *file, FILE *new_rom, FILE *orig_rom, FILE *
 			// A newline simply resets the line_pos
 			putc(c, output);
 			line_pos = 0;
-			break;
-
-		case '/':
-			// Check if we've encountered a comment
-			c = getc(file);
-			if (c != '*') {
-				putc('/', output);
-				line_pos++;
-				ungetc(c, file);
-				break;
-			}
-
-			// Simply gobble everything up until we hit the end
-			while ((c = getc(file)) != EOF) {
-				if (c == '*') {
-					if ((c = getc(file)) == EOF) break;
-					if (c == '/') break;
-				}
-			}
-
 			break;
 
 		case '{':

@@ -1,36 +1,4 @@
-﻿/* vim:set noeol nofixeol ff=dos:
-
-This file is preprocessed by tools/make_patch
-It reads the name of a label in the [] of this file,
-  finds its offset in the patched ROM,
-  and replaces any "command" that follows in this file with the appropriate values.
-
-Of note is that the preprocessor is very stupid,
-  and won't check if the offsets in the original ROM differ with those
-  in the patched ROM. It also won't tell you if you didn't catch all of
-  the differences between the ROMs.
-
-The structure of a command is the following:
-  {{Command:argument1:argument2...}}
-
-The possible commands are as follows:
-  Address:
-    Replaced by the address of the label.
-      argument 1: Offset from label. Can be anything parsable with strtol(3).
-      argument 2: Amount of zeroes to prefix it with...
-
-  Patch:
-    Replaced by the byte found at the label in the patched ROM.
-      argument 1: Offset from label. Can be anything parsable with strtol(3).
-      argument 2: If "big", writes a string of bytes starting from the label until it finds a byte that matches with the original ROM.
-
-  Constant:
-    Replaced by the hexadecimal value of a constant in an assembly file.
-    This can be through either the "EQU" or the "const" directives.
-      argument 1: Path to the assembly file.
-      argument 2: Name of the constant.
-
-*/;Format Sample
+﻿;Format Sample
 ;[xxxx]			;User-defined Name (Max:31 chars)
 ;Mode = 1		;1:Fixcode; 2:Fixvalue; 3:Mask; 4:Palette; 5:Double Frame Buffer
 ;Type = 0		;0:Begin 1:End
@@ -264,14 +232,14 @@ Mode = 11
 Type = 0                        
 Index = 1                       
 Address = {{ADDREss}}            
-Fixcode=a1:90   /* Not really sure what this fixcode does. */     
+Fixcode=a1:90   {{comment: Not really sure what this fixcode does. }}     
               
 ;12 1b 0b 79 b0  find next C9
-/*
+{{comment:
     This is ran whenever you enter the Hall of Fame.
     It sets sMobileEventIndex and sMobileEventIndexBackup to $b.
     essentially enabling the Celebi event.
-*/[BiographySave_ret]
+}}[BiographySave_ret]
 Mode = 2
 Address = {{Address}}
 Type = 60
@@ -300,7 +268,7 @@ Mode = 6
 Type = 0                                                                                       
 Address = {{address}}                                                                        
 MemAddress={{findaddress:hJoyPressed}}                                                                           
-Fixcode=a1:00   /* Clears pressed keys? */                                                                               
+Fixcode=a1:00   {{comment: Clears pressed keys? }}                                                                               
 ConditionType = 0                                                                              
 ConditionValueA = a20: {{conaddress:dw:wWindowStackPointer}} {{conaddress::wMenuJoypad}} {{conaddress::wMenuSelection}} {{conaddress::wMenuSelection}} {{conaddress::wMenuCursorY}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}}                   
 ConditionValueB = a20: {{EQUAL}} {{EQUAL}} {{EQUAL}} {{GREATER_THAN_OR_EQUAL}} {{LESS_THAN_OR_EQUAL}} {{EQUAL}} {{NOT_EQUAL}} {{NOT_EQUAL}} {{NOT_EQUAL}} {{NOT_EQUAL}}                   
@@ -315,7 +283,7 @@ Mode = 6
 Type = 0                                                                      
 Address = {{address}}                                                           
 MemAddress={{findaddress:hJoyPressed}}                                                            
-Fixcode=a1:00   /* Clears pressed keys? */                                                              
+Fixcode=a1:00   {{comment: Clears pressed keys? }}                                                              
 ConditionType = 0                                                             
 ConditionValueA = a26: {{conaddress:dw:wWindowStackPointer}} {{conaddress::wMenuJoypad}} {{conaddress::wMenuSelection}} {{conaddress::wMenuCursorY}} {{conaddress::wMapGroup}} {{conaddress::wMapNumber}} {{conaddress::wYCoord}} {{conaddress::wXCoord}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}}  
 ConditionValueB = a26: {{EQUAL}} {{EQUAL}} {{EQUAL}} {{EQUAL}} {{EQUAL}} {{EQUAL}} {{EQUAL}} {{EQUAL}} {{EQUAL}} {{NOT_EQUAL}} {{NOT_EQUAL}} {{NOT_EQUAL}} {{NOT_EQUAL}}  
@@ -358,7 +326,7 @@ Mode = 6
 Type = 0                                                                                          
 Address = {{address}}                                                                            
 MemAddress={{findaddress:hJoyPressed}}                                                                                 
-Fixcode=a1:00   /* Clears pressed keys? */                                                                                  
+Fixcode=a1:00   {{comment: Clears pressed keys? }}                                                                                  
 ConditionType = 0                                                                                 
 ConditionValueA = a18: {{conaddress:dw:wWindowStackPointer}} {{conaddress::wMenuJoypad}} {{conaddress::wMenuSelection}} {{conaddress::wDexArrowCursorPosIndex}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}}                      
 ConditionValueB = a18: {{EQUAL}} {{EQUAL}} {{EQUAL}} {{EQUAL}} {{EQUAL}} {{NOT_EQUAL}} {{NOT_EQUAL}} {{NOT_EQUAL}} {{NOT_EQUAL}}                      
