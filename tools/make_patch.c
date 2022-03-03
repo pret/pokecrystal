@@ -5,7 +5,7 @@
 
 #include <ctype.h>
 
-#define HIGH(x) (((x) >> 8) & 0xff)
+#define HIGH(x) ((x) >> 8)
 #define LOW(x) ((x) & 0xff)
 #define ROMBANKSTART 0x4000
 #define ROMEND 0x8000
@@ -277,9 +277,7 @@ void interpret_command(
 	// Use the arguments
 	if (!strcmp(command, "ADDREss")) {
 		// This is only necessary to match the exact upper/lower casing in the original patch
-		int high = offset >> 8;
-		int low = offset & 0xFF;
-		fprintf(output, "0x%X%x", high, low);
+		fprintf(output, "0x%X%x", HIGH(offset), LOW(offset));
 
 	} else if (!strcmp(command, "Address") || !strcmp(command, "address")) {
 		if (argc > 0) {
