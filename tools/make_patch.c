@@ -465,7 +465,6 @@ struct Patch *process_template(const char *template_filename, FILE *new_rom, FIL
 	patch->size = 0xFFFFFF - 0x1FFDE0;
 	patch++;
 
-
 	// Fill in the template
 	while ((c = getc(file)) != EOF) {
 		buffer = expand_buffer(buffer, buffer_index);
@@ -501,7 +500,6 @@ struct Patch *process_template(const char *template_filename, FILE *new_rom, FIL
 			}
 
 			buffer[buffer_index] = '\0';
-
 
 			patch->offset = 0;
 			interpret_command(buffer, current_patch, symbols, patch, new_rom, orig_rom, output);
@@ -623,17 +621,17 @@ int main(int argc, char *argv[]) {
 
 	FILE *new_rom = xfopen(argv[3], 'r');
 	FILE *orig_rom = xfopen(argv[4], 'r');
-
 	struct Patch *patches = process_template(argv[5], new_rom, orig_rom, argv[6], symbols);
 
 	free_symbols(symbols);
 
-	if (verify_completeness(orig_rom, new_rom, patches)) {
+	if (!verify_completeness(orig_rom, new_rom, patches)) {
 		fprintf(stderr, "Warning: Not all ROM differences are defined by \"%s\"\n", argv[6]);
 	}
 
 	fclose(new_rom);
 	fclose(orig_rom);
+	free_buffer(patches);
 
 	return 0;
 }
