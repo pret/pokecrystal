@@ -160,20 +160,16 @@ struct Symbol *parse_symfile(const char *filename) {
 	FILE *file = xfopen(filename, 'r');
 
 	struct Symbol *symbols = NULL;
-	char *buffer;
+	char *buffer = create_buffer();
 	size_t buffer_index = 0;
 	int c;
 	int bank = 0;
 	int address = 0;
 	int offset = -1;
 
-	buffer = create_buffer();
-	if (!buffer) goto error;
-
 	// Parse the entire symfile, to gather the symbols
 	while ((c = getc(file)) != EOF) {
 		buffer = expand_buffer(buffer, buffer_index);
-		if (!buffer) goto error;
 
 		switch (c) {
 		case ';':
@@ -225,36 +221,23 @@ struct Symbol *parse_symfile(const char *filename) {
 		}
 	}
 
-	if (!symbols) {
-		fprintf(stderr, "Error: No symbols found\n");
-	}
-
 	fclose(file);
 	free_buffer(buffer);
 	return symbols;
-
-error:
-	fclose(file);
-	if (buffer) free_buffer(buffer);
-	return NULL;
 }
 
 struct Symbol *parse_constfile(const char *filename, struct Symbol **symbols) {
 	FILE *file = xfopen(filename, 'r');
 
-	char *buffer;
+	char *buffer = create_buffer();
 	size_t buffer_index = 0;
 	char *endvalue;
 	int c;
 	int value = -1;
 
-	buffer = create_buffer();
-	if (!buffer) goto error;
-
 	// Parse the entire const file, to gather the symbols
 	while ((c = getc(file)) != EOF) {
 		buffer = expand_buffer(buffer, buffer_index);
-		if (!buffer) goto error;
 
 		switch (c) {
 		case ';':
@@ -309,11 +292,6 @@ struct Symbol *parse_constfile(const char *filename, struct Symbol **symbols) {
 
 	fclose(file);
 	free_buffer(buffer);
-	return *symbols;
-
-error:
-	fclose(file);
-	if (buffer) free_buffer(buffer);
 	return *symbols;
 }
 
@@ -470,20 +448,13 @@ struct Patch *process_template(const char *template_filename, FILE *new_rom, FIL
 	FILE *file = xfopen(template_filename, 'r');
 	FILE *output = xfopen(output_filename, 'w');
 
-	struct Patch *patches = NULL;
-	struct Patch *patch = NULL;
+	struct Patch *patches = create_buffer();
+	struct Patch *patch = patches;
 	const struct Symbol *current_patch = NULL;
-	char *buffer;
+	char *buffer = create_buffer();
 	size_t buffer_index = 0;
 	int c;
 	int line_pos = 0;
-
-	buffer = create_buffer();
-	if (!buffer) goto error;
-
-	patches = create_buffer();
-	if (!patches) goto error;
-	patch = patches;
 
 	// Implicitly add the ROM checksum and the stadium checksum to the patch list,
 	// since that will always differ.
@@ -498,7 +469,6 @@ struct Patch *process_template(const char *template_filename, FILE *new_rom, FIL
 	// Fill in the template
 	while ((c = getc(file)) != EOF) {
 		buffer = expand_buffer(buffer, buffer_index);
-		if (!buffer) goto error;
 
 		switch (c) {
 		case '\r':
@@ -528,7 +498,6 @@ struct Patch *process_template(const char *template_filename, FILE *new_rom, FIL
 
 				buffer[buffer_index++] = c;
 				buffer = expand_buffer(buffer, buffer_index);
-				if (!buffer) goto error;
 			}
 
 			buffer[buffer_index] = '\0';
@@ -538,8 +507,6 @@ struct Patch *process_template(const char *template_filename, FILE *new_rom, FIL
 			interpret_command(buffer, current_patch, symbols, patch, new_rom, orig_rom, output);
 			if (patch->offset) patch++;
 			patches = expand_buffer(patches, (uintptr_t)patch - (uintptr_t)patches);
-			if (!patches) goto error;
-
 			break;
 
 		case '[':
@@ -602,13 +569,6 @@ struct Patch *process_template(const char *template_filename, FILE *new_rom, FIL
 	fclose(output);
 	free_buffer(buffer);
 	return patches;
-
-error:
-	fclose(file);
-	fclose(output);
-	if (buffer) free_buffer(buffer);
-	if (patches) free_buffer(patches);
-	return NULL;
 }
 
 int compare_patch(const void *patch1, const void *patch2) {
@@ -659,16 +619,12 @@ int main(int argc, char *argv[]) {
 	}
 
 	struct Symbol *symbols = parse_symfile(argv[2]);
-	if (!symbols) error_exit("Cannot parse symbols file \"%s\"", argv[2]);
-
 	symbols = parse_constfile(argv[1], &symbols);
-	if (!symbols) error_exit("Cannot parse constants file \"%s\"", argv[1]);
 
 	FILE *new_rom = xfopen(argv[3], 'r');
 	FILE *orig_rom = xfopen(argv[4], 'r');
 
 	struct Patch *patches = process_template(argv[5], new_rom, orig_rom, argv[6], symbols);
-	if (!patches) error_exit("Cannot process template file \"%s\" into patch file \"%s\"", argv[5], argv[6]);
 
 	free_symbols(symbols);
 
