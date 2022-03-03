@@ -78,21 +78,21 @@ void make_frames(const uint8_t *tilemap, long tilemap_size, int width, struct Fr
 	int num_tiles_per_frame = width * width;
 	int num_frames = tilemap_size / num_tiles_per_frame - 1;
 
-	frames->frames = malloc_verbose((sizeof *frames->frames) * num_frames);
+	frames->frames = xmalloc((sizeof *frames->frames) * num_frames);
 	frames->num_frames = num_frames;
 
-	bitmasks->bitmasks = malloc_verbose((sizeof *bitmasks->bitmasks) * num_frames);
+	bitmasks->bitmasks = xmalloc((sizeof *bitmasks->bitmasks) * num_frames);
 	bitmasks->num_bitmasks = 0;
 
 	const uint8_t *first_frame = &tilemap[0];
 	const uint8_t *this_frame = &tilemap[num_tiles_per_frame];
 	for (int i = 0; i < num_frames; i++) {
-		struct Frame *frame = malloc_verbose(sizeof *frame);
-		frame->data = malloc_verbose(num_tiles_per_frame);
+		struct Frame *frame = xmalloc(sizeof *frame);
+		frame->data = xmalloc(num_tiles_per_frame);
 		frame->size = 0;
 
-		struct Bitmask *bitmask = malloc_verbose(sizeof *bitmask);
-		bitmask->data = calloc_verbose((num_tiles_per_frame + 7) / 8);
+		struct Bitmask *bitmask = xmalloc(sizeof *bitmask);
+		bitmask->data = xcalloc((num_tiles_per_frame + 7) / 8);
 		bitmask->bitlength = 0;
 
 		for (int j = 0; j < num_tiles_per_frame; j++) {

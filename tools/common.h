@@ -27,7 +27,7 @@ void usage_exit(int status) {
 int getopt_long_index;
 #define getopt_long(argc, argv, optstring, longopts) getopt_long(argc, argv, optstring, longopts, &getopt_long_index)
 
-void *malloc_verbose(size_t size) {
+void *xmalloc(size_t size) {
 	errno = 0;
 	void *m = malloc(size);
 	if (!m) {
@@ -36,7 +36,7 @@ void *malloc_verbose(size_t size) {
 	return m;
 }
 
-void *calloc_verbose(size_t size) {
+void *xcalloc(size_t size) {
 	errno = 0;
 	void *m = calloc(size, 1);
 	if (!m) {
@@ -45,7 +45,16 @@ void *calloc_verbose(size_t size) {
 	return m;
 }
 
-FILE *fopen_verbose(const char *filename, char rw) {
+void *xrealloc(void *m, size_t size) {
+	errno = 0;
+	m = realloc(m, size);
+	if (!m) {
+		error_exit("Could not allocate %zu bytes: %s\n", size, strerror(errno));
+	}
+	return m;
+}
+
+FILE *xfopen(const char *filename, char rw) {
 	char mode[3] = {rw, 'b', '\0'};
 	errno = 0;
 	FILE *f = fopen(filename, mode);
@@ -55,7 +64,7 @@ FILE *fopen_verbose(const char *filename, char rw) {
 	return f;
 }
 
-void fread_verbose(uint8_t *data, size_t size, const char *filename, FILE *f) {
+void xfread(uint8_t *data, size_t size, const char *filename, FILE *f) {
 	errno = 0;
 	if (fread(data, 1, size, f) != size) {
 		fclose(f);
@@ -63,7 +72,7 @@ void fread_verbose(uint8_t *data, size_t size, const char *filename, FILE *f) {
 	}
 }
 
-void fwrite_verbose(const uint8_t *data, size_t size, const char *filename, FILE *f) {
+void xfwrite(const uint8_t *data, size_t size, const char *filename, FILE *f) {
 	errno = 0;
 	if (fwrite(data, 1, size, f) != size) {
 		fclose(f);
@@ -71,7 +80,7 @@ void fwrite_verbose(const uint8_t *data, size_t size, const char *filename, FILE
 	}
 }
 
-long file_size_verbose(const char *filename, FILE *f) {
+long xfsize(const char *filename, FILE *f) {
 	long size = -1;
 	errno = 0;
 	if (!fseek(f, 0, SEEK_END)) {
@@ -87,24 +96,24 @@ long file_size_verbose(const char *filename, FILE *f) {
 }
 
 uint8_t *read_u8(const char *filename, long *size) {
-	FILE *f = fopen_verbose(filename, 'r');
-	*size = file_size_verbose(filename, f);
-	uint8_t *data = malloc_verbose(*size);
-	fread_verbose(data, *size, filename, f);
+	FILE *f = xfopen(filename, 'r');
+	*size = xfsize(filename, f);
+	uint8_t *data = xmalloc(*size);
+	xfread(data, *size, filename, f);
 	fclose(f);
 	return data;
 }
 
 void write_u8(const char *filename, uint8_t *data, size_t size) {
-	FILE *f = fopen_verbose(filename, 'w');
-	fwrite_verbose(data, size, filename, f);
+	FILE *f = xfopen(filename, 'w');
+	xfwrite(data, size, filename, f);
 	fclose(f);
 }
 
-uint32_t read_png_width_verbose(const char *filename) {
-	FILE *f = fopen_verbose(filename, 'r');
+uint32_t read_png_width(const char *filename) {
+	FILE *f = xfopen(filename, 'r');
 	uint8_t header[16] = {0};
-	fread_verbose(header, sizeof(header), filename, f);
+	xfread(header, sizeof(header), filename, f);
 	static uint8_t expected_header[16] = {
 		0x89, 'P', 'N', 'G', '\r', '\n', 0x1A, '\n', // signature
 		0, 0, 0, 13,                                 // IHDR chunk length
@@ -115,7 +124,7 @@ uint32_t read_png_width_verbose(const char *filename) {
 		error_exit("Not a valid PNG file: \"%s\"\n", filename);
 	}
 	uint8_t bytes[4] = {0};
-	fread_verbose(bytes, sizeof(bytes), filename, f);
+	xfread(bytes, sizeof(bytes), filename, f);
 	fclose(f);
 	return (bytes[0] << 24) | (bytes[1] << 16) | (bytes[2] << 8) | bytes[3];
 }

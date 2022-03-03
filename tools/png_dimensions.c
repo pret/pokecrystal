@@ -4,7 +4,7 @@
 #include "common.h"
 
 uint8_t read_png_dimensions(const char *filename) {
-	uint32_t width_px = read_png_width_verbose(filename);
+	uint32_t width_px = read_png_width(filename);
 	if (width_px != 40 && width_px != 48 && width_px != 56) {
 		error_exit("Not a valid width for \"%s\": %" PRIu32 " px\n", filename, width_px);
 	}
