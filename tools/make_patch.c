@@ -87,8 +87,8 @@ int get_address_type_limit(int address) {
 	}
 }
 
-void create_symbol(struct Symbol **tip, const char *name, const int bank, const int address) {
-	struct Symbol *symbol = xmalloc(sizeof(struct Symbol) + strlen(name) + 1);
+void create_symbol(struct Symbol **tip, const char *name, int bank, int address) {
+	struct Symbol *symbol = xmalloc(sizeof(*symbol) + strlen(name) + 1);
 	symbol->address = address;
 	symbol->offset = bank > 0 ? address + (bank - 1) * get_address_type_limit(address) : address;
 	strcpy(symbol->name, name);
