@@ -28,22 +28,22 @@
 
 [Network10]
 Mode = 1
-Address = {{Address:1:1}}
-Fixcode = {{Patch:1}}
+Address = {{Address 1 1}}
+Fixcode = {{Patch 1}}
 
 [Network11]
 Mode = 1
-Address = {{Address:1:1}}
-Fixcode = {{Patch:1}}
+Address = {{Address 1 1}}
+Fixcode = {{Patch 1}}
 
 [send_send_buf2]
 Mode = 2
-Address = {{Address::1}}
+Address = {{Address 0 1}}
 Type = 29
 
 [send_send_buf2_ret]
 Mode = 2
-Address = {{Address::1}}
+Address = {{Address 0 1}}
 Type = 30
 
 [Network358]
@@ -89,7 +89,7 @@ Type = 7
 
 [send_byt2]
 Mode = 2
-Address = {{Address:5}}
+Address = {{Address 5}}
 Type = 31
 
 [send_byt2_ret]
@@ -99,8 +99,8 @@ Type = 32
 
 [send_byt2_wait]
 Mode = 1
-Address = {{Address:1}}
-Fixcode = {{Patch:1}}
+Address = {{Address 1}}
+Fixcode = {{Patch 1}}
 
 [send_dummy]
 Mode = 2
@@ -109,8 +109,8 @@ Type = 33
 
 [send_dummy_wait]
 Mode = 1
-Address = {{Address:1}}
-Fixcode = {{Patch:1}} 
+Address = {{Address 1}}
+Fixcode = {{Patch 1}} 
 
 [send_dummy_end]
 Mode = 2
@@ -119,28 +119,28 @@ Type = 34
 
 [NetworkDelay1]
 Mode = 1
-Address = {{Address:1}}
-Fixcode = {{Patch:1}}
+Address = {{Address 1}}
+Fixcode = {{Patch 1}}
 
 [NetworkDelay2]
 Mode = 1
-Address = {{Address:1}}
-Fixcode = {{Patch:1}}
+Address = {{Address 1}}
+Fixcode = {{Patch 1}}
 
 [NetworkDelay3]
 Mode = 1
-Address = {{Address:1}}
-Fixcode = {{Patch:1}}
+Address = {{Address 1}}
+Fixcode = {{Patch 1}}
 
 [NetworkDelay4]
 Mode = 1
-Address = {{Address:1}}
-Fixcode = {{Patch:1}}
+Address = {{Address 1}}
+Fixcode = {{Patch 1}}
 
 [NetworkDelay6]
 Mode = 1
-Address = {{Address:1}}
-Fixcode = {{Patch:1}}
+Address = {{Address 1}}
+Fixcode = {{Patch 1}}
 
 ;no use[Network_STOP]
 ;Mode = 2
@@ -154,7 +154,7 @@ Fixcode = {{Patch:1}}
 
 [Network_RESET]
 Mode = 2
-Address = {{Address::1}}
+Address = {{Address 0 1}}
 Type = 10
 
 [E_YESNO]
@@ -232,7 +232,7 @@ Mode = 11
 Type = 0                        
 Index = 1                       
 Address = {{ADDREss}}            
-Fixcode=a1:{{constant:db:SCREEN_HEIGHT_PX}}        
+Fixcode=a1:{{db SCREEN_HEIGHT_PX}}        
               
 ;12 1b 0b 79 b0  find next C9
 [BiographySave_ret]
@@ -255,7 +255,7 @@ Type = 60
 [print forbid 1]                                                   
 Mode = 1                                                                                                                  
 Address = {{address}}
-Fixcode={{patch::big}}      
+Fixcode={{patch 0 big}}      
 
 
                             
@@ -263,12 +263,12 @@ Fixcode={{patch::big}}
 Mode = 6                                                                                       
 Type = 0                                                                                       
 Address = {{address}}                                                                        
-MemAddress={{findaddress:hJoyPressed}}                                                                           
-Fixcode=a1:{{constant:db:NO_INPUT}}                                                                                  
+MemAddress={{findaddress hJoyPressed}}                                                                           
+Fixcode=a1:{{db NO_INPUT}}                                                                                  
 ConditionType = 0                                                                              
-ConditionValueA = a20: {{conaddress:dw:wWindowStackPointer}} {{conaddress::wMenuJoypad}} {{conaddress::wMenuSelection}} {{conaddress::wMenuSelection}} {{conaddress::wMenuCursorY}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}}                   
-ConditionValueB = a20: {{==}} {{==}} {{==}} {{>=}} {{<=}} {{==}} {{!=}} {{!=}} {{!=}} {{!=}}                   
-ConditionValueC = a20: dd 00 d3 00 01 00 00 00 0f 00 03 00 {{constant::D_DOWN}} {{constant::D_UP}} {{constant::B_BUTTON}} {{constant::NO_INPUT}}                   
+ConditionValueA = {{dws wWindowStackPointer wWindowStackPointer+1 wMenuJoypad wMenuSelection wMenuSelection wMenuCursorY hJoyPressed hJoyPressed hJoyPressed hJoyPressed}}                   
+ConditionValueB = {{dws ==                  ==                    ==          >=             <=             ==           !=          !=          !=          !=}}                   
+ConditionValueC = {{dws 0xdd                0xd3                  0x01        0x00           0x0f           0x03         D_DOWN      D_UP        B_BUTTON    NO_INPUT}}                   
     
 ; -----ddddfffffff99999ccccc77777----0xd9c7 no ..............Mem Write: pc32 = 0x230b addr = 0xd9c7 value = 0x8
 ; 0xd9c7 is the room number.
@@ -278,12 +278,12 @@ ConditionValueC = a20: dd 00 d3 00 01 00 00 00 0f 00 03 00 {{constant::D_DOWN}} 
 Mode = 6                                                                      
 Type = 0                                                                      
 Address = {{address}}                                                           
-MemAddress={{findaddress:hJoyPressed}}                                                            
-Fixcode=a1:{{constant:db:NO_INPUT}}                                                                 
+MemAddress={{findaddress hJoyPressed}}                                                            
+Fixcode=a1:{{db NO_INPUT}}                                                                 
 ConditionType = 0                                                             
-ConditionValueA = a26: {{conaddress:dw:wWindowStackPointer}} {{conaddress::wMenuJoypad}} {{conaddress::wMenuSelection}} {{conaddress::wMenuCursorY}} {{conaddress::wMapGroup}} {{conaddress::wMapNumber}} {{conaddress::wYCoord}} {{conaddress::wXCoord}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}}  
-ConditionValueB = a26: {{==}} {{==}} {{==}} {{==}} {{==}} {{==}} {{==}} {{==}} {{==}} {{!=}} {{!=}} {{!=}} {{!=}}  
-ConditionValueC = a26: af 00 df 00 00 00 00 00 01 00 {{constant::MAPGROUP_CIANWOOD}} {{constant::MAP_CIANWOOD_PHOTO_STUDIO}} 04 00 02 00 {{constant::D_DOWN}} {{constant::D_UP}} {{constant::B_BUTTON}} {{constant::NO_INPUT}}  
+ConditionValueA = {{dws wWindowStackPointer wWindowStackPointer+1 wMenuJoypad wMenuSelection wMenuCursorY wMapGroup         wMapNumber                wYCoord wXCoord hJoyPressed hJoyPressed hJoyPressed hJoyPressed}}  
+ConditionValueB = {{dws ==                  ==                    ==          ==             ==           ==                ==                        ==      ==      !=          !=          !=          !=}}  
+ConditionValueC = {{dws 0xaf                0xdf                  0x00        0x00           0x01         MAPGROUP_CIANWOOD MAP_CIANWOOD_PHOTO_STUDIO 0x04    0x02    D_DOWN      D_UP        B_BUTTON    NO_INPUT}}  
 
                                                
 ;ROM:BB29C                 call    unk_934       
@@ -299,7 +299,7 @@ ConditionValueC = a26: af 00 df 00 00 00 00 00 01 00 {{constant::MAPGROUP_CIANWO
 [print forbid 4]                                                  
 Mode = 1                                                          
 Address = {{address}}                                          
-Fixcode={{patch::big}}            
+Fixcode={{patch 0 big}}            
 
 
 ;ROM:401D6                 call    unk_50A5                                         
@@ -321,12 +321,12 @@ Fixcode={{patch::big}}
 Mode = 6                                                                                          
 Type = 0                                                                                          
 Address = {{address}}                                                                            
-MemAddress={{findaddress:hJoyPressed}}                                                                                 
-Fixcode=a1:{{constant:db:NO_INPUT}}                                                                                     
+MemAddress={{findaddress hJoyPressed}}                                                                                 
+Fixcode=a1:{{db NO_INPUT}}                                                                                     
 ConditionType = 0                                                                                 
-ConditionValueA = a18: {{conaddress:dw:wWindowStackPointer}} {{conaddress::wMenuJoypad}} {{conaddress::wMenuSelection}} {{conaddress::wDexArrowCursorPosIndex}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}}                      
-ConditionValueB = a18: {{==}} {{==}} {{==}} {{==}} {{==}} {{!=}} {{!=}} {{!=}} {{!=}}                      
-ConditionValueC = a18: a1 00 db 00 01 00 00 00 03 00 {{constant::D_DOWN}} {{constant::D_UP}} {{constant::B_BUTTON}} {{constant::NO_INPUT}}                      
+ConditionValueA = {{dws wWindowStackPointer wWindowStackPointer+1 wMenuJoypad wMenuSelection wDexArrowCursorPosIndex hJoyPressed hJoyPressed hJoyPressed hJoyPressed}}                      
+ConditionValueB = {{dws ==                  ==                    ==          ==             ==                      !=          !=          !=          !=}}                      
+ConditionValueC = {{dws 0xa1                0xdb                  0x01        0x00           0x03                    D_DOWN      D_UP        B_BUTTON    NO_INPUT}}                      
 
 
 
@@ -359,7 +359,7 @@ ConditionValueC = a18: a1 00 db 00 01 00 00 00 03 00 {{constant::D_DOWN}} {{cons
 [infrared fake 0]                                                                                                           
 Mode = 1                                                                                                                    
 Address = {{address}}                                                                                  
-Fixcode={{Patch::big}}                                                                                   
+Fixcode={{Patch 0 big}}                                                                                   
                                                                                                                             
                
 ;00104c3ch: CD 66 4D CD 9E 4D CD E5 4D F0 BC FE 10 CA 24 4D   
@@ -369,7 +369,7 @@ Fixcode={{Patch::big}}
 [infrared fake 1]                                                                                                    
 Mode = 1                                                                                                             
 Address = {{address}}                                                                                              
-Fixcode={{patch::big}}                                           
+Fixcode={{patch 0 big}}                                           
                                                                                                                      
 [infrared fake 2]                                                                                                    
 Mode = 2                                                                                                             
@@ -434,9 +434,9 @@ Dark0 = 4
 MotionBEnable0 = 3                                            
 MotionBlur0 = 11                                                                                                         
 ConditionType = 0                                                 
-ConditionValueA = a2: {{conaddress::wFXAnimID}}
-ConditionValueB = a2: {{==}}
-ConditionValueC = a2: {{constant::FISSURE}}
+ConditionValueA = {{dws wFXAnimID}}
+ConditionValueB = {{dws ==}}
+ConditionValueC = {{dws FISSURE}}
 
 ;ROM:35D09                 ld      [byte_CFB6], a
 ;ROM:35D0C                 ld      a, d
@@ -468,9 +468,9 @@ Dark0 = 4
 MotionBEnable0 = 3                                            
 MotionBlur0 = 11                                               
 ConditionType = 0                                                 
-ConditionValueA = a2: {{conaddress::wFXAnimID}}
-ConditionValueB = a2: {{==}}
-ConditionValueC = a2: {{constant::SELFDESTRUCT}}
+ConditionValueA = {{dws wFXAnimID}}
+ConditionValueB = {{dws ==}}
+ConditionValueC = {{dws SELFDESTRUCT}}
 
 
 ; lightening    
@@ -484,9 +484,9 @@ Dark0 = 4
 MotionBEnable0 = 3                                            
 MotionBlur0 = 15                                               
 ConditionType = 0                                                 
-ConditionValueA = a2: {{conaddress::wFXAnimID}}  
-ConditionValueB = a2: {{==}}
-ConditionValueC = a2: {{constant::THUNDER}}      
+ConditionValueA = {{dws wFXAnimID}}  
+ConditionValueB = {{dws ==}}
+ConditionValueC = {{dws THUNDER}}      
                                              
 
 
@@ -502,9 +502,9 @@ Dark0 = 4
 MotionBEnable0 = 3                                            
 MotionBlur0 = 15                                          
 ConditionType = 0                                                 
-ConditionValueA = a2: {{conaddress::wFXAnimID}}  
-ConditionValueB = a2: {{==}}
-ConditionValueC = a2: {{constant::FLASH}}
+ConditionValueA = {{dws wFXAnimID}}  
+ConditionValueB = {{dws ==}}
+ConditionValueC = {{dws FLASH}}
 
 
 ;skill name 1 : ..............Mem Write: pc32 = 0x30db addr = 0xcf87 value = 0x2c
@@ -525,9 +525,9 @@ Dark0 = 4
 MotionBEnable0 = 3                                            
 MotionBlur0 = 15                                                   
 ConditionType = 0                                                 
-ConditionValueA = a2: {{conaddress::wFXAnimID}}  
-ConditionValueB = a2: {{==}}
-ConditionValueC = a2: {{constant::EXPLOSION}}
+ConditionValueA = {{dws wFXAnimID}}  
+ConditionValueB = {{dws ==}}
+ConditionValueC = {{dws EXPLOSION}}
 
 
 ;skill name 1 : ..............Mem Write: pc32 = 0x30db addr = 0xcf87 value = 0x30
@@ -547,9 +547,9 @@ Dark0 = 4
 MotionBEnable0 = 3                                            
 MotionBlur0 = 11                                              
 ConditionType = 0                                                 
-ConditionValueA = a2: {{conaddress::wFXAnimID}}  
-ConditionValueB = a2: {{==}}
-ConditionValueC = a2: {{constant::HORN_DRILL}}
+ConditionValueA = {{dws wFXAnimID}}  
+ConditionValueB = {{dws ==}}
+ConditionValueC = {{dws HORN_DRILL}}
 
 
 
@@ -570,9 +570,9 @@ Dark0 = 5
 MotionBEnable0 = 3                                            
 MotionBlur0 = 7                                              
 ConditionType = 0                                                 
-ConditionValueA = a2: {{conaddress::wFXAnimID}}  
-ConditionValueB = a2: {{==}}
-ConditionValueC = a2: {{constant::HYPER_BEAM}}                                                          
+ConditionValueA = {{dws wFXAnimID}}  
+ConditionValueB = {{dws ==}}
+ConditionValueC = {{dws HYPER_BEAM}}                                                          
 
 
                         
@@ -593,9 +593,9 @@ Dark0 = 5
 MotionBEnable0 = 3                                                                                                                               
 MotionBlur0 = 11                                                                                                                                 
 ConditionType = 0                                                                                                                                
-ConditionValueA = a4: {{conaddress::wFXAnimID}} {{conaddress::wBattleAnimByte}}                                                                              
-ConditionValueB = a4: {{==}} {{==}}                                                                                 
-ConditionValueC = a4: {{constant::PRESENT}} {{constant::anim_1gfx_command}}                                                                                 
+ConditionValueA = {{dws wFXAnimID wBattleAnimByte}}                                                                              
+ConditionValueB = {{dws ==        ==}}                                                                                 
+ConditionValueC = {{dws PRESENT   anim_1gfx_command}}                                                                                 
 
     
 

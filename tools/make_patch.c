@@ -149,6 +149,16 @@ void parse_address(char *buffer_input, int *bank, int *address) {
 	free(buffer);
 }
 
+void strip_extra_spaces(char* str) {
+	int i, x;
+	for(i=x=0; str[i]; ++i){
+		if (!isspace(str[i]) || (i > 0 && !isspace(str[i-1]))) {
+			str[x++] = str[i];
+		}
+	}
+	str[x] = '\0';
+}
+
 struct Symbol *parse_symfile(const char *filename) {
 	FILE *file = xfopen(filename, 'r');
 
@@ -273,10 +283,13 @@ void interpret_command(
 	char *command, const struct Symbol *current_hook, const struct Symbol *symbols,
 	struct Patches *patches, FILE *new_rom, FILE *orig_rom, FILE *output
 ) {
+	// Strip extra spaces
+	strip_extra_spaces(command);
+	
 	// Count the arguments
 	int argc = 0;
 	for (char *c = command; *c; c++) {
-		if (*c == ':') {
+		if (*c == ' ') {
 			argc++;
 		}
 	}
@@ -285,7 +298,7 @@ void interpret_command(
 	char *argv[argc]; // VLA
 	char *arg = command;
 	for (int i = 0; i < argc; i++) {
-		arg = strchr(arg, ':');
+		arg = strchr(arg, ' ');
 		if (!arg) {
 			break;
 		}
@@ -358,22 +371,63 @@ void interpret_command(
 			free(searchend);
 		}
 
-	} else if (!strcmp(command, "Constant") || !strcmp(command, "constant")) {
-		if (argc != 2) {
+	} else if (!strcmp(command, "dws") || !strcmp(command, "DWS")) {
+		if (argc < 1) {
 			fprintf(stderr, "Error: Missing argument for %s", command);
 		}
-		const struct Symbol *getsymbol = find_symbol(symbols, argv[1]);
+		fprintf(output, "a%i:", (argc * 2));
+		for (int i = 0; i < argc; i++) {
+			int offset_mod = 0;
+			if (argv[i][0] == '0') {
+			int hexoutput = strtol(argv[i], NULL, 16);
+				fprintf(output, isupper((unsigned char)command[0]) ? " %02X %02X": " %02x %02x",
+					LOW(hexoutput), HIGH(hexoutput));
+				continue;
+			} else if (!strcmp(argv[i], "==")) {
+				fprintf(output, " 00 00");
+				continue;
+			} else if (!strcmp(argv[i], ">")) {
+				fprintf(output, " 01 00");
+				continue;
+			} else if (!strcmp(argv[i], "<")) {
+				fprintf(output, " 02 00");
+				continue;
+			} else if (!strcmp(argv[i], ">=")) {
+				fprintf(output, " 03 00");
+				continue;
+			} else if (!strcmp(argv[i], "<=")) {
+				fprintf(output, " 04 00");
+				continue;
+			} else if (!strcmp(argv[i], "!=")) {
+				fprintf(output, " 05 00");
+				continue;
+			}
+			if (strchr(argv[i], '+') != NULL) { 
+				offset_mod = strtol(strchr(argv[i], '+'), NULL, 10);
+				argv[i][strlen(argv[i]) - strlen(strchr(argv[i], '+'))] = '\0';
+			}
+			const struct Symbol *getsymbol = find_symbol(symbols, argv[i]);
+			if (!getsymbol) {
+				return;
+			}
+			int parsed_offset = getsymbol->address + offset_mod;
+			fprintf(output, isupper((unsigned char)command[0]) ? " %02X %02X": " %02x %02x",
+				LOW(parsed_offset), HIGH(parsed_offset));
+		}
+
+	} else if (!strcmp(command, "db") || !strcmp(command, "DB")) {
+		int offset_mod = 0;
+		if (strchr(argv[0], '+') != NULL) {
+			offset_mod = strtol(strchr(argv[0], '+'), NULL, 10);
+			argv[0][strlen(argv[0]) - strlen(strchr(argv[0], '+'))] = '\0';
+		}
+		const struct Symbol *getsymbol = find_symbol(symbols, argv[0]);
 		if (!getsymbol) {
 			return;
 		}
-		int parsed_offset = getsymbol->address;
-		if (!strcmp(argv[0], "db")) {
-			fprintf(output, isupper((unsigned char)command[0]) ? "%02X": "%02x",
-				parsed_offset);
-		} else {
-			fprintf(output, isupper((unsigned char)command[0]) ? "%02X %02X": "%02x %02x",
-				parsed_offset, HIGH(parsed_offset));
-		}
+		int parsed_offset = getsymbol->address + offset_mod;
+		fprintf(output, isupper((unsigned char)command[0]) ? "%02X": "%02x",
+				LOW(parsed_offset));
 
 	} else if (!strcmp(command, "findaddress")) {
 		if (argc != 1) {
@@ -384,38 +438,6 @@ void interpret_command(
 			return;
 		}
 		fprintf(output, "0x%x", getsymbol->offset);
-
-	} else if (!strcmp(command, "conaddress")) {
-		if (argc != 2) {
-			fprintf(stderr, "Error: Missing argument for %s", command);
-		}
-		const struct Symbol *getsymbol = find_symbol(symbols, argv[1]);
-		if (!getsymbol) {
-			return;
-		}
-		int parsed_offset = getsymbol->address;
-		if (!strcmp(argv[0], "dw")) {
-			fprintf(output, "%02x ", LOW(parsed_offset));
-			fprintf(output, "%02x ", HIGH(parsed_offset));
-			fprintf(output, "%02x ", LOW(parsed_offset + 1));
-			fprintf(output, "%02x",  HIGH(parsed_offset + 1));
-		} else {
-			fprintf(output, "%02x ", LOW(parsed_offset));
-			fprintf(output, "%02x",  HIGH(parsed_offset));
-		}
-
-	} else if (!strcmp(command, "==")) {
-		fprintf(output, "00 00");
-	} else if (!strcmp(command, ">")) {
-		fprintf(output, "01 00");
-	} else if (!strcmp(command, "<")) {
-		fprintf(output, "02 00");
-	} else if (!strcmp(command, ">=")) {
-		fprintf(output, "03 00");
-	} else if (!strcmp(command, "<=")) {
-		fprintf(output, "04 00");
-	} else if (!strcmp(command, "!=")) {
-		fprintf(output, "05 00");
 
 	} else {
 		fprintf(stderr, "Error: Unknown command: %s\n", command);
