@@ -5,7 +5,7 @@
 
 #include <ctype.h>
 
-#define HIGH(x) ((x) >> 8)
+#define HIGH(x) (((x) >> 8) & 0xff)
 #define LOW(x) ((x) & 0xff)
 
 struct Buffer {
@@ -298,7 +298,7 @@ void interpret_command(
 	// Use the arguments
 	if (!strcmp(command, "ADDREss")) {
 		// This is only necessary to match the exact upper/lower casing in the original patch
-		fprintf(output, "0x%X%x", HIGH(offset), LOW(offset));
+		fprintf(output, "0x%X%x", offset >> 8, LOW(offset));
 
 	} else if (!strcmp(command, "Address") || !strcmp(command, "address")) {
 		if (argc > 0) {
