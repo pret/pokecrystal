@@ -355,6 +355,7 @@ void interpret_command(
 					fprintf(output, isupper((unsigned char)command[0]) ? "%02X" : "%02x", getc(new_rom));
 				}
 			}
+			free(searchend);
 		}
 
 	} else if (!strcmp(command, "Constant") || !strcmp(command, "constant")) {
