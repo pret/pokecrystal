@@ -539,9 +539,9 @@ struct Patches *process_template(
 }
 
 int compare_patch(const void *patch1, const void *patch2) {
-	unsigned int patch1_offset = ((const struct Patch *)patch1)->offset;
-	unsigned int patch2_offset = ((const struct Patch *)patch2)->offset;
-	return patch1_offset > patch2_offset ? 1 : patch1_offset < patch2_offset ? -1 : 0;
+	unsigned int offset1 = ((const struct Patch *)patch1)->offset;
+	unsigned int offset2 = ((const struct Patch *)patch2)->offset;
+	return offset1 > offset2 ? 1 : offset1 < offset2 ? -1 : 0;
 }
 
 bool verify_completeness(FILE *orig_rom, FILE *new_rom, struct Patches *patches) {
