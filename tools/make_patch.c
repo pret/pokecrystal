@@ -58,12 +58,20 @@ void free_symbols(struct Symbol *list) {
 	}
 }
 
-void create_const_symbol(struct Symbol **tip, const char *name, const int value) {
-	struct Symbol *symbol = xmalloc(sizeof(struct Symbol) + strlen(name) + 1);
-	symbol->value = value;
-	strcpy(symbol->name, name);
-	symbol->next = *tip;
-	*tip = symbol;
+int get_symbol_offset(const struct Symbol *symbol) {
+	switch (symbol->addresstype) {
+	default:
+	case ROM:
+		return symbol->bank ? symbol->bank * 0x4000 + symbol->address - 0x4000 : symbol->address;
+	case VRAM:
+		return symbol->bank ? symbol->bank * 0xa000 + symbol->address - 0xa000 : symbol->address;
+	case SRAM:
+		return symbol->bank ? symbol->bank * 0xc000 + symbol->address - 0xc000 : symbol->address;
+	case WRAM:
+		return symbol->bank ? symbol->bank * 0xd000 + symbol->address - 0xd000 : symbol->address;
+	case HRAM:
+		return symbol->address;
+	}
 }
 
 void create_sym_symbol(
@@ -74,6 +82,18 @@ void create_sym_symbol(
 	symbol->bank = bank;
 	symbol->address = address;
 	symbol->addresstype = addresstype;
+	symbol->value = get_symbol_offset(symbol);
+	strcpy(symbol->name, name);
+	symbol->next = *tip;
+	*tip = symbol;
+}
+
+void create_const_symbol(struct Symbol **tip, const char *name, const int value) {
+	struct Symbol *symbol = xmalloc(sizeof(struct Symbol) + strlen(name) + 1);
+	symbol->bank = 0;
+	symbol->address = value;
+	symbol->value = value;
+	symbol->addresstype = HRAM;
 	strcpy(symbol->name, name);
 	symbol->next = *tip;
 	*tip = symbol;
@@ -98,7 +118,7 @@ const struct Symbol *find_symbol(const struct Symbol *symbols, const char *name)
 	return NULL;
 }
 
-int parse_address_bank(char *buffer_input) {
+void parse_address(char *buffer_input, int *bank, int *address) {
 	char *buffer = xmalloc(strlen(buffer_input) + 1);
 	strcpy(buffer, buffer_input);
 
@@ -107,40 +127,19 @@ int parse_address_bank(char *buffer_input) {
 		*buffer_address++ = '\0';
 	}
 
-	char *endptr_bank;
-	int bank = strtol(buffer, &endptr_bank, 16);
-	if (bank > 0xff || bank < 0) {
-		return -1;
+	char *endptr_bank, *endptr_address;
+	*bank = strtol(buffer, &endptr_bank, 16);
+	if (*bank > 0xff || *bank < 0) {
+		*bank = -1;
 	}
-	if (endptr_bank != buffer + strlen(buffer)) {
-		fprintf(stderr, "Error: Cannot parse bank %s: %s\n", buffer, buffer_address);
-		return -1;
-	}
-
-	return bank;
-}
-
-int parse_address_address(char *buffer_input) {
-	char *buffer = xmalloc(strlen(buffer_input) + 1);
-	strcpy(buffer, buffer_input);
-
-	char *buffer_address = strchr(buffer, ':');
-	if (buffer_address) {
-		*buffer_address++ = '\0';
+	*address = strtol(buffer_address, &endptr_address, 16);
+	if (*address > 0xffff || *address < 0) {
+		*address = -1;
 	}
 
-	// Parse the address part
-	char *endptr_address;
-	int address = strtol(buffer_address, &endptr_address, 16);
-	if (address > 0xffff || address < 0) {
-		return -1;
+	if (endptr_bank != buffer + strlen(buffer) || endptr_address != buffer_address + strlen(buffer_address)) {
+		fprintf(stderr, "Error: Cannot parse bank+address: %s: %s\n", buffer, buffer_address);
 	}
-	if (endptr_address != buffer_address + strlen(buffer_address)) {
-		fprintf(stderr, "Error: Cannot parse address %s: %s\n", buffer, buffer_address);
-		return -1;
-	}
-
-	return address;
 }
 
 enum AddressType get_address_type(int address) {
@@ -155,34 +154,6 @@ enum AddressType get_address_type(int address) {
 	} else {
 		return ROM;
 	}
-}
-
-int parse_abs_offset(int bank, int address, enum AddressType addresstype) {
-	switch (addresstype) {
-	case WRAM:
-		return bank ? bank * 0xd000 + address - 0xd000 : address;
-	case SRAM:
-		return bank ? bank * 0xc000 + address - 0xc000 : address;
-	case HRAM:
-		return address;
-	default:
-		return bank ? bank * 0x4000 + address - 0x4000 : address;
-	}
-	return -1;
-}
-
-int parse_offset(int offset, enum AddressType addresstype) {
-	switch (addresstype) {
-	case WRAM:
-		return offset > 0xd000 ? 0xd000 + offset % 0xd000 : offset;
-	case SRAM:
-		return offset > 0xc000 ? 0xc000 + offset % 0xc000 : offset;
-	case HRAM:
-		return offset;
-	default:
-		return offset > 0x4000 ? 0x4000 + offset % 0x4000 : offset;
-	}
-	return -1;
 }
 
 struct Symbol *parse_symfile(const char *filename) {
@@ -208,12 +179,9 @@ struct Symbol *parse_symfile(const char *filename) {
 			buffer[buffer_index] = '\0';
 			// This is the end of the parsable line
 			buffer_index = SIZE_MAX;
-			offset = parse_abs_offset(bank, address, addresstype);
-			if (offset != -1) {
-				addresstype = get_address_type(address);
-				create_sym_symbol(&symbols, buffer, bank, address, addresstype);
-				offset = -1;
-			}
+			addresstype = get_address_type(address);
+			create_sym_symbol(&symbols, buffer, bank, address, addresstype);
+			offset = -1;
 			break;
 
 		case ' ':
@@ -225,8 +193,7 @@ struct Symbol *parse_symfile(const char *filename) {
 			} else {
 				// If we encounter a space, we've reached the end of the address
 				buffer[buffer_index] = '\0';
-				bank = parse_address_bank(buffer);
-				address = parse_address_address(buffer);
+				parse_address(buffer, &bank, &address);
 				buffer_index = offset ? 0 : SIZE_MAX;
 			}
 			break;
@@ -335,7 +302,7 @@ void interpret_command(
 		argv[i] = arg;
 	}
 
-	int offset = current_patch ? parse_abs_offset(current_patch->bank, current_patch->address, current_patch->addresstype) : -1;
+	int offset = current_patch ? current_patch->value : -1;
 
 	// Use the arguments
 	if (!strcmp(command, "ADDREss")) {
@@ -386,7 +353,7 @@ void interpret_command(
 				fprintf(stderr, "Error: Could not find symbol: %s", searchend);
 			} else {
 				// Figure out the length of the patch
-				int length = parse_abs_offset(current_patch->bank, current_patch->address, current_patch->addresstype) - offset;
+				int length = current_patch->value - offset;
 				memset(searchend, 0, (strlen(current_patch->name)));
 				// We've got the length, now go back
 				fseek(new_rom, offset, SEEK_SET);
@@ -411,7 +378,7 @@ void interpret_command(
 		if (!getsymbol) {
 			return;
 		}
-		int parsed_offset = parse_offset(getsymbol->value, getsymbol->addresstype);
+		int parsed_offset = getsymbol->address;
 		if (!strcmp(argv[0], "db")) {
 			fprintf(output, isupper((unsigned char)command[0]) ? "%02X": "%02x",
 				parsed_offset);
@@ -428,7 +395,7 @@ void interpret_command(
 		if (!getsymbol) {
 			return;
 		}
-		fprintf(output, "0x%x", parse_abs_offset(getsymbol->bank, getsymbol->address, getsymbol->addresstype));
+		fprintf(output, "0x%x", getsymbol->value);
 
 	} else if (!strcmp(command, "conaddress")) {
 		if (argc != 2) {
