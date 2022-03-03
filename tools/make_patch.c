@@ -20,8 +20,8 @@ struct Patch {
 
 struct Symbol {
 	struct Symbol *next;
-	unsigned int value;
 	int address;
+	unsigned int offset;
 	char name[];
 };
 
@@ -60,19 +60,10 @@ int get_address_type_limit(int address) {
 	}
 }
 
-void create_sym_symbol(struct Symbol **tip, const char *name, const int bank, const int address) {
+void create_symbol(struct Symbol **tip, const char *name, const int bank, const int address) {
 	struct Symbol *symbol = xmalloc(sizeof(struct Symbol) + strlen(name) + 1);
 	symbol->address = address;
-	symbol->value = bank > 0 ? address + (bank - 1) * get_address_type_limit(address) : address;
-	strcpy(symbol->name, name);
-	symbol->next = *tip;
-	*tip = symbol;
-}
-
-void create_const_symbol(struct Symbol **tip, const char *name, const int value) {
-	struct Symbol *symbol = xmalloc(sizeof(struct Symbol) + strlen(name) + 1);
-	symbol->address = value;
-	symbol->value = value;
+	symbol->offset = bank > 0 ? address + (bank - 1) * get_address_type_limit(address) : address;
 	strcpy(symbol->name, name);
 	symbol->next = *tip;
 	*tip = symbol;
@@ -151,7 +142,7 @@ struct Symbol *parse_symfile(const char *filename) {
 			buffer[buffer_index] = '\0';
 			// This is the end of the parsable line
 			buffer_index = SIZE_MAX;
-			create_sym_symbol(&symbols, buffer, bank, address);
+			create_symbol(&symbols, buffer, bank, address);
 			offset = -1;
 			break;
 
@@ -207,7 +198,7 @@ struct Symbol *parse_constfile(const char *filename, struct Symbol **symbols) {
 			// This is the end of the parsable line
 			buffer_index = SIZE_MAX;
 			if (value != -1) {
-				create_const_symbol(symbols, buffer, value);
+				create_symbol(symbols, buffer, 0, value);
 				value = -1;
 			}
 			break;
@@ -273,7 +264,7 @@ void interpret_command(
 		argv[i] = arg;
 	}
 
-	int offset = current_patch ? current_patch->value : -1;
+	int offset = current_patch ? current_patch->offset : -1;
 
 	// Use the arguments
 	if (!strcmp(command, "ADDREss")) {
@@ -324,7 +315,7 @@ void interpret_command(
 				fprintf(stderr, "Error: Could not find symbol: %s", searchend);
 			} else {
 				// Figure out the length of the patch
-				int length = current_patch->value - offset;
+				int length = current_patch->offset - offset;
 				memset(searchend, 0, (strlen(current_patch->name)));
 				// We've got the length, now go back
 				fseek(new_rom, offset, SEEK_SET);
@@ -366,7 +357,7 @@ void interpret_command(
 		if (!getsymbol) {
 			return;
 		}
-		fprintf(output, "0x%x", getsymbol->value);
+		fprintf(output, "0x%x", getsymbol->offset);
 
 	} else if (!strcmp(command, "conaddress")) {
 		if (argc != 2) {
