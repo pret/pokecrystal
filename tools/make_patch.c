@@ -8,12 +8,14 @@
 #define HIGH(x) (((x) >> 8) & 0xff)
 #define LOW(x) ((x) & 0xff)
 
+enum AddressType { ROM, VRAM, SRAM, WRAM, HRAM };
+
 struct Symbol {
 	struct Symbol *next;
 	unsigned int value;
 	int bank;
 	int address;
-	enum Addresstype {ROM, VRAM, SRAM, WRAM, HRAM} addresstype;
+	enum AddressType addresstype;
 	char name[];
 };
 
@@ -56,7 +58,7 @@ void free_symbols(struct Symbol *list) {
 	}
 }
 
-void create_symbol_value(struct Symbol **tip, const int value, const char *name) {
+void create_const_symbol(struct Symbol **tip, const char *name, const int value) {
 	struct Symbol *symbol = xmalloc(sizeof(struct Symbol) + strlen(name) + 1);
 	symbol->value = value;
 	strcpy(symbol->name, name);
@@ -64,7 +66,10 @@ void create_symbol_value(struct Symbol **tip, const int value, const char *name)
 	*tip = symbol;
 }
 
-void create_symbol(struct Symbol **tip, const int bank, const int address, enum Addresstype addresstype, const char *name) {
+void create_sym_symbol(
+	struct Symbol **tip, const char *name,
+	const int bank, const int address, enum AddressType addresstype
+) {
 	struct Symbol *symbol = xmalloc(sizeof(struct Symbol) + strlen(name) + 1);
 	symbol->bank = bank;
 	symbol->address = address;
@@ -138,33 +143,45 @@ int parse_address_address(char *buffer_input) {
 	return address;
 }
 
-int parse_abs_offset(int bank, int address, enum Addresstype addresstype) {
+enum AddressType get_address_type(int address) {
+	if (address >= 0x8000 && address < 0xa000) {
+		return VRAM;
+	} else if (address >= 0xa000 && address < 0xc000) {
+		return SRAM;
+	} else if (address >= 0xc000 && address < 0xf000) {
+		return WRAM;
+	} else if (address >= 0xff80 && address < 0xffff) {
+		return HRAM;
+	} else {
+		return ROM;
+	}
+}
+
+int parse_abs_offset(int bank, int address, enum AddressType addresstype) {
 	switch (addresstype) {
-	case(WRAM):
-		return bank ? bank * 0xd000 + (address - 0xd000) : address;
-	case(SRAM):
-		return bank ? bank * 0xc000 + (address - 0xc000) : address;
-	case(HRAM):
+	case WRAM:
+		return bank ? bank * 0xd000 + address - 0xd000 : address;
+	case SRAM:
+		return bank ? bank * 0xc000 + address - 0xc000 : address;
+	case HRAM:
 		return address;
 	default:
-		return bank ? bank * 0x4000 + (address - 0x4000) : address;
+		return bank ? bank * 0x4000 + address - 0x4000 : address;
 	}
-
 	return -1;
 }
 
-int parse_offset(int offset, enum Addresstype addresstype) {
-	switch(addresstype) {
-	case(WRAM):
+int parse_offset(int offset, enum AddressType addresstype) {
+	switch (addresstype) {
+	case WRAM:
 		return offset > 0xd000 ? 0xd000 + offset % 0xd000 : offset;
-	case(SRAM):
+	case SRAM:
 		return offset > 0xc000 ? 0xc000 + offset % 0xc000 : offset;
-	case(HRAM):
+	case HRAM:
 		return offset;
 	default:
 		return offset > 0x4000 ? 0x4000 + offset % 0x4000 : offset;
 	}
-
 	return -1;
 }
 
@@ -178,7 +195,7 @@ struct Symbol *parse_symfile(const char *filename) {
 	int bank = 0;
 	int address = 0;
 	int offset = -1;
-	enum Addresstype addresstype = ROM;
+	enum AddressType addresstype = ROM;
 
 	for (int c = getc(file); c != EOF; c = getc(file)) {
 		buffer = expand_buffer(buffer, buffer_index);
@@ -193,11 +210,8 @@ struct Symbol *parse_symfile(const char *filename) {
 			buffer_index = SIZE_MAX;
 			offset = parse_abs_offset(bank, address, addresstype);
 			if (offset != -1) {
-				if (address >= 0x8000 && address < 0xa000) {addresstype = VRAM;}
-				if (address >= 0xa000 && address < 0xc000) {addresstype = SRAM;}
-				if (address >= 0xc000 && address < 0xf000) {addresstype = WRAM;}
-				if (address >= 0xff80 && address < 0xffff) {addresstype = HRAM;}
-				create_symbol(&symbols, bank, address, addresstype, buffer);
+				addresstype = get_address_type(address);
+				create_sym_symbol(&symbols, buffer, bank, address, addresstype);
 				offset = -1;
 			}
 			break;
@@ -255,7 +269,7 @@ struct Symbol *parse_constfile(const char *filename, struct Symbol **symbols) {
 			// This is the end of the parsable line
 			buffer_index = SIZE_MAX;
 			if (value != -1) {
-				create_symbol_value(symbols, value, buffer);
+				create_const_symbol(symbols, buffer, value);
 				value = -1;
 			}
 			break;
@@ -387,7 +401,9 @@ void interpret_command(
 			fprintf(stderr, "Error: Missing argument for %s", command);
 		}
 		const struct Symbol *getsymbol = find_symbol(symbols, argv[1]);
-		if (!getsymbol) return;
+		if (!getsymbol) {
+			return;
+		}
 		int parsed_offset = parse_offset(getsymbol->value, getsymbol->addresstype);
 		if (!strcmp(argv[0], "db")) {
 			fprintf(output, isupper((unsigned char)command[0]) ? "%02X": "%02x",
@@ -401,14 +417,18 @@ void interpret_command(
 			fprintf(stderr, "Error: Missing argument for %s", command);
 		}
 		const struct Symbol *getsymbol = find_symbol(symbols, argv[0]);
-		if (!getsymbol) return;
+		if (!getsymbol) {
+			return;
+		}
 		fprintf(output, "0x%x", parse_abs_offset(getsymbol->bank, getsymbol->address, getsymbol->addresstype));
 	} else if (!strcmp(command, "conaddress")) {
 		if (argc != 2) {
 			fprintf(stderr, "Error: Missing argument for %s", command);
 		}
 		const struct Symbol *getsymbol = find_symbol(symbols, argv[1]);
-		if (!getsymbol) return;
+		if (!getsymbol) {
+			return;
+		}
 		int parsed_offset = getsymbol->address;
 		if (!strcmp(argv[0], "dw")) {
 			fprintf(output, "%02x ", LOW(parsed_offset));
