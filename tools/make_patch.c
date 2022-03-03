@@ -10,12 +10,18 @@
 
 struct Buffer {
 	size_t size;
-	char buffer[];
+	char data[];
 };
 
 struct Patch {
 	unsigned int offset;
 	unsigned int size;
+};
+
+struct Patches {
+	size_t size;
+	size_t capacity;
+	struct Patch *data;
 };
 
 struct Symbol {
@@ -25,25 +31,46 @@ struct Symbol {
 	char name[];
 };
 
-void *create_buffer(void) {
-	struct Buffer *buffer = xmalloc(sizeof(struct Buffer) + 0x100);
+char *create_buffer(void) {
+	struct Buffer *buffer = xmalloc(sizeof(*buffer) + 0x100);
 	buffer->size = 0x100;
-	return buffer->buffer;
+	return buffer->data;
 }
 
-void free_buffer(void *buf) {
-	struct Buffer *buffer = (struct Buffer *)((char *)buf - sizeof(struct Buffer));
+void free_buffer(char *data) {
+	struct Buffer *buffer = (struct Buffer *)(data - sizeof(*buffer));
 	free(buffer);
 }
 
-void *expand_buffer(void *buf, const size_t size) {
-	struct Buffer *buffer = (struct Buffer *)((char *)buf - sizeof(struct Buffer));
+char *expand_buffer(char *data, size_t size) {
+	struct Buffer *buffer = (struct Buffer *)(data - sizeof(*buffer));
 	size_t old_size = buffer->size;
 	if (size > buffer->size) {
 		buffer = xrealloc(buffer, old_size + 0x100);
 	}
 	buffer->size = old_size + 0x100;
-	return buffer->buffer;
+	return buffer->data;
+}
+
+struct Patches *create_patches(void) {
+	struct Patches *patches = xmalloc(sizeof(*patches));
+	patches->size = 0;
+	patches->capacity = 0;
+	patches->data = NULL;
+	return patches;
+}
+
+void append_patch(struct Patches *patches, unsigned int offset, unsigned int size) {
+	if (patches->size == patches->capacity) {
+		patches->capacity = (patches->capacity + 1) * 2;
+		patches->data = xrealloc(patches->data, patches->capacity * sizeof(*patches->data));
+	}
+	patches->data[patches->size++] = (struct Patch){.offset = offset, .size = size};
+}
+
+void free_patches(struct Patches *patches) {
+	free(patches->data);
+	free(patches);
 }
 
 int get_address_type_limit(int address) {
@@ -241,8 +268,8 @@ struct Symbol *parse_constfile(const char *filename, struct Symbol **symbols) {
 }
 
 void interpret_command(
-	char *command, const struct Symbol *current_patch, const struct Symbol *symbols,
-	struct Patch *patch, FILE *new_rom, FILE *orig_rom, FILE *output
+	char *command, const struct Symbol *current_hook, const struct Symbol *symbols,
+	struct Patches *patches, FILE *new_rom, FILE *orig_rom, FILE *output
 ) {
 	// Count the arguments
 	int argc = 0;
@@ -264,7 +291,7 @@ void interpret_command(
 		argv[i] = arg;
 	}
 
-	int offset = current_patch ? current_patch->offset : -1;
+	int offset = current_hook ? current_hook->offset : -1;
 
 	// Use the arguments
 	if (!strcmp(command, "ADDREss")) {
@@ -288,38 +315,36 @@ void interpret_command(
 			offset += strtol(argv[0], NULL, 0);
 		}
 		if (fseek(orig_rom, offset, SEEK_SET)) {
-			fprintf(stderr, "Error: Could not seek to the offset of %s in the original ROM\n", current_patch->name);
+			fprintf(stderr, "Error: Could not seek to the offset of %s in the original ROM\n", current_hook->name);
 			return;
 		}
 		if (fseek(new_rom, offset, SEEK_SET)) {
-			fprintf(stderr, "Error: Could not seek to offset of %s in the new ROM\n", current_patch->name);
+			fprintf(stderr, "Error: Could not seek to offset of %s in the new ROM\n", current_hook->name);
 			return;
 		}
 		if (argc <= 1 || strcmp(argv[1], "big")) {
 			int c = getc(new_rom);
 			if (c == getc(orig_rom)) {
-				fprintf(stderr, "Warning: %s doesn't actually contain any differences\n", current_patch->name);
+				fprintf(stderr, "Warning: %s doesn't actually contain any differences\n", current_hook->name);
 			}
-			patch->offset = offset;
-			patch->size = 1;
+			append_patch(patches, offset, 1);
 			fprintf(output, "0x");
 			fprintf(output, isupper((unsigned char)command[0]) ? "%02X" : "%02x", c);
 		} else {
-			char *searchend = xmalloc(strlen(current_patch->name) + strlen("_End") + 1);
-			strcpy(searchend, current_patch->name);
+			char *searchend = xmalloc(strlen(current_hook->name) + strlen("_End") + 1);
+			strcpy(searchend, current_hook->name);
 			strcat(searchend, "_End");
-			current_patch = find_symbol(symbols, searchend);
-			if (!current_patch) {
+			current_hook = find_symbol(symbols, searchend);
+			if (!current_hook) {
 				fprintf(stderr, "Error: Could not find symbol: %s", searchend);
 			} else {
 				// Figure out the length of the patch
-				int length = current_patch->offset - offset;
-				memset(searchend, 0, (strlen(current_patch->name)));
+				int length = current_hook->offset - offset;
+				memset(searchend, 0, (strlen(current_hook->name)));
 				// We've got the length, now go back
 				fseek(new_rom, offset, SEEK_SET);
 				// Print out the patch
-				patch->offset = offset;
-				patch->size = length;
+				append_patch(patches, offset, length);
 				fprintf(output, "a%d:", length);
 				for (int i = 0; i < length; i++) {
 					if (i) {
@@ -394,28 +419,22 @@ void interpret_command(
 	}
 }
 
-struct Patch *process_template(
+struct Patches *process_template(
 	const char *template_filename, FILE *new_rom, FILE *orig_rom,
 	const char *output_filename, const struct Symbol *symbols
 ) {
 	FILE *file = xfopen(template_filename, 'r');
 	FILE *output = xfopen(output_filename, 'w');
 
-	struct Patch *patches = create_buffer();
-	struct Patch *patch = patches;
+	struct Patches *patches = create_patches();
 
-	// The ROM checksum will always differ
-	patch->offset = 0x14e;
-	patch->size = 2;
-	patch++;
-	// The Stadium checksum will always differ
-	patch->offset = 0x1FFDE0;
-	patch->size = 0xFFFFFF - 0x1FFDE0;
-	patch++;
+	// The ROM checksum and Stadium data will always differ
+	append_patch(patches, 0x14e, 2);
+	append_patch(patches, 0x1ffde0, 0xffffff - 0x1ffde0);
 
 	char *buffer = create_buffer();
 	size_t buffer_index = 0;
-	const struct Symbol *current_patch = NULL;
+	const struct Symbol *current_hook = NULL;
 	int line_pos = 0;
 
 	// Fill in the template
@@ -452,12 +471,7 @@ struct Patch *process_template(
 				buffer = expand_buffer(buffer, buffer_index);
 			}
 			buffer[buffer_index] = '\0';
-			patch->offset = 0;
-			interpret_command(buffer, current_patch, symbols, patch, new_rom, orig_rom, output);
-			if (patch->offset) {
-				patch++;
-			}
-			patches = expand_buffer(patches, (uintptr_t)patch - (uintptr_t)patches);
+			interpret_command(buffer, current_hook, symbols, patches, new_rom, orig_rom, output);
 			break;
 
 		case '[':
@@ -485,8 +499,8 @@ struct Patch *process_template(
 					char *searchlabel = xmalloc(strlen(".VC_") + strlen(buffer) + 1);
 					strcpy(searchlabel, ".VC_");
 					strcat(searchlabel, buffer);
-					current_patch = find_symbol(symbols, searchlabel);
-					if (!current_patch) {
+					current_hook = find_symbol(symbols, searchlabel);
+					if (!current_hook) {
 						fprintf(stderr, "Error: Cannot find symbol: %s\n", searchlabel);
 					}
 					free(searchlabel);
@@ -510,8 +524,6 @@ struct Patch *process_template(
 		}
 	}
 
-	patch->offset = 0;
-
 	rewind(orig_rom);
 	rewind(new_rom);
 
@@ -527,13 +539,9 @@ int compare_patch(const void *patch1, const void *patch2) {
 	return patch1_offset > patch2_offset ? 1 : patch1_offset < patch2_offset ? -1 : 0;
 }
 
-bool verify_completeness(FILE *orig_rom, FILE *new_rom, struct Patch *patches) {
-	struct Patch *patch = patches;
-	while (patch->offset) {
-		patch++;
-	}
-	qsort(patches, patch - patches, sizeof(struct Patch), compare_patch);
-	patch = patches;
+bool verify_completeness(FILE *orig_rom, FILE *new_rom, struct Patches *patches) {
+	qsort(patches->data, patches->size, sizeof(*patches->data), compare_patch);
+	size_t index = 0;
 
 	for (size_t offset = 0; ; offset++) {
 		int orig_byte = getc(orig_rom);
@@ -541,7 +549,8 @@ bool verify_completeness(FILE *orig_rom, FILE *new_rom, struct Patch *patches) {
 		if (orig_byte == EOF || new_byte == EOF) {
 			return orig_byte == new_byte;
 		}
-		if (patch->offset && patch->offset == offset) {
+		struct Patch *patch = patches->data + index;
+		if (index < patches->size && patch->offset == offset) {
 			if (fseek(orig_rom, patch->size, SEEK_CUR)) {
 				return false;
 			}
@@ -549,7 +558,7 @@ bool verify_completeness(FILE *orig_rom, FILE *new_rom, struct Patch *patches) {
 				return false;
 			}
 			offset += patch->size;
-			patch++;
+			index++;
 		} else if (orig_byte != new_byte) {
 			fprintf(stderr, "Value mismatch at decimal offset: %li\n", offset - 1);
 			fprintf(stderr, "Original ROM value: %x\n", orig_byte);
@@ -570,7 +579,7 @@ int main(int argc, char *argv[]) {
 
 	FILE *new_rom = xfopen(argv[3], 'r');
 	FILE *orig_rom = xfopen(argv[4], 'r');
-	struct Patch *patches = process_template(argv[5], new_rom, orig_rom, argv[6], symbols);
+	struct Patches *patches = process_template(argv[5], new_rom, orig_rom, argv[6], symbols);
 
 	free_symbols(symbols);
 
@@ -580,7 +589,7 @@ int main(int argc, char *argv[]) {
 
 	fclose(new_rom);
 	fclose(orig_rom);
-	free_buffer(patches);
+	free_patches(patches);
 
 	return 0;
 }
