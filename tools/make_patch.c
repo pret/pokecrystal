@@ -1,89 +1,72 @@
-#include <stdbool.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdint.h>
-#include <errno.h>
-#include <string.h>
+#define PROGRAM_NAME "make_patch"
+#define USAGE_OPTS "constants.txt labels.sym patched.gbc original.gbc vc.patch.template vc.patch"
+
+#include "common.h"
+
 #include <ctype.h>
 
 #define HIGH(x) (((x) >> 8) & 0xff)
 #define LOW(x) ((x) & 0xff)
 
-struct symbol {
-	struct symbol *next;
+struct Symbol {
+	struct Symbol *next;
 	unsigned int value;
 	char name[];
 };
 
-struct patch {
+struct Patch {
 	unsigned int offset;
 	unsigned int size;
 };
 
-struct buffer {
+struct Buffer {
 	size_t size;
 	char buffer[];
 };
 
 void free_buffer(void *buf) {
-	struct buffer *buffer = (struct buffer *)((char *)buf - sizeof(struct buffer));
+	struct Buffer *buffer = (struct Buffer *)((char *)buf - sizeof(struct Buffer));
 	free(buffer);
 }
 
 void *create_buffer(void) {
-	struct buffer *buffer = malloc(sizeof(struct buffer) + 0x100);
-	if (!buffer) {
-		fprintf(stderr, "Error: Cannot allocate memory\n");
-		return NULL;
-	}
-
+	struct Buffer *buffer = xmalloc(sizeof(struct Buffer) + 0x100);
 	buffer->size = 0x100;
 	return buffer->buffer;
 }
 
 void *expand_buffer(void *buf, const size_t size) {
-	struct buffer *buffer = (struct buffer *)((char *)buf - sizeof(struct buffer));
-
+	struct Buffer *buffer = (struct Buffer *)((char *)buf - sizeof(struct Buffer));
+	size_t old_size = buffer->size;
 	if (size > buffer->size) {
-		buffer = realloc(buffer, (buffer->size += 0x100));
-		if (!buffer) {
-			free_buffer(buf);
-			fprintf(stderr, "Error: Cannot allocate memory\n");
-			return NULL;
-		}
+		buffer = xrealloc(buffer, old_size + 0x100);
 	}
-
+	buffer->size = old_size + 0x100;
 	return buffer->buffer;
 }
 
-void free_symbols(struct symbol *list) {
+void free_symbols(struct Symbol *list) {
 	while (list) {
-		struct symbol *next = list->next;
+		struct Symbol *next = list->next;
 		free(list);
 		list = next;
 	}
 }
 
-bool create_symbol(struct symbol **tip, const int value, const char *name) {
-	struct symbol *symbol;
+void create_symbol(struct Symbol **tip, const int value, const char *name) {
+	struct Symbol *symbol;
 
-	symbol = malloc(sizeof(struct symbol) + strlen(name) + 1);
-	if (!symbol) {
-		fprintf(stderr, "Error: Cannot allocate memory\n");
-		return true;
-	}
+	symbol = xmalloc(sizeof(struct Symbol) + strlen(name) + 1);
 	symbol->value = value;
 	strcpy(symbol->name, name);
 
 	// Link it at the start of the rest of the list
 	symbol->next = *tip;
 	*tip = symbol;
-
-	return false;
 }
 
-const struct symbol *find_symbol(const struct symbol *symbols, const char *name) {
-	const struct symbol *symbol = symbols;
+const struct Symbol *find_symbol(const struct Symbol *symbols, const char *name) {
+	const struct Symbol *symbol = symbols;
 	int namelen = strlen(name);
 	while (symbol) {
 		int symbolnamelen = strlen(symbol->name);
@@ -103,7 +86,7 @@ const struct symbol *find_symbol(const struct symbol *symbols, const char *name)
 
 int parse_address_bank(char *buffer_input) {
 	int bank;
-	char *buffer = malloc(strlen(buffer_input) + 1);
+	char *buffer = xmalloc(strlen(buffer_input) + 1);
 	char *endptr_bank;
 	char *buffer_address;
 
@@ -124,7 +107,7 @@ int parse_address_bank(char *buffer_input) {
 
 int parse_address_address(char *buffer_input) {
 	int address;
-	char *buffer = malloc(strlen(buffer_input) + 1);
+	char *buffer = xmalloc(strlen(buffer_input) + 1);
 	char *endptr_address;
 	char *buffer_address;
 
@@ -173,8 +156,10 @@ int parse_offset(int offset, char type) {
 	return -1;
 }
 
-struct symbol *parse_symfile(FILE *file) {
-	struct symbol *symbols = NULL;
+struct Symbol *parse_symfile(const char *filename) {
+	FILE *file = xfopen(filename, 'r');
+
+	struct Symbol *symbols = NULL;
 	char *buffer;
 	size_t buffer_index = 0;
 	int c;
@@ -203,7 +188,7 @@ struct symbol *parse_symfile(FILE *file) {
 			offset = parse_abs_offset(bank, address, buffer[0]);
 			if (offset == -1) break;
 
-			if (create_symbol(&symbols, offset, buffer)) goto error;
+			create_symbol(&symbols, offset, buffer);
 
 			offset = -1;
 			break;
@@ -241,18 +226,22 @@ struct symbol *parse_symfile(FILE *file) {
 	}
 
 	if (!symbols) {
-		fprintf(stderr, "Error: No symbols found.");
+		fprintf(stderr, "Error: No symbols found\n");
 	}
 
+	fclose(file);
 	free_buffer(buffer);
 	return symbols;
 
 error:
+	fclose(file);
 	if (buffer) free_buffer(buffer);
 	return NULL;
 }
 
-struct symbol *parse_constfile(FILE *file, struct symbol **symbols) {
+struct Symbol *parse_constfile(const char *filename, struct Symbol **symbols) {
+	FILE *file = xfopen(filename, 'r');
+
 	char *buffer;
 	size_t buffer_index = 0;
 	char *endvalue;
@@ -279,7 +268,7 @@ struct symbol *parse_constfile(FILE *file, struct symbol **symbols) {
 			buffer_index = SIZE_MAX;
 			if (value == -1) break;
 
-			if (create_symbol(symbols, value, buffer)) goto error;
+			create_symbol(symbols, value, buffer);
 
 			value = -1;
 			break;
@@ -318,16 +307,18 @@ struct symbol *parse_constfile(FILE *file, struct symbol **symbols) {
 		}
 	}
 
+	fclose(file);
 	free_buffer(buffer);
 	return *symbols;
 
 error:
+	fclose(file);
 	if (buffer) free_buffer(buffer);
 	return *symbols;
 }
 
-void interpret_command(char *command, const struct symbol *current_patch, const struct symbol *symbols,
-                       struct patch *patch, FILE *new_rom, FILE *orig_rom, FILE *output) {
+void interpret_command(char *command, const struct Symbol *current_patch, const struct Symbol *symbols,
+                       struct Patch *patch, FILE *new_rom, FILE *orig_rom, FILE *output) {
 	int argc = 0;
 	int offset = -1;
 	if (current_patch) {
@@ -335,7 +326,7 @@ void interpret_command(char *command, const struct symbol *current_patch, const 
 	}
 	char *s;
 
-	const struct symbol *getsymbol = NULL;
+	const struct Symbol *getsymbol = NULL;
 	// Count the arguments
 	s = command;
 	while (*s) if (*s++ == ':') argc++;
@@ -366,7 +357,7 @@ void interpret_command(char *command, const struct symbol *current_patch, const 
 		fprintf(output, "0x");
 		if (argc > 1) {
 			for (int i = strtol(argv[1], NULL, 0); i > 0; i--) {
-				putchar('0');
+				putc('0', output);
 			}
 		}
 
@@ -395,7 +386,7 @@ void interpret_command(char *command, const struct symbol *current_patch, const 
 			fprintf(output, "0x");
 			fprintf(output, isupper((unsigned char)command[0]) ? "%02X" : "%02x", c);
 		} else {
-			char *searchend = malloc(strlen(current_patch->name) + 5);
+			char *searchend = xmalloc(strlen(current_patch->name) + strlen("_End") + 1);
 			strcpy(searchend, current_patch->name);
 			strcat(searchend, "_End");
 			current_patch = find_symbol(symbols, searchend);
@@ -474,10 +465,14 @@ void interpret_command(char *command, const struct symbol *current_patch, const 
 	}
 }
 
-struct patch *process_template(FILE *file, FILE *new_rom, FILE *orig_rom, FILE *output, const struct symbol *symbols) {
-	struct patch *patches = NULL;
-	struct patch *patch = NULL;
-	const struct symbol *current_patch = NULL;
+struct Patch *process_template(const char *template_filename, FILE *new_rom, FILE *orig_rom,
+                               const char *output_filename, const struct Symbol *symbols) {
+	FILE *file = xfopen(template_filename, 'r');
+	FILE *output = xfopen(output_filename, 'w');
+
+	struct Patch *patches = NULL;
+	struct Patch *patch = NULL;
+	const struct Symbol *current_patch = NULL;
 	char *buffer;
 	size_t buffer_index = 0;
 	int c;
@@ -572,7 +567,7 @@ struct patch *process_template(FILE *file, FILE *new_rom, FILE *orig_rom, FILE *
 					}
 
 					// Look for the symbol starting with .VC_
-					char *searchlabel = malloc(strlen(".VC_") + strlen(buffer) + 1);
+					char *searchlabel = xmalloc(strlen(".VC_") + strlen(buffer) + 1);
 					strcpy(searchlabel, ".VC_");
 					strcat(searchlabel, buffer);
 					current_patch = find_symbol(symbols, searchlabel);
@@ -602,28 +597,33 @@ struct patch *process_template(FILE *file, FILE *new_rom, FILE *orig_rom, FILE *
 	}
 
 	patch->offset = 0;
+
+	fclose(file);
+	fclose(output);
 	free_buffer(buffer);
 	return patches;
 
 error:
-	if (patches) free_buffer(patches);
+	fclose(file);
+	fclose(output);
 	if (buffer) free_buffer(buffer);
+	if (patches) free_buffer(patches);
 	return NULL;
 }
 
 int compare_patch(const void *patch1, const void *patch2) {
-	unsigned int patch1_offset = ((const struct patch *)patch1)->offset;
-	unsigned int patch2_offset = ((const struct patch *)patch2)->offset;
+	unsigned int patch1_offset = ((const struct Patch *)patch1)->offset;
+	unsigned int patch2_offset = ((const struct Patch *)patch2)->offset;
 	return patch1_offset > patch2_offset ? 1 : patch1_offset < patch2_offset ? -1 : 0;
 }
 
-int verify_completeness(FILE *orig_rom, FILE *new_rom, struct patch *patches) {
-	struct patch *patch = patches;
+bool verify_completeness(FILE *orig_rom, FILE *new_rom, struct Patch *patches) {
+	struct Patch *patch = patches;
 	size_t offset = 0;
 	int c, d;
 
 	while (patch->offset != 0) patch++;
-	qsort(patches, patch - patches, sizeof(struct patch), compare_patch);
+	qsort(patches, patch - patches, sizeof(struct Patch), compare_patch);
 
 	rewind(orig_rom);
 	rewind(new_rom);
@@ -633,8 +633,8 @@ int verify_completeness(FILE *orig_rom, FILE *new_rom, struct patch *patches) {
 		d = getc(new_rom);
 		if (c == EOF || d == EOF) break;
 		if (patch->offset && patch->offset == offset) {
-			if (fseek(orig_rom, patch->size, SEEK_CUR) != 0) return -1;
-			if (fseek(new_rom, patch->size, SEEK_CUR) != 0) return -1;
+			if (fseek(orig_rom, patch->size, SEEK_CUR) != 0) return false;
+			if (fseek(new_rom, patch->size, SEEK_CUR) != 0) return false;
 
 			offset += patch->size + 1;
 			patch++;
@@ -642,87 +642,42 @@ int verify_completeness(FILE *orig_rom, FILE *new_rom, struct patch *patches) {
 		}
 		offset++;
 		if (c != d) {
-			fprintf(stderr, "Value Mismatch at decimal offset: %li\n", offset-1);
-			fprintf(stderr, "Orig_rom value: %x\n", c);
-			fprintf(stderr, "New_rom value: %x\n", d);
-			fprintf(stderr, "Current Patch Start Address: %x\n", patch->offset);
-			return -1;
+			fprintf(stderr, "Value mismatch at decimal offset: %li\n", offset - 1);
+			fprintf(stderr, "Original ROM value: %x\n", c);
+			fprintf(stderr, "Patched ROM value: %x\n", d);
+			fprintf(stderr, "Current patch start address: %x\n", patch->offset);
+			return false;
 		}
 	}
 
-	return c != d;
+	return c == d;
 }
 
 int main(int argc, char *argv[]) {
-	struct symbol *symbols = NULL;
-	struct patch *patches = NULL;
-	FILE *sym_file = NULL;
-	FILE *const_file = NULL;
-	FILE *new_rom = NULL;
-	FILE *orig_rom = NULL;
-	FILE *template_file = NULL;
-
-	if (argc < 6) {
-		fprintf(stderr, "Usage: %s <const file> <symfile> <patched rom> <original rom> <patch template>\n", argv[0]);
-		return 1;
+	if (argc != 7) {
+		usage_exit(1);
 	}
 
-	sym_file = fopen(argv[2], "r");
-	if (!sym_file) {
-		fprintf(stderr, "Error: Cannot open file: %s\n", argv[2]);
-		goto error;
-	}
+	struct Symbol *symbols = parse_symfile(argv[2]);
+	if (!symbols) error_exit("Cannot parse symbols file \"%s\"", argv[2]);
 
-	if (!(symbols = parse_symfile(sym_file))) goto error;
+	symbols = parse_constfile(argv[1], &symbols);
+	if (!symbols) error_exit("Cannot parse constants file \"%s\"", argv[1]);
 
-	const_file = fopen(argv[1], "r");
-	if (!const_file) {
-		fprintf(stderr, "Error: Cannot open file: %s\n", argv[1]);
-		goto error;
-	}
+	FILE *new_rom = xfopen(argv[3], 'r');
+	FILE *orig_rom = xfopen(argv[4], 'r');
 
-	if (!(symbols = parse_constfile(const_file, &symbols))) goto error;
+	struct Patch *patches = process_template(argv[5], new_rom, orig_rom, argv[6], symbols);
+	if (!patches) error_exit("Cannot process template file \"%s\" into patch file \"%s\"", argv[5], argv[6]);
 
-	new_rom = fopen(argv[3], "r");
-	if (!new_rom) {
-		fprintf(stderr, "Error: Cannot open file: %s\n", argv[3]);
-		goto error;
-	}
-
-	orig_rom = fopen(argv[4], "r");
-	if (!orig_rom) {
-		fprintf(stderr, "Error: Cannot open file: %s\n", argv[4]);
-		goto error;
-	}
-
-	template_file = fopen(argv[5], "r");
-	if (!template_file) {
-		fprintf(stderr, "Error: Cannot open file: %s\n", argv[5]);
-		goto error;
-	}
-
-	if (!(patches = process_template(template_file, new_rom, orig_rom, stdout, symbols))) goto error;
+	free_symbols(symbols);
 
 	if (verify_completeness(orig_rom, new_rom, patches)) {
-		fprintf(stderr, "Warning: Not all differences in the ROM are defined in the patch\n");
+		fprintf(stderr, "Warning: Not all ROM differences are defined by \"%s\"\n", argv[6]);
 	}
 
-	free_symbols(symbols);
-	fclose(sym_file);
-	fclose(const_file);
 	fclose(new_rom);
 	fclose(orig_rom);
-	fclose(template_file);
 
 	return 0;
-
-error:
-	free_symbols(symbols);
-	if (sym_file) fclose(sym_file);
-	if (const_file) fclose(const_file);
-	if (new_rom) fclose(new_rom);
-	if (orig_rom) fclose(orig_rom);
-	if (template_file) fclose(template_file);
-
-	return 1;
 }

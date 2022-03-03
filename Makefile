@@ -89,7 +89,7 @@ $(pokecrystalvc_obj):       RGBASMFLAGS += -D _CRYSTAL11 -D _CRYSTALVC
 VCTEMP := $(shell mktemp)
 %.patch: vc/%.patch.template %.gbc vc/vc_constants.asm pokecrystal11.gbc
 	$(RGBASM) vc/vc_constants.asm > $(VCTEMP)
-	tools/make_patch $(VCTEMP) $*.sym $*.gbc pokecrystal11.gbc $< > $@
+	tools/make_patch $(VCTEMP) $*.sym $*.gbc pokecrystal11.gbc $< $@
 	$(RM) $(VCTEMP)
 
 rgbdscheck.o: rgbdscheck.asm
