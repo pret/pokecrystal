@@ -6,7 +6,7 @@
 #include <string.h>
 #include <ctype.h>
 
-#define HIGH(x) ((x) >> 8)
+#define HIGH(x) (((x) >> 8) & 0xff)
 #define LOW(x) ((x) & 0xff)
 
 struct symbol {
