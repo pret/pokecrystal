@@ -343,8 +343,11 @@ void interpret_command(
 		int high = offset >> 8;
 		int low = offset & 0xFF;
 		fprintf(output, "0x%X%x", high, low);
+
 	} else if (!strcmp(command, "Address") || !strcmp(command, "address")) {
-		if (argc > 0) offset += strtol(argv[0], NULL, 0);
+		if (argc > 0) {
+			offset += strtol(argv[0], NULL, 0);
+		}
 		fprintf(output, "0x");
 		if (argc > 1) {
 			for (int i = strtol(argv[1], NULL, 0); i > 0; i--) {
@@ -352,8 +355,11 @@ void interpret_command(
 			}
 		}
 		fprintf(output, isupper((unsigned char)command[0]) ? "%X" : "%x", offset);
+
 	} else if (!strcmp(command, "Patch") || !strcmp(command, "patch")) {
-		if (argc > 0) offset += strtol(argv[0], NULL, 0);
+		if (argc > 0) {
+			offset += strtol(argv[0], NULL, 0);
+		}
 		if (fseek(orig_rom, offset, SEEK_SET)) {
 			fprintf(stderr, "Error: Could not seek to the offset of %s in the original ROM\n", current_patch->name);
 			return;
@@ -396,6 +402,7 @@ void interpret_command(
 				}
 			}
 		}
+
 	} else if (!strcmp(command, "Constant") || !strcmp(command, "constant")) {
 		if (argc != 2) {
 			fprintf(stderr, "Error: Missing argument for %s", command);
@@ -412,6 +419,7 @@ void interpret_command(
 			fprintf(output, isupper((unsigned char)command[0]) ? "%02X %02X": "%02x %02x",
 				parsed_offset, HIGH(parsed_offset));
 		}
+
 	} else if (!strcmp(command, "findaddress")) {
 		if (argc != 1) {
 			fprintf(stderr, "Error: Missing argument for %s", command);
@@ -421,6 +429,7 @@ void interpret_command(
 			return;
 		}
 		fprintf(output, "0x%x", parse_abs_offset(getsymbol->bank, getsymbol->address, getsymbol->addresstype));
+
 	} else if (!strcmp(command, "conaddress")) {
 		if (argc != 2) {
 			fprintf(stderr, "Error: Missing argument for %s", command);
@@ -452,6 +461,7 @@ void interpret_command(
 		fprintf(output, "04 00");
 	} else if (!strcmp(command, "!=")) {
 		fprintf(output, "05 00");
+
 	} else {
 		fprintf(stderr, "Error: Unknown command: %s\n", command);
 	}
