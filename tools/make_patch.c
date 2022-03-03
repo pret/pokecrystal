@@ -7,6 +7,14 @@
 
 #define HIGH(x) (((x) >> 8) & 0xff)
 #define LOW(x) ((x) & 0xff)
+#define ROMBANKSTART 0x4000
+#define ROMEND 0x8000
+#define VRAMEND 0xa000
+#define SRAMEND 0xc000
+#define WRAMEND 0xf000
+#define WRAMBANKSTART 0xd000
+#define HRAMSTART 0xff80
+#define HRAMEND 0xffff
 
 struct Buffer {
 	size_t size;
@@ -47,16 +55,16 @@ void *expand_buffer(void *buf, const size_t size) {
 }
 
 int get_address_type_limit(int address) {
-	if (address >= 0x8000 && address < 0xa000) {
-		return 0xa000; // VRAM
-	} else if (address >= 0xa000 && address < 0xc000) {
-		return 0xc000; // SRAM
-	} else if (address >= 0xc000 && address < 0xf000) {
-		return 0xd000; // WRAM
-	} else if (address >= 0xff80 && address < 0xffff) {
-		return 0x10000; // HRAM
+	if (address >= ROMEND && address < VRAMEND) {
+		return VRAMEND; // VRAM
+	} else if (address >= VRAMEND && address < SRAMEND) {
+		return SRAMEND; // SRAM
+	} else if (address >= SRAMEND && address < WRAMEND) {
+		return WRAMBANKSTART; // WRAM
+	} else if (address >= HRAMSTART && address < HRAMEND) {
+		return HRAMEND + 1; // HRAM
 	} else {
-		return 0x4000; // ROM
+		return ROMBANKSTART; // ROM
 	}
 }
 
