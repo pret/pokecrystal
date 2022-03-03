@@ -55,8 +55,8 @@ char *expand_buffer(char *data, size_t size) {
 struct Patches *create_patches(void) {
 	struct Patches *patches = xmalloc(sizeof(*patches));
 	patches->size = 0;
-	patches->capacity = 0;
-	patches->data = NULL;
+	patches->capacity = 10;
+	patches->data = xmalloc(patches->capacity * sizeof(*patches->data));
 	return patches;
 }
 
