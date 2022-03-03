@@ -578,13 +578,11 @@ bool verify_completeness(FILE *orig_rom, FILE *new_rom, struct Patch *patches) {
 	qsort(patches, patch - patches, sizeof(struct Patch), compare_patch);
 	patch = patches;
 
-	int orig_byte, new_byte;
-
 	for (size_t offset = 0; ; offset++) {
-		orig_byte = getc(orig_rom);
-		new_byte = getc(new_rom);
+		int orig_byte = getc(orig_rom);
+		int new_byte = getc(new_rom);
 		if (orig_byte == EOF || new_byte == EOF) {
-			break;
+			return orig_byte == new_byte;
 		}
 		if (patch->offset && patch->offset == offset) {
 			if (fseek(orig_rom, patch->size, SEEK_CUR)) {
@@ -595,9 +593,7 @@ bool verify_completeness(FILE *orig_rom, FILE *new_rom, struct Patch *patches) {
 			}
 			offset += patch->size;
 			patch++;
-			continue;
-		}
-		if (orig_byte != new_byte) {
+		} else if (orig_byte != new_byte) {
 			fprintf(stderr, "Value mismatch at decimal offset: %li\n", offset - 1);
 			fprintf(stderr, "Original ROM value: %x\n", orig_byte);
 			fprintf(stderr, "Patched ROM value: %x\n", new_byte);
@@ -605,8 +601,6 @@ bool verify_completeness(FILE *orig_rom, FILE *new_rom, struct Patch *patches) {
 			return false;
 		}
 	}
-
-	return orig_byte == new_byte;
 }
 
 int main(int argc, char *argv[]) {
