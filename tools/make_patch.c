@@ -111,15 +111,9 @@ int parse_address_bank(char *buffer_input) {
 	buffer_address = strchr(buffer, ':');
 	if (buffer_address) *buffer_address++ = '\0';
 
-	// Verify it consists of expected elements
-	if (strlen(buffer) > 2 || !buffer_address || strlen(buffer_address) > 4) {
-		if (buffer_address) *--buffer_address = ':';
-		fprintf(stderr, "Error: Unexpected %s\n", buffer);
-		return -1;
-	}
-
 	// Parse the bank part
 	bank = strtol(buffer, &endptr_bank, 16);
+	if (bank > 0xff || bank < 0) { return -1; }
 	if (endptr_bank != buffer + strlen(buffer)){
 		fprintf(stderr, "Error: Cannot parse bank %s:%s\n", buffer, buffer_address);
 		return -1;
@@ -138,15 +132,9 @@ int parse_address_address(char *buffer_input) {
 	buffer_address = strchr(buffer, ':');
 	if (buffer_address) *buffer_address++ = '\0';
 
-	// Verify it consists of expected elements
-	if (strlen(buffer) > 2 || !buffer_address || strlen(buffer_address) > 4){
-		if (buffer_address) *--buffer_address = ':';
-		fprintf(stderr, "Error: Unexpected %s\n", buffer);
-		return -1;
-	}
-
 	// Parse the address part
 	address = strtol(buffer_address, &endptr_address, 16);
+	if (address > 0xffff || address < 0) { return -1; }
 	if (endptr_address != buffer_address + strlen(buffer_address)){
 		fprintf(stderr, "Error: Cannot parse bank %s:%s\n", buffer, buffer_address);
 		return -1;
