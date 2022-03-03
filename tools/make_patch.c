@@ -123,36 +123,48 @@ const struct Symbol *find_symbol(const struct Symbol *symbols, const char *name)
 	return NULL;
 }
 
-void parse_address(char *buffer_input, int *bank, int *address) {
-	char *buffer = xmalloc(strlen(buffer_input) + 1);
-	strcpy(buffer, buffer_input);
+void parse_symbol_value(char *input, int *bank, int *address) {
+	char *buffer = xmalloc(strlen(input) + 1);
+	strcpy(buffer, input);
 
-	char *buffer_address = strchr(buffer, ':');
-	if (buffer_address) {
-		*buffer_address++ = '\0';
-	}
+	char *buffer2 = strchr(buffer, ':');
+	if (buffer2) {
+		// Parse symbol's bank:address
+		*buffer2++ = '\0';
 
-	char *endptr_bank, *endptr_address;
-	*bank = strtol(buffer, &endptr_bank, 16);
-	if (*bank > 0xff || *bank < 0) {
-		*bank = -1;
-	}
-	*address = strtol(buffer_address, &endptr_address, 16);
-	if (*address > 0xffff || *address < 0) {
-		*address = -1;
-	}
+		char *endptr_bank, *endptr_address;
+		*bank = strtol(buffer, &endptr_bank, 16);
+		if (*bank > 0xff || *bank < 0) {
+			*bank = -1;
+		}
+		*address = strtol(buffer2, &endptr_address, 16);
+		if (*address > 0xffff || *address < 0) {
+			*address = -1;
+		}
 
-	if (endptr_bank != buffer + strlen(buffer) || endptr_address != buffer_address + strlen(buffer_address)) {
-		fprintf(stderr, "Error: Cannot parse bank+address: %s: %s\n", buffer, buffer_address);
+		if (endptr_bank != buffer + strlen(buffer) || endptr_address != buffer2 + strlen(buffer2)) {
+			fprintf(stderr, "Error: Cannot parse bank+address: %s: %s\n", buffer, buffer2);
+		}
+	} else {
+		// Parse constant's value
+		*bank = 0;
+
+		char *endptr;
+		*address = strtol(buffer, &endptr, 16);
+		if (*address < 0) {
+			*address += 0x100;
+		}
+
+		if (endptr != buffer + strlen(buffer)) {
+			fprintf(stderr, "Error: Cannot parse value: %s\n", buffer);
+		}
 	}
 
 	free(buffer);
 }
 
-struct Symbol *parse_symfile(const char *filename) {
+struct Symbol *parse_symbols(const char *filename, struct Symbol **symbols) {
 	FILE *file = xfopen(filename, 'r');
-
-	struct Symbol *symbols = NULL;
 
 	char *buffer = create_buffer();
 	size_t buffer_index = 0;
@@ -171,7 +183,7 @@ struct Symbol *parse_symfile(const char *filename) {
 			buffer[buffer_index] = '\0';
 			// This is the end of the parsable line
 			buffer_index = SIZE_MAX;
-			create_symbol(&symbols, buffer, bank, address);
+			create_symbol(symbols, buffer, bank, address);
 			offset = -1;
 			break;
 
@@ -184,7 +196,7 @@ struct Symbol *parse_symfile(const char *filename) {
 			} else {
 				// If we encounter a space, we've reached the end of the address
 				buffer[buffer_index] = '\0';
-				parse_address(buffer, &bank, &address);
+				parse_symbol_value(buffer, &bank, &address);
 				buffer_index = offset ? 0 : SIZE_MAX;
 			}
 			break;
@@ -197,67 +209,6 @@ struct Symbol *parse_symfile(const char *filename) {
 		if (buffer_index == SIZE_MAX) {
 			buffer_index = 0;
 			offset = -1;
-			while (c != '\n' && c != '\r' && c != EOF) {
-				c = getc(file);
-			}
-		}
-	}
-
-	fclose(file);
-	free_buffer(buffer);
-	return symbols;
-}
-
-struct Symbol *parse_constfile(const char *filename, struct Symbol **symbols) {
-	FILE *file = xfopen(filename, 'r');
-
-	char *buffer = create_buffer();
-	size_t buffer_index = 0;
-	int value = -1;
-
-	for (int c = getc(file); c != EOF; c = getc(file)) {
-		buffer = expand_buffer(buffer, buffer_index);
-
-		switch (c) {
-		case ';':
-		case '\r':
-		case '\n':
-			// If we encounter a newline or comment, we've reached the end of the label name
-			buffer[buffer_index] = '\0';
-			// This is the end of the parsable line
-			buffer_index = SIZE_MAX;
-			if (value != -1) {
-				create_symbol(symbols, buffer, 0, value);
-				value = -1;
-			}
-			break;
-
-		case ' ':
-			if (value != -1) {
-				// If we've just encountered a space, ignore this one
-				if (buffer_index) {
-					buffer[buffer_index++] = c;
-				}
-			} else {
-				// If we encounter a space, we've reached the end of the value
-				buffer[buffer_index] = '\0';
-				char *endvalue;
-				value = strtol(buffer, &endvalue, 10);
-				if (endvalue != buffer + strlen(buffer)) {
-					value = -1;
-				}
-				buffer_index = 0;
-			}
-			break;
-
-		default:
-			buffer[buffer_index++] = c;
-		}
-
-		// We were requested to skip to the next line
-		if (buffer_index == SIZE_MAX) {
-			buffer_index = 0;
-			value = -1;
 			while (c != '\n' && c != '\r' && c != EOF) {
 				c = getc(file);
 			}
@@ -580,12 +531,14 @@ int main(int argc, char *argv[]) {
 		usage_exit(1);
 	}
 
-	struct Symbol *symbols = parse_symfile(argv[2]);
-	symbols = parse_constfile(argv[1], &symbols);
+	struct Symbol *symbols = NULL;
+	symbols = parse_symbols(argv[2], &symbols);
+	symbols = parse_symbols(argv[1], &symbols);
 
 	FILE *new_rom = xfopen(argv[3], 'r');
 	FILE *orig_rom = xfopen(argv[4], 'r');
 	struct Patches *patches = process_template(argv[5], new_rom, orig_rom, argv[6], symbols);
+
 	if (!verify_completeness(orig_rom, new_rom, patches)) {
 		fprintf(stderr, "Warning: Not all ROM differences are defined by \"%s\"\n", argv[6]);
 	}
