@@ -6,6 +6,9 @@
 #include <string.h>
 #include <ctype.h>
 
+#define HIGH(x) ((x) >> 8)
+#define LOW(x) ((x) & 0xff)
+
 struct symbol {
 	struct symbol *next;
 	unsigned int value;
@@ -434,13 +437,13 @@ void interpret_command(char *command, const struct symbol *current_patch, const 
 		}
 		getsymbol = find_symbol(symbols, argv[1]);
 		if (!getsymbol) return;
+		int parsed_offset = parse_offset(getsymbol->value, getsymbol->name[0]);
 		if (!strcmp(argv[0], "db")) {
 			fprintf(output, isupper((unsigned char)command[0]) ? "%02X": "%02x",
-				parse_offset(getsymbol->value, getsymbol->name[0]));
+				parsed_offset);
 		} else {
 			fprintf(output, isupper((unsigned char)command[0]) ? "%02X %02X": "%02x %02x",
-				parse_offset(getsymbol->value, getsymbol->name[0]),
-				parse_offset(getsymbol->value, getsymbol->name[0]) >> 8);
+				parsed_offset, HIGH(parsed_offset));
 		}
 	} else if (!strcmp(command, "findaddress")) {
 		if (argc != 1) {
@@ -455,14 +458,15 @@ void interpret_command(char *command, const struct symbol *current_patch, const 
 		}
 		getsymbol = find_symbol(symbols, argv[1]);
 		if (!getsymbol) return;
+		int parsed_offset = parse_offset(getsymbol->value, getsymbol->name[0]);
 		if (!strcmp(argv[0], "dw")) {
-			fprintf(output, "%02x ", (parse_offset(getsymbol->value, getsymbol->name[0]) % 0x100));
-			fprintf(output, "%02x ", (parse_offset(getsymbol->value, getsymbol->name[0]) / 0x100));
-			fprintf(output, "%02x ", ((parse_offset(getsymbol->value, getsymbol->name[0]) + 0x1) % 0x100));
-			fprintf(output, "%02x", ((parse_offset(getsymbol->value, getsymbol->name[0]) + 0x1) / 0x100));
+			fprintf(output, "%02x ", LOW(parsed_offset));
+			fprintf(output, "%02x ", HIGH(parsed_offset));
+			fprintf(output, "%02x ", LOW(parsed_offset + 1));
+			fprintf(output, "%02x",  HIGH(parsed_offset + 1));
 		} else {
-			fprintf(output, "%02x ", (parse_offset(getsymbol->value, getsymbol->name[0]) % 0x100));
-			fprintf(output, "%02x", (parse_offset(getsymbol->value, getsymbol->name[0]) / 0x100));
+			fprintf(output, "%02x ", LOW(parsed_offset));
+			fprintf(output, "%02x",  HIGH(parsed_offset));
 		}
 
 	} else if (!strcmp(command, "==")) {
