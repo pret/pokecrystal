@@ -8,15 +8,9 @@
 #define HIGH(x) (((x) >> 8) & 0xff)
 #define LOW(x) ((x) & 0xff)
 
-enum AddressType { ROM, VRAM, SRAM, WRAM, HRAM };
-
-struct Symbol {
-	struct Symbol *next;
-	unsigned int value;
-	int bank;
-	int address;
-	enum AddressType addresstype;
-	char name[];
+struct Buffer {
+	size_t size;
+	char buffer[];
 };
 
 struct Patch {
@@ -24,20 +18,22 @@ struct Patch {
 	unsigned int size;
 };
 
-struct Buffer {
-	size_t size;
-	char buffer[];
+struct Symbol {
+	struct Symbol *next;
+	unsigned int value;
+	int address;
+	char name[];
 };
-
-void free_buffer(void *buf) {
-	struct Buffer *buffer = (struct Buffer *)((char *)buf - sizeof(struct Buffer));
-	free(buffer);
-}
 
 void *create_buffer(void) {
 	struct Buffer *buffer = xmalloc(sizeof(struct Buffer) + 0x100);
 	buffer->size = 0x100;
 	return buffer->buffer;
+}
+
+void free_buffer(void *buf) {
+	struct Buffer *buffer = (struct Buffer *)((char *)buf - sizeof(struct Buffer));
+	free(buffer);
 }
 
 void *expand_buffer(void *buf, const size_t size) {
@@ -50,39 +46,24 @@ void *expand_buffer(void *buf, const size_t size) {
 	return buffer->buffer;
 }
 
-void free_symbols(struct Symbol *list) {
-	while (list) {
-		struct Symbol *next = list->next;
-		free(list);
-		list = next;
+int get_address_type_limit(int address) {
+	if (address >= 0x8000 && address < 0xa000) {
+		return 0xa000; // VRAM
+	} else if (address >= 0xa000 && address < 0xc000) {
+		return 0xc000; // SRAM
+	} else if (address >= 0xc000 && address < 0xf000) {
+		return 0xd000; // WRAM
+	} else if (address >= 0xff80 && address < 0xffff) {
+		return 0x10000; // HRAM
+	} else {
+		return 0x4000; // ROM
 	}
 }
 
-int get_symbol_offset(const struct Symbol *symbol) {
-	switch (symbol->addresstype) {
-	default:
-	case ROM:
-		return symbol->bank ? symbol->bank * 0x4000 + symbol->address - 0x4000 : symbol->address;
-	case VRAM:
-		return symbol->bank ? symbol->bank * 0xa000 + symbol->address - 0xa000 : symbol->address;
-	case SRAM:
-		return symbol->bank ? symbol->bank * 0xc000 + symbol->address - 0xc000 : symbol->address;
-	case WRAM:
-		return symbol->bank ? symbol->bank * 0xd000 + symbol->address - 0xd000 : symbol->address;
-	case HRAM:
-		return symbol->address;
-	}
-}
-
-void create_sym_symbol(
-	struct Symbol **tip, const char *name,
-	const int bank, const int address, enum AddressType addresstype
-) {
+void create_sym_symbol(struct Symbol **tip, const char *name, const int bank, const int address) {
 	struct Symbol *symbol = xmalloc(sizeof(struct Symbol) + strlen(name) + 1);
-	symbol->bank = bank;
 	symbol->address = address;
-	symbol->addresstype = addresstype;
-	symbol->value = get_symbol_offset(symbol);
+	symbol->value = bank > 0 ? address + (bank - 1) * get_address_type_limit(address) : address;
 	strcpy(symbol->name, name);
 	symbol->next = *tip;
 	*tip = symbol;
@@ -90,13 +71,19 @@ void create_sym_symbol(
 
 void create_const_symbol(struct Symbol **tip, const char *name, const int value) {
 	struct Symbol *symbol = xmalloc(sizeof(struct Symbol) + strlen(name) + 1);
-	symbol->bank = 0;
 	symbol->address = value;
 	symbol->value = value;
-	symbol->addresstype = HRAM;
 	strcpy(symbol->name, name);
 	symbol->next = *tip;
 	*tip = symbol;
+}
+
+void free_symbols(struct Symbol *list) {
+	while (list) {
+		struct Symbol *next = list->next;
+		free(list);
+		list = next;
+	}
 }
 
 const struct Symbol *find_symbol(const struct Symbol *symbols, const char *name) {
@@ -142,20 +129,6 @@ void parse_address(char *buffer_input, int *bank, int *address) {
 	}
 }
 
-enum AddressType get_address_type(int address) {
-	if (address >= 0x8000 && address < 0xa000) {
-		return VRAM;
-	} else if (address >= 0xa000 && address < 0xc000) {
-		return SRAM;
-	} else if (address >= 0xc000 && address < 0xf000) {
-		return WRAM;
-	} else if (address >= 0xff80 && address < 0xffff) {
-		return HRAM;
-	} else {
-		return ROM;
-	}
-}
-
 struct Symbol *parse_symfile(const char *filename) {
 	FILE *file = xfopen(filename, 'r');
 
@@ -166,7 +139,6 @@ struct Symbol *parse_symfile(const char *filename) {
 	int bank = 0;
 	int address = 0;
 	int offset = -1;
-	enum AddressType addresstype = ROM;
 
 	for (int c = getc(file); c != EOF; c = getc(file)) {
 		buffer = expand_buffer(buffer, buffer_index);
@@ -179,8 +151,7 @@ struct Symbol *parse_symfile(const char *filename) {
 			buffer[buffer_index] = '\0';
 			// This is the end of the parsable line
 			buffer_index = SIZE_MAX;
-			addresstype = get_address_type(address);
-			create_sym_symbol(&symbols, buffer, bank, address, addresstype);
+			create_sym_symbol(&symbols, buffer, bank, address);
 			offset = -1;
 			break;
 
