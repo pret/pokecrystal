@@ -44,11 +44,11 @@ void free_buffer(char *data) {
 
 char *expand_buffer(char *data, size_t size) {
 	struct Buffer *buffer = (struct Buffer *)(data - sizeof(*buffer));
-	size_t old_size = buffer->size;
 	if (size > buffer->size) {
-		buffer = xrealloc(buffer, old_size + 0x100);
+		size_t new_size = size > buffer->size + 0x100 ? size : buffer->size + 0x100;
+		buffer = xrealloc(buffer, new_size);
+		buffer->size = new_size;
 	}
-	buffer->size = old_size + 0x100;
 	return buffer->data;
 }
 
