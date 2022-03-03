@@ -11,6 +11,9 @@
 struct Symbol {
 	struct Symbol *next;
 	unsigned int value;
+	int bank;
+	int address;
+	enum Addresstype {ROM, VRAM, SRAM, WRAM, HRAM} addresstype;
 	char name[];
 };
 
@@ -53,9 +56,19 @@ void free_symbols(struct Symbol *list) {
 	}
 }
 
-void create_symbol(struct Symbol **tip, const int value, const char *name) {
+void create_symbol_value(struct Symbol **tip, const int value, const char *name) {
 	struct Symbol *symbol = xmalloc(sizeof(struct Symbol) + strlen(name) + 1);
 	symbol->value = value;
+	strcpy(symbol->name, name);
+	symbol->next = *tip;
+	*tip = symbol;
+}
+
+void create_symbol(struct Symbol **tip, const int bank, const int address, enum Addresstype addresstype, const char *name) {
+	struct Symbol *symbol = xmalloc(sizeof(struct Symbol) + strlen(name) + 1);
+	symbol->bank = bank;
+	symbol->address = address;
+	symbol->addresstype = addresstype;
 	strcpy(symbol->name, name);
 	symbol->next = *tip;
 	*tip = symbol;
@@ -125,31 +138,33 @@ int parse_address_address(char *buffer_input) {
 	return address;
 }
 
-int parse_abs_offset(int bank, int address, char type) {
-	switch (type) {
-	case 'w':
+int parse_abs_offset(int bank, int address, enum Addresstype addresstype) {
+	switch (addresstype) {
+	case(WRAM):
 		return bank ? bank * 0xd000 + (address - 0xd000) : address;
-	case 's':
+	case(SRAM):
 		return bank ? bank * 0xc000 + (address - 0xc000) : address;
-	case 'h':
+	case(HRAM):
 		return address;
 	default:
 		return bank ? bank * 0x4000 + (address - 0x4000) : address;
 	}
+
 	return -1;
 }
 
-int parse_offset(int offset, char type) {
-	switch (type) {
-	case 'w':
+int parse_offset(int offset, enum Addresstype addresstype) {
+	switch(addresstype) {
+	case(WRAM):
 		return offset > 0xd000 ? 0xd000 + offset % 0xd000 : offset;
-	case 's':
+	case(SRAM):
 		return offset > 0xc000 ? 0xc000 + offset % 0xc000 : offset;
-	case 'h':
+	case(HRAM):
 		return offset;
 	default:
 		return offset > 0x4000 ? 0x4000 + offset % 0x4000 : offset;
 	}
+
 	return -1;
 }
 
@@ -163,6 +178,7 @@ struct Symbol *parse_symfile(const char *filename) {
 	int bank = 0;
 	int address = 0;
 	int offset = -1;
+	enum Addresstype addresstype = ROM;
 
 	for (int c = getc(file); c != EOF; c = getc(file)) {
 		buffer = expand_buffer(buffer, buffer_index);
@@ -175,9 +191,13 @@ struct Symbol *parse_symfile(const char *filename) {
 			buffer[buffer_index] = '\0';
 			// This is the end of the parsable line
 			buffer_index = SIZE_MAX;
-			offset = parse_abs_offset(bank, address, buffer[0]);
+			offset = parse_abs_offset(bank, address, addresstype);
 			if (offset != -1) {
-				create_symbol(&symbols, offset, buffer);
+				if (address >= 0x8000 && address < 0xa000) {addresstype = VRAM;}
+				if (address >= 0xa000 && address < 0xc000) {addresstype = SRAM;}
+				if (address >= 0xc000 && address < 0xf000) {addresstype = WRAM;}
+				if (address >= 0xff80 && address < 0xffff) {addresstype = HRAM;}
+				create_symbol(&symbols, bank, address, addresstype, buffer);
 				offset = -1;
 			}
 			break;
@@ -235,7 +255,7 @@ struct Symbol *parse_constfile(const char *filename, struct Symbol **symbols) {
 			// This is the end of the parsable line
 			buffer_index = SIZE_MAX;
 			if (value != -1) {
-				create_symbol(symbols, value, buffer);
+				create_symbol_value(symbols, value, buffer);
 				value = -1;
 			}
 			break;
@@ -301,7 +321,7 @@ void interpret_command(
 		argv[i] = arg;
 	}
 
-	int offset = current_patch ? current_patch->value : -1;
+	int offset = current_patch ? parse_abs_offset(current_patch->bank, current_patch->address, current_patch->addresstype) : -1;
 
 	// Use the arguments
 	if (!strcmp(command, "ADDREss")) {
@@ -346,7 +366,7 @@ void interpret_command(
 				fprintf(stderr, "Error: Could not find symbol: %s", searchend);
 			} else {
 				// Figure out the length of the patch
-				int length = current_patch->value - offset;
+				int length = parse_abs_offset(current_patch->bank, current_patch->address, current_patch->addresstype) - offset;
 				memset(searchend, 0, (strlen(current_patch->name)));
 				// We've got the length, now go back
 				fseek(new_rom, offset, SEEK_SET);
@@ -368,7 +388,7 @@ void interpret_command(
 		}
 		const struct Symbol *getsymbol = find_symbol(symbols, argv[1]);
 		if (!getsymbol) return;
-		int parsed_offset = parse_offset(getsymbol->value, getsymbol->name[0]);
+		int parsed_offset = parse_offset(getsymbol->value, getsymbol->addresstype);
 		if (!strcmp(argv[0], "db")) {
 			fprintf(output, isupper((unsigned char)command[0]) ? "%02X": "%02x",
 				parsed_offset);
@@ -382,14 +402,14 @@ void interpret_command(
 		}
 		const struct Symbol *getsymbol = find_symbol(symbols, argv[0]);
 		if (!getsymbol) return;
-		fprintf(output, "0x%x", getsymbol->value);
+		fprintf(output, "0x%x", parse_abs_offset(getsymbol->bank, getsymbol->address, getsymbol->addresstype));
 	} else if (!strcmp(command, "conaddress")) {
 		if (argc != 2) {
 			fprintf(stderr, "Error: Missing argument for %s", command);
 		}
 		const struct Symbol *getsymbol = find_symbol(symbols, argv[1]);
 		if (!getsymbol) return;
-		int parsed_offset = parse_offset(getsymbol->value, getsymbol->name[0]);
+		int parsed_offset = getsymbol->address;
 		if (!strcmp(argv[0], "dw")) {
 			fprintf(output, "%02x ", LOW(parsed_offset));
 			fprintf(output, "%02x ", HIGH(parsed_offset));
@@ -560,7 +580,7 @@ bool verify_completeness(FILE *orig_rom, FILE *new_rom, struct Patch *patches) {
 
 	int orig_byte, new_byte;
 
-	for (size_t offset = 0;;) {
+	for (size_t offset = 0; ; offset++) {
 		orig_byte = getc(orig_rom);
 		new_byte = getc(new_rom);
 		if (orig_byte == EOF || new_byte == EOF) {
@@ -573,11 +593,10 @@ bool verify_completeness(FILE *orig_rom, FILE *new_rom, struct Patch *patches) {
 			if (fseek(new_rom, patch->size, SEEK_CUR)) {
 				return false;
 			}
-			offset += patch->size + 1;
+			offset += patch->size;
 			patch++;
 			continue;
 		}
-		offset++;
 		if (orig_byte != new_byte) {
 			fprintf(stderr, "Value mismatch at decimal offset: %li\n", offset - 1);
 			fprintf(stderr, "Original ROM value: %x\n", orig_byte);
