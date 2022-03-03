@@ -283,7 +283,7 @@ Fixcode=a1:{{constant:db:NO_INPUT}}
 ConditionType = 0                                                             
 ConditionValueA = a26: {{conaddress:dw:wWindowStackPointer}} {{conaddress::wMenuJoypad}} {{conaddress::wMenuSelection}} {{conaddress::wMenuCursorY}} {{conaddress::wMapGroup}} {{conaddress::wMapNumber}} {{conaddress::wYCoord}} {{conaddress::wXCoord}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}} {{conaddress::hJoyPressed}}  
 ConditionValueB = a26: {{==}} {{==}} {{==}} {{==}} {{==}} {{==}} {{==}} {{==}} {{==}} {{!=}} {{!=}} {{!=}} {{!=}}  
-ConditionValueC = a26: af 00 df 00 00 00 00 00 01 00 16 00 08 00 04 00 02 00 {{constant::D_DOWN}} {{constant::D_UP}} {{constant::B_BUTTON}} {{constant::NO_INPUT}}  
+ConditionValueC = a26: af 00 df 00 00 00 00 00 01 00 {{constant::MAPGROUP_CIANWOOD}} {{constant::MAP_CIANWOOD_PHOTO_STUDIO}} 04 00 02 00 {{constant::D_DOWN}} {{constant::D_UP}} {{constant::B_BUTTON}} {{constant::NO_INPUT}}  
 
                                                
 ;ROM:BB29C                 call    unk_934       
