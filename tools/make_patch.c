@@ -105,9 +105,9 @@ void free_symbols(struct Symbol *list) {
 }
 
 const struct Symbol *find_symbol(const struct Symbol *symbols, const char *name) {
-	int namelen = strlen(name);
+	size_t namelen = strlen(name);
 	for (const struct Symbol *symbol = symbols; symbol; symbol = symbol->next) {
-		int symbolnamelen = strlen(symbol->name);
+		size_t symbolnamelen = strlen(symbol->name);
 		if (namelen > symbolnamelen) {
 			continue;
 		}
