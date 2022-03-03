@@ -585,13 +585,10 @@ int main(int argc, char *argv[]) {
 	FILE *new_rom = xfopen(argv[3], 'r');
 	FILE *orig_rom = xfopen(argv[4], 'r');
 	struct Patches *patches = process_template(argv[5], new_rom, orig_rom, argv[6], symbols);
-
-	free_symbols(symbols);
-
 	if (!verify_completeness(orig_rom, new_rom, patches)) {
 		fprintf(stderr, "Warning: Not all ROM differences are defined by \"%s\"\n", argv[6]);
 	}
-
+	free_symbols(symbols);
 	fclose(new_rom);
 	fclose(orig_rom);
 	free_patches(patches);
