@@ -432,7 +432,9 @@ struct Patches *process_template(
 
 	// The ROM checksum and Stadium data will always differ
 	append_patch(patches, 0x14e, 2);
-	append_patch(patches, 0x1ffde0, 0xffffff - 0x1ffde0);
+	unsigned int rom_size = (unsigned int)xfsize("", orig_rom);
+	unsigned int stadium_size = 24 + 6 + 2 + (rom_size / 0x2000) * 2; // see stadium.c
+	append_patch(patches, rom_size - stadium_size, stadium_size);
 
 	char *buffer = create_buffer();
 	size_t buffer_index = 0;
