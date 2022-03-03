@@ -145,6 +145,8 @@ void parse_address(char *buffer_input, int *bank, int *address) {
 	if (endptr_bank != buffer + strlen(buffer) || endptr_address != buffer_address + strlen(buffer_address)) {
 		fprintf(stderr, "Error: Cannot parse bank+address: %s: %s\n", buffer, buffer_address);
 	}
+
+	free(buffer);
 }
 
 struct Symbol *parse_symfile(const char *filename) {
