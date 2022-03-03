@@ -426,7 +426,7 @@ struct Patches *process_template(
 	const char *template_filename, FILE *new_rom, FILE *orig_rom,
 	const char *output_filename, const struct Symbol *symbols
 ) {
-	FILE *file = xfopen(template_filename, 'r');
+	FILE *template = xfopen(template_filename, 'r');
 	FILE *output = xfopen(output_filename, 'w');
 
 	struct Patches *patches = create_patches();
@@ -443,7 +443,7 @@ struct Patches *process_template(
 	int line_pos = 0;
 
 	// Fill in the template
-	for (int c = getc(file); c != EOF; c = getc(file)) {
+	for (int c = getc(template); c != EOF; c = getc(template)) {
 		buffer = expand_buffer(buffer, buffer_index);
 
 		switch (c) {
@@ -456,18 +456,18 @@ struct Patches *process_template(
 
 		case '{':
 			// Check if we've found two of them
-			c = getc(file);
+			c = getc(template);
 			if (c != '{') {
 				putc('{', output);
 				line_pos++;
-				ungetc(c, file);
+				ungetc(c, template);
 				break;
 			}
 			// If we have, we store the contents before it ends into buffer
 			buffer_index = 0;
-			for (c = getc(file); c != EOF; c = getc(file)) {
+			for (c = getc(template); c != EOF; c = getc(template)) {
 				if (c == '}') {
-					c = getc(file);
+					c = getc(template);
 					if (c == EOF || c == '}') {
 						break;
 					}
@@ -489,7 +489,7 @@ struct Patches *process_template(
 			// Try to read the label
 			putc(c, output);
 			buffer_index = 0;
-			for (c = getc(file); c != EOF; c = getc(file)) {
+			for (c = getc(template); c != EOF; c = getc(template)) {
 				putc(c, output);
 				if (c == ']') {
 					// If we're at the end, we can get the symbol for the label
@@ -510,7 +510,7 @@ struct Patches *process_template(
 					}
 					free(searchlabel);
 					// Skip until the next newline
-					for (c = getc(file); c != EOF; c = getc(file)) {
+					for (c = getc(template); c != EOF; c = getc(template)) {
 						putc(c, output);
 						if (c == '\n' || c == '\r') {
 							break;
@@ -532,7 +532,7 @@ struct Patches *process_template(
 	rewind(orig_rom);
 	rewind(new_rom);
 
-	fclose(file);
+	fclose(template);
 	fclose(output);
 	free_buffer(buffer);
 	return patches;
