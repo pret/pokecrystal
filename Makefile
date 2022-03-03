@@ -63,7 +63,7 @@ clean: tidy
 	find gfx/pokemon -mindepth 1 ! -path "gfx/pokemon/unown/*" \( -name "bitmask.asm" -o -name "frames.asm" -o -name "front.animated.tilemap" -o -name "front.dimensions" \) -delete
 
 tidy:
-	$(RM) $(roms) $(patches:.patch=.gbc) $(patches) $(pokecrystal_obj) $(pokecrystal11_obj) $(pokecrystalvc_obj) $(pokecrystal_au_obj) $(pokecrystal_debug_obj) $(pokecrystal11_debug_obj) $(roms:.gbc=.map) $(patches:.patch=.map) $(patches:.patch=.sym) $(roms:.gbc=.sym) rgbdscheck.o
+	$(RM) $(roms) $(patches:.patch=.gbc) $(patches) $(pokecrystal_obj) $(pokecrystal11_obj) $(pokecrystalvc_obj) $(pokecrystal_au_obj) $(pokecrystal_debug_obj) $(pokecrystal11_debug_obj) $(roms:.gbc=.map) $(patches:.patch=.map) $(patches:.patch=.sym) $(roms:.gbc=.sym) vc/pokecrystalvc.constants.out rgbdscheck.o
 	$(MAKE) clean -C tools/
 
 compare: $(roms) $(patches)
@@ -86,11 +86,8 @@ $(pokecrystal_debug_obj):   RGBASMFLAGS += -D _DEBUG
 $(pokecrystal11_debug_obj): RGBASMFLAGS += -D _CRYSTAL11 -D _DEBUG
 $(pokecrystalvc_obj):       RGBASMFLAGS += -D _CRYSTAL11 -D _CRYSTALVC
 
-VCTEMP := $(shell mktemp)
-%.patch: vc/%.patch.template %.gbc vc/vc_constants.asm pokecrystal11.gbc
-	$(RGBASM) vc/vc_constants.asm > $(VCTEMP)
-	tools/make_patch $(VCTEMP) $*.sym $*.gbc pokecrystal11.gbc $< $@
-	$(RM) $(VCTEMP)
+%.patch: vc/%.patch.template %.gbc vc/%.constants.out pokecrystal11.gbc
+	tools/make_patch vc/$*.constants.out $*.sym $*.gbc pokecrystal11.gbc $< $@
 
 rgbdscheck.o: rgbdscheck.asm
 	$(RGBASM) -o $@ $<
@@ -116,6 +113,10 @@ $(foreach obj, $(pokecrystal_au_obj), $(eval $(call DEP,$(obj),$(obj:_au.o=.asm)
 $(foreach obj, $(pokecrystal_debug_obj), $(eval $(call DEP,$(obj),$(obj:_debug.o=.asm))))
 $(foreach obj, $(pokecrystal11_debug_obj), $(eval $(call DEP,$(obj),$(obj:11_debug.o=.asm))))
 $(foreach obj, $(pokecrystalvc_obj), $(eval $(call DEP,$(obj),$(obj:vc.o=.asm))))
+
+# Dependencies for VC files that need to run scan_includes
+vc/pokecrystalvc.constants.out: vc/pokecrystalvc.constants.asm $(shell tools/scan_includes vc/pokecrystalvc.constants.asm) | rgbdscheck.o
+	$(RGBASM) $< > $@
 
 endif
 

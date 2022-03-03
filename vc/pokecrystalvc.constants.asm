@@ -3,7 +3,7 @@ INCLUDE "constants.asm"
 ; These are all the asm constants needed to make the pokecrystalvc patch.
 
 vc_const: MACRO
-	println "{d:\1} \1"
+	println "{02x:\1} \1"
 ENDM
 
 ; [fight begin]
