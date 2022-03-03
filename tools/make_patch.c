@@ -61,7 +61,7 @@ struct Patches *create_patches(void) {
 }
 
 void append_patch(struct Patches *patches, unsigned int offset, unsigned int size) {
-	if (patches->size == patches->capacity) {
+	if (patches->size >= patches->capacity) {
 		patches->capacity = (patches->capacity + 1) * 2;
 		patches->data = xrealloc(patches->data, patches->capacity * sizeof(*patches->data));
 	}
@@ -426,15 +426,16 @@ struct Patches *process_template(
 	const char *template_filename, FILE *new_rom, FILE *orig_rom,
 	const char *output_filename, const struct Symbol *symbols
 ) {
-	FILE *template = xfopen(template_filename, 'r');
+	FILE *input = xfopen(template_filename, 'r');
 	FILE *output = xfopen(output_filename, 'w');
 
 	struct Patches *patches = create_patches();
 
-	// The ROM checksum and Stadium data will always differ
+	// The ROM checksum will always differ
 	append_patch(patches, 0x14e, 2);
+	// The Stadium data 9see stadium.c) will always differ
 	unsigned int rom_size = (unsigned int)xfsize("", orig_rom);
-	unsigned int stadium_size = 24 + 6 + 2 + (rom_size / 0x2000) * 2; // see stadium.c
+	unsigned int stadium_size = 24 + 6 + 2 + (rom_size / 0x2000) * 2;
 	append_patch(patches, rom_size - stadium_size, stadium_size);
 
 	char *buffer = create_buffer();
@@ -443,7 +444,7 @@ struct Patches *process_template(
 	int line_pos = 0;
 
 	// Fill in the template
-	for (int c = getc(template); c != EOF; c = getc(template)) {
+	for (int c = getc(input); c != EOF; c = getc(input)) {
 		buffer = expand_buffer(buffer, buffer_index);
 
 		switch (c) {
@@ -456,18 +457,18 @@ struct Patches *process_template(
 
 		case '{':
 			// Check if we've found two of them
-			c = getc(template);
+			c = getc(input);
 			if (c != '{') {
 				putc('{', output);
 				line_pos++;
-				ungetc(c, template);
+				ungetc(c, input);
 				break;
 			}
 			// If we have, we store the contents before it ends into buffer
 			buffer_index = 0;
-			for (c = getc(template); c != EOF; c = getc(template)) {
+			for (c = getc(input); c != EOF; c = getc(input)) {
 				if (c == '}') {
-					c = getc(template);
+					c = getc(input);
 					if (c == EOF || c == '}') {
 						break;
 					}
@@ -489,7 +490,7 @@ struct Patches *process_template(
 			// Try to read the label
 			putc(c, output);
 			buffer_index = 0;
-			for (c = getc(template); c != EOF; c = getc(template)) {
+			for (c = getc(input); c != EOF; c = getc(input)) {
 				putc(c, output);
 				if (c == ']') {
 					// If we're at the end, we can get the symbol for the label
@@ -510,7 +511,7 @@ struct Patches *process_template(
 					}
 					free(searchlabel);
 					// Skip until the next newline
-					for (c = getc(template); c != EOF; c = getc(template)) {
+					for (c = getc(input); c != EOF; c = getc(input)) {
 						putc(c, output);
 						if (c == '\n' || c == '\r') {
 							break;
@@ -532,7 +533,7 @@ struct Patches *process_template(
 	rewind(orig_rom);
 	rewind(new_rom);
 
-	fclose(template);
+	fclose(input);
 	fclose(output);
 	free_buffer(buffer);
 	return patches;
@@ -588,6 +589,7 @@ int main(int argc, char *argv[]) {
 	if (!verify_completeness(orig_rom, new_rom, patches)) {
 		fprintf(stderr, "Warning: Not all ROM differences are defined by \"%s\"\n", argv[6]);
 	}
+
 	free_symbols(symbols);
 	fclose(new_rom);
 	fclose(orig_rom);
