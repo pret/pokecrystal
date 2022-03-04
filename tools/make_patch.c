@@ -1,5 +1,5 @@
 #define PROGRAM_NAME "make_patch"
-#define USAGE_OPTS "constants.txt labels.sym patched.gbc original.gbc vc.patch.template vc.patch"
+#define USAGE_OPTS "labels.sym constants.txt patched.gbc original.gbc vc.patch.template vc.patch"
 
 #include "common.h"
 
@@ -113,7 +113,7 @@ const struct Symbol *find_symbol(const struct Symbol *symbols, const char *name)
 			return symbol;
 		}
 	}
-	error_exit("Error: Could not find symbol: %s\n", name);
+	error_exit("Error: Unknown symbol: %s\n", name);
 	return NULL;
 }
 
@@ -137,7 +137,7 @@ void parse_symbol_value(char *input, int *bank, int *address) {
 		}
 
 		if (endptr_bank != buffer + strlen(buffer) || endptr_address != buffer2 + strlen(buffer2)) {
-			error_exit("Error: Cannot parse bank+address: %s: %s\n", buffer, buffer2);
+			error_exit("Error: Cannot parse bank+address: %s:%s\n", buffer, buffer2);
 		}
 	} else {
 		// Parse constant's value
@@ -258,10 +258,10 @@ void interpret_command(
 			current_offset += strtol(argv[0], NULL, 0);
 		}
 		if (fseek(orig_rom, current_offset, SEEK_SET)) {
-			error_exit("Error: Could not seek to the offset of %s in the original ROM\n", current_hook->name);
+			error_exit("Error: Cannot seek to 'vc_patch %s' in the original ROM\n", current_hook->name);
 		}
 		if (fseek(new_rom, current_offset, SEEK_SET)) {
-			error_exit("Error: Could not seek to the offset of %s in the new ROM\n", current_hook->name);
+			error_exit("Error: Cannot seek to 'vc_patch %s' in the new ROM\n", current_hook->name);
 		}
 		char *searchend = xmalloc(strlen(current_hook->name) + strlen("_End") + 1);
 		strcpy(searchend, current_hook->name);
@@ -272,7 +272,7 @@ void interpret_command(
 		if (length == 1) {
 			int c = getc(new_rom);
 			if (c == getc(orig_rom)) {
-				fprintf(stderr, PROGRAM_NAME ": Warning: %s doesn't actually contain any differences\n", current_hook->name);
+				fprintf(stderr, PROGRAM_NAME ": Warning: 'vc_patch %s' doesn't alter the ROM\n", current_hook->name);
 			}
 			append_patch(patches, current_offset, 1);
 			fprintf(output, "0x");
@@ -361,12 +361,9 @@ void interpret_command(
 	}
 }
 
-struct Patches *process_template(
-	const char *template_filename, FILE *new_rom, FILE *orig_rom,
-	const char *output_filename, const struct Symbol *symbols
-) {
+struct Patches *process_template(const char *template_filename, const char *patch_filename, FILE *new_rom, FILE *orig_rom, const struct Symbol *symbols) {
 	FILE *input = xfopen(template_filename, 'r');
-	FILE *output = xfopen(output_filename, 'w');
+	FILE *output = xfopen(patch_filename, 'w');
 
 	struct Patches *patches = create_patches();
 
@@ -483,9 +480,7 @@ int compare_patch(const void *patch1, const void *patch2) {
 
 bool verify_completeness(FILE *orig_rom, FILE *new_rom, struct Patches *patches) {
 	qsort(patches->data, patches->size, sizeof(*patches->data), compare_patch);
-	size_t index = 0;
-
-	for (size_t offset = 0; ; offset++) {
+	for (unsigned int offset = 0, index = 0; ; offset++) {
 		int orig_byte = getc(orig_rom);
 		int new_byte = getc(new_rom);
 		if (orig_byte == EOF || new_byte == EOF) {
@@ -502,10 +497,10 @@ bool verify_completeness(FILE *orig_rom, FILE *new_rom, struct Patches *patches)
 			offset += patch->size;
 			index++;
 		} else if (orig_byte != new_byte) {
-			fprintf(stderr, PROGRAM_NAME ": Warning: Value mismatch at decimal offset: %li\n", offset - 1);
-			fprintf(stderr, "    Original ROM value: %x\n", orig_byte);
-			fprintf(stderr, "    Patched ROM value: %x\n", new_byte);
-			fprintf(stderr, "    Current patch start address: %x\n", patch->offset);
+			fprintf(stderr, PROGRAM_NAME ": Warning: Unpatched difference at offset: 0x%x\n", offset - 1);
+			fprintf(stderr, "    Original ROM value: %02x\n", orig_byte);
+			fprintf(stderr, "    Patched ROM value: %02x\n", new_byte);
+			fprintf(stderr, "    Current patch offset: 0x%x\n", patch->offset);
 			return false;
 		}
 	}
@@ -517,12 +512,12 @@ int main(int argc, char *argv[]) {
 	}
 
 	struct Symbol *symbols = NULL;
-	symbols = parse_symbols(argv[2], &symbols);
 	symbols = parse_symbols(argv[1], &symbols);
+	symbols = parse_symbols(argv[2], &symbols);
 
 	FILE *new_rom = xfopen(argv[3], 'r');
 	FILE *orig_rom = xfopen(argv[4], 'r');
-	struct Patches *patches = process_template(argv[5], new_rom, orig_rom, argv[6], symbols);
+	struct Patches *patches = process_template(argv[5], argv[6], new_rom, orig_rom, symbols);
 
 	if (!verify_completeness(orig_rom, new_rom, patches)) {
 		fprintf(stderr, PROGRAM_NAME ": Warning: Not all ROM differences are defined by \"%s\"\n", argv[6]);

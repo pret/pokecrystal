@@ -87,7 +87,7 @@ $(pokecrystal11_debug_obj): RGBASMFLAGS += -D _CRYSTAL11 -D _DEBUG
 $(pokecrystalvc_obj):       RGBASMFLAGS += -D _CRYSTAL11 -D _CRYSTALVC
 
 %.patch: vc/%.patch.template %.gbc vc/%.constants.out pokecrystal11.gbc
-	tools/make_patch vc/$*.constants.out $*.sym $*.gbc pokecrystal11.gbc $< $@
+	tools/make_patch $*.sym vc/$*.constants.out $*.gbc pokecrystal11.gbc $< $@
 
 rgbdscheck.o: rgbdscheck.asm
 	$(RGBASM) -o $@ $<
