@@ -1,5 +1,5 @@
 #define PROGRAM_NAME "make_patch"
-#define USAGE_OPTS "labels.sym constants.txt patched.gbc original.gbc vc.patch.template vc.patch"
+#define USAGE_OPTS "labels.sym constants.out patched.gbc original.gbc vc.patch.template vc.patch"
 
 #include "common.h"
 
