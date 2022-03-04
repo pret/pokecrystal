@@ -381,16 +381,32 @@ void interpret_command(
 		fprintf(output, isupper((unsigned char)command[0]) ? "%02X": "%02x",
 				LOW(parsed_offset));
 
-	} else if (!strcmp(command, "findaddress")) {
-		if (argc != 1) {
+	} else if (!strcmp(command, "hex") || !strcmp(command, "HEX")) {
+		if (argc < 1) {
 			fprintf(stderr, "Error: Missing argument for %s", command);
 		}
-		const struct Symbol *getsymbol = find_symbol(symbols, argv[0]);
+		int offset_mod = 0;
+		if (strchr(argv[0], '+') != NULL) {
+			offset_mod = strtol(strchr(argv[0], '+'), NULL, 10);
+			argv[0][strlen(argv[0]) - strlen(strchr(argv[0], '+'))] = '\0';
+		}
+		char *searchend = NULL;
+		if (argv[0][0] == '@') {
+			searchend = xmalloc(strlen(current_hook->name) + 1);
+			strcpy(searchend, current_hook->name);
+			current_hook = find_symbol(symbols, searchend);
+		} else {
+			searchend = xmalloc(strlen(argv[0]) + 1);
+			searchend = argv[0];
+		}
+		const struct Symbol *getsymbol = find_symbol(symbols, searchend);
 		if (!getsymbol) {
 			return;
 		}
-		fprintf(output, "0x%x", getsymbol->offset);
-
+		int padding = 2;
+		if (argv[1] != NULL) { padding = strtol(argv[1], NULL, 10); }
+		fprintf(output, isupper((unsigned char)command[0]) ? "0x%0*X" : "0x%0*x",
+				padding, (getsymbol->offset + offset_mod));
 	} else {
 		fprintf(stderr, "Error: Unknown command: %s\n", command);
 	}

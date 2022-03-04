@@ -28,118 +28,118 @@
 
 [Network10]
 Mode = 1
-Address = {{Address 1 1}}
+Address = {{HEX @+1 4}}
 Fixcode = {{Patch 1}}
 
 [Network11]
 Mode = 1
-Address = {{Address 1 1}}
+Address = {{HEX @+1 4}}
 Fixcode = {{Patch 1}}
 
 [send_send_buf2]
 Mode = 2
-Address = {{Address 0 1}}
+Address = {{HEX @ 4}}
 Type = 29
 
 [send_send_buf2_ret]
 Mode = 2
-Address = {{Address 0 1}}
+Address = {{HEX @ 4}}
 Type = 30
 
 [Network358]
 Mode = 2
-Address = {{Address}}
+Address = {{HEX @ 4}}
 Type = 4
 
 [Network359]
 Mode = 2
-Address = {{Address}}
+Address = {{HEX @ 4}}
 Type = 4
 
 [Network364]
 Mode = 2
-Address = {{Address}}
+Address = {{HEX @ 4}}
 ;fix pokemon ?? in name
 Type = 26
 
 [Network360]
 Mode = 2
-Address = {{Address}}
+Address = {{HEX @ 4}}
 Type = 4
 
 [Network361]
 Mode = 2
-Address = {{Address}}
+Address = {{HEX @ 4}}
 Type = 4
 
 [Network362]
 Mode = 2
-Address = {{Address}}
+Address = {{HEX @ 4}}
 Type = 4
 
 [Network363]
 Mode = 2
-Address = {{Address}}
+Address = {{HEX @ 4}}
 Type = 4
 
 [Network_RECHECK]
 Mode = 2
-Address = {{Address}}
+Address = {{HEX @ 4}}
 Type = 7
 
 [send_byt2]
 Mode = 2
-Address = {{Address 5}}
+Address = {{HEX @+5 4}}
 Type = 31
 
 [send_byt2_ret]
 Mode = 2
-Address = {{Address}}
+Address = {{HEX @ 4}}
 Type = 32
 
 [send_byt2_wait]
 Mode = 1
-Address = {{Address 1}}
+Address = {{HEX @+1 4}}
 Fixcode = {{Patch 1}}
 
 [send_dummy]
 Mode = 2
-Address = {{Address}}
+Address = {{HEX @ 4}}
 Type = 33
 
 [send_dummy_wait]
 Mode = 1
-Address = {{Address 1}}
+Address = {{HEX @+1 4}}
 Fixcode = {{Patch 1}} 
 
 [send_dummy_end]
 Mode = 2
-Address = {{Address}}
+Address = {{HEX @ 4}}
 Type = 34
 
 [NetworkDelay1]
 Mode = 1
-Address = {{Address 1}}
+Address = {{HEX @+1 4}}
 Fixcode = {{Patch 1}}
 
 [NetworkDelay2]
 Mode = 1
-Address = {{Address 1}}
+Address = {{HEX @+1 4}}
 Fixcode = {{Patch 1}}
 
 [NetworkDelay3]
 Mode = 1
-Address = {{Address 1}}
+Address = {{HEX @+1 4}}
 Fixcode = {{Patch 1}}
 
 [NetworkDelay4]
 Mode = 1
-Address = {{Address 1}}
+Address = {{HEX @+1 4}}
 Fixcode = {{Patch 1}}
 
 [NetworkDelay6]
 Mode = 1
-Address = {{Address 1}}
+Address = {{HEX @+1 4}}
 Fixcode = {{Patch 1}}
 
 ;no use[Network_STOP]
@@ -154,60 +154,60 @@ Fixcode = {{Patch 1}}
 
 [Network_RESET]
 Mode = 2
-Address = {{Address 0 1}}
+Address = {{HEX @ 5}}
 Type = 10
 
 [E_YESNO]
 Mode = 2
-Address = {{Address}}
+Address = {{HEX @ 4}}
 Type = 15
 
 [linkCable fake begin]
 Mode = 2
-Address = {{Address}}
+Address = {{HEX @ 4}}
 Type = 16
 
 [linkCable fake end]
 Mode = 2
-Address = {{Address}}
+Address = {{HEX @ 4}}
 Type = 17  
 
 ;MURIYARI
 [linkCable block input]
 Mode = 2
-Address = {{Address}}
+Address = {{HEX @ 4}}
 Type = 18
 [linkCable block input2]
 Mode = 2
-Address = {{Address}}
+Address = {{HEX @ 4}}
 Type = 24
 [save game end]
 Mode = 2
-Address = {{Address}}
+Address = {{HEX @ 4}}
 Type = 20
 [term_exit]
 Mode = 2
-Address = {{Address}}
+Address = {{HEX @ 4}}
 Type = 25
 [room_check]
 Mode = 2
-Address = {{Address}}
+Address = {{HEX @ 4}}
 Type = 27
 [to_play2_mons1]
 Mode = 2
-Address = {{Address}}
+Address = {{HEX @ 4}}
 Type = 11
 [to_play2_trade]
 Mode = 2
-Address = {{Address}}
+Address = {{HEX @ 4}}
 Type = 12
 [to_play2_battle]
 Mode = 2
-Address = {{Address}}
+Address = {{HEX @ 4}}
 Type = 13
 [ret_heya]
 Mode = 2
-Address = {{Address}}
+Address = {{HEX @ 4}}
 Type = 14
 
 
@@ -237,7 +237,7 @@ Fixcode={{db SCREEN_HEIGHT_PX}}
 ;12 1b 0b 79 b0  find next C9
 [BiographySave_ret]
 Mode = 2
-Address = {{Address}}
+Address = {{HEX @ 4}}
 Type = 60
 
 
@@ -254,7 +254,7 @@ Type = 60
 ;00016c76h: E6 01 20 08 CD A0 6C CD 5A 04 18 E9 FA 63 CF F5 ; ? .蜖l蚙..辁c硝
 [print forbid 1]                                                   
 Mode = 1                                                                                                                  
-Address = {{address}}
+Address = {{hex @ 4}}
 Fixcode={{patch 0 big}}      
 
 
@@ -262,8 +262,8 @@ Fixcode={{patch 0 big}}
 [print forbid 2]                                                                           
 Mode = 6                                                                                       
 Type = 0                                                                                       
-Address = {{address}}                                                                        
-MemAddress={{findaddress hJoyPressed}}                                                                           
+Address = {{hex @ 4}}                                                                        
+MemAddress={{hex hJoyPressed}}                                                                           
 Fixcode={{db NO_INPUT}}                                                                                  
 ConditionType = 0                                                                              
 ConditionValueA = {{dws wWindowStackPointer wWindowStackPointer+1 wMenuJoypad wMenuSelection wMenuSelection wMenuCursorY hJoyPressed hJoyPressed hJoyPressed hJoyPressed}}                   
@@ -277,8 +277,8 @@ ConditionValueC = {{dws 0xdd                0xd3                  0x01        0x
 [print forbid 3]                                                          
 Mode = 6                                                                      
 Type = 0                                                                      
-Address = {{address}}                                                           
-MemAddress={{findaddress hJoyPressed}}                                                            
+Address = {{hex @ 4}}                                                           
+MemAddress={{hex hJoyPressed}}                                                            
 Fixcode={{db NO_INPUT}}                                                                 
 ConditionType = 0                                                             
 ConditionValueA = {{dws wWindowStackPointer wWindowStackPointer+1 wMenuJoypad wMenuSelection wMenuCursorY wMapGroup         wMapNumber                wYCoord wXCoord hJoyPressed hJoyPressed hJoyPressed hJoyPressed}}  
@@ -298,7 +298,7 @@ ConditionValueC = {{dws 0xaf                0xdf                  0x00        0x
 ; change "and 8" to "and 0"                                                      
 [print forbid 4]                                                  
 Mode = 1                                                          
-Address = {{address}}                                          
+Address = {{hex @ 4}}                                          
 Fixcode={{patch 0 big}}            
 
 
@@ -320,8 +320,8 @@ Fixcode={{patch 0 big}}
 [print forbid 5]                                                                                           
 Mode = 6                                                                                          
 Type = 0                                                                                          
-Address = {{address}}                                                                            
-MemAddress={{findaddress hJoyPressed}}                                                                                 
+Address = {{hex @ 4}}                                                                            
+MemAddress={{hex hJoyPressed}}                                                                                 
 Fixcode={{db NO_INPUT}}                                                                                     
 ConditionType = 0                                                                                 
 ConditionValueA = {{dws wWindowStackPointer wWindowStackPointer+1 wMenuJoypad wMenuSelection wDexArrowCursorPosIndex hJoyPressed hJoyPressed hJoyPressed hJoyPressed}}                      
@@ -358,7 +358,7 @@ ConditionValueC = {{dws 0xa1                0xdb                  0x01        0x
 ;001048dbh: 3E 02 EA 01 CA 3E 14 EA 02 CA F0 FF F5 CD 9D 4A                           
 [infrared fake 0]                                                                                                           
 Mode = 1                                                                                                                    
-Address = {{address}}                                                                                  
+Address = {{hex @ 4}}                                                                                  
 Fixcode={{Patch 0 big}}                                                                                   
                                                                                                                             
                
@@ -368,22 +368,22 @@ Fixcode={{Patch 0 big}}
                                                                                                                      
 [infrared fake 1]                                                                                                    
 Mode = 1                                                                                                             
-Address = {{address}}                                                                                              
+Address = {{hex @ 4}}                                                                                              
 Fixcode={{patch 0 big}}                                           
                                                                                                                      
 [infrared fake 2]                                                                                                    
 Mode = 2                                                                                                             
-Address = {{address}}                                                                            
+Address = {{hex @ 4}}                                                                            
 Type = 101                                                                                                           
                                                                                                                                                                                           
 [infrared fake 3]                    
 Mode = 2                             
-Address = {{address}}                 
+Address = {{hex @ 4}}                 
 Type = 102                           
                                      
 [infrared fake 4]                    
 Mode = 2                             
-Address = {{address}}           
+Address = {{hex @ 4}}           
 Type = 103                           
 
 
@@ -428,7 +428,7 @@ Type = 103
 [FPA 001 Begin]                                                   
 Mode = 3                                                          
 Type = 0                                                          
-Address = {{address}}
+Address = {{hex @ 4}}
 DarkEnable0 = 1
 Dark0 = 4  
 MotionBEnable0 = 3                                            
@@ -462,7 +462,7 @@ ConditionValueC = {{dws FISSURE}}
 [FPA 002 Begin]                                                   
 Mode = 3                                                          
 Type = 0      
-Address = {{address}}  
+Address = {{hex @ 4}}  
 DarkEnable0 = 1
 Dark0 = 4 
 MotionBEnable0 = 3                                            
@@ -478,7 +478,7 @@ ConditionValueC = {{dws SELFDESTRUCT}}
 [FPA 003 Begin]                                                   
 Mode = 3                                                          
 Type = 0                                                          
-Address = {{address}}   
+Address = {{hex @ 4}}   
 DarkEnable0 = 1
 Dark0 = 4  
 MotionBEnable0 = 3                                            
@@ -496,7 +496,7 @@ ConditionValueC = {{dws THUNDER}}
 [FPA 004 Begin]                                                   
 Mode = 3                                                          
 Type = 0                                                          
-Address = {{address}} 
+Address = {{hex @ 4}} 
 DarkEnable0 = 1
 Dark0 = 4   
 MotionBEnable0 = 3                                            
@@ -519,7 +519,7 @@ ConditionValueC = {{dws FLASH}}
 [FPA 005 Begin]                                                   
 Mode = 3                                                          
 Type = 0                                                          
-Address = {{address}}   
+Address = {{hex @ 4}}   
 DarkEnable0 = 1
 Dark0 = 4  
 MotionBEnable0 = 3                                            
@@ -541,7 +541,7 @@ ConditionValueC = {{dws EXPLOSION}}
 [FPA 006 Begin]                                                   
 Mode = 3                                                          
 Type = 0                                                          
-Address = {{address}}   
+Address = {{hex @ 4}}   
 DarkEnable0 = 1
 Dark0 = 4  
 MotionBEnable0 = 3                                            
@@ -564,7 +564,7 @@ ConditionValueC = {{dws HORN_DRILL}}
 [FPA 007 Begin]                                                   
 Mode = 3                                                          
 Type = 0                                                          
-Address = {{address}}   
+Address = {{hex @ 4}}   
 DarkEnable0 = 1
 Dark0 = 5   
 MotionBEnable0 = 3                                            
@@ -587,7 +587,7 @@ ConditionValueC = {{dws HYPER_BEAM}}
 [FPA 042801 Begin]                                                                                                                               
 Mode = 3                                                                                                                                         
 Type = 0                                                                                                                                         
-Address = {{Address}}                                                                                                                       
+Address = {{HEX @ 4}}                                                                                                                       
 DarkEnable0 = 1                                                                                                                                  
 Dark0 = 5                                                                                                                                        
 MotionBEnable0 = 3                                                                                                                               
@@ -621,7 +621,7 @@ ConditionValueC = {{dws PRESENT   anim_1gfx_command}}
 [FPA 001 End]                                                     
 Mode = 3                                                          
 Type = 1                                                          
-Address = {{address}}  
+Address = {{hex @ 4}}  
 
 
 ;-----ddddff0xff690xff69fffff----0xffa0 no ....-------------..........Mem Write: pc32 = 0x8c352 addr = 0xffa0 value = 0x1
@@ -631,7 +631,7 @@ Address = {{address}}
 [FPA link fight begin]
 Mode = 3                                                          
 Type = 0                                                          
-Address = {{address}} 
+Address = {{hex @ 4}} 
 DarkEnable0 = 1
 Dark0 = 5  
 MotionBEnable0 = 3                                            
@@ -695,4 +695,4 @@ Address = {{ADDREss}}
 [FPA link fight End4]                                                     
 Mode = 3                                                          
 Type = 1                                                          
-Address = {{address}}                       
+Address = {{hex @ 4}}                       
