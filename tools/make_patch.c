@@ -68,17 +68,11 @@ void free_patches(struct Patches *patches) {
 }
 
 int get_address_type_limit(int address) {
-	if (address >= 0x8000 && address < 0xa000) {
-		return 0xa000; // VRAM
-	} else if (address >= 0xa000 && address < 0xc000) {
-		return 0xc000; // SRAM
-	} else if (address >= 0xc000 && address < 0xf000) {
-		return 0xd000; // WRAM
-	} else if (address >= 0xff80 && address < 0xffff) {
-		return 0x10000; // HRAM
-	} else {
-		return 0x4000; // ROM
-	}
+	return address >= 0x8000 && address < 0xa000 ? 0xa000 // VRAM
+	     : address >= 0xa000 && address < 0xc000 ? 0xc000 // SRAM
+	     : address >= 0xc000 && address < 0xf000 ? 0xd000 // WRAM
+	     : address >= 0xff80 && address < 0xffff ? 0x10000 // HRAM
+	     : 0x4000; // ROM
 }
 
 void create_symbol(struct Symbol **tip, const char *name, int bank, int address) {
