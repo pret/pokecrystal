@@ -120,6 +120,7 @@ const struct Symbol *find_symbol(const struct Symbol *symbols, const char *name)
 			return symbol;
 		}
 	}
+	error_exit("Error: Could not find symbol: %s\n", name);
 	return NULL;
 }
 
@@ -143,7 +144,7 @@ void parse_symbol_value(char *input, int *bank, int *address) {
 		}
 
 		if (endptr_bank != buffer + strlen(buffer) || endptr_address != buffer2 + strlen(buffer2)) {
-			fprintf(stderr, "Error: Cannot parse bank+address: %s: %s\n", buffer, buffer2);
+			error_exit("Error: Cannot parse bank+address: %s: %s\n", buffer, buffer2);
 		}
 	} else {
 		// Parse constant's value
@@ -156,7 +157,7 @@ void parse_symbol_value(char *input, int *bank, int *address) {
 		}
 
 		if (endptr != buffer + strlen(buffer)) {
-			fprintf(stderr, "Error: Cannot parse value: %s\n", buffer);
+			error_exit("Error: Cannot parse value: %s\n", buffer);
 		}
 	}
 
@@ -265,17 +266,15 @@ void interpret_command(
 			offset += strtol(argv[0], NULL, 0);
 		}
 		if (fseek(orig_rom, offset, SEEK_SET)) {
-			fprintf(stderr, "Error: Could not seek to the offset of %s in the original ROM\n", current_hook->name);
-			return;
+			error_exit("Error: Could not seek to the offset of %s in the original ROM\n", current_hook->name);
 		}
 		if (fseek(new_rom, offset, SEEK_SET)) {
-			fprintf(stderr, "Error: Could not seek to offset of %s in the new ROM\n", current_hook->name);
-			return;
+			error_exit("Error: Could not seek to offset of %s in the new ROM\n", current_hook->name);
 		}
 		if (argc <= 1 || strcmp(argv[1], "big")) {
 			int c = getc(new_rom);
 			if (c == getc(orig_rom)) {
-				fprintf(stderr, "Warning: %s doesn't actually contain any differences\n", current_hook->name);
+				fprintf(stderr, PROGRAM_NAME ": Warning: %s doesn't actually contain any differences\n", current_hook->name);
 			}
 			append_patch(patches, offset, 1);
 			fprintf(output, "0x");
@@ -284,69 +283,52 @@ void interpret_command(
 			char *searchend = xmalloc(strlen(current_hook->name) + strlen("_End") + 1);
 			strcpy(searchend, current_hook->name);
 			strcat(searchend, "_End");
-			current_hook = find_symbol(symbols, searchend);
-			if (!current_hook) {
-				fprintf(stderr, "Error: Could not find symbol: %s", searchend);
-			} else {
-				// Figure out the length of the patch
-				int length = current_hook->offset - offset;
-				memset(searchend, 0, strlen(current_hook->name));
-				// We've got the length, now go back
-				fseek(new_rom, offset, SEEK_SET);
-				// Print out the patch
-				append_patch(patches, offset, length);
-				fprintf(output, "a%d:", length);
-				for (int i = 0; i < length; i++) {
-					if (i) {
-						putc(' ', output);
-					}
-					fprintf(output, isupper((unsigned char)command[0]) ? "%02X" : "%02x", getc(new_rom));
+			const struct Symbol *patchend = find_symbol(symbols, searchend);
+			int length = patchend->offset - offset;
+			memset(searchend, 0, strlen(patchend->name));
+			fseek(new_rom, offset, SEEK_SET);
+			append_patch(patches, offset, length);
+			fprintf(output, "a%d:", length);
+			for (int i = 0; i < length; i++) {
+				if (i) {
+					putc(' ', output);
 				}
+				fprintf(output, isupper((unsigned char)command[0]) ? "%02X" : "%02x", getc(new_rom));
 			}
 			free(searchend);
 		}
 
-	} else if (!strcmp(command, "dws") || !strcmp(command, "Dws") || !strcmp(command, "DWS")) {
+	} else if (!strcmp(command, "dws") || !strcmp(command, "Dws") || !strcmp(command, "DWs")) {
 		if (argc < 1) {
-			fprintf(stderr, "Error: Missing argument for %s", command);
+			error_exit("Error: Missing argument for command: %s", command);
 		}
 		fprintf(output, "a%i:", (argc * 2));
 		for (int i = 0; i < argc; i++) {
-			int offset_mod = 0;
+			int parsed_offset;
 			if (argv[i][0] == '0') {
-			int hexoutput = strtol(argv[i], NULL, 16);
-				fprintf(output, isupper((unsigned char)command[0]) ? " %02X %02X": " %02x %02x",
-					LOW(hexoutput), HIGH(hexoutput));
-				continue;
+				parsed_offset = strtol(argv[i], NULL, 16);
 			} else if (!strcmp(argv[i], "==")) {
-				fprintf(output, " 00 00");
-				continue;
+				parsed_offset = 0;
 			} else if (!strcmp(argv[i], ">")) {
-				fprintf(output, " 01 00");
-				continue;
+				parsed_offset = 1;
 			} else if (!strcmp(argv[i], "<")) {
-				fprintf(output, " 02 00");
-				continue;
+				parsed_offset = 2;
 			} else if (!strcmp(argv[i], ">=")) {
-				fprintf(output, " 03 00");
-				continue;
+				parsed_offset = 3;
 			} else if (!strcmp(argv[i], "<=")) {
-				fprintf(output, " 04 00");
-				continue;
+				parsed_offset = 4;
 			} else if (!strcmp(argv[i], "!=")) {
-				fprintf(output, " 05 00");
-				continue;
+				parsed_offset = 5;
+			} else {
+				int offset_mod = 0;
+				const char *plus = strchr(argv[i], '+');
+				if (plus) {
+					offset_mod = strtol(plus, NULL, 10);
+					argv[i][strlen(argv[i]) - strlen(plus)] = '\0';
+				}
+				const struct Symbol *getsymbol = find_symbol(symbols, argv[i]);
+				parsed_offset = getsymbol->address + offset_mod;
 			}
-			const char *plus = strchr(argv[i], '+');
-			if (plus) {
-				offset_mod = strtol(plus, NULL, 10);
-				argv[i][strlen(argv[i]) - strlen(plus)] = '\0';
-			}
-			const struct Symbol *getsymbol = find_symbol(symbols, argv[i]);
-			if (!getsymbol) {
-				return;
-			}
-			int parsed_offset = getsymbol->address + offset_mod;
 			fprintf(output, isupper((unsigned char)command[0]) ? " %02X %02X": " %02x %02x",
 				LOW(parsed_offset), HIGH(parsed_offset));
 		}
@@ -359,36 +341,21 @@ void interpret_command(
 			argv[0][strlen(argv[0]) - strlen(strchr(argv[0], '+'))] = '\0';
 		}
 		const struct Symbol *getsymbol = find_symbol(symbols, argv[0]);
-		if (!getsymbol) {
-			return;
-		}
 		int parsed_offset = getsymbol->address + offset_mod;
 		fprintf(output, isupper((unsigned char)command[0]) ? "%02X": "%02x",
 			LOW(parsed_offset));
 
 	} else if (!strcmp(command, "hex") || !strcmp(command, "Hex") || !strcmp(command, "HEx")) {
 		if (argc < 1) {
-			fprintf(stderr, "Error: Missing argument for %s", command);
+			error_exit("Error: Missing argument for command: %s", command);
 		}
 		int offset_mod = 0;
 		if (strchr(argv[0], '+') != NULL) {
 			offset_mod = strtol(strchr(argv[0], '+'), NULL, 10);
 			argv[0][strlen(argv[0]) - strlen(strchr(argv[0], '+'))] = '\0';
 		}
-		char *searchend = NULL;
-		if (argv[0][0] == '@') {
-			searchend = xmalloc(strlen(current_hook->name) + 1);
-			strcpy(searchend, current_hook->name);
-			current_hook = find_symbol(symbols, searchend);
-		} else {
-			searchend = xmalloc(strlen(argv[0]) + 1);
-			searchend = argv[0];
-		}
+		const char *searchend = !strcmp(argv[0], "@") ? current_hook->name : argv[0];
 		const struct Symbol *getsymbol = find_symbol(symbols, searchend);
-		free(searchend);
-		if (!getsymbol) {
-			return;
-		}
 		int padding = argc > 1 ? strtol(argv[1], NULL, 10) : 2;
 		int parsed_offset = getsymbol->offset + offset_mod;
 		if (!strcmp(command, "HEx")) {
@@ -399,7 +366,7 @@ void interpret_command(
 		}
 
 	} else {
-		fprintf(stderr, "Error: Unknown command: %s\n", command);
+		error_exit("Error: Unknown command: %s\n", command);
 	}
 }
 
@@ -487,9 +454,6 @@ struct Patches *process_template(
 					strcpy(searchlabel, ".VC_");
 					strcat(searchlabel, buffer);
 					current_hook = find_symbol(symbols, searchlabel);
-					if (!current_hook) {
-						fprintf(stderr, "Error: Cannot find symbol: %s\n", searchlabel);
-					}
 					free(searchlabel);
 					// Skip until the next newline
 					for (c = getc(input); c != EOF; c = getc(input)) {
@@ -547,10 +511,10 @@ bool verify_completeness(FILE *orig_rom, FILE *new_rom, struct Patches *patches)
 			offset += patch->size;
 			index++;
 		} else if (orig_byte != new_byte) {
-			fprintf(stderr, "Value mismatch at decimal offset: %li\n", offset - 1);
-			fprintf(stderr, "Original ROM value: %x\n", orig_byte);
-			fprintf(stderr, "Patched ROM value: %x\n", new_byte);
-			fprintf(stderr, "Current patch start address: %x\n", patch->offset);
+			fprintf(stderr, PROGRAM_NAME ": Warning: Value mismatch at decimal offset: %li\n", offset - 1);
+			fprintf(stderr, "    Original ROM value: %x\n", orig_byte);
+			fprintf(stderr, "    Patched ROM value: %x\n", new_byte);
+			fprintf(stderr, "    Current patch start address: %x\n", patch->offset);
 			return false;
 		}
 	}
@@ -570,7 +534,7 @@ int main(int argc, char *argv[]) {
 	struct Patches *patches = process_template(argv[5], new_rom, orig_rom, argv[6], symbols);
 
 	if (!verify_completeness(orig_rom, new_rom, patches)) {
-		fprintf(stderr, "Warning: Not all ROM differences are defined by \"%s\"\n", argv[6]);
+		fprintf(stderr, PROGRAM_NAME ": Warning: Not all ROM differences are defined by \"%s\"\n", argv[6]);
 	}
 
 	free_symbols(symbols);
