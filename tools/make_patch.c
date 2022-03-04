@@ -367,6 +367,7 @@ void interpret_command(
 		}
 
 	} else if (!strcmp(command, "db") || !strcmp(command, "DB")) {
+		fprintf(output, "a1:");
 		int offset_mod = 0;
 		if (strchr(argv[0], '+') != NULL) {
 			offset_mod = strtol(strchr(argv[0], '+'), NULL, 10);

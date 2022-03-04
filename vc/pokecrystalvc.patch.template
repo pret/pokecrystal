@@ -232,7 +232,7 @@ Mode = 11
 Type = 0                        
 Index = 1                       
 Address = {{ADDREss}}            
-Fixcode=a1:{{db SCREEN_HEIGHT_PX}}        
+Fixcode={{db SCREEN_HEIGHT_PX}}        
               
 ;12 1b 0b 79 b0  find next C9
 [BiographySave_ret]
@@ -264,7 +264,7 @@ Mode = 6
 Type = 0                                                                                       
 Address = {{address}}                                                                        
 MemAddress={{findaddress hJoyPressed}}                                                                           
-Fixcode=a1:{{db NO_INPUT}}                                                                                  
+Fixcode={{db NO_INPUT}}                                                                                  
 ConditionType = 0                                                                              
 ConditionValueA = {{dws wWindowStackPointer wWindowStackPointer+1 wMenuJoypad wMenuSelection wMenuSelection wMenuCursorY hJoyPressed hJoyPressed hJoyPressed hJoyPressed}}                   
 ConditionValueB = {{dws ==                  ==                    ==          >=             <=             ==           !=          !=          !=          !=}}                   
@@ -279,7 +279,7 @@ Mode = 6
 Type = 0                                                                      
 Address = {{address}}                                                           
 MemAddress={{findaddress hJoyPressed}}                                                            
-Fixcode=a1:{{db NO_INPUT}}                                                                 
+Fixcode={{db NO_INPUT}}                                                                 
 ConditionType = 0                                                             
 ConditionValueA = {{dws wWindowStackPointer wWindowStackPointer+1 wMenuJoypad wMenuSelection wMenuCursorY wMapGroup         wMapNumber                wYCoord wXCoord hJoyPressed hJoyPressed hJoyPressed hJoyPressed}}  
 ConditionValueB = {{dws ==                  ==                    ==          ==             ==           ==                ==                        ==      ==      !=          !=          !=          !=}}  
@@ -322,7 +322,7 @@ Mode = 6
 Type = 0                                                                                          
 Address = {{address}}                                                                            
 MemAddress={{findaddress hJoyPressed}}                                                                                 
-Fixcode=a1:{{db NO_INPUT}}                                                                                     
+Fixcode={{db NO_INPUT}}                                                                                     
 ConditionType = 0                                                                                 
 ConditionValueA = {{dws wWindowStackPointer wWindowStackPointer+1 wMenuJoypad wMenuSelection wDexArrowCursorPosIndex hJoyPressed hJoyPressed hJoyPressed hJoyPressed}}                      
 ConditionValueB = {{dws ==                  ==                    ==          ==             ==                      !=          !=          !=          !=}}                      
