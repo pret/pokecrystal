@@ -258,17 +258,16 @@ void interpret_command(
 		argv[i] = arg;
 	}
 
-	int offset = current_hook ? current_hook->offset : -1;
-
 	// Use the arguments
 	if (!strcmp(command, "patch") || !strcmp(command, "Patch")) {
+		int current_offset = current_hook ? current_hook->offset : -1;
 		if (argc > 0) {
-			offset += strtol(argv[0], NULL, 0);
+			current_offset += strtol(argv[0], NULL, 0);
 		}
-		if (fseek(orig_rom, offset, SEEK_SET)) {
+		if (fseek(orig_rom, current_offset, SEEK_SET)) {
 			error_exit("Error: Could not seek to the offset of %s in the original ROM\n", current_hook->name);
 		}
-		if (fseek(new_rom, offset, SEEK_SET)) {
+		if (fseek(new_rom, current_offset, SEEK_SET)) {
 			error_exit("Error: Could not seek to offset of %s in the new ROM\n", current_hook->name);
 		}
 		if (argc <= 1 || strcmp(argv[1], "big")) {
@@ -276,7 +275,7 @@ void interpret_command(
 			if (c == getc(orig_rom)) {
 				fprintf(stderr, PROGRAM_NAME ": Warning: %s doesn't actually contain any differences\n", current_hook->name);
 			}
-			append_patch(patches, offset, 1);
+			append_patch(patches, current_offset, 1);
 			fprintf(output, "0x");
 			fprintf(output, isupper((unsigned char)command[0]) ? "%02X" : "%02x", c);
 		} else {
@@ -284,10 +283,10 @@ void interpret_command(
 			strcpy(searchend, current_hook->name);
 			strcat(searchend, "_End");
 			const struct Symbol *patchend = find_symbol(symbols, searchend);
-			int length = patchend->offset - offset;
+			int length = patchend->offset - current_offset;
 			memset(searchend, 0, strlen(patchend->name));
-			fseek(new_rom, offset, SEEK_SET);
-			append_patch(patches, offset, length);
+			fseek(new_rom, current_offset, SEEK_SET);
+			append_patch(patches, current_offset, length);
 			fprintf(output, "a%d:", length);
 			for (int i = 0; i < length; i++) {
 				if (i) {
