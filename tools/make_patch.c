@@ -337,9 +337,10 @@ void interpret_command(
 				fprintf(output, " 05 00");
 				continue;
 			}
-			if (strchr(argv[i], '+') != NULL) {
-				offset_mod = strtol(strchr(argv[i], '+'), NULL, 10);
-				argv[i][strlen(argv[i]) - strlen(strchr(argv[i], '+'))] = '\0';
+			const char *plus = strchr(argv[i], '+');
+			if (plus) {
+				offset_mod = strtol(plus, NULL, 10);
+				argv[i][strlen(argv[i]) - strlen(plus)] = '\0';
 			}
 			const struct Symbol *getsymbol = find_symbol(symbols, argv[i]);
 			if (!getsymbol) {
@@ -365,7 +366,7 @@ void interpret_command(
 		fprintf(output, isupper((unsigned char)command[0]) ? "%02X": "%02x",
 			LOW(parsed_offset));
 
-	} else if (!strcmp(command, "hex") || !strcmp(command, "Hex")) {
+	} else if (!strcmp(command, "hex") || !strcmp(command, "Hex") || !strcmp(command, "HEx")) {
 		if (argc < 1) {
 			fprintf(stderr, "Error: Missing argument for %s", command);
 		}
@@ -388,16 +389,14 @@ void interpret_command(
 		if (!getsymbol) {
 			return;
 		}
-		int padding = 2;
-		if (argv[1] != NULL) {
-			padding = strtol(argv[1], NULL, 10);
+		int padding = argc > 1 ? strtol(argv[1], NULL, 10) : 2;
+		int parsed_offset = getsymbol->offset + offset_mod;
+		if (!strcmp(command, "HEx")) {
+			// This is only necessary to match the exact upper/lower casing in the original patch
+			fprintf(output, "0x%0*X%02x", padding - 2, parsed_offset >> 8, LOW(parsed_offset));
+		} else {
+			fprintf(output, isupper((unsigned char)command[0]) ? "0x%0*X" : "0x%0*x", padding, parsed_offset);
 		}
-		fprintf(output, isupper((unsigned char)command[0]) ? "0x%0*X" : "0x%0*x",
-				padding, (getsymbol->offset + offset_mod));
-
-	} else if (!strcmp(command, "HEx")) {
-		// This is only necessary to match the exact upper/lower casing in the original patch
-		fprintf(output, "0x%X%x", offset >> 8, LOW(offset));
 
 	} else {
 		fprintf(stderr, "Error: Unknown command: %s\n", command);

@@ -231,7 +231,7 @@ Type = 14
 Mode = 11                       
 Type = 0                        
 Index = 1                       
-Address = {{HEx}}            
+Address = {{HEx @}}            
 Fixcode={{db SCREEN_HEIGHT_PX}}        
               
 ;12 1b 0b 79 b0  find next C9
@@ -648,28 +648,28 @@ MotionBlur0 = 11
 [FPA link fight End0]                                                     
 Mode = 3                                                          
 Type = 1                                                          
-Address = {{HEx}}
+Address = {{HEx @}}
 
 ;3D 20 EF C9 3E 01 at 3E      
 ; 0008c439h: 3D 20 EF C9 3E       at 3e                           ; = 锷>
 [FPA link fight End1]                                                     
 Mode = 3                                                          
 Type = 1                                                          
-Address = {{HEx}}
+Address = {{HEx @}}
 
 ;01 FF 3E 01 at 3E
 ;0008c576h: 01 FF 3E 01                                     ; .>.
 [FPA link fight End2]                                                     
 Mode = 3                                                          
 Type = 1                                                          
-Address = {{HEx}}
+Address = {{HEx @}}
 
 ;32 00 19 00 3e 01 at 3e
 ;0008c764h: 32 00 19 00 3E 01                               ; 2...>.
 [FPA link fight End3]                                                     
 Mode = 3                                                          
 Type = 1                                                          
-Address = {{HEx}}
+Address = {{HEx @}}
  
 ;ROM:8C25A                 ld      [byte_FFC6], a
 ;ROM:8C25C                 ld      [byte_FFC7], a
