@@ -117,6 +117,15 @@ const struct Symbol *find_symbol(const struct Symbol *symbols, const char *name)
 	return NULL;
 }
 
+const struct Symbol *find_symbol_cat(const struct Symbol *symbols, const char *prefix, const char *suffix) {
+	char *symname = xmalloc(strlen(prefix) + strlen(suffix) + 1);
+	strcpy(symname, prefix);
+	strcat(symname, suffix);
+	const struct Symbol *symbol = find_symbol(symbols, symname);
+	free(symname);
+	return symbol;
+}
+
 void parse_symbol_value(char *input, int *bank, int *address) {
 	char *buffer = xmalloc(strlen(input) + 1);
 	strcpy(buffer, input);
@@ -157,17 +166,6 @@ void parse_symbol_value(char *input, int *bank, int *address) {
 	free(buffer);
 }
 
-void strip_extra_spaces(char *str) {
-	// Strip all leading spaces and all but one trailing space
-	int x = 0;
-	for (int i = 0; str[i]; i++) {
-		if (str[i] != ' ' || (i > 0 && str[i-1] != ' ')) {
-			str[x++] = str[i];
-		}
-	}
-	str[x] = '\0';
-}
-
 struct Symbol *parse_symbols(const char *filename, struct Symbol **symbols) {
 	FILE *file = xfopen(filename, 'r');
 
@@ -184,22 +182,20 @@ struct Symbol *parse_symbols(const char *filename, struct Symbol **symbols) {
 		case ';':
 		case '\r':
 		case '\n':
-			// If we encounter a newline or comment, we've reached the end of the label name
+			// This is the end of the symbol name
 			buffer->data[buffer_index] = '\0';
-			// This is the end of the parsable line
-			buffer_index = SIZE_MAX;
 			create_symbol(symbols, buffer->data, bank, address);
-			offset = -1;
+			buffer_index = SIZE_MAX;
 			break;
 
 		case ' ':
 			if (offset != -1) {
-				// If we've just encountered a space, ignore this one
+				// Ignore leading spaces
 				if (buffer_index) {
 					buffer->data[buffer_index++] = c;
 				}
 			} else {
-				// If we encounter a space, we've reached the end of the address
+				// This is the end of the symbol value
 				buffer->data[buffer_index] = '\0';
 				parse_symbol_value(buffer->data, &bank, &address);
 				buffer_index = offset ? 0 : SIZE_MAX;
@@ -210,7 +206,7 @@ struct Symbol *parse_symbols(const char *filename, struct Symbol **symbols) {
 			buffer->data[buffer_index++] = c;
 		}
 
-		// We were requested to skip to the next line
+		// Skip to the next line
 		if (buffer_index == SIZE_MAX) {
 			buffer_index = 0;
 			offset = -1;
@@ -225,11 +221,39 @@ struct Symbol *parse_symbols(const char *filename, struct Symbol **symbols) {
 	return *symbols;
 }
 
+int parse_arg_value(char *arg, bool absolute, const struct Symbol *symbols, const char *patch_name) {
+	static const char *comparisons[6] = {"==", ">", "<", ">=", "<=", "!="};
+	for (int i = 0; i < sizeof(comparisons) / sizeof(*comparisons); i++) {
+		if (!strcmp(arg, comparisons[i])) {
+			return i;
+		}
+	}
+	if (isdigit((unsigned char)arg[0])) {
+		return strtol(arg, NULL, 0);
+	}
+	int offset_mod = 0;
+	const char *plus = strchr(arg, '+');
+	if (plus) {
+		offset_mod = strtol(plus, NULL, 0);
+		arg[strlen(arg) - strlen(plus)] = '\0';
+	}
+	const char *sym_name = !strcmp(arg, "@") ? patch_name : arg;
+	const struct Symbol *symbol = find_symbol(symbols, sym_name);
+	return (absolute ? symbol->offset : symbol->address) + offset_mod;
+}
+
 void interpret_command(
 	char *command, const struct Symbol *current_hook, const struct Symbol *symbols,
 	struct Patches *patches, FILE *new_rom, FILE *orig_rom, FILE *output
 ) {
-	strip_extra_spaces(command);
+	// Strip all leading spaces and all but one trailing space
+	int x = 0;
+	for (int i = 0; command[i]; i++) {
+		if (command[i] != ' ' || (i > 0 && command[i-1] != ' ')) {
+			command[x++] = command[i];
+		}
+	}
+	command[x] = '\0';
 
 	// Count the arguments
 	int argc = 0;
@@ -263,11 +287,7 @@ void interpret_command(
 		if (fseek(new_rom, current_offset, SEEK_SET)) {
 			error_exit("Error: Cannot seek to 'vc_patch %s' in the new ROM\n", current_hook->name);
 		}
-		char *searchend = xmalloc(strlen(current_hook->name) + strlen("_End") + 1);
-		strcpy(searchend, current_hook->name);
-		strcat(searchend, "_End");
-		const struct Symbol *current_hook_end = find_symbol(symbols, searchend);
-		free(searchend);
+		const struct Symbol *current_hook_end = find_symbol_cat(symbols, current_hook->name, "_End");
 		int length = current_hook_end->offset - current_offset;
 		if (length == 1) {
 			int c = getc(new_rom);
@@ -275,8 +295,7 @@ void interpret_command(
 				fprintf(stderr, PROGRAM_NAME ": Warning: 'vc_patch %s' doesn't alter the ROM\n", current_hook->name);
 			}
 			append_patch(patches, current_offset, 1);
-			fprintf(output, "0x");
-			fprintf(output, isupper((unsigned char)command[0]) ? "%02X" : "%02x", c);
+			fprintf(output, isupper((unsigned char)command[0]) ? "0x%02X" : "0x%02x", c);
 		} else {
 			fseek(new_rom, current_offset, SEEK_SET);
 			append_patch(patches, current_offset, length);
@@ -291,69 +310,32 @@ void interpret_command(
 
 	} else if (!strcmp(command, "dws") || !strcmp(command, "Dws") || !strcmp(command, "DWs")) {
 		if (argc < 1) {
-			error_exit("Error: Missing argument for command: %s", command);
+			error_exit("Error: Invalid arguments for command: %s", command);
 		}
-		fprintf(output, "a%i:", (argc * 2));
+		fprintf(output, "a%d:", argc * 2);
 		for (int i = 0; i < argc; i++) {
-			int parsed_offset;
-			if (argv[i][0] == '0') {
-				parsed_offset = strtol(argv[i], NULL, 16);
-			} else if (!strcmp(argv[i], "==")) {
-				parsed_offset = 0;
-			} else if (!strcmp(argv[i], ">")) {
-				parsed_offset = 1;
-			} else if (!strcmp(argv[i], "<")) {
-				parsed_offset = 2;
-			} else if (!strcmp(argv[i], ">=")) {
-				parsed_offset = 3;
-			} else if (!strcmp(argv[i], "<=")) {
-				parsed_offset = 4;
-			} else if (!strcmp(argv[i], "!=")) {
-				parsed_offset = 5;
-			} else {
-				int offset_mod = 0;
-				const char *plus = strchr(argv[i], '+');
-				if (plus) {
-					offset_mod = strtol(plus, NULL, 10);
-					argv[i][strlen(argv[i]) - strlen(plus)] = '\0';
-				}
-				const struct Symbol *getsymbol = find_symbol(symbols, argv[i]);
-				parsed_offset = getsymbol->address + offset_mod;
-			}
+			int value = parse_arg_value(argv[i], false, symbols, current_hook->name);
 			fprintf(output, isupper((unsigned char)command[0]) ? " %02X %02X": " %02x %02x",
-				LOW(parsed_offset), HIGH(parsed_offset));
+				LOW(value), HIGH(value));
 		}
 
 	} else if (!strcmp(command, "db") || !strcmp(command, "Db") || !strcmp(command, "DB")) {
-		fprintf(output, "a1:");
-		int offset_mod = 0;
-		if (strchr(argv[0], '+') != NULL) {
-			offset_mod = strtol(strchr(argv[0], '+'), NULL, 10);
-			argv[0][strlen(argv[0]) - strlen(strchr(argv[0], '+'))] = '\0';
+		if (argc != 1) {
+			error_exit("Error: Invalid arguments for command: %s", command);
 		}
-		const struct Symbol *getsymbol = find_symbol(symbols, argv[0]);
-		int parsed_offset = getsymbol->address + offset_mod;
-		fprintf(output, isupper((unsigned char)command[0]) ? "%02X": "%02x",
-			LOW(parsed_offset));
+		int value = parse_arg_value(argv[0], false, symbols, current_hook->name);
+		fprintf(output, isupper((unsigned char)command[0]) ? "a1:%02X": "a1:%02x", LOW(value));
 
 	} else if (!strcmp(command, "hex") || !strcmp(command, "Hex") || !strcmp(command, "HEx")) {
-		if (argc < 1) {
-			error_exit("Error: Missing argument for command: %s", command);
+		if (argc != 1 && argc != 2) {
+			error_exit("Error: Invalid arguments for command: %s", command);
 		}
-		int offset_mod = 0;
-		if (strchr(argv[0], '+') != NULL) {
-			offset_mod = strtol(strchr(argv[0], '+'), NULL, 10);
-			argv[0][strlen(argv[0]) - strlen(strchr(argv[0], '+'))] = '\0';
-		}
-		const char *searchend = !strcmp(argv[0], "@") ? current_hook->name : argv[0];
-		const struct Symbol *getsymbol = find_symbol(symbols, searchend);
+		int value = parse_arg_value(argv[0], true, symbols, current_hook->name);
 		int padding = argc > 1 ? strtol(argv[1], NULL, 10) : 2;
-		int parsed_offset = getsymbol->offset + offset_mod;
 		if (!strcmp(command, "HEx")) {
-			// This is only necessary to match the exact upper/lower casing in the original patch
-			fprintf(output, "0x%0*X%02x", padding - 2, parsed_offset >> 8, LOW(parsed_offset));
+			fprintf(output, "0x%0*X%02x", padding - 2, value >> 8, LOW(value));
 		} else {
-			fprintf(output, isupper((unsigned char)command[0]) ? "0x%0*X" : "0x%0*x", padding, parsed_offset);
+			fprintf(output, isupper((unsigned char)command[0]) ? "0x%0*X" : "0x%0*x", padding, value);
 		}
 
 	} else {
@@ -386,13 +368,13 @@ struct Patches *process_template(const char *template_filename, const char *patc
 		switch (c) {
 		case '\r':
 		case '\n':
-			// A newline simply resets the line_pos
+			// Start a new line
 			putc(c, output);
 			line_pos = 0;
 			break;
 
 		case '{':
-			// Check if we've found two of them
+			// Two "{{" begins a command
 			c = getc(input);
 			if (c != '{') {
 				putc('{', output);
@@ -400,10 +382,10 @@ struct Patches *process_template(const char *template_filename, const char *patc
 				ungetc(c, input);
 				break;
 			}
-			// If we have, we store the contents before it ends into buffer
 			buffer_index = 0;
 			for (c = getc(input); c != EOF; c = getc(input)) {
 				if (c == '}') {
+					// Two "}}" ends a command
 					c = getc(input);
 					if (c == EOF || c == '}') {
 						break;
@@ -417,33 +399,28 @@ struct Patches *process_template(const char *template_filename, const char *patc
 			break;
 
 		case '[':
-			// End immediately if this is not the beginning of the line
+			// "[" at the start of a line begins a patch label
 			if (line_pos) {
 				putc(c, output);
 				line_pos++;
 				break;
 			}
-			// Try to read the label
 			putc(c, output);
 			buffer_index = 0;
 			for (c = getc(input); c != EOF; c = getc(input)) {
 				putc(c, output);
 				if (c == ']') {
-					// If we're at the end, we can get the symbol for the label
+					// "]" ends the patch label
 					buffer->data[buffer_index] = '\0';
-					// Translate spaces to underscores
+					// Convert spaces to underscores
 					for (char *p = buffer->data; *p != '\0'; p++) {
 						if (*p == ' ') {
 							*p = '_';
 						}
 					}
-					// Look for the symbol starting with .VC_
-					char *searchlabel = xmalloc(strlen(".VC_") + strlen(buffer->data) + 1);
-					strcpy(searchlabel, ".VC_");
-					strcat(searchlabel, buffer->data);
-					current_hook = find_symbol(symbols, searchlabel);
-					free(searchlabel);
-					// Skip until the next newline
+					// Look for the symbol starting with ".VC_"
+					current_hook = find_symbol_cat(symbols, ".VC_", buffer->data);
+					// Skip to the next line
 					for (c = getc(input); c != EOF; c = getc(input)) {
 						putc(c, output);
 						if (c == '\n' || c == '\r') {
