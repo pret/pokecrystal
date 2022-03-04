@@ -270,7 +270,11 @@ void interpret_command(
 		if (fseek(new_rom, current_offset, SEEK_SET)) {
 			error_exit("Error: Could not seek to offset of %s in the new ROM\n", current_hook->name);
 		}
-		if (argc <= 1 || strcmp(argv[1], "big")) {
+		 char *searchend = xmalloc(strlen(current_hook->name) + strlen("_End") + 1);
+		strcpy(searchend, current_hook->name);
+		strcat(searchend, "_End");
+		const struct Symbol *current_hook_end = find_symbol(symbols, searchend);
+		if (!current_hook_end || ((current_hook_end->offset - current_offset) == 1)) {
 			int c = getc(new_rom);
 			if (c == getc(orig_rom)) {
 				fprintf(stderr, PROGRAM_NAME ": Warning: %s doesn't actually contain any differences\n", current_hook->name);
@@ -279,12 +283,8 @@ void interpret_command(
 			fprintf(output, "0x");
 			fprintf(output, isupper((unsigned char)command[0]) ? "%02X" : "%02x", c);
 		} else {
-			char *searchend = xmalloc(strlen(current_hook->name) + strlen("_End") + 1);
-			strcpy(searchend, current_hook->name);
-			strcat(searchend, "_End");
-			const struct Symbol *patchend = find_symbol(symbols, searchend);
-			int length = patchend->offset - current_offset;
-			memset(searchend, 0, strlen(patchend->name));
+			int length = current_hook_end->offset - current_offset;
+			memset(searchend, 0, strlen(current_hook_end->name));
 			fseek(new_rom, current_offset, SEEK_SET);
 			append_patch(patches, current_offset, length);
 			fprintf(output, "a%d:", length);

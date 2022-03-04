@@ -255,7 +255,7 @@ Type = 60
 [print forbid 1]                                                   
 Mode = 1                                                                                                                  
 Address = {{hex @ 4}}
-Fixcode={{patch 0 big}}      
+Fixcode={{patch}}      
 
 
                             
@@ -299,7 +299,7 @@ ConditionValueC = {{dws 0xaf                0xdf                  0x00        0x
 [print forbid 4]                                                  
 Mode = 1                                                          
 Address = {{hex @ 4}}                                          
-Fixcode={{patch 0 big}}            
+Fixcode={{patch}}            
 
 
 ;ROM:401D6                 call    unk_50A5                                         
@@ -359,7 +359,7 @@ ConditionValueC = {{dws 0xa1                0xdb                  0x01        0x
 [infrared fake 0]                                                                                                           
 Mode = 1                                                                                                                    
 Address = {{hex @ 4}}                                                                                  
-Fixcode={{Patch 0 big}}                                                                                   
+Fixcode={{Patch}}                                                                                   
                                                                                                                             
                
 ;00104c3ch: CD 66 4D CD 9E 4D CD E5 4D F0 BC FE 10 CA 24 4D   
@@ -369,7 +369,7 @@ Fixcode={{Patch 0 big}}
 [infrared fake 1]                                                                                                    
 Mode = 1                                                                                                             
 Address = {{hex @ 4}}                                                                                              
-Fixcode={{patch 0 big}}                                           
+Fixcode={{patch}}                                           
                                                                                                                      
 [infrared fake 2]                                                                                                    
 Mode = 2                                                                                                             
