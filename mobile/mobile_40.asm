@@ -1613,7 +1613,7 @@ endc
 	dec b
 	jr nz, .acknowledge
 
-.VC_send_dummy_end::
+	vc_hook send_dummy_end
 	ld a, [wOtherPlayerLinkAction]
 	ld [wBattleAction], a
 	ret
