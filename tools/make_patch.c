@@ -163,10 +163,11 @@ void parse_symbol_value(char *input, int *bank, int *address) {
 	free(buffer);
 }
 
-void strip_extra_spaces(char* str) {
-	int i, x;
-	for(i=x=0; str[i]; ++i){
-		if (!isspace(str[i]) || (i > 0 && !isspace(str[i-1]))) {
+void strip_extra_spaces(char *str) {
+	// Strip all leading spaces and all but one trailing space
+	int x = 0;
+	for (int i = 0; str[i]; i++) {
+		if (str[i] != ' ' || (i > 0 && str[i-1] != ' ')) {
 			str[x++] = str[i];
 		}
 	}
@@ -234,9 +235,8 @@ void interpret_command(
 	char *command, const struct Symbol *current_hook, const struct Symbol *symbols,
 	struct Patches *patches, FILE *new_rom, FILE *orig_rom, FILE *output
 ) {
-	// Strip extra spaces
 	strip_extra_spaces(command);
-	
+
 	// Count the arguments
 	int argc = 0;
 	for (char *c = command; *c; c++) {
@@ -260,11 +260,7 @@ void interpret_command(
 	int offset = current_hook ? current_hook->offset : -1;
 
 	// Use the arguments
-	if (!strcmp(command, "ADDREss")) {
-		// This is only necessary to match the exact upper/lower casing in the original patch
-		fprintf(output, "0x%X%x", offset >> 8, LOW(offset));
-
-	} else if (!strcmp(command, "Patch") || !strcmp(command, "patch")) {
+	if (!strcmp(command, "patch") || !strcmp(command, "Patch")) {
 		if (argc > 0) {
 			offset += strtol(argv[0], NULL, 0);
 		}
@@ -294,7 +290,7 @@ void interpret_command(
 			} else {
 				// Figure out the length of the patch
 				int length = current_hook->offset - offset;
-				memset(searchend, 0, (strlen(current_hook->name)));
+				memset(searchend, 0, strlen(current_hook->name));
 				// We've got the length, now go back
 				fseek(new_rom, offset, SEEK_SET);
 				// Print out the patch
@@ -310,7 +306,7 @@ void interpret_command(
 			free(searchend);
 		}
 
-	} else if (!strcmp(command, "dws") || !strcmp(command, "DWS")) {
+	} else if (!strcmp(command, "dws") || !strcmp(command, "Dws") || !strcmp(command, "DWS")) {
 		if (argc < 1) {
 			fprintf(stderr, "Error: Missing argument for %s", command);
 		}
@@ -341,7 +337,7 @@ void interpret_command(
 				fprintf(output, " 05 00");
 				continue;
 			}
-			if (strchr(argv[i], '+') != NULL) { 
+			if (strchr(argv[i], '+') != NULL) {
 				offset_mod = strtol(strchr(argv[i], '+'), NULL, 10);
 				argv[i][strlen(argv[i]) - strlen(strchr(argv[i], '+'))] = '\0';
 			}
@@ -354,7 +350,7 @@ void interpret_command(
 				LOW(parsed_offset), HIGH(parsed_offset));
 		}
 
-	} else if (!strcmp(command, "db") || !strcmp(command, "DB")) {
+	} else if (!strcmp(command, "db") || !strcmp(command, "Db") || !strcmp(command, "DB")) {
 		fprintf(output, "a1:");
 		int offset_mod = 0;
 		if (strchr(argv[0], '+') != NULL) {
@@ -367,9 +363,9 @@ void interpret_command(
 		}
 		int parsed_offset = getsymbol->address + offset_mod;
 		fprintf(output, isupper((unsigned char)command[0]) ? "%02X": "%02x",
-				LOW(parsed_offset));
+			LOW(parsed_offset));
 
-	} else if (!strcmp(command, "hex") || !strcmp(command, "HEX")) {
+	} else if (!strcmp(command, "hex") || !strcmp(command, "Hex")) {
 		if (argc < 1) {
 			fprintf(stderr, "Error: Missing argument for %s", command);
 		}
@@ -388,13 +384,21 @@ void interpret_command(
 			searchend = argv[0];
 		}
 		const struct Symbol *getsymbol = find_symbol(symbols, searchend);
+		free(searchend);
 		if (!getsymbol) {
 			return;
 		}
 		int padding = 2;
-		if (argv[1] != NULL) { padding = strtol(argv[1], NULL, 10); }
+		if (argv[1] != NULL) {
+			padding = strtol(argv[1], NULL, 10);
+		}
 		fprintf(output, isupper((unsigned char)command[0]) ? "0x%0*X" : "0x%0*x",
 				padding, (getsymbol->offset + offset_mod));
+
+	} else if (!strcmp(command, "HEx")) {
+		// This is only necessary to match the exact upper/lower casing in the original patch
+		fprintf(output, "0x%X%x", offset >> 8, LOW(offset));
+
 	} else {
 		fprintf(stderr, "Error: Unknown command: %s\n", command);
 	}
@@ -411,7 +415,7 @@ struct Patches *process_template(
 
 	// The ROM checksum will always differ
 	append_patch(patches, 0x14e, 2);
-	// The Stadium data 9see stadium.c) will always differ
+	// The Stadium data (see stadium.c) will always differ
 	unsigned int rom_size = (unsigned int)xfsize("", orig_rom);
 	unsigned int stadium_size = 24 + 6 + 2 + (rom_size / 0x2000) * 2;
 	append_patch(patches, rom_size - stadium_size, stadium_size);
