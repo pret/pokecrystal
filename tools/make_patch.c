@@ -264,18 +264,6 @@ void interpret_command(
 		// This is only necessary to match the exact upper/lower casing in the original patch
 		fprintf(output, "0x%X%x", offset >> 8, LOW(offset));
 
-	} else if (!strcmp(command, "Address") || !strcmp(command, "address")) {
-		if (argc > 0) {
-			offset += strtol(argv[0], NULL, 0);
-		}
-		fprintf(output, "0x");
-		if (argc > 1) {
-			for (int i = strtol(argv[1], NULL, 0); i > 0; i--) {
-				putc('0', output);
-			}
-		}
-		fprintf(output, isupper((unsigned char)command[0]) ? "%X" : "%x", offset);
-
 	} else if (!strcmp(command, "Patch") || !strcmp(command, "patch")) {
 		if (argc > 0) {
 			offset += strtol(argv[0], NULL, 0);
