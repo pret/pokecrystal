@@ -31,25 +31,19 @@ struct Symbol {
 	char name[];
 };
 
-char *create_buffer(void) {
+struct Buffer *create_buffer(void) {
 	struct Buffer *buffer = xmalloc(sizeof(*buffer) + 0x100);
 	buffer->size = 0x100;
-	return buffer->data;
+	return buffer;
 }
 
-void free_buffer(char *data) {
-	struct Buffer *buffer = (struct Buffer *)(data - sizeof(*buffer));
-	free(buffer);
-}
-
-char *expand_buffer(char *data, size_t size) {
-	struct Buffer *buffer = (struct Buffer *)(data - sizeof(*buffer));
+struct Buffer *expand_buffer(struct Buffer *buffer, size_t size) {
 	if (size > buffer->size) {
 		size_t new_size = size > buffer->size + 0x100 ? size : buffer->size + 0x100;
 		buffer = xrealloc(buffer, new_size);
 		buffer->size = new_size;
 	}
-	return buffer->data;
+	return buffer;
 }
 
 struct Patches *create_patches(void) {
@@ -97,10 +91,9 @@ void create_symbol(struct Symbol **tip, const char *name, int bank, int address)
 }
 
 void free_symbols(struct Symbol *list) {
-	while (list) {
-		struct Symbol *next = list->next;
+	for (struct Symbol *next; list; list = next) {
+		next = list->next;
 		free(list);
-		list = next;
 	}
 }
 
@@ -178,7 +171,7 @@ void strip_extra_spaces(char *str) {
 struct Symbol *parse_symbols(const char *filename, struct Symbol **symbols) {
 	FILE *file = xfopen(filename, 'r');
 
-	char *buffer = create_buffer();
+	struct Buffer *buffer = create_buffer();
 	size_t buffer_index = 0;
 	int bank = 0;
 	int address = 0;
@@ -192,10 +185,10 @@ struct Symbol *parse_symbols(const char *filename, struct Symbol **symbols) {
 		case '\r':
 		case '\n':
 			// If we encounter a newline or comment, we've reached the end of the label name
-			buffer[buffer_index] = '\0';
+			buffer->data[buffer_index] = '\0';
 			// This is the end of the parsable line
 			buffer_index = SIZE_MAX;
-			create_symbol(symbols, buffer, bank, address);
+			create_symbol(symbols, buffer->data, bank, address);
 			offset = -1;
 			break;
 
@@ -203,18 +196,18 @@ struct Symbol *parse_symbols(const char *filename, struct Symbol **symbols) {
 			if (offset != -1) {
 				// If we've just encountered a space, ignore this one
 				if (buffer_index) {
-					buffer[buffer_index++] = c;
+					buffer->data[buffer_index++] = c;
 				}
 			} else {
 				// If we encounter a space, we've reached the end of the address
-				buffer[buffer_index] = '\0';
-				parse_symbol_value(buffer, &bank, &address);
+				buffer->data[buffer_index] = '\0';
+				parse_symbol_value(buffer->data, &bank, &address);
 				buffer_index = offset ? 0 : SIZE_MAX;
 			}
 			break;
 
 		default:
-			buffer[buffer_index++] = c;
+			buffer->data[buffer_index++] = c;
 		}
 
 		// We were requested to skip to the next line
@@ -228,7 +221,7 @@ struct Symbol *parse_symbols(const char *filename, struct Symbol **symbols) {
 	}
 
 	fclose(file);
-	free_buffer(buffer);
+	free(buffer);
 	return *symbols;
 }
 
@@ -268,13 +261,15 @@ void interpret_command(
 			error_exit("Error: Could not seek to the offset of %s in the original ROM\n", current_hook->name);
 		}
 		if (fseek(new_rom, current_offset, SEEK_SET)) {
-			error_exit("Error: Could not seek to offset of %s in the new ROM\n", current_hook->name);
+			error_exit("Error: Could not seek to the offset of %s in the new ROM\n", current_hook->name);
 		}
-		 char *searchend = xmalloc(strlen(current_hook->name) + strlen("_End") + 1);
+		char *searchend = xmalloc(strlen(current_hook->name) + strlen("_End") + 1);
 		strcpy(searchend, current_hook->name);
 		strcat(searchend, "_End");
 		const struct Symbol *current_hook_end = find_symbol(symbols, searchend);
-		if (!current_hook_end || ((current_hook_end->offset - current_offset) == 1)) {
+		free(searchend);
+		int length = current_hook_end->offset - current_offset;
+		if (length == 1) {
 			int c = getc(new_rom);
 			if (c == getc(orig_rom)) {
 				fprintf(stderr, PROGRAM_NAME ": Warning: %s doesn't actually contain any differences\n", current_hook->name);
@@ -283,8 +278,6 @@ void interpret_command(
 			fprintf(output, "0x");
 			fprintf(output, isupper((unsigned char)command[0]) ? "%02X" : "%02x", c);
 		} else {
-			int length = current_hook_end->offset - current_offset;
-			memset(searchend, 0, strlen(current_hook_end->name));
 			fseek(new_rom, current_offset, SEEK_SET);
 			append_patch(patches, current_offset, length);
 			fprintf(output, "a%d:", length);
@@ -294,7 +287,6 @@ void interpret_command(
 				}
 				fprintf(output, isupper((unsigned char)command[0]) ? "%02X" : "%02x", getc(new_rom));
 			}
-			free(searchend);
 		}
 
 	} else if (!strcmp(command, "dws") || !strcmp(command, "Dws") || !strcmp(command, "DWs")) {
@@ -385,7 +377,7 @@ struct Patches *process_template(
 	unsigned int stadium_size = 24 + 6 + 2 + (rom_size / 0x2000) * 2;
 	append_patch(patches, rom_size - stadium_size, stadium_size);
 
-	char *buffer = create_buffer();
+	struct Buffer *buffer = create_buffer();
 	size_t buffer_index = 0;
 	const struct Symbol *current_hook = NULL;
 	int line_pos = 0;
@@ -420,11 +412,11 @@ struct Patches *process_template(
 						break;
 					}
 				}
-				buffer[buffer_index++] = c;
+				buffer->data[buffer_index++] = c;
 				buffer = expand_buffer(buffer, buffer_index);
 			}
-			buffer[buffer_index] = '\0';
-			interpret_command(buffer, current_hook, symbols, patches, new_rom, orig_rom, output);
+			buffer->data[buffer_index] = '\0';
+			interpret_command(buffer->data, current_hook, symbols, patches, new_rom, orig_rom, output);
 			break;
 
 		case '[':
@@ -441,17 +433,17 @@ struct Patches *process_template(
 				putc(c, output);
 				if (c == ']') {
 					// If we're at the end, we can get the symbol for the label
-					buffer[buffer_index] = '\0';
+					buffer->data[buffer_index] = '\0';
 					// Translate spaces to underscores
-					for (char *p = buffer; *p != '\0'; p++) {
+					for (char *p = buffer->data; *p != '\0'; p++) {
 						if (*p == ' ') {
 							*p = '_';
 						}
 					}
 					// Look for the symbol starting with .VC_
-					char *searchlabel = xmalloc(strlen(".VC_") + strlen(buffer) + 1);
+					char *searchlabel = xmalloc(strlen(".VC_") + strlen(buffer->data) + 1);
 					strcpy(searchlabel, ".VC_");
-					strcat(searchlabel, buffer);
+					strcat(searchlabel, buffer->data);
 					current_hook = find_symbol(symbols, searchlabel);
 					free(searchlabel);
 					// Skip until the next newline
@@ -464,7 +456,7 @@ struct Patches *process_template(
 					buffer_index = 0;
 					break;
 				}
-				buffer[buffer_index++] = c;
+				buffer->data[buffer_index++] = c;
 			}
 			break;
 
@@ -479,7 +471,7 @@ struct Patches *process_template(
 
 	fclose(input);
 	fclose(output);
-	free_buffer(buffer);
+	free(buffer);
 	return patches;
 }
 
