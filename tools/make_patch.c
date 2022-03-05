@@ -321,25 +321,25 @@ struct Buffer *process_template(const char *template_filename, const char *patch
 	buffer_append(patches, &(struct Patch){rom_size - stadium_size, stadium_size});
 
 	const struct Symbol *current_hook = NULL;
-	int line_col = 0;
 
 	// Fill in the template
 	for (int c = getc(input); c != EOF; c = getc(input)) {
 		switch (c) {
-		case '\r':
-		case '\n':
-			// Start a new line
+		case ';':
+			// ";" comments until the end of the line
 			putc(c, output);
-			line_col = 0;
+			for (c = getc(input); c != EOF; c = getc(input)) {
+				putc(c, output);
+				if (c == '\n' || c == '\r') {
+					break;
+				}
+			}
 			break;
 
 		case '{':
 			// "{...}" is a template command; buffer its contents
 			buffer->size = 0;
-			for (c = getc(input); c != EOF; c = getc(input)) {
-				if (c == '}') {
-					break;
-				}
+			for (c = getc(input); c != EOF && c != '}'; c = getc(input)) {
 				buffer_append(buffer, &c);
 			}
 			buffer_append(buffer, "");
@@ -348,12 +348,8 @@ struct Buffer *process_template(const char *template_filename, const char *patch
 			break;
 
 		case '[':
+			// "[...]" is a patch label; buffer its contents
 			putc(c, output);
-			if (line_col) {
-				line_col++;
-				break;
-			}
-			// "[...]" at the start of a line is a patch label; buffer its contents
 			buffer->size = 0;
 			for (c = getc(input); c != EOF; c = getc(input)) {
 				putc(c, output);
@@ -382,7 +378,6 @@ struct Buffer *process_template(const char *template_filename, const char *patch
 
 		default:
 			putc(c, output);
-			line_col++;
 		}
 	}
 
