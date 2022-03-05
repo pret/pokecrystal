@@ -79,13 +79,13 @@ int get_address_type_limit(int address) {
 	     : 0x4000; // ROM
 }
 
-void create_symbol(struct Symbol **tip, const char *name, int bank, int address) {
+void append_symbol(struct Symbol **symbols, const char *name, int bank, int address) {
 	struct Symbol *symbol = xmalloc(sizeof(*symbol) + strlen(name) + 1);
 	symbol->address = address;
 	symbol->offset = bank > 0 ? address + (bank - 1) * get_address_type_limit(address) : address;
 	strcpy(symbol->name, name);
-	symbol->next = *tip;
-	*tip = symbol;
+	symbol->next = *symbols;
+	*symbols = symbol;
 }
 
 void free_symbols(struct Symbol *list) {
@@ -179,7 +179,7 @@ struct Symbol *parse_symbols(const char *filename, struct Symbol **symbols) {
 		case '\n':
 			// This is the end of the symbol name
 			append_to_buffer(buffer, '\0');
-			create_symbol(symbols, buffer->data, bank, address);
+			append_symbol(symbols, buffer->data, bank, address);
 			// Clear the buffer and skip to the next line for another symbol
 			buffer->size = 0;
 			skip_line = true;
