@@ -21,7 +21,7 @@ struct Symbol {
 	struct Symbol *next;
 	unsigned int address;
 	unsigned int offset;
-	char name[]; // VLA
+	char name[]; // C99 FAM
 };
 
 struct Buffer *create_buffer(size_t item_size) {
@@ -47,18 +47,19 @@ void free_buffer(struct Buffer *buffer) {
 }
 
 int get_address_type_limit(int address) {
-	return address >= 0x8000 && address < 0xa000 ? 0xa000 // VRAM
-	     : address >= 0xa000 && address < 0xc000 ? 0xc000 // SRAM
-	     : address >= 0xc000 && address < 0xf000 ? 0xd000 // WRAM
-	     : address >= 0xff80 && address < 0xffff ? 0x10000 // HRAM
-	     : 0x4000; // ROM
+	return address < 0x8000 ? 0x4000 // ROM
+	     : address < 0xa000 ? 0xa000 // VRAM
+	     : address < 0xc000 ? 0xc000 // SRAM
+	     : address < 0xd000 ? 0xd000 // WRAM
+	     : 0xffff; // HRAM
 }
 
 void append_symbol(struct Symbol **symbols, const char *name, int bank, int address) {
-	struct Symbol *symbol = xmalloc(sizeof(*symbol) + strlen(name) + 1);
+	size_t name_len = strlen(name) + 1;
+	struct Symbol *symbol = xmalloc(sizeof(*symbol) + name_len);
 	symbol->address = address;
 	symbol->offset = bank > 0 ? address + (bank - 1) * get_address_type_limit(address) : address;
-	strcpy(symbol->name, name);
+	memcpy(symbol->name, name, name_len);
 	symbol->next = *symbols;
 	*symbols = symbol;
 }
@@ -71,31 +72,29 @@ void free_symbols(struct Symbol *list) {
 }
 
 const struct Symbol *find_symbol(const struct Symbol *symbols, const char *name) {
-	size_t namelen = strlen(name);
+	size_t name_len = strlen(name);
 	for (const struct Symbol *symbol = symbols; symbol; symbol = symbol->next) {
-		size_t symbolnamelen = strlen(symbol->name);
-		if (namelen > symbolnamelen) {
+		size_t sym_name_len = strlen(symbol->name);
+		if (name_len > sym_name_len) {
 			continue;
 		}
-		const char *symbolname = symbol->name;
+		const char *sym_name = symbol->name;
 		if (name[0] == '.') {
 			// If `name` is a local label, compare it to the local part of `symbol->name`
-			symbolname += symbolnamelen - namelen;
+			sym_name += sym_name_len - name_len;
 		}
-		if (!strcmp(symbolname, name)) {
+		if (!strcmp(sym_name, name)) {
 			return symbol;
 		}
 	}
 	error_exit("Error: Unknown symbol: %s\n", name);
-	return NULL;
 }
 
 const struct Symbol *find_symbol_cat(const struct Symbol *symbols, const char *prefix, const char *suffix) {
-	char *symname = xmalloc(strlen(prefix) + strlen(suffix) + 1);
-	strcpy(symname, prefix);
-	strcat(symname, suffix);
-	const struct Symbol *symbol = find_symbol(symbols, symname);
-	free(symname);
+	char *sym_name = xmalloc(strlen(prefix) + strlen(suffix) + 1);
+	sprintf(sym_name, "%s%s", prefix, suffix);
+	const struct Symbol *symbol = find_symbol(symbols, sym_name);
+	free(sym_name);
 	return symbol;
 }
 
@@ -118,7 +117,7 @@ void parse_symbol_value(char *input, int *bank, int *address) {
 			*address = -1;
 		}
 
-		if (endptr_bank != buffer + strlen(buffer) || endptr_address != buffer2 + strlen(buffer2)) {
+		if (endptr_bank == buffer || *endptr_bank || endptr_address == buffer2 || *endptr_address) {
 			error_exit("Error: Cannot parse bank+address: %s:%s\n", buffer, buffer2);
 		}
 	} else {
@@ -128,10 +127,10 @@ void parse_symbol_value(char *input, int *bank, int *address) {
 		char *endptr;
 		*address = strtol(buffer, &endptr, 16);
 		if (*address < 0) {
-			*address += 0x100;
+			*address = -1;
 		}
 
-		if (endptr != buffer + strlen(buffer)) {
+		if (endptr == buffer || *endptr) {
 			error_exit("Error: Cannot parse value: %s\n", buffer);
 		}
 	}
@@ -139,13 +138,12 @@ void parse_symbol_value(char *input, int *bank, int *address) {
 	free(buffer);
 }
 
-struct Symbol *parse_symbols(const char *filename, struct Symbol **symbols) {
+void parse_symbols(const char *filename, struct Symbol **symbols) {
 	FILE *file = xfopen(filename, 'r');
 	struct Buffer *buffer = create_buffer(1);
 
 	int bank = 0;
 	int address = 0;
-	bool skip_line = false;
 
 	for (int c = getc(file); c != EOF; c = getc(file)) {
 		switch (c) {
@@ -155,9 +153,12 @@ struct Symbol *parse_symbols(const char *filename, struct Symbol **symbols) {
 			// This is the end of the symbol name
 			append_to_buffer(buffer, "");
 			append_symbol(symbols, buffer->data, bank, address);
-			// Clear the buffer and skip to the next line for another symbol
+			// Clear the buffer for the next symbol
 			buffer->size = 0;
-			skip_line = true;
+			// Skip to the next line
+			while (c != '\n' && c != '\r' && c != EOF) {
+				c = getc(file);
+			}
 			break;
 
 		case ' ':
@@ -171,23 +172,14 @@ struct Symbol *parse_symbols(const char *filename, struct Symbol **symbols) {
 		default:
 			append_to_buffer(buffer, &c);
 		}
-
-		if (skip_line) {
-			// Skip to the next line
-			while (c != '\n' && c != '\r' && c != EOF) {
-				c = getc(file);
-			}
-			skip_line = false;
-		}
 	}
 
 	fclose(file);
 	free_buffer(buffer);
-	return *symbols;
 }
 
 int parse_arg_value(char *arg, bool absolute, const struct Symbol *symbols, const char *patch_name) {
-	static const char *comparisons[6] = {"==", ">", "<", ">=", "<=", "!="};
+	static const char *comparisons[] = {"==", ">", "<", ">=", "<=", "!="};
 	for (unsigned int i = 0; i < sizeof(comparisons) / sizeof(*comparisons); i++) {
 		if (!strcmp(arg, comparisons[i])) {
 			return i;
@@ -197,10 +189,10 @@ int parse_arg_value(char *arg, bool absolute, const struct Symbol *symbols, cons
 		return strtol(arg, NULL, 0);
 	}
 	int offset_mod = 0;
-	const char *plus = strchr(arg, '+');
+	char *plus = strchr(arg, '+');
 	if (plus) {
 		offset_mod = strtol(plus, NULL, 0);
-		arg[strlen(arg) - strlen(plus)] = '\0';
+		*plus = '\0';
 	}
 	const char *sym_name = !strcmp(arg, "@") ? patch_name : arg;
 	const struct Symbol *symbol = find_symbol(symbols, sym_name);
@@ -214,12 +206,12 @@ void interpret_command(
 	// Strip all leading spaces and all but one trailing space
 	int x = 0;
 	for (int i = 0; command[i]; i++) {
-		if (!isspace(command[i]) || (i > 0 && !isspace(command[i-1]))) {
+		if (!isspace((unsigned char)command[i]) || (i > 0 && !isspace((unsigned char)command[i - 1]))) {
 			command[x++] = command[i];
 		}
 	}
-	if (isspace(command[x-1])) {
-		command[x-1] = '\0';
+	if (x > 0 && isspace((unsigned char)command[x - 1])) {
+		command[x - 1] = '\0';
 	} else {
 		command[x] = '\0';
 	}
@@ -455,8 +447,8 @@ int main(int argc, char *argv[]) {
 	}
 
 	struct Symbol *symbols = NULL;
-	symbols = parse_symbols(argv[1], &symbols);
-	symbols = parse_symbols(argv[2], &symbols);
+	parse_symbols(argv[1], &symbols);
+	parse_symbols(argv[2], &symbols);
 
 	FILE *new_rom = xfopen(argv[3], 'r');
 	FILE *orig_rom = xfopen(argv[4], 'r');
