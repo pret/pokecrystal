@@ -150,6 +150,7 @@ void parse_symbols(const char *filename, struct Symbol **symbols) {
 			break;
 
 		case ' ':
+		case '\t':
 			// This is the end of the symbol value
 			buffer_append(buffer, "");
 			parse_symbol_value(buffer->data, &bank, &address);
@@ -182,7 +183,7 @@ int parse_arg_value(char *arg, bool absolute, const struct Symbol *symbols, cons
 		offset_mod = parse_number(plus, 0);
 		*plus = '\0';
 	}
-	const char *sym_name = !strcmp(arg, "@") ? patch_name : arg;
+	const char *sym_name = strcmp(arg, "@") ? arg : patch_name;
 	const struct Symbol *symbol = symbol_find(symbols, sym_name);
 	return (absolute ? symbol->offset : symbol->address) + offset_mod;
 }
