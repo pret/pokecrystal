@@ -6,6 +6,7 @@
 #include <ctype.h>
 
 struct Buffer {
+	size_t item_size;
 	size_t size;
 	size_t capacity;
 	char *data;
@@ -16,12 +17,6 @@ struct Patch {
 	unsigned int size;
 };
 
-struct Patches {
-	size_t size;
-	size_t capacity;
-	struct Patch *data;
-};
-
 struct Symbol {
 	struct Symbol *next;
 	unsigned int address;
@@ -29,46 +24,26 @@ struct Symbol {
 	char name[]; // VLA
 };
 
-struct Buffer *create_buffer(void) {
+struct Buffer *create_buffer(size_t item_size) {
 	struct Buffer *buffer = xmalloc(sizeof(*buffer));
+	buffer->item_size = item_size;
 	buffer->size = 0;
 	buffer->capacity = 0x10;
-	buffer->data = xmalloc(buffer->capacity);
+	buffer->data = xmalloc(buffer->capacity * item_size);
 	return buffer;
 }
 
-void append_to_buffer(struct Buffer *buffer, char c) {
+void append_to_buffer(struct Buffer *buffer, const void *item) {
 	if (buffer->size >= buffer->capacity) {
 		buffer->capacity = (buffer->capacity + 1) * 2;
-		buffer->data = xrealloc(buffer->data, buffer->capacity);
+		buffer->data = xrealloc(buffer->data, buffer->capacity * buffer->item_size);
 	}
-	buffer->data[buffer->size++] = c;
+	memcpy(buffer->data + (buffer->size++ * buffer->item_size), item, buffer->item_size);
 }
 
 void free_buffer(struct Buffer *buffer) {
 	free(buffer->data);
 	free(buffer);
-}
-
-struct Patches *create_patches(void) {
-	struct Patches *patches = xmalloc(sizeof(*patches));
-	patches->size = 0;
-	patches->capacity = 10;
-	patches->data = xmalloc(patches->capacity * sizeof(*patches->data));
-	return patches;
-}
-
-void append_patch(struct Patches *patches, unsigned int offset, unsigned int size) {
-	if (patches->size >= patches->capacity) {
-		patches->capacity = (patches->capacity + 1) * 2;
-		patches->data = xrealloc(patches->data, patches->capacity * sizeof(*patches->data));
-	}
-	patches->data[patches->size++] = (struct Patch){.offset = offset, .size = size};
-}
-
-void free_patches(struct Patches *patches) {
-	free(patches->data);
-	free(patches);
 }
 
 int get_address_type_limit(int address) {
@@ -166,7 +141,7 @@ void parse_symbol_value(char *input, int *bank, int *address) {
 
 struct Symbol *parse_symbols(const char *filename, struct Symbol **symbols) {
 	FILE *file = xfopen(filename, 'r');
-	struct Buffer *buffer = create_buffer();
+	struct Buffer *buffer = create_buffer(1);
 
 	int bank = 0;
 	int address = 0;
@@ -178,7 +153,7 @@ struct Symbol *parse_symbols(const char *filename, struct Symbol **symbols) {
 		case '\r':
 		case '\n':
 			// This is the end of the symbol name
-			append_to_buffer(buffer, '\0');
+			append_to_buffer(buffer, "");
 			append_symbol(symbols, buffer->data, bank, address);
 			// Clear the buffer and skip to the next line for another symbol
 			buffer->size = 0;
@@ -187,14 +162,14 @@ struct Symbol *parse_symbols(const char *filename, struct Symbol **symbols) {
 
 		case ' ':
 			// This is the end of the symbol value
-			append_to_buffer(buffer, '\0');
+			append_to_buffer(buffer, "");
 			parse_symbol_value(buffer->data, &bank, &address);
 			// Clear the buffer for the symbol name
 			buffer->size = 0;
 			break;
 
 		default:
-			append_to_buffer(buffer, c);
+			append_to_buffer(buffer, &c);
 		}
 
 		if (skip_line) {
@@ -234,7 +209,7 @@ int parse_arg_value(char *arg, bool absolute, const struct Symbol *symbols, cons
 
 void interpret_command(
 	char *command, const struct Symbol *current_hook, const struct Symbol *symbols,
-	struct Patches *patches, FILE *new_rom, FILE *orig_rom, FILE *output
+	struct Buffer *patches, FILE *new_rom, FILE *orig_rom, FILE *output
 ) {
 	// Strip all leading spaces and all but one trailing space
 	int x = 0;
@@ -287,11 +262,11 @@ void interpret_command(
 			if (c == getc(orig_rom)) {
 				fprintf(stderr, PROGRAM_NAME ": Warning: 'vc_patch %s' doesn't alter the ROM\n", current_hook->name);
 			}
-			append_patch(patches, current_offset, 1);
+			append_to_buffer(patches, &(struct Patch){current_offset, 1});
 			fprintf(output, isupper((unsigned char)command[0]) ? "0x%02X" : "0x%02x", c);
 		} else {
 			fseek(new_rom, current_offset, SEEK_SET);
-			append_patch(patches, current_offset, length);
+			append_to_buffer(patches, &(struct Patch){current_offset, length});
 			fprintf(output, "a%d:", length);
 			for (int i = 0; i < length; i++) {
 				if (i) {
@@ -347,19 +322,19 @@ void interpret_command(
 	}
 }
 
-struct Patches *process_template(const char *template_filename, const char *patch_filename, FILE *new_rom, FILE *orig_rom, const struct Symbol *symbols) {
+struct Buffer *process_template(const char *template_filename, const char *patch_filename, FILE *new_rom, FILE *orig_rom, const struct Symbol *symbols) {
 	FILE *input = xfopen(template_filename, 'r');
 	FILE *output = xfopen(patch_filename, 'w');
-	struct Buffer *buffer = create_buffer();
+	struct Buffer *buffer = create_buffer(1);
 
-	struct Patches *patches = create_patches();
+	struct Buffer *patches = create_buffer(sizeof(struct Patch));
 
 	// The ROM checksum will always differ
-	append_patch(patches, 0x14e, 2);
+	append_to_buffer(patches, &(struct Patch){0x14e, 2});
 	// The Stadium data (see stadium.c) will always differ
 	unsigned int rom_size = (unsigned int)xfsize("", orig_rom);
 	unsigned int stadium_size = 24 + 6 + 2 + (rom_size / 0x2000) * 2;
-	append_patch(patches, rom_size - stadium_size, stadium_size);
+	append_to_buffer(patches, &(struct Patch){rom_size - stadium_size, stadium_size});
 
 	const struct Symbol *current_hook = NULL;
 	int line_col = 0;
@@ -381,9 +356,9 @@ struct Patches *process_template(const char *template_filename, const char *patc
 				if (c == '}') {
 					break;
 				}
-				append_to_buffer(buffer, c);
+				append_to_buffer(buffer, &c);
 			}
-			append_to_buffer(buffer, '\0');
+			append_to_buffer(buffer, "");
 			// Interpret the command in the context of the current patch
 			interpret_command(buffer->data, current_hook, symbols, patches, new_rom, orig_rom, output);
 			break;
@@ -401,9 +376,9 @@ struct Patches *process_template(const char *template_filename, const char *patc
 				if (c == ']') {
 					break;
 				}
-				append_to_buffer(buffer, c);
+				append_to_buffer(buffer, &c);
 			}
-			append_to_buffer(buffer, '\0');
+			append_to_buffer(buffer, "");
 			// Convert spaces to underscores
 			for (size_t i = 0; i < buffer->size; i++) {
 				if (buffer->data[i] == ' ') {
@@ -442,15 +417,15 @@ int compare_patch(const void *patch1, const void *patch2) {
 	return offset1 > offset2 ? 1 : offset1 < offset2 ? -1 : 0;
 }
 
-bool verify_completeness(FILE *orig_rom, FILE *new_rom, struct Patches *patches) {
-	qsort(patches->data, patches->size, sizeof(*patches->data), compare_patch);
+bool verify_completeness(FILE *orig_rom, FILE *new_rom, struct Buffer *patches) {
+	qsort(patches->data, patches->size, patches->item_size, compare_patch);
 	for (unsigned int offset = 0, index = 0; ; offset++) {
 		int orig_byte = getc(orig_rom);
 		int new_byte = getc(new_rom);
 		if (orig_byte == EOF || new_byte == EOF) {
 			return orig_byte == new_byte;
 		}
-		struct Patch *patch = patches->data + index;
+		struct Patch *patch = (struct Patch *)(patches->data + index * patches->item_size);
 		if (index < patches->size && patch->offset == offset) {
 			if (fseek(orig_rom, patch->size, SEEK_CUR)) {
 				return false;
@@ -461,7 +436,7 @@ bool verify_completeness(FILE *orig_rom, FILE *new_rom, struct Patches *patches)
 			offset += patch->size;
 			index++;
 		} else if (orig_byte != new_byte) {
-			fprintf(stderr, PROGRAM_NAME ": Warning: Unpatched difference at offset: 0x%x\n", offset - 1);
+			fprintf(stderr, PROGRAM_NAME ": Warning: Unpatched difference at offset: 0x%x\n", offset);
 			fprintf(stderr, "    Original ROM value: %02x\n", orig_byte);
 			fprintf(stderr, "    Patched ROM value: %02x\n", new_byte);
 			fprintf(stderr, "    Current patch offset: 0x%x\n", patch->offset);
@@ -481,7 +456,7 @@ int main(int argc, char *argv[]) {
 
 	FILE *new_rom = xfopen(argv[3], 'r');
 	FILE *orig_rom = xfopen(argv[4], 'r');
-	struct Patches *patches = process_template(argv[5], argv[6], new_rom, orig_rom, symbols);
+	struct Buffer *patches = process_template(argv[5], argv[6], new_rom, orig_rom, symbols);
 
 	if (!verify_completeness(orig_rom, new_rom, patches)) {
 		fprintf(stderr, PROGRAM_NAME ": Warning: Not all ROM differences are defined by \"%s\"\n", argv[6]);
@@ -490,7 +465,7 @@ int main(int argc, char *argv[]) {
 	free_symbols(symbols);
 	fclose(new_rom);
 	fclose(orig_rom);
-	free_patches(patches);
+	free_buffer(patches);
 
 	return 0;
 }

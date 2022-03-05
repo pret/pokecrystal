@@ -12,7 +12,7 @@ tools := \
 	pokemon_animation_graphics \
 	scan_includes \
 	stadium
-	
+
 all: $(tools)
 	@:
 
