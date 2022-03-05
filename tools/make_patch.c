@@ -5,9 +5,6 @@
 
 #include <ctype.h>
 
-#define HIGH(x) (((x) >> 8) & 0xff)
-#define LOW(x) ((x) & 0xff)
-
 struct Buffer {
 	size_t size;
 	size_t capacity;
@@ -301,36 +298,43 @@ void interpret_command(
 			}
 		}
 
-	} else if (!strcmp(command, "dws") || !strcmp(command, "Dws") || !strcmp(command, "DWS")) {
+	} else if (!strcmp(command, "dws") || !strcmp(command, "DWS")) {
 		if (argc < 1) {
 			error_exit("Error: Invalid arguments for command: %s", command);
 		}
 		fprintf(output, "a%d:", argc * 2);
 		for (int i = 0; i < argc; i++) {
 			int value = parse_arg_value(argv[i], false, symbols, current_hook->name);
-			fprintf(output, isupper((unsigned char)command[0]) ? " %02X %02X": " %02x %02x",
-				LOW(value), HIGH(value));
+			if (value > 0xffff) {
+				error_exit("Error: Invalid value for '%s' argument: %d", command, value);
+			}
+			fprintf(output, isupper((unsigned char)command[0]) ? " %02X %02X": " %02x %02x", value & 0xff, value >> 8);
 		}
 
-	} else if (!strcmp(command, "db") || !strcmp(command, "Db") || !strcmp(command, "DB")) {
+	} else if (!strcmp(command, "db") || !strcmp(command, "DB")) {
 		if (argc != 1) {
 			error_exit("Error: Invalid arguments for command: %s", command);
 		}
 		int value = parse_arg_value(argv[0], false, symbols, current_hook->name);
-		fprintf(output, isupper((unsigned char)command[0]) ? "a1:%02X": "a1:%02x", LOW(value));
+		if (value > 0xff) {
+			error_exit("Error: Invalid value for '%s' argument: %d", command, value);
+		}
+		fprintf(output, isupper((unsigned char)command[0]) ? "a1:%02X": "a1:%02x", value);
 
-	} else if (!strcmp(command, "hex") || !strcmp(command, "HEX") || !strcmp(command, "HEx") || !strcmp(command, "Hex") || !strcmp(command, "heX")) {
+	} else if (!strcmp(command, "hex") || !strcmp(command, "HEX") || !strcmp(command, "HEx") || !strcmp(command, "Hex") || !strcmp(command, "heX") || !strcmp(command, "hEX")) {
 		if (argc != 1 && argc != 2) {
 			error_exit("Error: Invalid arguments for command: %s", command);
 		}
 		int value = parse_arg_value(argv[0], true, symbols, current_hook->name);
 		int padding = argc > 1 ? strtol(argv[1], NULL, 10) : 2;
 		if (!strcmp(command, "HEx")) {
-			fprintf(output, "0x%0*X%02x", padding - 2, value >> 8, LOW(value));
+			fprintf(output, "0x%0*X%02x", padding - 2, value >> 8, value & 0xff);
 		} else if (!strcmp(command, "Hex")) {
-			fprintf(output, "0x%0*X%02x", padding - 3, value >> 12, value & 0xfff);
+			fprintf(output, "0x%0*X%03x", padding - 3, value >> 12, value & 0xfff);
 		} else if (!strcmp(command, "heX")) {
-			fprintf(output, "0x%0*x%02X", padding - 2, value >> 8, LOW(value));
+			fprintf(output, "0x%0*x%02X", padding - 2, value >> 8, value & 0xff);
+		} else if (!strcmp(command, "hEX")) {
+			fprintf(output, "0x%0*x%03X", padding - 3, value >> 12, value & 0xfff);
 		} else {
 			fprintf(output, isupper((unsigned char)command[0]) ? "0x%0*X" : "0x%0*x", padding, value);
 		}
