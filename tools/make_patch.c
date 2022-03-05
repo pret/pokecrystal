@@ -10,7 +10,8 @@
 
 struct Buffer {
 	size_t size;
-	char data[];
+	size_t capacity;
+	char *data;
 };
 
 struct Patch {
@@ -28,22 +29,28 @@ struct Symbol {
 	struct Symbol *next;
 	int address;
 	unsigned int offset;
-	char name[];
+	char name[]; // VLA
 };
 
 struct Buffer *create_buffer(void) {
-	struct Buffer *buffer = xmalloc(sizeof(*buffer) + 0x100);
-	buffer->size = 0x100;
+	struct Buffer *buffer = xmalloc(sizeof(*buffer));
+	buffer->size = 0;
+	buffer->capacity = 0x10;
+	buffer->data = xmalloc(buffer->capacity);
 	return buffer;
 }
 
-struct Buffer *expand_buffer(struct Buffer *buffer, size_t size) {
-	if (size > buffer->size) {
-		size_t new_size = size > buffer->size + 0x100 ? size : buffer->size + 0x100;
-		buffer = xrealloc(buffer, new_size);
-		buffer->size = new_size;
+void append_to_buffer(struct Buffer *buffer, char c) {
+	if (buffer->size >= buffer->capacity) {
+		buffer->capacity = (buffer->capacity + 1) * 2;
+		buffer->data = xrealloc(buffer->data, buffer->capacity);
 	}
-	return buffer;
+	buffer->data[buffer->size++] = c;
+}
+
+void free_buffer(struct Buffer *buffer) {
+	free(buffer->data);
+	free(buffer);
 }
 
 struct Patches *create_patches(void) {
@@ -162,56 +169,48 @@ void parse_symbol_value(char *input, int *bank, int *address) {
 
 struct Symbol *parse_symbols(const char *filename, struct Symbol **symbols) {
 	FILE *file = xfopen(filename, 'r');
-
 	struct Buffer *buffer = create_buffer();
-	size_t buffer_index = 0;
+
 	int bank = 0;
 	int address = 0;
-	int offset = -1;
+	bool skip_line = false;
 
 	for (int c = getc(file); c != EOF; c = getc(file)) {
-		buffer = expand_buffer(buffer, buffer_index);
-
 		switch (c) {
 		case ';':
 		case '\r':
 		case '\n':
 			// This is the end of the symbol name
-			buffer->data[buffer_index] = '\0';
+			append_to_buffer(buffer, '\0');
 			create_symbol(symbols, buffer->data, bank, address);
-			buffer_index = SIZE_MAX;
+			// Clear the buffer and skip to the next line for another symbol
+			buffer->size = 0;
+			skip_line = true;
 			break;
 
 		case ' ':
-			if (offset != -1) {
-				// Ignore leading spaces
-				if (buffer_index) {
-					buffer->data[buffer_index++] = c;
-				}
-			} else {
-				// This is the end of the symbol value
-				buffer->data[buffer_index] = '\0';
-				parse_symbol_value(buffer->data, &bank, &address);
-				buffer_index = offset ? 0 : SIZE_MAX;
-			}
+			// This is the end of the symbol value
+			append_to_buffer(buffer, '\0');
+			parse_symbol_value(buffer->data, &bank, &address);
+			// Clear the buffer for the symbol name
+			buffer->size = 0;
 			break;
 
 		default:
-			buffer->data[buffer_index++] = c;
+			append_to_buffer(buffer, c);
 		}
 
-		// Skip to the next line
-		if (buffer_index == SIZE_MAX) {
-			buffer_index = 0;
-			offset = -1;
+		if (skip_line) {
+			// Skip to the next line
 			while (c != '\n' && c != '\r' && c != EOF) {
 				c = getc(file);
 			}
+			skip_line = false;
 		}
 	}
 
 	fclose(file);
-	free(buffer);
+	free_buffer(buffer);
 	return *symbols;
 }
 
@@ -344,6 +343,7 @@ void interpret_command(
 struct Patches *process_template(const char *template_filename, const char *patch_filename, FILE *new_rom, FILE *orig_rom, const struct Symbol *symbols) {
 	FILE *input = xfopen(template_filename, 'r');
 	FILE *output = xfopen(patch_filename, 'w');
+	struct Buffer *buffer = create_buffer();
 
 	struct Patches *patches = create_patches();
 
@@ -354,76 +354,69 @@ struct Patches *process_template(const char *template_filename, const char *patc
 	unsigned int stadium_size = 24 + 6 + 2 + (rom_size / 0x2000) * 2;
 	append_patch(patches, rom_size - stadium_size, stadium_size);
 
-	struct Buffer *buffer = create_buffer();
-	size_t buffer_index = 0;
 	const struct Symbol *current_hook = NULL;
-	int line_pos = 0;
+	int line_col = 0;
 
 	// Fill in the template
 	for (int c = getc(input); c != EOF; c = getc(input)) {
-		buffer = expand_buffer(buffer, buffer_index);
-
 		switch (c) {
 		case '\r':
 		case '\n':
 			// Start a new line
 			putc(c, output);
-			line_pos = 0;
+			line_col = 0;
 			break;
 
 		case '{':
-			// "{" to "}" marks a template command
-			buffer_index = 0;
+			// "{...}" is a template command; buffer its contents
+			buffer->size = 0;
 			for (c = getc(input); c != EOF; c = getc(input)) {
 				if (c == '}') {
-					// "}" ends the template command
 					break;
 				}
-				buffer->data[buffer_index++] = c;
-				buffer = expand_buffer(buffer, buffer_index);
+				append_to_buffer(buffer, c);
 			}
-			buffer->data[buffer_index] = '\0';
+			append_to_buffer(buffer, '\0');
+			// Interpret the command in the context of the current patch
 			interpret_command(buffer->data, current_hook, symbols, patches, new_rom, orig_rom, output);
 			break;
 
 		case '[':
-			// "[" at the start of a line to "]" marks a patch label
-			if (line_pos) {
-				putc(c, output);
-				line_pos++;
+			putc(c, output);
+			if (line_col) {
+				line_col++;
 				break;
 			}
-			putc(c, output);
-			buffer_index = 0;
+			// "[...]" at the start of a line is a patch label; buffer its contents
+			buffer->size = 0;
 			for (c = getc(input); c != EOF; c = getc(input)) {
 				putc(c, output);
 				if (c == ']') {
-					buffer->data[buffer_index] = '\0';
-					// Convert spaces to underscores
-					for (char *p = buffer->data; *p != '\0'; p++) {
-						if (*p == ' ') {
-							*p = '_';
-						}
-					}
-					// Look for the symbol starting with ".VC_"
-					current_hook = find_symbol_cat(symbols, ".VC_", buffer->data);
-					// Skip to the next line
-					for (c = getc(input); c != EOF; c = getc(input)) {
-						putc(c, output);
-						if (c == '\n' || c == '\r') {
-							break;
-						}
-					}
-					buffer_index = 0;
 					break;
 				}
-				buffer->data[buffer_index++] = c;
+				append_to_buffer(buffer, c);
+			}
+			append_to_buffer(buffer, '\0');
+			// Convert spaces to underscores
+			for (size_t i = 0; i < buffer->size; i++) {
+				if (buffer->data[i] == ' ') {
+					buffer->data[i] = '_';
+				}
+			}
+			// The current patch should have a corresponding ".VC_" label
+			current_hook = find_symbol_cat(symbols, ".VC_", buffer->data);
+			// Skip to the next line
+			for (c = getc(input); c != EOF; c = getc(input)) {
+				putc(c, output);
+				if (c == '\n' || c == '\r') {
+					break;
+				}
 			}
 			break;
 
 		default:
 			putc(c, output);
-			line_pos++;
+			line_col++;
 		}
 	}
 
@@ -432,7 +425,7 @@ struct Patches *process_template(const char *template_filename, const char *patc
 
 	fclose(input);
 	fclose(output);
-	free(buffer);
+	free_buffer(buffer);
 	return patches;
 }
 
