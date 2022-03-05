@@ -214,12 +214,11 @@ void interpret_command(
 	// Strip all leading spaces and all but one trailing space
 	int x = 0;
 	for (int i = 0; command[i]; i++) {
-		if (command[i] == '\t') {continue;}
-		if (command[i] != ' ' || (i > 0 && command[i-1] != ' ')) {
+		if (!isspace(command[i]) || (i > 0 && !isspace(command[i-1]))) {
 			command[x++] = command[i];
 		}
 	}
-	if (command[x-1] == ' ') {
+	if (isspace(command[x-1])) {
 		command[x-1] = '\0';
 	} else {
 		command[x] = '\0';
