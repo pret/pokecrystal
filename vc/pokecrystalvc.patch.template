@@ -267,8 +267,8 @@ MemAddress={hex hJoyPressed}
 Fixcode={db NO_INPUT}                                                                                  
 ConditionType = 0                                                                              
 ConditionValueA = {dws wWindowStackPointer wWindowStackPointer+1 wMenuJoypad wMenuSelection wMenuSelection wMenuCursorY hJoyPressed hJoyPressed hJoyPressed hJoyPressed}                   
-ConditionValueB = {dws ==                  ==                    ==          >=             <=             ==           !=          !=          !=          !=}                   
-ConditionValueC = {dws 0xdd                0xd3                  0x01        0x00           0x0f           0x03         D_DOWN      D_UP        B_BUTTON    NO_INPUT}                   
+ConditionValueB = {dws ==                  ==                    ==          >=             <=             ==           !=          !=          !=          !=         }                   
+ConditionValueC = {dws 0xdd                0xd3                  0x01        0x00           0x0f           0x03         D_DOWN      D_UP        B_BUTTON    NO_INPUT   }                   
     
 ; -----ddddfffffff99999ccccc77777----0xd9c7 no ..............Mem Write: pc32 = 0x230b addr = 0xd9c7 value = 0x8
 ; 0xd9c7 is the room number.
@@ -282,8 +282,8 @@ MemAddress={hex hJoyPressed}
 Fixcode={db NO_INPUT}                                                                 
 ConditionType = 0                                                             
 ConditionValueA = {dws wWindowStackPointer wWindowStackPointer+1 wMenuJoypad wMenuSelection wMenuCursorY wMapGroup         wMapNumber                wYCoord wXCoord hJoyPressed hJoyPressed hJoyPressed hJoyPressed}  
-ConditionValueB = {dws ==                  ==                    ==          ==             ==           ==                ==                        ==      ==      !=          !=          !=          !=}  
-ConditionValueC = {dws 0xaf                0xdf                  0x00        0x00           0x01         MAPGROUP_CIANWOOD MAP_CIANWOOD_PHOTO_STUDIO 0x04    0x02    D_DOWN      D_UP        B_BUTTON    NO_INPUT}  
+ConditionValueB = {dws ==                  ==                    ==          ==             ==           ==                ==                        ==      ==      !=          !=          !=          !=         }  
+ConditionValueC = {dws 0xaf                0xdf                  0x00        0x00           0x01         MAPGROUP_CIANWOOD MAP_CIANWOOD_PHOTO_STUDIO 0x04    0x02    D_DOWN      D_UP        B_BUTTON    NO_INPUT   }  
 
                                                
 ;ROM:BB29C                 call    unk_934       
@@ -325,8 +325,8 @@ MemAddress={hex hJoyPressed}
 Fixcode={db NO_INPUT}                                                                                     
 ConditionType = 0                                                                                 
 ConditionValueA = {dws wWindowStackPointer wWindowStackPointer+1 wMenuJoypad wMenuSelection wDexArrowCursorPosIndex hJoyPressed hJoyPressed hJoyPressed hJoyPressed}                      
-ConditionValueB = {dws ==                  ==                    ==          ==             ==                      !=          !=          !=          !=}                      
-ConditionValueC = {dws 0xa1                0xdb                  0x01        0x00           0x03                    D_DOWN      D_UP        B_BUTTON    NO_INPUT}                      
+ConditionValueB = {dws ==                  ==                    ==          ==             ==                      !=          !=          !=          !=         }                      
+ConditionValueC = {dws 0xa1                0xdb                  0x01        0x00           0x03                    D_DOWN      D_UP        B_BUTTON    NO_INPUT   }                      
 
 
 
@@ -468,8 +468,8 @@ Dark0 = 4
 MotionBEnable0 = 3                                            
 MotionBlur0 = 11                                               
 ConditionType = 0                                                 
-ConditionValueA = {dws wFXAnimID}
-ConditionValueB = {dws ==}
+ConditionValueA = {dws wFXAnimID   }
+ConditionValueB = {dws ==          }
 ConditionValueC = {dws SELFDESTRUCT}
 
 
@@ -485,8 +485,8 @@ MotionBEnable0 = 3
 MotionBlur0 = 15                                               
 ConditionType = 0                                                 
 ConditionValueA = {dws wFXAnimID}  
-ConditionValueB = {dws ==}
-ConditionValueC = {dws THUNDER}      
+ConditionValueB = {dws ==       }
+ConditionValueC = {dws THUNDER  }      
                                              
 
 
@@ -503,8 +503,8 @@ MotionBEnable0 = 3
 MotionBlur0 = 15                                          
 ConditionType = 0                                                 
 ConditionValueA = {dws wFXAnimID}  
-ConditionValueB = {dws ==}
-ConditionValueC = {dws FLASH}
+ConditionValueB = {dws ==       }
+ConditionValueC = {dws FLASH    }
 
 
 ;skill name 1 : ..............Mem Write: pc32 = 0x30db addr = 0xcf87 value = 0x2c
@@ -526,7 +526,7 @@ MotionBEnable0 = 3
 MotionBlur0 = 15                                                   
 ConditionType = 0                                                 
 ConditionValueA = {dws wFXAnimID}  
-ConditionValueB = {dws ==}
+ConditionValueB = {dws ==       }
 ConditionValueC = {dws EXPLOSION}
 
 
@@ -547,8 +547,8 @@ Dark0 = 4
 MotionBEnable0 = 3                                            
 MotionBlur0 = 11                                              
 ConditionType = 0                                                 
-ConditionValueA = {dws wFXAnimID}  
-ConditionValueB = {dws ==}
+ConditionValueA = {dws wFXAnimID }  
+ConditionValueB = {dws ==        }
 ConditionValueC = {dws HORN_DRILL}
 
 
@@ -570,8 +570,8 @@ Dark0 = 5
 MotionBEnable0 = 3                                            
 MotionBlur0 = 7                                              
 ConditionType = 0                                                 
-ConditionValueA = {dws wFXAnimID}  
-ConditionValueB = {dws ==}
+ConditionValueA = {dws wFXAnimID }  
+ConditionValueB = {dws ==        }
 ConditionValueC = {dws HYPER_BEAM}                                                          
 
 
@@ -593,8 +593,8 @@ Dark0 = 5
 MotionBEnable0 = 3                                                                                                                               
 MotionBlur0 = 11                                                                                                                                 
 ConditionType = 0                                                                                                                                
-ConditionValueA = {dws wFXAnimID wBattleAnimByte}                                                                              
-ConditionValueB = {dws ==        ==}                                                                                 
+ConditionValueA = {dws wFXAnimID wBattleAnimByte  }                                                                              
+ConditionValueB = {dws ==        ==               }                                                                                 
 ConditionValueC = {dws PRESENT   anim_1gfx_command}                                                                                 
 
     

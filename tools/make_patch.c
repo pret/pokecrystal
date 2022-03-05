@@ -218,7 +218,11 @@ void interpret_command(
 			command[x++] = command[i];
 		}
 	}
-	command[x] = '\0';
+	if (command[x-1] == ' ') {
+		command[x-1] = '\0';
+	} else {
+		command[x] = '\0';
+	}
 
 	// Count the arguments
 	int argc = 0;
