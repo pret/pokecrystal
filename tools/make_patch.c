@@ -214,6 +214,7 @@ void interpret_command(
 	// Strip all leading spaces and all but one trailing space
 	int x = 0;
 	for (int i = 0; command[i]; i++) {
+		if (command[i] == '\t') {continue;}
 		if (command[i] != ' ' || (i > 0 && command[i-1] != ' ')) {
 			command[x++] = command[i];
 		}
