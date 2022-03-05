@@ -372,9 +372,11 @@ struct Patches *process_template(const char *template_filename, const char *patc
 			break;
 
 		case '{':
+			// "{" to "}" marks a template command
 			buffer_index = 0;
 			for (c = getc(input); c != EOF; c = getc(input)) {
 				if (c == '}') {
+					// "}" ends the template command
 					break;
 				}
 				buffer->data[buffer_index++] = c;
@@ -385,7 +387,7 @@ struct Patches *process_template(const char *template_filename, const char *patc
 			break;
 
 		case '[':
-			// "[" at the start of a line begins a patch label
+			// "[" at the start of a line to "]" marks a patch label
 			if (line_pos) {
 				putc(c, output);
 				line_pos++;
@@ -396,7 +398,6 @@ struct Patches *process_template(const char *template_filename, const char *patc
 			for (c = getc(input); c != EOF; c = getc(input)) {
 				putc(c, output);
 				if (c == ']') {
-					// "]" ends the patch label
 					buffer->data[buffer_index] = '\0';
 					// Convert spaces to underscores
 					for (char *p = buffer->data; *p != '\0'; p++) {
