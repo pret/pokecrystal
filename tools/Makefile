@@ -1,32 +1,7 @@
 .PHONY: all clean
 
 CC := gcc
-CFLAGS := -O3 -std=c11 -Wall -Wextra -pedantic -Wno-missing-field-initializers \
-         -Walloc-zero \
-         -Wcast-align \
-         -Wcast-qual \
-         -Wduplicated-branches \
-         -Wduplicated-cond \
-         -Wfloat-equal \
-         -Wformat=2 \
-         -Wformat-overflow=2 \
-         -Wformat-truncation=1 \
-         -Winline \
-         -Wlogical-op \
-         -Wnested-externs \
-         -Wno-sign-compare \
-         -Wnull-dereference \
-         -Wold-style-definition \
-         -Wshadow \
-         -Wshift-overflow=2 \
-         -Wstrict-overflow=2 \
-         -Wstrict-prototypes \
-         -Wstringop-overflow=4 \
-         -Wundef \
-         -Wuninitialized \
-         -Wunused \
-         -Wwrite-strings \
-         -g3 -ggdb3
+CFLAGS := -O3 -std=c11 -Wall -Wextra -pedantic -Wno-missing-field-initializers
 
 tools := \
 	lzcomp \

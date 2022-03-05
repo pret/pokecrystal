@@ -24,7 +24,7 @@ struct Patches {
 
 struct Symbol {
 	struct Symbol *next;
-	int address;
+	unsigned int address;
 	unsigned int offset;
 	char name[]; // VLA
 };
@@ -213,7 +213,7 @@ struct Symbol *parse_symbols(const char *filename, struct Symbol **symbols) {
 
 int parse_arg_value(char *arg, bool absolute, const struct Symbol *symbols, const char *patch_name) {
 	static const char *comparisons[6] = {"==", ">", "<", ">=", "<=", "!="};
-	for (int i = 0; i < sizeof(comparisons) / sizeof(*comparisons); i++) {
+	for (unsigned int i = 0; i < sizeof(comparisons) / sizeof(*comparisons); i++) {
 		if (!strcmp(arg, comparisons[i])) {
 			return i;
 		}
@@ -267,7 +267,10 @@ void interpret_command(
 
 	// Use the arguments
 	if (!strcmp(command, "patch") || !strcmp(command, "PATCH")) {
-		int current_offset = current_hook ? current_hook->offset : -1;
+		if (!current_hook) {
+			error_exit("Error: No current patch for command: %s", command);
+		}
+		int current_offset = current_hook->offset;
 		if (argc > 0) {
 			current_offset += strtol(argv[0], NULL, 0);
 		}
