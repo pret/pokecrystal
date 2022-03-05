@@ -368,22 +368,10 @@ struct Patches *process_template(const char *template_filename, const char *patc
 			break;
 
 		case '{':
-			// Two "{{" begins a command
-			c = getc(input);
-			if (c != '{') {
-				putc('{', output);
-				line_pos++;
-				ungetc(c, input);
-				break;
-			}
 			buffer_index = 0;
 			for (c = getc(input); c != EOF; c = getc(input)) {
 				if (c == '}') {
-					// Two "}}" ends a command
-					c = getc(input);
-					if (c == EOF || c == '}') {
-						break;
-					}
+					break;
 				}
 				buffer->data[buffer_index++] = c;
 				buffer = expand_buffer(buffer, buffer_index);
