@@ -270,7 +270,7 @@ void interpret_command(
 	}
 
 	// Use the arguments
-	if (!strcmp(command, "patch") || !strcmp(command, "Patch")) {
+	if (!strcmp(command, "patch") || !strcmp(command, "PATCH")) {
 		int current_offset = current_hook ? current_hook->offset : -1;
 		if (argc > 0) {
 			current_offset += strtol(argv[0], NULL, 0);
@@ -302,7 +302,7 @@ void interpret_command(
 			}
 		}
 
-	} else if (!strcmp(command, "dws") || !strcmp(command, "Dws") || !strcmp(command, "DWs")) {
+	} else if (!strcmp(command, "dws") || !strcmp(command, "Dws") || !strcmp(command, "DWS")) {
 		if (argc < 1) {
 			error_exit("Error: Invalid arguments for command: %s", command);
 		}
@@ -320,7 +320,7 @@ void interpret_command(
 		int value = parse_arg_value(argv[0], false, symbols, current_hook->name);
 		fprintf(output, isupper((unsigned char)command[0]) ? "a1:%02X": "a1:%02x", LOW(value));
 
-	} else if (!strcmp(command, "hex") || !strcmp(command, "Hex") || !strcmp(command, "HEx")) {
+	} else if (!strcmp(command, "hex") || !strcmp(command, "HEX") || !strcmp(command, "HEx") || !strcmp(command, "Hex") || !strcmp(command, "heX")) {
 		if (argc != 1 && argc != 2) {
 			error_exit("Error: Invalid arguments for command: %s", command);
 		}
@@ -328,6 +328,10 @@ void interpret_command(
 		int padding = argc > 1 ? strtol(argv[1], NULL, 10) : 2;
 		if (!strcmp(command, "HEx")) {
 			fprintf(output, "0x%0*X%02x", padding - 2, value >> 8, LOW(value));
+		} else if (!strcmp(command, "Hex")) {
+			fprintf(output, "0x%0*X%02x", padding - 3, value >> 12, value & 0xfff);
+		} else if (!strcmp(command, "heX")) {
+			fprintf(output, "0x%0*x%02X", padding - 2, value >> 8, LOW(value));
 		} else {
 			fprintf(output, isupper((unsigned char)command[0]) ? "0x%0*X" : "0x%0*x", padding, value);
 		}
