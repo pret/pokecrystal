@@ -24,7 +24,7 @@ struct Symbol {
 	char name[]; // C99 FAM
 };
 
-struct Buffer *create_buffer(size_t item_size) {
+struct Buffer *buffer_create(size_t item_size) {
 	struct Buffer *buffer = xmalloc(sizeof(*buffer));
 	buffer->item_size = item_size;
 	buffer->size = 0;
@@ -33,7 +33,7 @@ struct Buffer *create_buffer(size_t item_size) {
 	return buffer;
 }
 
-void append_to_buffer(struct Buffer *buffer, const void *item) {
+void buffer_append(struct Buffer *buffer, const void *item) {
 	if (buffer->size >= buffer->capacity) {
 		buffer->capacity = (buffer->capacity + 1) * 2;
 		buffer->data = xrealloc(buffer->data, buffer->capacity * buffer->item_size);
@@ -41,7 +41,7 @@ void append_to_buffer(struct Buffer *buffer, const void *item) {
 	memcpy(buffer->data + (buffer->size++ * buffer->item_size), item, buffer->item_size);
 }
 
-void free_buffer(struct Buffer *buffer) {
+void buffer_free(struct Buffer *buffer) {
 	free(buffer->data);
 	free(buffer);
 }
@@ -54,7 +54,7 @@ int get_address_type_limit(int address) {
 	     : 0xffff; // HRAM
 }
 
-void append_symbol(struct Symbol **symbols, const char *name, int bank, int address) {
+void symbol_append(struct Symbol **symbols, const char *name, int bank, int address) {
 	size_t name_len = strlen(name) + 1;
 	struct Symbol *symbol = xmalloc(sizeof(*symbol) + name_len);
 	symbol->address = address;
@@ -64,14 +64,14 @@ void append_symbol(struct Symbol **symbols, const char *name, int bank, int addr
 	*symbols = symbol;
 }
 
-void free_symbols(struct Symbol *list) {
+void symbol_free(struct Symbol *list) {
 	for (struct Symbol *next; list; list = next) {
 		next = list->next;
 		free(list);
 	}
 }
 
-const struct Symbol *find_symbol(const struct Symbol *symbols, const char *name) {
+const struct Symbol *symbol_find(const struct Symbol *symbols, const char *name) {
 	size_t name_len = strlen(name);
 	for (const struct Symbol *symbol = symbols; symbol; symbol = symbol->next) {
 		size_t sym_name_len = strlen(symbol->name);
@@ -90,10 +90,10 @@ const struct Symbol *find_symbol(const struct Symbol *symbols, const char *name)
 	error_exit("Error: Unknown symbol: %s\n", name);
 }
 
-const struct Symbol *find_symbol_cat(const struct Symbol *symbols, const char *prefix, const char *suffix) {
+const struct Symbol *symbol_find_cat(const struct Symbol *symbols, const char *prefix, const char *suffix) {
 	char *sym_name = xmalloc(strlen(prefix) + strlen(suffix) + 1);
 	sprintf(sym_name, "%s%s", prefix, suffix);
-	const struct Symbol *symbol = find_symbol(symbols, sym_name);
+	const struct Symbol *symbol = symbol_find(symbols, sym_name);
 	free(sym_name);
 	return symbol;
 }
@@ -140,7 +140,7 @@ void parse_symbol_value(char *input, int *bank, int *address) {
 
 void parse_symbols(const char *filename, struct Symbol **symbols) {
 	FILE *file = xfopen(filename, 'r');
-	struct Buffer *buffer = create_buffer(1);
+	struct Buffer *buffer = buffer_create(1);
 
 	int bank = 0;
 	int address = 0;
@@ -151,8 +151,8 @@ void parse_symbols(const char *filename, struct Symbol **symbols) {
 		case '\r':
 		case '\n':
 			// This is the end of the symbol name
-			append_to_buffer(buffer, "");
-			append_symbol(symbols, buffer->data, bank, address);
+			buffer_append(buffer, "");
+			symbol_append(symbols, buffer->data, bank, address);
 			// Clear the buffer for the next symbol
 			buffer->size = 0;
 			// Skip to the next line
@@ -163,19 +163,19 @@ void parse_symbols(const char *filename, struct Symbol **symbols) {
 
 		case ' ':
 			// This is the end of the symbol value
-			append_to_buffer(buffer, "");
+			buffer_append(buffer, "");
 			parse_symbol_value(buffer->data, &bank, &address);
 			// Clear the buffer for the symbol name
 			buffer->size = 0;
 			break;
 
 		default:
-			append_to_buffer(buffer, &c);
+			buffer_append(buffer, &c);
 		}
 	}
 
 	fclose(file);
-	free_buffer(buffer);
+	buffer_free(buffer);
 }
 
 int parse_arg_value(char *arg, bool absolute, const struct Symbol *symbols, const char *patch_name) {
@@ -195,7 +195,7 @@ int parse_arg_value(char *arg, bool absolute, const struct Symbol *symbols, cons
 		*plus = '\0';
 	}
 	const char *sym_name = !strcmp(arg, "@") ? patch_name : arg;
-	const struct Symbol *symbol = find_symbol(symbols, sym_name);
+	const struct Symbol *symbol = symbol_find(symbols, sym_name);
 	return (absolute ? symbol->offset : symbol->address) + offset_mod;
 }
 
@@ -251,18 +251,18 @@ void interpret_command(
 		if (fseek(new_rom, current_offset, SEEK_SET)) {
 			error_exit("Error: Cannot seek to 'vc_patch %s' in the new ROM\n", current_hook->name);
 		}
-		const struct Symbol *current_hook_end = find_symbol_cat(symbols, current_hook->name, "_End");
+		const struct Symbol *current_hook_end = symbol_find_cat(symbols, current_hook->name, "_End");
 		int length = current_hook_end->offset - current_offset;
 		if (length == 1) {
 			int c = getc(new_rom);
 			if (c == getc(orig_rom)) {
 				fprintf(stderr, PROGRAM_NAME ": Warning: 'vc_patch %s' doesn't alter the ROM\n", current_hook->name);
 			}
-			append_to_buffer(patches, &(struct Patch){current_offset, 1});
+			buffer_append(patches, &(struct Patch){current_offset, 1});
 			fprintf(output, isupper((unsigned char)command[0]) ? "0x%02X" : "0x%02x", c);
 		} else {
 			fseek(new_rom, current_offset, SEEK_SET);
-			append_to_buffer(patches, &(struct Patch){current_offset, length});
+			buffer_append(patches, &(struct Patch){current_offset, length});
 			fprintf(output, "a%d:", length);
 			for (int i = 0; i < length; i++) {
 				if (i) {
@@ -321,16 +321,16 @@ void interpret_command(
 struct Buffer *process_template(const char *template_filename, const char *patch_filename, FILE *new_rom, FILE *orig_rom, const struct Symbol *symbols) {
 	FILE *input = xfopen(template_filename, 'r');
 	FILE *output = xfopen(patch_filename, 'w');
-	struct Buffer *buffer = create_buffer(1);
+	struct Buffer *buffer = buffer_create(1);
 
-	struct Buffer *patches = create_buffer(sizeof(struct Patch));
+	struct Buffer *patches = buffer_create(sizeof(struct Patch));
 
 	// The ROM checksum will always differ
-	append_to_buffer(patches, &(struct Patch){0x14e, 2});
+	buffer_append(patches, &(struct Patch){0x14e, 2});
 	// The Stadium data (see stadium.c) will always differ
 	unsigned int rom_size = (unsigned int)xfsize("", orig_rom);
 	unsigned int stadium_size = 24 + 6 + 2 + (rom_size / 0x2000) * 2;
-	append_to_buffer(patches, &(struct Patch){rom_size - stadium_size, stadium_size});
+	buffer_append(patches, &(struct Patch){rom_size - stadium_size, stadium_size});
 
 	const struct Symbol *current_hook = NULL;
 	int line_col = 0;
@@ -352,9 +352,9 @@ struct Buffer *process_template(const char *template_filename, const char *patch
 				if (c == '}') {
 					break;
 				}
-				append_to_buffer(buffer, &c);
+				buffer_append(buffer, &c);
 			}
-			append_to_buffer(buffer, "");
+			buffer_append(buffer, "");
 			// Interpret the command in the context of the current patch
 			interpret_command(buffer->data, current_hook, symbols, patches, new_rom, orig_rom, output);
 			break;
@@ -372,9 +372,9 @@ struct Buffer *process_template(const char *template_filename, const char *patch
 				if (c == ']') {
 					break;
 				}
-				append_to_buffer(buffer, &c);
+				buffer_append(buffer, &c);
 			}
-			append_to_buffer(buffer, "");
+			buffer_append(buffer, "");
 			// Convert spaces to underscores
 			for (size_t i = 0; i < buffer->size; i++) {
 				if (buffer->data[i] == ' ') {
@@ -382,7 +382,7 @@ struct Buffer *process_template(const char *template_filename, const char *patch
 				}
 			}
 			// The current patch should have a corresponding ".VC_" label
-			current_hook = find_symbol_cat(symbols, ".VC_", buffer->data);
+			current_hook = symbol_find_cat(symbols, ".VC_", buffer->data);
 			// Skip to the next line
 			for (c = getc(input); c != EOF; c = getc(input)) {
 				putc(c, output);
@@ -403,7 +403,7 @@ struct Buffer *process_template(const char *template_filename, const char *patch
 
 	fclose(input);
 	fclose(output);
-	free_buffer(buffer);
+	buffer_free(buffer);
 	return patches;
 }
 
@@ -458,10 +458,10 @@ int main(int argc, char *argv[]) {
 		fprintf(stderr, PROGRAM_NAME ": Warning: Not all ROM differences are defined by \"%s\"\n", argv[6]);
 	}
 
-	free_symbols(symbols);
+	symbol_free(symbols);
 	fclose(new_rom);
 	fclose(orig_rom);
-	free_buffer(patches);
+	buffer_free(patches);
 
 	return 0;
 }
