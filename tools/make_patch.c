@@ -98,6 +98,15 @@ const struct Symbol *symbol_find_cat(const struct Symbol *symbols, const char *p
 	return symbol;
 }
 
+int parse_number(const char *input, int base) {
+	char *endptr;
+	int n = strtol(input, &endptr, base);
+	if (endptr == input || *endptr || n < 0) {
+		error_exit("Error: Cannot parse number: %s", input);
+	}
+	return n;
+}
+
 void parse_symbol_value(char *input, int *bank, int *address) {
 	char *buffer = xmalloc(strlen(input) + 1);
 	strcpy(buffer, input);
@@ -106,33 +115,12 @@ void parse_symbol_value(char *input, int *bank, int *address) {
 	if (buffer2) {
 		// Parse symbol's bank:address
 		*buffer2++ = '\0';
-
-		char *endptr_bank, *endptr_address;
-		*bank = strtol(buffer, &endptr_bank, 16);
-		if (*bank > 0xff || *bank < 0) {
-			*bank = -1;
-		}
-		*address = strtol(buffer2, &endptr_address, 16);
-		if (*address > 0xffff || *address < 0) {
-			*address = -1;
-		}
-
-		if (endptr_bank == buffer || *endptr_bank || endptr_address == buffer2 || *endptr_address) {
-			error_exit("Error: Cannot parse bank+address: %s:%s\n", buffer, buffer2);
-		}
+		*bank = parse_number(buffer, 16);
+		*address = parse_number(buffer2, 16);
 	} else {
 		// Parse constant's value
 		*bank = 0;
-
-		char *endptr;
-		*address = strtol(buffer, &endptr, 16);
-		if (*address < 0) {
-			*address = -1;
-		}
-
-		if (endptr == buffer || *endptr) {
-			error_exit("Error: Cannot parse value: %s\n", buffer);
-		}
+		*address = parse_number(buffer, 16);
 	}
 
 	free(buffer);
@@ -186,12 +174,12 @@ int parse_arg_value(char *arg, bool absolute, const struct Symbol *symbols, cons
 		}
 	}
 	if (isdigit((unsigned char)arg[0])) {
-		return strtol(arg, NULL, 0);
+		return parse_number(arg, 0);
 	}
 	int offset_mod = 0;
 	char *plus = strchr(arg, '+');
 	if (plus) {
-		offset_mod = strtol(plus, NULL, 0);
+		offset_mod = parse_number(plus, 0);
 		*plus = '\0';
 	}
 	const char *sym_name = !strcmp(arg, "@") ? patch_name : arg;
@@ -243,7 +231,7 @@ void interpret_command(
 		}
 		int current_offset = current_hook->offset;
 		if (argc > 0) {
-			current_offset += strtol(argv[0], NULL, 0);
+			current_offset += parse_number(argv[0], 0);
 		}
 		if (fseek(orig_rom, current_offset, SEEK_SET)) {
 			error_exit("Error: Cannot seek to 'vc_patch %s' in the original ROM\n", current_hook->name);
@@ -300,7 +288,7 @@ void interpret_command(
 			error_exit("Error: Invalid arguments for command: %s", command);
 		}
 		int value = parse_arg_value(argv[0], true, symbols, current_hook->name);
-		int padding = argc > 1 ? strtol(argv[1], NULL, 10) : 2;
+		int padding = argc > 1 ? parse_number(argv[1], 0) : 2;
 		if (!strcmp(command, "HEx")) {
 			fprintf(output, "0x%0*X%02x", padding - 2, value >> 8, value & 0xff);
 		} else if (!strcmp(command, "Hex")) {
