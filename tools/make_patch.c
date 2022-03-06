@@ -134,7 +134,7 @@ void parse_symbols(const char *filename, struct Symbol **symbols) {
 		if (c == EOF || c == '\n' || c == '\r' || c == ';' || (state == SYM_NAME && (c == ' ' || c == '\t'))) {
 			if (state == SYM_NAME) {
 				// The symbol name has ended; append the buffered symbol
-				buffer_append(buffer, "");
+				buffer_append(buffer, &(char []){'\0'});
 				symbol_append(symbols, buffer->data, bank, address);
 			}
 			// Skip to the next line, ignoring anything after the symbol value and name
@@ -150,7 +150,7 @@ void parse_symbols(const char *filename, struct Symbol **symbols) {
 				// The symbol value or name has started; buffer its contents
 				if (++state == SYM_NAME) {
 					// The symbol name has started; parse the buffered value
-					buffer_append(buffer, "");
+					buffer_append(buffer, &(char []){'\0'});
 					parse_symbol_value(buffer->data, &bank, &address);
 				}
 				buffer->size = 0;
@@ -335,7 +335,7 @@ struct Buffer *process_template(const char *template_filename, const char *patch
 			for (c = getc(input); c != EOF && c != '}'; c = getc(input)) {
 				buffer_append(buffer, &c);
 			}
-			buffer_append(buffer, "");
+			buffer_append(buffer, &(char []){'\0'});
 			// Interpret the command in the context of the current patch
 			interpret_command(buffer->data, current_hook, symbols, patches, new_rom, orig_rom, output);
 			break;
@@ -354,7 +354,7 @@ struct Buffer *process_template(const char *template_filename, const char *patch
 				}
 				buffer_append(buffer, &c);
 			}
-			buffer_append(buffer, "");
+			buffer_append(buffer, &(char []){'\0'});
 			// The current patch should have a corresponding ".VC_" label
 			current_hook = symbol_find_cat(symbols, ".VC_", buffer->data);
 			// Skip to the next line
