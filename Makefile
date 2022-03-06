@@ -63,7 +63,7 @@ clean: tidy
 	find gfx/pokemon -mindepth 1 ! -path "gfx/pokemon/unown/*" \( -name "bitmask.asm" -o -name "frames.asm" -o -name "front.animated.tilemap" -o -name "front.dimensions" \) -delete
 
 tidy:
-	$(RM) $(roms) $(patches:.patch=.gbc) $(patches) $(pokecrystal_obj) $(pokecrystal11_obj) $(pokecrystalvc_obj) $(pokecrystal_au_obj) $(pokecrystal_debug_obj) $(pokecrystal11_debug_obj) $(roms:.gbc=.map) $(patches:.patch=.map) $(patches:.patch=.sym) $(roms:.gbc=.sym) vc/pokecrystalvc.constants.out rgbdscheck.o
+	$(RM) $(roms) $(patches:.patch=.gbc) $(patches) $(pokecrystal_obj) $(pokecrystal11_obj) $(pokecrystalvc_obj) $(pokecrystal_au_obj) $(pokecrystal_debug_obj) $(pokecrystal11_debug_obj) $(roms:.gbc=.sym) $(patches:.patch=.sym) $(roms:.gbc=.map) $(patches:.patch=.map) vc/pokecrystalvc.constants.out rgbdscheck.o
 	$(MAKE) clean -C tools/
 
 compare: $(roms) $(patches)
