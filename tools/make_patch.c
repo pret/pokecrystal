@@ -107,7 +107,7 @@ int parse_number(const char *input, int base) {
 	return n;
 }
 
-void parse_symbol_value(char *input, int *bank, int *address) {
+void parse_symbol_value(char *input, int *restrict bank, int *restrict address) {
 	char *colon = strchr(input, ':');
 	if (colon) {
 		// Parse symbol's bank:address
@@ -187,10 +187,7 @@ int parse_arg_value(const char *arg, bool absolute, const struct Symbol *symbols
 	return (absolute ? symbol->offset : symbol->address) + offset_mod;
 }
 
-void interpret_command(
-	char *command, const struct Symbol *current_hook, const struct Symbol *symbols,
-	struct Buffer *patches, FILE *new_rom, FILE *orig_rom, FILE *output
-) {
+void interpret_command(char *command, const struct Symbol *current_hook, const struct Symbol *symbols, struct Buffer *patches, FILE *restrict new_rom, FILE *restrict orig_rom, FILE *restrict output) {
 	// Strip all leading spaces and all but one trailing space
 	int x = 0;
 	for (int i = 0; command[i]; i++) {
@@ -302,7 +299,7 @@ void interpret_command(
 	}
 }
 
-struct Buffer *process_template(const char *template_filename, const char *patch_filename, FILE *new_rom, FILE *orig_rom, const struct Symbol *symbols) {
+struct Buffer *process_template(const char *template_filename, const char *patch_filename, FILE *restrict new_rom, FILE *restrict orig_rom, const struct Symbol *symbols) {
 	FILE *input = xfopen(template_filename, 'r');
 	FILE *output = xfopen(patch_filename, 'w');
 	struct Buffer *buffer = buffer_create(1);
@@ -389,7 +386,7 @@ int compare_patch(const void *patch1, const void *patch2) {
 	return offset1 > offset2 ? 1 : offset1 < offset2 ? -1 : 0;
 }
 
-bool verify_completeness(FILE *orig_rom, FILE *new_rom, struct Buffer *patches) {
+bool verify_completeness(FILE *restrict orig_rom, FILE *restrict new_rom, struct Buffer *patches) {
 	qsort(patches->data, patches->size, patches->item_size, compare_patch);
 	for (unsigned int offset = 0, index = 0; ; offset++) {
 		int orig_byte = getc(orig_rom);
