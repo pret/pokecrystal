@@ -130,7 +130,7 @@ void parse_symbols(const char *filename, struct Symbol **symbols) {
 	FILE *file = xfopen(filename, 'r');
 	struct Buffer *buffer = buffer_create(1);
 
-	enum { SYM_PRE, SYM_VALUE, SYM_MID, SYM_NAME } state = SYM_PRE;
+	enum { SYM_PRE, SYM_VALUE, SYM_SPACE, SYM_NAME } state = SYM_PRE;
 	int bank = 0;
 	int address = 0;
 
@@ -138,7 +138,7 @@ void parse_symbols(const char *filename, struct Symbol **symbols) {
 		int c = getc(file);
 		if (c == EOF || c == '\n' || c == '\r' || c == ';' || (state == SYM_NAME && (c == ' ' || c == '\t'))) {
 			if (state == SYM_NAME) {
-				// The symbol name has ended; append the parsed symbol
+				// The symbol name has ended; append the buffered symbol
 				buffer_append(buffer, "");
 				symbol_append(symbols, buffer->data, bank, address);
 			}
@@ -147,8 +147,11 @@ void parse_symbols(const char *filename, struct Symbol **symbols) {
 			while (c != EOF && c != '\n' && c != '\r') {
 				c = getc(file);
 			}
+			if (c == EOF) {
+				break;
+			}
 		} else if (c != ' ' && c != '\t') {
-			if (state == SYM_PRE || state == SYM_MID) {
+			if (state == SYM_PRE || state == SYM_SPACE) {
 				// The symbol value or name has started; buffer its contents
 				if (++state == SYM_NAME) {
 					// The symbol name has started; parse the buffered value
@@ -160,10 +163,7 @@ void parse_symbols(const char *filename, struct Symbol **symbols) {
 			buffer_append(buffer, &c);
 		} else if (state == SYM_VALUE) {
 			// The symbol value has ended; wait to see if a name comes after it
-			state = SYM_MID;
-		}
-		if (c == EOF) {
-			break;
+			state = SYM_SPACE;
 		}
 	}
 
