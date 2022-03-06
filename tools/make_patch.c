@@ -356,16 +356,13 @@ struct Buffer *process_template(const char *template_filename, const char *patch
 				putc(c, output);
 				if (c == ']') {
 					break;
+				} else if (!isalnum(c) && c != '_' && c != '@' && c != '#') {
+					// Convert non-identifier characters to underscores
+					c = '_';
 				}
 				buffer_append(buffer, &c);
 			}
 			buffer_append(buffer, "");
-			// Convert spaces to underscores
-			for (size_t i = 0; i < buffer->size; i++) {
-				if (buffer->data[i] == ' ') {
-					buffer->data[i] = '_';
-				}
-			}
 			// The current patch should have a corresponding ".VC_" label
 			current_hook = symbol_find_cat(symbols, ".VC_", buffer->data);
 			// Skip to the next line
