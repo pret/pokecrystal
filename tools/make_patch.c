@@ -12,16 +12,16 @@ struct Buffer {
 	void *data;
 };
 
-struct Patch {
-	unsigned int offset;
-	unsigned int size;
-};
-
 struct Symbol {
 	struct Symbol *next;
 	unsigned int address;
 	unsigned int offset;
 	char name[]; // C99 FAM
+};
+
+struct Patch {
+	unsigned int offset;
+	unsigned int size;
 };
 
 struct Buffer *buffer_create(size_t item_size) {
