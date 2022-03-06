@@ -130,36 +130,40 @@ void parse_symbols(const char *filename, struct Symbol **symbols) {
 	FILE *file = xfopen(filename, 'r');
 	struct Buffer *buffer = buffer_create(1);
 
+	enum { SYM_PRE, SYM_VALUE, SYM_MID, SYM_NAME } state = SYM_PRE;
 	int bank = 0;
 	int address = 0;
 
-	for (int c = getc(file); c != EOF; c = getc(file)) {
-		switch (c) {
-		case ';':
-		case '\r':
-		case '\n':
-			// This is the end of the symbol name
-			buffer_append(buffer, "");
-			symbol_append(symbols, buffer->data, bank, address);
-			// Clear the buffer for the next symbol
-			buffer->size = 0;
-			// Skip to the next line
-			while (c != '\n' && c != '\r' && c != EOF) {
+	for (;;) {
+		int c = getc(file);
+		if (c == EOF || c == '\n' || c == '\r' || c == ';' || (state == SYM_NAME && (c == ' ' || c == '\t'))) {
+			if (state == SYM_NAME) {
+				// The symbol name has ended; append the parsed symbol
+				buffer_append(buffer, "");
+				symbol_append(symbols, buffer->data, bank, address);
+			}
+			// Skip to the next line, ignoring anything after the symbol value and name
+			state = SYM_PRE;
+			while (c != EOF && c != '\n' && c != '\r') {
 				c = getc(file);
 			}
-			break;
-
-		case ' ':
-		case '\t':
-			// This is the end of the symbol value
-			buffer_append(buffer, "");
-			parse_symbol_value(buffer->data, &bank, &address);
-			// Clear the buffer for the symbol name
-			buffer->size = 0;
-			break;
-
-		default:
+		} else if (c != ' ' && c != '\t') {
+			if (state == SYM_PRE || state == SYM_MID) {
+				// The symbol value or name has started; buffer its contents
+				if (++state == SYM_NAME) {
+					// The symbol name has started; parse the buffered value
+					buffer_append(buffer, "");
+					parse_symbol_value(buffer->data, &bank, &address);
+				}
+				buffer->size = 0;
+			}
 			buffer_append(buffer, &c);
+		} else if (state == SYM_VALUE) {
+			// The symbol value has ended; wait to see if a name comes after it
+			state = SYM_MID;
+		}
+		if (c == EOF) {
+			break;
 		}
 	}
 
