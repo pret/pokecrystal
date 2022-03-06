@@ -108,22 +108,17 @@ int parse_number(const char *input, int base) {
 }
 
 void parse_symbol_value(char *input, int *bank, int *address) {
-	char *buffer = xmalloc(strlen(input) + 1);
-	strcpy(buffer, input);
-
-	char *buffer2 = strchr(buffer, ':');
-	if (buffer2) {
+	char *colon = strchr(input, ':');
+	if (colon) {
 		// Parse symbol's bank:address
-		*buffer2++ = '\0';
-		*bank = parse_number(buffer, 16);
-		*address = parse_number(buffer2, 16);
+		*colon++ = '\0';
+		*bank = parse_number(input, 16);
+		*address = parse_number(colon, 16);
 	} else {
 		// Parse constant's value
 		*bank = 0;
-		*address = parse_number(buffer, 16);
+		*address = parse_number(input, 16);
 	}
-
-	free(buffer);
 }
 
 void parse_symbols(const char *filename, struct Symbol **symbols) {
@@ -171,7 +166,7 @@ void parse_symbols(const char *filename, struct Symbol **symbols) {
 	buffer_free(buffer);
 }
 
-int parse_arg_value(char *arg, bool absolute, const struct Symbol *symbols, const char *patch_name) {
+int parse_arg_value(const char *arg, bool absolute, const struct Symbol *symbols, const char *patch_name) {
 	static const char *comparisons[] = {"==", ">", "<", ">=", "<=", "!="};
 	for (unsigned int i = 0; i < sizeof(comparisons) / sizeof(*comparisons); i++) {
 		if (!strcmp(arg, comparisons[i])) {
@@ -207,7 +202,7 @@ void interpret_command(
 
 	// Count the arguments
 	int argc = 0;
-	for (char *c = command; *c; c++) {
+	for (const char *c = command; *c; c++) {
 		if (*c == ' ') {
 			argc++;
 		}
