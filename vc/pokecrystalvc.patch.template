@@ -435,8 +435,8 @@ MotionBEnable0 = 3
 MotionBlur0 = 11                                                                                                         
 ConditionType = 0                                                 
 ConditionValueA = {dws wFXAnimID}
-ConditionValueB = {dws ==}
-ConditionValueC = {dws FISSURE}
+ConditionValueB = {dws ==       }
+ConditionValueC = {dws FISSURE  }
 
 ;ROM:35D09                 ld      [byte_CFB6], a
 ;ROM:35D0C                 ld      a, d
