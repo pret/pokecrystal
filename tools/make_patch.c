@@ -182,7 +182,7 @@ int parse_arg_value(const char *arg, bool absolute, const struct Symbol *symbols
 		offset_mod = parse_number(plus, 0);
 		*plus = '\0';
 	}
-	const char *sym_name = strcmp(arg, "@") ? arg : patch_name;
+	const char *sym_name = strcmp(arg, "@") ? arg : patch_name; // "@" is the current patch label
 	const struct Symbol *symbol = symbol_find(symbols, sym_name);
 	return (absolute ? symbol->offset : symbol->address) + offset_mod;
 }
