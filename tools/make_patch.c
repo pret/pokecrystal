@@ -200,7 +200,7 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 	// Count the arguments
 	int argc = 0;
 	for (const char *c = command; *c; c++) {
-		if (*c == ' ') {
+		if (isspace((unsigned char)*c)) {
 			argc++;
 		}
 	}
@@ -209,7 +209,7 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 	char *argv[argc]; // VLA
 	char *arg = command;
 	for (int i = 0; i < argc; i++) {
-		arg = strchr(arg, ' ');
+		arg = strpbrk(arg, " \t\n\r\v\f");
 		if (!arg) {
 			break;
 		}
