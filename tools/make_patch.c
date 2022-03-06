@@ -9,7 +9,7 @@ struct Buffer {
 	size_t item_size;
 	size_t size;
 	size_t capacity;
-	char *data;
+	void *data;
 };
 
 struct Patch {
@@ -38,7 +38,7 @@ void buffer_append(struct Buffer *buffer, const void *item) {
 		buffer->capacity = (buffer->capacity + 1) * 2;
 		buffer->data = xrealloc(buffer->data, buffer->capacity * buffer->item_size);
 	}
-	memcpy(buffer->data + (buffer->size++ * buffer->item_size), item, buffer->item_size);
+	memcpy((char *)buffer->data + (buffer->size++ * buffer->item_size), item, buffer->item_size);
 }
 
 void buffer_free(struct Buffer *buffer) {
@@ -394,7 +394,7 @@ bool verify_completeness(FILE *restrict orig_rom, FILE *restrict new_rom, struct
 		if (orig_byte == EOF || new_byte == EOF) {
 			return orig_byte == new_byte;
 		}
-		struct Patch *patch = (struct Patch *)(patches->data + index * patches->item_size);
+		struct Patch *patch = &((struct Patch *)patches->data)[index];
 		if (index < patches->size && patch->offset == offset) {
 			if (fseek(orig_rom, patch->size, SEEK_CUR)) {
 				return false;
