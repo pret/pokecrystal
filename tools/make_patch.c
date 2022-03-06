@@ -209,8 +209,8 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 	char *argv[argc]; // VLA
 	char *arg = command;
 	for (int i = 0; i < argc; i++) {
-		arg = strpbrk(arg, " \t\n\r\v\f");
-		if (!arg) {
+		for (; *arg && !isspace((unsigned char)*arg); arg++);
+		if (!*arg) {
 			break;
 		}
 		*arg++ = '\0';
