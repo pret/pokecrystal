@@ -167,10 +167,10 @@ void parse_symbols(const char *filename, struct Symbol **symbols) {
 }
 
 int parse_arg_value(const char *arg, bool absolute, const struct Symbol *symbols, const char *patch_name) {
-	static const char *comparisons[] = {"==", ">", "<", ">=", "<=", "!="};
+	static const char *comparisons[] = {"==", ">", "<", ">=", "<=", "!=", "||"};
 	for (unsigned int i = 0; i < sizeof(comparisons) / sizeof(*comparisons); i++) {
 		if (!strcmp(arg, comparisons[i])) {
-			return i;
+			return i == 6 ? 0x11 : i; // "||" is 0x11
 		}
 	}
 	if (isdigit((unsigned char)arg[0])) {
