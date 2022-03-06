@@ -78,21 +78,10 @@ A typical execution from the `MakeFile` looks like:
    5. The `db` command takes in one argument that can be parsed in `Section A. Arguments` listed above. It will output `a1:` immediately followed by a single byte value in lowercase hexadecimal, corresponding to the argument, with no space in between `a1:` and the byte value.
    6. The `DB` command performs the same function as the `db` command, except it prints the byte in uppercase hexadecimal.
    7. The `hex` command takes in 1 required argument with a 2nd optional argument. The first argument is any argument can be parsed in `Section A. Arguments` listed above. The second argument is an optional padding argument used primarily when we expect a certain hexadecimal length, and apply leading zeros if the length is smaller than the padding. The command will output a hexadecimal value with a leading `0x`. Example: `0xfffff`
-   8. The `Hex` command performs the same function as the `hex` command, except the low byte is lowercase and the rest is uppercase. Example: `0xFFFff`
-   9. The `heX` command performs the same function as the `hex` command, except the low byte is uppercase and the rest is lowercase.  Example: `0xfffFF`
-   10. The `hEX` command performs the same function as the `hex` command, except the Low three nibbles are uppercase, and the rest is lowercase. Example: `0xffFFF`
-   11. The `HEX` command performs the same function as the `hex` command, except the output value is all uppercase. Example: `0xFFFFF`
+   8. The `HEx` command performs the same functions as the `hex` command, except the low byte is lowercase and the rest is uppercase. Example: `0xFFFff` 
+   9. The `Hex` command performs the same function as the `hex` command, except the low three nibbles are lowercase and the rest is uppercase. Example: `0xFFfff`
+   10. The `heX` command performs the same function as the `hex` command, except the low byte is uppercase and the rest is lowercase.  Example: `0xfffFF`
+   11. The `hEX` command performs the same function as the `hex` command, except the Low three nibbles are uppercase, and the rest is lowercase. Example: `0xffFFF`
+   12. The `HEX` command performs the same function as the `hex` command, except the output value is all uppercase. Example: `0xFFFFF`
 
 4. The `verify_completeness` function runs last checking that all byte differences between the patched_rom and the orig_rom are accounted for in the patch file. If it finds a differing byte that is in an offset that does not correspond with a previous patch identified, it will error out the program with information detailing the mismatch.
-
-
-
-
-
-
-
-
-
-
-
-
