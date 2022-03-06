@@ -87,7 +87,7 @@ const struct Symbol *symbol_find(const struct Symbol *symbols, const char *name)
 			return symbol;
 		}
 	}
-	error_exit("Error: Unknown symbol: %s\n", name);
+	error_exit("Error: Unknown symbol: \"%s\"\n", name);
 }
 
 const struct Symbol *symbol_find_cat(const struct Symbol *symbols, const char *prefix, const char *suffix) {
@@ -102,7 +102,7 @@ int parse_number(const char *input, int base) {
 	char *endptr;
 	int n = strtol(input, &endptr, base);
 	if (endptr == input || *endptr || n < 0) {
-		error_exit("Error: Cannot parse number: %s", input);
+		error_exit("Error: Cannot parse number: \"%s\"", input);
 	}
 	return n;
 }
@@ -220,24 +220,24 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 	// Use the arguments
 	if (!strcmp(command, "patch") || !strcmp(command, "PATCH")) {
 		if (!current_hook) {
-			error_exit("Error: No current patch for command: %s", command);
+			error_exit("Error: No current patch for command: \"%s\"", command);
 		}
 		int current_offset = current_hook->offset;
 		if (argc > 0) {
 			current_offset += parse_number(argv[0], 0);
 		}
 		if (fseek(orig_rom, current_offset, SEEK_SET)) {
-			error_exit("Error: Cannot seek to 'vc_patch %s' in the original ROM\n", current_hook->name);
+			error_exit("Error: Cannot seek to \"vc_patch %s\" in the original ROM\n", current_hook->name);
 		}
 		if (fseek(new_rom, current_offset, SEEK_SET)) {
-			error_exit("Error: Cannot seek to 'vc_patch %s' in the new ROM\n", current_hook->name);
+			error_exit("Error: Cannot seek to \"vc_patch %s\" in the new ROM\n", current_hook->name);
 		}
 		const struct Symbol *current_hook_end = symbol_find_cat(symbols, current_hook->name, "_End");
 		int length = current_hook_end->offset - current_offset;
 		if (length == 1) {
 			int c = getc(new_rom);
 			if (c == getc(orig_rom)) {
-				fprintf(stderr, PROGRAM_NAME ": Warning: 'vc_patch %s' doesn't alter the ROM\n", current_hook->name);
+				fprintf(stderr, PROGRAM_NAME ": Warning: \"vc_patch %s\" doesn't alter the ROM\n", current_hook->name);
 			}
 			buffer_append(patches, &(struct Patch){current_offset, 1});
 			fprintf(output, isupper((unsigned char)command[0]) ? "0x%02X" : "0x%02x", c);
@@ -255,30 +255,30 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 
 	} else if (!strcmp(command, "dws") || !strcmp(command, "DWS")) {
 		if (argc < 1) {
-			error_exit("Error: Invalid arguments for command: %s", command);
+			error_exit("Error: Invalid arguments for command: \"%s\"", command);
 		}
 		fprintf(output, "a%d:", argc * 2);
 		for (int i = 0; i < argc; i++) {
 			int value = parse_arg_value(argv[i], false, symbols, current_hook->name);
 			if (value > 0xffff) {
-				error_exit("Error: Invalid value for '%s' argument: %d", command, value);
+				error_exit("Error: Invalid value for \"%s\" argument: 0x%x", command, value);
 			}
 			fprintf(output, isupper((unsigned char)command[0]) ? " %02X %02X": " %02x %02x", value & 0xff, value >> 8);
 		}
 
 	} else if (!strcmp(command, "db") || !strcmp(command, "DB")) {
 		if (argc != 1) {
-			error_exit("Error: Invalid arguments for command: %s", command);
+			error_exit("Error: Invalid arguments for command: \"%s\"", command);
 		}
 		int value = parse_arg_value(argv[0], false, symbols, current_hook->name);
 		if (value > 0xff) {
-			error_exit("Error: Invalid value for '%s' argument: %d", command, value);
+			error_exit("Error: Invalid value for \"%s\" argument: 0x%x", command, value);
 		}
 		fprintf(output, isupper((unsigned char)command[0]) ? "a1:%02X": "a1:%02x", value);
 
 	} else if (!strcmp(command, "hex") || !strcmp(command, "HEX") || !strcmp(command, "HEx") || !strcmp(command, "Hex") || !strcmp(command, "heX") || !strcmp(command, "hEX")) {
 		if (argc != 1 && argc != 2) {
-			error_exit("Error: Invalid arguments for command: %s", command);
+			error_exit("Error: Invalid arguments for command: \"%s\"", command);
 		}
 		int value = parse_arg_value(argv[0], true, symbols, current_hook->name);
 		int padding = argc > 1 ? parse_number(argv[1], 0) : 2;
@@ -295,7 +295,7 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 		}
 
 	} else {
-		error_exit("Error: Unknown command: %s\n", command);
+		error_exit("Error: Unknown command: \"%s\"\n", command);
 	}
 }
 
@@ -406,9 +406,9 @@ bool verify_completeness(FILE *restrict orig_rom, FILE *restrict new_rom, struct
 			index++;
 		} else if (orig_byte != new_byte) {
 			fprintf(stderr, PROGRAM_NAME ": Warning: Unpatched difference at offset: 0x%x\n", offset);
-			fprintf(stderr, "    Original ROM value: %02x\n", orig_byte);
-			fprintf(stderr, "    Patched ROM value: %02x\n", new_byte);
-			fprintf(stderr, "    Current patch offset: 0x%x\n", patch->offset);
+			fprintf(stderr, "    Original ROM value: 0x%02x\n", orig_byte);
+			fprintf(stderr, "    Patched ROM value: 0x%02x\n", new_byte);
+			fprintf(stderr, "    Current patch offset: 0x%06x\n", patch->offset);
 			return false;
 		}
 	}
