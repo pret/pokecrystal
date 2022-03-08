@@ -69,7 +69,7 @@ Any other characters are output as-is.
 
 ### `patch` or `PATCH`
 
-Seeks the patched ROM contents between the current patch label, and the label which is the current patch label plus "`_End`". Outputs the bytes between those labels as a hexadecimal number "<code>0x<i>V</i></code>" if there is only one byte <code><i>V</i></code>, or as a *value series* "<code>a<i>N</i>:<i>V1</i> <i>V2</i> [...] <i>VN</i></code>" for multiple bytes.
+Seeks the patched ROM contents between the current patch label, and the label which is the current patch label plus "`_End`". Outputs the bytes between those labels as a hexadecimal number "<code>0x<i>V</i></code>" for only one byte, or as a *value series* "<code>a<i>N</i>:<i>V1</i> <i>V2</i> [...] <i>VN</i></code>" for multiple bytes.
 
 An optional argument is an *offset* to add to the current patch label before gathering the contents between it and the end label.
 
