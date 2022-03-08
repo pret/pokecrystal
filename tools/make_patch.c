@@ -232,7 +232,7 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 		bool modified = false;
 		if (length == 1) {
 			int c = getc(new_rom);
-			modified |= c == getc(orig_rom);
+			modified = c != getc(orig_rom);
 			fprintf(output, isupper((unsigned char)command[0]) ? "0x%02X" : "0x%02x", c);
 		} else {
 			fprintf(output, "a%d:", length);
@@ -241,7 +241,7 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 					putc(' ', output);
 				}
 				int c = getc(new_rom);
-				modified |= c == getc(orig_rom);
+				modified |= c != getc(orig_rom);
 				fprintf(output, isupper((unsigned char)command[0]) ? "%02X" : "%02x", c);
 			}
 		}
