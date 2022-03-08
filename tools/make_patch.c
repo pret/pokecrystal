@@ -111,7 +111,7 @@ void parse_symbol_value(char *input, int *restrict bank, int *restrict address) 
 	char *colon = strchr(input, ':');
 	if (!colon) {
 		error_exit("Error: Cannot parse bank+address: \"%s\"", input);
-	};
+	}
 	*colon++ = '\0';
 	*bank = parse_number(input, 16);
 	*address = parse_number(colon, 16);
