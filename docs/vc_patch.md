@@ -77,6 +77,8 @@ As "`patch`", the byte values use lowercase for hexadecimal digits A-F; as "`PAT
 
 For example, if "`{patch}`" outputs "`a2:ab cd`", then "`{PATCH 1}`" outputs "`0xCD`".
 
+Converting the patch template will print a warning if any differences exist between the original and patched ROMs, which are not covered by "`patch`" commands.
+
 
 ### `dws` or `DWS`
 
