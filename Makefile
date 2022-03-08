@@ -63,7 +63,7 @@ clean: tidy
 	find gfx/pokemon -mindepth 1 ! -path "gfx/pokemon/unown/*" \( -name "bitmask.asm" -o -name "frames.asm" -o -name "front.animated.tilemap" -o -name "front.dimensions" \) -delete
 
 tidy:
-	$(RM) $(roms) $(patches:.patch=.gbc) $(patches) $(pokecrystal_obj) $(pokecrystal11_obj) $(pokecrystal11_vc_obj) $(pokecrystal_au_obj) $(pokecrystal_debug_obj) $(pokecrystal11_debug_obj) $(roms:.gbc=.sym) $(patches:.patch=.sym) $(roms:.gbc=.map) $(patches:.patch=.map) vc/pokecrystal11_vc.constants.sym rgbdscheck.o
+	$(RM) $(roms) $(patches:.patch=.gbc) $(patches) $(pokecrystal_obj) $(pokecrystal11_obj) $(pokecrystal11_vc_obj) $(pokecrystal_au_obj) $(pokecrystal_debug_obj) $(pokecrystal11_debug_obj) $(roms:.gbc=.sym) $(patches:.patch=.sym) $(roms:.gbc=.map) $(patches:.patch=.map) $(%.patch=vc/%.constants.sym) rgbdscheck.o
 	$(MAKE) clean -C tools/
 
 compare: $(roms) $(patches)
@@ -117,7 +117,7 @@ $(foreach obj, $(pokecrystal11_debug_obj), $(eval $(call DEP,$(obj),$(obj:11_deb
 $(foreach obj, $(pokecrystal11_vc_obj), $(eval $(call DEP,$(obj),$(obj:11_vc.o=.asm))))
 
 # Dependencies for VC files that need to run scan_includes
-vc/pokecrystal11_vc.constants.sym: vc/pokecrystal11_vc.constants.asm $(shell tools/scan_includes vc/pokecrystal11_vc.constants.asm) | rgbdscheck.o
+%_vc.constants.sym: %_vc.constants.asm $(shell tools/scan_includes %_vc.constants.asm) | rgbdscheck.o
 	$(RGBASM) $< > $@
 
 endif
