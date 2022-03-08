@@ -64,10 +64,10 @@ void symbol_append(struct Symbol **symbols, const char *name, int bank, int addr
 	*symbols = symbol;
 }
 
-void symbol_free(struct Symbol *list) {
-	for (struct Symbol *next; list; list = next) {
-		next = list->next;
-		free(list);
+void symbol_free(struct Symbol *symbols) {
+	for (struct Symbol *next; symbols; symbols = next) {
+		next = symbols->next;
+		free(symbols);
 	}
 }
 
@@ -228,23 +228,25 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 		}
 		const struct Symbol *current_hook_end = symbol_find_cat(symbols, current_hook->name, "_End");
 		int length = current_hook_end->offset - current_offset;
+		buffer_append(patches, &(struct Patch){current_offset, length});
+		bool modified = false;
 		if (length == 1) {
 			int c = getc(new_rom);
-			if (c == getc(orig_rom)) {
-				fprintf(stderr, PROGRAM_NAME ": Warning: \"vc_patch %s\" doesn't alter the ROM\n", current_hook->name);
-			}
-			buffer_append(patches, &(struct Patch){current_offset, 1});
+			modified |= c == getc(orig_rom);
 			fprintf(output, isupper((unsigned char)command[0]) ? "0x%02X" : "0x%02x", c);
 		} else {
-			fseek(new_rom, current_offset, SEEK_SET);
-			buffer_append(patches, &(struct Patch){current_offset, length});
 			fprintf(output, "a%d:", length);
 			for (int i = 0; i < length; i++) {
 				if (i) {
 					putc(' ', output);
 				}
-				fprintf(output, isupper((unsigned char)command[0]) ? "%02X" : "%02x", getc(new_rom));
+				int c = getc(new_rom);
+				modified |= c == getc(orig_rom);
+				fprintf(output, isupper((unsigned char)command[0]) ? "%02X" : "%02x", c);
 			}
+		}
+		if (!modified) {
+			fprintf(stderr, PROGRAM_NAME ": Warning: \"vc_patch %s\" doesn't alter the ROM\n", current_hook->name);
 		}
 
 	} else if (!strcmp(command, "dws") || !strcmp(command, "DWS")) {
@@ -427,6 +429,5 @@ int main(int argc, char *argv[]) {
 	fclose(new_rom);
 	fclose(orig_rom);
 	buffer_free(patches);
-
 	return 0;
 }
