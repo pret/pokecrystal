@@ -1,5 +1,5 @@
 #define PROGRAM_NAME "make_patch"
-#define USAGE_OPTS "labels.sym constants.out patched.gbc original.gbc vc.patch.template vc.patch"
+#define USAGE_OPTS "labels.sym constants.sym patched.gbc original.gbc vc.patch.template vc.patch"
 
 #include "common.h"
 
@@ -295,6 +295,15 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 	}
 }
 
+void skip_to_next_line(FILE *restrict input, FILE *restrict output) {
+	for (int c = getc(input); c != EOF; c = getc(input)) {
+		putc(c, output);
+		if (c == '\n' || c == '\r') {
+			break;
+		}
+	}
+}
+
 struct Buffer *process_template(const char *template_filename, const char *patch_filename, FILE *restrict new_rom, FILE *restrict orig_rom, const struct Symbol *symbols) {
 	FILE *input = xfopen(template_filename, 'r');
 	FILE *output = xfopen(patch_filename, 'w');
@@ -317,12 +326,7 @@ struct Buffer *process_template(const char *template_filename, const char *patch
 		case ';':
 			// ";" comments until the end of the line
 			putc(c, output);
-			for (c = getc(input); c != EOF; c = getc(input)) {
-				putc(c, output);
-				if (c == '\n' || c == '\r') {
-					break;
-				}
-			}
+			skip_to_next_line(input, output);
 			break;
 
 		case '{':
@@ -353,13 +357,7 @@ struct Buffer *process_template(const char *template_filename, const char *patch
 			buffer_append(buffer, &(char []){'\0'});
 			// The current patch should have a corresponding ".VC_" label
 			current_hook = symbol_find_cat(symbols, ".VC_", buffer->data);
-			// Skip to the next line
-			for (c = getc(input); c != EOF; c = getc(input)) {
-				putc(c, output);
-				if (c == '\n' || c == '\r') {
-					break;
-				}
-			}
+			skip_to_next_line(input, output);
 			break;
 
 		default:
