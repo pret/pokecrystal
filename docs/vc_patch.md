@@ -13,7 +13,7 @@ To build **pokecrystalvc.patch**:
 make crystalvc
 ```
 
-This will also create two ROM files, **pokecrystal11.gbc** and **pokecrystalvc.gbc**. The pokecrystalvc.gbc file has the patches already applied to it. Do not use this file; rename pokecrystalvc.patch to **pokecrystal11.patch** and bundle it together with pokecrystal11.gbc in a `.cia` file.
+This will also create two ROM files, **pokecrystal11.gbc** and **pokecrystalvc.gbc**. The pokecrystalvc.gbc file has the patches already applied to it. Do *not* use this file; rename pokecrystalvc.patch to **pokecrystal11.patch** and bundle it together with pokecrystal11.gbc in a `.cia` file.
 
 
 ## vc/pokecrystalvc.constants.asm
