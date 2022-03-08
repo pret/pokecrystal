@@ -29,7 +29,7 @@
 *.tilemap binary diff=hex
 
 # Declare files that will always have CRLF line endings on checkout.
-pokecrystalvc.patch.template text eol=crlf linguist-language=INI
+*_vc.patch.template text eol=crlf linguist-language=INI
 
 # these are generated but just in case
 *.lz binary   diff=hex

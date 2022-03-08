@@ -1587,7 +1587,7 @@ _LinkBattleSendReceiveAction:
 
 	vc_hook send_byt2_ret
 	vc_patch send_byt2_wait
-if DEF(_CRYSTALVC)
+if DEF(_CRYSTAL11_VC)
 	ld b, 26
 else
 	ld b, 10
@@ -1601,7 +1601,7 @@ endc
 
 	vc_hook send_dummy
 	vc_patch send_dummy_wait
-if DEF(_CRYSTALVC)
+if DEF(_CRYSTAL11_VC)
 	ld b, 26
 else
 	ld b, 10

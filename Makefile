@@ -1,5 +1,5 @@
 roms    := pokecrystal.gbc pokecrystal11.gbc pokecrystal_au.gbc pokecrystal_debug.gbc pokecrystal11_debug.gbc
-patches := pokecrystalvc.patch
+patches := pokecrystal11_vc.patch
 
 rom_obj := \
 audio.o \
@@ -24,7 +24,7 @@ pokecrystal11_obj       := $(rom_obj:.o=11.o)
 pokecrystal_au_obj      := $(rom_obj:.o=_au.o)
 pokecrystal_debug_obj   := $(rom_obj:.o=_debug.o)
 pokecrystal11_debug_obj := $(rom_obj:.o=11_debug.o)
-pokecrystalvc_obj       := $(rom_obj:.o=vc.o)
+pokecrystal11_vc_obj    := $(rom_obj:.o=11_vc.o)
 
 
 ### Build tools
@@ -56,14 +56,14 @@ crystal11:       pokecrystal11.gbc
 crystal_au:      pokecrystal_au.gbc
 crystal_debug:   pokecrystal_debug.gbc
 crystal11_debug: pokecrystal11_debug.gbc
-crystalvc:       pokecrystalvc.patch
+crystal11_vc:    pokecrystal11_vc.patch
 
 clean: tidy
 	find gfx \( -name "*.[12]bpp" -o -name "*.lz" -o -name "*.gbcpal" -o -name "*.sgb.tilemap" \) -delete
 	find gfx/pokemon -mindepth 1 ! -path "gfx/pokemon/unown/*" \( -name "bitmask.asm" -o -name "frames.asm" -o -name "front.animated.tilemap" -o -name "front.dimensions" \) -delete
 
 tidy:
-	$(RM) $(roms) $(patches:.patch=.gbc) $(patches) $(pokecrystal_obj) $(pokecrystal11_obj) $(pokecrystalvc_obj) $(pokecrystal_au_obj) $(pokecrystal_debug_obj) $(pokecrystal11_debug_obj) $(roms:.gbc=.sym) $(patches:.patch=.sym) $(roms:.gbc=.map) $(patches:.patch=.map) vc/pokecrystalvc.constants.sym rgbdscheck.o
+	$(RM) $(roms) $(patches:.patch=.gbc) $(patches) $(pokecrystal_obj) $(pokecrystal11_obj) $(pokecrystal11_vc_obj) $(pokecrystal_au_obj) $(pokecrystal_debug_obj) $(pokecrystal11_debug_obj) $(roms:.gbc=.sym) $(patches:.patch=.sym) $(roms:.gbc=.map) $(patches:.patch=.map) vc/pokecrystal11_vc.constants.sym rgbdscheck.o
 	$(MAKE) clean -C tools/
 
 compare: $(roms) $(patches)
@@ -84,9 +84,9 @@ $(pokecrystal11_obj):       RGBASMFLAGS += -D _CRYSTAL11
 $(pokecrystal_au_obj):      RGBASMFLAGS += -D _CRYSTAL11 -D _CRYSTAL_AU
 $(pokecrystal_debug_obj):   RGBASMFLAGS += -D _DEBUG
 $(pokecrystal11_debug_obj): RGBASMFLAGS += -D _CRYSTAL11 -D _DEBUG
-$(pokecrystalvc_obj):       RGBASMFLAGS += -D _CRYSTAL11 -D _CRYSTALVC
+$(pokecrystal11_vc_obj):    RGBASMFLAGS += -D _CRYSTAL11 -D _CRYSTAL11_VC
 
-%.patch: %.sym vc/%.constants.sym %.gbc pokecrystal11.gbc vc/%.patch.template
+%_vc.patch: %_vc.sym vc/%_vc.constants.sym %_vc.gbc %.gbc vc/%_vc.patch.template
 	tools/make_patch $^ $@
 
 %.sym: ;
@@ -114,10 +114,10 @@ $(foreach obj, $(pokecrystal11_obj), $(eval $(call DEP,$(obj),$(obj:11.o=.asm)))
 $(foreach obj, $(pokecrystal_au_obj), $(eval $(call DEP,$(obj),$(obj:_au.o=.asm))))
 $(foreach obj, $(pokecrystal_debug_obj), $(eval $(call DEP,$(obj),$(obj:_debug.o=.asm))))
 $(foreach obj, $(pokecrystal11_debug_obj), $(eval $(call DEP,$(obj),$(obj:11_debug.o=.asm))))
-$(foreach obj, $(pokecrystalvc_obj), $(eval $(call DEP,$(obj),$(obj:vc.o=.asm))))
+$(foreach obj, $(pokecrystal11_vc_obj), $(eval $(call DEP,$(obj),$(obj:11_vc.o=.asm))))
 
 # Dependencies for VC files that need to run scan_includes
-vc/pokecrystalvc.constants.sym: vc/pokecrystalvc.constants.asm $(shell tools/scan_includes vc/pokecrystalvc.constants.asm) | rgbdscheck.o
+vc/pokecrystal11_vc.constants.sym: vc/pokecrystal11_vc.constants.asm $(shell tools/scan_includes vc/pokecrystal11_vc.constants.asm) | rgbdscheck.o
 	$(RGBASM) $< > $@
 
 endif
@@ -128,12 +128,12 @@ pokecrystal11_opt       = -Cjv -t PM_CRYSTAL -i BYTE -n 1 -k 01 -l 0x33 -m 0x10 
 pokecrystal_au_opt      = -Cjv -t PM_CRYSTAL -i BYTU -n 0 -k 01 -l 0x33 -m 0x10 -r 3 -p 0
 pokecrystal_debug_opt   = -Cjv -t PM_CRYSTAL -i BYTE -n 0 -k 01 -l 0x33 -m 0x10 -r 3 -p 0
 pokecrystal11_debug_opt = -Cjv -t PM_CRYSTAL -i BYTE -n 1 -k 01 -l 0x33 -m 0x10 -r 3 -p 0
-pokecrystalvc_opt       = -Cjv -t PM_CRYSTAL -i BYTE -n 1 -k 01 -l 0x33 -m 0x10 -r 3 -p 0
+pokecrystal11_vc_opt    = -Cjv -t PM_CRYSTAL -i BYTE -n 1 -k 01 -l 0x33 -m 0x10 -r 3 -p 0
 
 pokecrystal_base         = us
 pokecrystal11_base       = us
 pokecrystal_au_base      = us
-pokecrystalvc_base       = us
+pokecrystal11_vc_base    = us
 pokecrystal_debug_base   = dbg
 pokecrystal11_debug_base = dbg
 

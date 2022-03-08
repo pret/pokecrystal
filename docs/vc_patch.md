@@ -5,23 +5,23 @@ The Nintendo Virtual Console for the 2DS and 3DS can play Game Boy Color ROMs bu
 An optional file bundled in the `.cia` archive is a `.patch` file with the same name as the `.gbc` file, used to determine when and under what conditions to enable certain Virtual Console functionalities, such as the Wireless Link capabilities. It also allows arbitrary content in the ROM to be modified, such as for disabling the Game Boy Printer features of Pokémon Crystal.
 
 
-## Build pokecrystalvc.patch
+## Build pokecrystal11_vc.patch
 
-To build **pokecrystalvc.patch**:
+To build **pokecrystal11_vc.patch**:
 
 ```bash
-make crystalvc
+make crystal11_vc
 ```
 
-This will also create two ROM files, **pokecrystal11.gbc** and **pokecrystalvc.gbc**. The pokecrystalvc.gbc file has the patches already applied to it. Do *not* use this file; rename pokecrystalvc.patch to **pokecrystal11.patch** and bundle it together with pokecrystal11.gbc in a `.cia` file.
+This will also create two ROM files, **pokecrystal11.gbc** and **pokecrystal11_vc.gbc**. The pokecrystal11_vc.gbc file has the patches already applied to it. Do *not* use this file; rename pokecrystal11_vc.patch to **pokecrystal11.patch** and bundle it together with pokecrystal11.gbc in a `.cia` file.
 
 
-## vc/pokecrystalvc.constants.asm
+## vc/pokecrystal11_vc.constants.asm
 
 The `.constants.asm` file is used to create a `.constants.sym` file. Typical `.sym` files only list the values of *labels* (ROM banks and addresses); this file is used to list *constants* that are needed by the patch template. Any constants that the patch template needs must be explicitly printed here with the `vc_const` macro.
 
 
-## vc/pokecrystalvc.patch.template
+## vc/pokecrystal11_vc.patch.template
 
 The `.patch.template` file is used to create the `.patch` file. Many numeric values in the `.patch` file are derived from the values of labels, constants, and ROM content; these values are abstracted into *commands* that get evaluated by `tools/make_patch` to output symbolic names as their actual values, formatted to match the original `.patch` file.
 
@@ -39,7 +39,7 @@ tools/make_patch labels.sym constants.sym patched.gbc original.gbc vc.patch.temp
 For example, this is what `make crystalvc` uses:
 
 ```bash
-tools/make_patch pokecrystalvc.sym vc/pokecrystalvc.constants.sym pokecrystalvc.gbc pokecrystal11.gbc vc/pokecrystalvc.patch.template pokecrystalvc.patch
+tools/make_patch pokecrystal11_vc.sym vc/pokecrystal11_vc.constants.sym pokecrystal11_vc.gbc pokecrystal11.gbc vc/pokecrystal11_vc.patch.template pokecrystal11_vc.patch
 ```
 
 

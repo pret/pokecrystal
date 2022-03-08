@@ -319,7 +319,7 @@ WaitLinkTransfer::
 	jr z, .loop
 
 	vc_patch Network10
-if DEF(_CRYSTALVC)
+if DEF(_CRYSTAL11_VC)
 	ld b, 26
 else
 	ld b, 10
@@ -332,7 +332,7 @@ endc
 	jr nz, .receive
 
 	vc_patch Network11
-if DEF(_CRYSTALVC)
+if DEF(_CRYSTAL11_VC)
 	ld b, 26
 else
 	ld b, 10
