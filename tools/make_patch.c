@@ -212,7 +212,7 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 	}
 
 	// Use the arguments
-	if (!strcmp(command, "patch") || !strcmp(command, "PATCH")) {
+	if (!strcmp(command, "patch") || !strcmp(command, "PATCH") || !strcmp(command, "patch_") || !strcmp(command, "PATCH_")) {
 		if (!current_hook) {
 			error_exit("Error: No current patch for command: \"%s\"", command);
 		}
@@ -235,7 +235,7 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 			modified = c != getc(orig_rom);
 			fprintf(output, isupper((unsigned char)command[0]) ? "0x%02X" : "0x%02x", c);
 		} else {
-			fprintf(output, "a%d:", length);
+			fprintf(output, (command[5] == '_') ? "a%d: " : "a%d:", length);
 			for (int i = 0; i < length; i++) {
 				if (i) {
 					putc(' ', output);
