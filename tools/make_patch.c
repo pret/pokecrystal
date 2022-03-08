@@ -135,9 +135,7 @@ void parse_symbols(const char *filename, struct Symbol **symbols) {
 			}
 			// Skip to the next line, ignoring anything after the symbol value and name
 			state = SYM_PRE;
-			while (c != EOF && c != '\n' && c != '\r') {
-				c = getc(file);
-			}
+			for (; c != EOF && c != '\n' && c != '\r'; c = getc(file));
 			if (c == EOF) {
 				break;
 			}
