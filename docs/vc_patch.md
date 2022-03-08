@@ -23,7 +23,7 @@ The `.constants.asm` file is used to create a `.constants.sym` file. Typical `.s
 
 ## vc/pokecrystalvc.patch.template
 
-The `.patch.template` file is used to create the `.patch` file. Many numeric values in the `.patch` file are derived from the values of labels, constants, and ROM content; these values are abstracted into *commands* that get evaluated by `tools/make_patch` and turned into their actual values.
+The `.patch.template` file is used to create the `.patch` file. Many numeric values in the `.patch` file are derived from the values of labels, constants, and ROM content; these values are abstracted into *commands* that get evaluated by `tools/make_patch` to output symbolic names as their actual values, formatted to match the original `.patch` file.
 
 
 ## tools/make_patch.c
