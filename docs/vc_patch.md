@@ -58,7 +58,7 @@ Commands are interpreted with a series of arguments, separated by whitespace (sp
 **Arguments** evaluate to numeric values. They may be any of the following:
 
 - Literal numbers in base 10 (e.g. "`42`"), 16 (e.g. "`0x2a`"), or octal (e.g. "`052`").
-- Comparison operators: "`==`" is 0, "`>`" is 2, "`<`" is 1, "`>=`" is 3, "`<=`" is 4, "`!=`" is 5, and "`||`" is 0x11.
+- Comparison operators: "`==`" is 0, "`>`" is 1, "`<`" is 2, "`>=`" is 3, "`<=`" is 4, "`!=`" is 5, and "`||`" is 0x11.
 - Symbol names from the two `.sym` files provided to `make_patch` may evaluate as their address, or their absolute offset in the ROM, depending on the command. They may also be followed by a plus sign "`+`" and a literal number that gets added to the value.
 - "`@`" evaluates as the address or absolute offset of the current patch label.
 
@@ -84,7 +84,7 @@ Outputs the alternating low and high bytes of its arguments as a value series. U
 
 As "`dws`", the values use lowercase; as "`DWS`", they use uppercase.
 
-For example, "`{dws 1 2 0xabcd}`" outputs "`a6: 01 00 02 00 cd ab`".
+For example, "`{dws 42 >= 0xabcd}`" outputs "`a6: 2a 00 04 00 cd ab`".
 
 
 ### `db` or `DB`
