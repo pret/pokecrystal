@@ -63,7 +63,7 @@ clean: tidy
 	find gfx/pokemon -mindepth 1 ! -path "gfx/pokemon/unown/*" \( -name "bitmask.asm" -o -name "frames.asm" -o -name "front.animated.tilemap" -o -name "front.dimensions" \) -delete
 
 tidy:
-	$(RM) $(roms) $(patches:.patch=.gbc) $(patches) $(pokecrystal_obj) $(pokecrystal11_obj) $(pokecrystalvc_obj) $(pokecrystal_au_obj) $(pokecrystal_debug_obj) $(pokecrystal11_debug_obj) $(roms:.gbc=.sym) $(patches:.patch=.sym) $(roms:.gbc=.map) $(patches:.patch=.map) vc/pokecrystalvc.constants.out rgbdscheck.o
+	$(RM) $(roms) $(patches:.patch=.gbc) $(patches) $(pokecrystal_obj) $(pokecrystal11_obj) $(pokecrystalvc_obj) $(pokecrystal_au_obj) $(pokecrystal_debug_obj) $(pokecrystal11_debug_obj) $(roms:.gbc=.sym) $(patches:.patch=.sym) $(roms:.gbc=.map) $(patches:.patch=.map) vc/pokecrystalvc.constants.sym rgbdscheck.o
 	$(MAKE) clean -C tools/
 
 compare: $(roms) $(patches)
@@ -86,11 +86,8 @@ $(pokecrystal_debug_obj):   RGBASMFLAGS += -D _DEBUG
 $(pokecrystal11_debug_obj): RGBASMFLAGS += -D _CRYSTAL11 -D _DEBUG
 $(pokecrystalvc_obj):       RGBASMFLAGS += -D _CRYSTAL11 -D _CRYSTALVC
 
-%.patch: %.sym vc/%.constants.out %.gbc pokecrystal11.gbc vc/%.patch.template
+%.patch: %.sym vc/%.constants.sym %.gbc pokecrystal11.gbc vc/%.patch.template
 	tools/make_patch $^ $@
-
-%.sym: ;
-%.out: ;
 
 rgbdscheck.o: rgbdscheck.asm
 	$(RGBASM) -o $@ $<
@@ -118,7 +115,7 @@ $(foreach obj, $(pokecrystal11_debug_obj), $(eval $(call DEP,$(obj),$(obj:11_deb
 $(foreach obj, $(pokecrystalvc_obj), $(eval $(call DEP,$(obj),$(obj:vc.o=.asm))))
 
 # Dependencies for VC files that need to run scan_includes
-vc/pokecrystalvc.constants.out: vc/pokecrystalvc.constants.asm $(shell tools/scan_includes vc/pokecrystalvc.constants.asm) | rgbdscheck.o
+vc/pokecrystalvc.constants.sym: vc/pokecrystalvc.constants.asm $(shell tools/scan_includes vc/pokecrystalvc.constants.asm) | rgbdscheck.o
 	$(RGBASM) $< > $@
 
 endif

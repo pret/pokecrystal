@@ -109,16 +109,12 @@ int parse_number(const char *input, int base) {
 
 void parse_symbol_value(char *input, int *restrict bank, int *restrict address) {
 	char *colon = strchr(input, ':');
-	if (colon) {
-		// Parse symbol's bank:address
-		*colon++ = '\0';
-		*bank = parse_number(input, 16);
-		*address = parse_number(colon, 16);
-	} else {
-		// Parse constant's value
-		*bank = 0;
-		*address = parse_number(input, 16);
-	}
+	if (!colon) {
+		error_exit("Error: Cannot parse bank+address: \"%s\"", input);
+	};
+	*colon++ = '\0';
+	*bank = parse_number(input, 16);
+	*address = parse_number(colon, 16);
 }
 
 void parse_symbols(const char *filename, struct Symbol **symbols) {

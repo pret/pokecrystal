@@ -3,7 +3,7 @@ INCLUDE "constants.asm"
 ; These are all the asm constants needed to make the pokecrystalvc patch.
 
 vc_const: MACRO
-	println "{02x:\1} \1"
+	println "00:{04x:\1} \1" ; same format as rgblink's .sym file
 ENDM
 
 ; [fight begin]

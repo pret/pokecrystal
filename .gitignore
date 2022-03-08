@@ -22,7 +22,6 @@ gfx/pokemon/*/frames.asm
 # rgbds extras
 *.map
 *.sym
-*.out
 
 # tool binaries
 *.exe
