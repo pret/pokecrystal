@@ -235,7 +235,7 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 			modified = c != getc(orig_rom);
 			fprintf(output, isupper((unsigned char)command[0]) ? "0x%02X" : "0x%02x", c);
 		} else {
-			fprintf(output, (command[5] == '_') ? "a%d: " : "a%d:", length);
+			fprintf(output, command[strlen(command) - 1] == '_' ? "a%d: " : "a%d:", length);
 			for (int i = 0; i < length; i++) {
 				if (i) {
 					putc(' ', output);
@@ -249,20 +249,23 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 			fprintf(stderr, PROGRAM_NAME ": Warning: \"vc_patch %s\" doesn't alter the ROM\n", current_hook->name);
 		}
 
-	} else if (!strcmp(command, "dws") || !strcmp(command, "DWS")) {
+	} else if (!strcmp(command, "dws") || !strcmp(command, "DWS") || !strcmp(command, "dws_") || !strcmp(command, "DWS_")) {
 		if (argc < 1) {
 			error_exit("Error: Invalid arguments for command: \"%s\"", command);
 		}
-		fprintf(output, "a%d:", argc * 2);
+		fprintf(output, command[strlen(command) - 1] == '_' ? "a%d: " : "a%d:", argc * 2);
 		for (int i = 0; i < argc; i++) {
 			int value = parse_arg_value(argv[i], false, symbols, current_hook->name);
 			if (value > 0xffff) {
 				error_exit("Error: Invalid value for \"%s\" argument: 0x%x", command, value);
 			}
-			fprintf(output, isupper((unsigned char)command[0]) ? " %02X %02X": " %02x %02x", value & 0xff, value >> 8);
+			if (i) {
+				putc(' ', output);
+			}
+			fprintf(output, isupper((unsigned char)command[0]) ? "%02X %02X": "%02x %02x", value & 0xff, value >> 8);
 		}
 
-	} else if (!strcmp(command, "db") || !strcmp(command, "DB")) {
+	} else if (!strcmp(command, "db") || !strcmp(command, "DB") || !strcmp(command, "db_") || !strcmp(command, "DB_")) {
 		if (argc != 1) {
 			error_exit("Error: Invalid arguments for command: \"%s\"", command);
 		}
@@ -270,7 +273,8 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 		if (value > 0xff) {
 			error_exit("Error: Invalid value for \"%s\" argument: 0x%x", command, value);
 		}
-		fprintf(output, isupper((unsigned char)command[0]) ? "a1:%02X": "a1:%02x", value);
+		fputs(command[strlen(command) - 1] == '_' ? "a1: " : "a1:", output);
+		fprintf(output, isupper((unsigned char)command[0]) ? "%02X" : "%02x", value);
 
 	} else if (!strcmp(command, "hex") || !strcmp(command, "HEX") || !strcmp(command, "HEx") || !strcmp(command, "Hex") || !strcmp(command, "heX") || !strcmp(command, "hEX")) {
 		if (argc != 1 && argc != 2) {
