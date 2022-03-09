@@ -10,6 +10,7 @@ ENDM
 	vc_const SCREEN_HEIGHT_PX
 
 ; [print forbid 2]
+	vc_const A_BUTTON
 ; [print forbid 3]
 	vc_const MAPGROUP_CIANWOOD
 	vc_const MAP_CIANWOOD_PHOTO_STUDIO
