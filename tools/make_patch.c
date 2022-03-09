@@ -167,7 +167,7 @@ int parse_arg_value(const char *arg, bool absolute, const struct Symbol *symbols
 			return i == 6 ? 0x11 : i; // "||" is 0x11
 		}
 	}
-	if (isdigit((unsigned char)arg[0])) {
+	if (isdigit((unsigned char)arg[0]) || arg[0] == '+') {
 		return parse_number(arg, 0);
 	}
 	int offset_mod = 0;

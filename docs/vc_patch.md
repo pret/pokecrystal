@@ -57,9 +57,9 @@ Commands are interpreted with a series of arguments, separated by whitespace (sp
 
 **Arguments** evaluate to numeric values. They may be any of the following:
 
-- Literal numbers in base 10 (e.g. "`42`"), 16 (e.g. "`0x2a`"), or octal (e.g. "`052`").
+- Literal numbers in base 10 (e.g. "`42`"), 16 (e.g. "`0x2a`"), or octal (e.g. "`052`"). They may start with a plus sign "`+`".
 - Comparison operators: "`==`" is 0, "`>`" is 1, "`<`" is 2, "`>=`" is 3, "`<=`" is 4, "`!=`" is 5, and "`||`" is 0x11.
-- Symbol names from the two `.sym` files provided to `make_patch` may evaluate as their bank-relative address, or their absolute offset in the ROM, depending on the command. They may also be followed by a plus sign "`+`" and a literal number that gets added to the value.
+- Symbol names from the two `.sym` files provided to `make_patch` may evaluate as their bank-relative address, or their absolute offset in the ROM, depending on the command. They may also be followed by a plus sign and a literal number that gets added to the value.
 - "`@`" evaluates as the address or absolute offset of the current patch label.
 
 Any other characters are output as-is.
@@ -88,7 +88,7 @@ Symbol names or "`@`" are evaluated as their relative address.
 
 If the command name is all lowercase, the byte values use lowercase; if it is all uppercase, they use uppercase. If the command name ends in an underscore, a space is output after the colon; if not, then it is not.
 
-For example, "`{dws_ 42 0xabcd}`" outputs "`a4: 2a 00 cd ab`", and "`{DWS >=}`" outputs "`a2:04 00`".
+For example, if "`{dws_ 42 0xabcd wCurSpecies}`" outputs "`a6: 2a 00 cd ab 60 cf`", then "`{DWS >= wCurSpecies+3}`" outputs "`a4:04 00 63 cf`".
 
 
 ### `db`, `DB`, `db_`, or `DB_`

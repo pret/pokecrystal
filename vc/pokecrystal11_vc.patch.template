@@ -29,12 +29,12 @@
 [Network10]
 Mode = 1
 Address = {HEX @+1 4}
-Fixcode = {PATCH 1}
+Fixcode = {PATCH +1}
 
 [Network11]
 Mode = 1
 Address = {HEX @+1 4}
-Fixcode = {PATCH 1}
+Fixcode = {PATCH +1}
 
 [send_send_buf2]
 Mode = 2
@@ -100,7 +100,7 @@ Type = 32
 [send_byt2_wait]
 Mode = 1
 Address = {HEX @+1 4}
-Fixcode = {PATCH 1}
+Fixcode = {PATCH +1}
 
 [send_dummy]
 Mode = 2
@@ -110,7 +110,7 @@ Type = 33
 [send_dummy_wait]
 Mode = 1
 Address = {HEX @+1 4}
-Fixcode = {PATCH 1} 
+Fixcode = {PATCH +1} 
 
 [send_dummy_end]
 Mode = 2
@@ -120,27 +120,27 @@ Type = 34
 [NetworkDelay1]
 Mode = 1
 Address = {HEX @+1 4}
-Fixcode = {PATCH 1}
+Fixcode = {PATCH +1}
 
 [NetworkDelay2]
 Mode = 1
 Address = {HEX @+1 4}
-Fixcode = {PATCH 1}
+Fixcode = {PATCH +1}
 
 [NetworkDelay3]
 Mode = 1
 Address = {HEX @+1 4}
-Fixcode = {PATCH 1}
+Fixcode = {PATCH +1}
 
 [NetworkDelay4]
 Mode = 1
 Address = {HEX @+1 4}
-Fixcode = {PATCH 1}
+Fixcode = {PATCH +1}
 
 [NetworkDelay6]
 Mode = 1
 Address = {HEX @+1 4}
-Fixcode = {PATCH 1}
+Fixcode = {PATCH +1}
 
 ;no use[Network_STOP]
 ;Mode = 2
