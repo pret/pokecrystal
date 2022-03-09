@@ -134,15 +134,12 @@ void remove_whitespace(struct Graphic *graphic) {
 	graphic->size &= ~(tile_size - 1);
 	int i = 0;
 	for (int j = 0, d = 0; i < graphic->size && j < graphic->size; i += tile_size, j += tile_size) {
-		while (j < graphic->size && is_whitespace(&graphic->data[j], tile_size) && !is_preserved(j / tile_size - d)) {
+		for (; j < graphic->size && is_whitespace(&graphic->data[j], tile_size) && !is_preserved(j / tile_size - d); j += tile_size, d++) {
 			shift_preserved(j / tile_size - d);
-			d++;
-			j += tile_size;
 		}
 		if (j >= graphic->size) {
 			break;
-		}
-		if (j > i) {
+		} else if (j > i) {
 			memcpy(&graphic->data[i], &graphic->data[j], tile_size);
 		}
 	}
@@ -170,13 +167,11 @@ void remove_duplicates(struct Graphic *graphic) {
 	graphic->size &= ~(tile_size - 1);
 	int num_tiles = 0;
 	for (int i = 0, j = 0, d = 0; i < graphic->size && j < graphic->size; i += tile_size, j += tile_size) {
-		while (j < graphic->size && tile_exists(&graphic->data[j], graphic->data, tile_size, num_tiles)) {
+		for (; j < graphic->size && tile_exists(&graphic->data[j], graphic->data, tile_size, num_tiles); j += tile_size, d++) {
 			if ((options.keep_whitespace && is_whitespace(&graphic->data[j], tile_size)) || is_preserved(j / tile_size - d)) {
 				break;
 			}
 			shift_preserved(j / tile_size - d);
-			d++;
-			j += tile_size;
 		}
 		if (j >= graphic->size) {
 			break;
@@ -227,13 +222,11 @@ void remove_flip(struct Graphic *graphic, bool xflip, bool yflip) {
 	graphic->size &= ~(tile_size - 1);
 	int num_tiles = 0;
 	for (int i = 0, j = 0, d = 0; i < graphic->size && j < graphic->size; i += tile_size, j += tile_size) {
-		while (j < graphic->size && flip_exists(&graphic->data[j], graphic->data, tile_size, num_tiles, xflip, yflip)) {
+		for (; j < graphic->size && flip_exists(&graphic->data[j], graphic->data, tile_size, num_tiles, xflip, yflip); j += tile_size, d++) {
 			if ((options.keep_whitespace && is_whitespace(&graphic->data[j], tile_size)) || is_preserved(j / tile_size - d)) {
 				break;
 			}
 			shift_preserved(j / tile_size - d);
-			d++;
-			j += tile_size;
 		}
 		if (j >= graphic->size) {
 			break;

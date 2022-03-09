@@ -11,11 +11,12 @@ tools := \
 	pokemon_animation_graphics \
 	scan_includes \
 	stadium
+
 all: $(tools)
 	@:
 
 clean:
-	rm -f $(tools)
+	$(RM) $(tools)
 
 gfx: common.h
 png_dimensions: common.h
