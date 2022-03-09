@@ -57,7 +57,7 @@ Commands are interpreted with a series of arguments, separated by whitespace (sp
 
 **Arguments** evaluate to numeric values. They may be any of the following:
 
-- Literal numbers in base 10 (e.g. "`42`"), 16 (e.g. "`0x2a`"), or octal (e.g. "`052`"). They may start with a plus sign "`+`".
+- Literal numbers in decimal (base 10, e.g. "`42`"), hexadecimal (base 16, e.g. "`0x2a`"), or octal (base 8, e.g. "`052`"). They may start with a plus sign "`+`". Numbers may not be negative.
 - Comparison operators: "`==`" is 0, "`>`" is 1, "`<`" is 2, "`>=`" is 3, "`<=`" is 4, "`!=`" is 5, and "`||`" is 0x11.
 - Symbol names from the two `.sym` files provided to `make_patch` may evaluate as their bank-relative address, or their absolute offset in the ROM, depending on the command. They may also be followed by a plus sign and a literal number that gets added to the value.
 - "`@`" evaluates as the address or absolute offset of the current patch label.
