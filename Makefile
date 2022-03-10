@@ -1,4 +1,8 @@
-roms    := pokecrystal.gbc pokecrystal11.gbc pokecrystal_au.gbc pokecrystal_debug.gbc pokecrystal11_debug.gbc
+roms    := pokecrystal.gbc \
+           pokecrystal11.gbc \
+           pokecrystal_au.gbc \
+           pokecrystal_debug.gbc \
+           pokecrystal11_debug.gbc
 patches := pokecrystal11_vc.patch
 
 rom_obj := \
@@ -59,11 +63,36 @@ crystal11_debug: pokecrystal11_debug.gbc
 crystal11_vc:    pokecrystal11_vc.patch
 
 clean: tidy
-	find gfx \( -name "*.[12]bpp" -o -name "*.lz" -o -name "*.gbcpal" -o -name "*.sgb.tilemap" \) -delete
-	find gfx/pokemon -mindepth 1 ! -path "gfx/pokemon/unown/*" \( -name "bitmask.asm" -o -name "frames.asm" -o -name "front.animated.tilemap" -o -name "front.dimensions" \) -delete
+	find gfx \
+	     \( -name "*.[12]bpp" \
+	        -o -name "*.lz" \
+	        -o -name "*.gbcpal" \
+	        -o -name "*.sgb.tilemap" \) \
+	     -delete
+	find gfx/pokemon -mindepth 1 \
+	     ! -path "gfx/pokemon/unown/*" \
+	     \( -name "bitmask.asm" \
+	        -o -name "frames.asm" \
+	        -o -name "front.animated.tilemap" \
+	        -o -name "front.dimensions" \) \
+	     -delete
 
 tidy:
-	$(RM) $(roms) $(patches:.patch=.gbc) $(patches) $(pokecrystal_obj) $(pokecrystal11_obj) $(pokecrystal11_vc_obj) $(pokecrystal_au_obj) $(pokecrystal_debug_obj) $(pokecrystal11_debug_obj) $(roms:.gbc=.sym) $(patches:.patch=.sym) $(roms:.gbc=.map) $(patches:.patch=.map) $(%.patch=vc/%.constants.sym) rgbdscheck.o
+	$(RM) $(roms) \
+	      $(roms:.gbc=.sym) \
+	      $(roms:.gbc=.map) \
+	      $(patches) \
+	      $(patches:.patch=.gbc) \
+	      $(patches:.patch=.sym) \
+	      $(patches:.patch=.map) \
+	      $(pokecrystal_obj) \
+	      $(pokecrystal11_obj) \
+	      $(pokecrystal11_vc_obj) \
+	      $(pokecrystal_au_obj) \
+	      $(pokecrystal_debug_obj) \
+	      $(pokecrystal11_debug_obj) \
+	      $(%.patch=vc/%.constants.sym) \
+	      rgbdscheck.o
 	$(MAKE) clean -C tools/
 
 compare: $(roms) $(patches)
