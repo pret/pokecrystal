@@ -290,7 +290,7 @@ TMHM_CheckHoveringOverCancel:
 TMHM_ExitPack:
 	call TMHM_PlaySFX_ReadText2
 _TMHM_ExitPack:
-	ld a, $2
+	ld a, B_BUTTON
 	ld [wMenuJoypad], a
 	and a
 	ret
