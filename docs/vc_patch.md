@@ -5,23 +5,23 @@ The Nintendo Virtual Console is an emulator on the 2DS and 3DS consoles. It can 
 Game-specific enhancements are determined by a `.patch` file corresponding to the `.gbc` ROM file. These files are bundled together in a `.cia` file; creating such a file is outside the scope of this project.
 
 
-## Build pokecrystal11_vc.patch
+## Build pokecrystal11.patch
 
-To build **pokecrystal11_vc.patch**:
+To build **pokecrystal11.patch**:
 
 ```bash
 make crystal11_vc
 ```
 
-This will also create two ROM files, **pokecrystal11.gbc** and **pokecrystal11_vc.gbc**. The pokecrystal11_vc.gbc file has the patches already applied to it. Do *not* use this file; rename pokecrystal11_vc.patch to **pokecrystal11.patch** and bundle it together with pokecrystal11.gbc in a `.cia` file.
+This will also create two ROM files, **pokecrystal11.gbc** and **pokecrystal11_vc.gbc**. The pokecrystal11_vc.gbc file has the patches already applied to it; do *not* use this file! The ROM file and patch file must share the same name, so use pokecrystal11.patch together with pokecrystal11.gbc.
 
 
-## vc/pokecrystal11_vc.constants.asm
+## vc/pokecrystal11.constants.asm
 
 The `.constants.asm` file is used to create a `.constants.sym` file. Typical `.sym` files only list the values of *labels* (ROM banks and addresses); this file is used to list *constants* that are needed by the patch template. Any constants that the patch template needs must be explicitly printed here with the `vc_const` macro.
 
 
-## vc/pokecrystal11_vc.patch.template
+## vc/pokecrystal11.patch.template
 
 The `.patch.template` file is used to create the `.patch` file. Many numeric values in the `.patch` file are derived from the values of labels, constants, and ROM content; these values are abstracted into *commands* that get evaluated by `tools/make_patch` to output symbolic names as their actual values, formatted to match the original `.patch` file.
 
@@ -39,7 +39,7 @@ tools/make_patch labels.sym constants.sym patched.gbc original.gbc vc.patch.temp
 For example, this is what `make crystalvc` uses:
 
 ```bash
-tools/make_patch pokecrystal11_vc.sym vc/pokecrystal11_vc.constants.sym pokecrystal11_vc.gbc pokecrystal11.gbc vc/pokecrystal11_vc.patch.template pokecrystal11_vc.patch
+tools/make_patch pokecrystal11_vc.sym vc/pokecrystal11.constants.sym pokecrystal11_vc.gbc pokecrystal11.gbc vc/pokecrystal11.patch.template pokecrystal11.patch
 ```
 
 
@@ -88,7 +88,7 @@ Symbol names or "`@`" are evaluated as their relative address.
 
 If the command name is all lowercase, the byte values use lowercase; if it is all uppercase, they use uppercase. If the command name ends in an underscore, a space is output after the colon; if not, then it is not.
 
-For example, if "`{dws_ 42 0xabcd wCurSpecies}`" outputs "`a6: 2a 00 cd ab 60 cf`", then "`{DWS >= wCurSpecies+3}`" outputs "`a4:04 00 63 cf`".
+For example, if "`{dws_ 42 0xabcd wCurSpecies}`" outputs "`a6: 2a 00 cd ab 60 cf`", then "`{DWS >= wCurSpecies+3}`" outputs "`a4:04 00 63 CF`".
 
 
 ### `db`, `DB`, `db_`, or `DB_`

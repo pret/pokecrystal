@@ -3,7 +3,7 @@ roms    := pokecrystal.gbc \
            pokecrystal_au.gbc \
            pokecrystal_debug.gbc \
            pokecrystal11_debug.gbc
-patches := pokecrystal11_vc.patch
+patches := pokecrystal11.patch
 
 rom_obj := \
 audio.o \
@@ -60,7 +60,7 @@ crystal11:       pokecrystal11.gbc
 crystal_au:      pokecrystal_au.gbc
 crystal_debug:   pokecrystal_debug.gbc
 crystal11_debug: pokecrystal11_debug.gbc
-crystal11_vc:    pokecrystal11_vc.patch
+crystal11_vc:    pokecrystal11.patch
 
 clean: tidy
 	find gfx \
@@ -82,16 +82,16 @@ tidy:
 	      $(roms:.gbc=.sym) \
 	      $(roms:.gbc=.map) \
 	      $(patches) \
-	      $(patches:.patch=.gbc) \
-	      $(patches:.patch=.sym) \
-	      $(patches:.patch=.map) \
+	      $(patches:.patch=_vc.gbc) \
+	      $(patches:.patch=_vc.sym) \
+	      $(patches:.patch=_vc.map) \
+	      $(patches:%.patch=vc/%.constants.sym) \
 	      $(pokecrystal_obj) \
 	      $(pokecrystal11_obj) \
 	      $(pokecrystal11_vc_obj) \
 	      $(pokecrystal_au_obj) \
 	      $(pokecrystal_debug_obj) \
 	      $(pokecrystal11_debug_obj) \
-	      $(%.patch=vc/%.constants.sym) \
 	      rgbdscheck.o
 	$(MAKE) clean -C tools/
 
@@ -115,7 +115,7 @@ $(pokecrystal_debug_obj):   RGBASMFLAGS += -D _DEBUG
 $(pokecrystal11_debug_obj): RGBASMFLAGS += -D _CRYSTAL11 -D _DEBUG
 $(pokecrystal11_vc_obj):    RGBASMFLAGS += -D _CRYSTAL11 -D _CRYSTAL11_VC
 
-%_vc.patch: %_vc.sym vc/%_vc.constants.sym %_vc.gbc %.gbc vc/%_vc.patch.template
+%.patch: %_vc.sym vc/%.constants.sym %_vc.gbc %.gbc vc/%.patch.template
 	tools/make_patch $^ $@
 
 %.sym: ;
@@ -146,7 +146,7 @@ $(foreach obj, $(pokecrystal11_debug_obj), $(eval $(call DEP,$(obj),$(obj:11_deb
 $(foreach obj, $(pokecrystal11_vc_obj), $(eval $(call DEP,$(obj),$(obj:11_vc.o=.asm))))
 
 # Dependencies for VC files that need to run scan_includes
-%_vc.constants.sym: %_vc.constants.asm $(shell tools/scan_includes %_vc.constants.asm) | rgbdscheck.o
+%.constants.sym: %.constants.asm $(shell tools/scan_includes %.constants.asm) | rgbdscheck.o
 	$(RGBASM) $< > $@
 
 endif
