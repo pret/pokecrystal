@@ -1,8 +1,8 @@
 # Nintendo 2DS/3DS Virtual Console Patch
 
-The Nintendo Virtual Console for the 2DS and 3DS can play Game Boy Color ROMs bundled into a `.cia` (CTR Importable Archive) file. Creating a `.cia` file for a `.gbc` ROM file is outside the scope of this project.
+The Nintendo Virtual Console is an emulator on the 2DS and 3DS consoles. It can emulate the Game Boy Color (among other consoles), while applying enhancements or modifications to some games, such as replacing Link Cable functionality with the DS' Wireless Link capabilities, or disabling Game Boy Printer features.
 
-An optional file bundled in the `.cia` archive is a `.patch` file with the same name as the `.gbc` file, used to determine when and under what conditions to enable certain Virtual Console functionalities, such as the Wireless Link capabilities. It also allows arbitrary content in the ROM to be modified, such as for disabling the Game Boy Printer features of Pokémon Crystal.
+Game-specific enhancements are determined by a `.patch` file corresponding to the `.gbc` ROM file. These files are bundled together in a `.cia` file; creating such a file is outside the scope of this project.
 
 
 ## Build pokecrystal11_vc.patch
