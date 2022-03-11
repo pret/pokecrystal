@@ -46,19 +46,11 @@ void buffer_free(struct Buffer *buffer) {
 	free(buffer);
 }
 
-int get_address_type_limit(int address) {
-	return address < 0x8000 ? 0x4000 // ROM
-	     : address < 0xa000 ? 0xa000 // VRAM
-	     : address < 0xc000 ? 0xc000 // SRAM
-	     : address < 0xd000 ? 0xd000 // WRAM
-	     : 0xffff; // HRAM
-}
-
 void symbol_append(struct Symbol **symbols, const char *name, int bank, int address) {
 	size_t name_len = strlen(name) + 1;
 	struct Symbol *symbol = xmalloc(sizeof(*symbol) + name_len);
 	symbol->address = address;
-	symbol->offset = bank > 0 ? address + (bank - 1) * get_address_type_limit(address) : address;
+	symbol->offset = bank > 0 && address < 0x8000 ? address + (bank - 1) * 0x4000 : address;
 	memcpy(symbol->name, name, name_len);
 	symbol->next = *symbols;
 	*symbols = symbol;
@@ -135,7 +127,9 @@ void parse_symbols(const char *filename, struct Symbol **symbols) {
 			}
 			// Skip to the next line, ignoring anything after the symbol value and name
 			state = SYM_PRE;
-			for (; c != EOF && c != '\n' && c != '\r'; c = getc(file));
+			while (c != EOF && c != '\n' && c != '\r') {
+				c = getc(file);
+			}
 			if (c == EOF) {
 				break;
 			}
@@ -167,7 +161,7 @@ int parse_arg_value(const char *arg, bool absolute, const struct Symbol *symbols
 			return i == 6 ? 0x11 : i; // "||" is 0x11
 		}
 	}
-	if (isdigit((unsigned char)arg[0]) || arg[0] == '+') {
+	if (isdigit((unsigned)arg[0]) || arg[0] == '+') {
 		return parse_number(arg, 0);
 	}
 	int offset_mod = 0;
@@ -176,7 +170,7 @@ int parse_arg_value(const char *arg, bool absolute, const struct Symbol *symbols
 		offset_mod = parse_number(plus, 0);
 		*plus = '\0';
 	}
-	const char *sym_name = strcmp(arg, "@") ? arg : patch_name; // "@" is the current patch label
+	const char *sym_name = !strcmp(arg, "@") ? patch_name : arg; // "@" is the current patch label
 	const struct Symbol *symbol = symbol_find(symbols, sym_name);
 	return (absolute ? symbol->offset : symbol->address) + offset_mod;
 }
@@ -185,16 +179,16 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 	// Strip all leading spaces and all but one trailing space
 	int x = 0;
 	for (int i = 0; command[i]; i++) {
-		if (!isspace((unsigned char)command[i]) || (i > 0 && !isspace((unsigned char)command[i - 1]))) {
+		if (!isspace((unsigned)command[i]) || (i > 0 && !isspace((unsigned)command[i - 1]))) {
 			command[x++] = command[i];
 		}
 	}
-	command[x - (x > 0 && isspace((unsigned char)command[x - 1]))] = '\0';
+	command[x - (x > 0 && isspace((unsigned)command[x - 1]))] = '\0';
 
 	// Count the arguments
 	int argc = 0;
 	for (const char *c = command; *c; c++) {
-		if (isspace((unsigned char)*c)) {
+		if (isspace((unsigned)*c)) {
 			argc++;
 		}
 	}
@@ -203,7 +197,9 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 	char *argv[argc]; // VLA
 	char *arg = command;
 	for (int i = 0; i < argc; i++) {
-		for (; *arg && !isspace((unsigned char)*arg); arg++);
+		while (*arg && !isspace((unsigned)*arg)) {
+			arg++;
+		}
 		if (!*arg) {
 			break;
 		}
@@ -233,7 +229,7 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 		if (length == 1) {
 			int c = getc(new_rom);
 			modified = c != getc(orig_rom);
-			fprintf(output, isupper((unsigned char)command[0]) ? "0x%02X" : "0x%02x", c);
+			fprintf(output, isupper((unsigned)command[0]) ? "0x%02X" : "0x%02x", c);
 		} else {
 			fprintf(output, command[strlen(command) - 1] == '_' ? "a%d: " : "a%d:", length);
 			for (int i = 0; i < length; i++) {
@@ -242,7 +238,7 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 				}
 				int c = getc(new_rom);
 				modified |= c != getc(orig_rom);
-				fprintf(output, isupper((unsigned char)command[0]) ? "%02X" : "%02x", c);
+				fprintf(output, isupper((unsigned)command[0]) ? "%02X" : "%02x", c);
 			}
 		}
 		if (!modified) {
@@ -262,7 +258,7 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 			if (i) {
 				putc(' ', output);
 			}
-			fprintf(output, isupper((unsigned char)command[0]) ? "%02X %02X": "%02x %02x", value & 0xff, value >> 8);
+			fprintf(output, isupper((unsigned)command[0]) ? "%02X %02X": "%02x %02x", value & 0xff, value >> 8);
 		}
 
 	} else if (!strcmp(command, "db") || !strcmp(command, "DB") || !strcmp(command, "db_") || !strcmp(command, "DB_")) {
@@ -274,7 +270,7 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 			error_exit("Error: Invalid value for \"%s\" argument: 0x%x", command, value);
 		}
 		fputs(command[strlen(command) - 1] == '_' ? "a1: " : "a1:", output);
-		fprintf(output, isupper((unsigned char)command[0]) ? "%02X" : "%02x", value);
+		fprintf(output, isupper((unsigned)command[0]) ? "%02X" : "%02x", value);
 
 	} else if (!strcmp(command, "hex") || !strcmp(command, "HEX") || !strcmp(command, "HEx") || !strcmp(command, "Hex") || !strcmp(command, "heX") || !strcmp(command, "hEX")) {
 		if (argc != 1 && argc != 2) {
@@ -291,7 +287,7 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 		} else if (!strcmp(command, "hEX")) {
 			fprintf(output, "0x%0*x%03X", padding - 3, value >> 12, value & 0xfff);
 		} else {
-			fprintf(output, isupper((unsigned char)command[0]) ? "0x%0*X" : "0x%0*x", padding, value);
+			fprintf(output, isupper((unsigned)command[0]) ? "0x%0*X" : "0x%0*x", padding, value);
 		}
 
 	} else {
