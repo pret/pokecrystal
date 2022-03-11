@@ -89,7 +89,7 @@ const struct Symbol *symbol_find_cat(const struct Symbol *symbols, const char *p
 
 int parse_number(const char *input, int base) {
 	char *endptr;
-	int n = strtol(input, &endptr, base);
+	int n = (int)strtol(input, &endptr, base);
 	if (endptr == input || *endptr || n < 0)
 		error_exit("Error: Cannot parse number: \"%s\"", input);
 	return n;
