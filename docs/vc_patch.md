@@ -78,7 +78,7 @@ An optional argument is an *offset* to add to the current patch label before gat
 
 If the command name is all lowercase, the byte values use lowercase for hexadecimal digits A-F; if it is all uppercase, they use uppercase. If the command name ends in an underscore, a space is output after the colon preceding the values; if not, then it is not.
 
-For example, if "`{patch}`" outputs "`a3:ab cd ef`", then "`{patch +1}`" outputs "`a2:cd ef`", and "`{patch 2}`" outputs "`0xef`".
+For example, if "`{patch}`" outputs "`a3:ab cd ef`", then "`{patch +1}`" outputs "`a2:cd ef`", and "`{patch +2}`" outputs "`0xef`".
 
 Converting the patch template will print a warning if any differences exist between the original and patched ROMs, which are not covered by "`patch`" commands.
 
@@ -91,7 +91,7 @@ Symbol names or "`@`" are evaluated as their relative address.
 
 If the command name is all lowercase, the byte values use lowercase; if it is all uppercase, they use uppercase. If the command name ends in an underscore, a space is output after the colon; if not, then it is not.
 
-For example, if "`{dws_ 42 0xabcd wCurSpecies}`" outputs "`a6: 2a 00 cd ab 60 cf`", then "`{DWS >= wCurSpecies+3}`" outputs "`a4:04 00 63 CF`".
+For example, if "`{dws 42 0xabcd wCurSpecies}`" outputs "`a6:2a 00 cd ab 60 cf`", then "`{dws >= wCurSpecies+3}`" outputs "`a4:04 00 63 cf`".
 
 
 ### <code>{db <i>arg</i>}</code>
@@ -102,7 +102,7 @@ Symbol names or "`@`" are evaluated as their relative address.
 
 If the command name is all lowercase, the byte value uses lowercase; if it is all uppercase, it uses uppercase. If the command name ends in an underscore, a space is output after the colon; if not, then it is not.
 
-For example, "`{db 0xEF}`" outputs "`a1:ef`", and "`{DB_ 251}`" outputs "`a1: FB`".
+For example, "`{db 0xEF}`" outputs "`a1:ef`".
 
 
 ### <code>{hex <i>arg</i>[ <i>padding</i>]}</code>
@@ -113,4 +113,4 @@ Symbol names or "`@`" are evaluated as their absolute offset.
 
 As "`hex`", the value uses lowercase; as "`HEX`", it uses uppercase. The other variations are for inconsistent casing: "`Hex`" prints the last three digits in lowercase and the rest uppercase; "`HEx`" prints the last two digits in lowercase and the rest uppercase; "`hEX`" prints the last three digits in uppercase and the rest lowercase; and "`heX`" prints the last two digits in uppercase and the rest lowercase.
 
-For example, "`{Hex 0xabcd 5}`" outputs "`0x0Abcd`", and "`{heX 0xaaabb}`" outputs "`0xaaaBB`".
+For example, "`{hex 0xabcd 5}`" outputs "`0x0abcd`".
