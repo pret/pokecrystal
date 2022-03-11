@@ -148,13 +148,17 @@ void parse_symbols(const char *filename, struct Symbol **symbols) {
 }
 
 int parse_arg_value(const char *arg, bool absolute, const struct Symbol *symbols, const char *patch_name) {
+	// Comparison operators for "ConditionValueB" evaluate to their particular values
 	static const char *comparisons[] = {"==", ">", "<", ">=", "<=", "!=", "||"};
-	for (unsigned int i = 0; i < sizeof(comparisons) / sizeof(*comparisons); i++) {
+	for (unsigned int i = 0; i < sizeof(comparisons) / sizeof(*comparisons); i++)
 		if (!strcmp(arg, comparisons[i]))
 			return i == 6 ? 0x11 : i; // "||" is 0x11
-	}
+
+	// Literal numbers evaluate to themselves
 	if (isdigit((unsigned)arg[0]) || arg[0] == '+')
 		return parse_number(arg, 0);
+
+	// Symbols evaluate to their offset or address, plus an optional offset mod
 	int offset_mod = 0;
 	char *plus = strchr(arg, '+');
 	if (plus) {
@@ -169,18 +173,16 @@ int parse_arg_value(const char *arg, bool absolute, const struct Symbol *symbols
 void interpret_command(char *command, const struct Symbol *current_hook, const struct Symbol *symbols, struct Buffer *patches, FILE *restrict new_rom, FILE *restrict orig_rom, FILE *restrict output) {
 	// Strip all leading spaces and all but one trailing space
 	int x = 0;
-	for (int i = 0; command[i]; i++) {
+	for (int i = 0; command[i]; i++)
 		if (!isspace((unsigned)command[i]) || (i > 0 && !isspace((unsigned)command[i - 1])))
 			command[x++] = command[i];
-	}
 	command[x - (x > 0 && isspace((unsigned)command[x - 1]))] = '\0';
 
 	// Count the arguments
 	int argc = 0;
-	for (const char *c = command; *c; c++) {
+	for (const char *c = command; *c; c++)
 		if (isspace((unsigned)*c))
 			argc++;
-	}
 
 	// Get the arguments
 	char *argv[argc]; // VLA
@@ -375,9 +377,8 @@ bool verify_completeness(FILE *restrict orig_rom, FILE *restrict new_rom, struct
 }
 
 int main(int argc, char *argv[]) {
-	if (argc != 7) {
+	if (argc != 7)
 		usage_exit(1);
-	}
 
 	struct Symbol *symbols = NULL;
 	parse_symbols(argv[1], &symbols);
