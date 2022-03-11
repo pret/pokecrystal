@@ -16,17 +16,19 @@ make crystal11_vc
 This will also create two ROM files, **pokecrystal11.gbc** and **pokecrystal11_vc.gbc**. The pokecrystal11_vc.gbc file has the patches already applied to it; do *not* use this file! The ROM file and patch file must share the same name, so use pokecrystal11.patch together with pokecrystal11.gbc.
 
 
-## vc/pokecrystal11.constants.asm
+## Custom files
 
-The `.constants.asm` file is used to create a `.constants.sym` file. Typical `.sym` files only list the values of *labels* (ROM banks and addresses); this file is used to list *constants* that are needed by the patch template. Any constants that the patch template needs must be explicitly printed here with the `vc_const` macro.
+There are a few files involved with building the `.patch` file, in addition to the ones used for building ROMs.
 
+### vc/pokecrystal11.patch.template
 
-## vc/pokecrystal11.patch.template
+The `.patch.template` file is the basis for the `.patch` file. Many numeric values in the `.patch` file are derived from the values of labels, constants, and ROM content; these values are abstracted into *commands* that get evaluated by `tools/make_patch` to output symbolic names as their actual values, formatted to match the original `.patch` file.
 
-The `.patch.template` file is used to create the `.patch` file. Many numeric values in the `.patch` file are derived from the values of labels, constants, and ROM content; these values are abstracted into *commands* that get evaluated by `tools/make_patch` to output symbolic names as their actual values, formatted to match the original `.patch` file.
+### vc/pokecrystal11.constants.asm
 
+The `.constants.asm` file is used to create a `.constants.sym` file. Typical `.sym` files only list the values of *labels* (ROM banks and addresses); this file is used to list *constants* that are needed by the `.patch.template`. Any constants that the `.patch.template` refers to must be explicitly printed here with the `vc_const` macro.
 
-## tools/make_patch.c
+### tools/make_patch.c
 
 The program used to convert a `.patch.template` into a `.patch` file.
 
@@ -36,7 +38,7 @@ To convert `vc.patch.template` into `vc.patch`:
 tools/make_patch labels.sym constants.sym patched.gbc original.gbc vc.patch.template vc.patch
 ```
 
-For example, this is what `make crystalvc` uses:
+For example, this is what `make crystal11_vc` uses:
 
 ```bash
 tools/make_patch pokecrystal11_vc.sym vc/pokecrystal11.constants.sym pokecrystal11_vc.gbc pokecrystal11.gbc vc/pokecrystal11.patch.template pokecrystal11.patch
@@ -67,7 +69,8 @@ Any other characters are output as-is.
 
 ## Patch template commands
 
-### `patch`, `PATCH`, `patch_`, or `PATCH_`
+
+### <code>{patch <i>label</i>[ <i>offset</i>]}</code>
 
 Seeks the patched ROM contents between the current patch label, and the label which is the current patch label plus "`_End`". Outputs the bytes between those labels as a hexadecimal number "<code>0x<i>V</i></code>" for only one byte, or as a *value series* "<code>a<i>N</i>: <i>V1</i> <i>V2</i> [...] <i>VN</i></code>" for multiple bytes.
 
@@ -75,12 +78,12 @@ An optional argument is an *offset* to add to the current patch label before gat
 
 If the command name is all lowercase, the byte values use lowercase for hexadecimal digits A-F; if it is all uppercase, they use uppercase. If the command name ends in an underscore, a space is output after the colon preceding the values; if not, then it is not.
 
-For example, if "`{patch}`" outputs "`a3:ab cd ef`", then "`{PATCH_ 1}`" outputs "`a2: CD EF`", and "`{patch 2}`" outputs "`0xef`".
+For example, if "`{patch}`" outputs "`a3:ab cd ef`", then "`{patch +1}`" outputs "`a2:cd ef`", and "`{patch 2}`" outputs "`0xef`".
 
 Converting the patch template will print a warning if any differences exist between the original and patched ROMs, which are not covered by "`patch`" commands.
 
 
-### `dws`, `DWS`, `dws_`, or `DWS_`
+### <code>{dws <i>args</i>...}</code>
 
 Outputs the alternating low and high bytes of its arguments as a value series.
 
@@ -91,7 +94,7 @@ If the command name is all lowercase, the byte values use lowercase; if it is al
 For example, if "`{dws_ 42 0xabcd wCurSpecies}`" outputs "`a6: 2a 00 cd ab 60 cf`", then "`{DWS >= wCurSpecies+3}`" outputs "`a4:04 00 63 CF`".
 
 
-### `db`, `DB`, `db_`, or `DB_`
+### <code>{db <i>arg</i>}</code>
 
 Outputs its argument as a single-byte value series.
 
@@ -102,7 +105,7 @@ If the command name is all lowercase, the byte value uses lowercase; if it is al
 For example, "`{db 0xEF}`" outputs "`a1:ef`", and "`{DB_ 251}`" outputs "`a1: FB`".
 
 
-### `hex`, `HEX`, `Hex`, `HEx`, `hEX`, or `heX`
+### <code>{hex <i>arg</i>[ <i>padding</i>]}</code>
 
 Outputs its first argument as a hexadecimal number. An optional second argument is the minimum length in digits; values shorter than it will be padded with leading zeros.
 
