@@ -28,6 +28,9 @@
 *.attrmap binary diff=hex
 *.tilemap binary diff=hex
 
+# Declare files that will always have CRLF line endings on checkout.
+*.patch.template text eol=crlf linguist-language=INI
+
 # these are generated but just in case
 *.lz binary   diff=hex
 *.2bpp binary diff=hex

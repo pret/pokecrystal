@@ -58,12 +58,20 @@ BattleAnimRunScript:
 	farcall CheckBattleScene
 	jr c, .disabled
 
+	vc_hook FPA_001_Begin
+	vc_hook FPA_002_Begin
+	vc_hook FPA_003_Begin
+	vc_hook FPA_004_Begin
+	vc_hook FPA_005_Begin
+	vc_hook FPA_006_Begin
+	vc_hook FPA_007_Begin
 	call BattleAnimClearHud
 	call RunBattleAnimScript
 
 	call BattleAnimAssignPals
 	call BattleAnimRequestPals
 
+	vc_hook FPA_001_End
 	xor a
 	ldh [hSCX], a
 	ldh [hSCY], a
@@ -673,6 +681,7 @@ BattleAnimCmd_5GFX:
 .loop
 	ld a, [wBattleAnimGFXTempTileID]
 	cp (vTiles1 - vTiles0) / LEN_2BPP_TILE - BATTLEANIM_BASE_TILE
+	vc_hook FPA_042801_Begin
 	ret nc
 	call GetBattleAnimByte
 	ld [hli], a

@@ -6,6 +6,7 @@ CFLAGS := -O3 -std=c11 -Wall -Wextra -pedantic -Wno-missing-field-initializers
 tools := \
 	lzcomp \
 	gfx \
+	make_patch \
 	png_dimensions \
 	pokemon_animation \
 	pokemon_animation_graphics \
