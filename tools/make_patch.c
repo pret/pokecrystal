@@ -67,14 +67,17 @@ const struct Symbol *symbol_find(const struct Symbol *symbols, const char *name)
 	size_t name_len = strlen(name);
 	for (const struct Symbol *symbol = symbols; symbol; symbol = symbol->next) {
 		size_t sym_name_len = strlen(symbol->name);
-		if (name_len > sym_name_len)
+		if (name_len > sym_name_len) {
 			continue;
+		}
 		const char *sym_name = symbol->name;
-		// If `name` is a local label, compare it to the local part of `symbol->name`
-		if (name[0] == '.')
+		if (name[0] == '.') {
+			// If `name` is a local label, compare it to the local part of `symbol->name`
 			sym_name += sym_name_len - name_len;
-		if (!strcmp(sym_name, name))
+		}
+		if (!strcmp(sym_name, name)) {
 			return symbol;
+		}
 	}
 	error_exit("Error: Unknown symbol: \"%s\"\n", name);
 }
@@ -90,15 +93,17 @@ const struct Symbol *symbol_find_cat(const struct Symbol *symbols, const char *p
 int parse_number(const char *input, int base) {
 	char *endptr;
 	int n = (int)strtol(input, &endptr, base);
-	if (endptr == input || *endptr || n < 0)
+	if (endptr == input || *endptr || n < 0) {
 		error_exit("Error: Cannot parse number: \"%s\"", input);
+	}
 	return n;
 }
 
 void parse_symbol_value(char *input, int *restrict bank, int *restrict address) {
 	char *colon = strchr(input, ':');
-	if (!colon)
+	if (!colon) {
 		error_exit("Error: Cannot parse bank+address: \"%s\"", input);
+	}
 	*colon++ = '\0';
 	*bank = parse_number(input, 16);
 	*address = parse_number(colon, 16);
@@ -122,10 +127,12 @@ void parse_symbols(const char *filename, struct Symbol **symbols) {
 			}
 			// Skip to the next line, ignoring anything after the symbol value and name
 			state = SYM_PRE;
-			while (c != EOF && c != '\n' && c != '\r')
+			while (c != EOF && c != '\n' && c != '\r') {
 				c = getc(file);
-			if (c == EOF)
+			}
+			if (c == EOF) {
 				break;
+			}
 		} else if (c != ' ' && c != '\t') {
 			if (state == SYM_PRE || state == SYM_SPACE) {
 				// The symbol value or name has started; buffer its contents
@@ -150,13 +157,16 @@ void parse_symbols(const char *filename, struct Symbol **symbols) {
 int parse_arg_value(const char *arg, bool absolute, const struct Symbol *symbols, const char *patch_name) {
 	// Comparison operators for "ConditionValueB" evaluate to their particular values
 	static const char *comparisons[] = {"==", ">", "<", ">=", "<=", "!=", "||"};
-	for (unsigned int i = 0; i < sizeof(comparisons) / sizeof(*comparisons); i++)
-		if (!strcmp(arg, comparisons[i]))
+	for (unsigned int i = 0; i < sizeof(comparisons) / sizeof(*comparisons); i++) {
+		if (!strcmp(arg, comparisons[i])) {
 			return i == 6 ? 0x11 : i; // "||" is 0x11
+		}
+	}
 
 	// Literal numbers evaluate to themselves
-	if (isdigit((unsigned)arg[0]) || arg[0] == '+')
+	if (isdigit((unsigned)arg[0]) || arg[0] == '+') {
 		return parse_number(arg, 0);
+	}
 
 	// Symbols evaluate to their offset or address, plus an optional offset mod
 	int offset_mod = 0;
@@ -173,38 +183,47 @@ int parse_arg_value(const char *arg, bool absolute, const struct Symbol *symbols
 void interpret_command(char *command, const struct Symbol *current_hook, const struct Symbol *symbols, struct Buffer *patches, FILE *restrict new_rom, FILE *restrict orig_rom, FILE *restrict output) {
 	// Strip all leading spaces and all but one trailing space
 	int x = 0;
-	for (int i = 0; command[i]; i++)
-		if (!isspace((unsigned)command[i]) || (i > 0 && !isspace((unsigned)command[i - 1])))
+	for (int i = 0; command[i]; i++) {
+		if (!isspace((unsigned)command[i]) || (i > 0 && !isspace((unsigned)command[i - 1]))) {
 			command[x++] = command[i];
+		}
+	}
 	command[x - (x > 0 && isspace((unsigned)command[x - 1]))] = '\0';
 
 	// Count the arguments
 	int argc = 0;
-	for (const char *c = command; *c; c++)
-		if (isspace((unsigned)*c))
+	for (const char *c = command; *c; c++) {
+		if (isspace((unsigned)*c)) {
 			argc++;
+		}
+	}
 
 	// Get the arguments
 	char *argv[argc]; // VLA
 	char *arg = command;
 	for (int i = 0; i < argc; i++) {
-		while (*arg && !isspace((unsigned)*arg))
+		while (*arg && !isspace((unsigned)*arg)) {
 			arg++;
-		if (!*arg)
+		}
+		if (!*arg) {
 			break;
+		}
 		*arg++ = '\0';
 		argv[i] = arg;
 	}
 
 	// Use the arguments
 	if (!strcmp(command, "patch") || !strcmp(command, "PATCH") || !strcmp(command, "patch_") || !strcmp(command, "PATCH_")) {
-		if (!current_hook)
+		if (!current_hook) {
 			error_exit("Error: No current patch for command: \"%s\"", command);
+		}
 		int current_offset = current_hook->offset + (argc > 0 ? parse_number(argv[0], 0) : 0);
-		if (fseek(orig_rom, current_offset, SEEK_SET))
+		if (fseek(orig_rom, current_offset, SEEK_SET)) {
 			error_exit("Error: Cannot seek to \"vc_patch %s\" in the original ROM\n", current_hook->name);
-		if (fseek(new_rom, current_offset, SEEK_SET))
+		}
+		if (fseek(new_rom, current_offset, SEEK_SET)) {
 			error_exit("Error: Cannot seek to \"vc_patch %s\" in the new ROM\n", current_hook->name);
+		}
 		const struct Symbol *current_hook_end = symbol_find_cat(symbols, current_hook->name, "_End");
 		int length = current_hook_end->offset - current_offset;
 		buffer_append(patches, &(struct Patch){current_offset, length});
@@ -216,53 +235,62 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 		} else {
 			fprintf(output, command[strlen(command) - 1] == '_' ? "a%d: " : "a%d:", length);
 			for (int i = 0; i < length; i++) {
+				if (i) {
+					putc(' ', output);
+				}
 				int c = getc(new_rom);
 				modified |= c != getc(orig_rom);
-				if (i)
-					putc(' ', output);
 				fprintf(output, isupper((unsigned)command[0]) ? "%02X" : "%02x", c);
 			}
 		}
-		if (!modified)
+		if (!modified) {
 			fprintf(stderr, PROGRAM_NAME ": Warning: \"vc_patch %s\" doesn't alter the ROM\n", current_hook->name);
+		}
 
 	} else if (!strcmp(command, "dws") || !strcmp(command, "DWS") || !strcmp(command, "dws_") || !strcmp(command, "DWS_")) {
-		if (argc < 1)
+		if (argc < 1) {
 			error_exit("Error: Invalid arguments for command: \"%s\"", command);
+		}
 		fprintf(output, command[strlen(command) - 1] == '_' ? "a%d: " : "a%d:", argc * 2);
 		for (int i = 0; i < argc; i++) {
 			int value = parse_arg_value(argv[i], false, symbols, current_hook->name);
-			if (value > 0xffff)
+			if (value > 0xffff) {
 				error_exit("Error: Invalid value for \"%s\" argument: 0x%x", command, value);
-			if (i)
+			}
+			if (i) {
 				putc(' ', output);
+			}
 			fprintf(output, isupper((unsigned)command[0]) ? "%02X %02X": "%02x %02x", value & 0xff, value >> 8);
 		}
 
 	} else if (!strcmp(command, "db") || !strcmp(command, "DB") || !strcmp(command, "db_") || !strcmp(command, "DB_")) {
-		if (argc != 1)
+		if (argc != 1) {
 			error_exit("Error: Invalid arguments for command: \"%s\"", command);
+		}
 		int value = parse_arg_value(argv[0], false, symbols, current_hook->name);
-		if (value > 0xff)
+		if (value > 0xff) {
 			error_exit("Error: Invalid value for \"%s\" argument: 0x%x", command, value);
+		}
 		fputs(command[strlen(command) - 1] == '_' ? "a1: " : "a1:", output);
 		fprintf(output, isupper((unsigned)command[0]) ? "%02X" : "%02x", value);
 
 	} else if (!strcmp(command, "hex") || !strcmp(command, "HEX") || !strcmp(command, "HEx") || !strcmp(command, "Hex") || !strcmp(command, "heX") || !strcmp(command, "hEX")) {
-		if (argc != 1 && argc != 2)
+		if (argc != 1 && argc != 2) {
 			error_exit("Error: Invalid arguments for command: \"%s\"", command);
+		}
 		int value = parse_arg_value(argv[0], true, symbols, current_hook->name);
 		int padding = argc > 1 ? parse_number(argv[1], 0) : 2;
-		if (!strcmp(command, "HEx"))
+		if (!strcmp(command, "HEx")) {
 			fprintf(output, "0x%0*X%02x", padding - 2, value >> 8, value & 0xff);
-		else if (!strcmp(command, "Hex"))
+		} else if (!strcmp(command, "Hex")) {
 			fprintf(output, "0x%0*X%03x", padding - 3, value >> 12, value & 0xfff);
-		else if (!strcmp(command, "heX"))
+		} else if (!strcmp(command, "heX")) {
 			fprintf(output, "0x%0*x%02X", padding - 2, value >> 8, value & 0xff);
-		else if (!strcmp(command, "hEX"))
+		} else if (!strcmp(command, "hEX")) {
 			fprintf(output, "0x%0*x%03X", padding - 3, value >> 12, value & 0xfff);
-		else
+		} else {
 			fprintf(output, isupper((unsigned)command[0]) ? "0x%0*X" : "0x%0*x", padding, value);
+		}
 
 	} else {
 		error_exit("Error: Unknown command: \"%s\"\n", command);
@@ -272,8 +300,9 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 void skip_to_next_line(FILE *restrict input, FILE *restrict output) {
 	for (int c = getc(input); c != EOF; c = getc(input)) {
 		putc(c, output);
-		if (c == '\n' || c == '\r')
+		if (c == '\n' || c == '\r') {
 			break;
+		}
 	}
 }
 
@@ -304,8 +333,9 @@ struct Buffer *process_template(const char *template_filename, const char *patch
 		case '{':
 			// "{...}" is a template command; buffer its contents
 			buffer->size = 0;
-			for (c = getc(input); c != EOF && c != '}'; c = getc(input))
+			for (c = getc(input); c != EOF && c != '}'; c = getc(input)) {
 				buffer_append(buffer, &c);
+			}
 			buffer_append(buffer, &(char []){'\0'});
 			// Interpret the command in the context of the current patch
 			interpret_command(buffer->data, current_hook, symbols, patches, new_rom, orig_rom, output);
@@ -317,11 +347,12 @@ struct Buffer *process_template(const char *template_filename, const char *patch
 			buffer->size = 0;
 			for (c = getc(input); c != EOF; c = getc(input)) {
 				putc(c, output);
-				if (c == ']')
+				if (c == ']') {
 					break;
-				// Convert non-identifier characters to underscores
-				if (!isalnum(c) && c != '_' && c != '@' && c != '#')
+				} else if (!isalnum(c) && c != '_' && c != '@' && c != '#') {
+					// Convert non-identifier characters to underscores
 					c = '_';
+				}
 				buffer_append(buffer, &c);
 			}
 			buffer_append(buffer, &(char []){'\0'});
@@ -355,14 +386,17 @@ bool verify_completeness(FILE *restrict orig_rom, FILE *restrict new_rom, struct
 	for (unsigned int offset = 0, index = 0; ; offset++) {
 		int orig_byte = getc(orig_rom);
 		int new_byte = getc(new_rom);
-		if (orig_byte == EOF || new_byte == EOF)
+		if (orig_byte == EOF || new_byte == EOF) {
 			return orig_byte == new_byte;
+		}
 		struct Patch *patch = &((struct Patch *)patches->data)[index];
 		if (index < patches->size && patch->offset == offset) {
-			if (fseek(orig_rom, patch->size, SEEK_CUR))
+			if (fseek(orig_rom, patch->size, SEEK_CUR)) {
 				return false;
-			if (fseek(new_rom, patch->size, SEEK_CUR))
+			}
+			if (fseek(new_rom, patch->size, SEEK_CUR)) {
 				return false;
+			}
 			offset += patch->size;
 			index++;
 		} else if (orig_byte != new_byte) {
@@ -376,8 +410,9 @@ bool verify_completeness(FILE *restrict orig_rom, FILE *restrict new_rom, struct
 }
 
 int main(int argc, char *argv[]) {
-	if (argc != 7)
+	if (argc != 7) {
 		usage_exit(1);
+	}
 
 	struct Symbol *symbols = NULL;
 	parse_symbols(argv[1], &symbols);
@@ -387,8 +422,9 @@ int main(int argc, char *argv[]) {
 	FILE *orig_rom = xfopen(argv[4], 'r');
 	struct Buffer *patches = process_template(argv[5], argv[6], new_rom, orig_rom, symbols);
 
-	if (!verify_completeness(orig_rom, new_rom, patches))
+	if (!verify_completeness(orig_rom, new_rom, patches)) {
 		fprintf(stderr, PROGRAM_NAME ": Warning: Not all ROM differences are defined by \"%s\"\n", argv[6]);
+	}
 
 	symbol_free(symbols);
 	fclose(new_rom);
