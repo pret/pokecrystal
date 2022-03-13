@@ -1349,7 +1349,7 @@ SunnyDayMoves:
 -	; res SUBSTATUS_NIGHTMARE, [hl]
 +	ld hl, wEnemySubStatus1
 +	res SUBSTATUS_NIGHTMARE, [hl]
-	...
+ 	...
 ```
 
 
