@@ -58,20 +58,14 @@ BattleAnimRunScript:
 	farcall CheckBattleScene
 	jr c, .disabled
 
-	vc_hook FPA_001_Begin
-	vc_hook FPA_002_Begin
-	vc_hook FPA_003_Begin
-	vc_hook FPA_004_Begin
-	vc_hook FPA_005_Begin
-	vc_hook FPA_006_Begin
-	vc_hook FPA_007_Begin
+	vc_hook Reduce_move_anim_flashing
 	call BattleAnimClearHud
 	call RunBattleAnimScript
 
 	call BattleAnimAssignPals
 	call BattleAnimRequestPals
 
-	vc_hook FPA_001_End
+	vc_hook Stop_reducing_move_anim_flashing
 	xor a
 	ldh [hSCX], a
 	ldh [hSCY], a

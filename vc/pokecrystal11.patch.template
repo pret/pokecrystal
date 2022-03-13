@@ -235,7 +235,7 @@ Address = {HEx @}
 Fixcode={db SCREEN_HEIGHT_PX}        
               
 ;12 1b 0b 79 b0  find next C9
-[BiographySave_ret]
+[BiographySave_ret@Enable_GS_Ball_mobile_event]
 Mode = 2
 Address = {HEX @}
 Type = 60
@@ -425,7 +425,7 @@ Type = 103
 ;Dark0 = 10		;0~10 (for Normal Mode)
 ;012532
 ;
-[FPA 001 Begin]                                                   
+[FPA 001 Begin@Reduce_move_anim_flashing]                                                   
 Mode = 3                                                          
 Type = 0                                                          
 Address = {hex @}
@@ -459,7 +459,7 @@ ConditionValueC = {dws_ FISSURE  }
 ;s e l   d e s c  
 ;
 
-[FPA 002 Begin]                                                   
+[FPA 002 Begin@Reduce_move_anim_flashing]                                                   
 Mode = 3                                                          
 Type = 0      
 Address = {hex @}  
@@ -475,7 +475,7 @@ ConditionValueC = {dws_ SELFDESTRUCT}
 
 ; lightening    
 ; --------------   Mem Write: pc32 = 0x35d09 addr = 0xcfb6 value = 0x57
-[FPA 003 Begin]                                                   
+[FPA 003 Begin@Reduce_move_anim_flashing]                                                   
 Mode = 3                                                          
 Type = 0                                                          
 Address = {hex @}   
@@ -493,7 +493,7 @@ ConditionValueC = {dws_ THUNDER  }
 
 ;ji wa lei  011800
 
-[FPA 004 Begin]                                                   
+[FPA 004 Begin@Reduce_move_anim_flashing]                                                   
 Mode = 3                                                          
 Type = 0                                                          
 Address = {hex @} 
@@ -516,7 +516,7 @@ ConditionValueC = {dws_ FLASH    }
 ; include 2 pieces of animationl.
 ;ji ba lu  011607
 
-[FPA 005 Begin]                                                   
+[FPA 005 Begin@Reduce_move_anim_flashing]                                                   
 Mode = 3                                                          
 Type = 0                                                          
 Address = {hex @}   
@@ -538,7 +538,7 @@ ConditionValueC = {dws_ EXPLOSION}
 ;skill name 6 : ..............Mem Write: pc32 = 0x30db addr = 0xcf8c value = 0xc2 
 ; da yi ba ha ku ci   011441
     
-[FPA 006 Begin]                                                   
+[FPA 006 Begin@Reduce_move_anim_flashing]                                                   
 Mode = 3                                                          
 Type = 0                                                          
 Address = {hex @}   
@@ -561,7 +561,7 @@ ConditionValueC = {dws_ HORN_DRILL}
 ;skill name 6 : ..............Mem Write: pc32 = 0x30db addr = 0xcf8c value = 0x50
 ;    011251
 ;    
-[FPA 007 Begin]                                                   
+[FPA 007 Begin@Reduce_move_anim_flashing]                                                   
 Mode = 3                                                          
 Type = 0                                                          
 Address = {hex @}   
@@ -618,7 +618,7 @@ ConditionValueC = {dws_ PRESENT   anim_1gfx_command}
 
 ;exit point
 
-[FPA 001 End]                                                     
+[FPA 001 End@Stop_reducing_move_anim_flashing]                                                     
 Mode = 3                                                          
 Type = 1                                                          
 Address = {hex @}  

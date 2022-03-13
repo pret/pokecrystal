@@ -1,27 +1,28 @@
-roms    := pokecrystal.gbc \
-           pokecrystal11.gbc \
-           pokecrystal_au.gbc \
-           pokecrystal_debug.gbc \
-           pokecrystal11_debug.gbc
+roms := \
+	pokecrystal.gbc \
+	pokecrystal11.gbc \
+	pokecrystal_au.gbc \
+	pokecrystal_debug.gbc \
+	pokecrystal11_debug.gbc
 patches := pokecrystal11.patch
 
 rom_obj := \
-audio.o \
-home.o \
-main.o \
-wram.o \
-data/text/common.o \
-data/maps/map_data.o \
-data/pokemon/dex_entries.o \
-data/pokemon/egg_moves.o \
-data/pokemon/evos_attacks.o \
-engine/movie/credits.o \
-engine/overworld/events.o \
-gfx/misc.o \
-gfx/pics.o \
-gfx/sprites.o \
-gfx/tilesets.o \
-lib/mobile/main.o
+	audio.o \
+	home.o \
+	main.o \
+	wram.o \
+	data/text/common.o \
+	data/maps/map_data.o \
+	data/pokemon/dex_entries.o \
+	data/pokemon/egg_moves.o \
+	data/pokemon/evos_attacks.o \
+	engine/movie/credits.o \
+	engine/overworld/events.o \
+	gfx/misc.o \
+	gfx/pics.o \
+	gfx/sprites.o \
+	gfx/tilesets.o \
+	lib/mobile/main.o
 
 pokecrystal_obj         := $(rom_obj:.o=.o)
 pokecrystal11_obj       := $(rom_obj:.o=11.o)
