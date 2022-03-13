@@ -20,13 +20,16 @@ This will also create two ROM files, **pokecrystal11.gbc** and **pokecrystal11_v
 
 There are a few files involved with building the `.patch` file, in addition to the ones used for building ROMs.
 
+
 ### vc/pokecrystal11.patch.template
 
 The `.patch.template` file is the basis for the `.patch` file. Many numeric values in the `.patch` file are derived from the values of labels, constants, and ROM content; these values are abstracted into *commands* that get evaluated by `tools/make_patch` to output symbolic names as their actual values, formatted to match the original `.patch` file.
 
+
 ### vc/pokecrystal11.constants.asm
 
 The `.constants.asm` file is used to create a `.constants.sym` file. Typical `.sym` files only list the values of *labels* (ROM banks and addresses); this file is used to list *constants* that are needed by the `.patch.template`. Any constants that the `.patch.template` refers to must be explicitly printed here with the `vc_const` macro.
+
 
 ### tools/make_patch.c
 
@@ -43,6 +46,7 @@ For example, this is what `make crystal11_vc` does:
 ```bash
 tools/make_patch pokecrystal11_vc.sym vc/pokecrystal11.constants.sym pokecrystal11_vc.gbc pokecrystal11.gbc vc/pokecrystal11.patch.template pokecrystal11.patch
 ```
+
 
 ## Patch types
 
@@ -77,10 +81,10 @@ Some command names have variants to allow reproducing the exact formatting in a 
 
 **Arguments** evaluate to numeric values. They may be any of the following:
 
-- Literal numbers in decimal (base 10, e.g. "`42`"), hexadecimal (base 16, e.g. "`0x2a`"), or octal (base 8, e.g. "`052`"). They may start with a plus sign "`+`". Numbers may not be negative.
+- Literal numbers in decimal (base 10, e.g. "`42`"), hexadecimal (base 16, e.g. "`0x2a`"), or octal (base 8, e.g. "`052`"). They may start with a plus sign "`+`". Numbers should not be negative.
 - Comparison operators: "`==`" is 0, "`>`" is 1, "`<`" is 2, "`>=`" is 3, "`<=`" is 4, "`!=`" is 5, and "`||`" is 0x11.
 - Symbol names from the two `.sym` files provided to `make_patch` may evaluate as their bank-relative address, or their absolute offset in the ROM, depending on the command. They may also be followed by a plus sign and a literal number that gets added to the value.
-- "`@`" evaluates as the address or absolute offset of the current patch/hook label.
+- "`@`" evaluates as the address or absolute offset of the current patch/hook label, depending on the command.
 
 Any other characters are output as-is.
 
@@ -92,35 +96,29 @@ Any other characters are output as-is.
 
 Outputs the bytes of the current patch as a value series, or as a hexadecimal number if there is only one byte. The bytes are found between the current patch label, and the label which is the current patch label plus "`_End`". An optional first argument is an *offset* to add to the current patch label before gathering the contents between it and the end label. An optional second argument is a *length* of bytes to output instead of the length between the start and end labels.
 
-For example, if "`{patch}`" outputs "`a3:ab cd ef`", then "`{patch +1}`" outputs "`a2:cd ef`", and "`{patch +1 1}`" outputs "`0xcd`".
+For example, if "`{patch}`" outputs "`a3:ab cd ef`", then "`{patch +1}`" outputs "`a2:cd ef`", and "`{patch 0 1}`" outputs "`0xab`".
 
 Converting the patch template will print a warning if any differences exist between the original and patched ROMs, which are not covered by "`patch`" commands.
 
 
 ### <code>{dws <i>args</i>...}</code>
 
-Outputs its arguments as a value series of little-endian 16-bit words.
-
-Symbol names or "`@`" are evaluated as their relative address.
+Outputs its arguments as a value series of little-endian 16-bit words. Symbol names or "`@`" are evaluated as their relative address.
 
 For example, if "`{dws 42 0xabcd wCurSpecies}`" outputs "`a6:2a 00 cd ab 60 cf`", then "`{dws >= wCurSpecies+3}`" outputs "`a4:04 00 63 cf`".
 
 
 ### <code>{db <i>arg</i>}</code>
 
-Outputs its argument as a single-byte value series.
-
-Symbol names or "`@`" are evaluated as their relative address.
+Outputs its argument as a single-byte value series. Symbol names or "`@`" are evaluated as their relative address.
 
 For example, "`{db 0xEF}`" outputs "`a1:ef`".
 
 
 ### <code>{hex <i>arg</i>[ <i>padding</i>]}</code>
 
-Outputs its first argument as a hexadecimal number. An optional second argument is the minimum length in digits; values shorter than it will be padded with leading zeros.
-
-Symbol names or "`@`" are evaluated as their absolute offset.
-
-This command has extra variants to reproduce inconsistent output casing: "`Hex`" prints the last three digits in lowercase and the rest uppercase; "`HEx`" prints the last two digits in lowercase and the rest uppercase; "`hEX`" prints the last three digits in uppercase and the rest lowercase; and "`heX`" prints the last two digits in uppercase and the rest lowercase.
+Outputs its first argument as a hexadecimal number. An optional second argument is the minimum length in digits; values shorter than it will be padded with leading zeros. Symbol names or "`@`" are evaluated as their absolute offset.
 
 For example, "`{hex 0xabcd 5}`" outputs "`0x0abcd`".
+
+This command has extra variants to reproduce inconsistent output casing: "`Hex`" prints the last three digits in lowercase and the rest uppercase; "`HEx`" prints the last two digits in lowercase and the rest uppercase; "`hEX`" prints the last three digits in uppercase and the rest lowercase; and "`heX`" prints the last two digits in uppercase and the rest lowercase.
