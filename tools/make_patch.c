@@ -94,7 +94,7 @@ int parse_number(const char *input, int base) {
 	char *endptr;
 	int n = (int)strtol(input, &endptr, base);
 	if (endptr == input || *endptr || n < 0) {
-		error_exit("Error: Cannot parse number: \"%s\"", input);
+		error_exit("Error: Cannot parse number: \"%s\"\n", input);
 	}
 	return n;
 }
@@ -102,7 +102,7 @@ int parse_number(const char *input, int base) {
 void parse_symbol_value(char *input, int *restrict bank, int *restrict address) {
 	char *colon = strchr(input, ':');
 	if (!colon) {
-		error_exit("Error: Cannot parse bank+address: \"%s\"", input);
+		error_exit("Error: Cannot parse bank+address: \"%s\"\n", input);
 	}
 	*colon++ = '\0';
 	*bank = parse_number(input, 16);
@@ -215,10 +215,10 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 	// Use the arguments
 	if (!strcmp(command, "patch") || !strcmp(command, "PATCH") || !strcmp(command, "patch_") || !strcmp(command, "PATCH_")) {
 		if (argc > 2) {
-			error_exit("Error: Invalid arguments for command: \"%s\"", command);
+			error_exit("Error: Invalid arguments for command: \"%s\"\n", command);
 		}
 		if (!current_hook) {
-			error_exit("Error: No current patch for command: \"%s\"", command);
+			error_exit("Error: No current patch for command: \"%s\"\n", command);
 		}
 		int current_offset = current_hook->offset + (argc > 0 ? parse_number(argv[0], 0) : 0);
 		if (fseek(orig_rom, current_offset, SEEK_SET)) {
@@ -257,13 +257,13 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 
 	} else if (!strcmp(command, "dws") || !strcmp(command, "DWS") || !strcmp(command, "dws_") || !strcmp(command, "DWS_")) {
 		if (argc < 1) {
-			error_exit("Error: Invalid arguments for command: \"%s\"", command);
+			error_exit("Error: Invalid arguments for command: \"%s\"\n", command);
 		}
 		fprintf(output, command[strlen(command) - 1] == '_' ? "a%d: " : "a%d:", argc * 2);
 		for (int i = 0; i < argc; i++) {
 			int value = parse_arg_value(argv[i], false, symbols, current_hook->name);
 			if (value > 0xffff) {
-				error_exit("Error: Invalid value for \"%s\" argument: 0x%x", command, value);
+				error_exit("Error: Invalid value for \"%s\" argument: 0x%x\n", command, value);
 			}
 			if (i) {
 				putc(' ', output);
@@ -273,18 +273,18 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 
 	} else if (!strcmp(command, "db") || !strcmp(command, "DB") || !strcmp(command, "db_") || !strcmp(command, "DB_")) {
 		if (argc != 1) {
-			error_exit("Error: Invalid arguments for command: \"%s\"", command);
+			error_exit("Error: Invalid arguments for command: \"%s\"\n", command);
 		}
 		int value = parse_arg_value(argv[0], false, symbols, current_hook->name);
 		if (value > 0xff) {
-			error_exit("Error: Invalid value for \"%s\" argument: 0x%x", command, value);
+			error_exit("Error: Invalid value for \"%s\" argument: 0x%x\n", command, value);
 		}
 		fputs(command[strlen(command) - 1] == '_' ? "a1: " : "a1:", output);
 		fprintf(output, isupper((unsigned)command[0]) ? "%02X" : "%02x", value);
 
 	} else if (!strcmp(command, "hex") || !strcmp(command, "HEX") || !strcmp(command, "HEx") || !strcmp(command, "Hex") || !strcmp(command, "heX") || !strcmp(command, "hEX")) {
 		if (argc != 1 && argc != 2) {
-			error_exit("Error: Invalid arguments for command: \"%s\"", command);
+			error_exit("Error: Invalid arguments for command: \"%s\"\n", command);
 		}
 		int value = parse_arg_value(argv[0], true, symbols, current_hook->name);
 		int padding = argc > 1 ? parse_number(argv[1], 0) : 2;
