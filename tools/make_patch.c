@@ -214,6 +214,9 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 
 	// Use the arguments
 	if (!strcmp(command, "patch") || !strcmp(command, "PATCH") || !strcmp(command, "patch_") || !strcmp(command, "PATCH_")) {
+		if (argc > 2) {
+			error_exit("Error: Invalid arguments for command: \"%s\"", command);
+		}
 		if (!current_hook) {
 			error_exit("Error: No current patch for command: \"%s\"", command);
 		}
@@ -224,8 +227,13 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 		if (fseek(new_rom, current_offset, SEEK_SET)) {
 			error_exit("Error: Cannot seek to \"vc_patch %s\" in the new ROM\n", current_hook->name);
 		}
-		const struct Symbol *current_hook_end = symbol_find_cat(symbols, current_hook->name, "_End");
-		int length = current_hook_end->offset - current_offset;
+		int length;
+		if (argc == 2) {
+			length = parse_number(argv[1], 0);
+		} else {
+			const struct Symbol *current_hook_end = symbol_find_cat(symbols, current_hook->name, "_End");
+			length = current_hook_end->offset - current_offset;
+		}
 		buffer_append(patches, &(struct Patch){current_offset, length});
 		bool modified = false;
 		if (length == 1) {

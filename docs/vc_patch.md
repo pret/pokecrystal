@@ -88,11 +88,11 @@ Any other characters are output as-is.
 ## Patch template commands
 
 
-### <code>{patch[ <i>offset</i>]}</code>
+### <code>{patch[ <i>offset</i>[ <i>length</i>]]}</code>
 
-Outputs the bytes of the current patch as a value series, or as a hexadecimal number if there is only one byte. The bytes are found between the current patch label, and the label which is the current patch label plus "`_End`". An optional argument is an *offset* to add to the current patch label before gathering the contents between it and the end label.
+Outputs the bytes of the current patch as a value series, or as a hexadecimal number if there is only one byte. The bytes are found between the current patch label, and the label which is the current patch label plus "`_End`". An optional first argument is an *offset* to add to the current patch label before gathering the contents between it and the end label. An optional second argument is a *length* of bytes to output instead of the length between the start and end labels.
 
-For example, if "`{patch}`" outputs "`a3:ab cd ef`", then "`{patch +1}`" outputs "`a2:cd ef`", and "`{patch +2}`" outputs "`0xef`".
+For example, if "`{patch}`" outputs "`a3:ab cd ef`", then "`{patch +1}`" outputs "`a2:cd ef`", and "`{patch +1 1}`" outputs "`0xcd`".
 
 Converting the patch template will print a warning if any differences exist between the original and patched ROMs, which are not covered by "`patch`" commands.
 
