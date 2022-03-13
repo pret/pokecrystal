@@ -2,7 +2,7 @@
 #define USAGE_OPTS "[-h|--help] [-w width] [-d depth] [-t] in.2bpp|in.1bpp out.png"
 
 #include "common.h"
-#include "lodepng.h"
+#include "lodepng/lodepng.h"
 
 void parse_args(int argc, char *argv[], unsigned int *width, unsigned int *depth, bool *transpose) {
 	struct option long_options[] = {
