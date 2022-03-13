@@ -1,22 +1,29 @@
 #define PROGRAM_NAME "bpp2png"
-#define USAGE_OPTS "[-h|--help] [-w width] [-t] in.2bpp|in.1bpp out.png"
+#define USAGE_OPTS "[-h|--help] [-w width] [-d depth] [-t] in.2bpp|in.1bpp out.png"
 
 #include "common.h"
 #include "lodepng.h"
 
-void parse_args(int argc, char *argv[], unsigned int *width, bool *transpose) {
+void parse_args(int argc, char *argv[], unsigned int *width, unsigned int *depth, bool *transpose) {
 	struct option long_options[] = {
 		{"width", required_argument, 0, 'w'},
+		{"depth", required_argument, 0, 'd'},
 		{"transpose", no_argument, 0, 't'},
 		{"help", no_argument, 0, 'h'},
 		{0}
 	};
-	for (int opt; (opt = getopt_long(argc, argv, "w:th", long_options)) != -1;) {
+	for (int opt; (opt = getopt_long(argc, argv, "w:d:th", long_options)) != -1;) {
 		switch (opt) {
 		case 'w':
 			*width = (unsigned int)strtoul(optarg, NULL, 0);
 			if (*width % 8) {
 				error_exit("Width not divisible by 8 px: %u\n", *width);
+			}
+			break;
+		case 'd':
+			*depth = (unsigned int)strtoul(optarg, NULL, 0);
+			if (*depth != 1 && *depth != 2) {
+				error_exit("Depth is not 1 or 2: %u\n", *depth);
 			}
 			break;
 		case 't':
@@ -119,8 +126,9 @@ uint8_t *rearrange_tiles_to_scanlines(uint8_t *bpp_data, unsigned int width, uns
 
 int main(int argc, char *argv[]) {
 	unsigned int width = 0;
+	unsigned int depth = 0;
 	bool transpose = false;
-	parse_args(argc, argv, &width, &transpose);
+	parse_args(argc, argv, &width, &depth, &transpose);
 
 	argc -= optind;
 	argv += optind;
@@ -130,7 +138,7 @@ int main(int argc, char *argv[]) {
 
 	long filesize;
 	uint8_t *bpp_data = read_u8(argv[0], &filesize);
-	if (is_1bpp(argv[0])) {
+	if (depth == 1 || (!depth && is_1bpp(argv[0]))) {
 		bpp_data = extend_1bpp_to_2bpp(bpp_data, &filesize);
 	}
 	mingle_2bpp_planes(bpp_data, filesize);
