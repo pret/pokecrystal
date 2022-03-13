@@ -4,6 +4,7 @@ CC := gcc
 CFLAGS := -O3 -std=c11 -Wall -Wextra -pedantic -Wno-missing-field-initializers
 
 tools := \
+	bpp2png \
 	lzcomp \
 	gfx \
 	make_patch \
@@ -25,6 +26,9 @@ pokemon_animation: common.h
 pokemon_animation_graphics: common.h
 scan_includes: common.h
 stadium: common.h
+
+bpp2png: bpp2png.c lodepng.c common.h lodepng.h
+	$(CC) $(CFLAGS) -o $@ bpp2png.c lodepng.c
 
 lzcomp: CFLAGS = -O3 -flto -std=c11 -Wall -Wextra -pedantic -Wno-strict-overflow -Wno-sign-compare
 lzcomp: $(wildcard lz/*.c) $(wildcard lz/*.h)
