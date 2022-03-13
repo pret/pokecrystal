@@ -1,33 +1,46 @@
 #define PROGRAM_NAME "bpp2png"
-#define USAGE_OPTS "[-h|--help] [-w width] [-d depth] [-t] in.2bpp|in.1bpp out.png"
+#define USAGE_OPTS "[-h|--help] [-w width] [-d depth] [-p in.gbcpal] [-t] in.2bpp|in.1bpp out.png"
 
 #include "common.h"
 #include "lodepng/lodepng.h"
 
-void parse_args(int argc, char *argv[], unsigned int *width, unsigned int *depth, bool *transpose) {
+struct Options {
+	unsigned int width;
+	unsigned int depth;
+	const char *palette;
+	bool transpose;
+};
+
+typedef uint8_t Palette[4][3];
+
+void parse_args(int argc, char *argv[], struct Options *options) {
 	struct option long_options[] = {
 		{"width", required_argument, 0, 'w'},
 		{"depth", required_argument, 0, 'd'},
+		{"palette", required_argument, 0, 'p'},
 		{"transpose", no_argument, 0, 't'},
 		{"help", no_argument, 0, 'h'},
 		{0}
 	};
-	for (int opt; (opt = getopt_long(argc, argv, "w:d:th", long_options)) != -1;) {
+	for (int opt; (opt = getopt_long(argc, argv, "w:d:p:th", long_options)) != -1;) {
 		switch (opt) {
 		case 'w':
-			*width = (unsigned int)strtoul(optarg, NULL, 0);
-			if (*width % 8) {
-				error_exit("Width not divisible by 8 px: %u\n", *width);
+			options->width = (unsigned int)strtoul(optarg, NULL, 0);
+			if (options->width % 8) {
+				error_exit("Width not divisible by 8 px: %u\n", options->width);
 			}
 			break;
 		case 'd':
-			*depth = (unsigned int)strtoul(optarg, NULL, 0);
-			if (*depth != 1 && *depth != 2) {
-				error_exit("Depth is not 1 or 2: %u\n", *depth);
+			options->depth = (unsigned int)strtoul(optarg, NULL, 0);
+			if (options->depth != 1 && options->depth != 2) {
+				error_exit("Depth is not 1 or 2: %u\n", options->depth);
 			}
 			break;
+		case 'p':
+			options->palette = optarg;
+			break;
 		case 't':
-			*transpose = true;
+			options->transpose = true;
 			break;
 		case 'h':
 			usage_exit(0);
@@ -55,13 +68,10 @@ uint8_t *extend_1bpp_to_2bpp(uint8_t *bpp_data, long *size) {
 
 void mingle_2bpp_planes(uint8_t *bpp_data, long size) {
 	for (long i = 0; i < size; i += 2) {
-		// Invert the bit patterns:
-		// 00 = black, 01 = dark, 10 = light, 11 = white
-		uint8_t b1 = ~bpp_data[i], b2 = ~bpp_data[i + 1];
 		// Interleave aka "mingle" bits
 		// <https://graphics.stanford.edu/~seander/bithacks.html#Interleave64bitOps>
 #define EXPAND_PLANE(b) (((b) * 0x0101010101010101ULL & 0x8040201008040201ULL) * 0x0102040810204081ULL)
-		uint16_t r = ((EXPAND_PLANE(b1) >> 49) & 0x5555) | ((EXPAND_PLANE(b2) >> 48) & 0xAAAA);
+		uint16_t r = ((EXPAND_PLANE(bpp_data[i]) >> 49) & 0x5555) | ((EXPAND_PLANE(bpp_data[i + 1]) >> 48) & 0xAAAA);
 		bpp_data[i] = r >> 8;
 		bpp_data[i + 1] = r & 0xff;
 	}
@@ -88,7 +98,7 @@ uint8_t *pad_to_rectangle(uint8_t *bpp_data, long filesize, unsigned int width, 
 	if (size > filesize) {
 		bpp_data = xrealloc(bpp_data, size);
 		// Fill padding with white
-		memset(bpp_data + filesize, 0xff, size - filesize);
+		memset(bpp_data + filesize, 0, size - filesize);
 	}
 	return bpp_data;
 }
@@ -124,11 +134,57 @@ uint8_t *rearrange_tiles_to_scanlines(uint8_t *bpp_data, unsigned int width, uns
 	return rearranged;
 }
 
+void read_gbcpal(Palette palette, const char *filename) {
+	long filesize;
+	uint8_t *pal_data = read_u8(filename, &filesize);
+	if (filesize != 4 * 2) {
+		error_exit("Invalid .gbcpal file: \"%s\"\n", filename);
+	}
+	for (int i = 0; i < 4; i++) {
+		uint8_t b1 = pal_data[i * 2], b2 = pal_data[i * 2 + 1];
+#define RGB5_TO_RGB8(x) (uint8_t)((x) * 33 / 4)
+		palette[i][0] = RGB5_TO_RGB8(b1 & 0x1f); // red
+		palette[i][1] = RGB5_TO_RGB8(((b1 & 0xe0) >> 5) | ((b2 & 0x03) << 3)); // green
+		palette[i][2] = RGB5_TO_RGB8((b2 & 0x7c) >> 2); // blue
+	}
+	free(pal_data);
+}
+
+unsigned int encode_png(const char *filename, uint8_t *bpp_data, unsigned int width, unsigned int height, Palette palette) {
+	LodePNGState state;
+	lodepng_state_init(&state);
+	state.info_raw.bitdepth = state.info_png.color.bitdepth = 2;
+
+	if (palette) {
+		state.info_raw.colortype = state.info_png.color.colortype =  LCT_PALETTE;
+		for (int i = 0; i < 4; i++) {
+			lodepng_palette_add(&state.info_raw, palette[i][0], palette[i][1], palette[i][2], 0xff);
+			lodepng_palette_add(&state.info_png.color, palette[i][0], palette[i][1], palette[i][2], 0xff);
+		}
+	} else {
+		state.info_raw.colortype = state.info_png.color.colortype = LCT_GREY;
+		// 2-bit PNG white/light/dark/gray indexes are the inverse of 2bpp
+		for (unsigned int i = 0; i < width * height / 4; i++) {
+			bpp_data[i] = ~bpp_data[i];
+		}
+	}
+
+	unsigned char *buffer;
+	size_t buffer_size;
+	lodepng_encode(&buffer, &buffer_size, bpp_data, width, height, &state);
+	unsigned int error = state.error;
+	lodepng_state_cleanup(&state);
+	if (!error) {
+		error = lodepng_save_file(buffer, buffer_size, filename);
+	}
+
+	free(buffer);
+	return error;
+}
+
 int main(int argc, char *argv[]) {
-	unsigned int width = 0;
-	unsigned int depth = 0;
-	bool transpose = false;
-	parse_args(argc, argv, &width, &depth, &transpose);
+	struct Options options = {0};
+	parse_args(argc, argv, &options);
 
 	argc -= optind;
 	argv += optind;
@@ -136,21 +192,26 @@ int main(int argc, char *argv[]) {
 		usage_exit(1);
 	}
 
+	Palette palette = {0};
+	if (options.palette) {
+		read_gbcpal(palette, options.palette);
+	}
+
 	long filesize;
 	uint8_t *bpp_data = read_u8(argv[0], &filesize);
-	if (depth == 1 || (!depth && is_1bpp(argv[0]))) {
+	if (options.depth == 1 || (!options.depth && is_1bpp(argv[0]))) {
 		bpp_data = extend_1bpp_to_2bpp(bpp_data, &filesize);
 	}
 	mingle_2bpp_planes(bpp_data, filesize);
 
-	unsigned int height = calculate_size(filesize, &width);
-	bpp_data = pad_to_rectangle(bpp_data, filesize, width, height);
-	if (transpose) {
-		bpp_data = transpose_tiles(bpp_data, width, height);
+	unsigned int height = calculate_size(filesize, &options.width);
+	bpp_data = pad_to_rectangle(bpp_data, filesize, options.width, height);
+	if (options.transpose) {
+		bpp_data = transpose_tiles(bpp_data, options.width, height);
 	}
-	bpp_data = rearrange_tiles_to_scanlines(bpp_data, width, height);
+	bpp_data = rearrange_tiles_to_scanlines(bpp_data, options.width, height);
 
-	unsigned int error = lodepng_encode_file(argv[1], bpp_data, width, height, LCT_GREY, 2);
+	unsigned int error = encode_png(argv[1], bpp_data, options.width, height, options.palette ? palette : NULL);
 	if (error) {
 		error_exit("Could not write to file \"%s\": %s\n", argv[1], lodepng_error_text(error));
 	}
