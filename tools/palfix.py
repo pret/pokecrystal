@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 """
@@ -9,10 +9,9 @@ sprites) will become indexed, with a palette sorted {white, light color, dark
 color, black}. Grayscale images will become two-bit grayscale.
 """
 
-from __future__ import print_function
-
 import sys
-from pokemontools import png
+
+import png
 
 def rgb8_to_rgb5(c):
 	r, g, b = c
