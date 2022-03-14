@@ -18,6 +18,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
 - [Multi-player battle engine](#multi-player-battle-engine)
   - [Perish Song and Spikes can leave a Pokémon with 0 HP and not faint](#perish-song-and-spikes-can-leave-a-pokémon-with-0-hp-and-not-faint)
   - [Thick Club and Light Ball can make (Special) Attack wrap around above 1024](#thick-club-and-light-ball-can-make-special-attack-wrap-around-above-1024)
+  - [Metal Powder can increase damage taken with boosted (Special) Defense](#metal-powder-can-increase-damage-taken-with-boosted-special-defense)
   - [Reflect and Light Screen can make (Special) Defense wrap around above 1024](#reflect-and-light-screen-can-make-special-defense-wrap-around-above-1024)
   - [Moves with a 100% secondary effect chance will not trigger it in 1/256 uses](#moves-with-a-100-secondary-effect-chance-will-not-trigger-it-in-1256-uses)
   - [Belly Drum sharply boosts Attack even with under 50% HP](#belly-drum-sharply-boosts-attack-even-with-under-50-hp)
@@ -175,6 +176,11 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
 +	ld hl, MAX_STAT_VALUE
  	ret
 ```
+
+
+### Metal Powder can increase damage taken with boosted (Special) Defense
+
+_TODO: Document a proper fix._
 
 
 ### Reflect and Light Screen can make (Special) Defense wrap around above 1024
