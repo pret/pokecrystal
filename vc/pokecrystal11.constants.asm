@@ -3,7 +3,8 @@ INCLUDE "constants.asm"
 ; These are all the asm constants needed to make the crystal11_vc patch.
 
 vc_const: MACRO
-	println "00:{04x:\1} \1" ; same format as rgblink's .sym file
+x = \1
+	println "00:{04x:x} \1" ; same format as rgblink's .sym file
 ENDM
 
 ; [fight begin]
