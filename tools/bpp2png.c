@@ -83,8 +83,17 @@ unsigned int calculate_size(long bytes, unsigned int *width) {
 		return 0;
 	}
 	if (!*width) {
-		// If no width is specified, use up to 16 tiles (128 px)
-		*width = pixels < 16 * 8 * 8 ? (unsigned int)(pixels / 8) : 128;
+		// If no width is specified, try to guess an appropriate one
+		*width = pixels == 5 * 5 * 8 * 8 ? 5 * 8 // 5x5 mon pic
+			: pixels == 6 * 6 * 8 * 8 ? 6 * 8 // 6x6 mon front/back pic
+			: pixels == 7 * 7 * 8 * 8 ? 7 * 8 // 7x7 mon/trainer pic
+			: pixels == 2 * 4 * 8 * 8 ? 2 * 8 // 2x4 mon icon
+			: pixels == 2 * 12 * 8 * 8 ? 2 * 8 // 2x12 walking sprite
+			: pixels == 2 * 6 * 8 * 8 ? 2 * 8 // 2x6 standing sprite
+			: pixels == 2 * 2 * 8 * 8 ? 2 * 8 // 2x2 still sprite
+			: pixels == 4 * 4 * 8 * 8 ? 4 * 8 // 4x4 big sprite
+			: pixels < 16 * 8 * 8 ? (unsigned int)(pixels / 8)
+			: 128;
 	}
 	unsigned int height = (unsigned int)((pixels + *width * 8 - 1) / (*width * 8) * 8);
 	if (*width == 0 || height == 0) {
