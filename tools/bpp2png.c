@@ -53,7 +53,7 @@ void parse_args(int argc, char *argv[], struct Options *options) {
 
 bool is_1bpp(const char *filename) {
 	const char *end = strrchr(filename, '.');
-	return strlen(end) == 5 && end[1] == '1' && (end[2] == 'b' || end[2] == 'B')
+	return end && strlen(end) == 5 && end[1] == '1' && (end[2] == 'b' || end[2] == 'B')
 		&& (end[3] == 'p' || end[3] == 'P') && (end[4] == 'p' || end[4] == 'P');
 }
 
@@ -150,7 +150,7 @@ void read_gbcpal(Palette palette, const char *filename) {
 	free(pal_data);
 }
 
-unsigned int encode_png(const char *filename, uint8_t *bpp_data, unsigned int width, unsigned int height, Palette palette) {
+unsigned int write_png(const char *filename, uint8_t *bpp_data, unsigned int width, unsigned int height, Palette palette) {
 	LodePNGState state;
 	lodepng_state_init(&state);
 	state.info_raw.bitdepth = state.info_png.color.bitdepth = 2;
@@ -197,9 +197,16 @@ int main(int argc, char *argv[]) {
 		read_gbcpal(palette, options.palette);
 	}
 
+	const char *bpp_filename = argv[0];
 	long filesize;
-	uint8_t *bpp_data = read_u8(argv[0], &filesize);
-	if (options.depth == 1 || (!options.depth && is_1bpp(argv[0]))) {
+	uint8_t *bpp_data = read_u8(bpp_filename, &filesize);
+	if (!options.depth) {
+		options.depth = is_1bpp(bpp_filename) ? 1 : 2;
+	}
+	if (!filesize || filesize % (8 * options.depth)) {
+		error_exit("Invalid .%dbpp file: \"%s\"\n", options.depth, bpp_filename);
+	}
+	if (options.depth == 1) {
 		bpp_data = extend_1bpp_to_2bpp(bpp_data, &filesize);
 	}
 	mingle_2bpp_planes(bpp_data, filesize);
@@ -211,9 +218,10 @@ int main(int argc, char *argv[]) {
 	}
 	bpp_data = rearrange_tiles_to_scanlines(bpp_data, options.width, height);
 
-	unsigned int error = encode_png(argv[1], bpp_data, options.width, height, options.palette ? palette : NULL);
+	const char *png_filename = argv[1];
+	unsigned int error = write_png(png_filename, bpp_data, options.width, height, options.palette ? palette : NULL);
 	if (error) {
-		error_exit("Could not write to file \"%s\": %s\n", argv[1], lodepng_error_text(error));
+		error_exit("Could not write to file \"%s\": %s\n", png_filename, lodepng_error_text(error));
 	}
 
 	free(bpp_data);
