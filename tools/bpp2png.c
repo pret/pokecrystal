@@ -84,16 +84,17 @@ unsigned int calculate_size(long bytes, unsigned int *width) {
 	}
 	if (!*width) {
 		// If no width is specified, try to guess an appropriate one
-		*width = pixels == 5 * 5 * 8 * 8 ? 5 * 8 // 5x5 mon pic
-			: pixels == 6 * 6 * 8 * 8 ? 6 * 8 // 6x6 mon front/back pic
-			: pixels == 7 * 7 * 8 * 8 ? 7 * 8 // 7x7 mon/trainer pic
-			: pixels == 2 * 4 * 8 * 8 ? 2 * 8 // 2x4 mon icon
-			: pixels == 2 * 12 * 8 * 8 ? 2 * 8 // 2x12 walking sprite
-			: pixels == 2 * 6 * 8 * 8 ? 2 * 8 // 2x6 standing sprite
-			: pixels == 2 * 2 * 8 * 8 ? 2 * 8 // 2x2 still sprite
-			: pixels == 4 * 4 * 8 * 8 ? 4 * 8 // 4x4 big sprite
-			: pixels < 16 * 8 * 8 ? (unsigned int)(pixels / 8)
-			: 128;
+#define GUESS_SIZE(w, h) pixels == (w) * (h) * 8 * 8 ? (w) * 8
+		*width = GUESS_SIZE(5, 5) // mon pic
+			: GUESS_SIZE(6, 6) // mon front/back pic
+			: GUESS_SIZE(7, 7) // mon/trainer pic
+			: GUESS_SIZE(2, 4) // mon icon
+			: GUESS_SIZE(2, 12) // walking sprite
+			: GUESS_SIZE(2, 6) // standing sprite
+			: GUESS_SIZE(2, 2) // still sprite
+			: GUESS_SIZE(4, 4) // big sprite
+			: pixels > 16 * 8 * 8 ? 16 * 8 // maximum width
+			: (unsigned int)(pixels / 8);
 	}
 	unsigned int height = (unsigned int)((pixels + *width * 8 - 1) / (*width * 8) * 8);
 	if (*width == 0 || height == 0) {
@@ -151,7 +152,7 @@ void read_gbcpal(Palette palette, const char *filename) {
 	}
 	for (int i = 0; i < 4; i++) {
 		uint8_t b1 = pal_data[i * 2], b2 = pal_data[i * 2 + 1];
-#define RGB5_TO_RGB8(x) (uint8_t)((x) * 33 / 4)
+#define RGB5_TO_RGB8(x) (uint8_t)(((x) << 3) | ((x) >> 2))
 		palette[i][0] = RGB5_TO_RGB8(b1 & 0x1f); // red
 		palette[i][1] = RGB5_TO_RGB8(((b1 & 0xe0) >> 5) | ((b2 & 0x03) << 3)); // green
 		palette[i][2] = RGB5_TO_RGB8((b2 & 0x7c) >> 2); // blue
