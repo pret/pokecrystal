@@ -200,7 +200,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
  	ret
 ```
 
-(This fix also affects Thick Club, Light Ball, and Metal Powder, as described above, but their specific fixes in the above bugs allow more accurate damage calculations.)
+(This fix also affects Thick Club, Light Ball, and Metal Powder, as described above, but the specific fixes for the first two items allow more accurate damage calculations.)
 
 
 ### Moves with a 100% secondary effect chance will not trigger it in 1/256 uses
