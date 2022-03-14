@@ -168,8 +168,9 @@ unsigned int write_png(const char *filename, uint8_t *bpp_data, unsigned int wid
 	if (palette) {
 		state.info_raw.colortype = state.info_png.color.colortype =  LCT_PALETTE;
 		for (int i = 0; i < 4; i++) {
-			lodepng_palette_add(&state.info_raw, palette[i][0], palette[i][1], palette[i][2], 0xff);
-			lodepng_palette_add(&state.info_png.color, palette[i][0], palette[i][1], palette[i][2], 0xff);
+			uint8_t *color = palette[i];
+			lodepng_palette_add(&state.info_raw, color[0], color[1], color[2], 0xff);
+			lodepng_palette_add(&state.info_png.color, color[0], color[1], color[2], 0xff);
 		}
 	} else {
 		state.info_raw.colortype = state.info_png.color.colortype = LCT_GREY;
