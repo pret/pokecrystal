@@ -182,12 +182,11 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
 
 ([Video](https://www.youtube.com/watch?v=rGqu3d3pdok&t=450))
 
-**Fix:** Edit `DittoMetalPowder` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm) and `call` it before `TruncateHL_BC`:
+**Fix:** Edit [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm):
 
 ```diff
  DittoMetalPowder:
-
-	...
+ 	...
 
 -	ld a, c
 -	srl a
@@ -203,7 +202,6 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
 -.done
 -	scf
 -	rr c
--	ret
 +	ld h, b
 +	ld l, c
 +	srl b
@@ -219,15 +217,14 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
 +	ld a, LOW(MAX_STAT_VALUE)
 +	cp c
 +	ret nc
-
++
 +.cap
 +	ld bc, MAX_STAT_VALUE
-+	ret
+ 	ret
 ```
 
 ```diff
  PlayerAttackDamage:
-
  	...
 
  .done
@@ -235,20 +232,19 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
 +	call DittoMetalPowder
 +	pop hl
 
-	call TruncateHL_BC
+ 	call TruncateHL_BC
 
-	ld a, [wBattleMonLevel]
-	ld e, a
+ 	ld a, [wBattleMonLevel]
+ 	ld e, a
 -	call DittoMetalPowder
 
-	ld a, 1
-	and a
-	ret
+ 	ld a, 1
+ 	and a
+ 	ret
 ```
 
 ```diff
  EnemyAttackDamage:
-
  	...
 
  .done
@@ -256,15 +252,15 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
 +	call DittoMetalPowder
 +	pop hl
 
-	call TruncateHL_BC
+ 	call TruncateHL_BC
 
-	ld a, [wBattleMonLevel]
-	ld e, a
+ 	ld a, [wBattleMonLevel]
+ 	ld e, a
 -	call DittoMetalPowder
 
-	ld a, 1
-	and a
-	ret
+ 	ld a, 1
+ 	and a
+ 	ret
 ```
 
 
@@ -291,7 +287,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
  	ret
 ```
 
-(This fix also affects Thick Club, Light Ball, and Metal Powder, as described above, but the specific fixes for the first two items allow more accurate damage calculations.)
+(This fix also affects Thick Club, Light Ball, and Metal Powder, as described above, but their specific fixes in the above bugs allow more accurate damage calculations.)
 
 
 ### Moves with a 100% secondary effect chance will not trigger it in 1/256 uses
