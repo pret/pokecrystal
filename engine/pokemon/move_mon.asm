@@ -864,7 +864,7 @@ RetrieveBreedmon:
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld hl, $a
+	ld hl, MON_EXP + 2
 	add hl, bc
 	push bc
 	ld b, TRUE
@@ -887,7 +887,7 @@ RetrieveBreedmon:
 	ld d, a
 	callfar CalcExpAtLevel
 	pop bc
-	ld hl, $8
+	ld hl, MON_EXP
 	add hl, bc
 	ldh a, [hMultiplicand]
 	ld [hli], a
@@ -1009,7 +1009,7 @@ SendMonIntoBox:
 
 	; Set all 5 Experience Values to 0
 	xor a
-	ld b, 2 * 5
+	ld b, 2 * NUM_EXP_STATS
 .loop2
 	ld [de], a
 	inc de
