@@ -62,10 +62,11 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [`RIVAL2` has lower DVs than `RIVAL1`](#rival2-has-lower-dvs-than-rival1)
   - [`HELD_CATCH_CHANCE` has no effect](#held_catch_chance-has-no-effect)
   - [Credits sequence changes move selection menu behavior](#credits-sequence-changes-move-selection-menu-behavior)
-- [Overworld engine](#overworld-engine)
+- [Game engine](#game-engine)
   - [`LoadMetatiles` wraps around past 128 blocks](#loadmetatiles-wraps-around-past-128-blocks)
   - [Surfing directly across a map connection does not load the new map](#surfing-directly-across-a-map-connection-does-not-load-the-new-map)
   - [Swimming NPCs aren't limited by their movement radius](#swimming-npcs-arent-limited-by-their-movement-radius)
+  - [Pokémon deposited in the Day Care might lose experience](#pokémon-deposited-in-the-day-care-might-lose-experience)
 - [Graphics](#graphics)
   - [In-battle “`…`” ellipsis is too high](#in-battle--ellipsis-is-too-high)
   - [Two tiles in the `port` tileset are drawn incorrectly](#two-tiles-in-the-port-tileset-are-drawn-incorrectly)
@@ -1559,7 +1560,7 @@ The `[hInMenu]` value determines this button behavior. However, the battle moves
 ```
 
 
-## Overworld engine
+## Game engine
 
 
 ### `LoadMetatiles` wraps around past 128 blocks
@@ -1669,6 +1670,56 @@ This bug is why the Lapras in [maps/UnionCaveB2F.asm](https://github.com/pret/po
  	bit NOCLIP_TILES_F, [hl] ; lost, uncomment next line to fix
 -	; jr nz, .noclip_tiles
 +	jr nz, .noclip_tiles
+```
+
+### Pokémon deposited in the Day Care might lose experience
+
+This bug happens because when retrieving a Pokémon only its level is updated, but its Exp. Points are set to the minimum required for that level. This means that, if a Pokémon is deposited, hasn't gained any level and then it's taken back, it might lose Exp. Points.
+
+**Fix**: Edit `RetrieveBreedmon` in [engine/pokemon/move_mon.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/move_mon.asm):
+
+```diff
+ RetrieveBreedmon:
+
+	...
+
+	ld a, [wPartyCount]
+	dec a
+	ld [wCurPartyMon], a
+	farcall HealPartyMon
+-	ld a, [wCurPartyLevel]
+-	ld d, a
++	; Check if there's an exp overflow
++	ld d, MAX_LEVEL
+	callfar CalcExpAtLevel
+	pop bc
+-	ld hl, MON_EXP
++	ld hl, MON_EXP + 2
+	add hl, bc
+	ldh a, [hMultiplicand]
+-	ld [hli], a
++	ld b, a
+	ldh a, [hMultiplicand + 1]
+-	ld [hli], a
++	ld c, a
+	ldh a, [hMultiplicand + 2]
++	ld d, a
++	ld a, [hld]
++	sub d
++	ld a, [hld]
++	sbc c
++	ld a, [hl]
++	sbc b
++	jr c, .not_max_exp
++	ld a, b
++	ld [hli], a
++	ld a, c
++	ld [hli], a
++	ld a, d
+	ld [hl], a
++.not_max_exp
+	and a
+	ret
 ```
 
 
