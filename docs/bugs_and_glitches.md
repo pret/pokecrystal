@@ -66,7 +66,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [`LoadMetatiles` wraps around past 128 blocks](#loadmetatiles-wraps-around-past-128-blocks)
   - [Surfing directly across a map connection does not load the new map](#surfing-directly-across-a-map-connection-does-not-load-the-new-map)
   - [Swimming NPCs aren't limited by their movement radius](#swimming-npcs-arent-limited-by-their-movement-radius)
-  - [Pokémon deposited in the Day Care might lose experience](#pokémon-deposited-in-the-day-care-might-lose-experience)
+  - [Pokémon deposited in the Day-Care might lose experience](#pokémon-deposited-in-the-day-care-might-lose-experience)
 - [Graphics](#graphics)
   - [In-battle “`…`” ellipsis is too high](#in-battle--ellipsis-is-too-high)
   - [Two tiles in the `port` tileset are drawn incorrectly](#two-tiles-in-the-port-tileset-are-drawn-incorrectly)
@@ -1672,37 +1672,38 @@ This bug is why the Lapras in [maps/UnionCaveB2F.asm](https://github.com/pret/po
 +	jr nz, .noclip_tiles
 ```
 
-### Pokémon deposited in the Day Care might lose experience
 
-This bug happens because when retrieving a Pokémon only its level is updated, but its Exp. Points are set to the minimum required for that level. This means that, if a Pokémon is deposited, hasn't gained any level and then it's taken back, it might lose Exp. Points.
+### Pokémon deposited in the Day-Care might lose experience
+
+This happens because when a Pokémon is withdrawn from the Day-Care, its Exp. Points are reset to the minimum required for its level. This means that if it hasn't gained any levels, it may lose experience.
 
 **Fix**: Edit `RetrieveBreedmon` in [engine/pokemon/move_mon.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/move_mon.asm):
 
 ```diff
  RetrieveBreedmon:
 
-	...
+ 	...
 
-	ld a, [wPartyCount]
-	dec a
-	ld [wCurPartyMon], a
-	farcall HealPartyMon
+ 	ld a, [wPartyCount]
+ 	dec a
+ 	ld [wCurPartyMon], a
+ 	farcall HealPartyMon
 -	ld a, [wCurPartyLevel]
 -	ld d, a
 +	; Check if there's an exp overflow
 +	ld d, MAX_LEVEL
-	callfar CalcExpAtLevel
-	pop bc
+ 	callfar CalcExpAtLevel
+ 	pop bc
 -	ld hl, MON_EXP
 +	ld hl, MON_EXP + 2
-	add hl, bc
-	ldh a, [hMultiplicand]
+ 	add hl, bc
+ 	ldh a, [hMultiplicand]
 -	ld [hli], a
 +	ld b, a
-	ldh a, [hMultiplicand + 1]
+ 	ldh a, [hMultiplicand + 1]
 -	ld [hli], a
 +	ld c, a
-	ldh a, [hMultiplicand + 2]
+ 	ldh a, [hMultiplicand + 2]
 +	ld d, a
 +	ld a, [hld]
 +	sub d
@@ -1716,10 +1717,10 @@ This bug happens because when retrieving a Pokémon only its level is updated, b
 +	ld a, c
 +	ld [hli], a
 +	ld a, d
-	ld [hl], a
+ 	ld [hl], a
 +.not_max_exp
-	and a
-	ret
+ 	and a
+ 	ret
 ```
 
 
