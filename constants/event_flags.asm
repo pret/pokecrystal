@@ -970,8 +970,6 @@
 	const EVENT_BEAT_SUPER_NERD_PAT
 	const EVENT_BEAT_SUPER_NERD_SHAWN
 	const EVENT_BEAT_SUPER_NERD_TERU
-	const EVENT_BEAT_SUPER_NERD_RUSS
-	const EVENT_BEAT_SUPER_NERD_NORTON
 ; Medium
 	const EVENT_BEAT_MEDIUM_MARTHA
 	const EVENT_BEAT_MEDIUM_GRACE
@@ -1044,7 +1042,7 @@
 	const EVENT_BEAT_SAGE_GAKU
 	const EVENT_BEAT_SAGE_MASA
 	const EVENT_BEAT_SAGE_KOJI
-; Unused: next 114 events
+; Unused: next 116 events
 
 	const_next 1600
 ; Sprite visibility flags
