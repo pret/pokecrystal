@@ -50,7 +50,9 @@ void symbol_append(struct Symbol **symbols, const char *name, int bank, int addr
 	size_t name_len = strlen(name) + 1;
 	struct Symbol *symbol = xmalloc(sizeof(*symbol) + name_len);
 	symbol->address = address;
-	symbol->offset = bank > 0 && address < 0x8000 ? address + (bank - 1) * 0x4000 : address;
+	symbol->offset = address < 0x8000
+		? (bank > 0 ? address + (bank - 1) * 0x4000 : address) // ROM addresses are relative to their bank
+		: address - 0x8000; // RAM addresses are relative to the start of all RAM
 	memcpy(symbol->name, name, name_len);
 	symbol->next = *symbols;
 	*symbols = symbol;
@@ -154,13 +156,22 @@ void parse_symbols(const char *filename, struct Symbol **symbols) {
 	buffer_free(buffer);
 }
 
+int strfind(const char *s, const char *list[], int count) {
+	for (int i = 0; i < count; i++) {
+		if (!strcmp(s, list[i])) {
+			return i;
+		}
+	}
+	return -1;
+}
+
+#define vstrfind(s, ...) strfind(s, (const char *[]){__VA_ARGS__}, sizeof (const char *[]){__VA_ARGS__} / sizeof(const char *))
+
 int parse_arg_value(const char *arg, bool absolute, const struct Symbol *symbols, const char *patch_name) {
 	// Comparison operators for "ConditionValueB" evaluate to their particular values
-	static const char *comparisons[] = {"==", ">", "<", ">=", "<=", "!=", "||"};
-	for (unsigned int i = 0; i < sizeof(comparisons) / sizeof(*comparisons); i++) {
-		if (!strcmp(arg, comparisons[i])) {
-			return i == 6 ? 0x11 : i; // "||" is 0x11
-		}
+	int op = vstrfind(arg, "==", ">", "<", ">=", "<=", "!=", "||");
+	if (op >= 0) {
+		return op == 6 ? 0x11 : op; // "||" is 0x11
 	}
 
 	// Literal numbers evaluate to themselves
@@ -213,7 +224,7 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 	}
 
 	// Use the arguments
-	if (!strcmp(command, "patch") || !strcmp(command, "PATCH") || !strcmp(command, "patch_") || !strcmp(command, "PATCH_")) {
+	if (vstrfind(command, "patch", "PATCH", "patch_", "PATCH_", "patch/", "PATCH/") >= 0) {
 		if (argc > 2) {
 			error_exit("Error: Invalid arguments for command: \"%s\"\n", command);
 		}
@@ -241,7 +252,9 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 			modified = c != getc(orig_rom);
 			fprintf(output, isupper((unsigned)command[0]) ? "0x%02X" : "0x%02x", c);
 		} else {
-			fprintf(output, command[strlen(command) - 1] == '_' ? "a%d: " : "a%d:", length);
+			if (command[strlen(command) - 1] != '/') {
+				fprintf(output, command[strlen(command) - 1] == '_' ? "a%d: " : "a%d:", length);
+			}
 			for (int i = 0; i < length; i++) {
 				if (i) {
 					putc(' ', output);
@@ -255,11 +268,13 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 			fprintf(stderr, PROGRAM_NAME ": Warning: \"vc_patch %s\" doesn't alter the ROM\n", current_hook->name);
 		}
 
-	} else if (!strcmp(command, "dws") || !strcmp(command, "DWS") || !strcmp(command, "dws_") || !strcmp(command, "DWS_")) {
+	} else if (vstrfind(command, "dws", "DWS", "dws_", "DWS_", "dws/", "DWS/") >= 0) {
 		if (argc < 1) {
 			error_exit("Error: Invalid arguments for command: \"%s\"\n", command);
 		}
-		fprintf(output, command[strlen(command) - 1] == '_' ? "a%d: " : "a%d:", argc * 2);
+		if (command[strlen(command) - 1] != '/') {
+			fprintf(output, command[strlen(command) - 1] == '_' ? "a%d: " : "a%d:", argc * 2);
+		}
 		for (int i = 0; i < argc; i++) {
 			int value = parse_arg_value(argv[i], false, symbols, current_hook->name);
 			if (value > 0xffff) {
@@ -271,7 +286,7 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 			fprintf(output, isupper((unsigned)command[0]) ? "%02X %02X": "%02x %02x", value & 0xff, value >> 8);
 		}
 
-	} else if (!strcmp(command, "db") || !strcmp(command, "DB") || !strcmp(command, "db_") || !strcmp(command, "DB_")) {
+	} else if (vstrfind(command, "db", "DB", "db_", "DB_", "db/", "DB/") >= 0) {
 		if (argc != 1) {
 			error_exit("Error: Invalid arguments for command: \"%s\"\n", command);
 		}
@@ -279,22 +294,24 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 		if (value > 0xff) {
 			error_exit("Error: Invalid value for \"%s\" argument: 0x%x\n", command, value);
 		}
-		fputs(command[strlen(command) - 1] == '_' ? "a1: " : "a1:", output);
+		if (command[strlen(command) - 1] != '/') {
+			fputs(command[strlen(command) - 1] == '_' ? "a1: " : "a1:", output);
+		}
 		fprintf(output, isupper((unsigned)command[0]) ? "%02X" : "%02x", value);
 
-	} else if (!strcmp(command, "hex") || !strcmp(command, "HEX") || !strcmp(command, "HEx") || !strcmp(command, "Hex") || !strcmp(command, "heX") || !strcmp(command, "hEX")) {
+	} else if (vstrfind(command, "hex", "HEX", "HEx", "Hex", "heX", "hEX", "hex~", "HEX~", "HEx~", "Hex~", "heX~", "hEX~") >= 0) {
 		if (argc != 1 && argc != 2) {
 			error_exit("Error: Invalid arguments for command: \"%s\"\n", command);
 		}
-		int value = parse_arg_value(argv[0], true, symbols, current_hook->name);
+		int value = parse_arg_value(argv[0], command[strlen(command) - 1] != '~', symbols, current_hook->name);
 		int padding = argc > 1 ? parse_number(argv[1], 0) : 2;
-		if (!strcmp(command, "HEx")) {
+		if (vstrfind(command, "HEx", "HEx~") >= 0) {
 			fprintf(output, "0x%0*X%02x", padding - 2, value >> 8, value & 0xff);
-		} else if (!strcmp(command, "Hex")) {
+		} else if (vstrfind(command, "Hex", "Hex~") >= 0) {
 			fprintf(output, "0x%0*X%03x", padding - 3, value >> 12, value & 0xfff);
-		} else if (!strcmp(command, "heX")) {
+		} else if (vstrfind(command, "heX", "heX~") >= 0) {
 			fprintf(output, "0x%0*x%02X", padding - 2, value >> 8, value & 0xff);
-		} else if (!strcmp(command, "hEX")) {
+		} else if (vstrfind(command, "hEX", "hEX~") >= 0) {
 			fprintf(output, "0x%0*x%03X", padding - 3, value >> 12, value & 0xfff);
 		} else {
 			fprintf(output, isupper((unsigned)command[0]) ? "0x%0*X" : "0x%0*x", padding, value);

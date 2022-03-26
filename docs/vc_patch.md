@@ -75,15 +75,15 @@ Patch names may designate an alternate for the label with an at-sign "`@`". This
 
 Commands are interpreted with a series of arguments, separated by whitespace (spaces, tabs, or newlines). Leading and trailing whitespace is ignored; for example, "`{  hex  @  4  }`" is interpreted the same as "`{hex @ 4}`".
 
-Some commands may output a **value series**, which is a series of two-digit hexadecimal bytes separated by spaces, preceded by a decimal count: "<code>a*N*: <i>v1</i> <i>v2</i> [...] <i>vN</i></code>".
+Command names have variants to allow reproducing the exact formatting in a `.patch` file. If the command name is all lowercase, the output byte values use lowercase for hexadecimal digits A-F; if it is all uppercase, they use uppercase.
 
-Some command names have variants to allow reproducing the exact formatting in a `.patch` file. If the command name is all lowercase, the output byte values use lowercase for hexadecimal digits A-F; if it is all uppercase, they use uppercase. For commands which output a value series, if the command name ends in an underscore, a space is output after the colon preceding the values; if not, then it is not.
+Some commands may output a **value series**, which is a series of two-digit hexadecimal bytes separated by spaces, preceded by a decimal count and a colon "`:`": "<code>a*N*: <i>v1</i> <i>v2</i> [...] <i>vN</i></code>". These commands have additional variants: if the command name ends in a slash "`/`", the count and colon are not output; or else, if it ends in an underscore "`_`", a space is output after the colon; otherwise, the count and colon are output without a space.
 
 **Arguments** evaluate to numeric values. They may be any of the following:
 
 - Literal numbers in decimal (base 10, e.g. "`42`"), hexadecimal (base 16, e.g. "`0x2a`"), or octal (base 8, e.g. "`052`"). They may start with a plus sign "`+`". Numbers should not be negative.
 - Comparison operators: "`==`" is 0, "`>`" is 1, "`<`" is 2, "`>=`" is 3, "`<=`" is 4, "`!=`" is 5, and "`||`" is 0x11.
-- Symbol names from the two `.sym` files provided to `make_patch` may evaluate as their bank-relative address, or their absolute offset in the ROM, depending on the command. They may also be followed by a plus sign and a literal number that gets added to the value.
+- Symbol names from the two `.sym` files provided to `make_patch` may evaluate as their relative address or their absolute offset, depending on the command. (Addresses are relative to the symbol's bank for ROM addresses, or to 0x8000, the start of all RAM, for RAM addresses.) They may also be followed by a plus sign and a literal number that gets added to the value.
 - "`@`" evaluates as the address or absolute offset of the current patch/hook label, depending on the command.
 
 Any other characters are output as-is.
@@ -117,8 +117,8 @@ For example, "`{db 0xEF}`" outputs "`a1:ef`".
 
 ### <code>{hex <i>arg</i>[ <i>padding</i>]}</code>
 
-Outputs its first argument as a hexadecimal number. An optional second argument is the minimum length in digits; values shorter than it will be padded with leading zeros. Symbol names or "`@`" are evaluated as their absolute offset.
+Outputs its first argument as a hexadecimal number. An optional second argument is the minimum length in digits; values shorter than it will be padded with leading zeros. Symbol names or "`@`" are evaluated as their absolute offset, or as their relative address if the command name ends in a tilde "`~`".
 
-For example, "`{hex 0xabcd 5}`" outputs "`0x0abcd`".
+For example, if "`{hex @}`" outputs "`0x6789`", then "`{hex @+1 5}`" outputs "`0x0678a`".
 
 This command has extra variants to reproduce inconsistent output casing: "`Hex`" prints the last three digits in lowercase and the rest uppercase; "`HEx`" prints the last two digits in lowercase and the rest uppercase; "`hEX`" prints the last three digits in uppercase and the rest lowercase; and "`heX`" prints the last two digits in uppercase and the rest lowercase.
