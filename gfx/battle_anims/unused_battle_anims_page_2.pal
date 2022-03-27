@@ -1,0 +1,31 @@
+; purple (dragon pulse)
+	RGB 31, 31, 31
+    RGB 28, 11, 30
+    RGB 11, 03, 26
+    RGB 05, 04, 18
+; pink (psychic)
+	RGB 31, 31, 31
+    RGB 30, 11, 27
+    RGB 26, 03, 25
+    RGB 17, 04, 18
+; red_2 (physical)
+	RGB 31, 31, 31
+	RGB 31, 28, 00
+	RGB 27, 04, 02
+	RGB 30, 05, 06
+; green_2 (special)
+	RGB 31, 31, 31
+	RGB 27, 31, 31
+	RGB 00, 14, 29
+	RGB 05, 14, 00
+; blue_2 (status)
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 21, 21, 14
+	RGB 01, 04, 31
+; gray (2)
+	RGB 31, 31, 31
+	RGB 25, 25, 25
+	RGB 13, 13, 13
+	RGB 00, 00, 00
+	

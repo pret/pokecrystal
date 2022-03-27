@@ -1,0 +1,31 @@
+; violet (poison)
+	RGB 31, 31, 31
+	RGB 23, 10, 26
+	RGB 18, 05, 22
+	RGB 14, 03, 18
+; red-violet (dragon)
+	RGB 31, 31, 31
+    RGB 30, 09, 18
+    RGB 28, 02, 18
+    RGB 17, 03, 07
+; yellow-green (bug)
+	RGB 31, 31, 31
+	RGB 31, 31, 01
+	RGB 17, 31, 03
+	RGB 00, 00, 00
+; violet (ghost)
+	RGB 31, 31, 31
+	RGB 26, 14, 30
+	RGB 16, 02, 25
+	RGB 09, 04, 15
+; sky blue (flying)
+    RGB 31, 31, 31
+    RGB 17, 26, 30
+    RGB 12, 19, 27
+    RGB 11, 15, 20
+; gray (2)
+	RGB 31, 31, 31
+	RGB 25, 25, 25
+	RGB 13, 13, 13
+	RGB 00, 00, 00
+	

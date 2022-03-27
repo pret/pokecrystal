@@ -843,11 +843,22 @@ NUM_BG_EFFECTS EQU 5 ; see wActiveBGEffects
 
 ; animation object palettes
 	const_def
-	const PAL_BATTLE_OB_ENEMY  ; 0
-	const PAL_BATTLE_OB_PLAYER ; 1
-	const PAL_BATTLE_OB_GRAY   ; 2
-	const PAL_BATTLE_OB_YELLOW ; 3
-	const PAL_BATTLE_OB_RED    ; 4
-	const PAL_BATTLE_OB_GREEN  ; 5
-	const PAL_BATTLE_OB_BLUE   ; 6
-	const PAL_BATTLE_OB_BROWN  ; 7
+	const PAL_BATTLE_OB_ENEMY      		; 0
+	const PAL_BATTLE_OB_PLAYER    		; 1
+	const PAL_BATTLE_OB_GRAY      		; 2
+	const PAL_BATTLE_OB_YELLOW     		; 3
+	const PAL_BATTLE_OB_RED        		; 4
+	const PAL_BATTLE_OB_GREEN      		; 5
+	const PAL_BATTLE_OB_BLUE       		; 6
+	const PAL_BATTLE_OB_BROWN      		; 7
+	const PAL_BATTLE_OB_POISON     		; 8
+	const PAL_BATTLE_OB_RED_VIOLET 		; 9
+	const PAL_BATTLE_OB_YELLOW_GREEN 	; 10
+	const PAL_BATTLE_OB_GHOST    		; 11
+	const PAL_BATTLE_OB_FLYING    		; 12
+	const PAL_BATTLE_OB_GRAY_2    		; 13
+	const PAL_BATTLE_OB_DRAGON    		; 14
+	const PAL_BATTLE_OB_PINK			; 15
+	const PAL_BATTLE_OB_OTHERS_1		; 16
+	const PAL_BATTLE_OB_OTHERS_2		; 17
+	const PAL_BATTLE_OB_OTHERS_3		; 18

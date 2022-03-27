@@ -1,6 +1,8 @@
 ; Battle animation command interpreter.
 
 PlayBattleAnim:
+	farcall _CGB_FinishBattleScreenLayout
+	
 	ldh a, [rSVBK]
 	push af
 
@@ -96,6 +98,8 @@ BattleAnimRunScript:
 	ret
 
 RunBattleAnimScript:
+	xor a
+	ld [wChangedBattleAnimPalette], a
 	call ClearBattleAnims
 
 .playframe

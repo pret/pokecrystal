@@ -3122,7 +3122,9 @@ wKenjiFightCount::   db ; unreferenced
 wParryFightCount::   db
 wErinFightCount::    db
 
-	ds 100
+wChangedBattleAnimPalette:: db
+
+	ds 99
 
 wEventFlags:: flag_array NUM_EVENTS
 
