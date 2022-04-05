@@ -918,7 +918,7 @@ IntroScene19:
 	ldh [rSVBK], a
 	xor a
 	ldh [hSCX], a
-	ld a, 27 * TILE_WIDTH
+	ld a, -5 * TILE_WIDTH
 	ldh [hSCY], a
 	ld a, 7
 	ldh [hWX], a
