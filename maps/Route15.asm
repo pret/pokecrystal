@@ -35,7 +35,7 @@ TrainerTeacherHillary:
 	end
 
 TrainerSchoolboyKipp:
-	trainer SCHOOLBOY, KIPP, EVENT_BEAT_SCHOOLBOY_KIP, SchoolboyKippSeenText, SchoolboyKippBeatenText, 0, .Script
+	trainer SCHOOLBOY, KIPP, EVENT_BEAT_SCHOOLBOY_KIPP, SchoolboyKippSeenText, SchoolboyKippBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
