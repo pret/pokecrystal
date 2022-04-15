@@ -10,7 +10,7 @@
 	const PARTYMENUQUALITY_GENDER
 	const PARTYMENUQUALITY_MOBILE_SELECTION
 
-partymenuqualities: MACRO
+MACRO partymenuqualities
 rept _NARG
 	db PARTYMENUQUALITY_\1
 	shift

@@ -2,12 +2,12 @@
 ; names taken from pandocs
 ; http://gbdev.gg8.se/wiki/articles/SGB_Functions#SGB_Palette_Commands
 
-attr_blk: MACRO
+MACRO attr_blk
 	db (SGB_ATTR_BLK << 3) + ((\1 * 6) / 16 + 1)
 	db \1
 ENDM
 
-attr_blk_data: MACRO
+MACRO attr_blk_data
 	db \1 ; which regions are affected
 	db \2 + (\3 << 2) + (\4 << 4) ; palette for each region
 	db \5, \6, \7, \8 ; x1, y1, x2, y2

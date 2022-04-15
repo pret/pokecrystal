@@ -20,7 +20,7 @@ These are parts of the code that do not work *incorrectly*, like [bugs and glitc
 [data/pokemon/pic_pointers.asm](https://github.com/pret/pokecrystal/blob/master/data/pokemon/pic_pointers.asm), [data/pokemon/unown_pic_pointers.asm](https://github.com/pret/pokecrystal/blob/master/data/pokemon/unown_pic_pointers.asm), and [data/trainers/pic_pointers.asm](https://github.com/pret/pokecrystal/blob/master/data/trainers/pic_pointers.asm) all have to use `dba_pic` instead of `dba`. This is a macro in [macros/data.asm](https://github.com/pret/pokecrystal/blob/master/macros/data.asm) that offsets banks by `PICS_FIX`:
 
 ```asm
-dba_pic: MACRO ; dbw bank, address
+MACRO dba_pic ; dbw bank, address
 	db BANK(\1) - PICS_FIX
 	dw \1
 ENDM
@@ -671,7 +671,7 @@ CelebiEvent_Cosine:
 They all rely on `calc_sine_wave` in [macros/code.asm](https://github.com/pret/pokecrystal/blob/master/macros/code.asm):
 
 ```asm
-calc_sine_wave: MACRO
+MACRO calc_sine_wave
 ; input: a = a signed 6-bit value
 ; output: a = d * sin(a * pi/32)
 	and %111111
@@ -722,7 +722,7 @@ ENDM
 And on `sine_table` in [macros/data.asm](https://github.com/pret/pokecrystal/blob/master/macros/data.asm):
 
 ```asm
-sine_table: MACRO
+MACRO sine_table
 ; \1 samples of sin(x) from x=0 to x<32768 (pi radians)
 x = 0
 rept \1

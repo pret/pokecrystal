@@ -1,4 +1,4 @@
-add_mapsetup: MACRO
+MACRO add_mapsetup
 \1_MapSetupCmd:
 	dba \1
 ENDM

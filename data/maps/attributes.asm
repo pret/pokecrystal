@@ -1,4 +1,4 @@
-map_attributes: MACRO
+MACRO map_attributes
 ;\1: map name
 ;\2: map id
 ;\3: border block
@@ -17,7 +17,7 @@ CURRENT_MAP_HEIGHT = \2_HEIGHT
 ENDM
 
 ; Connections go in order: north, south, west, east
-connection: MACRO
+MACRO connection
 ;\1: direction
 ;\2: map name
 ;\3: map id

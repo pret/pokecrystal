@@ -1,7 +1,7 @@
 ABSOLUTE_X EQU $00
 RELATIVE_X EQU $01
 
-battleanimobj: MACRO
+MACRO battleanimobj
 	db \1 ; flags
 	; bit 7: priority
 	; bit 6: y flip (for enemy)

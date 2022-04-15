@@ -1,4 +1,4 @@
-command: MACRO
+MACRO command
 	const \1_command
 \1 EQUS "db \1_command"
 ENDM

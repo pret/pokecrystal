@@ -1,4 +1,4 @@
-map_id: MACRO
+MACRO map_id
 ;\1: map id
 	assert DEF(GROUP_\1) && DEF(MAP_\1), \
 		"Missing 'map_const \1' in constants/map_constants.asm"
@@ -7,39 +7,39 @@ ENDM
 
 object_const_def EQUS "const_def 2"
 
-def_scene_scripts: MACRO
+MACRO def_scene_scripts
 REDEF _NUM_SCENE_SCRIPTS EQUS "_NUM_SCENE_SCRIPTS_\@"
 	db {_NUM_SCENE_SCRIPTS}
 {_NUM_SCENE_SCRIPTS} = 0
 ENDM
 
-scene_script: MACRO
+MACRO scene_script
 ;\1: script pointer
 	dw \1
 	dw 0 ; filler
 {_NUM_SCENE_SCRIPTS} += 1
 ENDM
 
-def_callbacks: MACRO
+MACRO def_callbacks
 REDEF _NUM_CALLBACKS EQUS "_NUM_CALLBACKS_\@"
 	db {_NUM_CALLBACKS}
 {_NUM_CALLBACKS} = 0
 ENDM
 
-callback: MACRO
+MACRO callback
 ;\1: type: a MAPCALLBACK_* constant
 ;\2: script pointer
 	dbw \1, \2
 {_NUM_CALLBACKS} += 1
 ENDM
 
-def_warp_events: MACRO
+MACRO def_warp_events
 REDEF _NUM_WARP_EVENTS EQUS "_NUM_WARP_EVENTS_\@"
 	db {_NUM_WARP_EVENTS}
 {_NUM_WARP_EVENTS} = 0
 ENDM
 
-warp_event: MACRO
+MACRO warp_event
 ;\1: x: left to right, starts at 0
 ;\2: y: top to bottom, starts at 0
 ;\3: map id: from constants/map_constants.asm
@@ -49,13 +49,13 @@ warp_event: MACRO
 {_NUM_WARP_EVENTS} += 1
 ENDM
 
-def_coord_events: MACRO
+MACRO def_coord_events
 REDEF _NUM_COORD_EVENTS EQUS "_NUM_COORD_EVENTS_\@"
 	db {_NUM_COORD_EVENTS}
 {_NUM_COORD_EVENTS} = 0
 ENDM
 
-coord_event: MACRO
+MACRO coord_event
 ;\1: x: left to right, starts at 0
 ;\2: y: top to bottom, starts at 0
 ;\3: scene id: a SCENE_* constant; controlled by setscene/setmapscene
@@ -67,13 +67,13 @@ coord_event: MACRO
 {_NUM_COORD_EVENTS} += 1
 ENDM
 
-def_bg_events: MACRO
+MACRO def_bg_events
 REDEF _NUM_BG_EVENTS EQUS "_NUM_BG_EVENTS_\@"
 	db {_NUM_BG_EVENTS}
 {_NUM_BG_EVENTS} = 0
 ENDM
 
-bg_event: MACRO
+MACRO bg_event
 ;\1: x: left to right, starts at 0
 ;\2: y: top to bottom, starts at 0
 ;\3: function: a BGEVENT_* constant
@@ -83,13 +83,13 @@ bg_event: MACRO
 {_NUM_BG_EVENTS} += 1
 ENDM
 
-def_object_events: MACRO
+MACRO def_object_events
 REDEF _NUM_OBJECT_EVENTS EQUS "_NUM_OBJECT_EVENTS_\@"
 	db {_NUM_OBJECT_EVENTS}
 {_NUM_OBJECT_EVENTS} = 0
 ENDM
 
-object_event: MACRO
+MACRO object_event
 ;\1: x: left to right, starts at 0
 ;\2: y: top to bottom, starts at 0
 ;\3: sprite: a SPRITE_* constant
@@ -118,7 +118,7 @@ if DEF(_NUM_OBJECT_EVENTS)
 endc
 ENDM
 
-trainer: MACRO
+MACRO trainer
 ;\1: trainer group
 ;\2: trainer id
 ;\3: flag: an EVENT_BEAT_* constant
@@ -131,7 +131,7 @@ trainer: MACRO
 	dw \4, \5, \6, \7
 ENDM
 
-itemball: MACRO
+MACRO itemball
 ;\1: item: from constants/item_constants.asm
 ;\2: quantity: default 1
 if _NARG == 1
@@ -141,13 +141,13 @@ else
 endc
 ENDM
 
-hiddenitem: MACRO
+MACRO hiddenitem
 ;\1: item: from constants/item_constants.asm
 ;\2: flag: an EVENT_* constant
 	dwb \2, \1
 ENDM
 
-elevfloor: MACRO
+MACRO elevfloor
 ;\1: floor: a FLOOR_* constant
 ;\2: warp destination: starts at 1
 ;\3: map id
@@ -155,20 +155,20 @@ elevfloor: MACRO
 	map_id \3
 ENDM
 
-conditional_event: MACRO
+MACRO conditional_event
 ;\1: flag: an EVENT_* constant
 ;\2: script pointer
 	dw \1, \2
 ENDM
 
-cmdqueue: MACRO
+MACRO cmdqueue
 ;\1: type: a CMDQUEUE_* constant
 ;\2: data pointer
 	dbw \1, \2
 	dw 0 ; filler
 ENDM
 
-stonetable: MACRO
+MACRO stonetable
 ;\1: warp id
 ;\2: object_event id
 ;\3: script pointer

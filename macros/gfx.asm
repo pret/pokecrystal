@@ -1,11 +1,11 @@
-assert_valid_rgb: MACRO
+MACRO assert_valid_rgb
 rept _NARG
 	assert 0 <= (\1) && (\1) <= 31, "RGB channel must be 0-31"
 	shift
 endr
 ENDM
 
-RGB: MACRO
+MACRO RGB
 rept _NARG / 3
 	assert_valid_rgb \1, \2, \3
 	dw palred (\1) + palgreen (\2) + palblue (\3)
@@ -29,7 +29,7 @@ tile  EQUS "+ LEN_2BPP_TILE *"
 ; INCBIN "foo.gbcpal", middle_colors
 middle_colors EQUS "PAL_COLOR_SIZE, PAL_COLOR_SIZE * 2"
 
-dbpixel: MACRO
+MACRO dbpixel
 if _NARG >= 4
 ; x tile, y tile, x pixel, y pixel
 	db \1 * TILE_WIDTH + \3, \2 * TILE_WIDTH + \4
@@ -39,7 +39,7 @@ else
 endc
 ENDM
 
-ldpixel: MACRO
+MACRO ldpixel
 if _NARG >= 5
 ; register, x tile, y tile, x pixel, y pixel
 	lb \1, \2 * TILE_WIDTH + \4, \3 * TILE_WIDTH + \5
@@ -52,7 +52,7 @@ ENDM
 depixel EQUS "ldpixel de,"
 bcpixel EQUS "ldpixel bc,"
 
-dbsprite: MACRO
+MACRO dbsprite
 ; x tile, y tile, x pixel, y pixel, vtile offset, attributes
 	db (\2 * TILE_WIDTH) % $100 + \4, (\1 * TILE_WIDTH) % $100 + \3, \5, \6
 ENDM

@@ -538,7 +538,7 @@ DebugRoomMenu_DecorateAll:
 	call DebugRoom_SaveChecksum
 	ret
 
-paged_value: MACRO
+MACRO paged_value
 	dw \1 ; value address
 	db \2 ; min value
 	db \3 ; max value

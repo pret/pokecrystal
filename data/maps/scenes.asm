@@ -1,4 +1,4 @@
-scene_var: MACRO
+MACRO scene_var
 ; map, variable
 	map_id \1
 	dw \2

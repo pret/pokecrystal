@@ -103,7 +103,7 @@ BUT_ONLY_RELATED_CONSTANTS EQU 5
 SECTION "section", ROMX
 INCLUDE "filename"
 INCBIN "filename"
-my_macro: MACRO
+MACRO my_macro
 	nop
 ENDM
 TEST EQUS "test"
@@ -135,7 +135,7 @@ endr
 
 ```asm
 
-when_in_doubt_lowercase: MACRO
+MACRO when_in_doubt_lowercase
 
 ; only shift if it's required or more readable
 
@@ -158,7 +158,7 @@ endr
 ENDM
 
 
-UPPER_CASE_IS_OK_SOMETIMES: MACRO
+MACRO UPPER_CASE_IS_OK_SOMETIMES
 
 ; but I can't think of any examples besides ACRONYMS
 

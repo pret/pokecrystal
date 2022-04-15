@@ -1,4 +1,4 @@
-tileset: MACRO
+MACRO tileset
 	dba \1GFX, \1Meta, \1Coll
 	dw \1Anim
 	dw NULL

@@ -1,4 +1,4 @@
-newgroup: MACRO
+MACRO newgroup
 ;\1: group id
 	const_skip
 MAPGROUP_\1 EQU const_value
@@ -6,7 +6,7 @@ CURRENT_NUM_MAPGROUP_MAPS EQUS "NUM_\1_MAPS"
 __map_value__ = 1
 ENDM
 
-map_const: MACRO
+MACRO map_const
 ;\1: map id
 ;\2: width: in blocks
 ;\3: height: in blocks
@@ -17,7 +17,7 @@ __map_value__ += 1
 \1_HEIGHT EQU \3
 ENDM
 
-endgroup: MACRO
+MACRO endgroup
 {CURRENT_NUM_MAPGROUP_MAPS} EQU __map_value__ - 1
 PURGE CURRENT_NUM_MAPGROUP_MAPS
 ENDM

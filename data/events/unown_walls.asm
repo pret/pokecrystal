@@ -1,4 +1,4 @@
-unownwall: MACRO
+MACRO unownwall
 for n, CHARLEN(\1)
 x = CHARSUB(\1, n + 1)
 if x == "-"

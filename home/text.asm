@@ -186,7 +186,7 @@ NextChar::
 	jp PlaceNextChar
 
 CheckDict::
-dict: MACRO
+MACRO dict
 assert CHARLEN(\1) == 1
 if \1 == 0
 	and a
@@ -295,7 +295,7 @@ MobileScriptChar::
 	farcall RunMobileScript
 	jp PlaceNextChar
 
-print_name: MACRO
+MACRO print_name
 	push de
 	ld de, \1
 	jp PlaceCommandCharacter

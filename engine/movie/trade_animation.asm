@@ -9,12 +9,12 @@ TRADEANIM_LEFT_ARROW  EQU "▼" ; $ee
 	const TRADEANIMSTATE_3 ; 3
 TRADEANIMJUMPTABLE_LENGTH EQU const_value
 
-add_tradeanim: MACRO
+MACRO add_tradeanim
 \1_TradeCmd:
 	dw \1
 ENDM
 
-tradeanim: MACRO
+MACRO tradeanim
 	db (\1_TradeCmd - DoTradeAnimation.Jumptable) / 2
 ENDM
 
@@ -1428,7 +1428,7 @@ DebugTrade: ; unreferenced
 	jr nz, .loop2
 	ret
 
-debugtrade: MACRO
+MACRO debugtrade
 ; species, ot name, ot id
 	db \1, \2
 	dw \3

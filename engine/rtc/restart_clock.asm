@@ -26,7 +26,7 @@ endr
 
 .WrapAroundTimes:
 ; entries correspond to RESTART_CLOCK_* constants
-wraparound_time: MACRO
+MACRO wraparound_time
 	dw \1 ; value pointer
 	db \2 ; maximum value
 	db \3 ; up/down arrow x coord (pairs with wRestartClockUpArrowYCoord)

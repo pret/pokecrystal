@@ -1,9 +1,9 @@
-add_mobiletradeanim: MACRO
+MACRO add_mobiletradeanim
 \1_MobileTradeCmd:
 	dw \1
 ENDM
 
-mobiletradeanim: MACRO
+MACRO mobiletradeanim
 	db (\1_MobileTradeCmd - MobileTradeAnim_JumptableLoop.Jumptable) / 2
 ENDM
 

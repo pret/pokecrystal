@@ -46,7 +46,7 @@ AnimateMon_HOF:
 	call AnimateFrontpic
 	ret
 
-pokeanim: MACRO
+MACRO pokeanim
 rept _NARG
 	db (PokeAnim_\1_SetupCommand - PokeAnim_SetupCommands) / 2
 	shift
@@ -128,7 +128,7 @@ SetUpPokeAnim:
 	scf
 	ret
 
-add_setup_command: MACRO
+MACRO add_setup_command
 \1_SetupCommand:
 	dw \1
 ENDM
@@ -533,7 +533,7 @@ PokeAnim_CopyBitmaskToBuffer:
 
 .Sizes: db 4, 5, 7
 
-poke_anim_box: MACRO
+MACRO poke_anim_box
 for y, 1, \1 + 1
 for x, 7 - \1, 7
 	db y * 7 + x

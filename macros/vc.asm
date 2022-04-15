@@ -1,10 +1,10 @@
-vc_hook: MACRO
+MACRO vc_hook
 if DEF(_CRYSTAL11_VC)
 .VC_\1::
 endc
 ENDM
 
-vc_patch: MACRO
+MACRO vc_patch
 if DEF(_CRYSTAL11_VC)
 	assert !DEF(CURRENT_VC_PATCH), "Already started a vc_patch"
 CURRENT_VC_PATCH EQUS "\1"
@@ -12,7 +12,7 @@ CURRENT_VC_PATCH EQUS "\1"
 endc
 ENDM
 
-vc_patch_end: MACRO
+MACRO vc_patch_end
 if DEF(_CRYSTAL11_VC)
 	assert DEF(CURRENT_VC_PATCH), "No vc_patch started"
 .VC_{CURRENT_VC_PATCH}_End::
@@ -20,7 +20,7 @@ if DEF(_CRYSTAL11_VC)
 endc
 ENDM
 
-vc_assert: MACRO
+MACRO vc_assert
 if DEF(_CRYSTAL11_VC)
 	assert \#
 endc

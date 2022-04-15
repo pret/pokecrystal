@@ -7,23 +7,23 @@ callba EQUS "farcall"
 callab EQUS "callfar"
 
 ; macros/gfx.asm
-dsprite: MACRO
+MACRO dsprite
 	dbsprite \2, \4, \1, \3, \5, \6
 ENDM
 
 ; macros/data.asm
 
-dbbw: MACRO
+MACRO dbbw
 	db \1, \2
 	dw \3
 ENDM
 
-dbww: MACRO
+MACRO dbww
 	db \1
 	dw \2, \3
 ENDM
 
-dbwww: MACRO
+MACRO dbwww
 	db \1
 	dw \2, \3, \4
 ENDM
@@ -32,24 +32,24 @@ ENDM
 __ EQU 0
 CC EQU 13
 
-musicheader: MACRO
+MACRO musicheader
 	channel_count \1
 	channel \2, \3
 ENDM
 
-sound: MACRO
+MACRO sound
 	note \1, \2
 	db \3
 	dw \4
 ENDM
 
-noise: MACRO
+MACRO noise
 	note \1, \2
 	db \3
 	db \4
 ENDM
 
-notetype: MACRO
+MACRO notetype
 if _NARG >= 2
 	note_type \1, \2 >> 4, \2 & $0f
 else
@@ -57,22 +57,22 @@ else
 endc
 ENDM
 
-pitchoffset: MACRO
+MACRO pitchoffset
 	transpose \1, \2 - 1
 ENDM
 
 dutycycle EQUS "duty_cycle"
 
-intensity: MACRO
+MACRO intensity
 	volume_envelope \1 >> 4, \1 & $0f
 ENDM
 
-soundinput: MACRO
+MACRO soundinput
 	pitch_sweep \1 >> 4, \1 & $0f
 ENDM
 
 unknownmusic0xde EQUS "sound_duty"
-sound_duty: MACRO
+MACRO sound_duty
 	db duty_cycle_pattern_cmd
 if _NARG == 4
 	db \1 | (\2 << 2) | (\3 << 4) | (\4 << 6)
@@ -83,13 +83,13 @@ ENDM
 
 togglesfx EQUS "toggle_sfx"
 
-slidepitchto: MACRO
+MACRO slidepitchto
 	pitch_slide \1, (8 - \2), \3
 ENDM
 
 togglenoise EQUS "toggle_noise"
 
-panning: MACRO
+MACRO panning
 	force_stereo_panning ((\1 >> 4) & 1), (\1 & 1)
 ENDM
 
@@ -99,7 +99,7 @@ newsong        EQUS "new_song"
 sfxpriorityon  EQUS "sfx_priority_on"
 sfxpriorityoff EQUS "sfx_priority_off"
 
-stereopanning: MACRO
+MACRO stereopanning
 	stereo_panning ((\1 >> 4) & 1), (\1 & 1)
 ENDM
 
@@ -162,35 +162,35 @@ vartomem      EQUS "getnum"
 mapnametotext EQUS "getcurlandmarkname"
 readcoins     EQUS "getcoins"
 
-pokenamemem: MACRO
+MACRO pokenamemem
 	getmonname \2, \1
 ENDM
 
-itemtotext: MACRO
+MACRO itemtotext
 	getitemname \2, \1
 ENDM
 
-landmarktotext: MACRO
+MACRO landmarktotext
 	getlandmarkname \2, \1
 ENDM
 
-trainertotext: MACRO
+MACRO trainertotext
 	gettrainername \3, \1, \2
 ENDM
 
-trainerclassname: MACRO
+MACRO trainerclassname
 	gettrainerclassname \2, \1
 ENDM
 
-name: MACRO
+MACRO name
 	getname \3, \1, \2
 ENDM
 
-stringtotext: MACRO
+MACRO stringtotext
 	getstring \2, \1
 ENDM
 
-readmoney: MACRO
+MACRO readmoney
 	getmoney \2, \1
 ENDM
 
@@ -223,25 +223,25 @@ writeunusedbytebuffer EQUS "writeunusedbyte"
 
 ; macros/scripts/maps.asm
 
-mapconst: MACRO
+MACRO mapconst
 	map_const \1, \3, \2
 ENDM
 
 maptrigger EQUS "scene_script"
 
-warp_def: MACRO
+MACRO warp_def
 	warp_event \2, \1, \4, \3
 ENDM
 
-xy_trigger: MACRO
+MACRO xy_trigger
 	coord_event \3, \2, \1, \5
 ENDM
 
-signpost: MACRO
+MACRO signpost
 	bg_event \2, \1, \3, \4
 ENDM
 
-person_event: MACRO
+MACRO person_event
 	object_event \3, \2, \1, \4, \5, \6, \7, \8, \9, \<10>, \<11>, \<12>, \<13>
 ENDM
 

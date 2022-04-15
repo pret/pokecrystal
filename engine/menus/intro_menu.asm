@@ -1302,7 +1302,7 @@ UpdateTitleTrailSprite: ; unreferenced
 	ret
 
 .TitleTrailCoords:
-trail_coords: MACRO
+MACRO trail_coords
 rept _NARG / 2
 _dx = 4
 if \1 == 0 && \2 == 0
