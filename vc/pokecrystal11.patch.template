@@ -46,38 +46,38 @@ Mode = 2
 Address = {HEX @ 4}
 Type = 30
 
-[Network358]
+[Network358@ExchangeBytes1]
 Mode = 2
 Address = {HEX @}
 Type = 4
 
-[Network359]
+[Network359@ExchangeBytes2]
 Mode = 2
 Address = {HEX @}
 Type = 4
 
-[Network364]
+[Network364@ExchangeBytes3_Gen2toGen1Fix]
 Mode = 2
 Address = {HEX @}
 ;fix pokemon ?? in name
 Type = 26
 
-[Network360]
+[Network360@ExchangeBytes4]
 Mode = 2
 Address = {HEX @}
 Type = 4
 
-[Network361]
+[Network361@ExchangeBytes5]
 Mode = 2
 Address = {HEX @}
 Type = 4
 
-[Network362]
+[Network362@ExchangeBytes6]
 Mode = 2
 Address = {HEX @}
 Type = 4
 
-[Network363]
+[Network363@ExchangeBytes7]
 Mode = 2
 Address = {HEX @}
 Type = 4

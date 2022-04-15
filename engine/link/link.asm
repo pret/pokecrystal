@@ -83,7 +83,7 @@ endc
 	ld hl, wLinkBattleRNPreamble
 	ld de, wEnemyMon
 	ld bc, SERIAL_RN_PREAMBLE_LENGTH + SERIAL_RNS_LENGTH
-	vc_hook Network358
+	vc_hook ExchangeBytes1  ; VC hook that is called right before a routine to Exchange Bytes occurs.
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
@@ -91,15 +91,15 @@ endc
 	ld hl, wLinkData
 	ld de, wOTPartyData
 	ld bc, SERIAL_PREAMBLE_LENGTH + NAME_LENGTH + 1 + PARTY_LENGTH + 1 + (REDMON_STRUCT_LENGTH + NAME_LENGTH * 2) * PARTY_LENGTH + 3
-	vc_hook Network359
-	call Serial_ExchangeBytes
+	vc_hook ExchangeBytes2
+	call Serial_ExchangeBytes ; VC hook that is called right before a routine to Exchange Bytes occurs.
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
 
 	ld hl, wPlayerPatchLists
 	ld de, wOTPatchLists
 	ld bc, 200
-	vc_hook Network364
+	vc_hook ExchangeBytes3_Gen2toGen1Fix ; VC hook that is called right before a routine to Exchange Bytes occurs. This also may include a Gen2toGen1 fix.
 	call Serial_ExchangeBytes
 
 	xor a
@@ -249,7 +249,7 @@ endc
 	ld hl, wLinkBattleRNPreamble
 	ld de, wEnemyMon
 	ld bc, SERIAL_RN_PREAMBLE_LENGTH + SERIAL_RNS_LENGTH
-	vc_hook Network360
+	vc_hook ExchangeBytes4 ; VC hook that is called right before a routine to Exchange Bytes occurs.
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
@@ -257,7 +257,7 @@ endc
 	ld hl, wLinkData
 	ld de, wOTPartyData
 	ld bc, SERIAL_PREAMBLE_LENGTH + NAME_LENGTH + 1 + PARTY_LENGTH + 1 + 2 + (PARTYMON_STRUCT_LENGTH + NAME_LENGTH * 2) * PARTY_LENGTH + 3
-	vc_hook Network361
+	vc_hook ExchangeBytes5 ; VC hook that is called right before a routine to Exchange Bytes occurs.
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
@@ -265,7 +265,7 @@ endc
 	ld hl, wPlayerPatchLists
 	ld de, wOTPatchLists
 	ld bc, 200
-	vc_hook Network362
+	vc_hook ExchangeBytes6 ; VC hook that is called right before a routine to Exchange Bytes occurs.
 	call Serial_ExchangeBytes
 
 	ld a, [wLinkMode]
@@ -274,7 +274,7 @@ endc
 	ld hl, wLinkPlayerMail
 	ld de, wLinkOTMail
 	ld bc, wLinkPlayerMailEnd - wLinkPlayerMail
-	vc_hook Network363
+	vc_hook ExchangeBytes7 ; VC hook that is called right before a routine to Exchange Bytes occurs.
 	call ExchangeBytes
 
 .not_trading
