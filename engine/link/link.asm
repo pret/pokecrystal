@@ -2310,15 +2310,14 @@ WaitForLinkedFriend:
 	ld a, (0 << rSC_ON) | (0 << rSC_CLOCK)
 	ldh [rSC], a
 	ld a, (1 << rSC_ON) | (0 << rSC_CLOCK)
+; This vc_hook causes the virtual console to set [hSerialConnectionStatus] to
+; [USING_INTERNAL_CLOCK] ($02) which allows the player to proceed past the
+; Link Receptionists' "Please Wait.".
 	vc_hook linkCable_fake_begin
 	vc_assert hSerialConnectionStatus == $ffcb, \
 		"hSerialConnectionStatus is no longer located at 00:ffcb."
-	vc_assert USING_EXTERNAL_CLOCK == $01, \
-		"USING_EXTERNAL_CLOCK is no longer equal to $01."
 	vc_assert USING_INTERNAL_CLOCK == $02, \
 		"USING_INTERNAL_CLOCK is no longer equal to $02."
-	vc_assert CONNECTION_NOT_ESTABLISHED == $ff, \
-		"CONNECTION_NOT_ESTABLISHED is no longer equal to $ff."
 	ldh [rSC], a
 	ld a, [wLinkTimeoutFrames]
 	dec a
