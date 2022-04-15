@@ -2310,7 +2310,7 @@ WaitForLinkedFriend:
 	ld a, (0 << rSC_ON) | (0 << rSC_CLOCK)
 	ldh [rSC], a
 	ld a, (1 << rSC_ON) | (0 << rSC_CLOCK)
-	vc_hook linkCable_fake_begin
+	vc_hook Link_fake_connection_status
 	ldh [rSC], a
 	ld a, [wLinkTimeoutFrames]
 	dec a

@@ -162,7 +162,7 @@ Mode = 2
 Address = {HEX @}
 Type = 15
 
-[linkCable fake begin]
+[linkCable fake begin@Link_fake_connection_status]
 Mode = 2
 Address = {HEX @}
 Type = 16
