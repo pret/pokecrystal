@@ -2311,6 +2311,8 @@ WaitForLinkedFriend:
 	ldh [rSC], a
 	ld a, (1 << rSC_ON) | (0 << rSC_CLOCK)
 	vc_hook linkCable_fake_begin
+	vc_assert hSerialConnectionStatus == $ffcb, \
+		"hSerialConnectionStatus is no longer located at 00:ffcb."
 	ldh [rSC], a
 	ld a, [wLinkTimeoutFrames]
 	dec a

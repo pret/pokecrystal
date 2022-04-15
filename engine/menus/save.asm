@@ -170,6 +170,8 @@ AddHallOfFameEntry:
 		"sMobileEventIndex is no longer located at 01:be3c."
 	vc_assert BANK(sMobileEventIndexBackup) == $1 && sMobileEventIndexBackup == $be44, \
 		"sMobileEventIndexBackup is no longer located at 01:be44."
+	vc_assert MOBILE_EVENT_OBJECT_GS_BALL == $B, \
+		"MOBILE_EVENT_OBJECT_GS_BALL is no longer equal to $B."
 	ret
 
 SaveGameData:
