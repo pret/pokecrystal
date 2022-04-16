@@ -692,7 +692,7 @@ Address = {HEx @}
 ;0008c298h: AF 22 22 77 CD                                  ; ?"w? 
 
 
-[FPA link fight End4]                                                     
+[FPA link fight End4@Stop_reducing_battle_transition_flashing]                                                     
 Mode = 3                                                          
 Type = 1                                                          
 Address = {hex @}                       

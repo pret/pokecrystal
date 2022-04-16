@@ -59,7 +59,7 @@ DoBattleTransition:
 	ld a, $1 ; unnecessary bankswitch?
 	ldh [rSVBK], a
 	pop af
-	vc_hook FPA_link_fight_End4
+	vc_hook Stop_reducing_battle_transition_flashing
 	ldh [hVBlank], a
 	call DelayFrame
 	ret
