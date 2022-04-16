@@ -584,7 +584,7 @@ ConditionValueC = {dws_ HYPER_BEAM}
 ;000cc497h: FE 4F D0 CD                                     ; 﨩型
 ; -------------0xd4170xd4170xd4170xd417---------------   Mem Write: pc32 = 0x3a89 addr = 0xd417 value = 0xd1
 ;000cc486h: FE 4F D0 CD 7D 3A 22 FA 19 D4 22 C5 E5 6F 26 00 ; 﨩型}:"??佩o&.                                                                                                                                                    
-[FPA 042801 Begin]                                                                                                                               
+[FPA 042801 Begin@Reduce_move_anim_flashing_PRESENT]                                                                                                                               
 Mode = 3                                                                                                                                         
 Type = 0                                                                                                                                         
 Address = {HEX @}                                                                                                                       

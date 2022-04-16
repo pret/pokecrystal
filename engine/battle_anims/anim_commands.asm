@@ -58,6 +58,8 @@ BattleAnimRunScript:
 	farcall CheckBattleScene
 	jr c, .disabled
 
+; This vc_hook reduces the move animation flashing in the emulator, the moves
+; are FISSURE, SELFDESTRUCT, THUNDER, FLASH, EXPLOSION, HORN_DRILL, HYPER_BEAM
 	vc_hook Reduce_move_anim_flashing
 	call BattleAnimClearHud
 	call RunBattleAnimScript
@@ -675,7 +677,7 @@ BattleAnimCmd_5GFX:
 .loop
 	ld a, [wBattleAnimGFXTempTileID]
 	cp (vTiles1 - vTiles0) / LEN_2BPP_TILE - BATTLEANIM_BASE_TILE
-	vc_hook FPA_042801_Begin
+	vc_hook Reduce_move_anim_flashing_PRESENT
 	ret nc
 	call GetBattleAnimByte
 	ld [hli], a
