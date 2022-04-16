@@ -1530,7 +1530,7 @@ Function1009f3:
 _LinkBattleSendReceiveAction:
 	call .StageForSend
 	ld [wLinkBattleSentAction], a
-	vc_hook send_byt2
+	vc_hook Start_link_cable_exchange
 	farcall PlaceWaitingText
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
@@ -1585,8 +1585,8 @@ _LinkBattleSendReceiveAction:
 	inc a
 	jr z, .waiting
 
-	vc_hook send_byt2_ret
-	vc_patch send_byt2_wait
+	vc_hook End_link_cable_exchange
+	vc_patch wireless_net_delay3
 if DEF(_CRYSTAL11_VC)
 	ld b, 26
 else
@@ -1599,8 +1599,8 @@ endc
 	dec b
 	jr nz, .receive
 
-	vc_hook send_dummy
-	vc_patch send_dummy_wait
+	vc_hook Start_link_cable_send_zero_bytes
+	vc_patch wireless_net_delay4
 if DEF(_CRYSTAL11_VC)
 	ld b, 26
 else
@@ -1613,7 +1613,7 @@ endc
 	dec b
 	jr nz, .acknowledge
 
-	vc_hook send_dummy_end
+	vc_hook End_link_cable_send_zero_bytes
 	ld a, [wOtherPlayerLinkAction]
 	ld [wBattleAction], a
 	ret
