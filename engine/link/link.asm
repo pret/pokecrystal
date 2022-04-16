@@ -1627,7 +1627,7 @@ ExitLinkCommunications:
 	ldh [rSC], a
 	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
 	ldh [rSC], a
-	vc_hook ret_heya
+	vc_hook ExitLinkCommunications
 	ret
 
 GSPlaceTradeScreenFooter: ; unreferenced
@@ -2029,7 +2029,7 @@ LinkTrade:
 	ld de, String_TradeCompleted
 	call PlaceString
 	farcall Link_WaitBGMap
-	vc_hook save_game_end
+	vc_hook Trade_save_game_end
 	ld c, 50
 	call DelayFrames
 	ld a, [wLinkMode]
@@ -2543,7 +2543,7 @@ CheckBothSelectedSameRoom:
 	ret
 
 TimeCapsule:
-	vc_hook to_play2_mons1
+	vc_hook TimeCapsule
 	ld a, LINK_TIMECAPSULE
 	ld [wLinkMode], a
 	call DisableSpriteUpdates
@@ -2554,7 +2554,7 @@ TimeCapsule:
 	ret
 
 TradeCenter:
-	vc_hook to_play2_trade
+	vc_hook TradeCenter
 	ld a, LINK_TRADECENTER
 	ld [wLinkMode], a
 	call DisableSpriteUpdates
@@ -2565,7 +2565,7 @@ TradeCenter:
 	ret
 
 Colosseum:
-	vc_hook to_play2_battle
+	vc_hook Colosseum
 	ld a, LINK_COLOSSEUM
 	ld [wLinkMode], a
 	call DisableSpriteUpdates

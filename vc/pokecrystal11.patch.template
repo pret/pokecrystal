@@ -181,7 +181,7 @@ Type = 18
 Mode = 2
 Address = {HEX @}
 Type = 24
-[save game end]
+[save game end@Trade_save_game_end]
 Mode = 2
 Address = {HEX @}
 Type = 20
@@ -193,19 +193,19 @@ Type = 25
 Mode = 2
 Address = {HEX @}
 Type = 27
-[to_play2_mons1]
+[to_play2_mons1@TimeCapsule]
 Mode = 2
 Address = {HEX @}
 Type = 11
-[to_play2_trade]
+[to_play2_trade@TradeCenter]
 Mode = 2
 Address = {HEX @}
 Type = 12
-[to_play2_battle]
+[to_play2_battle@Colosseum]
 Mode = 2
 Address = {HEX @}
 Type = 13
-[ret_heya]
+[ret_heya@ExitLinkCommunications]
 Mode = 2
 Address = {HEX @}
 Type = 14
