@@ -1033,7 +1033,7 @@ endr
 .FinalPush:
 	ld hl, MltReq1Packet
 	call _PushSGBPals
-	vc_hook Network_RESET
+	vc_hook Network_RESET ; Unknown why this hook is here, doesn't seem to be needed.
 	jp SGBDelayCycles
 
 SGBBorder_PushBGPals:
