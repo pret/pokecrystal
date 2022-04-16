@@ -290,7 +290,7 @@ Serial_SyncAndExchangeNybble:: ; unreferenced
 	jp WaitLinkTransfer ; pointless
 
 WaitLinkTransfer::
-	vc_hook send_send_buf2
+	vc_hook WaitLinkTransfer
 	ld a, $ff
 	ld [wOtherPlayerLinkAction], a
 .loop
@@ -346,7 +346,7 @@ endc
 
 	ld a, [wOtherPlayerLinkAction]
 	ld [wOtherPlayerLinkMode], a
-	vc_hook send_send_buf2_ret
+	vc_hook WaitLinkTransfer_ret
 	ret
 
 LinkTransfer::

@@ -36,12 +36,12 @@ Mode = 1
 Address = {HEX @+1 4}
 Fixcode = {PATCH +1}
 
-[send_send_buf2]
+[send_send_buf2@WaitLinkTransfer]
 Mode = 2
 Address = {HEX @ 4}
 Type = 29
 
-[send_send_buf2_ret]
+[send_send_buf2_ret@WaitLinkTransfer_ret]
 Mode = 2
 Address = {HEX @ 4}
 Type = 30
