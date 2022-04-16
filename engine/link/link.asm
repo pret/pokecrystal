@@ -2430,7 +2430,7 @@ endc
 Link_CheckCommunicationError:
 	xor a
 	ldh [hSerialReceivedNewData], a
-	vc_hook linkCable_fake_end
+	vc_hook Emulator_prompt_for_wireless
 	ld a, [wLinkTimeoutFrames]
 	ld h, a
 	ld a, [wLinkTimeoutFrames + 1]

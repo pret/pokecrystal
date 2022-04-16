@@ -167,7 +167,7 @@ Mode = 2
 Address = {HEX @}
 Type = 16
 
-[linkCable fake end]
+[linkCable fake end@Emulator_prompt_for_wireless]
 Mode = 2
 Address = {HEX @}
 Type = 17  
@@ -252,14 +252,14 @@ Type = 60
 ; change "and 1" to "and 0"
 ;00017595h: E6 01 20 08 CD BF 75 CD 2E 03 18 E9 FA 57 CE F5 ; ? .涂u?..辁W熙
 ;00016c76h: E6 01 20 08 CD A0 6C CD 5A 04 18 E9 FA 63 CF F5 ; ? .蜖l蚙..辁c硝
-[print forbid 1]                                                   
+[print forbid 1@forbid_printing_unknown]                                                   
 Mode = 1                                                                                                                  
 Address = {hex @}
 Fixcode={patch}      
 
 
                             
-[print forbid 2]                                                                           
+[print forbid 2@forbid_printing_PC_Box]                                                                           
 Mode = 6                                                                                       
 Type = 0                                                                                       
 Address = {hex @}                                                                        
@@ -274,7 +274,7 @@ ConditionValueC = {dws_ 0xdd                0xd3                  A_BUTTON    0x
 ; 0xd9c7 is the room number.
 
 
-[print forbid 3]                                                          
+[print forbid 3@forbid_printing_Photo_Studio]                                                          
 Mode = 6                                                                      
 Type = 0                                                                      
 Address = {hex @}                                                           
@@ -296,7 +296,7 @@ ConditionValueC = {dws_ 0xaf                0xdf                  NO_INPUT    0x
 ; 000bb2a5h: E6 08 20 01       
 ; 000b92a3h: E6 08 20 01                                     ; ? .                           
 ; change "and 8" to "and 0"                                                      
-[print forbid 4]                                                  
+[print forbid 4@forbid_printing_mail]                                                  
 Mode = 1                                                          
 Address = {hex @}                                          
 Fixcode={patch}            
@@ -317,7 +317,7 @@ Fixcode={patch}
 ; -----6666666666ddddddddd88888----0xc6d8 no ..............Mem Write: pc32 = 0x4109b addr = 0xc6d8 value = 0x0
 
 ;00040266h: 7E E6 01 20 08                                  ; ~? .                                 
-[print forbid 5]                                                                                           
+[print forbid 5@forbid_printing_pokedex]                                                                                           
 Mode = 6                                                                                          
 Type = 0                                                                                          
 Address = {hex @}                                                                            

@@ -362,9 +362,9 @@ Menu_WasButtonPressed:
 	call GetMenuJoypad
 	and a
 	ret z
-	vc_hook print_forbid_3
+	vc_hook forbid_printing_Photo_Studio
 	scf
-	vc_hook print_forbid_2
+	vc_hook forbid_printing_PC_Box
 	ret
 
 _2DMenuInterpretJoypad:
