@@ -152,7 +152,7 @@ Fixcode = {PATCH +1}
 ;Address = 0xF4D3C
 ;Type = 9
 
-[Network_RESET]
+[Network_RESET@Unknown_network_reset]
 Mode = 2
 Address = {HEX @ 5}
 Type = 10
