@@ -17,7 +17,7 @@ MACRO scene_script
 ;\1: script pointer
 	dw \1
 	dw 0 ; filler
-{_NUM_SCENE_SCRIPTS} += 1
+	DEF {_NUM_SCENE_SCRIPTS} += 1
 ENDM
 
 MACRO def_callbacks
@@ -30,7 +30,7 @@ MACRO callback
 ;\1: type: a MAPCALLBACK_* constant
 ;\2: script pointer
 	dbw \1, \2
-{_NUM_CALLBACKS} += 1
+	DEF {_NUM_CALLBACKS} += 1
 ENDM
 
 MACRO def_warp_events
@@ -46,7 +46,7 @@ MACRO warp_event
 ;\4: warp destination: starts at 1
 	db \2, \1, \4
 	map_id \3
-{_NUM_WARP_EVENTS} += 1
+	DEF {_NUM_WARP_EVENTS} += 1
 ENDM
 
 MACRO def_coord_events
@@ -64,7 +64,7 @@ MACRO coord_event
 	db 0 ; filler
 	dw \4
 	dw 0 ; filler
-{_NUM_COORD_EVENTS} += 1
+	DEF {_NUM_COORD_EVENTS} += 1
 ENDM
 
 MACRO def_bg_events
@@ -80,7 +80,7 @@ MACRO bg_event
 ;\4: script pointer
 	db \2, \1, \3
 	dw \4
-{_NUM_BG_EVENTS} += 1
+	DEF {_NUM_BG_EVENTS} += 1
 ENDM
 
 MACRO def_object_events
@@ -114,7 +114,7 @@ MACRO object_event
 	dw \<12>, \<13>
 ; the dummy PlayerObjectTemplate object_event has no def_object_events
 if DEF(_NUM_OBJECT_EVENTS)
-{_NUM_OBJECT_EVENTS} += 1
+	DEF {_NUM_OBJECT_EVENTS} += 1
 endc
 ENDM
 
