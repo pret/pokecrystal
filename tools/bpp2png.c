@@ -70,8 +70,8 @@ void mingle_2bpp_planes(uint8_t *bpp_data, long size) {
 	for (long i = 0; i < size; i += 2) {
 		// Interleave aka "mingle" bits
 		// <https://graphics.stanford.edu/~seander/bithacks.html#Interleave64bitOps>
-#define EXPAND_PLANE(b) (((b) * 0x0101010101010101ULL & 0x8040201008040201ULL) * 0x0102040810204081ULL)
-		uint16_t r = ((EXPAND_PLANE(bpp_data[i]) >> 49) & 0x5555) | ((EXPAND_PLANE(bpp_data[i + 1]) >> 48) & 0xAAAA);
+#define EXPAND_PLANE(b) (((((b) * 0x0101010101010101ULL & 0x8040201008040201ULL) * 0x0102040810204081ULL) >> 48) & 0xAAAA)
+		uint16_t r = (EXPAND_PLANE(bpp_data[i]) >> 1) | EXPAND_PLANE(bpp_data[i + 1]);
 		bpp_data[i] = r >> 8;
 		bpp_data[i + 1] = r & 0xff;
 	}
