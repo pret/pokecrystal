@@ -26,12 +26,12 @@
 ;MotionBlur1 = 31	;0~31 (for Green Mode)
 ;PaletteX = c31,31,31	;X:0~15, cR,G,B (0~31)
 
-[Network10@wireless_net_delay1]
+[Network10@Wireless_net_delay_1]
 Mode = 1
 Address = {HEX @+1 4}
 Fixcode = {PATCH +1}
 
-[Network11@wireless_net_delay2]
+[Network11@Wireless_net_delay_2]
 Mode = 1
 Address = {HEX @+1 4}
 Fixcode = {PATCH +1}
@@ -97,7 +97,7 @@ Mode = 2
 Address = {HEX @}
 Type = 32
 
-[send_byt2_wait@wireless_net_delay3]
+[send_byt2_wait@Wireless_net_delay_3]
 Mode = 1
 Address = {HEX @+1}
 Fixcode = {PATCH +1}
@@ -107,7 +107,7 @@ Mode = 2
 Address = {HEX @}
 Type = 33
 
-[send_dummy_wait@wireless_net_delay4]
+[send_dummy_wait@Wireless_net_delay_4]
 Mode = 1
 Address = {HEX @+1}
 Fixcode = {PATCH +1} 
@@ -117,27 +117,27 @@ Mode = 2
 Address = {HEX @}
 Type = 34
 
-[NetworkDelay1@wireless_net_delay5]
+[NetworkDelay1@Wireless_net_delay_5]
 Mode = 1
 Address = {HEX @+1}
 Fixcode = {PATCH +1}
 
-[NetworkDelay2@wireless_net_delay6]
+[NetworkDelay2@Wireless_net_delay_6]
 Mode = 1
 Address = {HEX @+1}
 Fixcode = {PATCH +1}
 
-[NetworkDelay3@wireless_net_delay7]
+[NetworkDelay3@Wireless_net_delay_7]
 Mode = 1
 Address = {HEX @+1}
 Fixcode = {PATCH +1}
 
-[NetworkDelay4@wireless_net_delay8]
+[NetworkDelay4@Wireless_net_delay_8]
 Mode = 1
 Address = {HEX @+1}
 Fixcode = {PATCH +1}
 
-[NetworkDelay6@wireless_net_delay9]
+[NetworkDelay6@Wireless_net_delay_9]
 Mode = 1
 Address = {HEX @+1}
 Fixcode = {PATCH +1}
@@ -259,7 +259,7 @@ Fixcode={patch}
 
 
                             
-[print forbid 2@forbid_printing_PC_Box]                                                                           
+[print forbid 2@Forbid_printing_PC_Box]                                                                           
 Mode = 6                                                                                       
 Type = 0                                                                                       
 Address = {hex @}                                                                        
@@ -296,7 +296,7 @@ ConditionValueC = {dws_ 0xaf                0xdf                  NO_INPUT    0x
 ; 000bb2a5h: E6 08 20 01       
 ; 000b92a3h: E6 08 20 01                                     ; ? .                           
 ; change "and 8" to "and 0"                                                      
-[print forbid 4@forbid_printing_mail]                                                  
+[print forbid 4@Forbid_printing_mail]                                                  
 Mode = 1                                                          
 Address = {hex @}                                          
 Fixcode={patch}            

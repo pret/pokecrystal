@@ -67,7 +67,7 @@ ReadAnyMail:
 	ldh a, [hJoyPressed]
 	and A_BUTTON | B_BUTTON | START
 	jr z, .loop
-	vc_patch forbid_printing_mail
+	vc_patch Forbid_printing_mail
 if DEF(_CRYSTAL11_VC)
 	and 0
 else

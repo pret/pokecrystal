@@ -318,7 +318,7 @@ WaitLinkTransfer::
 	inc a
 	jr z, .loop
 
-	vc_patch wireless_net_delay1
+	vc_patch Wireless_net_delay_1
 if DEF(_CRYSTAL11_VC)
 	ld b, 26
 else
@@ -331,7 +331,7 @@ endc
 	dec b
 	jr nz, .receive
 
-	vc_patch wireless_net_delay2
+	vc_patch Wireless_net_delay_2
 if DEF(_CRYSTAL11_VC)
 	ld b, 26
 else

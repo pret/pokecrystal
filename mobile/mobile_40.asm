@@ -1586,7 +1586,7 @@ _LinkBattleSendReceiveAction:
 	jr z, .waiting
 
 	vc_hook End_link_cable_exchange
-	vc_patch wireless_net_delay3
+	vc_patch Wireless_net_delay_3
 if DEF(_CRYSTAL11_VC)
 	ld b, 26
 else
@@ -1600,7 +1600,7 @@ endc
 	jr nz, .receive
 
 	vc_hook Start_link_cable_send_zero_bytes
-	vc_patch wireless_net_delay4
+	vc_patch Wireless_net_delay_4
 if DEF(_CRYSTAL11_VC)
 	ld b, 26
 else
