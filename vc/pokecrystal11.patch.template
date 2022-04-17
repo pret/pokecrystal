@@ -36,12 +36,12 @@ Mode = 1
 Address = {HEX @+1 4}
 Fixcode = {PATCH +1}
 
-[send_send_buf2@WaitLinkTransfer]
+[send_send_buf2@Wireless_WaitLinkTransfer]
 Mode = 2
 Address = {HEX @ 4}
 Type = 29
 
-[send_send_buf2_ret@WaitLinkTransfer_ret]
+[send_send_buf2_ret@Wireless_WaitLinkTransfer_ret]
 Mode = 2
 Address = {HEX @ 4}
 Type = 30
@@ -87,12 +87,12 @@ Mode = 2
 Address = {HEX @}
 Type = 7
 
-[send_byt2@Start_link_cable_exchange]
+[send_byt2@Wireless_start_exchange]
 Mode = 2
 Address = {HEX @+5}
 Type = 31
 
-[send_byt2_ret@End_link_cable_exchange]
+[send_byt2_ret@Wireless_end_exchange]
 Mode = 2
 Address = {HEX @}
 Type = 32
@@ -102,7 +102,7 @@ Mode = 1
 Address = {HEX @+1}
 Fixcode = {PATCH +1}
 
-[send_dummy@Start_link_cable_send_zero_bytes]
+[send_dummy@Wireless_start_send_zero_bytes]
 Mode = 2
 Address = {HEX @}
 Type = 33
@@ -112,7 +112,7 @@ Mode = 1
 Address = {HEX @+1}
 Fixcode = {PATCH +1} 
 
-[send_dummy_end@End_link_cable_send_zero_bytes]
+[send_dummy_end@Wireless_end_send_zero_bytes]
 Mode = 2
 Address = {HEX @}
 Type = 34
@@ -167,7 +167,7 @@ Mode = 2
 Address = {HEX @}
 Type = 16
 
-[linkCable fake end@Emulator_prompt_for_wireless]
+[linkCable fake end@Wireless_prompt]
 Mode = 2
 Address = {HEX @}
 Type = 17  
@@ -205,7 +205,7 @@ Type = 12
 Mode = 2
 Address = {HEX @}
 Type = 13
-[ret_heya@ExitLinkCommunications]
+[ret_heya@ExitLinkCommunications_ret]
 Mode = 2
 Address = {HEX @}
 Type = 14

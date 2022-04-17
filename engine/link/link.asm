@@ -1627,7 +1627,7 @@ ExitLinkCommunications:
 	ldh [rSC], a
 	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
 	ldh [rSC], a
-	vc_hook ExitLinkCommunications
+	vc_hook ExitLinkCommunications_ret
 	ret
 
 GSPlaceTradeScreenFooter: ; unreferenced
@@ -2438,7 +2438,7 @@ endc
 Link_CheckCommunicationError:
 	xor a
 	ldh [hSerialReceivedNewData], a
-	vc_hook Emulator_prompt_for_wireless
+	vc_hook Wireless_prompt
 	ld a, [wLinkTimeoutFrames]
 	ld h, a
 	ld a, [wLinkTimeoutFrames + 1]
