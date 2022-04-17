@@ -70,7 +70,7 @@ DEF __deco_value__ = 0
 MACRO deco
 	const DECO_\1
 	DEF DECOFLAG_\1 EQU __deco_value__
-__deco_value__ += 1
+	DEF __deco_value__ += 1
 ENDM
 
 ; decorations:

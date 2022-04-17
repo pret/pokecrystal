@@ -202,7 +202,7 @@ DEF __tmhm_value__ = 1
 
 MACRO add_tmnum
 	DEF \1_TMNUM EQU __tmhm_value__
-__tmhm_value__ += 1
+	DEF __tmhm_value__ += 1
 ENDM
 
 MACRO add_tm

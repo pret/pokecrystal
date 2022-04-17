@@ -5,7 +5,7 @@ MACRO frame
 	DEF x = \2
 if _NARG > 2
 rept _NARG - 2
-x |= 1 << (\3 + 1)
+	DEF x |= 1 << (\3 + 1)
 	shift
 endr
 endc

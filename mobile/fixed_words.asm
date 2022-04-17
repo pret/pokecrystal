@@ -4073,7 +4073,7 @@ EZChat_SortedWords:
 ; any Pokemon you've seen that starts with each kana.
 MACRO macro_11f23c
 	dw w3_d012 - w3_d000 + x, \1
-x += 2 * \1
+	DEF x += 2 * \1
 ENDM
 DEF x = 0
 	macro_11f23c $2f ; a

@@ -12,7 +12,7 @@ MACRO map_const
 ;\3: height: in blocks
 	DEF GROUP_\1 EQU const_value
 	DEF MAP_\1 EQU __map_value__
-__map_value__ += 1
+	DEF __map_value__ += 1
 	DEF \1_WIDTH EQU \2
 	DEF \1_HEIGHT EQU \3
 ENDM

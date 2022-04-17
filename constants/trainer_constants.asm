@@ -2,7 +2,7 @@ DEF __trainer_class__ = 0
 
 MACRO trainerclass
 	DEF \1 EQU __trainer_class__
-__trainer_class__ += 1
+	DEF __trainer_class__ += 1
 	const_def 1
 ENDM
 
