@@ -274,7 +274,7 @@ ConditionValueC = {dws_ 0xdd                0xd3                  A_BUTTON    0x
 ; 0xd9c7 is the room number.
 
 
-[print forbid 3@forbid_printing_Photo_Studio]                                                          
+[print forbid 3@Forbid_printing_photo_studio]                                                          
 Mode = 6                                                                      
 Type = 0                                                                      
 Address = {hex @}                                                           
@@ -317,7 +317,7 @@ Fixcode={patch}
 ; -----6666666666ddddddddd88888----0xc6d8 no ..............Mem Write: pc32 = 0x4109b addr = 0xc6d8 value = 0x0
 
 ;00040266h: 7E E6 01 20 08                                  ; ~? .                                 
-[print forbid 5@forbid_printing_pokedex]                                                                                           
+[print forbid 5@Forbid_printing_Pokedex]                                                                                           
 Mode = 6                                                                                          
 Type = 0                                                                                          
 Address = {hex @}                                                                            
