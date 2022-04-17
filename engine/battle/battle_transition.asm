@@ -370,7 +370,7 @@ StartTrainerBattle_SineWave:
 	ret
 
 StartTrainerBattle_SetUpForSpinOutro:
-	vc_hook Stop_reducing_battle_transition_flashing_SpintOutro
+	vc_hook Stop_reducing_battle_transition_flashing_SpinOutro
 	farcall RespawnPlayerAndOpponent
 	ld a, BANK(wLYOverrides)
 	ldh [rSVBK], a

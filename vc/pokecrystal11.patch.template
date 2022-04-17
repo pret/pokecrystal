@@ -652,7 +652,7 @@ Address = {HEx @}
 
 ;3D 20 EF C9 3E 01 at 3E      
 ; 0008c439h: 3D 20 EF C9 3E       at 3e                           ; = 锷>
-[FPA link fight End1@Stop_reducing_battle_transition_flashing_SpintOutro]                                                     
+[FPA link fight End1@Stop_reducing_battle_transition_flashing_SpinOutro]                                                     
 Mode = 3                                                          
 Type = 1                                                          
 Address = {HEx @}
