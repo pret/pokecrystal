@@ -3,8 +3,8 @@ MACRO map_attributes
 ;\2: map id
 ;\3: border block
 ;\4: connections: combo of NORTH, SOUTH, WEST, and/or EAST, or 0 for none
-DEF CURRENT_MAP_WIDTH = \2_WIDTH
-DEF CURRENT_MAP_HEIGHT = \2_HEIGHT
+	DEF CURRENT_MAP_WIDTH = \2_WIDTH
+	DEF CURRENT_MAP_HEIGHT = \2_HEIGHT
 \1_MapAttributes::
 	db \3
 	db CURRENT_MAP_HEIGHT, CURRENT_MAP_WIDTH

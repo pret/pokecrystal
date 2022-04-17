@@ -201,7 +201,7 @@ DEF NUM_ITEMS EQU const_value - 1
 DEF __tmhm_value__ = 1
 
 MACRO add_tmnum
-\1_TMNUM EQU __tmhm_value__
+	DEF \1_TMNUM EQU __tmhm_value__
 __tmhm_value__ += 1
 ENDM
 
@@ -277,8 +277,8 @@ MACRO add_hm
 ; - \1_TMNUM: the learnable TM/HM flag, starting at 51
 ; - HM##_MOVE: alias for the move id, equal to the value of \1
 	const HM_\1
-DEF HM_VALUE = __tmhm_value__ - NUM_TMS
-HM{02d:HM_VALUE}_MOVE = \1
+	DEF HM_VALUE = __tmhm_value__ - NUM_TMS
+	DEF HM{02d:HM_VALUE}_MOVE = \1
 	add_tmnum \1
 ENDM
 
@@ -296,8 +296,8 @@ MACRO add_mt
 ; Defines two constants:
 ; - \1_TMNUM: the learnable TM/HM flag, starting at 58
 ; - MT##_MOVE: alias for the move id, equal to the value of \1
-DEF MT_VALUE = __tmhm_value__ - NUM_TMS - NUM_HMS
-MT{02d:MT_VALUE}_MOVE = \1
+	DEF MT_VALUE = __tmhm_value__ - NUM_TMS - NUM_HMS
+	DEF MT{02d:MT_VALUE}_MOVE = \1
 	add_tmnum \1
 ENDM
 

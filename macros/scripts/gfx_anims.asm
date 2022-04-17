@@ -2,7 +2,7 @@
 
 MACRO frame
 	db \1
-DEF x = \2
+	DEF x = \2
 if _NARG > 2
 rept _NARG - 2
 x |= 1 << (\3 + 1)

@@ -1304,9 +1304,9 @@ UpdateTitleTrailSprite: ; unreferenced
 .TitleTrailCoords:
 MACRO trail_coords
 rept _NARG / 2
-DEF _dx = 4
+	DEF _dx = 4
 if \1 == 0 && \2 == 0
-DEF _dx = 0
+	DEF _dx = 0
 endc
 	dbpixel \1, \2, _dx, 0
 	shift 2
