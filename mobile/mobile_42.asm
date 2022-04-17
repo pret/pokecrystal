@@ -1474,7 +1474,7 @@ Function108b78:
 	ld [hld], a
 	pop af
 	ldh [rSVBK], a
-	ld a, TRUE 
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 

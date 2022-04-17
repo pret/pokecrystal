@@ -33,7 +33,7 @@ DEF OBJECT_1D                  rb ; 1d
 DEF OBJECT_1E                  rb ; 1e
 DEF OBJECT_1F                  rb ; 1f
 DEF OBJECT_RANGE               rb ; 20
-                           rb_skip 7
+                               rb_skip 7
 DEF OBJECT_LENGTH EQU _RS
 DEF NUM_OBJECT_STRUCTS EQU 13 ; see wObjectStructs
 
@@ -110,7 +110,7 @@ DEF MAPOBJECT_COLOR            rb ; 8
 DEF MAPOBJECT_RANGE            rb ; 9
 DEF MAPOBJECT_SCRIPT_POINTER   rw ; a
 DEF MAPOBJECT_EVENT_FLAG       rw ; c
-                           rb_skip 2
+                               rb_skip 2
 DEF MAPOBJECT_LENGTH EQU _RS
 DEF NUM_OBJECTS EQU 16
 DEF PLAYER_OBJECT EQU 0

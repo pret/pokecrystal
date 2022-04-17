@@ -42,17 +42,17 @@ MACRO dbw
 ENDM
 
 MACRO dn ; nybbles
-rept _NARG / 2
-	db ((\1) << 4) | (\2)
-	shift 2
-endr
+	rept _NARG / 2
+		db ((\1) << 4) | (\2)
+		shift 2
+	endr
 ENDM
 
 MACRO dc ; "crumbs"
-rept _NARG / 4
-	db ((\1) << 6) | ((\2) << 4) | ((\3) << 2) | (\4)
-	shift 4
-endr
+	rept _NARG / 4
+		db ((\1) << 6) | ((\2) << 4) | ((\3) << 2) | (\4)
+		shift 4
+	endr
 ENDM
 
 MACRO dt ; three-byte (big-endian)
@@ -68,17 +68,17 @@ MACRO bigdw ; big-endian word
 ENDM
 
 MACRO dba ; dbw bank, address
-rept _NARG
-	dbw BANK(\1), \1
-	shift
-endr
+	rept _NARG
+		dbw BANK(\1), \1
+		shift
+	endr
 ENDM
 
 MACRO dab ; dwb address, bank
-rept _NARG
-	dwb \1, BANK(\1)
-	shift
-endr
+	rept _NARG
+		dwb \1, BANK(\1)
+		shift
+	endr
 ENDM
 
 MACRO dba_pic ; dbw bank, address
@@ -87,17 +87,17 @@ MACRO dba_pic ; dbw bank, address
 ENDM
 
 MACRO bcd
-rept _NARG
-	dn ((\1) % 100) / 10, (\1) % 10
-	shift
-endr
+	rept _NARG
+		dn ((\1) % 100) / 10, (\1) % 10
+		shift
+	endr
 ENDM
 
 MACRO sine_table
 ; \1 samples of sin(x) from x=0 to x<32768 (pi radians)
 	DEF x = 0
-rept \1
-	dw (sin(x) + (sin(x) & $ff)) >> 8 ; round up
-	DEF x += DIV(32768, \1) ; a circle has 65536 "degrees"
-endr
+	rept \1
+		dw (sin(x) + (sin(x) & $ff)) >> 8 ; round up
+		DEF x += DIV(32768, \1) ; a circle has 65536 "degrees"
+	endr
 ENDM

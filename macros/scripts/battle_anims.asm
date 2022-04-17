@@ -10,18 +10,18 @@ ENDM
 	const anim_obj_command ; $d0
 MACRO anim_obj
 	db anim_obj_command
-if _NARG <= 4
-	db \1 ; object
-	db \2 ; x
-	db \3 ; y
-	db \4 ; param
-else
-; LEGACY: Support the tile+offset format
-	db \1 ; object
-	db (\2) * 8 + (\3) ; x_tile, x
-	db (\4) * 8 + (\5) ; y_tile, y
-	db \6 ; param
-endc
+	if _NARG <= 4
+		db \1 ; object
+		db \2 ; x
+		db \3 ; y
+		db \4 ; param
+	else
+	; LEGACY: Support the tile+offset format
+		db \1 ; object
+		db (\2) * 8 + (\3) ; x_tile, x
+		db (\4) * 8 + (\5) ; y_tile, y
+		db \6 ; param
+	endc
 ENDM
 
 	const anim_1gfx_command ; $d1

@@ -18,7 +18,7 @@ DEF BATTLEANIMSTRUCT_FRAME           rb
 DEF BATTLEANIMSTRUCT_JUMPTABLE_INDEX rb
 DEF BATTLEANIMSTRUCT_VAR1            rb
 DEF BATTLEANIMSTRUCT_VAR2            rb
-                                 rb_skip 7
+                                     rb_skip 7
 DEF BATTLEANIMSTRUCT_LENGTH EQU _RS
 DEF NUM_ANIM_OBJECTS EQU 10 ; see wActiveAnimObjects
 

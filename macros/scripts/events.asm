@@ -187,36 +187,36 @@ ENDM
 
 	const loadvar_command ; $1e
 MACRO loadvar
-if STRIN("\1", "VAR_") != 1
-; LEGACY: Support for the old name of "loadmem"
-	loadmem \1, \2
-else
-	db loadvar_command
-	db \1 ; variable_id
-	db \2 ; value
-endc
+	if STRIN("\1", "VAR_") != 1
+	; LEGACY: Support for the old name of "loadmem"
+		loadmem \1, \2
+	else
+		db loadvar_command
+		db \1 ; variable_id
+		db \2 ; value
+	endc
 ENDM
 
 	const giveitem_command ; $1f
 MACRO giveitem
-if _NARG == 1
-	giveitem \1, 1
-else
-	db giveitem_command
-	db \1 ; item
-	db \2 ; quantity
-endc
+	if _NARG == 1
+		giveitem \1, 1
+	else
+		db giveitem_command
+		db \1 ; item
+		db \2 ; quantity
+	endc
 ENDM
 
 	const takeitem_command ; $20
 MACRO takeitem
-if _NARG == 1
-	takeitem \1, 1
-else
-	db takeitem_command
-	db \1 ; item
-	db \2 ; quantity
-endc
+	if _NARG == 1
+		takeitem \1, 1
+	else
+		db takeitem_command
+		db \1 ; item
+		db \2 ; quantity
+	endc
 ENDM
 
 	const checkitem_command ; $21
@@ -296,23 +296,23 @@ ENDM
 
 	const givepoke_command ; $2d
 MACRO givepoke
-if _NARG == 2
-	givepoke \1, \2, NO_ITEM, FALSE
-elif _NARG == 3
-	givepoke \1, \2, \3, FALSE
-elif _NARG == 5
-	givepoke \1, \2, \3, TRUE, \4, \5
-else
-	db givepoke_command
-	db \1 ; pokemon
-	db \2 ; level
-	db \3 ; item
-	db \4 ; trainer
-if \4
-	dw \5 ; nickname_pointer
-	dw \6 ; ot_name_pointer
-endc
-endc
+	if _NARG == 2
+		givepoke \1, \2, NO_ITEM, FALSE
+	elif _NARG == 3
+		givepoke \1, \2, \3, FALSE
+	elif _NARG == 5
+		givepoke \1, \2, \3, TRUE, \4, \5
+	else
+		db givepoke_command
+		db \1 ; pokemon
+		db \2 ; level
+		db \3 ; item
+		db \4 ; trainer
+		if \4
+			dw \5 ; nickname_pointer
+			dw \6 ; ot_name_pointer
+		endc
+	endc
 ENDM
 
 	const giveegg_command ; $2e
@@ -478,12 +478,12 @@ ENDM
 
 	const refreshscreen_command ; $48
 MACRO refreshscreen
-if _NARG == 0
-	refreshscreen 0
-else
-	db refreshscreen_command
-	db \1 ; dummy
-endc
+	if _NARG == 0
+		refreshscreen 0
+	else
+		db refreshscreen_command
+		db \1 ; dummy
+	endc
 ENDM
 
 	const closetext_command ; $49
@@ -984,13 +984,13 @@ ENDM
 
 	const verbosegiveitem_command ; $9e
 MACRO verbosegiveitem
-if _NARG == 1
-	verbosegiveitem \1, 1
-else
-	db verbosegiveitem_command
-	db \1 ; item
-	db \2 ; quantity
-endc
+	if _NARG == 1
+		verbosegiveitem \1, 1
+	else
+		db verbosegiveitem_command
+		db \1 ; item
+		db \2 ; quantity
+	endc
 ENDM
 
 	const verbosegiveitemvar_command ; $9f

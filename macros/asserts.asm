@@ -2,12 +2,12 @@
 
 MACRO table_width
 	DEF CURRENT_TABLE_WIDTH = \1
-if _NARG == 2
-	REDEF CURRENT_TABLE_START EQUS "\2"
-else
-	REDEF CURRENT_TABLE_START EQUS "._table_width\@"
-{CURRENT_TABLE_START}:
-endc
+	if _NARG == 2
+		REDEF CURRENT_TABLE_START EQUS "\2"
+	else
+		REDEF CURRENT_TABLE_START EQUS "._table_width\@"
+	{CURRENT_TABLE_START}:
+	endc
 ENDM
 
 MACRO assert_table_length
@@ -18,12 +18,12 @@ ENDM
 
 MACRO list_start
 	DEF list_index = 0
-if _NARG == 1
-	REDEF CURRENT_LIST_START EQUS "\1"
-else
-	REDEF CURRENT_LIST_START EQUS "._list_start\@"
-{CURRENT_LIST_START}:
-endc
+	if _NARG == 1
+		REDEF CURRENT_LIST_START EQUS "\1"
+	else
+		REDEF CURRENT_LIST_START EQUS "._list_start\@"
+	{CURRENT_LIST_START}:
+	endc
 ENDM
 
 MACRO li

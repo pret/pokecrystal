@@ -36,16 +36,16 @@ MACRO maskbits
 ; 	jr nc, .loop
 	assert 0 < (\1) && (\1) <= $100, "bitmask must be 8-bit"
 	DEF x = 1
-rept 8
-if x + 1 < (\1)
-	DEF x = (x << 1) | 1
-endc
-endr
-if _NARG == 2
-	and x << (\2)
-else
-	and x
-endc
+	rept 8
+		if x + 1 < (\1)
+			DEF x = (x << 1) | 1
+		endc
+	endr
+	if _NARG == 2
+		and x << (\2)
+	else
+		and x
+	endc
 ENDM
 
 MACRO calc_sine_wave

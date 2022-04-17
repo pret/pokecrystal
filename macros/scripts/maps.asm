@@ -112,10 +112,10 @@ MACRO object_event
 	dn \9, \<10>
 	db \<11>
 	dw \<12>, \<13>
-; the dummy PlayerObjectTemplate object_event has no def_object_events
-if DEF(_NUM_OBJECT_EVENTS)
-	DEF {_NUM_OBJECT_EVENTS} += 1
-endc
+	; the dummy PlayerObjectTemplate object_event has no def_object_events
+	if DEF(_NUM_OBJECT_EVENTS)
+		DEF {_NUM_OBJECT_EVENTS} += 1
+	endc
 ENDM
 
 MACRO trainer
@@ -134,11 +134,11 @@ ENDM
 MACRO itemball
 ;\1: item: from constants/item_constants.asm
 ;\2: quantity: default 1
-if _NARG == 1
-	itemball \1, 1
-else
-	db \1, \2
-endc
+	if _NARG == 1
+		itemball \1, 1
+	else
+		db \1, \2
+	endc
 ENDM
 
 MACRO hiddenitem
