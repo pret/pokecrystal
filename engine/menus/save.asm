@@ -162,7 +162,7 @@ AddHallOfFameEntry:
 	call CopyBytes
 	call CloseSRAM
 ; This vc_hook causes the Virtual Console to set [sMobileEventIndex] and [sMobileEventIndexBackup]
-; to MOBILE_EVENT_OBJECT_GS_BALL ($b), which enables you to get the GS Ball, take it to Kurt, and
+; to MOBILE_EVENT_OBJECT_GS_BALL, which enables you to get the GS Ball, take it to Kurt, and
 ; encounter Celebi. It assumes that sMobileEventIndex and sMobileEventIndexBackup are at their
 ; original addresses.
 	vc_hook Enable_GS_Ball_mobile_event

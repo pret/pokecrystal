@@ -2310,9 +2310,10 @@ WaitForLinkedFriend:
 	ld a, (0 << rSC_ON) | (0 << rSC_CLOCK)
 	ldh [rSC], a
 	ld a, (1 << rSC_ON) | (0 << rSC_CLOCK)
-; This vc_hook causes the virtual console to set [hSerialConnectionStatus] to
-; [USING_INTERNAL_CLOCK] ($02) which allows the player to proceed past the
-; Link Receptionists' "Please Wait.".
+; This vc_hook causes the Virtual Console to set [hSerialConnectionStatus] to
+; USING_INTERNAL_CLOCK, which allows the player to proceed past the link
+; receptionist's "Please wait." It assumes that hSerialConnectionStatus is at
+; its original address.
 	vc_hook linkCable_fake_begin
 	vc_assert hSerialConnectionStatus == $ffcb, \
 		"hSerialConnectionStatus is no longer located at 00:ffcb."
