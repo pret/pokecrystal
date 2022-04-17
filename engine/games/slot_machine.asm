@@ -6,26 +6,26 @@
 	const SLOTS_PIKACHU  ; $0c
 	const SLOTS_SQUIRTLE ; $10
 	const SLOTS_STARYU   ; $14
-NUM_SLOT_REELS EQU const_value / 4 ; 6
-SLOTS_NO_MATCH EQU -1
+DEF NUM_SLOT_REELS EQU const_value / 4 ; 6
+DEF SLOTS_NO_MATCH EQU -1
 
 ; wSlotBias values
-SLOTS_NO_BIAS  EQU -1
+DEF SLOTS_NO_BIAS  EQU -1
 
-REEL_SIZE EQU 15
+DEF REEL_SIZE EQU 15
 
 ; Constants for slot_reel offsets (see macros/wram.asm)
-REEL_ACTION        EQUS "(wReel1ReelAction - wReel1)"
-REEL_TILEMAP_ADDR  EQUS "(wReel1TilemapAddr - wReel1)"
-REEL_POSITION      EQUS "(wReel1Position - wReel1)"
-REEL_SPIN_DISTANCE EQUS "(wReel1SpinDistance - wReel1)"
-REEL_SPIN_RATE     EQUS "(wReel1SpinRate - wReel1)"
-REEL_OAM_ADDR      EQUS "(wReel1OAMAddr - wReel1)"
-REEL_X_COORD       EQUS "(wReel1XCoord - wReel1)"
-REEL_MANIP_COUNTER EQUS "(wReel1ManipCounter - wReel1)"
-REEL_MANIP_DELAY   EQUS "(wReel1ManipDelay - wReel1)"
-REEL_FIELD_0B      EQUS "(wReel1Field0b - wReel1)"
-REEL_STOP_DELAY    EQUS "(wReel1StopDelay - wReel1)"
+DEF REEL_ACTION        EQUS "(wReel1ReelAction - wReel1)"
+DEF REEL_TILEMAP_ADDR  EQUS "(wReel1TilemapAddr - wReel1)"
+DEF REEL_POSITION      EQUS "(wReel1Position - wReel1)"
+DEF REEL_SPIN_DISTANCE EQUS "(wReel1SpinDistance - wReel1)"
+DEF REEL_SPIN_RATE     EQUS "(wReel1SpinRate - wReel1)"
+DEF REEL_OAM_ADDR      EQUS "(wReel1OAMAddr - wReel1)"
+DEF REEL_X_COORD       EQUS "(wReel1XCoord - wReel1)"
+DEF REEL_MANIP_COUNTER EQUS "(wReel1ManipCounter - wReel1)"
+DEF REEL_MANIP_DELAY   EQUS "(wReel1ManipDelay - wReel1)"
+DEF REEL_FIELD_0B      EQUS "(wReel1Field0b - wReel1)"
+DEF REEL_STOP_DELAY    EQUS "(wReel1StopDelay - wReel1)"
 
 ; SlotsJumptable constants
 	const_def
@@ -48,7 +48,7 @@ REEL_STOP_DELAY    EQUS "(wReel1StopDelay - wReel1)"
 	const SLOTS_PAYOUT_ANIM
 	const SLOTS_RESTART_OF_QUIT
 	const SLOTS_QUIT
-SLOTS_END_LOOP_F EQU 7
+DEF SLOTS_END_LOOP_F EQU 7
 
 ; ReelActionJumptable constants
 	const_def

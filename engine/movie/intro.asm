@@ -1438,7 +1438,7 @@ endr
 	ret
 
 .FastFadePalettes:
-hue = 31
+DEF hue = 31
 rept 8
 	RGB hue, hue, hue
 hue -= 1
@@ -1447,7 +1447,7 @@ hue -= 2
 endr
 
 .SlowFadePalettes:
-hue = 31
+DEF hue = 31
 rept 16
 	RGB hue, hue, hue
 hue -= 1

@@ -56,10 +56,10 @@ All of them:
 [wMenuSelectionQuantity] = Quantity of the current item.
 
 Function1: Called to display a menu entry.
-de = Cursor position in TileMap
+DEF de = Cursor position in TileMap
 
 Function2: Called to display the quantity of a menu entry.
-de = Cursor position in TileMap + columns
+DEF de = Cursor position in TileMap + columns
 
 Function3: Called to display anything else, whenever the cursor is moved.
 ```
@@ -207,7 +207,7 @@ StringPointers:
 Call state for `DisplayFunction`:
 ```
 [wMenuSelection] = Current item. -1 is the CANCEL item.
-de = Cursor position in TileMap
+DEF de = Cursor position in TileMap
 ```
 
 ## `VerticalMenu`

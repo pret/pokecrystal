@@ -1,7 +1,7 @@
 ; Macros to verify assumptions about the data or code
 
 MACRO table_width
-CURRENT_TABLE_WIDTH = \1
+DEF CURRENT_TABLE_WIDTH = \1
 if _NARG == 2
 REDEF CURRENT_TABLE_START EQUS "\2"
 else
@@ -11,13 +11,13 @@ endc
 ENDM
 
 MACRO assert_table_length
-x = \1
+DEF x = \1
 	assert x * CURRENT_TABLE_WIDTH == @ - {CURRENT_TABLE_START}, \
 		"{CURRENT_TABLE_START}: expected {d:x} entries, each {d:CURRENT_TABLE_WIDTH} bytes"
 ENDM
 
 MACRO list_start
-list_index = 0
+DEF list_index = 0
 if _NARG == 1
 REDEF CURRENT_LIST_START EQUS "\1"
 else
@@ -33,7 +33,7 @@ list_index += 1
 ENDM
 
 MACRO assert_list_length
-x = \1
+DEF x = \1
 	assert x == list_index, \
 		"{CURRENT_LIST_START}: expected {d:x} entries, got {d:list_index}"
 ENDM

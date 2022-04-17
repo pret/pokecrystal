@@ -1065,4 +1065,4 @@ MACRO checksave
 	db checksave_command
 ENDM
 
-NUM_EVENT_COMMANDS EQU const_value
+DEF NUM_EVENT_COMMANDS EQU const_value

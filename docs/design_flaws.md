@@ -32,7 +32,7 @@ The offset is translated into a correct bank by `FixPicBank` in [engine/gfx/load
 FixPicBank:
 ; This is a thing for some reason.
 
-PICS_FIX EQU $36
+DEF PICS_FIX EQU $36
 GLOBAL PICS_FIX
 
 	push hl
@@ -148,8 +148,8 @@ In [gfx/footprints.asm](https://github.com/pret/pokecrystal/blob/master/gfx/foot
 ; then a row of the bottom two tiles for those eight footprints.
 
 ; These macros help extract the first and the last two tiles, respectively.
-footprint_top    EQUS "0,                 2 * LEN_1BPP_TILE"
-footprint_bottom EQUS "2 * LEN_1BPP_TILE, 2 * LEN_1BPP_TILE"
+DEF footprint_top    EQUS "0,                 2 * LEN_1BPP_TILE"
+DEF footprint_bottom EQUS "2 * LEN_1BPP_TILE, 2 * LEN_1BPP_TILE"
 
 ; Entries correspond to Pokémon species, two apiece, 8 tops then 8 bottoms
 
@@ -322,7 +322,7 @@ Edit `GetMapMusic`:
 	add_tm PSYCHIC_M    ; dd
 	...
 	add_tm NIGHTMARE    ; f2
-NUM_TMS EQU const_value - TM01 - 2 ; discount ITEM_C3 and ITEM_DC
+DEF NUM_TMS EQU const_value - TM01 - 2 ; discount ITEM_C3 and ITEM_DC
 ```
 
 `GetTMHMNumber` and `GetNumberedTMHM` in [engine/items/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/items.asm) have to compensate for this.
@@ -724,7 +724,7 @@ And on `sine_table` in [macros/data.asm](https://github.com/pret/pokecrystal/blo
 ```asm
 MACRO sine_table
 ; \1 samples of sin(x) from x=0 to x<32768 (pi radians)
-x = 0
+DEF x = 0
 rept \1
 	dw (sin(x) + (sin(x) & $ff)) >> 8 ; round up
 x += DIV(32768, \1) ; a circle has 65536 "degrees"

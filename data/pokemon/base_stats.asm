@@ -7,8 +7,8 @@ endr
 ; set bits of bytes
 rept _NARG
 	if DEF(\1_TMNUM)
-n = (\1_TMNUM - 1) / 8
-i = (\1_TMNUM - 1) % 8
+DEF n = (\1_TMNUM - 1) / 8
+DEF i = (\1_TMNUM - 1) % 8
 _tm{d:n} |= 1 << i
 	else
 		fail "\1 is not a TM, HM, or tutor move"

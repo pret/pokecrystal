@@ -73,4 +73,4 @@
 	const CRY_DUNSPARCE
 	const CRY_DONPHAN
 
-NUM_CRIES EQU const_value
+DEF NUM_CRIES EQU const_value

@@ -174,7 +174,7 @@ endr
 
 ; The PC boxes will not fit into one SRAM bank,
 ; so they use multiple SECTIONs
-box_n = 0
+DEF box_n = 0
 MACRO boxes
 rept \1
 box_n += 1

@@ -20,10 +20,10 @@
 ; - 180 = 71 percent - 1 = 70 percent + 2
 ; - 200 = 79 percent - 1
 ; - 230 = 90 percent + 1
-percent EQUS "* $ff / 100"
+DEF percent EQUS "* $ff / 100"
 
 ; e.g. 1 out_of 2 == 50 percent + 1 == $80
-out_of EQUS "* $100 /"
+DEF out_of EQUS "* $100 /"
 
 MACRO assert_power_of_2
 	assert (\1) & ((\1) - 1) == 0, "\1 must be a power of 2"
@@ -95,7 +95,7 @@ ENDM
 
 MACRO sine_table
 ; \1 samples of sin(x) from x=0 to x<32768 (pi radians)
-x = 0
+DEF x = 0
 rept \1
 	dw (sin(x) + (sin(x) & $ff)) >> 8 ; round up
 x += DIV(32768, \1) ; a circle has 65536 "degrees"

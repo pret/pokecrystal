@@ -3067,9 +3067,9 @@ BattleCommand_DamageCalc:
 	call .CriticalMultiplier
 
 ; Update wCurDamage. Max 999 (capped at 997, then add 2).
-MAX_DAMAGE EQU 999
-MIN_DAMAGE EQU 2
-DAMAGE_CAP EQU MAX_DAMAGE - MIN_DAMAGE
+DEF MAX_DAMAGE EQU 999
+DEF MIN_DAMAGE EQU 2
+DEF DAMAGE_CAP EQU MAX_DAMAGE - MIN_DAMAGE
 
 	ld hl, wCurDamage
 	ld b, [hl]

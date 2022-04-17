@@ -1,4 +1,4 @@
-MANIA_OT_ID EQU 00518
+DEF MANIA_OT_ID EQU 00518
 
 GiveShuckle:
 ; Adding to the party.

@@ -1,6 +1,6 @@
 MACRO unownwall
 for n, CHARLEN(\1)
-x = CHARSUB(\1, n + 1)
+DEF x = CHARSUB(\1, n + 1)
 if x == "-"
 	db $64
 elif x >= "Y"

@@ -1,4 +1,4 @@
-MAX_ROLLOUT_COUNT EQU 5
+DEF MAX_ROLLOUT_COUNT EQU 5
 
 BattleCommand_CheckCurl:
 ; checkcurl

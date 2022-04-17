@@ -1,5 +1,5 @@
-TRADEANIM_RIGHT_ARROW EQU "▶" ; $ed
-TRADEANIM_LEFT_ARROW  EQU "▼" ; $ee
+DEF TRADEANIM_RIGHT_ARROW EQU "▶" ; $ed
+DEF TRADEANIM_LEFT_ARROW  EQU "▼" ; $ee
 
 ; TradeAnim_TubeAnimJumptable.Jumptable indexes
 	const_def
@@ -7,7 +7,7 @@ TRADEANIM_LEFT_ARROW  EQU "▼" ; $ee
 	const TRADEANIMSTATE_1 ; 1
 	const TRADEANIMSTATE_2 ; 2
 	const TRADEANIMSTATE_3 ; 3
-TRADEANIMJUMPTABLE_LENGTH EQU const_value
+DEF TRADEANIMJUMPTABLE_LENGTH EQU const_value
 
 MACRO add_tradeanim
 \1_TradeCmd:

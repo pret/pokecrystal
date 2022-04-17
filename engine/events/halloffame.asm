@@ -1,4 +1,4 @@
-HALLOFFAME_COLON EQU $63
+DEF HALLOFFAME_COLON EQU $63
 
 HallOfFame::
 	call HallOfFame_FadeOutMusic

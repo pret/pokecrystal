@@ -1,4 +1,4 @@
-RANDY_OT_ID EQU 01001
+DEF RANDY_OT_ID EQU 01001
 
 TryAddMonToParty:
 ; Check if to copy wild mon or generate a new one

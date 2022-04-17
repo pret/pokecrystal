@@ -79,19 +79,19 @@ hPascalCase: ; hram
 PascalCase:  ; rom
 
 ; Some constants are also prefixed
-rBGP EQU $ff47 ; hardware register
+DEF rBGP EQU $ff47 ; hardware register
 
 ; Most other constants should be upper case
-UPPER_CASE EQU 1
+DEF UPPER_CASE EQU 1
 
 
 ; Long lists of constants should be aligned
-SHORT_CONSTANT       EQU 1
-LONGER_CONSTANT      EQU 2
-PRETTY_LONG_CONSTANT EQU 3
-TINY                 EQU 4
+DEF SHORT_CONSTANT       EQU 1
+DEF LONGER_CONSTANT      EQU 2
+DEF PRETTY_LONG_CONSTANT EQU 3
+DEF TINY                 EQU 4
 
-BUT_ONLY_RELATED_CONSTANTS EQU 5
+DEF BUT_ONLY_RELATED_CONSTANTS EQU 5
 
 ```
 
@@ -106,9 +106,9 @@ INCBIN "filename"
 MACRO my_macro
 	nop
 ENDM
-TEST EQUS "test"
+DEF TEST EQUS "test"
 PURGE TEST
-TEST EQU 2
+DEF TEST EQU 2
 
 ; data macros should be lowercase
 	db 1

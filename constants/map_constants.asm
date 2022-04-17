@@ -2,8 +2,8 @@ MACRO newgroup
 ;\1: group id
 	const_skip
 MAPGROUP_\1 EQU const_value
-CURRENT_NUM_MAPGROUP_MAPS EQUS "NUM_\1_MAPS"
-__map_value__ = 1
+DEF CURRENT_NUM_MAPGROUP_MAPS EQUS "NUM_\1_MAPS"
+DEF __map_value__ = 1
 ENDM
 
 MACRO map_const
@@ -501,4 +501,4 @@ ENDM
 	map_const ROUTE_31_VIOLET_GATE,                         5,  4 ; 11
 	endgroup
 
-NUM_MAP_GROUPS EQU const_value ; 26
+DEF NUM_MAP_GROUPS EQU const_value ; 26

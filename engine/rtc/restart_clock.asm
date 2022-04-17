@@ -3,7 +3,7 @@
 	const RESTART_CLOCK_DAY
 	const RESTART_CLOCK_HOUR
 	const RESTART_CLOCK_MIN
-NUM_RESTART_CLOCK_DIVISIONS EQU const_value - 1
+DEF NUM_RESTART_CLOCK_DIVISIONS EQU const_value - 1
 
 RestartClock_GetWraparoundTime:
 	push hl
