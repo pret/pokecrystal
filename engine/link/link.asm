@@ -2543,7 +2543,7 @@ CheckBothSelectedSameRoom:
 	ret
 
 TimeCapsule:
-	vc_hook TimeCapsule
+	vc_hook Wireless_TimeCapsule
 	ld a, LINK_TIMECAPSULE
 	ld [wLinkMode], a
 	call DisableSpriteUpdates
@@ -2554,7 +2554,7 @@ TimeCapsule:
 	ret
 
 TradeCenter:
-	vc_hook TradeCenter
+	vc_hook Wireless_TradeCenter
 	ld a, LINK_TRADECENTER
 	ld [wLinkMode], a
 	call DisableSpriteUpdates
@@ -2565,7 +2565,7 @@ TradeCenter:
 	ret
 
 Colosseum:
-	vc_hook Colosseum
+	vc_hook Wireless_Colosseum
 	ld a, LINK_COLOSSEUM
 	ld [wLinkMode], a
 	call DisableSpriteUpdates

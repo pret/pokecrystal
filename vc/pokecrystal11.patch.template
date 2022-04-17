@@ -193,15 +193,15 @@ Type = 25
 Mode = 2
 Address = {HEX @}
 Type = 27
-[to_play2_mons1@TimeCapsule]
+[to_play2_mons1@Wireless_TimeCapsule]
 Mode = 2
 Address = {HEX @}
 Type = 11
-[to_play2_trade@TradeCenter]
+[to_play2_trade@Wireless_TradeCenter]
 Mode = 2
 Address = {HEX @}
 Type = 12
-[to_play2_battle@Colosseum]
+[to_play2_battle@Wireless_Colosseum]
 Mode = 2
 Address = {HEX @}
 Type = 13
