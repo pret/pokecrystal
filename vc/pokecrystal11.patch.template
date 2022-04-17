@@ -252,7 +252,7 @@ Type = 60
 ; change "and 1" to "and 0"
 ;00017595h: E6 01 20 08 CD BF 75 CD 2E 03 18 E9 FA 57 CE F5 ; ? .涂u?..辁W熙
 ;00016c76h: E6 01 20 08 CD A0 6C CD 5A 04 18 E9 FA 63 CF F5 ; ? .蜖l蚙..辁c硝
-[print forbid 1@forbid_printing_unknown]                                                   
+[print forbid 1@Forbid_printing_Unown]                                                   
 Mode = 1                                                                                                                  
 Address = {hex @}
 Fixcode={patch}      
