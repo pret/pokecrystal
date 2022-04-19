@@ -5,9 +5,9 @@ DEF decoord EQUS "coord de,"
 MACRO coord
 ; register, x, y[, origin]
 	if _NARG < 4
-	ld \1, (\3) * SCREEN_WIDTH + (\2) + wTilemap
+		ld \1, (\3) * SCREEN_WIDTH + (\2) + wTilemap
 	else
-	ld \1, (\3) * SCREEN_WIDTH + (\2) + \4
+		ld \1, (\3) * SCREEN_WIDTH + (\2) + \4
 	endc
 ENDM
 
