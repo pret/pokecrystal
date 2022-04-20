@@ -82,7 +82,7 @@ Mode = 2
 Address = {HEX @}
 Type = 4
 
-[Network_RECHECK]
+[Network_RECHECK@Wireless_net_recheck]
 Mode = 2
 Address = {HEX @}
 Type = 7
@@ -157,7 +157,7 @@ Mode = 2
 Address = {HEX @ 5}
 Type = 10
 
-[E_YESNO]
+[E_YESNO@Unknown_yesorno_ret]
 Mode = 2
 Address = {HEX @}
 Type = 15
@@ -173,11 +173,11 @@ Address = {HEX @}
 Type = 17  
 
 ;MURIYARI
-[linkCable block input]
+[linkCable block input@Wireless_TryQuickSave_block_input_1]
 Mode = 2
 Address = {HEX @}
 Type = 18
-[linkCable block input2]
+[linkCable block input2@Wireless_TryQuickSave_block_input_2]
 Mode = 2
 Address = {HEX @}
 Type = 24
@@ -185,11 +185,11 @@ Type = 24
 Mode = 2
 Address = {HEX @}
 Type = 20
-[term_exit]
+[term_exit@Wireless_term_exit]
 Mode = 2
 Address = {HEX @}
 Type = 25
-[room_check]
+[room_check@Wireless_room_check]
 Mode = 2
 Address = {HEX @}
 Type = 27
@@ -227,7 +227,7 @@ Type = 14
 
 ;0003fbb5h: 06 3E 13 CD                                     ; .>.?
 
-[fight begin]                        
+[fight begin@Unknown_InitBattleDisplay]                        
 Mode = 11                       
 Type = 0                        
 Index = 1                       
@@ -356,7 +356,7 @@ ConditionValueC = {dws_ 0xa1                0xdb                  A_BUTTON    0x
                                                                                                                                                                           
 ;001048dbh: 3E 02 EA 01 CA 3E 14 EA 02 CA F0 FF F5 CD 94 4A        
 ;001048dbh: 3E 02 EA 01 CA 3E 14 EA 02 CA F0 FF F5 CD 9D 4A                           
-[infrared fake 0]                                                                                                           
+[infrared fake 0@Infrared_stage_party_data]                                                                                                           
 Mode = 1                                                                                                                    
 Address = {hex @}                                                                                  
 Fixcode={PATCH}                                                                                   
@@ -366,22 +366,22 @@ Fixcode={PATCH}
 ;00104a95h: F3 3E 3A 21 E9 4F CF CD 5E 4D CD 96 4D CD DD 4D ; ?:!镺贤^M蜄M洼M
 ;00104a9ch: CD 5E 4D CD 96 4D CD DD 4D F0 BC FE 10          ; 蚟M蜄M洼M鸺?                                                                
                                                                                                                      
-[infrared fake 1]                                                                                                    
+[infrared fake 1@Infrared_ExchangeMysteryGiftData_function]                                                                                                    
 Mode = 1                                                                                                             
 Address = {hex @}                                                                                              
 Fixcode={patch}                                           
                                                                                                                      
-[infrared fake 2]                                                                                                    
+[infrared fake 2@Infrared_ExchangeMysteryGiftData_start]                                                                                                    
 Mode = 2                                                                                                             
 Address = {hex @}                                                                            
 Type = 101                                                                                                           
                                                                                                                                                                                           
-[infrared fake 3]                    
+[infrared fake 3@Infrared_ExchangeMysteryGiftData_loop_done]                    
 Mode = 2                             
 Address = {hex @}                 
 Type = 102                           
                                      
-[infrared fake 4]                    
+[infrared fake 4@Infrared_ExchangeMysteryGiftData_end]                    
 Mode = 2                             
 Address = {hex @}           
 Type = 103                           

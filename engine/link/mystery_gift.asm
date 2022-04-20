@@ -37,7 +37,7 @@ DoMysteryGift:
 	; Prepare the first of two messages for wMysteryGiftPartnerData
 	farcall StageDataForMysteryGift
 	call ClearMysteryGiftTrainer
-	vc_patch infrared_fake_0
+	vc_patch Infrared_stage_party_data
 if DEF(_CRYSTAL11_VC)
 	farcall StagePartyDataForMysteryGift
 	call ClearMysteryGiftTrainer
@@ -53,7 +53,7 @@ endc
 	ldh a, [rIE]
 	push af
 	call ExchangeMysteryGiftData
-	vc_hook infrared_fake_4
+	vc_hook Infrared_ExchangeMysteryGiftData_end
 	ld d, a
 	xor a
 	ldh [rIF], a
@@ -269,8 +269,8 @@ endc
 	jp CloseSRAM
 
 ExchangeMysteryGiftData:
-	vc_hook infrared_fake_2
-	vc_patch infrared_fake_1
+	vc_hook Infrared_ExchangeMysteryGiftData_start
+	vc_patch Infrared_ExchangeMysteryGiftData_function
 if DEF(_CRYSTAL11_VC)
 	ld d, $ef
 .loop
@@ -278,7 +278,7 @@ if DEF(_CRYSTAL11_VC)
 	ld a, d
 	or a
 	jr nz, .loop
-	vc_hook infrared_fake_3
+	vc_hook Infrared_ExchangeMysteryGiftData_loop_done
 	nop
 	cp MG_CANCELED
 .restart ; same location as unpatched .restart

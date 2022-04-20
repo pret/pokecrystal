@@ -2245,7 +2245,7 @@ WaitForOtherPlayerToExit:
 	ld [hl], a
 	ldh [hVBlank], a
 	ld [wLinkMode], a
-	vc_hook term_exit
+	vc_hook Wireless_term_exit
 	ret
 
 SetBitsForLinkTradeRequest:
@@ -2469,7 +2469,7 @@ Link_CheckCommunicationError:
 .CheckConnected:
 	call WaitLinkTransfer
 	ld hl, wLinkTimeoutFrames
-	vc_hook Network_RECHECK
+	vc_hook Wireless_net_recheck
 	ld a, [hli]
 	inc a
 	ret nz
@@ -2511,10 +2511,10 @@ TryQuickSave:
 	ld a, [wChosenCableClubRoom]
 	push af
 	farcall Link_SaveGame
-	vc_hook linkCable_block_input
+	vc_hook Wireless_TryQuickSave_block_input_1
 	ld a, TRUE
 	jr nc, .return_result
-	vc_hook linkCable_block_input2
+	vc_hook Wireless_TryQuickSave_block_input_2
 	xor a ; FALSE
 .return_result
 	ld [wScriptVar], a
@@ -2588,7 +2588,7 @@ CloseLink:
 	ld [wLinkMode], a
 	ld c, 3
 	call DelayFrames
-	vc_hook room_check
+	vc_hook Wireless_room_check
 	jp Link_ResetSerialRegistersAfterLinkClosure
 
 FailedLinkToPast:
