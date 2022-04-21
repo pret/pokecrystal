@@ -1441,16 +1441,16 @@ endr
 DEF hue = 31
 rept 8
 	RGB hue, hue, hue
-DEF hue -= 1
+	DEF hue -= 1
 	RGB hue, hue, hue
-DEF hue -= 2
+	DEF hue -= 2
 endr
 
 .SlowFadePalettes:
 DEF hue = 31
 rept 16
 	RGB hue, hue, hue
-DEF hue -= 1
+	DEF hue -= 1
 endr
 
 Intro_LoadTilemap:
