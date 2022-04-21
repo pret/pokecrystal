@@ -2233,7 +2233,7 @@ wBattleMenuCursorPosition:: db
 
 	ds 1
 
-wCurBattleMon::
+wCurBattleMon:: 
 ; index of the player's mon currently in battle (0-5)
 	db
 
