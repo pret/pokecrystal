@@ -176,10 +176,10 @@ endr
 ; so they use multiple SECTIONs
 DEF box_n = 0
 MACRO boxes
-rept \1
-	DEF box_n += 1
-sBox{d:box_n}:: box sBox{d:box_n}
-endr
+	rept \1
+		DEF box_n += 1
+		sBox{d:box_n}:: box sBox{d:box_n}
+	endr
 ENDM
 
 SECTION "Boxes 1-7", SRAM
