@@ -178,7 +178,7 @@ DEF box_n = 0
 MACRO boxes
 	rept \1
 		DEF box_n += 1
-		sBox{d:box_n}:: box sBox{d:box_n}
+	sBox{d:box_n}:: box sBox{d:box_n}
 	endr
 ENDM
 

@@ -113,10 +113,10 @@ InitUnownPuzzlePiecePositions:
 
 .PuzzlePieceInitialPositions:
 MACRO initpuzcoord
-rept _NARG / 2
-	db \1 puzcoord \2
-	shift 2
-endr
+	rept _NARG / 2
+		db \1 puzcoord \2
+		shift 2
+	endr
 ENDM
 	initpuzcoord 0,0, 0,1, 0,2, 0,3, 0,4, 0,5
 	initpuzcoord 1,0,                     1,5

@@ -2953,10 +2953,10 @@ MACRO inc_crash_check_pointer_farcall
 	push af
 	ld a, $1
 	ldh [rSVBK], a
-rept _NARG
-	farcall \1
-	shift
-endr
+	rept _NARG
+		farcall \1
+		shift
+	endr
 	pop af
 	ldh [rSVBK], a
 	ret

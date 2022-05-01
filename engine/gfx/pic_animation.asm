@@ -47,10 +47,10 @@ AnimateMon_HOF:
 	ret
 
 MACRO pokeanim
-rept _NARG
-	db (PokeAnim_\1_SetupCommand - PokeAnim_SetupCommands) / 2
-	shift
-endr
+	rept _NARG
+		db (PokeAnim_\1_SetupCommand - PokeAnim_SetupCommands) / 2
+		shift
+	endr
 	db (PokeAnim_Finish_SetupCommand - PokeAnim_SetupCommands) / 2
 ENDM
 
@@ -534,11 +534,11 @@ PokeAnim_CopyBitmaskToBuffer:
 .Sizes: db 4, 5, 7
 
 MACRO poke_anim_box
-for y, 1, \1 + 1
-for x, 7 - \1, 7
-	db y * 7 + x
-endr
-endr
+	for y, 1, \1 + 1
+		for x, 7 - \1, 7
+			db y * 7 + x
+		endr
+	endr
 ENDM
 
 PokeAnim_ConvertAndApplyBitmask:

@@ -1394,9 +1394,9 @@ MACRO copy_box_data
 	jr .loop\@
 
 .done\@
-if \1
-	call CloseSRAM
-endc
+	if \1
+		call CloseSRAM
+	endc
 	ld a, -1
 	ld [de], a
 	ld a, [wBillsPCTempBoxCount]
