@@ -23,7 +23,7 @@ BattleCommand_CheckCurl:
 BattleCommand_RolloutPower:
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVar
-	and SLP
+	and SLP_MASK
 	ret nz
 
 	ld hl, wPlayerRolloutCount

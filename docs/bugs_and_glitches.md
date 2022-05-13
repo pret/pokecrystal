@@ -1141,14 +1141,14 @@ This can occur if your party and current PC box are both full when you start the
 **Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
 
 ```diff
--; This routine is buggy. It was intended that SLP and FRZ provide a higher
+-; This routine is buggy. It was intended that SLP_MASK and FRZ provide a higher
 -; catch rate than BRN/PSN/PAR, which in turn provide a higher catch rate than
 -; no status effect at all. But instead, it makes BRN/PSN/PAR provide no
 -; benefit.
 -; Uncomment the line below to fix this.
  	ld b, a
  	ld a, [wEnemyMonStatus]
- 	and 1 << FRZ | SLP
+ 	and 1 << FRZ | SLP_MASK
  	ld c, 10
  	jr nz, .addstatus
 -	; ld a, [wEnemyMonStatus]

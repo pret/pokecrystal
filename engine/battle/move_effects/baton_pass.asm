@@ -128,7 +128,7 @@ ResetBatonPassStatus:
 	; Nightmare isn't passed.
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVar
-	and SLP
+	and SLP_MASK
 	jr nz, .ok
 
 	ld a, BATTLE_VARS_SUBSTATUS1
