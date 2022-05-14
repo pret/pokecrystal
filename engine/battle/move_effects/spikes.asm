@@ -1,6 +1,4 @@
 BattleCommand_Spikes:
-; spikes
-
 	ld hl, wEnemyScreens
 	ldh a, [hBattleTurn]
 	and a

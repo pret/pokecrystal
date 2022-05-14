@@ -1,6 +1,4 @@
 BattleCommand_Substitute:
-; substitute
-
 	call BattleCommand_MoveDelay
 	ld hl, wBattleMonMaxHP
 	ld de, wPlayerSubstituteHP

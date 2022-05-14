@@ -1,6 +1,4 @@
 BattleCommand_SleepTalk:
-; sleeptalk
-
 	call ClearLastMove
 	ld a, [wAttackMissed]
 	and a

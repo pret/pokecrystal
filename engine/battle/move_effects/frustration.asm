@@ -1,5 +1,4 @@
 BattleCommand_FrustrationPower:
-; frustrationpower
 	push bc
 	ld hl, wBattleMonHappiness
 	ldh a, [hBattleTurn]

@@ -1,6 +1,4 @@
 BattleCommand_PsychUp:
-; psychup
-
 	ld hl, wEnemyStatLevels
 	ld de, wPlayerStatLevels
 	ldh a, [hBattleTurn]

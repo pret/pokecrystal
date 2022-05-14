@@ -1,6 +1,4 @@
 BattleCommand_Teleport:
-; teleport
-
 	ld a, [wBattleType]
 	cp BATTLETYPE_SHINY
 	jr z, .failed
