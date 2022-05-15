@@ -73,9 +73,103 @@ GoldenrodGymWhitneyScript:
 	end
 
 .GotAttract:
+	checkflag ENGINE_WHITNEY_REMATCH_FIGHT
+	iftrue .PostRematch
+	checkevent EVENT_BEAT_CHAMPION_LANCE
+	iffalse .PostInitialFight
+	readvar VAR_WEEKDAY
+	ifnotequal SATURDAY, .PostInitialFight
+	checktime DAY
+	iffalse .PostInitialFight
+	writetext WhitneyText_AskRematch
+	yesorno
+	iftrue .WhitneyRematch
+	writetext WhitneyText_RematchDeclined
+	waitbutton
+	closetext
+	end
+.PostInitialFight:
 	writetext WhitneyGoodCryText
 	waitbutton
 .NoRoomForAttract:
+	closetext
+	end
+
+.WhitneyRematch:
+	writetext WhitneyText_RematchAccepted
+	waitbutton
+	winlosstext WhitneyText_RematchDefeat, 0
+	readmem wWhitneyFightCount
+	ifequal 5, .LoadFight5
+	ifequal 4, .LoadFight4
+	ifequal 3, .LoadFight3
+	ifequal 2, .LoadFight2
+	ifequal 1, .LoadFight1
+
+.LoadFight1:
+	loadtrainer WHITNEY, WHITNEY2
+	startbattle
+	reloadmapafterbattle
+	loadmem wWhitneyFightCount, 2
+	setflag ENGINE_WHITNEY_REMATCH_FIGHT
+	opentext
+	writetext WhitneyText_YouReallyAreStrong
+	waitbutton
+	closetext
+	end
+
+.LoadFight2:
+	loadtrainer WHITNEY, WHITNEY3
+	startbattle
+	reloadmapafterbattle
+	loadmem wWhitneyFightCount, 3
+	setflag ENGINE_WHITNEY_REMATCH_FIGHT
+	opentext
+	writetext WhitneyText_YouReallyAreStrong
+	waitbutton
+	closetext
+	end
+
+.LoadFight3:
+	loadtrainer WHITNEY, WHITNEY4
+	startbattle
+	reloadmapafterbattle
+	loadmem wWhitneyFightCount, 4
+	setflag ENGINE_WHITNEY_REMATCH_FIGHT
+	opentext
+	writetext WhitneyText_YouReallyAreStrong
+	waitbutton
+	closetext
+	end
+
+.LoadFight4:
+	loadtrainer WHITNEY, WHITNEY5
+	startbattle
+	reloadmapafterbattle
+	loadmem wWhitneyFightCount, 5
+	setflag ENGINE_WHITNEY_REMATCH_FIGHT
+	opentext
+	writetext WhitneyText_YouReallyAreStrong
+	waitbutton
+	closetext
+	end
+
+.LoadFight5:
+	checkevent EVENT_OPENED_MT_SILVER
+	iffalse .LoadFight4
+	loadtrainer WHITNEY, WHITNEY6
+	startbattle
+	reloadmapafterbattle
+	setflag ENGINE_WHITNEY_REMATCH_FIGHT
+	opentext
+	writetext WhitneyText_YouReallyAreStrong
+	waitbutton
+	closetext
+	end
+
+.PostRematch
+	writetext WhitneyText_YouReallyAreStrong
+	waitbutton
 	closetext
 	end
 
@@ -266,6 +360,36 @@ WhitneyGoodCryText:
 
 	para "Come for a visit"
 	line "again! Bye-bye!"
+	done
+
+WhitneyText_AskRematch:
+	text "Um, hey, what's up?"
+	line "I'm bored!"
+
+	para "Oh, yeah! You"
+	line "wanna battle me"
+	cont "again?"
+	done
+
+WhitneyText_RematchAccepted:
+	text "Okay! Are you"
+	line "ready?"
+	done
+
+WhitneyText_RematchDeclined:
+	text "Um, bo-ring…"
+	done
+
+WhitneyText_RematchDefeat:
+	text "Ugh…"
+	done
+
+WhitneyText_YouReallyAreStrong:
+	text "You really are"
+	line "strong!"
+
+	para "But I won't lose"
+	line "next time!"
 	done
 
 LassCarrieSeenText:

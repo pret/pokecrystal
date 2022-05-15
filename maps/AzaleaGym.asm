@@ -24,7 +24,9 @@ AzaleaGymBugsyScript:
 	loadtrainer BUGSY, BUGSY1
 	startbattle
 	reloadmapafterbattle
+	loadmem wBugsyFightCount, 1
 	setevent EVENT_BEAT_BUGSY
+	clearflag ENGINE_BUGSY_REMATCH_FIGHT
 	opentext
 	writetext Text_ReceivedHiveBadge
 	playsound SFX_GET_BADGE
@@ -50,9 +52,103 @@ AzaleaGymBugsyScript:
 	end
 
 .GotFuryCutter:
+	checkflag ENGINE_BUGSY_REMATCH_FIGHT
+	iftrue .PostRematch
+	checkevent EVENT_BEAT_CHAMPION_LANCE
+	iffalse .PostInitialFight
+	readvar VAR_WEEKDAY	
+	ifnotequal THURSDAY, .PostInitialFight
+	checktime DAY
+	iffalse .PostInitialFight
+	writetext BugsyText_AskRematch
+	yesorno
+	iftrue .BugsyRematch
+	writetext BugsyText_RematchDeclined
+	waitbutton
+	closetext
+	end
+.PostInitialFight:
 	writetext BugsyText_BugMonsAreDeep
 	waitbutton
 .NoRoomForFuryCutter:
+	closetext
+	end
+
+.BugsyRematch:
+	writetext BugsyText_RematchAccepted
+	waitbutton
+	winlosstext BugsyText_RematchDefeat, 0
+	readmem wBugsyFightCount
+	ifequal 5, .LoadFight5
+	ifequal 4, .LoadFight4
+	ifequal 3, .LoadFight3
+	ifequal 2, .LoadFight2
+	ifequal 1, .LoadFight1
+
+.LoadFight1:
+	loadtrainer BUGSY, BUGSY2
+	startbattle
+	reloadmapafterbattle
+	loadmem wBugsyFightCount, 2
+	setflag ENGINE_BUGSY_REMATCH_FIGHT
+	opentext
+	writetext BugsyText_YouMustHaveStudied
+	waitbutton
+	closetext
+	end
+
+.LoadFight2:
+	loadtrainer BUGSY, BUGSY3
+	startbattle
+	reloadmapafterbattle
+	loadmem wBugsyFightCount, 3
+	setflag ENGINE_BUGSY_REMATCH_FIGHT
+	opentext
+	writetext BugsyText_YouMustHaveStudied
+	waitbutton
+	closetext
+	end
+
+.LoadFight3:
+	loadtrainer BUGSY, BUGSY4
+	startbattle
+	reloadmapafterbattle
+	loadmem wBugsyFightCount, 4
+	setflag ENGINE_BUGSY_REMATCH_FIGHT
+	opentext
+	writetext BugsyText_YouMustHaveStudied
+	waitbutton
+	closetext
+	end
+
+.LoadFight4:
+	loadtrainer BUGSY, BUGSY5
+	startbattle
+	reloadmapafterbattle
+	loadmem wBugsyFightCount, 5
+	setflag ENGINE_BUGSY_REMATCH_FIGHT
+	opentext
+	writetext BugsyText_YouMustHaveStudied
+	waitbutton
+	closetext
+	end
+
+.LoadFight5:
+	checkevent EVENT_OPENED_MT_SILVER
+	iffalse .LoadFight4
+	loadtrainer BUGSY, BUGSY6
+	startbattle
+	reloadmapafterbattle
+	setflag ENGINE_BUGSY_REMATCH_FIGHT
+	opentext
+	writetext BugsyText_YouMustHaveStudied
+	waitbutton
+	closetext
+	end
+
+.PostRematch:
+	writetext BugsyText_YouMustHaveStudied
+	waitbutton
 	closetext
 	end
 
@@ -228,6 +324,45 @@ BugsyText_BugMonsAreDeep:
 
 	para "Study your favor-"
 	line "ites thoroughly."
+	done
+
+BugsyText_AskRematch:
+	text "Hello!"
+	line "How are you?"
+
+	para "Oh! You came at"
+	line "just the right"
+	cont "time!"
+
+	para "I'm not doing"
+	line "anything right"
+	cont "now."
+
+	para "Wanna battle"
+	line "again?"
+	done
+
+BugsyText_RematchAccepted:
+	text "Behold my bug"
+	line "research!"
+	done
+
+BugsyText_RematchDeclined:
+	text "I see…"
+
+	para "Well, there's no"
+	line "helping that…"
+	done
+
+BugsyText_RematchDefeat:
+	text "Aw, that's the end"
+	line "of it…"
+	done
+
+BugsyText_YouMustHaveStudied:
+	text "You must have"
+	line "studied a lot"
+	cont "about #MON!"
 	done
 
 BugCatcherBennySeenText:

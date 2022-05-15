@@ -22,6 +22,7 @@ VioletGymFalknerScript:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_FALKNER
+	clearflag ENGINE_FALKNER_REMATCH_FIGHT
 	opentext
 	writetext ReceivedZephyrBadgeText
 	playsound SFX_GET_BADGE
@@ -31,7 +32,7 @@ VioletGymFalknerScript:
 	scall VioletGymActivateRockets
 .FightDone:
 	checkevent EVENT_GOT_TM31_MUD_SLAP
-	iftrue .SpeechAfterTM
+	iftrue .GotMudSlap
 	setevent EVENT_BEAT_BIRD_KEEPER_ROD
 	setevent EVENT_BEAT_BIRD_KEEPER_ABE
 	setmapscene ELMS_LAB, SCENE_ELMSLAB_NOTHING
@@ -46,10 +47,104 @@ VioletGymFalknerScript:
 	closetext
 	end
 
-.SpeechAfterTM:
+.GotMudSlap:
+	checkflag ENGINE_FALKNER_REMATCH_FIGHT
+	iftrue .PostRematch
+	checkevent EVENT_BEAT_CHAMPION_LANCE
+	iffalse .PostInitialFight
+	readvar VAR_WEEKDAY	
+	ifnotequal SATURDAY, .PostInitialFight
+	checktime MORN
+	iffalse .PostInitialFight
+	writetext FalknerText_AskRematch
+	yesorno
+	iftrue .FalknerRematch
+	writetext FalknerText_RematchDeclined
+	waitbutton
+	closetext
+	end
+.PostInitialFight:
 	writetext FalknerFightDoneText
 	waitbutton
 .NoRoomForMudSlap:
+	closetext
+	end
+
+.FalknerRematch:
+	writetext FalknerText_RematchAccepted
+	waitbutton
+	winlosstext FalknerText_RematchDefeat, 0
+	readmem wFalknerFightCount
+	ifequal 5, .LoadFight5
+	ifequal 4, .LoadFight4
+	ifequal 3, .LoadFight3
+	ifequal 2, .LoadFight2
+	ifequal 1, .LoadFight1
+
+.LoadFight1:
+	loadtrainer FALKNER, FALKNER2
+	startbattle
+	reloadmapafterbattle
+	loadmem wFalknerFightCount, 2
+	setflag ENGINE_FALKNER_REMATCH_FIGHT
+	opentext
+	writetext FalknerText_ItsStillALongWay
+	waitbutton
+	closetext
+	end
+
+.LoadFight2:
+	loadtrainer FALKNER, FALKNER3
+	startbattle
+	reloadmapafterbattle
+	loadmem wFalknerFightCount, 3
+	setflag ENGINE_FALKNER_REMATCH_FIGHT
+	opentext
+	writetext FalknerText_ItsStillALongWay
+	waitbutton
+	closetext
+	end
+
+.LoadFight3:
+	loadtrainer FALKNER, FALKNER4
+	startbattle
+	reloadmapafterbattle
+	loadmem wFalknerFightCount, 4
+	setflag ENGINE_FALKNER_REMATCH_FIGHT
+	opentext
+	writetext FalknerText_ItsStillALongWay
+	waitbutton
+	closetext
+	end
+
+.LoadFight4:
+	loadtrainer FALKNER, FALKNER5
+	startbattle
+	reloadmapafterbattle
+	loadmem wFalknerFightCount, 5
+	setflag ENGINE_FALKNER_REMATCH_FIGHT
+	opentext
+	writetext FalknerText_ItsStillALongWay
+	waitbutton
+	closetext
+	end
+
+.LoadFight5:
+	checkevent EVENT_OPENED_MT_SILVER
+	iffalse .LoadFight4
+	loadtrainer FALKNER, FALKNER6
+	startbattle
+	reloadmapafterbattle
+	setflag ENGINE_FALKNER_REMATCH_FIGHT
+	opentext
+	writetext FalknerText_ItsStillALongWay
+	waitbutton
+	closetext
+	end
+
+.PostRematch:
+	writetext FalknerText_ItsStillALongWay
+	waitbutton
 	closetext
 	end
 
@@ -205,6 +300,44 @@ FalknerFightDoneText:
 
 	para "the greatest bird"
 	line "master!"
+	done
+
+FalknerText_AskRematch:
+	text "Hello."
+	line "I'm in top form."
+
+	para "I was hoping to"
+	line "see you!"
+
+	para "We're battling"
+	line "again, correct?"
+	done
+
+FalknerText_RematchAccepted:
+	text "It's a pleasure to"
+	line "be able to battle"
+	cont "you again!"
+	done
+
+FalknerText_RematchDeclined:
+	text "Sure, sure… I know"
+	line "you've got a busy"
+	cont "schedule…"
+	done
+
+FalknerText_RematchDefeat:
+	text "I understand…"
+
+	para "I'll bow out gra-"
+	line "cefully."
+	done
+
+FalknerText_ItsStillALongWay:
+	text "Mmm… It's still a"
+	line "long way to"
+
+	para "become the best"
+	line "trainer…"
 	done
 
 BirdKeeperRodSeenText:

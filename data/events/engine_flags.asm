@@ -123,6 +123,24 @@ EngineFlags:
 	engine_flag wDailyFlags2, DAILYFLAGS2_MOVE_TUTOR_F
 	engine_flag wDailyFlags2, DAILYFLAGS2_BUENAS_PASSWORD_F
 
+	engine_flag wDailyFlags3, DAILYFLAGS3_BUGSY_REMATCH_FIGHT_F
+	engine_flag wDailyFlags3, DAILYFLAGS3_FALKNER_REMATCH_FIGHT_F
+	engine_flag wDailyFlags3, DAILYFLAGS3_WHITNEY_REMATCH_FIGHT_F
+	engine_flag wDailyFlags3, DAILYFLAGS3_MORTY_REMATCH_FIGHT_F
+	engine_flag wDailyFlags3, DAILYFLAGS3_CHUCK_REMATCH_FIGHT_F
+	engine_flag wDailyFlags3, DAILYFLAGS3_JASMINE_REMATCH_FIGHT_F
+	engine_flag wDailyFlags3, DAILYFLAGS3_PRYCE_REMATCH_FIGHT_F
+	engine_flag wDailyFlags3, DAILYFLAGS3_CLAIR_REMATCH_FIGHT_F
+
+	engine_flag wDailyFlags4, DAILYFLAGS4_BROCK_REMATCH_FIGHT_F
+	engine_flag wDailyFlags4, DAILYFLAGS4_MISTY_REMATCH_FIGHT_F
+	engine_flag wDailyFlags4, DAILYFLAGS4_LTSURGE_REMATCH_FIGHT_F
+	engine_flag wDailyFlags4, DAILYFLAGS4_ERIKA_REMATCH_FIGHT_F
+	engine_flag wDailyFlags4, DAILYFLAGS4_JANINE_REMATCH_FIGHT_F
+	engine_flag wDailyFlags4, DAILYFLAGS4_SABRINA_REMATCH_FIGHT_F
+	engine_flag wDailyFlags4, DAILYFLAGS4_BLAINE_REMATCH_FIGHT_F
+	engine_flag wDailyFlags4, DAILYFLAGS4_BLUE_REMATCH_FIGHT_F
+
 	engine_flag wSwarmFlags, SWARMFLAGS_BUENAS_PASSWORD_F
 	engine_flag wSwarmFlags, SWARMFLAGS_GOLDENROD_DEPT_STORE_SALE_F
 
@@ -157,6 +175,7 @@ EngineFlags:
 	engine_flag wDailyRematchFlags, 21 ; wilton
 	engine_flag wDailyRematchFlags, 22 ; parry
 	engine_flag wDailyRematchFlags, 23 ; erin
+	engine_flag wDailyRematchFlags, 24 ; quinn
 
 	engine_flag wDailyPhoneItemFlags, 0 ; beverly has nugget
 	engine_flag wDailyPhoneItemFlags, 1 ; jose has star piece
@@ -193,6 +212,7 @@ EngineFlags:
 	engine_flag wDailyPhoneTimeOfDayFlags, 21 ; wilton
 	engine_flag wDailyPhoneTimeOfDayFlags, 22 ; parry
 	engine_flag wDailyPhoneTimeOfDayFlags, 23 ; erin
+	engine_flag wDailyPhoneTimeOfDayFlags, 24 ; quinn
 
 	engine_flag wPlayerSpriteSetupFlags, PLAYERSPRITESETUP_FEMALE_TO_MALE_F
 

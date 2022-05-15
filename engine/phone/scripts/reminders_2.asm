@@ -13,3 +13,7 @@ ArnieHurryScript:
 ToddHurryScript:
 	farwritetext ToddHaveYouGoneToDepartmentStoreText
 	end
+
+QuinnBattleReminderScript:
+	farwritetext QuinnReminderText
+	end

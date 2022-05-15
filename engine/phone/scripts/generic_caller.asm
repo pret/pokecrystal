@@ -169,6 +169,7 @@ Phone_WhosBragging_Female:
 	ifequal PHONE_LASS_DANA, .Dana
 	ifequal PHONE_PICNICKER_TIFFANY, .Tiffany
 	ifequal PHONE_PICNICKER_ERIN, .Erin
+	ifequal PHONE_COOLTRAINERF_QUINN, .Quinn
 
 .Beverly:
 	farwritetext BeverlyMadeMonEvenCuterText
@@ -207,6 +208,11 @@ Phone_WhosBragging_Female:
 
 .Erin:
 	farwritetext ErinMonIsMuchStrongerText
+	promptbutton
+	end
+
+.Quinn:
+	farwritetext QuinnBeatTrainersText
 	promptbutton
 	end
 
@@ -325,6 +331,7 @@ Phone_WhoDefeatedMon_Female:
 	ifequal PHONE_LASS_DANA, .Dana
 	ifequal PHONE_PICNICKER_TIFFANY, .Tiffany
 	ifequal PHONE_PICNICKER_ERIN, .Erin
+	ifequal PHONE_COOLTRAINERF_QUINN, .Quinn
 
 .Beverly:
 	farwritetext BeverlyDefeatedMonText
@@ -363,6 +370,11 @@ Phone_WhoDefeatedMon_Female:
 
 .Erin:
 	farwritetext ErinDefeatedMonText
+	promptbutton
+	end
+
+.Quinn:
+	farwritetext QuinnDefeatedMonText
 	promptbutton
 	end
 
@@ -481,6 +493,7 @@ Phone_WhoLostAMon_Female:
 	ifequal PHONE_LASS_DANA, .Dana
 	ifequal PHONE_PICNICKER_TIFFANY, .Tiffany
 	ifequal PHONE_PICNICKER_ERIN, .Erin
+	ifequal PHONE_COOLTRAINERF_QUINN, .Quinn
 
 .Beverly:
 	farwritetext BeverlyLostAMonText
@@ -519,6 +532,11 @@ Phone_WhoLostAMon_Female:
 
 .Erin:
 	farwritetext ErinLostAMonText
+	promptbutton
+	end
+
+.Quinn:
+	farwritetext QuinnLostAMonText
 	promptbutton
 	end
 
@@ -644,6 +662,7 @@ PhoneScript_RematchText_Female:
 	ifequal PHONE_LASS_DANA, .Dana
 	ifequal PHONE_PICNICKER_TIFFANY, .Tiffany
 	ifequal PHONE_PICNICKER_ERIN, .Erin
+	ifequal PHONE_COOLTRAINERF_QUINN, .Quinn
 
 .Beth:
 	farwritetext BethBattleRematchText
@@ -677,6 +696,11 @@ PhoneScript_RematchText_Female:
 
 .Erin:
 	farwritetext ErinBattleRematchText
+	promptbutton
+	end
+
+.Quinn:
+	farwritetext QuinnBattleRematchText
 	promptbutton
 	end
 
@@ -801,6 +825,7 @@ PhoneScript_HangUpText_Female:
 	ifequal PHONE_LASS_DANA, .Dana
 	ifequal PHONE_PICNICKER_TIFFANY, .Tiffany
 	ifequal PHONE_PICNICKER_ERIN, .Erin
+	ifequal PHONE_COOLTRAINERF_QUINN, .Quinn
 
 .Beverly:
 	farwritetext BeverlyHangUpText
@@ -832,6 +857,10 @@ PhoneScript_HangUpText_Female:
 
 .Erin:
 	farwritetext ErinHangUpText
+	end
+
+.Quinn:
+	farwritetext QuinnHangUpText
 	end
 
 Phone_CheckIfUnseenRare_Male:

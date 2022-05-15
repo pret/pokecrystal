@@ -270,7 +270,6 @@ INCLUDE "data/phone/text/kenji_caller.asm"
 INCLUDE "data/phone/text/parry_caller.asm"
 INCLUDE "data/phone/text/erin_caller.asm"
 
-
 SECTION "bank20", ROMX
 
 INCLUDE "engine/overworld/player_movement.asm"
@@ -630,6 +629,18 @@ INCLUDE "data/phone/text/kenji_callee.asm"
 INCLUDE "data/phone/text/parry_callee.asm"
 INCLUDE "data/phone/text/erin_callee.asm"
 INCLUDE "data/phone/text/unused.asm"
+
+
+SECTION "Kanto Phone Scripts", ROMX
+
+INCLUDE "engine/phone/scripts/quinn.asm"
+
+
+SECTION "Kanto Phone Text", ROMX
+
+INCLUDE "data/phone/text/quinn_callee.asm"
+INCLUDE "data/phone/text/quinn_caller.asm"
+INCLUDE "data/phone/text/quinn_overworld.asm"
 
 
 SECTION "Miscellaneous Text", ROMX

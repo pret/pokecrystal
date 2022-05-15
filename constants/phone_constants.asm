@@ -10,7 +10,6 @@
 	const PHONE_SAILOR_HUEY
 	const_skip
 	const_skip
-	const_skip
 	const PHONE_COOLTRAINERM_GAVEN
 	const PHONE_COOLTRAINERF_BETH
 	const PHONE_BIRDKEEPER_JOSE
@@ -38,6 +37,7 @@
 	const PHONE_HIKER_PARRY
 	const PHONE_PICNICKER_ERIN
 	const PHONE_BUENA
+	const PHONE_COOLTRAINERF_QUINN
 NUM_PHONE_CONTACTS EQU const_value - 1
 
 ; SpecialPhoneCallList indexes (see data/phone/special_calls.asm)

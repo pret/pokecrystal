@@ -3121,8 +3121,25 @@ wWiltonFightCount::  db
 wKenjiFightCount::   db ; unreferenced
 wParryFightCount::   db
 wErinFightCount::    db
+wBugsyFightCount::   db
+wFalknerFightCount:: db
+wWhitneyFightCount:: db
+wMortyFightCount::   db
+wChuckFightCount::   db
+wJasmineFightCount:: db
+wPryceFightCount::   db
+wClairFightCount::   db
+wBrockFightCount::   db
+wMistyFightCount::   db
+wLtSurgeFightCount:: db
+wErikaFightCount::   db
+wJanineFightCount::  db
+wSabrinaFightCount:: db
+wBlaineFightCount::  db
+wBlueFightCount::    db
+wQuinnFightCount::   db
 
-	ds 100
+	ds 83
 
 wEventFlags:: flag_array NUM_EVENTS
 
@@ -3181,8 +3198,10 @@ wMomItemTriggerBalance:: ds 3
 wDailyResetTimer:: dw
 wDailyFlags1:: db
 wDailyFlags2:: db
+wDailyFlags3:: db
+wDailyFlags4:: db
 wSwarmFlags:: db
-	ds 2
+	ds 0
 wTimerEventStartDay:: db
 	ds 3
 

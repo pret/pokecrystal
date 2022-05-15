@@ -46,8 +46,8 @@ BethNumberDeclinedText:
 	done
 
 BethPhoneFullText:
-	text "Oh no. Your phone"
-	line "is out of memory."
+	text "Your phone's memory"
+	line "is full…"
 	done
 
 BethRematchText:

@@ -69,11 +69,15 @@ TrainerYoungsterJoey:
 	scall .RematchStd
 	winlosstext YoungsterJoey1BeatenText, 0
 	readmem wJoeyFightCount
+	ifequal 5, .Fight5
 	ifequal 4, .Fight4
 	ifequal 3, .Fight3
 	ifequal 2, .Fight2
 	ifequal 1, .Fight1
 	ifequal 0, .LoadFight0
+.Fight5:
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
+	iftrue .LoadFight5
 .Fight4:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight4
@@ -120,6 +124,21 @@ TrainerYoungsterJoey:
 
 .LoadFight4:
 	loadtrainer YOUNGSTER, JOEY5
+	startbattle
+	reloadmapafterbattle
+	clearflag ENGINE_JOEY_READY_FOR_REMATCH
+	checkevent EVENT_JOEY_HP_UP
+	iftrue .GiveHPUp
+	checkevent EVENT_GOT_HP_UP_FROM_JOEY
+	iftrue .done
+	scall .RematchGift
+	verbosegiveitem HP_UP
+	iffalse .PackFull
+	setevent EVENT_GOT_HP_UP_FROM_JOEY
+	sjump .NumberAccepted
+
+.LoadFight5:
+	loadtrainer YOUNGSTER, JOEY6
 	startbattle
 	reloadmapafterbattle
 	clearflag ENGINE_JOEY_READY_FOR_REMATCH

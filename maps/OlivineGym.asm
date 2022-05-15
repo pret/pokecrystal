@@ -20,6 +20,7 @@ OlivineGymJasmineScript:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_JASMINE
+	clearflag ENGINE_JASMINE_REMATCH_FIGHT
 	opentext
 	writetext Text_ReceivedMineralBadge
 	playsound SFX_GET_BADGE
@@ -41,9 +42,104 @@ OlivineGymJasmineScript:
 	end
 
 .GotIronTail:
+	checkflag ENGINE_JASMINE_REMATCH_FIGHT
+	iftrue .PostRematch
+	checkevent EVENT_BEAT_CHAMPION_LANCE
+	iffalse .PostInitialFight
+	readvar VAR_WEEKDAY	
+	ifnotequal WEDNESDAY, .PostInitialFight
+	checktime DAY
+	iffalse .PostInitialFight
+	writetext JasmineText_AskRematch
+	yesorno
+	iftrue .JasmineRematch
+	writetext JasmineText_RematchDeclined
+	waitbutton
+	closetext
+	end
+.PostInitialFight:
 	writetext Jasmine_GoodLuck
 	waitbutton
 .NoRoomForIronTail:
+	closetext
+	end
+
+.JasmineRematch:
+	writetext JasmineText_RematchAccepted
+	waitbutton
+	winlosstext JasmineText_RematchDefeat, 0
+	readmem wJasmineFightCount
+	ifequal 5, .LoadFight5
+	ifequal 4, .LoadFight4
+	ifequal 3, .LoadFight3
+	ifequal 2, .LoadFight2
+	ifequal 1, .LoadFight1
+
+.LoadFight1:
+	loadtrainer JASMINE, JASMINE2
+	startbattle
+	reloadmapafterbattle
+	loadmem wJasmineFightCount, 2
+	setflag ENGINE_JASMINE_REMATCH_FIGHT
+	opentext
+	writetext JasmineText_TrueToYourReputation
+	waitbutton
+	closetext
+	end
+
+.LoadFight2:
+	loadtrainer JASMINE, JASMINE3
+	startbattle
+	reloadmapafterbattle
+	loadmem wJasmineFightCount, 3
+	setflag ENGINE_JASMINE_REMATCH_FIGHT
+	opentext
+	writetext JasmineText_TrueToYourReputation
+	waitbutton
+	closetext
+	end
+
+.LoadFight3:
+	loadtrainer JASMINE, JASMINE4
+	startbattle
+	reloadmapafterbattle
+	loadmem wJasmineFightCount, 4
+	setflag ENGINE_JASMINE_REMATCH_FIGHT
+	opentext
+	writetext JasmineText_TrueToYourReputation
+	waitbutton
+	closetext
+	end
+
+.LoadFight4:
+	loadtrainer JASMINE, JASMINE5
+	startbattle
+	reloadmapafterbattle
+	loadmem wJasmineFightCount, 4
+	setflag ENGINE_JASMINE_REMATCH_FIGHT
+	opentext
+	writetext JasmineText_TrueToYourReputation
+	waitbutton
+	closetext
+	end
+
+.LoadFight5:
+	checkevent EVENT_OPENED_MT_SILVER
+	iffalse .LoadFight4
+	loadtrainer JASMINE, JASMINE6
+	startbattle
+	reloadmapafterbattle
+	loadmem wJasmineFightCount, 4
+	setflag ENGINE_JASMINE_REMATCH_FIGHT
+	opentext
+	writetext JasmineText_TrueToYourReputation
+	waitbutton
+	closetext
+	end
+
+.PostRematch:
+	writetext JasmineText_TrueToYourReputation
+	waitbutton
 	closetext
 	end
 
@@ -160,6 +256,41 @@ Jasmine_GoodLuck:
 	text "Um… I don't know"
 	line "how to say this,"
 	cont "but good luck…"
+	done
+
+JasmineText_AskRematch:
+	text "…Hello. How are"
+	line "you?"
+
+	para "AMPHY's gotten"
+	line "better lately."
+
+	para "I've also been"
+	line "able to take some"
+	cont "time to myself."
+
+	para "What do you think?"
+
+	para "Would you like to"
+	line "battle me again?"
+	done
+
+JasmineText_RematchAccepted:
+	text "Ok… Are you pre-"
+	line "pared?"
+	done
+
+JasmineText_RematchDeclined:
+	text "I see…"
+	done
+
+JasmineText_RematchDefeat:
+	text "Well done…"
+	done
+
+JasmineText_TrueToYourReputation:
+	text "True to your rep-"
+	line "utation…"
 	done
 
 OlivineGymGuideText:

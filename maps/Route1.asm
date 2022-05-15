@@ -19,15 +19,97 @@ TrainerSchoolboyDanny:
 	closetext
 	end
 
-TrainerCooltrainerfQuinn:
-	trainer COOLTRAINERF, QUINN, EVENT_BEAT_COOLTRAINERF_QUINN, CooltrainerfQuinnSeenText, CooltrainerfQuinnBeatenText, 0, .Script
+TrainerCooltrainerfQuinn1:
+	trainer COOLTRAINERF, QUINN1, EVENT_BEAT_COOLTRAINERF_QUINN, CooltrainerfQuinnSeenText, CooltrainerfQuinnBeatenText, 0, .Script
 
 .Script:
+	loadvar VAR_CALLERID, PHONE_COOLTRAINERF_QUINN
 	endifjustbattled
 	opentext
+	checkflag ENGINE_QUINN_READY_FOR_REMATCH
+	iftrue .WantsBattle
+	checkcellnum PHONE_COOLTRAINERF_QUINN
+	iftrue .NumberAccepted
+	checkevent EVENT_QUINN_ASKED_FOR_PHONE_NUMBER
+	iftrue .AskedAlready
 	writetext CooltrainerfQuinnAfterBattleText
-	waitbutton
-	closetext
+	promptbutton
+	setevent EVENT_QUINN_ASKED_FOR_PHONE_NUMBER
+	scall .AskNumber1
+	sjump .AskForNumber
+
+.AskedAlready:
+	scall .AskNumber2
+.AskForNumber:
+	askforphonenumber PHONE_COOLTRAINERF_QUINN
+	ifequal PHONE_CONTACTS_FULL, .PhoneFull
+	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
+	gettrainername STRING_BUFFER_3, COOLTRAINERF, QUINN1
+	scall .RegisteredNumber
+	sjump .NumberAccepted
+
+.WantsBattle:
+	scall .Rematch
+	winlosstext CooltrainerfQuinnBeatenText, 0
+	readmem wQuinnFightCount
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
+.Fight2:
+	checkevent EVENT_OPENED_MT_SILVER
+	iftrue .LoadFight2
+.Fight1:
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
+	iftrue .LoadFight1
+.LoadFight0:
+	loadtrainer COOLTRAINERF, QUINN1
+	startbattle
+	reloadmapafterbattle
+	loadmem wQuinnFightCount, 1
+	clearflag ENGINE_QUINN_READY_FOR_REMATCH
+	end
+
+.LoadFight1:
+	loadtrainer COOLTRAINERF, QUINN2
+	startbattle
+	reloadmapafterbattle
+	loadmem wQuinnFightCount, 2
+	clearflag ENGINE_QUINN_READY_FOR_REMATCH
+	end
+
+.LoadFight2:
+	loadtrainer COOLTRAINERF, QUINN3
+	startbattle
+	reloadmapafterbattle
+	clearflag ENGINE_QUINN_READY_FOR_REMATCH
+	end
+
+.AskNumber1:
+	jumpstd AskNumber1FScript
+	end
+
+.AskNumber2:
+	jumpstd AskNumber2FScript
+	end
+
+.RegisteredNumber:
+	jumpstd RegisteredNumberFScript
+	end
+
+.NumberAccepted:
+	jumpstd NumberAcceptedFScript
+	end
+
+.NumberDeclined:
+	jumpstd NumberDeclinedFScript
+	end
+
+.PhoneFull:
+	jumpstd PhoneFullFScript
+	end
+
+.Rematch:
+	jumpstd RematchFScript
 	end
 
 Route1Sign:
@@ -90,5 +172,5 @@ Route1_MapEvents:
 
 	def_object_events
 	object_event  4, 12, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerSchoolboyDanny, -1
-	object_event  9, 25, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerCooltrainerfQuinn, -1
+	object_event  9, 25, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerCooltrainerfQuinn1, -1
 	object_event  3,  7, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route1FruitTree, -1

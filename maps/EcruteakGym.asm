@@ -34,6 +34,7 @@ EcruteakGymMortyScript:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_MORTY
+	clearflag ENGINE_MORTY_REMATCH_FIGHT
 	opentext
 	writetext Text_ReceivedFogBadge
 	playsound SFX_GET_BADGE
@@ -62,9 +63,103 @@ EcruteakGymMortyScript:
 	end
 
 .GotShadowBall:
+	checkflag ENGINE_MORTY_REMATCH_FIGHT
+	iftrue .PostRematch
+	checkevent EVENT_BEAT_CHAMPION_LANCE
+	iffalse .PostInitialFight
+	readvar VAR_WEEKDAY	
+	ifnotequal TUESDAY, .PostInitialFight
+	checktime NITE
+	iffalse .PostInitialFight
+	writetext MortyText_AskRematch
+	yesorno
+	iftrue .MortyRematch
+	writetext MortyText_RematchDeclined
+	waitbutton
+	closetext
+	end
+.PostInitialFight:
 	writetext MortyFightDoneText
 	waitbutton
 .NoRoomForShadowBall:
+	closetext
+	end
+
+.MortyRematch
+	writetext MortyText_RematchAccepted
+	waitbutton
+	winlosstext MortyText_RematchDefeat, 0
+	readmem wMortyFightCount
+	ifequal 5, .LoadFight5
+	ifequal 4, .LoadFight4
+	ifequal 3, .LoadFight3
+	ifequal 2, .LoadFight2
+	ifequal 1, .LoadFight1
+
+.LoadFight1:
+	loadtrainer MORTY, MORTY2
+	startbattle
+	reloadmapafterbattle
+	loadmem wMortyFightCount, 2
+	setflag ENGINE_MORTY_REMATCH_FIGHT
+	opentext
+	writetext MortyText_IveLostAgain
+	waitbutton
+	closetext
+	end
+
+.LoadFight2:
+	loadtrainer MORTY, MORTY3
+	startbattle
+	reloadmapafterbattle
+	loadmem wMortyFightCount, 3
+	setflag ENGINE_MORTY_REMATCH_FIGHT
+	opentext
+	writetext MortyText_IveLostAgain
+	waitbutton
+	closetext
+	end
+
+.LoadFight3:
+	loadtrainer MORTY, MORTY4
+	startbattle
+	reloadmapafterbattle
+	loadmem wMortyFightCount, 4
+	setflag ENGINE_MORTY_REMATCH_FIGHT
+	opentext
+	writetext MortyText_IveLostAgain
+	waitbutton
+	closetext
+	end
+
+.LoadFight4:
+	loadtrainer MORTY, MORTY5
+	startbattle
+	reloadmapafterbattle
+	loadmem wMortyFightCount, 5
+	setflag ENGINE_MORTY_REMATCH_FIGHT
+	opentext
+	writetext MortyText_IveLostAgain
+	waitbutton
+	closetext
+	end
+
+.LoadFight5:
+	checkevent EVENT_OPENED_MT_SILVER
+	iffalse .LoadFight4
+	loadtrainer MORTY, MORTY6
+	startbattle
+	reloadmapafterbattle
+	setflag ENGINE_MORTY_REMATCH_FIGHT
+	opentext
+	writetext MortyText_IveLostAgain
+	waitbutton
+	closetext
+	end
+
+.PostRematch:
+	writetext MortyText_IveLostAgain
+	waitbutton
 	closetext
 	end
 
@@ -272,6 +367,43 @@ MortyFightDoneText:
 
 	para "I envy you for"
 	line "that…"
+	done
+
+MortyText_AskRematch:
+	text "Hello…"
+
+	para "I'm completely"
+	line "free today."
+
+	para "Why don't we have"
+	line "a battle?"
+	done
+
+MortyText_RematchAccepted:
+	text "All right…"
+	line "Let's battle!"
+	done
+
+MortyText_RematchDeclined:
+	text "I see…"
+	line "Well, you've got"
+
+	para "your own plans as"
+	line "well, I under-"
+	cont "stand."
+	done
+
+MortyText_RematchDefeat:
+	text "How is this poss-"
+	line "ible…"
+	done
+
+MortyText_IveLostAgain:
+	text "I've lost again…"
+
+	para "You may have some-"
+	line "thing more than"
+	cont "just strength."
 	done
 
 SageJeffreySeenText:

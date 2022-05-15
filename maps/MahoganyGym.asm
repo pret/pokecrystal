@@ -25,6 +25,7 @@ MahoganyGymPryceScript:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_PRYCE
+	clearflag ENGINE_PRYCE_REMATCH_FIGHT
 	opentext
 	writetext Text_ReceivedGlacierBadge
 	playsound SFX_GET_BADGE
@@ -34,7 +35,7 @@ MahoganyGymPryceScript:
 	scall MahoganyGymActivateRockets
 .FightDone:
 	checkevent EVENT_GOT_TM16_ICY_WIND
-	iftrue PryceScript_Defeat
+	iftrue .PryceScript_Defeat
 	setevent EVENT_BEAT_SKIER_ROXANNE
 	setevent EVENT_BEAT_SKIER_CLARISSA
 	setevent EVENT_BEAT_BOARDER_RONALD
@@ -43,17 +44,111 @@ MahoganyGymPryceScript:
 	writetext PryceText_GlacierBadgeSpeech
 	promptbutton
 	verbosegiveitem TM_ICY_WIND
-	iffalse MahoganyGym_NoRoomForIcyWind
+	iffalse .MahoganyGym_NoRoomForIcyWind
 	setevent EVENT_GOT_TM16_ICY_WIND
 	writetext PryceText_IcyWindSpeech
 	waitbutton
 	closetext
 	end
 
-PryceScript_Defeat:
+.PryceScript_Defeat:
+	checkflag ENGINE_PRYCE_REMATCH_FIGHT
+	iftrue .PostRematch
+	checkevent EVENT_BEAT_CHAMPION_LANCE
+	iffalse .PostInitialFight
+	readvar VAR_WEEKDAY	
+	ifnotequal MONDAY, .PostInitialFight
+	checktime MORN
+	iffalse .PostInitialFight
+	writetext PryceText_AskRematch
+	yesorno
+	iftrue .PryceRematch
+	writetext PryceText_RematchDeclined
+	waitbutton
+	closetext
+	end
+.PostInitialFight:
 	writetext PryceText_CherishYourPokemon
 	waitbutton
-MahoganyGym_NoRoomForIcyWind:
+.MahoganyGym_NoRoomForIcyWind:
+	closetext
+	end
+
+.PryceRematch:
+	writetext PryceText_RematchAccepted
+	waitbutton
+	winlosstext PryceText_RematchDefeat, 0
+	readmem wPryceFightCount
+	ifequal 5, .LoadFight5
+	ifequal 4, .LoadFight4
+	ifequal 3, .LoadFight3
+	ifequal 2, .LoadFight2
+	ifequal 1, .LoadFight1
+
+.LoadFight1:
+	loadtrainer PRYCE, PRYCE2
+	startbattle
+	reloadmapafterbattle
+	loadmem wPryceFightCount, 2
+	setflag ENGINE_PRYCE_REMATCH_FIGHT
+	opentext
+	writetext PryceText_ImpressiveAsAlways
+	waitbutton
+	closetext
+	end
+
+.LoadFight2:
+	loadtrainer PRYCE, PRYCE3
+	startbattle
+	reloadmapafterbattle
+	loadmem wPryceFightCount, 3
+	setflag ENGINE_PRYCE_REMATCH_FIGHT
+	opentext
+	writetext PryceText_ImpressiveAsAlways
+	waitbutton
+	closetext
+	end
+
+.LoadFight3:
+	loadtrainer PRYCE, PRYCE4
+	startbattle
+	reloadmapafterbattle
+	loadmem wPryceFightCount, 4
+	setflag ENGINE_PRYCE_REMATCH_FIGHT
+	opentext
+	writetext PryceText_ImpressiveAsAlways
+	waitbutton
+	closetext
+	end
+
+.LoadFight4:
+	loadtrainer PRYCE, PRYCE5
+	startbattle
+	reloadmapafterbattle
+	loadmem wPryceFightCount, 5
+	setflag ENGINE_PRYCE_REMATCH_FIGHT
+	opentext
+	writetext PryceText_ImpressiveAsAlways
+	waitbutton
+	closetext
+	end
+
+.LoadFight5:
+	checkevent EVENT_OPENED_MT_SILVER
+	iffalse .LoadFight4
+	loadtrainer PRYCE, PRYCE6
+	startbattle
+	reloadmapafterbattle
+	setflag ENGINE_PRYCE_REMATCH_FIGHT
+	opentext
+	writetext PryceText_ImpressiveAsAlways
+	waitbutton
+	closetext
+	end
+
+.PostRematch:
+	writetext PryceText_ImpressiveAsAlways
+	waitbutton
 	closetext
 	end
 
@@ -236,6 +331,49 @@ PryceText_CherishYourPokemon:
 
 	para "Cherish your time"
 	line "together!"
+	done
+
+PryceText_AskRematch:
+	text "Good morning."
+
+	para "Oh, perfect tim-"
+	line "ing…"
+
+	para "I was starting to"
+	line "get bored…"
+
+	para "Do you want to"
+	line "battle again?"
+	done
+
+PryceText_RematchAccepted:
+	text "No need for words."
+	line "A #MON battle"
+
+	para "is the way for us"
+	line "to communicate."
+	done
+
+PryceText_RematchDeclined:
+	text "I see."
+
+	para "Well that's how it's"
+	line "got to be…"
+
+	para "If you ever change"
+	line "your mind, give me"
+	cont "a shout."
+	done
+
+PryceText_RematchDefeat:
+	text "Hmm. Seems as if"
+	line "my luck has ran"
+	cont "out."
+	done
+
+PryceText_ImpressiveAsAlways:
+	text "Impressive as"
+	line "always!"
 	done
 
 BoarderRonaldSeenText:

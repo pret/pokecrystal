@@ -405,6 +405,7 @@ PhoneScript_AnswerPhone_Female:
 	ifequal PHONE_LASS_DANA, .Dana
 	ifequal PHONE_PICNICKER_TIFFANY, .Tiffany
 	ifequal PHONE_PICNICKER_ERIN, .Erin
+	ifequal PHONE_COOLTRAINERF_QUINN, .Quinn
 
 .Beverly:
 	farwritetext BeverlyAnswerPhoneText
@@ -446,6 +447,11 @@ PhoneScript_AnswerPhone_Female:
 	promptbutton
 	end
 
+.Quinn:
+	farwritetext QuinnAnswerPhoneText
+	promptbutton
+	end
+
 PhoneScript_AnswerPhone_Female_Day:
 	readvar VAR_CALLERID
 	ifequal PHONE_POKEFAN_BEVERLY, .Beverly
@@ -456,6 +462,7 @@ PhoneScript_AnswerPhone_Female_Day:
 	ifequal PHONE_LASS_DANA, .Dana
 	ifequal PHONE_PICNICKER_TIFFANY, .Tiffany
 	ifequal PHONE_PICNICKER_ERIN, .Erin
+	ifequal PHONE_COOLTRAINERF_QUINN, .Quinn
 
 .Beverly:
 	farwritetext BeverlyAnswerPhoneDayText
@@ -497,6 +504,11 @@ PhoneScript_AnswerPhone_Female_Day:
 	promptbutton
 	end
 
+.Quinn:
+	farwritetext QuinnAnswerPhoneDayText
+	promptbutton
+	end
+
 PhoneScript_AnswerPhone_Female_Nite:
 	readvar VAR_CALLERID
 	ifequal PHONE_POKEFAN_BEVERLY, .Beverly
@@ -507,6 +519,7 @@ PhoneScript_AnswerPhone_Female_Nite:
 	ifequal PHONE_LASS_DANA, .Dana
 	ifequal PHONE_PICNICKER_TIFFANY, .Tiffany
 	ifequal PHONE_PICNICKER_ERIN, .Erin
+	ifequal PHONE_COOLTRAINERF_QUINN, .Quinn
 
 .Beverly:
 	farwritetext BeverlyAnswerPhoneNiteText
@@ -545,6 +558,11 @@ PhoneScript_AnswerPhone_Female_Nite:
 
 .Erin:
 	farwritetext ErinAnswerPhoneNiteText
+	promptbutton
+	end
+
+.Quinn:
+	farwritetext QuinnAnswerPhoneNiteText
 	promptbutton
 	end
 
@@ -935,6 +953,7 @@ PhoneScript_GreetPhone_Female:
 	ifequal PHONE_LASS_DANA, .Dana
 	ifequal PHONE_PICNICKER_TIFFANY, .Tiffany
 	ifequal PHONE_PICNICKER_ERIN, .Erin
+	ifequal PHONE_COOLTRAINERF_QUINN, .Quinn
 
 .Beverly:
 	farwritetext BeverlyGreetText
@@ -976,6 +995,11 @@ PhoneScript_GreetPhone_Female:
 	promptbutton
 	end
 
+.Quinn:
+	farwritetext QuinnGreetText
+	promptbutton
+	end
+
 PhoneScript_GreetPhone_Female_Day:
 	readvar VAR_CALLERID
 	ifequal PHONE_POKEFAN_BEVERLY, .Beverly
@@ -986,6 +1010,7 @@ PhoneScript_GreetPhone_Female_Day:
 	ifequal PHONE_LASS_DANA, .Dana
 	ifequal PHONE_PICNICKER_TIFFANY, .Tiffany
 	ifequal PHONE_PICNICKER_ERIN, .Erin
+	ifequal PHONE_COOLTRAINERF_QUINN, .Quinn
 
 .Beverly:
 	farwritetext BeverlyGreetDayText
@@ -1027,6 +1052,11 @@ PhoneScript_GreetPhone_Female_Day:
 	promptbutton
 	end
 
+.Quinn:
+	farwritetext QuinnGreetDayText
+	promptbutton
+	end
+
 PhoneScript_GreetPhone_Female_Nite:
 	readvar VAR_CALLERID
 	ifequal PHONE_POKEFAN_BEVERLY, .Beverly
@@ -1037,6 +1067,7 @@ PhoneScript_GreetPhone_Female_Nite:
 	ifequal PHONE_LASS_DANA, .Dana
 	ifequal PHONE_PICNICKER_TIFFANY, .Tiffany
 	ifequal PHONE_PICNICKER_ERIN, .Erin
+	ifequal PHONE_COOLTRAINERF_QUINN, .Quinn
 
 .Beverly:
 	farwritetext BeverlyGreetNiteText
@@ -1075,6 +1106,11 @@ PhoneScript_GreetPhone_Female_Nite:
 
 .Erin:
 	farwritetext ErinGreetNiteText
+	promptbutton
+	end
+
+.Quinn:
+	farwritetext QuinnGreetNiteText
 	promptbutton
 	end
 
@@ -1198,6 +1234,7 @@ PhoneScript_Generic_Female:
 	ifequal PHONE_LASS_DANA, .Dana
 	ifequal PHONE_PICNICKER_TIFFANY, .Tiffany
 	ifequal PHONE_PICNICKER_ERIN, .Erin
+	ifequal PHONE_COOLTRAINERF_QUINN, .Quinn
 
 .Beverly:
 	farwritetext BeverlyGenericText
@@ -1236,6 +1273,11 @@ PhoneScript_Generic_Female:
 
 .Erin:
 	farwritetext ErinGenericText
+	promptbutton
+	end
+
+.Quinn:
+	farwritetext QuinnGenericText
 	promptbutton
 	end
 

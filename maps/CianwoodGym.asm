@@ -42,6 +42,7 @@ CianwoodGymChuckScript:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CHUCK
+	clearflag ENGINE_CHUCK_REMATCH_FIGHT
 	opentext
 	writetext GetStormBadgeText
 	playsound SFX_GET_BADGE
@@ -51,7 +52,7 @@ CianwoodGymChuckScript:
 	scall CianwoodGymActivateRockets
 .FightDone:
 	checkevent EVENT_GOT_TM01_DYNAMICPUNCH
-	iftrue .AlreadyGotTM
+	iftrue .GotDynamicPunch
 	setevent EVENT_BEAT_BLACKBELT_YOSHI
 	setevent EVENT_BEAT_BLACKBELT_LAO
 	setevent EVENT_BEAT_BLACKBELT_NOB
@@ -59,17 +60,111 @@ CianwoodGymChuckScript:
 	writetext ChuckExplainBadgeText
 	promptbutton
 	verbosegiveitem TM_DYNAMICPUNCH
-	iffalse .BagFull
+	iffalse .NoRoomForDynamicPunch
 	setevent EVENT_GOT_TM01_DYNAMICPUNCH
 	writetext ChuckExplainTMText
 	waitbutton
 	closetext
 	end
 
-.AlreadyGotTM:
+.GotDynamicPunch:
+	checkflag ENGINE_CHUCK_REMATCH_FIGHT
+	iftrue .PostRematch
+	checkevent EVENT_BEAT_CHAMPION_LANCE
+	iffalse .PostInitialFight
+	readvar VAR_WEEKDAY	
+	ifnotequal WEDNESDAY, .PostInitialFight
+	checktime NITE
+	iffalse .PostInitialFight
+	writetext ChuckText_AskRematch
+	yesorno
+	iftrue .ChuckRematch
+	writetext ChuckText_RematchDeclined
+	waitbutton
+	closetext
+	end
+.PostInitialFight:
 	writetext ChuckAfterText
 	waitbutton
-.BagFull:
+.NoRoomForDynamicPunch:
+	closetext
+	end
+
+.ChuckRematch:
+	writetext ChuckText_RematchAccepted
+	waitbutton
+	winlosstext ChuckText_RematchDefeat, 0
+	readmem wChuckFightCount
+	ifequal 5, .LoadFight5
+	ifequal 4, .LoadFight4
+	ifequal 3, .LoadFight3
+	ifequal 2, .LoadFight2
+	ifequal 1, .LoadFight1
+
+.LoadFight1:
+	loadtrainer CHUCK, CHUCK2
+	startbattle
+	reloadmapafterbattle
+	loadmem wChuckFightCount, 2
+	setflag ENGINE_CHUCK_REMATCH_FIGHT
+	opentext
+	writetext ChuckText_ABattleWithYou
+	waitbutton
+	closetext
+	end
+
+.LoadFight2:
+	loadtrainer CHUCK, CHUCK3
+	startbattle
+	reloadmapafterbattle
+	loadmem wChuckFightCount, 3
+	setflag ENGINE_CHUCK_REMATCH_FIGHT
+	opentext
+	writetext ChuckText_ABattleWithYou
+	waitbutton
+	closetext
+	end
+
+.LoadFight3:
+	loadtrainer CHUCK, CHUCK4
+	startbattle
+	reloadmapafterbattle
+	loadmem wChuckFightCount, 4
+	setflag ENGINE_CHUCK_REMATCH_FIGHT
+	opentext
+	writetext ChuckText_ABattleWithYou
+	waitbutton
+	closetext
+	end
+
+.LoadFight4:
+	loadtrainer CHUCK, CHUCK5
+	startbattle
+	reloadmapafterbattle
+	loadmem wChuckFightCount, 5
+	setflag ENGINE_CHUCK_REMATCH_FIGHT
+	opentext
+	writetext ChuckText_ABattleWithYou
+	waitbutton
+	closetext
+	end
+
+.LoadFight5:
+	checkevent EVENT_OPENED_MT_SILVER
+	iffalse .LoadFight4
+	loadtrainer CHUCK, CHUCK5
+	startbattle
+	reloadmapafterbattle
+	setflag ENGINE_CHUCK_REMATCH_FIGHT
+	opentext
+	writetext ChuckText_ABattleWithYou
+	waitbutton
+	closetext
+	end
+
+.PostRematch:
+	writetext ChuckText_ABattleWithYou
+	waitbutton
 	closetext
 	end
 
@@ -236,6 +331,36 @@ ChuckAfterText:
 	para "From now on, I'm"
 	line "going to train 24"
 	cont "hours a day!"
+	done
+
+ChuckText_AskRematch:
+	text "Oh, hey!"
+	line "I just finished"
+	cont "training."
+
+	para "Do you want to"
+	line "battle again?"
+	done
+
+ChuckText_RematchAccepted:
+	text "Taste my 24-hour"
+	line "training!"
+	done
+
+ChuckText_RematchDeclined:
+	text "Noooooo!"
+	line "That's terrible!"
+	done
+
+ChuckText_RematchDefeat:
+	text "We… lost…"
+	done
+
+ChuckText_ABattleWithYou:
+	text "WAHAHAH!"
+
+	para "A battle with you"
+	line "is never boring!"
 	done
 
 BlackbeltYoshiSeenText:
