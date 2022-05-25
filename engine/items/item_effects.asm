@@ -791,7 +791,7 @@ HeavyBallMultiplier:
 ; else add 0 to catch rate if weight < 204.8 kg
 ; else add 20 to catch rate if weight < 307.2 kg
 ; else add 30 to catch rate if weight < 409.6 kg
-; else add 40 to catch rate (never happens)
+; else add 40 to catch rate
 	ld a, [wEnemyMonSpecies]
 	ld hl, PokedexDataPointerTable
 	dec a
