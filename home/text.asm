@@ -186,24 +186,24 @@ NextChar::
 	jp PlaceNextChar
 
 CheckDict::
-dict: MACRO
-assert CHARLEN(\1) == 1
-if \1 == 0
-	and a
-else
-	cp \1
-endc
-if ISCONST(\2)
-	; Replace a character with another one
-	jr nz, .not\@
-	ld a, \2
-.not\@:
-elif STRSUB("\2", 1, 1) == "."
-	; Locals can use a short jump
-	jr z, \2
-else
-	jp z, \2
-endc
+MACRO dict
+	assert CHARLEN(\1) == 1
+	if \1 == 0
+		and a
+	else
+		cp \1
+	endc
+	if ISCONST(\2)
+		; Replace a character with another one
+		jr nz, .not\@
+		ld a, \2
+	.not\@:
+	elif STRSUB("\2", 1, 1) == "."
+		; Locals can use a short jump
+		jr z, \2
+	else
+		jp z, \2
+	endc
 ENDM
 
 	dict "<MOBILE>",  MobileScriptChar
@@ -295,7 +295,7 @@ MobileScriptChar::
 	farcall RunMobileScript
 	jp PlaceNextChar
 
-print_name: MACRO
+MACRO print_name
 	push de
 	ld de, \1
 	jp PlaceCommandCharacter

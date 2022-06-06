@@ -1,14 +1,14 @@
-NUM_ODD_EGGS EQU 14
+DEF NUM_ODD_EGGS EQU 14
 
-prob: MACRO
-prob_total += \1
+MACRO prob
+	DEF prob_total += \1
 	dw prob_total * $ffff / 100
 ENDM
 
 OddEggProbabilities:
 ; entries correspond to OddEggs (below)
 	table_width 2, OddEggProbabilities
-prob_total = 0
+DEF prob_total = 0
 ; Pichu
 	prob 8
 	prob 1

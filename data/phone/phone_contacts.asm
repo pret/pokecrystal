@@ -1,4 +1,4 @@
-phone: MACRO
+MACRO phone
 ; trainer class, trainer id, map, callee time, callee script, caller time, caller script
 	db \1, \2
 	map_id \3

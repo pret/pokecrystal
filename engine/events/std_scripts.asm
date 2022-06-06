@@ -1,4 +1,4 @@
-add_stdscript: MACRO
+MACRO add_stdscript
 \1StdScript::
 	dba \1
 ENDM

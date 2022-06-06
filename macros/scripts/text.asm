@@ -1,147 +1,147 @@
-text   EQUS "db TX_START,"    ; Start writing text.
-next   EQUS "db \"<NEXT>\","  ; Move a line down.
-line   EQUS "db \"<LINE>\","  ; Start writing at the bottom line.
-page   EQUS "db \"@\","       ; Start a new Pokédex page.
-para   EQUS "db \"<PARA>\","  ; Start a new paragraph.
-cont   EQUS "db \"<CONT>\","  ; Scroll to the next line.
-done   EQUS "db \"<DONE>\""   ; End a text box.
-prompt EQUS "db \"<PROMPT>\"" ; Prompt the player to end a text box (initiating some other event).
+DEF text   EQUS "db TX_START,"    ; Start writing text.
+DEF next   EQUS "db \"<NEXT>\","  ; Move a line down.
+DEF line   EQUS "db \"<LINE>\","  ; Start writing at the bottom line.
+DEF page   EQUS "db \"@\","       ; Start a new Pokédex page.
+DEF para   EQUS "db \"<PARA>\","  ; Start a new paragraph.
+DEF cont   EQUS "db \"<CONT>\","  ; Scroll to the next line.
+DEF done   EQUS "db \"<DONE>\""   ; End a text box.
+DEF prompt EQUS "db \"<PROMPT>\"" ; Prompt the player to end a text box (initiating some other event).
 
 ; TextCommands indexes (see home/text.asm)
 	const_def
 
 	const TX_START ; $00
-text_start: MACRO
+MACRO text_start
 	db TX_START
 ENDM
 
 	const TX_RAM ; $01
-text_ram: MACRO
+MACRO text_ram
 	db TX_RAM
 	dw \1
 ENDM
 
 	const TX_BCD ; $02
-text_bcd: MACRO
+MACRO text_bcd
 	db TX_BCD
 	dw \1
 	db \2
 ENDM
 
 	const TX_MOVE ; $03
-text_move: MACRO
+MACRO text_move
 	db TX_MOVE
 	dw \1
 ENDM
 
 	const TX_BOX ; $04
-text_box: MACRO
+MACRO text_box
 	db TX_BOX
 	dw \1
 	db \2, \3
 ENDM
 
 	const TX_LOW ; $05
-text_low: MACRO
+MACRO text_low
 	db TX_LOW
 ENDM
 
 	const TX_PROMPT_BUTTON ; $06
-text_promptbutton: MACRO
+MACRO text_promptbutton
 	db TX_PROMPT_BUTTON
 ENDM
 
 	const TX_SCROLL ; $07
-text_scroll: MACRO
+MACRO text_scroll
 	db TX_SCROLL
 ENDM
 
 	const TX_START_ASM ; $08
-text_asm: MACRO
+MACRO text_asm
 	db TX_START_ASM
 ENDM
 
 	const TX_DECIMAL ; $09
-text_decimal: MACRO
+MACRO text_decimal
 	db TX_DECIMAL
 	dw \1 ; address
 	dn \2, \3 ; bytes, digits
 ENDM
 
 	const TX_PAUSE ; $0a
-text_pause: MACRO
+MACRO text_pause
 	db TX_PAUSE
 ENDM
 
 	const TX_SOUND_DEX_FANFARE_50_79 ; $0b
-sound_dex_fanfare_50_79: MACRO
+MACRO sound_dex_fanfare_50_79
 	db TX_SOUND_DEX_FANFARE_50_79
 ENDM
 
 	const TX_DOTS ; $0c
-text_dots: MACRO
+MACRO text_dots
 	db TX_DOTS
 	db \1
 ENDM
 
 	const TX_WAIT_BUTTON ; $0d
-text_waitbutton: MACRO
+MACRO text_waitbutton
 	db TX_WAIT_BUTTON
 ENDM
 
 	const TX_SOUND_DEX_FANFARE_20_49 ; $0e
-sound_dex_fanfare_20_49: MACRO
+MACRO sound_dex_fanfare_20_49
 	db TX_SOUND_DEX_FANFARE_20_49
 ENDM
 
 	const TX_SOUND_ITEM ; $0f
-sound_item: MACRO
+MACRO sound_item
 	db TX_SOUND_ITEM
 ENDM
 
 	const TX_SOUND_CAUGHT_MON ; $10
-sound_caught_mon: MACRO
+MACRO sound_caught_mon
 	db TX_SOUND_CAUGHT_MON
 ENDM
 
 	const TX_SOUND_DEX_FANFARE_80_109 ; $11
-sound_dex_fanfare_80_109: MACRO
+MACRO sound_dex_fanfare_80_109
 	db TX_SOUND_DEX_FANFARE_80_109
 ENDM
 
 	const TX_SOUND_FANFARE ; $12
-sound_fanfare: MACRO
+MACRO sound_fanfare
 	db TX_SOUND_FANFARE
 ENDM
 
 	const TX_SOUND_SLOT_MACHINE_START ; $13
-sound_slot_machine_start: MACRO
+MACRO sound_slot_machine_start
 	db TX_SOUND_SLOT_MACHINE_START
 ENDM
 
 	const TX_STRINGBUFFER ; $14
-text_buffer: MACRO
+MACRO text_buffer
 	db TX_STRINGBUFFER
 	db \1
 ENDM
 
 	const TX_DAY ; $15
-text_today: MACRO
+MACRO text_today
 	db TX_DAY
 ENDM
 
 	const TX_FAR ; $16
-text_far: MACRO
+MACRO text_far
 	db TX_FAR
 	dw \1
 	db BANK(\1)
 ENDM
 
-NUM_TEXT_CMDS EQU const_value
+DEF NUM_TEXT_CMDS EQU const_value
 
 	const_next $50
 
 	const TX_END ; $50
-text_end: MACRO
+MACRO text_end
 	db TX_END
 ENDM

@@ -1,4 +1,4 @@
-engine_flag: MACRO
+MACRO engine_flag
 ; location, bit
 ; (all locations are in WRAM bank 1)
 	dwb \1 + (\2 / 8), 1 << (\2 % 8)

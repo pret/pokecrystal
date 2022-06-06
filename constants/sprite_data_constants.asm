@@ -1,11 +1,11 @@
 ; overworld_sprite struct members (see data/sprites/sprites.asm)
 rsreset
-SPRITEDATA_ADDR    rw ; 0
-SPRITEDATA_SIZE    rb ; 2
-SPRITEDATA_BANK    rb ; 3
-SPRITEDATA_TYPE    rb ; 4
-SPRITEDATA_PALETTE rb ; 5
-NUM_SPRITEDATA_FIELDS EQU _RS
+DEF SPRITEDATA_ADDR    rw ; 0
+DEF SPRITEDATA_SIZE    rb ; 2
+DEF SPRITEDATA_BANK    rb ; 3
+DEF SPRITEDATA_TYPE    rb ; 4
+DEF SPRITEDATA_PALETTE rb ; 5
+DEF NUM_SPRITEDATA_FIELDS EQU _RS
 
 ; sprite types
 	const_def 1

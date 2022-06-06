@@ -1,18 +1,18 @@
-unownwall: MACRO
-for n, CHARLEN(\1)
-x = CHARSUB(\1, n + 1)
-if x == "-"
-	db $64
-elif x >= "Y"
-	db 2 * (x - "Y") + $60
-elif x >= "Q"
-	db 2 * (x - "Q") + $40
-elif x >= "I"
-	db 2 * (x - "I") + $20
-else
-	db 2 * (x - "A")
-endc
-endr
+MACRO unownwall
+	for n, CHARLEN(\1)
+		DEF x = CHARSUB(\1, n + 1)
+		if x == "-"
+			db $64
+		elif x >= "Y"
+			db 2 * (x - "Y") + $60
+		elif x >= "Q"
+			db 2 * (x - "Q") + $40
+		elif x >= "I"
+			db 2 * (x - "I") + $20
+		else
+			db 2 * (x - "A")
+		endc
+	endr
 	db -1 ; end
 ENDM
 

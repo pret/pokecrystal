@@ -8,7 +8,7 @@
 	const OPT_MENU_ACCOUNT ; 5
 	const OPT_FRAME        ; 6
 	const OPT_CANCEL       ; 7
-NUM_OPTIONS EQU const_value    ; 8
+DEF NUM_OPTIONS EQU const_value    ; 8
 
 _Option:
 	ld hl, hInMenu

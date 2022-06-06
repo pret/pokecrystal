@@ -1370,7 +1370,7 @@ BillsPC_RefreshTextboxes:
 .Placeholder:
 	db "-----@"
 
-copy_box_data: MACRO
+MACRO copy_box_data
 .loop\@
 	ld a, [hl]
 	cp -1
@@ -1394,9 +1394,9 @@ copy_box_data: MACRO
 	jr .loop\@
 
 .done\@
-if \1
-	call CloseSRAM
-endc
+	if \1
+		call CloseSRAM
+	endc
 	ld a, -1
 	ld [de], a
 	ld a, [wBillsPCTempBoxCount]

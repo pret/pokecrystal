@@ -1,13 +1,13 @@
 ; BattleTransitionJumptable.Jumptable indexes
-BATTLETRANSITION_CAVE             EQU $01
-BATTLETRANSITION_CAVE_STRONGER    EQU $09
-BATTLETRANSITION_NO_CAVE          EQU $10
-BATTLETRANSITION_NO_CAVE_STRONGER EQU $18
-BATTLETRANSITION_FINISH           EQU $20
-BATTLETRANSITION_END              EQU $80
+DEF BATTLETRANSITION_CAVE             EQU $01
+DEF BATTLETRANSITION_CAVE_STRONGER    EQU $09
+DEF BATTLETRANSITION_NO_CAVE          EQU $10
+DEF BATTLETRANSITION_NO_CAVE_STRONGER EQU $18
+DEF BATTLETRANSITION_FINISH           EQU $20
+DEF BATTLETRANSITION_END              EQU $80
 
-BATTLETRANSITION_SQUARE EQU "8" ; $fe
-BATTLETRANSITION_BLACK  EQU "9" ; $ff
+DEF BATTLETRANSITION_SQUARE EQU "8" ; $fe
+DEF BATTLETRANSITION_BLACK  EQU "9" ; $ff
 
 DoBattleTransition:
 	call .InitGFX
@@ -208,8 +208,8 @@ BattleTransitionJumptable:
 	const TRANS_NO_CAVE_STRONGER
 
 ; transition animation bits
-TRANS_STRONGER_F EQU 0 ; bit set in TRANS_CAVE_STRONGER and TRANS_NO_CAVE_STRONGER
-TRANS_NO_CAVE_F EQU 1 ; bit set in TRANS_NO_CAVE and TRANS_NO_CAVE_STRONGER
+DEF TRANS_STRONGER_F EQU 0 ; bit set in TRANS_CAVE_STRONGER and TRANS_NO_CAVE_STRONGER
+DEF TRANS_NO_CAVE_F  EQU 1 ; bit set in TRANS_NO_CAVE and TRANS_NO_CAVE_STRONGER
 
 StartTrainerBattle_DetermineWhichAnimation:
 ; The screen flashes a different number of times depending on the level of
@@ -422,11 +422,11 @@ endr
 	const LOWER_RIGHT
 
 ; quadrant bits
-RIGHT_QUADRANT_F EQU 0 ; bit set in UPPER_RIGHT and LOWER_RIGHT
-LOWER_QUADRANT_F EQU 1 ; bit set in LOWER_LEFT and LOWER_RIGHT
+DEF RIGHT_QUADRANT_F EQU 0 ; bit set in UPPER_RIGHT and LOWER_RIGHT
+DEF LOWER_QUADRANT_F EQU 1 ; bit set in LOWER_LEFT and LOWER_RIGHT
 
 .spin_quadrants:
-spin_quadrant: MACRO
+MACRO spin_quadrant
 	db \1
 	dw \2
 	dwcoord \3, \4
@@ -799,7 +799,7 @@ StartTrainerBattle_ZoomToBlack:
 	ret
 
 .boxes
-zoombox: MACRO
+MACRO zoombox
 ; width, height, start y, start x
 	db \1, \2
 	dwcoord \3, \4

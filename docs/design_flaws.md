@@ -20,7 +20,7 @@ These are parts of the code that do not work *incorrectly*, like [bugs and glitc
 [data/pokemon/pic_pointers.asm](https://github.com/pret/pokecrystal/blob/master/data/pokemon/pic_pointers.asm), [data/pokemon/unown_pic_pointers.asm](https://github.com/pret/pokecrystal/blob/master/data/pokemon/unown_pic_pointers.asm), and [data/trainers/pic_pointers.asm](https://github.com/pret/pokecrystal/blob/master/data/trainers/pic_pointers.asm) all have to use `dba_pic` instead of `dba`. This is a macro in [macros/data.asm](https://github.com/pret/pokecrystal/blob/master/macros/data.asm) that offsets banks by `PICS_FIX`:
 
 ```asm
-dba_pic: MACRO ; dbw bank, address
+MACRO dba_pic ; dbw bank, address
 	db BANK(\1) - PICS_FIX
 	dw \1
 ENDM
@@ -32,7 +32,7 @@ The offset is translated into a correct bank by `FixPicBank` in [engine/gfx/load
 FixPicBank:
 ; This is a thing for some reason.
 
-PICS_FIX EQU $36
+DEF PICS_FIX EQU $36
 GLOBAL PICS_FIX
 
 	push hl
@@ -148,8 +148,8 @@ In [gfx/footprints.asm](https://github.com/pret/pokecrystal/blob/master/gfx/foot
 ; then a row of the bottom two tiles for those eight footprints.
 
 ; These macros help extract the first and the last two tiles, respectively.
-footprint_top    EQUS "0,                 2 * LEN_1BPP_TILE"
-footprint_bottom EQUS "2 * LEN_1BPP_TILE, 2 * LEN_1BPP_TILE"
+DEF footprint_top    EQUS "0,                 2 * LEN_1BPP_TILE"
+DEF footprint_bottom EQUS "2 * LEN_1BPP_TILE, 2 * LEN_1BPP_TILE"
 
 ; Entries correspond to Pokémon species, two apiece, 8 tops then 8 bottoms
 
@@ -322,7 +322,7 @@ Edit `GetMapMusic`:
 	add_tm PSYCHIC_M    ; dd
 	...
 	add_tm NIGHTMARE    ; f2
-NUM_TMS EQU const_value - TM01 - 2 ; discount ITEM_C3 and ITEM_DC
+DEF NUM_TMS EQU const_value - TM01 - 2 ; discount ITEM_C3 and ITEM_DC
 ```
 
 `GetTMHMNumber` and `GetNumberedTMHM` in [engine/items/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/items.asm) have to compensate for this.
@@ -671,7 +671,7 @@ CelebiEvent_Cosine:
 They all rely on `calc_sine_wave` in [macros/code.asm](https://github.com/pret/pokecrystal/blob/master/macros/code.asm):
 
 ```asm
-calc_sine_wave: MACRO
+MACRO calc_sine_wave
 ; input: a = a signed 6-bit value
 ; output: a = d * sin(a * pi/32)
 	and %111111
@@ -722,13 +722,13 @@ ENDM
 And on `sine_table` in [macros/data.asm](https://github.com/pret/pokecrystal/blob/master/macros/data.asm):
 
 ```asm
-sine_table: MACRO
+MACRO sine_table
 ; \1 samples of sin(x) from x=0 to x<32768 (pi radians)
-x = 0
-rept \1
-	dw (sin(x) + (sin(x) & $ff)) >> 8 ; round up
-x += DIV(32768, \1) ; a circle has 65536 "degrees"
-endr
+	DEF x = 0
+	rept \1
+		dw (sin(x) + (sin(x) & $ff)) >> 8 ; round up
+		DEF x += DIV(32768, \1) ; a circle has 65536 "degrees"
+	endr
 ENDM
 ```
 

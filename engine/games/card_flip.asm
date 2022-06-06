@@ -1,7 +1,7 @@
-CARDFLIP_LIGHT_OFF EQU "♂" ; $ef
-CARDFLIP_LIGHT_ON  EQU "♀" ; $f5
+DEF CARDFLIP_LIGHT_OFF EQU "♂" ; $ef
+DEF CARDFLIP_LIGHT_ON  EQU "♀" ; $f5
 
-CARDFLIP_DECK_SIZE EQUS "(wDeckEnd - wDeck)"
+DEF CARDFLIP_DECK_SIZE EQUS "(wDeckEnd - wDeck)"
 	assert wDiscardPileEnd - wDiscardPile == wDeckEnd - wDeck
 
 MemoryGameGFX:
@@ -1337,14 +1337,14 @@ CardFlip_UpdateCursorOAM:
 	ret
 
 .OAMData:
-cardflip_cursor: MACRO
-if _NARG >= 5
-	dbpixel \1, \2, \3, \4
-	dw \5
-else
-	dbpixel \1, \2
-	dw \3
-endc
+MACRO cardflip_cursor
+	if _NARG >= 5
+		dbpixel \1, \2, \3, \4
+		dw \5
+	else
+		dbpixel \1, \2
+		dw \3
+	endc
 ENDM
 
 	cardflip_cursor 11,  2,       .Impossible

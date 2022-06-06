@@ -601,7 +601,7 @@ DoPlayerMovement::
 	ld [wWalkingTile], a
 	ret
 
-player_action: MACRO
+MACRO player_action
 ; walk direction, facing, x movement, y movement, tile collision pointer
 	db \1, \2, \3, \4
 	dw \5

@@ -2395,7 +2395,7 @@ Function100f8d:
 	call CloseSRAM
 	ret
 
-macro_100fc0: MACRO
+MACRO macro_100fc0
 	; first byte:
 	;     Bit 7 set: Not SRAM
 	;     Lower 7 bits: Bank if SRAM
