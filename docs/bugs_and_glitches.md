@@ -123,6 +123,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
 +	ret
 +
  CheckFaint_PlayerThenEnemy:
+-; BUG: Perish Song and Spikes can leave a Pokemon with 0 HP and not faint (see docs/bugs_and_glitches.md)
 +.faint_loop
 +	call .Function
 +	ret c
@@ -139,6 +140,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
 
 ```diff
  CheckFaint_EnemyThenPlayer:
+-; BUG: Perish Song and Spikes can leave a Pokemon with 0 HP and not faint (see docs/bugs_and_glitches.md)
 +.faint_loop
 +	call .Function
 +	ret c
@@ -158,10 +160,11 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
 
 ([Video](https://www.youtube.com/watch?v=rGqu3d3pdok&t=450))
 
-**Fix:** Edit `SpeciesItemBoost` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm)
+**Fix:** Edit `SpeciesItemBoost` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm):
 
 ```diff
  ; Double the stat
+-; BUG: Thick Club and Light Ball can make (Special) Attack wrap around above 1024 (see docs/bugs_and_glitches.md)
  	sla l
  	rl h
 +
@@ -189,6 +192,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
  DittoMetalPowder:
  	...
 
+-; BUG: Metal Powder can increase damage taken with boosted (Special) Defense (see docs/bugs_and_glitches.md)
 -	ld a, c
 -	srl a
 -	add c
@@ -273,6 +277,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ```diff
  .finish
+-; BUG: Reflect and Light Screen can make (Special) Defense wrap around above 1024 (see docs/bugs_and_glitches.md)
 -	ld a, [wLinkMode]
 -	cp LINK_COLOSSEUM
 -	jr z, .done
@@ -298,8 +303,8 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 **Fix:** Edit `BattleCommand_EffectChance` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm):
 
 ```diff
--	; BUG: 1/256 chance to fail even for a 100% effect chance,
--	; since carry is not set if BattleRandom == [hl] == 255
+ .got_move_chance
+-; BUG: Moves with a 100% secondary effect chance will not trigger it in 1/256 uses (see docs/bugs_and_glitches.md)
 -	call BattleRandom
 +	ld a, [hl]
 +	sub 100 percent
@@ -340,10 +345,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ```diff
  BattleCommand_BellyDrum:
- ; bellydrum
--; This command is buggy because it raises the user's attack
--; before checking that it has enough HP to use the move.
--; Swap the order of these two blocks to fix.
+-; BUG: Belly Drum sharply boosts Attack even with under 50% HP (see docs/bugs_and_glitches.md)
 -	call BattleCommand_AttackUp2
 -	ld a, [wAttackMissed]
 -	and a
@@ -371,6 +373,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 ```diff
  HandleBerserkGene:
  	...
+-; BUG: Berserk Gene's confusion lasts for 256 turns or the previous Pokémon's confusion count (see docs/bugs_and_glitches.md)
  	ld a, BATTLE_VARS_SUBSTATUS3
  	call GetBattleVarAddr
  	push af
@@ -426,7 +429,8 @@ Then edit four routines in [engine/battle/effect_commands.asm](https://github.co
 
 ```diff
  BattleCommand_DamageCalc:
- ; damagecalc
+ ; Return a damage value for move power d, player level e, enemy defense c and player attack b.
+-; BUG: Confusion damage is affected by type-boosting items and Explosion/Self-Destruct doubling (see docs/bugs_and_glitches.md)
  	...
  .skip_zero_damage_check
 +	xor a ; Not confusion damage
@@ -512,7 +516,8 @@ This bug affects Acid, Iron Tail, and Rock Smash.
  	supereffectivetext
  	checkfaint
  	buildopponentrage
--	effectchance ; bug: duplicate effectchance shouldn't be here
+-; BUG: Moves that lower Defense can do so after breaking a Substitute (see docs/bugs_and_glitches.md)
+-	effectchance
  	defensedown
  	statdownmessage
  	endmove
@@ -526,7 +531,7 @@ This bug affects Acid, Iron Tail, and Rock Smash.
 **Fix:** Edit `BattleCommand_Counter` in [engine/battle/move_effects/counter.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/counter.asm) and `BattleCommand_MirrorCoat` in [engine/battle/move_effects/mirror_coat.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/mirror_coat.asm):
 
 ```diff
--	; BUG: Move should fail with all non-damaging battle actions
+-; BUG: Counter and Mirror Coat still work if the opponent uses an item (see docs/bugs_and_glitches.md)
  	ld hl, wCurDamage
  	ld a, [hli]
  	or [hl]
@@ -553,8 +558,8 @@ Add this to the end of each file:
 
 ```diff
  .done
--	; Bug: this will result in a move with PP Up confusing the game.
--	and a ; should be "and PP_MASK"
+-; BUG: A Disabled but PP Up–enhanced move may not trigger Struggle (see docs/bugs_and_glitches.md)
+-	and a
 +	and PP_MASK
  	ret nz
 
@@ -572,9 +577,10 @@ Add this to the end of each file:
 
 ([Video](https://www.youtube.com/watch?v=tiRvw-Nb2ME))
 
-**Fix:** Edit `PursuitSwitch` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm)
+**Fix:** Edit `PursuitSwitch` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
 
 ```diff
+-; BUG: A Pokémon that fainted from Pursuit will have its old status condition when revived (see docs/bugs_and_glitches.md)
  	ld a, $f0
  	ld [wCryTracks], a
  	ld a, [wBattleMonSpecies]
@@ -604,7 +610,7 @@ This bug affects Attract, Curse, Foresight, Mean Look, Mimic, Nightmare, Spider 
 
 ```diff
  CheckHiddenOpponent:
--; BUG: This routine is completely redundant and introduces a bug, since BattleCommand_CheckHit does these checks properly.
+-; BUG: Lock-On and Mind Reader don't always bypass Fly and Dig (see docs/bugs_and_glitches.md)
 -	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 -	call GetBattleVar
 -	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
@@ -621,6 +627,7 @@ This bug affects Attract, Curse, Foresight, Mean Look, Mimic, Nightmare, Spider 
 
 ```diff
  .got_mon
+-; BUG: Beat Up can desynchronize link battles (see docs/bugs_and_glitches.md)
  	ld a, [wCurBeatUpPartyMon]
  	ld hl, wPartyMonNicknames
  	call GetNickname
@@ -632,8 +639,6 @@ This bug affects Attract, Curse, Foresight, Mean Look, Mimic, Nightmare, Spider 
  	ld a, [wCurBeatUpPartyMon]
  	ld c, a
  	ld a, [wCurBattleMon]
--	; BUG: this can desynchronize link battles
--	; Change "cp [hl]" to "cp c" to fix
 -	cp [hl]
 +	cp c
  	ld hl, wBattleMonStatus
@@ -655,6 +660,7 @@ This bug prevents the rest of Beat Up's effect from being executed if the player
 
 ```diff
  .only_one_beatup
+-; BUG: Beat Up works incorrectly with only one Pokémon in the party (see docs/bugs_and_glitches.md)
  	ld a, BATTLE_VARS_SUBSTATUS3
  	call GetBattleVarAddr
  	res SUBSTATUS_IN_LOOP, [hl]
@@ -667,6 +673,7 @@ This bug prevents the rest of Beat Up's effect from being executed if the player
 
 ```diff
  .only_one_beatup
+ ; BUG: Beat Up works incorrectly with only one Pokemon in the party (see docs/bugs_and_glitches.md)
  	ld a, BATTLE_VARS_SUBSTATUS3
  	call GetBattleVarAddr
  	res SUBSTATUS_IN_LOOP, [hl]
@@ -678,13 +685,14 @@ This bug prevents the rest of Beat Up's effect from being executed if the player
 
 ### Beat Up may fail to raise Substitute
 
-*Fixing this cosmetic bug will* not *break link battle compatibility.*
+*Fixing this cosmetic bug will* **not** *break link battle compatibility.*
 
 This bug prevents Substitute from being raised if Beat Up was blocked by Protect or Detect.
 
 **Fix:** Edit `BattleCommand_FailureText` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm).
 
 ```diff
+-; BUG: Beat Up may fail to raise Substitute (see docs/bugs_and_glitches.md)
  	cp EFFECT_MULTI_HIT
  	jr z, .multihit
  	cp EFFECT_DOUBLE_HIT
@@ -703,14 +711,11 @@ This bug prevents Substitute from being raised if Beat Up was blocked by Protect
 
 ### Beat Up may trigger King's Rock even if it failed
 
-This bug is caused because Beat Up never sets `wAttackMissed`, even when no Pokémon was able to attack (due to being fainted or having a status condition).
-
 **Fix:** Edit `BattleCommand_BeatUpFailText` in [engine/battle/move_effects/beat_up.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/beat_up.asm):
 
 ```diff
  BattleCommand_BeatUpFailText:
- ; beatupfailtext
-
+-; BUG: Beat Up may trigger King's Rock even if it failed (see docs/bugs_and_glitches.md)
  	ld a, [wBeatUpHitAtLeastOnce]
  	and a
  	ret nz
@@ -732,8 +737,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 
 ```diff
  BattleCommand_Present:
- ; present
-
+-; BUG: Present damage is incorrect in link battles (see docs/bugs_and_glitches.md)
 -	ld a, [wLinkMode]
 -	cp LINK_COLOSSEUM
 -	jr z, .colosseum_skippush
@@ -762,6 +766,7 @@ Edit [engine/battle/move_effects/return.asm](https://github.com/pret/pokecrystal
 
 ```diff
  BattleCommand_HappinessPower:
+-; BUG: Return and Frustration deal no damage when the user's happiness is low or high, respectively (see docs/bugs_and_glitches.md)
  	...
  	call Multiply
  	ld a, 25
@@ -782,7 +787,9 @@ And edit [engine/battle/move_effects/frustration.asm](https://github.com/pret/po
 
 ```diff
  BattleCommand_FrustrationPower:
+-; BUG: Return and Frustration deal no damage when the user's happiness is low or high, respectively (see docs/bugs_and_glitches.md)
  	...
+-; BUG: Return and Frustration deal no damage when the user's happiness is low or high, respectively (see docs/bugs_and_glitches.md)
  	call Multiply
  	ld a, 25
  	ldh [hDivisor], a
@@ -804,6 +811,7 @@ And edit [engine/battle/move_effects/frustration.asm](https://github.com/pret/po
 **Fix:** Edit `ItemAttributes` in [data/items/attributes.asm](https://github.com/pret/pokecrystal/blob/master/data/items/attributes.asm):
 
 ```diff
+-; BUG: Dragon Scale, not Dragon Fang, boosts Dragon-type moves (see docs/bugs_and_glitches.md)
  ; DRAGON_FANG
 -	item_attribute 100, HELD_NONE, 0, CANT_SELECT, ITEM, ITEMMENU_NOUSE, ITEMMENU_NOUSE
 +	item_attribute 100, HELD_DRAGON_BOOST, 10, CANT_SELECT, ITEM, ITEMMENU_NOUSE, ITEMMENU_NOUSE
@@ -821,6 +829,7 @@ This happens because switching involves calculating a percentage of maximum enem
 **Fix:** First, edit `SendOutMonText` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
 
 ```diff
+-; BUG: Switching out or switching against a Pokémon with max HP below 4 freezes the game (see docs/bugs_and_glitches.md)
  	; compute enemy health remaining as a percentage
  	xor a
  	ldh [hMultiplicand + 0], a
@@ -919,6 +928,7 @@ This changes both calculations to *HP* × (100 / *N*) / (*max HP* / *N*) for the
  	...
  	criticaltext
  	supereffectivetext
+-; BUG: Moves that do damage and increase your stats do not increase stats after a KO (see docs/bugs_and_glitches.md)
 +	defenseup
 +	statupmessage
  	checkfaint
@@ -953,24 +963,20 @@ This changes both calculations to *HP* × (100 / *N*) / (*max HP* / *N*) for the
 
 ### HP bar animation is slow for high HP
 
-*Fixing this cosmetic bug will* not *break link battle compatibility.*
+*Fixing this cosmetic bug will* **not** *break link battle compatibility.*
 
 ([Video](https://www.youtube.com/watch?v=SE-BfsFgZVM))
 
 **Fix:** Edit `LongAnim_UpdateVariables` in [engine/battle/anim_hp_bar.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/anim_hp_bar.asm):
 
 ```diff
--	; This routine is buggy. The result from ComputeHPBarPixels is stored
--	; in e. However, the pop de opcode deletes this result before it is even
--	; used. The game then proceeds as though it never deleted that output.
--	; To fix, uncomment the line below.
+-; BUG: HP bar animation is slow for high HP (see docs/bugs_and_glitches.md)
  	call ComputeHPBarPixels
--	; ld a, e
 +	ld a, e
  	pop bc
  	pop de
  	pop hl
--	ld a, e ; Comment or delete this line to fix the above bug.
+-	ld a, e
  	ld hl, wCurHPBarPixels
  	cp [hl]
  	jr z, .loop
@@ -982,7 +988,7 @@ This changes both calculations to *HP* × (100 / *N*) / (*max HP* / *N*) for the
 
 ### HP bar animation off-by-one error for low HP
 
-*Fixing this cosmetic bug will* not *break link battle compatibility.*
+*Fixing this cosmetic bug will* **not** *break link battle compatibility.*
 
 ([Video](https://www.youtube.com/watch?v=9KyNVIZxJvI))
 
@@ -990,17 +996,14 @@ This changes both calculations to *HP* × (100 / *N*) / (*max HP* / *N*) for the
 
 ```diff
  	ld b, 0
--; This routine is buggy. If [wCurHPAnimMaxHP] * [wCurHPBarPixels] is
--; divisible by HP_BAR_LENGTH_PX, the loop runs one extra time.
--; To fix, uncomment the line below.
  .loop
+-; BUG: HP bar animation off-by-one error for low HP (see docs/bugs_and_glitches.md)
  	ld a, l
  	sub HP_BAR_LENGTH_PX
  	ld l, a
  	ld a, h
  	sbc $0
  	ld h, a
--	; jr z, .done
 +	jr z, .done
  	jr c, .done
  	inc b
@@ -1019,6 +1022,7 @@ This changes both calculations to *HP* × (100 / *N*) / (*max HP* / *N*) for the
 
 ```diff
 -; If the opponent is transformed, fail.
+-; BUG: A Transformed Pokémon can use Sketch and learn otherwise unobtainable moves (see docs/bugs_and_glitches.md)
 +; If the user is transformed, fail.
 -	ld a, BATTLE_VARS_SUBSTATUS5_OPP
 +	ld a, BATTLE_VARS_SUBSTATUS5
@@ -1030,8 +1034,6 @@ This changes both calculations to *HP* × (100 / *N*) / (*max HP* / *N*) for the
 
 ### Catching a Transformed Pokémon always catches a Ditto
 
-This bug can affect Mew or Pokémon other than Ditto that used Transform via Mirror Move or Sketch.
-
 **Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
 
 ```diff
@@ -1040,9 +1042,7 @@ This bug can affect Mew or Pokémon other than Ditto that used Transform via Mir
  	push af
  	set SUBSTATUS_TRANSFORMED, [hl]
 
--; This code is buggy. Any wild Pokémon that has Transformed will be
--; caught as a Ditto, even if it was something else like Mew.
--; To fix, do not set [wTempEnemyMonSpecies] to DITTO.
+-; BUG: Catching a Transformed Pokémon always catches a Ditto (see docs/bugs_and_glitches.md)
  	bit SUBSTATUS_TRANSFORMED, a
 -	jr nz, .ditto
 -	jr .not_ditto
@@ -1077,13 +1077,12 @@ This bug can affect Mew or Pokémon other than Ditto that used Transform via Mir
 
 ([Video](https://www.youtube.com/watch?v=SXH8u0plHrE))
 
-This can bring Pokémon straight from level 1 to 100 by gaining just a few experience points.
-
 **Fix:** Edit `CalcExpAtLevel` in [engine/pokemon/experience.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/experience.asm):
 
 ```diff
  CalcExpAtLevel:
  ; (a/b)*n**3 + c*n**2 + d*n - e
+-; BUG: Experience underflow for level 1 Pokémon with Medium-Slow growth rate (see docs/bugs_and_glitches.md)
 +	ld a, d
 +	dec a
 +	jr nz, .UseExpFormula
@@ -1115,6 +1114,8 @@ This can occur if your party and current PC box are both full when you start the
 **Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
 
 ```diff
+ PokeBallEffect:
+-; BUG: The Dude's catching tutorial may crash if his Poké Ball can't be used (see docs/bugs_and_glitches.md)
  	ld a, [wBattleMode]
  	dec a
  	jp nz, UseBallInTrainerBattle
@@ -1141,17 +1142,13 @@ This can occur if your party and current PC box are both full when you start the
 **Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
 
 ```diff
--; This routine is buggy. It was intended that SLP and FRZ provide a higher
--; catch rate than BRN/PSN/PAR, which in turn provide a higher catch rate than
--; no status effect at all. But instead, it makes BRN/PSN/PAR provide no
--; benefit.
--; Uncomment the line below to fix this.
+ .statuscheck
+-; BUG: BRN/PSN/PAR do not affect catch rate (see docs/bugs_and_glitches.md)
  	ld b, a
  	ld a, [wEnemyMonStatus]
  	and 1 << FRZ | SLP_MASK
  	ld c, 10
  	jr nz, .addstatus
--	; ld a, [wEnemyMonStatus]
 +	ld a, [wEnemyMonStatus]
  	and a
  	ld c, 5
@@ -1171,9 +1168,7 @@ This can occur if your party and current PC box are both full when you start the
 **Fix:** Edit `MoonBallMultiplier` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
 
 ```diff
--; Moon Stone's constant from Pokémon Red is used.
--; No Pokémon evolve with Burn Heal,
--; so Moon Balls always have a catch rate of 1×.
+-; BUG: Moon Ball does not boost catch rate (see docs/bugs_and_glitches.md)
  	push bc
  	ld a, BANK("Evolutions and Attacks")
  	call GetFarByte
@@ -1189,13 +1184,14 @@ This can occur if your party and current PC box are both full when you start the
 **Fix:** Edit `LoveBallMultiplier` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
 
 ```diff
- .wildmale
+ .got_wild_gender
 
+-; BUG: Love Ball boosts catch rate for the wrong gender (see docs/bugs_and_glitches.md)
  	ld a, d
  	pop de
  	cp d
  	pop bc
--	ret nz ; for the intended effect, this should be "ret z"
+-	ret nz
 +	ret z
 ```
 
@@ -1206,6 +1202,7 @@ This can occur if your party and current PC box are both full when you start the
 
 ```diff
  .loop
+-; BUG: Fast Ball only boosts catch rate for three Pokémon (see docs/bugs_and_glitches.md)
  	ld a, BANK(FleeMons)
  	call GetFarByte
 
@@ -1213,7 +1210,7 @@ This can occur if your party and current PC box are both full when you start the
  	cp -1
  	jr z, .next
  	cp c
--	jr nz, .next ; for the intended effect, this should be "jr nz, .loop"
+-	jr nz, .next
 +	jr nz, .loop
  	sla b
  	jr c, .max
@@ -1222,17 +1219,16 @@ This can occur if your party and current PC box are both full when you start the
 
 ### Heavy Ball uses wrong weight value for three Pokémon
 
+`HeavyBall_GetDexEntryBank` gets the wrong bank for Kadabra (64), Tauros (128), and Sunflora (192).
+
 **Fix:** Edit `HeavyBall_GetDexEntryBank` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
 
 ```diff
  HeavyBall_GetDexEntryBank:
--; This function is buggy.
--; It gets the wrong bank for Kadabra (64), Tauros (128), and Sunflora (192).
--; Uncomment the line below to fix this.
+-; BUG: Heavy Ball uses wrong weight value for three Pokemon (see docs/bugs_and_glitches.md)
  	push hl
  	push de
  	ld a, [wEnemyMonSpecies]
--	; dec a
 +	dec a
  	rlca
  	rlca
@@ -1256,12 +1252,13 @@ This can occur if your party and current PC box are both full when you start the
 
 ### Glacier Badge may not boost Special Defense depending on the value of Special Attack
 
-As Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") implies, Glacier Badge is intended to boost both Special Attack and Special Defense. However, due to BoostStat overwriting `a` when boosting Special Attack, the Special Defense boost will not happen if the unboosted Special Attack stat is either 0–205 or 433–660.
+Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") implies that Glacier Badge is intended to boost both Special Attack and Special Defense, but the Special Defense boost will not happen unless the unboosted Special Attack stat is 206–432, or 661 or above.
 
 **Fix:** Edit `BadgeStatBoosts.CheckBadge` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
 
 ```diff
  .CheckBadge:
+-; BUG: Glacier Badge may not boost Special Defense depending on the value of Special Attack (see docs/bugs_and_glitches.md)
  	ld a, b
  	srl b
 +	push af
@@ -1273,9 +1270,6 @@ As Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") impli
  	srl b
  	dec c
  	jr nz, .CheckBadge
- ; Check GlacierBadge again for Special Defense.
--; This check is buggy because it assumes that a is set by the "ld a, b" in the above loop,
--; but it can actually be overwritten by the call to BoostStat.
  	srl a
  	call c, BoostStat
  	ret
@@ -1289,10 +1283,9 @@ As Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") impli
 **Fix:** Edit `AI_Smart_MeanLook` in [engine/battle/ai/scoring.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/scoring.asm):
 
 ```diff
--; 80% chance to greatly encourage this move if the enemy is badly poisoned (buggy).
--; Should check wPlayerSubStatus5 instead.
+ ; 80% chance to greatly encourage this move if the enemy is badly poisoned.
+-; BUG: "Smart" AI encourages Mean Look if its own Pokémon is badly poisoned (see docs/bugs_and_glitches.md)
 -	ld a, [wEnemySubStatus5]
-+; 80% chance to greatly encourage this move if the player is badly poisoned
 +	ld a, [wPlayerSubStatus5]
  	bit SUBSTATUS_TOXIC, a
  	jr nz, .asm_38e26
@@ -1305,9 +1298,10 @@ As Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") impli
 
 ```diff
  AI_Smart_Conversion2:
+-; BUG: "Smart" AI discourages Conversion2 after the first turn (see docs/bugs_and_glitches.md)
  	ld a, [wLastPlayerMove]
  	and a
--	jr nz, .discourage ; should be jr z
+-	jr nz, .discourage
 +	jr z, .discourage
 ```
 
@@ -1317,7 +1311,8 @@ As Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") impli
 **Fix:** Edit `SunnyDayMoves` in [data/battle/ai/sunny_day_moves.asm](https://github.com/pret/pokecrystal/blob/master/data/battle/ai/sunny_day_moves.asm):
 
 ```diff
-SunnyDayMoves:
+ SunnyDayMoves:
+-; BUG: "Smart" AI does not encourage Solar Beam, Flame Wheel, or Moonlight during Sunny Day (see docs/bugs_and_glitches.md)
  	db FIRE_PUNCH
  	db EMBER
  	db FLAMETHROWER
@@ -1339,6 +1334,7 @@ SunnyDayMoves:
 
 ```diff
  .FutureSight:
+-; BUG: AI does not discourage Future Sight when it's already been used (see docs/bugs_and_glitches.md)
 -	ld a, [wEnemyScreens]
 -	bit 5, a
 +	ld a, [wEnemyFutureSightCount]
@@ -1362,13 +1358,9 @@ SunnyDayMoves:
 +.get_type
 +	ld a, BATTLE_VARS_MOVE_TYPE
 +	call GetBattleVar ; preserves hl, de, and bc
+ 	; fallthrough
  CheckTypeMatchup:
--; There is an incorrect assumption about this function made in the AI related code: when
--; the AI calls CheckTypeMatchup (not BattleCheckTypeMatchup), it assumes that placing the
--; offensive type in a will make this function do the right thing. Since a is overwritten,
--; this assumption is incorrect. A simple fix would be to load the move type for the
--; current move into a in BattleCheckTypeMatchup, before falling through, which is
--; consistent with how the rest of the code assumes this code works like.
+-; BUG: AI makes a false assumption about CheckTypeMatchup (see docs/bugs_and_glitches.md)
  	push hl
  	push de
  	push bc
@@ -1387,6 +1379,7 @@ SunnyDayMoves:
 
 ```diff
  AI_HealStatus:
+-; BUG: AI use of Full Heal or Full Restore does not cure Nightmare status (see docs/bugs_and_glitches.md)
  	ld a, [wCurOTMon]
  	ld hl, wOTPartyMon1Status
  	ld bc, PARTYMON_STRUCT_LENGTH
@@ -1394,13 +1387,11 @@ SunnyDayMoves:
  	xor a
  	ld [hl], a
  	ld [wEnemyMonStatus], a
--	; Bug: this should reset SUBSTATUS_NIGHTMARE
--	; Uncomment the 2 lines below to fix
--	; ld hl, wEnemySubStatus1
--	; res SUBSTATUS_NIGHTMARE, [hl]
 +	ld hl, wEnemySubStatus1
 +	res SUBSTATUS_NIGHTMARE, [hl]
- 	...
+ 	ld hl, wEnemySubStatus5
+ 	res SUBSTATUS_TOXIC, [hl]
+ 	ret
 ```
 
 
@@ -1410,6 +1401,7 @@ SunnyDayMoves:
 
 ```diff
  EnemyUsedFullRestore:
+-; BUG: AI use of Full Heal does not cure confusion status (see docs/bugs_and_glitches.md)
  	call AI_HealStatus
  	ld a, FULL_RESTORE
  	ld [wCurEnemyItem], a
@@ -1417,10 +1409,12 @@ SunnyDayMoves:
 -	res SUBSTATUS_CONFUSED, [hl]
 - 	xor a
 - 	ld [wEnemyConfuseCount], a
+ 	; fallthrough
 ```
 
 ```diff
  AI_HealStatus:
+ ; BUG: AI use of Full Heal or Full Restore does not cure Nightmare status (see docs/bugs_and_glitches.md)
  	ld a, [wCurOTMon]
  	ld hl, wOTPartyMon1Status
  	ld bc, PARTYMON_STRUCT_LENGTH
@@ -1429,14 +1423,6 @@ SunnyDayMoves:
  	ld [hl], a
  	ld [wEnemyMonStatus], a
 +	ld [wEnemyConfuseCount], a
-	; Bug: this should reset SUBSTATUS_NIGHTMARE
-	; Uncomment the 2 lines below to fix
-	; ld hl, wEnemySubStatus1
-	; res SUBSTATUS_NIGHTMARE, [hl]
--	; Bug: this should reset SUBSTATUS_CONFUSED
--	; Uncomment the 2 lines below to fix
--	; ld hl, wEnemySubStatus3
--	; res SUBSTATUS_CONFUSED, [hl]
 +	ld hl, wEnemySubStatus3
 +	res SUBSTATUS_CONFUSED, [hl]
  	ld hl, wEnemySubStatus5
@@ -1451,15 +1437,14 @@ SunnyDayMoves:
 
 ```diff
  .loop_enemy
+-; BUG: Wild Pokémon can always Teleport regardless of level difference (see docs/bugs_and_glitches.md)
++; If a random number >= player level / 4, Teleport will succeed
  	call BattleRandom
  	cp c
  	jr nc, .loop_enemy
  	; b = player level / 4
  	srl b
  	srl b
--	; This should be "jr c, .failed"
--	; As written, it makes enemy use of Teleport always succeed if able
-+	; If the random number >= player level / 4, Teleport will succeed
  	cp b
 -	jr nc, .run_away
 +	jr c, .failed
@@ -1475,6 +1460,7 @@ SunnyDayMoves:
 ```diff
  	dn 13, 13, 13, 13 ; RIVAL1
  	...
+-; BUG: RIVAL2 has lower DVs than RIVAL1 (see docs/bugs_and_glitches.md)
 -	dn  9,  8,  8,  8 ; RIVAL2
 +	dn 13, 13, 13, 13 ; RIVAL2
 ```
@@ -1485,13 +1471,10 @@ SunnyDayMoves:
 **Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
 
 ```diff
--	; BUG: farcall overwrites a, and GetItemHeldEffect takes b anyway.
--	; This is probably the reason the HELD_CATCH_CHANCE effect is never used.
--	; Uncomment the line below to fix.
+-; BUG: HELD_CATCH_CHANCE has no effect (see docs/bugs_and_glitches.md)
  	ld d, a
  	push de
  	ld a, [wBattleMonItem]
--	; ld b, a
 +	ld b, a
  	farcall GetItemHeldEffect
  	ld a, b
@@ -1515,13 +1498,14 @@ To select a move in battle, you have to press and release the Up or Down buttons
 **Fix:** Edit `Credits` in [engine/movie/credits.asm](https://github.com/pret/pokecrystal/blob/master/engine/movie/credits.asm):
 
 ```diff
+-; BUG: Credits sequence changes move selection menu behavior (see docs/bugs_and_glitches.md)
  	ldh a, [hVBlank]
  	push af
  	ld a, $5
  	ldh [hVBlank], a
 +	ldh a, [hInMenu]
 +	push af
- 	ld a, $1
+ 	ld a, TRUE
  	ldh [hInMenu], a
 
  	...
@@ -1571,12 +1555,10 @@ This bug prevents you from using blocksets with more than 128 blocks.
 
 ```diff
  	; Set hl to the address of the current metatile data ([wTilesetBlocksAddress] + (a) tiles).
--	; This is buggy; it wraps around past 128 blocks.
--	; To fix, uncomment the line below.
--	add a ; Comment or delete this line to fix the above bug.
+-; BUG: LoadMetatiles wraps around past 128 blocks (see docs/bugs_and_glitches.md)
+-	add a
  	ld l, a
  	ld h, 0
--	; add hl, hl
 +	add hl, hl
  	add hl, hl
  	add hl, hl
@@ -1600,6 +1582,7 @@ First, edit `UsedSurfScript` in [engine/events/overworld.asm](https://github.com
 
 ```diff
  UsedSurfScript:
+-; BUG: Surfing directly across a map connection does not load the new map (see docs/bugs_and_glitches.md)
  	writetext UsedSurfText ; "used SURF!"
  	waitbutton
  	closetext
@@ -1665,17 +1648,17 @@ This bug is why the Lapras in [maps/UnionCaveB2F.asm](https://github.com/pret/po
 **Fix:** Edit `CanObjectMoveInDirection` in [engine/overworld/npc_movement.asm](https://github.com/pret/pokecrystal/blob/master/engine/overworld/npc_movement.asm):
 
 ```diff
+-; BUG: Swimming NPCs aren't limited by their movement radius (see docs/bugs_and_glitches.md)
  	ld hl, OBJECT_FLAGS1
  	add hl, bc
- 	bit NOCLIP_TILES_F, [hl] ; lost, uncomment next line to fix
--	; jr nz, .noclip_tiles
+ 	bit NOCLIP_TILES_F, [hl]
 +	jr nz, .noclip_tiles
 ```
 
 
 ### Pokémon deposited in the Day-Care might lose experience
 
-This happens because when a Pokémon is withdrawn from the Day-Care, its Exp. Points are reset to the minimum required for its level. This means that if it hasn't gained any levels, it may lose experience.
+When a Pokémon is withdrawn from the Day-Care, its Exp. Points are reset to the minimum required for its level. This means that if it hasn't gained any levels, it may lose experience.
 
 **Fix**: Edit `RetrieveBreedmon` in [engine/pokemon/move_mon.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/move_mon.asm):
 
@@ -1683,14 +1666,13 @@ This happens because when a Pokémon is withdrawn from the Day-Care, its Exp. Po
  RetrieveBreedmon:
 
  	...
-
+-; BUG: Pokémon deposited in the Day-Care might lose experience (see docs/bugs_and_glitches.md)
  	ld a, [wPartyCount]
  	dec a
  	ld [wCurPartyMon], a
  	farcall HealPartyMon
 -	ld a, [wCurPartyLevel]
 -	ld d, a
-+	; Check if there's an exp overflow
 +	ld d, MAX_LEVEL
  	callfar CalcExpAtLevel
  	pop bc
@@ -1770,12 +1752,11 @@ The dungeons' map group mostly has indoor maps that don't need roof colors, but 
 
 ### A hatching Unown egg would not show the right letter
 
-This happens because both `GetEggFrontpic` and `GetHatchlingFrontpic` use `wBattleMonDVs`, but that's not initialized. They should use the current party mon's DVs instead.
-
 **Fix:** Edit both functions in [engine/pokemon/breeding.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/breeding.asm):
 
 ```diff
  GetEggFrontpic:
+-; BUG: A hatching Unown egg would not show the right letter (see docs/bugs_and_glitches.md)
  	push de
  	ld [wCurPartySpecies], a
  	ld [wCurSpecies], a
@@ -1809,6 +1790,7 @@ This happens because both `GetEggFrontpic` and `GetHatchlingFrontpic` use `wBatt
 
 ```diff
  .room_in_party
+-; BUG: Using a Park Ball in non-Contest battles has a corrupt animation (see docs/bugs_and_glitches.md)
  	xor a
  	ld [wWildMon], a
 -	ld a, [wCurItem]
@@ -1837,8 +1819,7 @@ First, edit [engine/battle/battle_transition.asm](https://github.com/pret/pokecr
  StartTrainerBattle_DetermineWhichAnimation:
  ; The screen flashes a different number of times depending on the level of
  ; your lead Pokemon relative to the opponent's.
--; BUG: wBattleMonLevel and wEnemyMonLevel are not set at this point, so whatever
--; values happen to be there will determine the animation.
+-; BUG: Battle transitions fail to account for enemy's level (see docs/bugs_and_glitches.md)
 +	ld a, [wOtherTrainerClass]
 +	and a
 +	jr z, .wild
@@ -2013,12 +1994,13 @@ Most of the NPCs in [maps/NationalParkBugContest.asm](https://github.com/pret/po
 
 ```diff
  .okay
+-; BUG: Slot machine payout sound effects cut each other off (see docs/bugs_and_glitches.md)
  	ld [hl], e
  	dec hl
  	ld [hl], d
  	ld a, [wSlotsDelay]
  	and $7
--	ret z ; ret nz would be more appropriate
+-	ret z
 +	ret nz
  	ld de, SFX_GET_COIN_FROM_SLOTS
  	call PlaySFX
@@ -2031,6 +2013,7 @@ Most of the NPCs in [maps/NationalParkBugContest.asm](https://github.com/pret/po
 **Fix:** Edit `PlayBattleMusic` in [engine/battle/start_battle.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/start_battle.asm):
 
 ```diff
+-; BUG: Team Rocket battle music is not used for Executives or Scientists (see docs/bugs_and_glitches.md)
  	ld de, MUSIC_ROCKET_BATTLE
  	cp GRUNTM
  	jr z, .done
@@ -2047,18 +2030,15 @@ Most of the NPCs in [maps/NationalParkBugContest.asm](https://github.com/pret/po
 
 ### No bump noise if standing on tile `$3E`
 
+If `[wWalkingDirection]` is `STANDING` (`$FF`), this will check `[.EdgeWarps + $ff]`, which happens to be `$3E`.
+
 **Fix:** Edit `DoPlayerMovement.CheckWarp` in [engine/overworld/player_movement.asm](https://github.com/pret/pokecrystal/blob/master/engine/overworld/player_movement.asm):
 
 ```diff
  .CheckWarp:
--; Bug: Since no case is made for STANDING here, it will check
--; [.EdgeWarps + $ff]. This resolves to $3e.
--; This causes wWalkingIntoEdgeWarp to be nonzero when standing on tile $3e,
--; making bumps silent.
--
+-; BUG: No bump noise if standing on tile $3E (see docs/bugs_and_glitches.md)
+
  	ld a, [wWalkingDirection]
--	; cp STANDING
--	; jr z, .not_warp
 +	cp STANDING
 +	jr z, .not_warp
  	ld e, a
@@ -2072,7 +2052,6 @@ Most of the NPCs in [maps/NationalParkBugContest.asm](https://github.com/pret/po
  	ld a, TRUE
  	ld [wWalkingIntoEdgeWarp], a
  	ld a, [wWalkingDirection]
--	; This is in the wrong place.
 -	cp STANDING
 -	jr z, .not_warp
 ```
@@ -2088,6 +2067,7 @@ The exact cause of this bug is unknown.
 
 ```diff
  .Cry:
+-; BUG: Playing Entei's Pokédex cry can distort Raikou's and Suicune's (see docs/bugs_and_glitches.md)
 -	call Pokedex_GetSelectedMon
 -	ld a, [wTempSpecies]
 -	call GetCryIndex
@@ -2111,6 +2091,7 @@ The exact cause of this bug is unknown.
 
 ```diff
  _BoostedExpPointsText::
+-; BUG: Five-digit experience gain is printed incorrectly (see docs/bugs_and_glitches.md)
  	text_start
  	line "a boosted"
  	cont "@"
@@ -2120,6 +2101,7 @@ The exact cause of this bug is unknown.
  	prompt
 
  _ExpPointsText::
+-; BUG: Five-digit experience gain is printed incorrectly (see docs/bugs_and_glitches.md)
  	text_start
  	line "@"
 -	text_decimal wStringBuffer2, 2, 4
@@ -2135,6 +2117,7 @@ The exact cause of this bug is unknown.
 
 ```diff
  .DetermineCompatibility:
+-; BUG: Only the first three evolution entries can have Stone compatibility reported correctly (see docs/bugs_and_glitches.md)
  	ld de, wStringBuffer1
  	ld a, BANK(EvosAttacksPointers)
  	ld bc, 2
@@ -2159,6 +2142,7 @@ This supports up to six entries.
 
 ```diff
  .loop2
+-; BUG: EVOLVE_STAT can break Stone compatibility reporting (see docs/bugs_and_glitches.md)
  	ld a, [hli]
  	and a
  	jr z, .nope
@@ -2180,8 +2164,9 @@ This supports up to six entries.
 **Fix:** Edit `_HallOfFamePC.DisplayMonAndStrings` in [engine/events/halloffame.asm](https://github.com/pret/pokecrystal/blob/master/engine/events/halloffame.asm):
 
 ```diff
+-; BUG: A "HOF Master!" title for 200-Time Famers is defined but inaccessible (see docs/bugs_and_glitches.md)
  	ld a, [wHallOfFameTempWinCount]
--	cp HOF_MASTER_COUNT + 1 ; should be HOF_MASTER_COUNT
+-	cp HOF_MASTER_COUNT + 1
 +	cp HOF_MASTER_COUNT
  	jr c, .print_num_hof
  	ld de, .HOFMaster
@@ -2199,7 +2184,9 @@ This supports up to six entries.
 
 ([Video](https://www.youtube.com/watch?v=8BvBjqxmyOk))
 
-**Fix:** Edit `DragonsDen1F_MapScripts` in [maps/DragonsDen1F.asm](https://github.com/pret/pokecrystal/blob/master/maps/DragonsDen1F.asm):
+**Fix:**
+
+Edit `DragonsDen1F_MapScripts` in [maps/DragonsDen1F.asm](https://github.com/pret/pokecrystal/blob/master/maps/DragonsDen1F.asm):
 
 ```diff
  	def_callbacks
@@ -2210,19 +2197,21 @@ This supports up to six entries.
 +	endcallback
 ```
 
+And edit [maps/DragonsDenB1F.asm](https://github.com/pret/pokecrystal/blob/master/maps/DragonsDenB1F.asm):
+
+```diff
+ DragonsDenB1F_ClairScene:
+-; BUG: Clair can give TM24 Dragonbreath twice (see docs/bugs_and_glitches.md)
+```
+
 
 ### Daisy's grooming doesn't always increase happiness
+
+Subtracting `$FF` from `$FF` fails to set the carry flag, which results in a 0.4% chance that Daisy's grooming will not affect your Pokémon's happiness.
 
 This is a bug with `HaircutOrGrooming` in [engine/events/haircut.asm](https://github.com/pret/pokecrystal/blob/master/engine/events/haircut.asm):
 
 ```asm
-; Bug: Subtracting $ff from $ff fails to set c.
-; This can result in overflow into the next data array.
-; In the case of getting a grooming from Daisy, we bleed
-; into CopyPokemonName_Buffer1_Buffer3, which passes
-; $d0 to ChangeHappiness and returns $73 to the script.
-; The end result is that there is a 0.4% chance your
-; Pokemon's happiness will not change at all.
 .loop
 	sub [hl]
 	jr c, .ok
@@ -2254,6 +2243,7 @@ CopyPokemonName_Buffer1_Buffer3:
 
 ```diff
  HappinessData_DaisysGrooming:
+-; BUG: Daisy's grooming doesn't always increase happiness (see docs/bugs_and_glitches.md)
 -	db -1,             2, HAPPINESS_GROOMING ; 99.6% chance
 +	db 50 percent,     2, HAPPINESS_GROOMING ; 50% chance
 +	db -1,             2, HAPPINESS_GROOMING ; 50% chance
@@ -2262,23 +2252,13 @@ CopyPokemonName_Buffer1_Buffer3:
 
 ### Magikarp in Lake of Rage are shorter, not longer
 
+`cp HIGH(1024)` should be `cp 3`, since 1024 mm = 3'4", but `HIGH(1024)` = 4.
+
 **Fix:** Edit `LoadEnemyMon.CheckMagikarpArea` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
 
 ```diff
  .CheckMagikarpArea:
--; The "jr z" checks are supposed to be "jr nz".
--
--; Instead, all maps in GROUP_LAKE_OF_RAGE (Mahogany area)
--; and Routes 20 and 44 are treated as Lake of Rage.
--
--; This also means Lake of Rage Magikarp can be smaller than ones
--; caught elsewhere rather than the other way around.
--
--; Intended behavior enforces a minimum size at Lake of Rage.
--; The real behavior prevents a minimum size in the Lake of Rage area.
--
--; Moreover, due to the check not being translated to feet+inches, all Magikarp
--; smaller than 4'0" may be caught by the filter, a lot more than intended.
+-; BUG: Magikarp in Lake of Rage are shorter, not longer (see docs/bugs_and_glitches.md)
  	ld a, [wMapGroup]
  	cp GROUP_LAKE_OF_RAGE
 -	jr z, .Happiness
@@ -2287,22 +2267,36 @@ CopyPokemonName_Buffer1_Buffer3:
  	cp MAP_LAKE_OF_RAGE
 -	jr z, .Happiness
 +	jr nz, .Happiness
+ ; 40% chance of not flooring
+ 	call Random
+ 	cp 39 percent + 1
+ 	jr c, .Happiness
+ ; Try again if length < 1024 mm (i.e. if HIGH(length) < 3 feet)
+ 	ld a, [wMagikarpLength]
+-	cp HIGH(1024)
++	cp 3
+ 	jr c, .GenerateDVs ; try again
 ```
 
 
 ### Magikarp length limits have a unit conversion error
 
+- `cp HIGH(1536)` should be `cp 5`, since 1536 mm = 5'0", but `HIGH(1536)` = 6.
+- `cp LOW(1616)` should be `cp 4`, since 1616 mm = 5'4", but `LOW(1616)` = 80.
+- `cp LOW(1600)` should be `cp 3`, since 1600 mm = 5'3", but `LOW(1600)` = 64.
+
 **Fix:** Edit `LoadEnemyMon.CheckMagikarpArea` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
 
 ```diff
  ; Get Magikarp's length
+-; BUG: Magikarp length limits have a unit conversion error (see docs/bugs_and_glitches.md)
  	ld de, wEnemyMonDVs
  	ld bc, wPlayerID
  	callfar CalcMagikarpLength
 
  ; No reason to keep going if length > 1536 mm (i.e. if HIGH(length) > 6 feet)
  	ld a, [wMagikarpLength]
--	cp HIGH(1536) ; should be "cp 5", since 1536 mm = 5'0", but HIGH(1536) = 6
+-	cp HIGH(1536)
 +	cp 5
  	jr nz, .CheckMagikarpArea
 
@@ -2312,7 +2306,7 @@ CopyPokemonName_Buffer1_Buffer3:
  	jr c, .CheckMagikarpArea
  ; Try again if length >= 1616 mm (i.e. if LOW(length) >= 4 inches)
  	ld a, [wMagikarpLength + 1]
--	cp LOW(1616) ; should be "cp 4", since 1616 mm = 5'4", but LOW(1616) = 80
+-	cp LOW(1616)
 +	cp 4
  	jr nc, .GenerateDVs
 
@@ -2322,7 +2316,7 @@ CopyPokemonName_Buffer1_Buffer3:
  	jr c, .CheckMagikarpArea
  ; Try again if length >= 1600 mm (i.e. if LOW(length) >= 3 inches)
  	ld a, [wMagikarpLength + 1]
--	cp LOW(1600) ; should be "cp 3", since 1600 mm = 5'3", but LOW(1600) = 64
+-	cp LOW(1600)
 +	cp 3
  	jr nc, .GenerateDVs
 ```
@@ -2336,12 +2330,11 @@ CopyPokemonName_Buffer1_Buffer3:
 
 ```diff
  .BCLessThanDE:
--; Intention: Return bc < de.
--; Reality: Return b < d.
+-; BUG: Magikarp lengths can be miscalculated (see docs/bugs_and_glitches.md)
  	ld a, b
  	cp d
  	ret c
--	ret nc ; whoops
+-	ret nc
  	ld a, c
  	cp e
  	ret
@@ -2357,13 +2350,12 @@ This bug can allow you to talk to Eusine in Celadon City and encounter Ho-Oh wit
 **Fix:** Edit `CheckOwnMon` in [engine/pokemon/search_owned.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/search_owned.asm):
 
 ```diff
- ; check OT
--; This only checks five characters, which is fine for the Japanese version,
--; but in the English version the player name is 7 characters, so this is wrong.
+ 	; check OT
 
  	ld hl, wPlayerName
 
--rept NAME_LENGTH_JAPANESE - 2 ; should be PLAYER_NAME_LENGTH - 2
+-; BUG: CheckOwnMon only checks the first five letters of OT names (see docs/bugs_and_glitches.md)
+-rept NAME_LENGTH_JAPANESE - 2
 +rept PLAYER_NAME_LENGTH - 2
  	ld a, [de]
  	cp [hl]
@@ -2391,10 +2383,12 @@ This bug can prevent you from talking to Eusine in Celadon City or encountering 
 ```diff
  	; If there are no monsters in the party,
  	; the player must not own any yet.
+-; BUG: CheckOwnMon does not check the Day-Care (see docs/bugs_and_glitches.md)
  	ld a, [wPartyCount]
  	and a
  	ret z
-+
+
+-; BUG: CheckOwnMon does not check the Day-Care (see docs/bugs_and_glitches.md)
 +	ld hl, wBreedMon1Species
 +	ld bc, wBreedMon1OT
 +	call CheckOwnMon
@@ -2414,6 +2408,7 @@ The `phonecall` script command calls the `PhoneCall` routine, which calls the `B
 **Fix:** Edit `PhoneCall.CallerTextboxWithName` in [engine/phone/phone.asm](https://github.com/pret/pokecrystal/blob/master/engine/phone/phone.asm):
 
 ```diff
+-; BUG: The unused phonecall script command may crash (see docs/bugs_and_glitches.md)
 -	ld a, [wPhoneScriptBank]
 -	ld b, a
  	ld a, [wPhoneCaller]
@@ -2426,7 +2421,7 @@ The `phonecall` script command calls the `PhoneCall` routine, which calls the `B
  	ret
 ```
 
-You can also delete the now-unused `BrokenPlaceFarString` routine.
+You can also delete the now-unused `BrokenPlaceFarString` routine in the same file.
 
 
 ## Internal engine routines
@@ -2436,7 +2431,7 @@ You can also delete the now-unused `BrokenPlaceFarString` routine.
 
 ([Video 1](https://www.youtube.com/watch?v=ukqtK0l6bu0), [Video 2](https://www.youtube.com/watch?v=c2zHd1BPtvc))
 
-This does not have a simple and accurate fix. It would involve redesigning parts of the save system for Pokémon boxes.
+This allows Pokémon to be duplicated, among other effects. It does not have a simple and accurate fix. A fix would involve redesigning parts of the save system for Pokémon boxes.
 
 
 ### `ScriptCall` can overflow `wScriptStack` and crash
@@ -2445,11 +2440,7 @@ This does not have a simple and accurate fix. It would involve redesigning parts
 
 ```diff
  ScriptCall:
--; Bug: The script stack has a capacity of 5 scripts, yet there is
--; nothing to stop you from pushing a sixth script.  The high part
--; of the script address can then be overwritten by modifications
--; to wScriptDelay, causing the script to return to the rst/interrupt
--; space.
+-; BUG: ScriptCall can overflow wScriptStack and crash (see docs/bugs_and_glitches.md)
 -
 +	ld hl, wScriptStackSize
 +	ld a, [hl]
@@ -2488,8 +2479,7 @@ This does not have a simple and accurate fix. It would involve redesigning parts
 
 ```diff
  LoadSpriteGFX:
--; Bug: b is not preserved, so it's useless as a next count.
--; Uncomment the lines below to fix.
+-; BUG: LoadSpriteGFX does not limit the capacity of UsedSprites (see docs/bugs_and_glitches.md)
 -
  	ld hl, wUsedSprites
  	ld b, SPRITE_GFX_LIST_CAPACITY
@@ -2508,10 +2498,8 @@ This does not have a simple and accurate fix. It would involve redesigning parts
  	ret
 
  .LoadSprite:
--	; push bc
 +	push bc
  	call GetSprite
--	; pop bc
 +	pop bc
  	ld a, l
  	ret
@@ -2524,15 +2512,15 @@ This does not have a simple and accurate fix. It would involve redesigning parts
 
 ```diff
  .ok
+-; BUG: ChooseWildEncounter doesn't really validate the wild Pokemon species (see docs/bugs_and_glitches.md)
  	ld a, b
  	ld [wCurPartyLevel], a
  	ld b, [hl]
--	; ld a, b
 +	ld a, b
  	call ValidateTempWildMonSpecies
  	jr c, .nowildbattle
 
--	ld a, b ; This is in the wrong place.
+-	ld a, b
  	cp UNOWN
  	jr nz, .done
 ```
@@ -2540,13 +2528,15 @@ This does not have a simple and accurate fix. It would involve redesigning parts
 
 ### `TryObjectEvent` arbitrary code execution
 
+If `IsInArray` returns `nc`, data at `bc` will be executed as code.
+
 **Fix:** Edit `TryObjectEvent` in [engine/overworld/events.asm](https://github.com/pret/pokecrystal/blob/master/engine/overworld/events.asm):
 
 ```diff
--; Bug: If IsInArray returns nc, data at bc will be executed as code.
+-; BUG: TryObjectEvent arbitrary code execution (see docs/bugs_and_glitches.md)
  	push bc
  	ld de, 3
- 	ld hl, .pointers
+ 	ld hl, ObjectEventTypeArray
  	call IsInArray
 -	jr nc, .nope
  	pop bc
@@ -2559,7 +2549,6 @@ This does not have a simple and accurate fix. It would involve redesigning parts
  	jp hl
 
  .nope
--	; pop bc
  	xor a
  	ret
 ```
@@ -2572,20 +2561,18 @@ This does not have a simple and accurate fix. It would involve redesigning parts
 ```diff
 -; get NUM_OBJECTS - [wCurMapObjectEventCount]
 +; get NUM_OBJECTS - [wCurMapObjectEventCount] - 1
+-; BUG: ReadObjectEvents overflows into wObjectMasks (see docs/bugs_and_glitches.md)
  	ld a, [wCurMapObjectEventCount]
  	ld c, a
--	ld a, NUM_OBJECTS ; - 1
+-	ld a, NUM_OBJECTS
 +	ld a, NUM_OBJECTS - 1
  	sub c
  	jr z, .skip
--	; jr c, .skip
 +	jr c, .skip
 
  	; could have done "inc hl" instead
  	ld bc, 1
  	add hl, bc
--; Fill the remaining sprite IDs and y coords with 0 and -1, respectively.
--; Bleeds into wObjectMasks due to a bug.  Uncomment the above code to fix.
  	ld bc, MAPOBJECT_LENGTH
  .loop
  	ld [hl],  0
@@ -2606,6 +2593,7 @@ This does not have a simple and accurate fix. It would involve redesigning parts
  ClearWRAM::
  ; Wipe swappable WRAM banks (1-7)
  ; Assumes CGB or AGB
+-; BUG: ClearWRAM only clears WRAM bank 1 (see docs/bugs_and_glitches.md)
 
  	ld a, 1
  .bank_loop
@@ -2618,7 +2606,7 @@ This does not have a simple and accurate fix. It would involve redesigning parts
  	pop af
  	inc a
  	cp 8
--	jr nc, .bank_loop ; Should be jr c
+-	jr nc, .bank_loop
 +	jr c, .bank_loop
  	ret
 ```
@@ -2630,9 +2618,9 @@ This does not have a simple and accurate fix. It would involve redesigning parts
 
 ```diff
  BattleAnimCmd_ClearObjs:
--; BUG: This function only clears the first 6⅔ objects
+-; BUG: BattleAnimCmd only clears the first 6⅔ objects (see docs/bugs_and_glitches.md)
  	ld hl, wActiveAnimObjects
--	ld a, $a0 ; should be NUM_ANIM_OBJECTS * BATTLEANIMSTRUCT_LENGTH
+-	ld a, $a0
 +	ld a, NUM_ANIM_OBJECTS * BATTLEANIMSTRUCT_LENGTH
  .loop
  	ld [hl], 0

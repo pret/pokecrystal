@@ -554,7 +554,7 @@ TryObjectEvent:
 	ld a, [hl]
 	and %00001111
 
-; Bug: If IsInArray returns nc, data at bc will be executed as code.
+; BUG: TryObjectEvent arbitrary code execution (see docs/bugs_and_glitches.md)
 	push bc
 	ld de, 3
 	ld hl, ObjectEventTypeArray
@@ -569,7 +569,6 @@ TryObjectEvent:
 	jp hl
 
 .nope
-	; pop bc
 	xor a
 	ret
 

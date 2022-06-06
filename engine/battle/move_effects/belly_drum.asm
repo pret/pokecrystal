@@ -1,7 +1,5 @@
 BattleCommand_BellyDrum:
-; This command is buggy because it raises the user's attack
-; before checking that it has enough HP to use the move.
-; Swap the order of these two blocks to fix.
+; BUG: Belly Drum sharply boosts Attack even with under 50% HP (see docs/bugs_and_glitches.md)
 	call BattleCommand_AttackUp2
 	ld a, [wAttackMissed]
 	and a

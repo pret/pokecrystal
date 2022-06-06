@@ -278,12 +278,11 @@ CalcMagikarpLength:
 	ret
 
 .BCLessThanDE:
-; Intention: Return bc < de.
-; Reality: Return b < d.
+; BUG: Magikarp lengths can be miscalculated (see docs/bugs_and_glitches.md)
 	ld a, b
 	cp d
 	ret c
-	ret nc ; whoops
+	ret nc
 	ld a, c
 	cp e
 	ret

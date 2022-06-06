@@ -295,6 +295,7 @@ HandleBetweenTurnEffects:
 	jp HandleEncore
 
 CheckFaint_PlayerThenEnemy:
+; BUG: Perish Song and Spikes can leave a Pokemon with 0 HP and not faint (see docs/bugs_and_glitches.md)
 	call HasPlayerFainted
 	jr nz, .PlayerNotFainted
 	call HandlePlayerMonFaint
@@ -319,6 +320,7 @@ CheckFaint_PlayerThenEnemy:
 	ret
 
 CheckFaint_EnemyThenPlayer:
+; BUG: Perish Song and Spikes can leave a Pokemon with 0 HP and not faint (see docs/bugs_and_glitches.md)
 	call HasEnemyFainted
 	jr nz, .EnemyNotFainted
 	call HandleEnemyMonFaint
@@ -387,6 +389,7 @@ HandleBerserkGene:
 	call GetPartyLocation
 	xor a
 	ld [hl], a
+; BUG: Berserk Gene's confusion lasts for 256 turns or the previous Pokémon's confusion count (see docs/bugs_and_glitches.md)
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
 	push af
@@ -4186,6 +4189,7 @@ PursuitSwitch:
 	or [hl]
 	jr nz, .done
 
+; BUG: A Pokémon that fainted from Pursuit will have its old status condition when revived (see docs/bugs_and_glitches.md)
 	ld a, $f0
 	ld [wCryTracks], a
 	ld a, [wBattleMonSpecies]
@@ -5759,8 +5763,8 @@ CheckPlayerHasUsableMoves:
 	jr .loop
 
 .done
-	; Bug: this will result in a move with PP Up confusing the game.
-	and a ; should be "and PP_MASK"
+; BUG: A Disabled but PP Up–enhanced move may not trigger Struggle (see docs/bugs_and_glitches.md)
+	and a
 	ret nz
 
 .force_struggle
@@ -6159,13 +6163,14 @@ LoadEnemyMon:
 	jr nz, .Happiness
 
 ; Get Magikarp's length
+; BUG: Magikarp length limits have a unit conversion error (see docs/bugs_and_glitches.md)
 	ld de, wEnemyMonDVs
 	ld bc, wPlayerID
 	callfar CalcMagikarpLength
 
 ; No reason to keep going if length > 1536 mm (i.e. if HIGH(length) > 6 feet)
 	ld a, [wMagikarpLength]
-	cp HIGH(1536) ; should be "cp 5", since 1536 mm = 5'0", but HIGH(1536) = 6
+	cp HIGH(1536)
 	jr nz, .CheckMagikarpArea
 
 ; 5% chance of skipping both size checks
@@ -6174,7 +6179,7 @@ LoadEnemyMon:
 	jr c, .CheckMagikarpArea
 ; Try again if length >= 1616 mm (i.e. if LOW(length) >= 4 inches)
 	ld a, [wMagikarpLength + 1]
-	cp LOW(1616) ; should be "cp 4", since 1616 mm = 5'4", but LOW(1616) = 80
+	cp LOW(1616)
 	jr nc, .GenerateDVs
 
 ; 20% chance of skipping this check
@@ -6183,23 +6188,11 @@ LoadEnemyMon:
 	jr c, .CheckMagikarpArea
 ; Try again if length >= 1600 mm (i.e. if LOW(length) >= 3 inches)
 	ld a, [wMagikarpLength + 1]
-	cp LOW(1600) ; should be "cp 3", since 1600 mm = 5'3", but LOW(1600) = 64
+	cp LOW(1600)
 	jr nc, .GenerateDVs
 
 .CheckMagikarpArea:
-; The "jr z" checks are supposed to be "jr nz".
-
-; Instead, all maps in GROUP_LAKE_OF_RAGE (Mahogany area)
-; and Routes 20 and 44 are treated as Lake of Rage.
-
-; This also means Lake of Rage Magikarp can be smaller than ones
-; caught elsewhere rather than the other way around.
-
-; Intended behavior enforces a minimum size at Lake of Rage.
-; The real behavior prevents a minimum size in the Lake of Rage area.
-
-; Moreover, due to the check not being translated to feet+inches, all Magikarp
-; smaller than 4'0" may be caught by the filter, a lot more than intended.
+; BUG: Magikarp in Lake of Rage are shorter, not longer (see docs/bugs_and_glitches.md)
 	ld a, [wMapGroup]
 	cp GROUP_LAKE_OF_RAGE
 	jr z, .Happiness
@@ -6212,7 +6205,7 @@ LoadEnemyMon:
 	jr c, .Happiness
 ; Try again if length < 1024 mm (i.e. if HIGH(length) < 3 feet)
 	ld a, [wMagikarpLength]
-	cp HIGH(1024) ; should be "cp 3", since 1024 mm = 3'4", but HIGH(1024) = 4
+	cp HIGH(1024)
 	jr c, .GenerateDVs ; try again
 
 ; Finally done with DVs
@@ -6805,6 +6798,7 @@ BadgeStatBoosts:
 	ld hl, wBattleMonAttack
 	ld c, 4
 .CheckBadge:
+; BUG: Glacier Badge may not boost Special Defense depending on the value of Special Attack (see docs/bugs_and_glitches.md)
 	ld a, b
 	srl b
 	call c, BoostStat
@@ -6814,9 +6808,6 @@ BadgeStatBoosts:
 	srl b
 	dec c
 	jr nz, .CheckBadge
-; Check GlacierBadge again for Special Defense.
-; This check is buggy because it assumes that a is set by the "ld a, b" in the above loop,
-; but it can actually be overwritten by the call to BoostStat.
 	srl a
 	call c, BoostStat
 	ret
@@ -7637,6 +7628,7 @@ SendOutMonText:
 	ld hl, GoMonText
 	jr z, .skip_to_textbox
 
+; BUG: Switching out or switching against a Pokémon with max HP below 4 freezes the game (see docs/bugs_and_glitches.md)
 	; compute enemy health remaining as a percentage
 	xor a
 	ldh [hMultiplicand + 0], a

@@ -363,8 +363,9 @@ _HallOfFamePC:
 	call ClearBGPalettes
 	pop hl
 	call DisplayHOFMon
+; BUG: A "HOF Master!" title for 200-Time Famers is defined but inaccessible (see docs/bugs_and_glitches.md)
 	ld a, [wHallOfFameTempWinCount]
-	cp HOF_MASTER_COUNT + 1 ; should be HOF_MASTER_COUNT
+	cp HOF_MASTER_COUNT + 1
 	jr c, .print_num_hof
 	ld de, .HOFMaster
 	hlcoord 1, 2

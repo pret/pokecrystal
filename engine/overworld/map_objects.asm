@@ -2689,7 +2689,7 @@ ResetObject:
 	add hl, bc
 	ld a, [hl]
 	cp -1
-	jp z, .set_standing ; a jr would have been appropriate here
+	jp z, .set_standing
 	push bc
 	call GetMapObject
 	ld hl, MAPOBJECT_MOVEMENT
