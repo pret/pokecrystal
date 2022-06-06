@@ -1,6 +1,4 @@
 BattleCommand_Metronome:
-; metronome
-
 	call ClearLastMove
 	call CheckUserIsCharging
 	jr nz, .charging

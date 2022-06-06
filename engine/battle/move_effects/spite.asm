@@ -1,6 +1,4 @@
 BattleCommand_Spite:
-; spite
-
 	ld a, [wAttackMissed]
 	and a
 	jp nz, .failed

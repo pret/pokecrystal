@@ -1,6 +1,4 @@
 BattleCommand_CheckFutureSight:
-; checkfuturesight
-
 	ld hl, wPlayerFutureSightCount
 	ld de, wPlayerFutureSightDamage
 	ldh a, [hBattleTurn]
@@ -26,8 +24,6 @@ BattleCommand_CheckFutureSight:
 	jp SkipToBattleCommand
 
 BattleCommand_FutureSight:
-; futuresight
-
 	call CheckUserIsCharging
 	jr nz, .AlreadyChargingFutureSight
 	ld a, BATTLE_VARS_MOVE_ANIM

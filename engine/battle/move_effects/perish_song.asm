@@ -1,6 +1,4 @@
 BattleCommand_PerishSong:
-; perishsong
-
 	ld hl, wPlayerSubStatus1
 	ld de, wEnemySubStatus1
 	bit SUBSTATUS_PERISH, [hl]

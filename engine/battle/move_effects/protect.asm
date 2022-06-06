@@ -1,5 +1,4 @@
 BattleCommand_Protect:
-; protect
 	call ProtectChance
 	ret c
 

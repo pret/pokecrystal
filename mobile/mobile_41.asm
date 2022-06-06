@@ -391,17 +391,17 @@ StubbedTrainerRankings_Unused3: ; unreferenced
 	ld hl, sTrainerRankingUnused3
 	jr StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_ColosseumWins: ; win
+StubbedTrainerRankings_ColosseumWins:
 	ret
 	ld hl, sTrainerRankingColosseumWins
 	jr StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_ColosseumLosses: ; lose
+StubbedTrainerRankings_ColosseumLosses:
 	ret
 	ld hl, sTrainerRankingColosseumLosses
 	jr StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_ColosseumDraws: ; draw
+StubbedTrainerRankings_ColosseumDraws:
 	ret
 	ld hl, sTrainerRankingColosseumDraws
 	jr StubbedTrainerRankings_Increment3Byte

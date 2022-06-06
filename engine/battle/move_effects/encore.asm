@@ -1,6 +1,4 @@
 BattleCommand_Encore:
-; encore
-
 	ld hl, wEnemyMonMoves
 	ld de, wEnemyEncoreCount
 	ldh a, [hBattleTurn]

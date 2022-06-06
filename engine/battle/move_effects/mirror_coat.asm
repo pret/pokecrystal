@@ -1,6 +1,4 @@
 BattleCommand_MirrorCoat:
-; mirrorcoat
-
 	ld a, 1
 	ld [wAttackMissed], a
 

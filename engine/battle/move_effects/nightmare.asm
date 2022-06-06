@@ -1,6 +1,4 @@
 BattleCommand_Nightmare:
-; nightmare
-
 ; Can't hit an absent opponent.
 
 	call CheckHiddenOpponent

@@ -1,6 +1,4 @@
 BattleCommand_Counter:
-; counter
-
 	ld a, 1
 	ld [wAttackMissed], a
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP

@@ -1,6 +1,4 @@
 BattleCommand_Sketch:
-; sketch
-
 	call ClearLastMove
 ; Don't sketch during a link battle
 	ld a, [wLinkMode]
