@@ -13,6 +13,7 @@ These are parts of the code that do not work *incorrectly*, like [bugs and glitc
 - [Pokédex entry banks are derived from their species IDs](#pokédex-entry-banks-are-derived-from-their-species-ids)
 - [Identical sine wave code and data is repeated five times](#identical-sine-wave-code-and-data-is-repeated-five-times)
 - [`GetForestTreeFrame` works, but it's still bad](#getforesttreeframe-works-but-its-still-bad)
+- [The 6-bit caught level can only record up to level 63](#the-6-bit-caught-level-can-only-record-up-to-level-63)
 
 
 ## Pic banks are offset by `PICS_FIX`
@@ -770,3 +771,11 @@ Edit `GetForestTreeFrame`:
 +	add a
  	ret
 ```
+
+
+### The 6-bit caught level can only record up to level 63
+
+The 6-bit field that is normally used to record the caught level of Pokémon can only record up to level 63 normally.
+
+**Fix:** Repurpose a free bit from `MON_LEVEL` (1 free bit), `MON_EXP` (3 free bits), etc.
+An example of such a fix was used in https://github.com/thegsproj/pokegscrystal/pull/8.
