@@ -777,5 +777,5 @@ Edit `GetForestTreeFrame`:
 
 The 6-bit field that is normally used to record the caught level of Pokémon can only record up to level 63 normally.
 
-**Possible Solution:** Repurpose a free bit from `MON_LEVEL` (1 free bit), `MON_EXP` (3 free bits), etc.
+**Possible Fix:** Repurpose an unused bit from `MON_LEVEL` (one free bit), `MON_EXP` (three free bits), or somewhere else.
 An example of such a fix was used in https://github.com/thegsproj/pokegscrystal/pull/8.
