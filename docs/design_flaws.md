@@ -12,8 +12,8 @@ These are parts of the code that do not work *incorrectly*, like [bugs and glitc
 - [`ITEM_C3` and `ITEM_DC` break up the continuous sequence of TM items](#item_c3-and-item_dc-break-up-the-continuous-sequence-of-tm-items)
 - [Pokédex entry banks are derived from their species IDs](#pokédex-entry-banks-are-derived-from-their-species-ids)
 - [Identical sine wave code and data is repeated five times](#identical-sine-wave-code-and-data-is-repeated-five-times)
-- [`GetForestTreeFrame` works, but it's still bad](#getforesttreeframe-works-but-its-still-bad)
 - [The 6-bit caught level can only record up to level 63](#the-6-bit-caught-level-can-only-record-up-to-level-63)
+- [`GetForestTreeFrame` works, but it's still bad](#getforesttreeframe-works-but-its-still-bad)
 
 
 ## Pic banks are offset by `PICS_FIX`
@@ -736,6 +736,13 @@ ENDM
 **Fix:** Edit [home/sine.asm](https://github.com/pret/pokecrystal/blob/master/home/sine.asm) to contain a single copy of the (co)sine code in bank 0, and call it from those five sites.
 
 
+## The 6-bit caught level can only record up to level 63
+
+The 6-bit field that is normally used to record the caught level of Pokémon can only record up to level 63.
+
+**Possible Fix:** Repurpose an unused bit from `MON_LEVEL` (one free bit), `MON_EXP` (three free bits), or somewhere else.
+
+
 ## `GetForestTreeFrame` works, but it's still bad
 
 The routine `GetForestTreeFrame` in [engine/tilesets/tileset_anims.asm](https://github.com/pret/pokecrystal/blob/master/engine/tilesets/tileset_anims.asm) is hilariously inefficient.
@@ -771,11 +778,3 @@ Edit `GetForestTreeFrame`:
 +	add a
  	ret
 ```
-
-
-## The 6-bit caught level can only record up to level 63
-
-The 6-bit field that is normally used to record the caught level of Pokémon can only record up to level 63.
-
-**Possible Fix:** Repurpose an unused bit from `MON_LEVEL` (one free bit), `MON_EXP` (three free bits), or somewhere else.
-An example of such a fix was used in https://github.com/thegsproj/pokegscrystal/pull/8.
