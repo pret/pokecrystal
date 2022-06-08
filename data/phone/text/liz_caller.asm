@@ -236,7 +236,7 @@ LizBugCatchingContestGossipText:
 	cont "that great?"
 	done
 
-LizBeautifulMonGossipText:
+LizBeautifulTrainerGossipText:
 	text "Listen, listen!"
 
 	para "I saw a beautiful"

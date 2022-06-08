@@ -1,5 +1,5 @@
-NUM_MOM_ITEMS_1 EQUS "((MomItems_1.End - MomItems_1) / 8)"
-NUM_MOM_ITEMS_2 EQUS "((MomItems_2.End - MomItems_2) / 8)"
+DEF NUM_MOM_ITEMS_1 EQUS "((MomItems_1.End - MomItems_1) / 8)"
+DEF NUM_MOM_ITEMS_2 EQUS "((MomItems_2.End - MomItems_2) / 8)"
 
 	const_def 1
 	const MOM_ITEM

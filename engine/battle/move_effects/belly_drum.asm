@@ -1,5 +1,4 @@
 BattleCommand_BellyDrum:
-; bellydrum
 ; This command is buggy because it raises the user's attack
 ; before checking that it has enough HP to use the move.
 ; Swap the order of these two blocks to fix.

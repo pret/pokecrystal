@@ -1,25 +1,25 @@
-newgroup: MACRO
+MACRO newgroup
 ;\1: group id
 	const_skip
-MAPGROUP_\1 EQU const_value
-CURRENT_NUM_MAPGROUP_MAPS EQUS "NUM_\1_MAPS"
-__map_value__ = 1
+	DEF MAPGROUP_\1 EQU const_value
+	DEF CURRENT_NUM_MAPGROUP_MAPS EQUS "NUM_\1_MAPS"
+	DEF __map_value__ = 1
 ENDM
 
-map_const: MACRO
+MACRO map_const
 ;\1: map id
 ;\2: width: in blocks
 ;\3: height: in blocks
-GROUP_\1 EQU const_value
-MAP_\1 EQU __map_value__
-__map_value__ = __map_value__ + 1
-\1_WIDTH EQU \2
-\1_HEIGHT EQU \3
+	DEF GROUP_\1 EQU const_value
+	DEF MAP_\1 EQU __map_value__
+	DEF __map_value__ += 1
+	DEF \1_WIDTH EQU \2
+	DEF \1_HEIGHT EQU \3
 ENDM
 
-endgroup: MACRO
-{CURRENT_NUM_MAPGROUP_MAPS} EQU __map_value__ - 1
-PURGE CURRENT_NUM_MAPGROUP_MAPS
+MACRO endgroup
+	DEF {CURRENT_NUM_MAPGROUP_MAPS} EQU __map_value__ - 1
+	PURGE CURRENT_NUM_MAPGROUP_MAPS
 ENDM
 
 ; map group ids
@@ -501,4 +501,4 @@ ENDM
 	map_const ROUTE_31_VIOLET_GATE,                         5,  4 ; 11
 	endgroup
 
-NUM_MAP_GROUPS EQU const_value ; 26
+DEF NUM_MAP_GROUPS EQU const_value ; 26

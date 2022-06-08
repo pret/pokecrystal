@@ -13,7 +13,7 @@
 	const A_ ; a
 	const A# ; b
 	const B_ ; c
-NUM_NOTES EQU const_value - 1
+DEF NUM_NOTES EQU const_value - 1
 
 ; channel
 ; ChannelPointers indexes (see audio/engine.asm)
@@ -22,60 +22,60 @@ NUM_NOTES EQU const_value - 1
 	const CHAN2 ; 1
 	const CHAN3 ; 2
 	const CHAN4 ; 3
-NUM_MUSIC_CHANS EQU const_value
+DEF NUM_MUSIC_CHANS EQU const_value
 	const CHAN5 ; 4
 	const CHAN6 ; 5
 	const CHAN7 ; 6
 	const CHAN8 ; 7
-NUM_NOISE_CHANS EQU const_value - NUM_MUSIC_CHANS
-NUM_CHANNELS EQU const_value
+DEF NUM_NOISE_CHANS EQU const_value - NUM_MUSIC_CHANS
+DEF NUM_CHANNELS EQU const_value
 
 ; channel_struct members (see macros/wram.asm)
 rsreset
-CHANNEL_MUSIC_ID                    rw
-CHANNEL_MUSIC_BANK                  rb
-CHANNEL_FLAGS1                      rb
-CHANNEL_FLAGS2                      rb
-CHANNEL_FLAGS3                      rb
-CHANNEL_MUSIC_ADDRESS               rw
-CHANNEL_LAST_MUSIC_ADDRESS          rw
-                                    rb_skip 2
-CHANNEL_NOTE_FLAGS                  rb
-CHANNEL_CONDITION                   rb
-CHANNEL_DUTY_CYCLE                  rb
-CHANNEL_VOLUME_ENVELOPE             rb
-CHANNEL_FREQUENCY                   rw
-CHANNEL_PITCH                       rb
-CHANNEL_OCTAVE                      rb
-CHANNEL_TRANSPOSITION               rb
-CHANNEL_NOTE_DURATION               rb
-CHANNEL_FIELD16                     rb
-                                    rb_skip
-CHANNEL_LOOP_COUNT                  rb
-CHANNEL_TEMPO                       rw
-CHANNEL_TRACKS                      rb
-CHANNEL_DUTY_CYCLE_PATTERN          rb
-CHANNEL_VIBRATO_DELAY_COUNT         rb
-CHANNEL_VIBRATO_DELAY               rb
-CHANNEL_VIBRATO_EXTENT              rb
-CHANNEL_VIBRATO_RATE                rb
-CHANNEL_PITCH_SLIDE_TARGET          rw
-CHANNEL_PITCH_SLIDE_AMOUNT          rb
-CHANNEL_PITCH_SLIDE_AMOUNT_FRACTION rb
-CHANNEL_FIELD25                     rb
-                                    rb_skip
-CHANNEL_PITCH_OFFSET                rw
-CHANNEL_FIELD29                     rb
-CHANNEL_FIELD2A                     rw
-CHANNEL_FIELD2C                     rb
-CHANNEL_NOTE_LENGTH                 rb
-CHANNEL_FIELD2E                     rb
-CHANNEL_FIELD2F                     rb
-CHANNEL_FIELD30                     rb
-                                    rb_skip
-CHANNEL_STRUCT_LENGTH EQU _RS
+DEF CHANNEL_MUSIC_ID                    rw
+DEF CHANNEL_MUSIC_BANK                  rb
+DEF CHANNEL_FLAGS1                      rb
+DEF CHANNEL_FLAGS2                      rb
+DEF CHANNEL_FLAGS3                      rb
+DEF CHANNEL_MUSIC_ADDRESS               rw
+DEF CHANNEL_LAST_MUSIC_ADDRESS          rw
+                                        rb_skip 2
+DEF CHANNEL_NOTE_FLAGS                  rb
+DEF CHANNEL_CONDITION                   rb
+DEF CHANNEL_DUTY_CYCLE                  rb
+DEF CHANNEL_VOLUME_ENVELOPE             rb
+DEF CHANNEL_FREQUENCY                   rw
+DEF CHANNEL_PITCH                       rb
+DEF CHANNEL_OCTAVE                      rb
+DEF CHANNEL_TRANSPOSITION               rb
+DEF CHANNEL_NOTE_DURATION               rb
+DEF CHANNEL_FIELD16                     rb
+                                        rb_skip
+DEF CHANNEL_LOOP_COUNT                  rb
+DEF CHANNEL_TEMPO                       rw
+DEF CHANNEL_TRACKS                      rb
+DEF CHANNEL_DUTY_CYCLE_PATTERN          rb
+DEF CHANNEL_VIBRATO_DELAY_COUNT         rb
+DEF CHANNEL_VIBRATO_DELAY               rb
+DEF CHANNEL_VIBRATO_EXTENT              rb
+DEF CHANNEL_VIBRATO_RATE                rb
+DEF CHANNEL_PITCH_SLIDE_TARGET          rw
+DEF CHANNEL_PITCH_SLIDE_AMOUNT          rb
+DEF CHANNEL_PITCH_SLIDE_AMOUNT_FRACTION rb
+DEF CHANNEL_FIELD25                     rb
+                                        rb_skip
+DEF CHANNEL_PITCH_OFFSET                rw
+DEF CHANNEL_FIELD29                     rb
+DEF CHANNEL_FIELD2A                     rw
+DEF CHANNEL_FIELD2C                     rb
+DEF CHANNEL_NOTE_LENGTH                 rb
+DEF CHANNEL_FIELD2E                     rb
+DEF CHANNEL_FIELD2F                     rb
+DEF CHANNEL_FIELD30                     rb
+                                        rb_skip
+DEF CHANNEL_STRUCT_LENGTH EQU _RS
 
-NOISE_CHAN_F EQU 2 ; bit set in CHAN5-CHAN7
+DEF NOISE_CHAN_F EQU 2 ; bit set in CHAN5-CHAN7
 
 ; Flags1
 	const_def
@@ -113,22 +113,22 @@ NOISE_CHAN_F EQU 2 ; bit set in CHAN5-CHAN7
 	const NOTE_VIBRATO_OVERRIDE ; 6
 
 ; wVolume
-VOLUME_SO1_F     EQU 3
-VOLUME_SO2_F     EQU 7
-VOLUME_SO1_LEVEL EQU %00000111
-VOLUME_SO2_LEVEL EQU %01110000
-MAX_VOLUME       EQU $77
+DEF VOLUME_SO1_F     EQU 3
+DEF VOLUME_SO2_F     EQU 7
+DEF VOLUME_SO1_LEVEL EQU %00000111
+DEF VOLUME_SO2_LEVEL EQU %01110000
+DEF MAX_VOLUME       EQU $77
 
 ; wSoundInput
-SOUND_INPUT_CH1_F    EQU 0
-SOUND_INPUT_CH2_F    EQU 1
-SOUND_INPUT_CH3_F    EQU 2
-SOUND_INPUT_CH4_F    EQU 3
-SOUND_INPUT_GLOBAL_F EQU 7
+DEF SOUND_INPUT_CH1_F    EQU 0
+DEF SOUND_INPUT_CH2_F    EQU 1
+DEF SOUND_INPUT_CH3_F    EQU 2
+DEF SOUND_INPUT_CH4_F    EQU 3
+DEF SOUND_INPUT_GLOBAL_F EQU 7
 
 ; wLowHealthAlarm
-DANGER_PITCH_F EQU 4
-DANGER_ON_F    EQU 7
+DEF DANGER_PITCH_F EQU 4
+DEF DANGER_ON_F    EQU 7
 
 ; wMusicFade
-MUSIC_FADE_IN_F EQU 7
+DEF MUSIC_FADE_IN_F EQU 7

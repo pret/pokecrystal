@@ -760,7 +760,7 @@ ParkBallMultiplier:
 	ld b, $ff
 	ret
 
-GetPokedexEntryBank:
+HeavyBall_GetDexEntryBank:
 ; This function is buggy.
 ; It gets the wrong bank for Kadabra (64), Tauros (128), and Sunflora (192).
 ; Uncomment the line below to fix this.
@@ -791,7 +791,7 @@ HeavyBallMultiplier:
 ; else add 0 to catch rate if weight < 204.8 kg
 ; else add 20 to catch rate if weight < 307.2 kg
 ; else add 30 to catch rate if weight < 409.6 kg
-; else add 40 to catch rate (never happens)
+; else add 40 to catch rate
 	ld a, [wEnemyMonSpecies]
 	ld hl, PokedexDataPointerTable
 	dec a
@@ -803,13 +803,13 @@ HeavyBallMultiplier:
 	call GetFarWord
 
 .SkipText:
-	call GetPokedexEntryBank
+	call HeavyBall_GetDexEntryBank
 	call GetFarByte
 	inc hl
 	cp "@"
 	jr nz, .SkipText
 
-	call GetPokedexEntryBank
+	call HeavyBall_GetDexEntryBank
 	push bc
 	inc hl
 	inc hl
@@ -2189,7 +2189,7 @@ PokeFluteEffect:
 	xor a
 	ld [wPokeFluteCuredSleep], a
 
-	ld b, $ff ^ SLP
+	ld b, ~SLP
 
 	ld hl, wPartyMon1Status
 	call .CureSleep

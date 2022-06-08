@@ -481,8 +481,8 @@ Function10034d:
 	ret
 
 .asm_10036a
-	ld a, 0
-	call Function3e32
+	ld a, MOBILEAPI_00
+	call MobileAPI
 	ld [wcd2c], a
 	ld a, h
 	ld [wcd2d], a
@@ -505,14 +505,14 @@ Function100382:
 
 Function10038a:
 	ld hl, wccb4
-	ld a, $2e
-	call Function3e32
+	ld a, MOBILEAPI_17
+	call MobileAPI
 	ret
 
 Function100393:
 	ld hl, wcc60
-	ld a, $3a
-	call Function3e32
+	ld a, MOBILEAPI_1D
+	call MobileAPI
 	ret
 
 Function10039c:
@@ -1083,7 +1083,7 @@ Function1006dc:
 	ldh a, [hHours]
 	sbc c
 	jr nc, .asm_1006fb
-	add $18
+	add MAX_HOUR
 
 .asm_1006fb
 	ld [de], a
@@ -1530,6 +1530,7 @@ Function1009f3:
 _LinkBattleSendReceiveAction:
 	call .StageForSend
 	ld [wLinkBattleSentAction], a
+	vc_hook Wireless_start_exchange
 	farcall PlaceWaitingText
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
@@ -1584,20 +1585,35 @@ _LinkBattleSendReceiveAction:
 	inc a
 	jr z, .waiting
 
+	vc_hook Wireless_end_exchange
+	vc_patch Wireless_net_delay_3
+if DEF(_CRYSTAL11_VC)
+	ld b, 26
+else
 	ld b, 10
+endc
+	vc_patch_end
 .receive
 	call DelayFrame
 	call LinkTransfer
 	dec b
 	jr nz, .receive
 
+	vc_hook Wireless_start_send_zero_bytes
+	vc_patch Wireless_net_delay_4
+if DEF(_CRYSTAL11_VC)
+	ld b, 26
+else
 	ld b, 10
+endc
+	vc_patch_end
 .acknowledge
 	call DelayFrame
 	call LinkDataReceived
 	dec b
 	jr nz, .acknowledge
 
+	vc_hook Wireless_end_send_zero_bytes
 	ld a, [wOtherPlayerLinkAction]
 	ld [wBattleAction], a
 	ret
@@ -2379,7 +2395,7 @@ Function100f8d:
 	call CloseSRAM
 	ret
 
-macro_100fc0: MACRO
+MACRO macro_100fc0
 	; first byte:
 	;     Bit 7 set: Not SRAM
 	;     Lower 7 bits: Bank if SRAM
@@ -3138,32 +3154,32 @@ Function101507:
 	ld de, wcd30
 	ld hl, $40
 	ld bc, $40
-	ld a, $02
-	call Function3e32
+	ld a, MOBILEAPI_01
+	call MobileAPI
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
 	ld [wMobileCommsJumptableIndex], a
 	ret
 
 Function10151d: ; unreferenced
-	ld a, $34
-	call Function3e32
+	ld a, MOBILEAPI_1A
+	call MobileAPI
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
 	ld [wMobileCommsJumptableIndex], a
 	ret
 
 Function10152a:
-	ld a, $36
-	call Function3e32
+	ld a, MOBILEAPI_1B
+	call MobileAPI
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
 	ld [wMobileCommsJumptableIndex], a
 	ret
 
 Function101537:
-	ld a, $0a
-	call Function3e32
+	ld a, MOBILEAPI_05
+	call MobileAPI
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
 	ld [wMobileCommsJumptableIndex], a
@@ -3171,8 +3187,8 @@ Function101537:
 
 Function101544:
 	farcall StartMobileInactivityTimer
-	ld a, $12
-	call Function3e32
+	ld a, MOBILEAPI_09
+	call MobileAPI
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
 	ld [wMobileCommsJumptableIndex], a
@@ -3181,8 +3197,8 @@ Function101544:
 Function101557:
 	farcall StartMobileInactivityTimer
 	ld hl, wcd53
-	ld a, $08
-	call Function3e32
+	ld a, MOBILEAPI_04
+	call MobileAPI
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
 	ld [wMobileCommsJumptableIndex], a

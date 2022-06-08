@@ -1,6 +1,6 @@
-time_group EQUS "0," ; use the nth TimeFishGroups entry
+DEF time_group EQUS "0," ; use the nth TimeFishGroups entry
 
-fishgroup: MACRO
+MACRO fishgroup
 ; chance, old rod, good rod, super rod
 	db \1
 	dw \2, \3, \4

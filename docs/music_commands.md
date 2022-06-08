@@ -114,7 +114,7 @@ Set the volume envelope for the current channel. Used by channels 1-3.
 `fade`: Volume fade [`-7`, `7`] (applies to channels 1-2)  
 `wave_instrument`: Wave instrument ID (applies to channel 3) (see [audio/wave_samples.asm](https://github.com/pret/pokecrystal/blob/master/audio/wave_samples.asm))
 
-For channel 3, the only acceped `volume` values are 0-3.
+For channel 3, the only accepted `volume` values are 0-3.
 
 - 0 = Mute
 - 1 = 100% volume

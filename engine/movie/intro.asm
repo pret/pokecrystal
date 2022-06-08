@@ -32,9 +32,9 @@ CrystalIntro:
 	xor a
 	ldh [hSCX], a
 	ldh [hSCY], a
-	ld a, $7
+	ld a, 7
 	ldh [hWX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	pop af
 	ldh [hVBlank], a
@@ -132,9 +132,9 @@ IntroScene1:
 	xor a
 	ldh [hSCX], a
 	ldh [hSCY], a
-	ld a, $7
+	ld a, 7
 	ldh [hWX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	farcall ClearSpriteAnims
 	call Intro_SetCGBPalUpdate
@@ -205,9 +205,9 @@ IntroScene3:
 	xor a
 	ldh [hSCX], a
 	ldh [hSCY], a
-	ld a, $7
+	ld a, 7
 	ldh [hWX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	call Intro_ResetLYOverrides
 	call Intro_SetCGBPalUpdate
@@ -271,9 +271,9 @@ IntroScene5:
 	xor a
 	ldh [hSCX], a
 	ldh [hSCY], a
-	ld a, $7
+	ld a, 7
 	ldh [hWX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	farcall ClearSpriteAnims
 	call Intro_SetCGBPalUpdate
@@ -381,9 +381,9 @@ IntroScene7:
 	xor a
 	ldh [hSCX], a
 	ldh [hSCY], a
-	ld a, $7
+	ld a, 7
 	ldh [hWX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	call Intro_ResetLYOverrides
 	farcall ClearSpriteAnims
@@ -536,9 +536,9 @@ IntroScene11:
 	xor a
 	ldh [hSCX], a
 	ldh [hSCY], a
-	ld a, $7
+	ld a, 7
 	ldh [hWX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	farcall ClearSpriteAnims
 	call Intro_SetCGBPalUpdate
@@ -662,9 +662,9 @@ IntroScene13:
 	xor a
 	ldh [hSCX], a
 	ldh [hSCY], a
-	ld a, $7
+	ld a, 7
 	ldh [hWX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	farcall ClearSpriteAnims
 	depixel 13, 11, 4, 0
@@ -770,11 +770,11 @@ IntroScene15:
 	ldh [rSVBK], a
 	xor a
 	ldh [hSCX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hSCY], a
-	ld a, $7
+	ld a, 7
 	ldh [hWX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	farcall ClearSpriteAnims
 	call Intro_SetCGBPalUpdate
@@ -845,9 +845,9 @@ IntroScene17:
 	xor a
 	ldh [hSCX], a
 	ldh [hSCY], a
-	ld a, $7
+	ld a, 7
 	ldh [hWX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	farcall ClearSpriteAnims
 	call Intro_SetCGBPalUpdate
@@ -918,11 +918,11 @@ IntroScene19:
 	ldh [rSVBK], a
 	xor a
 	ldh [hSCX], a
-	ld a, $d8
+	ld a, -5 * TILE_WIDTH
 	ldh [hSCY], a
-	ld a, $7
+	ld a, 7
 	ldh [hWX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	farcall ClearSpriteAnims
 	ld hl, wSpriteAnimDict
@@ -1089,9 +1089,9 @@ IntroScene26:
 	xor a
 	ldh [hSCX], a
 	ldh [hSCY], a
-	ld a, $7
+	ld a, 7
 	ldh [hWX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	farcall ClearSpriteAnims
 	call Intro_SetCGBPalUpdate
@@ -1438,19 +1438,19 @@ endr
 	ret
 
 .FastFadePalettes:
-hue = 31
+DEF hue = 31
 rept 8
 	RGB hue, hue, hue
-hue = hue - 1
+	DEF hue -= 1
 	RGB hue, hue, hue
-hue = hue - 2
+	DEF hue -= 2
 endr
 
 .SlowFadePalettes:
-hue = 31
+DEF hue = 31
 rept 16
 	RGB hue, hue, hue
-hue = hue - 1
+	DEF hue -= 1
 endr
 
 Intro_LoadTilemap:

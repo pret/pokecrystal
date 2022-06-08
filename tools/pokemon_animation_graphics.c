@@ -1,3 +1,6 @@
+#define PROGRAM_NAME "pokemon_animation_graphics"
+#define USAGE_OPTS "[-h|--help] [-o|--output front.animated.2bpp] [-t|--tilemap front.animated.tilemap] [--girafarig] front.2bpp front.dimensions"
+
 #include "common.h"
 
 struct Options {
@@ -5,10 +8,6 @@ struct Options {
 	const char *map_filename;
 	bool girafarig;
 };
-
-void usage() {
-	fputs("Usage: pokemon_animation_graphics [-h|--help] [-o|--output front.animated.2bpp] [-t|--tilemap front.animated.tilemap] [--girafarig] front.2bpp front.dimensions\n", stderr);
-}
 
 void parse_args(int argc, char *argv[], struct Options *options) {
 	struct option long_options[] = {
@@ -30,12 +29,10 @@ void parse_args(int argc, char *argv[], struct Options *options) {
 			options->girafarig = true;
 			break;
 		case 'h':
-			usage();
-			exit(0);
+			usage_exit(0);
 			break;
 		default:
-			usage();
-			exit(1);
+			usage_exit(1);
 		}
 	}
 }
@@ -43,7 +40,7 @@ void parse_args(int argc, char *argv[], struct Options *options) {
 #define TILE_SIZE 16
 
 void transpose_tiles(uint8_t *tiles, int width, int size) {
-	uint8_t *new_tiles = malloc_verbose(size);
+	uint8_t *new_tiles = xmalloc(size);
 	for (int i = 0; i < size; i++) {
 		int j = i / TILE_SIZE * width * TILE_SIZE;
 		j = (j / size) * TILE_SIZE + j % size + i % TILE_SIZE;
@@ -94,7 +91,7 @@ void write_graphics(const char *filename, const uint8_t *tiles, long tiles_size,
 		// Ensure space for a duplicate of tile 0 at the end
 		max_size += TILE_SIZE;
 	}
-	uint8_t *data = malloc_verbose(max_size);
+	uint8_t *data = xmalloc(max_size);
 
 	int num_tiles = 0;
 #define DATA_APPEND_TILES(tile, length) do { \
@@ -122,7 +119,7 @@ void write_graphics(const char *filename, const uint8_t *tiles, long tiles_size,
 
 void write_tilemap(const char *filename, const uint8_t *tiles, long tiles_size, int num_tiles_per_frame, bool girafarig) {
 	int size = tiles_size / TILE_SIZE;
-	uint8_t *data = malloc_verbose(size);
+	uint8_t *data = xmalloc(size);
 
 	int num_tiles = num_tiles_per_frame;
 	// Copy the first frame directly
@@ -154,8 +151,7 @@ int main(int argc, char *argv[]) {
 	argc -= optind;
 	argv += optind;
 	if (argc < 2) {
-		usage();
-		exit(1);
+		usage_exit(1);
 	}
 
 	int width;

@@ -1,27 +1,31 @@
-SLOTS_NO_BIAS  EQU -1
-SLOTS_NO_MATCH EQU -1
+; wSlotMatched values
+	const_def 0, 4
+	const SLOTS_SEVEN    ; $00
+	const SLOTS_POKEBALL ; $04
+	const SLOTS_CHERRY   ; $08
+	const SLOTS_PIKACHU  ; $0c
+	const SLOTS_SQUIRTLE ; $10
+	const SLOTS_STARYU   ; $14
+DEF NUM_SLOT_REELS EQU const_value / 4 ; 6
+DEF SLOTS_NO_MATCH EQU -1
 
-SLOTS_SEVEN    EQU $00
-SLOTS_POKEBALL EQU $04
-SLOTS_CHERRY   EQU $08
-SLOTS_PIKACHU  EQU $0c
-SLOTS_SQUIRTLE EQU $10
-SLOTS_STARYU   EQU $14
+; wSlotBias values
+DEF SLOTS_NO_BIAS EQU -1
 
-REEL_SIZE EQU 15
+DEF REEL_SIZE EQU 15
 
 ; Constants for slot_reel offsets (see macros/wram.asm)
-REEL_ACTION        EQUS "(wReel1ReelAction - wReel1)"
-REEL_TILEMAP_ADDR  EQUS "(wReel1TilemapAddr - wReel1)"
-REEL_POSITION      EQUS "(wReel1Position - wReel1)"
-REEL_SPIN_DISTANCE EQUS "(wReel1SpinDistance - wReel1)"
-REEL_SPIN_RATE     EQUS "(wReel1SpinRate - wReel1)"
-REEL_OAM_ADDR      EQUS "(wReel1OAMAddr - wReel1)"
-REEL_X_COORD       EQUS "(wReel1XCoord - wReel1)"
-REEL_MANIP_COUNTER EQUS "(wReel1ManipCounter - wReel1)"
-REEL_MANIP_DELAY   EQUS "(wReel1ManipDelay - wReel1)"
-REEL_FIELD_0B      EQUS "(wReel1Field0b - wReel1)"
-REEL_STOP_DELAY    EQUS "(wReel1StopDelay - wReel1)"
+DEF REEL_ACTION        EQUS "(wReel1ReelAction - wReel1)"
+DEF REEL_TILEMAP_ADDR  EQUS "(wReel1TilemapAddr - wReel1)"
+DEF REEL_POSITION      EQUS "(wReel1Position - wReel1)"
+DEF REEL_SPIN_DISTANCE EQUS "(wReel1SpinDistance - wReel1)"
+DEF REEL_SPIN_RATE     EQUS "(wReel1SpinRate - wReel1)"
+DEF REEL_OAM_ADDR      EQUS "(wReel1OAMAddr - wReel1)"
+DEF REEL_X_COORD       EQUS "(wReel1XCoord - wReel1)"
+DEF REEL_MANIP_COUNTER EQUS "(wReel1ManipCounter - wReel1)"
+DEF REEL_MANIP_DELAY   EQUS "(wReel1ManipDelay - wReel1)"
+DEF REEL_FIELD_0B      EQUS "(wReel1Field0b - wReel1)"
+DEF REEL_STOP_DELAY    EQUS "(wReel1StopDelay - wReel1)"
 
 ; SlotsJumptable constants
 	const_def
@@ -44,7 +48,7 @@ REEL_STOP_DELAY    EQUS "(wReel1StopDelay - wReel1)"
 	const SLOTS_PAYOUT_ANIM
 	const SLOTS_RESTART_OF_QUIT
 	const SLOTS_QUIT
-SLOTS_END_LOOP_F EQU 7
+DEF SLOTS_END_LOOP_F EQU 7
 
 ; ReelActionJumptable constants
 	const_def
@@ -860,12 +864,14 @@ GetUnknownSlotReelData: ; unreferenced
 	ret
 
 .data:
+	table_width 1, GetUnknownSlotReelData.data
 	db 0 ; SLOTS_SEVEN
 	db 1 ; SLOTS_POKEBALL
 	db 2 ; SLOTS_CHERRY
 	db 3 ; SLOTS_PIKACHU
 	db 4 ; SLOTS_SQUIRTLE
 	db 5 ; SLOTS_STARYU
+	assert_table_length NUM_SLOT_REELS
 
 ReelActionJumptable:
 	ld hl, REEL_ACTION
@@ -1834,12 +1840,14 @@ Slots_GetPayout:
 	ret
 
 .PayoutTable:
-	dw 300
-	dw  50
-	dw   6
-	dw   8
-	dw  10
-	dw  15
+	table_width 2, Slots_GetPayout.PayoutTable
+	dw 300 ; SLOTS_SEVEN
+	dw  50 ; SLOTS_POKEBALL
+	dw   6 ; SLOTS_CHERRY
+	dw   8 ; SLOTS_PIKACHU
+	dw  10 ; SLOTS_SQUIRTLE
+	dw  15 ; SLOTS_STARYU
+	assert_table_length NUM_SLOT_REELS
 
 .no_win
 	ld hl, wPayout
@@ -1882,12 +1890,14 @@ Slots_PayoutText:
 	ret
 
 .PayoutStrings:
-	dbw "300@", .LinedUpSevens
-	dbw "50@@", .LinedUpPokeballs
-	dbw "6@@@", .LinedUpMonOrCherry
-	dbw "8@@@", .LinedUpMonOrCherry
-	dbw "10@@", .LinedUpMonOrCherry
-	dbw "15@@", .LinedUpMonOrCherry
+	table_width 6, Slots_PayoutText.PayoutStrings
+	dbw "300@", .LinedUpSevens      ; SLOTS_SEVEN
+	dbw "50@@", .LinedUpPokeballs   ; SLOTS_POKEBALL
+	dbw "6@@@", .LinedUpMonOrCherry ; SLOTS_CHERRY
+	dbw "8@@@", .LinedUpMonOrCherry ; SLOTS_PIKACHU
+	dbw "10@@", .LinedUpMonOrCherry ; SLOTS_SQUIRTLE
+	dbw "15@@", .LinedUpMonOrCherry ; SLOTS_STARYU
+	assert_table_length NUM_SLOT_REELS
 
 .Text_PrintPayout:
 	text_asm

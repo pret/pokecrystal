@@ -1,0 +1,698 @@
+﻿;Format Sample
+;[xxxx]			;User-defined Name (Max:31 chars)
+;Mode = 1		;1:Fixcode; 2:Fixvalue; 3:Mask; 4:Palette; 5:Double Frame Buffer
+;Type = 0		;0:Begin 1:End
+;Index = 0		;Index
+;Address = x1F8000	;ROM Address
+;MemAddress = x2000	;RAM Address
+;Fixcode = 0		;Mode1: Fixed Rom Code; Mode2: Fixed Value
+;DelayFrame = 0		;Delay Frame
+;FadeFrame = 0		;Fade Frame 0:Off
+;DarkEnable0 = 0	;0:Off, 1:On (for Normal Mode)
+;ReduceEnable0 = 0	;0:Off, 1:On (for Normal Mode)
+;MotionBEnable0 = 0	;0:Off, 1:Black Fade, 2:, 3:Frame Blend (for Normal Mode)
+;Dark0 = 10		;0~10 (for Normal Mode)
+;ReduceColorR0 = 0	;0~31 (for Normal Mode)
+;ReduceColorG0 = 0	;0~31 (for Normal Mode)
+;ReduceColorB0 = 0	;0~31 (for Normal Mode)
+;MotionBlur0 = 31	;0~31 (for Normal Mode)
+;DarkEnable1 = 0	;0:Off, 1:On (for Green Mode)
+;ReduceEnable1 = 0	;0:Off, 1:On (for Green Mode)
+;MotionBEnable1 = 0	;0:Off, 1:Black Fade, 2:, 3:Frame Blend (for Green Mode)
+;Dark1 = 10		;0~10 (for Green Mode)
+;ReduceColorR1 = 0	;0~31 (for Green Mode)
+;ReduceColorG1 = 0	;0~31 (for Green Mode)
+;ReduceColorB1 = 0	;0~31 (for Green Mode)
+;MotionBlur1 = 31	;0~31 (for Green Mode)
+;PaletteX = c31,31,31	;X:0~15, cR,G,B (0~31)
+
+[Network10@Wireless_net_delay_1]
+Mode = 1
+Address = {HEX @+1 4}
+Fixcode = {PATCH +1}
+
+[Network11@Wireless_net_delay_2]
+Mode = 1
+Address = {HEX @+1 4}
+Fixcode = {PATCH +1}
+
+[send_send_buf2@Wireless_WaitLinkTransfer]
+Mode = 2
+Address = {HEX @ 4}
+Type = 29
+
+[send_send_buf2_ret@Wireless_WaitLinkTransfer_ret]
+Mode = 2
+Address = {HEX @ 4}
+Type = 30
+
+[Network358@Wireless_ExchangeBytes_1]
+Mode = 2
+Address = {HEX @}
+Type = 4
+
+[Network359@Wireless_ExchangeBytes_2]
+Mode = 2
+Address = {HEX @}
+Type = 4
+
+[Network364@Wireless_ExchangeBytes_3_Gen2toGen1Fix]
+Mode = 2
+Address = {HEX @}
+;fix pokemon ?? in name
+Type = 26
+
+[Network360@Wireless_ExchangeBytes_4]
+Mode = 2
+Address = {HEX @}
+Type = 4
+
+[Network361@Wireless_ExchangeBytes_5]
+Mode = 2
+Address = {HEX @}
+Type = 4
+
+[Network362@Wireless_ExchangeBytes_6]
+Mode = 2
+Address = {HEX @}
+Type = 4
+
+[Network363@Wireless_ExchangeBytes_7]
+Mode = 2
+Address = {HEX @}
+Type = 4
+
+[Network_RECHECK@Wireless_net_recheck]
+Mode = 2
+Address = {HEX @}
+Type = 7
+
+[send_byt2@Wireless_start_exchange]
+Mode = 2
+Address = {HEX @+5}
+Type = 31
+
+[send_byt2_ret@Wireless_end_exchange]
+Mode = 2
+Address = {HEX @}
+Type = 32
+
+[send_byt2_wait@Wireless_net_delay_3]
+Mode = 1
+Address = {HEX @+1}
+Fixcode = {PATCH +1}
+
+[send_dummy@Wireless_start_send_zero_bytes]
+Mode = 2
+Address = {HEX @}
+Type = 33
+
+[send_dummy_wait@Wireless_net_delay_4]
+Mode = 1
+Address = {HEX @+1}
+Fixcode = {PATCH +1} 
+
+[send_dummy_end@Wireless_end_send_zero_bytes]
+Mode = 2
+Address = {HEX @}
+Type = 34
+
+[NetworkDelay1@Wireless_net_delay_5]
+Mode = 1
+Address = {HEX @+1}
+Fixcode = {PATCH +1}
+
+[NetworkDelay2@Wireless_net_delay_6]
+Mode = 1
+Address = {HEX @+1}
+Fixcode = {PATCH +1}
+
+[NetworkDelay3@Wireless_net_delay_7]
+Mode = 1
+Address = {HEX @+1}
+Fixcode = {PATCH +1}
+
+[NetworkDelay4@Wireless_net_delay_8]
+Mode = 1
+Address = {HEX @+1}
+Fixcode = {PATCH +1}
+
+[NetworkDelay6@Wireless_net_delay_9]
+Mode = 1
+Address = {HEX @+1}
+Fixcode = {PATCH +1}
+
+;no use[Network_STOP]
+;Mode = 2
+;Address = 0xF4D34
+;Type = 8
+
+;no use[Network_END]
+;Mode = 2
+;Address = 0xF4D3C
+;Type = 9
+
+[Network_RESET@Unknown_network_reset]
+Mode = 2
+Address = {HEX @ 5}
+Type = 10
+
+[E_YESNO@Unknown_yesorno_ret]
+Mode = 2
+Address = {HEX @}
+Type = 15
+
+[linkCable fake begin@Link_fake_connection_status]
+Mode = 2
+Address = {HEX @}
+Type = 16
+
+[linkCable fake end@Wireless_prompt]
+Mode = 2
+Address = {HEX @}
+Type = 17  
+
+;MURIYARI
+[linkCable block input@Wireless_TryQuickSave_block_input_1]
+Mode = 2
+Address = {HEX @}
+Type = 18
+[linkCable block input2@Wireless_TryQuickSave_block_input_2]
+Mode = 2
+Address = {HEX @}
+Type = 24
+[save game end@Trade_save_game_end]
+Mode = 2
+Address = {HEX @}
+Type = 20
+[term_exit@Wireless_term_exit]
+Mode = 2
+Address = {HEX @}
+Type = 25
+[room_check@Wireless_room_check]
+Mode = 2
+Address = {HEX @}
+Type = 27
+[to_play2_mons1@Wireless_TimeCapsule]
+Mode = 2
+Address = {HEX @}
+Type = 11
+[to_play2_trade@Wireless_TradeCenter]
+Mode = 2
+Address = {HEX @}
+Type = 12
+[to_play2_battle@Wireless_Colosseum]
+Mode = 2
+Address = {HEX @}
+Type = 13
+[ret_heya@ExitLinkCommunications_ret]
+Mode = 2
+Address = {HEX @}
+Type = 14
+
+
+
+
+
+;ROM:3FBCD                 ld      b, $3E ; '>'
+;ROM:3FBCF                 inc     de
+;ROM:3FBD0                 call    unk_2D55
+;ROM:3FBD3                 xor     a
+;ROM:3FBD4                 ld      [byte_FFD2], a
+;ROM:3FBD6                 ld      [byte_FF4A], a
+;ROM:3FBD8                 call    unk_31C2
+;ROM:3FBDB                 call    unk_2FE2
+;
+;ROM:3FBCD:  06 3E 13 CD
+
+;0003fbb5h: 06 3E 13 CD                                     ; .>.?
+
+[fight begin@Unknown_InitBattleDisplay]                        
+Mode = 11                       
+Type = 0                        
+Index = 1                       
+Address = {HEx @}            
+Fixcode={db SCREEN_HEIGHT_PX}        
+              
+;12 1b 0b 79 b0  find next C9
+[BiographySave_ret@Enable_GS_Ball_mobile_event]
+Mode = 2
+Address = {HEX @}
+Type = 60
+
+
+; print forbid 1
+;ROM:1758D                 ld      a, [byte_FFA9]
+;ROM:1758F                 and     2
+;ROM:17591                 jr      nz, unk_75B4
+;ROM:17593                 ld      a, [byte_FFA9]
+;ROM:17595                 and     1                      ;e6 01
+;ROM:17597                 jr      nz, unk_75A1
+;    
+; change "and 1" to "and 0"
+;00017595h: E6 01 20 08 CD BF 75 CD 2E 03 18 E9 FA 57 CE F5 ; ? .涂u?..辁W熙
+;00016c76h: E6 01 20 08 CD A0 6C CD 5A 04 18 E9 FA 63 CF F5 ; ? .蜖l蚙..辁c硝
+[print forbid 1@Forbid_printing_Unown]                                                   
+Mode = 1                                                                                                                  
+Address = {hex @}
+Fixcode={patch}      
+
+
+                            
+[print forbid 2@Forbid_printing_PC_Box]                                                                           
+Mode = 6                                                                                       
+Type = 0                                                                                       
+Address = {hex @}                                                                        
+MemAddress={hex~ hJoyPressed}                                                                           
+Fixcode={db NO_INPUT}                                                                                  
+ConditionType = 0                                                                              
+ConditionValueA = {dws_ wWindowStackPointer wWindowStackPointer+1 wMenuJoypad wMenuSelection wMenuSelection wMenuCursorY hJoyPressed hJoyPressed hJoyPressed hJoyPressed}                   
+ConditionValueB = {dws_ ==                  ==                    ==          >=             <=             ==           !=          !=          !=          !=         }                   
+ConditionValueC = {dws_ 0xdd                0xd3                  A_BUTTON    0x00           0x0f           0x03         D_DOWN      D_UP        B_BUTTON    NO_INPUT   }                   
+    
+; -----ddddfffffff99999ccccc77777----0xd9c7 no ..............Mem Write: pc32 = 0x230b addr = 0xd9c7 value = 0x8
+; 0xd9c7 is the room number.
+
+
+[print forbid 3@Forbid_printing_photo_studio]                                                          
+Mode = 6                                                                      
+Type = 0                                                                      
+Address = {hex @}                                                           
+MemAddress={hex~ hJoyPressed}                                                            
+Fixcode={db NO_INPUT}                                                                 
+ConditionType = 0                                                             
+ConditionValueA = {dws_ wWindowStackPointer wWindowStackPointer+1 wMenuJoypad wMenuSelection wMenuCursorY wMapGroup         wMapNumber                wYCoord wXCoord hJoyPressed hJoyPressed hJoyPressed hJoyPressed}  
+ConditionValueB = {dws_ ==                  ==                    ==          ==             ==           ==                ==                        ==      ==      !=          !=          !=          !=         }  
+ConditionValueC = {dws_ 0xaf                0xdf                  NO_INPUT    0x00           0x01         MAPGROUP_CIANWOOD MAP_CIANWOOD_PHOTO_STUDIO 0x04    0x02    D_DOWN      D_UP        B_BUTTON    NO_INPUT   }  
+
+                                               
+;ROM:BB29C                 call    unk_934       
+;ROM:BB29F                 ld      a, [byte_FFA9]                                                                                                                                                                         
+;ROM:BB2A1                 and     $B            
+;ROM:BB2A3                 jr      z, unk_B29C   
+;ROM:BB2A5                 and     8             
+;ROM:BB2A7                 jr      nz, unk_B2AA  
+;ROM:BB2A9                 ret    
+; 000bb2a5h: E6 08 20 01       
+; 000b92a3h: E6 08 20 01                                     ; ? .                           
+; change "and 8" to "and 0"                                                      
+[print forbid 4@Forbid_printing_mail]                                                  
+Mode = 1                                                          
+Address = {hex @}                                          
+Fixcode={patch}            
+
+
+;ROM:401D6                 call    unk_50A5                                         
+;ROM:401D9                 ld      hl, $FFA9  
+;ROM:401DC                 ld      a, [hl]    
+;ROM:401DD                 and     2          
+;ROM:401DF                 jr      nz, unk_1F8
+;ROM:401E1                 ld      a, [hl]    
+;ROM:401E2                 and     1          
+;ROM:401E4                 jr      nz, unk_1EE
+;ROM:401E6                 call    unk_4562   
+;ROM:401E9                 ret     nc         
+;ROM:401EA                 call    unk_4114   
+;ROM:401ED                 ret       
+; -----6666666666ddddddddd88888----0xc6d8 no ..............Mem Write: pc32 = 0x4109b addr = 0xc6d8 value = 0x0
+
+;00040266h: 7E E6 01 20 08                                  ; ~? .                                 
+[print forbid 5@Forbid_printing_Pokedex]                                                                                           
+Mode = 6                                                                                          
+Type = 0                                                                                          
+Address = {hex @}                                                                            
+MemAddress={hex~ hJoyPressed}                                                                                 
+Fixcode={db NO_INPUT}                                                                                     
+ConditionType = 0                                                                                 
+ConditionValueA = {dws_ wWindowStackPointer wWindowStackPointer+1 wMenuJoypad wMenuSelection wDexArrowCursorPosIndex hJoyPressed hJoyPressed hJoyPressed hJoyPressed}                      
+ConditionValueB = {dws_ ==                  ==                    ==          ==             ==                      !=          !=          !=          !=         }                      
+ConditionValueC = {dws_ 0xa1                0xdb                  A_BUTTON    0x00           0x03                    D_DOWN      D_UP        B_BUTTON    NO_INPUT   }                      
+
+
+
+
+;0x29e97                                                                                                                                                                                    
+;  call	ir_main                                                                                                                                                                              
+; 	ld	d,a			; IR_STAT                                                                             
+;	xor	a                                                                                                                     
+                                                                                                                            
+                                                                                                                            
+;   _IRcomm_end   0x2a1b9                                                                                                   
+; ld	hl,ir_read_buf                |       21 50 c7                                                    
+;	ld	de,ir_read_buf_stk            |       11 00 c8                                                    
+;	ld	bc,15                         |                                                                                       
+;	call	block_move                  |                                                                                       
+;                                   |                                                                                       
+;00104bf8h: FE 03 30 24        
+;00104bf0h: FE 03 30 24 3E 41 21 0B 51 CF CD FB 50          ; ?0$>A!.Q贤鸓    
+;00104bf0h: FE 03 30 24 3E 41 21 0B 51 CF CD FB 50          ; ?0$>A!.Q贤鸓                                                                                                                                                                                                                                                                                                                                     
+;the code below is Set_send_data2                                                                                                                                       
+;           3E 41 21 0A 51 CF CD FA 50 
+;           3E 41 21 0B 51 CF CD FB 50                                                                                                                                                                                                                                                                                                                                    
+; ------->                                                                                                                  
+; BCALL	G_BANK0b,set_send_data2                                                                         
+;	call	read_buf_clr                                                                                                        
+;                                                                                                                           
+                                                                                                                                                                          
+;001048dbh: 3E 02 EA 01 CA 3E 14 EA 02 CA F0 FF F5 CD 94 4A        
+;001048dbh: 3E 02 EA 01 CA 3E 14 EA 02 CA F0 FF F5 CD 9D 4A                           
+[infrared fake 0@Infrared_stage_party_data]                                                                                                           
+Mode = 1                                                                                                                    
+Address = {hex @}                                                                                  
+Fixcode={PATCH}                                                                                   
+                                                                                                                            
+               
+;00104c3ch: CD 66 4D CD 9E 4D CD E5 4D F0 BC FE 10 CA 24 4D   
+;00104a95h: F3 3E 3A 21 E9 4F CF CD 5E 4D CD 96 4D CD DD 4D ; ?:!镺贤^M蜄M洼M
+;00104a9ch: CD 5E 4D CD 96 4D CD DD 4D F0 BC FE 10          ; 蚟M蜄M洼M鸺?                                                                
+                                                                                                                     
+[infrared fake 1@Infrared_ExchangeMysteryGiftData_function]                                                                                                    
+Mode = 1                                                                                                             
+Address = {hex @}                                                                                              
+Fixcode={patch}                                           
+                                                                                                                     
+[infrared fake 2@Infrared_ExchangeMysteryGiftData_start]                                                                                                    
+Mode = 2                                                                                                             
+Address = {hex @}                                                                            
+Type = 101                                                                                                           
+                                                                                                                                                                                          
+[infrared fake 3@Infrared_ExchangeMysteryGiftData_loop_done]                    
+Mode = 2                             
+Address = {hex @}                 
+Type = 102                           
+                                     
+[infrared fake 4@Infrared_ExchangeMysteryGiftData_end]                    
+Mode = 2                             
+Address = {hex @}           
+Type = 103                           
+
+
+;/////////////
+;////fpa////////
+;/////////rangel zhang ///////////
+
+;PC:51-4118=20 000CC118  LY:012 AF:00A0 BC:E400 DE:E4E4 HL:FFA0 SP:DFC1
+;PC:51-411A=FA 000CC11A  LY:012 AF:00A0 BC:E400 DE:E4E4 HL:FFA0 SP:DFC1
+;PC:51-411D=CB 000CC11D  LY:012 AF:61A0 BC:E400 DE:E4E4 HL:FFA0 SP:DFC1
+;PC:51-411F=20 000CC11F  LY:012 AF:61A0 BC:E400 DE:E4E4 HL:FFA0 SP:DFC1
+;PC:51-4121=CD 000CC121  LY:012 AF:61A0 BC:E400 DE:E4E4 HL:FFA0 SP:DFC1
+;PC:51-417A=CD 000CC17A  LY:012 AF:61A0 BC:E400 DE:E4E4 HL:FFA0 SP:DFBF
+;PC:51-41CA=3E 000CC1CA  LY:012 AF:61A0 BC:E400 DE:E4E4 HL:FFA0 SP:DFBD
+;PC:51-41CC=EA 000CC1CC  LY:012 AF:01A0 BC:E400 DE:E4E4 HL:FFA0 SP:DFBD
+
+;ROM:CC118                 jr      nz, unk_C14D  
+;ROM:CC11A                 ld      a, [byte_D1AB]
+;ROM:CC11D                 bit     7, a          
+;ROM:CC11F                 jr      nz, unk_C138  
+;ROM:CC121                 call    unk_417A      
+;ROM:CC124                 call    unk_415A      
+;ROM:CC127                 call    unk_47F7    
+
+;000cc13eh: 6F 26 00 11                                     ; o&.. 
+;000cc156h: 6F 26 00 11                                     ; o&.. 
+;000cc137h: 38 17 CD 92 41 CD 72 41 CD 95 48 CD D3 41 AF E0 ; 8.蛼A蛂A蜁H陀A
+;000cc128h: 38 17 CD A1 41 CD 63 41 CD A4 48 CD E2 41 AF E0 ; 8.汀A蚦A亭H外A
+
+;the 7th bit of the  [byte_D1AB],decide whether the animation should be played.
+;if it's zero , the game code will play fighting animation . otherwise, game code 
+; will jump to unk_C138 and avoiding playing animation.
+; so we can begin out FPA patch right at address 0xcc121 .      
+
+
+;DarkEnable0 = 0	;0:Off, 1:On (for Normal Mode)
+;ReduceEnable0 = 0	;0:Off, 1:On (for Normal Mode)
+;MotionBEnable0 = 0	;0:Off, 1:Black Fade, 2:, 3:Frame Blend (for Normal Mode)
+;Dark0 = 10		;0~10 (for Normal Mode)
+;012532
+;
+[FPA 001 Begin@Reduce_move_anim_flashing]                                                   
+Mode = 3                                                          
+Type = 0                                                          
+Address = {hex @}
+DarkEnable0 = 1
+Dark0 = 4  
+MotionBEnable0 = 3                                            
+MotionBlur0 = 11                                                                                                         
+ConditionType = 0                                                 
+ConditionValueA = {dws_ wFXAnimID}
+ConditionValueB = {dws_ ==       }
+ConditionValueC = {dws_ FISSURE  }
+
+;ROM:35D09                 ld      [byte_CFB6], a
+;ROM:35D0C                 ld      a, d
+;ROM:35D0D                 ld      [byte_CFB7], a
+;ROM:35D10                 ld      c, 3
+;ROM:35D12                 call    unk_468
+;ROM:35D15                 ld      hl, $40E5
+;ROM:35D18                 ld      a, $33 ; '3'
+;ROM:35D1A                 rst     8
+;ROM:35D1B                 ret
+;           EA B6 CF 7A EA B7 CF 0E 03 CD 68 04 21 E5 40 3E       
+;00035d09h: EA C2 CF 7A EA C3 CF 0E 03 CD 68 04 21 D6 40 3E 
+;00035d09h: EA C2 CF 7A EA C3 CF 0E 03 CD 68 04 21 D8 40 3E
+
+;******dc7d---------------   Mem Write: pc32 = 0x30a7 addr = 0xd066 value = 0x2c
+;******dc7d---------------   Mem Write: pc32 = 0x30a7 addr = 0xd067 value = 0x3a
+;******dc7d---------------   Mem Write: pc32 = 0x30a7 addr = 0xd068 value = 0xb8
+;******dc7d---------------   Mem Write: pc32 = 0x30a7 addr = 0xd069 value = 0x50
+; ------------   Mem Write: pc32 = 0x35d09 addr = 0xcfb6 value = 0x78
+;s e l   d e s c  
+;
+
+[FPA 002 Begin@Reduce_move_anim_flashing]                                                   
+Mode = 3                                                          
+Type = 0      
+Address = {hex @}  
+DarkEnable0 = 1
+Dark0 = 4 
+MotionBEnable0 = 3                                            
+MotionBlur0 = 11                                               
+ConditionType = 0                                                 
+ConditionValueA = {dws_ wFXAnimID   }
+ConditionValueB = {dws_ ==          }
+ConditionValueC = {dws_ SELFDESTRUCT}
+
+
+; lightening    
+; --------------   Mem Write: pc32 = 0x35d09 addr = 0xcfb6 value = 0x57
+[FPA 003 Begin@Reduce_move_anim_flashing]                                                   
+Mode = 3                                                          
+Type = 0                                                          
+Address = {hex @}   
+DarkEnable0 = 1
+Dark0 = 4  
+MotionBEnable0 = 3                                            
+MotionBlur0 = 15                                               
+ConditionType = 0                                                 
+ConditionValueA = {dws_ wFXAnimID}  
+ConditionValueB = {dws_ ==       }
+ConditionValueC = {dws_ THUNDER  }      
+                                             
+
+
+
+;ji wa lei  011800
+
+[FPA 004 Begin@Reduce_move_anim_flashing]                                                   
+Mode = 3                                                          
+Type = 0                                                          
+Address = {hex @} 
+DarkEnable0 = 1
+Dark0 = 4   
+MotionBEnable0 = 3                                            
+MotionBlur0 = 15                                          
+ConditionType = 0                                                 
+ConditionValueA = {dws_ wFXAnimID}  
+ConditionValueB = {dws_ ==       }
+ConditionValueC = {dws_ FLASH    }
+
+
+;skill name 1 : ..............Mem Write: pc32 = 0x30db addr = 0xcf87 value = 0x2c
+;skill name 2 : ..............Mem Write: pc32 = 0x30db addr = 0xcf88 value = 0x3a
+;skill name 3 : ..............Mem Write: pc32 = 0x30db addr = 0xcf89 value = 0xb8
+;skill name 4 : ..............Mem Write: pc32 = 0x30db addr = 0xcf8a value = 0x50
+;skill name 5 : ..............Mem Write: pc32 = 0x30db addr = 0xcf8b value = 0x8f
+;skill name 6 : ..............Mem Write: pc32 = 0x30db addr = 0xcf8c value = 0x9d
+; include 2 pieces of animationl.
+;ji ba lu  011607
+
+[FPA 005 Begin@Reduce_move_anim_flashing]                                                   
+Mode = 3                                                          
+Type = 0                                                          
+Address = {hex @}   
+DarkEnable0 = 1
+Dark0 = 4  
+MotionBEnable0 = 3                                            
+MotionBlur0 = 15                                                   
+ConditionType = 0                                                 
+ConditionValueA = {dws_ wFXAnimID}  
+ConditionValueB = {dws_ ==       }
+ConditionValueC = {dws_ EXPLOSION}
+
+
+;skill name 1 : ..............Mem Write: pc32 = 0x30db addr = 0xcf87 value = 0x30
+;skill name 2 : ..............Mem Write: pc32 = 0x30db addr = 0xcf88 value = 0xb2
+;skill name 3 : ..............Mem Write: pc32 = 0x30db addr = 0xcf89 value = 0x3a
+;skill name 4 : ..............Mem Write: pc32 = 0x30db addr = 0xcf8a value = 0xb8
+;skill name 5 : ..............Mem Write: pc32 = 0x30db addr = 0xcf8b value = 0xca
+;skill name 6 : ..............Mem Write: pc32 = 0x30db addr = 0xcf8c value = 0xc2 
+; da yi ba ha ku ci   011441
+    
+[FPA 006 Begin@Reduce_move_anim_flashing]                                                   
+Mode = 3                                                          
+Type = 0                                                          
+Address = {hex @}   
+DarkEnable0 = 1
+Dark0 = 4  
+MotionBEnable0 = 3                                            
+MotionBlur0 = 11                                              
+ConditionType = 0                                                 
+ConditionValueA = {dws_ wFXAnimID }  
+ConditionValueB = {dws_ ==        }
+ConditionValueC = {dws_ HORN_DRILL}
+
+
+
+;skill name 1 : ..............Mem Write: pc32 = 0x30db addr = 0xcf87 value = 0x9b
+;skill name 2 : ..............Mem Write: pc32 = 0x30db addr = 0xcf88 value = 0xa5
+;skill name 3 : ..............Mem Write: pc32 = 0x30db addr = 0xcf89 value = 0xac
+;skill name 4 : ..............Mem Write: pc32 = 0x30db addr = 0xcf8a value = 0x8b
+;skill name 5 : ..............Mem Write: pc32 = 0x30db addr = 0xcf8b value = 0xae
+;skill name 6 : ..............Mem Write: pc32 = 0x30db addr = 0xcf8c value = 0x50
+;    011251
+;    
+[FPA 007 Begin@Reduce_move_anim_flashing]                                                   
+Mode = 3                                                          
+Type = 0                                                          
+Address = {hex @}   
+DarkEnable0 = 1
+Dark0 = 5   
+MotionBEnable0 = 3                                            
+MotionBlur0 = 7                                              
+ConditionType = 0                                                 
+ConditionValueA = {dws_ wFXAnimID }  
+ConditionValueB = {dws_ ==        }
+ConditionValueC = {dws_ HYPER_BEAM}                                                          
+
+
+                        
+                                                                                                                            
+;-----111111111111111144444444444444----0xc902 no ..............Mem Write: pc32 = 0xcc46a addr = 0xc902 value = 0xd                              
+                                      
+;000cc473h: FE 4F D0 cd                                        ; 﨩?    
+;000cc495h: FE 4F D0 CD                                     ; 﨩型
+;000cc497h: FE 4F D0 CD                                     ; 﨩型
+; -------------0xd4170xd4170xd4170xd417---------------   Mem Write: pc32 = 0x3a89 addr = 0xd417 value = 0xd1
+;000cc486h: FE 4F D0 CD 7D 3A 22 FA 19 D4 22 C5 E5 6F 26 00 ; 﨩型}:"??佩o&.                                                                                                                                                    
+[FPA 042801 Begin@Reduce_move_anim_flashing_PRESENT]                                                                                                                               
+Mode = 3                                                                                                                                         
+Type = 0                                                                                                                                         
+Address = {HEX @}                                                                                                                       
+DarkEnable0 = 1                                                                                                                                  
+Dark0 = 5                                                                                                                                        
+MotionBEnable0 = 3                                                                                                                               
+MotionBlur0 = 11                                                                                                                                 
+ConditionType = 0                                                                                                                                
+ConditionValueA = {dws_ wFXAnimID wBattleAnimByte  }                                                                              
+ConditionValueB = {dws_ ==        ==               }                                                                                 
+ConditionValueC = {dws_ PRESENT   anim_1gfx_command}                                                                                 
+
+    
+
+
+;ROM:CC139                 call    unk_4192
+;ROM:CC13C                 call    unk_4172
+;ROM:CC13F                 call    unk_4895
+;ROM:CC142                 call    unk_41D3
+;ROM:CC145                 xor     a       
+
+;ROM:CC154                 jr      z, unk_C16E
+;ROM:CC156                 ld      l, a
+;ROM:CC157                 ld      h, 0
+;ROM:CC159                 ld      de, $10E
+;ROM:CC15C                 add     hl, de
+;ROM:CC15D                 ld      a, l
+; CC156  6F 26 00 11 0E 01  
+
+; 000cc147h: 6F 26 00 11 0E 01                               ; o&....
+
+;exit point
+
+[FPA 001 End@Stop_reducing_move_anim_flashing]                                                     
+Mode = 3                                                          
+Type = 1                                                          
+Address = {hex @}  
+
+
+;-----ddddff0xff690xff69fffff----0xffa0 no ....-------------..........Mem Write: pc32 = 0x8c352 addr = 0xffa0 value = 0x1
+;-----ddddff0xff690xff69fffff----0xce57 no ....----5555555577777---------..........Mem Write: pc32 = 0x8c483 addr = 0xce57 value = 0x1a
+;0008c352h: 36 01 FA 57 CE CB 7F 20 08                      ; 6.鶺嗡 .
+;0008c229h: 36 01 FA 57 CF CB 7F 20 08 CD 14 43 CD 5A 04 18 ; 6.鶺纤 .?C蚙..   
+[FPA link fight begin@Reduce_battle_transition_flashing]
+Mode = 3                                                          
+Type = 0                                                          
+Address = {hex @} 
+DarkEnable0 = 1
+Dark0 = 5  
+MotionBEnable0 = 3                                            
+MotionBlur0 = 11                              
+
+;-----ddddff0xff690xff69fffff----0xffa0 no ....-------------..........Mem Write: pc32 = 0x8c382 addr = 0xffa0 value = 0x0   
+;0008c382h: E0 A0 CD 2E 03 C9                               ; 酄?.?  
+;******ccccccccccceeeeeeeeeee55555555577777777---------------   Mem Write: pc32 = 0x8c483 addr = 0xce57 value = 0x15
+;******ccccccccccceeeeeeeeeee55555555577777777---------------   Mem Write: pc32 = 0x8c483 addr = 0xce57 value = 0x16
+;******ccccccccccceeeeeeeeeee55555555577777777---------------   Mem Write: pc32 = 0x8c483 addr = 0xce57 value = 0x17
+
+;40 90 e4 01 3E at 3E     
+;0008c3e4h: 40 90 E4 01 3E     at 3E                                ; @愪.>
+[FPA link fight End0@Stop_reducing_battle_transition_flashing_WavyOutro]                                                     
+Mode = 3                                                          
+Type = 1                                                          
+Address = {HEx @}
+
+;3D 20 EF C9 3E 01 at 3E      
+; 0008c439h: 3D 20 EF C9 3E       at 3e                           ; = 锷>
+[FPA link fight End1@Stop_reducing_battle_transition_flashing_SpinOutro]                                                     
+Mode = 3                                                          
+Type = 1                                                          
+Address = {HEx @}
+
+;01 FF 3E 01 at 3E
+;0008c576h: 01 FF 3E 01                                     ; .>.
+[FPA link fight End2@Stop_reducing_battle_transition_flashing_ScatterOutro]                                                     
+Mode = 3                                                          
+Type = 1                                                          
+Address = {HEx @}
+
+;32 00 19 00 3e 01 at 3e
+;0008c764h: 32 00 19 00 3E 01                               ; 2...>.
+[FPA link fight End3@Stop_reducing_battle_transition_flashing_ZoomToBlack]                                                     
+Mode = 3                                                          
+Type = 1                                                          
+Address = {HEx @}
+ 
+;ROM:8C25A                 ld      [byte_FFC6], a
+;ROM:8C25C                 ld      [byte_FFC7], a
+;ROM:8C25E                 ld      [byte_FFC8], a
+;ROM:8C260                 ld      [byte_FFD0], a
+;ROM:8C262                 ld      a, 1
+;ROM:8C264                 ld      [byte_FF70], a
+;ROM:8C266                 pop     af
+;ROM:8C267                 ld      [byte_FF9E], a        --------------------at here .
+;ROM:8C269                 call    unk_45A
+;ROM:8C26C                 ret
+ 
+ 
+;ROM:8C298                 xor     a         searching code : AF 22 22 77 CD  
+;ROM:8C299                 ldi     [hl], a             
+;ROM:8C29A                 ldi     [hl], a
+;ROM:8C29B                 ld      [hl], a
+;ROM:8C29C                 call    unk_46D8
+;ROM:8C29F                 ret
+;0008c298h: AF 22 22 77 CD                                  ; ?"w? 
+
+
+[FPA link fight End4@Stop_reducing_battle_transition_flashing]                                                     
+Mode = 3                                                          
+Type = 1                                                          
+Address = {hex @}                       

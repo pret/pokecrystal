@@ -1,6 +1,4 @@
 BattleCommand_PainSplit:
-; painsplit
-
 	ld a, [wAttackMissed]
 	and a
 	jp nz, .ButItFailed

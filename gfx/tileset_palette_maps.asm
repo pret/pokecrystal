@@ -1,11 +1,11 @@
-tilepal: MACRO
+MACRO tilepal
 ; used in gfx/tilesets/*_palette_map.asm
 ; vram bank, pals
-x = \1 << OAM_TILE_BANK
-rept (_NARG - 1) / 2
-	dn (x | PAL_BG_\3), (x | PAL_BG_\2)
-	shift 2
-endr
+	DEF x = \1 << OAM_TILE_BANK
+	rept (_NARG - 1) / 2
+		dn (x | PAL_BG_\3), (x | PAL_BG_\2)
+		shift 2
+	endr
 ENDM
 
 TilesetKantoPalMap:

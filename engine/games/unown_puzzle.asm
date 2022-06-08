@@ -1,7 +1,7 @@
-PUZZLE_BORDER EQU $ee
-PUZZLE_VOID   EQU $ef
+DEF PUZZLE_BORDER EQU $ee
+DEF PUZZLE_VOID   EQU $ef
 
-puzcoord EQUS "* 6 +"
+DEF puzcoord EQUS "* 6 +"
 
 _UnownPuzzle:
 	ldh a, [hInMenu]
@@ -112,11 +112,11 @@ InitUnownPuzzlePiecePositions:
 	ret
 
 .PuzzlePieceInitialPositions:
-initpuzcoord: MACRO
-rept _NARG / 2
-	db \1 puzcoord \2
-	shift 2
-endr
+MACRO initpuzcoord
+	rept _NARG / 2
+		db \1 puzcoord \2
+		shift 2
+	endr
 ENDM
 	initpuzcoord 0,0, 0,1, 0,2, 0,3, 0,4, 0,5
 	initpuzcoord 1,0,                     1,5
@@ -568,7 +568,7 @@ RedrawUnownPuzzlePieces:
 
 UnownPuzzleCoordData:
 
-puzzle_coords: MACRO
+MACRO puzzle_coords
 	dbpixel \1, \2, \3, \4
 	dwcoord \5, \6
 	db \7, \8

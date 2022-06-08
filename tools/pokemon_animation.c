@@ -1,13 +1,12 @@
+#define PROGRAM_NAME "pokemon_animation"
+#define USAGE_OPTS "[-h|--help] [-b|--bitmasks] [-f|--frames] front.animated.tilemap front.dimensions"
+
 #include "common.h"
 
 struct Options {
 	bool use_bitmasks;
 	bool use_frames;
 };
-
-void usage() {
-	fputs("Usage: pokemon_animation [-b|--bitmasks] [-f|--frames] front.animated.tilemap front.dimensions\n", stderr);
-}
 
 void parse_args(int argc, char *argv[], struct Options *options) {
 	struct option long_options[] = {
@@ -25,12 +24,10 @@ void parse_args(int argc, char *argv[], struct Options *options) {
 			options->use_frames = true;
 			break;
 		case 'h':
-			usage();
-			exit(0);
+			usage_exit(0);
 			break;
 		default:
-			usage();
-			exit(1);
+			usage_exit(1);
 		}
 	}
 }
@@ -81,21 +78,21 @@ void make_frames(const uint8_t *tilemap, long tilemap_size, int width, struct Fr
 	int num_tiles_per_frame = width * width;
 	int num_frames = tilemap_size / num_tiles_per_frame - 1;
 
-	frames->frames = malloc_verbose((sizeof *frames->frames) * num_frames);
+	frames->frames = xmalloc((sizeof *frames->frames) * num_frames);
 	frames->num_frames = num_frames;
 
-	bitmasks->bitmasks = malloc_verbose((sizeof *bitmasks->bitmasks) * num_frames);
+	bitmasks->bitmasks = xmalloc((sizeof *bitmasks->bitmasks) * num_frames);
 	bitmasks->num_bitmasks = 0;
 
 	const uint8_t *first_frame = &tilemap[0];
 	const uint8_t *this_frame = &tilemap[num_tiles_per_frame];
 	for (int i = 0; i < num_frames; i++) {
-		struct Frame *frame = malloc_verbose(sizeof *frame);
-		frame->data = malloc_verbose(num_tiles_per_frame);
+		struct Frame *frame = xmalloc(sizeof *frame);
+		frame->data = xmalloc(num_tiles_per_frame);
 		frame->size = 0;
 
-		struct Bitmask *bitmask = malloc_verbose(sizeof *bitmask);
-		bitmask->data = calloc_verbose((num_tiles_per_frame + 7) / 8);
+		struct Bitmask *bitmask = xmalloc(sizeof *bitmask);
+		bitmask->data = xcalloc((num_tiles_per_frame + 7) / 8);
 		bitmask->bitlength = 0;
 
 		for (int j = 0; j < num_tiles_per_frame; j++) {
@@ -110,8 +107,7 @@ void make_frames(const uint8_t *tilemap, long tilemap_size, int width, struct Fr
 			}
 			bitmask->bitlength++;
 		}
-		// I don't remember exactly why this works.
-		// I think it was that the bits are read backwards, but not indexed backwards.
+		// tile order ABCDEFGHIJKLMNOP... becomes db order %HGFEDCBA %PONMLKJI ...
 		int last = bitmask->bitlength - 1;
 		bitmask->data[last / 8] >>= (7 - (last % 8));
 
@@ -175,8 +171,7 @@ int main(int argc, char *argv[]) {
 	argc -= optind;
 	argv += optind;
 	if (argc < 2) {
-		usage();
-		exit(1);
+		usage_exit(1);
 	}
 
 	int width;

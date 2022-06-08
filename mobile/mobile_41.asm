@@ -391,17 +391,17 @@ StubbedTrainerRankings_Unused3: ; unreferenced
 	ld hl, sTrainerRankingUnused3
 	jr StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_ColosseumWins: ; win
+StubbedTrainerRankings_ColosseumWins:
 	ret
 	ld hl, sTrainerRankingColosseumWins
 	jr StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_ColosseumLosses: ; lose
+StubbedTrainerRankings_ColosseumLosses:
 	ret
 	ld hl, sTrainerRankingColosseumLosses
 	jr StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_ColosseumDraws: ; draw
+StubbedTrainerRankings_ColosseumDraws:
 	ret
 	ld hl, sTrainerRankingColosseumDraws
 	jr StubbedTrainerRankings_Increment3Byte
@@ -865,8 +865,8 @@ Function10635c:
 	ld de, wcd30
 	ld hl, $41
 	ld bc, $41
-	ld a, $40
-	call Function3e32
+	ld a, MOBILEAPI_20
+	call MobileAPI
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
 	ld [wMobileCommsJumptableIndex], a
@@ -935,8 +935,8 @@ Function1063e5:
 
 Function1063f3:
 	ld de, wcd31
-	ld a, $32
-	call Function3e32
+	ld a, MOBILEAPI_19
+	call MobileAPI
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
 	ld [wMobileCommsJumptableIndex], a
@@ -983,8 +983,8 @@ Function106403:
 	ret
 
 Function106442:
-	ld a, $36
-	call Function3e32
+	ld a, MOBILEAPI_1B
+	call MobileAPI
 	xor a
 	ldh [hMobile], a
 	ldh [hMobileReceive], a

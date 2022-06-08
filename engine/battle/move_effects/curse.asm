@@ -1,6 +1,4 @@
 BattleCommand_Curse:
-; curse
-
 	ld de, wBattleMonType1
 	ld bc, wPlayerStatLevels
 	ldh a, [hBattleTurn]

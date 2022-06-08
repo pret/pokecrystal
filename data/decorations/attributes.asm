@@ -1,4 +1,4 @@
-decoration: MACRO
+MACRO decoration
 	; type, name, action, event flag, tile/sprite
 	db \1, \2, \3
 	dw \4

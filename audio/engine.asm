@@ -533,7 +533,7 @@ PlayDanger:
 	ret z
 
 	; Don't do anything if SFX is being played
-	and $ff ^ (1 << DANGER_ON_F)
+	and ~(1 << DANGER_ON_F)
 	ld d, a
 	call _CheckSFX
 	jr c, .increment
@@ -1382,29 +1382,29 @@ MusicCommands:
 	dw Music_Octave2
 	dw Music_Octave1
 	dw Music_NoteType ; note length + volume envelope
-	dw Music_Transpose 
+	dw Music_Transpose
 	dw Music_Tempo
 	dw Music_DutyCycle
-	dw Music_VolumeEnvelope 
+	dw Music_VolumeEnvelope
 	dw Music_PitchSweep
 	dw Music_DutyCyclePattern
-	dw Music_ToggleSFX 
-	dw Music_PitchSlide 
-	dw Music_Vibrato 
+	dw Music_ToggleSFX
+	dw Music_PitchSlide
+	dw Music_Vibrato
 	dw MusicE2 ; unused
-	dw Music_ToggleNoise 
-	dw Music_ForceStereoPanning 
-	dw Music_Volume 
-	dw Music_PitchOffset 
+	dw Music_ToggleNoise
+	dw Music_ForceStereoPanning
+	dw Music_Volume
+	dw Music_PitchOffset
 	dw MusicE7 ; unused
 	dw MusicE8 ; unused
 	dw Music_TempoRelative
 	dw Music_RestartChannel
-	dw Music_NewSong 
-	dw Music_SFXPriorityOn 
-	dw Music_SFXPriorityOff 
+	dw Music_NewSong
+	dw Music_SFXPriorityOn
+	dw Music_SFXPriorityOff
 	dw MusicEE ; unused
-	dw Music_StereoPanning 
+	dw Music_StereoPanning
 	dw Music_SFXToggleNoise
 	dw MusicF1 ; nothing
 	dw MusicF2 ; nothing
@@ -1415,7 +1415,7 @@ MusicCommands:
 	dw MusicF7 ; nothing
 	dw MusicF8 ; nothing
 	dw MusicF9 ; unused
-	dw Music_SetCondition 
+	dw Music_SetCondition
 	dw Music_JumpIf
 	dw Music_Jump
 	dw Music_Loop
@@ -2800,7 +2800,6 @@ ChannelPointers:
 
 ClearChannels::
 ; runs ClearChannel for all 4 channels
-; doesn't seem to be used, but functionally identical to InitSound
 	ld hl, rNR50
 	xor a
 	ld [hli], a

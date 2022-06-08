@@ -1,5 +1,5 @@
-TRADEANIM_RIGHT_ARROW EQU "▶" ; $ed
-TRADEANIM_LEFT_ARROW  EQU "▼" ; $ee
+DEF TRADEANIM_RIGHT_ARROW EQU "▶" ; $ed
+DEF TRADEANIM_LEFT_ARROW  EQU "▼" ; $ee
 
 ; TradeAnim_TubeAnimJumptable.Jumptable indexes
 	const_def
@@ -7,14 +7,14 @@ TRADEANIM_LEFT_ARROW  EQU "▼" ; $ee
 	const TRADEANIMSTATE_1 ; 1
 	const TRADEANIMSTATE_2 ; 2
 	const TRADEANIMSTATE_3 ; 3
-TRADEANIMJUMPTABLE_LENGTH EQU const_value
+DEF TRADEANIMJUMPTABLE_LENGTH EQU const_value
 
-add_tradeanim: MACRO
+MACRO add_tradeanim
 \1_TradeCmd:
 	dw \1
 ENDM
 
-tradeanim: MACRO
+MACRO tradeanim
 	db (\1_TradeCmd - DoTradeAnimation.Jumptable) / 2
 ENDM
 
@@ -168,7 +168,7 @@ RunTradeAnimScript:
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, vTiles0
-	ld bc, sScratch - vTiles0
+	ld bc, VRAM_End - VRAM_Begin
 	xor a
 	call ByteFill
 	ld a, $0
@@ -176,7 +176,7 @@ RunTradeAnimScript:
 
 .NotCGB:
 	hlbgcoord 0, 0
-	ld bc, sScratch - vBGMap0
+	ld bc, VRAM_End - vBGMap0
 	ld a, " "
 	call ByteFill
 	ld hl, TradeGameBoyLZ
@@ -470,7 +470,7 @@ TradeAnim_TubeToPlayer8:
 	call DisableLCD
 	callfar ClearSpriteAnims
 	hlbgcoord 0, 0
-	ld bc, sScratch - vBGMap0
+	ld bc, VRAM_End - vBGMap0
 	ld a, " "
 	call ByteFill
 	xor a
@@ -1428,7 +1428,7 @@ DebugTrade: ; unreferenced
 	jr nz, .loop2
 	ret
 
-debugtrade: MACRO
+MACRO debugtrade
 ; species, ot name, ot id
 	db \1, \2
 	dw \3

@@ -1,5 +1,5 @@
-UNOWNSTAMP_BOLD_A EQU "♂" ; $ef
-UNOWNSTAMP_BOLD_B EQU "♀" ; $f5
+DEF UNOWNSTAMP_BOLD_A EQU "♂" ; $ef
+DEF UNOWNSTAMP_BOLD_B EQU "♀" ; $f5
 
 _UnownPrinter:
 	ld a, [wUnownDex]
@@ -74,7 +74,13 @@ _UnownPrinter:
 	jr nz, .pressed_b
 
 	ldh a, [hJoyPressed]
+	vc_patch Forbid_printing_Unown
+if DEF(_CRYSTAL11_VC)
+	and 0
+else
 	and A_BUTTON
+endc
+	vc_patch_end
 	jr nz, .pressed_a
 
 	call .LeftRight

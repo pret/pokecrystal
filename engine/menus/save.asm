@@ -161,6 +161,17 @@ AddHallOfFameEntry:
 	ld bc, wHallOfFamePokemonListEnd - wHallOfFamePokemonList + 1
 	call CopyBytes
 	call CloseSRAM
+; This vc_hook causes the Virtual Console to set [sMobileEventIndex] and [sMobileEventIndexBackup]
+; to MOBILE_EVENT_OBJECT_GS_BALL, which enables you to get the GS Ball, take it to Kurt, and
+; encounter Celebi. It assumes that sMobileEventIndex and sMobileEventIndexBackup are at their
+; original addresses.
+	vc_hook Enable_GS_Ball_mobile_event
+	vc_assert BANK(sMobileEventIndex) == $1 && sMobileEventIndex == $be3c, \
+		"sMobileEventIndex is no longer located at 01:be3c."
+	vc_assert BANK(sMobileEventIndexBackup) == $1 && sMobileEventIndexBackup == $be44, \
+		"sMobileEventIndexBackup is no longer located at 01:be44."
+	vc_assert MOBILE_EVENT_OBJECT_GS_BALL == $0b, \
+		"MOBILE_EVENT_OBJECT_GS_BALL is no longer equal to $0b."
 	ret
 
 SaveGameData:
@@ -472,7 +483,7 @@ SaveOptions:
 	ld bc, wOptionsEnd - wOptions
 	call CopyBytes
 	ld a, [wOptions]
-	and $ff ^ (1 << NO_TEXT_SCROLL)
+	and ~(1 << NO_TEXT_SCROLL)
 	ld [sOptions], a
 	jp CloseSRAM
 
@@ -1057,7 +1068,7 @@ EraseBoxes:
 	jr nz, .next
 	ret
 
-box_address: MACRO
+MACRO box_address
 	assert BANK(\1) == BANK(\2)
 	db BANK(\1)
 	dw \1, \2

@@ -910,15 +910,15 @@ Function11878d:
 	ret c
 	ret
 .asm_1187af
-	ld a, $0
-	call Function3e32
+	ld a, MOBILEAPI_00
+	call MobileAPI
 	ld [wMobileErrorCodeBuffer], a
 	ld a, l
 	ld [wMobileErrorCodeBuffer + 1], a
 	ld a, h
 	ld [wMobileErrorCodeBuffer + 2], a
-	ld a, $a
-	call Function3e32
+	ld a, MOBILEAPI_05
+	call MobileAPI
 	ld a, [wc3f0]
 	ld [wc319], a
 	ld a, [wcd34]
@@ -940,18 +940,18 @@ Function11878d:
 	jr c, .asm_1187fd
 	sla a
 	jr c, .asm_1187f5
-	ld a, $24
+	ld a, MOBILEAPI_12
 	jr .asm_1187ff
 .asm_1187f5
-	ld a, $28
+	ld a, MOBILEAPI_14
 	jr .asm_1187ff
 .asm_1187f9
-	ld a, $2a
+	ld a, MOBILEAPI_15
 	jr .asm_1187ff
 .asm_1187fd
-	ld a, $2c
+	ld a, MOBILEAPI_16
 .asm_1187ff
-	call Function3e32
+	call MobileAPI
 	ret
 .asm_118803
 	ld a, $d3
@@ -961,8 +961,8 @@ SetMobileErrorCode:
 	xor a
 	ld [wMobileErrorCodeBuffer + 1], a
 	ld [wMobileErrorCodeBuffer + 2], a
-	ld a, $a
-	call Function3e32
+	ld a, MOBILEAPI_05
+	call MobileAPI
 	ld a, [wc3f0]
 	ld [wc319], a
 	ld a, [wcd34]
@@ -978,8 +978,8 @@ Function118821:
 	ldh a, [hJoyDown]
 	cp $5
 	jr nz, .asm_11884a
-	ld a, $a
-	call Function3e32
+	ld a, MOBILEAPI_05
+	call MobileAPI
 	ld a, $a
 	ld [wMobileErrorCodeBuffer], a
 	ld a, [wc3f0]
@@ -996,8 +996,8 @@ Function11884c:
 	ldh a, [hJoyDown]
 	cp $5
 	jr nz, .asm_118864
-	ld a, $a
-	call Function3e32
+	ld a, MOBILEAPI_05
+	call MobileAPI
 	ld a, $a
 	ld [wMobileErrorCodeBuffer], a
 	ld a, [wcd34]
@@ -1036,7 +1036,7 @@ Function118880:
 	ld [wc807], a
 	ld de, wcd81
 	ld hl, $46
-	ld a, $2
+	ld a, MOBILEAPI_01
 	jp Function119e2b
 
 Function118896: ; unreferenced
@@ -1049,7 +1049,7 @@ Function118896: ; unreferenced
 	jr z, .asm_1188aa
 
 .asm_1188a5
-	ld a, $34
+	ld a, MOBILEAPI_1A
 	jp Function119e2b
 
 .asm_1188aa
@@ -1058,17 +1058,17 @@ Function118896: ; unreferenced
 
 Function1188b0:
 	ld de, wc346
-	ld a, $c
+	ld a, MOBILEAPI_06
 	jp Function119e2b
 
 Function1188b8:
 	ld de, wc3ac
-	ld a, $e
+	ld a, MOBILEAPI_07
 	jp Function119e2b
 
 Function1188c0:
 	ld de, wc3cd
-	ld a, $10
+	ld a, MOBILEAPI_08
 	jp Function119e2b
 
 Function1188c8:
@@ -1085,7 +1085,7 @@ Function1188c8:
 	call Function119eb4
 	call Function119ec2
 	ld hl, wc708
-	ld a, $6
+	ld a, MOBILEAPI_03
 	jp Function119e2b
 
 Function1188e7:
@@ -1394,7 +1394,7 @@ Function118ae4:
 	call Function118b24
 	pop de
 	pop bc
-	ld a, $2a
+	ld a, MOBILEAPI_15
 	jp Function119e2b
 
 Function118b10:
@@ -1406,7 +1406,7 @@ Function118b10:
 	call Function118b24
 	pop bc
 	pop de
-	ld a, $2a
+	ld a, MOBILEAPI_15
 	jp Function119e2b
 
 Function118b24:
@@ -1602,7 +1602,7 @@ asm_118d9f:
 	ld hl, w3_d800
 	ld de, w3_de00
 	ld bc, $200
-	ld a, $2c
+	ld a, MOBILEAPI_16
 	jp Function119e2b
 
 Function118ded:
@@ -1697,7 +1697,7 @@ asm_118e3e:
 Function118e6d:
 	xor a
 	ld [wcd65], a
-	ld a, $a
+	ld a, MOBILEAPI_05
 	jp Function119e2b
 
 Function118e76:
@@ -1709,7 +1709,7 @@ Function118e76:
 Function118e7e:
 	call BattleTowerRoomMenu2
 	ret c
-	ld a, $36
+	ld a, MOBILEAPI_1B
 	jp Function119e2b
 
 BattleTowerRoomMenu_CallRoomMenu2:
@@ -1857,7 +1857,7 @@ Function118f68:
 	ld hl, wc346
 	ld de, w3_de00
 	ld bc, $200
-	ld a, $2c
+	ld a, MOBILEAPI_16
 	jp Function119e2b
 
 .asm_118fba
@@ -1937,7 +1937,7 @@ Function119009:
 	ld hl, wc346
 	ld de, w3_d000
 	ld bc, $1000
-	ld a, $2c
+	ld a, MOBILEAPI_16
 	jp Function119e2b
 
 Function119054:
@@ -2471,7 +2471,7 @@ Function1193a0:
 	ld hl, wc346
 	ld de, w3_de00
 	ld bc, $200
-	ld a, $2c
+	ld a, MOBILEAPI_16
 	jp Function119e2b
 
 Function1193e3:
@@ -2856,7 +2856,7 @@ Function119648:
 	call Function118b24
 	ld de, w3_d000
 	ld bc, $1000
-	ld a, $2a
+	ld a, MOBILEAPI_15
 	jp Function119e2b
 
 Function119665:
@@ -3147,7 +3147,7 @@ Function1197dc:
 	call Function118b24
 	ld de, w3_d000
 	ld bc, $1000
-	ld a, $2a
+	ld a, MOBILEAPI_15
 	jp Function119e2b
 
 Function119800:
@@ -3287,7 +3287,7 @@ Function1198f7:
 	ld hl, w3_d800
 	ld de, w3_de00
 	ld bc, $200
-	ld a, $2c
+	ld a, MOBILEAPI_16
 	jp Function119e2b
 
 Function119937:
@@ -3328,7 +3328,7 @@ Function119954:
 	jr nz, .asm_119962
 	call Function119ec2
 	ld hl, wc608
-	ld a, $1e
+	ld a, MOBILEAPI_0F
 	jp Function119e2b
 
 Function119973:
@@ -3338,7 +3338,7 @@ Function119973:
 	ld [wcf65], a
 	ld [w3_d090], a
 	ld de, w3_d000
-	ld a, $20
+	ld a, MOBILEAPI_10
 	jp Function119e2b
 
 Function119987:
@@ -3351,7 +3351,7 @@ Function119987:
 	ld a, [wcf65]
 	ld h, a
 	ld de, wBGPals2
-	ld a, $22
+	ld a, MOBILEAPI_11
 	jp Function119e2b
 
 .asm_1199a0
@@ -3389,7 +3389,7 @@ Function1199ca:
 	ld h, a
 	ld de, w3_d100
 	ld bc, $0700
-	ld a, $28
+	ld a, MOBILEAPI_14
 	jp Function119e2b
 
 Function1199e2:
@@ -3555,7 +3555,7 @@ Function119b0d:
 	ld h, a
 	ld de, w3_d100
 	ld bc, $0700
-	ld a, $24
+	ld a, MOBILEAPI_12
 	jp Function119e2b
 
 Function119b3b:
@@ -3572,7 +3572,7 @@ Function119b45:
 	ld h, a
 
 asm_119b4d:
-	ld a, $26
+	ld a, MOBILEAPI_13
 	jp Function119e2b
 
 Function119b52:
@@ -3586,7 +3586,7 @@ Function119b52:
 	call CloseSRAM
 
 .asm_119b66
-	ld a, $1c
+	ld a, MOBILEAPI_0E
 	jp Function119e2b
 
 Function119b6b:
@@ -3993,7 +3993,7 @@ BattleTower_UbersCheck:
 	ret
 
 Function119e2b:
-	call Function3e32
+	call MobileAPI
 
 BattleTowerRoomMenu_IncrementJumptable:
 	ld hl, wBattleTowerRoomMenuJumptableIndex

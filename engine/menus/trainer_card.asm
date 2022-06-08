@@ -532,7 +532,7 @@ TrainerCard_Page2_3_OAMUpdate:
 	inc de
 
 	ld a, [wTrainerCardBadgeTileID]
-	and $ff ^ (1 << 7)
+	and ~(1 << 7)
 	add [hl]
 	ld [de], a ; tile id
 	inc hl

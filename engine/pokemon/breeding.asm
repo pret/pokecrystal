@@ -835,7 +835,7 @@ Hatch_InitShellFragments:
 	call EggHatch_DoAnimFrame
 	ret
 
-shell_fragment: MACRO
+MACRO shell_fragment
 ; y tile, y pxl, x tile, x pxl, frameset offset, ???
 	db (\1 * 8) % $100 + \2, (\3 * 8) % $100 + \4, \5 - SPRITE_ANIM_FRAMESET_EGG_HATCH_1, \6
 ENDM

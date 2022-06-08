@@ -137,5 +137,5 @@ _GetVarAction::
 
 .BattleResult:
 	ld a, [wBattleResult]
-	and $ff ^ BATTLERESULT_BITMASK
+	and ~BATTLERESULT_BITMASK
 	jp .loadstringbuffer2

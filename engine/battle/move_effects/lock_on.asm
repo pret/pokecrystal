@@ -1,6 +1,4 @@
 BattleCommand_LockOn:
-; lockon
-
 	call CheckSubstituteOpp
 	jr nz, .fail
 

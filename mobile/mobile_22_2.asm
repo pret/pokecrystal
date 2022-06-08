@@ -800,15 +800,15 @@ Function8b7bd:
 	call ScrollingMenu
 	call Mobile_DisableSpriteUpdates
 	ld a, [wMenuJoypad]
-	cp $2
+	cp B_BUTTON
 	jr z, .asm_8b823
-	cp $20
+	cp D_LEFT
 	jr nz, .asm_8b813
 	call Function8b832
 	jr .asm_8b7ea
 
 .asm_8b813
-	cp $10
+	cp D_RIGHT
 	jr nz, .asm_8b81c
 	call Function8b83e
 	jr .asm_8b7ea

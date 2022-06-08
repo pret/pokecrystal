@@ -1,9 +1,9 @@
 INCLUDE "engine/gfx/sgb_layouts.asm"
 
-SHINY_ATK_BIT EQU 5
-SHINY_DEF_VAL EQU 10
-SHINY_SPD_VAL EQU 10
-SHINY_SPC_VAL EQU 10
+DEF SHINY_ATK_BIT EQU 5
+DEF SHINY_DEF_VAL EQU 10
+DEF SHINY_SPD_VAL EQU 10
+DEF SHINY_SPC_VAL EQU 10
 
 CheckShininess:
 ; Check if a mon is shiny by DVs at bc.
@@ -1033,6 +1033,7 @@ endr
 .FinalPush:
 	ld hl, MltReq1Packet
 	call _PushSGBPals
+	vc_hook Unknown_network_reset ; Unknown why this hook is here, doesn't seem to be needed
 	jp SGBDelayCycles
 
 SGBBorder_PushBGPals:
@@ -1170,7 +1171,9 @@ INCLUDE "gfx/sgb/pal_packets.asm"
 INCLUDE "data/sgb_ctrl_packets.asm"
 
 PredefPals:
+	table_width PALETTE_SIZE, PredefPals
 INCLUDE "gfx/sgb/predef.pal"
+	assert_table_length NUM_PREDEF_PALS
 
 SGBBorderMapAndPalettes:
 ; interleaved tile ids and palette ids, without the center 20x18 screen area

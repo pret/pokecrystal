@@ -1,6 +1,4 @@
 BattleCommand_PayDay:
-; payday
-
 	xor a
 	ld hl, wStringBuffer1
 	ld [hli], a

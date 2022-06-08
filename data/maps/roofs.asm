@@ -5,7 +5,7 @@
 	const ROOF_AZALEA    ; 2
 	const ROOF_OLIVINE   ; 3
 	const ROOF_GOLDENROD ; 4
-NUM_ROOFS EQU const_value
+DEF NUM_ROOFS EQU const_value
 
 MapGroupRoofs:
 ; entries correspond to MAPGROUP_* constants

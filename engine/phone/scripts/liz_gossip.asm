@@ -8,7 +8,7 @@ LizGossipRandomScript:
 	ifequal 5, .Salon
 	ifequal 6, .Whitney
 	ifequal 7, .BugCatchingContest
-	ifequal 8, .BeautifulMon
+	ifequal 8, .BeautifulTrainer
 	ifequal 9, .Forgot
 
 .RuinsOfAlph:
@@ -51,8 +51,8 @@ LizGossipRandomScript:
 	promptbutton
 	sjump PhoneScript_HangUpText_Female
 
-.BeautifulMon:
-	farwritetext LizBeautifulMonGossipText
+.BeautifulTrainer:
+	farwritetext LizBeautifulTrainerGossipText
 	promptbutton
 	sjump PhoneScript_HangUpText_Female
 

@@ -1,6 +1,4 @@
 BattleCommand_Mimic:
-; mimic
-
 	call ClearLastMove
 	call BattleCommand_MoveDelay
 	ld a, [wAttackMissed]

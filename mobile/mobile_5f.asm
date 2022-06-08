@@ -1607,7 +1607,7 @@ endr
 
 Unknown_17da94:
 for x, 8
-	db $ff ^ (1 << x)
+	db ~(1 << x)
 endr
 
 Function17da9c:
@@ -2946,17 +2946,17 @@ Function17e349:
 	call CloseSRAM
 	ret
 
-inc_crash_check_pointer_farcall: MACRO
+MACRO inc_crash_check_pointer_farcall
 	call IncCrashCheckPointer
 	call HlToCrashCheckPointer ; redundant
 	ldh a, [rSVBK]
 	push af
 	ld a, $1
 	ldh [rSVBK], a
-rept _NARG
-	farcall \1
-	shift
-endr
+	rept _NARG
+		farcall \1
+		shift
+	endr
 	pop af
 	ldh [rSVBK], a
 	ret

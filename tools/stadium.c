@@ -1,10 +1,9 @@
+#define PROGRAM_NAME "stadium"
+#define USAGE_OPTS "[-h|--help] [-b|--base us|eu|dbg] pokecrystal.gbc"
+
 #include "common.h"
 
 enum Base { BASE_NONE, BASE_US, BASE_EU, BASE_DEBUG };
-
-void usage() {
-	fputs("Usage: stadium [-h|--help] [-b|--base us|eu|dbg] pokecrystal.gbc\n", stderr);
-}
 
 void parse_args(int argc, char *argv[], enum Base *base) {
 	struct option long_options[] = {
@@ -21,12 +20,10 @@ void parse_args(int argc, char *argv[], enum Base *base) {
 				BASE_NONE;
 			break;
 		case 'h':
-			usage();
-			exit(0);
+			usage_exit(0);
 			break;
 		default:
-			usage();
-			exit(1);
+			usage_exit(1);
 		}
 	}
 }
@@ -144,8 +141,7 @@ int main(int argc, char *argv[]) {
 	argc -= optind;
 	argv += optind;
 	if (argc < 1) {
-		usage();
-		exit(1);
+		usage_exit(1);
 	}
 
 	char *filename = argv[0];

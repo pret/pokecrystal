@@ -1,6 +1,4 @@
 BattleCommand_Present:
-; present
-
 	ld a, [wLinkMode]
 	cp LINK_COLOSSEUM
 	jr z, .colosseum_skippush
