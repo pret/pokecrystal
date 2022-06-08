@@ -1565,7 +1565,7 @@ The `[hInMenu]` value determines this button behavior. However, the battle moves
 
 Sometimes during battle, the AI doesn't get inflicted with the stat debuffs associated with PAR/BRN, especially when switched out and back in for any reason.
 
-**Fix:** Edit `ShowSetEnemyMonAndSendOutAnimation` and `InitEnemyMon` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
+**Fix:** Edit `ShowSetEnemyMonAndSendOutAnimation` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
 
 ```diff
 ShowSetEnemyMonAndSendOutAnimation:
@@ -1577,19 +1577,6 @@ ShowSetEnemyMonAndSendOutAnimation:
 	; set flag to not switch if statused
 	ld a, [wEnemyMonStatus]
 	and SLP
-```
-
-
-```diff
-InitEnemyMon:
-	...
-	ld de, wEnemyStats
-	ld bc, PARTYMON_STRUCT_LENGTH - MON_ATK
-	call CopyBytes
--	call ApplyStatusEffectOnEnemyStats
-	ld hl, wBaseType1
-	ld de, wEnemyMonType1
-	ld a, [hli]
 ```
 
 
