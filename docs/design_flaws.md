@@ -773,7 +773,7 @@ Edit `GetForestTreeFrame`:
 ```
 
 
-### The 6-bit caught level can only record up to level 63
+## The 6-bit caught level can only record up to level 63
 
 The 6-bit field that is normally used to record the caught level of Pokémon can only record up to level 63 normally.
 
