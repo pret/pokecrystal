@@ -43,6 +43,8 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
 - [Single-player battle engine](#single-player-battle-engine)
   - [A Transformed Pokémon can use Sketch and learn otherwise unobtainable moves](#a-transformed-pokémon-can-use-sketch-and-learn-otherwise-unobtainable-moves)
   - [Catching a Transformed Pokémon always catches a Ditto](#catching-a-transformed-pokémon-always-catches-a-ditto)
+  - [A Ditto can get the stats of the Pokémon it transformed into](#a-ditto-can-get-the-stats-of-the-pokémon-it-transformed-into)
+  - [A Transformed Pokémon will incorrectly use the Shiny palette upon prompted switchout](#a-transformed-pokémon-will-incorrectly-use-the-shiny-palette-upon-prompted-switchout)
   - [Experience underflow for level 1 Pokémon with Medium-Slow growth rate](#experience-underflow-for-level-1-pokémon-with-medium-slow-growth-rate)
   - [The Dude's catching tutorial may crash if his Poké Ball can't be used](#the-dudes-catching-tutorial-may-crash-if-his-poké-ball-cant-be-used)
   - [BRN/PSN/PAR do not affect catch rate](#brnpsnpar-do-not-affect-catch-rate)
@@ -1071,6 +1073,25 @@ This bug can affect Mew or Pokémon other than Ditto that used Transform via Mir
  	pop af
  	ld [wEnemySubStatus5], a
 ```
+
+
+### A Ditto can get the stats of the Pokémon it transformed into
+
+If a player or enemy Pokémon uses Roar, Whirlwind, and/or Transform, some of the stats (DVs, shininess, and gender) of the opposing Pokémon can be copied to that Pokémon. This can result in the Pokémon and/or the entire enemy team (in the case of the glitch being applied on the enemy) incorrectly having those stats for the rest of the battle (and the shiny palette after opening the Pack or Party menus then backing out).
+
+([Video 1](https://www.youtube.com/watch?v=8Lb5pq0y6h8)
+([Video 2](https://www.youtube.com/watch?v=oq67mBVHbtI)
+
+**Fix:** No fix is available at this time.
+
+
+### A Transformed Pokémon will incorrectly use the Shiny palette upon prompted switchout
+
+If a transformed Pokémon defeats a Trainer Pokémon and switches to a Shiny Pokémon at the prompt to switch, the transformed Pokémon incorrectly uses the Shiny palette while being switched out. If switched out normally, this doesn't occur.
+
+([Video](https://www.youtube.com/watch?v=VbPRiHBNh-M)
+
+**Fix:** No fix is available at this time.
 
 
 ### Experience underflow for level 1 Pokémon with Medium-Slow growth rate
