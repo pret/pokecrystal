@@ -1079,8 +1079,8 @@ This bug can affect Mew or Pokémon other than Ditto that used Transform via Mir
 
 If a player or enemy Pokémon uses Roar, Whirlwind, and/or Transform, some of the stats (DVs, shininess, and gender) of the opposing Pokémon can be copied to that Pokémon. This can result in the Pokémon and/or the entire enemy team (in the case of the glitch being applied on the enemy) incorrectly having those stats for the rest of the battle (and the shiny palette after opening the Pack or Party menus then backing out).
 
-([Video 1](https://www.youtube.com/watch?v=8Lb5pq0y6h8)
-([Video 2](https://www.youtube.com/watch?v=oq67mBVHbtI)
+([Video 1](https://www.youtube.com/watch?v=8Lb5pq0y6h8))
+([Video 2](https://www.youtube.com/watch?v=oq67mBVHbtI))
 
 **Fix:** No fix is available at this time.
 
