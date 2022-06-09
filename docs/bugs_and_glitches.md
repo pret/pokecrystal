@@ -1089,7 +1089,7 @@ If a player or enemy Pokémon uses Roar, Whirlwind, and/or Transform, some of th
 
 If a transformed Pokémon defeats a Trainer Pokémon and switches to a Shiny Pokémon at the prompt to switch, the transformed Pokémon incorrectly uses the Shiny palette while being switched out. If switched out normally, this doesn't occur.
 
-([Video](https://www.youtube.com/watch?v=VbPRiHBNh-M)
+([Video](https://www.youtube.com/watch?v=VbPRiHBNh-M))
 
 **Fix:** No fix is available at this time.
 
