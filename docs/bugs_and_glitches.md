@@ -54,6 +54,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - ["Smart" AI encourages Mean Look if its own Pokémon is badly poisoned](#smart-ai-encourages-mean-look-if-its-own-pokémon-is-badly-poisoned)
   - ["Smart" AI discourages Conversion2 after the first turn](#smart-ai-discourages-conversion2-after-the-first-turn)
   - ["Smart" AI does not encourage Solar Beam, Flame Wheel, or Moonlight during Sunny Day](#smart-ai-does-not-encourage-solar-beam-flame-wheel-or-moonlight-during-sunny-day)
+  - ["Smart" AI could incorrectly check type matchups when Encore is used](#smart-ai-could-incorrectly-check-type-matchups-when-encore-is-used)
   - [AI does not discourage Future Sight when it's already been used](#ai-does-not-discourage-future-sight-when-its-already-been-used)
   - [AI makes a false assumption about `CheckTypeMatchup`](#ai-makes-a-false-assumption-about-checktypematchup)
   - [AI use of Full Heal or Full Restore does not cure Nightmare status](#ai-use-of-full-heal-or-full-restore-does-not-cure-nightmare-status)
@@ -1331,6 +1332,13 @@ SunnyDayMoves:
 +	db MOONLIGHT
  	db -1 ; end
 ```
+
+
+### "Smart" AI could incorrectly check type matchups when Encore is used
+
+When `AI_Smart_Encore` checks for type matchups, if `hBattleTurn` is set to 0, the player Pokémon's types could be considered instead of the enemy Pokémon's, which is apparent if Conversion2 is used by the Smart AI prior to using Encore.
+
+**Fix:** No fix is available at this time.
 
 
 ### AI does not discourage Future Sight when it's already been used
