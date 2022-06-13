@@ -1572,11 +1572,11 @@ ShowSetEnemyMonAndSendOutAnimation:
 	...
 	predef CopyMonToTempMon
 	call GetEnemyMonFrontpic
-
 +	call ApplyStatusEffectOnEnemyStats
-	; set flag to not switch if statused
-	ld a, [wEnemyMonStatus]
-	and SLP
+
+	xor a
+	ld [wNumHits], a
+	ld [wBattleAnimParam], a
 ```
 
 
