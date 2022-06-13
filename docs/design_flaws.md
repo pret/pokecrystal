@@ -738,9 +738,27 @@ ENDM
 
 ## The 6-bit caught level can only record up to level 63
 
-The 6-bit field that is normally used to record the caught level of Pokémon can only record up to level 63.
+When a Pokémon is caught, it stores its caught data in two bytes as part of the `party_struct`. The first
+byte uses 2 bits for `CAUGHT_TIME` and 6 bits for `CAUGHT_LEVEL`. The second byte uses 1 bit for
+`CAUGHT_GENDER` and 7 bits for `CAUGHT_LOCATION`. When a Pokémon greater than level 63 is
+caught, the game first stores `CAUGHT_TIME` in the first two bits of the first byte, and then does an `OR`
+operation on that byte with [wCurPartyLevel] during execution of `SetCaughtData:`. The result is that
+`CAUGHT_TIME` may become corrupted, and the `CAUGHT_LEVEL` reporting incorrectly. For example:
 
-**Possible Fix:** Repurpose an unused bit from `MON_LEVEL` (one free bit), `MON_EXP` (three free bits), or somewhere else.
+A level 70 Pokémon caught at Morning: (% means binary)
+`%00000000` = Morning
+`%01000110` = Level 70
+Since level 70 takes up 7 bits, when you apply an OR operation here you get:
+`%01000110` = Level 6 Pokémon caught at Day.
+The game only looks at the first two bits for Time and last 6 bits for Level due to:
+```asm
+DEF CAUGHT_TIME_MASK  EQU %11000000
+DEF CAUGHT_LEVEL_MASK EQU %00111111
+```
+
+**Possible Fix:** Add an extra struct byte, free up other struct bytes (Ex. [Replace stat experience with EVs](https://github.com/pret/pokecrystal/wiki/Replace-stat-experience-with-EVs)), or
+repurposing a free unused bit from another existing byte (`MON_LEVEL` has one free bit and `MON_EXP` has three
+free bits). 
 
 
 ## `GetForestTreeFrame` works, but it's still bad
