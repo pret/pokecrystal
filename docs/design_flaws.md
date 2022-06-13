@@ -742,7 +742,7 @@ When a Pokémon is caught, it stores its caught data in two bytes as part of the
 byte uses 2 bits for `CAUGHT_TIME` and 6 bits for `CAUGHT_LEVEL`. The second byte uses 1 bit for
 `CAUGHT_GENDER` and 7 bits for `CAUGHT_LOCATION`. When a Pokémon greater than level 63 is
 caught, the game first stores `CAUGHT_TIME` in the first two bits of the first byte, and then does an `OR`
-operation on that byte with [wCurPartyLevel] during execution of `SetCaughtData:`. The result is that
+operation on that byte with `[wCurPartyLevel]` during execution of `SetCaughtData:`. The result is that
 `CAUGHT_TIME` may become corrupted, and the `CAUGHT_LEVEL` reporting incorrectly. For example:
 
 A level 70 Pokémon caught at Morning: (% means binary)
