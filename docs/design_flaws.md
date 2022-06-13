@@ -151,7 +151,9 @@ In [gfx/footprints.asm](https://github.com/pret/pokecrystal/blob/master/gfx/foot
 DEF footprint_top    EQUS "0,                 2 * LEN_1BPP_TILE"
 DEF footprint_bottom EQUS "2 * LEN_1BPP_TILE, 2 * LEN_1BPP_TILE"
 
+Footprints:
 ; Entries correspond to Pokémon species, two apiece, 8 tops then 8 bottoms
+	table_width LEN_1BPP_TILE * 4, Footprints
 
 ; 001-008 top halves
 INCBIN "gfx/footprints/bulbasaur.1bpp",  footprint_top
@@ -181,6 +183,11 @@ INCBIN "gfx/footprints/wartortle.1bpp",  footprint_bottom
 Store footprints contiguously:
 
 ```asm
+
+Footprints:
+; Entries correspond to Pokémon species, two apiece, 8 tops then 8 bottoms
+	table_width LEN_1BPP_TILE * 4, Footprints
+
 INCBIN "gfx/footprints/bulbasaur.1bpp"
 INCBIN "gfx/footprints/ivysaur.1bpp"
 INCBIN "gfx/footprints/venusaur.1bpp"
