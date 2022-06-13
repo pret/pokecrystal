@@ -1081,6 +1081,13 @@ LoadScriptBDE::
 	scf
 	ret
 
+; TryTileCollisionEvent loads wFacingTileID into c,
+; then farcalls CheckFacingTileForStdScript,
+; which preserves c, but since it's a farcall,
+; implicitly copies c back into a on return.
+; Then it calls CheckCutTreeTile which checks this value.
+; Every other Check<x>Tile call in the same function
+; explicitly loads wFacingTileID again.
 TryTileCollisionEvent::
 	call GetFacingTileCoord
 	ld [wFacingTileID], a
