@@ -127,7 +127,7 @@ void write_command_to_file (FILE * fp, struct command command, const unsigned ch
         *(pos ++) = command.value;
       }
   }
-  if (fwrite(buf, 1, pos - buf, fp) != (pos - buf)) error_exit(1, "could not write command to compressed output");
+  if (fwrite(buf, 1, pos - buf, fp) != (size_t)(pos - buf)) error_exit(1, "could not write command to compressed output");
   if (command.command) return;
   command.count ++;
   if (fwrite(input_stream + command.value, 1, command.count, fp) != command.count) error_exit(1, "could not write data to compressed output");
