@@ -185,7 +185,7 @@ Store footprints contiguously:
 ```asm
 
 Footprints:
-; Entries correspond to Pokémon species, two apiece, 8 tops then 8 bottoms
+; Entries correspond to Pokémon species, one apiece
 	table_width LEN_1BPP_TILE * 4, Footprints
 
 INCBIN "gfx/footprints/bulbasaur.1bpp"
