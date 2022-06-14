@@ -81,7 +81,7 @@ _TitleScreen:
 ; Suicune gfx
 	hlbgcoord 0, 12
 	ld bc, 6 * BG_MAP_WIDTH ; the rest of the screen
-	ld a, 0 | VRAM_BANK_1
+	ld a, 0 | $08
 	call ByteFill
 
 ; Back to VRAM bank 0
@@ -186,7 +186,7 @@ _TitleScreen:
 
 ; Set sprite size to 8x16
 	ldh a, [rLCDC]
-	set rLCDC_SPRITE_SIZE, a
+	set LCDCB_OBJ16, a
 	ldh [rLCDC], a
 
 	ld a, +112
@@ -331,7 +331,7 @@ InitializeBackground:
 	ld [hli], a ; tile id
 	inc e
 	inc e
-	ld a, 0 | PRIORITY
+	ld a, 0 | $80
 	ld [hli], a ; attributes
 	dec c
 	jr nz, .loop2

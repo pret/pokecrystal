@@ -2673,7 +2673,7 @@ TownMapPals:
 	adc 0
 	ld h, a
 	ld a, [hl]
-	and PALETTE_MASK
+	and OAMF_PALMASK
 	jr .update
 
 .odd
@@ -2685,7 +2685,7 @@ TownMapPals:
 	ld h, a
 	ld a, [hl]
 	swap a
-	and PALETTE_MASK
+	and OAMF_PALMASK
 	jr .update
 
 .pal0

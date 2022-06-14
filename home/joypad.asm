@@ -39,10 +39,10 @@ UpdateJoypad::
 ; We can only get four inputs at a time.
 ; We take d-pad first for no particular reason.
 	ld a, R_DPAD
-	ldh [rJOYP], a
+	ldh [rP1], a
 ; Read twice to give the request time to take.
-	ldh a, [rJOYP]
-	ldh a, [rJOYP]
+	ldh a, [rP1]
+	ldh a, [rP1]
 
 ; The Joypad register output is in the lo nybble (inversed).
 ; We make the hi nybble of our new container d-pad input.
@@ -56,10 +56,10 @@ UpdateJoypad::
 ; Buttons make 8 total inputs (A, B, Select, Start).
 ; We can fit this into one byte.
 	ld a, R_BUTTONS
-	ldh [rJOYP], a
+	ldh [rP1], a
 ; Wait for input to stabilize.
 rept 6
-	ldh a, [rJOYP]
+	ldh a, [rP1]
 endr
 ; Buttons take the lo nybble.
 	cpl
@@ -69,7 +69,7 @@ endr
 
 ; Reset the joypad register since we're done with it.
 	ld a, $30
-	ldh [rJOYP], a
+	ldh [rP1], a
 
 ; To get the delta we xor the last frame's input with the new one.
 	ldh a, [hJoypadDown] ; last frame

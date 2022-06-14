@@ -14,9 +14,9 @@ Timer:: ; unreferenced
 LatchClock::
 ; latch clock counter data
 	ld a, 0
-	ld [MBC3LatchClock], a
+	ld [$6000], a
 	ld a, 1
-	ld [MBC3LatchClock], a
+	ld [$6000], a
 	ret
 
 UpdateTime::
@@ -30,35 +30,35 @@ GetClock::
 ; store clock data in hRTCDayHi-hRTCSeconds
 
 ; enable clock r/w
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	ld a, CART_SRAM_ENABLE
+	ld [rRAMG], a
 
 ; clock data is 'backwards' in hram
 
 	call LatchClock
-	ld hl, MBC3SRamBank
-	ld de, MBC3RTC
+	ld hl, rRAMB
+	ld de, $a000
 
-	ld [hl], RTC_S
+	ld [hl], $08
 	ld a, [de]
 	maskbits 60
 	ldh [hRTCSeconds], a
 
-	ld [hl], RTC_M
+	ld [hl], $09
 	ld a, [de]
 	maskbits 60
 	ldh [hRTCMinutes], a
 
-	ld [hl], RTC_H
+	ld [hl], $0a
 	ld a, [de]
 	maskbits 24
 	ldh [hRTCHours], a
 
-	ld [hl], RTC_DL
+	ld [hl], $0b
 	ld a, [de]
 	ldh [hRTCDayLo], a
 
-	ld [hl], RTC_DH
+	ld [hl], $0c
 	ld a, [de]
 	ldh [hRTCDayHi], a
 
@@ -213,41 +213,41 @@ SetClock::
 ; set clock data from hram
 
 ; enable clock r/w
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	ld a, CART_SRAM_ENABLE
+	ld [rRAMG], a
 
 ; set clock data
 ; stored 'backwards' in hram
 
 	call LatchClock
-	ld hl, MBC3SRamBank
-	ld de, MBC3RTC
+	ld hl, rRAMB
+	ld de, $a000
 
 ; seems to be a halt check that got partially commented out
 ; this block is totally pointless
-	ld [hl], RTC_DH
+	ld [hl], $0c
 	ld a, [de]
 	bit 6, a ; halt
 	ld [de], a
 
 ; seconds
-	ld [hl], RTC_S
+	ld [hl], $08
 	ldh a, [hRTCSeconds]
 	ld [de], a
 ; minutes
-	ld [hl], RTC_M
+	ld [hl], $09
 	ldh a, [hRTCMinutes]
 	ld [de], a
 ; hours
-	ld [hl], RTC_H
+	ld [hl], $0a
 	ldh a, [hRTCHours]
 	ld [de], a
 ; day lo
-	ld [hl], RTC_DL
+	ld [hl], $0b
 	ldh a, [hRTCDayLo]
 	ld [de], a
 ; day hi
-	ld [hl], RTC_DH
+	ld [hl], $0c
 	ldh a, [hRTCDayHi]
 	res 6, a ; make sure timer is active
 	ld [de], a

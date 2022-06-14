@@ -196,13 +196,13 @@ VBlank1::
 	xor a
 	ldh [rIF], a
 	; enable lcd stat
-	ld a, 1 << LCD_STAT
+	ld a, 1 << IEB_STAT
 	ldh [rIE], a
 	; rerequest serial int if applicable (still disabled)
 	; request lcd stat
 	ld a, b
-	and 1 << SERIAL
-	or 1 << LCD_STAT
+	and 1 << IEB_SERIAL
+	or 1 << IEB_STAT
 	ldh [rIF], a
 
 	ei
@@ -220,7 +220,7 @@ VBlank1::
 	xor a
 	ldh [rIF], a
 	; enable ints besides joypad
-	ld a, IE_DEFAULT
+	ld a, (1 << IEB_SERIAL) | (1 << IEB_TIMER) | (1 << IEB_STAT) | (1 << IEB_VBLANK)
 	ldh [rIE], a
 	; rerequest ints
 	ld a, b
@@ -279,7 +279,7 @@ VBlank3::
 	push af
 	xor a
 	ldh [rIF], a
-	ld a, 1 << LCD_STAT
+	ld a, 1 << IEB_STAT
 	ldh [rIE], a
 	ldh [rIF], a
 
@@ -302,7 +302,7 @@ VBlank3::
 	xor a
 	ldh [rIF], a
 	; enable ints besides joypad
-	ld a, IE_DEFAULT
+	ld a, (1 << IEB_SERIAL) | (1 << IEB_TIMER) | (1 << IEB_STAT) | (1 << IEB_VBLANK)
 	ldh [rIE], a
 	; request ints
 	ld a, b
@@ -368,7 +368,7 @@ VBlank5::
 
 	xor a
 	ldh [rIF], a
-	ld a, 1 << LCD_STAT
+	ld a, 1 << IEB_STAT
 	ldh [rIE], a
 	; request lcd stat
 	ldh [rIF], a
@@ -384,7 +384,7 @@ VBlank5::
 	xor a
 	ldh [rIF], a
 	; enable ints besides joypad
-	ld a, IE_DEFAULT
+	ld a, (1 << IEB_SERIAL) | (1 << IEB_TIMER) | (1 << IEB_STAT) | (1 << IEB_VBLANK)
 	ldh [rIE], a
 	ret
 

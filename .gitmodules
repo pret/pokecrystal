@@ -1,0 +1,3 @@
+[submodule "constants/hardware.inc"]
+	path = constants/hardware.inc
+	url = git@github.com:gbdev/hardware.inc.git

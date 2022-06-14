@@ -77,7 +77,7 @@ EnableMobile:
 	call DoubleSpeed
 	xor a
 	ldh [rIF], a
-	ld a, IE_DEFAULT
+	ld a, (1 << IEB_SERIAL) | (1 << IEB_TIMER) | (1 << IEB_STAT) | (1 << IEB_VBLANK)
 	ldh [rIE], a
 	xor a
 	ldh [hMapAnims], a
@@ -160,7 +160,7 @@ Function1000fa:
 	xor a
 	ldh [rIF], a
 	ldh a, [rIE]
-	and $1f ^ (1 << SERIAL | 1 << TIMER)
+	and $1f ^ (1 << IEB_SERIAL | 1 << IEB_TIMER)
 	ldh [rIE], a
 	xor a
 	ldh [hMobileReceive], a
@@ -2400,7 +2400,7 @@ MACRO macro_100fc0
 	;     Bit 7 set: Not SRAM
 	;     Lower 7 bits: Bank if SRAM
 	; address, size[, OT address]
-	db ($80 * (\1 >= SRAM_End)) | (BANK(\1) * (\1 < SRAM_End))
+	db ($80 * (\1 >= _RAM)) | (BANK(\1) * (\1 < _RAM))
 	dw \1, \2
 	if _NARG == 3
 		dw \3

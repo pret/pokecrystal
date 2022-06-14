@@ -1,24 +1,24 @@
 StopRTC: ; unreferenced
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	ld a, CART_SRAM_ENABLE
+	ld [rRAMG], a
 	call LatchClock
-	ld a, RTC_DH
-	ld [MBC3SRamBank], a
-	ld a, [MBC3RTC]
+	ld a, $0c
+	ld [rRAMB], a
+	ld a, [$a000]
 	set 6, a ; halt
-	ld [MBC3RTC], a
+	ld [$a000], a
 	call CloseSRAM
 	ret
 
 StartRTC:
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	ld a, CART_SRAM_ENABLE
+	ld [rRAMG], a
 	call LatchClock
-	ld a, RTC_DH
-	ld [MBC3SRamBank], a
-	ld a, [MBC3RTC]
+	ld a, $0c
+	ld [rRAMB], a
+	ld a, [$a000]
 	res 6, a ; halt
-	ld [MBC3RTC], a
+	ld [$a000], a
 	call CloseSRAM
 	ret
 
@@ -74,15 +74,15 @@ StageRTCTimeForSave:
 	ret
 
 SaveRTC:
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	ld a, CART_SRAM_ENABLE
+	ld [rRAMG], a
 	call LatchClock
-	ld hl, MBC3RTC
-	ld a, RTC_DH
-	ld [MBC3SRamBank], a
+	ld hl, $a000
+	ld a, $0c
+	ld [rRAMB], a
 	res 7, [hl]
 	ld a, BANK(sRTCStatusFlags)
-	ld [MBC3SRamBank], a
+	ld [rRAMB], a
 	xor a
 	ld [sRTCStatusFlags], a
 	call CloseSRAM

@@ -585,7 +585,7 @@ ApplyPals:
 
 ApplyAttrmap:
 	ldh a, [rLCDC]
-	bit rLCDC_ENABLE, a
+	bit LCDCB_ON, a
 	jr z, .UpdateVBank1
 	ldh a, [hBGMapMode]
 	push af
@@ -720,12 +720,12 @@ CGBCopyBattleObjectPals: ; unreferenced
 	call CheckCGB
 	ret z
 	ld hl, BattleObjectPals
-	ld a, (1 << rOBPI_AUTO_INCREMENT) | $10
-	ldh [rOBPI], a
+	ld a, (1 << OCPSB_AUTOINC) | $10
+	ldh [rOCPS], a
 	ld c, 6 palettes
 .loop
 	ld a, [hli]
-	ldh [rOBPD], a
+	ldh [rOCPD], a
 	dec c
 	jr nz, .loop
 	ld hl, BattleObjectPals
@@ -741,8 +741,8 @@ INCLUDE "gfx/battle_anims/battle_anims.pal"
 CGBCopyTwoPredefObjectPals: ; unreferenced
 	call CheckCGB
 	ret z
-	ld a, (1 << rOBPI_AUTO_INCREMENT) | $10
-	ldh [rOBPI], a
+	ld a, (1 << OCPSB_AUTOINC) | $10
+	ldh [rOCPS], a
 	ld a, PREDEFPAL_TRADE_TUBE
 	call GetPredefPal
 	call .PushPalette
@@ -755,7 +755,7 @@ CGBCopyTwoPredefObjectPals: ; unreferenced
 	ld c, 1 palettes
 .loop
 	ld a, [hli]
-	ldh [rOBPD], a
+	ldh [rOCPD], a
 	dec c
 	jr nz, .loop
 	ret
@@ -801,9 +801,9 @@ _PushSGBPals:
 .loop
 	push bc
 	xor a
-	ldh [rJOYP], a
+	ldh [rP1], a
 	ld a, $30
-	ldh [rJOYP], a
+	ldh [rP1], a
 	ld b, $10
 .loop2
 	ld e, $8
@@ -815,18 +815,18 @@ _PushSGBPals:
 	jr nz, .okay
 	ld a, $20
 .okay
-	ldh [rJOYP], a
+	ldh [rP1], a
 	ld a, $30
-	ldh [rJOYP], a
+	ldh [rP1], a
 	rr d
 	dec e
 	jr nz, .loop3
 	dec b
 	jr nz, .loop2
 	ld a, $20
-	ldh [rJOYP], a
+	ldh [rP1], a
 	ld a, $30
-	ldh [rJOYP], a
+	ldh [rP1], a
 	call SGBDelayCycles
 	pop bc
 	dec b
@@ -845,7 +845,7 @@ InitSGBBorder:
 	ld [wJoypadDisable], a
 
 	xor a
-	ldh [rJOYP], a
+	ldh [rP1], a
 	ldh [hSGB], a
 	call PushSGBBorderPalsAndWait
 	jr nc, .skip
@@ -880,24 +880,24 @@ InitCGBPals::
 	call ByteFill
 	ld a, BANK(vTiles0)
 	ldh [rVBK], a
-	ld a, 1 << rBGPI_AUTO_INCREMENT
-	ldh [rBGPI], a
+	ld a, 1 << BCPSB_AUTOINC
+	ldh [rBCPS], a
 	ld c, 4 * 8
 .bgpals_loop
 	ld a, LOW(PALRGB_WHITE)
-	ldh [rBGPD], a
+	ldh [rBCPD], a
 	ld a, HIGH(PALRGB_WHITE)
-	ldh [rBGPD], a
+	ldh [rBCPD], a
 	dec c
 	jr nz, .bgpals_loop
-	ld a, 1 << rOBPI_AUTO_INCREMENT
-	ldh [rOBPI], a
+	ld a, 1 << OCPSB_AUTOINC
+	ldh [rOCPS], a
 	ld c, 4 * 8
 .obpals_loop
 	ld a, LOW(PALRGB_WHITE)
-	ldh [rOBPD], a
+	ldh [rOCPD], a
 	ld a, HIGH(PALRGB_WHITE)
-	ldh [rOBPD], a
+	ldh [rOCPD], a
 	dec c
 	jr nz, .obpals_loop
 	ldh a, [rSVBK]
@@ -954,7 +954,7 @@ _InitSGBBorderPals:
 UpdateSGBBorder: ; unreferenced
 	di
 	xor a
-	ldh [rJOYP], a
+	ldh [rP1], a
 	ld hl, MaskEnFreezePacket
 	call _PushSGBPals
 	call PushSGBBorder
@@ -979,8 +979,8 @@ PushSGBBorder:
 	ret
 
 SGB_ClearVRAM:
-	ld hl, VRAM_Begin
-	ld bc, VRAM_End - VRAM_Begin
+	ld hl, _VRAM
+	ld bc, _SRAM - _VRAM
 	xor a
 	call ByteFill
 	ret
@@ -989,35 +989,35 @@ PushSGBBorderPalsAndWait:
 	ld hl, MltReq2Packet
 	call _PushSGBPals
 	call SGBDelayCycles
-	ldh a, [rJOYP]
+	ldh a, [rP1]
 	and $3
 	cp $3
 	jr nz, .carry
 	ld a, $20
-	ldh [rJOYP], a
-	ldh a, [rJOYP]
-	ldh a, [rJOYP]
+	ldh [rP1], a
+	ldh a, [rP1]
+	ldh a, [rP1]
 	call SGBDelayCycles
 	call SGBDelayCycles
 	ld a, $30
-	ldh [rJOYP], a
+	ldh [rP1], a
 	call SGBDelayCycles
 	call SGBDelayCycles
 	ld a, $10
-	ldh [rJOYP], a
+	ldh [rP1], a
 rept 6
-	ldh a, [rJOYP]
+	ldh a, [rP1]
 endr
 	call SGBDelayCycles
 	call SGBDelayCycles
 	ld a, $30
-	ldh [rJOYP], a
-	ldh a, [rJOYP]
-	ldh a, [rJOYP]
-	ldh a, [rJOYP]
+	ldh [rP1], a
+	ldh a, [rP1]
+	ldh a, [rP1]
+	ldh a, [rP1]
 	call SGBDelayCycles
 	call SGBDelayCycles
-	ldh a, [rJOYP]
+	ldh a, [rP1]
 	and $3
 	cp $3
 	jr nz, .carry

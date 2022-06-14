@@ -20,7 +20,7 @@ _LoadStandardFont::
 	ld hl, vTiles1
 	lb bc, BANK(Font), 128 ; "A" to "9"
 	ldh a, [rLCDC]
-	bit rLCDC_ENABLE, a
+	bit LCDCB_ON, a
 	jp z, Copy1bpp
 
 	ld de, Font

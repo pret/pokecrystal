@@ -22,6 +22,6 @@ SwitchSpeed::
 	ldh [rIF], a
 	ldh [rIE], a
 	ld a, $30
-	ldh [rJOYP], a
+	ldh [rP1], a
 	stop ; rgbasm adds a nop after this instruction by default
 	ret

@@ -54,8 +54,8 @@ UnusedTitleScreen: ; unreferenced
 
 	call EnableLCD
 	ldh a, [rLCDC]
-	set rLCDC_SPRITES_ENABLE, a
-	set rLCDC_SPRITE_SIZE, a
+	set LCDCB_OBJON, a
+	set LCDCB_OBJ16, a
 	ldh [rLCDC], a
 
 	call DelayFrame

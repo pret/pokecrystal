@@ -11,8 +11,8 @@ EmptyAllSRAMBanks:
 
 .EmptyBank:
 	call OpenSRAM
-	ld hl, SRAM_Begin
-	ld bc, SRAM_End - SRAM_Begin
+	ld hl, _SRAM
+	ld bc, _RAM - _SRAM
 	xor a
 	call ByteFill
 	call CloseSRAM

@@ -557,13 +557,13 @@ RedrawUnownPuzzlePieces:
 .OAM_NotHoldingPiece:
 	dbsprite -1, -1, -4, -4, $00, 0
 	dbsprite  0, -1, -4, -4, $01, 0
-	dbsprite  0, -1,  4, -4, $00, 0 | X_FLIP
+	dbsprite  0, -1,  4, -4, $00, 0 | $20
 	dbsprite -1,  0, -4, -4, $02, 0
 	dbsprite  0,  0, -4, -4, $03, 0
-	dbsprite  0,  0,  4, -4, $02, 0 | X_FLIP
-	dbsprite -1,  0, -4,  4, $00, 0 | Y_FLIP
-	dbsprite  0,  0, -4,  4, $01, 0 | Y_FLIP
-	dbsprite  0,  0,  4,  4, $00, 0 | X_FLIP | Y_FLIP
+	dbsprite  0,  0,  4, -4, $02, 0 | $20
+	dbsprite -1,  0, -4,  4, $00, 0 | $40
+	dbsprite  0,  0, -4,  4, $01, 0 | $40
+	dbsprite  0,  0,  4,  4, $00, 0 | $20 | $40
 	db -1
 
 UnownPuzzleCoordData:

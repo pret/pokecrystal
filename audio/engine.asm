@@ -26,7 +26,7 @@ _InitSound::
 .clearsound
 ;   sound channel   1      2      3      4
 	xor a
-	ld [hli], a ; rNR10, rNR20, rNR30, rNR40 ; sweep = 0
+	ld [hli], a ; rNR10, $ff15, rNR30, $ff1f ; sweep = 0
 
 	ld [hli], a ; rNR11, rNR21, rNR31, rNR41 ; length/wavepattern = 0
 	ld a, $8
@@ -353,7 +353,7 @@ UpdateChannels:
 	ldh a, [rNR52]
 	and %10001101 ; ch2 off
 	ldh [rNR52], a
-	ld hl, rNR20
+	ld hl, $ff15
 	call ClearChannel
 	ret
 
@@ -434,37 +434,37 @@ endr
 	add hl, de
 	; load wavepattern into rWave_0-rWave_f
 	ld a, [hli]
-	ldh [rWave_0], a
+	ldh [_AUD3WAVERAM], a
 	ld a, [hli]
-	ldh [rWave_1], a
+	ldh [$ff31], a
 	ld a, [hli]
-	ldh [rWave_2], a
+	ldh [$ff32], a
 	ld a, [hli]
-	ldh [rWave_3], a
+	ldh [$ff33], a
 	ld a, [hli]
-	ldh [rWave_4], a
+	ldh [$ff34], a
 	ld a, [hli]
-	ldh [rWave_5], a
+	ldh [$ff35], a
 	ld a, [hli]
-	ldh [rWave_6], a
+	ldh [$ff36], a
 	ld a, [hli]
-	ldh [rWave_7], a
+	ldh [$ff37], a
 	ld a, [hli]
-	ldh [rWave_8], a
+	ldh [$ff38], a
 	ld a, [hli]
-	ldh [rWave_9], a
+	ldh [$ff39], a
 	ld a, [hli]
-	ldh [rWave_a], a
+	ldh [$ff3a], a
 	ld a, [hli]
-	ldh [rWave_b], a
+	ldh [$ff3b], a
 	ld a, [hli]
-	ldh [rWave_c], a
+	ldh [$ff3c], a
 	ld a, [hli]
-	ldh [rWave_d], a
+	ldh [$ff3d], a
 	ld a, [hli]
-	ldh [rWave_e], a
+	ldh [$ff3e], a
 	ld a, [hli]
-	ldh [rWave_f], a
+	ldh [$ff3f], a
 	pop hl
 	ld a, [wCurTrackVolumeEnvelope]
 	and $f0
@@ -491,7 +491,7 @@ endr
 	ldh a, [rNR52]
 	and %10000111 ; ch4 off
 	ldh [rNR52], a
-	ld hl, rNR40
+	ld hl, $ff1f
 	call ClearChannel
 	ret
 
@@ -2815,12 +2815,12 @@ ClearChannels::
 	ret
 
 ClearChannel:
-; input: hl = beginning hw sound register (rNR10, rNR20, rNR30, rNR40)
+; input: hl = beginning hw sound register (rNR10, $ff15, rNR30, $ff1f)
 ; output: 00 00 80 00 80
 
 ;   sound channel   1      2      3      4
 	xor a
-	ld [hli], a ; rNR10, rNR20, rNR30, rNR40 ; sweep = 0
+	ld [hli], a ; rNR10, $ff15, rNR30, $ff1f ; sweep = 0
 
 	ld [hli], a ; rNR11, rNR21, rNR31, rNR41 ; length/wavepattern = 0
 	ld a, $8

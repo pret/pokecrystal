@@ -194,7 +194,7 @@ CopyMapObjectToObjectStruct:
 	and $f0
 	jr z, .skip_color_override
 	swap a
-	and PALETTE_MASK
+	and OAMF_PALMASK
 	ld [wTempObjectCopyPalette], a
 
 .skip_color_override

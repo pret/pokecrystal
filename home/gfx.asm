@@ -3,7 +3,7 @@ DEF MOBILE_TILES_PER_CYCLE EQU 6
 
 Get2bppViaHDMA::
 	ldh a, [rLCDC]
-	bit rLCDC_ENABLE, a
+	bit LCDCB_ON, a
 	jp z, Copy2bpp
 
 	homecall HDMATransfer2bpp
@@ -12,7 +12,7 @@ Get2bppViaHDMA::
 
 Get1bppViaHDMA::
 	ldh a, [rLCDC]
-	bit rLCDC_ENABLE, a
+	bit LCDCB_ON, a
 	jp z, Copy1bpp
 
 	homecall HDMATransfer1bpp
@@ -336,7 +336,7 @@ Request1bpp::
 Get2bpp::
 ; copy c 2bpp tiles from b:de to hl
 	ldh a, [rLCDC]
-	bit rLCDC_ENABLE, a
+	bit LCDCB_ON, a
 	jp nz, Request2bpp
 	; fallthrough
 
@@ -365,7 +365,7 @@ Copy2bpp:
 Get1bpp::
 ; copy c 1bpp tiles from b:de to hl
 	ldh a, [rLCDC]
-	bit rLCDC_ENABLE, a
+	bit LCDCB_ON, a
 	jp nz, Request1bpp
 	; fallthrough
 

@@ -155,7 +155,7 @@ _DisplayUnownWords_FillAttr:
 	cp $ff
 	ret z
 	cp $60
-	ld a, VRAM_BANK_1 | PAL_BG_BROWN
+	ld a, $08 | PAL_BG_BROWN
 	jr c, .got_pal
 	ld a, PAL_BG_BROWN
 

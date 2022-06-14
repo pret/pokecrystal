@@ -27,9 +27,9 @@ ForceUpdateCGBPals::
 	ld hl, wBGPals2
 
 ; copy 8 pals to bgpd
-	ld a, 1 << rBGPI_AUTO_INCREMENT
-	ldh [rBGPI], a
-	ld c, LOW(rBGPD)
+	ld a, 1 << BCPSB_AUTOINC
+	ldh [rBCPS], a
+	ld c, LOW(rBCPD)
 	ld b, 8 / 2
 .bgp
 rept (1 palettes) * 2
@@ -43,9 +43,9 @@ endr
 ; hl is now wOBPals2
 
 ; copy 8 pals to obpd
-	ld a, 1 << rOBPI_AUTO_INCREMENT
-	ldh [rOBPI], a
-	ld c, LOW(rOBPD)
+	ld a, 1 << OCPSB_AUTOINC
+	ldh [rOCPS], a
+	ld c, LOW(rOCPD)
 	ld b, 8 / 2
 .obp
 rept (1 palettes) * 2
@@ -293,8 +293,8 @@ ClearVBank1::
 	ld a, 1
 	ldh [rVBK], a
 
-	ld hl, VRAM_Begin
-	ld bc, VRAM_End - VRAM_Begin
+	ld hl, _VRAM
+	ld bc, _SRAM - _VRAM
 	xor a
 	call ByteFill
 

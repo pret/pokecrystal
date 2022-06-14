@@ -29,7 +29,7 @@ ClearTilemap::
 
 	; Update the BG Map.
 	ldh a, [rLCDC]
-	bit rLCDC_ENABLE, a
+	bit LCDCB_ON, a
 	ret z
 	jp WaitBGMap
 
@@ -760,7 +760,7 @@ TextCommand_FAR::
 	ld a, [hli]
 
 	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	ld [rROMB0], a
 
 	push hl
 	ld h, d
@@ -770,7 +770,7 @@ TextCommand_FAR::
 
 	pop af
 	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	ld [rROMB0], a
 	ret
 
 TextCommand_BCD::

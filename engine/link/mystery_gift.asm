@@ -320,32 +320,32 @@ endc
 	; Delay frame
 .wait_frame
 	ldh a, [rLY]
-	cp LY_VBLANK
+	cp 144
 	jr c, .wait_frame
 
 	ld c, LOW(rRP)
-	ld a, rRP_ENABLE_READ_MASK
+	ld a, RPF_ENREAD
 	ldh [c], a
 
 	ld b, 60 * 4 ; 4 seconds
 .continue
 	push bc
 	call MysteryGift_UpdateJoypad
-	ld b, 1 << rRP_RECEIVING
+	ld b, 1 << RPF_WRITE_HI
 	ld c, LOW(rRP)
 .in_vblank
 	ldh a, [c]
 	and b
 	ld b, a
 	ldh a, [rLY]
-	cp LY_VBLANK
+	cp 144
 	jr nc, .in_vblank
 .wait_vblank
 	ldh a, [c]
 	and b
 	ld b, a
 	ldh a, [rLY]
-	cp LY_VBLANK
+	cp 144
 	jr c, .wait_vblank
 	ld a, b
 	pop bc
@@ -539,7 +539,7 @@ EndOrContinueMysteryGiftIRCommunication:
 	xor a
 	ldh [rIF], a
 	ldh a, [rIE]
-	or 1 << VBLANK
+	or 1 << IEB_VBLANK
 	ldh [rIE], a
 	ei
 	call DelayFrame
@@ -696,7 +696,7 @@ EndNameCardIRCommunication:
 	xor a
 	ldh [rIF], a
 	ldh a, [rIE]
-	or 1 << VBLANK
+	or 1 << IEB_VBLANK
 	ldh [rIE], a
 	ei
 	call DelayFrame
@@ -737,7 +737,7 @@ TryReceivingIRDataBlock:
 
 InitializeIRCommunicationInterrupts:
 	call StartFastIRTimer
-	ld a, 1 << TIMER
+	ld a, 1 << IEB_TIMER
 	ldh [rIE], a
 	xor a
 	ldh [rIF], a
@@ -759,9 +759,9 @@ StartFastIRTimer:
 	ld a, -2
 	ldh [rTMA], a
 	ldh [rTIMA], a
-	ld a, rTAC_65536_HZ
+	ld a, TACF_65KHZ
 	ldh [rTAC], a
-	or 1 << rTAC_ON
+	or 1 << TACB_START
 	ldh [rTAC], a
 	ret
 
@@ -771,14 +771,14 @@ StartSlowIRTimer:
 	ldh [rTAC], a
 	ldh [rTMA], a
 	ldh [rTIMA], a
-	ld a, rTAC_65536_HZ
+	ld a, TACF_65KHZ
 	ldh [rTAC], a
-	or 1 << rTAC_ON
+	or 1 << TACB_START
 	ldh [rTAC], a
 	ret
 
 BeginIRCommunication:
-	ld a, rRP_ENABLE_READ_MASK
+	ld a, RPF_ENREAD
 	call ToggleIRCommunication
 	ld a, IR_RECEIVER
 	ldh [hMGRole], a
@@ -787,7 +787,7 @@ BeginIRCommunication:
 EndIRCommunication:
 	xor a
 	call ToggleIRCommunication
-	ld a, rTAC_65536_HZ
+	ld a, TACF_65KHZ
 	ldh [rTAC], a
 	ret
 
@@ -800,7 +800,7 @@ ReceiveInfraredLEDOn:
 	ldh [rIF], a
 	halt
 	ldh a, [c]
-	bit rRP_RECEIVING, a
+	bit RPF_WRITE_HI, a
 	jr z, .recv_loop
 	or a
 	ret
@@ -814,14 +814,14 @@ ReceiveInfraredLEDOff:
 	ldh [rIF], a
 	halt
 	ldh a, [c]
-	bit rRP_RECEIVING, a
+	bit RPF_WRITE_HI, a
 	jr nz, .no_recv_loop
 	or a
 	ret
 
 SendInfraredLEDOn:
 ; Holds the IR LED on for d-1 interrupts.
-	ld a, rRP_ENABLE_READ_MASK | (1 << rRP_LED_ON)
+	ld a, RPF_ENREAD | (1 << RPF_WRITE_LO)
 	ldh [c], a
 .wait
 	dec d
@@ -833,7 +833,7 @@ SendInfraredLEDOn:
 
 SendInfraredLEDOff:
 ; Holds the IR LED off for d-1 interrupts.
-	ld a, rRP_ENABLE_READ_MASK
+	ld a, RPF_ENREAD
 	ldh [c], a
 .wait
 	dec d
@@ -851,7 +851,7 @@ InitializeIRCommunicationRoles:
 	ldh [hMGRole], a
 .loop
 	call MysteryGift_UpdateJoypad
-	ld b, 1 << rRP_RECEIVING
+	ld b, 1 << RPF_WRITE_HI
 	ld c, LOW(rRP)
 	; Check if we've pressed the B button to cancel
 	ldh a, [hMGJoypadReleased]
@@ -1037,7 +1037,7 @@ SendIRDataMessage:
 	xor a
 	ldh [rIF], a
 	halt
-	ld a, rRP_ENABLE_READ_MASK | (1 << rRP_LED_ON)
+	ld a, RPF_ENREAD | (1 << RPF_WRITE_LO)
 	ldh [rRP], a
 	; Turn the LED off for longer if the bit is 1
 	ld d, 1
@@ -1050,7 +1050,7 @@ SendIRDataMessage:
 	ldh a, [rTIMA]
 	cp -8
 	jr c, .wait
-	ld a, rRP_ENABLE_READ_MASK
+	ld a, RPF_ENREAD
 	ldh [rRP], a
 	dec d
 	jr z, .no_halt
@@ -1186,7 +1186,7 @@ ReceiveIRDataMessage:
 	inc d
 	jr z, .recv_done
 	ldh a, [c]
-	bit rRP_RECEIVING, a
+	bit RPF_WRITE_HI, a
 	jr z, .recv_loop
 	ld d, 0
 .recv_done
@@ -1194,7 +1194,7 @@ ReceiveIRDataMessage:
 	inc d
 	jr z, .send_done
 	ldh a, [c]
-	bit rRP_RECEIVING, a
+	bit RPF_WRITE_HI, a
 	jr nz, .send_loop
 .send_done
 	ldh a, [hMGPrevTIMA]
@@ -1253,10 +1253,10 @@ MysteryGift_UpdateJoypad:
 ; We can only get four inputs at a time.
 ; We take d-pad first for no particular reason.
 	ld a, R_DPAD
-	ldh [rJOYP], a
+	ldh [rP1], a
 ; Read twice to give the request time to take.
-	ldh a, [rJOYP]
-	ldh a, [rJOYP]
+	ldh a, [rP1]
+	ldh a, [rP1]
 
 ; The Joypad register output is in the lo nybble (inversed).
 ; We make the hi nybble of our new container d-pad input.
@@ -1270,10 +1270,10 @@ MysteryGift_UpdateJoypad:
 ; Buttons make 8 total inputs (A, B, Select, Start).
 ; We can fit this into one byte.
 	ld a, R_BUTTONS
-	ldh [rJOYP], a
+	ldh [rP1], a
 ; Wait for input to stabilize.
 rept 6
-	ldh a, [rJOYP]
+	ldh a, [rP1]
 endr
 ; Buttons take the lo nybble.
 	cpl
@@ -1291,7 +1291,7 @@ endr
 	ldh [hMGJoypadPressed], a
 	ld a, $30
 ; Reset the joypad register since we're done with it.
-	ldh [rJOYP], a
+	ldh [rP1], a
 	ret
 
 CheckAndSetMysteryGiftDecorationAlreadyReceived:

@@ -922,8 +922,8 @@ AnimateWaterPalette:
 	ret nz
 
 ; Ready for BGPD input
-	ld a, (1 << rBGPI_AUTO_INCREMENT) palette PAL_BG_WATER color 0
-	ldh [rBGPI], a
+	ld a, (1 << BCPSB_AUTOINC) palette PAL_BG_WATER color 0
+	ldh [rBCPS], a
 
 	ldh a, [rSVBK]
 	push af
@@ -937,30 +937,30 @@ AnimateWaterPalette:
 	cp %100
 	jr z, .color2
 
-; Copy one color from hl to rBGPI via rBGPD
+; Copy one color from hl to rBCPS via rBCPD
 
 ; color1
 	ld hl, wBGPals1 palette PAL_BG_WATER color 1
 	ld a, [hli]
-	ldh [rBGPD], a
+	ldh [rBCPD], a
 	ld a, [hli]
-	ldh [rBGPD], a
+	ldh [rBCPD], a
 	jr .end
 
 .color0
 	ld hl, wBGPals1 palette PAL_BG_WATER color 0
 	ld a, [hli]
-	ldh [rBGPD], a
+	ldh [rBCPD], a
 	ld a, [hli]
-	ldh [rBGPD], a
+	ldh [rBCPD], a
 	jr .end
 
 .color2
 	ld hl, wBGPals1 palette PAL_BG_WATER color 2
 	ld a, [hli]
-	ldh [rBGPD], a
+	ldh [rBCPD], a
 	ld a, [hli]
-	ldh [rBGPD], a
+	ldh [rBCPD], a
 
 .end
 	pop af
@@ -989,15 +989,15 @@ FlickeringCaveEntrancePalette:
 	ldh [rSVBK], a
 
 ; Ready for BGPD input
-	ld a, (1 << rBGPI_AUTO_INCREMENT) palette PAL_BG_YELLOW color 0
-	ldh [rBGPI], a
+	ld a, (1 << BCPSB_AUTOINC) palette PAL_BG_YELLOW color 0
+	ldh [rBCPS], a
 
 ; A cycle of 2 colors (0 2), updating every other vblank
 	ldh a, [hVBlankCounter]
 	and %10
 	jr nz, .color1
 
-; Copy one color from hl to rBGPI via rBGPD
+; Copy one color from hl to rBCPS via rBCPD
 
 ; color0
 	ld hl, wBGPals1 palette PAL_BG_YELLOW color 0
@@ -1008,9 +1008,9 @@ FlickeringCaveEntrancePalette:
 
 .okay
 	ld a, [hli]
-	ldh [rBGPD], a
+	ldh [rBCPD], a
 	ld a, [hli]
-	ldh [rBGPD], a
+	ldh [rBCPD], a
 
 	pop af
 	ldh [rSVBK], a

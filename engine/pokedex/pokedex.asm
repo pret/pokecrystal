@@ -1995,24 +1995,24 @@ Pokedex_PutOldModeCursorOAM:
 	dbsprite 11,  2, -1,  0, $32, 7
 	dbsprite 12,  2, -1,  0, $32, 7
 	dbsprite 13,  2, -1,  0, $33, 7
-	dbsprite 16,  2, -2,  0, $33, 7 | X_FLIP
-	dbsprite 17,  2, -2,  0, $32, 7 | X_FLIP
-	dbsprite 18,  2, -2,  0, $32, 7 | X_FLIP
-	dbsprite 19,  2, -2,  0, $32, 7 | X_FLIP
-	dbsprite 20,  2, -2,  0, $31, 7 | X_FLIP
-	dbsprite 20,  3, -2,  0, $30, 7 | X_FLIP
-	dbsprite  9,  4, -1,  0, $30, 7 | Y_FLIP
-	dbsprite  9,  5, -1,  0, $31, 7 | Y_FLIP
-	dbsprite 10,  5, -1,  0, $32, 7 | Y_FLIP
-	dbsprite 11,  5, -1,  0, $32, 7 | Y_FLIP
-	dbsprite 12,  5, -1,  0, $32, 7 | Y_FLIP
-	dbsprite 13,  5, -1,  0, $33, 7 | Y_FLIP
-	dbsprite 16,  5, -2,  0, $33, 7 | X_FLIP | Y_FLIP
-	dbsprite 17,  5, -2,  0, $32, 7 | X_FLIP | Y_FLIP
-	dbsprite 18,  5, -2,  0, $32, 7 | X_FLIP | Y_FLIP
-	dbsprite 19,  5, -2,  0, $32, 7 | X_FLIP | Y_FLIP
-	dbsprite 20,  5, -2,  0, $31, 7 | X_FLIP | Y_FLIP
-	dbsprite 20,  4, -2,  0, $30, 7 | X_FLIP | Y_FLIP
+	dbsprite 16,  2, -2,  0, $33, 7 | $20
+	dbsprite 17,  2, -2,  0, $32, 7 | $20
+	dbsprite 18,  2, -2,  0, $32, 7 | $20
+	dbsprite 19,  2, -2,  0, $32, 7 | $20
+	dbsprite 20,  2, -2,  0, $31, 7 | $20
+	dbsprite 20,  3, -2,  0, $30, 7 | $20
+	dbsprite  9,  4, -1,  0, $30, 7 | $40
+	dbsprite  9,  5, -1,  0, $31, 7 | $40
+	dbsprite 10,  5, -1,  0, $32, 7 | $40
+	dbsprite 11,  5, -1,  0, $32, 7 | $40
+	dbsprite 12,  5, -1,  0, $32, 7 | $40
+	dbsprite 13,  5, -1,  0, $33, 7 | $40
+	dbsprite 16,  5, -2,  0, $33, 7 | $20 | $40
+	dbsprite 17,  5, -2,  0, $32, 7 | $20 | $40
+	dbsprite 18,  5, -2,  0, $32, 7 | $20 | $40
+	dbsprite 19,  5, -2,  0, $32, 7 | $20 | $40
+	dbsprite 20,  5, -2,  0, $31, 7 | $20 | $40
+	dbsprite 20,  4, -2,  0, $30, 7 | $20 | $40
 	db -1
 
 .CursorAtTopOAM:
@@ -2024,24 +2024,24 @@ Pokedex_PutOldModeCursorOAM:
 	dbsprite 11,  2, -1,  0, $35, 7
 	dbsprite 12,  2, -1,  0, $35, 7
 	dbsprite 13,  2, -1,  0, $36, 7
-	dbsprite 16,  2, -2,  0, $36, 7 | X_FLIP
-	dbsprite 17,  2, -2,  0, $35, 7 | X_FLIP
-	dbsprite 18,  2, -2,  0, $35, 7 | X_FLIP
-	dbsprite 19,  2, -2,  0, $35, 7 | X_FLIP
-	dbsprite 20,  2, -2,  0, $34, 7 | X_FLIP
-	dbsprite 20,  3, -2,  0, $30, 7 | X_FLIP
-	dbsprite  9,  4, -1,  0, $30, 7 | Y_FLIP
-	dbsprite  9,  5, -1,  0, $31, 7 | Y_FLIP
-	dbsprite 10,  5, -1,  0, $32, 7 | Y_FLIP
-	dbsprite 11,  5, -1,  0, $32, 7 | Y_FLIP
-	dbsprite 12,  5, -1,  0, $32, 7 | Y_FLIP
-	dbsprite 13,  5, -1,  0, $33, 7 | Y_FLIP
-	dbsprite 16,  5, -2,  0, $33, 7 | X_FLIP | Y_FLIP
-	dbsprite 17,  5, -2,  0, $32, 7 | X_FLIP | Y_FLIP
-	dbsprite 18,  5, -2,  0, $32, 7 | X_FLIP | Y_FLIP
-	dbsprite 19,  5, -2,  0, $32, 7 | X_FLIP | Y_FLIP
-	dbsprite 20,  5, -2,  0, $31, 7 | X_FLIP | Y_FLIP
-	dbsprite 20,  4, -2,  0, $30, 7 | X_FLIP | Y_FLIP
+	dbsprite 16,  2, -2,  0, $36, 7 | $20
+	dbsprite 17,  2, -2,  0, $35, 7 | $20
+	dbsprite 18,  2, -2,  0, $35, 7 | $20
+	dbsprite 19,  2, -2,  0, $35, 7 | $20
+	dbsprite 20,  2, -2,  0, $34, 7 | $20
+	dbsprite 20,  3, -2,  0, $30, 7 | $20
+	dbsprite  9,  4, -1,  0, $30, 7 | $40
+	dbsprite  9,  5, -1,  0, $31, 7 | $40
+	dbsprite 10,  5, -1,  0, $32, 7 | $40
+	dbsprite 11,  5, -1,  0, $32, 7 | $40
+	dbsprite 12,  5, -1,  0, $32, 7 | $40
+	dbsprite 13,  5, -1,  0, $33, 7 | $40
+	dbsprite 16,  5, -2,  0, $33, 7 | $20 | $40
+	dbsprite 17,  5, -2,  0, $32, 7 | $20 | $40
+	dbsprite 18,  5, -2,  0, $32, 7 | $20 | $40
+	dbsprite 19,  5, -2,  0, $32, 7 | $20 | $40
+	dbsprite 20,  5, -2,  0, $31, 7 | $20 | $40
+	dbsprite 20,  4, -2,  0, $30, 7 | $20 | $40
 	db -1
 
 Pokedex_PutNewModeABCModeCursorOAM:
@@ -2055,21 +2055,21 @@ Pokedex_PutNewModeABCModeCursorOAM:
 	dbsprite 10,  2, -1,  3, $32, 7
 	dbsprite 11,  2, -1,  3, $32, 7
 	dbsprite 12,  2, -1,  3, $33, 7
-	dbsprite 16,  2,  0,  3, $33, 7 | X_FLIP
-	dbsprite 17,  2,  0,  3, $32, 7 | X_FLIP
-	dbsprite 18,  2,  0,  3, $32, 7 | X_FLIP
-	dbsprite 19,  2,  0,  3, $31, 7 | X_FLIP
-	dbsprite 19,  3,  0,  3, $30, 7 | X_FLIP
-	dbsprite  9,  4, -1,  3, $30, 7 | Y_FLIP
-	dbsprite  9,  5, -1,  3, $31, 7 | Y_FLIP
-	dbsprite 10,  5, -1,  3, $32, 7 | Y_FLIP
-	dbsprite 11,  5, -1,  3, $32, 7 | Y_FLIP
-	dbsprite 12,  5, -1,  3, $33, 7 | Y_FLIP
-	dbsprite 16,  5,  0,  3, $33, 7 | X_FLIP | Y_FLIP
-	dbsprite 17,  5,  0,  3, $32, 7 | X_FLIP | Y_FLIP
-	dbsprite 18,  5,  0,  3, $32, 7 | X_FLIP | Y_FLIP
-	dbsprite 19,  5,  0,  3, $31, 7 | X_FLIP | Y_FLIP
-	dbsprite 19,  4,  0,  3, $30, 7 | X_FLIP | Y_FLIP
+	dbsprite 16,  2,  0,  3, $33, 7 | $20
+	dbsprite 17,  2,  0,  3, $32, 7 | $20
+	dbsprite 18,  2,  0,  3, $32, 7 | $20
+	dbsprite 19,  2,  0,  3, $31, 7 | $20
+	dbsprite 19,  3,  0,  3, $30, 7 | $20
+	dbsprite  9,  4, -1,  3, $30, 7 | $40
+	dbsprite  9,  5, -1,  3, $31, 7 | $40
+	dbsprite 10,  5, -1,  3, $32, 7 | $40
+	dbsprite 11,  5, -1,  3, $32, 7 | $40
+	dbsprite 12,  5, -1,  3, $33, 7 | $40
+	dbsprite 16,  5,  0,  3, $33, 7 | $20 | $40
+	dbsprite 17,  5,  0,  3, $32, 7 | $20 | $40
+	dbsprite 18,  5,  0,  3, $32, 7 | $20 | $40
+	dbsprite 19,  5,  0,  3, $31, 7 | $20 | $40
+	dbsprite 19,  4,  0,  3, $30, 7 | $20 | $40
 	db -1
 
 Pokedex_UpdateSearchResultsCursorOAM:
@@ -2087,24 +2087,24 @@ Pokedex_UpdateSearchResultsCursorOAM:
 	dbsprite 11,  2, -1,  3, $32, 7
 	dbsprite 12,  2, -1,  3, $32, 7
 	dbsprite 13,  2, -1,  3, $33, 7
-	dbsprite 16,  2, -2,  3, $33, 7 | X_FLIP
-	dbsprite 17,  2, -2,  3, $32, 7 | X_FLIP
-	dbsprite 18,  2, -2,  3, $32, 7 | X_FLIP
-	dbsprite 19,  2, -2,  3, $32, 7 | X_FLIP
-	dbsprite 20,  2, -2,  3, $31, 7 | X_FLIP
-	dbsprite 20,  3, -2,  3, $30, 7 | X_FLIP
-	dbsprite  9,  4, -1,  3, $30, 7 | Y_FLIP
-	dbsprite  9,  5, -1,  3, $31, 7 | Y_FLIP
-	dbsprite 10,  5, -1,  3, $32, 7 | Y_FLIP
-	dbsprite 11,  5, -1,  3, $32, 7 | Y_FLIP
-	dbsprite 12,  5, -1,  3, $32, 7 | Y_FLIP
-	dbsprite 13,  5, -1,  3, $33, 7 | Y_FLIP
-	dbsprite 16,  5, -2,  3, $33, 7 | X_FLIP | Y_FLIP
-	dbsprite 17,  5, -2,  3, $32, 7 | X_FLIP | Y_FLIP
-	dbsprite 18,  5, -2,  3, $32, 7 | X_FLIP | Y_FLIP
-	dbsprite 19,  5, -2,  3, $32, 7 | X_FLIP | Y_FLIP
-	dbsprite 20,  5, -2,  3, $31, 7 | X_FLIP | Y_FLIP
-	dbsprite 20,  4, -2,  3, $30, 7 | X_FLIP | Y_FLIP
+	dbsprite 16,  2, -2,  3, $33, 7 | $20
+	dbsprite 17,  2, -2,  3, $32, 7 | $20
+	dbsprite 18,  2, -2,  3, $32, 7 | $20
+	dbsprite 19,  2, -2,  3, $32, 7 | $20
+	dbsprite 20,  2, -2,  3, $31, 7 | $20
+	dbsprite 20,  3, -2,  3, $30, 7 | $20
+	dbsprite  9,  4, -1,  3, $30, 7 | $40
+	dbsprite  9,  5, -1,  3, $31, 7 | $40
+	dbsprite 10,  5, -1,  3, $32, 7 | $40
+	dbsprite 11,  5, -1,  3, $32, 7 | $40
+	dbsprite 12,  5, -1,  3, $32, 7 | $40
+	dbsprite 13,  5, -1,  3, $33, 7 | $40
+	dbsprite 16,  5, -2,  3, $33, 7 | $20 | $40
+	dbsprite 17,  5, -2,  3, $32, 7 | $20 | $40
+	dbsprite 18,  5, -2,  3, $32, 7 | $20 | $40
+	dbsprite 19,  5, -2,  3, $32, 7 | $20 | $40
+	dbsprite 20,  5, -2,  3, $31, 7 | $20 | $40
+	dbsprite 20,  4, -2,  3, $30, 7 | $20 | $40
 	db -1
 
 Pokedex_LoadCursorOAM:

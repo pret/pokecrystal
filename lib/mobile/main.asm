@@ -1,7 +1,7 @@
 ; A library included as part of the Mobile Adapter GB SDK.
 
 INCLUDE "macros/const.asm"
-INCLUDE "constants/hardware_constants.asm"
+INCLUDE "constants/hardware.inc/hardware.inc"
 INCLUDE "constants/mobile_constants.asm"
 
 ; Mobile Adapter protocol commands
@@ -232,9 +232,9 @@ MobileAPI_SetTimer:
 	ld [wc820], a
 	ld [wc815], a
 	ld c, LOW(rTAC)
-	ld a, rTAC_65536_HZ
+	ld a, TACF_65KHZ
 	ldh [c], a
-	ld a, 1 << rTAC_ON | rTAC_65536_HZ
+	ld a, 1 << TACB_START | TACF_65KHZ
 	ldh [c], a
 	ret
 
@@ -623,7 +623,7 @@ Function11032c:
 Function110393:
 	ld c, LOW(rIE)
 	ldh a, [c]
-	or (1 << SERIAL) | (1 << TIMER)
+	or (1 << IEB_SERIAL) | (1 << IEB_TIMER)
 	ldh [c], a
 	ret
 
@@ -4120,9 +4120,9 @@ Function111b21:
 Function111b2e:
 	ld hl, wc822
 	set 1, [hl]
-	ld a, (0 << rSC_ON) | (1 << rSC_CGB) | (1 << rSC_CLOCK)
+	ld a, (0 << SCB_START) | (1 << SCB_SPEED) | (1 << SCB_SOURCE)
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (1 << rSC_CGB) | (1 << rSC_CLOCK)
+	ld a, (1 << SCB_START) | (1 << SCB_SPEED) | (1 << SCB_SOURCE)
 	ldh [rSC], a
 
 Function111b3b:
@@ -4725,7 +4725,7 @@ PacketSendBytes:
 	ret
 .asm_111f17
 	ldh a, [rSC]
-	and 1 << rSC_ON
+	and 1 << SCB_START
 	jr nz, .asm_111f17
 	di
 	ld a, [wMobileSDK_SendCommandID]

@@ -194,23 +194,23 @@ DebugColor_InitPalettes:
 	ld bc, 16 palettes
 	call CopyBytes
 
-	ld a, 1 << rBGPI_AUTO_INCREMENT
+	ld a, 1 << BCPSB_AUTOINC
 	ldh [rBGPI], a
 	ld hl, Palette_DebugBG
 	ld c, 8 palettes
 	xor a
 .bg_loop
-	ldh [rBGPD], a
+	ldh [rBCPD], a
 	dec c
 	jr nz, .bg_loop
 
-	ld a, 1 << rOBPI_AUTO_INCREMENT
-	ldh [rOBPI], a
+	ld a, 1 << OCPSB_AUTOINC
+	ldh [rOCPS], a
 	ld hl, Palette_DebugOB
 	ld c, 8 palettes
 .ob_loop
 	ld a, [hli]
-	ldh [rOBPD], a
+	ldh [rOCPD], a
 	dec c
 	jr nz, .ob_loop
 

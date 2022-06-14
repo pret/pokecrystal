@@ -106,8 +106,8 @@ _ResetWRAM:
 	xor a
 	call ByteFill
 
-	ld hl, WRAM1_Begin
-	ld bc, wGameData - WRAM1_Begin
+	ld hl, _RAMBANK
+	ld bc, wGameData - _RAMBANK
 	xor a
 	call ByteFill
 
@@ -995,7 +995,7 @@ StartTitleScreen:
 	ldh [rSVBK], a
 
 	ld hl, rLCDC
-	res rLCDC_SPRITE_SIZE, [hl] ; 8x8
+	res LCDCB_OBJ16, [hl] ; 8x8
 	call ClearScreen
 	call WaitBGMap2
 	xor a

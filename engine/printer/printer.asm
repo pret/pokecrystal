@@ -56,7 +56,7 @@ PrintDexEntry:
 	push af
 	xor a
 	ldh [rIF], a
-	ld a, (1 << SERIAL) | (1 << VBLANK)
+	ld a, (1 << IEB_SERIAL) | (1 << IEB_VBLANK)
 	ldh [rIE], a
 
 	call Printer_StartTransmission
@@ -140,7 +140,7 @@ PrintPCBox:
 	push af
 	xor a
 	ldh [rIF], a
-	ld a, (1 << SERIAL) | (1 << VBLANK)
+	ld a, (1 << IEB_SERIAL) | (1 << IEB_VBLANK)
 	ldh [rIE], a
 
 	ld hl, hVBlank
@@ -221,7 +221,7 @@ PrintUnownStamp:
 	push af
 	xor a
 	ldh [rIF], a
-	ld a, (1 << SERIAL) | (1 << VBLANK)
+	ld a, (1 << IEB_SERIAL) | (1 << IEB_VBLANK)
 	ldh [rIE], a
 
 	ld hl, hVBlank
@@ -291,7 +291,7 @@ PrintMail:
 	push af
 	xor a
 	ldh [rIF], a
-	ld a, (1 << SERIAL) | (1 << VBLANK)
+	ld a, (1 << IEB_SERIAL) | (1 << IEB_VBLANK)
 	ldh [rIE], a
 
 	xor a
@@ -333,7 +333,7 @@ PrintPartymon:
 	push af
 	xor a
 	ldh [rIF], a
-	ld a, (1 << SERIAL) | (1 << VBLANK)
+	ld a, (1 << IEB_SERIAL) | (1 << IEB_VBLANK)
 	ldh [rIE], a
 
 	xor a
@@ -397,7 +397,7 @@ _PrintDiploma:
 	push af
 	xor a
 	ldh [rIF], a
-	ld a, (1 << SERIAL) | (1 << VBLANK)
+	ld a, (1 << IEB_SERIAL) | (1 << IEB_VBLANK)
 	ldh [rIE], a
 
 	ld hl, hVBlank
@@ -467,9 +467,9 @@ CheckCancelPrint:
 	ld [wPrinterOpcode], a
 	ld a, $88
 	ldh [rSB], a
-	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, (0 << SCB_START) | (1 << SCB_SOURCE)
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, (1 << SCB_START) | (1 << SCB_SOURCE)
 	ldh [rSC], a
 .loop2
 	ld a, [wPrinterOpcode]

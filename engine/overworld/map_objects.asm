@@ -2524,13 +2524,13 @@ _SetPlayerPalette:
 	ld [hl], a
 	ld a, d
 	swap a
-	and PALETTE_MASK
+	and OAMF_PALMASK
 	ld d, a
 	ld bc, wPlayerStruct
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	ld a, [hl]
-	and ~PALETTE_MASK
+	and ~OAMF_PALMASK
 	or d
 	ld [hl], a
 	ret
@@ -2900,30 +2900,30 @@ InitSprites:
 	xor a
 	bit 7, [hl]
 	jr nz, .not_vram1
-	or VRAM_BANK_1
+	or $08
 .not_vram1
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	ld e, [hl]
 	bit OBJ_FLAGS2_7, e
 	jr z, .not_priority
-	or PRIORITY
+	or $80
 .not_priority
 	bit USE_OBP1_F, e
 	jr z, .not_obp_num
-	or OBP_NUM
+	or $10
 .not_obp_num
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	ld d, a
 	ld a, [hl]
-	and PALETTE_MASK
+	and OAMF_PALMASK
 	or d
 	ld d, a
 	xor a
 	bit OVERHEAD_F, e
 	jr z, .not_overhead
-	or PRIORITY
+	or $80
 .not_overhead
 	ldh [hCurSpriteOAMFlags], a
 	ld hl, OBJECT_SPRITE_X
@@ -2999,7 +2999,7 @@ InitSprites:
 	ldh a, [hCurSpriteOAMFlags]
 	or e
 .nope2
-	and OBP_NUM | X_FLIP | Y_FLIP | PRIORITY
+	and $10 | $20 | $40 | $80
 	or d
 	ld [bc], a ; attributes
 	inc c
