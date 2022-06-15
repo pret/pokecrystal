@@ -1085,10 +1085,13 @@ TryTileCollisionEvent::
 	call GetFacingTileCoord
 	ld [wFacingTileID], a
 	ld c, a
+	; CheckFacingTileForStdScript preserves c, and
+	; farcall copies c back into a.
 	farcall CheckFacingTileForStdScript
 	jr c, .done
 
-	; CheckCutTreeTile expects c to be copied into a by farcall
+	; CheckCutTreeTile expects a == [wFacingTileID], which
+	; it still is after the previous farcall.
 	call CheckCutTreeTile
 	jr nz, .whirlpool
 	farcall TryCutOW
