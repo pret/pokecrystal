@@ -157,7 +157,7 @@ endc
 
 .PrintTextAndExit:
 	call PrintText
-	ld a, LCDC_DEFAULT
+	ld a, (1 << LCDCB_ON) | (1 << LCDCB_WIN9C00) | (1 << LCDCB_WINON) | (1 << LCDCB_OBJON) | (1 << LCDCB_BGON)
 	ldh [rLCDC], a
 	ret
 
@@ -1681,7 +1681,7 @@ endr
 
 .PrintTextAndExit:
 	call PrintText
-	ld a, LCDC_DEFAULT
+	ld a, (1 << LCDCB_ON) | (1 << LCDCB_WIN9C00) | (1 << LCDCB_WINON) | (1 << LCDCB_OBJON) | (1 << LCDCB_BGON)
 	ldh [rLCDC], a
 	ret
 

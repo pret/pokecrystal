@@ -119,7 +119,7 @@ Init::
 	ldh [hWX], a
 	ldh [rWX], a
 
-	ld a, LCDC_DEFAULT ; %11100011
+	ld a, (1 << LCDCB_ON) | (1 << LCDCB_WIN9C00) | (1 << LCDCB_WINON) | (1 << LCDCB_OBJON) | (1 << LCDCB_BGON) ; %11100011
 	; LCD on
 	; Win tilemap 1
 	; Win on

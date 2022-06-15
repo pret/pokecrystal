@@ -129,15 +129,15 @@ endr
 DebugColor_InitVRAM:
 	ld a, $1
 	ldh [rVBK], a
-	ld hl, VRAM_Begin
-	ld bc, VRAM_End - VRAM_Begin
+	ld hl, _VRAM
+	ld bc, _SRAM - _VRAM
 	xor a
 	call ByteFill
 
 	ld a, $0
 	ldh [rVBK], a
-	ld hl, VRAM_Begin
-	ld bc, VRAM_End - VRAM_Begin
+	ld hl, _VRAM
+	ld bc, _SRAM - _VRAM
 	xor a
 	call ByteFill
 
@@ -195,7 +195,7 @@ DebugColor_InitPalettes:
 	call CopyBytes
 
 	ld a, 1 << BCPSB_AUTOINC
-	ldh [rBGPI], a
+	ldh [rBCPS], a
 	ld hl, Palette_DebugBG
 	ld c, 8 palettes
 	xor a
@@ -946,9 +946,9 @@ _DebugColor_PushSGBPals:
 .loop
 	push bc
 	xor a
-	ldh [rJOYP], a
+	ldh [rP1], a
 	ld a, $30
-	ldh [rJOYP], a
+	ldh [rP1], a
 	ld b, $10
 .loop2
 	ld e, $8
@@ -960,18 +960,18 @@ _DebugColor_PushSGBPals:
 	jr nz, .okay
 	ld a, $20
 .okay
-	ldh [rJOYP], a
+	ldh [rP1], a
 	ld a, $30
-	ldh [rJOYP], a
+	ldh [rP1], a
 	rr d
 	dec e
 	jr nz, .loop3
 	dec b
 	jr nz, .loop2
 	ld a, $20
-	ldh [rJOYP], a
+	ldh [rP1], a
 	ld a, $30
-	ldh [rJOYP], a
+	ldh [rP1], a
 	ld de, 7000
 .wait
 	nop
@@ -1200,7 +1200,7 @@ DebugColorMain2: ; unreferenced
 	ld hl, wDebugTilesetCurPalette
 	ld a, [hl]
 	inc a
-	and PALETTE_MASK
+	and OAMF_PALMASK
 	cp PAL_BG_TEXT
 	jr nz, .palette_ok
 	xor a ; PAL_BG_GRAY

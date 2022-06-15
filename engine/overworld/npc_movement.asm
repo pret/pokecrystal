@@ -68,7 +68,7 @@ WillObjectBumpIntoWater:
 	ld e, [hl]
 	ld hl, OBJECT_PALETTE
 	add hl, bc
-	bit OAM_PRIORITY, [hl]
+	bit OAMB_PRI, [hl]
 	jp nz, WillObjectRemainOnWater
 	ld hl, OBJECT_NEXT_TILE
 	add hl, bc
