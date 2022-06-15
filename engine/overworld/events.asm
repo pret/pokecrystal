@@ -1087,7 +1087,6 @@ TryTileCollisionEvent::
 	ld c, a
 	farcall CheckFacingTileForStdScript
 	jr c, .done
-	
 	; CheckCutTreeTile expects c to be copied into a by farcall
 	call CheckCutTreeTile
 	jr nz, .whirlpool
