@@ -12,6 +12,7 @@ These are parts of the code that do not work *incorrectly*, like [bugs and glitc
 - [`ITEM_C3` and `ITEM_DC` break up the continuous sequence of TM items](#item_c3-and-item_dc-break-up-the-continuous-sequence-of-tm-items)
 - [Pokédex entry banks are derived from their species IDs](#pokédex-entry-banks-are-derived-from-their-species-ids)
 - [Identical sine wave code and data is repeated five times](#identical-sine-wave-code-and-data-is-repeated-five-times)
+- [`ReadNoiseSample` makes percussion last one frame longer than it should](#readnoisesample-makes-percussion-last-one-frame-longer-than-it-should)
 - [`GetForestTreeFrame` works, but it's still bad](#getforesttreeframe-works-but-its-still-bad)
 
 
@@ -733,6 +734,29 @@ ENDM
 ```
 
 **Fix:** Edit [home/sine.asm](https://github.com/pret/pokecrystal/blob/master/home/sine.asm) to contain a single copy of the (co)sine code in bank 0, and call it from those five sites.
+
+
+## `ReadNoiseSample` makes percussion last one frame longer than it should
+
+In ```ReadNoiseSample```, the first byte is split into a purely cosmetic hi nybble to make importing RBY noise data a matter of copy-paste, and a lo nybble for the length.
+
+All the RBY percussion is already there, and drums that are two or more notes long indicate the same note length structure as in RBY. However, because of the way ```ReadNoiseSample``` stores this first byte, this length is one frame longer than intended, meaning minimum note length is two instead of one. This makes the old drums with two or more notes sound slower than they should be and therefore vice versa for newer songs that utilize this new behavior.
+
+**Fix:**
+
+Edit ```ReadNoiseSample``` in [audio/engine.asm](https://github.com/pret/pokecrystal/blob/master/audio/engine.asm):
+```diff
+	inc de
+
+	cp sound_ret_cmd
+	jr z, .quit
+
+	and $f
+-	inc a
+	ld [wNoiseSampleDelay], a
+```
+
+An example of how Gen II music will sound with this fix/tweak is: https://soundcloud.com/aizakku-horooee/drum-test-ss-aqua
 
 
 ## `GetForestTreeFrame` works, but it's still bad
