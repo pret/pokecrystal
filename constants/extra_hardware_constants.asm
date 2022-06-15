@@ -3,8 +3,6 @@
 ; https://github.com/gbdev/hardware.inc
 ; http://gameboy.mongenel.com/dmg/asmmemmap.html
 
-INCLUDE "constants/hardware.inc"
-
 ; MBC3
 DEF MBC3LatchClock EQU $6000
 
