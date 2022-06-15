@@ -454,17 +454,17 @@ endr
 	ld a, [hli]
 	ldh [_AUD3WAVERAM + 9], a
 	ld a, [hli]
-	ldh [_AUD3WAVERAM + a], a
+	ldh [_AUD3WAVERAM + 10], a
 	ld a, [hli]
-	ldh [_AUD3WAVERAM + b], a
+	ldh [_AUD3WAVERAM + 11], a
 	ld a, [hli]
-	ldh [_AUD3WAVERAM + c], a
+	ldh [_AUD3WAVERAM + 12], a
 	ld a, [hli]
-	ldh [_AUD3WAVERAM + d], a
+	ldh [_AUD3WAVERAM + 13], a
 	ld a, [hli]
-	ldh [_AUD3WAVERAM + e], a
+	ldh [_AUD3WAVERAM + 14], a
 	ld a, [hli]
-	ldh [_AUD3WAVERAM + f], a
+	ldh [_AUD3WAVERAM + 15], a
 	pop hl
 	ld a, [wCurTrackVolumeEnvelope]
 	and $f0
