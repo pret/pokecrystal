@@ -61,10 +61,6 @@ MACRO pitchoffset
 	transpose \1, \2 - 1
 ENDM
 
-MACRO transpose
-	pitchoffset \1, \2 + 1
-ENDM
-
 DEF dutycycle EQUS "duty_cycle"
 
 MACRO intensity
