@@ -1431,17 +1431,17 @@ DebugRoom_DayHTimeString:
 
 DebugRoom_GetClock:
 	ld a, CART_SRAM_ENABLE
-	ld [rRAMG], a ; MBC3SRamEnable
+	ld [rRAMG], a
 	xor a
-	ld [$6000], a ; MBC3LatchClock
+	ld [MBC3LatchClock], a
 	inc a
-	ld [$6000], a ; MBC3LatchClock
-	ld b, $0c - $08 + 1 ; RTC_DH - RTC_S
-	ld c, $08 ; RTC_S
+	ld [MBC3LatchClock], a
+	ld b, RTC_DH - RTC_S + 1
+	ld c, RTC_S
 .loop
 	ld a, c
-	ld [rRAMB], a ; MBC3SRamBank
-	ld a, [$a000] ; MBC3RTC
+	ld [rRAMB], a
+	ld a, [_SRAM] ; Read the RTC register
 	ld [hli], a
 	inc c
 	dec b
@@ -1451,14 +1451,14 @@ DebugRoom_GetClock:
 
 DebugRoom_SetClock:
 	ld a, CART_SRAM_ENABLE
-	ld [rRAMG], a ; MBC3SRamEnable
-	ld b, $0c - $08 + 1 ; RTC_DH - RTC_S
-	ld c, $08 ; RTC_S
+	ld [rRAMG], a
+	ld b, RTC_DH - RTC_S + 1
+	ld c, RTC_S
 .loop
 	ld a, c
-	ld [rRAMB], a ; MBC3SRamBank
+	ld [rRAMB], a
 	ld a, [hli]
-	ld [$a000], a ; MBC3RTC
+	ld [_SRAM], a ; Read the RTC register
 	inc c
 	dec b
 	jr nz, .loop

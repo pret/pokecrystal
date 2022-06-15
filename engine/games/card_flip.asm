@@ -1154,25 +1154,25 @@ PlaceOAMCardBorder:
 	dbsprite 1, 0, 0, 0, $06, 0
 	dbsprite 2, 0, 0, 0, $06, 0
 	dbsprite 3, 0, 0, 0, $06, 0
-	dbsprite 4, 0, 0, 0, $04, 0 | $20
+	dbsprite 4, 0, 0, 0, $04, 0 | OAMF_XFLIP
 
 	dbsprite 0, 1, 0, 0, $05, 0
-	dbsprite 4, 1, 0, 0, $05, 0 | $20
+	dbsprite 4, 1, 0, 0, $05, 0 | OAMF_XFLIP
 
 	dbsprite 0, 2, 0, 0, $05, 0
-	dbsprite 4, 2, 0, 0, $05, 0 | $20
+	dbsprite 4, 2, 0, 0, $05, 0 | OAMF_XFLIP
 
 	dbsprite 0, 3, 0, 0, $05, 0
-	dbsprite 4, 3, 0, 0, $05, 0 | $20
+	dbsprite 4, 3, 0, 0, $05, 0 | OAMF_XFLIP
 
 	dbsprite 0, 4, 0, 0, $05, $00
-	dbsprite 4, 4, 0, 0, $05, 0 | $20
+	dbsprite 4, 4, 0, 0, $05, 0 | OAMF_XFLIP
 
-	dbsprite 0, 5, 0, 0, $04, 0 | $40
-	dbsprite 1, 5, 0, 0, $06, 0 | $40
-	dbsprite 2, 5, 0, 0, $06, 0 | $40
-	dbsprite 3, 5, 0, 0, $06, 0 | $40
-	dbsprite 4, 5, 0, 0, $04, 0 | $20 | $40
+	dbsprite 0, 5, 0, 0, $04, 0 | OAMF_YFLIP
+	dbsprite 1, 5, 0, 0, $06, 0 | OAMF_YFLIP
+	dbsprite 2, 5, 0, 0, $06, 0 | OAMF_YFLIP
+	dbsprite 3, 5, 0, 0, $06, 0 | OAMF_YFLIP
+	dbsprite 4, 5, 0, 0, $04, 0 | OAMF_XFLIP | OAMF_YFLIP
 
 ChooseCard_HandleJoypad:
 	ld hl, hJoyLast
@@ -1405,145 +1405,145 @@ ENDM
 
 .SingleTile:
 	db 6
-	dbsprite  -1,  0, 7, 0, $00, 0 | $80
-	dbsprite   0,  0, 0, 0, $02, 0 | $80
-	dbsprite   1,  0, 0, 0, $03, 0 | $80
-	dbsprite  -1,  0, 7, 5, $00, 0 | $40 | $80
-	dbsprite   0,  0, 0, 5, $02, 0 | $40 | $80
-	dbsprite   1,  0, 0, 5, $03, 0 | $80
+	dbsprite  -1,  0, 7, 0, $00, 0 | OAMF_PRI
+	dbsprite   0,  0, 0, 0, $02, 0 | OAMF_PRI
+	dbsprite   1,  0, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite  -1,  0, 7, 5, $00, 0 | OAMF_YFLIP | OAMF_PRI
+	dbsprite   0,  0, 0, 5, $02, 0 | OAMF_YFLIP | OAMF_PRI
+	dbsprite   1,  0, 0, 5, $03, 0 | OAMF_PRI
 
 .PokeGroup:
 	db 26
-	dbsprite  -1,  0, 7, 0, $00, 0 | $80
-	dbsprite   0,  0, 0, 0, $02, 0 | $80
-	dbsprite   1,  0, 0, 0, $00, 0 | $20 | $80
-	dbsprite  -1,  1, 7, 0, $01, 0 | $80
-	dbsprite   1,  1, 0, 0, $01, 0 | $20 | $80
-	dbsprite  -1,  2, 7, 0, $01, 0 | $80
-	dbsprite   1,  2, 0, 0, $03, 0 | $80
-	dbsprite  -1,  3, 7, 0, $01, 0 | $80
-	dbsprite   1,  3, 0, 0, $03, 0 | $80
-	dbsprite  -1,  4, 7, 0, $01, 0 | $80
-	dbsprite   1,  4, 0, 0, $03, 0 | $80
-	dbsprite  -1,  5, 7, 0, $01, 0 | $80
-	dbsprite   1,  5, 0, 0, $03, 0 | $80
-	dbsprite  -1,  6, 7, 0, $01, 0 | $80
-	dbsprite   1,  6, 0, 0, $03, 0 | $80
-	dbsprite  -1,  7, 7, 0, $01, 0 | $80
-	dbsprite   1,  7, 0, 0, $03, 0 | $80
-	dbsprite  -1,  8, 7, 0, $01, 0 | $80
-	dbsprite   1,  8, 0, 0, $03, 0 | $80
-	dbsprite  -1,  9, 7, 0, $01, 0 | $80
-	dbsprite   1,  9, 0, 0, $03, 0 | $80
-	dbsprite  -1, 10, 7, 0, $01, 0 | $80
-	dbsprite   1, 10, 0, 0, $03, 0 | $80
-	dbsprite  -1, 10, 7, 1, $00, 0 | $40 | $80
-	dbsprite   0, 10, 0, 1, $02, 0 | $40 | $80
-	dbsprite   1, 10, 0, 1, $03, 0 | $80
+	dbsprite  -1,  0, 7, 0, $00, 0 | OAMF_PRI
+	dbsprite   0,  0, 0, 0, $02, 0 | OAMF_PRI
+	dbsprite   1,  0, 0, 0, $00, 0 | OAMF_XFLIP | OAMF_PRI
+	dbsprite  -1,  1, 7, 0, $01, 0 | OAMF_PRI
+	dbsprite   1,  1, 0, 0, $01, 0 | OAMF_XFLIP | OAMF_PRI
+	dbsprite  -1,  2, 7, 0, $01, 0 | OAMF_PRI
+	dbsprite   1,  2, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite  -1,  3, 7, 0, $01, 0 | OAMF_PRI
+	dbsprite   1,  3, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite  -1,  4, 7, 0, $01, 0 | OAMF_PRI
+	dbsprite   1,  4, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite  -1,  5, 7, 0, $01, 0 | OAMF_PRI
+	dbsprite   1,  5, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite  -1,  6, 7, 0, $01, 0 | OAMF_PRI
+	dbsprite   1,  6, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite  -1,  7, 7, 0, $01, 0 | OAMF_PRI
+	dbsprite   1,  7, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite  -1,  8, 7, 0, $01, 0 | OAMF_PRI
+	dbsprite   1,  8, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite  -1,  9, 7, 0, $01, 0 | OAMF_PRI
+	dbsprite   1,  9, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite  -1, 10, 7, 0, $01, 0 | OAMF_PRI
+	dbsprite   1, 10, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite  -1, 10, 7, 1, $00, 0 | OAMF_YFLIP | OAMF_PRI
+	dbsprite   0, 10, 0, 1, $02, 0 | OAMF_YFLIP | OAMF_PRI
+	dbsprite   1, 10, 0, 1, $03, 0 | OAMF_PRI
 
 .NumGroup:
 	db 20
-	dbsprite  -1,  0, 7, 0, $00, 0 | $80
-	dbsprite   0,  0, 0, 0, $02, 0 | $80
-	dbsprite   1,  0, 0, 0, $02, 0 | $80
-	dbsprite   2,  0, 0, 0, $03, 0 | $80
-	dbsprite   3,  0, 0, 0, $02, 0 | $80
-	dbsprite   4,  0, 0, 0, $03, 0 | $80
-	dbsprite   5,  0, 0, 0, $02, 0 | $80
-	dbsprite   6,  0, 0, 0, $03, 0 | $80
-	dbsprite   7,  0, 0, 0, $02, 0 | $80
-	dbsprite   8,  0, 0, 0, $03, 0 | $80
-	dbsprite  -1,  0, 7, 5, $00, 0 | $40 | $80
-	dbsprite   0,  0, 0, 5, $02, 0 | $40 | $80
-	dbsprite   1,  0, 0, 5, $02, 0 | $40 | $80
-	dbsprite   2,  0, 0, 5, $03, 0 | $80
-	dbsprite   3,  0, 0, 5, $02, 0 | $40 | $80
-	dbsprite   4,  0, 0, 5, $03, 0 | $80
-	dbsprite   5,  0, 0, 5, $02, 0 | $40 | $80
-	dbsprite   6,  0, 0, 5, $03, 0 | $80
-	dbsprite   7,  0, 0, 5, $02, 0 | $40 | $80
-	dbsprite   8,  0, 0, 5, $03, 0 | $80
+	dbsprite  -1,  0, 7, 0, $00, 0 | OAMF_PRI
+	dbsprite   0,  0, 0, 0, $02, 0 | OAMF_PRI
+	dbsprite   1,  0, 0, 0, $02, 0 | OAMF_PRI
+	dbsprite   2,  0, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite   3,  0, 0, 0, $02, 0 | OAMF_PRI
+	dbsprite   4,  0, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite   5,  0, 0, 0, $02, 0 | OAMF_PRI
+	dbsprite   6,  0, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite   7,  0, 0, 0, $02, 0 | OAMF_PRI
+	dbsprite   8,  0, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite  -1,  0, 7, 5, $00, 0 | OAMF_YFLIP | OAMF_PRI
+	dbsprite   0,  0, 0, 5, $02, 0 | OAMF_YFLIP | OAMF_PRI
+	dbsprite   1,  0, 0, 5, $02, 0 | OAMF_YFLIP | OAMF_PRI
+	dbsprite   2,  0, 0, 5, $03, 0 | OAMF_PRI
+	dbsprite   3,  0, 0, 5, $02, 0 | OAMF_YFLIP | OAMF_PRI
+	dbsprite   4,  0, 0, 5, $03, 0 | OAMF_PRI
+	dbsprite   5,  0, 0, 5, $02, 0 | OAMF_YFLIP | OAMF_PRI
+	dbsprite   6,  0, 0, 5, $03, 0 | OAMF_PRI
+	dbsprite   7,  0, 0, 5, $02, 0 | OAMF_YFLIP | OAMF_PRI
+	dbsprite   8,  0, 0, 5, $03, 0 | OAMF_PRI
 
 .NumGroupPair:
 	db 30
-	dbsprite   0,  0, 0, 0, $00, 0 | $80
-	dbsprite   1,  0, 0, 0, $02, 0 | $80
-	dbsprite   2,  0, 0, 0, $02, 0 | $80
-	dbsprite   3,  0, 0, 0, $03, 0 | $80
-	dbsprite   4,  0, 0, 0, $02, 0 | $80
-	dbsprite   5,  0, 0, 0, $03, 0 | $80
-	dbsprite   6,  0, 0, 0, $02, 0 | $80
-	dbsprite   7,  0, 0, 0, $03, 0 | $80
-	dbsprite   8,  0, 0, 0, $02, 0 | $80
-	dbsprite   9,  0, 0, 0, $03, 0 | $80
-	dbsprite   0,  1, 0, 0, $01, 0 | $80
-	dbsprite   3,  1, 0, 0, $03, 0 | $80
-	dbsprite   5,  1, 0, 0, $03, 0 | $80
-	dbsprite   7,  1, 0, 0, $03, 0 | $80
-	dbsprite   9,  1, 0, 0, $03, 0 | $80
-	dbsprite   0,  2, 0, 0, $01, 0 | $80
-	dbsprite   3,  2, 0, 0, $03, 0 | $80
-	dbsprite   5,  2, 0, 0, $03, 0 | $80
-	dbsprite   7,  2, 0, 0, $03, 0 | $80
-	dbsprite   9,  2, 0, 0, $03, 0 | $80
-	dbsprite   0,  2, 0, 1, $00, 0 | $40 | $80
-	dbsprite   1,  2, 0, 1, $02, 0 | $40 | $80
-	dbsprite   2,  2, 0, 1, $02, 0 | $40 | $80
-	dbsprite   3,  2, 0, 1, $03, 0 | $80
-	dbsprite   4,  2, 0, 1, $03, 0 | $80
-	dbsprite   5,  2, 0, 1, $03, 0 | $80
-	dbsprite   6,  2, 0, 1, $03, 0 | $80
-	dbsprite   7,  2, 0, 1, $03, 0 | $80
-	dbsprite   8,  2, 0, 1, $03, 0 | $80
-	dbsprite   9,  2, 0, 1, $03, 0 | $80
+	dbsprite   0,  0, 0, 0, $00, 0 | OAMF_PRI
+	dbsprite   1,  0, 0, 0, $02, 0 | OAMF_PRI
+	dbsprite   2,  0, 0, 0, $02, 0 | OAMF_PRI
+	dbsprite   3,  0, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite   4,  0, 0, 0, $02, 0 | OAMF_PRI
+	dbsprite   5,  0, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite   6,  0, 0, 0, $02, 0 | OAMF_PRI
+	dbsprite   7,  0, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite   8,  0, 0, 0, $02, 0 | OAMF_PRI
+	dbsprite   9,  0, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite   0,  1, 0, 0, $01, 0 | OAMF_PRI
+	dbsprite   3,  1, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite   5,  1, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite   7,  1, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite   9,  1, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite   0,  2, 0, 0, $01, 0 | OAMF_PRI
+	dbsprite   3,  2, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite   5,  2, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite   7,  2, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite   9,  2, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite   0,  2, 0, 1, $00, 0 | OAMF_YFLIP | OAMF_PRI
+	dbsprite   1,  2, 0, 1, $02, 0 | OAMF_YFLIP | OAMF_PRI
+	dbsprite   2,  2, 0, 1, $02, 0 | OAMF_YFLIP | OAMF_PRI
+	dbsprite   3,  2, 0, 1, $03, 0 | OAMF_PRI
+	dbsprite   4,  2, 0, 1, $03, 0 | OAMF_PRI
+	dbsprite   5,  2, 0, 1, $03, 0 | OAMF_PRI
+	dbsprite   6,  2, 0, 1, $03, 0 | OAMF_PRI
+	dbsprite   7,  2, 0, 1, $03, 0 | OAMF_PRI
+	dbsprite   8,  2, 0, 1, $03, 0 | OAMF_PRI
+	dbsprite   9,  2, 0, 1, $03, 0 | OAMF_PRI
 
 .PokeGroupPair:
 	db 38
-	dbsprite  -1,  0, 7, 0, $00, 0 | $80
-	dbsprite   3,  0, 0, 0, $00, 0 | $20 | $80
-	dbsprite  -1,  1, 7, 0, $01, 0 | $80
-	dbsprite   3,  1, 0, 0, $01, 0 | $20 | $80
-	dbsprite  -1,  2, 7, 0, $01, 0 | $80
-	dbsprite   3,  2, 0, 0, $01, 0 | $20 | $80
-	dbsprite  -1,  3, 7, 0, $01, 0 | $80
-	dbsprite   1,  3, 0, 0, $03, 0 | $80
-	dbsprite   3,  3, 0, 0, $03, 0 | $80
-	dbsprite  -1,  4, 7, 0, $01, 0 | $80
-	dbsprite   1,  4, 0, 0, $03, 0 | $80
-	dbsprite   3,  4, 0, 0, $03, 0 | $80
-	dbsprite  -1,  5, 7, 0, $01, 0 | $80
-	dbsprite   1,  5, 0, 0, $03, 0 | $80
-	dbsprite   3,  5, 0, 0, $03, 0 | $80
-	dbsprite  -1,  6, 7, 0, $01, 0 | $80
-	dbsprite   1,  6, 0, 0, $03, 0 | $80
-	dbsprite   3,  6, 0, 0, $03, 0 | $80
-	dbsprite  -1,  7, 7, 0, $01, 0 | $80
-	dbsprite   1,  7, 0, 0, $03, 0 | $80
-	dbsprite   3,  7, 0, 0, $03, 0 | $80
-	dbsprite  -1,  8, 7, 0, $01, 0 | $80
-	dbsprite   1,  8, 0, 0, $03, 0 | $80
-	dbsprite   3,  8, 0, 0, $03, 0 | $80
-	dbsprite  -1,  9, 7, 0, $01, 0 | $80
-	dbsprite   1,  9, 0, 0, $03, 0 | $80
-	dbsprite   3,  9, 0, 0, $03, 0 | $80
-	dbsprite  -1, 10, 7, 0, $01, 0 | $80
-	dbsprite   1, 10, 0, 0, $03, 0 | $80
-	dbsprite   3, 10, 0, 0, $03, 0 | $80
-	dbsprite  -1, 11, 7, 0, $01, 0 | $80
-	dbsprite   1, 11, 0, 0, $03, 0 | $80
-	dbsprite   3, 11, 0, 0, $03, 0 | $80
-	dbsprite  -1, 11, 7, 1, $00, 0 | $40 | $80
-	dbsprite   0, 11, 0, 1, $02, 0 | $40 | $80
-	dbsprite   1, 11, 0, 1, $03, 0 | $40 | $80
-	dbsprite   2, 11, 0, 1, $02, 0 | $40 | $80
-	dbsprite   3, 11, 0, 1, $03, 0 | $20 | $40 | $80
+	dbsprite  -1,  0, 7, 0, $00, 0 | OAMF_PRI
+	dbsprite   3,  0, 0, 0, $00, 0 | OAMF_XFLIP | OAMF_PRI
+	dbsprite  -1,  1, 7, 0, $01, 0 | OAMF_PRI
+	dbsprite   3,  1, 0, 0, $01, 0 | OAMF_XFLIP | OAMF_PRI
+	dbsprite  -1,  2, 7, 0, $01, 0 | OAMF_PRI
+	dbsprite   3,  2, 0, 0, $01, 0 | OAMF_XFLIP | OAMF_PRI
+	dbsprite  -1,  3, 7, 0, $01, 0 | OAMF_PRI
+	dbsprite   1,  3, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite   3,  3, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite  -1,  4, 7, 0, $01, 0 | OAMF_PRI
+	dbsprite   1,  4, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite   3,  4, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite  -1,  5, 7, 0, $01, 0 | OAMF_PRI
+	dbsprite   1,  5, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite   3,  5, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite  -1,  6, 7, 0, $01, 0 | OAMF_PRI
+	dbsprite   1,  6, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite   3,  6, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite  -1,  7, 7, 0, $01, 0 | OAMF_PRI
+	dbsprite   1,  7, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite   3,  7, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite  -1,  8, 7, 0, $01, 0 | OAMF_PRI
+	dbsprite   1,  8, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite   3,  8, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite  -1,  9, 7, 0, $01, 0 | OAMF_PRI
+	dbsprite   1,  9, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite   3,  9, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite  -1, 10, 7, 0, $01, 0 | OAMF_PRI
+	dbsprite   1, 10, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite   3, 10, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite  -1, 11, 7, 0, $01, 0 | OAMF_PRI
+	dbsprite   1, 11, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite   3, 11, 0, 0, $03, 0 | OAMF_PRI
+	dbsprite  -1, 11, 7, 1, $00, 0 | OAMF_YFLIP | OAMF_PRI
+	dbsprite   0, 11, 0, 1, $02, 0 | OAMF_YFLIP | OAMF_PRI
+	dbsprite   1, 11, 0, 1, $03, 0 | OAMF_YFLIP | OAMF_PRI
+	dbsprite   2, 11, 0, 1, $02, 0 | OAMF_YFLIP | OAMF_PRI
+	dbsprite   3, 11, 0, 1, $03, 0 | OAMF_XFLIP | OAMF_YFLIP | OAMF_PRI
 
 .Impossible:
 	db 4
-	dbsprite   0,  0, 0, 0, $00, 0 | $80
-	dbsprite   1,  0, 0, 0, $00, 0 | $20 | $80
-	dbsprite   0,  1, 0, 0, $00, 0 | $40 | $80
-	dbsprite   1,  1, 0, 0, $00, 0 | $20 | $40 | $80
+	dbsprite   0,  0, 0, 0, $00, 0 | OAMF_PRI
+	dbsprite   1,  0, 0, 0, $00, 0 | OAMF_XFLIP | OAMF_PRI
+	dbsprite   0,  1, 0, 0, $00, 0 | OAMF_YFLIP | OAMF_PRI
+	dbsprite   1,  1, 0, 0, $00, 0 | OAMF_XFLIP | OAMF_YFLIP | OAMF_PRI
 
 CardFlip_InitAttrPals:
 	ldh a, [hCGB]

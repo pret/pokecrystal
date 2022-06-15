@@ -3,6 +3,7 @@ INCLUDE "charmap.asm"
 INCLUDE "macros.asm"
 
 INCLUDE "constants/hardware.inc"
+INCLUDE "constants/extra_hardware_constants.asm"
 INCLUDE "constants/deco_constants.asm"
 INCLUDE "constants/wram_constants.asm"
 INCLUDE "constants/misc_constants.asm"

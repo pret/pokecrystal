@@ -2900,18 +2900,18 @@ InitSprites:
 	xor a
 	bit 7, [hl]
 	jr nz, .not_vram1
-	or $08 ; VRAM_BANK_1
+	or OAMF_BANK1
 .not_vram1
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	ld e, [hl]
 	bit OBJ_FLAGS2_7, e
 	jr z, .not_priority
-	or $80 ; PRIORITY
+	or OAMF_PRI
 .not_priority
 	bit USE_OBP1_F, e
 	jr z, .not_obp_num
-	or $10 ; OBP_NUM
+	or OAMF_PAL1
 .not_obp_num
 	ld hl, OBJECT_PALETTE
 	add hl, bc
@@ -2923,7 +2923,7 @@ InitSprites:
 	xor a
 	bit OVERHEAD_F, e
 	jr z, .not_overhead
-	or $80 ; PRIORITY
+	or OAMF_PRI
 .not_overhead
 	ldh [hCurSpriteOAMFlags], a
 	ld hl, OBJECT_SPRITE_X
@@ -2999,7 +2999,7 @@ InitSprites:
 	ldh a, [hCurSpriteOAMFlags]
 	or e
 .nope2
-	and $10 | $20 | $40 | $80 ; OBP_NUM | X_FLIP | Y_FLIP | PRIORITY
+	and OAMF_PAL1 | OAMF_XFLIP | OAMF_YFLIP | OAMF_PRI
 	or d
 	ld [bc], a ; attributes
 	inc c

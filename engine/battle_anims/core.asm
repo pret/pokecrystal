@@ -89,7 +89,7 @@ BattleAnimOAMUpdate:
 	ld hl, wBattleAnimTempOAMFlags
 	ld a, [wBattleAnimTempFrameOAMFlags]
 	xor [hl]
-	and $80 | $40 | $20
+	and OAMF_PRI | OAMF_YFLIP | OAMF_XFLIP
 	ld [hl], a
 	pop af
 
@@ -164,14 +164,14 @@ BattleAnimOAMUpdate:
 	ld b, a
 	ld a, [hl]
 	xor b
-	and $80 | $40 | $20
+	and OAMF_PRI | OAMF_YFLIP | OAMF_XFLIP
 	ld b, a
 	ld a, [hl]
-	and $10
+	and OAMF_PAL1 ; This bit is ignored on CGB
 	or b
 	ld b, a
 	ld a, [wBattleAnimTempPalette]
-	and OAMF_PALMASK | $08
+	and OAMF_PALMASK | OAMF_BANK1
 	or b
 	ld [de], a
 
@@ -203,7 +203,7 @@ InitBattleAnimBuffer:
 	add hl, bc
 	ld a, [hl]
 
-	and $80
+	and OAMF_PRI
 	ld [wBattleAnimTempOAMFlags], a
 	xor a
 	ld [wBattleAnimTempFrameOAMFlags], a

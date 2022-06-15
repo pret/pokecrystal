@@ -178,7 +178,7 @@ InitMapSignAttrmap:
 	inc b
 	inc c
 	inc c
-	ld a, PAL_BG_TEXT | $80
+	ld a, PAL_BG_TEXT | OAMF_PRI
 .loop
 	push bc
 	push hl

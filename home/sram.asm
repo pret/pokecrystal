@@ -1,6 +1,6 @@
 OpenSRAM::
 ; if invalid bank, sram is disabled
-	cp 4 ; NUM_SRAM_BANKS
+	cp CART_SRAM_32KB
 	jr c, .valid
 if DEF(_DEBUG)
 	push af
@@ -25,21 +25,21 @@ endc
 	push af
 ; latch clock data
 	ld a, 1
-	ld [$6000], a ; MBC3LatchClock
+	ld [MBC3LatchClock], a
 ; enable sram/clock write
 	ld a, CART_SRAM_ENABLE
-	ld [rRAMG], a ; MBC3SRamEnable
+	ld [rRAMG], a
 ; select sram bank
 	pop af
-	ld [rRAMB], a ; MBC3SRamBank
+	ld [rRAMB], a
 	ret
 
 CloseSRAM::
 	push af
 	ld a, CART_SRAM_DISABLE
 ; reset clock latch for next time
-	ld [$6000], a ; MBC3LatchClock
+	ld [MBC3LatchClock], a
 ; disable sram/clock write
-	ld [rRAMG], a ; MBC3SRamEnable
+	ld [rRAMG], a
 	pop af
 	ret

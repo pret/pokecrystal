@@ -553,10 +553,10 @@ TrainerCard_Page2_3_OAMUpdate:
 	db -1
 
 .facing2
-	dbsprite  0,  0,  0,  0, $01, 0 | $20
-	dbsprite  1,  0,  0,  0, $00, 0 | $20
-	dbsprite  0,  1,  0,  0, $03, 0 | $20
-	dbsprite  1,  1,  0,  0, $02, 0 | $20
+	dbsprite  0,  0,  0,  0, $01, 0 | OAMF_XFLIP
+	dbsprite  1,  0,  0,  0, $00, 0 | OAMF_XFLIP
+	dbsprite  0,  1,  0,  0, $03, 0 | OAMF_XFLIP
+	dbsprite  1,  1,  0,  0, $02, 0 | OAMF_XFLIP
 	db -1
 
 TrainerCard_JohtoBadgesOAM:

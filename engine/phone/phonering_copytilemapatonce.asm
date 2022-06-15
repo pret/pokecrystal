@@ -7,7 +7,7 @@ PhoneRing_CopyTilemapAtOnce:
 	jp z, WaitBGMap
 
 ; The following is a modified version of _CopyTilemapAtOnce
-; that waits for [rLY] to be 144 - 1 (LY_VBLANK - 1) instead of $80 - 1.
+; that waits for [rLY] to be SCRN_Y - 1 (143) instead of $80 - 1.
 	ldh a, [hBGMapMode]
 	push af
 	xor a
@@ -20,7 +20,7 @@ PhoneRing_CopyTilemapAtOnce:
 
 .wait
 	ldh a, [rLY]
-	cp 144 - 1 ; LY_VBLANK - 1
+	cp SCRN_Y - 1 ; 143
 	jr c, .wait
 
 	di
@@ -35,7 +35,7 @@ PhoneRing_CopyTilemapAtOnce:
 
 .wait2
 	ldh a, [rLY]
-	cp 144 - 1 ; LY_VBLANK - 1
+	cp SCRN_Y - 1 ; 143
 	jr c, .wait2
 	ei
 

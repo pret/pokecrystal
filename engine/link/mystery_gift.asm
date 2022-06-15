@@ -157,7 +157,7 @@ endc
 
 .PrintTextAndExit:
 	call PrintText
-	ld a, (1 << LCDCB_ON) | (1 << LCDCB_WIN9C00) | (1 << LCDCB_WINON) | (1 << LCDCB_OBJON) | (1 << LCDCB_BGON) ; LCDC_DEFAULT
+	ld a, 1 << LCDCB_ON | 1 << LCDCB_WIN9C00 | 1 << LCDCB_WINON | 1 << LCDCB_OBJON | 1 << LCDCB_BGON
 	ldh [rLCDC], a
 	ret
 
@@ -320,7 +320,7 @@ endc
 	; Delay frame
 .wait_frame
 	ldh a, [rLY]
-	cp 144 ; LY_VBLANK
+	cp SCRN_Y
 	jr c, .wait_frame
 
 	ld c, LOW(rRP)
@@ -338,14 +338,14 @@ endc
 	and b
 	ld b, a
 	ldh a, [rLY]
-	cp 144
+	cp SCRN_Y
 	jr nc, .in_vblank
 .wait_vblank
 	ldh a, [c]
 	and b
 	ld b, a
 	ldh a, [rLY]
-	cp 144 ; LY_VBLANK
+	cp SCRN_Y
 	jr c, .wait_vblank
 	ld a, b
 	pop bc
@@ -1681,7 +1681,7 @@ endr
 
 .PrintTextAndExit:
 	call PrintText
-	ld a, (1 << LCDCB_ON) | (1 << LCDCB_WIN9C00) | (1 << LCDCB_WINON) | (1 << LCDCB_OBJON) | (1 << LCDCB_BGON) ; LCDC_DEFAULT
+	ld a, 1 << LCDCB_ON | 1 << LCDCB_WIN9C00 | 1 << LCDCB_WINON | 1 << LCDCB_OBJON | 1 << LCDCB_BGON
 	ldh [rLCDC], a
 	ret
 

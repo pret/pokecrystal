@@ -98,7 +98,7 @@ DoNextFrameForFirst16Sprites:
 	ld l, a
 	ld h, HIGH(wVirtualOAMSprite16)
 
-.loop2 ; Clear (wVirtualOAM + [wCurSpriteOAMAddr] --> Sprites + $40)
+.loop2 ; Clear (wVirtualOAM + [wCurSpriteOAMAddr] --> Sprites + OAMF_YFLIP)
 	ld a, l
 	cp LOW(wVirtualOAMSprite16)
 	jr nc, .done
@@ -348,10 +348,10 @@ GetSpriteOAMAttr:
 	ld b, a
 	ld a, [hl]
 	xor b
-	and $80 | $40 | $20
+	and OAMF_PRI | OAMF_YFLIP | OAMF_XFLIP
 	ld b, a
 	ld a, [hl]
-	and ~($80 | $40 | $20)
+	and ~(OAMF_PRI | OAMF_YFLIP | OAMF_XFLIP)
 	or b
 	ret
 
@@ -436,7 +436,7 @@ GetSpriteAnimFrame:
 	push af
 	ld a, [hl]
 	push hl
-	and ~($40 << 1 | $20 << 1)
+	and ~(OAMF_YFLIP << 1 | OAMF_XFLIP << 1)
 	ld hl, SPRITEANIMSTRUCT_DURATIONOFFSET
 	add hl, bc
 	add [hl]
@@ -446,7 +446,7 @@ GetSpriteAnimFrame:
 	pop hl
 .okay
 	ld a, [hl]
-	and $40 << 1 | $20 << 1 ; The << 1 is compensated in the "frame" macro
+	and OAMF_YFLIP << 1 | OAMF_XFLIP << 1 ; The << 1 is compensated in the "frame" macro
 	srl a
 	ld [wCurSpriteOAMFlags], a
 	pop af

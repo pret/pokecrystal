@@ -77,7 +77,7 @@ EnableMobile:
 	call DoubleSpeed
 	xor a
 	ldh [rIF], a
-	ld a, (1 << IEB_SERIAL) | (1 << IEB_TIMER) | (1 << IEB_STAT) | (1 << IEB_VBLANK) ; IE_DEFAULT
+	ld a, 1 << IEB_SERIAL | 1 << IEB_TIMER | 1 << IEB_STAT | 1 << IEB_VBLANK
 	ldh [rIE], a
 	xor a
 	ldh [hMapAnims], a

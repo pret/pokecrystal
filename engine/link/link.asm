@@ -104,7 +104,7 @@ endc
 
 	xor a
 	ldh [rIF], a
-	ld a, (1 << IEB_HILO) | (1 << IEB_SERIAL) | (1 << IEB_TIMER) | (1 << IEB_VBLANK)
+	ld a, 1 << IEB_HILO | 1 << IEB_SERIAL | 1 << IEB_TIMER | 1 << IEB_VBLANK
 	ldh [rIE], a
 
 	call Link_CopyRandomNumbers
@@ -280,7 +280,7 @@ endc
 .not_trading
 	xor a
 	ldh [rIF], a
-	ld a, (1 << IEB_HILO) | (1 << IEB_SERIAL) | (1 << IEB_TIMER) | (1 << IEB_VBLANK)
+	ld a, 1 << IEB_HILO | 1 << IEB_SERIAL | 1 << IEB_TIMER | 1 << IEB_VBLANK
 	ldh [rIE], a
 	ld de, MUSIC_NONE
 	call PlayMusic
@@ -2235,7 +2235,7 @@ WaitForOtherPlayerToExit:
 	push af
 	xor a
 	ldh [rIF], a
-	ld a, (1 << IEB_SERIAL) | (1 << IEB_TIMER) | (1 << IEB_STAT) | (1 << IEB_VBLANK) ; IE_DEFAULT
+	ld a, 1 << IEB_SERIAL | 1 << IEB_TIMER | 1 << IEB_STAT | 1 << IEB_VBLANK
 	ldh [rIE], a
 	pop af
 	ldh [rIF], a

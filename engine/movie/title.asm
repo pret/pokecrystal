@@ -81,7 +81,7 @@ _TitleScreen:
 ; Suicune gfx
 	hlbgcoord 0, 12
 	ld bc, 6 * BG_MAP_WIDTH ; the rest of the screen
-	ld a, 0 | $08
+	ld a, 0 | OAMF_BANK1
 	call ByteFill
 
 ; Back to VRAM bank 0
@@ -331,7 +331,7 @@ InitializeBackground:
 	ld [hli], a ; tile id
 	inc e
 	inc e
-	ld a, 0 | $80
+	ld a, 0 | OAMF_PRI
 	ld [hli], a ; attributes
 	dec c
 	jr nz, .loop2

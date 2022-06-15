@@ -273,9 +273,9 @@ Serve1bppRequest::
 
 ; Back out if we're too far into VBlank
 	ldh a, [rLY]
-	cp 144 ; LY_VBLANK
+	cp SCRN_Y
 	ret c
-	cp 144 + 2 ; LY_VBLANK + 2
+	cp SCRN_Y + 2 ; 146
 	ret nc
 
 ; Copy [wRequested1bppSize] 1bpp tiles from [wRequested1bppSource] to [wRequested1bppDest]
@@ -351,9 +351,9 @@ Serve2bppRequest::
 
 ; Back out if we're too far into VBlank
 	ldh a, [rLY]
-	cp 144 ; LY_VBLANK
+	cp SCRN_Y
 	ret c
-	cp 144 + 2 ; LY_VBLANK + 2
+	cp SCRN_Y + 2 ; 146
 	ret nc
 	jr _Serve2bppRequest
 
@@ -428,9 +428,9 @@ AnimateTileset::
 
 ; Back out if we're too far into VBlank
 	ldh a, [rLY]
-	cp 144 ; LY_VBLANK
+	cp SCRN_Y
 	ret c
-	cp 144 + 7 ; LY_VBLANK + 7
+	cp SCRN_Y + 7 ; 151
 	ret nc
 
 	ldh a, [hROMBank]

@@ -353,7 +353,7 @@ UpdateChannels:
 	ldh a, [rNR52]
 	and %10001101 ; ch2 off
 	ldh [rNR52], a
-	ld hl, $ff15 ; rNR20 (imaginary)
+	ld hl, rNR20
 	call ClearChannel
 	ret
 
@@ -434,37 +434,37 @@ endr
 	add hl, de
 	; load wavepattern into rWave_0-rWave_f
 	ld a, [hli]
-	ldh [_AUD3WAVERAM], a ; rWave_0
+	ldh [_AUD3WAVERAM], a
 	ld a, [hli]
-	ldh [$ff31], a ; rWave_1
+	ldh [_AUD3WAVERAM + 1], a
 	ld a, [hli]
-	ldh [$ff32], a ; rWave_2
+	ldh [_AUD3WAVERAM + 2], a
 	ld a, [hli]
-	ldh [$ff33], a ; rWave_3
+	ldh [_AUD3WAVERAM + 3], a
 	ld a, [hli]
-	ldh [$ff34], a ; rWave_4
+	ldh [_AUD3WAVERAM + 4], a
 	ld a, [hli]
-	ldh [$ff35], a ; rWave_5
+	ldh [_AUD3WAVERAM + 5], a
 	ld a, [hli]
-	ldh [$ff36], a ; rWave_6
+	ldh [_AUD3WAVERAM + 6], a
 	ld a, [hli]
-	ldh [$ff37], a ; rWave_7
+	ldh [_AUD3WAVERAM + 7], a
 	ld a, [hli]
-	ldh [$ff38], a ; rWave_8
+	ldh [_AUD3WAVERAM + 8], a
 	ld a, [hli]
-	ldh [$ff39], a ; rWave_9
+	ldh [_AUD3WAVERAM + 9], a
 	ld a, [hli]
-	ldh [$ff3a], a ; rWave_a
+	ldh [_AUD3WAVERAM + a], a
 	ld a, [hli]
-	ldh [$ff3b], a ; rWave_b
+	ldh [_AUD3WAVERAM + b], a
 	ld a, [hli]
-	ldh [$ff3c], a ; rWave_c
+	ldh [_AUD3WAVERAM + c], a
 	ld a, [hli]
-	ldh [$ff3d], a ; rWave_d
+	ldh [_AUD3WAVERAM + d], a
 	ld a, [hli]
-	ldh [$ff3e], a ; rWave_e
+	ldh [_AUD3WAVERAM + e], a
 	ld a, [hli]
-	ldh [$ff3f], a ; rWave_f
+	ldh [_AUD3WAVERAM + f], a
 	pop hl
 	ld a, [wCurTrackVolumeEnvelope]
 	and $f0
@@ -491,7 +491,7 @@ endr
 	ldh a, [rNR52]
 	and %10000111 ; ch4 off
 	ldh [rNR52], a
-	ld hl, $ff1f ; rNR40 (imaginary)
+	ld hl, rNR40
 	call ClearChannel
 	ret
 

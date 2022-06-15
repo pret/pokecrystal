@@ -249,7 +249,7 @@ BattleAnim_ClearOAM:
 	ld c, NUM_SPRITE_OAM_STRUCTS
 .loop
 	ld a, [hl]
-	and ~(OAMF_PALMASK | $08) ; zeros out the palette bits
+	and ~(OAMF_PALMASK | OAMF_BANK1) ; zero out the palette bits
 	assert PAL_BATTLE_OB_ENEMY == 0
 	ld [hli], a
 rept SPRITEOAMSTRUCT_LENGTH - 1

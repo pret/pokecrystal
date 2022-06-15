@@ -6,7 +6,7 @@ Reset::
 	call ClearPalettes
 	xor a
 	ldh [rIF], a
-	ld a, 1 << IEB_VBLANK
+	ld a, IEF_VBLANK
 	ldh [rIE], a
 	ei
 
@@ -57,7 +57,7 @@ Init::
 
 .wait
 	ldh a, [rLY]
-	cp 144 + 1 ; LY_VBLANK + 1
+	cp SCRN_Y + 1
 	jr nz, .wait
 
 	xor a
@@ -83,7 +83,7 @@ Init::
 	push af
 	xor a
 	ld hl, _HRAM
-	ld bc, $ffff - _HRAM ; no HRAM_End constant in hardware.inc
+	ld bc, rIE - _HRAM
 	call ByteFill
 	pop af
 	ldh [hSystemBooted], a
@@ -119,7 +119,7 @@ Init::
 	ldh [hWX], a
 	ldh [rWX], a
 
-	ld a, (1 << LCDCB_ON) | (1 << LCDCB_WIN9C00) | (1 << LCDCB_WINON) | (1 << LCDCB_OBJON) | (1 << LCDCB_BGON) ; LCDC_DEFAULT (%11100011)
+	ld a, 1 << LCDCB_ON | 1 << LCDCB_WIN9C00 | 1 << LCDCB_WINON | 1 << LCDCB_OBJON | 1 << LCDCB_BGON
 	; LCD on
 	; Win tilemap 1
 	; Win on
@@ -143,8 +143,8 @@ Init::
 	farcall StartClock
 
 	xor a ; CART_SRAM_DISABLE
-	ld [$6000], a ; MBC3LatchClock
-	ld [rRAMG], a ; MBC3SRamEnable
+	ld [MBC3LatchClock], a
+	ld [rRAMG], a
 
 	ldh a, [hCGB]
 	and a
@@ -154,7 +154,7 @@ Init::
 
 	xor a
 	ldh [rIF], a
-	ld a, (1 << IEB_SERIAL) | (1 << IEB_TIMER) | (1 << IEB_STAT) | (1 << IEB_VBLANK)
+	ld a, 1 << IEB_SERIAL | 1 << IEB_TIMER | 1 << IEB_STAT | 1 << IEB_VBLANK
 	ldh [rIE], a
 	ei
 
@@ -193,7 +193,7 @@ ClearWRAM::
 	ldh [rSVBK], a
 	xor a
 	ld hl, _RAMBANK
-	ld bc, $e000 - _RAMBANK ; no WRAM1_End constant in hardware.inc
+	ld bc, $1000
 	call ByteFill
 	pop af
 	inc a

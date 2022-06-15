@@ -760,7 +760,7 @@ TextCommand_FAR::
 	ld a, [hli]
 
 	ldh [hROMBank], a
-	ld [rROMB0], a ; MBC3RomBank
+	ld [rROMB0], a
 
 	push hl
 	ld h, d
@@ -770,7 +770,7 @@ TextCommand_FAR::
 
 	pop af
 	ldh [hROMBank], a
-	ld [rROMB0], a ; MBC3RomBank
+	ld [rROMB0], a
 	ret
 
 TextCommand_BCD::

@@ -1490,20 +1490,20 @@ endr
 	dbsprite 17, 4, 0, 6, $00, 0
 	dbsprite 18, 4, 0, 6, $00, 0
 	dbsprite 18, 4, 7, 6, $00, 0
-	dbsprite 10, 7, 0, 1, $00, 0 | $40
-	dbsprite 11, 7, 0, 1, $00, 0 | $40
-	dbsprite 12, 7, 0, 1, $00, 0 | $40
-	dbsprite 13, 7, 0, 1, $00, 0 | $40
-	dbsprite 14, 7, 0, 1, $00, 0 | $40
-	dbsprite 15, 7, 0, 1, $00, 0 | $40
-	dbsprite 16, 7, 0, 1, $00, 0 | $40
-	dbsprite 17, 7, 0, 1, $00, 0 | $40
-	dbsprite 18, 7, 0, 1, $00, 0 | $40
-	dbsprite 18, 7, 7, 1, $00, 0 | $40
+	dbsprite 10, 7, 0, 1, $00, 0 | OAMF_YFLIP
+	dbsprite 11, 7, 0, 1, $00, 0 | OAMF_YFLIP
+	dbsprite 12, 7, 0, 1, $00, 0 | OAMF_YFLIP
+	dbsprite 13, 7, 0, 1, $00, 0 | OAMF_YFLIP
+	dbsprite 14, 7, 0, 1, $00, 0 | OAMF_YFLIP
+	dbsprite 15, 7, 0, 1, $00, 0 | OAMF_YFLIP
+	dbsprite 16, 7, 0, 1, $00, 0 | OAMF_YFLIP
+	dbsprite 17, 7, 0, 1, $00, 0 | OAMF_YFLIP
+	dbsprite 18, 7, 0, 1, $00, 0 | OAMF_YFLIP
+	dbsprite 18, 7, 7, 1, $00, 0 | OAMF_YFLIP
 	dbsprite  9, 5, 6, 6, $01, 0
-	dbsprite  9, 6, 6, 1, $01, 0 | $40
-	dbsprite 19, 5, 1, 6, $01, 0 | $20
-	dbsprite 19, 6, 1, 1, $01, 0 | $20 | $40
+	dbsprite  9, 6, 6, 1, $01, 0 | OAMF_YFLIP
+	dbsprite 19, 5, 1, 6, $01, 0 | OAMF_XFLIP
+	dbsprite 19, 6, 1, 1, $01, 0 | OAMF_XFLIP | OAMF_YFLIP
 	db -1
 
 BillsPC_UpdateInsertCursor:
@@ -1529,14 +1529,14 @@ endr
 
 .OAM:
 	dbsprite 10, 4, 0, 7, $06, 0
-	dbsprite 11, 5, 0, 3, $00, 0 | $40
-	dbsprite 12, 5, 0, 3, $00, 0 | $40
-	dbsprite 13, 5, 0, 3, $00, 0 | $40
-	dbsprite 14, 5, 0, 3, $00, 0 | $40
-	dbsprite 15, 5, 0, 3, $00, 0 | $40
-	dbsprite 16, 5, 0, 3, $00, 0 | $40
-	dbsprite 17, 5, 0, 3, $00, 0 | $40
-	dbsprite 18, 5, 0, 3, $00, 0 | $40
+	dbsprite 11, 5, 0, 3, $00, 0 | OAMF_YFLIP
+	dbsprite 12, 5, 0, 3, $00, 0 | OAMF_YFLIP
+	dbsprite 13, 5, 0, 3, $00, 0 | OAMF_YFLIP
+	dbsprite 14, 5, 0, 3, $00, 0 | OAMF_YFLIP
+	dbsprite 15, 5, 0, 3, $00, 0 | OAMF_YFLIP
+	dbsprite 16, 5, 0, 3, $00, 0 | OAMF_YFLIP
+	dbsprite 17, 5, 0, 3, $00, 0 | OAMF_YFLIP
+	dbsprite 18, 5, 0, 3, $00, 0 | OAMF_YFLIP
 	dbsprite 19, 4, 0, 7, $07, 0
 	db -1
 

@@ -85,7 +85,7 @@ _UnownPuzzle:
 	call ClearBGPalettes
 	call ClearTilemap
 	call ClearSprites
-	ld a, (1 << LCDCB_ON) | (1 << LCDCB_WIN9C00) | (1 << LCDCB_WINON) | (1 << LCDCB_OBJON) | (1 << LCDCB_BGON) ; LCDC_DEFAULT
+	ld a, 1 << LCDCB_ON | 1 << LCDCB_WIN9C00 | 1 << LCDCB_WINON | 1 << LCDCB_OBJON | 1 << LCDCB_BGON
 	ldh [rLCDC], a
 	ret
 
@@ -557,13 +557,13 @@ RedrawUnownPuzzlePieces:
 .OAM_NotHoldingPiece:
 	dbsprite -1, -1, -4, -4, $00, 0
 	dbsprite  0, -1, -4, -4, $01, 0
-	dbsprite  0, -1,  4, -4, $00, 0 | $20
+	dbsprite  0, -1,  4, -4, $00, 0 | OAMF_XFLIP
 	dbsprite -1,  0, -4, -4, $02, 0
 	dbsprite  0,  0, -4, -4, $03, 0
-	dbsprite  0,  0,  4, -4, $02, 0 | $20
-	dbsprite -1,  0, -4,  4, $00, 0 | $40
-	dbsprite  0,  0, -4,  4, $01, 0 | $40
-	dbsprite  0,  0,  4,  4, $00, 0 | $20 | $40
+	dbsprite  0,  0,  4, -4, $02, 0 | OAMF_XFLIP
+	dbsprite -1,  0, -4,  4, $00, 0 | OAMF_YFLIP
+	dbsprite  0,  0, -4,  4, $01, 0 | OAMF_YFLIP
+	dbsprite  0,  0,  4,  4, $00, 0 | OAMF_XFLIP | OAMF_YFLIP
 	db -1
 
 UnownPuzzleCoordData:
