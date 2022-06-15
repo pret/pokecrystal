@@ -1,7 +1,7 @@
 ; A library included as part of the Mobile Adapter GB SDK.
 
 INCLUDE "macros/const.asm"
-INCLUDE "constants/hardware.inc/hardware.inc"
+INCLUDE "constants/hardware.inc"
 INCLUDE "constants/mobile_constants.asm"
 
 ; Mobile Adapter protocol commands
