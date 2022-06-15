@@ -5,8 +5,6 @@
 
 INCLUDE "hardware.inc"
 
-DEF WRAM1_End   EQU $e000
-
 ; MBC3
 DEF MBC3LatchClock EQU $6000
 
