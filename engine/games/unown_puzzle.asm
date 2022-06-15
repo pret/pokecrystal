@@ -85,7 +85,7 @@ _UnownPuzzle:
 	call ClearBGPalettes
 	call ClearTilemap
 	call ClearSprites
-	ld a, (1 << LCDCB_ON) | (1 << LCDCB_WIN9C00) | (1 << LCDCB_WINON) | (1 << LCDCB_OBJON) | (1 << LCDCB_BGON)
+	ld a, (1 << LCDCB_ON) | (1 << LCDCB_WIN9C00) | (1 << LCDCB_WINON) | (1 << LCDCB_OBJON) | (1 << LCDCB_BGON) ; LCDC_DEFAULT
 	ldh [rLCDC], a
 	ret
 

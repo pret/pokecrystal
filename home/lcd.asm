@@ -52,7 +52,7 @@ DisableLCD::
 .wait
 ; Wait until VBlank would normally happen
 	ldh a, [rLY]
-	cp 144 + 1
+	cp 144 + 1 ; LY_VBLANK + 1
 	jr nz, .wait
 
 	ldh a, [rLCDC]

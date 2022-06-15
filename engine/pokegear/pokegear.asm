@@ -85,7 +85,7 @@ PokeGear:
 	call InitPokegearModeIndicatorArrow
 	ld a, 8
 	call SkipMusic
-	ld a, (1 << LCDCB_ON) | (1 << LCDCB_WIN9C00) | (1 << LCDCB_WINON) | (1 << LCDCB_OBJON) | (1 << LCDCB_BGON)
+	ld a, (1 << LCDCB_ON) | (1 << LCDCB_WIN9C00) | (1 << LCDCB_WINON) | (1 << LCDCB_OBJON) | (1 << LCDCB_BGON) ; LCDC_DEFAULT
 	ldh [rLCDC], a
 	call TownMap_InitCursorAndPlayerIconPositions
 	xor a
@@ -1777,7 +1777,7 @@ _TownMap:
 	farcall ClearSpriteAnims
 	ld a, 8
 	call SkipMusic
-	ld a, (1 << LCDCB_ON) | (1 << LCDCB_WIN9C00) | (1 << LCDCB_WINON) | (1 << LCDCB_OBJON) | (1 << LCDCB_BGON)
+	ld a, (1 << LCDCB_ON) | (1 << LCDCB_WIN9C00) | (1 << LCDCB_WINON) | (1 << LCDCB_OBJON) | (1 << LCDCB_BGON) ; LCDC_DEFAULT
 	ldh [rLCDC], a
 	call TownMap_GetCurrentLandmark
 	ld [wTownMapPlayerIconLandmark], a

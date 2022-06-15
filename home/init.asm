@@ -57,7 +57,7 @@ Init::
 
 .wait
 	ldh a, [rLY]
-	cp 144 + 1
+	cp 144 + 1 ; LY_VBLANK + 1
 	jr nz, .wait
 
 	xor a
@@ -119,7 +119,7 @@ Init::
 	ldh [hWX], a
 	ldh [rWX], a
 
-	ld a, (1 << LCDCB_ON) | (1 << LCDCB_WIN9C00) | (1 << LCDCB_WINON) | (1 << LCDCB_OBJON) | (1 << LCDCB_BGON) ; %11100011
+	ld a, (1 << LCDCB_ON) | (1 << LCDCB_WIN9C00) | (1 << LCDCB_WINON) | (1 << LCDCB_OBJON) | (1 << LCDCB_BGON) ; LCDC_DEFAULT (%11100011)
 	; LCD on
 	; Win tilemap 1
 	; Win on
@@ -143,8 +143,8 @@ Init::
 	farcall StartClock
 
 	xor a ; CART_SRAM_DISABLE
-	ld [$6000], a
-	ld [rRAMG], a
+	ld [$6000], a ; MBC3LatchClock
+	ld [rRAMG], a ; MBC3SRamEnable
 
 	ldh a, [hCGB]
 	and a
