@@ -4120,7 +4120,7 @@ Function111b21:
 Function111b2e:
 	ld hl, wc822
 	set 1, [hl]
-	ld a, SCB_START | SCF_SPEED | SCF_SOURCE
+	ld a, 0 | SCF_SPEED | SCF_SOURCE
 	ldh [rSC], a
 	ld a, SCF_START | SCF_SPEED | SCF_SOURCE
 	ldh [rSC], a

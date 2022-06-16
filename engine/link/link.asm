@@ -51,7 +51,7 @@ Gen2ToGen1LinkComms:
 	call DelayFrames
 	xor a
 	ldh [hSerialSend], a
-	ld a, SCB_START | SCF_SOURCE
+	ld a, 0 | SCF_SOURCE
 	ldh [rSC], a
 	ld a, SCF_START | SCF_SOURCE
 	ldh [rSC], a
@@ -59,7 +59,7 @@ Gen2ToGen1LinkComms:
 	call DelayFrame
 	xor a
 	ldh [hSerialSend], a
-	ld a, SCB_START | SCF_SOURCE
+	ld a, 0 | SCF_SOURCE
 	ldh [rSC], a
 	ld a, SCF_START | SCF_SOURCE
 	ldh [rSC], a
@@ -217,7 +217,7 @@ Gen2ToGen2LinkComms:
 	call DelayFrames
 	xor a
 	ldh [hSerialSend], a
-	ld a, SCB_START | SCF_SOURCE
+	ld a, 0 | SCF_SOURCE
 	ldh [rSC], a
 	ld a, SCF_START | SCF_SOURCE
 	ldh [rSC], a
@@ -225,7 +225,7 @@ Gen2ToGen2LinkComms:
 	call DelayFrame
 	xor a
 	ldh [hSerialSend], a
-	ld a, SCB_START | SCF_SOURCE
+	ld a, 0 | SCF_SOURCE
 	ldh [rSC], a
 	ld a, SCF_START | SCF_SOURCE
 	ldh [rSC], a
@@ -1623,7 +1623,7 @@ ExitLinkCommunications:
 	xor a
 	ldh [rSB], a
 	ldh [hSerialSend], a
-	ld a, SCB_START | SCF_SOURCE
+	ld a, 0 | SCF_SOURCE
 	ldh [rSC], a
 	ld a, SCF_START | SCF_SOURCE
 	ldh [rSC], a
@@ -2208,7 +2208,7 @@ WaitForOtherPlayerToExit:
 	xor a
 	ldh [rSB], a
 	ldh [hSerialReceive], a
-	ld a, SCB_START | SCF_SOURCE
+	ld a, 0 | SCF_SOURCE
 	ldh [rSC], a
 	ld a, SCF_START | SCF_SOURCE
 	ldh [rSC], a
@@ -2217,9 +2217,9 @@ WaitForOtherPlayerToExit:
 	xor a
 	ldh [rSB], a
 	ldh [hSerialReceive], a
-	ld a, SCB_START | SCB_SOURCE
+	ld a, 0 | 0
 	ldh [rSC], a
-	ld a, SCF_START | SCB_SOURCE
+	ld a, SCF_START | 0
 	ldh [rSC], a
 	ld c, 3
 	call DelayFrames
@@ -2265,9 +2265,9 @@ SetBitsForTimeCapsuleRequest:
 	ldh [rSB], a
 	xor a
 	ldh [hSerialReceive], a
-	ld a, SCB_START | SCB_SOURCE
+	ld a, 0 | 0
 	ldh [rSC], a
-	ld a, SCF_START | SCB_SOURCE
+	ld a, SCF_START | 0
 	ldh [rSC], a
 	xor a ; LINK_TIMECAPSULE - 1
 	ld [wPlayerLinkAction], a
@@ -2282,9 +2282,9 @@ WaitForLinkedFriend:
 	ldh [rSB], a
 	xor a
 	ldh [hSerialReceive], a
-	ld a, SCB_START | SCB_SOURCE
+	ld a, 0 | 0
 	ldh [rSC], a
-	ld a, SCF_START | SCB_SOURCE
+	ld a, SCF_START | 0
 	ldh [rSC], a
 	call DelayFrame
 	call DelayFrame
@@ -2307,9 +2307,9 @@ WaitForLinkedFriend:
 	ldh [rSB], a
 	xor a
 	ldh [hSerialReceive], a
-	ld a, SCB_START | SCB_SOURCE
+	ld a, 0 | 0
 	ldh [rSC], a
-	ld a, SCF_START | SCB_SOURCE
+	ld a, SCF_START | 0
 ; This vc_hook causes the Virtual Console to set [hSerialConnectionStatus] to
 ; USING_INTERNAL_CLOCK, which allows the player to proceed past the link
 ; receptionist's "Please wait." It assumes that hSerialConnectionStatus is at
@@ -2332,7 +2332,7 @@ WaitForLinkedFriend:
 .not_done
 	ld a, USING_EXTERNAL_CLOCK
 	ldh [rSB], a
-	ld a, SCB_START | SCF_SOURCE
+	ld a, 0 | SCF_SOURCE
 	ldh [rSC], a
 	ld a, SCF_START | SCF_SOURCE
 	ldh [rSC], a

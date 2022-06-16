@@ -467,7 +467,7 @@ CheckCancelPrint:
 	ld [wPrinterOpcode], a
 	ld a, $88
 	ldh [rSB], a
-	ld a, SCB_START | SCF_SOURCE
+	ld a, 0 | SCF_SOURCE
 	ldh [rSC], a
 	ld a, SCF_START | SCF_SOURCE
 	ldh [rSC], a
