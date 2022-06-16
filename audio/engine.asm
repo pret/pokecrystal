@@ -353,7 +353,7 @@ UpdateChannels:
 	ldh a, [rNR52]
 	and %10001101 ; ch2 off
 	ldh [rNR52], a
-	ld hl, $ff15 ; rNR20 (imaginary)
+	ld hl, rNR20
 	call ClearChannel
 	ret
 
@@ -491,7 +491,7 @@ endr
 	ldh a, [rNR52]
 	and %10000111 ; ch4 off
 	ldh [rNR52], a
-	ld hl, $ff1f ; rNR40 (imaginary)
+	ld hl, rNR40
 	call ClearChannel
 	ret
 
