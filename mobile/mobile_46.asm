@@ -467,7 +467,7 @@ BattleTowerRoomMenu_InitRAM:
 	ld a, [hl]
 	ld [wcd7f], a
 	set 1, [hl]
-	ld a, 1 << IEB_SERIAL | 1 << IEB_TIMER | 1 << IEB_STAT | 1 << IEB_VBLANK
+	ld a, IEF_SERIAL | IEF_TIMER | IEF_STAT | IEF_VBLANK
 	ldh [rIE], a
 	ld a, $1
 	ldh [hMobileReceive], a

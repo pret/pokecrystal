@@ -720,7 +720,7 @@ CGBCopyBattleObjectPals: ; unreferenced
 	call CheckCGB
 	ret z
 	ld hl, BattleObjectPals
-	ld a, 1 << OCPSB_AUTOINC | $10
+	ld a, OCPSF_AUTOINC | $10
 	ldh [rOCPS], a
 	ld c, 6 palettes
 .loop
@@ -741,7 +741,7 @@ INCLUDE "gfx/battle_anims/battle_anims.pal"
 CGBCopyTwoPredefObjectPals: ; unreferenced
 	call CheckCGB
 	ret z
-	ld a, (1 << OCPSB_AUTOINC) | $10
+	ld a, (OCPSF_AUTOINC) | $10
 	ldh [rOCPS], a
 	ld a, PREDEFPAL_TRADE_TUBE
 	call GetPredefPal
@@ -880,7 +880,7 @@ InitCGBPals::
 	call ByteFill
 	ld a, BANK(vTiles0)
 	ldh [rVBK], a
-	ld a, 1 << BCPSB_AUTOINC
+	ld a, BCPSF_AUTOINC
 	ldh [rBCPS], a
 	ld c, 4 * 8
 .bgpals_loop
@@ -890,7 +890,7 @@ InitCGBPals::
 	ldh [rBCPD], a
 	dec c
 	jr nz, .bgpals_loop
-	ld a, 1 << OCPSB_AUTOINC
+	ld a, OCPSF_AUTOINC
 	ldh [rOCPS], a
 	ld c, 4 * 8
 .obpals_loop
@@ -1045,7 +1045,7 @@ SGBBorder_PushBGPals:
 	ld bc, $100 tiles
 	call CopyData
 	call DrawDefaultTiles
-	ld a, 1 << LCDCB_ON | 1 << LCDCB_WIN9C00 | 1 << LCDCB_WINON | 1 << LCDCB_OBJON | 1 << LCDCB_BGON
+	ld a, LCDCF_ON | LCDCF_WIN9C00 | LCDCF_WINON | LCDCF_OBJON | LCDCF_BGON
 	ldh [rLCDC], a
 	ld hl, PalTrnPacket
 	call _PushSGBPals
@@ -1079,7 +1079,7 @@ SGBBorder_MorePalPushing:
 	ld bc, 16 palettes
 	call CopyData
 	call DrawDefaultTiles
-	ld a, 1 << LCDCB_ON | 1 << LCDCB_WIN9C00 | 1 << LCDCB_WINON | 1 << LCDCB_OBJON | 1 << LCDCB_BGON
+	ld a, LCDCF_ON | LCDCF_WIN9C00 | LCDCF_WINON | LCDCF_OBJON | LCDCF_BGON
 	ldh [rLCDC], a
 	ld hl, PctTrnPacket
 	call _PushSGBPals
@@ -1103,7 +1103,7 @@ SGBBorder_YetMorePalPushing:
 	dec b
 	jr nz, .loop
 	call DrawDefaultTiles
-	ld a, 1 << LCDCB_ON | 1 << LCDCB_WIN9C00 | 1 << LCDCB_WINON | 1 << LCDCB_OBJON | 1 << LCDCB_BGON
+	ld a, LCDCF_ON | LCDCF_WIN9C00 | LCDCF_WINON | LCDCF_OBJON | LCDCF_BGON
 	ldh [rLCDC], a
 	ld hl, ChrTrnPacket
 	call _PushSGBPals

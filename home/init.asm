@@ -119,7 +119,7 @@ Init::
 	ldh [hWX], a
 	ldh [rWX], a
 
-	ld a, 1 << LCDCB_ON | 1 << LCDCB_WIN9C00 | 1 << LCDCB_WINON | 1 << LCDCB_OBJON | 1 << LCDCB_BGON
+	ld a, LCDCF_ON | LCDCF_WIN9C00 | LCDCF_WINON | LCDCF_OBJON | LCDCF_BGON
 	; LCD on
 	; Win tilemap 1
 	; Win on
@@ -154,7 +154,7 @@ Init::
 
 	xor a
 	ldh [rIF], a
-	ld a, 1 << IEB_SERIAL | 1 << IEB_TIMER | 1 << IEB_STAT | 1 << IEB_VBLANK
+	ld a, IEF_SERIAL | IEF_TIMER | IEF_STAT | IEF_VBLANK
 	ldh [rIE], a
 	ei
 
