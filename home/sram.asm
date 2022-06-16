@@ -25,7 +25,7 @@ endc
 	push af
 ; latch clock data
 	ld a, 1
-	ld [MBC3LatchClock], a
+	ld [rRTCLATCH], a
 ; enable sram/clock write
 	ld a, CART_SRAM_ENABLE
 	ld [rRAMG], a
@@ -38,7 +38,7 @@ CloseSRAM::
 	push af
 	ld a, CART_SRAM_DISABLE
 ; reset clock latch for next time
-	ld [MBC3LatchClock], a
+	ld [rRTCLATCH], a
 ; disable sram/clock write
 	ld [rRAMG], a
 	pop af

@@ -143,7 +143,7 @@ Init::
 	farcall StartClock
 
 	xor a ; CART_SRAM_DISABLE
-	ld [MBC3LatchClock], a
+	ld [rRTCLATCH], a
 	ld [rRAMG], a
 
 	ldh a, [hCGB]

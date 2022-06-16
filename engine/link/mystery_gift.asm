@@ -1037,7 +1037,7 @@ SendIRDataMessage:
 	xor a
 	ldh [rIF], a
 	halt
-	ld a, RPF_ENREAD | (1 << RPF_WRITE_LO)
+	ld a, RPF_ENREAD | RPF_WRITE_HI
 	ldh [rRP], a
 	; Turn the LED off for longer if the bit is 1
 	ld d, 1
@@ -1186,7 +1186,7 @@ ReceiveIRDataMessage:
 	inc d
 	jr z, .recv_done
 	ldh a, [c]
-	bit RPF_WRITE_HI, a
+	bit RPB_DATAIN, a
 	jr z, .recv_loop
 	ld d, 0
 .recv_done
@@ -1194,7 +1194,7 @@ ReceiveIRDataMessage:
 	inc d
 	jr z, .send_done
 	ldh a, [c]
-	bit RPF_WRITE_HI, a
+	bit RPB_DATAIN, a
 	jr nz, .send_loop
 .send_done
 	ldh a, [hMGPrevTIMA]

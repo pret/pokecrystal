@@ -14,9 +14,9 @@ Timer:: ; unreferenced
 LatchClock::
 ; latch clock counter data
 	ld a, 0
-	ld [MBC3LatchClock], a
+	ld [rRTCLATCH], a
 	ld a, 1
-	ld [MBC3LatchClock], a
+	ld [rRTCLATCH], a
 	ret
 
 UpdateTime::

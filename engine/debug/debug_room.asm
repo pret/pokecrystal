@@ -1433,9 +1433,9 @@ DebugRoom_GetClock:
 	ld a, CART_SRAM_ENABLE
 	ld [rRAMG], a
 	xor a
-	ld [MBC3LatchClock], a
+	ld [rRTCLATCH], a
 	inc a
-	ld [MBC3LatchClock], a
+	ld [rRTCLATCH], a
 	ld b, RTC_DH - RTC_S + 1
 	ld c, RTC_S
 .loop

@@ -31,7 +31,7 @@ AskSerial::
 	ldh [rSB], a
 
 ; switch to internal clock
-	ld a, (0 << SCB_START) | SCF_SOURCE
+	ld a, SCB_START | SCF_SOURCE
 	ldh [rSC], a
 
 ; start transfer

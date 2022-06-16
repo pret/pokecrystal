@@ -31,6 +31,7 @@
 ;* Rev 4.3 - 07-Nov-21 : Deprecate VRAM address constants (Eievui)
 ;* Rev 4.4 - 11-Jan-22 : Deprecate VRAM CART_SRAM_2KB constant (avivace)
 ;* Rev 4.5 - 03-Mar-22 : Added bit number definitions for OCPS, BCPS and LCDC (sukus)
+;* Rev 4.6 - 15-Jun-22 : Added MBC3 registers and special values
 
 IF __RGBDS_MAJOR__ == 0 && __RGBDS_MINOR__ < 5
     FAIL "This version of 'hardware.inc' requires RGBDS version 0.5.0 or later."
@@ -44,10 +45,17 @@ DEF HARDWARE_INC EQU 1
 MACRO rev_Check_hardware_inc
 ;NOTE: REVISION NUMBER CHANGES MUST BE ADDED
 ;TO SECOND PARAMETER IN FOLLOWING LINE.
-    IF  \1 > 4.5 ;PUT REVISION NUMBER HERE
+    IF  \1 > 4.6 ;PUT REVISION NUMBER HERE
         WARN    "Version \1 or later of 'hardware.inc' is required."
     ENDC
 ENDM
+
+
+;***************************************************************************
+;*
+;* General memory region constants
+;*
+;***************************************************************************
 
 DEF _VRAM        EQU $8000 ; $8000->$9FFF
 DEF _SCRN0       EQU $9800 ; $9800->$9BFF
@@ -60,17 +68,80 @@ DEF _IO          EQU $FF00 ; $FF00->$FF7F,$FFFF
 DEF _AUD3WAVERAM EQU $FF30 ; $FF30->$FF3F
 DEF _HRAM        EQU $FF80 ; $FF80->$FFFE
 
-; *** MBC5 Equates ***
 
-DEF rRAMG        EQU $0000 ; $0000->$1fff
-DEF rROMB0       EQU $2000 ; $2000->$2fff
-DEF rROMB1       EQU $3000 ; $3000->$3fff - If more than 256 ROM banks are present.
-DEF rRAMB        EQU $4000 ; $4000->$5fff - Bit 3 enables rumble (if present)
+;***************************************************************************
+;*
+;* MBC registers
+;*
+;***************************************************************************
+
+; *** Common ***
+
+; --
+; -- RAMG ($0000-$1FFF)
+; -- Controls whether access to SRAM (and the MBC3 RTC registers) is allowed (W)
+; --
+DEF rRAMG EQU $0000
+
+DEF CART_SRAM_ENABLE  EQU $0A
+DEF CART_SRAM_DISABLE EQU $00
+
+
+; --
+; -- ROMB0 ($2000-$3FFF)
+; -- Selects which ROM bank is mapped to the ROMX space ($4000-$7FFF) (W)
+; --
+; -- The range of accepted values, as well as the behavior of writing $00,
+; -- varies depending on the MBC.
+; --
+DEF rROMB0 EQU $2000
+
+; --
+; -- RAMB ($4000-$5FFF)
+; -- Selects which SRAM bank is mapped to the SRAM space ($A000-$BFFF) (W)
+; --
+; -- The range of accepted values varies depending on the cartridge configuration.
+; --
+DEF rRAMB EQU $4000
+
+
+; *** MBC3-specific registers ***
+
+; Write one of these to rRAMG to map the corresponding RTC register to all SRAM space
+DEF RTC_S  EQU $08 ; Seconds  (0-59)
+DEF RTC_M  EQU $09 ; Minutes  (0-59)
+DEF RTC_H  EQU $0A ; Hours    (0-23)
+DEF RTC_DL EQU $0B ; Lower 8 bits of Day Counter ($00-$FF)
+DEF RTC_DH EQU $0C ; Bit 7 - Day Counter Carry Bit (1=Counter Overflow)
+                   ; Bit 6 - Halt (0=Active, 1=Stop Timer)
+                   ; Bit 0 - Most significant bit of Day Counter (Bit 8)
+
+
+; --
+; -- RTCLATCH ($6000-$7FFF)
+; -- Write $00 then $01 to latch the current time into the RTC registers (W)
+; --
+DEF rRTCLATCH EQU $6000
+
+
+; *** MBC5-specific register ***
+
+; --
+; -- ROMB1 ($3000-$3FFF)
+; -- A 9th bit that "extends" ROMB0 if more than 256 banks are present (W)
+; --
+; -- Also note that rROMB0 thus only spans $2000-$2FFF.
+; --
+DEF rROMB1 EQU $3000
+
+
+; Bit 3 of RAMB enables the rumble motor (if any)
+DEF CART_RUMBLE_ON EQU 1 << 3
 
 
 ;***************************************************************************
 ;*
-;* Custom registers
+;* Memory-mapped registers
 ;*
 ;***************************************************************************
 
@@ -105,9 +176,9 @@ DEF rSB EQU $FF01
 ; --
 DEF rSC EQU $FF02
 
-DEF SCF_START  EQU %10000000 ;Transfer Start Flag (1=Transfer in progress, or requested)
-DEF SCF_SPEED  EQU %00000010 ;Clock Speed (0=Normal, 1=Fast) ** CGB Mode Only **
-DEF SCF_SOURCE EQU %00000001 ;Shift Clock (0=External Clock, 1=Internal Clock)
+DEF SCF_START  EQU %10000000 ; Transfer Start Flag (1=Transfer in progress, or requested)
+DEF SCF_SPEED  EQU %00000010 ; Clock Speed (0=Normal, 1=Fast) ** CGB Mode Only **
+DEF SCF_SOURCE EQU %00000001 ; Shift Clock (0=External Clock, 1=Internal Clock)
 
 DEF SCB_START  EQU 7
 DEF SCB_SPEED  EQU 1
@@ -803,9 +874,19 @@ DEF BOOTUP_B_AGB    EQU %00000001   ; GBA, GBA SP, Game Boy Player, or New GBA S
 
 ;***************************************************************************
 ;*
-;* Cart related
+;* Header
 ;*
 ;***************************************************************************
+
+;*
+;* Nintendo scrolling logo
+;* (Code won't work on a real GameBoy)
+;* (if next lines are altered.)
+MACRO NINTENDO_LOGO
+    DB  $CE,$ED,$66,$66,$CC,$0D,$00,$0B,$03,$73,$00,$83,$00,$0C,$00,$0D
+    DB  $00,$08,$11,$1F,$88,$89,$00,$0E,$DC,$CC,$6E,$E6,$DD,$DD,$D9,$99
+    DB  $BB,$BB,$67,$63,$6E,$0E,$EC,$CC,$DD,$DC,$99,$9F,$BB,$B9,$33,$3E
+ENDM
 
 ; $0143 Color GameBoy compatibility code
 DEF CART_COMPATIBLE_DMG     EQU $00
@@ -866,9 +947,6 @@ DEF CART_SRAM_NONE  EQU 0
 DEF CART_SRAM_8KB   EQU 2 ; 1 bank
 DEF CART_SRAM_32KB  EQU 3 ; 4 banks
 DEF CART_SRAM_128KB EQU 4 ; 16 banks
-
-DEF CART_SRAM_ENABLE  EQU $0A
-DEF CART_SRAM_DISABLE EQU $00
 
 ; $014A Destination code
 DEF CART_DEST_JAPANESE     EQU $00
@@ -954,16 +1032,6 @@ DEF OAMB_XFLIP      EQU 5 ; X flip
 DEF OAMB_PAL1       EQU 4 ; Palette number; 0,1 (DMG)
 DEF OAMB_BANK1      EQU 3 ; Bank number; 0,1 (GBC)
 
-
-;*
-;* Nintendo scrolling logo
-;* (Code won't work on a real GameBoy)
-;* (if next lines are altered.)
-MACRO NINTENDO_LOGO
-    DB  $CE,$ED,$66,$66,$CC,$0D,$00,$0B,$03,$73,$00,$83,$00,$0C,$00,$0D
-    DB  $00,$08,$11,$1F,$88,$89,$00,$0E,$DC,$CC,$6E,$E6,$DD,$DD,$D9,$99
-    DB  $BB,$BB,$67,$63,$6E,$0E,$EC,$CC,$DD,$DC,$99,$9F,$BB,$B9,$33,$3E
-ENDM
 
 ; Deprecated constants. Please avoid using.
 

@@ -270,7 +270,7 @@ Printer_WaitHandshake:
 	ld [wPrinterOpcode], a
 	ld a, $88
 	ldh [rSB], a
-	ld a, (0 << SCB_START) | SCF_SOURCE
+	ld a, SCB_START | SCF_SOURCE
 	ldh [rSC], a
 	ld a, SCF_START | SCF_SOURCE
 	ldh [rSC], a
@@ -613,7 +613,7 @@ Printer_Send0x08:
 
 Printer_SerialSend:
 	ldh [rSB], a
-	ld a, (0 << SCB_START) | SCF_SOURCE
+	ld a, SCB_START | SCF_SOURCE
 	ldh [rSC], a
 	ld a, SCF_START | SCF_SOURCE
 	ldh [rSC], a
