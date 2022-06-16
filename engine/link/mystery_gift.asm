@@ -157,7 +157,7 @@ endc
 
 .PrintTextAndExit:
 	call PrintText
-	ld a, 1 << LCDCB_ON | 1 << LCDCB_WIN9C00 | 1 << LCDCB_WINON | 1 << LCDCB_OBJON | 1 << LCDCB_BGON
+	ld a, LCDCF_ON | LCDCF_WIN9C00 | LCDCF_WINON | LCDCF_OBJON | LCDCF_BGON
 	ldh [rLCDC], a
 	ret
 
@@ -539,7 +539,7 @@ EndOrContinueMysteryGiftIRCommunication:
 	xor a
 	ldh [rIF], a
 	ldh a, [rIE]
-	or 1 << IEB_VBLANK
+	or IEF_VBLANK
 	ldh [rIE], a
 	ei
 	call DelayFrame
@@ -696,7 +696,7 @@ EndNameCardIRCommunication:
 	xor a
 	ldh [rIF], a
 	ldh a, [rIE]
-	or 1 << IEB_VBLANK
+	or IEF_VBLANK
 	ldh [rIE], a
 	ei
 	call DelayFrame
@@ -737,7 +737,7 @@ TryReceivingIRDataBlock:
 
 InitializeIRCommunicationInterrupts:
 	call StartFastIRTimer
-	ld a, 1 << IEB_TIMER
+	ld a, IEF_TIMER
 	ldh [rIE], a
 	xor a
 	ldh [rIF], a
@@ -761,7 +761,7 @@ StartFastIRTimer:
 	ldh [rTIMA], a
 	ld a, TACF_65KHZ
 	ldh [rTAC], a
-	or 1 << TACB_START
+	or TACF_START
 	ldh [rTAC], a
 	ret
 
@@ -773,7 +773,7 @@ StartSlowIRTimer:
 	ldh [rTIMA], a
 	ld a, TACF_65KHZ
 	ldh [rTAC], a
-	or 1 << TACB_START
+	or TACF_START
 	ldh [rTAC], a
 	ret
 
@@ -1681,7 +1681,7 @@ endr
 
 .PrintTextAndExit:
 	call PrintText
-	ld a, 1 << LCDCB_ON | 1 << LCDCB_WIN9C00 | 1 << LCDCB_WINON | 1 << LCDCB_OBJON | 1 << LCDCB_BGON
+	ld a, LCDCF_ON | LCDCF_WIN9C00 | LCDCF_WINON | LCDCF_OBJON | LCDCF_BGON
 	ldh [rLCDC], a
 	ret
 

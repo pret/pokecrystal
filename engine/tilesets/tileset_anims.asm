@@ -922,7 +922,7 @@ AnimateWaterPalette:
 	ret nz
 
 ; Ready for BGPD input
-	ld a, (1 << BCPSB_AUTOINC) palette PAL_BG_WATER color 0
+	ld a, BCPSF_AUTOINC palette PAL_BG_WATER color 0
 	ldh [rBCPS], a
 
 	ldh a, [rSVBK]
@@ -989,7 +989,7 @@ FlickeringCaveEntrancePalette:
 	ldh [rSVBK], a
 
 ; Ready for BGPD input
-	ld a, (1 << BCPSB_AUTOINC) palette PAL_BG_YELLOW color 0
+	ld a, BCPSF_AUTOINC palette PAL_BG_YELLOW color 0
 	ldh [rBCPS], a
 
 ; A cycle of 2 colors (0 2), updating every other vblank

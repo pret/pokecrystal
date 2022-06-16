@@ -80,7 +80,7 @@ MobileTimer::
 
 ; Turn off timer interrupt
 	ldh a, [rIF]
-	and 1 << IEB_VBLANK | 1 << IEB_STAT | 1 << IEB_SERIAL | 1 << IEB_HILO
+	and IEF_VBLANK | IEF_STAT | IEF_SERIAL | IEF_HILO
 	ldh [rIF], a
 
 	ld a, [wc86a]
@@ -92,7 +92,7 @@ MobileTimer::
 	jr nz, .skip_timer
 
 	ldh a, [rSC]
-	and 1 << SCB_START
+	and SCF_START
 	jr nz, .skip_timer
 
 	ldh a, [hROMBank]
@@ -112,7 +112,7 @@ MobileTimer::
 	ldh a, [rTMA]
 	ldh [rTIMA], a
 
-	ld a, 1 << TACB_START | TACF_65KHZ
+	ld a, TACF_START | TACF_65KHZ
 	ldh [rTAC], a
 
 .pop_ret

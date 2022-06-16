@@ -50,7 +50,7 @@ NamingScreen:
 	call DisableLCD
 	call LoadNamingScreenGFX
 	call NamingScreen_InitText
-	ld a, 1 << LCDCB_ON | 1 << LCDCB_WIN9C00 | 1 << LCDCB_WINON | 1 << LCDCB_OBJON | 1 << LCDCB_BGON
+	ld a, LCDCF_ON | LCDCF_WIN9C00 | LCDCF_WINON | LCDCF_OBJON | LCDCF_BGON
 	ldh [rLCDC], a
 	call .GetNamingScreenSetup
 	call WaitBGMap
@@ -939,7 +939,7 @@ _ComposeMailMessage:
 	add hl, bc
 	ld [hl], $0
 	call .InitCharset
-	ld a, 1 << LCDCB_ON | 1 << LCDCB_WIN9C00 | 1 << LCDCB_WINON | 1 << LCDCB_OBJON | 1 << LCDCB_BGON
+	ld a, LCDCF_ON | LCDCF_WIN9C00 | LCDCF_WINON | LCDCF_OBJON | LCDCF_BGON
 	ldh [rLCDC], a
 	call .initwNamingScreenMaxNameLength
 	ld b, SCGB_DIPLOMA

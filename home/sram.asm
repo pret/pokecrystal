@@ -1,6 +1,6 @@
 OpenSRAM::
 ; if invalid bank, sram is disabled
-	cp CART_SRAM_32KB
+	cp 4
 	jr c, .valid
 if DEF(_DEBUG)
 	push af

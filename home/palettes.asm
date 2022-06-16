@@ -27,7 +27,7 @@ ForceUpdateCGBPals::
 	ld hl, wBGPals2
 
 ; copy 8 pals to bgpd
-	ld a, 1 << BCPSB_AUTOINC
+	ld a, BCPSF_AUTOINC
 	ldh [rBCPS], a
 	ld c, LOW(rBCPD)
 	ld b, 8 / 2
@@ -43,7 +43,7 @@ endr
 ; hl is now wOBPals2
 
 ; copy 8 pals to obpd
-	ld a, 1 << OCPSB_AUTOINC
+	ld a, OCPSF_AUTOINC
 	ldh [rOCPS], a
 	ld c, LOW(rOCPD)
 	ld b, 8 / 2
