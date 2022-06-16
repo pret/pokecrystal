@@ -741,7 +741,7 @@ INCLUDE "gfx/battle_anims/battle_anims.pal"
 CGBCopyTwoPredefObjectPals: ; unreferenced
 	call CheckCGB
 	ret z
-	ld a, (OCPSF_AUTOINC) | $10
+	ld a, OCPSF_AUTOINC | $10
 	ldh [rOCPS], a
 	ld a, PREDEFPAL_TRADE_TUBE
 	call GetPredefPal

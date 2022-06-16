@@ -30,7 +30,7 @@ Serial::
 
 	ld a, (0 << SCB_START) | (0 << SCB_SOURCE)
 	ldh [rSC], a
-	ld a, (SCF_START) | (0 << SCB_SOURCE)
+	ld a, SCF_START | (0 << SCB_SOURCE)
 	ldh [rSC], a
 	jr .player2
 
@@ -67,7 +67,7 @@ Serial::
 
 	ld a, (0 << SCB_START) | (0 << SCB_SOURCE)
 	ldh [rSC], a
-	ld a, (SCF_START) | (0 << SCB_SOURCE)
+	ld a, SCF_START | (0 << SCB_SOURCE)
 	ldh [rSC], a
 	jr .player2
 
@@ -134,9 +134,9 @@ Serial_ExchangeByte::
 	ldh a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
 	jr nz, .not_player_2
-	ld a, (0 << SCB_START) | (SCF_SOURCE)
+	ld a, (0 << SCB_START) | SCF_SOURCE
 	ldh [rSC], a
-	ld a, (SCF_START) | (SCF_SOURCE)
+	ld a, SCF_START | SCF_SOURCE
 	ldh [rSC], a
 .not_player_2
 .loop
@@ -164,7 +164,7 @@ Serial_ExchangeByte::
 
 .not_player_1_or_timed_out
 	ldh a, [rIE]
-	and (IEF_SERIAL) | (IEF_TIMER) | (IEF_STAT) | (IEF_VBLANK)
+	and IEF_SERIAL | IEF_TIMER | IEF_STAT | IEF_VBLANK
 	cp IEF_SERIAL
 	jr nz, .loop
 	ld a, [wLinkByteTimeout]
@@ -188,7 +188,7 @@ Serial_ExchangeByte::
 	xor a
 	ldh [hSerialReceivedNewData], a
 	ldh a, [rIE]
-	and (IEF_SERIAL) | (IEF_TIMER) | (IEF_STAT) | (IEF_VBLANK)
+	and IEF_SERIAL | IEF_TIMER | IEF_STAT | IEF_VBLANK
 	sub IEF_SERIAL
 	jr nz, .non_serial_interrupts_enabled
 
@@ -220,7 +220,7 @@ Serial_ExchangeByte::
 
 .timed_out
 	ldh a, [rIE]
-	and (IEF_SERIAL) | (IEF_TIMER) | (IEF_STAT) | (IEF_VBLANK)
+	and IEF_SERIAL | IEF_TIMER | IEF_STAT | IEF_VBLANK
 	cp IEF_SERIAL
 	ld a, SERIAL_NO_DATA_BYTE
 	ret z
@@ -370,9 +370,9 @@ LinkTransfer::
 	ldh a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
 	jr nz, .player_1
-	ld a, (0 << SCB_START) | (SCF_SOURCE)
+	ld a, (0 << SCB_START) | SCF_SOURCE
 	ldh [rSC], a
-	ld a, (SCF_START) | (SCF_SOURCE)
+	ld a, SCF_START | SCF_SOURCE
 	ldh [rSC], a
 
 .player_1
@@ -400,9 +400,9 @@ LinkDataReceived::
 	ldh a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
 	ret nz
-	ld a, (0 << SCB_START) | (SCF_SOURCE)
+	ld a, (0 << SCB_START) | SCF_SOURCE
 	ldh [rSC], a
-	ld a, (SCF_START) | (SCF_SOURCE)
+	ld a, SCF_START | SCF_SOURCE
 	ldh [rSC], a
 	ret
 
@@ -417,6 +417,6 @@ SetBitsForTimeCapsuleRequestIfNotLinked:: ; unreferenced
 	ldh [hSerialReceive], a
 	ld a, (0 << SCB_START) | (0 << SCB_SOURCE)
 	ldh [rSC], a
-	ld a, (SCF_START) | (0 << SCB_SOURCE)
+	ld a, SCF_START | (0 << SCB_SOURCE)
 	ldh [rSC], a
 	ret

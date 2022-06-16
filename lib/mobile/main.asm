@@ -623,7 +623,7 @@ Function11032c:
 Function110393:
 	ld c, LOW(rIE)
 	ldh a, [c]
-	or (IEF_SERIAL) | (IEF_TIMER)
+	or IEF_SERIAL | IEF_TIMER
 	ldh [c], a
 	ret
 
@@ -4120,9 +4120,9 @@ Function111b21:
 Function111b2e:
 	ld hl, wc822
 	set 1, [hl]
-	ld a, (0 << SCB_START) | (SCF_SPEED) | (SCF_SOURCE)
+	ld a, (0 << SCB_START) | SCF_SPEED | SCF_SOURCE
 	ldh [rSC], a
-	ld a, (SCF_START) | (SCF_SPEED) | (SCF_SOURCE)
+	ld a, SCF_START | SCF_SPEED | SCF_SOURCE
 	ldh [rSC], a
 
 Function111b3b:

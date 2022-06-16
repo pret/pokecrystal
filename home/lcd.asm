@@ -56,7 +56,7 @@ DisableLCD::
 	jr nz, .wait
 
 	ldh a, [rLCDC]
-	and ~(LCDCF_ON)
+	and ~LCDCF_ON
 	ldh [rLCDC], a
 
 	xor a
