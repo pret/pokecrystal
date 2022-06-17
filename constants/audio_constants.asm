@@ -1,7 +1,3 @@
-; hardware registers for audio
-DEF rNR20 EQU $ff15 ; Channel 2 Sweep register (R/W)
-DEF rNR40 EQU $ff1f ; Channel 4 Sweep register (R/W)
-
 ; pitch
 ; FrequencyTable indexes (see audio/notes.asm)
 	const_def 1
