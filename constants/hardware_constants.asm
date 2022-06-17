@@ -161,6 +161,6 @@ DEF rUNKNOWN2            EQU $ff72 ; (00h) - Bit 0-7 (Read/Write)
 DEF rUNKNOWN3            EQU $ff73 ; (00h) - Bit 0-7 (Read/Write)
 DEF rUNKNOWN4            EQU $ff74 ; (00h) - Bit 0-7 (Read/Write) - CGB Mode Only
 DEF rUNKNOWN5            EQU $ff75 ; (8Fh) - Bit 4-6 (Read/Write)
-DEF rUNKNOWN6            EQU $ff76 ; (00h) - Always 00h (Read Only)
-DEF rUNKNOWN7            EQU $ff77 ; (00h) - Always 00h (Read Only)
+DEF rPCM12               EQU $ff76 ; Channel 1 & 2 Amplitude (R)
+DEF rPCM34               EQU $ff77 ; Channel 3 & 4 Amplitude (R)
 DEF rIE                  EQU $ffff ; Interrupt Enable (R/W)
