@@ -10,7 +10,7 @@ rom_obj := \
 	audio.o \
 	home.o \
 	main.o \
-	wram.o \
+	ram.o \
 	data/text/common.o \
 	data/maps/map_data.o \
 	data/pokemon/dex_entries.o \

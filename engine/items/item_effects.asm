@@ -341,7 +341,7 @@ PokeBallEffect:
 ; Uncomment the line below to fix this.
 	ld b, a
 	ld a, [wEnemyMonStatus]
-	and 1 << FRZ | SLP
+	and 1 << FRZ | SLP_MASK
 	ld c, 10
 	jr nz, .addstatus
 	; ld a, [wEnemyMonStatus]
@@ -2189,7 +2189,7 @@ PokeFluteEffect:
 	xor a
 	ld [wPokeFluteCuredSleep], a
 
-	ld b, ~SLP
+	ld b, ~SLP_MASK
 
 	ld hl, wPartyMon1Status
 	call .CureSleep
@@ -2231,7 +2231,7 @@ PokeFluteEffect:
 .loop
 	ld a, [hl]
 	push af
-	and SLP
+	and SLP_MASK
 	jr z, .not_asleep
 	ld a, TRUE
 	ld [wPokeFluteCuredSleep], a

@@ -154,14 +154,14 @@ assert const_value % 2 == 0
 DEF NUM_BATTLE_VAR_LOCATION_PAIRS EQU const_value / 2
 
 ; status condition bit flags
-DEF SLP EQU %111 ; 0-7 turns
+DEF SLP_MASK EQU %111 ; 0-7 turns
 	const_def 3
 	const PSN
 	const BRN
 	const FRZ
 	const PAR
 
-DEF ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP
+DEF ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP_MASK
 
 ; wPlayerSubStatus1 or wEnemySubStatus1 bit flags
 	const_def
