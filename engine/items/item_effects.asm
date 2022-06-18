@@ -334,7 +334,7 @@ PokeBallEffect:
 	jr nz, .statuscheck
 	ld a, 1
 .statuscheck
-; This routine is buggy. It was intended that SLP_MASK and FRZ provide a higher
+; This routine is buggy. It was intended that SLP and FRZ provide a higher
 ; catch rate than BRN/PSN/PAR, which in turn provide a higher catch rate than
 ; no status effect at all. But instead, it makes BRN/PSN/PAR provide no
 ; benefit.
