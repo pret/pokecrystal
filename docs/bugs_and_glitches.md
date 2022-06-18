@@ -96,6 +96,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [The unused `phonecall` script command may crash](#the-unused-phonecall-script-command-may-crash)
 - [Internal engine routines](#internal-engine-routines)
   - [Saves corrupted by mid-save shutoff are not handled](#saves-corrupted-by-mid-save-shutoff-are-not-handled)
+  - [The game can incorrectly run in GB mode when this is a GBC](#the-game-can-incorrectly-run-in-gb-mode-when-this-is-a-gbc)
   - [`ScriptCall` can overflow `wScriptStack` and crash](#scriptcall-can-overflow-wscriptstack-and-crash)
   - [`LoadSpriteGFX` does not limit the capacity of `UsedSprites`](#loadspritegfx-does-not-limit-the-capacity-of-usedsprites)
   - [`ChooseWildEncounter` doesn't really validate the wild Pokémon species](#choosewildencounter-doesnt-really-validate-the-wild-pokémon-species)
@@ -2437,6 +2438,13 @@ You can also delete the now-unused `BrokenPlaceFarString` routine.
 ([Video 1](https://www.youtube.com/watch?v=ukqtK0l6bu0), [Video 2](https://www.youtube.com/watch?v=c2zHd1BPtvc))
 
 This does not have a simple and accurate fix. It would involve redesigning parts of the save system for Pokémon boxes.
+
+
+### The game can incorrectly run in GB mode when this is a GBC
+
+([Video 1](https://www.youtube.com/watch?v=P-aK0sOXGdc), [Video 2](https://www.youtube.com/watch?v=GnvZXutzb1Y))
+
+**Fix:** A fix for this is not available at this time.
 
 
 ### `ScriptCall` can overflow `wScriptStack` and crash
