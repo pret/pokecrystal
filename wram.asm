@@ -3474,7 +3474,6 @@ ENDU
 
 
 SECTION "GBC Video", WRAMX, ALIGN[8]
-; LCD expects wLYOverrides to have an alignment of $100
 
 ; eight 4-color palettes each
 wGBCPalettes:: ; used only for BANK(wGBCPalettes)
@@ -3483,6 +3482,7 @@ wOBPals1:: ds 8 palettes
 wBGPals2:: ds 8 palettes
 wOBPals2:: ds 8 palettes
 
+	align 8
 wLYOverrides:: ds SCREEN_HEIGHT_PX
 wLYOverridesEnd::
 
@@ -3497,6 +3497,7 @@ wMagnetTrainPlayerSpriteInitX:: db
 
 	ds 106
 
+	align 8
 wLYOverridesBackup:: ds SCREEN_HEIGHT_PX
 wLYOverridesBackupEnd::
 
