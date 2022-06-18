@@ -8,7 +8,6 @@ When you come across an edge case that isn't referenced in this guide, please ad
 ## Comments
 
 ```asm
-
 ; Use tabs for indentation, and spaces for alignment.
 ; When tabs get in the way of alignment, use spaces instead.
 
@@ -30,40 +29,33 @@ When you come across an edge case that isn't referenced in this guide, please ad
 ; under 30 chars per line, including tabs.
 
 ; Comments should go above the code they're describing, not below, and not inline.
-
 	ld a, [hl]
 	add b
 	ld [hl], a
 	ret
 
 ; Avoid comments on the same line as instructions.
-
 	cp 10
 	jr c, .elsewhere ; don't do this
 
 ; If you have a larger comment and want to make
 ; a side note on a snippet of code:
-
 	; You can indent the comment,
 	; but each line should be shorter
 	; and spaced away from the parent comment
-
 	halt
 	nop
 
 ; To comment out code, put the ; before the tab indent.
-
 ;	nop
 	cp 10
 ;	jr c, .bye
 	ret
-
 ```
 
 ## Labels
 
 ```asm
-
 ; ROM Labels
 PascalCase: ; label
 PascalCase:: ; global label
@@ -84,7 +76,6 @@ DEF rBGP EQU $ff47 ; hardware register
 ; Most other constants should be upper case
 DEF UPPER_CASE EQU 1
 
-
 ; Long lists of constants should be aligned
 DEF SHORT_CONSTANT       EQU 1
 DEF LONGER_CONSTANT      EQU 2
@@ -92,13 +83,11 @@ DEF PRETTY_LONG_CONSTANT EQU 3
 DEF TINY                 EQU 4
 
 DEF BUT_ONLY_RELATED_CONSTANTS EQU 5
-
 ```
 
 ## Directives
 
 ```asm
-
 ; meta and high-level directives should be uppercase
 SECTION "section", ROMX
 INCLUDE "filename"
@@ -114,7 +103,6 @@ DEF TEST EQU 2
 	db 1
 	dw 2
 	my_macro SOME_CONSTANT
-
 	; one exception is RGB
 	RGB 31, 31, 31
 
@@ -128,17 +116,14 @@ set X, 1
 rept 10
 	nop
 endr
-
 ```
 
 ## Macros
 
 ```asm
-
 MACRO when_in_doubt_lowercase
 
 ; only shift if it's required or more readable
-
 	; dont
 	db \1
 	shift
@@ -161,7 +146,5 @@ ENDM
 MACRO UPPER_CASE_IS_OK_SOMETIMES
 
 ; but I can't think of any examples besides ACRONYMS
-
 ENDM
-
 ```
