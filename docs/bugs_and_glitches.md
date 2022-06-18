@@ -1148,7 +1148,7 @@ This can occur if your party and current PC box are both full when you start the
 -; Uncomment the line below to fix this.
  	ld b, a
  	ld a, [wEnemyMonStatus]
- 	and 1 << FRZ | SLP
+ 	and 1 << FRZ | SLP_MASK
  	ld c, 10
  	jr nz, .addstatus
 -	; ld a, [wEnemyMonStatus]
