@@ -2354,7 +2354,7 @@ CopyPokemonName_Buffer1_Buffer3:
 
 This bug can allow you to talk to Eusine in Celadon City and encounter Ho-Oh with only traded legendary beasts.
 
-**Fix:** Edit `CheckOwnMon` in [engine/pokemon/search.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/search.asm):
+**Fix:** Edit `CheckOwnMon` in [engine/pokemon/search_owned.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/search_owned.asm):
 
 ```diff
  ; check OT
@@ -2386,7 +2386,7 @@ This bug can allow you to talk to Eusine in Celadon City and encounter Ho-Oh wit
 
 This bug can prevent you from talking to Eusine in Celadon City or encountering Ho-Oh when a caught legendary beast is in the Day-Care.
 
-**Fix:** Edit `CheckOwnMonAnywhere` in [engine/pokemon/search.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/search.asm):
+**Fix:** Edit `CheckOwnMonAnywhere` in [engine/pokemon/search_owned.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/search_owned.asm):
 
 ```diff
  	; If there are no monsters in the party,
