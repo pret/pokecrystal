@@ -75,6 +75,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Using a Park Ball in non-Contest battles has a corrupt animation](#using-a-park-ball-in-non-contest-battles-has-a-corrupt-animation)
   - [Battle transitions fail to account for the enemy's level](#battle-transitions-fail-to-account-for-the-enemys-level)
   - [Some trainer NPCs have inconsistent overworld sprites](#some-trainer-npcs-have-inconsistent-overworld-sprites)
+  - [The Stadium 2 N64 graphic's tilemap is corrupt](#the-stadium-2-n64-graphics-tilemap-is-corrupt)
 - [Audio](#audio)
   - [Slot machine payout sound effects cut each other off](#slot-machine-payout-sound-effects-cut-each-other-off)
   - [Team Rocket battle music is not used for Executives or Scientists](#team-rocket-battle-music-is-not-used-for-executives-or-scientists)
@@ -2000,6 +2001,22 @@ Most of the NPCs in [maps/NationalParkBugContest.asm](https://github.com/pret/po
 (Note that [maps/Route8.asm](https://github.com/pret/pokecrystal/blob/master/maps/Route8.asm) has three `BIKER`s, `DWAYNE`, `HARRIS`, and `ZEKE`, that use `PAL_NPC_RED`, `PAL_NPC_GREEN`, and `PAL_NPC_BLUE` instead of `PAL_NPC_BROWN`; this is intentional since they're the "Kanto Pokémon Federation".)
 
 (The use of `SPRITE_ROCKER` instead of `SPRITE_COOLTRAINER_M` for `COOLTRAINERM NICK` may also be an intentional reference to the player's brother from the [Space World '97 beta](https://github.com/pret/pokegold-spaceworld).)
+
+
+### The Stadium 2 N64 graphic's tilemap is corrupt
+
+**Fix:** Edit `Stadium2N64Tilemap` in [mobile/mobile_5c.asm](https://github.com/pret/pokecrystal/blob/master/mobile/mobile_5c.asm):
+
+```diff
+-Stadium2N64Tilemap:
+-if DEF(_CRYSTAL11)
+-; Crystal 1.1 corrupted this tilemap by treating $0a bytes as Unix newlines,
+-; and converting them to $0d $0a Windows newlines.
+-INCBIN "gfx/mobile/stadium2_n64_corrupt.tilemap"
+-else
+INCBIN "gfx/mobile/stadium2_n64.tilemap"
+-endc
+```
 
 
 ## Audio
