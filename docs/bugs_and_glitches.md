@@ -85,6 +85,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Only the first three evolution entries can have Stone compatibility reported correctly](#only-the-first-three-evolution-entries-can-have-stone-compatibility-reported-correctly)
   - [`EVOLVE_STAT` can break Stone compatibility reporting](#evolve_stat-can-break-stone-compatibility-reporting)
   - [A "HOF Master!" title for 200-Time Famers is defined but inaccessible](#a-hof-master-title-for-200-time-famers-is-defined-but-inaccessible)
+  - [MOBILE STADIUM is incorrectly translated as MOBILE STUDIUM](#mobile-stadium-is-incorrectly-translated-as-mobile-studium)
 - [Scripted events](#scripted-events)
   - [Clair can give TM24 Dragonbreath twice](#clair-can-give-tm24-dragonbreath-twice)
   - [Daisy's grooming doesn't always increase happiness](#daisys-grooming-doesnt-always-increase-happiness)
@@ -2189,6 +2190,117 @@ This supports up to six entries.
  	call PlaceString
  	hlcoord 13, 2
  	jr .finish
+```
+
+
+### MOBILE STADIUM is incorrectly translated as MOBILE STUDIUM
+
+**Fix:** Edit `; MainMenuItems indexes` in [engine/menus/main_menu.asm](https://github.com/pret/pokecrystal/blob/master/engine/menus/main_menu.asm):
+
+```diff
+	const MAINMENU_NEW_GAME               ; 0
+	const MAINMENU_CONTINUE               ; 1
+	const MAINMENU_MOBILE_MYSTERY         ; 2
+	const MAINMENU_MOBILE                 ; 3
+-	const MAINMENU_MOBILE_STUDIUM         ; 4
++	const MAINMENU_MOBILE_STADIUM	      ; 4
+-	const MAINMENU_MYSTERY_MOBILE_STUDIUM ; 5
++	const MAINMENU_MYSTERY_MOBILE_STADIUM ; 5
+	const MAINMENU_MYSTERY                ; 6
+-	const MAINMENU_MYSTERY_STUDIUM        ; 7
++	const MAINMENU_MYSTERY_STADIUM	      ; 7
+-	const MAINMENU_STUDIUM                ; 8
++	const MAINMENU_STADIUM		      ; 8
+```
+
+and edit `; MainMenu.Strings and MainMenu.Jumptable indexes` in the same file:
+
+```diff
+	const MAINMENUITEM_CONTINUE       ; 0
+	const MAINMENUITEM_NEW_GAME       ; 1
+	const MAINMENUITEM_OPTION         ; 2
+	const MAINMENUITEM_MYSTERY_GIFT   ; 3
+	const MAINMENUITEM_MOBILE         ; 4
+-	const MAINMENUITEM_MOBILE_STUDIUM ; 5
++	const MAINMENUITEM_MOBILE_STADIUM ; 5
+	const MAINMENUITEM_DEBUG_ROOM     ; 6
+```
+
+Then edit `.Strings` in the same file:
+
+```diff
+	db "CONTINUE@"
+	db "NEW GAME@"
+	db "OPTION@"
+	db "MYSTERY GIFT@"
+	db "MOBILE@"
+-	db "MOBILE STUDIUM@"
++	db "MOBILE STADIUM@"
+if DEF(_DEBUG)
+	db "DEBUG ROOM@"
+endc
+```
+
+and edit `.Jumptable` in the same file:
+
+```diff
+	dw MainMenu_Continue
+	dw MainMenu_NewGame
+	dw MainMenu_Option
+	dw MainMenu_MysteryGift
+	dw MainMenu_Mobile
+-	dw MainMenu_MobileStudium
++	dw MainMenu_MobileStadium
+if DEF(_DEBUG)
+	dw MainMenu_DebugRoom
+endc
+```
+
+Then edit all instances of `STUDIUM` in the rest of the file as follows:
+
+```diff
+-	db MAINMENUITEM_MOBILE_STUDIUM
++	db MAINMENUITEM_MOBILE_STADIUM
+```
+
+Then edit `MobileStudium` in [mobile/mobile_45_stadium.asm]():
+
+```diff
+-MobileStudium:
++MobileStadium:
+```
+
+and `Function117b06`, `Function117b14`, `Function117b28`, `Function117b31`, `Function117b4f`, and `Function117bb6`, all in the same file:
+
+```diff
+-	jp MobileStudium_JumptableIncrement
++	jp MobileStadium_JumptableIncrement
+```
+
+and edit `MobileStudium_JumptableIncrement` in the same file:
+
+```diff
+-MobileStudium_JumptableIncrement:
++MobileStadium_JumptableIncrement:
+```
+
+Last, but not least, edit `MainMenu_MobileStudium` in [mobile/mobile_menu.asm]():
+
+```diff
+-MainMenu_MobileStudium:
++MainMenu_MobileStadium:
+	ld a, [wStartDay]
+	ld b, a
+	ld a, [wStartHour]
+	ld c, a
+	ld a, [wStartMinute]
+	ld d, a
+	ld a, [wStartSecond]
+	ld e, a
+	push bc
+	push de
+-	farcall MobileStudium
++	farcall MobileStadium
 ```
 
 
