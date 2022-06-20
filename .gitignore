@@ -27,6 +27,7 @@ gfx/pokemon/*/frames.asm
 *.exe
 
 # precompiled python
+__pycache__
 *.pyc
 *$py.class
 
