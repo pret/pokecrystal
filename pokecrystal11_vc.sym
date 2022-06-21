@@ -6325,9 +6325,9 @@
 0a:4091 Gen2ToGen1LinkComms.player_1
 0a:4097 Gen2ToGen1LinkComms.VC_Wireless_net_delay_5
 0a:4099 Gen2ToGen1LinkComms.VC_Wireless_net_delay_5_End
-0a:40ac Gen2ToGen1LinkComms.VC_Wireless_ExchangeBytes_1
-0a:40bb Gen2ToGen1LinkComms.VC_Wireless_ExchangeBytes_2
-0a:40ca Gen2ToGen1LinkComms.VC_Wireless_ExchangeBytes_3_Gen2toGen1Fix
+0a:40ac Gen2ToGen1LinkComms.VC_Wireless_ExchangeBytes_Gen2toGen1_RNG_state
+0a:40bb Gen2ToGen1LinkComms.VC_Wireless_ExchangeBytes_Gen2toGen1_party_structs
+0a:40ca Gen2ToGen1LinkComms.VC_Wireless_ExchangeBytes_Gen2toGen1_patch_lists
 0a:40fe Gen2ToGen1LinkComms.loop
 0a:411d Gen2ToGen1LinkComms.next
 0a:4135 Gen2ToGen1LinkComms.party_loop
@@ -6336,10 +6336,10 @@
 0a:41ae Gen2ToGen2LinkComms.player_1
 0a:41b4 Gen2ToGen2LinkComms.VC_Wireless_net_delay_8
 0a:41b6 Gen2ToGen2LinkComms.VC_Wireless_net_delay_8_End
-0a:41c9 Gen2ToGen2LinkComms.VC_Wireless_ExchangeBytes_4
-0a:41d8 Gen2ToGen2LinkComms.VC_Wireless_ExchangeBytes_5
-0a:41e7 Gen2ToGen2LinkComms.VC_Wireless_ExchangeBytes_6
-0a:41fa Gen2ToGen2LinkComms.VC_Wireless_ExchangeBytes_7
+0a:41c9 Gen2ToGen2LinkComms.VC_Wireless_ExchangeBytes_RNG_state
+0a:41d8 Gen2ToGen2LinkComms.VC_Wireless_ExchangeBytes_party_structs
+0a:41e7 Gen2ToGen2LinkComms.VC_Wireless_ExchangeBytes_patch_lists
+0a:41fa Gen2ToGen2LinkComms.VC_Wireless_ExchangeBytes_mail
 0a:41fd Gen2ToGen2LinkComms.not_trading
 0a:4224 Gen2ToGen2LinkComms.loop1
 0a:4243 Gen2ToGen2LinkComms.next1
