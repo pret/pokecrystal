@@ -269,7 +269,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
 
 This bug existed for all battles in Gold and Silver, and was only fixed for single-player battles in Crystal to preserve link compatibility.
 
-**Fix:** Edit `TruncateHL_BC` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm)
+**Fix:** Edit `TruncateHL_BC` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm):
 
 ```diff
  .finish
