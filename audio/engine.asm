@@ -353,7 +353,7 @@ UpdateChannels:
 	ldh a, [rNR52]
 	and %10001101 ; ch2 off
 	ldh [rNR52], a
-	ld hl, rNR20
+	ld hl, rNR21 - 1 ; there is no rNR20
 	call ClearChannel
 	ret
 
@@ -491,7 +491,7 @@ endr
 	ldh a, [rNR52]
 	and %10000111 ; ch4 off
 	ldh [rNR52], a
-	ld hl, rNR40
+	ld hl, rNR41 - 1 ; there is no rNR40
 	call ClearChannel
 	ret
 

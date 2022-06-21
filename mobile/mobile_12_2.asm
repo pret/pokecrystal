@@ -1,6 +1,15 @@
 MobileCheckOwnMonAnywhere:
-; Like CheckOwnMonAnywhere, but only check for species.
+; Like CheckOwnMonAnywhere, but only checks for species.
 ; OT/ID don't matter.
+
+; inputs:
+; [wScriptVar] should contain the species we're looking for.
+
+; outputs:
+; sets carry if monster matches species.
+
+	; If there are no monsters in the party,
+	; the player must not own any yet.
 
 	ld a, [wPartyCount]
 	and a
@@ -10,47 +19,63 @@ MobileCheckOwnMonAnywhere:
 	ld e, 0
 	ld hl, wPartyMon1Species
 	ld bc, wPartyMonOTs
-.asm_4a851
+
+	; Run .CheckMatch on each Pokémon in the party.
+
+.partymon
 	call .CheckMatch
 	ret c
+
 	push bc
 	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
 	call .AdvanceOTName
 	dec d
-	jr nz, .asm_4a851
+	jr nz, .partymon
+
+	; Run .CheckMatch on each Pokémon in the PC.
+
 	ld a, BANK(sBoxCount)
 	call OpenSRAM
 	ld a, [sBoxCount]
 	and a
-	jr z, .asm_4a888
+	jr z, .boxes
+
 	ld d, a
 	ld hl, sBoxMon1Species
 	ld bc, sBoxMonOTs
-.asm_4a873
+.openboxmon
 	call .CheckMatch
-	jr nc, .asm_4a87c
+	jr nc, .loop
+
 	call CloseSRAM
 	ret
 
-.asm_4a87c
+.loop
 	push bc
 	ld bc, BOXMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
 	call .AdvanceOTName
 	dec d
-	jr nz, .asm_4a873
+	jr nz, .openboxmon
 
-.asm_4a888
+	; Run .CheckMatch on each monster in the other 13 PC boxes.
+
+.boxes
 	call CloseSRAM
+
 	ld c, 0
-.asm_4a88d
+.box
+	; Don't search the current box again.
 	ld a, [wCurBox]
 	and $f
 	cp c
-	jr z, .asm_4a8d1
+	jr z, .loopbox
+
+	; Load the box.
+
 	ld hl, .BoxAddresses
 	ld b, 0
 	add hl, bc
@@ -61,10 +86,15 @@ MobileCheckOwnMonAnywhere:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+
+	; Number of monsters in the box
+
 	ld a, [hl]
 	and a
-	jr z, .asm_4a8d1
+	jr z, .loopbox
+
 	push bc
+
 	push hl
 	ld de, sBoxMons - sBoxCount
 	add hl, de
@@ -77,39 +107,51 @@ MobileCheckOwnMonAnywhere:
 	ld b, h
 	ld c, l
 	pop hl
+
 	ld d, a
-.asm_4a8ba
+
+.boxmon
 	call .CheckMatch
-	jr nc, .asm_4a8c4
+	jr nc, .loopboxmon
+
 	pop bc
 	call CloseSRAM
 	ret
 
-.asm_4a8c4
+.loopboxmon
 	push bc
 	ld bc, BOXMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
 	call .AdvanceOTName
 	dec d
-	jr nz, .asm_4a8ba
+	jr nz, .boxmon
 	pop bc
 
-.asm_4a8d1
+.loopbox
 	inc c
 	ld a, c
 	cp NUM_BOXES
-	jr c, .asm_4a88d
+	jr c, .box
+
 	call CloseSRAM
 	and a
 	ret
 
 .CheckMatch:
+	; Check if a Pokémon is of a specific species.
+	; We compare the species we are looking for in
+	; [wScriptVar] to the species we have in [hl].
+	; Sets carry flag if species matches.
+
 	push bc
 	push hl
 	push de
 	ld d, b
 	ld e, c
+
+	; check species
+
 	ld a, [wScriptVar]
 	ld b, [hl]
 	cp b
