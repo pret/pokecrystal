@@ -46,38 +46,38 @@ Mode = 2
 Address = {HEX @ 4}
 Type = 30
 
-[Network358@Wireless_ExchangeBytes_1]
+[Network358@Wireless_ExchangeBytes_Gen2toGen1_RNG_state]
 Mode = 2
 Address = {HEX @}
 Type = 4
 
-[Network359@Wireless_ExchangeBytes_2]
+[Network359@Wireless_ExchangeBytes_Gen2toGen1_party_structs]
 Mode = 2
 Address = {HEX @}
 Type = 4
 
-[Network364@Wireless_ExchangeBytes_3_Gen2toGen1Fix]
+[Network364@Wireless_ExchangeBytes_Gen2toGen1_patch_lists]
 Mode = 2
 Address = {HEX @}
 ;fix pokemon ?? in name
 Type = 26
 
-[Network360@Wireless_ExchangeBytes_4]
+[Network360@Wireless_ExchangeBytes_RNG_state]
 Mode = 2
 Address = {HEX @}
 Type = 4
 
-[Network361@Wireless_ExchangeBytes_5]
+[Network361@Wireless_ExchangeBytes_party_structs]
 Mode = 2
 Address = {HEX @}
 Type = 4
 
-[Network362@Wireless_ExchangeBytes_6]
+[Network362@Wireless_ExchangeBytes_patch_lists]
 Mode = 2
 Address = {HEX @}
 Type = 4
 
-[Network363@Wireless_ExchangeBytes_7]
+[Network363@Wireless_ExchangeBytes_mail]
 Mode = 2
 Address = {HEX @}
 Type = 4
