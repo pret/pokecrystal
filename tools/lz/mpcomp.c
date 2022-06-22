@@ -97,14 +97,14 @@ struct command pick_copy_for_pass (const unsigned char * data, const unsigned ch
   while (*sources >= 0) {
     refpos = *(sources ++);
     if (command_type == 6) refpos = length - 1 - refpos;
-    if (refpos >= (length - 3))
+    if (refpos >= (unsigned int)(length - 3))
       current = buffer + refpos - (length - 3);
     else
       current = reference + refpos;
     if (memcmp(data + position, current, ((position + 4) > length) ? length - position : 4)) continue;
-    for (count = 4; (count < (length - position)) && (count < (length - refpos)); count ++) if (data[position + count] != current[count]) break;
+    for (count = 4; (count < (unsigned int)(length - position)) && (count < (length - refpos)); count ++) if (data[position + count] != current[count]) break;
     if (count > (length - refpos)) count = length - refpos;
-    if (count > (length - position)) count = length - position;
+    if (count > (unsigned int)(length - position)) count = length - position;
     if (result.count > count) continue;
     result = (struct command) {.command = command_type, .count = count, .value = sources[-1]};
   }
