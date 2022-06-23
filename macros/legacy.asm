@@ -338,6 +338,11 @@ DEF anim_enemyfeetobj  EQUS "anim_battlergfx_2row"
 DEF anim_playerheadobj EQUS "anim_battlergfx_1row"
 DEF anim_clearsprites  EQUS "anim_keepsprites"
 
+; macros/scripts/oam_anims.asm
+DEF dorestart EQUS "oamrestart"
+DEF dowait EQUS "oamwait"
+DEF delanim EQUS "oamdel"
+
 ; engine/events/std_scripts.asm
 DEF pokecenternurse       EQUS "PokecenterNurseScript"
 DEF difficultbookshelf    EQUS "DifficultBookshelfScript"

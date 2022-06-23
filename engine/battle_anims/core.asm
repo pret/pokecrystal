@@ -80,9 +80,9 @@ endr
 BattleAnimOAMUpdate:
 	call InitBattleAnimBuffer
 	call GetBattleAnimFrame
-	cp dowait_command
+	cp oamwait_command
 	jp z, .done
-	cp delanim_command
+	cp oamdelete_command
 	jp z, .delete
 
 	push af
