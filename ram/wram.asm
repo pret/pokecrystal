@@ -29,23 +29,12 @@ wCurMusicByte:: db
 wCurChannel:: db
 wVolume::
 ; corresponds to rNR50
-; Channel control / ON-OFF / Volume (R/W)
-;   bit 7 - Vin->SO2 ON/OFF
-;   bit 6-4 - SO2 output level (volume) (# 0-7)
-;   bit 3 - Vin->SO1 ON/OFF
-;   bit 2-0 - SO1 output level (volume) (# 0-7)
 	db
 wSoundOutput::
 ; corresponds to rNR51
-; bit 4-7: ch1-4 so2 on/off
-; bit 0-3: ch1-4 so1 on/off
 	db
 wPitchSweep::
 ; corresponds to rNR10
-; bit 7:   unused
-; bit 4-6: sweep time
-; bit 3:   sweep direction
-; but 0-2: sweep shift
 	db
 
 wMusicID:: dw
@@ -57,15 +46,10 @@ wMusicNoiseSampleSet:: db
 wSFXNoiseSampleSet:: db
 
 wLowHealthAlarm::
-; bit 7: on/off
-; bit 4: pitch
-; bit 0-3: counter
 	db
 
 wMusicFade::
 ; fades volume over x frames
-; bit 7: fade in/out
-; bit 0-5: number of frames for each volume level
 ; $00 = none (default)
 	db
 wMusicFadeCount:: db
@@ -189,10 +173,6 @@ wTileRight:: db
 wTilePermissions::
 ; set if tile behavior prevents
 ; you from walking in that direction
-; bit 3: down
-; bit 2: up
-; bit 1: left
-; bit 0: right
 	db
 
 
@@ -1440,12 +1420,6 @@ wSGBPals:: ds 48
 wAttrmap::
 ; 20x18 grid of bg tile attributes for 8x8 tiles
 ; read horizontally from the top row
-;		bit 7: priority
-;		bit 6: y flip
-;		bit 5: x flip
-;		bit 4: pal # (non-cgb)
-;		bit 3: vram bank (cgb only)
-;		bit 2-0: pal # (cgb only)
 	ds SCREEN_WIDTH * SCREEN_HEIGHT
 wAttrmapEnd::
 
@@ -1686,14 +1660,6 @@ w2DMenuCursorInitX:: db
 w2DMenuNumRows:: db
 w2DMenuNumCols:: db
 w2DMenuFlags1::
-; bit 7: Disable checking of wMenuJoypadFilter
-; bit 6: Enable sprite animations
-; bit 5: Wrap around vertically
-; bit 4: Wrap around horizontally
-; bit 3: Set bit 7 in w2DMenuFlags2 and exit the loop if bit 5 is disabled and we tried to go too far down
-; bit 2: Set bit 7 in w2DMenuFlags2 and exit the loop if bit 5 is disabled and we tried to go too far up
-; bit 1: Set bit 7 in w2DMenuFlags2 and exit the loop if bit 4 is disabled and we tried to go too far left
-; bit 0: Set bit 7 in w2DMenuFlags2 and exit the loop if bit 4 is disabled and we tried to go too far right
 	db
 w2DMenuFlags2:: db
 w2DMenuCursorOffsets:: db
@@ -1719,8 +1685,6 @@ wFarCallBC:: dw
 wUnusedLinkCommunicationByte:: db
 
 wGameTimerPaused::
-; bit 0: game timer paused
-; bit 7: something mobile
 	db
 
 	ds 1
@@ -1758,32 +1722,15 @@ wNumHits:: db
 	ds 1
 
 wOptions::
-; bit 0-2: number of frames to delay when printing text
-;   fast 1; mid 3; slow 5
-; bit 3: ?
-; bit 4: no text delay
-; bit 5: stereo off/on
-; bit 6: battle style shift/set
-; bit 7: battle scene off/on
 	db
 wSaveFileExists:: db
 wTextboxFrame::
-; bits 0-2: textbox frame 0-7
 	db
 wTextboxFlags::
-; bit 0: 1-frame text delay
-; bit 4: no text delay
 	db
 wGBPrinterBrightness::
-; bit 0-6: brightness
-;   lightest: $00
-;   lighter:  $20
-;   normal:   $40 (default)
-;   darker:   $60
-;   darkest:  $7F
 	db
 wOptions2::
-; bit 1: menu account off/on
 	db
 	ds 2
 wOptionsEnd::
@@ -2270,10 +2217,6 @@ wSolvedUnownPuzzle::
 	db
 
 wVramState::
-; bit 0: overworld sprite updating on/off
-; bit 1: something to do with sprite updates
-; bit 6: something to do with text
-; bit 7: on when surf initiates
 ;        flickers when climbing waterfall
 	db
 
@@ -2769,11 +2712,6 @@ wScriptFlags::
 	db
 	ds 1
 wScriptFlags2::
-; bit 0: count steps
-; bit 1: coord events
-; bit 2: warps and connections
-; bit 4: wild encounters
-; bit 5: unknown
 	db
 
 wScriptMode:: db
@@ -2831,9 +2769,6 @@ wMapStatusEnd::
 
 wCrystalData::
 wPlayerGender::
-; bit 0:
-;	0 male
-;	1 female
 	db
 wd473:: ds 1
 wd474:: ds 1
@@ -2925,35 +2860,15 @@ wCurTimeOfDay:: db
 
 wSecretID:: dw
 wStatusFlags::
-; bit 0: pokedex
-; bit 1: unown dex
-; bit 2: flash
-; bit 3: caught pokerus
-; bit 4: rocket signal
-; bit 5: wild encounters on/off
-; bit 6: hall of fame
-; bit 7: bug contest on
 	db
 
 wStatusFlags2::
-; bit 0: rockets
-; bit 1: safari game (unused)
-; bit 2: bug contest timer
-; bit 3: unused
-; bit 4: bike shop call
-; bit 5: can use sweet scent
-; bit 6: reached goldenrod
-; bit 7: rockets in mahogany
 	db
 
 wMoney:: ds 3
 wMomsMoney:: ds 3
 
 wMomSavingMoney::
-; bit 0: saving some money
-; bit 1: saving half money (unused)
-; bit 2: saving all money (unused)
-; bit 7: active
 	db
 
 wCoins:: dw
@@ -2977,11 +2892,6 @@ wNumPCItems:: db
 wPCItems:: ds MAX_PC_ITEMS * 2 + 1
 
 wPokegearFlags::
-; bit 0: map
-; bit 1: radio
-; bit 2: phone
-; bit 3: expn
-; bit 7: on/off
 	db
 wRadioTuningKnob:: db
 wLastDexMode:: db
@@ -3131,9 +3041,6 @@ wCelebiEvent::
 	ds 1
 
 wBikeFlags::
-; bit 0: using strength
-; bit 1: always on bike
-; bit 2: downhill
 	db
 	ds 1 ; cleared along with wBikeFlags by ResetBikeFlags
 
@@ -3301,10 +3208,6 @@ wUnlockedUnowns:: db
 wFirstUnownSeen:: db
 
 wDayCareMan::
-; bit 7: active
-; bit 6: egg ready
-; bit 5: monsters are compatible
-; bit 0: monster 1 in day-care
 	db
 
 wBreedMon1Nickname:: ds MON_NAME_LENGTH
@@ -3312,8 +3215,6 @@ wBreedMon1OT:: ds NAME_LENGTH
 wBreedMon1:: box_struct wBreedMon1
 
 wDayCareLady::
-; bit 7: active
-; bit 0: monster 2 in day-care
 	db
 
 wStepsToEgg::
