@@ -42,7 +42,7 @@ Run setup and leave the default settings. At the "**Select Packages**" step, cho
 
 Double click on the text that says "**Skip**" next to each package to select the most recent version to install.
 
-Then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install) for Windows with Cygwin to install **rgbds 0.5.2**.
+Then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#pre-built) for Windows with Cygwin to install **rgbds 0.5.2**.
 
 **Note:** If you already have an older rgbds, you will need to update to 0.5.2. Ignore this if you have never installed rgbds before. If a version newer than 0.5.2 does not work, try downloading 0.5.2.
 
@@ -67,7 +67,7 @@ Install [**Homebrew**](https://brew.sh/). Follow the official instructions.
 
 Open **Terminal** and prepare to enter commands.
 
-Then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install) for macOS to install **rgbds 0.5.2**.
+Then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#pre-built) for macOS to install **rgbds 0.5.2**.
 
 Now you're ready to [build **pokecrystal**](#build-pokecrystal).
 
@@ -104,7 +104,7 @@ To install the software required for **pokecrystal**:
 sudo pacman -S make gcc git rgbds
 ```
 
-Then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install) for Arch Linux to install **rgbds 0.5.2**.
+Then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#pre-built) for Arch Linux to install **rgbds 0.5.2**.
 
 If you want to compile and install **rgbds** yourself instead, then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#building-from-source) to build **rgbds 0.5.2** from source.
 
