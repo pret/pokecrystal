@@ -2217,7 +2217,7 @@ WaitForOtherPlayerToExit:
 	xor a
 	ldh [rSB], a
 	ldh [hSerialReceive], a
-	ld a, 0 | 0
+	ld a, 0 ; Stop any transfer in progress
 	ldh [rSC], a
 	ld a, SCF_START
 	ldh [rSC], a
