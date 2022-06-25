@@ -2219,7 +2219,7 @@ WaitForOtherPlayerToExit:
 	ldh [hSerialReceive], a
 	ld a, 0 | 0
 	ldh [rSC], a
-	ld a, SCF_START | 0
+	ld a, SCF_START
 	ldh [rSC], a
 	ld c, 3
 	call DelayFrames
