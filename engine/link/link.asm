@@ -225,7 +225,7 @@ Gen2ToGen2LinkComms:
 	call DelayFrame
 	xor a
 	ldh [hSerialSend], a
-	ld a, 0 | SCF_SOURCE
+	ld a, SCF_SOURCE ; Stop any transfer in progress
 	ldh [rSC], a
 	ld a, SCF_START | SCF_SOURCE
 	ldh [rSC], a
