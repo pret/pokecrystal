@@ -2309,7 +2309,7 @@ WaitForLinkedFriend:
 	ldh [hSerialReceive], a
 	ld a, 0 ; Stop any transfer in progress
 	ldh [rSC], a
-	ld a, SCF_START | 0
+	ld a, SCF_START
 ; This vc_hook causes the Virtual Console to set [hSerialConnectionStatus] to
 ; USING_INTERNAL_CLOCK, which allows the player to proceed past the link
 ; receptionist's "Please wait." It assumes that hSerialConnectionStatus is at
