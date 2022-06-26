@@ -28,9 +28,9 @@ Serial::
 	cp USING_INTERNAL_CLOCK
 	jr z, .player2
 
-	ld a, 0 | 0
+	ld a, 0 ; Stop any transfer in progress
 	ldh [rSC], a
-	ld a, SCF_START | 0
+	ld a, SCF_START
 	ldh [rSC], a
 	jr .player2
 
@@ -65,9 +65,9 @@ Serial::
 	bit 7, a
 	jr nz, .delay_loop
 
-	ld a, 0 | 0
+	ld a, 0 ; Stop any transfer in progress
 	ldh [rSC], a
-	ld a, SCF_START | 0
+	ld a, SCF_START
 	ldh [rSC], a
 	jr .player2
 
@@ -134,7 +134,7 @@ Serial_ExchangeByte::
 	ldh a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
 	jr nz, .not_player_2
-	ld a, 0 | SCF_SOURCE
+	ld a, SCF_SOURCE ; Stop any transfer in progress
 	ldh [rSC], a
 	ld a, SCF_START | SCF_SOURCE
 	ldh [rSC], a
@@ -370,7 +370,7 @@ LinkTransfer::
 	ldh a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
 	jr nz, .player_1
-	ld a, 0 | SCF_SOURCE
+	ld a, SCF_SOURCE ; Stop any transfer in progress
 	ldh [rSC], a
 	ld a, SCF_START | SCF_SOURCE
 	ldh [rSC], a
@@ -400,7 +400,7 @@ LinkDataReceived::
 	ldh a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
 	ret nz
-	ld a, 0 | SCF_SOURCE
+	ld a, SCF_SOURCE ; Stop any transfer in progress
 	ldh [rSC], a
 	ld a, SCF_START | SCF_SOURCE
 	ldh [rSC], a
@@ -415,8 +415,8 @@ SetBitsForTimeCapsuleRequestIfNotLinked:: ; unreferenced
 	ldh [rSB], a
 	xor a
 	ldh [hSerialReceive], a
-	ld a, 0 | 0
+	ld a, 0 ; Stop any transfer in progress
 	ldh [rSC], a
-	ld a, SCF_START | 0
+	ld a, SCF_START
 	ldh [rSC], a
 	ret

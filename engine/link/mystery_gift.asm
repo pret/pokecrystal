@@ -821,7 +821,7 @@ ReceiveInfraredLEDOff:
 
 SendInfraredLEDOn:
 ; Holds the IR LED on for d-1 interrupts.
-	ld a, RPF_ENREAD | (1 << RPF_WRITE_LO)
+	ld a, RPF_ENREAD | RPF_WRITE_HI
 	ldh [c], a
 .wait
 	dec d
@@ -833,7 +833,7 @@ SendInfraredLEDOn:
 
 SendInfraredLEDOff:
 ; Holds the IR LED off for d-1 interrupts.
-	ld a, RPF_ENREAD
+	ld a, RPF_ENREAD | RPF_WRITE_LO
 	ldh [c], a
 .wait
 	dec d
@@ -851,7 +851,7 @@ InitializeIRCommunicationRoles:
 	ldh [hMGRole], a
 .loop
 	call MysteryGift_UpdateJoypad
-	ld b, 1 << RPF_WRITE_HI
+	ld b, RPF_DATAIN
 	ld c, LOW(rRP)
 	; Check if we've pressed the B button to cancel
 	ldh a, [hMGJoypadReleased]
