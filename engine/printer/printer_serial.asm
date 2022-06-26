@@ -270,7 +270,7 @@ Printer_WaitHandshake:
 	ld [wPrinterOpcode], a
 	ld a, $88
 	ldh [rSB], a
-	ld a, 0 | SCF_SOURCE
+	ld a, SCF_SOURCE ; Stop any transfer in progress
 	ldh [rSC], a
 	ld a, SCF_START | SCF_SOURCE
 	ldh [rSC], a
