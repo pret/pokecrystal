@@ -20,7 +20,7 @@ Function115dc3:
 	xor a
 	ld [wc305], a
 	ld a, $a0
-	ld hl, wVirtualOAMSprite31
+	ld hl, wShadowOAMSprite31
 	ld bc, 8 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
 	ret
@@ -30,7 +30,7 @@ Function115dd3:
 	and a
 	ret z
 	ld a, $a0
-	ld hl, wVirtualOAMSprite31
+	ld hl, wShadowOAMSprite31
 	ld bc, 8 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
 	call Function115e22
@@ -46,7 +46,7 @@ Function115dd3:
 	ld d, a
 	push de
 	pop hl
-	ld de, wVirtualOAMSprite31
+	ld de, wShadowOAMSprite31
 	ld a, [wc307]
 	ld c, a
 	ld a, [wc308]
@@ -345,7 +345,7 @@ Function11619d:
 	cp $2
 	jr c, .asm_1161b4
 	ld a, $a0
-	ld hl, wVirtualOAM
+	ld hl, wShadowOAM
 	ld bc, 25 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
 
@@ -549,7 +549,7 @@ Function1162f2:
 	ld e, a
 	ld a, [hli]
 	sub e
-	ld de, wVirtualOAMSprite09
+	ld de, wShadowOAMSprite09
 .asm_116321
 	push af
 	ld a, [hli]
@@ -590,7 +590,7 @@ Function1162f2:
 	ld e, a
 	ld a, [hli]
 	sub e
-	ld de, wVirtualOAMSprite00
+	ld de, wShadowOAMSprite00
 .asm_11635a
 	push af
 	ld a, [hli]
@@ -629,7 +629,7 @@ Function11636e:
 	ld a, $1
 	ldh [rSVBK], a
 	ld a, $a0
-	ld hl, wVirtualOAM
+	ld hl, wShadowOAM
 	ld bc, 16 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
 	ld a, $90
@@ -655,7 +655,7 @@ Function1163c0:
 	ld a, $1
 	ldh [rSVBK], a
 	ld a, $a0
-	ld hl, wVirtualOAM
+	ld hl, wShadowOAM
 	ld bc, 16 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
 	call DelayFrame

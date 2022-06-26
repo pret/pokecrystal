@@ -299,12 +299,12 @@ wMobileWRAMEnd::
 
 SECTION "Sprites", WRAM0
 
-wVirtualOAM::
-; wVirtualOAMSprite00 - wVirtualOAMSprite39
+wShadowOAM::
+; wShadowOAMSprite00 - wShadowOAMSprite39
 for n, NUM_SPRITE_OAM_STRUCTS
-wVirtualOAMSprite{02d:n}:: sprite_oam_struct wVirtualOAMSprite{02d:n}
+wShadowOAMSprite{02d:n}:: sprite_oam_struct wShadowOAMSprite{02d:n}
 endr
-wVirtualOAMEnd::
+wShadowOAMEnd::
 
 
 SECTION "Tilemap", WRAM0

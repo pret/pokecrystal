@@ -16,7 +16,7 @@ OAMDMACode:
 LOAD "OAM DMA", HRAM
 hTransferVirtualOAM::
 	; initiate DMA
-	ld a, HIGH(wVirtualOAM)
+	ld a, HIGH(wShadowOAM)
 	ldh [rDMA], a
 	; wait for DMA to finish
 	ld a, NUM_SPRITE_OAM_STRUCTS
