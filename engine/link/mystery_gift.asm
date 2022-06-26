@@ -833,7 +833,7 @@ SendInfraredLEDOn:
 
 SendInfraredLEDOff:
 ; Holds the IR LED off for d-1 interrupts.
-	ld a, RPF_ENREAD
+	ld a, RPF_ENREAD | RPF_WRITE_LO
 	ldh [c], a
 .wait
 	dec d
