@@ -2282,7 +2282,7 @@ WaitForLinkedFriend:
 	ldh [rSB], a
 	xor a
 	ldh [hSerialReceive], a
-	ld a, 0 | 0
+	ld a, 0 ; Stop any transfer in progress
 	ldh [rSC], a
 	ld a, SCF_START | 0
 	ldh [rSC], a
