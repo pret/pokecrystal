@@ -98,7 +98,7 @@ DoNextFrameForFirst16Sprites:
 	ld l, a
 	ld h, HIGH(wVirtualOAMSprite16)
 
-.loop2 ; Clear (wVirtualOAM + [wCurSpriteOAMAddr] --> Sprites + OAMF_YFLIP)
+.loop2 ; Clear (wVirtualOAM + [wCurSpriteOAMAddr] --> Sprites + $40)
 	ld a, l
 	cp LOW(wVirtualOAMSprite16)
 	jr nc, .done

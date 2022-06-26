@@ -1186,7 +1186,7 @@ ReceiveIRDataMessage:
 	inc d
 	jr z, .recv_done
 	ldh a, [c]
-	bit 1, a ; RPF_WRITE_HI in hardware.inc, RPB_DATAIN needs to be added for this
+	bit RPB_DATAIN, a
 	jr z, .recv_loop
 	ld d, 0
 .recv_done
@@ -1194,7 +1194,7 @@ ReceiveIRDataMessage:
 	inc d
 	jr z, .send_done
 	ldh a, [c]
-	bit 1, a ; RPF_WRITE_HI in hardware.inc, RPB_DATAIN needs to be added for this
+	bit RPB_DATAIN, a
 	jr nz, .send_loop
 .send_done
 	ldh a, [hMGPrevTIMA]
