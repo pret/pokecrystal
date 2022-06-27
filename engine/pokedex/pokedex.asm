@@ -2108,7 +2108,7 @@ Pokedex_UpdateSearchResultsCursorOAM:
 	db -1
 
 Pokedex_LoadCursorOAM:
-	ld de, wVirtualOAMSprite00
+	ld de, wShadowOAMSprite00
 .loop
 	ld a, [hl]
 	cp -1

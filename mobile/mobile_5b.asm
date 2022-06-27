@@ -535,7 +535,7 @@ Function16cb2e:
 	ret z
 	call Function16cb40
 	ld hl, Unknown_16cb86
-	ld de, wVirtualOAM
+	ld de, wShadowOAM
 	call Function16cb5d
 	ret
 

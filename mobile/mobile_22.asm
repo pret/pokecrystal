@@ -533,7 +533,7 @@ Function8942b:
 Function89448:
 ; Clears the sprite array
 	push af
-	ld hl, wVirtualOAM
+	ld hl, wShadowOAM
 	ld d, 24 * SPRITEOAMSTRUCT_LENGTH
 	xor a
 .loop
@@ -1813,7 +1813,7 @@ Function89b97:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, wVirtualOAMSprite00
+	ld de, wShadowOAMSprite00
 .asm_89bb4
 	ld a, [hli]
 	cp $ff
@@ -1900,7 +1900,7 @@ Function89c44:
 	pop de
 	ret
 .asm_89c4f
-	ld hl, wVirtualOAMSprite00
+	ld hl, wShadowOAMSprite00
 	push de
 	ld a, b
 	ld [hli], a ; y
@@ -2008,7 +2008,7 @@ Function89cdf:
 	ld c, a
 	ld e, $2
 	ld a, $2
-	ld hl, wVirtualOAMSprite00
+	ld hl, wShadowOAMSprite00
 .asm_89cee
 	push af
 	push bc
@@ -2427,7 +2427,7 @@ Function89f77:
 
 Function89f9a:
 	dec a
-	ld hl, wVirtualOAM
+	ld hl, wShadowOAM
 	and a
 	ret z
 .asm_89fa0
@@ -3132,7 +3132,7 @@ asm_8a529:
 	ld [hli], a
 	ld a, $ff
 	ld [hli], a
-	ld hl, wVirtualOAM
+	ld hl, wShadowOAM
 	xor a
 	ld bc, 8 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
