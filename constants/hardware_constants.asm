@@ -157,10 +157,6 @@ DEF rOBPI_AUTO_INCREMENT EQU 7     ; increment rOBPI after write to rOBPD
 DEF rOBPD                EQU $ff6b ; CGB Mode Only - Sprite Palette Data
 DEF rOPRI                EQU $ff6c ; CGB Mode Only - Object Priority Mode
 DEF rSVBK                EQU $ff70 ; CGB Mode Only - WRAM Bank
-DEF rUNKNOWN2            EQU $ff72 ; (00h) - Bit 0-7 (Read/Write)
-DEF rUNKNOWN3            EQU $ff73 ; (00h) - Bit 0-7 (Read/Write)
-DEF rUNKNOWN4            EQU $ff74 ; (00h) - Bit 0-7 (Read/Write) - CGB Mode Only
-DEF rUNKNOWN5            EQU $ff75 ; (8Fh) - Bit 4-6 (Read/Write)
 DEF rPCM12               EQU $ff76 ; Channel 1 & 2 Amplitude (R)
 DEF rPCM34               EQU $ff77 ; Channel 3 & 4 Amplitude (R)
 DEF rIE                  EQU $ffff ; Interrupt Enable (R/W)
