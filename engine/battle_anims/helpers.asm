@@ -29,9 +29,9 @@ GetBattleAnimFrame:
 	inc [hl]
 	call .GetPointer
 	ld a, [hli]
-	cp dorestart_command
+	cp oamrestart_command
 	jr z, .restart
-	cp endanim_command
+	cp oamend_command
 	jr z, .repeat_last
 
 	push af
@@ -44,7 +44,7 @@ GetBattleAnimFrame:
 	pop hl
 .okay
 	ld a, [hl]
-	and Y_FLIP << 1 | X_FLIP << 1 ; The << 1 is compensated in the "frame" macro
+	and Y_FLIP << 1 | X_FLIP << 1 ; The << 1 is compensated in the "oamframe" macro
 	srl a
 	ld [wBattleAnimTempFrameOAMFlags], a
 	pop af
