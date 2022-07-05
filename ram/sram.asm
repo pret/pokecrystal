@@ -155,7 +155,7 @@ sBattleTowerChallengeState::
 sNrOfBeatenBattleTowerTrainers:: db
 sBTChoiceOfLevelGroup:: db
 ; Battle Tower trainers are saved here, so nobody appears more than once
-sBTTrainers:: ds BATTLETOWER_STREAK_LENGTH ; sbe48
+sBTTrainers:: ds BATTLETOWER_STREAK_LENGTH
 sBattleTowerSaveFileFlags:: db
 sBattleTowerReward:: db
 
