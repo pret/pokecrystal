@@ -11,8 +11,8 @@ These are parts of the code that do not work *incorrectly*, like [bugs and glitc
 - [Music IDs $64 and $80 or above have special behavior](#music-ids-64-and-80-or-above-have-special-behavior)
 - [`ITEM_C3` and `ITEM_DC` break up the continuous sequence of TM items](#item_c3-and-item_dc-break-up-the-continuous-sequence-of-tm-items)
 - [Pokédex entry banks are derived from their species IDs](#pokédex-entry-banks-are-derived-from-their-species-ids)
-- [Identical sine wave code and data is repeated five times](#identical-sine-wave-code-and-data-is-repeated-five-times)
 - [The 6-bit caught level can only record up to level 63](#the-6-bit-caught-level-can-only-record-up-to-level-63)
+- [Identical sine wave code and data is repeated five times](#identical-sine-wave-code-and-data-is-repeated-five-times)
 - [`GetForestTreeFrame` works, but it's still bad](#getforesttreeframe-works-but-its-still-bad)
 
 
@@ -613,6 +613,47 @@ And edit [engine/pokegear/radio.asm](https://github.com/pret/pokecrystal/blob/ma
 ```
 
 
+## The 6-bit caught level can only record up to level 63
+
+Crystal added the Poké Seer, who tells you your Pokémon's caught data: where it was caught, what time, and at what level. The status screen also displays the gender of its Original Trainer, since Crystal added player genders. This data is packed into two previously-unused bytes in the `box_struct`; from [macros/wram.asm](https://github.com/pret/pokecrystal/blob/master/macros/wram.asm):
+
+```asm
+MACRO box_struct
+\1Species::        db
+...
+\1CaughtData::
+\1CaughtTime::
+\1CaughtLevel::    db
+\1CaughtGender::
+\1CaughtLocation:: db
+\1Level::          db
+\1BoxEnd::
+ENDM
+```
+
+These four pieces of data are packed into two bytes using the bitmasks in [constants/pokemon_data_constants.asm](https://github.com/pret/pokecrystal/blob/master/constants/pokemon_data_constants.asm):
+
+```asm
+DEF CAUGHT_TIME_MASK  EQU %11000000
+DEF CAUGHT_LEVEL_MASK EQU %00111111
+
+DEF CAUGHT_GENDER_MASK   EQU %10000000
+DEF CAUGHT_LOCATION_MASK EQU %01111111
+```
+
+The caught level only uses six bits, so it can only record levels as high as 2^6 − 1 = 63. If a Pokémon is caught at level 64 or higher, its level overflows into the two bits used for the caught time, before the actual caught time is stored in the same byte with a bitwise `or` operation. For example, a Pokémon caught at level 70 (`%01000110`) in the morning (`%00000000`) would be reported as caught at level 6 (`%000110` in the low six bits) during the day (`%01` in the high two bits).
+
+This limitation is probably why Lugia and Ho-Oh are both encountered at level 60 in Crystal, instead of level 70 in GS.
+
+**Possible fixes:**
+
+- Record any level higher than 63 as level 0, and have the Poké Seer report 0 as "very high".
+- Use seven bits for the level (which can store up to level 2^7 − 1 = 127) and one for the time, simply recording 0 for morning or day and 1 for night.
+- Move some data around into unused bits elsewhere in the `box_struct`, such as the high bit of `MON_LEVEL`, or the three high bits of `MON_EXP`.
+- Add another byte for more caught data, making the `box_struct` larger; this would affect PC Box storage.
+- Free up some other bytes in the `box_struct` (e.g. by [replacing](https://github.com/pret/pokecrystal/wiki/Replace-stat-experience-with-EVs) 2-byte stat experience with 1-byte EVs).
+
+
 ## Identical sine wave code and data is repeated five times
 
 `_Sine` in [engine/math/sine.asm](https://github.com/pret/pokecrystal/blob/master/engine/math/sine.asm):
@@ -734,13 +775,6 @@ ENDM
 ```
 
 **Fix:** Edit [home/sine.asm](https://github.com/pret/pokecrystal/blob/master/home/sine.asm) to contain a single copy of the (co)sine code in bank 0, and call it from those five sites.
-
-
-## The 6-bit caught level can only record up to level 63
-
-Pokémon that are caught above level 63 (`%00111111`) overflow into `CAUGHT_TIME`. The `party_struct` for a Pokémon stores both `CAUGHT_TIME` and `CAUGHT_LEVEL` in a single byte (The first byte of two in `CAUGHT_DATA`). The game uses `CAUGHT_TIME_MASK` (`%11000000`) and `CAUGHT_LEVEL_MASK` (`%00111111`) when reading from the byte. When a Pokémon is caught the game first stores `CAUGHT_TIME` into that byte and rotates the byte twice to the right so that `CAUGHT_TIME` would occupy bits 6 & 7. Then it performs an `OR` operation on that byte with the value in `[wCurPartyLevel]`. This means a level 70 Pokémon (`%01000110`) caught at Morning (`%00000000` or masked `$00`) is stored as (`%01000110`), and read as a Level 6 Pokémon (`%00000110`) Caught at Day (`%01000000` or masked `%01`).
-
-**Possible Fix:** Add an extra struct byte, free up other struct bytes (Ex. [Replace stat experience with EVs](https://github.com/pret/pokecrystal/wiki/Replace-stat-experience-with-EVs)), or repurposing a free unused bit from another existing byte (`MON_LEVEL` has one free bit and `MON_EXP` has three free bits). 
 
 
 ## `GetForestTreeFrame` works, but it's still bad
