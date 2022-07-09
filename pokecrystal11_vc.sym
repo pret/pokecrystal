@@ -3352,8 +3352,8 @@
 03:6d0f MoonBallMultiplier.max
 03:6d11 MoonBallMultiplier.done
 03:6d12 LoveBallMultiplier
-03:6d39 LoveBallMultiplier.playermale
-03:6d52 LoveBallMultiplier.wildmale
+03:6d39 LoveBallMultiplier.got_player_gender
+03:6d52 LoveBallMultiplier.got_wild_gender
 03:6d62 LoveBallMultiplier.max
 03:6d65 LoveBallMultiplier.done2
 03:6d66 LoveBallMultiplier.done1
