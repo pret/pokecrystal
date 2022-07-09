@@ -25,7 +25,7 @@ _SwitchPartyMons:
 	ld a, " "
 	call ByteFill
 	pop af
-	ld hl, wVirtualOAMSprite00
+	ld hl, wShadowOAMSprite00
 	ld bc, 4 * SPRITEOAMSTRUCT_LENGTH
 	call AddNTimes
 	ld de, SPRITEOAMSTRUCT_LENGTH

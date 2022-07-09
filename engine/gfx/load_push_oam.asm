@@ -1,5 +1,5 @@
 WriteOAMDMACodeToHRAM::
-	ld c, LOW(hTransferVirtualOAM)
+	ld c, LOW(hTransferShadowOAM)
 	ld b, OAMDMACodeEnd - OAMDMACode
 	ld hl, OAMDMACode
 .copy
@@ -14,9 +14,9 @@ OAMDMACode:
 ; This code is defined in ROM, but
 ; copied to and called from HRAM.
 LOAD "OAM DMA", HRAM
-hTransferVirtualOAM::
+hTransferShadowOAM::
 	; initiate DMA
-	ld a, HIGH(wVirtualOAM)
+	ld a, HIGH(wShadowOAM)
 	ldh [rDMA], a
 	; wait for DMA to finish
 	ld a, NUM_SPRITE_OAM_STRUCTS

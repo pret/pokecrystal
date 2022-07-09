@@ -106,7 +106,7 @@ BattleAnimOAMUpdate:
 	ld l, a
 	ld a, [wBattleAnimOAMPointerLo]
 	ld e, a
-	ld d, HIGH(wVirtualOAM)
+	ld d, HIGH(wShadowOAM)
 
 .loop
 	; Y Coord
@@ -179,7 +179,7 @@ BattleAnimOAMUpdate:
 	inc de
 	ld a, e
 	ld [wBattleAnimOAMPointerLo], a
-	cp LOW(wVirtualOAMEnd)
+	cp LOW(wShadowOAMEnd)
 	jr nc, .exit_set_carry
 	dec c
 	jr nz, .loop

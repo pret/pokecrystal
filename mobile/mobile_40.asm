@@ -6738,7 +6738,7 @@ Function10306e:
 	ld a, $01
 	ldh [hOAMUpdate], a
 	call ClearSprites
-	ld de, wVirtualOAM
+	ld de, wShadowOAM
 	call Function1030cd
 	xor a
 	ldh [hOAMUpdate], a

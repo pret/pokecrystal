@@ -55,7 +55,7 @@ CelebiShrineEvent:
 	ret
 
 .RestorePlayerSprite_DespawnLeaves:
-	ld hl, wVirtualOAMSprite00TileID
+	ld hl, wShadowOAMSprite00TileID
 	xor a
 	ld c, 4
 .OAMloop:
@@ -66,8 +66,8 @@ endr
 	inc a
 	dec c
 	jr nz, .OAMloop
-	ld hl, wVirtualOAMSprite04
-	ld bc, wVirtualOAMEnd - wVirtualOAMSprite04
+	ld hl, wShadowOAMSprite04
+	ld bc, wShadowOAMEnd - wShadowOAMSprite04
 	xor a
 	call ByteFill
 	ret

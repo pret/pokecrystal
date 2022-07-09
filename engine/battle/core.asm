@@ -9025,7 +9025,7 @@ CopyBackpic:
 	ret
 
 .LoadTrainerBackpicAsOAM:
-	ld hl, wVirtualOAMSprite00
+	ld hl, wShadowOAMSprite00
 	xor a
 	ldh [hMapObjectIndex], a
 	ld b, 6

@@ -529,7 +529,7 @@ String_17a9b2:
 	db   "@"
 
 Function17a9cb:
-	ld de, wVirtualOAM
+	ld de, wShadowOAM
 	ld hl, $d088
 	bit 6, [hl]
 	jr nz, .bit_6_set

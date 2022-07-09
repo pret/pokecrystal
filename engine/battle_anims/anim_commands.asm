@@ -245,7 +245,7 @@ BattleAnim_ClearOAM:
 	jr z, .delete
 
 	; Instead of deleting the sprites, make them all use PAL_BATTLE_OB_ENEMY
-	ld hl, wVirtualOAMSprite00Attributes
+	ld hl, wShadowOAMSprite00Attributes
 	ld c, NUM_SPRITE_OAM_STRUCTS
 .loop
 	ld a, [hl]
@@ -260,8 +260,8 @@ endr
 	ret
 
 .delete
-	ld hl, wVirtualOAM
-	ld c, wVirtualOAMEnd - wVirtualOAM
+	ld hl, wShadowOAM
+	ld c, wShadowOAMEnd - wShadowOAM
 	xor a
 .loop2
 	ld [hli], a
@@ -1477,10 +1477,10 @@ BattleAnim_UpdateOAM_All:
 	jr nz, .loop
 	ld a, [wBattleAnimOAMPointerLo]
 	ld l, a
-	ld h, HIGH(wVirtualOAM)
+	ld h, HIGH(wShadowOAM)
 .loop2
 	ld a, l
-	cp LOW(wVirtualOAMEnd)
+	cp LOW(wShadowOAMEnd)
 	jr nc, .done
 	xor a
 	ld [hli], a

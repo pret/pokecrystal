@@ -91,14 +91,14 @@ ENDM
 	ret
 
 .PC_LoadBallsOntoMachine:
-	ld hl, wVirtualOAMSprite32
+	ld hl, wShadowOAMSprite32
 	ld de, .PC_ElmsLab_OAM
 	call .PlaceHealingMachineTile
 	call .PlaceHealingMachineTile
 	jr .LoadBallsOntoMachine
 
 .HOF_LoadBallsOntoMachine:
-	ld hl, wVirtualOAMSprite32
+	ld hl, wShadowOAMSprite32
 	ld de, .HOF_OAM
 
 .LoadBallsOntoMachine:

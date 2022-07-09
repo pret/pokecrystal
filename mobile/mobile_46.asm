@@ -6663,7 +6663,7 @@ Function11b31b:
 	db $39 ; 13
 
 Function11b397:
-	ld de, wVirtualOAMSprite00
+	ld de, wShadowOAMSprite00
 .loop
 	ld a, [hl]
 	cp $ff
@@ -6719,7 +6719,7 @@ Function11b3b6: ; unreferenced
 	jr .loop
 
 Function11b3d9:
-	ld de, wVirtualOAMSprite28
+	ld de, wShadowOAMSprite28
 	push de
 	ld a, [wc7d2]
 	dec a

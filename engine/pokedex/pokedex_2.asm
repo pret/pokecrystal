@@ -41,7 +41,7 @@ AnimateDexSearchSlowpoke:
 DoDexSearchSlowpokeFrame:
 	ld a, [wDexSearchSlowpokeFrame]
 	ld hl, .SlowpokeSpriteData
-	ld de, wVirtualOAMSprite00
+	ld de, wShadowOAMSprite00
 .loop
 	ld a, [hli]
 	cp -1
