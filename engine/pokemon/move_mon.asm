@@ -879,6 +879,7 @@ RetrieveBreedmon:
 	ld a, TRUE
 	ld [wSkipMovesBeforeLevelUp], a
 	predef FillMoves
+; BUG: Pokémon deposited in the Day-Care might lose experience (see docs/bugs_and_glitches.md)
 	ld a, [wPartyCount]
 	dec a
 	ld [wCurPartyMon], a

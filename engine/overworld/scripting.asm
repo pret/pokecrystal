@@ -1240,11 +1240,7 @@ Script_memcall:
 	; fallthrough
 
 ScriptCall:
-; Bug: The script stack has a capacity of 5 scripts, yet there is
-; nothing to stop you from pushing a sixth script.  The high part
-; of the script address can then be overwritten by modifications
-; to wScriptDelay, causing the script to return to the rst/interrupt
-; space.
+; BUG: ScriptCall can overflow wScriptStack and crash (see docs/bugs_and_glitches.md)
 
 	push de
 	ld hl, wScriptStackSize

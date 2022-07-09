@@ -176,6 +176,7 @@ AI_Redundant:
 	ret
 
 .FutureSight:
+; BUG: AI does not discourage Future Sight when it's already been used (see docs/bugs_and_glitches.md)
 	ld a, [wEnemyScreens]
 	bit 5, a
 	ret

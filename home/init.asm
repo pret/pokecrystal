@@ -186,6 +186,7 @@ ClearVRAM::
 ClearWRAM::
 ; Wipe swappable WRAM banks (1-7)
 ; Assumes CGB or AGB
+; BUG: ClearWRAM only clears WRAM bank 1 (see docs/bugs_and_glitches.md)
 
 	ld a, 1
 .bank_loop
@@ -198,7 +199,7 @@ ClearWRAM::
 	pop af
 	inc a
 	cp 8
-	jr nc, .bank_loop ; Should be jr c
+	jr nc, .bank_loop
 	ret
 
 ClearsScratch::

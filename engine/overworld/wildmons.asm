@@ -313,14 +313,14 @@ ChooseWildEncounter:
 	inc b
 ; Store the level
 .ok
+; BUG: ChooseWildEncounter doesn't really validate the wild Pokemon species (see docs/bugs_and_glitches.md)
 	ld a, b
 	ld [wCurPartyLevel], a
 	ld b, [hl]
-	; ld a, b
 	call ValidateTempWildMonSpecies
 	jr c, .nowildbattle
 
-	ld a, b ; This is in the wrong place.
+	ld a, b
 	cp UNOWN
 	jr nz, .done
 

@@ -214,8 +214,7 @@ DEF TRANS_NO_CAVE_F  EQU 1 ; bit set in TRANS_NO_CAVE and TRANS_NO_CAVE_STRONGER
 StartTrainerBattle_DetermineWhichAnimation:
 ; The screen flashes a different number of times depending on the level of
 ; your lead Pokemon relative to the opponent's.
-; BUG: wBattleMonLevel and wEnemyMonLevel are not set at this point, so whatever
-; values happen to be there will determine the animation.
+; BUG: Battle transitions fail to account for enemy's level (see docs/bugs_and_glitches.md)
 	ld de, 0
 	ld a, [wBattleMonLevel]
 	add 3

@@ -1665,9 +1665,10 @@ AI_Smart_Thief:
 	ret
 
 AI_Smart_Conversion2:
+; BUG: "Smart" AI discourages Conversion2 after the first turn (see docs/bugs_and_glitches.md)
 	ld a, [wLastPlayerMove]
 	and a
-	jr nz, .discourage ; should be jr z
+	jr nz, .discourage
 
 	push hl
 	dec a
@@ -1743,8 +1744,8 @@ AI_Smart_MeanLook:
 	pop hl
 	jp z, AIDiscourageMove
 
-; 80% chance to greatly encourage this move if the enemy is badly poisoned (buggy).
-; Should check wPlayerSubStatus5 instead.
+; 80% chance to greatly encourage this move if the enemy is badly poisoned.
+; BUG: "Smart" AI encourages Mean Look if its own Pokémon is badly poisoned (see docs/bugs_and_glitches.md)
 	ld a, [wEnemySubStatus5]
 	bit SUBSTATUS_TOXIC, a
 	jr nz, .encourage
