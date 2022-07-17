@@ -1,4 +1,4 @@
 ---
-name: Blank Issue
-about: Create an issue with a blank template.
+name: Update to pokecrystal
+about: Suggest a possible change to pokecrystal itself.
 ---
