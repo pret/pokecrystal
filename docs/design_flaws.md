@@ -1,6 +1,6 @@
 # Design Flaws
 
-These are parts of the code that do not work *incorrectly*, like [bugs and glitches](https://github.com/pret/pokecrystal/blob/master/docs/bugs_and_glitches.md), but that clearly exist just to work around a problem. In other words, with a slightly different design, the code would not need to exist at all. Design flaws may be exceptions to a usual rule, such as "tables of pointers in different banks use `dba`" ([one exception](#pic-banks-are-offset-by-pics_fix), [and another](#pokédex-entry-banks-are-derived-from-their-species-ids)) or "graphics used as a unit are stored and loaded contiguously" ([a notable exception](#footprints-are-split-into-top-and-bottom-halves)).
+These are parts of the code that do not work *incorrectly*, like [bugs and glitches](https://github.com/pret/pokecrystal/blob/master/docs/bugs_and_glitches.md), but that clearly exist just to work around a problem. In other words, with a slightly different design, the code would not need to exist at all. Design flaws may be exceptions to a usual rule, such as "tables of pointers in different banks use `dba`" ([one exception](#pic-banks-are-offset-by-pics_fix), [and another](#pok%C3%A9dex-entry-banks-are-derived-from-their-species-ids)) or "graphics used as a unit are stored and loaded contiguously" ([a notable exception](#footprints-are-split-into-top-and-bottom-halves)).
 
 
 ## Contents
@@ -10,7 +10,7 @@ These are parts of the code that do not work *incorrectly*, like [bugs and glitc
 - [Footprints are split into top and bottom halves](#footprints-are-split-into-top-and-bottom-halves)
 - [Music IDs $64 and $80 or above have special behavior](#music-ids-64-and-80-or-above-have-special-behavior)
 - [`ITEM_C3` and `ITEM_DC` break up the continuous sequence of TM items](#item_c3-and-item_dc-break-up-the-continuous-sequence-of-tm-items)
-- [Pokédex entry banks are derived from their species IDs](#pokédex-entry-banks-are-derived-from-their-species-ids)
+- [Pokédex entry banks are derived from their species IDs](#pok%C3%A9dex-entry-banks-are-derived-from-their-species-ids)
 - [The 6-bit caught level can only record up to level 63](#the-6-bit-caught-level-can-only-record-up-to-level-63)
 - [Identical sine wave code and data is repeated five times](#identical-sine-wave-code-and-data-is-repeated-five-times)
 - [`GetForestTreeFrame` works, but it's still bad](#getforesttreeframe-works-but-its-still-bad)
