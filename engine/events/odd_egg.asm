@@ -1,8 +1,7 @@
 _GiveOddEgg:
 	; Figure out which egg to give.
 
-	; Compare a random word to
-	; probabilities out of 0xffff.
+	; Compare a random word to probabilities out of $ffff.
 	call Random
 	ld hl, OddEggProbabilities
 	ld c, 0
