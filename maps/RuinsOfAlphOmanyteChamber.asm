@@ -1,7 +1,7 @@
 RuinsOfAlphOmanyteChamber_MapScripts:
 	def_scene_scripts
-	scene_script .CheckWall ; SCENE_DEFAULT
-	scene_script .DummyScene ; SCENE_FINISHED
+	scene_script .CheckWall,  SCENE_RUINSOFALPHOMANYTECHAMBER_CHECK_WALL
+	scene_script .DummyScene, SCENE_RUINSOFALPHOMANYTECHAMBER_NOTHING
 
 	def_callbacks
 	callback MAPCALLBACK_TILES, .HiddenDoors
@@ -42,7 +42,7 @@ RuinsOfAlphOmanyteChamber_MapScripts:
 	changeblock 4, 0, $30 ; open wall
 	reloadmappart
 	earthquake 50
-	setscene SCENE_FINISHED
+	setscene SCENE_RUINSOFALPHOMANYTECHAMBER_NOTHING
 	closetext
 	end
 

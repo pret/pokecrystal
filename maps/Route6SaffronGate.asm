@@ -3,7 +3,7 @@
 
 Route6SaffronGate_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene
+	scene_script .DummyScene ; unusable
 
 	def_callbacks
 

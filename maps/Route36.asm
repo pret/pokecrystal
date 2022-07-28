@@ -11,8 +11,8 @@
 
 Route36_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0 ; SCENE_ROUTE36_NOTHING
-	scene_script .DummyScene1 ; SCENE_ROUTE36_SUICUNE
+	scene_script .DummyScene0, SCENE_ROUTE36_NOTHING
+	scene_script .DummyScene1, SCENE_ROUTE36_SUICUNE
 
 	def_callbacks
 	callback MAPCALLBACK_OBJECTS, .ArthurCallback

@@ -9,8 +9,8 @@
 
 PowerPlant_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0 ; SCENE_POWERPLANT_NOTHING
-	scene_script .DummyScene1 ; SCENE_POWERPLANT_GUARD_GETS_PHONE_CALL
+	scene_script .DummyScene0, SCENE_POWERPLANT_NOTHING
+	scene_script .DummyScene1, SCENE_POWERPLANT_GUARD_GETS_PHONE_CALL
 
 	def_callbacks
 

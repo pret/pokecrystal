@@ -5,8 +5,8 @@
 
 RuinsOfAlphInnerChamber_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0 ; SCENE_RUINSOFALPHINNERCHAMBER_NOTHING
-	scene_script .UnownAppear ; SCENE_RUINSOFALPHINNERCHAMBER_STRANGE_PRESENCE
+	scene_script .DummyScene0, SCENE_RUINSOFALPHINNERCHAMBER_NOTHING
+	scene_script .UnownAppear, SCENE_RUINSOFALPHINNERCHAMBER_STRANGE_PRESENCE
 
 	def_callbacks
 

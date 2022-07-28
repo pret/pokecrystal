@@ -4,7 +4,7 @@
 
 TrainerHouseB1F_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene ; SCENE_DEFAULT
+	scene_script .DummyScene, SCENE_TRAINERHOUSEB1F_ASK_BATTLE
 
 	def_callbacks
 
@@ -174,7 +174,7 @@ TrainerHouseB1F_MapEvents:
 	warp_event  9,  4, TRAINER_HOUSE_1F, 3
 
 	def_coord_events
-	coord_event  7,  3, SCENE_DEFAULT, TrainerHouseReceptionistScript
+	coord_event  7,  3, SCENE_TRAINERHOUSEB1F_ASK_BATTLE, TrainerHouseReceptionistScript
 
 	def_bg_events
 

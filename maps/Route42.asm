@@ -11,8 +11,8 @@
 
 Route42_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0 ; SCENE_ROUTE42_NOTHING
-	scene_script .DummyScene1 ; SCENE_ROUTE42_SUICUNE
+	scene_script .DummyScene0, SCENE_ROUTE42_NOTHING
+	scene_script .DummyScene1, SCENE_ROUTE42_SUICUNE
 
 	def_callbacks
 

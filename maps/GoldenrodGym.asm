@@ -8,8 +8,8 @@
 
 GoldenrodGym_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0 ; SCENE_GOLDENRODGYM_NOTHING
-	scene_script .DummyScene1 ; SCENE_GOLDENRODGYM_WHITNEY_STOPS_CRYING
+	scene_script .DummyScene0, SCENE_GOLDENRODGYM_NOTHING
+	scene_script .DummyScene1, SCENE_GOLDENRODGYM_WHITNEY_STOPS_CRYING
 
 	def_callbacks
 
