@@ -29,6 +29,30 @@ noreturn void usage_exit(int status) {
 int getopt_long_index;
 #define getopt_long(argc, argv, optstring, longopts) getopt_long(argc, argv, optstring, longopts, &getopt_long_index)
 
+#define DEFINE_IS_ANY_FUNCTION(T) \
+bool is_any_##T(T v, const T vs[], size_t n) { \
+	for (size_t i = 0; i < n; i++) { \
+		if (v == vs[i]) { \
+			return true; \
+		} \
+	} \
+	return false; \
+}
+
+DEFINE_IS_ANY_FUNCTION(char)
+DEFINE_IS_ANY_FUNCTION(int)
+DEFINE_IS_ANY_FUNCTION(uint32_t)
+
+#undef DEFINE_IS_ANY_FUNCTION
+
+#define ARRAY_WITH_LENGTH(T, ...) (const T[]){__VA_ARGS__}, sizeof (const T[]){__VA_ARGS__} / sizeof(const T)
+
+#define is_any(v, ...) _Generic((v), \
+	char: is_any_char((v), ARRAY_WITH_LENGTH(char, __VA_ARGS__)), \
+	int: is_any_int((v), ARRAY_WITH_LENGTH(int, __VA_ARGS__)), \
+	uint32_t: is_any_uint32_t((v), ARRAY_WITH_LENGTH(uint32_t, __VA_ARGS__)) \
+)
+
 void *xmalloc(size_t size) {
 	errno = 0;
 	void *m = malloc(size);
@@ -141,7 +165,7 @@ void read_dimensions(const char *filename, int *width) {
 	free(bytes);
 	*width = dimensions & 0xF;
 	int height = dimensions >> 4;
-	if (*width != height || (*width != 5 && *width != 6 && *width != 7)) {
+	if (*width != height || !is_any(*width, 5, 6, 7)) {
 		error_exit("%s: invalid dimensions: %dx%d tiles\n", filename, *width, height);
 	}
 }

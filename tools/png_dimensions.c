@@ -5,7 +5,7 @@
 
 uint8_t read_png_dimensions(const char *filename) {
 	uint32_t width_px = read_png_width(filename);
-	if (width_px != 40 && width_px != 48 && width_px != 56) {
+	if (!is_any(width_px, 40, 48, 56)) {
 		error_exit("Not a valid width for \"%s\": %" PRIu32 " px\n", filename, width_px);
 	}
 	uint8_t width_tiles = (uint8_t)(width_px / 8);

@@ -121,7 +121,7 @@ void parse_symbols(const char *filename, struct Symbol **symbols) {
 
 	for (;;) {
 		int c = getc(file);
-		if (c == EOF || c == '\n' || c == '\r' || c == ';' || (state == SYM_NAME && (c == ' ' || c == '\t'))) {
+		if (is_any(c, EOF, '\n', '\r', ';') || (state == SYM_NAME && is_any(c, ' ', '\t'))) {
 			if (state == SYM_NAME) {
 				// The symbol name has ended; append the buffered symbol
 				buffer_append(buffer, &(char []){'\0'});
@@ -129,14 +129,14 @@ void parse_symbols(const char *filename, struct Symbol **symbols) {
 			}
 			// Skip to the next line, ignoring anything after the symbol value and name
 			state = SYM_PRE;
-			while (c != EOF && c != '\n' && c != '\r') {
+			while (!is_any(c, EOF, '\n', '\r')) {
 				c = getc(file);
 			}
 			if (c == EOF) {
 				break;
 			}
-		} else if (c != ' ' && c != '\t') {
-			if (state == SYM_PRE || state == SYM_SPACE) {
+		} else if (!is_any(c, ' ', '\t')) {
+			if (is_any(state, SYM_PRE, SYM_SPACE)) {
 				// The symbol value or name has started; buffer its contents
 				if (++state == SYM_NAME) {
 					// The symbol name has started; parse the buffered value
@@ -165,7 +165,7 @@ int strfind(const char *s, const char *list[], int count) {
 	return -1;
 }
 
-#define vstrfind(s, ...) strfind(s, (const char *[]){__VA_ARGS__}, sizeof (const char *[]){__VA_ARGS__} / sizeof(const char *))
+#define vstrfind(s, ...) strfind(s, ARRAY_WITH_LENGTH(char *, __VA_ARGS__))
 
 int parse_arg_value(const char *arg, bool absolute, const struct Symbol *symbols, const char *patch_name) {
 	// Comparison operators for "ConditionValueB" evaluate to their particular values
@@ -300,7 +300,7 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 		fprintf(output, isupper((unsigned)command[0]) ? "%02X" : "%02x", value);
 
 	} else if (vstrfind(command, "hex", "HEX", "HEx", "Hex", "heX", "hEX", "hex~", "HEX~", "HEx~", "Hex~", "heX~", "hEX~") >= 0) {
-		if (argc != 1 && argc != 2) {
+		if (!is_any(argc, 1, 2)) {
 			error_exit("Error: Invalid arguments for command: \"%s\"\n", command);
 		}
 		int value = parse_arg_value(argv[0], command[strlen(command) - 1] != '~', symbols, current_hook->name);
@@ -325,7 +325,7 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 void skip_to_next_line(FILE *restrict input, FILE *restrict output) {
 	for (int c = getc(input); c != EOF; c = getc(input)) {
 		putc(c, output);
-		if (c == '\n' || c == '\r') {
+		if (is_any(c, '\n', '\r')) {
 			break;
 		}
 	}
@@ -358,7 +358,7 @@ struct Buffer *process_template(const char *template_filename, const char *patch
 		case '{':
 			// "{...}" is a template command; buffer its contents
 			buffer->size = 0;
-			for (c = getc(input); c != EOF && c != '}'; c = getc(input)) {
+			for (c = getc(input); !is_any(c, EOF, '}'); c = getc(input)) {
 				buffer_append(buffer, &c);
 			}
 			buffer_append(buffer, &(char []){'\0'});

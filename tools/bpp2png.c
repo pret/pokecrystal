@@ -32,7 +32,7 @@ void parse_args(int argc, char *argv[], struct Options *options) {
 			break;
 		case 'd':
 			options->depth = (unsigned int)strtoul(optarg, NULL, 0);
-			if (options->depth != 1 && options->depth != 2) {
+			if (!is_any(options->depth, 1, 2)) {
 				error_exit("Depth is not 1 or 2: %u\n", options->depth);
 			}
 			break;
@@ -53,8 +53,8 @@ void parse_args(int argc, char *argv[], struct Options *options) {
 
 bool is_1bpp(const char *filename) {
 	const char *end = strrchr(filename, '.');
-	return end && strlen(end) == 5 && end[1] == '1' && (end[2] == 'b' || end[2] == 'B')
-		&& (end[3] == 'p' || end[3] == 'P') && (end[4] == 'p' || end[4] == 'P');
+	return end && strlen(end) == 5 && end[1] == '1' && is_any(end[2], 'b', 'B')
+		&& is_any(end[3], 'p', 'P') && is_any(end[4], 'p', 'P');
 }
 
 uint8_t *extend_1bpp_to_2bpp(uint8_t *bpp_data, long *size) {
