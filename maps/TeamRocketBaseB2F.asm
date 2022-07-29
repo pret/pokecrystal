@@ -16,10 +16,10 @@
 
 TeamRocketBaseB2F_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0 ; SCENE_DEFAULT
-	scene_script .DummyScene1 ; SCENE_TEAMROCKETBASEB2F_ROCKET_BOSS
-	scene_script .DummyScene2 ; SCENE_TEAMROCKETBASEB2F_ELECTRODES
-	scene_script .DummyScene3 ; SCENE_TEAMROCKETBASEB2F_NOTHING
+	scene_script .DummyScene0, SCENE_TEAMROCKETBASEB2F_LANCE_HEALS
+	scene_script .DummyScene1, SCENE_TEAMROCKETBASEB2F_ROCKET_BOSS
+	scene_script .DummyScene2, SCENE_TEAMROCKETBASEB2F_ELECTRODES
+	scene_script .DummyScene3, SCENE_TEAMROCKETBASEB2F_NOOP
 
 	def_callbacks
 	callback MAPCALLBACK_TILES, .TransmitterDoorCallback
@@ -302,7 +302,7 @@ RocketBaseElectrodeScript:
 	clearflag ENGINE_ROCKET_SIGNAL_ON_CH20
 	setevent EVENT_ROUTE_43_GATE_ROCKETS
 	setevent EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM
-	setscene SCENE_TEAMROCKETBASEB2F_NOTHING
+	setscene SCENE_TEAMROCKETBASEB2F_NOOP
 	clearevent EVENT_LAKE_OF_RAGE_CIVILIANS
 	setevent EVENT_TURNED_OFF_SECURITY_CAMERAS
 	setevent EVENT_SECURITY_CAMERA_1
@@ -917,8 +917,8 @@ TeamRocketBaseB2F_MapEvents:
 	warp_event 27, 14, TEAM_ROCKET_BASE_B3F, 4
 
 	def_coord_events
-	coord_event  5, 14, SCENE_DEFAULT, LanceHealsScript1
-	coord_event  4, 13, SCENE_DEFAULT, LanceHealsScript2
+	coord_event  5, 14, SCENE_TEAMROCKETBASEB2F_LANCE_HEALS, LanceHealsScript1
+	coord_event  4, 13, SCENE_TEAMROCKETBASEB2F_LANCE_HEALS, LanceHealsScript2
 	coord_event 14, 11, SCENE_TEAMROCKETBASEB2F_ROCKET_BOSS, RocketBaseBossFLeft
 	coord_event 15, 11, SCENE_TEAMROCKETBASEB2F_ROCKET_BOSS, RocketBaseBossFRight
 	coord_event 14, 12, SCENE_TEAMROCKETBASEB2F_ELECTRODES, RocketBaseCantLeaveScript

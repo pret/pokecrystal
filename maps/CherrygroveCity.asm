@@ -7,8 +7,8 @@
 
 CherrygroveCity_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0 ; SCENE_CHERRYGROVECITY_NOTHING
-	scene_script .DummyScene1 ; SCENE_CHERRYGROVECITY_MEET_RIVAL
+	scene_script .DummyScene0, SCENE_CHERRYGROVECITY_NOOP
+	scene_script .DummyScene1, SCENE_CHERRYGROVECITY_MEET_RIVAL
 
 	def_callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
@@ -169,7 +169,7 @@ CherrygroveSilverSceneNorth:
 	turnobject PLAYER, LEFT
 	applymovement CHERRYGROVECITY_SILVER, CherrygroveCity_RivalExitsStageLeft
 	disappear CHERRYGROVECITY_SILVER
-	setscene SCENE_CHERRYGROVECITY_NOTHING
+	setscene SCENE_CHERRYGROVECITY_NOOP
 	special HealParty
 	playmapmusic
 	end

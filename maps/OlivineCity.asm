@@ -6,8 +6,8 @@
 
 OlivineCity_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0 ; SCENE_DEFAULT
-	scene_script .DummyScene1 ; SCENE_FINISHED
+	scene_script .DummyScene0, SCENE_OLIVINECITY_RIVAL_ENCOUNTER
+	scene_script .DummyScene1, SCENE_OLIVINECITY_NOOP
 
 	def_callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
@@ -39,7 +39,7 @@ OlivineCityRivalSceneTop:
 	applymovement PLAYER, OlivineCityPlayerStepsAsideTopMovement
 	turnobject PLAYER, RIGHT
 	applymovement OLIVINECITY_OLIVINE_RIVAL, OlivineCityRivalLeavesTopMovement
-	setscene SCENE_FINISHED
+	setscene SCENE_OLIVINECITY_NOOP
 	disappear OLIVINECITY_OLIVINE_RIVAL
 	special RestartMapMusic
 	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_SWIMMER_GUY
@@ -64,7 +64,7 @@ OlivineCityRivalSceneBottom:
 	turnobject PLAYER, RIGHT
 	applymovement OLIVINECITY_OLIVINE_RIVAL, OlivineCityRivalLeavesBottomMovement
 	disappear OLIVINECITY_OLIVINE_RIVAL
-	setscene SCENE_FINISHED
+	setscene SCENE_OLIVINECITY_NOOP
 	special RestartMapMusic
 	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_SWIMMER_GUY
 	special LoadUsedSpritesGFX
@@ -303,8 +303,8 @@ OlivineCity_MapEvents:
 	warp_event 20, 27, OLIVINE_PORT_PASSAGE, 2
 
 	def_coord_events
-	coord_event 13, 12, SCENE_DEFAULT, OlivineCityRivalSceneTop
-	coord_event 13, 13, SCENE_DEFAULT, OlivineCityRivalSceneBottom
+	coord_event 13, 12, SCENE_OLIVINECITY_RIVAL_ENCOUNTER, OlivineCityRivalSceneTop
+	coord_event 13, 13, SCENE_OLIVINECITY_RIVAL_ENCOUNTER, OlivineCityRivalSceneBottom
 
 	def_bg_events
 	bg_event 17, 11, BGEVENT_READ, OlivineCitySign

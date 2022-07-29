@@ -47,8 +47,8 @@ ENDM
 
 GoldenrodUndergroundSwitchRoomEntrances_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0 ; SCENE_DEFAULT
-	scene_script .DummyScene1 ; SCENE_FINISHED
+	scene_script .DummyScene0, SCENE_GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_RIVAL_BATTLE
+	scene_script .DummyScene1, SCENE_GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_NOOP
 
 	def_callbacks
 	callback MAPCALLBACK_TILES, .UpdateDoorPositions
@@ -131,7 +131,7 @@ UndergroundSilverScene1:
 	applymovement GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER, UndergroundSilverRetreatMovement1
 	playsound SFX_EXIT_BUILDING
 	disappear GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
-	setscene SCENE_FINISHED
+	setscene SCENE_GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_NOOP
 	waitsfx
 	playmapmusic
 	end
@@ -150,7 +150,7 @@ UndergroundSilverScene2:
 	applymovement GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER, UndergroundSilverRetreatMovement2
 	playsound SFX_EXIT_BUILDING
 	disappear GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
-	setscene SCENE_FINISHED
+	setscene SCENE_GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_NOOP
 	waitsfx
 	playmapmusic
 	end
@@ -944,8 +944,8 @@ GoldenrodUndergroundSwitchRoomEntrances_MapEvents:
 	warp_event 21, 29, GOLDENROD_CITY, 13
 
 	def_coord_events
-	coord_event 19,  4, SCENE_DEFAULT, UndergroundSilverScene1
-	coord_event 19,  5, SCENE_DEFAULT, UndergroundSilverScene2
+	coord_event 19,  4, SCENE_GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_RIVAL_BATTLE, UndergroundSilverScene1
+	coord_event 19,  5, SCENE_GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_RIVAL_BATTLE, UndergroundSilverScene2
 
 	def_bg_events
 	bg_event 16,  1, BGEVENT_READ, Switch1Script

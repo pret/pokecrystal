@@ -2193,7 +2193,7 @@ Edit `DragonsDen1F_MapScripts` in [maps/DragonsDen1F.asm](https://github.com/pre
 +	callback MAPCALLBACK_NEWMAP, .UnsetClairScene
 +
 +.UnsetClairScene:
-+	setmapscene DRAGONS_DEN_B1F, SCENE_DRAGONSDENB1F_NOTHING
++	setmapscene DRAGONS_DEN_B1F, SCENE_DRAGONSDENB1F_NOOP
 +	endcallback
 ```
 

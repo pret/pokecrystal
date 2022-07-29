@@ -8,8 +8,8 @@
 
 VictoryRoad_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0 ; SCENE_DEFAULT
-	scene_script .DummyScene1 ; SCENE_FINISHED
+	scene_script .DummyScene0, SCENE_VICTORYROAD_RIVAL_BATTLE
+	scene_script .DummyScene1, SCENE_VICTORYROAD_NOOP
 
 	def_callbacks
 
@@ -30,7 +30,7 @@ VictoryRoadRivalLeft:
 	scall VictoryRoadRivalNext
 	applymovement VICTORYROAD_SILVER, VictoryRoadRivalBattleExitMovement1
 	disappear VICTORYROAD_SILVER
-	setscene SCENE_FINISHED
+	setscene SCENE_VICTORYROAD_NOOP
 	playmapmusic
 	end
 
@@ -44,7 +44,7 @@ VictoryRoadRivalRight:
 	scall VictoryRoadRivalNext
 	applymovement VICTORYROAD_SILVER, VictoryRoadRivalBattleExitMovement2
 	disappear VICTORYROAD_SILVER
-	setscene SCENE_FINISHED
+	setscene SCENE_VICTORYROAD_NOOP
 	playmapmusic
 	end
 
@@ -252,8 +252,8 @@ VictoryRoad_MapEvents:
 	warp_event 13,  5, ROUTE_23, 3
 
 	def_coord_events
-	coord_event 12,  8, SCENE_DEFAULT, VictoryRoadRivalLeft
-	coord_event 13,  8, SCENE_DEFAULT, VictoryRoadRivalRight
+	coord_event 12,  8, SCENE_VICTORYROAD_RIVAL_BATTLE, VictoryRoadRivalLeft
+	coord_event 13,  8, SCENE_VICTORYROAD_RIVAL_BATTLE, VictoryRoadRivalRight
 
 	def_bg_events
 	bg_event  3, 29, BGEVENT_ITEM, VictoryRoadHiddenMaxPotion

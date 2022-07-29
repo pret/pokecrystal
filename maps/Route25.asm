@@ -13,8 +13,8 @@
 
 Route25_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0 ; SCENE_ROUTE25_NOTHING
-	scene_script .DummyScene1 ; SCENE_ROUTE25_MISTYS_DATE
+	scene_script .DummyScene0, SCENE_ROUTE25_NOOP
+	scene_script .DummyScene1, SCENE_ROUTE25_MISTYS_DATE
 
 	def_callbacks
 
@@ -46,7 +46,7 @@ Route25MistyDate1Script:
 	applymovement ROUTE25_MISTY, Route25MistyLeavesMovement
 	disappear ROUTE25_MISTY
 	clearevent EVENT_TRAINERS_IN_CERULEAN_GYM
-	setscene SCENE_ROUTE25_NOTHING
+	setscene SCENE_ROUTE25_NOOP
 	special RestartMapMusic
 	end
 
@@ -72,7 +72,7 @@ Route25MistyDate2Script:
 	applymovement ROUTE25_MISTY, Route25MistyLeavesMovement
 	disappear ROUTE25_MISTY
 	clearevent EVENT_TRAINERS_IN_CERULEAN_GYM
-	setscene SCENE_ROUTE25_NOTHING
+	setscene SCENE_ROUTE25_NOOP
 	special RestartMapMusic
 	end
 

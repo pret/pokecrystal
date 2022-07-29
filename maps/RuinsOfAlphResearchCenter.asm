@@ -5,8 +5,8 @@
 
 RuinsOfAlphResearchCenter_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0 ; SCENE_RUINSOFALPHRESEARCHCENTER_NOTHING
-	scene_script .GetUnownDex ; SCENE_RUINSOFALPHRESEARCHCENTER_GET_UNOWN_DEX
+	scene_script .DummyScene0, SCENE_RUINSOFALPHRESEARCHCENTER_NOOP
+	scene_script .GetUnownDex, SCENE_RUINSOFALPHRESEARCHCENTER_GET_UNOWN_DEX
 
 	def_callbacks
 	callback MAPCALLBACK_OBJECTS, .ScientistCallback
@@ -53,7 +53,7 @@ RuinsOfAlphResearchCenter_MapScripts:
 	waitbutton
 	closetext
 	applymovement RUINSOFALPHRESEARCHCENTER_SCIENTIST3, RuinsOfAlphResearchCenterLeavesPlayerMovement
-	setscene SCENE_RUINSOFALPHRESEARCHCENTER_NOTHING
+	setscene SCENE_RUINSOFALPHRESEARCHCENTER_NOOP
 	special RestartMapMusic
 	end
 

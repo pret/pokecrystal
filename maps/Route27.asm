@@ -11,8 +11,8 @@
 
 Route27_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0 ; SCENE_DEFAULT
-	scene_script .DummyScene1 ; SCENE_FINISHED
+	scene_script .DummyScene0, SCENE_ROUTE27_FIRST_STEP_INTO_KANTO
+	scene_script .DummyScene1, SCENE_ROUTE27_NOOP
 
 	def_callbacks
 
@@ -40,7 +40,7 @@ FirstStepIntoKantoScene_Continue:
 	writetext Route27FisherText
 	waitbutton
 	closetext
-	setscene SCENE_FINISHED
+	setscene SCENE_ROUTE27_NOOP
 	end
 
 Route27FisherScript:
@@ -474,8 +474,8 @@ Route27_MapEvents:
 	warp_event 36,  5, TOHJO_FALLS, 2
 
 	def_coord_events
-	coord_event 18, 10, SCENE_DEFAULT, FirstStepIntoKantoLeftScene
-	coord_event 19, 10, SCENE_DEFAULT, FirstStepIntoKantoRightScene
+	coord_event 18, 10, SCENE_ROUTE27_FIRST_STEP_INTO_KANTO, FirstStepIntoKantoLeftScene
+	coord_event 19, 10, SCENE_ROUTE27_FIRST_STEP_INTO_KANTO, FirstStepIntoKantoRightScene
 
 	def_bg_events
 	bg_event 25,  7, BGEVENT_READ, TohjoFallsSign

@@ -4,8 +4,8 @@
 
 MrPokemonsHouse_MapScripts:
 	def_scene_scripts
-	scene_script .MeetMrPokemon ; SCENE_DEFAULT
-	scene_script .DummyScene ; SCENE_FINISHED
+	scene_script .MeetMrPokemon, SCENE_MRPOKEMONSHOUSE_MEET_MR_POKEMON
+	scene_script .DummyScene,    SCENE_MRPOKEMONSHOUSE_NOOP
 
 	def_callbacks
 
@@ -123,7 +123,7 @@ MrPokemonsHouse_OakScript:
 	setevent EVENT_RIVAL_NEW_BARK_TOWN
 	setevent EVENT_PLAYERS_HOUSE_1F_NEIGHBOR
 	clearevent EVENT_PLAYERS_NEIGHBORS_HOUSE_NEIGHBOR
-	setscene SCENE_FINISHED
+	setscene SCENE_MRPOKEMONSHOUSE_NOOP
 	setmapscene CHERRYGROVE_CITY, SCENE_CHERRYGROVECITY_MEET_RIVAL
 	setmapscene ELMS_LAB, SCENE_ELMSLAB_MEET_OFFICER
 	specialphonecall SPECIALCALL_ROBBED

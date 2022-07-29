@@ -6,8 +6,8 @@
 
 EcruteakTinTowerEntrance_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0 ; SCENE_DEFAULT
-	scene_script .DummyScene1 ; SCENE_FINISHED
+	scene_script .DummyScene0, SCENE_ECRUTEAKTINTOWERENTRANCE_SAGE_BLOCKS
+	scene_script .DummyScene1, SCENE_ECRUTEAKTINTOWERENTRANCE_NOOP
 
 	def_callbacks
 	callback MAPCALLBACK_OBJECTS, .InitializeSages
@@ -33,7 +33,7 @@ EcruteakTinTowerEntrance_MapScripts:
 	setevent EVENT_ECRUTEAK_TIN_TOWER_ENTRANCE_WANDERING_SAGE
 	checkitem CLEAR_BELL
 	iftrue .NoClearBell
-	setscene SCENE_DEFAULT
+	setscene SCENE_ECRUTEAKTINTOWERENTRANCE_SAGE_BLOCKS
 .NoClearBell:
 	endcallback
 
@@ -98,7 +98,7 @@ EcruteakTinTowerEntranceSageScript:
 	writetext EcruteakTinTowerEntranceSageText_HearsClearBell
 	waitbutton
 	closetext
-	setscene SCENE_FINISHED
+	setscene SCENE_ECRUTEAKTINTOWERENTRANCE_NOOP
 	setevent EVENT_RANG_CLEAR_BELL_2
 	clearevent EVENT_RANG_CLEAR_BELL_1
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
@@ -286,8 +286,8 @@ EcruteakTinTowerEntrance_MapEvents:
 	warp_event 17,  3, WISE_TRIOS_ROOM, 3
 
 	def_coord_events
-	coord_event  4,  7, SCENE_DEFAULT, EcruteakTinTowerEntranceSageBlocksLeft
-	coord_event  5,  7, SCENE_DEFAULT, EcruteakTinTowerEntranceSageBlocksRight
+	coord_event  4,  7, SCENE_ECRUTEAKTINTOWERENTRANCE_SAGE_BLOCKS, EcruteakTinTowerEntranceSageBlocksLeft
+	coord_event  5,  7, SCENE_ECRUTEAKTINTOWERENTRANCE_SAGE_BLOCKS, EcruteakTinTowerEntranceSageBlocksRight
 
 	def_bg_events
 

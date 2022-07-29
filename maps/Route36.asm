@@ -11,8 +11,8 @@
 
 Route36_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0 ; SCENE_ROUTE36_NOTHING
-	scene_script .DummyScene1 ; SCENE_ROUTE36_SUICUNE
+	scene_script .DummyScene0, SCENE_ROUTE36_NOOP
+	scene_script .DummyScene1, SCENE_ROUTE36_SUICUNE
 
 	def_callbacks
 	callback MAPCALLBACK_OBJECTS, .ArthurCallback
@@ -42,7 +42,7 @@ Route36SuicuneScript:
 	disappear ROUTE36_SUICUNE
 	turnobject PLAYER, DOWN
 	pause 10
-	setscene SCENE_ROUTE36_NOTHING
+	setscene SCENE_ROUTE36_NOOP
 	clearevent EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
 	setmapscene CIANWOOD_CITY, SCENE_CIANWOODCITY_SUICUNE_AND_EUSINE
 	end

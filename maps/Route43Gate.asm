@@ -7,8 +7,8 @@ DEF ROUTE43GATE_TOLL EQU 1000
 
 Route43Gate_MapScripts:
 	def_scene_scripts
-	scene_script .RocketShakedown ; SCENE_DEFAULT
-	scene_script .DummyScene ; SCENE_FINISHED
+	scene_script .RocketShakedown, SCENE_ROUTE43GATE_ROCKET_SHAKEDOWN
+	scene_script .DummyScene,      SCENE_ROUTE43GATE_NOOP
 
 	def_callbacks
 	callback MAPCALLBACK_NEWMAP, .CheckIfRockets
@@ -35,7 +35,7 @@ Route43Gate_MapScripts:
 	readvar VAR_FACING
 	ifequal DOWN, RocketScript_Southbound
 	ifequal UP, RocketScript_Northbound
-	setscene SCENE_FINISHED
+	setscene SCENE_ROUTE43GATE_NOOP
 	end
 
 RocketScript_Southbound:
@@ -67,7 +67,7 @@ RocketScript_ShakeDownSouth:
 	closetext
 	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_LetsYouPassSouth
 	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_LetsYouPassSouth
-	setscene SCENE_FINISHED
+	setscene SCENE_ROUTE43GATE_NOOP
 	special RestartMapMusic
 	end
 
@@ -99,7 +99,7 @@ RocketScript_ShakeDownNorth:
 	closetext
 	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_LetsYouPassNorth
 	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_LetsYouPassNorth
-	setscene SCENE_FINISHED
+	setscene SCENE_ROUTE43GATE_NOOP
 	special RestartMapMusic
 	end
 

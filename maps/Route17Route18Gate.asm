@@ -3,7 +3,7 @@
 
 Route17Route18Gate_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene ; SCENE_DEFAULT
+	scene_script .DummyScene, SCENE_ROUTE17ROUTE18GATE_BICYCLE_CHECK
 
 	def_callbacks
 
@@ -59,8 +59,8 @@ Route17Route18Gate_MapEvents:
 	warp_event  9,  5, ROUTE_18, 2
 
 	def_coord_events
-	coord_event  5,  4, SCENE_DEFAULT, Route17Route18GateBicycleCheck
-	coord_event  5,  5, SCENE_DEFAULT, Route17Route18GateBicycleCheck
+	coord_event  5,  4, SCENE_ROUTE17ROUTE18GATE_BICYCLE_CHECK, Route17Route18GateBicycleCheck
+	coord_event  5,  5, SCENE_ROUTE17ROUTE18GATE_BICYCLE_CHECK, Route17Route18GateBicycleCheck
 
 	def_bg_events
 

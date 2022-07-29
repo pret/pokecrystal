@@ -3,8 +3,8 @@
 
 MountMoon_MapScripts:
 	def_scene_scripts
-	scene_script .RivalEncounter ; SCENE_DEFAULT
-	scene_script .DummyScene ; SCENE_FINISHED
+	scene_script .RivalEncounter, SCENE_MOUNTMOON_RIVAL_BATTLE
+	scene_script .DummyScene,     SCENE_MOUNTMOON_NOOP
 
 	def_callbacks
 
@@ -64,7 +64,7 @@ MountMoon_MapScripts:
 	closetext
 	applymovement MOUNTMOON_SILVER, MountMoonSilverMovementAfter
 	disappear MOUNTMOON_SILVER
-	setscene SCENE_FINISHED
+	setscene SCENE_MOUNTMOON_NOOP
 	setevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	playmapmusic
 	end

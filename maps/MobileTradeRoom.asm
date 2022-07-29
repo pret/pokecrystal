@@ -1,7 +1,7 @@
 MobileTradeRoom_MapScripts:
 	def_scene_scripts
-	scene_script .InitializeMobileTradeRoom ; SCENE_DEFAULT
-	scene_script .DummyScene ; SCENE_FINISHED
+	scene_script .InitializeMobileTradeRoom, SCENE_MOBILETRADEROOM_INITIALIZE
+	scene_script .DummyScene,                SCENE_MOBILETRADEROOM_NOOP
 
 	def_callbacks
 
@@ -13,7 +13,7 @@ MobileTradeRoom_MapScripts:
 	end
 
 .InitializeAndPreparePokecenter2F:
-	setscene SCENE_FINISHED
+	setscene SCENE_MOBILETRADEROOM_NOOP
 	setmapscene POKECENTER_2F, SCENE_POKECENTER2F_LEAVE_MOBILE_TRADE_ROOM
 	end
 

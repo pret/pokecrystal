@@ -9,8 +9,8 @@
 
 SproutTower3F_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0 ; SCENE_DEFAULT
-	scene_script .DummyScene1 ; SCENE_FINISHED
+	scene_script .DummyScene0, SCENE_SPROUTTOWER3F_RIVAL_ENCOUNTER
+	scene_script .DummyScene1, SCENE_SPROUTTOWER3F_NOOP
 
 	def_callbacks
 
@@ -57,7 +57,7 @@ SproutTower3FRivalScene:
 	disappear SPROUTTOWER3F_SILVER
 	waitsfx
 	special FadeInQuickly
-	setscene SCENE_FINISHED
+	setscene SCENE_SPROUTTOWER3F_NOOP
 	special RestartMapMusic
 	end
 
@@ -334,7 +334,7 @@ SproutTower3F_MapEvents:
 	warp_event 10, 14, SPROUT_TOWER_2F, 4
 
 	def_coord_events
-	coord_event 11,  9, SCENE_DEFAULT, SproutTower3FRivalScene
+	coord_event 11,  9, SCENE_SPROUTTOWER3F_RIVAL_ENCOUNTER, SproutTower3FRivalScene
 
 	def_bg_events
 	bg_event  8,  1, BGEVENT_READ, SproutTower3FStatue
