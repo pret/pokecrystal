@@ -10,7 +10,7 @@
 SproutTower3F_MapScripts:
 	def_scene_scripts
 	scene_script .DummyScene0, SCENE_SPROUTTOWER3F_RIVAL_ENCOUNTER
-	scene_script .DummyScene1, SCENE_SPROUTTOWER3F_NOTHING
+	scene_script .DummyScene1, SCENE_SPROUTTOWER3F_NOOP
 
 	def_callbacks
 
@@ -57,7 +57,7 @@ SproutTower3FRivalScene:
 	disappear SPROUTTOWER3F_SILVER
 	waitsfx
 	special FadeInQuickly
-	setscene SCENE_SPROUTTOWER3F_NOTHING
+	setscene SCENE_SPROUTTOWER3F_NOOP
 	special RestartMapMusic
 	end
 

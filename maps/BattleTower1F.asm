@@ -8,7 +8,7 @@
 BattleTower1F_MapScripts:
 	def_scene_scripts
 	scene_script .Scene0, SCENE_BATTLETOWER1F_CHECKSTATE
-	scene_script .Scene1, SCENE_BATTLETOWER1F_NOTHING
+	scene_script .Scene1, SCENE_BATTLETOWER1F_NOOP
 
 	def_callbacks
 
@@ -36,7 +36,7 @@ BattleTower1F_MapScripts:
 	setval BATTLETOWERACTION_06
 	special BattleTowerAction
 .SkipEverything:
-	setscene SCENE_BATTLETOWER1F_NOTHING
+	setscene SCENE_BATTLETOWER1F_NOOP
 .Scene1:
 	end
 
@@ -82,7 +82,7 @@ Script_ChooseChallenge:
 	setscene SCENE_BATTLETOWER1F_CHECKSTATE
 	special TryQuickSave
 	iffalse Script_Menu_ChallengeExplanationCancel
-	setscene SCENE_BATTLETOWER1F_NOTHING
+	setscene SCENE_BATTLETOWER1F_NOOP
 	setval BATTLETOWERACTION_SET_EXPLANATION_READ ; set 1, [sBattleTowerSaveFileFlags]
 	special BattleTowerAction
 	special BattleTowerRoomMenu
@@ -209,7 +209,7 @@ Script_StartChallenge: ; unreferenced
 	setscene SCENE_BATTLETOWER1F_CHECKSTATE
 	special TryQuickSave
 	iffalse Script_Menu_ChallengeExplanationCancel
-	setscene SCENE_BATTLETOWER1F_NOTHING
+	setscene SCENE_BATTLETOWER1F_NOOP
 	setval BATTLETOWERACTION_06
 	special BattleTowerAction
 	setval BATTLETOWERACTION_12

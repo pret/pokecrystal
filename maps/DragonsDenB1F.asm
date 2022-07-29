@@ -11,7 +11,7 @@
 
 DragonsDenB1F_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_DRAGONSDENB1F_NOTHING
+	scene_script .DummyScene0, SCENE_DRAGONSDENB1F_NOOP
 	scene_script .DummyScene1, SCENE_DRAGONSDENB1F_CLAIR_GIVES_TM
 
 	def_callbacks
@@ -79,7 +79,7 @@ DragonsDenB1F_ClairScene:
 	pause 30
 	special RestartMapMusic
 	disappear DRAGONSDENB1F_CLAIR
-	setscene SCENE_DRAGONSDENB1F_NOTHING
+	setscene SCENE_DRAGONSDENB1F_NOOP
 	end
 
 TrainerCooltrainermDarin:

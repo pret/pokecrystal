@@ -21,7 +21,7 @@ Route43_MapScripts:
 	endcallback
 
 .NoRockets:
-	setmapscene ROUTE_43_GATE, SCENE_ROUTE43GATE_NOTHING
+	setmapscene ROUTE_43_GATE, SCENE_ROUTE43GATE_NOOP
 	endcallback
 
 TrainerCamperSpencer:

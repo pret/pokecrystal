@@ -6,7 +6,7 @@
 
 FastShip1F_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0,   SCENE_FASTSHIP1F_NOTHING
+	scene_script .DummyScene0,   SCENE_FASTSHIP1F_NOOP
 	scene_script .EnterFastShip, SCENE_FASTSHIP1F_ENTER_SHIP
 	scene_script .DummyScene2,   SCENE_FASTSHIP1F_MEET_GRANDPA
 
@@ -37,7 +37,7 @@ FastShip1F_MapScripts:
 	end
 
 .SkipGrandpa:
-	setscene SCENE_FASTSHIP1F_NOTHING
+	setscene SCENE_FASTSHIP1F_NOOP
 	end
 
 FastShip1FSailor1Script:
@@ -133,7 +133,7 @@ WorriedGrandpaSceneLeft:
 	turnobject PLAYER, RIGHT
 	applymovement FASTSHIP1F_GENTLEMAN, FastShip1F_GrandpaRunsOutMovement
 	disappear FASTSHIP1F_GENTLEMAN
-	setscene SCENE_FASTSHIP1F_NOTHING
+	setscene SCENE_FASTSHIP1F_NOOP
 	end
 
 FastShip1F_SailorStepAsideMovement:

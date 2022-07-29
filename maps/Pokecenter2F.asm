@@ -6,7 +6,7 @@
 
 Pokecenter2F_MapScripts:
 	def_scene_scripts
-	scene_script .Scene0, SCENE_POKECENTER2F_NOTHING
+	scene_script .Scene0, SCENE_POKECENTER2F_NOOP
 	scene_script .Scene1, SCENE_POKECENTER2F_LEAVE_TRADE_CENTER
 	scene_script .Scene2, SCENE_POKECENTER2F_LEAVE_COLOSSEUM
 	scene_script .Scene3, SCENE_POKECENTER2F_LEAVE_TIME_CAPSULE
@@ -374,14 +374,14 @@ LinkReceptionistScript_TimeCapsule:
 Script_LeftCableTradeCenter:
 	special WaitForOtherPlayerToExit
 	scall Script_WalkOutOfLinkTradeRoom
-	setscene SCENE_POKECENTER2F_NOTHING
+	setscene SCENE_POKECENTER2F_NOOP
 	setmapscene TRADE_CENTER, SCENE_TRADECENTER_INITIALIZE
 	end
 
 Script_LeftMobileTradeRoom:
 	special Function101220
 	scall Script_WalkOutOfMobileTradeRoom
-	setscene SCENE_POKECENTER2F_NOTHING
+	setscene SCENE_POKECENTER2F_NOOP
 	setmapscene MOBILE_TRADE_ROOM, SCENE_MOBILETRADEROOM_INITIALIZE
 	end
 
@@ -394,14 +394,14 @@ Script_WalkOutOfMobileTradeRoom:
 Script_LeftCableColosseum:
 	special WaitForOtherPlayerToExit
 	scall Script_WalkOutOfLinkBattleRoom
-	setscene SCENE_POKECENTER2F_NOTHING
+	setscene SCENE_POKECENTER2F_NOOP
 	setmapscene COLOSSEUM, SCENE_COLOSSEUM_INITIALIZE
 	end
 
 Script_LeftMobileBattleRoom:
 	special Function101220
 	scall Script_WalkOutOfMobileBattleRoom
-	setscene SCENE_POKECENTER2F_NOTHING
+	setscene SCENE_POKECENTER2F_NOOP
 	setmapscene MOBILE_BATTLE_ROOM, SCENE_MOBILEBATTLEROOM_INITIALIZE
 	end
 
@@ -577,7 +577,7 @@ Script_LeftTimeCapsule:
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerTakesOneStepDown
 	applymovement POKECENTER2F_TIME_CAPSULE_RECEPTIONIST, Pokecenter2FMovementData_ReceptionistStepsRightLooksDown_2
 .Done:
-	setscene SCENE_POKECENTER2F_NOTHING
+	setscene SCENE_POKECENTER2F_NOOP
 	setmapscene TIME_CAPSULE, SCENE_TIMECAPSULE_INITIALIZE
 	end
 

@@ -12,7 +12,7 @@
 Route27_MapScripts:
 	def_scene_scripts
 	scene_script .DummyScene0, SCENE_ROUTE27_FIRST_STEP_INTO_KANTO
-	scene_script .DummyScene1, SCENE_ROUTE27_NOTHING
+	scene_script .DummyScene1, SCENE_ROUTE27_NOOP
 
 	def_callbacks
 
@@ -40,7 +40,7 @@ FirstStepIntoKantoScene_Continue:
 	writetext Route27FisherText
 	waitbutton
 	closetext
-	setscene SCENE_ROUTE27_NOTHING
+	setscene SCENE_ROUTE27_NOOP
 	end
 
 Route27FisherScript:

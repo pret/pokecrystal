@@ -9,7 +9,7 @@ BurnedTower1F_MapScripts:
 	def_scene_scripts
 	scene_script .EusineScene, SCENE_BURNEDTOWER1F_MEET_EUSINE
 	scene_script .DummyScene1, SCENE_BURNEDTOWER1F_RIVAL_BATTLE
-	scene_script .DummyScene2, SCENE_BURNEDTOWER1F_NOTHING
+	scene_script .DummyScene2, SCENE_BURNEDTOWER1F_NOOP
 
 	def_callbacks
 	callback MAPCALLBACK_TILES, .HoleAndLadder
@@ -96,7 +96,7 @@ BurnedTowerRivalBattleScript:
 	writetext BurnedTowerSilver_AfterText1
 	waitbutton
 	closetext
-	setscene SCENE_BURNEDTOWER1F_NOTHING
+	setscene SCENE_BURNEDTOWER1F_NOOP
 	setevent EVENT_RIVAL_BURNED_TOWER
 	special FadeOutMusic
 	pause 15

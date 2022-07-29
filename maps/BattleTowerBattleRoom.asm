@@ -5,14 +5,14 @@
 BattleTowerBattleRoom_MapScripts:
 	def_scene_scripts
 	scene_script .EnterBattleRoom, SCENE_BATTLETOWERBATTLEROOM_ENTER
-	scene_script .DummyScene,      SCENE_BATTLETOWERBATTLEROOM_NOTHING
+	scene_script .DummyScene,      SCENE_BATTLETOWERBATTLEROOM_NOOP
 
 	def_callbacks
 
 .EnterBattleRoom:
 	disappear BATTLETOWERBATTLEROOM_YOUNGSTER
 	sdefer Script_BattleRoom
-	setscene SCENE_BATTLETOWERBATTLEROOM_NOTHING
+	setscene SCENE_BATTLETOWERBATTLEROOM_NOOP
 .DummyScene:
 	end
 

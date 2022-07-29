@@ -6,7 +6,7 @@
 NewBarkTown_MapScripts:
 	def_scene_scripts
 	scene_script .DummyScene0, SCENE_NEWBARKTOWN_TEACHER_STOPS_YOU
-	scene_script .DummyScene1, SCENE_NEWBARKTOWN_NOTHING
+	scene_script .DummyScene1, SCENE_NEWBARKTOWN_NOOP
 
 	def_callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint

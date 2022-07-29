@@ -4,13 +4,13 @@
 BattleTowerElevator_MapScripts:
 	def_scene_scripts
 	scene_script .Scene0, SCENE_BATTLETOWERELEVATOR_ENTER
-	scene_script .Scene1, SCENE_BATTLETOWERELEVATOR_NOTHING
+	scene_script .Scene1, SCENE_BATTLETOWERELEVATOR_NOOP
 
 	def_callbacks
 
 .Scene0:
 	sdefer .RideElevator
-	setscene SCENE_BATTLETOWERELEVATOR_NOTHING
+	setscene SCENE_BATTLETOWERELEVATOR_NOOP
 .Scene1:
 	end
 

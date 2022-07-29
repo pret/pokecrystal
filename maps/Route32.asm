@@ -18,7 +18,7 @@ Route32_MapScripts:
 	def_scene_scripts
 	scene_script .DummyScene0, SCENE_ROUTE32_COOLTRAINER_M_BLOCKS
 	scene_script .DummyScene1, SCENE_ROUTE32_OFFER_SLOWPOKETAIL
-	scene_script .DummyScene2, SCENE_ROUTE32_NOTHING
+	scene_script .DummyScene2, SCENE_ROUTE32_NOOP
 
 	def_callbacks
 	callback MAPCALLBACK_OBJECTS, .Frieda
@@ -125,7 +125,7 @@ Route32WannaBuyASlowpokeTailScript:
 SlowpokeTailSalesmanScript:
 	faceplayer
 _OfferToSellSlowpokeTail:
-	setscene SCENE_ROUTE32_NOTHING
+	setscene SCENE_ROUTE32_NOOP
 	opentext
 	writetext Text_MillionDollarSlowpokeTail
 	yesorno

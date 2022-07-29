@@ -7,7 +7,7 @@
 OlivineCity_MapScripts:
 	def_scene_scripts
 	scene_script .DummyScene0, SCENE_OLIVINECITY_RIVAL_ENCOUNTER
-	scene_script .DummyScene1, SCENE_OLIVINECITY_NOTHING
+	scene_script .DummyScene1, SCENE_OLIVINECITY_NOOP
 
 	def_callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
@@ -39,7 +39,7 @@ OlivineCityRivalSceneTop:
 	applymovement PLAYER, OlivineCityPlayerStepsAsideTopMovement
 	turnobject PLAYER, RIGHT
 	applymovement OLIVINECITY_OLIVINE_RIVAL, OlivineCityRivalLeavesTopMovement
-	setscene SCENE_OLIVINECITY_NOTHING
+	setscene SCENE_OLIVINECITY_NOOP
 	disappear OLIVINECITY_OLIVINE_RIVAL
 	special RestartMapMusic
 	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_SWIMMER_GUY
@@ -64,7 +64,7 @@ OlivineCityRivalSceneBottom:
 	turnobject PLAYER, RIGHT
 	applymovement OLIVINECITY_OLIVINE_RIVAL, OlivineCityRivalLeavesBottomMovement
 	disappear OLIVINECITY_OLIVINE_RIVAL
-	setscene SCENE_OLIVINECITY_NOTHING
+	setscene SCENE_OLIVINECITY_NOOP
 	special RestartMapMusic
 	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_SWIMMER_GUY
 	special LoadUsedSpritesGFX

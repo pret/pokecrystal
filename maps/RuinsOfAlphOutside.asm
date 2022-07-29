@@ -7,7 +7,7 @@
 
 RuinsOfAlphOutside_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_RUINSOFALPHOUTSIDE_NOTHING
+	scene_script .DummyScene0, SCENE_RUINSOFALPHOUTSIDE_NOOP
 	scene_script .DummyScene1, SCENE_RUINSOFALPHOUTSIDE_GET_UNOWN_DEX
 
 	def_callbacks
@@ -38,7 +38,7 @@ RuinsOfAlphOutside_MapScripts:
 
 .NoScientist:
 	disappear RUINSOFALPHOUTSIDE_SCIENTIST
-	setscene SCENE_RUINSOFALPHOUTSIDE_NOTHING
+	setscene SCENE_RUINSOFALPHOUTSIDE_NOOP
 	endcallback
 
 RuinsOfAlphOutsideScientistScene1:

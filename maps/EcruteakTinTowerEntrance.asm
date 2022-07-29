@@ -7,7 +7,7 @@
 EcruteakTinTowerEntrance_MapScripts:
 	def_scene_scripts
 	scene_script .DummyScene0, SCENE_ECRUTEAKTINTOWERENTRANCE_SAGE_BLOCKS
-	scene_script .DummyScene1, SCENE_ECRUTEAKTINTOWERENTRANCE_NOTHING
+	scene_script .DummyScene1, SCENE_ECRUTEAKTINTOWERENTRANCE_NOOP
 
 	def_callbacks
 	callback MAPCALLBACK_OBJECTS, .InitializeSages
@@ -98,7 +98,7 @@ EcruteakTinTowerEntranceSageScript:
 	writetext EcruteakTinTowerEntranceSageText_HearsClearBell
 	waitbutton
 	closetext
-	setscene SCENE_ECRUTEAKTINTOWERENTRANCE_NOTHING
+	setscene SCENE_ECRUTEAKTINTOWERENTRANCE_NOOP
 	setevent EVENT_RANG_CLEAR_BELL_2
 	clearevent EVENT_RANG_CLEAR_BELL_1
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1

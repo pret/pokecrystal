@@ -4,13 +4,13 @@
 BattleTowerHallway_MapScripts:
 	def_scene_scripts
 	scene_script .Scene0, SCENE_BATTLETOWERHALLWAY_ENTER
-	scene_script .Scene1, SCENE_BATTLETOWERHALLWAY_NOTHING
+	scene_script .Scene1, SCENE_BATTLETOWERHALLWAY_NOOP
 
 	def_callbacks
 
 .Scene0:
 	sdefer .ChooseBattleRoom
-	setscene SCENE_BATTLETOWERHALLWAY_NOTHING
+	setscene SCENE_BATTLETOWERHALLWAY_NOOP
 .Scene1:
 	end
 

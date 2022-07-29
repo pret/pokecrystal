@@ -5,7 +5,7 @@
 
 Route35NationalParkGate_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0,       SCENE_ROUTE35NATIONALPARKGATE_NOTHING
+	scene_script .DummyScene0,       SCENE_ROUTE35NATIONALPARKGATE_NOOP
 	scene_script .DummyScene1,       SCENE_ROUTE35NATIONALPARKGATE_UNUSED
 	scene_script .LeaveContestEarly, SCENE_ROUTE35NATIONALPARKGATE_LEAVE_CONTEST_EARLY
 
@@ -26,7 +26,7 @@ Route35NationalParkGate_MapScripts:
 .CheckIfContestRunning:
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue .BugContestIsRunning
-	setscene SCENE_ROUTE35NATIONALPARKGATE_NOTHING
+	setscene SCENE_ROUTE35NATIONALPARKGATE_NOOP
 	endcallback
 
 .BugContestIsRunning:

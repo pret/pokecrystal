@@ -15,7 +15,7 @@
 FastShipB1F_MapScripts:
 	def_scene_scripts
 	scene_script .DummyScene0, SCENE_FASTSHIPB1F_SAILOR_BLOCKS
-	scene_script .DummyScene1, SCENE_FASTSHIPB1F_NOTHING
+	scene_script .DummyScene1, SCENE_FASTSHIPB1F_NOOP
 
 	def_callbacks
 

@@ -7,7 +7,7 @@
 
 MahoganyMart1F_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0,            SCENE_MAHOGANYMART1F_NOTHING
+	scene_script .DummyScene0,            SCENE_MAHOGANYMART1F_NOOP
 	scene_script .LanceUncoversStaircase, SCENE_MAHOGANYMART1F_LANCE_UNCOVERS_STAIRS
 
 	def_callbacks
@@ -99,7 +99,7 @@ MahoganyMart1FLanceUncoversStaircaseScript:
 	applymovement MAHOGANYMART1F_LANCE, MahoganyMart1FLanceGoDownStairsMovement
 	playsound SFX_EXIT_BUILDING
 	disappear MAHOGANYMART1F_LANCE
-	setscene SCENE_MAHOGANYMART1F_NOTHING
+	setscene SCENE_MAHOGANYMART1F_NOOP
 	waitsfx
 	end
 

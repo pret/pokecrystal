@@ -19,7 +19,7 @@ TeamRocketBaseB3F_MapScripts:
 	scene_script .LanceGetsPassword, SCENE_TEAMROCKETBASEB3F_LANCE_GETS_PASSWORD
 	scene_script .DummyScene1,       SCENE_TEAMROCKETBASEB3F_RIVAL_ENCOUNTER
 	scene_script .DummyScene2,       SCENE_TEAMROCKETBASEB3F_ROCKET_BOSS
-	scene_script .DummyScene3,       SCENE_TEAMROCKETBASEB3F_NOTHING
+	scene_script .DummyScene3,       SCENE_TEAMROCKETBASEB3F_NOOP
 
 	def_callbacks
 	callback MAPCALLBACK_TILES, .CheckGiovanniDoor
@@ -114,7 +114,7 @@ RocketBaseBoss:
 	playsound SFX_TACKLE
 	applymovement TEAMROCKETBASEB3F_ROCKET1, RocketBaseBossLeavesMovement
 	disappear TEAMROCKETBASEB3F_ROCKET1
-	setscene SCENE_TEAMROCKETBASEB3F_NOTHING
+	setscene SCENE_TEAMROCKETBASEB3F_NOOP
 	end
 
 RocketBaseMurkrow:

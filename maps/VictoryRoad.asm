@@ -9,7 +9,7 @@
 VictoryRoad_MapScripts:
 	def_scene_scripts
 	scene_script .DummyScene0, SCENE_VICTORYROAD_RIVAL_BATTLE
-	scene_script .DummyScene1, SCENE_VICTORYROAD_NOTHING
+	scene_script .DummyScene1, SCENE_VICTORYROAD_NOOP
 
 	def_callbacks
 
@@ -30,7 +30,7 @@ VictoryRoadRivalLeft:
 	scall VictoryRoadRivalNext
 	applymovement VICTORYROAD_SILVER, VictoryRoadRivalBattleExitMovement1
 	disappear VICTORYROAD_SILVER
-	setscene SCENE_VICTORYROAD_NOTHING
+	setscene SCENE_VICTORYROAD_NOOP
 	playmapmusic
 	end
 
@@ -44,7 +44,7 @@ VictoryRoadRivalRight:
 	scall VictoryRoadRivalNext
 	applymovement VICTORYROAD_SILVER, VictoryRoadRivalBattleExitMovement2
 	disappear VICTORYROAD_SILVER
-	setscene SCENE_VICTORYROAD_NOTHING
+	setscene SCENE_VICTORYROAD_NOOP
 	playmapmusic
 	end
 

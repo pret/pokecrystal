@@ -14,7 +14,7 @@
 
 AzaleaTown_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_AZALEATOWN_NOTHING
+	scene_script .DummyScene0, SCENE_AZALEATOWN_NOOP
 	scene_script .DummyScene1, SCENE_AZALEATOWN_RIVAL_BATTLE
 	scene_script .DummyScene2, SCENE_AZALEATOWN_KURT_RETURNS_GS_BALL
 
@@ -100,7 +100,7 @@ AzaleaTownRivalBattleScript:
 	applymovement AZALEATOWN_SILVER, AzaleaTownRivalBattleExitMovement
 	playsound SFX_EXIT_BUILDING
 	disappear AZALEATOWN_SILVER
-	setscene SCENE_AZALEATOWN_NOTHING
+	setscene SCENE_AZALEATOWN_NOOP
 	waitsfx
 	playmapmusic
 	end
@@ -167,7 +167,7 @@ AzaleaTownCelebiScene:
 	setflag ENGINE_FOREST_IS_RESTLESS
 	clearevent EVENT_ILEX_FOREST_LASS
 	setevent EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
-	setscene SCENE_AZALEATOWN_NOTHING
+	setscene SCENE_AZALEATOWN_NOOP
 	closetext
 	end
 

@@ -8,7 +8,7 @@
 PlayersHouse1F_MapScripts:
 	def_scene_scripts
 	scene_script .DummyScene0, SCENE_PLAYERSHOUSE1F_MEET_MOM
-	scene_script .DummyScene1, SCENE_PLAYERSHOUSE1F_NOTHING
+	scene_script .DummyScene1, SCENE_PLAYERSHOUSE1F_NOOP
 
 	def_callbacks
 
@@ -41,7 +41,7 @@ MeetMomScript:
 	setflag ENGINE_POKEGEAR
 	setflag ENGINE_PHONE_CARD
 	addcellnum PHONE_MOM
-	setscene SCENE_PLAYERSHOUSE1F_NOTHING
+	setscene SCENE_PLAYERSHOUSE1F_NOOP
 	setevent EVENT_PLAYERS_HOUSE_MOM_1
 	clearevent EVENT_PLAYERS_HOUSE_MOM_2
 	writetext MomGivesPokegearText

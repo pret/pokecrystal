@@ -9,7 +9,7 @@
 
 PowerPlant_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_POWERPLANT_NOTHING
+	scene_script .DummyScene0, SCENE_POWERPLANT_NOOP
 	scene_script .DummyScene1, SCENE_POWERPLANT_GUARD_GETS_PHONE_CALL
 
 	def_callbacks
@@ -40,7 +40,7 @@ PowerPlantGuardPhoneScript:
 	closetext
 	turnobject PLAYER, DOWN
 	applymovement POWERPLANT_OFFICER1, PowerPlantOfficer1ReturnToPostMovement
-	setscene SCENE_POWERPLANT_NOTHING
+	setscene SCENE_POWERPLANT_NOOP
 	end
 
 PowerPlantOfficerScript:
