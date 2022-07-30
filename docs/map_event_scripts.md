@@ -41,7 +41,7 @@
 
 <pre>
 	def_scene_scripts
-	scene_script <i>script</i>
+	scene_script <i>script</i>, SCENE_<i>MAPNAME</i>_<i>SCENE_NAME</i>
 </pre>
 
 
@@ -65,9 +65,9 @@
 - `MAPCALLBACK_CMDQUEUE`
 
 <pre>
-	callback MAPCALLBACK_CMDQUEUE, .Boulders
+	callback MAPCALLBACK_CMDQUEUE, <i>MapName</i>BouldersCallback
 
-.Boulders:
+<i>MapName</i>BouldersCallback:
 	writecmdqueue .BoulderCmdQueue
 	endcallback
 
@@ -214,7 +214,7 @@
 
 <i>MapName</i>_MapScripts:
 	def_scene_scripts
-;	scene_script <i>script</i>
+;	scene_script <i>script</i>, SCENE_<i>MAPNAME</i>_<i>SCENE_NAME</i>
 
 	def_callbacks
 ;	callback <i>type</i>, <i>script</i>

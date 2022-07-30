@@ -12,9 +12,9 @@ VioletCity_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, VioletCityFlypointCallback
 
-.FlyPoint:
+VioletCityFlypointCallback:
 	setflag ENGINE_FLYPOINT_VIOLET
 	endcallback
 

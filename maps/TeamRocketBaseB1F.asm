@@ -8,15 +8,15 @@
 
 TeamRocketBaseB1F_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene, SCENE_TEAMROCKETBASEB1F_TRAPS
+	scene_script TeamRocketBaseB1FNoopScene, SCENE_TEAMROCKETBASEB1F_TRAPS
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, .HideSecurityGrunt
+	callback MAPCALLBACK_OBJECTS, TeamRocketBaseB1FHideSecurityGruntCallback
 
-.DummyScene:
+TeamRocketBaseB1FNoopScene:
 	end
 
-.HideSecurityGrunt:
+TeamRocketBaseB1FHideSecurityGruntCallback:
 	disappear TEAMROCKETBASEB1F_ROCKET1
 	endcallback
 

@@ -5,20 +5,20 @@
 
 LancesRoom_MapScripts:
 	def_scene_scripts
-	scene_script .LockDoor,   SCENE_LANCESROOM_LOCK_DOOR
-	scene_script .DummyScene, SCENE_LANCESROOM_APPROACH_LANCE
+	scene_script LancesRoomLockDoorScene, SCENE_LANCESROOM_LOCK_DOOR
+	scene_script LancesRoomNoopScene,     SCENE_LANCESROOM_APPROACH_LANCE
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, .LancesRoomDoors
+	callback MAPCALLBACK_TILES, LancesRoomDoorsCallback
 
-.LockDoor:
-	sdefer .LancesDoorLocksBehindYou
+LancesRoomLockDoorScene:
+	sdefer LancesRoomDoorLocksBehindYouScript
 	end
 
-.DummyScene:
+LancesRoomNoopScene:
 	end
 
-.LancesRoomDoors:
+LancesRoomDoorsCallback:
 	checkevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	iffalse .KeepEntranceOpen
 	changeblock 4, 22, $34 ; wall
@@ -29,7 +29,7 @@ LancesRoom_MapScripts:
 .KeepExitClosed:
 	endcallback
 
-.LancesDoorLocksBehindYou:
+LancesRoomDoorLocksBehindYouScript:
 	applymovement PLAYER, LancesRoom_EnterMovement
 	refreshscreen $86
 	playsound SFX_STRENGTH

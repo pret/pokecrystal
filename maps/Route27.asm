@@ -11,15 +11,15 @@
 
 Route27_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_ROUTE27_FIRST_STEP_INTO_KANTO
-	scene_script .DummyScene1, SCENE_ROUTE27_NOOP
+	scene_script Route27Noop1Scene, SCENE_ROUTE27_FIRST_STEP_INTO_KANTO
+	scene_script Route27Noop2Scene, SCENE_ROUTE27_NOOP
 
 	def_callbacks
 
-.DummyScene0:
+Route27Noop1Scene:
 	end
 
-.DummyScene1:
+Route27Noop2Scene:
 	end
 
 FirstStepIntoKantoLeftScene:

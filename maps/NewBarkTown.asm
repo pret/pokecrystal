@@ -5,19 +5,19 @@
 
 NewBarkTown_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_NEWBARKTOWN_TEACHER_STOPS_YOU
-	scene_script .DummyScene1, SCENE_NEWBARKTOWN_NOOP
+	scene_script NewBarkTownNoop1Scene, SCENE_NEWBARKTOWN_TEACHER_STOPS_YOU
+	scene_script NewBarkTownNoop2Scene, SCENE_NEWBARKTOWN_NOOP
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, NewBarkTownFlypointCallback
 
-.DummyScene0:
+NewBarkTownNoop1Scene:
 	end
 
-.DummyScene1:
+NewBarkTownNoop2Scene:
 	end
 
-.FlyPoint:
+NewBarkTownFlypointCallback:
 	setflag ENGINE_FLYPOINT_NEW_BARK
 	clearevent EVENT_FIRST_TIME_BANKING_WITH_MOM
 	endcallback

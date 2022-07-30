@@ -4,11 +4,11 @@
 
 SeafoamGym_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene ; unusable
+	scene_script SeafoamGymNoopScene ; unusable
 
 	def_callbacks
 
-.DummyScene:
+SeafoamGymNoopScene:
 	end
 
 SeafoamGymBlaineScript:

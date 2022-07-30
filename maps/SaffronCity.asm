@@ -12,9 +12,9 @@ SaffronCity_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, SaffronCityFlypointCallback
 
-.FlyPoint:
+SaffronCityFlypointCallback:
 	setflag ENGINE_FLYPOINT_SAFFRON
 	endcallback
 

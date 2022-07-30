@@ -16,7 +16,7 @@ FastShipCabins_SE_SSE_CaptainsCabin_MapScripts:
 
 	def_callbacks
 
-.DummyScene: ; unreferenced
+FastShipCabins_SE_SSE_CaptainsCabinNoopScene: ; unreferenced
 	end
 
 SSAquaCaptain:

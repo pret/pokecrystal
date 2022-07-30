@@ -4,11 +4,11 @@
 
 Route28SteelWingHouse_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene ; unusable
+	scene_script Route28SteelWingHouseNoopScene ; unusable
 
 	def_callbacks
 
-.DummyScene:
+Route28SteelWingHouseNoopScene:
 	end
 
 Celebrity:

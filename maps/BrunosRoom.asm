@@ -3,20 +3,20 @@
 
 BrunosRoom_MapScripts:
 	def_scene_scripts
-	scene_script .LockDoor,   SCENE_BRUNOSROOM_LOCK_DOOR
-	scene_script .DummyScene, SCENE_BRUNOSROOM_NOOP
+	scene_script BrunosRoomLockDoorScene, SCENE_BRUNOSROOM_LOCK_DOOR
+	scene_script BrunosRoomNoopScene,     SCENE_BRUNOSROOM_NOOP
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, .BrunosRoomDoors
+	callback MAPCALLBACK_TILES, BrunosRoomDoorsCallback
 
-.LockDoor:
-	sdefer .BrunosDoorLocksBehindYou
+BrunosRoomLockDoorScene:
+	sdefer BrunosRoomDoorLocksBehindYouScript
 	end
 
-.DummyScene:
+BrunosRoomNoopScene:
 	end
 
-.BrunosRoomDoors:
+BrunosRoomDoorsCallback:
 	checkevent EVENT_BRUNOS_ROOM_ENTRANCE_CLOSED
 	iffalse .KeepEntranceOpen
 	changeblock 4, 14, $2a ; wall
@@ -27,7 +27,7 @@ BrunosRoom_MapScripts:
 .KeepExitClosed:
 	endcallback
 
-.BrunosDoorLocksBehindYou:
+BrunosRoomDoorLocksBehindYouScript:
 	applymovement PLAYER, BrunosRoom_EnterMovement
 	refreshscreen $86
 	playsound SFX_STRENGTH

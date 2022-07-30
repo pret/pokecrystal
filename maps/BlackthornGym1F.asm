@@ -9,9 +9,9 @@ BlackthornGym1F_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, .Boulders
+	callback MAPCALLBACK_TILES, BlackthornGym1FBouldersCallback
 
-.Boulders:
+BlackthornGym1FBouldersCallback:
 	checkevent EVENT_BOULDER_IN_BLACKTHORN_GYM_1
 	iffalse .skip1
 	changeblock 8, 2, $3b ; fallen boulder 2

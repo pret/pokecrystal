@@ -14,23 +14,23 @@
 
 AzaleaTown_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_AZALEATOWN_NOOP
-	scene_script .DummyScene1, SCENE_AZALEATOWN_RIVAL_BATTLE
-	scene_script .DummyScene2, SCENE_AZALEATOWN_KURT_RETURNS_GS_BALL
+	scene_script AzaleaTownNoop1Scene, SCENE_AZALEATOWN_NOOP
+	scene_script AzaleaTownNoop2Scene, SCENE_AZALEATOWN_RIVAL_BATTLE
+	scene_script AzaleaTownNoop3Scene, SCENE_AZALEATOWN_KURT_RETURNS_GS_BALL
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .Flypoint
+	callback MAPCALLBACK_NEWMAP, AzaleaTownFlypointCallback
 
-.DummyScene0:
+AzaleaTownNoop1Scene:
 	end
 
-.DummyScene1:
+AzaleaTownNoop2Scene:
 	end
 
-.DummyScene2:
+AzaleaTownNoop3Scene:
 	end
 
-.Flypoint:
+AzaleaTownFlypointCallback:
 	setflag ENGINE_FLYPOINT_AZALEA
 	endcallback
 

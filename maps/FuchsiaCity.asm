@@ -8,9 +8,9 @@ FuchsiaCity_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, FuchsiaCityFlypointCallback
 
-.FlyPoint:
+FuchsiaCityFlypointCallback:
 	setflag ENGINE_FLYPOINT_FUCHSIA
 	endcallback
 

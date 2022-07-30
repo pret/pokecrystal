@@ -1,18 +1,18 @@
 MobileBattleRoom_MapScripts:
 	def_scene_scripts
-	scene_script .InitializeMobileBattleRoom, SCENE_MOBILEBATTLEROOM_INITIALIZE
-	scene_script .DummyScene,                 SCENE_MOBILEBATTLEROOM_NOOP
+	scene_script MobileBattleRoomInitializeScene, SCENE_MOBILEBATTLEROOM_INITIALIZE
+	scene_script MobileBattleRoomNoopScene,       SCENE_MOBILEBATTLEROOM_NOOP
 
 	def_callbacks
 
-.InitializeMobileBattleRoom:
-	sdefer .InitializeAndPreparePokecenter2F
+MobileBattleRoomInitializeScene:
+	sdefer MobileBattleRoomInitializeAndPreparePokecenter2FScript
 	end
 
-.DummyScene:
+MobileBattleRoomNoopScene:
 	end
 
-.InitializeAndPreparePokecenter2F:
+MobileBattleRoomInitializeAndPreparePokecenter2FScript:
 	setscene SCENE_MOBILEBATTLEROOM_NOOP
 	setmapscene POKECENTER_2F, SCENE_POKECENTER2F_LEAVE_MOBILE_BATTLE_ROOM
 	end

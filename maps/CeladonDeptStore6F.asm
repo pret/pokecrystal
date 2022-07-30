@@ -10,9 +10,9 @@ CeladonDeptStore6F_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, .HideRooftopStairs
+	callback MAPCALLBACK_TILES, CeladonDeptStore6FHideRooftopStairsCallback
 
-.HideRooftopStairs:
+CeladonDeptStore6FHideRooftopStairsCallback:
 	changeblock 12, 0, $03 ; wall
 	endcallback
 

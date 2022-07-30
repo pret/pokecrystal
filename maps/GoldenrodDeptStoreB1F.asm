@@ -12,10 +12,10 @@ GoldenrodDeptStoreB1F_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, .ClearBoxes
-	callback MAPCALLBACK_NEWMAP, .Unblock
+	callback MAPCALLBACK_TILES, GoldenRodDeptStoreB1FClearBoxesCallback
+	callback MAPCALLBACK_NEWMAP, GoldenRodDeptStoreUnblockCallback
 
-.ClearBoxes:
+GoldenRodDeptStoreB1FClearBoxesCallback:
 	checkevent EVENT_RECEIVED_CARD_KEY
 	iftrue .GotCardKey
 	sjump .Continue
@@ -40,7 +40,7 @@ GoldenrodDeptStoreB1F_MapScripts:
 	changeblock 10, 12, $0d ; floor
 	endcallback
 
-.Unblock:
+GoldenRodDeptStoreUnblockCallback:
 	clearevent EVENT_GOLDENROD_UNDERGROUND_WAREHOUSE_BLOCKED_OFF
 	endcallback
 

@@ -15,9 +15,9 @@ IlexForest_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, .FarfetchdCallback
+	callback MAPCALLBACK_OBJECTS, IlexForestFarfetchdCallback
 
-.FarfetchdCallback:
+IlexForestFarfetchdCallback:
 	checkevent EVENT_GOT_HM01_CUT
 	iftrue .Static
 	readmem wFarfetchdPosition

@@ -10,19 +10,19 @@
 
 Route29_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_ROUTE29_NOOP
-	scene_script .DummyScene1, SCENE_ROUTE29_CATCH_TUTORIAL
+	scene_script Route29Noop1Scene, SCENE_ROUTE29_NOOP
+	scene_script Route29Noop2Scene, SCENE_ROUTE29_CATCH_TUTORIAL
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, .Tuscany
+	callback MAPCALLBACK_OBJECTS, Route29TuscanyCallback
 
-.DummyScene0:
+Route29Noop1Scene:
 	end
 
-.DummyScene1:
+Route29Noop2Scene:
 	end
 
-.Tuscany:
+Route29TuscanyCallback:
 	checkflag ENGINE_ZEPHYRBADGE
 	iftrue .DoesTuscanyAppear
 

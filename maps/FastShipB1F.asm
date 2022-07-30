@@ -14,15 +14,15 @@
 
 FastShipB1F_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_FASTSHIPB1F_SAILOR_BLOCKS
-	scene_script .DummyScene1, SCENE_FASTSHIPB1F_NOOP
+	scene_script FastShipB1FNoop1Scene, SCENE_FASTSHIPB1F_SAILOR_BLOCKS
+	scene_script FastShipB1FNoop2Scene, SCENE_FASTSHIPB1F_NOOP
 
 	def_callbacks
 
-.DummyScene0:
+FastShipB1FNoop1Scene:
 	end
 
-.DummyScene1:
+FastShipB1FNoop2Scene:
 	end
 
 FastShipB1FSailorBlocksLeft:

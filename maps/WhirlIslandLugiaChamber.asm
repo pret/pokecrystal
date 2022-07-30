@@ -5,9 +5,9 @@ WhirlIslandLugiaChamber_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, .Lugia
+	callback MAPCALLBACK_OBJECTS, WhirlIslandLugiaChamberLugiaCallback
 
-.Lugia:
+WhirlIslandLugiaChamberLugiaCallback:
 	checkevent EVENT_FOUGHT_LUGIA
 	iftrue .NoAppear
 	checkitem SILVER_WING

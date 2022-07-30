@@ -2,9 +2,9 @@ Route16_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .AlwaysOnBike
+	callback MAPCALLBACK_NEWMAP, Route16AlwaysOnBikeCallback
 
-.AlwaysOnBike:
+Route16AlwaysOnBikeCallback:
 	readvar VAR_YCOORD
 	ifless 5, .CanWalk
 	readvar VAR_XCOORD

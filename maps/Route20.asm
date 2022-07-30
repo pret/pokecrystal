@@ -7,9 +7,9 @@ Route20_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .ClearRocks
+	callback MAPCALLBACK_NEWMAP, Route20ClearRocksCallback
 
-.ClearRocks:
+Route20ClearRocksCallback:
 	setevent EVENT_CINNABAR_ROCKS_CLEARED
 	endcallback
 

@@ -11,9 +11,9 @@ RadioTower3F_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, .CardKeyShutterCallback
+	callback MAPCALLBACK_TILES, RadioTower3FCardKeyShutterCallback
 
-.CardKeyShutterCallback:
+RadioTower3FCardKeyShutterCallback:
 	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	iftrue .Change
 	endcallback

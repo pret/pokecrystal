@@ -11,9 +11,9 @@ EcruteakCity_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, EcruteakCityFlypointCallback
 
-.FlyPoint:
+EcruteakCityFlypointCallback:
 	setflag ENGINE_FLYPOINT_ECRUTEAK
 	endcallback
 

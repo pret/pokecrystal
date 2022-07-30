@@ -7,19 +7,19 @@
 
 CherrygroveCity_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_CHERRYGROVECITY_NOOP
-	scene_script .DummyScene1, SCENE_CHERRYGROVECITY_MEET_RIVAL
+	scene_script CherrygroveCityNoop1Scene, SCENE_CHERRYGROVECITY_NOOP
+	scene_script CherrygroveCityNoop2Scene, SCENE_CHERRYGROVECITY_MEET_RIVAL
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, CherrygroveCityFlypointCallback
 
-.DummyScene0:
+CherrygroveCityNoop1Scene:
 	end
 
-.DummyScene1:
+CherrygroveCityNoop2Scene:
 	end
 
-.FlyPoint:
+CherrygroveCityFlypointCallback:
 	setflag ENGINE_FLYPOINT_CHERRYGROVE
 	endcallback
 

@@ -14,19 +14,19 @@
 
 CianwoodCity_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_CIANWOODCITY_NOOP
-	scene_script .DummyScene1, SCENE_CIANWOODCITY_SUICUNE_AND_EUSINE
+	scene_script CianwoodCityNoop1Scene, SCENE_CIANWOODCITY_NOOP
+	scene_script CianwoodCityNoop2Scene, SCENE_CIANWOODCITY_SUICUNE_AND_EUSINE
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .FlyPointAndSuicune
+	callback MAPCALLBACK_NEWMAP, CianwoodCityFlypointAndSuicuneCallback
 
-.DummyScene0:
+CianwoodCityNoop1Scene:
 	end
 
-.DummyScene1:
+CianwoodCityNoop2Scene:
 	end
 
-.FlyPointAndSuicune:
+CianwoodCityFlypointAndSuicuneCallback:
 	setflag ENGINE_FLYPOINT_CIANWOOD
 	setevent EVENT_EUSINE_IN_BURNED_TOWER
 	checkevent EVENT_FOUGHT_EUSINE

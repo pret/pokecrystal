@@ -13,15 +13,15 @@
 
 Route25_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_ROUTE25_NOOP
-	scene_script .DummyScene1, SCENE_ROUTE25_MISTYS_DATE
+	scene_script Route25Noop1Scene, SCENE_ROUTE25_NOOP
+	scene_script Route25Noop2Scene, SCENE_ROUTE25_MISTYS_DATE
 
 	def_callbacks
 
-.DummyScene0:
+Route25Noop1Scene:
 	end
 
-.DummyScene1:
+Route25Noop2Scene:
 	end
 
 Route25MistyDate1Script:

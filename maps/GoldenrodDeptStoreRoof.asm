@@ -12,10 +12,10 @@ GoldenrodDeptStoreRoof_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, .CheckSaleChangeBlock
-	callback MAPCALLBACK_OBJECTS, .CheckSaleChangeClerk
+	callback MAPCALLBACK_TILES, GoldenrodDeptStoreRoofCheckSaleChangeBlockCallback
+	callback MAPCALLBACK_OBJECTS, GoldenrodDeptStoreRoofCheckSaleChangeClerkCallback
 
-.CheckSaleChangeBlock:
+GoldenrodDeptStoreRoofCheckSaleChangeBlockCallback:
 	checkflag ENGINE_GOLDENROD_DEPT_STORE_SALE_IS_ON
 	iftrue .SaleIsOn
 	endcallback
@@ -25,7 +25,7 @@ GoldenrodDeptStoreRoof_MapScripts:
 	changeblock 0, 4, $0f ; vendor booth
 	endcallback
 
-.CheckSaleChangeClerk:
+GoldenrodDeptStoreRoofCheckSaleChangeClerkCallback:
 	checkflag ENGINE_GOLDENROD_DEPT_STORE_SALE_IS_ON
 	iftrue .ChangeClerk
 	setevent EVENT_GOLDENROD_SALE_OFF

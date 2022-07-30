@@ -4,25 +4,25 @@
 
 RuinsOfAlphKabutoChamber_MapScripts:
 	def_scene_scripts
-	scene_script .CheckWall,  SCENE_RUINSOFALPHKABUTOCHAMBER_CHECK_WALL
-	scene_script .DummyScene, SCENE_RUINSOFALPHKABUTOCHAMBER_NOOP
+	scene_script RuinsOfAlphKabutoChamberCheckWallScene, SCENE_RUINSOFALPHKABUTOCHAMBER_CHECK_WALL
+	scene_script RuinsOfAlphKabutoChamberNoopScene,      SCENE_RUINSOFALPHKABUTOCHAMBER_NOOP
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, .HiddenDoors
+	callback MAPCALLBACK_TILES, RuinsOfAlphKabutoChamberHiddenDoorsCallback
 
-.CheckWall:
+RuinsOfAlphKabutoChamberCheckWallScene:
 	checkevent EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
 	iftrue .OpenWall
 	end
 
 .OpenWall:
-	sdefer .WallOpenScript
+	sdefer RuinsOfAlphKabutoChamberWallOpenScript
 	end
 
-.DummyScene:
+RuinsOfAlphKabutoChamberNoopScene:
 	end
 
-.HiddenDoors:
+RuinsOfAlphKabutoChamberHiddenDoorsCallback:
 	checkevent EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
 	iftrue .WallOpen
 	changeblock 4, 0, $2e ; closed wall
@@ -36,7 +36,7 @@ RuinsOfAlphKabutoChamber_MapScripts:
 	changeblock 4, 2, $02 ; right floor
 	endcallback
 
-.WallOpenScript:
+RuinsOfAlphKabutoChamberWallOpenScript:
 	pause 30
 	earthquake 30
 	showemote EMOTE_SHOCK, PLAYER, 20

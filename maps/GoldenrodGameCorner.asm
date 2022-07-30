@@ -23,9 +23,9 @@ GoldenrodGameCorner_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, .MoveTutor
+	callback MAPCALLBACK_OBJECTS, GoldenrodGameCornerMoveTutorCallback
 
-.MoveTutor:
+GoldenrodGameCornerMoveTutorCallback:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse .finish
 	checkitem COIN_CASE

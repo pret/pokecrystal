@@ -7,24 +7,24 @@
 
 BurnedTower1F_MapScripts:
 	def_scene_scripts
-	scene_script .EusineScene, SCENE_BURNEDTOWER1F_MEET_EUSINE
-	scene_script .DummyScene1, SCENE_BURNEDTOWER1F_RIVAL_BATTLE
-	scene_script .DummyScene2, SCENE_BURNEDTOWER1F_NOOP
+	scene_script BurnedTower1FMeetEusineScene, SCENE_BURNEDTOWER1F_MEET_EUSINE
+	scene_script BurnedTower1FNoop1Scene,      SCENE_BURNEDTOWER1F_RIVAL_BATTLE
+	scene_script BurnedTower1FNoop2Scene,      SCENE_BURNEDTOWER1F_NOOP
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, .HoleAndLadder
+	callback MAPCALLBACK_TILES, BurnedTower1FHoleAndLadderCallback
 
-.EusineScene:
-	sdefer .MeetEusine
+BurnedTower1FMeetEusineScene:
+	sdefer BurnedTower1FMeetEusineScript
 	end
 
-.DummyScene1:
+BurnedTower1FNoop1Scene:
 	end
 
-.DummyScene2:
+BurnedTower1FNoop2Scene:
 	end
 
-.HoleAndLadder:
+BurnedTower1FHoleAndLadderCallback:
 	checkevent EVENT_HOLE_IN_BURNED_TOWER
 	iftrue .KeepHoleOpen
 	changeblock 10, 8, $32 ; floor
@@ -35,7 +35,7 @@ BurnedTower1F_MapScripts:
 .HideBasement:
 	endcallback
 
-.MeetEusine:
+BurnedTower1FMeetEusineScript:
 	turnobject BURNEDTOWER1F_EUSINE, DOWN
 	showemote EMOTE_SHOCK, BURNEDTOWER1F_EUSINE, 15
 	applymovement BURNEDTOWER1F_EUSINE, BurnedTower1FEusineMovement

@@ -4,11 +4,11 @@
 
 GoldenrodMagnetTrainStation_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene, SCENE_GOLDENRODMAGNETTRAINSTATION_ARRIVE_FROM_SAFFRON
+	scene_script GoldenrodMagnetTrainStationNoopScene, SCENE_GOLDENRODMAGNETTRAINSTATION_ARRIVE_FROM_SAFFRON
 
 	def_callbacks
 
-.DummyScene:
+GoldenrodMagnetTrainStationNoopScene:
 	end
 
 GoldenrodMagnetTrainStationOfficerScript:

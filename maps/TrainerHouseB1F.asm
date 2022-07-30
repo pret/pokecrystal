@@ -4,11 +4,11 @@
 
 TrainerHouseB1F_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene, SCENE_TRAINERHOUSEB1F_ASK_BATTLE
+	scene_script TrainerHouseB1FNoopScene, SCENE_TRAINERHOUSEB1F_ASK_BATTLE
 
 	def_callbacks
 
-.DummyScene:
+TrainerHouseB1FNoopScene:
 	end
 
 TrainerHouseReceptionistScript:

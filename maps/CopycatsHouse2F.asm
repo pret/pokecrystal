@@ -10,9 +10,9 @@ CopycatsHouse2F_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, .Callback
+	callback MAPCALLBACK_OBJECTS, CopycatsHouse2FWhichGenderCallback
 
-.Callback:
+CopycatsHouse2FWhichGenderCallback:
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Female
 	disappear COPYCATSHOUSE2F_COPYCAT2

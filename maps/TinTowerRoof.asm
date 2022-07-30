@@ -5,9 +5,9 @@ TinTowerRoof_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, .HoOh
+	callback MAPCALLBACK_OBJECTS, TinTowerRoofHoOhCallback
 
-.HoOh:
+TinTowerRoofHoOhCallback:
 	checkevent EVENT_FOUGHT_HO_OH
 	iftrue .NoAppear
 	checkitem RAINBOW_WING

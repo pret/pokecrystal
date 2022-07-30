@@ -5,9 +5,9 @@ CinnabarIsland_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, CinnabarIslandFlypointCallback
 
-.FlyPoint:
+CinnabarIslandFlypointCallback:
 	setflag ENGINE_FLYPOINT_CINNABAR
 	endcallback
 

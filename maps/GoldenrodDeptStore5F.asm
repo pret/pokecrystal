@@ -10,9 +10,9 @@ GoldenrodDeptStore5F_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, .CheckIfSunday
+	callback MAPCALLBACK_OBJECTS, GoldenrodDeptStore5FCheckIfSundayCallback
 
-.CheckIfSunday:
+GoldenrodDeptStore5FCheckIfSundayCallback:
 	readvar VAR_WEEKDAY
 	ifequal SUNDAY, .yes
 	disappear GOLDENRODDEPTSTORE5F_RECEPTIONIST

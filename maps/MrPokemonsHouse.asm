@@ -4,19 +4,19 @@
 
 MrPokemonsHouse_MapScripts:
 	def_scene_scripts
-	scene_script .MeetMrPokemon, SCENE_MRPOKEMONSHOUSE_MEET_MR_POKEMON
-	scene_script .DummyScene,    SCENE_MRPOKEMONSHOUSE_NOOP
+	scene_script MrPokemonsHouseMeetMrPokemonScene, SCENE_MRPOKEMONSHOUSE_MEET_MR_POKEMON
+	scene_script MrPokemonsHouseNoopScene,          SCENE_MRPOKEMONSHOUSE_NOOP
 
 	def_callbacks
 
-.MeetMrPokemon:
-	sdefer .MrPokemonEvent
+MrPokemonsHouseMeetMrPokemonScene:
+	sdefer MrPokemonsHouseMrPokemonEventScript
 	end
 
-.DummyScene:
+MrPokemonsHouseNoopScene:
 	end
 
-.MrPokemonEvent:
+MrPokemonsHouseMrPokemonEventScript:
 	showemote EMOTE_SHOCK, MRPOKEMONSHOUSE_GENTLEMAN, 15
 	turnobject MRPOKEMONSHOUSE_GENTLEMAN, DOWN
 	opentext

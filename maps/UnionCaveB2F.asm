@@ -10,9 +10,9 @@ UnionCaveB2F_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, .Lapras
+	callback MAPCALLBACK_OBJECTS, UnionCaveB2FLaprasCallback
 
-.Lapras:
+UnionCaveB2FLaprasCallback:
 	checkflag ENGINE_UNION_CAVE_LAPRAS
 	iftrue .NoAppear
 	readvar VAR_WEEKDAY

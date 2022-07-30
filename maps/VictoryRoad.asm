@@ -8,15 +8,15 @@
 
 VictoryRoad_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_VICTORYROAD_RIVAL_BATTLE
-	scene_script .DummyScene1, SCENE_VICTORYROAD_NOOP
+	scene_script VictoryRoadNoop1Scene, SCENE_VICTORYROAD_RIVAL_BATTLE
+	scene_script VictoryRoadNoop2Scene, SCENE_VICTORYROAD_NOOP
 
 	def_callbacks
 
-.DummyScene0:
+VictoryRoadNoop1Scene:
 	end
 
-.DummyScene1:
+VictoryRoadNoop2Scene:
 	end
 
 VictoryRoadRivalLeft:

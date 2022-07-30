@@ -11,19 +11,19 @@
 
 DragonsDenB1F_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_DRAGONSDENB1F_NOOP
-	scene_script .DummyScene1, SCENE_DRAGONSDENB1F_CLAIR_GIVES_TM
+	scene_script DragonsDenB1FNoop1Scene, SCENE_DRAGONSDENB1F_NOOP
+	scene_script DragonsDenB1FNoop2Scene, SCENE_DRAGONSDENB1F_CLAIR_GIVES_TM
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .CheckSilver
+	callback MAPCALLBACK_NEWMAP, DragonsDenB1FCheckSilverCallback
 
-.DummyScene0:
+DragonsDenB1FNoop1Scene:
 	end
 
-.DummyScene1:
+DragonsDenB1FNoop2Scene:
 	end
 
-.CheckSilver:
+DragonsDenB1FCheckSilverCallback:
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iftrue .CheckDay
 	disappear DRAGONSDENB1F_SILVER

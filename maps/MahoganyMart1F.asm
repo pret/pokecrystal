@@ -7,20 +7,20 @@
 
 MahoganyMart1F_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0,            SCENE_MAHOGANYMART1F_NOOP
-	scene_script .LanceUncoversStaircase, SCENE_MAHOGANYMART1F_LANCE_UNCOVERS_STAIRS
+	scene_script MahoganyMart1FNoopScene,                SCENE_MAHOGANYMART1F_NOOP
+	scene_script MahoganyMart1FLanceUncoversStairsScene, SCENE_MAHOGANYMART1F_LANCE_UNCOVERS_STAIRS
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, .MahoganyMart1FStaircase
+	callback MAPCALLBACK_TILES, MahoganyMart1FStaircaseCallback
 
-.DummyScene0:
+MahoganyMart1FNoopScene:
 	end
 
-.LanceUncoversStaircase:
+MahoganyMart1FLanceUncoversStairsScene:
 	sdefer MahoganyMart1FLanceUncoversStaircaseScript
 	end
 
-.MahoganyMart1FStaircase:
+MahoganyMart1FStaircaseCallback:
 	checkevent EVENT_UNCOVERED_STAIRCASE_IN_MAHOGANY_MART
 	iftrue .ShowStairs
 	endcallback

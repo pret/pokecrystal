@@ -6,7 +6,7 @@ GoldenrodBikeShop_MapScripts:
 
 	def_callbacks
 
-.DummyScene: ; unreferenced
+GoldenrodBikeShopNoopScene: ; unreferenced
 	end
 
 GoldenrodBikeShopClerkScript:

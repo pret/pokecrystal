@@ -7,12 +7,12 @@
 
 BattleTower1F_MapScripts:
 	def_scene_scripts
-	scene_script .Scene0, SCENE_BATTLETOWER1F_CHECKSTATE
-	scene_script .Scene1, SCENE_BATTLETOWER1F_NOOP
+	scene_script BattleTower1FCheckStateScene, SCENE_BATTLETOWER1F_CHECKSTATE
+	scene_script BattleTower1FNoopScene,       SCENE_BATTLETOWER1F_NOOP
 
 	def_callbacks
 
-.Scene0:
+BattleTower1FCheckStateScene:
 	setval BATTLETOWERACTION_CHECKSAVEFILEISYOURS
 	special BattleTowerAction
 	iffalse .SkipEverything
@@ -37,7 +37,8 @@ BattleTower1F_MapScripts:
 	special BattleTowerAction
 .SkipEverything:
 	setscene SCENE_BATTLETOWER1F_NOOP
-.Scene1:
+	; fallthrough
+BattleTower1FNoopScene:
 	end
 
 BattleTower1FRulesSign:

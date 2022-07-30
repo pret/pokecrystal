@@ -8,15 +8,15 @@
 
 IndigoPlateauPokecenter1F_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene, SCENE_INDIGOPLATEAUPOKECENTER1F_RIVAL_BATTLE
+	scene_script IndigoPlateauPokecenter1FNoopScene, SCENE_INDIGOPLATEAUPOKECENTER1F_RIVAL_BATTLE
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .PrepareElite4
+	callback MAPCALLBACK_NEWMAP, IndigoPlateauPokecenter1FPrepareElite4Callback
 
-.DummyScene:
+IndigoPlateauPokecenter1FNoopScene:
 	end
 
-.PrepareElite4:
+IndigoPlateauPokecenter1FPrepareElite4Callback:
 	setmapscene WILLS_ROOM, SCENE_WILLSROOM_LOCK_DOOR
 	setmapscene KOGAS_ROOM, SCENE_KOGASROOM_LOCK_DOOR
 	setmapscene BRUNOS_ROOM, SCENE_BRUNOSROOM_LOCK_DOOR

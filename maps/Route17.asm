@@ -8,9 +8,9 @@ Route17_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .AlwaysOnBike
+	callback MAPCALLBACK_NEWMAP, Route17AlwaysOnBikeCallback
 
-.AlwaysOnBike:
+Route17AlwaysOnBikeCallback:
 	setflag ENGINE_ALWAYS_ON_BIKE
 	setflag ENGINE_DOWNHILL
 	endcallback

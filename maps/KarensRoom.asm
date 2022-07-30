@@ -3,20 +3,20 @@
 
 KarensRoom_MapScripts:
 	def_scene_scripts
-	scene_script .LockDoor,   SCENE_KARENSROOM_LOCK_DOOR
-	scene_script .DummyScene, SCENE_KARENSROOM_NOOP
+	scene_script KarensRoomLockDoorScene, SCENE_KARENSROOM_LOCK_DOOR
+	scene_script KarensRoomNoopScene,     SCENE_KARENSROOM_NOOP
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, .KarensRoomDoors
+	callback MAPCALLBACK_TILES, KarensRoomDoorsCallback
 
-.LockDoor:
-	sdefer .KarensDoorLocksBehindYou
+KarensRoomLockDoorScene:
+	sdefer KarensRoomDoorLocksBehindYouScript
 	end
 
-.DummyScene:
+KarensRoomNoopScene:
 	end
 
-.KarensRoomDoors:
+KarensRoomDoorsCallback:
 	checkevent EVENT_KARENS_ROOM_ENTRANCE_CLOSED
 	iffalse .KeepEntranceOpen
 	changeblock 4, 14, $2a ; wall
@@ -27,7 +27,7 @@ KarensRoom_MapScripts:
 .KeepExitClosed:
 	endcallback
 
-.KarensDoorLocksBehindYou:
+KarensRoomDoorLocksBehindYouScript:
 	applymovement PLAYER, KarensRoom_EnterMovement
 	refreshscreen $86
 	playsound SFX_STRENGTH

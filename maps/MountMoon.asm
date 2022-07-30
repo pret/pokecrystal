@@ -3,19 +3,19 @@
 
 MountMoon_MapScripts:
 	def_scene_scripts
-	scene_script .RivalEncounter, SCENE_MOUNTMOON_RIVAL_BATTLE
-	scene_script .DummyScene,     SCENE_MOUNTMOON_NOOP
+	scene_script MountMoonRivalEncounterScene, SCENE_MOUNTMOON_RIVAL_BATTLE
+	scene_script MountMoonNoopScene,           SCENE_MOUNTMOON_NOOP
 
 	def_callbacks
 
-.RivalEncounter:
-	sdefer .RivalBattle
+MountMoonRivalEncounterScene:
+	sdefer MountMoonRivalBattleScript
 	end
 
-.DummyScene:
+MountMoonNoopScene:
 	end
 
-.RivalBattle:
+MountMoonRivalBattleScript:
 	turnobject PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic

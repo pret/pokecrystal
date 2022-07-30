@@ -8,14 +8,14 @@ BattleTowerOutside_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, .Callback1
-	callback MAPCALLBACK_OBJECTS, .Callback2
+	callback MAPCALLBACK_TILES, BattleTowerOutsideNoopCallback
+	callback MAPCALLBACK_OBJECTS, BattleTowerOutsideShowCiviliansCallback
 
-.Callback1:
+BattleTowerOutsideNoopCallback:
 	endcallback
 
-.Callback2:
-	clearevent EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
+BattleTowerOutsideShowCiviliansCallback:
+	clearevent EVENT_BATTLE_TOWER_OPEN_CIVILIANS
 	endcallback
 
 BattleTowerOutsideYoungsterScript:
@@ -144,5 +144,5 @@ BattleTowerOutside_MapEvents:
 	def_object_events
 	object_event  6, 12, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BattleTowerOutsideYoungsterScript, -1
 	object_event 13, 11, SPRITE_BEAUTY, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, BattleTowerOutsideBeautyScript, -1
-	object_event 12, 18, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTowerOutsideSailorScript, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
+	object_event 12, 18, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTowerOutsideSailorScript, EVENT_BATTLE_TOWER_OPEN_CIVILIANS
 	object_event 12, 24, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1

@@ -11,9 +11,9 @@ GoldenrodUndergroundWarehouse_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .ResetSwitches
+	callback MAPCALLBACK_NEWMAP, GoldenrodUndergroundWarehouseResetSwitchesCallback
 
-.ResetSwitches:
+GoldenrodUndergroundWarehouseResetSwitchesCallback:
 	clearevent EVENT_SWITCH_1
 	clearevent EVENT_SWITCH_2
 	clearevent EVENT_SWITCH_3

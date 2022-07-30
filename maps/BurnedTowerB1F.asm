@@ -11,19 +11,19 @@
 
 BurnedTowerB1F_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_BURNEDTOWERB1F_RELEASE_THE_BEASTS
-	scene_script .DummyScene1, SCENE_BURNEDTOWERB1F_NOOP
+	scene_script BurnedTowerB1FNoop1Scene, SCENE_BURNEDTOWERB1F_RELEASE_THE_BEASTS
+	scene_script BurnedTowerB1FNoop2Scene, SCENE_BURNEDTOWERB1F_NOOP
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, .LadderCallback
+	callback MAPCALLBACK_TILES, BurnedTowerB1FLadderCallback
 
-.DummyScene0:
+BurnedTowerB1FNoop1Scene:
 	end
 
-.DummyScene1:
+BurnedTowerB1FNoop2Scene:
 	end
 
-.LadderCallback:
+BurnedTowerB1FLadderCallback:
 	checkevent EVENT_RELEASED_THE_BEASTS
 	iftrue .HideLadder
 	changeblock 6, 14, $02 ; floor

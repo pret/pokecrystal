@@ -5,20 +5,20 @@
 
 MountMoonSquare_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene, SCENE_MOUNTMOONSQUARE_CLEFAIRY_DANCE
+	scene_script MountMoonSquareNoopScene, SCENE_MOUNTMOONSQUARE_CLEFAIRY_DANCE
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .DisappearMoonStone
-	callback MAPCALLBACK_OBJECTS, .DisappearRock
+	callback MAPCALLBACK_NEWMAP, MountMoonSquareDisappearMoonStoneCallback
+	callback MAPCALLBACK_OBJECTS, MountMoonSquareDisappearRockCallback
 
-.DummyScene:
+MountMoonSquareNoopScene:
 	end
 
-.DisappearMoonStone:
+MountMoonSquareDisappearMoonStoneCallback:
 	setevent EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE
 	endcallback
 
-.DisappearRock:
+MountMoonSquareDisappearRockCallback:
 	disappear MOUNTMOONSQUARE_ROCK
 	endcallback
 

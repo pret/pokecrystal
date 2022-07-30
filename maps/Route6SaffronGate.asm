@@ -3,11 +3,11 @@
 
 Route6SaffronGate_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene ; unusable
+	scene_script Route6SaffronGateNoopScene ; unusable
 
 	def_callbacks
 
-.DummyScene:
+Route6SaffronGateNoopScene:
 	end
 
 Route6SaffronGuardScript:

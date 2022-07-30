@@ -8,44 +8,44 @@
 
 ElmsLab_MapScripts:
 	def_scene_scripts
-	scene_script .MeetElm,     SCENE_ELMSLAB_MEET_ELM
-	scene_script .DummyScene1, SCENE_ELMSLAB_CANT_LEAVE
-	scene_script .DummyScene2, SCENE_ELMSLAB_NOOP
-	scene_script .DummyScene3, SCENE_ELMSLAB_MEET_OFFICER
-	scene_script .DummyScene4, SCENE_ELMSLAB_UNUSED
-	scene_script .DummyScene5, SCENE_ELMSLAB_AIDE_GIVES_POTION
+	scene_script ElmsLabMeetElmScene, SCENE_ELMSLAB_MEET_ELM
+	scene_script ElmsLabNoop1Scene,   SCENE_ELMSLAB_CANT_LEAVE
+	scene_script ElmsLabNoop2Scene,   SCENE_ELMSLAB_NOOP
+	scene_script ElmsLabNoop3Scene,   SCENE_ELMSLAB_MEET_OFFICER
+	scene_script ElmsLabNoop4Scene,   SCENE_ELMSLAB_UNUSED
+	scene_script ElmsLabNoop5Scene,   SCENE_ELMSLAB_AIDE_GIVES_POTION
 	scene_const SCENE_ELMSLAB_AIDE_GIVES_POKE_BALLS
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, .MoveElmCallback
+	callback MAPCALLBACK_OBJECTS, ElmsLabMoveElmCallback
 
-.MeetElm:
-	sdefer .WalkUpToElm
+ElmsLabMeetElmScene:
+	sdefer ElmsLabWalkUpToElmScript
 	end
 
-.DummyScene1:
+ElmsLabNoop1Scene:
 	end
 
-.DummyScene2:
+ElmsLabNoop2Scene:
 	end
 
-.DummyScene3:
+ElmsLabNoop3Scene:
 	end
 
-.DummyScene4:
+ElmsLabNoop4Scene:
 	end
 
-.DummyScene5:
+ElmsLabNoop5Scene:
 	end
 
-.MoveElmCallback:
+ElmsLabMoveElmCallback:
 	checkscene
 	iftrue .Skip ; not SCENE_ELMSLAB_MEET_ELM
 	moveobject ELMSLAB_ELM, 3, 4
 .Skip:
 	endcallback
 
-.WalkUpToElm:
+ElmsLabWalkUpToElmScript:
 	applymovement PLAYER, ElmsLab_WalkUpToElmMovement
 	showemote EMOTE_SHOCK, ELMSLAB_ELM, 15
 	turnobject ELMSLAB_ELM, RIGHT
