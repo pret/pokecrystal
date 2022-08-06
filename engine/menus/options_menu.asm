@@ -1,14 +1,14 @@
 ; GetOptionPointer.Pointers indexes
 	const_def
-	const OPT_TEXT_SPEED   ; 0
-	const OPT_BATTLE_SCENE ; 1
-	const OPT_BATTLE_STYLE ; 2
-	const OPT_SOUND        ; 3
-	const OPT_PRINT        ; 4
-	const OPT_MENU_ACCOUNT ; 5
-	const OPT_FRAME        ; 6
-	const OPT_CANCEL       ; 7
-DEF NUM_OPTIONS EQU const_value    ; 8
+	const OPT_TEXT_SPEED    ; 0
+	const OPT_BATTLE_SCENE  ; 1
+	const OPT_BATTLE_STYLE  ; 2
+	const OPT_SOUND         ; 3
+	const OPT_PRINT         ; 4
+	const OPT_MENU_ACCOUNT  ; 5
+	const OPT_FRAME         ; 6
+	const OPT_CANCEL        ; 7
+DEF NUM_OPTIONS EQU const_value ; 8
 
 _Option:
 	ld hl, hInMenu
