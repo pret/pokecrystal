@@ -1401,7 +1401,7 @@ BattleCheckTypeMatchup:
 	and a
 	jr z, CheckTypeMatchup
 	ld hl, wBattleMonType1
- 	; fallthrough
+	; fallthrough
 CheckTypeMatchup:
 ; BUG: AI makes a false assumption about CheckTypeMatchup (see docs/bugs_and_glitches.md)
 	push hl

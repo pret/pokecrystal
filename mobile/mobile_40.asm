@@ -3644,17 +3644,20 @@ setcharmap ascii
 Unknown_10186f:
 	db .end - @
 	db $19, $73, $09, $13, "trade_crystal"
-.end	db 0
+.end
+	db 0
 
 Unknown_101882:
 	db .end - @
 	db $19, $67, $10, $01, "free__crystal"
-.end	db 0
+.end
+	db 0
 
 Unknown_101895:
 	db .end - @
 	db $19, $67, $10, $01, "limit_crystal"
-.end	db 0
+.end
+	db 0
 
 popc
 

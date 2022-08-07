@@ -904,7 +904,7 @@ AI_Smart_ResetStats:
 	ret
 
 ; Discourage this move if neither:
-; Any of enemy's stat levels is	lower than -2.
+; Any of enemy's stat levels is lower than -2.
 ; Any of player's stat levels is higher than +2.
 .discourage
 	pop hl
@@ -2321,7 +2321,7 @@ AI_Smart_HiddenPower:
 	cp EFFECTIVE
 	jr c, .bad
 
-; Discourage Hidden Power if its base power	is lower than 50.
+; Discourage Hidden Power if its base power is lower than 50.
 	ld a, d
 	cp 50
 	jr c, .bad

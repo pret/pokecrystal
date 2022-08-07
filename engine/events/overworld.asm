@@ -552,9 +552,9 @@ FlyFunction:
 	ret
 
 .Jumptable:
- 	dw .TryFly
- 	dw .DoFly
- 	dw .FailFly
+	dw .TryFly
+	dw .DoFly
+	dw .FailFly
 
 .TryFly:
 	ld de, ENGINE_STORMBADGE
