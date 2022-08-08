@@ -1731,7 +1731,7 @@ This is a mistake with the left-hand warp carpet corner tiles in [gfx/tilesets/p
 ![image](https://raw.githubusercontent.com/pret/pokecrystal/master/docs/images/port.png)
 
 
-## The Ruins of Alph research center's roof color at night looks wrong
+### The Ruins of Alph research center's roof color at night looks wrong
 
 The dungeons' map group mostly has indoor maps that don't need roof colors, but [maps/RuinsOfAlphOutside.blk](https://github.com/pret/pokecrystal/blob/master/maps/RuinsOfAlphOutside.blk) is an exception. It appears to have poorly-chosen roof colors: the morning/day colors are the same default gray as the unused group 0, and the night colors combine the light default gray and the dark red of Cinnabar's night roofs.
 
