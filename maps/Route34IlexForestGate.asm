@@ -9,9 +9,9 @@ Route34IlexForestGate_MapScripts:
 	scene_const SCENE_ROUTE34ILEXFORESTGATE_TEACHER_BLOCKS_IF_FOREST_IS_RESTLESS
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, .IsForestRestless
+	callback MAPCALLBACK_OBJECTS, Route34IsForestRestlessCallback
 
-.IsForestRestless:
+Route34IsForestRestlessCallback:
 	checkevent EVENT_FOREST_IS_RESTLESS
 	iffalse .Normal
 	disappear ROUTE34ILEXFORESTGATE_TEACHER1

@@ -8,9 +8,9 @@ ViridianCity_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, ViridianCityFlypointCallback
 
-.FlyPoint:
+ViridianCityFlypointCallback:
 	setflag ENGINE_FLYPOINT_VIRIDIAN
 	endcallback
 

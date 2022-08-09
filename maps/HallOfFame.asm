@@ -3,19 +3,19 @@
 
 HallOfFame_MapScripts:
 	def_scene_scripts
-	scene_script .EnterHallOfFame, SCENE_HALLOFFAME_ENTER
-	scene_script .DummyScene,      SCENE_HALLOFFAME_NOOP
+	scene_script HallOfFameEnterScene, SCENE_HALLOFFAME_ENTER
+	scene_script HallOfFameNoopScene,  SCENE_HALLOFFAME_NOOP
 
 	def_callbacks
 
-.EnterHallOfFame:
-	sdefer .EnterHallOfFameScript
+HallOfFameEnterScene:
+	sdefer HallOfFameEnterScript
 	end
 
-.DummyScene:
+HallOfFameNoopScene:
 	end
 
-.EnterHallOfFameScript:
+HallOfFameEnterScript:
 	follow HALLOFFAME_LANCE, PLAYER
 	applymovement HALLOFFAME_LANCE, HallOfFame_WalkUpWithLance
 	stopfollow

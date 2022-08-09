@@ -3,11 +3,11 @@
 
 LavenderNameRater_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene ; unusable
+	scene_script LavenderNameRaterNoopScene ; unusable
 
 	def_callbacks
 
-.DummyScene:
+LavenderNameRaterNoopScene:
 	end
 
 LavenderNameRater:

@@ -13,9 +13,9 @@ CeladonCity_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, CeladonCityFlypointCallback
 
-.FlyPoint:
+CeladonCityFlypointCallback:
 	setflag ENGINE_FLYPOINT_CELADON
 	endcallback
 

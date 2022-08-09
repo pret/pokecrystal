@@ -9,15 +9,15 @@
 
 SproutTower3F_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_SPROUTTOWER3F_RIVAL_ENCOUNTER
-	scene_script .DummyScene1, SCENE_SPROUTTOWER3F_NOOP
+	scene_script SproutTower3FNoop1Scene, SCENE_SPROUTTOWER3F_RIVAL_ENCOUNTER
+	scene_script SproutTower3FNoop2Scene, SCENE_SPROUTTOWER3F_NOOP
 
 	def_callbacks
 
-.DummyScene0:
+SproutTower3FNoop1Scene:
 	end
 
-.DummyScene1:
+SproutTower3FNoop2Scene:
 	end
 
 SproutTower3FRivalScene:

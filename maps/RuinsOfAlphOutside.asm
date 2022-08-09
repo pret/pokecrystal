@@ -7,19 +7,19 @@
 
 RuinsOfAlphOutside_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_RUINSOFALPHOUTSIDE_NOOP
-	scene_script .DummyScene1, SCENE_RUINSOFALPHOUTSIDE_GET_UNOWN_DEX
+	scene_script RuinsOfAlphOutsideNoop1Scene, SCENE_RUINSOFALPHOUTSIDE_NOOP
+	scene_script RuinsOfAlphOutsideNoop2Scene, SCENE_RUINSOFALPHOUTSIDE_GET_UNOWN_DEX
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, .ScientistCallback
+	callback MAPCALLBACK_OBJECTS, RuinsOfAlphOutsideScientistCallback
 
-.DummyScene0:
+RuinsOfAlphOutsideNoop1Scene:
 	end
 
-.DummyScene1:
+RuinsOfAlphOutsideNoop2Scene:
 	end
 
-.ScientistCallback:
+RuinsOfAlphOutsideScientistCallback:
 	checkflag ENGINE_UNOWN_DEX
 	iftrue .NoScientist
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS

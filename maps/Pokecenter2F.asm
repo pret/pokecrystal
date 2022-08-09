@@ -6,43 +6,42 @@
 
 Pokecenter2F_MapScripts:
 	def_scene_scripts
-	scene_script .Scene0, SCENE_POKECENTER2F_NOOP
-	scene_script .Scene1, SCENE_POKECENTER2F_LEAVE_TRADE_CENTER
-	scene_script .Scene2, SCENE_POKECENTER2F_LEAVE_COLOSSEUM
-	scene_script .Scene3, SCENE_POKECENTER2F_LEAVE_TIME_CAPSULE
-	scene_script .Scene4, SCENE_POKECENTER2F_LEAVE_MOBILE_TRADE_ROOM
-	scene_script .Scene5, SCENE_POKECENTER2F_LEAVE_MOBILE_BATTLE_ROOM
+	scene_script Pokecenter2FCheckMysteryGiftScene,      SCENE_POKECENTER2F_CHECK_MYSTERY_GIFT
+	scene_script Pokecenter2FLeaveTradeCenterScene,      SCENE_POKECENTER2F_LEAVE_TRADE_CENTER
+	scene_script Pokecenter2FLeaveColosseumScene,        SCENE_POKECENTER2F_LEAVE_COLOSSEUM
+	scene_script Pokecenter2FLeaveTimeCapsuleScene,      SCENE_POKECENTER2F_LEAVE_TIME_CAPSULE
+	scene_script Pokecenter2FLeaveMobileTradeRoomScene,  SCENE_POKECENTER2F_LEAVE_MOBILE_TRADE_ROOM
+	scene_script Pokecenter2FLeaveMobileBattleRoomScene, SCENE_POKECENTER2F_LEAVE_MOBILE_BATTLE_ROOM
 
 	def_callbacks
 
-.Scene0:
+Pokecenter2FCheckMysteryGiftScene:
 	special CheckMysteryGift
-	ifequal $0, .Scene0Done
+	ifequal $0, .done
 	clearevent EVENT_MYSTERY_GIFT_DELIVERY_GUY
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
-	iftrue .Scene0Done
+	iftrue .done
 	sdefer Pokecenter2F_AppearMysteryGiftDeliveryGuy
-
-.Scene0Done:
+.done
 	end
 
-.Scene1:
+Pokecenter2FLeaveTradeCenterScene:
 	sdefer Script_LeftCableTradeCenter
 	end
 
-.Scene2:
+Pokecenter2FLeaveColosseumScene:
 	sdefer Script_LeftCableColosseum
 	end
 
-.Scene3:
+Pokecenter2FLeaveTimeCapsuleScene:
 	sdefer Script_LeftTimeCapsule
 	end
 
-.Scene4:
+Pokecenter2FLeaveMobileTradeRoomScene:
 	sdefer Script_LeftMobileTradeRoom
 	end
 
-.Scene5:
+Pokecenter2FLeaveMobileBattleRoomScene:
 	sdefer Script_LeftMobileBattleRoom
 	end
 
@@ -374,14 +373,14 @@ LinkReceptionistScript_TimeCapsule:
 Script_LeftCableTradeCenter:
 	special WaitForOtherPlayerToExit
 	scall Script_WalkOutOfLinkTradeRoom
-	setscene SCENE_POKECENTER2F_NOOP
+	setscene SCENE_POKECENTER2F_CHECK_MYSTERY_GIFT
 	setmapscene TRADE_CENTER, SCENE_TRADECENTER_INITIALIZE
 	end
 
 Script_LeftMobileTradeRoom:
 	special Function101220
 	scall Script_WalkOutOfMobileTradeRoom
-	setscene SCENE_POKECENTER2F_NOOP
+	setscene SCENE_POKECENTER2F_CHECK_MYSTERY_GIFT
 	setmapscene MOBILE_TRADE_ROOM, SCENE_MOBILETRADEROOM_INITIALIZE
 	end
 
@@ -394,14 +393,14 @@ Script_WalkOutOfMobileTradeRoom:
 Script_LeftCableColosseum:
 	special WaitForOtherPlayerToExit
 	scall Script_WalkOutOfLinkBattleRoom
-	setscene SCENE_POKECENTER2F_NOOP
+	setscene SCENE_POKECENTER2F_CHECK_MYSTERY_GIFT
 	setmapscene COLOSSEUM, SCENE_COLOSSEUM_INITIALIZE
 	end
 
 Script_LeftMobileBattleRoom:
 	special Function101220
 	scall Script_WalkOutOfMobileBattleRoom
-	setscene SCENE_POKECENTER2F_NOOP
+	setscene SCENE_POKECENTER2F_CHECK_MYSTERY_GIFT
 	setmapscene MOBILE_BATTLE_ROOM, SCENE_MOBILEBATTLEROOM_INITIALIZE
 	end
 
@@ -577,7 +576,7 @@ Script_LeftTimeCapsule:
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerTakesOneStepDown
 	applymovement POKECENTER2F_TIME_CAPSULE_RECEPTIONIST, Pokecenter2FMovementData_ReceptionistStepsRightLooksDown_2
 .Done:
-	setscene SCENE_POKECENTER2F_NOOP
+	setscene SCENE_POKECENTER2F_CHECK_MYSTERY_GIFT
 	setmapscene TIME_CAPSULE, SCENE_TIMECAPSULE_INITIALIZE
 	end
 

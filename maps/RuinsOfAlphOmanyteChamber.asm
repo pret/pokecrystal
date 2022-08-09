@@ -1,25 +1,25 @@
 RuinsOfAlphOmanyteChamber_MapScripts:
 	def_scene_scripts
-	scene_script .CheckWall,  SCENE_RUINSOFALPHOMANYTECHAMBER_CHECK_WALL
-	scene_script .DummyScene, SCENE_RUINSOFALPHOMANYTECHAMBER_NOOP
+	scene_script RuinsOfAlphOmanyteChamberCheckWallScene, SCENE_RUINSOFALPHOMANYTECHAMBER_CHECK_WALL
+	scene_script RuinsOfAlphOmanyteChamberNoopScene,      SCENE_RUINSOFALPHOMANYTECHAMBER_NOOP
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, .HiddenDoors
+	callback MAPCALLBACK_TILES, RuinsOfAlphOmanyteChamberHiddenDoorsCallback
 
-.CheckWall:
+RuinsOfAlphOmanyteChamberCheckWallScene:
 	special OmanyteChamber
 	checkevent EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	iftrue .OpenWall
 	end
 
 .OpenWall:
-	sdefer .WallOpenScript
+	sdefer RuinsOfAlphOmanyteChamberWallOpenScript
 	end
 
-.DummyScene:
+RuinsOfAlphOmanyteChamberNoopScene:
 	end
 
-.HiddenDoors:
+RuinsOfAlphOmanyteChamberHiddenDoorsCallback:
 	checkevent EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	iftrue .WallOpen
 	changeblock 4, 0, $2e ; closed wall
@@ -33,7 +33,7 @@ RuinsOfAlphOmanyteChamber_MapScripts:
 	changeblock 4, 2, $02 ; right floor
 	endcallback
 
-.WallOpenScript:
+RuinsOfAlphOmanyteChamberWallOpenScript:
 	pause 30
 	earthquake 30
 	showemote EMOTE_SHOCK, PLAYER, 20

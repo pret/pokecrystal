@@ -6,11 +6,11 @@
 
 FuchsiaPokecenter1F_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene ; unusable
+	scene_script FuchsiaPokeCenter1FNoopScene ; unusable
 
 	def_callbacks
 
-.DummyScene:
+FuchsiaPokeCenter1FNoopScene:
 	end
 
 FuchsiaPokecenter1FNurseScript:

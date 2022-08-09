@@ -6,11 +6,11 @@
 
 SaffronMagnetTrainStation_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene, SCENE_SAFFRONMAGNETTRAINSTATION_ARRIVE_FROM_GOLDENROD
+	scene_script SaffronMagnetTrainStationNoopScene, SCENE_SAFFRONMAGNETTRAINSTATION_ARRIVE_FROM_GOLDENROD
 
 	def_callbacks
 
-.DummyScene:
+SaffronMagnetTrainStationNoopScene:
 	end
 
 SaffronMagnetTrainStationOfficerScript:

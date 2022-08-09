@@ -12,9 +12,9 @@ BlackthornGym2F_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_CMDQUEUE, .SetUpStoneTable
+	callback MAPCALLBACK_CMDQUEUE, BlackthornGym2FSetUpStoneTableCallback
 
-.SetUpStoneTable:
+BlackthornGym2FSetUpStoneTableCallback:
 	writecmdqueue .CommandQueue
 	endcallback
 

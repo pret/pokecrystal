@@ -2,9 +2,9 @@ Route23_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, Route23FlypointCallback
 
-.FlyPoint:
+Route23FlypointCallback:
 	setflag ENGINE_FLYPOINT_INDIGO_PLATEAU
 	endcallback
 

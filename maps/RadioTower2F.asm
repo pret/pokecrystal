@@ -18,7 +18,7 @@ RadioTower2F_MapScripts:
 
 	def_callbacks
 
-RadioTower2FUnusedDummyScene: ; unreferenced
+RadioTower2FNoopScene: ; unreferenced
 	end
 
 RadioTower2FSuperNerdScript:

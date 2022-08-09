@@ -47,19 +47,19 @@ ENDM
 
 GoldenrodUndergroundSwitchRoomEntrances_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_RIVAL_BATTLE
-	scene_script .DummyScene1, SCENE_GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_NOOP
+	scene_script GoldenrodUndergroundSwitchRoomEntrancesNoop1Scene, SCENE_GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_RIVAL_BATTLE
+	scene_script GoldenrodUndergroundSwitchRoomEntrancesNoop2Scene, SCENE_GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_NOOP
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, .UpdateDoorPositions
+	callback MAPCALLBACK_TILES, GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback
 
-.DummyScene0:
+GoldenrodUndergroundSwitchRoomEntrancesNoop1Scene:
 	end
 
-.DummyScene1:
+GoldenrodUndergroundSwitchRoomEntrancesNoop2Scene:
 	end
 
-.UpdateDoorPositions:
+GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback:
 	checkevent EVENT_SWITCH_4
 	iffalse .false4
 	doorstate 1, OPEN1

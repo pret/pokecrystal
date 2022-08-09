@@ -9,7 +9,7 @@ OaksLab_MapScripts:
 
 	def_callbacks
 
-.DummyScene: ; unreferenced
+OaksLabNoopScene: ; unreferenced
 	end
 
 Oak:

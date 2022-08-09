@@ -16,28 +16,28 @@
 
 TeamRocketBaseB3F_MapScripts:
 	def_scene_scripts
-	scene_script .LanceGetsPassword, SCENE_TEAMROCKETBASEB3F_LANCE_GETS_PASSWORD
-	scene_script .DummyScene1,       SCENE_TEAMROCKETBASEB3F_RIVAL_ENCOUNTER
-	scene_script .DummyScene2,       SCENE_TEAMROCKETBASEB3F_ROCKET_BOSS
-	scene_script .DummyScene3,       SCENE_TEAMROCKETBASEB3F_NOOP
+	scene_script TeamRocketBaseB3FLanceGetsPasswordScene, SCENE_TEAMROCKETBASEB3F_LANCE_GETS_PASSWORD
+	scene_script TeamRocketBaseB3FNoop1Scene,             SCENE_TEAMROCKETBASEB3F_RIVAL_ENCOUNTER
+	scene_script TeamRocketBaseB3FNoop2Scene,             SCENE_TEAMROCKETBASEB3F_ROCKET_BOSS
+	scene_script TeamRocketBaseB3FNoop3Scene,             SCENE_TEAMROCKETBASEB3F_NOOP
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, .CheckGiovanniDoor
+	callback MAPCALLBACK_TILES, TeamRocketBaseB3FCheckGiovanniDoorCallback
 
-.LanceGetsPassword:
+TeamRocketBaseB3FLanceGetsPasswordScene:
 	sdefer LanceGetPasswordScript
 	end
 
-.DummyScene1:
+TeamRocketBaseB3FNoop1Scene:
 	end
 
-.DummyScene2:
+TeamRocketBaseB3FNoop2Scene:
 	end
 
-.DummyScene3:
+TeamRocketBaseB3FNoop3Scene:
 	end
 
-.CheckGiovanniDoor:
+TeamRocketBaseB3FCheckGiovanniDoorCallback:
 	checkevent EVENT_OPENED_DOOR_TO_GIOVANNIS_OFFICE
 	iftrue .OpenSesame
 	endcallback

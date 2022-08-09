@@ -14,24 +14,24 @@
 
 LakeOfRage_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0 ; unusable
-	scene_script .DummyScene1 ; unusable
+	scene_script LakeOfRageNoop1Scene ; unusable
+	scene_script LakeOfRageNoop2Scene ; unusable
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .FlyPoint
-	callback MAPCALLBACK_OBJECTS, .Wesley
+	callback MAPCALLBACK_NEWMAP, LakeOfRageFlypointCallback
+	callback MAPCALLBACK_OBJECTS, LakeOfRageWesleyCallback
 
-.DummyScene0:
+LakeOfRageNoop1Scene:
 	end
 
-.DummyScene1:
+LakeOfRageNoop2Scene:
 	end
 
-.FlyPoint:
+LakeOfRageFlypointCallback:
 	setflag ENGINE_FLYPOINT_LAKE_OF_RAGE
 	endcallback
 
-.Wesley:
+LakeOfRageWesleyCallback:
 	readvar VAR_WEEKDAY
 	ifequal WEDNESDAY, .WesleyAppears
 	disappear LAKEOFRAGE_WESLEY

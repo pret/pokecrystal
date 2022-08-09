@@ -6,11 +6,11 @@
 
 AzaleaPokecenter1F_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene ; unusable
+	scene_script AzaleaPokecenter1FNoopScene ; unusable
 
 	def_callbacks
 
-.DummyScene:
+AzaleaPokecenter1FNoopScene:
 	end
 
 AzaleaPokecenter1FNurseScript:

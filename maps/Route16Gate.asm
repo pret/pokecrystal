@@ -3,11 +3,11 @@
 
 Route16Gate_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene, SCENE_ROUTE16GATE_BICYCLE_CHECK
+	scene_script Route16GateNoopScene, SCENE_ROUTE16GATE_BICYCLE_CHECK
 
 	def_callbacks
 
-.DummyScene:
+Route16GateNoopScene:
 	end
 
 Route16GateOfficerScript:

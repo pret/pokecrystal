@@ -1,24 +1,24 @@
 RuinsOfAlphAerodactylChamber_MapScripts:
 	def_scene_scripts
-	scene_script .CheckWall,  SCENE_RUINSOFALPHAERODACTYLCHAMBER_CHECK_WALL
-	scene_script .DummyScene, SCENE_RUINSOFALPHAERODACTYLCHAMBER_NOOP
+	scene_script RuinsOfAlphAerodactylChamberCheckWallScene, SCENE_RUINSOFALPHAERODACTYLCHAMBER_CHECK_WALL
+	scene_script RuinsOfAlphAerodactylChamberNoopScene,      SCENE_RUINSOFALPHAERODACTYLCHAMBER_NOOP
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, .HiddenDoors
+	callback MAPCALLBACK_TILES, RuinsOfAlphAerodactylChamberHiddenDoorsCallback
 
-.CheckWall:
+RuinsOfAlphAerodactylChamberCheckWallScene:
 	checkevent EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
 	iftrue .OpenWall
 	end
 
 .OpenWall:
-	sdefer .WallOpenScript
+	sdefer RuinsOfAlphAerodactylChamberWallOpenScript
 	end
 
-.DummyScene:
+RuinsOfAlphAerodactylChamberNoopScene:
 	end
 
-.HiddenDoors:
+RuinsOfAlphAerodactylChamberHiddenDoorsCallback:
 	checkevent EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
 	iftrue .WallOpen
 	changeblock 4, 0, $2e ; closed wall
@@ -32,7 +32,7 @@ RuinsOfAlphAerodactylChamber_MapScripts:
 	changeblock 4, 2, $02 ; right floor
 	endcallback
 
-.WallOpenScript:
+RuinsOfAlphAerodactylChamberWallOpenScript:
 	pause 30
 	earthquake 30
 	showemote EMOTE_SHOCK, PLAYER, 20

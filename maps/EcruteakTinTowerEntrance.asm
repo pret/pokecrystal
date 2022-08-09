@@ -6,19 +6,19 @@
 
 EcruteakTinTowerEntrance_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_ECRUTEAKTINTOWERENTRANCE_SAGE_BLOCKS
-	scene_script .DummyScene1, SCENE_ECRUTEAKTINTOWERENTRANCE_NOOP
+	scene_script EcruteakTinTowerEntranceNoop1Scene, SCENE_ECRUTEAKTINTOWERENTRANCE_SAGE_BLOCKS
+	scene_script EcruteakTinTowerEntranceNoop2Scene, SCENE_ECRUTEAKTINTOWERENTRANCE_NOOP
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, .InitializeSages
+	callback MAPCALLBACK_OBJECTS, EcruteakTinTowerEntranceInitializeSagesCallback
 
-.DummyScene0:
+EcruteakTinTowerEntranceNoop1Scene:
 	end
 
-.DummyScene1:
+EcruteakTinTowerEntranceNoop2Scene:
 	end
 
-.InitializeSages:
+EcruteakTinTowerEntranceInitializeSagesCallback:
 	checkevent EVENT_FOUGHT_SUICUNE
 	iftrue .DontBlockTower
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER

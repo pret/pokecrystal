@@ -6,19 +6,19 @@
 
 DragonShrine_MapScripts:
 	def_scene_scripts
-	scene_script .DragonShrineTest, SCENE_DRAGONSHRINE_TAKE_TEST
-	scene_script .DummyScene,       SCENE_DRAGONSHRINE_NOOP
+	scene_script DragonShrineTakeTestScene, SCENE_DRAGONSHRINE_TAKE_TEST
+	scene_script DragonShrineNoopScene,     SCENE_DRAGONSHRINE_NOOP
 
 	def_callbacks
 
-.DragonShrineTest:
-	sdefer .DragonShrineTestScript
+DragonShrineTakeTestScene:
+	sdefer DragonShrineTakeTestScript
 	end
 
-.DummyScene:
+DragonShrineNoopScene:
 	end
 
-.DragonShrineTestScript:
+DragonShrineTakeTestScript:
 	applymovement PLAYER, DragonShrinePlayerWalkInMovement
 	applymovement DRAGONSHRINE_ELDER1, DragonShrineElderStepDownMovement
 	opentext

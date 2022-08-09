@@ -9,9 +9,9 @@ IcePathB1F_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_CMDQUEUE, .SetUpStoneTable
+	callback MAPCALLBACK_CMDQUEUE, IcePathB1FSetUpStoneTableCallback
 
-.SetUpStoneTable:
+IcePathB1FSetUpStoneTableCallback:
 	writecmdqueue .CommandQueue
 	endcallback
 

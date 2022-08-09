@@ -19,10 +19,10 @@ GoldenrodCity_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .FlyPointAndFloria
-	callback MAPCALLBACK_OBJECTS, .MoveTutor
+	callback MAPCALLBACK_NEWMAP, GoldenrodCityFlypointAndFloriaCallback
+	callback MAPCALLBACK_OBJECTS, GoldenrodCityMoveTutorCallback
 
-.FlyPointAndFloria:
+GoldenrodCityFlypointAndFloriaCallback:
 	setflag ENGINE_FLYPOINT_GOLDENROD
 	setflag ENGINE_REACHED_GOLDENROD
 	checkevent EVENT_MET_FLORIA
@@ -31,7 +31,7 @@ GoldenrodCity_MapScripts:
 .FloriaDone:
 	endcallback
 
-.MoveTutor:
+GoldenrodCityMoveTutorCallback:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse .MoveTutorDone
 	checkitem COIN_CASE

@@ -3,18 +3,19 @@
 
 BattleTowerHallway_MapScripts:
 	def_scene_scripts
-	scene_script .Scene0, SCENE_BATTLETOWERHALLWAY_ENTER
-	scene_script .Scene1, SCENE_BATTLETOWERHALLWAY_NOOP
+	scene_script BattleTowerHallwayEnterScene, SCENE_BATTLETOWERHALLWAY_ENTER
+	scene_script BattleTowerHallwayNoopScene,  SCENE_BATTLETOWERHALLWAY_NOOP
 
 	def_callbacks
 
-.Scene0:
-	sdefer .ChooseBattleRoom
+BattleTowerHallwayEnterScene:
+	sdefer BattleTowerHallwayChooseBattleRoomScript
 	setscene SCENE_BATTLETOWERHALLWAY_NOOP
-.Scene1:
+	; fallthrough
+BattleTowerHallwayNoopScene:
 	end
 
-.ChooseBattleRoom:
+BattleTowerHallwayChooseBattleRoomScript:
 	follow BATTLETOWERHALLWAY_RECEPTIONIST, PLAYER
 	callasm .asm_load_battle_room
 	sjump .WalkToChosenBattleRoom

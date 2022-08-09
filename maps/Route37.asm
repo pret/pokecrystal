@@ -11,9 +11,9 @@ Route37_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, .Sunny
+	callback MAPCALLBACK_OBJECTS, Route37SunnyCallback
 
-.Sunny:
+Route37SunnyCallback:
 	readvar VAR_WEEKDAY
 	ifequal SUNDAY, .SunnyAppears
 	disappear ROUTE37_SUNNY

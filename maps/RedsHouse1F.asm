@@ -3,11 +3,11 @@
 
 RedsHouse1F_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene ; unusable
+	scene_script RedHouse1FNoopScene ; unusable
 
 	def_callbacks
 
-.DummyScene:
+RedHouse1FNoopScene:
 	end
 
 RedsMom:

@@ -8,19 +8,19 @@ DEF MAHOGANYTOWN_RAGECANDYBAR_PRICE EQU 300
 
 MahoganyTown_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_MAHOGANYTOWN_TRY_RAGECANDYBAR
-	scene_script .DummyScene1, SCENE_MAHOGANYTOWN_NOOP
+	scene_script MahoganyTownNoop1Scene, SCENE_MAHOGANYTOWN_TRY_RAGECANDYBAR
+	scene_script MahoganyTownNoop2Scene, SCENE_MAHOGANYTOWN_NOOP
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, MahoganyTownFlypointCallback
 
-.DummyScene0:
+MahoganyTownNoop1Scene:
 	end
 
-.DummyScene1:
+MahoganyTownNoop2Scene:
 	end
 
-.FlyPoint:
+MahoganyTownFlypointCallback:
 	setflag ENGINE_FLYPOINT_MAHOGANY
 	endcallback
 

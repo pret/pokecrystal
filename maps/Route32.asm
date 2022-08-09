@@ -16,23 +16,23 @@
 
 Route32_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_ROUTE32_COOLTRAINER_M_BLOCKS
-	scene_script .DummyScene1, SCENE_ROUTE32_OFFER_SLOWPOKETAIL
-	scene_script .DummyScene2, SCENE_ROUTE32_NOOP
+	scene_script Route32Noop1Scene, SCENE_ROUTE32_COOLTRAINER_M_BLOCKS
+	scene_script Route32Noop2Scene, SCENE_ROUTE32_OFFER_SLOWPOKETAIL
+	scene_script Route32Noop3Scene, SCENE_ROUTE32_NOOP
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, .Frieda
+	callback MAPCALLBACK_OBJECTS, Route32FriedaCallback
 
-.DummyScene0:
+Route32Noop1Scene:
 	end
 
-.DummyScene1:
+Route32Noop2Scene:
 	end
 
-.DummyScene2:
+Route32Noop3Scene:
 	end
 
-.Frieda:
+Route32FriedaCallback:
 	readvar VAR_WEEKDAY
 	ifequal FRIDAY, .FriedaAppears
 	disappear ROUTE32_FRIEDA

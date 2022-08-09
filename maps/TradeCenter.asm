@@ -4,20 +4,20 @@
 
 TradeCenter_MapScripts:
 	def_scene_scripts
-	scene_script .InitializeTradeCenter, SCENE_TRADECENTER_INITIALIZE
-	scene_script .DummyScene,            SCENE_TRADECENTER_NOOP
+	scene_script TradeCenterInitializeScene, SCENE_TRADECENTER_INITIALIZE
+	scene_script TradeCenterNoopScene,       SCENE_TRADECENTER_NOOP
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, .SetWhichChris
+	callback MAPCALLBACK_OBJECTS, TradeCenterSetWhichChrisCallback
 
-.InitializeTradeCenter:
-	sdefer .InitializeAndPreparePokecenter2F
+TradeCenterInitializeScene:
+	sdefer TradeCenterInitializeAndPreparePokecenter2FScript
 	end
 
-.DummyScene:
+TradeCenterNoopScene:
 	end
 
-.SetWhichChris:
+TradeCenterSetWhichChrisCallback:
 	special CableClubCheckWhichChris
 	iffalse .Chris2
 	disappear TRADECENTER_CHRIS2
@@ -29,7 +29,7 @@ TradeCenter_MapScripts:
 	appear TRADECENTER_CHRIS2
 	endcallback
 
-.InitializeAndPreparePokecenter2F:
+TradeCenterInitializeAndPreparePokecenter2FScript:
 	setscene SCENE_TRADECENTER_NOOP
 	setmapscene POKECENTER_2F, SCENE_POKECENTER2F_LEAVE_TRADE_CENTER
 	end

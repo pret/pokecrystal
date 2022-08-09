@@ -5,19 +5,19 @@
 
 RuinsOfAlphInnerChamber_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_RUINSOFALPHINNERCHAMBER_NOOP
-	scene_script .UnownAppear, SCENE_RUINSOFALPHINNERCHAMBER_STRANGE_PRESENCE
+	scene_script RuinsOfAlphInnerChamberNoopScene,            SCENE_RUINSOFALPHINNERCHAMBER_NOOP
+	scene_script RuinsOfAlphInnerChamberStrangePresenceScene, SCENE_RUINSOFALPHINNERCHAMBER_STRANGE_PRESENCE
 
 	def_callbacks
 
-.DummyScene0:
+RuinsOfAlphInnerChamberNoopScene:
 	end
 
-.UnownAppear:
-	sdefer .StrangePresenceScript
+RuinsOfAlphInnerChamberStrangePresenceScene:
+	sdefer RuinsOfAlphInnerChamberStrangePresenceScript
 	end
 
-.StrangePresenceScript:
+RuinsOfAlphInnerChamberStrangePresenceScript:
 	opentext
 	writetext RuinsOfAlphStrangePresenceText
 	waitbutton

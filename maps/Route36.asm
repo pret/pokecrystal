@@ -11,19 +11,19 @@
 
 Route36_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_ROUTE36_NOOP
-	scene_script .DummyScene1, SCENE_ROUTE36_SUICUNE
+	scene_script Route36Noop1Scene, SCENE_ROUTE36_NOOP
+	scene_script Route36Noop2Scene, SCENE_ROUTE36_SUICUNE
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, .ArthurCallback
+	callback MAPCALLBACK_OBJECTS, Route36ArthurCallback
 
-.DummyScene0:
+Route36Noop1Scene:
 	end
 
-.DummyScene1:
+Route36Noop2Scene:
 	end
 
-.ArthurCallback:
+Route36ArthurCallback:
 	readvar VAR_WEEKDAY
 	ifequal THURSDAY, .ArthurAppears
 	disappear ROUTE36_ARTHUR
