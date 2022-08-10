@@ -230,7 +230,7 @@ DragonShrineElder1Script:
 	end
 
 .BeatRivalInMtMoon:
-	writetext DragonShrineSilverIsInTrainingText
+	writetext DragonShrineRivalIsInTrainingText
 	waitbutton
 	closetext
 	end
@@ -543,7 +543,7 @@ DragonShrineClairsGrandfatherText:
 	line "grandfather."
 	done
 
-DragonShrineSilverIsInTrainingText:
+DragonShrineRivalIsInTrainingText:
 	text "A boy close to"
 	line "your age is in"
 	cont "training here."

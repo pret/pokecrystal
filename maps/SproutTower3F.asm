@@ -5,7 +5,7 @@
 	const SPROUTTOWER3F_SAGE4
 	const SPROUTTOWER3F_POKE_BALL1
 	const SPROUTTOWER3F_POKE_BALL2
-	const SPROUTTOWER3F_SILVER
+	const SPROUTTOWER3F_RIVAL
 
 SproutTower3F_MapScripts:
 	def_scene_scripts
@@ -32,21 +32,21 @@ SproutTower3FRivalScene:
 	playsound SFX_ELEVATOR
 	earthquake 79
 	applymovement PLAYER, SproutTower3FPlayerApproachesRivalMovement
-	applymovement SPROUTTOWER3F_SILVER, SproutTower3FRivalApproachesElderMovement
+	applymovement SPROUTTOWER3F_RIVAL, SproutTower3FRivalApproachesElderMovement
 	opentext
 	writetext SproutTowerElderLecturesRivalText
 	waitbutton
 	closetext
-	showemote EMOTE_SHOCK, SPROUTTOWER3F_SILVER, 15
-	turnobject SPROUTTOWER3F_SILVER, DOWN
+	showemote EMOTE_SHOCK, SPROUTTOWER3F_RIVAL, 15
+	turnobject SPROUTTOWER3F_RIVAL, DOWN
 	pause 15
-	applymovement SPROUTTOWER3F_SILVER, SproutTower3FRivalLeavesElderMovement
+	applymovement SPROUTTOWER3F_RIVAL, SproutTower3FRivalLeavesElderMovement
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	opentext
 	writetext SproutTowerRivalOnlyCareAboutStrongText
 	waitbutton
 	closetext
-	turnobject SPROUTTOWER3F_SILVER, UP
+	turnobject SPROUTTOWER3F_RIVAL, UP
 	opentext
 	writetext SproutTowerRivalUsedEscapeRopeText
 	pause 15
@@ -54,7 +54,7 @@ SproutTower3FRivalScene:
 	playsound SFX_WARP_TO
 	special FadeBlackQuickly
 	special ReloadSpritesNoPalettes
-	disappear SPROUTTOWER3F_SILVER
+	disappear SPROUTTOWER3F_RIVAL
 	waitsfx
 	special FadeInQuickly
 	setscene SCENE_SPROUTTOWER3F_NOOP
@@ -351,4 +351,4 @@ SproutTower3F_MapEvents:
 	object_event 11, 11, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSageNeal, -1
 	object_event  6, 14, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SproutTower3FPotion, EVENT_SPROUT_TOWER_3F_POTION
 	object_event 14,  1, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SproutTower3FEscapeRope, EVENT_SPROUT_TOWER_3F_ESCAPE_ROPE
-	object_event 10,  4, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_SPROUT_TOWER
+	object_event 10,  4, SPRITE_RIVAL, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_SPROUT_TOWER
