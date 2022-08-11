@@ -1,7 +1,7 @@
 	object_const_def
 	const DRAGONSDENB1F_POKE_BALL1
 	const DRAGONSDENB1F_CLAIR
-	const DRAGONSDENB1F_SILVER
+	const DRAGONSDENB1F_RIVAL
 	const DRAGONSDENB1F_COOLTRAINER_M
 	const DRAGONSDENB1F_COOLTRAINER_F
 	const DRAGONSDENB1F_TWIN1
@@ -15,7 +15,7 @@ DragonsDenB1F_MapScripts:
 	scene_script DragonsDenB1FNoop2Scene, SCENE_DRAGONSDENB1F_CLAIR_GIVES_TM
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, DragonsDenB1FCheckSilverCallback
+	callback MAPCALLBACK_NEWMAP, DragonsDenB1FCheckRivalCallback
 
 DragonsDenB1FNoop1Scene:
 	end
@@ -23,21 +23,21 @@ DragonsDenB1FNoop1Scene:
 DragonsDenB1FNoop2Scene:
 	end
 
-DragonsDenB1FCheckSilverCallback:
+DragonsDenB1FCheckRivalCallback:
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iftrue .CheckDay
-	disappear DRAGONSDENB1F_SILVER
+	disappear DRAGONSDENB1F_RIVAL
 	endcallback
 
 .CheckDay:
 	readvar VAR_WEEKDAY
-	ifequal TUESDAY, .AppearSilver
-	ifequal THURSDAY, .AppearSilver
-	disappear DRAGONSDENB1F_SILVER
+	ifequal TUESDAY, .AppearRival
+	ifequal THURSDAY, .AppearRival
+	disappear DRAGONSDENB1F_RIVAL
 	endcallback
 
-.AppearSilver:
-	appear DRAGONSDENB1F_SILVER
+.AppearRival:
+	appear DRAGONSDENB1F_RIVAL
 	endcallback
 
 DragonsDenB1F_ClairScene:
@@ -151,21 +151,21 @@ DragonsDenB1FDragonFangScript:
 	closetext
 	end
 
-DragonsDenB1FSilverScript:
+DragonsDenB1FRivalScript:
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	faceplayer
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	iftrue .SilverTalkAgain
-	writetext SilverText_Training1
+	iftrue .RivalTalkAgain
+	writetext RivalText_Training1
 	waitbutton
 	closetext
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	special RestartMapMusic
 	end
 
-.SilverTalkAgain:
-	writetext SilverText_Training2
+.RivalTalkAgain:
+	writetext RivalText_Training2
 	waitbutton
 	closetext
 	special RestartMapMusic
@@ -287,7 +287,7 @@ DragonShrineSignpostText:
 	line "in DRAGON'S DEN."
 	done
 
-SilverText_Training1:
+RivalText_Training1:
 	text "…"
 	line "What? <PLAYER>?"
 
@@ -307,7 +307,7 @@ SilverText_Training1:
 	line "MON trainer…"
 	done
 
-SilverText_Training2:
+RivalText_Training2:
 	text "…"
 
 	para "Whew…"
@@ -423,7 +423,7 @@ DragonsDenB1F_MapEvents:
 	def_object_events
 	object_event 35, 16, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonsDenB1FDragonFangScript, EVENT_DRAGONS_DEN_B1F_DRAGON_FANG
 	object_event 14, 30, SPRITE_CLAIR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_DRAGONS_DEN_CLAIR
-	object_event 20, 23, SPRITE_SILVER, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonsDenB1FSilverScript, EVENT_RIVAL_DRAGONS_DEN
+	object_event 20, 23, SPRITE_RIVAL, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonsDenB1FRivalScript, EVENT_RIVAL_DRAGONS_DEN
 	object_event 20,  8, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerCooltrainermDarin, -1
 	object_event  8,  8, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCooltrainerfCara, -1
 	object_event  4, 17, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsLeaandpia1, -1

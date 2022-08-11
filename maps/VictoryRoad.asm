@@ -1,5 +1,5 @@
 	object_const_def
-	const VICTORYROAD_SILVER
+	const VICTORYROAD_RIVAL
 	const VICTORYROAD_POKE_BALL1
 	const VICTORYROAD_POKE_BALL2
 	const VICTORYROAD_POKE_BALL3
@@ -20,16 +20,16 @@ VictoryRoadNoop2Scene:
 	end
 
 VictoryRoadRivalLeft:
-	moveobject VICTORYROAD_SILVER, 18, 11
+	moveobject VICTORYROAD_RIVAL, 18, 11
 	turnobject PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
 	pause 15
-	appear VICTORYROAD_SILVER
-	applymovement VICTORYROAD_SILVER, VictoryRoadRivalBattleApproachMovement1
+	appear VICTORYROAD_RIVAL
+	applymovement VICTORYROAD_RIVAL, VictoryRoadRivalBattleApproachMovement1
 	scall VictoryRoadRivalNext
-	applymovement VICTORYROAD_SILVER, VictoryRoadRivalBattleExitMovement1
-	disappear VICTORYROAD_SILVER
+	applymovement VICTORYROAD_RIVAL, VictoryRoadRivalBattleExitMovement1
+	disappear VICTORYROAD_RIVAL
 	setscene SCENE_VICTORYROAD_NOOP
 	playmapmusic
 	end
@@ -39,11 +39,11 @@ VictoryRoadRivalRight:
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
 	pause 15
-	appear VICTORYROAD_SILVER
-	applymovement VICTORYROAD_SILVER, VictoryRoadRivalBattleApproachMovement2
+	appear VICTORYROAD_RIVAL
+	applymovement VICTORYROAD_RIVAL, VictoryRoadRivalBattleApproachMovement2
 	scall VictoryRoadRivalNext
-	applymovement VICTORYROAD_SILVER, VictoryRoadRivalBattleExitMovement2
-	disappear VICTORYROAD_SILVER
+	applymovement VICTORYROAD_RIVAL, VictoryRoadRivalBattleExitMovement2
+	disappear VICTORYROAD_RIVAL
 	setscene SCENE_VICTORYROAD_NOOP
 	playmapmusic
 	end
@@ -61,7 +61,7 @@ VictoryRoadRivalNext:
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue .GotChikorita
 	winlosstext VictoryRoadRivalDefeatText, VictoryRoadRivalVictoryText
-	setlasttalked VICTORYROAD_SILVER
+	setlasttalked VICTORYROAD_RIVAL
 	loadtrainer RIVAL1, RIVAL1_5_TOTODILE
 	startbattle
 	dontrestartmapmusic
@@ -70,7 +70,7 @@ VictoryRoadRivalNext:
 
 .GotTotodile:
 	winlosstext VictoryRoadRivalDefeatText, VictoryRoadRivalVictoryText
-	setlasttalked VICTORYROAD_SILVER
+	setlasttalked VICTORYROAD_RIVAL
 	loadtrainer RIVAL1, RIVAL1_5_CHIKORITA
 	startbattle
 	dontrestartmapmusic
@@ -79,7 +79,7 @@ VictoryRoadRivalNext:
 
 .GotChikorita:
 	winlosstext VictoryRoadRivalDefeatText, VictoryRoadRivalVictoryText
-	setlasttalked VICTORYROAD_SILVER
+	setlasttalked VICTORYROAD_RIVAL
 	loadtrainer RIVAL1, RIVAL1_5_CYNDAQUIL
 	startbattle
 	dontrestartmapmusic
@@ -260,7 +260,7 @@ VictoryRoad_MapEvents:
 	bg_event  3, 65, BGEVENT_ITEM, VictoryRoadHiddenFullHeal
 
 	def_object_events
-	object_event 18, 13, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_VICTORY_ROAD
+	object_event 18, 13, SPRITE_RIVAL, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_VICTORY_ROAD
 	object_event  3, 28, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadTMEarthquake, EVENT_VICTORY_ROAD_TM_EARTHQUAKE
 	object_event 12, 48, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadMaxRevive, EVENT_VICTORY_ROAD_MAX_REVIVE
 	object_event 18, 29, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadFullRestore, EVENT_VICTORY_ROAD_FULL_RESTORE
