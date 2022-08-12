@@ -2634,7 +2634,7 @@ If `IsInArray` returns `nc`, data at `bc` will be executed as code.
 
 ### Options menu fails to clear joypad state on initialization
 
-[Video](https://www.youtube.com/watch?v=uhDSIkXkl3g)
+([Video](https://www.youtube.com/watch?v=uhDSIkXkl3g))
 
 This bug allows all the options to be updated at once if the left or right buttons are pressed on the same frame that the options menu is opened.
 
