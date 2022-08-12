@@ -103,7 +103,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [`ReadObjectEvents` overflows into `wObjectMasks`](#readobjectevents-overflows-into-wobjectmasks)
   - [`ClearWRAM` only clears WRAM bank 1](#clearwram-only-clears-wram-bank-1)
   - [`BattleAnimCmd_ClearObjs` only clears the first 6⅔ objects](#battleanimcmd_clearobjs-only-clears-the-first-6-objects)
-  - [Options Menu fails to clear joypad state on initialization](#options-menu-fails-to-clear-joypad-state-on-initialization)
+  - [Options menu fails to clear joypad state on initialization](#options-menu-fails-to-clear-joypad-state-on-initialization)
 
 
 ## Multi-player battle engine
