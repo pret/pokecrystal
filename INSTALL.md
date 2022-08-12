@@ -4,8 +4,25 @@ These instructions explain how to set up the tools required to build **pokecryst
 
 If you run into trouble, ask for help on IRC or Discord (see [README.md](README.md)).
 
+- [Microsoft Windows](#microsoft-windows)
+  - [Windows 10 and 11](#windows-10-and-11)
+  - [Legacy Windows](#legacy-windows)
+- [macOS](#mac-os)
+- [Linux](#linux)
+  - [Debian or Ubuntu](#debian-or-ubuntu)
+  - [OpenSUSE](#opensuse)
+  - [Arch Linux](#arch-linux)
+  - [Termux](#termux)
+  - [Other distros](#other-distros)
+- [Build pokecrystal](#build-pokecrystal)
+  - [Build with a local rgbds version](#build-with-a-local-rgbds-version)
 
-## Windows 10
+
+## Microsoft Windows
+
+The version of Windows you are running will determine which tools to install:
+
+### Windows 10 and 11
 
 Download and install [**Windows Subsystem for Linux**](https://docs.microsoft.com/en-us/windows/wsl/install-win10). Then open the **WSL terminal**.
 
@@ -30,7 +47,7 @@ If this works, then follow [the instructions for **Linux**](#linux) below for wh
 Otherwise, continue reading below for [the older Windows instructions](#windows).
 
 
-## Windows
+### Legacy Windows
 
 Download [**Cygwin**](http://cygwin.com/install.html): **setup-x86_64.exe** for 64-bit Windows, **setup-x86.exe** for 32-bit.
 
@@ -161,7 +178,9 @@ make crystal11
 
 ### Build with a local rgbds version
 
-If you have different projects that require different versions of `rgbds`, it might not be convenient to install rgbds 0.5.2 globally. Instead, you can put its files in a directory within pokecrystal, such as `pokecrystal/rgbds-0.5.2/`. Then specify it when you run `make`:
+If you have different projects that require different versions of `rgbds`, it might not be convenient to install rgbds 0.5.2 globally. Instead, you can put the compiled rgbds files you wish to use in a directory within `pokecrystal/` named `rgbds/`. When running `make`, the local version of the rgbds tools will be used.
+
+If you wish to use multiple versions of rgbds for pokecrystal specifically, you can use a named folder such as `pokecrystal/rgbds-0.5.2/`. Then to use the version you wish, specify the appropriate folder when you run `make`:
 
 ```bash
 make RGBDS=rgbds-0.5.2/
