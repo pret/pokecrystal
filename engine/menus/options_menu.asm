@@ -11,6 +11,7 @@
 DEF NUM_OPTIONS EQU const_value ; 8
 
 _Option:
+; BUG: Options menu fails to clear joypad state on initialization (see docs/bugs_and_glitches.md)
 	ld hl, hInMenu
 	ld a, [hl]
 	push af
