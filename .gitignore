@@ -23,8 +23,12 @@ gfx/pokemon/*/frames.asm
 *.map
 *.sym
 
+# local tools
+rgbds/
+
 # tool binaries
 *.exe
+*.dll
 
 # precompiled python
 *.pyc
