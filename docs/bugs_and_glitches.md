@@ -2632,9 +2632,9 @@ If `IsInArray` returns `nc`, data at `bc` will be executed as code.
 ```
 
 
-### Options Menu fails to clear joypad state on initialization
+### Options menu fails to clear joypad state on initialization
 
-This bug (or feature!) results in all options being shifted left or right if the respective direction is pressed on the same frame the options menu is opened. The bug also exists in pokeyellow and pokegold.
+This bug allows all the options to be updated at once if the left or right buttons are pressed on the same frame that the options menu is opened.
 
 **Fix:** Edit `_Option` in [engine/menus/options_menu.asm](https://github.com/pret/pokecrystal/blob/master/engine/menus/options_menu.asm):
 
