@@ -103,6 +103,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [`ReadObjectEvents` overflows into `wObjectMasks`](#readobjectevents-overflows-into-wobjectmasks)
   - [`ClearWRAM` only clears WRAM bank 1](#clearwram-only-clears-wram-bank-1)
   - [`BattleAnimCmd_ClearObjs` only clears the first 6⅔ objects](#battleanimcmd_clearobjs-only-clears-the-first-6-objects)
+  - [Options menu fails to clear joypad state on initialization](#options-menu-fails-to-clear-joypad-state-on-initialization)
 
 
 ## Multi-player battle engine
@@ -2628,4 +2629,22 @@ If `IsInArray` returns `nc`, data at `bc` will be executed as code.
  	dec a
  	jr nz, .loop
  	ret
+```
+
+
+### Options menu fails to clear joypad state on initialization
+
+([Video](https://www.youtube.com/watch?v=uhDSIkXkl3g))
+
+This bug allows all the options to be updated at once if the left or right buttons are pressed on the same frame that the options menu is opened.
+
+**Fix:** Edit `_Option` in [engine/menus/options_menu.asm](https://github.com/pret/pokecrystal/blob/master/engine/menus/options_menu.asm):
+
+```diff
+ _Option:
+-; BUG: Options menu fails to clear joypad state on initialization (see docs/bugs_and_glitches.md)
++	call ClearJoypad
+ 	ld hl, hInMenu
+ 	ld a, [hl]
+ 	push af
 ```
