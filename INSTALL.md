@@ -4,10 +4,9 @@ These instructions explain how to set up the tools required to build **pokecryst
 
 If you run into trouble, ask for help on IRC or Discord (see [README.md](README.md)).
 
-- [Microsoft Windows](#microsoft-windows)
-  - [Windows 10 and 11](#windows-10-and-11)
+- [Windows](#windows-10-and-11)
   - [Legacy Windows](#legacy-windows)
-- [macOS](#mac-os)
+- [macOS](#macos)
 - [Linux](#linux)
   - [Debian or Ubuntu](#debian-or-ubuntu)
   - [OpenSUSE](#opensuse)
@@ -18,11 +17,7 @@ If you run into trouble, ask for help on IRC or Discord (see [README.md](README.
   - [Build with a local rgbds version](#build-with-a-local-rgbds-version)
 
 
-## Microsoft Windows
-
-The version of Windows you are running will determine which tools to install:
-
-### Windows 10 and 11
+## Windows 10 and 11
 
 Download and install [**Windows Subsystem for Linux**](https://docs.microsoft.com/en-us/windows/wsl/install-win10). Then open the **WSL terminal**.
 
@@ -44,7 +39,7 @@ cd /mnt/c/Users/<user>/Desktop
 
 If this works, then follow [the instructions for **Linux**](#linux) below for whatever distribution you installed for WSL.
 
-Otherwise, continue reading below for [the older Windows instructions](#windows).
+Otherwise, continue reading below for [the older Windows instructions](#legacy-windows).
 
 
 ### Legacy Windows
