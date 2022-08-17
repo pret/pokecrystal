@@ -961,7 +961,7 @@ _ComposeMailMessage:
 	ret
 
 .MailIcon:
-INCBIN "gfx/icons/mail_big.2bpp"
+INCBIN "gfx/naming_screen/mail.2bpp"
 
 .initwNamingScreenMaxNameLength
 	ld a, MAIL_MSG_LENGTH + 1
