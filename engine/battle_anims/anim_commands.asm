@@ -1312,9 +1312,9 @@ endr
 
 PlayHitSound:
 	ld a, [wNumHits]
-	cp $1
+	cp BATTLEANIM_ENEMY_DAMAGE
 	jr z, .okay
-	cp $4
+	cp BATTLEANIM_PLAYER_DAMAGE
 	ret nz
 
 .okay
