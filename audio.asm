@@ -64,6 +64,7 @@ INCLUDE "audio/music/lavendertown.asm"
 INCLUDE "audio/music/dancinghall.asm"
 INCLUDE "audio/music/contestresults.asm"
 INCLUDE "audio/music/route30.asm"
+INCLUDE "audio/music/mynewsong.asm"
 
 
 SECTION "Songs 3", ROMX
