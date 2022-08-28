@@ -265,27 +265,27 @@ CheckStringForErrors_IgnoreTerminator:
 	ret
 
 Function17d0f3:
-	ld a, [wc608 + 5]
+	ld a, [wc60d]
 	ld [wOTTrademonSpecies], a
 	ld [wCurPartySpecies], a
 	ld a, [wcd81]
 	ld [wc74e], a
-	ld hl, wc608 + 53
+	ld hl, wc63d
 	ld de, wOTTrademonOTName
-	ld bc, 5
+	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
 	ld a, "@"
 	ld [de], a
-	ld a, [wc608 + 11]
+	ld a, [wc60d + MON_ID]
 	ld [wOTTrademonID], a
-	ld a, [wc608 + 12]
+	ld a, [wc60d + MON_ID + 1]
 	ld [wOTTrademonID + 1], a
-	ld hl, wc608 + 26
+	ld hl, wc60d + MON_DVS
 	ld a, [hli]
 	ld [wOTTrademonDVs], a
 	ld a, [hl]
 	ld [wOTTrademonDVs + 1], a
-	ld bc, wc608 + 5
+	ld bc, wc60d
 	farcall GetCaughtGender
 	ld a, c
 	ld [wOTTrademonCaughtData], a
@@ -301,10 +301,10 @@ Function17d0f3:
 	xor a
 	ld [wLinkMode], a
 	farcall SaveAfterLinkTrade
-	ld a, $5
+	ld a, BANK(s5_a800)
 	call OpenSRAM
 	ld a, $5
-	ld [$a800], a
+	ld [s5_a800], a
 	call CloseSRAM
 	ld a, [wMapGroup]
 	ld b, a
@@ -542,20 +542,20 @@ Function17d2ce:
 	ret
 
 Function17d314:
-	ld a, $5
+	ld a, BANK(s5_b1b1)
 	call OpenSRAM
-	ld a, [$b1b1]
+	ld a, [s5_b1b1]
 	call CloseSRAM
 	cp $21
 	jr nc, .asm_17d354
-	ld a, $6
+	ld a, BANK(s6_a006)
 	call OpenSRAM
-	ld l, $0
+	ld l, 0
 	ld h, l
-	ld de, $a006
-	ld a, [$a004]
+	ld de, s6_a006
+	ld a, [s6_a004]
 	ld c, a
-	ld a, [$a005]
+	ld a, [s6_a005]
 	ld b, a
 .asm_17d336
 	push bc
@@ -569,10 +569,10 @@ Function17d314:
 	ld a, b
 	or c
 	jr nz, .asm_17d336
-	ld a, [$a002]
+	ld a, [s6_a002]
 	cp l
 	jr nz, .asm_17d354
-	ld a, [$a003]
+	ld a, [s6_a003]
 	cp h
 	jr nz, .asm_17d354
 	call CloseSRAM
@@ -635,10 +635,10 @@ Function17d370:
 	ld [wBGMapBuffer], a
 	ld a, $d0
 	ld [wcd21], a
-	ld a, $6
+	ld a, BANK(s6_a006)
 	call OpenSRAM
-	ld hl, $a006
-	ld de, wBGPals1
+	ld hl, s6_a006
+	ld de, w4_d000
 	ld bc, $1000
 	call CopyBytes
 	call CloseSRAM
@@ -1176,9 +1176,9 @@ Function17d78d:
 	ld a, [hli]
 	ld b, a
 	call HlToCrashCheckPointer
-	ld a, $6
+	ld a, BANK(s6_a006)
 	call OpenSRAM
-	ld hl, $a006
+	ld hl, s6_a006
 	add hl, bc
 	ld de, wBGPals1
 	ld bc, $1000

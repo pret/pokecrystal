@@ -1,68 +1,68 @@
 Function170000:
-	ld a, [$c62b]
+	ld a, [wc62b]
 	ld [wPlayerTrademonSpecies], a
-	ld hl, $c62e
+	ld hl, wc62e
 	ld de, wPlayerTrademonSenderName
-	ld bc, $0005
+	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
-	ld a, $50
+	ld a, "@"
 	ld [de], a
-	ld hl, $c663
+	ld hl, wc663
 	ld de, wPlayerTrademonOTName
-	ld bc, $0005
+	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
-	ld a, $50
+	ld a, "@"
 	ld [de], a
-	ld hl, $c648
+	ld hl, wc633 + MON_DVS
 	ld a, [hli]
 	ld [wPlayerTrademonDVs], a
 	ld a, [hl]
 	ld [wPlayerTrademonDVs + 1], a
-	ld hl, $c639
+	ld hl, wc633 + MON_ID
 	ld a, [hli]
 	ld [wPlayerTrademonID], a
 	ld a, [hl]
 	ld [wPlayerTrademonID + 1], a
-	ld bc, $c633
+	ld bc, wc633
 	farcall GetCaughtGender
 	ld a, c
 	ld [wPlayerTrademonCaughtData], a
 	ld a, [wcd81]
 	ld [wc74e], a
-	ld hl, $c608
+	ld hl, wc608
 	ld de, $d800
 	ld bc, $008f
 	call CopyBytes
 	ret
 
 Function17005a:
-	ld a, $5
+	ld a, BANK(s5_a824)
 	call OpenSRAM
-	ld a, [$a824]
+	ld a, [s5_a824]
 	ld [wOTTrademonSpecies], a
-	ld hl, $a827
+	ld hl, s5_a827
 	ld de, wOTTrademonSenderName
 	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
 	ld a, "@"
 	ld [de], a
-	ld hl, $a85c
+	ld hl, s5_a85c
 	ld de, wOTTrademonOTName
 	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
 	ld a, "@"
 	ld [de], a
-	ld hl, $a841
+	ld hl, s5_a82c + MON_DVS
 	ld a, [hli]
 	ld [wOTTrademonDVs], a
 	ld a, [hl]
 	ld [wOTTrademonDVs + 1], a
-	ld hl, $a832
+	ld hl, s5_a82c + MON_ID
 	ld a, [hli]
 	ld [wOTTrademonID], a
 	ld a, [hl]
 	ld [wOTTrademonID + 1], a
-	ld bc, $a82c
+	ld bc, s5_a82c
 	farcall GetCaughtGender
 	ld a, c
 	ld [wOTTrademonCaughtData], a
@@ -413,10 +413,10 @@ Function171ac9:
 
 Function171ad7:
 	xor a
-	ld hl, $c608
+	ld hl, wc608
 	ld bc, $66
 	call ByteFill
-	ld de, $c608
+	ld de, wc608
 	ld a, MOBILEAPI_06
 	call MobileAPI
 	jp Function171c66
@@ -445,7 +445,7 @@ Function171aec:
 	jr nz, .asm_171b01
 	hlcoord 2, 7
 	ld a, $3
-	ld de, $c608
+	ld de, wc608
 .asm_171b1b
 	push af
 	push hl
@@ -515,16 +515,16 @@ Function171b4b:
 Function171b85:
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and $2
+	and B_BUTTON
 	jp nz, Function171b9f
 	ld a, [hl]
-	and $1
+	and A_BUTTON
 	jp nz, Function171bbd
 	ld a, [hl]
-	and $40
+	and D_UP
 	jr nz, asm_171ba5
 	ld a, [hl]
-	and $80
+	and D_DOWN
 	jr nz, asm_171baf
 	ret
 
@@ -562,10 +562,10 @@ Function171bbd:
 Function171bcc:
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and $2
+	and B_BUTTON
 	jp nz, Function171bdc
 	ld a, [hl]
-	and $1
+	and A_BUTTON
 	jp nz, Function171beb
 	ret
 
@@ -579,10 +579,10 @@ Function171bdc:
 	ret
 
 Function171beb:
-	ld a, $5
+	ld a, BANK(s5_aa4a)
 	call OpenSRAM
 	ld a, [wcd4a]
-	ld [$aa4a], a
+	ld [s5_aa4a], a
 	call CloseSRAM
 	ld hl, MenuHeader_171c6b
 	call LoadMenuHeader
@@ -652,7 +652,7 @@ Function171c87:
 	call DisableLCD
 	ld hl, AsciiFontGFX
 	ld de, vTiles2 tile $00
-	ld bc, $6e0
+	ld bc, $6e tiles
 	call CopyBytes
 	ld hl, PasswordSlowpokeLZ
 	ld de, vTiles0 tile $00
@@ -724,7 +724,7 @@ Function171d2b:
 	call DisableLCD
 	ld hl, AsciiFontGFX
 	ld de, vTiles2 tile $00
-	ld bc, $6e0
+	ld bc, $6e tiles
 	call CopyBytes
 	ld hl, PasswordSlowpokeLZ
 	ld de, vTiles0 tile $00
@@ -797,7 +797,7 @@ Function172e78:
 	call DisableLCD
 	ld hl, Stadium2N64GFX
 	ld de, vTiles2 tile $00
-	ld bc, $610
+	ld bc, $61 tiles
 	call CopyBytes
 	call EnableLCD
 	ld hl, Stadium2N64Tilemap

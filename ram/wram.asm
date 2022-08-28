@@ -668,16 +668,24 @@ wDebugDarkTileColor::  ds 2
 wDebugBlackTileColor:: ds 2
 
 NEXTU
-wc608:: ds 16
-wc618:: ds 37
+wc608:: ds 5
+wc60d:: ds 2
+wc60f:: ds 9
+wc618:: ds 14
+wc626:: ds 5
+wc62b:: ds 3
+wc62e:: ds 5
+wc633:: ds 10
 wc63d:: ds 5
 wc642:: ds 5
 wc647:: ds 1
 wc648:: ds 2
-wc64a:: ds 30
+wc64a:: ds 25
+wc663:: ds 5
 wc668:: ds 32
 wc688:: ds 2
-wc68a:: ds 30
+wc68a:: ds 15
+wc699:: ds 15
 wc6a8:: ds 40
 ENDU
 
@@ -1103,8 +1111,7 @@ wc80b:: db
 wc80c:: dw
 wc80e:: db
 wc80f:: db
-wc810:: db
-wc811:: db
+wc810:: dw
 wMobileSDK_PacketChecksum:: dw
 wc814:: db
 wc815:: db
@@ -1122,8 +1129,7 @@ wc821:: db
 wc822:: db
 wc823:: ds 4
 wc827:: dw
-wc829:: db
-wc82a:: db
+wc829:: dw
 wc82b:: db
 wc82c:: db
 wc82d:: db
@@ -1141,8 +1147,7 @@ wc86a:: db
 wc86b:: db
 wc86c:: db
 wc86d:: db
-wc86e:: db
-wc86f:: db
+wc86e:: dw
 wc870:: db
 wc871:: db
 wc872:: db
@@ -1158,8 +1163,7 @@ wc87c:: db
 wc87d:: db
 wc87e:: db
 wc87f:: db
-wc880:: db
-wc881:: db
+wc880:: dw
 wc882:: db
 wc883:: db
 wc884:: ds 8
@@ -3464,6 +3468,8 @@ NEXTU
 w3_de00:: ds $200
 ENDU
 
+SECTION "News Script RAM", WRAMX
+w4_d000:: ds $1000
 
 SECTION "GBC Video", WRAMX, ALIGN[8]
 

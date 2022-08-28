@@ -285,14 +285,26 @@ sTrainerRankingsBackup:: ds sTrainerRankingsEnd - sTrainerRankings
 	ds $6fa
 
 s5_a800:: db
+	ds $1e
+s5_a81f:: db
 
-	ds $24
+	ds $3
 
+s5_a823:: db
+s5_a824:: db
 s5_a825:: db
 s5_a826:: db
+s5_a827:: ds NAME_LENGTH_JAPANESE - 1
+s5_a82c:: ds PARTYMON_STRUCT_LENGTH
 
-	ds $6d
+s5_a85c:: ds NAME_LENGTH_JAPANESE
 
+	ds 46
+
+s5_a890:: db
+s5_a891:: db
+s5_a892:: db
+s5_a893:: db
 s5_a894:: ds 6
 s5_a89a:: dw
 s5_a89c:: ds 22
@@ -372,13 +384,19 @@ s5_bfff:: db
 
 SECTION "SRAM Mobile 3", SRAM
 
-s6_a000::
-
+s6_a000:: db
+	db
+s6_a002:: db
+s6_a003:: db
+s6_a004:: db
+s6_a005:: db
+s6_a006:: ds $1000
 
 SECTION "SRAM Mobile 4", SRAM
 
-s7_a000::
+s7_a000:: db
+s7_a001:: db
 
-	ds $800
+	ds $7fe
 
 s7_a800:: db

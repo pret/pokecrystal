@@ -666,7 +666,7 @@ Function1163c0:
 	push af
 	ld a, $5
 	ldh [rSVBK], a
-	ld hl, $c320
+	ld hl, wc320
 	ld de, wd030
 	ld bc, $0010
 	call CopyBytes

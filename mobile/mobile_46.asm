@@ -559,7 +559,7 @@ Function1184a5:
 	dw Function1188c8
 	dw Function11878d
 	dw Function118903
-	dw Function118a8f
+	dw Set_ExchangeDownloadURL
 	dw Function11878d
 	dw Function118d80
 	dw Function118d9b
@@ -659,7 +659,7 @@ Function11857c:
 	dw Function1188c8
 	dw Function11878d
 	dw Function118903
-	dw Function118a7a
+	dw Set_BattleDownloadURL
 	dw Function11878d
 	dw Function11891c
 	dw Function1198ee
@@ -692,7 +692,7 @@ Function1185c3:
 	dw Function1188c8
 	dw Function11878d
 	dw Function118903
-	dw Function118aa4
+	dw Set_NewsDownloadURL
 	dw Function11878d
 	dw Function118e92
 	dw Function11878d
@@ -738,7 +738,7 @@ Function118624:
 	dw Function1188c8
 	dw Function11878d
 	dw Function118903
-	dw Function118aa4
+	dw Set_NewsDownloadURL
 	dw Function11878d
 	dw Function118e92
 	dw Function11878d
@@ -835,7 +835,7 @@ Function1186f5:
 	dw Function1188c8
 	dw Function11878d
 	dw Function118903
-	dw Function118abc
+	dw Set_MenuDownloadURL
 	dw Function11878d
 	dw Function119451
 	dw Function1195f8
@@ -873,7 +873,7 @@ Function118746:
 	dw Function1188c8
 	dw Function11878d
 	dw Function118903
-	dw Function118ad0
+	dw Set_IndexDownloadURL
 	dw Function11878d
 	dw Function1196f2
 	dw Function1197c9
@@ -1320,7 +1320,7 @@ Function118a65: ; unreferenced
 	ld bc, $1000
 	jp Function118b10
 
-Function118a7a:
+Set_BattleDownloadURL:
 	ld hl, BattleDownloadURL
 	ld de, wcc60
 	ld bc, $80
@@ -1329,7 +1329,7 @@ Function118a7a:
 	ld bc, $1000
 	jp Function118b10
 
-Function118a8f:
+Set_ExchangeDownloadURL:
 	ld hl, ExchangeDownloadURL
 	ld de, wcc60
 	ld bc, $80
@@ -1338,7 +1338,7 @@ Function118a8f:
 	ld bc, $1000
 	jp Function118b10
 
-Function118aa4:
+Set_NewsDownloadURL:
 	ld hl, NewsDownloadURL
 	ld de, wcc60
 	ld bc, $80
@@ -1349,7 +1349,7 @@ Function118aa4:
 	ld bc, $e00
 	jr Function118b10
 
-Function118abc:
+Set_MenuDownloadURL:
 	ld hl, MenuDownloadURL
 	ld de, wcc60
 	ld bc, $80
@@ -1358,7 +1358,7 @@ Function118abc:
 	ld bc, $1000
 	jr Function118b10
 
-Function118ad0:
+Set_IndexDownloadURL:
 	ld hl, IndexDownloadURL
 	ld de, wcc60
 	ld bc, $80
@@ -1411,13 +1411,13 @@ Function118b10:
 
 Function118b24:
 	ld hl, wc346
-	ld a, $8
+	ld a, LOW(wc708)
 	ld [hli], a
-	ld a, $c7
+	ld a, HIGH(wc708)
 	ld [hli], a
-	ld a, $60
+	ld a, LOW(wcc60)
 	ld [hli], a
-	ld a, $cc
+	ld a, HIGH(wcc60)
 	ld [hli], a
 	call Function119eb4
 	call Function119ec2
@@ -1569,7 +1569,9 @@ asm_118d9f:
 	ld a, [wcd38]
 	and a
 	jr nz, .asm_118db2
-	ld a, $8f
+	ld a, $8f ; DION addr $1e + request $8 + Name $5
+	          ; + party struct $30 + OT $5 + NICK $5
+	          ; + JP Mail struct $2a
 	ld [wcd3b], a
 	jr .asm_118db7
 
@@ -1579,17 +1581,17 @@ asm_118d9f:
 
 .asm_118db7
 	ld hl, w3_d800
-	ld a, $8
+	ld a, LOW(wc608)
 	ld [hli], a
-	ld a, $c6
+	ld a, HIGH(wc608)
 	ld [hli], a
 	ld a, [wcd3b]
 	ld [hli], a
 	xor a
 	ld [hli], a
-	ld a, $8
+	ld a, LOW(wc708)
 	ld [hli], a
-	ld a, $c7
+	ld a, HIGH(wc708)
 	ld [hli], a
 	ld a, [wcd39]
 	ld [hli], a
@@ -1752,9 +1754,9 @@ Function118ec6:
 	call CopyBytes
 	xor a
 	ld [wc31f], a
-	ld a, $20
+	ld a, LOW(wc320)
 	ld [wc31b], a
-	ld a, $c3
+	ld a, HIGH(wc320)
 	ld [wc31c], a
 	hlcoord 1, 14
 	ld a, l
@@ -1834,21 +1836,21 @@ Function118f68:
 	and a
 	jr z, .asm_118fba
 	ld hl, wc346
-	ld a, LOW($c608)
+	ld a, LOW(wc608)
 	ld [hli], a
-	ld a, HIGH($c608)
+	ld a, HIGH(wc608)
 	ld [hli], a
 	ld a, [wcd4b]
 	ld [hli], a
 	ld a, [wcd4c]
 	ld [hli], a
-	ld a, LOW($c708)
+	ld a, LOW(wc708)
 	ld [hli], a
-	ld a, HIGH($c708)
+	ld a, HIGH(wc708)
 	ld [hli], a
-	ld a, $60
+	ld a, LOW(wcc60)
 	ld [hli], a
-	ld a, $cc
+	ld a, HIGH(wcc60)
 	ld [hli], a
 	call Function119eb4
 	call Function119ec2
@@ -1914,21 +1916,21 @@ Function119009:
 	call Function1191ad
 	ret c
 	ld hl, wc346
-	ld a, $8
+	ld a, LOW(wc608)
 	ld [hli], a
-	ld a, $c6
+	ld a, HIGH(wc608)
 	ld [hli], a
 	ld a, [wcd4b]
 	ld [hli], a
 	ld a, [wcd4c]
 	ld [hli], a
-	ld a, $8
+	ld a, LOW(wc708)
 	ld [hli], a
-	ld a, $c7
+	ld a, HIGH(wc708)
 	ld [hli], a
-	ld a, $60
+	ld a, LOW(wcc60)
 	ld [hli], a
-	ld a, $cc
+	ld a, HIGH(wcc60)
 	ld [hli], a
 	call Function119eb4
 	call Function119ec2
@@ -2460,9 +2462,9 @@ Function1193a0:
 	ld [hli], a
 	ld a, HIGH(wc708)
 	ld [hli], a
-	ld a, $60
+	ld a, LOW(wcc60)
 	ld [hli], a
-	ld a, $cc
+	ld a, HIGH(wcc60)
 	ld [hli], a
 	call Function119eb4
 	call Function119ec2
@@ -2833,9 +2835,9 @@ Function119612:
 Function119629:
 	call BattleTowerRoomMenu2
 	ret c
-	ld a, $60
+	ld a, LOW(wcc60)
 	ld l, a
-	ld a, $cc
+	ld a, HIGH(wcc60)
 	ld h, a
 	call Function118e39
 	ld a, $9
@@ -6395,7 +6397,7 @@ Function11b20b:
 	add [hl]
 	ld e, a
 	ld d, 0
-	ld hl, $c6d0
+	ld hl, wc6d0
 	add hl, de
 	ld a, [hl]
 	ld [wTempSpecies], a
@@ -6500,9 +6502,9 @@ Function11b295:
 	call Function11b20b
 	call CheckSeenMemMon
 	jr z, .asm_11b2d1
-	ld a, [$c608]
+	ld a, [wc608]
 	ld c, a
-	ld a, [$c608 + 1]
+	ld a, [wc608 + 1]
 	ld b, a
 	ld hl, $0007
 	add hl, bc
@@ -6518,9 +6520,9 @@ Function11b295:
 	jr .asm_11b2e7
 
 .asm_11b2d1
-	ld a, [$c608]
+	ld a, [wc608]
 	ld c, a
-	ld a, [$c608 + 1]
+	ld a, [wc608 + 1]
 	ld b, a
 	ld hl, $0007
 	add hl, bc
@@ -6531,7 +6533,7 @@ Function11b295:
 	ld de, String_11b30e
 
 .asm_11b2e7
-	ld a, $6
+	ld a, NAME_LENGTH_JAPANESE
 	ld bc, wStringBuffer4
 .asm_11b2ec
 	push af
@@ -6819,13 +6821,13 @@ Mobile46_RunJumptable:
 	jumptable .Jumptable, wJumptableIndex
 
 .Jumptable:
-	dw Function11b483
-	dw Function11b570
-	dw Function11b5c0
-	dw Function11b5e0
+	dw PrepareMonForUpload
+	dw Function11b570 ; ???
+	dw Function11b5c0 ; Remove from party
+	dw Function11b5e0 ; Set script value to 0, indicates success
 	dw Function11b5e7 ; unused
 
-Function11b483:
+PrepareMonForUpload:
 	call .InitRAM
 	ld hl, wPlayerName
 	ld a, NAME_LENGTH_JAPANESE - 1
@@ -6964,7 +6966,7 @@ Function11b483:
 	jp Function11ad8a
 
 .InitRAM:
-	ld bc, $c626
+	ld bc, wc626
 	ld a, [wPlayerID]
 	ld [wcd2a], a
 	ld [bc], a
@@ -6985,19 +6987,19 @@ Function11b483:
 	ld [bc], a
 	inc bc
 
-	ld a, [wcd2e]
+	ld a, [wcd2e] ; offer gender
 	ld [bc], a
 	inc bc
 
-	ld a, [wcd2f]
+	ld a, [wcd2f] ; offer species
 	ld [bc], a
 	inc bc
 
-	ld a, [wcd30]
+	ld a, [wcd30] ; req gender
 	ld [bc], a
 	inc bc
 
-	ld a, [wd265]
+	ld a, [wd265] ; req species
 	ld [bc], a
 	inc bc
 	ret
@@ -7020,7 +7022,7 @@ Function11b570:
 	ldh [rSVBK], a
 
 	ld hl, w3_d800
-	ld de, $c608
+	ld de, wc608
 	ld bc, w3_d88f - w3_d800
 	call CopyBytes
 
@@ -7033,7 +7035,7 @@ Function11b570:
 	ld a, $1
 	ld [de], a
 	inc de
-	ld hl, $c608
+	ld hl, wc608
 	ld bc, w3_d88f - w3_d800
 	call CopyBytes
 
@@ -7075,13 +7077,13 @@ Function11b5e8:
 	ld a, $0
 	call OpenSRAM
 	ld hl, wRTC
-	ld de, $c608
+	ld de, wc608
 	ld bc, 4
 	call CopyBytes
 	call CloseSRAM
 	ld a, $5
 	call OpenSRAM
-	ld hl, $c608
+	ld hl, wc608
 	ld de, $b08c
 	ld bc, 4
 	call CopyBytes
@@ -7170,74 +7172,74 @@ Function11b6b4:
 	ld a, $5
 	call OpenSRAM
 	ld a, [wcd30]
-	ld [$c708], a
+	ld [wc708], a
 	ld a, [wcd31]
-	ld [$c709], a
+	ld [wc709], a
 
-	ld a, LOW($c708) ; Species
+	ld a, LOW(wc708) ; Species
 	ld [wMobileMonSpeciesPointer], a
-	ld a, HIGH($c708)
+	ld a, HIGH(wc708)
 	ld [wMobileMonSpeciesPointer + 1], a
 
-	ld a, LOW($c60d) ; Partymon Struct
+	ld a, LOW(wc60d) ; Partymon Struct
 	ld [wMobileMonStructPointer], a
-	ld a, HIGH($c60d)
+	ld a, HIGH(wc60d)
 	ld [wMobileMonStructPointer + 1], a
 
-	ld a, LOW($c63d) ; OT
+	ld a, LOW(wc63d) ; OT
 	ld [wMobileMonOTPointer], a
-	ld a, HIGH($c63d)
+	ld a, HIGH(wc63d)
 	ld [wMobileMonOTPointer + 1], a
 
-	ld a, LOW($c642) ; Nickname
+	ld a, LOW(wc642) ; Nickname
 	ld [wMobileMonNicknamePointer], a
-	ld a, HIGH($c642)
+	ld a, HIGH(wc642)
 	ld [wMobileMonNicknamePointer + 1], a
 
-	ld a, LOW($c647) ; Mail
+	ld a, LOW(wc647) ; Mail
 	ld [wMobileMonMailPointer], a
-	ld a, HIGH($c647)
+	ld a, HIGH(wc647)
 	ld [wMobileMonMailPointer + 1], a
 
-	ld a, $46
-	ld [$c628], a
+	ld a, 70
+	ld [wc60d + MON_HAPPINESS], a
 
-	ld de, $c63d
+	ld de, wc63d
 	ld c, 5
 	farcall CheckStringForErrors
 	jr nc, .length_check_OT
 	farcall Mobile_CopyDefaultOTName
 
 .length_check_OT
-	ld de, $c63d
+	ld de, wc63d
 	lb bc, 1, 5
 	farcall CheckStringContainsLessThanBNextCharacters
 	jr nc, .error_check_nick
 	farcall Mobile_CopyDefaultOTName
 
 .error_check_nick
-	ld de, $c642
+	ld de, wc642
 	ld c, 5
 	farcall CheckStringForErrors
 	jr nc, .length_check_nick
 	farcall Mobile_CopyDefaultNickname
 
 .length_check_nick
-	ld de, $c642
+	ld de, wc642
 	lb bc, 1, 5
 	farcall CheckStringContainsLessThanBNextCharacters
 	jr nc, .error_check_mail
 	farcall Mobile_CopyDefaultNickname
 
 .error_check_mail
-	ld de, $c647
+	ld de, wc647
 	ld c, MAIL_MSG_LENGTH + 1
 	farcall CheckStringForErrors
 	jr nc, .length_check_mail
 	farcall Mobile_CopyDefaultMail
 
 .length_check_mail
-	ld de, $c647
+	ld de, wc647
 	lb bc, 2, MAIL_MSG_LENGTH + 1
 	farcall CheckStringContainsLessThanBNextCharacters
 	jr c, .fix_mail
@@ -7249,33 +7251,33 @@ Function11b6b4:
 	farcall Mobile_CopyDefaultMail
 
 .mail_ok
-	ld de, $c668
+	ld de, wc668
 	ld c, $5
 	farcall CheckStringForErrors
 	jr nc, .length_check_author
 	farcall Mobile_CopyDefaultMailAuthor
 
 .length_check_author
-	ld de, $c668
+	ld de, wc668
 	lb bc, 1, 5
 	farcall CheckStringContainsLessThanBNextCharacters
 	jr nc, .author_okay
 	farcall Mobile_CopyDefaultMailAuthor
 
 .author_okay
-	ld a, [$c60e]
+	ld a, [wc60d + MON_ITEM]
 	cp -1
 	jr nz, .item_okay
 	xor a
-	ld [$c60e], a
+	ld [wc60d + MON_ITEM], a
 
 .item_okay
 	ld a, [wcd31]
-	ld [$c60d], a
+	ld [wc60d], a
 	ld [wCurSpecies], a
 	call GetBaseData
 
-	ld hl, $c60d + MON_LEVEL
+	ld hl, wc60d + MON_LEVEL
 	ld a, [hl]
 	cp MIN_LEVEL
 	ld a, MIN_LEVEL
@@ -7289,12 +7291,12 @@ Function11b6b4:
 .done_level
 	ld [wCurPartyLevel], a
 
-	ld hl, $c60d + MON_STAT_EXP - 1
-	ld de, $c60d + MON_MAXHP
+	ld hl, wc60d + MON_STAT_EXP - 1
+	ld de, wc60d + MON_MAXHP
 	ld b, TRUE
 	predef CalcMonStats
-	ld de, $c60d + MON_MAXHP
-	ld hl, $c60d + MON_HP
+	ld de, wc60d + MON_MAXHP
+	ld hl, wc60d + MON_HP
 	ld a, [de]
 	ld [hli], a
 	inc de
@@ -7304,27 +7306,27 @@ Function11b6b4:
 	ret
 
 Function11b7e5:
-	ld a, [$c60d] ; species
+	ld a, [wc60d] ; species
 	ld [wOTTrademonSpecies], a
 	ld [wCurPartySpecies], a
 	ld a, [wcd81]
 	ld [wc74e], a
-	ld hl, $c63d ; OT
+	ld hl, wc63d ; OT
 	ld de, wOTTrademonOTName
 	ld bc, 5
 	call CopyBytes
 	ld a, "@"
 	ld [de], a
-	ld a, [$c60d + MON_ID] ; id
+	ld a, [wc60d + MON_ID]
 	ld [wOTTrademonID], a
-	ld a, [$c60d + MON_ID + 1]
+	ld a, [wc60d + MON_ID + 1]
 	ld [wOTTrademonID + 1], a
-	ld hl, $c60d + MON_DVS ; dvs
+	ld hl, wc60d + MON_DVS
 	ld a, [hli]
 	ld [wOTTrademonDVs], a
 	ld a, [hl]
 	ld [wOTTrademonDVs + 1], a
-	ld bc, $c60d ; pokemon_data_start
+	ld bc, wc60d ; pokemon_data_start
 	farcall GetCaughtGender
 	ld a, c
 	ld [wOTTrademonCaughtData], a
@@ -7340,10 +7342,10 @@ Function11b7e5:
 	xor a
 	ld [wLinkMode], a
 	farcall SaveAfterLinkTrade
-	ld a, $5
+	ld a, BANK(s5_a800)
 	call OpenSRAM
 	ld a, $5
-	ld [$a800], a
+	ld [s5_a800], a
 	call CloseSRAM
 	ld a, [wMapGroup]
 	ld b, a
@@ -7366,17 +7368,17 @@ Function11b879:
 	ld a, [wScriptVar]
 	and a
 	ret z
-	ld a, $5
+	ld a, BANK(s5_a800)
 	call OpenSRAM
-	ld a, [$a800]
+	ld a, [s5_a800]
 	ld [wScriptVar], a
-	ld a, [$a890]
+	ld a, [s5_a890]
 	ld [wcd49], a
-	ld a, [$a891]
+	ld a, [s5_a891]
 	ld [wcd4a], a
-	ld a, [$a892]
+	ld a, [s5_a892]
 	ld [wcd4b], a
-	ld a, [$a893]
+	ld a, [s5_a893]
 	ld [wcd4c], a
 	call CloseSRAM
 	ld a, [wScriptVar]
@@ -7455,10 +7457,10 @@ Function11b879:
 
 Function11b920:
 	call Mobile46_InitJumptable
-	ld a, $5
+	ld a, BANK(s5_a81f)
 	call OpenSRAM
-	ld hl, $a81f
-	ld de, $c626
+	ld hl, s5_a81f
+	ld de, wc626
 	ld bc, 8
 	call CopyBytes
 	call CloseSRAM
@@ -7466,19 +7468,19 @@ Function11b920:
 	ret
 
 Function11b93b:
-	ld a, $5
+	ld a, BANK(s5_a800)
 	call OpenSRAM
 	xor a
-	ld [$a800], a
-	ld hl, $a823
-	ld de, $c608
+	ld [s5_a800], a
+	ld hl, s5_a823
+	ld de, wc608
 	ld bc, $008f
 	call CopyBytes
 	call CloseSRAM
 
-	ld a, LOW($c608)
+	ld a, LOW(wc608)
 	ld [wMobileMonSpeciesPointer], a
-	ld a, HIGH($c608)
+	ld a, HIGH(wc608)
 	ld [wMobileMonSpeciesPointer + 1], a
 
 	ld a, LOW($c611)
