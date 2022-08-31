@@ -2439,6 +2439,7 @@ This bug can prevent you from talking to Eusine in Celadon City or encountering 
 ```diff
  	; If there are no monsters in the party,
  	; the player must not own any yet.
+
  	ld a, [wPartyCount]
  	and a
  	ret z
