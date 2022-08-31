@@ -1667,7 +1667,7 @@ This bug is why the Lapras in [maps/UnionCaveB2F.asm](https://github.com/pret/po
  ...
 
  .TryFish:
- -; BUG: You can fish on top of NPCs (see docs/bugs_and_glitches.md)
+-; BUG: You can fish on top of NPCs (see docs/bugs_and_glitches.md)
  	ld a, [wPlayerState]
  	cp PLAYER_SURF
  	jr z, .fail
