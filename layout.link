@@ -185,6 +185,7 @@ ROMX $43
 ROMX $44
 	"Mobile Adapter SDK"
 ROMX $45
+	"Mobile Adapter SDK Mail"
 	"mobile45"
 ROMX $46
 	"mobile46"
