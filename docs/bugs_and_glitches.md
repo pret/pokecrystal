@@ -66,7 +66,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [`LoadMetatiles` wraps around past 128 blocks](#loadmetatiles-wraps-around-past-128-blocks)
   - [Surfing directly across a map connection does not load the new map](#surfing-directly-across-a-map-connection-does-not-load-the-new-map)
   - [Swimming NPCs aren't limited by their movement radius](#swimming-npcs-arent-limited-by-their-movement-radius)
-  - [You can Surf and fish on top of NPCs](#you-can-surf-and-fish-on-top-of-npcs)
+  - [You can fish on top of NPCs](#you-can-fish-on-top-of-npcs)
   - [Pokémon deposited in the Day-Care might lose experience](#pok%C3%A9mon-deposited-in-the-day-care-might-lose-experience)
 - [Graphics](#graphics)
   - [In-battle “`…`” ellipsis is too high](#in-battle--ellipsis-is-too-high)
@@ -1658,57 +1658,31 @@ This bug is why the Lapras in [maps/UnionCaveB2F.asm](https://github.com/pret/po
 ```
 
 
-### You can Surf and fish on top of NPCs
+### You can fish on top of NPCs
 
 **Fix**: Edit [engine/events/overworld.asm](https://github.com/pret/pokecrystal/blob/master/engine/events/overworld.asm):
-
-```diff
- SurfFunction:
- ...
-
- .TrySurf:
--; BUG: You can Surf and fish on top of NPCs (see docs/bugs_and_glitches.md)
- 	ld de, ENGINE_FOGBADGE
- 	call CheckBadge
- 	jr c, .nofogbadge
- 	ld hl, wBikeFlags
- 	bit BIKEFLAGS_ALWAYS_ON_BIKE_F, [hl]
- 	jr nz, .cannotsurf
- 	ld a, [wPlayerState]
- 	cp PLAYER_SURF
- 	jr z, .alreadyfail
- 	cp PLAYER_SURF_PIKA
- 	jr z, .alreadyfail
-+	call GetFacingObject
-+	jr nc, .cannotsurf
- 	call GetFacingTileCoord
- 	call GetTileCollision
- 	cp WATER_TILE
- 	jr nz, .cannotsurf
- 	call CheckDirection
- 	jr c, .cannotsurf
--	farcall CheckFacingObject
--	jr c, .cannotsurf
- 	ld a, $1
- 	ret
-```
 
 ```diff
  FishFunction:
  ...
 
  .TryFish:
+ -; BUG: You can fish on top of NPCs (see docs/bugs_and_glitches.md)
  	ld a, [wPlayerState]
  	cp PLAYER_SURF
  	jr z, .fail
  	cp PLAYER_SURF_PIKA
  	jr z, .fail
-+	call GetFacingObject
-+	jr nc, .fail
  	call GetFacingTileCoord
  	call GetTileCollision
  	cp WATER_TILE
- 	jr z, .facingwater
+-	jr z, .facingwater
++	jr nz, .fail
++	farcall CheckFacingObject
++	jr nc, .facingwater
+ .fail
+ 	ld a, $3
+ 	ret
 ```
 
 
