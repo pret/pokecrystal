@@ -1,8 +1,8 @@
 EmptyAllSRAMBanks:
-FOR BANKNO, NUM_SRAM_BANKS
+for BANKNO, NUM_SRAM_BANKS
 	ld a, BANKNO
 	call .EmptyBank
-ENDR
+endr
 	ret
 
 .EmptyBank:
