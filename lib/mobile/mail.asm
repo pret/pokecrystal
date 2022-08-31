@@ -1,5 +1,14 @@
-pushc
-setcharmap ascii
+; A library included as part of the Mobile Adapter GB SDK.
+
+INCLUDE "macros/code.asm"
+INCLUDE "macros/const.asm"
+INCLUDE "macros/gfx.asm"
+INCLUDE "constants/gfx_constants.asm"
+INCLUDE "constants/hardware_constants.asm"
+INCLUDE "constants/mobile_constants.asm"
+INCLUDE "constants/text_constants.asm"
+
+SECTION "Mobile Adapter SDK Mail", ROMX
 
 String_114000:
 	db "---", 0
@@ -5154,5 +5163,3 @@ Function115d80:
 	ld d, $a0
 	ld e, $0
 	ret
-
-popc

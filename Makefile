@@ -22,7 +22,8 @@ rom_obj := \
 	gfx/pics.o \
 	gfx/sprites.o \
 	gfx/tilesets.o \
-	lib/mobile/main.o
+	lib/mobile/main.o \
+	lib/mobile/mail.o
 
 pokecrystal_obj         := $(rom_obj:.o=.o)
 pokecrystal11_obj       := $(rom_obj:.o=11.o)
