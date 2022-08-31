@@ -344,7 +344,6 @@ SurfFunction:
 	dw .AlreadySurfing
 
 .TrySurf:
-; BUG: You can Surf and fish on top of NPCs (see docs/bugs_and_glitches.md)
 	ld de, ENGINE_FOGBADGE
 	call CheckBadge
 	jr c, .nofogbadge
@@ -1443,6 +1442,7 @@ FishFunction:
 	dw .FishNoFish
 
 .TryFish:
+; BUG: You can fish on top of NPCs (see docs/bugs_and_glitches.md)
 	ld a, [wPlayerState]
 	cp PLAYER_SURF
 	jr z, .fail
