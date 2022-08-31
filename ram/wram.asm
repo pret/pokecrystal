@@ -3468,8 +3468,11 @@ NEXTU
 w3_de00:: ds $200
 ENDU
 
+
 SECTION "News Script RAM", WRAMX
+
 w4_d000:: ds $1000
+
 
 SECTION "GBC Video", WRAMX, ALIGN[8]
 
