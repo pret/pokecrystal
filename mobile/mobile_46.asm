@@ -559,7 +559,7 @@ Function1184a5:
 	dw Function1188c8
 	dw Function11878d
 	dw Function118903
-	dw Set_ExchangeDownloadURL
+	dw SetExchangeDownloadURL
 	dw Function11878d
 	dw Function118d80
 	dw Function118d9b
@@ -659,7 +659,7 @@ Function11857c:
 	dw Function1188c8
 	dw Function11878d
 	dw Function118903
-	dw Set_BattleDownloadURL
+	dw SetBattleDownloadURL
 	dw Function11878d
 	dw Function11891c
 	dw Function1198ee
@@ -692,7 +692,7 @@ Function1185c3:
 	dw Function1188c8
 	dw Function11878d
 	dw Function118903
-	dw Set_NewsDownloadURL
+	dw SetNewsDownloadURL
 	dw Function11878d
 	dw Function118e92
 	dw Function11878d
@@ -738,7 +738,7 @@ Function118624:
 	dw Function1188c8
 	dw Function11878d
 	dw Function118903
-	dw Set_NewsDownloadURL
+	dw SetNewsDownloadURL
 	dw Function11878d
 	dw Function118e92
 	dw Function11878d
@@ -835,7 +835,7 @@ Function1186f5:
 	dw Function1188c8
 	dw Function11878d
 	dw Function118903
-	dw Set_StadiumDownloadURL
+	dw SetStadiumDownloadURL
 	dw Function11878d
 	dw Function119451
 	dw Function1195f8
@@ -873,7 +873,7 @@ Function118746:
 	dw Function1188c8
 	dw Function11878d
 	dw Function118903
-	dw Set_OddEggDownloadURL
+	dw SetOddEggDownloadURL
 	dw Function11878d
 	dw Function1196f2
 	dw Function1197c9
@@ -1320,7 +1320,7 @@ Function118a65: ; unreferenced
 	ld bc, $1000
 	jp Function118b10
 
-Set_BattleDownloadURL:
+SetBattleDownloadURL:
 	ld hl, BattleDownloadURL
 	ld de, wcc60
 	ld bc, $80
@@ -1329,7 +1329,7 @@ Set_BattleDownloadURL:
 	ld bc, $1000
 	jp Function118b10
 
-Set_ExchangeDownloadURL:
+SetExchangeDownloadURL:
 	ld hl, ExchangeDownloadURL
 	ld de, wcc60
 	ld bc, $80
@@ -1338,7 +1338,7 @@ Set_ExchangeDownloadURL:
 	ld bc, $1000
 	jp Function118b10
 
-Set_NewsDownloadURL:
+SetNewsDownloadURL:
 	ld hl, NewsDownloadURL
 	ld de, wcc60
 	ld bc, $80
@@ -1349,7 +1349,7 @@ Set_NewsDownloadURL:
 	ld bc, $e00
 	jr Function118b10
 
-Set_StadiumDownloadURL:
+SetStadiumDownloadURL:
 	ld hl, StadiumDownloadURL
 	ld de, wcc60
 	ld bc, $80
@@ -1358,7 +1358,7 @@ Set_StadiumDownloadURL:
 	ld bc, $1000
 	jr Function118b10
 
-Set_OddEggDownloadURL:
+SetOddEggDownloadURL:
 	ld hl, OddEggDownloadURL
 	ld de, wcc60
 	ld bc, $80
