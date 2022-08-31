@@ -7219,7 +7219,7 @@ Function11b6b4:
 
 .error_check_nick
 	ld de, wc642
-	ld c, 5
+	ld c, NAME_LENGTH_JAPANESE - 1
 	farcall CheckStringForErrors
 	jr nc, .length_check_nick
 	farcall Mobile_CopyDefaultNickname
