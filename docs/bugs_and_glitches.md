@@ -2437,13 +2437,6 @@ This bug can prevent you from talking to Eusine in Celadon City or encountering 
 **Fix:** Edit `CheckOwnMonAnywhere` in [engine/pokemon/search_owned.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/search_owned.asm):
 
 ```diff
- 	; If there are no monsters in the party,
- 	; the player must not own any yet.
--; BUG: CheckOwnMon does not check the Day-Care (see docs/bugs_and_glitches.md)
- 	ld a, [wPartyCount]
- 	and a
- 	ret z
-
 -; BUG: CheckOwnMon does not check the Day-Care (see docs/bugs_and_glitches.md)
 +	ld hl, wBreedMon1Species
 +	ld bc, wBreedMon1OT
@@ -2454,6 +2447,11 @@ This bug can prevent you from talking to Eusine in Celadon City or encountering 
 +	ld bc, wBreedMon2OT
 +	call CheckOwnMon
 +	ret c ; found!
++
+ 	ld d, a
+ 	ld e, 0
+ 	ld hl, wPartyMon1Species
+ 	ld bc, wPartyMonOTs
 ```
 
 
