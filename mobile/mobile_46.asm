@@ -835,7 +835,7 @@ Function1186f5:
 	dw Function1188c8
 	dw Function11878d
 	dw Function118903
-	dw Set_MenuDownloadURL
+	dw Set_StadiumDownloadURL
 	dw Function11878d
 	dw Function119451
 	dw Function1195f8
@@ -873,7 +873,7 @@ Function118746:
 	dw Function1188c8
 	dw Function11878d
 	dw Function118903
-	dw Set_IndexDownloadURL
+	dw Set_OddEggDownloadURL
 	dw Function11878d
 	dw Function1196f2
 	dw Function1197c9
@@ -1349,8 +1349,8 @@ Set_NewsDownloadURL:
 	ld bc, $e00
 	jr Function118b10
 
-Set_MenuDownloadURL:
-	ld hl, MenuDownloadURL
+Set_StadiumDownloadURL:
+	ld hl, StadiumDownloadURL
 	ld de, wcc60
 	ld bc, $80
 	call CopyBytes
@@ -1358,8 +1358,8 @@ Set_MenuDownloadURL:
 	ld bc, $1000
 	jr Function118b10
 
-Set_IndexDownloadURL:
-	ld hl, IndexDownloadURL
+Set_OddEggDownloadURL:
+	ld hl, OddEggDownloadURL
 	ld de, wcc60
 	ld bc, $80
 	call CopyBytes
@@ -1494,10 +1494,10 @@ BattleDownloadURL:
 NewsDownloadURL:
 	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/news/index.txt", 0
 
-MenuDownloadURL:
+StadiumDownloadURL:
 	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/POKESTA/menu.cgb", 0
 
-IndexDownloadURL:
+OddEggDownloadURL:
 	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/tamago/index.txt", 0
 
 popc
