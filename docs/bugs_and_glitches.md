@@ -1663,28 +1663,11 @@ This bug is why the Lapras in [maps/UnionCaveB2F.asm](https://github.com/pret/po
 **Fix**: Edit [engine/events/overworld.asm](https://github.com/pret/pokecrystal/blob/master/engine/events/overworld.asm):
 
 ```diff
- FishFunction:
- ...
-
- .TryFish:
- 	ld a, [wPlayerState]
- 	cp PLAYER_SURF
- 	jr z, .fail
- 	cp PLAYER_SURF_PIKA
- 	jr z, .fail
-+	call GetFacingObject
-+	jr nc, .fail
- 	call GetFacingTileCoord
- 	call GetTileCollision
- 	cp WATER_TILE
- 	jr z, .facingwater
-```
-
-```diff
  SurfFunction:
  ...
 
  .TrySurf:
+-; BUG: You can Surf and fish on top of NPCs (see docs/bugs_and_glitches.md)
  	ld de, ENGINE_FOGBADGE
  	call CheckBadge
  	jr c, .nofogbadge
@@ -1708,6 +1691,24 @@ This bug is why the Lapras in [maps/UnionCaveB2F.asm](https://github.com/pret/po
 -	jr c, .cannotsurf
  	ld a, $1
  	ret
+```
+
+```diff
+ FishFunction:
+ ...
+
+ .TryFish:
+ 	ld a, [wPlayerState]
+ 	cp PLAYER_SURF
+ 	jr z, .fail
+ 	cp PLAYER_SURF_PIKA
+ 	jr z, .fail
++	call GetFacingObject
++	jr nc, .fail
+ 	call GetFacingTileCoord
+ 	call GetTileCollision
+ 	cp WATER_TILE
+ 	jr z, .facingwater
 ```
 
 
