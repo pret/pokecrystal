@@ -7201,7 +7201,7 @@ Function11b6b4:
 	ld a, HIGH(wc647)
 	ld [wMobileMonMailPointer + 1], a
 
-	ld a, 70
+	ld a, BASE_HAPPINESS
 	ld [wc60d + MON_HAPPINESS], a
 
 	ld de, wc63d
