@@ -1068,28 +1068,12 @@ EraseBoxes:
 	jr nz, .next
 	ret
 
-MACRO box_address
-	assert BANK(\1) == BANK(\2)
-	db BANK(\1)
-	dw \1, \2
-ENDM
-
 BoxAddresses:
 	table_width 5, BoxAddresses
-	box_address sBox1,  sBox1End
-	box_address sBox2,  sBox2End
-	box_address sBox3,  sBox3End
-	box_address sBox4,  sBox4End
-	box_address sBox5,  sBox5End
-	box_address sBox6,  sBox6End
-	box_address sBox7,  sBox7End
-	box_address sBox8,  sBox8End
-	box_address sBox9,  sBox9End
-	box_address sBox10, sBox10End
-	box_address sBox11, sBox11End
-	box_address sBox12, sBox12End
-	box_address sBox13, sBox13End
-	box_address sBox14, sBox14End
+for n, 1, NUM_BOXES + 1
+	db BANK(sBox{d:n}) ; aka BANK(sBox{d:n}End)
+	dw sBox{d:n}, sBox{d:n}End
+endr
 	assert_table_length NUM_BOXES
 
 Checksum:
