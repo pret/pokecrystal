@@ -3291,7 +3291,7 @@ Function1198f7:
 	jp Function119e2b
 
 Function119937:
-	farcall Function1707f4
+	farcall BattleTowerAction_06
 	jp BattleTowerRoomMenu_IncrementJumptable
 
 Function119940:
@@ -7061,7 +7061,7 @@ TradeCornerHoldMon_RemoveFromParty:
 	xor a ; REMOVE_PARTY
 	ld [wPokemonWithdrawDepositParameter], a
 	farcall RemoveMonFromPartyOrBox
-	farcall Function170807
+	farcall BattleTowerAction_16
 	farcall SaveAfterLinkTrade
 	jp Function11ad8a
 
@@ -7147,7 +7147,7 @@ Function11b66d:
 	jr .asm_11b6b0
 
 .asm_11b691
-	farcall Function17081d
+	farcall BattleTowerAction_17
 	ld a, [wScriptVar]
 	and a
 	jr z, .asm_11b6b0
