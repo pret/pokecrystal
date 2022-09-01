@@ -31,7 +31,7 @@ Function170000:
 	ld [wc74e], a
 	ld hl, wc608
 	ld de, $d800
-	ld bc, $008f
+	ld bc, TRADE_CORNER_REQUEST_LENGTH
 	call CopyBytes
 	ret
 

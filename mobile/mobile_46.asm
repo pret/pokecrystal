@@ -1569,9 +1569,7 @@ asm_118d9f:
 	ld a, [wcd38]
 	and a
 	jr nz, .asm_118db2
-	ld a, $8f ; DION addr $1e + request $8 + Name $5
-	          ; + party struct $30 + OT $5 + NICK $5
-	          ; + JP Mail struct $2a
+	ld a, TRADE_CORNER_REQUEST_LENGTH
 	ld [wcd3b], a
 	jr .asm_118db7
 
@@ -7476,7 +7474,7 @@ Function11b93b:
 	ld [s5_a800], a
 	ld hl, s5_a823
 	ld de, wc608
-	ld bc, $008f
+	ld bc, TRADE_CORNER_REQUEST_LENGTH
 	call CopyBytes
 	call CloseSRAM
 
