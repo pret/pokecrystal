@@ -270,7 +270,7 @@ Function17d0f3:
 	ld [wCurPartySpecies], a
 	ld a, [wcd81]
 	ld [wc74e], a
-	ld hl, wc63d
+	ld hl, wMobileMonOT
 	ld de, wOTTrademonOTName
 	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
@@ -324,7 +324,7 @@ Function17d0f3:
 
 Mobile_CopyDefaultOTName:
 	ld hl, Mobile5F_PlayersName
-	ld de, wc63d
+	ld de, wMobileMonOT
 	ld bc, 5
 	call CopyBytes
 	ret
@@ -334,7 +334,7 @@ Mobile5F_PlayersName:
 
 Mobile_CopyDefaultNickname:
 	ld hl, .DefaultNickname
-	ld de, wc642
+	ld de, wMobileMonNick
 	ld bc, 5
 	call CopyBytes
 	ret
@@ -344,11 +344,11 @@ Mobile_CopyDefaultNickname:
 
 Mobile_CopyDefaultMail:
 	ld a, "@"
-	ld hl, wc647
+	ld hl, wMobileMonMail
 	ld bc, MAIL_MSG_LENGTH + 1
 	call ByteFill
 	ld hl, .DefaultMessage
-	ld de, wc647
+	ld de, wMobileMonMail
 	ld bc, 6
 	call CopyBytes
 	ret
@@ -358,11 +358,11 @@ Mobile_CopyDefaultMail:
 
 Mobile_CopyDefaultMailAuthor:
 	ld a, "@"
-	ld de, wc668
+	ld de, wMobileMonMailAuthor
 	ld bc, 5
 	call ByteFill
 	ld hl, Mobile5F_PlayersName
-	ld de, wc668
+	ld de, wMobileMonMailAuthor
 	ld bc, 5
 	call CopyBytes
 	ret

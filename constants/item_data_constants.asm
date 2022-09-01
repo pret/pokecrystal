@@ -57,6 +57,7 @@ DEF MAIL_LINE_LENGTH   EQU $10
 DEF MAIL_MSG_LENGTH    EQU $20
 DEF MAILBOX_CAPACITY   EQU 10
 DEF MAIL_STRUCT_LENGTH EQU $2f ; mailmsg struct
+DEF MAIL_STRUCT_LENGTH_JP EQU $2a ; mailmsg_jp struct
 
 ; held item effects
 	const_def

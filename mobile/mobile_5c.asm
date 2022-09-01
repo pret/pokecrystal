@@ -1,29 +1,29 @@
 Function170000:
-	ld a, [wc62b]
+	ld a, [wOfferSpecies]
 	ld [wPlayerTrademonSpecies], a
-	ld hl, wc62e
+	ld hl, wOfferMonSender
 	ld de, wPlayerTrademonSenderName
 	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
 	ld a, "@"
 	ld [de], a
-	ld hl, wc663
+	ld hl, wOfferMonOT
 	ld de, wPlayerTrademonOTName
 	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
 	ld a, "@"
 	ld [de], a
-	ld hl, wc633 + MON_DVS
+	ld hl, wOfferMonDVs
 	ld a, [hli]
 	ld [wPlayerTrademonDVs], a
 	ld a, [hl]
 	ld [wPlayerTrademonDVs + 1], a
-	ld hl, wc633 + MON_ID
+	ld hl, wOfferMonID
 	ld a, [hli]
 	ld [wPlayerTrademonID], a
 	ld a, [hl]
 	ld [wPlayerTrademonID + 1], a
-	ld bc, wc633
+	ld bc, wOfferMon
 	farcall GetCaughtGender
 	ld a, c
 	ld [wPlayerTrademonCaughtData], a

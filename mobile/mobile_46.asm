@@ -1067,7 +1067,7 @@ Function1188b8:
 	jp Function119e2b
 
 Function1188c0:
-	ld de, wc3cd
+	ld de, wEmailAddress
 	ld a, MOBILEAPI_08
 	jp Function119e2b
 
@@ -2202,7 +2202,7 @@ Function119223:
 	ld [wcd4c], a
 	ld a, BANK(s5_b092) ; aka BANK(s5_b1b1) and BANK(s5_b1b2) and BANK(s5_b1d3)
 	call OpenSRAM
-	ld hl, wc3cd
+	ld hl, wEmailAddress
 	ld de, s5_b092
 	ld bc, 31
 	call CopyBytes
@@ -3295,8 +3295,8 @@ Function119937:
 	jp BattleTowerRoomMenu_IncrementJumptable
 
 Function119940:
-	ld de, wc3cd
-	ld c, $1e
+	ld de, wEmailAddress
+	ld c, MOBILE_EMAIL_LENGTH
 .asm_119945
 	ld a, [de]
 	inc de
@@ -3319,7 +3319,7 @@ Function119954:
 	ld [wBattleTowerRoomMenu2JumptableIndex], a
 	call BattleTowerRoomMenu2
 	ld hl, wc608
-	ld de, wc3cd
+	ld de, wEmailAddress
 .asm_119962
 	ld a, [de]
 	inc de
@@ -6966,7 +6966,7 @@ TradeCornerHoldMon_PrepareForUpload:
 	jp Function11ad8a
 
 .InitRAM:
-	ld bc, wc626
+	ld bc, wOfferTrainerID
 	ld a, [wPlayerID]
 	ld [wcd2a], a
 	ld [bc], a
@@ -7176,70 +7176,70 @@ Function11b6b4:
 	ld a, [wcd31]
 	ld [wc709], a
 
-	ld a, LOW(wc708) ; Species
+	ld a, LOW(wc708)
 	ld [wMobileMonSpeciesPointer], a
 	ld a, HIGH(wc708)
 	ld [wMobileMonSpeciesPointer + 1], a
 
-	ld a, LOW(wMobileMon) ; Partymon Struct
+	ld a, LOW(wMobileMon)
 	ld [wMobileMonStructPointer], a
 	ld a, HIGH(wMobileMon)
 	ld [wMobileMonStructPointer + 1], a
 
-	ld a, LOW(wc63d) ; OT
+	ld a, LOW(wMobileMonOT)
 	ld [wMobileMonOTPointer], a
-	ld a, HIGH(wc63d)
+	ld a, HIGH(wMobileMonOT)
 	ld [wMobileMonOTPointer + 1], a
 
-	ld a, LOW(wc642) ; Nickname
+	ld a, LOW(wMobileMonNick)
 	ld [wMobileMonNicknamePointer], a
-	ld a, HIGH(wc642)
+	ld a, HIGH(wMobileMonNick)
 	ld [wMobileMonNicknamePointer + 1], a
 
-	ld a, LOW(wc647) ; Mail
+	ld a, LOW(wMobileMonMail)
 	ld [wMobileMonMailPointer], a
-	ld a, HIGH(wc647)
+	ld a, HIGH(wMobileMonMail)
 	ld [wMobileMonMailPointer + 1], a
 
 	ld a, BASE_HAPPINESS
 	ld [wMobileMonHappiness], a
 
-	ld de, wc63d
-	ld c, 5
+	ld de, wMobileMonOT
+	ld c, NAME_LENGTH_JAPANESE - 1
 	farcall CheckStringForErrors
 	jr nc, .length_check_OT
 	farcall Mobile_CopyDefaultOTName
 
 .length_check_OT
-	ld de, wc63d
-	lb bc, 1, 5
+	ld de, wMobileMonOT
+	lb bc, 1, NAME_LENGTH_JAPANESE - 1
 	farcall CheckStringContainsLessThanBNextCharacters
 	jr nc, .error_check_nick
 	farcall Mobile_CopyDefaultOTName
 
 .error_check_nick
-	ld de, wc642
+	ld de, wMobileMonNick
 	ld c, NAME_LENGTH_JAPANESE - 1
 	farcall CheckStringForErrors
 	jr nc, .length_check_nick
 	farcall Mobile_CopyDefaultNickname
 
 .length_check_nick
-	ld de, wc642
-	lb bc, 1, 5
+	ld de, wMobileMonNick
+	lb bc, 1, NAME_LENGTH_JAPANESE - 1
 	farcall CheckStringContainsLessThanBNextCharacters
 	jr nc, .error_check_mail
 	farcall Mobile_CopyDefaultNickname
 
 .error_check_mail
-	ld de, wc647
+	ld de, wMobileMonMail
 	ld c, MAIL_MSG_LENGTH + 1
 	farcall CheckStringForErrors
 	jr nc, .length_check_mail
 	farcall Mobile_CopyDefaultMail
 
 .length_check_mail
-	ld de, wc647
+	ld de, wMobileMonMail
 	lb bc, 2, MAIL_MSG_LENGTH + 1
 	farcall CheckStringContainsLessThanBNextCharacters
 	jr c, .fix_mail
@@ -7251,15 +7251,15 @@ Function11b6b4:
 	farcall Mobile_CopyDefaultMail
 
 .mail_ok
-	ld de, wc668
-	ld c, $5
+	ld de, wMobileMonMailAuthor
+	ld c, NAME_LENGTH_JAPANESE - 1
 	farcall CheckStringForErrors
 	jr nc, .length_check_author
 	farcall Mobile_CopyDefaultMailAuthor
 
 .length_check_author
-	ld de, wc668
-	lb bc, 1, 5
+	ld de, wMobileMonMailAuthor
+	lb bc, 1, NAME_LENGTH_JAPANESE - 1
 	farcall CheckStringContainsLessThanBNextCharacters
 	jr nc, .author_okay
 	farcall Mobile_CopyDefaultMailAuthor
@@ -7306,12 +7306,12 @@ Function11b6b4:
 	ret
 
 Function11b7e5:
-	ld a, [wMobileMonSpecies] ; species
+	ld a, [wMobileMonSpecies]
 	ld [wOTTrademonSpecies], a
 	ld [wCurPartySpecies], a
 	ld a, [wcd81]
 	ld [wc74e], a
-	ld hl, wc63d ; OT
+	ld hl, wMobileMonOT ; OT
 	ld de, wOTTrademonOTName
 	ld bc, 5
 	call CopyBytes

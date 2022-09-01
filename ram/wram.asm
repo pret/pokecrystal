@@ -275,7 +275,8 @@ wSpriteAnimDataEnd::
 
 ; mobile data
 wc3cc:: ds 1
-wc3cd:: ds 31
+wEmailAddress:: ds MOBILE_EMAIL_LENGTH
+	ds 1
 wc3ec:: ds 1
 wc3ed:: ds 1
 wc3ee:: ds 1
@@ -668,25 +669,33 @@ wDebugDarkTileColor::  ds 2
 wDebugBlackTileColor:: ds 2
 
 NEXTU
-	ds 5
+wMobileMonSender:: ds NAME_LENGTH_JAPANESE - 1
 wMobileMon:: party_struct wMobileMon
+wMobileMonOT:: ds NAME_LENGTH_JAPANESE - 1
+wMobileMonNick:: ds NAME_LENGTH_JAPANESE - 1
+wMobileMonMail:: mailmsg_jp wMobileMonMail
 
 NEXTU
-wc608:: ds 5
-	ds 2
+wOfferEmail:: ds $1e
+wOfferTrainerID:: dw
+wOfferSecretID:: dw
+wOfferGender:: db
+wOfferSpecies:: db
+wOfferReqGender:: db
+wOfferReqSpecies:: db
+wOfferMonSender:: ds NAME_LENGTH_JAPANESE - 1
+wOfferMon:: party_struct wOfferMon
+wOfferMonOT:: ds NAME_LENGTH_JAPANESE - 1
+wOfferMonNick:: ds NAME_LENGTH_JAPANESE - 1
+wOfferMonMail:: mailmsg_jp wOfferMonMail
+
+NEXTU
+wc608:: ds 7
 wc60f:: ds 9
 wc618:: ds 14
-wc626:: ds 5
-wc62b:: ds 3
-wc62e:: ds 5
-wc633:: ds 10
-wc63d:: ds 5
-wc642:: ds 5
-wc647:: ds 1
+wc626:: ds 34
 wc648:: ds 2
-wc64a:: ds 25
-wc663:: ds 5
-wc668:: ds 32
+wc64a:: ds 62
 wc688:: ds 2
 wc68a:: ds 15
 wc699:: ds 15
