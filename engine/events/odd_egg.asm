@@ -58,12 +58,12 @@ _GiveOddEgg:
 
 	; load species in wMobileMonSpecies
 	ld a, EGG
-	ld [wMobileMonSpecies], a
+	ld [wMobileMonMiscSpecies], a
 
 	; load pointer to (wMobileMonSpecies - 1) in wMobileMonSpeciesPointer
-	ld a, LOW(wMobileMonSpecies - 1)
+	ld a, LOW(wMobileMonMiscSpecies - 1)
 	ld [wMobileMonSpeciesPointer], a
-	ld a, HIGH(wMobileMonSpecies - 1)
+	ld a, HIGH(wMobileMonMiscSpecies - 1)
 	ld [wMobileMonSpeciesPointer + 1], a
 	; load pointer to wOddEgg in wMobileMonStructPointer
 	ld a, LOW(wOddEgg)

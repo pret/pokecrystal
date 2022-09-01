@@ -668,8 +668,12 @@ wDebugDarkTileColor::  ds 2
 wDebugBlackTileColor:: ds 2
 
 NEXTU
+	ds 5
+wMobileMon:: party_struct wMobileMon
+
+NEXTU
 wc608:: ds 5
-wc60d:: ds 2
+	ds 2
 wc60f:: ds 9
 wc618:: ds 14
 wc626:: ds 5
@@ -1313,7 +1317,8 @@ wcd27:: ds 1
 wcd28:: ds 1
 wcd29:: ds 1
 
-wMobileMonSpecies::
+wMobileMonIndex::
+wMobileMonMiscSpecies::
 wcd2a:: db
 
 UNION

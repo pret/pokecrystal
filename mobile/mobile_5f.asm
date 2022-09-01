@@ -265,7 +265,7 @@ CheckStringForErrors_IgnoreTerminator:
 	ret
 
 Function17d0f3:
-	ld a, [wc60d]
+	ld a, [wMobileMonSpecies]
 	ld [wOTTrademonSpecies], a
 	ld [wCurPartySpecies], a
 	ld a, [wcd81]
@@ -276,16 +276,16 @@ Function17d0f3:
 	call CopyBytes
 	ld a, "@"
 	ld [de], a
-	ld a, [wc60d + MON_ID]
+	ld a, [wMobileMonID]
 	ld [wOTTrademonID], a
-	ld a, [wc60d + MON_ID + 1]
+	ld a, [wMobileMonID + 1]
 	ld [wOTTrademonID + 1], a
-	ld hl, wc60d + MON_DVS
+	ld hl, wMobileMonDVs
 	ld a, [hli]
 	ld [wOTTrademonDVs], a
 	ld a, [hl]
 	ld [wOTTrademonDVs + 1], a
-	ld bc, wc60d
+	ld bc, wMobileMonSpecies
 	farcall GetCaughtGender
 	ld a, c
 	ld [wOTTrademonCaughtData], a

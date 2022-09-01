@@ -7183,9 +7183,9 @@ Function11b6b4:
 	ld a, HIGH(wc708)
 	ld [wMobileMonSpeciesPointer + 1], a
 
-	ld a, LOW(wc60d) ; Partymon Struct
+	ld a, LOW(wMobileMon) ; Partymon Struct
 	ld [wMobileMonStructPointer], a
-	ld a, HIGH(wc60d)
+	ld a, HIGH(wMobileMon)
 	ld [wMobileMonStructPointer + 1], a
 
 	ld a, LOW(wc63d) ; OT
@@ -7204,7 +7204,7 @@ Function11b6b4:
 	ld [wMobileMonMailPointer + 1], a
 
 	ld a, BASE_HAPPINESS
-	ld [wc60d + MON_HAPPINESS], a
+	ld [wMobileMonHappiness], a
 
 	ld de, wc63d
 	ld c, 5
@@ -7267,19 +7267,19 @@ Function11b6b4:
 	farcall Mobile_CopyDefaultMailAuthor
 
 .author_okay
-	ld a, [wc60d + MON_ITEM]
+	ld a, [wMobileMonItem]
 	cp -1
 	jr nz, .item_okay
 	xor a
-	ld [wc60d + MON_ITEM], a
+	ld [wMobileMonItem], a
 
 .item_okay
 	ld a, [wcd31]
-	ld [wc60d], a
+	ld [wMobileMonSpecies], a
 	ld [wCurSpecies], a
 	call GetBaseData
 
-	ld hl, wc60d + MON_LEVEL
+	ld hl, wMobileMonLevel
 	ld a, [hl]
 	cp MIN_LEVEL
 	ld a, MIN_LEVEL
@@ -7293,12 +7293,12 @@ Function11b6b4:
 .done_level
 	ld [wCurPartyLevel], a
 
-	ld hl, wc60d + MON_STAT_EXP - 1
-	ld de, wc60d + MON_MAXHP
+	ld hl, wMobileMonExp + 2
+	ld de, wMobileMonMaxHP
 	ld b, TRUE
 	predef CalcMonStats
-	ld de, wc60d + MON_MAXHP
-	ld hl, wc60d + MON_HP
+	ld de, wMobileMonMaxHP
+	ld hl, wMobileMonHP
 	ld a, [de]
 	ld [hli], a
 	inc de
@@ -7308,7 +7308,7 @@ Function11b6b4:
 	ret
 
 Function11b7e5:
-	ld a, [wc60d] ; species
+	ld a, [wMobileMonSpecies] ; species
 	ld [wOTTrademonSpecies], a
 	ld [wCurPartySpecies], a
 	ld a, [wcd81]
@@ -7319,16 +7319,16 @@ Function11b7e5:
 	call CopyBytes
 	ld a, "@"
 	ld [de], a
-	ld a, [wc60d + MON_ID]
+	ld a, [wMobileMonID]
 	ld [wOTTrademonID], a
-	ld a, [wc60d + MON_ID + 1]
+	ld a, [wMobileMonID + 1]
 	ld [wOTTrademonID + 1], a
-	ld hl, wc60d + MON_DVS
+	ld hl, wMobileMonDVs
 	ld a, [hli]
 	ld [wOTTrademonDVs], a
 	ld a, [hl]
 	ld [wOTTrademonDVs + 1], a
-	ld bc, wc60d ; pokemon_data_start
+	ld bc, wMobileMon ; pokemon_data_start
 	farcall GetCaughtGender
 	ld a, c
 	ld [wOTTrademonCaughtData], a
@@ -7536,7 +7536,7 @@ AddMobileMonToParty:
 	ld hl, wPartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, e
-	ld [wMobileMonSpecies], a
+	ld [wMobileMonIndex], a
 .loop2
 	add hl, bc
 	dec a
@@ -7553,7 +7553,7 @@ AddMobileMonToParty:
 
 	ld hl, wPartyMonOTs
 	ld bc, NAME_LENGTH
-	ld a, [wMobileMonSpecies]
+	ld a, [wMobileMonIndex]
 .loop3
 	add hl, bc
 	dec a
@@ -7572,7 +7572,7 @@ AddMobileMonToParty:
 
 	ld hl, wPartyMonNicknames
 	ld bc, MON_NAME_LENGTH
-	ld a, [wMobileMonSpecies]
+	ld a, [wMobileMonIndex]
 .loop4
 	add hl, bc
 	dec a
@@ -7591,7 +7591,7 @@ AddMobileMonToParty:
 
 	ld hl, sPartyMail
 	ld bc, MAIL_STRUCT_LENGTH
-	ld a, [wMobileMonSpecies]
+	ld a, [wMobileMonIndex]
 .loop5
 	add hl, bc
 	dec a
