@@ -6497,15 +6497,15 @@ Function112b11:
 	push af
 	ld bc, $0300
 	ld de, wc872
-	call Function112b60
-	call nc, Function112b60
-	call nc, Function112b60
+	call .asm_112b60
+	call nc, .asm_112b60
+	call nc, .asm_112b60
 	dec hl
 .asm_112b2d
 	ld a, [hli]
-	cp $d
+	cp "\r"
 	jr z, .asm_112b36
-	cp $20
+	cp " "
 	jr nz, .asm_112b2d
 
 .asm_112b36
@@ -6545,11 +6545,11 @@ Function112b11:
 	ld [wc872], a
 	ret
 
-Function112b60:
+.asm_112b60:
 	ld a, [hli]
-	cp $30
+	cp "0"
 	jr c, .asm_112b6f
-	cp $3a
+	cp "9" + 1
 	jr nc, .asm_112b6f
 	and $f
 	ld [de], a
@@ -7955,7 +7955,7 @@ Function1133fe:
 	ld h, [hl]
 	ld l, a
 	ld a, [hl]
-	cp $2f
+	cp "/"
 	jr z, .asm_113478
 	ld b, $7
 	call MobileSDK_CopyBytes
@@ -9188,7 +9188,7 @@ Function113d66:
 .asm_113d88
 	ld a, [de]
 	inc de
-	call .Function113dfa
+	call .decodeBase64Character
 	ld [hli], a
 	dec b
 	jr nz, .asm_113d88
@@ -9273,27 +9273,27 @@ endr
 	ld [hl], a
 	ret
 
-.Function113dfa:
-	cp $2b
+.decodeBase64Character:
+	cp "+"
 	jr c, .asm_113e24
 	jr z, .asm_113e31
-	cp $2f
+	cp "/"
 	jr c, .asm_113e24
 	jr z, .asm_113e34
-	cp $30
+	cp "0"
 	jr c, .asm_113e24
-	cp $3a
+	cp "9" + 1
 	jr c, .asm_113e37
-	cp $3d
+	cp "="
 	jr c, .asm_113e24
 	jr z, .asm_113e3a
-	cp $41
+	cp "A"
 	jr c, .asm_113e24
-	cp $5b
+	cp "Z" + 1
 	jr c, .asm_113e3c
-	cp $61
+	cp "a"
 	jr c, .asm_113e24
-	cp $7b
+	cp "z" + 1
 	jr c, .asm_113e3f
 
 .asm_113e24
