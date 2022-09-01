@@ -6793,10 +6793,10 @@ Function11b3d9:
 	ld [hl], a
 	ret
 
-Function11b444:
+TradeCornerHoldMon:
 ; special
 	call Mobile46_InitJumptable
-	call Mobile46_RunJumptable
+	call TradeCornerHoldMon_RunJumptable
 	ret
 
 Mobile46_InitJumptable:
@@ -6808,7 +6808,7 @@ Mobile46_InitJumptable:
 	call UpdateTime
 	ret
 
-Mobile46_RunJumptable:
+TradeCornerHoldMon_RunJumptable:
 .loop
 	call .IterateJumptable
 	call DelayFrame
@@ -6821,17 +6821,17 @@ Mobile46_RunJumptable:
 	jumptable .Jumptable, wJumptableIndex
 
 .Jumptable:
-	dw PrepareMonForUpload
-	dw Function11b570 ; ???
-	dw Function11b5c0 ; Remove from party
-	dw Function11b5e0 ; Set script value to 0, indicates success
-	dw Function11b5e7 ; unused
+	dw TradeCornerHoldMon_PrepareForUpload
+	dw Function11b570
+	dw TradeCornerHoldMon_RemoveFromParty
+	dw TradeCornerHoldMon_Success
+	dw TradeCornerHoldMon_Noop ; unused
 
-PrepareMonForUpload:
+TradeCornerHoldMon_PrepareForUpload:
 	call .InitRAM
 	ld hl, wPlayerName
 	ld a, NAME_LENGTH_JAPANESE - 1
-.loop1
+.get_char
 	push af
 	ld a, [hli]
 	ld [bc], a
@@ -6839,24 +6839,26 @@ PrepareMonForUpload:
 	pop af
 	dec a
 	and a
-	jr nz, .loop1
+	jr nz, .get_char
 
 	ld de, PARTYMON_STRUCT_LENGTH
 	ld hl, wPartyMon1Species
 	ld a, [wcd82]
 	dec a
 	push af
-.loop2
+
+.get_next_party_mon
 	and a
-	jr z, .okay
+	jr z, .got_selected_mon
 	add hl, de
 	dec a
-	jr .loop2
+	jr .get_next_party_mon
 
-.okay
+.got_selected_mon
 	push bc
 	ld a, PARTYMON_STRUCT_LENGTH
-.loop3
+.copy_mon_byte
+	; copies wPartyMon to bc.
 	push af
 	ld a, [hli]
 	ld [bc], a
@@ -6864,9 +6866,9 @@ PrepareMonForUpload:
 	pop af
 	dec a
 	and a
-	jr nz, .loop3
+	jr nz, .copy_mon_byte
 
-	pop de
+	pop de ; pushed from bc
 	push bc
 	ld a, [de]
 	ld [wCurSpecies], a
@@ -7054,7 +7056,7 @@ Function11b570:
 	call CloseSRAM
 	ret
 
-Function11b5c0:
+TradeCornerHoldMon_RemoveFromParty:
 	ld a, [wcd82]
 	dec a
 	ld [wCurPartyMon], a
@@ -7065,12 +7067,12 @@ Function11b5c0:
 	farcall SaveAfterLinkTrade
 	jp Function11ad8a
 
-Function11b5e0:
+TradeCornerHoldMon_Success:
 	xor a
 	ld [wScriptVar], a
 	jp Function11ad8a
 
-Function11b5e7:
+TradeCornerHoldMon_Noop:
 	ret
 
 Function11b5e8:
