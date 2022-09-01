@@ -36,33 +36,33 @@ Function170000:
 	ret
 
 Function17005a:
-	ld a, BANK(s5_a824)
+	ld a, BANK(sOfferMon)
 	call OpenSRAM
-	ld a, [s5_a824]
+	ld a, [sOfferSpecies]
 	ld [wOTTrademonSpecies], a
-	ld hl, s5_a827
+	ld hl, sOfferMonSender
 	ld de, wOTTrademonSenderName
 	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
 	ld a, "@"
 	ld [de], a
-	ld hl, s5_a85c
+	ld hl, sOfferMonOT
 	ld de, wOTTrademonOTName
 	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
 	ld a, "@"
 	ld [de], a
-	ld hl, s5_a82c + MON_DVS
+	ld hl, sOfferMonDVs
 	ld a, [hli]
 	ld [wOTTrademonDVs], a
 	ld a, [hl]
 	ld [wOTTrademonDVs + 1], a
-	ld hl, s5_a82c + MON_ID
+	ld hl, sOfferMonID
 	ld a, [hli]
 	ld [wOTTrademonID], a
 	ld a, [hl]
 	ld [wOTTrademonID + 1], a
-	ld bc, s5_a82c
+	ld bc, sOfferMon
 	farcall GetCaughtGender
 	ld a, c
 	ld [wOTTrademonCaughtData], a

@@ -204,7 +204,7 @@ ENDM
 MACRO mailmsg_jp
 \1Message::     ds MAIL_MSG_LENGTH
 \1MessageEnd::  db
-\1Author::      ds NAME_LENGTH_JAPANESE
+\1Author::      ds NAME_LENGTH_JAPANESE - 1
 \1AuthorID::    dw
 \1Species::     db
 \1Type::        db

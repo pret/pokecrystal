@@ -7457,9 +7457,9 @@ Function11b879:
 
 Function11b920:
 	call Mobile46_InitJumptable
-	ld a, BANK(s5_a81f)
+	ld a, BANK(sOfferTrainerID)
 	call OpenSRAM
-	ld hl, s5_a81f
+	ld hl, sOfferTrainerID
 	ld de, wc626
 	ld bc, 8
 	call CopyBytes
@@ -7472,7 +7472,7 @@ Function11b93b:
 	call OpenSRAM
 	xor a
 	ld [s5_a800], a
-	ld hl, s5_a823
+	ld hl, sOfferGender
 	ld de, wc608
 	ld bc, TRADE_CORNER_REQUEST_LENGTH
 	call CopyBytes

@@ -285,21 +285,18 @@ sTrainerRankingsBackup:: ds sTrainerRankingsEnd - sTrainerRankings
 	ds $6fa
 
 s5_a800:: db
-	ds $1e
-s5_a81f:: db
-
-	ds $3
-
-s5_a823:: db
-s5_a824:: db
-s5_a825:: db
-s5_a826:: db
-s5_a827:: ds NAME_LENGTH_JAPANESE - 1
-s5_a82c:: ds PARTYMON_STRUCT_LENGTH
-
-s5_a85c:: ds NAME_LENGTH_JAPANESE
-
-	ds 46
+sOfferEmail:: ds $1e
+sOfferTrainerID:: dw
+sOfferSecretID:: dw
+sOfferGender:: db
+sOfferSpecies:: db
+sOfferReqGender:: db
+sOfferReqSpecies:: db
+sOfferMonSender:: ds NAME_LENGTH_JAPANESE - 1
+sOfferMon:: party_struct sOfferMon
+sOfferMonOT:: ds NAME_LENGTH_JAPANESE - 1
+sOfferMonNick:: ds NAME_LENGTH_JAPANESE - 1
+sOfferMonMail:: mailmsg_jp sOfferMonMail
 
 s5_a890:: db
 s5_a891:: db
