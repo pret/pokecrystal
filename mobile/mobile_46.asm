@@ -7460,7 +7460,7 @@ Function11b920:
 	ld a, BANK(sOfferTrainerID)
 	call OpenSRAM
 	ld hl, sOfferTrainerID
-	ld de, wc626
+	ld de, wOfferTrainerID
 	ld bc, 8
 	call CopyBytes
 	call CloseSRAM
@@ -7478,29 +7478,29 @@ Function11b93b:
 	call CopyBytes
 	call CloseSRAM
 
-	ld a, LOW(wc608)
+	ld a, LOW(wUnknownGender)
 	ld [wMobileMonSpeciesPointer], a
-	ld a, HIGH(wc608)
+	ld a, HIGH(wUnknownGender)
 	ld [wMobileMonSpeciesPointer + 1], a
 
-	ld a, LOW($c611)
+	ld a, LOW(wUnknownMon)
 	ld [wMobileMonStructPointer], a
-	ld a, HIGH($c611)
+	ld a, HIGH(wUnknownMon)
 	ld [wMobileMonStructPointer + 1], a
 
-	ld a, LOW($c641)
+	ld a, LOW(wUnknownMonOT)
 	ld [wMobileMonOTPointer], a
-	ld a, HIGH($c641)
+	ld a, HIGH(wUnknownMonOT)
 	ld [wMobileMonOTPointer + 1], a
 
-	ld a, LOW($c646)
+	ld a, LOW(wUnknownMonNick)
 	ld [wMobileMonNicknamePointer], a
-	ld a, HIGH($c646)
+	ld a, HIGH(wUnknownMonNick)
 	ld [wMobileMonNicknamePointer + 1], a
 
-	ld a, LOW($c64b)
+	ld a, LOW(wUnknownMonMail)
 	ld [wMobileMonMailPointer], a
-	ld a, HIGH($c64b)
+	ld a, HIGH(wUnknownMonMail)
 	ld [wMobileMonMailPointer + 1], a
 	call AddMobileMonToParty
 	farcall SaveAfterLinkTrade

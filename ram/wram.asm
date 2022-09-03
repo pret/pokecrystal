@@ -690,10 +690,20 @@ wOfferMonNick:: ds NAME_LENGTH_JAPANESE - 1
 wOfferMonMail:: mailmsg_jp wOfferMonMail
 
 NEXTU
+wUnknownGender:: db
+wUnknownSpecies:: db
+wUnknownReqGender:: db
+wUnknownReqSpecies:: db
+wUnknownMonSender:: ds NAME_LENGTH_JAPANESE - 1
+wUnknownMon:: party_struct wUnknownMon
+wUnknownMonOT:: ds NAME_LENGTH_JAPANESE - 1
+wUnknownMonNick:: ds NAME_LENGTH_JAPANESE - 1
+wUnknownMonMail:: mailmsg_jp wUnknownMonMail
+
+NEXTU
 wc608:: ds 7
 wc60f:: ds 9
-wc618:: ds 14
-wc626:: ds 34
+wc618:: ds 48
 wc648:: ds 2
 wc64a:: ds 62
 wc688:: ds 2
