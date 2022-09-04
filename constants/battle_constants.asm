@@ -54,7 +54,7 @@ DEF MOVE_LENGTH EQU _RS
 ; stat constants
 ; indexes for:
 ; - wPlayerStats and wEnemyStats (see wram.asm)
-; - party_struct and battle_struct members (see macros/wram.asm)
+; - party_struct and battle_struct members (see macros/ram.asm)
 	const_def 1
 	const STAT_HP
 	const STAT_ATK

@@ -1,4 +1,4 @@
-; object_struct members (see macros/wram.asm)
+; object_struct members (see macros/ram.asm)
 rsreset
 DEF OBJECT_SPRITE              rb ; 00
 DEF OBJECT_MAP_OBJECT_INDEX    rb ; 01
@@ -96,7 +96,7 @@ DEF ABSOLUTE_TILE_ID_F    EQU 2
 DEF RELATIVE_ATTRIBUTES EQU 1 << RELATIVE_ATTRIBUTES_F
 DEF ABSOLUTE_TILE_ID    EQU 1 << ABSOLUTE_TILE_ID_F
 
-; map_object struct members (see macros/wram.asm)
+; map_object struct members (see macros/ram.asm)
 rsreset
 DEF MAPOBJECT_OBJECT_STRUCT_ID rb ; 0
 DEF MAPOBJECT_SPRITE           rb ; 1

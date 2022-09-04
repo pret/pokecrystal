@@ -14,7 +14,7 @@ DEF SLOTS_NO_BIAS EQU -1
 
 DEF REEL_SIZE EQU 15
 
-; Constants for slot_reel offsets (see macros/wram.asm)
+; Constants for slot_reel offsets (see macros/ram.asm)
 rsreset
 DEF REEL_ACTION        rb ; 0
 DEF REEL_TILEMAP_ADDR  rw ; 1

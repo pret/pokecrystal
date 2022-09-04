@@ -33,7 +33,7 @@ DEF HP_GREEN  EQU 0
 DEF HP_YELLOW EQU 1
 DEF HP_RED    EQU 2
 
-; sprite_oam_struct members (see macros/wram.asm)
+; sprite_oam_struct members (see macros/ram.asm)
 rsreset
 DEF SPRITEOAMSTRUCT_YCOORD     rb ; 0
 DEF SPRITEOAMSTRUCT_XCOORD     rb ; 1

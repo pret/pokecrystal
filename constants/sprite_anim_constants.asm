@@ -1,4 +1,4 @@
-; sprite_anim_struct members (see macros/wram.asm)
+; sprite_anim_struct members (see macros/ram.asm)
 rsreset
 DEF SPRITEANIMSTRUCT_INDEX           rb ; 0
 DEF SPRITEANIMSTRUCT_FRAMESET_ID     rb ; 1
