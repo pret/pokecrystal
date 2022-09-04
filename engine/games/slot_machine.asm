@@ -15,17 +15,19 @@ DEF SLOTS_NO_BIAS EQU -1
 DEF REEL_SIZE EQU 15
 
 ; Constants for slot_reel offsets (see macros/wram.asm)
-DEF REEL_ACTION        EQUS "(wReel1ReelAction - wReel1)"
-DEF REEL_TILEMAP_ADDR  EQUS "(wReel1TilemapAddr - wReel1)"
-DEF REEL_POSITION      EQUS "(wReel1Position - wReel1)"
-DEF REEL_SPIN_DISTANCE EQUS "(wReel1SpinDistance - wReel1)"
-DEF REEL_SPIN_RATE     EQUS "(wReel1SpinRate - wReel1)"
-DEF REEL_OAM_ADDR      EQUS "(wReel1OAMAddr - wReel1)"
-DEF REEL_X_COORD       EQUS "(wReel1XCoord - wReel1)"
-DEF REEL_MANIP_COUNTER EQUS "(wReel1ManipCounter - wReel1)"
-DEF REEL_MANIP_DELAY   EQUS "(wReel1ManipDelay - wReel1)"
-DEF REEL_FIELD_0B      EQUS "(wReel1Field0b - wReel1)"
-DEF REEL_STOP_DELAY    EQUS "(wReel1StopDelay - wReel1)"
+rsreset
+DEF REEL_ACTION        rb ; 0
+DEF REEL_TILEMAP_ADDR  rw ; 1
+DEF REEL_POSITION      rb ; 3
+DEF REEL_SPIN_DISTANCE rb ; 4
+DEF REEL_SPIN_RATE     rb ; 5
+DEF REEL_OAM_ADDR      rw ; 6
+DEF REEL_X_COORD       rb ; 8
+DEF REEL_MANIP_COUNTER rb ; 9
+DEF REEL_MANIP_DELAY   rb ; 10
+DEF REEL_DROP_COUNTER  rb ; 11
+                       rb_skip 3
+DEF REEL_STOP_DELAY    rb ; 15
 
 ; SlotsJumptable constants
 	const_def
@@ -1300,14 +1302,14 @@ ReelAction_CheckDropReel:
 	ld hl, REEL_ACTION
 	add hl, bc
 	inc [hl] ; REEL_ACTION_WAIT_DROP_REEL
-	ld hl, REEL_FIELD_0B
+	ld hl, REEL_DROP_COUNTER
 	add hl, bc
 	ld [hl], 32
 	ld hl, REEL_SPIN_RATE
 	add hl, bc
 	ld [hl], 0
 ReelAction_WaitDropReel:
-	ld hl, REEL_FIELD_0B
+	ld hl, REEL_DROP_COUNTER
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -1318,7 +1320,7 @@ ReelAction_WaitDropReel:
 .DropReel:
 	ld hl, REEL_ACTION
 	add hl, bc
-	dec [hl]
+	dec [hl] ; REEL_ACTION_CHECK_DROP_REEL
 	ld hl, REEL_SPIN_RATE
 	add hl, bc
 	ld [hl], 8
