@@ -8,7 +8,7 @@ DEF callab EQUS "callfar"
 
 ; macros/gfx.asm
 MACRO dsprite
-	dbsprite \2, \4, \1, \3, \5, \6
+	dbsprite \3, \1, \4, \2, \5, \6
 ENDM
 
 ; macros/data.asm
