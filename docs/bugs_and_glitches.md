@@ -791,7 +791,6 @@ And edit [engine/battle/move_effects/frustration.asm](https://github.com/pret/po
  BattleCommand_FrustrationPower:
 -; BUG: Return and Frustration deal no damage when the user's happiness is low or high, respectively (see docs/bugs_and_glitches.md)
  	...
--; BUG: Return and Frustration deal no damage when the user's happiness is low or high, respectively (see docs/bugs_and_glitches.md)
  	call Multiply
  	ld a, 25
  	ldh [hDivisor], a
