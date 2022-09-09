@@ -247,18 +247,18 @@ Redefine the special music constants in [constants/music_constants.asm](https://
 
 ```diff
 -; GetMapMusic picks music for this value (see home/map.asm)
--MUSIC_MAHOGANY_MART EQU $64
+-DEF MUSIC_MAHOGANY_MART EQU $64
 +; GetMapMusic picks music for these values (see home/map.asm)
-+MUSIC_MAHOGANY_MART EQU $fc
-+MUSIC_RADIO_TOWER   EQU $fd
++DEF MUSIC_MAHOGANY_MART EQU $fc
++DEF MUSIC_RADIO_TOWER   EQU $fd
 
  ; ExitPokegearRadio_HandleMusic uses these values
- RESTART_MAP_MUSIC EQU $fe
- ENTER_MAP_MUSIC   EQU $ff
+ DEF RESTART_MAP_MUSIC EQU $fe
+ DEF ENTER_MAP_MUSIC   EQU $ff
 -
 -; GetMapMusic picks music for this bit flag
--RADIO_TOWER_MUSIC_F EQU 7
--RADIO_TOWER_MUSIC EQU 1 << RADIO_TOWER_MUSIC_F
+-DEF RADIO_TOWER_MUSIC_F EQU 7
+-DEF RADIO_TOWER_MUSIC EQU 1 << RADIO_TOWER_MUSIC_F
 ```
 
 Edit `GetMapMusic`:
