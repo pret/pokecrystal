@@ -19,6 +19,7 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 - [**FAQ**](FAQ.md)
 - [**Documentation**][docs]
 - [**Wiki**][wiki] (includes [tutorials][tutorials])
+- [**Symbols**][symbols]
 - **Discord:** [pret][discord]
 - **IRC:** [libera#pret][irc]
 
@@ -44,6 +45,7 @@ Other disassembly projects:
 [docs]: https://pret.github.io/pokecrystal/
 [wiki]: https://github.com/pret/pokecrystal/wiki
 [tutorials]: https://github.com/pret/pokecrystal/wiki/Tutorials
+[symbols]: https://github.com/pret/pokecrystal/tree/symbols
 [discord]: https://discord.gg/d5dubZ3
 [irc]: https://web.libera.chat/?#pret
 [ci]: https://github.com/pret/pokecrystal/actions
