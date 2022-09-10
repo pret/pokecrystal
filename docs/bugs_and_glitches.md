@@ -2074,7 +2074,7 @@ If `[wWalkingDirection]` is `STANDING` (`$FF`), this will check `[.EdgeWarps + $
  	ld d, 0
  	ld hl, .EdgeWarps
  	add hl, de
- 	ld a, [wPlayerStandingTile]
+ 	ld a, [wPlayerTile]
  	cp [hl]
  	jr nz, .not_warp
 

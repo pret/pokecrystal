@@ -1,4 +1,4 @@
-; Used in wram.asm
+; Structures in RAM
 
 MACRO flag_array
 	ds ((\1) + 7) / 8
@@ -283,38 +283,38 @@ MACRO slot_reel
 ENDM
 
 MACRO object_struct
-\1Sprite::            db
-\1MapObjectIndex::    db
-\1SpriteTile::        db
-\1MovementType::      db
-\1Flags::             dw
-\1Palette::           db
-\1Walking::           db
-\1Direction::         db
-\1StepType::          db
-\1StepDuration::      db
-\1Action::            db
-\1ObjectStepFrame::   db
-\1Facing::            db
-\1StandingTile::      db ; collision
-\1LastTile::          db ; collision
-\1StandingMapX::      db
-\1StandingMapY::      db
-\1LastMapX::          db
-\1LastMapY::          db
-\1ObjectInitX::       db
-\1ObjectInitY::       db
-\1Radius::            db
-\1SpriteX::           db
-\1SpriteY::           db
-\1SpriteXOffset::     db
-\1SpriteYOffset::     db
-\1MovementByteIndex:: db
-\1Field1c::           ds 1
-\1Field1d::           ds 1
-\1Field1e::           ds 1
-\1Field1f::           ds 1
-\1Range::             db
+\1Sprite::         db
+\1MapObjectIndex:: db
+\1SpriteTile::     db
+\1MovementType::   db
+\1Flags::          dw
+\1Palette::        db
+\1Walking::        db
+\1Direction::      db
+\1StepType::       db
+\1StepDuration::   db
+\1Action::         db
+\1StepFrame::      db
+\1Facing::         db
+\1Tile::           db
+\1LastTile::       db
+\1MapX::           db
+\1MapY::           db
+\1LastMapX::       db
+\1LastMapY::       db
+\1InitX::          db
+\1InitY::          db
+\1Radius::         db
+\1SpriteX::        db
+\1SpriteY::        db
+\1SpriteXOffset::  db
+\1SpriteYOffset::  db
+\1MovementIndex::  db
+\1StepIndex::      db
+\1Field1d::        ds 1
+\1Field1e::        ds 1
+\1JumpHeight::     db
+\1Range::          db
 	ds 7
 \1StructEnd::
 ENDM

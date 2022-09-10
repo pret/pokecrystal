@@ -1,3 +1,5 @@
+; Graphics macros
+
 MACRO assert_valid_rgb
 	rept _NARG
 		assert 0 <= (\1) && (\1) <= 31, "RGB channel must be 0-31"

@@ -1,43 +1,43 @@
 ; object_struct members (see macros/ram.asm)
 rsreset
-DEF OBJECT_SPRITE              rb ; 00
-DEF OBJECT_MAP_OBJECT_INDEX    rb ; 01
-DEF OBJECT_SPRITE_TILE         rb ; 02
-DEF OBJECT_MOVEMENTTYPE        rb ; 03
-DEF OBJECT_FLAGS1              rb ; 04
-DEF OBJECT_FLAGS2              rb ; 05
-DEF OBJECT_PALETTE             rb ; 06
-DEF OBJECT_DIRECTION_WALKING   rb ; 07
-DEF OBJECT_FACING              rb ; 08
-DEF OBJECT_STEP_TYPE           rb ; 09
-DEF OBJECT_STEP_DURATION       rb ; 0a
-DEF OBJECT_ACTION              rb ; 0b
-DEF OBJECT_STEP_FRAME          rb ; 0c
-DEF OBJECT_FACING_STEP         rb ; 0d
-DEF OBJECT_NEXT_TILE           rb ; 0e
-DEF OBJECT_STANDING_TILE       rb ; 0f
-DEF OBJECT_NEXT_MAP_X          rb ; 10
-DEF OBJECT_NEXT_MAP_Y          rb ; 11
-DEF OBJECT_MAP_X               rb ; 12
-DEF OBJECT_MAP_Y               rb ; 13
-DEF OBJECT_INIT_X              rb ; 14
-DEF OBJECT_INIT_Y              rb ; 15
-DEF OBJECT_RADIUS              rb ; 16
-DEF OBJECT_SPRITE_X            rb ; 17
-DEF OBJECT_SPRITE_Y            rb ; 18
-DEF OBJECT_SPRITE_X_OFFSET     rb ; 19
-DEF OBJECT_SPRITE_Y_OFFSET     rb ; 1a
-DEF OBJECT_MOVEMENT_BYTE_INDEX rb ; 1b
-DEF OBJECT_1C                  rb ; 1c
-DEF OBJECT_1D                  rb ; 1d
-DEF OBJECT_1E                  rb ; 1e
-DEF OBJECT_1F                  rb ; 1f
-DEF OBJECT_RANGE               rb ; 20
-                               rb_skip 7
+DEF OBJECT_SPRITE           rb ; 00
+DEF OBJECT_MAP_OBJECT_INDEX rb ; 01
+DEF OBJECT_SPRITE_TILE      rb ; 02
+DEF OBJECT_MOVEMENT_TYPE    rb ; 03
+DEF OBJECT_FLAGS1           rb ; 04
+DEF OBJECT_FLAGS2           rb ; 05
+DEF OBJECT_PALETTE          rb ; 06
+DEF OBJECT_WALKING          rb ; 07
+DEF OBJECT_DIRECTION        rb ; 08
+DEF OBJECT_STEP_TYPE        rb ; 09
+DEF OBJECT_STEP_DURATION    rb ; 0a
+DEF OBJECT_ACTION           rb ; 0b
+DEF OBJECT_STEP_FRAME       rb ; 0c
+DEF OBJECT_FACING           rb ; 0d
+DEF OBJECT_TILE             rb ; 0e
+DEF OBJECT_LAST_TILE        rb ; 0f
+DEF OBJECT_MAP_X            rb ; 10
+DEF OBJECT_MAP_Y            rb ; 11
+DEF OBJECT_LAST_MAP_X       rb ; 12
+DEF OBJECT_LAST_MAP_Y       rb ; 13
+DEF OBJECT_INIT_X           rb ; 14
+DEF OBJECT_INIT_Y           rb ; 15
+DEF OBJECT_RADIUS           rb ; 16
+DEF OBJECT_SPRITE_X         rb ; 17
+DEF OBJECT_SPRITE_Y         rb ; 18
+DEF OBJECT_SPRITE_X_OFFSET  rb ; 19
+DEF OBJECT_SPRITE_Y_OFFSET  rb ; 1a
+DEF OBJECT_MOVEMENT_INDEX   rb ; 1b
+DEF OBJECT_STEP_INDEX       rb ; 1c
+DEF OBJECT_1D               rb ; 1d
+DEF OBJECT_1E               rb ; 1e
+DEF OBJECT_JUMP_HEIGHT      rb ; 1f
+DEF OBJECT_RANGE            rb ; 20
+                            rb_skip 7
 DEF OBJECT_LENGTH EQU _RS
 DEF NUM_OBJECT_STRUCTS EQU 13 ; see wObjectStructs
 
-; object_struct OBJECT_FACING values
+; object_struct OBJECT_DIRECTION values
 DEF OW_DOWN  EQU DOWN  << 2
 DEF OW_UP    EQU UP    << 2
 DEF OW_LEFT  EQU LEFT  << 2

@@ -234,12 +234,12 @@ Cut_SpawnLeaf:
 
 Cut_GetLeafSpawnCoords:
 	ld de, 0
-	ld a, [wMetatileStandingX]
+	ld a, [wPlayerMetatileX]
 	bit 0, a
 	jr z, .left_side
 	set 0, e
 .left_side
-	ld a, [wMetatileStandingY]
+	ld a, [wPlayerMetatileY]
 	bit 0, a
 	jr z, .top_side
 	set 1, e

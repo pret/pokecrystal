@@ -38,10 +38,10 @@ HandleStoneQueue::
 .IsObjectOnWarp:
 	push de
 
-	ld hl, OBJECT_NEXT_MAP_X
+	ld hl, OBJECT_MAP_X
 	add hl, de
 	ld a, [hl]
-	ld hl, OBJECT_NEXT_MAP_Y
+	ld hl, OBJECT_MAP_Y
 	add hl, de
 	ld e, [hl]
 

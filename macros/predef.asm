@@ -1,3 +1,5 @@
+; Predef function calls
+
 MACRO lda_predef
 ; Some functions load the predef id
 ; without immediately calling Predef.

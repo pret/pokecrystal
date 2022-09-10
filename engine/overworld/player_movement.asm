@@ -114,7 +114,7 @@ DoPlayerMovement::
 ; Tiles such as waterfalls and warps move the player
 ; in a given direction, overriding input.
 
-	ld a, [wPlayerStandingTile]
+	ld a, [wPlayerTile]
 	ld c, a
 	call CheckWhirlpoolTile
 	jr c, .not_whirlpool
@@ -270,7 +270,7 @@ DoPlayerMovement::
 	cp 2
 	jr z, .bump
 
-	ld a, [wPlayerStandingTile]
+	ld a, [wPlayerTile]
 	call CheckIceTile
 	jr nc, .ice
 
@@ -352,7 +352,7 @@ DoPlayerMovement::
 	ret
 
 .TryJump:
-	ld a, [wPlayerStandingTile]
+	ld a, [wPlayerTile]
 	ld e, a
 	and $f0
 	cp HI_NYBBLE_LEDGES
@@ -398,7 +398,7 @@ DoPlayerMovement::
 	ld d, 0
 	ld hl, .EdgeWarps
 	add hl, de
-	ld a, [wPlayerStandingTile]
+	ld a, [wPlayerTile]
 	cp [hl]
 	jr nz, .not_warp
 
@@ -603,7 +603,7 @@ ENDM
 
 .action_table:
 .action_table_1
-	player_action STANDING, FACE_CURRENT, 0,  0, wPlayerStandingTile
+	player_action STANDING, FACE_CURRENT, 0,  0, wPlayerTile
 .action_table_1_end
 	player_action RIGHT,    FACE_RIGHT,   1,  0, wTileRight
 	player_action LEFT,     FACE_LEFT,   -1,  0, wTileLeft
@@ -617,13 +617,13 @@ ENDM
 	ld a, 0
 	ldh [hMapObjectIndex], a
 ; Load the next X coordinate into d
-	ld a, [wPlayerStandingMapX]
+	ld a, [wPlayerMapX]
 	ld d, a
 	ld a, [wWalkingX]
 	add d
 	ld d, a
 ; Load the next Y coordinate into e
-	ld a, [wPlayerStandingMapY]
+	ld a, [wPlayerMapY]
 	ld e, a
 	ld a, [wWalkingY]
 	add e
@@ -651,7 +651,7 @@ ENDM
 	bit BIKEFLAGS_STRENGTH_ACTIVE_F, [hl]
 	jr z, .not_boulder
 
-	ld hl, OBJECT_DIRECTION_WALKING
+	ld hl, OBJECT_WALKING
 	add hl, bc
 	ld a, [hl]
 	cp STANDING
@@ -788,7 +788,7 @@ CheckStandingOnIce::
 	jr z, .not_ice
 	cp $f0
 	jr z, .not_ice
-	ld a, [wPlayerStandingTile]
+	ld a, [wPlayerTile]
 	call CheckIceTile
 	jr nc, .yep
 	ld a, [wPlayerState]
