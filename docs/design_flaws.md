@@ -621,7 +621,7 @@ And edit [engine/pokegear/radio.asm](https://github.com/pret/pokecrystal/blob/ma
 
 ## The 6-bit caught level can only record up to level 63
 
-Crystal added the Poké Seer, who tells you your Pokémon's caught data: where it was caught, what time, and at what level. The status screen also displays the gender of its Original Trainer, since Crystal added player genders. This data is packed into two previously-unused bytes in the `box_struct`; from [macros/wram.asm](https://github.com/pret/pokecrystal/blob/master/macros/wram.asm):
+Crystal added the Poké Seer, who tells you your Pokémon's caught data: where it was caught, what time, and at what level. The status screen also displays the gender of its Original Trainer, since Crystal added player genders. This data is packed into two previously-unused bytes in the `box_struct`; from [macros/ram.asm](https://github.com/pret/pokecrystal/blob/master/macros/ram.asm):
 
 ```asm
 MACRO box_struct

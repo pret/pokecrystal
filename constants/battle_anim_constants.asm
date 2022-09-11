@@ -1,4 +1,4 @@
-; battle_anim_struct members (see macros/wram.asm)
+; battle_anim_struct members (see macros/ram.asm)
 rsreset
 DEF BATTLEANIMSTRUCT_INDEX           rb
 DEF BATTLEANIMSTRUCT_OAMFLAGS        rb
@@ -816,7 +816,7 @@ DEF NUM_ANIM_BGS EQU const_value - 1
 	const ANIM_GFX_ENEMYFEET
 DEF NUM_ANIM_GFX EQU const_value - 1
 
-; battle_bg_effect struct members (see macros/wram.asm)
+; battle_bg_effect struct members (see macros/ram.asm)
 rsreset
 DEF BG_EFFECT_STRUCT_FUNCTION    rb
 DEF BG_EFFECT_STRUCT_JT_INDEX    rb

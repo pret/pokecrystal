@@ -30,7 +30,7 @@ DEF NUM_MUSIC_CHANS EQU const_value
 DEF NUM_NOISE_CHANS EQU const_value - NUM_MUSIC_CHANS
 DEF NUM_CHANNELS EQU const_value
 
-; channel_struct members (see macros/wram.asm)
+; channel_struct members (see macros/ram.asm)
 rsreset
 DEF CHANNEL_MUSIC_ID                    rw
 DEF CHANNEL_MUSIC_BANK                  rb
