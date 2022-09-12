@@ -1,3 +1,5 @@
+; Coordinate macros
+
 DEF hlcoord EQUS "coord hl,"
 DEF bccoord EQUS "coord bc,"
 DEF decoord EQUS "coord de,"

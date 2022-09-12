@@ -1,13 +1,13 @@
 _LoadMapPart::
 	ld hl, wSurroundingTiles
-	ld a, [wMetatileStandingY]
+	ld a, [wPlayerMetatileY]
 	and a
 	jr z, .top_row
 	ld bc, SURROUNDING_WIDTH * 2
 	add hl, bc
 
 .top_row
-	ld a, [wMetatileStandingX]
+	ld a, [wPlayerMetatileX]
 	and a
 	jr z, .left_column
 	inc hl

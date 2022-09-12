@@ -160,7 +160,7 @@ wIndexedMovement2Pointer:: dw
 
 	ds 2
 
-wMovementByteWasControlSwitch:: db
+wContinueReadingMovement:: db
 
 UNION
 wObjectPriorities:: ds NUM_OBJECT_STRUCTS
@@ -2381,8 +2381,8 @@ wd173:: db ; related to command queue type 3
 ENDU
 
 wOverworldMapAnchor:: dw
-wMetatileStandingY:: db
-wMetatileStandingX:: db
+wPlayerMetatileY:: db
+wPlayerMetatileX:: db
 
 wMapPartial::
 wMapAttributesBank:: db

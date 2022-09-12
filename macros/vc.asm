@@ -1,3 +1,5 @@
+; Virtual Console macros
+
 MACRO vc_hook
 	if DEF(_CRYSTAL11_VC)
 	.VC_\1::
