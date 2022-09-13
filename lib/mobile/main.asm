@@ -745,7 +745,7 @@ Function110438:
 	ld hl, wc98f
 	ld a, LOW(wc880 + 1)
 	ld [hli], a
-	ld a, HIGH(wc880)
+	ld a, HIGH(wc880 + 1)
 	ld [hli], a
 	xor a
 	ld [hli], a

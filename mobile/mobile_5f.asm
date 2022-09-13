@@ -349,12 +349,13 @@ Mobile_CopyDefaultMail:
 	call ByteFill
 	ld hl, .DefaultMessage
 	ld de, wMobileMonMail
-	ld bc, 6
+	ld bc, .DefaultMessageEnd - .DefaultMessage
 	call CopyBytes
 	ret
 
 .DefaultMessage:
 	db "こんにちは@"
+.DefaultMessageEnd:
 
 Mobile_CopyDefaultMailAuthor:
 	ld a, "@"
