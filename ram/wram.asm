@@ -670,35 +670,35 @@ wDebugBlackTileColor:: ds 2
 
 NEXTU
 wMobileMonSender:: ds NAME_LENGTH_JAPANESE - 1
-wMobileMon:: party_struct wMobileMon
-wMobileMonOT:: ds NAME_LENGTH_JAPANESE - 1
-wMobileMonNick:: ds NAME_LENGTH_JAPANESE - 1
-wMobileMonMail:: mailmsg_jp wMobileMonMail
+wMobileMon::       party_struct wMobileMon
+wMobileMonOT::     ds NAME_LENGTH_JAPANESE - 1
+wMobileMonNick::   ds NAME_LENGTH_JAPANESE - 1
+wMobileMonMail::   mailmsg_jp wMobileMonMail
 
 NEXTU
-wOfferEmail:: ds $1e
-wOfferTrainerID:: dw
-wOfferSecretID:: dw
-wOfferGender:: db
-wOfferSpecies:: db
-wOfferReqGender:: db
+wOfferEmail::      ds MOBILE_EMAIL_LENGTH
+wOfferTrainerID::  dw
+wOfferSecretID::   dw
+wOfferGender::     db
+wOfferSpecies::    db
+wOfferReqGender::  db
 wOfferReqSpecies:: db
-wOfferMonSender:: ds NAME_LENGTH_JAPANESE - 1
-wOfferMon:: party_struct wOfferMon
-wOfferMonOT:: ds NAME_LENGTH_JAPANESE - 1
-wOfferMonNick:: ds NAME_LENGTH_JAPANESE - 1
-wOfferMonMail:: mailmsg_jp wOfferMonMail
+wOfferMonSender::  ds NAME_LENGTH_JAPANESE - 1
+wOfferMon::        party_struct wOfferMon
+wOfferMonOT::      ds NAME_LENGTH_JAPANESE - 1
+wOfferMonNick::    ds NAME_LENGTH_JAPANESE - 1
+wOfferMonMail::    mailmsg_jp wOfferMonMail
 
 NEXTU
-wUnknownGender:: db
-wUnknownSpecies:: db
-wUnknownReqGender:: db
+wUnknownGender::     db
+wUnknownSpecies::    db
+wUnknownReqGender::  db
 wUnknownReqSpecies:: db
-wUnknownMonSender:: ds NAME_LENGTH_JAPANESE - 1
-wUnknownMon:: party_struct wUnknownMon
-wUnknownMonOT:: ds NAME_LENGTH_JAPANESE - 1
-wUnknownMonNick:: ds NAME_LENGTH_JAPANESE - 1
-wUnknownMonMail:: mailmsg_jp wUnknownMonMail
+wUnknownMonSender::  ds NAME_LENGTH_JAPANESE - 1
+wUnknownMon::        party_struct wUnknownMon
+wUnknownMonOT::      ds NAME_LENGTH_JAPANESE - 1
+wUnknownMonNick::    ds NAME_LENGTH_JAPANESE - 1
+wUnknownMonMail::    mailmsg_jp wUnknownMonMail
 
 NEXTU
 wc608:: ds 7
