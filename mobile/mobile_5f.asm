@@ -303,7 +303,7 @@ Function17d0f3:
 	farcall SaveAfterLinkTrade
 	ld a, BANK(s5_a800)
 	call OpenSRAM
-	ld a, $5
+	ld a, BANK(s5_a800)
 	ld [s5_a800], a
 	call CloseSRAM
 	ld a, [wMapGroup]
@@ -325,7 +325,7 @@ Function17d0f3:
 Mobile_CopyDefaultOTName:
 	ld hl, Mobile5F_PlayersName
 	ld de, wMobileMonOT
-	ld bc, 5
+	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
 	ret
 
@@ -335,7 +335,7 @@ Mobile5F_PlayersName:
 Mobile_CopyDefaultNickname:
 	ld hl, .DefaultNickname
 	ld de, wMobileMonNick
-	ld bc, 5
+	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
 	ret
 
@@ -359,11 +359,11 @@ Mobile_CopyDefaultMail:
 Mobile_CopyDefaultMailAuthor:
 	ld a, "@"
 	ld de, wMobileMonMailAuthor
-	ld bc, 5
+	ld bc, NAME_LENGTH_JAPANESE - 1
 	call ByteFill
 	ld hl, Mobile5F_PlayersName
 	ld de, wMobileMonMailAuthor
-	ld bc, 5
+	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
 	ret
 
@@ -1180,7 +1180,7 @@ Function17d78d:
 	call OpenSRAM
 	ld hl, s6_a006
 	add hl, bc
-	ld de, wBGPals1
+	ld de, w4_d000
 	ld bc, $1000
 	call CopyBytes
 	call CloseSRAM
