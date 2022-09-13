@@ -5673,7 +5673,7 @@ Jumptable_11ad78:
 	dw Function11af04
 	dw Function11af4e
 
-Function11ad8a:
+MobileIncJumptableIndex:
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
@@ -5694,7 +5694,7 @@ Function11ad95:
 	lb bc, 8, 8
 	call Function11afd6
 	farcall ReloadMapPart
-	call Function11ad8a
+	call MobileIncJumptableIndex
 	ld a, $1
 	ld [wMenuCursorY], a
 	ld hl, Unknown_11afcc
@@ -5768,7 +5768,7 @@ Function11adc4:
 	ld [hl], a
 
 .asm_11ae2b
-	call Function11ad8a
+	call MobileIncJumptableIndex
 
 .asm_11ae2e
 	call ExitMenu
@@ -5807,7 +5807,7 @@ Function11ae4e:
 	lb bc, 6, 11
 	call Function11afd6
 	farcall ReloadMapPart
-	call Function11ad8a
+	call MobileIncJumptableIndex
 	ld a, $1
 	ld [wMenuCursorY], a
 	ld hl, Unknown_11afd2
@@ -5869,7 +5869,7 @@ Function11ae98:
 	ld a, [wcd4b]
 	ld [wScriptVar], a
 	call Function11b022
-	call Function11ad8a
+	call MobileIncJumptableIndex
 
 .asm_11aef7
 	call ExitMenu
@@ -5897,7 +5897,7 @@ Function11af04:
 	lb bc, 6, 11
 	call Function11afd6
 	farcall ReloadMapPart
-	call Function11ad8a
+	call MobileIncJumptableIndex
 	ld a, $2
 	ld [wMenuCursorY], a
 	ld hl, Unknown_11afd2
@@ -6116,7 +6116,7 @@ Function11b082:
 	call Function11b295
 	call Function11b275
 	call SetPalettes
-	jp Function11ad8a
+	jp MobileIncJumptableIndex
 
 Function11b099:
 	ld c, $6
@@ -6249,7 +6249,7 @@ Function11b0ff:
 	jr z, .asm_11b167
 	cp $ff
 	jr z, .asm_11b16b
-	jp Function11ad8a
+	jp MobileIncJumptableIndex
 
 .asm_11b163
 	ld a, $1
@@ -6963,7 +6963,7 @@ TradeCornerHoldMon_PrepareForUpload:
 	and a
 	jr nz, .loop9
 	call CloseSRAM
-	jp Function11ad8a
+	jp MobileIncJumptableIndex
 
 .InitRAM:
 	ld bc, wOfferTrainerID
@@ -7010,7 +7010,7 @@ Function11b570:
 	and a
 	jr nz, .exit
 	call .SaveData
-	jp Function11ad8a
+	jp MobileIncJumptableIndex
 
 .exit
 	ld a, $4
@@ -7063,12 +7063,12 @@ TradeCornerHoldMon_RemoveFromParty:
 	farcall RemoveMonFromPartyOrBox
 	farcall BattleTowerAction_16
 	farcall SaveAfterLinkTrade
-	jp Function11ad8a
+	jp MobileIncJumptableIndex
 
 TradeCornerHoldMon_Success:
 	xor a
 	ld [wScriptVar], a
-	jp Function11ad8a
+	jp MobileIncJumptableIndex
 
 TradeCornerHoldMon_Noop:
 	ret
@@ -7163,7 +7163,7 @@ Function11b66d:
 	ldh [rSVBK], a
 
 .asm_11b6b0
-	jp Function11ad8a
+	jp MobileIncJumptableIndex
 
 Function11b6b3:
 	ret
