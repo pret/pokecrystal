@@ -1351,6 +1351,9 @@
 	const EVENT_FLORIA_AT_SUDOWOODO
 	const EVENT_GOLDENROD_CITY_MOVE_TUTOR
 	const EVENT_GOLDENROD_GAME_CORNER_MOVE_TUTOR
+; Unused: next 0 events
+; (In pokegold the previous 4 event flags were not defined,
+; but in pokecrystal the 'const_next 1900' is redundant.)
 
 	const_next 1900
 ; Kanto people
