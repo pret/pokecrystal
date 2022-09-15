@@ -25,7 +25,7 @@
 	const MOBILEAPI_16
 	const MOBILEAPI_17
 	const MOBILEAPI_SETTIMER
-	const MOBILEAPI_19
+	const MOBILEAPI_TELEPHONESTATUS
 	const MOBILEAPI_1A
 	const MOBILEAPI_1B
 	const MOBILEAPI_1C
@@ -61,3 +61,10 @@ DEF MOBILE_PHONE_NUMBER_LENGTH EQU 20
 ; Maximum amount of time allowed for mobile battles each day
 DEF MOBILE_BATTLE_ALLOWED_SECONDS EQU 0
 DEF MOBILE_BATTLE_ALLOWED_MINUTES EQU 10
+
+; Trade corner request size
+; DION addr $1e + request $8 + Name $5
+; + party struct $30 + OT $5 + NICK $5
+; + JP Mail struct $2a
+DEF MOBILE_EMAIL_LENGTH EQU $1e
+DEF TRADE_CORNER_REQUEST_LENGTH EQU $8f

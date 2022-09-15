@@ -239,7 +239,7 @@ Function1166d6:
 	cp $ff
 	ret nz
 	ld a, $4
-	ld [$c319], a
+	ld [wc319], a
 	xor a
 	ld [wc314], a
 	ret

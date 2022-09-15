@@ -2453,10 +2453,10 @@ endr
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld a, $07
+	ld a, BANK(s7_a001)
 	call OpenSRAM
 	ld hl, wc608
-	ld de, $a001
+	ld de, s7_a001
 	ld bc, wc7bd - wc608
 	call CopyBytes
 	call CloseSRAM
@@ -2485,7 +2485,7 @@ Function10107d:
 	ld bc, NAME_LENGTH
 	call .CopyAllFromOT
 	ld hl, wOTPartyMon1Species
-	ld de, $c699
+	ld de, wc699
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call .CopyAllFromOT
 	ld a, $50
@@ -3111,7 +3111,7 @@ Function1014a6:
 Function1014b7:
 	call GetJoypad
 	ldh a, [hJoyPressed]
-	and $03
+	and A_BUTTON | B_BUTTON
 	jr nz, .asm_1014c5
 	ld hl, wcd42
 	dec [hl]
@@ -3831,7 +3831,7 @@ _StartMobileBattle:
 .CopyOTDetails:
 	ldh a, [rSVBK]
 	push af
-	ld a, 5
+	ld a, BANK(w5_dc0d)
 	ldh [rSVBK], a
 
 	ld bc, w5_dc0d
@@ -4723,13 +4723,13 @@ Function1020ea:
 	ret
 
 Function102112:
-	ld a, $04
+	ld a, BANK(s4_a03b)
 	call OpenSRAM
-	ld hl, $a041
+	ld hl, s4_a03b + 6
 	ld c, 40
 .outer_loop
 	push hl
-	ld de, $c60f
+	ld de, wc60f
 	ld b, 31
 .inner_loop
 	ld a, [de]

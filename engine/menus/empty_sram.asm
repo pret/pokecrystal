@@ -1,12 +1,8 @@
 EmptyAllSRAMBanks:
-	ld a, 0
+for x, NUM_SRAM_BANKS
+	ld a, x
 	call .EmptyBank
-	ld a, 1
-	call .EmptyBank
-	ld a, 2
-	call .EmptyBank
-	ld a, 3
-	call .EmptyBank
+endr
 	ret
 
 .EmptyBank:

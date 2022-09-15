@@ -275,7 +275,8 @@ wSpriteAnimDataEnd::
 
 ; mobile data
 wc3cc:: ds 1
-wc3cd:: ds 31
+wEmailAddress:: ds MOBILE_EMAIL_LENGTH
+	ds 1
 wc3ec:: ds 1
 wc3ed:: ds 1
 wc3ee:: ds 1
@@ -668,16 +669,46 @@ wDebugDarkTileColor::  ds 2
 wDebugBlackTileColor:: ds 2
 
 NEXTU
-wc608:: ds 16
-wc618:: ds 37
-wc63d:: ds 5
-wc642:: ds 5
-wc647:: ds 1
+wMobileMonSender:: ds NAME_LENGTH_JAPANESE - 1
+wMobileMon::       party_struct wMobileMon
+wMobileMonOT::     ds NAME_LENGTH_JAPANESE - 1
+wMobileMonNick::   ds NAME_LENGTH_JAPANESE - 1
+wMobileMonMail::   mailmsg_jp wMobileMonMail
+
+NEXTU
+wOfferEmail::      ds MOBILE_EMAIL_LENGTH
+wOfferTrainerID::  dw
+wOfferSecretID::   dw
+wOfferGender::     db
+wOfferSpecies::    db
+wOfferReqGender::  db
+wOfferReqSpecies:: db
+wOfferMonSender::  ds NAME_LENGTH_JAPANESE - 1
+wOfferMon::        party_struct wOfferMon
+wOfferMonOT::      ds NAME_LENGTH_JAPANESE - 1
+wOfferMonNick::    ds NAME_LENGTH_JAPANESE - 1
+wOfferMonMail::    mailmsg_jp wOfferMonMail
+
+NEXTU
+wUnknownGender::     db
+wUnknownSpecies::    db
+wUnknownReqGender::  db
+wUnknownReqSpecies:: db
+wUnknownMonSender::  ds NAME_LENGTH_JAPANESE - 1
+wUnknownMon::        party_struct wUnknownMon
+wUnknownMonOT::      ds NAME_LENGTH_JAPANESE - 1
+wUnknownMonNick::    ds NAME_LENGTH_JAPANESE - 1
+wUnknownMonMail::    mailmsg_jp wUnknownMonMail
+
+NEXTU
+wc608:: ds 7
+wc60f:: ds 9
+wc618:: ds 48
 wc648:: ds 2
-wc64a:: ds 30
-wc668:: ds 32
+wc64a:: ds 62
 wc688:: ds 2
-wc68a:: ds 30
+wc68a:: ds 15
+wc699:: ds 15
 wc6a8:: ds 40
 ENDU
 
@@ -1103,8 +1134,7 @@ wc80b:: db
 wc80c:: dw
 wc80e:: db
 wc80f:: db
-wc810:: db
-wc811:: db
+wc810:: dw
 wMobileSDK_PacketChecksum:: dw
 wc814:: db
 wc815:: db
@@ -1122,8 +1152,7 @@ wc821:: db
 wc822:: db
 wc823:: ds 4
 wc827:: dw
-wc829:: db
-wc82a:: db
+wc829:: dw
 wc82b:: db
 wc82c:: db
 wc82d:: db
@@ -1141,8 +1170,7 @@ wc86a:: db
 wc86b:: db
 wc86c:: db
 wc86d:: db
-wc86e:: db
-wc86f:: db
+wc86e:: dw
 wc870:: db
 wc871:: db
 wc872:: db
@@ -1158,8 +1186,7 @@ wc87c:: db
 wc87d:: db
 wc87e:: db
 wc87f:: db
-wc880:: db
-wc881:: db
+wc880:: dw
 wc882:: db
 wc883:: db
 wc884:: ds 8
@@ -1309,7 +1336,8 @@ wcd27:: ds 1
 wcd28:: ds 1
 wcd29:: ds 1
 
-wMobileMonSpecies::
+wMobileMonIndex::
+wMobileMonMiscSpecies::
 wcd2a:: db
 
 UNION
@@ -3463,6 +3491,11 @@ NEXTU
 	ds $98
 w3_de00:: ds $200
 ENDU
+
+
+SECTION "News Script RAM", WRAMX
+
+w4_d000:: ds $1000
 
 
 SECTION "GBC Video", WRAMX, ALIGN[8]

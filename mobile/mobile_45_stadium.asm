@@ -25,7 +25,7 @@ Function11766b:
 	ld de, wcd49
 	ld bc, $8
 	call CopyBytes
-	ld de, $c708
+	ld de, wc708
 	ld bc, $11
 	call CopyBytes
 	call CloseSRAM
@@ -40,7 +40,7 @@ Function117699:
 	ld de, $b1f3
 	ld bc, $8
 	call CopyBytes
-	ld hl, $c708
+	ld hl, wc708
 	ld bc, $11
 	call CopyBytes
 	call CloseSRAM
@@ -52,7 +52,7 @@ Function117699:
 	ld [wcd4d], a
 	ld [wcd4e], a
 	ld [wcd4f], a
-	ld hl, $c708
+	ld hl, wc708
 	ld bc, $11
 	call ByteFill
 	call ClearBGPalettes
@@ -191,7 +191,7 @@ Function117764_b_button:
 	ld [wcd4a], a
 	ld e, a
 	ld d, 0
-	ld hl, $c708
+	ld hl, wc708
 	add hl, de
 	xor a
 	ld [hl], a
@@ -303,7 +303,7 @@ Function117764_a_button:
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
-	ld hl, $c708
+	ld hl, wc708
 	add hl, de
 	ld [hl], a
 	pop de
@@ -402,7 +402,7 @@ Function117942:
 	call OpenSRAM
 	ld a, [wcd4f]
 	ld [sMobileLoginPassword], a
-	ld hl, $c708
+	ld hl, wc708
 	ld de, sMobileLoginPassword + 1
 	ld bc, MOBILE_LOGIN_PASSWORD_LENGTH
 	call CopyBytes

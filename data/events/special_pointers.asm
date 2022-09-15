@@ -123,7 +123,7 @@ SpecialsPointers::
 
 ; Crystal only
 	add_special Function11ac3e
-	add_special Function11b444
+	add_special TradeCornerHoldMon
 	add_special Function11b5e8
 	add_special Function11b7e5
 	add_special Function11b879

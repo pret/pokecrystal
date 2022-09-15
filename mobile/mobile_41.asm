@@ -943,7 +943,7 @@ Function1063e5:
 
 Function1063f3:
 	ld de, wcd31
-	ld a, MOBILEAPI_19
+	ld a, MOBILEAPI_TELEPHONESTATUS
 	call MobileAPI
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
