@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 # A library for parsing the pokecrystal.map file output by rgbds.

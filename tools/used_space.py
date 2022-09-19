@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Usage: python3 used_space.py [pokecrystal.map] [used_space.png]
+Usage: python used_space.py [pokecrystal.map] [used_space.png]
 
 Generate a PNG visualizing the space used by each bank in the ROM.
 """
@@ -15,7 +15,7 @@ from mapreader import MapReader
 
 def main():
 	mapfile = sys.argv[1] if len(sys.argv) >= 2 else 'pokecrystal.map'
-	filename = sys.argv[2] if len(sys.argv) >= 3 else 'used_space.png'
+	outfile = sys.argv[2] if len(sys.argv) >= 3 else 'used_space.png'
 
 	num_banks = 0x80
 	bank_mask = 0x3FFF
@@ -29,16 +29,15 @@ def main():
 	bank_width = pixels_per_bank // height # 8 pixels
 	width = bank_width * num_banks # 1024 pixels
 
-	r = MapReader()
-	with open(mapfile, 'r', encoding='utf-8') as f:
-		l = f.readlines()
-	r.read_map_data(l)
+	reader = MapReader()
+	with open(mapfile, 'r', encoding='utf-8') as file:
+		reader.read_map_data(file.readlines())
 
 	hit_data = []
 	default_bank_data = {'sections': [], 'used': 0, 'slack': bank_size}
 	for bank in range(num_banks):
 		hits = [0] * pixels_per_bank
-		bank_data = r.bank_data['ROM0 bank'] if bank == 0 else r.bank_data['ROMX bank']
+		bank_data = reader.bank_data['ROM0 bank' if bank == 0 else 'ROMX bank']
 		data = bank_data.get(bank, default_bank_data)
 		for s in data['sections']:
 			beg = s['beg'] & bank_mask
@@ -49,18 +48,17 @@ def main():
 
 	pixels = [[(0xFF, 0xFF, 0xFF)] * width for _ in range(height)]
 	for bank, hits in enumerate(hit_data):
-		hue = 0 if not bank else 210 if bank % 2 else 270
-		for i, h in enumerate(hits):
-			y = i // bank_width
-			x = i % bank_width + bank * bank_width
-			hls = (hue / 360.0, 1.0 - (h / bpp * (100 - 15)) / 100.0, 1.0)
-			rgb = tuple(c * 255 for c in hls_to_rgb(*hls))
+		hue = 0 if bank == 0 else 210 if bank % 2 else 270
+		for i, hit in enumerate(hits):
+			x, y = i % bank_width + bank * bank_width, i // bank_width
+			hls = (hue / 360, 1 - (85 * hit / bpp) / 100, 1)
+			rgb = tuple(int(c * 0xFF) for c in hls_to_rgb(*hls))
 			pixels[y][x] = rgb
 
 	png_data = [tuple(c for pixel in row for c in pixel) for row in pixels]
-	with open(filename, 'wb') as f:
-		w = png.Writer(width, height)
-		w.write(f, png_data)
+	with open(outfile, 'wb') as file:
+		writer = png.Writer(width, height, greyscale=False, bitdepth=8, compression=9)
+		writer.write(file, png_data)
 
 if __name__ == '__main__':
 	main()

@@ -17,24 +17,23 @@ from mapreader import MapReader
 
 def main():
 	print_bank = 'none'
-	mapfile = 'pokecrystal.map'
+	filename = 'pokecrystal.map'
 
 	for arg in sys.argv[1:]:
 		if arg.startswith('BANK='):
 			print_bank = arg.split('=', 1)[-1]
 		else:
-			mapfile = arg
+			filename = arg
 
 	if print_bank not in {'all', 'none'}:
 		try:
-			if print_bank.startswith('0x') or print_bank.startswith('0X'):
-				print_bank = int(print_bank[2:], 16)
-			else:
-				print_bank = int(print_bank)
+			print_bank = (int(print_bank[2:], 16)
+				if print_bank.startswith('0x') or print_bank.startswith('0X')
+				else int(print_bank))
 		except ValueError:
-			error = 'Error: invalid BANK: %s' % print_bank
+			error = f'Error: invalid BANK: {print_bank}'
 			if print_bank.isalnum():
-				error += ' (did you mean: 0x%s?)' % print_bank
+				error += f' (did you mean: 0x{print_bank}?)'
 			print(error, file=sys.stderr)
 			sys.exit(1)
 
@@ -42,30 +41,29 @@ def main():
 	bank_size = 0x4000 # bytes
 	total_size = num_banks * bank_size
 
-	r = MapReader()
-	with open(mapfile, 'r', encoding='utf-8') as f:
-		l = f.readlines()
-	r.read_map_data(l)
+	reader = MapReader()
+	with open(filename, 'r', encoding='utf-8') as file:
+		reader.read_map_data(file.readlines())
 
 	free_space = 0
 	per_bank = []
 	default_bank_data = {'sections': [], 'used': 0, 'slack': bank_size}
 	for bank in range(num_banks):
-		bank_data = r.bank_data['ROM0 bank'] if bank == 0 else r.bank_data['ROMX bank']
+		bank_data = reader.bank_data['ROM0 bank' if bank == 0 else 'ROMX bank']
 		data = bank_data.get(bank, default_bank_data)
-		used = data['used']
-		slack = data['slack']
+		used, slack = data['used'], data['slack']
 		per_bank.append((used, slack))
 		free_space += slack
 
-	print('Free space: %d/%d (%.2f%%)' % (free_space, total_size, free_space * 100.0 / total_size))
+	free_percent = 100 * free_space / total_size
+	print(f'Free space: {free_space}/{total_size} ({free_percent:.2f}%)')
 	if print_bank != 'none':
 		print()
 		print('bank, used, free')
-	for bank in range(num_banks):
-		used, slack = per_bank[bank]
-		if print_bank in {'all', bank}:
-				print('$%02X, %d, %d' % (bank, used, slack))
+		for bank in range(num_banks):
+			used, slack = per_bank[bank]
+			if print_bank in {'all', bank}:
+				print(f'${bank:02X}, {used}, {slack}')
 
 if __name__ == '__main__':
 	main()
