@@ -48,8 +48,8 @@ objects = None
 if args.rootdir:
 	for line in subprocess.Popen(['make', '-C', args.rootdir, '-s', '-p', 'DEBUG=1'],
 			stdout=subprocess.PIPE).stdout.read().decode().split('\n'):
-		if line.startswith('pokecrystal_obj'):
-			objects = line.removeprefix('pokecrystal_obj').lstrip().removeprefix(':=').strip().split()
+		if line.startswith('pokecrystal_obj :='):
+			objects = line[len('pokecrystal_obj :='):].strip().split()
 			break
 	else:
 		print('Error: Object files not found!', file=sys.stderr)
