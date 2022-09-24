@@ -161,7 +161,7 @@ ENDM
 	map_const WISE_TRIOS_ROOM,                              4,  4 ;  2
 	map_const ECRUTEAK_POKECENTER_1F,                       5,  4 ;  3
 	map_const ECRUTEAK_LUGIA_SPEECH_HOUSE,                  4,  4 ;  4
-	map_const DANCE_THEATRE,                                6,  7 ;  5
+	map_const DANCE_THEATER,                                6,  7 ;  5
 	map_const ECRUTEAK_MART,                                6,  4 ;  6
 	map_const ECRUTEAK_GYM,                                 5,  9 ;  7
 	map_const ECRUTEAK_ITEMFINDER_HOUSE,                    4,  4 ;  8

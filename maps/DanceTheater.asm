@@ -1,15 +1,15 @@
 	object_const_def
-	const DANCETHEATRE_KIMONO_GIRL1
-	const DANCETHEATRE_KIMONO_GIRL2
-	const DANCETHEATRE_KIMONO_GIRL3
-	const DANCETHEATRE_KIMONO_GIRL4
-	const DANCETHEATRE_KIMONO_GIRL5
-	const DANCETHEATRE_GENTLEMAN
-	const DANCETHEATRE_RHYDON
-	const DANCETHEATRE_COOLTRAINER_M
-	const DANCETHEATRE_GRANNY
+	const DANCETHEATER_KIMONO_GIRL1
+	const DANCETHEATER_KIMONO_GIRL2
+	const DANCETHEATER_KIMONO_GIRL3
+	const DANCETHEATER_KIMONO_GIRL4
+	const DANCETHEATER_KIMONO_GIRL5
+	const DANCETHEATER_GENTLEMAN
+	const DANCETHEATER_RHYDON
+	const DANCETHEATER_COOLTRAINER_M
+	const DANCETHEATER_GRANNY
 
-DanceTheatre_MapScripts:
+DanceTheater_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
@@ -126,14 +126,14 @@ DanceTheaterRhydon:
 	closetext
 	end
 
-DanceTheatreCooltrainerMScript:
-	jumptextfaceplayer DanceTheatreCooltrainerMText
+DanceTheaterCooltrainerMScript:
+	jumptextfaceplayer DanceTheaterCooltrainerMText
 
-DanceTheatreGrannyScript:
-	jumptextfaceplayer DanceTheatreGrannyText
+DanceTheaterGrannyScript:
+	jumptextfaceplayer DanceTheaterGrannyText
 
-DanceTheatreFancyPanel:
-	jumptext DanceTheatreFancyPanelText
+DanceTheaterFancyPanel:
+	jumptext DanceTheaterFancyPanelText
 
 KimonoGirlNaokoSeenText:
 	text "You have lovely"
@@ -296,7 +296,7 @@ RhydonText:
 	line "gugogooh!"
 	done
 
-DanceTheatreCooltrainerMText:
+DanceTheaterCooltrainerMText:
 	text "That man's always"
 	line "with his RHYDON."
 
@@ -310,7 +310,7 @@ DanceTheatreCooltrainerMText:
 	cont "#MON?"
 	done
 
-DanceTheatreGrannyText:
+DanceTheaterGrannyText:
 	text "The KIMONO GIRLS"
 	line "are so beautiful…"
 
@@ -329,13 +329,13 @@ DanceTheatreGrannyText:
 	cont "thing is possible."
 	done
 
-DanceTheatreFancyPanelText:
+DanceTheaterFancyPanelText:
 	text "It's a fancy panel"
 	line "that's decorated"
 	cont "with flowers."
 	done
 
-DanceTheatre_MapEvents:
+DanceTheater_MapEvents:
 	db 0, 0 ; filler
 
 	def_warp_events
@@ -345,8 +345,8 @@ DanceTheatre_MapEvents:
 	def_coord_events
 
 	def_bg_events
-	bg_event  5,  6, BGEVENT_UP, DanceTheatreFancyPanel
-	bg_event  6,  6, BGEVENT_UP, DanceTheatreFancyPanel
+	bg_event  5,  6, BGEVENT_UP, DanceTheaterFancyPanel
+	bg_event  6,  6, BGEVENT_UP, DanceTheaterFancyPanel
 
 	def_object_events
 	object_event  0,  2, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlNaoko, -1
@@ -356,5 +356,5 @@ DanceTheatre_MapEvents:
 	object_event 11,  2, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlMiki, -1
 	object_event  7, 10, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DanceTheaterSurfGuy, -1
 	object_event  6,  8, SPRITE_RHYDON, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, DanceTheaterRhydon, -1
-	object_event 10, 10, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, DanceTheatreCooltrainerMScript, -1
-	object_event  3,  6, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DanceTheatreGrannyScript, -1
+	object_event 10, 10, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, DanceTheaterCooltrainerMScript, -1
+	object_event  3,  6, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DanceTheaterGrannyScript, -1
