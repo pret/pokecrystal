@@ -359,7 +359,7 @@ GoldenrodPokecomCenterRecentlyLeftYourMonText: ; unreferenced
 	line "later."
 	done
 
-GoldenrodPokecomCenterSaveBeforeTradeCornetText: ; unreferenced
+GoldenrodPokecomCenterSaveBeforeTradeCornerText: ; unreferenced
 	text "We'll SAVE before"
 	line "connecting to the"
 	cont "CENTER."
