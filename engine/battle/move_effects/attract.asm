@@ -53,7 +53,7 @@ CheckOppositeGender:
 	ld [wTempMonDVs], a
 	ld a, [hl]
 	ld [wTempMonDVs + 1], a
-	ld a, 3
+	ld a, TEMPMON
 	ld [wMonType], a
 	farcall GetGender
 	pop bc
