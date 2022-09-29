@@ -562,7 +562,7 @@ DayCare_InitBreeding:
 	ld [wTempMonDVs + 1], a
 	ld a, [wBreedMon1Species]
 	ld [wCurPartySpecies], a
-	ld a, $3
+	ld a, TEMPMON
 	ld [wMonType], a
 	ld a, [wBreedMon1Species]
 	cp DITTO
