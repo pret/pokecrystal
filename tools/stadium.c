@@ -48,7 +48,7 @@ uint8_t base10[BASE10SIZE] = {'b', 'a', 's', 'e', 1, 0};
 uint8_t n64ps3[N64PS3SIZE] = {'N', '6', '4', 'P', 'S', '3'};
 // "N64PS3" + 2-byte CRC
 #define N64PS3HEADERSIZE (N64PS3SIZE + 2)
-// header + 2-byte half-bank checksums
+// "N64PS3" + 2-byte CRC + per-half-bank 2-byte checksums
 #define N64PS3DATASIZE (N64PS3HEADERSIZE + NUMBANKS * 2 * 2)
 // The Stadium data is stored at the end of the ROM
 #define N64PS3DATAOFF (ROMSIZE - N64PS3DATASIZE)
