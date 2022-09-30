@@ -108,8 +108,8 @@ uint16_t base1_crcs[NUMBANKS] = {
 };
 
 uint16_t calculate_checksum(uint16_t checksum, uint8_t *file, int size) {
-	for (int j = 0; j < size; j++) {
-		checksum += file[j];
+	for (int i = 0; i < size; i++) {
+		checksum += file[i];
 	}
 	return checksum;
 }
