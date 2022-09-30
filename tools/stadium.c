@@ -123,7 +123,7 @@ uint16_t calculate_crc(uint16_t crc, uint8_t *file, size_t size) {
 
 void calculate_checksums(uint8_t *file, bool european) {
 	// Initialize the CRC table
-	for (uint16_t i = 0; i < sizeof(crc_table); i++) {
+	for (uint16_t i = 0; i < sizeof(crc_table) / sizeof(*crc_table); i++) {
 		uint16_t rem = 0;
 		for (uint16_t y = 0, c = i; y < 8; y++, c >>= 1) {
 			rem = (rem >> 1) ^ ((rem ^ c) & 1 ? CRC_POLY : 0);
