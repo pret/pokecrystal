@@ -67,7 +67,7 @@ uint16_t crc_table[256];
 	file[(off) + 1] = (uint8_t)(((v) & 0x00FF) >> 0); \
 } while (0)
 
-// Checksums of every bank in the base ROM, crystal_base0.bin
+// CRCs of every bank in the base ROM, crystal_base0.bin
 uint16_t base0_crcs[NUMBANKS] = {
 	0x9650, 0x8039, 0x2D8F, 0xD75A, 0xAC50, 0x5D55, 0xE94B, 0x9886,
 	0x2A46, 0xB5AC, 0xC3D3, 0x79C4, 0xCE55, 0xA95E, 0xEF78, 0x9B50,
@@ -87,7 +87,7 @@ uint16_t base0_crcs[NUMBANKS] = {
 	0x5AEB, 0xFC38, 0xFC38, 0xFC38, 0xFC38, 0xEFAD, 0x6D83, 0xFC38
 };
 
-// Checksums of every bank in the European base ROM, crystal_base1.bin
+// CRCs of every bank in the European base ROM, crystal_base1.bin
 uint16_t base1_crcs[NUMBANKS] = {
 	0x5416, 0xFD37, 0xC4A4, 0xBC37, 0x9458, 0xB489, 0xE94B, 0x9906,
 	0x2A46, 0xDEA9, 0x17F4, 0xF447, 0xCE55, 0xD843, 0xC5B2, 0xAE13,
