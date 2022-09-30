@@ -107,15 +107,15 @@ uint16_t base1_crcs[NUMBANKS] = {
 	0x5AEB, 0xFC38, 0xFC38, 0x4314, 0x25B0, 0xCE7B, 0x12FA, 0xDD05
 };
 
-uint16_t calculate_checksum(uint16_t checksum, uint8_t *file, int size) {
-	for (int i = 0; i < size; i++) {
+uint16_t calculate_checksum(uint16_t checksum, uint8_t *file, size_t size) {
+	for (size_t i = 0; i < size; i++) {
 		checksum += file[i];
 	}
 	return checksum;
 }
 
-uint16_t calculate_crc(uint16_t crc, uint8_t *file, int size) {
-	for (int i = 0; i < size; i++) {
+uint16_t calculate_crc(uint16_t crc, uint8_t *file, size_t size) {
+	for (size_t i = 0; i < size; i++) {
 		crc = (crc >> 8) ^ crc_table[(crc & 0xFF) ^ file[i]];
 	}
 	return crc;
@@ -123,10 +123,10 @@ uint16_t calculate_crc(uint16_t crc, uint8_t *file, int size) {
 
 void calculate_checksums(uint8_t *file, bool european) {
 	// Initialize the CRC table
-	for (int i = 0; i < 256; i++) {
+	for (uint16_t i = 0; i < 256; i++) {
 		uint16_t c = i;
 		uint16_t rem = 0;
-		for (int y = 0; y < 8; y++) {
+		for (size_t y = 0; y < 8; y++) {
 			rem = (rem >> 1) ^ ((rem ^ c) & 1 ? CRC_POLY : 0);
 			c >>= 1;
 		}
@@ -149,10 +149,10 @@ void calculate_checksums(uint8_t *file, bool european) {
 
 	// Calculate the base data bits using bank CRCs
 	// Bits indicate if the bank CRC matches the base one
-	for (int i = 0; i < BASEDATASIZE - BASEHEADERSIZE; i++) {
+	for (size_t i = 0; i < BASEDATASIZE - BASEHEADERSIZE; i++) {
 		uint8_t bits = 0;
-		for (int j = 0; j < 8; j++) {
-			int bank = i * 8 + j;
+		for (size_t j = 0; j < 8; j++) {
+			size_t bank = i * 8 + j;
 			uint16_t crc = calculate_crc(CRC_INIT, file + bank * BANKSIZE, BANKSIZE);
 			bits |= (crc == base_crcs[bank]) << j;
 		}
@@ -168,7 +168,7 @@ void calculate_checksums(uint8_t *file, bool european) {
 	memcpy(file + N64PS3DATAOFF, n64ps3, N64PS3SIZE);
 
 	// Calculate the half-bank checksums
-	for (int i = 0; i < NUMBANKS * 2; i++) {
+	for (size_t i = 0; i < NUMBANKS * 2; i++) {
 		uint16_t checksum = calculate_checksum(CRC_INIT, file + i * BANKSIZE / 2, BANKSIZE / 2);
 		SET_U16BE(file, N64PS3DATAOFF + N64PS3HEADERSIZE + i * 2, checksum);
 	}
