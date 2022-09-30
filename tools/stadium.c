@@ -30,6 +30,9 @@ void parse_args(int argc, char *argv[], bool *european) {
 // A matching ROM is $200000 bytes
 #define ROMSIZE (NUMBANKS * BANKSIZE)
 
+// The Game Boy cartridge header stores a global checksum at 0x014E-0x014F
+#define GLOBALOFF 0x014E
+
 // ASCII "base" header (Crystal only)
 #define BASE10SIZE 6
 uint8_t base10[BASE10SIZE] = {'b', 'a', 's', 'e', 1, 0};
@@ -49,9 +52,6 @@ uint8_t n64ps3[N64PS3SIZE] = {'N', '6', '4', 'P', 'S', '3'};
 #define N64PS3DATASIZE (N64PS3HEADERSIZE + NUMBANKS * 2 * 2)
 // The Stadium data is stored at the end of the ROM
 #define N64PS3DATAOFF (ROMSIZE - N64PS3DATASIZE)
-
-// The Game Boy cartridge header stores a global checksum at 0x014E-0x014F
-#define GLOBALOFF 0x014E
 
 // The CRC polynomial value
 #define CRC_POLY 0xC387
