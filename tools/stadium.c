@@ -25,9 +25,9 @@ void parse_args(int argc, char *argv[], bool *european) {
 
 // A matching ROM has 128 banks
 #define NUMBANKS 128
-// ROM banks are $4000 bytes
+// ROM banks are 0x4000 bytes
 #define BANKSIZE 0x4000
-// A matching ROM is $200000 bytes
+// A matching ROM is 2 MB
 #define ROMSIZE (NUMBANKS * BANKSIZE)
 
 // The Game Boy cartridge header stores a global checksum at 0x014E-0x014F
