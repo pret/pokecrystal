@@ -33,27 +33,25 @@ void parse_args(int argc, char *argv[], bool *european) {
 // ASCII "base" header (Crystal only)
 #define BASE10SIZE 6
 uint8_t base10[BASE10SIZE] = {'b', 'a', 's', 'e', 1, 0};
-
 // "base" + 2-byte version + 2-byte CRC
 #define BASEHEADERSIZE (BASE10SIZE + 2)
 // "base" + 2-byte version + 2-byte CRC + per-bank bit flags
 #define BASEDATASIZE (BASEHEADERSIZE + NUMBANKS / 8)
+// The base data is stored before the Stadium data
+#define BASEDATAOFF (N64PS3DATAOFF - BASEDATASIZE)
 
-// ASCII "N64PS3" header
+// ASCII "N64PS3" header (Stadium G/S was the third Japanese Stadium release for N64)
 #define N64PS3SIZE 6
 uint8_t n64ps3[N64PS3SIZE] = {'N', '6', '4', 'P', 'S', '3'};
-
 // "N64PS3" + 2-byte CRC
-#define HEADERSIZE (N64PS3SIZE + 2)
+#define N64PS3HEADERSIZE (N64PS3SIZE + 2)
 // header + 2-byte half-bank checksums
-#define DATASIZE (HEADERSIZE + NUMBANKS * 2 * 2)
+#define N64PS3DATASIZE (N64PS3HEADERSIZE + NUMBANKS * 2 * 2)
+// The Stadium data is stored at the end of the ROM
+#define N64PS3DATAOFF (ROMSIZE - N64PS3DATASIZE)
 
 // The Game Boy cartridge header stores a global checksum at 0x014E-0x014F
 #define GLOBALOFF 0x014E
-// The Stadium data is stored at the end of the ROM
-#define DATAOFF (ROMSIZE - DATASIZE)
-// The base data is stored before the Stadium data
-#define BASEDATAOFF (DATAOFF - BASEDATASIZE)
 
 // The CRC polynomial value
 #define CRC_POLY 0xC387
@@ -109,15 +107,15 @@ uint16_t base1_crcs[NUMBANKS] = {
 	0x5AEB, 0xFC38, 0xFC38, 0x4314, 0x25B0, 0xCE7B, 0x12FA, 0xDD05
 };
 
-uint16_t calculate_checksum(uint16_t checksum, uint8_t *file, int start, int size) {
-	for (int j = start; j < start + size; j++) {
+uint16_t calculate_checksum(uint16_t checksum, uint8_t *file, int size) {
+	for (int j = 0; j < size; j++) {
 		checksum += file[j];
 	}
 	return checksum;
 }
 
-uint16_t calculate_crc(uint16_t crc, uint8_t *file, int start, int size) {
-	for (int i = start; i < start + size; i++) {
+uint16_t calculate_crc(uint16_t crc, uint8_t *file, int size) {
+	for (int i = 0; i < size; i++) {
 		crc = (crc >> 8) ^ crc_table[(crc & 0xFF) ^ file[i]];
 	}
 	return crc;
@@ -155,32 +153,32 @@ void calculate_checksums(uint8_t *file, bool european) {
 		uint8_t bits = 0;
 		for (int j = 0; j < 8; j++) {
 			int bank = i * 8 + j;
-			uint16_t crc = calculate_crc(CRC_INIT, file, bank * BANKSIZE, BANKSIZE);
+			uint16_t crc = calculate_crc(CRC_INIT, file + bank * BANKSIZE, BANKSIZE);
 			bits |= (crc == base_crcs[bank]) << j;
 		}
 		file[BASEDATAOFF + BASEHEADERSIZE + i] = bits;
 	}
 
 	// Calculate the CRC of the base data
-	uint16_t crc = calculate_crc(CRC_INIT_BASE, file, BASEDATAOFF, BASEDATASIZE);
+	uint16_t crc = calculate_crc(CRC_INIT_BASE, file + BASEDATAOFF, BASEDATASIZE);
 	SET_U16BE(file, BASEDATAOFF + BASEHEADERSIZE - 2, crc);
 
 	// Initialize the Stadium data (this should be free space anyway)
-	memset(file + DATAOFF, 0, DATASIZE);
-	memcpy(file + DATAOFF, n64ps3, N64PS3SIZE);
+	memset(file + N64PS3DATAOFF, 0, N64PS3DATASIZE);
+	memcpy(file + N64PS3DATAOFF, n64ps3, N64PS3SIZE);
 
 	// Calculate the half-bank checksums
 	for (int i = 0; i < NUMBANKS * 2; i++) {
-		uint16_t checksum = calculate_checksum(CRC_INIT, file, i * BANKSIZE / 2, BANKSIZE / 2);
-		SET_U16BE(file, DATAOFF + HEADERSIZE + i * 2, checksum);
+		uint16_t checksum = calculate_checksum(CRC_INIT, file + i * BANKSIZE / 2, BANKSIZE / 2);
+		SET_U16BE(file, N64PS3DATAOFF + N64PS3HEADERSIZE + i * 2, checksum);
 	}
 
 	// Calculate the CRC of the half-bank checksums
-	crc = calculate_crc(CRC_INIT, file, DATAOFF + HEADERSIZE, DATASIZE - HEADERSIZE);
-	SET_U16BE(file, DATAOFF + HEADERSIZE - 2, crc);
+	crc = calculate_crc(CRC_INIT, file + N64PS3DATAOFF + N64PS3HEADERSIZE, N64PS3DATASIZE - N64PS3HEADERSIZE);
+	SET_U16BE(file, N64PS3DATAOFF + N64PS3HEADERSIZE - 2, crc);
 
 	// Calculate the global checksum
-	uint16_t globalsum = calculate_checksum(0, file, 0, ROMSIZE);
+	uint16_t globalsum = calculate_checksum(0, file, ROMSIZE);
 	SET_U16BE(file, GLOBALOFF, globalsum);
 }
 
