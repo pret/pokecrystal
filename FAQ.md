@@ -41,15 +41,15 @@ You need to install `gcc`. If you're using Cygwin, re-run its setup, and at "Sel
 
 ### "ERROR: `UNION` already defined"
 
-Download [**rgbds 0.5.2**][rgbds] or newer. Older versions will not work.
+Download [**rgbds 0.6.0**][rgbds] or newer. Older versions will not work.
 
 ### "ERROR: Macro not defined"
 
-Download [**rgbds 0.5.2**][rgbds] or newer. Older versions will not work.
+Download [**rgbds 0.6.0**][rgbds] or newer. Older versions will not work.
 
 ### "Expression must be 8-bit"
 
-Download [**rgbds 0.5.2**][rgbds] or newer. Older versions will not work.
+Download [**rgbds 0.6.0**][rgbds] or newer. Older versions will not work.
 
 ### "Segmentation fault" from `rgbgfx`
 
