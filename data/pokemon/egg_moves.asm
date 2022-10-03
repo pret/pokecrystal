@@ -1,6 +1,3 @@
-INCLUDE "constants.asm"
-
-
 SECTION "Egg Moves", ROMX
 
 ; All instances of Charm, Steel Wing, Sweet Scent, and Lovely Kiss were

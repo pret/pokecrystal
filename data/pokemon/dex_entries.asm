@@ -1,6 +1,3 @@
-INCLUDE "constants.asm"
-
-
 SECTION "Pokedex Entries 001-064", ROMX
 
 BulbasaurPokedexEntry::  INCLUDE "data/pokemon/dex_entries/bulbasaur.asm"

@@ -799,6 +799,7 @@ ReceiveInfraredLEDOn:
 	xor a
 	ldh [rIF], a
 	halt
+	nop
 	ldh a, [c]
 	bit rRP_RECEIVING, a
 	jr z, .recv_loop
@@ -813,6 +814,7 @@ ReceiveInfraredLEDOff:
 	xor a
 	ldh [rIF], a
 	halt
+	nop
 	ldh a, [c]
 	bit rRP_RECEIVING, a
 	jr nz, .no_recv_loop
@@ -829,6 +831,7 @@ SendInfraredLEDOn:
 	xor a
 	ldh [rIF], a
 	halt
+	nop
 	jr .wait
 
 SendInfraredLEDOff:
@@ -841,6 +844,7 @@ SendInfraredLEDOff:
 	xor a
 	ldh [rIF], a
 	halt
+	nop
 	jr .wait
 
 InitializeIRCommunicationRoles:
@@ -1037,6 +1041,7 @@ SendIRDataMessage:
 	xor a
 	ldh [rIF], a
 	halt
+	nop
 	ld a, rRP_ENABLE_READ_MASK | (1 << rRP_LED_ON)
 	ldh [rRP], a
 	; Turn the LED off for longer if the bit is 1
@@ -1057,6 +1062,7 @@ SendIRDataMessage:
 	xor a
 	ldh [rIF], a
 	halt
+	nop
 .no_halt
 	ldh a, [hMGNumBits]
 	dec a
@@ -1070,6 +1076,7 @@ SendIRDataMessage:
 	xor a
 	ldh [rIF], a
 	halt
+	nop
 
 	ld d, 5
 	call SendInfraredLEDOn

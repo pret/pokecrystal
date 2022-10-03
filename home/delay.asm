@@ -5,7 +5,8 @@ DelayFrame::
 
 ; Wait for the next VBlank, halting to conserve battery
 .halt
-	halt ; rgbasm adds a nop after this instruction by default
+	halt
+	nop
 	ld a, [wVBlankOccurred]
 	and a
 	jr nz, .halt

@@ -1,6 +1,3 @@
-INCLUDE "constants.asm"
-
-
 SECTION "Events", ROMX
 
 OverworldLoop::

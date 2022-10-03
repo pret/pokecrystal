@@ -771,11 +771,9 @@ And on `sine_table` in [macros/data.asm](https://github.com/pret/pokecrystal/blo
 
 ```asm
 MACRO sine_table
-; \1 samples of sin(x) from x=0 to x<32768 (pi radians)
-	DEF x = 0
-	rept \1
-		dw (sin(x) + (sin(x) & $ff)) >> 8 ; round up
-		DEF x += DIV(32768, \1) ; a circle has 65536 "degrees"
+; \1 samples of sin(x) from x=0 to x<0.5 turns (pi radians)
+	for x, \1
+		dw sin(x * 0.5 / (\1))
 	endr
 ENDM
 ```

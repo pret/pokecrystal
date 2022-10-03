@@ -1,5 +1,3 @@
-INCLUDE "constants.asm"
-
 SECTION "NULL", ROM0
 NULL::
 

@@ -1,6 +1,3 @@
-INCLUDE "constants.asm"
-
-
 SECTION "Evolutions and Attacks", ROMX
 
 ; Evos+attacks data structure:
