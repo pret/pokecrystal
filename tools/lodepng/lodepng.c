@@ -4618,10 +4618,10 @@ static unsigned readChunk_iTXt(LodePNGInfo* info, const LodePNGDecoderSettings* 
                               length, &zlibsettings);
       /*error: compressed text larger than  decoder->max_text_size*/
       if(error && size > zlibsettings.max_output_size) error = 112;
-      if(!error) error = lodepng_add_itext_sized(info, key, langtag, transkey, (char*)str, size);
+      if(!error) error = lodepng_add_itext_sized(info, key, langtag, transkey, (const char*)str, size);
       lodepng_free(str);
     } else {
-      error = lodepng_add_itext_sized(info, key, langtag, transkey, (char*)(data + begin), length);
+      error = lodepng_add_itext_sized(info, key, langtag, transkey, (const char*)(data + begin), length);
     }
 
     break;
