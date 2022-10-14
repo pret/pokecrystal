@@ -141,13 +141,7 @@ _ResetWRAM:
 	ld [wCurBox], a
 	ld [wSavedAtLeastOnce], a
 
-	call SetDefaultBoxNames
-
-	ld a, BANK(sBoxCount)
-	call OpenSRAM
-	ld hl, sBoxCount
-	call .InitList
-	call CloseSRAM
+	newfarcall InitializeBoxes
 
 	ld hl, wNumItems
 	call .InitList
@@ -232,38 +226,6 @@ endc
 	dec a
 	ld [hl], a
 	ret
-
-SetDefaultBoxNames:
-	ld hl, wBoxNames
-	ld c, 0
-.loop
-	push hl
-	ld de, .Box
-	call CopyName2
-	dec hl
-	ld a, c
-	inc a
-	cp 10
-	jr c, .less
-	sub 10
-	ld [hl], "1"
-	inc hl
-
-.less
-	add "0"
-	ld [hli], a
-	ld [hl], "@"
-	pop hl
-	ld de, 9
-	add hl, de
-	inc c
-	ld a, c
-	cp NUM_BOXES
-	jr c, .loop
-	ret
-
-.Box:
-	db "BOX@"
 
 InitializeMagikarpHouse:
 	ld hl, wBestMagikarpLengthFeet
@@ -1268,57 +1230,6 @@ DeleteSaveData:
 ResetClock:
 	farcall _ResetClock
 	jp Init
-
-UpdateTitleTrailSprite: ; unreferenced
-	; If bit 0 or 1 of [wTitleScreenTimer] is set, we don't need to be here.
-	ld a, [wTitleScreenTimer]
-	and %00000011
-	ret nz
-	ld bc, wSpriteAnim10
-	ld hl, SPRITEANIMSTRUCT_FRAME
-	add hl, bc
-	ld l, [hl]
-	ld h, 0
-	add hl, hl
-	add hl, hl
-	ld de, .TitleTrailCoords
-	add hl, de
-	; If bit 2 of [wTitleScreenTimer] is set, get the second coords; else, get the first coords
-	ld a, [wTitleScreenTimer]
-	and %00000100
-	srl a
-	srl a
-	ld e, a
-	ld d, 0
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	and a
-	ret z
-	ld e, a
-	ld d, [hl]
-	ld a, SPRITE_ANIM_INDEX_GS_TITLE_TRAIL
-	call InitSpriteAnimStruct
-	ret
-
-.TitleTrailCoords:
-MACRO trail_coords
-	rept _NARG / 2
-		DEF _dx = 4
-		if \1 == 0 && \2 == 0
-			DEF _dx = 0
-		endc
-		dbpixel \1, \2, _dx, 0
-		shift 2
-	endr
-ENDM
-	; frame 0 y, x; frame 1 y, x
-	trail_coords 11, 10,  0,  0
-	trail_coords 11, 13, 11, 11
-	trail_coords 11, 13, 11, 15
-	trail_coords 11, 17, 11, 15
-	trail_coords  0,  0, 11, 15
-	trail_coords  0,  0, 11, 11
 
 Copyright:
 	call ClearTilemap

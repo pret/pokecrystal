@@ -67,6 +67,12 @@ SpriteAnimFrameData:
 	dw .Frameset_IntroUnownF
 	dw .Frameset_CelebiLeft
 	dw .Frameset_CelebiRight
+	dw .Frameset_PCCursor
+	dw .Frameset_PCCursorItem
+	dw .Frameset_PCQuick
+	dw .Frameset_PCMode
+	dw .Frameset_PCMode2
+	dw .Frameset_PCPack
 	assert_table_length NUM_SPRITE_ANIM_FRAMESETS
 
 .Frameset_00:
@@ -74,8 +80,8 @@ SpriteAnimFrameData:
 	oamend
 
 .Frameset_PartyMon:
-	oamframe SPRITE_ANIM_OAMSET_RED_WALK_1,  8
-	oamframe SPRITE_ANIM_OAMSET_RED_WALK_2,  8
+	oamframe SPRITE_ANIM_OAMSET_PARTY_MON_1,  8
+	oamframe SPRITE_ANIM_OAMSET_PARTY_MON_2,  8
 	oamrestart
 
 .Frameset_PartyMonWithMail:
@@ -89,8 +95,8 @@ SpriteAnimFrameData:
 	oamrestart
 
 .Frameset_PartyMonFast:
-	oamframe SPRITE_ANIM_OAMSET_RED_WALK_1,  4
-	oamframe SPRITE_ANIM_OAMSET_RED_WALK_2,  4
+	oamframe SPRITE_ANIM_OAMSET_PARTY_MON_1,  4
+	oamframe SPRITE_ANIM_OAMSET_PARTY_MON_2,  4
 	oamrestart
 
 .Frameset_PartyMonWithMailFast:
@@ -497,3 +503,28 @@ SpriteAnimFrameData:
 	oamframe SPRITE_ANIM_OAMSET_CELEBI_1,  8, OAM_X_FLIP
 	oamframe SPRITE_ANIM_OAMSET_CELEBI_2,  8, OAM_X_FLIP
 	oamend
+
+.Frameset_PCCursor:
+	oamframe SPRITE_ANIM_OAMSET_PC_CURSOR, 32
+	oamrestart
+
+.Frameset_PCCursorItem:
+	; Conditionally switched to when dealing with items
+	oamframe SPRITE_ANIM_OAMSET_PC_CURSOR_ITEM, 32
+	oamrestart
+
+.Frameset_PCQuick:
+	oamframe SPRITE_ANIM_OAMSET_PC_QUICK, 8
+	oamdelete
+
+.Frameset_PCMode:
+	oamframe SPRITE_ANIM_OAMSET_PC_MODE, 32
+	oamrestart
+
+.Frameset_PCMode2:
+	oamframe SPRITE_ANIM_OAMSET_PC_MODE2, 32
+	oamrestart
+
+.Frameset_PCPack:
+	oamframe SPRITE_ANIM_OAMSET_PC_PACK, 32
+	oamrestart

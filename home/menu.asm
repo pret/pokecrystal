@@ -425,6 +425,9 @@ PlaceGenericTwoOptionBox:: ; unreferenced
 	call LoadMenuHeader
 	jr InterpretTwoOptionMenu
 
+NoYesBox::
+	newfarjp _NoYesBox
+
 _YesNoBox::
 ; Return nc (yes) or c (no).
 	push bc
@@ -723,15 +726,6 @@ PlaceNthMenuStrings::
 	call PlaceString
 	ret
 
-GetNthMenuStrings:: ; unreferenced
-	call GetMenuDataPointerTableEntry
-	inc hl
-	inc hl
-	ld a, [hli]
-	ld d, [hl]
-	ld e, a
-	ret
-
 MenuJumptable::
 	ld a, [wMenuSelection]
 	call GetMenuDataPointerTableEntry
@@ -839,12 +833,5 @@ InterpretBattleMenu::
 	ldh a, [hROMBank]
 	ld [wMenuData_2DMenuItemStringsBank], a
 	farcall _InterpretBattleMenu
-	ld a, [wMenuCursorPosition]
-	ret
-
-InterpretMobileMenu:: ; unreferenced
-	ldh a, [hROMBank]
-	ld [wMenuData_2DMenuItemStringsBank], a
-	farcall _InterpretMobileMenu
 	ld a, [wMenuCursorPosition]
 	ret

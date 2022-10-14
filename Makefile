@@ -18,6 +18,7 @@ rom_obj := \
 	data/pokemon/evos_attacks.o \
 	engine/movie/credits.o \
 	engine/overworld/events.o \
+	gfx/icons.o \
 	gfx/misc.o \
 	gfx/pics.o \
 	gfx/sprites.o \
@@ -242,6 +243,8 @@ gfx/title/logo.2bpp: rgbgfx += -x 4
 gfx/trade/ball.2bpp: tools/gfx += --remove-whitespace
 gfx/trade/game_boy.2bpp: tools/gfx += --remove-duplicates --preserve=0x23,0x27
 gfx/trade/game_boy_cable.2bpp: gfx/trade/game_boy.2bpp gfx/trade/link_cable.2bpp ; cat $^ > $@
+
+gfx/pc/obj.2bpp: gfx/pc/modes.2bpp gfx/pc/packs.2bpp ; cat $^ > $@
 
 gfx/slots/slots_1.2bpp: tools/gfx += --trim-whitespace
 gfx/slots/slots_2.2bpp: tools/gfx += --interleave --png=$<

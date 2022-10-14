@@ -40,6 +40,15 @@ ApplyTilemap::
 	cp 0
 	jr z, .dmg
 
+	; if we're in doublespeed, use newbox applytilemap
+	push hl
+	ld hl, rKEY1
+	bit 7, [hl]
+	pop hl
+	jr z, .regular_cgb
+	newfarjp BillsPC_ApplyTilemap
+
+.regular_cgb
 	ld a, 1
 	ldh [hBGMapMode], a
 	jr CopyTilemapAtOnce
