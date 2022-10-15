@@ -3614,7 +3614,7 @@ BattleAnimFunction_MetronomeHand:
 
 BattleAnimFunction_MetronomeSparkleSketch:
 ; Sideways wave motion while also moving downward until it disappears at y coord $20
-; Obj Param: It's used internally only
+; Obj Param: Only used internally
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld a, [hl]
