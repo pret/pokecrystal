@@ -3838,7 +3838,7 @@ BattleAnimFunction_BatonPass:
 
 BattleAnimFunction_EncoreBellyDrum:
 ; Object moves at an arc for 8 frames and disappears
-; Obj Param: Defines startging position in the arc
+; Obj Param: Defines starting position in the arc
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
