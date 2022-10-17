@@ -1831,7 +1831,7 @@ BattleAnimFunction_Absorb:
 	ret
 
 BattleAnimFunction_Wrap:
-; Plays out object Frameset. Use anim_incobj to move to next frameset
+; Plays out object frameset. Use anim_incobj to move to next frameset
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
@@ -3614,7 +3614,7 @@ BattleAnimFunction_MetronomeHand:
 
 BattleAnimFunction_MetronomeSparkleSketch:
 ; Sideways wave motion while also moving downward until it disappears at y coord $20
-; Obj Param: Is used internally only
+; Obj Param: Only used internally
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld a, [hl]
@@ -3805,7 +3805,7 @@ BattleAnimFunction_HealBellNotes:
 	ret
 
 BattleAnimFunction_BatonPass:
-; Object falls vertially and bounces on the ground
+; Object falls vertically and bounces on the ground
 ; Obj Param: Defines speed and duration
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
@@ -3838,7 +3838,7 @@ BattleAnimFunction_BatonPass:
 
 BattleAnimFunction_EncoreBellyDrum:
 ; Object moves at an arc for 8 frames and disappears
-; Obj Param: Defines startging position in the arc
+; Obj Param: Defines starting position in the arc
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
@@ -3900,7 +3900,7 @@ BattleAnimFunction_SwaggerMorningSun:
 	ret
 
 BattleAnimFunction_HiddenPower:
-; Moves object in a ring around position. Uses anim_incobj to move to second phase,  where it expands the radius 8 pixels at a time for 13 frames and then disappears
+; Moves object in a ring around position. Uses anim_incobj to move to second phase, where it expands the radius 8 pixels at a time for 13 frames and then disappears
 ; Obj Param: Defines starting position in circle
 	call BattleAnim_AnonJumptable
 .anon_dw
@@ -4202,7 +4202,7 @@ BattleAnimFunction_Cotton:
 	ret
 
 BattleAnimFunction_AncientPower:
-; Object moves up and down in an arc for $20 frames and then disappear
+; Object moves up and down in an arc for $20 frames and then disappears
 ; Obj Param: Defines range of arc motion
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
