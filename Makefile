@@ -126,8 +126,9 @@ rgbdscheck.o: rgbdscheck.asm
 # The dep rules have to be explicit or else missing files won't be reported.
 # As a side effect, they're evaluated immediately instead of when the rule is invoked.
 # It doesn't look like $(shell) can be deferred so there might not be a better way.
+preinclude_deps := includes.asm $(shell tools/scan_includes includes.asm)
 define DEP
-$1: $2 $$(shell tools/scan_includes $2) | includes.asm rgbdscheck.o
+$1: $2 $$(shell tools/scan_includes $2) $(preinclude_deps) | rgbdscheck.o
 	$$(RGBASM) $$(RGBASMFLAGS) -o $$@ $$<
 endef
 
@@ -146,7 +147,7 @@ $(foreach obj, $(pokecrystal11_debug_obj), $(eval $(call DEP,$(obj),$(obj:11_deb
 $(foreach obj, $(pokecrystal11_vc_obj), $(eval $(call DEP,$(obj),$(obj:11_vc.o=.asm))))
 
 # Dependencies for VC files that need to run scan_includes
-%.constants.sym: %.constants.asm $(shell tools/scan_includes %.constants.asm) | includes.asm rgbdscheck.o
+%.constants.sym: %.constants.asm $(shell tools/scan_includes %.constants.asm) $(preinclude_deps) | rgbdscheck.o
 	$(RGBASM) $(RGBASMFLAGS) $< > $@
 
 endif
