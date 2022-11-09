@@ -15714,7 +15714,7 @@
 20:4323 DoPlayerMovement.action_table_1
 20:4329 DoPlayerMovement.action_table_1_end
 20:4341 DoPlayerMovement.CheckNPC
-20:4369 DoPlayerMovement.is_npc
+20:4369 DoPlayerMovement.no_npc
 20:436c DoPlayerMovement.no_bump
 20:436f DoPlayerMovement.CheckStrengthBoulder
 20:439c DoPlayerMovement.not_boulder
