@@ -519,7 +519,7 @@ TrainerWalkToPlayer:
 	call InitMovementBuffer
 	ld a, movement_step_sleep
 	call AppendToMovementBuffer
-	ld a, [wWalkingIntoNPC]
+	ld a, [wSeenTrainerDistance]
 	dec a
 	jr z, .TerminateStep
 	ldh a, [hLastTalked]
