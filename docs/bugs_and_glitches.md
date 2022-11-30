@@ -62,6 +62,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [`RIVAL2` has lower DVs than `RIVAL1`](#rival2-has-lower-dvs-than-rival1)
   - [`HELD_CATCH_CHANCE` has no effect](#held_catch_chance-has-no-effect)
   - [Credits sequence changes move selection menu behavior](#credits-sequence-changes-move-selection-menu-behavior)
+  - [PRZ and BRN stat debuffs sometimes don't apply to switched mons](#prz-and-brn-stat-debuffs-sometimes-dont-apply-to-switched-mons)
 - [Game engine](#game-engine)
   - [`LoadMetatiles` wraps around past 128 blocks](#loadmetatiles-wraps-around-past-128-blocks)
   - [Surfing directly across a map connection does not load the new map](#surfing-directly-across-a-map-connection-does-not-load-the-new-map)
@@ -1541,6 +1542,32 @@ The `[hInMenu]` value determines this button behavior. However, the battle moves
  .quit
 +	pop af
 +	ldh [hInMenu], a
+ 	ret
+```
+
+
+### PRZ and BRN stat debuffs sometimes don't apply to switched mons
+
+PRZ and BRN stat debuffs are only ever applied to enemy switched mons during link battles and the battle tower since they bail out of `LoadEnemyMon` to run `InitEnemyMon` instead. The former of which, never calls `ApplyStatusEffectOnEnemyStats`.
+
+**Fix:** Edit `LoadEnemyMon` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
+
+```diff
+ ; Saw this mon
+ 	ld a, [wTempEnemyMonSpecies]
+ 	dec a
+ 	ld c, a
+ 	ld b, SET_FLAG
+ 	ld hl, wPokedexSeen
+ 	predef SmallFarFlagAction
+
+ 	ld hl, wEnemyMonStats
+ 	ld de, wEnemyStats
+ 	ld bc, NUM_EXP_STATS * 2
+ 	call CopyBytes
+
+-; BUG: PRZ and BRN stat debuffs sometimes don't apply to switched mons (see docs/bugs_and_glitches.md)
++	call ApplyStatusEffectOnEnemyStats
  	ret
 ```
 
