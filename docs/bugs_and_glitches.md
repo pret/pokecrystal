@@ -50,6 +50,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Love Ball boosts catch rate for the wrong gender](#love-ball-boosts-catch-rate-for-the-wrong-gender)
   - [Fast Ball only boosts catch rate for three Pokémon](#fast-ball-only-boosts-catch-rate-for-three-pok%C3%A9mon)
   - [Heavy Ball uses wrong weight value for three Pokémon](#heavy-ball-uses-wrong-weight-value-for-three-pok%C3%A9mon)
+  - [PRZ and BRN stat reductions don't apply to switched Pokémon](#prz-and-brn-stat-reductions-dont-apply-to-switched-pok%C3%A9mon)
   - [Glacier Badge may not boost Special Defense depending on the value of Special Attack](#glacier-badge-may-not-boost-special-defense-depending-on-the-value-of-special-attack)
   - ["Smart" AI encourages Mean Look if its own Pokémon is badly poisoned](#smart-ai-encourages-mean-look-if-its-own-pok%C3%A9mon-is-badly-poisoned)
   - ["Smart" AI discourages Conversion2 after the first turn](#smart-ai-discourages-conversion2-after-the-first-turn)
@@ -62,7 +63,6 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [`RIVAL2` has lower DVs than `RIVAL1`](#rival2-has-lower-dvs-than-rival1)
   - [`HELD_CATCH_CHANCE` has no effect](#held_catch_chance-has-no-effect)
   - [Credits sequence changes move selection menu behavior](#credits-sequence-changes-move-selection-menu-behavior)
-  - [PRZ and BRN stat debuffs sometimes don't apply to switched mons](#prz-and-brn-stat-debuffs-sometimes-dont-apply-to-switched-mons)
 - [Game engine](#game-engine)
   - [`LoadMetatiles` wraps around past 128 blocks](#loadmetatiles-wraps-around-past-128-blocks)
   - [Surfing directly across a map connection does not load the new map](#surfing-directly-across-a-map-connection-does-not-load-the-new-map)
@@ -1252,6 +1252,24 @@ This can occur if your party and current PC box are both full when you start the
 ```
 
 
+### PRZ and BRN stat reductions don't apply to switched Pokémon
+
+This does not affect link battles or Battle Tower battles because those jump from `LoadEnemyMon` to `InitEnemyMon`, which already calls `ApplyStatusEffectOnEnemyStats`.
+
+**Fix:** Edit `LoadEnemyMon` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
+
+```diff
+ 	ld hl, wEnemyMonStats
+ 	ld de, wEnemyStats
+ 	ld bc, NUM_EXP_STATS * 2
+ 	call CopyBytes
+
+-; BUG: PRZ and BRN stat reductions don't apply to switched Pokémon (see docs/bugs_and_glitches.md)
++	call ApplyStatusEffectOnEnemyStats
+ 	ret
+```
+
+
 ### Glacier Badge may not boost Special Defense depending on the value of Special Attack
 
 Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") implies that Glacier Badge is intended to boost both Special Attack and Special Defense, but the Special Defense boost will not happen unless the unboosted Special Attack stat is 206–432, or 661 or above.
@@ -1542,32 +1560,6 @@ The `[hInMenu]` value determines this button behavior. However, the battle moves
  .quit
 +	pop af
 +	ldh [hInMenu], a
- 	ret
-```
-
-
-### PRZ and BRN stat debuffs sometimes don't apply to switched mons
-
-PRZ and BRN stat debuffs are only ever applied to enemy switched mons during link battles and the battle tower since they bail out of `LoadEnemyMon` to run `InitEnemyMon` instead. The former of which, never calls `ApplyStatusEffectOnEnemyStats`.
-
-**Fix:** Edit `LoadEnemyMon` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
-
-```diff
- ; Saw this mon
- 	ld a, [wTempEnemyMonSpecies]
- 	dec a
- 	ld c, a
- 	ld b, SET_FLAG
- 	ld hl, wPokedexSeen
- 	predef SmallFarFlagAction
-
- 	ld hl, wEnemyMonStats
- 	ld de, wEnemyStats
- 	ld bc, NUM_EXP_STATS * 2
- 	call CopyBytes
-
--; BUG: PRZ and BRN stat debuffs sometimes don't apply to switched mons (see docs/bugs_and_glitches.md)
-+	call ApplyStatusEffectOnEnemyStats
  	ret
 ```
 
