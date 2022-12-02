@@ -406,7 +406,7 @@ InitDefaultEZChatMsgs: ; unreferenced
 	call OpenSRAM
 	ld hl, .Data
 	ld de, sEZChatIntroductionMessage
-	ld bc, 4 * EASY_CHAT_MESSAGE_LENGTH
+	ld bc, EASY_CHAT_MESSAGE_LENGTH * 4
 	call CopyBytes
 	jp CloseSRAM
 

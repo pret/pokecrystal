@@ -1754,7 +1754,7 @@ StageDataForNameCard:
 	ld bc, 8
 	call CopyBytes
 	ld hl, sEZChatMessages ; address of MBC30 bank
-	ld bc, 12
+	ld bc, EASY_CHAT_MESSAGE_LENGTH
 	call CopyBytes
 	call CloseSRAM
 	ret
