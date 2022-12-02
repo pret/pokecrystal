@@ -201,11 +201,11 @@ SECTION "SRAM Mobile 1", SRAM
 
 	ds $7
 
-s4_a007:: ; struct size $30
-
-	ds $c
-
-s4_a013:: ds 36
+sEZChatMessages::
+sEZChatIntroductionMessage:: ds EASY_CHAT_MESSAGE_LENGTH
+sEZChatBeginBattleMessage::  ds EASY_CHAT_MESSAGE_LENGTH
+sEZChatWinBattleMessage::    ds EASY_CHAT_MESSAGE_LENGTH
+sEZChatLoseBattleMessage::   ds EASY_CHAT_MESSAGE_LENGTH
 
 s4_a037:: ds 4
 
