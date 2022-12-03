@@ -342,8 +342,10 @@ struct Buffer *process_template(const char *template_filename, const char *patch
 	buffer_append(patches, &(struct Patch){0x14e, 2});
 	// The Stadium data (see stadium.c) will always differ
 	unsigned int rom_size = (unsigned int)xfsize("", orig_rom);
-	unsigned int stadium_size = 24 + 6 + 2 + (rom_size / 0x2000) * 2;
-	buffer_append(patches, &(struct Patch){rom_size - stadium_size, stadium_size});
+	if (rom_size == 128 * 0x4000) {
+		unsigned int stadium_size = 24 + 6 + 2 + 128 * 2 * 2;
+		buffer_append(patches, &(struct Patch){rom_size - stadium_size, stadium_size});
+	}
 
 	// Fill in the template
 	const struct Symbol *current_hook = NULL;
