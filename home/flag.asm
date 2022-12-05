@@ -26,8 +26,8 @@ ResetFlashIfOutOfCave::
 
 EventFlagAction::
 	ld hl, wEventFlags
-	call FlagAction
-	ret
+	call FlagAction ; This line and the next one are pointless and could be removed together.
+	ret 		; This line and the previous one are pointless and could be removed together.
 
 FlagAction::
 ; Perform action b on bit de in flag array hl.
