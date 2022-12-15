@@ -743,7 +743,8 @@ if DEF(_CRYSTAL11)
 wPokedexStatus:: db
 wPokedexDataEnd::
 else
-wPokedexDataEnd:: ds 1
+wPokedexDataEnd::
+	ds 1
 endc
 	ds 2
 
@@ -1538,8 +1539,10 @@ wPrevDexEntryJumptableIndex:: db
 if DEF(_CRYSTAL11)
 wPrevDexEntryBackup:: db
 else
-wPrevDexEntryBackup::
-wPokedexStatus:: db
+; BUG: Crystal 1.0 reused the same byte in WRAM for
+; wPokedexStatus and wPrevDexEntryBackup.
+wPokedexStatus::
+wPrevDexEntryBackup:: db
 endc
 wUnusedPokedexByte:: db
 
