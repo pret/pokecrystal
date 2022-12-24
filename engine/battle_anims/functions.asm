@@ -13,6 +13,7 @@ DoBattleAnimFrame:
 
 .Jumptable:
 ; entries correspond to BATTLEANIMFUNC_* constants
+	table_width 2, DoBattleAnimFrame.Jumptable
 	dw BattleAnimFunction_Null
 	dw BattleAnimFunction_MoveFromUserToTarget
 	dw BattleAnimFunction_MoveFromUserToTargetAndDisappear
@@ -93,6 +94,7 @@ DoBattleAnimFrame:
 	dw BattleAnimFunction_AncientPower
 	dw BattleAnimFunction_RockSmash
 	dw BattleAnimFunction_Cotton
+	assert_table_length NUM_BATTLEANIMFUNCS
 
 BattleAnimFunction_Null:
 	call BattleAnim_AnonJumptable
