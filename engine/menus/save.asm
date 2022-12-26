@@ -402,7 +402,7 @@ EraseHallOfFame:
 	jp CloseSRAM
 
 InitDefaultEZChatMsgs: ; unreferenced
-	ld a, BANK(sEZChatIntroductionMessage) ; MBC30 bank used by JP Crystal; inaccessible by MBC3
+	ld a, BANK(sEZChatMessages) ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call OpenSRAM
 	ld hl, .Data
 	ld de, sEZChatMessages
