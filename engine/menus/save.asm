@@ -405,7 +405,7 @@ InitDefaultEZChatMsgs: ; unreferenced
 	ld a, BANK(sEZChatIntroductionMessage) ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call OpenSRAM
 	ld hl, .Data
-	ld de, sEZChatIntroductionMessage
+	ld de, sEZChatMessages
 	ld bc, EASY_CHAT_MESSAGE_LENGTH * 4
 	call CopyBytes
 	jp CloseSRAM

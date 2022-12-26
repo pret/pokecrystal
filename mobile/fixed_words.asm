@@ -352,7 +352,7 @@ Function11c254:
 	ld b, 0
 	add hl, bc
 	ld de, wcd36
-	ld bc, 12
+	ld bc, EASY_CHAT_MESSAGE_LENGTH
 	call CopyBytes
 	call CloseSRAM
 	ret
@@ -1776,7 +1776,7 @@ Function11cb66:
 	ld b, 0
 	add hl, bc
 	ld de, wcd36
-	ld c, 12
+	ld c, EASY_CHAT_MESSAGE_LENGTH
 .asm_11cba2
 	ld a, [de]
 	ld [hli], a

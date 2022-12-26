@@ -203,6 +203,7 @@ SECTION "SRAM Mobile 1", SRAM
 
 sEZChatMessages::
 sEZChatIntroductionMessage:: ds EASY_CHAT_MESSAGE_LENGTH
+sEZChatBattleMessages::
 sEZChatBeginBattleMessage::  ds EASY_CHAT_MESSAGE_LENGTH
 sEZChatWinBattleMessage::    ds EASY_CHAT_MESSAGE_LENGTH
 sEZChatLoseBattleMessage::   ds EASY_CHAT_MESSAGE_LENGTH

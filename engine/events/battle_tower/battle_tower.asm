@@ -147,10 +147,9 @@ Function170139: ; unreferenced
 	dec a
 	jr nz, .CopyLoop
 
-	; easy chat messages
 	ld a, BANK(sEZChatBeginBattleMessage)
 	call OpenSRAM
-	ld hl, sEZChatBeginBattleMessage
+	ld hl, sEZChatBattleMessages
 	ld bc, EASY_CHAT_MESSAGE_LENGTH * 3
 	call CopyBytes
 	call CloseSRAM
