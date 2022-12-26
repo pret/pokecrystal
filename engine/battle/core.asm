@@ -6476,7 +6476,7 @@ CheckUnownLetter:
 	inc e
 	inc e
 	ld a, e
-	cp UnlockedUnownLetterSets.End - UnlockedUnownLetterSets
+	cp NUM_UNLOCKED_UNOWN_SETS * 2
 	jr c, .loop
 
 ; Hasn't been unlocked, or the letter is invalid

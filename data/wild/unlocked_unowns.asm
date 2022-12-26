@@ -14,7 +14,6 @@ UnlockedUnownLetterSets:
 	dw .Set_S_W ; UNLOCKED_UNOWNS_S_TO_W_F
 	dw .Set_X_Z ; UNLOCKED_UNOWNS_X_TO_Z_F
 	assert_table_length NUM_UNLOCKED_UNOWN_SETS
-.End
 
 .Set_A_K:
 	unown_set A, B, C, D, E, F, G, H, I, J, K
