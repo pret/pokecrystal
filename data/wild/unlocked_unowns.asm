@@ -13,7 +13,7 @@ UnlockedUnownLetterSets:
 	dw .Set_L_R ; UNLOCKED_UNOWNS_L_TO_R_F
 	dw .Set_S_W ; UNLOCKED_UNOWNS_S_TO_W_F
 	dw .Set_X_Z ; UNLOCKED_UNOWNS_X_TO_Z_F
-	assert_table_length NUM_UNOWN_SETS
+	assert_table_length NUM_UNLOCKED_UNOWN_SETS
 .End
 
 .Set_A_K:
