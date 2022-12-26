@@ -4645,8 +4645,8 @@
 05:4ce2 EraseLinkBattleStats
 05:4cf4 EraseMysteryGift
 05:4d06 EraseHallOfFame
-05:4d18 Function14d18
-05:4d2c Function14d18.Data
+05:4d18 InitDefaultEZChatMsgs
+05:4d2c InitDefaultEZChatMsgs.Data
 05:4d5c EraseBattleTowerStatus
 05:4d68 SaveData
 05:4d6c Function14d6c
@@ -52335,8 +52335,12 @@
 03:be23 sBox14Mon20Nickname
 03:be2e sBox14MonNicknamesEnd
 03:be2e sBox14End
-04:a007 s4_a007
-04:a013 s4_a013
+04:a007 sEZChatMessages
+04:a007 sEZChatIntroductionMessage
+04:a013 sEZChatBeginBattleMessage
+04:a013 sEZChatBattleMessages
+04:a01f sEZChatWinBattleMessage
+04:a02b sEZChatLoseBattleMessage
 04:a037 s4_a037
 04:a03b s4_a03b
 04:a603 s4_a603
