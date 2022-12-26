@@ -2423,14 +2423,14 @@ Unknown_100feb:
 	db -1 ; end
 
 Unknown_100ff3:
-	macro_100fc0 wdc41,                1
-	macro_100fc0 wPlayerName,          NAME_LENGTH
-	macro_100fc0 wPlayerName,          NAME_LENGTH
-	macro_100fc0 wPlayerID,            2
-	macro_100fc0 wSecretID,            2
-	macro_100fc0 wPlayerGender,        1
-	macro_100fc0 s4_a603,              8
-	macro_100fc0 s4_a007,              PARTYMON_STRUCT_LENGTH
+	macro_100fc0 wdc41,           1
+	macro_100fc0 wPlayerName,     NAME_LENGTH
+	macro_100fc0 wPlayerName,     NAME_LENGTH
+	macro_100fc0 wPlayerID,       2
+	macro_100fc0 wSecretID,       2
+	macro_100fc0 wPlayerGender,   1
+	macro_100fc0 s4_a603,         8
+	macro_100fc0 sEZChatMessages, EASY_CHAT_MESSAGE_LENGTH * 4
 	db -1 ; end
 
 Unknown_10102c:
