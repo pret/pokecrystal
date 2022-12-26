@@ -9414,7 +9414,6 @@
 0f:6b96 CheckUnownLetter.next
 0f:6b9f CheckUnownLetter.match
 0f:6ba1 UnlockedUnownLetterSets
-0f:6ba9 UnlockedUnownLetterSets.End
 0f:6ba9 UnlockedUnownLetterSets.Set_A_K
 0f:6bb5 UnlockedUnownLetterSets.Set_L_R
 0f:6bbd UnlockedUnownLetterSets.Set_S_W
