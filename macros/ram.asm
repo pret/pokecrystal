@@ -339,7 +339,7 @@ MACRO map_object
 \1ObjectHour1::       db
 \1ObjectHour2::
 \1ObjectTimeOfDay::   db
-\1ObjectPalOverride::
+\1ObjectPalette::
 \1ObjectType::        db
 \1ObjectSightRange::  db
 \1ObjectScript::      dw
