@@ -227,7 +227,7 @@ CheckObjectVisibility::
 	ret
 
 CheckObjectTime::
-	ld hl, MAPOBJECT_HOUR
+	ld hl, MAPOBJECT_HOUR_1
 	add hl, bc
 	ld a, [hl]
 	cp -1
@@ -264,10 +264,10 @@ CheckObjectTime::
 	db NITE
 
 .check_hour
-	ld hl, MAPOBJECT_HOUR
+	ld hl, MAPOBJECT_HOUR_1
 	add hl, bc
 	ld d, [hl]
-	ld hl, MAPOBJECT_TIMEOFDAY
+	ld hl, MAPOBJECT_HOUR_2
 	add hl, bc
 	ld e, [hl]
 	ld hl, hHours
