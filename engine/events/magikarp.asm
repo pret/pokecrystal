@@ -75,18 +75,7 @@ CheckMagikarpLength:
 	text_far _MagikarpGuruMeasureText
 	text_end
 
-Magikarp_LoadFeetInchesChars:
-	ld hl, vTiles2 tile "′" ; $6e
-	ld de, .feetinchchars
-	lb bc, BANK(.feetinchchars), 2
-	call Request2bpp
-	ret
-
-.feetinchchars
-INCBIN "gfx/font/feet_inches.2bpp"
-
 PrintMagikarpLength:
-	call Magikarp_LoadFeetInchesChars
 	ld hl, wStringBuffer1
 	ld de, wMagikarpLength
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
