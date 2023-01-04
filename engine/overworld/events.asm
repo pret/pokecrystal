@@ -546,10 +546,10 @@ TryObjectEvent:
 
 	ldh a, [hLastTalked]
 	call GetMapObject
-	ld hl, MAPOBJECT_COLOR
+	ld hl, MAPOBJECT_TYPE
 	add hl, bc
 	ld a, [hl]
-	and %00001111
+	and MAPOBJECT_TYPE_MASK
 
 ; BUG: TryObjectEvent arbitrary code execution (see docs/bugs_and_glitches.md)
 	push bc

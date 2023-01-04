@@ -330,18 +330,20 @@ MACRO object_struct
 ENDM
 
 MACRO map_object
-\1ObjectStructID::  db
-\1ObjectSprite::    db
-\1ObjectYCoord::    db
-\1ObjectXCoord::    db
-\1ObjectMovement::  db
-\1ObjectRadius::    db
-\1ObjectHour::      db
-\1ObjectTimeOfDay:: db
-\1ObjectColor::     db
-\1ObjectRange::     db
-\1ObjectScript::    dw
-\1ObjectEventFlag:: dw
+\1ObjectStructID::   db
+\1ObjectSprite::     db
+\1ObjectYCoord::     db
+\1ObjectXCoord::     db
+\1ObjectMovement::   db
+\1ObjectRadius::     db
+\1ObjectHour1::      db
+\1ObjectHour2::
+\1ObjectTimeOfDay::  db
+\1ObjectPalette::
+\1ObjectType::       db
+\1ObjectSightRange:: db
+\1ObjectScript::     dw
+\1ObjectEventFlag::  dw
 	ds 2
 ENDM
 

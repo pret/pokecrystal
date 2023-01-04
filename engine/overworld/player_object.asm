@@ -27,7 +27,7 @@ SpawnPlayer:
 	call PlayerSpawn_ConvertCoords
 	ld a, PLAYER_OBJECT
 	call GetMapObject
-	ld hl, MAPOBJECT_COLOR
+	ld hl, MAPOBJECT_PALETTE
 	add hl, bc
 	ln e, PAL_NPC_RED, OBJECTTYPE_SCRIPT
 	ld a, [wPlayerSpriteSetupFlags]
@@ -188,10 +188,10 @@ CopyMapObjectToObjectStruct:
 	call GetSpritePalette
 	ld [wTempObjectCopyPalette], a
 
-	ld hl, MAPOBJECT_COLOR
+	ld hl, MAPOBJECT_PALETTE
 	add hl, bc
 	ld a, [hl]
-	and $f0
+	and MAPOBJECT_PALETTE_MASK
 	jr z, .skip_color_override
 	swap a
 	and PALETTE_MASK
@@ -203,7 +203,7 @@ CopyMapObjectToObjectStruct:
 	ld a, [hl]
 	ld [wTempObjectCopyMovement], a
 
-	ld hl, MAPOBJECT_RANGE
+	ld hl, MAPOBJECT_SIGHT_RANGE
 	add hl, bc
 	ld a, [hl]
 	ld [wTempObjectCopyRange], a
