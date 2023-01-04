@@ -114,7 +114,7 @@ MACRO object_event
 ;  * if h1 == h2, the object_event will always appear
 ;  * if h1 == -1, h2 is treated as a time-of-day value:
 ;    a combo of MORN, DAY, and/or NITE, or -1 to always appear
-;\9: color: a PAL_NPC_* constant, or 0 for sprite default
+;\9: palette: a PAL_NPC_* constant, or 0 for sprite default
 ;\<10>: function: a OBJECTTYPE_* constant
 ;\<11>: sight range: applies to OBJECTTYPE_TRAINER
 ;\<12>: script pointer
