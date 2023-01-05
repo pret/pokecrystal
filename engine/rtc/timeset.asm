@@ -1,5 +1,5 @@
-DEF TIMESET_UP_ARROW   EQU "♂" ; $ef
-DEF TIMESET_DOWN_ARROW EQU "♀" ; $f5
+TIMESET_UP_ARROW   EQU "♂" ; $ef
+TIMESET_DOWN_ARROW EQU "♀" ; $f5
 
 InitClock:
 ; Ask the player to set the time.
@@ -11,11 +11,11 @@ InitClock:
 	ld a, $0
 	ld [wSpriteUpdatesEnabled], a
 	ld a, $10
-	ld [wMusicFade], a
-	ld a, LOW(MUSIC_NONE)
-	ld [wMusicFadeID], a
-	ld a, HIGH(MUSIC_NONE)
-	ld [wMusicFadeID + 1], a
+;	ld [wMusicFade], a
+;	ld a, LOW(MUSIC_NONE)
+;	ld [wMusicFadeID], a
+;	ld a, HIGH(MUSIC_NONE)
+;	ld [wMusicFadeID + 1], a
 	ld c, 8
 	call DelayFrames
 	call RotateFourPalettesLeft
@@ -41,8 +41,8 @@ InitClock:
 	call .ClearScreen
 	call WaitBGMap
 	call RotateFourPalettesRight
-	ld hl, OakTimeWokeUpText
-	call PrintText
+;	ld hl, OakTimeWokeUpText
+;	call PrintText
 	ld hl, wTimeSetBuffer
 	ld bc, wTimeSetBufferEnd - wTimeSetBuffer
 	xor a
@@ -51,7 +51,8 @@ InitClock:
 	ld [wInitHourBuffer], a
 
 .loop
-	ld hl, OakTimeWhatTimeIsItText
+;	ld hl, OakTimeWhatTimeIsItText
+	ld hl, ZSetHourText
 	call PrintText
 	hlcoord 3, 7
 	ld b, 2
@@ -74,7 +75,8 @@ InitClock:
 	ld a, [wInitHourBuffer]
 	ld [wStringBuffer2 + 1], a
 	call .ClearScreen
-	ld hl, OakTimeWhatHoursText
+;	ld hl, OakTimeWhatHoursText
+	ld hl, ZAreHoursCorrectText
 	call PrintText
 	call YesNoBox
 	jr nc, .HourIsSet
@@ -82,7 +84,8 @@ InitClock:
 	jr .loop
 
 .HourIsSet:
-	ld hl, OakTimeHowManyMinutesText
+;	ld hl, OakTimeHowManyMinutesText
+	ld hl, ZSetMinutesText
 	call PrintText
 	hlcoord 11, 7
 	lb bc, 2, 7
@@ -104,7 +107,8 @@ InitClock:
 	ld a, [wInitMinuteBuffer]
 	ld [wStringBuffer2 + 2], a
 	call .ClearScreen
-	ld hl, OakTimeWhoaMinutesText
+;	ld hl, OakTimeWhoaMinutesText
+	ld hl, ZAreMinutesCorrectText
 	call PrintText
 	call YesNoBox
 	jr nc, .MinutesAreSet
@@ -113,9 +117,9 @@ InitClock:
 
 .MinutesAreSet:
 	call InitTimeOfDay
-	ld hl, OakText_ResponseToSetTime
-	call PrintText
-	call WaitPressAorB_BlinkCursor
+;	ld hl, OakText_ResponseToSetTime
+;	call PrintText
+;	call WaitPressAorB_BlinkCursor
 	pop af
 	ldh [hInMenu], a
 	ret
@@ -293,16 +297,28 @@ OakTimeWokeUpText:
 	text_far _OakTimeWokeUpText
 	text_end
 
-OakTimeWhatTimeIsItText:
-	text_far _OakTimeWhatTimeIsItText
+;OakTimeWhatTimeIsItText:
+;	text_far _OakTimeWhatTimeIsItText
+;	text_end
+
+ZSetHourText:
+	text_far _ZSetHourText
 	text_end
 
 String_oclock:
 	db "o'clock@"
 
-OakTimeWhatHoursText:
-	; What?@ @
-	text_far _OakTimeWhatHoursText
+;OakTimeWhatHoursText:
+;	; What?@ @
+;	text_far _OakTimeWhatHoursText
+;	text_asm
+;	hlcoord 1, 16
+;	call DisplayHourOClock
+;	ld hl, .OakTimeHoursQuestionMarkText
+;	ret
+
+ZAreHoursCorrectText:
+	text_far _ZAreHoursCorrectText
 	text_asm
 	hlcoord 1, 16
 	call DisplayHourOClock
@@ -313,18 +329,31 @@ OakTimeWhatHoursText:
 	text_far _OakTimeHoursQuestionMarkText
 	text_end
 
-OakTimeHowManyMinutesText:
-	text_far _OakTimeHowManyMinutesText
+;OakTimeHowManyMinutesText:
+;	text_far _OakTimeHowManyMinutesText
+;	text_end
+
+ZSetMinutesText:
+	text_far _ZSetMinutesText
 	text_end
 
 String_min:
 	db "min.@"
 
-OakTimeWhoaMinutesText:
-	; Whoa!@ @
-	text_far _OakTimeWhoaMinutesText
+;OakTimeWhoaMinutesText:
+;	; Whoa!@ @
+;	text_far _OakTimeWhoaMinutesText
+;	text_asm
+;	hlcoord 7, 14
+;	call DisplayMinutesWithMinString
+;	ld hl, .OakTimeMinutesQuestionMarkText
+;	ret
+
+ZAreMinutesCorrectText:
+	text_far _ZAreMinutesCorrectText
 	text_asm
-	hlcoord 7, 14
+;	hlcoord 7, 14
+	hlcoord 1, 16
 	call DisplayMinutesWithMinString
 	ld hl, .OakTimeMinutesQuestionMarkText
 	ret
@@ -402,7 +431,8 @@ SetDayOfWeek:
 	lb bc, 4, 18
 	call Textbox
 	call LoadStandardMenuHeader
-	ld hl, .OakTimeWhatDayIsItText
+;	ld hl, .OakTimeWhatDayIsItText
+	ld hl, .ZSetDayOfTheWeekText
 	call PrintText
 	hlcoord 9, 3
 	ld b, 2
@@ -516,27 +546,43 @@ SetDayOfWeek:
 	dw .Saturday
 	dw .Sunday
 
-.Sunday:    db " SUNDAY@"
-.Monday:    db " MONDAY@"
-.Tuesday:   db " TUESDAY@"
+.Sunday:    db "SUNDAY@"
+.Monday:    db "MONDAY@"
+.Tuesday:   db "TUESDAY@"
 .Wednesday: db "WEDNESDAY@"
 .Thursday:  db "THURSDAY@"
-.Friday:    db " FRIDAY@"
+.Friday:    db "FRIDAY@"
 .Saturday:  db "SATURDAY@"
 
-.OakTimeWhatDayIsItText:
-	text_far _OakTimeWhatDayIsItText
+;.OakTimeWhatDayIsItText:
+;	text_far _OakTimeWhatDayIsItText
+;	text_end
+
+.ZSetDayOfTheWeekText:
+	text_far _ZSetDayOfTheWeekText
 	text_end
 
+;.ConfirmWeekdayText:
+;	text_asm
+;	hlcoord 1, 14
+;	call .PlaceWeekdayString
+;	ld hl, .OakTimeIsItText
+;	ret
+
+;.OakTimeIsItText:
+;	text_far _OakTimeIsItText
+;	text_end
+
 .ConfirmWeekdayText:
+	text_far _ZIsDayOfWeekCorrect
 	text_asm
-	hlcoord 1, 14
+	hlcoord 1, 16
 	call .PlaceWeekdayString
-	ld hl, .OakTimeIsItText
+	ld hl, .ZQuestionMarkText
 	ret
 
-.OakTimeIsItText:
-	text_far _OakTimeIsItText
+.ZQuestionMarkText:
+	text_far _ZQuestionMarkText
 	text_end
 
 InitialSetDSTFlag:

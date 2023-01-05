@@ -21,12 +21,13 @@ InitCrystalData:
 INCLUDE "mobile/mobile_12.asm"
 
 InitGender:
-	call InitGenderScreen
-	call LoadGenderScreenPal
-	call LoadGenderScreenLightBlueTile
+;	call InitGenderScreen
+;	call LoadGenderScreenPal [this line and the next one should be kept commented if this doesn't work]
+;	call LoadGenderScreenLightBlueTile
 	call WaitBGMap2
 	call SetPalettes
-	ld hl, AreYouABoyOrAreYouAGirlText
+;	ld hl, AreYouABoyOrAreYouAGirlText
+	ld hl, ZGenderSelectText
 	call PrintText
 	ld hl, .MenuHeader
 	call LoadMenuHeader
@@ -49,11 +50,17 @@ InitGender:
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_DISABLE_B ; flags
 	db 2 ; items
-	db "Boy@"
-	db "Girl@"
+;	db "Boy@"
+;	db "Girl@"
+	db "BOY@"
+	db "GIRL@"
 
-AreYouABoyOrAreYouAGirlText:
-	text_far _AreYouABoyOrAreYouAGirlText
+;AreYouABoyOrAreYouAGirlText:
+;	text_far _AreYouABoyOrAreYouAGirlText
+;	text_end
+
+ZGenderSelectText:
+	text_far _ZGenderSelectText
 	text_end
 
 InitGenderScreen:

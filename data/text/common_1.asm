@@ -1876,3 +1876,35 @@ _PrestoAllDoneText::
 	text "Presto! All done."
 	line "Come again, OK?"
 	done
+
+_ZSetHourText::
+	text "Set the hour."
+	done
+
+_ZSetMinutesText::
+	text "Set the minutes."
+	done
+
+_ZSetDayOfTheWeekText::
+	text "Set the day of the"
+	line "week."
+	done
+
+_ZAreHoursCorrectText::
+_ZAreMinutesCorrectText::
+_ZIsDayOfWeekCorrect::
+	text "Is this correct?@"
+	text_end
+
+_ZQuestionMarkText::
+	text "?"
+	done
+
+_ZGenderSelectText::
+	text "Select a gender."
+	done
+
+_ZNamePlayerText::
+	text "Name the player"
+	line "character."
+	done
