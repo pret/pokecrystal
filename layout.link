@@ -343,7 +343,6 @@ WRAMX 2
 WRAMX 3
 	"Battle Tower RAM"
 WRAMX 4
-	"News Script RAM"
 	"Surrounding Data"
 WRAMX 5
 	align 8

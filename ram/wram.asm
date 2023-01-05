@@ -3488,11 +3488,6 @@ w3_de00:: ds $200
 ENDU
 
 
-SECTION "News Script RAM", WRAMX
-
-w4_d000:: ds $1000
-
-
 SECTION "Surrounding Data", WRAMX
 
 wSurroundingTiles:: ds SURROUNDING_WIDTH * SURROUNDING_HEIGHT
