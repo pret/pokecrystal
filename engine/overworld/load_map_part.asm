@@ -1,5 +1,10 @@
 _LoadMapPart::
 	ld hl, wSurroundingTiles
+	decoord 0, 0
+	call .copy
+	ld hl, wSurroundingAttributes
+	decoord 0, 0, wAttrmap
+.copy
 	ld a, [wPlayerMetatileY]
 	and a
 	jr z, .top_row
@@ -14,7 +19,10 @@ _LoadMapPart::
 	inc hl
 
 .left_column
-	decoord 0, 0
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK("Surrounding Data")
+	ldh [rSVBK], a
 	ld b, SCREEN_HEIGHT
 .loop
 	ld c, SCREEN_WIDTH
@@ -33,4 +41,6 @@ _LoadMapPart::
 .carry
 	dec b
 	jr nz, .loop
+	pop af
+	ldh [rSVBK], a
 	ret

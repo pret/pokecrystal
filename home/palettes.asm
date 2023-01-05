@@ -323,11 +323,3 @@ ReloadSpritesNoPalettes::
 	ldh [hCGBPalUpdate], a
 	call DelayFrame
 	ret
-
-SwapTextboxPalettes::
-	homecall _SwapTextboxPalettes
-	ret
-
-ScrollBGMapPalettes::
-	homecall _ScrollBGMapPalettes
-	ret
