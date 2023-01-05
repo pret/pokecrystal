@@ -1,7 +1,7 @@
 	object_const_def
 	const ROUTE36_YOUNGSTER1
 	const ROUTE36_YOUNGSTER2
-	const ROUTE36_WEIRD_TREE
+	const ROUTE36_SUDOWOODO
 	const ROUTE36_LASS1
 	const ROUTE36_FISHER
 	const ROUTE36_FRUIT_TREE
@@ -53,7 +53,7 @@ SudowoodoScript:
 
 	waitsfx
 	playsound SFX_SANDSTORM
-	applymovement ROUTE36_WEIRD_TREE, SudowoodoShakeMovement
+	applymovement ROUTE36_SUDOWOODO, SudowoodoShakeMovement
 	end
 
 .Fight:
@@ -69,7 +69,7 @@ WateredWeirdTreeScript:: ; export (for when you use Squirtbottle from pack)
 	closetext
 	waitsfx
 	playsound SFX_SANDSTORM
-	applymovement ROUTE36_WEIRD_TREE, SudowoodoShakeMovement
+	applymovement ROUTE36_SUDOWOODO, SudowoodoShakeMovement
 	opentext
 	writetext SudowoodoAttackedText
 	waitbutton
@@ -78,8 +78,7 @@ WateredWeirdTreeScript:: ; export (for when you use Squirtbottle from pack)
 	startbattle
 	setevent EVENT_FOUGHT_SUDOWOODO
 	ifequal DRAW, DidntCatchSudowoodo
-	disappear ROUTE36_WEIRD_TREE
-	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
+	disappear ROUTE36_SUDOWOODO
 	reloadmapafterbattle
 	end
 
@@ -89,9 +88,9 @@ DidntUseSquirtbottleScript:
 
 DidntCatchSudowoodo:
 	reloadmapafterbattle
-	applymovement ROUTE36_WEIRD_TREE, WeirdTreeMovement_Flee
-	disappear ROUTE36_WEIRD_TREE
-	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
+	applymovement ROUTE36_SUDOWOODO, WeirdTreeMovement_Flee
+	disappear ROUTE36_SUDOWOODO
+	variablesprite SPRITE_SUDOWOODO, SPRITE_TWIN
 	special LoadUsedSpritesGFX
 	special RefreshSprites
 	end
@@ -679,7 +678,7 @@ Route36_MapEvents:
 	def_object_events
 	object_event 20, 13, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPsychicMark, -1
 	object_event 31, 14, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 5, TrainerSchoolboyAlan1, -1
-	object_event 35,  9, SPRITE_WEIRD_TREE, SPRITEMOVEDATA_SUDOWOODO, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SudowoodoScript, EVENT_ROUTE_36_SUDOWOODO
+	object_event 35,  9, SPRITE_SUDOWOODO, SPRITEMOVEDATA_SUDOWOODO, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SudowoodoScript, EVENT_ROUTE_36_SUDOWOODO
 	object_event 51,  8, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route36LassScript, -1
 	object_event 44,  9, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route36RockSmashGuyScript, -1
 	object_event 21,  4, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route36FruitTree, -1
