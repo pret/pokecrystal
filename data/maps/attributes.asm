@@ -375,6 +375,22 @@ ENDM
 	connection north, Route10North, ROUTE_10_NORTH, 0
 	connection south, LavenderTown, LAVENDER_TOWN, 0
 
+	map_attributes SaltbreezeTown, SALTBREEZE_TOWN, $00, NORTH | EAST
+	connection north, SunglowHarbor, SUNGLOW_HARBOR, 0
+	connection east, SunglowTrail, SUNGLOW_TRAIL, 0
+
+	map_attributes SunglowTrail, SUNGLOW_TRAIL, $05, NORTH | WEST
+	connection north, SunglowCape, SUNGLOW_CAPE, 0
+	connection west, SaltbreezeTown, SALTBREEZE_TOWN, 0
+
+	map_attributes SunglowCape, SUNGLOW_CAPE, $35, SOUTH | WEST
+	connection south, SunglowTrail, SUNGLOW_TRAIL, 0
+	connection west, SunglowHarbor, SUNGLOW_HARBOR, 0
+
+	map_attributes SunglowHarbor, SUNGLOW_HARBOR, $35, SOUTH | EAST
+	connection south, SaltbreezeTown, SALTBREEZE_TOWN, 0
+	connection east, SunglowCape, SUNGLOW_CAPE, 0
+
 	map_attributes Route23, ROUTE_23, $0f, 0
 	map_attributes SproutTower1F, SPROUT_TOWER_1F, $00, 0
 	map_attributes SproutTower2F, SPROUT_TOWER_2F, $00, 0
@@ -667,7 +683,6 @@ ENDM
 	map_attributes VictoryRoadGate, VICTORY_ROAD_GATE, $00, 0
 	map_attributes ElmsLab, ELMS_LAB, $00, 0
 	map_attributes PlayersHouse1F, PLAYERS_HOUSE_1F, $00, 0
-	map_attributes PlayersHouse2F, PLAYERS_HOUSE_2F, $00, 0
 	map_attributes PlayersNeighborsHouse, PLAYERS_NEIGHBORS_HOUSE, $00, 0
 	map_attributes ElmsHouse, ELMS_HOUSE, $00, 0
 	map_attributes Route26HealHouse, ROUTE_26_HEAL_HOUSE, $00, 0
@@ -695,3 +710,5 @@ ENDM
 	map_attributes Route30BerryHouse, ROUTE_30_BERRY_HOUSE, $00, 0
 	map_attributes MrPokemonsHouse, MR_POKEMONS_HOUSE, $00, 0
 	map_attributes Route31VioletGate, ROUTE_31_VIOLET_GATE, $00, 0
+	map_attributes MyHouse1F, MY_HOUSE_1F, $00, 0
+	map_attributes PlayersHouse2F, PLAYERS_HOUSE_2F, $00, 0

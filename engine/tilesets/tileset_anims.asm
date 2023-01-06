@@ -78,6 +78,7 @@ TilesetForestAnim:
 	dw NULL,  DoneTileAnimation
 
 TilesetJohtoAnim:
+TilesetNeostOutdoors1Anim:
 	dw vTiles2 tile $14, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -275,6 +276,7 @@ TilesetHoOhWordRoomAnim:
 TilesetKabutoWordRoomAnim:
 TilesetOmanyteWordRoomAnim:
 TilesetAerodactylWordRoomAnim:
+TilesetZHouseAnim:
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation

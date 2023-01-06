@@ -846,9 +846,6 @@ OlivineCafe_Blocks:
 SafariZoneMainOffice_Blocks:
 	INCBIN "maps/OlivineCafe.ablk"
 
-PlayersHouse2F_Blocks:
-	INCBIN "maps/PlayersHouse2F.ablk"
-
 SaffronMagnetTrainStation_Blocks:
 	INCBIN "maps/SaffronMagnetTrainStation.ablk"
 
@@ -1045,3 +1042,23 @@ BetaBlank_Blocks: ; unreferenced
 
 GoldenrodDeptStoreRoof_Blocks:
 	INCBIN "maps/GoldenrodDeptStoreRoof.ablk"
+
+SECTION "Map Blocks 4", ROMX
+
+SaltbreezeTown_Blocks:
+	INCBIN "maps/SaltbreezeTown.ablk"
+
+MyHouse1F_Blocks:
+	INCBIN "maps/MyHouse1F.ablk"
+
+PlayersHouse2F_Blocks:
+	INCBIN "maps/PlayersHouse2F.ablk"
+
+SunglowTrail_Blocks:
+	INCBIN "maps/SunglowTrail.ablk"
+
+SunglowCape_Blocks:
+	INCBIN "maps/SunglowCape.ablk"
+
+SunglowHarbor_Blocks:
+	INCBIN "maps/SunglowHarbor.ablk"

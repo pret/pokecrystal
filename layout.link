@@ -52,7 +52,7 @@ ROMX $08
 ROMX $09
 	"bank9"
 ROMX $0a
-	"bankA"
+	"Events"
 	"Trainer Backpics"
 ROMX $0b
 	"bankB"
@@ -112,7 +112,6 @@ ROMX $24
 	"bank24"
 ROMX $25
 	"Maps"
-	"Events"
 ROMX $26
 	"Map Scripts 11"
 ROMX $27

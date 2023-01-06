@@ -152,7 +152,6 @@ SECTION "Map Scripts 9", ROMX
 INCLUDE "maps/Route34.asm"
 INCLUDE "maps/ElmsLab.asm"
 INCLUDE "maps/PlayersHouse1F.asm"
-INCLUDE "maps/PlayersHouse2F.asm"
 INCLUDE "maps/PlayersNeighborsHouse.asm"
 INCLUDE "maps/ElmsHouse.asm"
 INCLUDE "maps/Route26HealHouse.asm"
@@ -484,3 +483,9 @@ SECTION "Map Scripts 25", ROMX
 
 INCLUDE "maps/SilverCaveOutside.asm"
 INCLUDE "maps/Route10North.asm"
+INCLUDE "maps/SaltbreezeTown.asm"
+INCLUDE "maps/MyHouse1F.asm"
+INCLUDE "maps/PlayersHouse2F.asm"
+INCLUDE "maps/SunglowTrail.asm"
+INCLUDE "maps/SunglowCape.asm"
+INCLUDE "maps/SunglowHarbor.asm"

@@ -451,3 +451,30 @@ INCBIN "data/tilesets/omanyte_word_room_attributes.bin"
 
 TilesetAerodactylWordRoomAttr::
 INCBIN "data/tilesets/aerodactyl_word_room_attributes.bin"
+
+
+SECTION "Tileset Data 12", ROMX
+
+TilesetZHouseColl::
+INCLUDE "data/tilesets/z_house_collision.asm"
+
+TilesetZHouseAttr::
+INCBIN "data/tilesets/z_house_attributes.bin"
+
+TilesetZHouseGFX::
+INCBIN "gfx/tilesets/z_house.2bpp.lz"
+
+TilesetZHouseMeta::
+INCBIN "data/tilesets/z_house_metatiles.bin"
+
+TilesetNeostOutdoors1Coll::
+INCLUDE "data/tilesets/neost_outdoors_1_collision.asm"
+
+TilesetNeostOutdoors1Attr::
+INCBIN "data/tilesets/neost_outdoors_1_attributes.bin"
+
+TilesetNeostOutdoors1GFX::
+INCBIN "gfx/tilesets/neost_outdoors_1.2bpp.lz"
+
+TilesetNeostOutdoors1Meta::
+INCBIN "data/tilesets/neost_outdoors_1_metatiles.bin"

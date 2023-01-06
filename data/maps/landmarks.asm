@@ -104,6 +104,11 @@ Landmarks:
 	landmark  12, 100, TohjoFallsName
 	landmark  20,  68, Route28Name
 	landmark 140, 116, FastShipName
+; new landmarks start here, remember to change coordinates for Town Map later
+	landmark  10,  10, SaltbreezeTownName
+	landmark  20,  10, SunglowTrailName
+	landmark  30,  10, SunglowCapeName
+	landmark  40,  10, SunglowHarborName
 	assert_table_length NUM_LANDMARKS
 
 NewBarkTownName:     db "NEW BARK¯TOWN@"
@@ -208,3 +213,8 @@ TohjoFallsName:      db "TOHJO FALLS@"
 UndergroundName:     db "UNDERGROUND@"
 BattleTowerName:     db "BATTLE¯TOWER@"
 SpecialMapName:      db "SPECIAL@"
+; new stuff for the hack
+SaltbreezeTownName:  db "SALTBREEZE¯TOWN@"
+SunglowTrailName:    db "SUNGLOW¯TRAIL@"
+SunglowCapeName:     db "SUNGLOW¯CAPE@"
+SunglowHarborName:   db "SUNGLOW¯HARBOR@"
