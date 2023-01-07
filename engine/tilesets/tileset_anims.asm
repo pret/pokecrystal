@@ -79,7 +79,7 @@ TilesetForestAnim:
 
 TilesetJohtoAnim:
 TilesetNeostOutdoors1Anim:
-	dw vTiles2 tile $14, AnimateWaterTile
+	dw vTiles2 tile $0D, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  AnimateWaterPalette
@@ -686,9 +686,9 @@ AnimateFlowerTile:
 	ld hl, .FlowerTileFrames
 	add hl, de
 
-; Write the tile graphic from hl (now sp) to tile $03 (now hl)
+; Write the tile graphic from hl (now sp) to tile $06 (now hl)
 	ld sp, hl
-	ld hl, vTiles2 tile $03
+	ld hl, vTiles2 tile $06
 	jp WriteTile
 
 .FlowerTileFrames:
@@ -1040,10 +1040,10 @@ TowerPillarTile8:  INCBIN "gfx/tilesets/tower-pillar/8.2bpp"
 TowerPillarTile9:  INCBIN "gfx/tilesets/tower-pillar/9.2bpp"
 TowerPillarTile10: INCBIN "gfx/tilesets/tower-pillar/10.2bpp"
 
-WhirlpoolFrames1: dw vTiles2 tile $32, WhirlpoolTiles1
-WhirlpoolFrames2: dw vTiles2 tile $33, WhirlpoolTiles2
-WhirlpoolFrames3: dw vTiles2 tile $42, WhirlpoolTiles3
-WhirlpoolFrames4: dw vTiles2 tile $43, WhirlpoolTiles4
+WhirlpoolFrames1: dw vTiles2 tile $0E, WhirlpoolTiles1
+WhirlpoolFrames2: dw vTiles2 tile $0F, WhirlpoolTiles2
+WhirlpoolFrames3: dw vTiles2 tile $1E, WhirlpoolTiles3
+WhirlpoolFrames4: dw vTiles2 tile $1F, WhirlpoolTiles4
 
 WhirlpoolTiles1: INCBIN "gfx/tilesets/whirlpool/1.2bpp"
 WhirlpoolTiles2: INCBIN "gfx/tilesets/whirlpool/2.2bpp"
