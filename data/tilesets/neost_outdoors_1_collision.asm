@@ -25,11 +25,11 @@
 	tilecoll BUOY, WATER, BUOY, WATER ; 18
 	tilecoll WATER, WATER, WATER, WATER ; 19
 	tilecoll WATER, BUOY, WATER, BUOY ; 1a
-	tilecoll WHIRLPOOL, WHIRLPOOL, WATER, WHIRLPOOL ; 1b
+	tilecoll WATER, WATER, WATER, WATER ; 1b
 	tilecoll BUOY, WATER, BUOY, BUOY ; 1c
 	tilecoll WATER, WATER, BUOY, BUOY ; 1d
 	tilecoll WATER, BUOY, BUOY, BUOY ; 1e
-	tilecoll WATER, WHIRLPOOL, WATER, WHIRLPOOL ; 1f
+	tilecoll WATER, WATER, WATER, WATER ; 1f
 	tilecoll WATER, WATER, WATER, WATER ; 20
 	tilecoll WATER, WATER, WATER, WATER ; 21
 	tilecoll WATER, WATER, WATER, WATER ; 22
@@ -216,5 +216,17 @@
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; d7
 	tilecoll FLOOR, FLOOR, FLOOR, DOWN_WALL ; d8
 	tilecoll WATER, FLOOR, WATER, FLOOR ; d9
-	tilecoll WALL, WALL, WALL, WALL ; da
-	tilecoll WALL, WALL, WALL, WALL ; db
+	tilecoll WALL, FLOOR, FLOOR, FLOOR ; da
+	tilecoll WARP_CARPET_LEFT, FLOOR, WARP_CARPET_LEFT, FLOOR ; db
+	tilecoll FLOOR, FLOOR, WALL, WARP_CARPET_DOWN ; dc
+	tilecoll FLOOR, FLOOR, WARP_CARPET_DOWN, WALL ; dd
+	tilecoll FLOOR, FLOOR, WARP_CARPET_DOWN, WARP_CARPET_DOWN ; de
+	tilecoll FLOOR, FLOOR, WALL, WALL ; df
+	tilecoll FLOOR, FLOOR, HEADBUTT_TREE, WALL ; e0
+	tilecoll FLOOR, FLOOR, WALL, HEADBUTT_TREE ; e1
+	tilecoll WALL, WALL, WALL, WALL ; e2
+	tilecoll WALL, WALL, WALL, WALL ; e3
+	tilecoll WALL, WALL, WALL, WALL ; e4
+	tilecoll WALL, WALL, WALL, WALL ; e5
+	tilecoll WALL, WALL, WALL, WALL ; e6
+	tilecoll WALL, WALL, WALL, WALL ; e7
