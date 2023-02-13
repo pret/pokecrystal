@@ -44,5 +44,5 @@ Other disassembly projects:
 [symbols]: https://github.com/pret/pokecrystal/tree/symbols
 [discord]: https://discord.gg/d5dubZ3
 [irc]: https://web.libera.chat/?#pret
-[ci]: https://github.com/qwilvove/pokecrystal-fr/actions
-[ci-badge]: https://github.com/qwilvove/pokecrystal-fr/actions/workflows/main.yml/badge.svg
+[ci]: https://github.com/pret/pokecrystal/actions
+[ci-badge]: https://github.com/pret/pokecrystal/actions/workflows/main.yml/badge.svg
