@@ -51,11 +51,11 @@ TrainerPokefanmTrevor:
 	end
 
 PokefanmCarterSeenText:
-	text "Let me tell you,"
-	line "I had a hard time"
+	text "J'ai eu du mal à"
+	line "attraper mes #-"
 
-	para "catching my prized"
-	line "#MON."
+	para "MON rares et super"
+	line "jolis."
 	done
 
 PokefanmCarterBeatenText:
@@ -63,54 +63,54 @@ PokefanmCarterBeatenText:
 	done
 
 PokefanmCarterAfterBattleText:
-	text "SQUIRTLE, CHARMAN-"
-	line "DER and BULBASAUR…"
+	text "CARAPUCE, SALAME-"
+	line "CHE et BULBIZARRE:"
 
-	para "I think that's a"
-	line "well-balanced mix."
+	para "c'est une équipe"
+	line "diversifiée."
 	done
 
 BirdKeeperRoySeenText:
-	text "My dream is to fly"
-	line "with my beloved"
-	cont "bird #MON."
+	text "Je rêve de voler"
+	line "avec mes amis les"
+	cont "#MON oiseaux."
 	done
 
 BirdKeeperRoyBeatenText:
-	text "I can dream, but I"
-	line "can't ever fly…"
+	text "Je rêve mais je ne"
+	line "volerai jamais..."
 	done
 
 BirdKeeperRoyAfterBattleText:
-	text "You have #MON"
-	line "that know the HM"
+	text "Tu as des #MON"
+	line "qui ont appris la"
 
-	para "move FLY, don't"
-	line "you? I envy you."
+	para "CS VOL, non? Tu as"
+	line "trop de chance."
 	done
 
 PokefanmTrevorSeenText:
-	text "Hi. Did you know…?"
+	text "Le savais-tu?"
 
-	para "#MON get more"
-	line "friendly if you"
+	para "Les #MON sont"
+	line "plus amicaux s'ils"
 
-	para "train them in a"
-	line "place that they"
-	cont "remember."
+	para "sont entraînés"
+	line "dans un endroit"
+	cont "familier."
 	done
 
 PokefanmTrevorBeatenText:
-	text "Where did I meet"
-	line "this PSYDUCK?"
+	text "Où ai-je rencontré"
+	line "ce PSYKOKWAK?"
 	done
 
 PokefanmTrevorAfterBattleText:
-	text "If only there were"
-	line "an easy way to"
+	text "Y a-t-il un moyen"
+	line "de savoir où l'on"
 
-	para "identify where I"
-	line "got my #MON…"
+	para "a trouvé nos"
+	line "#MON?"
 	done
 
 Route14_MapEvents:

@@ -321,153 +321,146 @@ Route38FruitTree:
 	fruittree FRUITTREE_ROUTE_38
 
 BirdKeeperTobySeenText:
-	text "Fly high into the"
-	line "sky, my beloved"
-	cont "bird #MON!"
+	text "Volez, mes jolis"
+	line "petits #MON!"
 	done
 
 BirdKeeperTobyBeatenText:
-	text "I feel like just"
-	line "flying away now."
+	text "Chplof!"
 	done
 
 BirdKeeperTobyAfterBattleText:
-	text "I plan to train in"
-	line "CIANWOOD CITY to"
+	text "Je vais entraîner"
+	line "mes #MON à"
 
-	para "teach my #MON"
-	line "how to FLY."
+	para "IRISIA pour leur"
+	line "apprendre à voler."
 	done
 
 SchoolboyChad1SeenText:
-	text "Let me try some-"
-	line "thing I learned"
-	cont "today."
+	text "J'vais te montrer"
+	line "ce que j'ai appris"
+	cont "aujourd'hui."
 	done
 
 SchoolboyChad1BeatenText:
-	text "I didn't study"
-	line "enough, I guess."
+	text "Faut que j'étudie"
+	line "encore un peu."
 	done
 
 SchoolboyChadSoManyTestsText:
-	text "I have to take so"
-	line "many tests, I"
+	text "Les études ça me"
+	line "prend la tête."
 
-	para "don't have much"
-	line "time for #MON."
+	para "Je préfère les"
+	line "#MON."
 
-	para "So when I do get"
-	line "to play, I really"
-	cont "concentrate."
+	para "Alors moi, jouer,"
+	line "c'est mon truc."
 	done
 
 LassDana1SeenText:
-	text "You seem to be"
-	line "good at #MON."
+	text "Tu as l'air de t'y"
+	line "connaître en"
+	cont "#MON."
 
-	para "If you are, how"
-	line "about giving me"
-	cont "some advice?"
+	para "Tu veux bien me"
+	line "donner des"
+	cont "conseils?"
 	done
 
 LassDana1BeatenText:
-	text "I see. So you can"
-	line "battle that way."
+	text "Je vois. C'est pas"
+	line "mal."
 	done
 
 LassDanaMoomooMilkText:
-	text "I know something"
-	line "good!"
+	text "Je vais te dire"
+	line "un truc..."
 
-	para "MOOMOO FARM's milk"
-	line "is famous for its"
-	cont "flavor."
+	para "Le lait du RANCH"
+	line "MEUMEU est super"
+	cont "bon."
 	done
 
 BeautyValerieSeenText:
-	text "Hi! Aren't you a"
-	line "cute trainer!"
+	text "Hé! T'es mimi"
+	line "comme dresseur!"
 
-	para "May I see your"
+	para "Je peux voir tes"
 	line "#MON?"
 	done
 
 BeautyValerieBeatenText:
-	text "I'm glad I got to"
-	line "see your #MON!"
+	text "Merci."
+	line "Sympa!"
 	done
 
 BeautyValerieAfterBattleText:
-	text "When I see #-"
-	line "MON, it seems to"
-	cont "soothe my nerves."
+	text "Les #MON, ça me"
+	line "calme les nerfs."
 	done
 
 SailorHarrySeenText:
-	text "I've been over-"
-	line "seas, so I know"
-
-	para "about all sorts of"
-	line "#MON!"
+	text "Moi j'ai voyagé!"
+	line "Je connais tous"
+	cont "les #MON!"
 	done
 
 SailorHarryBeatenText:
-	text "Your skill is"
-	line "world class!"
+	text "T'es cool!"
 	done
 
 SailorHarryAfterBattleText:
-	text "All kinds of peo-"
-	line "ple around the"
-
-	para "world live happily"
-	line "with #MON."
+	text "Les #MON"
+	line "rendent les gens"
+	cont "heureux."
 	done
 
 BeautyOliviaSeenText:
-	text "Don't you think my"
-	line "#MON and I are"
-	cont "beautiful?"
+	text "Tu ne trouves pas"
+	line "que mes #MON et"
+	cont "moi-même avons une"
+	cont "classe folle?"
 	done
 
 BeautyOliviaBeatenText:
-	text "We drink MOOMOO"
-	line "MILK every day."
+	text "On boit du LAIT"
+	line "MEUMEU tous les"
+	cont "jours."
 	done
 
 BeautyOliviaAfterBattleText:
-	text "MOOMOO MILK is"
-	line "good for beauty"
+	text "Le LAIT MEUMEU est"
+	line "bon pour la forme"
 
-	para "and health, but"
-	line "inconveniently,"
+	para "mais ils n'en"
+	line "vendent qu'une"
 
-	para "they only sell a"
-	line "bottle at a time."
+	para "bouteille à la"
+	line "fois."
 	done
 
 Route38SignText:
 	text "ROUTE 38"
 
-	para "OLIVINE CITY -"
-	line "ECRUTEAK CITY"
+	para "OLIVILLE -"
+	line "ROSALIA"
 	done
 
 Route38TrainerTipsText:
-	text "TRAINER TIPS"
+	text "ASTUCE"
 
-	para "If a #MON is"
-	line "trying to evolve,"
-	cont "you can stop it."
+	para "Vous pouvez arrê-"
+	line "ter l'évolution d'"
+	cont "un #MON."
 
-	para "Press the B But-"
-	line "ton during evolu-"
-	cont "tion."
+	para "Appuyez sur B pen-"
+	line "dant l'évolution."
 
-	para "That startles the"
-	line "#MON and stops"
-	cont "its evolution."
+	para "Cela surprendra le"
+	line "#MON et le"
+	cont "fera s'arrêter."
 	done
 
 Route38_MapEvents:

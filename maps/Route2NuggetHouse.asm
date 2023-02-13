@@ -27,26 +27,23 @@ Route2NuggetHouseBookshelf: ; unreferenced
 	jumpstd DifficultBookshelfScript
 
 Route2NuggetHouseFisherText:
-	text "Hi! Wow, I'm glad"
-	line "to see you."
+	text "Hé! J'suis content"
+	line "de te voir."
 
-	para "You're the first"
-	line "visitor I've had"
-	cont "in a long time."
+	para "Ca fait longtemps"
+	line "qu'on ne m'a pas"
+	cont "rendu visite."
 
-	para "I'm super-happy!"
-	line "Let me give you a"
-	cont "little present."
+	para "Et pour la peine,"
+	line "je vais t'offrir"
+	cont "un p'tit cadeau."
 	done
 
 Route2NuggetHouseFisherText_GotNugget:
-	text "That's a NUGGET."
+	text "C'est une PEPITE."
 
-	para "I can't give you"
-	line "any nuggets of"
-
-	para "wisdom, so that'll"
-	line "have to do!"
+	para "Tu verras, ça vaut"
+	line "du pognon!"
 	done
 
 Route2NuggetHouse_MapEvents:

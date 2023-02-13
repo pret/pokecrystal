@@ -33,46 +33,46 @@ Route18Sign:
 	jumptext Route18SignText
 
 BirdKeeperBorisSeenText:
-	text "If you're looking"
-	line "for #MON, you"
+	text "Cherche les #-"
+	line "MON dans les"
 
-	para "have to look in"
-	line "the tall grass."
+	para "hautes herbes."
+	line "Tu le savais déjà?"
 	done
 
 BirdKeeperBorisBeatenText:
-	text "Ayieee!"
+	text "Aïe!"
 	done
 
 BirdKeeperBorisAfterBattleText:
-	text "Since you're so"
-	line "strong, it must be"
-	cont "fun to battle."
+	text "Ca te fait quoi"
+	line "d'être balèze?"
+	cont "C'est sympa?"
 	done
 
 BirdKeeperBobSeenText:
-	text "CYCLING ROAD is a"
-	line "quick shortcut to"
-	cont "CELADON."
+	text "La PISTE CYCLABLE"
+	line "est un raccourci"
+	cont "vers CELADOPOLE."
 	done
 
 BirdKeeperBobBeatenText:
-	text "…Whew!"
+	text "...Fouiii!"
 	done
 
 BirdKeeperBobAfterBattleText:
-	text "If you don't have"
-	line "a BICYCLE, you're"
+	text "Sans BICYCLETTE,"
+	line "tu ne peux pas"
 
-	para "not allowed to use"
-	line "the shortcut."
+	para "emprunter ce"
+	line "raccourci."
 	done
 
 Route18SignText:
 	text "ROUTE 18"
 
-	para "CELADON CITY -"
-	line "FUCHSIA CITY"
+	para "CELADOPOLE -"
+	line "PARMANIE"
 	done
 
 Route18_MapEvents:

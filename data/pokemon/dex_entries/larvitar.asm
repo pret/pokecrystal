@@ -1,10 +1,11 @@
-	db "ROCK SKIN@" ; species name
-	dw 200, 1590 ; height, weight
+	db "PEAUPIERRE@" ; species name
+	db 6 ; height
+	dw 720 ; weight
 
-	db   "Born deep under-"
-	next "ground, this"
-	next "#MON becomes a"
+	db   "Né sous la terre,"
+	next "il devient une"
+	next "nymphe en avalant"
 
-	page "pupa after eating"
-	next "enough dirt to"
-	next "make a mountain.@"
+	page "assez de terre"
+	next "pour recouvrir une"
+	next "montagne.@"

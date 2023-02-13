@@ -491,8 +491,8 @@ MenuData_ChallengeExplanationCancel:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3
 	db "Challenge@"
-	db "Explanation@"
-	db "Cancel@"
+	db "Règles@"
+	db "Annuler@"
 
 Function17d2b6:
 	call Function17d2c0
@@ -1840,7 +1840,7 @@ Function17dc1f:
 	ld [wc709], a
 	add $4
 	ld [wc70b], a
-	ld a, $96
+	ld a, $92
 	ld [wc70d], a
 	ld a, $5c
 	ld [wc70e], a
@@ -3944,8 +3944,8 @@ Function17f220:
 	ret
 
 .Genders: dw .Boy, .Girl
-.Boy:     db "Boy@"
-.Girl:    db "Girl@"
+.Boy:     db "@"
+.Girl:    db "@"
 
 Function17f27b:
 	pop hl

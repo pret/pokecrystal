@@ -35,85 +35,80 @@ Route24RocketScript:
 	end
 
 Route24RocketSeenText:
-	text "Hey, kid! Me am a"
-	line "TEAM ROCKET member"
-	cont "kind of guy!"
+	text "Hé toi! Moi"
+	line "yé souis dé la"
+	cont "TEAM ROCKET!"
 
-	para "Come from another"
-	line "country, a trainer"
-	cont "number one, me!"
+	para "Yé souis de oune"
+	line "autre pays. Mé moi"
+	cont "souper pouissant!"
 
-	para "Think I did, if"
-	line "stop the energy,"
+	para "Si arrété énérgie"
+	line "ici pas bien pour"
+	cont "lé amis à moi!"
 
-	para "be big panic for"
-	line "here people!"
+	para "Ma mission cé oune"
+	line "sécré alors pas"
+	cont "té dire!"
 
-	para "Secret it is my"
-	line "mission, so tell"
-	cont "you I not!"
+	para "Mé! Si toi mé"
+	line "gagné, cé dé"
 
-	para "But! If win you do"
-	line "versus me, a man I"
+	para "l'honor de té dire"
+	line "lé secret à moi."
 
-	para "be and mine secret"
-	line "to you I tell."
-
-	para "Hey, kid! Battle"
-	line "begin we do!"
+	para "Alors!"
+	line "COMBAT!"
 	done
 
 Route24RocketBeatenText:
-	text "Ayieeeh! No, no,"
-	line "no, believe it I"
-	cont "can't!"
+	text "Ayiéééé! No yé lé"
+	line "crois pas!"
 
-	para "Strong very much"
-	line "be you! Match I am"
-	cont "not to you!"
+	para "Té qui toi, no?"
+	line "Yé souis pas dé"
+	cont "la hauteur!"
 	done
 
 Route24RocketAfterBattleText:
-	text "OK. Tell you mine"
-	line "secret will I."
+	text "OK. Moi lé dire"
+	line "la secret."
 
-	para "MACHINE PART steal"
-	line "by me, hide it I"
+	para "PARTIE MACH. jé"
+	line "la volé moi."
 
-	para "did in GYM of the"
-	line "CERULEAN."
+	para "La planqué aussi"
+	line "dans ARENE AZURIA."
 
-	para "Inside water put"
-	line "it I did. Look for"
+	para "Dans l'eau tu la"
+	line "cherches au"
+	cont "milieu."
 
-	para "in water center of"
-	line "GYM at."
+	para "Dans l'ARENE, OK?"
+	line "Tout compris?"
 
-	para "But you forget me"
-	line "not!"
+	para "Ma toi tu oublies"
+	line "pas moi!"
 
-	para "Beat you for sure"
-	line "will TEAM ROCKET."
+	para "TEAM ROCKET te"
+	line "battre!"
 
-	para "Come from JOHTO"
-	line "will they, mine"
+	para "Ils viennent de"
+	line "JOHTO mes amis et"
 
-	para "friends, yes. Will"
-	line "revenge they are."
+	para "ta tête te la"
+	line "cassent, oh oui."
 	done
 
 Route24RocketDisappearsText:
-	text "…"
+	text "..."
 
-	para "You say what? TEAM"
-	line "ROCKET bye-bye a"
+	para "Qué dit? TEAM"
+	line "ROCKET cassé?"
+	cont "Par toi en plous?"
 
-	para "go-go? Broken it"
-	line "is says you?"
-
-	para "Oh, no! Should I"
-	line "do what now on"
-	cont "from, me?"
+	para "Oh, non! Qué yé"
+	line "dois faire moi?"
 	done
 
 Route24_MapEvents:

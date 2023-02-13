@@ -1,10 +1,11 @@
-	db "HARD SHELL@" ; species name
-	dw 311, 3350 ; height, weight
+	db "CARAPADURE@" ; species name
+	db 12 ; height
+	dw 1520 ; weight
 
-	db   "It will not stay"
-	next "still, even while"
-	next "it's a pupa. It"
+	db   "Il ne reste pas"
+	next "immobile. Il pos-"
+	next "sède déjà des pat-"
 
-	page "already has arms"
-	next "and legs under its"
-	next "solid shell.@"
+	page "tes avant et ar-"
+	next "rière dans sa"
+	next "carapace.@"

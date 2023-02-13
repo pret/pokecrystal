@@ -1,10 +1,11 @@
-	db "EGG@" ; species name
-	dw 307, 760 ; height, weight
+	db "OEUF@" ; species name
+	db 11 ; height
+	dw 346 ; weight
 
-	db   "People try to"
-	next "catch it for its"
-	next "extremely"
+	db   "On essaie souvent"
+	next "de l'attraper pour"
+	next "ses oeufs."
 
-	page "nutritious eggs,"
-	next "but it rarely can"
-	next "be found.@"
+	page "On a cependant du"
+	next "mal à le trouver."
+	next "@"

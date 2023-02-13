@@ -1,10 +1,11 @@
-	db "LAVA@" ; species name
-	dw 207, 1210 ; height, weight
+	db "LAVE@" ; species name
+	db 8 ; height
+	dw 550 ; weight
 
-	db   "Its body is as hot"
-	next "as lava and is"
-	next "always billowing."
+	db   "Son corps en ébul-"
+	next "lition est aussi"
+	next "chaud que de la"
 
-	page "Flames will"
-	next "occasionally burst"
-	next "from its shell.@"
+	page "lave. Des flammes"
+	next "sortent de sa"
+	next "coquille.@"

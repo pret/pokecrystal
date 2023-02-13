@@ -148,129 +148,126 @@ CeruleanCityHiddenBerserkGene:
 	hiddenitem BERSERK_GENE, EVENT_FOUND_BERSERK_GENE_IN_CERULEAN_CITY
 
 CeruleanCityCooltrainerMText1:
-	text "KANTO's POWER"
-	line "PLANT?"
+	text "La CENTRALE de"
+	line "KANTO?"
 
-	para "It's near the end"
-	line "of ROUTE 9, the"
+	para "C'est vers le bout"
+	line "de la ROUTE 9, à"
+	cont "l'est d'ici."
 
-	para "road that heads"
-	line "east from here."
-
-	para "I think there was"
-	line "an accident of"
-	cont "some sort there."
+	para "Je crois qu'il y a"
+	line "un truc qui marche"
+	cont "pas là-bas."
 	done
 
 CeruleanCityCooltrainerMText2:
-	text "You're collecting"
-	line "every single kind"
-	cont "of #MON?"
+	text "Tu collectionnes"
+	line "tous les #MON"
+	cont "différents?"
 
-	para "That must be quite"
-	line "a challenge, but"
-	cont "it sounds fun too."
+	para "Ca doit pas être"
+	line "super facile..."
+	cont "Mais ça doit être"
+	cont "rigolo, non?"
 	done
 
 CeruleanCitySuperNerdText:
-	text "The CAPE in the"
-	line "north is a good"
+	text "Le CAP au Nord est"
+	line "un bon endroit"
 
-	para "place for dates."
-	line "Girls like it!"
+	para "pour un rencard!"
+	line "Les filles adorent"
+	cont "ça!"
 	done
 
 CeruleanCitySlowbroText:
-	text "SLOWBRO: Yarah?"
+	text "FLAGADOSS: Gaaa?"
 	done
 
 CeruleanCityCooltrainerFText1:
-	text "My SLOWBRO and I"
-	line "make an awesome"
-	cont "combination!"
+	text "Mon FLAGADOSS et"
+	line "moi on va trop"
+	cont "bien ensemble!"
 	done
 
 CeruleanCityCooltrainerFText2:
-	text "SLOWBRO, show me"
-	line "your CONFUSION!"
+	text "FLAGADOSS!"
+	line "Lance CHOC MENTAL!"
 	done
 
 CeruleanCityCooltrainerFText3:
-	text "…"
+	text "......."
 	done
 
 CeruleanCityFisherText:
-	text "I'm a huge fan of"
-	line "CERULEAN GYM's"
-	cont "MISTY."
+	text "Je suis un super"
+	line "fan d'ONDINE de"
+	cont "l'ARENE d'AZURIA."
 	done
 
 CeruleanCityFisherRocketTipText:
-	text "I saw this shady"
-	line "guy go off toward"
-	cont "CERULEAN's CAPE."
+	text "J'ai vu ce drôle"
+	line "de type aller vers"
+	cont "le CAP d'AZURIA."
 	done
 
 CeruleanCityYoungsterText1:
-	text "There used to be a"
-	line "cave here that had"
+	text "Il y avait une"
+	line "caverne ici qui"
 
-	para "horribly powerful"
-	line "#MON in it."
+	para "abritait un #-"
+	line "MON monstrueuse-"
+	cont "ment balèze."
 	done
 
 CeruleanCityYoungsterText2:
-	text "Ayuh?"
+	text "Quoi?"
 
-	para "My ITEMFINDER is"
-	line "responding…"
+	para "Mon CHERCH'OBJET"
+	line "vient de sonner..."
 	done
 
 CeruleanCitySignText:
-	text "CERULEAN CITY"
+	text "AZURIA"
 
-	para "A Mysterious Blue"
-	line "Aura Surrounds It"
+	para "Entourée d'une"
+	line "étrange aura bleue"
 	done
 
 CeruleanGymSignText:
-	text "CERULEAN CITY"
-	line "#MON GYM"
-	cont "LEADER: MISTY"
+	text "CHAMPION d'ARENE"
+	line "d'AZURIA: ONDINE"
 
-	para "The Tomboyish"
-	line "Mermaid"
+	para "Une vraie petite"
+	line "sirène"
 	done
 
 CeruleanBikeShopSignText:
-	text "There's a notice"
-	line "here…"
+	text "Il y a une"
+	line "affiche..."
 
-	para "The BIKE SHOP has"
-	line "moved to GOLDENROD"
-	cont "CITY in JOHTO…"
+	para "Les CYCLES A GOGO"
+	line "sont à DOUBLON-"
+	cont "VILLE à JOHTO..."
 	done
 
 CeruleanPoliceSignText:
-	text "There's a notice"
-	line "here…"
+	text "Il y a une affiche"
+	line "ici..."
 
-	para "Stamp out thievery"
-	line "and make the city"
+	para "Non au vol."
+	line "Oui au bonheur."
 
-	para "a friendlier, more"
-	line "cheerful place!"
-
-	para "CERULEAN POLICE"
+	para "POLICE d'AZURIA"
 	done
 
 CeruleanCapeSignText:
-	text "CERULEAN CAPE"
-	line "AHEAD"
+	text "CAP d'AZURIA"
+	line "Tout droit"
 	done
 
 CeruleanLockedDoorText:
-	text "It's locked…"
+	text "C'est fermé..."
 	done
 
 CeruleanCity_MapEvents:

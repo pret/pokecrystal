@@ -1,139 +1,132 @@
 AnthonyMonAteSomeBerriesText:
-	text "The other day, I"
-	line "was watching my"
-
-	para "@"
+	text "L'autre jour j'ai"
+	line "vu @"
 	text_ram wStringBuffer4
-	text " eat"
-	line "some BERRIES."
+	text_start
+	cont "manger des BAIES."
 
-	para "It looked like it"
-	line "was enjoying its"
+	para "Il avait l'air"
+	line "d'aimer ça, alors"
 
-	para "meal, so I decided"
-	line "to try some."
+	para "j'ai décidé d'y"
+	line "goûter."
 
-	para "I'm not sure if"
-	line "people should eat"
+	para "Je ne sais pas si"
+	line "c'est bon pour la"
 
-	para "that stuff, but it"
-	line "was delicious!"
+	para "santé, mais c'est"
+	line "délicieux!"
 	done
 
 AnthonyDefeatedMonText:
-	text "Lately, I've been"
-	line "running across"
+	text "En ce moment, je"
+	line "vois beaucoup de"
 
-	para "wild @"
+	para "@"
 	text_ram wStringBuffer4
 	text_start
-	line "quite often."
+	line "sauvages."
 
-	para "They're easily"
-	line "taken care of."
+	para "On peut les battre"
+	line "facilement."
 	done
 
 AnthonyLostAMonText:
-	text "Oh yeah, I was"
-	line "battling this"
+	text "Au fait, j'ai"
+	line "combattu un"
 
 	para "@"
 	text_ram wStringBuffer4
-	text " the"
-	line "other day…"
+	text_start
+	line "l'autre jour..."
 
-	para "It took off when I"
-	line "got distracted by"
-	cont "a passing BEAUTY."
+	para "J'ai été dis-"
+	line "trait par un"
+	cont "CANON qui passait."
 
-	para "Learn from my"
-	line "mistake--always"
+	para "Comme quoi..."
+	line "Y'a des filles,"
 
-	para "stay focused on"
-	line "the job at hand!"
+	para "faut pas les"
+	line "regarder..."
+	cont "Ca fait trop mal!"
 	done
 
 AnthonyBattleRematchText:
-	text "Come on--let's"
-	line "battle right now!"
+	text "Allez! On va se"
+	line "battre!"
 
 	para "@"
 	text_ram wStringBuffer5
-	text " is"
-	line "where I am."
+	text ","
+	line "c'est là où je"
 
-	para "Come on down if"
-	line "you feel up to it!"
+	para "suis. Viens me"
+	line "rejoindre!"
 	done
 
 AnthonyHangUpText:
-	text "All right then!"
-	line "Be good!"
+	text "Allez hop!"
+	line "A la prochaine!"
 	done
 
 AnthonySwarmText:
-	text "<PLAYER>! It's"
-	line "mind-blowing!"
+	text "<PLAYER>!"
+	line "C'est dingue!"
 
-	para "I took a hike in"
+	para "Je suis allé vers"
 	line "@"
 	text_ram wStringBuffer5
 	text_start
-	cont "yesterday, see?"
+	cont "hier..."
 
-	para "Well, there were"
-	line "tons of @"
+	para "Il y a plein de"
+	line "@"
 	text_ram wStringBuffer4
 	text_start
-	para "around! You have"
-	line "to see it!"
+	para "dans ce coin!"
+	line "Faut voir ça!"
 
-	para "I get this feeling"
-	line "that @"
+	para "J'ai l'impression"
+	line "que @"
 	text_ram wStringBuffer4
 	text_start
-	para "may be timid."
-	line "I didn't see any"
+	para "est timide."
+	line "J'en ai pas vu là"
 
-	para "where there are"
-	line "strong #MON."
+	para "où il y a des"
+	line "#MON puissants."
 	done
 
 AnthonyWasntPayingAttentionText:
-	text "Rare #MON?"
+	text "Des #MON rares?"
 
-	para "Hey, sorry! I was"
-	line "too focused on my"
+	para "Désolé!"
+	line "Je ne fais pas"
 
-	para "hike, so I wasn't"
-	line "paying attention."
+	para "attention quand je"
+	line "me balade."
 	done
 
 AnthonyReminderText:
-	text "Hello! You haven't"
-	line "forgotten about"
-
-	para "our battle, have"
-	line "you?"
+	text "Hé! Tu as oublié"
+	line "notre combat?"
 
 	para "@"
 	text_ram wStringBuffer5
 	text "!"
-	line "I'm waiting!"
+	line "J'attends!"
 	done
 
 AnthonyHurryText:
-	text "Hello? What? Where"
-	line "is DUNSPARCE?"
+	text "Allô? Quoi? Où"
+	line "est INSOLOURDO?"
 
-	para "DARK CAVE! Hurry!"
+	para "ANTRE NOIRE! Vite!"
 
-	para "I know I've said"
-	line "it before, but"
+	para "Il n'apparaît pas"
+	line "s'il y a trop de"
 
-	para "DUNSPARCE don't"
-	line "appear when there"
-
-	para "are strong #MON"
-	line "around."
+	para "#MON puissants"
+	line "dans le coin."
 	done

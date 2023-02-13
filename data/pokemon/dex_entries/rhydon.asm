@@ -1,10 +1,11 @@
-	db "DRILL@" ; species name
-	dw 603, 2650 ; height, weight
+	db "PERCEUR@" ; species name
+	db 19 ; height
+	dw 1200 ; weight
 
-	db   "By lightly spin-"
-	next "ning its drill-"
-	next "like horn, it can"
+	db   "En faisant tourner"
+	next "sa corne comme"
+	next "une perceuse, il"
 
-	page "easily shatter"
-	next "even a diamond in"
-	next "the rough.@"
+	page "peut même briser"
+	next "un diamant à"
+	next "l'état brut.@"

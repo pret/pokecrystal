@@ -64,14 +64,19 @@ RandyScript:
 
 GiftSpearowMail:
 	db FLOWER_MAIL
-	db   "DARK CAVE leads"
-	next "to another road@"
+	db   "ANTRE NOIRE    "
+	next "mène autre part@"
 
 GiftSpearowName:
-	db "KENYA@"
+	db "ALFRED@"
 
 GiftSpearowOTName:
-	db "RANDY@"
+	db "BOBBY@"
+
+	db 0 ; unused
+
+UnusedEFText: ; unreferenced
+	db " EF@"
 
 	db 0 ; unused
 
@@ -95,104 +100,108 @@ Route35GoldenrodGateFisherScript:
 	jumptextfaceplayer Route35GoldenrodGateFisherText
 
 Route35GoldenrodGateRandyAskTakeThisMonToMyFriendText:
-	text "Excuse me, kid!"
-	line "Can you do a guy"
-	cont "a favor?"
+	text "Minute papillon!"
+	line "Tu peux me rendre"
+	cont "service?"
 
-	para "Can you take this"
-	line "#MON with MAIL"
-	cont "to my friend?"
+	para "Tu peux apporter"
+	line "ce #MON et sa"
+	cont "LETTRE à mon pote?"
 
-	para "He's on ROUTE 31."
+	para "Il est sur la"
+	line "ROUTE 31."
 	done
 
 Route35GoldenrodGateRandyThanksText:
-	text "You will? Perfect!"
-	line "Thanks, kid!"
+	text "Tu veux bien?"
+	line "Merci!"
 
-	para "My pal's a chubby"
-	line "guy who snoozes"
-	cont "all the time."
+	para "Mon pote est gras"
+	line "et il pionce tout"
+	cont "le temps."
 
-	para "You'll recognize"
-	line "him right away!"
+	para "Tu vas le recon-"
+	line "naître, c'est sûr!"
 	done
 
 Route35GoldenrodGatePlayerReceivedAMonWithMailText:
-	text "<PLAYER> received a"
-	line "#MON with MAIL."
+	text "<PLAYER> reçoit"
+	line "un #MON avec"
+	cont "une LETTRE."
 	done
 
 Route35GoldenrodGateRandyWeirdTreeBlockingRoadText:
-	text "You can read it,"
-	line "but don't lose it!"
+	text "Tu peux la lire"
+	line "mais ne la perds"
+	cont "pas, OK? Et sou-"
+	cont "viens-toi: la"
 	cont "ROUTE 31!"
 
-	para "Oh, yeah. There"
-	line "was a weird tree"
-	cont "blocking the road."
+	para "Au fait, il y a un"
+	line "arbre bizarre qui"
+	cont "bloque le chemin."
 
-	para "I wonder if it's"
-	line "been cleared?"
+	para "Il est parti, tu"
+	line "crois?"
 	done
 
 Route35GoldenrodGateRandyCantCarryAnotherMonText:
-	text "You can't carry"
-	line "another #MON…"
+	text "Tu ne peux plus"
+	line "porter de #MON!"
 	done
 
 Route35GoldenrodGateRandyOhNeverMindThenText:
-	text "Oh… Never mind,"
-	line "then…"
+	text "Bon. Laisse tomber"
+	line "alors..."
 	done
 
 Route35GoldenrodGateRandySomethingForYourTroubleText:
-	text "Thanks, kid! You"
-	line "made the delivery"
-	cont "for me!"
+	text "Merci bien! Tu"
+	line "as bien fait la"
+	cont "livraison!"
 
-	para "Here's something"
-	line "for your trouble!"
+	para "Voilà pour toi!"
 	done
 
 Route35GoldenrodGateRandyMyPalWasSnoozingRightText:
-	text "My pal was snooz-"
-	line "ing, right? Heh,"
-	cont "what'd I say?"
+	text "Mon pote pionce"
+	line "comme un fou, non?"
+	cont "Quelle classe!"
 	done
 
 Route35GoldenrodGatePokefanFText:
-	text "A strange tree is"
-	line "blocking the road."
+	text "Un arbre bizarre"
+	line "bloque le chemin."
 
-	para "It wriggles around"
-	line "if you talk to it."
+	para "Il gigote si on"
+	line "s'en approche."
 
-	para "I heard it became"
-	line "wild when someone"
+	para "Il paraît qu'il"
+	line "devient dingue si"
 
-	para "watered it with a"
-	line "SQUIRTBOTTLE."
+	para "on l'asperge avec"
+	line "une CARAPUCE A O."
 	done
 
 Route35GoldenrodGatePokefanFText_FoughtSudowoodo:
-	text "I like the #MON"
-	line "Lullaby they play"
-	cont "on the radio."
+	text "J'aime la berceuse"
+	line "#MON qui passe"
+	cont "à la radio."
 	done
 
 Route35GoldenrodGateFisherText:
-	text "I wonder how many"
-	line "kinds of #MON"
+	text "Je me demande"
+	line "combien de types"
 
-	para "there are in the"
-	line "world."
+	para "de #MON il y a"
+	line "dans le monde."
 
-	para "Three years ago,"
-	line "PROF.OAK said that"
+	para "Il y a trois ans,"
+	line "le PROF.CHEN"
 
-	para "there were 150"
-	line "different kinds."
+	para "disait qu'il y"
+	line "avait 150 types"
+	cont "différents."
 	done
 
 Route35GoldenrodGate_MapEvents:

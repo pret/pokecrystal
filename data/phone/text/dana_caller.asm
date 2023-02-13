@@ -1,109 +1,97 @@
 DanaTakingPhotosText:
-	text "My @"
+	text "Mon @"
 	text_ram wStringBuffer4
-	text " is"
-	line "getting prettier!"
+	text_start
+	line "est tout chou!"
 
-	para "I've been taking"
-	line "photos galore!"
+	para "J'ai pris plein"
+	line "de photos!"
 	done
 
 DanaDefeatedMonText:
-	text "It took only an"
-	line "instant to KO a"
-	cont "wild @"
+	text "J'ai mis K.O. en"
+	line "une seconde un"
+	cont "@"
 	text_ram wStringBuffer4
 	text "."
 
-	para "It must be because"
-	line "you gave me some"
-
-	para "battling tips last"
-	line "time."
+	para "Tes conseils ont"
+	line "bien marché."
 	done
 
 DanaLostAMonText:
-	text "You know what?"
-	line "A wild @"
+	text "Tu sais quoi?"
+	line "Un @"
 	text_ram wStringBuffer4
 	text_start
-	para "got away from me"
-	line "again."
 
-	para "It was so close!"
-	line "Really, just a"
+	para "m'a encore"
+	line "échappé."
 
-	para "little bit more,"
-	line "and I would've…"
+	para "Il s'en est fallu"
+	line "de si peu..."
 	done
 
 DanaBattleRematchText:
-	text "Right now, I'm on"
+	text "Je suis vers"
 	line "@"
 	text_ram wStringBuffer5
 	text "."
 
-	para "If you're close"
-	line "by, let's battle!"
-
-	para "I'll be waiting"
-	line "for you!"
+	para "Si tu es dans le"
+	line "coin, COMBAT!"
+	cont "Je t'attends!"
 	done
 
 DanaHangUpText:
-	text "See you!"
+	text "Salut!"
 	done
 
 DanaFoundItemText:
-	text "You know what?"
-	line "I got a good gift!"
+	text "Tu sais quoi?"
+	line "J'ai un cadeau!"
 
-	para "As I promised,"
-	line "it's yours!"
+	para "Et comme promis,"
+	line "c'est pour toi!"
 
-	para "I'm sure you'd"
-	line "like it. Come get"
-
-	para "it! I'm waiting on"
-	line "@"
+	para "Viens le chercher"
+	line "vers..."
+	cont "@"
 	text_ram wStringBuffer5
 	text "!"
 	done
 
 DanaCanYouWaitABitLongerText:
-	text "Oh! You wanted a"
-	line "gift, right?"
+	text "Oh! Tu voulais"
+	line "un cadeau?"
 
-	para "I got one, but I"
-	line "want to keep this."
+	para "Je veux le garder"
+	line "celui-ci."
 
-	para "Can you wait a bit"
-	line "longer?"
+	para "Tu peux encore"
+	line "attendre un peu?"
 	done
 
 DanaReminderText:
-	text "Hi! You haven't"
-	line "forgotten about"
+	text "Hé! Tu as oublié"
+	line "notre combat!"
 
-	para "your promise to"
-	line "battle me?"
-
-	para "I'm waiting on"
+	para "J'attends vers"
 	line "@"
 	text_ram wStringBuffer5
 	text "!"
 	done
 
 DanaComePickUpText:
-	text "Hello?"
+	text "Allô?"
 
-	para "If you don't come"
-	line "get your present"
+	para "Si tu ne viens pas"
+	line "chercher ton ca-"
 
-	para "soon, I'll give it"
-	line "to someone else."
+	para "deau très vite,"
+	line "je le garde."
 
-	para "I'm waiting on"
+	para "J'attends vers"
 	line "@"
 	text_ram wStringBuffer5
 	text "!"

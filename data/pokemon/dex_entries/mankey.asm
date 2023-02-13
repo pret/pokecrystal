@@ -1,10 +1,11 @@
-	db "PIG MONKEY@" ; species name
-	dw 108, 620 ; height, weight
+	db "PORSINGE@" ; species name
+	db 5 ; height
+	dw 280 ; weight
 
-	db   "It lives in groups"
-	next "in the treetops."
-	next "If it loses sight"
+	db   "Il vit en groupe"
+	next "au sommet des ar-"
+	next "bres. S'il se re-"
 
-	page "of its group, it"
-	next "becomes infuriated"
-	next "by its loneliness.@"
+	page "trouve seul, sa"
+	next "solitude le rend"
+	next "alors furieux.@"

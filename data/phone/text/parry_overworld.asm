@@ -1,73 +1,72 @@
 ParryAskNumber1Text:
-	text "Sheesh, the way"
-	line "you attacked! That"
+	text "Ouaiiiis!"
+	line "T'es fortiche, ma"
 
-	para "was something! We"
-	line "should meet again!"
+	para "parole! Il faut se"
+	line "refaire ça!"
 
-	para "How about giving"
-	line "me your number?"
+	para "Tu me donnes ton"
+	line "numéro?"
 	done
 
 ParryAskNumber2Text:
-	text "So you want to"
-	line "register my phone"
+	text "Tu veux enregis-"
+	line "trer mon numéro"
 
-	para "number for a re-"
-	line "match, huh?"
+	para "pour combattre à"
+	line "nouveau?"
 	done
 
 ParryNumberAcceptedText:
-	text "I'll call you"
-	line "whenever I feel"
-	cont "like battling!"
+	text "Je t'appelle si"
+	line "je veux encore"
+	cont "combattre!"
 	done
 
 ParryNumberDeclinedText:
-	text "No? That's fine."
+	text "Non? Bien."
 
-	para "A definite no is"
-	line "easy to take!"
+	para "Pas cool."
+	line "Pas glop."
 
-	para "I'll be right here"
-	line "when you're ready"
-	cont "for a rematch."
+	para "Reviens me voir si"
+	line "tu veux combattre"
+	cont "à nouveau."
 	done
 
 ParryPhoneFullText:
-	text "Oh? There's no"
-	line "room to register"
-	cont "my phone number."
+	text "Oh? Il n'y a plus"
+	line "de place pour mon"
+	cont "numéro."
 	done
 
 ParryRematchText:
-	text "Hey, here comes"
-	line "the kid! Let's go!"
+	text "Te voilà, mon"
+	line "bouchon! Allez!"
 
-	para "Ready for my usual"
-	line "no-brainer, all-"
-	cont "out offense?"
+	para "C'est parti pour"
+	line "une super attaque!"
 	done
 
 ParryPackFullText:
-	text "Your PACK looks"
-	line "stuffed full!"
+	text "Ton SAC a l'air"
+	line "super plein!"
 
-	para "You can't have"
-	line "this now."
+	para "Je ne peux rien"
+	line "te donner."
 	done
 
 ParryRematchGiftText:
-	text "Well, you're"
-	line "special all right."
+	text "Tu n'es pas comme"
+	line "les autres..."
 
-	para "If only I'd begun"
-	line "#MON when I was"
-	cont "a tad younger…"
+	para "J'aurais dû com-"
+	line "mencer à m'entraî-"
+	cont "ner plus jeune..."
 
-	para "I want you to work"
-	line "and succeed for"
+	para "Je te souhaite"
+	line "tant de succès..."
 
-	para "the both of us."
-	line "So take this, OK?"
+	para "Prends ceci..."
+	line "J'y tiens."
 	done

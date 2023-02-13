@@ -1,10 +1,11 @@
-	db "DARK@" ; species name
-	dw 200, 240 ; height, weight
+	db "SOMBRE@" ; species name
+	db 6 ; height
+	dw 108 ; weight
 
-	db   "Around dawn, its"
-	next "ominous howl"
-	next "echoes through the"
+	db   "Il hurle dès l'au-"
+	next "be pour délimiter"
+	next "son territoire."
 
-	page "area to announce"
-	next "that this is its"
-	next "territory.@"
+	page "On l'entend à des"
+	next "kilomètres à la"
+	next "ronde.@"

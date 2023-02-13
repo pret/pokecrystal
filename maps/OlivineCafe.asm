@@ -30,50 +30,48 @@ OlivineCafeSailorScript:
 	jumptextfaceplayer OlivineCafeSailorText
 
 OlivineCafeStrengthSailorText:
-	text "Hah! Your #MON"
-	line "sure look like"
-	cont "lightweights!"
+	text "Ha! Tes #MON"
+	line "ont l'air de"
+	cont "mauviettes!"
 
-	para "They don't have"
-	line "the power to move"
-	cont "boulders aside."
+	para "Ils ne peuvent"
+	line "pas déplacer les"
+	cont "rochers, je parie."
 
-	para "Here, use this"
-	line "and teach them"
-	cont "STRENGTH!"
+	para "Tiens! Apprends-"
+	line "leur FORCE!"
 	done
 
 OlivineCafeStrengthSailorText_GotStrength:
-	text "On the sea, the"
-	line "only thing you can"
+	text "En mer, la seule"
+	line "et unique chose"
 
-	para "count on is your"
-	line "own good self!"
+	para "sur laquelle tu"
+	line "puisses compter"
+	cont "c'est toi-même!"
 
-	para "I'm so proud of my"
-	line "buff bod!"
+	para "Et moi je me fais"
+	line "bien confiance!"
 	done
 
 OlivineCafeFishingGuruText:
-	text "OLIVINE CAFE's"
-	line "menu is chock full"
+	text "Le CAFE d'OLIVILLE"
+	line "fait des plats"
 
-	para "of hearty fare for"
-	line "beefy SAILORS!"
+	para "pour les joyeux"
+	line "marins!"
 	done
 
 OlivineCafeSailorText:
-	text "Whenever I roll"
-	line "into this town, I"
+	text "A chaque passage"
+	line "dans cette ville,"
 
-	para "always visit the"
-	line "OLIVINE CAFE."
+	para "je vais au CAFE"
+	line "d'OLIVILLE."
 
-	para "Everything on the"
-	line "menu makes me feel"
-
-	para "stronger. I can't"
-	line "stop eating!"
+	para "La bouffe y est"
+	line "trooooooooooooop"
+	cont "bonne!"
 	done
 
 OlivineCafe_MapEvents:

@@ -151,655 +151,313 @@ GoldenrodPokeCenter1FLinkReceptionistWalkToStairsFromRightDoorwayTileMovement:
 	step_end
 
 GoldenrodPokecomCenterWelcomeToTradeCornerText: ; unreferenced
-	text "Hello! Welcome to"
-	line "#COM CENTER"
-	cont "TRADE CORNER."
-
-	para "You can trade"
-	line "#MON with other"
-	cont "people far away."
+	text_start
 	done
 
 GoldenrodPokecomCenterWeMustHoldYourMonText: ; unreferenced
-	text "To make a trade,"
-	line "we must hold your"
-	cont "#MON."
-
-	para "Would you like to"
-	line "trade?"
+	text_start
 	done
 
 GoldenrodPokecomCenterWhatMonDoYouWantText: ; unreferenced
-	text "What kind of"
-	line "#MON do you"
-	cont "want in return?"
+	text_start
 	done
 
 GoldenrodPokecomCenterWeWillTradeYourMonForMonText: ; unreferenced
-	text "Fine. We will try"
-	line "to trade your"
-
-	para "@"
-	text_ram wStringBuffer3
-	text " for"
-	line "@"
-	text_ram wStringBuffer4
-	text "."
-
-	para "We'll have to hold"
-	line "your #MON"
-	cont "during the trade."
-
-	para "Please wait while"
-	line "we prepare the"
-	cont "room for it."
+	text_start
 	done
 
 GoldenrodPokecomCenterWeWillTradeYourMonForNewText: ; unreferenced
-	text "Fine. We will try"
-	line "to trade your"
-
-	para "@"
-	text_ram wStringBuffer3
-	text " for a"
-	line "#MON that you"
-	cont "have never seen."
-
-	para "We'll have to hold"
-	line "your #MON"
-	cont "during the trade."
-
-	para "Please wait while"
-	line "we prepare the"
-	cont "room for it."
+	text_start
 	done
 
 GoldenrodPokecomCenterYourMonHasBeenReceivedText: ; unreferenced
-	text "Your trade #MON"
-	line "has been received."
-
-	para "It will take time"
-	line "to find a trade"
-
-	para "partner. Please"
-	line "come back later."
+	text_start
 	done
 
 GoldenrodPokecomCenterYouHaveOnlyOneMonText: ; unreferenced
-	text "Oh? You have only"
-	line "one #MON in"
-	cont "your party. "
-
-	para "Please come back"
-	line "once you've in-"
-	cont "creased the size"
-	cont "of your party."
+	text_start
 	done
 
 GoldenrodPokecomCenterWeHopeToSeeYouAgainText: ; unreferenced
-	text "We hope to see you"
-	line "again."
+	text_start
 	done
 
 GoldenrodPokecomCenterCommunicationErrorText: ; unreferenced
-	text "Communication"
-	line "error…"
+	text_start
 	done
 
 GoldenrodPokecomCenterCantAcceptLastMonText: ; unreferenced
-	text "If we accept that"
-	line "#MON, what will"
-	cont "you battle with?"
+	text_start
 	done
 
 GoldenrodPokecomCenterCantAcceptEggText: ; unreferenced
-	text "Sorry. We can't"
-	line "accept an EGG."
+	text_start
 	done
 
 GoldenrodPokecomCenterCantAcceptAbnormalMonText: ; unreferenced
-	text "Sorry, but your"
-	line "#MON appears to"
-
-	para "be abnormal. We"
-	line "can't accept it."
+	text_start
 	done
 
 GoldenrodPokecomCenterAlreadyHoldingMonText: ; unreferenced
-	text "Oh? Aren't we"
-	line "already holding a"
-	cont "#MON of yours?"
+	text_start
 	done
 
 GoldenrodPokecomCenterCheckingTheRoomsText: ; unreferenced
-	text "We'll check the"
-	line "rooms."
-
-	para "Please wait."
+	text_start
 	done
 
 GoldenrodPokecomCenterTradePartnerHasBeenFoundText: ; unreferenced
-	text "Thank you for your"
-	line "patience."
-
-	para "A trade partner"
-	line "has been found."
+	text_start
 	done
 
 GoldenrodPokecomCenterItsYourNewPartnerText: ; unreferenced
-	text "It's your new"
-	line "partner."
-
-	para "Please take care"
-	line "of it with love."
-
-	para "We hope to see you"
-	line "again."
+	text_start
 	done
 
 GoldenrodPokecomCenterYourPartyIsFullText: ; unreferenced
-	text "Uh-oh. Your party"
-	line "is already full."
-
-	para "Please come back"
-	line "when you have room"
-	cont "in your party."
+	text_start
 	done
 
 GoldenrodPokecomCenterNoTradePartnerFoundText: ; unreferenced
-	text "It's unfortunate,"
-	line "but no one has"
-
-	para "come forward as a"
-	line "trade partner."
-
-	para "Would you like"
-	line "your #MON back?"
+	text_start
 	done
 
 GoldenrodPokecomCenterReturnedYourMonText: ; unreferenced
-	text "We have returned"
-	line "your #MON."
+	text_start
 	done
 
 GoldenrodPokecomCenterYourMonIsLonelyText: ; unreferenced
-	text "It's unfortunate,"
-	line "but no one has"
-
-	para "come forward as a"
-	line "trade partner."
-
-	para "We've held your"
-	line "#MON for a long"
-
-	para "time. As a result,"
-	line "it is very lonely."
-
-	para "Sorry, but we must"
-	line "return it to you."
+	text_start
 	done
 
 GoldenrodPokecenter1FWeHopeToSeeYouAgainText_2: ; unreferenced
-	text "We hope to see you"
-	line "again."
+	text_start
 	done
 
 GoldenrodPokecomCenterContinueToHoldYourMonText: ; unreferenced
-	text "Fine. We will"
-	line "continue to hold"
-	cont "your #MON."
+	text_start
 	done
 
 GoldenrodPokecomCenterRecentlyLeftYourMonText: ; unreferenced
-	text "Oh? You left your"
-	line "#MON with us"
-	cont "only recently."
-
-	para "Please come back"
-	line "later."
+	text_start
 	done
 
 GoldenrodPokecomCenterSaveBeforeTradeCornerText: ; unreferenced
-	text "We'll SAVE before"
-	line "connecting to the"
-	cont "CENTER."
+	text_start
 	done
 
 GoldenrodPokecomCenterWhichMonToTradeText: ; unreferenced
-	text "Which #MON do"
-	line "you want to trade?"
+	text_start
 	done
 
 GoldenrodPokecomCenterTradeCanceledText: ; unreferenced
-	text "Sorry, but we must"
-	line "cancel the trade."
+	text_start
 	done
 
 GoldenrodPokecomCenterEggTicketText: ; unreferenced
-	text "Oh!"
-
-	para "I see you have an"
-	line "EGG TICKET!"
-
-	para "It's a coupon that"
-	line "special people can"
-
-	para "redeem for a"
-	line "special #MON!"
+	text_start
 	done
 
 GoldenrodPokecomCenterOddEggBriefingText: ; unreferenced
-	text "Let me give you a"
-	line "quick briefing."
-
-	para "Trades held at the"
-	line "TRADE CORNER are"
-
-	para "between two"
-	line "trainers who don't"
-
-	para "know each other's"
-	line "identity."
-
-	para "As a result, it"
-	line "may take time."
-
-	para "However, an ODD"
-	line "EGG is available"
-	cont "just for you."
-
-	para "It will be sent to"
-	line "you right away."
-
-	para "Please choose one"
-	line "of the rooms in"
-
-	para "the CENTER."
-	line "An ODD EGG will be"
-
-	para "sent from the"
-	line "chosen room."
+	text_start
 	done
 
 GoldenrodPokecomCenterPleaseWaitAMomentText: ; unreferenced
-	text "Please wait a"
-	line "moment."
+	text_start
 	done
 
 GoldenrodPokecomCenterHereIsYourOddEggText: ; unreferenced
-	text "Thank you for"
-	line "waiting."
-
-	para "We received your"
-	line "ODD EGG."
-
-	para "Here it is!"
-
-	para "Please raise it"
-	line "with loving care."
+	text_start
 	done
 
 GoldenrodPokecomCenterNoEggTicketServiceText: ; unreferenced
-	text "I'm awfully sorry."
-
-	para "The EGG TICKET"
-	line "exchange service"
-	cont "isn't running now."
+	text_start
 	done
 
 GoldenrodPokecomCenterNewsMachineText: ; unreferenced
-	text "It's a #MON"
-	line "NEWS MACHINE."
+	text_start
 	done
 
 GoldenrodPokecomCenterWhatToDoText: ; unreferenced
-	text "What would you"
-	line "like to do?"
+	text_start
 	done
 
 GoldenrodPokecomCenterNewsMachineExplanationText: ; unreferenced
-	text "#MON NEWS is"
-	line "news compiled from"
-
-	para "the SAVE files of"
-	line "#MON trainers."
-
-	para "When reading the"
-	line "NEWS, your SAVE"
-
-	para "file may be sent"
-	line "out."
-
-	para "The SAVE file data"
-	line "will contain your"
-
-	para "adventure log and"
-	line "mobile profile."
-
-	para "Your phone number"
-	line "will not be sent."
-
-	para "The contents of"
-	line "the NEWS will vary"
-
-	para "depending on the"
-	line "SAVE files sent by"
-
-	para "you and the other"
-	line "#MON trainers."
-
-	para "You might even be"
-	line "in the NEWS!"
+	text_start
 	done
 
 GoldenrodPokecomCenterWouldYouLikeTheNewsText: ; unreferenced
-	text "Would you like to"
-	line "get the NEWS?"
+	text_start
 	done
 
 GoldenrodPokecomCenterReadingTheLatestNewsText: ; unreferenced
-	text "Reading the latest"
-	line "NEWS… Please wait."
+	text_start
 	done
 
 GoldenrodPokecomCenterNoOldNewsText: ; unreferenced
-	text "There is no old"
-	line "NEWS…"
+	text_start
 	done
 
 GoldenrodPokecomCenterCorruptedNewsDataText: ; unreferenced
-	text "The NEWS data is"
-	line "corrupted."
-
-	para "Please download"
-	line "the NEWS again."
+	text_start
 	done
 
 GoldenrodPokecomCenterMakingPreparationsText: ; unreferenced
-	text "We're making"
-	line "preparations."
-
-	para "Please come back"
-	line "later."
+	text_start
 	done
 
 GoldenrodPokecomCenterSaveBeforeNewsMachineText: ; unreferenced
-	text "We will SAVE your"
-	line "progress before"
-
-	para "starting the NEWS"
-	line "MACHINE."
+	text_start
 	done
 
 GoldenrodPokecomCenterPerson1Text: ; unreferenced
-	text "Whoa, this #MON"
-	line "CENTER is huge."
-
-	para "They just built"
-	line "this place. They"
-
-	para "installed lots of"
-	line "new machines too."
+	text_start
 	done
 
 GoldenrodPokecomCenterPerson2Text: ; unreferenced
-	text "I thought up a fun"
-	line "new thing for the"
-	cont "TRADE CORNER!"
-
-	para "I make a PIDGEY"
-	line "hold MAIL, then"
-
-	para "put it up for"
-	line "trade for another"
-	cont "one!"
-
-	para "If everyone did"
-	line "that, MAIL could"
-
-	para "be traded with all"
-	line "sorts of people!"
-
-	para "I call it PIDGEY"
-	line "MAIL!"
-
-	para "If it becomes"
-	line "popular, I might"
-
-	para "make lots of new"
-	line "friends!"
+	text_start
 	done
 
 GoldenrodPokecomCenterPerson3Text: ; unreferenced
-	text "They said you can"
-	line "trade #MON with"
-
-	para "total strangers up"
-	line "here."
-
-	para "But they're still"
-	line "adjusting things."
+	text_start
 	done
 
 GoldenrodPokecomCenterPerson4Text: ; unreferenced
-	text "Some girl I don't"
-	line "know sent me her"
-
-	para "HOPPIP."
-	line "You should trade"
-
-	para "for a #MON that"
-	line "you want."
+	text_start
 	done
 
 GoldenrodPokecomCenterPerson5Text: ; unreferenced
-	text "I received a"
-	line "female HOPPIP, but"
-	cont "its named STANLEY!"
-
-	para "That's my dad's"
-	line "name!"
+	text_start
 	done
 
 GoldenrodPokecomCenterPerson6Text: ; unreferenced
-	text "What is the NEWS"
-	line "MACHINE?"
-
-	para "Does it get news"
-	line "from a wider area"
-	cont "than the radio?"
+	text_start
 	done
 
 GoldenrodPokecomCenterPerson7Text: ; unreferenced
-	text "The #COM CENTER"
-	line "will link with all"
-
-	para "#MON CENTERS in"
-	line "a wireless net."
-
-	para "That must mean"
-	line "I'll be able to"
-
-	para "link with all"
-	line "sorts of people."
+	text_start
 	done
 
 GoldenrodPokecomCenterPerson8Text: ; unreferenced
-	text "The machines here"
-	line "can't be used yet."
-
-	para "Still, it's nice"
-	line "coming to a trendy"
-
-	para "place before other"
-	line "people."
+	text_start
 	done
 
 GoldenrodPokecomCenterPerson9Text: ; unreferenced
-	text "My friend was in"
-	line "the NEWS a while"
-
-	para "back. I was really"
-	line "surprised!"
+	text_start
 	done
 
 GoldenrodPokecomCenterPerson10Text: ; unreferenced
-	text "I get anxious if I"
-	line "don't check out"
-	cont "the latest NEWS!"
+	text_start
 	done
 
 GoldenrodPokecomCenterPerson11Text: ; unreferenced
-	text "If I get in the"
-	line "NEWS and become"
-
-	para "famous, I bet I'll"
-	line "be adored."
-
-	para "I wonder how I"
-	line "could get in the"
-	cont "NEWS?"
+	text_start
 	done
 
 GoldenrodPokecenter1FGameboyKidText:
-	text "The COLOSSEUM"
-	line "upstairs is for"
-	cont "link battles."
+	text "Le COLISEE sert"
+	line "à faire des com-"
+	cont "bats en Link."
 
-	para "Battle records are"
-	line "posted on the"
-
-	para "wall, so I can't"
-	line "afford to lose."
+	para "Les records sont"
+	line "affichés sur le"
+	cont "mur. Perdre, c'est"
+	cont "la honte!"
 	done
 
 GoldenrodPokecomCenterPerson12Text: ; unreferenced
-	text "I came over here"
-	line "when I got word"
-
-	para "that GOLDENROD's"
-	line "#MON CENTER has"
-
-	para "new machines that"
-	line "no one's ever seen"
-	cont "before."
-
-	para "But it looks like"
-	line "they're still busy"
-
-	para "with all their"
-	line "preparations…"
+	text_start
 	done
 
 GoldenrodPokecomCenterPerson13Text: ; unreferenced
-	text "Just seeing all"
-	line "these new things"
-
-	para "here makes me feel"
-	line "younger!"
+	text_start
 	done
 
 GoldenrodPokecenter1FLassText:
-	text "A higher level"
-	line "#MON doesn't"
-	cont "always win."
+	text "Un #MON de"
+	line "niveau élevé ne"
+	cont "gagnera pas à tous"
+	cont "les coups."
 
-	para "After all, it may"
-	line "have a type dis-"
-	cont "advantage."
+	para "Après tout, il y a"
+	line "peut-être un type"
+	cont "désavantagé."
 
-	para "I don't think"
-	line "there is a single"
+	para "Je ne crois pas"
+	line "qu'il y ait un"
 
-	para "#MON that is"
-	line "the toughest."
+	para "type de #MON"
+	line "qui soit le plus"
+	cont "résistant."
 	done
 
 GoldenrodPokeCenter1FLinkReceptionistPleaseAcceptGSBallText:
-	text "<PLAYER>, isn't it?"
+	text "<PLAYER>?"
 
-	para "Congratulations!"
+	para "Félicitations!"
 
-	para "As a special deal,"
-	line "a GS BALL has been"
-	cont "sent just for you!"
+	para "En cadeau spécial,"
+	line "une GS BALL vous a"
+	cont "été envoyée!"
 
-	para "Please accept it!"
+	para "C'est pour vous!"
 	done
 
 GoldenrodPokeCenter1FLinkReceptionistPleaseDoComeAgainText:
-	text "Please do come"
-	line "again!"
+	text "A très bientôt!"
 	done
 
 GoldenrodPokecomCenterSignText: ; unreferenced
-	text "#COM CENTER"
-	line "1F INFORMATION"
-
-	para "Left:"
-	line "ADMINISTRATION"
-
-	para "Center:"
-	line "TRADE CORNER"
-
-	para "Right:"
-	line "#MON NEWS"
+	text_start
 	done
 
 GoldenrodPokecomCenterNewsMachineNotYetText: ; unreferenced
-	text "It's a #MON"
-	line "NEWS MACHINE!"
-
-	para "It's not in"
-	line "operation yet…"
+	text_start
 	done
 
 GoldenrodPokecenter1FPokefanFDoYouHaveEonMailText:
-	text "Oh my, your pack"
-	line "looks so heavy!"
+	text "Ton SAC a l'air"
+	line "siiiii lourd!"
 
-	para "Oh! Do you happen"
-	line "to have something"
-	cont "named EON MAIL?"
+	para "Oh! As-tu un truc"
+	line "du nom de LETR"
+	cont "EVOLI?"
 
-	para "My daughter is"
-	line "after one."
+	para "Ma fille en veut"
+	line "une."
 
-	para "You can part with"
-	line "one, can't you?"
+	para "Tu peux m'en"
+	line "donner une?"
 	done
 
 GoldenrodPokecenter1FAskGiveAwayAnEonMailText:
-	text "Give away an EON"
-	line "MAIL?"
+	text "Donner LETR EVOLI?"
 	done
 
 GoldenrodPokecenter1FPokefanFThisIsForYouText:
-	text "Oh, that's great!"
-	line "Thank you, honey!"
-
-	para "Here, this is for"
-	line "you in return!"
+	text "Oh, formidable!"
+	line "Merci merci!"
+	cont "Voilà pour toi!"
 	done
 
 GoldenrodPokecenter1FPokefanFDaughterWillBeDelightedText:
-	text "My daughter will"
-	line "be delighted!"
+	text "Ma fille sera"
+	line "ravie!"
 	done
 
 GoldenrodPokecenter1FPokefanFTooBadText:
-	text "Oh? You don't have"
-	line "one? Too bad."
+	text "Oh? Tu n'en as"
+	line "pas? Dommage."
 	done
 
 GoldenrodPokecenter1FPokefanFAnotherTimeThenText:
-	text "Oh… Well, another"
-	line "time, then."
+	text "Oh... Une autre"
+	line "fois, alors."
 	done
 
 GoldenrodPokecenter1FPlayerGaveAwayTheEonMailText:
-	text "<PLAYER> gave away"
-	line "the EON MAIL."
+	text "<PLAYER> donne"
+	line "la LETR EVOLI."
 	done
 
 GoldenrodPokecenter1F_MapEvents:

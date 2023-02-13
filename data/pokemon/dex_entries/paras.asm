@@ -1,10 +1,11 @@
-	db "MUSHROOM@" ; species name
-	dw 100, 120 ; height, weight
+	db "CHAMPIGNON@" ; species name
+	db 3 ; height
+	dw 54 ; weight
 
-	db   "The tochukaso"
-	next "growing on this"
-	next "#MON's back"
+	db   "Le Tochukaso sur"
+	next "son dos l'incite"
+	next "à aspirer la sève"
 
-	page "orders it to"
-	next "extract juice from"
-	next "tree trunks.@"
+	page "des arbres pour"
+	next "se nourrir."
+	next "@"

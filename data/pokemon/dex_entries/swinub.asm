@@ -1,10 +1,11 @@
-	db "PIG@" ; species name
-	dw 104, 140 ; height, weight
+	db "COCHON@" ; species name
+	db 4 ; height
+	dw 65 ; weight
 
-	db   "It uses the tip of"
-	next "its nose to dig"
-	next "for food. Its nose"
+	db   "Il creuse le sol"
+	next "avec le bout de"
+	next "son nez pour trou-"
 
-	page "is so tough that"
-	next "even frozen ground"
-	next "poses no problem.@"
+	page "ver de la nourri-"
+	next "ture. Il perce mê-"
+	next "me la glace.@"

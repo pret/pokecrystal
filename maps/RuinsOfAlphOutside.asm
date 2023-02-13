@@ -148,133 +148,137 @@ RuinsOfAlphOutsidePlayerEnterLabMovement:
 	step_end
 
 RuinsOfAlphOutsideScientistText:
-	text "Hm? That's a #-"
-	line "DEX, isn't it?"
-	cont "May I see it?"
+	text "Hm? C'est un #-"
+	line "DEX, n'est-ce pas?"
+	cont "Puis-je le voir?"
 
-	para "There are so many"
-	line "kinds of #MON."
+	para "Il y a tant de"
+	line "#MON..."
 
-	para "Hm? What's this?"
+	para "Hmm? C'est quoi?"
 
-	para "What is this"
-	line "#MON?"
+	para "Quel est donc"
+	line "ce #MON?"
 
-	para "It looks like the"
-	line "strange writing on"
+	para "Il ressemble aux"
+	line "inscriptions sur"
 
-	para "the walls of the"
-	line "RUINS."
+	para "les murs des"
+	line "RUINES."
 
-	para "If those drawings"
-	line "are really #-"
-	cont "MON, there should"
-	cont "be many more."
+	para "Si ces dessins"
+	line "sont des #MON,"
+	cont "il doit y en avoir"
+	cont "beaucoup d'autres."
 
-	para "I know! Let me up-"
-	line "grade your #-"
-	cont "DEX. Follow me."
+	para "Je sais! Je vais"
+	line "améliorer ton"
+	cont "#DEX..."
+	cont "Suis-moi."
 	done
 
 SuperNerdStanSeenText:
-	text "What do you want?"
-	line "I'm studying--"
-	cont "don't disturb me!"
+	text "Que veux-tu?"
+	line "J'étudie, là..."
+	cont "Me cherche pas!"
 	done
 
 SuperNerdStanBeatenText:
-	text "Sorry…"
-	line "I'm frustrated by"
+	text "Pardon..."
+	line "Le manque de"
 
-	para "our lack of real"
-	line "understanding…"
+	para "communication est"
+	line "un tort..."
 	done
 
 SuperNerdStanAfterBattleText:
-	text "The RUINS are from"
-	line "about 1500 years"
-	cont "ago."
+	text "Les RUINES sont"
+	line "vieilles d'environ"
+	cont "1500 ans."
 
-	para "Nobody knows who"
-	line "built them."
+	para "Personne ne sait"
+	line "qui a pu les"
+	cont "construire."
 
-	para "It's also not"
-	line "known if the #-"
-	cont "MON statues have"
-	cont "any meaning."
+	para "On ne sait pas non"
+	line "plus si les sta-"
+	cont "tues de #MON"
+	cont "ont un sens."
 
-	para "It's all one big"
-	line "mystery…"
+	para "Alors ça..."
+	line "C'est du mystère!"
 	done
 
 PsychicNathanSeenText:
-	text "Hmmm… This is a"
-	line "strange place."
+	text "Hmmm... C'est"
+	line "bizarre ici."
 	done
 
 PsychicNathanBeatenText:
-	text "…"
+	text "...."
 	done
 
 PsychicNathanAfterBattleText:
-	text "I like thinking"
-	line "here."
+	text "J'aime réfléchir"
+	line "ici."
 	done
 
 RuinsOfAlphOutsideMysteryChamberSignText:
-	text "MYSTERY STONE"
-	line "PANEL CHAMBER"
+	text "PIERRE MYSTERE"
+	line "CHAMBRE du PANNEAU"
 	done
 
 RuinsOfAlphSignText:
-	text "RUINS OF ALPH"
-	line "VISITORS WELCOME"
+	text "RUINES D'ALPHA"
+	line "Bienvenue"
 	done
 
 RuinsOfAlphResearchCenterSignText:
-	text "RUINS OF ALPH"
-	line "RESEARCH CENTER"
+	text "RUINES D'ALPHA"
+	line "CENTRE de"
+	cont "RECHERCHE"
 
-	para "THE AUTHORITY ON"
-	line "THE RUINS OF ALPH"
+	para "La référence des"
+	line "RUINES D'ALPHA"
 	done
 
 RuinsOfAlphOutsideFisherText1:
-	text "While exploring"
-	line "the RUINS, we"
+	text "En explorant les"
+	line "RUINES, nous avons"
 
-	para "suddenly noticed"
-	line "an odd presence."
+	para "senti une drôle"
+	line "de présence."
 
-	para "We all got scared"
-	line "and ran away."
+	para "On a eu peur et"
+	line "on a filé."
 
-	para "You should be"
-	line "careful too."
+	para "Fais gaffe."
+	line "C'est un conseil."
 	done
 
 RuinsOfAlphOutsideFisherText2:
-	text "The RUINS hide a"
-	line "huge secret!"
+	text "Il y a un secret"
+	line "dans les RUINES!"
 
-	para "…I think…"
+	para "Enfin je crois..."
 	done
 
 RuinsOfAlphOutsideYoungster1Text:
-	text "There are many"
-	line "kinds of UNOWN, so"
+	text "Il existe des"
+	line "ZARBI différents."
 
-	para "we use them for"
-	line "our secret codes."
+	para "Nous les utilisons"
+	line "pour nos codes"
+	cont "secrets."
 	done
 
 RuinsOfAlphOutsideYoungster2Text:
-	text "A… H… E… A… D…"
-	line "Hmm…"
+	text "D… R… O… I… T…"
+	line "Hmmm…"
 
-	para "What?"
+	para "Quoi?"
 
-	para "I'm decoding this"
+	para "Je décode le"
 	line "message!"
 	done
 

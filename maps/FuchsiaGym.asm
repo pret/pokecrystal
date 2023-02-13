@@ -234,148 +234,148 @@ Movement_NinjaSpin:
 	step_end
 
 JanineText_DisappointYou:
-	text "Fufufufu…"
+	text "Gnah ha ha ha ha!"
 
-	para "I'm sorry to dis-"
-	line "appoint you…"
+	para "Désolée de te dé-"
+	line "cevoir mais..."
 
-	para "I'm only joking!"
+	para "En fait..."
 
-	para "I'm the real deal!"
+	para "C'est moi la"
+	line "vraie!"
 
-	para "JANINE of FUCHSIA"
-	line "GYM, that's me!"
+	para "Je suis JEANNINE"
+	line "de l'ARENE de"
+	cont "PARMANIE!"
 	done
 
 JanineText_ToughOne:
-	text "JANINE: You're a"
-	line "tough one. You"
-	cont "definitely won…"
+	text "JEANNINE: Tu as du"
+	line "talent, toi. Tu as"
+	cont "gagné..."
 
-	para "Here's SOULBADGE."
-	line "Take it."
+	para "Prends ce BADGE"
+	line "AME."
 	done
 
 Text_ReceivedSoulBadge:
-	text "<PLAYER> received"
-	line "SOULBADGE."
+	text "<PLAYER> reçoit"
+	line "le BADGE AME."
 	done
 
 JanineText_ToxicSpeech:
-	text "JANINE: You're so"
-	line "tough! I have a"
-	cont "special gift!"
+	text "JEANNINE: J'ai un"
+	line "p'tit cadeau pour"
+	cont "toi!"
 
-	para "It's TOXIC, a pow-"
-	line "erful poison that"
+	para "C'est TOXIK, un"
+	line "puissant poison"
 
-	para "steadily saps the"
-	line "victim's HP."
+	para "qui vide les PV"
+	line "de la victime."
 	done
 
 JanineText_ApplyMyself:
-	text "JANINE: I'm going"
-	line "to really apply"
+	text "JEANNINE: Je vais"
+	line "encore m'entraîner"
+	cont "et m'améliorer."
 
-	para "myself and improve"
-	line "my skills."
-
-	para "I want to become"
-	line "better than both"
-	cont "Father and you!"
+	para "Je serai plus for-"
+	line "te que toi et mon"
+	cont "petit papa!"
 	done
 
 LassAliceBeforeText:
-	text "Fufufu!"
+	text "Gnah ha ha ha!"
 
-	para "I'm JANINE, the"
-	line "GYM LEADER!"
+	para "Je suis JEANNINE"
+	line "de l'ARENE de"
+	cont "PARMANIE!"
 
-	para "No, I'm not!"
-	line "Gotcha, sucker!"
+	para "..."
+	line "Même pas vrai!"
 	done
 
 LassAliceBeatenText:
-	text "I had you fooled…"
+	text "Tu m'as crue,"
+	line "hein?"
 	done
 
 LassAliceAfterText:
-	text "How will you dis-"
-	line "tinguish our real"
-	cont "LEADER?"
+	text "Comment vas-tu"
+	line "reconnaître la"
+	cont "vraie CHAMPIONNE?"
 	done
 
 LassLindaBeforeText:
-	text "Fooled you!"
-	line "Hahaha!"
+	text "Tu m'as crue!"
+	line "Hahaha! Débile!"
 	done
 
 LassLindaBeatenText:
-	text "Ooh… I lost…"
-	line "You're not weak…"
+	text "Pfff..."
+	line "Même pas mal."
 	done
 
 LassLindaAfterText:
-	text "Well? Wasn't my"
-	line "disguise perfect?"
+	text "Il est pas bien"
+	line "mon déguisement?"
 	done
 
 PicnickerCindyBeforeText:
-	text "I'm JANINE!"
+	text "Je suis JEANNINE!"
 
-	para "How did you know I"
-	line "was real?"
+	para "..."
+	line "Tu me crois, non?"
 
-	para "Let's battle!"
+	para "COMBAT!"
 	done
 
 PicnickerCindyBeatenText:
-	text "Darn it!"
-	line "I wanted to win!"
+	text "Zut!"
+	line "Presque!"
 	done
 
 PicnickerCindyAfterText:
-	text "You must be"
-	line "getting tired."
+	text "Alors?"
+	line "Tu fatigues?"
 	done
 
 CamperBarryBeforeText:
 	text "Wahahaha!"
 
-	para "You betcha!"
-	line "I'm JANINE!"
+	para "J'suis JEANNINE!"
+	line "J'te jure!"
 	done
 
 CamperBarryBeatenText:
-	text "My disguise was"
-	line "right on! Dang!"
+	text "C'est trop bien de"
+	line "se déguiser!"
 	done
 
 CamperBarryAfterText:
-	text "Hey, you. Was my"
-	line "disguise cute or"
-	cont "what, huh?"
+	text "Alors je suis mimi"
+	line "en fille?"
 	done
 
 FuchsiaGymGuideText:
-	text "Yo, CHAMP in"
-	line "making!"
+	text "Hé! Graine de"
+	line "star!"
 
-	para "Whoops! Take a"
-	line "good look around"
+	para "Regarde autour de"
+	line "toi: tous les"
 
-	para "you. The trainers"
-	line "all look like the"
-	cont "LEADER, JANINE."
+	para "dresseurs ressem-"
+	line "blent à JEANNINE."
 
-	para "Which of them is"
-	line "the real JANINE?"
+	para "Mais... Qui est la"
+	line "vraie? Mystère!"
 	done
 
 FuchsiaGymGuideWinText:
-	text "That was a great"
-	line "battle, trainer"
-	cont "from JOHTO!"
+	text "C'était un beau"
+	line "combat, dresseur"
+	cont "de JOHTO!"
 	done
 
 FuchsiaGym_MapEvents:

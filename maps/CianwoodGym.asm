@@ -150,157 +150,175 @@ CianwoodGymMovement_ChuckChucksBoulder:
 ChuckIntroText1:
 	text "WAHAHAH!"
 
-	para "So you've come"
-	line "this far!"
+	para "Te voilà toi!"
+	line "Laisse-moi te dire"
+	cont "que je suis une"
+	cont "bête!"
 
-	para "Let me tell you,"
-	line "I'm tough!"
+	para "Mes #MON"
+	line "explosent la roche"
+	cont "et fracassent les"
+	cont "os!"
 
-	para "My #MON will"
-	line "crush stones and"
-	cont "shatter bones!"
-
-	para "Watch this!"
+	para "Regarde ça!"
 	done
 
 ChuckIntroText2:
-	text "CHUCK: Urggh!"
-	line "…"
+	text "CHUCK: Blurrp!"
+	line "............."
 
-	para "Oooarrgh!"
+	para "Aaaarrgh!"
 	done
 
 ChuckIntroText3:
-	text "There! Scared now,"
-	line "are you?"
+	text "Alors t'as peur ou"
+	line "faut crier plus"
+	cont "fort?"
 
-	para "What?"
-	line "It has nothing to"
+	para "De quoi?"
+	line "Ca n'a rien à voir"
 
-	para "do with #MON?"
-	line "That's true!"
+	para "avec les #MON?"
+	line "Je sais!"
 
-	para "Come on. We shall"
-	line "do battle!"
+	para "Allez, en position"
+	line "pour la bataille!"
 	done
 
 ChuckLossText:
-	text "Wha? Huh?"
-	line "I lost?"
+	text "Hein? Koi? Méheeuu"
+	line "j'ai pas gagné là?"
 
-	para "How about that!"
-	line "You're worthy of"
-	cont "STORMBADGE!"
+	para "A propos, je peux"
+	line "te dire un truc?"
+	cont "Je pense que tu"
+	cont "mérites le bon"
+	cont "vieux BADGE CHOC!"
 	done
 
 GetStormBadgeText:
-	text "<PLAYER> received"
-	line "STORMBADGE."
+	text "<PLAYER> reçoit"
+	line "le BADGE CHOC."
 	done
 
 ChuckExplainBadgeText:
-	text "STORMBADGE makes"
-	line "all #MON up to"
+	text "Avec le BADGE CHOC"
+	line "tous les #MON"
 
-	para "L70 obey, even"
-	line "traded ones."
+	para "jusqu'au niveau 70"
+	line "et même les échan-"
+	cont "gés t'obéiront."
 
-	para "It also lets your"
-	line "#MON use FLY"
+	para "Il permet aussi à"
+	line "tes #MON"
 
-	para "when you're not in"
-	line "a battle."
+	para "d'utiliser VOL"
+	line "hors des combats."
 
-	para "Here, take this"
-	line "too!"
+	para "Tiens, attrape ça!"
 	done
 
 ChuckExplainTMText:
-	text "That is DYNAMIC-"
-	line "PUNCH."
+	text "C'est DYNAMOPOING."
 
-	para "It doesn't always"
-	line "hit, but when it"
+	para "Ca ne touche pas"
+	line "toujours mais"
 
-	para "does, it causes"
-	line "confusion!"
+	para "lorsque le coup"
+	line "est porté, il"
+	cont "entraîne la confu-"
+	cont "sion!"
 	done
 
 ChuckAfterText:
-	text "WAHAHAH! I enjoyed"
-	line "battling you!"
+	text "WAHAHAH! J'ai aimé"
+	line "me battre contre"
+	cont "toi!"
 
-	para "But a loss is a"
-	line "loss!"
+	para "Mais une défaite"
+	line "signifie le plus"
+	cont "souvent qu'on a"
+	cont "perdu!"
 
-	para "From now on, I'm"
-	line "going to train 24"
-	cont "hours a day!"
+	para "Donc dorénavant je"
+	line "vais m'entraîner"
+	cont "24 heures sur 24!"
 	done
 
 BlackbeltYoshiSeenText:
-	text "My #MON and I"
-	line "are bound togeth-"
-	cont "er by friendship."
+	text "Mes #MON et moi"
+	line "sommes liés par"
+	cont "une grande amitié."
 
-	para "Our bond will"
-	line "never be broken!"
+	para "Notre liaison ne"
+	line "mourra jamais!"
 	done
 
 BlackbeltYoshiBeatenText:
-	text "This isn't real!"
+	text "C'est pas vrai!"
 	done
 
 BlackbeltYoshiAfterText:
-	text "You seem to have a"
-	line "strong bond with"
-	cont "your #MON too!"
+	text "Toi aussi tu"
+	line "sembles avoir lié"
+	cont "une très forte"
+	cont "complicité avec"
+	cont "tes #MON!"
 	done
 
 BlackbeltLaoSeenText:
-	text "We martial artists"
-	line "fear nothing!"
+	text "Nous autres, les"
+	line "vaillants artistes"
+	cont "martiaux n'avons"
+	cont "peur de rien!"
+	cont "Enfin je crois..."
 	done
 
 BlackbeltLaoBeatenText:
-	text "That's shocking!"
+	text "C'est choquant!"
 	done
 
 BlackbeltLaoAfterText:
-	text "Fighting #MON"
-	line "are afraid of psy-"
-	cont "chics…"
+	text "Les #MON de"
+	line "combat sont un"
+	cont "peu effrayés par"
+	cont "les #MON"
+	cont "psy..."
 	done
 
 BlackbeltNobSeenText:
-	text "Words are useless."
-	line "Let your fists do"
-	cont "the talking!"
+	text "Je ne parle pas la"
+	line "bouche pleine"
+	cont "sinon ça fait"
+	cont "heu-gneu-gneu-heu."
+	cont "Alors je me sers"
+	cont "de mes poings!"
 	done
 
 BlackbeltNobBeatenText:
-	text "…"
+	text "..."
 	done
 
 BlackbeltNobAfterText:
-	text "I lost! "
-	line "I'm speechless!"
+	text "Hein? J'ai perdu!"
+	line "J'sais pas quoi"
+	cont "dire!"
 	done
 
 BlackbeltLungSeenText:
-	text "My raging fists"
-	line "will shatter your"
+	text "Mes poings de ouf"
+	line "vont terrasser tes"
 	cont "#MON!"
 	done
 
 BlackbeltLungBeatenText:
-	text "I got shattered!"
+	text "Bon, je suis nul!"
 	done
 
 BlackbeltLungAfterText:
-	text "My #MON lost…"
-	line "My… my pride is"
-	cont "shattered…"
+	text "Mes #MON ont"
+	line "perdu, ma fierté"
+	cont "en a pris un coup!"
 	done
 
 CianwoodGym_MapEvents:

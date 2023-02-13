@@ -1,10 +1,11 @@
-	db "BALLOON@" ; species name
-	dw 108, 120 ; height, weight
+	db "BOUBOULE@" ; species name
+	db 5 ; height
+	dw 55 ; weight
 
-	db   "It rolls its cute"
-	next "eyes as it sings a"
-	next "soothing lullaby."
+	db   "Il roule des yeux"
+	next "et chante une"
+	next "longue BERCEUSE"
 
-	page "Its gentle song"
-	next "puts anyone who"
-	next "hears it to sleep.@"
+	page "qui peut"
+	next "endormir ses"
+	next "adversaires.@"

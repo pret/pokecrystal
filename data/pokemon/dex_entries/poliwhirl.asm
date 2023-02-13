@@ -1,10 +1,11 @@
-	db "TADPOLE@" ; species name
-	dw 303, 440 ; height, weight
+	db "TETARD@" ; species name
+	db 10 ; height
+	dw 200 ; weight
 
-	db   "Though it is"
-	next "skilled at walk-"
-	next "ing, it prefers to"
+	db   "Bien qu'il sache"
+	next "parfaitement mar-"
+	next "cher, il préfère"
 
-	page "live underwater"
-	next "where there is"
-	next "less danger.@"
+	page "les fonds marins,"
+	next "bien moins dange-"
+	next "reux.@"

@@ -1,12 +1,12 @@
 StatNames:
 ; entries correspond to stat ids
 	list_start StatNames
-	li "ATTACK"
+	li "ATTAQUE"
 	li "DEFENSE"
-	li "SPEED"
-	li "SPCL.ATK"
-	li "SPCL.DEF"
-	li "ACCURACY"
-	li "EVASION"
-	li "ABILITY" ; used for BattleCommand_Curse
+	li "VITESSE"
+	li "ATQ.SPE."
+	li "DEF.SPE."
+	li "PRECISION"
+	li "ESQUIVE"
+	li "APTITUDE" ; used for BattleCommand_Curse
 	assert_list_length NUM_LEVEL_STATS

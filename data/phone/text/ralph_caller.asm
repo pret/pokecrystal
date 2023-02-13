@@ -1,133 +1,117 @@
 RalphNeglectingKidsText:
-	text "I've been spending"
-	line "more time with my"
+	text "Je passe plus de"
+	line "temps avec mon"
 
 	para "@"
 	text_ram wStringBuffer4
-	text " than I"
-	line "have with my kids."
+	text " qu'avec"
+	line "mes enfants."
 
-	para "That's a bit sad,"
-	line "actually."
+	para "C'est triste."
 	done
 
 RalphDefeatedMonText:
-	text "I just beat a wild"
-	line "@"
+	text "Je viens de battre"
+	line "un @"
 	text_ram wStringBuffer4
 	text "."
 
-	para "I told my kid, but"
-	line "he scoffed that he"
+	para "Je l'ai dit à mon"
+	line "gamin, mais il dit"
+	cont "avoir fait mieux."
 
-	para "could do the same"
-	line "thing easily."
-
-	para "Boy, has he gotten"
-	line "cocky…"
+	para "Il a un peu la"
+	line "grosse tête."
 	done
 
 RalphLostAMonText:
-	text "Yesterday a wild"
+	text "Hier, un"
 	line "@"
 	text_ram wStringBuffer4
-	text " slipped"
+	text_start
 
-	para "away from me, in"
-	line "front of my kid."
+	para "m'a échappé devant"
+	line "mon gamin."
 
-	para "I was feeling down"
-	line "about it until he"
+	para "Alors il m'a donné"
+	line "ses # BALLS."
 
-	para "shared his #"
-	line "BALLS with me."
-
-	para "Hahah, that sure"
-	line "made my day!"
+	para "Il a grand coeur"
+	line "mon moutard!"
 	done
 
 RalphBattleRematchText:
-	text "What do you say to"
-	line "a battle with me?"
+	text "Ca te dit un"
+	line "combat contre moi?"
 
-	para "Good, you're going"
-	line "to do it!"
+	para "Bien!"
 
-	para "For a kid, you're"
-	line "quite agreeable."
+	para "T'es sympa, toi."
 
 	para "@"
 	text_ram wStringBuffer5
-	text " is"
-	line "the spot!"
+	text_start
+	line "sera le stade!"
 	done
 
 RalphHangUpText:
-	text "You call your mom"
-	line "sometimes too!"
+	text "Appelle ta maman"
+	line "plus souvent!"
 	done
 
 RalphItemText:
-	text "Listen, I… Yowch!"
+	text "Ecoute... Aïe!"
 
-	para "Uh, sorry! See,"
-	line "@"
+	para "Heu, pardon!"
+	line "Les @"
 	text_ram wStringBuffer4
-	text " are"
+	text_start
 
-	para "biting like there"
-	line "is no tomorrow"
-
-	para "over here on"
-	line "@"
+	para "mordent à fond!"
+	line "Surtout vers"
+	cont "@"
 	text_ram wStringBuffer5
 	text "!"
 
-	para "Aiyee! Ouch!"
-	line "One jabbed me!"
+	para "Aïe! Y'en a un"
+	line "qui lutte!"
 
-	para "Heh, they're some"
-	line "kind of feisty!"
+	para "Ils ont la patate,"
+	line "ma parole!"
 
-	para "<PLAY_G>, you have"
-	line "to see this rare"
-
-	para "sight! Get ready"
-	line "to fish!"
+	para "<PLAY_G>, il faut"
+	line "que tu viennes!"
 	done
 
 RalphNoItemText:
-	text "Yeah, I know."
+	text "Ouais, je sais."
 
-	para "You're looking for"
-	line "rare #MON."
+	para "Tu cherches des"
+	line "#MON rares."
 
-	para "Recently, all I've"
-	line "been catching are"
-	cont "MAGIKARP, though…"
+	para "Moi...?"
+	line "J'ai attrapé un"
+	cont "MAGICARPE."
 	done
 
 RalphReminderText:
-	text "So where are you?"
-	line "I'm waiting for"
-
-	para "you to show up on"
-	line "@"
+	text "Bon t'es où?"
+	line "Je t'attends vers"
+	cont "@"
 	text_ram wStringBuffer5
 	text "."
 
-	para "You shouldn't make"
-	line "your elders wait!"
+	para "Ne fais pas atten-"
+	line "dre les anciens!"
 	done
 
 RalphHurryText:
-	text "Hey, what's the"
-	line "matter with you?"
+	text "C'est quoi ton"
+	line "problème?"
 
-	para "Aren't you coming"
-	line "over to fish for"
-	cont "QWILFISH?"
+	para "Tu viens pêcher"
+	line "les QWILFISH?"
 
-	para "I'm on ROUTE 32,"
-	line "so hurry up!"
+	para "Sur la ROUTE 32!"
+	line "Magne-toi!"
 	done

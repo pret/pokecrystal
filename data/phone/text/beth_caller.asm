@@ -1,98 +1,85 @@
 BethExhilaratingRideText:
-	text "Do you remember my"
-	line "sweet @"
+	text "Tu te souviens de"
+	line "mon @"
 	text_ram wStringBuffer4
 	text "?"
 
 	para "@"
 	text_ram wStringBuffer4
-	text " runs"
-	line "very fast."
+	text " court"
+	line "très vite."
 
-	para "It's exhilarating"
-	line "to ride on its"
-
-	para "back when it"
-	line "really gets going."
+	para "C'est rigolo de"
+	line "monter sur son"
+	cont "dos."
 	done
 
 BethDefeatedMonText:
-	text "Oh, have you ever"
-	line "seen a @"
+	text "Oh, as-tu déjà vu"
+	line "un @"
 	text_ram wStringBuffer4
-	text_start
-	cont "before?"
+	text "?"
 
-	para "I just battled"
-	line "one…"
+	para "Je viens d'en"
+	line "affronter un..."
 
-	para "It was much faster"
-	line "than I expected."
+	para "Il était super"
+	line "rapide!"
 
-	para "I was a little"
-	line "shocked."
-
-	para "I still won, of"
-	line "course."
+	para "Mais j'ai gagné,"
+	line "bien sûr."
 	done
 
 BethLostAMonText:
-	text "Oh, I just saw a"
-	line "wild @"
+	text "Je viens de voir"
+	line "un @"
 	text_ram wStringBuffer4
 	text "."
 
-	para "I was trying to"
-	line "catch it when I"
+	para "J'ai voulu l'at-"
+	line "traper mais je"
 
-	para "noticed that I was"
-	line "all out of #"
-	cont "BALLS."
+	para "n'avais plus de"
+	line "# BALLS."
 
-	para "If you don't check"
-	line "your items, you"
+	para "Comme quoi, il"
+	line "faut toujours"
 
-	para "may run out at the"
-	line "worst time."
-
-	para "I hope you learn"
-	line "from my mistake."
+	para "vérifier son"
+	line "équipement."
 	done
 
 BethBattleRematchText:
-	text "Do you want to"
-	line "battle? I'm going"
-	cont "to win this time!"
+	text "Tu veux combattre?"
+	line "Je gagnerai cette"
+	cont "fois!"
 
-	para "I'll be waiting"
-	line "for you around"
-
-	para "@"
+	para "Je t'attends vers"
+	line "@"
 	text_ram wStringBuffer5
 	text "."
-	line "Look for me, OK?"
 	done
 
 BethHangUpText:
-	text "OK, bye-bye!"
+	text "OK, salut!"
 	done
 
 BethLetsBattleAgainSometimeText:
-	text "Let's battle again"
-	line "sometime!"
+	text "Faisons un match"
+	line "un de ces jours!"
 	done
 
 BethReminderText:
-	text "Um… <PLAY_G>?"
-	line "What's wrong?"
+	text "Heu... <PLAY_G>?"
+	line "Bah alors?"
 
-	para "Did you forget our"
-	line "deal?"
+	para "Tu as oublié notre"
+	line "rendez-vous?"
 
 	para "@"
 	text_ram wStringBuffer5
 	text "."
 
-	para "That's where I'm"
-	line "waiting."
+	para "C'est là où"
+	line "je poireaute."
 	done

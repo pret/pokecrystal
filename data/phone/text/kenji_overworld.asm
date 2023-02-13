@@ -1,67 +1,64 @@
 KenjiAskNumber1Text:
-	text "Our battle was"
-	line "remarkable!"
+	text "Notre combat était"
+	line "magnifique!"
 
-	para "I wish for some-"
-	line "thing to remember"
-	cont "you by!"
+	para "Je veux que tu me"
+	line "laisses un petit"
+	cont "souvenir!"
 
-	para "Perhaps your phone"
-	line "number will do?"
+	para "Ton numéro de"
+	line "téléphone!"
 
-	para "My training makes"
-	line "it impossible to"
-	cont "chat much, but…"
+	para "Je ne pourrai pas"
+	line "trop discuter pen-"
+	cont "dant des heures..."
 	done
 
 KenjiAskNumber2Text:
-	text "My training makes"
-	line "chatting tough,"
+	text "Je m'entraîne"
+	line "beaucoup mais"
 
-	para "but will you take"
-	line "down my number?"
+	para "veux-tu mon numéro"
+	line "de téléphone?"
 	done
 
 KenjiNumberAcceptedText:
-	text "I must train"
-	line "harder to become"
-	cont "the mightiest!"
+	text "Je dois continuer"
+	line "à m'entraîner!"
 	done
 
 KenjiNumberDeclinedText:
-	text "If you decide you"
-	line "want my number,"
-	cont "come see me."
+	text "Si tu veux mon"
+	line "numéro, viens me"
+	cont "voir."
 	done
 
 KenjiPhoneFullText:
-	text "Your phone appears"
-	line "to be full."
+	text "Ton répertoire est"
+	line "plein à craquer."
 
-	para "Come back later!"
+	para "Reviens plus tard!"
 	done
 
 KenjiGiftText:
-	text "I wish to thank"
-	line "you, <PLAYER>!"
+	text "Je tiens à te dire"
+	line "merci, <PLAYER>!"
 
-	para "I've been training"
-	line "all alone…"
+	para "Je m'entraînais"
+	line "en solitaire..."
 
-	para "I was happy that"
-	line "you cared to call…"
+	para "Merci d'avoir"
+	line "appelé..."
 
-	para "I want you to have"
-	line "this!"
+	para "Voilà pour toi!"
 	done
 
 KenjiPackFullText:
-	text "Your strength will"
-	line "not let you carry"
+	text "Tu ne peux plus"
+	line "rien porter, mon"
 
-	para "another thing!"
-	line "I will hold this"
+	para "poussin!"
+	line "Je vais garder ça."
 
-	para "till you lighten"
-	line "your PACK!"
+	para "Vide donc ton SAC!"
 	done

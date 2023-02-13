@@ -99,102 +99,111 @@ ManiasHouseUnusedBookshelf: ; unreferenced
 	jumpstd PictureBookshelfScript
 
 ManiaText_AskLookAfterShuckle:
-	text "I, I'm in shock!"
+	text "Je suis choqué!"
 
-	para "A guy about your"
-	line "age with piercing"
+	para "Un garnement de"
+	line "ton âge avec"
 
-	para "eyes and long hair"
-	line "came in."
+	para "l'oeil mauvais"
+	line "et des cheveux"
+	cont "longs, s'est in-"
+	cont "filtré chez moi."
 
-	para "He scared me into"
-	line "giving him my"
-	cont "prized #MON!"
+	para "Il m'a fait grand-"
+	line "peur et chapardé"
+	cont "mon #MON"
+	cont "adoré!"
 
-	para "I still have one"
-	line "left, but what if"
-	cont "he comes back?"
+	para "Il m'en reste un"
+	line "mais que faire"
+	cont "s'il revient?"
 
-	para "You look strong."
-	line "Could you look"
+	para "Tu as l'air"
+	line "fort. Peux-tu"
 
-	para "after my #MON"
-	line "for a while?"
+	para "t'occuper de"
+	line "mon #MON"
+	cont "un petit moment?"
 	done
 
 ManiaText_TakeCareOfShuckle:
-	text "Oh, thank you!"
+	text "Oh, bien le merci!"
 
-	para "Take good care of"
-	line "it, please!"
+	para "Prends-en bien"
+	line "soin, pitié!"
 	done
 
 ManiaText_GotShuckle:
-	text "<PLAYER> received a"
+	text "<PLAYER> reçoit un"
 	line "#MON."
 	done
 
 ManiaText_PartyFull:
-	text "Your #MON party"
-	line "is full."
+	text "L'équipe #-"
+	line "MON est pleine."
 	done
 
 ManiaText_IfHeComesBack:
-	text "Oh, no… What'll"
-	line "I do if he comes"
-	cont "back?"
+	text "Oh, non... Que"
+	line "vais-je faire"
+	cont "s'il revient?"
 	done
 
 ManiaText_CanIHaveMyMonBack:
-	text "Hi! How's my #-"
-	line "MON?"
+	text "Salut! Comment va"
+	line "mon #MON?"
 
-	para "I think I'm safe"
-	line "now, so may I have"
-	cont "it back?"
+	para "Je pense être en"
+	line "sécurité main-"
+	cont "tenant, serait-il"
+	cont "possible de le"
+	cont "récupérer?"
 	done
 
 ManiaText_ThankYou:
-	text "Thank you!"
+	text "Merci mon petit!"
 	done
 
 ManiaText_ShuckleNotThere:
-	text "Hey, you don't"
-	line "have my #MON"
-	cont "with you."
+	text "Hé, tu n'as pas"
+	line "mon #MON avec"
+	cont "toi."
 	done
 
 ManiaText_ShuckleLikesYou:
-	text "My #MON has"
-	line "come to like you."
+	text "Mon #MON a"
+	line "l'air de t'appré-"
+	cont "cier."
 
-	para "All right, you"
-	line "should keep it."
+	para "Très bien! Tu"
+	line "peux le garder."
 
-	para "But promise to"
-	line "be good to it!"
+	para "Mais promets-moi"
+	line "d'être sympa avec"
+	cont "lui!"
 	done
 
 ManiaText_SameAsBeingRobbed:
-	text "Oh, no, no… That's"
-	line "the same as being"
-	cont "robbed."
+	text "Oh, non de non..."
+	line "C'est la même"
+	cont "chose que de se"
+	cont "faire voler."
 	done
 
 ManiaText_HappinessSpeech:
-	text "For #MON, hap-"
-	line "piness is being"
+	text "Pour les #MON,"
+	line "c'est le bonheur"
 
-	para "with a person who"
-	line "treats them well."
+	para "d'être avec un"
+	line "gentil dresseur."
 	done
 
 ManiaText_ShuckleIsYourLastMon:
-	text "If I take my #-"
-	line "MON back, what are"
+	text "Si je reprends mon"
+	line "#MON, avec quoi"
 
-	para "you going to use"
-	line "in battle?"
+	para "vas-tu pouvoir"
+	line "combattre?"
 	done
 
 ManiasHouse_MapEvents:

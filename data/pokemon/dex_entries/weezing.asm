@@ -1,10 +1,11 @@
-	db "POISON GAS@" ; species name
-	dw 311, 210 ; height, weight
+	db "GAZ MORTEL@" ; species name
+	db 12 ; height
+	dw 95 ; weight
 
-	db   "When it inhales"
-	next "poisonous gases"
-	next "from garbage, its"
+	db   "Il aspire les gaz"
+	next "toxiques des"
+	next "déchets pour ainsi"
 
-	page "body expands, and"
-	next "its insides smell"
-	next "much worse.@"
+	page "gonfler et sentir"
+	next "encore plus"
+	next "mauvais.@"

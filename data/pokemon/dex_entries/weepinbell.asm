@@ -1,10 +1,11 @@
-	db "FLYCATCHER@" ; species name
-	dw 303, 140 ; height, weight
+	db "CARNIVORE@" ; species name
+	db 10 ; height
+	dw 64 ; weight
 
-	db   "When it's hungry,"
-	next "it swings its"
-	next "razor-sharp"
+	db   "Affamé, il remue"
+	next "ses feuilles acé-"
+	next "rées et tranche"
 
-	page "leaves, slicing up"
-	next "any unlucky object"
-	next "nearby for food.@"
+	page "sans scrupule tout"
+	next "ce qui l'entoure."
+	next "@"

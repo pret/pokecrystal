@@ -33,43 +33,36 @@ RedsHouse1FBookshelf:
 	jumpstd PictureBookshelfScript
 
 RedsMomText1:
-	text "Hi!"
+	text "Salut!"
 
-	para "RED's been away"
-	line "for a long time."
+	para "RED est parti il"
+	line "y a longtemps."
 
-	para "He hasn't called"
-	line "either, so I have"
+	para "Il n'a même pas"
+	line "appelé... Je ne"
 
-	para "no idea where he"
-	line "is or what he's"
-	cont "been doing."
+	para "sais vraiment pas"
+	line "ce qu'il fait en"
+	cont "ce moment."
 
-	para "They say that no"
-	line "word is proof that"
-
-	para "he's doing fine,"
-	line "but I do worry"
-	cont "about him."
+	para "A vrai dire, je me"
+	line "fais du souci."
 	done
 
 RedsMomText2:
-	text "I worry about RED"
-	line "getting hurt or"
+	text "Je me fais du sou-"
+	line "ci pour RED mais"
 
-	para "sick, but he's a"
-	line "boy. I'm proud"
+	para "c'est un garçon..."
+	line "Il est indépendant"
 
-	para "that he is doing"
-	line "what he wants to"
-
-	para "do."
+	para "maintenant."
 	done
 
 RedsHouse1FTVText:
-	text "They have programs"
-	line "that aren't shown"
-	cont "in JOHTO…"
+	text "Il y a des émis-"
+	line "sions qui ne pas-"
+	cont "sent pas à JOHTO."
 	done
 
 RedsHouse1F_MapEvents:

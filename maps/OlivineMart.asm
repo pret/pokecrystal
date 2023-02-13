@@ -21,26 +21,31 @@ OlivineMartLassScript:
 	jumptextfaceplayer OlivineMartLassText
 
 OlivineMartCooltrainerFText:
-	text "Do your #MON"
-	line "already know the"
+	text "Est-ce que ton"
+	line "#MON connait"
 
-	para "move for carrying"
-	line "people on water?"
+	para "la capacité qui"
+	line "permet de trans-"
+	cont "porter des per-"
+	cont "sonnes sur l'eau?"
 	done
 
 OlivineMartLassText:
-	text "My BUTTERFREE came"
-	line "from my boyfriend"
-	cont "overseas."
+	text "Mon PAPILUSION"
+	line "vient de mon petit"
+	cont "copain de l'autre"
+	cont "côté de la mer."
 
-	para "It carried some"
-	line "MAIL from him."
+	para "Il nous transporte"
+	line "nos LETTRES."
 
-	para "Want to know what"
-	line "it says?"
+	para "Tu veux savoir ce"
+	line "qui est écrit?"
 
-	para "Let's see… Nope!"
-	line "It's a secret!"
+	para "Alors... Ah!"
+	line "Désolée! C'est"
+	cont "perso une lettre"
+	cont "comme ça!"
 	done
 
 OlivineMart_MapEvents:

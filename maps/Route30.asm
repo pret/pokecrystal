@@ -261,147 +261,152 @@ Route30_MikeysRattataAttacksMovement:
 	step_end
 
 Text_UseTackle:
-	text "Go, RATTATA!"
+	text "Allez, RATTATA!"
 
-	para "TACKLE!"
+	para "CHARGE!"
 	done
 
 Text_ThisIsABigBattle:
-	text "What? This is a"
-	line "big battle!"
-	cont "Leave me alone!"
+	text "Quoi? C'est un"
+	line "grand combat!"
+	cont "Laisse-moi!"
 	done
 
 YoungsterJoey1SeenText:
-	text "I just lost, so"
-	line "I'm trying to find"
-	cont "more #MON."
+	text "Je viens de perdre"
+	line "et j'essaie donc"
+	cont "d'attraper plus de"
+	cont "#MON."
 
-	para "Wait! You look"
-	line "weak! Come on,"
-	cont "let's battle!"
+	para "Au fait! Tu as"
+	line "l'air faible, toi!"
+	cont "COMBAT!"
 	done
 
 YoungsterJoey1BeatenText:
-	text "Ack! I lost again!"
-	line "Doggone it!"
+	text "Encore perdu!"
+	line "Zut de flûte!"
 	done
 
 YoungsterJoey1AfterText:
-	text "Do I have to have"
-	line "more #MON in"
+	text "Dois-je choper"
+	line "plus de #MON"
 
-	para "order to battle"
-	line "better?"
+	para "pour gagner des"
+	line "combats?"
 
-	para "No! I'm sticking"
-	line "with this one no"
-	cont "matter what!"
+	para "Non! Je reste"
+	line "avec celui-ci!"
 	done
 
 YoungsterMikeySeenText:
-	text "You're a #MON"
-	line "trainer, right?"
+	text "T'es un dresseur"
+	line "de #MON, non?"
 
-	para "Then you have to"
-	line "battle!"
+	para "Alors........."
+	line "COOOOMBAAAAT!"
 	done
 
 YoungsterMikeyBeatenText:
-	text "That's strange."
-	line "I won before."
+	text "C'est bizarre."
+	line "J'avais cru..."
 	done
 
 YoungsterMikeyAfterText:
-	text "Becoming a good"
-	line "trainer is really"
-	cont "tough."
+	text "Etre un bon"
+	line "dresseur n'est pas"
+	cont "donné à tout le"
+	cont "monde."
 
-	para "I'm going to bat-"
-	line "tle other people"
-	cont "to get better."
+	para "Je vais me battre."
+	line "Encore et encore."
+	cont "Encore et encore!"
 	done
 
 BugCatcherDonSeenText:
-	text "Instead of a bug"
-	line "#MON, I found"
-	cont "a trainer!"
+	text "Tiens..."
+	line "T'es qui toi?"
 	done
 
 BugCatcherDonBeatenText:
-	text "Argh! You're too"
-	line "strong!"
+	text "Ah. T'es pas"
+	line "cool, toi!"
 	done
 
 BugCatcherDonAfterText:
-	text "I ran out of #"
-	line "BALLS while I was"
-	cont "catching #MON."
+	text "J'ai utilisé ma"
+	line "dernière # BALL"
+	cont "pendant une chasse"
+	cont "au #MON."
 
-	para "I should've bought"
-	line "some more…"
+	para "J'aurais dû en"
+	line "acheter plus..."
 	done
 
 Route30YoungsterText_DirectionsToMrPokemonsHouse:
-	text "MR.#MON's"
-	line "house? It's a bit"
-	cont "farther ahead."
+	text "La maison de"
+	line "M.#MON? C'est"
+	cont "un peu plus loin."
 	done
 
 Route30YoungsterText_EveryoneIsBattling:
-	text "Everyone's having"
-	line "fun battling!"
-	cont "You should too!"
+	text "Combattre c'est"
+	line "marrant! Tu"
+	cont "devrais essayer!"
 	done
 
 Route30CooltrainerFText:
-	text "I'm not a trainer."
+	text "Je ne suis pas"
+	line "dresseur."
 
-	para "But if you look"
-	line "one in the eyes,"
-	cont "prepare to battle."
+	para "Mais si tu regar-"
+	line "des quelqu'un dans"
+	cont "les yeux, prépare-"
+	cont "toi à combattre."
 	done
 
 Route30SignText:
 	text "ROUTE 30"
 
-	para "VIOLET CITY -"
-	line "CHERRYGROVE CITY"
+	para "MAUVILLE -"
+	line "VILLE GRIOTTE"
 	done
 
 MrPokemonsHouseDirectionsSignText:
-	text "MR.#MON'S HOUSE"
-	line "STRAIGHT AHEAD!"
+	text "CHEZ M.#MON"
+	line "C'est tout droit!"
 	done
 
 MrPokemonsHouseSignText:
-	text "MR.#MON'S HOUSE"
+	text "CHEZ M.#MON"
 	done
 
 Route30TrainerTipsText:
-	text "TRAINER TIPS"
+	text "ASTUCE"
 
-	para "No stealing other"
-	line "people's #MON!"
+	para "On ne vole pas les"
+	line "#MON des"
+	cont "autres!"
 
-	para "# BALLS are to"
-	line "be thrown only at"
-	cont "wild #MON!"
+	para "Les # BALLS"
+	line "sont faites pour"
+	cont "attraper les #-"
+	cont "MON sauvages!"
 	done
 
 YoungsterJoeyText_GiveHPUpAfterBattle:
-	text "I lost again…"
-	line "Gee, you're tough!"
+	text "Encore perdu..."
+	line "T'y vas fort!"
 
-	para "Oh yeah, I almost"
-	line "forgot that I had"
-	cont "to give you this."
+	para "Oh oui."
+	line "Je dois te donner"
+	cont "ça."
 
-	para "Use it to get even"
-	line "tougher, OK?"
+	para "Ca améliore quel-"
+	line "que chose..."
 
-	para "I'm going to get"
-	line "tougher too."
+	para "Me demande pas"
+	line "quoi..."
 	done
 
 Route30_MapEvents:

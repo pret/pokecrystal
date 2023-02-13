@@ -51,75 +51,78 @@ FuchsiaCityFruitTree:
 	fruittree FRUITTREE_FUCHSIA_CITY
 
 FuchsiaCityYoungsterText:
-	text "One of the ELITE"
-	line "FOUR used to be"
+	text "Un membre du"
+	line "CONSEIL des 4"
+	cont "était le"
 
-	para "the LEADER of"
-	line "FUCHSIA's GYM."
+	para "CHAMPION de l'ARE-"
+	line "NE de PARMANIE."
 	done
 
 FuchsiaCityPokefanMText:
-	text "KOGA's daughter"
-	line "succeeded him as"
+	text "La fille de KOGA"
+	line "a pris sa succes-"
 
-	para "the GYM LEADER"
-	line "after he joined"
-	cont "the ELITE FOUR."
+	para "sion en tant que"
+	line "CHAMPIONNE d'ARENE"
+	cont "après son départ"
+	cont "pour le CONSEIL"
+	cont "des 4."
 	done
 
 FuchsiaCityTeacherText:
-	text "The SAFARI ZONE is"
-	line "closed… It's sad,"
+	text "Le PARC SAFARI est"
+	line "fermé. C'est tris-"
 
-	para "considering it's"
-	line "FUCHSIA's main"
-	cont "attraction."
+	para "te: c'était l'at-"
+	line "traction principa-"
+	cont "le de PARMANIE."
 	done
 
 FuchsiaCitySignText:
-	text "FUCHSIA CITY"
+	text "PARMANIE"
 
-	para "Behold! It's"
-	line "Passion Pink!"
+	para "Le rose de la"
+	line "passion!"
 	done
 
 FuchsiaGymSignText:
-	text "FUCHSIA CITY"
-	line "#MON GYM"
-	cont "LEADER: JANINE"
+	text "CHAMPION d'ARENE"
+	line "de PARMANIE:"
+	cont "JEANNINE"
 
-	para "The Poisonous"
-	line "Ninja Master"
+	para "La Ninja aux"
+	line "mille poisons"
 	done
 
 SafariZoneOfficeSignText:
-	text "There's a notice"
-	line "here…"
+	text "Il y a une"
+	line "affiche..."
 
-	para "SAFARI ZONE OFFICE"
-	line "is closed until"
-	cont "further notice."
+	para "Le BUREAU du PARC"
+	line "SAFARI est fermé"
+	cont "jusqu'à nouvel"
+	cont "ordre."
 	done
 
 WardensHomeSignText:
-	text "SAFARI ZONE"
-	line "WARDEN'S HOME"
+	text "MAISON DU GARDIEN"
+	line "du PARC SAFARI"
 	done
 
 SafariZoneClosedSignText:
-	text "The WARDEN is"
-	line "traveling abroad."
+	text "Le GARDIEN voyage"
+	line "à l'étranger."
 
-	para "Therefore, the"
-	line "SAFARI ZONE is"
-	cont "closed."
+	para "Ainsi, le PARC"
+	line "SAFARI est fermé."
 	done
 
 NoLitteringSignText:
-	text "No littering."
+	text "Ne rien jeter."
 
-	para "Please take your"
-	line "waste with you."
+	para "Utilisez les"
+	line "poubelles."
 	done
 
 FuchsiaCity_MapEvents:

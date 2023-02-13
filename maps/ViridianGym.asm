@@ -62,109 +62,105 @@ ViridianGymStatue:
 	jumpstd GymStatue2Script
 
 LeaderBlueBeforeText:
-	text "BLUE: Yo! Finally"
-	line "got here, huh?"
+	text "BLUE: Yo! Te voilà"
+	line "enfin!"
 
-	para "I wasn't in the"
-	line "mood at CINNABAR,"
+	para "J'avais pas trop"
+	line "envie à CRAMOIS'"
 
-	para "but now I'm ready"
-	line "to battle you."
+	para "ILE mais là je"
+	line "vais te battre."
 
 	para "…"
 
-	para "You're telling me"
-	line "you conquered all"
-	cont "the GYMS in JOHTO?"
+	para "Tu dis quoi?"
+	line "Tu as passé toutes"
+	cont "les ARENES de"
+	cont "JOHTO?"
 
-	para "Heh! JOHTO's GYMS"
-	line "must be pretty"
-	cont "pathetic then."
+	para "Ils sont nuls à"
+	line "JOHTO alors..."
 
-	para "Hey, don't worry"
-	line "about it."
+	para "Mais t'en fais"
+	line "pas..."
 
-	para "I'll know if you"
-	line "are good or not by"
+	para "Je vais tout de"
+	line "suite te dire si"
 
-	para "battling you right"
-	line "now."
+	para "tu as du talent"
+	line "ou non."
 
-	para "Ready, JOHTO"
-	line "CHAMP?"
+	para "C'est parti,"
+	line "minable de JOHTO!"
 	done
 
 LeaderBlueWinText:
-	text "BLUE: What?"
+	text "BLUE: Quoi?"
 
-	para "How the heck did I"
-	line "lose to you?"
+	para "Comment c'est-y"
+	line "possible, ça?"
 
-	para "…"
+	para "..."
 
-	para "Tch, all right…"
-	line "Here, take this--"
-	cont "it's EARTHBADGE."
+	para "Pfff..."
+	line "Tiens, prends ce"
+	cont "BADGE TERRE."
 	done
 
 Text_ReceivedEarthBadge:
-	text "<PLAYER> received"
-	line "EARTHBADGE."
+	text "<PLAYER> reçoit"
+	line "le BADGE TERRE."
 	done
 
 LeaderBlueAfterText:
-	text "BLUE: …"
+	text "BLUE: ..."
 
-	para "All right, I was"
-	line "wrong. You're the"
+	para "OK. J'avais tort."
+	line "Je le reconnais:"
 
-	para "real deal. You are"
-	line "a good trainer."
+	para "tu as du talent"
+	line "comme dresseur."
 
-	para "But I'm going to"
-	line "beat you someday."
-
-	para "Don't you forget"
-	line "it!"
+	para "Mais bon... Je te"
+	line "battrai un jour."
+	cont "T'inquiète pas."
 	done
 
 LeaderBlueEpilogueText:
-	text "BLUE: Listen, you."
+	text "BLUE: Ecoute voir."
 
-	para "You'd better not"
-	line "lose until I beat"
-	cont "you. Got it?"
+	para "Reste cool jusqu'à"
+	line "notre prochain"
+	cont "combat, d'accord?"
 	done
 
 ViridianGymGuideText:
-	text "Yo, CHAMP in"
-	line "making!"
+	text "Salut, graine de"
+	line "star!"
+	cont "Tout va bien?"
 
-	para "How's it going?"
-	line "Looks like you're"
-	cont "on a roll."
+	para "Le CHAMPION est"
+	line "celui qui a com-"
 
-	para "The GYM LEADER is"
-	line "a guy who battled"
+	para "battu le MAITRE il"
+	line "y a trois ans."
 
-	para "the CHAMPION three"
-	line "years ago."
+	para "C'est pas un"
+	line "tendre."
 
-	para "He's no pushover."
-
-	para "Give it everything"
-	line "you've got!"
+	para "Alors... Heu..."
+	line "Bonne chance!"
 	done
 
 ViridianGymGuideWinText:
-	text "Man, you are truly"
-	line "tough…"
+	text "Fiiou! Alors toi,"
+	line "t'es cool!"
 
-	para "That was a heck of"
-	line "an inspirational"
+	para "Ca c'était du"
+	line "combat!"
 
-	para "battle. It brought"
-	line "tears to my eyes."
+	para "J'en ai les larmes"
+	line "aux yeux."
 	done
 
 ViridianGym_MapEvents:

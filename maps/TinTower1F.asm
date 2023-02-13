@@ -308,216 +308,223 @@ TinTower1FSage3EntersMovement:
 	step_end
 
 TinTower1FEusineSuicuneText:
-	text "EUSINE: Awesome!"
-	line "Too awesome, even!"
+	text "EUSINE: Bravo!"
+	line "Trop fort!"
 
-	para "I've never seen a"
-	line "battle that great."
+	para "Je n'ai jamais vu"
+	line "un tel combat."
 
-	para "That was truly"
-	line "inspiring to see."
+	para "Alors ça..."
+	line "J'suis soufflé."
 
-	para "SUICUNE was tough,"
-	line "but you were even"
+	para "SUICUNE est fort,"
+	line "mais tu l'es"
 
-	para "more incredible,"
+	para "encore plus,"
 	line "<PLAYER>."
 
-	para "I heard SUICUNE's"
-	line "mystic power"
+	para "On dit que SUICUNE"
+	line "a le pouvoir d'in-"
 
-	para "summons a rainbow-"
-	line "colored #MON."
+	para "voquer un #MON"
+	line "aux couleurs de"
+	cont "l'arc-en-ciel."
 
-	para "Maybe, just maybe,"
-	line "what went on today"
+	para "Peut-être, on ne"
+	line "sait jamais, ce"
 
-	para "will cause that"
-	line "#MON to appear."
+	para "qu'il vient de se"
+	line "passer le fera"
+	cont "apparaître..."
 
-	para "I'm going to study"
-	line "the legends more."
+	para "Je vais encore"
+	line "étudier les"
+	cont "légendes..."
 
-	para "Thanks for showing"
-	line "me that fantastic"
-	cont "battle."
+	para "Merci de m'avoir"
+	line "montré tes"
+	cont "talents..."
 
-	para "Later, <PLAYER>!"
+	para "A très bientôt,"
+	line "<PLAYER>!"
 	done
 
 TinTower1FSage1Text:
-	text "According to"
-	line "legend…"
+	text "Selon la"
+	line "légende..."
 
-	para "When the souls of"
-	line "#MON and humans"
+	para "Lorsque les âmes"
+	line "des #MON et des"
 
-	para "commune, from the"
-	line "heavens descends a"
+	para "humains se réunis-"
+	line "sent, un #MON"
 
-	para "#MON of rainbow"
-	line "colors…"
+	para "aux couleurs de"
+	line "l'arc-en-ciel des-"
+	cont "cend des cieux..."
 
-	para "Could it mean the"
-	line "legendary #MON"
+	para "Est-il possible"
+	line "que les #MON"
 
-	para "are testing us"
-	line "humans?"
+	para "légendaires met-"
+	line "tent les humains"
+	cont "à l'épreuve?"
 	done
 
 TinTower1FSage2Text:
-	text "When the BRASS"
-	line "TOWER burned down,"
+	text "Lorsque la TOUR de"
+	line "CUIVRE brûla,"
 
-	para "three nameless"
-	line "#MON were said"
+	para "trois #MON sans"
+	line "nom ont, paraît-"
 
-	para "to have perished."
-	line "It was tragic."
+	para "il, péri dans les"
+	line "flammes..."
 
-	para "However…"
+	para "Toutefois..."
 
-	para "A rainbow-colored"
-	line "#MON…"
+	para "Un #MON couleur"
+	line "arc-en-ciel..."
 
-	para "In other words…"
+	para "Ou plus précisé-"
+	line "ment..."
 
-	para "HO-OH descended"
-	line "from the sky and"
+	para "HO-OH, descendit"
+	line "du ciel et redonna"
 
-	para "gave new life to"
-	line "the three #MON."
+	para "la vie aux trois"
+	line "#MON."
 
-	para "They are…"
+	para "Ils se nomment..."
 
-	para "SUICUNE, ENTEI and"
+	para "SUICUNE, ENTEI et"
 	line "RAIKOU."
 
-	para "That is what they"
-	line "say."
+	para "Et voilà ce qu'on"
+	line "raconte."
 	done
 
 TinTower1FSage3Text:
-	text "The two TOWERS are"
-	line "said to have been"
+	text "On dit que les"
+	line "deux TOURS furent"
 
-	para "built to foster"
-	line "friendship and"
+	para "construites pour"
+	line "sceller l'amitié"
 
-	para "hope between #-"
-	line "MON and people."
+	para "entre #MON et"
+	line "humains."
 
-	para "That was 700 years"
-	line "ago, but the ideal"
+	para "C'était il y a"
+	line "700 ans, mais"
 
-	para "still remains"
-	line "important today."
+	para "l'idée reste la"
+	line "même aujourd'hui."
 	done
 
 TinTower1FSage4Text1:
-	text "HO-OH appears to"
-	line "have descended"
-
-	para "upon this, the TIN"
-	line "TOWER!"
+	text "HO-OH a dû arriver"
+	line "ici, à la TOUR"
+	cont "FERRAILLE!"
 	done
 
 TinTower1FSage5Text1:
-	text "This will protect"
-	line "you. Take it."
+	text "Ceci te protégera."
 	done
 
 TinTower1FSage5Text2:
-	text "Now, go."
+	text "Va."
 	done
 
 TinTower1FSage6Text1:
-	text "I believe you are"
-	line "being tested."
+	text "Je crois que l'on"
+	line "te met à l'épreu-"
+	cont "ve."
 
-	para "Free your mind"
-	line "from uncertainty,"
-	cont "and advance."
+	para "Avance l'esprit"
+	line "clair."
 	done
 
 TinTower1FEusineHoOhText:
-	text "I knew it."
+	text "Je le savais."
 
-	para "I knew you'd get"
-	line "to see the #MON"
+	para "Je savais que tu"
+	line "verrais le #MON"
 
-	para "of rainbow colors,"
+	para "arc-en-ciel,"
 	line "<PLAYER>."
 
-	para "It happened just"
-	line "as I envisioned."
+	para "Je l'avais prédit."
 
-	para "My research isn't"
-	line "bad, I might say."
+	para "Je suis pas trop"
+	line "mauvais, moi."
 
-	para "I'm going to keep"
-	line "studying #MON"
+	para "Je vais continuer"
+	line "à étudier pour"
 
-	para "to become a famous"
+	para "être un célèbre"
 	line "#MANIAC!"
 	done
 
 TinTower1FSage4Text2:
-	text "The legendary"
-	line "#MON are said"
+	text "Les #MON légen-"
+	line "daires sont censés"
 
-	para "to embody three"
-	line "powers…"
+	para "posséder trois"
+	line "pouvoirs..."
 
-	para "The lightning that"
-	line "struck the TOWER."
+	para "La foudre qui a"
+	line "frappé la TOUR."
 
-	para "The fire that"
-	line "burned the TOWER."
+	para "Le feu qui a brûlé"
+	line "la TOUR."
 
-	para "And the rain that"
-	line "put out the fire…"
+	para "Et la pluie qui a"
+	line "éteint le feu..."
 	done
 
 TinTower1FSage5Text3:
-	text "When the legendary"
-	line "#MON appeared…"
+	text "Lorsque les #-"
+	line "MON légendaires"
+	cont "sont apparus..."
 
-	para "They struck terror"
-	line "in those who saw"
-	cont "their rise."
+	para "Ils pétrifièrent"
+	line "de terreur les"
+	cont "témoins de leur"
+	cont "réveil..."
 
-	para "And…"
+	para "Et..."
 
-	para "Some even took to"
-	line "futile attacks."
+	para "Certains ont même"
+	line "cru bon de les"
+	cont "attaquer..."
 
-	para "The legendary"
-	line "#MON, knowing"
+	para "Les #MON légen-"
+	line "daires, conscients"
 
-	para "their own power,"
-	line "fled, ignoring the"
-	cont "frightened people."
+	para "de leur puissance,"
+	line "ont préféré fuir."
 	done
 
 TinTower1FSage6Text2:
-	text "Of the legendary"
-	line "#MON, SUICUNE"
+	text "On dit que le"
+	line "#MON légendai-"
 
-	para "is said to be the"
-	line "closest to HO-OH."
+	para "re SUICUNE est le"
+	line "plus proche de"
+	cont "HO-OH."
 
-	para "I hear there may"
-	line "also be a link to"
+	para "Il y aurait aussi"
+	line "un lien avec les"
 
-	para "#MON known as"
-	line "UNOWN."
+	para "#MON connus"
+	line "sous le nom de..."
+	cont "ZARBI."
 
-	para "The #MON UNOWN"
-	line "must be sharing a"
+	para "Les ZARBI et"
+	line "SUICUNE doivent"
 
-	para "cooperative bond"
-	line "with SUICUNE."
+	para "être liés en un"
+	line "sens..."
 	done
 
 TinTower1F_MapEvents:

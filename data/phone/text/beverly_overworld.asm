@@ -1,60 +1,61 @@
 BeverlyAskNumber1Text:
-	text "Your MARILL is so"
-	line "cute and adorable!"
+	text "Ton MARILL est si"
+	line "mignon!"
 
-	para "You love #MON"
-	line "just like I do!"
+	para "Tu aimes les #-"
+	line "MON comme moi!"
 
-	para "Want to trade"
-	line "phone numbers?"
+	para "On échange nos"
+	line "numéros?"
 
-	para "Let's chat! It'll"
-	line "be so much fun!"
+	para "On va se parler!"
+	line "C'est marrant!"
 	done
 
 BeverlyAskNumber2Text:
-	text "Your MARILL is so"
-	line "cute and adorable!"
+	text "Ton MARILL est si"
+	line "mignon!"
 
-	para "We should chat, it"
-	line "will be fun."
+	para "On échange nos"
+	line "numéros?"
 
-	para "Can I have your"
-	line "phone number?"
+	para "On va se parler!"
+	line "C'est marrant!"
 	done
 
 BeverlyNumberAcceptedText:
-	text "To be honest, I"
-	line "want a MARILL."
+	text "En fait, je veux"
+	line "un MARILL."
 
-	para "But I make do with"
-	line "my cute SNUBBULL."
+	para "Mais je me dé-"
+	line "brouille avec"
+	cont "SNUBBULL."
 	done
 
 BeverlyNumberDeclinedText:
-	text "Oh… That's"
-	line "disappointing…"
+	text "Oh..."
+	line "Quel dommage..."
 
-	para "Goodbye, MARILL…"
+	para "Adieu, MARILL..."
 	done
 
 BeverlyPhoneFullText:
-	text "Oh? Your phone's"
-	line "memory is full."
+	text "Oh? Ton téléphone"
+	line "est plein."
 	done
 
 BeverlyGiftText:
 	text "Oh? <PLAYER>? "
-	line "I waited here for"
+	line "Je t'attendais."
 
-	para "you. I brought you"
-	line "a little gift."
+	para "J'ai un cadeau"
+	line "pour toi."
 	done
 
 BeverlyPackFullText:
-	text "Oh?"
-	line "You have no room."
+	text "Oh? Tu n'as"
+	line "plus de place."
 
-	para "Please come back"
-	line "for it later."
+	para "Reviens plus"
+	line "tard."
 	done

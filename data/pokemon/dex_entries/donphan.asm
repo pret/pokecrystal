@@ -1,10 +1,11 @@
-	db "ARMOR@" ; species name
-	dw 307, 2650 ; height, weight
+	db "ARMURE@" ; species name
+	db 11 ; height
+	dw 1200 ; weight
 
-	db   "Because this"
-	next "#MON's skin is"
-	next "so tough, a normal"
+	db   "Sa peau est si"
+	next "épaisse et résis-"
+	next "tante qu'une atta-"
 
-	page "attack won't even"
-	next "leave a scratch on"
-	next "it.@"
+	page "que normale ne"
+	next "peut l'atteindre."
+	next "@"

@@ -1,73 +1,73 @@
 VanceAskNumber1Text:
-	text "You know, you are"
-	line "really strong."
+	text "Tu as un certain"
+	line "talent, toi."
 
-	para "But I don't want"
-	line "to just slink off…"
+	para "Je suis plutôt"
+	line "impressionné..."
 
-	para "I know! Could I"
-	line "get your number?"
+	para "Je sais! On de-"
+	line "vrait échanger nos"
 
-	para "Let's meet up for"
-	line "more battles!"
+	para "numéros! On fera"
+	line "d'autres combats!"
 	done
 
 VanceAskNumber2Text:
-	text "I want to battle"
-	line "tough trainers as"
-	cont "often as I can!"
+	text "Je veux affronter"
+	line "les meilleurs"
+	cont "dresseurs!"
 
-	para "Could I get your"
-	line "number?"
+	para "Je peux avoir ton"
+	line "numéro?"
 
-	para "Let's meet up for"
-	line "more battles!"
+	para "On combattra"
+	line "une autre fois!"
 	done
 
 VanceNumberAcceptedText:
-	text "Don't forget to"
-	line "come see me when I"
-	cont "challenge you!"
+	text "N'oublie pas de"
+	line "venir me voir si"
+	cont "je te lance un"
+	cont "défi!"
 	done
 
 VanceNumberDeclinedText:
-	text "A bird-user friend"
-	line "isn't a bad thing"
-	cont "to have, I think…"
+	text "Etre pote avec les"
+	line "fans des oiseaux,"
+	cont "c'est bien..."
 
-	para "Won't you"
-	line "reconsider?"
+	para "Ca te tente?"
 	done
 
 VancePhoneFullText:
-	text "Your phone's out"
-	line "of memory. Delete"
-	cont "a number for me!"
+	text "Ton téléphone n'a"
+	line "plus de mémoire."
+	cont "Efface et reviens!"
 	done
 
 VanceRematchText:
-	text "Am I happy to see"
-	line "you! I won't lose!"
+	text "J'suis content de"
+	line "te voir! Attaque!"
 	done
 
 VancePackFullText:
-	text "Oh, too bad. You"
-	line "don't have room."
+	text "Oh, Dommage."
+	line "Plus de place."
 
-	para "I'll give it to"
-	line "you next time!"
+	para "A la prochaine."
+	line "Reviens me voir!"
 	done
 
 VanceRematchGiftText:
-	text "You are really,"
-	line "really strong!"
+	text "Alors toi,"
+	line "t'es pas mal!"
 
-	para "Thanks for taking"
-	line "me on so often--I"
+	para "J'en ai appris des"
+	line "trucs avec toi!"
 
-	para "learned a whole"
-	line "lot from you."
+	para "Merci!"
+	line "Merci!"
 
-	para "I know! This will"
-	line "do as my thanks!"
+	para "Voilà pour toi..."
+	line "Petit cadeau!"
 	done

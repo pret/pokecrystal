@@ -1,10 +1,11 @@
-	db "AQUAMOUSE@" ; species name
-	dw 104, 190 ; height, weight
+	db "AQUASOURIS@" ; species name
+	db 4 ; height
+	dw 85 ; weight
 
-	db   "The fur on its"
-	next "body naturally"
-	next "repels water. It"
+	db   "Sa fourrure est"
+	next "imperméable, si"
+	next "bien qu'il reste"
 
-	page "can stay dry, even"
-	next "when it plays in"
-	next "the water.@"
+	page "sec même en jouant"
+	next "dans l'eau."
+	next "@"

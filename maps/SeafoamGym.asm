@@ -61,98 +61,99 @@ SeafoamGymGuideScript:
 	end
 
 BlaineIntroText:
-	text "BLAINE: Waaah!"
+	text "AUGUSTE: Waaah!"
 
-	para "My GYM in CINNABAR"
-	line "burned down."
+	para "Mon ARENE de CRA-"
+	line "MOIS'ILE a brûlé."
 
-	para "My fire-breathing"
-	line "#MON and I are"
+	para "Moi et mes #MON"
+	line "de feu n'avons"
 
-	para "homeless because"
-	line "of the volcano."
+	para "plus de maison à"
+	line "cause du volcan."
 
 	para "Waaah!"
 
-	para "But I'm back in"
-	line "business as a GYM"
+	para "Mais je suis tou-"
+	line "jours un CHAMPION!"
 
-	para "LEADER here in"
-	line "this cave."
+	para "Et je fais la loi"
+	line "dans cette grotte."
 
-	para "If you can beat"
-	line "me, I'll give you"
-	cont "a BADGE."
+	para "Bats-moi et je te"
+	line "donnerai un BADGE."
+	cont "Promis!"
 
-	para "Ha! You'd better"
-	line "have BURN HEAL!"
+	para "J'espère que tu as"
+	line "de l'ANTI-BRULE!"
 	done
 
 BlaineWinLossText:
-	text "BLAINE: Awesome."
-	line "I've burned out…"
+	text "AUGUSTE: Bien."
+	line "J'ai perdu."
 
-	para "You've earned"
-	line "VOLCANOBADGE!"
+	para "Tu as mérité le"
+	line "BADGE VOLCAN!"
 	done
 
 ReceivedVolcanoBadgeText:
-	text "<PLAYER> received"
-	line "VOLCANOBADGE."
+	text "<PLAYER> reçoit"
+	line "le BADGE VOLCAN."
 	done
 
 BlaineAfterBattleText:
-	text "BLAINE: I did lose"
-	line "this time, but I'm"
+	text "AUGUSTE: Je perds"
+	line "cette fois mais la"
 
-	para "going to win the"
-	line "next time."
+	para "prochaine, je"
+	line "serai vainqueur."
 
-	para "When I rebuild my"
-	line "CINNABAR GYM,"
+	para "Je vais recons-"
+	line "truire mon ARENE à"
 
-	para "we'll have to have"
-	line "a rematch."
+	para "CRAMOIS'ILE et"
+	line "nous combattrons à"
+	cont "nouveau."
 	done
 
 BlaineFightDoneText:
-	text "BLAINE: My fire"
-	line "#MON will be"
+	text "AUGUSTE: Mes"
+	line "#MON de feu"
 
-	para "even stronger."
-	line "Just you watch!"
+	para "seront invincibles"
+	line "tu verras!"
 	done
 
 SeafoamGymGuideWinText:
 	text "Yo!"
 
-	para "… Huh? It's over"
-	line "already?"
+	para "Hein? C'est déjà"
+	line "fini?"
 
-	para "Sorry, sorry!"
+	para "Désolé!"
 
-	para "CINNABAR GYM was"
-	line "gone, so I didn't"
+	para "L'ARENE de CRAMOI-"
+	line "S'ILE était fermée"
 
-	para "know where to find"
-	line "you."
+	para "alors je savais"
+	line "pas où te trouver."
 
-	para "But, hey, you're"
-	line "plenty strong even"
+	para "Enfin t'es super"
+	line "balèze même sans"
 
-	para "without my advice."
-	line "I knew you'd win!"
+	para "mes conseils. Je"
+	line "suis très fier!"
 	done
 
 SeafoamGymGuideWinText2:
-	text "A #MON GYM can"
-	line "be anywhere as"
+	text "Une ARENE #MON"
+	line "peut être n'impor-"
 
-	para "long as the GYM"
-	line "LEADER is there."
+	para "te où tant que le"
+	line "CHAMPION est là."
 
-	para "There's no need"
-	line "for a building."
+	para "Pas besoin d'un"
+	line "toit."
 	done
 
 SeafoamGym_MapEvents:

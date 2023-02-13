@@ -1,59 +1,52 @@
 RalphAnswerPhoneText:
-	text "Yes? Ah, <PLAY_G>."
+	text "Oui? Ah, <PLAY_G>."
 
-	para "You're courteous"
-	line "enough to state"
-
-	para "your name when you"
-	line "call on the phone."
+	para "Merci de dire ton"
+	line "nom quand tu"
+	cont "m'appelles..."
 	done
 
 RalphAnswerPhoneDayText:
-	text "Yes? Ah, <PLAY_G>."
+	text "Oui? Ah, <PLAY_G>."
 
-	para "You're courteous"
-	line "enough to state"
-
-	para "your name when you"
-	line "call on the phone."
+	para "Merci de dire ton"
+	line "nom quand tu"
+	cont "m'appelles..."
 	done
 
 RalphAnswerPhoneNiteText:
-	text "Yes? Ah, <PLAY_G>."
+	text "Oui? Ah, <PLAY_G>."
 
-	para "You're courteous"
-	line "enough to state"
-
-	para "your name when you"
-	line "call on the phone."
+	para "Merci de dire ton"
+	line "nom quand tu"
+	cont "m'appelles..."
 	done
 
 RalphGreetText:
-	text "Hiya, it's Uncle"
+	text "Salut, c'est pépé"
 	line "@"
 	text_ram wStringBuffer3
 	text "."
 	done
 
 RalphGreetDayText:
-	text "Hiya, it's Uncle"
+	text "Salut, c'est pépé"
 	line "@"
 	text_ram wStringBuffer3
 	text "."
 	done
 
 RalphGreetNiteText:
-	text "Hiya, it's Uncle"
+	text "Salut, c'est pépé"
 	line "@"
 	text_ram wStringBuffer3
 	text "."
 	done
 
 RalphGenericText:
-	text "Are you taking"
-	line "good care of your"
+	text "Tu prends soin de"
+	line "tes #MON?"
 
-	para "#MON? You have"
-	line "to be good to your"
-	cont "partners!"
+	para "Sois sympa avec"
+	line "tes petits amis!"
 	done

@@ -31,38 +31,38 @@ HiddenPowerHouseBookshelf:
 	jumpstd DifficultBookshelfScript
 
 HiddenPowerGuyText1:
-	text "…You have strayed"
-	line "far…"
+	text "...Tu as bien"
+	line "voyagé..."
 
-	para "Here I have medi-"
-	line "tated. Inside me,"
+	para "Moi, j'ai médité."
+	line "Au fond de moi une"
 
-	para "a new power has"
-	line "been awakened."
+	para "nouvelle force"
+	line "s'est réveillée."
 
-	para "Let me share my"
-	line "power with your"
+	para "Laisse-moi parta-"
+	line "ger mon pouvoir"
 
-	para "#MON."
-	line "Take this, child."
+	para "avec tes #MON."
+	line "Prends-ça."
 	done
 
 HiddenPowerGuyText2:
-	text "Do you see it? It"
-	line "is HIDDEN POWER!"
+	text "Tu vois? C'est"
+	line "PUIS.CACHEE!"
 
-	para "It draws out the"
-	line "power of #MON"
-	cont "for attacking."
+	para "Elle prolonge la"
+	line "puissance de tes"
+	cont "#MON."
 
-	para "Remember this: its"
-	line "type and power de-"
-	cont "pend on the #-"
-	cont "MON using it."
+	para "Rappelle-toi: cela"
+	line "dépend du type et"
+	cont "de la puissance du"
+	cont "#MON utilisé."
 	done
 
 HiddenPowerGuyText3:
-	text "I am meditating…"
+	text "Je médite..."
 	done
 
 LakeOfRageHiddenPowerHouse_MapEvents:

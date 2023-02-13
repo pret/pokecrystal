@@ -1,53 +1,55 @@
 IrwinAskNumber1Text:
-	text "You're the best"
-	line "I've ever battled!"
+	text "Alors ça!"
+	line "Toi t'es fortiche!"
 
-	para "Huh? You're the"
-	line "one who saved all"
-	cont "the SLOWPOKE?"
+	para "Quoi? C'est toi?"
+	line "Tu as sauvé les"
+	cont "RAMOLOSS, non?"
 
-	para "Well, no wonder I"
-	line "couldn't beat you!"
+	para "Voilà pourquoi"
+	line "t'es aussi balèze!"
 
-	para "Would it be OK to"
-	line "get your number?"
+	para "Je peux avoir ton"
+	line "numéro?"
 
-	para "I don't want to"
-	line "miss anything you"
-	cont "do from now on!"
+	para "Je veux savoir"
+	line "tout ce que tu"
+	cont "fais!"
 	done
 
 IrwinAskNumber2Text:
-	text "You will tell me"
-	line "your phone number?"
+	text "Tu veux bien me"
+	line "donner ton numéro?"
 	done
 
 IrwinNumberAcceptedText:
-	text "Wow! Gee, thanks!"
-	line "Now I can call you"
+	text "OUAIS! Trop fort!"
+	line "Je peux t'appeler"
 
-	para "anytime, whether"
-	line "anything's up or"
+	para "tout le temps"
+	line "maintenant!"
 
-	para "not. You know,"
-	line "just to chat!"
+	para "On va être trop"
+	line "potes!"
 	done
 
 IrwinNumberDeclinedText:
-	text "Oh, but…"
-	line "I'm not dangerous!"
+	text "Oh, mais..."
+	line "Je suis pas"
+	cont "bizarre, tu sais!"
 
-	para "I just want to"
-	line "call and chat"
+	para "Je veux juste"
+	line "parler..."
 
-	para "about everything"
-	line "and nothing!"
+	para "C'est tout!"
+	line "J'te jure!"
 	done
 
 IrwinPhoneFullText:
-	text "Your phone list is"
-	line "already full…"
+	text "La mémoire de ton"
+	line "téléphone est"
+	cont "pleine..."
 
-	para "You must be really"
-	line "popular…"
+	para "Tu es trop"
+	line "populaire..."
 	done

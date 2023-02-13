@@ -1,10 +1,11 @@
-	db "VINE@" ; species name
-	dw 303, 770 ; height, weight
+	db "VIGNE@" ; species name
+	db 10 ; height
+	dw 350 ; weight
 
-	db   "During battle, it"
-	next "constantly moves"
-	next "the vines that"
+	db   "En combat, il gi-"
+	next "gote ses lianes"
+	next "sans arrêt et dans"
 
-	page "cover its body in"
-	next "order to annoy its"
-	next "opponent.@"
+	page "tous les sens pour"
+	next "énerver son adver-"
+	next "saire.@"

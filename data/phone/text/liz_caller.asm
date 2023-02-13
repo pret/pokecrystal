@@ -1,307 +1,278 @@
 LizMonAlwaysWantsToNuzzleText:
-	text "Oh, you have to"
-	line "hear this."
+	text "Oh! Ecoute ça!"
 
-	para "My @"
+	para "Mon @"
 	text_ram wStringBuffer4
-	text " is"
-	line "so adorable!"
+	text_start
+	line "est adorable!"
 
-	para "It always wants to"
-	line "nuzzle me!"
+	para "Il veut faire des"
+	line "câlins!"
 	done
 
 LizDefeatedMonText:
-	text "And, and! Um…"
+	text "Et heu..."
 
-	para "We beat a wild"
+	para "On a battu un"
 	line "@"
 	text_ram wStringBuffer4
-	text " with"
+	text " avec"
+	cont "un seul coup."
 
-	para "just one hit a"
-	line "little while ago."
-
-	para "We felt sorry for"
-	line "it, though."
+	para "C'est bien, non?"
 	done
 
 LizLostAMonText:
-	text "And, and! Uh…"
+	text "Et heu..."
 
-	para "We just saw a"
-	line "really gorgeous"
-	cont "@"
+	para "On a vu un joli"
+	line "@"
 	text_ram wStringBuffer4
 	text "."
 
-	para "But I was on the"
-	line "phone, so it got"
+	para "Mais j'étais au"
+	line "téléphone alors il"
 
-	para "away. It made us"
-	line "really angry!"
+	para "est parti!"
 	done
 
 LizBattleRematchText:
-	text "Hi! Do you have"
-	line "some free time?"
+	text "Salut! Tu as du"
+	line "temps libre?"
 
-	para "I've got all sorts"
-	line "of time. If you're"
+	para "Moi, j'en ai trop."
+	line "Ca te dit un"
+	cont "combat?"
 
-	para "free, would you"
-	line "like to battle?"
-
-	para "I'll be waiting on"
+	para "J'attends vers"
 	line "@"
 	text_ram wStringBuffer5
 	text "."
 
-	para "Let me know when"
-	line "you get here!"
+	para "Appelle si tu"
+	line "viens!"
 	done
 
 LizWrongNumberText:
-	text "Hi, TANIA. How are"
-	line "you? This is LIZ."
+	text "Allô GERMAINE?"
+	line "Ca va? C'est LIZ."
 
-	para "I'm fine, but I'm"
-	line "bored silly!"
+	para "Qu'est-ce que tu"
+	line "deviens?"
 
-	para "Huh… Wrong number?"
-	line "Oops! Sorry!"
+	para "Hein? Oups!"
+	line "Mauvais numéro!"
 	done
 
 LizHangUpText:
-	text "OK, I'll call you"
-	line "later!"
+	text "OK, à plus tard!"
 	done
 
 LizRuinsOfAlphGossipText:
-	text "Listen, listen!"
+	text "Ecoute!"
 
-	para "I was listening to"
-	line "the radio in the"
+	para "J'écoutais la"
+	line "radio dans les"
 
-	para "RUINS OF ALPH when"
-	line "an odd broadcast"
+	para "RUINES d'ALPHA et"
+	line "j'ai entendu un"
 
-	para "suddenly cut it on"
-	line "the regular show."
+	para "truc bizarre au"
+	line "milieu d'une"
+	cont "émission."
 
-	para "I wonder what it"
-	line "was. So strange!"
+	para "C'était quoi donc?"
 	done
 
 LizFalknerGossipText:
-	text "Listen, listen!"
+	text "Ecoute!"
 
-	para "Don't you think"
-	line "FALKNER of VIOLET"
+	para "Tu trouves pas que"
+	line "ALBERT de MAUVILLE"
+	cont "est beau gosse?"
 
-	para "GYM is cool and"
-	line "handsome?"
+	para "On dit aussi que"
+	line "son père, qui"
 
-	para "But they say his"
-	line "dad, who's out"
+	para "s'entraîne sur les"
+	line "routes, est encore"
+	cont "plus beau."
 
-	para "training on the"
-	line "road, is even more"
-
-	para "cool and handsome"
-	line "than FALKNER."
-
-	para "I wish I could"
-	line "meet him!"
+	para "Je veux le voir!"
 	done
 
 LizEarlGossipText:
-	text "Listen, listen!"
+	text "Ecoute!"
 
-	para "Do you know EARL,"
-	line "the teacher who"
+	para "Tu connais"
+	line "THEOPHILE, le"
 
-	para "runs the #MON"
-	line "ACADEMY in VIOLET?"
+	para "professeur à la"
+	line "tête de l'ACADEMIE"
+	cont "de MAUVILLE?"
 
-	para "I saw him doing"
-	line "pirouettes while"
+	para "Je l'ai vu courir!"
+	line "C'était à mourir"
 
-	para "he was running. It"
-	line "was wildly funny!"
+	para "de rire! Ca fait"
+	line "même de la peine!"
 	done
 
 LizSurfPikachuGossipText:
-	text "Listen, listen!"
+	text "Ecoute!"
 
-	para "I collect #MON"
-	line "plush dolls."
+	para "Je collectionne"
+	line "des poupées"
+	cont "#MON."
 
-	para "But I can't seem"
-	line "to get a hold of a"
+	para "Mais je n'arrive"
+	line "pas à trouver un"
 
-	para "SURF PIKACHU DOLL."
-	line "None of my friends"
+	para "JOUETPIKACHU SURF."
+	line "Et aucun de mes"
 
-	para "have it. It must"
-	line "be totally rare!"
+	para "amis n'en a."
+	line "C'est super rare!"
 
-	para "You could really"
-	line "brag about it if"
-	cont "you had one."
+	para "Si t'en as un, tu"
+	line "peux crâner."
 	done
 
 LizMooMooMilkGossipText:
-	text "Listen, listen!"
+	text "Ecoute!"
 
-	para "Do you know about"
-	line "MOOMOO MILK?"
+	para "Tu connais le"
+	line "LAIT MEUMEU?"
 
-	para "You can buy it at"
-	line "MOOMOO FARM."
+	para "On peut en acheter"
+	line "au RANCH MEUMEU."
 
-	para "It's supposed to"
-	line "be good for health"
+	para "C'est bon pour la"
+	line "santé et la beauté"
 
-	para "and beauty."
-	line "I really want to"
-
-	para "try some. I bet"
-	line "it's delicious!"
+	para "aussi."
+	line "J'en veux!"
+	cont "Je le vaux bien!"
 	done
 
 LizSalonGossipText:
-	text "Listen, listen!"
+	text "Ecoute!"
 
-	para "There's a #MON"
-	line "SALON in GOLDENROD"
+	para "Il y a un SALON"
+	line "#MON à DOUBLON-"
 
-	para "that's run by two"
-	line "brothers."
+	para "VILLE qui est tenu"
+	line "par deux frères."
 
-	para "The older brother"
-	line "is good, but the"
+	para "Le plus vieux est"
+	line "bon, mais l'autre"
+	cont "est une tache."
 
-	para "younger one really"
-	line "isn't."
+	para "Mais ça dépend"
+	line "des fois."
 
-	para "But sometimes the"
-	line "younger one does a"
+	para "A chaque fois,"
+	line "j'ai du mal à me"
 
-	para "better job than"
-	line "his brother."
-
-	para "Every time I go, I"
-	line "have a hard time"
-
-	para "trying to decide"
-	line "whom I should use…"
+	para "décider..."
 	done
 
 LizWhitneyGossipText:
-	text "Listen, listen!"
+	text "Ecoute!"
 
-	para "GOLDENROD GYM's"
-	line "WHITNEY began"
+	para "BLANCHE de DOU-"
+	line "BLONVILLE est"
 
-	para "battling only a"
-	line "little while ago!"
+	para "dresseur depuis"
+	line "peu de temps!"
 
-	para "But the #MON"
-	line "LEAGUE chose her"
-	cont "as a GYM LEADER!"
+	para "Mais la LIGUE"
+	line "#MON l'a"
+	cont "choisie pour être"
+	cont "CHAMPIONNE!"
 
-	para "I bet she must be"
-	line "totally talented."
+	para "Elle doit avoir un"
+	line "sacré talent."
 	done
 
 LizBugCatchingContestGossipText:
-	text "Listen, listen!"
+	text "Ecoute!"
 
-	para "Have you ever"
-	line "taken part in a"
+	para "As-tu participé au"
+	line "Concours de Captu-"
 
-	para "Bug-Catching"
-	line "Contest at the"
-	cont "NATIONAL PARK?"
+	para "re au PARC"
+	line "NATUREL?"
 
-	para "I did once, but"
-	line "all I could catch"
-	cont "was a CATERPIE."
+	para "Moi ouais. Je"
+	line "n'ai pu attraper"
+	cont "qu'un CHENIPAN."
 
-	para "But guess what!"
+	para "Mais tu sais quoi?"
 
-	para "I won with that"
-	line "CATERPIE. Isn't"
-	cont "that great?"
+	para "J'ai pu le garder!"
+	line "C'est cool, non?"
 	done
 
 LizBeautifulTrainerGossipText:
-	text "Listen, listen!"
+	text "Ecoute!"
 
-	para "I saw a beautiful"
+	para "J'ai vu un beau"
 	line "@"
 	text_ram wStringBuffer4
 	text "!"
 
-	para "I wish I could"
-	line "become a beautiful"
+	para "Moi je veux être"
+	line "aussi un joli"
 	cont "@"
 	text_ram wStringBuffer4
-	text " too."
+	text "."
 	done
 
 LizForgotGossipText:
-	text "Listen, listen!"
+	text "Ecoute!"
 
-	para "Uh… Um… Whoops!"
+	para "Heu... Heu..."
 
-	para "I forgot what I"
-	line "was going to say!"
+	para "J'ai oublié!"
 	done
 
 LizFawningOverMonText:
-	text "Listen, listen!"
+	text "Ecoute!"
 
-	para "My @"
+	para "Mon @"
 	text_ram wStringBuffer4
 	text "…"
-	line "it… so pretty…"
+	line "Il est… si beau…"
 
-	para "and… giggle… so"
-	line "awesome… yes… but…"
+	para "Et… Il… Est"
+	line "gentil… Oui… Et…"
 
-	para "very much… eeek!"
-	line "And… lovely…"
+	para "En fait… Ah!"
+	line "Et… Sympa…"
 
-	para "Just ravishing…"
-	line "Oh, too much!"
+	para "Mignon…"
+	line "Oh, trop!"
 
-	para "…Hug it… sleeping…"
-	line "That's right…"
+	para "…Bisou… Câlin…"
+	line "Et oui…"
 
-	para "pretty… sigh… So"
-	line "nice… Cute…"
+	para "Joli… Aaaah…"
+	line "Tout ça…"
 
-	para "…Oops! Look at the"
-	line "time! I chatted"
-	cont "too long!"
+	para "…C'est l'heure!"
+	line "J'ai trop parlé!"
 
-	para "I'm sorry I took"
-	line "so much of your"
-
-	para "time!"
-	line "I love chatting!"
+	para "A bientôt!"
+	line "J'adore parler!"
 	done
 
 LizReminderText:
-	text "I've got too much"
-	line "time on my hands!"
+	text "J'ai du temps"
+	line "devant moi!"
+	cont "On va se battre!"
 
-	para "Let's battle right"
-	line "away!"
-
-	para "I'll be waiting on"
+	para "Je t'attends vers"
 	line "@"
 	text_ram wStringBuffer5
 	text "!"

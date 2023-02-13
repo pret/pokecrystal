@@ -25,18 +25,19 @@ CherrygroveEvolutionSpeechHouseBookshelf:
 	jumpstd MagazineBookshelfScript
 
 CherrygroveEvolutionSpeechHouseYoungsterText:
-	text "#MON gain expe-"
-	line "rience in battle"
+	text "Les #MON"
+	line "gagnent de l'expé-"
 
-	para "and change their"
-	line "form."
+	para "rience et évoluent"
+	line "en combattant."
 	done
 
 CherrygroveEvolutionSpeechHouseLassText:
-	text "#MON change?"
+	text "Les #MON"
+	line "évoluent?"
 
-	para "I would be shocked"
-	line "if one did that!"
+	para "Je serais curieuse"
+	line "de voir ça!"
 	done
 
 CherrygroveEvolutionSpeechHouse_MapEvents:

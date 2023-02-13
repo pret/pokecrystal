@@ -46,68 +46,69 @@ OlivineLighthouse3FEther:
 	itemball ETHER
 
 BirdKeeperTheoSeenText:
-	text "Why are you here?"
-	line "Are you just going"
+	text "Pourquoi tu es là?"
+	line "Qu'est-ce que tu"
 
-	para "to gawk? I suggest"
-	line "that you leave!"
+	para "veux? Allez..."
+	line "Va-t'en!"
 	done
 
 BirdKeeperTheoBeatenText:
-	text "You really are"
-	line "concerned…"
+	text "T'es tenace,"
+	line "toi..."
 	done
 
 BirdKeeperTheoAfterBattleText:
-	text "How the heck do"
-	line "you go up?"
+	text "Comment tu fais"
+	line "pour monter?"
 
-	para "I want to visit"
-	line "the sick #MON,"
+	para "Je veux voir le"
+	line "#MON malade,"
 
-	para "but I can't get up"
-	line "there…"
+	para "mais j'arrive pas"
+	line "à monter..."
 	done
 
 SailorTerrellSeenText:
-	text "Sailors are both"
-	line "kind and strong."
-	cont "How about you?"
+	text "Les marins sont"
+	line "sympa et musclés."
+	cont "Et toi?"
 	done
 
 SailorTerrellBeatenText:
-	text "You are both kind"
-	line "and strong…"
+	text "Pas mal."
+	line "C'est bien..."
 	done
 
 SailorTerrellAfterBattleText:
-	text "Every time I come"
-	line "back to OLIVINE, I"
-	cont "visit the GYM."
+	text "Je vais à l'ARENE"
+	line "à chaque fois que"
+	cont "je viens à"
+	cont "OLIVILLE."
 
-	para "The GYM LEADER's"
-	line "#MON type has"
+	para "Le type des #-"
+	line "MON du CHAMPION"
 
-	para "changed without me"
-	line "noticing."
+	para "d'ARENE a changé"
+	line "récemment."
 	done
 
 GentlemanPrestonSeenText:
-	text "I travel the world"
-	line "to train my #-"
-	cont "MON. I wish to"
-	cont "battle with you."
+	text "Je parcours la"
+	line "terre en quête"
+	cont "d'entraînement."
+	cont "En garde!"
 	done
 
 GentlemanPrestonBeatenText:
-	text "…sigh… I must"
-	line "train some more…"
+	text "Bon. Je vais errer"
+	line "autre part alors."
 	done
 
 GentlemanPrestonAfterBattleText:
-	text "JASMINE used to"
-	line "use rock #MON"
-	cont "like ONIX."
+	text "JASMINE utilisait"
+	line "des #MON de la"
+	cont "roche comme ONIX."
 	done
 
 OlivineLighthouse3F_MapEvents:

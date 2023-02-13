@@ -1,45 +1,47 @@
 ReenaAskNumber1Text:
-	text "Not bad…"
-	line "It's something to"
+	text "Pas mal..."
+	line "Tu as du mérite"
 
-	para "beat me, even by"
-	line "an unlikely fluke…"
+	para "d'avoir gagné..."
+	line "C'est pas donné à"
+	cont "tout le monde..."
 
-	para "I like you! Give"
-	line "me your number!"
+	para "J't'aime bien!"
+	line "Donne ton numéro!"
 
-	para "You can be my"
-	line "practice partner!"
+	para "Toi et moi on"
+	line "sera potes!"
 	done
 
 ReenaAskNumber2Text:
-	text "Give me your phone"
-	line "number!"
+	text "J't'aime bien!"
+	line "Donne ton numéro!"
 
-	para "You are going to"
-	line "be my practice"
-	cont "partner!"
+	para "Toi et moi on"
+	line "sera potes!"
 	done
 
 ReenaNumberAcceptedText:
-	text "Don't be too proud"
-	line "about beating me!"
+	text "Ne te vante pas"
+	line "trop!"
 
-	para "It was a fluke!"
+	para "Ca donne des"
+	line "boutons!"
 	done
 
 ReenaNumberDeclinedText:
-	text "I don't believe"
-	line "it! You're going"
-	cont "to regret this!"
+	text "Incroyable!"
+	line "Ca, mon bijou, tu"
+	cont "vas le regretter!"
 	done
 
 ReenaPhoneFullText:
-	text "What? Your phone"
-	line "list has no room!"
+	text "Hein? Ton télépho-"
+	line "ne est plein!"
 	done
 
 ReenaRematchText:
-	text "What took you?"
-	line "Start right away!"
+	text "Bah alors?"
+	line "T'en as mis du"
+	cont "temps!"
 	done

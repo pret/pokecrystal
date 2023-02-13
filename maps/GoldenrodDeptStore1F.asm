@@ -28,52 +28,58 @@ GoldenrodDeptStore1FElevatorButton:
 	jumpstd ElevatorButtonScript
 
 GoldenrodDeptStore1FReceptionistText:
-	text "Welcome to GOLDEN-"
-	line "ROD DEPT.STORE."
+	text "Bienvenue au"
+	line "CENTRE COMMERCIAL"
+	cont "de DOUBLONVILLE."
 	done
 
 GoldenrodDeptStore1FGentlemanText:
-	text "The DEPT.STORE"
-	line "has a decent se-"
-	cont "lection."
+	text "Le CENTRE COMMER-"
+	line "CIAL a un tas de"
+	cont "bons produits."
 
-	para "But some items"
-	line "are only available"
+	para "Mais certains"
+	line "objets ne sont"
 
-	para "as GAME CORNER"
-	line "prizes."
+	para "disponibles qu'en"
+	line "prix à gagner au"
+	cont "CASINO."
 	done
 
 GoldenrodDeptStore1FPokefanFText:
-	text "I'm raring to shop"
-	line "again today!"
+	text "Je suis très"
+	line "impatiente de"
+	cont "faire les courses!"
 	done
 
 GoldenrodDeptStore1FBugCatcherText:
-	text "Mom's good at"
-	line "bargain hunting."
+	text "Maman est trop"
+	line "forte quand il"
+	cont "s'agit de bizness."
 
-	para "She always buys"
-	line "stuff at lower"
-	cont "prices."
+	para "Elle achète tou-"
+	line "jours des trucs"
+	cont "pas chers."
 	done
 
 GoldenrodDeptStore1FDirectoryText:
-	text "1F SERVICE COUNTER"
+	text "RDC  ACCUEIL"
 
-	para "2F TRAINER'S"
-	line "   MARKET"
+	para "1ER  BOUTIQUE"
+	line "     DRESSEUR"
 
-	para "3F BATTLE"
-	line "   COLLECTION"
+	para "2EME COLLECTION"
+	line "     DE COMBAT"
 
-	para "4F MEDICINE BOX"
+	para "3EME PHARMACIE"
 
-	para "5F TM CORNER"
+	para "4EME Y'A BON LES"
+	line "     CT"
 
-	para "6F TRANQUIL SQUARE"
+	para "5EME COIN"
+	line "     TRANQUILLE"
 
-	para "ROOFTOP LOOKOUT"
+	para "TOIT PANORAMA"
 	done
 
 GoldenrodDeptStore1F_MapEvents:

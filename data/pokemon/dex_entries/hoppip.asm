@@ -1,10 +1,11 @@
-	db "COTTONWEED@" ; species name
-	dw 104, 10 ; height, weight
+	db "PISSENLIT@" ; species name
+	db 4 ; height
+	dw 5 ; weight
 
-	db   "It can be carried"
-	next "away on even the"
-	next "gentlest breeze."
+	db   "Même la plus légè-"
+	next "re des brises peut"
+	next "le balayer et"
 
-	page "It may even float"
-	next "all the way to the"
-	next "next town.@"
+	page "l'envoyer vers une"
+	next "ville voisine."
+	next "@"

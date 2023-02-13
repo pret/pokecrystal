@@ -1,10 +1,11 @@
-	db "FOX@" ; species name
-	dw 200, 220 ; height, weight
+	db "RENARD@" ; species name
+	db 6 ; height
+	dw 99 ; weight
 
-	db   "As its body grows"
-	next "larger, its six"
-	next "warm tails become"
+	db   "En grandissant,"
+	next "ses six queues de-"
+	next "viennent plus bel-"
 
-	page "more beautiful,"
-	next "with a more luxur-"
-	next "ious coat of fur.@"
+	page "les et se couvrent"
+	next "d'une fourrure"
+	next "plus épaisse.@"

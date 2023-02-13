@@ -1,10 +1,11 @@
-	db "AQUARABBIT@" ; species name
-	dw 207, 630 ; height, weight
+	db "AQUALAPIN@" ; species name
+	db 8 ; height
+	dw 285 ; weight
 
-	db   "The bubble-like"
-	next "pattern on its"
-	next "stomach helps it"
+	db   "Les motifs sur son"
+	next "ventre lui permet-"
+	next "tent de se camou-"
 
-	page "camouflage itself"
-	next "when it's in the"
-	next "water.@"
+	page "fler lorsqu'il est"
+	next "dans l'eau."
+	next "@"

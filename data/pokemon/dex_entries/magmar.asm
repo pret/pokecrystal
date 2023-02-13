@@ -1,10 +1,11 @@
-	db "SPITFIRE@" ; species name
-	dw 403, 980 ; height, weight
+	db "CRACHE-FEU@" ; species name
+	db 13 ; height
+	dw 445 ; weight
 
-	db   "It moves more"
-	next "frequently in hot"
-	next "areas. It can heal"
+	db   "Il aime les mi-"
+	next "lieux chauds."
+	next "Il peut soigner"
 
-	page "itself by dipping"
-	next "its wound into"
-	next "lava.@"
+	page "ses blessures en"
+	next "les trempant dans"
+	next "de la lave.@"

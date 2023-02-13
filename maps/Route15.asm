@@ -85,8 +85,9 @@ Route15PPUp:
 	itemball PP_UP
 
 TeacherColetteSeenText:
-	text "Have you forgotten"
-	line "anything?"
+	text "Il est où ton"
+	line "cahier?"
+	cont "Et ta trousse?"
 	done
 
 TeacherColetteBeatenText:
@@ -94,109 +95,105 @@ TeacherColetteBeatenText:
 	done
 
 TeacherColetteAfterBattleText:
-	text "Before I became a"
-	line "teacher, I used to"
-
-	para "forget a lot of"
-	line "things."
+	text "Etre professeur ça"
+	line "laisse des traces."
 	done
 
 TeacherHillarySeenText:
-	text "On sunny days, I"
-	line "think that the"
+	text "Avoir son matériel"
+	line "est important."
 
-	para "kids would rather"
-	line "be playing in the"
-
-	para "schoolyard than"
-	line "studying in class."
+	para "Comme les dictées"
+	line "et les devoirs."
 	done
 
 TeacherHillaryBeatenText:
-	text "I didn't want to"
-	line "lose…"
+	text "Perdre c'est mal."
+	line "Pfff..."
 	done
 
 TeacherHillaryAfterBattleText:
-	text "Studying is impor-"
-	line "tant, but exercise"
-	cont "is just as vital."
+	text "Un esprit sain"
+	line "dans un corps"
+	cont "sain..."
 	done
 
 SchoolboyKippSeenText:
-	text "Hang on. I have to"
-	line "phone my mom."
+	text "Un p'tit combat"
+	line "et j'appelle ma"
+	cont "maman."
 	done
 
 SchoolboyKippBeatenText:
-	text "Sorry, Mom!"
-	line "I was beaten!"
+	text "Allô maman?"
+	line "J'ai perdu!"
 	done
 
 SchoolboyKippAfterBattleText:
-	text "My mom worries so"
-	line "much about me, I"
+	text "Maman s'inquiète"
+	line "beaucoup pour moi."
 
-	para "have to phone her"
-	line "all the time."
+	para "Alors je dois lui"
+	line "téléphoner..."
 	done
 
 SchoolboyTommySeenText:
-	text "Let's battle."
-	line "I won't lose!"
+	text "COOOOMBAAAAT!"
+	line "HA HA HA HA!"
 	done
 
 SchoolboyTommyBeatenText:
-	text "I forgot to do my"
-	line "homework!"
+	text "Heu..."
+	line "Copain?"
 	done
 
 SchoolboyTommyAfterBattleText:
-	text "Sayonara! I just"
-	line "learned that in my"
-	cont "Japanese class."
+	text "Trop fort!"
+	line "On devient potes?"
+	cont "Allez!!!"
 	done
 
 SchoolboyJohnnySeenText:
-	text "We're on a field"
-	line "trip to LAVENDER"
+	text "On va étudier à la"
+	line "TOUR RADIO de"
 
-	para "RADIO TOWER for"
-	line "social studies."
+	para "LAVANVILLE..."
+	line "Génial, non?"
 	done
 
 SchoolboyJohnnyBeatenText:
-	text "You're wickedly"
-	line "tough!"
+	text "T'es pas sympa,"
+	line "toi!"
 	done
 
 SchoolboyJohnnyAfterBattleText:
-	text "I'm tired of walk-"
-	line "ing. I need to"
-	cont "take a break."
+	text "Marcher c'est"
+	line "crevant..."
+	cont "Je fais une pause."
 	done
 
 SchoolboyBillySeenText:
-	text "My favorite class"
-	line "is gym!"
+	text "J'aime la purée!"
+	line "Combat!"
 	done
 
 SchoolboyBillyBeatenText:
-	text "Oh, no!"
-	line "How could I lose?"
+	text "...."
+	line "Super."
 	done
 
 SchoolboyBillyAfterBattleText:
-	text "If #MON were a"
-	line "subject at school,"
-	cont "I'd be the best!"
+	text "J'aime le lard et"
+	line "le jambon, et tout"
+	cont "ce qu'il y a dans"
+	cont "le cochon!"
 	done
 
 Route15SignText:
 	text "ROUTE 15"
 
-	para "FUCHSIA CITY -"
-	line "LAVENDER TOWN"
+	para "PARMANIE -"
+	line "LAVANVILLE"
 	done
 
 Route15_MapEvents:

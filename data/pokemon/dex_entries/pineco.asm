@@ -1,10 +1,11 @@
-	db "BAGWORM@" ; species name
-	dw 200, 160 ; height, weight
+	db "VER CACHE@" ; species name
+	db 6 ; height
+	dw 72 ; weight
 
-	db   "It spits out a"
-	next "fluid that it uses"
-	next "to glue tree bark"
+	db   "Il crache un li-"
+	next "quide gluant pour"
+	next "coller de l'écorce"
 
-	page "to its body. The"
-	next "fluid hardens when"
-	next "it touches air.@"
+	page "sur son corps."
+	next "Ce fluide durcit"
+	next "avec l'air.@"

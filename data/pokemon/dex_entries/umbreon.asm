@@ -1,10 +1,11 @@
-	db "MOONLIGHT@" ; species name
-	dw 303, 600 ; height, weight
+	db "LUNE@" ; species name
+	db 10 ; height
+	dw 270 ; weight
 
-	db   "On the night of a"
-	next "full moon, or when"
-	next "it gets excited,"
+	db   "Les nuits de plei-"
+	next "ne lune, ou s'il"
+	next "est en colère, les"
 
-	page "the ring patterns"
-	next "on its body glow"
-	next "yellow.@"
+	page "anneaux sur sa"
+	next "peau se mettent"
+	next "à briller.@"

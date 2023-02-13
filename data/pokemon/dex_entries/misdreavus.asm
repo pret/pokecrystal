@@ -1,10 +1,11 @@
-	db "SCREECH@" ; species name
-	dw 204, 20 ; height, weight
+	db "STRIDENT@" ; species name
+	db 7 ; height
+	dw 10 ; weight
 
-	db   "It loves to watch"
-	next "people it's scar-"
-	next "ed. It frightens"
+	db   "Il aime faire peur"
+	next "en criant ou en"
+	next "apparaissant sou-"
 
-	page "them by screaming"
-	next "loudly or appear-"
-	next "ing suddenly.@"
+	page "dainement. Il re-"
+	next "garde ensuite ses"
+	next "victimes et rit.@"

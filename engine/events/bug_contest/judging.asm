@@ -114,7 +114,7 @@ LoadContestantName:
 ; Append the name to wBugContestWinnerName.
 	ld hl, wStringBuffer1
 	pop de
-	ld bc, NAME_LENGTH - 1
+	ld bc, NAME_LENGTH
 	jp CopyBytes
 
 .player

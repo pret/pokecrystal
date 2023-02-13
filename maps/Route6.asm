@@ -37,56 +37,53 @@ Route6UndergroundPathSign:
 	jumptext Route6UndergroundPathSignText
 
 Route6PokefanMText:
-	text "The road is closed"
-	line "until the problem"
+	text "La route sera"
+	line "fermée tant que le"
 
-	para "at the POWER PLANT"
-	line "is solved."
+	para "problème à la"
+	line "CENTRALE ne sera"
+	cont "pas résolu."
 	done
 
 Route6UndergroundPathSignText:
-	text "UNDERGROUND PATH"
+	text "SOUTERRAIN"
 
-	para "CERULEAN CITY -"
-	line "VERMILION CITY"
+	para "AZURIA -"
+	line "CARMIN SUR MER"
 	done
 
 PokefanmRexSeenText:
-	text "My PHANPY is the"
-	line "cutest in the"
-	cont "world."
+	text "Mon PHANPY est le"
+	line "plus beau du"
+	cont "monde."
 	done
 
 PokefanmRexBeatenText:
-	text "My PHANPY!"
+	text "Mon PHANPY!"
 	done
 
 PokefanmRexAfterBattleText:
-	text "Look how adorable"
-	line "my PHANPY acts!"
+	text "Mon PHANPY est"
+	line "trop mimi!"
 
-	para "Isn't it cute"
-	line "enough to make"
-	cont "your heart melt?"
+	para "Tu trouves pas?"
 	done
 
 PokefanmAllanSeenText:
-	text "My TEDDIURSA is"
-	line "the cutest in the"
-	cont "world."
+	text "Mon TEDDIURSA est"
+	line "le plus beau du"
+	cont "monde."
 	done
 
 PokefanmAllanBeatenText:
-	text "My TEDDIURSA!"
+	text "Mon TEDDIURSA!"
 	done
 
 PokefanmAllanAfterBattleText:
-	text "Look how adorable"
-	line "my TEDDIURSA acts!"
+	text "Mon TEDDIURSA est"
+	line "trop mimi!"
 
-	para "Isn't it cute"
-	line "enough to make"
-	cont "your heart melt?"
+	para "Tu trouves pas?"
 	done
 
 Route6_MapEvents:

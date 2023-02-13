@@ -1,82 +1,76 @@
 BeverlyMadeMonEvenCuterText:
-	text "I fancied up my"
+	text "J'ai toiletté mon"
 	line "@"
 	text_ram wStringBuffer4
-	text " and"
-
-	para "made it even cuter"
-	line "than before!"
+	text " et"
+	cont "il est super mimi!"
 	done
 
 BeverlyDefeatedMonText:
-	text "I happened to come"
-	line "across a wild"
-	cont "SNUBBULL recently."
+	text "J'ai croisé un"
+	line "SNUBBULL sauvage."
 
-	para "My SNUBBULL, I"
-	line "assure you, was"
-
-	para "far cuter than the"
-	line "wild one."
+	para "Mon SNUBBULL à"
+	line "moi était bien"
+	cont "plus joli."
 	done
 
 BeverlyLostAMonText:
-	text "I happened to see"
-	line "a wild MARILL the"
+	text "J'ai croisé un"
+	line "MARILL sauvage"
 
-	para "other day."
-	line "Or so I thought."
+	para "l'autre jour."
+	line "Mais en fait..."
 
-	para "A closer look"
-	line "showed it was"
-
+	para "En regardant de"
+	line "près, c'était un"
 	para "@"
 	text_ram wStringBuffer4
-	text ". I was"
-	line "quite miffed."
+	text "."
+	line "Dingue!"
 	done
 
 BeverlyHangUpText:
-	text "You can expect a"
-	line "call from me."
+	text "Je vais bientôt"
+	line "t'appeler."
 	done
 
 BeverlyFoundItemText:
-	text "My husband got"
-	line "some NUGGETS."
+	text "Mon mari a plein"
+	line "de PEPITES."
 
-	para "If you'd like, you"
-	line "could have one as"
+	para "Si tu veux, je"
+	line "peux t'en donner"
 
-	para "thanks for helping"
-	line "me out."
+	para "une pour te"
+	line "remercier."
 
-	para "I'll be at"
+	para "Je suis vers"
 	line "@"
 	text_ram wStringBuffer5
 	text "."
 
-	para "Please come see me"
-	line "when you can."
+	para "Passe donc me"
+	line "voir."
 	done
 
 BeverlyLetsChatAboutMonAgainText:
-	text "Are your #MON"
-	line "in prime form?"
+	text "Tes #MON"
+	line "sont en forme?"
 
-	para "Let's chat about"
-	line "#MON again."
+	para "On en parlera plus"
+	line "tard."
 	done
 
 BeverlyComePickUpText:
 	text "Pardon?"
-	line "Oh, the NUGGET?"
+	line "Oh, la PEPITE?"
 
-	para "There's no need to"
-	line "hurry. Come see me"
+	para "Y'a pas le feu!"
+	line "Viens me voir à"
 
-	para "in @"
+	para "@"
 	text_ram wStringBuffer5
 	text_start
-	line "when you can."
+	line "quand tu le peux."
 	done

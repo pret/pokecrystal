@@ -1,10 +1,11 @@
-	db "FLYCATCHER@" ; species name
-	dw 507, 340 ; height, weight
+	db "CARNIVORE@" ; species name
+	db 17 ; height
+	dw 155 ; weight
 
-	db   "Once ingested into"
-	next "this #MON's"
-	next "body, even the"
+	db   "Tout corps ingéré"
+	next "par ce #MON est"
+	next "systématiquement"
 
-	page "hardest object"
-	next "will melt into"
-	next "nothing.@"
+	page "dissout en bouil-"
+	next "lie."
+	next "@"

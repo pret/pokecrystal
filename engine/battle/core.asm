@@ -1652,9 +1652,9 @@ HandleScreens:
 	jp CopyName2
 
 .Your:
-	db "Your@"
+	db "votre@"
 .Enemy:
-	db "Enemy@"
+	db "ennemi@"
 
 .LightScreenTick:
 	ld a, [de]
@@ -5703,7 +5703,7 @@ MoveInfoBox:
 	ret
 
 .Disabled:
-	db "Disabled!@"
+	db "Non Disp.@"
 .Type:
 	db "TYPE/@"
 
@@ -6206,7 +6206,7 @@ LoadEnemyMon:
 ; Try again if length < 1024 mm (i.e. if HIGH(length) < 3 feet)
 	ld a, [wMagikarpLength]
 	cp HIGH(1024)
-	jr c, .GenerateDVs ; try again
+	jp c, .GenerateDVs ; try again
 
 ; Finally done with DVs
 
@@ -8394,7 +8394,7 @@ DisplayLinkBattleResult:
 	jr .store_result
 
 .store_result
-	hlcoord 6, 8
+	hlcoord 3, 8
 	call PlaceString
 	farcall BackupMobileEventIndex
 	ld c, 200
@@ -8421,23 +8421,17 @@ DisplayLinkBattleResult:
 	ret
 
 .YouWin:
-	db "YOU WIN@"
+	db "    GAGNE     @"
 .YouLose:
-	db "YOU LOSE@"
+	db "    PERDU     @"
 .Draw:
-	db "  DRAW@"
+	db "  MATCH NUL   @"
 
 .Mobile_InvalidBattle:
-	hlcoord 6, 8
-	ld de, .InvalidBattle
-	call PlaceString
-	ld c, 200
-	call DelayFrames
-	call ClearTilemap
 	ret
 
 .InvalidBattle:
-	db "INVALID BATTLE@"
+	db "CBT NON CONFORME@"
 
 IsMobileBattle2:
 	ld a, [wLinkMode]
@@ -8589,11 +8583,11 @@ ReadAndPrintLinkBattleRecord:
 	db "  ---  <LF>"
 	db "         -    -    -@"
 .Record:
-	db "<PLAYER>'s RECORD@"
+	db "RECORD de <PLAYER>@"
 .Result:
-	db "RESULT WIN LOSE DRAW@"
+	db "RES GAGNE PERDU NUL@"
 .Total:
-	db "TOTAL  WIN LOSE DRAW@"
+	db "TOT GAGNE PERDU NUL@"
 
 BattleEnd_HandleRoamMons:
 	ld a, [wBattleType]

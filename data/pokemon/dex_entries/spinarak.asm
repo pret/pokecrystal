@@ -1,10 +1,11 @@
-	db "STRINGSPIT@" ; species name
-	dw 108, 190 ; height, weight
+	db "CRACHE FIL@" ; species name
+	db 5 ; height
+	dw 85 ; weight
 
-	db   "If prey becomes"
-	next "ensnared in its"
-	next "nest of spun"
+	db   "Si une proie se"
+	next "fait piéger dans"
+	next "sa toile, il reste"
 
-	page "string, it waits"
-	next "motionlessly until"
-	next "it becomes dark.@"
+	page "immobile et attend"
+	next "calmement la tom-"
+	next "bée de la nuit.@"

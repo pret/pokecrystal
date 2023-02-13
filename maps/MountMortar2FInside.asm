@@ -45,23 +45,25 @@ MountMortar2FInsideHiddenFullRestore:
 	hiddenitem FULL_RESTORE, EVENT_MOUNT_MORTAR_2F_INSIDE_HIDDEN_FULL_RESTORE
 
 SupernerdHughSeenText:
-	text "Yo! MARKUS!"
+	text "Yo! MARC!"
 	done
 
 SupernerdHughBeatenText:
-	text "Sorry, my mistake."
+	text "Oups. Pardon."
 	done
 
 SupernerdHughAfterBattleText:
-	text "I'm investigating"
-	line "MT.MORTAR, but my"
-	cont "pal's gone AWOL."
+	text "Je suis venu ex-"
+	line "plorer le MONT"
 
-	para "Have you seen a"
-	line "trainer who has a"
+	para "CREUSET mais mon"
+	line "pote a disparu..."
 
-	para "SLOWPOKE that can"
-	line "use STRENGTH?"
+	para "As-tu vu un dres-"
+	line "seur avec un"
+
+	para "RAMOLOSS qui lance"
+	line "FORCE?"
 	done
 
 MountMortar2FInside_MapEvents:

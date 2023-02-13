@@ -1,10 +1,11 @@
-	db "PIG MONKEY@" ; species name
-	dw 303, 710 ; height, weight
+	db "PORSINGE@" ; species name
+	db 10 ; height
+	dw 320 ; weight
 
-	db   "It will beat up"
-	next "anyone who makes"
-	next "it mad, even if it"
+	db   "Il cherchera à"
+	next "castagner celui"
+	next "qui le dérange,"
 
-	page "has to chase them"
-	next "until the end of"
-	next "the world.@"
+	page "même s'il doit le"
+	next "poursuivre jusqu'"
+	next "au bout du monde.@"

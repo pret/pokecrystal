@@ -1,72 +1,69 @@
 GavenAnswerPhoneText:
-	text "Hello, this is"
+	text "Salut c'est"
 	line "@"
 	text_ram wStringBuffer3
-	text " speaking…"
+	text "…"
 
-	para "Hi, <PLAY_G>!"
-	line "Good morning!"
+	para "Salut <PLAY_G>!"
 	done
 
 GavenAnswerPhoneDayText:
-	text "Hello, this is"
+	text "Salut c'est"
 	line "@"
 	text_ram wStringBuffer3
-	text " speaking…"
+	text "…"
 
-	para "Hi, <PLAY_G>!"
+	para "Salut <PLAY_G>!"
 	done
 
 GavenAnswerPhoneNiteText:
-	text "Hello, this is"
+	text "Salut c'est"
 	line "@"
 	text_ram wStringBuffer3
-	text " speaking…"
+	text "…"
 
-	para "Hi, <PLAY_G>!"
-	line "Good evening!"
+	para "Bonsoir <PLAY_G>!"
 	done
 
 GavenGreetText:
-	text "<PLAY_G>, good"
-	line "morning!"
+	text "<PLAY_G>,"
+	line "bonjour!"
 
-	para "It's me, @"
+	para "C'est @"
 	text_ram wStringBuffer3
 	text "."
-	line "How are you doing?"
+	line "Ca va?"
 	done
 
 GavenGreetDayText:
-	text "Hi, <PLAY_G>!"
+	text "<PLAY_G>,"
+	line "bonjour!"
 
-	para "It's me, @"
+	para "C'est @"
 	text_ram wStringBuffer3
 	text "."
-	line "How are you doing?"
+	line "Ca va?"
 	done
 
 GavenGreetNiteText:
-	text "<PLAY_G>, good"
-	line "evening!"
+	text "<PLAY_G>,"
+	line "bonsoir!"
 
-	para "It's me, @"
+	para "C'est @"
 	text_ram wStringBuffer3
 	text "."
-	line "How are you doing?"
+	line "Ca va?"
 	done
 
 GavenGenericText:
-	text "How are your"
-	line "#MON doing?"
+	text "Comment vont tes"
+	line "#MON?"
 
-	para "My @"
+	para "Mon @"
 	text_ram wStringBuffer4
-	text "'s"
-	line "doing as great as"
-	cont "ever."
+	text_start
+	line "va très bien."
 
-	para "Let's keep at it"
-	line "and become #MON"
-	cont "CHAMPS!"
+	para "On va tous devenir"
+	line "des CHAMPIONS!"
 	done

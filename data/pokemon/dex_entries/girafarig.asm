@@ -1,10 +1,11 @@
-	db "LONG NECK@" ; species name
-	dw 411, 910 ; height, weight
+	db "LONG-COU@" ; species name
+	db 15 ; height
+	dw 415 ; weight
 
-	db   "When it is in"
-	next "danger, its tail"
-	next "uses some sort of"
+	db   "Lorsqu'il est en"
+	next "danger, sa queue"
+	next "utiliserait un"
 
-	page "mysterious powers"
-	next "to drive away the"
-	next "enemy.@"
+	page "pouvoir mystérieux"
+	next "pour écarter toute"
+	next "menace.@"

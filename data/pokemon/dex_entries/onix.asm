@@ -1,10 +1,11 @@
-	db "ROCK SNAKE@" ; species name
-	dw 2810, 4630 ; height, weight
+	db "SERPENROC@" ; species name
+	db 88 ; height
+	dw 2100 ; weight
 
-	db   "As it digs through"
-	next "the ground, it"
-	next "absorbs many hard"
+	db   "En creusant le sol"
+	next "il absorbe des"
+	next "éléments solides,"
 
-	page "objects. This is"
-	next "what makes its"
-	next "body so solid.@"
+	page "ce qui lui donne"
+	next "de la consistance."
+	next "@"

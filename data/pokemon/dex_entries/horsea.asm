@@ -1,10 +1,11 @@
 	db "DRAGON@" ; species name
-	dw 104, 180 ; height, weight
+	db 4 ; height
+	dw 80 ; weight
 
-	db   "When they're in a"
-	next "safe location,"
-	next "they can be seen"
+	db   "S'ils se retrou-"
+	next "vent en milieu"
+	next "amical,"
 
-	page "playfully tangling"
-	next "their tails"
-	next "together.@"
+	page "ils enroulent leur"
+	next "petite queue."
+	next "@"

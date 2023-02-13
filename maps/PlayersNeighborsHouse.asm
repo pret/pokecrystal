@@ -45,55 +45,55 @@ PlayersNeighborsHouseRadioScript:
 	end
 
 PlayersNeighborsDaughterText:
-	text "PIKACHU is an"
-	line "evolved #MON."
+	text "PIKACHU est un"
+	line "#MON évolué."
 
-	para "I was amazed by"
-	line "PROF.ELM's find-"
-	cont "ings."
+	para "Les découvertes du"
+	line "PROF.ORME sont"
+	cont "incroyables."
 
-	para "He's so famous for"
-	line "his research on"
-	cont "#MON evolution."
+	para "Ses recherches sur"
+	line "l'évolution des"
+	cont "#MON sont"
+	cont "brillantes."
 
-	para "…sigh…"
+	para "(soupir)"
 
-	para "I wish I could be"
-	line "a researcher like"
-	cont "him…"
+	para "J'aimerais être"
+	line "comme lui..."
 	done
 
 PlayersNeighborText:
-	text "My daughter is"
-	line "adamant about"
+	text "Ma fille veut"
+	line "devenir l'assis-"
 
-	para "becoming PROF."
-	line "ELM's assistant."
+	para "tante du PROF."
+	line "ORME."
 
-	para "She really loves"
+	para "Elle adoooore les"
 	line "#MON!"
-
-	para "But then, so do I!"
+	cont "Et moi aussi!"
 	done
 
 PlayerNeighborRadioText1:
-	text "PROF.OAK'S #MON"
-	line "TALK! Please tune"
-	cont "in next time!"
+	text "La CHRONIQUE PKMN"
+	line "du PROF.CHEN!"
+	cont "Bientôt de retour"
+	cont "sur les ondes!"
 	done
 
 PlayerNeighborRadioText2:
-	text "#MON CHANNEL!"
+	text "ANTENNE #MON!"
 	done
 
 PlayerNeighborRadioText3:
-	text "This is DJ MARY,"
-	line "your co-host!"
+	text "Ici DJ LULA, votre"
+	line "co-présentatrice!"
 	done
 
 PlayerNeighborRadioText4:
 	text "#MON!"
-	line "#MON CHANNEL…"
+	line "ANTENNE #MON..."
 	done
 
 PlayersNeighborsHouse_MapEvents:

@@ -1,10 +1,11 @@
-	db "COTTONWEED@" ; species name
-	dw 200, 20 ; height, weight
+	db "PISSENLIT@" ; species name
+	db 6 ; height
+	dw 10 ; weight
 
-	db   "As soon as it"
-	next "rains, it closes"
-	next "its flower and"
+	db   "Pour ne pas être"
+	next "mouillé les jours"
+	next "de pluie, il ferme"
 
-	page "hides in the shade"
-	next "of a tree to avoid"
-	next "getting wet.@"
+	page "ses pétales et se"
+	next "réfugie sous un"
+	next "arbre.@"

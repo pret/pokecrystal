@@ -1,10 +1,11 @@
-	db "OWL@" ; species name
-	dw 204, 470 ; height, weight
+	db "HIBOU@" ; species name
+	db 7 ; height
+	dw 212 ; weight
 
-	db   "It begins to hoot"
-	next "at the same time"
-	next "every day. Some"
+	db   "Il hulule à la"
+	next "même heure chaque"
+	next "jour."
 
-	page "trainers use them"
-	next "in place of"
-	next "clocks.@"
+	page "Certains dresseurs"
+	next "s'en servent comme"
+	next "réveil.@"

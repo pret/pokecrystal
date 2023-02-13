@@ -88,74 +88,75 @@ MountMoonRivalMovementAfter:
 MountMoonRivalTextBefore:
 	text "<……> <……> <……>"
 
-	para "It's been a while,"
-	line "<PLAYER>."
+	para "Cela faisait"
+	line "longtemps,"
+	cont "<PLAYER>."
 
-	para "…Since I lost to"
-	line "you, I thought"
+	para "...Depuis ma"
+	line "défaite j'ai"
 
-	para "about what I was"
-	line "lacking with my"
-	cont "#MON…"
+	para "cherché l'élément"
+	line "manquant à mon"
+	cont "entraînement..."
 
-	para "And we came up"
-	line "with an answer."
+	para "Et tu sais quoi?"
+	line "Je l'ai trouvé!"
 
-	para "<PLAYER>, now we'll"
-	line "show you!"
+	para "<PLAYER>, ça va"
+	line "être ta fête!"
 	done
 
 MountMoonRivalTextWin:
 	text "<……> <……> <……>"
 
-	para "I thought I raised"
-	line "my #MON to be"
+	para "Je pensais avoir"
+	line "élevé mes #MON"
 
-	para "the best they"
-	line "could be…"
+	para "au max de leurs"
+	line "capacités..."
 
-	para "…But it still "
-	line "wasn't enough…"
+	para "...Mais ce n'était"
+	line "pas suffisant..."
 	done
 
 MountMoonRivalTextAfter:
 	text "<……> <……> <……>"
 
-	para "…You won, fair"
-	line "and square."
+	para "...OK t'as"
+	line "gagné."
 
-	para "I admit it. But"
-	line "this isn't the"
-	cont "end."
+	para "Mais t'excite pas:"
+	line "c'est loin d'être"
+	cont "la fin."
 
-	para "I'm going to be"
-	line "the greatest #-"
-	cont "MON trainer ever."
+	para "Je serai le plus"
+	line "grand des dres-"
+	cont "seurs, tu verras."
 
-	para "Because these guys"
-	line "are behind me."
+	para "N'oublie pas: j'ai"
+	line "des relations."
 
-	para "…Listen, <PLAYER>."
+	para "...Ecoute <PLAYER>."
 
-	para "One of these days"
-	line "I'm going to prove"
+	para "Un de ces jours je"
+	line "vais te prouver à"
 
-	para "how good I am by"
-	line "beating you."
+	para "quel point je suis"
+	line "meilleur que toi."
 	done
 
 MountMoonRivalTextLoss:
 	text "<……> <……> <……>"
 
-	para "I've repaid my"
-	line "debt to you."
+	para "Yahahaha!"
+	line "Vengeance!"
 
-	para "With my #MON,"
-	line "I'm going to beat"
+	para "Avec mes #MON,"
+	line "je vais battre le"
 
-	para "the CHAMPION and"
-	line "become the world's"
-	cont "greatest trainer."
+	para "CHAMPION et être"
+	line "le plus grand des"
+	cont "dresseurs."
 	done
 
 MountMoon_MapEvents:

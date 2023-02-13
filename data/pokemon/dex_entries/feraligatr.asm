@@ -1,10 +1,11 @@
-	db "BIG JAW@" ; species name
-	dw 707, 1960 ; height, weight
+	db "MACHOIRE@" ; species name
+	db 23 ; height
+	dw 888 ; weight
 
-	db   "Although it has a"
-	next "massive body, its"
-	next "powerful hind legs"
+	db   "Bien qu'étant très"
+	next "massif, ses puis-"
+	next "santes pattes ar-"
 
-	page "enable it to move"
-	next "quickly, even on"
-	next "the ground.@"
+	page "rière lui permet-"
+	next "tent de se dépla-"
+	next "cer rapidement.@"

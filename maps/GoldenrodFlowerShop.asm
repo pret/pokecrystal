@@ -83,75 +83,75 @@ FlowerShopRadio: ; unreferenced
 	jumpstd Radio2Script
 
 GoldenrodFlowerShopTeacherMySisterWentToSeeWigglyTreeRoute36Text:
-	text "Have you seen that"
-	line "wiggly tree that's"
+	text "As-tu vu l'arbre"
+	line "qui gigote sur la"
+	cont "ROUTE 36?"
 
-	para "growing on ROUTE"
-	line "36?"
+	para "Ma petite soeur"
+	line "a absolument tenu"
+	cont "à aller le voir..."
 
-	para "My little sister"
-	line "got all excited"
-
-	para "and went to see"
-	line "it…"
-
-	para "I'm worried… Isn't"
-	line "it dangerous?"
+	para "Ca m'inquiète..."
+	line "N'est-ce pas"
+	cont "dangereux?"
 	done
 
 GoldenrodFlowerShopTeacherAskWantToBorrowWaterBottleText:
-	text "Do you want to"
-	line "borrow the water"
+	text "Tu veux aussi"
+	line "emprunter la"
 
-	para "bottle too?"
-	line "I don't want you"
+	para "bouteille?"
+	line "Je ne veux pas que"
 
-	para "doing anything"
-	line "dangerous with it."
+	para "tu fasses quelque"
+	line "chose de dangereux"
+	cont "avec ça."
 	done
 
 GoldenrodFlowerShopTeacherHeresTheSquirtbottleText:
-	text "Oh, you're better"
-	line "than WHITNEY…"
+	text "Oh? Tu as battu"
+	line "BLANCHE..."
 
-	para "You'll be OK,"
-	line "then. Here's the"
-	cont "SQUIRTBOTTLE!"
+	para "Pas de problème"
+	line "alors. Voilà la"
+	cont "CARAPUCE A O!"
 	done
 
 GoldenrodFlowerShopTeacherDontDoAnythingDangerousText:
-	text "Don't do anything"
-	line "too dangerous!"
+	text "Ne fais rien de"
+	line "dangereux!"
 	done
 
 GoldenrodFlowerShopTeacherLalalaHavePlentyOfWaterText:
 	text "Lalala lalalala."
-	line "Have plenty of"
-	cont "water, my lovely!"
+	line "L'eau ça mouille!"
 	done
 
 GoldenrodFlowerShopFloriaWonderIfSisWillLendWaterBottleText:
-	text "When I told my sis"
-	line "about the jiggly"
+	text "Quand j'ai parlé"
+	line "de l'arbre qui"
 
-	para "tree, she told me"
-	line "it's dangerous."
+	para "gigote à ma"
+	line "soeur, elle a dit"
+	cont "que c'était dange-"
+	cont "reux."
 
-	para "If I beat WHITNEY,"
-	line "I wonder if she'll"
+	para "Si je bats BLANCHE"
+	line "elle me prêtera"
 
-	para "lend me her water"
-	line "bottle…"
+	para "sa bouteille!"
+	line "C'est sûr!"
 	done
 
 GoldenrodFlowerShopFloriaYouBeatWhitneyText:
-	text "Wow, you beat"
-	line "WHITNEY? Cool!"
+	text "Tu as battu"
+	line "BLANCHE? Cool!"
 	done
 
 GoldenrodFlowerShopFloriaItReallyWasAMonText:
-	text "So it really was a"
-	line "#MON!"
+	text "Alors c'était"
+	line "vraiment un"
+	cont "#MON!"
 	done
 
 GoldenrodFlowerShop_MapEvents:

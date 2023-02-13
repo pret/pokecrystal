@@ -76,74 +76,80 @@ CharcoalKilnRadio:
 	jumpstd Radio2Script
 
 CharcoalKilnBossText1:
-	text "All the SLOWPOKE"
-	line "have disappeared"
-	cont "from the town."
+	text "Tous les RAMOLOSS"
+	line "ont disparu"
+	cont "de la ville."
 
-	para "The forest's pro-"
-	line "tector may be"
-	cont "angry with us…"
+	para "On risque d'avoir"
+	line "des ennuis avec"
+	cont "le protecteur de"
+	cont "la forêt..."
 
-	para "It may be a bad"
-	line "omen. We should"
-	cont "stay in."
+	para "C'est peut-être un"
+	line "mauvais présage."
+	cont "On devrait rester"
+	cont "chez soi."
 	done
 
 CharcoalKilnBossText2:
-	text "The SLOWPOKE have"
-	line "returned…"
+	text "Les RAMOLOSS sont"
+	line "de retour..."
 
-	para "But my APPRENTICE"
-	line "hasn't come back"
-	cont "from ILEX FOREST."
+	para "Mais mon APPRENTI"
+	line "n'est pas revenu"
+	cont "du BOIS AUX"
+	cont "CHENES."
 
-	para "Where in the world"
-	line "is that lazy guy?"
+	para "Où est donc ce"
+	line "dresseur de"
+	cont "troisième zone?"
 	done
 
 CharcoalKilnBossText3:
-	text "You chased off"
-	line "TEAM ROCKET and"
+	text "Tu as chassé la"
+	line "TEAM ROCKET et tu"
 
-	para "went to ILEX"
-	line "FOREST alone?"
+	para "as visité le BOIS"
+	line "AUX CHENES en"
+	cont "solitaire?"
 
-	para "That takes guts!"
-	line "I like that. Come"
-	cont "train with us."
+	para "Pas mal!"
+	line "J'aime ça. Viens"
+	cont "donc t'entraîner"
+	cont "avec nous."
 	done
 
 CharcoalKilnApprenticeText1:
-	text "Where have all the"
-	line "SLOWPOKE gone?"
+	text "Où sont passés"
+	line "les RAMOLOSS?"
 
-	para "Are they out play-"
-	line "ing somewhere?"
+	para "Sont-ils dehors en"
+	line "train de traîner?"
 	done
 
 CharcoalKilnApprenticeText2:
-	text "I'm sorry--I for-"
-	line "got to thank you."
+	text "Pardonne-moi, j'ai"
+	line "oublié de te re-"
+	cont "mercier."
 
-	para "This is CHARCOAL"
-	line "that I made."
+	para "J'ai produit ce"
+	line "CHARBON."
 
-	para "Fire-type #MON"
-	line "would be happy to"
-	cont "hold that."
+	para "Les #MON de feu"
+	line "seront contents"
+	cont "d'en tenir un."
 	done
 
 CharcoalKilnApprenticeText3:
-	text "The SLOWPOKE came"
-	line "back, and you even"
-	cont "found FARFETCH'D."
-
-	para "You're the cool-"
-	line "est, man!"
+	text "Les RAMOLOSS sont"
+	line "de retour et tu as"
+	cont "même retrouvé"
+	cont "CANARTICHO."
+	cont "T'es trop cool!"
 	done
 
 FarfetchdText:
-	text "FARFETCH'D: Kwaa!"
+	text "CANARTICHO: Ticho!"
 	done
 
 CharcoalKiln_MapEvents:

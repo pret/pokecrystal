@@ -50,45 +50,45 @@ CinnabarGymSign:
 	jumptext CinnabarGymSignText
 
 SwimmerfNicoleSeenText:
-	text "I feel so much"
-	line "lighter in water."
+	text "On est léger dans"
+	line "l'eau..."
 	done
 
 SwimmerfNicoleBeatenText:
-	text "Oh, no!"
+	text "Oh, non!"
 	done
 
 SwimmerfNicoleAfterBattleText:
-	text "Swimming exercises"
-	line "your full body."
+	text "La nage fait gon-"
+	line "fler les muscles."
 
-	para "It's really good"
-	line "for you."
+	para "C'est prouvé!"
+	line "J'te jure!"
 	done
 
 SwimmerfLoriSeenText:
-	text "What an impressive"
-	line "collection of GYM"
+	text "Quelle belle"
+	line "collection de"
 
-	para "BADGES. We should"
-	line "battle!"
+	para "BADGES. On se fait"
+	line "un p'tit combat?"
 	done
 
 SwimmerfLoriBeatenText:
-	text "No!"
+	text "Non!"
 	done
 
 SwimmerfLoriAfterBattleText:
-	text "SURF is no longer"
-	line "the only HM move"
-	cont "you use in water."
+	text "Le SURF n'est plus"
+	line "la seule CS à uti-"
+	cont "liser sur l'eau."
 	done
 
 SwimmermCameronSeenText:
-	text "I guess it's im-"
-	line "possible to swim"
+	text "Ca doit être"
+	line "impossible de"
 
-	para "all the way to"
+	para "nager jusqu'à"
 	line "JOHTO."
 	done
 
@@ -97,17 +97,18 @@ SwimmermCameronBeatenText:
 	done
 
 SwimmermCameronAfterBattleText:
-	text "Besides the sea, I"
-	line "can also swim in"
-	cont "ponds and rivers."
+	text "On peut nager dans"
+	line "la mer, les fleu-"
+	cont "ves, les lacs..."
 	done
 
 CinnabarGymSignText:
-	text "What does this"
-	line "sign say?"
+	text "Tiens!"
+	line "Une pancarte..."
 
-	para "CINNABAR GYM"
-	line "LEADER: BLAINE"
+	para "CHAMPION d'ARENE"
+	line "de CRAMOIS'ILE:"
+	cont "AUGUSTE"
 	done
 
 Route20_MapEvents:

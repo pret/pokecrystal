@@ -1,289 +1,256 @@
 IrwinHangUpText:
-	text "I hate having to"
-	line "hang up on you!"
+	text "Je dois y aller!"
+	line "Excuse-moi!"
 
-	para "Call you later!"
+	para "A bientôt!"
 	done
 
 IrwinRocketTakeoverRumorText:
-	text "<PLAY_G>, have you"
-	line "heard?"
+	text "<PLAY_G>, es-tu"
+	line "au courant?"
 
-	para "GOLDENROD's RADIO"
-	line "TOWER has been"
+	para "La TOUR RADIO de"
+	line "DOUBLONVILLE a été"
 
-	para "taken over by TEAM"
-	line "ROCKET!"
+	para "envahie par la"
+	line "TEAM ROCKET!"
 
-	para "…Um… What's TEAM"
-	line "ROCKET?"
+	para "Heu... C'est quoi"
+	line "la TEAM ROCKET?"
 	done
 
 IrwinPlainBadgeGossipText:
-	text "<PLAY_G>, I heard!"
+	text "<PLAY_G>!"
 
-	para "You defeated that"
-	line "WHITNEY?"
+	para "Tu as battu"
+	line "BLANCHE?"
 
-	para "It makes me proud"
-	line "to be your friend!"
+	para "Je suis fier"
+	line "d'être ton ami!"
 	done
 
 IrwinJasmineReturnedGossipText:
-	text "Hey, I heard about"
-	line "you!"
+	text "J'ai entendu par-"
+	line "ler de toi!"
 
-	para "You saved that"
-	line "#MON at the"
+	para "Tu as sauvé un"
+	line "#MON au PHARE,"
+	cont "non?"
 
-	para "LIGHTHOUSE, didn't"
-	line "you?"
+	para "<PLAY_G>, tu"
+	line "viendras me soi-"
 
-	para "<PLAY_G>, I wish"
-	line "you'd come see me"
-
-	para "when I'm sick in"
-	line "bed with a cold!"
+	para "gner si je tombe"
+	line "malade?"
 	done
 
 IrwinRocketHideoutGossipText:
-	text "I heard, I heard,"
-	line "I heard!"
+	text "On parle de toi!"
 
-	para "You smashed TEAM"
-	line "ROCKET's hideout!"
+	para "Tu as cassé la"
+	line "planque de la"
+	cont "TEAM ROCKET!"
 
-	para "You're like a"
-	line "movie hero, even!"
+	para "T'es trop balèze!"
+	line "Comme à la télé!"
 
-	para "But um… What was"
-	line "TEAM ROCKET?"
+	para "Mais... C'est quoi"
+	line "la TEAM ROCKET?"
 	done
 
 IrwinRadioTowerGossipText:
-	text "I heard, I heard,"
-	line "I heard!"
+	text "On parle de toi!"
 
-	para "About your heroic"
-	line "liberation of the"
+	para "Tu as sauvé la"
+	line "TOUR RADIO!"
 
-	para "RADIO TOWER! You"
-	line "rock so hard!"
+	para "Bravo, graine de"
+	line "star!"
 	done
 
 IrwinRisingBadgeGossipText:
-	text "I saw, I saw!"
+	text "Bah dis donc!"
 
-	para "I saw you go into"
-	line "the DRAGON'S DEN!"
+	para "Tu as visité"
+	line "l'ANTRE du DRAGON!"
 
-	para "I'm certain you"
-	line "passed! Aww, no"
-
-	para "need to be modest!"
-	line "You can't fail!"
+	para "As-tu réussi"
+	line "l'épreuve? Allez!"
+	cont "Ne sois pas"
+	cont "timide!"
 	done
 
 IrwinEliteFourGossipText:
-	text "Yesterday, I went"
-	line "out to NEW BARK"
+	text "Je suis allé au"
+	line "BOURG GEON hier."
 
-	para "TOWN.  There was a"
-	line "lady who looked a"
+	para "Il y avait une"
+	line "dame qui te"
 
-	para "lot like you,"
+	para "ressemblait,"
 	line "<PLAY_G>."
 
-	para "What? That lady"
-	line "was your mom?"
+	para "Quoi? C'était"
+	line "ta maman?"
 
-	para "Aww, I should've"
-	line "introduced myself!"
+	para "Tu aurais dû"
+	line "me présenter!"
 
-	para "I bet your mom's"
-	line "really proud of"
+	para "Elle doit être"
+	line "fière de toi."
 
-	para "all that you've"
-	line "accomplished."
-
-	para "Heh, put it this"
-	line "way. I'd be proud"
-
-	para "if I were your"
-	line "mom, believe me!"
+	para "Même moi, je suis"
+	line "fier de toi!"
 	done
 
 IrwinVermilionCityGossipText:
-	text "I saw, I saw,"
-	line "I saw!"
+	text "Bah dis donc!"
 
-	para "You striding onto"
-	line "a ship, <PLAY_G>!"
+	para "Tu as pris la"
+	line "mer, <PLAY_G>!"
 
-	para "I can't get over"
-	line "how good you look"
-
-	para "with the sea as"
-	line "your backdrop!"
+	para "Alors?"
+	line "C'est comment de"
+	cont "faire du bateau?"
 	done
 
 IrwinTrainPassGossipText:
-	text "I heard, I heard!"
+	text "Bah dis donc!"
 
-	para "You got a MAGNET"
-	line "TRAIN PASS!"
+	para "Tu as eu le PASSE"
+	line "du TRAIN!"
 
-	para "When I saw you"
-	line "departing on the"
+	para "Quand tu as pris"
+	line "le bateau, j'ai"
 
-	para "ship, I felt sad"
-	line "that I wouldn't be"
+	para "cru que c'était"
+	line "pour toujours..."
 
-	para "able to see you"
-	line "for a while."
+	para "Mais vu que tu as"
+	line "le PASSE, tu peux"
+	cont "revenir!"
 
-	para "But since you have"
-	line "that PASS, you can"
+	para "Quoi? Tu peux"
+	line "aussi VOLER?"
 
-	para "zip back anytime!"
-	line "That's reassuring!"
-
-	para "What? You can FLY"
-	line "back anytime?"
-
-	para "What do you mean"
-	line "by FLY?"
+	para "Comment ça..."
+	line "VOLER?"
 	done
 
 IrwinSnorlaxGossipText:
-	text "I saw, I saw!"
+	text "Bah dis donc!"
 
-	para "You waking up"
-	line "SNORLAX!"
+	para "Tu as réveillé"
+	line "RONFLEX!"
 
-	para "I was watching you"
-	line "from afar, so I"
+	para "Je te regardais de"
+	line "loin, je n'ai pas"
 
-	para "couldn't tell what"
-	line "you did exactly."
+	para "vu ce que tu as"
+	line "fait."
 
-	para "Did you play a"
-	line "flute to wake it?"
+	para "Tu as joué de la"
+	line "flûte?"
 
-	para "Wow! That's like"
-	line "magic!"
+	para "C'est magique!"
 	done
 
 IrwinMtSilverGossipText:
-	text "I hear rumors"
-	line "about you all over"
-	cont "the place."
+	text "On parle de toi"
+	line "partout."
 
-	para "It just makes me"
-	line "sigh, <PLAY_G>."
+	para "Ca me fait de la"
+	line "peine, <PLAY_G>."
 
-	para "How did you get so"
-	line "strong?"
+	para "Comment as-tu pu"
+	line "arriver à un tel"
+	cont "niveau?"
 
-	para "Go for the world"
-	line "championship now!"
-
-	para "I'll always be"
-	line "cheering you on!"
+	para "Va! Lance-toi"
+	line "dans le champion-"
+	cont "nat du monde!"
 	done
 
 IrwinCalledRightAwayText:
-	text "Hehe, I called"
-	line "right away!"
+	text "J'aime t'appeler!"
 
-	para "I think we can be"
-	line "good friends!"
+	para "On va être des"
+	line "super potes!"
 	done
 
 IrwinFogBadgeGossipText:
-	text "I saw, I heard!"
+	text "Bah dis donc!"
 
-	para "You beat MORTY of"
-	line "ECRUTEAK GYM!"
+	para "Tu as battu"
+	line "MORTIMER de"
 
-	para "Th-that's just"
-	line "incredible!"
+	para "ROSALIA! C'est..."
+	line "Incroyable!"
 
-	para "I actually went to"
-	line "the GYM's entrance"
+	para "J'étais à l'entrée"
+	line "de l'ARENE pour"
 
-	para "to cheer you on."
-	line "Did you know that?"
+	para "t'encourager."
+	line "Tu le savais ça?"
 
-	para "But everyone was"
-	line "floating, and"
+	para "Mais bon..."
+	line "Il y avait des"
 
-	para "there were ghosts"
-	line "all over! So I"
-
-	para "chickened out and"
-	line "took off for home…"
+	para "fantômes partout"
+	line "alors j'ai eu peur"
+	cont "et j'ai décampé..."
 	done
 
 IrwinMarshBadgeGossipText:
-	text "<PLAY_G>, I heard!"
+	text "<PLAY_G>!"
 
-	para "You're kicking up"
-	line "a mighty ruckus"
+	para "Tu fais des"
+	line "ravages à KANTO!"
 
-	para "over in KANTO!"
-	line "What a glorious"
+	para "Ca doit être trop"
+	line "mortel!"
 
-	para "rampage it must"
-	line "be!"
-
-	para "You so rock!"
+	para "Je t'aime!"
 	done
 
 IrwinYourEscapadesRockText:
-	text "Hearing about your"
-	line "escapades rocks my"
-
-	para "soul!"
-	line "It sure does!"
+	text "Tes aventures"
+	line "m'inspirent..."
+	cont "J'te jure!"
 	done
 
 IrwinGoodMatchText:
-	text "I'm so glad you"
-	line "called!"
+	text "Merci d'avoir"
+	line "appelé!"
 
-	para "I was just about"
-	line "to call you too!"
+	para "J'allais faire ton"
+	line "numéro!"
 
-	para "I guess we must be"
-	line "a good match!"
+	para "On est trop"
+	line "proches!"
 	done
 
 IrwinSoMuchToChatAboutText:
-	text "How are you?"
+	text "Ca va?"
 
-	para "What are you"
-	line "doing?"
+	para "Tu fais quoi?"
 
-	para "Where are you?"
+	para "T'es où?"
 
-	para "How many BADGES do"
-	line "you have now?"
+	para "T'as combien de"
+	line "BADGES?"
 
-	para "How much money"
-	line "have you saved?"
+	para "Tu as beaucoup"
+	line "d'argent?"
 
-	para "How's your mom?"
+	para "Ca va ta mère?"
 
-	para "Have you got lots"
-	line "of #MON?"
+	para "T'as beaucoup"
+	line "de #MON?"
 
-	para "Is it going to be"
-	line "sunny tomorrow?"
+	para "Il va faire beau"
+	line "demain?"
 
-	para "Arrgh, there's so"
-	line "much I want to"
-
-	para "chat about! This"
-	line "is going nowhere!"
+	para "J'ai tant de trucs"
+	line "à te dire!"
 	done

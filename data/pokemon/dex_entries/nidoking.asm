@@ -1,10 +1,11 @@
-	db "DRILL@" ; species name
-	dw 407, 1370 ; height, weight
+	db "PERCEUR@" ; species name
+	db 14 ; height
+	dw 620 ; weight
 
-	db   "It uses its thick"
-	next "arms, legs and"
-	next "tail to attack"
+	db   "Il utilise tous"
+	next "ses membres pour"
+	next "attaquer sans"
 
-	page "forcefully. Melee"
-	next "combat is its"
-	next "specialty.@"
+	page "répit. Il préfère"
+	next "combattre en étant"
+	next "collé à l'ennemi.@"

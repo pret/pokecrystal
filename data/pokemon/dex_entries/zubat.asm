@@ -1,10 +1,11 @@
-	db "BAT@" ; species name
-	dw 207, 170 ; height, weight
+	db "CHOVSOURIS@" ; species name
+	db 8 ; height
+	dw 75 ; weight
 
-	db   "During the day, it"
-	next "gathers with"
-	next "others and hangs"
+	db   "La journée, il se"
+	next "joint à d'autres"
+	next "et s'accroche au"
 
-	page "from the ceilings"
-	next "of old buildings"
-	next "and caves.@"
+	page "plafond des vieux"
+	next "immeubles ou dans"
+	next "les grottes.@"

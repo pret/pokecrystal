@@ -1,10 +1,11 @@
 	db "TRANSPORT@" ; species name
-	dw 802, 4850 ; height, weight
+	db 25 ; height
+	dw 2200 ; weight
 
-	db   "This gentle"
-	next "#MON loves to"
-	next "give people rides"
+	db   "Ils sont d'une"
+	next "nature gentille."
+	next "Ils sont toujours"
 
-	page "and provides a ve-"
-	next "ry comfortable way"
-	next "to get around.@"
+	page "prêts à transpor-"
+	next "ter les humains"
+	next "confortablement.@"

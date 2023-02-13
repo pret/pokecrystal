@@ -1,10 +1,11 @@
-	db "LEGENDARY@" ; species name
-	dw 603, 3420 ; height, weight
+	db "LEGENDAIRE@" ; species name
+	db 19 ; height
+	dw 1550 ; weight
 
-	db   "An ancient picture"
-	next "scroll shows that"
-	next "people were"
+	db   "Une vieille estam-"
+	next "pe montre que les"
+	next "humains suivaient"
 
-	page "attracted to its"
-	next "movement as it ran"
-	next "through prairies.@"
+	page "ses mouvements"
+	next "lorsqu'il courait"
+	next "dans les champs.@"

@@ -209,7 +209,7 @@ Function48187:
 	ret
 
 .String_TellLater:
-	db "Tell Later@"
+	db "@"
 
 Function4820d:
 	call PlaceHollowCursor
@@ -266,7 +266,7 @@ Function48272:
 	jp Function4840c
 
 MobileString_PersonalInfo:
-	db "Personal Info@"
+	db "@"
 
 Function48283:
 	lb bc, 2, 18
@@ -539,17 +539,17 @@ Mobile12_Bin2Dec:
 	db "8@"
 	db "9@"
 
-MobileProfileString:         db "  Mobile Profile@"
-MobileString_Gender:         db "Gender@"
-MobileString_Age:            db "Age@"
-MobileString_Address:        db "Address@"
-MobileString_ZipCode:        db "Zip Code@"
-MobileString_OK:             db "OK@"
-MobileString_ProfileChanged: db "Profile Changed@"
-MobileDesc_Gender:           db "Boy or girl?@"
-MobileDesc_Age:              db "How old are you?@"
-MobileDesc_Address:          db "Where do you live?@"
-MobileDesc_ZipCode:          db "Your zip code?@"
+MobileProfileString:         db "@"
+MobileString_Gender:         db "@"
+MobileString_Age:            db "@"
+MobileString_Address:        db "@"
+MobileString_ZipCode:        db "@"
+MobileString_OK:             db "@"
+MobileString_ProfileChanged: db "@"
+MobileDesc_Gender:           db "@"
+MobileDesc_Age:              db "@"
+MobileDesc_Address:          db "@"
+MobileDesc_ZipCode:          db "@"
 
 MenuHeader_0x484f1:
 	db MENU_BACKUP_TILES ; flags
@@ -561,8 +561,8 @@ MenuData_0x484f9:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 2 ; items
 Strings_484fb:
-String_484fb: db "Boy@"
-String_484ff: db "Girl@"
+String_484fb: db "@"
+String_484ff: db "@"
 
 MenuHeader_0x48504:
 	db MENU_BACKUP_TILES ; flags
@@ -1260,8 +1260,7 @@ MenuHeader_0x48a9c:
 	menu_coords 10, 8, SCREEN_WIDTH - 1, 13
 
 String_48aa1:
-	db   "Tell Now"
-	next "Tell Later@"
+	db   "@"
 
 Function48ab5:
 	ldh a, [hJoyPressed]

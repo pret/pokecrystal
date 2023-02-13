@@ -10,6 +10,13 @@ InitName::
 _InitString::
 ; if the string pointed to by hl is empty (defined as "zero or more spaces
 ; followed by a null"), then initialize it to the string pointed to by de.
+	push de
+	push hl
+	ld d, h
+	ld e, l
+	farcall TrimSpaces
+	pop hl
+	pop de
 	push bc
 .loop
 	ld a, [hli]

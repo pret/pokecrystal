@@ -1,10 +1,11 @@
-	db "FOX@" ; species name
-	dw 307, 440 ; height, weight
+	db "RENARD@" ; species name
+	db 11 ; height
+	dw 199 ; weight
 
-	db   "It is said to live"
-	next "a thousand years,"
-	next "and each of its"
+	db   "On dit qu'il vit"
+	next "1000 ans et que"
+	next "chacune de ses"
 
-	page "tails is loaded"
-	next "with supernatural"
-	next "powers.@"
+	page "queues a un pou-"
+	next "voir magique."
+	next "@"

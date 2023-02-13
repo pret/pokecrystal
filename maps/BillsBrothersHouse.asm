@@ -14,15 +14,16 @@ BillsBrothersHouseYoungsterScript:
 	jumptextfaceplayer BillsBrothersHouseYoungsterText
 
 BillsBrotherText:
-	text "My grandpa is at "
-	line "my brother BILL's"
-	cont "on CERULEAN CAPE."
+	text "Mon pépé est chez"
+	line "mon frère LEO au"
+	cont "CAP d'AZURIA."
 	done
 
 BillsBrothersHouseYoungsterText:
-	text "I saw these weird,"
-	line "slow #MON on"
-	cont "CYCLING ROAD."
+	text "J'ai vu des drôles"
+	line "de #MON lents"
+	cont "sur la PISTE"
+	cont "CYCLABLE."
 	done
 
 BillsBrothersHouse_MapEvents:

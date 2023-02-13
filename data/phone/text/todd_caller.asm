@@ -1,117 +1,112 @@
 ToddLooksCuteLikeMeText:
-	text "My @"
+	text "Mon @"
 	text_ram wStringBuffer4
-	text " is"
-	line "looking more and"
+	text_start
+	line "me ressemble de"
 
-	para "more like me. It's"
-	line "getting cuter!"
+	para "plus en plus!"
+	line "Il est trop mimi!"
 	done
 
 ToddDefeatedMonText:
-	text "And, you know?"
+	text "Tu sais quoi?"
 
-	para "Now we can KO"
+	para "On peut battre"
 	line "@"
 	text_ram wStringBuffer4
-	text " easily."
+	text_start
+	cont "facilement."
 
-	para "I should challenge"
-	line "the GOLDENROD GYM."
+	para "Je devrais aller à"
+	line "l'ARENE de"
+	cont "DOUBLONVILLE."
 	done
 
 ToddLostAMonText:
-	text "And, you know?"
-	line "We just failed to"
+	text "Tu sais quoi?"
+	line "J'ai pas réussi à"
 
-	para "beat @"
+	para "battre @"
 	text_ram wStringBuffer4
-	text " by"
-	line "a tiny margin."
+	text_start
+	line "de peu."
 
-	para "I'm guessing my"
-	line "#MON's levels"
-
-	para "aren't high enough"
-	line "yet…"
+	para "On dirait que mes"
+	line "#MON n'ont pas"
+	cont "encore le niveau."
 	done
 
 ToddBattleRematchText:
-	text "You must be a lot"
-	line "better now, huh?"
+	text "Tu as dû faire des"
+	line "progrès, non?"
 
-	para "How about showing"
-	line "me your technique"
+	para "Ca te dirait de me"
+	line "montrer tout ça en"
+	cont "combat?"
 
-	para "in a real battle"
-	line "with me?"
-
-	para "I'll be waiting on"
+	para "J'attends vers"
 	line "@"
 	text_ram wStringBuffer5
 	text "."
 	done
 
 ToddHangUpText:
-	text "See you later!"
+	text "A plus tard!"
 	done
 
 ToddDepartmentStoreBargainSaleText:
-	text "This is it--the"
-	line "one we've all been"
-	cont "waiting for!"
+	text "Ca y est!"
+	line "Enfin!"
 
-	para "GOLDENROD DEPT."
-	line "STORE's bargain"
-	cont "sale is on now!"
+	para "Le CENTRE COMMER-"
+	line "CIAL de DOUBLON-"
+	cont "VILLE fait des"
+	cont "soldes!"
 
-	para "Want it cheap?"
-	line "Want it lots?"
+	para "Pas cher!"
+	line "Tout neuf!"
 
-	para "Don't miss this"
-	line "GOLDENROD chance!"
+	para "Faut aller à"
+	line "DOUBLONVILLE!"
 
-	para "Huh? I sound like"
-	line "a huckster?"
+	para "Quoi? Mais non je"
+	line "travaille pas chez"
+	cont "eux!"
 
-	para "Well, yeah. I was"
-	line "mimicking them…"
+	para "Je veux faire de"
+	line "la pub plus tard."
 
-	para "Anyway, you've got"
-	line "to get there as"
-	cont "soon as you can!"
+	para "En tout cas,"
+	line "vas-y, ça vaut le"
+	cont "coup!"
 	done
 
 ToddSavingUpForBargainSaleText:
-	text "I'm saving up for"
-	line "the next bargain"
+	text "J'économise pour"
+	line "les prochaines"
 
-	para "sale. When's the"
-	line "next one?"
+	para "soldes. C'est pour"
+	line "quand?"
 	done
 
 ToddLookingForwardToBattleText:
-	text "Where are you?"
+	text "Tu es où?"
 
-	para "Let's have our"
-	line "battle soon!"
-
-	para "I'll be waiting on"
-	line "@"
+	para "Faisons un match!"
+	line "J'attends vers"
+	cont "@"
 	text_ram wStringBuffer5
 	text "."
 	done
 
 ToddHaveYouGoneToDepartmentStoreText:
-	text "Haven't you gone"
-	line "to GOLDENROD DEPT."
+	text "Tu as visité le"
+	line "CENTRE COMMERCIAL"
 
-	para "STORE? I've scoped"
-	line "it out already!"
+	para "de DOUBLONVILLE?"
+	line "Ils font des super"
+	cont "soldes!"
 
-	para "They had some real"
-	line "bargains."
-
-	para "You should get"
-	line "there quickly."
+	para "Tu devrais y"
+	line "aller."
 	done

@@ -1,10 +1,11 @@
-	db "DARKNESS@" ; species name
-	dw 108, 50 ; height, weight
+	db "OBSCURITE@" ; species name
+	db 5 ; height
+	dw 21 ; weight
 
-	db   "It hides any shiny"
-	next "object it finds in"
-	next "a secret location."
+	db   "Il vole tous les"
+	next "objets brillants"
+	next "qu'il voit."
 
-	page "MURKROW and"
-	next "MEOWTH loot one"
-	next "another's stashes.@"
+	page "Les CORNEBRE et"
+	next "les MIAOUSS se vo-"
+	next "lent mutuellement.@"

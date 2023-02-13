@@ -123,7 +123,7 @@ InitTradeSpeciesList:
 	ret
 
 .CancelString:
-	db "CANCEL@"
+	db "ANNULER@"
 
 _LoadTradeScreenBorderGFX:
 	call __LoadTradeScreenBorderGFX
@@ -165,11 +165,11 @@ PrintWaitingTextAndSyncAndExchangeNybble:
 	ret
 
 .PrintWaitingText:
-	hlcoord 4, 10
+	hlcoord 3, 10
 	ld b, 1
-	ld c, 10
+	ld c, 11
 	predef LinkTextboxAtHL
-	hlcoord 5, 11
+	hlcoord 4, 11
 	ld de, .Waiting
 	call PlaceString
 	call WaitBGMap
@@ -178,7 +178,7 @@ PrintWaitingTextAndSyncAndExchangeNybble:
 	jp DelayFrames
 
 .Waiting:
-	db "WAITING..!@"
+	db "UN MOMENT…!@"
 
 LinkTradeMenu:
 	call .MenuAction

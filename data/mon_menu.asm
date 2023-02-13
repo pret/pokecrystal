@@ -13,12 +13,12 @@ MonMenuOptionStrings:
 ; entries correspond to MONMENUVALUE_* constants
 	list_start MonMenuOptionStrings
 	li "STATS"
-	li "SWITCH"
-	li "ITEM"
-	li "CANCEL"
-	li "MOVE"
-	li "MAIL"
-	li "ERROR!"
+	li "ORDRE"
+	li "OBJET"
+	li "RETOUR"
+	li "CAPACITE"
+	li "LETTRE"
+	li "ERREUR!"
 	assert_list_length NUM_MONMENUVALUES
 
 MonMenuOptions:

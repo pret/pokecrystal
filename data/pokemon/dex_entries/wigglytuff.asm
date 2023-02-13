@@ -1,10 +1,11 @@
-	db "BALLOON@" ; species name
-	dw 303, 260 ; height, weight
+	db "BOUBOULE@" ; species name
+	db 10 ; height
+	dw 120 ; weight
 
-	db   "The rich, fluffy"
-	next "fur that covers"
-	next "its body feels so"
+	db   "Sa fourrure est si"
+	next "douce et riche que"
+	next "si on la caresse,"
 
-	page "good that anyone"
-	next "who feels it can't"
-	next "stop touching it.@"
+	page "on ne veut ni ne"
+	next "peut s'arrêter."
+	next "@"

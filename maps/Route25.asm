@@ -236,195 +236,195 @@ Route25MistyLeavesMovement:
 	step_end
 
 Route25MistyDateText:
-	text "MISTY: Aww! Why"
-	line "did you have to"
+	text "ONDINE: Aaaah!"
+	line "Pourquoi t'es là,"
 
-	para "show up and bug us"
-	line "now?"
+	para "toi? Tu nous as"
+	line "dérangés!"
 
-	para "Do you know what"
-	line "they call people"
-	cont "like you?"
+	para "Ca se voyait pas"
+	line "que j'avais un"
+	cont "rencard?"
 
-	para "Pests! You heard"
-	line "me right, pest!"
+	para "Alors laisse-moi"
+	line "te dire une chose!"
 
-	para "…"
+	para "..."
 
-	para "…Oh? Those BADGES"
-	line "you have… Are they"
-	cont "JOHTO GYM BADGES?"
+	para "...Oh? Tes BADGES!"
+	line "Ils viennent des"
+	cont "ARENES de JOHTO?"
 
-	para "If you have eight,"
-	line "you must be good."
+	para "Si tu en as 8,"
+	line "c'est que t'es pas"
+	cont "une mauviette..."
 
-	para "OK, then. Come to"
-	line "CERULEAN GYM."
+	para "OK. Viens à"
+	line "l'ARENE d'AZURIA."
 
-	para "I'll be happy to"
-	line "take you on."
+	para "Je te lance un"
+	line "défi."
 
-	para "I'm MISTY, the"
-	line "GYM LEADER in"
-	cont "CERULEAN."
+	para "Je suis ONDINE,"
+	line "la CHAMPIONNE"
+	cont "d'AZURIA."
 	done
 
 SchoolboyDudleySeenText:
-	text "Beat the six of us"
-	line "trainers to win a"
-	cont "fabulous prize!"
+	text "Bats les six"
+	line "dresseurs pour"
+	cont "gagner un prix!"
 
-	para "Think you've got"
-	line "what it takes?"
+	para "Tu crois en être"
+	line "capable?"
 	done
 
 SchoolboyDudleyBeatenText:
-	text "Whoo! Good stuff."
+	text "Whoa! Balèze."
 	done
 
 SchoolboyDudleyAfterBattleText:
-	text "I did my best."
-	line "I have no regrets."
+	text "J'ai fait de"
+	line "mon mieux."
 	done
 
 LassEllenSeenText:
-	text "I'm second."
-	line "Now it's serious!"
+	text "J'suis en deuz."
+	line "Ca va barder!"
 	done
 
 LassEllenBeatenText:
-	text "How could I lose?"
+	text "Impossible!"
 	done
 
 LassEllenAfterBattleText:
-	text "I did my best."
-	line "I have no regrets."
+	text "J'ai fait de"
+	line "mon mieux."
 	done
 
 SchoolboyJoeSeenText:
-	text "Here's No. 3!"
-	line "I won't be easy."
+	text "Numéro 3!"
+	line "Tu vas en baver!"
 	done
 
 SchoolboyJoeBeatenText:
-	text "Ow! Stomped flat!"
+	text "Ouille! Perdu!"
 	done
 
 SchoolboyJoeAfterBattleText:
-	text "I did my best."
-	line "I have no regrets."
+	text "J'ai fait de"
+	line "mon mieux."
 	done
 
 LassLauraSeenText:
-	text "I'm No. 4!"
-	line "Getting tired?"
+	text "Numéro 4! Tu"
+	line "tiens le coup?"
 	done
 
 LassLauraBeatenText:
-	text "I lost too…"
+	text "Perdu? Moi aussi?"
 	done
 
 LassLauraAfterBattleText:
-	text "I did my best."
-	line "I have no regrets."
+	text "J'ai fait de"
+	line "mon mieux."
 	done
 
 CamperLloydSeenText:
-	text "OK! I'm No. 5."
-	line "I'll stomp you!"
+	text "OK! Numéro 5."
+	line "COMBAAAAT!"
 	done
 
 CamperLloydBeatenText:
-	text "Whoa! Too much."
+	text "Whoa! Trop fort."
 	done
 
 CamperLloydAfterBattleText:
-	text "I did my best."
-	line "I have no regrets."
+	text "J'ai fait de"
+	line "mon mieux."
 	done
 
 LassShannonSeenText:
-	text "I'm the last in"
-	line "line, but I tell"
-	cont "you, I'm tough!"
+	text "Dernier rempart!"
+	line "Autant te dire..."
+	cont "Ca va être dur!"
 	done
 
 LassShannonBeatenText:
-	text "You're kidding."
+	text "Sans blague?"
 	done
 
 LassShannonAfterBattleText:
-	text "I did my best."
-	line "I have no regrets."
+	text "J'ai fait de"
+	line "mon mieux."
 	done
 
 SupernerdPatSeenText:
-	text "Mufufufu…"
+	text "Hin hin hin..."
 
-	para "I have nothing to"
-	line "do with the six-"
-	cont "pack trainers."
+	para "Je me fiche des"
+	line "six autres dres-"
+	cont "seurs."
 
-	para "I waited here to"
-	line "beat you when you"
+	para "Je suis là pour te"
+	line "battre au moment"
 
-	para "were tired out by"
-	line "all the battles."
+	para "où tu es le plus"
+	line "à plat."
 	done
 
 SupernerdPatBeatenText:
-	text "Aren't you tired"
-	line "at all?"
+	text "T'es pas à plat?"
 	done
 
 SupernerdPatAfterBattleText:
-	text "I'm sorry… I won't"
-	line "cheat anymore…"
+	text "Pardon. Je ne"
+	line "tricherai plus..."
 	done
 
 CooltrainermKevinNuggetText:
-	text "You took on one"
-	line "more battle than"
+	text "Tu as livré un"
+	line "combat de plus que"
 
-	para "you expected, but"
-	line "you won anyway."
+	para "prévu et tu as"
+	line "quand même gagné."
 
-	para "As promised, you"
-	line "win a prize."
+	para "Tu remportes donc"
+	line "un prix."
 	done
 
 CooltrainermKevinSeenText:
-	text "But after seeing"
-	line "how you battle, I"
+	text "Mais après avoir"
+	line "vu ton combat, je"
 
-	para "want to see how"
-	line "I'll fare."
+	para "voudrais tenter ma"
+	line "chance."
 
-	para "How about it? Let"
-	line "me take you on."
+	para "Ca te dit?"
+	line "Alors c'est parti."
 	done
 
 CooltrainermKevinBeatenText:
-	text "I've never had a"
-	line "battle this good!"
+	text "Ouais!"
+	line "Beau combat!"
 	done
 
 CooltrainermKevinAfterBattleText:
-	text "That was a great"
-	line "battle!"
+	text "Quelle belle"
+	line "rencontre!"
 
-	para "You and your #-"
-	line "MON are truly out-"
-	cont "standing!"
+	para "Toi et tes #MON"
+	line "êtes vraiment"
+	cont "impressionnants!"
 	done
 
 BillsHouseSignText:
-	text "SEA COTTAGE"
-	line "BILL'S HOUSE"
+	text "VILLA"
+	line "MAISON DE LEO"
 	done
 
 UnusedBillsHouseSignText: ; unreferenced
-	text "BILL'S HOUSE"
+	text "MAISON DE LEO"
 	done
 
 Route25_MapEvents:

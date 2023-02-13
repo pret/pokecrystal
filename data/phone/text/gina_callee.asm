@@ -1,66 +1,68 @@
 GinaAnswerPhoneText:
-	text "Hello? This is"
+	text "Allô? C'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "…"
 
 	para "Oh, <PLAY_G>!"
-	line "Good morning!"
+	line "Bonjour!"
 	done
 
 GinaAnswerPhoneDayText:
-	text "Hello? This is"
+	text "Allô? C'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "…"
 
 	para "Oh, <PLAY_G>!"
-	line "Hi, how are you?"
+	line "Ca va?"
 	done
 
 GinaAnswerPhoneNiteText:
-	text "Hello? This is"
+	text "Allô? C'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "…"
 
 	para "Oh, <PLAY_G>!"
-	line "Good evening!"
+	line "Bonsoir!"
 	done
 
 GinaGreetText:
 	text "<PLAY_G>?"
 
-	para "It's @"
+	para "C'est @"
 	text_ram wStringBuffer3
 	text "."
-	line "Good morning!"
+	line "Bonjour!"
 	done
 
 GinaGreetDayText:
 	text "<PLAY_G>?"
 
-	para "It's @"
+	para "C'est @"
 	text_ram wStringBuffer3
-	text ". Is"
-	line "this a bad time?"
+	text "."
+	line "Je te dérange?"
 	done
 
 GinaGreetNiteText:
 	text "<PLAY_G>?"
 
-	para "It's @"
+	para "C'est @"
 	text_ram wStringBuffer3
 	text "."
-	line "Got time to chat?"
+	line "T'as une minute?"
 	done
 
 GinaGenericText:
-	text "Are your #MON"
-	line "still tough?"
+	text "Tes #MON sont"
+	line "toujours aussi"
+	cont "puissants?"
 
-	para "I train every day"
-	line "with @"
+	para "J'entraîne à fond"
+	line "mon @"
 	text_ram wStringBuffer4
-	text "."
+	text_start
+	cont "tous les jours."
 	done

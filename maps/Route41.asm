@@ -132,153 +132,151 @@ Route41HiddenMaxEther:
 	hiddenitem MAX_ETHER, EVENT_ROUTE_41_HIDDEN_MAX_ETHER
 
 SwimmermCharlieSeenText:
-	text "The water's warm"
-	line "here. I'm loose"
-	cont "and limber."
+	text "L'eau est bonne"
+	line "par ici."
 
-	para "Sure, I'll take"
-	line "you on!"
+	para "Tu veux combattre?"
+	line "Pas de problème!"
 	done
 
 SwimmermCharlieBeatenText:
-	text "Yikes! I've got"
-	line "prune skin!"
+	text "J'suis tout fripé!"
 	done
 
 SwimmermCharlieAfterBattleText:
-	text "Isn't it relaxing"
-	line "just floating like"
-	cont "this?"
+	text "C'est trop relax"
+	line "de faire la plan-"
+	cont "che!"
 	done
 
 SwimmermGeorgeSeenText:
-	text "I'm a bit tired."
-	line "If I win, lend me"
-	cont "your #MON."
+	text "J'suis fatigué."
+	line "Si je gagne, tu me"
+	cont "prêtes tes #-"
+	cont "MON, OK?"
 	done
 
 SwimmermGeorgeBeatenText:
-	text "Pant, pant…"
+	text "Pfff...pff..."
 	done
 
 SwimmermGeorgeAfterBattleText:
-	text "It's so far to"
-	line "CIANWOOD."
+	text "IRISIA est si"
+	line "loin."
 
-	para "But it's no easy"
-	line "return trip to"
-	cont "OLIVINE either."
+	para "Mais retourner à"
+	line "OLIVILLE... Ca"
+	cont "fait une trotte!"
 
-	para "What should I do?"
+	para "Que faire?"
 	done
 
 SwimmermBerkeSeenText:
-	text "See those islands"
-	line "that are blocked"
-	cont "by whirlpools?"
+	text "Tu vois ces îles"
+	line "bloquées par des"
+	cont "siphons?"
 
-	para "There just has to"
-	line "be a secret!"
+	para "Il doit y avoir"
+	line "quelque chose de"
+	cont "secret!"
 	done
 
 SwimmermBerkeBeatenText:
-	text "What's the secret"
-	line "to your strength?"
+	text "Pourquoi t'es"
+	line "cool, toi?"
 	done
 
 SwimmermBerkeAfterBattleText:
-	text "It was a dark and"
-	line "stormy night…"
+	text "Par une nuit noire"
+	line "et profonde..."
 
-	para "I saw this giant"
-	line "#MON flying"
-	cont "from the islands."
+	para "J'ai vu ce #MON"
+	line "géant voler depuis"
+	cont "les îles."
 
-	para "It was scattering"
-	line "feathers from its"
-	cont "silver wings."
+	para "Il répandait ses"
+	line "plumes de ses"
+	cont "ailes d'argent."
 	done
 
 SwimmermKirkSeenText:
-	text "The waves are wild"
-	line "here."
+	text "Les vagues sont"
+	line "dangereuses ici."
 
-	para "They tire you out"
-	line "while you swim."
+	para "Elles empêchent de"
+	line "nager calmement."
 	done
 
 SwimmermKirkBeatenText:
-	text "I'm beat!"
+	text "J'suis crevé!"
 	done
 
 SwimmermKirkAfterBattleText:
-	text "The currents keep"
-	line "me from reaching"
-	cont "that island."
+	text "Les courants m'em-"
+	line "pêchent d'attein-"
+	cont "dre cette île."
 	done
 
 SwimmermMathewSeenText:
-	text "Are you seeking"
-	line "the secrets of"
-	cont "WHIRL ISLANDS?"
+	text "Tu cherches le"
+	line "secret des"
+	cont "TOURB'ILES?"
 	done
 
 SwimmermMathewBeatenText:
-	text "Ooh, you've got"
-	line "great endurance!"
+	text "Ooh!!! Quelle"
+	line "endurance!"
 	done
 
 SwimmermMathewAfterBattleText:
-	text "A secret about"
-	line "WHIRL ISLANDS…"
+	text "Il y a un secret"
+	line "aux TOURB'ILES..."
 
-	para "It's pitch-black"
-	line "inside!"
+	para "Il y fait noir!"
+	line "Ca c'est sûr!"
 	done
 
 SwimmerfKayleeSeenText:
-	text "I'm on my way to"
-	line "WHIRL ISLANDS."
+	text "Je vais aux"
+	line "TOURB'ILES."
 
-	para "I'm going explor-"
-	line "ing with friends."
+	para "Je vais les explo-"
+	line "rer avec un ami."
 	done
 
 SwimmerfKayleeBeatenText:
-	text "Is that how you do"
-	line "it?"
+	text "C'est tout?"
 	done
 
 SwimmerfKayleeAfterBattleText:
-	text "There's supposed"
-	line "to be a big #-"
-	cont "MON deep beneath"
-	cont "WHIRL ISLANDS."
+	text "On dit qu'il y a"
+	line "un gros #MON"
+	cont "au fond des"
+	cont "TOURB'ILES."
 
-	para "I wonder what it"
-	line "could be?"
+	para "Je me demande ce"
+	line "que c'est..."
 	done
 
 SwimmerfSusieSeenText:
-	text "You look so ele-"
-	line "gant, riding your"
-	cont "#MON."
+	text "Cool, t'es à dada"
+	line "sur ton #MON."
 	done
 
 SwimmerfSusieBeatenText:
-	text "I'm crushed…"
+	text "Tout perdu..."
 	done
 
 SwimmerfSusieAfterBattleText:
-	text "Wasn't there a hit"
-	line "song about a boy"
-	cont "riding a LAPRAS?"
+	text "Ca fait quel effet"
+	line "de monter sur un"
+	cont "#MON?"
 	done
 
 SwimmerfDeniseSeenText:
-	text "The weather is so"
-	line "beautiful, I'm in"
-	cont "a daze!"
+	text "Il fait si beau!"
+	line "C'est la fête!"
+	cont "Youkiii!"
 	done
 
 SwimmerfDeniseBeatenText:
@@ -286,56 +284,52 @@ SwimmerfDeniseBeatenText:
 	done
 
 SwimmerfDeniseAfterBattleText:
-	text "A sunburn is the"
-	line "worst for skin."
+	text "Un coup de soleil"
+	line "est vite arrivé."
 
-	para "But I don't use a"
-	line "sunblock."
+	para "Moi je mets pas"
+	line "de crème."
 
-	para "I won't pollute"
-	line "the water."
+	para "Je veux garder"
+	line "l'eau propre."
 	done
 
 SwimmerfKaraSeenText:
-	text "If you need to"
-	line "rest, just tread"
-	cont "water."
+	text "Si tu es naze,"
+	line "fais la planche!"
 
-	para "You'll get your"
-	line "wind back, so you"
-
-	para "can keep on going"
-	line "strong."
+	para "Bon..."
+	line "On s'bat?"
 	done
 
 SwimmerfKaraBeatenText:
-	text "Oh! You have more"
-	line "energy than I do."
+	text "Oh! Tu en as de"
+	line "l'énergie, toi."
 	done
 
 SwimmerfKaraAfterBattleText:
-	text "I heard roars from"
-	line "deep inside the"
-	cont "ISLANDS."
+	text "J'entends des cris"
+	line "venant des ILES."
 	done
 
 SwimmerfWendySeenText:
-	text "At night, STARYU"
-	line "gather near the"
-	cont "water's surface."
+	text "La nuit tombée,"
+	line "des STARI se réu-"
+	cont "nissent à la sur-"
+	cont "face de l'eau."
 	done
 
 SwimmerfWendyBeatenText:
-	text "Oh, dear…"
+	text "Oh..."
 	done
 
 SwimmerfWendyAfterBattleText:
-	text "The clusters of"
-	line "STARYU light up"
-	cont "at the same time."
+	text "Le coeur des STARI"
+	line "s'allume en même"
+	cont "temps."
 
-	para "It's so beautiful,"
-	line "it's scary."
+	para "C'est beau mais..."
+	line "Ca fait peur."
 	done
 
 Route41_MapEvents:

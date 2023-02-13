@@ -102,32 +102,32 @@ PrintPage2:
 
 GBPrinterStrings: ; used only for BANK(GBPrinterStrings)
 GBPrinterString_Null: db "@"
-GBPrinterString_CheckingLink: next " CHECKING LINK...@"
-GBPrinterString_Transmitting: next "  TRANSMITTING...@"
-GBPrinterString_Printing: next "    PRINTING...@"
+GBPrinterString_CheckingLink: next "   VERIF.LIEN...@"
+GBPrinterString_Transmitting: next "  TRANSMISSION...@"
+GBPrinterString_Printing: next "   IMPRESSION...@"
 GBPrinterString_PrinterError1:
-	db   " Printer Error 1"
+	db   " ERREUR PRINTER 1"
 	next ""
-	next "Check the Game Boy"
-	next "Printer Manual."
+	next "Voir le manuel du"
+	next "Game Boy Printer."
 	db   "@"
 GBPrinterString_PrinterError2:
-	db   " Printer Error 2"
+	db   " ERREUR PRINTER 2"
 	next ""
-	next "Check the Game Boy"
-	next "Printer Manual."
+	next "Voir le manuel du"
+	next "Game Boy Printer."
 	db   "@"
 GBPrinterString_PrinterError3:
-	db   " Printer Error 3"
+	db   " ERREUR PRINTER 3"
 	next ""
-	next "Check the Game Boy"
-	next "Printer Manual."
+	next "Voir le manuel du"
+	next "Game Boy Printer."
 	db   "@"
 GBPrinterString_PrinterError4:
-	db   " Printer Error 4"
+	db   " ERREUR PRINTER 4"
 	next ""
-	next "Check the Game Boy"
-	next "Printer Manual."
+	next "Voir le manuel du"
+	next "Game Boy Printer."
 	db   "@"
 
 PrintPartyMonPage1:
@@ -199,11 +199,11 @@ PrintPartyMonPage1:
 	hlcoord 1, 11
 	ld de, PrintParty_IDNoString
 	call PlaceString
-	hlcoord 4, 11
+	hlcoord 5, 11
 	ld de, wTempMonID
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
-	hlcoord 1, 14
+	hlcoord 1, 13
 	ld de, PrintParty_MoveString
 	call PlaceString
 	hlcoord 7, 14
@@ -326,20 +326,20 @@ PlaceGenderAndShininess:
 	ret
 
 PrintParty_OTString:
-	db "OT/@"
+	db "DO/@"
 
 PrintParty_MoveString:
-	db "MOVE@"
+	db "CAPACITE/@"
 
 PrintParty_IDNoString:
-	db "<ID>№.@"
+	db "№.<ID>@"
 
 PrintParty_StatsString:
-	db   "ATTACK"
+	db   "ATTAQUE"
 	next "DEFENSE"
-	next "SPCL.ATK"
-	next "SPCL.DEF"
-	next "SPEED"
+	next "ATQ.SPE."
+	next "DEF.SPE."
+	next "VITESSE"
 	db   "@"
 
 PrintParty_NoMoveString:

@@ -1,10 +1,11 @@
-	db "SUPERPOWER@" ; species name
-	dw 207, 430 ; height, weight
+	db "COLOSSE@" ; species name
+	db 8 ; height
+	dw 195 ; weight
 
-	db   "It trains by"
-	next "lifting rocks in"
-	next "the mountains. It"
+	db   "Il s'entraîne en"
+	next "soulevant des ro-"
+	next "chers dans les"
 
-	page "can even pick up a"
-	next "GRAVELER with"
-	next "ease.@"
+	page "montagnes. Il peut"
+	next "même soulever un"
+	next "GRAVALANCH.@"

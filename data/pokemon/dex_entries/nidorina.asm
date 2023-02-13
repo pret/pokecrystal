@@ -1,10 +1,11 @@
-	db "POISON PIN@" ; species name
-	dw 207, 440 ; height, weight
+	db "VENEPIC@" ; species name
+	db 8 ; height
+	dw 200 ; weight
 
-	db   "It has a docile"
-	next "nature. If it is"
-	next "threatened with"
+	db   "Il est de nature"
+	next "docile. S'il se"
+	next "sent menacé, il"
 
-	page "attack, it raises"
-	next "the barbs that are"
-	next "all over its body.@"
+	page "dresse les pics"
+	next "qui couvrent son"
+	next "corps.@"

@@ -1,10 +1,11 @@
-	db "POISON GAS@" ; species name
-	dw 200, 20 ; height, weight
+	db "GAZ MORTEL@" ; species name
+	db 6 ; height
+	dw 10 ; weight
 
-	db   "If one gets close"
-	next "enough to it when"
-	next "it expels poison-"
+	db   "Si l'on s'approche"
+	next "suffisamment quand"
+	next "il envoie du"
 
-	page "ous gas, the gas"
-	next "swirling inside it"
-	next "can be seen.@"
+	page "gaz, on peut voir"
+	next "ses réserves de"
+	next "poison.@"

@@ -1,10 +1,11 @@
-	db "FAIRY@" ; species name
-	dw 403, 880 ; height, weight
+	db "FEE@" ; species name
+	db 13 ; height
+	dw 400 ; weight
 
-	db   "Said to live in"
-	next "quiet, remote"
-	next "mountains, this"
+	db   "On dit qu'il vit"
+	next "dans de lointaines"
+	next "montagnes."
 
-	page "type of fairy has"
-	next "a strong aversion"
-	next "to being seen.@"
+	page "Il déteste"
+	next "être vu."
+	next "@"

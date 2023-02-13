@@ -1,62 +1,62 @@
 ArnieAnswerPhoneText:
-	text "Yeah, hello."
-	line "This is @"
+	text "Oui, allô?"
+	line "C'est @"
 	text_ram wStringBuffer3
 	text "."
 
-	para "…Huh, <PLAY_G>? Yo!"
+	para "Heu... <PLAY_G>?"
 	done
 
 ArnieAnswerPhoneDayText:
-	text "Yeah, hello, you"
-	line "got @"
+	text "Oui, allô?"
+	line "C'est @"
 	text_ram wStringBuffer3
 	text "."
 
-	para "…Huh, <PLAY_G>? Yo!"
+	para "Heu... <PLAY_G>?"
 	done
 
 ArnieAnswerPhoneNiteText:
-	text "Yeah, hello, you"
-	line "got @"
+	text "Oui, allô?"
+	line "C'est @"
 	text_ram wStringBuffer3
 	text "."
 
-	para "…Huh, <PLAY_G>? Yo!"
+	para "Heu... <PLAY_G>?"
 	done
 
 ArnieGreetText:
-	text "Yeah, hello?"
-	line "@"
+	text "Oui? Allô?"
+	line "Ici @"
 	text_ram wStringBuffer3
-	text " calling."
+	text "."
 
-	para "What are you up"
-	line "to, <PLAY_G>?"
+	para "Comment ça va,"
+	line "<PLAY_G>?"
 	done
 
 ArnieGreetDayText:
-	text "Yeah, hello?"
-	line "@"
+	text "Oui? Allô?"
+	line "Ici @"
 	text_ram wStringBuffer3
-	text " calling."
+	text "."
 
-	para "Where are you now,"
+	para "Tu es où,"
 	line "<PLAY_G>?"
 	done
 
 ArnieGreetNiteText:
-	text "Yeah, hello?"
-	line "@"
+	text "Oui? Allô?"
+	line "Ici @"
 	text_ram wStringBuffer3
-	text " calling."
+	text "."
 
-	para "Are you awake now,"
+	para "Comment ça va,"
 	line "<PLAY_G>?"
 	done
 
 ArnieGenericText:
-	text "I bet your #MON"
-	line "are a lot stronger"
-	cont "than before."
+	text "Tes #MON sont"
+	line "encore plus forts"
+	cont "je parie."
 	done

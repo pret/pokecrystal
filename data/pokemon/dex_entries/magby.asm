@@ -1,10 +1,11 @@
-	db "LIVE COAL@" ; species name
-	dw 204, 470 ; height, weight
+	db "CHARBON@" ; species name
+	db 7 ; height
+	dw 214 ; weight
 
-	db   "It naturally spits"
-	next "an 1100-degree"
-	next "flame. It is said"
+	db   "Il crache une"
+	next "flamme de 600"
+	next "degrés. On dit que"
 
-	page "when many appear,"
-	next "it heralds a"
-	next "volcanic eruption.@"
+	page "son apparition"
+	next "provoque une érup-"
+	next "tion volcanique.@"

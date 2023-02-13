@@ -79,51 +79,53 @@ WillsRoom_EnterMovement:
 	step_end
 
 WillScript_WillBeforeText:
-	text "Welcome to #MON"
-	line "LEAGUE, <PLAYER>."
+	text "Bienvenue à la"
+	line "LIGUE #MON,"
+	cont "<PLAYER>."
 
-	para "Allow me to intro-"
-	line "duce myself. I am"
-	cont "WILL."
+	para "Je me présente:"
+	line "mon nom est"
+	cont "CLEMENT."
 
-	para "I have trained all"
-	line "around the world,"
+	para "Je sais tout."
+	line "J'ai tout vu."
 
-	para "making my psychic"
-	line "#MON powerful."
+	para "Mes #MON PSY"
+	line "sont trop forts."
 
-	para "And, at last, I've"
-	line "been accepted into"
-	cont "the ELITE FOUR."
+	para "Le CONSEIL des 4"
+	line "m'a accueilli en"
+	cont "son sein."
 
-	para "I can only keep"
-	line "getting better!"
+	para "Normal, quoi."
+	line "J'suis trop fort!"
 
-	para "Losing is not an"
-	line "option!"
+	para "Perdre? Défaite?"
+	line "Connais pas!"
 	done
 
 WillScript_WillBeatenText:
-	text "I… I can't…"
-	line "believe it…"
+	text "C'est..."
+	line "Incroyable..."
 	done
 
 WillScript_WillDefeatText:
-	text "Even though I was"
-	line "defeated, I won't"
-	cont "change my course."
+	text "J'ai peut-être"
+	line "perdu comme un"
+	cont "criquet mais..."
 
-	para "I will continue"
-	line "battling until I"
+	para "Je continuerai à"
+	line "combattre tant que"
 
-	para "stand above all"
-	line "trainers!"
+	para "je ne serai pas le"
+	line "plus grand!"
 
-	para "Now, <PLAYER>, move"
-	line "on and experience"
+	para "<PLAYER>..."
+	line "Continue ta route"
 
-	para "the true ferocity"
-	line "of the ELITE FOUR."
+	para "et découvre la"
+	line "force du CONSEIL"
+	cont "des 4!"
 	done
 
 WillsRoom_MapEvents:

@@ -6,11 +6,14 @@ gfx/battle_anims/%.lz: LZFLAGS += --method 2 --align 4
 
 gfx/battle/dude.2bpp.lz: LZFLAGS += --align 4
 
-gfx/diploma/diploma.2bpp.lz: LZFLAGS += --method 8 --align 1
+gfx/card_flip/card_flip_1.2bpp.lz: LZFLAGS = --compressor repetitions
+
+gfx/diploma/diploma.2bpp.lz: LZFLAGS = --compressor null --method 1 --align 1
 
 gfx/memory_game/memory_game.2bpp.lz: LZFLAGS += --method 2 --align 4
 
 gfx/intro/%.lz: LZFLAGS += --align 4
+gfx/intro/crystal_unowns.2bpp.lz: LZFLAGS = --compressor null --method 1 --align 1
 gfx/intro/suicune_close.2bpp.lz: LZFLAGS += --method 2 --align 4
 gfx/intro/unown_back.2bpp.lz: LZFLAGS += --method 2 --align 4
 
@@ -29,7 +32,7 @@ gfx/pokedex/pokedex_sgb.2bpp.lz: LZFLAGS += --method 8 --align 1
 gfx/pokedex/question_mark.2bpp.lz: LZFLAGS += --align 4
 gfx/pokedex/slowpoke.2bpp.lz: LZFLAGS = --compressor null --method 1 --align 1
 
-gfx/pokegear/pokegear.2bpp.lz: LZFLAGS = --compressor null --method 1 --align 1
+gfx/pokegear/pokegear.2bpp.lz: LZFLAGS += --method 9
 gfx/pokegear/pokegear_sprites.2bpp.lz: LZFLAGS += --align 4
 gfx/pokegear/town_map.2bpp.lz: LZFLAGS = --compressor null --method 1 --align 1
 
@@ -43,7 +46,7 @@ gfx/pokemon/voltorb/front.animated.2bpp.lz: LZFLAGS += --method 4
 
 gfx/sgb/gbc_only.2bpp.lz: LZFLAGS = --compressor null --method 1 --align 1
 
-gfx/slots/slots_1.2bpp.lz: LZFLAGS += --method 2 --align 4
+gfx/slots/slots_1.2bpp.lz: LZFLAGS = --compressor null --align 1
 gfx/slots/slots_2.2bpp.lz: LZFLAGS += --align 4
 gfx/slots/slots_3.2bpp.lz: LZFLAGS += --align 4
 

@@ -1,10 +1,11 @@
-	db "PSI@" ; species name
-	dw 403, 1250 ; height, weight
+	db "PSY@" ; species name
+	db 13 ; height
+	dw 565 ; weight
 
-	db   "When it closes its"
-	next "eyes, twice as"
-	next "many alpha parti-"
+	db   "En fermant les"
+	next "yeux, le double de"
+	next "particules alpha"
 
-	page "cles come out of"
-	next "the surface of its"
-	next "body.@"
+	page "se dégage de son"
+	next "corps."
+	next "@"

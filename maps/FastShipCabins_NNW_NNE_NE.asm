@@ -132,41 +132,39 @@ FastShipLazySailorLeavesMovement2:
 	step_end
 
 CooltrainermSeanSeenText:
-	text "I'm going to KANTO"
-	line "to test my skills."
+	text "Je vais à KANTO"
+	line "pour m'entraîner."
 	done
 
 CooltrainermSeanBeatenText:
-	text "I wanted to win!"
+	text "J'voulais gagner!"
 	done
 
 CooltrainermSeanAfterBattleText:
-	text "Trainers from"
-	line "JOHTO can battle"
-
-	para "with KANTO GYM"
-	line "LEADERS."
+	text "Les dresseurs de"
+	line "JOHTO peuvent af-"
+	cont "fronter les CHAM-"
+	cont "PIONS de KANTO."
 	done
 
 CooltrainerfCarolSeenText:
-	text "I'm training to"
-	line "become the CHAMP!"
+	text "J'm'entraîne pour"
+	line "être la meilleure!"
 	done
 
 CooltrainerfCarolBeatenText:
-	text "What's so differ-"
-	line "ent between us?"
+	text "Pourquoi?"
 	done
 
 CooltrainerfCarolAfterBattleText:
-	text "I'm going to beat"
-	line "you someday!"
+	text "J'te battrai un"
+	line "jour! Oh oui!"
 	done
 
 PokemaniacEthanSeenText:
-	text "Do you know LILY?"
-	line "She's a hot DJ in"
-	cont "KANTO."
+	text "Tu connais PETRA?"
+	line "C'est un super DJ"
+	cont "de KANTO."
 	done
 
 PokemaniacEthanBeatenText:
@@ -174,94 +172,92 @@ PokemaniacEthanBeatenText:
 	done
 
 PokemaniacEthanAfterBattleText:
-	text "LILY's nice, but"
-	line "MARY's the best!"
+	text "PETRA est cool"
+	line "mais LULA est top!"
 
-	para "I want to check"
-	line "out JOHTO's radio"
-	cont "programs!"
+	para "J'veux connaître"
+	line "les stations de"
+	cont "radio de JOHTO!"
 	done
 
 HikerNolandSeenText:
-	text "Are you alone?"
-	line "Then let's battle!"
+	text "Ca va?"
+	line "Alors...COMBAT!"
 	done
 
 HikerNolandBeatenText:
-	text "That's too much to"
-	line "handle!"
+	text "T'es trop, toi!"
+	line "Pfouiii!"
 	done
 
 HikerNolandAfterBattleText:
-	text "I wonder if there"
-	line "are any mountains"
-
-	para "worth climbing in"
-	line "KANTO?"
+	text "Tu crois qu'il y a"
+	line "de belles monta-"
+	cont "gnes à KANTO?"
 	done
 
 SailorStanlySeenText:
-	text "Yeah, I'm a sail-"
-	line "or, all right."
+	text "Ouaip. Moi j'suis"
+	line "un marin."
 
-	para "I wasn't goofing"
-	line "off!"
+	para "Un vrai de vrai."
+	line "Pur boeuf!"
 
-	para "This cabin was"
-	line "vacant, so I just"
-	cont "took a quick nap!"
+	para "J'suis grand."
+	line "J'suis beau."
+	cont "Je sens le sable"
+	cont "chaud."
 
-	para "Ah, forget it!"
-	line "Let's battle!"
+	para "Oh! Tu m'écoutes?"
+	line "...COMBAT!"
 	done
 
 SailorStanlyBeatenText:
-	text "Sorry! It's all my"
-	line "fault!"
+	text "Heu... Comment?"
+	line "De quoi?"
 	done
 
 SailorStanlyAfterBattleText:
-	text "Being a sailor, I"
-	line "have to do phys-"
-	cont "ical labor. It's"
-	cont "exhausting!"
+	text "Dans la mariiine,"
+	line "on n'est pas des"
+	cont "p'tites filles!"
+	cont "Dans la mariiine!"
 	done
 
 GentlemanEdwardSeenText:
-	text "Oh, no. I've lost"
-	line "something that's"
-	cont "very important."
+	text "J'ai perdu un truc"
+	line "super important..."
 	done
 
 GentlemanEdwardBeatenText:
-	text "I… I can't find"
-	line "it…"
+	text "J'le...trouve..."
+	line "...pas!!!"
 	done
 
 GentlemanEdwardAfterBattleText:
-	text "I give up."
-	line "You don't have to"
+	text "Je laisse tomber."
+	line "Ce n'est pas la"
 
-	para "look. Just forget"
-	line "about it!"
+	para "peine de chercher."
+	line "Oublie!"
 	done
 
 BurglarCoreySeenText:
-	text "Yeehaw!"
-	line "Lucky!"
+	text "Ouaiiis!"
+	line "Le bol!"
 	done
 
 BurglarCoreyBeatenText:
-	text "How unlucky!"
-	line "I lost!"
+	text "Ooooh!"
+	line "Pas d'bol!"
 	done
 
 BurglarCoreyAfterBattleText:
-	text "I found a pretty"
-	line "coin here."
+	text "J'ai trouvé une"
+	line "belle pièce."
 
-	para "Someone must have"
-	line "lost it…"
+	para "Quelqu'un a dû"
+	line "la perdre..."
 	done
 
 FastShipCabins_NNW_NNE_NE_MapEvents:

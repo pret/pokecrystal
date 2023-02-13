@@ -1,10 +1,11 @@
-	db "KICKING@" ; species name
-	dw 411, 1100 ; height, weight
+	db "LATTEUR@" ; species name
+	db 15 ; height
+	dw 498 ; weight
 
-	db   "It is also called"
-	next "the Kick Master."
-	next "It uses its"
+	db   "On l'appelle aussi"
+	next "le Roi du Coup de"
+	next "Latte."
 
-	page "elastic legs to"
-	next "execute every"
-	next "known kick.@"
+	page "Ses pattes élasti-"
+	next "ques sont de re-"
+	next "doutables armes.@"

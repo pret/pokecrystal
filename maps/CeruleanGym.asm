@@ -196,168 +196,162 @@ CeruleanGymGruntBacksAwayMovement:
 	step_end
 
 CeruleanGymGruntIntroText:
-	text "Oops! I so sorry!"
-	line "You not hurt,"
-	cont "okay?"
+	text "Oups!"
+	line "Pardon!"
+	cont "Tu vas bien?"
 
-	para "I very busy."
-	line "No time for talk-"
-	cont "ing with you. Not"
-	cont "good for me if"
-	cont "seen by somebody."
+	para "J'suis occupé."
+	line "Pas le temps."
+	cont "Au revoir."
+	cont "Tu m'as pas vu,"
+	cont "OK?"
 	done
 
 CeruleanGymGruntBigMistakeText:
-	text "Oh no! You seen"
-	line "me already! I make"
-	cont "big mistake!"
+	text "Oh! Tu m'as vu!"
+	line "C'est pas bon, ça!"
 	done
 
 CeruleanGymGruntByeText:
-	text "Hey, you! Forget"
-	line "you see me, okay?"
+	text "Hé toi! Tu oublies"
+	line "que tu m'as vu,"
 
-	para "You see, hear,"
-	line "know nothing,"
+	para "OK? Allez..."
+	line "Adieu!"
 
-	para "okay?"
-	line "Bye, kid! Nothing!"
-
-	para "Bye-bye a go-go!"
+	para "Adieuuuu!"
 	done
 
 CeruleanGymNote1Text:
-	text "Sorry, I'll be out"
-	line "for a while."
-	cont "MISTY, GYM LEADER"
+	text "Sortie pour un"
+	line "moment..."
+	cont "ONDINE, CHAMPIONNE"
 	done
 
 CeruleanGymNote2Text:
-	text "Since MISTY's out,"
-	line "we'll be away too."
-	cont "GYM TRAINERS"
+	text "ONDINE est partie,"
+	line "alors nous aussi."
+	cont "Les DRESSEURS de"
+	cont "l'ARENE"
 	done
 
 MistyIntroText:
-	text "MISTY: I was ex-"
-	line "pecting you, you"
-	cont "pest!"
+	text "ONDINE: Je"
+	line "t'attendais, toi!"
 
-	para "You may have a"
-	line "lot of JOHTO GYM"
+	para "Tu as peut-être"
+	line "des BADGES de"
 
-	para "BADGES, but you'd"
-	line "better not take me"
-	cont "too lightly."
+	para "JOHTO, mais tu vas"
+	line "quand même te"
+	cont "prendre une"
+	cont "sacrée raclée."
 
-	para "My water-type"
-	line "#MON are tough!"
+	para "Mes #MON"
+	line "aquatiques sont"
+	cont "trop forts!"
 	done
 
 MistyWinLossText:
-	text "MISTY: You really"
-	line "are good…"
+	text "ONDINE: OK. T'es"
+	line "pas naze..."
 
-	para "I'll admit that"
-	line "you are skilled…"
+	para "Je le reconnais..."
 
-	para "Here you go. It's"
-	line "CASCADEBADGE."
+	para "Tiens. V'là le"
+	line "BADGECASCADE."
 	done
 
 ReceivedCascadeBadgeText:
-	text "<PLAYER> received"
-	line "CASCADEBADGE."
+	text "<PLAYER> reçoit"
+	line "le BADGECASCADE."
 	done
 
 MistyFightDoneText:
-	text "MISTY: Are there"
-	line "many strong train-"
-	cont "ers in JOHTO? Like"
-	cont "you, I mean."
+	text "ONDINE: Y a-t-il"
+	line "des dresseurs"
+	cont "doués à JOHTO? Un"
+	cont "peu comme toi..."
 
-	para "I'm going to"
-	line "travel one day, so"
+	para "Je vais y aller"
+	line "un jour. Ca me"
 
-	para "I can battle some"
-	line "skilled trainers."
+	para "fera de l'entraî-"
+	line "nement."
 	done
 
 SwimmerfDianaSeenText:
-	text "Sorry about being"
-	line "away. Let's get on"
-	cont "with it!"
+	text "Désolée d'avoir"
+	line "été absente."
+	cont "On y va!"
 	done
 
 SwimmerfDianaBeatenText:
-	text "I give up! You're"
-	line "the winner!"
+	text "OK!"
+	line "T'as gagné!"
 	done
 
 SwimmerfDianaAfterBattleText:
-	text "I'll be swimming"
-	line "quietly."
+	text "Je vais nager"
+	line "tranquillement."
 	done
 
 SwimmerfBrianaSeenText:
-	text "Don't let my ele-"
-	line "gant swimming un-"
-	cont "nerve you."
+	text "Je nage trop bien."
+	line "Ca t'énerve?"
 	done
 
 SwimmerfBrianaBeatenText:
-	text "Ooh, you calmly"
-	line "disposed of me…"
+	text "Ooh!"
+	line "Impressionnant!"
 	done
 
 SwimmerfBrianaAfterBattleText:
-	text "Don't be too smug"
-	line "about beating me."
+	text "Ne crâne pas"
+	line "trop..."
 
-	para "MISTY will destroy"
-	line "you if you get"
-	cont "complacent."
+	para "ONDINE va te faire"
+	line "mal..."
 	done
 
 SwimmermParkerSeenText:
-	text "Glub…"
+	text "Gloups..."
 
-	para "I'm first! Come"
-	line "and get me!"
+	para "A l'attaque!"
+	line "Glouarps!"
 	done
 
 SwimmermParkerBeatenText:
-	text "This can't be…"
+	text "Impossible..."
 	done
 
 SwimmermParkerAfterBattleText:
-	text "MISTY has gotten"
-	line "much better in the"
-	cont "past few years."
+	text "ONDINE s'est bien"
+	line "améliorée depuis"
+	cont "un certain temps."
 
-	para "Don't let your"
-	line "guard down, or"
-	cont "you'll be crushed!"
+	para "Fais bien atten-"
+	line "tion, ou tu vas"
+	cont "le regretter!"
 	done
 
 CeruleanGymGuideText:
-	text "Yo! CHAMP in"
-	line "making!"
+	text "Hé! Graine de"
+	line "star!"
 
-	para "Since MISTY was"
-	line "away, I went out"
-
-	para "for some fun too."
-	line "He-he-he."
+	para "Quand ONDINE était"
+	line "partie, j'suis"
+	cont "allé me balader."
+	cont "Hé hé hé!"
 	done
 
 CeruleanGymGuideWinText:
-	text "Hoo, you showed me"
-	line "how tough you are."
+	text "Whoa! Tu es un"
+	line "p'tit tigre!"
 
-	para "As always, that"
-	line "was one heck of a"
-	cont "great battle!"
+	para "Quel beau combat!"
+	line "Comme toujours,"
+	cont "quoi!"
 	done
 
 CeruleanGym_MapEvents:

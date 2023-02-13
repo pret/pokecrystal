@@ -42,30 +42,30 @@ CelebrityHouseBookshelf:
 	jumpstd MagazineBookshelfScript
 
 CelebrityText1:
-	text "Oh, dear."
-	line "You've found me."
+	text "Oh ben mince."
+	line "Tu m'as trouvée."
 
-	para "Please don't tell"
-	line "anyone about me."
+	para "Ne parle de moi à"
+	line "personne."
 
-	para "I'll give you this"
-	line "for keeping my"
-	cont "secret. Please?"
+	para "En échange je te"
+	line "donne ceci."
+	cont "Ca marche?"
 	done
 
 CelebrityText2:
-	text "It's tough being a"
-	line "top celebrity."
+	text "C'est dur d'être"
+	line "célèbre."
 
-	para "Everywhere I go,"
-	line "people chase me."
+	para "On me poursuit."
+	line "On me regarde."
 
-	para "I just want to be"
-	line "left alone…"
+	para "J'te jure..."
+	line "C'est dur!"
 	done
 
 CelebritysFearowText:
-	text "FEAROW: Feero!"
+	text "RAPASDEPIC: Piiic!"
 	done
 
 Route28SteelWingHouse_MapEvents:

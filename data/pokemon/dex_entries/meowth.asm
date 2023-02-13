@@ -1,10 +1,11 @@
-	db "SCRATCHCAT@" ; species name
-	dw 104, 90 ; height, weight
+	db "CHADEGOUT@" ; species name
+	db 4 ; height
+	dw 42 ; weight
 
-	db   "It loves things"
-	next "that sparkle. When"
-	next "it sees a shiny"
+	db   "Il est fasciné par"
+	next "les objets bril-"
+	next "lants. Lorsqu'il"
 
-	page "object, the gold"
-	next "coin on its head"
-	next "shines too.@"
+	page "en voit un, la"
+	next "pièce sur son"
+	next "front brille.@"

@@ -1,10 +1,11 @@
-	db "FLAME@" ; species name
-	dw 307, 420 ; height, weight
+	db "FLAMME@" ; species name
+	db 11 ; height
+	dw 190 ; weight
 
-	db   "If it becomes"
-	next "agitated during"
-	next "battle, it spouts"
+	db   "S'il s'énerve pen-"
+	next "dant un combat,"
+	next "il crache de"
 
-	page "intense flames,"
-	next "incinerating its"
-	next "surroundings.@"
+	page "grandes flammes,"
+	next "brûlant tout aux"
+	next "alentours.@"

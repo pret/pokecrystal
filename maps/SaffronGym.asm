@@ -113,179 +113,168 @@ SaffronGymStatue:
 	jumpstd GymStatue2Script
 
 SabrinaIntroText:
-	text "SABRINA: I knew"
-	line "you were coming…"
+	text "MORGANE: Je savais"
+	line "que tu viendrais."
 
-	para "Three years ago I"
-	line "had a vision of"
-	cont "your arrival."
+	para "J'ai eu une vision"
+	line "il y a trois ans."
 
-	para "You're after my"
-	line "BADGE."
+	para "T'en veux après"
+	line "mon BADGE, non?"
 
-	para "I don't enjoy bat-"
-	line "tling, but it's my"
+	para "Je n'aime pas com-"
+	line "battre mais en"
 
-	para "duty as a LEADER"
-	line "to confer BADGES"
+	para "tant que CHAMPION-"
+	line "NE, je me dois de"
 
-	para "on anyone who has"
-	line "proven him- or"
-	cont "herself worthy."
+	para "confier mon BADGE"
+	line "à celui ou celle"
+	cont "qui le mérite."
 
-	para "Since you wish it,"
-	line "I will show you my"
-	cont "psychic powers!"
+	para "Comme tu insistes,"
+	line "prépare-toi à mes"
+	cont "pouvoirs psy!"
 	done
 
 SabrinaWinLossText:
-	text "SABRINA: Your"
-	line "power…"
+	text "MORGANE: Ta force"
+	line "est grande..."
 
-	para "It far exceeds"
-	line "what I foresaw…"
+	para "Je ne l'avais pas"
+	line "prévu. Zut."
 
-	para "Maybe it isn't"
-	line "possible to fully"
+	para "Prédire le futur"
+	line "c'est pas si"
 
-	para "predict what the"
-	line "future holds…"
+	para "facile! Ne te"
+	line "moque pas trop..."
 
-	para "OK, you win. You"
-	line "earned yourself"
-	cont "MARSHBADGE."
+	para "Bon. Tu as bien"
+	line "mérité le BADGE"
+	cont "MARAIS."
 	done
 
 ReceivedMarshBadgeText:
-	text "<PLAYER> received"
-	line "MARSHBADGE."
+	text "<PLAYER> reçoit"
+	line "le BADGE MARAIS."
 	done
 
 SabrinaMarshBadgeText:
-	text "SABRINA: MARSH-"
-	line "BADGE draws out"
+	text "MORGANE: Le BADGE"
+	line "MARAIS renforce"
 
-	para "your subliminal"
-	line "powers…"
+	para "les pouvoirs"
+	line "occultes..."
 
-	para "Although I failed"
-	line "to accurately pre-"
-	cont "dict your power,"
-	cont "this much I know"
-	cont "to be true."
+	para "Et ça..."
+	line "C'est pas de la"
+	cont "gnognotte."
 
-	para "You will become a"
-	line "celebrated and"
-	cont "beloved CHAMPION!"
+	para "Tu deviendras un"
+	line "MAITRE! Je le"
+	cont "sens!"
 	done
 
 SabrinaFightDoneText:
-	text "SABRINA: Your love"
-	line "for your #MON"
+	text "MORGANE: Ton amour"
+	line "pour tes #MON a"
 
-	para "overwhelmed my"
-	line "psychic power…"
+	para "brouillé mes pou-"
+	line "voirs psy..."
 
-	para "The power of love,"
-	line "I think, is also a"
-
-	para "kind of psychic"
-	line "power…"
+	para "L'amour..."
+	line "Quelle force!"
 	done
 
 MediumRebeccaSeenText:
-	text "The power of all"
-	line "those you defeated"
-	cont "comes to me!"
+	text "Que la force soit"
+	line "avec moi!"
 	done
 
 MediumRebeccaBeatenText:
-	text "Strong…"
-	line "Far too strong…"
+	text "Bah alors?"
 	done
 
 MediumRebeccaAfterBattleText:
-	text "What is the source"
-	line "of your power?"
+	text "Quelle est la"
+	line "source de ta"
+	cont "force?"
 	done
 
 PsychicFranklinSeenText:
-	text "Psychic power is"
-	line "the power of your"
-	cont "soul."
+	text "Je vais prendre"
+	line "ton âme!"
 	done
 
 PsychicFranklinBeatenText:
-	text "Your soul has more"
-	line "power than mine!"
+	text "Pourquoi tant de"
+	line "haine?"
 	done
 
 PsychicFranklinAfterBattleText:
-	text "You made your soul"
-	line "stronger, not just"
-	cont "your abilities."
+	text "Ton âme est très"
+	line "puissante. Et ça"
+	cont "c'est bien."
 	done
 
 MediumDorisSeenText:
-	text "Fufufufu…"
-	line "I see it clearly."
+	text "Gnihihihihi!"
+	line "Forces occultes!"
 
-	para "I can see into"
-	line "your soul!"
+	para "Ténèbres..."
+	line "Pâté de foie!"
 	done
 
 MediumDorisBeatenText:
-	text "Though I read you,"
-	line "I still lost…"
+	text "J'aime le paranor-"
+	line "mal, oui, mais la"
+	cont "charcuterie aussi!"
 	done
 
 MediumDorisAfterBattleText:
-	text "Darn! I forgot"
-	line "that I predicted I"
-	cont "would lose to you."
+	text "Le psychisme,"
+	line "c'est dur à dire."
 	done
 
 PsychicJaredSeenText:
-	text "The FIGHTING DOJO"
-	line "next door was once"
-	cont "this city's GYM."
+	text "Le DOJO d'à côté"
+	line "était jadis l'ARE-"
+	cont "NE de cette ville."
 	done
 
 PsychicJaredBeatenText:
-	text "I was no match…"
+	text "Tout perdu..."
 	done
 
 PsychicJaredAfterBattleText:
-	text "KARATE KING, the"
-	line "master of the"
+	text "Le ROI du KARATE,"
+	line "le maître du DOJO"
 
-	para "FIGHTING DOJO, was"
-	line "just destroyed by"
-	cont "SABRINA."
+	para "a été battu par"
+	line "MORGANE."
 	done
 
 SaffronGymGuideText:
-	text "Yo, CHAMP in"
-	line "making!"
+	text "Hé! Graine de"
+	line "star!"
 
-	para "A trainer as"
-	line "skilled as you"
+	para "Un bon dresseur"
+	line "comme toi sait"
 
-	para "doesn't need to be"
-	line "told how to deal"
+	para "comment battre des"
+	line "#MON du type"
+	cont "PSY, non?"
 
-	para "with psychic-type"
-	line "#MON, right?"
+	para "Tu vas faire un"
+	line "beau combat!"
 
-	para "I expect great"
-	line "things from you!"
-
-	para "Good luck!"
+	para "Bonne chance!"
 	done
 
 SaffronGymGuideWinText:
-	text "That was another"
-	line "fantastic battle!"
+	text "Quelle belle"
+	line "rencontre!"
 	done
 
 SaffronGym_MapEvents:

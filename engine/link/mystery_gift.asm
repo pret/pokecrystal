@@ -18,7 +18,7 @@ DEF MG_OKAY           EQU ~MG_NOT_OKAY
 DEF MG_START_END      EQU %11111111
 
 DEF REGION_PREFIX EQU $96
-DEF REGION_CODE   EQU $90 ; USA
+DEF REGION_CODE   EQU $9a
 
 DEF MESSAGE_PREFIX EQU $5a
 
@@ -38,7 +38,7 @@ DoMysteryGift:
 	farcall StageDataForMysteryGift
 	call ClearMysteryGiftTrainer
 	vc_patch Infrared_stage_party_data
-if DEF(_CRYSTAL11_VC)
+if DEF(_CRYSTAL_VC)
 	farcall StagePartyDataForMysteryGift
 	call ClearMysteryGiftTrainer
 	nop
@@ -162,10 +162,10 @@ endc
 	ret
 
 .String_PressAToLink_BToCancel:
-	db   "Press A to"
-	next "link IR-Device"
-	next "Press B to"
-	next "cancel it."
+	db   "Appuyer sur A"
+	next "pour lien IR."
+	next "Appuyer sur B"
+	next "pour annuler."
 	db   "@"
 
 .MysteryGiftCanceledText:
@@ -271,7 +271,7 @@ endc
 ExchangeMysteryGiftData:
 	vc_hook Infrared_ExchangeMysteryGiftData_start
 	vc_patch Infrared_ExchangeMysteryGiftData_function
-if DEF(_CRYSTAL11_VC)
+if DEF(_CRYSTAL_VC)
 	ld d, $ef
 .loop
 	dec d

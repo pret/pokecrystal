@@ -376,15 +376,15 @@ TakePartyItem:
 
 GiveTakeItemMenuData:
 	db MENU_SPRITE_ANIMS | MENU_BACKUP_TILES ; flags
-	menu_coords 12, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 9, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .Items
 	db 1 ; default option
 
 .Items:
 	db STATICMENU_CURSOR ; flags
 	db 2 ; # items
-	db "GIVE@"
-	db "TAKE@"
+	db "DONNER@"
+	db "PRENDRE@"
 
 PokemonSwapItemText:
 	text_far _PokemonSwapItemText
@@ -449,6 +449,30 @@ ComposeMailMessage:
 	ld de, wTempMailAuthor
 	ld bc, NAME_LENGTH - 1
 	call CopyBytes
+	ld b, $ff
+	ld hl, wTempMailAuthor
+
+.loop:
+	inc b
+	ld a, b
+	cp $8
+	jr nc, .cont
+
+	ld a, [hli]
+	cp "@"
+	jr nz, .loop
+
+	ld a, b
+	cp $8
+	jr nc, .cont
+
+	ld hl, wTempMailNationality
+	ld a, "E"
+	ld [hli], a
+	ld a, "F"
+	ld [hl], a
+
+.cont:
 	ld hl, wPlayerID
 	ld bc, 2
 	call CopyBytes
@@ -545,16 +569,16 @@ MonMailAction:
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 12, 10, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 9, 10, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData
 	db 1 ; default option
 
 .MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 3 ; items
-	db "READ@"
-	db "TAKE@"
-	db "QUIT@"
+	db "LIRE@"
+	db "PRENDRE@"
+	db "RETOUR@"
 
 .MailLoseMessageText:
 	text_far _MailLoseMessageText
@@ -1085,7 +1109,7 @@ MoveScreen2DMenuData:
 	db D_UP | D_DOWN | D_LEFT | D_RIGHT | A_BUTTON | B_BUTTON ; accepted buttons
 
 String_MoveWhere:
-	db "Where?@"
+	db "Où?@"
 
 SetUpMoveScreenBG:
 	call ClearBGPalettes
@@ -1224,7 +1248,7 @@ String_MoveType_Top:
 String_MoveType_Bottom:
 	db "│TYPE/└@"
 String_MoveAtk:
-	db "ATK/@"
+	db "FOR/@"
 String_MoveNoPower:
 	db "---@"
 

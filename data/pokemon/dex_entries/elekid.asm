@@ -1,10 +1,11 @@
-	db "ELECTRIC@" ; species name
-	dw 200, 520 ; height, weight
+	db "ELECTRIQUE@" ; species name
+	db 6 ; height
+	dw 235 ; weight
 
-	db   "It loves violent"
-	next "thunder. The space"
-	next "between its horns"
+	db   "Il aime les vio-"
+	next "lents éclairs."
+	next "Un halo bleu clair"
 
-	page "flickers bluish-"
-	next "white when it is"
-	next "charging energy.@"
+	page "apparaît entre ses"
+	next "cornes s'il charge"
+	next "de l'énergie.@"

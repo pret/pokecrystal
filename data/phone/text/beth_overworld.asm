@@ -1,56 +1,57 @@
 BethAskNumber1Text:
-	text "It's been a while"
-	line "since I lost…"
+	text "Je n'avais pas"
+	line "perdu depuis un"
+	cont "bout de temps..."
 
-	para "You're very good"
-	line "at battling."
+	para "Tu as du talent,"
+	line "c'est évident."
 
-	para "We should battle"
-	line "again sometime."
+	para "On devrait remet-"
+	line "tre ça un jour."
 
-	para "By challenging a"
-	line "tough trainer like"
+	para "Je crois que c'est"
+	line "un bon entraîne-"
 
-	para "you, I think I can"
-	line "get better too."
+	para "ment de se battre"
+	line "contre toi."
 
-	para "So how about it?"
+	para "Alors ça te dit?"
 
-	para "Would you give me"
-	line "your phone number?"
+	para "Tu veux me donner"
+	line "ton numéro?"
 	done
 
 BethAskNumber2Text:
-	text "By challenging a"
-	line "tough trainer like"
+	text "Je crois que c'est"
+	line "un bon entraîne-"
 
-	para "you, I think I can"
-	line "get better too."
+	para "ment de se battre"
+	line "contre toi."
 
-	para "So how about it?"
+	para "Alors ça te dit?"
 
-	para "Would you give me"
-	line "your phone number?"
+	para "Tu veux me donner"
+	line "ton numéro?"
 	done
 
 BethNumberAcceptedText:
-	text "Let's battle again"
-	line "sometime!"
+	text "On se refait ça"
+	line "quand tu veux!"
 	done
 
 BethNumberDeclinedText:
-	text "That's too bad…"
+	text "Dommage..."
 
-	para "Let me know if you"
-	line "change your mind."
+	para "Préviens-moi si tu"
+	line "changes d'avis."
 	done
 
 BethPhoneFullText:
-	text "Oh no. Your phone"
-	line "is out of memory."
+	text "Oh! Ton téléphone"
+	line "est plein!"
 	done
 
 BethRematchText:
-	text "You sure kept me"
-	line "waiting! Let's go!"
+	text "J't'attends depuis"
+	line "longtemps!"
 	done

@@ -1,79 +1,80 @@
 BrentAnswerPhoneText:
-	text "Yes? @"
+	text "Oui? Ici @"
 	text_ram wStringBuffer3
-	text " here…"
+	text "…"
 
-	para "Ah, <PLAYER>. What"
-	line "can I do for you?"
+	para "Ah, <PLAYER>."
+	line "Qu'est-ce que tu"
+	cont "veux?"
 	done
 
 BrentAnswerPhoneDayText:
-	text "Yes? @"
+	text "Oui? Ici @"
 	text_ram wStringBuffer3
-	text " here…"
+	text "…"
 
-	para "Ah, <PLAYER>. What"
-	line "can I do for you?"
+	para "Ah, <PLAYER>."
+	line "Qu'est-ce que tu"
+	cont "veux?"
 	done
 
 BrentAnswerPhoneNiteText:
-	text "Yes? @"
+	text "Oui? Ici @"
 	text_ram wStringBuffer3
-	text " here…"
+	text "…"
 
-	para "Ah, <PLAYER>. What"
-	line "can I do for you?"
+	para "Ah, <PLAYER>."
+	line "Qu'est-ce que tu"
+	cont "veux?"
 	done
 
 BrentGreetText:
-	text "Hiya, <PLAYER>. How"
-	line "are you doing?"
+	text "Salut, <PLAYER>."
+	line "Ca va bien?"
 
-	para "Hey! It's me,"
+	para "C'est moi!"
 	line "@"
 	text_ram wStringBuffer3
-	text "."
+	text "!"
 	done
 
 BrentGreetDayText:
-	text "Hiya, <PLAYER>, how"
-	line "are you doing?"
+	text "Salut, <PLAYER>."
+	line "Ca va bien?"
 
-	para "Hey, it's me,"
+	para "C'est moi!"
 	line "@"
 	text_ram wStringBuffer3
-	text "."
+	text "!"
 	done
 
 BrentGreetNiteText:
-	text "Hiya, <PLAYER>, how"
-	line "are you doing?"
+	text "Salut, <PLAYER>."
+	line "Ca va bien?"
 
-	para "Hey, it's me,"
+	para "C'est moi!"
 	line "@"
 	text_ram wStringBuffer3
-	text "."
+	text "!"
 	done
 
 BrentGenericText:
-	text "Oh yeah, I saw you"
-	line "coming out of a"
+	text "J'ai vu que tu"
+	line "sortais du"
 
-	para "#MON CENTER the"
-	line "other day."
+	para "CENTRE #MON"
+	line "l'autre jour."
 
-	para "You heal your"
-	line "#MON regularly,"
+	para "Tu aimes soigner"
+	line "tes #MON?"
+	cont "C'est bien, ça."
 
-	para "don't you?"
-	line "I'm impressed."
-
-	para "Heh, my @"
+	para "Mon @"
 	text_ram wStringBuffer4
 	text_start
-	line "is so tough, it"
+	line "pète la forme."
 
-	para "doesn't need to go"
-	line "to #MON CENTERS"
-	cont "often. Heheh!"
+	para "Il a pas besoin"
+	line "des CENTRES"
+	cont "#MON!"
 	done

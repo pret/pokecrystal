@@ -1,64 +1,61 @@
 VanceMonHasBecomeTougherText:
-	text "My @"
+	text "Mon @"
 	text_ram wStringBuffer4
-	text "'s"
-	line "become tougher."
+	text_start
+	line "est super fort."
 
-	para "We've achieved"
-	line "liftoff!"
+	para "Une vraie terreur!"
 	done
 
 VanceDefeatedMonText:
-	text "We can easily beat"
+	text "On peut battre"
 	line "@"
 	text_ram wStringBuffer4
 	text "!"
 
-	para "…Huh? You too?"
-	line "Isn't that great?"
+	para "Hein? Toi aussi?"
+	line "Formidable!"
 	done
 
 VanceLostAMonText:
-	text "But get this, a"
-	line "wild @"
+	text "Ecoute ça,"
+	line "un @"
 	text_ram wStringBuffer4
 	text_start
-	para "just barely eluded"
-	line "us."
+	cont "m'a échappé."
 
-	para "I wanted to FLY"
-	line "after it…"
+	para "Je voulais lui"
+	line "VOLER après..."
 	done
 
 VanceBattleRematchText:
-	text "Right now, I'm on"
+	text "Je suis vers"
 	line "@"
 	text_ram wStringBuffer5
 	text "."
 
-	para "You know, where I"
-	line "first met you?"
+	para "Là où on s'est"
+	line "rencontré!"
 
-	para "Want to battle?"
-	line "I'll wait here."
+	para "On s'bat?"
+	line "Je t'attends."
 	done
 
 VanceHangUpText:
-	text "OK, bye for now!"
+	text "OK, à bientôt!"
 	done
 
 VanceLookingForwardText:
-	text "I'll be looking"
-	line "forward to our"
-	cont "next battle!"
+	text "J'attends notre"
+	line "prochain combat!"
 	done
 
 VanceHurryHurryText:
 	text "Oh, <PLAY_G>!"
-	line "Hurry, hurry!"
+	line "Vite!"
 
 	para "@"
 	text_ram wStringBuffer5
 	text "!"
-	line "FLY over now!"
+	line "VOLE! Viens!"
 	done

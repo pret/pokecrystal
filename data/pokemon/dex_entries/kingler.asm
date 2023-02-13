@@ -1,10 +1,11 @@
-	db "PINCER@" ; species name
-	dw 403, 1320 ; height, weight
+	db "POIGNEUR@" ; species name
+	db 13 ; height
+	dw 600 ; weight
 
-	db   "Its oversized claw"
-	next "is very powerful,"
-	next "but when it's not"
+	db   "Sa pince gigantes-"
+	next "que est une arme"
+	next "terrible, mais en"
 
-	page "in battle, the"
-	next "claw just gets in"
-	next "the way.@"
+	page "dehors des com-"
+	next "bats, elle est"
+	next "très gênante.@"

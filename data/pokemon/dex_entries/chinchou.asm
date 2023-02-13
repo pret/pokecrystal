@@ -1,10 +1,11 @@
-	db "ANGLER@" ; species name
-	dw 108, 260 ; height, weight
+	db "POISSON@" ; species name
+	db 5 ; height
+	dw 120 ; weight
 
-	db   "Its antennae, whi-"
-	next "ch evolved from a"
-	next "fin, have both po-"
+	db   "Ses antennes pro-"
+	next "viennent d'ancien-"
+	next "nes nageoires et"
 
-	page "sitive and neg-"
-	next "ative charges flo-"
-	next "wing through them.@"
+	page "sont chargées d'é-"
+	next "nergie positive et"
+	next "négative.@"

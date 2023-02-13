@@ -1,10 +1,11 @@
-	db "ARMOR BIRD@" ; species name
-	dw 507, 1110 ; height, weight
+	db "ARMOISEAU@" ; species name
+	db 17 ; height
+	dw 505 ; weight
 
-	db   "The feathers that"
-	next "it sheds are very"
-	next "sharp. It is said"
+	db   "Les plumes qu'il"
+	next "perd sont très"
+	next "aiguisées. On les"
 
-	page "that people once"
-	next "used the feathers"
-	next "as swords.@"
+	page "utilisait autre-"
+	next "fois comme sabres."
+	next "@"

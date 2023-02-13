@@ -1,71 +1,72 @@
 AlanAskNumber1Text:
-	text "Reading textbooks"
-	line "is worthwhile"
-	cont "every so often."
+	text "Lire les textes,"
+	line "c'est important."
 
-	para "When I'm reading"
-	line "and walking, I"
-	cont "have to look down."
+	para "Je lis et marche"
+	line "en même temps."
+	cont "Alors je regarde"
+	cont "en bas."
 
-	para "So I notice items"
-	line "on the ground."
+	para "De cette manière"
+	line "je trouve les"
+	cont "objets sur le sol."
 
-	para "Next time I find"
-	line "something, I'll"
-	cont "give it to you."
+	para "Ma prochaine trou-"
+	line "vaille est pour"
+	cont "toi!"
 
-	para "May I have your"
-	line "phone number?"
+	para "Je peux avoir ton"
+	line "numéro?"
 	done
 
 AlanAskNumber2Text:
-	text "If I find some-"
-	line "thing, it's yours."
+	text "Ma prochaine trou-"
+	line "vaille est pour"
+	cont "toi!"
 
-	para "So may I have your"
-	line "phone number?"
+	para "Je peux avoir ton"
+	line "numéro?"
 	done
 
 AlanNumberAcceptedText:
-	text "I'll call you as"
-	line "soon as I find"
+	text "Je t'appelle si je"
+	line "trouve quelque"
 
-	para "something. You can"
-	line "count on it!"
+	para "chose. Tu peux"
+	line "compter sur moi!"
 	done
 
 AlanNumberDeclinedText:
-	text "Oh… I thought it"
-	line "would be a good"
-
-	para "break to call you"
-	line "when I'm studying…"
+	text "Oh... Je pensais"
+	line "qu'on s'entendait"
+	cont "bien..."
 	done
 
 AlanPhoneFullText:
-	text "There's no room"
-	line "for my number."
+	text "Tu n'as plus de"
+	line "place pour mon"
+	cont "numéro."
 	done
 
 AlanRematchText:
-	text "I waited around"
-	line "for you!"
+	text "Je t'attendais,"
+	line "mon bouchon!"
 
-	para "I'm thoroughly"
-	line "prepared today!"
+	para "Tu ne m'auras pas"
+	line "aujourd'hui!"
 	done
 
 AlanGiftText:
-	text "This, this! This"
-	line "is yours! Ta-da!"
+	text "Tiens!"
+	line "C'est pour toi!"
 	done
 
 AlanPackFullText:
-	text "Whoops!"
+	text "Oups!"
 
-	para "You can't carry"
-	line "any more items!"
+	para "Tu ne peux plus"
+	line "rien porter!"
 
-	para "I'll hold it until"
-	line "next time."
+	para "Je garde ça pour"
+	line "plus tard."
 	done

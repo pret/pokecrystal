@@ -1,10 +1,11 @@
-	db "TINY BIRD@" ; species name
-	dw 100, 40 ; height, weight
+	db "MINOISEAU@" ; species name
+	db 3 ; height
+	dw 18 ; weight
 
-	db   "It rapidly flaps"
-	next "its wings in the"
-	next "grass, stirring up"
+	db   "Il bat vite des"
+	next "ailes au-dessus de"
+	next "l'herbe pour faire"
 
-	page "a dust cloud that"
-	next "drives insect prey"
-	next "out into the open.@"
+	page "sortir tous les"
+	next "insectes."
+	next "@"

@@ -1,62 +1,63 @@
 BrentAskNumber1Text:
-	text "By the way, you're"
-	line "a #MANIAC…"
+	text "Au fait..."
+	line "T'es #MANIAC?"
 
-	para "I can tell."
-	line "Yes, you are."
+	para "Ca se voit."
+	line "Ca crève les yeux."
 
-	para "But your knowledge"
-	line "is shallow still!"
+	para "Mais t'en sais pas"
+	line "assez!"
 
-	para "Do you know BILL?"
-	line "He's an incredible"
+	para "Tu connais LEO?"
+	line "C'est un sacré"
 
 	para "#MANIAC."
-	line "I revere him."
+	line "Je l'aime."
 
-	para "I'll teach you all"
-	line "I know about BILL,"
+	para "Je peux tout te"
+	line "dire sur lui..."
 
-	para "so leave me your"
-	line "phone number."
+	para "Alors laisse-moi"
+	line "ton numéro."
 	done
 
 BrentAskNumber2Text:
-	text "I'll teach you all"
-	line "I know about BILL,"
+	text "Je peux tout te"
+	line "dire sur LEO..."
 
-	para "so leave me your"
-	line "phone number."
+	para "Alors laisse-moi"
+	line "ton numéro."
 	done
 
 BrentNumberAcceptedText:
-	text "BILL--he's more"
-	line "than amazing!"
+	text "LEO..."
+	line "Il est trop fort!"
 
-	para "To be a #MANIAC"
-	line "like him someday…"
+	para "Je veux être un"
+	line "#MANIAC"
+	cont "comme lui..."
 
-	para "That's my dream."
+	para "C'est mon rêve."
 	done
 
 BrentNumberDeclinedText:
-	text "You're going to"
-	line "regret it…"
+	text "Tu vas le"
+	line "regretter..."
 
-	para "And I won't care…"
+	para "Oh que oui..."
 	done
 
 BrentPhoneFullText:
-	text "Huh? Your phone"
-	line "list's full."
+	text "Ton téléphone est"
+	line "plein."
 
-	para "A #MANIAC has"
-	line "to be more tidy!"
+	para "Fais plus atten-"
+	line "tion, voyons!"
 	done
 
 BrentRematchText:
-	text "I've been waiting."
+	text "Je t'attendais."
 
-	para "Look, check out my"
+	para "Mate donc mes"
 	line "#MON!"
 	done

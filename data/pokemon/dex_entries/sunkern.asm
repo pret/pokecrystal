@@ -1,10 +1,11 @@
-	db "SEED@" ; species name
-	dw 100, 40 ; height, weight
+	db "GRAINE@" ; species name
+	db 3 ; height
+	dw 18 ; weight
 
-	db   "It is very weak."
-	next "Its only means of"
-	next "defense is to"
+	db   "Il est très faible"
+	next "et a comme seule"
+	next "technique de dé-"
 
-	page "shake its leaves"
-	next "desperately at its"
-	next "attacker.@"
+	page "fense un gigote-"
+	next "ment de feuilles"
+	next "nerveux.@"

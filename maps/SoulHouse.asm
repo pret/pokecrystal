@@ -22,52 +22,53 @@ SoulHouseGrannyScript:
 	jumptextfaceplayer SoulHouseGrannyText
 
 MrFujiText:
-	text "MR.FUJI: Welcome."
+	text "M.FUJI:"
+	line "Bienvenue à toi."
 
-	para "Hmm… You appear to"
-	line "be raising your"
+	para "Hmm... Tu as l'air"
+	line "d'être un dresseur"
 
-	para "#MON in a kind"
-	line "and loving manner."
+	para "de #MON doux"
+	line "et attentionné."
 
-	para "#MON lovers"
-	line "come here to pay"
+	para "Ceux qui aiment"
+	line "les #MON vien-"
 
-	para "their respects to"
-	line "departed #MON."
+	para "nent ici saluer"
+	line "leur âme."
 
-	para "Please offer con-"
-	line "dolences for the"
+	para "Tu peux présenter"
+	line "ici tes condoléan-"
+	cont "ces."
 
-	para "souls of the de-"
-	line "parted #MON."
-
-	para "I'm sure that will"
-	line "make them happy."
+	para "Cela leur fera"
+	line "plaisir."
 	done
 
 SoulHouseTeacherText:
-	text "There are other"
-	line "graves of #MON"
-	cont "here, I think."
+	text "Il y a d'autres"
+	line "tombes de #MON"
+	cont "ici, je crois."
 
-	para "There are many"
-	line "chambers that only"
-	cont "MR.FUJI may enter."
+	para "Beaucoup de pièces"
+	line "ne sont réservées"
+	cont "qu'à M.FUJI."
 	done
 
 SoulHouseLassText:
-	text "I came with my mom"
-	line "to visit #MON"
-	cont "graves…"
+	text "J'suis venue avec"
+	line "ma môman pour voir"
+	cont "les tombes de"
+	cont "#MON..."
 	done
 
 SoulHouseGrannyText:
-	text "The #MON that"
-	line "lived with me…"
+	text "Les #MON que"
+	line "j'ai perdus..."
 
-	para "I loved them like"
-	line "my grandchildren…"
+	para "Je les aimais com-"
+	line "me mes petits-"
+	cont "enfants..."
 	done
 
 SoulHouse_MapEvents:

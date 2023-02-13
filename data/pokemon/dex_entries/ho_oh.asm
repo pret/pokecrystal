@@ -1,10 +1,11 @@
-	db "RAINBOW@" ; species name
-	dw 1206, 4390 ; height, weight
+	db "ARCENCIEL@" ; species name
+	db 38 ; height
+	dw 1990 ; weight
 
-	db   "It will reveal"
-	next "itself before a"
-	next "pure-hearted"
+	db   "Il ne se montre"
+	next "qu'à un dresseur"
+	next "au coeur pur en"
 
-	page "trainer by shining"
-	next "its bright rain-"
-	next "bow-colored wings.@"
+	page "dévoilant ses"
+	next "magnifiques ailes"
+	next "colorées.@"

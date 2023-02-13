@@ -1,10 +1,11 @@
 	db "IMITATION@" ; species name
-	dw 311, 840 ; height, weight
+	db 12 ; height
+	dw 380 ; weight
 
-	db   "If a tree branch"
-	next "shakes when there"
-	next "is no wind, it's a"
+	db   "Une branche remue"
+	next "alors qu'il n'y a"
+	next "pas de vent?"
 
-	page "SUDOWOODO, not a"
-	next "tree. It hides"
-	next "from the rain.@"
+	page "Vous venez de"
+	next "trouver un"
+	next "SIMULARBRE.@"

@@ -1,10 +1,11 @@
-	db "STAGBEETLE@" ; species name
-	dw 411, 1210 ; height, weight
+	db "SCARABEE@" ; species name
+	db 15 ; height
+	dw 550 ; weight
 
-	db   "When the tempera-"
-	next "ture drops at"
-	next "night, it sleeps"
+	db   "La nuit, quand il"
+	next "fait plus froid,"
+	next "il dort au sommet"
 
-	page "on treetops or"
-	next "among roots where"
-	next "it is well hidden.@"
+	page "des arbres ou près"
+	next "des racines où il"
+	next "peut se cacher.@"

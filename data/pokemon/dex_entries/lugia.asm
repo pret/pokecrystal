@@ -1,10 +1,11 @@
-	db "DIVING@" ; species name
-	dw 1701, 4760 ; height, weight
+	db "PLONGEON@" ; species name
+	db 52 ; height
+	dw 2160 ; weight
 
-	db   "It has an incred-"
-	next "ible ability to"
-	next "calm raging sto-"
+	db   "Il peut calmer les"
+	next "mers agitées. On"
+	next "raconte que LUGIA"
 
-	page "rms. It is said"
-	next "that LUGIA appears"
-	next "when storms start.@"
+	page "apparaît lorsqu'"
+	next "éclate une"
+	next "tempête.@"

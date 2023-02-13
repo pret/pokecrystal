@@ -1,10 +1,11 @@
-	db "VIRTUAL@" ; species name
-	dw 207, 800 ; height, weight
+	db "VIRTUEL@" ; species name
+	db 8 ; height
+	dw 365 ; weight
 
-	db   "An artificial"
-	next "#MON created"
-	next "due to extensive"
+	db   "Un #MON arti-"
+	next "ficiel créé après"
+	next "de longues recher-"
 
-	page "research, it can"
-	next "perform only what"
-	next "is in its program.@"
+	page "ches. Il ne fait"
+	next "qu'exécuter son"
+	next "programme.@"

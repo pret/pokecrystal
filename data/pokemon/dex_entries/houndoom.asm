@@ -1,10 +1,11 @@
-	db "DARK@" ; species name
-	dw 407, 770 ; height, weight
+	db "SOMBRE@" ; species name
+	db 14 ; height
+	dw 350 ; weight
 
-	db   "The pungent-"
-	next "smelling flame"
-	next "that shoots from"
+	db   "Les flammes malo-"
+	next "dorantes qui éma-"
+	next "nent de sa bouche"
 
-	page "its mouth results"
-	next "from toxins burn-"
-	next "ing in its body.@"
+	page "sont le résultat"
+	next "d'une combustion"
+	next "de toxines.@"

@@ -265,31 +265,18 @@ DragonShrineElder3Script:
 
 DragonShrineQuestion1_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 8, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 10, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
-	db "Pal@"
-	db "Underling@"
-	db "Friend@"
+	db "Copain@"
+	db "Esclave@"
+	db "Ami@"
 
 DragonShrineQuestion2_MenuHeader:
-	db MENU_BACKUP_TILES ; flags
-	menu_coords 9, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
-	dw .MenuData
-	db 1 ; default option
-
-.MenuData:
-	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
-	db 3 ; items
-	db "Strategy@"
-	db "Raising@"
-	db "Cheating@"
-
-DragonShrineQuestion3_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 5, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData
@@ -298,35 +285,48 @@ DragonShrineQuestion3_MenuHeader:
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
-	db "Weak person@"
-	db "Tough person@"
-	db "Anybody@"
+	db "Stratégie@"
+	db "Entraînement@"
+	db "Triche@"
+
+DragonShrineQuestion3_MenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 4, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	dw .MenuData
+	db 1 ; default option
+
+.MenuData:
+	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
+	db 3 ; items
+	db "Dres. faible@"
+	db "Dres. fort@"
+	db "N'importe qui@"
 
 DragonShrineQuestion4_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 8, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 9, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
-	db "Love@"
+	db "Amour@"
 	db "Violence@"
-	db "Knowledge@"
+	db "Savoir@"
 
 DragonShrineQuestion5_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 12, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 9, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
-	db "Tough@"
-	db "Both@"
-	db "Weak@"
+	db "Puissant@"
+	db "Les deux@"
+	db "Faible@"
 
 DragonShrinePlayerWalkInMovement:
 	slow_step UP
@@ -392,263 +392,259 @@ DragonShrineClairWalkOutMovement:
 	step_end
 
 DragonShrineElderGreetingText:
-	text "Hm… Good to see"
-	line "you here."
+	text "Hmm..."
+	line "Bienvenue."
 
-	para "No need to explain"
-	line "why you came."
+	para "Ne parle pas."
 
-	para "CLAIR sent you"
-	line "here, didn't she?"
+	para "SANDRA t'a dit de"
+	line "venir, non?"
 
-	para "That girl is a"
-	line "handful…"
+	para "Coriace la petite,"
+	line "non?"
 
-	para "I am sorry, but I"
-	line "must test you."
+	para "Je dois te mettre"
+	line "à l'épreuve."
 
-	para "Not to worry, you"
-	line "are to answer only"
-	cont "a few questions."
+	para "Tu ne dois répon-"
+	line "dre qu'à quelques"
+	cont "questions."
 
-	para "Ready?"
+	para "On commence?"
 	done
 
 DragonShrineQuestion1Text:
-	text "What are #MON"
-	line "to you?"
+	text "Que représente un"
+	line "#MON à tes"
+	cont "yeux?"
 	done
 
 DragonShrineQuestion2Text:
-	text "What helps you to"
-	line "win battles?"
+	text "Qu'est-ce qui aide"
+	line "à gagner les"
+	cont "combats?"
 	done
 
 DragonShrineQuestion3Text:
-	text "What kind of"
-	line "trainer do you"
-	cont "wish to battle?"
+	text "Quel type de"
+	line "dresseur veux-tu"
+	cont "affronter?"
 	done
 
 DragonShrineQuestion4Text:
-	text "What is most"
-	line "important for"
-	cont "raising #MON?"
+	text "Quelle est la cho-"
+	line "se la plus impor-"
+	cont "tante en entraî-"
+	cont "nant les #MON?"
 	done
 
 DragonShrineQuestion5Text:
-	text "Strong #MON."
-	line "Weak #MON."
+	text "#MON puissant."
+	line "#MON faible."
 
-	para "Which is more"
+	para "Lequel est le plus"
 	line "important?"
 	done
 
 DragonShrinePassedTestText:
-	text "Hm… I see…"
+	text "Hmm... Je vois..."
 
-	para "You care deeply"
-	line "for #MON."
+	para "Tu as de vrais"
+	line "sentiments pour"
+	cont "les #MON."
 
-	para "Very commendable."
+	para "C'est bien ça."
 
-	para "That conviction is"
-	line "what is important!"
+	para "C'est très impor-"
+	line "tant!"
 
-	para "<PLAYER>, don't"
-	line "lose that belief."
+	para "<PLAYER>, ne"
+	line "change jamais."
 
-	para "It will see you"
-	line "through at the"
-	cont "#MON LEAGUE."
+	para "Cela t'aidera"
+	line "pour la LIGUE"
+	cont "#MON."
 	done
 
 DragonShrineMustIInformLanceText:
-	text "CLAIR!"
+	text "SANDRA!"
 
-	para "This child is"
-	line "impeccable, in"
-	cont "skill and spirit!"
+	para "C'est un bon"
+	line "élément..."
 
-	para "Admit defeat and"
-	line "confer the RISING-"
-	cont "BADGE!"
+	para "Admets ta défaite"
+	line "et donne ton"
+	cont "BADGE LEVER!"
 
-	para "…Or must I inform"
-	line "LANCE of this?"
+	para "...Ou dois-je en"
+	line "informer PETER?"
 	done
 
 DragonShrineElderScoldsClairText:
-	text "CLAIR…"
+	text "SANDRA..."
 
-	para "Reflect upon what"
-	line "it is that you"
+	para "Penche-toi sur"
+	line "tes lacunes..."
 
-	para "lack and this"
-	line "child has."
+	para "Prends exemple sur"
+	line "<PLAYER>."
 	done
 
 DragonShrineComeAgainText:
-	text "Come again, if you"
-	line "so desire."
+	text "N'hésite pas à"
+	line "revenir en ce"
+	cont "saint lieu."
 	done
 
 DragonShrineTakeThisDratiniText:
-	text "Hm… Good to see"
-	line "you here."
+	text "Hmm..."
+	line "Bienvenue."
 
-	para "Your arrival is"
-	line "most fortunate."
+	para "Tu tombes au bon"
+	line "moment."
 
-	para "I have something"
-	line "for you."
+	para "J'ai quelque chose"
+	line "pour toi."
 
-	para "Take this DRATINI"
-	line "as proof that I"
-
-	para "have recognized"
-	line "your worth."
+	para "Ce MINIDRACO est"
+	line "la preuve de ta"
+	cont "valeur..."
 	done
 
 DragonShrinePlayerReceivedDratiniText:
-	text "<PLAYER> received"
-	line "DRATINI!"
+	text "<PLAYER> reçoit"
+	line "MINIDRACO!"
 	done
 
 DragonShrinePartyFullText:
-	text "Hm? Your #MON"
-	line "party is full."
+	text "Hmm? Ton équipe"
+	line "est pleine."
 	done
 
 DragonShrineSymbolicDragonText:
-	text "Dragon #MON are"
-	line "symbolic of our"
-	cont "clan."
+	text "Les #MON dra-"
+	line "gons représentent"
+	cont "notre clan."
 
-	para "You have shown"
-	line "that you can be"
-
-	para "entrusted with"
-	line "one."
+	para "Tu es digne d'en"
+	line "posséder un."
 	done
 
 DragonShrineClairsGrandfatherText:
-	text "CLAIR appears to"
-	line "have learned an"
+	text "SANDRA a appris"
+	line "quelque chose en"
+	cont "te connaissant."
 
-	para "invaluable lesson"
-	line "from you."
-
-	para "I thank you as her"
-	line "grandfather."
+	para "Etant son grand-"
+	line "père, je te"
+	cont "remercie."
 	done
 
 DragonShrineRivalIsInTrainingText:
-	text "A boy close to"
-	line "your age is in"
-	cont "training here."
+	text "Un garçon de ton"
+	line "âge s'entraîne"
+	cont "ici."
 
-	para "He is much like"
-	line "CLAIR when she was"
+	para "Il est comme l'é-"
+	line "tait SANDRA plus"
 
-	para "younger. It is a"
-	line "little worrisome…"
+	para "jeune. Je suis"
+	line "très inquiet..."
 	done
 
 DragonShrineWrongAnswerText1:
-	text "Hah? I didn't"
-	line "quite catch that…"
+	text "Hein? J'ai pas"
+	line "tout compris..."
 	done
 
 DragonShrineWrongAnswerText2:
-	text "What was it you"
-	line "said?"
+	text "Qu'as-tu dit?"
 	done
 
 DragonShrineRightAnswerText:
-	text "Oh, I understand…"
+	text "Oh, je vois..."
 	done
 
 DragonShrineElder2Text:
-	text "It's been quite"
-	line "some time since a"
+	text "Cela fait long-"
+	line "temps que notre"
 
-	para "trainer has gained"
-	line "our MASTER's rare"
-	cont "approval."
+	para "MAITRE n'a pas"
+	line "cautionné un"
+	cont "dresseur."
 
-	para "In fact, not since"
-	line "Master LANCE."
+	para "Pas une seule fois"
+	line "depuis PETER."
 	done
 
 DragonShrineElder3Text:
-	text "You know young"
-	line "Master LANCE?"
+	text "Tu connais"
+	line "Maître PETER?"
 
-	para "He looks so much"
-	line "like our MASTER"
-	cont "did in his youth."
+	para "Il ressemble à"
+	line "notre MAITRE étant"
+	cont "jeune."
 
-	para "It's in their"
-	line "blood."
+	para "C'est dans leur"
+	line "sang."
 	done
 
 DragonShrineClairYouPassedText:
-	text "So how did it go?"
+	text "Comment c'était?"
 
-	para "I guess there's no"
-	line "point in asking."
+	para "Je ne vois pas"
+	line "pourquoi je deman-"
+	cont "de..."
 
-	para "You did fail?"
+	para "Tu as échoué,"
+	line "n'est-ce pas?"
 
 	para "<……><……><……><……><……><……>"
 
-	para "…What? You passed?"
+	para "...Quoi? Réussi?"
 	done
 
 DragonShrineClairThatCantBeText:
-	text "That can't be!"
+	text "Y'a maldonne!"
 	done
 
 DragonShrineClairYoureLyingText:
-	text "You're lying!"
+	text "Tu mens!"
 
-	para "Even I haven't"
-	line "been approved!"
+	para "Même moi j'ai pas"
+	line "réussi!"
 	done
 
 DragonShrineIUnderstandText:
-	text "I-I understand…"
+	text "Je... Je vois."
 	done
 
 DragonShrineHereRisingBadgeText:
-	text "Here, this is the"
-	line "RISINGBADGE…"
+	text "Tiens, voilà le"
+	line "BADGE LEVER..."
 
-	para "Hurry up! Take it!"
+	para "Allez! Prends-le!"
 	done
 
 DragonShrinePlayerReceivedRisingBadgeText:
-	text "<PLAYER> received"
-	line "RISINGBADGE."
+	text "<PLAYER> reçoit"
+	line "le BADGE LEVER."
 	done
 
 DragonShrineRisingBadgeExplanationText:
-	text "RISINGBADGE will"
-	line "enable your"
+	text "Le BADGE LEVER"
+	line "permet à tes"
 
-	para "#MON to use the"
-	line "move for climbing"
-	cont "waterfalls."
+	para "#MON de lancer"
+	line "une capacité pour"
+	cont "escalader les"
+	cont "cascades."
 
-	para "Also, all #MON"
-	line "will recognize you"
+	para "De plus, tous les"
+	line "#MON t'obéiront"
 
-	para "as a trainer and"
-	line "obey your every"
-
-	para "command without"
-	line "question."
+	para "au doigt et à"
+	line "l'oeil."
 	done
 
 DragonShrineSpeechlessText:

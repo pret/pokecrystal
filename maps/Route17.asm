@@ -66,68 +66,68 @@ Route17HiddenMaxElixer:
 	hiddenitem MAX_ELIXER, EVENT_ROUTE_17_HIDDEN_MAX_ELIXER
 
 BikerRileySeenText:
-	text "Hey, you! You're"
-	line "from JOHTO, huh?"
+	text "Hé, toi!"
+	line "T'es de JOHTO?"
 	done
 
 BikerRileyBeatenText:
-	text "Whoa, you kick!"
+	text "Graaaaaah!"
 	done
 
 BikerRileyAfterBattleText:
-	text "Don't get cocky,"
-	line "you JOHTO punk!"
+	text "Pas la peine de"
+	line "crâner!"
 	done
 
 BikerJoelSeenText:
-	text "Wow. That's a cool"
-	line "BICYCLE!"
+	text "Oh! Elle est cool"
+	line "ta BICYCLETTE!"
 	done
 
 BikerJoelBeatenText:
-	text "But you don't just"
-	line "look cool…"
+	text "Par contre, toi..."
+	line "T'es pas cool."
 	done
 
 BikerJoelAfterBattleText:
-	text "I look cool, but"
-	line "I'm weak, so I'm"
-	cont "not really cool."
+	text "Moi j'ai trop la"
+	line "classe. T'as vu"
+	cont "mes fringues?"
 
-	para "I have to train"
-	line "harder…"
+	para "J'suis trop"
+	line "relax."
 	done
 
 BikerGlennSeenText:
-	text "Hey! Want to have"
-	line "a speed battle?"
+	text "Hé! Ca te dit un"
+	line "chtit combat?"
 	done
 
 BikerGlennBeatenText:
-	text "Yikes! You've got"
-	line "awesome torque!"
+	text "Ayaah! Toi t'es"
+	line "pas naze!"
 	done
 
 BikerGlennAfterBattleText:
-	text "Hands-free riding"
-	line "is considered cool"
-	cont "on CYCLING ROAD."
+	text "Conduire sans les"
+	line "mains, c'est la"
+	cont "classe."
 	done
 
 BikerCharlesSeenText:
-	text "We're fearless"
-	line "highway stars!"
+	text "Nous on est des"
+	line "durs! Des vrais!"
 	done
 
 BikerCharlesBeatenText:
-	text "Arrrgh! Crash and"
-	line "burn!"
+	text "Arrrgh!"
+	line "Trop dur!"
 	done
 
 BikerCharlesAfterBattleText:
-	text "Reckless driving"
-	line "causes accidents!"
-	cont "Take it easy!"
+	text "Conduis doucement,"
+	line "c'est plus"
+	cont "prudent!"
 	done
 
 Route17_MapEvents:

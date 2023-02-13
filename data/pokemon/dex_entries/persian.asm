@@ -1,10 +1,11 @@
-	db "CLASSY CAT@" ; species name
-	dw 303, 710 ; height, weight
+	db "CHADEVILLE@" ; species name
+	db 10 ; height
+	dw 320 ; weight
 
-	db   "Behind its lithe,"
-	next "elegant appearance"
-	next "lies a barbaric"
+	db   "Derrière une appa-"
+	next "rence calme et"
+	next "élégante, il est"
 
-	page "side. It will tear"
-	next "apart its prey on"
-	next "a mere whim.@"
+	page "sauvage et peut"
+	next "déchiqueter sa"
+	next "proie.@"

@@ -1,10 +1,11 @@
-	db "HERMITCRAB@" ; species name
-	dw 503, 1730 ; height, weight
+	db "SYMBIOSE@" ; species name
+	db 16 ; height
+	dw 785 ; weight
 
-	db   "An attached"
-	next "SHELLDER won't let"
-	next "go because of the"
+	db   "Le KOKIYAS accro-"
+	next "ché à sa queue est"
+	next "friand de ce qu'il"
 
-	page "tasty flavor that"
-	next "oozes out of its"
-	next "tail.@"
+	page "dévore et ne veut"
+	next "pas lâcher prise."
+	next "@"

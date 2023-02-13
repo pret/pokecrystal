@@ -210,145 +210,144 @@ BillsGrandpa:
 	end
 
 BillsGrandpaIntroText:
-	text "Hm? You know BILL?"
-	line "He's my grandson."
+	text "Tu connais LEO?"
+	line "C'est mon"
+	cont "petit-fils."
 
-	para "He's in JOHTO. He"
-	line "does something"
+	para "Il est à JOHTO."
+	line "Il s'occupe de PC."
 
-	para "with PCs, so I'm"
-	line "house-sitting."
+	para "Alors moi je m'oc-"
+	line "cupe de la maison."
 	done
 
 BillsGrandpaAskToSeeMonText:
-	text "If you have that"
-	line "#MON, may I see"
-	cont "it, please?"
+	text "Si tu as ce #-"
+	line "MON, peux-tu me"
+	cont "le montrer?"
 	done
 
 BillsGrandpaExcitedToSeeText:
-	text "You will show me?"
-	line "How good of you!"
+	text "Tu vas me le mon-"
+	line "trer? Cool!"
 	done
 
 BillsGrandpaYouDontHaveItTextText:
-	text "You don't have it?"
-	line "That's too bad…"
+	text "Tu ne l'as pas?"
+	line "Dommage..."
 	done
 
 BillsGrandpaShownPokemonText:
-	text "Ah, so that is"
+	text "Alors c'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "?"
 
-	para "Isn't it cute!"
-	line "That's so kind of"
-	cont "you."
+	para "Il est mimi!"
+	line "Merci mon p'tit!"
 	done
 
 BillsGrandpaTokenOfAppreciationText:
-	text "Thanks!"
+	text "Toi t'es cool!"
 
-	para "This is a token of"
-	line "my appreciation."
+	para "Voilà une petite"
+	line "récompense."
 	done
 
 BillsGrandpaComeAgainText:
-	text "Come visit again"
-	line "sometime."
+	text "Rends-moi visite"
+	line "des fois."
 	done
 
 BillsGrandpaShownAllThePokemonText:
-	text "Thanks for showing"
-	line "me so many cute"
-	cont "#MON."
+	text "Merci de me mon-"
+	line "trer autant de"
+	cont "#MON tout mimi."
 
-	para "I really enjoyed"
-	line "myself. I'm glad"
+	para "C'est vraiment"
+	line "très amusant. Ma"
 
-	para "I've lived such a"
-	line "long life."
+	para "vie est belle"
+	line "grâce à toi."
 	done
 
 BillsGrandpaWrongPokemonText:
-	text "Hm?"
+	text "Hmm?"
 
-	para "That's not the"
-	line "#MON that I was"
-	cont "told about."
+	para "Ce n'est pas le"
+	line "#MON dont on"
+	cont "m'a parlé."
 	done
 
 BillsGrandpaLickitungText:
-	text "My grandson BILL"
-	line "told me about a"
+	text "LEO mon petit-fils"
+	line "m'a parlé d'un"
 
-	para "#MON that has a"
-	line "long tongue."
+	para "#MON avec une"
+	line "longue langue."
 	done
 
 BillsGrandpaOddishText:
-	text "Ah, my grandson"
-	line "mentioned a round,"
+	text "Mon petit-fils m'a"
+	line "parlé d'un #-"
 
-	para "green #MON that"
-	line "has leaves growing"
-	cont "on its head."
+	para "MON vert et rond"
+	line "avec des feuilles"
+	cont "sur sa tête."
 	done
 
 BillsGrandpaStaryuText:
-	text "Do you know of a"
-	line "sea #MON that"
+	text "Connais-tu un"
+	line "#MON marin avec"
 
-	para "has a red sphere"
-	line "in its body?"
+	para "une sphère rouge"
+	line "dans le corps?"
 
-	para "You know, the one"
-	line "that's shaped like"
-	cont "a star?"
+	para "Tu sais... Celui"
+	line "qui est en forme"
+	cont "d'étoile?"
 
-	para "I heard that it"
-	line "appears at night."
+	para "On dit qu'il appa-"
+	line "raît la nuit."
 
-	para "I would surely"
-	line "like to see it."
+	para "J'aimerais tant"
+	line "le voir."
 	done
 
 BillsGrandpaGrowlitheText:
-	text "BILL told me about"
-	line "a #MON that is"
+	text "LEO m'a parlé d'un"
+	line "#MON très loyal"
 
-	para "very loyal to its"
-	line "trainer."
+	para "envers son dres-"
+	line "seur."
 
-	para "It's supposed to"
-	line "ROAR well."
+	para "On dit qu'il HURLE"
+	line "très bien."
 	done
 
 BillsGrandpaVulpixText:
-	text "I heard about a"
-	line "cute #MON that"
-	cont "has six tails."
+	text "On m'a parlé d'un"
+	line "joli #MON à"
+	cont "six queues."
 
-	para "I would love to"
-	line "hug a cute #MON"
-	cont "like that."
+	para "J'aimerais tant"
+	line "caresser un #-"
+	cont "MON comme ça."
 	done
 
 BillsGrandpaPichuText:
-	text "Do you know that"
-	line "hugely popular"
-	cont "#MON?"
+	text "Tu connais ce"
+	line "#MON super"
+	cont "populaire?"
 
-	para "The #MON that"
-	line "has a yellow body"
-	cont "and red cheeks."
+	para "Ce #MON qui"
+	line "a un corps jaune"
+	cont "et des joues"
+	cont "rouges..."
 
-	para "I would love to"
-	line "see what it looks"
-
-	para "like before it"
-	line "evolves."
+	para "J'aimerais tant le"
+	line "voir avant qu'il"
+	cont "n'évolue."
 	done
 
 BillsHouse_MapEvents:

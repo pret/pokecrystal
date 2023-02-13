@@ -1,10 +1,11 @@
-	db "MUSHROOM@" ; species name
-	dw 303, 650 ; height, weight
+	db "CHAMPIGNON@" ; species name
+	db 10 ; height
+	dw 295 ; weight
 
-	db   "When nothing's"
-	next "left to extract"
-	next "from the bug, the"
+	db   "Lorsque le champi-"
+	next "gnon parasite n'a"
+	next "plus rien à aspi-"
 
-	page "mushrooms on its"
-	next "back leave spores"
-	next "on the bug's egg.@"
+	page "rer, il laisse des"
+	next "spores sur l'oeuf"
+	next "de l'insecte.@"

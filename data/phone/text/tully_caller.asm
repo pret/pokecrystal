@@ -1,103 +1,100 @@
 TullyMonHasGrownText:
-	text "My @"
+	text "Mon @"
 	text_ram wStringBuffer4
-	text " has"
-	line "grown again."
+	text " a"
+	line "encore grandi."
 
-	para "It was only about"
-	line "so big when I"
-
-	para "caught it, but now"
-	line "it's way bigger."
+	para "Il était si"
+	line "petit quand je"
+	cont "l'avais attrapé."
 	done
 
 TullyDefeatedMonText:
-	text "Oh yeah, I KO'd a"
-	line "wild @"
+	text "J'ai mis K.O. un"
+	line "@"
 	text_ram wStringBuffer4
-	text "."
+	text "!"
 
-	para "It was huge, like"
-	line "this big even."
+	para "Il était"
+	line "ENORME!"
 
-	para "Heh, I guess you"
-	line "can't tell over"
-	cont "the phone…"
+	para "Par téléphone,"
+	line "c'est dur à"
+	cont "décrire..."
 	done
 
 TullyLostAMonText:
-	text "Oh yeah, I lost a"
-	line "wild @"
+	text "J'ai perdu un"
+	line "@"
 	text_ram wStringBuffer4
-	text "."
+	text "!"
 
-	para "It was huge, like"
-	line "this big even."
+	para "Il était"
+	line "ENORME!"
 
-	para "Heh, I guess you"
-	line "can't tell over"
-	cont "the phone…"
+	para "Par téléphone,"
+	line "c'est dur à"
+	cont "décrire..."
 	done
 
 TullyBattleRematchText:
-	text "We should get a"
-	line "battle going!"
+	text "Il faut qu'on se"
+	line "batte!"
 
-	para "I'll be fishing on"
+	para "Je pêche vers"
 	line "@"
 	text_ram wStringBuffer5
 	text "."
 
-	para "Swing by if you"
-	line "have the time."
+	para "Viens si tu as"
+	line "le temps."
 	done
 
 TullyHangUpText:
-	text "Well, I'll be"
-	line "seeing you."
+	text "A plus tard."
 	done
 
 TullyFoundItemText:
-	text "I picked up a good"
-	line "little thing at"
-	cont "the water's edge."
+	text "J'ai trouvé un"
+	line "truc près de"
+	cont "l'eau."
 
-	para "Like I promised,"
-	line "it's yours."
+	para "Comme promis,"
+	line "c'est pour toi."
 
-	para "I'll be waiting on"
+	para "J'attends vers"
 	line "@"
 	text_ram wStringBuffer5
 	text "."
 	done
 
 TullyNoItemText:
-	text "Have I found"
-	line "anything good?"
+	text "Si j'ai trouvé"
+	line "quelque chose?"
 
-	para "Nope, not yet."
+	para "Pas encore."
 
-	para "It's like fishing,"
-	line "you need patience."
+	para "Patience,"
+	line "jeune poussin."
 	done
 
 TullyForwardText:
-	text "Yup, TULLY here…"
+	text "Ici AMEDEE..."
 
-	para "<PLAY_G>? What?"
-	line "You're lost?"
+	para "<PLAY_G>? Quoi?"
+	line "T'es où?"
 
-	para "Our battle will be"
-	line "on @"
+	para "Notre combat:"
+	line "vers @"
 	text_ram wStringBuffer5
 	text "."
 	done
 
 TullyHurryText:
-	text "I've got something"
-	line "good for you."
+	text "J'ai quelque chose"
+	line "pour toi."
 
-	para "Hustle over to"
+	para "Viens vers"
 	line "@"
 	text_ram wStringBuffer5
 	text "."

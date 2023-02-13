@@ -1217,7 +1217,7 @@ GiveEgg::
 	ret
 
 String_Egg:
-	db "EGG@"
+	db "OEUF@"
 
 RemoveMonFromPartyOrBox:
 	ld hl, wPartyCount
@@ -1711,13 +1711,16 @@ GivePoke::
 	ld d, h
 	ld e, l
 	pop hl
+	ld b, $b
 .otnameloop
+	push bc
 	ld a, [wScriptBank]
 	call GetFarByte
 	ld [de], a
 	inc hl
 	inc de
-	cp "@"
+	pop bc
+	dec b
 	jr nz, .otnameloop
 	ld a, [wScriptBank]
 	call GetFarByte

@@ -1,10 +1,11 @@
-	db "BAT@" ; species name
-	dw 511, 1650 ; height, weight
+	db "CHOVSOURIS@" ; species name
+	db 18 ; height
+	dw 750 ; weight
 
-	db   "As a result of its"
-	next "pursuit of faster,"
-	next "yet more silent"
+	db   "En volant plus"
+	next "vite et discrète-"
+	next "ment, une nouvel-"
 
-	page "flight, a new set"
-	next "of wings grew on"
-	next "its hind legs.@"
+	page "le paire d'ailes"
+	next "pousse sur ses"
+	next "pattes arrière.@"

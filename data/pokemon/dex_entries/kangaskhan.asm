@@ -1,10 +1,11 @@
-	db "PARENT@" ; species name
-	dw 703, 1760 ; height, weight
+	db "MATERNEL@" ; species name
+	db 22 ; height
+	dw 800 ; weight
 
-	db   "To avoid"
-	next "crushing the"
-	next "baby it carries in"
+	db   "Pour ne pas écra-"
+	next "ser le petit qu'il"
+	next "transporte,"
 
-	page "its pouch, it"
-	next "always sleeps"
-	next "standing up.@"
+	page "il dort toujours"
+	next "debout."
+	next "@"

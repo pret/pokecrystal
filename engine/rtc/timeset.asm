@@ -53,15 +53,15 @@ InitClock:
 .loop
 	ld hl, OakTimeWhatTimeIsItText
 	call PrintText
-	hlcoord 3, 7
+	hlcoord 9, 7
 	ld b, 2
-	ld c, 15
+	ld c, 9
 	call Textbox
-	hlcoord 11, 7
+	hlcoord 14, 7
 	ld [hl], $1
-	hlcoord 11, 10
+	hlcoord 14, 10
 	ld [hl], $2
-	hlcoord 4, 9
+	hlcoord 10, 9
 	call DisplayHourOClock
 	ld c, 10
 	call DelayFrames
@@ -169,11 +169,11 @@ SetHour:
 	ld [hl], a
 
 .okay
-	hlcoord 4, 9
+	hlcoord 10, 9
 	ld a, " "
-	ld bc, 15
+	ld bc, 9
 	call ByteFill
-	hlcoord 4, 9
+	hlcoord 10, 9
 	call DisplayHourOClock
 	call WaitBGMap
 	and a
@@ -298,7 +298,7 @@ OakTimeWhatTimeIsItText:
 	text_end
 
 String_oclock:
-	db "o'clock@"
+	db "h@"
 
 OakTimeWhatHoursText:
 	; What?@ @
@@ -404,15 +404,15 @@ SetDayOfWeek:
 	call LoadStandardMenuHeader
 	ld hl, .OakTimeWhatDayIsItText
 	call PrintText
-	hlcoord 9, 3
+	hlcoord 10, 3
 	ld b, 2
-	ld c, 9
+	ld c, 8
 	call Textbox
 	hlcoord 14, 3
 	ld [hl], TIMESET_UP_ARROW
 	hlcoord 14, 6
 	ld [hl], TIMESET_DOWN_ARROW
-	hlcoord 10, 5
+	hlcoord 11, 5
 	call .PlaceWeekdayString
 	call ApplyTilemap
 	ld c, 10
@@ -480,11 +480,11 @@ SetDayOfWeek:
 .finish_dpad
 	xor a
 	ldh [hBGMapMode], a
-	hlcoord 10, 4
+	hlcoord 11, 4
 	ld b, 2
-	ld c, 9
+	ld c, 8
 	call ClearBox
-	hlcoord 10, 5
+	hlcoord 11, 5
 	call .PlaceWeekdayString
 	call WaitBGMap
 	and a
@@ -516,13 +516,13 @@ SetDayOfWeek:
 	dw .Saturday
 	dw .Sunday
 
-.Sunday:    db " SUNDAY@"
-.Monday:    db " MONDAY@"
-.Tuesday:   db " TUESDAY@"
-.Wednesday: db "WEDNESDAY@"
-.Thursday:  db "THURSDAY@"
-.Friday:    db " FRIDAY@"
-.Saturday:  db "SATURDAY@"
+.Sunday:    db "DIMANCHE@"
+.Monday:    db "LUNDI@"
+.Tuesday:   db "MARDI@"
+.Wednesday: db "MERCREDI@"
+.Thursday:  db "JEUDI@"
+.Friday:    db "VENDREDI@"
+.Saturday:  db "SAMEDI@"
 
 .OakTimeWhatDayIsItText:
 	text_far _OakTimeWhatDayIsItText
@@ -673,19 +673,20 @@ MrChrono: ; unreferenced
 	ret
 
 PrintHour:
-	ld l, e
-	ld h, d
+	call PlaceTimeOfDayString
+	inc de
+	call AdjustHourForAMorPM
+	ret
+
+PlaceTimeOfDayString:
 	push bc
+	ld h, d
+	ld l, e
 	call GetTimeOfDayString
 	call PlaceString
-	ld l, c
-	ld h, b
-	inc hl
+	ld d, b
+	ld e, c
 	pop bc
-	call AdjustHourForAMorPM
-	ld [wTextDecimalByte], a
-	ld de, wTextDecimalByte
-	call PrintTwoDigitNumberLeftAlign
 	ret
 
 GetTimeOfDayString:
@@ -706,11 +707,24 @@ GetTimeOfDayString:
 	ld de, .day_string
 	ret
 
-.nite_string: db "NITE@"
-.morn_string: db "MORN@"
-.day_string:  db "DAY@"
+.nite_string: db "NUIT@"
+.morn_string: db "MATIN@"
+.day_string:  db "JOUR@"
 
 AdjustHourForAMorPM:
+    push bc
+    call AdjustHour
+    ld [wTempByteValue], a
+    ld h, d
+    ld l, e
+    ld de, wTempByteValue
+    call PrintTwoDigitNumberLeftAlign
+    ld d, h
+    ld e, l
+    pop bc
+    ret
+
+AdjustHour:
 ; Convert the hour stored in c (0-23) to a 1-12 value
 	ld a, c
 	or a

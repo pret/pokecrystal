@@ -152,53 +152,54 @@ TrainerSailorHuey:
 	end
 
 SailorHueySeenText:
-	text "Men of the sea are"
-	line "always spoiling"
-	cont "for a good fight!"
+	text "Les marins sont"
+	line "toujours partants"
+	cont "pour la baston!"
 	done
 
 SailorHueyBeatenText:
-	text "Urf!"
-	line "I lose!"
+	text "Humpf!"
+	line "Perdu!"
 	done
 
 SailorHueyUnusedText: ; unreferenced
-	text "What power!"
-	line "How would you like"
+	text "Quelle force!"
+	line "Ca te dirait de"
 
-	para "to sail the seas"
-	line "with me?"
+	para "devenir marin?"
+	line "Pourquoi pas?"
 	done
 
 GentlemanAlfredSeenText:
-	text "Hm? This is no"
-	line "place for playing."
+	text "Hé! C'est interdit"
+	line "de jouer ici..."
 	done
 
 GentlemanAlfredBeatenText:
-	text "Ah! I can see that"
-	line "you're serious."
+	text "Ah! Tu rigoles"
+	line "pas, toi."
 	done
 
 GentlemanAlfredAfterBattleText:
-	text "Up top is a #-"
-	line "MON that keeps the"
-	cont "LIGHTHOUSE lit."
+	text "En haut se trouve"
+	line "un #MON qui"
+	cont "garde le PHARE"
+	cont "allumé."
 
-	para "But I hear that"
-	line "it's sick now and"
+	para "Mais on dit qu'il"
+	line "est malade et qu'"
 
-	para "can't be cured by"
-	line "ordinary medicine."
+	para "un médicament nor-"
+	line "mal ne peut pas le"
+	cont "soigner."
 	done
 
 SailorHueyGiveProteinText:
-	text "Man! You're as"
-	line "tough as ever!"
+	text "Tu as de plus en"
+	line "plus de talent!"
 
-	para "Anyway, here's"
-	line "that medicine from"
-	cont "before."
+	para "Voilà le médica-"
+	line "ment..."
 	done
 
 OlivineLighthouse2F_MapEvents:

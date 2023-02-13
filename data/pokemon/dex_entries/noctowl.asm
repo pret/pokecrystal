@@ -1,10 +1,11 @@
-	db "OWL@" ; species name
-	dw 503, 900 ; height, weight
+	db "HIBOU@" ; species name
+	db 16 ; height
+	dw 408 ; weight
 
-	db   "Its extremely soft"
-	next "feathers make no"
-	next "sound in flight."
+	db   "Ses fines plumes"
+	next "lui assurent un"
+	next "vol silencieux."
 
-	page "It silently sneaks"
-	next "up on prey without"
-	next "being detected.@"
+	page "Il peut ainsi sur-"
+	next "prendre facilement"
+	next "ses proies.@"

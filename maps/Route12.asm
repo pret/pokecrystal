@@ -71,9 +71,9 @@ Route12HiddenElixer:
 	hiddenitem ELIXER, EVENT_ROUTE_12_HIDDEN_ELIXER
 
 FisherMartinSeenText:
-	text "Patience is the"
-	line "key to both fish-"
-	cont "ing and #MON."
+	text "La patience est"
+	line "la meilleure arme"
+	cont "pour pêcher..."
 	done
 
 FisherMartinBeatenText:
@@ -81,87 +81,84 @@ FisherMartinBeatenText:
 	done
 
 FisherMartinAfterBattleText:
-	text "I'm too impatient"
-	line "for fishing…"
+	text "Bon... La pêche"
+	line "c'est lourd..."
 	done
 
 FisherStephenSeenText:
-	text "I feel so content,"
-	line "fishing while lis-"
-	cont "tening to some"
-	cont "tunes on my radio."
+	text "Ca c'est le pied!"
+	line "Pêcher en écoutant"
+	cont "la radio, c'est"
+	cont "super pépère."
 	done
 
 FisherStephenBeatenText:
-	text "My stupid radio"
-	line "distracted me!"
+	text "Ma radio m'a fait"
+	line "perdre!"
 	done
 
 FisherStephenAfterBattleText:
-	text "Have you checked"
-	line "out KANTO's radio"
+	text "Tu connais les"
+	line "radios de KANTO?"
 
-	para "programs? We get a"
-	line "good variety here."
+	para "Elles sont pas"
+	line "mal, tu sais..."
 	done
 
 FisherBarneySeenText:
-	text "What's most impor-"
-	line "tant in our every-"
-	cont "day lives?"
+	text "Quelle est la"
+	line "chose la plus im-"
+	cont "portante dans nos"
+	cont "vies quotidiennes?"
 	done
 
 FisherBarneyBeatenText:
-	text "The answer is"
-	line "coming up next!"
+	text "La réponse va"
+	line "suivre!"
 	done
 
 FisherBarneyAfterBattleText:
-	text "I think electric-"
-	line "ity is the most"
+	text "Je crois que"
+	line "l'électricité est"
 
-	para "important thing in"
-	line "our daily lives."
+	para "la chose la plus"
+	line "importante."
 
-	para "If it weren't,"
-	line "people wouldn't"
+	para "Et c'est pour ça"
+	line "qu'on a fait tant"
 
-	para "have made such a"
-	line "fuss when the"
-
-	para "POWER PLANT went"
-	line "out of commission."
+	para "d'histoires à pro-"
+	line "pos de la panne de"
+	cont "la CENTRALE."
 	done
 
 FisherKyleSeenText:
-	text "Do you remember?"
+	text "Tu t'en souviens?"
 	done
 
 FisherKyleBeatenText:
-	text "You do remember?"
+	text "Tu t'en souviens?"
 	done
 
 FisherKyleAfterBattleText:
-	text "The tug you feel"
-	line "on the ROD when"
+	text "La p'tite secousse"
+	line "que l'on sent"
 
-	para "you hook a #-"
-	line "MON…"
+	para "quand on ferre un"
+	line "#MON..."
 
-	para "That's the best"
-	line "feeling ever for"
-	cont "an angler like me."
+	para "C'est la plus"
+	line "belle des sensa-"
+	cont "tions!!!"
 	done
 
 Route12SignText:
 	text "ROUTE 12"
-
-	para "NORTH TO LAVENDER"
-	line "TOWN"
+	line "NORD: LAVANVILLE"
 	done
 
 FishingSpotSignText:
-	text "FISHING SPOT"
+	text "COIN PECHE"
 	done
 
 Route12_MapEvents:

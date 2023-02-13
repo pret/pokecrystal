@@ -1,136 +1,125 @@
 WadeAreYourMonGrowingText:
-	text "Are your #MON"
-	line "growing?"
+	text "Tes #MON ont"
+	line "progressé?"
 
-	para "My #MON are"
-	line "growing a bit too"
+	para "Les miens font"
+	line "trop de progrès!"
 
-	para "quickly for me."
-	line "It's overwhelming!"
+	para "J'ai du mal à"
+	line "suivre!"
 
 	para "@"
 	text_ram wStringBuffer4
-	text "'s grow-"
-	line "ing especially"
-
-	para "quickly. I think"
-	line "it'll get tough."
+	text_start
+	line "surtout..."
+	cont "Quelle brute!"
 	done
 
 WadeDefeatedMonText:
-	text "Oh yeah, we KO'd a"
-	line "wild @"
+	text "J'ai mis K.O. un"
+	line "@"
 	text_ram wStringBuffer4
 	text_start
-	para "with one hit a"
-	line "while back."
+	para "sauvage en un"
+	line "coup."
 
-	para "It went down so"
-	line "easily, I felt a"
+	para "J'ai eu de la"
+	line "peine pour lui..."
 
-	para "little sorry for"
-	line "the poor thing."
+	para "Pendant au moins"
+	line "deux minutes!"
 	done
 
 WadeLostAMonText:
-	text "Oh yeah, a wild"
+	text "Au fait! Un"
 	line "@"
 	text_ram wStringBuffer4
-	text " got"
+	text_start
 
-	para "away from me at"
-	line "the last second."
+	para "sauvage vient de"
+	line "m'échapper."
 
-	para "I know it's a"
-	line "common #MON…"
+	para "Je sais qu'il"
+	line "n'est pas rare..."
 
-	para "But it does annoy"
-	line "me that it got"
-
-	para "away when I almost"
-	line "had it."
+	para "Mais ça m'énerve"
+	line "quand ça arrive."
 	done
 
 WadeBattleRematchText:
-	text "Do you feel like a"
-	line "#MON battle?"
+	text "Ca te dit un"
+	line "petit combat?"
 
-	para "It won't be like"
-	line "last time!"
+	para "Ca ne se passera"
+	line "pas comme la"
+	cont "dernière fois!"
 
 	para "@"
 	text_ram wStringBuffer5
-	text "'s"
-	line "where I'll be."
+	text_start
+	line "est mon terrain."
 
-	para "Let me know when"
-	line "you get there."
+	para "Dis-moi quand tu"
+	line "arrives."
 	done
 
 WadeHangUpText:
-	text "See you later!"
+	text "A plus tard!"
 	done
 
 WadeBugCatchingContestText:
-	text "The Bug-Catching"
-	line "Contest is at the"
+	text "Il y a le Concours"
+	line "de Capture au"
+	cont "PARC aujourd'hui."
 
-	para "NATIONAL PARK"
-	line "today."
-
-	para "Are you going,"
+	para "Tu y vas,"
 	line "<PLAY_G>?"
 
-	para "I'm trying to make"
-	line "up my mind."
+	para "Moi j'en sais"
+	line "rien..."
 	done
 
 WadeFoundItemText:
-	text "I found all kinds"
-	line "of BERRIES. If you"
+	text "J'ai trouvé tout"
+	line "plein de BAIES."
 
-	para "want, I'll share"
-	line "some with you."
+	para "Je peux t'en"
+	line "donner."
 
-	para "I'll be waiting on"
+	para "J'attends vers"
 	line "@"
 	text_ram wStringBuffer5
 	text "."
 	done
 
 WadeNoBerriesText:
-	text "Huh? BERRIES?"
+	text "Hein? Des BAIES?"
 
-	para "Sorry, I haven't"
-	line "found any yet."
+	para "J'en ai pas"
+	line "encore."
 
-	para "I'll call you if I"
-	line "find any. Will you"
-	cont "please wait?"
+	para "Je t'appelle pour"
+	line "te prévenir..."
+	cont "Attends un peu!"
 	done
 
 WadeQuickBattleText:
-	text "Let's battle"
-	line "already!"
+	text "On se bat ou bien?"
 
 	para "@"
 	text_ram wStringBuffer5
-	text " is"
-	line "where I am."
+	text ","
+	line "c'est là où je"
 
-	para "Please get here as"
-	line "soon as you can!"
+	para "traîne."
+	line "Viens vite!"
 	done
 
 WadeComeQuickText:
-	text "How come you're"
-	line "not here yet?"
+	text "Tu fais quoi?"
 
 	para "@"
 	text_ram wStringBuffer5
-	text " is"
-	line "where I am."
-
-	para "Please get here as"
-	line "soon as you can!"
+	text "!"
+	line "Je t'attends!"
 	done

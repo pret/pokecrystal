@@ -1,72 +1,72 @@
 ReenaAnswerPhoneText:
-	text "Hello, this is"
+	text "Salut c'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "…"
 
-	para "Oh. Hi, <PLAYER>."
-	line "What's up?"
+	para "Bonjour <PLAYER>."
+	line "Ca gaze?"
 	done
 
 ReenaAnswerPhoneDayText:
-	text "Hello, this is"
+	text "Salut c'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "…"
 
-	para "Oh, hi, <PLAYER>,"
-	line "what's up?"
+	para "Bonjour <PLAYER>."
+	line "Ca gaze?"
 	done
 
 ReenaAnswerPhoneNiteText:
-	text "Hello, this is"
+	text "Salut c'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "…"
 
-	para "Oh, hi, <PLAYER>,"
-	line "what's up?"
+	para "Bonjour <PLAYER>."
+	line "Ca gaze?"
 	done
 
 ReenaGreetText:
-	text "You're slow! Hurry"
-	line "up and answer!"
+	text "Hé! Tu réponds?"
+	line "Allô?!"
 
-	para "It's me, @"
+	para "C'est @"
 	text_ram wStringBuffer3
 	text "!"
 	done
 
 ReenaGreetDayText:
-	text "You're slow! Hurry"
-	line "up and answer!"
+	text "Hé! Tu réponds?"
+	line "Allô?!"
 
-	para "It's me, @"
+	para "C'est @"
 	text_ram wStringBuffer3
 	text "!"
 	done
 
 ReenaGreetNiteText:
-	text "You're slow! Hurry"
-	line "up and answer!"
+	text "Hé! Tu réponds?"
+	line "Allô?!"
 
-	para "It's me, @"
+	para "C'est @"
 	text_ram wStringBuffer3
 	text "!"
 	done
 
 ReenaGenericText:
-	text "Hey, how are your"
-	line "#MON doing?"
+	text "Hé! Ca va tes"
+	line "#MON?"
 
-	para "What? Great?"
-	line "I see…"
+	para "Quoi? Super?"
+	line "Je vois..."
 
-	para "What? My #MON?"
+	para "Quoi? Mes #MON?"
 
-	para "Of course they're"
-	line "doing great! What"
+	para "Bien sûr qu'ils"
+	line "vont bien! C'est"
 
-	para "kind of a question"
-	line "is that?"
+	para "quoi cette"
+	line "question?"
 	done

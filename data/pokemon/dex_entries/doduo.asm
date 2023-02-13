@@ -1,10 +1,11 @@
-	db "TWIN BIRD@" ; species name
-	dw 407, 860 ; height, weight
+	db "DUOISEAU@" ; species name
+	db 14 ; height
+	dw 392 ; weight
 
-	db   "It lives on a"
-	next "grassy plain where"
-	next "it can see a long"
+	db   "Il vit dans les"
+	next "plaines pour une"
+	next "meilleure visibi-"
 
-	page "way. If it sees an"
-	next "enemy, it runs"
-	next "away at 60 mph.@"
+	page "lité. Il peut fuir"
+	next "à plus de 100km/h."
+	next "@"

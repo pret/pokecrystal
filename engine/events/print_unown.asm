@@ -75,7 +75,7 @@ _UnownPrinter:
 
 	ldh a, [hJoyPressed]
 	vc_patch Forbid_printing_Unown
-if DEF(_CRYSTAL11_VC)
+if DEF(_CRYSTAL_VC)
 	and 0
 else
 	and A_BUTTON
@@ -203,20 +203,20 @@ endc
 	ret
 
 AlphRuinsStampString:
-	db " ALPH RUINS STAMP@"
+	db "TAMPON RUIN. ALPHA@"
 
 UnownDexDoWhatString:
-	db "Do what?@"
+	db "Que faire?@"
 
 UnownDexMenuString:
-	db   UNOWNSTAMP_BOLD_A, " PRINT"
-	next UNOWNSTAMP_BOLD_B, " CANCEL"
-	next "← PREVIOUS"
-	next "→ NEXT"
+	db   UNOWNSTAMP_BOLD_A, " IMPRIMER"
+	next UNOWNSTAMP_BOLD_B, " ANNULER"
+	next "← RETOUR"
+	next "→ SUITE"
 	db   "@"
 
 UnownDexVacantString:
-	db "VACANT@"
+	db "  VIDE@"
 
 UnownDexATile:
 INCBIN "gfx/printer/bold_a.1bpp"

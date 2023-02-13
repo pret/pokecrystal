@@ -1,63 +1,63 @@
 GavenAskNumber1Text:
-	text "Wow, you're tough."
-	line "I haven't battled"
+	text "T'es fortiche."
+	line "Je n'ai pas vu ça"
+	cont "depuis longtemps."
 
-	para "that seriously in"
-	line "a long time."
+	para "Je peux avoir ton"
+	line "numéro?"
 
-	para "Could I get your"
-	line "phone number?"
-
-	para "I'd like to battle"
-	line "again when I heal"
+	para "J'aimerais encore"
+	line "me battre quand"
+	cont "j'aurai soigné"
 
 	para "@"
 	text_ram wStringBuffer4
-	text " and the"
-	line "rest of my team."
+	text " et les"
+	line "autres."
 	done
 
 GavenAskNumber2Text:
-	text "Could I get your"
-	line "phone number?"
+	text "Je peux avoir ton"
+	line "numéro?"
 
-	para "I'd like to battle"
-	line "again when I heal"
+	para "J'aimerais encore"
+	line "me battre quand"
+	cont "j'aurai soigné"
 
 	para "@"
 	text_ram wStringBuffer4
-	text " and the"
-	line "rest of my team."
+	text " et les"
+	line "autres."
 	done
 
 GavenNumberAcceptedText:
-	text "How should I beat"
-	line "you? I'm tormented"
+	text "Comment je peux te"
+	line "battre?"
 
-	para "by those thoughts"
-	line "all the time…"
+	para "Hein? Tu peux"
+	line "me le dire?"
 	done
 
 GavenNumberDeclinedText:
-	text "OK… I understand…"
-	line "But if you change"
+	text "OK. Je comprends."
+	line "Si tu changes"
 
-	para "your mind, give me"
-	line "a shout anytime."
+	para "d'avis, viens me"
+	line "voir."
 	done
 
 GavenPhoneFullText:
-	text "Your phone's"
-	line "memory is full."
+	text "Ton téléphone est"
+	line "plein. Tu ne peux"
 
-	para "You can't register"
-	line "my number."
+	para "plus enregistrer"
+	line "de numéros."
 	done
 
 GavenRematchText:
-	text "Hi! I've been"
-	line "waiting for you!"
+	text "Hé!"
+	line "Je t'attendais!"
 
-	para "This time, I'm"
-	line "going to win!"
+	para "Cette fois je vais"
+	line "gagner!"
 	done

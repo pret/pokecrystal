@@ -1,10 +1,11 @@
-	db "WEED@" ; species name
-	dw 108, 120 ; height, weight
+	db "RACINE@" ; species name
+	db 5 ; height
+	dw 54 ; weight
 
-	db   "During the day, it"
-	next "stays in the cold"
-	next "underground to"
+	db   "Le jour, il reste"
+	next "en sous-sol et"
+	next "évite le soleil."
 
-	page "avoid the sun."
-	next "It grows by bath-"
-	next "ing in moonlight.@"
+	page "Il grandit en se"
+	next "baignant au clair"
+	next "de lune.@"

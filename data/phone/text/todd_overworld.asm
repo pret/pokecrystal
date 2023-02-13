@@ -1,67 +1,74 @@
 ToddAskNumber1Text:
-	text "From here, I can"
-	line "see GOLDENROD's"
+	text "D'ici, je peux"
+	line "voir le CENTRE"
 
-	para "DEPT.STORE. They"
-	line "have bargain sales"
+	para "COMMERCIAL de DOU-"
+	line "BLONVILLE. Il y a"
 
-	para "up on the rooftop"
-	line "every so often."
+	para "des offres spécia-"
+	line "les sur le toit de"
+	cont "temps en temps."
 
-	para "Could I get your"
-	line "phone number?"
+	para "Je peux avoir ton"
+	line "numéro?"
 
-	para "I'll call you when"
-	line "they have a sale."
+	para "Je te préviens"
+	line "s'il s'y passe"
+	cont "quelque chose."
 	done
 
 ToddAskNumber2Text:
-	text "If you give me"
-	line "your number, I'll"
+	text "Donne-moi ton nu-"
+	line "méro et je te pré-"
 
-	para "call you when they"
-	line "have a sale."
+	para "viendrai s'il y a"
+	line "une offre spé-"
+	cont "ciale."
 	done
 
 ToddNumberAcceptedText:
-	text "I check GOLDENROD"
-	line "DEPT.STORE every"
+	text "Je jette un oeil"
+	line "au CENTRE COMMER-"
 
-	para "day, so I know"
-	line "when there's a"
-	cont "sale."
+	para "CIAL de DOUBLON-"
+	line "VILLE tous les"
+	cont "jours. Je sais ce"
+	cont "qu'il s'y passe."
 	done
 
 ToddNumberDeclinedText:
-	text "Anyway…"
+	text "Enfin bref..."
 
-	para "If you're short on"
-	line "money, take down"
-	cont "my number."
+	para "S'il te manque des"
+	line "sous, prends mon"
+	cont "numéro."
 
-	para "I'll call you when"
-	line "there's a sale."
+	para "Je t'appelle s'il"
+	line "y a une offre"
+	cont "spéciale."
 	done
 
 ToddPhoneFullText:
-	text "Your phone doesn't"
-	line "have enough memory"
-	cont "for more numbers."
+	text "Ton téléphone"
+	line "n'a plus de mémoi-"
+	cont "re pour des No."
+	cont "supplémentaires."
 	done
 
 ToddRematchText:
-	text "I waited for you!"
-	line "I even cut back my"
+	text "Je t'attendais!"
+	line "J'ai arrêté mon"
 
-	para "shopping to raise"
-	line "my #MON better!"
+	para "shopping pour"
+	line "entraîner mes"
+	cont "#MON!"
 	done
 
 ToddSaleText: ; unreferenced
 ; This is a duplicate of CamperToddSaleText in maps/Route34.asm.
-	text "Shopping under the"
-	line "sky!"
+	text "Du shopping sous"
+	line "le ciel!"
 
-	para "It feels so nice"
-	line "up on a rooftop."
+	para "Etre sur le toit,"
+	line "c'est top."
 	done

@@ -1,165 +1,169 @@
 MomPhoneGreetingText:
-	text "Hello?"
+	text "Bonjour?"
 
-	para "Oh, hi, <PLAYER>!"
-	line "Working hard?"
+	para "Oh, salut,"
+	line "<PLAYER>!"
+	cont "Ca bosse dur?"
 	done
 
 MomPhoneLandmarkText:
-	text "Oh, so you're in"
+	text "Oh, tu es vers"
 	line "@"
 	text_ram wStringBuffer3
 	text "…"
 
-	para "Isn't that where"
+	para "Il y a"
 	line "@"
 	text_ram wStringBuffer4
 	text_start
-	para "is? Did you go"
-	line "take a look?"
+	cont "par-là, non?"
 	done
 
 MomPhoneGenericAreaText:
-	text "Really, you're in"
+	text "Tu es vers"
 	line "@"
 	text_ram wStringBuffer3
 	text "?"
 
-	para "I've never gone"
-	line "there. That's kind"
-	cont "of neat, <PLAYER>."
+	para "Je ne connais pas"
+	line "ce coin. Tu as de"
+	cont "la chance <PLAYER>."
 	done
 
 MomPhoneNewBarkText:
-	text "What? You're in"
+	text "Quoi? Tu es vers"
 	line "@"
 	text_ram wStringBuffer3
 	text "?"
 
-	para "Come see your MOM"
-	line "sometime!"
+	para "Passe voir ta"
+	line "maman des fois!"
 	done
 
 MomPhoneCherrygroveText:
-	text "You're visiting"
+	text "Tu visites"
 	line "@"
 	text_ram wStringBuffer3
 	text "?"
 
-	para "How about coming"
-	line "home for a bit?"
+	para "Tu passes à la"
+	line "maison manger un"
+	cont "morceau?"
 	done
 
 MomOtherAreaText:
-	text "Wow, you're in"
+	text "Oh! Tu es vers"
 	line "@"
 	text_ram wStringBuffer3
 	text "?"
 
-	para "Good luck on your"
-	line "#MON quest!"
+	para "Bonne chance pour"
+	line "ta quête #MON!"
 	done
 
 MomDeterminedText:
-	text "That sounds really"
-	line "tough."
+	text "Ca a l'air vrai-"
+	line "ment coriace."
 
-	para "But, <PLAYER>, I"
-	line "know you're really"
+	para "Mais <PLAYER>, je"
+	line "sais que tu as du"
 
-	para "determined. You'll"
-	line "be OK, right?"
+	para "courage. Tout"
+	line "ira bien, pas"
+	cont "vrai?"
 	done
 
 MomCheckBalanceText:
-	text "By the way, you've"
-	line "saved up ¥@"
+	text "A propos, tu as"
+	line "économisé @"
 	text_ram wStringBuffer3
-	text "."
+	text "¥."
 
-	para "Do you want to"
-	line "keep on saving?"
+	para "Veux-tu continuer"
+	line "à économiser?"
 	done
 
 MomImportantToSaveText:
-	text "It's important to"
-	line "save your money."
+	text "C'est important"
+	line "d'économiser."
 	done
 
 MomYoureNotSavingText:
 	text "Oh, <PLAYER>,"
-	line "you're not saving"
+	line "tu n'as pas écono-"
 
-	para "any money. Would"
-	line "you like to save?"
+	para "misé d'argent."
+	line "Veux-tu économiser"
+	cont "de l'argent?"
 	done
 
 MomYouveSavedText:
-	text "By the way, you've"
-	line "saved up ¥@"
+	text "A propos, tu as"
+	line "économisé @"
 	text_ram wStringBuffer3
-	text "."
+	text "¥."
 
-	para "Want to start"
-	line "saving again?"
+	para "Tu veux recom-"
+	line "mencer à écono-"
+	cont "miser?"
 	done
 
 MomOKIllSaveText:
-	text "OK. I'll save your"
-	line "money."
+	text "OK. Je vais garder"
+	line "ton argent."
 	done
 
 MomPhoneWontSaveMoneyText:
-	text "OK. I won't save"
-	line "your money."
+	text "OK. Je ne garde"
+	line "pas ton argent."
 	done
 
 MomPhoneHangUpText:
-	text "<PLAYER>, keep it"
-	line "up! I'm rooting"
-	cont "for you, baby!"
+	text "<PLAYER>, continue"
+	line "comme ça! Je suis"
+	cont "avec toi, poussin!"
 	done
 
 MomPhoneNoPokemonText:
-	text "Hello?"
+	text "Allô?"
 
-	para "Oh, hi, <PLAYER>!"
-	line "Wasn't PROF.ELM"
-	cont "waiting for you?"
+	para "Bonjour <PLAYER>!"
+	line "Le PROF.ORME"
+	cont "t'attend, non?"
 	done
 
 MomPhoneNoPokedexText:
-	text "Hello?"
+	text "Allô?"
 
-	para "Oh, hi, <PLAYER>!"
-	line "You're on a big"
-
-	para "mission for PROF."
-	line "ELM? Be good!"
+	para "Bonjour <PLAYER>!"
+	line "Le PROF.ORME"
+	cont "compte sur toi!"
+	cont "C'est bien!"
 	done
 
 MomPhoneNoGymQuestText:
-	text "Hello?"
+	text "Allô?"
 
-	para "Hi, <PLAYER>! If"
-	line "you're done with"
+	para "Salut, <PLAYER>!"
+	line "Si ta course est"
 
-	para "your errand come"
-	line "on home, dear."
+	para "finie, rentre à la"
+	line "maison."
 	done
 
 MomPhoneLectureText:
-	text "Hello?"
+	text "Allô?"
 
 	para "…… <PLAYER>?"
-	line "I heard from PROF."
+	line "Le PROF.ORME dit"
 
-	para "ELM that you went"
-	line "on a long trip."
+	para "que tu fais un"
+	line "long voyage."
 
-	para "I wish you would"
-	line "have told me…"
+	para "Tu aurais pu me le"
+	line "dire..."
 
-	para "What about money?"
-	line "Should I save it?"
+	para "Et l'argent?"
+	line "Dois-je"
+	cont "économiser?"
 	done

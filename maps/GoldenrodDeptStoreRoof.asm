@@ -93,120 +93,118 @@ PokeDollVendingMachine:
 	jumptext PokeDollVendingMachineText
 
 GoldenrodDeptStoreRoofPokefanFText:
-	text "Whew, I'm tired."
+	text "Fouiiii!"
 
-	para "I sometimes come"
-	line "up to the rooftop"
+	para "Je vais souvent"
+	line "sur le toit pour"
 
-	para "to take a break"
-	line "from shopping."
+	para "me reposer après"
+	line "les courses."
 	done
 
 GoldenrodDeptStoreRoofFisherText:
-	text "Pardon? Who says"
-	line "an adult can't get"
-	cont "into this?"
+	text "Pardon?"
+	line "Comment ça un"
+	cont "adulte n'a pas le"
+	cont "droit de faire ça?"
 
-	para "I'm going to be"
-	line "back every day to"
-
-	para "collect all the"
-	line "dolls!"
+	para "Je veux toutes"
+	line "les poupées!"
 	done
 
 GoldenrodDeptStoreRoofTwinText:
-	text "They have bargain"
-	line "sales here every"
-	cont "so often."
+	text "Ils font des"
+	line "prix spéciaux ici"
+	cont "de temps en temps."
 	done
 
 GoldenrodDeptStoreRoofSuperNerdOhWowText:
-	text "Oh, wow!"
+	text "Oh!"
 	done
 
 GoldenrodDeptStoreRoofSuperNerdQuitBotheringMeText:
-	text "Will you quit"
-	line "bothering me?"
+	text "Tu me lâches,"
+	line "ouais?"
 	done
 
 GoldenrodDeptStoreRoofPokefanMText:
-	text "There's something"
-	line "I really want, but"
+	text "Je veux acheter un"
+	line "truc mais je n'ai"
 
-	para "I don't have the"
-	line "necessary cash…"
+	para "pas assez d'argent"
+	line "sur moi..."
 
-	para "Maybe I'll sell"
-	line "off the BERRIES"
-	cont "I've collected…"
+	para "Je vais peut-être"
+	line "vendre les BAIES"
+	cont "que j'ai trouvées."
 	done
 
 GoldenrodDeptStoreRoofTeacherText:
-	text "Oh, everything is"
-	line "so cheap!"
+	text "Oh! Tout est si"
+	line "bon marché!"
 
-	para "I bought so much,"
-	line "my PACK's crammed!"
+	para "Mon SAC est plein"
+	line "à craquer!"
 	done
 
 GoldenrodDeptStoreRoofBugCatcherText:
-	text "My #MON always"
-	line "get paralyzed or"
+	text "Mes #MON sont"
+	line "toujours empoison-"
 
-	para "poisoned when the"
-	line "chips are down…"
+	para "nés ou paralysés"
+	line "au mauvais moment."
 
-	para "So I came to buy"
-	line "some FULL HEAL."
+	para "Je vais donc ache-"
+	line "ter TOTAL SOIN."
 
-	para "I wonder if"
-	line "there's any left?"
+	para "Il en reste,"
+	line "tu crois?"
 	done
 
 Binoculars1Text:
-	text "These binoculars"
-	line "let me see far"
+	text "Je vois loin avec"
+	line "ces jumelles."
 
-	para "away. Maybe I can"
-	line "see my own house."
+	para "Je vois presque"
+	line "ma maison."
 
-	para "Is it the one with"
-	line "the green roof?"
+	para "C'est celle avec"
+	line "le toit vert?"
 	done
 
 Binoculars2Text:
-	text "Hey! Some trainers"
-	line "are battling on"
-	cont "the road!"
+	text "Hé! Des dresseurs"
+	line "se battent sur"
+	cont "la route!"
 
-	para "A #MON fired a"
-	line "flurry of leaves!"
+	para "Un #MON crache"
+	line "des feuilles!"
 
-	para "That makes me feel"
-	line "like battling"
-	cont "right now!"
+	para "Ca me donne envie"
+	line "de combattre!"
 	done
 
 Binoculars3Text:
-	text "A FISHER caught a"
-	line "lot of MAGIKARP…"
+	text "Un PECHEUR a"
+	line "attrapé des"
+	cont "MAGICARPE..."
 
-	para "They're SPLASHing"
-	line "at the same time!"
+	para "Ils font tous"
+	line "TREMPETTE!"
 
-	para "Look at the water"
-	line "going everywhere!"
+	para "Y'a de l'eau"
+	line "partout!"
 	done
 
 PokeDollVendingMachineText:
-	text "A vending machine"
-	line "for #MON dolls?"
+	text "Une machine à"
+	line "poupées #MON?"
 
-	para "Insert money, then"
-	line "turn the crank…"
+	para "Mettre des sous"
+	line "et tourner..."
 
-	para "But it's almost"
-	line "empty…"
+	para "C'est presque"
+	line "vide..."
 	done
 
 GoldenrodDeptStoreRoof_MapEvents:

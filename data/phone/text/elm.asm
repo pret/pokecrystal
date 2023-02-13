@@ -1,211 +1,206 @@
 ElmPhoneHealYourMonText:
-	text "Hello, <PLAY_G>?"
+	text "<PLAY_G>?"
 
-	para "Try not to overdo"
-	line "it."
+	para "Fais bien"
+	line "attention..."
 
-	para "Be sure to heal"
-	line "your #MON if"
-	cont "they are hurt."
+	para "Soigne bien tes"
+	line "#MON s'ils sont"
+	cont "blessés."
 	done
 
 ElmPhoneSawMrPokemonText:
-	text "Hello, <PLAY_G>?"
+	text "<PLAY_G>?"
 
-	para "Did you meet MR."
-	line "#MON? Great!"
-	cont "Come back safely!"
+	para "As-tu rencontré M."
+	line "#MON? Super!"
+	cont "Reviens vite!"
 	done
 
 ElmPhonePokemonStolenText:
-	text "<PLAY_G>? I'm very"
-	line "upset now."
+	text "<PLAY_G>? Je"
+	line "suis bien triste."
 
-	para "We had a #MON"
-	line "stolen from here."
+	para "Un #MON nous"
+	line "a été volé."
 
-	para "How could anyone"
-	line "do that?"
+	para "Qui a bien pu"
+	line "faire ça?"
 	done
 
 ElmPhoneCheckingTheEggText:
-	text "Hello, <PLAY_G>?"
+	text "<PLAY_G>?"
 
-	para "We're checking the"
-	line "EGG now. It does"
-
-	para "appear to be a"
-	line "#MON EGG."
+	para "On examine l'OEUF."
+	line "C'est bien un OEUF"
+	cont "de #MON."
 	done
 
 ElmPhoneAssistantText:
-	text "Hello, <PLAY_G>?"
+	text "<PLAY_G>?"
 
-	para "Did you see my"
-	line "assistant? He's at"
-
-	para "the #MON CENTER"
-	line "in VIOLET CITY."
+	para "As-tu rencontré"
+	line "mon assistant?"
+	cont "Il est au CENTRE"
+	cont "#MON de"
+	cont "MAUVILLE."
 	done
 
 ElmPhoneHowIsTheEggText:
-	text "Hello, <PLAY_G>?"
+	text "<PLAY_G>?"
 
-	para "How's the EGG? Has"
-	line "anything changed?"
+	para "Comment va l'OEUF?"
+	line "A-t-il changé?"
 
-	para "If anything hap-"
-	line "pens, please call."
+	para "Appelle-moi si tu"
+	line "as du nouveau."
 	done
 
 ElmPhoneEggHatchedText:
-	text "Hello, <PLAY_G>?"
-	line "How is the EGG?"
+	text "<PLAY_G>?"
+	line "Comment va l'OEUF?"
 
-	para "What? It hatched?"
-	line "Wow! What kind of"
-	cont "#MON is it?"
+	para "Il a éclos????"
+	line "Quel type de"
+	cont "#MON est-ce?"
 
-	para "Please come show"
-	line "me now!"
+	para "Viens vite me le"
+	line "montrer!"
 	done
 
 ElmPhoneDiscoveredHatchTimeText:
-	text "Hello, <PLAY_G>?"
+	text "<PLAY_G>?"
 
-	para "I just made a new"
-	line "discovery."
+	para "J'ai fait une nou-"
+	line "velle découverte."
 
-	para "The time it takes"
-	line "for an EGG to"
-
-	para "hatch depends on"
-	line "the #MON."
+	para "Le temps d'éclo-"
+	line "sion d'un OEUF"
+	cont "dépend du #MON."
 	done
 
 ElmPhoneInvestigatingEggMovesText:
-	text "Hello, <PLAY_G>?"
+	text "<PLAY_G>?"
 
-	para "It's still a"
-	line "mystery what kinds"
+	para "Les capacités des"
+	line "#MON sortant"
 
-	para "of moves hatched"
-	line "#MON have."
+	para "d'un OEUF restent"
+	line "un mystère."
 
-	para "We're investigat-"
-	line "ing that now."
+	para "Nous faisons nos"
+	line "recherches."
 	done
 
 ElmPhoneDiscoveredPokerusText:
-	text "Hello, <PLAY_G>?"
+	text "<PLAY_G>?"
 
-	para "I discovered an"
-	line "odd thing."
+	para "J'ai découvert un"
+	line "drôle de truc."
 
-	para "Apparently there's"
-	line "something called"
+	para "Il existerait une"
+	line "maladie appelée le"
 
-	para "#RUS that in-"
-	line "fects #MON."
+	para "#RUS qui"
+	line "affecte les"
+	cont "#MON."
 
-	para "Yes, it's like a"
-	line "virus, so it's"
-	cont "called #RUS."
+	para "C'est un peu comme"
+	line "un virus..."
+	cont "On l'appelle donc"
+	cont "#RUS."
 
-	para "It multiplies fast"
-	line "and infects other"
+	para "On sait juste"
+	line "qu'il se multiplie"
+	cont "rapidement et"
+	cont "qu'il infecte"
+	cont "d'autres #MON."
 
-	para "#MON too. But"
-	line "that's all."
+	para "Ca n'a pas l'air"
+	line "de faire quoi que"
 
-	para "It doesn't seem to"
-	line "do anything, and"
+	para "ce soit, et ça"
+	line "part tout seul."
 
-	para "it goes away over"
-	line "time."
-
-	para "I guess it's"
-	line "nothing to worry"
-	cont "about. Bye!"
+	para "On ne devrait pas"
+	line "s'inquiéter..."
+	cont "C'est tout!"
+	cont "Tchao!"
 	done
 
 ElmPhoneDisasterText:
-	text "H-hello? <PLAY_G>?"
-	line "It's a disaster!"
+	text "<PLAY_G>?"
+	line "C'est..."
+	cont "C'est terrible!"
 
-	para "Uh, um, it's just"
-	line "terrible!"
+	para "C'est..."
+	line "AFFREUX!"
 
-	para "What should I do?"
-	line "It… Oh, no…"
+	para "Que faire?"
+	line "Oh, non..."
 
-	para "Please get back"
-	line "here now!"
+	para "Reviens vite!"
 	done
 
 ElmPhoneEggAssistantText:
-	text "Hello, <PLAY_G>? We"
-	line "discovered some-"
+	text "<PLAY_G>? On a"
+	line "découvert quelque"
+	cont "chose sur l'OEUF!"
 
-	para "thing about the"
-	line "EGG!"
+	para "Mon assistant est"
+	line "au CENTRE #MON"
 
-	para "My assistant is at"
-	line "the #MON CENTER"
-
-	para "in VIOLET CITY. "
-	line "Could you talk to"
-	cont "him?"
+	para "de MAUVILLE. "
+	line "Va lui parler!"
 	done
 
 ElmPhoneRadioTowerRocketTakeoverText:
-	text "<PLAY_G>, how are"
-	line "things going?"
+	text "<PLAY_G>, comment"
+	line "ça va bien?"
 
-	para "I called because"
-	line "something weird is"
+	para "Je t'appelle à"
+	line "propos des émis-"
 
-	para "happening with the"
-	line "radio broadcasts."
+	para "sions radio."
+	line "Quelque chose ne"
+	cont "va pas."
 
-	para "They were talking"
-	line "about TEAM ROCKET."
+	para "Elles parlent de"
+	line "la TEAM ROCKET."
 
-	para "<PLAY_G>, do you"
-	line "know anything"
-	cont "about it?"
+	para "<PLAY_G>, es-tu"
+	line "au courant de"
+	cont "tout ceci?"
 
-	para "Maybe TEAM ROCKET"
-	line "has returned. No,"
+	para "La TEAM ROCKET est"
+	line "peut-être de"
+	cont "retour."
 
-	para "that just can't"
-	line "be true."
-
-	para "Sorry to bug you."
-	line "Take care!"
+	para "Ca paraît dingue,"
+	line "quand même!"
 	done
 
 ElmPhoneGiftText:
-	text "Hello, <PLAY_G>?"
+	text "<PLAY_G>?"
 
-	para "I have something"
-	line "here for you."
+	para "J'ai quelque chose"
+	line "pour toi."
 
-	para "Could you swing by"
-	line "my LAB?"
+	para "Tu peux passer"
+	line "au LABO?"
 
-	para "See you later!"
+	para "A bientôt!"
 	done
 
 ElmPhoneGotAholdOfSomethingNeatText:
-	text "Hello, <PLAY_G>?"
-	line "How's it going?"
+	text "<PLAY_G>?"
+	line "Ca va bien?"
 
-	para "I got ahold of"
-	line "something neat."
+	para "J'ai un truc"
+	line "terrible."
 
-	para "Swing by my LAB"
-	line "and pick it up!"
+	para "Passe au LABO"
+	line "le prendre!"
 
-	para "See you later!"
+	para "A bientôt!"
 	done

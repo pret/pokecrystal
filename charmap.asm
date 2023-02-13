@@ -6,6 +6,8 @@
 	charmap "<PLAY_G>",  $14 ; "<PLAYER>くん" or "<PLAYER>ちゃん"; same as "<PLAYER>" in English
 	charmap "<MOBILE>",  $15
 	charmap "<CR>",      $16
+	charmap "<1D>",      $1d
+	charmap "<1E>",      $1e
 	charmap "¯",         $1f ; soft linebreak
 	charmap "<LF>",      $22
 	charmap "<POKE>",    $24 ; "<PO><KE>"
@@ -158,6 +160,12 @@
 	charmap "x",         $b7
 	charmap "y",         $b8
 	charmap "z",         $b9
+	charmap "à",         $ba
+	charmap "è",         $bb
+
+	charmap "ù",         $bd
+	charmap "ß",         $be
+	charmap "ç",         $bf
 
 	charmap "Ä",         $c0
 	charmap "Ö",         $c1
@@ -165,20 +173,33 @@
 	charmap "ä",         $c3
 	charmap "ö",         $c4
 	charmap "ü",         $c5
+	charmap "ë",         $c6
+	charmap "ï",         $c7
+	charmap "â",         $c8
+	charmap "ô",         $c9
+	charmap "û",         $ca
+	charmap "ê",         $cb
+	charmap "î",         $cc
+	charmap "←",         $cf
 
-	charmap "'d",        $d0
-	charmap "'l",        $d1
-	charmap "'m",        $d2
-	charmap "'r",        $d3
-	charmap "'s",        $d4
-	charmap "'t",        $d5
-	charmap "'v",        $d6
+	charmap "c'",        $d4
+	charmap "d'",        $d5
+	charmap "j'",        $d6
+	charmap "l'",        $d7
+	charmap "m'",        $d8
+	charmap "n'",        $d9
+	charmap "p'",        $da
+	charmap "s'",        $db
+	charmap "'s",        $dc
+	charmap "t'",        $dd
+	charmap "u'",        $de
+	charmap "y'",        $df
 
-	charmap "←",         $df
 	charmap "'",         $e0
 	charmap "<PK>",      $e1
 	charmap "<MN>",      $e2
 	charmap "-",         $e3
+	charmap "+",         $e4
 
 	charmap "?",         $e6
 	charmap "!",         $e7

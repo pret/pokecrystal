@@ -162,78 +162,83 @@ VictoryRoadRivalBattleExitMovement2:
 	step_end
 
 VictoryRoadRivalBeforeText:
-	text "Hold it."
+	text "Minute."
 
-	para "…Are you going to"
-	line "take the #MON"
-	cont "LEAGUE challenge?"
+	para "Vas-tu relever le"
+	line "défi de la LIGUE"
+	cont "#MON?"
 
-	para "…Don't make me"
-	line "laugh."
+	para "Me fais pas rire!"
+	line "T'es minable!"
 
-	para "You're so much"
-	line "weaker than I am."
+	para "MI--NA--BLE!"
+	line "Et moi... Tu sais"
 
-	para "I'm not like I was"
-	line "before."
+	para "quoi? J'suis bien"
+	line "meilleur que toi!"
 
-	para "I now have the"
-	line "best and strongest"
+	para "J'ai les meilleurs"
+	line "#MON! Les"
 
-	para "#MON with me."
-	line "I'm invincible!"
+	para "plus forts de"
+	line "tous! Je suis in-"
+	cont "vincible!"
 
 	para "<PLAYER>!"
-	line "I challenge you!"
+	line "J'vais t'briser!"
 	done
 
 VictoryRoadRivalDefeatText:
-	text "…I couldn't win…"
+	text "J'pouvais pas"
+	line "gagner..."
 
-	para "I gave it every-"
-	line "thing I had…"
+	para "Je me suis donné"
+	line "à fond..."
 
-	para "What you possess,"
-	line "and what I lack…"
+	para "Tu as quelque cho-"
+	line "se que je n'aurai"
+	cont "jamais..."
 
-	para "I'm beginning to"
-	line "understand what"
+	para "Je commence à com-"
+	line "prendre ce que"
 
-	para "that dragon master"
-	line "said to me…"
+	para "voulait dire le"
+	line "type aux dragons."
 	done
 
 VictoryRoadRivalAfterText:
-	text "…I haven't given up"
-	line "on becoming the"
-	cont "greatest trainer…"
+	text "Je n'ai pas oublié"
+	line "mon rêve: devenir"
+	cont "le plus grand des"
+	cont "dresseurs..."
 
-	para "I'm going to find"
-	line "out why I can't"
+	para "Je vais vite ap-"
+	line "prendre ce qu'il"
 
-	para "win and become"
-	line "stronger…"
+	para "me manque pour"
+	line "m'améliorer..."
 
-	para "When I do, I will"
-	line "challenge you."
+	para "Et alors, ça va"
+	line "être ta fête."
 
-	para "And I'll beat you"
-	line "down with all my"
-	cont "power."
+	para "Tu vas ramasser"
+	line "tes dents avec tes"
+	cont "doigts cassés."
 
-	para "…Humph! You keep"
-	line "at it until then."
+	para "Alors à bientôt,"
+	line "minable."
 	done
 
 VictoryRoadRivalVictoryText:
-	text "…Humph!"
+	text "Hmmmm!"
 
-	para "When it comes down"
-	line "to it, nothing can"
-	cont "beat power."
+	para "Quand on y pense,"
+	line "rien ne peut bat-"
+	cont "tre la force"
+	cont "brute."
 
-	para "I don't need any-"
-	line "thing else."
+	para "Je n'ai besoin de"
+	line "rien d'autre."
 	done
 
 VictoryRoad_MapEvents:

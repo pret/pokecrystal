@@ -1,10 +1,11 @@
-	db "HAIRY BUG@" ; species name
-	dw 100, 70 ; height, weight
+	db "INSECTOPIC@" ; species name
+	db 3 ; height
+	dw 32 ; weight
 
-	db   "The barb on top of"
-	next "its head secretes"
-	next "a strong poison."
+	db   "Son aiguillon em-"
+	next "poisonné est très"
+	next "dangereux."
 
-	page "It uses this toxic"
-	next "barb to protect"
-	next "itself.@"
+	page "Il l'utilise pour"
+	next "se protéger de ses"
+	next "ennemis.@"

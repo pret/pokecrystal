@@ -1,10 +1,11 @@
-	db "COCOON@" ; species name
-	dw 200, 220 ; height, weight
+	db "COCON@" ; species name
+	db 6 ; height
+	dw 100 ; weight
 
-	db   "Nearly incapable"
-	next "of movement, it"
-	next "leans against"
+	db   "Pratiquement inca-"
+	next "pable de bouger,"
+	next "il se colle aux"
 
-	page "stout trees while"
-	next "waiting for its"
-	next "evolution.@"
+	page "arbres et attend"
+	next "d'évoluer."
+	next "@"

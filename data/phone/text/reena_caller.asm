@@ -1,88 +1,80 @@
 ReenaMonsIsAPerfectMatchText:
-	text "Listen, dear…"
+	text "Ecoute..."
 
-	para "Do you recall my"
+	para "Tu te souviens de"
 	line "@"
 	text_ram wStringBuffer4
 	text "?"
 
-	para "Yes, exactly. That"
-	line "lovely @"
+	para "Mon joli petit"
+	line "@"
 	text_ram wStringBuffer4
 	text "."
 
-	para "Wouldn't you agree"
-	line "it's a perfect"
-	cont "match for me?"
+	para "Tu le trouves"
+	line "joli, non?"
 	done
 
 ReenaDefeatedMonText:
-	text "Have I ever faced"
-	line "a wild @"
+	text "Quoi? Si j'ai déjà"
+	line "vu un @"
 	text_ram wStringBuffer4
 	text "?"
 
-	para "You need to ask?"
+	para "Tu me prends pour"
+	line "qui?"
 
-	para "@"
-	text_ram wStringBuffer4
-	text " I've"
-	line "beaten on numerous"
-	cont "occasions!"
+	para "J'en ai battu des"
+	line "tas!"
 	done
 
 ReenaLostAMonText:
-	text "Have I ever failed"
-	line "to catch a wild"
-	cont "#MON?"
+	text "Si j'ai déjà loupé"
+	line "un #MON?"
 
-	para "You need to ask?"
+	para "Tu me prends pour"
+	line "qui?"
 
-	para "I would never fail"
-	line "to catch a wild"
+	para "Moi je manque ja-"
+	line "mais d'attraper un"
 
 	para "@"
 	text_ram wStringBuffer4
-	text "…"
-	line "Oh! Never mind!"
+	text_start
+	line "sauvage! Et ouais!"
 	done
 
 ReenaBattleRematchText:
-	text "We are going to"
-	line "battle!"
+	text "On va se faire"
+	line "un combat!"
 
-	para "The place shall be"
+	para "Vers..."
 	line "@"
 	text_ram wStringBuffer5
 	text "!"
 
-	para "Don't make me"
-	line "wait! Got it?"
+	para "Ne me fais pas"
+	line "attendre, OK?"
 	done
 
 ReenaHangUpText:
-	text "Fine, you may go."
+	text "OK. Tchao."
 	done
 
 ReenaForwardText:
-	text "Don't be too proud"
-	line "just because you"
+	text "Ne crâne pas si tu"
+	line "as pu me battre!"
 
-	para "happened to beat"
-	line "me… "
-
-	para "It was a fluke!"
+	para "C'est bas!"
 	done
 
 ReenaHurryText:
-	text "What are you"
-	line "doing?"
+	text "Qu'est-ce que tu"
+	line "fabriques?"
 
-	para "I told you that"
-	line "the place was"
-
-	para "@"
+	para "Viens vers"
+	line "@"
 	text_ram wStringBuffer5
 	text "!"
-	line "Don't try to run!"
+	cont "T'as peur?"
 	done

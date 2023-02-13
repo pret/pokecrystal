@@ -96,116 +96,117 @@ GoldenrodUndergroundWarehouseUltraBall:
 	itemball ULTRA_BALL
 
 GruntM24SeenText:
-	text "How did you get"
-	line "this far?"
+	text "Comment t'as fait"
+	line "pour arriver ici?"
 
-	para "I guess it can't"
-	line "be helped. I'll"
-	cont "dispose of you."
+	para "Bon... Tant pis:"
+	line "je dois me débar-"
+	cont "rasser de toi."
 	done
 
 GruntM24BeatenText:
-	text "I got disposed of…"
+	text "J'suis fichu..."
 	done
 
 GruntM24AfterBattleText:
-	text "TEAM ROCKET will"
-	line "keep going, wait-"
-	cont "ing for the return"
-	cont "of GIOVANNI."
+	text "La TEAM ROCKET"
+	line "vivra dans l'at-"
+	cont "tente du retour du"
+	cont "grand GIOVANNI."
 
-	para "We'll do whatever"
-	line "it takes."
+	para "Nous sommes prêts"
+	line "à tout."
 	done
 
 GruntM14SeenText:
-	text "You're not going"
-	line "any farther!"
+	text "Pas un pas de"
+	line "plus!"
 
-	para "I don't show mercy"
-	line "to my enemies, not"
-	cont "even brats!"
+	para "Mes ennemis, j'en"
+	line "fais de la purée."
+	cont "A table!"
 	done
 
 GruntM14BeatenText:
-	text "Blast it!"
+	text "Purééééée!"
 	done
 
 GruntM14AfterBattleText:
-	text "I lost…"
+	text "Perdu..."
 
-	para "Please forgive me,"
+	para "Pardon..."
 	line "GIOVANNI!"
 	done
 
 GruntM15SeenText:
-	text "Hyuck-hyuck-hyuck!"
-	line "I remember you!"
+	text "Gnyak Gnyak Gnyak!"
+	line "J'me souviens de"
 
-	para "You got me good"
-	line "at our hideout!"
+	para "toi! Tu m'as battu"
+	line "à notre planque!"
 	done
 
 GruntM15BeatenText:
-	text "Hyuck-hyuck-hyuck!"
-	line "So, that's how?"
+	text "Gnyak!"
+	line "Heu? Encore??"
 	done
 
 GruntM15AfterBattleText:
-	text "Hyuck-hyuck-hyuck!"
-	line "That was a blast!"
-	cont "I'll remember you!"
+	text "Gnyaaaaaak!"
+	line "J'me souviendrai"
+	cont "de toi!"
 	done
 
 DirectorIntroText:
-	text "DIRECTOR: Who?"
-	line "What? You came to"
-	cont "rescue me?"
+	text "DIRECTEUR: Qui?"
+	line "Quoi? Tu es là"
+	cont "pour me sauver?"
 
-	para "Thank you!"
+	para "Merci!"
 
-	para "The RADIO TOWER!"
+	para "La TOUR RADIO!"
 
-	para "What's happening"
-	line "there?"
+	para "Que se passe-t-il"
+	line "là-bas?"
 
-	para "Taken over by TEAM"
-	line "ROCKET?"
+	para "Contrôlée par la"
+	line "TEAM ROCKET?"
 
-	para "Here. Take this"
-	line "CARD KEY."
+	para "Tiens. Prends"
+	line "cette CARTE MAGN."
 	done
 
 DirectorCardKeyText:
-	text "DIRECTOR: Use that"
-	line "to open the shut-"
-	cont "ters on 3F."
+	text "DIRECTEUR: Utilise"
+	line "cette carte pour"
+	cont "ouvrir les volets"
+	cont "du 2ème."
 	done
 
 DirectorAfterText:
-	text "I'm begging you to"
-	line "help."
+	text "Je t'en supplie..."
+	line "Aide-nous."
 
-	para "There's no telling"
-	line "what they'll do if"
+	para "Dieu seul sait ce"
+	line "qu'ils feront en"
 
-	para "they control the"
-	line "transmitter."
+	para "contrôlant le"
+	line "transmetteur."
 
-	para "They may even be"
-	line "able to control"
+	para "Ils pourront même"
+	line "manipuler les"
 
-	para "#MON using a"
-	line "special signal!"
+	para "#MON grâce à un"
+	line "signal spécial!"
 
-	para "You're the only"
-	line "one I can call on."
+	para "Tu es mon seul"
+	line "espoir."
 
-	para "Please save the"
-	line "RADIO TOWER…"
+	para "Sauve la TOUR"
+	line "RADIO! Pitié!!!"
 
-	para "And all the #-"
-	line "MON nationwide!"
+	para "Sauve tous les"
+	line "gentils #MON!"
 	done
 
 GoldenrodUndergroundWarehouse_MapEvents:

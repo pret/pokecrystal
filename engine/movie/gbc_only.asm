@@ -124,9 +124,10 @@ DrawGBCOnlyGraphic:
 	ret
 
 GBCOnlyString:
-	db   "This Game Pak is"
-	next "designed only for"
-	next "use on the"
+	db   "Cette cartouche"
+	next "ne fonctionne"
+	next "qu"
+	db   "'avec le" ; uses char "'" instead of char "u'"
 	next "Game Boy Color.@"
 
 GBCOnlyGFX:

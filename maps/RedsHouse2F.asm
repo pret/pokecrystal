@@ -10,17 +10,17 @@ RedsHouse2FPCScript:
 	jumptext RedsHouse2FPCText
 
 RedsHouse2FN64Text:
-	text "<PLAYER> played the"
-	line "N64."
+	text "<PLAYER> joue"
+	line "à la N64."
 
-	para "Better get going--"
-	line "no time to lose!"
+	para "Bon. On y va"
+	line "maintenant?"
 	done
 
 RedsHouse2FPCText:
-	text "It looks like it"
-	line "hasn't been used"
-	cont "in a long time…"
+	text "On n'a pas utilisé"
+	line "ceci depuis bien"
+	cont "longtemps..."
 	done
 
 RedsHouse2F_MapEvents:

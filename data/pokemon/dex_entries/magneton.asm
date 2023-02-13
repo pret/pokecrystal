@@ -1,10 +1,11 @@
-	db "MAGNET@" ; species name
-	dw 303, 1320 ; height, weight
+	db "MAGNETIQUE@" ; species name
+	db 10 ; height
+	dw 600 ; weight
 
-	db   "When many"
-	next "MAGNETON gather"
-	next "together, the"
+	db   "Quand plusieurs"
+	next "MAGNETON se ras-"
+	next "semblent, les"
 
-	page "resulting magnetic"
-	next "storm disrupts"
-	next "radio waves.@"
+	page "ondes émises font"
+	next "griller tous les"
+	next "postes de radio.@"

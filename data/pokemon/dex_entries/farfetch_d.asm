@@ -1,10 +1,11 @@
-	db "WILD DUCK@" ; species name
-	dw 207, 330 ; height, weight
+	db "CANARD FOU@" ; species name
+	db 8 ; height
+	dw 150 ; weight
 
-	db   "In order to pre-"
-	next "vent their"
-	next "extinction, more"
+	db   "Pour éviter tout"
+	next "risque d'extinc-"
+	next "tion de l'espèce,"
 
-	page "people have made"
-	next "an effort to breed"
-	next "these #MON.@"
+	page "nombreux sont ceux"
+	next "qui élèvent ce"
+	next "#MON.@"

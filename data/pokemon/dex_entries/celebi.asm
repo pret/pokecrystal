@@ -1,10 +1,11 @@
-	db "TIMETRAVEL@" ; species name
-	dw 200, 110 ; height, weight
+	db "TEMPOREL@" ; species name
+	db 6 ; height
+	dw 50 ; weight
 
-	db   "Revered as a"
-	next "guardian of the"
-	next "forest, CELEBI"
+	db   "On l'appelle le"
+	next "gardien de la"
+	next "forêt. Il apparaît"
 
-	page "appears wherever"
-	next "beautiful forests"
-	next "exist.@"
+	page "dans chaque forêt"
+	next "luxuriante."
+	next "@"

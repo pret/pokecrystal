@@ -19,53 +19,51 @@ Route40BattleTowerGateTwinScript:
 	jumptextfaceplayer Route40BattleTowerGateTwinText
 
 Route40BattleTowerGateUnusedText1: ; unreferenced
-	text "Did you come to"
-	line "see the BATTLE"
-	cont "TOWER too?"
+	text "Tu es aussi ici"
+	line "pour la TOUR DE"
+	cont "COMBAT?"
 
-	para "But I guess you"
-	line "can't go in yet."
+	para "Mais tu ne peux"
+	line "pas y entrer je"
+	cont "parie..."
 	done
 
 Route40BattleTowerGateUnusedText2: ; unreferenced
-	text "BATTLE TOWER has"
-	line "opened."
+	text "La TOUR DE COMBAT"
+	line "a ouvert ses"
+	cont "portes."
 
-	para "I want to go, but"
-	line "I haven't thought"
-
-	para "up a cool line for"
-	line "when I win."
+	para "Je veux y aller"
+	line "mais..."
+	cont "J'ai peur."
 	done
 
 Route40BattleTowerGateRockerText:
-	text "Are you going to"
-	line "the BATTLE TOWER?"
+	text "Tu vas à la TOUR"
+	line "DE COMBAT?"
 
-	para "This is a secret,"
-	line "but if you win a"
+	para "Si tu gagnes plein"
+	line "de fois, tu peux"
 
-	para "whole lot, you can"
-	line "win special gifts."
+	para "remporter des"
+	line "trucs spéciaux."
 	done
 
 Route40BattleTowerGateUnusedText3: ; unreferenced
-	text "I'm going to train"
-	line "my #MON so I'll"
+	text "Je vais entraîner"
+	line "mes #MON avant"
 
-	para "be all ready for"
-	line "the BATTLE TOWER."
+	para "de me lancer vers"
+	line "la TOUR DE COMBAT."
 	done
 
 Route40BattleTowerGateTwinText:
-	text "The levels of the"
-	line "#MON I want to"
+	text "Mes #MON ont"
+	line "tous des niveaux"
+	cont "différents..."
 
-	para "use are all"
-	line "different."
-
-	para "I have to go train"
-	line "them now!"
+	para "Je dois les"
+	line "entraîner!"
 	done
 
 Route40BattleTowerGate_MapEvents:

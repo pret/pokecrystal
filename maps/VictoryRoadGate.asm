@@ -52,47 +52,47 @@ VictoryRoadGateStepDownMovement:
 	step_end
 
 VictoryRoadGateOfficerText:
-	text "Only trainers who"
-	line "have proven them-"
-	cont "selves may pass."
+	text "Seuls les dres-"
+	line "seurs confirmés"
+	cont "peuvent passer."
 	done
 
 VictoryRoadGateNotEnoughBadgesText:
-	text "You don't have all"
-	line "the GYM BADGES of"
-	cont "JOHTO."
+	text "Tu n'as pas tous"
+	line "les BADGES d'ARENE"
+	cont "de JOHTO."
 
-	para "I'm sorry, but I"
-	line "can't let you go"
-	cont "through."
+	para "Je ne peux pas"
+	line "te laisser passer."
+	cont "Désolé."
 	done
 
 VictoryRoadGateEightBadgesText:
-	text "Oh! The eight"
-	line "BADGES of JOHTO!"
+	text "Oh! Les huit"
+	line "BADGES de JOHTO!"
 
-	para "Please, go right"
-	line "on through!"
+	para "Après vous,"
+	line "votre altesse!"
 	done
 
 VictoryRoadGateLeftBlackBeltText:
-	text "This way leads to"
-	line "MT.SILVER."
+	text "Cette route mène"
+	line "au MONT ARGENT."
 
-	para "You'll see scary-"
-	line "strong #MON out"
-	cont "there."
+	para "Tu y verras des"
+	line "#MON affreu-"
+	cont "sement forts."
 	done
 
 VictoryRoadGateRightBlackBeltText:
-	text "Off to the #MON"
-	line "LEAGUE, are you?"
+	text "Tu vas à la LIGUE"
+	line "#MON, hein?"
 
-	para "The ELITE FOUR are"
-	line "so strong it's"
+	para "Le CONSEIL des 4"
+	line "est super hyper"
 
-	para "scary, and they're"
-	line "ready for you!"
+	para "méga fort!!! Tu"
+	line "vas en baver!"
 	done
 
 VictoryRoadGate_MapEvents:

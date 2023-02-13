@@ -35,38 +35,37 @@ ViridianPokecenter1FBugCatcherScript:
 	jumptextfaceplayer ViridianPokecenter1FBugCatcherText
 
 ViridianPokecenter1FCooltrainerMText:
-	text "Where in the world"
-	line "is VIRIDIAN's GYM"
+	text "Où est donc le"
+	line "CHAMPION de l'ARE-"
 
-	para "LEADER? I wanted"
-	line "to challenge him."
+	para "NE de JADIELLE? Je"
+	line "veux l'affronter."
 	done
 
 ViridianPokecenter1FCooltrainerMText_BlueReturned:
-	text "There are no GYM"
-	line "TRAINERS at the"
-	cont "VIRIDIAN GYM."
+	text "Il n'y a pas de"
+	line "dresseurs dans"
+	cont "l'ARENE de"
+	cont "JADIELLE."
 
-	para "The LEADER claims"
-	line "his policy is to"
-
-	para "win without having"
-	line "any underlings."
+	para "Le CHAMPION dit"
+	line "qu'il n'en a pas"
+	cont "besoin."
 	done
 
 ViridianPokecenter1FCooltrainerFText:
-	text "I heard that the"
-	line "GYM in CINNABAR is"
-	cont "gone."
+	text "On dit qu'il n'y a"
+	line "plus d'ARENE à"
+	cont "CRAMOIS'ILE."
 
-	para "I wonder what be-"
-	line "came of BLAINE,"
-	cont "the GYM LEADER."
+	para "Qu'est-il arrivé"
+	line "à AUGUSTE, le"
+	cont "CHAMPION?"
 	done
 
 ViridianPokecenter1FBugCatcherText:
-	text "My dream is to be-"
-	line "come a GYM LEADER."
+	text "Je rêve de devenir"
+	line "CHAMPION d'ARENE."
 	done
 
 ViridianPokecenter1F_MapEvents:

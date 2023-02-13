@@ -65,53 +65,55 @@ MountMortar1FInsideHiddenMaxRepel:
 	hiddenitem MAX_REPEL, EVENT_MOUNT_MORTAR_1F_INSIDE_HIDDEN_MAX_REPEL
 
 PokemaniacMillerSeenText:
-	text "I'm not losing"
-	line "this time!"
+	text "Pas question de"
+	line "perdre cette fois!"
 	done
 
 PokemaniacMillerBeatenText:
-	text "I lost to some"
-	line "kid…?"
+	text "Perdu...?"
 	done
 
 PokemaniacMillerAfterBattleText:
-	text "A while back, this"
-	line "karate dude wanted"
+	text "L'autre jour,"
+	line "un type du genre"
 
-	para "to battle. He was"
-	line "ridiculously good."
+	para "karaté kid voulait"
+	line "se battre..."
+	cont "Il était fort."
 
-	para "He just thrashed"
-	line "us silly."
+	para "Y nous a tout"
+	line "cassé la tête."
 
-	para "He went in deeper"
-	line "saying it was for"
+	para "Il a continué son"
+	line "chemin en disant"
 
-	para "his training. I"
-	line "wonder how he is?"
+	para "qu'il s'entraî-"
+	line "nait."
 	done
 
 SupernerdMarkusSeenText:
-	text "Hey! HUGH!"
+	text "Hé! HUGH!"
 	done
 
 SupernerdMarkusBeatenText:
-	text "I mistook you for"
-	line "someone else…"
+	text "Je pensais que"
+	line "c'était quelqu'un"
+	cont "d'autre..."
 	done
 
 SupernerdMarkusAfterBattleText:
-	text "I came to explore"
-	line "MT.MORTAR, but I"
+	text "Je suis venu ex-"
+	line "plorer le MONT"
 
-	para "got separated from"
-	line "my partner…"
+	para "CREUSET mais mon"
+	line "partenaire a dis-"
+	cont "paru..."
 
-	para "Did you run into a"
-	line "trainer who uses a"
+	para "As-tu vu un dres-"
+	line "seur avec un"
 
-	para "SEADRA that knows"
-	line "WATERFALL?"
+	para "HYPOCEAN qui lance"
+	line "CASCADE?"
 	done
 
 MountMortar1FInside_MapEvents:

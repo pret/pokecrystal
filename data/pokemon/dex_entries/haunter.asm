@@ -1,10 +1,11 @@
-	db "GAS@" ; species name
-	dw 503, 2 ; height, weight
+	db "GAZ@" ; species name
+	db 16 ; height
+	dw 1 ; weight
 
-	db   "It hides in the"
-	next "dark, planning to"
-	next "take the life of"
+	db   "Il se cache dans"
+	next "le noir, cherchant"
+	next "à prendre la vie"
 
-	page "the next living"
-	next "thing that wanders"
-	next "close by.@"
+	page "de la prochaine"
+	next "créature qui le"
+	next "croise.@"

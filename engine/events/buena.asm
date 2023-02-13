@@ -141,7 +141,6 @@ BuenaPrize:
 	ld hl, .BuenaComeAgainText
 	call PrintText
 	call JoyWaitAorB
-	call PlayClickSFX
 	ret
 
 .BuenaAskWhichPrizeText:

@@ -34,84 +34,93 @@ CeladonMansionRoofHousePharmacistScript:
 	end
 
 CeladonMansionRoofHousePharmacistIntroText:
-	text "Let me recount a"
-	line "terrifying tale…"
+	text "Je vais te racon-"
+	line "ter un truc terri-"
+	cont "fiant..."
 	done
 
 CeladonMansionRoofHousePharmacistNotNightText:
-	text "Then again, it's"
-	line "not as scary while"
+	text "...Il vaut mieux"
+	line "attendre la fin"
 
-	para "it's still light"
-	line "outside."
+	para "de la journée. Il"
+	line "y a encore de la"
+	cont "lumière dehors."
 
-	para "Come back after"
-	line "sunset, OK?"
+	para "Reviens la nuit"
+	line "tombée, OK?"
 	done
 
 CeladonMansionRoofHousePharmacistStoryText:
-	text "Once upon a time,"
-	line "there was a little"
+	text "Il était une fois,"
+	line "un petit garçon"
 
-	para "boy who was given"
-	line "a new BICYCLE…"
+	para "qui reçut une nou-"
+	line "velle BICYCLETTE."
 
-	para "He wanted to try"
-	line "it right away…"
+	para "Il voulut l'essa-"
+	line "yer tout de suite."
 
-	para "He was having so"
-	line "much fun that he"
+	para "Il s'amusait et"
+	line "n'avait pas remar-"
 
-	para "didn't notice the"
-	line "sun had set…"
+	para "qué que la nuit"
+	line "commençait à"
+	cont "tomber..."
 
-	para "While riding home"
-	line "in the pitch-black"
+	para "Tout en pédalant"
+	line "comme un furieux"
 
-	para "night, the bike"
-	line "suddenly slowed!"
+	para "pour rentrer chez"
+	line "lui dans la nuit"
+	cont "noire, son vélo"
+	cont "ralentit!"
 
-	para "The pedals became"
-	line "heavy!"
+	para "Les pédales devin-"
+	line "rent lourdes!"
 
-	para "When he stopped"
-	line "pedaling, the bike"
+	para "Epuisé, il s'arrê-"
+	line "ta mais la bicy-"
 
-	para "began slipping"
-	line "backwards!"
+	para "clette roula vers"
+	line "l'arrière!"
 
-	para "It was as if the"
-	line "bike were cursed"
+	para "Il lui semblait"
+	line "que le vélo était"
 
-	para "and trying to drag"
-	line "him into oblivion!"
+	para "maudit et tentait"
+	line "de l'entraîner"
+	cont "vers les ténèbres!"
 
-	para "…"
+	para "..."
 
-	para "…"
+	para "......."
 
-	para "SHRIEEEEK!"
+	para "YAHAAAAAAHA!"
 
-	para "The boy had been"
-	line "riding uphill on"
-	cont "CYCLING ROAD!"
+	para "Il montait en fait"
+	line "la pente de la"
+	cont "PISTE CYCLABLE!"
 
-	para "…"
-	line "Ba-dum ba-dum!"
+	para "..."
+	line "Super histoire!"
 
-	para "For listening so"
-	line "patiently, you may"
-	cont "take this--TM03!"
+	para "Merci. Merci."
+	line "Tu aimes tant ma"
+	cont "belle histoire,"
+	cont "voilà pour toi:"
+	cont "la CT03!"
 	done
 
 CeladonMansionRoofHousePharmacistCurseText:
-	text "TM03 is CURSE."
+	text "CT03: MALEDICTION."
 
-	para "It's a terrifying"
-	line "move that slowly"
+	para "Une capacité"
+	line "terrifiante qui"
 
-	para "whittles down the"
-	line "victim's HP."
+	para "épuise doucement"
+	line "les PV de la"
+	cont "victime."
 	done
 
 CeladonMansionRoofHouse_MapEvents:

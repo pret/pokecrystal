@@ -1,10 +1,11 @@
-	db "SUPERPOWER@" ; species name
-	dw 411, 1550 ; height, weight
+	db "COLOSSE@" ; species name
+	db 15 ; height
+	dw 705 ; weight
 
-	db   "This tough #MON"
-	next "always stays in"
-	next "the zone. Its"
+	db   "Il se donne tou-"
+	next "jours à fond."
+	next "Ses muscles sont"
 
-	page "muscles become"
-	next "thicker after"
-	next "every battle.@"
+	page "plus importants"
+	next "après chaque com-"
+	next "bat.@"

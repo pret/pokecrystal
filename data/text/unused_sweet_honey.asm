@@ -9,60 +9,57 @@
 ; The last text is associated with a second NPC, probably a Butterfree.
 
 UnusedSweetHoneyText: ; unreferenced
-	text "My #MON is an"
-	line "expert at collect-"
-	cont "ing SWEET HONEY."
+	text "Mon #MON adore"
+	line "le MIEL."
 
-	para "I'll share some"
-	line "with you."
+	para "Je vais t'en"
+	line "donner."
 	done
 
 UnusedSweetHoneyBagFullText: ; unreferenced
-	text "I want to give you"
-	line "some SWEET HONEY,"
+	text "Je voulais t'of-"
+	line "frir du MIEL mais"
 
-	para "but you have no"
-	line "room for it."
+	para "tu n'as plus de"
+	line "place."
 	done
 
 UnusedSweetHoneyGiveText: ; unreferenced
-	text "Here you go! Have"
-	line "some SWEET HONEY!"
+	text "Tiens! Voilà du"
+	line "MIEL!"
 	done
 
 UnusedGotSweetHoneyText: ; unreferenced
-	text "<PLAYER> received"
-	line "SWEET HONEY."
+	text "<PLAYER> reçoit"
+	line "du MIEL."
 	done
 
 UnusedSweetHoneyAfterText1: ; unreferenced
-	text "My little brother"
-	line "takes SWEET HONEY"
+	text "Mon petit frère"
+	line "prend du MIEL et"
+	cont "va se promener."
 
-	para "and goes somewhere"
-	line "with it."
-
-	para "I wonder what he's"
-	line "up to?"
+	para "Je me demande ce"
+	line "qu'il fabrique..."
 	done
 
 UnusedSweetHoneyAfterText2: ; unreferenced
-	text "Did you put SWEET"
-	line "HONEY on a tree?"
+	text "As-tu mis du MIEL"
+	line "sur l'arbre?"
 
-	para "What happened to"
-	line "it?"
+	para "Que s'est-il"
+	line "passé?"
 	done
 
 UnusedSweetHoneyAfterText3: ; unreferenced
-	text "Did you put SWEET"
-	line "HONEY on a tree?"
+	text "As-tu mis du MIEL"
+	line "sur l'arbre?"
 
-	para "It takes about a"
-	line "day for #MON to"
-	cont "be drawn to it."
+	para "Ca prend un jour"
+	line "pour que le #-"
+	cont "MON soit attiré."
 	done
 
 UnusedSweetHoneyButterfreeText: ; unreferenced
-	text "BUTTERFREE: Freeh!"
+	text "PAPILUSION: Piii!"
 	done

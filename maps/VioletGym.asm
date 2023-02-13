@@ -111,172 +111,181 @@ VioletGymStatue:
 	jumpstd GymStatue2Script
 
 FalknerIntroText:
-	text "I'm FALKNER, the"
-	line "VIOLET #MON GYM"
-	cont "leader!"
+	text "Je suis ALBERT, le"
+	line "CHAMPION d'ARENE"
+	cont "de MAUVILLE!"
 
-	para "People say you can"
-	line "clip flying-type"
+	para "On dit qu'avec une"
+	line "bonne décharge"
 
-	para "#MON's wings"
-	line "with a jolt of"
-	cont "electricity…"
+	para "électrique, les"
+	line "#MON volants"
+	cont "grillent..."
 
-	para "I won't allow such"
-	line "insults to bird"
-	cont "#MON!"
+	para "Je n'autorise per-"
+	line "sonne à insulter"
+	cont "les #MON!"
 
-	para "I'll show you the"
-	line "real power of the"
+	para "Tu vas subir les"
+	line "terribles attaques"
 
-	para "magnificent bird"
-	line "#MON!"
+	para "de mes #MON"
+	line "volants!"
 	done
 
 FalknerWinLossText:
-	text "…Darn! My dad's"
-	line "cherished bird"
-	cont "#MON…"
+	text "...Zut de flûte!"
+	line "Les #MON adorés"
+	cont "de mon papa..."
 
-	para "All right."
-	line "Take this."
+	para "Très bien."
+	line "Prends ceci."
 
-	para "It's the official"
-	line "#MON LEAGUE"
-	cont "ZEPHYRBADGE."
+	para "C'est le BADGE"
+	line "ZEPHYR officiel de"
+	cont "la LIGUE #MON."
 	done
 
 ReceivedZephyrBadgeText:
-	text "<PLAYER> received"
-	line "ZEPHYRBADGE."
+	text "<PLAYER> reçoit"
+	line "le BADGE ZEPHYR."
 	done
 
 FalknerZephyrBadgeText:
-	text "ZEPHYRBADGE"
-	line "raises the attack"
-	cont "power of #MON."
+	text "Le BADGE ZEPHYR"
+	line "augmente l'ATTAQUE"
+	cont "des #MON."
 
-	para "It also enables"
-	line "#MON to use"
+	para "Il permet aussi"
+	line "aux #MON"
 
-	para "FLASH, if they"
-	line "have it, anytime."
+	para "d'utiliser FLASH"
+	line "en dehors des"
+	cont "combats."
 
-	para "Here--take this"
-	line "too."
+	para "Prends ça aussi."
 	done
 
 FalknerTMMudSlapText:
-	text "By using a TM, a"
-	line "#MON will"
+	text "En utilisant une"
+	line "CT, les #MON"
 
-	para "instantly learn a"
-	line "new move."
+	para "apprennent une"
+	line "nouvelle capacité."
 
-	para "Think before you"
-	line "act--a TM can be"
-	cont "used only once."
+	para "Réfléchis bien"
+	line "avant d'agir, une"
+	cont "CT ne s'utilise"
+	cont "qu'une fois."
 
-	para "TM31 contains"
-	line "MUD-SLAP."
+	para "La CT31 contient"
+	line "COUD'BOUE."
 
-	para "It reduces the"
-	line "enemy's accuracy"
+	para "Elle réduit la"
+	line "précision de l'en-"
 
-	para "while it causes"
-	line "damage."
+	para "nemi et lui infli-"
+	line "ge des dégâts."
 
-	para "In other words, it"
-	line "is both defensive"
-	cont "and offensive."
+	para "En d'autres termes"
+	line "c'est à la fois"
+	cont "offensif et"
+	cont "défensif."
 	done
 
 FalknerFightDoneText:
-	text "There are #MON"
-	line "GYMS in cities and"
-	cont "towns ahead."
+	text "Il y a des ARENES"
+	line "#MON dans"
+	cont "les alentours."
 
-	para "You should test"
-	line "your skills at"
-	cont "these GYMS."
+	para "Tu devrais tester"
+	line "ton habileté dans"
+	cont "ces ARENES."
 
-	para "I'm going to train"
-	line "harder to become"
+	para "Je vais m'entraî-"
+	line "ner plus dur pour"
 
-	para "the greatest bird"
-	line "master!"
+	para "devenir le plus"
+	line "grand!"
 	done
 
 BirdKeeperRodSeenText:
-	text "The keyword is"
-	line "guts!"
+	text "Le mot clé est..."
+	line "Le cran!"
 
-	para "Those here are"
-	line "training night and"
+	para "Ceux d'ici s'en-"
+	line "traînent nuit et"
 
-	para "day to become bird"
-	line "#MON masters."
+	para "jour pour devenir"
+	line "maître des"
+	cont "#MON volants."
 
-	para "Come on!"
+	para "Allez!"
 	done
 
 BirdKeeperRodBeatenText:
-	text "Gaaah!"
+	text "Yaaah!"
 	done
 
 BirdKeeperRodAfterBattleText:
-	text "FALKNER's skills"
-	line "are for real!"
+	text "L'habileté"
+	line "d'ALBERT est"
+	cont "bien réelle!"
 
-	para "Don't get cocky"
-	line "just because you"
-	cont "beat me!"
+	para "Si tu as les"
+	line "chevilles qui"
+	cont "enflent, change"
+	cont "de baskets!"
 	done
 
 BirdKeeperAbeSeenText:
-	text "Let me see if you"
-	line "are good enough to"
-	cont "face FALKNER!"
+	text "Montre-moi si tu"
+	line "as les épaules"
+	cont "pour battre"
+	cont "ALBERT!"
 	done
 
 BirdKeeperAbeBeatenText:
-	text "This can't be"
-	line "true!"
+	text "Saperlipopette!"
+	line "C'est impossible!"
 	done
 
 BirdKeeperAbeAfterBattleText:
-	text "This is pathetic,"
-	line "losing to some"
-	cont "rookie trainer…"
+	text "C'est pathétique"
+	line "de perdre contre"
+	cont "toi..."
 	done
 
 VioletGymGuideText:
-	text "Hey! I'm no train-"
-	line "er but I can give"
-	cont "some advice!"
+	text "Hé toi! Je ne"
+	line "suis pas un"
+	cont "dresseur mais"
+	cont "je peux te donner"
+	cont "quelques conseils!"
 
-	para "Believe me!"
-	line "If you believe, a"
+	para "Crois-moi!"
+	line "Tes rêves de"
 
-	para "championship dream"
-	line "can come true."
+	para "star peuvent"
+	line "se réaliser."
 
-	para "You believe?"
-	line "Then listen."
+	para "T'y crois?"
+	line "Alors écoute bien."
 
-	para "The grass-type is"
-	line "weak against the"
+	para "Les plantes sont"
+	line "faibles contre les"
 
-	para "flying-type. Keep"
-	line "this in mind."
+	para "volants. Garde ça"
+	line "en mémoire."
 	done
 
 VioletGymGuideWinText:
-	text "Nice battle! Keep"
-	line "it up, and you'll"
+	text "Beau combat! Ne"
+	line "lâche pas prise et"
 
-	para "be the CHAMP in no"
-	line "time at all!"
+	para "tu deviendras sans"
+	line "problème une"
+	cont "star!"
 	done
 
 VioletGym_MapEvents:

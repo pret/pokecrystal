@@ -1,10 +1,11 @@
-	db "SINGLEHORN@" ; species name
-	dw 411, 1190 ; height, weight
+	db "UNICORNE@" ; species name
+	db 15 ; height
+	dw 540 ; weight
 
-	db   "With its Herculean"
-	next "powers, it can"
-	next "easily throw arou-"
+	db   "Sa force hercu-"
+	next "léenne lui permet"
+	next "de soulever et de"
 
-	page "nd an object that"
-	next "is 100 times its"
-	next "own weight.@"
+	page "jeter plus de 100"
+	next "fois son poids."
+	next "@"

@@ -1,67 +1,66 @@
 GinaAskNumber1Text:
-	text "Whenever I see a"
-	line "strong trainer, I"
+	text "Si je vois un bon"
+	line "dresseur, je veux"
 
-	para "want to be their"
-	line "cheerleader."
+	para "l'encourager de"
+	line "tout mon coeur."
 
-	para "When I'm on my"
-	line "walk, I sometimes"
-	cont "pick up items."
+	para "Au fait, moi je"
+	line "trouve beaucoup"
+	cont "d'objets."
 
-	para "If I get anything,"
-	line "you can have it!"
+	para "Je pourrais même"
+	line "t'en donner!"
 
-	para "Want to give me"
-	line "your number?"
+	para "Tu veux me donner"
+	line "ton numéro?"
 
-	para "I'll call as soon"
-	line "as I get anything."
+	para "Je te préviens si"
+	line "je trouve un truc."
 	done
 
 GinaAskNumber2Text:
-	text "If I find an item,"
-	line "you can have it!"
+	text "Si je trouve un"
+	line "objet, il est pour"
+	cont "toi!"
 
-	para "Want to give me"
-	line "your number?"
+	para "Tu veux me donner"
+	line "ton numéro?"
 	done
 
 GinaNumberAcceptedText:
-	text "I'll call as soon"
-	line "as I get anything!"
+	text "Je te préviens si"
+	line "je trouve un truc."
 	done
 
 GinaNumberDeclinedText:
-	text "Is that so? Well,"
-	line "I'll still be"
-	cont "rooting for you!"
+	text "Ah bon?"
+	line "Bah, dommage!"
 	done
 
 GinaPhoneFullText:
-	text "But your phone is"
-	line "all filled up!"
+	text "Ton téléphone est"
+	line "plein!"
 	done
 
 GinaRematchText:
-	text "I've been waiting!"
-
-	para "I've gotten a bit"
-	line "better at this!"
+	text "Je t'attendais!"
+	para "J'ai fait des"
+	line "progrès!"
 	done
 
 GinaGiftText:
-	text "So you're finally"
-	line "here!"
+	text "Enfin! T'as"
+	line "pris ton temps!"
 
-	para "I think this will"
-	line "make you happy."
+	para "Ceci va te faire"
+	line "plaisir."
 	done
 
 GinaPackFullText:
-	text "Your PACK looks"
-	line "completely full."
+	text "Ton SAC est plein"
+	line "à craquer."
 
-	para "I'll have to hold"
-	line "on to this."
+	para "Je vais garder ça"
+	line "pour toi."
 	done

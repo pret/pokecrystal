@@ -3871,27 +3871,27 @@ String_119d07:
 	db "   ▼@"
 
 Strings_L10ToL100:
-	db " L:10 @@"
-	db " L:20 @@"
-	db " L:30 @@"
-	db " L:40 @@"
-	db " L:50 @@"
-	db " L:60 @@"
-	db " L:70 @@"
-	db " L:80 @@"
-	db " L:90 @@"
-	db " L:100@@"
-	db "CANCEL@@"
+	db " N:10 @@"
+	db " N:20 @@"
+	db " N:30 @@"
+	db " N:40 @@"
+	db " N:50 @@"
+	db " N:60 @@"
+	db " N:70 @@"
+	db " N:80 @@"
+	db " N:90 @@"
+	db " N:100@@"
+	db "RETOUR@@"
 
 Strings_Ll0ToL40:
-	db " L:10 @@"
-	db " L:20 @@"
-	db " L:30 @@"
-	db " L:40 @@"
-	db "CANCEL@@"
+	db " N:10 @@"
+	db " N:20 @@"
+	db " N:30 @@"
+	db " N:40 @@"
+	db "RETOUR@@"
 
 BattleTowerCancelString: ; unreferenced
-	db "CANCEL@"
+	db "RETOUR@"
 
 BattleTower_LevelCheck:
 	ldh a, [rSVBK]
@@ -4628,10 +4628,10 @@ BattleTowerRoomMenu2_UpdateYesNoMenu:
 	ret
 
 String_11a2cf:
-	db "YES@"
+	db "OUI@"
 
 String_11a2d3:
-	db "NO@"
+	db "NON@"
 
 MenuHeader_11a2d6: ; unreferenced
 	db MENU_BACKUP_TILES ; flags
@@ -5422,102 +5422,90 @@ Function11a9f4: ; unreferenced
 	ret
 
 Text_SaveFileWillBeSent:
-	text "SAVE FILE will be"
-	line "sent."
+	text_start
 	done
 
 Text_SentSaveFileReadingNews:
-	text "Sent SAVE FILE."
-	line "Reading NEWS…"
+	text_start
 	done
 
 Text_ReadingNews:
-	text "Reading NEWS…"
+	text_start
 	done
 
 Text_ReceivedNews:
-	text "Received NEWS!"
+	text_start
 	done
 
 Text_QuitReadingNews:
-	text "Quit reading NEWS?"
+	text_start
 	done
 
 Text_CanceledSendingSaveFile: ; unreferenced
-	text "Canceled sending"
-	line "SAVE FILE."
+	text_start
 	done
 
 Text_ReceivedOddEgg: ; unreferenced
-	text "ODD EGG"
-	line "was received!"
+	text_start
 	done
 
 Text_RegisteringRecord:
-	text "Registering your"
-	line "record…"
+	text_start
 	done
 
 Text_BattleRoomVisitLimit: ; unreferenced
-	text "One visit per day"
-	line "per BATTLE ROOM!"
+	text "Une visite par"
+	line "jour par SALLE DE"
+	cont "COMBAT!"
 	done
 
 Text_PartyMonTopsThisLevel:
-	text "A party #MON"
-	line "tops this level."
+	text "Un #MON de"
+	line "l'équipe excède ce"
+	cont "niveau."
 	done
 
 Text_UberRestriction:
 	text_ram wcd49
-	text " may go"
-	line "only to BATTLE"
+	text " ne peut"
+	line "aller que dans les"
 
-	para "ROOMS that are"
-	line "Lv.70 or higher."
+	para "SALLES DE COMBAT"
+	line "de Niv.70 ou plus."
 	done
 
 Text_CancelBattleRoomChallenge:
-	text "Cancel your BATTLE"
-	line "ROOM challenge?"
+	text "Annuler le défi"
+	line "SALLE DE COMBAT?"
 	done
 
 Text_ExitGymLeaderHonorRoll:
-	text "Exit GYM LEADER"
-	line "HONOR ROLL?"
+	text_start
 	done
 
 Text_LinkingWithCenter: ; unreferenced
-	text "Linking with the"
-	line "CENTER…"
+	text_start
 	done
 
 Text_WhatLevelDoYouWantToChallenge:
-	text "What level do you"
-	line "want to challenge?"
+	text "Quel niveau vou-"
+	line "lez-vous essayer?"
 	done
 
 Text_CheckBattleRoomListByMaxLevel:
-	text "Check BATTLE ROOM"
-	line "list by max level?"
+	text_start
 	done
 
 Text_EnterWhichBattleRoom: ; unreferenced
-	text "Enter which"
-	line "BATTLE ROOM?"
+	text_start
 	done
 
 Text_WhichBattleRoom: ; unreferenced
-	text "Which BATTLE ROOM?"
+	text_start
 	done
 
 Text_ThisBattleRoomPleaseWait: ; unreferenced
-	text_ram wStringBuffer3
-	text "'s ROOM"
-	line "@"
-	text_ram wStringBuffer4
-	text "?"
-	cont "Please wait…"
+	text_start
 	done
 
 Function11ac3e:

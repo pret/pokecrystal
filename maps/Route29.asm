@@ -247,169 +247,171 @@ DudeMovementData2b:
 	step_end
 
 CatchingTutorialBoxFullText:
-	text "#MON hide in"
-	line "the grass. Who"
+	text "Les #MON se"
+	line "cachent dans"
 
-	para "knows when they'll"
-	line "pop out…"
+	para "l'herbe. Ils sur-"
+	line "gissent d'un coup."
+	cont "Pouf!"
 	done
 
 CatchingTutorialIntroText:
-	text "I've seen you a"
-	line "couple times. How"
+	text "J'te connais toi."
+	line "Combien de #MON"
+	cont "as-tu attrapés?"
 
-	para "many #MON have"
-	line "you caught?"
-
-	para "Would you like me"
-	line "to show you how to"
-	cont "catch #MON?"
+	para "Veux-tu que je te"
+	line "montre comment at-"
+	cont "traper des"
+	cont "#MON?"
 	done
 
 CatchingTutorialDebriefText:
-	text "That's how you do"
-	line "it."
+	text "Voilà comment il"
+	line "faut faire."
 
-	para "If you weaken them"
-	line "first, #MON are"
-	cont "easier to catch."
+	para "Si tu affaiblis"
+	line "d'abord le #-"
+	cont "MON, il sera plus"
+	cont "facile à attraper."
 	done
 
 CatchingTutorialDeclinedText:
-	text "Oh. Fine, then."
+	text "Oh. Bon."
 
-	para "Anyway, if you"
-	line "want to catch"
+	para "En tout cas, tu"
+	line "dois beaucoup mar-"
 
-	para "#MON, you have"
-	line "to walk a lot."
+	para "cher pour attraper"
+	line "des #MON."
 	done
 
 CatchingTutorialRepeatText:
-	text "Huh? You want me"
-	line "to show you how to"
-	cont "catch #MON?"
+	text "Hein? Tu veux que"
+	line "je te montre com-"
+	cont "ment attraper des"
+	cont "#MON?"
 	done
 
 Route29YoungsterText:
-	text "Yo. How are your"
-	line "#MON?"
+	text "Salut. Comment"
+	line "vont tes #MON?"
 
-	para "If they're weak"
-	line "and not ready for"
+	para "S'ils sont fati-"
+	line "gués ou incapables"
 
-	para "battle, keep out"
-	line "of the grass."
+	para "de combattre,"
+	line "évite l'herbe!"
 	done
 
 Route29TeacherText:
-	text "See those ledges?"
-	line "It's scary to jump"
-	cont "off them."
+	text "Tu vois ce mur?"
+	line "Sauter de là doit"
+	cont "faire peur."
 
-	para "But you can go to"
-	line "NEW BARK without"
+	para "Mais tu peux aller"
+	line "à BOURG GEON sans"
 
-	para "walking through"
-	line "the grass."
+	para "marcher dans les"
+	line "hautes herbes."
 	done
 
 Route29FisherText:
-	text "I wanted to take a"
-	line "break, so I saved"
+	text "J'ai voulu faire"
+	line "une pause alors"
 
-	para "to record my"
-	line "progress."
+	para "j'ai sauvegardé ma"
+	line "partie."
 	done
 
 Route29CooltrainerMText_WaitingForDay: ; unreferenced
-	text "I'm waiting for"
-	line "#MON that"
+	text "J'attends les"
+	line "#MON qui n'ap-"
 
-	para "appear only in the"
-	line "daytime."
+	para "paraissent que la"
+	line "journée."
 	done
 
 Route29CooltrainerMText_WaitingForNight:
-	text "I'm waiting for"
-	line "#MON that"
+	text "J'attends les"
+	line "#MON qui n'ap-"
 
-	para "appear only at"
-	line "night."
+	para "paraissent que la"
+	line "nuit."
 	done
 
 Route29CooltrainerMText_WaitingForMorning:
-	text "I'm waiting for"
-	line "#MON that"
+	text "J'attends les"
+	line "#MON qui n'ap-"
 
-	para "appear only in the"
-	line "morning."
+	para "paraissent que le"
+	line "matin."
 	done
 
 MeetTuscanyText:
-	text "TUSCANY: I do be-"
-	line "lieve that this is"
+	text "MARIE: Il me sem-"
+	line "ble que c'est la"
 
-	para "the first time"
-	line "we've met?"
+	para "première fois que"
+	line "l'on se rencontre."
 
-	para "Please allow me to"
-	line "introduce myself."
-
-	para "I am TUSCANY of"
-	line "Tuesday."
+	para "Permets-moi de me"
+	line "présenter. Je suis"
+	cont "MARIE du mardi."
 	done
 
 TuscanyGivesGiftText:
-	text "By way of intro-"
-	line "duction, please"
+	text "En cadeau..."
+	line "Permets-moi"
 
-	para "accept this gift,"
-	line "a PINK BOW."
+	para "de t'offrir..."
+	line "Un RUBAN ROSE."
 	done
 
 TuscanyGaveGiftText:
-	text "TUSCANY: Wouldn't"
-	line "you agree that it"
-	cont "is most adorable?"
+	text "MARIE: C'est"
+	line "ravissant, tu ne"
+	cont "trouves pas?"
 
-	para "It strengthens"
-	line "normal-type moves."
+	para "Il améliore les"
+	line "capacités de type"
+	cont "NORMAL."
 
-	para "I am certain it"
-	line "will be of use."
+	para "Je suis sûre qu'il"
+	line "te sera utile."
 	done
 
 TuscanyTuesdayText:
-	text "TUSCANY: Have you"
-	line "met MONICA, my"
-	cont "older sister?"
+	text "MARIE: As-tu"
+	line "rencontré LUCIE,"
+	cont "ma grande soeur?"
 
-	para "Or my younger"
-	line "brother, WESLEY?"
+	para "Ou mon petit frère"
+	line "HOMER?"
 
-	para "I am the second of"
-	line "seven children."
+	para "Je suis la deuxiè-"
+	line "me des sept en-"
+	cont "fants."
 	done
 
 TuscanyNotTuesdayText:
-	text "TUSCANY: Today is"
-	line "not Tuesday. That"
-	cont "is unfortunate…"
+	text "MARIE: Aujourd'hui"
+	line "n'est pas mardi."
+	cont "C'est dommage..."
 	done
 
 Route29Sign1Text:
 	text "ROUTE 29"
 
-	para "CHERRYGROVE CITY -"
-	line "NEW BARK TOWN"
+	para "VILLE GRIOTTE -"
+	line "BOURG GEON"
 	done
 
 Route29Sign2Text:
 	text "ROUTE 29"
 
-	para "CHERRYGROVE CITY -"
-	line "NEW BARK TOWN"
+	para "VILLE GRIOTTE -"
+	line "BOURG GEON"
 	done
 
 Route29_MapEvents:

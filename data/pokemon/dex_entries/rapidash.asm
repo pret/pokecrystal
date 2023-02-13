@@ -1,10 +1,11 @@
-	db "FIRE HORSE@" ; species name
-	dw 507, 2090 ; height, weight
+	db "CHEVAL FEU@" ; species name
+	db 17 ; height
+	dw 950 ; weight
 
-	db   "It just loves to"
-	next "gallop. The faster"
-	next "it goes, the long-"
+	db   "Il adore galoper."
+	next "Pendant sa course,"
+	next "ses flammes s'al-"
 
-	page "er the swaying"
-	next "flames of its mane"
-	next "will become.@"
+	page "longent au fur et"
+	next "à mesure qu'il ga-"
+	next "gne de la vitesse.@"

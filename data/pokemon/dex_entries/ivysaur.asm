@@ -1,10 +1,11 @@
-	db "SEED@" ; species name
-	dw 303, 290 ; height, weight
+	db "GRAINE@" ; species name
+	db 10 ; height
+	dw 130 ; weight
 
-	db   "The bulb on its"
-	next "back grows as it"
-	next "absorbs nutrients."
+	db   "Le bulbe sur son"
+	next "dos grandit en"
+	next "absorbant les nu-"
 
-	page "The bulb gives off"
-	next "a pleasant aroma"
-	next "when it blooms.@"
+	page "triments. Il déga-"
+	next "ge un doux parfum"
+	next "après éclosion.@"

@@ -136,203 +136,218 @@ DanceTheaterFancyPanel:
 	jumptext DanceTheaterFancyPanelText
 
 KimonoGirlNaokoSeenText:
-	text "You have lovely"
-	line "#MON. May I see"
-	cont "them in battle?"
+	text "Tu as de jolis"
+	line "#MON. On peut"
+	cont "voir c'que ça"
+	cont "donne en combat?"
 	done
 
 KimonoGirlNaokoBeatenText:
-	text "Oh, you are very"
-	line "strong."
+	text "Oh, bravo les"
+	line "biscotos!!"
 	done
 
 KimonoGirlNaokoAfterBattleText:
-	text "I enjoyed that"
-	line "bout. I would like"
-	cont "to see you again."
+	text "J'ai apprécié la"
+	line "petite baston. On"
+	cont "peut se revoir?"
 	done
 
 KimonoGirlSayoSeenText:
-	text "I always dance"
-	line "with my #MON."
+	text "Je danse toujours"
+	line "avec mes #MON."
 
-	para "Of course, I also"
-	line "train them."
+	para "Bien sûr, je les"
+	line "entraîne aussi."
 	done
 
 KimonoGirlSayoBeatenText:
-	text "Oh, so close!"
-	line "I almost had you."
+	text "Oh, presque!"
+	line "J'ai failli"
+	cont "t'avoir."
 	done
 
 KimonoGirlSayoAfterBattleText:
-	text "Rhythm is impor-"
-	line "tant for both"
+	text "Le rythme, c'est"
+	line "un truc super"
 
-	para "dancing and #-"
-	line "MON."
+	para "important pour la"
+	line "danse et pour les"
+	cont "#MON."
 	done
 
 KimonoGirlZukiSeenText:
-	text "Isn't my barrette"
-	line "pretty?"
+	text "Elle est pas belle"
+	line "ma barrette?"
 
-	para "Oh. A #MON"
-	line "battle?"
+	para "Oh! Un combat de"
+	line "#MON?"
 	done
 
 KimonoGirlZukiBeatenText:
-	text "I don't have any"
-	line "#MON left…"
+	text "Je n'ai plus de"
+	line "#MON..."
 	done
 
 KimonoGirlZukiAfterBattleText:
-	text "I put a different"
-	line "flower in my bar-"
-	cont "rette every month."
+	text "Tous les mois je"
+	line "change de fleur"
+	cont "pour ma barrette."
+	cont "Bon des fois elle"
+	cont "fane avant!"
 	done
 
 KimonoGirlKuniSeenText:
-	text "Oh, you're a cute"
-	line "trainer. Would you"
-	cont "like to battle?"
+	text "Oh, t'es tout"
+	line "mimi comme"
+	cont "dresseur! Un petit"
+	cont "combat en tête à"
+	cont "tête?"
 	done
 
 KimonoGirlKuniBeatenText:
-	text "You're stronger"
-	line "than you look."
+	text "Tu es plus cool"
+	line "que tu n'en n'as"
+	cont "pas l'air."
 	done
 
 KimonoGirlKuniAfterBattleText:
-	text "I trained a lot,"
-	line "so I thought I was"
+	text "Je me suis entraî-"
+	line "née d'arrache-pied"
 
-	para "a capable trainer."
-	line "I guess I'm not."
+	para "et je pensais être"
+	line "au niveau. Et bah"
+	cont "non..."
 	done
 
 KimonoGirlMikiSeenText:
-	text "Do you like my"
-	line "dancing? I'm good"
-	cont "at #MON too."
+	text "Tu aimes mes pas"
+	line "de danse? La pure"
+	cont "classe, non?"
+	cont "Mais je suis aussi"
+	cont "forte en #MON."
 	done
 
 KimonoGirlMikiBeatenText:
-	text "Ooh, you're good"
-	line "at #MON too."
+	text ".... Heu... T'es"
+	line "pas naze non"
+	cont "plus toi!"
 	done
 
 KimonoGirlMikiAfterBattleText:
-	text "I can keep dancing"
-	line "because there are"
+	text "Je continue de"
+	line "danser! Les gens"
+	cont "adorent ça!"
 
-	para "people who enjoy"
-	line "what I do."
-
-	para "My #MON keep my"
-	line "spirits up too."
+	para "Mes #MON aussi."
 	done
 
 SurfGuyNeverLeftAScratchText:
-	text "Not only are the"
-	line "KIMONO GIRLS great"
+	text "Les KIMONO ne sont"
+	line "pas seulement de"
 
-	para "dancers, they're"
-	line "also skilled at"
-	cont "#MON."
+	para "bonnes danseuses,"
+	line "elles sont aussi"
+	cont "douées en #MON."
 
-	para "I always challenge"
-	line "them, but I've"
-
-	para "never even left a"
-	line "scratch…"
+	para "Je les défie"
+	line "souvent..."
 	done
 
 SurfGuyLadGiftText:
-	text "Lad! If you can"
-	line "defeat all the"
+	text "Hep! Si tu réussis"
+	line "à vaincre toutes"
 
-	para "KIMONO GIRLS, I'll"
-	line "give you a gift."
+	para "les KIMONO, je te"
+	line "donnerai alors un"
+	cont "joli cadeau."
 	done
 
 SurfGuyLassieGiftText:
-	text "Lassie, if you can"
-	line "defeat all the"
+	text "Hep! Si tu réussis"
+	line "à vaincre toutes"
 
-	para "KIMONO GIRLS, I'll"
-	line "give you a gift."
+	para "les KIMONO, je te"
+	line "donnerai alors un"
+	cont "joli cadeau."
 	done
 
 SurfGuyLikeADanceText:
-	text "The way you bat-"
-	line "tled, it was like"
-	cont "watching a dance."
+	text "La façon dont tu"
+	line "as combattu..."
+	cont "C'était beau comme"
+	cont "une danse."
 
-	para "It was a rare"
-	line "treat to see!"
+	para "Beau comme une"
+	line "pirouette!"
 
-	para "I want you to have"
-	line "this. Don't worry"
-	cont "--take it!"
+	para "Je veux que tu"
+	line "acceptes ceci."
+	cont "N'aie pas peur!"
+	cont "Prends-le!"
 	done
 
 SurfGuySurfExplanationText:
-	text "That's SURF."
+	text "C'est SURF."
 
-	para "It's a move that"
-	line "lets #MON swim"
-	cont "across water."
+	para "Cette capacité"
+	line "permet aux"
+	cont "#MON de nager."
 	done
 
 SurfGuyElegantKimonoGirlsText:
-	text "I wish my #MON"
-	line "were as elegant as"
-	cont "the KIMONO GIRLS…"
+	text "J'aimerais que mes"
+	line "#MON soient"
+	cont "aussi élégants que"
+	cont "ceux des KIMONO..."
 	done
 
 RhydonText:
-	text "RHYDON: Gugooh"
-	line "gugogooh!"
+	text "RHINOFEROS: Ross!"
+	line "Férrroosss!"
 	done
 
 DanceTheaterCooltrainerMText:
-	text "That man's always"
-	line "with his RHYDON."
+	text "Cet homme est"
+	line "toujours avec son"
+	cont "RHINOFEROS."
 
-	para "Says he wants a"
-	line "#MON that can"
-	cont "SURF and dance."
+	para "Il dit vouloir"
+	line "un #MON sachant"
+	cont "surfer et danser."
 
-	para "Is he trying to"
-	line "make a synchro-"
-	cont "nized swimming"
-	cont "#MON?"
+	para "Est-ce qu'il veut"
+	line "faire de la"
+	cont "natation de #-"
+	cont "MON synchronisée?"
 	done
 
 DanceTheaterGrannyText:
-	text "The KIMONO GIRLS"
-	line "are so beautiful…"
+	text "Les KIMONO sont"
+	line "très belles..."
 
-	para "But they have to"
-	line "go through rigor-"
-	cont "ous training."
+	para "Mais elles doivent"
+	line "suivre un"
+	cont "entraînement de"
+	cont "titan."
 
-	para "And they have to"
-	line "learn to follow"
+	para "Elles doivent"
+	line "apprendre à suivre"
 
-	para "customs before ap-"
-	line "pearing in public."
+	para "des règles avant"
+	line "de se montrer en"
+	cont "public."
 
-	para "But if you love"
-	line "something, any-"
-	cont "thing is possible."
+	para "Mais quand tu"
+	line "aimes quelque"
+	cont "chose, tout est"
+	cont "possible."
 	done
 
 DanceTheaterFancyPanelText:
-	text "It's a fancy panel"
-	line "that's decorated"
-	cont "with flowers."
+	text "C'est un joli"
+	line "paravent décoré de"
+	cont "fleurs."
 	done
 
 DanceTheater_MapEvents:

@@ -1,10 +1,11 @@
-	db "LAND SNAKE@" ; species name
-	dw 411, 310 ; height, weight
+	db "SERPENT@" ; species name
+	db 15 ; height
+	dw 140 ; weight
 
-	db   "It hides deep"
-	next "inside caves where"
-	next "no light ever"
+	db   "Il se cache au fin"
+	next "fond des grottes,"
+	next "à l'abri de toute"
 
-	page "reaches it and"
-	next "remains virtually"
-	next "motionless there.@"
+	page "lumière, et reste"
+	next "immobile pendant"
+	next "très longtemps.@"

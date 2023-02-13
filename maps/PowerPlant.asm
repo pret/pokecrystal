@@ -213,177 +213,176 @@ PowerPlantOfficer1ReturnToPostMovement:
 	step_end
 
 PowerPlantOfficer1AThiefBrokeInText:
-	text "A thief broke into"
-	line "the POWER PLANT…"
+	text "Un voleur s'est"
+	line "introduit dans la"
+	cont "CENTRALE..."
 
-	para "What is the world"
-	line "coming to?"
+	para "Mais où va le"
+	line "monde? Hein?"
 	done
 
 PowerPlantOfficer1CeruleanShadyCharacterText:
-	text "I just got word"
-	line "from CERULEAN."
+	text "On raconte des"
+	line "trucs à AZURIA."
 
-	para "It appears that a"
-	line "shady character"
+	para "Un drôle de type"
+	line "rôde dans les"
 
-	para "has been loitering"
-	line "around."
+	para "environs..."
+	line "C'est flippant."
 	done
 
 PowerPlantOfficer1CouldIAskForYourCooperationText:
-	text "Could I ask for"
-	line "your cooperation?"
+	text "Tu veux bien"
+	line "m'aider?"
 	done
 
 PowerPlantOfficer1HaveToBeefUpSecurityText:
-	text "We'll have to beef"
-	line "up our security"
-	cont "presence."
+	text "Il faut renforcer"
+	line "la sécurité."
 	done
 
 PowerPlantGymGuide1SomeoneStoleAPartText:
-	text "Someone made off"
-	line "with a part that's"
+	text "Quelqu'un a volé"
+	line "une partie essen-"
 
-	para "essential for the"
-	line "generator."
+	para "tielle du généra-"
+	line "teur."
 
-	para "Without it, the"
-	line "new generator's"
-	cont "useless!"
+	para "Sans elle, rien"
+	line "ne marche!"
 	done
 
 PowerPlantGymGuide1GeneratorUpAndRunningText:
-	text "The generator's up"
-	line "and running. It's"
+	text "Le générateur est"
+	line "en marche. Il crée"
 
-	para "making electricity"
-	line "to spare."
+	para "de l'électricité"
+	line "à gogo."
 	done
 
 PowerPlantGymGuide2PowerPlantUpAndRunningText:
-	text "This POWER PLANT"
-	line "had been abandoned"
-	cont "in the past."
+	text "Cette CENTRALE a"
+	line "été abandonnée il"
+	cont "y a longtemps."
 
-	para "We got it back up"
-	line "and running to"
+	para "On l'a relancée"
+	line "pour donner de"
 
-	para "provide power to"
-	line "the MAGNET TRAIN."
+	para "l'énergie au TRAIN"
+	line "MAGNET."
 	done
 
 PowerPlantGymGuide2GeneratorIsRunningAgainText:
-	text "The generator's"
-	line "running again!"
+	text "Le générateur est"
+	line "en marche!"
 	done
 
 PowerPlantOfficer2ManagerHasBeenSadAndFuriousText:
-	text "The POWER PLANT's"
-	line "MANAGER is up"
-	cont "ahead."
+	text "Le PATRON de la"
+	line "CENTRALE est plus"
+	cont "loin."
 
-	para "But since someone"
-	line "wrecked the gener-"
-	cont "ator, he's been"
-	cont "both sad and"
-	cont "furious…"
+	para "Attention, il est"
+	line "furax depuis que"
+	cont "quelqu'un a tout"
+	cont "bousillé son joli"
+	cont "générateur..."
 	done
 
 PowerPlantOfficer2ManagerHasBeenCheerfulText:
-	text "Since the gener-"
-	line "ator's been fixed,"
+	text "Depuis la répara-"
+	line "tion du générateur"
 
-	para "the MANAGER has"
-	line "been cheerful."
+	para "le PATRON est très"
+	line "heureux."
 	done
 
 PowerPlantGymGuide4MagnetTrainConsumesElectricityText:
-	text "The MAGNET TRAIN"
-	line "consumes a lot of"
-	cont "electricity."
+	text "Le TRAIN MAGNET"
+	line "consomme beaucoup"
+	cont "d'électricité."
 
-	para "It can't move if"
-	line "the new generator"
-	cont "isn't operating."
+	para "Il ne bougera pas"
+	line "si le nouveau gé-"
+	cont "nérateur ne marche"
+	cont "pas..."
 	done
 
 PowerPlantGymGuide4WeCanGetMagnetTrainRunningText:
-	text "All right! We can"
-	line "finally get the"
-
-	para "MAGNET TRAIN"
-	line "running again."
+	text "OK! On peut à nou-"
+	line "veau faire marcher"
+	cont "le TRAIN MAGNET."
 	done
 
 PowerPlantManagerWhoWouldRuinMyGeneratorText:
-	text "MANAGER: I, I, I'm"
-	line "ready to blast"
-	cont "someone!"
+	text "PATRON: J'vais"
+	line "exploser! Faut que"
+	cont "j'me défoule!"
 
-	para "Who would dare"
-	line "ruin my generator?"
+	para "Qui a cassé mon"
+	line "générateur? Qui?"
 
-	para "I spent so much"
-	line "time on it!"
+	para "Je l'aimais tant!"
+	line "Comme mon bébé!"
 
-	para "If I catch him,"
-	line "he's going to get"
+	para "Si j'attrape cette"
+	line "crapule, il aura"
 
-	para "a taste of my ZAP"
-	line "CANNON!"
+	para "droit à un coup"
+	line "d'ELECANON!"
 	done
 
 PowerPlantManagerIWontForgiveCulpritText:
-	text "MANAGER: I won't"
-	line "forgive him!"
+	text "PATRON: Je vais"
+	line "m'le faire!"
 
-	para "The culprit can"
-	line "cry and apologize,"
+	para "Même s'il pleure,"
+	line "même s'il prie,"
 
-	para "but I'll still"
-	line "hammer him!"
+	para "je vais quand même"
+	line "me l'faire!"
 
 	para "Gahahahah!"
 	done
 
 PowerPlantManagerThatsThePartText:
-	text "MANAGER: Ah! Yeah!"
+	text "PATRON: Ah! Oui!"
 
-	para "That's the missing"
-	line "PART from my be-"
-	cont "loved generator!"
-	cont "You found it?"
+	para "C'est la PARTIE"
+	line "manquante de mon"
+	cont "joli générateur!"
+	cont "Tu l'as trouvée?"
 	done
 
 PowerPlantManagerTakeThisTMText:
-	text "Wahah! Thanks!"
+	text "Wahah! Merci!"
 
-	para "Here! Take this TM"
-	line "as a reward!"
+	para "Tiens! Prends"
+	line "cette CT!"
 	done
 
 PowerPlantManagerTM07IsZapCannonText:
-	text "MANAGER: TM07 is"
-	line "my ZAP CANNON."
+	text "PATRON: CT07 est"
+	line "l'ELECANON. C'est"
 
-	para "It's a powerful"
-	line "technique!"
+	para "une technique"
+	line "très puissante!"
 
-	para "It's not what any-"
-	line "one would consider"
+	para "Elle n'est pas"
+	line "très précise mais"
 
-	para "accurate, but it"
-	line "packs a wallop!"
+	para "elle dépote! Fais-"
+	line "moi confiance!"
 	done
 
 PowerPlantManagerMyBelovedGeneratorText:
-	text "MANAGER: My be-"
-	line "loved generator!"
+	text "PATRON: Mon petit"
+	line "générateur chéri!"
 
-	para "Keep pumping the"
-	line "electricity out!"
+	para "Pompe l'électrici-"
+	line "té! Allez! Tu dois"
+	cont "pomper!"
 	done
 
 PowerPlant_MapEvents:

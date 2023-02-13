@@ -1,97 +1,94 @@
 AlanGettingStrongerText:
-	text "My @"
+	text "Mon @"
 	text_ram wStringBuffer4
-	text "'s"
-	line "getting stronger,"
-
-	para "exactly as I"
-	line "calculated!"
+	text_start
+	line "est très fort!"
+	cont "Je l'avais prévu!"
 	done
 
 AlanDefeatedMonText:
-	text "By the way, we"
-	line "knocked out a wild"
+	text "Au fait, j'ai"
+	line "battu un"
 
 	para "@"
 	text_ram wStringBuffer4
-	text " just"
-	line "the other day."
+	text_start
+	line "l'autre jour."
 
-	para "Studying up in"
-	line "advance worked!"
+	para "S'entraîner, ça"
+	line "paye!"
 	done
 
 AlanLostAMonText:
-	text "By the way, a wild"
+	text "Au fait, un"
 	line "@"
 	text_ram wStringBuffer4
-	text " escaped"
-	cont "on me yesterday."
+	text " m'a"
+	cont "échappé hier."
 
-	para "A computational"
-	line "error on my part…"
+	para "Une erreur de"
+	line "tactique..."
 	done
 
 AlanBattleRematchText:
-	text "I've studied quite"
-	line "a bit since then,"
+	text "J'ai bien étudié"
+	line "et j'ai fait de"
+	cont "gros progrès!"
 
-	para "and I've gotten a"
-	line "lot better!"
-
-	para "I'm hanging out on"
+	para "Je suis vers"
 	line "@"
 	text_ram wStringBuffer5
 	text "."
 
-	para "Can you come down"
-	line "for a battle?"
+	para "Tu viens te faire"
+	line "un p'tit combat?"
 	done
 
 AlanHangUpText:
-	text "See you later!"
+	text "A plus tard!"
 	done
 
 AlanFoundItemText:
-	text "Hehehe, I picked"
-	line "up something nice!"
+	text "J'ai trouvé un"
+	line "truc chouette!"
 
-	para "You can have it!"
-	line "Why don't you come"
+	para "C'est pour toi!"
+	line "Tu viens vers"
 
-	para "to @"
+	para "@"
 	text_ram wStringBuffer5
 	text_start
-	line "and pick it up?"
+	line "pour le prendre?"
 	done
 
 AlanHaventPickedUpAnythingText:
-	text "I haven't picked"
-	line "up anything yet."
+	text "Je n'ai encore"
+	line "rien trouvé."
 
-	para "I'll call you if I"
-	line "find something."
+	para "Je t'appelle si"
+	line "j'ai du nouveau."
 	done
 
 AlanReminderText:
-	text "If we don't battle"
-	line "soon, I'll forget"
-	cont "my strategy!"
+	text "Y faut qu'on se"
+	line "batte! Je vais"
+	cont "oublier ma super"
+	cont "stratégie!"
 
-	para "I'm waiting on"
+	para "J'attends vers"
 	line "@"
 	text_ram wStringBuffer5
 	text "!"
 	done
 
 AlanComePickUpGiftText:
-	text "I have to do my"
-	line "homework, so can"
+	text "J'ai des devoirs à"
+	line "faire. Tu peux"
 
-	para "you come get your"
-	line "gift right away?"
+	para "venir prendre ton"
+	line "cadeau maintenant?"
 
-	para "I'm waiting on"
+	para "J'attends vers"
 	line "@"
 	text_ram wStringBuffer5
 	text "!"

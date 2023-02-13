@@ -63,49 +63,44 @@ HallOfFame_SlowlyApproachMachine:
 	step_end
 
 HallOfFame_LanceText:
-	text "LANCE: It's been a"
-	line "long time since I"
-	cont "last came here."
+	text "PETER: Je ne suis"
+	line "pas venu ici"
+	cont "depuis longtemps."
 
-	para "This is where we"
-	line "honor the LEAGUE"
+	para "Ce lieu consacre"
+	line "les MAITRES de la"
 
-	para "CHAMPIONS for all"
-	line "eternity."
+	para "LIGUE pour l'éter-"
+	line "nité."
 
-	para "Their courageous"
-	line "#MON are also"
-	cont "inducted."
+	para "Leurs courageux"
+	line "#MON sont aussi"
+	cont "accueillis."
 
-	para "Here today, we"
-	line "witnessed the rise"
+	para "Aujourd'hui, un"
+	line "nouveau MAITRE a"
 
-	para "of a new LEAGUE"
-	line "CHAMPION--a"
+	para "fait son appari-"
+	line "tion. Un MAITRE"
 
-	para "trainer who feels"
-	line "compassion for,"
+	para "aimant ses #MON"
+	line "plus que tout."
 
-	para "and trust toward,"
-	line "all #MON."
+	para "Un dresseur"
+	line "persévérant et"
+	cont "déterminé."
 
-	para "A trainer who"
-	line "succeeded through"
+	para "Tu possèdes tous"
+	line "les atouts pour"
 
-	para "perseverance and"
-	line "determination."
+	para "être le plus grand"
+	line "des MAITRES!"
 
-	para "The new LEAGUE"
-	line "CHAMPION who has"
+	para "<PLAY_G>, je vais"
+	line "inscrire ton nom"
 
-	para "all the makings"
-	line "of greatness!"
-
-	para "<PLAY_G>, allow me"
-	line "to register you"
-
-	para "and your partners"
-	line "as CHAMPIONS!"
+	para "et celui de tes"
+	line "amis!"
 	done
 
 HallOfFame_MapEvents:

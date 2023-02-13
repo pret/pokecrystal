@@ -21,26 +21,27 @@ EcruteakMartGrannyScript:
 	jumptextfaceplayer EcruteakMartGrannyText
 
 EcruteakMartSuperNerdText:
-	text "My EEVEE evolved"
-	line "into an ESPEON."
+	text "Mon EVOLI a évolué"
+	line "en MENTALI."
 
-	para "But my friend's"
-	line "EEVEE turned into"
-	cont "an UMBREON."
+	para "Mais l'EVOLI de"
+	line "mon copain a"
+	cont "évolué en NOCTALI."
 
-	para "I wonder why? We"
-	line "both were raising"
+	para "Je me demande"
+	line "pourquoi? On a"
 
-	para "our EEVEE in the"
-	line "same way…"
+	para "tous les deux"
+	line "élevé notre EVOLI"
+	cont "de la même façon!"
 	done
 
 EcruteakMartGrannyText:
-	text "If you use REVIVE,"
-	line "a #MON that's"
+	text "Si tu utilises"
+	line "RAPPEL, le #MON"
 
-	para "fainted will wake"
-	line "right up."
+	para "K.O. reviendra à"
+	line "lui."
 	done
 
 EcruteakMart_MapEvents:

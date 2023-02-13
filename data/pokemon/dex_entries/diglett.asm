@@ -1,10 +1,11 @@
-	db "MOLE@" ; species name
-	dw 8, 20 ; height, weight
+	db "TAUPE@" ; species name
+	db 2 ; height
+	dw 8 ; weight
 
-	db   "It digs under-"
-	next "ground and chews"
-	next "on tree roots,"
+	db   "Il creuse le sol"
+	next "et mâchouille les"
+	next "racines d'arbres,"
 
-	page "sticking its head"
-	next "out only when the"
-	next "sun isn't bright.@"
+	page "ne sortant la tête"
+	next "que lorsque le so-"
+	next "leil est faible.@"

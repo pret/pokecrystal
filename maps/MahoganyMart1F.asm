@@ -155,67 +155,69 @@ MahoganyMart1FLanceGoDownStairsMovement:
 	step_end
 
 MahoganyMart1FRageCandyBarText: ; unreferenced
-	text "Hello, kiddo!"
+	text "Salut, toi!"
 
-	para "How would you like"
-	line "some RAGECANDYBAR?"
+	para "Ca te dirait du"
+	line "BONBON RAGE?"
 
-	para "It's the thing to"
-	line "eat in MAHOGANY!"
+	para "C'est cool d'en"
+	line "manger à ACAJOU!"
 	done
 
 MahoganyMart1FPharmacistText_LanceEntered:
-	text "Arrgh… You found"
-	line "the secret stair-"
-	cont "way…"
+	text "Graaah... Tu as"
+	line "trouvé l'escalier"
+	cont "secret!"
 	done
 
 MahoganyMart1FBlackBeltText:
-	text "Heheh! The experi-"
-	line "ment worked like a"
-	cont "charm."
+	text "Hé hé!! Ca marche"
+	line "pas mal pour moi!"
+	cont "Hé hé!"
 
-	para "MAGIKARP are just"
-	line "worthless, but"
+	para "Les MAGICARPE ne"
+	line "valent rien mais"
 
-	para "GYARADOS are big"
-	line "moneymakers."
+	para "les LEVIATOR rap-"
+	line "portent gros!"
 	done
 
 MahoganyMart1FBlackBeltText_LanceEntered:
-	text "Urrgh…"
+	text "Gueuhhh..."
 
-	para "That guy's dragon"
-	line "#MON are tough…"
+	para "Les #MON dragon"
+	line "de ce type sont"
+	cont "super forts..."
 	done
 
 MahoganyMart1FLanceDragoniteHyperBeamText:
-	text "LANCE: DRAGONITE,"
-	line "HYPER BEAM."
+	text "PETER: DRACOLOSSE,"
+	line "ULTRALASER."
 	done
 
 MahoganyMart1FLanceRadioText:
-	text "What took you,"
-	line "<PLAY_G>?"
+	text "Tu en as mis du"
+	line "temps, <PLAY_G>!"
 
-	para "Just as I thought,"
-	line "that strange radio"
+	para "Comme je le pen-"
+	line "sais, cet étrange"
 
-	para "signal is coming"
-	line "from here."
+	para "signal radio vient"
+	line "d'ici."
 	done
 
 MahoganyMart1FLanceStairsText:
-	text "The stairs are"
-	line "right here."
+	text "Les escaliers sont"
+	line "par ici."
 	done
 
 MahoganyMart1FLanceSplitUpText:
-	text "LANCE: <PLAY_G>, we"
-	line "should split up to"
+	text "PETER: <PLAY_G>,"
+	line "nous ferions mieux"
 
-	para "check this place."
-	line "I'll go first."
+	para "de nous séparer."
+	line "Je passe en"
+	cont "premier."
 	done
 
 MahoganyMart1F_MapEvents:

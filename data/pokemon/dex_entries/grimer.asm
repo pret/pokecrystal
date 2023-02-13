@@ -1,10 +1,11 @@
-	db "SLUDGE@" ; species name
-	dw 211, 660 ; height, weight
+	db "DEGUEU@" ; species name
+	db 9 ; height
+	dw 300 ; weight
 
-	db   "When two of these"
-	next "#MON's bodies"
-	next "are combined"
+	db   "Quand les corps de"
+	next "2 TADMORV se com-"
+	next "binent, de nou-"
 
-	page "together, new"
-	next "poisons are"
-	next "created.@"
+	page "veaux poisons sont"
+	next "créés."
+	next "@"

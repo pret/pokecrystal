@@ -46,56 +46,61 @@ GoldenrodBikeShopBicycle:
 	jumptext GoldenrodBikeShopBicycleText
 
 GoldenrodBikeShopClerkIntroText:
-	text "…sigh… I moved"
-	line "here, but I can't"
+	text "...(soupir)..."
+	line "J'ai déménagé ici"
 
-	para "sell my BICYCLES."
-	line "Why is that?"
+	para "mais je n'arrive"
+	line "pas à vendre mes"
+	cont "BICYCLETTES."
+	cont "Pourquoi?"
 
-	para "Could you ride a"
-	line "BICYCLE and adver-"
-	cont "tise for me?"
+	para "Pourrais-tu faire"
+	line "de la BICYCLETTE"
+	cont "et me faire de la"
+	cont "pub?"
 	done
 
 GoldenrodBikeShopClerkAgreedText:
-	text "Really? Great!"
+	text "Vraiment? Génial!"
 
-	para "Give me your name"
-	line "and phone number,"
+	para "Donne-moi ton nom"
+	line "et ton numéro de"
 
-	para "and I'll loan you"
-	line "a BICYCLE."
+	para "téléphone et je te"
+	line "prêterai une"
+	cont "BICYCLETTE."
 	done
 
 BorrowedABicycleText:
-	text "<PLAYER> borrowed a"
-	line "BICYCLE."
+	text "<PLAYER> emprunte"
+	line "une BICYCLETTE."
 	done
 
 GoldenrodBikeShopClerkFirstRateBikesText:
-	text "My BICYCLES are"
-	line "first-rate! You"
+	text "Mes BICYCLETTES"
+	line "sont trop bien!"
 
-	para "can ride them"
-	line "anywhere."
+	para "Tu peux en faire"
+	line "partout."
 	done
 
 GoldenrodBikeShopClerkRefusedText:
-	text "…sigh… Oh, for"
-	line "the kindness of"
-	cont "people…"
+	text "...(soupir)..."
+	line "Ah, que dire de"
+	cont "plus..."
 	done
 
 GoldenrodBikeShopJustReleasedCompactBikeText:
-	text "Just released!"
+	text "Tout chô tout bô!"
 
-	para "First-rate compact"
-	line "BICYCLES!"
+	para "BICYCLETTES de"
+	line "poche de premier"
+	cont "choix!"
 	done
 
 GoldenrodBikeShopBicycleText:
-	text "It's a shiny new"
-	line "BICYCLE!"
+	text "C'est une sacrée"
+	line "jolie BICYCLETTE!"
 	done
 
 GoldenrodBikeShop_MapEvents:

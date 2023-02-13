@@ -1,59 +1,59 @@
 HueyAnswerPhoneText:
-	text "Yeah, this is"
+	text "Ouais! C'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "."
 
-	para "Huh? What's up,"
+	para "Ca boume,"
 	line "<PLAYER>?"
 	done
 
 HueyAnswerPhoneDayText:
-	text "Yeah, this is"
+	text "Ouais! C'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "."
 
-	para "Huh? What's up"
+	para "Ca boume,"
 	line "<PLAYER>?"
 	done
 
 HueyAnswerPhoneNiteText:
-	text "Yeah, this is"
+	text "Ouais! C'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "."
 
-	para "Huh? What's up"
+	para "Ca boume,"
 	line "<PLAYER>?"
 	done
 
 HueyGreetText:
 	text "Yo, <PLAYER>!"
-	line "You awake?"
+	line "T'es debout?"
 
-	para "It's me, @"
+	para "C'est @"
 	text_ram wStringBuffer3
 	text "!"
-	line "How's it going?"
+	line "Ca va-t-y?"
 	done
 
 HueyGreetDayText:
-	text "Yo, <PLAYER>! You"
-	line "free right now?"
+	text "Yo, <PLAYER>!"
+	line "T'as une minute?"
 
-	para "It's me, @"
+	para "C'est @"
 	text_ram wStringBuffer3
 	text "!"
-	line "How's it going?"
+	line "Ca va-t-y?"
 	done
 
 HueyGreetNiteText:
 	text "Yo, <PLAYER>!"
-	line "Were you asleep?"
+	line "Tu dormais?"
 
-	para "It's me, @"
+	para "C'est @"
 	text_ram wStringBuffer3
 	text "!"
-	line "How's it going?"
+	line "Ca va-t-y?"
 	done

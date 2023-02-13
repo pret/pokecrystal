@@ -323,179 +323,181 @@ Route43MaxEther:
 	itemball MAX_ETHER
 
 PokemaniacBenSeenText:
-	text "I love #MON!"
+	text "J'adoooore les"
+	line "#MON!"
 
-	para "That's why I"
-	line "started--and why"
+	para "C'est pour ça que"
+	line "je les collection-"
 
-	para "I'll keep on col-"
-	line "lecting #MON!"
+	para "ne tous! Vive les"
+	line "jolis #MON!"
 	done
 
 PokemaniacBenBeatenText:
-	text "How could you do"
-	line "this to me?"
+	text "Comment oses-tu?"
 	done
 
 PokemaniacBenAfterBattleText:
-	text "What else do I"
-	line "like besides"
-	cont "#MON?"
+	text "Ce que j'aime à"
+	line "part les #MON?"
 
-	para "MARY on the radio."
-	line "I bet she's cute!"
+	para "LULA à la radio."
+	line "Elle doit être"
+	cont "mignonne!"
 	done
 
 PokemaniacBrentSeenText:
-	text "Hey! Do you have"
-	line "any rare #MON?"
+	text "Hé! Tu as des"
+	line "#MON rares?"
 	done
 
 PokemaniacBrentBeatenText:
-	text "Oh, my poor #-"
-	line "MON! Darlings!"
+	text "Oh! Mes jolis"
+	line "#MON!"
 	done
 
 PokemaniacBrentAfterBattleText:
-	text "I'd be happy just"
-	line "to own a single"
-	cont "rare #MON."
+	text "J'aimerais tant"
+	line "avoir de jolis"
+	cont "#MON rares."
 	done
 
 PokemaniacRonSeenText:
-	text "Would you get"
-	line "this?"
+	text "Tu le crois, toi?"
 
-	para "Some <RIVAL> guy"
-	line "made fun of my"
+	para "Un sale type,"
+	line "<RIVAL>, s'est"
+	cont "moqué de mes"
 	cont "#MON!"
 
-	para "Darn it! My #-"
-	line "MON's great!"
+	para "C'est du n'importe"
+	line "quoi! Mes #MON"
+	cont "sont trop cool!"
 	done
 
 PokemaniacRonBeatenText:
-	text "My NIDOKING did"
-	line "pretty right on!"
+	text "Mon NIDOKING est"
+	line "le plus fort!"
 	done
 
 PokemaniacRonAfterBattleText:
-	text "It's okay for"
-	line "people to like"
+	text "Les gens aiment"
+	line "les #MON"
+	cont "différents."
 
-	para "different types"
-	line "of #MON."
-
-	para "#MON isn't just"
-	line "about having the"
-	cont "most powerful one."
+	para "Avoir le #MON"
+	line "le plus puissant"
+	cont "n'est pas le but."
 	done
 
 FisherMarvinSeenText:
-	text "I'm in a slump."
+	text "J'suis pas fort."
 
-	para "Maybe it's the"
-	line "gear I'm using."
+	para "Mon matos n'est"
+	line "pas bon."
 
-	para "Let's battle for a"
-	line "change of pace!"
+	para "On va s'battre."
+	line "Ca va me détendre!"
 	done
 
 FisherMarvinBeatenText:
-	text "I lost, but I feel"
-	line "better anyway."
+	text "J'ai perdu, mais"
+	line "ça va mieux."
 	done
 
 FisherMarvinAfterBattleText:
-	text "KURT's LURE BALL"
-	line "is the best for"
+	text "L'APPAT BALL de"
+	line "FARGAS est la"
 
-	para "catching hooked"
-	line "#MON."
+	para "meilleure pour"
+	line "attraper les #-"
+	cont "MON ferrés."
 
-	para "It's much more"
-	line "effective than a"
-	cont "ULTRA BALL."
+	para "C'est plus effica-"
+	line "ce qu'une HYPER"
+	cont "BALL."
 	done
 
 CamperSpencerSeenText:
-	text "I can do so much"
-	line "with my #MON--"
-	cont "it's super-fun!"
+	text "Mes #MON et"
+	line "moi, on est des"
+	cont "super potes!"
 	done
 
 CamperSpencerBeatenText:
-	text "Losing isn't fun"
-	line "at all…"
+	text "Perdre..."
+	line "C'est mal."
 	done
 
 CamperSpencerAfterBattleText:
-	text "What is going on"
-	line "at LAKE OF RAGE?"
+	text "Que se passe-t-il"
+	line "au LAC COLERE?"
 
-	para "We were planning"
-	line "to camp there."
+	para "On voulait y"
+	line "camper."
 	done
 
 PicnickerTiffanySeenText:
-	text "Are you going to"
-	line "LAKE OF RAGE too?"
+	text "Tu vas aussi au"
+	line "LAC COLERE?"
 
-	para "Let's play for a "
-	line "little while!"
+	para "On va jouer,"
+	line "d'abord!"
 	done
 
 PicnickerTiffanyBeatenText:
-	text "I played too much!"
+	text "Oups!"
 	done
 
 PicnickerTiffanyWantsPicnicText:
-	text "I'm having a pic-"
-	line "nic with #MON."
+	text "Je pique-nique"
+	line "avec mes #MON."
 
-	para "Won't you join us?"
+	para "Tu veux venir?"
 	done
 
 PicnickerTiffanyClefairyText:
-	text "Isn't my CLEFAIRY"
-	line "just the most"
-	cont "adorable thing?"
+	text "Mon MELOFEE ne"
+	line "serait pas le plus"
+	cont "mimi du monde, par"
+	cont "hasard?"
 	done
 
 Route43Sign1Text:
 	text "ROUTE 43"
 
-	para "LAKE OF RAGE -"
-	line "MAHOGANY TOWN"
+	para "LAC COLERE -"
+	line "ACAJOU"
 	done
 
 Route43Sign2Text:
 	text "ROUTE 43"
 
-	para "LAKE OF RAGE -"
-	line "MAHOGANY TOWN"
+	para "LAC COLERE -"
+	line "ACAJOU"
 	done
 
 Route43TrainerTipsText:
-	text "TRAINER TIPS"
+	text "ASTUCE"
 
-	para "All #MON have"
-	line "pros and cons"
+	para "Tous les #MON"
+	line "ont des atouts et"
 
-	para "depending on their"
-	line "types."
+	para "des défauts en"
+	line "fonction de leurs"
+	cont "types."
 
-	para "If their types"
-	line "differ, a higher-"
+	para "Suivant les types,"
+	line "un #MON de haut"
 
-	para "level #MON may"
-	line "lose in battle."
+	para "niveau peut perdre"
+	line "un combat."
 
-	para "Learn which types"
-	line "are strong and"
+	para "Découvrez quels"
+	line "types ont l'avan-"
 
-	para "weak against your"
-	line "#MON's type."
+	para "tage sur certains"
+	line "#MON."
 	done
 
 Route43_MapEvents:

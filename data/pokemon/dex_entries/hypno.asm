@@ -1,10 +1,11 @@
-	db "HYPNOSIS@" ; species name
-	dw 503, 1670 ; height, weight
+	db "HYPNOSE@" ; species name
+	db 16 ; height
+	dw 756 ; weight
 
-	db   "The longer it"
-	next "swings its"
-	next "pendulum, the"
+	db   "Plus il balance"
+	next "son pendule, plus"
+	next "il maintient ses"
 
-	page "longer the effects"
-	next "of its hypnosis"
-	next "last.@"
+	page "adversaires en-"
+	next "dormis."
+	next "@"

@@ -74,136 +74,131 @@ PewterGymStatue:
 	jumpstd GymStatue2Script
 
 BrockIntroText:
-	text "BROCK: Wow, it's"
-	line "not often that we"
+	text "PIERRE: C'est pas"
+	line "tous les jours"
 
-	para "get a challenger"
-	line "from JOHTO."
+	para "qu'on reçoit de la"
+	line "visite de quelqu'"
+	cont "un de JOHTO."
 
-	para "I'm BROCK, the"
-	line "PEWTER GYM LEADER."
+	para "Moi c'est PIERRE,"
+	line "le CHAMPION de"
 
-	para "I'm an expert on"
-	line "rock-type #MON."
+	para "l'ARENE d'ARGENTA."
+	line "J'adore les #-"
+	cont "MON de la roche."
 
-	para "My #MON are im-"
-	line "pervious to most"
+	para "Mes #MON sont"
+	line "insensibles à la"
 
-	para "physical attacks."
-	line "You'll have a hard"
+	para "plupart des atta-"
+	line "ques physiques. Tu"
 
-	para "time inflicting"
-	line "any damage."
+	para "vas en baver pour"
+	line "leur faire des"
+	cont "dégâts."
 
-	para "Come on!"
+	para "C'est parti!"
 	done
 
 BrockWinLossText:
-	text "BROCK: Your #-"
-	line "MON's powerful at-"
-	cont "tacks overcame my"
-	cont "rock-hard defense…"
+	text "PIERRE: Tes #-"
+	line "MON ont pu passer"
+	cont "ma défense de"
+	cont "pierre..."
 
-	para "You're stronger"
-	line "than I expected…"
+	para "Tu es plus balèze"
+	line "que je ne le"
+	cont "pensais..."
 
-	para "Go ahead--take"
-	line "this BADGE."
+	para "Tiens... Prends"
+	line "ce BADGE."
 	done
 
 ReceivedBoulderBadgeText:
-	text "<PLAYER> received"
-	line "BOULDERBADGE."
+	text "<PLAYER> reçoit"
+	line "le BADGE ROCHE."
 	done
 
 BrockBoulderBadgeText:
-	text "BROCK: <PLAY_G>,"
-	line "thanks. I enjoyed"
+	text "PIERRE: <PLAY_G>,"
+	line "merci. J'ai aimé"
 
-	para "battling you, even"
-	line "though I am a bit"
-	cont "upset."
+	para "me battre contre"
+	line "toi, même si je"
+	cont "l'ai mauvaise."
 
-	para "That BOULDERBADGE"
-	line "will make your"
-
-	para "#MON even more"
-	line "powerful."
+	para "Ce BADGE ROCHE"
+	line "renforcera tes"
+	cont "#MON."
 	done
 
 BrockFightDoneText:
-	text "BROCK: The world"
-	line "is huge. There are"
+	text "PIERRE: Grand est"
+	line "le monde. Beaucoup"
 
-	para "still many strong"
-	line "trainers like you."
+	para "de dresseurs tu"
+	line "rencontreras."
+	cont "Oh que oui."
 
-	para "Just wait and see."
-	line "I'm going to be-"
-	cont "come a lot strong-"
-	cont "er too."
+	para "Tu verras..."
+	line "Je vais devenir"
+	cont "super balèze."
 	done
 
 CamperJerrySeenText:
-	text "The trainers of"
-	line "this GYM use rock-"
-	cont "type #MON."
+	text "Les dresseurs de"
+	line "cette ARENE utili-"
+	cont "sent des #MON"
+	cont "du type ROCHE."
 
-	para "The rock-type has"
-	line "high DEFENSE."
+	para "Cet élément a une"
+	line "grande DEFENSE."
 
-	para "Battles could end"
-	line "up going a long"
-
-	para "time. Are you"
-	line "ready for this?"
+	para "Les combats ris-"
+	line "quent de durer"
+	cont "super longtemps."
 	done
 
 CamperJerryBeatenText:
-	text "I have to win"
-	line "these battles…"
+	text "Il faut que je"
+	line "gagne..."
 	done
 
 CamperJerryAfterBattleText:
-	text "Hey, you! Trainer"
-	line "from JOHTO! BROCK"
+	text "Hé toi! Dresseur"
+	line "de JOHTO! PIERRE"
 
-	para "is tough. He'll"
-	line "punish you if you"
-
-	para "don't take him"
-	line "seriously."
+	para "est super fort! Il"
+	line "va te punir la"
+	cont "tête!"
 	done
 
 PewterGymGuideText:
-	text "Yo! CHAMP in"
-	line "making! You're"
+	text "Hé! Graine de"
+	line "star! Tu"
 
-	para "really rocking."
-	line "Are you battling"
+	para "affrontes les"
+	line "CHAMPIONS de"
+	cont "KANTO, non?"
 
-	para "the GYM LEADERS of"
-	line "KANTO?"
+	para "Ils sont tout"
+	line "aussi forts et"
 
-	para "They're strong and"
-	line "dedicated people,"
-
-	para "just like JOHTO's"
-	line "GYM LEADERS."
+	para "déterminés que"
+	line "ceux de JOHTO."
 	done
 
 PewterGymGuideWinText:
-	text "Yo! CHAMP in"
-	line "making! That GYM"
+	text "Hé! Graine de"
+	line "star! Cette"
 
-	para "didn't give you"
-	line "much trouble."
+	para "ARENE ne t'a pas"
+	line "posé trop de"
+	cont "problèmes..."
 
-	para "The way you took"
-	line "charge was really"
-
-	para "inspiring. I mean"
-	line "that seriously."
+	para "Tu m'as bluffé."
+	line "Sérieusement."
 	done
 
 PewterGym_MapEvents:

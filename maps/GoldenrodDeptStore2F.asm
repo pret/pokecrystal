@@ -40,60 +40,63 @@ GoldenrodDeptStore2FElevatorButton:
 	jumpstd ElevatorButtonScript
 
 GoldenrodDeptStore2FUnusedText1: ; unreferenced
-	text "We intend to sell"
-	line "items for #MON"
-	cont "to hold."
+	text "Nous voulons"
+	line "vendre des objets"
+	cont "pour les #MON."
 
-	para "This is a free"
-	line "gift. Have a #-"
-	cont "MON hold it."
+	para "Voici un joli"
+	line "cadeau et en plus"
+	cont "c'est gratuit!"
+	cont "Donne-le à un"
+	cont "#MON."
 	done
 
 GoldenrodDeptStore2FUnusedText2: ; unreferenced
-	text "By giving #MON"
-	line "items to hold, I"
-
-	para "bet trainers will"
-	line "develop new battle"
-	cont "techniques."
+	text "Faire tenir des"
+	line "objets aux #MON"
+	cont "pendant le combat"
+	cont "peut te permettre"
+	cont "de prendre l'avan-"
+	cont "tage."
 	done
 
 GoldenrodDeptStore2FYoungsterText:
-	text "#GEAR can store"
-	line "up to ten phone"
-	cont "numbers."
+	text "Le #MATOS"
+	line "peut enregistrer"
+	cont "jusqu'à dix"
+	cont "numéros."
 
-	para "It's hard to de-"
-	line "cide which numbers"
-	cont "to keep."
+	para "C'est difficile de"
+	line "décider quel"
+	cont "numéro garder."
 	done
 
 GoldenrodDeptStore2FCooltrainerFText:
-	text "I got my ABRA at"
-	line "the GAME CORNER."
+	text "J'ai eu mon ABRA"
+	line "au CASINO."
 
-	para "Now it's my best"
-	line "partner."
+	para "Maintenant, c'est"
+	line "mon meilleur ami."
 	done
 
 GoldenrodDeptStore2FGentlemanText:
-	text "This DEPT.STORE"
-	line "makes me realize"
+	text "Ce CENTRE COMMER-"
+	line "CIAL montre que"
 
-	para "that GOLDENROD is"
-	line "a big city."
+	para "DOUBLONVILLE est"
+	line "une grande ville."
 
-	para "The selection here"
-	line "is unmatched any-"
-	cont "where else."
+	para "La marchandise est"
+	line "la meilleure de"
+	cont "la région."
 	done
 
 GoldenrodDeptStore2FDirectoryText:
-	text "Your Travel"
-	line "Companion"
+	text "Votre compagnon de"
+	line "voyage"
 
-	para "2F TRAINER'S"
-	line "   MARKET"
+	para "1ER  BOUTIQUE"
+	line "     DRESSEUR"
 	done
 
 GoldenrodDeptStore2F_MapEvents:

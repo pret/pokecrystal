@@ -1,10 +1,11 @@
-	db "BONEKEEPER@" ; species name
-	dw 303, 990 ; height, weight
+	db "GARD'OS@" ; species name
+	db 10 ; height
+	dw 450 ; weight
 
-	db   "Somewhere in the"
-	next "world is a ceme-"
-	next "tery just for"
+	db   "Il existe un cime-"
+	next "tière pour les"
+	next "OSSATUEUR."
 
-	page "MAROWAK. It gets"
-	next "its bones from"
-	next "those graves.@"
+	page "C'est là qu'ils se"
+	next "fournissent en"
+	next "ossements.@"

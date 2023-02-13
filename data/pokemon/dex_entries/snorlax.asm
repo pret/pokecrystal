@@ -1,10 +1,11 @@
-	db "SLEEPING@" ; species name
-	dw 611, 10140 ; height, weight
+	db "PIONCEUR@" ; species name
+	db 21 ; height
+	dw 4600 ; weight
 
-	db   "This #MON's"
-	next "stomach is so"
-	next "strong, even"
+	db   "L'estomac de ce"
+	next "#MON est si"
+	next "résistant qu'il"
 
-	page "eating moldy or"
-	next "rotten food will"
-	next "not affect it.@"
+	page "peut même digérer"
+	next "de la nourriture"
+	next "avariée.@"

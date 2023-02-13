@@ -1,10 +1,11 @@
-	db "TINYTURTLE@" ; species name
-	dw 108, 200 ; height, weight
+	db "MINITORTUE@" ; species name
+	db 5 ; height
+	dw 90 ; weight
 
-	db   "When it feels"
-	next "threatened, it"
-	next "draws its legs"
+	db   "S'il est menacé,"
+	next "il rétracte ses"
+	next "pattes dans sa"
 
-	page "inside its shell"
-	next "and sprays water"
-	next "from its mouth.@"
+	page "carapace et crache"
+	next "de l'eau."
+	next "@"

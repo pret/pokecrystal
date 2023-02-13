@@ -1,10 +1,11 @@
-	db "LIGHT@" ; species name
-	dw 311, 500 ; height, weight
+	db "LUMIERE@" ; species name
+	db 12 ; height
+	dw 225 ; weight
 
-	db   "This #MON uses"
-	next "the bright part of"
-	next "its body, which"
+	db   "Il utilise la par-"
+	next "tie lumineuse de"
+	next "son corps, prove-"
 
-	page "changed from a"
-	next "dorsal fin, to"
-	next "lure prey.@"
+	page "nant d'une nageoi-"
+	next "re dorsale, pour"
+	next "attirer sa proie.@"

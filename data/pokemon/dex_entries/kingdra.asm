@@ -1,10 +1,11 @@
 	db "DRAGON@" ; species name
-	dw 511, 3350 ; height, weight
+	db 18 ; height
+	dw 1520 ; weight
 
-	db   "It stores energy"
-	next "by sleeping at"
-	next "underwater depths"
+	db   "Il emmagasine de"
+	next "l'énergie en res-"
+	next "tant dans les"
 
-	page "at which no other"
-	next "life forms can"
-	next "survive.@"
+	page "fonds marins, là"
+	next "où rien d'autre ne"
+	next "peut survivre.@"

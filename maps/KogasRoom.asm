@@ -81,50 +81,51 @@ KogasRoom_EnterMovement:
 KogaScript_KogaBeforeText:
 	text "Fwahahahaha!"
 
-	para "I am KOGA of the"
-	line "ELITE FOUR."
+	para "Moi c'est KOGA du"
+	line "CONSEIL des 4."
 
-	para "I live in shadows,"
-	line "a ninja!"
+	para "J'suis un ninja!"
+	line "Comme à la télé!"
 
-	para "My intricate style"
-	line "will confound and"
-	cont "destroy you!"
+	para "Je saute, je lance"
+	line "des shurikens..."
+	cont "J'suis trop fort!"
 
-	para "Confusion, sleep,"
-	line "poison…"
+	para "Mais c'est pas"
+	line "tout..."
 
-	para "Prepare to be the"
-	line "victim of my sin-"
-	cont "ister technique!"
+	para "Tu vas voir ce que"
+	line "c'est la technique"
+	cont "de maître!"
 
 	para "Fwahahahaha!"
 
-	para "#MON is not"
-	line "merely about brute"
+	para "La force c'est"
+	line "bien, mais le poi-"
 
-	para "force--you shall"
-	line "see soon enough!"
+	para "son, le sommeil et"
+	line "la folie, c'est"
+	cont "terrible!"
 	done
 
 KogaScript_KogaBeatenText:
-	text "Ah!"
-	line "You have proven"
-	cont "your worth!"
+	text "Ah! Toi être"
+	line "adversaire"
+	cont "honorable!"
 	done
 
 KogaScript_KogaDefeatText:
-	text "I subjected you to"
-	line "everything I could"
-	cont "muster."
+	text "J'ai combattu de"
+	line "toutes mes forces"
+	cont "mais..."
 
-	para "But my efforts"
-	line "failed. I must"
-	cont "hone my skills."
+	para "Y'a pas moyen."
+	line "Je ne suis pas"
+	cont "assez fort."
 
-	para "Go on to the next"
-	line "room, and put your"
-	cont "abilities to test!"
+	para "Va dans la pro-"
+	line "chaine salle."
+	cont "Bonne chance!"
 	done
 
 KogasRoom_MapEvents:

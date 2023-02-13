@@ -169,83 +169,80 @@ Route46FruitTree2:
 	fruittree FRUITTREE_ROUTE_46_2
 
 HikerBaileySeenText:
-	text "Awright! I'll show"
-	line "you the power of"
-	cont "mountain #MON!"
+	text "Je vais t'montrer"
+	line "la force des"
+	cont "#MON de"
+	cont "montagne!"
 	done
 
 HikerBaileyBeatenText:
-	text "Mercy! You showed"
-	line "me your power!"
+	text "Au secours!"
 	done
 
 HikerBaileyAfterBattleText:
-	text "It's over. I don't"
-	line "mind. We HIKERS"
-	cont "are like that."
+	text "Perdu c'est perdu."
+	line "C'est la vie."
 	done
 
 CamperTedSeenText:
-	text "I'm raising #-"
-	line "MON too!"
+	text "Moi aussi j'ai des"
+	line "#MON!"
 
-	para "Will you battle"
-	line "with me?"
+	para "Ca te dit un bon"
+	line "combat?"
 	done
 
 CamperTedBeatenText:
-	text "Wha…?"
+	text "Hein...?"
 	done
 
 CamperTedAfterBattleText:
-	text "I did my best but"
-	line "came up short."
+	text "J'ai fait de mon"
+	line "mieux..."
 
-	para "No excuses--I"
-	line "admit I lost."
+	para "J'suis pas fort."
+	line "Tant pis."
 	done
 
 PicnickerErin1SeenText:
-	text "I raise #MON"
-	line "too!"
+	text "J'ai des #MON"
+	line "moi z'aussi!"
 
-	para "Will you battle"
-	line "with me?"
+	para "On se fritte la"
+	line "tête?"
 	done
 
 PicnickerErin1BeatenText:
-	text "Oh, rats!"
+	text "Oh, ben mince!"
 	done
 
 PicnickerErinAfterBattleText:
-	text "I've been to many"
-	line "GYMS, but the GYM"
+	text "Je connais toutes"
+	line "les ARENES mais ma"
 
-	para "in GOLDENROD is my"
-	line "favorite."
+	para "préférée c'est"
+	line "celle de DOUBLON-"
+	cont "VILLE."
 
-	para "It's filled with"
-	line "pretty flowers!"
+	para "Y'a tout plein"
+	line "de zolies fleurs!"
 	done
 
 PicnickerErin2BeatenText:
-	text "Aww… I keep losing"
-	line "all the time!"
+	text "Pfff... Je perds"
+	line "tout le temps!"
 
-	para "I'll just have to"
-	line "try harder!"
+	para "Y faut que je"
+	line "m'entraîne!"
 
-	para "Anyway, thanks for"
-	line "battling me again"
-
-	para "and again. Here's"
-	line "that present from"
-	cont "the other time."
+	para "Merci quand même."
+	line "Voilà le cadeau de"
+	cont "la dernière fois."
 	done
 
 Route46SignText:
 	text "ROUTE 46"
-	line "MOUNTAIN RD. AHEAD"
+	line "CHEMIN de MONTAGNE"
 	done
 
 Route46_MapEvents:

@@ -1,59 +1,58 @@
 AlanAnswerPhoneText:
-	text "Yup, it's @"
+	text "C'est @"
 	text_ram wStringBuffer3
 	text "!"
 
-	para "Is this <PLAY_G>?"
-	line "Good morning!"
+	para "<PLAY_G>?"
+	line "Bonjour, toi!"
 	done
 
 AlanAnswerPhoneDayText:
-	text "Yup, it's @"
+	text "C'est @"
 	text_ram wStringBuffer3
 	text "!"
 
-	para "Is that <PLAY_G>?"
+	para "<PLAY_G>?"
 	done
 
 AlanAnswerPhoneNiteText:
-	text "Yup, it's @"
+	text "C'est @"
 	text_ram wStringBuffer3
 	text "!"
 
-	para "Is that <PLAY_G>?"
-	line "Good evening!"
+	para "<PLAY_G>?"
+	line "Bonsoir, toi!"
 	done
 
 AlanGreetText:
-	text "Hello! It's me,"
+	text "Allô! C'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "!"
 	done
 
 AlanGreetDayText:
-	text "Hello! It's me,"
+	text "Allô! C'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "!"
 	done
 
 AlanGreetNiteText:
-	text "Hello! It's me,"
+	text "Allô! C'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "!"
 	done
 
 AlanGenericText:
-	text "<PLAY_G>, are you"
-	line "raising your"
-	cont "#MON properly?"
+	text "<PLAY_G>, tu"
+	line "entraînes bien"
+	cont "tes #MON?"
 
-	para "I read in a book"
-	line "that you should"
+	para "J'ai lu qu'il faut"
+	line "entraîner ses"
 
-	para "raise any #MON"
-	line "you catch with"
-	cont "love and care."
+	para "#MON avec amour"
+	line "et attention."
 	done

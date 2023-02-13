@@ -1,10 +1,11 @@
-	db "FAIRY@" ; species name
-	dw 200, 170 ; height, weight
+	db "FEE@" ; species name
+	db 6 ; height
+	dw 75 ; weight
 
-	db   "Though rarely"
-	next "seen, it becomes"
-	next "easier to spot,"
+	db   "Bien que rarement"
+	next "aperçu, on le"
+	next "croise plus sou-"
 
-	page "for some reason,"
-	next "on the night of a "
-	next "full moon.@"
+	page "vent les nuits de"
+	next "pleine lune."
+	next "@"

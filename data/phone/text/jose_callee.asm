@@ -1,37 +1,38 @@
 JoseAnswerPhoneText:
-	text "Hello, this is"
+	text "Salut c'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "…"
 
 	para "Oh, <PLAY_G>?"
-	line "Good morning!"
+	line "Bonjour!"
 	done
 
 JoseAnswerPhoneDayText:
-	text "Hello, this is"
-	line "@"
-	text_ram wStringBuffer3
-	text "…"
-
-	para "Oh, <PLAY_G>? Hi!"
-	done
-
-JoseAnswerPhoneNiteText:
-	text "Hello, this is"
+	text "Salut c'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "…"
 
 	para "Oh, <PLAY_G>?"
-	line "Good evening!"
+	line "Bonjour!"
+	done
+
+JoseAnswerPhoneNiteText:
+	text "Salut c'est"
+	line "@"
+	text_ram wStringBuffer3
+	text "…"
+
+	para "Oh, <PLAY_G>?"
+	line "Bonsoir!"
 	done
 
 JoseGreetText:
 	text "Oh, <PLAY_G>?"
 
-	para "Tweet! Yeah, it's"
-	line "me, @"
+	para "Yo! C'est moi,"
+	line "@"
 	text_ram wStringBuffer3
 	text "."
 	done
@@ -39,8 +40,8 @@ JoseGreetText:
 JoseGreetDayText:
 	text "Oh, <PLAY_G>?"
 
-	para "Tweet! Yeah, it's"
-	line "me, @"
+	para "Yo! C'est moi,"
+	line "@"
 	text_ram wStringBuffer3
 	text "."
 	done
@@ -48,22 +49,22 @@ JoseGreetDayText:
 JoseGreetNiteText:
 	text "Oh, <PLAY_G>?"
 
-	para "Tweet! Yeah, it's"
-	line "me, @"
+	para "Yo! C'est moi,"
+	line "@"
 	text_ram wStringBuffer3
 	text "."
 	done
 
 JoseGenericText:
-	text "Are your #MON"
-	line "still cooking?"
+	text "Tes #MON"
+	line "sont en forme?"
 
-	para "My @"
+	para "Mon @"
 	text_ram wStringBuffer4
-	text " has"
-	line "too much energy."
+	text_start
+	line "est trop fort."
 
-	para "Once it takes off,"
-	line "it won't come back"
-	cont "for a while."
+	para "S'il part, c'est"
+	line "toujours pour un"
+	cont "moment."
 	done

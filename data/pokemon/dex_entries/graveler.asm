@@ -1,10 +1,11 @@
-	db "ROCK@" ; species name
-	dw 303, 2320 ; height, weight
+	db "ROCHE@" ; species name
+	db 10 ; height
+	dw 1050 ; weight
 
-	db   "It travels by rol-"
-	next "ling on mountain"
-	next "paths. If it gains"
+	db   "Il se déplace en"
+	next "roulant sur les"
+	next "chemins de monta-"
 
-	page "too much speed, it"
-	next "stops by running"
-	next "into huge rocks.@"
+	page "gne. Il s'arrête"
+	next "alors en percutant"
+	next "un rocher.@"

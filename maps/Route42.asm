@@ -224,31 +224,28 @@ Route42SuicuneMovement:
 	step_end
 
 FisherTullySeenText:
-	text "Let me demonstrate"
-	line "the power of the"
-	cont "#MON I caught!"
+	text "Je vais te montrer"
+	line "la puissance de"
+	cont "mes #MON!"
 	done
 
 FisherTullyBeatenText:
-	text "What? That's not"
-	line "right."
+	text "Hein? C'est pas"
+	line "juste!"
 	done
 
 FisherTullyAfterBattleText:
-	text "I want to become"
-	line "the trainer CHAMP"
+	text "Je veux devenir un"
+	line "MAITRE avec mes"
+	cont "nouveaux #MON."
 
-	para "using the #MON"
-	line "I caught."
-
-	para "That's the best"
-	line "part of fishing!"
+	para "C'est pour ça que"
+	line "je pêche!"
 	done
 
 HikerBenjaminSeenText:
-	text "Ah, it's good to"
-	line "be outside!"
-	cont "I feel so free!"
+	text "Ah! L'air pur!"
+	line "C'est la fête!"
 	done
 
 HikerBenjaminBeatenText:
@@ -256,64 +253,62 @@ HikerBenjaminBeatenText:
 	done
 
 HikerBenjaminAfterBattleText:
-	text "Losing feels in-"
-	line "significant if you"
-
-	para "look up at the big"
-	line "sky!"
+	text "J'ai perdu!"
+	line "Honte sur moi!"
 	done
 
 PokemaniacShaneSeenText:
-	text "HEY!"
+	text "HE! TOI!"
 
-	para "This is my secret"
-	line "place! Get lost,"
-	cont "you outsider!"
+	para "C'est mon terri-"
+	line "toire ici!"
+	cont "Dégage!!"
 	done
 
 PokemaniacShaneBeatenText:
-	text "I should have used"
-	line "my MOON STONE…"
+	text "J'aurais dû utili-"
+	line "ser ma jolie"
+	cont "PIERRE LUNE."
 	done
 
 PokemaniacShaneAfterBattleText:
-	text "You're working on"
-	line "a #DEX?"
+	text "Tu bosses sur un"
+	line "#DEX?"
 
-	para "Wow, you must know"
-	line "some pretty rare"
-	cont "#MON!"
+	para "Tu dois connaître"
+	line "plein de #MON"
+	cont "rares!"
 
-	para "May I please see"
-	line "it. Please?"
+	para "J'peux les voir?"
+	line "Steuplait?"
 	done
 
 Route42Sign1Text:
 	text "ROUTE 42"
 
-	para "ECRUTEAK CITY -"
-	line "MAHOGANY TOWN"
+	para "ROSALIA -"
+	line "ACAJOU"
 	done
 
 MtMortarSign1Text:
-	text "MT.MORTAR"
+	text "MONT CREUSET"
 
-	para "WATERFALL CAVE"
-	line "INSIDE"
+	para "GROTTE CASCADE"
+	line "Intérieur"
 	done
 
 MtMortarSign2Text:
-	text "MT.MORTAR"
+	text "MONT CREUSET"
 
-	para "WATERFALL CAVE"
-	line "INSIDE"
+	para "GROTTE CASCADE"
+	line "Intérieur"
 	done
 
 Route42Sign2Text:
 	text "ROUTE 42"
 
-	para "ECRUTEAK CITY -"
-	line "MAHOGANY TOWN"
+	para "ROSALIA -"
+	line "ACAJOU"
 	done
 
 Route42_MapEvents:

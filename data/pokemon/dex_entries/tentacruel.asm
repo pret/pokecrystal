@@ -1,10 +1,11 @@
-	db "JELLYFISH@" ; species name
-	dw 503, 1210 ; height, weight
+	db "MOLLUSQUE@" ; species name
+	db 16 ; height
+	dw 550 ; weight
 
-	db   "When its 80 feel-"
-	next "ers absorb water,"
-	next "it stretches to"
+	db   "Ses 80 tentacules"
+	next "absorbent de l'eau"
+	next "et s'étirent sans"
 
-	page "become like a net"
-	next "to entangle its"
-	next "prey.@"
+	page "fin pour enserrer"
+	next "et capturer ses"
+	next "adversaires.@"

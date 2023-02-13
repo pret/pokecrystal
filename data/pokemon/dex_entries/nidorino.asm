@@ -1,10 +1,11 @@
-	db "POISON PIN@" ; species name
-	dw 211, 430 ; height, weight
+	db "VENEPIC@" ; species name
+	db 9 ; height
+	dw 195 ; weight
 
-	db   "It is easily"
-	next "agitated and uses"
-	next "its horn for"
+	db   "Il s'agite facile-"
+	next "ment et utilise sa"
+	next "corne pour atta-"
 
-	page "offense as soon as"
-	next "it notices an"
-	next "attacker.@"
+	page "quer s'il repère"
+	next "un ennemi."
+	next "@"

@@ -1,10 +1,11 @@
-	db "ARMOR@" ; species name
-	dw 607, 4450 ; height, weight
+	db "ARMURE@" ; species name
+	db 20 ; height
+	dw 2020 ; weight
 
-	db   "In just one of its"
-	next "mighty hands, it"
-	next "has the power to"
+	db   "D'une main seule-"
+	next "ment il a assez de"
+	next "force pour faire"
 
-	page "make the ground"
-	next "shake and moun-"
-	next "tains crumble.@"
+	page "trembler la terre"
+	next "et s'écrouler une"
+	next "montagne.@"

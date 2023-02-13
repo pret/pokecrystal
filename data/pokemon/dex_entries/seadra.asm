@@ -1,10 +1,11 @@
 	db "DRAGON@" ; species name
-	dw 311, 550 ; height, weight
+	db 12 ; height
+	dw 250 ; weight
 
-	db   "The male raises"
-	next "the young. If it"
-	next "is approached, it"
+	db   "Le mâle élève son"
+	next "petit. S'il est"
+	next "approché, il lance"
 
-	page "uses its toxic"
-	next "spikes to fend off"
-	next "the intruder.@"
+	page "ses pics empoison-"
+	next "nés pour repousser"
+	next "l'ennemi.@"

@@ -1,10 +1,11 @@
-	db "BARRIER@" ; species name
-	dw 403, 1200 ; height, weight
+	db "BLOQUEUR@" ; species name
+	db 13 ; height
+	dw 545 ; weight
 
-	db   "It uses the"
-	next "mysterious"
-	next "power it has in"
+	db   "Il utilise un cu-"
+	next "rieux pouvoir con-"
+	next "tenu dans ses"
 
-	page "its fingers to"
-	next "solidify air into"
-	next "an invisible wall.@"
+	page "doigts pour soli-"
+	next "difier l'air en un"
+	next "mur invisible.@"

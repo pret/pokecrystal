@@ -1,10 +1,11 @@
-	db "SCOUT@" ; species name
-	dw 207, 130 ; height, weight
+	db "ESPION@" ; species name
+	db 8 ; height
+	dw 60 ; weight
 
-	db   "When acting as a"
-	next "lookout, it warns"
-	next "others of danger"
+	db   "S'il fait le guet,"
+	next "il prévient les"
+	next "autres d'un danger"
 
-	page "by screeching and"
-	next "hitting the ground"
-	next "with its tail.@"
+	page "en criant et en"
+	next "frappant le sol"
+	next "de sa queue.@"

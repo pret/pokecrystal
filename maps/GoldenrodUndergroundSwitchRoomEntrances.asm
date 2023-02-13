@@ -666,267 +666,263 @@ UndergroundRivalRetreatMovement2:
 	step_end
 
 UndergroundRivalBeforeText:
-	text "Hold it!"
+	text "Minute!"
 
-	para "I saw you, so I"
-	line "tailed you."
+	para "Hé hé! J'étais"
+	line "derrière toi..."
 
-	para "I don't need you"
-	line "underfoot while I"
+	para "J'ai pas besoin de"
+	line "toi pour casser la"
 
-	para "take care of TEAM"
+	para "tête à la TEAM"
 	line "ROCKET."
 
-	para "…Wait a second."
-	line "You beat me be-"
-	cont "fore, didn't you?"
+	para "...Attends voir..."
+	line "Tu m'as battu"
+	cont "avant, non?"
 
-	para "That was just a"
-	line "fluke."
+	para "C'était de la"
+	line "chance."
 
-	para "But I repay my"
-	line "debts!"
+	para "Mais cette fois..."
+	line "Ca va saigner!"
 	done
 
 UndergroundRivalWinText:
-	text "…Why…"
-	line "Why do I lose?"
+	text "...Pourquoi..."
+	line "Moi perdre?"
 
-	para "I've assembled the"
-	line "toughest #MON."
+	para "Mes #MON sont"
+	line "super balèzes!"
 
-	para "I didn't ease up"
-	line "on the gas."
+	para "Je les ai entraî-"
+	line "nés à fond!"
 
-	para "So why do I lose?"
+	para "Alors pourquoi???"
 	done
 
 UndergroundRivalAfterText:
-	text "…I don't under-"
-	line "stand…"
+	text "C'est..."
+	line "Incroyable..."
 
-	para "Is what that LANCE"
-	line "guy said true?"
+	para "Ce qu'a dit PETER"
+	line "est donc vrai?"
 
-	para "That I don't treat"
-	line "#MON properly?"
+	para "Je m'occupe mal de"
+	line "mes #MON?"
 
-	para "Love…"
+	para "Amour..."
 
-	para "Trust…"
+	para "Confiance..."
 
-	para "Are they really"
-	line "what I lack?"
+	para "Est-ce aussi im-"
+	line "portant?"
 
-	para "Are they keeping"
-	line "me from winning?"
+	para "Est-ce la raison"
+	line "de ma défaite?"
 
-	para "I… I just don't"
-	line "understand."
+	para "Je ne comprends"
+	line "plus rien..."
 
-	para "But it's not going"
-	line "to end here."
+	para "Mais ce n'est pas"
+	line "la fin."
 
-	para "Not now. Not"
-	line "because of this."
+	para "Pas maintenant..."
+	line "Pas comme ça."
 
-	para "I won't give up my"
-	line "dream of becoming"
+	para "Je serai le plus"
+	line "grand dresseur de"
 
-	para "the world's best"
-	line "#MON trainer!"
+	para "#MON de tous"
+	line "les temps!"
 	done
 
 UndergroundRivalLossText:
-	text "Humph. This is my"
-	line "real power, wimp."
+	text "Tsss! Voilà ce que"
+	line "c'est la force."
 
-	para "I'll make TEAM"
-	line "ROCKET history."
+	para "J'vais la bouffer"
+	line "la TEAM ROCKET."
 
-	para "And I'm going to"
-	line "grind that LANCE"
-	cont "under my heels."
+	para "Et PETER..."
+	line "J'vais lui casser"
+	cont "ses rêves."
 	done
 
 GoldenrodUndergroundSwitchRoomEntrances_SuperNerdText:
-	text "I was challenged"
-	line "to a battle down-"
-	cont "stairs."
+	text "J'ai fait un"
+	line "combat en bas."
 
-	para "It's rough down"
-	line "there. You'd"
-	cont "better be careful."
+	para "C'était super"
+	line "chaud. Un conseil:"
+	cont "fais super gaffe!"
 	done
 
 GoldenrodUndergroundSwitchRoomEntrances_TeacherText:
-	text "There are some"
-	line "shops downstairs…"
+	text "Il y a des bouti-"
+	line "ques en bas..."
 
-	para "But there are"
-	line "also trainers."
+	para "Mais il y a aussi"
+	line "des dresseurs..."
 
-	para "I'm scared to go"
-	line "down there."
+	para "Alors j'ai peur"
+	line "d'y aller."
 	done
 
 GruntM11SeenText:
-	text "Open one shutter,"
-	line "another closes."
+	text "Ouvre un truc et"
+	line "un autre se ferme."
 
-	para "Bet you can't get"
-	line "where you want!"
+	para "C'est dur d'avan-"
+	line "cer, hein?"
 	done
 
 GruntM11BeatenText:
-	text "Drat! I was sunk"
-	line "by indecision!"
+	text "Zut de flûte!"
+	line "J'suis perdu!"
 	done
 
 GruntM11AfterBattleText:
-	text "I'm confused too…"
-	line "The switch on the"
+	text "Moi aussi je m'y"
+	line "perds: le premier"
 
-	para "end is the one to"
-	line "press first, but…"
+	para "interrupteur à"
+	line "activer est au"
+	cont "bout et après..."
 	done
 
 GruntM25SeenText:
 	text "Kwahaha!"
 
-	para "Confounded by the"
-	line "shutters, are we?"
+	para "Les volets te po-"
+	line "sent un problème?"
 
-	para "I'll let you in on"
-	line "a secret if you"
-	cont "can beat me!"
+	para "Bats-moi et je te"
+	line "confie un p'tit"
+	cont "secret!"
 	done
 
 GruntM25BeatenText:
-	text "Uwww…"
-	line "I blew it."
+	text "Hmmm..."
+	line "Dommage."
 	done
 
 GruntM25AfterBattleText:
-	text "All right. A hint!"
+	text "OK. Un conseil!"
 
-	para "Change the order"
-	line "of switching."
+	para "Change l'ordre"
+	line "d'activation."
 
-	para "That'll change the"
-	line "ways the shutters"
-	cont "open and close."
+	para "Et l'ordre de fer-"
+	line "meture des volets"
+	cont "changera."
 	done
 
 BurglarDuncanSeenText:
-	text "Fork over your"
-	line "goodies!"
+	text "Envoie ton blé!"
 	done
 
 BurglarDuncanBeatenText:
-	text "Mercy!"
+	text "Pitié!"
 	done
 
 BurglarDuncanAfterBattleText:
-	text "Steal and sell!"
-	line "That's basic in"
-	cont "crime, kid!"
+	text "Voler c'est cool!"
+	line "Piller c'est top!"
 	done
 
 BurglarEddieSeenText:
-	text "They ditched this"
-	line "project before"
-	cont "they finished."
+	text "Ils ont abandonné"
+	line "ce projet avant la"
+	cont "fin."
 
-	para "I'm searching for"
-	line "leftover loot."
+	para "Je cherche des"
+	line "restes à voler."
 	done
 
 BurglarEddieBeatenText:
-	text "Over the top!"
+	text "Yarglah!"
 	done
 
 BurglarEddieAfterBattleText:
-	text "UNDERGROUND WARE-"
-	line "HOUSE?"
+	text "Le DEPOT"
+	line "SOUTERRAIN?"
 
-	para "What do you want"
-	line "to go there for?"
+	para "Pourquoi tu veux"
+	line "y aller?"
 
-	para "There's nothing"
-	line "down there."
+	para "Y'a rien du tout"
+	line "dans le coin."
 	done
 
 GruntM13SeenText:
-	text "I don't care if"
-	line "you're lost."
+	text "Je m'en fiche si"
+	line "tu ne sais pas par"
+	cont "où aller."
 
-	para "You show up here,"
-	line "you're nothing but"
-	cont "a victim!"
+	para "Si tu viens ici,"
+	line "tu dois t'attendre"
+	cont "aux conséquences!"
 	done
 
 GruntM13BeatenText:
-	text "Urk! Yeah, think"
-	line "you're cool, huh?"
+	text "Gueuh! Tu te crois"
+	line "balèze ou quoi?"
 	done
 
 GruntM13AfterBattleText:
-	text "You must have ice"
-	line "in your veins to"
-	cont "dis TEAM ROCKET."
+	text "T'as un sacré cou-"
+	line "rage pour t'atta-"
+	cont "quer à la ROCKET."
 	done
 
 SwitchRoomText_Switch1:
-	text "It's labeled"
-	line "SWITCH 1."
+	text "C'est écrit:"
+	line "INTERRUPTEUR 1."
 	done
 
 GruntF3SeenText:
-	text "Are you lost? No,"
-	line "you can't be."
+	text "T'as pas l'air"
+	line "d'avoir peur."
 
-	para "You don't have"
-	line "that scared look."
-
-	para "I'll give you"
-	line "something to be"
-	cont "scared about!"
+	para "Attends..."
+	line "Moi je vais te"
+	cont "faire peur!"
 	done
 
 GruntF3BeatenText:
-	text "How could you?"
+	text "Comment oses-tu?"
 	done
 
 GruntF3AfterBattleText:
-	text "Go wherever you'd"
-	line "like! Get lost!"
-	cont "See if I care!"
+	text "Va où tu veux!"
+	line "Va-t'en!"
+	cont "Je m'en fiche!"
 	done
 
 SwitchRoomText_OffTurnOn:
-	text "It's OFF."
-	line "Turn it ON?"
+	text "C'est éteint."
+	line "On l'active?"
 	done
 
 SwitchRoomText_OnTurnOff:
-	text "It's ON."
-	line "Turn it OFF?"
+	text "C'est activé."
+	line "On l'éteint?"
 	done
 
 SwitchRoomText_Switch2:
-	text "It's labeled"
-	line "SWITCH 2."
+	text "C'est écrit:"
+	line "INTERRUPTEUR 2."
 	done
 
 SwitchRoomText_Switch3:
-	text "It's labeled"
-	line "SWITCH 3."
+	text "C'est écrit:"
+	line "INTERRUPTEUR 3."
 	done
 
 SwitchRoomText_Emergency:
-	text "It's labeled"
-	line "EMERGENCY."
+	text "C'est écrit:"
+	line "URGENCE."
 	done
 
 GoldenrodUndergroundSwitchRoomEntrances_MapEvents:

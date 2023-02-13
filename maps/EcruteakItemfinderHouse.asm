@@ -56,108 +56,115 @@ ItemFinderHouseRadio:
 	jumpstd Radio2Script
 
 EcruteakItemfinderAdventureText:
-	text "Ah. You're on an"
-	line "adventure with"
-	cont "your #MON?"
+	text "Ah! Tu fais les"
+	line "400 coups avec tes"
+	cont "#MON?"
 
-	para "Well, what's an"
-	line "adventure without"
-	cont "treasure hunting?"
+	para "Mais qu'est-ce"
+	line "qu'une aventure"
+	cont "sans une chasse au"
+	cont "trésor?"
 
-	para "Am I right, or am"
-	line "I right?"
+	para "J'ai bon ou j'ai"
+	line "bon?"
 	done
 
 EcruteakItemfinderTrueSpiritText:
-	text "Good! You under-"
-	line "stand the true"
+	text "C'est cool, tu"
+	line "comprends le vrai"
 
-	para "spirit of adven-"
+	para "esprit de l'aven-"
 	line "ture."
 
-	para "I like that! Take"
-	line "this with you."
+	para "Et moi, j'aime ça!"
+	line "Prends ça avec"
+	cont "toi."
 	done
 
 ItemfinderExplanationText:
-	text "There are many"
-	line "items lying about"
+	text "Il y a beaucoup"
+	line "d'objets cachés"
+	cont "par terre."
 
-	para "that aren't ob-"
-	line "vious."
+	para "Utilise CHERCH'"
+	line "OBJET pour voir"
 
-	para "Use ITEMFINDER to"
-	line "check if there is"
+	para "s'il y a un objet"
+	line "par terre près de"
+	cont "toi."
 
-	para "an item on the"
-	line "ground near you."
+	para "Ca ne te montre"
+	line "pas l'endroit"
 
-	para "It doesn't show"
-	line "the exact spot,"
+	para "exact mais c'est"
+	line "sûrement dans les"
+	cont "environs."
 
-	para "so you'll have to"
-	line "look yourself."
+	para "Ah oui, j'ai en-"
+	line "tendu dire qu'il y"
 
-	para "Oh yeah--I heard"
-	line "there are items"
-
-	para "in ECRUTEAK's"
-	line "BURNED TOWER."
+	para "a des objets dans"
+	line "la TOUR CENDREE"
+	cont "de ROSALIA."
 	done
 
 EcruteakItemfinderToEachHisOwnText:
-	text "Oh… To each his"
-	line "own, I suppose…"
+	text "Oh... Chacun pour"
+	line "soi je parie."
 	done
 
 EcruteakHistoryBookText:
-	text "HISTORY OF"
-	line "ECRUTEAK"
+	text "HISTOIRE de"
+	line "ROSALIA"
 
-	para "Want to read it?"
+	para "Désirez-vous lire?"
 	done
 
 EcruteakTwoTowersText:
-	text "In ECRUTEAK, there"
-	line "were two towers."
+	text "Il existait deux"
+	line "tours à ROSALIA."
 
-	para "Each tower was the"
-	line "roost of powerful"
-	cont "flying #MON."
+	para "Chacune d'elle"
+	line "était le perchoir"
+	cont "d'un puissant"
+	cont "#MON volant."
 
-	para "But one of the"
-	line "towers burned to"
-	cont "the ground."
+	para "Mais l'une des"
+	line "tours a complète-"
+	cont "ment brûlé."
 
-	para "The two #MON"
-	line "haven't been seen"
-	cont "since…"
+	para "Les deux #MON"
+	line "n'ont jamais été"
+	cont "revus depuis..."
 
-	para "Keep reading?"
+	para "Continuer à lire?"
 	done
 
 EcruteakThreeMonText:
-	text "ECRUTEAK was also"
-	line "home to three"
+	text "ROSALIA était"
+	line "aussi la demeure"
 
-	para "#MON that raced"
-	line "around the town."
+	para "de trois #MON"
+	line "qui couraient"
+	cont "autour de la"
+	cont "ville."
 
-	para "They were said to"
-	line "have been born of"
+	para "Ils étaient soi-"
+	line "disant nés de"
 
-	para "water, lightning"
-	line "and fire."
+	para "l'eau, de la"
+	line "foudre et du feu."
 
-	para "But they could not"
-	line "contain their"
-	cont "excessive power."
+	para "Mais ils ne"
+	line "pouvaient pas"
+	cont "contenir toute"
+	cont "leur puissance."
 
-	para "So they say the"
-	line "three ran like the"
+	para "C'est la raison"
+	line "pour laquelle ils"
 
-	para "wind off into the"
-	line "grassland."
+	para "couraient sans"
+	line "cesse."
 	done
 
 EcruteakItemfinderHouse_MapEvents:

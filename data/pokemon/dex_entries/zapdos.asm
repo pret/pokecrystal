@@ -1,10 +1,11 @@
-	db "ELECTRIC@" ; species name
-	dw 503, 1160 ; height, weight
+	db "ELECTRIQUE@" ; species name
+	db 16 ; height
+	dw 526 ; weight
 
-	db   "Legendary bird"
-	next "#MON. They say"
-	next "lightning caused"
+	db   "#MON oiseau"
+	next "légendaire. Le"
+	next "battement de ses"
 
-	page "by the flapping of"
-	next "its wings causes"
-	next "summer storms.@"
+	page "ailes crée des"
+	next "orages d'été."
+	next "@"

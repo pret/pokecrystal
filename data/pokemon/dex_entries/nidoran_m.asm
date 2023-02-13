@@ -1,10 +1,11 @@
-	db "POISON PIN@" ; species name
-	dw 108, 200 ; height, weight
+	db "VENEPIC@" ; species name
+	db 5 ; height
+	dw 90 ; weight
 
-	db   "It constantly"
-	next "moves its large"
-	next "ears in many"
+	db   "Il bouge ses gran-"
+	next "des oreilles dans"
+	next "tous les sens pour"
 
-	page "directions in"
-	next "order to detect"
-	next "danger right away.@"
+	page "détecter un éven-"
+	next "tuel danger."
+	next "@"

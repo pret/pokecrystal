@@ -24,8 +24,8 @@ IcePathB2FMahoganySideHiddenCarbos:
 	hiddenitem CARBOS, EVENT_ICE_PATH_B2F_MAHOGANY_SIDE_HIDDEN_CARBOS
 
 IcePathB2FMahoganySideBoulderText:
-	text "It's immovably"
-	line "imbedded in ice."
+	text "C'est bloqué dans"
+	line "la glace."
 	done
 
 IcePathB2FMahoganySide_MapEvents:

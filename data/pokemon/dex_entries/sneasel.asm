@@ -1,10 +1,11 @@
-	db "SHARP CLAW@" ; species name
-	dw 211, 620 ; height, weight
+	db "GRIFACEREE@" ; species name
+	db 9 ; height
+	dw 280 ; weight
 
-	db   "This cunning"
-	next "#MON hides"
-	next "under the cover"
+	db   "Ce #MON rusé se"
+	next "cache dans l'ombre"
+	next "et attend patiem-"
 
-	page "of darkness,"
-	next "waiting to attack"
-	next "its prey.@"
+	page "ment de fondre sur"
+	next "sa proie."
+	next "@"

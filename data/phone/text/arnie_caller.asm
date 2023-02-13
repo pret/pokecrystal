@@ -1,106 +1,105 @@
 ArnieMonIsSoCuteText:
-	text "I'm always with my"
+	text "J'ai toujours mon"
 	line "@"
 	text_ram wStringBuffer4
 	text "!"
 
-	para "It's so cute!"
-	line "I just love it!"
+	para "Il est trop chou!"
+	line "Je l'aime!"
 	done
 
 ArnieDefeatedMonText:
-	text "Changing the topic"
-	line "here, I saw this"
+	text "Au fait..."
+	line "J'ai vu un"
 
 	para "@"
 	text_ram wStringBuffer4
-	text " for the"
-	line "first time."
+	text " pour"
+	line "la première fois."
 
-	para "It was easy to"
-	line "beat, actually."
+	para "Il est assez faci-"
+	line "le à battre."
 	done
 
 ArnieLostAMonText:
-	text "I was wondering,"
-	line "do you happen to"
-	cont "have @"
+	text "Dis donc..."
+	line "Tu as un"
+	cont "@"
 	text_ram wStringBuffer4
 	text "?"
 
-	para "I can't seem to"
-	line "catch one. What is"
+	para "J'arrive pas à en"
+	line "choper un."
 
-	para "its weakness, I"
-	line "wonder."
+	para "C'est quoi sa"
+	line "faiblesse?"
 	done
 
 ArnieBattleRematchText:
-	text "Hey, let's battle"
-	line "our #MON!"
+	text "Hé! Faisons un"
+	line "combat!"
 
-	para "I won't lose to"
-	line "you battling or in"
+	para "Je ne vais pas"
+	line "perdre! Ni en"
+	cont "combat, ni au"
+	cont "Concours de"
+	cont "Capture!"
 
-	para "the Bug-Catching"
-	line "Contest!"
-
-	para "I'll be here on"
+	para "Je suis vers"
 	line "@"
 	text_ram wStringBuffer5
 	text "!"
 	done
 
 ArnieHangUpText:
-	text "Let's talk again,"
-	line "huh?"
+	text "On se parle"
+	line "bientôt, OK?"
 	done
 
 ArnieSwarmText:
-	text "Boy, am I glad I"
-	line "caught you!"
+	text "Je suis content"
+	line "de t'avoir!"
 
-	para "A whole bunch of"
+	para "Un tas de"
 	line "@"
 	text_ram wStringBuffer4
-	text " have"
+	text " est"
 
-	para "appeared around"
+	para "apparu vers"
 	line "@"
 	text_ram wStringBuffer5
 	text "!"
 
-	para "You have to see"
-	line "this!"
+	para "Il faut que tu"
+	line "voies ça!"
 	done
 
 ArnieHaventSeenRareMonText:
-	text "I haven't had any"
-	line "luck seeing rare"
-	cont "#MON lately…"
+	text "Je n'ai pas vu de"
+	line "#MON rares"
+	cont "dernièrement..."
 
-	para "But I know they're"
-	line "out there!"
+	para "Mais ils ne sont"
+	line "pas loin!"
 	done
 
 ArnieReminderText:
-	text "Hey, where are you"
-	line "now?"
+	text "Hé! Tu es où?"
 
-	para "Let's battle. I'll"
-	line "be waiting for you"
-	cont "on @"
+	para "On va s'battre."
+	line "Je t'attends vers"
+	cont "@"
 	text_ram wStringBuffer5
 	text "!"
 	done
 
 ArnieHurryText:
-	text "Hello? Are you"
-	line "coming or what?"
+	text "Allô? Tu viens"
+	line "oui ou zut?"
 
-	para "You're missing out"
-	line "on seeing YANMA!"
+	para "Tu vas voir un"
+	line "YANMA!"
 
-	para "Get down to ROUTE"
-	line "35 right now!"
+	para "Viens sur la ROUTE"
+	line "35 maintenant!"
 	done

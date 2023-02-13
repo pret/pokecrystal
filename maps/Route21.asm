@@ -42,49 +42,48 @@ TrainerFisherArnold:
 	end
 
 SwimmermSethSeenText:
-	text "Land ho! Gotta"
-	line "keep going!"
+	text "Haahahahahhaa!"
+	line "C'est la fête!"
 	done
 
 SwimmermSethBeatenText:
-	text "Glug…"
+	text "Glug..."
 	done
 
 SwimmermSethAfterBattleText:
-	text "This arrogant guy"
-	line "was at CINNABAR's"
-	cont "volcano."
+	text "Moi j'aime la"
+	line "fête! Yahahahaha!"
+	cont "J'suis ouf."
 	done
 
 SwimmerfNikkiSeenText:
-	text "If I win, you have"
-	line "to help me with my"
-	cont "suntan lotion!"
+	text "Si je gagne, tu me"
+	line "passes de la"
+	cont "crème!"
 	done
 
 SwimmerfNikkiBeatenText:
-	text "I'm worried about"
-	line "sunburn…"
+	text "Les coups de"
+	line "soleil c'est mal."
 	done
 
 SwimmerfNikkiAfterBattleText:
-	text "I have to watch"
-	line "out for blemishes"
-	cont "caused by the sun."
+	text "L'écran total y'a"
+	line "que ça de vrai."
 	done
 
 FisherArnoldSeenText:
-	text "I'm bored by fish-"
-	line "ing. Let's battle!"
+	text "La pêche c'est"
+	line "long. COMBAT!"
 	done
 
 FisherArnoldBeatenText:
-	text "Utter failure…"
+	text "Tout perdu..."
 	done
 
 FisherArnoldAfterBattleText:
-	text "I'll just go back"
-	line "to fishing…"
+	text "J'vais pêcher"
+	line "plutôt..."
 	done
 
 Route21_MapEvents:

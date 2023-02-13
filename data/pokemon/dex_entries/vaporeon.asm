@@ -1,10 +1,11 @@
-	db "BUBBLE JET@" ; species name
-	dw 303, 640 ; height, weight
+	db "BULLEUR@" ; species name
+	db 10 ; height
+	dw 290 ; weight
 
-	db   "As it uses the"
-	next "fins on the tip"
-	next "of its tail to"
+	db   "En remuant sa na-"
+	next "geoire caudale, il"
+	next "entre en parfaite"
 
-	page "swim, it blends"
-	next "with the water"
-	next "perfectly.@"
+	page "symbiose avec"
+	next "l'eau."
+	next "@"

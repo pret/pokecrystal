@@ -23,24 +23,25 @@ Route19FuchsiaGateOfficerScript:
 	end
 
 Route19FuchsiaGateOfficerText:
-	text "CINNABAR's volcano"
-	line "erupted."
+	text "Le volcan de"
+	line "CRAMOIS'ILE est en"
+	cont "éruption."
 
-	para "It hurled boulders"
-	line "that cut off ROUTE"
-	cont "19 indefinitely."
+	para "Il a craché des"
+	line "rochers bloquant"
+	cont "la ROUTE 19."
 
-	para "I wonder if the"
-	line "people of CINNABAR"
-	cont "are safe…"
+	para "Les habitants de"
+	line "CRAMOIS'ILE sont-"
+	cont "ils en sécurité?"
 	done
 
 Route19FuchsiaGateOfficerText_RocksCleared:
-	text "No CINNABAR citi-"
-	line "zens were injured"
+	text "Aucun habitant de"
+	line "CRAMOIS'ILE n'a"
 
-	para "by the eruption."
-	line "That's great!"
+	para "été blessé pendant"
+	line "l'éruption. Cool!"
 	done
 
 Route19FuchsiaGate_MapEvents:

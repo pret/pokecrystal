@@ -1,10 +1,11 @@
-	db "WEED@" ; species name
-	dw 207, 190 ; height, weight
+	db "RACINE@" ; species name
+	db 8 ; height
+	dw 86 ; weight
 
-	db   "The smell from its"
-	next "drool-like syrup"
-	next "and the pollen on"
+	db   "L'odeur de son si-"
+	next "rop buccal et du"
+	next "pollen de ses pé-"
 
-	page "its petals is so"
-	next "bad, it may make"
-	next "opponents faint.@"
+	page "tales est si mau-"
+	next "vaise qu'elle met"
+	next "facilement K.O.@"

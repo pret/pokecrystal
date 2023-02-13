@@ -80,68 +80,71 @@ Route2HiddenRevive:
 	hiddenitem REVIVE, EVENT_ROUTE_2_HIDDEN_REVIVE
 
 BugCatcherRobSeenText:
-	text "My bug #MON are"
-	line "tough. Prepare to"
-	cont "lose!"
+	text "Mes #MON in-"
+	line "secte sont forts."
+	cont "Tu vas perdre!"
 	done
 
 BugCatcherRobBeatenText:
-	text "I was whipped…"
+	text "Tout perdu!"
 	done
 
 BugCatcherRobAfterBattleText:
-	text "I'm going to look"
-	line "for stronger bug"
-	cont "#MON."
+	text "Je vais chercher"
+	line "des #MON insec-"
+	cont "te plus forts."
 	done
 
 BugCatcherEdSeenText:
-	text "If you walk in"
-	line "tall grass wearing"
+	text "Ca pique pas de se"
+	line "balader en short"
 
-	para "shorts, do you get"
-	line "nicks and cuts?"
+	para "dans les hautes"
+	line "herbes?"
 	done
 
 BugCatcherEdBeatenText:
-	text "Ouch, ouch, ouch!"
+	text "Aïeuuu!"
 	done
 
 BugCatcherEdAfterBattleText:
-	text "They'll really"
-	line "sting when you"
-	cont "take a bath."
+	text "Tu vas te faire"
+	line "mal un jour..."
+	cont "Tu verras."
 	done
 
 BugCatcherDougSeenText:
-	text "Why don't girls"
-	line "like bug #MON?"
+	text "Pourquoi les fil-"
+	line "les n'aiment pas"
+	cont "les #MON insec-"
+	cont "te? C'est quoi"
+	cont "cette question?"
 	done
 
 BugCatcherDougBeatenText:
-	text "No good!"
+	text "Naaaaan!"
 	done
 
 BugCatcherDougAfterBattleText:
-	text "Bug #MON squish"
-	line "like plush toys"
+	text "Les insectes ça"
+	line "fait chprouit"
 
-	para "when you squeeze"
-	line "their bellies."
+	para "quand tu appuies"
+	line "dessus."
 
-	para "I love how they"
-	line "feel!"
+	para "Et ça c'est super"
+	line "mignon, non?"
 	done
 
 Route2SignText:
 	text "ROUTE 2"
 
-	para "VIRIDIAN CITY -"
-	line "PEWTER CITY"
+	para "JADIELLE -"
+	line "ARGENTA"
 	done
 
 Route2DiglettsCaveSignText:
-	text "DIGLETT'S CAVE"
+	text "CAVE TAUPIQUEUR"
 	done
 
 Route2_MapEvents:

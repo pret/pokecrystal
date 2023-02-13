@@ -1,111 +1,114 @@
 _NoPhotoText::
-	text "Oh, no picture?"
-	line "Come again, OK?"
+	text "Pas de photo?"
+	line "A plus tard!"
 	done
 
 _EggPhotoText::
-	text "An EGG? My talent"
-	line "is worth more…"
+	text "Un OEUF? Je peux"
+	line "pas faire de l'art"
+	cont "avec ça..."
 	done
 
 _NameRaterHelloText::
-	text "Hello, hello! I'm"
-	line "the NAME RATER."
+	text "B'jour! Je suis le"
+	line "SPECIALISTE des"
 
-	para "I rate the names"
-	line "of #MON."
+	para "NOMS. Je donne mon"
+	line "avis sur les noms"
+	cont "des #MON."
 
-	para "Would you like me"
-	line "to rate names?"
+	para "Veux-tu que je te"
+	line "donne mon avis sur"
+	cont "tes noms?"
 	done
 
 _NameRaterWhichMonText::
-	text "Which #MON's"
-	line "nickname should I"
-	cont "rate for you?"
+	text "Le nom de quel"
+	line "#MON veux-tu"
+	cont "que j'étudie?"
 	prompt
 
 _NameRaterBetterNameText::
-	text "Hm… @"
+	text "Hmm... @"
 	text_ram wStringBuffer1
-	text "…"
-	line "That's a fairly"
-	cont "decent name."
+	text "."
+	line "C'est un nom"
+	cont "ma foi correct."
 
-	para "But, how about a"
-	line "slightly better"
-	cont "nickname?"
+	para "Mais pourquoi ne"
+	line "pas lui donner"
+	cont "plus de pêche?"
 
-	para "Want me to give it"
-	line "a better name?"
+	para "Veux-tu lui donner"
+	line "un autre nom?"
 	done
 
 _NameRaterWhatNameText::
-	text "All right. What"
-	line "name should we"
-	cont "give it, then?"
+	text "OK. Comment"
+	line "allons-nous le"
+	cont "nommer?"
 	prompt
 
 _NameRaterFinishedText::
-	text "That's a better"
-	line "name than before!"
+	text "C'est bien mieux"
+	line "qu'avant!"
 
-	para "Well done!"
+	para "Bien joué!"
 	done
 
 _NameRaterComeAgainText::
-	text "OK, then. Come"
-	line "again sometime."
+	text "OK. Reviens une"
+	line "autre fois."
 	done
 
 _NameRaterPerfectNameText::
-	text "Hm… @"
+	text "Hmm... @"
 	text_ram wStringBuffer1
 	text "?"
-	line "What a great name!"
-	cont "It's perfect."
+	line "C'est un super"
+	cont "nom! Terrible!"
 
-	para "Treat @"
+	para "Prends bien soin"
+	line "de @"
 	text_ram wStringBuffer1
-	text_start
-	line "with loving care."
+	text "."
 	done
 
 _NameRaterEggText::
-	text "Whoa… That's just"
-	line "an EGG."
+	text "Whoa! C'est juste"
+	line "un OEUF."
 	done
 
 _NameRaterSameNameText::
-	text "It might look the"
-	line "same as before,"
+	text "Ca ressemble un"
+	line "peu à l'ancien..."
 
-	para "but this new name"
-	line "is much better!"
+	para "Mais c'est mieux"
+	line "qu'avant!"
 
-	para "Well done!"
+	para "Bien joué!"
 	done
 
 _NameRaterNamedText::
-	text "All right. This"
-	line "#MON is now"
-	cont "named @"
+	text "Parfait. Ce"
+	line "#MON s'appelle"
+	cont "donc @"
 	text_ram wStringBuffer1
 	text "."
 	prompt
 
 Text_Gained::
 	text_ram wStringBuffer1
-	text " gained@"
+	text " gagne@"
 	text_end
 
 _BoostedExpPointsText::
 ; BUG: Five-digit experience gain is printed incorrectly (see docs/bugs_and_glitches.md)
 	text_start
-	line "a boosted"
+	line "un bonus de"
 	cont "@"
 	text_decimal wStringBuffer2, 2, 4
-	text " EXP. Points!"
+	text " Points EXP!"
 	prompt
 
 _ExpPointsText::
@@ -113,30 +116,35 @@ _ExpPointsText::
 	text_start
 	line "@"
 	text_decimal wStringBuffer2, 2, 4
-	text " EXP. Points!"
+	text " Points EXP!"
 	prompt
 
 _GoMonText::
-	text "Go! @"
+	text_ram wBattleMonNickname
+	text "! Go!@"
 	text_end
 
 _DoItMonText::
-	text "Do it! @"
+	text_ram wBattleMonNickname
+	text "! Fonce!@"
 	text_end
 
 _GoForItMonText::
-	text "Go for it,"
+	text "En avant,"
 	line "@"
+	text_ram wBattleMonNickname
+	text "!@"
 	text_end
 
 _YourFoesWeakGetmMonText::
-	text "Your foe's weak!"
-	line "Get'm, @"
+	text "Attaque,"
+	line "@"
+	text_ram wBattleMonNickname
+	text "!@"
 	text_end
 
 _BattleMonNicknameText::
-	text_ram wBattleMonNickname
-	text "!"
+	text_start
 	done
 
 _BattleMonNickCommaText::
@@ -145,107 +153,110 @@ _BattleMonNickCommaText::
 	text_end
 
 _ThatsEnoughComeBackText::
-	text " that's"
-	line "enough! Come back!@"
+	text_start
+	line "reviens!@"
 	text_end
 
 _OKComeBackText::
-	text " OK!"
-	line "Come back!@"
+	text_start
+	line "ça suffit!@"
 	text_end
 
 _GoodComeBackText::
-	text " good!"
-	line "Come back!@"
+	text_start
+	line "reviens!@"
 	text_end
 
 _ComeBackText::
-	text " come"
-	line "back!"
+	text_start
+	line "reviens!"
 	done
 
 _BootedTMText::
-	text "Booted up a TM."
+	text "CT activée."
 	prompt
 
 _BootedHMText::
-	text "Booted up an HM."
+	text "CS activée."
 	prompt
 
 _ContainedMoveText::
-	text "It contained"
+	text "Elle contient"
 	line "@"
 	text_ram wStringBuffer2
 	text "."
 
-	para "Teach @"
+	para "Apprendre"
+	line "@"
 	text_ram wStringBuffer2
 	text_start
-	line "to a #MON?"
+	cont "à un #MON?"
 	done
 
 _TMHMNotCompatibleText::
 	text_ram wStringBuffer2
-	text " is"
-	line "not compatible"
-	cont "with @"
+	text " n'est"
+	line "pas compatible"
+	cont "avec @"
 	text_ram wStringBuffer1
 	text "."
 
-	para "It can't learn"
-	line "@"
+	para "Il ne peut pas"
+	line "apprendre"
+	cont "@"
 	text_ram wStringBuffer2
 	text "."
 	prompt
 
 _NoRoomTMHMText::
-	text "You have no room"
-	line "for any more"
+	text "Plus de place"
+	line "pour:"
 	cont "@"
 	text_ram wStringBuffer1
-	text "S."
+	text "."
 	prompt
 
 _ReceivedTMHMText::
-	text "You received"
+	text "Vous obtenez"
 	line "@"
 	text_ram wStringBuffer1
 	text "!"
 	prompt
 
 _MysteryGiftCanceledText::
-	text "The link has been"
-	line "cancelled."
+	text "La connexion a"
+	line "été perdue."
 	prompt
 
 _MysteryGiftCommErrorText::
-	text "Communication"
-	line "error."
+	text "Erreur"
+	line "communication."
 	prompt
 
 _RetrieveMysteryGiftText::
-	text "Must retrieve GIFT"
-	line "at #MON CENTER."
+	text "CADEAU à récupérer"
+	line "au CENTRE #MON."
 	prompt
 
 _YourFriendIsNotReadyText::
-	text "Your friend isn't"
-	line "ready."
+	text "Votre ami(e) n'est"
+	line "pas prêt(e)."
 	prompt
 
 _MysteryGiftFiveADayText::
-	text "Sorry--only five"
-	line "GIFTS a day."
+	text "Seulement 5"
+	line "CADEAUX par jour."
 	prompt
 
 _MysteryGiftOneADayText::
-	text "Sorry. One GIFT"
-	line "a day per person."
+	text "Seulement 1 CADEAU"
+	line "par jour et par"
+	cont "personne."
 	prompt
 
 _MysteryGiftSentText::
 	text_ram wMysteryGiftPartnerName
-	text " sent"
+	text " envoie"
 	line "@"
 	text_ram wStringBuffer1
 	text "."
@@ -253,69 +264,61 @@ _MysteryGiftSentText::
 
 _MysteryGiftSentHomeText::
 	text_ram wMysteryGiftPartnerName
-	text " sent"
+	text " envoie"
 	line "@"
 	text_ram wStringBuffer1
 	text_start
-	cont "to @"
+	cont "chez @"
 	text_ram wMysteryGiftPlayerName
-	text "'s home."
-	prompt
-
-_NameCardReceivedCardText::
-	text "Received"
-	line "@"
-	text_ram wMysteryGiftCardHolderName
-	text "'s CARD."
-	prompt
-
-_NameCardListedCardText::
-	text_ram wMysteryGiftCardHolderName
-	text "'s CARD was"
-	line "listed as no.@"
-	text_decimal wTextDecimalByte, 1, 2
 	text "."
 	prompt
 
+_NameCardReceivedCardText::
+	text_start
+	prompt
+
+_NameCardListedCardText::
+	text_start
+	prompt
+
 _NameCardNotRegisteredCardText::
-	text "The CARD was not"
-	line "registered."
+	text_start
 	prompt
 
 _NameCardLinkCancelledText::
-	text "The link has been"
-	line "cancelled."
+	text "La connexion a"
+	line "été perdue."
 	prompt
 
 _NameCardLinkCommErrorText::
-	text "Communication"
-	line "error."
+	text "Erreur"
+	line "communication."
 	prompt
 
 _BadgeRequiredText::
-	text "Sorry! A new BADGE"
-	line "is required."
+	text "Un BADGE est"
+	line "requis."
 	prompt
 
 _CantUseItemText::
-	text "Can't use that"
-	line "here."
+	text "Impossible d'uti-"
+	line "liser ça ici."
 	prompt
 
 _UseCutText::
 	text_ram wStringBuffer2
-	text " used"
-	line "CUT!"
+	text_start
+	line "lance COUPE!"
 	prompt
 
 _CutNothingText::
-	text "There's nothing to"
-	line "CUT here."
+	text "Il n'y a rien"
+	line "à COUPER ici."
 	prompt
 
 _BlindingFlashText::
-	text "A blinding FLASH"
-	line "lights the area!@"
+	text "Un FLASH illumine"
+	line "les environs!@"
 	text_promptbutton
 	text_end
 
@@ -323,334 +326,337 @@ _BlindingFlashText::
 
 _UsedSurfText::
 	text_ram wStringBuffer2
-	text " used"
-	line "SURF!"
+	text_start
+	line "lance SURF!"
 	done
 
 _CantSurfText::
-	text "You can't SURF"
-	line "here."
+	text "On ne peut pas"
+	line "SURFER ici."
 	prompt
 
 _AlreadySurfingText::
-	text "You're already"
-	line "SURFING."
+	text "Vous êtes déjà en"
+	line "train de SURFER!"
 	prompt
 
 _AskSurfText::
-	text "The water is calm."
-	line "Want to SURF?"
+	text "L'eau est calme..."
+	line "Un coup de SURF?"
 	done
 
 _UseWaterfallText::
 	text_ram wStringBuffer2
-	text " used"
-	line "WATERFALL!"
+	text_start
+	line "lance CASCADE!"
 	done
 
 _HugeWaterfallText::
-	text "Wow, it's a huge"
-	line "waterfall."
+	text "Oh! Une énorme"
+	line "cascade."
 	done
 
 _AskWaterfallText::
-	text "Do you want to use"
-	line "WATERFALL?"
+	text "Voulez-vous uti-"
+	line "liser CASCADE?"
 	done
 
 _UseDigText::
 	text_ram wStringBuffer2
-	text " used"
-	line "DIG!"
+	text_start
+	line "lance TUNNEL!"
 	done
 
 _UseEscapeRopeText::
-	text "<PLAYER> used an"
-	line "ESCAPE ROPE."
+	text "<PLAYER> utilise"
+	line "une CORDE SORTIE."
 	done
 
 _CantUseDigText::
-	text "Can't use that"
-	line "here."
+	text "Impossible d'uti-"
+	line "liser ça ici."
 	done
 
 _TeleportReturnText::
-	text "Return to the last"
-	line "#MON CENTER."
+	text "Retour au dernier"
+	line "CENTRE #MON."
 	done
 
 _CantUseTeleportText::
-	text "Can't use that"
-	line "here."
-
-	para ""
-	done
+	text "Impossible d'uti-"
+	line "liser ça ici."
+	prompt
 
 _AlreadyUsingStrengthText::
-	text "A #MON is using"
-	line "STRENGTH already."
+	text "Un #MON utilise"
+	line "déjà FORCE."
 	prompt
 
 _UseStrengthText::
 	text_ram wStringBuffer2
-	text " used"
-	line "STRENGTH!"
+	text_start
+	line "lance FORCE!"
 	done
 
 _MoveBoulderText::
 	text_ram wStringBuffer1
-	text " can"
-	line "move boulders."
+	text " peut"
+	line "déplacer les"
+	cont "rochers."
 	prompt
 
 _AskStrengthText::
-	text "A #MON may be"
-	line "able to move this."
+	text "Un #MON peut"
+	line "déplacer ça."
 
-	para "Want to use"
-	line "STRENGTH?"
+	para "Voulez-vous utili-"
+	line "ser FORCE?"
 	done
 
 _BouldersMoveText::
-	text "Boulders may now"
-	line "be moved!"
+	text "Les rochers peu-"
+	line "vent être mainte-"
+	cont "nant déplacés!"
 	done
 
 _BouldersMayMoveText::
-	text "A #MON may be"
-	line "able to move this."
+	text "Un #MON peut"
+	line "déplacer ceci."
 	done
 
 _UseWhirlpoolText::
 	text_ram wStringBuffer2
-	text " used"
-	line "WHIRLPOOL!"
+	text_start
+	line "lance SIPHON!"
 	prompt
 
 _MayPassWhirlpoolText::
-	text "It's a vicious"
-	line "whirlpool!"
+	text "C'est un terrible"
+	line "siphon!"
 
-	para "A #MON may be"
-	line "able to pass it."
+	para "Un #MON peut"
+	line "le traverser."
 	done
 
 _AskWhirlpoolText::
-	text "A whirlpool is in"
-	line "the way."
+	text "Un siphon est sur"
+	line "la route."
 
-	para "Want to use"
-	line "WHIRLPOOL?"
+	para "Lancer"
+	line "SIPHON?"
 	done
 
 _UseHeadbuttText::
 	text_ram wStringBuffer2
-	text " did a"
-	line "HEADBUTT!"
+	text " donne"
+	line "un COUP D'BOULE!"
 	prompt
 
 _HeadbuttNothingText::
-	text "Nope. Nothing…"
+	text "Non. Rien..."
 	done
 
 _AskHeadbuttText::
-	text "A #MON could be"
-	line "in this tree."
+	text "Un #MON peut"
+	line "être dans l'arbre."
 
-	para "Want to HEADBUTT"
-	line "it?"
+	para "Voulez-vous donner"
+	line "un COUP D'BOULE?"
 	done
 
 _UseRockSmashText::
 	text_ram wStringBuffer2
-	text " used"
-	line "ROCK SMASH!"
+	text_start
+	line "lance ECLATE-ROC!"
 	prompt
 
 _MaySmashText::
-	text "Maybe a #MON"
-	line "can break this."
+	text "Un #MON peut"
+	line "le briser."
 	done
 
 _AskRockSmashText::
-	text "This rock looks"
-	line "breakable."
+	text "Ce rocher a l'air"
+	line "cassable."
 
-	para "Want to use ROCK"
-	line "SMASH?"
+	para "Voulez-vous utili-"
+	line "ser ECLATE-ROC?"
 	done
 
 _RodBiteText::
 	text "Oh!"
-	line "A bite!"
+	line "Ca mord!"
 	prompt
 
 _RodNothingText::
-	text "Not even a nibble!"
+	text "Rien du tout!"
 	prompt
 
 _UnusedNothingHereText::
-	text "Looks like there's"
-	line "nothing here."
+	text "Il n'y a rien"
+	line "dans le coin."
 	prompt
 
 _CantGetOffBikeText::
-	text "You can't get off"
-	line "here!"
+	text "Vous ne pouvez"
+	line "pas descendre ici!"
 	done
 
 _GotOnBikeText::
-	text "<PLAYER> got on the"
+	text "<PLAYER> monte sur:"
 	line "@"
 	text_ram wStringBuffer2
 	text "."
 	done
 
 _GotOffBikeText::
-	text "<PLAYER> got off"
-	line "the @"
+	text "<PLAYER> descend"
+	line "de: @"
 	text_ram wStringBuffer2
 	text "."
 	done
 
 _AskCutText::
-	text "This tree can be"
-	line "CUT!"
+	text "Cet arbre peut"
+	line "être COUPE!"
 
-	para "Want to use CUT?"
+	para "Lancer COUPE?"
 	done
 
 _CanCutText::
-	text "This tree can be"
-	line "CUT!"
+	text "Cet arbre peut"
+	line "être COUPE!"
 	done
 
 _FoundItemText::
-	text "<PLAYER> found"
+	text "<PLAYER> trouve"
 	line "@"
 	text_ram wStringBuffer3
 	text "!"
 	done
 
 _CantCarryItemText::
-	text "But <PLAYER> can't"
-	line "carry any more"
-	cont "items."
+	text "Mais <PLAYER> ne"
+	line "peut plus rien"
+	cont "porter!"
 	done
 
 _WhitedOutText::
-	text "<PLAYER> is out of"
-	line "useable #MON!"
+	text "<PLAYER> n'a plus"
+	line "de #MON en"
+	cont "forme!"
 
-	para "<PLAYER> whited"
-	line "out!"
+	para "<PLAYER> est"
+	line "hors-jeu!"
 	done
 
 _ItemfinderItemNearbyText::
-	text "Yes! ITEMFINDER"
-	line "indicates there's"
-	cont "an item nearby."
+	text "Le CHERCH'OBJET"
+	line "indique la présen-"
+	cont "ce d'un objet!"
 	prompt
 
 _ItemfinderNopeText::
-	text "Nope! ITEMFINDER"
-	line "isn't responding."
+	text "Le CHERCH'OBJET"
+	line "n'a rien trouvé..."
+	cont "Dommage!"
 	prompt
 
 _PoisonFaintText::
 	text_ram wStringBuffer3
 	text_start
-	line "fainted!"
+	line "est K.O!"
 	prompt
 
 _PoisonWhiteoutText::
-	text "<PLAYER> is out of"
-	line "useable #MON!"
+	text "<PLAYER> n'a plus"
+	line "de #MON en"
+	cont "forme!"
 
-	para "<PLAYER> whited"
-	line "out!"
+	para "<PLAYER> est"
+	line "hors-jeu!"
 	prompt
 
 _UseSweetScentText::
 	text_ram wStringBuffer3
-	text " used"
-	line "SWEET SCENT!"
+	text_start
+	line "lance DOUX PARFUM!"
 	done
 
 _SweetScentNothingText::
-	text "Looks like there's"
-	line "nothing here…"
+	text "Il n'y a rien"
+	line "dans le coin..."
 	done
 
 _SquirtbottleNothingText::
-	text "<PLAYER> sprinkled"
-	line "water."
+	text "<PLAYER> fait"
+	line "jaillir de l'eau."
 
-	para "But nothing"
-	line "happened…"
+	para "Mais rien ne"
+	line "se passe..."
 	done
 
 _UseSacredAshText::
-	text "<PLAYER>'s #MON"
-	line "were all healed!"
+	text "Les #MON de"
+	line "<PLAYER> sont tous"
+	cont "soignés!"
 	done
 
 _AnEggCantHoldAnItemText::
-	text "An EGG can't hold"
-	line "an item."
+	text "Un OEUF ne peut"
+	line "rien porter."
 	prompt
 
 _PackNoItemText::
-	text "No items."
+	text "Aucun objet."
 	done
 
 _AskThrowAwayText::
-	text "Throw away how"
-	line "many?"
+	text "En jeter"
+	line "combien?"
 	done
 
 _AskQuantityThrowAwayText::
-	text "Throw away @"
+	text "Jeter @"
 	text_decimal wItemQuantityChange, 1, 2
 	text_start
 	line "@"
 	text_ram wStringBuffer2
-	text "(S)?"
+	text "?"
 	done
 
 _ThrewAwayText::
-	text "Threw away"
-	line "@"
 	text_ram wStringBuffer2
-	text "(S)."
+	text_start
+	line "à la poubelle!"
 	prompt
 
 _OakThisIsntTheTimeText::
-	text "OAK: <PLAYER>!"
-	line "This isn't the"
-	cont "time to use that!"
+	text "CHEN: <PLAYER>!"
+	line "Ce n'est pas le"
+	cont "moment d'utiliser"
+	cont "ce truc!"
 	prompt
 
 _YouDontHaveAMonText::
-	text "You don't have a"
-	line "#MON!"
+	text "Vous n'avez pas"
+	line "de #MON!"
 	prompt
 
 _RegisteredItemText::
-	text "Registered the"
-	line "@"
 	text_ram wStringBuffer2
-	text "."
+	text_start
+	line "enregistré(e)."
 	prompt
 
 _CantRegisterText::
-	text "You can't register"
-	line "that item."
+	text "On ne peut enre-"
+	line "gistrer cet objet."
 	prompt
 
 _AskItemMoveText::
-	text "Where should this"
-	line "be moved to?"
+	text "Où déplacer"
+	line "ceci?"
 	done
 
 _PackEmptyText::
@@ -658,47 +664,45 @@ _PackEmptyText::
 	done
 
 _YouCantUseItInABattleText::
-	text "You can't use it"
-	line "in a battle."
+	text "C'est inutilisable"
+	line "en combat."
 	prompt
 
 _AreYouABoyOrAreYouAGirlText::
-	text "Are you a boy?"
-	line "Or are you a girl?"
+	text "Etes-vous un gar-"
+	line "çon ou une fille?"
 	done
 
 Text_BattleEffectActivate::
-	text "<USER>'s"
-	line "@"
 	text_ram wStringBuffer2
+	text " de"
+	line "<USER>@"
 	text_end
-
-	text_end ; unreferenced
 
 _BattleStatWentWayUpText::
 	text_pause
-	text "<SCROLL>went way up!"
+	text "<SCROLL>monte à fond!"
 	prompt
 
 _BattleStatWentUpText::
-	text " went up!"
+	text_start
+	cont "augmente!"
 	prompt
 
 Text_BattleFoeEffectActivate::
-	text "<TARGET>'s"
-	line "@"
 	text_ram wStringBuffer2
+	text " de"
+	line "<TARGET>@"
 	text_end
-
-	text_end ; unreferenced
 
 _BattleStatSharplyFellText::
 	text_pause
-	text "<SCROLL>sharply fell!"
+	text "<SCROLL>diminue à fond!"
 	prompt
 
 _BattleStatFellText::
-	text " fell!"
+	text_start
+	cont "diminue!"
 	prompt
 
 Text_BattleUser::
@@ -707,32 +711,32 @@ Text_BattleUser::
 
 _BattleMadeWhirlwindText::
 	text_start
-	line "made a whirlwind!"
+	line "crée un cyclone!"
 	prompt
 
 _BattleTookSunlightText::
 	text_start
-	line "took in sunlight!"
+	line "rayonne!"
 	prompt
 
 _BattleLoweredHeadText::
 	text_start
-	line "lowered its head!"
+	line "baisse la tête!"
 	prompt
 
 _BattleGlowingText::
 	text_start
-	line "is glowing!"
+	line "brille!"
 	prompt
 
 _BattleFlewText::
 	text_start
-	line "flew up high!"
+	line "s'envole!"
 	prompt
 
 _BattleDugText::
 	text_start
-	line "dug a hole!"
+	line "creuse un trou!"
 	prompt
 
 _ActorNameText::
@@ -741,16 +745,18 @@ _ActorNameText::
 
 _UsedMove1Text::
 	text_start
-	line "used @"
+	line "lance"
+	cont "@"
 	text_end
 
 _UsedMove2Text::
 	text_start
-	line "used @"
+	line "lance"
+	cont "@"
 	text_end
 
 _UsedInsteadText::
-	text "instead,"
+	text "à la place,"
 	cont "@"
 	text_end
 
@@ -781,7 +787,7 @@ _EndUsedMove5Text::
 	done
 
 Text_BreedHuh::
-	text "Huh?"
+	text "Hein?"
 
 	para "@"
 	text_end
@@ -792,8 +798,8 @@ _BreedClearboxText::
 
 _BreedEggHatchText::
 	text_ram wStringBuffer1
-	text " came"
-	line "out of its EGG!@"
+	text " sort"
+	line "de son OEUF!@"
 	sound_caught_mon
 	text_promptbutton
 	text_end
@@ -801,101 +807,105 @@ _BreedEggHatchText::
 	text_end ; unreferenced
 
 _BreedAskNicknameText::
-	text "Give a nickname to"
-	line "@"
+	text "Donner un surnom"
+	line "à @"
 	text_ram wStringBuffer1
 	text "?"
 	done
 
 _LeftWithDayCareLadyText::
-	text "It's @"
+	text "C'est @"
 	text_ram wBreedMon2Nickname
 	text_start
-	line "that was left with"
-	cont "the DAY-CARE LADY."
+	line "qui a été laissé"
+	cont "chez la dame de la"
+	cont "PENSION."
 	done
 
 _LeftWithDayCareManText::
-	text "It's @"
+	text "C'est @"
 	text_ram wBreedMon1Nickname
 	text_start
-	line "that was left with"
-	cont "the DAY-CARE MAN."
+	line "qui a été laissé"
+	cont "chez l'homme de la"
+	cont "PENSION."
 	done
 
 _BreedBrimmingWithEnergyText::
-	text "It's brimming with"
-	line "energy."
+	text "Il déborde"
+	line "d'énergie."
 	prompt
 
 _BreedNoInterestText::
-	text "It has no interest"
-	line "in @"
+	text "Il se fiche de"
+	line "@"
 	text_ram wStringBuffer1
 	text "."
 	prompt
 
 _BreedAppearsToCareForText::
-	text "It appears to care"
-	line "for @"
+	text "Il aime bien"
+	line "@"
 	text_ram wStringBuffer1
 	text "."
 	prompt
 
 _BreedFriendlyText::
-	text "It's friendly with"
+	text "Il est amical avec"
 	line "@"
 	text_ram wStringBuffer1
 	text "."
 	prompt
 
 _BreedShowsInterestText::
-	text "It shows interest"
-	line "in @"
+	text "Il s'intéresse à"
+	line "@"
 	text_ram wStringBuffer1
 	text "."
 	prompt
 
 _EmptyMailboxText::
-	text "There's no MAIL"
-	line "here."
+	text "Il n'y a pas de"
+	line "LETTRE ici."
 	prompt
 
 _MailClearedPutAwayText::
-	text "The cleared MAIL"
-	line "was put away."
+	text "Le COURRIER a été"
+	line "rangé."
 	prompt
 
 _MailPackFullText::
-	text "The PACK is full."
+	text "Le SAC est plein."
 	prompt
 
 _MailMessageLostText::
-	text "The MAIL's message"
-	line "will be lost. OK?"
+	text "Le message de la"
+	line "LETTRE sera perdu."
+	cont "OK?"
 	done
 
 _MailAlreadyHoldingItemText::
-	text "It's already hold-"
-	line "ing an item."
+	text "Il porte déjà"
+	line "un objet."
 	prompt
 
 _MailEggText::
-	text "An EGG can't hold"
-	line "any MAIL."
+	text "Un OEUF ne peut"
+	line "porter une LETTRE!"
 	prompt
 
 _MailMovedFromBoxText::
-	text "The MAIL was moved"
-	line "from the MAILBOX."
+	text "Cette LETTRE vient"
+	line "de la BOITE AUX"
+	cont "LETTRES."
 	prompt
 
 _YesPromptText:: ; unreferenced
-	text "Yes"
+	text "Oui"
 	prompt
 
 _NoPromptText:: ; unreferenced
-	text "No"
+	text "Non"
 	prompt
 
 _AnimationTypeText:: ; unreferenced
@@ -903,81 +913,85 @@ _AnimationTypeText:: ; unreferenced
 	text " @"
 	text_ram wStringBuffer1
 	text_start
-	line "Animation type @"
+	line "Type animation @"
 	text_ram wStringBuffer2
 	text_end
 
 	text_end ; unreferenced
 
 _MonNumberText:: ; unreferenced
-	text "#MON number?"
+	text "Numéro #MON?"
 	done
 
 _WasSentToBillsPCText::
 	text_ram wStringBuffer1
-	text " was"
-	line "sent to BILL's PC."
+	text_start
+	line "va au PC de LEO."
 	prompt
 
 _PCGottaHavePokemonText::
-	text "You gotta have"
-	line "#MON to call!"
+	text "Il faut des"
+	line "#MON à appeler!"
 	prompt
 
 _PCWhatText::
-	text "What?"
+	text "Que faire?"
 	done
 
 _PCMonHoldingMailText::
-	text "There is a #MON"
-	line "holding MAIL."
+	text "Il y a un #MON"
+	line "tenant une LETTRE."
 
-	para "Please remove the"
-	line "MAIL."
+	para "Enlevez la LETTRE"
+	line "s'il vous plaît."
 	prompt
 
 _PCNoSingleMonText::
-	text "You don't have a"
-	line "single #MON!"
+	text "Vous n'avez aucun"
+	line "#MON!"
 	prompt
 
 _PCCantDepositLastMonText::
-	text "You can't deposit"
-	line "your last #MON!"
+	text "Vous ne pouvez"
+	line "déposer le dernier"
+	cont "#MON!"
 	prompt
 
 _PCCantTakeText::
-	text "You can't take any"
-	line "more #MON."
+	text "Vous ne pouvez"
+	line "prendre plus de"
+	cont "#MON."
 	prompt
 
 _ContestCaughtMonText::
-	text "Caught @"
 	text_ram wStringBuffer1
-	text "!"
+	text_start
+	line "capturé!"
 	prompt
 
 _ContestAskSwitchText::
-	text "Switch #MON?"
+	text "Changer de"
+	line "#MON?"
 	done
 
 _ContestAlreadyCaughtText::
-	text "You already caught"
-	line "a @"
+	text "Vous avez déjà"
+	line "un @"
 	text_ram wStringBuffer1
 	text "."
 	prompt
 
 _ContestJudging_FirstPlaceText::
-	text "This Bug-Catching"
-	line "Contest winner is@"
+	text "Le gagnant du"
+	line "Concours de"
+	cont "Capture est@"
 	text_pause
-	text "…"
+	text "..."
 
 	para "@"
 	text_ram wBugContestWinnerName
 	text ","
-	line "who caught a"
+	line "qui a capturé un"
 	cont "@"
 	text_ram wStringBuffer1
 	text "!@"
@@ -986,19 +1000,19 @@ _ContestJudging_FirstPlaceText::
 _ContestJudging_FirstPlaceScoreText::
 	text_start
 
-	para "The winning score"
-	line "was @"
+	para "Le score gagnant"
+	line "est de @"
 	text_decimal wBugContestFirstPlaceScore, 2, 3
-	text " points!"
+	text " pts!"
 	prompt
 
 _ContestJudging_SecondPlaceText::
-	text "Placing second was"
+	text "En deuxième place:"
 	line "@"
 	text_ram wBugContestWinnerName
 	text ","
 
-	para "who caught a"
+	para "qui a capturé un"
 	line "@"
 	text_ram wStringBuffer1
 	text "!@"
@@ -1007,19 +1021,19 @@ _ContestJudging_SecondPlaceText::
 _ContestJudging_SecondPlaceScoreText::
 	text_start
 
-	para "The score was"
+	para "Le score est de"
 	line "@"
 	text_decimal wBugContestSecondPlaceScore, 2, 3
 	text " points!"
 	prompt
 
 _ContestJudging_ThirdPlaceText::
-	text "Placing third was"
+	text "En troisième:"
 	line "@"
 	text_ram wBugContestWinnerName
 	text ","
 
-	para "who caught a"
+	para "qui a capturé un"
 	line "@"
 	text_ram wStringBuffer1
 	text "!@"
@@ -1028,28 +1042,28 @@ _ContestJudging_ThirdPlaceText::
 _ContestJudging_ThirdPlaceScoreText::
 	text_start
 
-	para "The score was"
+	para "Le score est de"
 	line "@"
 	text_decimal wBugContestThirdPlaceScore, 2, 3
 	text " points!"
 	prompt
 
 _MagikarpGuruMeasureText::
-	text "Let me measure"
-	line "that MAGIKARP."
+	text "Je vais mesurer"
+	line "ce MAGICARPE."
 
-	para "…Hm, it measures"
+	para "Hmm... Il mesure"
 	line "@"
 	text_ram wStringBuffer1
-	text "."
+	text "cm."
 	prompt
 
 _KarpGuruRecordText::
-	text "CURRENT RECORD"
+	text "RECORD ACTUEL"
 
 	para "@"
 	text_ram wStringBuffer1
-	text " caught by"
+	text "cm par"
 	line "@"
 	text_ram wMagikarpRecordHoldersName
 	text_promptbutton
@@ -1058,491 +1072,482 @@ _KarpGuruRecordText::
 	text_end ; unreferenced
 
 _LuckyNumberMatchPartyText::
-	text "Congratulations!"
+	text "Félicitations!"
 
-	para "We have a match"
-	line "with the ID number"
-
-	para "of @"
+	para "Le No. ID de votre"
+	line "@"
 	text_ram wStringBuffer1
-	text " in"
-	line "your party."
+	text " dans"
+
+	para "votre équipe"
+	line "correspond."
 	prompt
 
 _LuckyNumberMatchPCText::
-	text "Congratulations!"
+	text "Félicitations!"
 
-	para "We have a match"
-	line "with the ID number"
-
-	para "of @"
+	para "Le No. ID de votre"
+	line "@"
 	text_ram wStringBuffer1
-	text " in"
-	line "your PC BOX."
+	text " dans"
+
+	para "votre BOITE PC"
+	line "correspond."
 	prompt
 
 _CaughtAskNicknameText::
-	text "Give a nickname to"
-	line "the @"
+	text "Donner un surnom"
+	line "au @"
 	text_ram wStringBuffer1
-	text " you"
-	cont "received?"
+	text_start
+	cont "reçu?"
 	done
 
 _PokecenterPCCantUseText::
-	text "Bzzzzt! You must"
-	line "have a #MON to"
-	cont "use this!"
+	text "Bzzzzt! Il faut un"
+	line "#MON pour"
+	cont "utiliser ça!"
 	prompt
 
 _PlayersPCTurnOnText::
-	text "<PLAYER> turned on"
-	line "the PC."
+	text "<PLAYER> allume"
+	line "le PC."
 	prompt
 
 _PlayersPCAskWhatDoText::
-	text "What do you want"
-	line "to do?"
+	text "Que voulez-vous"
+	line "faire?"
 	done
 
 _PlayersPCHowManyWithdrawText::
-	text "How many do you"
-	line "want to withdraw?"
+	text "Combien voulez-"
+	line "vous en retirer?"
 	done
 
 _PlayersPCWithdrewItemsText::
-	text "Withdrew @"
+	text "Retiré @"
 	text_decimal wItemQuantityChange, 1, 2
 	text_start
 	line "@"
 	text_ram wStringBuffer2
-	text "(S)."
+	text "."
 	prompt
 
 _PlayersPCNoRoomWithdrawText::
-	text "There's no room"
-	line "for more items."
+	text "Pas de place pour"
+	line "plus d'objets."
 	prompt
 
 _PlayersPCNoItemsText::
-	text "No items here!"
+	text "Pas d'objets ici!"
 	prompt
 
 _PlayersPCHowManyDepositText::
-	text "How many do you"
-	line "want to deposit?"
+	text "Combien voulez-"
+	line "vous en déposer?"
 	done
 
 _PlayersPCDepositItemsText::
-	text "Deposited @"
+	text "Déposé @"
 	text_decimal wItemQuantityChange, 1, 2
 	text_start
 	line "@"
 	text_ram wStringBuffer2
-	text "(S)."
+	text "."
 	prompt
 
 _PlayersPCNoRoomDepositText::
-	text "There's no room to"
-	line "store items."
+	text "Plus de place pour"
+	line "garder des objets."
 	prompt
 
 _PokecenterPCTurnOnText::
-	text "<PLAYER> turned on"
-	line "the PC."
+	text "<PLAYER> allume"
+	line "le PC."
 	prompt
 
 _PokecenterPCWhoseText::
-	text "Access whose PC?"
+	text "Accéder à quel PC?"
 	done
 
 _PokecenterBillsPCText::
-	text "BILL's PC"
-	line "accessed."
+	text "PC de LEO"
+	line "connecté."
 
-	para "#MON Storage"
-	line "System opened."
+	para "Gestion Stocks"
+	line "de #MON."
 	prompt
 
 _PokecenterPlayersPCText::
-	text "Accessed own PC."
+	text "PC personnel"
+	line "connecté."
 
-	para "Item Storage"
-	line "System opened."
+	para "Gestion Stocks"
+	line "d'objets."
 	prompt
 
 _PokecenterOaksPCText::
-	text "PROF.OAK's PC"
-	line "accessed."
+	text "PC du PROF.CHEN"
+	line "connecté."
 
-	para "#DEX Rating"
-	line "System opened."
+	para "Evaluation du"
+	line "#DEX."
 	prompt
 
 _PokecenterPCOaksClosedText::
-	text "…"
-	line "Link closed…"
+	text "..."
+	line "Déconnexion..."
 	done
 
 _OakPCText1::
-	text "Want to get your"
-	line "#DEX rated?"
+	text "Veux-tu que j'éva-"
+	line "lue ton #DEX?"
 	done
 
 _OakPCText2::
-	text "Current #DEX"
-	line "completion level:"
+	text "Niveau #DEX"
+	line "actuel:"
 	prompt
 
 _OakPCText3::
 	text_ram wStringBuffer3
-	text " #MON seen"
+	text " #MON vus"
 	line "@"
 	text_ram wStringBuffer4
-	text " #MON owned"
+	text " #MON pris"
 
-	para "PROF.OAK's"
-	line "Rating:"
+	para "Evaluation"
+	line "PROF.CHEN:"
 	done
 
 _OakRating01::
-	text "Look for #MON"
-	line "in grassy areas!"
+	text "Cherche des #-"
+	line "MON dans les"
+	cont "hautes herbes!"
 	done
 
 _OakRating02::
-	text "Good. I see you"
-	line "understand how to"
-	cont "use # BALLS."
+	text "Bien. Je vois que"
+	line "tu sais te servir"
+	cont "des # BALLS."
 	done
 
 _OakRating03::
-	text "You're getting"
-	line "good at this."
+	text "Tu t'améliores"
+	line "mais il te reste"
 
-	para "But you have a"
-	line "long way to go."
+	para "beaucoup de choses"
+	line "à découvrir."
 	done
 
 _OakRating04::
-	text "You need to fill"
-	line "up the #DEX."
+	text "Tu dois remplir"
+	line "ton #DEX."
 
-	para "Catch different"
-	line "kinds of #MON!"
+	para "Attrape plusieurs"
+	line "types de #MON!"
 	done
 
 _OakRating05::
-	text "You're trying--I"
-	line "can see that."
+	text "Tu te donnes du"
+	line "mal, ça se voit."
 
-	para "Your #DEX is"
-	line "coming together."
+	para "Ton #DEX se"
+	line "remplit doucement."
 	done
 
 _OakRating06::
-	text "To evolve, some"
-	line "#MON grow,"
+	text "Certains #MON"
+	line "évoluent seuls,"
 
-	para "others use the"
-	line "effects of STONES."
+	para "d'autres ont be-"
+	line "soin de PIERRES."
 	done
 
 _OakRating07::
-	text "Have you gotten a"
-	line "fishing ROD? You"
+	text "Est-ce que tu as"
+	line "une CANNE? Tu"
 
-	para "can catch #MON"
-	line "by fishing."
+	para "peux pêcher des"
+	line "#MON!"
 	done
 
 _OakRating08::
-	text "Excellent! You"
-	line "seem to like col-"
-	cont "lecting things!"
+	text "Super! Tu aimes"
+	line "collectionner"
+	cont "des trucs, hein?"
 	done
 
 _OakRating09::
-	text "Some #MON only"
-	line "appear during"
+	text "Certains #MON"
+	line "n'apparaissent"
 
-	para "certain times of"
-	line "the day."
+	para "qu'à certains"
+	line "moments de la"
+	cont "journée."
 	done
 
 _OakRating10::
-	text "Your #DEX is"
-	line "filling up. Keep"
-	cont "up the good work!"
+	text "Ton #DEX se"
+	line "remplit. C'est"
+	cont "bien!"
 	done
 
 _OakRating11::
-	text "I'm impressed."
-	line "You're evolving"
+	text "Impressionnant!"
+	line "Tu fais évoluer"
 
-	para "#MON, not just"
-	line "catching them."
+	para "tes #MON!"
+	line "Bravo!"
 	done
 
 _OakRating12::
-	text "Have you met KURT?"
-	line "His custom BALLS"
-	cont "should help."
+	text "Tu connais"
+	line "FARGAS? Il fabri-"
+	cont "que des BALLS!"
 	done
 
 _OakRating13::
-	text "Wow. You've found"
-	line "more #MON than"
+	text "Oh! Tu as trouvé"
+	line "plus de #MON"
 
-	para "the last #DEX"
-	line "research project."
+	para "qu'au dernier"
+	line "recensement du"
+	cont "#DEX."
 	done
 
 _OakRating14::
-	text "Are you trading"
-	line "your #MON?"
+	text "Echanges-tu tes"
+	line "#MON? Il"
 
-	para "It's tough to do"
-	line "this alone!"
+	para "faut se faire"
+	line "des amis!"
 	done
 
 _OakRating15::
-	text "Wow! You've hit"
-	line "200! Your #DEX"
-	cont "is looking great!"
+	text "Whoa! T'as passé"
+	line "la barre des 200!"
+	cont "Ton #DEX est"
+	cont "mortel!"
 	done
 
 _OakRating16::
-	text "You've found so"
-	line "many #MON!"
+	text "Tu as trouvé tant"
+	line "de #MON!"
 
-	para "You've really"
-	line "helped my studies!"
+	para "Tu aides vraiment"
+	line "mes recherches!"
 	done
 
 _OakRating17::
-	text "Magnificent! You"
-	line "could become a"
+	text "Magnifique! Tu"
+	line "peux devenir un"
 
-	para "#MON professor"
-	line "right now!"
+	para "PROF. #MON"
+	line "dès maintenant!"
 	done
 
 _OakRating18::
-	text "Your #DEX is"
-	line "amazing! You're"
+	text "Ton #DEX est"
+	line "incroyable! Tu"
 
-	para "ready to turn"
-	line "professional!"
+	para "vas devenir un"
+	line "professionnel!"
 	done
 
 _OakRating19::
-	text "Whoa! A perfect"
-	line "#DEX! I've"
+	text "Whoa! Un #DEX"
+	line "parfait! Mon rêve"
 
-	para "dreamt about this!"
-	line "Congratulations!"
+	para "devient réalité!"
+	line "Bravo! Bravo!"
 	done
 
 _OakPCText4::
-	text "The link to PROF."
-	line "OAK's PC closed."
+	text "Connexion au PC du"
+	line "PROF.CHEN coupée."
 	done
 
 _TrainerRankingExplanationText:: ; unreferenced
-	text "Triple-theme"
-	line "trainer ranking!"
-
-	para "The SAVE file you"
-	line "just sent might"
-	cont "make the rankings!"
-
-	para ""
+	text_start
 	done
 
 _TrainerRankingNoDataText:: ; unreferenced
-	text "There is no"
-	line "ranking data."
-
-	para "Link to obtain"
-	line "ranking data."
-
-	para ""
+	text_start
 	done
 
 _MemoryGameYeahText::
-	text " , yeah!"
+	text ", ouais!"
 	done
 
 _MemoryGameDarnText::
-	text "Darn…"
+	text "Zut..."
 	done
 
 _StartMenuContestEndText::
-	text "Would you like to"
-	line "end the Contest?"
+	text "Voulez-vous arrê-"
+	line "ter le concours?"
 	done
 
 _ItemsTossOutHowManyText::
-	text "Toss out how many"
+	text "Jeter combien de"
 	line "@"
 	text_ram wStringBuffer2
-	text "(S)?"
+	text "?"
 	done
 
 _ItemsThrowAwayText::
-	text "Throw away @"
+	text "Jeter @"
 	text_decimal wItemQuantityChange, 1, 2
 	text_start
 	line "@"
 	text_ram wStringBuffer2
-	text "(S)?"
+	text "?"
 	done
 
 _ItemsDiscardedText::
-	text "Discarded"
-	line "@"
 	text_ram wStringBuffer1
-	text "(S)."
+	text_start
+	line "à la poubelle."
 	prompt
 
 _ItemsTooImportantText::
-	text "That's too impor-"
-	line "tant to toss out!"
+	text "C'est trop"
+	line "important!"
 	prompt
 
 _ItemsOakWarningText::
-	text "OAK: <PLAYER>!"
-	line "This isn't the"
-	cont "time to use that!"
+	text "CHEN: <PLAYER>!"
+	line "Ce n'est pas le"
+	cont "moment d'utiliser"
+	cont "ce truc!"
 	done
 
 _PokemonSwapItemText::
-	text "Took @"
-	text_ram wMonOrItemNameBuffer
-	text "'s"
-	line "@"
+	text "Pris @"
 	text_ram wStringBuffer1
-	text " and"
+	text_start
+	line "de @"
+	text_ram wMonOrItemNameBuffer
+	text " et"
 
-	para "made it hold"
+	para "fait tenir"
 	line "@"
 	text_ram wStringBuffer2
 	text "."
 	prompt
 
 _PokemonHoldItemText::
-	text "Made @"
 	text_ram wMonOrItemNameBuffer
-	text_start
-	line "hold @"
+	text " tient"
+	line "@"
 	text_ram wStringBuffer2
 	text "."
 	prompt
 
 _PokemonRemoveMailText::
-	text "Please remove the"
-	line "MAIL first."
+	text "Enlever la"
+	line "LETTRE d'abord."
 	prompt
 
 _PokemonNotHoldingText::
 	text_ram wMonOrItemNameBuffer
-	text " isn't"
-	line "holding anything."
+	text " ne"
+	line "tient rien."
 	prompt
 
 _ItemStorageFullText::
-	text "Item storage space"
-	line "full."
+	text "Espace de stockage"
+	line "d'objets complet."
 	prompt
 
 _PokemonTookItemText::
-	text "Took @"
+	text "Pris @"
 	text_ram wStringBuffer1
 	text_start
-	line "from @"
+	line "de @"
 	text_ram wMonOrItemNameBuffer
 	text "."
 	prompt
 
 _PokemonAskSwapItemText::
 	text_ram wMonOrItemNameBuffer
-	text " is"
-	line "already holding"
+	text_start
+	line "tient déjà"
 
 	para "@"
 	text_ram wStringBuffer1
 	text "."
-	line "Switch items?"
+	line "Changer d'objet?"
 	done
 
 _ItemCantHeldText::
-	text "This item can't be"
-	line "held."
+	text "Cet objet ne peut"
+	line "être tenu."
 	prompt
 
 _MailLoseMessageText::
-	text "The MAIL will lose"
-	line "its message. OK?"
+	text "La LETTRE perdra"
+	line "son message. OK?"
 	done
 
 _MailDetachedText::
-	text "MAIL detached from"
+	text "LETTRE enlevée de"
 	line "@"
 	text_ram wStringBuffer1
 	text "."
 	prompt
 
 _MailNoSpaceText::
-	text "There's no space"
-	line "for removing MAIL."
+	text "Pas de place pour"
+	line "enlever la LETTRE."
 	prompt
 
 _MailAskSendToPCText::
-	text "Send the removed"
-	line "MAIL to your PC?"
+	text "Envoyer la LETTRE"
+	line "enlevée au PC?"
 	done
 
 _MailboxFullText::
-	text "Your PC's MAILBOX"
-	line "is full."
+	text "La BOITE AUX LET-"
+	line "TRES du PC est"
+	cont "pleine."
 	prompt
 
 _MailSentToPCText::
-	text "The MAIL was sent"
-	line "to your PC."
+	text "La LETTRE a été"
+	line "envoyée au PC."
 	prompt
 
 _PokemonNotEnoughHPText::
-	text "Not enough HP!"
+	text "Pas assez de PV!"
 	prompt
 
 _MayRegisterItemText::
-	text "An item in your"
-	line "PACK may be"
+	text "Un objet du SAC"
+	line "peut être enregis-"
 
-	para "registered for use"
-	line "on SELECT Button."
+	para "tré comme fonction"
+	line "du bouton SELECT."
 	done
 
 _OakText1::
-	text "Hello! Sorry to"
-	line "keep you waiting!"
+	text "Bonjour! Désolé de"
+	line "l'attente!"
 
-	para "Welcome to the"
-	line "world of #MON!"
+	para "Bienvenue dans le"
+	line "monde de #MON!"
 
-	para "My name is OAK."
+	para "Mon nom est CHEN."
 
-	para "People call me the"
-	line "#MON PROF."
+	para "Mais on m'appelle"
+	line "le PROF.#MON."
 	prompt
 
 _OakText2::
-	text "This world is in-"
-	line "habited by crea-"
-	cont "tures that we call"
-	cont "#MON.@"
+	text "Ce monde est peu-"
+	line "plé de créatures"
+	cont "appelées #MON.@"
 	text_end
 
 _OakText3::
@@ -1552,26 +1557,28 @@ _OakText3::
 	text_end ; unreferenced
 
 _OakText4::
-	text "People and #MON"
-	line "live together by"
+	text "Humains et #MON"
+	line "vivent en parfaite"
+	cont "harmonie..."
 
-	para "supporting each"
-	line "other."
-
-	para "Some people play"
-	line "with #MON, some"
-	cont "battle with them."
+	para "Certains jouent"
+	line "avec les #MON,"
+	cont "d'autres font des"
+	cont "combats avec eux."
 	prompt
 
 _OakText5::
-	text "But we don't know"
-	line "everything about"
-	cont "#MON yet."
+	text "Mais il reste"
+	line "beaucoup à appren-"
+	cont "dre sur nos amis"
+	cont "les #MON."
 
-	para "There are still"
-	line "many mysteries to"
-	cont "solve."
+	para "De nombreux mystè-"
+	line "res planent à leur"
+	cont "sujet."
 
-	para "That's why I study"
-	line "#MON every day."
+	para "Et c'est pourquoi"
+	line "j'étudie les"
+	cont "#MON tous les"
+	cont "jours."
 	prompt

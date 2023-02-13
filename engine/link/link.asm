@@ -16,13 +16,13 @@ LinkCommunications:
 	call LoadFontsBattleExtra
 	farcall LinkComms_LoadPleaseWaitTextboxBorderGFX
 	call WaitBGMap2
-	hlcoord 3, 8
+	hlcoord 4, 8
 	ld b, 2
-	ld c, 12
+	ld c, 10
 	ld d, h
 	ld e, l
 	farcall LinkTextbox2
-	hlcoord 4, 10
+	hlcoord 5, 10
 	ld de, String_PleaseWait
 	call PlaceString
 	call SetTradeRoomBGPals
@@ -68,7 +68,7 @@ Gen2ToGen1LinkComms:
 	ld de, MUSIC_NONE
 	call PlayMusic
 	vc_patch Wireless_net_delay_5
-if DEF(_CRYSTAL11_VC)
+if DEF(_CRYSTAL_VC)
 	ld c, 26
 else
 	ld c, 3
@@ -234,7 +234,7 @@ Gen2ToGen2LinkComms:
 	ld de, MUSIC_NONE
 	call PlayMusic
 	vc_patch Wireless_net_delay_8
-if DEF(_CRYSTAL11_VC)
+if DEF(_CRYSTAL_VC)
 	ld c, 26
 else
 	ld c, 3
@@ -592,7 +592,7 @@ ExchangeBytes:
 	ret
 
 String_PleaseWait:
-	db "PLEASE WAIT!@"
+	db "UN MOMENT…@"
 
 ClearLinkData:
 	ld hl, wLinkData
@@ -1554,7 +1554,7 @@ LinkTrade_TradeStatsMenu:
 	text_end
 
 .String_Stats_Trade:
-	db "STATS     TRADE@"
+	db "STATS     ECHANGE@"
 
 .LinkAbnormalMonText:
 	text_far _LinkAbnormalMonText
@@ -1647,7 +1647,7 @@ GSPlaceTradeScreenFooter: ; unreferenced
 	jp PlaceString
 
 .CancelString:
-	db "CANCEL@"
+	db "ANNULER@"
 
 LinkTradePlaceArrow:
 ; Indicates which pokemon the other player has selected to trade
@@ -1655,7 +1655,10 @@ LinkTradePlaceArrow:
 	hlcoord 6, 9
 	ld bc, SCREEN_WIDTH
 	call AddNTimes
-	ld [hl], "▷"
+	ld [hl], $1f
+	ld bc, MON_NAME_LENGTH
+	add hl, bc
+	ld [hl], $1f
 	ret
 
 LinkEngine_FillBox:
@@ -1707,16 +1710,16 @@ LinkTrade:
 	bccoord 1, 14
 	call PlaceHLTextAtBC
 	call LoadStandardMenuHeader
-	hlcoord 10, 7
+	hlcoord 9, 7
 	ld b, 3
-	ld c, 7
+	ld c, 8
 	call LinkTextboxAtHL
 	ld de, String_TradeCancel
-	hlcoord 12, 8
+	hlcoord 11, 8
 	call PlaceString
 	ld a, 8
 	ld [w2DMenuCursorInitY], a
-	ld a, 11
+	ld a, 10
 	ld [w2DMenuCursorInitX], a
 	ld a, 1
 	ld [w2DMenuNumCols], a
@@ -2043,19 +2046,19 @@ InitTradeMenuDisplay_Delay:
 	jp InitTradeMenuDisplay
 
 String_TradeCancel:
-	db   "TRADE"
-	next "CANCEL@"
+	db   "ECHANGE"
+	next "ANNULER@"
 
 LinkAskTradeForText:
 	text_far _LinkAskTradeForText
 	text_end
 
 String_TradeCompleted:
-	db   "Trade completed!@"
+	db   "ECHANGE TERMINE!@"
 
 String_TooBadTheTradeWasCanceled:
-	db   "Too bad! The trade"
-	next "was canceled!@"
+	db   "Dommage! L'échange"
+	next "est annulé!@"
 
 LinkTextboxAtHL:
 	ld d, h
@@ -2183,7 +2186,7 @@ GetIncompatibleMonName:
 
 EnterTimeCapsule:
 	vc_patch Wireless_net_delay_6
-if DEF(_CRYSTAL11_VC)
+if DEF(_CRYSTAL_VC)
 	ld c, 26
 else
 	ld c, 10
@@ -2412,7 +2415,7 @@ CheckLinkTimeout_Gen2:
 	ld [wPlayerLinkAction], a
 	ld hl, wLinkTimeoutFrames
 	vc_patch Wireless_net_delay_9
-if DEF(_CRYSTAL11_VC)
+if DEF(_CRYSTAL_VC)
 	ld a, $3
 else
 	ld a, 1
@@ -2479,7 +2482,7 @@ Link_CheckCommunicationError:
 
 .AcknowledgeSerial:
 	vc_patch Wireless_net_delay_7
-if DEF(_CRYSTAL11_VC)
+if DEF(_CRYSTAL_VC)
 	ld b, 26
 else
 	ld b, 10

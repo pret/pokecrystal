@@ -1,10 +1,11 @@
-	db "HERB@" ; species name
-	dw 511, 2220 ; height, weight
+	db "HERBE@" ; species name
+	db 18 ; height
+	dw 1005 ; weight
 
-	db   "Anyone who stands"
-	next "beside it becomes"
-	next "refreshed, just as"
+	db   "Toute personne se"
+	next "tenant près de lui"
+	next "se sent instanta-"
 
-	page "if they were"
-	next "relaxing in a"
-	next "sunny forest.@"
+	page "nément rafraîchie,"
+	next "comme dans une fo-"
+	next "rêt en été.@"

@@ -799,43 +799,9 @@ HeavyBallMultiplier:
 	jr nz, .SkipText
 
 	call HeavyBall_GetDexEntryBank
-	push bc
 	inc hl
 	inc hl
-	call GetFarWord
-
-	srl h
-	rr l
-	ld b, h
-	ld c, l
-
-rept 4
-	srl b
-	rr c
-endr
-	call .subbc
-
-	srl b
-	rr c
-	call .subbc
-
-	ld a, h
-	pop bc
-	jr .compare
-
-.subbc
-	; subtract bc from hl
-	push bc
-	ld a, b
-	cpl
-	ld b, a
-	ld a, c
-	cpl
-	ld c, a
-	inc bc
-	add hl, bc
-	pop bc
-	ret
+	call GetFarByte
 
 .compare
 	ld c, a
@@ -1230,10 +1196,10 @@ StatStrings:
 	dw .speed
 	dw .special
 
-.health  db "HEALTH@"
-.attack  db "ATTACK@"
+.health  db "VIE@"
+.attack  db "ATTAQUE@"
 .defense db "DEFENSE@"
-.speed   db "SPEED@"
+.speed   db "VITESSE@"
 .special db "SPECIAL@"
 
 GetStatExpRelativePointer:

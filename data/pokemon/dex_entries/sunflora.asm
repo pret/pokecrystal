@@ -1,10 +1,11 @@
-	db "SUN@" ; species name
-	dw 207, 190 ; height, weight
+	db "SOLEIL@" ; species name
+	db 8 ; height
+	dw 85 ; weight
 
-	db   "As the hot season"
-	next "approaches, the"
-	next "petals on this"
+	db   "A l'approche des"
+	next "beaux jours, les"
+	next "pétales entourant"
 
-	page "#MON's face"
-	next "become more vivid"
-	next "and lively.@"
+	page "sa tête deviennent"
+	next "plus chatoyants."
+	next "@"

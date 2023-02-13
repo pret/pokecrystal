@@ -1,10 +1,11 @@
-	db "MOLE@" ; species name
-	dw 204, 730 ; height, weight
+	db "TAUPE@" ; species name
+	db 7 ; height
+	dw 333 ; weight
 
-	db   "These DIGLETT"
-	next "triplets dig over"
-	next "60 miles below sea"
+	db   "Ces triplés de"
+	next "TAUPIQUEUR creu-"
+	next "sent à plus de 100"
 
-	page "level. No one"
-	next "knows what it's"
-	next "like underground.@"
+	page "km sous terre,"
+	next "vers l'inconnu."
+	next "@"

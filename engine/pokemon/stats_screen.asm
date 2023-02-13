@@ -700,20 +700,20 @@ LoadPinkPage:
 	ret
 
 .Status_Type:
-	db   "STATUS/"
+	db   "STATUT/"
 	next "TYPE/@"
 
 .OK_str:
-	db "OK @"
+	db "OK@"
 
 .ExpPointStr:
-	db "EXP POINTS@"
+	db "PTS EXP.@"
 
 .LevelUpStr:
-	db "LEVEL UP@"
+	db "PROCH.NIV.@"
 
 .ToStr:
-	db "TO@"
+	db "▶@"
 
 .PkrsStr:
 	db "#RUS@"
@@ -726,7 +726,7 @@ LoadGreenPage:
 	hlcoord 8, 8
 	call PlaceString
 	ld de, .Move
-	hlcoord 0, 10
+	hlcoord 0, 9
 	call PlaceString
 	ld hl, wTempMonMoves
 	ld de, wListMoves_MoveIndicesBuffer
@@ -755,13 +755,13 @@ LoadGreenPage:
 	ret
 
 .Item:
-	db "ITEM@"
+	db "OBJET/@"
 
 .ThreeDashes:
 	db "---@"
 
 .Move:
-	db "MOVE@"
+	db "CAPACITE/@"
 
 LoadBluePage:
 	call .PlaceOTInfo
@@ -818,10 +818,10 @@ LoadBluePage:
 	dw wBufferMonOT
 
 IDNoString:
-	db "<ID>№.@"
+	db "№.<ID>@"
 
 OTString:
-	db "OT/@"
+	db "DO/@"
 
 StatsScreen_PlaceFrontpic:
 	ld hl, wTempMonDVs
@@ -1052,31 +1052,31 @@ endc
 	ret
 
 EggString:
-	db "EGG@"
+	db "OEUF@"
 
 FiveQMarkString:
 	db "?????@"
 
 EggSoonString:
-	db   "It's making sounds"
-	next "inside. It's going"
-	next "to hatch soon!@"
+	db   "Cela fait du bruit"
+	next "à l'intérieur. Il"
+	next "va bientôt éclore!@"
 
 EggCloseString:
-	db   "It moves around"
-	next "inside sometimes."
-	next "It must be close"
-	next "to hatching.@"
+	db   "Il se déplace à"
+	next "l'intérieur. Il"
+	next "est sur le point"
+	next "d'éclore!@"
 
 EggMoreTimeString:
-	db   "Wonder what's"
-	next "inside? It needs"
-	next "more time, though.@"
+	db   "Qu'y a-t-il à"
+	next "l'intérieur?"
+	next "Il faut attendre"
+	next "encore un peu.@"
 
 EggALotMoreTimeString:
-	db   "This EGG needs a"
-	next "lot more time to"
-	next "hatch.@"
+	db   "Cet OEUF va mettre"
+	next "du temps à éclore!@"
 
 StatsScreen_AnimateEgg:
 	call StatsScreen_GetAnimationParam

@@ -1,10 +1,11 @@
-	db "LEAF@" ; species name
-	dw 311, 350 ; height, weight
+	db "FEUILLE@" ; species name
+	db 12 ; height
+	dw 158 ; weight
 
-	db   "The scent that"
-	next "wafts from the"
-	next "leaves on its neck"
+	db   "L'odeur épicée des"
+	next "feuilles sur son"
+	next "cou est considérée"
 
-	page "causes anyone who"
-	next "smells it to"
-	next "become energetic.@"
+	page "par les humains"
+	next "comme énergisante."
+	next "@"

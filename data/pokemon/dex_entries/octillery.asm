@@ -1,10 +1,11 @@
 	db "JET@" ; species name
-	dw 211, 630 ; height, weight
+	db 9 ; height
+	dw 285 ; weight
 
-	db   "Its instinct is to"
-	next "bury itself in"
-	next "holes. It often"
+	db   "Il se cache dans"
+	next "des trous. Il lui"
+	next "arrive même de"
 
-	page "steals the nesting"
-	next "holes of others to"
-	next "sleep in them.@"
+	page "voler les trous de"
+	next "ses semblables."
+	next "@"

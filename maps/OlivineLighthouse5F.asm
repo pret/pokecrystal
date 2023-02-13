@@ -45,47 +45,49 @@ OlivineLighthouse5FHiddenHyperPotion:
 	hiddenitem HYPER_POTION, EVENT_OLIVINE_LIGHTHOUSE_5F_HIDDEN_HYPER_POTION
 
 SailorErnestSeenText:
-	text "I wanted to battle"
-	line "JASMINE, but she's"
+	text "Je voulais défier"
+	line "JASMINE mais ce"
 
-	para "not up to it now."
-	line "So, how about you?"
+	para "n'est pas le mo-"
+	line "ment. Et toi, ça"
+	cont "te tente?"
 	done
 
 SailorErnestBeatenText:
-	text "Whoa, whoa. You're"
-	line "overwhelming!"
+	text "Fouiiii!"
+	line "T'es trop, toi!"
 	done
 
 SailorErnestAfterBattleText:
-	text "A GYM LEADER isn't"
-	line "just about being"
+	text "Un CHAMPION n'est"
+	line "pas seulement fort"
 
-	para "strong. A LEADER"
-	line "also needs to be"
-	cont "compassionate."
+	para "mais il se doit"
+	line "d'être aussi"
+	cont "compatissant."
 	done
 
 BirdKeeperDenisSeenText:
-	text "We're pretty high"
-	line "up here. My bird"
+	text "C'est haut ici!"
+	line "Mes #MON"
 
-	para "#MON are in"
-	line "prime form."
+	para "oiseaux sont en"
+	line "super forme."
 	done
 
 BirdKeeperDenisBeatenText:
-	text "Oops…They crashed…"
+	text "Mayday!"
+	line "Mayday!"
 	done
 
 BirdKeeperDenisAfterBattleText:
-	text "My #MON learned"
-	line "how to use FLY in"
-	cont "CIANWOOD."
+	text "Mon #MON a"
+	line "appris VOL à"
+	cont "IRISIA."
 
-	para "Well, since I'm a"
-	line "loser, I'll FLY"
-	cont "across the sea…"
+	para "Et puisque j'ai"
+	line "perdu, je vais"
+	cont "VOLER autre part!"
 	done
 
 OlivineLighthouse5F_MapEvents:

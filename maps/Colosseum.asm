@@ -56,8 +56,8 @@ CableClubFriendScript:
 	end
 
 .FriendReadyText:
-	text "Your friend is"
-	line "ready."
+	text "Votre ami(e) est"
+	line "prêt(e)."
 	done
 
 Colosseum_MapEvents:

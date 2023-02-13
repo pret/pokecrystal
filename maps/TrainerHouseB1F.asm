@@ -110,61 +110,60 @@ Movement_TrainerHouseTurnBack:
 	step_end
 
 TrainerHouseB1FIntroText:
-	text "Hi. Welcome to our"
-	line "TRAINING HALL."
+	text "Bienvenue au HALL"
+	line "d'ENTRAINEMENT."
 
-	para "You may battle a"
-	line "trainer once per"
-	cont "day."
+	para "On peut y affron-"
+	line "ter un adversaire"
+	cont "par jour."
 	done
 
 TrainerHouseB1FYourOpponentIsText:
 	text_ram wStringBuffer3
-	text " is your"
-	line "opponent today."
+	text " est"
+	line "l'adversaire du"
+	cont "jour."
 	done
 
 TrainerHouseB1FAskWantToBattleText:
-	text "Would you like to"
-	line "battle?"
+	text "Voulez-vous com-"
+	line "battre?"
 	done
 
 TrainerHouseB1FGoRightInText:
-	text "Please go right"
-	line "through."
+	text "Passez s'il vous"
+	line "plaît."
 
-	para "You may begin"
-	line "right away."
+	para "Vous pouvez com-"
+	line "mencer tout de"
+	cont "suite."
 	done
 
 TrainerHouseB1FPleaseComeAgainText:
-	text "Sorry. Only those"
-	line "trainers who will"
+	text "Seuls les dres-"
+	line "seurs allant com-"
 
-	para "be battling are"
-	line "allowed to go in."
+	para "battre sont auto-"
+	line "risés à entrer."
 	done
 
 TrainerHouseB1FSecondChallengeDeniedText:
-	text "I'm sorry."
-	line "This would be your"
+	text "Excusez-moi! Vous"
+	line "ne pouvez entrer"
 
-	para "second time today."
-	line "You're permitted"
-
-	para "to enter just once"
-	line "a day."
+	para "qu'une fois par"
+	line "jour!"
 	done
 
 TrainerHouseB1FCalBeatenText:
-	text "I lost…"
-	line "Darn…"
+	text "Perdu..."
+	line "Et zut..."
 	done
 
 TrainerHouseB1FCalBeforeText:
-	text "I traveled out"
-	line "here just so I"
-	cont "could battle you."
+	text "J'ai voyagé jus-"
+	line "qu'ici pour t'af-"
+	cont "fronter."
 	done
 
 TrainerHouseB1F_MapEvents:

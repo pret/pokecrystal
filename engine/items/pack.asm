@@ -159,15 +159,15 @@ Pack:
 
 .MenuHeader1:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 12, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData_1
 	db 1 ; default option
 
 .MenuData_1:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2 ; items
-	db "USE@"
-	db "QUIT@"
+	db "UTIL@"
+	db "RET@"
 
 .Jumptable1:
 	dw .UseItem
@@ -175,16 +175,16 @@ Pack:
 
 .MenuHeader2:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 5, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 12, 5, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData_2
 	db 1 ; default option
 
 .MenuData_2:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3 ; items
-	db "USE@"
-	db "GIVE@"
-	db "QUIT@"
+	db "UTIL@"
+	db "DON@"
+	db "RET@"
 
 .Jumptable2:
 	dw .UseItem
@@ -310,18 +310,18 @@ Pack:
 
 MenuHeader_UsableKeyItem:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 12, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 5 ; items
-	db "USE@"
-	db "GIVE@"
-	db "TOSS@"
-	db "SEL@"
-	db "QUIT@"
+	db "UTIL@"
+	db "DON@"
+	db "JETER@"
+	db "SLCT@"
+	db "RET@"
 
 Jumptable_UseGiveTossRegisterQuit:
 	dw UseItem
@@ -332,17 +332,17 @@ Jumptable_UseGiveTossRegisterQuit:
 
 MenuHeader_UsableItem:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 3, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 12, 3, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 4 ; items
-	db "USE@"
-	db "GIVE@"
-	db "TOSS@"
-	db "QUIT@"
+	db "UTIL@"
+	db "DON@"
+	db "JETER@"
+	db "RET@"
 
 Jumptable_UseGiveTossQuit:
 	dw UseItem
@@ -352,15 +352,15 @@ Jumptable_UseGiveTossQuit:
 
 MenuHeader_UnusableItem:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 12, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2 ; items
-	db "USE@"
-	db "QUIT@"
+	db "UTIL@"
+	db "RET@"
 
 Jumptable_UseQuit:
 	dw UseItem
@@ -368,16 +368,16 @@ Jumptable_UseQuit:
 
 MenuHeader_UnusableKeyItem:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 5, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 12, 5, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3 ; items
-	db "USE@"
-	db "SEL@"
-	db "QUIT@"
+	db "UTIL@"
+	db "SLCT@"
+	db "RET@"
 
 Jumptable_UseRegisterQuit:
 	dw UseItem
@@ -386,17 +386,17 @@ Jumptable_UseRegisterQuit:
 
 MenuHeader_HoldableKeyItem:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 3, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 12, 3, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 4 ; items
-	db "GIVE@"
-	db "TOSS@"
-	db "SEL@"
-	db "QUIT@"
+	db "DON@"
+	db "JETER@"
+	db "SLCT@"
+	db "RET@"
 
 Jumptable_GiveTossRegisterQuit:
 	dw GiveItem
@@ -406,16 +406,16 @@ Jumptable_GiveTossRegisterQuit:
 
 MenuHeader_HoldableItem:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 5, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 12, 5, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3 ; items
-	db "GIVE@"
-	db "TOSS@"
-	db "QUIT@"
+	db "DON@"
+	db "JETER@"
+	db "RET@"
 
 Jumptable_GiveTossQuit:
 	dw GiveItem
@@ -804,15 +804,15 @@ TMHMSubmenu:
 
 .UsableMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 12, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .UsableMenuData
 	db 1 ; default option
 
 .UsableMenuData:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2 ; items
-	db "USE@"
-	db "QUIT@"
+	db "UTIL@"
+	db "RET@"
 
 .UsableJumptable:
 	dw .Use
@@ -820,14 +820,14 @@ TMHMSubmenu:
 
 .UnusableMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 9, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 12, 9, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .UnusableMenuData
 	db 1 ; default option
 
 .UnusableMenuData:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 1 ; items
-	db "QUIT@"
+	db "RET@"
 
 .UnusableJumptable:
 	dw .Quit

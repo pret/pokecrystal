@@ -1,55 +1,56 @@
 JackAskNumber1Text:
-	text "Your knowledge is"
-	line "impressive!"
+	text "Tu en connais un"
+	line "rayon!"
 
-	para "I like that!"
+	para "C'est bien!"
 
-	para "Want to trade"
-	line "battle tips?"
+	para "On échange des"
+	line "astuces?"
 
-	para "I'll phone if I"
-	line "get good info."
+	para "Je t'appelle si"
+	line "j'ai du nouveau."
 
-	para "Would you tell me"
-	line "your number?"
+	para "Tu me donnes ton"
+	line "numéro?"
 	done
 
 JackAskNumber2Text:
-	text "Want to trade"
-	line "battle tips?"
+	text "On échange des"
+	line "astuces?"
 
-	para "I'll phone if I"
-	line "get good info."
+	para "Je t'appelle si"
+	line "j'ai du nouveau."
 
-	para "Would you tell me"
-	line "your number?"
+	para "Tu me donnes ton"
+	line "numéro?"
 	done
 
 JackNumberAcceptedText:
-	text "I'll call you if I"
-	line "hear anything!"
+	text "Je t'appelle si"
+	line "j'ai du nouveau."
 	done
 
 JackNumberDeclinedText:
-	text "Oh, OK. Too bad…"
+	text "Oh, OK. Dommage."
 
-	para "Well, if you ever"
-	line "want my number,"
-	cont "come see me, OK?"
+	para "Si tu veux mon"
+	line "numéro, viens me"
+	cont "voir, OK?"
 	done
 
 JackPhoneFullText:
 	text "Oh?"
-	line "Your phone's full."
+	line "Ton téléphone"
+	cont "est plein."
 
-	para "It can't register"
-	line "my number."
+	para "Tu ne peux pas en-"
+	line "registrer mon No."
 	done
 
 JackRematchText:
-	text "Hi, I was waiting"
-	line "for you to show!"
+	text "Hé!"
+	line "Je t'attendais!"
 
-	para "Let's get started"
-	line "right away!"
+	para "Allez, hop!"
+	line "On commence!"
 	done

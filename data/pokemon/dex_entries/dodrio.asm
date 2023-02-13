@@ -1,10 +1,11 @@
-	db "TRIPLEBIRD@" ; species name
-	dw 511, 1880 ; height, weight
+	db "TROISEAU@" ; species name
+	db 18 ; height
+	dw 852 ; weight
 
-	db   "An enemy that"
-	next "takes its eyes off"
-	next "any of the three"
+	db   "Un ennemi ne fai-"
+	next "sant pas attention"
+	next "à l'une des trois"
 
-	page "heads--even for a"
-	next "second--will get"
-	next "pecked severely.@"
+	page "têtes pendant une"
+	next "seconde se fait"
+	next "picorer.@"

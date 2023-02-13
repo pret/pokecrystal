@@ -1,10 +1,11 @@
-	db "TADPOLE@" ; species name
-	dw 200, 270 ; height, weight
+	db "TETARD@" ; species name
+	db 6 ; height
+	dw 124 ; weight
 
-	db   "The swirl on its"
-	next "belly is its"
-	next "insides showing"
+	db   "La spirale sur son"
+	next "ventre est son"
+	next "organisme, visible"
 
-	page "through the skin."
-	next "It looks clearer"
-	next "after it eats.@"
+	page "à travers la peau."
+	next "Il est plus clair"
+	next "après son repas.@"

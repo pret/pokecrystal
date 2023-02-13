@@ -1,10 +1,11 @@
-	db "SHADOW@" ; species name
-	dw 411, 890 ; height, weight
+	db "OMBRE@" ; species name
+	db 15 ; height
+	dw 405 ; weight
 
-	db   "Hiding in people's"
-	next "shadows at night,"
-	next "it absorbs their"
+	db   "Il se cache dans"
+	next "l'ombre des pas-"
+	next "sants et vole leur"
 
-	page "heat. The chill it"
-	next "causes makes the"
-	next "victims shake.@"
+	page "chaleur. Ses vic-"
+	next "times ressentent"
+	next "alors un frisson.@"

@@ -1,69 +1,69 @@
 ParryNothingCanMatchText:
-	text "Nothing can match"
-	line "my @"
+	text "Mon @"
 	text_ram wStringBuffer4
-	text " now."
+	text_start
+	line "c'est le top."
 	done
 
 ParryDefeatedMonText:
-	text "Yeah, we KO'd a"
-	line "wild @"
+	text "On a mis K.O."
+	line "un @"
 	text_ram wStringBuffer4
-	text "!"
+	text_start
+	cont "sauvage!"
 
-	para "That was OK, but I"
-	line "wanted to get it…"
+	para "En fait je voulais"
+	line "l'attraper…"
 	done
 
 ParryLostAMonText:
-	text "And yesterday, we"
-	line "spotted a wild"
-
-	para "@"
+	text "Hier, on a vu"
+	line "un @"
 	text_ram wStringBuffer4
-	text "."
-	line "We were debating"
+	text_start
 
-	para "whether to catch"
-	line "it or beat it."
+	para "sauvage."
+	line "On savait pas s'il"
 
-	para "When along came"
-	line "another guy who"
+	para "fallait l'attraper"
+	line "ou le battre."
 
-	para "caught it!"
-	line "How about that!"
+	para "Et puis un type"
+	line "est arrivé et l'a"
+
+	para "chopé!"
+	line "Tu le crois ça?"
 	done
 
 ParryBattleRematchText:
-	text "You're thinking"
-	line "you'd like to"
+	text "Tu veux te battre"
+	line "contre moi, non?"
 
-	para "battle me. Am I"
-	line "right or what?"
+	para "J'ai bon?"
+	line "Hein?"
 
-	para "Yep! We'll meet on"
+	para "On s'retrouve vers"
 	line "@"
 	text_ram wStringBuffer5
 	text "!"
 	done
 
 ParryHangUpText:
-	text "OK, give me a call"
-	line "again!"
+	text "OK, rappelle-moi"
+	line "vite!"
 	done
 
 ParryBattleWithMeText:
-	text "You'll battle with"
-	line "me again, right?"
+	text "Tu vas encore"
+	line "m'affronter, non?"
 	done
 
 ParryHaventYouGottenToText:
-	text "Haven't you gotten"
-	line "to @"
+	text "Tu as visité"
+	line "@"
 	text_ram wStringBuffer5
 	text "?"
 
-	para "Waiting here isn't"
-	line "bad, but I'd sure"
-	cont "like to battle!"
+	para "J'attends là."
+	line "Je veux combattre!"
 	done

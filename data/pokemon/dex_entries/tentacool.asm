@@ -1,10 +1,11 @@
-	db "JELLYFISH@" ; species name
-	dw 211, 1000 ; height, weight
+	db "MOLLUSQUE@" ; species name
+	db 9 ; height
+	dw 455 ; weight
 
-	db   "As it floats along"
-	next "on the waves, it"
-	next "uses its toxic"
+	db   "En flottant à la"
+	next "surface de l'eau,"
+	next "il pique tout ce"
 
-	page "feelers to stab"
-	next "anything it"
-	next "touches.@"
+	page "qu'il croise de"
+	next "ses tentacules"
+	next "empoisonnées.@"

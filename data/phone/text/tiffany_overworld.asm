@@ -1,62 +1,61 @@
 TiffanyAskNumber1Text:
-	text "Hi! You like"
-	line "CLEFAIRY too?"
+	text "Hé! Toi aussi tu"
+	line "aimes MELOFEE?"
 
-	para "They're so very"
-	line "cute, aren't they?"
+	para "Il est troooooop"
+	line "mignon, non?"
 
-	para "I think we can be"
-	line "good friends!"
+	para "On s'entend bien,"
+	line "tu trouves pas?"
 
-	para "I want to know"
-	line "your phone number!"
+	para "Je veux ton numéro"
+	line "de téléphone!"
 
-	para "Let's talk about"
-	line "CLEFAIRY!"
+	para "On parlera de"
+	line "MELOFEE!"
 	done
 
 TiffanyAskNumber2Text:
-	text "I want to know"
-	line "your phone number!"
+	text "Je veux ton numéro"
+	line "de téléphone!"
 
-	para "Let's talk about"
-	line "CLEFAIRY!"
+	para "On parlera de"
+	line "MELOFEE!"
 	done
 
 TiffanyNumberAcceptedText:
-	text "Isn't my CLEFAIRY"
-	line "super-adorable?"
+	text "Mon MELOFEE est"
+	line "siiiiiii mimi!"
 	done
 
 TiffanyNumberDeclinedText:
-	text "Aww… Oh well."
-	line "Look for me if you"
-
-	para "want to talk about"
-	line "CLEFAIRY."
+	text "Bon."
+	line "Viens me parler si"
+	cont "tu changes d'avis."
 	done
 
 TiffanyPhoneFullText:
-	text "Oh? Your phone"
-	line "registry is full."
+	text "Oh? Ton téléphone"
+	line "est plein."
 	done
 
 TiffanyRematchText:
-	text "There you are!"
+	text "Te voilà!"
 
-	para "CLEFAIRY, I want"
-	line "you to try hard!"
+	para "MELOFEE, fais de"
+	line "ton mieux!"
 	done
 
 TiffanyGiftText:
-	text "You took a long"
-	line "time. See this?"
+	text "Tu as pris ton"
+	line "temps. Tu vois ça?"
 
-	para "Isn't it cute?"
-	line "It's a PINK BOW."
+	para "C'est mignon, non?"
+	line "C'est un RUBAN"
+	cont "ROSE."
 	done
 
 TiffanyPackFullText:
-	text "Uh-oh. Your PACK"
-	line "is crammed full."
+	text "Oups. Ton SAC est"
+	line "super plein."
 	done

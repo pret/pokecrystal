@@ -1,67 +1,67 @@
 TullyAnswerPhoneText:
-	text "Hello, this is"
+	text "Salut c'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "…"
 
-	para "Oh, Good morning,"
+	para "Oh, bonjour,"
 	line "<PLAY_G>."
 	done
 
 TullyAnswerPhoneDayText:
-	text "Hello, this is"
+	text "Salut c'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "…"
 
-	para "That voice…"
-	line "<PLAY_G>, right?"
+	para "C'est..."
+	line "<PLAY_G>?"
 	done
 
 TullyAnswerPhoneNiteText:
-	text "Hello, this is"
+	text "Salut c'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "…"
 
-	para "This must be"
-	line "<PLAY_G>!"
+	para "C'est..."
+	line "<PLAY_G>?"
 	done
 
 TullyGreetText:
-	text "Hello!"
-	line "@"
+	text "Allô!"
+	line "Ici @"
 	text_ram wStringBuffer3
-	text " here…"
+	text "…"
 
-	para "Good morning! The"
-	line "weather's great!"
+	para "Bonjour!"
+	line "Il fait beau!"
 	done
 
 TullyGreetDayText:
-	text "Hello!"
-	line "@"
+	text "Allô!"
+	line "Ici @"
 	text_ram wStringBuffer3
-	text " here…"
+	text "…"
 
-	para "What a perfect day"
-	line "for fishing!"
+	para "Bonjour!"
+	line "Vive la pêche!"
 	done
 
 TullyGreetNiteText:
-	text "Hello!"
-	line "@"
+	text "Allô!"
+	line "Ici @"
 	text_ram wStringBuffer3
-	text " here…"
+	text "…"
 
-	para "It's a great night"
-	line "for fishing!"
+	para "Bonjour!"
+	line "Vive la pêche!"
 	done
 
 TullyGenericText:
-	text "How's your trip"
-	line "coming along?"
+	text "Ca va ton"
+	line "p'tit voyage?"
 
-	para "I can't complain"
-	line "about my fishing!"
+	para "Moi la pêche..."
+	line "Ca marche!"
 	done

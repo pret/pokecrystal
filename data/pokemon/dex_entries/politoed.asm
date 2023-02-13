@@ -1,10 +1,11 @@
-	db "FROG@" ; species name
-	dw 307, 750 ; height, weight
+	db "GRENOUILLE@" ; species name
+	db 11 ; height
+	dw 339 ; weight
 
-	db   "When it expands"
-	next "its throat to"
-	next "croak out a tune,"
+	db   "Si PTITARD et"
+	next "TETARTE entendent"
+	next "son chant, ils se"
 
-	page "nearby POLIWAG and"
-	next "POLIWHIRL gather"
-	next "immediately.@"
+	page "rassemblent pour"
+	next "venir le ren-"
+	next "contrer.@"

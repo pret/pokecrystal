@@ -317,250 +317,259 @@ RocketBaseRivalShovesPlayerMovement:
 	step_end
 
 LanceGetPasswordText:
-	text "LANCE: It takes"
-	line "two passwords to"
+	text "PETER: Il faut 2"
+	line "mots de passe pour"
 
-	para "get into the"
-	line "boss's quarters."
+	para "entrer chez le"
+	line "boss."
 
-	para "Those passwords"
-	line "are known only to"
-	cont "a few ROCKETS."
+	para "Seuls certains"
+	line "ROCKETS les con-"
+	cont "naissent."
 
-	para "That ROCKET there"
-	line "very graciously"
-	cont "told me so."
+	para "Ce ROCKET m'a ap-"
+	line "pris tout ça très"
+	cont "gentiment."
 
-	para "<PLAY_G>, let's go"
-	line "get the passwords."
+	para "<PLAY_G>, allons"
+	line "trouver les mots"
+	cont "de passe."
 	done
 
 TeamRocketBaseB3FRocketText:
-	text "Urrggh… The guy"
-	line "in the cape is"
-	cont "incredibly tough…"
+	text "Gueuuh... Le type"
+	line "avec la cape est"
+	cont "trop balèze!"
 	done
 
 RocketBaseRivalText:
-	text "…"
+	text "..."
 
-	para "Didn't I tell you"
-	line "that I was going"
+	para "J'te l'avais dit"
+	line "que j'allais la"
 
-	para "to destroy TEAM"
-	line "ROCKET?"
+	para "casser la TEAM"
+	line "ROCKET, non?"
 
-	para "…Tell me, who was"
-	line "the guy in the"
+	para "Au fait, kissé le"
+	line "type avec la cape"
 
-	para "cape who used"
-	line "dragon #MON?"
+	para "qui a plein de"
+	line "#MON dragons?"
 
-	para "My #MON were no"
-	line "match at all."
+	para "Mes #MON se"
+	line "sont fait éclater."
 
-	para "I don't care that"
-	line "I lost. I can beat"
+	para "Mais c'est pas"
+	line "grave. Je pourrai"
 
-	para "him by getting"
-	line "stronger #MON."
+	para "le battre dans pas"
+	line "longtemps."
 
-	para "It's what he said"
-	line "that bothers me…"
+	para "Ce qu'il a dit"
+	line "me perturbe..."
 
-	para "He told me that"
-	line "I don't love and"
+	para "Il raconte que je"
+	line "n'aime ni ne res-"
 
-	para "trust my #MON"
-	line "enough."
+	para "pecte mes #MON."
+	line "Tu le crois ça?"
 
-	para "I'm furious that I"
-	line "lost to a bleeding"
-	cont "heart like him."
+	para "Comment j'ai pu"
+	line "perdre face à un"
+	cont "crétin pareil."
 
-	para "…Humph! I don't"
-	line "have the time for"
-	cont "the likes of you!"
+	para "...Pfff..."
+	line "Vous me faites"
+	cont "tous pitié!"
 	done
 
 ExecutiveM4BeforeText:
-	text "What? Who are you?"
-	line "This is the office"
+	text "Quoi? Qui es-tu?"
+	line "C'est le bureau de"
 
-	para "of our leader,"
+	para "notre chef vénéré,"
 	line "GIOVANNI."
 
-	para "Since disbanding"
-	line "TEAM ROCKET three"
+	para "Depuis la dissolu-"
+	line "tion de la TEAM il"
 
-	para "years ago, he has"
-	line "been in training."
+	para "y a 3 ans, il"
+	line "s'entraîne à fond."
 
-	para "But we're certain"
-	line "he will be back"
+	para "Mais il reviendra"
+	line "prendre le pouvoir"
 
-	para "some day to assume"
-	line "command again."
+	para "un jour, c'est"
+	line "sûr!"
 
-	para "That's why we're"
-	line "standing guard."
+	para "C'est pourquoi"
+	line "nous sommes fidè-"
+	cont "les au poste."
 
-	para "I won't let any-"
-	line "one disturb this"
-	cont "place!"
+	para "Je ne laisserai"
+	line "passer aucun"
+	cont "intrus!"
 	done
 
 ExecutiveM4BeatenText:
-	text "I… I couldn't do a"
-	line "thing…"
+	text "Je...comment..."
+	line "Trop balèze."
 
-	para "GIOVANNI, please"
-	line "forgive me…"
+	para "GIOVANNI, pitié."
+	line "Pardonne-moi!"
 	done
 
 ExecutiveM4AfterText:
-	text "No, I can't let"
-	line "this affect me."
+	text "Je dois m'en"
+	line "remettre et..."
 
-	para "I have to inform"
-	line "the others…"
+	para "Je dois vite pré-"
+	line "venir les autres!"
 	done
 
 RocketBaseMurkrowText:
-	text "MURKROW: The"
-	line "password is…"
+	text "CORNEBRE: Le mot"
+	line "de passe est..."
 
-	para "HAIL GIOVANNI."
+	para "VIVE GIOVANNI."
 	done
 
 GruntF5SeenText:
-	text "Do I know the"
-	line "password?"
+	text "Si je connais le"
+	line "mot de passe?"
 
-	para "Maybe."
+	para "Peut-être."
 
-	para "But no weakling's"
-	line "going to get it!"
+	para "Mais j'le donnerai"
+	line "pas!"
 	done
 
 GruntF5BeatenText:
-	text "All right. Stop."
-	line "I'll tell you."
+	text "OK. Arrête."
+	line "Je vais parler."
 	done
 
 GruntF5AfterBattleText:
-	text "The password to"
-	line "the boss's room is"
+	text "Le mot de passe de"
+	line "la salle du chef"
+	cont "est..."
 
-	para "SLOWPOKETAIL."
+	para "QUEUERAMOLOS."
 
-	para "But it's useless"
-	line "unless you have"
-	cont "two passwords."
+	para "Mais ça te sert à"
+	line "rien sans l'autre"
+	cont "mot de passe."
 	done
 
 GruntM28SeenText:
-	text "Hyuck-hyuck-hyuck!"
+	text "Gnyark Gnyark!"
 
-	para "You're challenging"
-	line "me to a battle?"
+	para "Tu me lances un"
+	line "défi? A moi? T'es"
 
-	para "Hah! You're nuts,"
-	line "but you have guts!"
+	para "débile ou quoi?"
+	line "J'vais te bouffer!"
 
-	para "I like that!"
+	para "Gnyark Gnyark!"
 
-	para "If you can beat"
-	line "me, I'll tell you"
+	para "Bats-moi et je te"
+	line "donne un des"
 
-	para "a password to the"
-	line "boss's room!"
+	para "mots de passe pour"
+	line "la salle du chef!"
 	done
 
 GruntM28BeatenText:
-	text "Hyuck-hyuck-hyuck!"
-	line "You're good!"
+	text "Gnyark!"
+	line "Alors toi!"
 	done
 
 GruntM28AfterBattleText:
-	text "Hyuck-hyuck-hyuck!"
+	text "Gnyark Gnyark!"
 
-	para "The password to"
-	line "the boss's room…"
+	para "Le mot de passe"
+	line "est..."
 
-	para "Uh…, I think it is"
-	line "RATICATE TAIL."
+	para "Heu...c'est..."
+	line "QUEUE RATTATAC."
 	done
 
 ScientistRossSeenText:
-	text "I used to work for"
-	line "SILPH, but now I"
+	text "Je travaillais"
+	line "pour la SYLPHE"
 
-	para "run research for"
-	line "TEAM ROCKET."
+	para "mais maintenant je"
+	line "suis pour la"
+	cont "TEAM ROCKET."
 
-	para "A meddlesome child"
-	line "like you needs to"
-	cont "be punished."
+	para "Une petite peste"
+	line "comme toi doit"
+	cont "être punie."
 	done
 
 ScientistRossBeatenText:
-	text "A mere tactical"
-	line "error cost me…"
+	text "Petite erreur"
+	line "de calcul..."
 	done
 
 ScientistRossAfterBattleText:
-	text "A radio signal"
-	line "that drives #-"
-	cont "MON mad…"
+	text "Un signal radio"
+	line "qui rend les #-"
+	cont "MON fous..."
 
-	para "My experiment is a"
-	line "complete success."
+	para "Mon expérience est"
+	line "une réussite."
 
-	para "My promotion is"
-	line "assured. This loss"
+	para "Ma promotion est"
+	line "assurée. Avoir"
 
-	para "means absolutely"
-	line "nothing."
+	para "perdu n'est pas"
+	line "important."
 	done
 
 ScientistMitchSeenText:
-	text "I don't care that"
-	line "#MON are hurt"
-	cont "by our experiment."
+	text "Blesser des #-"
+	line "MON pendant les"
+	cont "expériences n'est"
+	cont "pas un problème."
 	done
 
 ScientistMitchBeatenText:
-	text "Thinking is my"
-	line "strong suit, not"
-	cont "battling."
+	text "Moi, j'suis un"
+	line "cérébral, pas un"
+	cont "combattant."
 	done
 
 ScientistMitchAfterBattleText:
-	text "If we turn up the"
-	line "power of our radio"
+	text "On pourrait pous-"
+	line "ser le signal au"
 
-	para "signal for broad-"
-	line "cast nationwide…"
+	para "niveau national..."
+	line "Et puis..."
 
-	para "The very thought"
-	line "excites me!"
+	para "Ha... Cela serait"
+	line "formidable!"
 	done
 
 TeamRocketBaseB3FLockedDoorNeedsPasswordText:
-	text "The door's closed…"
+	text "La porte est"
+	line "fermée..."
 
-	para "It needs two"
-	line "passwords to open."
+	para "Il faut deux mots"
+	line "de passe."
 	done
 
 TeamRocketBaseB3FLockedDoorOpenSesameText:
-	text "The door's closed…"
+	text "La porte est"
+	line "fermée..."
 
-	para "<PLAYER> entered"
-	line "the two passwords."
+	para "<PLAYER> tape les"
+	line "deux mots de"
+	cont "passe."
 
-	para "The door opened!"
+	para "La porte est"
+	line "ouverte!"
 	done
 
 TeamRocketBaseB3F_MapEvents:

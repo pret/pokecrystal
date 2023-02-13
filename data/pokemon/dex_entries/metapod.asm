@@ -1,10 +1,11 @@
-	db "COCOON@" ; species name
-	dw 204, 220 ; height, weight
+	db "COCON@" ; species name
+	db 7 ; height
+	dw 99 ; weight
 
-	db   "This is its pre-"
-	next "evolved form. At"
-	next "this stage, it can"
+	db   "A ce niveau de son"
+	next "évolution, il ne"
+	next "peut que durcir"
 
-	page "only harden, so it"
-	next "remains motionless"
-	next "to avoid attack.@"
+	page "et rester immobile"
+	next "pour éviter les"
+	next "attaques.@"

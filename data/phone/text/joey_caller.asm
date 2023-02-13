@@ -1,90 +1,85 @@
 JoeyMonLookingSharperText:
-	text "My @"
+	text "Mon @"
 	text_ram wStringBuffer4
-	text "'s"
-	line "looking sharper"
-	cont "than before!"
+	text_start
+	line "est en méga super"
+	cont "forme!"
 
-	para "I doubt there's a"
-	line "#MON as cool as"
-
-	para "this guy in your"
-	line "party!"
+	para "J'pense que t'en"
+	line "as pas des #MON"
+	cont "comme le mien!"
 	done
 
 JoeyDefeatedMonText:
-	text "Oh yeah, I took"
-	line "down a @"
+	text "Oh! J'ai battu"
+	line "un @"
 	text_ram wStringBuffer4
 	text_start
-	para "in the wild the"
-	line "other day."
+	para "sauvage l'autre"
+	line "jour."
 
-	para "It was a cakewalk."
-	line "Well, I guess it"
-
-	para "can't be helped,"
-	line "us being so tough."
+	para "Trop facile."
+	line "Normal."
+	cont "J'suis une brute."
 	done
 
 JoeyLostAMonText:
-	text "Oh yeah, I saw a"
-	line "wild @"
+	text "Oh! J'ai vu un"
+	line "@"
 	text_ram wStringBuffer4
 	text "!"
 
-	para "I thought about"
-	line "going for it, but"
+	para "J'ai voulu le"
+	line "choper, mais"
 
-	para "I decided to work"
-	line "with my one-and-"
-
-	para "only right to the"
-	line "extreme end."
+	para "finalement j'ai"
+	line "préféré lui mettre"
+	cont "une rouste."
 	done
 
 JoeyBattleRematchText:
-	text "Let's get together"
-	line "and battle!"
+	text "On se fait un"
+	line "combat?"
 
-	para "I promise things"
-	line "will be different!"
+	para "J'ai changé, tu"
+	line "verras!"
 
 	para "@"
 	text_ram wStringBuffer5
-	text "'s"
-	line "where I'll be."
+	text ","
+	line "c'est là où je"
+	cont "suis."
 
-	para "Give me a shout"
-	line "when you come."
+	para "Appelle si tu es"
+	line "dans le coin."
 	done
 
 JoeyHangUpText:
-	text "All right. Later!"
+	text "A plus tard!"
 	done
 
 JoeyDevisingStrategiesText:
-	text "I'm checking out"
+	text "J'analyse"
 	line "@"
 	text_ram wStringBuffer4
-	text "'s moves"
+	text_start
 
-	para "and devising some"
-	line "strategies."
+	para "et j'élabore des"
+	line "stratégies."
 
-	para "When I come up"
-	line "with a good one,"
-	cont "let's battle!"
+	para "Si j'en trouve une"
+	line "bonne, on se fait"
+	cont "un combat!"
 	done
 
 JoeyReminderText:
-	text "What's keeping"
-	line "you, <PLAYER>!"
+	text "Je t'attends,"
+	line "<PLAYER>!"
 
-	para "Let's get down and"
-	line "battle already!"
+	para "On se le fait ce"
+	line "combat ou bien?"
 
-	para "I'm waiting on"
+	para "J'attends vers"
 	line "@"
 	text_ram wStringBuffer5
 	text "!"

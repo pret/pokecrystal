@@ -104,7 +104,7 @@ MeetMomTalkedScript:
 	sjump MeetMomScript
 
 PokegearName:
-	db "#GEAR@"
+	db "#MATOS@"
 
 PlayersHouse1FReceiveItemStd:
 	jumpstd ReceiveItemScript
@@ -211,176 +211,193 @@ MomWalksBackMovement:
 	step_end
 
 ElmsLookingForYouText:
-	text "Oh, <PLAYER>…! Our"
-	line "neighbor, PROF."
+	text "Ah, <PLAYER>...!"
+	line "Notre voisin, le"
 
-	para "ELM, was looking"
-	line "for you."
+	para "PROF.ORME, te"
+	line "cherchait."
 
-	para "He said he wanted"
-	line "you to do some-"
-	cont "thing for him."
+	para "Il voulait que"
+	line "tu fasses quelque"
+	cont "chose pour lui."
 
-	para "Oh! I almost for-"
-	line "got! Your #MON"
+	para "Oh! J'allais"
+	line "oublier! Ton"
 
-	para "GEAR is back from"
-	line "the repair shop."
+	para "MATOS #MON est"
+	line "revenu de chez le"
+	cont "réparateur."
 
-	para "Here you go!"
+	para "Tiens!"
 	done
 
 MomGivesPokegearText:
-	text "#MON GEAR, or"
-	line "just #GEAR."
+	text "Le MATOS #MON,"
+	line "ou simplement"
+	cont "#MATOS..."
 
-	para "It's essential if"
-	line "you want to be a"
-	cont "good trainer."
+	para "...est primordial"
+	line "si tu veux devenir"
+	cont "dresseur."
 
-	para "Oh, the day of the"
-	line "week isn't set."
+	para "Oh! Le jour de la"
+	line "semaine n'est pas"
+	cont "paramétré."
 
-	para "You mustn't forget"
-	line "that!"
+	para "N'oublie pas ça!"
 	done
 
 IsItDSTText:
-	text "Is it Daylight"
-	line "Saving Time now?"
+	text "Changement d'heure"
+	line "à activer?"
 	done
 
 ComeHomeForDSTText:
-	text "Come home to"
-	line "adjust your clock"
+	text "Reviens à la"
+	line "maison pour le"
 
-	para "for Daylight"
-	line "Saving Time."
+	para "changement"
+	line "d'heure."
 
-	para "By the way, do you"
-	line "know how to use"
-	cont "the PHONE?"
+	para "Par ailleurs,"
+	line "sais-tu comment"
+	cont "utiliser le"
+	cont "TELEPHONE?"
 	done
 
 KnowTheInstructionsText:
-	text "Don't you just"
-	line "turn the #GEAR"
+	text "As-tu allumé le"
+	line "#MATOS et"
 
-	para "on and select the"
-	line "PHONE icon?"
+	para "sélectionné"
+	line "l'icône TELEPHONE?"
 	done
 
 DontKnowTheInstructionsText:
-	text "I'll read the"
-	line "instructions."
+	text "Je vais lire le"
+	line "manuel."
 
-	para "Turn the #GEAR"
-	line "on and select the"
-	cont "PHONE icon."
+	para "Allume le"
+	line "#MATOS et"
+	cont "sélectionne"
+	cont "l'icône TELEPHONE."
 	done
 
 InstructionsNextText:
-	text "Phone numbers are"
-	line "stored in memory."
+	text "Les numéros de"
+	line "téléphone sont"
 
-	para "Just choose a name"
-	line "you want to call."
+	para "enregistrés dans"
+	line "la mémoire."
+	cont "Choisis le nom de"
+	cont "celui que tu veux"
+	cont "appeler."
 
-	para "Gee, isn't that"
-	line "convenient?"
+	para "C'est pas trop"
+	line "compliqué, non?"
 	done
 
 HurryUpElmIsWaitingText:
-	text "PROF.ELM is wait-"
-	line "ing for you."
+	text "Le PROF.ORME"
+	line "t'attend."
 
-	para "Hurry up, baby!"
+	para "Dépêche-toi, mon"
+	line "poussin!"
 	done
 
 SoWhatWasProfElmsErrandText:
-	text "So, what was PROF."
-	line "ELM's errand?"
+	text "Alors, quelle"
+	line "était la commis-"
+	cont "sion du PROF.ORME?"
 
-	para "…"
+	para "..."
 
-	para "That does sound"
-	line "challenging."
+	para "Ca a l'air"
+	line "difficile."
 
-	para "But, you should be"
-	line "proud that people"
-	cont "rely on you."
+	para "Mais c'est impor-"
+	line "tant que l'on te"
+	cont "fasse confiance."
 	done
 
 ImBehindYouText:
-	text "<PLAYER>, do it!"
+	text "<PLAYER>, courage!"
 
-	para "I'm behind you all"
-	line "the way!"
+	para "Je suis avec toi!"
 	done
 
 NeighborMornIntroText:
-	text "Good morning,"
+	text "Bonjour,"
 	line "<PLAY_G>!"
 
-	para "I'm visiting!"
+	para "Je suis de"
+	line "passage!"
 	done
 
 NeighborDayIntroText:
-	text "Hello, <PLAY_G>!"
-	line "I'm visiting!"
+	text "Bonjour,"
+	line "<PLAY_G>!"
+
+	para "Je suis de"
+	line "passage!"
 	done
 
 NeighborNiteIntroText:
-	text "Good evening,"
+	text "Bonjour,"
 	line "<PLAY_G>!"
 
-	para "I'm visiting!"
+	para "Je suis de"
+	line "passage!"
 	done
 
 NeighborText:
-	text "<PLAY_G>, have you"
-	line "heard?"
+	text "<PLAY_G>, es-tu"
+	line "au courant?"
 
-	para "My daughter is"
-	line "adamant about"
+	para "Ma fille veut"
+	line "devenir l'assis-"
 
-	para "becoming PROF."
-	line "ELM's assistant."
+	para "tante du PROF."
+	line "ORME."
 
-	para "She really loves"
+	para "Elle adoooore les"
 	line "#MON!"
 	done
 
 PlayersHouse1FStoveText:
-	text "Mom's specialty!"
+	text "La spécialité de"
+	line "Maman!"
 
-	para "CINNABAR VOLCANO"
-	line "BURGER!"
+	para "Un bon BURGER"
+	line "style CRAMOIS'ILE!"
 	done
 
 PlayersHouse1FSinkText:
-	text "The sink is spot-"
-	line "less. Mom likes it"
-	cont "clean."
+	text "L'évier est nickel"
+	line "de chez nickel."
+	cont "Maman est assez"
+	cont "maniaque."
 	done
 
 PlayersHouse1FFridgeText:
-	text "Let's see what's"
-	line "in the fridge…"
+	text "Voyons voir ce"
+	line "qui se trame"
+	cont "dans le frigo..."
 
-	para "FRESH WATER and"
-	line "tasty LEMONADE!"
+	para "De l'EAU FRAICHE"
+	line "et de la bonne"
+	cont "LIMONADE!"
 	done
 
 PlayersHouse1FTVText:
-	text "There's a movie on"
-	line "TV: Stars dot the"
+	text "Un film à la TV:"
+	line "On Se Calme Et On"
 
-	para "sky as two boys"
-	line "ride on a train…"
+	para "Boit Frais à"
+	line "Saint-Tropez..."
 
-	para "I'd better get"
-	line "rolling too!"
+	para "Ca a l'air trop"
+	line "fort!"
 	done
 
 PlayersHouse1F_MapEvents:

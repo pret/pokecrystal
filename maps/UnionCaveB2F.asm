@@ -75,68 +75,69 @@ UnionCaveB2FHyperPotion:
 	itemball HYPER_POTION
 
 CooltrainermNickSeenText:
-	text "There are two"
-	line "kinds of people."
+	text "Il existe 2 types"
+	line "de personnes."
 
-	para "Those who have"
-	line "style, and those"
-	cont "who don't."
+	para "Ceux qui ont la"
+	line "classe, et ceux"
+	cont "qui l'ont pas."
 
-	para "What kind of"
-	line "person are you?"
+	para "Toi... T'as la"
+	line "classe?"
 	done
 
 CooltrainermNickBeatenText:
-	text "You've got"
-	line "dazzling style!"
+	text "Purée..."
+	line "Quelle classe!"
 	done
 
 CooltrainermNickAfterBattleText:
-	text "Your #MON style"
-	line "is stunning and"
-	cont "colorful, I admit."
+	text "Tes #MON ont"
+	line "la super classe!"
+	cont "Et c'est bien."
 
-	para "You'll just keep"
-	line "getting better!"
+	para "Et tu vas encore"
+	line "t'améliorer!"
 	done
 
 CooltrainerfGwenSeenText:
-	text "I'm in training."
-	line "Care for a round?"
+	text "Je m'entraîne."
+	line "Ca te tente?"
 	done
 
 CooltrainerfGwenBeatenText:
-	text "Aww, no! You're"
-	line "too good for me."
+	text "Hmmm! T'es trop"
+	line "balèze pour moi."
 	done
 
 CooltrainerfGwenAfterBattleText:
-	text "I'm going to train"
-	line "by myself until I"
-	cont "improve."
+	text "Je vais continuer"
+	line "à m'entraîner en-"
+	cont "core un peu."
 	done
 
 CooltrainerfEmmaSeenText:
-	text "If the #MON I"
-	line "liked were there,"
-	cont "I'd go anywhere."
+	text "J'irais n'importe"
+	line "où avec le #MON"
+	cont "de mes rêves."
 
-	para "That's what a real"
-	line "trainer does."
+	para "C'est ça la beauté"
+	line "d'être dresseur."
 	done
 
 CooltrainerfEmmaBeatenText:
-	text "I'd rather pet my"
-	line "babies than this!"
+	text "Vive l'amour!"
+	line "Vive les fleurs!"
 	done
 
 CooltrainerfEmmaAfterBattleText:
-	text "Just once a week,"
-	line "a #MON comes to"
-	cont "the water's edge."
+	text "Une fois par se-"
+	line "maine, un #MON"
+	cont "vient au bord de"
+	cont "l'eau."
 
-	para "I wanted to see"
-	line "that #MON…"
+	para "Je veux le voir"
+	line "ce #MON!!!"
 	done
 
 UnionCaveB2F_MapEvents:

@@ -219,190 +219,189 @@ FastShipB1FSailorBlocksLeftMovement:
 	step_end
 
 FastShipB1FOnDutySailorText:
-	text "Hey, kid. Could I"
-	line "get you to look"
-	cont "for my buddy?"
+	text "Hé toi. Tu peux"
+	line "chercher mon pote"
+	cont "pour moi?"
 
-	para "He's goofing off"
-	line "somewhere, that"
-	cont "lazy bum!"
+	para "Il se balade dans"
+	line "le coin. Toujours"
+	cont "à rien faire!"
 
-	para "I want to go find"
-	line "him, but I'm on"
-	cont "duty right now."
+	para "J'aimerais le"
+	line "trouver mais moi"
+	cont "j'ai du taf."
 	done
 
 FastShipB1FOnDutySailorRefusedText:
-	text "Oh, gee…"
+	text "Oh, ben..."
 
-	para "The CAPTAIN will"
-	line "be furious…"
+	para "Le CAPITAINE va"
+	line "être furax..."
 	done
 
 FastShipB1FOnDutySailorThanksText:
-	text "Thanks, kid!"
-	line "I chewed him out"
+	text "Merci toi!"
+	line "J'lui ai passé un"
 
-	para "good so he'll quit"
-	line "slacking off!"
+	para "savon des familles"
+	line "et il va bosser"
+	cont "maintenant."
 	done
 
 FastShipB1FOnDutySailorSawLittleGirlText:
-	text "A little girl?"
+	text "Une fillette?"
 
-	para "I may have seen"
-	line "her go by here."
+	para "Je crois l'avoir"
+	line "vue passer."
 	done
 
 FastShipB1FOnDutySailorDirectionsText:
-	text "The dining room is"
-	line "up ahead."
+	text "La salle à manger"
+	line "est tout droit."
 
-	para "The stairs at the"
-	line "end lead to the"
-	cont "CAPTAIN's cabin."
+	para "Les escaliers au"
+	line "bout mènent à la"
+	cont "cabine du"
+	cont "CAPITAINE."
 	done
 
 SailorJeffSeenText:
-	text "Nothing beats a"
-	line "battle when I'm"
-	cont "on my break."
+	text "Y'a rien de tel"
+	line "qu'un combat pen-"
+	cont "dant la pause."
 	done
 
 SailorJeffBeatenText:
-	text "Win or lose, my"
-	line "break's over!"
+	text "Finie la pause!"
 	done
 
 SailorJeffAfterBattleText:
-	text "I guess I can't"
-	line "win if I don't get"
-	cont "serious."
+	text "Faut que je m'en-"
+	line "traîne sérieux"
+	cont "pour progresser."
 	done
 
 PicnickerDebraSeenText:
-	text "I'm so bored."
-	line "Want to battle?"
+	text "J'm'ennuie."
+	line "...Combat?"
 	done
 
 PicnickerDebraBeatenText:
-	text "Yow! You're too"
-	line "strong!"
+	text "Woah. Cool."
 	done
 
 PicnickerDebraAfterBattleText:
-	text "SAFFRON, CELADON…"
-	line "I hear there are"
+	text "SAFRANIA, CELADO-"
+	line "POLE... On dit"
 
-	para "many big cities"
-	line "in KANTO."
+	para "qu'il y a plein"
+	line "de grandes villes"
+	cont "à KANTO."
 	done
 
 JugglerFritzSeenText:
-	text "Urrf…"
-	line "I'm seasick!"
+	text "Beuh..... J'ai"
+	line "le mal de mer!"
 	done
 
 JugglerFritzBeatenText:
-	text "I can't move any-"
-	line "more…"
+	text "J'peux plus"
+	line "bouger..."
 	done
 
 JugglerFritzAfterBattleText:
-	text "No more ships for"
-	line "me. Next time,"
+	text "La mer c'est fini"
+	line "pour moi. Je vais"
 
-	para "I'm taking the"
-	line "MAGNET TRAIN."
+	para "prendre le TRAIN"
+	line "MAGNET la prochai-"
+	cont "ne fois."
 	done
 
 SailorGarrettSeenText:
-	text "This is where we"
-	line "sailors work!"
+	text "Nous les marins,"
+	line "on rigole pas!"
 	done
 
 SailorGarrettBeatenText:
-	text "I lost on my home"
-	line "field…"
+	text "Ha ha ha ha ha."
+	line "Perdu."
 	done
 
 SailorGarrettAfterBattleText:
-	text "We get different"
-	line "passengers from"
+	text "Les passagers"
+	line "sont de CARMIN"
 
-	para "VERMILION CITY to"
-	line "OLIVINE CITY."
+	para "SUR MER et aussi"
+	line "d'OLIVILLE."
 	done
 
 FisherJonahSeenText:
-	text "Even though we're"
-	line "out on the sea, I"
-	cont "can't fish!"
+	text "On est en mer"
+	line "mais on peut pas"
+	cont "pêcher!"
 
-	para "This is boring!"
-	line "Let's battle!"
+	para "C'est naze!"
+	line "Allez...COMBAT!"
 	done
 
 FisherJonahBeatenText:
-	text "I… I'm not bored"
-	line "anymore…"
+	text "T'es naze..."
+	line "J't'aime pas."
 	done
 
 FisherJonahAfterBattleText:
-	text "I plan to fish off"
-	line "VERMILION's pier."
+	text "Je vais pêcher au"
+	line "port de CARMIN."
 	done
 
 BlackbeltWaiSeenText:
-	text "I'm building up my"
-	line "legs by bracing"
-
-	para "against the ship's"
-	line "rocking!"
+	text "Je me muscle les"
+	line "jambes avec le"
+	cont "tangage du bateau!"
 	done
 
 BlackbeltWaiBeatenText:
-	text "Rocked and rolled"
-	line "over!"
+	text "Je me suis"
+	line "tout planté!"
 	done
 
 BlackbeltWaiAfterBattleText:
-	text "I couldn't find"
-	line "the KARATE KING in"
+	text "Je n'ai pas trouvé"
+	line "le ROI du KARATE à"
 	cont "JOHTO."
 
-	para "He's supposed to"
-	line "be training in a"
-	cont "cave somewhere."
+	para "On dit qu'il s'en-"
+	line "traîne dans une"
+	cont "caverne."
 	done
 
 SailorKennethSeenText:
-	text "I'm a sailor man!"
+	text "J'suis un marin!"
 
-	para "But I'm training"
-	line "#MON, so I can"
-	cont "become the CHAMP!"
+	para "J'entraîne aussi"
+	line "des #MON pour"
+	cont "devenir un boss!"
 	done
 
 SailorKennethBeatenText:
-	text "My lack of train-"
-	line "ing is obvious…"
+	text "J'suis un nul..."
 	done
 
 SailorKennethAfterBattleText:
-	text "Eight BADGES!"
-	line "They must prove"
+	text "Tant de BADGES!"
+	line "Tu as alors battu"
 
-	para "that you've beaten"
-	line "GYM LEADERS."
+	para "les CHAMPIONS des"
+	line "ARENES..."
 
-	para "No wonder you're"
-	line "so good!"
+	para "Normal que tu sois"
+	line "balèze!"
 	done
 
 TeacherShirleySeenText:
-	text "Don't lay a finger"
-	line "on my students!"
+	text "Touche pas à mes"
+	line "élèves!"
 	done
 
 TeacherShirleyBeatenText:
@@ -410,14 +409,14 @@ TeacherShirleyBeatenText:
 	done
 
 TeacherShirleyAfterBattleText:
-	text "We're on a field"
-	line "trip to the RUINS"
-	cont "outside VIOLET."
+	text "On va tous aux"
+	line "RUINES près de"
+	cont "MAUVILLE."
 	done
 
 SchoolboyNateSeenText:
-	text "Do you know the"
-	line "RUINS OF ALPH?"
+	text "Tu connais les"
+	line "RUINES d'ALPHA?"
 	done
 
 SchoolboyNateBeatenText:
@@ -425,25 +424,25 @@ SchoolboyNateBeatenText:
 	done
 
 SchoolboyNateAfterBattleText:
-	text "Radios pick up"
-	line "strange signals"
-	cont "inside the RUINS."
+	text "Les radios captent"
+	line "d'étranges signaux"
+	cont "dans les RUINES."
 	done
 
 SchoolboyRickySeenText:
-	text "There are some odd"
-	line "stone panels in"
-	cont "the RUINS OF ALPH."
+	text "Il y a d'étranges"
+	line "panneaux dans les"
+	cont "RUINES d'ALPHA."
 	done
 
 SchoolboyRickyBeatenText:
-	text "I was done in!"
+	text "Yaaaaaah!"
 	done
 
 SchoolboyRickyAfterBattleText:
-	text "I read that there"
-	line "are four of those"
-	cont "stone panels."
+	text "J'ai lu qu'il y a"
+	line "quatre panneaux"
+	cont "de pierre."
 	done
 
 FastShipB1F_MapEvents:

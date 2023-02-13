@@ -1,10 +1,11 @@
-	db "HAPPINESS@" ; species name
-	dw 411, 1030 ; height, weight
+	db "BONHEUR@" ; species name
+	db 15 ; height
+	dw 468 ; weight
 
-	db   "Biting into one"
-	next "of the delicious"
-	next "eggs that BLISSEY"
+	db   "Celui qui mange"
+	next "un peu de l'oeuf"
+	next "de LEUPHORIE"
 
-	page "provides will make"
-	next "everyone around"
-	next "smile with joy.@"
+	page "devient aimable"
+	next "et plaisant avec"
+	next "tout le monde.@"

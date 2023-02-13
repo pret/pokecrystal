@@ -1,10 +1,11 @@
-	db "MOLD@" ; species name
-	dw 200, 450 ; height, weight
+	db "POURRI@" ; species name
+	db 6 ; height
+	dw 205 ; weight
 
-	db   "The fluid secreted"
-	next "by its toes carves"
-	next "holes in rocks for"
+	db   "Le fluide sécrété"
+	next "par ses pattes"
+	next "perce la roche"
 
-	page "nesting and can be"
-	next "mixed with BERRIES"
-	next "to make a drink.@"
+	page "pour créer un nid"
+	next "et peut se boire"
+	next "avec des BAIES.@"

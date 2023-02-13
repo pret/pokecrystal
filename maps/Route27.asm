@@ -315,154 +315,154 @@ Route27FisherStepLeftOnceMovement:
 	step_end
 
 Route27FisherHeyText:
-	text "Hey!"
+	text "Hé!"
 	done
 
 Route27FisherText:
-	text "Do you know what"
-	line "you just did?"
+	text "Tu sais ce que tu"
+	line "viens de faire?"
 
-	para "You've taken your"
-	line "first step into"
-	cont "KANTO."
+	para "Tu viens de faire"
+	line "ton premier pas à"
+	cont "KANTO..."
 
-	para "Check your #-"
-	line "GEAR MAP and see."
+	para "Regarde la CARTE"
+	line "de ton #MATOS!"
 	done
 
 CooltrainermBlakeSeenText:
-	text "You look pretty"
-	line "strong."
-	cont "Let me battle you!"
+	text "Tu as l'air"
+	line "fort."
+	cont "COMBAAAT!"
 	done
 
 CooltrainermBlakeBeatenText:
-	text "Yow!"
+	text "Huf!"
 	done
 
 CooltrainermBlakeAfterBattleText:
-	text "If you prevail on"
-	line "this harsh trek,"
+	text "Enfant du soleil,"
+	line "tu parcours la"
+	cont "terre, le ciel..."
 
-	para "the truth will be"
-	line "revealed!"
-
-	para "Heh, sorry, I just"
-	line "wanted to say"
-	cont "something cool."
+	para "Cherche ton che-"
+	line "min, c'est ta vie,"
+	cont "c'est ton destin."
 	done
 
 CooltrainermBrianSeenText:
-	text "Hm? You're good,"
-	line "aren't you?"
+	text "Hm? Bonjour?"
+	line "Alors combat?"
 	done
 
 CooltrainermBrianBeatenText:
-	text "Just as I thought!"
+	text "Merci bien!"
 	done
 
 CooltrainermBrianAfterBattleText:
-	text "A good trainer can"
-	line "recognize other"
-	cont "good trainers."
+	text "Les meilleurs sa-"
+	line "vent se reconnaî-"
+	cont "tre."
 	done
 
 CooltrainerfReenaSeenText:
-	text "You shouldn't"
-	line "underestimate the"
+	text "Tu devrais faire"
+	line "attention aux"
 
-	para "wild #MON in"
-	line "these parts."
+	para "#MON sauvages"
+	line "du coin."
 	done
 
 CooltrainerfReenaBeatenText:
-	text "Oh! You're much"
-	line "too strong!"
+	text "Oh!"
+	line "Pas glop!"
 	done
 
 CooltrainerfReenaAfterBattleText:
-	text "You're just a kid,"
-	line "but you're not to"
+	text "T'es jeune,"
+	line "mais..."
 
-	para "be underestimated"
-	line "either."
+	para "T'es balèze!"
+	line "Oh que oui!"
 	done
 
 CooltrainerfMeganSeenText:
-	text "It's rare to see"
-	line "anyone come here."
+	text "C'est rare de voir"
+	line "quelqu'un ici."
 
-	para "Are you training"
-	line "on your own?"
+	para "Tu t'entraînes"
+	line "en solitaire?"
 	done
 
 CooltrainerfMeganBeatenText:
-	text "Oh! You're really"
-	line "strong!"
+	text "Ben ça alors!"
 	done
 
 CooltrainerfMeganAfterBattleText:
-	text "I'm checking out"
-	line "pre- and post-"
-	cont "evolution #MON."
+	text "Moi j'étudie les"
+	line "formes antérieures"
+	cont "et postérieures"
+	cont "aux évolutions des"
+	cont "#MON."
 
-	para "Evolution really"
-	line "does make #MON"
-	cont "stronger."
+	para "Un #MON évolué"
+	line "est toujours plus"
+	cont "fort."
 
-	para "But evolved forms"
-	line "also learn moves"
-	cont "later on."
+	para "Mais il apprend"
+	line "des capacités plus"
+	cont "tardivement."
 	done
 
 PsychicGilbertSeenText:
-	text "Don't say a thing!"
+	text "Ne dis rien!"
 
-	para "Let me guess what"
-	line "you're thinking."
+	para "Je vais lire dans"
+	line "tes pensées..."
 
-	para "Mmmmmmm…"
+	para "Mmmmmmm..."
 
-	para "I got it! You're"
-	line "on the #MON"
-	cont "LEAGUE challenge!"
+	para "Je sais! Tu veux"
+	line "te mesurer à la"
+	cont "LIGUE #MON!"
 	done
 
 PsychicGilbertBeatenText:
-	text "You're too much!"
+	text "Je le savais!"
 	done
 
 PsychicGilbertAfterBattleText:
-	text "With your skills,"
-	line "you'll do well at"
-	cont "the LEAGUE."
+	text "Tu vas cartonner"
+	line "à la LIGUE..."
+	cont "C'est sûr!"
 
-	para "That's what my"
-	line "premonition says."
+	para "Je le sais."
+	line "Je le sens."
 	done
 
 BirdKeeperJose2SeenText:
-	text "Tweet! Tweet!"
-	line "Tetweet!"
+	text "Piou! Piou!"
+	line "Piouuu!"
 	done
 
 BirdKeeperJose2BeatenText:
-	text "Tweet!"
+	text "Piou!"
 	done
 
 BirdKeeperJose2AfterBattleText:
-	text "BIRD KEEPERS like"
-	line "me mimic bird"
+	text "Les ORNITHOLOGUES"
+	line "aiment siffler"
 
-	para "whistles to com-"
-	line "mand #MON."
+	para "comme les oiseaux"
+	line "pour parler aux"
+	cont "#MON."
 	done
 
 TohjoFallsSignText:
-	text "TOHJO FALLS"
+	text "CHUTES TOHJO"
 
-	para "THE LINK BETWEEN"
-	line "KANTO AND JOHTO"
+	para "Le lien entre"
+	line "KANTO et JOHTO"
 	done
 
 Route27_MapEvents:

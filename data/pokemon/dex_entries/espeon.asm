@@ -1,10 +1,11 @@
-	db "SUN@" ; species name
-	dw 211, 580 ; height, weight
+	db "SOLEIL@" ; species name
+	db 9 ; height
+	dw 265 ; weight
 
-	db   "The tip of its"
-	next "forked tail"
-	next "quivers when it is"
+	db   "Le bout fourchu de"
+	next "sa queue frémit"
+	next "lorsqu'il prédit"
 
-	page "predicting its"
-	next "opponent's next"
-	next "move.@"
+	page "la prochaine atta-"
+	next "que de son adver-"
+	next "saire.@"

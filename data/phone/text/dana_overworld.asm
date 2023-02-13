@@ -1,72 +1,68 @@
 DanaAskNumber1Text:
-	text "You're really good"
-	line "at #MON!"
+	text "Toi, tu en connais"
+	line "un rayon!"
 
-	para "Boys give me items"
-	line "after battles, but"
+	para "Les garçons me"
+	line "donnent des objets"
 
-	para "sometimes they"
-	line "give me too much."
+	para "mais je commence à"
+	line "en avoir trop."
 
-	para "Next time, I can"
-	line "share some if you"
+	para "Je pourrai t'en"
+	line "donner si tu veux."
 
-	para "want. Let me get"
-	line "your phone number."
+	para "Donne-moi donc ton"
+	line "numéro."
 	done
 
 DanaAskNumber2Text:
-	text "I'll share my"
-	line "gifts with you."
+	text "Je vais te donner"
+	line "mes cadeaux."
 
-	para "Let me get your"
-	line "phone number."
+	para "Donne-moi ton"
+	line "numéro."
 	done
 
 DanaNumberAcceptedText:
-	text "Next time a boy"
-	line "gives me something"
+	text "La prochaine fois"
+	line "qu'un garçon me"
 
-	para "after a battle,"
-	line "I'll share some!"
+	para "donne un objet, il"
+	line "est pour toi!"
 
-	para "Does that make me"
-	line "bad?"
+	para "...C'est mal ce"
+	line "que je fais?"
 	done
 
 DanaNumberDeclinedText:
-	text "Aww, you don't"
-	line "want anything?"
-
-	para "But it's all for"
-	line "free…"
+	text "Oh? Tu veux rien?"
+	line "Mais c'est gratis!"
 	done
 
 DanaPhoneFullText:
-	text "But your phone's"
-	line "out of memory!"
+	text "Ton téléphone n'a"
+	line "plus de mémoire!"
 	done
 
 DanaRematchText:
-	text "You're really"
-	line "late!"
+	text "Tu es en retard!"
 
-	para "I'm eager to get"
-	line "going!"
+	para "J'ai pas que ça"
+	line "à faire!"
 	done
 
 DanaGiftText:
-	text "Hi! Are you here"
-	line "for your gift?"
+	text "Salut! Tu veux un"
+	line "petit cadeau?"
 
-	para "This should really"
-	line "make your day!"
+	para "Voilà qui va te"
+	line "faire plaisir!"
 	done
 
 DanaPackFullText:
-	text "Where are you"
-	line "going to put this?"
+	text "Tu n'as plus de"
+	line "place, non?"
 
-	para "I'll keep it, so"
-	line "come get it later!"
+	para "Je garde ça pour"
+	line "l'instant!"
 	done

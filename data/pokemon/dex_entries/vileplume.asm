@@ -1,10 +1,11 @@
-	db "FLOWER@" ; species name
-	dw 311, 410 ; height, weight
+	db "FLEUR@" ; species name
+	db 12 ; height
+	dw 186 ; weight
 
-	db   "By shaking its big"
-	next "petals, it scat-"
-	next "ters toxic pollen"
+	db   "En gigotant ses"
+	next "pétales, il émet"
+	next "du pollen toxique"
 
-	page "into the air,"
-	next "turning the air"
-	next "yellow.@"
+	page "et s'entoure ainsi"
+	next "d'un nuage jaune."
+	next "@"

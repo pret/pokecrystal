@@ -125,92 +125,94 @@ SaffronMagnetTrainStationPlayerLeaveTrainAndEnterStationMovement:
 	step_end
 
 SaffronMagnetTrainStationOfficerTrainIsntOperatingText:
-	text "I'm sorry, but the"
-	line "MAGNET TRAIN isn't"
-	cont "operating now."
+	text "Le TRAIN MAGNET ne"
+	line "fonctionne pas"
+	cont "pour l'instant."
 	done
 
 SaffronMagnetTrainStationOfficerAreYouComingOnBoardText:
-	text "We'll soon depart"
-	line "for GOLDENROD."
+	text "Nous partons bien-"
+	line "tôt pour DOUBLON-"
+	cont "VILLE."
 
-	para "Are you coming on"
-	line "board?"
+	para "Veux-tu monter"
+	line "à bord?"
 	done
 
 SaffronMagnetTrainStationOfficerRightThisWayText:
-	text "May I see your"
-	line "rail PASS, please?"
+	text "Puis-je voir"
+	line "ton PASSE?"
 
-	para "OK. Right this"
-	line "way, please."
+	para "OK. Ca marche."
+	line "Par ici."
 	done
 
 SaffronMagnetTrainStationOfficerYouDontHaveAPassText:
-	text "Sorry, but you"
-	line "don't have a PASS."
+	text "Désolé."
+	line "Pas de PASSE."
 	done
 
 SaffronMagnetTrainStationOfficerHopeToSeeYouAgainText:
-	text "We hope to see you"
-	line "again."
+	text "Allez..."
+	line "Au revoir."
 	done
 
 SaffronMagnetTrainStationOfficerArrivedInSaffronText:
-	text "We have arrived in"
-	line "SAFFRON."
+	text "Nous sommes arri-"
+	line "vés à SAFRANIA."
 
-	para "We hope to see you"
-	line "again."
+	para "A bientôt."
 	done
 
 SaffronMagnetTrainStationGymGuideText:
-	text "The MAGNET TRAIN"
-	line "is a super-modern"
+	text "Le TRAIN MAGNET"
+	line "est un train super"
 
-	para "rail liner that"
-	line "uses electricity"
+	para "moderne qui utili-"
+	line "se l'énergie"
 
-	para "and magnets to"
-	line "attain incredible"
-	cont "speed."
+	para "magnétique pour"
+	line "aller à toute"
+	cont "vitesse."
 
-	para "However, if there"
-	line "isn't any elec-"
-	cont "tricity…"
+	para "Mais sans électri-"
+	line "cité, il ne bouge"
+	cont "pas trop..."
 	done
 
 SaffronMagnetTrainStationGymGuideText_ReturnedMachinePart:
-	text "Whew…"
+	text "Fouiii..."
 
-	para "How many times"
-	line "have I gone back"
+	para "Combien de fois"
+	line "ai-je fait la na-"
 
-	para "and forth between"
-	line "KANTO and JOHTO?"
+	para "vette entre KANTO"
+	line "et JOHTO? J'en"
+	cont "sais rien, moi!"
 	done
 
 SaffronMagnetTrainStationTeacherText:
-	text "Before the MAGNET"
-	line "TRAIN STATION was"
+	text "Il y avait une"
+	line "maison avant la"
 
-	para "built, there was a"
-	line "house there."
+	para "construction de la"
+	line "STATION de TRAIN."
 
-	para "A little girl"
-	line "named COPYCAT used"
-	cont "to live there."
+	para "Une petite fille,"
+	line "appelée COPIEUSE,"
+	cont "y vivait."
 	done
 
 SaffronMagnetTrainStationLassText:
-	text "Hi. Do you have a"
-	line "rail PASS? I have"
+	text "Bonjour. As-tu un"
+	line "PASSE?"
 
-	para "one. All the peo-"
-	line "ple in SAFFRON who"
+	para "Moi j'en ai un!"
+	line "Tous ceux de SA-"
 
-	para "ride the MAGNET"
-	line "TRAIN have PASSES."
+	para "FRANIA qui utili-"
+	line "sent le TRAIN"
+	cont "MAGNET en ont un."
 	done
 
 SaffronMagnetTrainStation_MapEvents:

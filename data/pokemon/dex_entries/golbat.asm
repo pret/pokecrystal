@@ -1,10 +1,11 @@
-	db "BAT@" ; species name
-	dw 503, 1210 ; height, weight
+	db "CHOVSOURIS@" ; species name
+	db 16 ; height
+	dw 550 ; weight
 
-	db   "When it plunges"
-	next "its fangs into its"
-	next "prey, it instantly"
+	db   "S'il plante ses"
+	next "crocs dans sa"
+	next "proie, il aspire"
 
-	page "draws and gulps"
-	next "down more than ten"
-	next "ounces of blood.@"
+	page "plus de 300cl de"
+	next "sang."
+	next "@"

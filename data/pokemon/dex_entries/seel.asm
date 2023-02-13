@@ -1,10 +1,11 @@
-	db "SEA LION@" ; species name
-	dw 307, 1980 ; height, weight
+	db "OTARIE@" ; species name
+	db 11 ; height
+	dw 900 ; weight
 
-	db   "The light blue fur"
-	next "that covers it"
-	next "keeps it protected"
+	db   "Sa fourrure bleue"
+	next "le protège du"
+	next "froid."
 
-	page "against the cold."
-	next "It loves iceberg-"
-	next "filled oceans.@"
+	page "Il adore les mers"
+	next "froides remplies"
+	next "d'icebergs.@"

@@ -1,70 +1,67 @@
 ToddAnswerPhoneText:
-	text "Yes? This is"
+	text "Oui? C'est"
 	line "@"
 	text_ram wStringBuffer3
-	text " speaking."
+	text "."
 
-	para "Hey, <PLAY_G>!"
+	para "<PLAY_G>!"
 	done
 
 ToddAnswerPhoneDayText:
-	text "Yes? This is"
+	text "Oui? C'est"
 	line "@"
 	text_ram wStringBuffer3
-	text " speaking."
+	text "."
 
-	para "This must be"
-	line "<PLAY_G>."
+	para "<PLAY_G>?"
 	done
 
 ToddAnswerPhoneNiteText:
-	text "Yes? This is"
+	text "Oui? C'est"
 	line "@"
 	text_ram wStringBuffer3
-	text " speaking."
+	text "."
 
-	para "Ah, <PLAY_G>!"
+	para "<PLAY_G>!"
 	done
 
 ToddGreetText:
-	text "Hello, this is"
+	text "Allô, c'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "."
 
-	para "<PLAY_G>, right?"
+	para "<PLAY_G>?"
 	done
 
 ToddGreetDayText:
-	text "Hello, this is"
+	text "Allô, c'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "."
 
-	para "<PLAY_G>, what are"
-	line "you doing?"
+	para "<PLAY_G>?"
+	line "Ca va?"
 	done
 
 ToddGreetNiteText:
-	text "Hello, this is"
+	text "Allô, c'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "."
 
-	para "<PLAY_G>, sorry to"
-	line "call you so late."
+	para "<PLAY_G>?"
+	line "Il est trop tard?"
 	done
 
 ToddGenericText:
-	text "How do you raise"
-	line "your #MON?"
+	text "Comment entraînes-"
+	line "tu tes #MON?"
 
-	para "I do all sorts"
-	line "of things, like"
+	para "Moi j'utilise en-"
+	line "tre autres des"
 
-	para "leaving them in"
-	line "DAY-CARE and"
-
-	para "toughening them up"
-	line "with items."
+	para "objets et je les"
+	line "laisse souvent à"
+	cont "la PENSION."
 	done

@@ -1,623 +1,591 @@
 _BTGreetingM1Text:
-	text "Hello, glad to"
-	line "meet you!"
-
-	para "I do hope we have"
-	line "a good battle."
+	text "On va se faire du"
+	line "bô combat."
 	done
 
 _BTLossM1Text:
-	text "Thank you! A most"
-	line "enjoyable battle!"
+	text "Merci!"
+	line "Ce fut délicieux!"
 	done
 
 _BTWinM1Text:
-	text "Thank you. You are"
+	text "Merci. Tu es"
 	line "formidable."
 	done
 
 _BTGreetingM2Text:
-	text "Work, work, work…"
-	line "I'm always busy!"
+	text "Travailler..."
+	line "C'est trop dur!"
 	done
 
 _BTLossM2Text:
-	text "But, I work hard"
-	line "in battle too!"
+	text "Les combats, c'est"
+	line "du boulot!"
 	done
 
 _BTWinM2Text:
-	text "I'm too busy to be"
-	line "battling!"
+	text "Les combats,"
+	line "c'est crevant!"
 	done
 
 _BTGreetingM3Text:
-	text "Brace yourself for"
-	line "my all-out attack!"
+	text "Tiens bon!"
+	line "Moi j'attaque!"
 	done
 
 _BTLossM3Text:
-	text "What a cakewalk!"
-	line "You're too easy!"
+	text "Pffff!!"
+	line "Trop facile!"
 	done
 
 _BTWinM3Text:
-	text "I won't lose next"
-	line "time, all right?"
+	text "Attention à la"
+	line "prochaine fois!"
 	done
 
 _BTGreetingM4Text:
-	text "Heh, your #MON"
-	line "look pretty cool."
+	text "Tes #MON ont"
+	line "l'air cool."
 	done
 
 _BTLossM4Text:
-	text "Hey, hey, no way!"
-	line "You won't win!"
+	text "Pas question!"
+	line "Nooooon!"
 	done
 
 _BTWinM4Text:
-	text "You serious?"
-	line "This is brutal!"
+	text "Bah alors?"
+	line "T'es une brute!"
 	done
 
 _BTGreetingM5Text:
-	text "#MON every day!"
-	line "I love battling!"
+	text "#MON!"
+	line "Combat!"
 	done
 
 _BTLossM5Text:
-	text "I'm on top of my"
-	line "game, but not you!"
+	text "Bah alors?"
+	line "C'est fini?!"
 	done
 
 _BTWinM5Text:
-	text "I don't care that"
-	line "I lost, really!"
+	text "C'est pas trop"
+	line "grave."
 	done
 
 _BTGreetingM6Text:
-	text "Hi, there! Let's"
-	line "keep this clean!"
+	text "Allez poussin!"
+	line "C'est parti!"
 	done
 
 _BTLossM6Text:
-	text "Whoops, sorry for"
-	line "that wipeout!"
+	text "Tu m'excuses?"
 	done
 
 _BTWinM6Text:
-	text "Whoops! Come on,"
-	line "let me win one!"
+	text "Tu pourrais me"
+	line "laisser gagner!"
 	done
 
 _BTGreetingM7Text:
-	text "Do you want to see"
-	line "my battle level?"
+	text "Tu veux connaître"
+	line "mon niveau?"
 	done
 
 _BTLossM7Text:
-	text "Hehehe, I know"
-	line "your level now!"
+	text "T'es minable, toi!"
 	done
 
 _BTWinM7Text:
-	text "Ouch… I'm just too"
-	line "weak…"
+	text "Oups. J'suis trop"
+	line "faible..."
 	done
 
 _BTGreetingM8Text:
-	text "Hey, let's battle."
-	line "I'm your opponent."
+	text "Allez hop!"
+	line "En garde!"
 	done
 
 _BTLossM8Text:
-	text "Wow, you're not"
-	line "serious about it!"
+	text "Tu fais attention"
+	line "ou quoi?"
 	done
 
 _BTWinM8Text:
-	text "…Urgh… Nothing"
-	line "positive here…"
+	text "…Argh…"
 	done
 
 _BTGreetingM9Text:
-	text "I'm your"
-	line "opponent."
-
-	para "Get ready to be"
-	line "hammered."
+	text "C'est à moi."
+	line "Ca va être dur."
 	done
 
 _BTLossM9Text:
-	text "Hahah! That was a"
-	line "pushover!"
+	text "Hahaha!"
+	line "Trop facile!"
 	done
 
 _BTWinM9Text:
-	text "No way! There has"
-	line "to be a mistake!"
+	text "Non!"
+	line "Y'a maldonne!"
 	done
 
 _BTGreetingM10Text:
-	text "Hah!"
-	line "Let's get rolling!"
+	text "Ha!"
+	line "Et c'est parti!"
 	done
 
 _BTLossM10Text:
-	text "Wahahaha! Didn't"
-	line "break a sweat!"
+	text "Wahahaha!"
+	line "Miiiiinable!"
 	done
 
 _BTWinM10Text:
-	text "Tough! I'm no"
-	line "match for you!"
+	text "Hmmmmmm.... J'ai"
+	line "pas le niveau!"
 	done
 
 _BTGreetingM11Text:
 	text "<……><……><……>"
-	line "<……><……>Battle?"
+	line "<……><……>Combat?"
 	done
 
 _BTLossM11Text:
 	text "<……><……><……>"
-	line "<……><……>I won?"
+	line "<……><……>Gagné?"
 	done
 
 _BTWinM11Text:
 	text "<……><……><……>"
-	line "<……><……>I lost?"
+	line "<……><……>Perdu?"
 	done
 
 _BTGreetingM12Text:
-	text "You want to be a"
-	line "leader?"
+	text "Tu veux être"
+	line "balèze?"
 
-	para "Let me battle you,"
-	line "then!"
+	para "Alors il faut me"
+	line "battre!"
 	done
 
 _BTLossM12Text:
-	text "You need another"
-	line "ten years of"
-
-	para "training to get"
-	line "better, I'd say."
+	text "Tu as 10 ans de"
+	line "retard."
 	done
 
 _BTWinM12Text:
-	text "You're incredibly"
-	line "talented."
-
-	para "No one can touch"
-	line "you now!"
+	text "Tu es ma foi une"
+	line "vraie terreur!"
 	done
 
 _BTGreetingM13Text:
-	text "Today, I'm going"
-	line "to whomp you."
+	text "Ca va être ta fête"
+	line "aujourd'hui."
 	done
 
 _BTLossM13Text:
-	text "I knew I'd win."
-	line "I'm so great!"
+	text "Je suis trooooop"
+	line "fort!"
 	done
 
 _BTWinM13Text:
-	text "Uh? My plans are"
-	line "out of whack…"
+	text "De quoi?"
+	line "Pas possible..."
 	done
 
 _BTGreetingM14Text:
-	text "I bet you can't"
-	line "beat me!"
+	text "Tu pourras pas me"
+	line "battre!"
 	done
 
 _BTLossM14Text:
-	text "Those #MON"
-	line "aren't enough!"
+	text "Tes #MON"
+	line "sont minables!"
 	done
 
 _BTWinM14Text:
-	text "I want your"
-	line "#MON. Please?"
+	text "Je peux avoir tes"
+	line "#MON?"
 	done
 
 _BTGreetingM15Text:
-	text "I'll show you a"
-	line "real battle!"
+	text "Tu vas voir!"
 	done
 
 _BTLossM15Text:
-	text "This battle…"
-	line "I'm bored!"
+	text "C'était limite"
+	line "ennuyeux!"
 	done
 
 _BTWinM15Text:
-	text "…I won't turn tail"
-	line "in battle!"
+	text "...Fuir, c'est pas"
+	line "pour moi!"
 	done
 
 _BTGreetingM16Text:
-	text "Let's go!"
-	line "No holds barred!"
+	text "Allez!"
+	line "C'est parti!"
 	done
 
 _BTLossM16Text:
-	text "Sorry! I wanted"
-	line "the win more!"
+	text "Hé!"
+	line "C'est tout?"
 	done
 
 _BTWinM16Text:
-	text "Wahah! Congrats!"
-	line "I can't do better!"
+	text "Wahah!"
+	line "Bravo! J'adore ça!"
 	done
 
 _BTGreetingM17Text:
-	text "My #MON skills"
-	line "are phenomenal!"
+	text "Mes #MON sont"
+	line "mortels!"
 	done
 
 _BTLossM17Text:
-	text "You've got a long"
-	line "way to go."
-
-	para "Well, keep trying!"
-	line "Best of luck!"
+	text "Tu as encore du"
+	line "chemin à faire!"
 	done
 
 _BTWinM17Text:
-	text "Aww… Don't lose"
-	line "after beating me."
+	text "Tu le mérites"
+	line "bien."
 	done
 
 _BTGreetingM18Text:
-	text "Who are you?"
-	line "I don't know you…"
+	text "T'es qui toi?"
+	line "On s'connaît?"
 	done
 
 _BTLossM18Text:
-	text "I must've imagined"
-	line "that."
-
-	para "There seems to be"
-	line "no one here…"
+	text "Bah non..."
+	line "Je veux pas te"
+	cont "connaître, toi."
 	done
 
 _BTWinM18Text:
-	text "Who am I?"
-	line "I don't know…"
+	text "Enchanté!"
+	line "Je t'aime!"
 	done
 
 _BTGreetingM19Text:
-	text "Um… Are you that…"
-	line "um…person?"
+	text "Alors..."
+	line "C'est toi?"
 	done
 
 _BTLossM19Text:
-	text "It doesn't appear"
-	line "to be you…"
+	text "Bah non. C'est"
+	line "pas toi."
 	done
 
 _BTWinM19Text:
-	text "Then you really"
-	line "are the legendary…"
+	text "Alors c'est toi!"
+	line "Respect!"
 	done
 
 _BTGreetingM20Text:
-	text "I heard that"
-	line "you're hot!"
+	text "On m'a parlé de"
+	line "toi!"
 	done
 
 _BTLossM20Text:
-	text "Not bad. I was"
-	line "just a bit better."
+	text "Pas mal."
+	line "Mais pas assez."
 	done
 
 _BTWinM20Text:
-	text "Eh, you're not"
-	line "that special."
+	text "T'es pas si"
+	line "terrible."
 	done
 
 _BTGreetingM21Text:
-	text "I'm scared about"
-	line "what might happen."
+	text "J'ai peur pour"
+	line "toi."
 
-	para "My #MON are way"
-	line "too strong."
+	para "Mes #MON sont"
+	line "trop forts."
 	done
 
 _BTLossM21Text:
-	text "See? My #MON"
-	line "were too strong."
+	text "T'as vu? Ils sont"
+	line "trop forts."
 	done
 
 _BTWinM21Text:
-	text "Graa! My #MON"
-	line "were total wimps!"
+	text "Cool! Mes #MON"
+	line "sont nuls!"
 	done
 
 _BTGreetingM22Text:
-	text "Hey, there!"
-	line "I'll take you on!"
+	text "Hé toi, là!"
+	line "Cooooooombat!"
 	done
 
 _BTLossM22Text:
-	text "Don't you have a"
-	line "better strategy?"
+	text "La stratégie, tu"
+	line "connais?"
 	done
 
 _BTWinM22Text:
-	text "You've got decent"
-	line "style!"
+	text "J'aime ton style!"
 	done
 
 _BTGreetingM23Text:
-	text "I wonder if I can"
-	line "battle properly…"
+	text "Je me demande quel"
+	line "est mon niveau..."
 	done
 
 _BTLossM23Text:
-	text "Um… Sorry…"
-	line "I think I won."
+	text "Heu... Pardon."
+	line "J'ai gagné."
 	done
 
 _BTWinM23Text:
-	text "I guess I'm not"
-	line "good enough yet…"
+	text "Bon bah..."
+	line "J'suis naze..."
 	done
 
 _BTGreetingM24Text:
-	text "Wrrooar!"
-	line "I won't lose!"
+	text "Graaaaaaah!"
+	line "GAGNER!"
 	done
 
 _BTLossM24Text:
-	text "Wrrooar! I knew"
-	line "I was a genius!"
+	text "GRAAAAAAAH!"
+	line "J'ai gagné!"
 	done
 
 _BTWinM24Text:
-	text "Arrooh! I hate it"
-	line "when I lose!"
+	text "GRAAAAAAH!"
+	line "Perdu?"
 	done
 
 _BTGreetingM25Text:
-	text "Sorry, but I'm"
-	line "going to win."
+	text "Pardon, mais je"
+	line "vais gagner."
 	done
 
 _BTLossM25Text:
-	text "Yeah! My #MON"
-	line "rule!"
+	text "Yeah! Mes #MON"
+	line "sont cool!"
 	done
 
 _BTWinM25Text:
-	text "Oh, close! I lost"
-	line "by just a bit!"
+	text "Oh! Presque!"
 	done
 
 _BTGreetingF1Text:
-	text "OK, I'm not"
-	line "fooling around!"
+	text "OK!"
+	line "C'est du sérieux!"
 	done
 
 _BTLossF1Text:
-	text "Yay! Too easy!"
-	line "Like, no way!"
+	text "Hé! Trop facile!"
 	done
 
 _BTWinF1Text:
-	text "No!"
-	line "Like, no way!"
+	text "Non!"
+	line "Pas question!"
 	done
 
 _BTGreetingF2Text:
-	text "Look! My #MON"
-	line "are really cute!"
+	text "Regarde! Mes"
+	line "#MON sont"
+	cont "mignons!"
 	done
 
 _BTLossF2Text:
-	text "Aren't they really"
-	line "adorable?"
+	text "Ils sont trop"
+	line "adorables, non?"
 	done
 
 _BTWinF2Text:
-	text "I'm sorry, it's"
-	line "all my fault!"
+	text "Pardon!"
+	line "C'est ma faute!"
 	done
 
 _BTGreetingF3Text:
-	text "Let's get our"
-	line "battle started!"
+	text "Ca va chauffer!"
 	done
 
 _BTLossF3Text:
-	text "Was I too strong"
-	line "for you?"
+	text "Ca va trop vite"
+	line "pour toi?"
 	done
 
 _BTWinF3Text:
-	text "Ooh, you're in a"
-	line "different class."
+	text "Ooh..."
+	line "Pas mal."
 	done
 
 _BTGreetingF4Text:
-	text "Are we going to"
-	line "battle? Let's!"
+	text "On va combattre"
+	line "ou bien?"
 	done
 
 _BTLossF4Text:
-	text "Oh, you're too"
-	line "weak. Shame."
+	text "Pffff..."
+	line "Aucun intérêt."
 	done
 
 _BTWinF4Text:
-	text "Wow! Are you quite"
-	line "satisfied?"
+	text "Ca va mieux?"
 	done
 
 _BTGreetingF5Text:
-	text "Oh, you have some"
-	line "rare #MON."
+	text "Tes #MON sont"
+	line "rares, non?"
 	done
 
 _BTLossF5Text:
-	text "May I have one of"
-	line "your #MON?"
+	text "Je peux avoir un"
+	line "de tes #MON?"
 	done
 
 _BTWinF5Text:
-	text "…I want one of"
-	line "your #MON."
+	text "...Je veux un de"
+	line "tes #MON."
 	done
 
 _BTGreetingF6Text:
-	text "Want to hear about"
-	line "my cute #MON?"
+	text "Tu veux voir mes"
+	line "jolis #MON?"
 	done
 
 _BTLossF6Text:
-	text "What do you think"
-	line "about my cuties?"
+	text "Ils sont mignons,"
+	line "tu trouves pas?"
 	done
 
 _BTWinF6Text:
-	text "Oh! My! You're a"
-	line "dreadful trainer!"
+	text "Oh! T'es terrible,"
+	line "toi!"
 	done
 
 _BTGreetingF7Text:
-	text "Battle? Sure!"
-	line "Right now!"
+	text "Combat?"
+	line "D'accord!"
 	done
 
 _BTLossF7Text:
-	text "Oh, I love it!"
-	line "Battling is wild!"
+	text "Super!"
+	line "J'aime combattre!"
 	done
 
 _BTWinF7Text:
-	text "Oh, how rude! Wait"
-	line "till next time!"
+	text "Tu verras la"
+	line "prochaine fois!"
 	done
 
 _BTGreetingF8Text:
-	text "Please let me win!"
-	line "Please?"
+	text "Laisse-moi gagner!"
+	line "Pitié?"
 	done
 
 _BTLossF8Text:
-	text "Wow, thank you!"
-	line "You're so nice!"
+	text "Merci!"
+	line "T'es sympa!"
 	done
 
 _BTWinF8Text:
-	text "You're mean!"
-	line "I hate meanies!"
+	text "Nyaaaaaah!"
+	line "C'est pas gentil!"
 	done
 
 _BTGreetingF9Text:
-	text "Well, can we"
-	line "begin?"
+	text "Bon."
+	line "On commence?"
 	done
 
 _BTLossF9Text:
-	text "Well, I beg your"
-	line "pardon…"
+	text "..."
+	line "Pardon."
 	done
 
 _BTWinF9Text:
-	text "Sob… That's not"
-	line "fair!"
+	text "C'est trop"
+	line "injuste!"
 	done
 
 _BTGreetingF10Text:
-	text "I'm good!"
-	line "You can't win."
+	text "Tu ne pourras"
+	line "pas gagner."
 	done
 
 _BTLossF10Text:
-	text "Giving up? You're"
-	line "pretty weak!"
+	text "T'abandonnes?"
+	line "Hahahahaha!"
 	done
 
 _BTWinF10Text:
-	text "I won't accept"
-	line "this… No way!"
+	text "Pas possible!"
 	done
 
 _BTGreetingF11Text:
-	text "Are you treating"
-	line "this seriously?"
+	text "Vas-tu te battre"
+	line "sérieusement?"
 	done
 
 _BTLossF11Text:
-	text "Oh, sorry! Looks"
-	line "like I won!"
+	text "Ben j'ai gagné!"
 	done
 
 _BTWinF11Text:
-	text "Oh, how nasty!"
-	line "You were serious!"
+	text "Pas bien!"
+	line "Pas gentil!"
 	done
 
 _BTGreetingF12Text:
-	text "Ahahah! I'll take"
-	line "it easy on you!"
+	text "Ha! J'irai"
+	line "doucement!"
 	done
 
 _BTLossF12Text:
-	text "Oops, sorry! But"
-	line "I'm happy too!"
+	text "Oh! Joie!"
 	done
 
 _BTWinF12Text:
-	text "Oh, oh, I lost!"
-	line "Thanks. Bye!"
+	text "Oh! Pas glop!"
 	done
 
 _BTGreetingF13Text:
-	text "BATTLE TOWER is a"
-	line "tough place!"
+	text "C'est dur ici,"
+	line "non?"
 	done
 
 _BTLossF13Text:
-	text "You might have a"
-	line "hard time."
+	text "Tu vas avoir du"
+	line "mal..."
 	done
 
 _BTWinF13Text:
-	text "Ooh, you might"
-	line "make a run here!"
+	text "Tu vas faire des"
+	line "étincelles, ici!"
 	done
 
 _BTGreetingF14Text:
-	text "I want to see your"
-	line "style in action!"
+	text "Montre ton style."
 	done
 
 _BTLossF14Text:
-	text "Every battle is a"
-	line "drama!"
+	text "Combattre, c'est"
+	line "la vie!"
 	done
 
 _BTWinF14Text:
-	text "Oh… Want to trade"
-	line "something?"
+	text "Oh. Tu veux faire"
+	line "des échanges?"
 	done
 
 _BTGreetingF15Text:
-	text "OK, here goes!"
-	line "I have momentum!"
+	text "OK!"
+	line "On y va!"
 	done
 
 _BTLossF15Text:
-	text "See, I rolled"
-	line "right over you!"
+	text "PUNITION!"
 	done
 
 _BTWinF15Text:
-	text "No! This did not"
-	line "happen!"
+	text "PAS QUESTION!"
 	done

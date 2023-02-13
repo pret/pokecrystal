@@ -26,52 +26,50 @@ AzaleaPokecenter1FPokefanFScript:
 	jumptextfaceplayer AzaleaPokecenter1FPokefanFText
 
 AzaleaPokecenter1FGentlemanText:
-	text "Do your #MON"
-	line "know HM moves?"
+	text "Est-ce que ton"
+	line "#MON connait"
+	cont "des CS?"
 
-	para "Those moves can"
-	line "be used even if"
+	para "Ces actions"
+	line "peuvent être réa-"
 
-	para "your #MON has"
-	line "fainted."
+	para "lisées même si le"
+	line "#MON est"
+	cont "évanoui."
 	done
 
 AzaleaPokecenter1FUnusedText: ; unreferenced
-	text "This BILL guy"
-	line "created the system"
-
-	para "for storing"
-	line "#MON in a PC."
-
-	para "BILL's PC can"
-	line "store up to 20"
-	cont "#MON per BOX."
+	text_start
 	done
 
 AzaleaPokecenter1FFishingGuruText:
-	text "BILL's PC can"
-	line "store up to 20"
-	cont "#MON per BOX."
+	text "Le PC de LEO peut"
+	line "garder jusqu'à 20"
+	cont "#MON par BOITE."
 	done
 
 AzaleaPokecenter1FPokefanFText:
-	text "Do you know about"
-	line "APRICORNS?"
+	text "Connais-tu les"
+	line "NOIGRUMES?"
 
-	para "Crack one open,"
-	line "hollow it out and"
+	para "Ouvres-en un,"
+	line "vide-le et"
 
-	para "fit it with a"
-	line "special device."
+	para "remplis-le avec un"
+	line "appareil spécial."
 
-	para "Then you can catch"
-	line "#MON with it."
+	para "Tu pourras alors"
+	line "t'en servir pour"
+	cont "attraper des"
+	cont "#MON."
 
-	para "Before # BALLS"
-	line "were invented,"
+	para "Avant que les"
+	line "# BALLS ne"
 
-	para "everyone used"
-	line "APRICORNS."
+	para "soient inventées"
+	line "tout le monde"
+	cont "utilisait les"
+	cont "NOIGRUMES."
 	done
 
 AzaleaPokecenter1F_MapEvents:

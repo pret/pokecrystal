@@ -1,10 +1,11 @@
-	db "THUNDER@" ; species name
-	dw 603, 3920 ; height, weight
+	db "FOUDRE@" ; species name
+	db 19 ; height
+	dw 1780 ; weight
 
-	db   "This rough #MON"
-	next "stores energy"
-	next "inside its body,"
+	db   "Ce terrible #-"
+	next "MON emmagasine de"
+	next "l'énergie puis"
 
-	page "then sweeps across"
-	next "the land, shooting"
-	next "off electricity.@"
+	page "court en lançant"
+	next "de puissants"
+	next "éclairs.@"

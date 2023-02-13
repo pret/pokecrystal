@@ -1,43 +1,38 @@
 HueyBattleRematchText:
-	text "Hey, I challenge"
-	line "you to a battle!"
+	text "Je te lance un"
+	line "défi!"
 
-	para "It won't be like"
-	line "last time!"
+	para "Et c'est sérieux"
+	line "cette fois!"
 
 	para "@"
 	text_ram wStringBuffer5
-	text "'s"
-	line "where I'm waiting"
-
-	para "for you. Hustle"
-	line "over here pronto!"
+	text_start
+	line "sera le champ"
+	cont "de bataille!"
 	done
 
 HueyHangUpText:
-	text "See ya!"
+	text "A plus!"
 	done
 
 HueyWeHaveToBattleAgainSometimeText:
-	text "We have to battle"
-	line "again sometime."
+	text "Il faut se refaire"
+	line "un combat."
 
-	para "You can bet I'm"
-	line "going to keep"
-
-	para "challenging you"
-	line "till I win."
+	para "Je te lâcherai pas"
+	line "tant que je"
+	cont "n'aurai pas gagné."
 	done
 
 HueyReminderText:
-	text "Hey, you'd better"
-	line "not have forgotten"
-	cont "about our battle!"
+	text "Hé! T'as oublié"
+	line "notre combat?"
 
 	para "@"
 	text_ram wStringBuffer5
 	text "!"
 
-	para "Hustle over quick!"
-	line "I'm waiting!"
+	para "Viens vite!"
+	line "Je t'attends!"
 	done

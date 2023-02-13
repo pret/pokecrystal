@@ -155,175 +155,175 @@ RadioTower3FPokemonMusicSign:
 	jumptext RadioTower3FPokemonMusicSignText
 
 RadioTower3FSuperNerdText:
-	text "We have recordings"
-	line "of the cries of"
+	text "Nous avons un "
+	line "enregistrement de"
 
-	para "all #MON that"
-	line "have been found."
+	para "tous les cris de"
+	line "#MON connus."
 
-	para "We must have about"
-	line "200 kinds."
+	para "Nous en avons près"
+	line "de 200 différents."
 	done
 
 RadioTower3FGymGuideText_Rockets:
-	text "To trainers, #-"
-	line "MON are their"
-	cont "beloved partners."
+	text "Les #MON sont"
+	line "les amis adorés"
+	cont "des dresseurs."
 
-	para "It's terrible how"
-	line "TEAM ROCKET is"
+	para "La TEAM ROCKET"
+	line "tente de les con-"
 
-	para "trying to control"
-	line "#MON."
+	para "trôler... C'est"
+	line "affreux, ça!"
 	done
 
 RadioTower3FGymGuideText:
-	text "We run 24 hours a"
-	line "day to broadcast"
+	text "Nous diffusons des"
+	line "émissions distray-"
 
-	para "entertaining pro-"
-	line "grams."
+	para "antes sans jamais"
+	line "nous arrêter."
 
-	para "I'll do my best to"
-	line "run around the"
-	cont "clock too!"
+	para "Je vais essayer de"
+	line "garder le micro"
+	cont "24 heures sur 24!"
 	done
 
 RadioTower3FCooltrainerFPleaseSaveDirectorText:
-	text "The TEAM ROCKET"
-	line "boss has locked"
-	cont "himself in."
+	text "Le chef de la TEAM"
+	line "ROCKET s'est en-"
+	cont "fermé."
 
-	para "But the DIRECTOR"
-	line "can open it."
+	para "Mais le DIRECTEUR"
+	line "peut ouvrir."
 
-	para "He's up on the"
-	line "fifth floor."
+	para "Il est au"
+	line "quatrième."
 
-	para "Please save him!"
+	para "Sauve-le! Pitié!"
 	done
 
 RadioTower3FCooltrainerFIsDirectorSafeText:
-	text "Is the DIRECTOR"
-	line "safe?"
+	text "Le DIRECTEUR est-"
+	line "il en sécurité?"
 	done
 
 RadioTower3FCooltrainerFYoureMyHeroText:
-	text "Thank you!"
-	line "You're my hero!"
+	text "Merci!"
+	line "Tu es trop cool!"
 
-	para "This is a token of"
-	line "my appreciation."
+	para "Prends ceci en"
+	line "récompense."
 	done
 
 RadioTower3FCooltrainerFItsSunnyDayText:
-	text "It's SUNNY DAY."
-	line "It powers up fire-"
-	cont "type moves for a"
-	cont "while."
+	text "C'est le ZENITH."
+	line "Il renforce les"
+	cont "attaques de FEU"
+	cont "pendant un moment."
 	done
 
 RadioTower3FCooltrainerFYouWereMarvelousText:
-	text "You were simply"
-	line "marvelous!"
+	text "Tu es cool!"
+	line "COOOOOOL!"
 	done
 
 GruntM7SeenText:
-	text "I've been given"
-	line "strict orders."
+	text "On m'a donné des"
+	line "ordres précis."
 
-	para "I'm to crush any-"
-	line "one who challenges"
-	cont "TEAM ROCKET!"
+	para "Je dois casser"
+	line "tous ceux qui sont"
+	cont "contre la ROCKET!"
 	done
 
 GruntM7BeatenText:
-	text "What?!"
+	text "De quoi?!"
 	done
 
 GruntM7AfterBattleText:
-	text "I failed in my"
-	line "duties…"
+	text "J'ai échoué..."
+	line "Quel déshonneur."
 
-	para "I'll be docked pay"
-	line "for this…"
+	para "Je vais me faire"
+	line "virer, c'est sûr."
 	done
 
 GruntM8SeenText:
-	text "It feels great"
-	line "ordering #MON"
-	cont "to commit crimes."
+	text "Commander les"
+	line "#MON pour le"
+	cont "crime, c'est cool."
 	done
 
 GruntM8BeatenText:
-	text "You're kidding!"
+	text "Arrête ça!"
 	done
 
 GruntM8AfterBattleText:
-	text "I feel lousy over"
-	line "losing!"
+	text "Pfff... Je me sens"
+	line "super inutile!"
 
-	para "Darn it! I hate"
-	line "useless #MON!"
+	para "Mes #MON sont"
+	line "nuls et moches!"
 	done
 
 GruntM9SeenText:
-	text "Why did the shut-"
-	line "ter open? Did you"
+	text "Pourquoi le truc"
+	line "s'est ouvert?"
 
-	para "have something to"
-	line "do with this?"
+	para "C'est toi qui as"
+	line "fait ça?"
 	done
 
 GruntM9BeatenText:
-	text "I'm done for!"
+	text "J'suis fichu!"
 	done
 
 GruntM9AfterBattleText:
-	text "What?! You made it"
-	line "past our men in"
-	cont "the UNDERGROUND?"
+	text "Quoi?! Tu as"
+	line "échappé à nos hom-"
+	cont "mes du SOUTERRAIN?"
 
-	para "How could you?"
+	para "Comment t'as fait?"
 	done
 
 ScientistMarcSeenText:
-	text "An unknown child"
-	line "wandering here?"
+	text "Quelqu'un qui se"
+	line "balade?"
 
-	para "Who are you?"
+	para "T'es qui toi?"
 	done
 
 ScientistMarcBeatenText:
-	text "Tch! I took you"
-	line "too lightly!"
+	text "Psss! J'faisais"
+	line "pas attention!"
 	done
 
 ScientistMarcAfterBattleText:
-	text "Bwahahaha…"
+	text "Bwahahaha..."
 
-	para "I can transmit as"
-	line "strong a signal as"
-	cont "I need from here."
+	para "Je peux donner"
+	line "l'alarme d'ici..."
+	cont "Malin, non?"
 	done
 
 RadioTower3FCardKeySlotText:
-	text "It's the CARD KEY"
-	line "slot."
+	text "Un lecteur de"
+	line "CARTE MAGN."
 	done
 
 InsertedTheCardKeyText:
-	text "<PLAYER> inserted"
-	line "the CARD KEY."
+	text "<PLAYER> insère"
+	line "la CARTE MAGN."
 	done
 
 RadioTower3FPersonnelSignText:
-	text "3F PERSONNEL"
+	text "2EME PERSONNEL"
 	done
 
 RadioTower3FPokemonMusicSignText:
-	text "#MON MUSIC with"
-	line "Host DJ BEN"
+	text "MUSIQUE #MON"
+	line "avec DJ BEN"
 	done
 
 RadioTower3F_MapEvents:

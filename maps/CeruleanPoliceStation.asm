@@ -23,22 +23,21 @@ CeruleanDiglett:
 	end
 
 CeruleanPoliceStationFishingGuruText:
-	text "I heard that some"
-	line "shady character is"
-	cont "skulking about."
+	text "On raconte qu'un"
+	line "drôle de type"
+	cont "rode dans le coin."
 
-	para "I won't stand for"
-	line "it if he turns out"
-	cont "to be a thief."
+	para "Si c'est un vo-"
+	line "leur, ça craint."
 	done
 
 CeruleanPoliceStationPokefanFText:
-	text "We were held up by"
-	line "robbers before."
+	text "Des voleurs nous"
+	line "ont déjà volés."
 	done
 
 CeruleanDiglettText:
-	text "DIGLETT: Dug dug."
+	text "TAUPIQUEUR: Topi!"
 	done
 
 CeruleanPoliceStation_MapEvents:

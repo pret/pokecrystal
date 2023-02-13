@@ -158,7 +158,7 @@ RadioTower1FRadioCardWomanScript:
 	end
 
 .RadioCardText:
-	db "RADIO CARD@"
+	db "COUPON RADIO@"
 
 .ReceiveItem:
 	jumpstd ReceiveItemScript
@@ -211,39 +211,41 @@ RadioTower1FLuckyNumberManReturnToPlayerMovement:
 	step_end
 
 RadioTower1FReceptionistWelcomeText:
-	text "Welcome!"
+	text "Bienvenue!"
 	done
 
 RadioTower1FReceptionistNoToursText:
-	text "Hello. I'm sorry,"
-	line "but we're not"
-	cont "offering any tours"
-	cont "today."
+	text "Bonjour."
+	line "Il n'y a pas de"
+	cont "visite prévue"
+	cont "aujourd'hui."
 	done
 
 RadioTower1FLuckyNumberManAskToPlayText:
-	text "Hi, are you here"
-	line "for the LUCKY NUM-"
-	cont "BER SHOW?"
+	text "Salut! Es-tu ici"
+	line "pour le SHOW du"
+	cont "BON NUMERO?"
 
-	para "Want me to check"
-	line "the ID numbers of"
-	cont "your #MON?"
+	para "Veux-tu que je re-"
+	line "garde le No. ID de"
+	cont "tes #MON?"
 
-	para "If you get lucky,"
-	line "you win a prize."
+	para "Si tu as de la"
+	line "chance, tu gagne-"
+	cont "ras un prix."
 	done
 
 RadioTower1FLuckyNumberManThisWeeksIdIsText:
-	text "This week's ID"
-	line "number is @"
+	text "Le No. ID de cette"
+	line "semaine est..."
+	cont "@"
 	text_ram wStringBuffer3
-	text "."
+	text "!"
 	done
 
 RadioTower1FLuckyNumberManCheckIfMatchText:
-	text "Let's see if you"
-	line "have a match."
+	text "Voyons si cela"
+	line "correspond."
 	done
 
 RadioTower1FLuckyNumberManDotDotDotText:
@@ -252,222 +254,231 @@ RadioTower1FLuckyNumberManDotDotDotText:
 	done
 
 RadioTower1FLuckyNumberManComeAgainText:
-	text "Please come back"
-	line "next week for the"
-	cont "next LUCKY NUMBER."
+	text "A la prochaine"
+	line "fois pour un au-"
+	cont "tre BON NUMERO."
 	done
 
 RadioTower1FLuckyNumberManPerfectMatchText:
-	text "Wow! You have a"
-	line "perfect match of"
-	cont "all five numbers!"
+	text "Oh! Tes 5 numéros"
+	line "correspondent"
+	cont "parfaitement!"
 
-	para "We have a grand"
-	line "prize winner!"
+	para "Tu es le grand"
+	line "vainqueur!"
 
-	para "You have won a"
+	para "Tu remportes une"
 	line "MASTER BALL!"
 	done
 
 RadioTower1FLuckyNumberManOkayMatchText:
-	text "Hey! You've"
-	line "matched the last"
-	cont "three numbers!"
+	text "Hé! Tes trois der-"
+	line "niers numéros"
+	cont "correspondent!"
 
-	para "You've won second"
-	line "prize, an EXP."
-	cont "SHARE!"
+	para "Tu remportes le"
+	line "deuxième prix:"
+	cont "un MULTI EXP!"
 	done
 
 RadioTower1FLuckyNumberManWeakMatchText:
-	text "Ooh, you've"
-	line "matched the last"
-	cont "two numbers."
+	text "Hé! Tes deux der-"
+	line "niers numéros"
+	cont "correspondent!"
 
-	para "You've won third"
-	line "prize, a PP UP."
+	para "Tu remportes le"
+	line "troisième prix:"
+	cont "un PP PLUS!"
 	done
 
 RadioTower1FLuckyNumberManNoneOfYourIDNumbersMatchText:
-	text "Nope, none of your"
-	line "ID numbers match."
+	text "Non! Aucun de tes"
+	line "numéros ID ne"
+	cont "correspond."
 	done
 
 RadioTower1FLuckyNumberManNoRoomForYourPrizeText:
-	text "You've got no room"
-	line "for your prize."
+	text "Ton inventaire"
+	line "est plein!"
 
-	para "Make room and come"
-	line "back right away."
+	para "Fais de la place"
+	line "et reviens vite."
 	done
 
 RadioTower1FRadioCardWomanOfferQuizText:
-	text "We have a special"
-	line "quiz campaign on"
-	cont "right now."
+	text "Nous avons un quiz"
+	line "disponible en ce"
+	cont "moment."
 
-	para "Answer five ques-"
-	line "tions correctly to"
-	cont "win a RADIO CARD."
+	para "Réponds à 5 ques-"
+	line "tions correctement"
+	cont "pour gagner un"
+	cont "COUPON RADIO."
 
-	para "Slide it into your"
-	line "#GEAR to play"
+	para "Glisse-le dans ton"
+	line "#MATOS pour"
 
-	para "the radio anytime,"
-	line "anywhere."
+	para "écouter la radio"
+	line "n'importe quand."
 
-	para "Would you like to"
-	line "take the quiz?"
+	para "Veux-tu jouer au"
+	line "quiz?"
 	done
 
 RadioTower1FRadioCardWomanQuestion1Text:
 	text "Question 1:"
 
-	para "Is there a #MON"
-	line "that appears only"
-	cont "in the morning?"
+	para "Y a-t-il un #-"
+	line "MON apparaissant"
+	cont "uniquement le"
+	cont "matin?"
 	done
 
 RadioTower1FRadioCardWomanQuestion2Text:
-	text "Correct!"
+	text "C'est exact!"
 	line "Question 2:"
 
-	para "Is this statement"
-	line "correct?"
+	para "Cette proposition"
+	line "est-elle correcte?"
 
-	para "You can't buy a"
-	line "BERRY at a MART."
+	para "On ne peut pas"
+	line "acheter de BAIE à"
+	cont "la BOUTIQUE."
 	done
 
 RadioTower1FRadioCardWomanQuestion3Text:
-	text "Bull's-eye!"
+	text "Bravo!"
 	line "Question 3:"
 
-	para "Does HM01 contain"
-	line "the move FLASH?"
+	para "CS01 contient-elle"
+	line "FLASH?"
 	done
 
 RadioTower1FRadioCardWomanQuestion4Text:
-	text "So far so good!"
+	text "Tout va bien!"
 	line "Question 4:"
 
-	para "Is FALKNER the"
-	line "VIOLET GYM LEADER"
+	para "ALBERT est-il le"
+	line "CHAMPION de MAU-"
 
-	para "who uses bird"
-	line "#MON?"
+	para "VILLE et un utili-"
+	line "sateur de #MON"
+	cont "oiseaux?"
 	done
 
 RadioTower1FRadioCardWomanQuestion5Text:
-	text "Wow! Right again!"
-	line "Here's the final"
+	text "Encore gagné!"
+	line "Voici la dernière"
 	cont "question:"
 
-	para "Do GOLDENROD GAME"
-	line "CORNER's slots"
+	para "SALAMECHE appa-"
+	line "raît-il sur les"
 
-	para "have CHARMANDER"
-	line "on their reels?"
+	para "machines à sous au"
+	line "CASINO de DOUBLON-"
+	cont "VILLE?"
 	done
 
 RadioTower1FRadioCardWomanYouWinText:
-	text "Bingo! You got it!"
-	line "Congratulations!"
+	text "Bingo! Gagné!"
+	line "Félicitations!"
 
-	para "Here's your prize,"
-	line "a RADIO CARD!"
+	para "Voici ton prix: un"
+	line "COUPON RADIO!"
 	done
 
 RadioTower1FPokegearIsARadioText:
-	text "<PLAYER>'s #GEAR"
-	line "can now double as"
-	cont "a radio!"
+	text "Le #MATOS de"
+	line "<PLAYER> peut main-"
+	cont "tenant servir de"
+	cont "radio!"
 	done
 
 RadioTower1FRadioCardWomanTuneInText:
-	text "Please tune in to"
-	line "our radio shows."
+	text "Ecoute bien nos"
+	line "émissions!!!"
 	done
 
 RadioTower1FRadioCardWomanWrongAnswerText:
-	text "Oh, dear."
-	line "Sorry, but you"
+	text "Oh là làààà!!!"
+	line "C'est la mauvaise"
 
-	para "got it wrong."
-	line "Please try again!"
+	para "réponse! Essaie"
+	line "une autre fois!"
 	done
 
 RadioTower1FRadioCardWomanNotTakingQuizText:
-	text "Oh. I see. Please"
-	line "see me if you"
-	cont "change your mind."
+	text "Oh. Je vois."
+	line "N'hésite pas si tu"
+	cont "changes d'avis."
 	done
 
 RadioTower1FLassText:
-	text "BEN is a fabulous"
-	line "DJ."
+	text "BEN est un super"
+	line "DJ!!!"
 
-	para "His sweet voice"
-	line "makes me melt!"
+	para "Sa voix me fait"
+	line "super craquer!"
 	done
 
 RadioTower1FYoungsterText:
-	text "I love MARY, from"
-	line "#MON TALK."
+	text "J'adore LULA de la"
+	line "CHRONIQUE #MON."
 
-	para "I only know what"
-	line "she sounds like,"
-	cont "though."
+	para "En tout cas j'ado-"
+	line "re sa voix..."
+	cont "C'est déjà ça."
 	done
 
 GruntM3SeenText:
-	text "We've finally"
-	line "taken over the"
-	cont "RADIO TOWER!"
+	text "Nous avons enfin"
+	line "envahi la TOUR"
+	cont "RADIO!"
 
-	para "Now everyone will"
-	line "get to experience"
+	para "Vous allez tous"
+	line "trembler devant la"
 
-	para "the true terror of"
+	para "puissance de la"
 	line "TEAM ROCKET!"
 
-	para "We'll show you"
-	line "how scary we are!"
+	para "Ya ha ha ah ah!"
+	line "On est méchant!"
 	done
 
 GruntM3BeatenText:
-	text "Too strong! We"
-	line "must watch you…"
+	text "Trop fort! Toi"
+	line "on t'a à l'oeil!"
 	done
 
 GruntM3AfterBattleText:
-	text "You're too strong."
+	text "Trop balèze."
 
-	para "Our plan could be"
-	line "ruined. I must"
-	cont "warn the others…"
+	para "Je dois prévenir"
+	line "les autres. Tu es"
+	cont "un danger..."
 	done
 
 RadioTower1FDirectoryText:
-	text "1F RECEPTION"
-	line "2F SALES"
+	text "RDC  RECEPTION"
+	line "1ER  VENTES"
 
-	para "3F PERSONNEL"
-	line "4F PRODUCTION"
+	para "2EME PERSONNEL"
+	line "3EME PRODUCTION"
 
-	para "5F DIRECTOR'S"
-	line "   OFFICE"
+	para "4EME BUREAU"
+	line "     DIRECTION"
 	done
 
 RadioTower1FLuckyChannelSignText:
-	text "LUCKY CHANNEL!"
+	text "ANTENNE LA CHANCE!"
 
-	para "Win with #MON"
-	line "ID numbers!"
+	para "Gagnez grâce aux"
+	line "No. ID de vos"
+	cont "#MON!"
 
-	para "Trade your #MON"
-	line "to collect differ-"
-	cont "ent ID numbers!"
+	para "Echangez vos #-"
+	line "MON pour avoir"
+	cont "plus de No. ID!"
 	done
 
 RadioTower1F_MapEvents:

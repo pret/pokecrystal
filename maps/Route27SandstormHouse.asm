@@ -40,55 +40,58 @@ SandstormHouseBookshelf:
 	jumpstd MagazineBookshelfScript
 
 SandstormHouseWomanText1:
-	text "Where are you off"
-	line "to with #MON?"
+	text "Où tu vas toi avec"
+	line "tes #MON?"
 
-	para "#MON LEAGUE?"
+	para "La LIGUE #MON?"
 
-	para "Are your #MON"
-	line "loyal enough for"
-	cont "you to win?"
+	para "Tes #MON sont"
+	line "assez confiants"
+	cont "pour y aller?"
 
-	para "Let me see…"
+	para "On va voir..."
 	done
 
 SandstormHouseWomanLoyalText:
-	text "Ah! Your #MON"
-	line "trusts you very"
-	cont "much."
+	text "Ah! Ton #MON"
+	line "te fait vraiment"
+	cont "confiance."
 
-	para "It's nice to see a"
-	line "good trainer."
+	para "C'est agréable de"
+	line "voir un bon"
+	cont "dresseur."
 
-	para "Here. A gift for"
-	line "your journey."
+	para "Tiens! Un cadeau"
+	line "pour toi."
 	done
 
 SandstormHouseSandstormDescription:
-	text "TM37 happens to be"
-	line "SANDSTORM."
+	text "CT37 apprend"
+	line "TEMPETESABLE."
 
-	para "It's a move that"
-	line "inflicts damage on"
-	cont "both battlers."
+	para "Elle inflige des"
+	line "dégâts aux deux"
+	cont "combattants."
 
-	para "It's for advanced"
-	line "trainers only."
+	para "Seuls les experts"
+	line "savent bien s'en"
+	cont "servir."
 
-	para "Use it if you"
-	line "dare. Good luck!"
+	para "A toi de peaufiner"
+	line "une technique!"
 	done
 
 SandstormHouseWomanDisloyalText:
-	text "If it doesn't come"
-	line "to trust you some"
+	text "Sois à la hauteur"
+	line "ou ton périple"
 
-	para "more, it could be"
-	line "tough going."
+	para "sera de plus en"
+	line "plus difficile."
 
-	para "Trust is the tie"
-	line "that binds #MON"
-	cont "and trainers."
+	para "La confiance est"
+	line "le lien entre"
+	cont "les #MON et"
+	cont "les dresseurs."
 	done
 
 Route27SandstormHouse_MapEvents:

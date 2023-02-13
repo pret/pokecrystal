@@ -29,8 +29,6 @@ PlayersHouse2FSetUpTileDecorationsCallback:
 	special ToggleMaptileDecorations
 	endcallback
 
-	db 0, 0, 0 ; unused
-
 PlayersHouseDoll1Script::
 	describedecoration DECODESC_LEFT_DOLL
 
@@ -93,23 +91,24 @@ PlayersHousePCScript:
 	end
 
 PlayersRadioText1:
-	text "PROF.OAK'S #MON"
-	line "TALK! Please tune"
-	cont "in next time!"
+	text "La CHRONIQUE PKMN"
+	line "du PROF.CHEN!"
+	cont "Ecoutez-nous la"
+	cont "prochaine fois!"
 	done
 
 PlayersRadioText2:
-	text "#MON CHANNEL!"
+	text "ANTENNE #MON!"
 	done
 
 PlayersRadioText3:
-	text "This is DJ MARY,"
-	line "your co-host!"
+	text "Ici DJ LULA, la"
+	line "co-présentatrice!"
 	done
 
 PlayersRadioText4:
 	text "#MON!"
-	line "#MON CHANNEL…"
+	line "ANTENNE #MON..."
 	done
 
 PlayersHouse2F_MapEvents:

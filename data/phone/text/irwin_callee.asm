@@ -1,55 +1,55 @@
 IrwinAnswerPhoneText:
-	text "Hello? @"
+	text "Allô? @"
 	text_ram wStringBuffer3
 	text_start
-	line "here…"
+	line "à l'appareil..."
 
-	para "Hey, <PLAY_G>!"
+	para "Hé, <PLAY_G>!"
 	done
 
 IrwinAnswerPhoneDayText:
-	text "Hello? @"
+	text "Allô? @"
 	text_ram wStringBuffer3
 	text_start
-	line "here…"
+	line "à l'appareil..."
 
-	para "Wow, <PLAY_G>!"
+	para "Yo! <PLAY_G>!"
 	done
 
 IrwinAnswerPhoneNiteText:
-	text "Hello? @"
+	text "Allô? @"
 	text_ram wStringBuffer3
 	text_start
-	line "here…"
+	line "à l'appareil..."
 
-	para "Yippee, <PLAY_G>!"
+	para "Ah! <PLAY_G>!"
 	done
 
 IrwinGreetText:
-	text "Uh, hello."
+	text "Heu... Allô,"
 	line "<PLAY_G>?"
 
-	para "It's your pal,"
+	para "C'est moi!"
 	line "@"
 	text_ram wStringBuffer3
 	text "!"
 	done
 
 IrwinGreetDayText:
-	text "Uh, hello,"
+	text "Heu... Allô,"
 	line "<PLAY_G>?"
 
-	para "It's your buddy"
+	para "C'est ton pote"
 	line "@"
 	text_ram wStringBuffer3
 	text "!"
 	done
 
 IrwinGreetNiteText:
-	text "Uh, hello,"
+	text "Heu... Allô,"
 	line "<PLAY_G>?"
 
-	para "It's your sidekick"
+	para "C'est ton ami"
 	line "@"
 	text_ram wStringBuffer3
 	text "!"

@@ -1,56 +1,57 @@
 ChadAskNumber1Text:
-	text "Huh? Is that thing"
-	line "a #DEX? Have"
-	cont "you met PROF.OAK?"
+	text "De quoi? Ce truc"
+	line "c'est un #DEX?"
+	cont "Tu as vu le PROF."
+	cont "CHEN?"
 
-	para "Huh? You have? "
-	line "That's way cool!"
+	para "C'est vrai? "
+	line "Trop cool!"
 
-	para "I have a dream of"
-	line "becoming a #MON"
+	para "Moi aussi je veux"
+	line "être un chercheur"
 
-	para "researcher like"
-	line "PROF.OAK."
+	para "comme le célèbre"
+	line "PROF.CHEN."
 
-	para "May I please have"
-	line "your phone number?"
+	para "Je peux avoir ton"
+	line "numéro?"
 
-	para "We should chat"
-	line "about PROF.OAK."
+	para "On parlera du"
+	line "PROF.CHEN."
 
-	para "I'm sure it will"
-	line "be loads of fun!"
+	para "On va bien"
+	line "s'amuser!"
 	done
 
 ChadAskNumber2Text:
-	text "May I please have"
-	line "your phone number?"
+	text "Je peux avoir ton"
+	line "numéro?"
 
-	para "We should chat"
-	line "about PROF.OAK."
+	para "On parlera du"
+	line "PROF.CHEN."
 
-	para "I'm sure it will"
-	line "be loads of fun!"
+	para "On va bien"
+	line "s'amuser!"
 	done
 
 ChadNumberAcceptedText:
-	text "You must listen to"
-	line "PROF.OAK'S #MON"
-	cont "TALK, right?"
+	text "Tu écoutes la"
+	line "CHRONIQUE PKMN du"
+	cont "PROF.CHEN, non?"
 	done
 
 ChadNumberDeclinedText:
-	text "Oh… I wish I had a"
-	line "chance to meet"
-	cont "PROF.OAK…"
+	text "Oh... J'aurais"
+	line "bien aimé rencon-"
+	cont "trer le PROF..."
 	done
 
 ChadPhoneFullText:
-	text "Your phone list is"
-	line "completely full!"
+	text "Ton téléphone est"
+	line "complet!"
 	done
 
 ChadRematchText:
-	text "I've been waiting!"
-	line "Let's battle now!"
+	text "Je t'attendais!"
+	line "COMBAT!"
 	done

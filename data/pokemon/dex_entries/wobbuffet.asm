@@ -1,10 +1,11 @@
 	db "PATIENT@" ; species name
-	dw 403, 630 ; height, weight
+	db 13 ; height
+	dw 285 ; weight
 
-	db   "In order to con-"
-	next "ceal its black"
-	next "tail, it lives in"
+	db   "Pour cacher sa"
+	next "queue noire, il"
+	next "vit dans une"
 
-	page "a dark cave and"
-	next "only moves about"
-	next "at night.@"
+	page "grotte sombre et"
+	next "ne se déplace"
+	next "que de nuit.@"

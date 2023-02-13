@@ -1,58 +1,62 @@
 RalphAskNumber1Text:
-	text "Don't young people"
-	line "fish anymore?"
+	text "Les jeunes ne"
+	line "pêchent plus,"
+	cont "ou bien?"
 
-	para "I've seen rare"
-	line "#MON while I've"
-	cont "been fishing…"
+	para "Moi j'ai vu des"
+	line "#MON rares en"
+	cont "pêchant..."
 
-	para "You young people"
-	line "like that, right?"
+	para "Les jeunes, ça"
+	line "aime ça, non?"
 
-	para "Want to trade"
-	line "phone numbers?"
+	para "On échange nos"
+	line "numéros?"
 
-	para "I'll let you know"
-	line "if I see anything."
+	para "J'te préviens si"
+	line "je vois un truc."
 	done
 
 RalphAskNumber2Text:
-	text "Hm? So you do want"
-	line "me to phone if I"
-	cont "see rare #MON?"
+	text "Hmm? Tu veux que"
+	line "j'appelle si je"
+	cont "vois un #MON"
+	cont "rare, alors?"
 	done
 
 RalphNumberAcceptedText:
-	text "Yep, phone if I"
-	line "see rare #MON."
+	text "OK. J'appelle si"
+	line "je vois un"
+	cont "#MON rare."
 
-	para "Don't worry, I"
-	line "won't forget!"
+	para "Pas de lézard!"
+	line "J'oublierai pas!"
 	done
 
 RalphNumberDeclinedText:
-	text "Oh…"
-	line "My own kids won't"
+	text "Oh..."
+	line "Même mes enfants"
 
-	para "even give me their"
-	line "phone numbers…"
+	para "ne veulent pas me"
+	line "donner leur numéro"
+	cont "de téléphone..."
 
-	para "Is that how young"
-	line "people are today?"
+	para "C'est ça la jeu-"
+	line "nesse?"
 	done
 
 RalphPhoneFullText:
-	text "Your phone's"
-	line "memory is full."
+	text "Ton téléphone est"
+	line "plein."
 
-	para "It seems that"
-	line "young people all"
-	cont "have #GEAR."
+	para "Les jeunes, ça"
+	line "fait n'importe"
+	cont "quoi."
 	done
 
 RalphRematchText:
-	text "Hey, kid!"
+	text "Hé, ma puce!"
 
-	para "No losing for me"
-	line "this day!"
+	para "J'perds pas"
+	line "aujourd'hui!"
 	done

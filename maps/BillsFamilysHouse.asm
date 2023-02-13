@@ -107,137 +107,140 @@ BillsHouseRadio:
 	jumpstd Radio2Script
 
 BillTakeThisEeveeText:
-	text "BILL: Hi, <PLAYER>!"
-	line "Do us a favor and"
-	cont "take this EEVEE."
+	text "LEO: Salut,"
+	line "<PLAYER>! Tu nous"
+	cont "ferais bien du"
+	cont "plaisir si tu"
+	cont "t'occupais de cet"
+	cont "EVOLI."
 
-	para "It came over when"
-	line "I was adjusting"
-	cont "the TIME CAPSULE."
+	para "Il est arrivé"
+	line "lorsque j'étais en"
+	cont "train de régler le"
+	cont "BLOC TEMPOREL."
 
-	para "Someone has to"
-	line "take care of it,"
+	para "Quelqu'un doit"
+	line "s'en occuper mais"
 
-	para "but I don't like"
-	line "being outside."
+	para "moi je suis trop"
+	line "pressé."
 
-	para "Can I count on you"
-	line "to play with it,"
-	cont "<PLAYER>?"
+	para "Puis-je compter"
+	line "sur toi pour jouer"
+	cont "avec, <PLAYER>?"
 	done
 
 BillImCountingOnYouText:
-	text "BILL: I knew you'd"
-	line "come through!"
+	text "LEO: Je savais"
+	line "que je pouvais"
 
-	para "Way to go! You're"
-	line "the real deal!"
+	para "compter sur toi!"
+	line "T'es trop chou!"
 
-	para "OK, I'm counting"
-	line "on you."
-
-	para "Take good care of"
-	line "it!"
+	para "Prends-en soin!"
 	done
 
 ReceivedEeveeText:
-	text "<PLAYER> received"
-	line "EEVEE!"
+	text "<PLAYER> reçoit"
+	line "EVOLI!"
 	done
 
 BillEeveeMayEvolveText:
-	text "BILL: PROF.ELM"
-	line "claims EEVEE may"
+	text "LEO: Le PROF.ORME"
+	line "affirme que les"
 
-	para "evolve in new and"
-	line "unknown ways."
+	para "EVOLI pourraient"
+	line "évoluer en des"
+	cont "formes encore"
+	cont "inconnues."
 	done
 
 BillPartyFullText:
-	text "Whoa, wait. You"
-	line "can't carry any"
-	cont "more #MON."
+	text "Hop-hop, minute."
+	line "Tu ne peux plus"
+	cont "transporter de"
+	cont "#MON!"
 	done
 
 BillNoEeveeText:
-	text "Oh… Now what to"
-	line "do?"
+	text "Mais alors..."
+	line "Que faire?"
 	done
 
 BillPopWontWorkText:
-	text "BILL: My pop, he"
-	line "won't work. All he"
+	text "LEO: Mon papa..."
+	line "Il fait rien de la"
+	cont "journée."
 
-	para "does is goof off"
-	line "all day long."
-
-	para "He's getting to be"
-	line "a real headache…"
+	para "On peut dire que"
+	line "c'est un flemmard!"
 	done
 
 BillsMomText_BeforeEcruteak:
-	text "Oh, you collect"
-	line "#MON? My son"
-	cont "BILL is an expert."
+	text "Tu collectionnes"
+	line "les #MON?"
+	cont "Mon fils LEO est"
+	cont "un expert."
 
-	para "He just got called"
-	line "to the #MON"
+	para "Il est allé au"
+	line "CENTRE #MON"
+	cont "de ROSALIA."
 
-	para "CENTER in ECRUTEAK"
-	line "CITY."
+	para "Mon mari en re-"
+	line "vanche est au"
 
-	para "My husband went"
-	line "off to the GAME"
-
-	para "CORNER without"
-	line "being called…"
+	para "CASINO..."
+	line "Ne cherche pas à"
+	cont "comprendre..."
 	done
 
 BillsMomText_AfterEcruteak:
-	text "My husband was"
-	line "once known as a"
+	text "Mon tendre époux"
+	line "était jadis un"
 
 	para "#MANIAC."
-	line "BILL must have"
-
-	para "taken after his"
-	line "father."
+	line "LEO doit tenir"
+	cont "de lui."
 	done
 
 BillsSisterUsefulNumberText:
-	text "Are you a trainer?"
+	text "Es-tu dresseur?"
 
-	para "I've got a useful"
-	line "phone number for"
-	cont "you."
+	para "J'ai un numéro de"
+	line "téléphone utile"
+	cont "pour toi."
 	done
 
 RecordedBillsNumberText:
-	text "<PLAYER> recorded"
-	line "BILL's number."
+	text "<PLAYER> enregistre"
+	line "le numéro de télé-"
+	cont "phone de LEO."
 	done
 
 BillsSisterRefusedNumberText:
-	text "My brother made"
-	line "the PC #MON"
-	cont "storage system."
+	text "Mon frère a créé"
+	line "un système de"
+	cont "stockage pour les"
+	cont "#MON par PC."
 
-	para "I was going to"
-	line "give you BILL's"
-	cont "number…"
+	para "J'allais te donner"
+	line "le numéro de télé-"
+	cont "phone de LEO..."
 	done
 
 BillsSisterPhoneFullText:
-	text "You can't record"
-	line "any more numbers."
+	text "Mais tu ne peux"
+	line "plus enregistrer"
+	cont "de numéros!"
 	done
 
 BillsSisterStorageSystemText:
-	text "My big brother"
-	line "BILL made the PC"
+	text "Mon grand frère"
+	line "LEO a fait un"
 
-	para "#MON storage"
-	line "system."
+	para "super système de"
+	line "stockage de #-"
+	cont "MON par PC."
 	done
 
 BillsFamilysHouse_MapEvents:

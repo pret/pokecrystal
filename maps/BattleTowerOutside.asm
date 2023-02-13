@@ -31,100 +31,94 @@ BattleTowerOutsideSign:
 	jumptext BattleTowerOutsideSignText
 
 BattleTowerOutsideYoungsterText_NotYetOpen: ; unreferenced
-	text "Wow, the BATTLE"
-	line "TOWER is huge! My"
-
-	para "neck is tired from"
-	line "looking up at it."
+	text "Mazette! Elle est"
+	line "grande cette TOUR"
+	cont "DE COMBAT!"
 	done
 
 BattleTowerOutsideYoungsterText_Mobile: ; unreferenced
-	text "Wow, the BATTLE"
-	line "TOWER is huge!"
+	text "La TOUR DE COMBAT"
+	line "est géante!"
 
-	para "Since there are a"
-	line "whole bunch of"
+	para "Vu qu'il y a tout"
+	line "plein de dresseurs"
 
-	para "trainers inside,"
-	line "there must also be"
+	para "à l'intérieur, il"
+	line "doit y avoir une"
 
-	para "a wide variety of"
+	para "multitude de"
 	line "#MON."
 	done
 
 BattleTowerOutsideYoungsterText:
-	text "Wow, the BATTLE"
-	line "TOWER is huge!"
+	text "Foui! C'est grand"
+	line "la TOUR DE COMBAT!"
 
-	para "There must be many"
-	line "kinds of #MON"
-	cont "in there!"
+	para "Il doit y avoir"
+	line "plein de #MON"
+	cont "différents!"
 	done
 
 BattleTowerOutsideBeautyText_NotYetOpen: ; unreferenced
-	text "What on earth do"
-	line "they do here?"
+	text "Kesski fabriquent"
+	line "tous ici?"
 
-	para "If the name says"
-	line "anything, I guess"
+	para "Y'aurait encore"
+	line "une histoire de"
 
-	para "it must be for"
-	line "#MON battles."
+	para "baston que ça"
+	line "m'étonnerait pas."
 	done
 
 BattleTowerOutsideBeautyText:
-	text "You can use only"
-	line "three #MON."
+	text "On ne peut utili-"
+	line "ser que 3 #MON."
 
-	para "It's so hard to"
-	line "decide which three"
-
-	para "should go into"
-	line "battle…"
+	para "C'est dur de faire"
+	line "un choix..."
 	done
 
 BattleTowerOutsideSailorText_Mobile: ; unreferenced
-	text "Ehehehe…"
-	line "I sneaked out of"
-	cont "work to come here."
+	text "Hin hin hin..."
+	line "J'ai pris une"
+	cont "perm' pour venir"
+	cont "ici..."
 
-	para "I'm never giving"
-	line "up until I become"
-	cont "a LEADER!"
+	para "Je vais devenir"
+	line "un CHAMPION!"
+	cont "Un vrai de vrai!"
 	done
 
 BattleTowerOutsideSailorText:
-	text "Hehehe, I snuck"
-	line "out from work."
+	text "J'ai pris une"
+	line "perm'."
 
-	para "I can't bail out"
-	line "until I've won!"
-
-	para "I have to win it"
-	line "all. That I must!"
+	para "Je dois gagner!"
+	line "Oh que oui!"
 	done
 
 BattleTowerOutsideSignText_NotYetOpen: ; unreferenced
 ; originally shown when the Battle Tower was closed
-	text "BATTLE TOWER"
+	text "TOUR DE COMBAT"
 	done
 
 BattleTowerOutsideSignText:
-	text "BATTLE TOWER"
+	text "TOUR DE COMBAT"
 
-	para "Take the Ultimate"
-	line "Trainer Challenge!"
+	para "Le méga défi de"
+	line "tout dresseur!"
 	done
 
 BattleTowerOutsideText_DoorsClosed: ; unreferenced
 ; originally shown when the Battle Tower was closed
-	text "The BATTLE TOWER's"
-	line "doors are closed…"
+	text "Les portes de la"
+	line "TOUR DE COMBAT"
+	cont "sont fermées..."
 	done
 
 BattleTowerOutsideText_DoorsOpen: ; unreferenced
 ; originally shown after the Battle Tower opened
-	text "It's open!"
+	text "C'est ouvert!"
 	done
 
 BattleTowerOutside_MapEvents:

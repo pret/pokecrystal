@@ -85,12 +85,11 @@ UnionCave1FUnusedSign: ; unreferenced
 	jumptext UnionCave1FUnusedSignText
 
 HikerRussellSeenText:
-	text "You're headed to"
-	line "AZALEA, are you?"
+	text "Tu vas à ECORCIA,"
+	line "n'est-ce pas?"
 
-	para "Let my #MON see"
-	line "if you are good"
-	cont "enough to battle."
+	para "Voyons si tu as"
+	line "les épaules..."
 	done
 
 HikerRussellBeatenText:
@@ -98,89 +97,92 @@ HikerRussellBeatenText:
 	done
 
 HikerRussellAfterBattleText:
-	text "All right, then!"
-	line "I've decided."
+	text "Parfait! C'est"
+	line "décidé..."
 
-	para "I'm not leaving"
-	line "until my #MON"
-	cont "get tougher!"
+	para "Je vais entraîner"
+	line "ici mes #MON à"
+	cont "fond!"
 	done
 
 PokemaniacLarrySeenText:
-	text "I roam far and"
-	line "wide in search of"
-	cont "#MON."
+	text "Je parcours la"
+	line "terre à la recher-"
+	cont "che de #MON."
 
-	para "Are you looking"
-	line "for #MON too?"
+	para "Quoi? Toi aussi tu"
+	line "les collectionnes?"
 
-	para "Then you're my"
-	line "collecting rival!"
+	para "Bah alors..."
+	line "COMBAT!"
 	done
 
 PokemaniacLarryBeatenText:
-	text "Ugh. My poor #-"
-	line "MON…"
+	text "Non!!! Mes pauvres"
+	line "#MON..."
 	done
 
 PokemaniacLarryAfterBattleText:
-	text "Every Friday, you"
-	line "can hear #MON"
+	text "Chaque vendredi on"
+	line "peut entendre des"
 
-	para "roars from deep"
-	line "inside the cave."
+	para "cris de #MON"
+	line "venant de l'antre."
 	done
 
 HikerDanielSeenText:
-	text "Whoa! What a"
-	line "surprise!"
+	text "Whoa! Tu m'as"
+	line "fait peur!"
 
-	para "I didn't expect to"
-	line "see anyone here!"
+	para "Je me croyais seul"
+	line "dans le coin!"
 	done
 
 HikerDanielBeatenText:
-	text "Whoa! I'm beaten"
-	line "big time!"
+	text "Whoa! J'me suis"
+	line "fait détruire!"
 	done
 
 HikerDanielAfterBattleText:
-	text "I was conned into"
-	line "buying a SLOWPOKE-"
-	cont "TAIL."
+	text "On m'a persuadé"
+	line "d'acheter une"
+	cont "QUEUE de RAMOLOSS."
 
-	para "I feel sorry for"
-	line "the poor #MON."
+	para "Mais j'ai des"
+	line "remords..."
+	cont "Pauvre #MON."
 	done
 
 FirebreatherBillSeenText:
-	text "ZUBAT's SUPERSONIC"
-	line "keeps confusing"
-	cont "my #MON."
+	text "L'ULTRASON de"
+	line "NOSFERAPTI rend"
+	cont "mes #MON"
+	cont "complètement fous."
 
-	para "I'm seriously"
-	line "upset about that!"
+	para "Et ça..."
+	line "C'est super lourd!"
 	done
 
 FirebreatherBillBeatenText:
-	text "I flamed out!"
+	text "Tout perdu!"
 	done
 
 FirebreatherBillAfterBattleText:
-	text "On weekends, you"
-	line "can hear strange"
+	text "Le week-end on"
+	line "peut entendre des"
 
-	para "roars from deep in"
-	line "the cave."
+	para "cris de #MON"
+	line "venant de l'antre."
 	done
 
 FirebreatherRaySeenText:
-	text "If it's light, a"
-	line "cave isn't scary."
+	text "Une caverne éclai-"
+	line "rée, ça fait pas"
+	cont "peur."
 
-	para "If you're strong,"
-	line "#MON aren't"
-	cont "scary."
+	para "Avec du courage,"
+	line "les méchants, ça"
+	cont "fait pas peur."
 	done
 
 FirebreatherRayBeatenText:
@@ -188,13 +190,13 @@ FirebreatherRayBeatenText:
 	done
 
 FirebreatherRayAfterBattleText:
-	text "It's my #MON's"
-	line "fire that lights"
-	cont "up this cave."
+	text "Le feu de mon"
+	line "#MON illumine"
+	cont "cette caverne."
 	done
 
 UnionCave1FUnusedSignText:
-	text "UNION CAVE"
+	text "CAVES JUMELLES"
 	done
 
 UnionCave1F_MapEvents:

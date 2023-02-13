@@ -1,10 +1,11 @@
-	db "SHELLFISH@" ; species name
-	dw 403, 890 ; height, weight
+	db "CARAPACE@" ; species name
+	db 13 ; height
+	dw 405 ; weight
 
-	db   "It was able to"
-	next "swim quickly thro-"
-	next "ugh the water by"
+	db   "Il pouvait nager"
+	next "rapidement en"
+	next "pliant complète-"
 
-	page "compactly folding"
-	next "up its razor-sharp"
-	next "sickles.@"
+	page "ment ses griffes"
+	next "acérées."
+	next "@"

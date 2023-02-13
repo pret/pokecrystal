@@ -1,10 +1,11 @@
-	db "WORM@" ; species name
-	dw 100, 60 ; height, weight
+	db "VER@" ; species name
+	db 3 ; height
+	dw 29 ; weight
 
-	db   "It crawls into"
-	next "foliage where it"
-	next "camouflages itself"
+	db   "Pour se protéger,"
+	next "il s'enfonce dans"
+	next "le sol en se cou-"
 
-	page "among leaves that"
-	next "are the same color"
-	next "as its body.@"
+	page "vrant de feuilles"
+	next "de la même couleur"
+	next "que son corps.@"

@@ -1,71 +1,72 @@
 JoeyAskNumber1Text:
-	text "Listen, can I get"
-	line "your phone number?"
+	text "Heu... Je peux"
+	line "avoir ton numéro?"
 
-	para "I'll ring you for"
-	line "some battles."
+	para "Je t'appellerai"
+	line "pour combattre."
 
-	para "I'm a rookie too, "
-	line "so I think it'd be"
-	cont "a good motivator."
+	para "Je débute, moi"
+	line "aussi. Ca nous"
+	cont "entraînera..."
 	done
 
 JoeyAskNumber2Text:
-	text "Can I get your"
-	line "phone number?"
+	text "Je peux avoir ton"
+	line "numéro?"
 
-	para "I don't want to"
-	line "lose against you!"
+	para "Je ne veux pas me"
+	line "faire battre tout"
+	cont "le temps!"
 
-	para "We have to battle"
-	line "again, OK?"
+	para "On doit remettre"
+	line "ça, OK?"
 	done
 
 JoeyNumberAcceptedText:
-	text "I'll ring you"
-	line "whenever I get the"
-	cont "urge to battle!"
+	text "Je t'appelle si"
+	line "j'veux me battre."
 	done
 
 JoeyNumberDeclinedText:
-	text "Oh, all right…"
+	text "Oh, très bien..."
 
-	para "But I won't lose"
-	line "to you again!"
+	para "Mais tu ne me"
+	line "battras plus!"
 	done
 
 JoeyPhoneFullText:
-	text "Huh, what? Your"
-	line "phone's full."
+	text "Hein? La mémoire"
+	line "de ton téléphone"
+	cont "est pleine."
 	done
 
 JoeyRematchText:
-	text "I've been waiting!"
-	line "Let's battle now!"
+	text "Je t'attendais!"
+	line "COMBAT!"
 	done
 
 JoeyPackFullText:
-	text "Hey, wait! Your"
-	line "PACK is stuffed!"
+	text "Attends! Ton SAC"
+	line "est super plein!"
 
-	para "Well, we'll leave"
-	line "it till next time."
+	para "On fait ça une"
+	line "prochaine fois."
 	done
 
 JoeyRematchGiftText:
-	text "And yet another"
-	line "loss…"
+	text "Et j'ai encore"
+	line "perdu..."
 
-	para "No doubt about"
-	line "it--you're tough."
+	para "OK. D'accord."
+	line "T'es fortiche."
 
-	para "Being beaten this"
-	line "often actually"
-	cont "feels good now!"
+	para "Se faire battre de"
+	line "cette façon n'est"
+	cont "pas si terrible!"
 
-	para "Here, take this. "
-	line "Use it to get even"
+	para "Prends ça. "
+	line "Avec ça tu devien-"
 
-	para "tougher. That will"
-	line "toughen me up too!"
+	para "dras encore plus"
+	line "balèze!"
 	done

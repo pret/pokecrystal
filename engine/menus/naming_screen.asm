@@ -34,6 +34,11 @@ NamingScreen:
 .loop
 	call NamingScreenJoypadLoop
 	jr nc, .loop
+	ld a, [wNamingScreenDestinationPointer]
+	ld e, a
+	ld a, [wNamingScreenDestinationPointer + 1]
+	ld d, a
+	farcall TrimSpaces
 	pop af
 	ldh [hInMenu], a
 	pop af
@@ -115,8 +120,8 @@ NamingScreen:
 	ret
 
 .NicknameStrings:
-	db "'S@"
-	db "NICKNAME?@"
+	db "@"
+	db "SURNOM?@"
 
 .Player:
 	farcall GetPlayerIcon
@@ -128,7 +133,7 @@ NamingScreen:
 	ret
 
 .PlayerNameString:
-	db "YOUR NAME?@"
+	db "VOTRE NOM?@"
 
 .Rival:
 	ld de, RivalSpriteGFX
@@ -141,7 +146,7 @@ NamingScreen:
 	ret
 
 .RivalNameString:
-	db "RIVAL'S NAME?@"
+	db "NOM DU RIVAL?@"
 
 .Mom:
 	ld de, MomSpriteGFX
@@ -154,7 +159,7 @@ NamingScreen:
 	ret
 
 .MomNameString:
-	db "MOTHER'S NAME?@"
+	db "NOM MERE?@"
 
 .Box:
 	ld de, PokeBallSpriteGFX
@@ -178,7 +183,7 @@ NamingScreen:
 	ret
 
 .BoxNameString:
-	db "BOX NAME?@"
+	db "NOM BOITE?@"
 
 .Tomodachi:
 	hlcoord 3, 2
@@ -1112,7 +1117,7 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 	ld b, [hl]
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
-	ld [hl], $9
+	ld [hl], $c
 	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld [hl], $5
@@ -1189,10 +1194,10 @@ ComposeMail_AnimateCursor:
 	ret
 
 .LetterEntries:
-	db $00, $10, $20, $30, $40, $50, $60, $70, $80, $90
+	db $18, $20, $28, $30, $38, $40, $48, $50, $58, $60, $68, $70, $78
 
 .CaseDelEnd:
-	db $00, $00, $00, $30, $30, $30, $60, $60, $60, $60
+	db $00, $00, $00, $00, $30, $30, $30, $30, $60, $60, $60, $60, $60
 
 .GetDPad:
 	ld hl, hJoyLast
@@ -1217,7 +1222,7 @@ ComposeMail_AnimateCursor:
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
-	cp $9
+	cp $c
 	jr nc, .wrap_around_letter_right
 	inc [hl]
 	ret
@@ -1231,9 +1236,8 @@ ComposeMail_AnimateCursor:
 	jr nz, .wrap_around_command_right
 	xor a
 .wrap_around_command_right
-	ld e, a
 	add a
-	add e
+	add a
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld [hl], a
@@ -1252,7 +1256,7 @@ ComposeMail_AnimateCursor:
 	ret
 
 .wrap_around_letter_left
-	ld [hl], $9
+	ld [hl], $c
 	ret
 
 .caps_del_done_left
@@ -1262,9 +1266,8 @@ ComposeMail_AnimateCursor:
 .wrap_around_command_left
 	dec a
 	dec a
-	ld e, a
 	add a
-	add e
+	add a
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld [hl], a
@@ -1311,9 +1314,9 @@ ComposeMail_GetCursorPosition:
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
-	cp $3
+	cp $4
 	jr c, .case
-	cp $6
+	cp $8
 	jr c, .del
 	ld a, $3
 	ret

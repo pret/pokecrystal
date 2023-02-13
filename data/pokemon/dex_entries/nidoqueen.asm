@@ -1,10 +1,11 @@
-	db "DRILL@" ; species name
-	dw 403, 1320 ; height, weight
+	db "PERCEUR@" ; species name
+	db 13 ; height
+	dw 600 ; weight
 
-	db   "The hard scales"
-	next "that cover its"
-	next "strong body serve"
+	db   "Son corps est cou-"
+	next "vert d'écailles le"
+	next "protégeant des"
 
-	page "as excellent"
-	next "protection from"
-	next "any attack.@"
+	page "éventuelles atta-"
+	next "ques ennemies."
+	next "@"

@@ -1,10 +1,11 @@
-	db "ATROCIOUS@" ; species name
-	dw 2104, 5180 ; height, weight
+	db "TERRIFIANT@" ; species name
+	db 65 ; height
+	dw 2350 ; weight
 
-	db   "It appears when-"
-	next "ever there is"
-	next "world conflict,"
+	db   "Il apparaît à cha-"
+	next "que conflit mon-"
+	next "dial, semant chaos"
 
-	page "burning down any"
-	next "place it travels"
-	next "through.@"
+	page "et destruction sur"
+	next "son passage."
+	next "@"

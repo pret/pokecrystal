@@ -1,10 +1,11 @@
-	db "BEAK@" ; species name
-	dw 311, 840 ; height, weight
+	db "BEC-OISEAU@" ; species name
+	db 12 ; height
+	dw 380 ; weight
 
-	db   "It uses its long"
-	next "beak to attack. It"
-	next "has a surprisingly"
+	db   "Il se sert de son"
+	next "long bec pour"
+	next "attaquer."
 
-	page "long reach, so it"
-	next "must be treated"
-	next "with caution.@"
+	page "Il a une portée"
+	next "impressionnante."
+	next "@"

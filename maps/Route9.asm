@@ -84,32 +84,30 @@ Route9HiddenEther:
 	hiddenitem ETHER, EVENT_ROUTE_9_HIDDEN_ETHER
 
 CamperDeanSeenText:
-	text "I came to explore"
-	line "ROCK TUNNEL."
+	text "Je viens pour ex-"
+	line "plorer la GROTTE."
 	done
 
 CamperDeanBeatenText:
-	text "Whoa! Danger, man."
+	text "Whoa! Danger!"
 	done
 
 CamperDeanAfterBattleText:
-	text "My #MON were"
-	line "hurt before even"
+	text "Mes #MON ont"
+	line "été blessés avant"
 
-	para "entering ROCK"
-	line "TUNNEL."
+	para "d'entrer dans la"
+	line "GROTTE."
 
-	para "I'd better take"
-	line "them to a #MON"
-	cont "CENTER right away."
+	para "Je devrais les"
+	line "amener à un CENTRE"
+	cont "#MON..."
 	done
 
 PicnickerHeidiSeenText:
-	text "Have you ever been"
-	line "to a picnic?"
-
-	para "They're so much"
-	line "fun!"
+	text "Tu aimes les"
+	line "pique-niques?"
+	cont "C'est trop cool!"
 	done
 
 PicnickerHeidiBeatenText:
@@ -117,90 +115,92 @@ PicnickerHeidiBeatenText:
 	done
 
 PicnickerHeidiAfterBattleText:
-	text "We bake lots of"
-	line "goodies and share"
+	text "On mange comme"
+	line "des truies et on"
 
-	para "them all around."
-	line "They're delicious!"
+	para "fait des miettes."
+	line "C'est mortel!"
 	done
 
 CamperSidSeenText:
-	text "Hey, you!"
-	line "Don't litter!"
+	text "Toi, moi!"
+	line "Combat, yaaah!"
 	done
 
 CamperSidBeatenText:
-	text "I was just point-"
-	line "ing out…"
+	text "OK."
+	line "A gagné."
 	done
 
 CamperSidAfterBattleText:
-	text "Sorry. You weren't"
-	line "littering. It was"
-	cont "my mistake."
+	text "Ca va pour cette"
+	line "fois. Je te laisse"
+	cont "gagner. File!"
 	done
 
 PicnickerEdnaSeenText:
-	text "People shouldn't"
-	line "leave any litter"
-	cont "behind."
+	text "Faire des saletés"
+	line "dans les lieux pu-"
+	cont "blics, c'est mal."
 	done
 
 PicnickerEdnaBeatenText:
-	text "Ohh… I lost…"
+	text "Ohh...pas glop."
 	done
 
 PicnickerEdnaAfterBattleText:
-	text "Conserving energy"
-	line "is important, but"
+	text "Ne jette pas tes"
+	line "papiers gras au"
 
-	para "the environment is"
-	line "even more vital."
+	para "sol. Parce que"
+	line "c'est mal."
 	done
 
 HikerTimSeenText:
-	text "She'll be coming"
-	line "'round MT.SILVER"
-	cont "when she comes…"
+	text "Elle descend du"
+	line "MONT ARGENT à"
+	cont "cheval..."
+	cont "La la la la la..."
 
-	para "MT.SILVER is in"
-	line "JOHTO, right?"
+	para "Le MONT ARGENT est"
+	line "à JOHTO, non?"
 	done
 
 HikerTimBeatenText:
-	text "I was too busy"
-	line "singing…"
+	text "C'est trop bien"
+	line "de chanter."
 	done
 
 HikerTimAfterBattleText:
-	text "Battles are about"
-	line "concentration."
+	text "C'est la fête au"
+	line "village..."
+	cont "La la la la la..."
 	done
 
 HikerSidneySeenText:
-	text "I'll tell you a"
-	line "secret."
+	text "J'ai un secret"
+	line "pour toi."
 
-	para "But first, we"
-	line "battle!"
+	para "Mais d'abord..."
+	line "Combat!"
 	done
 
 HikerSidneyBeatenText:
-	text "Oh, dang!"
-	line "I lost that…"
+	text "Zut de flûte!"
+	line "Perdu!"
 	done
 
 HikerSidneyAfterBattleText:
-	text "The POWER PLANT is"
-	line "across a small"
-	cont "river."
+	text "La CENTRALE est de"
+	line "l'autre côté d'une"
+	cont "rivière."
 	done
 
 Route9SignText:
 	text "ROUTE 9"
 
-	para "CERULEAN CITY -"
-	line "ROCK TUNNEL"
+	para "AZURIA -"
+	line "GROTTE"
 	done
 
 Route9_MapEvents:

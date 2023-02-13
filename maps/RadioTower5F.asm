@@ -191,231 +191,227 @@ RadioTower5FPlayerTwoStepsLeftMovement:
 	step_end
 
 FakeDirectorTextBefore1:
-	text "Y-you! You came to"
-	line "rescue me?"
+	text "T-toi! T-tu es là"
+	line "pour me s-sauver?"
 	done
 
 FakeDirectorTextBefore2:
-	text "Is that what you"
-	line "were expecting?"
+	text "Alors..."
+	line "Tu t'y attendais?"
 
-	para "Wrong!"
-	line "I'm an imposter!"
+	para "Et oui! Je suis"
+	line "un imposteur!"
 
-	para "I pretended to be"
-	line "the real thing to"
+	para "Cette mascarade"
+	line "était nécessaire"
 
-	para "prepare for our"
-	line "takeover."
+	para "à notre invasion!"
+	line "Ha ha ha ha ha!"
 
-	para "Do you want to"
-	line "know where we hid"
-	cont "the real DIRECTOR?"
+	para "Veux-tu savoir où"
+	line "est caché le vrai"
+	cont "DIRECTEUR?"
 
-	para "Sure, I'll tell"
-	line "you. But only if"
-	cont "you can beat me!"
+	para "J'vais te le dire."
+	line "Mais d'abord..."
+	cont "COMBAT!!!!"
 	done
 
 FakeDirectorWinText:
-	text "OK, OK. I'll tell"
-	line "you where he is."
+	text "OK, OK. Je vais"
+	line "parler."
 	done
 
 FakeDirectorTextAfter:
-	text "We stashed the"
-	line "real DIRECTOR in"
+	text "On a planqué le"
+	line "DIRECTEUR dans"
 
-	para "the UNDERGROUND"
-	line "WAREHOUSE."
+	para "l'ENTREPOT"
+	line "SOUTERRAIN."
 
-	para "It's at the far"
-	line "end of the UNDER-"
-	cont "GROUND."
+	para "C'est tout au bout"
+	line "du SOUTERRAIN."
 
-	para "But I doubt you'll"
-	line "get that far."
+	para "Mais t'y arriveras"
+	line "jamais... Ha!"
 	done
 
 Executivef1SeenText:
-	text "Remember me from"
-	line "the HIDEOUT in"
-	cont "MAHOGANY TOWN?"
+	text "Tu te souviens de"
+	line "moi? Dans la"
+	cont "PLANQUE d'ACAJOU?"
 
-	para "I lost then, but I"
-	line "won't this time."
+	para "J'avais perdu..."
+	line "Mais cette fois..."
 	done
 
 Executivef1BeatenText:
-	text "This can't be"
-	line "happening!"
+	text "Mais c'est pas"
+	line "possible!"
 
-	para "I fought hard, but"
-	line "I still lost…"
+	para "J'me bats à fond"
+	line "et je perds..."
 	done
 
 Executivef1AfterBattleText:
-	text "<PLAYER>, isn't it?"
+	text "<PLAYER>,"
+	line "c'est ça?"
 
-	para "A brat like you"
-	line "won't appreciate"
+	para "Une peste comme"
+	line "toi ne voit pas"
 
-	para "the magnificence"
-	line "of TEAM ROCKET."
+	para "la grandeur de"
+	line "la TEAM ROCKET."
 
-	para "That's too bad."
-	line "I really admire"
-	cont "your power."
+	para "C'est dommage."
+	line "Tu as pourtant du"
+	cont "talent."
 	done
 
 RadioTower5FRocketBossBeforeText:
-	text "Oh? You managed to"
-	line "get this far?"
+	text "Oh? Tu es déjà"
+	line "là?"
 
-	para "You must be quite"
-	line "the trainer."
+	para "Tu dois avoir un"
+	line "sacré talent."
 
-	para "We intend to take"
-	line "over this RADIO"
+	para "Nous allons con-"
+	line "trôler cette STA-"
 
-	para "STATION and an-"
-	line "nounce our come-"
-	cont "back."
+	para "TION de RADIO pour"
+	line "annoncer au monde"
+	cont "notre retour."
 
-	para "That should bring"
-	line "our boss GIOVANNI"
+	para "Cela devrait faire"
+	line "revenir notre chef"
 
-	para "back from his solo"
-	line "training."
+	para "GIOVANNI de son"
+	line "entraînement solo."
 
-	para "We are going to"
-	line "regain our former"
-	cont "glory."
+	para "La gloire passée"
+	line "de la TEAM sera"
+	cont "restituée."
 
-	para "I won't allow you"
-	line "to interfere with"
-	cont "our plans."
+	para "Et toi minable,"
+	line "tu vas pas nous"
+	cont "agacer longtemps."
 	done
 
 RadioTower5FRocketBossWinText:
-	text "No! Forgive me,"
+	text "Non! Pardon,"
 	line "GIOVANNI!"
 	done
 
 RadioTower5FRocketBossAfterText:
-	text "How could this be?"
+	text "Impossible!"
 
-	para "Our dreams have"
-	line "come to naught."
+	para "Nos rêves se"
+	line "brisent."
 
-	para "I wasn't up to the"
-	line "task after all."
+	para "Je suis pas"
+	line "digne."
 
-	para "Like GIOVANNI did"
-	line "before me, I will"
+	para "Comme GIOVANNI l'a"
+	line "fait jadis, je"
 
-	para "disband TEAM"
-	line "ROCKET here today."
+	para "vais dissoudre la"
+	line "TEAM ROCKET."
 
-	para "Farewell."
+	para "Adieu."
 	done
 
 RadioTower5FDirectorThankYouText:
-	text "DIRECTOR: <PLAY_G>,"
-	line "thank you!"
+	text "DIRECTEUR:"
+	line "Merci <PLAY_G>!"
 
-	para "Your courageous"
-	line "actions have saved"
+	para "Ton courage a"
+	line "sauvé les #MON"
+	cont "du monde entier."
 
-	para "#MON nation-"
-	line "wide."
-
-	para "I know it's not"
-	line "much, but please"
-	cont "take this."
+	para "Ce n'est pas grand"
+	line "chose, mais c'est"
+	cont "pour toi."
 	done
 
 RadioTower5FDirectorDescribeClearBellText:
-	text "There used to be a"
-	line "tower right here"
-	cont "in GOLDENROD CITY."
+	text "Il y avait une"
+	line "tour ici à DOU-"
+	cont "BLONVILLE."
 
-	para "But it was old and"
-	line "creaky."
+	para "Mais elle était"
+	line "en mauvais état."
 
-	para "So we replaced it"
-	line "with our RADIO"
-	cont "TOWER."
+	para "On l'a alors rem-"
+	line "placée par notre"
+	cont "TOUR RADIO."
 
-	para "We dug up that"
-	line "bell during"
-	cont "construction."
+	para "Pendant les tra-"
+	line "vaux, nous avons"
+	cont "trouvé ce glas."
 
-	para "I heard that all"
-	line "sorts of #MON"
+	para "On dit qu'une"
+	line "multitude de #-"
 
-	para "lived in GOLDENROD"
-	line "in the past."
+	para "MON différents vi-"
+	line "vaient ici."
 
-	para "Perhaps…"
+	para "Alors..."
 
-	para "That bell has some"
-	line "connection to the"
+	para "Ce glas a"
+	line "peut-être un lien"
 
-	para "TIN TOWER in"
-	line "ECRUTEAK CITY…"
+	para "avec la TOUR FER-"
+	line "RAILLE de ROSALIA."
 
 	para "Ah!"
 
-	para "That reminds me…"
+	para "Au fait..."
 
-	para "I overheard TEAM"
-	line "ROCKET whispering."
+	para "J'ai entendu un"
+	line "des types de la"
+	cont "TEAM ROCKET."
 
-	para "Apparently, some-"
-	line "thing is going on"
-	cont "at the TIN TOWER."
+	para "Apparemment, il se"
+	line "passe des trucs à"
+	cont "la TOUR FERRAILLE."
 
-	para "I have no idea"
-	line "what is happening,"
+	para "A mon avis, tu"
+	line "devrais y aller."
 
-	para "but you might look"
-	line "into it."
-
-	para "OK, I better go to"
-	line "my OFFICE."
+	para "OK, je retourne"
+	line "au BUREAU."
 	done
 
 RadioTower5FDirectorText:
-	text "DIRECTOR: Hello,"
+	text "DIRECTEUR: Salut,"
 	line "<PLAY_G>!"
 
-	para "You know, I love"
-	line "#MON."
+	para "Tu sais, j'adore"
+	line "les #MON."
 
-	para "I built this RADIO"
-	line "TOWER so I could"
+	para "J'ai construit"
+	line "cette TOUR RADIO"
 
-	para "express my love"
-	line "of #MON."
+	para "pour crier au mon-"
+	line "de mon amour."
 
-	para "It would be nice"
-	line "if people enjoyed"
-	cont "our programs."
+	para "Mais les gens"
+	line "aiment-ils nos"
+	cont "émissions?"
 	done
 
 BenText:
-	text "BEN: Do you listen"
-	line "to our music?"
+	text "BEN: Tu écoutes"
+	line "notre musique?"
 	done
 
 RadioTower5FDirectorsOfficeSignText:
-	text "5F DIRECTOR'S"
-	line "   OFFICE"
+	text "4EME BUREAU"
+	line "     DIRECTION"
 	done
 
 RadioTower5FStudio1SignText:
-	text "5F STUDIO 1"
+	text "4EME STUDIO 1"
 	done
 
 RadioTower5F_MapEvents:

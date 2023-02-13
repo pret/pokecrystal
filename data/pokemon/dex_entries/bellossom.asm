@@ -1,10 +1,11 @@
-	db "FLOWER@" ; species name
-	dw 104, 130 ; height, weight
+	db "FLEUR@" ; species name
+	db 4 ; height
+	dw 58 ; weight
 
-	db   "When these dance"
-	next "together, their"
-	next "petals rub against"
+	db   "Si des JOLIFLOR"
+	next "dansent ensemble,"
+	next "le frottement de"
 
-	page "each other,"
-	next "making pretty,"
-	next "relaxing sounds.@"
+	page "leurs feuilles"
+	next "produit un doux"
+	next "son apaisant.@"

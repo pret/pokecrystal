@@ -1,73 +1,71 @@
 TullyAskNumber1Text:
-	text "Hey, you're trying"
-	line "to be the ultimate"
+	text "Hé! Toi aussi tu"
+	line "veux devenir super"
 
-	para "trainer too? Then"
-	line "we're comrades!"
+	para "méga balèze de la"
+	line "mort? Alors on est"
+	cont "des amis!"
 
-	para "If I find any more"
-	line "items by the"
+	para "Si je trouve des"
+	line "objets près de"
 
-	para "water, I'll give"
-	line "you some."
+	para "l'eau, je t'en"
+	line "ferai profiter."
 
-	para "Just give me your"
-	line "phone number."
+	para "Donne-moi juste"
+	line "ton numéro."
 	done
 
 TullyAskNumber2Text:
-	text "If I find any more"
-	line "items by the"
+	text "Si je trouve des"
+	line "objets près de"
 
-	para "water, I'll give"
-	line "you some."
+	para "l'eau, je t'en"
+	line "ferai profiter."
 
-	para "Just give me your"
-	line "phone number."
+	para "Donne-moi juste"
+	line "ton numéro."
 	done
 
 TullyNumberAcceptedText:
-	text "You'll be hearing"
-	line "from me if I find"
-	cont "something good."
+	text "Je t'appelle si je"
+	line "trouve quelque"
+	cont "chose de bien."
 	done
 
 TullyNumberDeclinedText:
-	text "Is that so? Then"
-	line "I'll just have to"
-	cont "use them myself."
+	text "Ah bon? Je vais"
+	line "tout garder,"
+	cont "alors."
 	done
 
 TullyPhoneFullText:
-	text "Your phone list is"
-	line "all filled up."
+	text "Ton répertoire est"
+	line "complet."
 
-	para "Come back if you"
-	line "make room for me."
+	para "Fais de la place"
+	line "et reviens."
 	done
 
 TullyRematchText:
-	text "I've been doing"
-	line "more than just"
+	text "Depuis la dernière"
+	line "fois, je n'ai pas"
+	cont "fait que pêcher..."
 
-	para "fishing since we"
-	line "last met."
-
-	para "You're in for a"
-	line "big surprise!"
+	para "Tu vas avoir une"
+	line "grosse surprise!"
 	done
 
 TullyGiftText:
-	text "Hey, there you"
-	line "are!"
+	text "Voilà pour toi!"
 
-	para "Here's a gift, as"
-	line "promised!"
+	para "Un cadeau, comme"
+	line "promis!"
 	done
 
 TullyPackFullText:
-	text "Your PACK's full?"
+	text "Ton SAC est plein?"
 
-	para "Come back later--"
-	line "that'll do it."
+	para "Reviens plus tard,"
+	line "alors."
 	done

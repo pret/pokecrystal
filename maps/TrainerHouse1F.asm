@@ -35,104 +35,106 @@ TrainerHouseIllegibleBook:
 	jumptext TrainerHouseIllegibleText
 
 TrainerHouse1FReceptionistText:
-	text "Welcome to TRAINER"
-	line "HOUSE, the newest"
+	text "Bienvenue au CLUB"
+	line "des DRESSEURS,"
 
-	para "and most happening"
-	line "place in VIRIDIAN."
+	para "l'attraction de"
+	line "JADIELLE."
 
-	para "We're open to"
-	line "trainers only."
+	para "Nous accueillons"
+	line "les dresseurs."
 
-	para "You can battle"
-	line "against the best"
+	para "Vous pouvez com-"
+	line "battre les meil-"
 
-	para "of the best right"
-	line "downstairs."
+	para "leurs à l'étage"
+	line "inférieur."
 	done
 
 TrainerHouse1FCooltrainerMText:
-	text "VIRIDIAN is the"
-	line "town closest to"
-	cont "INDIGO PLATEAU."
+	text "JADIELLE est la"
+	line "ville voisine du"
+	cont "PLATEAU INDIGO."
 
-	para "They built this"
-	line "place because so"
+	para "Elle a été cons-"
+	line "truite à cet en-"
 
-	para "many trainers pass"
-	line "through on their"
+	para "droit à cause du"
+	line "passage important"
 
-	para "way up to INDIGO"
-	line "PLATEAU."
+	para "des dresseurs vers"
+	line "le PLATEAU."
 	done
 
 TrainerHouse1FCooltrainerFText:
-	text "They hold practice"
-	line "battles downstairs"
-	cont "here."
+	text "Des combats d'en-"
+	line "traînement se dé-"
+	cont "roulent en bas."
 
-	para "I would love to"
-	line "see how well a"
+	para "J'aimerais bien"
+	line "voir comment se"
 
-	para "trainer from JOHTO"
-	line "battles."
+	para "débrouille un"
+	line "dresseur de JOHTO."
 	done
 
 TrainerHouse1FYoungsterText:
-	text "I guess you can't"
-	line "become the CHAMP"
+	text "A mon avis, on ne"
+	line "peut pas devenir"
 
-	para "unless you go all"
-	line "over the place and"
+	para "un MAITRE sans"
+	line "avoir tout vu et"
 
-	para "battle all kinds"
-	line "of people."
+	para "combattu tout le"
+	line "monde."
 
-	para "The CHAMPION from"
-	line "PALLET traveled to"
+	para "Le MAITRE de"
+	line "PALETTE a voyagé"
 
-	para "all the cities and"
-	line "towns in KANTO."
+	para "dans tous les"
+	line "coins de KANTO."
 	done
 
 TrainerHouse1FGentlemanText:
-	text "Whew… I'm taking a"
-	line "rest from #MON"
-	cont "battles."
+	text "Fouiii...j'ai trop"
+	line "combattu. Je me"
+	cont "repose un peu."
 	done
 
 TrainerHouseSign1Text:
-	text "Practice battles"
-	line "are held in the"
+	text "Des combats d'en-"
+	line "traînement se dé-"
 
-	para "TRAINING HALL"
-	line "downstairs."
+	para "roulent en bas,"
+	line "dans le HALL d'EN-"
+	cont "TRAINEMENT."
 
-	para "Skilled trainers"
-	line "are invited to"
-	cont "participate."
+	para "Les bons dresseurs"
+	line "y sont invités."
 	done
 
 TrainerHouseSign2Text:
-	text "There are no rules"
-	line "or regulations for"
+	text "Comme pour les"
+	line "combats en exté-"
 
-	para "practice matches."
-	line "Just like in field"
+	para "rieur, il n'y a"
+	line "pas de règles spé-"
 
-	para "battles, anything"
-	line "goes!"
+	para "ciales pour les"
+	line "combats d'entraî-"
+	cont "nement!"
 	done
 
 TrainerHouseIllegibleText:
-	text "…What's this?"
-	line "A strategy memo?"
+	text "...C'est quoi ça?"
+	line "Une note sur la"
+	cont "stratégie?"
 
-	para "This writing looks"
-	line "like ONIX tracks…"
+	para "On dirait des tra-"
+	line "cés faits par un"
 
-	para "It's completely"
-	line "illegible…"
+	para "ONIX..."
+	line "C'est illisible..."
 	done
 
 TrainerHouse1F_MapEvents:

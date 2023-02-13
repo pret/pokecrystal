@@ -36,97 +36,75 @@ CianwoodPokecenter1FSuperNerdScript:
 	jumptextfaceplayer CianwoodPokecenter1FSuperNerdText
 
 CianwoodPokecenter1FLassText:
-	text "Did you meet the"
+	text "As-tu rencontré le"
 	line "#MANIAC?"
 
-	para "He's always brag-"
-	line "ging about his"
-	cont "rare #MON."
+	para "Il se vante sans"
+	line "cesse sur ses"
+	cont "#MON rares."
 	done
 
 CianwoodGymGuideText:
-	text "The #MON GYM"
-	line "trainers here are"
-	cont "macho bullies."
+	text "Les dresseurs de"
+	line "l'ARENE sont des"
+	cont "grosses brutes."
 
-	para "If I stick around,"
-	line "they might come"
-	cont "after me."
+	para "Je veux pas qu'ils"
+	line "s'en prennent à"
+	cont "moi."
 
-	para "Here's some ad-"
-	line "vice: the GYM"
+	para "Un conseil: le"
+	line "CHAMPION utilise"
+	cont "le type COMBAT."
 
-	para "LEADER uses the"
-	line "fighting-type."
+	para "Tu devrais donc"
+	line "utiliser des"
+	cont "#MON PSY."
 
-	para "So you should"
-	line "confound him with"
-	cont "psychic #MON."
+	para "Mets son équipe"
+	line "K.O. avant qu'elle"
 
-	para "Wipe out his #-"
-	line "MON before they"
+	para "n'utilise la"
+	line "force."
 
-	para "can use their"
-	line "physical strength."
+	para "Et les rochers au"
+	line "milieu de l'ARENE?"
 
-	para "And those boulders"
-	line "in the middle of"
-	cont "the GYM?"
+	para "Bouge-les correc-"
+	line "tement pour accé-"
+	cont "der au CHAMPION."
 
-	para "If you don't move"
-	line "them correctly,"
-
-	para "you won't reach"
-	line "the GYM LEADER."
-
-	para "If you get stuck,"
-	line "go outside."
+	para "Si tu ne peux plus"
+	line "progresser, sors."
 	done
 
 CianwoodGymGuideWinText:
-	text "<PLAYER>! You won!"
-	line "I could tell by"
-	cont "looking at you!"
+	text "<PLAYER>!"
+	line "Tu as gagné!"
+	cont "Je le savais rien"
+	cont "qu'en te voyant!"
 	done
 
 CianwoodPokecenter1FUnusedText1: ; unreferenced
-	text "Don't you get the"
-	line "urge to show off"
-
-	para "your #MON to"
-	line "friends?"
-
-	para "I wish I could"
-	line "show the #MON I"
-
-	para "raised to my pal"
-	line "in VIOLET."
+	text_start
 	done
 
 CianwoodPokecenter1FUnusedText2: ; unreferenced
-	text "I've been battling"
-	line "my pal in VIOLET"
-
-	para "using a MOBILE"
-	line "ADAPTER link."
-
-	para "I'm down 5-7"
-	line "against him. I've"
-	cont "gotta crank it up!"
+	text_start
 	done
 
 CianwoodPokecenter1FSuperNerdText:
-	text "I love showing off"
-	line "the #MON that"
+	text "J'adore frimer"
+	line "avec mes #MON."
 
-	para "I've raised."
-	line "Don't you?"
+	para "Et toi?"
+	line "C'est ton truc?"
 
-	para "I'm going to get"
-	line "into a bunch of"
+	para "Je vais faire"
+	line "plein de combats"
 
-	para "battles, and show"
-	line "off my #MON!"
+	para "et frimer avec"
+	line "mes jolis #MON!"
 	done
 
 CianwoodPokecenter1F_MapEvents:

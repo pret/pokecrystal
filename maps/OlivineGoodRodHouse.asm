@@ -39,44 +39,53 @@ GoodRodHouseBookshelf: ; unreferenced
 	jumpstd PictureBookshelfScript
 
 OfferGoodRodText:
-	text "OLIVINE is on the"
-	line "sea!"
+	text "OLIVILLE est sur"
+	line "la mer!"
 
-	para "And if it's on the"
-	line "sea, there are"
-	cont "bound to be fish!"
+	para "Et si c'est sur la"
+	line "mer... C'est"
+	cont "qu'on peut pêcher!"
 
-	para "I've fished here"
-	line "for 30 years."
+	para "Ca fait 30 ans que"
+	line "je pêche ici mon"
+	cont "bouchon."
 
-	para "Would you like to"
-	line "face the sea and"
-	cont "fish?"
+	para "La pêche c'est mon"
+	line "hobby, même que"
+	cont "des fois et bah ça"
+	cont "mord... Et hop une"
+	cont "chaussure trouée!"
+	cont "Tu veux essayer?"
 	done
 
 GiveGoodRodText:
 	text "Ah, hahah!"
-	line "We have ourselves"
-	cont "a new angler!"
+	line "Et voici une"
+	cont "nouvelle recrue"
+	cont "dans ce hobby"
+	cont "formidable!"
 	done
 
 GaveGoodRodText:
-	text "Fish aren't found"
-	line "in the sea alone."
+	text "On ne trouve pas"
+	line "seulement des"
 
-	para "They go wherever"
-	line "there is water."
+	para "poissons en mer."
+	line "Ils sont malins et"
+	cont "vont partout où il"
+	cont "y a de l'eau!"
 	done
 
 DontWantGoodRodText:
-	text "Whaaat? You don't"
-	line "like to fish!?"
-	cont "Incomprehensible!"
+	text "Kkkoii? T'aimes"
+	line "pas la pêche!?"
+	cont "C'est pas bien!"
 	done
 
 HaveGoodRodText:
-	text "How are things?"
-	line "Land the big one?"
+	text "Comment vont les"
+	line "affaires..."
+	cont "Ca roule?"
 	done
 
 OlivineGoodRodHouse_MapEvents:

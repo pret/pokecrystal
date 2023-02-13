@@ -160,119 +160,111 @@ BurnedTower1FEusineMovement:
 BurnedTowerRival_BeforeText:
 	text "<……> <……> <……>"
 
-	para "…Oh, it's you."
+	para "...Oh, c'est toi."
 
-	para "I came looking for"
-	line "some legendary"
+	para "Je suis venu pour"
+	line "trouver une sorte"
 
-	para "#MON that they"
-	line "say roosts here."
+	para "de #MON légen-"
+	line "daire..."
 
-	para "But there's"
-	line "nothing here!"
+	para "Mais y'a rien ici!"
 
-	para "Nothing after all"
-	line "the trouble of"
+	para "Venir dans ce trou"
+	line "paumé pour rien"
 
-	para "coming to this"
-	line "dump? No way!"
+	para "trouver, moi ça"
+	line "m'énerve la tête!"
 
-	para "It's all your"
-	line "fault!"
+	para "Je vais t'en faire"
+	line "baver!"
 	done
 
 BurnedTowerRival_WinText:
-	text "…Humph!"
-
-	para "This is why I hate"
-	line "battling wimps."
-
-	para "There's no"
-	line "challenge in it."
+	text "...Pfff!"
+	para "Aucun intérêt."
 	done
 
 BurnedTowerRival_AfterText1:
-	text "…Aw, whatever."
+	text "Pff...minable."
 
-	para "You would never be"
-	line "able to catch a"
+	para "T'auras jamais un"
+	line "#MON légendaire"
 
-	para "legendary #MON"
-	line "anyway."
+	para "de toute façon."
+	line "T'es zéro."
 	done
 
 BurnedTowerRival_LossText:
-	text "…Humph!"
+	text "...Pff!"
 
-	para "This is why I hate"
-	line "battling wimps."
+	para "Voilà pourquoi"
+	line "j'aime pas me"
 
-	para "It's just a waste"
-	line "of my time."
+	para "battre contre les"
+	line "nuls: c'est une"
+	cont "perte de temps."
 	done
 
 BurnedTowerRival_AfterText2:
-	text "Humph!"
+	text "...Pfff!"
 
-	para "What are you doing"
-	line "falling into a"
+	para "Tu tombes dans les"
+	line "trous?"
 
-	para "hole? Some genius"
-	line "you are!"
+	para "T'es pas trop"
+	line "bête, c'est bien."
 
-	para "Serves you right!"
+	para "Minable!"
 	done
 
 BurnedTower1FEusineIntroText:
-	text "EUSINE: My name's"
-	line "EUSINE."
+	text "EUSINE: Mon nom"
+	line "est EUSINE."
 
-	para "I'm on the trail"
-	line "of a #MON named"
+	para "Je poursuis un"
+	line "#MON du nom de"
 	cont "SUICUNE."
 
-	para "And you are…?"
+	para "Et toi c'est quoi?"
 
-	para "<PLAYER>? Glad to"
-	line "meet you!"
+	para "<PLAYER>? Ravi"
+	line "de te connaître!"
 
-	para "I heard rumors"
-	line "that SUICUNE is in"
+	para "On raconte que"
+	line "SUICUNE est dans"
 
-	para "this BURNED TOWER,"
-	line "so I came to look."
+	para "cette TOUR CEN-"
+	line "DREE..."
 
-	para "But where exactly"
-	line "could it be?"
+	para "Mais où???"
 	done
 
 BurnedTower1FEusineText:
-	text "EUSINE: I heard"
-	line "that SUICUNE is in"
+	text "On raconte que"
+	line "SUICUNE est dans"
 
-	para "this BURNED TOWER,"
-	line "so I came to look."
+	para "cette TOUR CEN-"
+	line "DREE..."
 
-	para "But where exactly"
-	line "could it be?"
+	para "Mais où???"
 	done
 
 BurnedTower1FMortyText:
-	text "MORTY: ECRUTEAK's"
-	line "GYM LEADER has to"
+	text "MORTIMER: Le CHAM-"
+	line "PION de ROSALIA"
 
-	para "study what are"
-	line "said to be the"
+	para "doit étudier les"
+	line "#MON légen-"
 
-	para "legendary #MON"
-	line "--SUICUNE, ENTEI"
-	cont "and RAIKOU."
+	para "daires: SUICUNE,"
+	line "ENTEI et RAIKOU."
 
-	para "EUSINE is here, so"
-	line "I've decided to"
+	para "EUSINE est ici."
+	line "J'ai décidé de"
 
-	para "investigate the"
-	line "TOWER with him."
+	para "fouiller la TOUR"
+	line "avec lui."
 	done
 
 BurnedTower1F_MapEvents:

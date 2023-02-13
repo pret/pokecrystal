@@ -1,10 +1,11 @@
-	db "LONG NOSE@" ; species name
-	dw 108, 740 ; height, weight
+	db "LONG-NEZ@" ; species name
+	db 5 ; height
+	dw 335 ; weight
 
-	db   "During the desert-"
-	next "ed morning hours,"
-	next "it comes ashore"
+	db   "De bonne heure, il"
+	next "reste près d'un"
+	next "point d'eau pour"
 
-	page "where it deftly"
-	next "uses its trunk to"
-	next "take a shower.@"
+	page "se laver en utili-"
+	next "sant sa trompe."
+	next "@"

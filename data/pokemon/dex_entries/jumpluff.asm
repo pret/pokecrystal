@@ -1,10 +1,11 @@
-	db "COTTONWEED@" ; species name
-	dw 207, 70 ; height, weight
+	db "PISSENLIT@" ; species name
+	db 8 ; height
+	dw 30 ; weight
 
-	db   "Even in the fierc-"
-	next "est wind, it can"
-	next "control its fluff"
+	db   "Même sous un vent"
+	next "très violent, il"
+	next "contrôle sa desti-"
 
-	page "to make its way to"
-	next "any place in the"
-	next "world it wants.@"
+	page "nation en bougeant"
+	next "ses appendices."
+	next "@"

@@ -107,129 +107,126 @@ CarefulSwimmingSign:
 	jumptext CarefulSwimmingSignText
 
 SwimmermHaroldSeenText:
-	text "Have you ever gone"
-	line "swimming in the"
-	cont "sea at night?"
+	text "As-tu déjà"
+	line "nagé au clair"
+	cont "de lune?"
 	done
 
 SwimmermHaroldBeatenText:
-	text "Glub…"
+	text "Glub..."
 	done
 
 SwimmermHaroldAfterBattleText:
-	text "At night, the sea"
-	line "turns black. It"
-
-	para "feels like it will"
-	line "swallow you up."
+	text "Un bain de minuit,"
+	line "c'est trop génial."
 	done
 
 SwimmermTuckerSeenText:
-	text "Pant, pant…"
-	line "Just… a little…"
+	text "Pfff...pfff..."
+	line "PARMANIE..n'est.."
 
-	para "farther… to…"
-	line "FUCHSIA…"
+	para "plus...très..."
+	line "loin...!"
 	done
 
 SwimmermTuckerBeatenText:
-	text "I'm drowning!"
+	text "Je me noie!"
 	done
 
 SwimmermTuckerAfterBattleText:
-	text "I… asked my girl-"
-	line "friend to swim to"
-	cont "FUCHSIA… Gasp…"
+	text "J'ai demandé à ma"
+	line "copine de nager"
+	cont "jusqu'à PARMANIE."
 	done
 
 SwimmerfDawnSeenText:
-	text "I'm disgusted by"
-	line "wimpy people!"
+	text "Nyaaaaah!"
 	done
 
 SwimmerfDawnBeatenText:
-	text "I could beat you"
-	line "at swimming…"
+	text "Je nage plus vite"
+	line "que toi."
 	done
 
 SwimmerfDawnAfterBattleText:
-	text "It's a quick swim"
-	line "between FUCHSIA"
+	text "PARMANIE et les"
+	line "ILES ECUME sont à"
 
-	para "and SEAFOAM IS-"
-	line "LANDS…"
+	para "deux coups de"
+	line "brasse..."
 
-	para "Sheesh, some big"
-	line "man my boyfriend"
+	para "Mon oeil ouais!"
+	line "Quel crétin mon"
 
-	para "is! What a wimp!"
+	para "copain!"
 	done
 
 SwimmermJeromeSeenText:
-	text "Swimming?"
-	line "I'm lousy at it."
+	text "Nager?"
+	line "Je déteste ça."
 
-	para "I'm just splashing"
-	line "around in these"
-	cont "shallow waters."
+	para "Je patauge."
+	line "J'éclabousse."
+	cont "C'est super."
 	done
 
 SwimmermJeromeBeatenText:
-	text "I thought I could"
-	line "win."
+	text "J'ai cru pouvoir"
+	line "gagner."
 	done
 
 SwimmermJeromeAfterBattleText:
-	text "I might be bad at"
-	line "swimming, but I"
-	cont "love the sea."
+	text "J'aime pas nager"
+	line "mais j'adore la"
+	cont "mer."
 	done
 
 Route19Fisher1Text:
-	text "Sorry. This road"
-	line "is closed for"
-	cont "construction."
+	text "Cette route est"
+	line "fermée pour cause"
+	cont "de travaux."
 
-	para "If you want to get"
-	line "to CINNABAR, you'd"
+	para "Pour aller à"
+	line "CRAMOIS'ILE, va au"
 
-	para "better go south"
-	line "from PALLET TOWN."
+	para "Sud de BOURG"
+	line "PALETTE."
 	done
 
 Route19Fisher1Text_RocksCleared:
-	text "I'm all sweaty."
-	line "Time for a swim!"
+	text "J'transpire."
+	line "Allez! A l'eau!"
 	done
 
 Route19Fisher2Text:
-	text "Who knows how long"
-	line "it would take to"
-	cont "move this boulder…"
+	text "Combien de temps"
+	line "cela prendrait-il"
+	cont "de bouger ce"
+	cont "rocher?"
 	done
 
 Route19Fisher2Text_RocksCleared:
-	text "The roadwork is"
-	line "finally finished."
+	text "Les travaux sont"
+	line "enfin finis."
 
-	para "Now I can go"
-	line "fishing again."
+	para "J'peux pêcher!"
+	line "Youkiii!"
 	done
 
 Route19SignText:
 	text "ROUTE 19"
 
-	para "FUCHSIA CITY -"
-	line "SEAFOAM ISLANDS"
+	para "PARMANIE -"
+	line "ILES ECUME"
 	done
 
 CarefulSwimmingSignText:
-	text "Please be careful"
-	line "if you are swim-"
-	cont "ming to SEAFOAM"
-	cont "ISLANDS."
+	text "Nagez prudemment"
+	line "si vous vous"
+	cont "dirigez vers les"
+	cont "ILES ECUME."
 
-	para "FUCHSIA POLICE"
+	para "POLICE de PARMANIE"
 	done
 
 Route19_MapEvents:

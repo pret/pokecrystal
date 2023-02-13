@@ -1,73 +1,71 @@
 JoseAskNumber1Text:
-	text "If my @"
+	text "Si mon @"
 	text_ram wStringBuffer4
 	text_start
-	line "sees anything"
+	line "vois un truc joli,"
+	cont "il va le prendre."
 
-	para "pretty, it goes"
-	line "and gets it."
+	para "Tu aimes les trucs"
+	line "jolis?"
 
-	para "Do you like pretty"
-	line "things?"
+	para "Je peux t'en filer"
+	line "si j'en ai trop."
 
-	para "I could share if"
-	line "it gets some more."
+	para "C'est quoi ton"
+	line "numéro?"
 
-	para "What's your phone"
-	line "number? I'll call."
-
-	para "Don't expect a"
-	line "whole lot, OK?"
+	para "Ne t'attends pas"
+	line "à grand-chose, OK?"
 	done
 
 JoseAskNumber2Text:
-	text "Do you like pretty"
-	line "things?"
+	text "Tu aimes les trucs"
+	line "jolis?"
 
-	para "I could share if"
-	line "FARFETCH'D goes"
-	cont "and gets more."
+	para "Je peux partager"
+	line "si CANARTICHO en"
+	cont "trouve d'autres."
 
-	para "What's your phone"
-	line "number? I'll call."
+	para "C'est quoi ton"
+	line "numéro?"
 	done
 
 JoseNumberAcceptedText:
-	text "I'll call you as"
-	line "soon as I get"
-	cont "something pretty."
+	text "Je t'appelle s'il"
+	line "trouve quelque"
+	cont "chose de joli."
 	done
 
 JoseNumberDeclinedText:
-	text "You sure? Well,"
-	line "tell me if you"
-	cont "change your mind."
+	text "Vraiment? Bon."
+	line "Préviens-moi si tu"
+	cont "changes d'avis."
 	done
 
 JosePhoneFullText:
-	text "Huh? Your phone"
-	line "list is full."
+	text "Oh? Ton téléphone"
+	line "est plein."
 	done
 
 JoseRematchText:
-	text "Tweet! Tweeeet!"
+	text "Cui! Cuuuiiii!"
 
-	para "Kept me waiting!"
-	line "Go, FARFETCH'D!"
+	para "J't'attendais!"
+	line "Allez, CANARTICHO!"
 	done
 
 JoseGiftText:
-	text "Kept me waiting!"
-	line "Look, this is it!"
+	text "Je t'attendais!"
+	line "...Voilà!"
 
-	para "See? Isn't it some"
-	line "kind of pretty?"
+	para "Alors?"
+	line "C'est joli?"
 	done
 
 JosePackFullText:
-	text "Huh? You don't"
-	line "have anywhere to"
+	text "Hein? Tu n'as plus"
+	line "de place. Tu vas"
 
-	para "put this. Better"
-	line "come back for it."
+	para "devoir revenir une"
+	line "prochaine fois."
 	done

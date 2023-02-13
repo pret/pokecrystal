@@ -1,10 +1,11 @@
-	db "SEED@" ; species name
-	dw 607, 2210 ; height, weight
+	db "GRAINE@" ; species name
+	db 20 ; height
+	dw 1000 ; weight
 
-	db   "As it warms it-"
-	next "self and absorbs"
-	next "the sunlight, its"
+	db   "Sous le soleil,"
+	next "il se réchauffe,"
+	next "régénère, et ses"
 
-	page "flower petals"
-	next "release a pleasant"
-	next "fragrance.@"
+	page "pétales dégagent"
+	next "un subtil parfum."
+	next "@"

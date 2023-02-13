@@ -1,10 +1,11 @@
-	db "TINY BIRD@" ; species name
-	dw 100, 40 ; height, weight
+	db "MINOISEAU@" ; species name
+	db 3 ; height
+	dw 20 ; weight
 
-	db   "To protect its"
-	next "territory, it"
-	next "flies around"
+	db   "Pour protéger son"
+	next "territoire, il"
+	next "vole sans répit"
 
-	page "ceaselessly,"
-	next "making high-"
-	next "pitched cries.@"
+	page "et pousse de"
+	next "grands cris aigus."
+	next "@"

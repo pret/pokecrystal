@@ -1,79 +1,74 @@
 BethAnswerPhoneText:
-	text "Hello, this is"
+	text "Salut, c'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "."
 
 	para "Oh, <PLAY_G>."
-	line "Good morning."
-
-	para ""
+	line "Bonjour."
 	done
 
 BethAnswerPhoneDayText:
-	text "Hello, this is"
-	line "@"
-	text_ram wStringBuffer3
-	text "."
-
-	para "Oh. Hi, <PLAY_G>."
-	done
-
-BethAnswerPhoneNiteText:
-	text "Hello, this is"
+	text "Salut, c'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "."
 
 	para "Oh, <PLAY_G>."
-	line "Good evening."
+	line "Bonjour."
+	done
+
+BethAnswerPhoneNiteText:
+	text "Salut, c'est"
+	line "@"
+	text_ram wStringBuffer3
+	text "."
+
+	para "Oh, <PLAY_G>."
+	line "Bonsoir."
 	done
 
 BethGreetText:
-	text "Good morning,"
+	text "Bonjour,"
 	line "<PLAY_G>!"
 
-	para "This is @"
+	para "C'est @"
 	text_ram wStringBuffer3
 	text "."
-	line "Were you sleeping?"
+	line "Tu dormais?"
 	done
 
 BethGreetDayText:
-	text "<PLAY_G>, hi!"
-	line "This is @"
+	text "Bonjour,"
+	line "<PLAY_G>!"
+
+	para "C'est @"
 	text_ram wStringBuffer3
 	text "."
-
-	para "Do you have some"
-	line "time?"
+	line "Tu as une seconde?"
 	done
 
 BethGreetNiteText:
-	text "Hi, <PLAY_G>."
-	line "Good evening."
+	text "Salut <PLAY_G>."
+	line "Bonsoir."
 
-	para "This is @"
+	para "C'est @"
 	text_ram wStringBuffer3
 	text "."
 
-	para "I hope you were"
-	line "awake."
+	para "T'es debout?"
 	done
 
 BethGenericText:
-	text "Are you the kind"
-	line "of person who goes"
+	text "Tu vas dans les"
+	line "CENTRES #MON"
+	cont "souvent?"
 
-	para "to #MON CENTERS"
-	line "often?"
+	para "Moi j'y vais tous"
+	line "les jours."
 
-	para "I go every day."
-	line "Watching out for"
-
-	para "the health of your"
-	line "#MON is a basic"
-
-	para "part of being a"
-	line "#MON trainer."
+	para "Faire attention"
+	line "à la santé de ses"
+	cont "#MON, c'est la"
+	cont "base du succès."
 	done

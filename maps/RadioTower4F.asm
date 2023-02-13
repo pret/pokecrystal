@@ -104,143 +104,145 @@ RadioTower4FStudio2Sign:
 	jumptext RadioTower4FStudio2SignText
 
 RadioTower4FFisherText:
-	text "I listened to the"
-	line "radio while I was"
-	cont "at the RUINS."
+	text "J'écoutais la ra-"
+	line "dio tout en visi-"
+	cont "tant les RUINES."
 
-	para "I heard a strange"
-	line "broadcast there."
+	para "J'y ai entendu une"
+	line "émission étrange."
 	done
 
 RadioTower4FDJMaryText:
-	text "MARY: Why? Why do"
-	line "I have to suffer"
-	cont "through this?"
+	text "LULA: Pourquoi?"
+	line "Pourquoi tant de"
+	cont "haine?"
 
-	para "MEOWTH, help me!"
+	para "MIAOUSS, à l'aide!"
 	done
 
 RadioTower4FDJMaryText_ClearedRockets:
-	text "MARY: Oh! You're"
-	line "my little savior!"
+	text "LULA: Oh! Tu es"
+	line "formidable!"
 
-	para "Will you take this"
-	line "as my thanks?"
+	para "Veux-tu de ceci"
+	line "en remerciement?"
 	done
 
 RadioTower4FDJMaryText_GivePinkBow:
-	text "MARY: It's just"
-	line "right for #MON"
+	text "LULA: C'est pour"
+	line "les #MON qui"
 
-	para "that know normal-"
-	line "type moves."
+	para "connaissent des"
+	line "techniques du type"
+	cont "NORMAL."
 	done
 
 RadioTower4FDJMaryText_After:
-	text "MARY: Please tune"
-	line "into me on PROF."
+	text "LULA: Ecoute mon"
+	line "émission avec le"
 
-	para "OAK'S #MON TALK"
-	line "show."
+	para "PROF.CHEN: la"
+	line "CHRONIQUE #MON."
 	done
 
 RadioTowerMeowthText:
-	text "MEOWTH: Meowth…"
+	text "MIAOUSS: Miaou..."
 	done
 
 GruntM10SeenText:
-	text "You plan to rescue"
-	line "the DIRECTOR?"
+	text "Tu comptes sauver"
+	line "le DIRECTEUR?"
 
-	para "That won't be pos-"
-	line "sible because I'm"
-	cont "going to beat you!"
+	para "Je crois que ça va"
+	line "pas être possible."
+	cont "J'vais t'écraser!"
 	done
 
 GruntM10BeatenText:
-	text "No! Unbelievable!"
+	text "Incroyable!"
 	done
 
 GruntM10AfterBattleText:
-	text "I don't believe"
-	line "it! I was beaten!"
+	text "Je..."
+	line "J'le crois pas!"
 	done
 
 Executivem2SeenText:
-	text "Stop! I'm known as"
-	line "the TEAM ROCKET"
-	cont "fortress!"
+	text "Stop! On m'appelle"
+	line "la forteresse de"
+	cont "la TEAM ROCKET!"
 
-	para "You're not taking"
-	line "another step!"
+	para "Pas un pas de"
+	line "plus, poussin!"
 	done
 
 Executivem2BeatenText:
-	text "The fortress came"
-	line "down!"
+	text "Tout cassé ma"
+	line "forteresse!"
 	done
 
 Executivem2AfterBattleText:
-	text "You've earned my"
-	line "respect, so here's"
-	cont "some advice."
+	text "Tu as mérité mon"
+	line "respect, alors"
+	cont "voici un conseil."
 
-	para "It's not too late."
-	line "You can still turn"
-	cont "back."
+	para "Laisse tomber ta"
+	line "quête pendant qu'"
+	cont "il en est temps."
 	done
 
 GruntF4SeenText:
-	text "Don't I think"
-	line "#MON are cute?"
+	text "Quoi? Est-ce que"
+	line "les #MON sont"
+	cont "mignons?"
 
-	para "I'll think my"
-	line "#MON are cute--"
+	para "Les miens seront"
+	line "mignons après"
 
-	para "after they beat"
-	line "yours!"
+	para "t'avoir fichu une"
+	line "raclée, ouais!"
 	done
 
 GruntF4BeatenText:
-	text "Oh, no! They're so"
-	line "useless!"
+	text "Oh, non! Ils sont"
+	line "nuls!"
 	done
 
 GruntF4AfterBattleText:
-	text "I love my"
-	line "beautiful self!"
+	text "Je m'aime!"
+	line "Je m'aime!"
 
-	para "Who cares about"
-	line "#MON?"
+	para "Les #MON"
+	line "ça sert à rien!"
 	done
 
 ScientistRichSeenText:
-	text "Most excellent."
+	text "Parfait."
 
-	para "This RADIO TOWER"
-	line "will fulfill our"
-	cont "grand design."
+	para "Cette TOUR RADIO"
+	line "sera parfaite pour"
+	cont "nos plans."
 	done
 
 ScientistRichBeatenText:
-	text "Hmmm…"
+	text "Hmmm..."
 
-	para "All grand plans"
-	line "come with snags."
+	para "Tout plan comprend"
+	line "certains accrocs."
 	done
 
 ScientistRichAfterBattleText:
-	text "Do you honestly"
-	line "believe you can"
-	cont "stop TEAM ROCKET?"
+	text "Penses-tu vraiment"
+	line "pouvoir stopper"
+	cont "la TEAM ROCKET?"
 	done
 
 RadioTower4FProductionSignText:
-	text "4F PRODUCTION"
+	text "3EME PRODUCTION"
 	done
 
 RadioTower4FStudio2SignText:
-	text "4F STUDIO 2"
+	text "3EME STUDIO 2"
 	done
 
 RadioTower4F_MapEvents:

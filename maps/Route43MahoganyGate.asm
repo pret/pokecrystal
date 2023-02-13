@@ -23,17 +23,17 @@ Route43MahoganyGateOfficer:
 	end
 
 Route43MahoganyGateOfficerText:
-	text "Only people headed"
-	line "up to LAKE OF RAGE"
+	text "Seuls ceux qui se"
+	line "dirigent vers le"
 
-	para "have been through"
-	line "here lately."
+	para "LAC COLERE passent"
+	line "par ici."
 	done
 
 Route43MahoganyGateOfficerRocketsClearedText:
-	text "Nobody goes up to"
-	line "LAKE OF RAGE these"
-	cont "days."
+	text "Personne ne va au"
+	line "LAC COLERE de nos"
+	cont "jours."
 	done
 
 Route43MahoganyGate_MapEvents:

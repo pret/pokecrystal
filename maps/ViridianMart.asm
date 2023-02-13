@@ -21,17 +21,16 @@ ViridianMartCooltrainerMScript:
 	jumptextfaceplayer ViridianMartCooltrainerMText
 
 ViridianMartLassText:
-	text "The GYM LEADER"
-	line "here is totally"
-	cont "cool."
+	text "Le CHAMPION d'ici"
+	line "est trop cool."
 	done
 
 ViridianMartCooltrainerMText:
-	text "Have you been to"
-	line "CINNABAR?"
+	text "As-tu visité"
+	line "CRAMOIS'ILE?"
 
-	para "It's an island way"
-	line "south of here."
+	para "C'est une île"
+	line "au Sud."
 	done
 
 ViridianMart_MapEvents:

@@ -241,8 +241,8 @@ Route31MailRecipientScript:
 	end
 
 ReceivedSpearowMailText:
-	db   "DARK CAVE leads"
-	next "to another road@"
+	db   "ANTRE NOIRE    "
+	next "mène autre part@"
 
 Route31YoungsterScript:
 	jumptextfaceplayer Route31YoungsterText
@@ -266,153 +266,154 @@ Route31PokeBall:
 	itemball POKE_BALL
 
 Route31CooltrainerMText:
-	text "DARK CAVE…"
+	text "ANTRE NOIRE..."
 
-	para "If #MON could"
-	line "light it up, I'd"
-	cont "explore it."
+	para "Si un #MON pou-"
+	line "vait l'éclairer,"
+	cont "on pourrait"
+	cont "l'explorer..."
 	done
 
 BugCatcherWade1SeenText:
-	text "I caught a bunch"
-	line "of #MON. Let me"
-	cont "battle with you!"
+	text "J'ai attrapé plein"
+	line "de #MON. On va"
+	cont "faire un combat!"
 	done
 
 BugCatcherWade1BeatenText:
-	text "Awwwww…"
+	text "Aaaaaaaaah!"
 	done
 
 BugCatcherWade1AfterText:
-	text "You can catch"
-	line "#MON even if"
+	text "Tu peux attraper"
+	line "un #MON même"
 
-	para "you have six with"
-	line "you."
+	para "si tu en as six"
+	line "sur toi."
 
-	para "If you catch one,"
-	line "it'll go to your"
-	cont "BOX automatically."
+	para "Il sera transféré"
+	line "à ta BOITE automa-"
+	cont "tiquement."
 	done
 
 Text_Route31SleepyMan:
-	text "… Hnuurg… Huh?"
+	text "...Nnngneuh?"
 
-	para "I walked too far"
-	line "today looking for"
+	para "J'ai trop marché"
+	line "pour trouver des"
 	cont "#MON."
 
-	para "My feet hurt and"
-	line "I'm sleepy…"
+	para "J'ai mal aux pieds"
+	line "et j'ai sommeil."
 
-	para "If I were a wild"
-	line "#MON, I'd be"
-	cont "easy to catch…"
+	para "Si j'étais un"
+	line "#MON, je serais"
+	cont "facile à choper..."
 
-	para "…Zzzz…"
+	para "...Zzzz..."
 	done
 
 Text_Route31SleepyManGotMail:
-	text "…Zzzz… Huh?"
+	text "...Zzzz...Hein?"
 
-	para "What's that? You"
-	line "have MAIL for me?"
+	para "C'est quoi? Tu as"
+	line "une LETTRE pour"
+	cont "moi?"
 	done
 
 Text_Route31HandOverMailMon:
-	text "<PLAYER> handed"
-	line "over the #MON"
-	cont "holding the MAIL."
+	text "<PLAYER> donne"
+	line "le #MON tenant"
+	cont "la LETTRE."
 	done
 
 Text_Route31ReadingMail:
-	text "Let's see…"
+	text "Voyons ça... "
+	line "...L'ANTRE NOIRE"
+	cont "mène à un autre"
+	cont "chemin..."
 
-	para "…DARK CAVE leads"
-	line "to another road…"
+	para "C'est bon à"
+	line "savoir."
 
-	para "That's good to"
-	line "know."
+	para "Merci de m'avoir"
+	line "apporté ça."
 
-	para "Thanks for bring-"
-	line "ing this to me."
+	para "T'es un bon p'tit"
+	line "bouchon, toi!"
 
-	para "My friend's a good"
-	line "guy, and you're"
-	cont "swell too!"
+	para "Je devrais peut-"
+	line "être te faire un"
+	cont "cadeau..."
 
-	para "I'd like to do"
-	line "something good in"
-	cont "return too!"
-
-	para "I know! I want you"
-	line "to have this!"
+	para "Je sais! Prends ça"
+	line "j'insiste!"
 	done
 
 Text_Route31DescribeNightmare:
-	text "TM50 is NIGHTMARE."
+	text "CT50: CAUCHEMAR."
 
-	para "It's a wicked move"
-	line "that steadily cuts"
+	para "Une capacité ter-"
+	line "rible qui tranche"
 
-	para "the HP of a sleep-"
-	line "ing enemy."
+	para "les PV d'un ennemi"
+	line "endormi."
 
-	para "Ooooh…"
-	line "That's scary…"
+	para "Ooooh..."
+	line "Ca fait peur, non?"
 
-	para "I don't want to"
-	line "have bad dreams."
+	para "Moi j'aime pas les"
+	line "cauchemars, alors."
 	done
 
 Text_Route31WrongMail:
-	text "This MAIL isn't"
-	line "for me."
+	text "Cette LETTRE n'est"
+	line "pas pour moi."
 	done
 
 Text_Route31MissingMail:
-	text "Why is this #-"
-	line "MON so special?"
+	text "Pourquoi ce"
+	line "#MON est-il si"
+	cont "spécial?"
 
-	para "It doesn't have"
-	line "any MAIL."
+	para "Il n'a pas de"
+	line "LETTRE."
 	done
 
 Text_Route31DeclinedToHandOverMail:
-	text "What? You don't"
-	line "want anything?"
+	text "Quoi? Tu ne veux"
+	line "rien?"
 	done
 
 Text_Route31CantTakeLastMon:
-	text "If I take that"
-	line "#MON from you,"
-
-	para "what are you going"
-	line "to use in battle?"
+	text "Si je te prends ce"
+	line "#MON, avec qui"
+	cont "vas-tu combattre?"
 	done
 
 Route31YoungsterText:
-	text "I found a good"
-	line "#MON in DARK"
-	cont "CAVE."
+	text "J'ai trouvé un bon"
+	line "#MON dans"
+	cont "l'ANTRE NOIRE."
 
-	para "I'm going to raise"
-	line "it to take on"
-	cont "FALKNER."
+	para "Je vais l'entraî-"
+	line "ner pour battre"
+	cont "ALBERT."
 
-	para "He's the leader of"
-	line "VIOLET CITY's GYM."
+	para "Il est le CHAMPION"
+	line "de l'ARENE de"
+	cont "MAUVILLE."
 	done
 
 Route31SignText:
 	text "ROUTE 31"
 
-	para "VIOLET CITY -"
-	line "CHERRYGROVE CITY"
+	para "MAUVILLE -"
+	line "VILLE GRIOTTE"
 	done
 
 DarkCaveSignText:
-	text "DARK CAVE"
+	text "ANTRE NOIRE"
 	done
 
 Route31_MapEvents:

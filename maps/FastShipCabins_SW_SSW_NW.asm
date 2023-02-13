@@ -112,112 +112,113 @@ FastShipCabinsNorthwestCabinTrashcan:
 	jumpstd TrashCanScript
 
 FirebreatherLyleSeenText:
-	text "I'm going to KANTO"
-	line "to put on fire-"
-	cont "breathing shows!"
+	text "Je vais à KANTO"
+	line "me donner en"
+	cont "spectacle!"
 	done
 
 FirebreatherLyleBeatenText:
-	text "Fizzle… The"
-	line "flame's tiny…"
+	text "Pfff... Ma flamme"
+	line "est minuscule..."
 	done
 
 FirebreatherLyleAfterBattleText:
-	text "I guess fire is"
-	line "weak on the sea."
+	text "Le feu c'est nul"
+	line "sur l'eau, non?"
 
-	para "It doesn't matter?"
-	line "Really?"
+	para "Ca change rien?"
+	line "Vraiment?"
 	done
 
 BugCatcherKenSeenText:
-	text "I'm visiting my"
-	line "grandma to catch"
-	cont "me some bugs!"
+	text "Je vais voir ma"
+	line "grand-mère pour"
+	cont "attraper des"
+	cont "insectes!"
 	done
 
 BugCatcherKenBeatenText:
-	text "Ooh, wow."
-	line "You're tough!"
+	text "Ooh!"
+	line "Fort de café!"
 	done
 
 BugCatcherKenAfterBattleText:
-	text "You can find lots"
-	line "of #MON in the"
-	cont "trees of JOHTO!"
+	text "Il y a plein de"
+	line "#MON dans les"
+	cont "arbres de JOHTO!"
 	done
 
 BeautyCassieSeenText:
-	text "I'm trying to"
-	line "forget my woes."
-	cont "Let's battle!"
+	text "J'oublie mes"
+	line "malheurs et..."
+	cont "COMBAT!"
 	done
 
 BeautyCassieBeatenText:
-	text "My heart weeps…"
+	text "Mon coeur saigne."
 	done
 
 BeautyCassieAfterBattleText:
-	text "A voyage is best"
-	line "for getting over"
-	cont "a broken heart."
+	text "Voyager fait ou-"
+	line "blier les peines"
+	cont "de coeur."
 
-	para "But a FAST SHIP"
-	line "trip is too short"
-	cont "for grieving."
+	para "Mais un BATEAU"
+	line "EXPRESS va trop"
+	cont "vite!!!"
 	done
 
 GuitaristClydeSeenText:
-	text "I'm going to audi-"
-	line "tion my songs at"
+	text "Je vais audition-"
+	line "ner à la STATION"
 
-	para "GOLDENROD's RADIO"
-	line "STATION."
+	para "RADIO de DOUBLON-"
+	line "VILLE."
 	done
 
 GuitaristClydeBeatenText:
-	text "Yowza!"
-	line "Total distortion!"
+	text "Wouh!"
+	line "Un bide!"
 	done
 
 GuitaristClydeAfterBattleMobileText:
-	text "I was going to"
-	line "make my debut at"
-	cont "the BATTLE TOWER…"
+	text "J'allais me lancer"
+	line "dans le défi de la"
+	cont "TOUR DE COMBAT..."
 
-	para "I should go back"
-	line "to VERMILION and"
-	cont "redo my training…"
+	para "Je devrais retour-"
+	line "ner à CARMIN et"
+	cont "m'entraîner..."
 	done
 
 GuitaristClydeAfterBattleText:
-	text "Speaking of the"
-	line "RADIO STATION,"
+	text "Au fait..."
+	line "C'est quoi le BON"
 
-	para "what's this week's"
-	line "lucky number?"
+	para "NUMERO de cette"
+	line "semaine?"
 	done
 
 FastShipBedText1:
-	text "A comfy bed!"
-	line "Time to sleep…"
+	text "Un lit douillet!"
+	line "Hop! Au dodo..."
 	done
 
 FastShipBedText2:
-	text "Ah, refreshed and"
-	line "restored!"
+	text "Ah... C'est la"
+	line "super pêche!"
 	done
 
 FastShipArrivedOlivineText:
-	text "FAST SHIP S.S.AQUA"
-	line "has arrived in"
-	cont "OLIVINE CITY."
+	text "Le BATEAU EXPRESS"
+	line "AQUARIA est arrivé"
+	cont "à OLIVILLE."
 	done
 
 FastShipArrivedVermilionText:
-	text "FAST SHIP S.S.AQUA"
-	line "has arrived in"
-	cont "VERMILION CITY."
+	text "Le BATEAU EXPRESS"
+	line "AQUARIA est arrivé"
+	cont "à CARMIN SUR MER."
 	done
 
 FastShipCabins_SW_SSW_NW_MapEvents:

@@ -1,10 +1,11 @@
-	db "SPIKES@" ; species name
-	dw 303, 2540 ; height, weight
+	db "PIQUANT@" ; species name
+	db 10 ; height
+	dw 1150 ; weight
 
-	db   "It can remember"
-	next "only one thing at"
-	next "a time. Once it"
+	db   "Il ne peut se sou-"
+	next "venir que d'une"
+	next "chose à la fois."
 
-	page "starts rushing, it"
-	next "forgets why it"
-	next "started.@"
+	page "S'il se met à cou-"
+	next "rir, il oublie"
+	next "souvent pourquoi.@"

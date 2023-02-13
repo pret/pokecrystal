@@ -1,59 +1,59 @@
 ArnieAskNumber1Text:
-	text "Do you get the"
-	line "feeling that there"
+	text "Tu n'as pas"
+	line "l'impression qu'il"
 
-	para "are more rare"
-	line "#MON around?"
+	para "y a plus de #-"
+	line "MON rares dans le"
+	cont "coin?"
 
-	para "I'm positive there"
-	line "are, so I look all"
-	cont "the time."
+	para "Moi, je les cher-"
+	line "che tout le temps."
 
-	para "If I find one, I"
-	line "want to share the"
+	para "Si j'en trouve un,"
+	line "je fais passer"
 
-	para "good news with"
-	line "everyone I know."
+	para "l'information..."
 
-	para "I know! Give me"
-	line "your phone number."
+	para "Je sais! Donne"
+	line "ton numéro!"
 	done
 
 ArnieAskNumber2Text:
-	text "I want to let"
-	line "people know if I"
-	cont "see rare #MON."
+	text "J'aime prévenir"
+	line "tout le monde si"
+	cont "je vois un #MON"
+	cont "rare."
 
-	para "Please give me"
-	line "your phone number!"
+	para "Donne-moi donc"
+	line "ton numéro!"
 	done
 
 ArnieNumberAcceptedText:
-	text "If I spot any"
-	line "awesome #MON,"
+	text "Si je rencontre un"
+	line "#MON spécial,"
 
-	para "I'll be sure to"
-	line "give you a call!"
+	para "je t'appelle tout"
+	line "de suite!"
 	done
 
 ArnieNumberDeclinedText:
-	text "Aww! I want to"
-	line "tell someone about"
-	cont "my discoveries!"
+	text "Aaaaah!!!"
+	line "J'ai pas d'amis!"
 	done
 
 ArniePhoneFullText:
-	text "There's no space"
-	line "for my number."
+	text "Tu n'as plus de"
+	line "place pour mon"
+	cont "numéro."
 
-	para "If you make room,"
-	line "register me!"
+	para "Fais de la place"
+	line "et reviens!"
 	done
 
 ArnieRematchText:
-	text "It's my turn to"
-	line "win now!"
+	text "C'est mon tour de"
+	line "gagner!"
 
-	para "I've turned over a"
-	line "new leaf!"
+	para "J'ai trop fait de"
+	line "progrès!"
 	done

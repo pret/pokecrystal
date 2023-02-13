@@ -1,10 +1,11 @@
 	db "JET@" ; species name
-	dw 200, 260 ; height, weight
+	db 6 ; height
+	dw 120 ; weight
 
-	db   "To escape from an"
-	next "attacker, it may"
-	next "shoot water out of"
+	db   "Il crache de l'eau"
+	next "sur tout prédateur"
+	next "pour s'échapper."
 
-	page "its mouth, then"
-	next "use that force to"
-	next "swim backward.@"
+	page "La pression du jet"
+	next "le fait se propul-"
+	next "ser en arrière.@"

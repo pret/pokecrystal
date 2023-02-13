@@ -41,63 +41,67 @@ SproutTower1FStatue:
 	jumptext SproutTower1FStatueText
 
 SageChowSeenText:
-	text "We stand guard in"
-	line "this tower."
+	text "Nous montons la"
+	line "garde dans cette"
+	cont "tour."
 
-	para "Here, we express"
-	line "our gratitude to"
-	cont "honor all #MON."
+	para "Nous y exprimons"
+	line "notre gratitude"
+	cont "envers tous les"
+	cont "#MON."
 	done
 
 SageChowBeatenText:
-	text "Th-Thank you!"
+	text "M--Merci!"
 	done
 
 SageChowAfterBattleText:
-	text "All living beings"
-	line "coexist through"
-	cont "cooperation."
+	text "Tous les êtres"
+	line "vivent grâce à une"
+	cont "entente."
 
-	para "We must always be"
-	line "thankful for this."
+	para "Coopération, sym-"
+	line "biose: la vie."
 	done
 
 SproutTower1FSage1Text:
-	text "Only if you reach"
-	line "the top will you"
-	cont "obtain an HM."
+	text "Celui ou celle ar-"
+	line "rivant au sommet"
+	cont "recevra une CS."
 	done
 
 SproutTower1FSage2Text:
-	text "SPROUT TOWER was"
-	line "built long ago"
+	text "La TOUR CHETIFLOR"
+	line "a été construite"
 
-	para "as a place for"
-	line "#MON training."
+	para "il y a longtemps"
+	line "pour entraîner les"
+	cont "#MON."
 	done
 
 SproutTower1FGrannyText:
-	text "A BELLSPROUT over"
-	line "100 feet tall…"
+	text "Un CHETIFLOR haut"
+	line "de 30 mètres..."
 
-	para "People say that it"
-	line "became the center"
-	cont "pillar here."
+	para "On raconte que"
+	line "c'est en fait le"
+	cont "pilier central."
 	done
 
 SproutTower1FTeacherText:
-	text "See the pillar"
-	line "shaking?"
+	text "Vois-tu le pilier"
+	line "trembler?"
 
-	para "People are train-"
-	line "ing upstairs."
+	para "On s'entraîne sec"
+	line "au-dessus."
 	done
 
 SproutTower1FStatueText:
-	text "A #MON statue…"
+	text "Une statue de"
+	line "#MON..."
 
-	para "It looks very"
-	line "distinguished."
+	para "Ca a l'air cher"
+	line "et raffiné."
 	done
 
 SproutTower1F_MapEvents:

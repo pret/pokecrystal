@@ -296,6 +296,10 @@ ROMX $73
 	"Pokedex Entries 129-192"
 ROMX $74
 	"Pokedex Entries 193-251"
+ROMX $75
+	"Map Scripts 26"
+ROMX $76
+	"Map Scripts 27"
 ROMX $77
 	"Unown Font"
 	"Print Party"
@@ -306,6 +310,8 @@ ROMX $77
 ROMX $78
 	"Debug Room"
 	"Tileset Data 8"
+ROMX $79
+	"Map Scripts 28"
 ROMX $7b
 	"Battle Tower Text"
 ROMX $7c

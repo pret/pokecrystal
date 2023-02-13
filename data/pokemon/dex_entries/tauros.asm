@@ -1,10 +1,11 @@
-	db "WILD BULL@" ; species name
-	dw 407, 1950 ; height, weight
+	db "BUFFLE@" ; species name
+	db 14 ; height
+	dw 884 ; weight
 
-	db   "These violent"
-	next "#MON fight"
-	next "with other mem-"
+	db   "Ces créatures très"
+	next "violentes s'af-"
+	next "frontent entre"
 
-	page "bers of their herd"
-	next "in order to prove"
-	next "their strength.@"
+	page "elles pour dési-"
+	next "gner le chef du"
+	next "troupeau.@"

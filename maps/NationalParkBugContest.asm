@@ -116,106 +116,110 @@ NationalParkBugContestHiddenFullHeal:
 	hiddenitem FULL_HEAL, EVENT_NATIONAL_PARK_HIDDEN_FULL_HEAL
 
 BugCatchingContestant1AText:
-	text "DON: I'm going to"
-	line "win! Don't bother"
-	cont "me."
+	text "JEAN-RAOUL: Je"
+	line "vais gagner! Viens"
+	cont "pas m'embêter."
 	done
 
 BugCatchingContestant2AText:
-	text "ED: My PARASECT"
-	line "puts #MON to"
-	cont "sleep with SPORE."
+	text "ODILON: Mon"
+	line "PARASECT endort"
+	cont "avec SPORE."
 	done
 
 BugCatchingContestant3AText:
-	text "NICK: I'm raising"
-	line "fast #MON for"
-	cont "battles."
+	text "NICK: J'élève des"
+	line "#MON rapides"
+	cont "pour le combat."
 	done
 
 BugCatchingContestant4AText:
-	text "WILLIAM: I'm not"
-	line "concerned about"
-	cont "winning."
+	text "MARCEL: Gagner ne"
+	line "m'intéresse pas"
+	cont "vraiment."
 
-	para "I'm just looking"
-	line "for rare #MON."
+	para "Je cherche juste"
+	line "les #MON rares."
 	done
 
 BugCatchingContestant5AText:
-	text "BENNY: Ssh! You'll"
-	line "scare off SCYTHER."
+	text "FOULQUE: Chut! Tu"
+	line "vas faire fuir"
 
-	para "I'll talk to you"
-	line "later."
+	para "INSECATEUR. Parle-"
+	line "moi plus tard."
 	done
 
 BugCatchingContestant6AText:
-	text "BARRY: You should"
-	line "weaken bug #MON"
+	text "RENE: Il faut"
+	line "d'abord affaiblir"
 
-	para "first, then throw"
-	line "a BALL."
+	para "un #MON insecte"
+	line "puis lancer une"
+	cont "# BALL."
 	done
 
 BugCatchingContestant7AText:
-	text "CINDY: I love bug"
-	line "#MON."
+	text "SANDY: Pardon?"
 
-	para "I guess you must"
-	line "like them too."
+	para "Tu trouves ça bi-"
+	line "zarre qu'une fille"
+
+	para "attrape des #-"
+	line "MON insecte?"
 	done
 
 BugCatchingContestant8AText:
-	text "JOSH: I've been"
-	line "collecting bug"
+	text "ARNAUD: Je collec-"
+	line "tionne les #MON"
 
-	para "#MON since I"
-	line "was just a baby."
+	para "insecte depuis ma"
+	line "tendre enfance."
 
-	para "There's no way I'm"
-	line "going to lose!"
+	para "Ma défaite est"
+	line "impossible!"
 	done
 
 BugCatchingContestant9AText:
-	text "SAMUEL: If you've"
-	line "got the time to"
+	text "GONTRAND: Si tu as"
+	line "le temps de parler"
 
-	para "chat, go find some"
-	line "bug #MON."
+	para "va chercher des"
+	line "#MON insecte."
 	done
 
 BugCatchingContestant10AText:
-	text "KIPP: I've studied"
-	line "about bug #MON"
-	cont "a lot."
+	text "CYRIL: J'ai étudié"
+	line "les #MON insec-"
+	cont "te à fond."
 
-	para "I'm going to win"
-	line "for sure."
+	para "Je vais gagner..."
+	line "C'est sûr."
 	done
 
 NationalParkBugContestRelaxationSquareText:
-	text "RELAXATION SQUARE"
-	line "NATIONAL PARK"
+	text "AIRE DE REPOS du"
+	line "PARC NATUREL"
 	done
 
 NationalParkBugContestBattleNoticeText:
-	text "What is this"
-	line "notice?"
+	text "C'est quoi cette"
+	line "affiche?"
 
-	para "Please battle only"
-	line "in the grass."
+	para "Se battre unique-"
+	line "ment dans l'herbe."
 
-	para "NATIONAL PARK"
-	line "WARDEN'S OFFICE"
+	para "LE GARDIEN DU"
+	line "PARC NATUREL"
 	done
 
 NationalParkBugContestTrainerTipsText:
-	text "TRAINER TIPS"
+	text "ASTUCE"
 
-	para "Print out MAIL by"
-	line "opening it then"
-	cont "pressing START."
+	para "Imprimer les"
+	line "LETTRES en les"
+	cont "ouvrant et appuyer"
+	cont "sur START."
 	done
 
 NationalParkBugContest_MapEvents:

@@ -1,10 +1,11 @@
-	db "SUPERPOWER@" ; species name
-	dw 503, 2870 ; height, weight
+	db "COLOSSE@" ; species name
+	db 16 ; height
+	dw 1300 ; weight
 
-	db   "With four arms"
-	next "that react more"
-	next "quickly than it"
+	db   "Balançant ses 4"
+	next "bras plus vite que"
+	next "l'éclair, il peut"
 
-	page "can think, it can"
-	next "execute many"
-	next "punches at once.@"
+	page "donner plusieurs"
+	next "coups de poing"
+	next "en même temps.@"

@@ -32,31 +32,33 @@ DarkCaveBlackthornEntranceTMSnore:
 	itemball TM_SNORE
 
 DarkCaveBlackthornEntrancePharmacistText1:
-	text "Whoa! You startled"
-	line "me there!"
+	text "Whoa! Tu m'as"
+	line "fait peur!"
 
-	para "I had my BLACK-"
-	line "GLASSES on, so I"
+	para "J'avais mes"
+	line "LUNETTES NOIRES..."
 
-	para "didn't notice you"
-	line "at all."
+	para "J'ai rien vu"
+	line "venir."
 
-	para "What am I doing"
-	line "here?"
+	para "Ce que je fais"
+	line "ici?"
 
-	para "Hey, don't you"
-	line "worry about it."
+	para "C'est pas trop tes"
+	line "oignons, non?"
 
-	para "I'll give you a"
-	line "pair of BLACK-"
-	cont "GLASSES, so forget"
-	cont "you saw me, OK?"
+	para "Voilà une paire de"
+	line "LUNETTES NOIRES."
+	cont "Oublie que tu m'as"
+	cont "vu, OK?"
 	done
 
 DarkCaveBlackthornEntrancePharmacistText2:
-	text "BLACKGLASSES ups"
-	line "the power of dark-"
-	cont "type moves."
+	text "Les LUNET.NOIRES"
+	line "augmentent la"
+	cont "puissance des"
+	cont "attaques du type"
+	cont "TENEBRES."
 	done
 
 DarkCaveBlackthornEntrance_MapEvents:

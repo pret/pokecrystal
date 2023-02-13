@@ -1,10 +1,11 @@
-	db "BUTTERFLY@" ; species name
-	dw 307, 710 ; height, weight
+	db "PAPILLON@" ; species name
+	db 11 ; height
+	dw 320 ; weight
 
-	db   "It flits from"
-	next "flower to flower,"
-	next "collecting honey."
+	db   "Il vole de fleur"
+	next "en fleur en récol-"
+	next "tant du miel. Il"
 
-	page "It can even"
-	next "identify distant"
-	next "flowers in bloom.@"
+	page "peut même identi-"
+	next "fier des fleurs"
+	next "de très loin.@"

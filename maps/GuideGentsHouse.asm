@@ -13,16 +13,18 @@ GuideGentsHouseBookshelf:
 	jumpstd MagazineBookshelfScript
 
 GuideGentsHouseGuideGentText:
-	text "When I was a wee"
-	line "lad, I was a hot-"
-	cont "shot trainer!"
+	text "Quand je n'étais"
+	line "qu'un mioche,"
+	cont "j'étais un super"
+	cont "dresseur!"
 
-	para "Here's a word of"
-	line "advice: Catch lots"
-	cont "of #MON!"
+	para "Un p'tit conseil:"
+	line "attrape tous les"
+	cont "#MON!"
 
-	para "Treat them all"
-	line "with kindness!"
+	para "Traite-les avec"
+	line "la plus grande"
+	cont "gentillesse!"
 	done
 
 GuideGentsHouse_MapEvents:

@@ -44,52 +44,52 @@ Route32Pokecenter1FCooltrainerFScript:
 	jumptextfaceplayer Route32Pokecenter1FCooltrainerFText
 
 Route32Pokecenter1FFishingGuruText_Question:
-	text "This is a great"
-	line "fishing spot."
+	text "C'est un bon en-"
+	line "droit pour pêcher."
 
-	para "You saw people"
-	line "fishing? How"
-	cont "about you?"
+	para "Tu as vu des"
+	line "pêcheurs? Tu veux"
+	cont "t'y mettre?"
 
-	para "Would you like one"
-	line "of my RODS?"
+	para "Tu veux une de mes"
+	line "CANNES?"
 	done
 
 Route32Pokecenter1FFishingGuruText_Yes:
-	text "Heh, that's good"
-	line "to hear."
+	text "Ha! C'est bien"
+	line "mon petit."
 
-	para "Now you're an"
-	line "angler too!"
+	para "Tu es toi aussi un"
+	line "vrai pêcheur!"
 	done
 
 Route32Pokecenter1FFishingGuruText_GiveOldRod:
-	text "Fishing is great!"
+	text "Pêcher c'est bien!"
 
-	para "If there's water,"
-	line "be it the sea or a"
+	para "Essaie ta CANNE"
+	line "dès qu'il y a la"
 
-	para "stream, try out"
-	line "your ROD."
+	para "mer ou un fleuve."
+	line "Bonne chance."
 	done
 
 Route32Pokecenter1FFishingGuruText_No:
-	text "Oh. That's rather"
-	line "disappointing…"
+	text "Ah. C'est bien"
+	line "dommage..."
 	done
 
 Route32Pokecenter1FFishingGuruText_After:
-	text "Yo, kid. How are"
-	line "they biting?"
+	text "Yo."
+	line "Ca mord?"
 	done
 
 Route32Pokecenter1FCooltrainerFText:
-	text "What should I make"
-	line "my #MON hold?"
+	text "Que dois-je donner"
+	line "à mon #MON?"
 
-	para "Maybe an item that"
-	line "increases ATTACK"
-	cont "power…"
+	para "Peut-être un objet"
+	line "qui augmente son"
+	cont "ATTAQUE..."
 	done
 
 Route32Pokecenter1F_MapEvents:

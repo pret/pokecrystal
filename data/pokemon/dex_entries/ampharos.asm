@@ -1,10 +1,11 @@
-	db "LIGHT@" ; species name
-	dw 407, 1360 ; height, weight
+	db "LUMIERE@" ; species name
+	db 14 ; height
+	dw 615 ; weight
 
-	db   "When it gets dark,"
-	next "the light from its"
-	next "bright, shiny tail"
+	db   "Le bout de sa"
+	next "queue brille si"
+	next "fort qu'il peut"
 
-	page "can be seen from"
-	next "far away on the"
-	next "ocean's surface.@"
+	page "être vu de très"
+	next "loin sur la surfa-"
+	next "ce de l'eau.@"

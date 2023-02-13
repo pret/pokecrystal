@@ -1,10 +1,11 @@
-	db "PAINTER@" ; species name
-	dw 311, 1280 ; height, weight
+	db "PEINTRE@" ; species name
+	db 12 ; height
+	dw 580 ; weight
 
-	db   "The color of the"
-	next "mysterious fluid"
-	next "secreted from its"
+	db   "La couleur du mys-"
+	next "térieux fluide de"
+	next "sa queue change"
 
-	page "tail is predeter-"
-	next "mined for each"
-	next "SMEARGLE.@"
+	page "pour chaque"
+	next "QUEULORIOR."
+	next "@"

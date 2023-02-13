@@ -64,43 +64,42 @@ Route11HiddenRevive:
 	hiddenitem REVIVE, EVENT_ROUTE_11_HIDDEN_REVIVE
 
 YoungsterOwenSeenText:
-	text "There's no cheat-"
-	line "ing in #MON."
+	text "Y'a pas de triche"
+	line "à #MON."
 
-	para "Let's keep it fair"
-	line "and square!"
+	para "Etre honnête, ça"
+	line "c'est chouette!"
 	done
 
 YoungsterOwenBeatenText:
-	text "Huh? How did this"
-	line "happen?"
+	text "Hein?"
+	line "T'as grugé!"
 	done
 
 YoungsterOwenAfterBattleText:
-	text "I fought fair and"
-	line "square with honor."
+	text "J'ai combattu avec"
+	line "honneur."
 
-	para "I don't regret"
-	line "this at all."
+	para "Je ne regrette"
+	line "rien de rien."
 	done
 
 YoungsterJasonSeenText:
-	text "It itches and"
-	line "tickles a bit when"
+	text "Porter des shorts"
+	line "dans l'herbe, ça"
 
-	para "I wear shorts in"
-	line "the grass."
+	para "pique à donf... "
+	line "Pas cool."
 	done
 
 YoungsterJasonBeatenText:
-	text "Aiyaaah!"
-	line "I got stomped!"
+	text "Aïeuuuuuuu!"
 	done
 
 YoungsterJasonAfterBattleText:
-	text "I'm going to catch"
-	line "more #MON in"
-	cont "the grass."
+	text "Je vais choper"
+	line "d'autres #MON"
+	cont "dans les herbes."
 	done
 
 PsychicHermanSeenText:
@@ -114,29 +113,29 @@ PsychicHermanBeatenText:
 PsychicHermanAfterBattleText:
 	text "…"
 
-	para "I lost while I had"
-	line "my eyes closed…"
+	para "J'ai perdu les"
+	line "yeux fermés..."
 	done
 
 PsychicFidelSeenText:
-	text "I can see it…"
+	text "Je vois tout..."
 
-	para "Everything to see"
-	line "about you…"
+	para "Présent, futur..."
+	line "Combat!"
 	done
 
 PsychicFidelBeatenText:
-	text "I couldn't foresee"
-	line "your power…"
+	text "Heu..."
+	line "Je l'avais prévu!"
 	done
 
 PsychicFidelAfterBattleText:
-	text "Strength in con-"
-	line "viction…"
+	text "Volonté..."
+	line "Psychisme..."
 
-	para "You're strong be-"
-	line "cause you believe"
-	cont "in your #MON."
+	para "Ta confiance en"
+	line "tes #MON est"
+	cont "ta force."
 	done
 
 Route11SignText:

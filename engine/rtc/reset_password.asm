@@ -16,6 +16,12 @@ _ResetClock:
 	cp 1
 	ret z
 	call ClockResetPassword
+	push af
+	hlcoord 7, 6
+	ld bc, 5
+	ld a, " "
+	call ByteFill
+	pop af
 	jr c, .wrongpassword
 	ld a, BANK(sRTCStatusFlags)
 	call OpenSRAM
@@ -52,8 +58,8 @@ _ResetClock:
 .NoYes_MenuData:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2 ; items
-	db "NO@"
-	db "YES@"
+	db "NON@"
+	db "OUI@"
 
 ClockResetPassword:
 	call .CalculatePassword
@@ -103,7 +109,7 @@ ClockResetPassword:
 	text_end
 
 .updateIDdisplay
-	hlcoord 14, 15
+	hlcoord 7, 5
 	ld de, wStringBuffer2
 	ld c, 5
 .loop3
@@ -113,11 +119,11 @@ ClockResetPassword:
 	inc de
 	dec c
 	jr nz, .loop3
-	hlcoord 14, 16
+	hlcoord 7, 6
 	ld bc, 5
 	ld a, " "
 	call ByteFill
-	hlcoord 14, 16
+	hlcoord 7, 6
 	ld a, [wStringBuffer2 + 5]
 	ld e, a
 	ld d, 0

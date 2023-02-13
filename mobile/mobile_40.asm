@@ -1587,7 +1587,7 @@ _LinkBattleSendReceiveAction:
 
 	vc_hook Wireless_end_exchange
 	vc_patch Wireless_net_delay_3
-if DEF(_CRYSTAL11_VC)
+if DEF(_CRYSTAL_VC)
 	ld b, 26
 else
 	ld b, 10
@@ -1601,7 +1601,7 @@ endc
 
 	vc_hook Wireless_start_send_zero_bytes
 	vc_patch Wireless_net_delay_4
-if DEF(_CRYSTAL11_VC)
+if DEF(_CRYSTAL_VC)
 	ld b, 26
 else
 	ld b, 10
@@ -5703,7 +5703,7 @@ Function1027eb:
 	ret
 
 .Stats_Trade:
-	db "STATS     TRADE@"
+	db "STATS     ECHANGE@"
 
 Function102814:
 	ld a, [wMenuCursorY]
@@ -6005,8 +6005,8 @@ Function1029fe:
 	ret
 
 String_102a26:
-	db   "TRADE"
-	next "CANCEL"
+	db   "ECHANGE"
+	next "ANNULER"
 	db   "@"
 
 MenuData3_102a33:
@@ -6513,7 +6513,7 @@ Function102e07:
 	ret
 
 .waiting
-	db "Waiting...!@"
+	db "UN MOMENT…!@"
 
 Function102e3e:
 	ld de, .CancelString
@@ -6522,7 +6522,7 @@ Function102e3e:
 	ret
 
 .CancelString:
-	db "CANCEL@"
+	db "ANNULER@"
 
 Function102e4f:
 	farcall LoadMobileTradeBorderTilemap
@@ -6610,8 +6610,8 @@ Function102ee7:
 	ret
 
 String_102ef4:
-	db   "Too bad! The trade"
-	next "was canceled!"
+	db   "Dommage! L'échange"
+	next "est annulé!"
 	db   "@"
 
 Function102f15:
@@ -6632,7 +6632,7 @@ Function102f32:
 	ret
 
 .TradeCompleted:
-	db "Trade completed!@"
+	db "ECHANGE TERMINE!@"
 
 Function102f50:
 	call Function102dc3

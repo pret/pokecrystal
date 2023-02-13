@@ -1,10 +1,11 @@
-	db "LAVA@" ; species name
-	dw 204, 770 ; height, weight
+	db "LAVE@" ; species name
+	db 7 ; height
+	dw 350 ; weight
 
-	db   "These group to-"
-	next "gether in areas"
-	next "that are hotter"
+	db   "Il vit en groupe"
+	next "dans les endroits"
+	next "chauds."
 
-	page "than normal. If it"
-	next "cools off, its"
-	next "skin hardens.@"
+	page "Si la température"
+	next "baisse, sa peau se"
+	next "solidifie.@"

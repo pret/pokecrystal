@@ -161,7 +161,7 @@ Elevator_GetCurrentFloorText:
 	ret
 
 Elevator_CurrentFloorText:
-	db "Now on:@"
+	db "Etage:@"
 
 Elevator_GetCurrentFloorString:
 	push hl
@@ -177,7 +177,7 @@ Elevator_GetCurrentFloorString:
 
 Elevator_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 12, 1, 18, 9
+	menu_coords 11, 1, 18, 9
 	dw Elevator_MenuData
 	db 1 ; default option
 

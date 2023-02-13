@@ -88,50 +88,53 @@ Route34IlexForestGateTeacherReturnsMovement:
 	step_end
 
 Route34IlexForestGateTeacherText:
-	text "Oh, honey. You're"
-	line "making a #DEX?"
+	text "Oh! Tu fais"
+	line "un #DEX?"
 
-	para "It must be hard if"
-	line "#MON won't"
+	para "Ca doit être dur"
+	line "quand les #MON"
 
-	para "appear. Try using"
-	line "this TM."
+	para "ne veulent pas"
+	line "apparaître..."
+	cont "Prends cette CT."
 	done
 
 Route34IlexForestGateTeacher_GotSweetScent:
-	text "It's SWEET SCENT."
+	text "C'est DOUX PARFUM."
 
-	para "Use it wherever"
-	line "#MON appear."
+	para "Utilise-le quand"
+	line "un #MON peut"
+	cont "apparaître."
 
-	para "#MON will be"
-	line "enticed by it."
+	para "Le #MON sera"
+	line "charmé."
 	done
 
 Route34IlexForestGateTeacher_ForestIsRestless:
-	text "Something's wrong"
-	line "in ILEX FOREST…"
+	text "Il y a un problème"
+	line "dans le BOIS AUX"
+	cont "CHENES..."
 
-	para "You should stay"
-	line "away right now."
+	para "Evite d'y aller"
+	line "pour l'instant."
 	done
 
 Route34IlexForestGateButterfreeText:
-	text "BUTTERFREE: Freeh!"
+	text "PAPILUSION: Piiii!"
 	done
 
 Route34IlexForestGateLassText:
-	text "Did you see the"
-	line "shrine honoring"
-	cont "the protector?"
+	text "As-tu vu l'autel"
+	line "en l'honneur du"
+	cont "gardien?"
 
-	para "It watches over"
-	line "the FOREST from"
-	cont "across time."
+	para "Il protège le BOIS"
+	line "depuis la nuit des"
+	cont "temps."
 
-	para "I think that it"
-	line "must be a grass-"
-	cont "type #MON."
+	para "Ca doit être"
+	line "un #MON de"
+	cont "type PLANTE."
 	done
 
 Route34IlexForestGate_MapEvents:

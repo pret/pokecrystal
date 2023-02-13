@@ -1,10 +1,11 @@
-	db "MAGNET@" ; species name
-	dw 100, 130 ; height, weight
+	db "MAGNETIQUE@" ; species name
+	db 3 ; height
+	dw 60 ; weight
 
-	db   "The electricity"
-	next "emitted by the"
-	next "units on each side"
+	db   "Le courant émis"
+	next "par les unités de"
+	next "chaque côté de son"
 
-	page "of its body cause"
-	next "it to become a"
-	next "strong magnet.@"
+	page "corps fait de lui"
+	next "un très puissant"
+	next "aimant.@"

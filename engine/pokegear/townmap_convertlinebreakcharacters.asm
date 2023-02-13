@@ -8,8 +8,14 @@ TownMap_ConvertLineBreakCharacters:
 	jr z, .line_feed
 	cp "¯"
 	jr z, .line_feed
+	cp "<1E>"
+	jr z, .dash_line_end
 	inc hl
 	jr .loop
+
+.dash_line_end
+	ld [hl], "<1D>"
+	jr .end
 
 .line_feed
 	ld [hl], "<LF>"

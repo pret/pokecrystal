@@ -205,134 +205,129 @@ LancesRoomMovementData_MaryRunsBackAndForth:
 	step_end
 
 LanceBattleIntroText:
-	text "LANCE: I've been"
-	line "waiting for you."
+	text "PETER:"
+	line "Je t'attendais..."
 
 	para "<PLAY_G>!"
 
-	para "I knew that you,"
-	line "with your skills,"
+	para "Je savais que tu"
+	line "allais finir par"
+	cont "arriver jusqu'ici."
 
-	para "would eventually"
-	line "reach me here."
+	para "Bon. Finie la"
+	line "parlotte."
 
-	para "There's no need"
-	line "for words now."
+	para "On va se battre et"
+	line "enfin savoir qui"
 
-	para "We will battle to"
-	line "determine who is"
+	para "a le plus de"
+	line "talent."
 
-	para "the stronger of"
-	line "the two of us."
+	para "Etant le plus"
+	line "puissant et le"
 
-	para "As the most power-"
-	line "ful trainer and as"
+	para "MAITRE de la"
+	line "LIGUE..."
 
-	para "the #MON LEAGUE"
-	line "CHAMPION…"
-
-	para "I, LANCE the drag-"
-	line "on master, accept"
-	cont "your challenge!"
+	para "Moi, PETER,"
+	line "l'expert des"
+	cont "dragons, j'accepte"
+	cont "de t'affronter!"
 	done
 
 LanceBattleWinText:
-	text "…It's over."
+	text "...C'est fini."
 
-	para "But it's an odd"
-	line "feeling."
+	para "Je me sens..."
+	line "Bizarre..."
 
-	para "I'm not angry that"
-	line "I lost. In fact, I"
-	cont "feel happy."
+	para "Je ne suis pas"
+	line "fâché mais..."
+	cont "Plutôt heureux."
 
-	para "Happy that I"
-	line "witnessed the rise"
+	para "Heureux d'être le"
+	line "témoin de la nais-"
 
-	para "of a great new"
-	line "CHAMPION!"
+	para "sance d'un nouveau"
+	line "MAITRE!"
 	done
 
 LanceBattleAfterText:
-	text "…Whew."
+	text "...Fouiii!"
 
-	para "You have become"
-	line "truly powerful,"
-	cont "<PLAY_G>."
+	para "Tu as fait de gros"
+	line "progrès, <PLAY_G>."
 
-	para "Your #MON have"
-	line "responded to your"
+	para "Toi et tes #MON"
+	line "êtes en parfaite"
 
-	para "strong and up-"
-	line "standing nature."
+	para "harmonie."
+	line "C'est bien, ça."
 
-	para "As a trainer, you"
-	line "will continue to"
-
-	para "grow strong with"
-	line "your #MON."
+	para "Je suis sûr que tu"
+	line "continueras à"
+	cont "progresser."
 	done
 
 LancesRoomMaryOhNoOakText:
-	text "MARY: Oh, no!"
-	line "It's all over!"
+	text "LULA: Oh, non!"
+	line "C'est fini! PROF."
 
-	para "PROF.OAK, if you"
-	line "weren't so slow…"
+	para "CHEN, vous êtes"
+	line "trop lent..."
 	done
 
 LancesRoomOakCongratulationsText:
-	text "PROF.OAK: Ah,"
-	line "<PLAY_G>!"
+	text "CHEN: Ah, <PLAY_G>!"
+	line "Ca faisait bien"
+	cont "longtemps."
 
-	para "It's been a long"
-	line "while."
+	para "Tu as changé, ma"
+	line "parole."
 
-	para "You certainly look"
-	line "more impressive."
+	para "Ta victoire sur la"
+	line "LIGUE est ma foi"
+	cont "impressionnante!"
 
-	para "Your conquest of"
-	line "the LEAGUE is just"
-	cont "fantastic!"
+	para "Ton amour et ton"
+	line "dévouement pour"
 
-	para "Your dedication,"
-	line "trust and love for"
+	para "tes #MON en"
+	line "sont la cause."
 
-	para "your #MON made"
-	line "this happen."
+	para "Tes #MON ont"
+	line "aussi fait du beau"
+	cont "boulot."
 
-	para "Your #MON were"
-	line "outstanding too."
+	para "Ils ont reconnu"
+	line "en toi un être"
 
-	para "Because they be-"
-	line "lieved in you as a"
+	para "et un dresseur"
+	line "d'exception."
 
-	para "trainer, they per-"
-	line "severed."
-
-	para "Congratulations,"
+	para "Encore bravo,"
 	line "<PLAY_G>!"
 	done
 
 LancesRoomMaryInterviewText:
-	text "MARY: Let's inter-"
-	line "view the brand new"
-	cont "CHAMPION!"
+	text "LULA: Faisons une"
+	line "interview du nou-"
+	cont "veau MAITRE!"
 	done
 
 LancesRoomNoisyText:
-	text "LANCE: This is"
-	line "getting to be a"
-	cont "bit too noisy…"
+	text "PETER: Tout ça est"
+	line "trop bruyant pour"
+	cont "moi..."
 
-	para "<PLAY_G>, could you"
-	line "come with me?"
+	para "<PLAY_G>,"
+	line "suis-moi."
 	done
 
 LancesRoomMaryNoInterviewText:
-	text "MARY: Oh, wait!"
-	line "We haven't done"
-	cont "the interview!"
+	text "LULA: Attendez!"
+	line "On n'a pas encore"
+	cont "fait l'interview!"
 	done
 
 LancesRoom_MapEvents:

@@ -1,10 +1,11 @@
-	db "TRANSFORM@" ; species name
-	dw 100, 90 ; height, weight
+	db "MORPHING@" ; species name
+	db 3 ; height
+	dw 40 ; weight
 
-	db   "When it encount-"
-	next "ers another DITTO,"
-	next "it will move"
+	db   "S'il rencontre un"
+	next "autre METAMORPH,"
+	next "il se dépêchera"
 
-	page "faster than normal"
-	next "to duplicate that"
-	next "opponent exactly.@"
+	page "de se transformer"
+	next "en premier."
+	next "@"

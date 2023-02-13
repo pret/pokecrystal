@@ -27,22 +27,24 @@ MrPsychicsHouseBookshelf:
 	jumpstd DifficultBookshelfScript
 
 MrPsychicText1:
-	text "…"
+	text "..."
 
-	para "…"
+	para "...."
 
-	para "…"
+	para "....."
 
-	para "…I got it!"
+	para "......Ah!"
 
-	para "You wanted this!"
+	para "Tu veux ça?"
 	done
 
 MrPsychicText2:
-	text "TM29 is PSYCHIC."
+	text "CT29: PSYKO."
 
-	para "It may lower the"
-	line "target's SPCL.DEF."
+	para "Il peux baisser"
+	line "la DEFENSE"
+	cont "SPECIALE de"
+	cont "l'ennemi."
 	done
 
 MrPsychicsHouse_MapEvents:

@@ -94,102 +94,106 @@ FarmhouseBookshelf:
 	jumpstd PictureBookshelfScript
 
 FarmerMText_SickCow:
-	text "My MILTANK ain't"
-	line "givin' me milk"
-	cont "n'more."
+	text "Ma chtite ECREMEUH"
+	line "m'donne plus eud'"
+	cont "lait."
 
-	para "This here FARM's"
-	line "got famous milk."
+	para "Et pourtant qu'il"
+	line "était bien bon"
+	cont "not'lait d'ici."
 
-	para "Most everyone"
-	line "wants a drink."
+	para "Et tout eul'monde"
+	line "y veut à boire."
 
-	para "It'll give me lots"
-	line "o' milk if'n I"
+	para "Si j'en avais des"
+	line "BAIES à lui donner"
 
-	para "feed it lots o'"
-	line "BERRIES, I reckon."
+	para "elle m'donnerait"
+	line "aussi du lait, par"
+	cont "le fait."
 	done
 
 FarmerMText_BuyMilk:
-	text "How'd you like my"
-	line "MOOMOO MILK?"
+	text "Ca te dit du bon"
+	line "LAIT MEUMEU?"
 
-	para "It's my pride and"
-	line "joy, there."
+	para "C'est ma fierté et"
+	line "ma joie, poussin."
 
-	para "Give it to #MON"
-	line "to restore HP!"
+	para "Donnes-en à tes"
+	line "#MON pour en"
+	cont "gagner des PV!"
 
-	para "I'll give it to ya"
-	line "fer just ¥{d:ROUTE39FARMHOUSE_MILK_PRICE}."
+	para "Pour juste {d:ROUTE39FARMHOUSE_MILK_PRICE}¥"
+	line "je te l'offre."
+	cont "Pour sûr!"
 	done
 
 FarmerMText_GotMilk:
-	text "Here ya go!"
-	line "Drink up'n enjoy!"
+	text "Tiens, poussin!"
+	line "Bien à toi!"
 	done
 
 FarmerMText_NoMoney:
-	text "Sorry, there."
-	line "No cash, no sale!"
+	text "Dommage, t'as pas"
+	line "de mitraille!"
 	done
 
 FarmerMText_NoRoom:
-	text "I reckon yer"
-	line "PACK's full."
+	text "T'as pas de place,"
+	line "mon poussin."
 	done
 
 FarmerMText_NoSale:
-	text "You don't want it?"
-	line "Come again, hear?"
+	text "Il en veut pas?"
+	line "A plus tard."
 	done
 
 FarmerMText_Milking:
-	text "I best go do my"
-	line "milkin'."
+	text "Bon. J'ai à"
+	line "traire."
 	done
 
 FarmerFText_InTrouble:
-	text "Our milk even goes"
-	line "out to KANTO."
+	text "Notre lait est mê-"
+	line "me vendu à KANTO."
 
-	para "So if our own"
-	line "MILTANK won't give"
+	para "Si notre fidèle"
+	line "ECREMEUH ne donne"
 
-	para "us any milk, we're"
-	line "in trouble."
+	para "plus de lait,"
+	line "c'est la faillite."
 	done
 
 FarmerFText_HealedMiltank:
-	text "You fixed our"
-	line "MILTANK, hon. Now"
+	text "Tu nous as soigné"
+	line "not'ECREMEUH! Elle"
 
-	para "it gives MOOMOO"
-	line "MILK again."
+	para "en donne à nouveau"
+	line "du bon LAIT!"
 
-	para "Here's somethin'"
-	line "fer your trouble."
+	para "Voilà pour"
+	line "toi, poussin."
 	done
 
 Text_ReceivedTM13: ; unreferenced
-	text "<PLAYER> received"
-	line "TM13."
+	text "<PLAYER> reçoit"
+	line "CT13."
 	done
 
 FarmerFText_SnoreSpeech:
-	text "That there's"
-	line "SNORE."
+	text "C'est eul'fameux"
+	line "RONFLEMENT."
 
-	para "It's a rare move"
-	line "that only works"
+	para "C'est un coup rare"
+	line "qui marche que"
 
-	para "while the #MON"
-	line "is asleep."
+	para "quand eul'#MON"
+	line "il dort."
 
-	para "You best think how"
-	line "you ought to use"
-	cont "it, hon."
+	para "Alors à toi eud'"
+	line "faire ta stratégie"
+	cont "mon p'tit poussin."
 	done
 
 Route39Farmhouse_MapEvents:

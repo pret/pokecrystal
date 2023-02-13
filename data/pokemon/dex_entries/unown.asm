@@ -1,10 +1,11 @@
-	db "SYMBOL@" ; species name
-	dw 108, 110 ; height, weight
+	db "SYMBOLIQUE@" ; species name
+	db 5 ; height
+	dw 50 ; weight
 
-	db   "Because different"
-	next "types of UNOWN"
-	next "exist, it is said"
+	db   "Comme plusieurs"
+	next "sortes de ZARBI"
+	next "existent, on sup-"
 
-	page "that they must"
-	next "have a variety of"
-	next "abilities.@"
+	page "pose qu'ils possè-"
+	next "dent des pouvoirs"
+	next "différents.@"

@@ -1,10 +1,11 @@
-	db "SLUDGE@" ; species name
-	dw 311, 660 ; height, weight
+	db "DEGUEU@" ; species name
+	db 12 ; height
+	dw 300 ; weight
 
-	db   "As it moves, a"
-	next "very strong poison"
-	next "leaks from it,"
+	db   "En bougeant, il"
+	next "laisse un puissant"
+	next "poison derrière"
 
-	page "making the ground"
-	next "there barren for"
-	next "three years.@"
+	page "lui et rend la"
+	next "terre stérile pour"
+	next "3 ans.@"

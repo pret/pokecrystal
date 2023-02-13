@@ -313,6 +313,16 @@ InitPokegearTilemap:
 	hlcoord 12, 1
 	ld de, .switch
 	call PlaceString
+	hlcoord 11, 0
+	ld [hl], $30
+	inc hl
+	ld [hl], " "
+	hlcoord 11, 1
+	ld [hl], " "
+	hlcoord 11, 2
+	ld [hl], $32
+	inc hl
+	ld [hl], " "
 	hlcoord 0, 12
 	lb bc, 4, 18
 	call Textbox
@@ -320,7 +330,7 @@ InitPokegearTilemap:
 	ret
 
 .switch
-	db " SWITCH▶@"
+	db "CHANGER▶@"
 
 .Map:
 	ld a, [wPokegearMapPlayerIconLandmark]
@@ -1248,9 +1258,9 @@ PokegearPhoneContactSubmenu:
 .CallDeleteCancelStrings:
 	dwcoord 10, 6
 	db 3
-	db   "CALL"
-	next "DELETE"
-	next "CANCEL"
+	db   "APPELER"
+	next "EFFACER"
+	next "RETOUR"
 	db   "@"
 
 .CallDeleteCancelJumptable:
@@ -1261,8 +1271,8 @@ PokegearPhoneContactSubmenu:
 .CallCancelStrings:
 	dwcoord 10, 8
 	db 2
-	db   "CALL"
-	next "CANCEL"
+	db   "APPELER"
+	next "RETOUR"
 	db   "@"
 
 .CallCancelJumptable:
@@ -1610,7 +1620,7 @@ LoadStation_BuenasPassword:
 	ld de, BuenasPasswordName
 	ret
 
-BuenasPasswordName:    db "BUENA'S PASSWORD@"
+BuenasPasswordName:    db "CODE DE BUENA@"
 NotBuenasPasswordName: db "@"
 
 LoadStation_UnownRadio:
@@ -1743,15 +1753,15 @@ NoRadioName:
 	call Textbox
 	ret
 
-OaksPKMNTalkName:     db "OAK's <PK><MN> Talk@"
-PokedexShowName:      db "#DEX Show@"
-PokemonMusicName:     db "#MON Music@"
-LuckyChannelName:     db "Lucky Channel@"
+OaksPKMNTalkName:     db "CHRONIQUE<PKMN> CHEN@"
+PokedexShowName:      db "Show #DEX@"
+PokemonMusicName:     db "Musique #MON@"
+LuckyChannelName:     db "Antenne Chance@"
 UnownStationName:     db "?????@"
 
-PlacesAndPeopleName:  db "Places & People@"
-LetsAllSingName:      db "Let's All Sing!@"
-PokeFluteStationName: db "# FLUTE@"
+PlacesAndPeopleName:  db "Socio FM@"
+LetsAllSingName:      db "Chantons un peu@"
+PokeFluteStationName: db "FLUTE #MON@"
 
 _TownMap:
 	ld hl, wOptions
@@ -2177,7 +2187,7 @@ TownMapBubble:
 	ret
 
 .Where:
-	db "Where?@"
+	db "Où?@"
 
 .Name:
 ; We need the map location of the default flypoint
@@ -2459,17 +2469,17 @@ Pokedex_GetArea:
 	ld a, $07
 	call ByteFill
 	ld [hl], $17
-	call GetPokemonName
 	hlcoord 2, 0
-	call PlaceString
-	ld h, b
-	ld l, c
 	ld de, .String_SNest
+	call PlaceString
+	push bc
+	call GetPokemonName
+	pop hl
 	call PlaceString
 	ret
 
 .String_SNest:
-	db "'S NEST@"
+	db "NID DE @"
 
 .GetAndPlaceNest:
 	ld [wTownMapCursorLandmark], a

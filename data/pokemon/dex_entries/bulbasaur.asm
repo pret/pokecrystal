@@ -1,10 +1,11 @@
-	db "SEED@" ; species name
-	dw 204, 150 ; height, weight
+	db "GRAINE@" ; species name
+	db 7 ; height
+	dw 69 ; weight
 
-	db   "While it is young,"
-	next "it uses the"
-	next "nutrients that are"
+	db   "Jeune, il absorbe"
+	next "les nutriments"
+	next "gardés dans"
 
-	page "stored in the"
-	next "seeds on its back"
-	next "in order to grow.@"
+	page "son dos pour"
+	next "grandir et se"
+	next "développer.@"

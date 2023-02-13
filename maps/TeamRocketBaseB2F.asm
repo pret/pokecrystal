@@ -558,352 +558,357 @@ RocketBasePlayerLeavesElectrodesMovement3:
 	step_end
 
 RocketBaseExecutiveFHoldItText:
-	text "Hold it right"
-	line "there!"
+	text "Hop hop hop!"
+	line "On bouge plus!"
 	done
 
 RocketBaseBossFThrashText:
-	text "We can't have a"
-	line "brat like you on"
-	cont "the loose."
+	text "On peut pas te"
+	line "laisser fouiner"
+	cont "par ici."
 
-	para "It's harmful to"
-	line "TEAM ROCKET's"
-	cont "pride, you see."
+	para "C'est contre la"
+	line "politique de la"
+	cont "TEAM ROCKET."
 
-	para "However strong you"
-	line "may be, you can't"
+	para "Même si t'es super"
+	line "méga balèze, tu ne"
 
-	para "take both of us at"
-	line "the same time."
+	para "pourras jamais"
+	line "gagner contre nous"
+	cont "deux en même"
+	cont "temps."
 
-	para "Sorry, baby. Now"
-	line "get ready to be"
-	cont "thrashed."
+	para "Désolé ma puce."
+	line "C'est l'heure de"
+	cont "prendre ta baffe."
 	done
 
 RocketBaseLanceShareFunText:
-	text "Hey! Don't be so"
-	line "selfish. Spread"
-	cont "the fun around."
+	text "Hé! Moi aussi"
+	line "je veux m'amuser!"
+	cont "T'es perso."
 	done
 
 RocketBaseBossDontMeddleText:
-	text "What? You had an"
-	line "accomplice?"
+	text "Quoi? Tu avais un"
+	line "complice? Et ton"
 
-	para "Where is your"
-	line "sense of honor?"
+	para "sens de l'honneur?"
+	line "Il est où? Hein?"
 
-	para "As the interim"
-	line "boss in place of"
+	para "Avec le remplaçant"
+	line "du boss GIOVANNI,"
 
-	para "GIOVANNI, I'll"
-	line "show you how wrong"
+	para "je vais te montrer"
+	line "qu'il faut pas"
 
-	para "it is to meddle"
-	line "with TEAM ROCKET!"
+	para "venir se frotter"
+	line "à la TEAM ROCKET!"
 	done
 
 RocketBaseBossWinText:
-	text "Tch, you really"
-	line "are strong."
+	text "Pfff. C'est vrai"
+	line "que t'es balèze."
 
-	para "It's too bad."
+	para "Ca craint."
 
-	para "If you were to"
-	line "join TEAM ROCKET,"
+	para "Si tu venais à la"
+	line "TEAM ROCKET, tu"
 
-	para "you could become"
-	line "an EXECUTIVE."
+	para "deviendrais vite"
+	line "CAID."
 	done
 
 RocketBaseBossRetreatText:
-	text "…This hideout is"
-	line "done for…"
+	text "...Cette cachette"
+	line "est fichue..."
 
-	para "But that's fine."
-	line "The broadcast ex-"
-	cont "periment was a"
-	cont "total success."
+	para "Mais c'est pas"
+	line "grave. L'opération"
+	cont "radio est une"
+	cont "réussite totale."
 
-	para "It doesn't matter"
-	line "what happens to"
-	cont "this hideout now."
+	para "On se fiche de"
+	line "cette cachette"
+	cont "maintenant."
 
-	para "We have much big-"
-	line "ger plans."
+	para "On a d'autres"
+	line "plans."
 
-	para "You'll come to"
-	line "appreciate TEAM"
+	para "Tu vas vite com-"
+	line "prendre la puis-"
 
-	para "ROCKET's true"
-	line "power soon enough."
+	para "sance de la TEAM"
+	line "ROCKET."
 
-	para "Enjoy yourself"
-	line "while you can…"
+	para "Amuse-toi tant"
+	line "qu'il est temps."
 
-	para "Fufufufu…"
+	para "Hi hihihihi hi!"
 	done
 
 RocketBaseLancePostBattleText:
-	text "LANCE: That did"
-	line "it. We defeated"
+	text "PETER: Terminé!"
+	line "On a battu tous"
 
-	para "all the ROCKETS"
-	line "here."
+	para "les gars de la"
+	line "ROCKET du coin."
 
-	para "But I'm concerned"
-	line "about the young"
+	para "Mais je m'inquiète"
+	line "à propos du jeune"
 
-	para "guy I battled in"
-	line "the process…"
+	para "garçon que j'ai"
+	line "combattu..."
 	done
 
 RocketBaseLancePowerOffText:
-	text "Sorry, <PLAY_G>."
-	line "I saw how well you"
+	text "Pardon, <PLAY_G>."
+	line "J'étais en train"
 
-	para "were doing, so I"
-	line "just hung back."
+	para "de t'admirer en"
+	line "silence."
 
-	para "Now all there is"
-	line "left to do is to"
+	para "Tout ce qu'il nous"
+	line "reste à faire,"
 
-	para "turn off that odd"
-	line "radio signal."
+	para "c'est d'arrêter le"
+	line "signal radio."
 	done
 
 RockerBaseLanceElectrodeFaintText:
-	text "It's this machine"
-	line "that's causing all"
-	cont "the problems."
+	text "Cette machine"
+	line "est la cause du"
+	cont "problème."
 
-	para "I don't see a"
-	line "switch on it…"
+	para "Je ne vois pas"
+	line "d'interrupteur..."
 
-	para "We have no choice."
-	line "We have to make"
+	para "Il n'y a pas de"
+	line "choix: il faut"
 
-	para "all the ELECTRODE"
-	line "faint."
+	para "mettre K.O. tous"
+	line "les ELECTRODE."
 
-	para "That should stop"
-	line "this machine from"
+	para "Cela devrait arrê-"
+	line "ter cette machine"
 
-	para "transmitting that"
-	line "strange signal."
+	para "et du même coup"
+	line "le signal."
 
-	para "It's no fault of"
-	line "the #MON, so it"
+	para "Ce n'est pas la"
+	line "faute des #MON,"
 
-	para "makes me feel"
-	line "guilty."
+	para "ça me met donc un"
+	line "peu mal à l'aise."
 
-	para "<PLAY_G>, let's"
-	line "split the job."
+	para "<PLAY_G>, on"
+	line "fait chacun un"
+	cont "côté."
 	done
 
 RocketBaseLancesSideText:
-	text "LANCE: Leave this"
-	line "side to me."
+	text "PETER: Je m'occupe"
+	line "de ce côté."
 	done
 
 RocketBaseLanceElectrodeDoneText:
-	text "LANCE: That odd"
-	line "signal has finally"
-	cont "stopped."
+	text "PETER: Cet étrange"
+	line "signal s'est enfin"
+	cont "arrêté."
 
-	para "The LAKE should be"
-	line "back to normal."
+	para "Le LAC doit être"
+	line "normal à nouveau."
 
-	para "You're the hero!"
-	line "Let me thank you"
+	para "Tu es formidable!"
+	line "Je te remercie au"
 
-	para "on behalf of all"
-	line "the #MON."
+	para "nom de tous les"
+	line "#MON."
 
-	para "Oh, yes. You"
-	line "should take this."
+	para "Au fait. Voilà"
+	line "pour toi."
 
-	para "I found it here,"
-	line "but I don't have"
-	cont "any need for it."
+	para "Je l'ai trouvée"
+	line "ici mais moi j'en"
+	cont "ai pas besoin."
 	done
 
 RocketBaseReceivedHM06Text: ; unreferenced
-	text "<PLAYER> received"
-	line "HM06."
+	text "<PLAYER> reçoit"
+	line "CS06."
 	done
 
 RocketBaseLanceWhirlpoolText:
-	text "That's WHIRLPOOL."
-	line "Teach it to a"
+	text "C'est SIPHON. Don-"
+	line "ne-le à un #-"
 
-	para "#MON to get"
-	line "across wild water."
+	para "MON pour traverser"
+	line "les rapides."
 
-	para "But keep this in"
-	line "mind."
+	para "Mais souviens-toi"
+	line "de ceci..."
 
-	para "You can use that"
-	line "out of battle only"
+	para "Tu ne peux l'uti-"
+	line "liser sur la carte"
 
-	para "with the BADGE"
-	line "from MAHOGANY GYM."
+	para "qu'en ayant le"
+	line "BADGE de l'ARENE"
+	cont "d'ACAJOU."
 	done
 
 RocketBaseLanceMonMasterText:
-	text "<PLAY_G>…"
+	text "<PLAY_G>..."
 
-	para "The journey to be-"
-	line "coming the #MON"
+	para "Devenir le meil-"
+	line "leur dresseur"
 
-	para "MASTER is long and"
-	line "difficult."
+	para "#MON prend du"
+	line "temps et est"
+	cont "très difficile..."
 
-	para "Knowing that, will"
-	line "you keep going?"
+	para "Vas-tu tenir le"
+	line "coup?"
 
-	para "…"
+	para "..."
 
-	para "I see. No, you're"
-	line "right."
+	para "Je vois."
+	line "Tu as raison."
 
-	para "If you would give"
-	line "up that easily,"
+	para "Abandonner mainte-"
+	line "nant serait stupi-"
 
-	para "you would have"
-	line "never chased that"
+	para "de. Tu ne dois pas"
+	line "oublier ton rêve."
 
-	para "dream in the first"
-	line "place."
-
-	para "I look forward to"
-	line "seeing you again!"
+	para "Je suis impatient"
+	line "de te revoir!"
 	done
 
 LanceHealsText1:
-	text "LANCE: Are you all"
-	line "right?"
+	text "PETER: Tu vas"
+	line "bien?"
 
-	para "Your #MON are"
-	line "hurt and tired."
+	para "Tes #MON sont"
+	line "très fatigués."
 
-	para "Here, give them"
-	line "some of my medi-"
-	cont "cine."
+	para "Tiens, soigne-les"
+	line "avec mon médica-"
+	cont "ment."
 	done
 
 LanceHealsText2:
-	text "LANCE: <PLAY_G>,"
-	line "let's give it our"
-	cont "best for #MON."
+	text "PETER: <PLAY_G>,"
+	line "ensemble pour"
+	cont "les #MON!"
 	done
 
 GruntM17SeenText:
-	text "The door won't"
-	line "open?"
+	text "La porte ne"
+	line "s'ouvre pas?"
 
-	para "Well, duh."
-	line "It has to have a"
+	para "Normal, débiloss!"
+	line "Il faut un mot de"
 
-	para "password that only"
-	line "TEAM ROCKET knows."
+	para "passe connu seule-"
+	line "ment de la TEAM"
+	cont "ROCKET."
 	done
 
 GruntM17BeatenText:
-	text "What? I lost?"
+	text "Quoi? Perdu?"
 	done
 
 GruntM17AfterBattleText:
-	text "Heh, I'm just a"
-	line "GRUNT."
+	text "Hé... J'suis juste"
+	line "un SBIRE."
 
-	para "I don't know the"
-	line "password. Too bad"
-	cont "for you."
+	para "J'le connais pas"
+	line "le mot de passe..."
+	cont "C'est bête, hein?"
 	done
 
 GruntM18SeenText:
-	text "Oh, a kid? I don't"
-	line "really like this,"
+	text "Désolé je suis. "
+	line "Mais te briser"
 
-	para "but eliminate you"
-	line "I must."
+	para "je dois."
 	done
 
 GruntM18BeatenText:
-	text "I knew I'd lose…"
+	text "Perdu j'ai?"
 	done
 
 GruntM18AfterBattleText:
-	text "I got wiped out on"
-	line "the last mission"
-	cont "by a kid too."
+	text "A ma dernière mis-"
+	line "sion, un gamin m'a"
+	cont "aussi battu."
 
-	para "When we were ab-"
-	line "ducting #MON,"
+	para "Un garçon aux yeux"
+	line "agressifs et aux"
 
-	para "this kid with long"
-	line "red hair and mean-"
+	para "longs cheveux..."
+	line "La honte c'est."
 
-	para "looking eyes just"
-	line "creamed me…"
+	para "Dégoûté je suis."
+	line "Comprends-tu?"
 	done
 
 GruntM19SeenText:
-	text "You rotten little"
-	line "pest!"
+	text "Espèce de sale"
+	line "peste!"
 	done
 
 GruntM19BeatenText:
-	text "Grrrr…"
+	text "Grrrr..."
 	done
 
 GruntM19AfterBattleText:
-	text "Heh, only the boss"
-	line "knows the password"
-	cont "for that door."
+	text "Hé! Seul le chef"
+	line "connaît le mot de"
+	cont "passe de la porte."
 
-	para "Where's the boss?"
-	line "Who knows? Go look"
-	cont "for yourself."
+	para "Où est le chef?"
+	line "Qui sait? Va le"
+	cont "chercher toi-même."
 	done
 
 RocketBaseDoorNoPasswordText:
-	text "The door's closed…"
+	text "La porte est"
+	line "fermée..."
 
-	para "It needs a pass-"
-	line "word to open."
+	para "Il faut un mot"
+	line "de passe."
 	done
 
 RocketBaseDoorKnowPasswordText:
-	text "The door's closed…"
+	text "La porte est"
+	line "fermée..."
 
-	para "<PLAYER> entered"
-	line "the password."
+	para "<PLAYER> tape"
+	line "le mot de passe."
 
-	para "The door opened!"
+	para "La porte est"
+	line "ouverte!"
 	done
 
 RocketBaseB2FTransmitterText:
-	text "It's the radio"
-	line "transmitter that's"
+	text "C'est l'émetteur"
+	line "qui envoie"
 
-	para "sending the"
-	line "sinister signal."
+	para "l'horrible signal"
+	line "radio."
 
-	para "It's working at"
-	line "full capacity."
+	para "Il est réglé au"
+	line "maximum."
 	done
 
 RocketBaseB2FDeactivateTransmitterText:
-	text "The radio trans-"
-	line "mitter has finally"
+	text "L'émetteur radio"
+	line "a enfin interrompu"
 
-	para "stopped its evil"
-	line "broadcast."
+	para "son signal maléfi-"
+	line "que."
 	done
 
 TeamRocketBaseB2F_MapEvents:

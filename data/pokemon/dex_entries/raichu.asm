@@ -1,10 +1,11 @@
-	db "MOUSE@" ; species name
-	dw 207, 660 ; height, weight
+	db "SOURIS@" ; species name
+	db 8 ; height
+	dw 300 ; weight
 
-	db   "If its electric"
-	next "pouches run empty,"
-	next "it raises its tail"
+	db   "Si ses joues sont"
+	next "à court d'énergie,"
+	next "il lève la queue"
 
-	page "to gather electri-"
-	next "city from the"
-	next "atmosphere.@"
+	page "et capte l'élec-"
+	next "tricité contenue"
+	next "dans l'atmosphère.@"

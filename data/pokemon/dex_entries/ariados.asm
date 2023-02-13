@@ -1,10 +1,11 @@
-	db "LONG LEG@" ; species name
-	dw 307, 740 ; height, weight
+	db "LONG-PATTE@" ; species name
+	db 11 ; height
+	dw 335 ; weight
 
-	db   "Rather than mak-"
-	next "ing a nest in one"
-	next "specific spot, it"
+	db   "Plutôt que de tis-"
+	next "ser une toile à un"
+	next "endroit précis, il"
 
-	page "wanders in search"
-	next "of food after"
-	next "darkness falls.@"
+	page "traverse les"
+	next "forêts et chasse"
+	next "tel un prédateur.@"

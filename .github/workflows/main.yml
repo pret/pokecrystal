@@ -29,7 +29,7 @@ jobs:
           rm -rf rgbds
 
       - name: Compare
-        if: ${{ github.repository_owner == 'pret' }}
+        # if: ${{ github.repository_owner == 'pret' }}
         run: |
           make DEBUG=1 -j$(nproc) compare
           if ! git diff-index --quiet HEAD --; then
@@ -56,19 +56,19 @@ jobs:
           .github/webhook.sh
 
       - name: Checkout symbols
-        if: ${{ github.event_name == 'push' && github.repository_owner == 'pret' }}
+        if: ${{ github.event_name == 'push' }} # && github.repository_owner == 'pret' }}
         uses: actions/checkout@master
         with:
           path: symbols
           ref: symbols
 
       - name: Move symbols
-        if: ${{ github.event_name == 'push' && github.repository_owner == 'pret' }}
+        if: ${{ github.event_name == 'push' }} # && github.repository_owner == 'pret' }}
         run: |
           cp -v *.sym symbols/
 
       - name: Update symbols
-        if: ${{ github.event_name == 'push' && github.repository_owner == 'pret' }}
+        if: ${{ github.event_name == 'push' }} # && github.repository_owner == 'pret' }}
         uses: EndBug/add-and-commit@v7
         with:
           branch: symbols

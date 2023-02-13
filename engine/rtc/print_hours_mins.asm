@@ -15,6 +15,40 @@ PrintFiveDigitNumber: ; unreferenced
 	pop bc
 	ret
 
+TrimSpaces::
+	push bc
+	ld h, d
+	ld l, e
+
+.loop:
+	ld a, [hli]
+	cp " "
+	jr z, .loop
+
+	dec hl
+	ld b, d
+	ld c, e
+
+.loop2:
+	ld a, [hli]
+	ld [de], a
+	cp "@"
+	jr z, .done
+
+	inc de
+	cp " "
+	jr z, .loop2
+
+	ld b, d
+	ld c, e
+	jr .loop2
+
+.done:
+	ld a, "@"
+	ld [bc], a
+	pop bc
+	ret
+
 PrintHoursMins:
 ; Hours in b, minutes in c
 	ld a, b

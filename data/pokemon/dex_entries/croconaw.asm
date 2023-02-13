@@ -1,10 +1,11 @@
-	db "BIG JAW@" ; species name
-	dw 307, 550 ; height, weight
+	db "MACHOIRE@" ; species name
+	db 11 ; height
+	dw 250 ; weight
 
-	db   "The tips of its"
-	next "fangs are slanted"
-	next "backward. Once"
+	db   "Ses crocs sont"
+	next "inclinés vers"
+	next "l'arrière, si bien"
 
-	page "those fangs clamp"
-	next "down, the prey has"
-	next "no hope of escape.@"
+	page "qu'il emprisonne"
+	next "celui qu'il mord."
+	next "@"

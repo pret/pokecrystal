@@ -1,10 +1,11 @@
-	db "LONG BODY@" ; species name
-	dw 511, 720 ; height, weight
+	db "ALLONGE@" ; species name
+	db 18 ; height
+	dw 325 ; weight
 
-	db   "It lives in narrow"
-	next "burrows that fit"
-	next "its slim body. The"
+	db   "Il fabrique un nid"
+	next "souterrain très"
+	next "étroit et consti-"
 
-	page "deeper the nests"
-	next "go, the more maze-"
-	next "like they become.@"
+	page "tué de galeries"
+	next "labyrinthiques."
+	next "@"

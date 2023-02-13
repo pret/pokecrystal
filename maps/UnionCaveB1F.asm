@@ -66,88 +66,88 @@ UnionCaveB1FBoulder:
 	jumpstd StrengthBoulderScript
 
 HikerPhillipSeenText:
-	text "It's been a while"
-	line "since I last saw"
-	cont "another person."
+	text "Ca fait longtemps"
+	line "que je n'ai pas eu"
+	cont "de compagnie."
 
-	para "Don't be shy."
-	line "Let's battle!"
+	para "Sois sympa..."
+	line "Combat!"
 	done
 
 HikerPhillipBeatenText:
-	text "Uurggh…"
+	text "Uurggh..."
 	done
 
 HikerPhillipAfterBattleText:
-	text "I've been lost for"
-	line "a long time…"
+	text "Je suis perdu"
+	line "depuis longtemps!"
 
-	para "I don't mind it"
-	line "here, but I am"
-	cont "soooo hungry!"
+	para "C'est pas trop"
+	line "grave mais..."
+	cont "J'ai faim!"
 	done
 
 HikerLeonardSeenText:
-	text "What do you know!"
-	line "A visitor!"
+	text "Ah bah ça alors!"
+	line "De la visite!"
 	done
 
 HikerLeonardBeatenText:
-	text "Wahahah! You're a"
-	line "feisty one!"
+	text "Wahahah! T'es pas"
+	line "drôle!"
 	done
 
 HikerLeonardAfterBattleText:
-	text "I live down here."
+	text "Je vis ici."
 
-	para "You can, too, if"
-	line "you'd like."
+	para "Toi aussi tu veux"
+	line "vivre ici?"
 
-	para "There's plenty of"
-	line "room, you see."
+	para "Y'a de la place..."
+	line "Alors tu veux?"
 	done
 
 PokemaniacAndrewSeenText:
-	text "Who's there?"
+	text "Qui va là?"
 
-	para "Leave me and my"
-	line "#MON alone!"
+	para "Yaaaah! Laisse-moi"
+	line "tranquille!"
 	done
 
 PokemaniacAndrewBeatenText:
-	text "Go…"
-	line "Go away!"
+	text "Va-t'en..."
+	line "Ouste!"
 	done
 
 PokemaniacAndrewAfterBattleText:
-	text "Just me and my"
-	line "#MON. I'm de-"
-	cont "lirious with joy."
+	text "Seul avec mes"
+	line "#MON. C'est"
+	cont "la fête."
 	done
 
 PokemaniacCalvinSeenText:
-	text "I came all the way"
-	line "here to conduct my"
-	cont "#MON research."
+	text "Je suis venu ici"
+	line "pour mes études"
+	cont "sur les #MON."
 
-	para "Let me demonstrate"
-	line "my findings in a"
-	cont "real battle!"
+	para "Je vais te montrer"
+	line "tout ça..."
+	cont "Au combat!"
 	done
 
 PokemaniacCalvinBeatenText:
-	text "You demonstrated"
-	line "on me!"
+	text "Plein la tête!"
+	line "Ouille!"
 	done
 
 PokemaniacCalvinAfterBattleText:
-	text "I should compile"
-	line "and announce my"
-	cont "study findings."
+	text "Je vais révéler"
+	line "mes recherches au"
+	cont "monde."
 
-	para "I might even be-"
-	line "come famous like"
-	cont "PROF.ELM."
+	para "Je serai aussi"
+	line "célèbre que le"
+	cont "PROF.ORME!"
 	done
 
 UnionCaveB1F_MapEvents:

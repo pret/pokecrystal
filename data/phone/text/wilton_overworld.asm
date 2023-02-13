@@ -1,61 +1,62 @@
 WiltonAskNumber1Text:
-	text "Eh, our battle was"
-	line "fun, I'd say…"
+	text "Alors ça, c'était"
+	line "du beau combat!"
 
-	para "When I'm fishing,"
-	line "I sometimes snag"
+	para "En pêchant, je"
+	line "trouve souvent"
+	cont "des objets."
 
-	para "items that people"
-	line "have dropped."
-
-	para "Do you want them?"
-	line "What's the number?"
+	para "Tu en veux?"
+	line "C'est quoi ton"
+	cont "numéro?"
 	done
 
 WiltonAskNumber2Text:
-	text "If I snag an item"
-	line "while I'm fishing,"
+	text "En pêchant, je"
+	line "trouve souvent"
 
-	para "it's yours. What's"
-	line "your number?"
+	para "des objets. "
+	line "Tu en veux?"
+	cont "C'est quoi ton"
+	cont "numéro?"
 	done
 
 WiltonNumberAcceptedText:
-	text "If I snag anything"
-	line "good, I'll be sure"
-	cont "to let you know."
+	text "Si je trouve quel-"
+	line "que chose, je te"
+	cont "téléphone."
 	done
 
 WiltonNumberDeclinedText:
-	text "All right… Come"
-	line "back if you have a"
-	cont "change of heart."
+	text "D'accord..."
+	line "Reviens si tu"
+	cont "changes d'avis."
 	done
 
 WiltonPhoneFullText:
-	text "You can't register"
-	line "another number."
+	text "Tu ne peux plus"
+	line "enregistrer de"
+	cont "numéros."
 	done
 
 WiltonRematchText:
-	text "Argh! You startled"
-	line "POLIWAG into"
-	cont "fleeing again!"
+	text "Argh! Tu as fait"
+	line "fuir PTITARD!"
 	done
 
 WiltonGiftText:
-	text "So here you are."
+	text "Voilà pour toi."
 
-	para "See this?"
-	line "I snagged it just"
+	para "T'as vu ça?"
+	line "Je l'ai trouvé"
 
-	para "a little while"
-	line "ago. It's yours."
+	para "il n'y a pas si"
+	line "longtemps."
 	done
 
 WiltonPackFullText:
-	text "Your PACK's full?"
+	text "Ton SAC est plein?"
 
-	para "I'll give it to"
-	line "you later."
+	para "Je te le donnerai"
+	line "plus tard."
 	done

@@ -36,38 +36,35 @@ CopycatsHouse1FBlisseyScript:
 	end
 
 CopycatsHouse1FPokefanMText:
-	text "My daughter likes"
-	line "to mimic people."
+	text "Ma fille aime imi-"
+	line "ter les gens."
 
-	para "Her mimicry has"
-	line "earned her the"
-
-	para "nickname COPYCAT"
-	line "around here."
+	para "On l'appelle la"
+	line "COPIEUSE."
 	done
 
 CopycatsHouse1FPokefanFText:
-	text "My daughter is so"
-	line "self-centered…"
+	text "Ma fille est très"
+	line "égocentrique..."
 
-	para "She only has a few"
-	line "friends."
+	para "Elle n'a pas beau-"
+	line "coup d'amis."
 	done
 
 CopycatsHouse1FPokefanFText_ReturnedMachinePart:
-	text "She recently lost"
-	line "the # DOLL that"
+	text "Elle a perdu la"
+	line "# POUPEE qu'un"
 
-	para "a boy gave her"
-	line "three years ago."
+	para "garçon lui a don-"
+	line "née il y a 3 ans."
 
-	para "Ever since then,"
-	line "she's gotten even"
-	cont "better at mimicry…"
+	para "Et depuis, elle"
+	line "imite encore mieux"
+	cont "qu'avant..."
 	done
 
 CopycatsHouse1FBlisseyText:
-	text "BLISSEY: Bliisii!"
+	text "LEUPHORIE: Rriii!"
 	done
 
 CopycatsHouse1F_MapEvents:

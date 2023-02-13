@@ -1,10 +1,11 @@
-	db "BAGWORM@" ; species name
-	dw 311, 2770 ; height, weight
+	db "VER CACHE@" ; species name
+	db 12 ; height
+	dw 1258 ; weight
 
-	db   "Usually found"
-	next "hanging on to a"
-	next "fat tree trunk. It"
+	db   "On le trouve ac-"
+	next "croché au tronc"
+	next "des grands arbres."
 
-	page "shoots out bits of"
-	next "its shell when it"
-	next "sees action.@"
+	page "Il crache des mor-"
+	next "ceaux de sa cara-"
+	next "pace sur l'ennemi.@"

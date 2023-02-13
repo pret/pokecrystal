@@ -1,10 +1,11 @@
-	db "LEAF@" ; species name
-	dw 211, 140 ; height, weight
+	db "FEUILLE@" ; species name
+	db 9 ; height
+	dw 64 ; weight
 
-	db   "It loves to bask"
-	next "in the sunlight."
-	next "It uses the leaf"
+	db   "Il aime prendre"
+	next "des bains de"
+	next "soleil. La feuille"
 
-	page "on its head to"
-	next "seek out warm"
-	next "places.@"
+	page "sur sa tête l'aide"
+	next "à repérer les"
+	next "endroits chauds.@"

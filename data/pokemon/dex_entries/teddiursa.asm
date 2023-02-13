@@ -1,10 +1,11 @@
-	db "LITTLE BEAR@" ; species name
-	dw 200, 190 ; height, weight
+	db "MINI OURS@" ; species name
+	db 6 ; height
+	dw 88 ; weight
 
-	db   "It always licks"
-	next "honey. Its palm"
-	next "tastes sweet"
+	db   "Il aime le miel."
+	next "Ses paumes sont"
+	next "sucrées tant il"
 
-	page "because of all the"
-	next "honey it has"
-	next "absorbed.@"
+	page "se goinfre de miel"
+	next "toute la journée."
+	next "@"

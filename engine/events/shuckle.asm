@@ -69,7 +69,7 @@ SpecialShuckleOT:
 	db "MANIA@"
 
 SpecialShuckleNickname:
-	db "SHUCKIE@"
+	db "NESSY@"
 
 ReturnShuckie:
 	farcall SelectMonFromParty

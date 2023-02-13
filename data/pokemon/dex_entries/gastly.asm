@@ -1,10 +1,11 @@
-	db "GAS@" ; species name
-	dw 403, 2 ; height, weight
+	db "GAZ@" ; species name
+	db 13 ; height
+	dw 1 ; weight
 
-	db   "It wraps its op-"
-	next "ponent in its gas-"
-	next "like body, slowly"
+	db   "Il enferme ses"
+	next "proies dans un"
+	next "nuage de gaz et"
 
-	page "weakening its prey"
-	next "by poisoning it"
-	next "through the skin.@"
+	page "les empoisonne à"
+	next "travers leur peau."
+	next "@"

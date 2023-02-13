@@ -161,178 +161,165 @@ Route40_StepUp4Movement: ; unreferenced
 	step_end
 
 SwimmermSimonSeenText:
-	text "You have to warm"
-	line "up before going"
-	cont "into the water."
+	text "Il faut s'échauf-"
+	line "fer avant de se"
+	cont "baigner."
 
-	para "That's basic."
+	para "Tout le monde sait"
+	line "ça!"
 	done
 
 SwimmermSimonBeatenText:
-	text "OK! Uncle! I give!"
+	text "Aïe! Une crampe!"
 	done
 
 SwimmermSimonAfterBattleText:
-	text "CIANWOOD CITY is"
-	line "a good distance"
-	cont "away from here."
+	text "IRISIA est assez"
+	line "loin d'ici."
 	done
 
 SwimmermRandallSeenText:
-	text "Hey, you're young"
-	line "and fit!"
+	text "T'as la flemme ou"
+	line "quoi?"
 
-	para "Don't ride your"
-	line "#MON! Swim!"
+	para "Nage au lieu de"
+	line "monter sur ton"
+	cont "#MON!"
 	done
 
 SwimmermRandallBeatenText:
-	text "Uh-oh. I lost…"
+	text "Zut de flûte."
 	done
 
 SwimmermRandallAfterBattleText:
-	text "Swimming exercises"
-	line "your entire body."
-	cont "It's healthy."
+	text "Nager, c'est bon"
+	line "pour la santé."
 	done
 
 SwimmerfElaineSeenText:
-	text "Are you going to"
-	line "CIANWOOD?"
+	text "Tu vas à IRISIA?"
 
-	para "How about a quick"
-	line "battle first?"
+	para "On s'bat d'abord?"
 	done
 
 SwimmerfElaineBeatenText:
-	text "I lost that one!"
+	text "C'est perdu!"
 	done
 
 SwimmerfElaineAfterBattleText:
-	text "I'd say I'm a bet-"
-	line "ter swimmer than"
-	cont "you. Yeah!"
+	text "En tout cas, je"
+	line "nage mieux que"
+	cont "toi. Ouais!"
 	done
 
 SwimmerfPaulaSeenText:
-	text "No inner tube for"
-	line "me."
-
-	para "I'm hanging on to"
-	line "a sea #MON!"
+	text "J'adore les #-"
+	line "MON marins!"
 	done
 
 SwimmerfPaulaBeatenText:
-	text "Ooh, I'm feeling"
-	line "dizzy!"
+	text "Oups!"
 	done
 
 SwimmerfPaulaAfterBattleText:
-	text "While I float like"
-	line "this, the waves"
-	cont "carry me along."
+	text "Je me laisse"
+	line "porter par les"
+	cont "vagues."
 	done
 
 Route40Lass1Text:
-	text "Although you can't"
-	line "see it from here,"
-
-	para "CIANWOOD is across"
-	line "the sea."
+	text "IRISIA est de"
+	line "l'autre côté de la"
+	cont "mer."
 	done
 
 Route40PokefanMText:
-	text "Hm! There's a big"
-	line "building up ahead!"
+	text "Hmm! Il y a un"
+	line "grand immeuble"
+	cont "droit devant!"
 
-	para "What is it?"
+	para "C'est quoi donc?"
 	done
 
 Route40PokefanMText_Mobile:
-	text "Hm! Look at all"
-	line "those serious-"
-	cont "looking trainers"
-	cont "streaming in."
+	text "Hmm! Tu as vu tous"
+	line "les dresseurs"
+	cont "qui sont entrés?"
 
-	para "What? What?"
+	para "C'est quoi donc?"
 	done
 
 Route40Lass2Text:
-	text "I came to OLIVINE"
-	line "by ship to see the"
+	text "Je suis venue à"
+	line "OLIVILLE pour"
 
-	para "sights and soak up"
-	line "the atmosphere."
+	para "voir les beaux"
+	line "paysages..."
 
-	para "Being a port, it"
-	line "feels so different"
-	cont "from a big city."
+	para "La mer, c'est bô."
 	done
 
 Route40StandingYoungsterText:
-	text "Have you gone to"
-	line "the BATTLE TOWER?"
+	text "As-tu visité la"
+	line "TOUR DE COMBAT?"
 
-	para "I think a lot of"
-	line "tough trainers"
+	para "Plein de"
+	line "dresseurs super"
 
-	para "have gathered"
-	line "there already."
+	para "puissants s'y sont"
+	line "réunis."
 
-	para "But since you have"
-	line "so many BADGES,"
+	para "Mais vu que tu as"
+	line "des BADGES, tu"
 
-	para "you shouldn't do"
-	line "badly at all."
+	para "devrais t'en"
+	line "tirer."
 	done
 
 MeetMonicaText:
-	text "MONICA: Glad to"
-	line "meet you. I'm"
+	text "LUCIE: Bonjour!"
+	line "Je suis LUCIE du"
 
-	para "MONICA of Monday."
+	para "lundi."
 	done
 
 MonicaGivesGiftText:
-	text "As a token of our"
-	line "friendship, I have"
-	cont "a gift for you!"
+	text "Puisqu'on est des"
+	line "potes, voilà un"
+	cont "petit cadeau!"
 	done
 
 MonicaGaveGiftText:
-	text "MONICA: It's an"
-	line "item that raises"
+	text "LUCIE: C'est un"
+	line "objet qui améliore"
 
-	para "the power of fly-"
-	line "ing-type moves."
+	para "les capacités du"
+	line "type VOL."
 
-	para "You should equip a"
-	line "bird #MON with"
-	cont "that item."
+	para "Tu devrais le don-"
+	line "ner à un #MON"
+	cont "oiseau."
 	done
 
 MonicaMondayText:
-	text "MONICA: My broth-"
-	line "ers and sisters"
+	text "LUCIE: Mes frères"
+	line "et soeurs sont un"
+	cont "peu partout."
 
-	para "are all over the"
-	line "place."
-
-	para "See if you could"
-	line "find them all!"
+	para "Trouve-les tous!"
 	done
 
 MonicaNotMondayText:
-	text "MONICA: I don't"
-	line "think today is"
-	cont "Monday. How sad…"
+	text "LUCIE: On est pas"
+	line "lundi aujourd'hui!"
+	cont "Dommage..."
 	done
 
 Route40SignText:
 	text "ROUTE 40"
 
-	para "CIANWOOD CITY -"
-	line "OLIVINE CITY"
+	para "IRISIA -"
+	line "OLIVILLE"
 	done
 
 Route40_MapEvents:
@@ -348,7 +335,7 @@ Route40_MapEvents:
 	bg_event  7,  8, BGEVENT_ITEM, Route40HiddenHyperPotion
 
 	def_object_events
-	object_event 14, 15, SPRITE_OLIVINE_RIVAL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerSwimmermSimon, -1
+	object_event 14, 18, SPRITE_OLIVINE_RIVAL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerSwimmermSimon, -1
 	object_event 18, 30, SPRITE_OLIVINE_RIVAL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 5, TrainerSwimmermRandall, -1
 	object_event  3, 19, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 4, TrainerSwimmerfElaine, -1
 	object_event 10, 25, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerSwimmerfPaula, -1
@@ -359,4 +346,4 @@ Route40_MapEvents:
 	object_event  8, 10, SPRITE_BEAUTY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MonicaScript, EVENT_ROUTE_40_MONICA_OF_MONDAY
 	object_event  7,  6, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route40PokefanMScript, -1
 	object_event 13,  4, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route40Lass2Script, -1
-	object_event 16,  9, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route40StandingYoungsterScript, EVENT_BATTLE_TOWER_OPEN_CIVILIANS
+	object_event 12,  9, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route40StandingYoungsterScript, EVENT_BATTLE_TOWER_OPEN_CIVILIANS

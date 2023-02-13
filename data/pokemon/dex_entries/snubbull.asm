@@ -1,10 +1,11 @@
-	db "FAIRY@" ; species name
-	dw 200, 170 ; height, weight
+	db "FEE@" ; species name
+	db 6 ; height
+	dw 78 ; weight
 
-	db   "In truth, it is a"
-	next "cowardly #MON."
-	next "It growls eagerly"
+	db   "C'est en fait un"
+	next "#MON peureux."
+	next "Il aboie fort pour"
 
-	page "in order to hide"
-	next "its fear from its"
-	next "opponent.@"
+	page "cacher sa peur."
+	next ""
+	next "@"

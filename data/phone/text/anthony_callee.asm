@@ -1,73 +1,71 @@
 AnthonyAnswerPhoneText:
-	text "Yeah, @"
+	text "C'est @"
 	text_ram wStringBuffer3
-	text " the"
-	line "HIKER here."
+	text_start
+	line "le MONTAGNARD."
 
 	para "Ah, <PLAYER>!"
 	done
 
 AnthonyAnswerPhoneDayText:
-	text "Yeah, @"
+	text "C'est @"
 	text_ram wStringBuffer3
-	text " the"
-	line "HIKER here."
+	text_start
+	line "le MONTAGNARD."
 
-	para "Ah, <PLAYER>,"
-	line "right?"
+	para "Ah, <PLAYER>!"
 	done
 
 AnthonyAnswerPhoneNiteText:
-	text "Yeah, @"
+	text "C'est @"
 	text_ram wStringBuffer3
-	text " the"
-	line "HIKER here."
+	text_start
+	line "le MONTAGNARD."
 
-	para "Ah, <PLAYER>, isn't"
-	line "it?"
+	para "Ah, <PLAYER>!"
 	done
 
 AnthonyGreetText:
 	text "Yo, <PLAYER>?"
 
-	para "This is @"
+	para "C'est @"
 	text_ram wStringBuffer3
 	text_start
-	line "the HIKER!"
+	line "le MONTAGNARD!"
 	done
 
 AnthonyGreetDayText:
-	text "Hey, is this"
-	line "<PLAYER>?"
+	text "Yo, <PLAYER>?"
 
-	para "This is @"
+	para "C'est @"
 	text_ram wStringBuffer3
 	text_start
-	line "the HIKER!"
+	line "le MONTAGNARD!"
 	done
 
 AnthonyGreetNiteText:
-	text "<PLAYER>, you still"
-	line "awake?"
+	text "<PLAYER>?"
+	line "T'es debout?"
 
-	para "This is @"
+	para "C'est @"
 	text_ram wStringBuffer3
 	text_start
-	line "the HIKER!"
+	line "le MONTAGNARD!"
 	done
 
 AnthonyGenericText:
-	text "Are your #MON"
-	line "as feisty as ever?"
+	text "Tes #MON sont"
+	line "toujours aussi"
+	cont "sympatoches?"
 
-	para "My @"
+	para "Mon @"
 	text_ram wStringBuffer4
-	text " and"
-	line "me--we have energy"
+	text " et"
+	line "moi, on est trop"
 
-	para "to burn. We hike"
-	line "up mountains every"
+	para "heureux. On"
+	line "arpente les"
 
-	para "day to work out"
-	line "all our energy."
+	para "montagnes et on"
+	line "s'entraîne."
 	done

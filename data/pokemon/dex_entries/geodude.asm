@@ -1,10 +1,11 @@
-	db "ROCK@" ; species name
-	dw 104, 440 ; height, weight
+	db "ROCHE@" ; species name
+	db 4 ; height
+	dw 200 ; weight
 
-	db   "Proud of their"
-	next "sturdy bodies,"
-	next "they bash against"
+	db   "Fiers de leur"
+	next "corps résistant,"
+	next "ils se jettent les"
 
-	page "each other in a"
-	next "contest to prove"
-	next "whose is harder.@"
+	page "uns contre les"
+	next "autres pour être"
+	next "les plus forts.@"

@@ -1,10 +1,11 @@
-	db "FIRE MOUSE@" ; species name
-	dw 108, 170 ; height, weight
+	db "SOURIS FEU@" ; species name
+	db 5 ; height
+	dw 79 ; weight
 
-	db   "The fire that"
-	next "spouts from its"
-	next "back burns hottest"
+	db   "Les flammes éma-"
+	next "nant de son dos"
+	next "grandissent s'il"
 
-	page "when it is angry."
-	next "The flaring flames"
-	next "intimidate foes.@"
+	page "est en colère. Il"
+	next "impressionne ainsi"
+	next "ses ennemis.@"

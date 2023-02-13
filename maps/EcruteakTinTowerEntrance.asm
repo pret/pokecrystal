@@ -150,129 +150,130 @@ EcruteakTinTowerEntranceSageBlocksRightMovement:
 	step_end
 
 EcruteakTinTowerEntranceSageText:
-	text "TIN TOWER is off"
-	line "limits to anyone"
+	text "La TOUR FERRAILLE"
+	line "est inaccessible à"
 
-	para "without ECRUTEAK"
-	line "GYM's BADGE."
+	para "tous ceux qui"
+	line "n'ont pas le BADGE"
 
-	para "Sorry, but you'll"
-	line "have to leave."
+	para "de l'ARENE de"
+	line "ROSALIA."
+	cont "Désolé, mais vous"
+	cont "devez partir."
 	done
 
 EcruteakTinTowerEntranceSageText_GotFogBadge:
-	text "TIN TOWER is off"
-	line "limits to anyone"
+	text "La TOUR FERRAILLE"
+	line "est inaccessible à"
 
-	para "without ECRUTEAK"
-	line "GYM's BADGE."
+	para "tous ceux qui"
+	line "n'ont pas le BADGE"
+
+	para "de l'ARENE de"
+	line "ROSALIA."
 
 	para "Ah!"
 
-	para "ECRUTEAK's GYM"
-	line "BADGE! Please, go"
-	cont "right through."
+	para "Le BADGE de"
+	line "l'ARENE de"
+	cont "ROSALIA! Vous"
+	cont "pouvez passer."
 	done
 
 EcruteakTinTowerEntranceSageText_NoClearBell:
-	text "A momentous event"
-	line "has occurred."
+	text "Il y a un"
+	line "problème."
 
-	para "I beg your pardon,"
-	line "but I must ask you"
-	cont "to leave."
+	para "Excusez-moi, mais"
+	line "vous devez"
+	cont "partir."
 
-	para "…What soothes the"
-	line "soul…"
+	para "...Poyé polomi..."
 
-	para "The WISE TRIO say"
-	line "things that are so"
-
-	para "very difficult to"
-	line "understand…"
+	para "Le TRIO des SAGES"
+	line "dit de drôles"
+	cont "de trucs..."
 	done
 
 EcruteakTinTowerEntranceSageText_HearsClearBell:
-	text "A momentous event"
-	line "has occurred."
+	text "Il y a un"
+	line "problème."
 
-	para "I beg your pardon,"
-	line "but I must ask you"
-	cont "to leave."
+	para "Excuse-moi, mais"
+	line "tu dois"
+	cont "partir."
 
 	para "<……><……><……>"
 
 	para "Ah!"
 
-	para "The sound of that"
-	line "CLEAR BELL!"
+	para "Le son du GLAS"
+	line "TRANSPARENT!"
 
-	para "It… It's sublime!"
+	para "C'est... BEAU!"
 
-	para "I've never heard"
-	line "so beautiful a"
-	cont "sound before!"
+	para "Je n'ai jamais"
+	line "rien entendu"
+	cont "d'aussi joli!"
 
-	para "That bell's chime"
-	line "is indicative of"
-	cont "the bearer's soul."
+	para "Le son du glas"
+	line "reflète l'âme de"
+	cont "son porteur."
 
-	para "You…"
+	para "Toi..."
 
-	para "You may be able to"
-	line "make it through"
-	cont "TIN TOWER."
+	para "Tu peux accéder à"
+	line "la TOUR FERRAILLE."
 
-	para "Please, do go on."
+	para "Va."
 	done
 
 EcruteakTinTowerEntranceSageText_PleaseDoGoOn:
-	text "Please, do go on."
+	text "Va."
 	done
 
 EcruteakTinTowerEntranceSageText_HeardClearBell:
-	text "That bell's chime"
-	line "is indicative of"
-	cont "the bearer's soul."
+	text "Le son du glas"
+	line "reflète l'âme de"
+	cont "son porteur."
 
-	para "You…"
+	para "Toi..."
 
-	para "You may be able to"
-	line "make it through"
-	cont "TIN TOWER."
+	para "Tu peux accéder à"
+	line "la TOUR FERRAILLE."
 
-	para "Please, do go on."
+	para "Va."
 	done
 
 EcruteakTinTowerEntranceWanderingSageText:
-	text "The TIN TOWER"
-	line "ahead is a nine-"
+	text "La TOUR FERRAILLE"
+	line "est d'une pure"
+	cont "beauté."
 
-	para "tier tower of"
-	line "divine beauty."
-
-	para "It soothes the"
-	line "soul of all who"
-	cont "see it."
+	para "Elle apaise tous"
+	line "ceux qui la"
+	cont "regardent."
 	done
 
 EcruteakTinTowerEntranceWanderingSageText_GotClearBell:
-	text "The TIN TOWER"
-	line "shook! A #MON"
+	text "La TOUR FERRAILLE"
+	line "tremble! Un #-"
 
-	para "must have returned"
-	line "to the top!"
+	para "MON doit s'être"
+	line "posé au sommet!"
 	done
 
 EcruteakTinTowerEntranceGrampsText:
-	text "Two towers…"
-	line "Two #MON…"
+	text "Deux tours..."
+	line "Deux #MON..."
 
-	para "But when one"
-	line "burned down, both"
+	para "Mais lorsqu'une"
+	line "d'entre elles a"
 
-	para "#MON flew away,"
-	line "never to return."
+	para "brûlé, les deux"
+	line "#MON se sont"
+	cont "envolés et ne sont"
+	cont "jamais revenus."
 	done
 
 EcruteakTinTowerEntrance_MapEvents:

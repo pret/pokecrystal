@@ -115,120 +115,116 @@ Route37HiddenEther:
 	hiddenitem ETHER, EVENT_ROUTE_37_HIDDEN_ETHER
 
 TwinsAnnandanne1SeenText:
-	text "ANN: ANNE and I"
-	line "are in this to-"
-	cont "gether!"
+	text "TEA: LEA et moi"
+	line "sommes insépara-"
+	cont "bles!"
 	done
 
 TwinsAnnandanne1BeatenText:
-	text "ANN & ANNE: Nnn… A"
-	line "little too strong."
+	text "TEA&LEA: ..."
+	line "Pas possible."
 	done
 
 TwinsAnnandanne1AfterBattleText:
-	text "ANN: I can tell"
-	line "what my sister and"
+	text "TEA: Je pense"
+	line "comme ma soeur et"
 
-	para "my #MON are"
-	line "thinking."
+	para "comme mes #MON."
 	done
 
 TwinsAnnandanne2SeenText:
-	text "ANNE: ANN and I"
-	line "are in this to-"
-	cont "gether!"
+	text "LEA: TEA et moi"
+	line "sommes insépara-"
+	cont "bles!"
 	done
 
 TwinsAnnandanne2BeatenText:
-	text "ANN & ANNE: Nnn… A"
-	line "little too strong."
+	text "TEA&LEA: ..."
+	line "Pas possible."
 	done
 
 TwinsAnnandanne2AfterBattleText:
-	text "ANNE: We share the"
-	line "same feelings as"
-	cont "our #MON."
+	text "LEA: Nous ressen-"
+	line "tons les mêmes"
+	cont "choses que nos"
+	cont "#MON."
 	done
 
 PsychicGregSeenText:
-	text "#MON can't do a"
-	line "thing if they are"
-	cont "asleep."
+	text "Les #MON ne"
+	line "peuvent rien faire"
+	cont "s'ils dorment."
 
-	para "I'll show you how"
-	line "scary that is!"
+	para "Tu vas voir quel"
+	line "effet ça fait!"
 	done
 
 PsychicGregBeatenText:
-	text "I lost. That's"
-	line "pretty sad…"
+	text "Perdu. C'est"
+	line "pas cool, ça..."
 	done
 
 PsychicGregAfterBattleText:
-	text "Putting #MON to"
-	line "sleep or paralyz-"
-	cont "ing them are good"
-	cont "battle techniques."
+	text "Endormir ou para-"
+	line "lyser les #MON"
+	cont "est super utile"
+	cont "en combat."
 	done
 
 MeetSunnyText:
-	text "SUNNY: Hi!"
+	text "DIMITRI: Salut!"
 
-	para "I'm SUNNY of Sun-"
-	line "day, meaning it's"
-	cont "Sunday today!"
+	para "Moi c'est DIMITRI"
+	line "du dimanche. Et on"
+	cont "est dimanche!"
 	done
 
 SunnyGivesGiftText1:
-	text "I was told to give"
-	line "you this if I saw"
-	cont "you!"
+	text "On m'a dit de te"
+	line "donner ça!"
 	done
 
 SunnyGivesGiftText2:
-	text "I was told to give"
-	line "you this if I saw"
-	cont "you!"
+	text "On m'a dit de te"
+	line "donner ça!"
 	done
 
 SunnyGaveGiftText:
-	text "SUNNY: That thing…"
+	text "DIMITRI: Ca..."
 
-	para "Um…"
+	para "Heu..."
 
-	para "… What was it now…"
+	para "...C'est..."
 
-	para "…"
+	para "..."
 
-	para "Oh! I remember"
-	line "now!"
+	para "Oh! Je me "
+	line "souviens!"
 
-	para "A #MON that"
-	line "knows electric"
+	para "C'est pour un"
+	line "#MON à capaci-"
+	cont "tés électriques."
 
-	para "moves should hold"
-	line "it."
-
-	para "My sis MONICA said"
-	line "it powers up"
-	cont "electric moves!"
+	para "Ma soeur LUCIE"
+	line "dit que ça les"
+	cont "améliore!"
 	done
 
 SunnySundayText:
-	text "SUNNY: My sisters"
-	line "and brothers are"
-	cont "MONICA, TUSCANY,"
-	cont "WESLEY, ARTHUR,"
-	cont "FRIEDA and SANTOS."
+	text "DIMITRI: Mes frè-"
+	line "res et soeurs sont"
+	cont "LUCIE, MARIE,"
+	cont "HOMER, JEROME,"
+	cont "VANESSA et SAMUEL."
 
-	para "They're all older"
-	line "than me!"
+	para "Ils sont tous plus"
+	line "vieux que moi!"
 	done
 
 SunnyNotSundayText:
-	text "SUNNY: Isn't today"
-	line "Sunday?"
-	cont "Um… I forgot!"
+	text "DIMITRI: On est"
+	line "pas dimanche?"
+	cont "Heu! Je sais plus!"
 	done
 
 Route37SignText:

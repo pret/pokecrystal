@@ -1,130 +1,111 @@
 JoseMonsStickHasADeliciousAromaText:
-	text "Hey listen, my"
-	line "@"
+	text "Hé! Le bâton de"
+	line "mon @"
 	text_ram wStringBuffer4
-	text "'s stick"
+	text_start
+	cont "sent super bon."
 
-	para "has this really"
-	line "delicious aroma."
-
-	para "That aroma gets my"
-	line "appetite going!"
+	para "Ca me donne faim!"
 	done
 
 JoseDefeatedMonText:
-	text "A while ago, my"
-	line "FARFETCH'D KO'd"
-	cont "this @"
+	text "L'autre fois, mon"
+	line "CANARTICHO a mis"
+	cont "K.O. un"
+	cont "@"
 	text_ram wStringBuffer4
 	text "."
 
-	para "You should have"
-	line "seen FARFETCH'D"
-
-	para "wield that stick."
-	line "Amazing stuff!"
+	para "Avec son bâton,"
+	line "mon CANARTICHO est"
+	cont "trop bô!"
 	done
 
 JoseLostAMonText:
-	text "I ran into a wild"
+	text "J'ai vu un"
 	line "@"
 	text_ram wStringBuffer4
-	text "…"
+	text_start
+	cont "sauvage..."
 
-	para "I was trying to"
-	line "catch it, but it"
+	para "J'ai voulu l'at-"
+	line "traper mais il"
 
-	para "took off faster"
-	line "than I thought it"
-
-	para "would. It was a"
-	line "bit disappointing."
+	para "s'est enfui super"
+	line "vite!"
 	done
 
 JoseBattleRematchText:
-	text "Want to battle"
-	line "again?"
+	text "Tu veux te refaire"
+	line "un match?"
 
-	para "For some reason,"
-	line "my FARFETCH'D is"
-
-	para "all worked up and"
-	line "raring to go."
+	para "Mon CANARTICHO en"
+	line "redemande!"
 
 	para "@"
 	text_ram wStringBuffer5
-	text "'s"
-	line "where I'm at."
+	text ","
+	line "c'est là où je"
 
-	para "Keep an eye out"
-	line "for me, OK?"
+	para "suis..."
+	line "Viens me chercher!"
 	done
 
 JoseHangUpText:
-	text "Be seeing you!"
+	text "A plus tard!"
 	done
 
 JoseFoundItemText:
-	text "My FARFETCH'D had"
-	line "something pretty"
-	cont "in its beak."
+	text "Mon CANARTICHO"
+	line "avait un drôle de"
+	cont "truc dans le bec."
 
-	para "Like I promised,"
-	line "you can have it."
+	para "Tu peux l'avoir."
 
-	para "Catch up to me on"
+	para "Viens vers"
 	line "@"
 	text_ram wStringBuffer5
 	text ","
-
-	para "and I'll let you"
-	line "have it."
+	cont "et c'est à toi."
 	done
 
 JoseHaventGottenItemYetText:
-	text "I haven't gotten"
-	line "what I promised"
-	cont "you yet."
+	text "Je n'ai pas encore"
+	line "ce que je t'ai"
+	cont "promis."
 
-	para "I'll call you as"
-	line "soon as I get it,"
-
-	para "so could you wait"
-	line "a little longer?"
+	para "Je t'appelle si"
+	line "je l'ai."
+	cont "Attends un peu!"
 	done
 
 JoseReminderText:
-	text "<PLAY_G>, could you"
-	line "hurry over?"
+	text "<PLAY_G>, peux-tu"
+	line "venir?"
 
-	para "FARFETCH'D is"
-	line "agitated."
+	para "CANARTICHO est"
+	line "très agité."
 
-	para "If you don't come"
-	line "soon, it might"
-
-	para "smack me with its"
-	line "stick!"
+	para "Viens vite ou il"
+	line "va me donner un"
+	cont "coup de bâton!"
 
 	para "@"
 	text_ram wStringBuffer5
 	text "!"
 
-	para "Please come as"
-	line "soon as you can!"
+	para "Viens vite!"
 	done
 
 JoseComePickUpText:
-	text "What's wrong?"
+	text "Ben alors?"
 
-	para "Don't you want"
-	line "this gift?"
+	para "Tu ne veux pas de"
+	line "mon cadeau?"
 
-	para "Catch up to me on"
+	para "Viens vers"
 	line "@"
 	text_ram wStringBuffer5
-	text ","
-
-	para "and I'll let you"
-	line "have it."
+	text_start
+	cont "et c'est à toi."
 	done

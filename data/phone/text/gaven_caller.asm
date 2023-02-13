@@ -1,85 +1,77 @@
 GavenMonGreaterThanImaginedText:
-	text "My @"
+	text "Mon @"
 	text_ram wStringBuffer4
 	text_start
-	line "might be greater"
-	cont "than I imagined."
+	line "est plus fort que"
+	cont "je le pensais."
 
-	para "I doubt I'll see a"
+	para "Y'a pas de"
 	line "@"
 	text_ram wStringBuffer4
-	text " that's"
-	cont "better than mine."
+	text_start
+	cont "mieux que le mien."
 	done
 
 GavenDefeatedMonText:
-	text "Oh, and I managed"
-	line "to barely defeat"
+	text "Oh, j'ai eu du mal"
+	line "à battre"
 
 	para "@"
 	text_ram wStringBuffer4
-	text " the"
-	line "other day."
+	text_start
+	line "l'autre jour."
 
-	para "I've never seen a"
-	line "@"
+	para "Je n'avais jamais"
+	line "vu de @"
 	text_ram wStringBuffer4
-	text " get"
-	cont "that strong…"
+	text_start
+	cont "aussi fort..."
 
-	para "You shouldn't let"
-	line "your guard down,"
-
-	para "even against a"
-	line "#MON you're"
-	cont "used to seeing."
+	para "On devrait tou-"
+	line "jours faire"
+	cont "attention."
 	done
 
 GavenLostAMonText:
-	text "And a while back,"
-	line "I tried to catch a"
-	cont "wild @"
+	text "L'autre fois, j'ai"
+	line "voulu attraper un"
+	cont "@"
 	text_ram wStringBuffer4
 	text "."
 
-	para "But it managed to"
-	line "elude me."
+	para "Mais il m'a"
+	line "échappé."
 
-	para "One wrong decision"
-	line "could mean total"
-
-	para "failure… You ought"
-	line "to be careful too."
+	para "Y faut toujours"
+	line "faire attention."
 	done
 
 GavenBattleRematchText:
-	text "Let's battle!"
+	text "Combat!"
 
-	para "I'll be waiting on"
+	para "J'attends vers"
 	line "@"
 	text_ram wStringBuffer5
 	text "."
 
-	para "Give me a shout"
-	line "when you're close."
+	para "Appelle si tu es"
+	line "dans le coin."
 	done
 
 GavenHangUpText:
-	text "OK, I'll talk to"
-	line "you soon!"
+	text "OK, à bientôt!"
 	done
 
 GavenHangUpNotThursdayText:
-	text "I obsess over how"
-	line "to beat you."
+	text "Je veux te battre!"
 	done
 
 GavenReminderText:
-	text "<PLAY_G>, why"
-	line "aren't you here?"
+	text "<PLAY_G>,"
+	line "où es-tu?"
 
-	para "I'll take you down"
-	line "with @"
+	para "@"
 	text_ram wStringBuffer5
 	text "!"
+	line "J'vais t'écraser!"
 	done

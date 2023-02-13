@@ -1,10 +1,11 @@
-	db "TADPOLE@" ; species name
-	dw 403, 1190 ; height, weight
+	db "TETARD@" ; species name
+	db 13 ; height
+	dw 540 ; weight
 
-	db   "It can use its"
-	next "well-developed"
-	next "arms and legs to"
+	db   "Il peut, grâce à"
+	next "ses puissants mem-"
+	next "bres, courir à la"
 
-	page "run on the surface"
-	next "of the water for a"
-	next "split second.@"
+	page "surface de l'eau"
+	next "pendant une demi-"
+	next "seconde.@"

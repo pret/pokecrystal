@@ -1,10 +1,11 @@
-	db "GOLDFISH@" ; species name
-	dw 200, 330 ; height, weight
+	db "POISSON@" ; species name
+	db 6 ; height
+	dw 150 ; weight
 
-	db   "During spawning"
-	next "season, they swim"
-	next "gracefully in the"
+	db   "Pendant la saison"
+	next "des amours, il"
+	next "nage avec grâce et"
 
-	page "water, searching"
-	next "for their perfect"
-	next "mate.@"
+	page "cherche le parte-"
+	next "naire idéal."
+	next "@"

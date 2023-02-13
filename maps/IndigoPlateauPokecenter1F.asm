@@ -202,102 +202,96 @@ PlateauRivalLeavesMovement:
 	step_end
 
 IndigoPlateauPokecenter1FCooltrainerMText:
-	text "At the #MON"
-	line "LEAGUE, you'll get"
+	text "A la LIGUE #MON"
+	line "tu rencontreras le"
 
-	para "tested by the"
-	line "ELITE FOUR."
+	para "terrible CONSEIL"
+	line "des 4."
 
-	para "You have to beat"
-	line "them all. If you"
+	para "Tu devras battre"
+	line "les 4 chefs ou tu"
 
-	para "lose, you have to"
-	line "start all over!"
+	para "devras tout recom-"
+	line "mencer!"
 	done
 
 PlateauRivalText1:
-	text "Hold it."
+	text "Minute!"
 
-	para "You're going to"
-	line "take the #MON"
+	para "Tu vas relever le"
+	line "défi de la LIGUE"
+	cont "#MON?"
 
-	para "LEAGUE challenge"
-	line "now?"
+	para "T'es pas bien dans"
+	line "ta tête, toi?"
 
-	para "That's not going"
-	line "to happen."
+	para "Mes #MON sur-"
+	line "entraînés vont te"
 
-	para "My super-well-"
-	line "trained #MON"
-
-	para "are going to pound"
-	line "you."
+	para "casser les reins."
+	line "C'est bon?"
 
 	para "<PLAYER>!"
-	line "I challenge you!"
+	line "COMBAAAAT!"
 	done
 
 PlateauRivalWinText:
-	text "…"
+	text "......"
 
-	para "OK--I lost…"
+	para "OK. J'ai perdu..."
 	done
 
 PlateauRivalText2:
-	text "…Darn… I still"
-	line "can't win…"
+	text "....ZUT...."
+	line "Encore perdu."
 
-	para "I… I have to think"
-	line "more about my"
-	cont "#MON…"
+	para "Y'a un truc que"
+	line "je comprends pas."
+	cont "Faut qu'je pense."
 
-	para "Humph! Try not to"
-	line "lose!"
+	para "Et penser..."
+	line "Moi j'aime pas."
 	done
 
 PlateauRivalLoseText:
-	text "…"
+	text "..."
 
-	para "Whew…"
-	line "With my partners,"
-
-	para "I'm going to be"
-	line "the CHAMPION!"
+	para "Avec mes copains,"
+	line "je vais devenir"
+	cont "un MAITRE!"
 	done
 
 TeleportGuyText1:
-	text "Ah! You're chal-"
-	line "lenging the ELITE"
+	text "Ah! Tu défies le"
+	line "CONSEIL des 4?"
 
-	para "FOUR? Are you sure"
-	line "you're ready?"
+	para "Tu crois avoir"
+	line "les épaules?"
 
-	para "If you need to"
-	line "train some more,"
+	para "Si tu veux encore"
+	line "t'entraîner, mon"
+	cont "ABRA peut t'aider."
 
-	para "my ABRA can help"
-	line "you."
+	para "Il peut te"
+	line "TELEPORTER chez"
+	cont "toi."
 
-	para "It can TELEPORT"
-	line "you home."
-
-	para "Would you like to"
-	line "go home now?"
+	para "Veux-tu retourner"
+	line "chez toi?"
 	done
 
 TeleportGuyYesText:
-	text "OK, OK. Picture"
-	line "your house in your"
-	cont "mind…"
+	text "Très bien. Pense"
+	line "fort à ta maison."
 	done
 
 TeleportGuyNoText:
-	text "OK, OK. The best"
-	line "of luck to you!"
+	text "OK. Alors bon"
+	line "courage!"
 	done
 
 AbraText:
-	text "ABRA: Aabra…"
+	text "ABRA: Aabra..."
 	done
 
 IndigoPlateauPokecenter1F_MapEvents:

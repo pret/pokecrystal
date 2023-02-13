@@ -1,10 +1,11 @@
-	db "EGG@" ; species name
-	dw 104, 60 ; height, weight
+	db "OEUF@" ; species name
+	db 4 ; height
+	dw 25 ; weight
 
-	db   "If even one is"
-	next "separated from the"
-	next "group, the energy"
+	db   "Même si l'un d'eux"
+	next "est séparé du"
+	next "groupe, l'énergie"
 
-	page "bond between the"
-	next "six will make them"
-	next "rejoin instantly.@"
+	page "qui les unit les"
+	next "fera se regrouper"
+	next "à nouveau.@"

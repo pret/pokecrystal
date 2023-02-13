@@ -1,10 +1,11 @@
-	db "SPIKE BALL@" ; species name
-	dw 100, 30 ; height, weight
+	db "BALLE PIC@" ; species name
+	db 3 ; height
+	dw 15 ; weight
 
-	db   "It is considered"
-	next "to be a symbol of"
-	next "good luck. Its"
+	db   "Il est connu pour"
+	next "être un symbole de"
+	next "chance. On dit que"
 
-	page "shell is said to"
-	next "be filled with"
-	next "happiness.@"
+	page "sa coquille est"
+	next "remplie de joie."
+	next "@"

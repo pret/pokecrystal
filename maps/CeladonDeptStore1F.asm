@@ -24,51 +24,53 @@ CeladonDeptStore1FElevatorButton:
 	jumpstd ElevatorButtonScript
 
 CeladonDeptStore1FReceptionistText:
-	text "Hello! Welcome to"
-	line "CELADON DEPT."
-	cont "STORE!"
+	text "Bienvenue au"
+	line "CENTRE COMMERCIAL"
+	cont "de CELADOPOLE!"
 
-	para "The directory is"
-	line "on the wall."
+	para "Les informations"
+	line "sont sur le mur."
 	done
 
 CeladonDeptStore1FGentlemanText:
-	text "This DEPT.STORE is"
-	line "part of the same"
+	text "Ce CENTRE COMMER-"
+	line "CIAL appartient à"
 
-	para "chain as the one"
-	line "in GOLDENROD CITY."
+	para "la même chaîne que"
+	line "celui de DOUBLON-"
+	cont "VILLE."
 
-	para "They were both"
-	line "renovated at the"
-	cont "same time."
+	para "Ils ont été réno-"
+	line "vés en même temps."
 	done
 
 CeladonDeptStore1FTeacherText:
-	text "This is my first"
-	line "time here."
+	text "C'est la première"
+	line "fois que je viens"
+	cont "ici."
 
-	para "It's so big…"
+	para "C'est grand..."
 
-	para "I'm afraid I'll"
-	line "get lost."
+	para "Je vais me perdre."
+	line "C'est sûr."
 	done
 
 CeladonDeptStore1FDirectoryText:
-	text "1F: SERVICE"
-	line "    COUNTER"
+	text "RDC:  COMPTOIR"
+	line "      SERVICE"
 
-	para "2F: TRAINER'S"
-	line "    MARKET"
+	para "1ER:  MARCHE DU"
+	line "      DRESSEUR"
 
-	para "3F: TM SHOP"
+	para "2EME: MARCHE AUX"
+	line "      CT"
 
-	para "4F: WISEMAN GIFTS"
+	para "3EME: CADEAUX DU"
+	line "      SAGE"
 
-	para "5F: DRUG STORE"
+	para "4EME: POTIONS, etc"
 
-	para "6F: ROOFTOP"
-	line "    SQUARE"
+	para "5EME: ESPACE TOIT"
 	done
 
 CeladonDeptStore1F_MapEvents:

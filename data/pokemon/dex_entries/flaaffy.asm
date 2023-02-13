@@ -1,10 +1,11 @@
-	db "WOOL@" ; species name
-	dw 207, 290 ; height, weight
+	db "LAINE@" ; species name
+	db 8 ; height
+	dw 133 ; weight
 
-	db   "Because of its"
-	next "rubbery, electric-"
-	next "ity-resistant"
+	db   "Sa peau étant"
+	next "caoutchouteuse et"
+	next "isolante, il peut"
 
-	page "skin, it can store"
-	next "lots of electric-"
-	next "ity in its fur.@"
+	page "garder du courant"
+	next "dans sa fourrure"
+	next "sans danger.@"

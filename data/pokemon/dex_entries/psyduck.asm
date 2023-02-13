@@ -1,10 +1,11 @@
-	db "DUCK@" ; species name
-	dw 207, 430 ; height, weight
+	db "CANARD@" ; species name
+	db 8 ; height
+	dw 196 ; weight
 
-	db   "The only time it"
-	next "can use its psy-"
-	next "chic power is when"
+	db   "Il ne peut utili-"
+	next "ser ses pouvoirs"
+	next "PSY que lorsque"
 
-	page "its sleeping brain"
-	next "cells happen to"
-	next "wake.@"
+	page "ses neurones se"
+	next "réveillent."
+	next "@"

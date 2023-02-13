@@ -1,10 +1,11 @@
-	db "STARSHAPE@" ; species name
-	dw 207, 760 ; height, weight
+	db "ETOILE@" ; species name
+	db 8 ; height
+	dw 345 ; weight
 
-	db   "When the stars"
-	next "twinkle at night,"
-	next "it floats up from"
+	db   "Quand les étoiles"
+	next "brillent la nuit,"
+	next "il flotte à la"
 
-	page "the sea floor, and"
-	next "its body's center"
-	next "core flickers.@"
+	page "surface de l'eau"
+	next "et son centre se"
+	next "met à briller...@"

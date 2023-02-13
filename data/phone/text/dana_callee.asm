@@ -1,68 +1,63 @@
 DanaAnswerPhoneText:
-	text "Hi, @"
 	text_ram wStringBuffer3
-	text " on the"
-	line "line."
+	text_start
+	line "à l'appareil."
 
-	para "Hey! It's <PLAY_G>!"
+	para "C'est <PLAY_G>!"
 	done
 
 DanaAnswerPhoneDayText:
-	text "Hi, @"
 	text_ram wStringBuffer3
-	text " on the"
-	line "line."
+	text_start
+	line "à l'appareil."
 
-	para "I know!"
-	line "It's <PLAY_G>!"
+	para "C'est <PLAY_G>!"
 	done
 
 DanaAnswerPhoneNiteText:
-	text "Hi, @"
 	text_ram wStringBuffer3
-	text " on the"
-	line "line."
+	text_start
+	line "à l'appareil."
 
-	para "<PLAY_G>?"
-	line "What's up?"
+	para "<PLAY_G>, ça va?"
 	done
 
 DanaGreetText:
-	text "Uh, <PLAY_G>?"
+	text "<PLAY_G>?"
 
-	para "It's me!"
-	line "It's me, @"
+	para "C'est moi!"
+	line "@"
 	text_ram wStringBuffer3
 	text "!"
 	done
 
 DanaGreetDayText:
-	text "Uh, <PLAY_G>?"
+	text "<PLAY_G>?"
 
-	para "It's me!"
-	line "It's me, @"
+	para "C'est moi!"
+	line "@"
 	text_ram wStringBuffer3
 	text "!"
 	done
 
 DanaGreetNiteText:
-	text "Uh, <PLAY_G>?"
+	text "<PLAY_G>?"
 
-	para "It's me!"
-	line "It's me, @"
+	para "C'est moi!"
+	line "@"
 	text_ram wStringBuffer3
 	text "!"
 	done
 
 DanaGenericText:
-	text "My @"
+	text "Mon @"
 	text_ram wStringBuffer4
-	text " is"
-	line "so full of energy,"
+	text_start
+	line "est si actif, que"
 
-	para "it's a little"
-	line "scary."
+	para "ça m'file la"
+	line "trouille."
 
-	para "How are your"
-	line "#MON doing?"
+	para "Et tes #MON,"
+	line "ça va?"
 	done

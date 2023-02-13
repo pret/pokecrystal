@@ -10,26 +10,26 @@ Route7LockedDoor:
 	jumptext Route7LockedDoorText
 
 Route7UndergroundPathSignText:
-	text "What's this flyer?"
+	text "Une affiche?"
 
-	para "… Uncouth trainers"
-	line "have been holding"
+	para "De vilains dres-"
+	line "seurs livrent"
 
-	para "battles in the"
-	line "UNDERGROUND PATH."
+	para "des combats dans"
+	line "le SOUTERRAIN."
 
-	para "Because of rising"
-	line "complaints by lo-"
-	cont "cal residents, the"
-	cont "UNDERGROUND PATH"
-	cont "has been sealed"
-	cont "indefinitely."
+	para "Suite à de nom-"
+	line "breuses plaintes,"
+	cont "le SOUTERRAIN a"
+	cont "été fermé défini-"
+	cont "tivement."
 
-	para "CELADON POLICE"
+	para "POLICE"
+	line "de CELADOPOLE"
 	done
 
 Route7LockedDoorText:
-	text "It's locked…"
+	text "C'est fermé..."
 	done
 
 Route7_MapEvents:

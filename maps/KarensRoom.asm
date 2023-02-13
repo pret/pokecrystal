@@ -79,55 +79,53 @@ KarensRoom_EnterMovement:
 	step_end
 
 KarenScript_KarenBeforeText:
-	text "I am KAREN of the"
-	line "ELITE FOUR."
+	text "Je suis MARION du"
+	line "CONSEIL des 4."
 
-	para "You're <PLAYER>?"
-	line "How amusing."
+	para "C'est toi <PLAYER>?"
+	line "C'est marrant."
 
-	para "I love dark-type"
-	line "#MON."
+	para "Moi j'aime les"
+	line "#MON des"
+	cont "TENEBRES."
 
-	para "I find their wild,"
-	line "tough image to be"
+	para "Leur look noir"
+	line "et méchant est"
 
-	para "so appealing. And"
-	line "they're so strong."
+	para "trop cool. Et ils"
+	line "sont forts aussi!"
 
-	para "Think you can take"
-	line "them? Just try to"
-	cont "entertain me."
+	para "Tu crois pouvoir"
+	line "les battre? Allez,"
+	cont "essaie pour voir."
 
-	para "Let's go."
+	para "C'est parti."
 	done
 
 KarenScript_KarenBeatenText:
-	text "Well, aren't you"
-	line "good. I like that"
-	cont "in a trainer."
+	text "Mmmm..."
+	line "C'est bien."
 	done
 
 KarenScript_KarenDefeatText:
-	text "Strong #MON."
+	text "#MON puissants."
 
-	para "Weak #MON."
+	para "#MON faibles."
 
-	para "That is only the"
-	line "selfish perception"
-	cont "of people."
+	para "Cette vision est"
+	line "faite pour les"
+	cont "simples d'esprit."
 
-	para "Truly skilled"
-	line "trainers should"
+	para "Les bons dresseurs"
+	line "gagnent avec leurs"
+	cont "#MON favoris."
 
-	para "try to win with"
-	line "their favorites."
+	para "J'aime ton style."
+	line "Tu as du"
+	cont "talent..."
 
-	para "I like your style."
-	line "You understand"
-	cont "what's important."
-
-	para "Go on--the CHAM-"
-	line "PION is waiting."
+	para "Allez, va..."
+	line "Le MAITRE attend."
 	done
 
 KarensRoom_MapEvents:

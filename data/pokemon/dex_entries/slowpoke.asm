@@ -1,10 +1,11 @@
-	db "DOPEY@" ; species name
-	dw 311, 790 ; height, weight
+	db "CRETIN@" ; species name
+	db 12 ; height
+	dw 360 ; weight
 
-	db   "It is always so"
-	next "absent-minded that"
-	next "it won't react,"
+	db   "Il est tellement"
+	next "paresseux qu'il"
+	next "lui faut une jour-"
 
-	page "even if its"
-	next "flavorful tail is"
-	next "bitten.@"
+	page "née pour remarquer"
+	next "qu'on lui mord la"
+	next "queue.@"

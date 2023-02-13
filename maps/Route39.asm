@@ -181,15 +181,15 @@ Route39HiddenNugget:
 	hiddenitem NUGGET, EVENT_ROUTE_39_HIDDEN_NUGGET
 
 Route39MiltankText:
-	text "MILTANK: Mooo!"
+	text "ECREMEUH: Meuh!"
 	done
 
 SailorEugeneSeenText:
-	text "I just got back to"
-	line "OLIVINE."
+	text "Je reviens de"
+	line "OLIVILLE."
 
-	para "So how about a"
-	line "#MON battle?"
+	para "Ca te dit un p'tit"
+	line "combat #MON?"
 	done
 
 SailorEugeneBeatenText:
@@ -197,148 +197,142 @@ SailorEugeneBeatenText:
 	done
 
 SailorEugeneAfterBattleText:
-	text "My #MON were"
-	line "caught and raised"
-	cont "overseas."
+	text "J'ai attrapé et"
+	line "entraîné mes #-"
+	cont "MON à l'étranger."
 
-	para "They're my compan-"
-	line "ions on those long"
+	para "Ils m'accompagnent"
+	line "pendant mes longs"
 	cont "voyages."
 	done
 
 PokefanmDerekSeenText:
-	text "This is a good"
-	line "time to brag about"
-	cont "my PIKACHU!"
+	text "Moi je crâne avec"
+	line "mon PIKACHU!"
 	done
 
 PokefanmDerekBeatenText:
-	text "I had no time to"
-	line "show off PIKACHU…"
+	text "J'ai pas pu"
+	line "crâner..."
 	done
 
 PokefanMDerekText_NotBragging:
-	text "I'm not listening"
-	line "to your bragging!"
-
-	para "We # FANS have"
-	line "a policy of not"
-
-	para "listening to other"
-	line "people brag!"
+	text "Ne te vante pas!"
+	line "Moi j'aime pas"
+	cont "ceux qui se"
+	cont "vantent!"
 	done
 
 PokefanfRuthSeenText:
-	text "Such darling"
+	text "Les jolis"
 	line "#MON."
 
-	para "Let's show our"
-	line "#MON together"
-	cont "at the same time."
+	para "Allez! On se les"
+	line "montre en même"
+	cont "temps, OK?"
 	done
 
 PokefanfRuthBeatenText:
-	text "I don't mind"
-	line "losing."
+	text "J'm'en fiche si je"
+	line "perds."
 	done
 
 PokefanfRuthAfterBattleText:
-	text "Do you know about"
-	line "baby #MON?"
+	text "Tu connais les"
+	line "bébés #MON?"
 
-	para "I bet they're just"
-	line "adorable!"
+	para "Ils sont siiii"
+	line "mignooons!"
 	done
 
 PokefanMDerekPikachuIsItText:
-	text "PIKACHU is it!"
-	line "Don't you agree?"
+	text "PIKACHU est cool!"
+	line "Tu ne trouves pas?"
 	done
 
 PsychicNormanSeenText:
-	text "Let me see what"
-	line "your #MON are"
-	cont "capable of."
+	text "Montre-moi tes"
+	line "#MON."
+	cont "Tout de suite!"
 	done
 
 PsychicNormanBeatenText:
-	text "Ooh, your #MON"
-	line "have potential."
+	text "Ooh, tes #MON"
+	line "sont forts!"
 	done
 
 PsychicNormanAfterBattleText:
-	text "You know how #-"
-	line "MON have different"
-	cont "abilities?"
+	text "Sais-tu combien de"
+	line "#MON ont plu-"
+	cont "sieurs capacités?"
 
-	para "People are like"
-	line "that too. Every-"
-	cont "one has different"
-	cont "potential."
+	para "C'est normal!"
+	line "Les humains aussi"
+	cont "ont plusieurs"
+	cont "talents, non?"
 	done
 
 PokefanfJaimeHopeItGetsDarkText:
-	text "Ufufufu… I hope it"
-	line "gets dark soon."
+	text "Hin hin hin..."
+	line "Il va faire nuit."
 	done
 
 PokefanfJaimeSeenText:
-	text "You came at just"
-	line "the right time."
+	text "Tu viens au bon"
+	line "moment."
 
-	para "Let's battle."
+	para "COMBAT."
 	done
 
 PokefanfJaimeBeatenText:
-	text "Oh, how disap-"
-	line "pointing…"
+	text "Oh, quel dommage!"
 	done
 
 PokefanfJaimeAfterBattleText:
-	text "I met my MEOWTH at"
-	line "night, right here"
-	cont "on ROUTE 39."
+	text "J'ai vu MIAOUSS la"
+	line "nuit, ici sur la"
+	cont "ROUTE 39."
 
-	para "I'm not sure why,"
-	line "but it seems to"
+	para "Je ne sais pas"
+	line "pourquoi mais il"
 
-	para "like it when I"
-	line "train here."
+	para "aime s'entraîner"
+	line "ici."
 
-	para "It seems to become"
-	line "friendlier by"
-
-	para "training here than"
-	line "anywhere else."
+	para "Il devient plus"
+	line "amical de cette"
+	cont "façon..."
 	done
 
 Route39SignText:
 	text "ROUTE 39"
 
-	para "OLIVINE CITY -"
-	line "ECRUTEAK CITY"
+	para "OLIVILLE -"
+	line "ROSALIA"
 	done
 
 MoomooFarmSignText:
-	text "MOOMOO FARM"
+	text "RANCH MEUMEU"
 
-	para "Enjoy Our Fresh"
-	line "and Tasty Milk"
+	para "Le meilleur lait"
+	line "sur le marché!"
 	done
 
 Route39TrainerTipsText:
-	text "TRAINER TIPS"
+	text "ASTUCE"
 
-	para "Use HEADBUTT on"
-	line "trees to shake"
-	cont "#MON out."
+	para "Un COUP D'BOULE"
+	line "sur les arbres"
+	cont "peut faire tomber"
+	cont "des #MON."
 
-	para "Different kinds of"
-	line "#MON drop out"
-	cont "of trees."
+	para "Des #MON diffé-"
+	line "rents vivent dans"
+	cont "les arbres."
 
-	para "Use HEADBUTT on"
-	line "any tree you see!"
+	para "Donnez des COUPS"
+	line "D'BOULE et vous"
+	cont "verrez!"
 	done
 
 Route39_MapEvents:

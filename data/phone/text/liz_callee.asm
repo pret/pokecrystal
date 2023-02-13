@@ -1,81 +1,76 @@
 LizAnswerPhoneText:
-	text "Hello, @"
 	text_ram wStringBuffer3
 	text_start
-	line "speaking."
+	line "à l'appareil."
 
 	para "Oh, <PLAY_G>."
-	line "Good morning."
+	line "Bonjour."
 	done
 
 LizAnswerPhoneDayText:
-	text "Hello, @"
 	text_ram wStringBuffer3
 	text_start
-	line "speaking."
+	line "à l'appareil."
 
 	para "Oh, <PLAY_G>."
-	line "How are you?"
+	line "Ca va?"
 	done
 
 LizAnswerPhoneNiteText:
-	text "Hello, @"
 	text_ram wStringBuffer3
 	text_start
-	line "speaking."
+	line "à l'appareil."
 
 	para "Oh, <PLAY_G>."
-	line "Good evening."
+	line "Bonsoir."
 	done
 
 LizGreetText:
-	text "Good morning,"
+	text "Bonjour,"
 	line "<PLAY_G>."
 
-	para "This is @"
+	para "C'est @"
 	text_ram wStringBuffer3
 	text "."
-	line "Were you sleeping?"
+	line "Tu dormais?"
 	done
 
 LizGreetDayText:
-	text "Hi, <PLAY_G>."
-	line "This is @"
+	text "Bonjour,"
+	line "<PLAY_G>."
+
+	para "C'est @"
 	text_ram wStringBuffer3
 	text "."
-
-	para "How are things"
-	line "going for you?"
+	line "Ca va bien?"
 	done
 
 LizGreetNiteText:
-	text "Good evening,"
+	text "Bonsoir,"
 	line "<PLAY_G>."
 
-	para "This is @"
+	para "C'est @"
 	text_ram wStringBuffer3
 	text "."
-	line "Are you awake?"
+	line "T'étais debout?"
 	done
 
 LizGenericText:
-	text "I had some time,"
-	line "so I called you."
+	text "J'ai du temps a-"
+	line "lors je t'appelle."
 
-	para "So anyway, how are"
-	line "your #MON?"
+	para "Au fait, comment"
+	line "vont tes #MON?"
 
-	para "Me, I take my"
+	para "Moi j'emmène mon"
 	line "@"
 	text_ram wStringBuffer4
-	text " to the"
+	text " au"
 
-	para "#MON CENTER in"
-	line "VIOLET every day,"
+	para "CENTRE #MON"
+	line "de MAUVILLE tous"
+	cont "les jours!"
 
-	para "so it's doing just"
-	line "fantastic!"
-
-	para "I'm friends with"
-	line "the receptionist!"
+	para "La réceptionniste"
+	line "est mon amie!"
 	done

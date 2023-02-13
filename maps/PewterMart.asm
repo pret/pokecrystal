@@ -21,26 +21,25 @@ PewterMartSuperNerdScript:
 	jumptextfaceplayer PewterMartSuperNerdText
 
 PewterMartYoungsterText:
-	text "Hi! Check out my"
-	line "GYARADOS!"
+	text "Hé! Mate un peu"
+	line "mon LEVIATOR!"
 
-	para "I raised it from a"
-	line "MAGIKARP. I can't"
+	para "Je l'ai eu en en-"
+	line "traînant mon"
 
-	para "believe how strong"
-	line "it has become."
+	para "MAGICARPE. Il est"
+	line "super balèze!!!"
 	done
 
 PewterMartSuperNerdText:
-	text "There once was a"
-	line "weird old man who"
-	cont "sold MAGIKARP."
+	text "Il y avait un type"
+	line "tout vieux et bi-"
+	cont "zarre qui vendait"
+	cont "des MAGICARPE."
 
-	para "He was saying the"
-	line "MAGIKARP from the"
-
-	para "LAKE OF RAGE were"
-	line "excellent."
+	para "Il recommandait"
+	line "les MAGICARPE du"
+	cont "LAC COLERE."
 	done
 
 PewterMart_MapEvents:

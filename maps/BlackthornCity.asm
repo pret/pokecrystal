@@ -143,171 +143,170 @@ BlackthornCityMartSign:
 	jumpstd MartSignScript
 
 Text_ClairIsOut:
-	text "I am sorry."
+	text "Excusez-moi."
 
-	para "CLAIR, our GYM"
-	line "LEADER, entered"
+	para "SANDRA, notre"
+	line "CHAMPIONNE, est"
 
-	para "the DRAGON'S DEN"
-	line "behind the GYM."
+	para "dans l'ANTRE DU"
+	line "DRAGON derrière"
+	cont "l'ARENE."
 
-	para "I have no idea"
-	line "when our LEADER"
-	cont "will return."
+	para "Je ne sais pas"
+	line "quand elle sera"
+	cont "de retour."
 	done
 
 Text_ClairIsIn:
-	text "CLAIR, our GYM"
-	line "LEADER, is waiting"
-	cont "for you."
+	text "SANDRA, notre"
+	line "CHAMPIONNE, vous"
+	cont "attend."
 
-	para "However, it would"
-	line "be impossible for"
-
-	para "a run-of-the-mill"
-	line "trainer to win."
+	para "Vous aurez du mal"
+	line "à la battre."
 	done
 
 Text_ClairIsBeaten:
-	text "You defeated"
-	line "CLAIR?"
+	text "Vous avez battu"
+	line "SANDRA?"
 
-	para "That's amazing!"
+	para "Incroyable!"
 
-	para "I've never heard"
-	line "of her losing to"
-
-	para "anyone other than"
-	line "LANCE."
+	para "Seul PETER est"
+	line "capable d'un tel"
+	cont "exploit."
 	done
 
 BlackthornGrampsRefusesEntryText:
-	text "No. Only chosen"
-	line "trainers may train"
+	text "Seuls les dres-"
+	line "seurs confirmés"
 
-	para "here."
-	line "Please leave."
+	para "peuvent s'entraî-"
+	line "ner ici. Partez."
 	done
 
 BlackthornGrampsGrantsEntryText:
-	text "If CLAIR allows"
-	line "it, her grand-"
-	cont "father--our MASTER"
-	cont "--will also."
+	text "Si SANDRA le"
+	line "permet, son grand-"
+	cont "père, le MAITRE,"
+	cont "le permet aussi."
 
-	para "You may enter."
+	para "Entrez."
 	done
 
 BlackBeltText_WeirdRadio:
-	text "My radio's busted?"
-	line "Lately, I only get"
-	cont "this weird signal."
+	text "Ma radio est"
+	line "fichue!"
+	cont "J'ai reçu un drôle"
+	cont "de signal bizarre."
 	done
 
 BlackBeltText_VoicesInMyHead:
-	text "Arooo! Voices in"
-	line "my head!"
+	text "Aahhhh! Des voix"
+	line "dans ma tête!"
 
-	para "Huh? I'm listening"
-	line "to my radio!"
+	para "Hum? J'écoute ma"
+	line "radio!"
 	done
 
 BlackthornCooltrainerF1Text:
-	text "Are you going to"
-	line "make your #MON"
-	cont "forget some moves?"
+	text "Vas-tu faire"
+	line "oublier des"
+	cont "capacités à tes"
+	cont "#MON?"
 	done
 
 BlackthornYoungsterText:
-	text "Dragon masters all"
-	line "come from the city"
-	cont "of BLACKTHORN."
+	text "Tous les experts"
+	line "en dragons vien-"
+	cont "nent d'EBENELLE."
 	done
 
 MeetSantosText:
-	text "SANTOS: …"
+	text "SAMUEL: ..."
 
-	para "It's Saturday…"
+	para "On est samedi..."
 
-	para "I'm SANTOS of"
-	line "Saturday…"
+	para "Et moi je suis"
+	line "plus sympa le"
+	cont "samedi."
 	done
 
 SantosGivesGiftText:
-	text "You can have this…"
+	text "Tiens..."
 	done
 
 SantosGaveGiftText:
-	text "SANTOS: …"
+	text "SAMUEL: ..."
 
-	para "SPELL TAG…"
+	para "RUNE SORT..."
 
-	para "Ghost-type moves"
-	line "get stronger…"
+	para "Les attaques de"
+	line "type SPECTRE"
+	cont "sont plus fortes."
 
-	para "It will frighten"
-	line "you…"
+	para "Ca va t'effrayer,"
+	line "tu verras..."
 	done
 
 SantosSaturdayText:
-	text "SANTOS: …"
+	text "SAMUEL: ..."
 
-	para "See you again on"
-	line "another Saturday…"
+	para "A la prochaine, un"
+	line "autre samedi..."
 
-	para "I won't have any"
-	line "more gifts…"
+	para "Je n'aurai plus"
+	line "de cadeaux..."
 	done
 
 SantosNotSaturdayText:
-	text "SANTOS: Today's"
-	line "not Saturday…"
+	text "SAMUEL: On n'est"
+	line "pas samedi..."
 	done
 
 BlackthornCooltrainerF2Text:
-	text "Wow, you came"
-	line "through the ICE"
-	cont "PATH?"
+	text "Tu as traversé la"
+	line "ROUTE DE GLACE?"
 
-	para "You must be a real"
-	line "hotshot trainer!"
+	para "Tu dois être"
+	line "balèze!"
 	done
 
 BlackthornCitySignText:
-	text "BLACKTHORN CITY"
+	text "EBENELLE"
 
-	para "A Quiet Mountain"
-	line "Retreat"
+	para "Une montagne calme"
+	line "et retirée du"
+	cont "reste du monde"
 	done
 
 BlackthornGymSignText:
-	text "BLACKTHORN CITY"
-	line "#MON GYM"
-	cont "LEADER: CLAIR"
+	text "CHAMPION d'ARENE"
+	line "d'EBENELLE: SANDRA"
 
-	para "The Blessed User"
-	line "of Dragon #MON"
+	para "La détentrice de"
+	line "#MON dragon"
 	done
 
 MoveDeletersHouseSignText:
-	text "MOVE DELETER'S"
-	line "HOUSE"
+	text "CHEZ L'EFFACEUR DE"
+	line "CAPACITES"
 	done
 
 DragonDensSignText:
-	text "DRAGON'S DEN"
-	line "AHEAD"
+	text "ANTRE DU DRAGON"
+	line "TOUT DROIT"
 	done
 
 BlackthornCityTrainerTipsText:
-	text "TRAINER TIPS"
+	text "ASTUCE"
 
-	para "A #MON holding"
-	line "a MIRACLEBERRY"
+	para "Un #MON tenant"
+	line "une BAIE MIRACLE"
 
-	para "will cure itself"
-	line "of any status"
-	cont "problem."
+	para "se soignera tout"
+	line "seul de n'importe"
+	cont "quel état."
 	done
 
 BlackthornCity_MapEvents:

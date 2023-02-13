@@ -1,10 +1,11 @@
-	db "VIRTUAL@" ; species name
-	dw 200, 720 ; height, weight
+	db "VIRTUEL@" ; species name
+	db 6 ; height
+	dw 325 ; weight
 
-	db   "This manmade"
-	next "#MON evolved"
-	next "from the latest"
+	db   "Créé par une tech-"
+	next "nologie humaine,"
+	next "il a évolué de sa"
 
-	page "technology. It"
-	next "may have unprog-"
-	next "rammed reactions.@"
+	page "précédente forme"
+	next "et a des réactions"
+	next "non programmées.@"

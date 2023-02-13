@@ -27,32 +27,27 @@ Route6SaffronGuardScript:
 	end
 
 Route6SaffronGuardWelcomeText:
-	text "Welcome to SAFFRON"
-	line "CITY, home of the"
-	cont "MAGNET TRAIN!"
+	text "Bienvenue à"
+	line "SAFRANIA, la ville"
+	cont "du TRAIN MAGNET!"
 
-	para "…That's what I'd"
-	line "normally say, but"
+	para "...Enfin..."
+	line "Le TRAIN MAGNET ne"
 
-	para "the MAGNET TRAIN"
-	line "isn't running now."
+	para "fonctionne pas en"
+	line "ce moment."
 
-	para "It's not getting"
-	line "any electricity"
+	para "Il n'y a plus de"
+	line "courant depuis le"
 
-	para "because there's"
-	line "something wrong"
-
-	para "with the POWER"
-	line "PLANT."
+	para "problème de la"
+	line "CENTRALE."
 	done
 
 Route6SaffronGuardMagnetTrainText:
-	text "The MAGNET TRAIN"
-	line "is the most famous"
-
-	para "thing about SAF-"
-	line "FRON."
+	text "Le TRAIN MAGNET"
+	line "est la fierté de"
+	cont "SAFRANIA."
 	done
 
 Route6SaffronGate_MapEvents:

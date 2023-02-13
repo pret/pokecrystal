@@ -1,68 +1,69 @@
 ErinAnswerPhoneText:
-	text "Yes, this is"
+	text "Oui, c'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "…"
 
-	para "Oh. Hi, <PLAY_G>!"
-	line "Good morning!"
+	para "Oh. <PLAY_G>!"
+	line "Bonjour!"
 	done
 
 ErinAnswerPhoneDayText:
-	text "Yes, this is"
+	text "Oui, c'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "…"
 
-	para "Oh, hi, <PLAY_G>!"
-	line "Yahoo!"
+	para "Oh. <PLAY_G>!"
+	line "Bonjour!"
 	done
 
 ErinAnswerPhoneNiteText:
-	text "Yes, this is"
+	text "Oui, c'est"
 	line "@"
 	text_ram wStringBuffer3
 	text "…"
 
-	para "Oh, hi, <PLAY_G>!"
+	para "Oh. <PLAY_G>!"
+	line "Salut!"
 	done
 
 ErinGreetText:
 	text "<PLAY_G>!"
 
-	para "It's @"
+	para "C'est @"
 	text_ram wStringBuffer3
 	text "!"
-	line "Good morning!"
+	line "Bonjour!"
 	done
 
 ErinGreetDayText:
 	text "<PLAY_G>!"
 
-	para "It's @"
+	para "C'est @"
 	text_ram wStringBuffer3
 	text "!"
-	line "Working hard?"
+	line "Ca bosse dur?"
 	done
 
 ErinGreetNiteText:
 	text "<PLAY_G>!"
 
-	para "It's @"
+	para "C'est @"
 	text_ram wStringBuffer3
 	text "!"
-	line "Were you up?"
+	line "T'es debout?"
 	done
 
 ErinGenericText:
-	text "Are you raising"
-	line "your #MON?"
+	text "Tu entraînes bien"
+	line "tes #MON?"
 
-	para "Hey, @"
-	text_ram wStringBuffer3
-	text "'s"
-	line "@"
+	para "Le @"
 	text_ram wStringBuffer4
-	text " is"
-	cont "looking good!"
+	text_start
+	line "de @"
+	text_ram wStringBuffer3
+	text_start
+	cont "est trop fort!"
 	done

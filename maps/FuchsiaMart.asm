@@ -21,18 +21,18 @@ FuchsiaMartCooltrainerFScript:
 	jumptextfaceplayer FuchsiaMartCooltrainerFText
 
 FuchsiaMartFisherText:
-	text "I was hoping to"
-	line "buy some SAFARI"
+	text "Je voulais acheter"
+	line "des souvenirs au"
 
-	para "ZONE souvenirs,"
-	line "but it's closed…"
+	para "PARC SAFARI mais"
+	line "c'est fermé..."
 	done
 
 FuchsiaMartCooltrainerFText:
-	text "The SAFARI ZONE"
-	line "WARDEN's grand-"
-	cont "daughter lives in"
-	cont "town."
+	text "La petite-fille du"
+	line "GARDIEN du PARC"
+	cont "SAFARI vit en"
+	cont "ville."
 	done
 
 FuchsiaMart_MapEvents:

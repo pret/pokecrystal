@@ -1,10 +1,11 @@
-	db "LONG TAIL@" ; species name
-	dw 207, 250 ; height, weight
+	db "LONGQUEUE@" ; species name
+	db 8 ; height
+	dw 115 ; weight
 
-	db   "It uses its tail"
-	next "to hang on to tree"
-	next "branches. It uses"
+	db   "Sa queue est si"
+	next "forte qu'il peut"
+	next "s'accrocher aux"
 
-	page "its momentum to"
-	next "swing from one"
-	next "branch to another.@"
+	page "branches et se"
+	next "balancer d'arbre"
+	next "en arbre.@"

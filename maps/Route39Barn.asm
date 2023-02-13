@@ -126,64 +126,66 @@ MoomooScript:
 	end
 
 Route39BarnTwinMoomooIsSickText:
-	text "MOOMOO is sick…"
+	text "MEUMEU est malade."
 
-	para "She needs lots of"
-	line "BERRIES."
+	para "Elle a besoin de"
+	line "beaucoup de BAIES."
 	done
 
 Route39BarnTwinWereFeedingMoomooText:
-	text "We're feeding"
-	line "MOOMOO!"
+	text "On nourrit"
+	line "MEUMEU!"
 	done
 
 MoomooWeakMooText:
-	text "MILTANK: …Moo…"
+	text "ECREMEUH: ...Meu."
 	done
 
 Route39BarnItsCryIsWeakText:
-	text "Its cry is weak…"
+	text "Son cri est"
+	line "très faible."
 	done
 
 MoomooHappyMooText:
-	text "MILTANK: Mooo!"
+	text "ECREMEUH: MEU!"
 	done
 
 Route39BarnAskGiveBerryText:
-	text "Give a BERRY to"
-	line "MILTANK?"
+	text "Donner une BAIE à"
+	line "ECREMEUH?"
 	done
 
 Route39BarnGaveBerryText:
-	text "<PLAYER> gave a"
-	line "BERRY to MILTANK."
+	text "<PLAYER> donne une"
+	line "BAIE à ECREMEUH."
 	done
 
 Route39BarnLittleHealthierText:
-	text "MILTANK became a"
-	line "little healthier!"
+	text "ECREMEUH se sent"
+	line "un peu mieux!"
 	done
 
 Route39BarnQuiteHealthyText:
-	text "MILTANK became"
-	line "quite healthy!"
+	text "ECREMEUH se sent"
+	line "mieux!"
 	done
 
 Route39BarnTotallyHealthyText:
-	text "MILTANK became"
-	line "totally healthy!"
+	text "ECREMEUH est en"
+	line "pleine forme!"
 	done
 
 Route39BarnNoBerriesText:
-	text "<PLAYER> has no"
-	line "BERRIES…"
+	text "<PLAYER> n'a pas"
+	line "de BAIES..."
 	done
 
 Route39BarnRefusedBerryText:
-	text "<PLAYER> wouldn't"
-	line "give a BERRY."
+	text "<PLAYER> ne donne"
+	line "pas de BAIE."
 
-	para "MILTANK looks sad."
+	para "ECREMEUH est"
+	line "triste."
 	done
 
 Route39Barn_MapEvents:
