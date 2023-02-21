@@ -3431,9 +3431,9 @@ Function111664:
 Function111686:
 	xor a
 	ldh [rTAC], a
-	ld c, $ff
+	ld c, LOW(rIE)
 	ldh a, [c]
-	and $f3
+	and ~(1 << SERIAL | 1 << TIMER)
 	ldh [c], a
 	ld a, [wMobileSDK_PacketBuffer + 1]
 	ld [wc86a], a
