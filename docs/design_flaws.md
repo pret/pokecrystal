@@ -14,6 +14,7 @@ These are parts of the code that do not work *incorrectly*, like [bugs and glitc
 - [The 6-bit caught level can only record up to level 63](#the-6-bit-caught-level-can-only-record-up-to-level-63)
 - [Identical sine wave code and data is repeated five times](#identical-sine-wave-code-and-data-is-repeated-five-times)
 - [`GetForestTreeFrame` works, but it's still bad](#getforesttreeframe-works-but-its-still-bad)
+- [The overworld scripting engine assumes no more than 127 banks](#the-overworld-scripting-engine-assumes-no-more-than-127-banks)
 
 
 ## Pic banks are offset by `PICS_FIX`
@@ -815,4 +816,37 @@ Edit `GetForestTreeFrame`:
 +	and 1
 +	add a
  	ret
+```
+
+
+## The overworld scripting engine assumes no more than 127 banks
+
+The `CallCallback` and `ExitScriptSubroutine` functions in [engine/overworld/scripting.asm](https://github.com/pret/pokecrystal/blob/master/engine/overworld/scripting.asm) use the highest bit of the bank value, to store whether a certain script stack position should be treated as a return from a callback. However, it seems it was opted to explicitly use the `endcallback` command for this purpose, instead.
+
+As such, this bit serves no purpose but to make map scripts living in the higher banks of mappers such as Japanese Crystal's MBC30 crash for weird reasons.
+
+**Fix:**
+
+Remove the bit mask for the bank value in `ExitScriptSubroutine`:
+
+```diff
+ ExitScriptSubroutine:
+ 	...
+ 	add hl, de
+ 	ld a, [hli]
+ 	ld b, a
+-	and $7f
+ 	ld [wScriptBank], a
+ 	ld a, [hli]
+ 	ld e, a
+```
+
+And in `CallCallback`:
+
+```diff
+ CallCallback::
+-	ld a, [wScriptBank]
+-	or $80
+-	ld [wScriptBank], a
+ 	jp ScriptCall
 ```
