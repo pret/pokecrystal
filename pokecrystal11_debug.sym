@@ -11210,7 +11210,7 @@
 13:6564 CopyNickname
 13:656c CopyNickname.okay
 13:6581 CopyNickname.partymon
-13:6587 GetNicknamenamePointer
+13:6587 GetNicknamePointer
 13:659e CheckFaintedFrzSlp
 13:65b1 CheckFaintedFrzSlp.fainted_frz_slp
 13:65b3 CatchTutorial
