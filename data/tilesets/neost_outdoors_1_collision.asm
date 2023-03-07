@@ -94,10 +94,10 @@
 	tilecoll FLOOR, FLOOR, WALL, WALL ; 5d
 	tilecoll FLOOR, WALL, WALL, WALL ; 5e
 	tilecoll FLOOR, FLOOR, FLOOR, WALL ; 5f
-	tilecoll WALL, WALL, WALL, DOOR ; 60
+	tilecoll WALL, WALL, WALL, WALL ; 60
 	tilecoll WALL, WALL, WALL, WALL ; 61
-	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 62
-	tilecoll FLOOR, FLOOR, CUT_TREE, HEADBUTT_TREE ; 63
+	tilecoll WALL, WALL, WALL, WALL ; 62
+	tilecoll WALL, WALL, WALL, WALL ; 63
 	tilecoll WATER, WATER, WALL, WALL ; 64
 	tilecoll WATER, WALL, WALL, WALL ; 65
 	tilecoll WALL, WALL, WALL, WALL ; 66

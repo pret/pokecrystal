@@ -150,6 +150,15 @@ SECTION "Extra Songs 2", ROMX
 INCLUDE "audio/music/postcredits.asm"
 
 
+SECTION "New Songs", ROMX
+
+INCLUDE "audio/music/xylegendbattle.asm"
+INCLUDE "audio/music/lookzinnia.asm"
+INCLUDE "audio/music/anvilletown.asm"
+INCLUDE "audio/music/route119.asm"
+INCLUDE "audio/music/route47.asm"
+
+
 SECTION "Sound Effects", ROMX
 
 INCLUDE "audio/sfx.asm"

@@ -2,7 +2,7 @@ Intro_MainMenu:
 	ld de, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
-	ld de, MUSIC_MAIN_MENU
+	ld de, MUSIC_LOOK_ZINNIA
 	ld a, e
 	ld [wMapMusic], a
 	call PlayMusic
@@ -1131,7 +1131,7 @@ TitleScreenEntrance:
 	ldh [hLCDCPointer], a
 
 ; Play the title screen music.
-	ld de, MUSIC_TITLE
+	ld de, MUSIC_XY_LEGEND_BATTLE
 	call PlayMusic
 
 	ld a, $88

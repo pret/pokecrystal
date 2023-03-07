@@ -107,4 +107,10 @@ Music:
 	dba Music_SuicuneBattle
 	dba Music_BattleTowerLobby
 	dba Music_MobileCenter
+; new to hack
+	dba Music_XYLegendBattle
+	dba Music_LookZinnia
+	dba Music_AnvilleTown
+	dba Music_Route119
+	dba Music_Route47
 	assert_table_length NUM_MUSIC_SONGS
