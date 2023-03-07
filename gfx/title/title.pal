@@ -1,49 +1,58 @@
 ; BG
+; Running Suicune/Zygarde
 	RGB 00, 00, 00
-	RGB 19, 00, 00
-	RGB 15, 08, 31
-	RGB 15, 08, 31
+	RGB 13, 31, 13 ; Green Highlights
+	RGB 19, 00, 00 ; Crystal + Eyes
+	RGB 13, 13, 13 ; Body
 
+; "Version" part of logo
 	RGB 00, 00, 00
 	RGB 31, 31, 31
 	RGB 15, 16, 31
-	RGB 31, 01, 13
+	RGB 31, 01, 13 ; Color outline for "Version"
 
+; Top of the Pokemon logo
 	RGB 00, 00, 00
 	RGB 07, 07, 07
 	RGB 31, 31, 31
 	RGB 02, 03, 30
 
+; Top middle of Pokemon logo
 	RGB 00, 00, 00
 	RGB 13, 13, 13
 	RGB 31, 31, 18
 	RGB 02, 03, 30
 
+; Middle of Pokemon logo
 	RGB 00, 00, 00
 	RGB 19, 19, 19
 	RGB 29, 28, 12
 	RGB 02, 03, 30
 
+; Bottom middle of Pokemon logo
 	RGB 00, 00, 00
 	RGB 25, 25, 25
 	RGB 28, 25, 06
 	RGB 02, 03, 30
 
+; Bottom of Pokemon logo
 	RGB 00, 00, 00
 	RGB 31, 31, 31
 	RGB 26, 21, 00
 	RGB 02, 03, 30
 
+; Copyright colors
 	RGB 00, 00, 00
 	RGB 11, 11, 19
 	RGB 31, 31, 31
 	RGB 00, 00, 00
 
 ; OBJ
+; Crystal/Z logo
 	RGB 00, 00, 00
-	RGB 10, 00, 15
-	RGB 17, 05, 22
-	RGB 19, 09, 31
+	RGB 05, 31, 05 ; Highlights
+	RGB 14, 31, 14 ; Inside color
+	RGB 13, 13, 13 ; Outline color
 
 	RGB 31, 31, 31
 	RGB 00, 00, 00

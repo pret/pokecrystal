@@ -38,9 +38,10 @@
 	RGB  0,  0,  0
 	RGB  0,  0,  0
 
+; Pulses
 	RGB 31, 31, 31
-	RGB 10,  0, 10
-	RGB 19,  0, 19
+	RGB 10,  0, 10 ; Big Pulse, change to blue
+	RGB 19, 00, 00 ; Small Pulse
 	RGB 31,  0, 31
 
 	RGB 31, 31, 31
