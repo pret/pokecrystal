@@ -414,8 +414,8 @@ EZChat_MasterLoop:
 	depixel 3, 1, 2, 5
 	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
 	call InitSpriteAnimStruct
-	depixel 8, 1, 2, 5
 
+	depixel 8, 1, 2, 5
 	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_VAR1
