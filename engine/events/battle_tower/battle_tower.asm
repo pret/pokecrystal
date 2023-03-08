@@ -497,7 +497,7 @@ Function17042c:
 	ld a, [hli]
 	and a
 	jr z, .empty
-	cp 15
+	cp (Unknown_170470.end - Unknown_170470) + 1
 	jr nc, .copy_data
 
 	push hl
@@ -510,7 +510,7 @@ Function17042c:
 	pop hl
 
 	; If Unknown_170470[a-1] <= b, overwrite the current trainer's data
-	; with Unknown17047e, and exit the inner loop.
+	; with Unknown_17047e, and exit the inner loop.
 	cp b
 	jr c, .copy_data
 	jr z, .copy_data
@@ -518,9 +518,9 @@ Function17042c:
 
 .empty
 	; If a == 0 and b >= $fc, overwrite the current trainer's data with
-	; Unknown17047e, and exit the inner loop.
+	; Unknown_17047e, and exit the inner loop.
 	ld a, b
-	cp $fc
+	cp NUM_POKEMON + 1
 	jr nc, .copy_data
 
 .next_iteration
