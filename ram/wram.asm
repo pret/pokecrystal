@@ -3197,6 +3197,7 @@ wDailyResetTimer:: dw
 wDailyFlags1:: db
 wDailyFlags2:: db
 wSwarmFlags:: db
+wZFlags:: db
 	ds 2
 wTimerEventStartDay:: db
 	ds 3

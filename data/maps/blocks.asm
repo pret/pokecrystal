@@ -361,6 +361,7 @@ CianwoodPokecenter1F_Blocks:
 ViridianPokecenter1F_Blocks:
 SaffronPokecenter1F_Blocks:
 CherrygrovePokecenter1F_Blocks:
+SaltbreezePokecenter1F_Blocks:
 	INCBIN "maps/Pokecenter1F.ablk"
 
 BetaPewterMuseumOfScience1F_Blocks: ; unreferenced
