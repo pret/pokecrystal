@@ -3198,7 +3198,7 @@ wDailyFlags1:: db
 wDailyFlags2:: db
 wSwarmFlags:: db
 wZFlags:: db
-	ds 2
+	ds 1
 wTimerEventStartDay:: db
 	ds 3
 
