@@ -13,6 +13,7 @@ Unknown_170470:
 	db $27
 	db $42
 	db $24
+.end
 
 Unknown_17047e:
 	db $03,  4
