@@ -42,7 +42,7 @@ VBlank::
 	dw VBlank4
 	dw VBlank5
 	dw VBlank6
-	dw VBlank0 ; just in case
+	dw VBlank7
 
 VBlank0::
 ; normal operation
@@ -418,4 +418,15 @@ VBlank6::
 
 	ldh a, [hROMBankBackup]
 	rst Bankswitch
+	ret
+
+VBlank7:
+	; special vblank routine
+	; copies tilemap in one frame without any tearing
+	; also updates oam, and pals if specified
+	push af
+	homecall VBlankSafeCopyTilemapAtOnce
+	xor a
+	ld [wVBlankOccurred], a
+	pop af
 	ret

@@ -261,34 +261,6 @@ StopAutoInput::
 	ld [wInputType], a
 	ret
 
-JoyTitleScreenInput:: ; unreferenced
-.loop
-	call DelayFrame
-
-	push bc
-	call JoyTextDelay
-	pop bc
-
-; Save data can be deleted by pressing Up + B + Select.
-	ldh a, [hJoyDown]
-	cp D_UP | SELECT | B_BUTTON
-	jr z, .keycombo
-
-; Press Start or A to start the game.
-	ldh a, [hJoyLast]
-	and START | A_BUTTON
-	jr nz, .keycombo
-
-	dec c
-	jr nz, .loop
-
-	and a
-	ret
-
-.keycombo
-	scf
-	ret
-
 JoyWaitAorB::
 .loop
 	call DelayFrame

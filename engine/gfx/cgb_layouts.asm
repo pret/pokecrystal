@@ -294,16 +294,54 @@ PokedexCursorPalette:
 INCLUDE "gfx/pokedex/cursor.pal"
 
 _CGB_BillsPC:
+	newfarcall GetBoxTheme
+BillsPC_PreviewTheme:
+	; hl = BillsPC_ThemePals + a * 4 * 2
+	ld h, 0
+	ld l, a
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	ld de, BillsPC_ThemePals
+	add hl, de
+	; Load palettes
 	ld de, wBGPals1
-	ld a, PREDEFPAL_POKEDEX
-	call GetPredefPal
+	push hl
+	ld c, 2 * 2
+	call LoadHLBytesIntoDE
+	pop hl
+	ld c, 2 * 2
+	call LoadHLBytesIntoDE
+	push hl
+	ld hl, wBGPals1 palette 0
+	ld c, 1 * 2
+	call LoadHLBytesIntoDE
+	pop hl
+	ld c, 2 * 2
+	call LoadHLBytesIntoDE
+	ld hl, BillsPC_WhitePalette
 	call LoadHLPaletteIntoDE
-	ld a, [wCurPartySpecies]
-	cp $ff
-	jr nz, .GetMonPalette
-	ld hl, BillsPCOrangePalette
+	ld hl, wBGPals1 palette 0
+	ld de, wBGPals1 palette 3
+	ld c, 1 * 2
+	call LoadHLBytesIntoDE
+	ld a, [wBillsPC_ApplyThemePals]
+	and a
+	jr nz, .apply_pals
+	ld de, wOBPals1 palette 1
+	ld hl, BillsPC_CursorPalette
+	push hl
 	call LoadHLPaletteIntoDE
-	jr .GotPalette
+	pop hl
+	call LoadHLPaletteIntoDE
+	ld hl, BillsPC_PackPalette
+	ld de, wOBPals1 palette 4
+	call LoadHLPaletteIntoDE
+	ld hl, BillsPC_WhitePalette
+	ld de, wOBPals1 palette 6
+	jp LoadHLPaletteIntoDE
+.apply_pals
+	newfarjp BillsPC_SetPals
 
 .GetMonPalette:
 	ld bc, wTempMonDVs
@@ -783,7 +821,7 @@ _CGB_PackPals:
 
 .got_gender
 	ld de, wBGPals1
-	ld bc, 8 palettes ; 6 palettes?
+	ld bc, 6 palettes
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	call WipeAttrmap

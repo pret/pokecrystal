@@ -6,6 +6,17 @@ MACRO farcall ; bank, address
 	rst FarCall
 ENDM
 
+MACRO newfarcall ; bank, address
+	; We can't replace previous farcalls because it breaks saves...
+	rst BetterFarCall
+	dbw BANK(\1), \1
+ENDM
+
+MACRO newfarjp
+	rst BetterFarCall
+	dbw BANK(\1) | $80, \1
+ENDM
+
 MACRO callfar ; address, bank
 	ld hl, \1
 	ld a, BANK(\1)

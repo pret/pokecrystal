@@ -1481,6 +1481,11 @@ _ItemCantHeldText::
 	line "held."
 	prompt
 
+_CantPlaceMailInStorageText::
+	text "Can't place MAIL in"
+	line "storage."
+	prompt
+
 _MailLoseMessageText::
 	text "The MAIL will lose"
 	line "its message. OK?"

@@ -8,6 +8,13 @@ SECTION "rst8", ROM0[$0008]
 FarCall::
 	jp FarCall_hl
 
+SwapHLDE::
+	push de
+	ld d, h
+	ld e, l
+	pop hl
+	ret
+
 SECTION "rst10", ROM0[$0010]
 Bankswitch::
 	ldh [hROMBank], a
@@ -15,7 +22,8 @@ Bankswitch::
 	ret
 
 SECTION "rst18", ROM0[$0018]
-	rst $38
+BetterFarCall::
+	jp RstBetterFarCall
 
 SECTION "rst20", ROM0[$0020]
 	rst $38
@@ -37,6 +45,12 @@ JumpTable::
 SECTION "rst38", ROM0[$0038]
 	rst $38
 
+PopBCDEHL::
+	pop bc
+	pop de
+	pop hl
+DoNothing::
+	ret
 
 ; Game Boy hardware interrupts
 
@@ -44,7 +58,7 @@ SECTION "vblank", ROM0[$0040]
 	jp VBlank
 
 SECTION "lcd", ROM0[$0048]
-	jp LCD
+	jr hLCDInterruptFunction
 
 SECTION "timer", ROM0[$0050]
 	jp MobileTimer

@@ -219,12 +219,8 @@ PokeBallEffect:
 	cp PARTY_LENGTH
 	jr nz, .room_in_party
 
-	ld a, BANK(sBoxCount)
-	call OpenSRAM
-	ld a, [sBoxCount]
-	cp MONS_PER_BOX
-	call CloseSRAM
-	jp z, Ball_BoxIsFullMessage
+	newfarcall NewStorageBoxPointer
+	jp c, Ball_BoxIsFullMessage
 
 .room_in_party
 ; BUG: Using a Park Ball in non-Contest battles has a corrupt animation (see docs/bugs_and_glitches.md)
@@ -612,12 +608,8 @@ PokeBallEffect:
 
 	farcall SetBoxMonCaughtData
 
-	ld a, BANK(sBoxCount)
-	call OpenSRAM
-
-	ld a, [sBoxCount]
-	cp MONS_PER_BOX
-	jr nz, .BoxNotFullYet
+	newfarcall NewStorageBoxPointer
+	jr nc, .BoxNotFullYet
 	ld hl, wBattleResult
 	set BATTLERESULT_BOX_FULL, [hl]
 .BoxNotFullYet:
@@ -626,10 +618,8 @@ PokeBallEffect:
 	jr nz, .SkipBoxMonFriendBall
 	; The captured mon is now first in the box
 	ld a, FRIEND_BALL_HAPPINESS
-	ld [sBoxMon1Happiness], a
+	ld [wBufferMonHappiness], a
 .SkipBoxMonFriendBall:
-	call CloseSRAM
-
 	ld hl, AskGiveNicknameText
 	call PrintText
 
@@ -642,36 +632,55 @@ PokeBallEffect:
 
 	xor a
 	ld [wCurPartyMon], a
-	ld a, BOXMON
+	ld a, BUFFERMON
 	ld [wMonType], a
 	ld de, wMonOrItemNameBuffer
 	ld b, NAME_MON
 	farcall NamingScreen
 
-	ld a, BANK(sBoxMonNicknames)
-	call OpenSRAM
-
 	ld hl, wMonOrItemNameBuffer
-	ld de, sBoxMonNicknames
+	ld de, wBufferMonNickname
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
-	ld hl, sBoxMonNicknames
+	ld hl, wBufferMonNickname
 	ld de, wStringBuffer1
 	call InitName
 
-	call CloseSRAM
-
 .SkipBoxMonNickname:
-	ld a, BANK(sBoxMonNicknames)
-	call OpenSRAM
-
-	ld hl, sBoxMonNicknames
+	ld hl, wBufferMonNickname
 	ld de, wMonOrItemNameBuffer
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
-	call CloseSRAM
+	newfarcall UpdateStorageBoxMonFromTemp
+
+	; Switch current Box if it was full. We can check this by checking if
+	; the buffermon's box location matches the current box.
+	ld a, [wBufferMonBox]
+	ld b, a
+	ld a, [wCurBox]
+	inc a
+	cp b
+	jr z, .curbox_not_full
+
+	push bc
+	ld b, a
+	newfarcall GetBoxName
+	ld hl, CurBoxFullText
+	call PrintText
+	pop bc
+
+	; Switch current box.
+	ld a, b
+	dec a
+	ld [wCurBox], a
+
+.curbox_not_full
+	ld a, [wCurBox]
+	inc a
+	ld b, a
+	newfarcall GetBoxName
 
 	ld hl, BallSentToPCText
 	call PrintText
@@ -1099,6 +1108,10 @@ Text_GotchaMonWasCaught:
 
 WaitButtonText:
 	text_far _WaitButtonText
+	text_end
+
+CurBoxFullText:
+	text_far _CurBoxFullText
 	text_end
 
 BallSentToPCText:
@@ -2623,7 +2636,10 @@ LooksBitterMessage:
 	jp PrintText
 
 Ball_BoxIsFullMessage:
-	ld hl, BallBoxFullText
+	ld hl, StorageFullText
+	jr z, .got_msg
+	ld hl, DatabaseTaxedText
+.got_msg
 	call PrintText
 
 	; Item wasn't used.
@@ -2697,8 +2713,12 @@ ItemCantGetOnText:
 	text_far _ItemCantGetOnText
 	text_end
 
-BallBoxFullText:
-	text_far _BallBoxFullText
+StorageFullText:
+	text_far _StorageFullText
+	text_end
+
+DatabaseTaxedText:
+	text_far _StorageFullText
 	text_end
 
 ItemUsedText:
@@ -2797,6 +2817,18 @@ ComputeMaxPP:
 	pop bc
 	ret
 
+RestoreBufferPP:
+	ld hl, wBufferMonMoves
+	ld de, wBufferMonPP
+	ld a, [wMenuCursorY]
+	push af
+	ld a, BUFFERMON
+	ld [wMonType], a
+	call _RestoreAllPP
+	pop af
+	ld [wMenuCursorY], a
+	ret
+
 RestoreAllPP:
 	ld a, MON_PP
 	call GetPartyParamLocation
@@ -2805,8 +2837,11 @@ RestoreAllPP:
 	call GetPartyParamLocation
 	pop de
 	xor a ; PARTYMON
-	ld [wMenuCursorY], a
 	ld [wMonType], a
+	; fallthrough
+_RestoreAllPP:
+	xor a
+	ld [wMenuCursorY], a
 	ld c, NUM_MOVES
 .loop
 	ld a, [hli]
@@ -2858,6 +2893,10 @@ GetMaxPPOfMove:
 	jr z, .got_nonpartymon ; TEMPMON
 
 	ld hl, wBattleMonMoves ; WILDMON
+	dec a
+	jr z, .got_nonpartymon
+
+	ld hl, wBufferMonMoves ; BUFFERMON
 
 .got_nonpartymon ; BOXMON, TEMPMON, WILDMON
 	call GetMthMoveOfCurrentMon

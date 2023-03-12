@@ -238,14 +238,24 @@ GiveTakePartyMonItem:
 	ret
 
 .GiveItem:
-	farcall DepositSellInitPackBuffers
+	call GetItemToGive
+	ret z
+	jp TryGiveItemToPartymon
 
+.quit
+	ret
+
+GetItemToGive:
+; Returns nz if we got an item to give.
+	farcall DepositSellInitPackBuffers
+	; fallthrough
+_GetItemToGive:
 .loop
 	farcall DepositSellPack
 
 	ld a, [wPackUsedItem]
 	and a
-	jr z, .quit
+	ret z
 
 	ld a, [wCurPocket]
 	cp KEY_ITEM_POCKET
@@ -256,16 +266,64 @@ GiveTakePartyMonItem:
 	and a
 	jr nz, .next
 
-	call TryGiveItemToPartymon
-	jr .quit
+	or 1
+	ret
 
 .next
 	ld hl, ItemCantHeldText
 	call MenuTextboxBackup
 	jr .loop
 
-.quit
-	ret
+PCGiveItem:
+	call DepositSellInitPackBuffers
+.loop
+	call _GetItemToGive
+	ret z
+
+	; Ensure that we aren't trying to give Mail to a Pokémon in storage.
+	ld a, [wCurItem]
+	ld d, a
+	newfarcall ItemIsMail
+	jr nc, .item_ok
+
+	ld a, [wBufferMonBox]
+	and a
+	jr z, .item_ok
+
+	ld hl, CantPlaceMailInStorageText
+	call MenuTextboxBackup
+	jr .loop
+
+.item_ok
+	call PartyMonItemName
+	call GiveItemToPokemon
+
+	ld hl, wBufferMonNickname
+	ld de, wMonOrItemNameBuffer
+	ld bc, MON_NAME_LENGTH
+	call CopyBytes
+
+	ld hl, PokemonHoldItemText
+	call MenuTextboxBackup
+
+	; Now, actually give the item.
+	ld a, [wBufferMonSpecies]
+	ld [wCurPartySpecies], a
+	ld de, wCurItem
+	ld a, [de]
+	ld [wBufferMonItem], a
+	newfarcall UpdateStorageBoxMonFromTemp
+
+	; We know that if we're dealing with Mail, then we're giving to a partymon.
+	; Thus, there's no harm in using party-specific code.
+	ld a, [wBufferMonSlot]
+	dec a
+	ld [wCurPartyMon], a
+	ld a, [wCurItem]
+	ld d, a
+	newfarcall ItemIsMail
+	ret nc
+	jp ComposeMailMessage
 
 TryGiveItemToPartymon:
 	call SpeechTextbox
@@ -418,6 +476,10 @@ ItemCantHeldText:
 	text_far _ItemCantHeldText
 	text_end
 
+CantPlaceMailInStorageText:
+	text_far _CantPlaceMailInStorageText
+	text_end
+
 GetPartyItemLocation:
 	push af
 	ld a, MON_ITEM
@@ -488,59 +550,19 @@ MonMailAction:
 	call ExitMenu
 
 ; Interpret the menu.
-	jp c, .done
+	ld a, $3
+	ret c
 	ld a, [wMenuCursorY]
 	cp $1
 	jr z, .read
 	cp $2
-	jr z, .take
-	jp .done
+	jr z, TakeMail
+	ld a, $3
+	ret
 
 .read
 	farcall ReadPartyMonMail
-	ld a, $0
-	ret
-
-.take
-	ld hl, .MailAskSendToPCText
-	call StartMenuYesNo
-	jr c, .RemoveMailToBag
-	ld a, [wCurPartyMon]
-	ld b, a
-	farcall SendMailToPC
-	jr c, .MailboxFull
-	ld hl, .MailSentToPCText
-	call MenuTextboxBackup
-	jr .done
-
-.MailboxFull:
-	ld hl, .MailboxFullText
-	call MenuTextboxBackup
-	jr .done
-
-.RemoveMailToBag:
-	ld hl, .MailLoseMessageText
-	call StartMenuYesNo
-	jr c, .done
-	call GetPartyItemLocation
-	ld a, [hl]
-	ld [wCurItem], a
-	call ReceiveItemFromPokemon
-	jr nc, .BagIsFull
-	call GetPartyItemLocation
-	ld [hl], $0
-	call GetCurNickname
-	ld hl, .MailDetachedText
-	call MenuTextboxBackup
-	jr .done
-
-.BagIsFull:
-	ld hl, .MailNoSpaceText
-	call MenuTextboxBackup
-	jr .done
-
-.done
-	ld a, $3
+	xor a
 	ret
 
 .MenuHeader:
@@ -555,6 +577,52 @@ MonMailAction:
 	db "READ@"
 	db "TAKE@"
 	db "QUIT@"
+
+TakeMail:
+	ld hl, .MailAskSendToPCText
+	call StartMenuYesNo
+	jr c, .RemoveMailToBag
+	ld a, [wCurPartyMon]
+	ld b, a
+	farcall SendMailToPC
+	jr c, .MailboxFull
+	ld hl, .MailSentToPCText
+	call MenuTextboxBackup
+	jr .TookMail
+
+.MailboxFull:
+	ld hl, .MailboxFullText
+	call MenuTextboxBackup
+	jr .KeptMail
+
+.RemoveMailToBag:
+	ld hl, .MailLoseMessageText
+	call StartMenuYesNo
+	jr c, .KeptMail
+	call GetPartyItemLocation
+	ld a, [hl]
+	ld [wCurItem], a
+	call ReceiveItemFromPokemon
+	jr nc, .BagIsFull
+	call GetPartyItemLocation
+	ld [hl], $0
+	call GetCurNickname
+	ld hl, .MailDetachedText
+	call MenuTextboxBackup
+	; fallthrough
+.TookMail:
+	scf
+	jr .done
+
+.BagIsFull:
+	ld hl, .MailNoSpaceText
+	call MenuTextboxBackup
+	; fallthrough
+.KeptMail:
+	and a
+.done
+	ld a, $3
+	ret
 
 .MailLoseMessageText:
 	text_far _MailLoseMessageText
@@ -581,11 +649,13 @@ MonMailAction:
 	text_end
 
 OpenPartyStats:
-	call LoadStandardMenuHeader
-	call ClearSprites
 ; PartyMon
 	xor a
 	ld [wMonType], a
+	; fallthrough
+_OpenPartyStats:
+	call LoadStandardMenuHeader
+	call ClearSprites
 	call LowVolume
 	predef StatsScreenInit
 	call MaxVolume

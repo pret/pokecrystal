@@ -173,7 +173,7 @@ CheckPokeMail::
 	jr c, .close_sram_return
 	xor a ; REMOVE_PARTY
 	ld [wPokemonWithdrawDepositParameter], a
-	farcall RemoveMonFromPartyOrBox
+	farcall RemoveMonFromParty
 	ld a, POKEMAIL_CORRECT
 
 .close_sram_return

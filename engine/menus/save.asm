@@ -36,100 +36,14 @@ SaveAfterLinkTrade:
 	call ResumeGameLogic
 	ret
 
-ChangeBoxSaveGame:
-	push de
-	ld hl, ChangeBoxSaveText
-	call MenuTextbox
-	call YesNoBox
-	call ExitMenu
-	jr c, .refused
-	call AskOverwriteSaveFile
-	jr c, .refused
-	call PauseGameLogic
-	call SavingDontTurnOffThePower
-	call SaveBox
-	pop de
-	ld a, e
-	ld [wCurBox], a
-	call LoadBox
-	call SavedTheGame
-	call ResumeGameLogic
-	and a
-	ret
-.refused
-	pop de
-	ret
-
 Link_SaveGame:
 	call AskOverwriteSaveFile
-	jr c, .refused
+	ret c
+ForceGameSave:
 	call PauseGameLogic
 	call _SavingDontTurnOffThePower
 	call ResumeGameLogic
 	and a
-
-.refused
-	ret
-
-MoveMonWOMail_SaveGame:
-	call PauseGameLogic
-	push de
-	call SaveBox
-	pop de
-	ld a, e
-	ld [wCurBox], a
-	call LoadBox
-	call ResumeGameLogic
-	ret
-
-MoveMonWOMail_InsertMon_SaveGame:
-	call PauseGameLogic
-	push de
-	call SaveBox
-	pop de
-	ld a, e
-	ld [wCurBox], a
-	ld a, TRUE
-	ld [wSaveFileExists], a
-	farcall StageRTCTimeForSave
-	farcall BackupMysteryGift
-	call ValidateSave
-	call SaveOptions
-	call SavePlayerData
-	call SavePokemonData
-	call SaveChecksum
-	call ValidateBackupSave
-	call SaveBackupOptions
-	call SaveBackupPlayerData
-	call SaveBackupPokemonData
-	call SaveBackupChecksum
-	farcall BackupPartyMonMail
-	farcall BackupMobileEventIndex
-	farcall SaveRTC
-	call LoadBox
-	call ResumeGameLogic
-	ld de, SFX_SAVE
-	call PlaySFX
-	ld c, 24
-	call DelayFrames
-	ret
-
-StartMoveMonWOMail_SaveGame:
-	ld hl, MoveMonWOMailSaveText
-	call MenuTextbox
-	call YesNoBox
-	call ExitMenu
-	jr c, .refused
-	call AskOverwriteSaveFile
-	jr c, .refused
-	call PauseGameLogic
-	call _SavingDontTurnOffThePower
-	call ResumeGameLogic
-	and a
-	ret
-
-.refused
-	scf
 	ret
 
 PauseGameLogic:
@@ -267,22 +181,11 @@ _SaveGameData:
 	ld a, TRUE
 	ld [wSaveFileExists], a
 	farcall StageRTCTimeForSave
-	farcall BackupMysteryGift
 	call ValidateSave
 	call SaveOptions
 	call SavePlayerData
 	call SavePokemonData
-	call SaveBox
-	call SaveChecksum
-	call ValidateBackupSave
-	call SaveBackupOptions
-	call SaveBackupPlayerData
-	call SaveBackupPokemonData
-	call SaveBackupChecksum
-	call UpdateStackTop
-	farcall BackupPartyMonMail
-	farcall BackupMobileEventIndex
-	farcall SaveRTC
+
 	ld a, BANK(sBattleTowerChallengeState)
 	call OpenSRAM
 	ld a, [sBattleTowerChallengeState]
@@ -292,7 +195,61 @@ _SaveGameData:
 	ld [sBattleTowerChallengeState], a
 .ok
 	call CloseSRAM
-	ret
+
+	; At this point, there is no longer any harm in setting this. We can't set
+	; it earlier, because it might confuse the load routine into using bad
+	; box/mail data, and we can't set it later because we need to set it
+	; before our main save copy is valid.
+	ld a, 1
+	call SetSavePhase
+
+	call SaveChecksum
+	call WriteBackupSave
+	farcall SaveRTC
+	jp CloseSRAM ; just in case
+
+WriteBackupSave:
+; Runs after saving the main copy. Writes the "pseudo-WRAM" copies of storage
+; and mail, then creates the backup save. This process is automatically run
+; on game load if we have a valid main save but not a backup save.
+	; Save storage, mail, mobile event and mystery gift to backup
+	farcall BackupPartyMonMail
+	farcall BackupMobileEventIndex
+	farcall BackupMysteryGift
+	call SaveStorageSystem
+
+	; Save the backup copy of game data.
+	call ValidateBackupSave
+	call SaveBackupOptions
+	call SaveBackupPlayerData
+	call SaveBackupPokemonData
+	call SaveBackupChecksum
+
+	; Finished saving.
+	xor a
+	call SetSavePhase
+	jp CloseSRAM
+
+LoadStorageSystem:
+; Copy backup storage system to active.
+	ld hl, sBackupNewBox1
+	ld de, sNewBox1
+	call CopyStorageSystem
+
+	; Initialize allocation information.
+	newfarjp FlushStorageSystem
+
+SaveStorageSystem:
+; Copy active storage system to backup.
+	ld hl, sNewBox1
+	ld de, sBackupNewBox1
+	; fallthrough
+CopyStorageSystem:
+	ld a, BANK(sNewBox1)
+	call OpenSRAM
+	ld bc, sNewBoxEnd - sNewBox1
+	call CopyBytes
+	jp CloseSRAM
 
 UpdateStackTop:
 ; sStackTop appears to be unused.
@@ -358,7 +315,6 @@ SavingDontTurnOffThePower:
 	ret
 
 ErasePreviousSave:
-	call EraseBoxes
 	call EraseHallOfFame
 	call EraseLinkBattleStats
 	call EraseMysteryGift
@@ -518,11 +474,6 @@ SavePokemonData:
 	call CloseSRAM
 	ret
 
-SaveBox:
-	call GetBoxAddress
-	call SaveBoxAddress
-	ret
-
 SaveChecksum:
 	ld hl, sGameData
 	ld bc, sGameDataEnd - sGameData
@@ -593,20 +544,38 @@ SaveBackupChecksum:
 	call CloseSRAM
 	ret
 
+WasMidSaveAborted:
+; Returns z if the system was reset mid-saving.
+	ld a, BANK(sWritingBackup)
+	call OpenSRAM
+	ld a, [sWritingBackup]
+	dec a
+	jp CloseSRAM
+
+SetSavePhase:
+; set current save phase: 1 (saving), 0 (not saving).
+	push af
+	ld a, BANK(sWritingBackup)
+	call OpenSRAM
+	pop af
+	ld [sWritingBackup], a
+	jp CloseSRAM
+
 TryLoadSaveFile:
 	call VerifyChecksum
 	jr nz, .backup
 	call LoadPlayerData
 	call LoadPokemonData
-	call LoadBox
+	; If a mid-save was aborted but main save data is good, finish it.
+	call WasMidSaveAborted
+	call z, WriteBackupSave
 	farcall RestorePartyMonMail
 	farcall RestoreMobileEventIndex
 	farcall RestoreMysteryGift
-	call ValidateBackupSave
-	call SaveBackupOptions
-	call SaveBackupPlayerData
-	call SaveBackupPokemonData
-	call SaveBackupChecksum
+	call LoadStorageSystem
+
+	; Just in case
+	call WriteBackupSave
 	and a
 	ret
 
@@ -615,15 +584,11 @@ TryLoadSaveFile:
 	jr nz, .corrupt
 	call LoadBackupPlayerData
 	call LoadBackupPokemonData
-	call LoadBox
 	farcall RestorePartyMonMail
 	farcall RestoreMobileEventIndex
 	farcall RestoreMysteryGift
-	call ValidateSave
-	call SaveOptions
-	call SavePlayerData
-	call SavePokemonData
-	call SaveChecksum
+	call LoadStorageSystem
+	call SaveGameData
 	and a
 	ret
 
@@ -763,11 +728,6 @@ LoadPokemonData:
 	call CloseSRAM
 	ret
 
-LoadBox:
-	call GetBoxAddress
-	call LoadBoxAddress
-	ret
-
 VerifyChecksum:
 	ld hl, sGameData
 	ld bc, sGameDataEnd - sGameData
@@ -871,219 +831,6 @@ _LoadData:
 
 	jp CloseSRAM
 
-GetBoxAddress:
-	ld a, [wCurBox]
-	cp NUM_BOXES
-	jr c, .ok
-	xor a
-	ld [wCurBox], a
-
-.ok
-	ld e, a
-	ld d, 0
-	ld hl, BoxAddresses
-rept 5
-	add hl, de
-endr
-	ld a, [hli]
-	push af
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	pop af
-	ret
-
-SaveBoxAddress:
-; Save box via wBoxPartialData.
-; We do this in three steps because the size of wBoxPartialData is less than
-; the size of sBox.
-	push hl
-; Load the first part of the active box.
-	push af
-	push de
-	ld a, BANK(sBox)
-	call OpenSRAM
-	ld hl, sBox
-	ld de, wBoxPartialData
-	ld bc, (wBoxPartialDataEnd - wBoxPartialData)
-	call CopyBytes
-	call CloseSRAM
-	pop de
-	pop af
-; Save it to the target box.
-	push af
-	push de
-	call OpenSRAM
-	ld hl, wBoxPartialData
-	ld bc, (wBoxPartialDataEnd - wBoxPartialData)
-	call CopyBytes
-	call CloseSRAM
-
-; Load the second part of the active box.
-	ld a, BANK(sBox)
-	call OpenSRAM
-	ld hl, sBox + (wBoxPartialDataEnd - wBoxPartialData)
-	ld de, wBoxPartialData
-	ld bc, (wBoxPartialDataEnd - wBoxPartialData)
-	call CopyBytes
-	call CloseSRAM
-	pop de
-	pop af
-
-	ld hl, (wBoxPartialDataEnd - wBoxPartialData)
-	add hl, de
-	ld e, l
-	ld d, h
-; Save it to the next part of the target box.
-	push af
-	push de
-	call OpenSRAM
-	ld hl, wBoxPartialData
-	ld bc, (wBoxPartialDataEnd - wBoxPartialData)
-	call CopyBytes
-	call CloseSRAM
-
-; Load the third and final part of the active box.
-	ld a, BANK(sBox)
-	call OpenSRAM
-	ld hl, sBox + (wBoxPartialDataEnd - wBoxPartialData) * 2
-	ld de, wBoxPartialData
-	ld bc, sBoxEnd - (sBox + (wBoxPartialDataEnd - wBoxPartialData) * 2) ; $8e
-	call CopyBytes
-	call CloseSRAM
-	pop de
-	pop af
-
-	ld hl, (wBoxPartialDataEnd - wBoxPartialData)
-	add hl, de
-	ld e, l
-	ld d, h
-; Save it to the final part of the target box.
-	call OpenSRAM
-	ld hl, wBoxPartialData
-	ld bc, sBoxEnd - (sBox + (wBoxPartialDataEnd - wBoxPartialData) * 2) ; $8e
-	call CopyBytes
-	call CloseSRAM
-
-	pop hl
-	ret
-
-LoadBoxAddress:
-; Load box via wBoxPartialData.
-; We do this in three steps because the size of wBoxPartialData is less than
-; the size of sBox.
-	push hl
-	ld l, e
-	ld h, d
-; Load part 1
-	push af
-	push hl
-	call OpenSRAM
-	ld de, wBoxPartialData
-	ld bc, (wBoxPartialDataEnd - wBoxPartialData)
-	call CopyBytes
-	call CloseSRAM
-	ld a, BANK(sBox)
-	call OpenSRAM
-	ld hl, wBoxPartialData
-	ld de, sBox
-	ld bc, (wBoxPartialDataEnd - wBoxPartialData)
-	call CopyBytes
-	call CloseSRAM
-	pop hl
-	pop af
-
-	ld de, (wBoxPartialDataEnd - wBoxPartialData)
-	add hl, de
-; Load part 2
-	push af
-	push hl
-	call OpenSRAM
-	ld de, wBoxPartialData
-	ld bc, (wBoxPartialDataEnd - wBoxPartialData)
-	call CopyBytes
-	call CloseSRAM
-	ld a, BANK(sBox)
-	call OpenSRAM
-	ld hl, wBoxPartialData
-	ld de, sBox + (wBoxPartialDataEnd - wBoxPartialData)
-	ld bc, (wBoxPartialDataEnd - wBoxPartialData)
-	call CopyBytes
-	call CloseSRAM
-	pop hl
-	pop af
-; Load part 3
-	ld de, (wBoxPartialDataEnd - wBoxPartialData)
-	add hl, de
-	call OpenSRAM
-	ld de, wBoxPartialData
-	ld bc, sBoxEnd - (sBox + (wBoxPartialDataEnd - wBoxPartialData) * 2) ; $8e
-	call CopyBytes
-	call CloseSRAM
-	ld a, BANK(sBox)
-	call OpenSRAM
-	ld hl, wBoxPartialData
-	ld de, sBox + (wBoxPartialDataEnd - wBoxPartialData) * 2
-	ld bc, sBoxEnd - (sBox + (wBoxPartialDataEnd - wBoxPartialData) * 2) ; $8e
-	call CopyBytes
-	call CloseSRAM
-
-	pop hl
-	ret
-
-EraseBoxes:
-	ld hl, BoxAddresses
-	ld c, NUM_BOXES
-.next
-	push bc
-	ld a, [hli]
-	call OpenSRAM
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	xor a
-	ld [de], a
-	inc de
-	ld a, -1
-	ld [de], a
-	inc de
-	ld bc, sBoxEnd - (sBox + 2)
-.clear
-	xor a
-	ld [de], a
-	inc de
-	dec bc
-	ld a, b
-	or c
-	jr nz, .clear
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	ld a, -1
-	ld [de], a
-	inc de
-	xor a
-	ld [de], a
-	call CloseSRAM
-	pop bc
-	dec c
-	jr nz, .next
-	ret
-
-BoxAddresses:
-	table_width 5, BoxAddresses
-for n, 1, NUM_BOXES + 1
-	db BANK(sBox{d:n}) ; aka BANK(sBox{d:n}End)
-	dw sBox{d:n}, sBox{d:n}End
-endr
-	assert_table_length NUM_BOXES
-
 Checksum:
 	ld de, 0
 .loop
@@ -1121,12 +868,4 @@ AnotherSaveFileText:
 
 SaveFileCorruptedText:
 	text_far _SaveFileCorruptedText
-	text_end
-
-ChangeBoxSaveText:
-	text_far _ChangeBoxSaveText
-	text_end
-
-MoveMonWOMailSaveText:
-	text_far _MoveMonWOMailSaveText
 	text_end

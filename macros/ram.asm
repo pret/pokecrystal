@@ -29,6 +29,49 @@ MACRO box_struct
 \1BoxEnd::
 ENDM
 
+MACRO savemon_struct
+\1Species::        db
+\1Item::           db
+\1Moves::          ds NUM_MOVES
+\1ID::             dw
+\1Exp::            ds 3
+\1StatExp::
+\1HPExp::          dw
+\1AtkExp::         dw
+\1DefExp::         dw
+\1SpdExp::         dw
+\1SpcExp::         dw
+\1DVs::            dw
+\1PPUps::          db
+\1Happiness::      db
+\1PokerusStatus::  db
+\1CaughtData::
+\1CaughtTime::
+\1CaughtLevel::    db
+\1CaughtGender::
+\1CaughtLocation:: db
+\1Level::          db
+\1AltSpecies::     db ; holds the alternative species byte (to handle eggs)
+\1Nickname::       ds MON_NAME_LENGTH - 1 ; terminator is implicit
+\1OT::             ds PLAYER_NAME_LENGTH - 1 ; terminator is implicit
+\1End::
+ENDM
+
+MACRO pokedb
+\1Mons::
+	for n, 1, \2 + 1
+	\1Mon{d:n}:: savemon_struct \1Mon{d:n}
+	endr
+\1End::
+ENDM
+
+MACRO newbox
+\1Entries:: ds MONS_PER_BOX
+\1Banks::   flag_array MONS_PER_BOX
+\1Name::    ds BOX_NAME_LENGTH
+\1Theme::   db
+ENDM
+
 MACRO party_struct
 	box_struct \1
 \1Status::         db
