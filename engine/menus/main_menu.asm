@@ -18,7 +18,8 @@
 	const MAINMENUITEM_MYSTERY_GIFT   ; 3
 	const MAINMENUITEM_MOBILE         ; 4
 	const MAINMENUITEM_MOBILE_STUDIUM ; 5
-	const MAINMENUITEM_DEBUG_ROOM     ; 6
+	const MAINMENUITEM_RESET_CLOCK    ; 6
+	const MAINMENUITEM_DEBUG_ROOM     ; 7
 
 MobileMenuGFX:
 INCBIN "gfx/mobile/mobile_menu.2bpp"
@@ -71,6 +72,7 @@ MainMenu:
 	db "MYSTERY GIFT@"
 	db "MOBILE@"
 	db "MOBILE STUDIUM@"
+	db "RESET CLOCK@"
 if DEF(_DEBUG)
 	db "DEBUG ROOM@"
 endc
@@ -83,6 +85,7 @@ endc
 	dw MainMenu_MysteryGift
 	dw MainMenu_Mobile
 	dw MainMenu_MobileStudium
+	dw MainMenu_ResetClock
 if DEF(_DEBUG)
 	dw MainMenu_DebugRoom
 endc
@@ -97,10 +100,11 @@ MainMenuItems:
 	db -1
 
 	; MAINMENU_CONTINUE
-	db 3 + DEF(_DEBUG)
+	db 4 + DEF(_DEBUG)
 	db MAINMENUITEM_CONTINUE
 	db MAINMENUITEM_NEW_GAME
 	db MAINMENUITEM_OPTION
+	db MAINMENUITEM_RESET_CLOCK
 if DEF(_DEBUG)
 	db MAINMENUITEM_DEBUG_ROOM
 endc
@@ -381,4 +385,8 @@ MainMenu_Continue:
 
 MainMenu_MysteryGift:
 	farcall MysteryGift
+	ret
+
+MainMenu_ResetClock:
+	farcall ResetClock2
 	ret
