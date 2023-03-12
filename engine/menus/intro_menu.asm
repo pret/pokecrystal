@@ -2,7 +2,7 @@ Intro_MainMenu:
 	ld de, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
-	ld de, MUSIC_MAIN_MENU
+	ld de, MUSIC_LOOK_ZINNIA
 	ld a, e
 	ld [wMapMusic], a
 	call PlayMusic
@@ -63,7 +63,7 @@ NewGame:
 	ld [wDebugFlags], a
 	call ResetWRAM
 	call NewGame_ClearTilemapEtc
-	call AreYouABoyOrAreYouAGirl
+;	call AreYouABoyOrAreYouAGirl
 	call OakSpeech
 	call InitializeWorld
 
@@ -77,16 +77,16 @@ NewGame:
 	ldh [hMapEntryMethod], a
 	jp FinishContinueFunction
 
-AreYouABoyOrAreYouAGirl:
-	farcall Mobile_AlwaysReturnNotCarry ; mobile
-	jr c, .ok
-	farcall InitGender
-	ret
+;AreYouABoyOrAreYouAGirl:
+;	farcall Mobile_AlwaysReturnNotCarry ; mobile
+;	jr c, .ok
+;	farcall InitGender
+;	ret
 
-.ok
-	ld c, 0
-	farcall InitMobileProfile ; mobile
-	ret
+;.ok
+;	ld c, 0
+;	farcall InitMobileProfile ; mobile
+;	ret
 
 if DEF(_DEBUG)
 DebugRoom: ; unreferenced
@@ -596,64 +596,66 @@ Continue_DisplayGameTime:
 
 OakSpeech:
 	farcall InitClock
-	call RotateFourPalettesLeft
-	call ClearTilemap
+	farcall SetDayOfWeek
+	farcall InitGender
+;	call RotateFourPalettesLeft
+;	call ClearTilemap
 
-	ld de, MUSIC_ROUTE_30
-	call PlayMusic
+;	ld de, MUSIC_ROUTE_30
+;	call PlayMusic
 
-	call RotateFourPalettesRight
-	call RotateThreePalettesRight
-	xor a
-	ld [wCurPartySpecies], a
-	ld a, POKEMON_PROF
-	ld [wTrainerClass], a
-	call Intro_PrepTrainerPic
+;	call RotateFourPalettesRight
+;	call RotateThreePalettesRight
+;	xor a
+;	ld [wCurPartySpecies], a
+;	ld a, POKEMON_PROF
+;	ld [wTrainerClass], a
+;	call Intro_PrepTrainerPic
 
-	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
-	call GetSGBLayout
-	call Intro_RotatePalettesLeftFrontpic
+;	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
+;	call GetSGBLayout
+;	call Intro_RotatePalettesLeftFrontpic
 
-	ld hl, OakText1
-	call PrintText
-	call RotateThreePalettesRight
-	call ClearTilemap
+;	ld hl, OakText1
+;	call PrintText
+;	call RotateThreePalettesRight
+;	call ClearTilemap
 
-	ld a, WOOPER
-	ld [wCurSpecies], a
-	ld [wCurPartySpecies], a
-	call GetBaseData
+;	ld a, WOOPER
+;	ld [wCurSpecies], a
+;	ld [wCurPartySpecies], a
+;	call GetBaseData
 
-	hlcoord 6, 4
-	call PrepMonFrontpic
+;	hlcoord 6, 4
+;	call PrepMonFrontpic
 
-	xor a
-	ld [wTempMonDVs], a
-	ld [wTempMonDVs + 1], a
+;	xor a
+;	ld [wTempMonDVs], a
+;	ld [wTempMonDVs + 1], a
 
-	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
-	call GetSGBLayout
-	call Intro_WipeInFrontpic
+;	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
+;	call GetSGBLayout
+;	call Intro_WipeInFrontpic
 
-	ld hl, OakText2
-	call PrintText
-	ld hl, OakText4
-	call PrintText
-	call RotateThreePalettesRight
-	call ClearTilemap
+;	ld hl, OakText2
+;	call PrintText
+;	ld hl, OakText4
+;	call PrintText
+;	call RotateThreePalettesRight
+;	call ClearTilemap
 
-	xor a
-	ld [wCurPartySpecies], a
-	ld a, POKEMON_PROF
-	ld [wTrainerClass], a
-	call Intro_PrepTrainerPic
+;	xor a
+;	ld [wCurPartySpecies], a
+;	ld a, POKEMON_PROF
+;	ld [wTrainerClass], a
+;	call Intro_PrepTrainerPic
 
-	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
-	call GetSGBLayout
-	call Intro_RotatePalettesLeftFrontpic
+;	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
+;	call GetSGBLayout
+;	call Intro_RotatePalettesLeftFrontpic
 
-	ld hl, OakText5
-	call PrintText
+;	ld hl, OakText5
+;	call PrintText
 	call RotateThreePalettesRight
 	call ClearTilemap
 
@@ -665,11 +667,13 @@ OakSpeech:
 	call GetSGBLayout
 	call Intro_RotatePalettesLeftFrontpic
 
-	ld hl, OakText6
+;	ld hl, OakText6
+;	call PrintText
+	ld hl, ZNamePlayerText
 	call PrintText
 	call NamePlayer
-	ld hl, OakText7
-	call PrintText
+;	ld hl, OakText7
+;	call PrintText
 	ret
 
 OakText1:
@@ -703,6 +707,10 @@ OakText6:
 
 OakText7:
 	text_far _OakText7
+	text_end
+
+ZNamePlayerText:
+	text_far _ZNamePlayerText
 	text_end
 
 NamePlayer:
@@ -1085,7 +1093,7 @@ TitleScreenEntrance:
 	ldh [hLCDCPointer], a
 
 ; Play the title screen music.
-	ld de, MUSIC_TITLE
+	ld de, MUSIC_XY_LEGEND_BATTLE
 	call PlayMusic
 
 	ld a, $88
@@ -1248,12 +1256,12 @@ CopyrightString:
 	db   $67, $68, $69, $6a, $6b, $6c
 
 	; ©1995-2001 Creatures inc.
-	next $60, $61, $62, $63, $64, $65, $66
-	db   $6d, $6e, $6f, $70, $71, $72, $7a, $7b, $7c
+;	next $60, $61, $62, $63, $64, $65, $66
+;	db   $6d, $6e, $6f, $70, $71, $72, $7a, $7b, $7c
 
 	; ©1995-2001 GAME FREAK inc.
-	next $60, $61, $62, $63, $64, $65, $66
-	db   $73, $74, $75, $76, $77, $78, $79, $7a, $7b, $7c
+;	next $60, $61, $62, $63, $64, $65, $66
+;	db   $73, $74, $75, $76, $77, $78, $79, $7a, $7b, $7c
 
 	db "@"
 

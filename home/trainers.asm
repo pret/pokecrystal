@@ -31,10 +31,10 @@ _CheckTrainerBattle::
 	jr z, .next
 
 ; Is a trainer
-	ld hl, MAPOBJECT_COLOR
+	ld hl, MAPOBJECT_TYPE
 	add hl, de
 	ld a, [hl]
-	and $f
+	and MAPOBJECT_TYPE_MASK
 	cp OBJECTTYPE_TRAINER
 	jr nz, .next
 
@@ -51,7 +51,7 @@ _CheckTrainerBattle::
 	jr nc, .next
 
 ; ...within their sight range
-	ld hl, MAPOBJECT_RANGE
+	ld hl, MAPOBJECT_SIGHT_RANGE
 	add hl, de
 	ld a, [hl]
 	cp b

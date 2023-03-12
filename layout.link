@@ -114,7 +114,6 @@ ROMX $24
 	"bank24"
 ROMX $25
 	"Maps"
-	"Events"
 ROMX $26
 	"Map Scripts 11"
 ROMX $27
@@ -156,6 +155,7 @@ ROMX $37
 	"Tileset Data 6"
 ROMX $38
 	"bank38"
+	"Events"
 ROMX $39
 	"Copyright"
 	"bank39"
@@ -345,7 +345,7 @@ WRAMX 2
 WRAMX 3
 	"Battle Tower RAM"
 WRAMX 4
-	"News Script RAM"
+	"Surrounding Data"
 WRAMX 5
 	align 8
 	"GBC Video"
