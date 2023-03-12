@@ -39,17 +39,16 @@ ENDM
 	map_const OLIVINE_POKECENTER_1F,                        5,  4 ;  1
 	map_const OLIVINE_GYM,                                  5,  8 ;  2
 	map_const OLIVINE_TIMS_HOUSE,                           4,  4 ;  3
-	map_const OLIVINE_HOUSE_BETA,                           4,  4 ;  4
-	map_const OLIVINE_PUNISHMENT_SPEECH_HOUSE,              4,  4 ;  5
-	map_const OLIVINE_GOOD_ROD_HOUSE,                       4,  4 ;  6
-	map_const OLIVINE_CAFE,                                 4,  4 ;  7
-	map_const OLIVINE_MART,                                 6,  4 ;  8
-	map_const ROUTE_38_ECRUTEAK_GATE,                       5,  4 ;  9
-	map_const ROUTE_39_BARN,                                4,  4 ; 10
-	map_const ROUTE_39_FARMHOUSE,                           4,  4 ; 11
-	map_const ROUTE_38,                                    20,  9 ; 12
-	map_const ROUTE_39,                                    10, 18 ; 13
-	map_const OLIVINE_CITY,                                20, 18 ; 14
+	map_const OLIVINE_PUNISHMENT_SPEECH_HOUSE,              4,  4 ;  4
+	map_const OLIVINE_GOOD_ROD_HOUSE,                       4,  4 ;  5
+	map_const OLIVINE_CAFE,                                 4,  4 ;  6
+	map_const OLIVINE_MART,                                 6,  4 ;  7
+	map_const ROUTE_38_ECRUTEAK_GATE,                       5,  4 ;  8
+	map_const ROUTE_39_BARN,                                4,  4 ;  9
+	map_const ROUTE_39_FARMHOUSE,                           4,  4 ; 10
+	map_const ROUTE_38,                                    20,  9 ; 11
+	map_const ROUTE_39,                                    10, 18 ; 12
+	map_const OLIVINE_CITY,                                20, 18 ; 13
 	endgroup
 
 	newgroup MAHOGANY                                             ;  2
@@ -151,9 +150,7 @@ ENDM
 	map_const UNDERGROUND_PATH,                             3, 14 ; 86
 	map_const ROCK_TUNNEL_1F,                              15, 18 ; 87
 	map_const ROCK_TUNNEL_B1F,                             15, 18 ; 88
-	map_const SAFARI_ZONE_FUCHSIA_GATE_BETA,                5,  4 ; 89
-	map_const SAFARI_ZONE_BETA,                            10, 18 ; 90
-	map_const VICTORY_ROAD,                                10, 36 ; 91
+	map_const VICTORY_ROAD,                                10, 36 ; 89
 	endgroup
 
 	newgroup ECRUTEAK                                             ;  4
@@ -183,13 +180,12 @@ ENDM
 
 	newgroup CINNABAR                                             ;  6
 	map_const CINNABAR_POKECENTER_1F,                       5,  4 ;  1
-	map_const CINNABAR_POKECENTER_2F_BETA,                  8,  4 ;  2
-	map_const ROUTE_19_FUCHSIA_GATE,                        5,  4 ;  3
-	map_const SEAFOAM_GYM,                                  5,  4 ;  4
-	map_const ROUTE_19,                                    10, 18 ;  5
-	map_const ROUTE_20,                                    30,  9 ;  6
-	map_const ROUTE_21,                                    10, 18 ;  7
-	map_const CINNABAR_ISLAND,                             10,  9 ;  8
+	map_const ROUTE_19_FUCHSIA_GATE,                        5,  4 ;  2
+	map_const SEAFOAM_GYM,                                  5,  4 ;  3
+	map_const ROUTE_19,                                    10, 18 ;  4
+	map_const ROUTE_20,                                    30,  9 ;  5
+	map_const ROUTE_21,                                    10, 18 ;  6
+	map_const CINNABAR_ISLAND,                             10,  9 ;  7
 	endgroup
 
 	newgroup CERULEAN                                             ;  7
@@ -197,19 +193,17 @@ ENDM
 	map_const CERULEAN_POLICE_STATION,                      4,  4 ;  2
 	map_const CERULEAN_TRADE_SPEECH_HOUSE,                  4,  4 ;  3
 	map_const CERULEAN_POKECENTER_1F,                       5,  4 ;  4
-	map_const CERULEAN_POKECENTER_2F_BETA,                  8,  4 ;  5
-	map_const CERULEAN_GYM,                                 5,  8 ;  6
-	map_const CERULEAN_MART,                                6,  4 ;  7
-	map_const ROUTE_10_POKECENTER_1F,                       5,  4 ;  8
-	map_const ROUTE_10_POKECENTER_2F_BETA,                  8,  4 ;  9
-	map_const POWER_PLANT,                                 10,  9 ; 10
-	map_const BILLS_HOUSE,                                  4,  4 ; 11
-	map_const ROUTE_4,                                     20,  9 ; 12
-	map_const ROUTE_9,                                     30,  9 ; 13
-	map_const ROUTE_10_NORTH,                              10,  9 ; 14
-	map_const ROUTE_24,                                    10,  9 ; 15
-	map_const ROUTE_25,                                    30,  9 ; 16
-	map_const CERULEAN_CITY,                               20, 18 ; 17
+	map_const CERULEAN_GYM,                                 5,  8 ;  5
+	map_const CERULEAN_MART,                                6,  4 ;  6
+	map_const ROUTE_10_POKECENTER_1F,                       5,  4 ;  7
+	map_const POWER_PLANT,                                 10,  9 ;  8
+	map_const BILLS_HOUSE,                                  4,  4 ;  9
+	map_const ROUTE_4,                                     20,  9 ; 10
+	map_const ROUTE_9,                                     30,  9 ; 11
+	map_const ROUTE_10_NORTH,                              10,  9 ; 12
+	map_const ROUTE_24,                                    10,  9 ; 13
+	map_const ROUTE_25,                                    30,  9 ; 14
+	map_const CERULEAN_CITY,                               20, 18 ; 15
 	endgroup
 
 	newgroup AZALEA                                               ;  8
@@ -284,14 +278,13 @@ ENDM
 	map_const VERMILION_CITY,                              20, 18 ;  3
 	map_const VERMILION_FISHING_SPEECH_HOUSE,               4,  4 ;  4
 	map_const VERMILION_POKECENTER_1F,                      5,  4 ;  5
-	map_const VERMILION_POKECENTER_2F_BETA,                 8,  4 ;  6
-	map_const POKEMON_FAN_CLUB,                             5,  4 ;  7
-	map_const VERMILION_MAGNET_TRAIN_SPEECH_HOUSE,          4,  4 ;  8
-	map_const VERMILION_MART,                               6,  4 ;  9
-	map_const VERMILION_DIGLETTS_CAVE_SPEECH_HOUSE,         4,  4 ; 10
-	map_const VERMILION_GYM,                                5,  9 ; 11
-	map_const ROUTE_6_SAFFRON_GATE,                         5,  4 ; 12
-	map_const ROUTE_6_UNDERGROUND_PATH_ENTRANCE,            4,  4 ; 13
+	map_const POKEMON_FAN_CLUB,                             5,  4 ;  6
+	map_const VERMILION_MAGNET_TRAIN_SPEECH_HOUSE,          4,  4 ;  7
+	map_const VERMILION_MART,                               6,  4 ;  8
+	map_const VERMILION_DIGLETTS_CAVE_SPEECH_HOUSE,         4,  4 ;  9
+	map_const VERMILION_GYM,                                5,  9 ; 10
+	map_const ROUTE_6_SAFFRON_GATE,                         5,  4 ; 11
+	map_const ROUTE_6_UNDERGROUND_PATH_ENTRANCE,            4,  4 ; 12
 	endgroup
 
 	newgroup PALLET                                               ; 13
@@ -310,8 +303,7 @@ ENDM
 	map_const PEWTER_GYM,                                   5,  7 ;  4
 	map_const PEWTER_MART,                                  6,  4 ;  5
 	map_const PEWTER_POKECENTER_1F,                         5,  4 ;  6
-	map_const PEWTER_POKECENTER_2F_BETA,                    8,  4 ;  7
-	map_const PEWTER_SNOOZE_SPEECH_HOUSE,                   4,  4 ;  8
+	map_const PEWTER_SNOOZE_SPEECH_HOUSE,                   4,  4 ;  7
 	endgroup
 
 	newgroup FAST_SHIP                                            ; 15
@@ -351,9 +343,8 @@ ENDM
 	map_const FUCHSIA_GYM,                                  5,  9 ;  8
 	map_const BILLS_BROTHERS_HOUSE,                         4,  4 ;  9
 	map_const FUCHSIA_POKECENTER_1F,                        5,  4 ; 10
-	map_const FUCHSIA_POKECENTER_2F_BETA,                   8,  4 ; 11
-	map_const SAFARI_ZONE_WARDENS_HOME,                     5,  4 ; 12
-	map_const ROUTE_15_FUCHSIA_GATE,                        5,  4 ; 13
+	map_const SAFARI_ZONE_WARDENS_HOME,                     5,  4 ; 11
+	map_const ROUTE_15_FUCHSIA_GATE,                        5,  4 ; 12
 	endgroup
 
 	newgroup LAVENDER                                             ; 18
@@ -362,15 +353,14 @@ ENDM
 	map_const ROUTE_10_SOUTH,                              10,  9 ;  3
 	map_const LAVENDER_TOWN,                               10,  9 ;  4
 	map_const LAVENDER_POKECENTER_1F,                       5,  4 ;  5
-	map_const LAVENDER_POKECENTER_2F_BETA,                  8,  4 ;  6
-	map_const MR_FUJIS_HOUSE,                               5,  4 ;  7
-	map_const LAVENDER_SPEECH_HOUSE,                        4,  4 ;  8
-	map_const LAVENDER_NAME_RATER,                          4,  4 ;  9
-	map_const LAVENDER_MART,                                6,  4 ; 10
-	map_const SOUL_HOUSE,                                   5,  4 ; 11
-	map_const LAV_RADIO_TOWER_1F,                          10,  4 ; 12
-	map_const ROUTE_8_SAFFRON_GATE,                         5,  4 ; 13
-	map_const ROUTE_12_SUPER_ROD_HOUSE,                     4,  4 ; 14
+	map_const MR_FUJIS_HOUSE,                               5,  4 ;  6
+	map_const LAVENDER_SPEECH_HOUSE,                        4,  4 ;  7
+	map_const LAVENDER_NAME_RATER,                          4,  4 ;  8
+	map_const LAVENDER_MART,                                6,  4 ;  9
+	map_const SOUL_HOUSE,                                   5,  4 ; 10
+	map_const LAV_RADIO_TOWER_1F,                          10,  4 ; 11
+	map_const ROUTE_8_SAFFRON_GATE,                         5,  4 ; 12
+	map_const ROUTE_12_SUPER_ROD_HOUSE,                     4,  4 ; 13
 	endgroup
 
 	newgroup SILVER                                               ; 19
@@ -407,15 +397,14 @@ ENDM
 	map_const CELADON_MANSION_ROOF,                         4,  5 ; 15
 	map_const CELADON_MANSION_ROOF_HOUSE,                   4,  4 ; 16
 	map_const CELADON_POKECENTER_1F,                        5,  4 ; 17
-	map_const CELADON_POKECENTER_2F_BETA,                   8,  4 ; 18
-	map_const CELADON_GAME_CORNER,                         10,  7 ; 19
-	map_const CELADON_GAME_CORNER_PRIZE_ROOM,               3,  3 ; 20
-	map_const CELADON_GYM,                                  5,  9 ; 21
-	map_const CELADON_CAFE,                                 6,  4 ; 22
-	map_const ROUTE_16_FUCHSIA_SPEECH_HOUSE,                4,  4 ; 23
-	map_const ROUTE_16_GATE,                                5,  4 ; 24
-	map_const ROUTE_7_SAFFRON_GATE,                         5,  4 ; 25
-	map_const ROUTE_17_ROUTE_18_GATE,                       5,  4 ; 26
+	map_const CELADON_GAME_CORNER,                         10,  7 ; 18
+	map_const CELADON_GAME_CORNER_PRIZE_ROOM,               3,  3 ; 19
+	map_const CELADON_GYM,                                  5,  9 ; 20
+	map_const CELADON_CAFE,                                 6,  4 ; 21
+	map_const ROUTE_16_FUCHSIA_SPEECH_HOUSE,                4,  4 ; 22
+	map_const ROUTE_16_GATE,                                5,  4 ; 23
+	map_const ROUTE_7_SAFFRON_GATE,                         5,  4 ; 24
+	map_const ROUTE_17_ROUTE_18_GATE,                       5,  4 ; 25
 	endgroup
 
 	newgroup CIANWOOD                                             ; 22
@@ -447,10 +436,9 @@ ENDM
 	map_const TRAINER_HOUSE_B1F,                            5,  8 ;  7
 	map_const VIRIDIAN_MART,                                6,  4 ;  8
 	map_const VIRIDIAN_POKECENTER_1F,                       5,  4 ;  9
-	map_const VIRIDIAN_POKECENTER_2F_BETA,                  8,  4 ; 10
-	map_const ROUTE_2_NUGGET_HOUSE,                         4,  4 ; 11
-	map_const ROUTE_2_GATE,                                 5,  4 ; 12
-	map_const VICTORY_ROAD_GATE,                           10,  9 ; 13
+	map_const ROUTE_2_NUGGET_HOUSE,                         4,  4 ; 10
+	map_const ROUTE_2_GATE,                                 5,  4 ; 11
+	map_const VICTORY_ROAD_GATE,                           10,  9 ; 12
 	endgroup
 
 	newgroup NEW_BARK                                             ; 24
@@ -475,15 +463,14 @@ ENDM
 	map_const SAFFRON_GYM,                                 10,  9 ;  4
 	map_const SAFFRON_MART,                                 6,  4 ;  5
 	map_const SAFFRON_POKECENTER_1F,                        5,  4 ;  6
-	map_const SAFFRON_POKECENTER_2F_BETA,                   8,  4 ;  7
-	map_const MR_PSYCHICS_HOUSE,                            4,  4 ;  8
-	map_const SAFFRON_MAGNET_TRAIN_STATION,                10,  9 ;  9
-	map_const SILPH_CO_1F,                                  8,  4 ; 10
-	map_const COPYCATS_HOUSE_1F,                            4,  4 ; 11
-	map_const COPYCATS_HOUSE_2F,                            5,  3 ; 12
-	map_const ROUTE_5_UNDERGROUND_PATH_ENTRANCE,            4,  4 ; 13
-	map_const ROUTE_5_SAFFRON_GATE,                         5,  4 ; 14
-	map_const ROUTE_5_CLEANSE_TAG_HOUSE,                    4,  4 ; 15
+	map_const MR_PSYCHICS_HOUSE,                            4,  4 ;  7
+	map_const SAFFRON_MAGNET_TRAIN_STATION,                10,  9 ;  8
+	map_const SILPH_CO_1F,                                  8,  4 ;  9
+	map_const COPYCATS_HOUSE_1F,                            4,  4 ; 10
+	map_const COPYCATS_HOUSE_2F,                            5,  3 ; 11
+	map_const ROUTE_5_UNDERGROUND_PATH_ENTRANCE,            4,  4 ; 12
+	map_const ROUTE_5_SAFFRON_GATE,                         5,  4 ; 13
+	map_const ROUTE_5_CLEANSE_TAG_HOUSE,                    4,  4 ; 14
 	endgroup
 
 	newgroup CHERRYGROVE                                          ; 26
