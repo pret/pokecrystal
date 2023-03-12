@@ -467,40 +467,6 @@ GetMapMusic_MaybeSpecial::
 	call GetMapMusic
 	ret
 
-PlaceBCDNumberSprite:: ; unreferenced
-; Places a BCD number at the upper center of the screen.
-	ld a, 4 * TILE_WIDTH
-	ld [wShadowOAMSprite38YCoord], a
-	ld [wShadowOAMSprite39YCoord], a
-	ld a, 10 * TILE_WIDTH
-	ld [wShadowOAMSprite38XCoord], a
-	ld a, 11 * TILE_WIDTH
-	ld [wShadowOAMSprite39XCoord], a
-	xor a
-	ld [wShadowOAMSprite38Attributes], a
-	ld [wShadowOAMSprite39Attributes], a
-	ld a, [wUnusedBCDNumber]
-	cp 100
-	jr nc, .max
-	add 1
-	daa
-	ld b, a
-	swap a
-	and $f
-	add "0"
-	ld [wShadowOAMSprite38TileID], a
-	ld a, b
-	and $f
-	add "0"
-	ld [wShadowOAMSprite39TileID], a
-	ret
-
-.max
-	ld a, "9"
-	ld [wShadowOAMSprite38TileID], a
-	ld [wShadowOAMSprite39TileID], a
-	ret
-
 CheckSFX::
 ; Return carry if any SFX channels are active.
 	ld a, [wChannel5Flags1]

@@ -1,24 +1,5 @@
 ; Functions to fade the screen in and out.
 
-TimeOfDayFade:: ; unreferenced
-	ld a, [wTimeOfDayPal]
-	ld b, a
-	ld hl, IncGradGBPalTable_11
-	ld a, l
-	sub b
-	ld l, a
-	jr nc, .okay
-	dec h
-
-.okay
-	ld a, [hli]
-	ldh [rBGP], a
-	ld a, [hli]
-	ldh [rOBP0], a
-	ld a, [hli]
-	ldh [rOBP1], a
-	ret
-
 RotateFourPalettesRight::
 	ldh a, [hCGB]
 	and a

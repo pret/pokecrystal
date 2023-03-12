@@ -52,7 +52,7 @@ ROMX $08
 ROMX $09
 	"bank9"
 ROMX $0a
-	"Events"
+	"bankA"
 	"Trainer Backpics"
 ROMX $0b
 	"bankB"
@@ -69,6 +69,8 @@ ROMX $10
 	"Evolutions and Attacks"
 ROMX $11
 	"bank11"
+	"Newbox"
+	"Bill's PC Graphics"
 ROMX $12
 	"Crystal Features 1"
 ROMX $13
@@ -112,6 +114,7 @@ ROMX $24
 	"bank24"
 ROMX $25
 	"Maps"
+	"Events"
 ROMX $26
 	"Map Scripts 11"
 ROMX $27
@@ -342,7 +345,7 @@ WRAMX 2
 WRAMX 3
 	"Battle Tower RAM"
 WRAMX 4
-	"Surrounding Data"
+	"News Script RAM"
 WRAMX 5
 	align 8
 	"GBC Video"
@@ -366,15 +369,15 @@ SRAM $00
 	"Backup Save"
 SRAM $01
 	"Save"
-	"Active Box"
+	"Box Metadata"
 	"Link Battle Data"
 	"SRAM Hall of Fame"
 	"SRAM Crystal Data"
 	"SRAM Battle Tower"
 SRAM $02
-	"Boxes 1-7"
+	"PokeDB Bank 1"
 SRAM $03
-	"Boxes 8-14"
+	"PokeDB Bank 2"
 SRAM $04
 	"SRAM Mobile 1"
 SRAM $05

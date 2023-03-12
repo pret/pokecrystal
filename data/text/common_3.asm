@@ -216,18 +216,6 @@ _SaveFileCorruptedText::
 	line "corrupted!"
 	prompt
 
-_ChangeBoxSaveText::
-	text "When you change a"
-	line "#MON BOX, data"
-	cont "will be saved. OK?"
-	done
-
-_MoveMonWOMailSaveText::
-	text "Each time you move"
-	line "a #MON, data"
-	cont "will be saved. OK?"
-	done
-
 _WindowAreaExceededErrorText:: ; unreferenced
 	text "The window save"
 	line "area was exceeded."
@@ -1233,7 +1221,9 @@ _WaitButtonText::
 _BallSentToPCText::
 	text_ram wMonOrItemNameBuffer
 	text " was"
-	line "sent to BILL's PC."
+	line "sent to @"
+	text_ram wStringBuffer1
+	text "."
 	prompt
 
 _NewDexDataText::
@@ -1393,10 +1383,25 @@ _ItemCantGetOnText::
 	text " now."
 	prompt
 
-_BallBoxFullText::
-	text "The #MON BOX"
+_CurBoxFullText::
+	text "@"
+	text_ram wStringBuffer1
+	text " is full."
+	prompt
+
+_StorageFullText::
+	text "The STORAGE SYSTEM"
 	line "is full. That"
 	cont "can't be used now."
+	prompt
+
+_DatabaseFullText::
+	; too technical? needs improvement
+	text "The STORAGE SYSTEM"
+	line "is overtaxed."
+
+	para "You need to save"
+	line "the game."
 	prompt
 
 _ItemUsedText::

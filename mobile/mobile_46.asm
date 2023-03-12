@@ -7066,7 +7066,7 @@ TradeCornerHoldMon_RemoveFromParty:
 	ld [wCurPartyMon], a
 	xor a ; REMOVE_PARTY
 	ld [wPokemonWithdrawDepositParameter], a
-	farcall RemoveMonFromPartyOrBox
+	farcall RemoveMonFromParty
 	farcall BattleTowerAction_16
 	farcall SaveAfterLinkTrade
 	jp MobileIncJumptableIndex

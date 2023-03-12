@@ -321,6 +321,26 @@ PC_DisplayTextWaitMenu:
 	ld [wOptions], a
 	ret
 
+ClearPCItemScreen:
+	call DisableSpriteUpdates
+	xor a
+	ldh [hBGMapMode], a
+	call ClearBGPalettes
+	call ClearSprites
+	hlcoord 0, 0
+	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
+	ld a, " "
+	call ByteFill
+	hlcoord 0, 0
+	lb bc, 10, 18
+	call Textbox
+	hlcoord 0, 12
+	lb bc, 4, 18
+	call Textbox
+	call WaitBGMap2
+	call SetPalettes ; load regular palettes?
+	ret
+
 PlayersPCAskWhatDoText:
 	text_far _PlayersPCAskWhatDoText
 	text_end

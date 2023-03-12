@@ -2,7 +2,7 @@ Intro_MainMenu:
 	ld de, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
-	ld de, MUSIC_LOOK_ZINNIA
+	ld de, MUSIC_MAIN_MENU
 	ld a, e
 	ld [wMapMusic], a
 	call PlayMusic
@@ -63,7 +63,7 @@ NewGame:
 	ld [wDebugFlags], a
 	call ResetWRAM
 	call NewGame_ClearTilemapEtc
-;	call AreYouABoyOrAreYouAGirl
+	call AreYouABoyOrAreYouAGirl
 	call OakSpeech
 	call InitializeWorld
 
@@ -77,16 +77,16 @@ NewGame:
 	ldh [hMapEntryMethod], a
 	jp FinishContinueFunction
 
-;AreYouABoyOrAreYouAGirl:
-;	farcall Mobile_AlwaysReturnNotCarry ; mobile
-;	jr c, .ok
-;	farcall InitGender
-;	ret
+AreYouABoyOrAreYouAGirl:
+	farcall Mobile_AlwaysReturnNotCarry ; mobile
+	jr c, .ok
+	farcall InitGender
+	ret
 
-;.ok
-;	ld c, 0
-;	farcall InitMobileProfile ; mobile
-;	ret
+.ok
+	ld c, 0
+	farcall InitMobileProfile ; mobile
+	ret
 
 if DEF(_DEBUG)
 DebugRoom: ; unreferenced
@@ -141,13 +141,7 @@ _ResetWRAM:
 	ld [wCurBox], a
 	ld [wSavedAtLeastOnce], a
 
-	call SetDefaultBoxNames
-
-	ld a, BANK(sBoxCount)
-	call OpenSRAM
-	ld hl, sBoxCount
-	call .InitList
-	call CloseSRAM
+	newfarcall InitializeBoxes
 
 	ld hl, wNumItems
 	call .InitList
@@ -232,38 +226,6 @@ endc
 	dec a
 	ld [hl], a
 	ret
-
-SetDefaultBoxNames:
-	ld hl, wBoxNames
-	ld c, 0
-.loop
-	push hl
-	ld de, .Box
-	call CopyName2
-	dec hl
-	ld a, c
-	inc a
-	cp 10
-	jr c, .less
-	sub 10
-	ld [hl], "1"
-	inc hl
-
-.less
-	add "0"
-	ld [hli], a
-	ld [hl], "@"
-	pop hl
-	ld de, 9
-	add hl, de
-	inc c
-	ld a, c
-	cp NUM_BOXES
-	jr c, .loop
-	ret
-
-.Box:
-	db "BOX@"
 
 InitializeMagikarpHouse:
 	ld hl, wBestMagikarpLengthFeet
@@ -634,66 +596,64 @@ Continue_DisplayGameTime:
 
 OakSpeech:
 	farcall InitClock
-	farcall SetDayOfWeek
-	farcall InitGender
-;	call RotateFourPalettesLeft
-;	call ClearTilemap
+	call RotateFourPalettesLeft
+	call ClearTilemap
 
-;	ld de, MUSIC_ROUTE_30
-;	call PlayMusic
+	ld de, MUSIC_ROUTE_30
+	call PlayMusic
 
-;	call RotateFourPalettesRight
-;	call RotateThreePalettesRight
-;	xor a
-;	ld [wCurPartySpecies], a
-;	ld a, POKEMON_PROF
-;	ld [wTrainerClass], a
-;	call Intro_PrepTrainerPic
+	call RotateFourPalettesRight
+	call RotateThreePalettesRight
+	xor a
+	ld [wCurPartySpecies], a
+	ld a, POKEMON_PROF
+	ld [wTrainerClass], a
+	call Intro_PrepTrainerPic
 
-;	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
-;	call GetSGBLayout
-;	call Intro_RotatePalettesLeftFrontpic
+	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
+	call GetSGBLayout
+	call Intro_RotatePalettesLeftFrontpic
 
-;	ld hl, OakText1
-;	call PrintText
-;	call RotateThreePalettesRight
-;	call ClearTilemap
+	ld hl, OakText1
+	call PrintText
+	call RotateThreePalettesRight
+	call ClearTilemap
 
-;	ld a, WOOPER
-;	ld [wCurSpecies], a
-;	ld [wCurPartySpecies], a
-;	call GetBaseData
+	ld a, WOOPER
+	ld [wCurSpecies], a
+	ld [wCurPartySpecies], a
+	call GetBaseData
 
-;	hlcoord 6, 4
-;	call PrepMonFrontpic
+	hlcoord 6, 4
+	call PrepMonFrontpic
 
-;	xor a
-;	ld [wTempMonDVs], a
-;	ld [wTempMonDVs + 1], a
+	xor a
+	ld [wTempMonDVs], a
+	ld [wTempMonDVs + 1], a
 
-;	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
-;	call GetSGBLayout
-;	call Intro_WipeInFrontpic
+	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
+	call GetSGBLayout
+	call Intro_WipeInFrontpic
 
-;	ld hl, OakText2
-;	call PrintText
-;	ld hl, OakText4
-;	call PrintText
-;	call RotateThreePalettesRight
-;	call ClearTilemap
+	ld hl, OakText2
+	call PrintText
+	ld hl, OakText4
+	call PrintText
+	call RotateThreePalettesRight
+	call ClearTilemap
 
-;	xor a
-;	ld [wCurPartySpecies], a
-;	ld a, POKEMON_PROF
-;	ld [wTrainerClass], a
-;	call Intro_PrepTrainerPic
+	xor a
+	ld [wCurPartySpecies], a
+	ld a, POKEMON_PROF
+	ld [wTrainerClass], a
+	call Intro_PrepTrainerPic
 
-;	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
-;	call GetSGBLayout
-;	call Intro_RotatePalettesLeftFrontpic
+	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
+	call GetSGBLayout
+	call Intro_RotatePalettesLeftFrontpic
 
-;	ld hl, OakText5
-;	call PrintText
+	ld hl, OakText5
+	call PrintText
 	call RotateThreePalettesRight
 	call ClearTilemap
 
@@ -705,13 +665,11 @@ OakSpeech:
 	call GetSGBLayout
 	call Intro_RotatePalettesLeftFrontpic
 
-;	ld hl, OakText6
-;	call PrintText
-	ld hl, ZNamePlayerText
+	ld hl, OakText6
 	call PrintText
 	call NamePlayer
-;	ld hl, OakText7
-;	call PrintText
+	ld hl, OakText7
+	call PrintText
 	ret
 
 OakText1:
@@ -745,10 +703,6 @@ OakText6:
 
 OakText7:
 	text_far _OakText7
-	text_end
-
-ZNamePlayerText:
-	text_far _ZNamePlayerText
 	text_end
 
 NamePlayer:
@@ -1131,7 +1085,7 @@ TitleScreenEntrance:
 	ldh [hLCDCPointer], a
 
 ; Play the title screen music.
-	ld de, MUSIC_XY_LEGEND_BATTLE
+	ld de, MUSIC_TITLE
 	call PlayMusic
 
 	ld a, $88
@@ -1277,57 +1231,6 @@ ResetClock:
 	farcall _ResetClock
 	jp Init
 
-UpdateTitleTrailSprite: ; unreferenced
-	; If bit 0 or 1 of [wTitleScreenTimer] is set, we don't need to be here.
-	ld a, [wTitleScreenTimer]
-	and %00000011
-	ret nz
-	ld bc, wSpriteAnim10
-	ld hl, SPRITEANIMSTRUCT_FRAME
-	add hl, bc
-	ld l, [hl]
-	ld h, 0
-	add hl, hl
-	add hl, hl
-	ld de, .TitleTrailCoords
-	add hl, de
-	; If bit 2 of [wTitleScreenTimer] is set, get the second coords; else, get the first coords
-	ld a, [wTitleScreenTimer]
-	and %00000100
-	srl a
-	srl a
-	ld e, a
-	ld d, 0
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	and a
-	ret z
-	ld e, a
-	ld d, [hl]
-	ld a, SPRITE_ANIM_INDEX_GS_TITLE_TRAIL
-	call InitSpriteAnimStruct
-	ret
-
-.TitleTrailCoords:
-MACRO trail_coords
-	rept _NARG / 2
-		DEF _dx = 4
-		if \1 == 0 && \2 == 0
-			DEF _dx = 0
-		endc
-		dbpixel \1, \2, _dx, 0
-		shift 2
-	endr
-ENDM
-	; frame 0 y, x; frame 1 y, x
-	trail_coords 11, 10,  0,  0
-	trail_coords 11, 13, 11, 11
-	trail_coords 11, 13, 11, 15
-	trail_coords 11, 17, 11, 15
-	trail_coords  0,  0, 11, 15
-	trail_coords  0,  0, 11, 11
-
 Copyright:
 	call ClearTilemap
 	call LoadFontsExtra
@@ -1345,12 +1248,12 @@ CopyrightString:
 	db   $67, $68, $69, $6a, $6b, $6c
 
 	; ©1995-2001 Creatures inc.
-;	next $60, $61, $62, $63, $64, $65, $66
-;	db   $6d, $6e, $6f, $70, $71, $72, $7a, $7b, $7c
+	next $60, $61, $62, $63, $64, $65, $66
+	db   $6d, $6e, $6f, $70, $71, $72, $7a, $7b, $7c
 
 	; ©1995-2001 GAME FREAK inc.
-;	next $60, $61, $62, $63, $64, $65, $66
-;	db   $73, $74, $75, $76, $77, $78, $79, $7a, $7b, $7c
+	next $60, $61, $62, $63, $64, $65, $66
+	db   $73, $74, $75, $76, $77, $78, $79, $7a, $7b, $7c
 
 	db "@"
 

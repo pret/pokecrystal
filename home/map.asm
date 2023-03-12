@@ -92,7 +92,9 @@ GetMapSceneID::
 	ret
 
 OverworldTextModeSwitch::
-	; fallthrough
+	call LoadMapPart
+	call SwapTextboxPalettes
+	ret
 
 LoadMapPart::
 	ldh a, [hROMBank]
@@ -107,10 +109,6 @@ LoadMapPart::
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 
-	ld a, [wTilesetAttributesBank]
-	rst Bankswitch
-	call LoadMetatileAttributes
-
 	ld a, BANK(_LoadMapPart)
 	rst Bankswitch
 	call _LoadMapPart
@@ -120,27 +118,12 @@ LoadMapPart::
 	ret
 
 LoadMetatiles::
-	ld hl, wSurroundingTiles
-	ld de, wTilesetBlocksAddress
-	jr _LoadMetatilesOrAttributes
-
-LoadMetatileAttributes::
-	ld hl, wSurroundingAttributes
-	ld de, wTilesetAttributesAddress
-	; fallthrough
-
-_LoadMetatilesOrAttributes:
-	ld a, [de]
-	ld [wTilesetDataAddress], a
-	inc de
-	ld a, [de]
-	ld [wTilesetDataAddress + 1], a
-
 	; de <- wOverworldMapAnchor
 	ld a, [wOverworldMapAnchor]
 	ld e, a
 	ld a, [wOverworldMapAnchor + 1]
 	ld d, a
+	ld hl, wSurroundingTiles
 	ld b, SCREEN_META_HEIGHT
 
 .row
@@ -163,24 +146,19 @@ _LoadMetatilesOrAttributes:
 	ld e, l
 	ld d, h
 	; Set hl to the address of the current metatile data ([wTilesetBlocksAddress] + (a) tiles).
+; BUG: LoadMetatiles wraps around past 128 blocks (see docs/bugs_and_glitches.md)
+	add a
 	ld l, a
 	ld h, 0
 	add hl, hl
 	add hl, hl
 	add hl, hl
-	add hl, hl
-	ld a, [wTilesetDataAddress]
+	ld a, [wTilesetBlocksAddress]
 	add l
 	ld l, a
-	ld a, [wTilesetDataAddress + 1]
+	ld a, [wTilesetBlocksAddress + 1]
 	adc h
 	ld h, a
-
-	ldh a, [rSVBK]
-	push af
-	ld a, BANK("Surrounding Data")
-	ldh [rSVBK], a
-
 
 	; copy the 4x4 metatile
 rept METATILE_WIDTH - 1
@@ -201,10 +179,6 @@ rept METATILE_WIDTH
 	ld [de], a
 	inc de
 endr
-
-	pop af
-	ldh [rSVBK], a
-
 	; Next metatile
 	pop hl
 	ld de, METATILE_WIDTH
@@ -390,14 +364,6 @@ CheckIndoorMap::
 	cp DUNGEON
 	ret z
 	cp GATE
-	ret
-
-CheckUnknownMap:: ; unreferenced
-	cp INDOOR
-	ret z
-	cp GATE
-	ret z
-	cp ENVIRONMENT_5
 	ret
 
 LoadMapAttributes::
@@ -1198,9 +1164,8 @@ ScrollMapUp::
 	hlcoord 0, 0
 	ld de, wBGMapBuffer
 	call BackupBGMapRow
-	hlcoord 0, 0, wAttrmap
-	ld de, wBGMapPalBuffer
-	call BackupBGMapRow
+	ld c, 2 * SCREEN_WIDTH
+	call ScrollBGMapPalettes
 	ld a, [wBGMapAnchor]
 	ld e, a
 	ld a, [wBGMapAnchor + 1]
@@ -1214,9 +1179,8 @@ ScrollMapDown::
 	hlcoord 0, SCREEN_HEIGHT - 2
 	ld de, wBGMapBuffer
 	call BackupBGMapRow
-	hlcoord 0, SCREEN_HEIGHT - 2, wAttrmap
-	ld de, wBGMapPalBuffer
-	call BackupBGMapRow
+	ld c, 2 * SCREEN_WIDTH
+	call ScrollBGMapPalettes
 	ld a, [wBGMapAnchor]
 	ld l, a
 	ld a, [wBGMapAnchor + 1]
@@ -1238,9 +1202,8 @@ ScrollMapLeft::
 	hlcoord 0, 0
 	ld de, wBGMapBuffer
 	call BackupBGMapColumn
-	hlcoord 0, 0, wAttrmap
-	ld de, wBGMapPalBuffer
-	call BackupBGMapColumn
+	ld c, 2 * SCREEN_HEIGHT
+	call ScrollBGMapPalettes
 	ld a, [wBGMapAnchor]
 	ld e, a
 	ld a, [wBGMapAnchor + 1]
@@ -1254,9 +1217,8 @@ ScrollMapRight::
 	hlcoord SCREEN_WIDTH - 2, 0
 	ld de, wBGMapBuffer
 	call BackupBGMapColumn
-	hlcoord SCREEN_WIDTH - 2, 0, wAttrmap
-	ld de, wBGMapPalBuffer
-	call BackupBGMapColumn
+	ld c, 2 * SCREEN_HEIGHT
+	call ScrollBGMapPalettes
 	ld a, [wBGMapAnchor]
 	ld e, a
 	and %11100000
@@ -1360,13 +1322,6 @@ UpdateBGMapColumn::
 	ldh [hBGMapTileCount], a
 	ret
 
-ClearBGMapBuffer:: ; unreferenced
-	ld hl, wBGMapBuffer
-	ld bc, wBGMapBufferEnd - wBGMapBuffer
-	xor a
-	call ByteFill
-	ret
-
 LoadTilesetGFX::
 	ld hl, wTilesetAddress
 	ld a, [hli]
@@ -1386,7 +1341,7 @@ LoadTilesetGFX::
 
 	ld hl, wDecompressScratch
 	ld de, vTiles2
-	ld bc, $7f tiles
+	ld bc, $60 tiles
 	call CopyBytes
 
 	ldh a, [rVBK]
@@ -1394,9 +1349,9 @@ LoadTilesetGFX::
 	ld a, BANK(vTiles5)
 	ldh [rVBK], a
 
-	ld hl, wDecompressScratch + $80 tiles
+	ld hl, wDecompressScratch + $60 tiles
 	ld de, vTiles5
-	ld bc, $80 tiles
+	ld bc, $60 tiles
 	call CopyBytes
 
 	pop af
@@ -2095,11 +2050,6 @@ SwitchToAnyMapAttributesBank::
 	rst Bankswitch
 	ret
 
-GetMapAttributesBank:: ; unreferenced
-	ld a, [wMapGroup]
-	ld b, a
-	ld a, [wMapNumber]
-	ld c, a
 GetAnyMapAttributesBank::
 	push hl
 	push de

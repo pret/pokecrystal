@@ -1317,7 +1317,7 @@ Pokedex_DrawUnownModeBG:
 	hlcoord 16, 15
 	ld [hl], $3e
 	hlcoord 6, 5
-	call Pokedex_PlaceFrontpicAtHL
+	call PlaceFrontpicAtHL
 	ld de, 0
 	ld b, 0
 	ld c, NUM_UNOWN
@@ -1386,7 +1386,7 @@ Pokedex_FillBackgroundColor2:
 
 Pokedex_PlaceFrontpicTopLeftCorner:
 	hlcoord 1, 1
-Pokedex_PlaceFrontpicAtHL:
+PlaceFrontpicAtHL:
 	xor a
 	ld b, $7
 .row
