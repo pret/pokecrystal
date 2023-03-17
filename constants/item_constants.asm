@@ -211,7 +211,7 @@ MACRO add_tm
 ; - \1_TMNUM: the learnable TM/HM flag, starting at 1
 ; - TM##_MOVE: alias for the move id, equal to the value of \1
 	const TM_\1
-TM{02d:__tmhm_value__}_MOVE = \1
+	DEF TM{02d:__tmhm_value__}_MOVE = \1
 	add_tmnum \1
 ENDM
 
