@@ -177,6 +177,9 @@ endr
 	pop hl
 	ret
 
+WaitPlaySFX::
+	call WaitSFX
+
 PlaySFX::
 ; Play sound effect de.
 ; Sound effects are ordered by priority (highest to lowest)
@@ -217,17 +220,15 @@ PlaySFX::
 	pop hl
 	ret
 
-WaitPlaySFX::
-	call WaitSFX
-	call PlaySFX
-	ret
-
 WaitSFX::
 ; infinite loop until sfx is done playing
 
 	push hl
 
+	jr .handleLoop
 .wait
+	call DelayFrame
+.handleLoop
 	ld hl, wChannel5Flags1
 	bit 0, [hl]
 	jr nz, .wait

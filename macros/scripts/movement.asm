@@ -219,4 +219,11 @@ MACRO skyfall_top
 	db movement_skyfall_top
 ENDM
 
+	const movement_run_step ; $5a
+MACRO run_step
+	db movement_run_step + \1
+ENDM
+
+	const_skip 3
+
 DEF NUM_MOVEMENT_CMDS EQU const_value
