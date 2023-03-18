@@ -61,13 +61,6 @@ _BillsPC:
 	ldh [hFunctionTargetHi], a
 	set LCD_STAT, [hl]
 
-	; Restore regular speed.
-	ldh a, [rIE]
-	push af
-	call NormalSpeed
-	pop af
-	ldh [rIE], a
-
 	call ReturnToMapFromSubmenu
 	pop af
 	ldh [hMapAnims], a
