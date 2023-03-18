@@ -700,12 +700,19 @@ NormalStep:
 	ld a, [hl]
 	call CheckSuperTallGrassTile
 	jr z, .shake_grass
+	call CheckPuddleTile
+	jr z, .splash_puddle
 
 	call CheckGrassTile
 	jr c, .skip_grass
 
 .shake_grass
 	call ShakeGrass
+	jr .skip_grass
+
+.splash_puddle
+	call SplashPuddle
+	; fallthrough
 
 .skip_grass
 	ld hl, wCenteredObject

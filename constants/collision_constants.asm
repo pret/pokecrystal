@@ -8,6 +8,7 @@ DEF TALK       EQU $10
 ; TileCollisionTable indexes (see data/collision/collision_permissions.asm)
 DEF COLL_FLOOR             EQU $00
 DEF COLL_01                EQU $01 ; garbage
+DEF COLL_PUDDLE            EQU $02
 DEF COLL_03                EQU $03 ; garbage
 DEF COLL_04                EQU $04 ; garbage
 DEF COLL_WALL              EQU $07
