@@ -500,9 +500,16 @@ _ContText::
 	ld a, [wLinkMode]
 	or a
 	call z, UnloadBlinkingCursor
-	; fallthrough
+	jr _ContTextNoPause.not_instant
 
 _ContTextNoPause::
+	ld a, [wOptions]
+	and TEXT_DELAY_MASK
+	cp TEXT_DELAY_FAST
+	jr nz, .not_instant
+	ld c, 15
+	call DelayFrames
+.not_instant
 	push de
 	call TextScroll
 	call TextScroll
