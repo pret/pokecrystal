@@ -1,6 +1,6 @@
 DefaultOptions:
-; wOptions: med text speed
-	db TEXT_DELAY_FAST
+; wOptions: fast text speed
+	db TEXT_DELAY_FAST | (1 << BATTLE_SHIFT) | (1 << STEREO)
 ; wSaveFileExists: no
 	db FALSE
 ; wTextboxFrame: frame 1
