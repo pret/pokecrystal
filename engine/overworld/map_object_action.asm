@@ -211,9 +211,9 @@ SetFacingBounce:
 	add hl, bc
 	ld a, [hl]
 	inc a
-	and %00001111
+	and %00011111
 	ld [hl], a
-	and %00001000
+	and %00010000
 	jr z, SetFacingFreezeBounce
 	ld hl, OBJECT_FACING
 	add hl, bc
