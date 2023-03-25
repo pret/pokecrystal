@@ -1177,23 +1177,59 @@ VitaminEffect:
 
 	call RareCandy_StatBooster_GetParameters
 
-	call GetStatExpRelativePointer
+	call GetEVRelativePointer
 
-	ld a, MON_STAT_EXP
+	ld a, MON_EVS
 	call GetPartyParamLocation
+
+	ld d, 10
+	push bc
+	push hl
+	ld e, NUM_STATS
+	ld bc, 0
+.count_evs
+	ld a, [hli]
+	add c
+	ld c, a
+	jr nc, .cont
+	inc b
+.cont
+	dec e
+	jr nz, .count_evs
+	ld a, d
+	add c
+	ld c, a
+	adc b
+	sub c 
+	ld b, a
+	ld e, d
+.decrease_evs_gained
+	farcall IsEvsGreaterThan510
+	jr nc, .check_ev_overflow
+	dec e
+	dec bc
+	jr .decrease_evs_gained
+.check_ev_overflow
+	pop hl 
+	pop bc 
+
+	ld a, e
+	and a
+	jr z, NoEffectMessage
 
 	add hl, bc
 	ld a, [hl]
 	cp 100
 	jr nc, NoEffectMessage
 
-	add 10
+	add e
 	ld [hl], a
 	call UpdateStatsAfterItem
 
-	call GetStatExpRelativePointer
+	call GetEVRelativePointer
 
 	ld hl, StatStrings
+	add hl, bc
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -1222,7 +1258,7 @@ UpdateStatsAfterItem:
 	call GetPartyParamLocation
 	ld d, h
 	ld e, l
-	ld a, MON_STAT_EXP - 1
+	ld a, MON_EVS - 1
 	call GetPartyParamLocation
 	ld b, TRUE
 	predef_jump CalcMonStats
@@ -1241,17 +1277,17 @@ StatStrings:
 	dw .attack
 	dw .defense
 	dw .speed
-	dw .special
+	dw .sp_atk
 
 .health  db "HEALTH@"
 .attack  db "ATTACK@"
 .defense db "DEFENSE@"
 .speed   db "SPEED@"
-.special db "SPECIAL@"
+.sp_atk  db "SPCL.ATK@"
 
-GetStatExpRelativePointer:
+GetEVRelativePointer:
 	ld a, [wCurItem]
-	ld hl, StatExpItemPointerOffsets
+	ld hl, EVItemPointerOffsets
 .next
 	cp [hl]
 	inc hl
@@ -1265,12 +1301,12 @@ GetStatExpRelativePointer:
 	ld b, 0
 	ret
 
-StatExpItemPointerOffsets:
-	db HP_UP,    MON_HP_EXP - MON_STAT_EXP
-	db PROTEIN, MON_ATK_EXP - MON_STAT_EXP
-	db IRON,    MON_DEF_EXP - MON_STAT_EXP
-	db CARBOS,  MON_SPD_EXP - MON_STAT_EXP
-	db CALCIUM, MON_SPC_EXP - MON_STAT_EXP
+EVItemPointerOffsets:
+	db HP_UP,    MON_HP_EV - MON_EVS
+	db PROTEIN, MON_ATK_EV - MON_EVS
+	db IRON,    MON_DEF_EV - MON_EVS
+	db CARBOS,  MON_SPD_EV - MON_EVS
+	db CALCIUM, MON_SAT_EV - MON_EVS
 
 RareCandy_StatBooster_GetParameters:
 	ld a, [wCurPartySpecies]

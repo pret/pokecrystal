@@ -5,12 +5,8 @@ BadEgg:
 	db POUND, NO_MOVE, NO_MOVE, NO_MOVE
 	dw 0 ; OT ID
 	db 0, 0, 0 ; Exp
-	; Stat exp
-	bigdw 0
-	bigdw 0
-	bigdw 0
-	bigdw 0
-	bigdw 0
+	db 0, 0, 0, 0, 0, 0 ; EVs
+	db 0, 0, 0, 0 ; padding
 	dn 0, 0, 0, 0 ; DVs
 	db 0, 0, 0, 0 ; PP
 	db 255 ; Step cycles to hatch

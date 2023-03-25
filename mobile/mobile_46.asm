@@ -6884,7 +6884,7 @@ TradeCornerHoldMon_PrepareForUpload:
 	ld hl, MON_MAXHP
 	add hl, de
 	push hl
-	ld hl, MON_STAT_EXP - 1
+	ld hl, MON_EVS - 1
 	add hl, de
 	pop de
 	push de

@@ -9,6 +9,10 @@ DEF BASE_DEF         rb
 DEF BASE_SPD         rb
 DEF BASE_SAT         rb
 DEF BASE_SDF         rb
+DEF BASE_EVS         rw
+rsset BASE_EVS
+DEF BASE_HP_ATK_DEF_SPD_EVS  rb
+DEF BASE_SAT_SDF_EVS         rb
 DEF BASE_TYPES       rw
 rsset BASE_TYPES
 DEF BASE_TYPE_1      rb
@@ -20,9 +24,7 @@ rsset BASE_ITEMS
 DEF BASE_ITEM_1      rb
 DEF BASE_ITEM_2      rb
 DEF BASE_GENDER      rb
-                     rb_skip
 DEF BASE_EGG_STEPS   rb
-                     rb_skip
 DEF BASE_PIC_SIZE    rb
 DEF BASE_FRONTPIC    rw
 DEF BASE_BACKPIC     rw
@@ -79,13 +81,15 @@ DEF MON_ITEM               rb
 DEF MON_MOVES              rb NUM_MOVES
 DEF MON_ID                 rw
 DEF MON_EXP                rb 3
-DEF MON_STAT_EXP           rw NUM_EXP_STATS
-rsset MON_STAT_EXP
-DEF MON_HP_EXP             rw
-DEF MON_ATK_EXP            rw
-DEF MON_DEF_EXP            rw
-DEF MON_SPD_EXP            rw
-DEF MON_SPC_EXP            rw
+DEF MON_EVS                rb NUM_STATS
+rsset MON_EVS
+DEF MON_HP_EV              rb
+DEF MON_ATK_EV             rb
+DEF MON_DEF_EV             rb
+DEF MON_SPD_EV             rb
+DEF MON_SAT_EV             rb
+DEF MON_SDF_EV             rb
+                           rb_skip 4
 DEF MON_DVS                rw
 DEF MON_PP                 rb NUM_MOVES
 DEF MON_HAPPINESS          rb
@@ -119,13 +123,15 @@ DEF SAVEMON_ITEM               rb
 DEF SAVEMON_MOVES              rb NUM_MOVES
 DEF SAVEMON_ID                 rw
 DEF SAVEMON_EXP                rb 3
-DEF SAVEMON_STAT_EXP           rw NUM_EXP_STATS
-rsset SAVEMON_STAT_EXP
-DEF SAVEMON_HP_EXP             rw
-DEF SAVEMON_ATK_EXP            rw
-DEF SAVEMON_DEF_EXP            rw
-DEF SAVEMON_SPD_EXP            rw
-DEF SAVEMON_SPC_EXP            rw
+DEF SAVEMON_EVS                rb NUM_STATS
+rsset SAVEMON_EVS
+DEF SAVEMON_HP_EV              rb
+DEF SAVEMON_ATK_EV             rb
+DEF SAVEMON_DEF_EV             rb
+DEF SAVEMON_SPD_EV             rb
+DEF SAVEMON_SAT_EV             rb
+DEF SAVEMON_SDF_EV             rb
+                           rb_skip 4
 DEF SAVEMON_DVS                rw
 ; savemon_struct is identical to party_struct before this point
 DEF SAVEMON_PP_UPS             rb
@@ -266,3 +272,7 @@ DEF HAPPINESS_THRESHOLD_2 EQU 200
 DEF PP_UP_MASK EQU %11000000
 DEF PP_UP_ONE  EQU %01000000
 DEF PP_MASK    EQU %00111111
+
+; significant EV values
+DEF MAX_EV EQU 252
+DEF MAX_TOTAL_EV EQU 510

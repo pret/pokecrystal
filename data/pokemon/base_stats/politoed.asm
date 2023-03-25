@@ -1,6 +1,7 @@
 	db POLITOED ; 186
 
 	db  90,  75,  75,  70,  90, 100
+	evs  0,   0,   0,   0,   0,   3
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER ; type
@@ -8,9 +9,7 @@
 	db 185 ; base exp
 	db NO_ITEM, KINGS_ROCK ; items
 	db GENDER_F50 ; gender ratio
-	db 100 ; unknown 1
 	db 20 ; step cycles to hatch
-	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/politoed/front.dimensions"
 	dw NULL, NULL ; unused (beta front/back pics)
 	db GROWTH_MEDIUM_SLOW ; growth rate
