@@ -803,7 +803,7 @@ LoadBluePage:
 	jr z, .got_gender
 	ld a, "♀"
 .got_gender
-	hlcoord 9, 13
+	hlcoord 8, 13
 	ld [hl], a
 .done
 	ret
