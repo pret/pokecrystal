@@ -236,10 +236,11 @@ rept 4
 	inc hl
 endr
 	; Generate a number, either 0, 1, or 2, to choose a time of day.
+	; Can't pick 3 since evening does not have wild data.
 .loop2
 	call Random
 	maskbits NUM_DAYTIMES
-	cp DARKNESS_F
+	cp EVE_F
 	jr z, .loop2
 
 	ld bc, 2 * NUM_GRASSMON

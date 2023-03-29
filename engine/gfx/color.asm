@@ -1278,6 +1278,8 @@ LoadMapPals:
 	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 
+	farcall LoadSpecialNPCPalette
+
 	ld a, [wEnvironment]
 	cp TOWN
 	jr z, .outside
@@ -1285,20 +1287,24 @@ LoadMapPals:
 	ret nz
 .outside
 	ld a, [wMapGroup]
-	ld l, a
-	ld h, 0
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	ld de, RoofPals
+	add a
+	add a
+	ld e, a
+	ld d, 0
+	ld hl, RoofPals
+	add hl, de
+	add hl, de
 	add hl, de
 	ld a, [wTimeOfDayPal]
 	maskbits NUM_DAYTIMES
 	cp NITE_F
+	ld de, 4
+	jr z, .nite
 	jr c, .morn_day
-rept 4
-	inc hl
-endr
+; eve
+	add hl, de
+.nite
+	add hl, de
 .morn_day
 	ld de, wBGPals1 palette PAL_BG_ROOF color 1
 	ld bc, 4
@@ -1334,7 +1340,7 @@ MapObjectPals::
 INCLUDE "gfx/overworld/npc_sprites.pal"
 
 RoofPals:
-	table_width PAL_COLOR_SIZE * 2 * 2, RoofPals
+	table_width PAL_COLOR_SIZE * 3 * 2, RoofPals
 INCLUDE "gfx/tilesets/roofs.pal"
 	assert_table_length NUM_MAP_GROUPS + 1
 

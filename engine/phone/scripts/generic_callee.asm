@@ -21,7 +21,7 @@ PhoneScript_Random11:
 PhoneScript_AnswerPhone_Male:
 	checktime DAY
 	iftrue PhoneScript_AnswerPhone_Male_Day
-	checktime NITE
+	checktime EVE | NITE
 	iftrue PhoneScript_AnswerPhone_Male_Nite
 	readvar VAR_CALLERID
 	ifequal PHONE_SCHOOLBOY_JACK, .Jack
@@ -394,7 +394,7 @@ PhoneScript_AnswerPhone_Male_Nite:
 PhoneScript_AnswerPhone_Female:
 	checktime DAY
 	iftrue PhoneScript_AnswerPhone_Female_Day
-	checktime NITE
+	checktime EVE | NITE
 	iftrue PhoneScript_AnswerPhone_Female_Nite
 	readvar VAR_CALLERID
 	ifequal PHONE_POKEFAN_BEVERLY, .Beverly
@@ -551,7 +551,7 @@ PhoneScript_AnswerPhone_Female_Nite:
 PhoneScript_GreetPhone_Male:
 	checktime DAY
 	iftrue PhoneScript_GreetPhone_Male_Day
-	checktime NITE
+	checktime EVE | NITE
 	iftrue PhoneScript_GreetPhone_Male_Nite
 	readvar VAR_CALLERID
 	ifequal PHONE_SCHOOLBOY_JACK, .Jack
@@ -924,7 +924,7 @@ PhoneScript_GreetPhone_Male_Nite:
 PhoneScript_GreetPhone_Female:
 	checktime DAY
 	iftrue PhoneScript_GreetPhone_Female_Day
-	checktime NITE
+	checktime EVE | NITE
 	iftrue PhoneScript_GreetPhone_Female_Nite
 	readvar VAR_CALLERID
 	ifequal PHONE_POKEFAN_BEVERLY, .Beverly
