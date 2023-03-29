@@ -492,9 +492,11 @@ ENDM
 	map_const MY_HOUSE_1F,                                  5,  4  ; 2
 	map_const PLAYERS_HOUSE_2F,                             4,  3 ;  3
 	map_const SALTBREEZE_POKECENTER_1F,                     5,  4 ;  4
-	map_const SUNGLOW_TRAIL,                                20, 27 ; 5
-	map_const SUNGLOW_CAPE,                                 20, 18 ; 6
-	map_const SUNGLOW_HARBOR,                               20, 18 ; 7
+	map_const WARRENS_HOUSE_1F,                             7,  4 ;  5
+	map_const WARRENS_HOUSE_2F,                             7,  4 ;  6
+	map_const SUNGLOW_TRAIL,                                20, 27 ; 7
+	map_const SUNGLOW_CAPE,                                 20, 18 ; 8
+	map_const SUNGLOW_HARBOR,                               20, 18 ; 9
 	endgroup
 
 DEF NUM_MAP_GROUPS EQU const_value ; 27

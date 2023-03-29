@@ -896,6 +896,12 @@ MyHouse1F_Blocks:
 PlayersHouse2F_Blocks:
 	INCBIN "maps/PlayersHouse2F.ablk"
 
+WarrensHouse1F_Blocks:
+	INCBIN "maps/WarrensHouse1F.ablk"
+
+WarrensHouse2F_Blocks:
+	INCBIN "maps/WarrensHouse2F.ablk"
+
 SunglowTrail_Blocks:
 	INCBIN "maps/SunglowTrail.ablk"
 
