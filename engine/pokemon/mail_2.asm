@@ -31,14 +31,14 @@ ReadAnyMail:
 	push de
 	ld a, BANK(sPartyMail)
 	call OpenSRAM
-	farcall IsMailEuropean
+	farcall ParseMailLanguage
 	call CloseSRAM
 	ld a, c
 	ld de, StandardEnglishFont
-	or a
+	or a ; MAIL_LANG_ENGLISH
 	jr z, .got_font
 	ld de, FrenchGermanFont
-	sub $3
+	sub MAIL_LANG_ITALIAN
 	jr c, .got_font
 	ld de, SpanishItalianFont
 

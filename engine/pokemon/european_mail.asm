@@ -1,29 +1,24 @@
-IsMailEuropean:
-; return 1 if French
-; return 2 if German
-; return 3 if Italian
-; return 4 if Spanish
-; return 0 if none of the above
-	ld c, $0
+ParseMailLanguage:
+	ld c, MAIL_LANG_ENGLISH
 	ld hl, sPartyMon1MailNationality - sPartyMon1Mail
 	add hl, de
 	ld a, [hli]
 	cp "E"
 	ret nz
 	ld a, [hli]
-	inc c
+	inc c ; MAIL_LANG_FRENCH
 	cp "F"
 	ret z
-	inc c
+	inc c ; MAIL_LANG_GERMAN
 	cp "G"
 	ret z
-	inc c
+	inc c ; MAIL_LANG_ITALIAN
 	cp "I"
 	ret z
-	inc c
+	inc c ; MAIL_LANG_SPANISH
 	cp "S"
 	ret z
-	ld c, $0
+	ld c, MAIL_LANG_ENGLISH
 	ret
 
 ; The regular font.
