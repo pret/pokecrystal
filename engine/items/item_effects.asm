@@ -58,7 +58,7 @@ ItemEffects:
 	dw SuperRepelEffect    ; SUPER_REPEL
 	dw MaxRepelEffect      ; MAX_REPEL
 	dw DireHitEffect       ; DIRE_HIT
-	dw NoEffect            ; ITEM_2D
+	dw SurfboardEffect     ; SURFBOARD
 	dw RestoreHPEffect     ; FRESH_WATER
 	dw RestoreHPEffect     ; SODA_POP
 	dw RestoreHPEffect     ; LEMONADE
@@ -2314,6 +2314,12 @@ CoinCaseEffect:
 .CoinCaseCountText:
 	text_far _CoinCaseCountText
 	text_end
+
+SurfboardEffect:
+	ld a, 1
+	ld [wUsingHMItem], a
+	farcall SurfFunction
+	ret
 
 OldRodEffect:
 	ld e, $0

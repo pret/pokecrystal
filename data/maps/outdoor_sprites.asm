@@ -307,15 +307,9 @@ CableClubGroupSprites:
 
 SaltbreezeGroupSprites:
 ; Incomplete
-	db SPRITE_SAILOR
-	db SPRITE_FISHING_GURU
-	db SPRITE_SUPER_NERD
-	db SPRITE_COOLTRAINER_F
-	db SPRITE_YOUNGSTER
 	db SPRITE_GRANNY
-	; 5 of max 9 walking sprites
-	db SPRITE_HO_OH
-	db SPRITE_FAIRY
-	db SPRITE_ROCK
+	; 1 of max 9 walking sprites
 	db SPRITE_BULBASAUR
+	db SPRITE_POKE_BALL
+	db SPRITE_ROCK
 	db 0 ; end

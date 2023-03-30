@@ -322,9 +322,8 @@ _BlindingFlashText::
 	text_end ; unreferenced
 
 _UsedSurfText::
-	text_ram wStringBuffer2
-	text " used"
-	line "SURF!"
+	text "You rode the"
+	line "waves!"
 	done
 
 _CantSurfText::

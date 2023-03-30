@@ -25,7 +25,7 @@
 	tilecoll BUOY, WATER, BUOY, WATER ; 18
 	tilecoll WATER, WATER, WATER, WATER ; 19
 	tilecoll WATER, BUOY, WATER, BUOY ; 1a
-	tilecoll WATER, WATER, WATER, WATER ; 1b
+	tilecoll WALL, WALL, WALL, WALL ; 1b
 	tilecoll BUOY, WATER, BUOY, BUOY ; 1c
 	tilecoll WATER, WATER, BUOY, BUOY ; 1d
 	tilecoll WATER, BUOY, BUOY, BUOY ; 1e

@@ -1,6 +1,7 @@
 	object_const_def
 	const SALTBREEZE_BULBASAUR ; [E-1]
 	const SALTBREEZE_CLARISSA_DAY ; [E-2]
+	const SALTBREEZE_POKE_BALL ; [E-3]
 
 SaltbreezeTown_MapScripts:
 	def_scene_scripts
@@ -32,6 +33,9 @@ BulbasaurScript: ; [E-1]
 
 SaltbreezeClarissaDayScript: ; [E-2]
 	jumptextfaceplayer SaltbreezeClarissaDayText
+
+SaltbreezeSurfboard: ; [E-3]
+	itemball SURFBOARD
 
 SaltbreezeSign: ; [BG-1]
 	jumptext SaltbreezeSignText
@@ -134,3 +138,4 @@ SaltbreezeTown_MapEvents:
 	def_object_events
 	object_event 25, 45, SPRITE_BULBASAUR, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BulbasaurScript, EVENT_GOT_BULBASAUR ; [E-1]
 	object_event  7, 43, SPRITE_GRANNY, SPRITEMOVEDATA_WANDER, 1, 1, -1, DAY, 0, OBJECTTYPE_SCRIPT, 0, SaltbreezeClarissaDayScript, -1 ; [E-2]
+	object_event 22, 29, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SaltbreezeSurfboard, EVENT_SALTBREEZE_SURFBOARD ; [E-3]
