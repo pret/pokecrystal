@@ -406,7 +406,7 @@ endc
 .fix_mail_loop
 	push bc
 	push de
-	farcall IsMailEuropean
+	farcall ParseMailLanguage
 	ld a, c
 	or a
 	jr z, .next
@@ -893,7 +893,7 @@ Link_PrepPartyData_Gen2:
 	ret nz
 
 ; Fill 5 bytes at wLinkPlayerMailPreamble with $20
-	ld de, wLinkPlayerMailPreamble
+	ld de, wLinkPlayerMail
 	ld a, SERIAL_MAIL_PREAMBLE_BYTE
 	call Link_CopyMailPreamble
 
@@ -911,6 +911,7 @@ Link_PrepPartyData_Gen2:
 	pop bc
 	dec b
 	jr nz, .loop2
+
 ; Copy the mail data to wLinkPlayerMailMetadata
 	ld hl, sPartyMail
 	ld b, PARTY_LENGTH
@@ -923,6 +924,8 @@ Link_PrepPartyData_Gen2:
 	pop bc
 	dec b
 	jr nz, .loop3
+
+; Translate the messages if necessary
 	ld b, PARTY_LENGTH
 	ld de, sPartyMail
 	ld hl, wLinkPlayerMailMessages
@@ -931,17 +934,17 @@ Link_PrepPartyData_Gen2:
 	push hl
 	push de
 	push hl
-	farcall IsMailEuropean
+	farcall ParseMailLanguage
 	pop de
 	ld a, c
-	or a
+	or a ; MAIL_LANG_ENGLISH
 	jr z, .next
-	sub $3
+	sub MAIL_LANG_ITALIAN
 	jr nc, .italian_spanish
 	farcall ConvertFrenchGermanMailToEnglish
 	jr .next
 .italian_spanish
-	cp $2
+	cp (MAIL_LANG_SPANISH + 1) - MAIL_LANG_ITALIAN
 	jr nc, .next
 	farcall ConvertSpanishItalianMailToEnglish
 .next
@@ -958,6 +961,7 @@ Link_PrepPartyData_Gen2:
 	jr nz, .loop4
 	call CloseSRAM
 
+; The SERIAL_NO_DATA_BYTE value isn't allowed anywhere in message text
 	ld hl, wLinkPlayerMailMessages
 	ld bc, (MAIL_MSG_LENGTH + 1) * PARTY_LENGTH
 .loop5
@@ -972,6 +976,7 @@ Link_PrepPartyData_Gen2:
 	or c
 	jr nz, .loop5
 
+; Calculate the patch offsets for the mail metadata
 	ld hl, wLinkPlayerMailMetadata
 	ld de, wLinkPlayerMailPatchSet
 	ld b, (MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 1)) * PARTY_LENGTH
