@@ -1073,7 +1073,7 @@ ENDU
 	ds 138
 
 wMysteryGiftPartnerData::
-wMysteryGiftGameVersion:: db
+wMysteryGiftPartnerGameVersion:: db
 wMysteryGiftPartnerID:: dw
 wMysteryGiftPartnerName:: ds NAME_LENGTH
 wMysteryGiftPartnerDexCaught:: db
@@ -1087,7 +1087,7 @@ wMysteryGiftPartnerDataEnd::
 	ds 60
 
 wMysteryGiftPlayerData::
-	ds 1
+wMysteryGiftPlayerGameVersion:: db
 wMysteryGiftPlayerID:: dw
 wMysteryGiftPlayerName:: ds NAME_LENGTH
 wMysteryGiftPlayerDexCaught:: db
