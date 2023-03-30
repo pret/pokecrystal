@@ -225,7 +225,7 @@
 	tilecoll FLOOR, FLOOR, HEADBUTT_TREE, WALL ; e0
 	tilecoll FLOOR, FLOOR, WALL, HEADBUTT_TREE ; e1
 	tilecoll FLOOR, FLOOR, WALL, FLOOR ; e2
-	tilecoll WALL, WALL, WALL, WALL ; e3
+	tilecoll FLOOR, WALL, FLOOR, FLOOR ; e3
 	tilecoll WALL, WALL, WALL, WALL ; e4
 	tilecoll WALL, WALL, WALL, WALL ; e5
 	tilecoll WALL, WALL, WALL, WALL ; e6

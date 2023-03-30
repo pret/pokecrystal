@@ -37,7 +37,7 @@ WarrenMornDayScript: ; [E-1]
 WarrenEveNiteScript: ; [E-2]
 	faceplayer
 	opentext
-	checktime NITE
+	checktime EVE | NITE
 	iftrue .WarrenEveNiteScript
 	
 .WarrenEveNiteScript: ; [E-2]
@@ -128,14 +128,12 @@ WarrensHouse1F_MapEvents:
 	warp_event 4, 7, SALTBREEZE_TOWN, 3
 	warp_event 5, 7, SALTBREEZE_TOWN, 3
 
-	
-
 	def_coord_events
 
 	def_bg_events
 
 	def_object_events
 	object_event  5,  3, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, MORN | DAY, 0, OBJECTTYPE_SCRIPT, 0, WarrenMornDayScript, -1
-	object_event  4,  2, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, NITE, 0, OBJECTTYPE_SCRIPT, 0, WarrenEveNiteScript, -1
+	object_event  4,  2, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, EVE | NITE, 0, OBJECTTYPE_SCRIPT, 0, WarrenEveNiteScript, -1
 	object_event  2,  3, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, MORN, 0, OBJECTTYPE_SCRIPT, 0, ClarissaMornScript, -1
-	object_event  12, 2, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, NITE, 0, OBJECTTYPE_SCRIPT, 0, ClarissaEveScript, -1
+	object_event  12, 2, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, EVE, 0, OBJECTTYPE_SCRIPT, 0, ClarissaEveScript, -1

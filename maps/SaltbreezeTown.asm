@@ -1,5 +1,6 @@
 	object_const_def
 	const SALTBREEZE_BULBASAUR ; [E-1]
+	const SALTBREEZE_CLARISSA_DAY ; [E-2]
 
 SaltbreezeTown_MapScripts:
 	def_scene_scripts
@@ -28,6 +29,9 @@ BulbasaurScript: ; [E-1]
 	waitbutton
 	closetext
 	end
+
+SaltbreezeClarissaDayScript: ; [E-2]
+	jumptextfaceplayer SaltbreezeClarissaDayText
 
 SaltbreezeSign: ; [BG-1]
 	jumptext SaltbreezeSignText
@@ -65,6 +69,18 @@ PlayerHeadOutText: ; [E-1]
 BulbasaurPartyFullText: ; [E-1]
 	text "What? How is my"
 	line "party full?"
+	done
+
+SaltbreezeClarissaDayText: ; [E-2]
+	text "Clarissa: Good"
+	line "afternoon <PLAY_G>."
+	
+	para "Tending to a"
+	line "garden is a lot"
+	cont "of work."
+	
+	para "There are new"
+	line "weeds every day."
 	done
 
 SaltbreezeSignText: ; [BG-1]
@@ -117,3 +133,4 @@ SaltbreezeTown_MapEvents:
 
 	def_object_events
 	object_event 25, 45, SPRITE_BULBASAUR, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BulbasaurScript, EVENT_GOT_BULBASAUR ; [E-1]
+	object_event  7, 43, SPRITE_GRANNY, SPRITEMOVEDATA_WANDER, 1, 1, -1, DAY, 0, OBJECTTYPE_SCRIPT, 0, SaltbreezeClarissaDayScript, -1 ; [E-2]
