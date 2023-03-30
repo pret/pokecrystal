@@ -343,6 +343,9 @@ DoPlayerMovement::
 	and a
 	jr nz, .ExitWater
 
+	ld a, [wCurInput]
+	and B_BUTTON
+	jr nz, .run
 	ld a, STEP_WALK
 	call .DoStep
 	scf
