@@ -2631,11 +2631,15 @@ ENDU
 wTempEnemyMonSpecies::  db
 wTempBattleMonSpecies:: db
 
+UNION
+wOTLinkBattleRNData:: ds SERIAL_RN_PREAMBLE_LENGTH + SERIAL_RNS_LENGTH
+NEXTU
 wEnemyMon:: battle_struct wEnemyMon
 wEnemyMonBaseStats:: ds NUM_EXP_STATS
 wEnemyMonCatchRate:: db
 wEnemyMonBaseExp::   db
 wEnemyMonEnd::
+ENDU
 
 wBattleMode::
 ; 0: overworld
