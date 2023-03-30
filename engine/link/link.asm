@@ -247,7 +247,7 @@ endc
 	ldh [rIE], a
 
 	ld hl, wLinkBattleRNPreamble
-	ld de, wEnemyMon
+	ld de, wOTLinkBattleRNData
 	ld bc, SERIAL_RN_PREAMBLE_LENGTH + SERIAL_RNS_LENGTH
 	vc_hook Wireless_ExchangeBytes_RNG_state
 	call Serial_ExchangeBytes
@@ -1204,7 +1204,7 @@ Link_CopyRandomNumbers:
 	ldh a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
 	ret z
-	ld hl, wEnemyMonSpecies
+	ld hl, wOTLinkBattleRNData
 	call Link_FindFirstNonControlCharacter_AllowZero
 	ld de, wLinkBattleRNs
 	ld c, 10
