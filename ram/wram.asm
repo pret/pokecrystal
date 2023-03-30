@@ -2002,8 +2002,15 @@ wSwitchItemBuffer:: ds 2 ; may store 1 or 2 bytes
 SECTION UNION "Miscellaneous WRAM 1", WRAMX
 
 ; switching pokemon in party
-; may store NAME_LENGTH, PARTYMON_STRUCT_LENGTH, or MAIL_STRUCT_LENGTH bytes
-wSwitchMonBuffer:: ds 48
+; may store a name, partymon, or mail
+wSwitchMonBuffer::
+UNION
+	ds NAME_LENGTH
+NEXTU
+	ds PARTYMON_STRUCT_LENGTH
+NEXTU
+	ds MAIL_STRUCT_LENGTH
+ENDU
 
 
 SECTION UNION "Miscellaneous WRAM 1", WRAMX
