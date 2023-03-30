@@ -491,7 +491,7 @@ ENDM
 	map_const SALTBREEZE_TOWN,                              20, 27 ; 1
 	map_const MY_HOUSE_1F,                                  5,  4  ; 2
 	map_const PLAYERS_HOUSE_2F,                             4,  3 ;  3
-	map_const SALTBREEZE_POKECENTER_1F,                     5,  4 ;  4
+	map_const SALTBREEZE_POKEMON_CENTER,                    11, 5 ;  4
 	map_const WARRENS_HOUSE_1F,                             7,  4 ;  5
 	map_const WARRENS_HOUSE_2F,                             7,  4 ;  6
 	map_const SUNGLOW_TRAIL,                                20, 27 ; 7

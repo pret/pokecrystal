@@ -103,7 +103,7 @@ SaltbreezeTown_MapEvents:
 
 	def_warp_events
 	warp_event  27,  45, MY_HOUSE_1F, 1
-	warp_event  15,  39, SALTBREEZE_POKECENTER_1F, 1
+	warp_event  15,  39, SALTBREEZE_POKEMON_CENTER, 1
 	warp_event   9,  45, WARRENS_HOUSE_1F, 2
  
 	def_coord_events

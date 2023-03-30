@@ -478,3 +478,17 @@ INCBIN "gfx/tilesets/neost_outdoors_1.2bpp.lz"
 
 TilesetNeostOutdoors1Meta::
 INCBIN "data/tilesets/neost_outdoors_1_metatiles.bin"
+
+SECTION "Tileset Data 13", ROMX
+
+TilesetPokemonCenterColl::
+INCLUDE "data/tilesets/pokemon_center_collision.asm"
+
+TilesetPokemonCenterAttr::
+INCBIN "data/tilesets/pokemon_center_attributes.bin"
+
+TilesetPokemonCenterGFX::
+INCBIN "gfx/tilesets/pokemon_center.2bpp.lz"
+
+TilesetPokemonCenterMeta::
+INCBIN "data/tilesets/pokemon_center_metatiles.bin"

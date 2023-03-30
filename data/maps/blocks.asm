@@ -283,7 +283,6 @@ CianwoodPokecenter1F_Blocks:
 ViridianPokecenter1F_Blocks:
 SaffronPokecenter1F_Blocks:
 CherrygrovePokecenter1F_Blocks:
-SaltbreezePokecenter1F_Blocks:
 	INCBIN "maps/Pokecenter1F.ablk"
 
 EarlsPokemonAcademy_Blocks:
@@ -901,6 +900,9 @@ WarrensHouse1F_Blocks:
 
 WarrensHouse2F_Blocks:
 	INCBIN "maps/WarrensHouse2F.ablk"
+
+SaltbreezePokemonCenter_Blocks:
+	INCBIN "maps/SaltbreezePokemonCenter.ablk"
 
 SunglowTrail_Blocks:
 	INCBIN "maps/SunglowTrail.ablk"

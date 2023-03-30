@@ -50,4 +50,5 @@ Tilesets::
 	tileset TilesetAerodactylWordRoom
 	tileset TilesetNeostOutdoors1
 	tileset TilesetZHouse
+	tileset TilesetPokemonCenter
 	assert_table_length NUM_TILESETS + 1

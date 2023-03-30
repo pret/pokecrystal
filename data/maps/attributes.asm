@@ -699,6 +699,6 @@ ENDM
 	map_attributes Route31VioletGate, ROUTE_31_VIOLET_GATE, $00, 0
 	map_attributes MyHouse1F, MY_HOUSE_1F, $00, 0
 	map_attributes PlayersHouse2F, PLAYERS_HOUSE_2F, $00, 0
-	map_attributes SaltbreezePokecenter1F, SALTBREEZE_POKECENTER_1F, $00, 0
+	map_attributes SaltbreezePokemonCenter, SALTBREEZE_POKEMON_CENTER, $00, 0
 	map_attributes WarrensHouse1F, WARRENS_HOUSE_1F, $00, 0
 	map_attributes WarrensHouse2F, WARRENS_HOUSE_2F, $00, 0
