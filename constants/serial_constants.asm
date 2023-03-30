@@ -19,8 +19,10 @@ DEF USING_EXTERNAL_CLOCK       EQU $01
 DEF USING_INTERNAL_CLOCK       EQU $02
 DEF CONNECTION_NOT_ESTABLISHED EQU $ff
 
-; length of a patch list (less than any of the signal bytes)
-DEF SERIAL_PATCH_LIST_LENGTH          EQU $fc
+; length of a patch list
+DEF SERIAL_PATCH_LIST_LENGTH          EQU 200
+; size of the patch area (offsets into this area may not have special values)
+DEF SERIAL_PATCH_DATA_SIZE            EQU $fc
 ; signals the start of an array of bytes transferred over the link cable
 DEF SERIAL_PREAMBLE_BYTE              EQU $fd
 ; this byte is used when there is no data to send
