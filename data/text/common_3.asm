@@ -1288,6 +1288,12 @@ _CoinCaseCountText::
 
 	text_end ; unreferenced
 
+_ZygardeCubeCellsText::
+	text "Zygarde Cells:"
+	line "@"
+	text_decimal wZygardeCube, 1, 2
+	text_end
+
 _RaiseThePPOfWhichMoveText::
 	text "Raise the PP of"
 	line "which move?"

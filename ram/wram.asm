@@ -3163,6 +3163,7 @@ wMobileBattleRoomSceneID::                        db
 	ds 49
 
 wLevelCap:: db
+wZygardeCube:: db
 
 ; fight counts
 wJackFightCount::    db
@@ -3178,7 +3179,6 @@ wLizFightCount::     db
 wAnthonyFightCount:: db
 wToddFightCount::    db
 wGinaFightCount::    db
-wIrwinFightCount::   db ; unreferenced
 wArnieFightCount::   db
 wAlanFightCount::    db
 wDanaFightCount::    db
