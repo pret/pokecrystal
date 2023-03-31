@@ -114,7 +114,7 @@ Serial_ExchangeBytes::
 	dec hl
 	cp SERIAL_PREAMBLE_BYTE
 	jr nz, .loop
-	xor a
+	xor a ; FALSE
 	ldh [hSerialIgnoringInitialData], a
 	jr .loop
 
