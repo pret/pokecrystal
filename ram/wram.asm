@@ -1034,13 +1034,14 @@ wLinkPlayerMail::
 wLinkPlayerMailPreamble:: ds SERIAL_MAIL_PREAMBLE_LENGTH
 wLinkPlayerMailMessages:: ds (MAIL_MSG_LENGTH + 1) * PARTY_LENGTH
 wLinkPlayerMailMetadata:: ds (MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 1)) * PARTY_LENGTH
-wLinkPlayerMailPatchSet:: ds 103
+wLinkPlayerMailPatchSet:: ds 100 + SERIAL_PATCH_PREAMBLE_LENGTH
 wLinkPlayerMailEnd::
 	ds 10
 wLinkOTMail::
 wLinkOTMailMessages:: ds (MAIL_MSG_LENGTH + 1) * PARTY_LENGTH
 wLinkOTMailMetadata:: ds (MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 1)) * PARTY_LENGTH
-wOTPlayerMailPatchSet:: ds 103 + SERIAL_MAIL_PREAMBLE_LENGTH
+wLinkOTMailPatchSet:: ds 100 + SERIAL_PATCH_PREAMBLE_LENGTH
+wLinkOTMailPadding:: ds SERIAL_MAIL_PREAMBLE_LENGTH
 wLinkOTMailEnd::
 	ds 10
 

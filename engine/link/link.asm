@@ -90,7 +90,7 @@ endc
 
 	ld hl, wLinkData
 	ld de, wOTPartyData
-	ld bc, SERIAL_PREAMBLE_LENGTH + NAME_LENGTH + 1 + PARTY_LENGTH + 1 + (REDMON_STRUCT_LENGTH + NAME_LENGTH * 2) * PARTY_LENGTH + 3
+	ld bc, SERIAL_PREAMBLE_LENGTH + NAME_LENGTH + (1 + PARTY_LENGTH + 1) + (REDMON_STRUCT_LENGTH + NAME_LENGTH * 2) * PARTY_LENGTH + 3
 	vc_hook Wireless_ExchangeBytes_Gen2toGen1_party_structs
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
@@ -256,7 +256,7 @@ endc
 
 	ld hl, wLinkData
 	ld de, wOTPartyData
-	ld bc, SERIAL_PREAMBLE_LENGTH + NAME_LENGTH + 1 + PARTY_LENGTH + 1 + 2 + (PARTYMON_STRUCT_LENGTH + NAME_LENGTH * 2) * PARTY_LENGTH + 3
+	ld bc, SERIAL_PREAMBLE_LENGTH + NAME_LENGTH + (1 + PARTY_LENGTH + 1) + 2 + (PARTYMON_STRUCT_LENGTH + NAME_LENGTH * 2) * PARTY_LENGTH + 3
 	vc_hook Wireless_ExchangeBytes_party_structs
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
@@ -276,8 +276,8 @@ endc
 	ld bc, wLinkPlayerMailEnd - wLinkPlayerMail
 	vc_hook Wireless_ExchangeBytes_mail
 	call ExchangeBytes
-
 .not_trading
+
 	xor a
 	ldh [rIF], a
 	ld a, (1 << JOYPAD) | (1 << SERIAL) | (1 << TIMER) | (1 << VBLANK)
@@ -355,7 +355,7 @@ endc
 	ld a, b
 	or c
 	jr nz, .loop4
-	ld de, wOTPlayerMailPatchSet
+	ld de, wLinkOTMailPatchSet
 .loop5
 	ld a, [de]
 	inc de
@@ -629,9 +629,9 @@ FixDataForLinkTransfer:
 ; Clear the patch list
 	ld hl, wPlayerPatchLists
 	ld a, SERIAL_PREAMBLE_BYTE
+rept SERIAL_PATCH_PREAMBLE_LENGTH
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+endr
 	ld b, SERIAL_PATCH_LIST_LENGTH
 	xor a
 .clear_loop
@@ -864,11 +864,11 @@ Link_PrepPartyData_Gen2:
 	ld de, wLinkData
 	ld a, SERIAL_PREAMBLE_BYTE
 	ld b, SERIAL_PREAMBLE_LENGTH
-.loop1
+.preamble_loop
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .loop1
+	jr nz, .preamble_loop
 
 	ld hl, wPlayerName
 	ld bc, NAME_LENGTH
@@ -909,7 +909,7 @@ Link_PrepPartyData_Gen2:
 	call OpenSRAM
 	ld hl, sPartyMail
 	ld b, PARTY_LENGTH
-.loop2
+.message_loop
 	push bc
 	ld bc, MAIL_MSG_LENGTH + 1
 	call CopyBytes
@@ -917,12 +917,12 @@ Link_PrepPartyData_Gen2:
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .loop2
+	jr nz, .message_loop
 
 ; Copy the mail data to wLinkPlayerMailMetadata
 	ld hl, sPartyMail
 	ld b, PARTY_LENGTH
-.loop3
+.metadata_loop
 	push bc
 	ld bc, MAIL_MSG_LENGTH + 1
 	add hl, bc
@@ -930,13 +930,13 @@ Link_PrepPartyData_Gen2:
 	call CopyBytes
 	pop bc
 	dec b
-	jr nz, .loop3
+	jr nz, .metadata_loop
 
 ; Translate the messages if necessary
 	ld b, PARTY_LENGTH
 	ld de, sPartyMail
 	ld hl, wLinkPlayerMailMessages
-.loop4
+.translate_loop
 	push bc
 	push hl
 	push de
@@ -945,16 +945,16 @@ Link_PrepPartyData_Gen2:
 	pop de
 	ld a, c
 	or a ; MAIL_LANG_ENGLISH
-	jr z, .next
+	jr z, .translate_next
 	sub MAIL_LANG_ITALIAN
 	jr nc, .italian_spanish
 	farcall ConvertFrenchGermanMailToEnglish
-	jr .next
+	jr .translate_next
 .italian_spanish
 	cp (MAIL_LANG_SPANISH + 1) - MAIL_LANG_ITALIAN
-	jr nc, .next
+	jr nc, .translate_next
 	farcall ConvertSpanishItalianMailToEnglish
-.next
+.translate_next
 	pop de
 	ld hl, MAIL_STRUCT_LENGTH
 	add hl, de
@@ -965,42 +965,42 @@ Link_PrepPartyData_Gen2:
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .loop4
+	jr nz, .translate_loop
 	call CloseSRAM
 
 ; The SERIAL_NO_DATA_BYTE value isn't allowed anywhere in message text
 	ld hl, wLinkPlayerMailMessages
 	ld bc, (MAIL_MSG_LENGTH + 1) * PARTY_LENGTH
-.loop5
+.message_patch_loop
 	ld a, [hl]
 	cp SERIAL_NO_DATA_BYTE
-	jr nz, .skip2
+	jr nz, .message_patch_skip
 	ld [hl], SERIAL_MAIL_REPLACEMENT_BYTE
-.skip2
+.message_patch_skip
 	inc hl
 	dec bc
 	ld a, b
 	or c
-	jr nz, .loop5
+	jr nz, .message_patch_loop
 
 ; Calculate the patch offsets for the mail metadata
 	ld hl, wLinkPlayerMailMetadata
 	ld de, wLinkPlayerMailPatchSet
 	ld b, (MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 1)) * PARTY_LENGTH
 	ld c, 0
-.loop6
+.metadata_patch_loop
 	inc c
 	ld a, [hl]
 	cp SERIAL_NO_DATA_BYTE
-	jr nz, .skip3
+	jr nz, .metadata_patch_skip
 	ld [hl], SERIAL_PATCH_REPLACEMENT_BYTE
 	ld a, c
 	ld [de], a
 	inc de
-.skip3
+.metadata_patch_skip
 	inc hl
 	dec b
-	jr nz, .loop6
+	jr nz, .metadata_patch_loop
 	ld a, SERIAL_PATCH_LIST_PART_TERMINATOR
 	ld [de], a
 	ret
