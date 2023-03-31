@@ -109,10 +109,10 @@ SaltbreezePokemonCenterSignText: ; [BG-4]
 
 SaltbreezeDirectionsText: ; [BG-5]
 	text "Saltbreeze Town"
-	line "▲ Sunglow Harbor"
+	line "↑ Sunglow Harbor"
 	cont "← ??? Forest"
 	cont "→ Sunglow Trail"
-	cont "▼ ??? Path"
+	cont "↓ ??? Path"
 
 	para "Wild #mon"
 	line "Lv. ???-???"

@@ -123,8 +123,8 @@
 	charmap "└",         $be
 	charmap "┘",         $bf
 
-	charmap "′",         $ce
-	charmap "″",         $cf
+	charmap "↓",         $ce
+	charmap "↑",         $cf
 
 	charmap "'d",        $d0
 	charmap "'l",        $d1
