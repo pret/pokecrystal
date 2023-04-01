@@ -1006,10 +1006,6 @@ for n, 1, PARTY_LENGTH + 1
 wTimeCapsulePartyMon{d:n}Nickname:: ds MON_NAME_LENGTH
 endr
 
-NEXTU
-; link patch lists
-wLinkPatchData1:: ds SERIAL_PATCH_DATA_SIZE
-wLinkPatchData2:: ds SERIAL_PATCH_DATA_SIZE
 ENDU
 
 
