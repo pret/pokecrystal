@@ -402,3 +402,15 @@ RegisteredNumber2Text:
 	text_ram wStringBuffer3
 	text "'s number."
 	done
+
+GotZygardeCellText:
+	text "The strange"
+	line "creature was"
+	cont "sucked into the"
+	cont "Zygarde Cube!"
+	done
+
+NoZygardeCubeText:
+	text "You don't have"
+	line "a Zygarde Cube."
+	done

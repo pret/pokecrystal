@@ -2,6 +2,7 @@
 	const SALTBREEZE_BULBASAUR ; [E-1]
 	const SALTBREEZE_CLARISSA_DAY ; [E-2]
 	const SALTBREEZE_POKE_BALL ; [E-3]
+	const SALTBREEZE_ZYGARDE_CELL ; [E-4]
 
 SaltbreezeTown_MapScripts:
 	def_scene_scripts
@@ -12,14 +13,12 @@ BulbasaurScript: ; [E-1]
 	writetext PlayerTakeThisBulbasaurText
 	promptbutton
 	disappear SALTBREEZE_BULBASAUR
-	waitsfx
 	readvar VAR_PARTYCOUNT
 	ifequal PARTY_LENGTH, .NoRoom
 	writetext ReceivedBulbasaurText
 	playsound SFX_CAUGHT_MON
 	waitsfx
 	givepoke BULBASAUR, 10
-	setevent EVENT_GOT_BULBASAUR
 	writetext PlayerHeadOutText
 	waitbutton
 	closetext
@@ -36,6 +35,9 @@ SaltbreezeClarissaDayScript: ; [E-2]
 
 SaltbreezeSurfboard: ; [E-3]
 	itemball SURFBOARD
+
+SaltbreezeZygardeCellScript: ; [E-4]
+	jumpstd ZygardeCellScript
 
 SaltbreezeSign: ; [BG-1]
 	jumptext SaltbreezeSignText
@@ -139,3 +141,4 @@ SaltbreezeTown_MapEvents:
 	object_event 25, 45, SPRITE_BULBASAUR, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BulbasaurScript, EVENT_GOT_BULBASAUR ; [E-1]
 	object_event  7, 43, SPRITE_GRANNY, SPRITEMOVEDATA_WANDER, 1, 1, -1, DAY, 0, OBJECTTYPE_SCRIPT, 0, SaltbreezeClarissaDayScript, -1 ; [E-2]
 	object_event 22, 29, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SaltbreezeSurfboard, EVENT_SALTBREEZE_SURFBOARD ; [E-3]
+	object_event 17, 30, SPRITE_ZYGARDE_CELL, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaltbreezeZygardeCellScript, EVENT_SALTBREEZE_ZYGARDE_CELL ; [E-4]

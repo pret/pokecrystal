@@ -312,4 +312,5 @@ SaltbreezeGroupSprites:
 	db SPRITE_BULBASAUR
 	db SPRITE_POKE_BALL
 	db SPRITE_ROCK
+	db SPRITE_ZYGARDE_CELL
 	db 0 ; end

@@ -56,6 +56,7 @@ StdScripts::
 	add_stdscript PCScript
 	add_stdscript GameCornerCoinVendorScript
 	add_stdscript HappinessCheckScript
+	add_stdscript ZygardeCellScript
 
 PokecenterNurseScript:
 ; EVENT_WELCOMED_TO_POKECOM_CENTER is never set
@@ -1905,3 +1906,24 @@ Movement_ContestResults_WalkAfterWarp:
 	step DOWN
 	turn_head UP
 	step_end
+
+ZygardeCellScript:
+	opentext
+	checkitem ZYGARDE_CUBE
+	iffalse .NoZygardeCube
+	farwritetext GotZygardeCellText
+	promptbutton
+	waitsfx
+	playsound SFX_TWINKLE
+	readmem wZygardeCube
+	addval 1
+	writemem wZygardeCube
+	disappear LAST_TALKED
+	closetext
+	end
+
+.NoZygardeCube
+	farwritetext NoZygardeCubeText
+	promptbutton
+	closetext
+	end

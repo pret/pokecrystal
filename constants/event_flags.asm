@@ -1462,7 +1462,8 @@
 	const EVENT_OBTAIN_POKEPHONE
 	const EVENT_GOT_BULBASAUR
 	const EVENT_SALTBREEZE_SURFBOARD
-; Unused: next 45 events
+	const EVENT_SALTBREEZE_ZYGARDE_CELL
+; Unused: next 44 events
 
 	const_next 2048
 DEF NUM_EVENTS EQU const_value ; 800

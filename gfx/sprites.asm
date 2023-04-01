@@ -105,3 +105,7 @@ SuicuneSpriteGFX::             INCBIN "gfx/sprites/suicune.2bpp"
 EnteiSpriteGFX::               INCBIN "gfx/sprites/entei.2bpp"
 RaikouSpriteGFX::              INCBIN "gfx/sprites/raikou.2bpp"
 PhoneSpriteGFX::               INCBIN "gfx/sprites/phone.2bpp"
+
+
+SECTION "Sprites 3", ROMX
+ZygardeCellSpriteGFX::         INCBIN "gfx/sprites/zygarde_cell.2bpp"
