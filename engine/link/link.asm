@@ -122,11 +122,11 @@ endc
 	jp nc, ExitLinkCommunications
 
 	ld de, wLinkData
-	ld bc, NAME_LENGTH + 1 + PARTY_LENGTH + 1 + (REDMON_STRUCT_LENGTH + NAME_LENGTH * 2) * PARTY_LENGTH + 3
+	ld bc, NAME_LENGTH + (1 + PARTY_LENGTH + 1) + (REDMON_STRUCT_LENGTH + NAME_LENGTH * 2) * PARTY_LENGTH + 3
 	call Link_CopyOTData
 
 	ld de, wOTPatchLists
-	ld hl, wLinkPlayerData
+	ld hl, wTimeCapsulePlayerData
 	ld c, 2
 .loop
 	ld a, [de]
@@ -152,7 +152,7 @@ endc
 	jr .loop
 
 .next
-	ld hl, wLinkPlayerData + SERIAL_PATCH_DATA_SIZE
+	ld hl, wTimeCapsulePlayerData + SERIAL_PATCH_DATA_SIZE
 	dec c
 	jr nz, .loop
 
