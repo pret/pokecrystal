@@ -44,7 +44,7 @@ ItemNames::
 	li "SUPER REPEL"
 	li "MAX REPEL"
 	li "DIRE HIT"
-	li "SURFBOARD"
+	li "SWIMSUIT"
 	li "FRESH WATER"
 	li "SODA POP"
 	li "LEMONADE"

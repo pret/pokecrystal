@@ -58,7 +58,7 @@ ItemEffects:
 	dw SuperRepelEffect    ; SUPER_REPEL
 	dw MaxRepelEffect      ; MAX_REPEL
 	dw DireHitEffect       ; DIRE_HIT
-	dw SurfboardEffect     ; SURFBOARD
+	dw SwimsuitEffect      ; SWIMSUIT
 	dw RestoreHPEffect     ; FRESH_WATER
 	dw RestoreHPEffect     ; SODA_POP
 	dw RestoreHPEffect     ; LEMONADE
@@ -2317,7 +2317,7 @@ CoinCaseEffect:
 	text_far _CoinCaseCountText
 	text_end
 
-SurfboardEffect:
+SwimsuitEffect:
 	ld a, 1
 	ld [wUsingHMItem], a
 	farcall SurfFunction

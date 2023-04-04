@@ -208,6 +208,11 @@ TrashCanText:
 	line "here…"
 	done
 
+DeepWaterText:
+	text "It's too deep to"
+	line "swim here…"
+	done
+
 ; not used
 	text "A #MON may be"
 	line "able to move this."

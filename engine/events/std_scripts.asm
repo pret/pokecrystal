@@ -57,6 +57,7 @@ StdScripts::
 	add_stdscript GameCornerCoinVendorScript
 	add_stdscript HappinessCheckScript
 	add_stdscript ZygardeCellScript
+	add_stdscript DeepWaterScript
 
 PokecenterNurseScript:
 ; EVENT_WELCOMED_TO_POKECOM_CENTER is never set
@@ -236,6 +237,9 @@ Radio2Script:
 
 TrashCanScript:
 	farjumptext TrashCanText
+
+DeepWaterScript:
+	farjumptext DeepWaterText
 
 PCScript:
 	opentext

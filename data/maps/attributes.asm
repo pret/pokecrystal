@@ -375,19 +375,19 @@ ENDM
 	connection north, Route10North, ROUTE_10_NORTH, 0
 	connection south, LavenderTown, LAVENDER_TOWN, 0
 
-	map_attributes SaltbreezeTown, SALTBREEZE_TOWN, $0B, NORTH | EAST
+	map_attributes SaltbreezeTown, SALTBREEZE_TOWN, $1B, NORTH | EAST
 	connection north, SunglowHarbor, SUNGLOW_HARBOR, 0
 	connection east, SunglowTrail, SUNGLOW_TRAIL, 0
 
-	map_attributes SunglowTrail, SUNGLOW_TRAIL, $0B, NORTH | WEST
+	map_attributes SunglowTrail, SUNGLOW_TRAIL, $1B, NORTH | WEST
 	connection north, SunglowCape, SUNGLOW_CAPE, 0
 	connection west, SaltbreezeTown, SALTBREEZE_TOWN, 0
 
-	map_attributes SunglowCape, SUNGLOW_CAPE, $19, SOUTH | WEST
+	map_attributes SunglowCape, SUNGLOW_CAPE, $1B, SOUTH | WEST
 	connection south, SunglowTrail, SUNGLOW_TRAIL, 0
 	connection west, SunglowHarbor, SUNGLOW_HARBOR, 0
 
-	map_attributes SunglowHarbor, SUNGLOW_HARBOR, $19, SOUTH | EAST
+	map_attributes SunglowHarbor, SUNGLOW_HARBOR, $1B, SOUTH | EAST
 	connection south, SaltbreezeTown, SALTBREEZE_TOWN, 0
 	connection east, SunglowCape, SUNGLOW_CAPE, 0
 

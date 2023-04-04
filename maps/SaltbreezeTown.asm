@@ -33,8 +33,8 @@ BulbasaurScript: ; [E-1]
 SaltbreezeClarissaDayScript: ; [E-2]
 	jumptextfaceplayer SaltbreezeClarissaDayText
 
-SaltbreezeSurfboard: ; [E-3]
-	itemball SURFBOARD
+SaltbreezeSwimsuit: ; [E-3]
+	itemball SWIMSUIT
 
 SaltbreezeZygardeCellScript: ; [E-4]
 	jumpstd ZygardeCellScript
@@ -140,5 +140,5 @@ SaltbreezeTown_MapEvents:
 	def_object_events
 	object_event 25, 45, SPRITE_BULBASAUR, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BulbasaurScript, EVENT_GOT_BULBASAUR ; [E-1]
 	object_event  7, 43, SPRITE_GRANNY, SPRITEMOVEDATA_WANDER, 1, 1, -1, DAY, 0, OBJECTTYPE_SCRIPT, 0, SaltbreezeClarissaDayScript, -1 ; [E-2]
-	object_event 22, 29, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SaltbreezeSurfboard, EVENT_SALTBREEZE_SURFBOARD ; [E-3]
+	object_event 22, 29, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SaltbreezeSwimsuit, EVENT_SALTBREEZE_SWIMSUIT ; [E-3]
 	object_event 17, 30, SPRITE_ZYGARDE_CELL, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaltbreezeZygardeCellScript, EVENT_SALTBREEZE_ZYGARDE_CELL ; [E-4]

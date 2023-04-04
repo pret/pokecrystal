@@ -109,4 +109,7 @@ OverworldSprites:
 	overworld_sprite RaikouSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
 	overworld_sprite PhoneSpriteGFX, 4, STILL_SPRITE, PAL_OW_BLUE
 	overworld_sprite ZygardeCellSpriteGFX, 12, STANDING_SPRITE, PAL_OW_GREEN
+	overworld_sprite TMSpriteGFX, 4, STILL_SPRITE, PAL_OW_BLUE
+	overworld_sprite ChrisSurfSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
+	overworld_sprite KrisSurfSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	assert_table_length NUM_OVERWORLD_SPRITES

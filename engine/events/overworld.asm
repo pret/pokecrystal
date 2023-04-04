@@ -394,7 +394,6 @@ SurfFromMenuScript:
 	special UpdateTimePals
 
 UsedSurfScript:
-; BUG: Surfing directly across a map connection does not load the new map (see docs/bugs_and_glitches.md)
 	writetext UsedSurfText ; "used SURF!"
 	waitbutton
 	closetext
@@ -406,9 +405,7 @@ UsedSurfScript:
 
 	special UpdatePlayerSprite
 	special PlayMapMusic
-; step into the water (slow_step DIR, step_end)
 	special SurfStartStep
-	applymovement PLAYER, wMovementBuffer
 	end
 
 .stubbed_fn
@@ -496,7 +493,7 @@ TrySurfOW::
 	call CheckDirection
 	jr c, .quit
 
-	ld a, SURFBOARD
+	ld a, SWIMSUIT
 	ld [wCurItem], a
 	ld hl, wNumItems
 	call CheckItem
@@ -523,15 +520,9 @@ TrySurfOW::
 
 AskSurfScript:
 	opentext
-	writetext AskSurfText
-	yesorno
-	iftrue UsedSurfScript
+	sjump UsedSurfScript
 	closetext
 	end
-
-AskSurfText:
-	text_far _AskSurfText
-	text_end
 
 FlyFunction:
 	call FieldMoveJumptableReset

@@ -45,7 +45,7 @@ ItemDescriptions:
 	dw SuperRepelDesc
 	dw MaxRepelDesc
 	dw DireHitDesc
-	dw SurfboardDesc
+	dw SwimsuitDesc
 	dw FreshWaterDesc
 	dw SodaPopDesc
 	dw LemonadeDesc
@@ -434,9 +434,9 @@ DireHitDesc:
 	db   "Ups critical hit"
 	next "ratio. (1 BTL)@"
 
-SurfboardDesc:
-	db   "Lets you cross"
-	next "water.@"
+SwimsuitDesc:
+	db   "Lets you swim."
+	next "@"
 
 FreshWaterDesc:
 	db   "Restores #MON"

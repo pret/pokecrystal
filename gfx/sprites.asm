@@ -109,3 +109,6 @@ PhoneSpriteGFX::               INCBIN "gfx/sprites/phone.2bpp"
 
 SECTION "Sprites 3", ROMX
 ZygardeCellSpriteGFX::         INCBIN "gfx/sprites/zygarde_cell.2bpp"
+TMSpriteGFX::                  INCBIN "gfx/sprites/tm.2bpp"
+ChrisSurfSpriteGFX::           INCBIN "gfx/sprites/chris_surf.2bpp"
+KrisSurfSpriteGFX::            INCBIN "gfx/sprites/kris_surf.2bpp"

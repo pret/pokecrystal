@@ -79,16 +79,28 @@ TilesetForestAnim:
 
 TilesetJohtoAnim:
 TilesetNeostOutdoors1Anim:
-	dw vTiles2 tile $0D, AnimateWaterTile
+	dw vTiles2 tile $09, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
-	dw NULL,  AnimateWaterPalette
+	dw NULL,  WaitTileAnimation ; previously AnimateWaterPalette
 	dw NULL,  WaitTileAnimation
 	dw NULL,  AnimateFlowerTile
 	dw WhirlpoolFrames1, AnimateWhirlpoolTile
 	dw WhirlpoolFrames2, AnimateWhirlpoolTile
 	dw WhirlpoolFrames3, AnimateWhirlpoolTile
 	dw WhirlpoolFrames4, AnimateWhirlpoolTile
+	dw OceanFrames1, AnimateOceanTile
+	dw OceanFrames2, AnimateOceanTile
+	dw OceanFrames3, AnimateOceanTile
+	dw OceanFrames4, AnimateOceanTile
+	dw ShallowOceanFrames1, AnimateShallowOceanTile
+	dw ShallowOceanFrames2, AnimateShallowOceanTile
+	dw ShallowOceanFrames3, AnimateShallowOceanTile
+	dw ShallowOceanFrames4, AnimateShallowOceanTile
+	dw DeepOceanFrames1, AnimateDeepOceanTile
+	dw DeepOceanFrames2, AnimateDeepOceanTile
+	dw DeepOceanFrames3, AnimateDeepOceanTile
+	dw DeepOceanFrames4, AnimateDeepOceanTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  StandingTileFrame8
 	dw NULL,  DoneTileAnimation
@@ -853,6 +865,44 @@ AnimateWhirlpoolTile:
 	ld h, d
 	jr WriteTile
 
+AnimateShallowOceanTile:
+AnimateDeepOceanTile:
+AnimateOceanTile:
+; Input de points to the destination in VRAM, then the source tile frames
+
+; Save the stack pointer in bc for WriteTile to restore
+	ld hl, sp+0
+	ld b, h
+	ld c, l
+
+; de = the destination in VRAM
+	ld l, e
+	ld h, d
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+
+; A cycle of 8 frames, updating every tick
+	ld a, [wTileAnimationTimer]
+	and %111
+
+; hl = the source tile frames + a * 16
+	swap a
+	add [hl]
+	inc hl
+	ld h, [hl]
+	ld l, a
+	ld a, 0
+	adc h
+	ld h, a
+
+; Write the tile graphic from hl (now sp) to de (now hl)
+	ld sp, hl
+	ld l, e
+	ld h, d
+	jr WriteTile
+
 WriteTileFromAnimBuffer:
 ; Save the stack pointer in bc for WriteTile to restore
 	ld hl, sp+0
@@ -1041,12 +1091,42 @@ TowerPillarTile8:  INCBIN "gfx/tilesets/tower-pillar/8.2bpp"
 TowerPillarTile9:  INCBIN "gfx/tilesets/tower-pillar/9.2bpp"
 TowerPillarTile10: INCBIN "gfx/tilesets/tower-pillar/10.2bpp"
 
-WhirlpoolFrames1: dw vTiles2 tile $0E, WhirlpoolTiles1
-WhirlpoolFrames2: dw vTiles2 tile $0F, WhirlpoolTiles2
-WhirlpoolFrames3: dw vTiles2 tile $1E, WhirlpoolTiles3
-WhirlpoolFrames4: dw vTiles2 tile $1F, WhirlpoolTiles4
+WhirlpoolFrames1: dw vTiles2 tile $2E, WhirlpoolTiles1
+WhirlpoolFrames2: dw vTiles2 tile $2F, WhirlpoolTiles2
+WhirlpoolFrames3: dw vTiles2 tile $3E, WhirlpoolTiles3
+WhirlpoolFrames4: dw vTiles2 tile $3F, WhirlpoolTiles4
 
 WhirlpoolTiles1: INCBIN "gfx/tilesets/whirlpool/1.2bpp"
 WhirlpoolTiles2: INCBIN "gfx/tilesets/whirlpool/2.2bpp"
 WhirlpoolTiles3: INCBIN "gfx/tilesets/whirlpool/3.2bpp"
 WhirlpoolTiles4: INCBIN "gfx/tilesets/whirlpool/4.2bpp"
+
+OceanFrames1: dw vTiles2 tile $0c, OceanTiles1
+OceanFrames2: dw vTiles2 tile $0d, OceanTiles2
+OceanFrames3: dw vTiles2 tile $1c, OceanTiles3
+OceanFrames4: dw vTiles2 tile $1d, OceanTiles4
+
+OceanTiles1: INCBIN "gfx/tilesets/ocean/1.2bpp"
+OceanTiles2: INCBIN "gfx/tilesets/ocean/2.2bpp"
+OceanTiles3: INCBIN "gfx/tilesets/ocean/3.2bpp"
+OceanTiles4: INCBIN "gfx/tilesets/ocean/4.2bpp"
+
+ShallowOceanFrames1: dw vTiles2 tile $0a, ShallowOceanTiles1
+ShallowOceanFrames2: dw vTiles2 tile $0b, ShallowOceanTiles2
+ShallowOceanFrames3: dw vTiles2 tile $1a, ShallowOceanTiles3
+ShallowOceanFrames4: dw vTiles2 tile $1b, ShallowOceanTiles4
+
+ShallowOceanTiles1: INCBIN "gfx/tilesets/shallow-ocean/1.2bpp"
+ShallowOceanTiles2: INCBIN "gfx/tilesets/shallow-ocean/2.2bpp"
+ShallowOceanTiles3: INCBIN "gfx/tilesets/shallow-ocean/3.2bpp"
+ShallowOceanTiles4: INCBIN "gfx/tilesets/shallow-ocean/4.2bpp"
+
+DeepOceanFrames1: dw vTiles2 tile $0e, DeepOceanTiles1
+DeepOceanFrames2: dw vTiles2 tile $0f, DeepOceanTiles2
+DeepOceanFrames3: dw vTiles2 tile $1e, DeepOceanTiles3
+DeepOceanFrames4: dw vTiles2 tile $1f, DeepOceanTiles4
+
+DeepOceanTiles1: INCBIN "gfx/tilesets/deep-ocean/1.2bpp"
+DeepOceanTiles2: INCBIN "gfx/tilesets/deep-ocean/2.2bpp"
+DeepOceanTiles3: INCBIN "gfx/tilesets/deep-ocean/3.2bpp"
+DeepOceanTiles4: INCBIN "gfx/tilesets/deep-ocean/4.2bpp"

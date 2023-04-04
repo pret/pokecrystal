@@ -313,4 +313,5 @@ SaltbreezeGroupSprites:
 	db SPRITE_POKE_BALL
 	db SPRITE_ROCK
 	db SPRITE_ZYGARDE_CELL
+	db SPRITE_TM
 	db 0 ; end
