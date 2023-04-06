@@ -620,10 +620,10 @@ This bug affects Attract, Curse, Foresight, Mean Look, Mimic, Nightmare, Spider 
 +	and 1 << SUBSTATUS_LOCK_ON
 +	ret z
 +
-	ld a, BATTLE_VARS_SUBSTATUS3_OPP
-	call GetBattleVar
-	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
-	ret
+ 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
+ 	call GetBattleVar
+ 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
+ 	ret
 ```
 
 
