@@ -614,10 +614,15 @@ This bug affects Attract, Curse, Foresight, Mean Look, Mimic, Nightmare, Spider 
 ```diff
  CheckHiddenOpponent:
 -; BUG: Lock-On and Mind Reader don't always bypass Fly and Dig (see docs/bugs_and_glitches.md)
--	ld a, BATTLE_VARS_SUBSTATUS3_OPP
--	call GetBattleVar
--	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
-+	xor a
++	ld a, BATTLE_VARS_SUBSTATUS5_OPP
++	call GetBattleVar
++	cpl
++	and 1 << SUBSTATUS_LOCK_ON
++	ret z
++
+ 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
+ 	call GetBattleVar
+ 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
  	ret
 ```
 
