@@ -120,6 +120,7 @@ SpecialsPointers::
 	add_special FadeOutMusic
 	add_special Diploma
 	add_special PrintDiploma
+	add_special MoveReminder
 
 ; Crystal only
 	add_special Function11ac3e

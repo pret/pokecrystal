@@ -1447,8 +1447,8 @@ _DeleterForgotMoveText::
 	done
 
 _DeleterEggText::
-	text "An EGG doesn't"
-	line "know any moves!"
+	text "An egg doesn't"
+	line "know any moves."
 	done
 
 _DeleterNoComeAgainText::
@@ -1462,13 +1462,13 @@ _DeleterAskWhichMoveText::
 	prompt
 
 _DeleterIntroText::
-	text "Um… Oh, yes, I'm"
-	line "the MOVE DELETER."
+	text "Hi, I'm a Move"
+	line "Deleter."
 
 	para "I can make #MON"
 	line "forget moves."
 
-	para "Shall I make a"
+	para "Should I make a"
 	line "#MON forget?"
 	done
 
@@ -1524,3 +1524,50 @@ _MomLostGearBookletText::
 	para "Come back again in"
 	line "a while."
 	prompt
+
+_MoveReminderIntro::
+    text "Hi, I'm a Move"
+    line "Reminder!"
+
+    para "I can teach your"
+    line "#MON a move it"
+
+    para "has learned"
+    line "before."
+
+    para "Do you want to"
+    line "remember a move?"
+    done
+
+_MoveReminderWhichMon::
+    text "Which #MON"
+    next "should remember a"
+    cont "move?"
+    done
+
+_MoveReminderWhichMove::
+    text "Which move would"
+    next "you like to"
+    cont "remember?"
+    done
+
+_MoveReminderCancel::
+    text "Come back anytime."
+    done
+
+_MoveReminderEgg::
+	text "I can't teach a"
+	line "move to an egg."
+    done
+
+_MoveReminderNoMon::
+    text "You don't have a"
+    line "#MON that can"
+    cont "remember a move."
+    done
+
+_MoveReminderNoMoves::
+    text "There are no moves"
+    line "this #MON can"
+    cont "remember."
+    done

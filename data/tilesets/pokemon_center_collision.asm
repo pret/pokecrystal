@@ -17,14 +17,14 @@
 	tilecoll WALL, WALL, WALL, FLOOR ; 10
 	tilecoll WALL, WALL, WALL, WALL ; 11
 	tilecoll FLOOR, FLOOR, WALL, WALL ; 12
-	tilecoll FLOOR, WALL, FLOOR, WALL ; 13
+	tilecoll FLOOR, COUNTER, FLOOR, COUNTER ; 13
 	tilecoll FLOOR, FLOOR, FLOOR, WALL ; 14
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 15
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 16
 	tilecoll UP_WALL, WALL, FLOOR, FLOOR ; 17
 	tilecoll WALL, FLOOR, FLOOR, FLOOR ; 18
 	tilecoll FLOOR, WALL, FLOOR, FLOOR ; 19
-	tilecoll FLOOR, FLOOR, WALL, WALL ; 1a
+	tilecoll FLOOR, FLOOR, COUNTER, COUNTER ; 1a
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 1b
 	tilecoll WALL, WALL, WALL, WALL ; 1c
 	tilecoll WALL, WALL, FLOOR, FLOOR ; 1d
