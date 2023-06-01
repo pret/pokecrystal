@@ -101,7 +101,7 @@ OverworldSprites:
 	overworld_sprite FamicomSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
 	overworld_sprite FruitTreeSpriteGFX, 4, STILL_SPRITE, PAL_OW_TREE
 	overworld_sprite GoldTrophySpriteGFX, 4, STILL_SPRITE, PAL_OW_BROWN
-	overworld_sprite SilverTrophySpriteGFX, 4, STILL_SPRITE, PAL_OW_SILVER
+	overworld_sprite SilverTrophySpriteGFX, 4, STILL_SPRITE, PAL_OW_EMOTE
 	overworld_sprite KrisSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite KrisBikeSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite KurtOutsideSpriteGFX, 12, STANDING_SPRITE, PAL_OW_BROWN
