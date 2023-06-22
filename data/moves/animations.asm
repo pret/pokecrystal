@@ -120,7 +120,7 @@ BattleAnimations::
 	dw BattleAnim_FocusEnergy
 	dw BattleAnim_Bide
 	dw BattleAnim_Metronome
-	dw BattleAnim_Dummy
+	dw BattleAnim_MirrorMove
 	dw BattleAnim_Selfdestruct
 	dw BattleAnim_EggBomb
 	dw BattleAnim_Lick
@@ -285,6 +285,7 @@ BattleAnimations::
 	assert_table_length NUM_BATTLE_ANIMS + 1
 
 BattleAnim_Dummy:
+BattleAnim_MirrorMove:
 	anim_ret
 
 BattleAnim_SweetScent2:
