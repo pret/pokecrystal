@@ -20,7 +20,7 @@ ShowPlayerMonsRemaining:
 	ld de, wPartyCount
 	call StageBallTilesData
 	; ldpixel wPlaceBallsX, 12, 12
-	ld a, 12 * 8
+	ld a, 12 * TILE_WIDTH
 	ld hl, wPlaceBallsX
 	ld [hli], a
 	ld [hl], a
@@ -36,9 +36,9 @@ ShowOTTrainerMonsRemaining:
 	call StageBallTilesData
 	; ldpixel wPlaceBallsX, 9, 4
 	ld hl, wPlaceBallsX
-	ld a, 9 * 8
+	ld a, 9 * TILE_WIDTH
 	ld [hli], a
-	ld [hl], 4 * 8
+	ld [hl], 4 * TILE_WIDTH
 	ld a, -8
 	ld [wPlaceBallsDirection], a
 	ld hl, wShadowOAMSprite00 + PARTY_LENGTH * SPRITEOAMSTRUCT_LENGTH
@@ -182,9 +182,9 @@ LinkBattle_TrainerHuds:
 	ld de, wPartyCount
 	call StageBallTilesData
 	ld hl, wPlaceBallsX
-	ld a, 10 * 8
+	ld a, 10 * TILE_WIDTH
 	ld [hli], a
-	ld [hl], 8 * 8
+	ld [hl], 8 * TILE_WIDTH
 	ld a, 8
 	ld [wPlaceBallsDirection], a
 	ld hl, wShadowOAMSprite00
@@ -194,9 +194,9 @@ LinkBattle_TrainerHuds:
 	ld de, wOTPartyCount
 	call StageBallTilesData
 	ld hl, wPlaceBallsX
-	ld a, 10 * 8
+	ld a, 10 * TILE_WIDTH
 	ld [hli], a
-	ld [hl], 13 * 8
+	ld [hl], 13 * TILE_WIDTH
 	ld hl, wShadowOAMSprite00 + PARTY_LENGTH * SPRITEOAMSTRUCT_LENGTH
 	jp LoadTrainerHudOAM
 

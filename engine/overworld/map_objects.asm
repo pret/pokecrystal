@@ -880,12 +880,12 @@ MovementFunction_Shadow:
 	add hl, de
 	ld a, [hl]
 	maskbits NUM_DIRECTIONS
-	ld d, 1 * 8 + 6
+	ld d, 1 * TILE_WIDTH + 6
 	cp DOWN
 	jr z, .ok
 	cp UP
 	jr z, .ok
-	ld d, 1 * 8 + 4
+	ld d, 1 * TILE_WIDTH + 4
 .ok
 	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
@@ -909,7 +909,7 @@ MovementFunction_Emote:
 	ld [hl], 0
 	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
-	ld [hl], -2 * 8
+	ld [hl], -2 * TILE_WIDTH
 	ld hl, OBJECT_SPRITE_X_OFFSET
 	add hl, bc
 	ld [hl], 0
