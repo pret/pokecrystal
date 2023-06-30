@@ -24,7 +24,7 @@ ShowPlayerMonsRemaining:
 	ld hl, wPlaceBallsX
 	ld [hli], a
 	ld [hl], a
-	ld a, 8
+	ld a, TILE_WIDTH
 	ld [wPlaceBallsDirection], a
 	ld hl, wShadowOAMSprite00
 	jp LoadTrainerHudOAM
@@ -39,7 +39,7 @@ ShowOTTrainerMonsRemaining:
 	ld a, 9 * TILE_WIDTH
 	ld [hli], a
 	ld [hl], 4 * TILE_WIDTH
-	ld a, -8
+	ld a, -TILE_WIDTH
 	ld [wPlaceBallsDirection], a
 	ld hl, wShadowOAMSprite00 + PARTY_LENGTH * SPRITEOAMSTRUCT_LENGTH
 	jp LoadTrainerHudOAM
@@ -185,7 +185,7 @@ LinkBattle_TrainerHuds:
 	ld a, 10 * TILE_WIDTH
 	ld [hli], a
 	ld [hl], 8 * TILE_WIDTH
-	ld a, 8
+	ld a, TILE_WIDTH
 	ld [wPlaceBallsDirection], a
 	ld hl, wShadowOAMSprite00
 	call LoadTrainerHudOAM
