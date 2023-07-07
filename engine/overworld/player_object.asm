@@ -579,14 +579,6 @@ TrainerWalkToPlayer:
 	ret
 
 SurfStartStep:
-	call InitMovementBuffer
-	call .GetMovementData
-	call AppendToMovementBuffer
-	ld a, movement_step_end
-	call AppendToMovementBuffer
-	ret
-
-.GetMovementData:
 	ld a, [wPlayerDirection]
 	srl a
 	srl a
@@ -595,14 +587,16 @@ SurfStartStep:
 	ld d, 0
 	ld hl, .movement_data
 	add hl, de
-	ld a, [hl]
-	ret
+	add hl, de
+	add hl, de
+	ld a, BANK(.movement_data)
+	jp StartAutoInput
 
 .movement_data
-	slow_step DOWN
-	slow_step UP
-	slow_step LEFT
-	slow_step RIGHT
+	db D_DOWN,  0, -1
+	db D_UP,    0, -1
+	db D_LEFT,  0, -1
+	db D_RIGHT, 0, -1
 
 FollowNotExact::
 	push bc

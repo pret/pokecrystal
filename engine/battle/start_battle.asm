@@ -16,23 +16,6 @@ FindFirstAliveMonAndStartBattle:
 	xor a
 	ldh [hMapAnims], a
 	call DelayFrame
-	ld b, PARTY_LENGTH
-	ld hl, wPartyMon1HP
-	ld de, PARTYMON_STRUCT_LENGTH - 1
-
-.loop
-	ld a, [hli]
-	or [hl]
-	jr nz, .okay
-	add hl, de
-	dec b
-	jr nz, .loop
-
-.okay
-	ld de, MON_LEVEL - MON_HP
-	add hl, de
-	ld a, [hl]
-	ld [wBattleMonLevel], a
 	predef DoBattleTransition
 	farcall _LoadBattleFontsHPBar
 	ld a, 1
