@@ -1,4 +1,10 @@
 DragonsDen1F_MapScripts:
+	callback MAPCALLBACK_NEWMAP, .UnsetClairScene
+
+.UnsetClairScene:
+	setmapscene DRAGONS_DEN_B1F, SCENE_DRAGONSDENB1F_NOOP
+	endcallback
+	
 	def_scene_scripts
 
 	def_callbacks
