@@ -10,4 +10,4 @@ HappinessData_YoungerHaircutBrother:
 
 HappinessData_DaisysGrooming:
 	db 50 percent,     2, HAPPINESS_GROOMING ; 50% chance
-+	db -1,             2, HAPPINESS_GROOMING ; 50% chance
+	db -1,             2, HAPPINESS_GROOMING ; 50% chance
