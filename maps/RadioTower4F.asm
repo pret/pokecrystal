@@ -30,12 +30,12 @@ RadioTower4FDJMaryScript:
 .ClearedRockets:
 	writetext RadioTower4FDJMaryText_ClearedRockets
 	promptbutton
-	verbosegiveitem PINK_BOW
+	verbosegiveitem POLKADOT_BOW
 	iffalse .NoRoom
-	writetext RadioTower4FDJMaryText_GivePinkBow
+	writetext RadioTower4FDJMaryText_GivePolkadotBow
 	waitbutton
 	closetext
-	setevent EVENT_GOT_PINK_BOW_FROM_MARY
+	setevent EVENT_GOT_POLKADOT_BOW_FROM_MARY
 	end
 
 .GotPinkBow:
@@ -128,11 +128,11 @@ RadioTower4FDJMaryText_ClearedRockets:
 	line "as my thanks?"
 	done
 
-RadioTower4FDJMaryText_GivePinkBow:
+RadioTower4FDJMaryText_GivePolkadotBow:
 	text "MARY: It's just"
 	line "right for #MON"
 
-	para "that know normal-"
+	para "that know fairy-"
 	line "type moves."
 	done
 
