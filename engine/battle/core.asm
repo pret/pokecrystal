@@ -7032,13 +7032,22 @@ GiveExperiencePoints:
 	ld a, [wBattleMode]
 	dec a
 	call nz, BoostExp
+; Boost experience for 200+ Happiness
+	push bc ; i dont know why this is neded but i saw it get used a few lines down and because i'm just copying from there better be safe than sory
+	la a, MON_HAPPINESS
+	call GetPartyParamLocation
+	ld a, [hl]
+	cd 200
+	call nc, BoostedExpPointsText
+	;pop bc ; micro optimization
 ; Boost experience for Lucky Egg
-	push bc
+	;push bc ; micro optimization 2 eletric boogaloo
 	ld a, MON_ITEM
 	call GetPartyParamLocation
 	ld a, [hl]
 	cp LUCKY_EGG
 	call z, BoostExp
+; end of exp boost calculations i think?
 	ldh a, [hQuotient + 3]
 	ld [wStringBuffer2 + 1], a
 	ldh a, [hQuotient + 2]
