@@ -29,6 +29,7 @@ DEF UNUSED_TYPES_END EQU const_value
 	const ICE
 	const DRAGON
 	const DARK
+	const FAIRY
 DEF TYPES_END EQU const_value
 
 DEF TYPE_MASK EQU %00111111
