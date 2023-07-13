@@ -57,9 +57,7 @@ BattleCommand_BeatUp:
 	ld c, a
 
 	push bc
-	ld a, MON_SPECIES
-	call GetBeatupMonLocation
-	ld a, [hl]
+	ld a, [wBattleMonSpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
 	ld a, [wBaseAttack]
@@ -67,13 +65,22 @@ BattleCommand_BeatUp:
 	ld b, a
 
 	push bc
-	ld a, MON_LEVEL
-	call GetBeatupMonLocation
-	ld a, [hl]
+	ld a, [wBattleMonLevel]
 	ld e, a
 	pop bc
-
-	ld a, [wPlayerMoveStructPower]
+	
+	push bc
+	ld a, MON_SPECIES
+	call GetBeatupMonLocation
+	ld a,[hl]
+	ld [wCurSpecies], a
+	call GetBaseData
+	ld a, [wBaseAttack]
+	ld c, 10
+	call SimpleDivide
+	ld a, b
+	pop bc
+	add 5
 	ld d, a
 	ret
 
@@ -169,9 +176,7 @@ BattleCommand_BeatUp:
 	ld c, a
 
 	push bc
-	ld a, MON_SPECIES
-	call GetBeatupMonLocation
-	ld a, [hl]
+	ld a, [wEnemyMonSpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
 	ld a, [wBaseAttack]
@@ -179,13 +184,22 @@ BattleCommand_BeatUp:
 	ld b, a
 
 	push bc
-	ld a, MON_LEVEL
-	call GetBeatupMonLocation
-	ld a, [hl]
+	ld a, [wEnemyMonLevel]
 	ld e, a
 	pop bc
 
-	ld a, [wEnemyMoveStructPower]
+	push bc
+	ld a, MON_SPECIES
+	call GetBeatupMonLocation
+	ld a,[hl]
+	ld [wCurSpecies], a
+	call GetBaseData
+	ld a, [wBaseAttack]
+	ld c, 10
+	call SimpleDivide
+	ld a, b
+	pop bc
+	add 5
 	ld d, a
 	ret
 

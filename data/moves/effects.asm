@@ -2046,6 +2046,7 @@ BeatUp:
 	critical
 	beatup
 	damagecalc
+	stab
 	damagevariation
 	clearmissdamage
 	moveanimnosub
