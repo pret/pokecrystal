@@ -7034,10 +7034,10 @@ GiveExperiencePoints:
 	call nz, BoostExp
 ; Boost experience for 200+ Happiness
 	push bc ; i dont know why this is neded but i saw it get used a few lines down and because i'm just copying from there better be safe than sory
-	la a, MON_HAPPINESS
+	ld a, MON_HAPPINESS
 	call GetPartyParamLocation
 	ld a, [hl]
-	cd 200
+	cp 200
 	call nc, BoostedExpPointsText
 	;pop bc ; micro optimization
 ; Boost experience for Lucky Egg

@@ -18,7 +18,7 @@ RadioTower4FFisherScript:
 RadioTower4FDJMaryScript:
 	faceplayer
 	opentext
-	checkevent EVENT_GOT_PINK_BOW_FROM_MARY
+	checkevent EVENT_GOT_POLKADOT_BOW_FROM_MARY
 	iftrue .GotPinkBow
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .ClearedRockets
