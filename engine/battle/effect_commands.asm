@@ -3567,8 +3567,6 @@ DoSubstituteDamage:
 	jr z, .ok
 	cp EFFECT_TRIPLE_KICK
 	jr z, .ok
-	cp EFFECT_BEAT_UP
-	jr z, .ok
 	xor a
 	ld [hl], a
 .ok
@@ -5533,12 +5531,7 @@ BattleCommand_TrapTarget:
 	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
 	ret nz
-	call BattleRandom
-	; trapped for 2-5 turns
-	and %11
-	inc a
-	inc a
-	inc a
+	ld a, 4 ; set to 4 turns
 	ld [hl], a
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
