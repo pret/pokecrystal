@@ -165,14 +165,12 @@ BattleCommandPointers:
 	dw BattleCommand_SkipSunCharge
 	dw BattleCommand_ThunderAccuracy
 	dw BattleCommand_Teleport
-	dw BattleCommand_BeatUp
 	dw BattleCommand_RageDamage
 	dw BattleCommand_ResetTypeMatchup
 	dw BattleCommand_AllStatsUp
 	dw BattleCommand_BideFailText
 	dw BattleCommand_RaiseSubNoAnim
 	dw BattleCommand_LowerSubNoAnim
-	dw BattleCommand_BeatUpFailText
 	dw BattleCommand_ClearMissDamage
 	dw BattleCommand_MoveDelay
 	dw BattleCommand_MoveAnim

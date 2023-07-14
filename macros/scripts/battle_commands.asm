@@ -165,21 +165,19 @@ ENDM
 	command skipsuncharge           ; 9e
 	command thunderaccuracy         ; 9f
 	command teleport                ; a0
-	command beatup                  ; a1
-	command ragedamage              ; a2
-	command resettypematchup        ; a3
-	command allstatsup              ; a4
-	command bidefailtext            ; a5
-	command raisesubnoanim          ; a6
-	command lowersubnoanim          ; a7
-	command beatupfailtext          ; a8
-	command clearmissdamage         ; a9
-	command movedelay               ; aa
-	command moveanim                ; ab
-	command tristatuschance         ; ac
-	command supereffectivelooptext  ; ad
-	command startloop               ; ae
-	command curl                    ; af
+	command ragedamage              ; a1
+	command resettypematchup        ; a2
+	command allstatsup              ; a3
+	command bidefailtext            ; a4
+	command raisesubnoanim          ; a5
+	command lowersubnoanim          ; a6
+	command clearmissdamage         ; a7
+	command movedelay               ; a8
+	command moveanim                ; a9
+	command tristatuschance         ; aa
+	command supereffectivelooptext  ; ab
+	command startloop               ; ac
+	command curl                    ; ad
 DEF NUM_EFFECT_COMMANDS EQU const_value - 1
 
 	const_def -1, -1
