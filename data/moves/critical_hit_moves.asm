@@ -1,4 +1,5 @@
 CriticalHitMoves:
+	db CUT
 	db KARATE_CHOP
 	db RAZOR_WIND
 	db RAZOR_LEAF

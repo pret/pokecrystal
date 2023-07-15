@@ -86,7 +86,7 @@ BattleCommand_UnleashEnergy:
 	ld [wPlayerMoveStructEffect], a
 	ld [wEnemyMoveStructEffect], a
 	call BattleRandom
-	and 1
+	xor a
 	inc a
 	inc a
 	ld [bc], a
