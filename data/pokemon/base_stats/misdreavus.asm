@@ -3,7 +3,7 @@
 	db  60,  60,  60,  85,  85,  85
 	;   hp  atk  def  spd  sat  sdf
 
-	db GHOST, GHOST ; type
+	db GHOST, FAIRY ; type
 	db 45 ; catch rate
 	db 147 ; base exp
 	db NO_ITEM, SPELL_TAG ; items

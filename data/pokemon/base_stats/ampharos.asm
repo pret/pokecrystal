@@ -3,7 +3,7 @@
 	db  90,  75,  75,  55, 115,  90
 	;   hp  atk  def  spd  sat  sdf
 
-	db ELECTRIC, ELECTRIC ; type
+	db ELECTRIC, DRAGON ; type
 	db 45 ; catch rate
 	db 194 ; base exp
 	db NO_ITEM, NO_ITEM ; items
