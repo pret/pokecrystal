@@ -5,4 +5,4 @@ CriticalHitChances:
 	db 1 out_of 3  ; +3
 	db 1 out_of 2  ; +4
 	db 1 out_of 2  ; +5
-	db 1 out_of 1  ; +6
+	db 1 out_of 2  ; +6
