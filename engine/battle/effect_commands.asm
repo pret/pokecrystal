@@ -4955,7 +4955,7 @@ SetBattleDraw:
 
 BattleCommand_ForceSwitch:
 	ld a, [wBattleType]
-	cp BATTLETYPE_SHINY
+	cp BATTLETYPE_FORCED_SHINY
 	jp z, .fail
 	cp BATTLETYPE_TRAP
 	jp z, .fail
