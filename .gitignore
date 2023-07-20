@@ -55,3 +55,16 @@ used_space.png
 
 # macos files
 .DS_STORE
+/bin/rgbasm
+/bin/rgbfix
+/bin/rgbgfx
+/bin/rgblink
+/share/man/man1/rgbasm.1
+/share/man/man1/rgbfix.1
+/share/man/man1/rgbgfx.1
+/share/man/man1/rgblink.1
+/share/man/man5/rgbasm.5
+/share/man/man5/rgbds.5
+/share/man/man5/rgblink.5
+/share/man/man7/gbz80.7
+/share/man/man7/rgbds.7
