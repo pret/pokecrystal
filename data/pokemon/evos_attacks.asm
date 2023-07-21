@@ -5,6 +5,7 @@ SECTION "Evolutions and Attacks", ROMX
 ;    * db EVOLVE_LEVEL, level, species
 ;    * db EVOLVE_ITEM, used item, species
 ;    * db EVOLVE_MOVE, requred move, species
+;    * db EVOLVE_HELD, held item, species	
 ;    * db EVOLVE_HAPPINESS, TR_* constant (ANYTIME, MORNDAY, NITE), species
 ;    * db EVOLVE_STAT, level, ATK_*_DEF constant (LT, GT, EQ), species
 ; - db 0 ; no more evolutions
@@ -803,7 +804,7 @@ PoliwagEvosAttacks:
 
 PoliwhirlEvosAttacks:
 	db EVOLVE_ITEM, WATER_STONE, POLIWRATH
-	db EVOLVE_ITEM, KINGS_ROCK, POLITOED
+	db EVOLVE_HELD, KINGS_ROCK, POLITOED
 	db 0 ; no more evolutions
 	db 1, BUBBLE
 	db 1, HYPNOSIS
@@ -1055,8 +1056,8 @@ RapidashEvosAttacks:
 	db 0 ; no more level-up moves
 
 SlowpokeEvosAttacks:
+	db EVOLVE_HELD, KINGS_ROCK, SLOWBRO
 	db EVOLVE_LEVEL, 37, SLOWKING
-	db EVOLVE_ITEM, KINGS_ROCK, SLOWBRO
 	db 0 ; no more evolutions
 	db 1, CURSE
 	db 1, TACKLE
@@ -1276,7 +1277,7 @@ GengarEvosAttacks:
 	db 0 ; no more level-up moves
 
 OnixEvosAttacks:
-	db EVOLVE_ITEM, METAL_COAT, STEELIX
+	db EVOLVE_HELD, METAL_COAT, STEELIX
 	db 0 ; no more evolutions
 	db 1, TACKLE
 	db 1, SCREECH
@@ -1668,7 +1669,7 @@ MrMimeEvosAttacks:
 	db 0 ; no more level-up moves
 
 ScytherEvosAttacks:
-	db EVOLVE_ITEM, METAL_COAT, SCIZOR
+	db EVOLVE_HELD, METAL_COAT, SCIZOR
 	db 0 ; no more evolutions
 	db 1, QUICK_ATTACK
 	db 1, LEER
@@ -2917,7 +2918,7 @@ UrsaringEvosAttacks:
 	db 0 ; no more level-up moves
 
 SlugmaEvosAttacks:
-	db EVOLVE_LEVEL, 38, MAGCARGO
+	db EVOLVE_MOVE, WITHDRAW, MAGCARGO
 	db 0 ; no more evolutions
 	db 1, SMOG
 	db 8, EMBER
@@ -2925,6 +2926,7 @@ SlugmaEvosAttacks:
 	db 22, HARDEN
 	db 29, AMNESIA
 	db 36, FLAMETHROWER
+	db 37, WITHDRAW
 	db 43, ROCK_SLIDE
 	db 50, BODY_SLAM
 	db 0 ; no more level-up moves

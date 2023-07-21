@@ -80,10 +80,10 @@ EvolveAfterBattle_MasterLoop:
 	ld a, b
 	cp EVOLVE_LEVEL
 	jp z, .level
-
+	cp EVOLVE_HELD
+	jp z, .held
 	cp EVOLVE_MOVE
 	jr z, .move
-
 	cp EVOLVE_HAPPINESS
 	jr z, .happiness
 
@@ -115,6 +115,16 @@ EvolveAfterBattle_MasterLoop:
 	jp nz, .dont_evolve_2
 
 	inc hl
+	jp .proceed
+
+.held
+	ld a, [hli]
+	ld b, a
+	ld a, [wTempMonItem]
+	cp b
+	jp nz, .dont_evolve_3
+	xor a
+	ld [wTempMonItem], a
 	jr .proceed
 
 .happiness
