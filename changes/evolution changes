@@ -1,0 +1,19 @@
+-- method changes --
+@ no more trade evolutions
+
+-- evolution changes --
+  bayleaf -> meganium : level 32 -> know flower bloom
+  quilava -> typlosion : level 36 -> know magma flow
+  croconaw -> Feraligatr : level 30 -> know dive pull
+@ slugma -> magcargo : level 38 -> know withdraw
+@ kadabra -> alacazam : trade -> know psychic
+@ graverer -> golem : trade -> know rollout
+@ machoke -> machamp : trade -> know vital throw
+@ haunter -> gengar : trade -> know shadow ball
+@ poliwirl -> politoed : trade holding kings rock -> evolve holding kings rock
+@ slowpoke -> slowking : trade holding kings rock -> evolve holding kings rock
+@ onix -> steelix : trade holding item -> evolve holding steel coat
+@ scyther -> scizor : trade holding item -> evolve holding steel coat
+@ seadra -> kingdra : trade holding item -> know dragon breath
+@ porygon -> porygon2 : trade holding upgrade -> use up-grade on mon
+

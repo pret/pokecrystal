@@ -1,0 +1,161 @@
+-- general changes --
+
+@ bug -> fairy : not very effective -> super effective
+@ traping moves : 2 to 5 turns - > 4 turns | 1/16 health -> 1/8 health
+
+-- pokemon changes --
+  
+@ blastoise : water -> water/steel
+@ butterfree : bug/flying -> bug/psychic
+@ sandslash : ground -> ground/steel
+@ ninetales: fire -> fire/fairy
+@ persian : normal -> normal/dark
+@ golduck : water -> water/psychic
+@ ponyta : fire -> fire/normal
+@ rapidash : fire -> fire/normal
+@ dodrio : normal/flying -> fighting/flying
+@ kingler : water -> water/rock
+@ rhydon : ground/rock -> steel/rock
+@ kangaskhan : normal -> normal/fighting
+@ pinsir : bug -> bug/ground
+@ kabuto : rock/water -> bug/water
+@ kabutops : rock/water -> bug/water
+@ meganium : grass -> grass/fairy
+@ typlosion : fire -> fire/ground
+@ feraligatr : water -> water/dark
+@ noctowl : normal/flying -> psychic/flying
+@ ampharos : electric -> electric/dragon
+@ misdreavus : ghost -> ghost/fairy
+@ dunsparce : normal -> normal/ground
+@ granbull : fairy -> fairy/fighting
+
+-- moves removed --
+
+-- moves added --
+  flower bloom : fairy | status | sharply raises attack and spe.attack then roots the user, can only be used once. DO NOT PUT IT ON ANYBODY THAT KNOWS BATTON PASS
+  magma flow : ground | special | 90 power | 25% to burn | 100% accuracy
+  dive pull : darK | physical | 90 power | sharply lowers enemy speed | 95% accuracy
+  
+-- tm changes --
+
+ vital throw is now a tm
+ 
+-- moves changes --
+
+@ double slap : normal -> fairy | 85% accuracy -> 100% accuracy
+
+@ commet punch : 18 power -> 25 power | 85% accuracy -> 100% accuracy
+  
+@ razor wind : normal -> flying
+  
+@ cut : normal -> bug | normal hit -> high crit | 95% accuracy -> 100% accuracy
+  
+@ fly : 95% accuracy -> 100% accuracy
+  
+@ slam : 75% accuracy -> 100% accuracy
+  
+@ rolling kick : 85% accurate -> 100% accurate 
+  
+@ horn attack : normal -> rock
+  
+@ fury attack : 85% accurate -> 100% accurate 
+
+@ tackle : 95% accurate -> 100% accurate
+  
+@ wrap : 75% accuracy -> 95% accuracy
+  
+@ double edge : 120 power -> 100 power
+  
+@ poison sting : 15 power -> 25 power
+  
+@ twineedle : 25 power -> 35 power | 20% poison -> 25% poison
+  
+@ pin missile :14 power -> 20 power | 95% accuracy -> 100% accuracy
+  
+@ supersonic : 55% accuracy -> 75% accuracy
+  
+@ sonic boom : 90% accuracy -> 100% accuracy
+  
+@ acid : 10% defence down -> 25% defence down
+
+@ submission : 80 power -> 100 power | 80% accuracy -> 100% accuracy
+  
+@ absorb : 20 power -> 30 power
+  
+@ mega drain: 40 power -> 50 power  
+
+@ fire spin: 70% accuracy -> 95% accuracy
+  
+@ rock throw: 90% accuracy -> 100% accuracy
+  
+@ earthquake: 100 power -> 90 power
+  
+@ dig : 60 power -> 75 power
+  
+@ hypnosis : 60% accuracy -> 70% accuracy
+  
+@ withdrawn : increase defence by one stage -> increase defence by two stages
+  
+@ bide :  last two to tree turns -> last two turns
+  
+@ lick : 30 power -> 40 power | 30% paralize -> 10% paralize
+  
+@ smog : 70% accuracy -> 100% accuracy
+  
+@ bone club : 85% accuracy -> 100% accuracy
+  
+@ clamp : 75% accuracy -> 100% accuracy
+  
+@ skull bash: normal -> steel
+  
+@ spike cannon: normal -> steel
+  
+@ constrict : 10% lower speed -> 25% lower speed
+  
+@ kinesis : 0 power -> 50 power
+  
+@ glare : 75% accuracy -> 100% accuracy
+  
+@ leech life : 20 power -> 50 power
+  
+@ psywave: 0 power -> 30 power | random damage -> multi-hit
+  
+@ furry swipes : 18 power -> 15 power | 80% accuracy -> 100% accuracy
+  
+@ hyper fang : 90% accuracy -> 100% accuracy
+  
+@ triple kick : 10 power -> 15 power | 90% accuracy - > 100% accuracy | hits 1,2,or 3 times -> hits 3 times
+  
+@ thief : 40 power -> 50 power
+  
+@ snore : 40 power -> 50 power | special -> physical
+  
+@ mud slap : 20 power -> 40 power
+  
+@ octazooka : 65 power -> 75 power | 85% accuracy -> 95% accuracy
+  
+@ icy wind : 95% accuracy -> 100% accuracy
+  
+@ bone rush : 80% accuracy -> 100% accuracy
+  
+@ giga drain: 60 power -> 70 power
+  
+@ spark : 65 power -> 70 power
+  
+@ steel wing : 90% accuracy -> 100% accuracy
+  
+@ present : 90% accuracy -> 100% accuracy
+ 
+@ iron tail : 75% accuracy -> 90% accuracy
+  
+@ metal claw : 50 power -> 70 power | 95% accuracy -> 100% accuracy
+  
+@ hidden power : power and type is dependent on each pokemon -> 50 power and type is dependent on each pokemon
+  
+@ cross chop : 80% accuracy -> 90% accuracy
+  
+@ twister : 40 power -> 50 power
+  
+@ whirlpool : 70% accuracy -> 95% accuracy
+  
+@ beat up : watever it was -> 20 power multi-hit dark type attack

@@ -1,0 +1,42 @@
+@ Physical/Special Split
+@ No poison overworld damage
+@ added fairy type and changed pokemons and moves acordily
+@ Mary gives the polkadot bow after the radio tower event
+@ fixed all know battle engine, engine and grafical bugs except "You can fish on top of NPCs" because it's funny and inconsequential
+@ fixed all know audio, text, scripted events and internal engine routines
+@ fixed that stupid tree animation frame script to be sensible instead of : return odd if 1, return even if 2 , return odd if 3..
+@ removed ai 25% chance to miss status moves
+@ removed badge stat boost and type boost
+@ boost exp gain if at least 200 friendship
+  sandstorm now boost rock type pokemon special defense by 50%
+@ light orb also boost raichu special attack
+  replaced frozen status with frostbite from Pokemon Legends Arceus and removed it from the tier one status for cathing
+@ lowered required friendship for evo to 200
+@ changed item ratios to be 50% holding first item and 10% holding second item(60% chance of holding a item overall)
+  trainer pokemons have max friendship
+@ lowercase pokemon names
+@ fixed the Leaders heads in the trainer card
+@ added third trainer card page for kanto badges
+  berry trees give 3 to 5 berries
+  kurt instantly makes acorn pokeballs
+  removed the sudowoodo requrement for rock smash(he can breack rocks with his hands)
+  reworked remach system for better by removing the remach requirement for the battles and always trying to give the trainer phone number to the player
+  headbutt need headbutt tm for overworld use, so no headbutt pokemon before Bugsy
+  reworked initialization system
+  reworked swarm system
+@ reworked beat up
+  allow more trainer parties, with individual DVs, stat experience, nicknames, variable teams, etc
+  added a lot of tms and distributed them acordly
+  overworld actions no longer need hm on pokemon, but instead they just need a special item and some special confition(a "flying" mon for fly and so on)
+  completing the unknow dex gives the player a special tm only for unknows
+@ no more trade evolutions, all are changed to something else but no "evolve at level x"
+@ move dependent evolution, some pokemon need to learn certain moves to evolve
+  held item depent evolution, some pokemon need to hold certain items to evolve
+  removed dragon scale
+@ your starter holds a item relevant to it's final evolution each 
+@ infinite tm uses
+-- tm/hm system rework --
+Tm are infinitly usable and more plentyfull, but way less pokemons learn from them
+Hm are hard to get and they moves haven been nerded but are learnble for a lot of pokemon
+Each pokemon learn at least 1 hm with exceptions being: ditto, unknown, smeargle.
+
