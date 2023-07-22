@@ -18,7 +18,7 @@ Moves:
 	move KARATE_CHOP,  EFFECT_NORMAL_HIT,         50, FIGHTING,      PHYSICAL, 100, 25,   0
 	move DOUBLESLAP,   EFFECT_MULTI_HIT,          15, FAIRY,         PHYSICAL, 100, 10,   0
 	move COMET_PUNCH,  EFFECT_MULTI_HIT,          18, NORMAL,        PHYSICAL, 100, 15,   0
-	move MEGA_PUNCH,   EFFECT_NORMAL_HIT,         80, NORMAL,        PHYSICAL,  85, 20,   0 ; to be removed
+	move FLOWER_BLOOM, EFFECT_FLOWER_BLOOM,        0, FAIRY,         STATUS,   100, 10,   0 ; new move
 	move PAY_DAY,      EFFECT_PAY_DAY,            40, NORMAL,        PHYSICAL, 100, 20,   0
 	move FIRE_PUNCH,   EFFECT_BURN_HIT,           75, FIRE,          PHYSICAL, 100, 15,  10
 	move ICE_PUNCH,    EFFECT_FREEZE_HIT,         75, ICE,           PHYSICAL, 100, 15,  10
@@ -186,7 +186,7 @@ Moves:
 	move MIND_READER,  EFFECT_LOCK_ON,             0, NORMAL,        STATUS,   100,  5,   0
 	move NIGHTMARE,    EFFECT_NIGHTMARE,           0, GHOST,         STATUS,   100, 15,   0
 	move FLAME_WHEEL,  EFFECT_FLAME_WHEEL,        60, FIRE,          PHYSICAL, 100, 25,  10
-	move SNORE,        EFFECT_SNORE,              50, NORMAL,        PHYSICAL,  100, 15,  30
+	move SNORE,        EFFECT_SNORE,              50, NORMAL,        PHYSICAL, 100, 15,  30
 	move CURSE,        EFFECT_CURSE,               0, CURSE_TYPE,    STATUS,   100, 10,   0
 	move FLAIL,        EFFECT_REVERSAL,            1, NORMAL,        PHYSICAL, 100, 15,   0
 	move CONVERSION2,  EFFECT_CONVERSION2,         0, NORMAL,        STATUS,   100, 30,   0

@@ -32,9 +32,9 @@
 -- moves removed --
 
 -- moves added --
-  flower bloom : fairy | status | sharply raises attack and spe.attack then roots the user, can only be used once. DO NOT PUT IT ON ANYBODY THAT KNOWS BATTON PASS
+@ flower bloom : fairy | status | sharply raises attack and spe.attack, can only be used once.
   magma flow : ground | special | 90 power | 25% to burn | 100% accuracy
-  dive pull : darK | physical | 90 power | sharply lowers enemy speed | 95% accuracy
+  dive pull : darK | physical | 90 power | traping move | 95% accuracy
   
 -- tm changes --
 

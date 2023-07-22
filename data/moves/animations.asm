@@ -6,7 +6,7 @@ BattleAnimations::
 	dw BattleAnim_KarateChop
 	dw BattleAnim_Doubleslap
 	dw BattleAnim_CometPunch
-	dw BattleAnim_MegaPunch
+	dw BattleAnim_FlowerBloom
 	dw BattleAnim_PayDay
 	dw BattleAnim_FirePunch
 	dw BattleAnim_IcePunch
@@ -714,21 +714,6 @@ BattleAnim_CometPunch:
 	anim_wait 8
 	anim_ret
 
-BattleAnim_MegaPunch:
-	anim_1gfx ANIM_GFX_HIT
-	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $40, $2, $0
-	anim_wait 48
-	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $3
-.loop
-	anim_sound 0, 1, SFX_MEGA_PUNCH
-	anim_obj ANIM_OBJ_PUNCH, 136, 56, $0
-	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 56, $0
-	anim_wait 6
-	anim_obj ANIM_OBJ_PUNCH, 136, 56, $0
-	anim_wait 6
-	anim_loop 3, .loop
-	anim_ret
-
 BattleAnim_Stomp:
 	anim_1gfx ANIM_GFX_HIT
 	anim_sound 0, 1, SFX_STOMP
@@ -1206,6 +1191,34 @@ BattleAnim_RazorLeaf:
 	anim_wait 2
 	anim_sound 16, 2, SFX_VINE_WHIP
 	anim_incobj 10
+	anim_wait 64
+	anim_ret
+
+BattleAnim_FlowerBloom:
+	anim_if_param_equal $1, .FlowerBloomEnd
+	anim_1gfx ANIM_GFX_CHARGE
+	anim_sound 0, 0, SFX_CHARGE
+	anim_obj ANIM_OBJ_ABSORB_CENTER, 48, 84, $0
+	anim_obj ANIM_OBJ_SOLAR_BEAM_CHARGE, 48, 84, $0
+	anim_obj ANIM_OBJ_SOLAR_BEAM_CHARGE, 48, 84, $8
+	anim_obj ANIM_OBJ_SOLAR_BEAM_CHARGE, 48, 84, $10
+	anim_obj ANIM_OBJ_SOLAR_BEAM_CHARGE, 48, 84, $18
+	anim_obj ANIM_OBJ_SOLAR_BEAM_CHARGE, 48, 84, $20
+	anim_obj ANIM_OBJ_SOLAR_BEAM_CHARGE, 48, 84, $28
+	anim_obj ANIM_OBJ_SOLAR_BEAM_CHARGE, 48, 84, $30
+	anim_obj ANIM_OBJ_SOLAR_BEAM_CHARGE, 48, 84, $38
+	anim_wait 104
+	anim_bgeffect ANIM_BG_FLASH_WHITE, $0, $4, $2
+	anim_wait 64
+	anim_ret
+.FlowerBloomEnd:
+	anim_sound 0, 0, SFX_MENU
+	anim_2gfx ANIM_GFX_FLOWER, ANIM_GFX_HIT
+.loop
+	anim_obj ANIM_OBJ_PETAL_DANCE, 48, 56, $0
+	anim_wait 11
+	anim_loop 8, .loop
+	anim_wait 128
 	anim_wait 64
 	anim_ret
 
@@ -1753,7 +1766,7 @@ BattleAnim_FocusEnergy:
 	anim_ret
 
 BattleAnim_Bide:
-	anim_if_param_equal $0, BattleAnim_MegaPunch
+	anim_if_param_equal $0, BattleAnim_QuickAttack
 	anim_1gfx ANIM_GFX_HIT
 	anim_call BattleAnim_TargetObj_1Row
 	anim_sound 0, 0, SFX_ESCAPE_ROPE

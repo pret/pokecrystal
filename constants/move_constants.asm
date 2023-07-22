@@ -10,7 +10,7 @@
 	const KARATE_CHOP  ; 02
 	const DOUBLESLAP   ; 03
 	const COMET_PUNCH  ; 04
-	const MEGA_PUNCH   ; 05
+	const FLOWER_BLOOM ; 05
 	const PAY_DAY      ; 06
 	const FIRE_PUNCH   ; 07
 	const ICE_PUNCH    ; 08

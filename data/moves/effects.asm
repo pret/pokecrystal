@@ -1764,6 +1764,16 @@ RapidSpin:
 	kingsrock
 	endmove
 
+FlowerBloom:
+	checkobedience
+	usedmovetext
+	doturn
+	lowersub
+	flowerbloom
+	raisesub
+	statupfailtext
+	endmove
+
 MorningSun:
 	checkobedience
 	usedmovetext

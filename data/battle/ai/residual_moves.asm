@@ -1,6 +1,7 @@
 ; AI_CAUTIOUS discourages these moves after the first turn.
 
 ResidualMoves:
+	db FLOWER_BLOOM
 	db MIST
 	db LEECH_SEED
 	db POISONPOWDER

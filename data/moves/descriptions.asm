@@ -5,7 +5,7 @@ MoveDescriptions::
 	dw KarateChopDescription
 	dw DoubleslapDescription
 	dw CometPunchDescription
-	dw MegaPunchDescription
+	dw FlowerBloomDescription
 	dw PayDayDescription
 	dw FirePunchDescription
 	dw IcePunchDescription
@@ -283,9 +283,9 @@ CometPunchDescription:
 	db   "Repeatedly punches"
 	next "2-5 times.@"
 
-MegaPunchDescription:
-	db   "A powerful punch"
-	next "thrown very hard.@"
+FlowerBloomDescription:
+	db   "Raises both ATK"
+	next "and S.ATK once.@"
 
 PayDayDescription:
 	db   "Throws coins. Gets"

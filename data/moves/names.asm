@@ -4,7 +4,7 @@ MoveNames::
 	li "KARATE CHOP"
 	li "DOUBLESLAP"
 	li "COMET PUNCH"
-	li "MEGA PUNCH"
+	li "FLOWER BLOOM"
 	li "PAY DAY"
 	li "FIRE PUNCH"
 	li "ICE PUNCH"

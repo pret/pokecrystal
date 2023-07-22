@@ -1281,7 +1281,7 @@ OnixEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, TACKLE
 	db 1, SCREECH
-	db 10, BIND
+	db 10, WRAP
 	db 14, ROCK_THROW
 	db 23, HARDEN
 	db 27, RAGE
@@ -1445,7 +1445,6 @@ HitmonleeEvosAttacks:
 	db 31, MIND_READER
 	db 36, FORESIGHT
 	db 41, ENDURE
-	db 46, MEGA_KICK
 	db 51, REVERSAL
 	db 0 ; no more level-up moves
 
@@ -1458,7 +1457,6 @@ HitmonchanEvosAttacks:
 	db 26, ICE_PUNCH
 	db 26, FIRE_PUNCH
 	db 32, MACH_PUNCH
-	db 38, MEGA_PUNCH
 	db 44, DETECT
 	db 50, COUNTER
 	db 0 ; no more level-up moves
@@ -1554,7 +1552,7 @@ TangelaEvosAttacks:
 	db 10, ABSORB
 	db 13, POISONPOWDER
 	db 19, VINE_WHIP
-	db 25, BIND
+	db 25, WRAP
 	db 31, MEGA_DRAIN
 	db 34, STUN_SPORE
 	db 40, SLAM
@@ -1567,7 +1565,6 @@ KangaskhanEvosAttacks:
 	db 7, LEER
 	db 13, BITE
 	db 19, TAIL_WHIP
-	db 25, MEGA_PUNCH
 	db 31, RAGE
 	db 37, ENDURE
 	db 43, DIZZY_PUNCH
@@ -1732,7 +1729,7 @@ PinsirEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, VICEGRIP
 	db 7, FOCUS_ENERGY
-	db 13, BIND
+	db 13, WRAP
 	db 19, SEISMIC_TOSS
 	db 25, HARDEN
 	db 31, GUILLOTINE
@@ -2051,7 +2048,6 @@ MewEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, POUND
 	db 10, TRANSFORM
-	db 20, MEGA_PUNCH
 	db 30, METRONOME
 	db 40, PSYCHIC_M
 	db 50, ANCIENTPOWER
@@ -2073,7 +2069,7 @@ ChikoritaEvosAttacks:
 	db 0 ; no more level-up moves
 
 BayleefEvosAttacks:
-	db EVOLVE_LEVEL, 32, MEGANIUM
+	db EVOLVE_MOVE, FLOWER_BLOOM, MEGANIUM
 	db 0 ; no more evolutions
 	db 1, TACKLE
 	db 1, GROWL
@@ -2084,6 +2080,7 @@ BayleefEvosAttacks:
 	db 15, POISONPOWDER
 	db 23, SYNTHESIS
 	db 31, BODY_SLAM
+	db 34, FLOWER_BLOOM
 	db 39, LIGHT_SCREEN
 	db 47, SAFEGUARD
 	db 55, SOLARBEAM
@@ -2787,7 +2784,7 @@ SteelixEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, TACKLE
 	db 1, SCREECH
-	db 10, BIND
+	db 10, WRAP
 	db 14, ROCK_THROW
 	db 23, HARDEN
 	db 27, RAGE
