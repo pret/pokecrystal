@@ -8,7 +8,7 @@
 @ removed ai 25% chance to miss status moves
 @ removed badge stat boost and type boost
 @ boost exp gain if at least 200 friendship
-  sandstorm now boost rock type pokemon special defense by 50%
+@ sandstorm now boost rock type pokemon special defense by 50%
 @ light orb also boost raichu special attack
   replaced frozen status with frostbite from Pokemon Legends Arceus and removed it from the tier one status for cathing
 @ lowered required friendship for evo to 200
@@ -21,8 +21,8 @@
   kurt instantly makes acorn pokeballs
   removed the sudowoodo requrement for rock smash(he can breack rocks with his hands)
   reworked remach system for better by removing the remach requirement for the battles and always trying to give the trainer phone number to the player
-  headbutt need headbutt tm for overworld use, so no headbutt pokemon before Bugsy
-  reworked initialization system
+  headbutt need sturdy helmet for overworld use
+@ reworked initialization system
   reworked swarm system
 @ reworked beat up
   allow more trainer parties, with individual DVs, stat experience, nicknames, variable teams, etc
