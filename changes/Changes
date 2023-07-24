@@ -10,15 +10,15 @@
 @ boost exp gain if at least 200 friendship
 @ sandstorm now boost rock type pokemon special defense by 50%
 @ light orb also boost raichu special attack
-  replaced frozen status with frostbite from Pokemon Legends Arceus and removed it from the tier one status for cathing
+  replaced frozen status with frostbite from Pokemon Legends Arceus
 @ lowered required friendship for evo to 200
 @ changed item ratios to be 50% holding first item and 10% holding second item(60% chance of holding a item overall)
   trainer pokemons have max friendship
 @ lowercase pokemon names
 @ fixed the Leaders heads in the trainer card
 @ added third trainer card page for kanto badges
-  berry trees give 3 to 5 berries
-  kurt instantly makes acorn pokeballs
+@ berry trees give 3 to 5 berries
+@ kurt instantly makes acorn pokeballs
   removed the sudowoodo requrement for rock smash(he can breack rocks with his hands)
   reworked remach system for better by removing the remach requirement for the battles and always trying to give the trainer phone number to the player
   headbutt need sturdy helmet for overworld use
