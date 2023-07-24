@@ -17,12 +17,6 @@ PlayersHouse2FNoopScene: ; unreferenced
 PlayersHouse2FInitializeRoomCallback:
 	special ToggleDecorationsVisibility
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_8
-	checkevent EVENT_INITIALIZED_EVENTS
-	iftrue .SkipInitialization
-	jumpstd InitializeEventsScript
-	endcallback
-
-.SkipInitialization:
 	endcallback
 
 PlayersHouse2FSetUpTileDecorationsCallback:
