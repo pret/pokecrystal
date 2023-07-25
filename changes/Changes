@@ -21,7 +21,6 @@
 @ kurt instantly makes acorn pokeballs
   removed the sudowoodo requrement for rock smash(he can breack rocks with his hands)
   reworked remach system for better by removing the remach requirement for the battles and always trying to give the trainer phone number to the player
-  headbutt need sturdy helmet for overworld use
 @ reworked initialization system
   reworked swarm system
 @ reworked beat up
@@ -31,12 +30,14 @@
   completing the unknow dex gives the player a special tm only for unknows
 @ no more trade evolutions, all are changed to something else but no "evolve at level x"
 @ move dependent evolution, some pokemon need to learn certain moves to evolve
-  held item depent evolution, some pokemon need to hold certain items to evolve
+@ held item depent evolution, some pokemon need to hold certain items to evolve
   removed dragon scale
 @ your starter holds a item relevant to it's final evolution each 
 @ infinite tm uses
+  added hail as a new wheather
+  hail raises ice type pokemon defence by 50%
 -- tm/hm system rework --
-Tm are infinitly usable and more plentyfull, but way less pokemons learn from them
-Hm are hard to get and they moves haven been nerded but are learnble for a lot of pokemon
+Tm are infinitly usable and more plentyfull, but way less pokemon learn from them
+Hm are hard to get but are learnble for a lot of pokemon
 Each pokemon learn at least 1 hm with exceptions being: ditto, unknown, smeargle.
 

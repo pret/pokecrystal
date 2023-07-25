@@ -1,6 +1,6 @@
 	db TYPHLOSION ; 157
 
-	db  78,  84,  78, 100, 109,  85
+	db  75,  85,  75, 100, 110,  85
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, GROUND ; type

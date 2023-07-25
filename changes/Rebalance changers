@@ -3,7 +3,7 @@
 @ bug -> fairy : not very effective -> super effective
 @ traping moves : 2 to 5 turns - > 4 turns | 1/16 health -> 1/8 health
 
--- pokemon changes --
+-- pokemon type changes --
   
 @ blastoise : water -> water/steel
 @ butterfree : bug/flying -> bug/psychic
@@ -29,12 +29,24 @@
 @ dunsparce : normal -> normal/ground
 @ granbull : fairy -> fairy/fighting
 
+-- pokemon base stats -- 
+               hp  atk  def  spd  sat  sdf
+@ chikorita  : 45,  50,  65,  45,  50,  60
+@ bayleef    : 60,  60,  75,  70,  60,  80
+@ meganium   : 80,  85, 100,  80,  85, 100
+@ cyndaquil  : 40,  55,  45,  65,  50,  60
+@ quilava    : 60,  60,  60,  80,  80,  65
+@ typlosion  : 75,  85,  75, 100, 110,  85
+@ totodile   : 50,  65,  65,  40,  45,  50
+@ croconaw   : 65,  80,  80,  55,  60,  65
+@ feraligatr : 85, 105, 100,  75,  80,  85
+
 -- moves removed --
 
 -- moves added --
 @ flower bloom : fairy | status | sharply raises attack and spe.attack, can only be used once.
   magma flow : ground | special | 90 power | 25% to burn | 100% accuracy
-  dive pull : darK | physical | 90 power | traping move | 95% accuracy
+  dive pull : darK | physical | 70 power | harshy lowers enemy speed | 100% accuracy
   
 -- tm changes --
 
