@@ -1029,13 +1029,13 @@ Function106464::
 Function10649b: ; unreferenced
 	ld a, [wTextboxFrame]
 	maskbits NUM_FRAMES
-	ld bc, 6 * LEN_1BPP_TILE
+	ld bc, TEXTBOX_FRAME_TILES * LEN_1BPP_TILE
 	ld hl, Frames
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld hl, vTiles0 tile "┌" ; $ba
-	ld c, 6 ; "┌" to "┘"
+	ld c, TEXTBOX_FRAME_TILES ; "┌" to "┘"
 	ld b, BANK(Frames)
 	call Function1064c3
 	ld hl, vTiles2 tile " " ; $7f

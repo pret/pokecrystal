@@ -608,8 +608,8 @@ wBattleEnd::
 SECTION UNION "Miscellaneous", WRAM0
 
 ; link patch lists
-wPlayerPatchLists:: ds 200
-wOTPatchLists:: ds 200
+wPlayerPatchLists:: ds SERIAL_PATCH_LIST_LENGTH
+wOTPatchLists:: ds SERIAL_PATCH_LIST_LENGTH
 
 
 SECTION UNION "Miscellaneous", WRAM0
@@ -1046,10 +1046,6 @@ for n, 1, PARTY_LENGTH + 1
 wTimeCapsulePartyMon{d:n}Nickname:: ds MON_NAME_LENGTH
 endr
 
-NEXTU
-; link patch lists
-wLinkPatchList1:: ds SERIAL_PATCH_LIST_LENGTH
-wLinkPatchList2:: ds SERIAL_PATCH_LIST_LENGTH
 ENDU
 
 
@@ -1074,13 +1070,14 @@ wLinkPlayerMail::
 wLinkPlayerMailPreamble:: ds SERIAL_MAIL_PREAMBLE_LENGTH
 wLinkPlayerMailMessages:: ds (MAIL_MSG_LENGTH + 1) * PARTY_LENGTH
 wLinkPlayerMailMetadata:: ds (MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 1)) * PARTY_LENGTH
-wLinkPlayerMailPatchSet:: ds 103
+wLinkPlayerMailPatchSet:: ds 100 + SERIAL_PATCH_PREAMBLE_LENGTH
 wLinkPlayerMailEnd::
 	ds 10
 wLinkOTMail::
 wLinkOTMailMessages:: ds (MAIL_MSG_LENGTH + 1) * PARTY_LENGTH
 wLinkOTMailMetadata:: ds (MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 1)) * PARTY_LENGTH
-wOTPlayerMailPatchSet:: ds 103 + SERIAL_MAIL_PREAMBLE_LENGTH
+wLinkOTMailPatchSet:: ds 100 + SERIAL_PATCH_PREAMBLE_LENGTH
+wLinkOTMailPadding:: ds SERIAL_MAIL_PREAMBLE_LENGTH
 wLinkOTMailEnd::
 	ds 10
 
@@ -1113,7 +1110,7 @@ ENDU
 	ds 138
 
 wMysteryGiftPartnerData::
-wMysteryGiftGameVersion:: db
+wMysteryGiftPartnerGameVersion:: db
 wMysteryGiftPartnerID:: dw
 wMysteryGiftPartnerName:: ds NAME_LENGTH
 wMysteryGiftPartnerDexCaught:: db
@@ -1127,7 +1124,7 @@ wMysteryGiftPartnerDataEnd::
 	ds 60
 
 wMysteryGiftPlayerData::
-	ds 1
+wMysteryGiftPlayerGameVersion:: db
 wMysteryGiftPlayerID:: dw
 wMysteryGiftPlayerName:: ds NAME_LENGTH
 wMysteryGiftPlayerDexCaught:: db
@@ -2049,8 +2046,15 @@ wSwitchItemBuffer:: ds 2 ; may store 1 or 2 bytes
 SECTION UNION "Miscellaneous WRAM 1", WRAMX
 
 ; switching pokemon in party
-; may store NAME_LENGTH, PARTYMON_STRUCT_LENGTH, or MAIL_STRUCT_LENGTH bytes
-wSwitchMonBuffer:: ds 48
+; may store a name, partymon, or mail
+wSwitchMonBuffer::
+UNION
+	ds NAME_LENGTH
+NEXTU
+	ds PARTYMON_STRUCT_LENGTH
+NEXTU
+	ds MAIL_STRUCT_LENGTH
+ENDU
 
 
 SECTION UNION "Miscellaneous WRAM 1", WRAMX
@@ -2671,11 +2675,15 @@ ENDU
 wTempEnemyMonSpecies::  db
 wTempBattleMonSpecies:: db
 
+UNION
+wOTLinkBattleRNData:: ds SERIAL_RN_PREAMBLE_LENGTH + SERIAL_RNS_LENGTH
+NEXTU
 wEnemyMon:: battle_struct wEnemyMon
 wEnemyMonBaseStats:: ds NUM_EXP_STATS
 wEnemyMonCatchRate:: db
 wEnemyMonBaseExp::   db
 wEnemyMonEnd::
+ENDU
 
 wBattleMode::
 ; 0: overworld
