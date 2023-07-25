@@ -76,7 +76,7 @@ endc
 	jp z, .LinkCanceled
 	cp MG_OKAY
 	jp nz, .CommunicationError
-	ld a, [wMysteryGiftGameVersion]
+	ld a, [wMysteryGiftPartnerGameVersion]
 	cp POKEMON_PIKACHU_2_VERSION
 	jr z, .skip_checks
 	call .CheckAlreadyGotFiveGiftsToday
@@ -92,11 +92,11 @@ endc
 	ld a, [wMysteryGiftPartnerBackupItem]
 	and a
 	jp nz, .FriendNotReady
-	ld a, [wMysteryGiftGameVersion]
+	ld a, [wMysteryGiftPartnerGameVersion]
 	cp POKEMON_PIKACHU_2_VERSION
 	jr z, .skip_append_save
 	call .AddMysteryGiftPartnerID
-	ld a, [wMysteryGiftGameVersion]
+	ld a, [wMysteryGiftPartnerGameVersion]
 	cp RESERVED_GAME_VERSION
 	jr z, .skip_append_save
 	call .SaveMysteryGiftTrainerName
@@ -307,7 +307,7 @@ endc
 	ldh a, [hMGRole]
 	cp IR_SENDER
 	jr z, SenderExchangeMysteryGiftDataPayloads
-; receiver
+
 	ld hl, hMGExchangedByte
 	ld b, 1
 	call TryReceivingIRDataBlock
@@ -522,7 +522,7 @@ EndOrContinueMysteryGiftIRCommunication:
 	ldh a, [hMGRole]
 	cp IR_SENDER
 	jr z, .sender
-; receiver
+
 	call BeginReceivingIRCommunication
 	jr nz, EndOrContinueMysteryGiftIRCommunication
 	jp ReceiverExchangeMysteryGiftDataPayloads
@@ -563,7 +563,7 @@ ExchangeNameCardData:
 	ldh a, [hMGRole]
 	cp IR_SENDER
 	jr z, .sender
-; receiver
+
 	; Receive the data payload
 	call ReceiveNameCardDataPayload
 	jp nz, EndNameCardIRCommunication

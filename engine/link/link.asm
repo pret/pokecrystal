@@ -90,7 +90,7 @@ endc
 
 	ld hl, wLinkData
 	ld de, wOTPartyData
-	ld bc, SERIAL_PREAMBLE_LENGTH + NAME_LENGTH + 1 + PARTY_LENGTH + 1 + (REDMON_STRUCT_LENGTH + NAME_LENGTH * 2) * PARTY_LENGTH + 3
+	ld bc, SERIAL_PREAMBLE_LENGTH + NAME_LENGTH + (1 + PARTY_LENGTH + 1) + (REDMON_STRUCT_LENGTH + NAME_LENGTH * 2) * PARTY_LENGTH + 3
 	vc_hook Wireless_ExchangeBytes_Gen2toGen1_party_structs
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
@@ -98,7 +98,7 @@ endc
 
 	ld hl, wPlayerPatchLists
 	ld de, wOTPatchLists
-	ld bc, 200
+	ld bc, SERIAL_PATCH_LIST_LENGTH
 	vc_hook Wireless_ExchangeBytes_Gen2toGen1_patch_lists
 	call Serial_ExchangeBytes
 
@@ -122,11 +122,11 @@ endc
 	jp nc, ExitLinkCommunications
 
 	ld de, wLinkData
-	ld bc, NAME_LENGTH + 1 + PARTY_LENGTH + 1 + (REDMON_STRUCT_LENGTH + NAME_LENGTH * 2) * PARTY_LENGTH + 3
+	ld bc, NAME_LENGTH + (1 + PARTY_LENGTH + 1) + (REDMON_STRUCT_LENGTH + NAME_LENGTH * 2) * PARTY_LENGTH + 3
 	call Link_CopyOTData
 
 	ld de, wOTPatchLists
-	ld hl, wLinkPatchList1
+	ld hl, wTimeCapsulePlayerData
 	ld c, 2
 .loop
 	ld a, [de]
@@ -152,11 +152,11 @@ endc
 	jr .loop
 
 .next
-	ld hl, wLinkPatchList2
+	ld hl, wTimeCapsulePlayerData + SERIAL_PATCH_DATA_SIZE
 	dec c
 	jr nz, .loop
 
-	ld hl, wLinkPlayerName
+	ld hl, wLinkData
 	ld de, wOTPlayerName
 	ld bc, NAME_LENGTH
 	call CopyBytes
@@ -247,7 +247,7 @@ endc
 	ldh [rIE], a
 
 	ld hl, wLinkBattleRNPreamble
-	ld de, wEnemyMon
+	ld de, wOTLinkBattleRNData
 	ld bc, SERIAL_RN_PREAMBLE_LENGTH + SERIAL_RNS_LENGTH
 	vc_hook Wireless_ExchangeBytes_RNG_state
 	call Serial_ExchangeBytes
@@ -256,7 +256,7 @@ endc
 
 	ld hl, wLinkData
 	ld de, wOTPartyData
-	ld bc, SERIAL_PREAMBLE_LENGTH + NAME_LENGTH + 1 + PARTY_LENGTH + 1 + 2 + (PARTYMON_STRUCT_LENGTH + NAME_LENGTH * 2) * PARTY_LENGTH + 3
+	ld bc, SERIAL_PREAMBLE_LENGTH + NAME_LENGTH + (1 + PARTY_LENGTH + 1) + 2 + (PARTYMON_STRUCT_LENGTH + NAME_LENGTH * 2) * PARTY_LENGTH + 3
 	vc_hook Wireless_ExchangeBytes_party_structs
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
@@ -264,7 +264,7 @@ endc
 
 	ld hl, wPlayerPatchLists
 	ld de, wOTPatchLists
-	ld bc, 200
+	ld bc, SERIAL_PATCH_LIST_LENGTH
 	vc_hook Wireless_ExchangeBytes_patch_lists
 	call Serial_ExchangeBytes
 
@@ -276,8 +276,8 @@ endc
 	ld bc, wLinkPlayerMailEnd - wLinkPlayerMail
 	vc_hook Wireless_ExchangeBytes_mail
 	call ExchangeBytes
-
 .not_trading
+
 	xor a
 	ldh [rIF], a
 	ld a, (1 << JOYPAD) | (1 << SERIAL) | (1 << TIMER) | (1 << VBLANK)
@@ -293,8 +293,8 @@ endc
 	ld bc, NAME_LENGTH + 1 + PARTY_LENGTH + 1 + 2 + (PARTYMON_STRUCT_LENGTH + NAME_LENGTH * 2) * PARTY_LENGTH
 	call Link_CopyOTData
 
-	ld de, wPlayerTrademon
-	ld hl, wLinkPatchList1
+	ld de, wOTPatchLists
+	ld hl, wLinkPlayerData
 	ld c, 2
 .loop1
 	ld a, [de]
@@ -320,7 +320,7 @@ endc
 	jr .loop1
 
 .next1
-	ld hl, wLinkPatchList2
+	ld hl, wLinkPlayerData + SERIAL_PATCH_DATA_SIZE
 	dec c
 	jr nz, .loop1
 
@@ -339,10 +339,14 @@ endc
 	cp SERIAL_MAIL_PREAMBLE_BYTE
 	jr z, .loop3
 	dec hl
+
 	ld de, wLinkOTMail
 	ld bc, wLinkDataEnd - wLinkOTMail ; should be wLinkOTMailEnd - wLinkOTMail
 	call CopyBytes
-	ld hl, wLinkOTMail
+
+; Replace SERIAL_MAIL_REPLACEMENT_BYTE with SERIAL_NO_DATA_BYTE across all mail
+; message bodies.
+	ld hl, wLinkOTMailMessages
 	ld bc, (MAIL_MSG_LENGTH + 1) * PARTY_LENGTH
 .loop4
 	ld a, [hl]
@@ -355,7 +359,8 @@ endc
 	ld a, b
 	or c
 	jr nz, .loop4
-	ld de, wOTPlayerMailPatchSet
+
+	ld de, wLinkOTMailPatchSet
 .loop5
 	ld a, [de]
 	inc de
@@ -406,7 +411,7 @@ endc
 .fix_mail_loop
 	push bc
 	push de
-	farcall IsMailEuropean
+	farcall ParseMailLanguage
 	ld a, c
 	or a
 	jr z, .next
@@ -434,7 +439,7 @@ endc
 	ld [de], a
 
 .skip_mail
-	ld hl, wLinkPlayerName
+	ld hl, wLinkData
 	ld de, wOTPlayerName
 	ld bc, NAME_LENGTH
 	call CopyBytes
@@ -615,6 +620,7 @@ FixDataForLinkTransfer:
 	dec b
 	jr nz, .preamble_loop
 
+; Initialize random seed, making sure special bytes are omitted
 	assert wLinkBattleRNPreamble + SERIAL_RN_PREAMBLE_LENGTH == wLinkBattleRNs
 	ld b, SERIAL_RNS_LENGTH
 .rn_loop
@@ -625,60 +631,66 @@ FixDataForLinkTransfer:
 	dec b
 	jr nz, .rn_loop
 
+; Clear the patch list
 	ld hl, wPlayerPatchLists
 	ld a, SERIAL_PREAMBLE_BYTE
+rept SERIAL_PATCH_PREAMBLE_LENGTH
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-
-	ld b, 200
+endr
+	ld b, SERIAL_PATCH_LIST_LENGTH
 	xor a
-.loop1
+.clear_loop
 	ld [hli], a
 	dec b
-	jr nz, .loop1
+	jr nz, .clear_loop
 
-	ld hl, (wLinkData + SERIAL_PREAMBLE_LENGTH + NAME_LENGTH + 1 + PARTY_LENGTH + 1) - 1
-	ld de, wPlayerPatchLists + 10 ; ???
+; Loop through all the patchable link data
+	ld hl, wLinkData + SERIAL_PREAMBLE_LENGTH + NAME_LENGTH + (1 + PARTY_LENGTH + 1) - 1
+	ld de, wPlayerPatchLists + SERIAL_RNS_LENGTH ; ???
 	lb bc, 0, 0
-.loop2
+.patch_loop
+; Check if we've gone over the entire area
 	inc c
 	ld a, c
-	cp SERIAL_PATCH_LIST_LENGTH + 1
-	jr z, .next1
+	cp SERIAL_PATCH_DATA_SIZE + 1
+	jr z, .data1_done
+
+; If we're processing the second patch area, check if we've reached the end
 	ld a, b
 	dec a
-	jr nz, .next2
+	jr nz, .process
 	push bc
 	ld a, [wLinkMode]
 	cp LINK_TIMECAPSULE
-	ld b, REDMON_STRUCT_LENGTH * PARTY_LENGTH - SERIAL_PATCH_LIST_LENGTH + 1
-	jr z, .got_value
-	ld b, 2 + PARTYMON_STRUCT_LENGTH * PARTY_LENGTH - SERIAL_PATCH_LIST_LENGTH + 1
-.got_value
+	ld b, REDMON_STRUCT_LENGTH * PARTY_LENGTH - SERIAL_PATCH_DATA_SIZE + 1
+	jr z, .got_size
+	ld b, 2 + PARTYMON_STRUCT_LENGTH * PARTY_LENGTH - SERIAL_PATCH_DATA_SIZE + 1
+.got_size
 	ld a, c
 	cp b
 	pop bc
-	jr z, .done
-.next2
+	jr z, .data2_done
+
+.process
+; Replace the "no data" byte, and record it in the array
 	inc hl
 	ld a, [hl]
 	cp SERIAL_NO_DATA_BYTE
-	jr nz, .loop2
+	jr nz, .patch_loop
 	ld a, c
 	ld [de], a
 	inc de
 	ld [hl], SERIAL_PATCH_REPLACEMENT_BYTE
-	jr .loop2
+	jr .patch_loop
 
-.next1
+.data1_done
 	ld a, SERIAL_PATCH_LIST_PART_TERMINATOR
 	ld [de], a
 	inc de
 	lb bc, 1, 0
-	jr .loop2
+	jr .patch_loop
 
-.done
+.data2_done
 	ld a, SERIAL_PATCH_LIST_PART_TERMINATOR
 	ld [de], a
 	ret
@@ -857,11 +869,11 @@ Link_PrepPartyData_Gen2:
 	ld de, wLinkData
 	ld a, SERIAL_PREAMBLE_BYTE
 	ld b, SERIAL_PREAMBLE_LENGTH
-.loop1
+.preamble_loop
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .loop1
+	jr nz, .preamble_loop
 
 	ld hl, wPlayerName
 	ld bc, NAME_LENGTH
@@ -893,7 +905,7 @@ Link_PrepPartyData_Gen2:
 	ret nz
 
 ; Fill 5 bytes at wLinkPlayerMailPreamble with $20
-	ld de, wLinkPlayerMailPreamble
+	ld de, wLinkPlayerMail
 	ld a, SERIAL_MAIL_PREAMBLE_BYTE
 	call Link_CopyMailPreamble
 
@@ -902,7 +914,7 @@ Link_PrepPartyData_Gen2:
 	call OpenSRAM
 	ld hl, sPartyMail
 	ld b, PARTY_LENGTH
-.loop2
+.message_loop
 	push bc
 	ld bc, MAIL_MSG_LENGTH + 1
 	call CopyBytes
@@ -910,11 +922,12 @@ Link_PrepPartyData_Gen2:
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .loop2
+	jr nz, .message_loop
+
 ; Copy the mail data to wLinkPlayerMailMetadata
 	ld hl, sPartyMail
 	ld b, PARTY_LENGTH
-.loop3
+.metadata_loop
 	push bc
 	ld bc, MAIL_MSG_LENGTH + 1
 	add hl, bc
@@ -922,29 +935,31 @@ Link_PrepPartyData_Gen2:
 	call CopyBytes
 	pop bc
 	dec b
-	jr nz, .loop3
+	jr nz, .metadata_loop
+
+; Translate the messages if necessary
 	ld b, PARTY_LENGTH
 	ld de, sPartyMail
 	ld hl, wLinkPlayerMailMessages
-.loop4
+.translate_loop
 	push bc
 	push hl
 	push de
 	push hl
-	farcall IsMailEuropean
+	farcall ParseMailLanguage
 	pop de
 	ld a, c
-	or a
-	jr z, .next
-	sub $3
+	or a ; MAIL_LANG_ENGLISH
+	jr z, .translate_next
+	sub MAIL_LANG_ITALIAN
 	jr nc, .italian_spanish
 	farcall ConvertFrenchGermanMailToEnglish
-	jr .next
+	jr .translate_next
 .italian_spanish
-	cp $2
-	jr nc, .next
+	cp (MAIL_LANG_SPANISH + 1) - MAIL_LANG_ITALIAN
+	jr nc, .translate_next
 	farcall ConvertSpanishItalianMailToEnglish
-.next
+.translate_next
 	pop de
 	ld hl, MAIL_STRUCT_LENGTH
 	add hl, de
@@ -955,41 +970,42 @@ Link_PrepPartyData_Gen2:
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .loop4
+	jr nz, .translate_loop
 	call CloseSRAM
 
+; The SERIAL_NO_DATA_BYTE value isn't allowed anywhere in message text
 	ld hl, wLinkPlayerMailMessages
 	ld bc, (MAIL_MSG_LENGTH + 1) * PARTY_LENGTH
-.loop5
+.message_patch_loop
 	ld a, [hl]
 	cp SERIAL_NO_DATA_BYTE
-	jr nz, .skip2
+	jr nz, .message_patch_skip
 	ld [hl], SERIAL_MAIL_REPLACEMENT_BYTE
-.skip2
+.message_patch_skip
 	inc hl
 	dec bc
 	ld a, b
 	or c
-	jr nz, .loop5
+	jr nz, .message_patch_loop
 
+; Calculate the patch offsets for the mail metadata
 	ld hl, wLinkPlayerMailMetadata
 	ld de, wLinkPlayerMailPatchSet
 	ld b, (MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 1)) * PARTY_LENGTH
 	ld c, 0
-.loop6
+.metadata_patch_loop
 	inc c
 	ld a, [hl]
 	cp SERIAL_NO_DATA_BYTE
-	jr nz, .skip3
+	jr nz, .metadata_patch_skip
 	ld [hl], SERIAL_PATCH_REPLACEMENT_BYTE
 	ld a, c
 	ld [de], a
 	inc de
-.skip3
+.metadata_patch_skip
 	inc hl
 	dec b
-	jr nz, .loop6
-
+	jr nz, .metadata_patch_loop
 	ld a, SERIAL_PATCH_LIST_PART_TERMINATOR
 	ld [de], a
 	ret
@@ -1193,7 +1209,7 @@ Link_CopyRandomNumbers:
 	ldh a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
 	ret z
-	ld hl, wEnemyMonSpecies
+	ld hl, wOTLinkBattleRNData
 	call Link_FindFirstNonControlCharacter_AllowZero
 	ld de, wLinkBattleRNs
 	ld c, 10
