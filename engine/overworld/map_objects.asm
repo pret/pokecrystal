@@ -1073,7 +1073,6 @@ MovementFunction_ScreenShake:
 .GetDurationAndField1e:
 	ld d, a
 	and %00111111
-	add a
 	ld e, a
 	ld a, d
 	rlca
