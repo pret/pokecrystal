@@ -22,6 +22,6 @@ BuenasPasswordTable:
 .Pokemon2:      db BUENA_MON,    10, HOOTHOOT, SPINARAK, DROWZEE
 .JohtoTowns:    db BUENA_STRING, 16, "NEW BARK TOWN@", "CHERRYGROVE CITY@", "AZALEA TOWN@"
 .Types:         db BUENA_STRING,  6, "FLYING@", "BUG@", "GRASS@"
-.Moves:         db BUENA_MOVE,   12, TACKLE, GROWL, MUD_SLAP
+.Moves:         db BUENA_MOVE,   12, POUND, GROWL, MUD_SLAP
 .XItems:        db BUENA_ITEM,   12, X_ATTACK, X_DEFEND, X_SPEED
 .RadioStations: db BUENA_STRING, 13, "#MON Talk@", "#MON Music@", "Lucky Channel@"

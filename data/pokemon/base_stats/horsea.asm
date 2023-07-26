@@ -1,6 +1,6 @@
 	db HORSEA ; 116
 
-	db  30,  40,  70,  60,  70,  25
+	db  40,  40,  70,  60,  70,  40
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER ; type

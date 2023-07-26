@@ -198,11 +198,7 @@ Text_ReceivedGlacierBadge:
 	done
 
 PryceText_GlacierBadgeSpeech:
-	text "That BADGE will"
-	line "raise the SPECIAL"
-	cont "stats of #MON."
-
-	para "It also lets your"
+	text "It lets your"
 	line "#MON use WHIRL-"
 	cont "POOL to get across"
 	cont "real whirlpools."
@@ -239,8 +235,8 @@ PryceText_CherishYourPokemon:
 	done
 
 BoarderRonaldSeenText:
-	text "I'll freeze your"
-	line "#MON, so you"
+	text "I'll frostbite"
+	line "your #MON, so you"
 	cont "can't do a thing!"
 	done
 
@@ -251,10 +247,10 @@ BoarderRonaldBeatenText:
 
 BoarderRonaldAfterBattleText:
 	text "I think there's a"
-	line "move a #MON"
+	line "move a frostbitten"
 
-	para "can use while it's"
-	line "frozen."
+	para "#MON can use to"
+	line "cure itself."
 	done
 
 BoarderBradSeenText:

@@ -1,6 +1,6 @@
 	db HOOTHOOT ; 163
 
-	db  60,  30,  30,  50,  36,  56
+	db  60,  40,  40,  50,  56,  76
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, FLYING ; type

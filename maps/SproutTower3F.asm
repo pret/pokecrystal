@@ -76,7 +76,7 @@ SageLiScript:
 	opentext
 	writetext SageLiTakeThisFlashText
 	promptbutton
-	verbosegiveitem HM_FLASH
+	verbosegiveitem LANTERN ;HM_FLASH
 	setevent EVENT_GOT_HM05_FLASH
 	setevent EVENT_BEAT_SAGE_LI
 	writetext SageLiFlashExplanationText
@@ -157,7 +157,7 @@ SproutTowerElderLecturesRivalText:
 	cont "trainer."
 
 	para "As promised, here"
-	line "is your HM."
+	line "is your LANTERN."
 
 	para "But let me say"
 	line "this: You should"
@@ -235,22 +235,16 @@ SageLiTakeThisFlashText:
 	line "MON should have"
 
 	para "no problem using"
-	line "this move."
+	line "this LANTERN."
 
-	para "Take this FLASH"
-	line "HM."
+	para "Take this light"
+	line "for dark caves."
 	done
 
 SageLiFlashExplanationText:
-	text "FLASH illuminates"
-	line "even the darkest"
-	cont "of all places."
-
-	para "But to use it out"
-	line "of battle, you"
-
-	para "need the BADGE"
-	line "from VIOLET's GYM."
+	text "A LANTERN can"
+	line "light up the"
+	cont "darkest places."
 	done
 
 SageLiAfterBattleText:
@@ -299,7 +293,7 @@ SageTroyAfterBattleText:
 	done
 
 SageNealSeenText:
-	text "The ELDER's HM"
+	text "The ELDER's item"
 	line "lights even pitch-"
 	cont "black darkness."
 	done

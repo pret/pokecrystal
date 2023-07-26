@@ -1,9 +1,9 @@
 	db PHANPY ; 231
 
-	db  90,  60,  60,  40,  40,  40
+	db  90,  80,  80,  40,  40,  40
 	;   hp  atk  def  spd  sat  sdf
 
-	db GROUND, GROUND ; type
+	db GROUND, NORMAL ; type
 	db 120 ; catch rate
 	db 124 ; base exp
 	db NO_ITEM, NO_ITEM ; items

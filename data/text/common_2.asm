@@ -100,19 +100,17 @@ Text_Gained::
 	text_end
 
 _BoostedExpPointsText::
-; BUG: Five-digit experience gain is printed incorrectly (see docs/bugs_and_glitches.md)
 	text_start
 	line "a boosted"
 	cont "@"
-	text_decimal wStringBuffer2, 2, 4
+	text_decimal wStringBuffer2, 2, 5
 	text " EXP. Points!"
 	prompt
 
 _ExpPointsText::
-; BUG: Five-digit experience gain is printed incorrectly (see docs/bugs_and_glitches.md)
 	text_start
 	line "@"
-	text_decimal wStringBuffer2, 2, 4
+	text_decimal wStringBuffer2, 2, 5
 	text " EXP. Points!"
 	prompt
 
@@ -303,9 +301,8 @@ _CantUseItemText::
 	prompt
 
 _UseCutText::
-	text_ram wStringBuffer2
-	text " used"
-	line "CUT!"
+	text "You cut some"
+	line "plants!"
 	prompt
 
 _CutNothingText::
@@ -322,30 +319,28 @@ _BlindingFlashText::
 	text_end ; unreferenced
 
 _UsedSurfText::
-	text_ram wStringBuffer2
-	text " used"
-	line "SURF!"
+	text "You are on"
+	line "the water."
 	done
 
 _CantSurfText::
-	text "You can't SURF"
-	line "here."
+	text "You can't"
+	line "KAYAK here."
 	prompt
 
 _AlreadySurfingText::
 	text "You're already"
-	line "SURFING."
+	line "KAYAKing."
 	prompt
 
 _AskSurfText::
 	text "The water is calm."
-	line "Want to SURF?"
+	line "Want to KAYAK?"
 	done
 
 _UseWaterfallText::
-	text_ram wStringBuffer2
-	text " used"
-	line "WATERFALL!"
+	text "You ignited"
+	line "the JETS."
 	done
 
 _HugeWaterfallText::
@@ -355,13 +350,12 @@ _HugeWaterfallText::
 
 _AskWaterfallText::
 	text "Do you want to use"
-	line "WATERFALL?"
+	line "your JETS?"
 	done
 
 _UseDigText::
-	text_ram wStringBuffer2
-	text " used"
-	line "DIG!"
+	text "Let's get out"
+	line "of here."
 	done
 
 _UseEscapeRopeText::
@@ -387,28 +381,26 @@ _CantUseTeleportText::
 	done
 
 _AlreadyUsingStrengthText::
-	text "A #MON is using"
-	line "STRENGTH already."
+	text "You already have"
+	line "your BELT on."
 	prompt
 
 _UseStrengthText::
-	text_ram wStringBuffer2
-	text " used"
-	line "STRENGTH!"
+	text "You can push"
+	line "boulders."
 	done
 
 _MoveBoulderText::
-	text_ram wStringBuffer1
-	text " can"
-	line "move boulders."
+	text "You can push"
+	line "boulders."
 	prompt
 
 _AskStrengthText::
-	text "A #MON may be"
+	text "You may be"
 	line "able to move this."
 
 	para "Want to use"
-	line "STRENGTH?"
+	line "the BELT?"
 	done
 
 _BouldersMoveText::
@@ -417,21 +409,20 @@ _BouldersMoveText::
 	done
 
 _BouldersMayMoveText::
-	text "A #MON may be"
+	text "You may be"
 	line "able to move this."
 	done
 
 _UseWhirlpoolText::
-	text_ram wStringBuffer2
-	text " used"
-	line "WHIRLPOOL!"
+	text "You GLIDE"
+	line "across."
 	prompt
 
 _MayPassWhirlpoolText::
 	text "It's a vicious"
 	line "whirlpool!"
 
-	para "A #MON may be"
+	para "You may be"
 	line "able to pass it."
 	done
 
@@ -440,13 +431,12 @@ _AskWhirlpoolText::
 	line "the way."
 
 	para "Want to use"
-	line "WHIRLPOOL?"
+	line "GLIDE?"
 	done
 
 _UseHeadbuttText::
-	text_ram wStringBuffer2
-	text " did a"
-	line "HEADBUTT!"
+	text "You swung the"
+	line "CLUB."
 	prompt
 
 _HeadbuttNothingText::
@@ -457,18 +447,17 @@ _AskHeadbuttText::
 	text "A #MON could be"
 	line "in this tree."
 
-	para "Want to HEADBUTT"
-	line "it?"
+	para "Want to CLUB"
+	line "the tree?"
 	done
 
 _UseRockSmashText::
-	text_ram wStringBuffer2
-	text " used"
-	line "ROCK SMASH!"
+	text "You used"
+	line "your PICK."
 	prompt
 
 _MaySmashText::
-	text "Maybe a #MON"
+	text "Maybe a PICK"
 	line "can break this."
 	done
 
@@ -476,8 +465,8 @@ _AskRockSmashText::
 	text "This rock looks"
 	line "breakable."
 
-	para "Want to use ROCK"
-	line "SMASH?"
+	para "Want to use"
+	line "your PICK?"
 	done
 
 _RodBiteText::
@@ -515,14 +504,15 @@ _GotOffBikeText::
 
 _AskCutText::
 	text "This tree can be"
-	line "CUT!"
+	line "cut down!"
 
-	para "Want to use CUT?"
+	para "Want to use"
+	line "your CHAINSAW?"
 	done
 
 _CanCutText::
 	text "This tree can be"
-	line "CUT!"
+	line "cut down!"
 	done
 
 _FoundItemText::
@@ -705,11 +695,6 @@ Text_BattleUser::
 	text "<USER>@"
 	text_end
 
-_BattleMadeWhirlwindText::
-	text_start
-	line "made a whirlwind!"
-	prompt
-
 _BattleTookSunlightText::
 	text_start
 	line "took in sunlight!"
@@ -739,12 +724,7 @@ _ActorNameText::
 	text "<USER>@"
 	text_end
 
-_UsedMove1Text::
-	text_start
-	line "used @"
-	text_end
-
-_UsedMove2Text::
+_UsedMoveText::
 	text_start
 	line "used @"
 	text_end
@@ -756,27 +736,6 @@ _UsedInsteadText::
 
 _MoveNameText::
 	text_ram wStringBuffer2
-	text_end
-
-	text_end ; unreferenced
-
-_EndUsedMove1Text::
-	text "!"
-	done
-
-_EndUsedMove2Text::
-	text "!"
-	done
-
-_EndUsedMove3Text::
-	text "!"
-	done
-
-_EndUsedMove4Text::
-	text "!"
-	done
-
-_EndUsedMove5Text::
 	text "!"
 	done
 
@@ -1574,4 +1533,9 @@ _OakText5::
 
 	para "That's why I study"
 	line "#MON every day."
+	prompt
+
+_CantDepositText::
+	text "Can't deposit"
+	line "this item."
 	prompt

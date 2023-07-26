@@ -1,9 +1,9 @@
 	db GRAVELER ; 075
 
-	db  55,  95, 115,  35,  45,  45
+	db  55,  95, 115,  55,  45,  45
 	;   hp  atk  def  spd  sat  sdf
 
-	db ROCK, GROUND ; type
+	db ROCK, ELECTRIC ; type
 	db 120 ; catch rate
 	db 134 ; base exp
 	db NO_ITEM, EVERSTONE ; items

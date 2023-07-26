@@ -1,9 +1,9 @@
 	db NINETALES ; 038
 
-	db  73,  76,  75, 100,  81, 100
+	db  73,  66,  85, 100,  81, 100
 	;   hp  atk  def  spd  sat  sdf
 
-	db FIRE, FIRE ; type
+	db FIRE, PSYCHIC_TYPE ; type
 	db 75 ; catch rate
 	db 178 ; base exp
 	db BURNT_BERRY, BURNT_BERRY ; items

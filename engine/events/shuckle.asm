@@ -6,9 +6,9 @@ GiveShuckle:
 	ld [wMonType], a
 
 ; Level 15 Shuckle.
-	ld a, SHUCKLE
+	ld a, SNORLAX
 	ld [wCurPartySpecies], a
-	ld a, 15
+	ld a, 20
 	ld [wCurPartyLevel], a
 
 	predef TryAddMonToParty
@@ -18,7 +18,7 @@ GiveShuckle:
 	ld b, CAUGHT_BY_UNKNOWN
 	farcall SetGiftPartyMonCaughtData
 
-; Holding a Berry.
+; Holding a LEFTOVERS.
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [wPartyCount]
 	dec a
@@ -26,7 +26,7 @@ GiveShuckle:
 	push bc
 	ld hl, wPartyMon1Item
 	call AddNTimes
-	ld [hl], BERRY
+	ld [hl], LEFTOVERS
 	pop bc
 	pop af
 
@@ -69,14 +69,14 @@ SpecialShuckleOT:
 	db "MANIA@"
 
 SpecialShuckleNickname:
-	db "SHUCKIE@"
+	db "SNORLY@"
 
 ReturnShuckie:
 	farcall SelectMonFromParty
 	jr c, .refused
 
 	ld a, [wCurPartySpecies]
-	cp SHUCKLE
+	cp SNORLAX
 	jr nz, .DontReturn
 
 	ld a, [wCurPartyMon]

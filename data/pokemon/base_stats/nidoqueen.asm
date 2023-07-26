@@ -1,9 +1,9 @@
 	db NIDOQUEEN ; 031
 
-	db  90,  82,  87,  76,  75,  85
+	db  90,  65,  92,  76,  92,  90
 	;   hp  atk  def  spd  sat  sdf
 
-	db POISON, GROUND ; type
+	db NORMAL, POISON ; type
 	db 45 ; catch rate
 	db 194 ; base exp
 	db NO_ITEM, NO_ITEM ; items

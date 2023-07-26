@@ -193,6 +193,7 @@ AI_Types:
 	push de
 	push bc
 	ld a, [wEnemyMoveStruct + MOVE_TYPE]
+	and TYPE_MASK
 	ld d, a
 	ld hl, wEnemyMonMoves
 	ld b, NUM_MOVES + 1
@@ -207,6 +208,7 @@ AI_Types:
 
 	call AIGetEnemyMove
 	ld a, [wEnemyMoveStruct + MOVE_TYPE]
+	and TYPE_MASK
 	cp d
 	jr z, .checkmove2
 	ld a, [wEnemyMoveStruct + MOVE_POWER]
@@ -311,21 +313,17 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_LEECH_HIT,        AI_Smart_LeechHit
 	dbw EFFECT_SELFDESTRUCT,     AI_Smart_Selfdestruct
 	dbw EFFECT_DREAM_EATER,      AI_Smart_DreamEater
-	dbw EFFECT_MIRROR_MOVE,      AI_Smart_MirrorMove
 	dbw EFFECT_EVASION_UP,       AI_Smart_EvasionUp
 	dbw EFFECT_ALWAYS_HIT,       AI_Smart_AlwaysHit
 	dbw EFFECT_ACCURACY_DOWN,    AI_Smart_AccuracyDown
 	dbw EFFECT_RESET_STATS,      AI_Smart_ResetStats
-	dbw EFFECT_BIDE,             AI_Smart_Bide
 	dbw EFFECT_FORCE_SWITCH,     AI_Smart_ForceSwitch
 	dbw EFFECT_HEAL,             AI_Smart_Heal
 	dbw EFFECT_TOXIC,            AI_Smart_Toxic
 	dbw EFFECT_LIGHT_SCREEN,     AI_Smart_LightScreen
 	dbw EFFECT_OHKO,             AI_Smart_Ohko
-	dbw EFFECT_RAZOR_WIND,       AI_Smart_RazorWind
 	dbw EFFECT_SUPER_FANG,       AI_Smart_SuperFang
 	dbw EFFECT_TRAP_TARGET,      AI_Smart_TrapTarget
-	dbw EFFECT_UNUSED_2B,        AI_Smart_Unused2B
 	dbw EFFECT_CONFUSE,          AI_Smart_Confuse
 	dbw EFFECT_SP_DEF_UP_2,      AI_Smart_SpDefenseUp2
 	dbw EFFECT_REFLECT,          AI_Smart_Reflect
@@ -334,14 +332,12 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_SUBSTITUTE,       AI_Smart_Substitute
 	dbw EFFECT_HYPER_BEAM,       AI_Smart_HyperBeam
 	dbw EFFECT_RAGE,             AI_Smart_Rage
-	dbw EFFECT_MIMIC,            AI_Smart_Mimic
 	dbw EFFECT_LEECH_SEED,       AI_Smart_LeechSeed
 	dbw EFFECT_DISABLE,          AI_Smart_Disable
 	dbw EFFECT_COUNTER,          AI_Smart_Counter
 	dbw EFFECT_ENCORE,           AI_Smart_Encore
 	dbw EFFECT_PAIN_SPLIT,       AI_Smart_PainSplit
 	dbw EFFECT_SNORE,            AI_Smart_Snore
-	dbw EFFECT_CONVERSION2,      AI_Smart_Conversion2
 	dbw EFFECT_LOCK_ON,          AI_Smart_LockOn
 	dbw EFFECT_DEFROST_OPPONENT, AI_Smart_DefrostOpponent
 	dbw EFFECT_SLEEP_TALK,       AI_Smart_SleepTalk
@@ -352,53 +348,43 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_PRIORITY_HIT,     AI_Smart_PriorityHit
 	dbw EFFECT_THIEF,            AI_Smart_Thief
 	dbw EFFECT_MEAN_LOOK,        AI_Smart_MeanLook
-	dbw EFFECT_NIGHTMARE,        AI_Smart_Nightmare
 	dbw EFFECT_FLAME_WHEEL,      AI_Smart_FlameWheel
 	dbw EFFECT_CURSE,            AI_Smart_Curse
 	dbw EFFECT_PROTECT,          AI_Smart_Protect
 	dbw EFFECT_FORESIGHT,        AI_Smart_Foresight
 	dbw EFFECT_PERISH_SONG,      AI_Smart_PerishSong
 	dbw EFFECT_SANDSTORM,        AI_Smart_Sandstorm
-	dbw EFFECT_ENDURE,           AI_Smart_Endure
 	dbw EFFECT_ROLLOUT,          AI_Smart_Rollout
-	dbw EFFECT_SWAGGER,          AI_Smart_Swagger
 	dbw EFFECT_FURY_CUTTER,      AI_Smart_FuryCutter
-	dbw EFFECT_ATTRACT,          AI_Smart_Attract
 	dbw EFFECT_SAFEGUARD,        AI_Smart_Safeguard
 	dbw EFFECT_MAGNITUDE,        AI_Smart_Magnitude
 	dbw EFFECT_BATON_PASS,       AI_Smart_BatonPass
 	dbw EFFECT_PURSUIT,          AI_Smart_Pursuit
 	dbw EFFECT_RAPID_SPIN,       AI_Smart_RapidSpin
 	dbw EFFECT_MORNING_SUN,      AI_Smart_MorningSun
-	dbw EFFECT_SYNTHESIS,        AI_Smart_Synthesis
-	dbw EFFECT_MOONLIGHT,        AI_Smart_Moonlight
 	dbw EFFECT_HIDDEN_POWER,     AI_Smart_HiddenPower
 	dbw EFFECT_RAIN_DANCE,       AI_Smart_RainDance
 	dbw EFFECT_SUNNY_DAY,        AI_Smart_SunnyDay
 	dbw EFFECT_BELLY_DRUM,       AI_Smart_BellyDrum
 	dbw EFFECT_PSYCH_UP,         AI_Smart_PsychUp
 	dbw EFFECT_MIRROR_COAT,      AI_Smart_MirrorCoat
-	dbw EFFECT_SKULL_BASH,       AI_Smart_SkullBash
 	dbw EFFECT_TWISTER,          AI_Smart_Twister
 	dbw EFFECT_EARTHQUAKE,       AI_Smart_Earthquake
 	dbw EFFECT_FUTURE_SIGHT,     AI_Smart_FutureSight
 	dbw EFFECT_GUST,             AI_Smart_Gust
-	dbw EFFECT_STOMP,            AI_Smart_Stomp
 	dbw EFFECT_SOLARBEAM,        AI_Smart_Solarbeam
 	dbw EFFECT_THUNDER,          AI_Smart_Thunder
 	dbw EFFECT_FLY,              AI_Smart_Fly
+	dbw EFFECT_HAIL,             AI_Smart_Hail
 	db -1 ; end
 
 AI_Smart_Sleep:
-; Greatly encourage sleep inducing moves if the enemy has either Dream Eater or Nightmare.
+; Greatly encourage sleep inducing moves if the enemy has either Dream Eater.
 ; 50% chance to greatly encourage sleep inducing moves otherwise.
 
 	ld b, EFFECT_DREAM_EATER
 	call AIHasMoveEffect
 	jr c, .encourage
-
-	ld b, EFFECT_NIGHTMARE
-	call AIHasMoveEffect
 	ret nc
 
 .encourage
@@ -725,47 +711,6 @@ AI_Smart_AlwaysHit:
 	dec [hl]
 	ret
 
-AI_Smart_MirrorMove:
-; If the player did not use any move last turn...
-	ld a, [wLastPlayerCounterMove]
-	and a
-	jr nz, .usedmove
-
-; ...do nothing if enemy is slower than player
-	call AICompareSpeed
-	ret nc
-
-; ...or dismiss this move if enemy is faster than player.
-	jp AIDiscourageMove
-
-; If the player did use a move last turn...
-.usedmove
-	push hl
-	ld hl, UsefulMoves
-	ld de, 1
-	call IsInArray
-	pop hl
-
-; ...do nothing if he didn't use a useful move.
-	ret nc
-
-; If he did, 50% chance to encourage this move...
-	call AI_50_50
-	ret c
-
-	dec [hl]
-
-; ...and 90% chance to encourage this move again if the enemy is faster.
-	call AICompareSpeed
-	ret nc
-
-	call Random
-	cp 10 percent
-	ret c
-
-	dec [hl]
-	ret
-
 AI_Smart_AccuracyDown:
 ; If player's HP is full...
 	call AICheckPlayerMaxHP
@@ -911,19 +856,8 @@ AI_Smart_ResetStats:
 	inc [hl]
 	ret
 
-AI_Smart_Bide:
-; 90% chance to discourage this move unless enemy's HP is full.
-
-	call AICheckEnemyMaxHP
-	ret c
-	call Random
-	cp 10 percent
-	ret c
-	inc [hl]
-	ret
-
 AI_Smart_ForceSwitch:
-; Whirlwind, Roar.
+; Roar.
 
 ; Discourage this move if the player has not shown
 ; a super-effective move against the enemy.
@@ -940,8 +874,6 @@ AI_Smart_ForceSwitch:
 
 AI_Smart_Heal:
 AI_Smart_MorningSun:
-AI_Smart_Synthesis:
-AI_Smart_Moonlight:
 ; 90% chance to greatly encourage this move if enemy's HP is below 25%.
 ; Discourage this move if enemy's HP is higher than 50%.
 ; Do nothing otherwise.
@@ -997,7 +929,7 @@ AI_Smart_Ohko:
 	ret
 
 AI_Smart_TrapTarget:
-; Bind, Wrap, Fire Spin, Clamp
+; Wrap, Fire Spin, Sand Tomb, Whirlpool
 
 ; 50% chance to discourage this move if the player is already trapped.
 	ld a, [wPlayerWrapCount]
@@ -1035,7 +967,6 @@ AI_Smart_TrapTarget:
 	dec [hl]
 	ret
 
-AI_Smart_RazorWind:
 AI_Smart_Unused2B:
 	ld a, [wEnemySubStatus1]
 	bit SUBSTATUS_PERISH, a
@@ -1115,15 +1046,31 @@ AI_Smart_SpDefenseUp2:
 	jr nc, .discourage
 
 ; 80% chance to greatly encourage this move if
-; enemy's Special Defense level is lower than +2, and the player is of a special type.
+; enemy's Special Defense level is lower than +2,
+; and the player's Pokémon is Special-oriented.
 	cp BASE_STAT_LEVEL + 2
 	ret nc
 
-	ld a, [wBattleMonType1]
-	cp SPECIAL
-	jr nc, .encourage
-	ld a, [wBattleMonType2]
-	cp SPECIAL
+	push hl
+; Get the pointer for the player's Pokémon's base Attack
+	ld a, [wBattleMonSpecies]
+	ld hl, BaseData + BASE_ATK
+	ld bc, BASE_DATA_SIZE
+	call AddNTimes
+; Get the Pokémon's base Attack
+	ld a, BANK(BaseData)
+	call GetFarByte
+	ld d, a
+; Get the pointer for the player's Pokémon's base Special Attack
+	ld bc, BASE_SAT - BASE_ATK
+	add hl, bc
+; Get the Pokémon's base Special Attack
+	ld a, BANK(BaseData)
+	call GetFarByte
+	pop hl
+; If its base Attack is greater than its base Special Attack,
+; don't encourage this move.
+	cp d
 	ret c
 
 .encourage
@@ -1279,57 +1226,6 @@ AI_Smart_Rage:
 	inc [hl]
 	ret
 
-AI_Smart_Mimic:
-; Discourage this move if the player did not use any move last turn.
-	ld a, [wLastPlayerCounterMove]
-	and a
-	jr z, .dismiss
-
-	call AICheckEnemyHalfHP
-	jr nc, .discourage
-
-	push hl
-	ld a, [wLastPlayerCounterMove]
-	call AIGetEnemyMove
-
-	ld a, 1
-	ldh [hBattleTurn], a
-	callfar BattleCheckTypeMatchup
-
-	ld a, [wTypeMatchup]
-	cp EFFECTIVE
-	pop hl
-	jr c, .discourage
-	jr z, .skip_encourage
-
-	call AI_50_50
-	jr c, .skip_encourage
-
-	dec [hl]
-
-.skip_encourage
-	ld a, [wLastPlayerCounterMove]
-	push hl
-	ld hl, UsefulMoves
-	ld de, 1
-	call IsInArray
-
-	pop hl
-	ret nc
-	call AI_50_50
-	ret c
-	dec [hl]
-	ret
-
-.dismiss
-; Dismiss this move if the enemy is faster than the player.
-	call AICompareSpeed
-	jp c, AIDiscourageMove
-
-.discourage
-	inc [hl]
-	ret
-
 AI_Smart_Counter:
 	push hl
 	ld hl, wPlayerUsedMoves
@@ -1409,6 +1305,7 @@ AI_Smart_Encore:
 
 	push hl
 	ld a, [wEnemyMoveStruct + MOVE_TYPE]
+	and TYPE_MASK
 	ld hl, wEnemyMonType1
 	predef CheckTypeMatchup
 
@@ -1488,7 +1385,7 @@ AI_Smart_SleepTalk:
 	ret
 
 AI_Smart_DefrostOpponent:
-; Greatly encourage this move if enemy is frozen.
+; Greatly encourage this move if enemy is frostbitten.
 ; No move has EFFECT_DEFROST_OPPONENT, so this layer is unused.
 
 	ld a, [wEnemyMonStatus]
@@ -1560,7 +1457,6 @@ AI_Smart_Spite:
 
 AI_Smart_DestinyBond:
 AI_Smart_Reversal:
-AI_Smart_SkullBash:
 ; Discourage this move if enemy's HP is above 25%.
 
 	call AICheckEnemyQuarterHP
@@ -1571,7 +1467,7 @@ AI_Smart_SkullBash:
 AI_Smart_HealBell:
 ; Dismiss this move if none of the opponent's Pokemon is statused.
 ; Encourage this move if the enemy is statused.
-; 50% chance to greatly encourage this move if the enemy is fast asleep or frozen.
+; 50% chance to greatly encourage this move if the enemy is fast asleep.
 
 	push hl
 	ld a, [wOTPartyCount]
@@ -1610,7 +1506,7 @@ AI_Smart_HealBell:
 	jr z, .ok
 	dec [hl]
 .ok
-	and 1 << FRZ | SLP_MASK
+	and SLP_MASK
 	ret z
 	call AI_50_50
 	ret c
@@ -1664,46 +1560,6 @@ AI_Smart_Thief:
 	ld [hl], a
 	ret
 
-AI_Smart_Conversion2:
-; BUG: "Smart" AI discourages Conversion2 after the first turn (see docs/bugs_and_glitches.md)
-	ld a, [wLastPlayerMove]
-	and a
-	jr nz, .discourage
-
-	push hl
-	dec a
-	ld hl, Moves + MOVE_TYPE
-	ld bc, MOVE_LENGTH
-	call AddNTimes
-
-	ld a, BANK(Moves)
-	call GetFarByte
-	ld [wPlayerMoveStruct + MOVE_TYPE], a
-
-	xor a
-	ldh [hBattleTurn], a
-
-	callfar BattleCheckTypeMatchup
-
-	ld a, [wTypeMatchup]
-	cp EFFECTIVE
-	pop hl
-	jr c, .discourage
-	ret z
-
-	call AI_50_50
-	ret c
-
-	dec [hl]
-	ret
-
-.discourage
-	call Random
-	cp 10 percent
-	ret c
-	inc [hl]
-	ret
-
 AI_Smart_Disable:
 	call AICompareSpeed
 	jr nc, .discourage
@@ -1745,8 +1601,7 @@ AI_Smart_MeanLook:
 	jp z, AIDiscourageMove
 
 ; 80% chance to greatly encourage this move if the enemy is badly poisoned.
-; BUG: "Smart" AI encourages Mean Look if its own PokÃ©mon is badly poisoned (see docs/bugs_and_glitches.md)
-	ld a, [wEnemySubStatus5]
+	ld a, [wPlayerSubStatus5]
 	bit SUBSTATUS_TOXIC, a
 	jr nz, .encourage
 
@@ -1801,18 +1656,8 @@ AICheckLastPlayerMon:
 
 	ret
 
-AI_Smart_Nightmare:
-; 50% chance to encourage this move.
-; The AI_Basic layer will make sure that
-; Dream Eater is only used against sleeping targets.
-
-	call AI_50_50
-	ret c
-	dec [hl]
-	ret
-
 AI_Smart_FlameWheel:
-; Use this move if the enemy is frozen.
+; Use this move if the enemy is frostbitten.
 
 	ld a, [wEnemyMonStatus]
 	bit FRZ, a
@@ -1842,11 +1687,6 @@ AI_Smart_Curse:
 	ld a, [wBattleMonType1]
 	cp GHOST
 	jr z, .greatly_encourage
-	cp SPECIAL
-	ret nc
-	ld a, [wBattleMonType2]
-	cp SPECIAL
-	ret nc
 	call AI_80_20
 	ret c
 	dec [hl]
@@ -2079,45 +1919,32 @@ AI_Smart_Sandstorm:
 	db STEEL
 	db -1 ; end
 
-AI_Smart_Endure:
-; Greatly discourage this move if the enemy already used Protect.
-	ld a, [wEnemyProtectCount]
-	and a
-	jr nz, .greatly_discourage
+AI_Smart_Hail:
+; Greatly discourage this move if the player is immune to Hail damage.
+	ld a, [wBattleMonType1]
+	cp ICE
+	jr z, .greatly_discourage
 
-; Greatly discourage this move if the enemy's HP is full.
-	call AICheckEnemyMaxHP
-	jr c, .greatly_discourage
+	ld a, [wBattleMonType2]
+	cp ICE
+	jr z, .greatly_discourage
 
-; Discourage this move if the enemy's HP is at least 25%.
-	call AICheckEnemyQuarterHP
-	jr c, .discourage
+; Discourage this move if player's HP is below 50%.
+	call AICheckPlayerHalfHP
+	jr nc, .discourage
 
-; If the enemy has Reversal...
-	ld b, EFFECT_REVERSAL
-	call AIHasMoveEffect
-	jr nc, .no_reversal
+; Encourage move if AI has good Hail moves
+	push hl
+	ld hl, .GoodHailMoves
+	call AIHasMoveInArray
+	pop hl
+	jr c, .encourage
 
-; ...80% chance to greatly encourage this move.
-	call AI_80_20
-	ret c
-
-	dec [hl]
-	dec [hl]
-	dec [hl]
-	ret
-
-.no_reversal
-; If the enemy is not locked on, do nothing.
-	ld a, [wEnemySubStatus5]
-	bit SUBSTATUS_LOCK_ON, a
-	ret z
-
-; 50% chance to greatly encourage this move.
+; 50% chance to encourage this move otherwise.
 	call AI_50_50
 	ret c
 
-	dec [hl]
+.encourage
 	dec [hl]
 	ret
 
@@ -2126,6 +1953,10 @@ AI_Smart_Endure:
 .discourage
 	inc [hl]
 	ret
+
+.GoodHailMoves
+	db BLIZZARD
+	db -1 ; end
 
 AI_Smart_FuryCutter:
 ; Encourage this move based on Fury Cutter's count.
@@ -2188,27 +2019,6 @@ AI_Smart_Rollout:
 	call AI_80_20
 	ret c
 	inc [hl]
-	ret
-
-AI_Smart_Swagger:
-AI_Smart_Attract:
-; 80% chance to encourage this move during the first turn of player's Pokemon.
-; 80% chance to discourage this move otherwise.
-
-	ld a, [wPlayerTurnsTaken]
-	and a
-	jr z, .first_turn
-
-	call AI_80_20
-	ret c
-	inc [hl]
-	ret
-
-.first_turn
-	call Random
-	cp 79 percent - 1
-	ret nc
-	dec [hl]
 	ret
 
 AI_Smart_Safeguard:
@@ -2618,19 +2428,6 @@ AI_Smart_FutureSight:
 	ret z
 
 	dec [hl]
-	dec [hl]
-	ret
-
-AI_Smart_Stomp:
-; 80% chance to encourage this move if the player has used Minimize.
-
-	ld a, [wPlayerMinimized]
-	and a
-	ret z
-
-	call AI_80_20
-	ret c
-
 	dec [hl]
 	ret
 
@@ -3114,6 +2911,26 @@ AI_Status:
 	inc de
 	call AIGetEnemyMove
 
+; Check if the opponent is immune to powder/spore moves.      
+	ld a, [wEnemyMoveStruct + MOVE_ANIM]
+	push bc
+	push de
+	push hl
+	ld hl, PowderMoves
+	call IsInByteArray
+	pop hl
+	pop de
+	pop bc
+	jr nc, .normal_check
+
+	ld a, [wBattleMonType1]
+	cp GRASS
+	jr z, .immune
+	ld a, [wBattleMonType2]
+	cp GRASS
+	jr z, .immune
+
+.normal_check
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	cp EFFECT_TOXIC
 	jr z, .poisonimmunity

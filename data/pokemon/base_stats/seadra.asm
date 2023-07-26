@@ -1,9 +1,9 @@
 	db SEADRA ; 117
 
-	db  55,  65,  95,  85,  95,  45
+	db  60,  65,  95,  85,  95,  60
 	;   hp  atk  def  spd  sat  sdf
 
-	db WATER, WATER ; type
+	db WATER, DRAGON ; type
 	db 75 ; catch rate
 	db 155 ; base exp
 	db NO_ITEM, DRAGON_SCALE ; items

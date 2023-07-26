@@ -1,9 +1,9 @@
 	db DELIBIRD ; 225
 
-	db  45,  55,  45,  75,  65,  45
+	db  46,  70, 104, 126, 114,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db ICE, FLYING ; type
+	db ICE, FAIRY ; type
 	db 45 ; catch rate
 	db 183 ; base exp
 	db NO_ITEM, NO_ITEM ; items

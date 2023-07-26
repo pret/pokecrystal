@@ -1,9 +1,9 @@
 	db SEAKING ; 119
 
-	db  80,  92,  65,  68,  65,  80
+	db 120, 112,  65,  78,  80,  75
 	;   hp  atk  def  spd  sat  sdf
 
-	db WATER, WATER ; type
+	db WATER, FAIRY ; type
 	db 60 ; catch rate
 	db 170 ; base exp
 	db NO_ITEM, NO_ITEM ; items

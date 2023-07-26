@@ -3,7 +3,7 @@
 	db 106, 130,  90,  90, 110, 154
 	;   hp  atk  def  spd  sat  sdf
 
-	db FIRE, FLYING ; type
+	db FIRE, FAIRY ; type
 	db 3 ; catch rate
 	db 220 ; base exp
 	db SACRED_ASH, SACRED_ASH ; items

@@ -31,14 +31,14 @@ ENDM
 	command freezetarget            ; 18
 	command paralyzetarget          ; 19
 	command selfdestruct            ; 1a
-	command mirrormove              ; 1b
+	command burn	                ; 1b
 	command statup                  ; 1c
 	command statdown                ; 1d
-	command payday                  ; 1e
-	command conversion              ; 1f
+	command dragondance             ; 1e
+	command calmmind                ; 1f
 	command resetstats              ; 20
-	command storeenergy             ; 21
-	command unleashenergy           ; 22
+	command workup	                ; 21
+	command coil	                ; 22
 	command forceswitch             ; 23
 	command endloop                 ; 24
 	command flinchtarget            ; 25
@@ -55,16 +55,16 @@ ENDM
 	command paralyze                ; 30
 	command substitute              ; 31
 	command rechargenextturn        ; 32
-	command mimic                   ; 33
+	command hammer	                ; 33
 	command metronome               ; 34
 	command leechseed               ; 35
-	command splash                  ; 36
+	command growth	                ; 36
 	command disable                 ; 37
 	command cleartext               ; 38
 	command charge                  ; 39
 	command checkcharge             ; 3a
 	command traptarget              ; 3b
-	command effect0x3c              ; 3c
+	command checkpowder             ; 3c
 	command rampage                 ; 3d
 	command checkrampage            ; 3e
 	command constantdamage          ; 3f
@@ -72,21 +72,21 @@ ENDM
 	command encore                  ; 41
 	command painsplit               ; 42
 	command snore                   ; 43
-	command conversion2             ; 44
+	command unused44	            ; 44
 	command lockon                  ; 45
-	command sketch                  ; 46
+	command unused46                ; 46
 	command defrostopponent         ; 47
 	command sleeptalk               ; 48
 	command destinybond             ; 49
 	command spite                   ; 4a
-	command falseswipe              ; 4b
+	command bulkup	                ; 4b
 	command healbell                ; 4c
 	command kingsrock               ; 4d
 	command triplekick              ; 4e
 	command kickcounter             ; 4f
 	command thief                   ; 50
 	command arenatrap               ; 51
-	command nightmare               ; 52
+	command unused52                ; 52
 	command defrost                 ; 53
 	command curse                   ; 54
 	command protect                 ; 55
@@ -94,16 +94,16 @@ ENDM
 	command foresight               ; 57
 	command perishsong              ; 58
 	command startsandstorm          ; 59
-	command endure                  ; 5a
+	command cosmicpower             ; 5a
 	command checkcurl               ; 5b
 	command rolloutpower            ; 5c
-	command effect0x5d              ; 5d
+	command draco	                ; 5d
 	command furycutter              ; 5e
-	command attract                 ; 5f
+	command unused5f                ; 5f
 	command happinesspower          ; 60
 	command present                 ; 61
 	command damagecalc              ; 62
-	command frustrationpower        ; 63
+	command unused63		        ; 63
 	command safeguard               ; 64
 	command checksafeguard          ; 65
 	command getmagnitude            ; 66
@@ -111,8 +111,8 @@ ENDM
 	command pursuit                 ; 68
 	command clearhazards            ; 69
 	command healmorn                ; 6a
-	command healday                 ; 6b
-	command healnite                ; 6c
+	command closecombat             ; 6b healday
+	command unused6c                ; 6c healnite
 	command hiddenpower             ; 6d
 	command startrain               ; 6e
 	command startsun                ; 6f
@@ -161,7 +161,7 @@ ENDM
 	command mirrorcoat              ; 9a
 	command checkfuturesight        ; 9b
 	command futuresight             ; 9c
-	command doubleminimizedamage    ; 9d
+	command unused9d			    ; 9d
 	command skipsuncharge           ; 9e
 	command thunderaccuracy         ; 9f
 	command teleport                ; a0
@@ -169,7 +169,7 @@ ENDM
 	command ragedamage              ; a2
 	command resettypematchup        ; a3
 	command allstatsup              ; a4
-	command bidefailtext            ; a5
+	command unuseda5	            ; a5
 	command raisesubnoanim          ; a6
 	command lowersubnoanim          ; a7
 	command beatupfailtext          ; a8
@@ -180,6 +180,7 @@ ENDM
 	command supereffectivelooptext  ; ad
 	command startloop               ; ae
 	command curl                    ; af
+	command starthail               ; b0
 DEF NUM_EFFECT_COMMANDS EQU const_value - 1
 
 	const_def -1, -1

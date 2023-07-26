@@ -3,7 +3,7 @@
 	db  50,  50,  95,  35,  40,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db GROUND, GROUND ; type
+	db GROUND, GHOST ; type
 	db 190 ; catch rate
 	db 87 ; base exp
 	db NO_ITEM, THICK_CLUB ; items

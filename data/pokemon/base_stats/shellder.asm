@@ -3,7 +3,7 @@
 	db  30,  65, 100,  40,  45,  25
 	;   hp  atk  def  spd  sat  sdf
 
-	db WATER, WATER ; type
+	db ICE, ICE ; type
 	db 190 ; catch rate
 	db 97 ; base exp
 	db PEARL, BIG_PEARL ; items

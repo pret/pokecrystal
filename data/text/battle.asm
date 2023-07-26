@@ -1,12 +1,5 @@
 BattleText:: ; used only for BANK(BattleText)
 
-BattleText_PlayerPickedUpPayDayMoney:
-	text "<PLAYER> picked up"
-	line "¥@"
-	text_decimal wPayDayMoney, 3, 6
-	text "!"
-	prompt
-
 WildPokemonAppearedText:
 	text "Wild @"
 	text_ram wEnemyMonNickname
@@ -64,6 +57,11 @@ HurtByBurnText:
 	line "hurt by its burn!"
 	prompt
 
+HurtByFrostbiteText:
+	text "<USER>'s"
+	line "hurt by frostbite!"
+	prompt
+
 LeechSeedSapsText:
 	text "LEECH SEED saps"
 	line "<USER>!"
@@ -82,6 +80,11 @@ HurtByCurseText:
 SandstormHitsText:
 	text "The SANDSTORM hits"
 	line "<USER>!"
+	prompt
+
+PeltedByHailText:
+	text "<USER>"
+	line "is pelted by HAIL!"
 	prompt
 
 PerishCountText:
@@ -145,6 +148,11 @@ BattleText_TheSandstormRages:
 	line "rages."
 	prompt
 
+BattleText_HailContinuesToFall:
+	text "Hail continues to"
+	line "fall."
+	prompt
+
 BattleText_TheRainStopped:
 	text "The rain stopped."
 	prompt
@@ -157,6 +165,10 @@ BattleText_TheSunlightFaded:
 BattleText_TheSandstormSubsided:
 	text "The SANDSTORM"
 	line "subsided."
+	prompt
+
+BattleText_TheHailStopped:
+	text "The hail stopped."
 	prompt
 
 BattleText_EnemyMonFainted:
@@ -444,12 +456,6 @@ BattleText_UserWasReleasedFromStringBuffer1:
 	text "!"
 	prompt
 
-UsedBindText:
-	text "<USER>"
-	line "used BIND on"
-	cont "<TARGET>!"
-	prompt
-
 WhirlpoolTrapText:
 	text "<TARGET>"
 	line "was trapped!"
@@ -463,12 +469,6 @@ FireSpinTrapText:
 WrappedByText:
 	text "<TARGET>"
 	line "was WRAPPED by"
-	cont "<USER>!"
-	prompt
-
-ClampedByText:
-	text "<TARGET>"
-	line "was CLAMPED by"
 	cont "<USER>!"
 	prompt
 
@@ -650,14 +650,6 @@ TookAimText:
 	line "took aim!"
 	prompt
 
-SketchedText:
-	text "<USER>"
-	line "SKETCHED"
-	cont "@"
-	text_ram wStringBuffer1
-	text "!"
-	prompt
-
 DestinyBondEffectText:
 	text "<USER>'s"
 	line "trying to take its"
@@ -687,6 +679,16 @@ FellAsleepText:
 AlreadyAsleepText:
 	text "<TARGET>'s"
 	line "already asleep!"
+	prompt
+
+AlreadyBurnedText:
+	text "<TARGET>'s"
+	line "already burned!"
+	prompt
+
+AlreadyFrostbiteText:
+	text "<TARGET>'s"
+	line "already frostbiten!"
 	prompt
 
 WasPoisonedText:
@@ -724,9 +726,9 @@ DefrostedOpponentText:
 	line "was defrosted!"
 	prompt
 
-WasFrozenText:
+GotAFrostbiteText:
 	text "<TARGET>"
-	line "was frozen solid!"
+	line "got a frostbite!"
 	prompt
 
 WontRiseAnymoreText:
@@ -817,14 +819,6 @@ SubTookDamageText:
 SubFadedText:
 	text "<TARGET>'s"
 	line "SUBSTITUTE faded!"
-	prompt
-
-MimicLearnedMoveText:
-	text "<USER>"
-	line "learned"
-	cont "@"
-	text_ram wStringBuffer1
-	text "!"
 	prompt
 
 WasSeededText:
@@ -938,11 +932,6 @@ ProtectedByText:
 	text "!"
 	prompt
 
-MirrorMoveFailedText:
-	text "The MIRROR MOVE"
-	next "failed!"
-	prompt
-
 StoleText:
 	text "<USER>"
 	line "stole @"
@@ -1005,6 +994,11 @@ StartPerishText:
 SandstormBrewedText:
 	text "A SANDSTORM"
 	line "brewed!"
+	prompt
+
+ItStartedToHailText:
+	text "It started"
+	line "to hail!"
 	prompt
 
 BracedItselfText:

@@ -1,9 +1,9 @@
 	db MURKROW ; 198
 
-	db  60,  85,  42,  91,  85,  42
+	db  80,  85,  62,  91,  65,  62
 	;   hp  atk  def  spd  sat  sdf
 
-	db DARK, FLYING ; type
+	db DARK, FAIRY ; type
 	db 30 ; catch rate
 	db 107 ; base exp
 	db NO_ITEM, NO_ITEM ; items

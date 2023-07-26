@@ -4,10 +4,10 @@ CanObjectMoveInDirection:
 	bit SWIMMING_F, [hl]
 	jr z, .not_swimming
 
-; BUG: Swimming NPCs aren't limited by their movement radius (see docs/bugs_and_glitches.md)
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit NOCLIP_TILES_F, [hl]
+	jr nz, .noclip_tiles
 	push hl
 	push bc
 	call WillObjectBumpIntoLand

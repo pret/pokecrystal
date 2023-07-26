@@ -1,9 +1,9 @@
 	db HITMONCHAN ; 107
 
-	db  50, 105,  79,  76,  35, 110
+	db  70, 105,  79,  76,  35, 110
 	;   hp  atk  def  spd  sat  sdf
 
-	db FIGHTING, FIGHTING ; type
+	db FIGHTING, STEEL ; type
 	db 45 ; catch rate
 	db 140 ; base exp
 	db NO_ITEM, NO_ITEM ; items

@@ -1,9 +1,9 @@
 	db FORRETRESS ; 205
 
-	db  75,  90, 140,  40,  60,  60
+	db  75,  80, 140,  40,  80,  60
 	;   hp  atk  def  spd  sat  sdf
 
-	db BUG, STEEL ; type
+	db GHOST, STEEL ; type
 	db 75 ; catch rate
 	db 118 ; base exp
 	db NO_ITEM, NO_ITEM ; items

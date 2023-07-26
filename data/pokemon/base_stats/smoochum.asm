@@ -1,6 +1,6 @@
 	db SMOOCHUM ; 238
 
-	db  45,  30,  15,  65,  85,  65
+	db  45,  50,  30,  75,  90,  65
 	;   hp  atk  def  spd  sat  sdf
 
 	db ICE, PSYCHIC_TYPE ; type

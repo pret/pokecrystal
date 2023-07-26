@@ -1,9 +1,9 @@
 	db POLIWAG ; 060
 
-	db  40,  50,  40,  90,  40,  40
+	db  70,  50,  40,  60,  40,  40
 	;   hp  atk  def  spd  sat  sdf
 
-	db WATER, WATER ; type
+	db WATER, NORMAL ; type
 	db 255 ; catch rate
 	db 77 ; base exp
 	db NO_ITEM, NO_ITEM ; items

@@ -1,9 +1,9 @@
 	db SENTRET ; 161
 
-	db  35,  46,  34,  20,  35,  45
+	db  45,  56,  44,  70,  45,  55
 	;   hp  atk  def  spd  sat  sdf
 
-	db NORMAL, NORMAL ; type
+	db GROUND, GROUND ; type
 	db 255 ; catch rate
 	db 57 ; base exp
 	db NO_ITEM, BERRY ; items

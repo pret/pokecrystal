@@ -1,9 +1,9 @@
 	db PSYDUCK ; 054
 
-	db  50,  52,  48,  55,  65,  50
+	db  50,  40,  48,  55,  77,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db WATER, WATER ; type
+	db WATER, PSYCHIC_TYPE ; type
 	db 190 ; catch rate
 	db 80 ; base exp
 	db NO_ITEM, NO_ITEM ; items

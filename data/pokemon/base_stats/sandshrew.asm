@@ -1,9 +1,9 @@
 	db SANDSHREW ; 027
 
-	db  50,  75,  85,  40,  20,  30
+	db  60,  85,  60,  48,  30,  45
 	;   hp  atk  def  spd  sat  sdf
 
-	db GROUND, GROUND ; type
+	db ICE, STEEL ; type
 	db 255 ; catch rate
 	db 93 ; base exp
 	db NO_ITEM, NO_ITEM ; items

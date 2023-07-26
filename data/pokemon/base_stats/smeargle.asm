@@ -1,9 +1,9 @@
 	db SMEARGLE ; 235
 
-	db  55,  20,  35,  75,  20,  45
+	db  70,  80,  90,  50,  80,  90
 	;   hp  atk  def  spd  sat  sdf
 
-	db NORMAL, NORMAL ; type
+	db DARK, GHOST ; type
 	db 45 ; catch rate
 	db 106 ; base exp
 	db NO_ITEM, NO_ITEM ; items

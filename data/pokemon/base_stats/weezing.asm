@@ -1,9 +1,9 @@
 	db WEEZING ; 110
 
-	db  65,  90, 120,  60,  85,  70
+	db  65,  75, 120,  60, 100,  70
 	;   hp  atk  def  spd  sat  sdf
 
-	db POISON, POISON ; type
+	db POISON, FAIRY ; type
 	db 60 ; catch rate
 	db 173 ; base exp
 	db NO_ITEM, NO_ITEM ; items

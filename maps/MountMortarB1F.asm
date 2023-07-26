@@ -37,7 +37,7 @@ MountMortarB1FKiyoScript:
 	writetext MountMortarB1FReceiveMonText
 	playsound SFX_CAUGHT_MON
 	waitsfx
-	givepoke TYROGUE, 10
+	givepoke AERODACTYL, 10
 	setevent EVENT_GOT_TYROGUE_FROM_KIYO
 .GotTyrogue:
 	writetext MountMortarB1FKiyoGotTyrogueText
@@ -105,20 +105,17 @@ MountMortarB1FTyrogueRewardText:
 	line "defeated me, I'll"
 
 	para "give you a rare"
-	line "fighting #MON."
+	line "fossil #MON."
 	done
 
 MountMortarB1FReceiveMonText:
 	text "<PLAYER> received"
-	line "TYROGUE."
+	line "AERODACTYL."
 	done
 
 MountMortarB1FKiyoGotTyrogueText:
-	text "TYROGUE is a"
-	line "fighting-type."
-
-	para "It evolves into a"
-	line "tougher #MON."
+	text "AERODACTYL is an"
+	line "ancient #MON."
 
 	para "Keep up the hard"
 	line "work. I'll keep"

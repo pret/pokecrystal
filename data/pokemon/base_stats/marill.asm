@@ -1,9 +1,9 @@
 	db MARILL ; 183
 
-	db  70,  20,  50,  40,  20,  50
+	db  70,  20,  50,  40,  50,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db WATER, WATER ; type
+	db WATER, FAIRY ; type
 	db 190 ; catch rate
 	db 58 ; base exp
 	db NO_ITEM, NO_ITEM ; items

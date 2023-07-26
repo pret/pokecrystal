@@ -31,14 +31,14 @@ BattleCommandPointers:
 	dw BattleCommand_FreezeTarget
 	dw BattleCommand_ParalyzeTarget
 	dw BattleCommand_Selfdestruct
-	dw BattleCommand_MirrorMove
+	dw BattleCommand_Burn
 	dw BattleCommand_StatUp
 	dw BattleCommand_StatDown
-	dw BattleCommand_PayDay
-	dw BattleCommand_Conversion
+	dw BattleCommand_DragonDance
+	dw BattleCommand_CalmMind
 	dw BattleCommand_ResetStats
-	dw BattleCommand_StoreEnergy
-	dw BattleCommand_UnleashEnergy
+	dw BattleCommand_WorkUp
+	dw BattleCommand_Coil
 	dw BattleCommand_ForceSwitch
 	dw BattleCommand_EndLoop
 	dw BattleCommand_FlinchTarget
@@ -55,16 +55,16 @@ BattleCommandPointers:
 	dw BattleCommand_Paralyze
 	dw BattleCommand_Substitute
 	dw BattleCommand_RechargeNextTurn
-	dw BattleCommand_Mimic
+	dw BattleCommand_Hammer
 	dw BattleCommand_Metronome
 	dw BattleCommand_LeechSeed
-	dw BattleCommand_Splash
+	dw BattleCommand_Growth
 	dw BattleCommand_Disable
 	dw BattleCommand_ClearText
 	dw BattleCommand_Charge
 	dw BattleCommand_CheckCharge
 	dw BattleCommand_TrapTarget
-	dw BattleCommand_Unused3C
+	dw BattleCommand_CheckPowder
 	dw BattleCommand_Rampage
 	dw BattleCommand_CheckRampage
 	dw BattleCommand_ConstantDamage
@@ -72,21 +72,21 @@ BattleCommandPointers:
 	dw BattleCommand_Encore
 	dw BattleCommand_PainSplit
 	dw BattleCommand_Snore
-	dw BattleCommand_Conversion2
+	dw BattleCommand_Unused44
 	dw BattleCommand_LockOn
-	dw BattleCommand_Sketch
+	dw BattleCommand_Unused46
 	dw BattleCommand_DefrostOpponent
 	dw BattleCommand_SleepTalk
 	dw BattleCommand_DestinyBond
 	dw BattleCommand_Spite
-	dw BattleCommand_FalseSwipe
+	dw BattleCommand_BulkUp
 	dw BattleCommand_HealBell
 	dw BattleCommand_HeldFlinch
 	dw BattleCommand_TripleKick
 	dw BattleCommand_KickCounter
 	dw BattleCommand_Thief
 	dw BattleCommand_ArenaTrap
-	dw BattleCommand_Nightmare
+	dw BattleCommand_Unused52
 	dw BattleCommand_Defrost
 	dw BattleCommand_Curse
 	dw BattleCommand_Protect
@@ -94,16 +94,16 @@ BattleCommandPointers:
 	dw BattleCommand_Foresight
 	dw BattleCommand_PerishSong
 	dw BattleCommand_StartSandstorm
-	dw BattleCommand_Endure
+	dw BattleCommand_CosmicPower
 	dw BattleCommand_CheckCurl
 	dw BattleCommand_RolloutPower
-	dw BattleCommand_Unused5D
+	dw BattleCommand_Draco
 	dw BattleCommand_FuryCutter
-	dw BattleCommand_Attract
+	dw BattleCommand_Unused5F
 	dw BattleCommand_HappinessPower
 	dw BattleCommand_Present
 	dw BattleCommand_DamageCalc
-	dw BattleCommand_FrustrationPower
+	dw BattleCommand_Unused63
 	dw BattleCommand_Safeguard
 	dw BattleCommand_CheckSafeguard
 	dw BattleCommand_GetMagnitude
@@ -111,8 +111,8 @@ BattleCommandPointers:
 	dw BattleCommand_Pursuit
 	dw BattleCommand_ClearHazards
 	dw BattleCommand_HealMorn
-	dw BattleCommand_HealDay
-	dw BattleCommand_HealNite
+	dw BattleCommand_CloseCombat
+	dw BattleCommand_Unused6C
 	dw BattleCommand_HiddenPower
 	dw BattleCommand_StartRain
 	dw BattleCommand_StartSun
@@ -161,7 +161,7 @@ BattleCommandPointers:
 	dw BattleCommand_MirrorCoat
 	dw BattleCommand_CheckFutureSight
 	dw BattleCommand_FutureSight
-	dw BattleCommand_DoubleMinimizeDamage
+	dw BattleCommand_Unused9D
 	dw BattleCommand_SkipSunCharge
 	dw BattleCommand_ThunderAccuracy
 	dw BattleCommand_Teleport
@@ -169,7 +169,7 @@ BattleCommandPointers:
 	dw BattleCommand_RageDamage
 	dw BattleCommand_ResetTypeMatchup
 	dw BattleCommand_AllStatsUp
-	dw BattleCommand_BideFailText
+	dw BattleCommand_UnusedA5
 	dw BattleCommand_RaiseSubNoAnim
 	dw BattleCommand_LowerSubNoAnim
 	dw BattleCommand_BeatUpFailText
@@ -180,4 +180,5 @@ BattleCommandPointers:
 	dw BattleCommand_SuperEffectiveLoopText
 	dw BattleCommand_StartLoop
 	dw BattleCommand_Curl
+	dw BattleCommand_StartHail
 	assert_table_length NUM_EFFECT_COMMANDS

@@ -1,9 +1,9 @@
 	db LEDYBA ; 165
 
-	db  40,  20,  30,  55,  40,  80
+	db  50,  20,  40,  55,  55,  80
 	;   hp  atk  def  spd  sat  sdf
 
-	db BUG, FLYING ; type
+	db BUG, ELECTRIC ; type
 	db 255 ; catch rate
 	db 54 ; base exp
 	db NO_ITEM, NO_ITEM ; items

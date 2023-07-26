@@ -25,7 +25,7 @@ ItemDescriptions:
 	dw FireStoneDesc
 	dw ThunderStoneDesc
 	dw WaterStoneDesc
-	dw TeruSama2Desc
+	dw ChainsawDesc
 	dw HPUpDesc
 	dw ProteinDesc
 	dw IronDesc
@@ -45,12 +45,12 @@ ItemDescriptions:
 	dw SuperRepelDesc
 	dw MaxRepelDesc
 	dw DireHitDesc
-	dw TeruSama3Desc
+	dw TaxicallDesc
 	dw FreshWaterDesc
 	dw SodaPopDesc
 	dw LemonadeDesc
 	dw XAttackDesc
-	dw TeruSama4Desc
+	dw KayakDesc
 	dw XDefendDesc
 	dw XSpeedDesc
 	dw XSpecialDesc
@@ -90,7 +90,7 @@ ItemDescriptions:
 	dw BigMushroomDesc
 	dw SilverPowderDesc
 	dw BluApricornDesc
-	dw TeruSama6Desc
+	dw BeltDesc
 	dw AmuletCoinDesc
 	dw YlwApricornDesc
 	dw GrnApricornDesc
@@ -100,7 +100,7 @@ ItemDescriptions:
 	dw WhtApricornDesc
 	dw BlackbeltDesc
 	dw BlkApricornDesc
-	dw TeruSama7Desc
+	dw LanternDesc
 	dw PnkApricornDesc
 	dw BlackGlassesDesc
 	dw SlowpokeTailDesc
@@ -120,7 +120,7 @@ ItemDescriptions:
 	dw MiracleSeedDesc
 	dw ThickClubDesc
 	dw FocusBandDesc
-	dw TeruSama8Desc
+	dw GlideDesc
 	dw EnergyPowderDesc
 	dw EnergyRootDesc
 	dw HealPowderDesc
@@ -135,14 +135,14 @@ ItemDescriptions:
 	dw StarPieceDesc
 	dw BasementKeyDesc
 	dw PassDesc
-	dw TeruSama9Desc
-	dw TeruSama10Desc
-	dw TeruSama11Desc
+	dw JetsDesc
+	dw TeleporterDesc
+	dw ClubDesc
 	dw CharcoalDesc
 	dw BerryJuiceDesc
 	dw ScopeLensDesc
-	dw TeruSama12Desc
-	dw TeruSama13Desc
+	dw PickDesc
+	dw EscapeDesc
 	dw MetalCoatDesc
 	dw DragonFangDesc
 	dw TeruSama14Desc
@@ -299,8 +299,8 @@ BurnHealDesc:
 	next "#MON.@"
 
 IceHealDesc:
-	db   "Defrosts frozen"
-	next "#MON.@"
+	db   "Heals a frostbit-"
+	next "ten #MON.@"
 
 AwakeningDesc:
 	db   "Awakens sleeping"
@@ -354,8 +354,9 @@ WaterStoneDesc:
 	db   "Evolves certain"
 	next "kinds of #MON.@"
 
-TeruSama2Desc:
-	db   "?@"
+ChainsawDesc:
+	db   "CUTs down"
+	next "trees.@"
 
 HPUpDesc:
 	db   "Raises the HP of"
@@ -433,8 +434,9 @@ DireHitDesc:
 	db   "Ups critical hit"
 	next "ratio. (1 BTL)@"
 
-TeruSama3Desc:
-	db   "?@"
+TaxicallDesc:
+	db   "Calls a taxi"
+	next "to FLY you.@"
 
 FreshWaterDesc:
 	db   "Restores #MON"
@@ -452,8 +454,9 @@ XAttackDesc:
 	db   "Raises ATTACK."
 	next "(1 BTL)@"
 
-TeruSama4Desc:
-	db   "?@"
+KayakDesc:
+	db   "Use to SURF"
+	next "on water.@"
 
 XDefendDesc:
 	db   "Raises DEFENSE."
@@ -568,7 +571,7 @@ PrzCureBerryDesc:
 
 BurntBerryDesc:
 	db   "A self-cure for"
-	next "freezing. (HOLD)@"
+	next "frostbite. (HOLD)@"
 
 IceBerryDesc:
 	db   "A self-heal for a"
@@ -608,8 +611,9 @@ SilverPowderDesc:
 BluApricornDesc:
 	db   "A blue APRICORN.@"
 
-TeruSama6Desc:
-	db   "?@"
+BeltDesc:
+	db   "Grants you"
+	next "STRENGTH.@"
 
 AmuletCoinDesc:
 	db   "Doubles monetary"
@@ -644,8 +648,9 @@ BlkApricornDesc:
 	db   "A black APRICORN."
 	next "@"
 
-TeruSama7Desc:
-	db   "?@"
+LanternDesc:
+	db   "Gives off a"
+	next "big FLASH.@"
 
 PnkApricornDesc:
 	db   "A pink APRICORN."
@@ -723,8 +728,9 @@ FocusBandDesc:
 	db   "May prevent faint-"
 	next "ing. (HOLD)@"
 
-TeruSama8Desc:
-	db   "?@"
+GlideDesc:
+	db   "Lets you cross"
+	next "WHIRLPOOLs.@"
 
 EnergyPowderDesc:
 	db   "Restores #MON"
@@ -781,14 +787,17 @@ PassDesc:
 	db   "A ticket for the"
 	next "MAGNET TRAIN.@"
 
-TeruSama9Desc:
-	db   "?@"
+JetsDesc:
+	db   "Boosts you up"
+	next "a WATERFALL.@"
 
-TeruSama10Desc:
-	db   "?@"
+TeleporterDesc:
+	db   "This will use"
+	next "TELEPORT.@"
 
-TeruSama11Desc:
-	db   "?@"
+ClubDesc:
+	db   "It's like HEAD-"
+	next "BUTTing a tree.@"
 
 CharcoalDesc:
 	db   "Powers up fire-"
@@ -802,11 +811,12 @@ ScopeLensDesc:
 	db   "Raises critical"
 	next "hit ratio. (HOLD)@"
 
-TeruSama12Desc:
-	db   "?@"
+PickDesc:
+	db   "SMASHes ROCKs@"
 
-TeruSama13Desc:
-	db   "?@"
+EscapeDesc:
+	db   "Similar to an"
+	next "ESCAPE ROPE.@"
 
 MetalCoatDesc:
 	db   "Powers up steel-"
@@ -909,7 +919,7 @@ SunStoneDesc:
 	next "kinds of #MON.@"
 
 PolkadotBowDesc:
-	db   "Powers up normal-"
+	db   "Powers up fairy-"
 	next "type moves. (HOLD)@"
 
 TeruSama22Desc:

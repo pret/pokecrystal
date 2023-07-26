@@ -433,7 +433,7 @@ wBattleScriptBufferAddress:: dw
 
 wTurnEnded:: db
 
-	ds 1
+wIsConfusionDamage:: db
 
 wPlayerStats::
 wPlayerAttack::  dw
@@ -493,7 +493,7 @@ wEnemyItemState:: db
 wCurEnemyMoveNum:: db
 
 wEnemyHPAtTimeOfPlayerSwitch:: dw
-wPayDayMoney:: ds 3
+	ds 3
 
 wSafariMonAngerCount:: db ; unreferenced
 wSafariMonEating:: db
@@ -609,8 +609,8 @@ wAmuletCoin:: db
 
 wSomeoneIsRampaging:: db
 
-wPlayerJustGotFrozen:: db
-wEnemyJustGotFrozen:: db
+	ds 2
+
 wBattleEnd::
 
 
@@ -1823,6 +1823,7 @@ wMinutesSince:: db
 wHoursSince:: db
 wDaysSince:: db
 
+wUsingHMItem:: db
 
 SECTION "WRAM 1", WRAMX
 
@@ -2794,7 +2795,9 @@ wDudeNumBalls:: db
 wDudeBalls:: ds 2 * 4 + 1
 ENDU
 
-	ds 4
+wOtherTrainerType:: db
+wTrainerGroupBank:: db
+	ds 2
 
 wd430:: ; mobile
 wBattleAction:: db

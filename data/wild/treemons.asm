@@ -19,15 +19,15 @@ TreeMons:
 TreeMonSet_City:
 TreeMonSet_Canyon:
 ; common
-	db 50, SPEAROW,    10
-	db 15, SPEAROW,    10
-	db 15, SPEAROW,    10
+	db 50, EXEGGCUTE,  10
+	db 15, HERACROSS,  10
+	db 15, HERACROSS,  10
 	db 10, AIPOM,      10
 	db  5, AIPOM,      10
 	db  5, AIPOM,      10
 	db -1
 ; rare
-	db 50, SPEAROW,    10
+	db 50, EXEGGCUTE,  10
 	db 15, HERACROSS,  10
 	db 15, HERACROSS,  10
 	db 10, AIPOM,      10
@@ -37,17 +37,17 @@ TreeMonSet_Canyon:
 
 TreeMonSet_Town:
 ; common
-	db 50, SPEAROW,    10
+	db 50, PINECO,     10
 	db 15, EKANS,      10
-	db 15, SPEAROW,    10
+	db 15, PINECO,     10
 	db 10, AIPOM,      10
 	db  5, AIPOM,      10
 	db  5, AIPOM,      10
 	db -1
 ; rare
-	db 50, SPEAROW,    10
-	db 15, HERACROSS,  10
-	db 15, HERACROSS,  10
+	db 50, PINECO,     10
+	db 15, EKANS,      10
+	db 15, PINECO,     10
 	db 10, AIPOM,      10
 	db  5, AIPOM,      10
 	db  5, AIPOM,      10
@@ -55,17 +55,17 @@ TreeMonSet_Town:
 
 TreeMonSet_Route:
 ; common
-	db 50, HOOTHOOT,   10
-	db 15, SPINARAK,   10
-	db 15, LEDYBA,     10
+	db 50, AIPOM,	   10
+	db 15, HOOTHOOT,   10
+	db 15, AIPOM,      10
 	db 10, EXEGGCUTE,  10
 	db  5, EXEGGCUTE,  10
 	db  5, EXEGGCUTE,  10
 	db -1
 ; rare
-	db 50, HOOTHOOT,   10
-	db 15, PINECO,     10
-	db 15, PINECO,     10
+	db 50, AIPOM,	   10
+	db 15, HOOTHOOT,   10
+	db 15, AIPOM,      10
 	db 10, EXEGGCUTE,  10
 	db  5, EXEGGCUTE,  10
 	db  5, EXEGGCUTE,  10
@@ -73,17 +73,17 @@ TreeMonSet_Route:
 
 TreeMonSet_Kanto:
 ; common
-	db 50, HOOTHOOT,   10
+	db 50, HERACROSS,  10
 	db 15, EKANS,      10
-	db 15, HOOTHOOT,   10
+	db 15, HERACROSS,  10
 	db 10, EXEGGCUTE,  10
 	db  5, EXEGGCUTE,  10
 	db  5, EXEGGCUTE,  10
 	db -1
 ; rare
-	db 50, HOOTHOOT,   10
-	db 15, PINECO,     10
-	db 15, PINECO,     10
+	db 50, HERACROSS,  10
+	db 15, EKANS,      10
+	db 15, HERACROSS,  10
 	db 10, EXEGGCUTE,  10
 	db  5, EXEGGCUTE,  10
 	db  5, EXEGGCUTE,  10
@@ -91,17 +91,17 @@ TreeMonSet_Kanto:
 
 TreeMonSet_Lake:
 ; common
-	db 50, HOOTHOOT,   10
-	db 15, VENONAT,    10
+	db 50, HERACROSS,  10
+	db 15, AIPOM,      10
 	db 15, HOOTHOOT,   10
 	db 10, EXEGGCUTE,  10
 	db  5, EXEGGCUTE,  10
 	db  5, EXEGGCUTE,  10
 	db -1
 ; rare
-	db 50, HOOTHOOT,   10
-	db 15, PINECO,     10
-	db 15, PINECO,     10
+	db 50, HERACROSS,  10
+	db 15, AIPOM,      10
+	db 15, HOOTHOOT,   10
 	db 10, EXEGGCUTE,  10
 	db  5, EXEGGCUTE,  10
 	db  5, EXEGGCUTE,  10
@@ -109,23 +109,24 @@ TreeMonSet_Lake:
 
 TreeMonSet_Forest:
 ; common
-	db 50, HOOTHOOT,   10
+	db 50, PINECO,     10
 	db 15, PINECO,     10
-	db 15, PINECO,     10
-	db 10, NOCTOWL,    10
+	db 15, SPEAROW,    10
+	db 10, SPEAROW,    10
 	db  5, BUTTERFREE, 10
 	db  5, BEEDRILL,   10
 	db -1
 ; rare
-	db 50, HOOTHOOT,   10
-	db 15, CATERPIE,   10
-	db 15, WEEDLE,     10
-	db 10, HOOTHOOT,   10
-	db  5, METAPOD,    10
-	db  5, KAKUNA,     10
+	db 50, PINECO,     10
+	db 15, PINECO,     10
+	db 15, SPEAROW,    10
+	db 10, SPEAROW,    10
+	db  5, BUTTERFREE, 10
+	db  5, BEEDRILL,   10
 	db -1
 
 TreeMonSet_Rock:
-	db 90, KRABBY,     15
+	db 45, OMANYTE,    15
+	db 45, KABUTO,     15
 	db 10, SHUCKLE,    15
 	db -1

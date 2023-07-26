@@ -10,7 +10,7 @@ MoveEffectsPointers:
 	dw ParalyzeHit
 	dw Selfdestruct
 	dw DreamEater
-	dw MirrorMove
+	dw DoBurn
 	dw AttackUp
 	dw DefenseUp
 	dw SpeedUp
@@ -27,24 +27,24 @@ MoveEffectsPointers:
 	dw AccuracyDown
 	dw EvasionDown
 	dw ResetStats
-	dw Bide
+	dw SpAtkUpHit
 	dw Rampage
 	dw ForceSwitch
 	dw MultiHit
-	dw Conversion
+	dw CalmMind
 	dw FlinchHit
 	dw Heal
 	dw Toxic
-	dw PayDay
+	dw DragonDance
 	dw LightScreen
 	dw TriAttack
-	dw NormalHit
+	dw Draco
 	dw OHKOHit
-	dw RazorWind
+	dw Coil
 	dw SuperFang
 	dw StaticDamage
 	dw TrapTarget
-	dw NormalHit
+	dw BulkUp
 	dw MultiHit
 	dw NormalHit
 	dw Mist
@@ -76,39 +76,39 @@ MoveEffectsPointers:
 	dw SpecialDefenseDownHit
 	dw AccuracyDownHit
 	dw EvasionDownHit
-	dw SkyAttack
+	dw ConfuseHit			; this is for hurricane, same concept used for blizzard below
 	dw ConfuseHit
 	dw PoisonMultiHit
-	dw NormalHit
+	dw ClearSmog
 	dw Substitute
 	dw HyperBeam
 	dw Rage
-	dw Mimic
+	dw Hammer
 	dw Metronome
 	dw LeechSeed
-	dw Splash
+	dw Growth
 	dw Disable
 	dw StaticDamage
-	dw Psywave
+	dw CloseCombat
 	dw Counter
 	dw Encore
 	dw PainSplit
 	dw Snore
-	dw Conversion2
+	dw NormalHit
 	dw LockOn
-	dw Sketch
+	dw NormalHit
 	dw DefrostOpponent
 	dw SleepTalk
 	dw DestinyBond
 	dw Reversal
 	dw Spite
-	dw FalseSwipe
+	dw NormalHit
 	dw HealBell
 	dw NormalHit
 	dw TripleKick
 	dw Thief
 	dw MeanLook
-	dw Nightmare
+	dw NormalHit
 	dw FlameWheel
 	dw Curse
 	dw NormalHit
@@ -117,14 +117,14 @@ MoveEffectsPointers:
 	dw Foresight
 	dw PerishSong
 	dw Sandstorm
-	dw Endure
+	dw CosmicPower
 	dw Rollout
-	dw Swagger
+	dw WorkUp
 	dw FuryCutter
-	dw Attract
+	dw NormalHit
 	dw Return
 	dw Present
-	dw Frustration
+	dw NormalHit
 	dw Safeguard
 	dw SacredFire
 	dw Magnitude
@@ -134,8 +134,8 @@ MoveEffectsPointers:
 	dw NormalHit
 	dw NormalHit
 	dw MorningSun
-	dw Synthesis
-	dw Moonlight
+	dw NormalHit
+	dw NormalHit
 	dw HiddenPower
 	dw RainDance
 	dw SunnyDay
@@ -146,16 +146,18 @@ MoveEffectsPointers:
 	dw BellyDrum
 	dw PsychUp
 	dw MirrorCoat
-	dw SkullBash
+	dw NormalHit
 	dw Twister
 	dw Earthquake
 	dw FutureSight
 	dw Gust
-	dw Stomp
+	dw NormalHit
 	dw Solarbeam
 	dw Thunder
 	dw Teleport
 	dw BeatUp
 	dw Fly
 	dw DefenseCurl
+	dw FreezeHit ; for Blizzard, purposefully with different EFFECT_* constant
+	dw Hail
 	assert_table_length NUM_MOVE_EFFECTS

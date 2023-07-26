@@ -1,9 +1,9 @@
 	db PIDGEY ; 016
 
-	db  40,  45,  40,  56,  35,  35
+	db  50,  55,  50,  65,  45,  45
 	;   hp  atk  def  spd  sat  sdf
 
-	db NORMAL, FLYING ; type
+	db FLYING, FLYING ; type
 	db 255 ; catch rate
 	db 55 ; base exp
 	db NO_ITEM, NO_ITEM ; items

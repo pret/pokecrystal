@@ -1,9 +1,9 @@
 	db VENUSAUR ; 003
 
-	db  80,  82,  83,  80, 100, 100
+	db  90,  82,  83,  80, 100, 100
 	;   hp  atk  def  spd  sat  sdf
 
-	db GRASS, POISON ; type
+	db GRASS, GROUND ; type
 	db 45 ; catch rate
 	db 208 ; base exp
 	db NO_ITEM, NO_ITEM ; items

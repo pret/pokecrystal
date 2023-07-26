@@ -1,9 +1,9 @@
 	db GOLDEEN ; 118
 
-	db  45,  67,  60,  63,  35,  50
+	db  70,  92,  65,  98,  80,  55
 	;   hp  atk  def  spd  sat  sdf
 
-	db WATER, WATER ; type
+	db WATER, FAIRY ; type
 	db 225 ; catch rate
 	db 111 ; base exp
 	db NO_ITEM, NO_ITEM ; items

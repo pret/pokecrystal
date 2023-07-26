@@ -1,9 +1,9 @@
 	db PICHU ; 172
 
-	db  20,  40,  15,  60,  35,  35
+	db  40,  40,  40,  70,  60,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db ELECTRIC, ELECTRIC ; type
+	db ELECTRIC, FAIRY ; type
 	db 190 ; catch rate
 	db 42 ; base exp
 	db NO_ITEM, BERRY ; items

@@ -3,7 +3,7 @@
 	db  65,  40,  70,  70,  80, 140
 	;   hp  atk  def  spd  sat  sdf
 
-	db WATER, FLYING ; type
+	db ELECTRIC, POISON ; type
 	db 25 ; catch rate
 	db 168 ; base exp
 	db NO_ITEM, NO_ITEM ; items

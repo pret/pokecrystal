@@ -8,6 +8,59 @@ HiddenPowerDamage:
 	ld hl, wEnemyMonDVs
 .got_dvs
 
+	call GetHiddenPowerType
+
+; Overwrite the current move type.
+	push af
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVarAddr
+	pop af
+	or SPECIAL
+	ld [hl], a
+
+; Get the damage formula variables based on the new type
+; Base Power is set by this command (always 60)
+	farcall BattleCommand_DamageStats ; damagestats
+	ret
+	
+GetHiddenPowerType::
+; return Hidden Power type in a from DVs at hl
+	; push de
+	; ld bc, 3
+	; ld de, 1
+; .loop
+	; ld a, [hli]
+	; swap a
+	; and %00010001
+	; srl a
+	; call c, .add_bit
+	; sla e
+	; and a
+	; call nz, .add_bit
+	; sla e
+	; dec c
+	; jr nz, .loop
+	; ; b = %00fedcba (SpD, SpA, Spe, Def, Atk, HP)
+; ; type = %fedcba * 16 / 63 + 1 (1-17, Fighting-Fairy)
+	; ld a, b
+	; cp 63
+	; ld e, 17
+	; jr z, .got_type
+	; srl a
+	; srl a
+	; inc a
+	; ld e, a
+
+; .got_type
+	; ld a, e
+	; pop de
+	; ret
+
+; .add_bit
+	; ld a, b
+	; or e
+	; ld b, a
+	; ret
 ; Power:
 
 ; Take the top bit from each stat
@@ -90,19 +143,4 @@ HiddenPowerDamage:
 	add UNUSED_TYPES_END - UNUSED_TYPES
 
 .done
-
-; Overwrite the current move type.
-	push af
-	ld a, BATTLE_VARS_MOVE_TYPE
-	call GetBattleVarAddr
-	pop af
-	ld [hl], a
-
-; Get the rest of the damage formula variables
-; based on the new type, but keep base power.
-	ld a, d
-	push af
-	farcall BattleCommand_DamageStats ; damagestats
-	pop af
-	ld d, a
 	ret

@@ -1,6 +1,6 @@
 	db HOUNDOUR ; 228
 
-	db  45,  60,  30,  65,  80,  50
+	db  55,  70,  30,  75,  90,  60
 	;   hp  atk  def  spd  sat  sdf
 
 	db DARK, FIRE ; type

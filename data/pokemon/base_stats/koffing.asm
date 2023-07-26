@@ -1,9 +1,9 @@
 	db KOFFING ; 109
 
-	db  40,  65,  95,  35,  60,  45
+	db  40,  50,  95,  35,  75,  45
 	;   hp  atk  def  spd  sat  sdf
 
-	db POISON, POISON ; type
+	db POISON, FAIRY ; type
 	db 190 ; catch rate
 	db 114 ; base exp
 	db NO_ITEM, NO_ITEM ; items

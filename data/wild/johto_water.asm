@@ -41,7 +41,7 @@ JohtoWaterWildMons:
 	db 2 percent ; encounter rate
 	db 15, SLOWPOKE
 	db 20, SLOWPOKE
-	db 20, SLOWBRO
+	db 20, SLOWPOKE
 	end_water_wildmons
 
 	def_water_wildmons ILEX_FOREST
@@ -102,30 +102,30 @@ JohtoWaterWildMons:
 
 	def_water_wildmons DARK_CAVE_VIOLET_ENTRANCE
 	db 2 percent ; encounter rate
-	db 15, MAGIKARP
-	db 10, MAGIKARP
-	db 5, MAGIKARP
+	db 15, WOOPER
+	db 10, WOOPER
+	db 5, WOOPER
 	end_water_wildmons
 
 	def_water_wildmons DARK_CAVE_BLACKTHORN_ENTRANCE
 	db 2 percent ; encounter rate
-	db 15, MAGIKARP
-	db 10, MAGIKARP
-	db 5, MAGIKARP
+	db 15, WOOPER
+	db 10, WOOPER
+	db 5, WOOPER
 	end_water_wildmons
 
 	def_water_wildmons DRAGONS_DEN_B1F
 	db 4 percent ; encounter rate
 	db 15, MAGIKARP
-	db 10, MAGIKARP
+	db 10, HORSEA
 	db 10, DRATINI
 	end_water_wildmons
 
 	def_water_wildmons OLIVINE_PORT
 	db 2 percent ; encounter rate
-	db 20, TENTACOOL
-	db 15, TENTACOOL
-	db 20, TENTACRUEL
+	db 20, KRABBY
+	db 15, CORSOLA
+	db 20, CHINCHOU
 	end_water_wildmons
 
 	def_water_wildmons ROUTE_30
@@ -145,35 +145,35 @@ JohtoWaterWildMons:
 	def_water_wildmons ROUTE_32
 	db 6 percent ; encounter rate
 	db 15, TENTACOOL
-	db 20, QUAGSIRE
-	db 20, TENTACRUEL
+	db 20, CHINCHOU
+	db 20, TENTACOOL
 	end_water_wildmons
 
 	def_water_wildmons ROUTE_34
 	db 6 percent ; encounter rate
-	db 20, TENTACOOL
+	db 20, CHINCHOU
 	db 15, TENTACOOL
-	db 20, TENTACRUEL
+	db 20, TENTACOOL
 	end_water_wildmons
 
 	def_water_wildmons ROUTE_35
 	db 4 percent ; encounter rate
 	db 20, PSYDUCK
 	db 15, PSYDUCK
-	db 20, GOLDUCK
+	db 20, PSYDUCK
 	end_water_wildmons
 
 	def_water_wildmons ROUTE_40
 	db 6 percent ; encounter rate
-	db 20, TENTACOOL
-	db 15, TENTACOOL
-	db 20, TENTACRUEL
+	db 20, CORSOLA
+	db 15, KRABBY
+	db 20, HORSEA
 	end_water_wildmons
 
 	def_water_wildmons ROUTE_41
 	db 6 percent ; encounter rate
-	db 20, TENTACOOL
-	db 20, TENTACRUEL
+	db 20, REMORAID
+	db 20, CHINCHOU
 	db 20, MANTINE
 	end_water_wildmons
 
@@ -200,23 +200,23 @@ JohtoWaterWildMons:
 
 	def_water_wildmons ROUTE_45
 	db 2 percent ; encounter rate
-	db 20, MAGIKARP
-	db 15, MAGIKARP
-	db 5, MAGIKARP
+	db 20, GOLDEEN
+	db 15, GOLDEEN
+	db 20, SEAKING
 	end_water_wildmons
 
 	def_water_wildmons NEW_BARK_TOWN
 	db 6 percent ; encounter rate
 	db 20, TENTACOOL
-	db 15, TENTACOOL
-	db 20, TENTACRUEL
+	db 15, CORSOLA
+	db 20, CHINCHOU
 	end_water_wildmons
 
 	def_water_wildmons CHERRYGROVE_CITY
 	db 6 percent ; encounter rate
 	db 20, TENTACOOL
-	db 15, TENTACOOL
-	db 20, TENTACRUEL
+	db 15, CORSOLA
+	db 20, CHINCHOU
 	end_water_wildmons
 
 	def_water_wildmons VIOLET_CITY
@@ -228,15 +228,15 @@ JohtoWaterWildMons:
 
 	def_water_wildmons CIANWOOD_CITY
 	db 6 percent ; encounter rate
-	db 20, TENTACOOL
-	db 15, TENTACOOL
-	db 20, TENTACRUEL
+	db 20, REMORAID
+	db 15, MANTINE
+	db 20, MANTINE
 	end_water_wildmons
 
 	def_water_wildmons OLIVINE_CITY
 	db 6 percent ; encounter rate
-	db 20, TENTACOOL
-	db 15, TENTACOOL
+	db 20, KRABBY
+	db 15, CORSOLA
 	db 20, TENTACRUEL
 	end_water_wildmons
 
@@ -258,7 +258,7 @@ JohtoWaterWildMons:
 	db 4 percent ; encounter rate
 	db 15, MAGIKARP
 	db 10, MAGIKARP
-	db 5, MAGIKARP
+	db 5, HORSEA
 	end_water_wildmons
 
 	def_water_wildmons SILVER_CAVE_OUTSIDE

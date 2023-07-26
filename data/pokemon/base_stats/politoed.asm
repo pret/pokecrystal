@@ -1,9 +1,9 @@
 	db POLITOED ; 186
 
-	db  90,  75,  75,  70,  90, 100
+	db  90,  65,  75,  70, 100, 110
 	;   hp  atk  def  spd  sat  sdf
 
-	db WATER, WATER ; type
+	db WATER, NORMAL ; type
 	db 45 ; catch rate
 	db 185 ; base exp
 	db NO_ITEM, KINGS_ROCK ; items

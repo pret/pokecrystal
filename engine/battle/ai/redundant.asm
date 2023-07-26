@@ -29,21 +29,17 @@ AI_Redundant:
 	dbw EFFECT_SNORE,        .Snore
 	dbw EFFECT_SLEEP_TALK,   .SleepTalk
 	dbw EFFECT_MEAN_LOOK,    .MeanLook
-	dbw EFFECT_NIGHTMARE,    .Nightmare
 	dbw EFFECT_SPIKES,       .Spikes
 	dbw EFFECT_FORESIGHT,    .Foresight
 	dbw EFFECT_PERISH_SONG,  .PerishSong
 	dbw EFFECT_SANDSTORM,    .Sandstorm
-	dbw EFFECT_ATTRACT,      .Attract
 	dbw EFFECT_SAFEGUARD,    .Safeguard
 	dbw EFFECT_RAIN_DANCE,   .RainDance
 	dbw EFFECT_SUNNY_DAY,    .SunnyDay
 	dbw EFFECT_TELEPORT,     .Teleport
 	dbw EFFECT_MORNING_SUN,  .MorningSun
-	dbw EFFECT_SYNTHESIS,    .Synthesis
-	dbw EFFECT_MOONLIGHT,    .Moonlight
-	dbw EFFECT_SWAGGER,      .Swagger
 	dbw EFFECT_FUTURE_SIGHT, .FutureSight
+	dbw EFFECT_HAIL,         .Hail
 	db -1
 
 .LightScreen:
@@ -111,14 +107,6 @@ AI_Redundant:
 	bit SUBSTATUS_CANT_RUN, a
 	ret
 
-.Nightmare:
-	ld a, [wBattleMonStatus]
-	and a
-	jr z, .Redundant
-	ld a, [wPlayerSubStatus1]
-	bit SUBSTATUS_NIGHTMARE, a
-	ret
-
 .Spikes:
 	ld a, [wPlayerScreens]
 	bit SCREENS_SPIKES, a
@@ -140,12 +128,11 @@ AI_Redundant:
 	jr z, .Redundant
 	jr .NotRedundant
 
-.Attract:
-	farcall CheckOppositeGender
-	jr c, .Redundant
-	ld a, [wPlayerSubStatus1]
-	bit SUBSTATUS_IN_LOVE, a
-	ret
+.Hail:
+	ld a, [wBattleWeather]
+	cp WEATHER_HAIL
+	jr z, .Redundant
+	jr .NotRedundant
 
 .Safeguard:
 	ld a, [wEnemyScreens]
@@ -170,15 +157,9 @@ AI_Redundant:
 	jr z, .Redundant
 	jr .NotRedundant
 
-.Swagger:
-	ld a, [wPlayerSubStatus3]
-	bit SUBSTATUS_CONFUSED, a
-	ret
-
 .FutureSight:
-; BUG: AI does not discourage Future Sight when it's already been used (see docs/bugs_and_glitches.md)
-	ld a, [wEnemyScreens]
-	bit 5, a
+	ld a, [wEnemyFutureSightCount]
+	and a
 	ret
 
 .Heal:

@@ -1,9 +1,9 @@
 	db VICTREEBEL ; 071
 
-	db  80, 105,  65,  70, 100,  60
+	db  80, 105, 100,  70,  65,  70
 	;   hp  atk  def  spd  sat  sdf
 
-	db GRASS, POISON ; type
+	db GRASS, STEEL ; type
 	db 45 ; catch rate
 	db 191 ; base exp
 	db NO_ITEM, NO_ITEM ; items

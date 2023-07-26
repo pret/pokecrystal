@@ -1,9 +1,9 @@
 	db PIDGEOTTO ; 017
 
-	db  63,  60,  55,  71,  50,  50
+	db  70,  60,  60,  80,  60,  60
 	;   hp  atk  def  spd  sat  sdf
 
-	db NORMAL, FLYING ; type
+	db FLYING, FLYING ; type
 	db 120 ; catch rate
 	db 113 ; base exp
 	db NO_ITEM, NO_ITEM ; items
