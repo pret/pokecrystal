@@ -310,8 +310,7 @@ SaltbreezeGroupSprites:
 	db SPRITE_GRANNY
 	; 1 of max 9 walking sprites
 	db SPRITE_BULBASAUR
-	db SPRITE_POKE_BALL
 	db SPRITE_ROCK
 	db SPRITE_ZYGARDE_CELL
-	db SPRITE_TM
+	db SPRITE_POKE_BALL
 	db 0 ; end

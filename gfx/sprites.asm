@@ -99,17 +99,18 @@ FamicomSpriteGFX::             INCBIN "gfx/sprites/famicom.2bpp"
 FruitTreeSpriteGFX::           INCBIN "gfx/sprites/fruit_tree.2bpp"
 GoldTrophySpriteGFX::          INCBIN "gfx/sprites/gold_trophy.2bpp"
 SilverTrophySpriteGFX::        INCBIN "gfx/sprites/silver_trophy.2bpp"
-KrisSpriteGFX::                INCBIN "gfx/sprites/kris.2bpp"
-KrisBikeSpriteGFX::            INCBIN "gfx/sprites/kris_bike.2bpp"
 SuicuneSpriteGFX::             INCBIN "gfx/sprites/suicune.2bpp"
 EnteiSpriteGFX::               INCBIN "gfx/sprites/entei.2bpp"
 RaikouSpriteGFX::              INCBIN "gfx/sprites/raikou.2bpp"
 PhoneSpriteGFX::               INCBIN "gfx/sprites/phone.2bpp"
+ZygardeCellSpriteGFX::         INCBIN "gfx/sprites/zygarde_cell.2bpp"
+TMSpriteGFX::                  INCBIN "gfx/sprites/tm.2bpp"
 
 
 SECTION "Sprites 3", ROMX
-ZygardeCellSpriteGFX::         INCBIN "gfx/sprites/zygarde_cell.2bpp"
-TMSpriteGFX::                  INCBIN "gfx/sprites/tm.2bpp"
+
+KrisSpriteGFX::                INCBIN "gfx/sprites/kris.2bpp"
+KrisBikeSpriteGFX::            INCBIN "gfx/sprites/kris_bike.2bpp"
 ChrisSurfSpriteGFX::           INCBIN "gfx/sprites/chris_surf.2bpp"
 KrisSurfSpriteGFX::            INCBIN "gfx/sprites/kris_surf.2bpp"
 ChrisRunSpriteGFX::           INCBIN "gfx/sprites/chris_run.2bpp"
