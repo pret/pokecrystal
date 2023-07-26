@@ -12,7 +12,7 @@ CeruleanPokecenter1FNurseScript:
 	jumpstd PokecenterNurseScript
 
 CeruleanPokecenter1FSuperNerdScript:
-	special Mobile_DummyReturnFalse
+	special CheckMobileAdapterStatusSpecial
 	iftrue .mobile
 	jumptextfaceplayer CeruleanPokecenter1FSuperNerdText
 

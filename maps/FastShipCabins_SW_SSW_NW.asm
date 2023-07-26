@@ -47,7 +47,7 @@ TrainerGuitaristClyde:
 
 .Script:
 	endifjustbattled
-	special Mobile_DummyReturnFalse
+	special CheckMobileAdapterStatusSpecial
 	iftrue .mobile
 	opentext
 	writetext GuitaristClydeAfterBattleText

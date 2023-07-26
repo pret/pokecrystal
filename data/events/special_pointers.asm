@@ -173,7 +173,7 @@ SpecialsPointers::
 	add_special StubbedTrainerRankings_Healings
 	add_special RefreshSprites
 	add_special Function1037c2
-	add_special Mobile_DummyReturnFalse
+	add_special CheckMobileAdapterStatusSpecial
 	add_special Function103780
 	add_special Function10387b
 	add_special AskRememberPassword
