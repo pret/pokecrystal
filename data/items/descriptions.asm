@@ -50,7 +50,7 @@ ItemDescriptions:
 	dw SodaPopDesc
 	dw LemonadeDesc
 	dw XAttackDesc
-	dw TeruSama4Desc
+	dw PickaxeDesc
 	dw XDefendDesc
 	dw XSpeedDesc
 	dw XSpecialDesc
@@ -454,8 +454,9 @@ XAttackDesc:
 	db   "Raises ATTACK."
 	next "(1 BTL)@"
 
-TeruSama4Desc:
-	db   "?@"
+PickaxeDesc:
+	db   "Smashes rocks in"
+	next "your path.@"
 
 XDefendDesc:
 	db   "Raises DEFENSE."

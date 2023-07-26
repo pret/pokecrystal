@@ -63,7 +63,7 @@ ItemEffects:
 	dw RestoreHPEffect     ; SODA_POP
 	dw RestoreHPEffect     ; LEMONADE
 	dw XItemEffect         ; X_ATTACK
-	dw NoEffect            ; ITEM_32
+	dw PickaxeEffect       ; PICKAXE
 	dw XItemEffect         ; X_DEFEND
 	dw XItemEffect         ; X_SPEED
 	dw XItemEffect         ; X_SPECIAL
@@ -2321,6 +2321,10 @@ SwimsuitEffect:
 	ld a, 1
 	ld [wUsingHMItem], a
 	farcall SurfFunction
+	ret
+
+PickaxeEffect:
+	farcall RockSmashFunction
 	ret
 
 ZygardeCubeEffect:
