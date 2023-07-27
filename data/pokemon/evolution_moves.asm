@@ -39,12 +39,12 @@ EvolutionMoves::
 	db NO_MOVE      ; VULPIX
 	db PSYCH_UP     ; NINETALES
 	db NO_MOVE      ; JIGGLYPUFF
-	db NO_MOVE      ; WIGGLYTUFF
+	db MOONBLAST    ; WIGGLYTUFF
 	db NO_MOVE      ; ZUBAT
-	db NO_MOVE      ; GOLBAT
+	db SCREECH	    ; GOLBAT
 	db NO_MOVE      ; ODDISH
 	db NO_MOVE      ; GLOOM
-	db NO_MOVE      ; VILEPLUME
+	db DARK_PULSE   ; VILEPLUME
 	db NO_MOVE      ; PARAS
 	db SHADOW_CLAW  ; PARASECT
 	db NO_MOVE      ; VENONAT
@@ -54,7 +54,7 @@ EvolutionMoves::
 	db NO_MOVE      ; MEOWTH
 	db SLASH        ; PERSIAN
 	db NO_MOVE      ; PSYDUCK
-	db NO_MOVE      ; GOLDUCK
+	db PSYCH_UP     ; GOLDUCK
 	db NO_MOVE      ; MANKEY
 	db RAGE         ; PRIMEAPE
 	db NO_MOVE      ; GROWLITHE
@@ -181,7 +181,7 @@ EvolutionMoves::
 	db NO_MOVE      ; MAREEP
 	db NO_MOVE      ; FLAAFFY
 	db DRAGONBREATH ; AMPHAROS
-	db PETAL_DANCE  ; BELLOSSOM
+	db PLAY_ROUGH   ; BELLOSSOM
 	db NO_MOVE      ; MARILL
 	db NO_MOVE      ; AZUMARILL
 	db STRENGTH     ; SUDOWOODO
