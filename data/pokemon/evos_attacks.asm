@@ -537,7 +537,7 @@ WigglytuffEvosAttacks:
 ZubatEvosAttacks:
 	db EVOLVE_LEVEL, 22, GOLBAT
 	db 0 ; no more evolutions
-	db 1, LEECH_LIFE
+	db 1, ABSORB
 	db 6, CONFUSE_RAY
 	db 12, BITE
 	db 19, CONFUSE_RAY
@@ -550,7 +550,7 @@ GolbatEvosAttacks:
 	db EVOLVE_HAPPINESS, TR_ANYTIME, CROBAT
 	db 0 ; no more evolutions
 	db 1, SCREECH
-	db 1, LEECH_LIFE
+	db 1, ABSORB
 	db 1, CONFUSE_RAY
 	db 6, CONFUSE_RAY
 	db 12, BITE

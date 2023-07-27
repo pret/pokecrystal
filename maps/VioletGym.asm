@@ -91,7 +91,24 @@ VioletGymGuideScript:
 	opentext
 	checkevent EVENT_BEAT_FALKNER
 	iftrue .VioletGymGuideWinScript
-	writetext VioletGymGuideText
+	writetext CoachFirstTimeText
+	yesorno
+	iffalse .No
+	writetext CoachBeforeText
+	waitbutton
+	closetext
+	winlosstext CoachBeatenText, 0
+	loadtrainer COACH, COACH1
+	startbattle
+	reloadmapafterbattle
+	opentext
+	writetext CoachDefeatText
+	waitbutton
+	closetext
+	end
+
+.No
+	writetext CoachTalkLater
 	waitbutton
 	closetext
 	end
@@ -246,25 +263,42 @@ BirdKeeperAbeAfterBattleText:
 	cont "rookie trainer…"
 	done
 
-VioletGymGuideText:
-	text "Hey! I'm no train-"
-	line "er but I can give"
-	cont "some advice!"
+CoachFirstTimeText:
+	text "I am an all-star"
+	line "coach that can"
+	
+	para "quickly whip"
+	line "your #MON"
+	
+	para "into shape."
+	line "Are you ready"
+	
+	para "to start your"
+	line "training?"
+	done
 
-	para "Believe me!"
-	line "If you believe, a"
+CoachBeforeText:
 
-	para "championship dream"
-	line "can come true."
+	text "Let's train then"
+	done
 
-	para "You believe?"
-	line "Then listen."
+CoachBeatenText:
 
-	para "The grass-type is"
-	line "weak against the"
+	text "Nicely done."
+	done
 
-	para "flying-type. Keep"
-	line "this in mind."
+CoachDefeatText:
+
+	text "I'm ready to go"
+	line "another round"
+	cont "when you are."
+	done
+
+CoachTalkLater:
+
+	text "Talk to me when"
+	line "you are ready to"
+	cont "train."
 	done
 
 VioletGymGuideWinText:
