@@ -497,6 +497,8 @@ ENDM
 	map_const SUNGLOW_TRAIL,                                20, 27 ; 7
 	map_const SUNGLOW_CAPE,                                 20, 18 ; 8
 	map_const SUNGLOW_HARBOR,                               20, 18 ; 9
+	map_const SUNGLOW_BEACH,                                20, 18 ; 10
+	map_const SUNGLOW_COVE,                                 20, 27 ; 10
 	endgroup
 
 DEF NUM_MAP_GROUPS EQU const_value ; 27

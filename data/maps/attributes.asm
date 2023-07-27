@@ -379,17 +379,27 @@ ENDM
 	connection north, SunglowHarbor, SUNGLOW_HARBOR, 0
 	connection east, SunglowTrail, SUNGLOW_TRAIL, 0
 
-	map_attributes SunglowTrail, SUNGLOW_TRAIL, $1B, NORTH | WEST
+	map_attributes SunglowTrail, SUNGLOW_TRAIL, $1B, NORTH | WEST | EAST
 	connection north, SunglowCape, SUNGLOW_CAPE, 0
 	connection west, SaltbreezeTown, SALTBREEZE_TOWN, 0
+	connection east, SunglowBeach, SUNGLOW_BEACH, 11
 
-	map_attributes SunglowCape, SUNGLOW_CAPE, $1B, SOUTH | WEST
+	map_attributes SunglowCape, SUNGLOW_CAPE, $1B, SOUTH | WEST | EAST
 	connection south, SunglowTrail, SUNGLOW_TRAIL, 0
 	connection west, SunglowHarbor, SUNGLOW_HARBOR, 0
+	connection east, SunglowCove, SUNGLOW_COVE, 2
 
 	map_attributes SunglowHarbor, SUNGLOW_HARBOR, $1B, SOUTH | EAST
 	connection south, SaltbreezeTown, SALTBREEZE_TOWN, 0
 	connection east, SunglowCape, SUNGLOW_CAPE, 0
+
+	map_attributes SunglowBeach, SUNGLOW_BEACH, $0B, NORTH | WEST
+	connection north, SunglowCove, SUNGLOW_COVE, 0
+	connection west, SunglowTrail, SUNGLOW_TRAIL, -11
+
+	map_attributes SunglowCove, SUNGLOW_COVE, $1B, SOUTH | WEST
+	connection south, SunglowBeach, SUNGLOW_BEACH, 0
+	connection west, SunglowCape, SUNGLOW_CAPE, -2
 
 	map_attributes Route23, ROUTE_23, $0f, 0
 	map_attributes SproutTower1F, SPROUT_TOWER_1F, $00, 0

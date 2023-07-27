@@ -102,6 +102,8 @@ DEF KANTO_LANDMARK EQU const_value
 	const LANDMARK_SUNGLOW_TRAIL     ; 61
 	const LANDMARK_SUNGLOW_CAPE      ; 62
 	const LANDMARK_SUNGLOW_HARBOR    ; 63
+	const LANDMARK_SUNGLOW_BEACH     ; 64
+	const LANDMARK_SUNGLOW_COVE      ; 65
 DEF NUM_LANDMARKS EQU const_value
 
 ; used in CaughtData

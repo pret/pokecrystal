@@ -109,6 +109,8 @@ Landmarks:
 	landmark  20,  10, SunglowTrailName
 	landmark  30,  10, SunglowCapeName
 	landmark  40,  10, SunglowHarborName
+	landmark  30,  10, SunglowBeachName
+	landmark  40,  10, SunglowCoveName
 	assert_table_length NUM_LANDMARKS
 
 NewBarkTownName:     db "NEW BARK¯TOWN@"
@@ -218,3 +220,5 @@ SaltbreezeTownName:  db "SALTBREEZE¯TOWN@"
 SunglowTrailName:    db "SUNGLOW¯TRAIL@"
 SunglowCapeName:     db "SUNGLOW¯CAPE@"
 SunglowHarborName:   db "SUNGLOW¯HARBOR@"
+SunglowBeachName:   db "SUNGLOW¯BEACH@"
+SunglowCoveName:   db "SUNGLOW¯COVE@"

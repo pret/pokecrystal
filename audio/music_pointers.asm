@@ -113,4 +113,6 @@ Music:
 	dba Music_AnvilleTown
 	dba Music_Route119
 	dba Music_Route47
+	dba Music_Route203
+	dba Music_Route216
 	assert_table_length NUM_MUSIC_SONGS

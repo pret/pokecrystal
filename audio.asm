@@ -157,6 +157,8 @@ INCLUDE "audio/music/lookzinnia.asm"
 INCLUDE "audio/music/anvilletown.asm"
 INCLUDE "audio/music/route119.asm"
 INCLUDE "audio/music/route47.asm"
+INCLUDE "audio/music/route203.asm"
+INCLUDE "audio/music/route216.asm"
 
 
 SECTION "Sound Effects", ROMX

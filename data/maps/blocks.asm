@@ -912,3 +912,9 @@ SunglowCape_Blocks:
 
 SunglowHarbor_Blocks:
 	INCBIN "maps/SunglowHarbor.ablk"
+
+SunglowBeach_Blocks:
+	INCBIN "maps/SunglowBeach.ablk"
+
+SunglowCove_Blocks:
+	INCBIN "maps/SunglowCove.ablk"
