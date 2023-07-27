@@ -79,7 +79,7 @@ EvolutionMoves::
 	db NO_MOVE      ; PONYTA
 	db PLAY_ROUGH   ; RAPIDASH
 	db NO_MOVE      ; SLOWPOKE
-	db BARRIER	    ; SLOWBRO
+	db AMNESIA	    ; SLOWBRO
 	db NO_MOVE      ; MAGNEMITE
 	db TRI_ATTACK   ; MAGNETON
 	db NO_MOVE      ; FARFETCH_D
@@ -96,11 +96,11 @@ EvolutionMoves::
 	db SHADOW_BALL  ; GENGAR
 	db NO_MOVE      ; ONIX
 	db NO_MOVE      ; DROWZEE
-	db NO_MOVE      ; HYPNO
+	db AURA_SPHERE  ; HYPNO
 	db NO_MOVE      ; KRABBY
-	db NO_MOVE      ; KINGLER
+	db CRABHAMMER   ; KINGLER
 	db NO_MOVE      ; VOLTORB
-	db NO_MOVE      ; ELECTRODE
+	db CHLOROBLAST  ; ELECTRODE
 	db NO_MOVE      ; EXEGGCUTE
 	db STOMP        ; EXEGGUTOR
 	db NO_MOVE      ; CUBONE
@@ -198,7 +198,7 @@ EvolutionMoves::
 	db CONFUSION    ; ESPEON
 	db SNARL        ; UMBREON
 	db NO_MOVE      ; MURKROW
-	db NO_MOVE      ; SLOWKING
+	db BARRIER      ; SLOWKING
 	db NO_MOVE      ; MISDREAVUS
 	db NO_MOVE      ; UNOWN
 	db RECOVER      ; WOBBUFFET
