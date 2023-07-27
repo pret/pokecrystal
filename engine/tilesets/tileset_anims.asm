@@ -639,26 +639,8 @@ ForestTreeRightAnimation2:
 
 GetForestTreeFrame:
 ; Return 0 if a is even, or 2 if odd.
-	and a
-	jr z, .even
-	cp 1
-	jr z, .odd
-	cp 2
-	jr z, .even
-	cp 3
-	jr z, .odd
-	cp 4
-	jr z, .even
-	cp 5
-	jr z, .odd
-	cp 6
-	jr z, .even
-.odd
-	ld a, 2
-	scf
-	ret
-.even
-	xor a
+	and 1
+	add a
 	ret
 
 AnimateFlowerTile:
