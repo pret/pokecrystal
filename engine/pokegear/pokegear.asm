@@ -2555,10 +2555,10 @@ Pokedex_GetArea:
 
 .PlayerOAM:
 	; y pxl, x pxl, tile offset
-	db -1 * 8, -1 * 8, 0 ; top left
-	db -1 * 8,  0 * 8, 1 ; top right
-	db  0 * 8, -1 * 8, 2 ; bottom left
-	db  0 * 8,  0 * 8, 3 ; bottom right
+	db -1 * TILE_WIDTH, -1 * TILE_WIDTH, 0 ; top left
+	db -1 * TILE_WIDTH,  0 * TILE_WIDTH, 1 ; top right
+	db  0 * TILE_WIDTH, -1 * TILE_WIDTH, 2 ; bottom left
+	db  0 * TILE_WIDTH,  0 * TILE_WIDTH, 3 ; bottom right
 	db $80 ; terminator
 
 .CheckPlayerLocation:

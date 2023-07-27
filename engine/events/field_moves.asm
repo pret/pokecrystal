@@ -348,7 +348,7 @@ FlyToAnim:
 	ld [hl], SPRITE_ANIM_SEQ_FLY_TO
 	ld hl, SPRITEANIMSTRUCT_VAR4
 	add hl, bc
-	ld [hl], 11 * 8
+	ld [hl], 11 * TILE_WIDTH
 	ld a, 64
 	ld [wFrameCounter], a
 .loop
