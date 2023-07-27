@@ -176,4 +176,4 @@ local result = {
   "Top Right",
   "Bottom Left",
   "Bottom Right"}
-print(result[d])
+print(result[d + 1])

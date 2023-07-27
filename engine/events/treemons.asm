@@ -126,13 +126,9 @@ GetTreeMon:
 	push hl
 	call GetTreeScore
 	pop hl
-	and a ; TREEMON_SCORE_BAD
-	jr z, .bad
-	cp TREEMON_SCORE_GOOD
-	jr z, .good
 	cp TREEMON_SCORE_RARE
 	jr z, .rare
-	ret
+	jr .good
 
 .good
 	; 50% chance of an encounter
@@ -216,6 +212,6 @@ GetTreeScore:
 	ret
 
 .OTIDScore:
-	ld a, [wPlayerID]
+	ld a, [wPlayerID + 1]
 	and a, 3
 	ret
