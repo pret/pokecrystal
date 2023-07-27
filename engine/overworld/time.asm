@@ -220,19 +220,6 @@ CheckUnusedTwoDayTimer:
 	call UpdateTimeRemaining
 	ret
 
-UnusedSetSwarmFlag: ; unreferenced
-	ld hl, wDailyFlags1
-	set DAILYFLAGS1_FISH_SWARM_F, [hl]
-	ret
-
-UnusedCheckSwarmFlag: ; unreferenced
-	and a
-	ld hl, wDailyFlags1
-	bit DAILYFLAGS1_FISH_SWARM_F, [hl]
-	ret nz
-	scf
-	ret
-
 RestartLuckyNumberCountdown:
 	call .GetDaysUntilNextFriday
 	ld hl, wLuckyNumberDayTimer

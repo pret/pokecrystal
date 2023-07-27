@@ -92,12 +92,6 @@ endr
 GetFishGroupIndex:
 ; Return the index of fishgroup d in de.
 
-	push hl
-	ld hl, wDailyFlags1
-	bit DAILYFLAGS1_FISH_SWARM_F, [hl]
-	pop hl
-	jr z, .done
-
 	ld a, d
 	cp FISHGROUP_QWILFISH
 	jr z, .qwilfish

@@ -74,6 +74,7 @@ DEF MAX_STAT_VALUE EQU 999
 
 ; shiny dvs
 DEF ATKDEFDV_SHINY EQU $EA
+DEF ATKDEFDV_SHINYF EQU $1A
 DEF SPDSPCDV_SHINY EQU $AA
 
 ; battle classes (wBattleMode values)

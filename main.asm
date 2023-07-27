@@ -127,6 +127,8 @@ INCLUDE "engine/link/link.asm"
 INCLUDE "engine/overworld/wildmons.asm"
 INCLUDE "engine/battle/link_result.asm"
 
+SECTION "SwarmShiny", ROMX
+INCLUDE "engine/battle/swarm_shiny.asm"
 
 SECTION "bankB", ROMX
 

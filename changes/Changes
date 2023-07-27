@@ -19,15 +19,13 @@
 @ added third trainer card page for kanto badges
 @ berry trees give 3 to 5 berries
 @ kurt instantly makes acorn pokeballs
-  removed the sudowoodo requrement for rock smash(he can breack rocks with his hands)
   reworked remach system for better by removing the remach requirement for the battles and always trying to give the trainer phone number to the player
 @ reworked initialization system
-  reworked swarm system
+@ reworked swarm system
 @ reworked beat up
   allow more trainer parties, with individual DVs, stat experience, nicknames, variable teams, etc
   added a lot of tms and distributed them acordly
   overworld actions no longer need hm on pokemon, but instead they just need a special item and some special confition(a "flying" mon for fly and so on)
-  completing the unknow dex gives the player a special tm only for unknows
 @ no more trade evolutions, all are changed to something else but no "evolve at level x"
 @ move dependent evolution, some pokemon need to learn certain moves to evolve
 @ held item depent evolution, some pokemon need to hold certain items to evolve
@@ -36,8 +34,8 @@
 @ infinite tm uses
   added hail as a new wheather
   hail raises ice type pokemon defence by 50%
+  all 251 pokemon are obtainable
 -- tm/hm system rework --
 Tm are infinitly usable and more plentyfull, but way less pokemon learn from them
-Hm are hard to get but are learnble for a lot of pokemon
-Each pokemon learn at least 1 hm with exceptions being: ditto, unknown, smeargle.
+Hm are hard to get but are good moves learnble for a lot of pokemon
 

@@ -1003,8 +1003,7 @@ ENDM
 	const swarm_command ; $a0
 MACRO swarm
 	db swarm_command
-	db \1 ; flag
-	map_id \2 ; map
+	map_id \1 ; map
 ENDM
 
 	const halloffame_command ; $a1
