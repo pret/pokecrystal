@@ -134,14 +134,6 @@ GetTreeMon:
 	jr z, .rare
 	ret
 
-.bad
-	; 10% chance of an encounter
-	ld a, 10
-	call RandomRange
-	and a
-	jr nz, NoTreeMon
-	jr SelectTreeMon
-
 .good
 	; 50% chance of an encounter
 	ld a, 10
@@ -151,10 +143,10 @@ GetTreeMon:
 	jr SelectTreeMon
 
 .rare
-	; 80% chance of an encounter
+	; 90% chance of an encounter
 	ld a, 10
 	call RandomRange
-	cp 8
+	cp 9
 	jr nc, NoTreeMon
 	jr .skip
 .skip
@@ -204,16 +196,6 @@ GetTreeScore:
 	ld a, [wTreeMonCoordScore]
 	sub c
 	jr z, .rare
-	jr nc, .ok
-	add 10
-.ok
-	cp 5
-	jr c, .good
-
-; bad
-	xor a ; TREEMON_SCORE_BAD
-	ret
-
 .good
 	ld a, TREEMON_SCORE_GOOD
 	ret
@@ -224,52 +206,16 @@ GetTreeScore:
 
 .CoordScore:
 	call GetFacingTileCoord
-	ld hl, 0
-	ld c, e
-	ld b, 0
 	ld a, d
-
-	and a
-	jr z, .next
-.loop
-	add hl, bc
-	dec a
-	jr nz, .loop
-.next
-
-	add hl, bc
-	ld c, d
-	add hl, bc
-
-	ld a, h
-	ldh [hDividend], a
-	ld a, l
-	ldh [hDividend + 1], a
-	ld a, 5
-	ldh [hDivisor], a
-	ld b, 2
-	call Divide
-
-	ldh a, [hQuotient + 2]
-	ldh [hDividend], a
-	ldh a, [hQuotient + 3]
-	ldh [hDividend + 1], a
-	ld a, 10
-	ldh [hDivisor], a
-	ld b, 2
-	call Divide
-
-	ldh a, [hRemainder]
+	and a, 1
+	ld d, a
+	ld a, e
+	and a, 1
+	rlca
+	or a, d
 	ret
 
 .OTIDScore:
 	ld a, [wPlayerID]
-	ldh [hDividend], a
-	ld a, [wPlayerID + 1]
-	ldh [hDividend + 1], a
-	ld a, 10
-	ldh [hDivisor], a
-	ld b, 2
-	call Divide
-	ldh a, [hRemainder]
+	and a, 3
 	ret
