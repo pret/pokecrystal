@@ -4,7 +4,7 @@ EvolutionMoves::
 	db NO_MOVE      ; IVYSAUR
 	db EARTH_POWER  ; VENUSAUR
 	db NO_MOVE      ; CHARMANDER
-	db NO_MOVE      ; CHARMELEON
+	db TWISTER      ; CHARMELEON
 	db AIR_SLASH    ; CHARIZARD
 	db NO_MOVE      ; SQUIRTLE
 	db NO_MOVE      ; WARTORTLE
@@ -21,7 +21,7 @@ EvolutionMoves::
 	db NO_MOVE      ; RATTATA
 	db SCARY_FACE   ; RATICATE
 	db NO_MOVE      ; SPEAROW
-	db NO_MOVE      ; FEAROW
+	db DRILL_RUN    ; FEAROW
 	db NO_MOVE      ; EKANS
 	db TAIL_SWIPE   ; ARBOK
 	db NO_MOVE      ; PIKACHU
@@ -30,10 +30,10 @@ EvolutionMoves::
 	db SLASH        ; SANDSLASH
 	db NO_MOVE      ; NIDORAN_F
 	db NO_MOVE      ; NIDORINA
-	db NO_MOVE      ; NIDOQUEEN
+	db MILK_DRINK   ; NIDOQUEEN
 	db NO_MOVE      ; NIDORAN_M
 	db NO_MOVE      ; NIDORINO
-	db NO_MOVE      ; NIDOKING
+	db EARTHQUAKE   ; NIDOKING
 	db NO_MOVE      ; CLEFAIRY
 	db NO_MOVE      ; CLEFABLE
 	db NO_MOVE      ; VULPIX
