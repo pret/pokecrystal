@@ -8350,7 +8350,7 @@ CheckPayDay:
 
 ShowLinkBattleParticipantsAfterEnd:
 	farcall StubbedTrainerRankings_LinkBattles
-	farcall BackupMobileEventIndex
+	farcall BackupGSBallFlag
 	ld a, [wCurOTMon]
 	ld hl, wOTPartyMon1Status
 	call GetPartyLocation
@@ -8396,7 +8396,7 @@ DisplayLinkBattleResult:
 .store_result
 	hlcoord 6, 8
 	call PlaceString
-	farcall BackupMobileEventIndex
+	farcall BackupGSBallFlag
 	ld c, 200
 	call DelayFrames
 
