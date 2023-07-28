@@ -2831,7 +2831,7 @@ IncCrashCheckPointer_SaveChecksum:
 	inc_crash_check_pointer_farcall SaveChecksum
 
 IncCrashCheckPointer_SaveTrainerRankingsChecksum:
-	inc_crash_check_pointer_farcall UpdateTrainerRankingsChecksum2, BackupMobileEventIndex
+	inc_crash_check_pointer_farcall UpdateTrainerRankingsChecksum2, BackupGSBallFlag
 
 Function17e3e0:
 	call IncCrashCheckPointer

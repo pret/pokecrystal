@@ -2623,12 +2623,12 @@ AnimateEZChatCursor:
 	ret
 
 .nine
-	ld d, -13 * 8
+	ld d, -13 * TILE_WIDTH
 	ld a, SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_7
 	jr .eight_nine_load
 
 .eight
-	ld d, 2 * 8
+	ld d, 2 * TILE_WIDTH
 	ld a, SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_6
 .eight_nine_load
 	push de
@@ -2640,7 +2640,7 @@ AnimateEZChatCursor:
 	ld e, a
 	sla a
 	add e
-	add 8 * 8
+	add 8 * TILE_WIDTH
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld [hld], a

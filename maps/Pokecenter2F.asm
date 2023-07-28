@@ -73,7 +73,7 @@ LinkReceptionistScript_Trade:
 	writetext Text_TradeReceptionistIntro
 	yesorno
 	iffalse .Cancel
-	special Mobile_DummyReturnFalse ; always returns false
+	special CheckMobileAdapterStatusSpecial
 	iffalse .NoMobile
 	writetext Text_TradeReceptionistMobile
 	special AskMobileOrCable
@@ -175,7 +175,7 @@ LinkReceptionistScript_Battle:
 	writetext Text_BattleReceptionistIntro
 	yesorno
 	iffalse .Cancel
-	special Mobile_DummyReturnFalse ; always returns false
+	special CheckMobileAdapterStatusSpecial
 	iffalse .NoMobile
 	writetext Text_BattleReceptionistMobile
 	special AskMobileOrCable
