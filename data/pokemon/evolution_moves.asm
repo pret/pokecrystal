@@ -123,9 +123,9 @@ EvolutionMoves::
 	db CALM_MIND    ; STARMIE
 	db NO_MOVE      ; MR__MIME
 	db NO_MOVE      ; SCYTHER
-	db NO_MOVE      ; JYNX
-	db NO_MOVE      ; ELECTABUZZ
-	db NO_MOVE      ; MAGMAR
+	db MEAN_LOOK    ; JYNX
+	db SCREECH      ; ELECTABUZZ
+	db NIGHTMARE    ; MAGMAR
 	db NO_MOVE      ; PINSIR
 	db NO_MOVE      ; TAUROS
 	db NO_MOVE      ; MAGIKARP
@@ -211,7 +211,7 @@ EvolutionMoves::
 	db NO_MOVE      ; SNUBBULL
 	db NO_MOVE      ; GRANBULL
 	db NO_MOVE      ; QWILFISH
-	db METAL_CLAW   ; SCIZOR
+	db NO_MOVE	    ; SCIZOR
 	db NO_MOVE      ; SHUCKLE
 	db NO_MOVE      ; HERACROSS
 	db NO_MOVE      ; SNEASEL
