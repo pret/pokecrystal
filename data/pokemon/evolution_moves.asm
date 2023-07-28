@@ -111,16 +111,16 @@ EvolutionMoves::
 	db NO_MOVE      ; KOFFING
 	db NO_MOVE      ; WEEZING
 	db NO_MOVE      ; RHYHORN
-	db OUTRAGE      ; RHYDON
+	db DRILL_RUN    ; RHYDON
 	db NO_MOVE      ; CHANSEY
 	db NO_MOVE      ; TANGELA
 	db NO_MOVE      ; KANGASKHAN
 	db NO_MOVE      ; HORSEA
 	db NO_MOVE      ; SEADRA
 	db NO_MOVE      ; GOLDEEN
-	db NO_MOVE      ; SEAKING
+	db DRILL_RUN    ; SEAKING
 	db NO_MOVE      ; STARYU
-	db NO_MOVE      ; STARMIE
+	db CALM_MIND    ; STARMIE
 	db NO_MOVE      ; MR__MIME
 	db NO_MOVE      ; SCYTHER
 	db NO_MOVE      ; JYNX
@@ -229,7 +229,7 @@ EvolutionMoves::
 	db NO_MOVE      ; SKARMORY
 	db NO_MOVE      ; HOUNDOUR
 	db NO_MOVE      ; HOUNDOOM
-	db DRAGONBREATH ; KINGDRA
+	db OUTRAGE	    ; KINGDRA
 	db NO_MOVE      ; PHANPY
 	db LOW_KICK	    ; DONPHAN
 	db NO_MOVE      ; PORYGON2

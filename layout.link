@@ -66,6 +66,7 @@ ROMX $0f
 	"Battle Core"
 ROMX $10
 	"bank10"
+	"Evolutions and Attacks"
 ROMX $11
 	"bank11"
 ROMX $12
@@ -233,7 +234,6 @@ ROMX $59
 	"Pics 18"
 ROMX $5a
 	"Pics 19"
-	"Evolutions and Attacks"
 ROMX $5b
 	"bank5B"
 	"Pics 20"
