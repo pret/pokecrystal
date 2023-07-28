@@ -1429,7 +1429,7 @@ SeelEvosAttacks:
 	db 32, BODY_SLAM
 	db 37, ICE_BEAM
 	db 42, SAFEGUARD
-	db 48, WHIRL_POOL
+	db 48, WHIRLPOOL
 	db 0 ; no more level-up moves
 
 DewgongEvosAttacks:
@@ -1447,7 +1447,7 @@ DewgongEvosAttacks:
 	db 32, BODY_SLAM
 	db 40, ICE_BEAM
 	db 46, SAFEGUARD
-	db 53, WHIRL_POOL
+	db 53, WHIRLPOOL
 	db 0 ; no more level-up moves
 
 GrimerEvosAttacks:
@@ -1695,15 +1695,18 @@ ElectrodeEvosAttacks:
 ExeggcuteEvosAttacks:
 	db EVOLVE_ITEM, LEAF_STONE, EXEGGUTOR
 	db 0 ; no more evolutions
-	db 1, FURY_ATTACK
+	db 1, ABSORB
 	db 1, HYPNOSIS
-	db 7, REFLECT
-	db 13, LEECH_SEED
-	db 19, CONFUSION
-	db 25, STUN_SPORE
-	db 31, POISONPOWDER
-	db 37, SLEEP_POWDER
-	db 43, SOLARBEAM
+	db 5, REFLECT
+	db 10, LEECH_SEED
+	db 15, MEGA_DRAIN
+	db 20, CONFUSION
+	db 25, MORNING_SUN
+	db 30, PSYBEAM
+	db 35, GIGA_DRAIN
+	db 40, GROWTH
+	db 45, PSYCHIC_M
+	db 50, LEAF_STORM
 	db 0 ; no more level-up moves
 
 ExeggutorEvosAttacks:
