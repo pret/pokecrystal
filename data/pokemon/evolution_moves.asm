@@ -138,7 +138,7 @@ EvolutionMoves::
 	db EMBER        ; FLAREON
 	db NO_MOVE      ; PORYGON
 	db NO_MOVE      ; OMANYTE
-	db ROCK_BLAST   ; OMASTAR
+	db SPIKES	    ; OMASTAR
 	db NO_MOVE      ; KABUTO
 	db CUT	        ; KABUTOPS
 	db NO_MOVE      ; AERODACTYL
@@ -148,11 +148,11 @@ EvolutionMoves::
 	db NO_MOVE      ; MOLTRES
 	db NO_MOVE      ; DRATINI
 	db NO_MOVE      ; DRAGONAIR
-	db FLY		    ; DRAGONITE
+	db EXTREMESPEED ; DRAGONITE
 	db NO_MOVE      ; MEWTWO
 	db NO_MOVE      ; MEW
 	db NO_MOVE      ; CHIKORITA
-	db NO_MOVE      ; BAYLEEF
+	db TAIL_SWIPE   ; BAYLEEF
 	db GIGA_DRAIN   ; MEGANIUM
 	db NO_MOVE      ; CYNDAQUIL
 	db NO_MOVE      ; QUILAVA
@@ -163,11 +163,11 @@ EvolutionMoves::
 	db NO_MOVE      ; SENTRET
 	db AGILITY      ; FURRET
 	db NO_MOVE      ; HOOTHOOT
-	db NO_MOVE      ; NOCTOWL
+	db OMINOUS_WIND ; NOCTOWL
 	db NO_MOVE      ; LEDYBA
 	db PSYCH_UP	    ; LEDIAN
 	db NO_MOVE      ; SPINARAK
-	db VICEGRIP     ; ARIADOS
+	db SWORDS_DANCE ; ARIADOS
 	db CUT		    ; CROBAT
 	db NO_MOVE      ; CHINCHOU
 	db NO_MOVE      ; LANTURN
@@ -175,7 +175,7 @@ EvolutionMoves::
 	db NO_MOVE      ; CLEFFA
 	db NO_MOVE      ; IGGLYBUFF
 	db NO_MOVE      ; TOGEPI
-	db FAIRY_WIND   ; TOGETIC
+	db AIR_CUTTER   ; TOGETIC
 	db NO_MOVE      ; NATU
 	db AIR_SLASH    ; XATU
 	db NO_MOVE      ; MAREEP
@@ -184,14 +184,14 @@ EvolutionMoves::
 	db PLAY_ROUGH   ; BELLOSSOM
 	db NO_MOVE      ; MARILL
 	db NO_MOVE      ; AZUMARILL
-	db STRENGTH     ; SUDOWOODO
+	db NO_MOVE      ; SUDOWOODO
 	db HYPER_VOICE  ; POLITOED
 	db NO_MOVE      ; HOPPIP
 	db NO_MOVE      ; SKIPLOOM
 	db NO_MOVE      ; JUMPLUFF
 	db NO_MOVE      ; AIPOM
 	db NO_MOVE      ; SUNKERN
-	db EMBER        ; SUNFLORA
+	db FLAME_BURST  ; SUNFLORA
 	db NO_MOVE      ; YANMA
 	db NO_MOVE      ; WOOPER
 	db ROCK_THROW   ; QUAGSIRE
@@ -201,7 +201,7 @@ EvolutionMoves::
 	db BARRIER      ; SLOWKING
 	db NO_MOVE      ; MISDREAVUS
 	db NO_MOVE      ; UNOWN
-	db RECOVER      ; WOBBUFFET
+	db NO_MOVE      ; WOBBUFFET
 	db NO_MOVE      ; GIRAFARIG
 	db NO_MOVE      ; PINECO
 	db FLASH_CANNON ; FORRETRESS
@@ -220,7 +220,7 @@ EvolutionMoves::
 	db NO_MOVE      ; SLUGMA
 	db POWER_GEM    ; MAGCARGO
 	db NO_MOVE      ; SWINUB
-	db ICE_SHARD    ; PILOSWINE
+	db SPIKES	    ; PILOSWINE
 	db NO_MOVE      ; CORSOLA
 	db NO_MOVE      ; REMORAID
 	db FLAME_BURST  ; OCTILLERY
@@ -232,7 +232,7 @@ EvolutionMoves::
 	db OUTRAGE	    ; KINGDRA
 	db NO_MOVE      ; PHANPY
 	db LOW_KICK	    ; DONPHAN
-	db NO_MOVE      ; PORYGON2
+	db ZAP_CANNON   ; PORYGON2
 	db NO_MOVE      ; STANTLER
 	db NO_MOVE      ; SMEARGLE
 	db NO_MOVE      ; TYROGUE
