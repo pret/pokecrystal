@@ -113,7 +113,7 @@ ItemEffects:
 	dw NoEffect            ; WHT_APRICORN
 	dw NoEffect            ; BLACKBELT_I
 	dw NoEffect            ; BLK_APRICORN
-	dw NoEffect            ; ITEM_64
+	dw ClimbingGearEffect  ; CLIMBINGGEAR
 	dw NoEffect            ; PNK_APRICORN
 	dw NoEffect            ; BLACKGLASSES
 	dw NoEffect            ; SLOWPOKETAIL
@@ -2325,6 +2325,12 @@ SwimsuitEffect:
 
 PickaxeEffect:
 	farcall RockSmashFunction
+	ret
+
+ClimbingGearEffect:
+	ld a, 1
+	ld [wUsingHMItem], a
+	farcall RockClimbFunction
 	ret
 
 ZygardeCubeEffect:

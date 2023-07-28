@@ -1796,3 +1796,150 @@ CantCutScript:
 CanCutText:
 	text_far _CanCutText
 	text_end
+
+RockClimbFunction:
+	call FieldMoveJumptableReset
+.loop
+	ld hl, .jumptable
+	call FieldMoveJumptable
+	jr nc, .loop
+	and $7f
+	ld [wFieldMoveSucceeded], a
+	ret
+
+.jumptable:
+	dw .TryRockClimb
+	dw .DoRockClimb
+	dw .FailRockClimb
+
+.TryRockClimb:
+	call TryRockClimbMenu
+	jr c, .failed
+	ld a, $1
+	ret
+
+.failed
+	ld a, $2
+	ret
+
+.DoRockClimb:
+	ld hl, RockClimbFromMenuScript
+	call QueueScript
+	ld a, $81
+	ret
+
+.FailRockClimb:
+	call FieldMoveFailed
+	ld a, $80
+	ret
+
+TryRockClimbMenu:
+	call GetFacingTileCoord
+	ld c, a
+	push de
+	call CheckRockyWallTile
+	pop de
+	jr nz, .failed
+	xor a
+	ret
+
+.failed
+	scf
+	ret
+
+TryRockClimbOW::
+	ld a, CLIMBINGGEAR
+	ld [wCurItem], a
+	ld hl, wNumItems
+	call CheckItem
+	jr nc, .cant_climb
+
+	ld a, BANK(AskRockClimbScript)
+	ld hl, AskRockClimbScript
+	call CallScript
+	scf
+	ret
+
+.cant_climb
+	ld a, BANK(CantRockClimbScript)
+	ld hl, CantRockClimbScript
+	call CallScript
+	scf
+	ret
+
+AskRockClimbScript:
+	opentext
+	writetext AskRockClimbText
+	yesorno
+	iftrue UsedRockClimbScript
+	closetext
+	end
+
+CantRockClimbScript:
+	jumptext CantRockClimbText
+
+RockClimbFromMenuScript:
+	reloadmappart
+	special UpdateTimePals
+
+UsedRockClimbScript:
+	writetext UsedRockClimbText
+	closetext
+	waitsfx
+	playsound SFX_STRENGTH
+	readvar VAR_FACING
+	if_equal DOWN, .Down
+.loop_up
+	applymovement PLAYER, .RockClimbUpStep
+	callasm .CheckContinueRockClimb
+	iffalse .loop_up
+	end
+
+.Down:
+	applymovement PLAYER, .RockClimbFixFacing
+.loop_down
+	applymovement PLAYER, .RockClimbDownStep
+	callasm .CheckContinueRockClimb
+	iffalse .loop_down
+	applymovement PLAYER, .RockClimbRemoveFixedFacing
+	end
+
+.CheckContinueRockClimb:
+	xor a
+	ld [wScriptVar], a
+	ld a, [wPlayerTile]
+	call CheckRockyWallTile
+	ret z
+	ld a, $1
+	ld [wScriptVar], a
+	ret
+
+.RockClimbUpStep:
+	step UP
+	step_end
+
+.RockClimbDownStep:
+	step DOWN
+	step_end
+
+.RockClimbFixFacing:
+	turn_head UP
+	fix_facing
+	step_end
+
+.RockClimbRemoveFixedFacing:
+	remove_fixed_facing
+	turn_head DOWN
+	step_end
+
+AskRockClimbText:
+	text_far _AskRockClimbText
+	text_end
+
+UsedRockClimbText:
+	text_far _UsedRockClimbText
+	text_end
+
+CantRockClimbText:
+	text_far _CantRockClimbText
+	text_end

@@ -1522,6 +1522,25 @@ _MayRegisterItemText::
 	line "on SELECT Button."
 	done
 
+_AskRockClimbText::
+	text "The wall is very"
+	line "rocky…"
+
+	para "Do you want to"
+	line "climb it?"
+	done
+
+_UsedRockClimbText::
+	text "You climbed the"
+	line "wall!"
+	prompt
+
+_CantRockClimbText::
+	text "You could climb"
+	line "this wall with"
+	cont "the right gear."
+	done
+
 _OakText1::
 	text "Hello! Sorry to"
 	line "keep you waiting!"
