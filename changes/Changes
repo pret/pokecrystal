@@ -35,7 +35,7 @@
 @ infinite tm uses
 @ the gs ball event can be activated by beating red and entering goldenrod pokemon center upstairs while suicune is on the party
   reworked tree encounter caracterization
-  removed artificial save delay
+@ removed artificial save delay
   added hail as a new wheather
   hail raises ice type pokemon defence by 50%
   all 251 pokemon are obtainable
