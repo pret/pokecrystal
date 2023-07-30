@@ -169,7 +169,6 @@ TrainerSchoolboyAlan1:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_SCHOOLBOY_ALAN
-	endifjustbattled
 	opentext
 	checkflag ENGINE_ALAN_READY_FOR_REMATCH
 	iftrue .ChooseRematch
@@ -198,29 +197,17 @@ TrainerSchoolboyAlan1:
 .ChooseRematch:
 	scall .Rematch
 	winlosstext SchoolboyAlan1BeatenText, 0
-	readmem wAlanFightCount
-	ifequal 4, .Fight4
-	ifequal 3, .Fight3
-	ifequal 2, .Fight2
-	ifequal 1, .Fight1
-	ifequal 0, .LoadFight0
-.Fight4:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight4
-.Fight3:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight3
-.Fight2:
 	checkflag ENGINE_FLYPOINT_BLACKTHORN
 	iftrue .LoadFight2
-.Fight1:
 	checkflag ENGINE_FLYPOINT_OLIVINE
 	iftrue .LoadFight1
-.LoadFight0:
 	loadtrainer SCHOOLBOY, ALAN1
 	startbattle
 	reloadmapafterbattle
-	loadmem wAlanFightCount, 1
 	clearflag ENGINE_ALAN_READY_FOR_REMATCH
 	end
 
@@ -228,7 +215,6 @@ TrainerSchoolboyAlan1:
 	loadtrainer SCHOOLBOY, ALAN2
 	startbattle
 	reloadmapafterbattle
-	loadmem wAlanFightCount, 2
 	clearflag ENGINE_ALAN_READY_FOR_REMATCH
 	end
 
@@ -236,7 +222,6 @@ TrainerSchoolboyAlan1:
 	loadtrainer SCHOOLBOY, ALAN3
 	startbattle
 	reloadmapafterbattle
-	loadmem wAlanFightCount, 3
 	clearflag ENGINE_ALAN_READY_FOR_REMATCH
 	end
 
@@ -244,7 +229,6 @@ TrainerSchoolboyAlan1:
 	loadtrainer SCHOOLBOY, ALAN4
 	startbattle
 	reloadmapafterbattle
-	loadmem wAlanFightCount, 4
 	clearflag ENGINE_ALAN_READY_FOR_REMATCH
 	end
 

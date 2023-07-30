@@ -19,7 +19,7 @@
 @ added third trainer card page for kanto badges
 @ berry trees give 3 to 5 berries
 @ kurt instantly makes acorn pokeballs
-  reworked remach system for better by removing the remach requirement for the battles and always trying to give the trainer phone number to the player
+@ reworked remach system for better by removing the previus remach requirement for the battles and always trying to give the trainer phone number to the player
 @ reworked initialization system
 @ reworked swarm system
 @ reworked beat up

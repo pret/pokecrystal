@@ -21,7 +21,6 @@ TrainerBirdKeeperVance1:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_BIRDKEEPER_VANCE
-	endifjustbattled
 	opentext
 	checkflag ENGINE_VANCE_READY_FOR_REMATCH
 	iftrue .WantsBattle
@@ -48,21 +47,13 @@ TrainerBirdKeeperVance1:
 .WantsBattle:
 	scall Route44RematchM
 	winlosstext BirdKeeperVance1BeatenText, 0
-	readmem wVanceFightCount
-	ifequal 2, .Fight2
-	ifequal 1, .Fight1
-	ifequal 0, .LoadFight0
-.Fight2:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight2
-.Fight1:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
-.LoadFight0:
 	loadtrainer BIRD_KEEPER, VANCE1
 	startbattle
 	reloadmapafterbattle
-	loadmem wVanceFightCount, 1
 	clearflag ENGINE_VANCE_READY_FOR_REMATCH
 	end
 
@@ -70,7 +61,6 @@ TrainerBirdKeeperVance1:
 	loadtrainer BIRD_KEEPER, VANCE2
 	startbattle
 	reloadmapafterbattle
-	loadmem wVanceFightCount, 2
 	clearflag ENGINE_VANCE_READY_FOR_REMATCH
 	end
 
@@ -163,7 +153,6 @@ TrainerFisherWilton1:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_FISHER_WILTON
-	endifjustbattled
 	opentext
 	checkflag ENGINE_WILTON_READY_FOR_REMATCH
 	iftrue .WantsBattle
@@ -192,21 +181,13 @@ TrainerFisherWilton1:
 .WantsBattle:
 	scall Route44RematchM
 	winlosstext FisherWilton1BeatenText, 0
-	readmem wWiltonFightCount
-	ifequal 2, .Fight2
-	ifequal 1, .Fight1
-	ifequal 0, .LoadFight0
-.Fight2:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight2
-.Fight1:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
-.LoadFight0:
 	loadtrainer FISHER, WILTON1
 	startbattle
 	reloadmapafterbattle
-	loadmem wWiltonFightCount, 1
 	clearflag ENGINE_WILTON_READY_FOR_REMATCH
 	end
 
@@ -214,7 +195,6 @@ TrainerFisherWilton1:
 	loadtrainer FISHER, WILTON2
 	startbattle
 	reloadmapafterbattle
-	loadmem wWiltonFightCount, 2
 	clearflag ENGINE_WILTON_READY_FOR_REMATCH
 	end
 
