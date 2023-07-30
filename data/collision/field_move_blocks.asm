@@ -1,11 +1,12 @@
 ; these blocks all use COLL_CUT_TREE in one quadrant
 CutTreeBlockPointers:
 ; tileset, block list pointer
-	dbw TILESET_JOHTO,        .johto
-	dbw TILESET_JOHTO_MODERN, .johto_modern
-	dbw TILESET_KANTO,        .kanto
-	dbw TILESET_PARK,         .park
-	dbw TILESET_FOREST,       .forest
+	dbw TILESET_JOHTO,            .johto
+	dbw TILESET_JOHTO_MODERN,     .johto_modern
+	dbw TILESET_KANTO,            .kanto
+	dbw TILESET_PARK,             .park
+	dbw TILESET_FOREST,           .forest
+	dbw TILESET_NEOST_OUTDOORS_1, .neost_outdoors_1
 	db -1 ; end
 
 .johto:
@@ -41,6 +42,14 @@ CutTreeBlockPointers:
 .forest:
 ; facing block, replacement block, animation
 	db $0f, $17, 0
+	db -1 ; end
+
+.neost_outdoors_1:
+; facing block, replacement block, animation
+	db $0c, $09, 1 ; grass
+	db $0d, $0c, 1 ; grass
+	db $2b, $37, 0 ; tree
+	db $2f, $36, 0 ; tree
 	db -1 ; end
 
 

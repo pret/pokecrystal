@@ -133,7 +133,7 @@ ItemEffects:
 	dw NoEffect            ; MIRACLE_SEED
 	dw NoEffect            ; THICK_CLUB
 	dw NoEffect            ; FOCUS_BAND
-	dw NoEffect            ; ITEM_78
+	dw HatchetEffect       ; HATCHET
 	dw EnergypowderEffect  ; ENERGYPOWDER
 	dw EnergyRootEffect    ; ENERGY_ROOT
 	dw HealPowderEffect    ; HEAL_POWDER
@@ -2331,6 +2331,12 @@ ClimbingGearEffect:
 	ld a, 1
 	ld [wUsingHMItem], a
 	farcall RockClimbFunction
+	ret
+
+HatchetEffect:
+	ld a, 1
+	ld [wUsingHMItem], a
+	farcall CutFunction
 	ret
 
 ZygardeCubeEffect:

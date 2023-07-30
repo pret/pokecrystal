@@ -303,14 +303,12 @@ _CantUseItemText::
 	prompt
 
 _UseCutText::
-	text_ram wStringBuffer2
-	text " used"
-	line "CUT!"
+	text "You cut the tree!"
 	prompt
 
 _CutNothingText::
 	text "There's nothing to"
-	line "CUT here."
+	line "cut here."
 	prompt
 
 _BlindingFlashText::
@@ -507,14 +505,15 @@ _GotOffBikeText::
 
 _AskCutText::
 	text "This tree can be"
-	line "CUT!"
+	line "cut!"
 
-	para "Want to use CUT?"
+	para "Want to cut it?"
 	done
 
 _CanCutText::
-	text "This tree can be"
-	line "CUT!"
+	text "You can cut this"
+	line "tree with a"
+	cont "hatchet!"
 	done
 
 _FoundItemText::
