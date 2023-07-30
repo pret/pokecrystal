@@ -23,6 +23,7 @@
 @ reworked initialization system
 @ reworked swarm system
 @ reworked beat up
+@ headbutt works on kanto
   allow more trainer parties, with individual DVs, stat experience, nicknames, variable teams, etc
   added a lot of tms and distributed them acordly
   overworld actions no longer need hm on pokemon, but instead they just need a special item and some special confition(a "flying" mon for fly and so on)
