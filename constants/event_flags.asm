@@ -509,7 +509,7 @@
 	const EVENT_MET_BUENA
 	const EVENT_GOT_ODD_EGG
 	const_skip ; unused
-	const EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
+	const EVENT_GOT_GS_BALL_FROM_GOLDENROD_POKEMON_CENTER
 ; Unused: next 167 events
 
 	const_next 1000

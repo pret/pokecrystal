@@ -512,27 +512,27 @@ CalculateTrainerRankingsChecksum:
 	pop bc
 	ret
 
-BackupMobileEventIndex:
-	ld a, BANK(sMobileEventIndex)
+BackupGSBallFlag:
+	ld a, BANK(sGSBallFlag)
 	call OpenSRAM
-	ld a, [sMobileEventIndex]
+	ld a, [sGSBallFlag]
 	push af
-	ld a, BANK(sMobileEventIndexBackup)
+	ld a, BANK(sGSBallFlagBackup)
 	call OpenSRAM
 	pop af
-	ld [sMobileEventIndexBackup], a
+	ld [sGSBallFlagBackup], a
 	call CloseSRAM
 	ret
 
-RestoreMobileEventIndex:
-	ld a, BANK(sMobileEventIndexBackup)
+RestoreGSBallFlag:
+	ld a, BANK(sGSBallFlagBackup)
 	call OpenSRAM
-	ld a, [sMobileEventIndexBackup]
+	ld a, [sGSBallFlagBackup]
 	push af
-	ld a, BANK(sMobileEventIndex)
+	ld a, BANK(sGSBallFlag)
 	call OpenSRAM
 	pop af
-	ld [sMobileEventIndex], a
+	ld [sGSBallFlag], a
 	call CloseSRAM
 	ret
 
@@ -547,11 +547,11 @@ VerifyTrainerRankingsChecksum: ; unreferenced
 	cp [hl]
 	ret
 
-DeleteMobileEventIndex:
-	ld a, BANK(sMobileEventIndex)
+ClearGSBallFlag:
+	ld a, BANK(sGSBallFlag)
 	call OpenSRAM
 	xor a
-	ld [sMobileEventIndex], a
+	ld [sGSBallFlag], a
 	call CloseSRAM
 	ret
 
@@ -789,53 +789,55 @@ endr
 
 ; functions related to the cable club and various NPC scripts referencing communications
 
-Mobile_DummyReturnFalse:
+CheckMobileAdapterStatusSpecial: ; unused
+	; this routine calls CheckMobileAdapterStatus
+	; in the Japanese version
 	xor a
 	ld [wScriptVar], a
 	ret
 
-Stubbed_Function106314:
+SetMobileAdapterStatus: ; unused
 	ret
-	ld a, BANK(s4_b000)
+	; the instructions below are the
+	; original Japanese version code
+	ld a, BANK(sMobileAdapterStatus)
 	call OpenSRAM
 	ld a, c
 	cpl
-	ld [s4_b000], a
+	ld [sMobileAdapterStatus], a
 	call CloseSRAM
-	ld a, BANK(s7_a800)
+	ld a, BANK(sMobileAdapterStatus2)
 	call OpenSRAM
 	ld a, c
-	ld [s7_a800], a
+	ld [sMobileAdapterStatus2], a
 	call CloseSRAM
 	ret
 
-Mobile_AlwaysReturnNotCarry:
+CheckMobileAdapterStatus: ; unused
 	or a
 	ret
-
-Function106331: ; unreferenced
-; called by Mobile_DummyReturnFalse in JP Crystal
-	; check ~[s4_b000] == [s7_a800]
-	ld a, BANK(s4_b000)
+	; the instructions below are the
+	; original Japanese version code
+	ld a, BANK(sMobileAdapterStatus)
 	call OpenSRAM
-	ld a, [s4_b000]
+	ld a, [sMobileAdapterStatus]
 	cpl
 	ld b, a
 	call CloseSRAM
-	ld a, BANK(s7_a800)
+	ld a, BANK(sMobileAdapterStatus2)
 	call OpenSRAM
-	ld a, [s7_a800]
+	ld a, [sMobileAdapterStatus2]
 	ld c, a
 	call CloseSRAM
 	ld a, c
 	cp b
 	jr nz, .nope
 
-	; check [s7_a800] != 0
+	; check [sMobileAdapterStatus2] != 0
 	and a
 	jr z, .nope
 
-	; check !([s7_a800] & %01110000)
+	; check !([sMobileAdapterStatus2] & %01110000)
 	and %10001111
 	cp c
 	jr nz, .nope
@@ -891,7 +893,7 @@ Function106392:
 	ret
 
 .asm_1063a2
-	call Mobile_AlwaysReturnNotCarry
+	call CheckMobileAdapterStatus
 	ld a, c
 	and a
 	jr nz, .asm_1063b4
@@ -966,14 +968,14 @@ Function106403:
 	or c
 	inc a
 	ld c, a
-	call Stubbed_Function106314
+	call SetMobileAdapterStatus
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
 	ld [wMobileCommsJumptableIndex], a
 	ret
 
 .asm_106426
-	call Mobile_AlwaysReturnNotCarry
+	call CheckMobileAdapterStatus
 	ld a, c
 	and a
 	jr z, .asm_106435
@@ -984,7 +986,7 @@ Function106403:
 
 .asm_106435
 	ld c, $0
-	call Stubbed_Function106314
+	call SetMobileAdapterStatus
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
 	ld [wMobileCommsJumptableIndex], a
@@ -1037,13 +1039,13 @@ Function106464::
 Function10649b: ; unreferenced
 	ld a, [wTextboxFrame]
 	maskbits NUM_FRAMES
-	ld bc, 6 * LEN_1BPP_TILE
+	ld bc, TEXTBOX_FRAME_TILES * LEN_1BPP_TILE
 	ld hl, Frames
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld hl, vTiles2 tile "┌" ; $79
-	ld c, 6 ; "┌" to "┘"
+	ld c, TEXTBOX_FRAME_TILES ; "┌" to "┘"
 	ld b, BANK(Frames)
 	call Function1064c3
 	ld hl, vTiles2 tile " " ; $7f

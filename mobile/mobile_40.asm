@@ -5162,7 +5162,7 @@ Function102423:
 	ret nc
 	farcall SaveAfterLinkTrade
 	farcall StubbedTrainerRankings_Trades
-	farcall BackupMobileEventIndex
+	farcall BackupGSBallFlag
 	ld hl, wcd4b
 	set 1, [hl]
 	ld a, 0
@@ -7350,7 +7350,7 @@ MenuData_103648:
 	db "ケーブル@"
 
 Function103654:
-	farcall Mobile_AlwaysReturnNotCarry
+	farcall CheckMobileAdapterStatus
 	bit 7, c
 	jr nz, .asm_103666
 	ld hl, wcd2a
@@ -7365,7 +7365,7 @@ Function103654:
 	ret
 
 Mobile_SelectThreeMons:
-	farcall Mobile_AlwaysReturnNotCarry
+	farcall CheckMobileAdapterStatus
 	bit 7, c
 	jr z, .asm_10369b
 	ld hl, MobileBattleMustPickThreeMonText
@@ -7626,7 +7626,7 @@ MobileBattleNoTimeLeftForLinkingText:
 
 MobileCheckRemainingBattleTime:
 ; Returns carry if less than one minute remains
-	farcall Mobile_AlwaysReturnNotCarry
+	farcall CheckMobileAdapterStatus
 	bit 7, c
 	jr nz, .ok
 	farcall MobileBattleGetRemainingTime
@@ -7674,7 +7674,7 @@ PickThreeMonForMobileBattleText:
 	text_end
 
 Function10387b:
-	farcall Mobile_AlwaysReturnNotCarry
+	farcall CheckMobileAdapterStatus
 	bit 7, c
 	ret nz
 	farcall MobileBattleGetRemainingTime

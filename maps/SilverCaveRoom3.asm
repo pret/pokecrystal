@@ -26,6 +26,7 @@ Red:
 	special FadeBlackQuickly
 	special ReloadSpritesNoPalettes
 	disappear SILVERCAVEROOM3_RED
+	setevent EVENT_BEAT_RED
 	pause 15
 	special FadeInQuickly
 	pause 30
