@@ -18,8 +18,8 @@ MACRO anim_obj
 	else
 	; LEGACY: Support the tile+offset format
 		db \1 ; object
-		db (\2) * 8 + (\3) ; x_tile, x
-		db (\4) * 8 + (\5) ; y_tile, y
+		db (\2) * HP_BAR_LENGTH_PX + (\3) ; x_tile, x
+		db (\4) * HP_BAR_LENGTH_PX + (\5) ; y_tile, y
 		db \6 ; param
 	endc
 ENDM

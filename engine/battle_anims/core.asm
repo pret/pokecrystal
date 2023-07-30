@@ -243,7 +243,7 @@ InitBattleAnimBuffer:
 	add hl, bc
 	ld a, [hli]
 	ld d, a
-	ld a, (-10 * 8) + 4
+	ld a, (-10 * TILE_WIDTH) + 4
 	sub d
 	ld [wBattleAnimTempXCoord], a
 	ld a, [hli]
@@ -251,7 +251,7 @@ InitBattleAnimBuffer:
 	ld a, [wBattleAnimTempFixY]
 	cp $ff
 	jr nz, .check_kinesis_softboiled_milkdrink
-	ld a, 5 * 8
+	ld a, 5 * TILE_WIDTH
 	add d
 	jr .done
 
@@ -270,7 +270,7 @@ InitBattleAnimBuffer:
 	jr nz, .no_sub
 .do_sub
 	pop af
-	sub 1 * 8
+	sub 1 * TILE_WIDTH
 	jr .done
 
 .no_sub

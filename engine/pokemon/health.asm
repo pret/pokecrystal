@@ -53,7 +53,7 @@ HealPartyMon:
 	ret
 
 ComputeHPBarPixels:
-; e = bc * (6 * 8) / de
+; e = bc * HP_BAR_LENGTH_PX / de
 	ld a, b
 	or c
 	jr z, .zero
@@ -64,7 +64,7 @@ ComputeHPBarPixels:
 	ldh [hMultiplicand + 1], a
 	ld a, c
 	ldh [hMultiplicand + 2], a
-	ld a, 6 * 8
+	ld a, HP_BAR_LENGTH_PX
 	ldh [hMultiplier], a
 	call Multiply
 	; We need de to be under 256 because hDivisor is only 1 byte.

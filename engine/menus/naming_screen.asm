@@ -375,7 +375,7 @@ NamingScreenJoypadLoop:
 	depixel 10, 3
 	call NamingScreen_IsTargetBox
 	jr nz, .got_cursor_position
-	ld d, 8 * 8
+	ld d, 8 * TILE_WIDTH
 .got_cursor_position
 	ld a, SPRITE_ANIM_INDEX_NAMING_SCREEN_CURSOR
 	call InitSpriteAnimStruct
