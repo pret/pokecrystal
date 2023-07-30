@@ -15,9 +15,14 @@ GoldenrodPokecenter1FNurseScript:
 	jumpstd PokecenterNurseScript
 
 GoldenrodPokecenter1F_GSBallSceneLeft:
-	setval BATTLETOWERACTION_CHECKMOBILEEVENT
-	special BattleTowerAction
-	ifequal MOBILE_EVENT_OBJECT_GS_BALL, .gsball
+	checkevent EVENT_BEAT_RED
+	iftrue .suicune
+	end
+
+.suicune
+	setval SUICUNE
+	special FindPartyMonThatSpecies
+	iftrue .gsball
 	end
 
 .gsball
@@ -47,9 +52,14 @@ GoldenrodPokecenter1F_GSBallSceneLeft:
 	end
 
 GoldenrodPokecenter1F_GSBallSceneRight:
-	setval BATTLETOWERACTION_CHECKMOBILEEVENT
-	special BattleTowerAction
-	ifequal MOBILE_EVENT_OBJECT_GS_BALL, .gsball
+	checkevent EVENT_BEAT_RED
+	iftrue .suicune
+	end
+
+.suicune
+	setval SUICUNE
+	special FindPartyMonThatSpecies
+	iftrue .gsball
 	end
 
 .gsball

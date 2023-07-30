@@ -4,7 +4,7 @@
 @ Mary gives the polkadot bow after the radio tower event
 @ fixed all know battle engine, engine and grafical bugs except "You can fish on top of NPCs" because it's funny and inconsequential
 @ fixed all know audio, text, scripted events and internal engine routines
-@ fixed that stupid tree animation frame script to be sensible instead of : return odd if 1, return even if 2 , return odd if 3..
+@ fixed that tree animation frame script to be sensible
 @ removed ai 25% chance to miss status moves
 @ removed badge stat boost and type boost
 @ boost exp gain if at least 200 friendship
@@ -32,6 +32,9 @@
   removed dragon scale
 @ your starter holds a item relevant to it's final evolution each 
 @ infinite tm uses
+@ the gs ball event can be activated by beating red and entering goldenrod pokemon center upstairs while suicune is on the party
+  reworked tree encounter caracterization
+  removed artificial save delay
   added hail as a new wheather
   hail raises ice type pokemon defence by 50%
   all 251 pokemon are obtainable
