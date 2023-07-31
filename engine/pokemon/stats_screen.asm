@@ -821,13 +821,13 @@ LoadOrangePage:
 	add hl, de
 	dec b
 	jr nz, .vertical_divider
-	hlcoord 11, 8
+	hlcoord 0, 8
+	ld bc, 5
+	predef PrintTempMonStatsXP
 	ld bc, 6
-	predef PrintTempMonStats
+	hlcoord 11,8
+	predef PrintTempMonStatsDV
 	ret
-
-HelloWorldString:
-	db "Hello world!@"
 
 IDNoString:
 	db "<ID>№.@"

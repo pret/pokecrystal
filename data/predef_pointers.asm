@@ -8,7 +8,7 @@ ENDM
 
 PredefPointers::
 	add_predef LearnMove
-	add_predef DummyPredef1
+	add_predef PrintTempMonStatsXP
 	add_predef HealParty ; this is both a special and a predef
 	add_predef SmallFarFlagAction
 	add_predef ComputeHPBarPixels
@@ -54,7 +54,7 @@ PredefPointers::
 	add_predef PrintMonTypes
 	add_predef GetUnownLetter
 	add_predef LoadPoisonBGPals
-	add_predef DummyPredef2F
+	add_predef PrintTempMonStatsDV
 	add_predef InitSGBBorder
 	add_predef LoadSGBLayout
 	add_predef Pokedex_GetArea

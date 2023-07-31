@@ -3122,11 +3122,16 @@ wMobileTradeRoomSceneID::                         db
 wMobileBattleRoomSceneID::                        db
 
 	ds 49
+; dvs temp storage, for forth status page
+wForthPageDVHP::                                  db
+wForthPageDVAttack::                              db
+wForthPageDVDefense::                             db
+wForthPageDVSpeed::                               db
+wForthPageDVSpecial::                             db
 
 ; fight counts, now removed
 	
-	ds 28
-	
+	ds 23
 ;free space
 
 	ds 100

@@ -68,6 +68,7 @@ MeetMomScript:
 
 .KnowPhone:
 	writetext KnowTheInstructionsText
+	waitbutton
 	sjump .FinishPhone
 
 .ExplainPhone:

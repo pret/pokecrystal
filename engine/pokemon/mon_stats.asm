@@ -82,6 +82,124 @@ DrawHP:
 	pop de
 	ret
 
+PrintTempMonStatsXP:
+; Print wTempMon's stat xp at hl, with spacing bc.
+	push bc
+	push hl
+	ld de, .StatNames
+	call PlaceString
+	pop hl
+	pop bc
+	add hl, bc
+	ld bc, SCREEN_WIDTH
+	add hl, bc
+	ld de, wTempMonHPExp
+	lb bc, 2, 5
+	call .PrintStat
+	ld de, wTempMonAtkExp
+	call .PrintStat
+	ld de, wTempMonDefExp
+	call .PrintStat
+	ld de, wTempMonSpcExp
+	call .PrintStat
+	ld de, wTempMonSpdExp
+	jp PrintNum
+
+.PrintStat:
+	push hl
+	call PrintNum
+	pop hl
+	ld de, SCREEN_WIDTH * 2
+	add hl, de
+	ret
+
+.StatNames:
+	db   "HEALTH"
+	next "ATTACK"
+	next "DEFENSE"
+	next "SPECIAL"
+	next "SPEED"
+	next "@"
+
+PrintTempMonStatsDV:
+; Print wTempMon's stat xp at hl, with spacing bc.
+	push bc
+	push hl
+	ld de, .StatNames
+	call PlaceString
+	ld hl, wTempMonDVs
+	ld a, [hli]
+	ld b, a
+	and a, $f0
+	swap a
+	ld [wForthPageDVAttack], a
+	ld a, b
+	and a, $0f
+	ld [wForthPageDVDefense], a
+	ld a, [hl]
+	ld b, a
+	and a, $f0
+	swap a
+	ld [wForthPageDVSpeed], a
+	ld a, b
+	and a, $0f
+	ld [wForthPageDVSpecial], a
+	ld hl, wForthPageDVAttack
+	xor b
+	ld a, [hli]
+	and $1
+	rlca
+	rlca
+	rlca
+	ld b, a
+	ld a, [hli]
+	and $1
+	rlca
+	rlca
+	add b
+	ld b, a
+	ld a, [hli]
+	and $1
+	rlca
+	add b
+	ld b, a
+	ld a,[hl]
+	and $1
+	add b
+	ld [wForthPageDVHP], a
+	pop hl
+	pop bc
+	add hl, bc
+	ld bc, SCREEN_WIDTH
+	add hl, bc
+	ld de, wForthPageDVHP
+	lb bc, 1, 2
+	call .PrintStat
+	ld de, wForthPageDVAttack
+	call .PrintStat
+	ld de, wForthPageDVDefense
+	call .PrintStat
+	ld de, wForthPageDVSpecial
+	call .PrintStat
+	ld de, wForthPageDVSpeed
+	jp PrintNum
+
+.PrintStat:
+	push hl
+	call PrintNum
+	pop hl
+	ld de, SCREEN_WIDTH * 2
+	add hl, de
+	ret
+
+.StatNames:
+	db   "HEALTH"
+	next "ATTACK"
+	next "DEFENSE"
+	next "SPECIAL"
+	next "SPEED"
+	next "@"
+
 PrintTempMonStats:
 ; Print wTempMon's stats at hl, with spacing bc.
 	push bc
