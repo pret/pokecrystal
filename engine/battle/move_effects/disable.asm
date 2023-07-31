@@ -44,7 +44,7 @@ BattleCommand_Disable:
 	jr z, .failed
 .loop2
 	call BattleRandom
-	and 7
+	and 3				;should limit disable to 2-4 turns instead of 2-8
 	jr z, .loop2
 	inc a
 	inc c

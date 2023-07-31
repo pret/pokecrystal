@@ -35,8 +35,9 @@ BattleCommand_Encore:
 	bit SUBSTATUS_ENCORED, [hl]
 	jp nz, .failed
 	set SUBSTATUS_ENCORED, [hl]
-	call BattleRandom
-	and $3
+	;call BattleRandom				this is disabling turn amounts, sets encore to make the opponent use the move exactly 3 turns, including that turn if the encore user goes first
+	;and $3
+	xor a
 	inc a
 	inc a
 	inc a
