@@ -8,7 +8,7 @@
 	db 186 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F25 ; gender ratio
-	db 100 ; unknown 1
+	db MAGIC_GUARD
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/alakazam/front.dimensions"

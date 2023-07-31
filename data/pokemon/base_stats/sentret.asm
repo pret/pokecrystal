@@ -1,6 +1,6 @@
 	db SENTRET ; 161
 
-	db  45,  56,  44,  70,  45,  55
+	db  45, 56,  44,  70,  45,  55
 	;   hp  atk  def  spd  sat  sdf
 
 	db GROUND, GROUND ; type
@@ -8,7 +8,7 @@
 	db 57 ; base exp
 	db NO_ITEM, BERRY ; items
 	db GENDER_F50 ; gender ratio
-	db 100 ; unknown 1
+	db PRANKSTER
 	db 15 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/sentret/front.dimensions"

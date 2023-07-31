@@ -8,7 +8,7 @@
 	db 87 ; base exp
 	db NO_ITEM, THICK_CLUB ; items
 	db GENDER_F50 ; gender ratio
-	db 100 ; unknown 1
+	db BATTLE_ARMOR
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/cubone/front.dimensions"

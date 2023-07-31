@@ -352,7 +352,8 @@ wBattleMonNickname:: ds MON_NAME_LENGTH
 
 wBattleMon:: battle_struct wBattleMon
 
-	ds 2
+wPlayerAbility:: db
+wEnemyAbility:: db
 
 wWildMon:: db
 	ds 1
@@ -2454,7 +2455,10 @@ wTilesetBlocksAddress:: dw
 wTilesetCollisionBank:: db
 wTilesetCollisionAddress:: dw
 wTilesetAnim:: dw ; bank 3f
-	ds 2 ; unused
+
+wTempPlayerAbility:: db
+wTempEnemyAbility:: db
+
 wTilesetPalettes:: dw ; bank 3f
 wTilesetEnd::
 	assert wTilesetEnd - wTileset == TILESET_LENGTH

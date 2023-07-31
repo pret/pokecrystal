@@ -847,6 +847,7 @@ CompareMovePriority:
 	ld a, [wCurPlayerMove]
 	call GetMovePriority
 	ld b, a
+	call Prankster
 	push bc
 	ld a, [wCurEnemyMove]
 	call GetMovePriority
@@ -879,6 +880,18 @@ GetMovePriority:
 
 .done
 	ld a, [hl]
+	ret
+
+Prankster:
+	ld a, [wTempPlayerAbility]
+	cp PRANKSTER
+	ret nz
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	and STATUS
+	cp STATUS
+	ret nz
+	inc b
 	ret
 
 INCLUDE "data/moves/effects_priorities.asm"
@@ -3900,6 +3913,8 @@ InitBattleMon:
 	ld [wBattleMonType1], a
 	ld a, [wBaseType2]
 	ld [wBattleMonType2], a
+	ld a, [wPlayerAbility]
+	ld [wTempPlayerAbility], a
 	ld hl, wPartyMonNicknames
 	ld a, [wCurBattleMon]
 	call SkipNames
@@ -3981,6 +3996,8 @@ InitEnemyMon:
 	call GetBaseData
 	ld hl, wOTPartyMonNicknames
 	ld a, [wCurPartyMon]
+	ld a, [wEnemyAbility]
+	ld [wTempEnemyAbility], a
 	call SkipNames
 	ld de, wEnemyMonNickname
 	ld bc, MON_NAME_LENGTH

@@ -8,7 +8,7 @@
 	db 220 ; base exp
 	db SACRED_ASH, SACRED_ASH ; items
 	db GENDER_UNKNOWN ; gender ratio
-	db 100 ; unknown 1
+	db NO_ABILITY
 	db 120 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/ho_oh/front.dimensions"

@@ -8,7 +8,7 @@
 	db 106 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F25 ; gender ratio
-	db 100 ; unknown 1
+	db IRON_FIST
 	db 25 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/elekid/front.dimensions"

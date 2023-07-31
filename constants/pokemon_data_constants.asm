@@ -20,7 +20,7 @@ rsset BASE_ITEMS
 DEF BASE_ITEM_1      rb
 DEF BASE_ITEM_2      rb
 DEF BASE_GENDER      rb
-                     rb_skip
+DEF BASE_ABILITY	 rb
 DEF BASE_EGG_STEPS   rb
                      rb_skip
 DEF BASE_PIC_SIZE    rb
