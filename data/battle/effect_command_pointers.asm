@@ -6,7 +6,7 @@ BattleCommandPointers:
 ; entries correspond to macros/scripts/battle_commands.asm
 	table_width 2, BattleCommandPointers
 	dw BattleCommand_CheckTurn
-	dw BattleCommand_CheckObedience
+	dw BattleCommand_Unused02
 	dw BattleCommand_UsedMoveText
 	dw BattleCommand_DoTurn
 	dw BattleCommand_Critical
@@ -42,7 +42,7 @@ BattleCommandPointers:
 	dw BattleCommand_ForceSwitch
 	dw BattleCommand_EndLoop
 	dw BattleCommand_FlinchTarget
-	dw BattleCommand_OHKO
+	dw BattleCommand_Unused26
 	dw BattleCommand_Recoil
 	dw BattleCommand_Mist
 	dw BattleCommand_FocusEnergy
