@@ -46,7 +46,7 @@
 -- moves added --
 @ flower bloom : fairy | status | sharply raises attack and spe.attack, can only be used once.
   magma flow : ground | special | 90 power | 25% to burn | 100% accuracy
-  dive pull : darK | physical | 70 power | harshy lowers enemy speed | 100% accuracy
+@ dive roll : dark | physical | 60 power | double damage if attacked later | 100% accuracy
   
 -- tm changes --
 

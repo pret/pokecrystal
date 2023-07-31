@@ -17,7 +17,7 @@ Moves:
 	move POUND,        EFFECT_NORMAL_HIT,         40, NORMAL,        PHYSICAL, 100, 35,   0
 	move KARATE_CHOP,  EFFECT_NORMAL_HIT,         50, FIGHTING,      PHYSICAL, 100, 25,   0
 	move DOUBLESLAP,   EFFECT_MULTI_HIT,          15, FAIRY,         PHYSICAL, 100, 10,   0
-	move COMET_PUNCH,  EFFECT_MULTI_HIT,          18, NORMAL,        PHYSICAL, 100, 15,   0
+	move COMET_PUNCH,  EFFECT_MULTI_HIT,          25, NORMAL,        PHYSICAL, 100, 15,   0
 	move FLOWER_BLOOM, EFFECT_FLOWER_BLOOM,        0, FAIRY,         STATUS,   100, 10,   0 ; new move
 	move PAY_DAY,      EFFECT_PAY_DAY,            40, NORMAL,        PHYSICAL, 100, 20,   0
 	move FIRE_PUNCH,   EFFECT_BURN_HIT,           75, FIRE,          PHYSICAL, 100, 15,  10
@@ -25,7 +25,7 @@ Moves:
 	move THUNDERPUNCH, EFFECT_PARALYZE_HIT,       75, ELECTRIC,      PHYSICAL, 100, 15,  10
 	move SCRATCH,      EFFECT_NORMAL_HIT,         40, NORMAL,        PHYSICAL, 100, 35,   0
 	move VICEGRIP,     EFFECT_NORMAL_HIT,         55, NORMAL,        PHYSICAL, 100, 30,   0
-	move GUILLOTINE,   EFFECT_OHKO,                0, NORMAL,        PHYSICAL,  30,  5,   0 ; to be removed
+	move DIVE_ROLL,    EFFECT_DIVE_ROLL,          70, DARK,          PHYSICAL, 100, 10,   0 ; 	new move
 	move RAZOR_WIND,   EFFECT_RAZOR_WIND,         80, FLYING,        SPECIAL,   75, 10,   0
 	move SWORDS_DANCE, EFFECT_ATTACK_UP_2,         0, NORMAL,        STATUS,   100, 30,   0
 	move CUT,          EFFECT_NORMAL_HIT,         50, BUG,           PHYSICAL, 100, 30,   0

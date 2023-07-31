@@ -1328,7 +1328,6 @@ KrabbyEvosAttacks:
 	db 12, VICEGRIP
 	db 16, HARDEN
 	db 23, STOMP
-	db 27, GUILLOTINE
 	db 34, PROTECT
 	db 41, CRABHAMMER
 	db 0 ; no more level-up moves
@@ -1342,7 +1341,6 @@ KinglerEvosAttacks:
 	db 12, VICEGRIP
 	db 16, HARDEN
 	db 23, STOMP
-	db 27, GUILLOTINE
 	db 38, PROTECT
 	db 49, CRABHAMMER
 	db 0 ; no more level-up moves
@@ -1732,7 +1730,6 @@ PinsirEvosAttacks:
 	db 13, WRAP
 	db 19, SEISMIC_TOSS
 	db 25, HARDEN
-	db 31, GUILLOTINE
 	db 37, SUBMISSION
 	db 43, SWORDS_DANCE
 	db 0 ; no more level-up moves
@@ -2154,11 +2151,11 @@ TotodileEvosAttacks:
 	db 27, SCARY_FACE
 	db 35, SLASH
 	db 43, SCREECH
-	db 52, HYDRO_PUMP
+	db 52, WATERFALL
 	db 0 ; no more level-up moves
 
 CroconawEvosAttacks:
-	db EVOLVE_LEVEL, 30, FERALIGATR
+	db EVOLVE_MOVE, DIVE_ROLL, FERALIGATR
 	db 0 ; no more evolutions
 	db 1, SCRATCH
 	db 1, LEER
@@ -2167,9 +2164,10 @@ CroconawEvosAttacks:
 	db 13, WATER_GUN
 	db 21, BITE
 	db 28, SCARY_FACE
+	db 34, DIVE_ROLL
 	db 37, SLASH
 	db 45, SCREECH
-	db 55, HYDRO_PUMP
+	db 55, WATERFALL
 	db 0 ; no more level-up moves
 
 FeraligatrEvosAttacks:
@@ -2184,7 +2182,7 @@ FeraligatrEvosAttacks:
 	db 28, SCARY_FACE
 	db 38, SLASH
 	db 47, SCREECH
-	db 58, HYDRO_PUMP
+	db 58, WATERFALL
 	db 0 ; no more level-up moves
 
 SentretEvosAttacks:
@@ -2777,7 +2775,6 @@ GligarEvosAttacks:
 	db 28, FAINT_ATTACK
 	db 36, SLASH
 	db 44, SCREECH
-	db 52, GUILLOTINE
 	db 0 ; no more level-up moves
 
 SteelixEvosAttacks:

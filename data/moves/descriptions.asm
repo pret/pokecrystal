@@ -12,7 +12,7 @@ MoveDescriptions::
 	dw ThunderpunchDescription
 	dw ScratchDescription
 	dw VicegripDescription
-	dw GuillotineDescription
+	dw DiveRollDescription
 	dw RazorWindDescription
 	dw SwordsDanceDescription
 	dw CutDescription
@@ -311,9 +311,9 @@ VicegripDescription:
 	db   "Grips with power-"
 	next "ful pincers.@"
 
-GuillotineDescription:
-	db   "A one-hit KO,"
-	next "pincer attack.@"
+DiveRollDescription:
+	db   "Deals more damage"
+	next "if attacks last.@"
 
 RazorWindDescription:
 	db   "1st turn: Prepare"

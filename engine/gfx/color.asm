@@ -375,7 +375,6 @@ LoadStatsScreenPals:
 	ret z
 	ld hl, StatsScreenPals
 	ld b, 0
-	dec c
 	add hl, bc
 	add hl, bc
 	ldh a, [rSVBK]

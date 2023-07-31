@@ -5862,6 +5862,18 @@ EndRechargeOpp:
 
 INCLUDE "engine/battle/move_effects/rage.asm"
 
+BattleCommand_DoubleLastDamage:
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wEnemyGoesFirst]
+	jr z, .playerFirst
+	and a 
+	jr z, DoubleDamage
+.playerFirst:
+	and a
+	jr nz, DoubleDamage
+	ret
+
 BattleCommand_DoubleFlyingDamage:
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVar
@@ -5874,7 +5886,6 @@ BattleCommand_DoubleUndergroundDamage:
 	call GetBattleVar
 	bit SUBSTATUS_UNDERGROUND, a
 	ret z
-
 	; fallthrough
 
 DoubleDamage:
