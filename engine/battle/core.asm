@@ -847,7 +847,16 @@ CompareMovePriority:
 	ld a, [wCurPlayerMove]
 	call GetMovePriority
 	ld b, a
-	call Prankster
+	ld a, [wPlayerAbility]				;pull player ability into a
+	cp PRANKSTER						;cp to const PRANKSTER
+	jp nz, .noprankster					;if not PRANKSTER then resume normal processing
+	ld a, BATTLE_VARS_MOVE_TYPE			;set move type for next function
+	call GetBattleVar					;get the move type constant
+	and STATUS							;remove the pokemon type and leave the move type
+	cp STATUS							;check to see if the move is a STATUS move
+	jp nz, .noprankster					;if its not status then dont increase priority
+	inc b								;+1 priority
+.noprankster							;resume normal processing
 	push bc
 	ld a, [wCurEnemyMove]
 	call GetMovePriority
@@ -880,18 +889,6 @@ GetMovePriority:
 
 .done
 	ld a, [hl]
-	ret
-
-Prankster:
-	ld a, [wTempPlayerAbility]
-	cp PRANKSTER
-	ret nz
-	ld a, BATTLE_VARS_MOVE_TYPE
-	call GetBattleVar
-	and STATUS
-	cp STATUS
-	ret nz
-	inc b
 	ret
 
 INCLUDE "data/moves/effects_priorities.asm"

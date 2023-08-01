@@ -114,5 +114,5 @@ BattleVarLocations:
 	dw wCurPlayerMove,             wCurEnemyMove
 	dw wLastPlayerCounterMove,     wLastEnemyCounterMove
 	dw wLastPlayerMove,            wLastEnemyMove
-	dw wPlayerAbility,			   wEnemyAbility
+	dw wPlayerAbility,		   	   wEnemyAbility
 	assert_table_length NUM_BATTLE_VAR_LOCATION_PAIRS

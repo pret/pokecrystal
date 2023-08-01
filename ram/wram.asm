@@ -490,7 +490,10 @@ wLinkBattleRNCount::
 	db
 
 wEnemyItemState:: db
-	ds 2
+
+wTempPlayerAbility:: db
+wTempEnemyAbility:: db
+
 wCurEnemyMoveNum:: db
 
 wEnemyHPAtTimeOfPlayerSwitch:: dw
@@ -2456,8 +2459,7 @@ wTilesetCollisionBank:: db
 wTilesetCollisionAddress:: dw
 wTilesetAnim:: dw ; bank 3f
 
-wTempPlayerAbility:: db
-wTempEnemyAbility:: db
+	ds 2
 
 wTilesetPalettes:: dw ; bank 3f
 wTilesetEnd::
