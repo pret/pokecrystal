@@ -786,6 +786,9 @@ LoadBluePage:
 	ld de, OTString
 	hlcoord 0, 12
 	call PlaceString
+	call GetAbilityName
+	hlcoord 0, 15
+	call PlaceString
 	hlcoord 2, 10
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	ld de, wTempMonID
@@ -822,6 +825,23 @@ IDNoString:
 
 OTString:
 	db "OT/@"
+
+GetAbilityName:
+
+	ld a, [wTempPlayerAbility]
+	ld b, a
+	ld a, b
+	push hl
+	add a
+	ld hl, AbilityNames
+	ld e, a
+	ld d, 0
+	add hl, de
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	pop hl
+	ret
 
 StatsScreen_PlaceFrontpic:
 	ld hl, wTempMonDVs
