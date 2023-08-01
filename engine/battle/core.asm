@@ -847,12 +847,13 @@ CompareMovePriority:
 	ld a, [wCurPlayerMove]
 	call GetMovePriority
 	ld b, a
-	ld a, [wPlayerAbility]				;pull player ability into a
+	ld a, BATTLE_VARS_ABILITY			;pull player ability into a
+	call GetBattleVar
 	cp PRANKSTER						;cp to const PRANKSTER
 	jp nz, .noprankster					;if not PRANKSTER then resume normal processing
 	ld a, BATTLE_VARS_MOVE_TYPE			;set move type for next function
 	call GetBattleVar					;get the move type constant
-	and STATUS							;remove the pokemon type and leave the move type
+	and ~TYPE_MASK						;remove the type and leave the move category
 	cp STATUS							;check to see if the move is a STATUS move
 	jp nz, .noprankster					;if its not status then dont increase priority
 	inc b								;+1 priority

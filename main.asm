@@ -639,6 +639,7 @@ INCLUDE "data/items/names.asm"
 INCLUDE "engine/items/print_item_description.asm"
 INCLUDE "data/moves/names.asm"
 INCLUDE "engine/overworld/landmarks.asm"
+INCLUDE "data/abilities/names.asm"
 
 
 SECTION "Print Party", ROMX

@@ -1,4 +1,4 @@
-;Ability names
+;Ability constants
 	const_def
 	const NO_ABILITY
 	const THICK_FAT
