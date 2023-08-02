@@ -16,7 +16,7 @@ GoldenrodPokecenter1FNurseScript:
 
 GoldenrodPokecenter1F_GSBallSceneLeft:
 	setval BATTLETOWERACTION_CHECKMOBILEEVENT
-	special BattleTowerAction
+	; ;pecial battleTowerAction
 	ifequal MOBILE_EVENT_OBJECT_GS_BALL, .gsball
 	end
 
@@ -48,7 +48,7 @@ GoldenrodPokecenter1F_GSBallSceneLeft:
 
 GoldenrodPokecenter1F_GSBallSceneRight:
 	setval BATTLETOWERACTION_CHECKMOBILEEVENT
-	special BattleTowerAction
+	; ;pecial battleTowerAction
 	ifequal MOBILE_EVENT_OBJECT_GS_BALL, .gsball
 	end
 

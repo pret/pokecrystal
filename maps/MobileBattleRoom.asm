@@ -19,9 +19,9 @@ MobileBattleRoomInitializeAndPreparePokecenter2FScript:
 
 MobileBattleRoomConsoleScript:
 	refreshscreen
-	special Function1037c2
+	; special Function1037c2
 	ifequal $1, .one
-	special Function1037eb
+	; special Function1037eb
 	iffalse .false
 	ifequal $1, .one_
 	ifequal $2, .two_
@@ -39,16 +39,16 @@ MobileBattleRoomConsoleScript:
 	special RestartMapMusic
 	refreshscreen
 .two_
-	special StubbedTrainerRankings_Healings
+; special StubbedTrainerRankings_Healings
 	special HealParty
-	special Function10383c
+	; special Function10383c
 	iftrue .false
 .one
-	special Function10387b
+	; special Function10387b
 	writetext MobileBattleRoom_EstablishingCommsText
 	waitbutton
 	reloadmappart
-	special Function101225
+	; special Function101225
 .false
 	closetext
 	end

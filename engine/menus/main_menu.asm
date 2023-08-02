@@ -81,8 +81,8 @@ endc
 	dw MainMenu_NewGame
 	dw MainMenu_Option
 	dw MainMenu_MysteryGift
-	dw MainMenu_Mobile
-	dw MainMenu_MobileStudium
+	; dw MainMenu_Mobile
+	; dw MainMenu_MobileStudium
 if DEF(_DEBUG)
 	dw MainMenu_DebugRoom
 endc

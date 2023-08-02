@@ -1,5 +1,5 @@
 BattleCommand_Selfdestruct:
-	farcall StubbedTrainerRankings_Selfdestruct
+	; ;farcall StubbedTrainerRankings_Selfdestruct
 	ld a, BATTLEANIM_PLAYER_DAMAGE
 	ld [wNumHits], a
 	ld c, 3

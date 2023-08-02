@@ -76,7 +76,7 @@ HandlePlayerStep:
 	ret
 
 .mobile
-	farcall StubbedTrainerRankings_StepCount
+	;farcall StubbedTrainerRankings_StepCount
 	ret
 
 .fail2

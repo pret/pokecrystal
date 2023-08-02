@@ -100,9 +100,9 @@ endc
 	cp RESERVED_GAME_VERSION
 	jr z, .skip_append_save
 	call .SaveMysteryGiftTrainerName
-	farcall RestoreMobileEventIndex
-	farcall StubbedTrainerRankings_MysteryGift
-	farcall BackupMobileEventIndex
+	; farcall RestoreMobileEventIndex
+	;farcall StubbedTrainerRankings_MysteryGift
+	; farcall BackupMobileEventIndex
 .skip_append_save
 	ld a, [wMysteryGiftPartnerSentDeco]
 	and a
@@ -1638,7 +1638,7 @@ DoNameCardSwap:
 	ld hl, .NameCardReceivedCardText
 	call PrintText
 	ld de, wNameCardData
-	farcall Function8ac70
+	; farcall Function8ac70
 	ld a, c
 	ld [wTextDecimalByte], a
 	ld hl, .NameCardNotRegisteredCardText

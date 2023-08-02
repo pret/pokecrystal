@@ -59,7 +59,7 @@ EcruteakPokecenter1FNurseScript:
 	jumpstd PokecenterNurseScript
 
 EcruteakPokecenter1FPokefanMScript:
-	special Mobile_DummyReturnFalse
+;	special ;mobile_dummyReturnFalse
 	iftrue .mobile
 	jumptextfaceplayer EcruteakPokecenter1FPokefanMText
 

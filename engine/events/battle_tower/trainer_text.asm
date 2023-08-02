@@ -83,7 +83,7 @@ endc
 	call PlaceHLTextAtBC
 	ret
 
-INCLUDE "mobile/fixed_words.asm"
+; INCLUDE "mobile/fixed_words.asm"
 
 INCLUDE "data/trainers/genders.asm"
 

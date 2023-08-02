@@ -47,7 +47,7 @@ TrainerGuitaristClyde:
 
 .Script:
 	endifjustbattled
-	special Mobile_DummyReturnFalse
+;	special ;mobile_dummyReturnFalse
 	iftrue .mobile
 	opentext
 	writetext GuitaristClydeAfterBattleText
@@ -69,7 +69,7 @@ FastShipBed:
 	closetext
 	special FadeBlackQuickly
 	special ReloadSpritesNoPalettes
-	special StubbedTrainerRankings_Healings
+; special StubbedTrainerRankings_Healings
 	special HealParty
 	playmusic MUSIC_HEAL
 	pause 60

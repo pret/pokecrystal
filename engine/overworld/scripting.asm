@@ -2314,8 +2314,8 @@ Script_endall:
 Script_halloffame:
 	ld hl, wGameTimerPaused
 	res GAME_TIMER_PAUSED_F, [hl]
-	farcall StubbedTrainerRankings_HallOfFame
-	farcall StubbedTrainerRankings_HallOfFame2
+	; ;farcall StubbedTrainerRankings_HallOfFame
+	; ;farcall StubbedTrainerRankings_HallOfFame2
 	farcall HallOfFame
 	ld hl, wGameTimerPaused
 	set GAME_TIMER_PAUSED_F, [hl]

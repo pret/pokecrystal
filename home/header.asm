@@ -47,7 +47,8 @@ SECTION "lcd", ROM0[$0048]
 	jp LCD
 
 SECTION "timer", ROM0[$0050]
-	jp MobileTimer
+	; jp MobileTimer
+	reti
 
 SECTION "serial", ROM0[$0058]
 	jp Serial

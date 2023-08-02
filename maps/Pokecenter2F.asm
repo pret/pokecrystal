@@ -73,10 +73,10 @@ LinkReceptionistScript_Trade:
 	writetext Text_TradeReceptionistIntro
 	yesorno
 	iffalse .Cancel
-	special Mobile_DummyReturnFalse ; always returns false
+	; special Mobile_DummyReturnFalse ; always returns false
 	iffalse .NoMobile
 	writetext Text_TradeReceptionistMobile
-	special AskMobileOrCable
+	; special AskMobileOrCable
 	iffalse .Cancel
 	ifequal $1, .Mobile
 .NoMobile:
@@ -150,7 +150,7 @@ LinkReceptionistScript_Trade:
 	iffalse .Mobile_DidNotSave
 	special TryQuickSave
 	iffalse .Mobile_DidNotSave
-	special Function1011f1
+	; special Function1011f1
 	writetext Text_PleaseComeIn
 	waitbutton
 	closetext
@@ -175,10 +175,10 @@ LinkReceptionistScript_Battle:
 	writetext Text_BattleReceptionistIntro
 	yesorno
 	iffalse .Cancel
-	special Mobile_DummyReturnFalse ; always returns false
+	; special Mobile_DummyReturnFalse ; always returns false
 	iffalse .NoMobile
 	writetext Text_BattleReceptionistMobile
-	special AskMobileOrCable
+	; special AskMobileOrCable
 	iffalse .Cancel
 	ifequal $1, .Mobile
 .NoMobile:
@@ -252,9 +252,9 @@ LinkReceptionistScript_Battle:
 	writetext Text_MustSaveGame
 	yesorno
 	iffalse .Mobile_DidNotSave
-	special Function103780
+	; special Function103780
 	iffalse .Mobile_DidNotSave
-	special Function1011f1
+	; special Function1011f1
 	writetext Text_PleaseComeIn
 	waitbutton
 	closetext
@@ -268,7 +268,7 @@ LinkReceptionistScript_Battle:
 	end
 
 .SelectThreeMons:
-	special Mobile_SelectThreeMons
+	; special Mobile_SelectThreeMons
 	iffalse .Mobile_DidNotSelect
 	ifequal $1, .Mobile_OK
 	ifequal $2, .Mobile_OK
@@ -378,7 +378,7 @@ Script_LeftCableTradeCenter:
 	end
 
 Script_LeftMobileTradeRoom:
-	special Function101220
+	; special Function101220
 	scall Script_WalkOutOfMobileTradeRoom
 	setscene SCENE_POKECENTER2F_CHECK_MYSTERY_GIFT
 	setmapscene MOBILE_TRADE_ROOM, SCENE_MOBILETRADEROOM_INITIALIZE
@@ -398,7 +398,7 @@ Script_LeftCableColosseum:
 	end
 
 Script_LeftMobileBattleRoom:
-	special Function101220
+	; special Function101220
 	scall Script_WalkOutOfMobileBattleRoom
 	setscene SCENE_POKECENTER2F_CHECK_MYSTERY_GIFT
 	setmapscene MOBILE_BATTLE_ROOM, SCENE_MOBILEBATTLEROOM_INITIALIZE

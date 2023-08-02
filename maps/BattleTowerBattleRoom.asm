@@ -22,7 +22,7 @@ Script_BattleRoom:
 ; beat all 7 opponents in a row
 Script_BattleRoomLoop:
 	setval BATTLETOWERBATTLEROOM_YOUNGSTER
-	special LoadOpponentTrainerAndPokemonWithOTSprite
+	; special LoadOpponentTrainerAndPokemonWithOTSprite
 	appear BATTLETOWERBATTLEROOM_YOUNGSTER
 	warpsound
 	waitsfx
@@ -31,7 +31,7 @@ Script_BattleRoomLoop:
 	battletowertext BATTLETOWERTEXT_INTRO
 	promptbutton
 	closetext
-	special BattleTowerBattle ; predef StartBattle
+	;special BattleTowerBattle ; predef StartBattle
 	special FadeOutPalettes
 	reloadmap
 	ifnotequal $0, Script_FailedBattleTowerChallenge
@@ -67,11 +67,11 @@ Script_DontBattleNextOpponent:
 	yesorno
 	iffalse Script_DontSaveAndEndTheSession
 	setval BATTLETOWERACTION_SAVELEVELGROUP ; save level group
-	special BattleTowerAction
+	;pecial battleTowerAction
 	setval BATTLETOWERACTION_SAVEOPTIONS ; choose reward
-	special BattleTowerAction
+	;pecial battleTowerAction
 	setval BATTLETOWERACTION_SAVE_AND_QUIT ; quicksave
-	special BattleTowerAction
+	;pecial battleTowerAction
 	playsound SFX_SAVE
 	waitsfx
 	special FadeOutPalettes
@@ -81,9 +81,9 @@ Script_DontSaveAndEndTheSession:
 	yesorno
 	iffalse Script_ContinueAndBattleNextOpponent
 	setval BATTLETOWERACTION_CHALLENGECANCELED
-	special BattleTowerAction
+	;pecial battleTowerAction
 	setval BATTLETOWERACTION_06
-	special BattleTowerAction
+	;pecial battleTowerAction
 	closetext
 	special FadeOutPalettes
 	warpfacing UP, BATTLE_TOWER_1F, 7, 7
@@ -95,7 +95,7 @@ Script_FailedBattleTowerChallenge:
 	special BattleTowerFade
 	warpfacing UP, BATTLE_TOWER_1F, 7, 7
 	setval BATTLETOWERACTION_CHALLENGECANCELED
-	special BattleTowerAction
+	;pecial battleTowerAction
 	opentext
 	writetext Text_ThanksForVisiting
 	waitbutton
@@ -113,7 +113,7 @@ Script_BeatenAllTrainers2:
 
 Script_TooMuchTimeElapsedNoRegister: ; unreferenced
 	setval BATTLETOWERACTION_CHALLENGECANCELED
-	special BattleTowerAction
+	;pecial battleTowerAction
 	opentext
 	writetext Text_TooMuchTimeElapsedNoRegister
 	waitbutton
@@ -122,9 +122,9 @@ Script_TooMuchTimeElapsedNoRegister: ; unreferenced
 
 Script_ChallengeCanceled: ; unreferenced
 	setval BATTLETOWERACTION_CHALLENGECANCELED
-	special BattleTowerAction
+	;pecial battleTowerAction
 	setval BATTLETOWERACTION_06
-	special BattleTowerAction
+	;pecial battleTowerAction
 	opentext
 	writetext Text_ThanksForVisiting
 	writetext Text_WeHopeToServeYouAgain

@@ -5,7 +5,7 @@ Timer:: ; unreferenced
 	ldh a, [hMobile]
 	and a
 	jr z, .not_mobile
-	call MobileTimer
+	; call MobileTimer
 
 .not_mobile
 	pop af

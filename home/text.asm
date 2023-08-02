@@ -292,7 +292,7 @@ ENDM
 MobileScriptChar::
 	ld c, l
 	ld b, h
-	farcall RunMobileScript
+	; farcall RunMobileScript
 	jp PlaceNextChar
 
 MACRO print_name
