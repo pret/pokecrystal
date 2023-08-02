@@ -16,6 +16,8 @@
 	charmap "<MOM>",     $49 ; wMomsName
 	charmap "<PKMN>",    $4a ; "<PK><MN>"
 	charmap "<_CONT>",   $4b ; implements "<CONT>"
+	; While "<SCROLL>" this is used in sharply rose or sharply fell stat texts, this will be
+ 	; adjusted to give the player time to read.
 	charmap "<SCROLL>",  $4c
 	charmap "<NEXT>",    $4e
 	charmap "<LINE>",    $4f
@@ -35,11 +37,11 @@
 	charmap "<TRAINER>", $5d ; "TRAINER"
 	charmap "<ROCKET>",  $5e ; "ROCKET"
 	charmap "<DEXEND>",  $5f
+	charmap "<ATPRA>",	 $60
+	charmap "<ATDNE>",	 $61
 
 ; Actual characters (from gfx/font/font_extra.png)
 
-	charmap "<BOLD_A>",  $60 ; unused
-	charmap "<BOLD_B>",  $61 ; unused
 	charmap "<BOLD_C>",  $62 ; unused
 	charmap "<BOLD_D>",  $63 ; unused
 	charmap "<BOLD_E>",  $64 ; unused

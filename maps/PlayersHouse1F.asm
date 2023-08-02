@@ -68,7 +68,6 @@ MeetMomScript:
 
 .KnowPhone:
 	writetext KnowTheInstructionsText
-	waitbutton
 	sjump .FinishPhone
 
 .ExplainPhone:
@@ -265,7 +264,7 @@ ComeHomeForDSTText:
 KnowTheInstructionsText:
 	text "Then you better"
 	line "get going then!"
-	done
+	autodone
 
 DontKnowTheInstructionsText:
 	text "I'll read the"

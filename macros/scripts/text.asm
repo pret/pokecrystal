@@ -1,11 +1,14 @@
-DEF text   EQUS "db TX_START,"    ; Start writing text.
-DEF next   EQUS "db \"<NEXT>\","  ; Move a line down.
-DEF line   EQUS "db \"<LINE>\","  ; Start writing at the bottom line.
-DEF page   EQUS "db \"@\","       ; Start a new Pokédex page.
-DEF para   EQUS "db \"<PARA>\","  ; Start a new paragraph.
-DEF cont   EQUS "db \"<CONT>\","  ; Scroll to the next line.
-DEF done   EQUS "db \"<DONE>\""   ; End a text box.
-DEF prompt EQUS "db \"<PROMPT>\"" ; Prompt the player to end a text box (initiating some other event).
+DEF text        EQUS "db TX_START,"    ; Start writing text.
+DEF next        EQUS "db \"<NEXT>\","  ; Move a line down.
+DEF line        EQUS "db \"<LINE>\","  ; Start writing at the bottom line.
+DEF page        EQUS "db \"@\","       ; Start a new Pokédex page.
+DEF para        EQUS "db \"<PARA>\","  ; Start a new paragraph.
+DEF autopara    EQUS "db \"<ATPRA>\"," 		; Automatically start a new paragraph.
+DEF cont        EQUS "db \"<CONT>\","  ; Scroll to the next line.
+DEF scroll      EQUS "db \"<SCROLL>\","  	; Scroll to the next line, pausing shortly.
+DEF done        EQUS "db \"<DONE>\""   ; End a text box.
+DEF autodone   	EQUS "db \"<ATDNE>\"" 		; Automatically ends a text box.
+DEF prompt      EQUS "db \"<PROMPT>\"" ; Prompt the player to end a text box (initiating some other event).
 
 ; TextCommands indexes (see home/text.asm)
 	const_def
