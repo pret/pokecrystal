@@ -166,8 +166,6 @@ INCLUDE "data/battle/effect_command_pointers.asm"
 
 SECTION "bank10", ROMX
 
-INCLUDE "engine/pokedex/pokedex.asm"
-INCLUDE "data/moves/moves.asm"
 INCLUDE "engine/pokemon/evolve.asm"
 
 
@@ -177,6 +175,9 @@ INCLUDE "engine/events/fruit_trees.asm"
 INCLUDE "engine/battle/ai/move.asm"
 INCLUDE "engine/pokedex/pokedex_2.asm"
 INCLUDE "engine/pokemon/mail.asm"
+
+INCLUDE "engine/pokedex/pokedex.asm"
+INCLUDE "data/moves/moves.asm"
 
 
 SECTION "Crystal Features 1", ROMX
@@ -638,6 +639,7 @@ INCLUDE "data/items/names.asm"
 INCLUDE "engine/items/print_item_description.asm"
 INCLUDE "data/moves/names.asm"
 INCLUDE "engine/overworld/landmarks.asm"
+INCLUDE "data/abilities/names.asm"
 
 
 SECTION "Print Party", ROMX

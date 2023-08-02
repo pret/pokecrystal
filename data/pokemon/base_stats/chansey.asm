@@ -8,7 +8,7 @@
 	db 255 ; base exp
 	db NO_ITEM, LUCKY_EGG ; items
 	db GENDER_F100 ; gender ratio
-	db 100 ; unknown 1
+	db NATURAL_CURE
 	db 40 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/chansey/front.dimensions"

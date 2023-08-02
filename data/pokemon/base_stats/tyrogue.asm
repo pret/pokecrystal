@@ -8,7 +8,7 @@
 	db 91 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F0 ; gender ratio
-	db 100 ; unknown 1
+	db INNER_FOCUS
 	db 25 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/tyrogue/front.dimensions"

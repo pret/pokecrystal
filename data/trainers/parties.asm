@@ -79,16 +79,19 @@ ClairGroup:
 Rival1Group:
 	; RIVAL1 (1)
 	db "?@", TRAINERTYPE_NORMAL
+	db  5, ZUBAT
 	db  5, CHIKORITA
 	db -1 ; end
 
 	; RIVAL1 (2)
 	db "?@", TRAINERTYPE_NORMAL
+	db  5, ZUBAT
 	db  5, CYNDAQUIL
 	db -1 ; end
 
 	; RIVAL1 (3)
 	db "?@", TRAINERTYPE_NORMAL
+	db  5, ZUBAT
 	db  5, TOTODILE
 	db -1 ; end
 
@@ -3497,4 +3500,10 @@ MysticalmanGroup:
 	db 23, DROWZEE,    DREAM_EATER, HYPNOSIS, DISABLE, CONFUSION
 	db 23, HAUNTER,    LICK, HYPNOSIS, MEAN_LOOK, CURSE
 	db 25, ELECTRODE,  SCREECH, SONICBOOM, THUNDER, ROLLOUT
+	db -1 ; end
+
+CoachGroup:
+	; COACH (1)
+	db "FORWARD@", TRAINERTYPE_MOVES
+	db 10, CHANSEY,    SWORDS_DANCE, LEER, PSYCH_UP, SCARY_FACE
 	db -1 ; end

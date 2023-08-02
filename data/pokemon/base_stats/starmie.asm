@@ -8,7 +8,7 @@
 	db 207 ; base exp
 	db STARDUST, STAR_PIECE ; items
 	db GENDER_UNKNOWN ; gender ratio
-	db 100 ; unknown 1
+	db REGENERATOR
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/starmie/front.dimensions"

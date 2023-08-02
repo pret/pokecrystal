@@ -8,7 +8,7 @@
 	db 203 ; base exp
 	db PEARL, BIG_PEARL ; items
 	db GENDER_F50 ; gender ratio
-	db 100 ; unknown 1
+	db SKILL_LINK
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/cloyster/front.dimensions"

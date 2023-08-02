@@ -4,7 +4,7 @@ EvolutionMoves::
 	db NO_MOVE      ; IVYSAUR
 	db EARTH_POWER  ; VENUSAUR
 	db NO_MOVE      ; CHARMANDER
-	db NO_MOVE      ; CHARMELEON
+	db TWISTER      ; CHARMELEON
 	db AIR_SLASH    ; CHARIZARD
 	db NO_MOVE      ; SQUIRTLE
 	db NO_MOVE      ; WARTORTLE
@@ -21,7 +21,7 @@ EvolutionMoves::
 	db NO_MOVE      ; RATTATA
 	db SCARY_FACE   ; RATICATE
 	db NO_MOVE      ; SPEAROW
-	db NO_MOVE      ; FEAROW
+	db DRILL_RUN    ; FEAROW
 	db NO_MOVE      ; EKANS
 	db TAIL_SWIPE   ; ARBOK
 	db NO_MOVE      ; PIKACHU
@@ -30,21 +30,21 @@ EvolutionMoves::
 	db SLASH        ; SANDSLASH
 	db NO_MOVE      ; NIDORAN_F
 	db NO_MOVE      ; NIDORINA
-	db NO_MOVE      ; NIDOQUEEN
+	db MILK_DRINK   ; NIDOQUEEN
 	db NO_MOVE      ; NIDORAN_M
 	db NO_MOVE      ; NIDORINO
-	db NO_MOVE      ; NIDOKING
+	db EARTHQUAKE   ; NIDOKING
 	db NO_MOVE      ; CLEFAIRY
 	db NO_MOVE      ; CLEFABLE
 	db NO_MOVE      ; VULPIX
 	db PSYCH_UP     ; NINETALES
 	db NO_MOVE      ; JIGGLYPUFF
-	db NO_MOVE      ; WIGGLYTUFF
+	db MOONBLAST    ; WIGGLYTUFF
 	db NO_MOVE      ; ZUBAT
-	db NO_MOVE      ; GOLBAT
+	db SCREECH	    ; GOLBAT
 	db NO_MOVE      ; ODDISH
 	db NO_MOVE      ; GLOOM
-	db NO_MOVE      ; VILEPLUME
+	db DARK_PULSE   ; VILEPLUME
 	db NO_MOVE      ; PARAS
 	db SHADOW_CLAW  ; PARASECT
 	db NO_MOVE      ; VENONAT
@@ -54,7 +54,7 @@ EvolutionMoves::
 	db NO_MOVE      ; MEOWTH
 	db SLASH        ; PERSIAN
 	db NO_MOVE      ; PSYDUCK
-	db NO_MOVE      ; GOLDUCK
+	db PSYCH_UP     ; GOLDUCK
 	db NO_MOVE      ; MANKEY
 	db RAGE         ; PRIMEAPE
 	db NO_MOVE      ; GROWLITHE
@@ -79,7 +79,7 @@ EvolutionMoves::
 	db NO_MOVE      ; PONYTA
 	db PLAY_ROUGH   ; RAPIDASH
 	db NO_MOVE      ; SLOWPOKE
-	db BARRIER	    ; SLOWBRO
+	db AMNESIA	    ; SLOWBRO
 	db NO_MOVE      ; MAGNEMITE
 	db TRI_ATTACK   ; MAGNETON
 	db NO_MOVE      ; FARFETCH_D
@@ -96,11 +96,11 @@ EvolutionMoves::
 	db SHADOW_BALL  ; GENGAR
 	db NO_MOVE      ; ONIX
 	db NO_MOVE      ; DROWZEE
-	db NO_MOVE      ; HYPNO
+	db AURA_SPHERE  ; HYPNO
 	db NO_MOVE      ; KRABBY
-	db NO_MOVE      ; KINGLER
+	db CRABHAMMER   ; KINGLER
 	db NO_MOVE      ; VOLTORB
-	db NO_MOVE      ; ELECTRODE
+	db CHLOROBLAST  ; ELECTRODE
 	db NO_MOVE      ; EXEGGCUTE
 	db STOMP        ; EXEGGUTOR
 	db NO_MOVE      ; CUBONE
@@ -111,21 +111,21 @@ EvolutionMoves::
 	db NO_MOVE      ; KOFFING
 	db NO_MOVE      ; WEEZING
 	db NO_MOVE      ; RHYHORN
-	db OUTRAGE      ; RHYDON
+	db DRILL_RUN    ; RHYDON
 	db NO_MOVE      ; CHANSEY
 	db NO_MOVE      ; TANGELA
 	db NO_MOVE      ; KANGASKHAN
 	db NO_MOVE      ; HORSEA
 	db NO_MOVE      ; SEADRA
 	db NO_MOVE      ; GOLDEEN
-	db NO_MOVE      ; SEAKING
+	db DRILL_RUN    ; SEAKING
 	db NO_MOVE      ; STARYU
-	db NO_MOVE      ; STARMIE
+	db CALM_MIND    ; STARMIE
 	db NO_MOVE      ; MR__MIME
 	db NO_MOVE      ; SCYTHER
-	db NO_MOVE      ; JYNX
-	db NO_MOVE      ; ELECTABUZZ
-	db NO_MOVE      ; MAGMAR
+	db MEAN_LOOK    ; JYNX
+	db SCREECH      ; ELECTABUZZ
+	db NIGHTMARE    ; MAGMAR
 	db NO_MOVE      ; PINSIR
 	db NO_MOVE      ; TAUROS
 	db NO_MOVE      ; MAGIKARP
@@ -138,7 +138,7 @@ EvolutionMoves::
 	db EMBER        ; FLAREON
 	db NO_MOVE      ; PORYGON
 	db NO_MOVE      ; OMANYTE
-	db ROCK_BLAST   ; OMASTAR
+	db SPIKES	    ; OMASTAR
 	db NO_MOVE      ; KABUTO
 	db CUT	        ; KABUTOPS
 	db NO_MOVE      ; AERODACTYL
@@ -148,11 +148,11 @@ EvolutionMoves::
 	db NO_MOVE      ; MOLTRES
 	db NO_MOVE      ; DRATINI
 	db NO_MOVE      ; DRAGONAIR
-	db FLY		    ; DRAGONITE
+	db EXTREMESPEED ; DRAGONITE
 	db NO_MOVE      ; MEWTWO
 	db NO_MOVE      ; MEW
 	db NO_MOVE      ; CHIKORITA
-	db NO_MOVE      ; BAYLEEF
+	db TAIL_SWIPE   ; BAYLEEF
 	db GIGA_DRAIN   ; MEGANIUM
 	db NO_MOVE      ; CYNDAQUIL
 	db NO_MOVE      ; QUILAVA
@@ -163,11 +163,11 @@ EvolutionMoves::
 	db NO_MOVE      ; SENTRET
 	db AGILITY      ; FURRET
 	db NO_MOVE      ; HOOTHOOT
-	db NO_MOVE      ; NOCTOWL
+	db OMINOUS_WIND ; NOCTOWL
 	db NO_MOVE      ; LEDYBA
 	db PSYCH_UP	    ; LEDIAN
 	db NO_MOVE      ; SPINARAK
-	db VICEGRIP     ; ARIADOS
+	db SWORDS_DANCE ; ARIADOS
 	db CUT		    ; CROBAT
 	db NO_MOVE      ; CHINCHOU
 	db NO_MOVE      ; LANTURN
@@ -175,33 +175,33 @@ EvolutionMoves::
 	db NO_MOVE      ; CLEFFA
 	db NO_MOVE      ; IGGLYBUFF
 	db NO_MOVE      ; TOGEPI
-	db FAIRY_WIND   ; TOGETIC
+	db AIR_CUTTER   ; TOGETIC
 	db NO_MOVE      ; NATU
 	db AIR_SLASH    ; XATU
 	db NO_MOVE      ; MAREEP
 	db NO_MOVE      ; FLAAFFY
 	db DRAGONBREATH ; AMPHAROS
-	db PETAL_DANCE  ; BELLOSSOM
+	db PLAY_ROUGH   ; BELLOSSOM
 	db NO_MOVE      ; MARILL
 	db NO_MOVE      ; AZUMARILL
-	db STRENGTH     ; SUDOWOODO
+	db NO_MOVE      ; SUDOWOODO
 	db HYPER_VOICE  ; POLITOED
 	db NO_MOVE      ; HOPPIP
 	db NO_MOVE      ; SKIPLOOM
 	db NO_MOVE      ; JUMPLUFF
 	db NO_MOVE      ; AIPOM
 	db NO_MOVE      ; SUNKERN
-	db EMBER        ; SUNFLORA
+	db FLAME_BURST  ; SUNFLORA
 	db NO_MOVE      ; YANMA
 	db NO_MOVE      ; WOOPER
 	db ROCK_THROW   ; QUAGSIRE
 	db CONFUSION    ; ESPEON
 	db SNARL        ; UMBREON
 	db NO_MOVE      ; MURKROW
-	db NO_MOVE      ; SLOWKING
+	db BARRIER      ; SLOWKING
 	db NO_MOVE      ; MISDREAVUS
 	db NO_MOVE      ; UNOWN
-	db RECOVER      ; WOBBUFFET
+	db NO_MOVE      ; WOBBUFFET
 	db NO_MOVE      ; GIRAFARIG
 	db NO_MOVE      ; PINECO
 	db FLASH_CANNON ; FORRETRESS
@@ -211,7 +211,7 @@ EvolutionMoves::
 	db NO_MOVE      ; SNUBBULL
 	db NO_MOVE      ; GRANBULL
 	db NO_MOVE      ; QWILFISH
-	db METAL_CLAW   ; SCIZOR
+	db NO_MOVE	    ; SCIZOR
 	db NO_MOVE      ; SHUCKLE
 	db NO_MOVE      ; HERACROSS
 	db NO_MOVE      ; SNEASEL
@@ -220,7 +220,7 @@ EvolutionMoves::
 	db NO_MOVE      ; SLUGMA
 	db POWER_GEM    ; MAGCARGO
 	db NO_MOVE      ; SWINUB
-	db ICE_SHARD    ; PILOSWINE
+	db SPIKES	    ; PILOSWINE
 	db NO_MOVE      ; CORSOLA
 	db NO_MOVE      ; REMORAID
 	db FLAME_BURST  ; OCTILLERY
@@ -229,10 +229,10 @@ EvolutionMoves::
 	db NO_MOVE      ; SKARMORY
 	db NO_MOVE      ; HOUNDOUR
 	db NO_MOVE      ; HOUNDOOM
-	db DRAGONBREATH ; KINGDRA
+	db OUTRAGE	    ; KINGDRA
 	db NO_MOVE      ; PHANPY
 	db LOW_KICK	    ; DONPHAN
-	db NO_MOVE      ; PORYGON2
+	db ZAP_CANNON   ; PORYGON2
 	db NO_MOVE      ; STANTLER
 	db NO_MOVE      ; SMEARGLE
 	db NO_MOVE      ; TYROGUE

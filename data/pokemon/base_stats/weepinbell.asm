@@ -3,12 +3,12 @@
 	db  65,  90,  50,  55,  85,  45
 	;   hp  atk  def  spd  sat  sdf
 
-	db GRASS, GRASS ; type
+	db GRASS, STEEL ; type
 	db 120 ; catch rate
 	db 151 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio
-	db 100 ; unknown 1
+	db ROUGH_SKIN
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/weepinbell/front.dimensions"

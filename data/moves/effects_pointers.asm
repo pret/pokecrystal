@@ -39,7 +39,7 @@ MoveEffectsPointers:
 	dw LightScreen
 	dw TriAttack
 	dw Draco
-	dw OHKOHit
+	dw NormalHit
 	dw Coil
 	dw SuperFang
 	dw StaticDamage
