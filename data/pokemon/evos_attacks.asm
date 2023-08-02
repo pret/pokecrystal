@@ -843,7 +843,7 @@ DiglettEvosAttacks:
 
 DugtrioEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, NIGHT_SLASH
+	db 1, BEAT_UP
 	db 1, POUND
 	db 1, GROWL
 	db 6, MAGNITUDE
@@ -852,9 +852,10 @@ DugtrioEvosAttacks:
 	db 21, BULLDOZE
 	db 29, SPIKES
 	db 35, SLASH
-	db 40, BEAT_UP
+	db 40, NIGHT_SLASH
 	db 45, SANDSTORM
 	db 51, EARTHQUAKE
+	db 60, STRENGTH
 	db 0 ; no more level-up moves
 
 MeowthEvosAttacks:

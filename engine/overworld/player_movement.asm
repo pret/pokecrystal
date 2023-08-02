@@ -368,6 +368,32 @@ DoPlayerMovement::
 	and [hl]
 	jr z, .DontJump
 
+; d = x coordinate of tile across the ledge
+	ld a, [wPlayerMapX]
+	ld d, a
+	ld a, [wWalkingX]
+	add a
+	add d
+	ld d, a
+; e = y coordinate of tile across the ledge
+	ld a, [wPlayerMapY]
+	ld e, a
+	ld a, [wWalkingY]
+	add a
+	add e
+	ld e, a
+; make sure the tile across the ledge is walkable
+	push de
+	call GetCoordTile
+	call .CheckWalkable
+	pop de
+	jr c, .DontJump
+; make sure there's no NPC across the ledge
+	xor a
+	ldh [hMapObjectIndex], a
+	farcall IsNPCAtCoord
+	jr c, .DontJump
+
 	ld de, SFX_JUMP_OVER_LEDGE
 	call PlaySFX
 	ld a, STEP_LEDGE
