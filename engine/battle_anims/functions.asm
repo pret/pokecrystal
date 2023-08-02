@@ -1443,7 +1443,7 @@ BattleAnimFunction_ThunderWave:
 
 .one
 	call BattleAnim_IncAnonJumptableIndex
-	ld a, BATTLEANIMFRAMESET_35
+	ld a, BATTLEANIMFRAMESET_THUNDER_WAVE_EXTRA
 	call ReinitBattleAnimFrameset
 .zero
 .two
