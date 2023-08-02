@@ -2204,7 +2204,7 @@ GetMapMusic::
 	jr z, .mahoganymart
 	bit RADIO_TOWER_MUSIC_F, c
 	jr nz, .radiotower
-	farcall Function8b342
+	; farcall Function8b342
 	ld e, c
 	ld d, 0
 .done

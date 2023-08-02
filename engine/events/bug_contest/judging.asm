@@ -1,6 +1,6 @@
 _BugContestJudging:
 	call ContestScore
-	farcall StubbedTrainerRankings_BugContestScore
+	;farcall StubbedTrainerRankings_BugContestScore
 	call BugContest_JudgeContestants
 	ld a, [wBugContestThirdPlaceWinnerID]
 	call LoadContestantName

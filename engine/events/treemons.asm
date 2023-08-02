@@ -1,5 +1,5 @@
 TreeMonEncounter:
-	farcall StubbedTrainerRankings_TreeEncounters
+	; ;farcall StubbedTrainerRankings_TreeEncounters
 
 	xor a
 	ld [wTempWildMonSpecies], a

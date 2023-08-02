@@ -165,7 +165,7 @@ LanceHealsCommon:
 	waitbutton
 	closetext
 	special FadeOutPalettes
-	special StubbedTrainerRankings_Healings
+; special StubbedTrainerRankings_Healings
 	playsound SFX_FULL_HEAL
 	special HealParty
 	special FadeInPalettes

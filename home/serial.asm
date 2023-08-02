@@ -35,7 +35,7 @@ Serial::
 	jr .player2
 
 .mobile
-	call MobileReceive
+	; call MobileReceive
 	jr .end
 
 .printer

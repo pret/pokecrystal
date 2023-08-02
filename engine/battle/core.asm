@@ -180,9 +180,9 @@ BattleTurn:
 
 	call IsMobileBattle
 	jr nz, .not_disconnected
-	farcall Function100da5
-	farcall StartMobileInactivityTimer
-	farcall Function100dd8
+	; farcall Function100da5
+	; farcall StartMobileInactivityTimer
+	; farcall Function100dd8
 	jp c, .quit
 .not_disconnected
 
@@ -2404,7 +2404,7 @@ WinTrainerBattle:
 	ld c, 40
 	call DelayFrames
 	ld c, $4 ; win
-	farcall Mobile_PrintOpponentBattleMessage
+	; farcall Mobile_PrintOpponentBattleMessage
 	ret
 
 .battle_tower
@@ -2536,7 +2536,7 @@ AddBattleMoneyToAccount:
 	push bc
 	ld b, h
 	ld c, l
-	farcall StubbedTrainerRankings_AddToBattlePayouts
+	; ;farcall StubbedTrainerRankings_AddToBattlePayouts
 	pop bc
 	pop hl
 .loop
@@ -2855,7 +2855,7 @@ SelectBattleMon:
 	ret
 
 .mobile
-	farcall Mobile_PartyMenuSelect
+	; farcall Mobile_PartyMenuSelect
 	ret
 
 PickPartyMonInBattle:
@@ -3012,7 +3012,7 @@ LostBattle:
 	call DelayFrames
 
 	ld c, $3 ; lost
-	farcall Mobile_PrintOpponentBattleMessage
+	; farcall Mobile_PrintOpponentBattleMessage
 	scf
 	ret
 
@@ -4947,7 +4947,7 @@ LoadBattleMenu2:
 	ret
 
 .mobile
-	farcall Mobile_LoadBattleMenu
+	; farcall Mobile_LoadBattleMenu
 	ld a, [wcd2b]
 	and a
 	ret z
@@ -5113,13 +5113,13 @@ BattleMenuPKMN_Loop:
 	jp BattleMenu
 
 .GetMenu:
-	call IsMobileBattle
+	call IsMobileBattle ;; is mobilebattle could be hardcoded to false likely
 	jr z, .mobile
 	farcall BattleMonMenu
 	ret
 
 .mobile
-	farcall MobileBattleMonMenu
+	; farcall MobileBattleMonMenu
 	ret
 
 Battle_StatsScreen:
@@ -5336,9 +5336,9 @@ CheckAmuletCoin:
 	ret
 
 MoveSelectionScreen:
-	call IsMobileBattle
+	call IsMobileBattle ; This chunk of lines might be cool just to yank out -TT
 	jr nz, .not_mobile
-	farcall Mobile_MoveSelectionScreen
+	; farcall Mobile_MoveSelectionScreen
 	ret
 
 .not_mobile
@@ -5962,7 +5962,7 @@ CheckEnemyLockedIn:
 	ret
 
 LinkBattleSendReceiveAction:
-	farcall _LinkBattleSendReceiveAction
+	; farcall _LinkBattleSendReceiveAction
 	ret
 
 LoadEnemyMon:
@@ -8035,7 +8035,7 @@ CallDoBattle: ; unreferenced
 	ret
 
 BattleIntro:
-	farcall StubbedTrainerRankings_Battles ; mobile
+	;farcall StubbedTrainerRankings_Battles ; mobile
 	call LoadTrainerOrWildMonPic
 	xor a
 	ld [wTempBattleMonSpecies], a
@@ -8116,7 +8116,7 @@ BackUpBGMap2:
 
 InitEnemyTrainer:
 	ld [wTrainerClass], a
-	farcall StubbedTrainerRankings_TrainerBattles
+	;farcall StubbedTrainerRankings_TrainerBattles
 	xor a
 	ld [wTempEnemyMonSpecies], a
 	callfar GetTrainerAttributes
@@ -8172,7 +8172,7 @@ InitEnemyTrainer:
 InitEnemyWildmon:
 	ld a, WILD_BATTLE
 	ld [wBattleMode], a
-	farcall StubbedTrainerRankings_WildBattles
+	;farcall StubbedTrainerRankings_WildBattles
 	call LoadEnemyMon
 	ld hl, wEnemyMonMoves
 	ld de, wWildMonMoves
@@ -8312,8 +8312,8 @@ CleanUpBattleRAM:
 	ret
 
 ShowLinkBattleParticipantsAfterEnd:
-	farcall StubbedTrainerRankings_LinkBattles
-	farcall BackupMobileEventIndex
+	;farcall StubbedTrainerRankings_LinkBattles
+	; farcall BackupMobileEventIndex
 	ld a, [wCurOTMon]
 	ld hl, wOTPartyMon1Status
 	call GetPartyLocation
@@ -8342,24 +8342,24 @@ DisplayLinkBattleResult:
 	jr c, .win ; WIN
 	jr z, .lose ; LOSE
 	; DRAW
-	farcall StubbedTrainerRankings_ColosseumDraws
+	;farcall StubbedTrainerRankings_ColosseumDraws
 	ld de, .Draw
 	jr .store_result
 
 .win
-	farcall StubbedTrainerRankings_ColosseumWins
+	;farcall StubbedTrainerRankings_ColosseumWins
 	ld de, .YouWin
 	jr .store_result
 
 .lose
-	farcall StubbedTrainerRankings_ColosseumLosses
+	;farcall StubbedTrainerRankings_ColosseumLosses
 	ld de, .YouLose
 	jr .store_result
 
 .store_result
 	hlcoord 6, 8
 	call PlaceString
-	farcall BackupMobileEventIndex
+	; farcall BackupMobileEventIndex
 	ld c, 200
 	call DelayFrames
 
@@ -9077,7 +9077,7 @@ BattleStartMessage:
 	cp BATTLETYPE_FISH
 	jr nz, .NotFishing
 
-	farcall StubbedTrainerRankings_HookedEncounters
+	;farcall StubbedTrainerRankings_HookedEncounters
 
 	ld hl, HookedPokemonAttackedText
 	jr .PlaceBattleStartText
@@ -9101,6 +9101,6 @@ BattleStartMessage:
 	ret nz
 
 	ld c, $2 ; start
-	farcall Mobile_PrintOpponentBattleMessage
+	; farcall Mobile_PrintOpponentBattleMessage
 
 	ret

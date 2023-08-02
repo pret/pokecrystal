@@ -380,7 +380,7 @@ UsedSurfScript:
 	end
 
 .stubbed_fn
-	farcall StubbedTrainerRankings_Surf
+	;farcall StubbedTrainerRankings_Surf
 	ret
 
 UsedSurfText:
@@ -637,7 +637,7 @@ Script_UsedWaterfall:
 	ld a, [wPlayerTile]
 	call CheckWaterfallTile
 	ret z
-	farcall StubbedTrainerRankings_Waterfall
+	;farcall StubbedTrainerRankings_Waterfall
 	ld a, $1
 	ld [wScriptVar], a
 	ret
