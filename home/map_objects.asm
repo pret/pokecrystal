@@ -300,12 +300,6 @@ CheckObjectTime::
 	scf
 	ret
 
-CopyMapObjectStruct:: ; unreferenced
-	ldh [hMapObjectIndex], a
-	call GetMapObject
-	call CopyObjectStruct
-	ret
-
 UnmaskCopyMapObjectStruct::
 	ldh [hMapObjectIndex], a
 	call UnmaskObject
@@ -360,35 +354,6 @@ CopyPlayerObjectTemplate::
 	pop hl
 	ld bc, MAPOBJECT_LENGTH - 1
 	call CopyBytes
-	ret
-
-DeleteFollowerMapObject: ; unreferenced
-	call GetMapObject
-	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
-	add hl, bc
-	ld a, [hl]
-	push af
-	ld [hl], -1
-	inc hl
-	ld bc, MAPOBJECT_LENGTH - 1
-	xor a
-	call ByteFill
-	pop af
-	cp -1
-	ret z
-	cp NUM_OBJECT_STRUCTS
-	ret nc
-	ld b, a
-	ld a, [wObjectFollow_Leader]
-	cp b
-	jr nz, .ok
-	ld a, -1
-	ld [wObjectFollow_Leader], a
-
-.ok
-	ld a, b
-	call GetObjectStruct
-	farcall DeleteMapObject
 	ret
 
 LoadMovementDataPointer::
@@ -572,16 +537,6 @@ _GetMovementIndex::
 	rst Bankswitch
 
 	ld a, h
-	ret
-
-SetVramState_Bit0:: ; unreferenced
-	ld hl, wVramState
-	set 0, [hl]
-	ret
-
-ResetVramState_Bit0:: ; unreferenced
-	ld hl, wVramState
-	res 0, [hl]
 	ret
 
 UpdateSprites::

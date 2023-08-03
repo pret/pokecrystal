@@ -122,21 +122,6 @@ MobileTimer::
 	pop af
 	reti
 
-Function3ed7:: ; unreferenced
-	ld [$dc02], a
-	ldh a, [hROMBank]
-	push af
-	ld a, BANK(Function114243)
-	rst Bankswitch
-
-	call Function114243
-	pop bc
-	ld a, b
-	rst Bankswitch
-
-	ld a, [$dc02]
-	ret
-
 Function3eea::
 	push hl
 	push bc
@@ -150,31 +135,6 @@ Function3eea::
 	pop bc
 	pop hl
 	call MobileHome_PlaceBox
-	ret
-
-Function3efd:: ; unreferenced
-	push hl
-	hlcoord 0, 12
-	ld b, 4
-	ld c, 18
-	call .fill_attr
-	pop hl
-	call PrintTextboxText
-	ret
-
-.fill_attr
-	push hl
-	push bc
-	ld de, wAttrmap - wTilemap
-	add hl, de
-	inc b
-	inc b
-	inc c
-	inc c
-	call Function3f35
-	pop bc
-	pop hl
-	call TextboxBorder
 	ret
 
 Function3f20::

@@ -86,60 +86,55 @@ CheckPartyFullAfterContest:
 	ret
 
 .TryAddToBox:
-	ld a, BANK(sBoxCount)
-	call OpenSRAM
-	ld hl, sBoxCount
-	ld a, [hl]
-	cp MONS_PER_BOX
-	call CloseSRAM
-	jr nc, .BoxFull
+	newfarcall NewStorageBoxPointer
+	jr c, .BoxFull
+	push bc
 	xor a
 	ld [wCurPartyMon], a
 	ld hl, wContestMon
 	ld de, wBufferMon
-	ld bc, BOXMON_STRUCT_LENGTH
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 	ld hl, wPlayerName
 	ld de, wBufferMonOT
 	ld bc, NAME_LENGTH
 	call CopyBytes
-	callfar InsertPokemonIntoBox
 	ld a, [wCurPartySpecies]
+	ld [wBufferMonAltSpecies], a
 	ld [wNamedObjectIndex], a
 	call GetPokemonName
+	pop bc
+	ld a, b
+	ld [wBufferMonBox], a
+	ld a, c
+	ld [wBufferMonSlot], a
+	newfarcall UpdateStorageBoxMonFromTemp
 	call GiveANickname_YesNo
 	ld hl, wStringBuffer1
 	jr c, .Box_SkipNickname
-	ld a, BOXMON
+	ld a, BUFFERMON
 	ld [wMonType], a
 	ld de, wMonOrItemNameBuffer
 	callfar InitNickname
 	ld hl, wMonOrItemNameBuffer
 
 .Box_SkipNickname:
-	ld a, BANK(sBoxMonNicknames)
-	call OpenSRAM
-	ld de, sBoxMonNicknames
+	ld de, wBufferMonNickname
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
-	call CloseSRAM
+	newfarcall UpdateStorageBoxMonFromTemp
 
 .BoxFull:
-	ld a, BANK(sBoxMon1Level)
-	call OpenSRAM
-	ld a, [sBoxMon1Level]
+	ld a, [wBufferMonLevel]
 	ld [wCurPartyLevel], a
-	call CloseSRAM
 	call SetBoxMonCaughtData
-	ld a, BANK(sBoxMon1CaughtLocation)
-	call OpenSRAM
-	ld hl, sBoxMon1CaughtLocation
+	ld hl, wBufferMonCaughtLocation
 	ld a, [hl]
 	and CAUGHT_GENDER_MASK
 	ld b, LANDMARK_NATIONAL_PARK
 	or b
 	ld [hl], a
-	call CloseSRAM
+	newfarcall UpdateStorageBoxMonFromTemp
 	xor a
 	ld [wContestMon], a
 	ld a, BUGCONTEST_BOXED_MON
@@ -199,22 +194,14 @@ SetBoxmonOrEggmonCaughtData:
 	ret
 
 SetBoxMonCaughtData:
-	ld a, BANK(sBoxMon1CaughtLevel)
-	call OpenSRAM
-	ld hl, sBoxMon1CaughtLevel
+	ld hl, wBufferMonCaughtData
 	call SetBoxmonOrEggmonCaughtData
-	call CloseSRAM
-	ret
+	newfarjp UpdateStorageBoxMonFromTemp
 
 SetGiftBoxMonCaughtData:
-	push bc
-	ld a, BANK(sBoxMon1CaughtLevel)
-	call OpenSRAM
-	ld hl, sBoxMon1CaughtLevel
-	pop bc
+	ld hl, wBufferMonCaughtLevel
 	call SetGiftMonCaughtData
-	call CloseSRAM
-	ret
+	newfarjp UpdateStorageBoxMonFromTemp
 
 SetGiftPartyMonCaughtData:
 	ld a, [wPartyCount]

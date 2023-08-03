@@ -2448,125 +2448,7 @@ Function17ded9:
 	jp asm_17e0ee
 
 Function17e026:
-	ld a, BANK(sBoxCount)
-	call OpenSRAM
-	ld a, [sBoxCount]
-	call CloseSRAM
-	cp $14
-	jp nc, .asm_17e0ea
-	bit 0, b
-	jp z, .asm_17e0ea
-	push bc
-	push hl
-	farcall LoadEnemyMon
-	farcall SendMonIntoBox
-	farcall SetBoxMonCaughtData
-	pop hl
-	pop bc
-	ld a, BANK(sBoxMonNicknames)
-	call OpenSRAM
-	bit 1, b
-	jr z, .asm_17e067
-	push bc
-	ld bc, $b
-	ld de, sBoxMonNicknames
-	call CopyBytes
-	pop bc
-	jr .asm_17e06b
-
-.asm_17e067
-	ld de, $6
-	add hl, de
-
-.asm_17e06b
-	bit 2, b
-	jr z, .asm_17e08e
-	push bc
-	ld bc, $6
-	ld de, sBoxMonOTs
-	call CopyBytes
-	ld a, [hli]
-	ld b, a
-	push hl
-	call CloseSRAM
-	farcall SetGiftBoxMonCaughtData
-	ld a, $1
-	call OpenSRAM
-	pop hl
-	pop bc
-	jr .asm_17e092
-
-.asm_17e08e
-	ld de, $7
-	add hl, de
-
-.asm_17e092
-	bit 3, b
-	jr z, .asm_17e0a2
-	push bc
-	ld de, sBoxMon1ID
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hli]
-	ld [de], a
-	pop bc
-	jr .asm_17e0a4
-
-.asm_17e0a2
-	inc hl
-	inc hl
-
-.asm_17e0a4
-	bit 4, b
-	jr z, .asm_17e0b4
-	push bc
-	ld de, sBoxMon1DVs
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hli]
-	ld [de], a
-	pop bc
-	jr .asm_17e0b6
-
-.asm_17e0b4
-	inc hl
-	inc hl
-
-.asm_17e0b6
-	bit 5, b
-	ld a, [hli]
-	jr z, .asm_17e0be
-	ld [sBoxMon1Item], a
-
-.asm_17e0be
-	bit 6, b
-	jr z, .asm_17e0e1
-	push bc
-	ld de, sBoxMon1Moves
-	ld bc, $4
-	call CopyBytes
-	push hl
-	ld hl, sBoxMon1Moves
-	ld de, sBoxMon1PP
-	predef FillPP
-	call CloseSRAM
-	pop hl
-	pop bc
-	inc hl
-	inc hl
-	jr asm_17e0ee
-
-.asm_17e0e1
-	call CloseSRAM
-	ld de, $6
-	add hl, de
-	jr asm_17e0ee
-
-.asm_17e0ea
-	ld bc, $1a
-	add hl, bc
+	ret
 
 asm_17e0ee:
 	ld a, [hli]
@@ -2614,33 +2496,6 @@ Function17e0fd:
 	ret
 
 Function17e133:
-	call IncCrashCheckPointer
-	ld de, wc708
-	ld bc, $5
-	call CopyBytes
-	ldh a, [rSVBK]
-	push af
-	ld a, $1
-	ldh [rSVBK], a
-	ld hl, wc708
-	ld a, [hli]
-	ld [wScriptVar], a
-	push hl
-	farcall MobileCheckOwnMonAnywhere
-	pop hl
-	jr c, .asm_17e159
-	inc hl
-	inc hl
-
-.asm_17e159
-	ld a, [hli]
-	ld b, a
-	ld a, [hl]
-	ld h, a
-	ld l, b
-	pop af
-	ldh [rSVBK], a
-	call Function17e40f
 	ret
 
 Function17e165:
@@ -2970,7 +2825,7 @@ IncCrashCheckPointer_SaveAfterLinkTrade:
 	inc_crash_check_pointer_farcall SaveAfterLinkTrade
 
 IncCrashCheckPointer_SaveBox:
-	inc_crash_check_pointer_farcall SaveBox
+	inc_crash_check_pointer_farcall DoNothing
 
 IncCrashCheckPointer_SaveChecksum:
 	inc_crash_check_pointer_farcall SaveChecksum

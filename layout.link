@@ -69,6 +69,8 @@ ROMX $10
 	"Evolutions and Attacks"
 ROMX $11
 	"bank11"
+	"Newbox"
+	"Bill's PC Graphics"
 ROMX $12
 	"Crystal Features 1"
 ROMX $13
@@ -367,15 +369,15 @@ SRAM $00
 	"Backup Save"
 SRAM $01
 	"Save"
-	"Active Box"
+	"Box Metadata"
 	"Link Battle Data"
 	"SRAM Hall of Fame"
 	"SRAM Crystal Data"
 	"SRAM Battle Tower"
 SRAM $02
-	"Boxes 1-7"
+	"PokeDB Bank 1"
 SRAM $03
-	"Boxes 8-14"
+	"PokeDB Bank 2"
 SRAM $04
 	"SRAM Mobile 1"
 SRAM $05

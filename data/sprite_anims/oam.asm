@@ -147,6 +147,14 @@ SpriteAnimOAMData:
 	spriteanimoam $08, .OAMData_GameFreakLogo4_11        ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_9
 	spriteanimoam $04, .OAMData_GameFreakLogo4_11        ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_10
 	spriteanimoam $00, .OAMData_GameFreakLogo4_11        ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_11
+	spriteanimoam $00, .OAMData_PartyMon                 ; SPRITE_ANIM_OAMSET_PARTY_MON_1
+	spriteanimoam $04, .OAMData_PartyMon                 ; SPRITE_ANIM_OAMSET_PARTY_MON_2
+	spriteanimoam $00, .OAMData_PCCursor                 ; SPRITE_ANIM_OAMSET_PC_CURSOR
+	spriteanimoam $00, .OAMData_PCCursorItem             ; SPRITE_ANIM_OAMSET_PC_CURSOR_ITEM
+	spriteanimoam $00, .OAMData_PCQuick                  ; SPRITE_ANIM_OAMSET_PC_QUICK
+	spriteanimoam $00, .OAMData_PCMode                   ; SPRITE_ANIM_OAMSET_PC_MODE
+	spriteanimoam $00, .OAMData_PCMode2                  ; SPRITE_ANIM_OAMSET_PC_MODE2
+	spriteanimoam $00, .OAMData_PCPack                   ; SPRITE_ANIM_OAMSET_PC_PACK
 	assert_table_length NUM_SPRITE_ANIM_OAMSETS
 
 .OAMData_1x1_Palette0:
@@ -367,31 +375,38 @@ SpriteAnimOAMData:
 
 .OAMData_PartyMonWithMail1:
 	db 4
-	dbsprite -1, -1,  0,  0, $00, PAL_OW_RED
-	dbsprite  0, -1,  0,  0, $01, PAL_OW_RED
-	dbsprite -1,  0,  0,  0, $08, PAL_OW_RED
-	dbsprite  0,  0,  0,  0, $03, PAL_OW_RED
+	dbsprite -1, -1,  0,  0, $00, -1
+	dbsprite  0, -1,  0,  0, $01, -1
+	dbsprite -1,  0,  0,  0, $08, PAL_ICON_RED
+	dbsprite  0,  0,  0,  0, $03, -1
 
 .OAMData_PartyMonWithMail2:
 	db 4
-	dbsprite -1, -1,  0,  0, $04, PAL_OW_RED
-	dbsprite  0, -1,  0,  0, $05, PAL_OW_RED
-	dbsprite -1,  0,  0,  0, $08, PAL_OW_RED
-	dbsprite  0,  0,  0,  0, $07, PAL_OW_RED
+	dbsprite -1, -1,  0,  0, $04, -1
+	dbsprite  0, -1,  0,  0, $05, -1
+	dbsprite -1,  0,  0,  0, $08, PAL_ICON_RED
+	dbsprite  0,  0,  0,  0, $07, -1
 
 .OAMData_PartyMonWithItem1:
 	db 4
-	dbsprite -1, -1,  0,  0, $00, PAL_OW_RED
-	dbsprite  0, -1,  0,  0, $01, PAL_OW_RED
-	dbsprite -1,  0,  0,  0, $09, PAL_OW_RED
-	dbsprite  0,  0,  0,  0, $03, PAL_OW_RED
+	dbsprite -1, -1,  0,  0, $00, -1
+	dbsprite  0, -1,  0,  0, $01, -1
+	dbsprite -1,  0,  0,  0, $09, PAL_ICON_RED
+	dbsprite  0,  0,  0,  0, $03, -1
 
 .OAMData_PartyMonWithItem2:
 	db 4
-	dbsprite -1, -1,  0,  0, $04, PAL_OW_RED
-	dbsprite  0, -1,  0,  0, $05, PAL_OW_RED
-	dbsprite -1,  0,  0,  0, $09, PAL_OW_RED
-	dbsprite  0,  0,  0,  0, $07, PAL_OW_RED
+	dbsprite -1, -1,  0,  0, $04, -1
+	dbsprite  0, -1,  0,  0, $05, -1
+	dbsprite -1,  0,  0,  0, $09, PAL_ICON_RED
+	dbsprite  0,  0,  0,  0, $07, -1
+
+.OAMData_PartyMon:
+	db 4
+	dbsprite -1, -1,  0,  0, $00, -1
+	dbsprite  0, -1,  0,  0, $01, -1
+	dbsprite -1,  0,  0,  0, $02, -1
+	dbsprite  0,  0,  0,  0, $03, -1
 
 .OAMData_GSIntroMagikarp:
 	db 6
@@ -1133,3 +1148,52 @@ SpriteAnimOAMData:
 	dbsprite -1,  0,  4,  0, $51, 1
 	dbsprite  0,  0,  4,  0, $52, 1
 	dbsprite  1,  0,  4,  0, $53, 1
+
+.OAMData_PCCursor:
+	db 8
+	; cursor
+	dsprite  0,  0,  0,  0, $04, $1 | VRAM_BANK_1
+	dsprite  0,  0,  1,  0, $04, $2 | VRAM_BANK_1 | X_FLIP
+	dsprite  1,  0,  0,  0, $05, $1 | VRAM_BANK_1
+	dsprite  1,  0,  1,  0, $05, $2 | VRAM_BANK_1 | X_FLIP
+	; icon
+	dsprite  1,  2,  0,  0, $08, $3 | VRAM_BANK_1
+	dsprite  1,  2,  1,  0, $09, $3 | VRAM_BANK_1
+	dsprite  2,  2,  0,  0, $0a, $3 | VRAM_BANK_1
+	dsprite  2,  2,  1,  0, $0b, $3 | VRAM_BANK_1
+
+.OAMData_PCCursorItem:
+	db 5
+	; cursor
+	dsprite  0,  0,  0,  0, $04, $1 | VRAM_BANK_1
+	dsprite  0,  0,  1,  0, $04, $2 | VRAM_BANK_1 | X_FLIP
+	dsprite  1,  0,  0,  0, $05, $1 | VRAM_BANK_1
+	dsprite  1,  0,  1,  0, $05, $2 | VRAM_BANK_1 | X_FLIP
+	; item
+	dsprite  2,  0,  0,  4, $08, $0 | VRAM_BANK_1
+
+.OAMData_PCQuick:
+	db 4
+	; icon or item (only uses 1 sprite with the rest blank)
+	dsprite  0,  0,  0,  0, $14, $5 | VRAM_BANK_1
+	dsprite  0,  0,  1,  0, $15, $5 | VRAM_BANK_1
+	dsprite  1,  0,  0,  0, $16, $5 | VRAM_BANK_1
+	dsprite  1,  0,  1,  0, $17, $5 | VRAM_BANK_1
+
+.OAMData_PCMode:
+	db 3
+	dsprite  0,  0,  2,  0, $26, $2 | VRAM_BANK_1
+	dsprite  0,  0,  3,  0, $27, $2 | VRAM_BANK_1
+	dsprite  0,  0,  4,  0, $28, $2 | VRAM_BANK_1
+
+.OAMData_PCMode2:
+	db 2
+	dsprite  0,  0,  0,  0, $24, $2 | VRAM_BANK_1
+	dsprite  0,  0,  1,  0, $25, $2 | VRAM_BANK_1
+
+.OAMData_PCPack:
+	db 4
+	dsprite  0,  0,  0,  0, $2f, $4 | VRAM_BANK_1
+	dsprite  0,  0,  1,  0, $30, $4 | VRAM_BANK_1
+	dsprite  1,  0,  0,  0, $31, $4 | VRAM_BANK_1
+	dsprite  1,  0,  1,  0, $32, $4 | VRAM_BANK_1

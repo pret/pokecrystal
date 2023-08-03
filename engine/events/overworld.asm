@@ -620,6 +620,8 @@ FlyFunction:
 	end
 
 .ReturnFromFly:
+	ld e, PAL_OW_RED
+	farcall SetFirstOBJPalette
 	farcall RespawnPlayer
 	call DelayFrame
 	call UpdatePlayerSprite

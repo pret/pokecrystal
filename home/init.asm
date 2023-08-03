@@ -97,6 +97,14 @@ Init::
 	call ClearSprites
 	call ClearsScratch
 
+	; Set up LCD interrupt handler
+	ld a, $c3 ; jp instruction
+	ldh [hFunctionJump], a
+	ld a, LOW(LCDGeneric)
+	ldh [hFunctionTargetLo], a
+	ld a, HIGH(LCDGeneric)
+	ldh [hFunctionTargetHi], a
+
 	ld a, BANK(WriteOAMDMACodeToHRAM) ; aka BANK(GameInit)
 	rst Bankswitch
 
