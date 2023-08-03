@@ -8,7 +8,7 @@
 	db 215 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_UNKNOWN ; gender ratio
-	db NO_ABILITY
+	db ICE_BODY
 	db 80 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/articuno/front.dimensions"

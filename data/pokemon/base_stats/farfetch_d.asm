@@ -8,7 +8,7 @@
 	db 94 ; base exp
 	db NO_ITEM, STICK ; items
 	db GENDER_F50 ; gender ratio
-	db NO_ABILITY
+	db SUPER_LUCK
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/farfetch_d/front.dimensions"

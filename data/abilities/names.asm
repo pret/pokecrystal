@@ -64,4 +64,13 @@ AbilityNames::
 	li "Psn Heal"
 	li "Moxie"
 	li "HyprCutter"	
+	li "Defiant"
+	li "RckyPyload"
+	li "Immunity"
+	li "Super Luck"
+	li "GengarFist"
+	li "Panic"
+	li "Venom"
+	li "Corrosion"
+	li "Ice Body"
 	assert_list_length NUM_ABILITIES

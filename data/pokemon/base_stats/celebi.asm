@@ -8,7 +8,7 @@
 	db 64 ; base exp
 	db NO_ITEM, MIRACLEBERRY ; items
 	db GENDER_UNKNOWN ; gender ratio
-	db NO_ABILITY
+	db NATURAL_CURE
 	db 120 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/celebi/front.dimensions"

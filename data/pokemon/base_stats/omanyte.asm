@@ -8,7 +8,7 @@
 	db 120 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F12_5 ; gender ratio
-	db NO_ABILITY
+	db BATTLE_ARMOR
 	db 30 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/omanyte/front.dimensions"

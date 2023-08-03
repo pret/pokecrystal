@@ -8,7 +8,7 @@
 	db 116 ; base exp
 	db BERRY, GOLD_BERRY ; items
 	db GENDER_F50 ; gender ratio
-	db NO_ABILITY
+	db PANIC
 	db 15 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/furret/front.dimensions"

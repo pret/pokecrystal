@@ -8,7 +8,7 @@
 	db 185 ; base exp
 	db NO_ITEM, KINGS_ROCK ; items
 	db GENDER_F50 ; gender ratio
-	db NO_ABILITY
+	db SWIFT_SWIM
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/poliwrath/front.dimensions"

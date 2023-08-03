@@ -132,7 +132,7 @@ InitialEngineFlags:
 	dw -1 ; end
 
 InitialVariableSprites:
-initvarsprite: MACRO
+MACRO initvarsprite
 ; variable sprite, appearance sprite
 	db \1 - SPRITE_VARS, \2
 ENDM

@@ -8,7 +8,7 @@
 	db 153 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio
-	db NO_ABILITY
+	db DRIZZLE
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/azumarill/front.dimensions"

@@ -63,4 +63,13 @@
 	const POISON_HEAL
 	const MOXIE
 	const HYPER_CUTTER
+	const DEFIANT
+	const ROCKY_PAYLOAD
+	const IMMUNITY
+	const SUPER_LUCK
+	const SPECIAL_PUNCH
+	const PANIC
+	const VENOM
+	const CORROSION
+	const ICE_BODY
 NUM_ABILITIES EQU const_value
