@@ -56,9 +56,15 @@ CutTreeBlockPointers:
 ; these blocks all use COLL_WHIRLPOOL in one quadrant
 WhirlpoolBlockPointers:
 	dbw TILESET_JOHTO, .johto
+	dbw TILESET_NEOST_OUTDOORS_1, .neost_outdoors_1
 	db -1 ; end
 
 .johto:
 ; facing block, replacement block, animation
 	db $07, $36, 0
+	db -1 ; end
+
+.neost_outdoors_1:
+; facing block, replacement block, animation
+	db $14, $19, 0
 	db -1 ; end

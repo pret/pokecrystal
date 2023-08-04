@@ -20,7 +20,7 @@ BulbasaurEvosAttacks:
 	db 1, TACKLE
 	db 4, GROWL
 	db 7, LEECH_SEED
-	db 10, CUT
+	db 10, VINE_WHIP
 	db 15, POISONPOWDER
 	db 15, SLEEP_POWDER
 	db 20, RAZOR_LEAF

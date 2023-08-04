@@ -414,17 +414,16 @@ _BouldersMayMoveText::
 	done
 
 _UseWhirlpoolText::
-	text_ram wStringBuffer2
-	text " used"
-	line "WHIRLPOOL!"
+	text "You played the"
+	line "Sea Flute!"
 	prompt
 
 _MayPassWhirlpoolText::
 	text "It's a vicious"
 	line "whirlpool!"
 
-	para "A #MON may be"
-	line "able to pass it."
+	para "You may be able"
+	line "to make it stop..."
 	done
 
 _AskWhirlpoolText::
@@ -432,7 +431,7 @@ _AskWhirlpoolText::
 	line "the way."
 
 	para "Want to use"
-	line "WHIRLPOOL?"
+	line "the Sea Flute?"
 	done
 
 _UseHeadbuttText::

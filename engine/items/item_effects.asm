@@ -148,7 +148,7 @@ ItemEffects:
 	dw NoEffect            ; STAR_PIECE
 	dw BasementKeyEffect   ; BASEMENT_KEY
 	dw NoEffect            ; PASS
-	dw NoEffect            ; ITEM_87
+	dw SeaFluteEffect      ; SEA_FLUTE
 	dw NoEffect            ; ITEM_88
 	dw NoEffect            ; ITEM_89
 	dw NoEffect            ; CHARCOAL
@@ -2337,6 +2337,12 @@ HatchetEffect:
 	ld a, 1
 	ld [wUsingHMItem], a
 	farcall CutFunction
+	ret
+
+SeaFluteEffect:
+	ld a, 1
+	ld [wUsingHMItem], a
+	farcall WhirlpoolFunction
 	ret
 
 ZygardeCubeEffect:
