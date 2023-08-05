@@ -918,3 +918,6 @@ SunglowBeach_Blocks:
 
 SunglowCove_Blocks:
 	INCBIN "maps/SunglowCove.ablk"
+
+WhisperingMarshSouth_Blocks:
+	INCBIN "maps/WhisperingMarshSouth.ablk"

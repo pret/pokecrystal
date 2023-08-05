@@ -498,7 +498,11 @@ ENDM
 	map_const SUNGLOW_CAPE,                                 20, 18 ; 8
 	map_const SUNGLOW_HARBOR,                               20, 18 ; 9
 	map_const SUNGLOW_BEACH,                                20, 18 ; 10
-	map_const SUNGLOW_COVE,                                 20, 27 ; 10
+	map_const SUNGLOW_COVE,                                 20, 27 ; 11
 	endgroup
 
-DEF NUM_MAP_GROUPS EQU const_value ; 27
+	newgroup WHISPERING_MARSH                                      ; 28
+	map_const WHISPERING_MARSH_SOUTH,                       20, 18 ; 12
+	endgroup
+
+DEF NUM_MAP_GROUPS EQU const_value ; 28

@@ -113,6 +113,7 @@
 	const MUSIC_ROUTE_47                     ; 6b
 	const MUSIC_ROUTE_203                    ; 6c
 	const MUSIC_ROUTE_216                    ; 6d
+	const MUSIC_SANTALUNE_FOREST             ; 6e
 DEF NUM_MUSIC_SONGS EQU const_value
 
 ; GetMapMusic picks music for this value (see home/map.asm)

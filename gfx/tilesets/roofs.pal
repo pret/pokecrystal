@@ -137,3 +137,8 @@
 	RGB 31,14,28, 31,05,21 ; morn/day
 	RGB 14,07,17, 13,00,08 ; nite
 	RGB 25,10,20, 25,03,16 ; eve
+
+; group 28 (Whispering Marsh)
+	RGB 31,14,28, 31,05,21 ; morn/day
+	RGB 14,07,17, 13,00,08 ; nite
+	RGB 25,10,20, 25,03,16 ; eve

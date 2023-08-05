@@ -115,4 +115,5 @@ Music:
 	dba Music_Route47
 	dba Music_Route203
 	dba Music_Route216
+	dba Music_SantaluneForest
 	assert_table_length NUM_MUSIC_SONGS

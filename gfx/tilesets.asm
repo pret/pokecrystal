@@ -492,3 +492,15 @@ INCBIN "gfx/tilesets/pokemon_center.2bpp.lz"
 
 TilesetPokemonCenterMeta::
 INCBIN "data/tilesets/pokemon_center_metatiles.bin"
+
+TilesetNeostForest1Coll::
+INCLUDE "data/tilesets/neost_forest_1_collision.asm"
+
+TilesetNeostForest1Attr::
+INCBIN "data/tilesets/neost_forest_1_attributes.bin"
+
+TilesetNeostForest1GFX::
+INCBIN "gfx/tilesets/neost_forest_1.2bpp.lz"
+
+TilesetNeostForest1Meta::
+INCBIN "data/tilesets/neost_forest_1_metatiles.bin"

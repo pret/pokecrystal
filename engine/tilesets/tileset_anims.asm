@@ -79,6 +79,7 @@ TilesetForestAnim:
 
 TilesetJohtoAnim:
 TilesetNeostOutdoors1Anim:
+TilesetNeostForest1Anim:
 	dw vTiles2 tile $09, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation

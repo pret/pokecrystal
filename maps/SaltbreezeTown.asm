@@ -131,6 +131,8 @@ SaltbreezeTown_MapEvents:
 	warp_event  27,  45, MY_HOUSE_1F, 1
 	warp_event  15,  39, SALTBREEZE_POKEMON_CENTER, 1
 	warp_event   9,  45, WARRENS_HOUSE_1F, 2
+	warp_event   4,  40, WHISPERING_MARSH_SOUTH, 1
+	warp_event   4,  41, WHISPERING_MARSH_SOUTH, 2
  
 	def_coord_events
 

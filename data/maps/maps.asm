@@ -44,6 +44,7 @@ MapGroupPointers::
 	dw MapGroup_Saffron     ; 25
 	dw MapGroup_Cherrygrove ; 26
 	dw MapGroup_Saltbreeze  ; 27
+	dw MapGroup_WhisperingMarsh ; 28
 	assert_table_length NUM_MAP_GROUPS
 
 MapGroup_Olivine:
@@ -538,3 +539,8 @@ MapGroup_Saltbreeze:
 	map SunglowBeach, TILESET_NEOST_OUTDOORS_1, ROUTE, LANDMARK_SUNGLOW_BEACH, MUSIC_ROUTE_203, FALSE, PALETTE_AUTO, FISHGROUP_POND
 	map SunglowCove, TILESET_NEOST_OUTDOORS_1, ROUTE, LANDMARK_SUNGLOW_CAPE, MUSIC_ROUTE_216, FALSE, PALETTE_AUTO, FISHGROUP_POND
 	assert_table_length NUM_SALTBREEZE_MAPS
+
+MapGroup_WhisperingMarsh:
+	table_width MAP_LENGTH, MapGroup_WhisperingMarsh
+	map WhisperingMarshSouth, TILESET_NEOST_FOREST_1, ROUTE, LANDMARK_WHISPERING_MARSH, MUSIC_SANTALUNE_FOREST, FALSE, PALETTE_AUTO, FISHGROUP_POND
+	assert_table_length NUM_WHISPERING_MARSH_MAPS
