@@ -136,7 +136,7 @@ ItemNames::
 	li "PASS"
 	li "SEA FLUTE"
 	li "GRAPPLE HOOK"
-	li "TERU-SAMA"
+	li "EARTH FLUTE"
 	li "CHARCOAL"
 	li "BERRY JUICE"
 	li "SCOPE LENS"

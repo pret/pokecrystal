@@ -378,28 +378,26 @@ _CantUseTeleportText::
 	done
 
 _AlreadyUsingStrengthText::
-	text "A #MON is using"
-	line "STRENGTH already."
+	text "You already played"
+	line "the Earth Flute."
 	prompt
 
 _UseStrengthText::
-	text_ram wStringBuffer2
-	text " used"
-	line "STRENGTH!"
+	text "You played the"
+	line "Earth Flute!"
 	done
 
 _MoveBoulderText::
-	text_ram wStringBuffer1
-	text " can"
+	text "You can"
 	line "move boulders."
 	prompt
 
 _AskStrengthText::
-	text "A #MON may be"
+	text "You may be"
 	line "able to move this."
 
 	para "Want to use"
-	line "STRENGTH?"
+	line "the Earth Flute?"
 	done
 
 _BouldersMoveText::
@@ -408,7 +406,7 @@ _BouldersMoveText::
 	done
 
 _BouldersMayMoveText::
-	text "A #MON may be"
+	text "You may be"
 	line "able to move this."
 	done
 

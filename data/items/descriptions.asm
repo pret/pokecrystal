@@ -137,7 +137,7 @@ ItemDescriptions:
 	dw PassDesc
 	dw SeaFluteDesc
 	dw GrappleHookDesc
-	dw TeruSama11Desc
+	dw EarthFluteDesc
 	dw CharcoalDesc
 	dw BerryJuiceDesc
 	dw ScopeLensDesc
@@ -795,8 +795,9 @@ GrappleHookDesc:
 	db   "Lets you climb"
 	next "waterfalls.@"
 
-TeruSama11Desc:
-	db   "?@"
+EarthFluteDesc:
+	db   "Grants strength"
+	next "of the earth.@"
 
 CharcoalDesc:
 	db   "Powers up fire-"

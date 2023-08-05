@@ -142,7 +142,7 @@
 	const PASS         ; 86
 	const SEA_FLUTE    ; 87
 	const GRAPPLE_HOOK ; 88
-	const ITEM_89      ; 89
+	const EARTH_FLUTE  ; 89
 	const CHARCOAL     ; 8a
 	const BERRY_JUICE  ; 8b
 	const SCOPE_LENS   ; 8c

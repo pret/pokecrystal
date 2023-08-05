@@ -932,9 +932,6 @@ StrengthFunction:
 	ret
 
 .TryStrength:
-	ld de, ENGINE_PLAINBADGE
-	call CheckBadge
-	jr c, .Failed
 	jr .UseStrength
 
 .AlreadyUsingStrength: ; unreferenced
@@ -946,10 +943,6 @@ StrengthFunction:
 .AlreadyUsingStrengthText:
 	text_far _AlreadyUsingStrengthText
 	text_end
-
-.Failed:
-	ld a, $80
-	ret
 
 .UseStrength:
 	ld hl, Script_StrengthFromMenu
@@ -1025,13 +1018,11 @@ BouldersMayMoveText:
 	text_end
 
 TryStrengthOW:
-	ld d, STRENGTH
-	call CheckPartyMove
-	jr c, .nope
-
-	ld de, ENGINE_PLAINBADGE
-	call CheckEngineFlag
-	jr c, .nope
+	ld a, EARTH_FLUTE
+	ld [wCurItem], a
+	ld hl, wNumItems
+	call CheckItem
+	jr nc, .nope
 
 	ld hl, wBikeFlags
 	bit BIKEFLAGS_STRENGTH_ACTIVE_F, [hl]

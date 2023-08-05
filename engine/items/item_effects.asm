@@ -150,7 +150,7 @@ ItemEffects:
 	dw NoEffect            ; PASS
 	dw SeaFluteEffect      ; SEA_FLUTE
 	dw GrappleHookEffect   ; GRAPPLE_HOOK
-	dw NoEffect            ; ITEM_89
+	dw EarthFluteEffect    ; EARTH_FLUTE
 	dw NoEffect            ; CHARCOAL
 	dw RestoreHPEffect     ; BERRY_JUICE
 	dw NoEffect            ; SCOPE_LENS
@@ -2349,6 +2349,12 @@ GrappleHookEffect:
 	ld a, 1
 	ld [wUsingHMItem], a
 	farcall WaterfallFunction
+	ret
+
+EarthFluteEffect:
+	ld a, 1
+	ld [wUsingHMItem], a
+	farcall StrengthFunction
 	ret
 
 ZygardeCubeEffect:
