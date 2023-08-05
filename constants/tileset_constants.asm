@@ -40,6 +40,7 @@
 	const TILESET_Z_HOUSE              ; 26
 	const TILESET_POKEMON_CENTER       ; 27
 	const TILESET_NEOST_FOREST_1       ; 28
+	const TILESET_NEOST_CAVE_1         ; 29
 DEF NUM_TILESETS EQU const_value - 1
 
 ; wTileset struct size

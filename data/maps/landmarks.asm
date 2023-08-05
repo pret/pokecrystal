@@ -111,6 +111,7 @@ Landmarks:
 	landmark  40,  10, SunglowHarborName
 	landmark  30,  10, SunglowBeachName
 	landmark  40,  10, SunglowCoveName
+	landmark  80,  10, SunglowCaveName
 	landmark  50,  10, WhisperingMarshName
 	assert_table_length NUM_LANDMARKS
 
@@ -223,4 +224,5 @@ SunglowCapeName:     db "SUNGLOW¯CAPE@"
 SunglowHarborName:   db "SUNGLOW¯HARBOR@"
 SunglowBeachName:   db "SUNGLOW¯BEACH@"
 SunglowCoveName:   db "SUNGLOW¯COVE@"
+SunglowCaveName:   db "SUNGLOW¯CAVE@"
 WhisperingMarshName:   db "WHISPERING¯MARSH@"

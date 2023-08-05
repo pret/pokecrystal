@@ -18,6 +18,7 @@ SunglowTrail_MapEvents:
 	db 0, 0 ; filler
 
 	def_warp_events
+	warp_event  32,  19, SUNGLOW_CAVE_1F, 1
 
 	def_coord_events
 

@@ -712,4 +712,6 @@ ENDM
 	map_attributes SaltbreezePokemonCenter, SALTBREEZE_POKEMON_CENTER, $00, 0
 	map_attributes WarrensHouse1F, WARRENS_HOUSE_1F, $00, 0
 	map_attributes WarrensHouse2F, WARRENS_HOUSE_2F, $00, 0
+	map_attributes SunglowCave1F, SUNGLOW_CAVE_1F, $00, 0
 	map_attributes WhisperingMarshSouth, WHISPERING_MARSH_SOUTH, $00, 0
+

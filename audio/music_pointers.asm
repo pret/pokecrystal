@@ -116,4 +116,5 @@ Music:
 	dba Music_Route203
 	dba Music_Route216
 	dba Music_SantaluneForest
+	dba Music_ShoalCave
 	assert_table_length NUM_MUSIC_SONGS

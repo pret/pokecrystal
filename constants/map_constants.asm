@@ -499,6 +499,7 @@ ENDM
 	map_const SUNGLOW_HARBOR,                               20, 18 ; 9
 	map_const SUNGLOW_BEACH,                                20, 18 ; 10
 	map_const SUNGLOW_COVE,                                 20, 27 ; 11
+	map_const SUNGLOW_CAVE_1F,                               6, 4  ; 12
 	endgroup
 
 	newgroup WHISPERING_MARSH                                      ; 28

@@ -160,6 +160,7 @@ INCLUDE "audio/music/route47.asm"
 INCLUDE "audio/music/route203.asm"
 INCLUDE "audio/music/route216.asm"
 INCLUDE "audio/music/santaluneforest.asm"
+INCLUDE "audio/music/shoalcave.asm"
 
 
 SECTION "Sound Effects", ROMX

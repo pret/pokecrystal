@@ -504,3 +504,15 @@ INCBIN "gfx/tilesets/neost_forest_1.2bpp.lz"
 
 TilesetNeostForest1Meta::
 INCBIN "data/tilesets/neost_forest_1_metatiles.bin"
+
+TilesetNeostCave1Coll::
+INCLUDE "data/tilesets/neost_cave_1_collision.asm"
+
+TilesetNeostCave1Attr::
+INCBIN "data/tilesets/neost_cave_1_attributes.bin"
+
+TilesetNeostCave1GFX::
+INCBIN "gfx/tilesets/neost_cave_1.2bpp.lz"
+
+TilesetNeostCave1Meta::
+INCBIN "data/tilesets/neost_cave_1_metatiles.bin"

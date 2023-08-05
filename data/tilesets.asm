@@ -52,4 +52,5 @@ Tilesets::
 	tileset TilesetZHouse
 	tileset TilesetPokemonCenter
 	tileset TilesetNeostForest1
+	tileset TilesetNeostCave1
 	assert_table_length NUM_TILESETS + 1

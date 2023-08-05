@@ -919,5 +919,8 @@ SunglowBeach_Blocks:
 SunglowCove_Blocks:
 	INCBIN "maps/SunglowCove.ablk"
 
+SunglowCave1F_Blocks:
+	INCBIN "maps/SunglowCave1F.ablk"
+
 WhisperingMarshSouth_Blocks:
 	INCBIN "maps/WhisperingMarshSouth.ablk"

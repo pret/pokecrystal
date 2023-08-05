@@ -192,6 +192,7 @@ UnusedTilesetAnim4: ; unreferenced
 
 TilesetCaveAnim:
 TilesetDarkCaveAnim:
+TilesetNeostCave1Anim:
 	dw vTiles2 tile $14, ReadTileToAnimBuffer
 	dw NULL,  FlickeringCaveEntrancePalette
 	dw wTileAnimBuffer, ScrollTileRightLeft
