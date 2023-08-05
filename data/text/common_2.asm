@@ -335,19 +335,18 @@ _AlreadySurfingText::
 	prompt
 
 _UseWaterfallText::
-	text_ram wStringBuffer2
-	text " used"
-	line "WATERFALL!"
+	text "You used the"
+	line "Grapple Hook!"
 	done
 
 _HugeWaterfallText::
 	text "Wow, it's a huge"
-	line "waterfall."
+	line "waterfall!"
 	done
 
 _AskWaterfallText::
 	text "Do you want to use"
-	line "WATERFALL?"
+	line "the Grapple Hook?"
 	done
 
 _UseDigText::

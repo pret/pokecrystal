@@ -149,7 +149,7 @@ ItemEffects:
 	dw BasementKeyEffect   ; BASEMENT_KEY
 	dw NoEffect            ; PASS
 	dw SeaFluteEffect      ; SEA_FLUTE
-	dw NoEffect            ; ITEM_88
+	dw GrappleHookEffect   ; GRAPPLE_HOOK
 	dw NoEffect            ; ITEM_89
 	dw NoEffect            ; CHARCOAL
 	dw RestoreHPEffect     ; BERRY_JUICE
@@ -2343,6 +2343,12 @@ SeaFluteEffect:
 	ld a, 1
 	ld [wUsingHMItem], a
 	farcall WhirlpoolFunction
+	ret
+
+GrappleHookEffect:
+	ld a, 1
+	ld [wUsingHMItem], a
+	farcall WaterfallFunction
 	ret
 
 ZygardeCubeEffect:

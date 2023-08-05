@@ -135,7 +135,7 @@ ItemNames::
 	li "BASEMENT KEY"
 	li "PASS"
 	li "SEA FLUTE"
-	li "TERU-SAMA"
+	li "GRAPPLE HOOK"
 	li "TERU-SAMA"
 	li "CHARCOAL"
 	li "BERRY JUICE"

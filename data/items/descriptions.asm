@@ -136,7 +136,7 @@ ItemDescriptions:
 	dw BasementKeyDesc
 	dw PassDesc
 	dw SeaFluteDesc
-	dw TeruSama10Desc
+	dw GrappleHookDesc
 	dw TeruSama11Desc
 	dw CharcoalDesc
 	dw BerryJuiceDesc
@@ -791,8 +791,9 @@ SeaFluteDesc:
 	db   "Gets rid of"
 	next "whirlpools.@"
 
-TeruSama10Desc:
-	db   "?@"
+GrappleHookDesc:
+	db   "Lets you climb"
+	next "waterfalls.@"
 
 TeruSama11Desc:
 	db   "?@"
