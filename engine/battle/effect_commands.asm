@@ -5204,13 +5204,22 @@ BattleCommand_EndLoop:
 	
 .not_triple_kick
 	call BattleRandom
-	and $3
-	cp 2
-	jr c, .got_number_hits
+	and $1
+	jr z, .middle_hits
 	call BattleRandom
-	and $3
+	and $1
+	jr z, .more_hits
+	call BattleRandom
+	and $1
+	jr z,got_number_hits
+	xor
+	inc
+.more_hits
+	inc
+.middle_hits
+	inc
 .got_number_hits
-	inc a
+	inc
 .double_hit
 	ld [de], a
 	inc a

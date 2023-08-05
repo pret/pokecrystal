@@ -23,6 +23,7 @@
 @ kurt instantly makes acorn pokeballs
 @ reworked remach system for better by removing the previus remach requirement for the battles and always trying to give the trainer phone number to the player
 @ reworked initialization system
+@ changed multi-hit probabilities, now is 50% for 3 hits, 25% for 4 hits and 12,5% for either 2 or 5 hits
 @ reworked swarm system
 @ reworked beat up
 @ headbutt works on kanto
