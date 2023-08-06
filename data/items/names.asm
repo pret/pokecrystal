@@ -140,7 +140,7 @@ ItemNames::
 	li "CHARCOAL"
 	li "BERRY JUICE"
 	li "SCOPE LENS"
-	li "TERU-SAMA"
+	li "SKY FLUTE"
 	li "TERU-SAMA"
 	li "METAL COAT"
 	li "DRAGON FANG"

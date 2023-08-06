@@ -418,21 +418,23 @@ GetSpeciesIcon:
 
 FlyFunction_GetMonIcon:
 	push de
-	ld a, [wTempIconSpecies]
+	ld a, SKARMORY
 	ld [wCurIcon], a
 	pop de
 	ld a, e
 	call GetIcon_a
 
 	; Edit the OBJ 0 palette so that the cursor Pokémon has the right colors.
-	ld a, MON_DVS
-	call GetPartyParamLocation
-	call GetMenuMonIconPalette
-	add a
-	add a
-	add a
-	ld e, a
-	farcall SetFirstOBJPalette
+; Added by the icon rework to get the correct palette for fly, commented out
+;	ld a, MON_DVS
+;	call GetPartyParamLocation
+;	call GetMenuMonIconPalette
+;	add a
+;	add a
+;	add a
+;	ld e, a
+;	farcall SetFirstOBJPalette
+
 	ret
 
 GetMonIconDE: ; unreferenced

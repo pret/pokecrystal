@@ -559,6 +559,9 @@ FlyFunction:
 
 .illegal
 	call CloseWindow
+	farcall Pack_InitGFX ; gets the pack GFX when exiting out of Fly by pressing B
+	farcall WaitBGMap_DrawPackGFX
+	farcall Pack_InitColors
 	call WaitBGMap
 	ld a, $80
 	ret
@@ -571,7 +574,7 @@ FlyFunction:
 
 .FailFly:
 	call FieldMoveFailed
-	ld a, $82
+	ld a, $80 ; makes it so that Fly can't be used indoors
 	ret
 
 .FlyScript:

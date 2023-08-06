@@ -141,7 +141,7 @@ ItemDescriptions:
 	dw CharcoalDesc
 	dw BerryJuiceDesc
 	dw ScopeLensDesc
-	dw TeruSama12Desc
+	dw SkyFluteDesc
 	dw TeruSama13Desc
 	dw MetalCoatDesc
 	dw DragonFangDesc
@@ -811,8 +811,9 @@ ScopeLensDesc:
 	db   "Raises critical"
 	next "hit ratio. (HOLD)@"
 
-TeruSama12Desc:
-	db   "?@"
+SkyFluteDesc:
+	db   "Quickly travel"
+	next "between areas.@"
 
 TeruSama13Desc:
 	db   "?@"

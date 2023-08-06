@@ -154,7 +154,7 @@ ItemEffects:
 	dw NoEffect            ; CHARCOAL
 	dw RestoreHPEffect     ; BERRY_JUICE
 	dw NoEffect            ; SCOPE_LENS
-	dw NoEffect            ; ITEM_8D
+	dw SkyFluteEffect      ; SKY_FLUTE
 	dw NoEffect            ; ITEM_8E
 	dw NoEffect            ; METAL_COAT
 	dw NoEffect            ; DRAGON_FANG
@@ -2355,6 +2355,12 @@ EarthFluteEffect:
 	ld a, 1
 	ld [wUsingHMItem], a
 	farcall StrengthFunction
+	ret
+
+SkyFluteEffect:
+	ld a, 1
+	ld [wUsingHMItem], a
+	farcall FlyFunction
 	ret
 
 ZygardeCubeEffect:

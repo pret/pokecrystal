@@ -2706,17 +2706,9 @@ INCLUDE "gfx/pokegear/town_map_palette_map.asm"
 TownMapMon:
 ; Draw the FlyMon icon at town map location
 
-; Get FlyMon species
-	ld a, [wCurPartyMon]
-	ld hl, wPartySpecies
-	ld e, a
-	ld d, 0
-	add hl, de
-	ld a, [hl]
-	ld [wTempIconSpecies], a
 ; Get FlyMon icon
 	ld e, $08 ; starting tile in VRAM
-	farcall GetSpeciesIcon
+	farcall FlyFunction_GetMonIcon
 ; Animation/palette
 	depixel 0, 0
 	ld a, SPRITE_ANIM_INDEX_PARTY_MON
