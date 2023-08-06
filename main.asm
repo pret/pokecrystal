@@ -634,13 +634,17 @@ INCLUDE "data/phone/text/erin_callee.asm"
 INCLUDE "data/phone/text/unused.asm"
 
 
+SECTION "Abilities", ROMX
+
+INCLUDE "data/abilities/abilities.asm"
+include "data/abilities/names.asm"
+
 SECTION "Miscellaneous Text", ROMX
 
 INCLUDE "data/items/names.asm"
 INCLUDE "engine/items/print_item_description.asm"
 INCLUDE "data/moves/names.asm"
 INCLUDE "engine/overworld/landmarks.asm"
-INCLUDE "data/abilities/names.asm"
 
 
 SECTION "Print Party", ROMX

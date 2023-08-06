@@ -1,13 +1,13 @@
 ;Ability constants
 	const_def
-	const NO_ABILITY
-	const THICK_FAT
-	const TOUGH_CLAWS
-	const IRON_FIST
-	const MEGA_LAUNCHER
-	const SHARPNESS
-	const TECHNICIAN
-	const ADAPTABILITY
+	const NO_ABILITY ;0
+	const THICK_FAT ; 1
+	const TOUGH_CLAWS ; 2
+	const IRON_FIST ; 3
+	const MEGA_LAUNCHER ;4
+	const SHARPNESS ;5 
+	const TECHNICIAN ;6 
+	const ADAPTABILITY ;7
 	const LEVITATE
 	const BATTLE_ARMOR
 	const SHED_SKIN

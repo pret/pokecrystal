@@ -1,14 +1,14 @@
 ;Ability names
 AbilityNames::
 	list_start AbilityNames
-	li "---"
-	li "Thick Fat"
-	li "ToughClaws"
-	li "Iron Fist"
-	li "M Launcher"
-	li "Sharpness"
-	li "Technician"
-	li "STAB boost"
+	li "---" ; 0
+	li "Thick Fat" ; 1 
+	li "ToughClaws" ;2 
+	li "Iron Fist" ;3 
+	li "M Launcher" ;4 
+	li "Sharpness" ;5 
+	li "Technician"; 6
+	li "STAB boost" ;7 
 	li "Levitate"
 	li "Crit Armor"
 	li "Shed Skin"

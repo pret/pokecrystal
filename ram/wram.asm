@@ -2693,7 +2693,7 @@ wBaseItems::
 wBaseItem1:: db
 wBaseItem2:: db
 wBaseGender:: db
-wBaseUnknown1:: db
+wBaseAbility:: db
 wBaseEggSteps:: db
 wBaseUnknown2:: db
 wBasePicSize:: db

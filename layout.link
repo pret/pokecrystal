@@ -173,7 +173,7 @@ ROMX $3e
 ROMX $3f
 	"bank3F"
 ROMX $40
-	
+	"Abilities"
 ROMX $41
 	"bank41"
 ROMX $42

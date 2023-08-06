@@ -170,8 +170,8 @@ PlaceString::
 
 PlaceNextChar::
 	ld a, [de]
-	cp "@"
-	jr nz, CheckDict
+	cp "@"   ;; string Terminator likely
+	jr nz, CheckDict ;; not terminated, checkDictionary
 	ld b, h
 	ld c, l
 	pop hl
