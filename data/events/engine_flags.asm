@@ -98,6 +98,12 @@ EngineFlags:
 	engine_flag wVisitedSpawns, SPAWN_MAHOGANY
 	engine_flag wVisitedSpawns, SPAWN_LAKE_OF_RAGE
 	engine_flag wVisitedSpawns, SPAWN_BLACKTHORN
+	engine_flag wVisitedSpawns, SPAWN_SALTBREEZE
+	engine_flag wVisitedSpawns, SPAWN_SUNGLOW_TRAIL
+	engine_flag wVisitedSpawns, SPAWN_SUNGLOW_CAPE
+	engine_flag wVisitedSpawns, SPAWN_SUNGLOW_HARBOR
+	engine_flag wVisitedSpawns, SPAWN_SUNGLOW_BEACH
+	engine_flag wVisitedSpawns, SPAWN_SUNGLOW_COVE
 	engine_flag wVisitedSpawns, SPAWN_MT_SILVER
 	engine_flag wVisitedSpawns, NUM_SPAWNS ; unused
 

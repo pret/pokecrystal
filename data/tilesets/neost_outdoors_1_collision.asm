@@ -229,4 +229,4 @@
 	tilecoll WALL, WALL, WALL, WALL ; e4
 	tilecoll FLOOR, FLOOR, WALL, WARP_CARPET_DOWN ; e5
 	tilecoll FLOOR, FLOOR, WARP_CARPET_DOWN, WALL ; e6
-	tilecoll WALL, WALL, WALL, WALL ; e7
+	tilecoll WALL, FLOOR, FLOOR, FLOOR ; e7

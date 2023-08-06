@@ -53,6 +53,15 @@ Landmarks:
 	landmark 132,  64, Route45Name
 	landmark 112,  72, DarkCaveName
 	landmark 124,  88, Route46Name
+; new landmarks start here, remember to change coordinates for Town Map later
+	landmark  76,  60, SaltbreezeTownName
+	landmark  92,  60, SunglowTrailName
+	landmark  92,  44, SunglowCapeName
+	landmark  76,  44, SunglowHarborName
+	landmark 100,  68, SunglowBeachName
+	landmark 108,  44, SunglowCoveName
+	landmark 100,  52, SunglowCaveName
+	landmark  60,  52, WhisperingMarshName
 	landmark 148,  68, SilverCaveName
 	assert_table_length KANTO_LANDMARK
 	landmark  52, 108, PalletTownName
@@ -104,15 +113,6 @@ Landmarks:
 	landmark  12, 100, TohjoFallsName
 	landmark  20,  68, Route28Name
 	landmark 140, 116, FastShipName
-; new landmarks start here, remember to change coordinates for Town Map later
-	landmark  10,  10, SaltbreezeTownName
-	landmark  20,  10, SunglowTrailName
-	landmark  30,  10, SunglowCapeName
-	landmark  40,  10, SunglowHarborName
-	landmark  30,  10, SunglowBeachName
-	landmark  40,  10, SunglowCoveName
-	landmark  80,  10, SunglowCaveName
-	landmark  50,  10, WhisperingMarshName
 	assert_table_length NUM_LANDMARKS
 
 NewBarkTownName:     db "NEW BARK¯TOWN@"

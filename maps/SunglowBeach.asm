@@ -4,6 +4,11 @@ SunglowBeach_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
+	callback MAPCALLBACK_NEWMAP, .Flypoint
+
+.Flypoint:
+	setflag ENGINE_FLYPOINT_SUNGLOW_BEACH
+	return
 
 SunglowBeach_MapEvents:
 	db 0, 0 ; filler

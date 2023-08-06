@@ -36,6 +36,12 @@ SpawnPoints:
 	spawn MAHOGANY_TOWN,              15, 14
 	spawn LAKE_OF_RAGE,               21, 29
 	spawn BLACKTHORN_CITY,            21, 30
+	spawn SALTBREEZE_TOWN,            15, 40
+	spawn SUNGLOW_TRAIL,              19, 40
+	spawn SUNGLOW_CAPE,               29, 24
+	spawn SUNGLOW_HARBOR,             13, 25
+	spawn SUNGLOW_BEACH,              12, 23
+	spawn SUNGLOW_COVE,               12, 41
 	spawn SILVER_CAVE_OUTSIDE,        23, 20
 	spawn FAST_SHIP_CABINS_SW_SSW_NW,  6,  2
 

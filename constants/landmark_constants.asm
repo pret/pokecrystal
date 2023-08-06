@@ -47,7 +47,15 @@
 	const LANDMARK_ROUTE_45          ; 2b
 	const LANDMARK_DARK_CAVE         ; 2c
 	const LANDMARK_ROUTE_46          ; 2d
-	const LANDMARK_SILVER_CAVE       ; 2e
+	const LANDMARK_SALTBREEZE_TOWN   ; 2e
+	const LANDMARK_SUNGLOW_TRAIL     ; 2f
+	const LANDMARK_SUNGLOW_CAPE      ; 30
+	const LANDMARK_SUNGLOW_HARBOR    ; 31
+	const LANDMARK_SUNGLOW_BEACH     ; 32
+	const LANDMARK_SUNGLOW_COVE      ; 33
+	const LANDMARK_SUNGLOW_CAVE      ; 34
+	const LANDMARK_WHISPERING_MARSH  ; 35
+	const LANDMARK_SILVER_CAVE       ; 36
 DEF KANTO_LANDMARK EQU const_value
 	const LANDMARK_PALLET_TOWN       ; 2f
 	const LANDMARK_ROUTE_1           ; 30
@@ -98,14 +106,6 @@ DEF KANTO_LANDMARK EQU const_value
 	const LANDMARK_TOHJO_FALLS       ; 5d
 	const LANDMARK_ROUTE_28          ; 5e
 	const LANDMARK_FAST_SHIP         ; 5f
-	const LANDMARK_SALTBREEZE_TOWN   ; 60
-	const LANDMARK_SUNGLOW_TRAIL     ; 61
-	const LANDMARK_SUNGLOW_CAPE      ; 62
-	const LANDMARK_SUNGLOW_HARBOR    ; 63
-	const LANDMARK_SUNGLOW_BEACH     ; 64
-	const LANDMARK_SUNGLOW_COVE      ; 65
-	const LANDMARK_SUNGLOW_CAVE      ; 66
-	const LANDMARK_WHISPERING_MARSH  ; 67
 DEF NUM_LANDMARKS EQU const_value
 
 ; used in CaughtData

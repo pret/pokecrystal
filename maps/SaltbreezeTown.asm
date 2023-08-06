@@ -9,6 +9,12 @@ SaltbreezeTown_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
+	callback MAPCALLBACK_NEWMAP, .Flypoint
+
+.Flypoint:
+	setflag ENGINE_FLYPOINT_SALTBREEZE
+	return
+
 BulbasaurScript: ; [E-1]
 	opentext
 	writetext PlayerTakeThisBulbasaurText
