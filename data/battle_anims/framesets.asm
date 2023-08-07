@@ -120,7 +120,7 @@ BattleAnimFrameData:
 	dw .Frameset_BarrageBall         ; BATTLEANIMFRAMESET_BARRAGE_BALL
 	dw .Frameset_PayDay              ; BATTLEANIMFRAMESET_PAY_DAY
 	dw .Frameset_Heart               ; BATTLEANIMFRAMESET_HEART
-	dw .Frameset_SprinningBone       ; BATTLEANIMFRAMESET_SPINNING_BONE
+	dw .Frameset_SpinningBone        ; BATTLEANIMFRAMESET_SPINNING_BONE
 	dw .Frameset_Star                ; BATTLEANIMFRAMESET_STAR
 	dw .Frameset_Spoon               ; BATTLEANIMFRAMESET_SPOON
 	dw .Frameset_Sparkle             ; BATTLEANIMFRAMESET_SPARKLE
@@ -946,7 +946,7 @@ BattleAnimFrameData:
 	oamframe BATTLEANIMOAMSET_95,  8
 	oamend
 
-.Frameset_SprinningBone:
+.Frameset_SpinningBone:
 	oamframe BATTLEANIMOAMSET_97,  1
 	oamframe BATTLEANIMOAMSET_97,  1, OAM_X_FLIP
 	oamrestart
