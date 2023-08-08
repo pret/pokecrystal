@@ -42,8 +42,8 @@
 @  removed artificial save delay(readded on accident, to be removed again)
   added the newbox(bill's pc overhall)
   added a forth status page showing the stat xp/dvs
-  added hail as a new wheather
-  hail raises ice type pokemon defence by 50%
+@ added hail as a new wheather
+@ hail raises ice type pokemon defence by 50%
   all 251 pokemon are obtainable
 -- tm/hm system rework --
 Tm are infinitly usable and more plentyfull, but way less pokemon learn from them
