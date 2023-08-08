@@ -497,11 +497,11 @@ SurfDescription:
 
 IceBeamDescription:
 	db   "An attack that may"
-	next "freeze the foe.@"
+	next "cause frostbite.@"
 
 BlizzardDescription:
 	db   "An attack that may"
-	next "freeze the foe.@"
+	next "cause frostbite.@"
 
 PsybeamDescription:
 	db   "An attack that may"

@@ -94,7 +94,7 @@ PrintTempMonStatsXP:
 	ld bc, SCREEN_WIDTH
 	add hl, bc
 	ld de, wTempMonHPExp
-	lb bc, 2, 5
+	lb bc, 130, 5
 	call .PrintStat
 	ld de, wTempMonAtkExp
 	call .PrintStat
@@ -114,11 +114,11 @@ PrintTempMonStatsXP:
 	ret
 
 .StatNames:
-	db   "HEALTH"
-	next "ATTACK"
-	next "DEFENSE"
-	next "SPECIAL"
-	next "SPEED"
+	db   "HEALTH EXP"
+	next "ATTACK EXP"
+	next "DEF.   EXP"
+	next "SPC.   EXP"
+	next "SPEED  EXP"
 	next "@"
 
 PrintTempMonStatsDV:
@@ -173,7 +173,8 @@ PrintTempMonStatsDV:
 	ld bc, SCREEN_WIDTH
 	add hl, bc
 	ld de, wForthPageDVHP
-	lb bc, 1, 2
+	lb bc, 129, 2
+	inc hl
 	call .PrintStat
 	ld de, wForthPageDVAttack
 	call .PrintStat
@@ -193,11 +194,11 @@ PrintTempMonStatsDV:
 	ret
 
 .StatNames:
-	db   "HEALTH"
-	next "ATTACK"
-	next "DEFENSE"
-	next "SPECIAL"
-	next "SPEED"
+	db   "HEALTH DV"
+	next "ATTACK DV"
+	next "DEF.   DV"
+	next "SPC.   DV"
+	next "SPEED  DV"
 	next "@"
 
 PrintTempMonStats:
@@ -522,7 +523,7 @@ PlaceNonFaintStatus:
 	ld de, BrnString
 	bit BRN, a
 	jr nz, .place
-	ld de, FrzString
+	ld de, FrbString
 	bit FRZ, a
 	jr nz, .place
 	ld de, ParString
@@ -544,7 +545,7 @@ PlaceNonFaintStatus:
 SlpString: db "SLP@"
 PsnString: db "PSN@"
 BrnString: db "BRN@"
-FrzString: db "FRZ@"
+FrbString: db "FRB@"
 ParString: db "PAR@"
 
 ListMoves:

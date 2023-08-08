@@ -64,6 +64,11 @@ HurtByBurnText:
 	line "hurt by its burn!"
 	autodone
 
+HurtByFrostbiteText:
+	text "<USER>'s"
+	line "hurt by frostbite!"
+	prompt
+
 LeechSeedSapsText:
 	text "LEECH SEED saps"
 	line "<USER>!"
@@ -373,11 +378,6 @@ FastAsleepText:
 WokeUpText:
 	text "<USER>"
 	line "woke up!"
-	autodone
-
-FrozenSolidText:
-	text "<USER>"
-	line "is frozen solid!"
 	autodone
 
 FlinchedText:
@@ -724,9 +724,9 @@ DefrostedOpponentText:
 	line "was defrosted!"
 	autodone
 
-WasFrozenText:
+GotAFrostbiteText:
 	text "<TARGET>"
-	line "was frozen solid!"
+	line "got a frostbite!"
 	autodone
 
 WontRiseAnymoreText:
