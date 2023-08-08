@@ -44,7 +44,7 @@ MoveEffectsPointers:
 	dw SuperFang
 	dw StaticDamage
 	dw TrapTarget
-	dw NormalHit
+	dw FreezeHit
 	dw MultiHit
 	dw NormalHit
 	dw Mist
@@ -79,7 +79,7 @@ MoveEffectsPointers:
 	dw SkyAttack
 	dw ConfuseHit
 	dw PoisonMultiHit
-	dw NormalHit
+	dw Hail
 	dw Substitute
 	dw HyperBeam
 	dw Rage

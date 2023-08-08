@@ -180,6 +180,7 @@ ENDM
 	command curl                    ; ad
 	command flowerbloom             ; ae
 	command doublelastdamage        ; af
+	command starthail
 DEF NUM_EFFECT_COMMANDS EQU const_value - 1
 
 	const_def -1, -1

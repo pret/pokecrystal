@@ -180,4 +180,5 @@ BattleCommandPointers:
 	dw BattleCommand_Curl
 	dw BattleCommand_FlowerBloom
 	dw BattleCommand_DoubleLastDamage
+	dw BattleCommand_StartHail
 	assert_table_length NUM_EFFECT_COMMANDS
