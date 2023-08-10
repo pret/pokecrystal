@@ -175,6 +175,7 @@ AI_TryItem:
 	ld b, h
 	ld c, l
 	ld hl, AI_Items
+; BUG: AI might use its base reward value as an item (see docs/bugs_and_glitches.md)
 	ld de, wEnemyTrainerItem1
 .loop
 	ld a, [hl]
