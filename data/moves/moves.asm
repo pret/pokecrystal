@@ -33,7 +33,7 @@ Moves:
 	move WING_ATTACK,  EFFECT_NORMAL_HIT,         60, FLYING,        PHYSICAL, 100, 35,   0
 	move WHIRLWIND,    EFFECT_FORCE_SWITCH,        0, NORMAL,        STATUS,   100, 20,   0
 	move FLY,          EFFECT_FLY,                70, FLYING,        PHYSICAL, 100, 15,   0
-	move BIND,         EFFECT_TRAP_TARGET,        15, NORMAL,        PHYSICAL,  75, 20,   0 ; to be replaced by wrap
+	move MAGMA_FLOW,   EFFECT_BURN_MULTI_HIT,     40, GROUND,        SPECIAL,  100, 10,  25 ; new move
 	move SLAM,         EFFECT_NORMAL_HIT,         80, NORMAL,        PHYSICAL, 100, 20,   0
 	move VINE_WHIP,    EFFECT_NORMAL_HIT,         35, GRASS,         PHYSICAL, 100, 10,   0
 	move STOMP,        EFFECT_STOMP,              65, NORMAL,        PHYSICAL, 100, 20,  30
@@ -54,7 +54,7 @@ Moves:
 	move DOUBLE_EDGE,  EFFECT_RECOIL_HIT,        100, NORMAL,        PHYSICAL, 100, 15,   0
 	move TAIL_WHIP,    EFFECT_DEFENSE_DOWN,        0, NORMAL,        STATUS,   100, 30,   0
 	move POISON_STING, EFFECT_POISON_HIT,         25, POISON,        PHYSICAL, 100, 35,  30
-	move TWINEEDLE,    EFFECT_POISON_MULTI_HIT,   35, BUG,           PHYSICAL, 100, 20,  25
+	move TWINEEDLE,    EFFECT_POISON_MULTI_HIT,   40, BUG,           PHYSICAL, 100, 20,  25
 	move PIN_MISSILE,  EFFECT_MULTI_HIT,          20, BUG,           PHYSICAL, 100, 20,   0
 	move LEER,         EFFECT_DEFENSE_DOWN,        0, NORMAL,        STATUS,   100, 30,   0
 	move BITE,         EFFECT_FLINCH_HIT,         60, DARK,          PHYSICAL, 100, 25,  30

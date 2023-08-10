@@ -2113,7 +2113,7 @@ CyndaquilEvosAttacks:
 	db 0 ; no more level-up moves
 
 QuilavaEvosAttacks:
-	db EVOLVE_LEVEL, 36, TYPHLOSION
+	db EVOLVE_MOVE, MAGMA_FLOW, TYPHLOSION
 	db 0 ; no more evolutions
 	db 1, TACKLE
 	db 1, LEER
@@ -2122,6 +2122,7 @@ QuilavaEvosAttacks:
 	db 12, EMBER
 	db 21, QUICK_ATTACK
 	db 31, FLAME_WHEEL
+	db 34, MAGMA_FLOW
 	db 42, SWIFT
 	db 54, FLAMETHROWER
 	db 0 ; no more level-up moves
@@ -2136,6 +2137,7 @@ TyphlosionEvosAttacks:
 	db 12, EMBER
 	db 21, QUICK_ATTACK
 	db 31, FLAME_WHEEL
+	db 40, MAGMA_FLOW
 	db 45, SWIFT
 	db 60, FLAMETHROWER
 	db 0 ; no more level-up moves

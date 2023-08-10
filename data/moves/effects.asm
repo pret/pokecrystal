@@ -884,10 +884,38 @@ PoisonMultiHit:
 	supereffectivelooptext
 	checkfaint
 	buildopponentrage
+	poisontarget
 	endloop
 	raisesub
 	kingsrock
-	poisontarget
+	endmove
+
+BurnMultiHit:
+	checkobedience
+	usedmovetext
+	doturn
+	startloop
+	lowersub
+	checkhit
+	effectchance
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	clearmissdamage
+	moveanimnosub
+	failuretext
+	applydamage
+	criticaltext
+	cleartext
+	supereffectivelooptext
+	checkfaint
+	buildopponentrage
+	burntarget
+	endloop
+	raisesub
+	kingsrock
 	endmove
 
 FlinchHit:

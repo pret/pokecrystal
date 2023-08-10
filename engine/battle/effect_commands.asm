@@ -5200,6 +5200,8 @@ BattleCommand_EndLoop:
 	ld a, [hl]
 	cp EFFECT_POISON_MULTI_HIT
 	jr z, .twineedle
+	cp EFFECT_BURN_MULTI_HIT
+	jr z, .twineedle
 	cp EFFECT_DOUBLE_HIT
 	ld a, 1
 	jr z, .double_hit
@@ -5596,7 +5598,6 @@ BattleCommand_TrapTarget:
 	jp StdBattleTextbox
 
 .Traps:
-	dbw BIND,      UsedBindText      ; 'used BIND on'
 	dbw WRAP,      WrappedByText     ; 'was WRAPPED by'
 	dbw FIRE_SPIN, FireSpinTrapText  ; 'was trapped!'
 	dbw CLAMP,     ClampedByText     ; 'was CLAMPED by'

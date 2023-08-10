@@ -20,7 +20,7 @@ MoveDescriptions::
 	dw WingAttackDescription
 	dw WhirlwindDescription
 	dw FlyDescription
-	dw BindDescription
+	dw MagmaFlowDescription
 	dw SlamDescription
 	dw VineWhipDescription
 	dw StompDescription
@@ -342,9 +342,9 @@ FlyDescription:
 	db   "1st turn: Fly"
 	next "2nd turn: Attack@"
 
-BindDescription:
-	db   "Binds the target"
-	next "for 2-5 turns.@"
+MagmaFlowDescription:
+	db   "Hits twice,"
+	next "may burn.@"
 
 SlamDescription:
 	db   "Slams the foe with"

@@ -2,7 +2,8 @@
 
 @ bug -> fairy : not very effective -> super effective
 @ traping moves : 2 to 5 turns - > 4 turns | 1/16 health -> 1/8 health
-@ mult-hit moves : 37.5% hits 2 or 3, 12,5% hit 4 or 5 -> 50% hit 3 , 25% hit 4, 12,5% hit 2 or 5 
+@ mult-hit moves : 37.5% hits 2 or 3, 12,5% hit 4 or 5 -> 50% hit 3 , 25% hit 4, 12,5% hit 2 or 5
+@ double-hit status inducing moves : chance to inflict once and end of move -> each hit can inflict the status
 
 -- pokemon type changes --
   
@@ -48,7 +49,7 @@
   fissure
 @ guillotine
   horn drill
-  bind
+@ bind
 @ mega punch
   mega kick
   jump kick(this is NOT high jump kick)
@@ -60,8 +61,8 @@
 
 -- moves added --
 @ flower bloom : fairy | status | sharply raises attack and spe.attack, can only be used once.
-  magma flow : ground | special | 90 power | 25% to burn | 100% accuracy
-@ dive roll : dark | physical | 60 power | double damage if attacked later | 100% accuracy
+@ magma flow : ground | special | 40 power | hits twice, 25% to burn | 100% accuracy
+@ dive roll : dark | physical | 60 power | double damage if attack later | 100% accuracy
 
 -- moves changes --
 

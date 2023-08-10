@@ -21,7 +21,7 @@ BattleAnimations::
 	dw BattleAnim_WingAttack
 	dw BattleAnim_Whirlwind
 	dw BattleAnim_Fly
-	dw BattleAnim_Bind
+	dw BattleAnim_MagmaFlow
 	dw BattleAnim_Slam
 	dw BattleAnim_VineWhip
 	dw BattleAnim_Stomp
@@ -1777,20 +1777,15 @@ BattleAnim_Bide:
 	anim_call BattleAnim_ShowMon_0
 	anim_ret
 
-BattleAnim_Bind:
-	anim_1gfx ANIM_GFX_ROPE
-	anim_sound 0, 1, SFX_BIND
-	anim_obj ANIM_OBJ_BIND1, 132, 64, $0
+BattleAnim_MagmaFlow:
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $60, $4, $10
+	anim_sound 0, 1, SFX_BONE_CLUB
+	anim_wait 4
+	anim_sound 0, 1, SFX_BURN
+	anim_obj ANIM_OBJ_EMBER, 120, 68, $30
+	anim_obj ANIM_OBJ_EMBER, 132, 68, $30
+	anim_obj ANIM_OBJ_EMBER, 144, 68, $30
 	anim_wait 8
-	anim_obj ANIM_OBJ_BIND2, 132, 56, $0
-	anim_wait 8
-	anim_obj ANIM_OBJ_BIND1, 132, 48, $0
-	anim_wait 64
-	anim_sound 0, 1, SFX_BIND
-	anim_incobj 1
-	anim_incobj 2
-	anim_incobj 3
-	anim_wait 96
 	anim_ret
 
 BattleAnim_Wrap:
