@@ -29,7 +29,6 @@
 @ headbutt works on kanto
 @ lottery corner generate a lucky number daily
 @ allow more trainer parties, with individual DVs, stat experience, nicknames, variable teams, etc
-  added a lot of tms and distributed them acordly
   overworld actions no longer need hm on pokemon, but instead they just need a special item and some special confition(a "flying" mon for fly and so on)
 @ no more trade evolutions, all are changed to something else but no "evolve at level x"
 @ move dependent evolution, some pokemon need to learn certain moves to evolve
@@ -38,14 +37,14 @@
 @ your starter holds a item relevant to it's final evolution each 
 @ infinite tm uses
 @ the gs ball event can be activated by beating red and entering goldenrod pokemon center upstairs while suicune is on the party
-  reworked tree encounter caracterization
-@  removed artificial save delay(readded on accident, to be removed again)
-  added the newbox(bill's pc overhall)
-  added a forth status page showing the stat xp/dvs
+@ removed artificial save delay(readded on accident, to be removed again)
+@ added the newbox(bill's pc overhall)
+@ removed the redundant move grammar
+@ added a forth status page showing the stat xp/dvs
 @ added hail as a new wheather
 @ hail raises ice type pokemon defence by 50%
   all 251 pokemon are obtainable
 -- tm/hm system rework --
-Tm are infinitly usable and more plentyfull, but way less pokemon learn from them
+Tm are infinitly usable and more plentyfull, but way less pokemon learn from them and they have worse moves
 Hm are hard to get but are good moves learnble for a lot of pokemon
 
