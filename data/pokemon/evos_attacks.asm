@@ -17,9 +17,9 @@ INCLUDE "data/pokemon/evos_attacks_pointers.asm"
 BulbasaurEvosAttacks:
 	db EVOLVE_LEVEL, 16, IVYSAUR
 	db 0 ; no more evolutions
-	db 1, TACKLE
-	db 4, GROWL
-	db 7, LEECH_SEED
+	db 1, HEADBUTT
+	db 4, SWEET_SCENT
+	db 7, TELEPORT
 	db 10, FLY
 	db 15, POISONPOWDER
 	db 15, SLEEP_POWDER

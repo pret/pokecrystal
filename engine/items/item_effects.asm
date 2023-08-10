@@ -155,13 +155,13 @@ ItemEffects:
 	dw RestoreHPEffect     ; BERRY_JUICE
 	dw NoEffect            ; SCOPE_LENS
 	dw SkyFluteEffect      ; SKY_FLUTE
-	dw NoEffect            ; ITEM_8E
+	dw TeleporterEffect    ; TELEPORTER
 	dw NoEffect            ; METAL_COAT
 	dw NoEffect            ; DRAGON_FANG
-	dw NoEffect            ; ITEM_91
+	dw PokeLureEffect      ; POKE_LURE
 	dw NoEffect            ; LEFTOVERS
-	dw NoEffect            ; ITEM_93
-	dw NoEffect            ; ITEM_94
+	dw FlashlightEffect    ; FLASHLIGHT
+	dw LongStickEffect     ; LONG_STICK
 	dw NoEffect            ; ITEM_95
 	dw RestorePPEffect     ; MYSTERYBERRY
 	dw NoEffect            ; DRAGON_SCALE
@@ -2110,8 +2110,6 @@ EscapeRopeEffect:
 	farcall EscapeRopeFunction
 
 	ld a, [wItemEffectSucceeded]
-	cp 1
-	call z, UseDisposableItem
 	ret
 
 SuperRepelEffect:
@@ -2361,6 +2359,26 @@ SkyFluteEffect:
 	ld a, 1
 	ld [wUsingHMItem], a
 	farcall FlyFunction
+	ret
+
+TeleporterEffect:
+	farcall TeleportFunction
+	ret
+
+PokeLureEffect:
+	farcall SweetScentFromMenu
+	ret
+
+FlashlightEffect:
+	ld a, 1
+	ld [wUsingHMItem], a
+	farcall FlashFunction
+	ret
+
+LongStickEffect:
+	ld a, 1
+	ld [wUsingHMItem], a
+	farcall HeadbuttFunction
 	ret
 
 ZygardeCubeEffect:

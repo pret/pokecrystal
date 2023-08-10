@@ -312,7 +312,7 @@ _CutNothingText::
 	prompt
 
 _BlindingFlashText::
-	text "A blinding FLASH"
+	text "Your flashlight"
 	line "lights the area!@"
 	text_promptbutton
 	text_end
@@ -356,8 +356,8 @@ _UseDigText::
 	done
 
 _UseEscapeRopeText::
-	text "<PLAYER> used an"
-	line "ESCAPE ROPE."
+	text "<PLAYER> used the"
+	line "Escape Rope."
 	done
 
 _CantUseDigText::
@@ -367,7 +367,7 @@ _CantUseDigText::
 
 _TeleportReturnText::
 	text "Return to the last"
-	line "#MON CENTER."
+	line "#mon Center."
 	done
 
 _CantUseTeleportText::
@@ -432,9 +432,8 @@ _AskWhirlpoolText::
 	done
 
 _UseHeadbuttText::
-	text_ram wStringBuffer2
-	text " did a"
-	line "HEADBUTT!"
+	text "You poked the"
+	line "tree!"
 	prompt
 
 _HeadbuttNothingText::
@@ -559,9 +558,8 @@ _PoisonWhiteoutText::
 	prompt
 
 _UseSweetScentText::
-	text_ram wStringBuffer3
-	text " used"
-	line "SWEET SCENT!"
+	text "You used the"
+	line "# Lure!"
 	done
 
 _SweetScentNothingText::

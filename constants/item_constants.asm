@@ -147,13 +147,13 @@
 	const BERRY_JUICE  ; 8b
 	const SCOPE_LENS   ; 8c
 	const SKY_FLUTE    ; 8d
-	const ITEM_8E      ; 8e
+	const TELEPORTER   ; 8e
 	const METAL_COAT   ; 8f
 	const DRAGON_FANG  ; 90
-	const ITEM_91      ; 91
+	const POKE_LURE    ; 91
 	const LEFTOVERS    ; 92
-	const ITEM_93      ; 93
-	const ITEM_94      ; 94
+	const FLASHLIGHT   ; 93
+	const LONG_STICK   ; 94
 	const ITEM_95      ; 95
 	const MYSTERYBERRY ; 96
 	const DRAGON_SCALE ; 97

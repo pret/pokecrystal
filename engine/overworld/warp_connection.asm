@@ -216,6 +216,8 @@ EnterMapWarp:
 	jr z, .pokecenter_pokecom
 	cp TILESET_POKECOM_CENTER
 	jr z, .pokecenter_pokecom
+	cp TILESET_POKEMON_CENTER ; new Pokemon Center tileset
+	jr z, .pokecenter_pokecom
 	ret
 .pokecenter_pokecom
 

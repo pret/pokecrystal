@@ -8,7 +8,6 @@ SweetScentFromMenu:
 .SweetScent:
 	reloadmappart
 	special UpdateTimePals
-	callasm GetPartyNickname
 	writetext UseSweetScentText
 	waitbutton
 	callasm SweetScentEncounter

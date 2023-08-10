@@ -142,13 +142,13 @@ ItemDescriptions:
 	dw BerryJuiceDesc
 	dw ScopeLensDesc
 	dw SkyFluteDesc
-	dw TeruSama13Desc
+	dw TeleporterDesc
 	dw MetalCoatDesc
 	dw DragonFangDesc
-	dw TeruSama14Desc
+	dw PokeLureDesc
 	dw LeftoversDesc
-	dw TeruSama15Desc
-	dw TeruSama16Desc
+	dw FlashlightDesc
+	dw LongStickDesc
 	dw TeruSama17Desc
 	dw MysteryBerryDesc
 	dw DragonScaleDesc
@@ -815,8 +815,9 @@ SkyFluteDesc:
 	db   "Quickly travel"
 	next "between areas.@"
 
-TeruSama13Desc:
-	db   "?@"
+TeleporterDesc:
+	db   "Teleports to last"
+	next "#mon Center.@"
 
 MetalCoatDesc:
 	db   "Powers up steel-"
@@ -826,18 +827,22 @@ DragonFangDesc:
 	db   "Powers up dragon-"
 	next "type moves. (HOLD)@"
 
-TeruSama14Desc:
-	db   "?@"
+PokeLureDesc:
+	db   "Attracts wild"
+	next "#mon.@"
 
 LeftoversDesc:
 	db   "Restores HP during"
 	next "battle. (HOLD)@"
 
-TeruSama15Desc:
-	db   "?@"
+FlashlightDesc:
+	db   "Lights up dark"
+	next "areas.@"
 
-TeruSama16Desc:
-	db   "?@"
+LongStickDesc:
+	db   "Pokes trees with"
+	next "wild #mon.@"
+
 
 TeruSama17Desc:
 	db   "?@"
