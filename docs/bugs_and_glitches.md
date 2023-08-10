@@ -1458,7 +1458,7 @@ Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") implies 
 
 ### AI might use its base reward's value as an item
 
-The routine in `AI_TryItem` usually rotates between `wEnemyTrainerItem1` and `wEnemyTrainerItem2` to check if either one of the AI's items is in the `AI_Items` list, but if the AI has used its first item (or it's `ITEM_NONE`) and doesn't use its second item, the AI's item pointer will overflow to the next address after `wEnemyTrainerItem2` (which is `wEnemyTrainerBaseReward`) and use its value as an item constant. If the base reward's value corresponds to a valid item in the `AI_Items` list, it might use it instead.
+In the `AI_TryItem` routine, the code checks both `wEnemyTrainerItem1` and `wEnemyTrainerItem2` to see if the AI's items match any in the `AI_Items` list. However, if the AI has used its first item (or it's set to `ITEM_NONE`) and doesn't use its second item, the item pointer can overflow to the subsequent address, `wEnemyTrainerBaseReward`. If this address's value matches an item in the `AI_Items` list, the AI could mistakenly use it.
 
 **Fix:** Edit `AI_TryItem` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/items.asm):
 
