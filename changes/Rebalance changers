@@ -44,15 +44,25 @@
 
 -- moves removed --
 
+  beat up
+  fissure
+@ guillotine
+  horn drill
+  bind
+@ mega punch
+  mega kick
+  jump kick(this is NOT high jump kick)
+  take down
+  roar
+  poison gas
+  barrage
+  psycg up
+
 -- moves added --
 @ flower bloom : fairy | status | sharply raises attack and spe.attack, can only be used once.
   magma flow : ground | special | 90 power | 25% to burn | 100% accuracy
 @ dive roll : dark | physical | 60 power | double damage if attacked later | 100% accuracy
-  
--- tm changes --
 
- vital throw is now a tm
- 
 -- moves changes --
 
 @ double slap : normal -> fairy | 85% accuracy -> 100% accuracy
@@ -161,7 +171,7 @@
   
 @ metal claw : 50 power -> 70 power | 95% accuracy -> 100% accuracy
   
-@ hidden power : power and type is dependent on each pokemon -> 50 power and type is dependent on each pokemon
+@ hidden power : power and type is dependent on each pokemon -> 70 power and type is dependent on each pokemon
   
 @ cross chop : 80% accuracy -> 90% accuracy
   

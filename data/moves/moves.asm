@@ -25,7 +25,7 @@ Moves:
 	move THUNDERPUNCH, EFFECT_PARALYZE_HIT,       75, ELECTRIC,      PHYSICAL, 100, 15,  10
 	move SCRATCH,      EFFECT_NORMAL_HIT,         40, NORMAL,        PHYSICAL, 100, 35,   0
 	move VICEGRIP,     EFFECT_NORMAL_HIT,         55, NORMAL,        PHYSICAL, 100, 30,   0
-	move DIVE_ROLL,    EFFECT_DIVE_ROLL,          70, DARK,          PHYSICAL, 100, 10,   0 ; 	new move
+	move DIVE_ROLL,    EFFECT_DIVE_ROLL,          70, DARK,          PHYSICAL, 100, 10,   0 ; new move
 	move RAZOR_WIND,   EFFECT_RAZOR_WIND,         80, FLYING,        SPECIAL,   75, 10,   0
 	move SWORDS_DANCE, EFFECT_ATTACK_UP_2,         0, NORMAL,        STATUS,   100, 30,   0
 	move CUT,          EFFECT_NORMAL_HIT,         50, BUG,           PHYSICAL, 100, 30,   0
@@ -264,6 +264,6 @@ Moves:
 	move FUTURE_SIGHT, EFFECT_FUTURE_SIGHT,       80, PSYCHIC_TYPE,  SPECIAL,   90, 15,   0
 	move ROCK_SMASH,   EFFECT_DEFENSE_DOWN_HIT,   20, FIGHTING,      PHYSICAL, 100, 15,  50
 	move WHIRLPOOL,    EFFECT_TRAP_TARGET,        15, WATER,         SPECIAL,   95, 15,   0
-	move BEAT_UP,      EFFECT_MULTI_HIT,          20, DARK,          PHYSICAL, 100, 10,   0
+	move BEAT_UP,      EFFECT_MULTI_HIT,          20, DARK,          PHYSICAL, 100, 10,   0 ; to be removed
 	move HAIL,         EFFECT_HAIL,                0, ICE,           STATUS,   100, 10,   0
 	assert_table_length NUM_ATTACKS

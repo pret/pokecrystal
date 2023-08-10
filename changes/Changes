@@ -25,7 +25,6 @@
 @ reworked initialization system
 @ changed multi-hit probabilities, now is 50% for 3 hits, 25% for 4 hits and 12,5% for either 2 or 5 hits
 @ reworked swarm system
-@ reworked beat up
 @ headbutt works on kanto
 @ lottery corner generate a lucky number daily
 @ allow more trainer parties, with individual DVs, stat experience, nicknames, variable teams, etc
