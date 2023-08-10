@@ -249,7 +249,7 @@ GetGender:
 ; a = 0: f = nc|z;  female
 ;        f = c:  genderless
 
-; This is determined by comparing the Attack and Speed DVs
+; This is determined by comparing the dv depending od the mon gender ratio
 ; with the species' gender ratio.
 
 ; Figure out what type of monster struct we're looking at.
@@ -296,17 +296,29 @@ GetGender:
 
 .DVs:
 ; Attack DV
-	ld a, [hli]
-	and $f0
-	ld b, a
-; Speed DV
 	ld a, [hl]
-	and $f0
+	cpl
+	and $10
 	swap a
-
-; Put our DVs together.
+	add a
+	ld b, a   ; ~(Atk DV & 1) << 1
+; Defense DV
+	ld a, [hli]
+	and $1
+	add a
+	add a
 	or b
-	ld b, a
+	ld b, a   ; ~(Atk DV & 1) << 1 | (Def DV & 1) << 2
+; Special DV
+	ld a, [hl]
+	cpl
+	and $1
+	add a
+	add a
+	add a
+	or b
+	swap a
+	ld b, a   ; ~(Atk DV & 1) << 1 | (Def DV & 1) << 2 | ~(Spc DV & 1) << 3
 
 ; We need the gender ratio to do anything with this.
 	push bc
