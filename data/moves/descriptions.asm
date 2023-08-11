@@ -26,7 +26,7 @@ MoveDescriptions::
 	dw StompDescription
 	dw DoubleKickDescription
 	dw MegaKickDescription
-	dw JumpKickDescription
+	dw HooveKickDescription
 	dw RollingKickDescription
 	dw SandAttackDescription
 	dw HeadbuttDescription
@@ -366,9 +366,9 @@ MegaKickDescription:
 	db   "A powerful kicking"
 	next "attack.@"
 
-JumpKickDescription:
-	db   "May miss, damaging"
-	next "the user.@"
+HooveKickDescription:
+	db   "A strong kick that"
+	next "may confuse foes.@"
 
 RollingKickDescription:
 	db   "A fast, spinning"

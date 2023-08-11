@@ -25,7 +25,7 @@ MoveNames::
 	li "STOMP"
 	li "DOUBLE KICK"
 	li "MEGA KICK"
-	li "JUMP KICK"
+	li "HOOVE KICK"
 	li "ROLLING KICK"
 	li "SAND-ATTACK"
 	li "HEADBUTT"

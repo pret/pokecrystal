@@ -39,7 +39,7 @@ Moves:
 	move STOMP,        EFFECT_STOMP,              65, NORMAL,        PHYSICAL, 100, 20,  30
 	move DOUBLE_KICK,  EFFECT_DOUBLE_HIT,         30, FIGHTING,      PHYSICAL, 100, 30,   0
 	move MEGA_KICK,    EFFECT_NORMAL_HIT,        120, NORMAL,        PHYSICAL,  75,  5,   0 ; to be removed
-	move JUMP_KICK,    EFFECT_JUMP_KICK,          70, FIGHTING,      PHYSICAL,  95, 25,   0 ; to be removed
+	move HOOVE_KICK,   EFFECT_CONFUSE_HIT,        70, NORMAL,        PHYSICAL,  95, 25,  20 ; to be removed
 	move ROLLING_KICK, EFFECT_FLINCH_HIT,         60, FIGHTING,      PHYSICAL, 100, 15,  30
 	move SAND_ATTACK,  EFFECT_ACCURACY_DOWN,       0, GROUND,        STATUS,   100, 15,   0
 	move HEADBUTT,     EFFECT_FLINCH_HIT,         70, NORMAL,        PHYSICAL, 100, 15,  30
@@ -147,7 +147,7 @@ Moves:
 	move SPIKE_CANNON, EFFECT_MULTI_HIT,          20, STEEL,         PHYSICAL, 100, 15,   0
 	move CONSTRICT,    EFFECT_SPEED_DOWN_HIT,     10, NORMAL,        PHYSICAL, 100, 35,  25
 	move AMNESIA,      EFFECT_SP_DEF_UP_2,         0, PSYCHIC_TYPE,  STATUS,   100, 20,   0
-	move KINESIS,      EFFECT_ACCURACY_DOWN_HIT,  50, PSYCHIC_TYPE,  STATUS,    80, 15,   0
+	move KINESIS,      EFFECT_ACCURACY_DOWN_HIT,  60, PSYCHIC_TYPE,  STATUS,    80, 15,   0
 	move SOFTBOILED,   EFFECT_HEAL,                0, NORMAL,        STATUS,   100, 10,   0
 	move HI_JUMP_KICK, EFFECT_JUMP_KICK,          85, FIGHTING,      PHYSICAL,  90, 20,   0
 	move GLARE,        EFFECT_PARALYZE,            0, NORMAL,        STATUS,   100, 30,   0
@@ -180,13 +180,13 @@ Moves:
 	move SUBSTITUTE,   EFFECT_SUBSTITUTE,          0, NORMAL,        STATUS,   100, 10,   0
 	move STRUGGLE,     EFFECT_RECOIL_HIT,         50, NORMAL,        PHYSICAL, 100,  1,   0
 	move SKETCH,       EFFECT_SKETCH,              0, NORMAL,        STATUS,   100,  1,   0
-	move TRIPLE_KICK,  EFFECT_TRIPLE_KICK,        15, FIGHTING,      PHYSICAL, 100, 10,   0
+	move TRIPLE_KICK,  EFFECT_TRIPLE_KICK,        20, FIGHTING,      PHYSICAL, 100, 10,   0
 	move THIEF,        EFFECT_THIEF,              50, DARK,          PHYSICAL, 100, 10, 100
 	move SPIDER_WEB,   EFFECT_MEAN_LOOK,           0, BUG,           STATUS,   100, 10,   0
 	move MIND_READER,  EFFECT_LOCK_ON,             0, NORMAL,        STATUS,   100,  5,   0
 	move NIGHTMARE,    EFFECT_NIGHTMARE,           0, GHOST,         STATUS,   100, 15,   0
 	move FLAME_WHEEL,  EFFECT_FLAME_WHEEL,        60, FIRE,          PHYSICAL, 100, 25,  10
-	move SNORE,        EFFECT_SNORE,              50, NORMAL,        PHYSICAL, 100, 15,  30
+	move SNORE,        EFFECT_SNORE,              40, NORMAL,        SPECIAL,  100, 15,  30
 	move CURSE,        EFFECT_CURSE,               0, CURSE_TYPE,    STATUS,   100, 10,   0
 	move FLAIL,        EFFECT_REVERSAL,            1, NORMAL,        PHYSICAL, 100, 15,   0
 	move CONVERSION2,  EFFECT_CONVERSION2,         0, NORMAL,        STATUS,   100, 30,   0

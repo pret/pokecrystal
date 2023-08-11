@@ -52,17 +52,18 @@
 @ bind
 @ mega punch
   mega kick
-  jump kick(this is NOT high jump kick)
+@ jump kick(this is NOT high jump kick)
   take down
   roar
   poison gas
   barrage
-  psycg up
+  psych up
 
 -- moves added --
 @ flower bloom : fairy | status | sharply raises attack and spe.attack, can only be used once.
 @ magma flow : ground | special | 40 power | hits twice, 25% to burn | 100% accuracy
 @ dive roll : dark | physical | 60 power | double damage if attack later | 100% accuracy
+@ hoove kick : normal | physical | 70 power | 20% to confuse ! 95% accuracy
 
 -- moves changes --
 
@@ -134,7 +135,7 @@
   
 @ constrict : 10% lower speed -> 25% lower speed
   
-@ kinesis : 0 power -> 50 power
+@ kinesis : 0 power -> 60 power
   
 @ glare : 75% accuracy -> 100% accuracy
   
@@ -146,11 +147,9 @@
   
 @ hyper fang : 90% accuracy -> 100% accuracy
   
-@ triple kick : 10 power -> 15 power | 90% accuracy - > 100% accuracy | hits 1,2,or 3 times -> hits 3 times
+@ triple kick : 10 power -> 20 power | 90% accuracy - > 100% accuracy | hits 1,2,or 3 times -> hits 3 times
   
 @ thief : 40 power -> 50 power
-  
-@ snore : 40 power -> 50 power | special -> physical
   
 @ mud slap : 20 power -> 40 power
   
@@ -179,5 +178,3 @@
 @ twister : 40 power -> 50 power
   
 @ whirlpool : 70% accuracy -> 95% accuracy
-  
-@ beat up : watever it was -> 20 power multi-hit dark type attack

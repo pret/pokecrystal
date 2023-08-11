@@ -27,7 +27,7 @@ BattleAnimations::
 	dw BattleAnim_Stomp
 	dw BattleAnim_DoubleKick
 	dw BattleAnim_MegaKick
-	dw BattleAnim_JumpKick
+	dw BattleAnim_HooveKick
 	dw BattleAnim_RollingKick
 	dw BattleAnim_SandAttack
 	dw BattleAnim_Headbutt
@@ -752,7 +752,7 @@ BattleAnim_DoubleKick:
 	anim_wait 8
 	anim_ret
 
-BattleAnim_JumpKick:
+BattleAnim_HooveKick:
 	anim_1gfx ANIM_GFX_HIT
 	anim_if_param_equal $1, .alternate
 	anim_sound 0, 1, SFX_JUMP_KICK
