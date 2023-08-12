@@ -56,6 +56,12 @@ Route29Tutorial1:
 	opentext
 	writetext CatchingTutorialDebriefText
 	waitbutton
+	writetext CatchingTutorialExpShare
+	waitbutton
+	verbosegiveitem EXP_SHARE
+	waitbutton
+	writetext CathingTutorialExpRecived
+	waitbutton
 	closetext
 	setscene SCENE_ROUTE29_NOOP
 	setevent EVENT_LEARNED_TO_CATCH_POKEMON
@@ -81,6 +87,12 @@ Route29Tutorial2:
 	opentext
 	writetext CatchingTutorialDebriefText
 	waitbutton
+	writetext CatchingTutorialExpShare
+	waitbutton
+	verbosegiveitem EXP_SHARE
+	waitbutton
+	writetext CathingTutorialExpRecived
+	waitbutton
 	closetext
 	setscene SCENE_ROUTE29_NOOP
 	setevent EVENT_LEARNED_TO_CATCH_POKEMON
@@ -89,6 +101,12 @@ Route29Tutorial2:
 Script_RefusedTutorial1:
 	writetext CatchingTutorialDeclinedText
 	waitbutton
+	writetext CatchingTutorialExpShare
+	waitbutton
+	verbosegiveitem EXP_SHARE
+	waitbutton
+	writetext CathingTutorialExpRecived
+	waitbutton
 	closetext
 	applymovement ROUTE29_COOLTRAINER_M1, DudeMovementData1b
 	setscene SCENE_ROUTE29_NOOP
@@ -96,6 +114,12 @@ Script_RefusedTutorial1:
 
 Script_RefusedTutorial2:
 	writetext CatchingTutorialDeclinedText
+	waitbutton
+	writetext CatchingTutorialExpShare
+	waitbutton
+	verbosegiveitem EXP_SHARE
+	waitbutton
+	writetext CathingTutorialExpRecived
 	waitbutton
 	closetext
 	applymovement ROUTE29_COOLTRAINER_M1, DudeMovementData2b
@@ -283,6 +307,17 @@ CatchingTutorialDeclinedText:
 
 	para "#MON, you have"
 	line "to walk a lot."
+	done
+
+CatchingTutorialExpShare:
+	text "Wait, before you"
+	line "go, have this."
+	done
+
+CathingTutorialExpRecived:
+	text "Make sure your"
+	line "newly caugth #MON"
+	cont "cach up!"
 	done
 
 CatchingTutorialRepeatText:
