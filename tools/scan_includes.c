@@ -47,15 +47,16 @@ void scan_file(const char *filename, bool strict) {
 			ptr = strchr(ptr, '\n');
 			if (!ptr) {
 				fprintf(stderr, "%s: no newline at end of file\n", filename);
+				goto end_of_scan_file;
 			}
 			break;
 		case '"':
-			ptr++;
-			ptr = strchr(ptr, '"');
+			ptr = strchr(ptr + 1, '"');
 			if (ptr) {
 				ptr++;
 			} else {
 				fprintf(stderr, "%s: unterminated string\n", filename);
+				goto end_of_scan_file;
 			}
 			break;
 		case 'I':
@@ -75,12 +76,16 @@ void scan_file(const char *filename, bool strict) {
 						scan_file(include_path, strict);
 					}
 				}
+				else {
+					fprintf(stderr, "%s: couldn't find a path\n", filename);
+					goto end_of_scan_file;
+				}
 			}
 			break;
 		}
 	}
 
-	free(contents);
+	end_of_scan_file: free(contents);
 }
 
 int main(int argc, char *argv[]) {
