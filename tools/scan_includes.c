@@ -46,7 +46,7 @@ void scan_file(const char *filename, bool strict) {
 		case ';':
 			ptr = strchr(ptr, '\n');
 			if (!ptr) {
-				fprintf(stderr, "%s: no newline at end of file\n", filename);
+				fprintf(stderr, "%s: no newline at end of file, after comment\n", filename);
 				goto end_of_scan_file;
 			}
 			break;
@@ -64,16 +64,31 @@ void scan_file(const char *filename, bool strict) {
 			is_incbin = !strncmp(ptr, "INCBIN", 6) || !strncmp(ptr, "incbin", 6);
 			is_include = !strncmp(ptr, "INCLUDE", 7) || !strncmp(ptr, "include", 7);
 			if (is_incbin || is_include) {
+				// Worst case, this is the \0 placed before
+				char after_inc_char = *(ptr + 6);
+				if(is_include)
+					after_inc_char = *(ptr + 7);
+				// This is not a valid include/incbin. It might be something else, keep iterating
+				if((after_inc_char != ' ') && (after_inc_char != '"') && (after_inc_char != '\t'))
+					break;
+
+				char* newline_ptr = strchr(ptr, '\n');
 				ptr = strchr(ptr, '"');
 				if (ptr) {
-					ptr++;
-					char *include_path = ptr;
-					size_t length = strcspn(ptr, "\"");
-					ptr += length + 1;
-					include_path[length] = '\0';
-					printf("%s ", include_path);
-					if (is_include) {
-						scan_file(include_path, strict);
+					if((!newline_ptr) || (ptr < newline_ptr)) {
+						ptr++;
+						char *include_path = ptr;
+						size_t length = strcspn(ptr, "\"");
+						ptr += length + 1;
+						include_path[length] = '\0';
+						printf("%s ", include_path);
+						if (is_include) {
+							scan_file(include_path, strict);
+						}
+					}
+					else {
+						// No '"' until the newline, skip to the next one
+						ptr = newline_ptr;
 					}
 				}
 				else {
