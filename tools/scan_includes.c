@@ -43,8 +43,9 @@ void scan_file(const char *filename, bool strict) {
 	for (char *ptr = contents; ptr && ptr - contents < size; ptr++) {
 		bool is_incbin = false, is_include = false;
 		ptr = strpbrk(ptr, ";\"Ii");
-		if(!ptr)
+		if(!ptr) {
 			break;
+		}
 		switch (*ptr) {
 		case ';':
 			ptr = strchr(ptr, '\n');
@@ -63,17 +64,27 @@ void scan_file(const char *filename, bool strict) {
 			}
 			break;
 		case 'I':
-		case 'i':
+		case 'i': ;
+			char before_char = ' ';
+			if(ptr != contents) {
+				before_char = *(ptr - 1);
+			}
+			if((before_char != ' ') && (before_char != '"') && (before_char != '\t') && (before_char != '\n')) {
+				break;
+			}
+			// Is this a proper token? If it is, continue
 			is_incbin = !strncmp(ptr, "INCBIN", 6) || !strncmp(ptr, "incbin", 6);
 			is_include = !strncmp(ptr, "INCLUDE", 7) || !strncmp(ptr, "include", 7);
 			if (is_incbin || is_include) {
 				// Worst case, this is the \0 placed before
 				char after_inc_char = *(ptr + 6);
-				if(is_include)
+				if(is_include) {
 					after_inc_char = *(ptr + 7);
+				}
 				// This is not a valid include/incbin. It might be something else, keep iterating
-				if((after_inc_char != ' ') && (after_inc_char != '"') && (after_inc_char != '\t'))
+				if((after_inc_char != ' ') && (after_inc_char != '"') && (after_inc_char != '\t')) {
 					break;
+				}
 
 				ptr = strpbrk(ptr, "\"\n");
 				if (!ptr) {
