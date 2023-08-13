@@ -42,6 +42,9 @@ void scan_file(const char *filename, bool strict) {
 
 	for (char *ptr = contents; ptr && ptr - contents < size; ptr++) {
 		bool is_incbin = false, is_include = false;
+		ptr = strpbrk(ptr, ";\"Ii");
+		if(!ptr)
+			break;
 		switch (*ptr) {
 		case ';':
 			ptr = strchr(ptr, '\n');
@@ -72,28 +75,21 @@ void scan_file(const char *filename, bool strict) {
 				if((after_inc_char != ' ') && (after_inc_char != '"') && (after_inc_char != '\t'))
 					break;
 
-				char* newline_ptr = strchr(ptr, '\n');
-				ptr = strchr(ptr, '"');
-				if (ptr) {
-					if((!newline_ptr) || (ptr < newline_ptr)) {
-						ptr++;
-						char *include_path = ptr;
-						size_t length = strcspn(ptr, "\"");
-						ptr += length + 1;
-						include_path[length] = '\0';
-						printf("%s ", include_path);
-						if (is_include) {
-							scan_file(include_path, strict);
-						}
-					}
-					else {
-						// No '"' until the newline, skip to the next one
-						ptr = newline_ptr;
-					}
-				}
-				else {
+				ptr = strpbrk(ptr, "\"\n");
+				if (!ptr) {
 					fprintf(stderr, "%s: couldn't find a path\n", filename);
 					goto end_of_scan_file;
+				}
+				else if((*ptr) == '"') {
+					ptr++;
+					char *include_path = ptr;
+					size_t length = strcspn(ptr, "\"");
+					ptr += length + 1;
+					include_path[length] = '\0';
+					printf("%s ", include_path);
+					if (is_include) {
+						scan_file(include_path, strict);
+					}
 				}
 			}
 			break;
