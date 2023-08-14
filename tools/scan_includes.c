@@ -77,11 +77,11 @@ void scan_file(const char *filename, bool strict) {
 			is_include = !strncmp(ptr, "INCLUDE", 7) || !strncmp(ptr, "include", 7);
 			if (is_incbin || is_include) {
 				// Check that an INCLUDE/INCBIN ends as its own token
-				char after = is_include ? *(ptr + 7) : *(ptr + 6);
-				if (after != ' ' && after != '\t' && after != '\n' && after != '"') {
+				ptr += is_include ? 7 : 6;
+				if (*ptr != ' ' && *ptr != '\t' && *ptr != '\n' && *ptr != '"') {
 					break;
 				}
-				ptr += strcspn(ptr, " \t");
+				ptr += strspn(ptr, " \t");
 				if (*ptr == '"') {
 					// Print the file path and recursively scan INCLUDEs
 					ptr++;
@@ -96,9 +96,6 @@ void scan_file(const char *filename, bool strict) {
 				}
 				else {
 					fprintf(stderr, "%s: no file path after INC%s\n", filename, is_include ? "LUDE" : "BIN");
-					if (!*ptr) {
-						goto done;
-					}
 				}
 			}
 			break;
