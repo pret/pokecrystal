@@ -51,7 +51,7 @@ void scan_file(const char *filename, bool strict) {
 			// Skip comments until the end of the line
 			ptr = strchr(ptr + 1, '\n');
 			if (!ptr) {
-				// No newline at end of file
+				fprintf(stderr, "%s: no newline at end of file\n", filename);
 				goto done;
 			}
 			break;
@@ -60,7 +60,7 @@ void scan_file(const char *filename, bool strict) {
 			if (ptr) {
 				ptr++;
 			} else {
-				// Unterminated string literal at end of file
+				fprintf(stderr, "%s: unterminated string\n", filename);
 				goto done;
 			}
 			break;
@@ -81,7 +81,7 @@ void scan_file(const char *filename, bool strict) {
 				}
 				ptr = strpbrk(ptr, "\"\n");
 				if (!ptr) {
-					// No file path after INCLUDE/INCBIN
+					fprintf(stderr, "%s: no file path after INC%s\n", filename, is_include ? "LUDE" : "BIN");
 					goto done;
 				}
 				else if (*ptr == '"') {
