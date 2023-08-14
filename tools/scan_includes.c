@@ -56,6 +56,7 @@ void scan_file(const char *filename, bool strict) {
 			}
 			break;
 		case '"':
+			// Skip string iteral until the closing quote
 			ptr = strchr(ptr + 1, '"');
 			if (ptr) {
 				ptr++;
@@ -82,6 +83,7 @@ void scan_file(const char *filename, bool strict) {
 				}
 				ptr = strpbrk(ptr, "\"\n");
 				if (*ptr == '"') {
+					// Print the file path and recursively scan INCLUDEs
 					ptr++;
 					char *include_path = ptr;
 					size_t length = strcspn(ptr, "\"");
