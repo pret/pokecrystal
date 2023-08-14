@@ -93,8 +93,7 @@ void scan_file(const char *filename, bool strict) {
 					if (is_include) {
 						scan_file(include_path, strict);
 					}
-				}
-				else {
+				} else {
 					fprintf(stderr, "%s: no file path after INC%s\n", filename, is_include ? "LUDE" : "BIN");
 				}
 			}
