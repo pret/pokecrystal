@@ -81,7 +81,7 @@ void scan_file(const char *filename, bool strict) {
 				if (after != ' ' && after != '\t' && after != '\n' && after != '"') {
 					break;
 				}
-				ptr = strpbrk(ptr, "\"\n");
+				ptr += strcspn(ptr, " \t");
 				if (*ptr == '"') {
 					// Print the file path and recursively scan INCLUDEs
 					ptr++;
@@ -96,7 +96,7 @@ void scan_file(const char *filename, bool strict) {
 				}
 				else {
 					fprintf(stderr, "%s: no file path after INC%s\n", filename, is_include ? "LUDE" : "BIN");
-					if (!ptr) {
+					if (!*ptr) {
 						goto done;
 					}
 				}
