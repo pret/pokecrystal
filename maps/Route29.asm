@@ -316,8 +316,8 @@ CatchingTutorialExpShare:
 
 CathingTutorialExpRecived:
 	text "Make sure your"
-	line "newly caugth #MON"
-	cont "cach up!"
+	line "newly caugth"
+	cont "#MON cach up!"
 	done
 
 CatchingTutorialRepeatText:
