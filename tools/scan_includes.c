@@ -66,6 +66,7 @@ void scan_file(const char *filename, bool strict) {
 			break;
 		case 'I':
 		case 'i':
+			/* empty statement between the label and the variable declaration */;
 			// Check that an INCLUDE/INCBIN starts as its own token
 			char before = ptr > contents ? *(ptr - 1) : '\n';
 			if (before != ' ' && before != '\t' && before != '\n' && before != ':') {
