@@ -95,9 +95,10 @@ void scan_file(const char *filename, bool strict) {
 					}
 				} else {
 					fprintf(stderr, "%s: no file path after INC%s\n", filename, is_include ? "LUDE" : "BIN");
-					// Let comments be handled by their switch case
-					if (*ptr == ';')
+					// Continue to process a comment
+					if (*ptr == ';') {
 						ptr--;
+					}
 				}
 			}
 			break;
