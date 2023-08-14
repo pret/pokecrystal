@@ -43,15 +43,16 @@ void scan_file(const char *filename, bool strict) {
 	for (char *ptr = contents; ptr && ptr - contents < size; ptr++) {
 		bool is_incbin = false, is_include = false;
 		ptr = strpbrk(ptr, ";\"Ii");
-		if(!ptr) {
+		if (!ptr) {
 			break;
 		}
 		switch (*ptr) {
 		case ';':
-			ptr = strchr(ptr, '\n');
+			// Skip comments until the end of the line
+			ptr = strchr(ptr + 1, '\n');
 			if (!ptr) {
-				fprintf(stderr, "%s: no newline at end of file, after comment\n", filename);
-				goto end_of_scan_file;
+				// No newline at end of file
+				goto done;
 			}
 			break;
 		case '"':
@@ -59,39 +60,31 @@ void scan_file(const char *filename, bool strict) {
 			if (ptr) {
 				ptr++;
 			} else {
-				fprintf(stderr, "%s: unterminated string\n", filename);
-				goto end_of_scan_file;
+				// Unterminated string literal at end of file
+				goto done;
 			}
 			break;
 		case 'I':
-		case 'i': ;
-			char before_char = ' ';
-			if(ptr != contents) {
-				before_char = *(ptr - 1);
-			}
-			if((before_char != ' ') && (before_char != '"') && (before_char != '\t') && (before_char != '\n')) {
+		case 'i':
+			// Check that an INCLUDE/INCBIN starts as its own token
+			char before = ptr > contents ? *(ptr - 1) : '\n';
+			if (before != ' ' && before != '\t' && before != '\n' && before != ':') {
 				break;
 			}
-			// Is this a proper token? If it is, continue
 			is_incbin = !strncmp(ptr, "INCBIN", 6) || !strncmp(ptr, "incbin", 6);
 			is_include = !strncmp(ptr, "INCLUDE", 7) || !strncmp(ptr, "include", 7);
 			if (is_incbin || is_include) {
-				// Worst case, this is the \0 placed before
-				char after_inc_char = *(ptr + 6);
-				if(is_include) {
-					after_inc_char = *(ptr + 7);
-				}
-				// This is not a valid include/incbin. It might be something else, keep iterating
-				if((after_inc_char != ' ') && (after_inc_char != '"') && (after_inc_char != '\t')) {
+				// Check that an INCLUDE/INCBIN ends as its own token
+				char after = is_include ? *(ptr + 7) : *(ptr + 6);
+				if (after != ' ' && after != '\t' && after != '"') {
 					break;
 				}
-
 				ptr = strpbrk(ptr, "\"\n");
 				if (!ptr) {
-					fprintf(stderr, "%s: couldn't find a path\n", filename);
-					goto end_of_scan_file;
+					// No file path after INCLUDE/INCBIN
+					goto done;
 				}
-				else if((*ptr) == '"') {
+				else if (*ptr == '"') {
 					ptr++;
 					char *include_path = ptr;
 					size_t length = strcspn(ptr, "\"");
@@ -107,7 +100,8 @@ void scan_file(const char *filename, bool strict) {
 		}
 	}
 
-	end_of_scan_file: free(contents);
+done:
+	free(contents);
 }
 
 int main(int argc, char *argv[]) {
