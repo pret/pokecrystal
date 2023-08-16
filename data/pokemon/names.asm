@@ -15,7 +15,7 @@ PokemonNames::
 	db "Weedle@@@@"
 	db "Kakuna@@@@"
 	db "Beedrill@@"
-	db "Pidget@@@@"
+	db "Pidgey@@@@"
 	db "Pidgeotto@"
 	db "Pidgeot@@@"
 	db "Rattata@@@"
