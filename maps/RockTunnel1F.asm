@@ -13,11 +13,11 @@ RockTunnel1FElixer:
 RockTunnel1FMetalCoat:
 	itemball METAL_COAT
 
-RockTunnel1FHiddenXAccuracy:
-	hiddenitem X_ACCURACY, EVENT_ROCK_TUNNEL_1F_HIDDEN_X_ACCURACY
+RockTunnel1FHiddenCalcium:
+	hiddenitem CALCIUM, EVENT_ROCK_TUNNEL_1F_HIDDEN_CALCIUM
 
-RockTunnel1FHiddenXDefend:
-	hiddenitem X_DEFEND, EVENT_ROCK_TUNNEL_1F_HIDDEN_X_DEFEND
+RockTunnel1FHiddenIron:
+	hiddenitem IRON, EVENT_ROCK_TUNNEL_1F_HIDDEN_IRON
 
 RockTunnel1F_MapEvents:
 	db 0, 0 ; filler
@@ -33,8 +33,8 @@ RockTunnel1F_MapEvents:
 	def_coord_events
 
 	def_bg_events
-	bg_event 24,  4, BGEVENT_ITEM, RockTunnel1FHiddenXAccuracy
-	bg_event 21, 15, BGEVENT_ITEM, RockTunnel1FHiddenXDefend
+	bg_event 24,  4, BGEVENT_ITEM, RockTunnel1FHiddenCalcium
+	bg_event 21, 15, BGEVENT_ITEM, RockTunnel1FHiddenIron
 
 	def_object_events
 	object_event  4, 18, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RockTunnel1FElixer, EVENT_ROCK_TUNNEL_1F_ELIXER

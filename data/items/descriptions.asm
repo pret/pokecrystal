@@ -33,7 +33,7 @@ ItemDescriptions:
 	dw LuckyPunchDesc
 	dw CalciumDesc
 	dw RareCandyDesc
-	dw XAccuracyDesc
+	dw SnorkelDesc
 	dw LeafStoneDesc
 	dw MetalPowderDesc
 	dw NuggetDesc
@@ -386,9 +386,9 @@ RareCandyDesc:
 	db   "Raises level of a"
 	next "#MON by one.@"
 
-XAccuracyDesc:
-	db   "Raises accuracy."
-	next "(1 BTL)@"
+SnorkelDesc:
+	db   "Allows someone."
+	next "to swim.@"
 
 LeafStoneDesc:
 	db   "Evolves certain"

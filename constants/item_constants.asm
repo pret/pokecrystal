@@ -38,7 +38,7 @@
 	const LUCKY_PUNCH  ; 1e
 	const CALCIUM      ; 1f
 	const RARE_CANDY   ; 20
-	const X_ACCURACY   ; 21
+	const SNORKEL      ; 21
 	const LEAF_STONE   ; 22
 	const METAL_POWDER ; 23
 	const NUGGET       ; 24

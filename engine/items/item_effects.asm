@@ -46,7 +46,7 @@ ItemEffects:
 	dw NoEffect            ; LUCKY_PUNCH
 	dw VitaminEffect       ; CALCIUM
 	dw RareCandyEffect     ; RARE_CANDY
-	dw XAccuracyEffect     ; X_ACCURACY
+	dw SnorkelEffect       ; SNORKEL
 	dw EvoStoneEffect      ; LEAF_STONE
 	dw NoEffect            ; METAL_POWDER
 	dw NoEffect            ; NUGGET
@@ -2951,4 +2951,10 @@ ChainsawEffect:
 	ld a, 1
 	ld [wUsingHMItem], a
 	farcall CutFunction
+	ret
+
+SnorkelEffect:
+	ld a, 1
+	ld [wUsingHMItem], a
+	farcall SurfFunction
 	ret

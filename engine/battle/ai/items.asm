@@ -275,7 +275,6 @@ AI_Items:
 	dbw HYPER_POTION, .HyperPotion
 	dbw SUPER_POTION, .SuperPotion
 	dbw POTION,       .Potion
-	dbw X_ACCURACY,   .XAccuracy
 	dbw FULL_HEAL,    .FullHeal
 	dbw GUARD_SPEC,   .GuardSpec
 	dbw DIRE_HIT,     .DireHit
@@ -446,12 +445,6 @@ AI_Items:
 	jp .DontUse
 
 ; End unused
-
-.XAccuracy:
-	call .XItem
-	jp c, .DontUse
-	call EnemyUsedXAccuracy
-	jp .Use
 
 .GuardSpec:
 	call .XItem
@@ -731,13 +724,6 @@ AI_HealStatus:
 	ld hl, wEnemySubStatus5
 	res SUBSTATUS_TOXIC, [hl]
 	ret
-
-EnemyUsedXAccuracy:
-	call AIUsedItemSound
-	ld hl, wEnemySubStatus4
-	set SUBSTATUS_X_ACCURACY, [hl]
-	ld a, X_ACCURACY
-	jp PrintText_UsedItemOn_AND_AIUpdateHUD
 
 EnemyUsedGuardSpec:
 	call AIUsedItemSound

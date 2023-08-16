@@ -336,9 +336,6 @@ SurfFunction:
 	dw .AlreadySurfing
 
 .TrySurf:
-	ld de, ENGINE_FOGBADGE
-	call CheckBadge
-	jr c, .nofogbadge
 	ld hl, wBikeFlags
 	bit BIKEFLAGS_ALWAYS_ON_BIKE_F, [hl]
 	jr nz, .cannotsurf
@@ -356,9 +353,6 @@ SurfFunction:
 	farcall CheckFacingObject
 	jr c, .cannotsurf
 	ld a, $1
-	ret
-.nofogbadge
-	ld a, $80
 	ret
 .alreadyfail
 	ld a, $3
@@ -495,9 +489,11 @@ TrySurfOW::
 	call CheckEngineFlag
 	jr c, .quit
 
-	ld d, SURF
-	call CheckPartyMove
-	jr c, .quit
+	ld a, SNORKEL
+	ld [wCurItem], a
+	ld hl, wNumItems
+	call CheckItem
+	jr nc, .quit
 
 	ld hl, wBikeFlags
 	bit BIKEFLAGS_ALWAYS_ON_BIKE_F, [hl]

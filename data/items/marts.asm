@@ -112,13 +112,13 @@ MartGoldenrod2F2:
 
 MartGoldenrod3F:
 	db 7 ; # items
-	db X_SPEED
-	db X_SPECIAL
-	db X_DEFEND
-	db X_ATTACK
-	db DIRE_HIT
-	db GUARD_SPEC
-	db X_ACCURACY
+	db UP_GRADE
+	db KINGS_ROCK
+	db METAL_COAT
+	db FIRE_STONE
+	db THUNDERSTONE
+	db WATER_STONE
+	db MOON_STONE
 	db -1 ; end
 
 MartGoldenrod4F:
@@ -186,7 +186,7 @@ MartMahogany2:
 	db -1 ; end
 
 MartBlackthorn:
-	db 9 ; # items
+	db 7 ; # items
 	db GREAT_BALL
 	db ULTRA_BALL
 	db HYPER_POTION
@@ -194,8 +194,6 @@ MartBlackthorn:
 	db FULL_HEAL
 	db REVIVE
 	db MAX_REPEL
-	db X_DEFEND
-	db X_ATTACK
 	db -1 ; end
 
 MartViridian:
@@ -223,14 +221,12 @@ MartPewter:
 	db -1 ; end
 
 MartCerulean:
-	db 9 ; # items
+	db 7 ; # items
 	db GREAT_BALL
 	db ULTRA_BALL
 	db SUPER_POTION
 	db SUPER_REPEL
 	db FULL_HEAL
-	db X_DEFEND
-	db X_ATTACK
 	db DIRE_HIT
 	db SURF_MAIL
 	db -1 ; end
@@ -311,13 +307,13 @@ MartCeladon5F1:
 
 MartCeladon5F2:
 	db 7 ; # items
-	db X_ACCURACY
-	db GUARD_SPEC
-	db DIRE_HIT
-	db X_ATTACK
-	db X_DEFEND
-	db X_SPEED
-	db X_SPECIAL
+	db UP_GRADE
+	db KINGS_ROCK
+	db METAL_COAT
+	db FIRE_STONE
+	db THUNDERSTONE
+	db WATER_STONE
+	db MOON_STONE
 	db -1 ; end
 
 MartFuchsia:
@@ -332,14 +328,12 @@ MartFuchsia:
 	db -1 ; end
 
 MartSaffron:
-	db 8 ; # items
+	db 6 ; # items
 	db GREAT_BALL
 	db ULTRA_BALL
 	db HYPER_POTION
 	db MAX_POTION
 	db FULL_HEAL
-	db X_ATTACK
-	db X_DEFEND
 	db FLOWER_MAIL
 	db -1 ; end
 

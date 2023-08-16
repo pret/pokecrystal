@@ -32,7 +32,7 @@ ItemNames::
 	li "LUCKY PUNCH"
 	li "CALCIUM"
 	li "RARE CANDY"
-	li "X ACCURACY"
+	li "SNORKEL"
 	li "LEAF STONE"
 	li "METAL POWDER"
 	li "NUGGET"

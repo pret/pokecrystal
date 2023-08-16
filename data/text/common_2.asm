@@ -319,24 +319,23 @@ _BlindingFlashText::
 	text_end ; unreferenced
 
 _UsedSurfText::
-	text_ram wStringBuffer2
-	text " used"
-	line "SURF!"
+	text "You started"
+	line "swimming!"
 	done
 
 _CantSurfText::
-	text "You can't SURF"
+	text "You can't swim"
 	line "here."
 	prompt
 
 _AlreadySurfingText::
 	text "You're already"
-	line "SURFING."
+	line "swimming."
 	prompt
 
 _AskSurfText::
 	text "The water is calm."
-	line "Want to SURF?"
+	line "Want to swim?"
 	done
 
 _UseWaterfallText::

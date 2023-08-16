@@ -15,12 +15,21 @@ DanceTheater_MapScripts:
 	def_callbacks
 
 TrainerKimonoGirlNaoko:
+	checkflag ENGINE_FOGBADGE
+	iffalse .NoBadge
 	trainer KIMONO_GIRL, NAOKO, EVENT_BEAT_KIMONO_GIRL_NAOKO, KimonoGirlNaokoSeenText, KimonoGirlNaokoBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
 	writetext KimonoGirlNaokoAfterBattleText
+	waitbutton
+	closetext
+	end
+
+.NoBadge:
+	opentext
+	writetext KimonoGirlNoBadge
 	waitbutton
 	closetext
 	end
@@ -36,6 +45,13 @@ TrainerKimonoGirlSayo:
 	closetext
 	end
 
+.NoBadge:
+	opentext
+	writetext KimonoGirlNoBadge
+	waitbutton
+	closetext
+	end
+
 TrainerKimonoGirlZuki:
 	trainer KIMONO_GIRL, ZUKI, EVENT_BEAT_KIMONO_GIRL_ZUKI, KimonoGirlZukiSeenText, KimonoGirlZukiBeatenText, 0, .Script
 
@@ -43,6 +59,13 @@ TrainerKimonoGirlZuki:
 	endifjustbattled
 	opentext
 	writetext KimonoGirlZukiAfterBattleText
+	waitbutton
+	closetext
+	end
+
+.NoBadge:
+	opentext
+	writetext KimonoGirlNoBadge
 	waitbutton
 	closetext
 	end
@@ -58,6 +81,13 @@ TrainerKimonoGirlKuni:
 	closetext
 	end
 
+.NoBadge:
+	opentext
+	writetext KimonoGirlNoBadge
+	waitbutton
+	closetext
+	end
+
 TrainerKimonoGirlMiki:
 	trainer KIMONO_GIRL, MIKI, EVENT_BEAT_KIMONO_GIRL_MIKI, KimonoGirlMikiSeenText, KimonoGirlMikiBeatenText, 0, .Script
 
@@ -65,6 +95,13 @@ TrainerKimonoGirlMiki:
 	endifjustbattled
 	opentext
 	writetext KimonoGirlMikiAfterBattleText
+	waitbutton
+	closetext
+	end
+
+.NoBadge:
+	opentext
+	writetext KimonoGirlNoBadge
 	waitbutton
 	closetext
 	end
@@ -134,6 +171,14 @@ DanceTheaterGrannyScript:
 
 DanceTheaterFancyPanel:
 	jumptext DanceTheaterFancyPanelText
+
+KimonoGirlNoBadge:
+	text "We only perform"
+	line "with those who"
+
+	para "have defeated"
+	line "gym leader MORTY."
+	done
 
 KimonoGirlNaokoSeenText:
 	text "You have lovely"
