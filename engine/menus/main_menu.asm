@@ -281,7 +281,7 @@ MainMenu_PrintCurrentTimeAndDay:
 
 .PlaceBox:
 	call CheckRTCStatus
-	and %10000000 ; Day count exceeded 16383
+	and %10000000 ; RTC overflow bit set (carry over from day count bit 8)
 	jr nz, .TimeFail
 	hlcoord 0, 14
 	ld b, 2
