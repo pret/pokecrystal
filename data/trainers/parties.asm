@@ -7,6 +7,7 @@
 ;    * with TRAINERTYPE_STAT_EXP: dw hp, atk, def, spd, spc
 ;    * with TRAINERTYPE_ITEM:     db item
 ;    * with TRAINERTYPE_MOVES:    db move 1, move 2, move 3, move 4
+;    * with TRAINERTYPE_VARIABLE: go look at the github tutorial in the pokecrystal repo
 ;    (TRAINERTYPE_ITEM_MOVES is just TRAINERTYPE_ITEM | TRAINERTYPE_MOVES)
 ; - db -1 ; end
 
@@ -104,16 +105,6 @@ YoungsterGroup:
 	db 12, DIGLETT
 	db -1 ; end
 
-	; YOUNGSTER (7)
-	db "JOEY@", TRAINERTYPE_NORMAL
-	db 15, RATTATA
-	db -1 ; end
-
-	; YOUNGSTER (8)
-	db "JOEY@", TRAINERTYPE_MOVES
-	db 21, RATICATE,   TAIL_WHIP, QUICK_ATTACK, HYPER_FANG, SCARY_FACE
-	db -1 ; end
-
 	; YOUNGSTER (9)
 	db "WARREN@", TRAINERTYPE_NORMAL
 	db 35, FEAROW
@@ -134,16 +125,6 @@ YoungsterGroup:
 	db "JASON@", TRAINERTYPE_NORMAL
 	db 33, SANDSLASH
 	db 33, CROBAT
-	db -1 ; end
-
-	; YOUNGSTER (13)
-	db "JOEY@", TRAINERTYPE_MOVES
-	db 30, RATICATE,   TAIL_WHIP, QUICK_ATTACK, HYPER_FANG, PURSUIT
-	db -1 ; end
-
-	; YOUNGSTER (14)
-	db "JOEY@", TRAINERTYPE_MOVES
-	db 37, RATICATE,   HYPER_BEAM, QUICK_ATTACK, HYPER_FANG, PURSUIT
 	db -1 ; end
 
 SchoolboyGroup:
@@ -3504,4 +3485,13 @@ Rival1Group:
 	db 35, HAUNTER,    MEAN_LOOK, CURSE, SHADOW_BALL, CONFUSE_RAY
 	db 35, KADABRA,    DISABLE, PSYBEAM, RECOVER, FUTURE_SIGHT
 	db 38, FERALIGATR, RAGE, WATER_GUN, SCARY_FACE, SLASH
+	db -1 ; end
+	
+JoeyGroup:
+	;JOEY!!!!!!!
+	db "JOEY@", TRAINERTYPE_VARIABLE
+
+	;no badges
+	db TRAINERTYPE_NORMAL
+	db  4, RATTATA
 	db -1 ; end
