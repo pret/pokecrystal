@@ -4161,14 +4161,14 @@ RaiseStat:
 	add hl, bc
 	ld b, [hl]
 	inc b
-	ld a, $d
+	ld a, MAX_STAT_LEVEL
 	cp b
 	jp c, .cant_raise_stat
 	ld a, [wLoweredStat]
 	and $f0
 	jr z, .got_num_stages
 	inc b
-	ld a, $d
+	ld a, MAX_STAT_LEVEL
 	cp b
 	jr nc, .got_num_stages
 	ld b, a
@@ -4176,7 +4176,7 @@ RaiseStat:
 	ld [hl], b
 	push hl
 	ld a, c
-	cp $5
+	cp ACCURACY
 	jr nc, .done_calcing_stats
 	ld hl, wBattleMonStats + 1
 	ld de, wPlayerStats
@@ -4684,7 +4684,7 @@ LowerStat:
 .got_num_stages
 	ld [hl], b
 	ld a, c
-	cp 5
+	cp ACCURACY
 	jr nc, .accuracy_evasion
 
 	push hl
