@@ -15,7 +15,7 @@ _CheckTrainerBattle::
 
 ; Skip the player object.
 	ld a, 1
-	ld de, wMap1Object
+	ld de, wObjectEventStruct1
 
 .loop
 
@@ -24,22 +24,22 @@ _CheckTrainerBattle::
 	push de
 
 ; Has a sprite
-	ld hl, MAPOBJECT_SPRITE
+	ld hl, OBJECT_EVENT_SPRITE
 	add hl, de
 	ld a, [hl]
 	and a
 	jr z, .next
 
 ; Is a trainer
-	ld hl, MAPOBJECT_TYPE
+	ld hl, OBJECT_EVENT_TYPE
 	add hl, de
 	ld a, [hl]
-	and MAPOBJECT_TYPE_MASK
+	and OBJECT_EVENT_TYPE_MASK
 	cp OBJECTTYPE_TRAINER
 	jr nz, .next
 
 ; Is visible on the map
-	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
+	ld hl, OBJECT_EVENT_OBJECT_STRUCT_ID
 	add hl, de
 	ld a, [hl]
 	cp -1
@@ -51,7 +51,7 @@ _CheckTrainerBattle::
 	jr nc, .next
 
 ; ...within their sight range
-	ld hl, MAPOBJECT_SIGHT_RANGE
+	ld hl, OBJECT_EVENT_SIGHT_RANGE
 	add hl, de
 	ld a, [hl]
 	cp b
@@ -60,7 +60,7 @@ _CheckTrainerBattle::
 ; And hasn't already been beaten
 	push bc
 	push de
-	ld hl, MAPOBJECT_SCRIPT_POINTER
+	ld hl, OBJECT_EVENT_SCRIPT_POINTER
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
@@ -78,14 +78,14 @@ _CheckTrainerBattle::
 
 .next
 	pop de
-	ld hl, MAPOBJECT_LENGTH
+	ld hl, OBJECT_EVENT_LENGTH
 	add hl, de
 	ld d, h
 	ld e, l
 
 	pop af
 	inc a
-	cp NUM_OBJECTS
+	cp NUM_OBJECT_EVENT_STRUCTS
 	jr nz, .loop
 	xor a
 	ret
@@ -113,7 +113,7 @@ LoadTrainer_continue::
 	ldh a, [hLastTalked]
 	call GetMapObject
 
-	ld hl, MAPOBJECT_SCRIPT_POINTER
+	ld hl, OBJECT_EVENT_SCRIPT_POINTER
 	add hl, bc
 	ld a, [wSeenTrainerBank]
 	call GetFarWord
@@ -205,11 +205,11 @@ FacingPlayerDistance::
 
 CheckTrainerFlag:: ; unreferenced
 	push bc
-	ld hl, OBJECT_MAP_OBJECT_INDEX
+	ld hl, OBJECT_OBJECT_EVENT_INDEX
 	add hl, bc
 	ld a, [hl]
 	call GetMapObject
-	ld hl, MAPOBJECT_SCRIPT_POINTER
+	ld hl, OBJECT_EVENT_SCRIPT_POINTER
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]

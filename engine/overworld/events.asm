@@ -539,17 +539,17 @@ TryObjectEvent:
 	call PlayTalkObject
 	ldh a, [hObjectStructIndex]
 	call GetObjectStruct
-	ld hl, OBJECT_MAP_OBJECT_INDEX
+	ld hl, OBJECT_OBJECT_EVENT_INDEX
 	add hl, bc
 	ld a, [hl]
 	ldh [hLastTalked], a
 
 	ldh a, [hLastTalked]
 	call GetMapObject
-	ld hl, MAPOBJECT_TYPE
+	ld hl, OBJECT_EVENT_TYPE
 	add hl, bc
 	ld a, [hl]
-	and MAPOBJECT_TYPE_MASK
+	and OBJECT_EVENT_TYPE_MASK
 
 ; BUG: TryObjectEvent arbitrary code execution (see docs/bugs_and_glitches.md)
 	push bc
@@ -583,7 +583,7 @@ ObjectEventTypeArray:
 	db -1 ; end
 
 .script
-	ld hl, MAPOBJECT_SCRIPT_POINTER
+	ld hl, OBJECT_EVENT_SCRIPT_POINTER
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -593,7 +593,7 @@ ObjectEventTypeArray:
 	ret
 
 .itemball
-	ld hl, MAPOBJECT_SCRIPT_POINTER
+	ld hl, OBJECT_EVENT_SCRIPT_POINTER
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]

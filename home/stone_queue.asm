@@ -11,7 +11,7 @@ HandleStoneQueue::
 	ret
 
 .WarpAction:
-	ld hl, OBJECT_MAP_OBJECT_INDEX
+	ld hl, OBJECT_OBJECT_EVENT_INDEX
 	add hl, de
 	ld a, [hl]
 	cp $ff

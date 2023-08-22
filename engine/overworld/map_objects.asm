@@ -4,7 +4,7 @@ INCLUDE "data/sprites/map_objects.asm"
 
 DeleteMapObject::
 	push bc
-	ld hl, OBJECT_MAP_OBJECT_INDEX
+	ld hl, OBJECT_OBJECT_EVENT_INDEX
 	add hl, bc
 	ld a, [hl]
 	push af
@@ -45,7 +45,7 @@ CheckObjectStillVisible:
 	add 1
 	sub e
 	jr c, .ok
-	cp MAPOBJECT_SCREEN_WIDTH
+	cp OBJECT_EVENT_SCREEN_WIDTH
 	jr nc, .ok
 	ld a, [wYCoord]
 	ld e, a
@@ -55,7 +55,7 @@ CheckObjectStillVisible:
 	add 1
 	sub e
 	jr c, .ok
-	cp MAPOBJECT_SCREEN_HEIGHT
+	cp OBJECT_EVENT_SCREEN_HEIGHT
 	jr nc, .ok
 	jr .yes
 
@@ -71,7 +71,7 @@ CheckObjectStillVisible:
 	add 1
 	sub e
 	jr c, .ok2
-	cp MAPOBJECT_SCREEN_WIDTH
+	cp OBJECT_EVENT_SCREEN_WIDTH
 	jr nc, .ok2
 	ld a, [wYCoord]
 	ld e, a
@@ -81,7 +81,7 @@ CheckObjectStillVisible:
 	add 1
 	sub e
 	jr c, .ok2
-	cp MAPOBJECT_SCREEN_HEIGHT
+	cp OBJECT_EVENT_SCREEN_HEIGHT
 	jr nc, .ok2
 .yes
 	and a
@@ -409,7 +409,7 @@ GetMapObjectField: ; unreferenced
 	push bc
 	ld e, a
 	ld d, 0
-	ld hl, OBJECT_MAP_OBJECT_INDEX
+	ld hl, OBJECT_OBJECT_EVENT_INDEX
 	add hl, bc
 	ld a, [hl]
 	call GetMapObject
@@ -419,14 +419,14 @@ GetMapObjectField: ; unreferenced
 	ret
 
 RestoreDefaultMovement:
-	ld hl, OBJECT_MAP_OBJECT_INDEX
+	ld hl, OBJECT_OBJECT_EVENT_INDEX
 	add hl, bc
 	ld a, [hl]
 	cp -1
 	jr z, .ok
 	push bc
 	call GetMapObject
-	ld hl, MAPOBJECT_MOVEMENT
+	ld hl, OBJECT_EVENT_MOVEMENT
 	add hl, bc
 	ld a, [hl]
 	pop bc
@@ -1659,7 +1659,7 @@ StepFunction_StrengthBoulder:
 	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld e, [hl]
-	ld hl, OBJECT_MAP_OBJECT_INDEX
+	ld hl, OBJECT_OBJECT_EVENT_INDEX
 	add hl, bc
 	ld a, [hl]
 	ld b, a
@@ -2212,10 +2212,10 @@ RespawnPlayer:
 	ret
 
 RespawnObject:
-	cp NUM_OBJECTS
+	cp NUM_OBJECT_EVENT_STRUCTS
 	ret nc
 	call GetMapObject
-	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
+	ld hl, OBJECT_EVENT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	cp -1
@@ -2299,7 +2299,7 @@ CheckObjectOnScreen:
 	cp d
 	jr z, .equal_x
 	jr nc, .nope
-	add MAPOBJECT_SCREEN_WIDTH - 1
+	add OBJECT_EVENT_SCREEN_WIDTH - 1
 	cp d
 	jr c, .nope
 .equal_x
@@ -2307,7 +2307,7 @@ CheckObjectOnScreen:
 	cp e
 	jr z, .equal_y
 	jr nc, .nope
-	add MAPOBJECT_SCREEN_HEIGHT - 1
+	add OBJECT_EVENT_SCREEN_HEIGHT - 1
 	cp e
 	jr c, .nope
 .equal_y
@@ -2508,7 +2508,7 @@ SpawnInCustomFacing:
 SpawnInFacingDown:
 	ld a, DOWN
 _ContinueSpawnFacing:
-	ld bc, wPlayerStruct
+	ld bc, wPlayerObjectStruct
 	call SetSpriteDirection
 	ret
 
@@ -2526,7 +2526,7 @@ _SetPlayerPalette:
 	swap a
 	and PALETTE_MASK
 	ld d, a
-	ld bc, wPlayerStruct
+	ld bc, wPlayerObjectStruct
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	ld a, [hl]
@@ -2638,7 +2638,7 @@ _UnfreezeFollowerObject::
 	ret z
 	push bc
 	call GetObjectStruct
-	ld hl, OBJECT_MAP_OBJECT_INDEX
+	ld hl, OBJECT_OBJECT_EVENT_INDEX
 	add hl, bc
 	ld a, [hl]
 	pop bc
@@ -2685,14 +2685,14 @@ UnfreezeObject: ; unreferenced
 	ret
 
 ResetObject:
-	ld hl, OBJECT_MAP_OBJECT_INDEX
+	ld hl, OBJECT_OBJECT_EVENT_INDEX
 	add hl, bc
 	ld a, [hl]
 	cp -1
 	jp z, .set_standing
 	push bc
 	call GetMapObject
-	ld hl, MAPOBJECT_MOVEMENT
+	ld hl, OBJECT_EVENT_MOVEMENT
 	add hl, bc
 	ld a, [hl]
 	pop bc
@@ -3029,16 +3029,16 @@ InitSprites:
 	ret
 
 .Addresses:
-	dw wPlayerStruct
-	dw wObject1Struct
-	dw wObject2Struct
-	dw wObject3Struct
-	dw wObject4Struct
-	dw wObject5Struct
-	dw wObject6Struct
-	dw wObject7Struct
-	dw wObject8Struct
-	dw wObject9Struct
-	dw wObject10Struct
-	dw wObject11Struct
-	dw wObject12Struct
+	dw wPlayerObjectStruct
+	dw wObjectStruct1
+	dw wObjectStruct2
+	dw wObjectStruct3
+	dw wObjectStruct4
+	dw wObjectStruct5
+	dw wObjectStruct6
+	dw wObjectStruct7
+	dw wObjectStruct8
+	dw wObjectStruct9
+	dw wObjectStruct10
+	dw wObjectStruct11
+	dw wObjectStruct12

@@ -987,7 +987,7 @@ Script_disappear:
 ApplyEventActionAppearDisappear:
 	push bc
 	call GetMapObject
-	ld hl, MAPOBJECT_EVENT_FLAG
+	ld hl, OBJECT_EVENT_EVENT_FLAG
 	add hl, bc
 	pop bc
 	ld e, [hl]

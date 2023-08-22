@@ -1,10 +1,10 @@
 LoadObjectMasks:
 	ld hl, wObjectMasks
 	xor a
-	ld bc, NUM_OBJECTS
+	ld bc, NUM_OBJECT_EVENT_STRUCTS
 	call ByteFill
 	nop
-	ld bc, wMapObjects
+	ld bc, wObjectEventStructs
 	ld de, wObjectMasks
 	xor a
 .loop
@@ -19,23 +19,23 @@ LoadObjectMasks:
 	ld [de], a
 	inc de
 	pop bc
-	ld hl, MAPOBJECT_LENGTH
+	ld hl, OBJECT_EVENT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
 	pop af
 	inc a
-	cp NUM_OBJECTS
+	cp NUM_OBJECT_EVENT_STRUCTS
 	jr nz, .loop
 	ret
 
 CheckObjectFlag:
-	ld hl, MAPOBJECT_SPRITE
+	ld hl, OBJECT_EVENT_SPRITE
 	add hl, bc
 	ld a, [hl]
 	and a
 	jr z, .masked
-	ld hl, MAPOBJECT_EVENT_FLAG
+	ld hl, OBJECT_EVENT_EVENT_FLAG
 	add hl, bc
 	ld a, [hli]
 	ld e, a

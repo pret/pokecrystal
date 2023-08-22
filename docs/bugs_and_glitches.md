@@ -2638,13 +2638,13 @@ If `IsInArray` returns `nc`, data at `bc` will be executed as code.
 **Fix:** Edit `ReadObjectEvents` in [home/map.asm](https://github.com/pret/pokecrystal/blob/master/home/map.asm):
 
 ```diff
--; get NUM_OBJECTS - [wCurMapObjectEventCount]
-+; get NUM_OBJECTS - [wCurMapObjectEventCount] - 1
+-; get NUM_OBJECT_EVENT_STRUCTS - [wCurMapObjectEventCount]
++; get NUM_OBJECT_EVENT_STRUCTS - [wCurMapObjectEventCount] - 1
 -; BUG: ReadObjectEvents overflows into wObjectMasks (see docs/bugs_and_glitches.md)
  	ld a, [wCurMapObjectEventCount]
  	ld c, a
--	ld a, NUM_OBJECTS
-+	ld a, NUM_OBJECTS - 1
+-	ld a, NUM_OBJECT_EVENT_STRUCTS
++	ld a, NUM_OBJECT_EVENT_STRUCTS - 1
  	sub c
  	jr z, .skip
 +	jr c, .skip
@@ -2652,7 +2652,7 @@ If `IsInArray` returns `nc`, data at `bc` will be executed as code.
  	; could have done "inc hl" instead
  	ld bc, 1
  	add hl, bc
- 	ld bc, MAPOBJECT_LENGTH
+ 	ld bc, OBJECT_EVENT_LENGTH
  .loop
  	ld [hl],  0
  	inc hl

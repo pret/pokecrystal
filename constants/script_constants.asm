@@ -112,8 +112,8 @@ DEF CALLBACK_SIZE     EQU  3 ; callback
 DEF WARP_EVENT_SIZE   EQU  5 ; warp_event
 DEF COORD_EVENT_SIZE  EQU  8 ; coord_event
 DEF BG_EVENT_SIZE     EQU  5 ; bg_event
-; An object_event is a map_object without its initial MAPOBJECT_OBJECT_STRUCT_ID or final padding
-DEF OBJECT_EVENT_SIZE EQU MAPOBJECT_LENGTH - 3 ; 13
+; An object_event is a map_object without its initial OBJECT_EVENT_OBJECT_STRUCT_ID or final padding
+DEF OBJECT_EVENT_SIZE EQU OBJECT_EVENT_LENGTH - 3 ; 13
 
 ; A coord_event for scene -1 will always activate,
 ; regardless of the map's scene variable value.

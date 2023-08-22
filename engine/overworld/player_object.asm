@@ -27,7 +27,7 @@ SpawnPlayer:
 	call PlayerSpawn_ConvertCoords
 	ld a, PLAYER_OBJECT
 	call GetMapObject
-	ld hl, MAPOBJECT_PALETTE
+	ld hl, OBJECT_EVENT_PALETTE
 	add hl, bc
 	ln e, PAL_NPC_RED, OBJECTTYPE_SCRIPT
 	ld a, [wPlayerSpriteSetupFlags]
@@ -42,7 +42,7 @@ SpawnPlayer:
 	ld [hl], e
 	ld a, PLAYER_OBJECT
 	ldh [hMapObjectIndex], a
-	ld bc, wMapObjects
+	ld bc, wObjectEventStructs
 	ld a, PLAYER_OBJECT
 	ldh [hObjectStructIndex], a
 	ld de, wObjectStructs
@@ -62,10 +62,10 @@ CopyDECoordsToMapObject::
 	ld a, b
 	call GetMapObject
 	pop de
-	ld hl, MAPOBJECT_X_COORD
+	ld hl, OBJECT_EVENT_X_COORD
 	add hl, bc
 	ld [hl], d
-	ld hl, MAPOBJECT_Y_COORD
+	ld hl, OBJECT_EVENT_Y_COORD
 	add hl, bc
 	ld [hl], e
 	ret
@@ -106,7 +106,7 @@ RefreshPlayerCoords:
 	ld hl, wPlayerMapX
 	sub [hl]
 	ld [hl], d
-	ld hl, wMapObjects + MAPOBJECT_X_COORD
+	ld hl, wObjectEventStructs + OBJECT_EVENT_X_COORD
 	ld [hl], d
 	ld hl, wPlayerLastMapX
 	ld [hl], d
@@ -117,7 +117,7 @@ RefreshPlayerCoords:
 	ld hl, wPlayerMapY
 	sub [hl]
 	ld [hl], e
-	ld hl, wMapObjects + MAPOBJECT_Y_COORD
+	ld hl, wObjectEventStructs + OBJECT_EVENT_Y_COORD
 	ld [hl], e
 	ld hl, wPlayerLastMapY
 	ld [hl], e
@@ -169,14 +169,14 @@ CopyMapObjectToObjectStruct:
 
 .CopyMapObjectToTempObject:
 	ldh a, [hObjectStructIndex]
-	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
+	ld hl, OBJECT_EVENT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld [hl], a
 
 	ldh a, [hMapObjectIndex]
 	ld [wTempObjectCopyMapObjectIndex], a
 
-	ld hl, MAPOBJECT_SPRITE
+	ld hl, OBJECT_EVENT_SPRITE
 	add hl, bc
 	ld a, [hl]
 	ld [wTempObjectCopySprite], a
@@ -188,54 +188,54 @@ CopyMapObjectToObjectStruct:
 	call GetSpritePalette
 	ld [wTempObjectCopyPalette], a
 
-	ld hl, MAPOBJECT_PALETTE
+	ld hl, OBJECT_EVENT_PALETTE
 	add hl, bc
 	ld a, [hl]
-	and MAPOBJECT_PALETTE_MASK
+	and OBJECT_EVENT_PALETTE_MASK
 	jr z, .skip_color_override
 	swap a
 	and PALETTE_MASK
 	ld [wTempObjectCopyPalette], a
 
 .skip_color_override
-	ld hl, MAPOBJECT_MOVEMENT
+	ld hl, OBJECT_EVENT_MOVEMENT
 	add hl, bc
 	ld a, [hl]
 	ld [wTempObjectCopyMovement], a
 
-	ld hl, MAPOBJECT_SIGHT_RANGE
+	ld hl, OBJECT_EVENT_SIGHT_RANGE
 	add hl, bc
 	ld a, [hl]
 	ld [wTempObjectCopyRange], a
 
-	ld hl, MAPOBJECT_X_COORD
+	ld hl, OBJECT_EVENT_X_COORD
 	add hl, bc
 	ld a, [hl]
 	ld [wTempObjectCopyX], a
 
-	ld hl, MAPOBJECT_Y_COORD
+	ld hl, OBJECT_EVENT_Y_COORD
 	add hl, bc
 	ld a, [hl]
 	ld [wTempObjectCopyY], a
 
-	ld hl, MAPOBJECT_RADIUS
+	ld hl, OBJECT_EVENT_RADIUS
 	add hl, bc
 	ld a, [hl]
 	ld [wTempObjectCopyRadius], a
 	ret
 
 InitializeVisibleSprites:
-	ld bc, wMap1Object
+	ld bc, wObjectEventStruct1
 	ld a, 1
 .loop
 	ldh [hMapObjectIndex], a
-	ld hl, MAPOBJECT_SPRITE
+	ld hl, OBJECT_EVENT_SPRITE
 	add hl, bc
 	ld a, [hl]
 	and a
 	jr z, .next
 
-	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
+	ld hl, OBJECT_EVENT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	cp -1
@@ -246,24 +246,24 @@ InitializeVisibleSprites:
 	ld a, [wYCoord]
 	ld e, a
 
-	ld hl, MAPOBJECT_X_COORD
+	ld hl, OBJECT_EVENT_X_COORD
 	add hl, bc
 	ld a, [hl]
 	add 1
 	sub d
 	jr c, .next
 
-	cp MAPOBJECT_SCREEN_WIDTH
+	cp OBJECT_EVENT_SCREEN_WIDTH
 	jr nc, .next
 
-	ld hl, MAPOBJECT_Y_COORD
+	ld hl, OBJECT_EVENT_Y_COORD
 	add hl, bc
 	ld a, [hl]
 	add 1
 	sub e
 	jr c, .next
 
-	cp MAPOBJECT_SCREEN_HEIGHT
+	cp OBJECT_EVENT_SCREEN_HEIGHT
 	jr nc, .next
 
 	push bc
@@ -272,13 +272,13 @@ InitializeVisibleSprites:
 	jp c, .ret
 
 .next
-	ld hl, MAPOBJECT_LENGTH
+	ld hl, OBJECT_EVENT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
 	ldh a, [hMapObjectIndex]
 	inc a
-	cp NUM_OBJECTS
+	cp NUM_OBJECT_EVENT_STRUCTS
 	jr nz, .loop
 	ret
 
@@ -312,32 +312,32 @@ CheckObjectEnteringVisibleRange::
 	ld d, a
 	ld a, [wXCoord]
 	ld e, a
-	ld bc, wMap1Object
+	ld bc, wObjectEventStruct1
 	ld a, 1
 .loop_v
 	ldh [hMapObjectIndex], a
-	ld hl, MAPOBJECT_SPRITE
+	ld hl, OBJECT_EVENT_SPRITE
 	add hl, bc
 	ld a, [hl]
 	and a
 	jr z, .next_v
-	ld hl, MAPOBJECT_Y_COORD
+	ld hl, OBJECT_EVENT_Y_COORD
 	add hl, bc
 	ld a, d
 	cp [hl]
 	jr nz, .next_v
-	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
+	ld hl, OBJECT_EVENT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	cp -1
 	jr nz, .next_v
-	ld hl, MAPOBJECT_X_COORD
+	ld hl, OBJECT_EVENT_X_COORD
 	add hl, bc
 	ld a, [hl]
 	add 1
 	sub e
 	jr c, .next_v
-	cp MAPOBJECT_SCREEN_WIDTH
+	cp OBJECT_EVENT_SCREEN_WIDTH
 	jr nc, .next_v
 	push de
 	push bc
@@ -346,13 +346,13 @@ CheckObjectEnteringVisibleRange::
 	pop de
 
 .next_v
-	ld hl, MAPOBJECT_LENGTH
+	ld hl, OBJECT_EVENT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
 	ldh a, [hMapObjectIndex]
 	inc a
-	cp NUM_OBJECTS
+	cp NUM_OBJECT_EVENT_STRUCTS
 	jr nz, .loop_v
 	ret
 
@@ -368,32 +368,32 @@ CheckObjectEnteringVisibleRange::
 	ld e, a
 	ld a, [wYCoord]
 	ld d, a
-	ld bc, wMap1Object
+	ld bc, wObjectEventStruct1
 	ld a, 1
 .loop_h
 	ldh [hMapObjectIndex], a
-	ld hl, MAPOBJECT_SPRITE
+	ld hl, OBJECT_EVENT_SPRITE
 	add hl, bc
 	ld a, [hl]
 	and a
 	jr z, .next_h
-	ld hl, MAPOBJECT_X_COORD
+	ld hl, OBJECT_EVENT_X_COORD
 	add hl, bc
 	ld a, e
 	cp [hl]
 	jr nz, .next_h
-	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
+	ld hl, OBJECT_EVENT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	cp -1
 	jr nz, .next_h
-	ld hl, MAPOBJECT_Y_COORD
+	ld hl, OBJECT_EVENT_Y_COORD
 	add hl, bc
 	ld a, [hl]
 	add 1
 	sub d
 	jr c, .next_h
-	cp MAPOBJECT_SCREEN_HEIGHT
+	cp OBJECT_EVENT_SCREEN_HEIGHT
 	jr nc, .next_h
 	push de
 	push bc
@@ -402,19 +402,19 @@ CheckObjectEnteringVisibleRange::
 	pop de
 
 .next_h
-	ld hl, MAPOBJECT_LENGTH
+	ld hl, OBJECT_EVENT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
 	ldh a, [hMapObjectIndex]
 	inc a
-	cp NUM_OBJECTS
+	cp NUM_OBJECT_EVENT_STRUCTS
 	jr nz, .loop_h
 	ret
 
 CopyTempObjectToObjectStruct:
 	ld a, [wTempObjectCopyMapObjectIndex]
-	ld hl, OBJECT_MAP_OBJECT_INDEX
+	ld hl, OBJECT_OBJECT_EVENT_INDEX
 	add hl, de
 	ld [hl], a
 
@@ -540,7 +540,7 @@ TrainerWalkToPlayer:
 ; get player object struct, load to de
 	ld a, c
 	call GetMapObject
-	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
+	ld hl, OBJECT_EVENT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	call GetObjectStruct
@@ -551,7 +551,7 @@ TrainerWalkToPlayer:
 	pop bc
 	ld a, b
 	call GetMapObject
-	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
+	ld hl, OBJECT_EVENT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	call GetObjectStruct
@@ -695,7 +695,7 @@ GetRelativeFacing::
 ; Determines which way map object e would have to turn to face map object d.  Returns carry if it's impossible for whatever reason.
 	ld a, d
 	call GetMapObject
-	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
+	ld hl, OBJECT_EVENT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	cp NUM_OBJECT_STRUCTS
@@ -703,7 +703,7 @@ GetRelativeFacing::
 	ld d, a
 	ld a, e
 	call GetMapObject
-	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
+	ld hl, OBJECT_EVENT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	cp NUM_OBJECT_STRUCTS

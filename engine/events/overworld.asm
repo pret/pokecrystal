@@ -1338,12 +1338,12 @@ GetFacingObject:
 
 	ldh a, [hObjectStructIndex]
 	call GetObjectStruct
-	ld hl, OBJECT_MAP_OBJECT_INDEX
+	ld hl, OBJECT_OBJECT_EVENT_INDEX
 	add hl, bc
 	ld a, [hl]
 	ldh [hLastTalked], a
 	call GetMapObject
-	ld hl, MAPOBJECT_MOVEMENT
+	ld hl, OBJECT_EVENT_MOVEMENT
 	add hl, bc
 	ld a, [hl]
 	ld d, a
