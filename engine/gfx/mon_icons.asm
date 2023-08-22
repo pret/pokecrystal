@@ -84,7 +84,7 @@ Mobile_InitAnimatedMonIcon:
 	call PartyMenu_InitAnimatedMonIcon
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
-	ld a, SPRITE_ANIM_SEQ_NULL
+	ld a, SPRITE_ANIM_FUNC_NULL
 	ld [hl], a
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
@@ -101,7 +101,7 @@ Mobile_InitPartyMenuBGPal71:
 	call SetPartyMonIconAnimSpeed
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
-	ld a, SPRITE_ANIM_SEQ_NULL
+	ld a, SPRITE_ANIM_FUNC_NULL
 	ld [hl], a
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
@@ -174,7 +174,7 @@ InitPartyMenuIcon:
 ; x coord
 	ld e, $10
 ; type is partymon icon
-	ld a, SPRITE_ANIM_INDEX_PARTY_MON
+	ld a, SPRITE_ANIM_OBJ_PARTY_MON
 	call _InitSpriteAnimStruct
 	pop af
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
@@ -221,11 +221,11 @@ NamingScreen_InitAnimatedMonIcon:
 	xor a
 	call GetIconGFX
 	depixel 4, 4, 4, 0
-	ld a, SPRITE_ANIM_INDEX_PARTY_MON
+	ld a, SPRITE_ANIM_OBJ_PARTY_MON
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
-	ld [hl], SPRITE_ANIM_SEQ_NULL
+	ld [hl], SPRITE_ANIM_FUNC_NULL
 	ret
 
 MoveList_InitAnimatedMonIcon:
@@ -236,11 +236,11 @@ MoveList_InitAnimatedMonIcon:
 	call GetIconGFX
 	ld d, 3 * TILE_WIDTH + 2 ; depixel 3, 4, 2, 4
 	ld e, 4 * TILE_WIDTH + 4
-	ld a, SPRITE_ANIM_INDEX_PARTY_MON
+	ld a, SPRITE_ANIM_OBJ_PARTY_MON
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
-	ld [hl], SPRITE_ANIM_SEQ_NULL
+	ld [hl], SPRITE_ANIM_FUNC_NULL
 	ret
 
 Trade_LoadMonIconGFX:
@@ -360,11 +360,11 @@ FreezeMonIcons:
 	jr z, .next
 	cp d
 	jr z, .loadwithtwo
-	ld a, SPRITE_ANIM_SEQ_NULL
+	ld a, SPRITE_ANIM_FUNC_NULL
 	jr .ok
 
 .loadwithtwo
-	ld a, SPRITE_ANIM_SEQ_PARTY_MON_SWITCH
+	ld a, SPRITE_ANIM_FUNC_PARTY_MON_SWITCH
 
 .ok
 	push hl
@@ -394,7 +394,7 @@ UnfreezeMonIcons:
 	ld b, h
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
-	ld [hl], SPRITE_ANIM_SEQ_PARTY_MON
+	ld [hl], SPRITE_ANIM_FUNC_PARTY_MON
 	pop hl
 .next
 	ld bc, $10
@@ -414,11 +414,11 @@ HoldSwitchmonIcon:
 	jr z, .next
 	cp d
 	jr z, .is_switchmon
-	ld a, SPRITE_ANIM_SEQ_PARTY_MON_SELECTED
+	ld a, SPRITE_ANIM_FUNC_PARTY_MON_SELECTED
 	jr .join_back
 
 .is_switchmon
-	ld a, SPRITE_ANIM_SEQ_PARTY_MON_SWITCH
+	ld a, SPRITE_ANIM_FUNC_PARTY_MON_SWITCH
 .join_back
 	push hl
 	ld c, l

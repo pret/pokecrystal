@@ -1153,7 +1153,7 @@ ReelAction_InitGolem:
 	push bc
 	push af
 	depixel 12, 13
-	ld a, SPRITE_ANIM_INDEX_SLOTS_GOLEM
+	ld a, SPRITE_ANIM_OBJ_SLOTS_GOLEM
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
@@ -1214,7 +1214,7 @@ ReelAction_InitChansey:
 	ld [hl], 0
 	push bc
 	depixel 12, 0
-	ld a, SPRITE_ANIM_INDEX_SLOTS_CHANSEY
+	ld a, SPRITE_ANIM_OBJ_SLOTS_CHANSEY
 	call InitSpriteAnimStruct
 	pop bc
 	xor a
@@ -2138,7 +2138,7 @@ Slots_AnimateChansey:
 	dec [hl]
 	push bc
 	depixel 12, 13, 0, 4
-	ld a, SPRITE_ANIM_INDEX_SLOTS_EGG
+	ld a, SPRITE_ANIM_OBJ_SLOTS_EGG
 	call InitSpriteAnimStruct
 	pop bc
 	ret

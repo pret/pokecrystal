@@ -672,7 +672,7 @@ _Sine::
 	calc_sine_wave
 ```
 
-`Sprites_Cosine` and `Sprites_Sine` in [engine/gfx/sprites.asm](https://github.com/pret/pokecrystal/blob/master/engine/gfx/sprites.asm):
+`Sprites_Cosine` and `Sprites_Sine` in [engine/sprite_anims/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/sprite_anims/core.asm):
 
 ```asm
 Sprites_Cosine:

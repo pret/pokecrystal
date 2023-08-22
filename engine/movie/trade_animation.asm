@@ -357,7 +357,7 @@ TradeAnim_InitTubeAnim:
 	call LoadTradeBubbleGFX
 
 	pop de
-	ld a, SPRITE_ANIM_INDEX_TRADEMON_ICON
+	ld a, SPRITE_ANIM_OBJ_TRADEMON_ICON
 	call InitSpriteAnimStruct
 
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
@@ -366,7 +366,7 @@ TradeAnim_InitTubeAnim:
 	ld [hl], b
 
 	pop de
-	ld a, SPRITE_ANIM_INDEX_TRADEMON_BUBBLE
+	ld a, SPRITE_ANIM_OBJ_TRADEMON_BUBBLE
 	call InitSpriteAnimStruct
 
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
@@ -1010,7 +1010,7 @@ TrademonStats_PrintTrademonID:
 
 TradeAnim_RockingBall:
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_TRADE_POKE_BALL
+	ld a, SPRITE_ANIM_OBJ_TRADE_POKE_BALL
 	call InitSpriteAnimStruct
 	call TradeAnim_AdvanceScriptPointer
 	ld a, 32
@@ -1019,7 +1019,7 @@ TradeAnim_RockingBall:
 
 TradeAnim_DropBall:
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_TRADE_POKE_BALL
+	ld a, SPRITE_ANIM_OBJ_TRADE_POKE_BALL
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
@@ -1034,7 +1034,7 @@ TradeAnim_DropBall:
 
 TradeAnim_Poof:
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_TRADE_POOF
+	ld a, SPRITE_ANIM_OBJ_TRADE_POOF
 	call InitSpriteAnimStruct
 	call TradeAnim_AdvanceScriptPointer
 	ld a, 16
@@ -1047,7 +1047,7 @@ TradeAnim_BulgeThroughTube:
 	ld a, %11100100 ; 3,2,1,0
 	call DmgToCgbObjPal0
 	depixel 5, 11
-	ld a, SPRITE_ANIM_INDEX_TRADE_TUBE_BULGE
+	ld a, SPRITE_ANIM_OBJ_TRADE_TUBE_BULGE
 	call InitSpriteAnimStruct
 	call TradeAnim_AdvanceScriptPointer
 	ld a, 64

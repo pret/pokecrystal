@@ -203,7 +203,7 @@ wSpriteAnimData::
 
 wSpriteAnimDict::
 ; wSpriteAnimDict pairs keys with values
-; keys: SPRITE_ANIM_DICT_* indexes (taken from SpriteAnimSeqData)
+; keys: SPRITE_ANIM_DICT_* indexes (taken from SpriteAnimObjects)
 ; values: vTiles0 offsets
 	ds NUM_SPRITEANIMDICT_ENTRIES * 2
 
@@ -211,7 +211,7 @@ wSpriteAnimationStructs::
 ; wSpriteAnim1 - wSpriteAnim10
 for n, 1, NUM_SPRITE_ANIM_STRUCTS + 1
 ; field  0:   index
-; fields 1-3: loaded from SpriteAnimSeqData
+; fields 1-3: loaded from SpriteAnimObjects
 wSpriteAnim{d:n}:: sprite_anim_struct wSpriteAnim{d:n}
 endr
 wSpriteAnimationStructsEnd::
@@ -3542,13 +3542,13 @@ SECTION "Battle Animations", WRAMX
 
 wBattleAnimTileDict::
 ; wBattleAnimTileDict pairs keys with values
-; keys: ANIM_GFX_* indexes (taken from anim_*gfx arguments)
+; keys: BATTLE_ANIM_GFX_* indexes (taken from anim_*gfx arguments)
 ; values: vTiles0 offsets
 	ds NUM_BATTLEANIMTILEDICT_ENTRIES * 2
 
 wActiveAnimObjects::
 ; wAnimObject1 - wAnimObject10
-for n, 1, NUM_ANIM_OBJECTS + 1
+for n, 1, NUM_BATTLE_ANIM_STRUCTS + 1
 wAnimObject{d:n}:: battle_anim_struct wAnimObject{d:n}
 endr
 

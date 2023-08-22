@@ -78,7 +78,7 @@ DoBattleBGEffectFunction:
 	jp hl
 
 BattleBGEffects:
-; entries correspond to ANIM_BG_* constants
+; entries correspond to BATTLE_BG_EFFECT_* constants
 	dw BattleBGEffect_End
 	dw BattleBGEffect_FlashInverted
 	dw BattleBGEffect_FlashWhite
@@ -426,13 +426,13 @@ BattleBGEffect_BattlerObj_1Row:
 	push bc
 	call BGEffect_CheckBattleTurn
 	jr nz, .player_side
-	ld a, ANIM_OBJ_ENEMYFEET_1ROW
+	ld a, BATTLE_ANIM_OBJ_ENEMYFEET_1ROW
 	ld [wBattleObjectTempID], a
 	ld a, 16 * TILE_WIDTH + 4
 	jr .okay
 
 .player_side
-	ld a, ANIM_OBJ_PLAYERHEAD_1ROW
+	ld a, BATTLE_ANIM_OBJ_PLAYERHEAD_1ROW
 	ld [wBattleObjectTempID], a
 	ld a, 6 * TILE_WIDTH
 .okay
@@ -493,13 +493,13 @@ BattleBGEffect_BattlerObj_2Row:
 	push bc
 	call BGEffect_CheckBattleTurn
 	jr nz, .player_side
-	ld a, ANIM_OBJ_ENEMYFEET_2ROW
+	ld a, BATTLE_ANIM_OBJ_ENEMYFEET_2ROW
 	ld [wBattleObjectTempID], a
 	ld a, 16 * TILE_WIDTH + 4
 	jr .okay
 
 .player_side
-	ld a, ANIM_OBJ_PLAYERHEAD_2ROW
+	ld a, BATTLE_ANIM_OBJ_PLAYERHEAD_2ROW
 	ld [wBattleObjectTempID], a
 	ld a, 6 * TILE_WIDTH
 .okay
