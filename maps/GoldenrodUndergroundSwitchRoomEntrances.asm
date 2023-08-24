@@ -173,7 +173,7 @@ UndergroundRivalBattleScript:
 	iftrue .Chikorita
 	winlosstext UndergroundRivalWinText, UndergroundRivalLossText
 	setlasttalked GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_RIVAL
-	loadtrainer RIVAL1, RIVAL1_4_TOTODILE
+	loadtrainer RIVAL1WATER, RIVAL1_4_TOTODILE
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
@@ -182,7 +182,7 @@ UndergroundRivalBattleScript:
 .Totodile:
 	winlosstext UndergroundRivalWinText, UndergroundRivalLossText
 	setlasttalked GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_RIVAL
-	loadtrainer RIVAL1, RIVAL1_4_CHIKORITA
+	loadtrainer RIVAL1GRASS, RIVAL1_4_CHIKORITA
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
@@ -191,7 +191,7 @@ UndergroundRivalBattleScript:
 .Chikorita:
 	winlosstext UndergroundRivalWinText, UndergroundRivalLossText
 	setlasttalked GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_RIVAL
-	loadtrainer RIVAL1, RIVAL1_4_CYNDAQUIL
+	loadtrainer RIVAL1FIRE, RIVAL1_4_CYNDAQUIL
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle

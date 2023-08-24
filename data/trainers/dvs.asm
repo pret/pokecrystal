@@ -10,7 +10,9 @@ TrainerClassDVs:
 	dn  9,  8,  8,  8 ; JASMINE
 	dn  9,  8,  8,  8 ; CHUCK
 	dn  7, 12, 13, 13 ; CLAIR
-	dn 13, 13, 13, 13 ; RIVAL1
+	dn 13, 13, 13, 13 ; RIVAL1GRASS
+	dn 13, 13, 13, 13 ; RIVAL1FIRE
+	dn 13, 13, 13, 13 ; RIVAL1WATER
 	dn  9,  8,  8,  8 ; POKEMON_PROF
 	dn 13, 12, 13, 13 ; WILL
 	dn 13, 12, 13, 13 ; CAL
@@ -68,5 +70,6 @@ TrainerClassDVs:
 	dn  9, 13, 13, 13 ; BLUE
 	dn  9,  8,  8,  8 ; OFFICER
 	dn  7, 14, 10,  8 ; GRUNTF
+	dn 15, 15, 15, 15 ; JOEY
 	dn  9,  8,  8,  8 ; MYSTICALMAN
 	assert_table_length NUM_TRAINER_CLASSES

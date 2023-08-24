@@ -12,6 +12,8 @@ TrainerPicPointers::
 	dba_pic ChuckPic
 	dba_pic ClairPic
 	dba_pic Rival1Pic
+	dba_pic Rival1Pic
+	dba_pic Rival1Pic
 	dba_pic PokemonProfPic
 	dba_pic WillPic
 	dba_pic CalPic
@@ -69,5 +71,6 @@ TrainerPicPointers::
 	dba_pic BluePic
 	dba_pic OfficerPic
 	dba_pic GruntfPic
+	dba_pic YoungsterPic
 	dba_pic MysticalmanPic
 	assert_table_length NUM_TRAINER_CLASSES

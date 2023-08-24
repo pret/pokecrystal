@@ -8155,7 +8155,11 @@ InitEnemyTrainer:
 
 	; RIVAL1's first mon has no held item
 	ld a, [wTrainerClass]
-	cp RIVAL1
+	cp RIVAL1GRASS
+	jr nz, .ok
+	cp RIVAL1FIRE
+	jr nz, .ok
+	cp RIVAL1WATER
 	jr nz, .ok
 	xor a
 	ld [wOTPartyMon1Item], a

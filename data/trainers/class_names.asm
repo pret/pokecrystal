@@ -10,6 +10,8 @@ TrainerClassNames::
 	li "LEADER"
 	li "LEADER"
 	li "RIVAL"
+	li "RIVAL"
+	li "RIVAL"
 	li "#MON PROF."
 	li "ELITE FOUR"
 	li "<PKMN> TRAINER"
@@ -67,5 +69,6 @@ TrainerClassNames::
 	li "LEADER"
 	li "OFFICER"
 	li "ROCKET"
+	li "YOUNGSTER"
 	li "MYSTICALMAN"
 	assert_list_length NUM_TRAINER_CLASSES

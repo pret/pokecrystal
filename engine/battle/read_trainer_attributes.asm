@@ -1,7 +1,13 @@
 GetTrainerClassName:
 	ld hl, wRivalName
 	ld a, c
-	cp RIVAL1
+	cp RIVAL1GRASS
+	jr z, .rival
+
+	cp RIVAL1FIRE
+	jr z, .rival
+
+	cp RIVAL1WATER
 	jr z, .rival
 
 	ld [wCurSpecies], a
@@ -27,7 +33,13 @@ GetOTName:
 
 	ld hl, wRivalName
 	ld a, c
-	cp RIVAL1
+	cp RIVAL1GRASS
+	jr z, .ok
+
+	cp RIVAL1FIRE
+	jr z, .ok
+
+	cp RIVAL1WATER
 	jr z, .ok
 
 	ld [wCurSpecies], a

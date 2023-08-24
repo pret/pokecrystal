@@ -11,7 +11,9 @@ TrainerGroups:
 	dba JasmineGroup
 	dba ChuckGroup
 	dba ClairGroup
-	dba Rival1Group
+	dba Rival1GrassGroup
+	dba Rival1FireGroup
+	dba Rival1WaterGroup
 	dba PokemonProfGroup
 	dba WillGroup
 	dba PKMNTrainerGroup
@@ -69,5 +71,6 @@ TrainerGroups:
 	dba BlueGroup
 	dba OfficerGroup
 	dba GruntFGroup
+	dba JoeyGroup
 	dba MysticalmanGroup
 	assert_table_length NUM_TRAINER_CLASSES
