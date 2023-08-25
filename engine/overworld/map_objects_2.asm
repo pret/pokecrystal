@@ -1,10 +1,10 @@
 LoadObjectMasks:
 	ld hl, wObjectMasks
 	xor a
-	ld bc, NUM_OBJECT_EVENT_STRUCTS
+	ld bc, NUM_OBJECT_EVENTS
 	call ByteFill
 	nop
-	ld bc, wObjectEventStructs
+	ld bc, wObjectEvents
 	ld de, wObjectMasks
 	xor a
 .loop
@@ -25,7 +25,7 @@ LoadObjectMasks:
 	ld c, l
 	pop af
 	inc a
-	cp NUM_OBJECT_EVENT_STRUCTS
+	cp NUM_OBJECT_EVENTS
 	jr nz, .loop
 	ret
 

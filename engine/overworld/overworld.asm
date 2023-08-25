@@ -113,7 +113,7 @@ AddIndoorSprites:
 	add hl, de
 	pop af
 	inc a
-	cp NUM_OBJECT_EVENT_STRUCTS
+	cp NUM_OBJECT_EVENTS
 	jr nz, .loop
 	ret
 

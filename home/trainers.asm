@@ -15,7 +15,7 @@ _CheckTrainerBattle::
 
 ; Skip the player object.
 	ld a, 1
-	ld de, wObjectEventStruct1
+	ld de, wObjectEvent1
 
 .loop
 
@@ -85,7 +85,7 @@ _CheckTrainerBattle::
 
 	pop af
 	inc a
-	cp NUM_OBJECT_EVENT_STRUCTS
+	cp NUM_OBJECT_EVENTS
 	jr nz, .loop
 	xor a
 	ret

@@ -2096,8 +2096,8 @@ DespawnEmote:
 	ret
 
 .DeleteEmote:
-	ld de, wObjectStructs
-	ld a, NUM_OBJECT_STRUCTS
+	ld de, wObjects
+	ld a, NUM_OBJECTS
 .loop
 	push af
 	ld hl, OBJECT_FLAGS1
@@ -2170,7 +2170,7 @@ UpdateAllObjectsFrozen::
 	ld a, [wVramState]
 	bit 0, a
 	ret z
-	ld bc, wObjectStructs
+	ld bc, wObjects
 	xor a
 .loop
 	ldh [hMapObjectIndex], a
@@ -2184,7 +2184,7 @@ UpdateAllObjectsFrozen::
 	ld c, l
 	ldh a, [hMapObjectIndex]
 	inc a
-	cp NUM_OBJECT_STRUCTS
+	cp NUM_OBJECTS
 	jr nz, .loop
 	ret
 
@@ -2212,7 +2212,7 @@ RespawnPlayer:
 	ret
 
 RespawnObject:
-	cp NUM_OBJECT_EVENT_STRUCTS
+	cp NUM_OBJECT_EVENTS
 	ret nc
 	call GetMapObject
 	ld hl, OBJECT_EVENT_OBJECT_STRUCT_ID
@@ -2220,7 +2220,7 @@ RespawnObject:
 	ld a, [hl]
 	cp -1
 	ret z
-	cp NUM_OBJECT_STRUCTS
+	cp NUM_OBJECTS
 	ret nc
 	call GetObjectStruct
 	call DoesObjectHaveASprite
@@ -2230,7 +2230,7 @@ RespawnObject:
 
 HideAllObjects:
 	xor a
-	ld bc, wObjectStructs
+	ld bc, wObjects
 .loop
 	ldh [hMapObjectIndex], a
 	call SetFacing_Standing
@@ -2240,7 +2240,7 @@ HideAllObjects:
 	ld c, l
 	ldh a, [hMapObjectIndex]
 	inc a
-	cp NUM_OBJECT_STRUCTS
+	cp NUM_OBJECTS
 	jr nz, .loop
 	ret
 
@@ -2453,7 +2453,7 @@ ResetStepVector:
 	ret
 
 DoStepsForAllObjects:
-	ld bc, wObjectStructs
+	ld bc, wObjects
 	xor a
 .loop
 	ldh [hMapObjectIndex], a
@@ -2467,7 +2467,7 @@ DoStepsForAllObjects:
 	ld c, l
 	ldh a, [hMapObjectIndex]
 	inc a
-	cp NUM_OBJECT_STRUCTS
+	cp NUM_OBJECTS
 	jr nz, .loop
 	ret
 
@@ -2508,7 +2508,7 @@ SpawnInCustomFacing:
 SpawnInFacingDown:
 	ld a, DOWN
 _ContinueSpawnFacing:
-	ld bc, wPlayerObjectStruct
+	ld bc, wPlayerObject
 	call SetSpriteDirection
 	ret
 
@@ -2526,7 +2526,7 @@ _SetPlayerPalette:
 	swap a
 	and PALETTE_MASK
 	ld d, a
-	ld bc, wPlayerObjectStruct
+	ld bc, wPlayerObject
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	ld a, [hl]
@@ -2612,7 +2612,7 @@ FreezeObject: ; unreferenced
 	ret
 
 FreezeAllObjects:
-	ld bc, wObjectStructs
+	ld bc, wObjects
 	xor a
 .loop
 	push af
@@ -2628,7 +2628,7 @@ FreezeAllObjects:
 	ld c, l
 	pop af
 	inc a
-	cp NUM_OBJECT_STRUCTS
+	cp NUM_OBJECTS
 	jr nz, .loop
 	ret
 
@@ -2655,7 +2655,7 @@ _UnfreezeFollowerObject::
 
 UnfreezeAllObjects::
 	push bc
-	ld bc, wObjectStructs
+	ld bc, wObjects
 	xor a
 .loop
 	push af
@@ -2671,7 +2671,7 @@ UnfreezeAllObjects::
 	ld c, l
 	pop af
 	inc a
-	cp NUM_OBJECT_STRUCTS
+	cp NUM_OBJECTS
 	jr nz, .loop
 	pop bc
 	ret
@@ -2773,8 +2773,8 @@ ApplyBGMapAnchorToObjects:
 	ld d, a
 	ld a, [wPlayerBGMapOffsetY]
 	ld e, a
-	ld bc, wObjectStructs
-	ld a, NUM_OBJECT_STRUCTS
+	ld bc, wObjects
+	ld a, NUM_OBJECTS
 .loop
 	push af
 	call DoesObjectHaveASprite
@@ -2822,10 +2822,10 @@ InitSprites:
 .DeterminePriorities:
 	xor a
 	ld hl, wObjectPriorities
-	ld bc, NUM_OBJECT_STRUCTS
+	ld bc, NUM_OBJECTS
 	call ByteFill
 	ld d, 0
-	ld bc, wObjectStructs
+	ld bc, wObjects
 	ld hl, wObjectPriorities
 .loop
 	push hl
@@ -2868,7 +2868,7 @@ InitSprites:
 .next
 	inc d
 	ld a, d
-	cp NUM_OBJECT_STRUCTS
+	cp NUM_OBJECTS
 	jr nz, .loop
 	ret
 
@@ -3029,16 +3029,16 @@ InitSprites:
 	ret
 
 .Addresses:
-	dw wPlayerObjectStruct
-	dw wObjectStruct1
-	dw wObjectStruct2
-	dw wObjectStruct3
-	dw wObjectStruct4
-	dw wObjectStruct5
-	dw wObjectStruct6
-	dw wObjectStruct7
-	dw wObjectStruct8
-	dw wObjectStruct9
-	dw wObjectStruct10
-	dw wObjectStruct11
-	dw wObjectStruct12
+	dw wPlayerObject
+	dw wObject1
+	dw wObject2
+	dw wObject3
+	dw wObject4
+	dw wObject5
+	dw wObject6
+	dw wObject7
+	dw wObject8
+	dw wObject9
+	dw wObject10
+	dw wObject11
+	dw wObject12

@@ -248,7 +248,7 @@ CheckFacingObject::
 	ld e, a
 
 .not_counter
-	ld bc, wObjectStructs ; redundant
+	ld bc, wObjects ; redundant
 	ld a, 0
 	ldh [hMapObjectIndex], a
 	call IsNPCAtCoord
@@ -312,7 +312,7 @@ IsObjectFacingSomeoneElse: ; unreferenced
 	ret
 
 IsNPCAtCoord:
-	ld bc, wObjectStructs
+	ld bc, wObjects
 	xor a
 .loop
 	ldh [hObjectStructIndex], a
@@ -375,7 +375,7 @@ IsNPCAtCoord:
 	ld c, l
 	ldh a, [hObjectStructIndex]
 	inc a
-	cp NUM_OBJECT_STRUCTS
+	cp NUM_OBJECTS
 	jr nz, .loop
 	and a
 	ret
@@ -478,7 +478,7 @@ IsNPCAtPlayerCoord: ; unreferenced
 	ld d, a
 	ld a, [wPlayerMapY]
 	ld e, a
-	ld bc, wObjectStructs
+	ld bc, wObjects
 	xor a
 .loop
 	ldh [hObjectStructIndex], a
@@ -530,7 +530,7 @@ IsNPCAtPlayerCoord: ; unreferenced
 	ld c, l
 	ldh a, [hObjectStructIndex]
 	inc a
-	cp NUM_OBJECT_STRUCTS
+	cp NUM_OBJECTS
 	jr nz, .loop
 	xor a
 	ret

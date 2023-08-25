@@ -201,7 +201,7 @@ CheckStandingOnEntrance::
 
 GetMapObject::
 ; Return the location of map object a in bc.
-	ld hl, wObjectEventStructs
+	ld hl, wObjectEvents
 	ld bc, OBJECT_EVENT_LENGTH
 	call AddNTimes
 	ld b, h
@@ -376,7 +376,7 @@ DeleteFollowerMapObject: ; unreferenced
 	pop af
 	cp -1
 	ret z
-	cp NUM_OBJECT_STRUCTS
+	cp NUM_OBJECTS
 	ret nc
 	ld b, a
 	ld a, [wObjectFollow_Leader]
@@ -423,9 +423,9 @@ FindFirstEmptyObjectStruct::
 ; Preserves BC and DE.
 	push bc
 	push de
-	ld hl, wObjectStructs
+	ld hl, wObjects
 	ld de, OBJECT_LENGTH
-	ld c, NUM_OBJECT_STRUCTS
+	ld c, NUM_OBJECTS
 .loop
 	ld a, [hl]
 	and a
@@ -437,7 +437,7 @@ FindFirstEmptyObjectStruct::
 	jr .done
 
 .break
-	ld a, NUM_OBJECT_STRUCTS
+	ld a, NUM_OBJECTS
 	sub c
 	scf
 
@@ -595,7 +595,7 @@ UpdateSprites::
 
 GetObjectStruct::
 	ld bc, OBJECT_LENGTH
-	ld hl, wObjectStructs
+	ld hl, wObjects
 	call AddNTimes
 	ld b, h
 	ld c, l

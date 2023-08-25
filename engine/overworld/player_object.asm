@@ -42,10 +42,10 @@ SpawnPlayer:
 	ld [hl], e
 	ld a, PLAYER_OBJECT
 	ldh [hMapObjectIndex], a
-	ld bc, wObjectEventStructs
+	ld bc, wObjectEvents
 	ld a, PLAYER_OBJECT
 	ldh [hObjectStructIndex], a
-	ld de, wObjectStructs
+	ld de, wObjects
 	call CopyMapObjectToObjectStruct
 	ld a, PLAYER
 	ld [wCenteredObject], a
@@ -106,7 +106,7 @@ RefreshPlayerCoords:
 	ld hl, wPlayerMapX
 	sub [hl]
 	ld [hl], d
-	ld hl, wObjectEventStructs + OBJECT_EVENT_X_COORD
+	ld hl, wObjectEvents + OBJECT_EVENT_X_COORD
 	ld [hl], d
 	ld hl, wPlayerLastMapX
 	ld [hl], d
@@ -117,7 +117,7 @@ RefreshPlayerCoords:
 	ld hl, wPlayerMapY
 	sub [hl]
 	ld [hl], e
-	ld hl, wObjectEventStructs + OBJECT_EVENT_Y_COORD
+	ld hl, wObjectEvents + OBJECT_EVENT_Y_COORD
 	ld [hl], e
 	ld hl, wPlayerLastMapY
 	ld [hl], e
@@ -133,7 +133,7 @@ CopyObjectStruct::
 	and a
 	ret nz ; masked
 
-	ld hl, wObjectStructs + OBJECT_LENGTH * 1
+	ld hl, wObjects + OBJECT_LENGTH * 1
 	ld a, 1
 	ld de, OBJECT_LENGTH
 .loop
@@ -144,7 +144,7 @@ CopyObjectStruct::
 	add hl, de
 	ldh a, [hObjectStructIndex]
 	inc a
-	cp NUM_OBJECT_STRUCTS
+	cp NUM_OBJECTS
 	jr nz, .loop
 	scf
 	ret ; overflow
@@ -225,7 +225,7 @@ CopyMapObjectToObjectStruct:
 	ret
 
 InitializeVisibleSprites:
-	ld bc, wObjectEventStruct1
+	ld bc, wObjectEvent1
 	ld a, 1
 .loop
 	ldh [hMapObjectIndex], a
@@ -278,7 +278,7 @@ InitializeVisibleSprites:
 	ld c, l
 	ldh a, [hMapObjectIndex]
 	inc a
-	cp NUM_OBJECT_EVENT_STRUCTS
+	cp NUM_OBJECT_EVENTS
 	jr nz, .loop
 	ret
 
@@ -312,7 +312,7 @@ CheckObjectEnteringVisibleRange::
 	ld d, a
 	ld a, [wXCoord]
 	ld e, a
-	ld bc, wObjectEventStruct1
+	ld bc, wObjectEvent1
 	ld a, 1
 .loop_v
 	ldh [hMapObjectIndex], a
@@ -352,7 +352,7 @@ CheckObjectEnteringVisibleRange::
 	ld c, l
 	ldh a, [hMapObjectIndex]
 	inc a
-	cp NUM_OBJECT_EVENT_STRUCTS
+	cp NUM_OBJECT_EVENTS
 	jr nz, .loop_v
 	ret
 
@@ -368,7 +368,7 @@ CheckObjectEnteringVisibleRange::
 	ld e, a
 	ld a, [wYCoord]
 	ld d, a
-	ld bc, wObjectEventStruct1
+	ld bc, wObjectEvent1
 	ld a, 1
 .loop_h
 	ldh [hMapObjectIndex], a
@@ -408,7 +408,7 @@ CheckObjectEnteringVisibleRange::
 	ld c, l
 	ldh a, [hMapObjectIndex]
 	inc a
-	cp NUM_OBJECT_EVENT_STRUCTS
+	cp NUM_OBJECT_EVENTS
 	jr nz, .loop_h
 	ret
 
@@ -698,7 +698,7 @@ GetRelativeFacing::
 	ld hl, OBJECT_EVENT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
-	cp NUM_OBJECT_STRUCTS
+	cp NUM_OBJECTS
 	jr nc, .carry
 	ld d, a
 	ld a, e
@@ -706,7 +706,7 @@ GetRelativeFacing::
 	ld hl, OBJECT_EVENT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
-	cp NUM_OBJECT_STRUCTS
+	cp NUM_OBJECTS
 	jr nc, .carry
 	ld e, a
 	call .GetFacing_e_relativeto_d

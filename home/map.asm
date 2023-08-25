@@ -569,7 +569,7 @@ ReadObjectEvents::
 	push hl
 	call ClearObjectStructs
 	pop de
-	ld hl, wObjectEventStruct1
+	ld hl, wObjectEvent1
 	ld a, [de]
 	inc de
 	ld [wCurMapObjectEventCount], a
@@ -581,11 +581,11 @@ ReadObjectEvents::
 	ld a, [wCurMapObjectEventCount]
 	call CopyMapObjectEvents
 
-; get NUM_OBJECT_EVENT_STRUCTS - [wCurMapObjectEventCount]
+; get NUM_OBJECT_EVENTS - [wCurMapObjectEventCount]
 ; BUG: ReadObjectEvents overflows into wObjectMasks (see docs/bugs_and_glitches.md)
 	ld a, [wCurMapObjectEventCount]
 	ld c, a
-	ld a, NUM_OBJECT_EVENT_STRUCTS
+	ld a, NUM_OBJECT_EVENTS
 	sub c
 	jr z, .skip
 
@@ -634,15 +634,15 @@ CopyMapObjectEvents::
 	ret
 
 ClearObjectStructs::
-	ld hl, wObjectStruct1
-	ld bc, OBJECT_LENGTH * (NUM_OBJECT_STRUCTS - 1)
+	ld hl, wObject1
+	ld bc, OBJECT_LENGTH * (NUM_OBJECTS - 1)
 	xor a
 	call ByteFill
 
 ; Just to make sure (this is rather pointless)
-	ld hl, wObjectStruct1
+	ld hl, wObject1
 	ld de, OBJECT_LENGTH
-	ld c, NUM_OBJECT_STRUCTS - 1
+	ld c, NUM_OBJECTS - 1
 	xor a
 .loop
 	ld [hl], a
