@@ -80,7 +80,6 @@ TilesetForestAnim:
 TilesetJohtoAnim:
 TilesetNeostOutdoors1Anim:
 TilesetNeostForest1Anim:
-	dw vTiles2 tile $09, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation ; previously AnimateWaterPalette
@@ -90,6 +89,11 @@ TilesetNeostForest1Anim:
 	dw WhirlpoolFrames2, AnimateWhirlpoolTile
 	dw WhirlpoolFrames3, AnimateWhirlpoolTile
 	dw WhirlpoolFrames4, AnimateWhirlpoolTile
+	dw PondFrames, AnimatePondTile
+	dw WaterRockFrames, AnimateWaterRockTile
+	dw DockFrames, AnimateDockTile
+	dw LakeFrames, AnimateLakeTile
+	dw WaterfallFrames, AnimateWaterfallTile
 	dw OceanFrames1, AnimateOceanTile
 	dw OceanFrames2, AnimateOceanTile
 	dw OceanFrames3, AnimateOceanTile
@@ -831,6 +835,9 @@ StandingTileFrame:
 	inc [hl]
 	ret
 
+AnimatePondTile:
+AnimateDockTile:
+AnimateWaterRockTile:
 AnimateWhirlpoolTile:
 ; Input de points to the destination in VRAM, then the source tile frames
 
@@ -867,6 +874,8 @@ AnimateWhirlpoolTile:
 	ld h, d
 	jr WriteTile
 
+AnimateLakeTile:
+AnimateWaterfallTile:
 AnimateShallowOceanTile:
 AnimateDeepOceanTile:
 AnimateOceanTile:
@@ -1102,6 +1111,26 @@ WhirlpoolTiles1: INCBIN "gfx/tilesets/whirlpool/1.2bpp"
 WhirlpoolTiles2: INCBIN "gfx/tilesets/whirlpool/2.2bpp"
 WhirlpoolTiles3: INCBIN "gfx/tilesets/whirlpool/3.2bpp"
 WhirlpoolTiles4: INCBIN "gfx/tilesets/whirlpool/4.2bpp"
+
+PondFrames: dw vTiles2 tile $19, PondTiles
+
+PondTiles: INCBIN "gfx/tilesets/pond/pond.2bpp"
+
+WaterRockFrames: dw vTiles2 tile $17, WaterRockTiles
+
+WaterRockTiles: INCBIN "gfx/tilesets/water-rock/water-rock.2bpp"
+
+DockFrames: dw vTiles2 tile $18, DockTiles
+
+DockTiles: INCBIN "gfx/tilesets/dock/dock.2bpp"
+
+LakeFrames: dw vTiles2 tile $16, LakeTiles
+
+LakeTiles: INCBIN "gfx/tilesets/lake/lake.2bpp"
+
+WaterfallFrames: dw vTiles2 tile $15, WaterfallTiles
+
+WaterfallTiles: INCBIN "gfx/tilesets/waterfall/waterfall.2bpp"
 
 OceanFrames1: dw vTiles2 tile $0c, OceanTiles1
 OceanFrames2: dw vTiles2 tile $0d, OceanTiles2
