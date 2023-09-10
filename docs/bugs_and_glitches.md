@@ -59,6 +59,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [AI makes a false assumption about `CheckTypeMatchup`](#ai-makes-a-false-assumption-about-checktypematchup)
   - [AI use of Full Heal or Full Restore does not cure Nightmare status](#ai-use-of-full-heal-or-full-restore-does-not-cure-nightmare-status)
   - [AI use of Full Heal does not cure confusion status](#ai-use-of-full-heal-does-not-cure-confusion-status)
+  - [AI might use its base reward value as an item](#ai-might-use-its-base-reward-value-as-an-item)
   - [Wild Pokémon can always Teleport regardless of level difference](#wild-pok%C3%A9mon-can-always-teleport-regardless-of-level-difference)
   - [`RIVAL2` has lower DVs than `RIVAL1`](#rival2-has-lower-dvs-than-rival1)
   - [`HELD_CATCH_CHANCE` has no effect](#held_catch_chance-has-no-effect)
@@ -1453,6 +1454,33 @@ Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") implies 
  	ld hl, wEnemySubStatus5
  	res SUBSTATUS_TOXIC, [hl]
  	ret
+```
+
+### AI might use its base reward value as an item
+
+In the `AI_TryItem` routine, an item pointer is set to `wEnemyTrainerItem1` and then increments to `wEnemyTrainerItem2` to see if either of the AI's items are in the `AI_Items` list. However, if the AI has used its first item (or its first one is `ITEM_NONE`) and hasn't used its second item, the item pointer can increment from `wEnemyTrainerItem2` to `wEnemyTrainerBaseReward`. If the value at this address then matches an item in the `AI_Items` list, the AI could mistakenly use it.
+
+**Fix:** Edit `AI_TryItem` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/items.asm):
+
+```diff
+ AI_TryItem:
+  	...
+ 	ld a, [wTrainerClass]
+ 	dec a
+ 	ld hl, TrainerClassAttributes + TRNATTR_AI_ITEM_SWITCH
+ 	ld bc, NUM_TRAINER_ATTRIBUTES
+ 	call AddNTimes
+ 	ld b, h
+ 	ld c, l
+ 	ld hl, AI_Items
+-; BUG: AI might use its base reward value as an item (see docs/bugs_and_glitches.md)
+-	ld de, wEnemyTrainerItem1
+ .loop
++	ld de, wEnemyTrainerItem1
+ 	ld a, [hl]
+ 	and a
+ 	inc a
+ 	ret z
 ```
 
 
