@@ -97,6 +97,7 @@ DEF RELATIVE_ATTRIBUTES EQU 1 << RELATIVE_ATTRIBUTES_F
 DEF ABSOLUTE_TILE_ID    EQU 1 << ABSOLUTE_TILE_ID_F
 
 ; map_object struct members (see macros/ram.asm)
+; struct initialized by object_event macro (see macros/scripts/maps.asm)
 rsreset
 DEF MAPOBJECT_OBJECT_STRUCT_ID rb ; 0
 DEF MAPOBJECT_SPRITE           rb ; 1
