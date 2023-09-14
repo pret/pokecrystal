@@ -1324,7 +1324,7 @@ JohtoGrassWildMons:
 	db 4, EKANS
 	db 5, RATTATA
 	db 7, BELLSPROUT
-	db 6, HOPPIP
+	db 6, MAREEP
 	db 7, PIDGEY
 	db 7, HOPPIP
 	db 7, HOPPIP
@@ -1332,7 +1332,7 @@ JohtoGrassWildMons:
 	db 4, EKANS
 	db 5, RATTATA
 	db 7, BELLSPROUT
-	db 6, HOPPIP
+	db 6, MAREEP
 	db 7, PIDGEY
 	db 7, HOPPIP
 	db 7, HOPPIP
@@ -1462,17 +1462,17 @@ JohtoGrassWildMons:
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	db 13, LEDYBA
-	db 14, GROWLITHE
+	db 14, VULPIX
 	db 15, PIDGEY
-	db 16, GROWLITHE
+	db 16, VULPIX
 	db 15, PIDGEOTTO
 	db 15, LEDIAN
 	db 15, LEDIAN
 	; day
 	db 13, PIDGEY
-	db 14, GROWLITHE
+	db 14, VULPIX
 	db 15, PIDGEY
-	db 16, GROWLITHE
+	db 16, VULPIX
 	db 15, PIDGEOTTO
 	db 15, PIDGEY
 	db 15, PIDGEY
@@ -1547,7 +1547,7 @@ JohtoGrassWildMons:
 	; morn
 	db 13, EKANS
 	db 14, SPEAROW
-	db 15, RATTATA
+	db 15, MANKEY
 	db 16, RATICATE
 	db 15, ARBOK
 	db 16, FEAROW
@@ -1555,14 +1555,14 @@ JohtoGrassWildMons:
 	; day
 	db 13, EKANS
 	db 14, SPEAROW
-	db 15, RATTATA
+	db 15, MANKEY
 	db 16, RATICATE
 	db 15, ARBOK
 	db 16, FEAROW
 	db 16, FEAROW
 	; nite
-	db 13, RATTATA
 	db 14, ZUBAT
+	db 15, MANKEY
 	db 15, RATICATE
 	db 16, GOLBAT
 	db 15, MARILL
@@ -1579,7 +1579,7 @@ JohtoGrassWildMons:
 	db 15, FURRET
 	db 17, RATICATE
 	db 17, FURRET
-	db 17, FURRET
+	db 18, GIRAFARIG
 	; day
 	db 15, SENTRET
 	db 16, PIDGEOTTO
@@ -1587,7 +1587,7 @@ JohtoGrassWildMons:
 	db 15, FURRET
 	db 17, RATICATE
 	db 17, FURRET
-	db 17, FURRET
+	db 18, GIRAFARIG
 	; nite
 	db 15, VENONAT
 	db 16, NOCTOWL
@@ -1595,7 +1595,7 @@ JohtoGrassWildMons:
 	db 17, VENONAT
 	db 17, RATICATE
 	db 17, VENOMOTH
-	db 17, VENOMOTH
+	db 18, GIRAFARIG
 	end_grass_wildmons
 
 	def_grass_wildmons ROUTE_44
