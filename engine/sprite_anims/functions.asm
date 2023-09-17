@@ -1,4 +1,4 @@
-DoAnimFrame:
+DoSpriteAnimFrame:
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
 	ld e, [hl]
@@ -12,55 +12,55 @@ DoAnimFrame:
 	jp hl
 
 .Jumptable:
-; entries correspond to SPRITE_ANIM_SEQ_* constants (see constants/sprite_anim_constants.asm)
-	table_width 2, DoAnimFrame.Jumptable
-	dw AnimSeq_Null
-	dw AnimSeq_PartyMon
-	dw AnimSeq_PartyMonSwitch
-	dw AnimSeq_PartyMonSelected
-	dw AnimSeq_GSTitleTrail
-	dw AnimSeq_NamingScreenCursor
-	dw AnimSeq_GameFreakLogo
-	dw AnimSeq_GSGameFreakLogoStar
-	dw AnimSeq_GSGameFreakLogoSparkle
-	dw AnimSeq_SlotsGolem
-	dw AnimSeq_SlotsChansey
-	dw AnimSeq_SlotsChanseyEgg
-	dw AnimSeq_MailCursor
-	dw AnimSeq_UnusedCursor
-	dw AnimSeq_MemoryGameCursor
-	dw AnimSeq_PokegearArrow
-	dw AnimSeq_TradePokeBall
-	dw AnimSeq_TradeTubeBulge
-	dw AnimSeq_TrademonInTube
-	dw AnimSeq_RevealNewMon
-	dw AnimSeq_RadioTuningKnob
-	dw AnimSeq_CutLeaves
-	dw AnimSeq_FlyFrom
-	dw AnimSeq_FlyLeaf
-	dw AnimSeq_FlyTo
-	dw AnimSeq_GSIntroHoOhLugia
-	dw AnimSeq_EZChatCursor
-	dw AnimSeq_MobileTradeSentPulse
-	dw AnimSeq_MobileTradeOTPulse
-	dw AnimSeq_IntroSuicune
-	dw AnimSeq_IntroPichuWooper
-	dw AnimSeq_Celebi
-	dw AnimSeq_IntroUnown
-	dw AnimSeq_IntroUnownF
-	dw AnimSeq_IntroSuicuneAway
-	assert_table_length NUM_SPRITE_ANIM_SEQS
+; entries correspond to SPRITE_ANIM_FUNC_* constants (see constants/sprite_anim_constants.asm)
+	table_width 2, DoSpriteAnimFrame.Jumptable
+	dw SpriteAnimFunc_Null
+	dw SpriteAnimFunc_PartyMon
+	dw SpriteAnimFunc_PartyMonSwitch
+	dw SpriteAnimFunc_PartyMonSelected
+	dw SpriteAnimFunc_GSTitleTrail
+	dw SpriteAnimFunc_NamingScreenCursor
+	dw SpriteAnimFunc_GameFreakLogo
+	dw SpriteAnimFunc_GSGameFreakLogoStar
+	dw SpriteAnimFunc_GSGameFreakLogoSparkle
+	dw SpriteAnimFunc_SlotsGolem
+	dw SpriteAnimFunc_SlotsChansey
+	dw SpriteAnimFunc_SlotsChanseyEgg
+	dw SpriteAnimFunc_MailCursor
+	dw SpriteAnimFunc_UnusedCursor
+	dw SpriteAnimFunc_MemoryGameCursor
+	dw SpriteAnimFunc_PokegearArrow
+	dw SpriteAnimFunc_TradePokeBall
+	dw SpriteAnimFunc_TradeTubeBulge
+	dw SpriteAnimFunc_TrademonInTube
+	dw SpriteAnimFunc_RevealNewMon
+	dw SpriteAnimFunc_RadioTuningKnob
+	dw SpriteAnimFunc_CutLeaves
+	dw SpriteAnimFunc_FlyFrom
+	dw SpriteAnimFunc_FlyLeaf
+	dw SpriteAnimFunc_FlyTo
+	dw SpriteAnimFunc_GSIntroHoOhLugia
+	dw SpriteAnimFunc_EZChatCursor
+	dw SpriteAnimFunc_MobileTradeSentPulse
+	dw SpriteAnimFunc_MobileTradeOTPulse
+	dw SpriteAnimFunc_IntroSuicune
+	dw SpriteAnimFunc_IntroPichuWooper
+	dw SpriteAnimFunc_Celebi
+	dw SpriteAnimFunc_IntroUnown
+	dw SpriteAnimFunc_IntroUnownF
+	dw SpriteAnimFunc_IntroSuicuneAway
+	assert_table_length NUM_SPRITE_ANIM_FUNCS
 
-AnimSeq_Null:
+SpriteAnimFunc_Null:
 	ret
 
-AnimSeq_PartyMon:
+SpriteAnimFunc_PartyMon:
 	ld a, [wMenuCursorY]
 
 	ld hl, SPRITEANIMSTRUCT_INDEX
 	add hl, bc
 	cp [hl]
-	jr z, AnimSeq_PartyMonSwitch
+	jr z, SpriteAnimFunc_PartyMonSwitch
 
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
@@ -71,7 +71,7 @@ AnimSeq_PartyMon:
 	ld [hl], 0
 	ret
 
-AnimSeq_PartyMonSwitch:
+SpriteAnimFunc_PartyMonSwitch:
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld [hl], 8 * 3
@@ -113,7 +113,7 @@ AnimSeq_PartyMonSwitch:
 	ld [hl], a
 	ret
 
-AnimSeq_PartyMonSelected:
+SpriteAnimFunc_PartyMonSelected:
 	ld a, [wMenuCursorY]
 
 	ld hl, SPRITEANIMSTRUCT_INDEX
@@ -132,7 +132,7 @@ AnimSeq_PartyMonSelected:
 	ld [hl], 8 * 3
 	ret
 
-AnimSeq_GSTitleTrail:
+SpriteAnimFunc_GSTitleTrail:
 	call AnimSeqs_AnonJumptable
 	jp hl
 .anon_dw
@@ -199,7 +199,7 @@ AnimSeq_GSTitleTrail:
 	call DeinitializeSprite
 	ret
 
-AnimSeq_GSIntroHoOhLugia:
+SpriteAnimFunc_GSIntroHoOhLugia:
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
@@ -213,19 +213,19 @@ AnimSeq_GSIntroHoOhLugia:
 	ld [hl], a
 	ret
 
-AnimSeq_NamingScreenCursor:
+SpriteAnimFunc_NamingScreenCursor:
 	callfar NamingScreen_AnimateCursor
 	ret
 
-AnimSeq_MailCursor:
+SpriteAnimFunc_MailCursor:
 	callfar ComposeMail_AnimateCursor
 	ret
 
-AnimSeq_GameFreakLogo:
+SpriteAnimFunc_GameFreakLogo:
 	callfar GameFreakLogoSpriteAnim
 	ret
 
-AnimSeq_GSGameFreakLogoStar:
+SpriteAnimFunc_GSGameFreakLogoStar:
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
@@ -276,7 +276,7 @@ AnimSeq_GSGameFreakLogoStar:
 	call DeinitializeSprite
 	ret
 
-AnimSeq_GSGameFreakLogoSparkle:
+SpriteAnimFunc_GSGameFreakLogoSparkle:
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hli]
@@ -353,11 +353,11 @@ AnimSeq_GSGameFreakLogoSparkle:
 	call DeinitializeSprite
 	ret
 
-AnimSeq_SlotsGolem:
+SpriteAnimFunc_SlotsGolem:
 	callfar Slots_AnimateGolem
 	ret
 
-AnimSeq_SlotsChansey:
+SpriteAnimFunc_SlotsChansey:
 	callfar Slots_AnimateChansey
 	ld hl, wSlotsDelay
 	ld a, [hl]
@@ -368,7 +368,7 @@ AnimSeq_SlotsChansey:
 	call _ReinitSpriteAnimFrame
 	ret
 
-AnimSeq_SlotsChanseyEgg:
+SpriteAnimFunc_SlotsChanseyEgg:
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld a, [hl]
@@ -401,19 +401,19 @@ AnimSeq_SlotsChanseyEgg:
 	ld [hl], a
 	ret
 
-AnimSeq_UnusedCursor:
+SpriteAnimFunc_UnusedCursor:
 	callfar UnusedCursor_InterpretJoypad_AnimateCursor
 	ret
 
-AnimSeq_PokegearArrow:
+SpriteAnimFunc_PokegearArrow:
 	callfar AnimatePokegearModeIndicatorArrow
 	ret
 
-AnimSeq_MemoryGameCursor:
+SpriteAnimFunc_MemoryGameCursor:
 	callfar MemoryGame_InterpretJoypad_AnimateCursor
 	ret
 
-AnimSeq_TradePokeBall:
+SpriteAnimFunc_TradePokeBall:
 	call AnimSeqs_AnonJumptable
 	jp hl
 .anon_dw
@@ -537,7 +537,7 @@ AnimSeq_TradePokeBall:
 	call DeinitializeSprite
 	ret
 
-AnimSeq_TradeTubeBulge:
+SpriteAnimFunc_TradeTubeBulge:
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld a, [hl]
@@ -555,11 +555,11 @@ AnimSeq_TradeTubeBulge:
 	call DeinitializeSprite
 	ret
 
-AnimSeq_TrademonInTube:
+SpriteAnimFunc_TrademonInTube:
 	callfar TradeAnim_AnimateTrademonInTube
 	ret
 
-AnimSeq_RevealNewMon:
+SpriteAnimFunc_RevealNewMon:
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
@@ -596,11 +596,11 @@ AnimSeq_RevealNewMon:
 	call DeinitializeSprite
 	ret
 
-AnimSeq_RadioTuningKnob:
+SpriteAnimFunc_RadioTuningKnob:
 	callfar AnimateTuningKnob
 	ret
 
-AnimSeq_CutLeaves:
+SpriteAnimFunc_CutLeaves:
 	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld e, [hl]
@@ -639,7 +639,7 @@ AnimSeq_CutLeaves:
 	ld [hl], a
 	ret
 
-AnimSeq_FlyFrom:
+SpriteAnimFunc_FlyFrom:
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld a, [hl]
@@ -678,7 +678,7 @@ AnimSeq_FlyFrom:
 	ld [hl], a
 	ret
 
-AnimSeq_FlyLeaf:
+SpriteAnimFunc_FlyLeaf:
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld a, [hl]
@@ -707,7 +707,7 @@ AnimSeq_FlyLeaf:
 	call DeinitializeSprite
 	ret
 
-AnimSeq_FlyTo:
+SpriteAnimFunc_FlyTo:
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld a, [hl]
@@ -739,15 +739,15 @@ AnimSeq_FlyTo:
 	ld [hl], a
 	ret
 
-AnimSeq_MobileTradeSentPulse:
+SpriteAnimFunc_MobileTradeSentPulse:
 	farcall MobileTradeAnim_AnimateSentPulse
 	ret
 
-AnimSeq_MobileTradeOTPulse:
+SpriteAnimFunc_MobileTradeOTPulse:
 	farcall MobileTradeAnim_AnimateOTPulse
 	ret
 
-AnimSeq_IntroSuicune:
+SpriteAnimFunc_IntroSuicune:
 	ld a, [wIntroSceneTimer]
 	and a
 	jr nz, .continue
@@ -775,7 +775,7 @@ AnimSeq_IntroSuicune:
 	call _ReinitSpriteAnimFrame
 	ret
 
-AnimSeq_IntroPichuWooper:
+SpriteAnimFunc_IntroPichuWooper:
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
@@ -794,7 +794,7 @@ AnimSeq_IntroPichuWooper:
 .done
 	ret
 
-AnimSeq_IntroUnown:
+SpriteAnimFunc_IntroUnown:
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld d, [hl]
@@ -820,7 +820,7 @@ AnimSeq_IntroUnown:
 	ld [hl], a
 	ret
 
-AnimSeq_IntroUnownF:
+SpriteAnimFunc_IntroUnownF:
 	ld a, [wSlotsDelay]
 	cp $40
 	ret nz
@@ -828,7 +828,7 @@ AnimSeq_IntroUnownF:
 	call _ReinitSpriteAnimFrame
 	ret
 
-AnimSeq_IntroSuicuneAway:
+SpriteAnimFunc_IntroSuicuneAway:
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld a, [hl]
@@ -836,11 +836,11 @@ AnimSeq_IntroSuicuneAway:
 	ld [hl], a
 	ret
 
-AnimSeq_EZChatCursor:
+SpriteAnimFunc_EZChatCursor:
 	farcall AnimateEZChatCursor
 	ret
 
-AnimSeq_Celebi:
+SpriteAnimFunc_Celebi:
 	farcall UpdateCelebiPosition
 	ret
 
