@@ -54,6 +54,7 @@ DEF NUM_MAP_PALETTES EQU const_value
 	const FISHGROUP_QWILFISH
 	const FISHGROUP_REMORAID
 	const FISHGROUP_QWILFISH_NO_SWARM
+	const FISHGROUP_DEEP_UNION_CAVE
 DEF NUM_FISHGROUPS EQU const_value - 1
 
 ; connection directions (see data/maps/data.asm)

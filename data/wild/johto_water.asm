@@ -24,10 +24,10 @@ JohtoWaterWildMons:
 	end_water_wildmons
 
 	def_water_wildmons UNION_CAVE_B2F
-	db 4 percent ; encounter rate
+	db 10 percent ; encounter rate
+	db 29, OMANYTE
+	db 20, KABUTOPS
 	db 15, TENTACOOL
-	db 20, QUAGSIRE
-	db 20, TENTACRUEL
 	end_water_wildmons
 
 	def_water_wildmons SLOWPOKE_WELL_B1F
@@ -123,9 +123,9 @@ JohtoWaterWildMons:
 
 	def_water_wildmons OLIVINE_PORT
 	db 2 percent ; encounter rate
-	db 20, TENTACOOL
-	db 15, TENTACOOL
-	db 20, TENTACRUEL
+	db 20, KRABBY
+	db 15, KRABBY
+	db 20, CORSOLA
 	end_water_wildmons
 
 	def_water_wildmons ROUTE_30
