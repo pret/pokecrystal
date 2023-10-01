@@ -142,7 +142,7 @@ MysteryGiftGetDecoration:
 	ret
 
 MysteryGiftFallbackItem:
-	ld c, DECO_POLKADOT_BED ; GREAT_BALL
+	ld c, DECOFLAG_RED_CARPET ; GREAT_BALL
 	ret
 
 INCLUDE "data/items/mystery_gift_items.asm"
