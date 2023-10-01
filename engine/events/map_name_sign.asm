@@ -163,7 +163,7 @@ PlaceMapNameCenterAlign:
 	ld a, [hli]
 	cp "@"
 	jr z, .stop
-	cp "%"
+	cp "<ZWSP>"
 	jr z, .loop
 	inc c
 	jr .loop
