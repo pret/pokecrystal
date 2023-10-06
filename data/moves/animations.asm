@@ -253,10 +253,10 @@ BattleAnimations::
 	dw BattleAnim_RockSmash
 	dw BattleAnim_Whirlpool
 	dw BattleAnim_BeatUp
+	dw BattleAnim_DisrmingVce
+	dw BattleAnim_DrainKiss
+	dw BattleAnim_Moonblast
 	assert_table_length NUM_ATTACKS + 1
-	dw BattleAnim_Dummy
-	dw BattleAnim_Dummy
-	dw BattleAnim_Dummy
 	dw BattleAnim_SweetScent2
 	assert_table_length $100
 ; $100
@@ -4593,6 +4593,74 @@ BattleAnim_BeatUp:
 	anim_obj BATTLE_ANIM_OBJ_HIT_BIG_YFIX, 136, 48, $0
 	anim_wait 8
 	anim_call BattleAnim_ShowMon_0
+	anim_ret
+
+BattleAnim_DisrmingVce:
+	anim_1gfx BATTLE_ANIM_GFX_NOISE
+	anim_battlergfx_2row
+	anim_bgeffect BATTLE_BG_EFFECT_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
+	anim_cry $0
+	anim_call BattleAnimSub_Sound
+	anim_obj BATTLE_ANIM_OBJ_SING, 64, 92, $0
+	anim_wait 8
+	anim_obj BATTLE_ANIM_OBJ_SING, 64, 92, $1
+	anim_wait 8
+	anim_call BattleAnimSub_Sound
+	anim_obj BATTLE_ANIM_OBJ_SING, 64, 92, $2
+	anim_wait 8
+	anim_obj BATTLE_ANIM_OBJ_SING, 64, 92, $0
+	anim_wait 8
+	anim_call BattleAnimSub_Sound
+	anim_obj BATTLE_ANIM_OBJ_SING, 64, 92, $2
+	anim_wait 64
+	anim_ret
+
+BattleAnim_DrainKiss:
+	anim_2gfx BATTLE_ANIM_GFX_OBJECTS, BATTLE_ANIM_GFX_ANGELS
+	anim_bgeffect BATTLE_BG_EFFECT_CYCLE_MID_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
+	anim_obj BATTLE_ANIM_OBJ_SWEET_KISS, 96, 40, $0
+	anim_sound 0, 1, SFX_SWEET_KISS
+	anim_wait 32
+	anim_sound 0, 1, SFX_SWEET_KISS_2
+	anim_obj BATTLE_ANIM_OBJ_HEART, 120, 40, $0
+	anim_wait 40
+
+	anim_1gfx BATTLE_ANIM_GFX_CHARGE
+	anim_obj BATTLE_ANIM_OBJ_ABSORB_CENTER, 44, 88, $0
+.loop
+	anim_sound 6, 3, SFX_WATER_GUN
+	anim_obj BATTLE_ANIM_OBJ_ABSORB, 128, 48, $2
+	anim_wait 6
+	anim_sound 6, 3, SFX_WATER_GUN
+	anim_obj BATTLE_ANIM_OBJ_ABSORB, 136, 64, $3
+	anim_wait 6
+	anim_sound 6, 3, SFX_WATER_GUN
+	anim_obj BATTLE_ANIM_OBJ_ABSORB, 136, 32, $4
+	anim_wait 6
+	anim_loop 5, .loop
+	anim_wait 32
+	anim_ret
+
+BattleAnim_Moonblast:
+	anim_1gfx BATTLE_ANIM_GFX_SPEED
+	anim_bgeffect BATTLE_BG_EFFECT_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
+	anim_bgeffect BATTLE_BG_EFFECT_ALTERNATE_HUES, $0, $2, $0
+	anim_battlergfx_1row
+	anim_sound 0, 0, SFX_MOONLIGHT
+.loop
+	anim_wait 8
+	anim_obj BATTLE_ANIM_OBJ_SHOOTING_SPARKLE, 64, 88, $4
+	anim_wait 8
+	anim_obj BATTLE_ANIM_OBJ_SHOOTING_SPARKLE, 64, 80, $4
+	anim_wait 8
+	anim_obj BATTLE_ANIM_OBJ_SHOOTING_SPARKLE, 64, 96, $4
+	anim_wait 8
+	anim_loop 2, .loop
+	anim_wait 16
+	anim_1gfx BATTLE_ANIM_GFX_HIT
+	anim_sound 0, 1, SFX_TACKLE
+	anim_obj BATTLE_ANIM_OBJ_HIT_BIG_YFIX, 136, 48, $0
+	anim_wait 8
 	anim_ret
 
 BattleAnimSub_Drain:

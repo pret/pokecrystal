@@ -32,6 +32,7 @@ DEF SPECIAL EQU const_value
 	const ICE
 	const DRAGON
 	const DARK
+	const FAIRY
 DEF TYPES_END EQU const_value
 
 DEF NUM_TYPES EQU TYPES_END + UNUSED_TYPES - UNUSED_TYPES_END - 1 ; discount BIRD
