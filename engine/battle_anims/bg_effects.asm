@@ -2567,8 +2567,8 @@ BGEffects_LoadBGPal0_OBPal1:
 	ld b, a
 	ld c, $1
 	call CopyPals
-	ld hl, wOBPals2 palette 1
-	ld de, wOBPals1 palette 1
+	ld hl, wOBPals2 palette PAL_BATTLE_OB_PLAYER
+	ld de, wOBPals1 palette PAL_BATTLE_OB_PLAYER
 	pop af
 	ld b, a
 	ld c, $1
@@ -2589,8 +2589,8 @@ BGEffects_LoadBGPal1_OBPal0:
 	ld a, h
 	push bc
 	push af
-	ld hl, wBGPals2 palette 1
-	ld de, wBGPals1 palette 1
+	ld hl, wBGPals2 palette PAL_BATTLE_BG_ENEMY
+	ld de, wBGPals1 palette PAL_BATTLE_BG_ENEMY
 	ld b, a
 	ld c, $1
 	call CopyPals
