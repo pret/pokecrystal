@@ -202,103 +202,103 @@ ROMX $49
 	"Unown Pic Pointers"
 	"Pics 2"
 ROMX $4a
-	"Trainer Pic Pointers"
-ROMX $4b
 	"Pics 3"
-ROMX $4c
+ROMX $4b
 	"Pics 4"
-ROMX $4d
+ROMX $4c
 	"Pics 5"
-ROMX $4e
+ROMX $4d
 	"Pics 6"
-ROMX $4f
+ROMX $4e
 	"Pics 7"
-ROMX $50
+ROMX $4f
 	"Pics 8"
-ROMX $51
+ROMX $50
 	"Pics 9"
-ROMX $52
+ROMX $51
 	"Pics 10"
-ROMX $53
+ROMX $52
 	"Pics 11"
-ROMX $54
+ROMX $53
 	"Pics 12"
-ROMX $55
+ROMX $54
 	"Pics 13"
-ROMX $56
+ROMX $55
 	"Pics 14"
-ROMX $57
+ROMX $56
 	"Pics 15"
-ROMX $58
+ROMX $57
 	"Pics 16"
-ROMX $59
+ROMX $58
 	"Pics 17"
-ROMX $5a
+ROMX $59
 	"Pics 18"
-ROMX $5b
+ROMX $5a
 	"Pics 19"
-ROMX $5c
+ROMX $5b
 	"bank5B"
 	"Pics 20"
-ROMX $5d
+ROMX $5c
 	"mobile5C"
 	"Pics 21"
-ROMX $5e
+ROMX $5d
 	"Crystal Phone Text 2"
 	"Pics 22"
-ROMX $5f
+ROMX $5e
 	"UpdateBattleHUDs"
 	"Songs 5"
 	"Crystal Sound Effects"
 	"mobile5E"
 	"Pics 23"
-ROMX $60
+ROMX $5f
 	"mobile5F"
 	"Pics 24"
-ROMX $61
+ROMX $60
 	"Map Scripts 13"
 	"Pokedex Entries 001-064"
-ROMX $62
+ROMX $61
 	"Map Scripts 14"
-ROMX $63
+ROMX $62
 	"Map Scripts 15"
-ROMX $64
+ROMX $63
 	"Map Scripts 16"
-ROMX $65
+ROMX $64
 	"Map Scripts 17"
-ROMX $66
+ROMX $65
 	"Map Scripts 18"
-ROMX $67
+ROMX $66
 	"Map Scripts 19"
-ROMX $68
+ROMX $67
 	"Map Scripts 20"
-ROMX $69
+ROMX $68
 	"Map Scripts 21"
-ROMX $6a
+ROMX $69
 	"Map Scripts 22"
-ROMX $6b
+ROMX $6a
 	"Map Scripts 23"
-ROMX $6c
+ROMX $6b
 	"Map Scripts 24"
-ROMX $6d
+ROMX $6c
 	"Phone Text 2"
 	"Map Scripts 25"
-ROMX $6e
+ROMX $6d
 	"Special Phone Text"
-ROMX $6f
+ROMX $6e
 	"Pokedex Entries 065-128"
-ROMX $70
+ROMX $6f
 	"Text 1"
-ROMX $71
+ROMX $70
 	"Text 2"
-ROMX $72
+ROMX $71
 	"Text 3"
-ROMX $73
+ROMX $72
 	"Miscellaneous Text"
-ROMX $74
+ROMX $73
 	"Pokedex Entries 129-192"
-ROMX $75
+ROMX $74
 	"Pokedex Entries 193-251"
+ROMX $75
+	"Trainer Pic Pointers"; move to other romX
 ROMX $77
 	"Unown Font"
 	"Print Party"
