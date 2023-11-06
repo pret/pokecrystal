@@ -1,5 +1,5 @@
-DEF CARDFLIP_LIGHT_OFF EQU "♂" ; $ef
-DEF CARDFLIP_LIGHT_ON  EQU "♀" ; $f5
+DEF CARDFLIP_LIGHT_OFF EQU $ef ; "♂"
+DEF CARDFLIP_LIGHT_ON  EQU $f5 ; "♀"
 
 DEF CARDFLIP_DECK_SIZE EQUS "(wDeckEnd - wDeck)"
 	assert wDiscardPileEnd - wDiscardPile == wDeckEnd - wDeck
