@@ -461,7 +461,7 @@ YessNoString_1179c5:
 	next "いいえ@"
 
 AskSavePasswordString:
-	db   "こ<NO>パスワード¯ほぞんして"
+	db   "こ<NO>パスワード<WO>ほぞんして"
 	line "おきますか？@"
 
 NotAPokemonPasswordString:
@@ -469,7 +469,7 @@ NotAPokemonPasswordString:
 	line "されていません！@"
 
 SavedPasswordString:
-	db   "ログインパスワード¯ほぞん"
+	db   "ログインパスワード<WO>ほぞん"
 	line "しました@"
 
 MobilePassword_IncrementJumptable:
