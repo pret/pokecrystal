@@ -1440,7 +1440,7 @@ Function108b5a:
 	ldh [rSVBK], a
 	ld de, palred 18 + palgreen 31 + palblue 15
 	ld hl, wBGPals2 palette 4
-	ld c, $10
+	ld c, 2 palettes
 .loop
 	ld a, e
 	ld [hli], a
