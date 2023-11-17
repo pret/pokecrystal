@@ -676,13 +676,13 @@ Function16cc18:
 
 Function16cc25:
 	ld hl, Unknown_16cfa9
-	ld de, wBGPals1 + 1 palettes
+	ld de, wBGPals1 palette 1
 	call .CopyPal
 	ld hl, Unknown_16cfb1
 	ld de, wOBPals1
 	call .CopyPal
 	ld hl, Unknown_16cfb9
-	ld de, wOBPals1 + 1 palettes
+	ld de, wOBPals1 palette 1
 	call .CopyPal
 	ret
 

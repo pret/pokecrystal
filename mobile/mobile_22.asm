@@ -641,7 +641,7 @@ Function894dc:
 	ld bc, 3 palettes
 	call CopyBytes
 	ld hl, .Pals345
-	ld de, wBGPals1 + 3 palettes
+	ld de, wBGPals1 palette 3
 	ld bc, 3 palettes
 	call CopyBytes
 
@@ -2056,7 +2056,7 @@ Function89d0d:
 	jr nz, .loop
 
 	ld hl, .Palette2
-	ld de, wBGPals1 + 2 palettes
+	ld de, wBGPals1 palette 2
 	ld bc, 1 palettes
 	call CopyBytes
 
@@ -3232,7 +3232,7 @@ Function8a5b6:
 	ld a, $5
 	ldh [rSVBK], a
 	ld hl, Palette_8a5e5
-	ld de, wBGPals1 + 4 palettes
+	ld de, wBGPals1 palette 4
 	ld bc, 3 palettes
 	call CopyBytes
 	ld hl, Palette_8a5fd
@@ -3240,7 +3240,7 @@ Function8a5b6:
 	ld bc, 1 palettes
 	call CopyBytes
 	ld hl, Palette_8a605
-	ld de, wOBPals1 + 1 palettes
+	ld de, wOBPals1 palette 1
 	ld bc, 1 palettes
 	call CopyBytes
 	pop af
