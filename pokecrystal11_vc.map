@@ -23152,8 +23152,8 @@ ROMX bank #50:
 	         $4e35 = BGEffect_RapidCyclePals.okay_3_cgb
 	         $4e43 = BGEffect_RapidCyclePals.okay_4_cgb
 	         $4e49 = BGEffect_RapidCyclePals.four_cgb
-	         $4e52 = BGEffects_LoadBGPal0_OBPal1
-	         $4e7f = BGEffects_LoadBGPal1_OBPal0
+	         $4e52 = BGEffects_LoadPlayerPals
+	         $4e7f = BGEffects_LoadEnemyPals
 	         $4eac = BattleBGEffect_GetFirstDMGPal
 	         $4eb2 = BattleBGEffect_GetNextDMGPal
 	         $4ec6 = BattleBGEffect_GetNextDMGPal.repeat
