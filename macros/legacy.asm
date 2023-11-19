@@ -400,12 +400,12 @@ DEF pcscript              EQUS "PCScript"
 DEF gamecornercoinvendor  EQUS "GameCornerCoinVendorScript"
 DEF happinesschecknpc     EQUS "HappinessCheckScript"
 
+; constants/charmap.asm
+charmap "%", "<BSP>"
+charmap "¯", "<WBR>"
+
 ; constants/sprite_constants.asm
 DEF SPRITE_BUENA EQUS "SPRITE_BEAUTY"
 
 DEF PAL_NPC_SILVER EQUS "PAL_NPC_EMOTE"
 DEF PAL_OW_SILVER  EQUS "PAL_OW_EMOTE"
-
-; charmap.asm
-charmap "%",             $1f
-charmap "¯",             $25
