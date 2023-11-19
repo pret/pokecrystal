@@ -6,10 +6,10 @@
 	charmap "<PLAY_G>",  $14 ; "<PLAYER>くん" or "<PLAYER>ちゃん"; same as "<PLAYER>" in English
 	charmap "<MOBILE>",  $15
 	charmap "<CR>",      $16
-	charmap "<BSP>",     $1f ; breakable space (usually " ", but renders as line break on the Town Map)
+	charmap "<BSP>",     $1f ; breakable space (usually " ", or "<LF>" on the Town Map)
 	charmap "<LF>",      $22
 	charmap "<POKE>",    $24 ; "<PO><KE>"
-	charmap "<ZWSP>",    $25 ; zero-width breakable space (usually not displayed, but renders as line break on the Town Map), unused
+	charmap "<WBR>",     $25 ; word-break opportunity (usually skipped, or "<LF>" on the Town Map)
 	charmap "<RED>",     $38 ; wRedsName
 	charmap "<GREEN>",   $39 ; wGreensName
 	charmap "<ENEMY>",   $3f
@@ -34,7 +34,7 @@
 	charmap "<TM>",      $5c ; "TM"
 	charmap "<TRAINER>", $5d ; "TRAINER"
 	charmap "<ROCKET>",  $5e ; "ROCKET"
-	charmap "<DEXEND>",  $5f ; unused
+	charmap "<DEXEND>",  $5f
 
 ; Actual characters (from gfx/font/font_extra.png)
 

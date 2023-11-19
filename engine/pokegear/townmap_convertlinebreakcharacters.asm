@@ -4,7 +4,7 @@ TownMap_ConvertLineBreakCharacters:
 	ld a, [hl]
 	cp "@"
 	jr z, .end
-	cp "<ZWSP>"
+	cp "<WBR>"
 	jr z, .line_feed
 	cp "<BSP>"
 	jr z, .line_feed
