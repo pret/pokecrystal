@@ -707,10 +707,10 @@ Function11c4be:
 	ret
 
 String_11c4db:
-	db   "６つのことば¯くみあわせます"
-	next "かえたいところ¯えらぶと　でてくる"
+	db   "６つのことば<WO>くみあわせます"
+	next "かえたいところ<WO>えらぶと　でてくる"
 	next "ことばのグループから　いれかえたい"
-	next "たんご¯えらんでください"
+	next "たんご<WO>えらんでください"
 	db   "@"
 
 String_11c51b:
@@ -1592,7 +1592,7 @@ Function11ca19:
 	ret
 
 String_11ca38:
-	db   "とうろくちゅう<NO>あいさつ¯ぜんぶ"
+	db   "とうろくちゅう<NO>あいさつ<WO>ぜんぶ"
 	next "けしても　よろしいですか？@"
 
 String_11ca57:
@@ -1718,7 +1718,7 @@ Function11cab3:
 	ret
 
 String_11cb1c:
-	db   "あいさつ<NO>とうろく¯ちゅうし"
+	db   "あいさつ<NO>とうろく<WO>ちゅうし"
 	next "しますか？@"
 
 String_11cb31:
@@ -1874,19 +1874,19 @@ Unknown_11cc7e:
 
 String_11cc86:
 	db   "じこしょうかい　の"
-	next "あいさつ¯とうろくした！@"
+	next "あいさつ<WO>とうろくした！@"
 
 String_11cc9d:
 	db   "たいせん　<GA>はじまるとき　の"
-	next "あいさつ¯とうろくした！@"
+	next "あいさつ<WO>とうろくした！@"
 
 String_11ccb9:
 	db   "たいせん　<NI>かったとき　の"
-	next "あいさつ¯とうろくした！@"
+	next "あいさつ<WO>とうろくした！@"
 
 String_11ccd4:
 	db   "たいせん　<NI>まけたとき　の"
-	next "あいさつ¯とうろくした！@"
+	next "あいさつ<WO>とうろくした！@"
 
 Function11ccef:
 	ld de, Unknown_11cfc6
@@ -1907,7 +1907,7 @@ Function11cd04:
 	ret
 
 String_11cd10:
-	db "なにか　ことば¯いれてください@"
+	db "なにか　ことば<WO>いれてください@"
 
 Function11cd20:
 	call EZChat_ClearBottom12Rows
@@ -2005,12 +2005,12 @@ Function11cdaa:
 
 String_11cdc7:
 ; Words will be displayed by category
-	db   "ことば¯しゅるいべつに"
+	db   "ことば<WO>しゅるいべつに"
 	next "えらべます@"
 
 String_11cdd9:
 ; Words will be displayed in alphabetical order
-	db   "ことば¯アイウエオ　の"
+	db   "ことば<WO>アイウエオ　の"
 	next "じゅんばんで　ひょうじ　します@"
 
 String_11cdf5:
