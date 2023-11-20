@@ -515,7 +515,7 @@ Function1162cb:
 	ld a, $5
 	ldh [rSVBK], a
 	ld hl, PichuBorderMobileOBPalettes
-	ld de, wOBPals1 + 2 palettes
+	ld de, wOBPals1 palette 2
 	ld bc, 6 palettes
 	call CopyBytes
 	call SetPalettes
