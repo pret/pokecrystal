@@ -104,8 +104,6 @@ To install the software required for **pokecrystal**:
 sudo pacman -S make gcc git rgbds
 ```
 
-Then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#pre-built) for Arch Linux to install **rgbds 0.6.1**.
-
 If you want to compile and install **rgbds** yourself instead, then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#building-from-source) to build **rgbds 0.6.1** from source.
 
 ### Termux
