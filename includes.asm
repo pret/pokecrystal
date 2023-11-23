@@ -1,3 +1,5 @@
+INCLUDE "constants/charmap.asm"
+
 INCLUDE "macros/asserts.asm"
 INCLUDE "macros/const.asm"
 INCLUDE "macros/predef.asm"
@@ -20,7 +22,6 @@ INCLUDE "macros/scripts/pic_anims.asm"
 
 INCLUDE "macros/legacy.asm"
 
-INCLUDE "constants/charmap.asm"
 INCLUDE "constants/hardware_constants.asm"
 INCLUDE "constants/deco_constants.asm"
 INCLUDE "constants/wram_constants.asm"
