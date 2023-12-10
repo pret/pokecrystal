@@ -1,6 +1,8 @@
 	db DODRIO ; 085
 
-	db  60, 110,  70, 100,  60,  60
+	;original stats
+	;db  60, 110,  70, 100,  60,  60
+	db  75, 115,  85, 120,  70,  80
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, FLYING ; type

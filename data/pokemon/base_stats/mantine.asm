@@ -1,10 +1,12 @@
 	db MANTINE ; 226
 
-	db  65,  40,  70,  70,  80, 140
+	;original stats
+	;db  65,  40,  70,  70,  80, 140
+	db  90, 100,  70,  80,  80, 140
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, FLYING ; type
-	db 25 ; catch rate
+	db 255 ; catch rate
 	db 168 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio

@@ -1657,29 +1657,29 @@ JohtoGrassWildMons:
 	def_grass_wildmons ROUTE_46
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	db 2, GEODUDE
-	db 2, SPEAROW
-	db 3, GEODUDE
-	db 3, RATTATA
-	db 2, PHANPY
-	db 2, RATTATA
-	db 2, RATTATA
+	db 5, ABRA
+	db 5, LARVITAR
+	db 5, ONIX
+	db 5, DODUO
+	db 5, GASTLY
+	db 5, MANTINE
+	db 5, PHANPY
 	; day
-	db 2, GEODUDE
-	db 2, SPEAROW
-	db 3, GEODUDE
-	db 3, RATTATA
-	db 2, RATTATA
-	db 2, RATTATA
-	db 2, RATTATA
+	db 5, ABRA
+	db 5, LARVITAR
+	db 5, ONIX
+	db 5, DODUO
+	db 5, GEODUDE
+	db 5, MANTINE
+	db 5, PHANPY
 	; nite
-	db 2, GEODUDE
-	db 2, RATTATA
-	db 3, GEODUDE
-	db 3, RATTATA
-	db 2, RATTATA
-	db 2, RATTATA
-	db 2, RATTATA
+	db 5, ABRA
+	db 5, LARVITAR
+	db 5, ONIX
+	db 5, DODUO
+	db 5, GASTLY
+	db 5, MANTINE
+	db 5, PHANPY
 	end_grass_wildmons
 
 	def_grass_wildmons SILVER_CAVE_OUTSIDE

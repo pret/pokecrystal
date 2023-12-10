@@ -1,10 +1,12 @@
 	db ONIX ; 095
 
-	db  35,  45, 160,  70,  30,  45
+	;original stats
+	;db  35,  45, 160,  70,  30,  45
+	db  40,  50, 150,  70,  50,  70
 	;   hp  atk  def  spd  sat  sdf
 
 	db ROCK, GROUND ; type
-	db 45 ; catch rate
+	db 255 ; catch rate
 	db 108 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio

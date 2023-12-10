@@ -1,10 +1,12 @@
 	db DODUO ; 084
 
-	db  35,  85,  45,  75,  35,  35
+	;original stats
+	;db  35,  85,  45,  75,  35,  35
+	db  45,  90,  55,  90,  45,  50
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, FLYING ; type
-	db 190 ; catch rate
+	db 255 ; catch rate
 	db 96 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio

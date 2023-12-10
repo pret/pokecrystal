@@ -1,10 +1,12 @@
 	db ABRA ; 063
 
-	db  25,  20,  15,  90, 105,  55
+	;original stats
+	;db  25,  20,  15,  90, 105,  55
+	db  40,  30,  25,  95, 105,  55
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC_TYPE, PSYCHIC_TYPE ; type
-	db 200 ; catch rate
+	db 255 ; catch rate
 	db 73 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F25 ; gender ratio
