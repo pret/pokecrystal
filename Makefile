@@ -47,6 +47,14 @@ RGBFIX  ?= $(RGBDS)rgbfix
 RGBGFX  ?= $(RGBDS)rgbgfx
 RGBLINK ?= $(RGBDS)rgblink
 
+# Quiet output by default
+Q := @
+ifeq ($(Q),@)
+QMAKE := --no-print-directory
+else
+QMAKE :=
+endif
+
 
 ### Build targets
 
@@ -65,13 +73,14 @@ crystal11_debug: pokecrystal11_debug.gbc
 crystal11_vc:    pokecrystal11.patch
 
 clean: tidy
-	find gfx \
+	@echo "Deleting intermediate build products..."
+	$(Q)find gfx \
 	     \( -name "*.[12]bpp" \
 	        -o -name "*.lz" \
 	        -o -name "*.gbcpal" \
 	        -o -name "*.sgb.tilemap" \) \
 	     -delete
-	find gfx/pokemon -mindepth 1 \
+	$(Q)find gfx/pokemon -mindepth 1 \
 	     ! -path "gfx/pokemon/unown/*" \
 	     \( -name "bitmask.asm" \
 	        -o -name "frames.asm" \
@@ -80,7 +89,8 @@ clean: tidy
 	     -delete
 
 tidy:
-	$(RM) $(roms) \
+	@echo "Deleting build products..."
+	$(Q)$(RM) $(roms) \
 	      $(roms:.gbc=.sym) \
 	      $(roms:.gbc=.map) \
 	      $(patches) \
@@ -95,13 +105,15 @@ tidy:
 	      $(pokecrystal_debug_obj) \
 	      $(pokecrystal11_debug_obj) \
 	      rgbdscheck.o
-	$(MAKE) clean -C tools/
+	$(Q)$(MAKE) clean -C tools/ $(QMAKE) Q=$(Q)
 
 compare: $(roms) $(patches)
-	@$(SHA1) -c roms.sha1
+	@echo "Comparing output ROMs with originals..."
+	$(Q)$(SHA1) -c roms.sha1
 
 tools:
-	$(MAKE) -C tools/
+	@echo "Building tools..."
+	$(Q)$(MAKE) -C tools/ $(QMAKE) Q=$(Q)
 
 
 RGBASMFLAGS = -hL -Q8 -P includes.asm -Weverything -Wnumeric-string=2 -Wtruncation=1
@@ -118,16 +130,18 @@ $(pokecrystal11_debug_obj): RGBASMFLAGS += -D _CRYSTAL11 -D _DEBUG
 $(pokecrystal11_vc_obj):    RGBASMFLAGS += -D _CRYSTAL11 -D _CRYSTAL11_VC
 
 %.patch: vc/%.constants.sym %_vc.gbc %.gbc vc/%.patch.template
-	tools/make_patch $*_vc.sym $^ $@
+	@echo "Building VC patch $@..."
+	$(Q)tools/make_patch $*_vc.sym $^ $@
 
 rgbdscheck.o: rgbdscheck.asm
-	$(RGBASM) -o $@ $<
+	@echo "Checking RGBDS version..."
+	$(Q)$(RGBASM) -o $@ $<
 
 # Build tools when building the rom.
 # This has to happen before the rules are processed, since that's when scan_includes is run.
 ifeq (,$(filter clean tidy tools,$(MAKECMDGOALS)))
 
-$(info $(shell $(MAKE) -C tools))
+$(info $(shell $(MAKE) tools))
 
 # The dep rules have to be explicit or else missing files won't be reported.
 # As a side effect, they're evaluated immediately instead of when the rule is invoked.
@@ -135,7 +149,7 @@ $(info $(shell $(MAKE) -C tools))
 preinclude_deps := includes.asm $(shell tools/scan_includes includes.asm)
 define DEP
 $1: $2 $$(shell tools/scan_includes $2) $(preinclude_deps) | rgbdscheck.o
-	$$(RGBASM) $$(RGBASMFLAGS) -o $$@ $$<
+	$$(Q)$$(RGBASM) $$(RGBASMFLAGS) -o $$@ $$<
 endef
 
 # Dependencies for shared objects objects
@@ -148,7 +162,8 @@ $(foreach obj, $(pokecrystal11_vc_obj), $(eval $(call DEP,$(obj),$(obj:11_vc.o=.
 
 # Dependencies for VC files that need to run scan_includes
 %.constants.sym: %.constants.asm $(shell tools/scan_includes %.constants.asm) $(preinclude_deps) | rgbdscheck.o
-	$(RGBASM) $(RGBASMFLAGS) $< > $@
+	@echo "Finding VC patch values..."
+	$(Q)$(RGBASM) $(RGBASMFLAGS) $< > $@
 
 endif
 
@@ -161,9 +176,10 @@ pokecrystal11_debug_opt = -Cjv -t PM_CRYSTAL -i BYTE -n 1 -k 01 -l 0x33 -m 0x10 
 pokecrystal11_vc_opt    = -Cjv -t PM_CRYSTAL -i BYTE -n 1 -k 01 -l 0x33 -m 0x10 -r 3 -p 0
 
 %.gbc: $$(%_obj) layout.link
-	$(RGBLINK) -n $*.sym -m $*.map -l layout.link -o $@ $(filter %.o,$^)
-	$(RGBFIX) $($*_opt) $@
-	tools/stadium $@
+	@echo "Building ROM $@..."
+	$(Q)$(RGBLINK) -n $*.sym -m $*.map -l layout.link -o $@ $(filter %.o,$^)
+	$(Q)$(RGBFIX) $($*_opt) $@
+	$(Q)tools/stadium $@
 
 
 ### LZ compression rules
@@ -172,39 +188,39 @@ pokecrystal11_vc_opt    = -Cjv -t PM_CRYSTAL -i BYTE -n 1 -k 01 -l 0x33 -m 0x10 
 include gfx/lz.mk
 
 %.lz: %
-	tools/lzcomp $(LZFLAGS) -- $< $@
+	$(Q)tools/lzcomp $(LZFLAGS) -- $< $@
 
 
 ### Pokemon pic animation rules
 
 gfx/pokemon/%/front.animated.2bpp: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions
-	tools/pokemon_animation_graphics -o $@ $^
+	$(Q)tools/pokemon_animation_graphics -o $@ $^
 gfx/pokemon/%/front.animated.tilemap: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions
-	tools/pokemon_animation_graphics -t $@ $^
+	$(Q)tools/pokemon_animation_graphics -t $@ $^
 gfx/pokemon/%/bitmask.asm: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions
-	tools/pokemon_animation -b $^ > $@
+	$(Q)tools/pokemon_animation -b $^ > $@
 gfx/pokemon/%/frames.asm: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions
-	tools/pokemon_animation -f $^ > $@
+	$(Q)tools/pokemon_animation -f $^ > $@
 
 
 ### Terrible hacks to match animations. Delete these rules if you don't care about matching.
 
 # Dewgong has an unused tile id in its last frame. The tile itself is missing.
 gfx/pokemon/dewgong/frames.asm: gfx/pokemon/dewgong/front.animated.tilemap gfx/pokemon/dewgong/front.dimensions
-	tools/pokemon_animation -f $^ > $@
-	echo "	db \$$4d" >> $@
+	$(Q)tools/pokemon_animation -f $^ > $@
+	$(Q)echo "	db \$$4d" >> $@
 
 # Lugia has two unused tile ids in its last frame. The tiles themselves are missing.
 gfx/pokemon/lugia/frames.asm: gfx/pokemon/lugia/front.animated.tilemap gfx/pokemon/lugia/front.dimensions
-	tools/pokemon_animation -f $^ > $@
-	echo "	db \$$5e, \$$59" >> $@
+	$(Q)tools/pokemon_animation -f $^ > $@
+	$(Q)echo "	db \$$5e, \$$59" >> $@
 
 # Girafarig has a redundant tile after the end. It is used in two frames, so it must be injected into the generated graphics.
 # This is more involved, so it's hacked into pokemon_animation_graphics.
 gfx/pokemon/girafarig/front.animated.2bpp: gfx/pokemon/girafarig/front.2bpp gfx/pokemon/girafarig/front.dimensions
-	tools/pokemon_animation_graphics --girafarig -o $@ $^
+	$(Q)tools/pokemon_animation_graphics --girafarig -o $@ $^
 gfx/pokemon/girafarig/front.animated.tilemap: gfx/pokemon/girafarig/front.2bpp gfx/pokemon/girafarig/front.dimensions
-	tools/pokemon_animation_graphics --girafarig -t $@ $^
+	$(Q)tools/pokemon_animation_graphics --girafarig -t $@ $^
 
 
 ### Misc file-specific graphics rules
@@ -241,7 +257,7 @@ gfx/title/logo.2bpp: rgbgfx += -x 4
 
 gfx/trade/ball.2bpp: tools/gfx += --remove-whitespace
 gfx/trade/game_boy.2bpp: tools/gfx += --remove-duplicates --preserve=0x23,0x27
-gfx/trade/game_boy_cable.2bpp: gfx/trade/game_boy.2bpp gfx/trade/link_cable.2bpp ; cat $^ > $@
+gfx/trade/game_boy_cable.2bpp: gfx/trade/game_boy.2bpp gfx/trade/link_cable.2bpp ; $(Q)cat $^ > $@
 
 gfx/slots/slots_1.2bpp: tools/gfx += --trim-whitespace
 gfx/slots/slots_2.2bpp: tools/gfx += --interleave --png=$<
@@ -287,7 +303,7 @@ gfx/battle/dude.2bpp: rgbgfx += -Z
 gfx/font/unused_bold_font.1bpp: tools/gfx += --trim-whitespace
 
 gfx/sgb/sgb_border.2bpp: tools/gfx += --trim-whitespace
-gfx/sgb/sgb_border.sgb.tilemap: gfx/sgb/sgb_border.bin ; tr < $< -d '\000' > $@
+gfx/sgb/sgb_border.sgb.tilemap: gfx/sgb/sgb_border.bin ; $(Q)tr < $< -d '\000' > $@
 
 gfx/mobile/ascii_font.2bpp: tools/gfx += --trim-whitespace
 gfx/mobile/dialpad.2bpp: tools/gfx += --trim-whitespace
@@ -305,17 +321,17 @@ gfx/mobile/stadium2_n64.2bpp: tools/gfx += --trim-whitespace
 ### Catch-all graphics rules
 
 %.2bpp: %.png
-	$(RGBGFX) $(rgbgfx) -o $@ $<
+	$(Q)$(RGBGFX) $(rgbgfx) -o $@ $<
 	$(if $(tools/gfx),\
-		tools/gfx $(tools/gfx) -o $@ $@)
+		$(Q)tools/gfx $(tools/gfx) -o $@ $@)
 
 %.1bpp: %.png
-	$(RGBGFX) $(rgbgfx) -d1 -o $@ $<
+	$(Q)$(RGBGFX) $(rgbgfx) -d1 -o $@ $<
 	$(if $(tools/gfx),\
-		tools/gfx $(tools/gfx) -d1 -o $@ $@)
+		$(Q)tools/gfx $(tools/gfx) -d1 -o $@ $@)
 
 %.gbcpal: %.png
-	$(RGBGFX) -c embedded -p $@ $<
+	$(Q)$(RGBGFX) -c embedded -p $@ $<
 
 %.dimensions: %.png
-	tools/png_dimensions $< $@
+	$(Q)tools/png_dimensions $< $@
