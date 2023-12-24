@@ -110,7 +110,7 @@ CalcMagikarpLength:
 
 ; This function is poorly commented.
 
-; In short, it generates a value between 190 and 1786 using
+; In short, it generates a value between 190 and 1625 using
 ; a Magikarp's DVs and its trainer ID. This value is further
 ; filtered in LoadEnemyMon to make longer Magikarp even rarer.
 

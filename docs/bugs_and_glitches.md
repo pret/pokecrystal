@@ -2416,6 +2416,7 @@ CopyPokemonName_Buffer1_Buffer3:
  	cp d
  	ret c
 -	ret nc
++	ret nz
  	ld a, c
  	cp e
  	ret
