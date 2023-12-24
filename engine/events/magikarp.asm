@@ -110,12 +110,13 @@ CalcMagikarpLength:
 
 ; This function is poorly commented.
 
-; In short, it generates a value between 190 and 1625 using
+; In short, it generates a value between 190 and 1755 using
 ; a Magikarp's DVs and its trainer ID. This value is further
 ; filtered in LoadEnemyMon to make longer Magikarp even rarer.
+; Due to the bug at .BCLessThanDE, the max possible value is 1625.
 
 ; The value is generated from a lookup table.
-; The index is determined by the dv xored with the player's trainer id.
+; The index is determined by the dv xored with the player's trainer ID.
 
 ; bc = rrc(dv[0]) ++ rrc(dv[1]) ^ rrc(id)
 
