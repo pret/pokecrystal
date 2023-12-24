@@ -116,7 +116,7 @@ CalcMagikarpLength:
 ; Due to the bug at .BCLessThanDE, the max possible value is 1625.
 
 ; The value is generated from a lookup table.
-; The index is determined by the dv xored with the player's trainer ID.
+; The index is determined by the DV xored with the player's trainer ID.
 
 ; bc = rrc(dv[0]) ++ rrc(dv[1]) ^ rrc(id)
 
