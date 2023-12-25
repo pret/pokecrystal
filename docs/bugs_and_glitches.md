@@ -2407,65 +2407,13 @@ CopyPokemonName_Buffer1_Buffer3:
 
 ### Magikarp lengths can be miscalculated
 
-**Fix:** Edit `CalcMagikarpLength` in [engine/events/magikarp.asm](https://github.com/pret/pokecrystal/blob/master/engine/events/magikarp.asm):
+The function `CalcMagikarpLength` is supposed to determine a Magikarp's length by using the Trainer's ID and the Magikarp's DVs, `xor`ing the values, store the result in `bc`, use it as an index to select an entry from the `MagikarpLengths` table and calculate the Magikarp's length, but it doesn't work as intended. The local function `.BCLessThanDE` is supposed to compare the index (stored in `bc`) with a threshold (stored in `de`) from the table to select the correct entry, but it only compares the high bytes of both inputs, which means that the wrong entry might be selected.
+
+This bug also causes the first entry of the `MagikarpLengths` table to go unused and `bc` values between 65280 and 65509 to use the wrong formula. As a side effect, the highest possible length is capped at 1625mm (before being converted to feet and inches).
+
+**Fix:** Edit `CalcMagikarpLength.BCLessThanDE` in [engine/events/magikarp.asm](https://github.com/pret/pokecrystal/blob/master/engine/events/magikarp.asm):
 
 ```diff
- CalcMagikarpLength:
- ; Return Magikarp's length (in feet and inches) at wMagikarpLengthMm (big endian).
- ;
- ; input:
- ;   de: wEnemyMonDVs
- ;   bc: wPlayerID
- 
- ; This function is poorly commented.
-
- ; In short, it generates a value between 190 and 1755 using
- ; a Magikarp's DVs and its trainer ID. This value is further
- ; filtered in LoadEnemyMon to make longer Magikarp even rarer.
--; Due to the bug at .BCLessThanDE, the max possible value is 1625.
- 
- ; The value is generated from a lookup table.
- ; The index is determined by the DV xored with the player's trainer ID.
- 
- ; bc = rrc(dv[0]) ++ rrc(dv[1]) ^ rrc(id)
- 
- ; if bc < 10:    [wMagikarpLength] = c + 190
--; if bc ≥ $ff00: [wMagikarpLength] = c + 1370
-+; if bc ≥ 65510: [wMagikarpLength] = bc - 65510 + 1600
- ; else:          [wMagikarpLength] = z * 100 + (bc - x) / y
- 
--; X, Y, and Z depend on the value of b as follows:
-+; X, Y, and Z depend on the value of bc as follows:
- 
--; if b = 0:        x =   310,  y =   2,  z =  3
--; if b = 1:        x =   710,  y =   4,  z =  4
--; if b = 2-9:      x =  2710,  y =  20,  z =  5
--; if b = 10-29:    x =  7710,  y =  50,  z =  6
--; if b = 30-68:    x = 17710,  y = 100,  z =  7
--; if b = 69-126:   x = 32710,  y = 150,  z =  8
--; if b = 127-185:  x = 47710,  y = 150,  z =  9
--; if b = 186-224:  x = 57710,  y = 100,  z = 10
--; if b = 225-243:  x = 62710,  y =  50,  z = 11
--; if b = 244-251:  x = 64710,  y =  20,  z = 12
--; if b = 252-253:  x = 65210,  y =   5,  z = 13
--; if b = 254:      x = 65410,  y =   2,  z = 14
-+; if bc = 10-109:       x =   110,  y =   1,  z =  2
-+; if bc = 110-309:      x =   310,  y =   2,  z =  3
-+; if bc = 310-709:      x =   710,  y =   4,  z =  4
-+; if bc = 710-2709:     x =  2710,  y =  20,  z =  5
-+; if bc = 2710-7709:    x =  7710,  y =  50,  z =  6
-+; if bc = 7710-17709:   x = 17710,  y = 100,  z =  7
-+; if bc = 17710-32709:  x = 32710,  y = 150,  z =  8
-+; if bc = 32710-47709:  x = 47710,  y = 150,  z =  9
-+; if bc = 47710-57709:  x = 57710,  y = 100,  z = 10
-+; if bc = 57710-62709:  x = 62710,  y =  50,  z = 11
-+; if bc = 62710-64709:  x = 64710,  y =  20,  z = 12
-+; if bc = 64710-65209:  x = 65210,  y =   5,  z = 13
-+; if bc = 65210-65409:  x = 65410,  y =   2,  z = 14
-+; if bc = 65410-65509:  x = 65510,  y =   1,  z = 15
- 
- 	...
- 	
  .BCLessThanDE:
 -; BUG: Magikarp lengths can be miscalculated (see docs/bugs_and_glitches.md)
  	ld a, b
