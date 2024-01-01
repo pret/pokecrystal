@@ -2679,8 +2679,8 @@ If `IsInArray` returns `nc`, data at `bc` will be executed as code.
  	push af
  	ldh [rSVBK], a
  	xor a
- 	ld hl, WRAM1_Begin
- 	ld bc, WRAM1_End - WRAM1_Begin
+ 	ld hl, STARTOF(WRAMX)
+ 	ld bc, SIZEOF(WRAMX)
  	call ByteFill
  	pop af
  	inc a

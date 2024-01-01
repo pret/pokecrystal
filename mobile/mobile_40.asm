@@ -2400,7 +2400,7 @@ MACRO macro_100fc0
 	;     Bit 7 set: Not SRAM
 	;     Lower 7 bits: Bank if SRAM
 	; address, size[, OT address]
-	db ($80 * (\1 >= SRAM_End)) | (BANK(\1) * (\1 < SRAM_End))
+	db ($80 * (\1 >= STARTOF(SRAM) + SIZEOF(SRAM))) | (BANK(\1) * (\1 < STARTOF(SRAM) + SIZEOF(SRAM)))
 	dw \1, \2
 	if _NARG == 3
 		dw \3

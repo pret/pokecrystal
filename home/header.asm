@@ -68,3 +68,5 @@ Start::
 ; This makes sure it doesn't get used for anything else.
 
 	ds $0150 - @, $00
+
+ENDSECTION
