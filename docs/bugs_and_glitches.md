@@ -83,6 +83,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Team Rocket battle music is not used for Executives or Scientists](#team-rocket-battle-music-is-not-used-for-executives-or-scientists)
   - [No bump noise if standing on tile `$3E`](#no-bump-noise-if-standing-on-tile-3e)
   - [Playing Entei's Pokédex cry can distort Raikou's and Suicune's](#playing-enteis-pok%C3%A9dex-cry-can-distort-raikous-and-suicunes)
+  - [`SFX_RUN` does not play correctly when a wild Pokemon flees from battle](#sfx_run-does-not-play-correctly-when-a-wild-pokemon-flees-from-battle)
 - [Text](#text)
   - [Five-digit experience gain is printed incorrectly](#five-digit-experience-gain-is-printed-incorrectly)
   - [Only the first three evolution entries can have Stone compatibility reported correctly](#only-the-first-three-evolution-entries-can-have-stone-compatibility-reported-correctly)
@@ -2725,4 +2726,26 @@ This bug allows all the options to be updated at once if the left or right butto
  	ld hl, hInMenu
  	ld a, [hl]
  	push af
+```
+
+
+### `SFX_RUN` does not play correctly when a wild Pokemon flees from battle
+
+Due to the wrong function being called, `SFX_RUN` is never heard when a wild Pokemon flees from battle.
+
+**Fix:** Edit `WildFled_EnemyFled_LinkBattleCanceled` in [engine/battle/core.asm]
+(https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
+
+```diff
+.skip_text
+-; BUG: SFX_RUN does not play correctly when a wild Pokemon flees from battle (see docs/bugs_and_glitches.md)
+	call StopDangerSound
+	call CheckMobileBattleError
+	jr c, .skip_sfx
+
+	ld de, SFX_RUN
+-	call PlaySFX
++	call WaitPlaySFX
+
+.skip_sfx
 ```
