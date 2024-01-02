@@ -120,23 +120,6 @@ CalcMagikarpLength:
 ; if bc ≥ 65510: [wMagikarpLength] = bc - 65510 + 1600
 ; else:          [wMagikarpLength] = z * 100 + (bc - x) / y
 
-; X, Y, and Z depend on the value of bc as follows:
-
-; if bc = 10-109:       x =   110,  y =   1,  z =  2
-; if bc = 110-309:      x =   310,  y =   2,  z =  3
-; if bc = 310-709:      x =   710,  y =   4,  z =  4
-; if bc = 710-2709:     x =  2710,  y =  20,  z =  5
-; if bc = 2710-7709:    x =  7710,  y =  50,  z =  6
-; if bc = 7710-17709:   x = 17710,  y = 100,  z =  7
-; if bc = 17710-32709:  x = 32710,  y = 150,  z =  8
-; if bc = 32710-47709:  x = 47710,  y = 150,  z =  9
-; if bc = 47710-57709:  x = 57710,  y = 100,  z = 10
-; if bc = 57710-62709:  x = 62710,  y =  50,  z = 11
-; if bc = 62710-64709:  x = 64710,  y =  20,  z = 12
-; if bc = 64710-65209:  x = 65210,  y =   5,  z = 13
-; if bc = 65210-65409:  x = 65410,  y =   2,  z = 14
-; if bc = 65410-65509:  x = 65510,  y =   1,  z = 15
-
 	; bc = rrc(dv[0]) ++ rrc(dv[1]) ^ rrc(id)
 
 	; id
