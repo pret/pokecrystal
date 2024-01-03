@@ -105,8 +105,8 @@ _ResetWRAM:
 	xor a
 	call ByteFill
 
-	ld hl, WRAM1_Begin
-	ld bc, wGameData - WRAM1_Begin
+	ld hl, STARTOF(WRAMX)
+	ld bc, wGameData - STARTOF(WRAMX)
 	xor a
 	call ByteFill
 
