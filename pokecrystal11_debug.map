@@ -1,3 +1,11 @@
+SUMMARY:
+	ROM0: 16141 bytes used / 243 free
+	ROMX: 1629823 bytes used / 450945 free in 127 banks
+	SRAM: 48194 bytes used / 17342 free in 8 banks
+	WRAM0: 4043 bytes used / 53 free
+	WRAMX: 22978 bytes used / 5694 free in 7 banks
+	HRAM: 127 bytes used / 0 free
+
 ROM0 bank #0:
 	SECTION: $0000 (0 bytes) ["NULL"]
 	         $0000 = NULL
@@ -1264,7 +1272,7 @@ ROMX bank #1:
 	         $4031 = WriteOAMDMACodeToHRAM
 	         $4038 = WriteOAMDMACodeToHRAM.copy
 	         $403f = OAMDMACode
-	         $4049 = OAMDMACodeEnd
+	         $4049 = OAMDMACode.End
 	         $4049 = Facings
 	         $408b = FacingStepDown0
 	         $408b = FacingStepDown2
@@ -59535,11 +59543,3 @@ HRAM bank #0:
 	         $ffeb = hClockResetTrigger
 	         $ffeb = hDebugRoomMenuPage
 	TOTAL EMPTY: $0000 bytes
-
-SUMMARY:
-	ROM0: 16141 bytes used / 243 free
-	ROMX: 1629823 bytes used / 450945 free in 127 banks
-	SRAM: 48194 bytes used / 17342 free in 8 banks
-	WRAM0: 4043 bytes used / 53 free
-	WRAMX: 22978 bytes used / 5694 free in 7 banks
-	HRAM: 127 bytes used / 0 free
