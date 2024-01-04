@@ -329,21 +329,21 @@ MACRO object_struct
 \1StructEnd::
 ENDM
 
-MACRO map_object
-\1ObjectStructID::   db
-\1ObjectSprite::     db
-\1ObjectYCoord::     db
-\1ObjectXCoord::     db
-\1ObjectMovement::   db
-\1ObjectRadius::     db
-\1ObjectHour1::      db
-\1ObjectHour2::
-\1ObjectTimeOfDay::  db
-\1ObjectPalette::
-\1ObjectType::       db
-\1ObjectSightRange:: db
-\1ObjectScript::     dw
-\1ObjectEventFlag::  dw
+MACRO object_event_struct
+\1ID::   db
+\1Sprite::     db
+\1YCoord::     db
+\1XCoord::     db
+\1Movement::   db
+\1Radius::     db
+\1Hour1::      db
+\1Hour2::
+\1TimeOfDay::  db
+\1Palette::
+\1Type::       db
+\1SightRange:: db
+\1Script::     dw
+\1EventFlag::  dw
 	ds 2
 ENDM
 

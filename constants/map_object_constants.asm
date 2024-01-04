@@ -1,41 +1,41 @@
 ; object_struct members (see macros/ram.asm)
 rsreset
-DEF OBJECT_SPRITE           rb ; 00
-DEF OBJECT_MAP_OBJECT_INDEX rb ; 01
-DEF OBJECT_SPRITE_TILE      rb ; 02
-DEF OBJECT_MOVEMENT_TYPE    rb ; 03
-DEF OBJECT_FLAGS1           rb ; 04
-DEF OBJECT_FLAGS2           rb ; 05
-DEF OBJECT_PALETTE          rb ; 06
-DEF OBJECT_WALKING          rb ; 07
-DEF OBJECT_DIRECTION        rb ; 08
-DEF OBJECT_STEP_TYPE        rb ; 09
-DEF OBJECT_STEP_DURATION    rb ; 0a
-DEF OBJECT_ACTION           rb ; 0b
-DEF OBJECT_STEP_FRAME       rb ; 0c
-DEF OBJECT_FACING           rb ; 0d
-DEF OBJECT_TILE             rb ; 0e
-DEF OBJECT_LAST_TILE        rb ; 0f
-DEF OBJECT_MAP_X            rb ; 10
-DEF OBJECT_MAP_Y            rb ; 11
-DEF OBJECT_LAST_MAP_X       rb ; 12
-DEF OBJECT_LAST_MAP_Y       rb ; 13
-DEF OBJECT_INIT_X           rb ; 14
-DEF OBJECT_INIT_Y           rb ; 15
-DEF OBJECT_RADIUS           rb ; 16
-DEF OBJECT_SPRITE_X         rb ; 17
-DEF OBJECT_SPRITE_Y         rb ; 18
-DEF OBJECT_SPRITE_X_OFFSET  rb ; 19
-DEF OBJECT_SPRITE_Y_OFFSET  rb ; 1a
-DEF OBJECT_MOVEMENT_INDEX   rb ; 1b
-DEF OBJECT_STEP_INDEX       rb ; 1c
-DEF OBJECT_1D               rb ; 1d
-DEF OBJECT_1E               rb ; 1e
-DEF OBJECT_JUMP_HEIGHT      rb ; 1f
-DEF OBJECT_RANGE            rb ; 20
-                            rb_skip 7
+DEF OBJECT_SPRITE             rb ; 00
+DEF OBJECT_OBJECT_EVENT_INDEX rb ; 01
+DEF OBJECT_SPRITE_TILE        rb ; 02
+DEF OBJECT_MOVEMENT_TYPE      rb ; 03
+DEF OBJECT_FLAGS1             rb ; 04
+DEF OBJECT_FLAGS2             rb ; 05
+DEF OBJECT_PALETTE            rb ; 06
+DEF OBJECT_WALKING            rb ; 07
+DEF OBJECT_DIRECTION          rb ; 08
+DEF OBJECT_STEP_TYPE          rb ; 09
+DEF OBJECT_STEP_DURATION      rb ; 0a
+DEF OBJECT_ACTION             rb ; 0b
+DEF OBJECT_STEP_FRAME         rb ; 0c
+DEF OBJECT_FACING             rb ; 0d
+DEF OBJECT_TILE               rb ; 0e
+DEF OBJECT_LAST_TILE          rb ; 0f
+DEF OBJECT_MAP_X              rb ; 10
+DEF OBJECT_MAP_Y              rb ; 11
+DEF OBJECT_LAST_MAP_X         rb ; 12
+DEF OBJECT_LAST_MAP_Y         rb ; 13
+DEF OBJECT_INIT_X             rb ; 14
+DEF OBJECT_INIT_Y             rb ; 15
+DEF OBJECT_RADIUS             rb ; 16
+DEF OBJECT_SPRITE_X           rb ; 17
+DEF OBJECT_SPRITE_Y           rb ; 18
+DEF OBJECT_SPRITE_X_OFFSET    rb ; 19
+DEF OBJECT_SPRITE_Y_OFFSET    rb ; 1a
+DEF OBJECT_MOVEMENT_INDEX     rb ; 1b
+DEF OBJECT_STEP_INDEX         rb ; 1c
+DEF OBJECT_1D                 rb ; 1d
+DEF OBJECT_1E                 rb ; 1e
+DEF OBJECT_JUMP_HEIGHT        rb ; 1f
+DEF OBJECT_RANGE              rb ; 20
+                              rb_skip 7
 DEF OBJECT_LENGTH EQU _RS
-DEF NUM_OBJECT_STRUCTS EQU 13 ; see wObjectStructs
+DEF NUM_OBJECTS EQU 13 ; see wObjects
 
 ; object_struct OBJECT_DIRECTION values
 DEF OW_DOWN  EQU DOWN  << 2
@@ -96,32 +96,32 @@ DEF ABSOLUTE_TILE_ID_F    EQU 2
 DEF RELATIVE_ATTRIBUTES EQU 1 << RELATIVE_ATTRIBUTES_F
 DEF ABSOLUTE_TILE_ID    EQU 1 << ABSOLUTE_TILE_ID_F
 
-; map_object struct members (see macros/ram.asm)
+; object_event_struct members (see macros/ram.asm)
 ; struct initialized by object_event macro (see macros/scripts/maps.asm)
 rsreset
-DEF MAPOBJECT_OBJECT_STRUCT_ID rb ; 0
-DEF MAPOBJECT_SPRITE           rb ; 1
-DEF MAPOBJECT_Y_COORD          rb ; 2
-DEF MAPOBJECT_X_COORD          rb ; 3
-DEF MAPOBJECT_MOVEMENT         rb ; 4
-DEF MAPOBJECT_RADIUS           rb ; 5
-DEF MAPOBJECT_HOUR_1           rb ; 6
-DEF MAPOBJECT_HOUR_2           rb ; 7
-rsset MAPOBJECT_HOUR_2
-DEF MAPOBJECT_TIMEOFDAY        rb ; 7
-DEF MAPOBJECT_PALETTE          rb ; 8
-rsset MAPOBJECT_PALETTE
-DEF MAPOBJECT_TYPE             rb ; 8
-DEF MAPOBJECT_SIGHT_RANGE      rb ; 9
-DEF MAPOBJECT_SCRIPT_POINTER   rw ; a
-DEF MAPOBJECT_EVENT_FLAG       rw ; c
+DEF OBJECT_EVENT_OBJECT_STRUCT_ID rb ; 0
+DEF OBJECT_EVENT_SPRITE           rb ; 1
+DEF OBJECT_EVENT_Y_COORD          rb ; 2
+DEF OBJECT_EVENT_X_COORD          rb ; 3
+DEF OBJECT_EVENT_MOVEMENT         rb ; 4
+DEF OBJECT_EVENT_RADIUS           rb ; 5
+DEF OBJECT_EVENT_HOUR_1           rb ; 6
+DEF OBJECT_EVENT_HOUR_2           rb ; 7
+rsset OBJECT_EVENT_HOUR_2
+DEF OBJECT_EVENT_TIMEOFDAY        rb ; 7
+DEF OBJECT_EVENT_PALETTE          rb ; 8
+rsset OBJECT_EVENT_PALETTE
+DEF OBJECT_EVENT_TYPE             rb ; 8
+DEF OBJECT_EVENT_SIGHT_RANGE      rb ; 9
+DEF OBJECT_EVENT_SCRIPT_POINTER   rw ; a
+DEF OBJECT_EVENT_EVENT_FLAG       rw ; c
                                rb_skip 2
-DEF MAPOBJECT_LENGTH EQU _RS
-DEF NUM_OBJECTS EQU 16
+DEF OBJECT_EVENT_LENGTH EQU _RS
+DEF NUM_OBJECT_EVENTS EQU 16
 DEF PLAYER_OBJECT EQU 0
 
-DEF MAPOBJECT_PALETTE_MASK EQU %11110000
-DEF MAPOBJECT_TYPE_MASK    EQU %00001111
+DEF OBJECT_EVENT_PALETTE_MASK EQU %11110000
+DEF OBJECT_EVENT_TYPE_MASK    EQU %00001111
 
 ; SpriteMovementData struct members (see data/sprites/map_objects.asm)
 rsreset
@@ -133,8 +133,8 @@ DEF SPRITEMOVEATTR_FLAGS2   rb ; 4
 DEF SPRITEMOVEATTR_PALFLAGS rb ; 5
 DEF NUM_SPRITEMOVEDATA_FIELDS EQU _RS
 
-DEF MAPOBJECT_SCREEN_WIDTH  EQU (SCREEN_WIDTH / 2) + 2
-DEF MAPOBJECT_SCREEN_HEIGHT EQU (SCREEN_HEIGHT / 2) + 2
+DEF OBJECT_EVENT_SCREEN_WIDTH  EQU (SCREEN_WIDTH / 2) + 2
+DEF OBJECT_EVENT_SCREEN_HEIGHT EQU (SCREEN_HEIGHT / 2) + 2
 
 ; SpriteMovementData indexes (see data/sprites/map_objects.asm)
 	const_def

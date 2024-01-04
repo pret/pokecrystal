@@ -201,8 +201,8 @@ CheckStandingOnEntrance::
 
 GetMapObject::
 ; Return the location of map object a in bc.
-	ld hl, wMapObjects
-	ld bc, MAPOBJECT_LENGTH
+	ld hl, wObjectEvents
+	ld bc, OBJECT_EVENT_LENGTH
 	call AddNTimes
 	ld b, h
 	ld c, l
@@ -212,7 +212,7 @@ CheckObjectVisibility::
 ; Sets carry if the object is not visible on the screen.
 	ldh [hMapObjectIndex], a
 	call GetMapObject
-	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
+	ld hl, OBJECT_EVENT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	cp -1
@@ -227,12 +227,12 @@ CheckObjectVisibility::
 	ret
 
 CheckObjectTime::
-	ld hl, MAPOBJECT_HOUR_1
+	ld hl, OBJECT_EVENT_HOUR_1
 	add hl, bc
 	ld a, [hl]
 	cp -1
 	jr nz, .check_hour
-	ld hl, MAPOBJECT_TIMEOFDAY
+	ld hl, OBJECT_EVENT_TIMEOFDAY
 	add hl, bc
 	ld a, [hl]
 	cp -1
@@ -246,7 +246,7 @@ CheckObjectTime::
 
 .ok
 	ld a, [hl]
-	ld hl, MAPOBJECT_TIMEOFDAY
+	ld hl, OBJECT_EVENT_TIMEOFDAY
 	add hl, bc
 	and [hl]
 	jr nz, .timeofday_always
@@ -264,10 +264,10 @@ CheckObjectTime::
 	db NITE
 
 .check_hour
-	ld hl, MAPOBJECT_HOUR_1
+	ld hl, OBJECT_EVENT_HOUR_1
 	add hl, bc
 	ld d, [hl]
-	ld hl, MAPOBJECT_HOUR_2
+	ld hl, OBJECT_EVENT_HOUR_2
 	add hl, bc
 	ld e, [hl]
 	ld hl, hHours
@@ -317,7 +317,7 @@ UnmaskCopyMapObjectStruct::
 ApplyDeletionToMapObject::
 	ldh [hMapObjectIndex], a
 	call GetMapObject
-	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
+	ld hl, OBJECT_EVENT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	cp -1
@@ -358,25 +358,25 @@ CopyPlayerObjectTemplate::
 	ld [de], a
 	inc de
 	pop hl
-	ld bc, MAPOBJECT_LENGTH - 1
+	ld bc, OBJECT_EVENT_LENGTH - 1
 	call CopyBytes
 	ret
 
 DeleteFollowerMapObject: ; unreferenced
 	call GetMapObject
-	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
+	ld hl, OBJECT_EVENT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	push af
 	ld [hl], -1
 	inc hl
-	ld bc, MAPOBJECT_LENGTH - 1
+	ld bc, OBJECT_EVENT_LENGTH - 1
 	xor a
 	call ByteFill
 	pop af
 	cp -1
 	ret z
-	cp NUM_OBJECT_STRUCTS
+	cp NUM_OBJECTS
 	ret nc
 	ld b, a
 	ld a, [wObjectFollow_Leader]
@@ -423,9 +423,9 @@ FindFirstEmptyObjectStruct::
 ; Preserves BC and DE.
 	push bc
 	push de
-	ld hl, wObjectStructs
+	ld hl, wObjects
 	ld de, OBJECT_LENGTH
-	ld c, NUM_OBJECT_STRUCTS
+	ld c, NUM_OBJECTS
 .loop
 	ld a, [hl]
 	and a
@@ -437,7 +437,7 @@ FindFirstEmptyObjectStruct::
 	jr .done
 
 .break
-	ld a, NUM_OBJECT_STRUCTS
+	ld a, NUM_OBJECTS
 	sub c
 	scf
 
@@ -595,7 +595,7 @@ UpdateSprites::
 
 GetObjectStruct::
 	ld bc, OBJECT_LENGTH
-	ld hl, wObjectStructs
+	ld hl, wObjects
 	call AddNTimes
 	ld b, h
 	ld c, l

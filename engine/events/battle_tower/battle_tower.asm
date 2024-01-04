@@ -1559,7 +1559,7 @@ LoadOpponentTrainerAndPokemonWithOTSprite:
 	ld c, a
 	ld b, 0
 	ld d, 0
-	ld hl, wMapObjects
+	ld hl, wObjectEvents
 	add hl, bc
 	inc hl
 	ld a, [wBTTempOTSprite]

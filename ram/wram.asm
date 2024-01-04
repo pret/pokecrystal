@@ -163,7 +163,7 @@ wIndexedMovement2Pointer:: dw
 wContinueReadingMovement:: db
 
 UNION
-wObjectPriorities:: ds NUM_OBJECT_STRUCTS
+wObjectPriorities:: ds NUM_OBJECTS
 
 NEXTU
 wMovementPointer:: dw
@@ -2930,25 +2930,25 @@ wCenteredObject:: db
 wFollowerMovementQueueLength:: db
 wFollowMovementQueue:: ds 5
 
-wObjectStructs::
-wPlayerStruct:: object_struct wPlayer ; player is object struct 0
-; wObjectStruct1 - wObjectStruct12
-for n, 1, NUM_OBJECT_STRUCTS
-wObject{d:n}Struct:: object_struct wObject{d:n}
+wObjects::
+wPlayerObject:: object_struct wPlayer ; player is object 0
+; wObject1 - wObject12
+for n, 1, NUM_OBJECTS
+wObject{d:n}:: object_struct wObject{d:n}
 endr
 
 wCmdQueue:: ds CMDQUEUE_CAPACITY * CMDQUEUE_ENTRY_SIZE
 
 	ds 40
 
-wMapObjects::
-wPlayerObject:: map_object wPlayer ; player is map object 0
-; wMap1Object - wMap15Object
-for n, 1, NUM_OBJECTS
-wMap{d:n}Object:: map_object wMap{d:n}
+wObjectEvents::
+wPlayerObjectEvent:: object_event_struct wPlayerObjectEvent ; player is object event 0
+; wObjectEvent1 - wObjectEvent15
+for n, 1, NUM_OBJECT_EVENTS
+wObjectEvent{d:n}:: object_event_struct wObjectEvent{d:n}
 endr
 
-wObjectMasks:: ds NUM_OBJECTS
+wObjectMasks:: ds NUM_OBJECT_EVENTS
 
 wVariableSprites:: ds $100 - SPRITE_VARS
 

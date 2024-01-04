@@ -248,15 +248,15 @@ CmdQueue_Type3:
 
 .IsPlayerFacingDown:
 	push bc
-	ld bc, wPlayerStruct
+	ld bc, wPlayerObject
 	call GetSpriteDirection
 	and a
 	pop bc
 	ret
 
 CmdQueue_StoneTable:
-	ld de, wPlayerStruct
-	ld a, NUM_OBJECT_STRUCTS
+	ld de, wPlayerObject
+	ld a, NUM_OBJECTS
 .loop
 	push af
 
