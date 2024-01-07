@@ -14,7 +14,7 @@ DEF OBJECT_STEP_DURATION    rb ; 0a
 DEF OBJECT_ACTION           rb ; 0b
 DEF OBJECT_STEP_FRAME       rb ; 0c
 DEF OBJECT_FACING           rb ; 0d
-DEF OBJECT_TILE             rb ; 0e
+DEF OBJECT_TILE_COLLISION   rb ; 0e
 DEF OBJECT_LAST_TILE        rb ; 0f
 DEF OBJECT_MAP_X            rb ; 10
 DEF OBJECT_MAP_Y            rb ; 11

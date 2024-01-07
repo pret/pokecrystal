@@ -306,7 +306,7 @@ MACRO object_struct
 \1Action::         db
 \1StepFrame::      db
 \1Facing::         db
-\1Tile::           db
+\1TileCollision::  db
 \1LastTile::       db
 \1MapX::           db
 \1MapY::           db

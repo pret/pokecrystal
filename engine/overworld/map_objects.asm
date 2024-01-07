@@ -195,14 +195,14 @@ CopyCoordsTileToLastCoordsTile:
 	ld hl, OBJECT_LAST_MAP_Y
 	add hl, bc
 	ld [hl], a
-	ld hl, OBJECT_TILE
+	ld hl, OBJECT_TILE_COLLISION
 	add hl, bc
 	ld a, [hl]
 	ld hl, OBJECT_LAST_TILE
 	add hl, bc
 	ld [hl], a
 	call SetTallGrassFlags
-	ld hl, OBJECT_TILE
+	ld hl, OBJECT_TILE_COLLISION
 	add hl, bc
 	ld a, [hl]
 	call UselessAndA
@@ -228,12 +228,12 @@ UpdateTallGrassFlags:
 	add hl, bc
 	bit OVERHEAD_F, [hl]
 	jr z, .ok
-	ld hl, OBJECT_TILE
+	ld hl, OBJECT_TILE_COLLISION
 	add hl, bc
 	ld a, [hl]
 	call SetTallGrassFlags
 .ok
-	ld hl, OBJECT_TILE
+	ld hl, OBJECT_TILE_COLLISION
 	add hl, bc
 	ld a, [hl]
 	call UselessAndA
@@ -321,9 +321,9 @@ GetNextTile:
 	ld [hl], a
 	ld e, a
 	push bc
-	call GetCoordTile
+	call GetCoordTileCollision
 	pop bc
-	ld hl, OBJECT_TILE
+	ld hl, OBJECT_TILE_COLLISION
 	add hl, bc
 	ld [hl], a
 	ret
@@ -502,9 +502,9 @@ StepFunction_Reset:
 	add hl, bc
 	ld e, [hl]
 	push bc
-	call GetCoordTile
+	call GetCoordTileCollision
 	pop bc
-	ld hl, OBJECT_TILE
+	ld hl, OBJECT_TILE_COLLISION
 	add hl, bc
 	ld [hl], a
 	call CopyCoordsTileToLastCoordsTile
@@ -656,7 +656,7 @@ MovementFunction_Strength:
 	dw .stop
 
 .start:
-	ld hl, OBJECT_TILE
+	ld hl, OBJECT_TILE_COLLISION
 	add hl, bc
 	ld a, [hl]
 	call CheckPitTile
@@ -2278,9 +2278,9 @@ UpdateObjectTile:
 	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld e, [hl]
-	call GetCoordTile
+	call GetCoordTileCollision
 	pop bc
-	ld hl, OBJECT_TILE
+	ld hl, OBJECT_TILE_COLLISION
 	add hl, bc
 	ld [hl], a
 	farcall UpdateTallGrassFlags ; no need to farcall

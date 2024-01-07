@@ -1518,12 +1518,12 @@ GetMovementPermissions::
 	ld d, a
 	ld a, [wPlayerMapY]
 	ld e, a
-	call GetCoordTile
-	ld [wPlayerTile], a
+	call GetCoordTileCollision
+	ld [wPlayerTileCollision], a
 	call .CheckHiNybble
 	ret nz
 
-	ld a, [wPlayerTile]
+	ld a, [wPlayerTileCollision]
 	and 7
 	ld hl, .MovementPermissionsData
 	add l
@@ -1555,13 +1555,13 @@ GetMovementPermissions::
 
 	push de
 	inc e
-	call GetCoordTile
+	call GetCoordTileCollision
 	ld [wTileDown], a
 	call .Down
 
 	pop de
 	dec e
-	call GetCoordTile
+	call GetCoordTileCollision
 	ld [wTileUp], a
 	call .Up
 	ret
@@ -1574,13 +1574,13 @@ GetMovementPermissions::
 
 	push de
 	dec d
-	call GetCoordTile
+	call GetCoordTileCollision
 	ld [wTileLeft], a
 	call .Left
 
 	pop de
 	inc d
-	call GetCoordTile
+	call GetCoordTileCollision
 	ld [wTileRight], a
 	call .Right
 	ret
@@ -1708,7 +1708,7 @@ GetFacingTileCoord::
 	db  1,  0
 	dw wTileRight
 
-GetCoordTile::
+GetCoordTileCollision::
 ; Get the collision byte for tile d, e
 	call GetBlockLocation
 	ld a, [hl]
