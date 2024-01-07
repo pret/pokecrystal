@@ -2167,8 +2167,8 @@ CopyTempObjectData:
 	ret
 
 UpdateAllObjectsFrozen::
-	ld a, [wVramState]
-	bit 0, a
+	ld a, [wStateFlags]
+	bit SPRITE_UPDATES_DISABLED_F, a
 	ret z
 	ld bc, wObjectStructs
 	xor a
@@ -2728,8 +2728,8 @@ ResetObject:
 	db SPRITEMOVEDATA_STANDING_RIGHT
 
 _UpdateSprites::
-	ld a, [wVramState]
-	bit 0, a
+	ld a, [wStateFlags]
+	bit SPRITE_UPDATES_DISABLED_F, a
 	ret z
 	xor a
 	ldh [hUsedSpriteIndex], a
@@ -2744,8 +2744,8 @@ _UpdateSprites::
 	ret
 
 .fill
-	ld a, [wVramState]
-	bit 1, a
+	ld a, [wStateFlags]
+	bit LAST_12_SPRITE_OAM_STRUCTS_RESERVED_F, a
 	ld b, NUM_SPRITE_OAM_STRUCTS * SPRITEOAMSTRUCT_LENGTH
 	jr z, .ok
 	ld b, (NUM_SPRITE_OAM_STRUCTS - 12) * SPRITEOAMSTRUCT_LENGTH

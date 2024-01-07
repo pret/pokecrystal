@@ -17,8 +17,8 @@ ReanchorBGMap_NoOAMUpdate::
 	pop af
 	ldh [hOAMUpdate], a
 
-	ld hl, wVramState
-	set 6, [hl]
+	ld hl, wStateFlags
+	set TEXT_STATE_F, [hl]
 	ret
 
 .ReanchorBGMap:

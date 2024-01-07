@@ -8,7 +8,7 @@ InitClock:
 	ld a, $1
 	ldh [hInMenu], a
 
-	ld a, $0
+	ld a, FALSE
 	ld [wSpriteUpdatesEnabled], a
 	ld a, $10
 	ld [wMusicFade], a

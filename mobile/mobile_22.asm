@@ -143,12 +143,12 @@ Function891fe:
 	ret
 
 Mobile_EnableSpriteUpdates:
-	ld a, 1
+	ld a, TRUE
 	ld [wSpriteUpdatesEnabled], a
 	ret
 
 Mobile_DisableSpriteUpdates:
-	ld a, 0
+	ld a, FALSE
 	ld [wSpriteUpdatesEnabled], a
 	ret
 

@@ -40,15 +40,15 @@ Function100022:
 	farcall Stubbed_Function106462
 	farcall Function106464 ; load broken gfx
 	farcall Function11615a ; init RAM
-	ld hl, wVramState
-	set 1, [hl]
+	ld hl, wStateFlags
+	set LAST_12_SPRITE_OAM_STRUCTS_RESERVED_F, [hl]
 	ret
 
 Function100057:
 	call DisableMobile
 	call ReturnToMapFromSubmenu
-	ld hl, wVramState
-	res 1, [hl]
+	ld hl, wStateFlags
+	res LAST_12_SPRITE_OAM_STRUCTS_RESERVED_F, [hl]
 	ret
 
 SetRAMStateForMobile:

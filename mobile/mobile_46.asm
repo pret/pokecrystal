@@ -463,10 +463,10 @@ BattleTowerRoomMenu_InitRAM:
 	ld [wc3ed], a
 	ld [wc3ee], a
 	ld [wc3ef], a
-	ld hl, wVramState
+	ld hl, wStateFlags
 	ld a, [hl]
 	ld [wcd7f], a
-	set 1, [hl]
+	set LAST_12_SPRITE_OAM_STRUCTS_RESERVED_F, [hl]
 	ld a, (1 << SERIAL) | (1 << TIMER) | (1 << LCD_STAT) | (1 << VBLANK)
 	ldh [rIE], a
 	ld a, $1
@@ -508,7 +508,7 @@ BattleTowerRoomMenu_Cleanup:
 	ldh [rIE], a
 	ei
 	ld a, [wcd7f]
-	ld [wVramState], a
+	ld [wStateFlags], a
 	ld a, [wMobileErrorCodeBuffer]
 	ld [wScriptVar], a
 	ret
@@ -5535,10 +5535,10 @@ Function11ac51:
 	ld a, [hl]
 	push af
 	set 4, [hl]
-	ld a, [wVramState]
+	ld a, [wStateFlags]
 	push af
 	xor a
-	ld [wVramState], a
+	ld [wStateFlags], a
 	ldh a, [hInMenu]
 	push af
 	ld a, $1
@@ -5571,7 +5571,7 @@ Function11ac51:
 	pop af
 	ldh [hInMenu], a
 	pop af
-	ld [wVramState], a
+	ld [wStateFlags], a
 	pop af
 	ld [wOptions], a
 	ret

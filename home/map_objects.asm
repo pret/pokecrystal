@@ -412,8 +412,8 @@ LoadMovementDataPointer::
 	add hl, bc
 	ld [hl], STEP_TYPE_RESET
 
-	ld hl, wVramState
-	set 7, [hl]
+	ld hl, wStateFlags
+	set SCRIPTED_MOVEMENT_STATE_F, [hl]
 	and a
 	ret
 
@@ -574,19 +574,19 @@ _GetMovementIndex::
 	ld a, h
 	ret
 
-SetVramState_Bit0:: ; unreferenced
-	ld hl, wVramState
-	set 0, [hl]
+SetVramState_SpriteUpdatesDisabled:: ; unreferenced
+	ld hl, wStateFlags
+	set SPRITE_UPDATES_DISABLED_F, [hl]
 	ret
 
-ResetVramState_Bit0:: ; unreferenced
-	ld hl, wVramState
-	res 0, [hl]
+ResetVramState_SpriteUpdatesDisabled:: ; unreferenced
+	ld hl, wStateFlags
+	res SPRITE_UPDATES_DISABLED_F, [hl]
 	ret
 
 UpdateSprites::
-	ld a, [wVramState]
-	bit 0, a
+	ld a, [wStateFlags]
+	bit SPRITE_UPDATES_DISABLED_F, a
 	ret z
 
 	farcall UpdateAllObjectsFrozen

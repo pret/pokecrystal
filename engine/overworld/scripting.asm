@@ -44,8 +44,8 @@ WaitScript:
 WaitScriptMovement:
 	call StopScript
 
-	ld hl, wVramState
-	bit 7, [hl]
+	ld hl, wStateFlags
+	bit SCRIPTED_MOVEMENT_STATE_F, [hl]
 	ret nz
 
 	farcall UnfreezeAllObjects
@@ -925,8 +925,8 @@ ApplyObjectFacing:
 	pop de
 	ld a, e
 	call SetSpriteDirection
-	ld hl, wVramState
-	bit 6, [hl]
+	ld hl, wStateFlags
+	bit TEXT_STATE_F, [hl]
 	jr nz, .text_state
 	call .DisableTextTiles
 .text_state
