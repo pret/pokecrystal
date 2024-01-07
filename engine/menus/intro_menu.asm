@@ -462,7 +462,7 @@ FinishContinueFunction:
 	ld [wDontPlayMapMusicOnReload], a
 	ld [wLinkMode], a
 	ld hl, wGameTimerPaused
-	set GAME_TIMER_PAUSED_F, [hl]
+	set GAME_TIMER_COUNTING_F, [hl]
 	res GAME_TIMER_MOBILE_F, [hl]
 	ld hl, wEnteredMapFromContinue
 	set 1, [hl]
