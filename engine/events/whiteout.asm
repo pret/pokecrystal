@@ -3,7 +3,7 @@ Script_BattleWhiteout::
 	sjump Script_Whiteout
 
 OverworldWhiteoutScript::
-	refreshscreen
+	reanchormap
 	callasm OverworldBGMap
 
 Script_Whiteout:

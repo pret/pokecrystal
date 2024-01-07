@@ -1,4 +1,4 @@
-RefreshScreen::
+ReanchorMap::
 	call ClearWindowData
 	ldh a, [hROMBank]
 	push af

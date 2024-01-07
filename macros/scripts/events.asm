@@ -476,12 +476,12 @@ MACRO opentext
 	db opentext_command
 ENDM
 
-	const refreshscreen_command ; $48
-MACRO refreshscreen
+	const reanchormap_command ; $48
+MACRO reanchormap
 	if _NARG == 0
-		refreshscreen 0
+		reanchormap 0
 	else
-		db refreshscreen_command
+		db reanchormap_command
 		db \1 ; dummy
 	endc
 ENDM
@@ -789,9 +789,9 @@ MACRO reloadmap
 	db reloadmap_command
 ENDM
 
-	const reloadmappart_command ; $7c
-MACRO reloadmappart
-	db reloadmappart_command
+	const refreshmap_command ; $7c
+MACRO refreshmap
+	db refreshmap_command
 ENDM
 
 	const writecmdqueue_command ; $7d

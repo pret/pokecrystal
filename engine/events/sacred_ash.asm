@@ -47,7 +47,7 @@ CheckAnyFaintedMon:
 
 SacredAshScript:
 	special HealParty
-	reloadmappart
+	refreshmap
 	playsound SFX_WARP_TO
 	special FadeOutToWhite
 	special FadeInFromWhite

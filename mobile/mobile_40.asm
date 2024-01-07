@@ -360,7 +360,7 @@ Function100276:
 	ret
 
 .asm_100296
-	farcall Script_reloadmappart
+	farcall Script_refreshmap
 	ld c, $04
 	ret
 
@@ -370,7 +370,7 @@ Function100276:
 	ret
 
 .asm_1002a5
-	farcall Script_reloadmappart
+	farcall Script_refreshmap
 	call Function1002ed
 	ld c, $03
 	ret
@@ -2737,7 +2737,7 @@ Jumptable_101247:
 
 Function101251:
 	call UpdateSprites
-	call RefreshScreen
+	call ReanchorMap
 	ld hl, ClosingLinkText
 	call Function1021e0
 	call Function1020ea
@@ -2752,7 +2752,7 @@ Function101265:
 
 Function10126c:
 	call UpdateSprites
-	farcall Script_reloadmappart
+	farcall Script_refreshmap
 	ld hl, ClosingLinkText
 	call Function1021e0
 	ret
@@ -7652,7 +7652,7 @@ Function10383c:
 	ld hl, PickThreeMonForMobileBattleText
 	call PrintText
 	call JoyWaitAorB
-	farcall Script_reloadmappart
+	farcall Script_refreshmap
 	farcall Function4a94e
 	jr c, .asm_103870
 	ld hl, wd002

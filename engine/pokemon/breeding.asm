@@ -196,7 +196,7 @@ DoEggStep::
 	jr .loop
 
 OverworldHatchEgg::
-	call RefreshScreen
+	call ReanchorMap
 	call LoadStandardMenuHeader
 	call HatchEggs
 	call ExitAllMenus

@@ -6,7 +6,7 @@ SweetScentFromMenu:
 	ret
 
 .SweetScent:
-	reloadmappart
+	refreshmap
 	special UpdateTimePals
 	callasm GetPartyNickname
 	writetext UseSweetScentText
