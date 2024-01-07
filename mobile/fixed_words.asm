@@ -309,7 +309,7 @@ Function11c1b9:
 	call ClearSprites
 	call ClearScreen
 	call Function11d323
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call DisableLCD
 	ld hl, SelectStartGFX
 	ld de, vTiles2
@@ -319,7 +319,7 @@ Function11c1b9:
 	ld de, vTiles0
 	call Decompress
 	call EnableLCD
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	farcall ClearSpriteAnims
 	farcall LoadPokemonData
 	farcall Pokedex_ABCMode
@@ -374,7 +374,7 @@ EZChat_MasterLoop:
 	jr nz, .exit
 	call .DoJumptableFunction
 	farcall PlaySpriteAnimations
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	jr .loop
 
 .exit
@@ -703,7 +703,7 @@ Function11c4be:
 	hlcoord 0, 14, wAttrmap
 	ld bc, $28
 	call ByteFill
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ret
 
 String_11c4db:
@@ -898,7 +898,7 @@ Function11c618:
 	hlcoord 0, 6, wAttrmap
 	ld bc, $c8
 	call ByteFill
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ret
 
 EZChatString_Stop_Mode_Cancel:
@@ -1498,7 +1498,7 @@ Function11c9ab:
 	hlcoord 0, 6, wAttrmap
 	ld bc, $c8
 	call ByteFill
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ret
 
 Function11c9bd:
@@ -1588,7 +1588,7 @@ Function11ca19:
 	add hl, de
 	dec c
 	jr nz, .asm_11ca22
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ret
 
 String_11ca38:
@@ -2000,7 +2000,7 @@ Function11cdaa:
 	hlcoord 0, 12, wAttrmap
 	ld bc, 4 * SCREEN_WIDTH
 	call ByteFill
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ret
 
 String_11cdc7:

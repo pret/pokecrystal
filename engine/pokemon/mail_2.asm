@@ -53,7 +53,7 @@ ReadAnyMail:
 	ld a, [wCurMailIndex]
 	ld e, a
 	farcall LoadMailPalettes
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	xor a
 	ldh [hJoyPressed], a
 	call .loop

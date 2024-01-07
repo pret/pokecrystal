@@ -27,7 +27,7 @@ TestMobileTradeBorderTilemap: ; unreferenced
 	farcall LoadMobileTradeBorderTilemap ; useless to farcall
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call WaitBGMap
 	call JoyWaitAorB
 	call Call_ExitMenu

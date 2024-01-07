@@ -20,7 +20,7 @@ ScrollingMenu::
 	ld hl, wVramState
 	bit 0, [hl]
 	jp nz, UpdateTimePals
-	jp SetPalettes
+	jp SetDefaultBGPAndOBP
 
 InitScrollingMenu::
 	ld a, [wMenuBorderTopCoord]

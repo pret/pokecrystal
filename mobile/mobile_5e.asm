@@ -61,7 +61,7 @@ Function17a6a8:
 	call Function17abcf
 	farcall LoadOW_BGPal7
 	farcall Function49420
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call DelayFrame
 	ret
 
@@ -183,7 +183,7 @@ Function17a78f:
 	ret
 
 .asm_17a79f
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ret
 
 Function17a7a6: ; unreferenced

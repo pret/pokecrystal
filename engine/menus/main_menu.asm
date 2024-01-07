@@ -30,7 +30,7 @@ MainMenu:
 	call ClearTilemapEtc
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ld hl, wGameTimerPaused
 	res GAME_TIMER_PAUSED_F, [hl]
 	call MainMenu_GetWhichMenu

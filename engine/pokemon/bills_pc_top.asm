@@ -48,7 +48,7 @@ _BillsPC:
 	ld a, $1
 .loop
 	ld [wMenuCursorPosition], a
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	xor a
 	ld [wWhichIndexSet], a
 	ldh [hBGMapMode], a
@@ -245,7 +245,7 @@ ClearPCItemScreen:
 	lb bc, 4, 18
 	call Textbox
 	call WaitBGMap2
-	call SetPalettes ; load regular palettes?
+	call SetDefaultBGPAndOBP
 	ret
 
 CopyBoxmonToTempMon:

@@ -29,7 +29,7 @@ Function49f16:
 	hlcoord 1, 14
 	call PlaceString
 	call WaitBGMap2
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call StaticMenuJoypad
 	ld hl, wMenuCursorY
 	ld b, [hl]
@@ -267,8 +267,8 @@ Function4a149:
 	call ClearBox
 	hlcoord 1, 14
 	call PlaceString
-	farcall Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
-	call SetPalettes
+	farcall Mobile_HDMATransferTilemapAndAttrmap_Menu
+	call SetDefaultBGPAndOBP
 	call StaticMenuJoypad
 	ld hl, wMenuCursorY
 	ld b, [hl]
@@ -386,7 +386,7 @@ Function4a28a:
 	hlcoord 14, 1
 	ld de, String_4a34b
 	call PlaceString
-	farcall Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
+	farcall Mobile_HDMATransferTilemapAndAttrmap_Menu
 	call Function4a118
 	call ScrollingMenuJoypad
 	push af
@@ -415,7 +415,7 @@ Function4a28a:
 	ld b, 3
 	ld c, 4
 	call Textbox
-	farcall Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
+	farcall Mobile_HDMATransferTilemapAndAttrmap_Menu
 	ld hl, DeletePassword_YesNo_MenuHeader
 	call LoadMenuHeader
 	call VerticalMenu
@@ -438,7 +438,7 @@ Function4a28a:
 	call ExitMenu
 .quit
 	call Call_ExitMenu
-	farcall Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
+	farcall Mobile_HDMATransferTilemapAndAttrmap_Menu
 	xor a
 	ret
 
@@ -502,7 +502,7 @@ Function4a39a: ; unreferenced
 	call Function4a485
 	call Function4a492
 	call Function4a3aa
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ret
 
 Function4a3a7:
@@ -676,7 +676,7 @@ Function4a4c4:
 	hlcoord 1, 16
 	call PlaceString
 	call WaitBGMap2
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call StaticMenuJoypad
 	ld hl, wMenuCursorY
 	ld b, [hl]

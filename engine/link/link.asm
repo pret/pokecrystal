@@ -2085,7 +2085,7 @@ LoadTradeScreenBorderGFX:
 
 SetTradeRoomBGPals:
 	farcall LoadTradeRoomBGPals ; just a nested farcall; so wasteful
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ret
 
 PlaceTradeScreenTextbox: ; unreferenced

@@ -58,7 +58,7 @@ Function117699:
 	call ClearBGPalettes
 	call ClearSprites
 	farcall Function171c87
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	farcall ClearSpriteAnims
 	ret
 
@@ -70,7 +70,7 @@ Function1176ee:
 	jr nz, .quit
 	call Function117719
 	farcall PlaySpriteAnimations
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	jr .loop
 
 .quit
@@ -325,7 +325,7 @@ Function1178aa:
 	call LoadMenuHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	hlcoord 16, 8
 	ld de, YessNoString_1179c5
 	call PlaceString
@@ -427,7 +427,7 @@ Function117984:
 	call LoadMenuHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	hlcoord 1, 14
 	ld de, NotAPokemonPasswordString
 	call PlaceString
@@ -526,7 +526,7 @@ Function117ab4:
 	call ClearSprites
 	farcall Function172e78
 	farcall Function172eb9
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ret
 
 Function117acd:
@@ -633,13 +633,13 @@ Function117b4f:
 	jr nz, .b_button
 	call ExitMenu
 	call ExitMenu
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	jp MobileStudium_JumptableIncrement
 
 .b_button
 	call ExitMenu
 	call ExitMenu
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ld a, $80
 	ld [wJumptableIndex], a
 	ret
@@ -726,7 +726,7 @@ Function117c4a:
 	call LoadMenuHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ld hl, MobileStadiumSuccessText
 	call PrintText
 	ldh a, [rSVBK]

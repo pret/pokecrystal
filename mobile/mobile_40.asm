@@ -304,7 +304,7 @@ Function10016f:
 Function10020b:
 	xor a
 	ld [wc303], a
-	farcall FadeOutPalettes
+	farcall FadeOutToWhite
 	farcall Function106464
 	call HideSprites
 	call DelayFrame
@@ -426,7 +426,7 @@ Function100301:
 	ret
 
 Function100320:
-	farcall Mobile_ReloadMapPart
+	farcall Mobile_HDMATransferTilemapAndAttrmap_Overworld
 	ret
 
 Function100327: ; unreferenced
@@ -1411,7 +1411,7 @@ Function100902:
 	call PrintNum
 	ld de, SFX_TWO_PC_BEEPS
 	call PlaySFX
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ld c, $3c
 	call DelayFrames
 	ret
@@ -1422,7 +1422,7 @@ Function100902:
 	call PlaceString
 	ld de, SFX_4_NOTE_DITTY
 	call PlaySFX
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ld c, 120
 	call DelayFrames
 	ret
@@ -1448,7 +1448,7 @@ Function100989:
 	decoord 0, 0
 	call Function1009a5
 	call Function1009ae
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ld hl, w3_dd68
 	decoord 0, 0, wAttrmap
 	call Function1009a5
@@ -4914,7 +4914,7 @@ Function10224b:
 .asm_10225e
 	res 1, [hl]
 	res 2, [hl]
-	farcall Mobile_ReloadMapPart
+	farcall Mobile_HDMATransferTilemapAndAttrmap_Overworld
 	scf
 	ret
 
@@ -6483,7 +6483,7 @@ Function102dec:
 	ld a, $05
 	call FarCopyWRAM
 	farcall Function49742
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call DelayFrame
 	ret
 

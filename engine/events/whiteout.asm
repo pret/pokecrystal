@@ -9,7 +9,7 @@ OverworldWhiteoutScript::
 Script_Whiteout:
 	writetext .WhitedOutText
 	waitbutton
-	special FadeOutPalettes
+	special FadeOutToWhite
 	pause 40
 	special HealParty
 	checkflag ENGINE_BUG_CONTEST_TIMER
@@ -39,7 +39,7 @@ OverworldBGMap:
 BattleBGMap:
 	ld b, SCGB_BATTLE_GRAYSCALE
 	call GetSGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ret
 
 HalveMoney:

@@ -1,4 +1,5 @@
-_SwapTextboxPalettes::
+_LoadOverworldAttrmapPals::
+; Load wAttrmap palette numbers based on the tileset palettes of current map.
 	hlcoord 0, 0
 	decoord 0, 0, wAttrmap
 	ld b, SCREEN_HEIGHT

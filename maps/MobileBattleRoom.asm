@@ -31,11 +31,11 @@ MobileBattleRoomConsoleScript:
 	writetext MobileBattleRoom_HealText
 	pause 20
 	closetext
-	special FadeOutPalettes
+	special FadeOutToWhite
 	playmusic MUSIC_HEAL
 	special LoadMapPalettes
 	pause 60
-	special FadeInPalettes
+	special FadeInFromWhite
 	special RestartMapMusic
 	refreshscreen
 .two_

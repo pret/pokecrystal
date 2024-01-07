@@ -565,7 +565,7 @@ Function8b677:
 	call Function8b6ed
 	call EnableLCD
 	call Function891ab
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ret
 
 Function8b690:

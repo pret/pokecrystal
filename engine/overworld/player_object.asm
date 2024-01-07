@@ -13,7 +13,7 @@ BlankScreen:
 	ld a, $7
 	call ByteFill
 	call WaitBGMap2
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ret
 
 SpawnPlayer:

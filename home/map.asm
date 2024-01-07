@@ -91,12 +91,12 @@ GetMapSceneID::
 	pop bc
 	ret
 
-OverworldTextModeSwitch::
-	call LoadMapPart
-	call SwapTextboxPalettes
+LoadOverworldTilemapAndAttrmapPals::
+	call LoadOverworldTilemap
+	call LoadOverworldAttrmapPals
 	ret
 
-LoadMapPart::
+LoadOverworldTilemap::
 	ldh a, [hROMBank]
 	push af
 
@@ -109,9 +109,9 @@ LoadMapPart::
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 
-	ld a, BANK(_LoadMapPart)
+	ld a, BANK(_LoadOverworldTilemap)
 	rst Bankswitch
-	call _LoadMapPart
+	call _LoadOverworldTilemap
 
 	pop af
 	rst Bankswitch
@@ -1911,7 +1911,7 @@ FadeToMenu::
 	xor a
 	ldh [hBGMapMode], a
 	call LoadStandardMenuHeader
-	farcall FadeOutPalettes
+	farcall FadeOutToWhite
 	call ClearSprites
 	call DisableSpriteUpdates
 	ret
@@ -1935,7 +1935,7 @@ FinishExitMenu::
 	call GetSGBLayout
 	farcall LoadOW_BGPal7
 	call WaitBGMap2
-	farcall FadeInPalettes
+	farcall FadeInFromWhite
 	call EnableSpriteUpdates
 	ret
 
@@ -1977,7 +1977,7 @@ ReloadTilesetAndPalettes::
 	ld c, a
 	call SwitchToAnyMapAttributesBank
 	farcall UpdateTimeOfDayPal
-	call OverworldTextModeSwitch
+	call LoadOverworldTilemapAndAttrmapPals
 	call LoadTilesetGFX
 	ld a, 9
 	call SkipMusic

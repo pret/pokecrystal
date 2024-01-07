@@ -212,7 +212,7 @@ _PlayersHousePC:
 	call _PlayersPC
 	and a
 	jr nz, .changed_deco_tiles
-	call OverworldTextModeSwitch
+	call LoadOverworldTilemapAndAttrmapPals
 	call ApplyTilemap
 	call UpdateSprites
 	call PC_PlayShutdownSound

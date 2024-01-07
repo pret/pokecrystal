@@ -92,7 +92,7 @@ Function8919e:
 
 Function891ab:
 	call Mobile22_SetBGMapMode1
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	call Mobile22_SetBGMapMode0
 	ret
 
@@ -618,7 +618,7 @@ Function894ca:
 	call Function895c7
 	call Function8949c
 	call Function8a60d
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	pop bc
 	ret
 
@@ -1237,7 +1237,7 @@ Function89844:
 	call Function897af
 	push bc
 	call WaitBGMap2
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	pop bc
 	ret
 
@@ -1713,7 +1713,7 @@ Function89b28:
 	call Function893e2
 	call Call_ExitMenu
 	call Function891ab
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ret
 
 Function89b3b:
@@ -2063,7 +2063,7 @@ Function89d0d:
 	pop af
 	ldh [rSVBK], a
 
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	farcall PrintMail
 	call Mobile22_SetBGMapMode1
 	ld c, 24
@@ -2099,7 +2099,7 @@ Function89d75:
 	push hl
 	call Mobile22_SetBGMapMode0
 	call _hl_
-	farcall Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
+	farcall Mobile_HDMATransferTilemapAndAttrmap_Menu
 	pop hl
 	jr asm_89d90
 
@@ -2263,7 +2263,7 @@ Function89e6f:
 	hlcoord 10, 4, wAttrmap
 	call Function8a5a3
 	call Function891ab
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	jp Function89e36
 
 Function89e9a:
@@ -2298,7 +2298,7 @@ Function89eb9:
 	hlcoord 10, 4, wAttrmap
 	call Function8a5a3
 	call Function891ab
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	jp Function89e36
 
 Function89ee1:
@@ -2478,7 +2478,7 @@ Function89fce:
 	hlcoord 10, 4, wAttrmap
 	call Function8a5a3
 	call Function89448
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call Function891ab
 	jp Function89e36
 
@@ -2826,7 +2826,7 @@ Function8a262:
 	call Function8b36c
 	call Function8b493
 	call Function891ab
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call Function8b5e7
 	ret
 
@@ -2917,7 +2917,7 @@ Function8a31c:
 	call Function8a4d3
 	call Function8a4fc
 	call Function891ab
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call Function8a383
 	jr c, .asm_8a370
 	jr z, .asm_8a34e

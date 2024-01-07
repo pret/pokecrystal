@@ -72,7 +72,7 @@ Credits::
 	ldh [hLCDCPointer], a
 
 	call GetCreditsPalette
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 ; BUG: Credits sequence changes move selection menu behavior (see docs/bugs_and_glitches.md)
 	ldh a, [hVBlank]
 	push af
@@ -321,7 +321,7 @@ ParseCredits:
 	xor a
 	ld [wCreditsBorderFrame], a ; frame
 	call GetCreditsPalette
-	call SetPalettes ; update hw pal registers
+	call SetDefaultBGPAndOBP ; update hw pal registers
 	jr .loop
 
 .clear

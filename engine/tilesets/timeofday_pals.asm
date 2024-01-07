@@ -112,14 +112,14 @@ _UpdateTimePals::
 	call DmgToCgbTimePals
 	ret
 
-FadeInPalettes::
+FadeInFromWhite::
 	ld c, $12
 	call GetTimePalFade
 	ld b, $4
 	call ConvertTimePalsDecHL
 	ret
 
-FadeOutPalettes::
+FadeOutToWhite::
 	call FillWhiteBGColor
 	ld c, $9
 	call GetTimePalFade
@@ -143,14 +143,14 @@ BattleTowerFade:
 	jr nz, .loop
 	ret
 
-FadeInQuickly:
+FadeInFromBlack:
 	ld c, $0
 	call GetTimePalFade
 	ld b, $4
 	call ConvertTimePalsIncHL
 	ret
 
-FadeBlackQuickly:
+FadeOutToBlack:
 	ld c, $9
 	call GetTimePalFade
 	ld b, $4
@@ -158,6 +158,7 @@ FadeBlackQuickly:
 	ret
 
 FillWhiteBGColor:
+; Copy white palette of wBGPals1 Pal0 into white palette of wBGPals1 Pal1-Pal6
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wBGPals1)

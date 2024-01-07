@@ -233,10 +233,10 @@ OlderHaircutBrotherScript:
 	writetext GoldenrodUndergroundOlderHaircutBrotherWatchItBecomeBeautifulText
 	waitbutton
 	closetext
-	special FadeOutPalettes
+	special FadeOutToWhite
 	playmusic MUSIC_HEAL
 	pause 60
-	special FadeInPalettes
+	special FadeInFromWhite
 	special RestartMapMusic
 	opentext
 	writetext GoldenrodUndergroundOlderHaircutBrotherAllDoneText
@@ -316,10 +316,10 @@ YoungerHaircutBrotherScript:
 	writetext GoldenrodUndergroundYoungerHaircutBrotherIllMakeItLookCoolText
 	waitbutton
 	closetext
-	special FadeOutPalettes
+	special FadeOutToWhite
 	playmusic MUSIC_HEAL
 	pause 60
-	special FadeInPalettes
+	special FadeInFromWhite
 	special RestartMapMusic
 	opentext
 	writetext GoldenrodUndergroundYoungerHaircutBrotherAllDoneText

@@ -56,7 +56,7 @@ DEF NUM_FRAMES EQU const_value
 ; wTextboxFlags::
 	const_def
 	const FAST_TEXT_DELAY_F ; 0
-	const NO_TEXT_DELAY_F   ; 1
+	const TEXT_DELAY_F      ; 1
 
 ; wGBPrinterBrightness::
 DEF GBPRINTER_LIGHTEST EQU $00

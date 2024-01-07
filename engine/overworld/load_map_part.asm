@@ -1,4 +1,6 @@
-_LoadMapPart::
+_LoadOverworldTilemap::
+; From the metatile-based 24x20 map in wSurroundingTiles,
+; load the corresponding 20x18 tiles to wTilemap.
 	ld hl, wSurroundingTiles
 	ld a, [wPlayerMetatileY]
 	and a
