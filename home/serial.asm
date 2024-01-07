@@ -278,7 +278,7 @@ Serial_ExchangeSyncBytes::
 	jr nz, .exchange
 	ret
 
-Serial_PrintWaitingTextAndSyncAndExchangeNybble::
+Serial_PlaceWaitingTextAndSyncAndExchangeNybble::
 	call LoadTilemapToTempTilemap
 	callfar PlaceWaitingText
 	call WaitLinkTransfer

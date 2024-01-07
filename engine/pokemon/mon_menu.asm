@@ -164,7 +164,7 @@ SwitchPartyMons:
 	ld a, PARTYMENUACTION_MOVE
 	ld [wPartyMenuActionText], a
 	farcall WritePartyMenuTilemap
-	farcall PrintPartyMenuText
+	farcall PlacePartyMenuText
 
 	hlcoord 0, 1
 	ld bc, SCREEN_WIDTH * 2

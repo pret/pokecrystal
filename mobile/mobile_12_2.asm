@@ -342,7 +342,7 @@ Function4aa34:
 	farcall WritePartyMenuTilemap
 	xor a
 	ld [wPartyMenuActionText], a
-	farcall PrintPartyMenuText
+	farcall PlacePartyMenuText
 	call Function4aab6
 	call WaitBGMap
 	call SetDefaultBGPAndOBP

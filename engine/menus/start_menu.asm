@@ -512,7 +512,7 @@ StartMenu_Pokemon:
 
 .menunoreload
 	farcall WritePartyMenuTilemap
-	farcall PrintPartyMenuText
+	farcall PlacePartyMenuText
 	call WaitBGMap
 	call SetDefaultBGPAndOBP
 	call DelayFrame

@@ -518,7 +518,7 @@ Pokegear_UpdateClock:
 	farcall PrintHoursMins
 	ld hl, .GearTodayText
 	bccoord 6, 6
-	call PlaceHLTextAtBC
+	call PrintTextboxTextAt
 	ret
 
 	db "ごぜん@"

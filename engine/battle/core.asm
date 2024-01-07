@@ -2828,7 +2828,7 @@ SetUpBattlePartyMenu_Loop: ; switch to fullscreen menu?
 
 JumpToPartyMenuAndPrintText:
 	farcall WritePartyMenuTilemap
-	farcall PrintPartyMenuText
+	farcall PlacePartyMenuText
 	call WaitBGMap
 	call SetDefaultBGPAndOBP
 	call DelayFrame
@@ -9076,7 +9076,7 @@ BattleStartMessage:
 	farcall Battle_GetTrainerName
 
 	ld hl, WantsToBattleText
-	jr .PlaceBattleStartText
+	jr .PrintBattleStartText
 
 .wild
 	call BattleCheckEnemyShininess
@@ -9118,18 +9118,18 @@ BattleStartMessage:
 	farcall StubbedTrainerRankings_HookedEncounters
 
 	ld hl, HookedPokemonAttackedText
-	jr .PlaceBattleStartText
+	jr .PrintBattleStartText
 
 .NotFishing:
 	ld hl, PokemonFellFromTreeText
 	cp BATTLETYPE_TREE
-	jr z, .PlaceBattleStartText
+	jr z, .PrintBattleStartText
 	ld hl, WildCelebiAppearedText
 	cp BATTLETYPE_CELEBI
-	jr z, .PlaceBattleStartText
+	jr z, .PrintBattleStartText
 	ld hl, WildPokemonAppearedText
 
-.PlaceBattleStartText:
+.PrintBattleStartText:
 	push hl
 	farcall BattleStart_TrainerHuds
 	pop hl

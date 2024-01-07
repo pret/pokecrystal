@@ -198,7 +198,7 @@ PrintEZChatBattleMessage:
 	; now, let's place the string from wc618 to bc
 	pop bc
 	ld hl, wc618
-	call PlaceHLTextAtBC
+	call PrintTextboxTextAt
 	; restore the original values of [wJumptableIndex] and [wcf64]
 	pop hl
 	ld a, l

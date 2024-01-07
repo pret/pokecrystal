@@ -1979,7 +1979,7 @@ Function17dd13:
 	push hl
 	pop bc
 	pop hl
-	call PlaceHLTextAtBC
+	call PrintTextboxTextAt
 	ret
 
 Function17dd30:
