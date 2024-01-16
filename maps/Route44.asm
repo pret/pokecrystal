@@ -21,7 +21,6 @@ TrainerBirdKeeperVance1:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_BIRDKEEPER_VANCE
-	endifjustbattled
 	opentext
 	checkflag ENGINE_VANCE_READY_FOR_REMATCH
 	iftrue .WantsBattle
@@ -84,7 +83,7 @@ TrainerBirdKeeperVance1:
 	checkevent EVENT_GOT_CARBOS_FROM_VANCE
 	iftrue .ReceivedCarbosBefore
 	scall Route44RematchGiftM
-	verbosegiveitem CARBOS
+	verbosegiveitem SHARP_BEAK
 	iffalse VancePackFull
 	setevent EVENT_GOT_CARBOS_FROM_VANCE
 	sjump Route44NumberAcceptedM
@@ -96,7 +95,7 @@ TrainerBirdKeeperVance1:
 	opentext
 	writetext BirdKeeperVance2BeatenText
 	waitbutton
-	verbosegiveitem CARBOS
+	verbosegiveitem SHARP_BEAK
 	iffalse VancePackFull
 	clearevent EVENT_VANCE_CARBOS
 	setevent EVENT_GOT_CARBOS_FROM_VANCE
@@ -163,7 +162,6 @@ TrainerFisherWilton1:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_FISHER_WILTON
-	endifjustbattled
 	opentext
 	checkflag ENGINE_WILTON_READY_FOR_REMATCH
 	iftrue .WantsBattle

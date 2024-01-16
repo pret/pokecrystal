@@ -713,7 +713,22 @@ INCLUDE "gfx/overworld/trainer_battle.pal"
 INCLUDE "gfx/overworld/trainer_battle_dark.pal"
 
 .loadpokeballgfx:
+	ld de, TeamRocketTransition
 	ld a, [wOtherTrainerClass]
+	cp GRUNTM
+	ret z
+	cp GRUNTF
+	ret z
+	cp EXECUTIVEM
+	ret z
+	cp EXECUTIVEF
+	ret z
+	cp SCIENTIST
+	ret z
+	cp TEAM_ROCKET
+	ret z 
+	cp GIOVANNI
+	ret z 
 	ld de, PokeBallTransition
 	ret
 
@@ -737,6 +752,27 @@ opt b.X ; . = 0, X = 1
 	bigdw %..XXXX....XXXX..
 	bigdw %....XXXXXXXX....
 	bigdw %......XXXX......
+popo
+
+TeamRocketTransition:
+pusho
+opt b.X ; . = 0, X = 1
+	bigdw %XXXXXXXXXXXX....
+	bigdw %XXXXXXXXXXXXXX..
+	bigdw %XXXXXXXXXXXXXXX.
+	bigdw %XXXXXXXXXXXXXXX.
+	bigdw %XXXXX.....XXXXXX
+	bigdw %XXXXX......XXXXX
+	bigdw %XXXXX.....XXXXXX
+	bigdw %XXXXXXXXXXXXXXX.
+	bigdw %XXXXXXXXXXXXXXX.
+	bigdw %XXXXXXXXXXXXXX..
+	bigdw %XXXXXXXXXXXXX...
+	bigdw %XXXXX....XXXXX..
+	bigdw %XXXXX....XXXXX..
+	bigdw %XXXXX.....XXXXX.
+	bigdw %XXXXX......XXXXX
+	bigdw %XXXXX......XXXXX
 popo
 
 WipeLYOverrides:

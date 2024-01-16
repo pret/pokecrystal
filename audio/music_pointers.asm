@@ -107,4 +107,5 @@ Music:
 	dba Music_SuicuneBattle
 	dba Music_BattleTowerLobby
 	dba Music_MobileCenter
+	dba Music_MaxieArchieBattle
 	assert_table_length NUM_MUSIC_SONGS

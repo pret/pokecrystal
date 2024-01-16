@@ -110,17 +110,17 @@ MobileString1:
 MobileStrings2:
 ; string 0
 String_0x49fe9:
-	db   "めいし¯つくったり"
+	db   "めいし<WO>つくったり"
 	next "ほぞんしておける　フォルダーです@"
 ; string 1
 	db   "モバイルたいせんや　じぶんのめいしで"
-	next "つかう　あいさつ¯つくります@"
+	next "つかう　あいさつ<WO>つくります@"
 ; string 2
 	db   "あなた<NO>じゅうしょや　ねんれいの"
-	next "せ<TTE>い¯かえられます@"
+	next "せ<TTE>い<WO>かえられます@"
 ; string 3
 	db  "モバイルセンター<NI>せつぞくするとき"
-	next "ひつような　こと¯きめます@"
+	next "ひつような　こと<WO>きめます@"
 ; string 4
 	db   "まえ<NO>がめん　<NI>もどります"
 	next "@"
@@ -325,8 +325,8 @@ asm_4a19d:
 	jp Function4a195
 
 String_4a1ef:
-	db   "モバイルセンター¯えらぶ"
-	next "ログインパスワード¯いれる"
+	db   "モバイルセンター<WO>えらぶ"
+	next "ログインパスワード<WO>いれる"
 	next "もどる@"
 
 Function4a20e:
@@ -355,11 +355,11 @@ Function4a239:
 	jp Function4a13b
 
 Strings_4a23d:
-	db   "いつも　せつぞく¯する"
-	next "モバイルセンター¯えらびます@"
+	db   "いつも　せつぞく<WO>する"
+	next "モバイルセンター<WO>えらびます@"
 
 	db   "モバイルセンター<NI>せつぞくするとき"
-	next "つかうパスワード¯ほぞんできます@"
+	next "つかうパスワード<WO>ほぞんできます@"
 
 	db   "まえ<NO>がめん　<NI>もどります@"
 

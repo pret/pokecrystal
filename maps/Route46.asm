@@ -27,7 +27,6 @@ TrainerPicnickerErin1:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_PICNICKER_ERIN
-	endifjustbattled
 	opentext
 	checkflag ENGINE_ERIN_READY_FOR_REMATCH
 	iftrue .WantsBattle
@@ -90,7 +89,7 @@ TrainerPicnickerErin1:
 	checkevent EVENT_GOT_CALCIUM_FROM_ERIN
 	iftrue .GotCalciumAlready
 	scall Route46RematchGiftF
-	verbosegiveitem CALCIUM
+	verbosegiveitem RARE_CANDY
 	iffalse ErinNoRoomForCalcium
 	setevent EVENT_GOT_CALCIUM_FROM_ERIN
 	sjump Route46NumberAcceptedF
@@ -102,7 +101,7 @@ TrainerPicnickerErin1:
 	opentext
 	writetext PicnickerErin2BeatenText
 	waitbutton
-	verbosegiveitem CALCIUM
+	verbosegiveitem RARE_CANDY
 	iffalse ErinNoRoomForCalcium
 	clearevent EVENT_ERIN_CALCIUM
 	setevent EVENT_GOT_CALCIUM_FROM_ERIN
@@ -160,7 +159,7 @@ Route46Sign:
 	jumptext Route46SignText
 
 Route46XSpeed:
-	itemball X_SPEED
+	itemball HYPER_POTION
 
 Route46FruitTree1:
 	fruittree FRUITTREE_ROUTE_46_1

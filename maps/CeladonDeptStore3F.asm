@@ -53,14 +53,21 @@ CeladonDeptStore3FYoungsterText:
 
 	para "should use this TM"
 	line "on…"
+	
+	para "Thankfully, TM'S"
+	line "are reuseable!"
 	done
-
+	
 CeladonDeptStore3FGameboyKid1Text:
-	text "Uh-oh! I traded my"
-	line "#MON without"
-
-	para "removing the UP-"
-	line "GRADE from it."
+	text "Yeah! I'm finally"
+	line "getting a DRATINI!"
+	
+	para "You can no longer"
+	line "get them as a"
+	cont "prize, and"
+	
+	para "they didn't let me"
+	line "into DRAGON'S DEN…"
 	done
 
 CeladonDeptStore3FGameboyKid2Text:
@@ -72,12 +79,6 @@ CeladonDeptStore3FGameboyKid2Text:
 
 	para "never get enough"
 	line "coins…"
-
-	para "…Huh?"
-
-	para "The traded PORYGON"
-	line "turned into a dif-"
-	cont "ferent #MON!"
 	done
 
 CeladonDeptStore3FSuperNerdText:

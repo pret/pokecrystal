@@ -14,13 +14,36 @@ CinnabarIslandFlypointCallback:
 CinnabarIslandBlue:
 	faceplayer
 	opentext
+	checkevent EVENT_MET_BLUE
+	iftrue .AlreadyMetBlue
+	setevent EVENT_MET_BLUE
 	writetext CinnabarIslandBlueText
+	promptbutton
+	readvar VAR_BADGES
+	ifless 15, .NotEnoughBadges
+	ifgreater 14, .GotEnoughBadges
+	end 
+	
+.GotEnoughBadges
+	writetext CinnabarIslandEqual15Badges
 	waitbutton
 	closetext
 	playsound SFX_WARP_TO
 	applymovement CINNABARISLAND_BLUE, CinnabarIslandBlueTeleport
 	disappear CINNABARISLAND_BLUE
 	clearevent EVENT_VIRIDIAN_GYM_BLUE
+	end
+	
+.AlreadyMetBlue
+	writetext CinnabarAlreadyMetBlue
+	promptbutton
+	readvar VAR_BADGES
+	ifgreater 14, .GotEnoughBadges
+	; fallthrough
+.NotEnoughBadges
+	writetext CinnabarIslandLessThan15Badges
+	waitbutton
+	closetext
 	end
 
 CinnabarIslandGymSign:
@@ -98,7 +121,39 @@ CinnabarIslandBlueText:
 	para "If I see a strong"
 	line "opponent, it makes"
 	cont "me want to battle."
+	done
+	
+CinnabarAlreadyMetBlue:
+	text "You're back."
 
+	para "Have you finally"
+	line "collected enough"
+	cont "KANTO BADGES?"
+	done
+	
+CinnabarIslandLessThan15Badges:
+	text "If you want to"
+	line "battle me, show me"
+
+	para "how many KANTO"
+	line "BADGES you've got."
+
+	para "Less than 7…"
+	line "You're not ready"
+	cont "to battle me."
+	done 
+
+CinnabarIslandEqual15Badges:
+    text "If you want to"
+	line "battle me, show me"
+
+	para "how many KANTO"
+	line "BADGES you've got."
+	
+	para "7 BADGES…"
+	line "Looks like you"
+	cont "are ready."
+	
 	para "If you want to"
 	line "battle me, come to"
 	cont "the VIRIDIAN GYM."

@@ -1,6 +1,6 @@
 	object_const_def
 	const OLIVINELIGHTHOUSE6F_JASMINE
-	const OLIVINELIGHTHOUSE6F_MONSTER
+	const OLIVINELIGHTHOUSE6F_AMPHAROS
 	const OLIVINELIGHTHOUSE6F_POKE_BALL
 
 OlivineLighthouse6F_MapScripts:
@@ -36,7 +36,7 @@ OlivineLighthouseJasmine:
 	closetext
 	turnobject OLIVINELIGHTHOUSE6F_JASMINE, RIGHT
 	pause 15
-	turnobject OLIVINELIGHTHOUSE6F_MONSTER, LEFT
+	turnobject OLIVINELIGHTHOUSE6F_AMPHAROS, LEFT
 	opentext
 	playmusic MUSIC_HEAL
 	writetext JasmineAmphyHowAreYouFeelingText
@@ -52,13 +52,13 @@ OlivineLighthouseJasmine:
 	writetext AmphyPaluPaluluText
 	waitbutton
 	closetext
-	turnobject OLIVINELIGHTHOUSE6F_MONSTER, RIGHT
+	turnobject OLIVINELIGHTHOUSE6F_AMPHAROS, RIGHT
 	pause 10
-	turnobject OLIVINELIGHTHOUSE6F_MONSTER, LEFT
+	turnobject OLIVINELIGHTHOUSE6F_AMPHAROS, LEFT
 	pause 10
-	turnobject OLIVINELIGHTHOUSE6F_MONSTER, RIGHT
+	turnobject OLIVINELIGHTHOUSE6F_AMPHAROS, RIGHT
 	pause 10
-	turnobject OLIVINELIGHTHOUSE6F_MONSTER, LEFT
+	turnobject OLIVINELIGHTHOUSE6F_AMPHAROS, LEFT
 	pause 10
 	faceplayer
 	opentext
@@ -90,7 +90,7 @@ OlivineLighthouseJasmine:
 	closetext
 	turnobject OLIVINELIGHTHOUSE6F_JASMINE, RIGHT
 	pause 15
-	turnobject OLIVINELIGHTHOUSE6F_MONSTER, LEFT
+	turnobject OLIVINELIGHTHOUSE6F_AMPHAROS, LEFT
 	opentext
 	writetext JasmineAmphyHangOnText
 	waitbutton
@@ -269,5 +269,5 @@ OlivineLighthouse6F_MapEvents:
 
 	def_object_events
 	object_event  8,  8, SPRITE_JASMINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineLighthouseJasmine, EVENT_OLIVINE_LIGHTHOUSE_JASMINE
-	object_event  9,  8, SPRITE_MONSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, OlivineLighthouseAmphy, -1
+	object_event  9,  8, SPRITE_AMPHAROS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, OlivineLighthouseAmphy, -1
 	object_event  3,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse6FSuperPotion, EVENT_OLIVINE_LIGHTHOUSE_6F_SUPER_POTION

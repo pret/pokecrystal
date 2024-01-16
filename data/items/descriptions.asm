@@ -147,9 +147,9 @@ ItemDescriptions:
 	dw DragonFangDesc
 	dw TeruSama14Desc
 	dw LeftoversDesc
-	dw TeruSama15Desc
-	dw TeruSama16Desc
-	dw TeruSama17Desc
+	dw OldAmberDesc
+	dw DomeFossilDesc
+	dw HelixFossilDesc
 	dw MysteryBerryDesc
 	dw DragonScaleDesc
 	dw BerserkGeneDesc
@@ -480,7 +480,7 @@ TeruSama5Desc:
 
 ExpShareDesc:
 	db   "Shares battle EXP."
-	next "Points. (HOLD)@"
+	next "Points.@"
 
 OldRodDesc:
 	db   "Use by water to"
@@ -823,14 +823,17 @@ LeftoversDesc:
 	db   "Restores HP during"
 	next "battle. (HOLD)@"
 
-TeruSama15Desc:
-	db   "?@"
+OldAmberDesc:
+	db   "Contains DNA of an"
+	next "ancient #MON.@"
 
-TeruSama16Desc:
-	db   "?@"
+DomeFossilDesc:
+	db   "Contains DNA of an"
+	next "ancient #MON.@"
 
-TeruSama17Desc:
-	db   "?@"
+HelixFossilDesc:
+	db   "Contains DNA of an"
+	next "ancient #MON.@"
 
 MysteryBerryDesc:
 	db   "A self-restore"

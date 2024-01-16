@@ -61,12 +61,11 @@ CherrygroveMartYoungsterText:
 	para "bug #MON poi-"
 	line "soned my #MON!"
 
-	para "I just kept going,"
-	line "but then my"
-	cont "#MON fainted."
-
-	para "You should keep an"
-	line "ANTIDOTE with you."
+	para "Strangely enough,"
+	line "the poison seemed"
+	cont "not to cause any"
+	cont "harm to my #MON"
+	cont "outside of battle."
 	done
 
 CherrygroveMart_MapEvents:

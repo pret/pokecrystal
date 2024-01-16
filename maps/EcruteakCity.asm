@@ -19,6 +19,7 @@ EcruteakCityFlypointCallback:
 
 EcruteakCityGramps1Script:
 	jumptextfaceplayer EcruteakCityGramps1Text
+	end
 
 EcruteakCityGramps2Script:
 	jumptextfaceplayer EcruteakCityGramps2Text
@@ -75,6 +76,9 @@ EcruteakGymSign:
 
 EcruteakDanceTheaterSign:
 	jumptext EcruteakDanceTheaterSignText
+	
+EcruteakMoveRelearnerHouseSign:
+    jumptext EcruteakMoveRelearnerHouseSignText
 
 BurnedTowerSign:
 	jumptext BurnedTowerSignText
@@ -87,26 +91,6 @@ EcruteakCityMartSign:
 
 EcruteakCityHiddenHyperPotion:
 	hiddenitem HYPER_POTION, EVENT_ECRUTEAK_CITY_HIDDEN_HYPER_POTION
-
-UnusedMissingDaughterText: ; unreferenced
-	text "Oh, no. Oh, no…"
-
-	para "My daughter is"
-	line "missing."
-
-	para "No… She couldn't"
-	line "have gone to the"
-	cont "BURNED TOWER."
-
-	para "I told her not to"
-	line "go near it…"
-
-	para "People seem to"
-	line "disappear there…"
-
-	para "Oh, what should I"
-	line "do…?"
-	done
 
 EcruteakCityGramps1Text:
 	text "ECRUTEAK used to"
@@ -244,6 +228,11 @@ EcruteakDanceTheaterSignText:
 	text "ECRUTEAK DANCE"
 	line "THEATER"
 	done
+	
+EcruteakMoveRelearnerHouseSignText:
+    text "MOVE RELEARNER'S"
+	line "HOUSE"
+	done
 
 BurnedTowerSignText:
 	text "BURNED TOWER"
@@ -283,6 +272,7 @@ EcruteakCity_MapEvents:
 	bg_event 38, 10, BGEVENT_READ, TinTowerSign
 	bg_event  8, 28, BGEVENT_READ, EcruteakGymSign
 	bg_event 21, 21, BGEVENT_READ, EcruteakDanceTheaterSign
+	bg_event 11, 27, BGEVENT_READ, EcruteakMoveRelearnerHouseSign
 	bg_event  2, 10, BGEVENT_READ, BurnedTowerSign
 	bg_event 24, 27, BGEVENT_READ, EcruteakCityPokecenterSign
 	bg_event 30, 21, BGEVENT_READ, EcruteakCityMartSign

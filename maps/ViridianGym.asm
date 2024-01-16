@@ -17,9 +17,11 @@ ViridianGymBlueScript:
 	closetext
 	winlosstext LeaderBlueWinText, 0
 	loadtrainer BLUE, BLUE1
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_BLUE
+	disappear SILVERCAVEROOM3_MEWTWO
 	opentext
 	writetext Text_ReceivedEarthBadge
 	playsound SFX_GET_BADGE
@@ -31,10 +33,41 @@ ViridianGymBlueScript:
 	end
 
 .FightDone:
+    checkevent EVENT_BEAT_OAK
+    iftrue .OfferRematch
+; player hasn't beaten oak yet
 	writetext LeaderBlueEpilogueText
 	waitbutton
 	closetext
 	end
+	
+.OfferRematch:
+    writetext BlueRematchText
+    yesorno
+    iftrue .DoRematch
+    ; keep going if false
+	
+.DontDoRematch:
+    writetext BlueRematchRefuseText
+    waitbutton
+    closetext
+    end
+	
+.DoRematch:
+    writetext BlueRematchAcceptText
+    waitbutton
+    closetext
+    winlosstext BlueRematchLossText, 0
+    loadtrainer BLUE, BLUE2
+    loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+    startbattle
+    reloadmapafterbattle
+	disappear SILVERCAVEROOM3_MEWTWO
+    opentext
+    writetext BlueRematchAfterText
+    waitbutton
+    closetext
+    end
 
 ViridianGymGuideScript:
 	faceplayer
@@ -135,6 +168,49 @@ LeaderBlueEpilogueText:
 	line "lose until I beat"
 	cont "you. Got it?"
 	done
+	
+BlueRematchText:
+    text "So you've gone and"
+	line "beaten gramps too."
+	
+	para "You're no joke. But"
+	line "I'm stronger than"
+	cont "you now."
+	
+	para "And I'll prove it"
+	line "right now."
+	
+	para "How about it,"
+	line "JOHTO CHAMP?"
+	done 
+	
+BlueRematchAcceptText:
+    text "Heh heh heh… You're"
+	line "unprepared"
+	cont "for this."
+	
+	para "We'll knock"
+	line "you down!"
+	done 
+	
+BlueRematchRefuseText:
+    text "Whatever. Sounds"
+	line "like you're busy"
+	cont "anyway."
+	done 
+	
+BlueRematchLossText:
+    text "You're tough,"
+	line "I'll give you that."
+	done
+
+BlueRematchAfterText:
+    text "Just as"
+	line "I expected."
+	
+	para "No wonder you're"
+	line "the CHAMP…"
+	done 
 
 ViridianGymGuideText:
 	text "Yo, CHAMP in"

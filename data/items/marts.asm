@@ -55,16 +55,13 @@ MartCherrygroveDex:
 	db -1 ; end
 
 MartViolet:
-	db 10 ; # items
+	db 7 ; # items
 	db POKE_BALL
 	db POTION
 	db ESCAPE_ROPE
 	db ANTIDOTE
 	db PARLYZ_HEAL
 	db AWAKENING
-	db X_DEFEND
-	db X_ATTACK
-	db X_SPEED
 	db FLOWER_MAIL
 	db -1 ; end
 
@@ -82,12 +79,17 @@ MartAzalea:
 	db -1 ; end
 
 MartCianwood:
-	db 5 ; # items
-	db POTION
-	db SUPER_POTION
+	db 10 ; # items
 	db HYPER_POTION
-	db FULL_HEAL
-	db REVIVE
+	db BITTER_BERRY
+	db BURNT_BERRY
+	db GOLD_BERRY
+	db ICE_BERRY
+	db MINT_BERRY
+	db MIRACLEBERRY
+	db MYSTERYBERRY
+	db PSNCUREBERRY
+	db PRZCUREBERRY
 	db -1 ; end
 
 MartGoldenrod2F1:
@@ -114,23 +116,21 @@ MartGoldenrod2F2:
 	db -1 ; end
 
 MartGoldenrod3F:
-	db 7 ; # items
-	db X_SPEED
-	db X_SPECIAL
-	db X_DEFEND
-	db X_ATTACK
-	db DIRE_HIT
-	db GUARD_SPEC
-	db X_ACCURACY
+	db 4 ; # items
+	db HEAL_POWDER
+	db ENERGY_ROOT
+	db ENERGYPOWDER
+	db REVIVAL_HERB
 	db -1 ; end
 
 MartGoldenrod4F:
-	db 5 ; # items
-	db PROTEIN
-	db IRON
-	db CARBOS
-	db CALCIUM
-	db HP_UP
+	db 6 ; # items
+	db WATER_STONE
+	db THUNDERSTONE
+	db FIRE_STONE
+	db LEAF_STONE
+	db MOON_STONE
+	db SUN_STONE
 	db -1 ; end
 
 MartGoldenrod5F1:
@@ -214,7 +214,7 @@ MartMahogany2:
 	db -1 ; end
 
 MartBlackthorn:
-	db 9 ; # items
+	db 7 ; # items
 	db GREAT_BALL
 	db ULTRA_BALL
 	db HYPER_POTION
@@ -222,8 +222,6 @@ MartBlackthorn:
 	db FULL_HEAL
 	db REVIVE
 	db MAX_REPEL
-	db X_DEFEND
-	db X_ATTACK
 	db -1 ; end
 
 MartViridian:
@@ -241,9 +239,9 @@ MartViridian:
 
 MartPewter:
 	db 7 ; # items
-	db GREAT_BALL
-	db SUPER_POTION
-	db SUPER_REPEL
+	db ULTRA_BALL
+	db FULL_RESTORE
+	db MAX_REPEL
 	db ANTIDOTE
 	db PARLYZ_HEAL
 	db AWAKENING
@@ -256,10 +254,10 @@ MartCerulean:
 	db ULTRA_BALL
 	db SUPER_POTION
 	db SUPER_REPEL
+	db MAX_REPEL
 	db FULL_HEAL
-	db X_DEFEND
-	db X_ATTACK
-	db DIRE_HIT
+	db HYPER_POTION
+	db FULL_RESTORE
 	db SURF_MAIL
 	db -1 ; end
 
@@ -329,23 +327,23 @@ MartCeladon4F:
 	db -1 ; end
 
 MartCeladon5F1:
-	db 5 ; # items
-	db HP_UP
-	db PROTEIN
-	db IRON
-	db CARBOS
-	db CALCIUM
+	db 6 ; # items
+	db LIGHT_BALL
+	db THICK_CLUB
+	db LUCKY_PUNCH
+	db STICK
+	db METAL_POWDER
+	db BERSERK_GENE
 	db -1 ; end
 
 MartCeladon5F2:
-	db 7 ; # items
-	db X_ACCURACY
-	db GUARD_SPEC
-	db DIRE_HIT
-	db X_ATTACK
-	db X_DEFEND
-	db X_SPEED
-	db X_SPECIAL
+	db 6 ; # items
+	db LEAF_STONE
+	db WATER_STONE
+	db THUNDERSTONE
+	db FIRE_STONE
+	db MOON_STONE
+	db SUN_STONE
 	db -1 ; end
 
 MartFuchsia:
@@ -360,14 +358,12 @@ MartFuchsia:
 	db -1 ; end
 
 MartSaffron:
-	db 8 ; # items
+	db 6 ; # items
 	db GREAT_BALL
 	db ULTRA_BALL
 	db HYPER_POTION
 	db MAX_POTION
 	db FULL_HEAL
-	db X_ATTACK
-	db X_DEFEND
 	db FLOWER_MAIL
 	db -1 ; end
 
@@ -382,7 +378,7 @@ MartMtMoon:
 	db -1 ; end
 
 MartIndigoPlateau:
-	db 7 ; # items
+	db 9 ; # items
 	db ULTRA_BALL
 	db MAX_REPEL
 	db HYPER_POTION
@@ -390,14 +386,15 @@ MartIndigoPlateau:
 	db FULL_RESTORE
 	db REVIVE
 	db FULL_HEAL
+	db ETHER
+	db MAX_ETHER
 	db -1 ; end
 
 MartUnderground:
-	db 4 ; # items
-	db ENERGYPOWDER
-	db ENERGY_ROOT
-	db HEAL_POWDER
-	db REVIVAL_HERB
+	db 3 ; # items
+	db TM_STEEL_WING
+	db TM_PROTECT
+	db TM_SUNNY_DAY
 	db -1 ; end
 
 DefaultMart:

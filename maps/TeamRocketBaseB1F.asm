@@ -447,31 +447,31 @@ ExplodingTrap22:
 
 VoltorbExplodingTrap:
 	special FadeOutPalettes
-	cry VOLTORB
+	cry ELECTRODE
 	special FadeInPalettes
 	setlasttalked -1
 	loadvar VAR_BATTLETYPE, BATTLETYPE_TRAP
-	loadwildmon VOLTORB, 23
+	loadwildmon ELECTRODE, 42
 	startbattle
 	end
 
 GeodudeExplodingTrap:
 	special FadeOutPalettes
-	cry GEODUDE
+	cry GOLEM
 	special FadeInPalettes
 	setlasttalked -1
 	loadvar VAR_BATTLETYPE, BATTLETYPE_TRAP
-	loadwildmon GEODUDE, 21
+	loadwildmon GOLEM, 42
 	startbattle
 	end
 
 KoffingExplodingTrap:
 	special FadeOutPalettes
-	cry KOFFING
+	cry WEEZING
 	special FadeInPalettes
 	setlasttalked -1
 	loadvar VAR_BATTLETYPE, BATTLETYPE_TRAP
-	loadwildmon KOFFING, 21
+	loadwildmon WEEZING, 42
 	startbattle
 	end
 
@@ -535,7 +535,7 @@ TeamRocketBaseB1FNugget:
 	itemball NUGGET
 
 TeamRocketBaseB1FGuardSpec:
-	itemball GUARD_SPEC
+	itemball FULL_RESTORE
 
 TeamRocketBaseB1FHiddenRevive:
 	hiddenitem REVIVE, EVENT_TEAM_ROCKET_BASE_B1F_HIDDEN_REVIVE

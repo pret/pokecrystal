@@ -39,6 +39,7 @@ CianwoodGymChuckScript:
 	closetext
 	winlosstext ChuckLossText, 0
 	loadtrainer CHUCK, CHUCK1
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CHUCK
@@ -67,11 +68,57 @@ CianwoodGymChuckScript:
 	end
 
 .AlreadyGotTM:
+    checkevent EVENT_BEAT_CHAMPION_LANCE
+    iftrue .OfferRematch
+; player hasn't beaten the champion yet
 	writetext ChuckAfterText
 	waitbutton
 .BagFull:
 	closetext
 	end
+
+.OfferRematch:
+    writetext ChuckRematchText
+    yesorno
+    iftrue .DoRematch
+    ; keep going if false
+	
+.DontDoRematch:
+    writetext ChuckRematchRefuseText
+    waitbutton
+    closetext
+    end
+	
+.DoRematch:
+    writetext ChuckRematchAcceptText
+    waitbutton
+    closetext
+    winlosstext ChuckRematchLossText, 0
+	readvar VAR_BADGES
+	if_greater_than 15, .DoRematch2
+    loadtrainer CHUCK, CHUCK2
+    loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+    startbattle
+    reloadmapafterbattle
+    setevent EVENT_BEAT_CHUCK
+    opentext
+    writetext ChuckRematchAfterText
+    waitbutton
+    closetext
+    end
+	
+.DoRematch2:
+    winlosstext ChuckRematchLossText, 0
+	loadtrainer CHUCK, CHUCK3
+    loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+    startbattle
+    reloadmapafterbattle
+    setevent EVENT_BEAT_CHUCK
+    opentext
+    writetext ChuckRematchAfterText
+    waitbutton
+    closetext
+    end
 
 CianwoodGymActivateRockets:
 	ifequal 7, .RadioTowerRockets
@@ -199,13 +246,7 @@ GetStormBadgeText:
 	done
 
 ChuckExplainBadgeText:
-	text "STORMBADGE makes"
-	line "all #MON up to"
-
-	para "L70 obey, even"
-	line "traded ones."
-
-	para "It also lets your"
+	text "STORMBADGE lets"
 	line "#MON use FLY"
 
 	para "when you're not in"
@@ -237,7 +278,42 @@ ChuckAfterText:
 	line "going to train 24"
 	cont "hours a day!"
 	done
+	
+ChuckRematchText:
+    text "Hello?! Oh!"
+	line "Sorry for"
+	cont "shouting."
+	
+	para "I just finished"
+	line "training!"
+	
+	para "Say, do you"
+	line "want to"
+	cont "fight again?"
+	done
+	
+ChuckRematchAcceptText:
+    text "Come on. We"
+	line "shall do battle!"
+	done
+	
+ChuckRematchRefuseText:
+	text "Well then!"
+	line "I might as well"
+	cont "go take a nap."
+	done
+	
+ChuckRematchLossText:
+    text "Huh? I lost?"
+	line "Back to training"
+	cont "it is then!"
+	done 
 
+ChuckRematchAfterText:
+	text "You're something"
+	line "special, kid!"
+	done 
+	
 BlackbeltYoshiSeenText:
 	text "My #MON and I"
 	line "are bound togeth-"
@@ -321,8 +397,5 @@ CianwoodGym_MapEvents:
 	object_event  2, 12, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBlackbeltYoshi, -1
 	object_event  7, 12, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBlackbeltLao, -1
 	object_event  3,  9, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerBlackbeltNob, -1
-	object_event  5,  5, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerBlackbeltLung, -1
+	object_event  6,  9, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerBlackbeltLung, -1
 	object_event  5,  1, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodGymBoulder, -1
-	object_event  3,  7, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodGymBoulder, -1
-	object_event  4,  7, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodGymBoulder, -1
-	object_event  5,  7, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodGymBoulder, -1

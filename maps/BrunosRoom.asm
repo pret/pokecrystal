@@ -49,7 +49,10 @@ BrunoScript_Battle:
 	waitbutton
 	closetext
 	winlosstext BrunoScript_BrunoBeatenText, 0
+	readvar VAR_BADGES
+	if_greater_than 15, .Rematch
 	loadtrainer BRUNO, BRUNO1
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_ELITE_4_BRUNO
@@ -64,6 +67,24 @@ BrunoScript_Battle:
 	setevent EVENT_BRUNOS_ROOM_EXIT_OPEN
 	waitsfx
 	end
+	
+.Rematch:
+    loadtrainer BRUNO, BRUNO2
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_ELITE_4_BRUNO
+	opentext
+	writetext BrunoScript_BrunoDefeatText
+	waitbutton
+	closetext
+	playsound SFX_ENTER_DOOR
+	changeblock 4, 2, $16 ; open door
+	reloadmappart
+	closetext
+	setevent EVENT_BRUNOS_ROOM_EXIT_OPEN
+	waitsfx
+	end  
 
 BrunoScript_AfterBattle:
 	writetext BrunoScript_BrunoDefeatText

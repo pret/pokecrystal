@@ -21,6 +21,7 @@ SeafoamGymBlaineScript:
 	closetext
 	winlosstext BlaineWinLossText, 0
 	loadtrainer BLAINE, BLAINE1
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	iftrue .ReturnAfterBattle
 	appear SEAFOAMGYM_GYM_GUIDE
@@ -38,10 +39,39 @@ SeafoamGymBlaineScript:
 	end
 
 .FightDone:
+    readvar VAR_BADGES
+	if_greater_than 15, .OfferRematch
 	writetext BlaineFightDoneText
 	waitbutton
 	closetext
 	end
+	
+.OfferRematch:
+    writetext BlaineRematchText
+    yesorno
+    iftrue .DoRematch
+    ; keep going if false
+	
+.DontDoRematch:
+    writetext BlaineRematchRefuseText
+    waitbutton
+    closetext
+    end
+	
+.DoRematch:
+    writetext BlaineRematchAcceptText
+    waitbutton
+    closetext
+    winlosstext BlaineRematchLossText, 0
+    loadtrainer BLAINE, BLAINE2
+    loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+    startbattle
+    reloadmapafterbattle
+    opentext
+    writetext BlaineRematchAfterText
+    waitbutton
+    closetext
+    end
 
 SeafoamGymGuideScript:
 	faceplayer
@@ -122,6 +152,42 @@ BlaineFightDoneText:
 	para "even stronger."
 	line "Just you watch!"
 	done
+	
+BlaineRematchText:
+    text "BLAINE: So you"
+	line "made your way"
+	cont "back here!"
+	
+	para "My fire types"
+	line "are in top shape!"
+	
+	para "Let's get cookin'!"
+	done 
+	
+BlaineRematchAcceptText:
+    text "My firey #MON"
+	line "will incinerate"
+	cont "all challengers!"
+	done 
+	
+BlaineRematchRefuseText:
+    text "No need to be shy."
+	line "Come on!"
+	done 
+	
+BlaineRematchLossText:
+    text "I have burned down"
+	line "to nothing!"
+	
+	para "Not even ashes"
+	line "remain!"
+	done 
+	
+BlaineRematchAfterText:
+    text "Excellent! Come"
+	line "challenge me"
+	cont "again!"
+	done 
 
 SeafoamGymGuideWinText:
 	text "Yo!"

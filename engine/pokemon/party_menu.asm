@@ -385,7 +385,6 @@ PlacePartyMonEvoStoneCompatibility:
 	ret
 
 .DetermineCompatibility:
-; BUG: Only the first three evolution entries can have Stone compatibility reported correctly (see docs/bugs_and_glitches.md)
 	ld de, wStringBuffer1
 	ld a, BANK(EvosAttacksPointers)
 	ld bc, 2
@@ -396,7 +395,7 @@ PlacePartyMonEvoStoneCompatibility:
 	ld l, a
 	ld de, wStringBuffer1
 	ld a, BANK("Evolutions and Attacks")
-	ld bc, 10
+	ld bc, STRING_BUFFER_LENGTH
 	call FarCopyBytes
 	ld hl, wStringBuffer1
 .loop2

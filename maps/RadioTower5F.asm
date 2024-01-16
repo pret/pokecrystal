@@ -1,9 +1,10 @@
 	object_const_def
 	const RADIOTOWER5F_DIRECTOR
-	const RADIOTOWER5F_ROCKET
-	const RADIOTOWER5F_ROCKET_GIRL
+	const RADIOTOWER5F_TEAM_ROCKET
+	const RADIOTOWER5F_ARIANA
 	const RADIOTOWER5F_ROCKER
 	const RADIOTOWER5F_POKE_BALL
+	const RADIOTOWER5F_GIOVANNI
 
 RadioTower5F_MapScripts:
 	def_scene_scripts
@@ -23,6 +24,7 @@ RadioTower5FNoop3Scene:
 	end
 
 FakeDirectorScript:
+    disappear RADIOTOWER5F_GIOVANNI
 	turnobject RADIOTOWER5F_DIRECTOR, UP
 	showemote EMOTE_SHOCK, RADIOTOWER5F_DIRECTOR, 15
 	opentext
@@ -38,6 +40,7 @@ FakeDirectorScript:
 	winlosstext FakeDirectorWinText, 0
 	setlasttalked RADIOTOWER5F_DIRECTOR
 	loadtrainer EXECUTIVEM, EXECUTIVEM_3
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	reloadmapafterbattle
 	opentext
@@ -79,25 +82,52 @@ TrainerExecutivef1:
 RadioTower5FRocketBossScript:
 	applymovement PLAYER, RadioTower5FPlayerTwoStepsLeftMovement
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	turnobject RADIOTOWER5F_ROCKET, RIGHT
+	turnobject RADIOTOWER5F_TEAM_ROCKET, RIGHT
 	opentext
 	writetext RadioTower5FRocketBossBeforeText
 	waitbutton
 	closetext
 	winlosstext RadioTower5FRocketBossWinText, 0
-	setlasttalked RADIOTOWER5F_ROCKET
-	loadtrainer EXECUTIVEM, EXECUTIVEM_1
+	setlasttalked RADIOTOWER5F_TEAM_ROCKET
+	loadtrainer TEAM_ROCKET, ARCHER
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	reloadmapafterbattle
+	special HealParty
 	opentext
 	writetext RadioTower5FRocketBossAfterText
 	waitbutton
 	closetext
+	playsound SFX_EXIT_BUILDING
+	; Giovanni Event
+	moveobject RADIOTOWER5F_GIOVANNI, 12, 0
+	appear RADIOTOWER5F_GIOVANNI
+	applymovement RADIOTOWER5F_GIOVANNI, GiovanniWalksIn
+	special FadeOutMusic
+	faceobject PLAYER, RADIOTOWER5F_GIOVANNI
+	showemote EMOTE_SHOCK, PLAYER, 15
+	turnobject PLAYER, RIGHT
+	opentext
+	writetext GiovanniBeforeText
+	waitbutton 
+	closetext
+	winlosstext GiovanniWinText, 0 
+	loadtrainer GIOVANNI, GIOVANNI1
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+	startbattle
+	reloadmapafterbattle
+	opentext
+	writetext GiovanniAferText
+	waitbutton
+	closetext
 	special FadeBlackQuickly
 	special ReloadSpritesNoPalettes
-	disappear RADIOTOWER5F_ROCKET
-	disappear RADIOTOWER5F_ROCKET_GIRL
-	pause 15
+	playsound SFX_EXIT_BUILDING
+	disappear RADIOTOWER5F_TEAM_ROCKET
+	disappear RADIOTOWER5F_ARIANA
+	disappear RADIOTOWER5F_GIOVANNI
+	disappear RADIOTOWER5F_GIOVANNI, 12, 0
+	pause 20
 	special FadeInQuickly
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_1
 	setevent EVENT_CLEARED_RADIO_TOWER
@@ -109,14 +139,11 @@ RadioTower5FRocketBossScript:
 	clearflag ENGINE_ROCKETS_IN_MAHOGANY
 	clearevent EVENT_GOLDENROD_CITY_CIVILIANS
 	clearevent EVENT_RADIO_TOWER_CIVILIANS_AFTER
-	setevent EVENT_BLACKTHORN_CITY_SUPER_NERD_BLOCKS_GYM
-	clearevent EVENT_BLACKTHORN_CITY_SUPER_NERD_DOES_NOT_BLOCK_GYM
 	special PlayMapMusic
 	disappear RADIOTOWER5F_DIRECTOR
 	moveobject RADIOTOWER5F_DIRECTOR, 12, 0
 	appear RADIOTOWER5F_DIRECTOR
 	applymovement RADIOTOWER5F_DIRECTOR, RadioTower5FDirectorWalksIn
-	turnobject PLAYER, RIGHT
 	opentext
 	writetext RadioTower5FDirectorThankYouText
 	promptbutton
@@ -187,6 +214,19 @@ RadioTower5FDirectorWalksOut:
 
 RadioTower5FPlayerTwoStepsLeftMovement:
 	step LEFT
+	step LEFT
+	step_end
+	
+GiovanniWalksIn:
+    step DOWN
+	step DOWN
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step DOWN
+	step DOWN
+	step DOWN
 	step LEFT
 	step_end
 
@@ -318,7 +358,65 @@ RadioTower5FRocketBossAfterText:
 	line "ROCKET here today."
 
 	para "Farewell."
-	done
+	
+	para "???: TEAM ROCKET"
+	line "is disbanded?"
+	
+	para "ARCHER, know your"
+	line "place."
+	done 
+	
+GiovanniBeforeText:
+    text "ARCHER: GIOVANNI,"
+	line "sir, you've"
+	cont "returned!"
+	
+	para "GIOVANNI: An"
+	line "EXECUTIVE losing"
+	cont "losing to a child?"
+	
+	para "Disgraceful."
+	
+	para "<PLAY_G>, is it?"
+	
+	para "You've gotten"
+	line "yourself involved"
+	cont "in grown-up"
+	cont "matters."
+	
+	para "I will not repeat"
+	line "the same mistakes"
+	cont "as 3 years ago."
+	
+	para "Prepare to"
+	line "experience a"
+	cont "world of pain!"
+	done 
+	
+GiovanniWinText:
+    text "What in the world"
+	line "are you?"
+	done 
+
+GiovanniAferText:
+    text "Yet again, I am"
+	line "defeated." 
+	
+	para "Have the past 3"
+	line "years been a" 
+	cont "waste?"
+	
+	para "Our precious dream"
+	line "has become little"
+	cont "more than"
+	cont "an illusion."
+	
+	para "As of today, TEAM"
+	line "ROCKET is finished"
+	cont "forever."
+	
+	para "...."
+	done 
 
 RadioTower5FDirectorThankYouText:
 	text "DIRECTOR: <PLAY_G>,"
@@ -438,7 +536,8 @@ RadioTower5F_MapEvents:
 
 	def_object_events
 	object_event  3,  6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Director, -1
-	object_event 13,  5, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event 17,  2, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerExecutivef1, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event 13,  5, SPRITE_TEAM_ROCKET, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event 17,  2, SPRITE_ARIANA, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerExecutivef1, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 13,  5, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Ben, EVENT_RADIO_TOWER_CIVILIANS_AFTER
 	object_event  8,  5, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RadioTower5FUltraBall, EVENT_RADIO_TOWER_5F_ULTRA_BALL
+	object_event 23, 13, SPRITE_GIOVANNI, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RADIO_TOWER_GIOVANNI

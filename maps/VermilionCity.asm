@@ -53,7 +53,7 @@ VermilionSnorlax:
 	cry SNORLAX
 	closetext
 	loadvar VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
-	loadwildmon SNORLAX, 50
+	loadwildmon SNORLAX, 80
 	startbattle
 	disappear VERMILIONCITY_BIG_SNORLAX
 	setevent EVENT_FOUGHT_SNORLAX
@@ -89,7 +89,7 @@ VermilionGymBadgeGuy:
 .AllBadges:
 	writetext VermilionCityBadgeGuyAllBadgesText
 	promptbutton
-	verbosegiveitem HP_UP
+	verbosegiveitem LEFTOVERS
 	iffalse .Done
 	setevent EVENT_GOT_HP_UP_FROM_VERMILION_GUY
 .AlreadyGotItem:

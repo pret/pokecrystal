@@ -479,6 +479,11 @@ _MartHowManyText::
 	text "How many?"
 	done
 
+AlreadyHaveTMText::
+	text "You already have"
+	line "this TM."
+	done
+
 _MartFinalPriceText::
 	text_decimal wItemQuantityChange, 1, 2
 	text " @"
@@ -492,20 +497,15 @@ _MartFinalPriceText::
 _HerbShopLadyIntroText::
 	text "Hello, dear."
 
-	para "I sell inexpensive"
-	line "herbal medicine."
+	para "I sell TMs only"
+	line "found in KANTO."
 
-	para "They're good, but"
-	line "a trifle bitter."
-
-	para "Your #MON may"
-	line "not like them."
-
-	para "Hehehehe…"
+	para "Would you like "
+	line "to take a look?"
 	done
 
 _HerbalLadyHowManyText::
-	text "How many?"
+	text "This one?"
 	done
 
 _HerbalLadyFinalPriceText::
@@ -520,7 +520,6 @@ _HerbalLadyFinalPriceText::
 
 _HerbalLadyThanksText::
 	text "Thank you, dear."
-	line "Hehehehe…"
 	done
 
 _HerbalLadyPackFullText::
@@ -529,13 +528,12 @@ _HerbalLadyPackFullText::
 	done
 
 _HerbalLadyNoMoneyText::
-	text "Hehehe… You don't"
-	line "have the money."
+	text "You don't have"
+	line "enough money."
 	done
 
 _HerbalLadyComeAgainText::
 	text "Come again, dear."
-	line "Hehehehe…"
 	done
 
 _BargainShopIntroText::
@@ -1406,19 +1404,14 @@ _ItemUsedText::
 	text "."
 	done
 
-_ItemGotOnText::
-	text "<PLAYER> got on the@"
-	text_low
-	text_ram wStringBuffer2
-	text "."
+_ExpShareToggleOn::
+	text "The EXP.SHARE was"
+	line "turned on."
 	prompt
 
-_ItemGotOffText::
-	text "<PLAYER> got off@"
-	text_low
-	text "the @"
-	text_ram wStringBuffer2
-	text "."
+_ExpShareToggleOff::
+	text "The EXP.SHARE was"
+	line "turned off."
 	prompt
 
 _KnowsMoveText::

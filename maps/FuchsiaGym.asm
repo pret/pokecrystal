@@ -22,6 +22,7 @@ FuchsiaGymJanineScript:
 	closetext
 	winlosstext JanineText_ToughOne, 0
 	loadtrainer JANINE, JANINE1
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_JANINE
@@ -52,10 +53,39 @@ FuchsiaGymJanineScript:
 	iffalse .AfterTM
 	setevent EVENT_GOT_TM06_TOXIC
 .AfterTM:
+    readvar VAR_BADGES
+	if_greater_than 15, .OfferRematch
 	writetext JanineText_ApplyMyself
 	waitbutton
 	closetext
 	end
+	
+.OfferRematch:
+    writetext JanineRematchText
+    yesorno
+    iftrue .DoRematch
+    ; keep going if false
+	
+.DontDoRematch:
+    writetext JanineRematchRefuseText
+    waitbutton
+    closetext
+    end
+	
+.DoRematch:
+    writetext JanineRematchAcceptText
+    waitbutton
+    closetext
+    winlosstext JanineRematchLossText, 0
+    loadtrainer JANINE, JANINE2
+    loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+    startbattle
+    reloadmapafterbattle
+    opentext
+    writetext JanineRematchAfterText
+    waitbutton
+    closetext
+    end
 
 LassAliceScript:
 	checkevent EVENT_BEAT_LASS_ALICE
@@ -284,6 +314,40 @@ JanineText_ApplyMyself:
 	line "better than both"
 	cont "Father and you!"
 	done
+	
+JanineRematchText:
+    text "JANINE: Hello." 
+	line "I've been working"
+	cont "hard since our" 
+	cont "first battle."
+	
+	para "I can't use my"
+	line "ninja techniques,"
+	cont "but I'll show you"
+	cont "my battle skills."
+	
+	para "How about it?"
+	done 
+	
+JanineRematchAcceptText:
+    text "Feel the horror of"
+	line "my POISON #MON!"
+	done 
+	
+JanineRematchRefuseText:
+    text "What's the matter?"
+	line "Are you afraid?"
+	done 
+	
+JanineRematchLossText:
+    text "You've got a great"
+	line "battle technique!"
+	done 
+	
+JanineRematchAfterText:
+    text "I lost today, but"
+	line "I'll win next time!"
+	done 
 
 LassAliceBeforeText:
 	text "Fufufu!"

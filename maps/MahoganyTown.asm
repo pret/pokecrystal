@@ -120,6 +120,9 @@ MahoganyGymSign:
 
 MahoganyTownPokecenterSign:
 	jumpstd PokecenterSignScript
+	
+MahoganyTownScientistHouseSign:
+    jumptext MahoganyTownScientistHouseSignText
 
 MahoganyTownCollideDownFaceLeftMovement: ; unreferenced
 	step DOWN
@@ -243,6 +246,11 @@ MahoganyGymSignText:
 	para "The Teacher of"
 	line "Winter's Harshness"
 	done
+	
+MahoganyTownScientistHouseSignText:
+    text "FOSSIL MANIAC'S"
+	line "HOUSE"
+	done 
 
 MahoganyTown_MapEvents:
 	db 0, 0 ; filler
@@ -263,6 +271,7 @@ MahoganyTown_MapEvents:
 	bg_event  9,  7, BGEVENT_READ, MahoganyTownRagecandybarSign
 	bg_event  3, 13, BGEVENT_READ, MahoganyGymSign
 	bg_event 16, 13, BGEVENT_READ, MahoganyTownPokecenterSign
+	bg_event 15,  7, BGEVENT_READ, MahoganyTownScientistHouseSign
 
 	def_object_events
 	object_event 19,  8, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahoganyTownPokefanMScript, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_EAST

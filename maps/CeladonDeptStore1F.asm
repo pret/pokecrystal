@@ -65,7 +65,8 @@ CeladonDeptStore1FDirectoryText:
 
 	para "4F: WISEMAN GIFTS"
 
-	para "5F: DRUG STORE"
+	para "5F: HELD ITEM"
+	line "    STORE"
 
 	para "6F: ROOFTOP"
 	line "    SQUARE"

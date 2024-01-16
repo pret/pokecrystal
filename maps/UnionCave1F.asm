@@ -73,7 +73,7 @@ UnionCave1FGreatBall:
 	itemball GREAT_BALL
 
 UnionCave1FXAttack:
-	itemball X_ATTACK
+	itemball ANTIDOTE
 
 UnionCave1FPotion:
 	itemball POTION

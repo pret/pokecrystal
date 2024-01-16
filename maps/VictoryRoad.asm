@@ -5,6 +5,7 @@
 	const VICTORYROAD_POKE_BALL3
 	const VICTORYROAD_POKE_BALL4
 	const VICTORYROAD_POKE_BALL5
+	const VICTORYROAD_MOLTRES
 
 VictoryRoad_MapScripts:
 	def_scene_scripts
@@ -63,6 +64,7 @@ VictoryRoadRivalNext:
 	winlosstext VictoryRoadRivalDefeatText, VictoryRoadRivalVictoryText
 	setlasttalked VICTORYROAD_RIVAL
 	loadtrainer RIVAL1, RIVAL1_5_TOTODILE
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
@@ -72,6 +74,7 @@ VictoryRoadRivalNext:
 	winlosstext VictoryRoadRivalDefeatText, VictoryRoadRivalVictoryText
 	setlasttalked VICTORYROAD_RIVAL
 	loadtrainer RIVAL1, RIVAL1_5_CHIKORITA
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
@@ -81,6 +84,7 @@ VictoryRoadRivalNext:
 	winlosstext VictoryRoadRivalDefeatText, VictoryRoadRivalVictoryText
 	setlasttalked VICTORYROAD_RIVAL
 	loadtrainer RIVAL1, RIVAL1_5_CYNDAQUIL
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
@@ -107,13 +111,32 @@ VictoryRoadFullHeal:
 	itemball FULL_HEAL
 
 VictoryRoadHPUp:
-	itemball HP_UP
+	itemball PP_UP
 
 VictoryRoadHiddenMaxPotion:
 	hiddenitem MAX_POTION, EVENT_VICTORY_ROAD_HIDDEN_MAX_POTION
 
 VictoryRoadHiddenFullHeal:
 	hiddenitem FULL_HEAL, EVENT_VICTORY_ROAD_HIDDEN_FULL_HEAL
+	
+VictoryRoadMoltres:
+    faceplayer
+	opentext
+	writetext MoltresText
+	cry MOLTRES
+	pause 15
+	closetext
+	setevent EVENT_FOUGHT_MOLTRES
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SUICUNE
+	loadwildmon MOLTRES, 70
+	startbattle
+	disappear VICTORYROAD_MOLTRES
+	reloadmapafterbattle
+	end
+	
+MoltresText:
+    text "Gyaoo!"
+	done
 
 VictoryRoadRivalBattleApproachMovement1:
 	step LEFT
@@ -266,3 +289,4 @@ VictoryRoad_MapEvents:
 	object_event 18, 29, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadFullRestore, EVENT_VICTORY_ROAD_FULL_RESTORE
 	object_event 15, 48, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadFullHeal, EVENT_VICTORY_ROAD_FULL_HEAL
 	object_event  7, 38, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadHPUp, EVENT_VICTORY_ROAD_HP_UP
+	object_event  2, 24, SPRITE_MOLTRES, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VictoryRoadMoltres, EVENT_VICTORY_ROAD_MOLTRES

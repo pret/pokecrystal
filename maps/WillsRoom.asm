@@ -49,7 +49,28 @@ WillScript_Battle:
 	waitbutton
 	closetext
 	winlosstext WillScript_WillBeatenText, 0
+	readvar VAR_BADGES
+	if_greater_than 15, .Rematch
 	loadtrainer WILL, WILL1
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+	startbattle
+	reloadmapafterbattle
+	setevent EVENT_BEAT_ELITE_4_WILL
+	opentext
+	writetext WillScript_WillDefeatText
+	waitbutton
+	closetext
+	playsound SFX_ENTER_DOOR
+	changeblock 4, 2, $16 ; open door
+	reloadmappart
+	closetext
+	setevent EVENT_WILLS_ROOM_EXIT_OPEN
+	waitsfx
+	end
+	
+.Rematch:
+	loadtrainer WILL, WILL2
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_ELITE_4_WILL

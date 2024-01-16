@@ -18,6 +18,7 @@ PewterGymBrockScript:
 	closetext
 	winlosstext BrockWinLossText, 0
 	loadtrainer BROCK, BROCK1
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_BROCK
@@ -33,10 +34,39 @@ PewterGymBrockScript:
 	end
 
 .FightDone:
+    readvar VAR_BADGES
+	if_greater_than 15, .OfferRematch
 	writetext BrockFightDoneText
 	waitbutton
 	closetext
 	end
+	
+.OfferRematch:
+    writetext BrockRematchText
+    yesorno
+    iftrue .DoRematch
+    ; keep going if false
+	
+.DontDoRematch:
+    writetext BrockRematchRefuseText
+    waitbutton
+    closetext
+    end
+	
+.DoRematch:
+    writetext BrockRematchAcceptText
+    waitbutton
+    closetext
+    winlosstext BrockRematchLossText, 0
+    loadtrainer BROCK, BROCK2
+    loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+    startbattle
+    reloadmapafterbattle
+    opentext
+    writetext BrockRematchAfterText
+    waitbutton
+    closetext
+    end
 
 TrainerCamperJerry:
 	trainer CAMPER, JERRY, EVENT_BEAT_CAMPER_JERRY, CamperJerrySeenText, CamperJerryBeatenText, 0, .Script
@@ -143,6 +173,49 @@ BrockFightDoneText:
 	cont "come a lot strong-"
 	cont "er too."
 	done
+	
+BrockRematchText:
+    text "BROCK: It's good"
+	line "to see you again!"
+	
+	para "Me and my #MON"
+	line "have been working"
+	cont "hard since we"
+	cont "last fought."
+	
+	para "Allow us the"
+	line "chance to show"
+	cont "our true power!"
+	done 
+	
+BrockRematchAcceptText:
+    text "When it comes to"
+	line "rock #MON",
+	cont "I'm the best!"
+	
+	para "Come on!"
+	done 
+	
+BrockRematchRefuseText:
+    text "Is that so?"
+	
+	para "I suppose you"
+	line "must be busy."
+	done 
+	
+BrockRematchLossText:
+    text "It looks like"
+	line "you are the"
+	cont "stronger one…"
+	done 
+	
+BrockRematchAfterText:
+    text "I really enjoyed"
+	line "our battle."
+	
+	para "I hope we get"
+	line "to fight again!"
+	done 
 
 CamperJerrySeenText:
 	text "The trainers of"

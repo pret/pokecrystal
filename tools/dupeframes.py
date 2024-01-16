@@ -12,7 +12,7 @@ import glob
 
 import png
 
-def check_duplicate_frames(filename):
+def duplicate_frames(filename):
 	with open(filename, 'rb') as file:
 		width, height, rows = png.Reader(file).asRGBA8()[:3]
 		rows = list(rows)
@@ -21,14 +21,12 @@ def check_duplicate_frames(filename):
 		return
 	num_frames = height // width
 	frames = [rows[i*width:(i+1)*width] for i in range(num_frames)]
-	for i in range(num_frames):
-		for j in range(i + 1, num_frames):
-			if frames[i] == frames[j]:
-				print(f'{filename}: frame {j} is a duplicate of frame {i}', file=sys.stderr)
+	yield from ((i, j) for i in range(num_frames) for j in range(i+1, num_frames) if frames[i] == frames[j])
 
 def main():
 	for filename in sorted(glob.glob('gfx/pokemon/*/front.png')):
-		check_duplicate_frames(filename)
+		for (i, j) in duplicate_frames(filename):
+			print(f'{filename}: frame {j} is a duplicate of frame {i}', file=sys.stderr)
 
 if __name__ == '__main__':
 	main()

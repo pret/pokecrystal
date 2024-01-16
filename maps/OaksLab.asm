@@ -29,6 +29,9 @@ Oak:
 	sjump .AhGood
 
 .CheckPokedex:
+    faceplayer
+    readvar VAR_BADGES
+	ifgreater 15, .OfferMatch
 	writetext OakLabDexCheckText
 	waitbutton
 	special ProfOaksPCBoot
@@ -39,9 +42,10 @@ Oak:
 
 .OpenMtSilver:
 	writetext OakOpenMtSilverText
-	promptbutton
+	waitbutton
+	closetext
 	setevent EVENT_OPENED_MT_SILVER
-	sjump .CheckPokedex
+	end
 
 .Complain:
 	writetext OakNoKantoBadgesText
@@ -52,6 +56,41 @@ Oak:
 	writetext OakYesKantoBadgesText
 	promptbutton
 	sjump .CheckPokedex
+
+.OfferMatch:
+	writetext OakMatchText
+    yesorno
+    iftrue .DoMatch
+	; keep going if false
+	
+.DontDoMatch:
+    writetext OakRefuseMatchText
+	waitbutton
+	closetext
+	opentext
+	writetext OakLabDexCheckText
+	waitbutton
+	special ProfOaksPCBoot
+	writetext OakLabGoodbyeText
+	waitbutton
+	closetext
+	end
+	
+.DoMatch:
+    writetext OakMatchAcceptText
+    waitbutton
+    closetext
+    winlosstext OakMatchLossText, 0
+    loadtrainer OAK, OAK1
+    loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+    startbattle
+    reloadmapafterbattle
+	setevent EVENT_BEAT_OAK
+	opentext
+    writetext OakMatchAfterText
+    waitbutton
+    closetext
+    end
 
 OaksAssistant1Script:
 	jumptextfaceplayer OaksAssistant1Text
@@ -143,6 +182,18 @@ OakOpenMtSilverText:
 
 	para "reach MT.SILVER"
 	line "from there."
+	
+	para "Speaking of" 
+	line "INDIGO PLATEAU,"
+	cont "I've heard that"
+	cont "the ELITE FOUR"
+	cont "have been"
+	cont "training hard."
+	
+	para "It might be" 
+	line "worth to pay"
+	cont "them a visit," 
+	cont "<PLAY_G>."
 	done
 
 OakNoKantoBadgesText:
@@ -181,6 +232,55 @@ OakYesKantoBadgesText:
 	para "Keep trying hard,"
 	line "<PLAY_G>!"
 	done
+	
+OakMatchText:
+    text "OAK: Good to see"
+	line "you, <PLAY_G>! "
+	
+	para "Your exploits in"
+	line "KANTO have been a"
+	cont "joy to watch."
+	
+	para "In my youth, I"
+	line "also used to be"
+	cont "a serious trainer."
+	
+	para "Even if I changed"
+	line "my line of work,"
+	cont "I'm still a"
+	cont "trainer at heart."
+	
+	para "I'd love to have" 
+	line "a battle with you,"
+	cont "<PLAY_G>!"
+	
+	para "What do you say?"
+	done 
+	
+OakMatchAcceptText:
+    text "Show me what"
+	line "you've got!"
+	done
+	
+OakRefuseMatchText:
+    text "I see. So you"
+	line "want me to check"
+	cont "your #DEX"
+	cont "instead?"
+	done 
+	
+OakMatchLossText:
+    text "I give! You're"
+	line "incredible!"
+	done 
+	
+OakMatchAfterText:
+    text "Congratulations,"
+	line "<PLAY_G>!"
+	
+	para "You truly have"
+	line "come of age!"
+	done 
 
 OaksAssistant1Text:
 	text "The PROF's #MON"

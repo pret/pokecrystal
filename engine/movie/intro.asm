@@ -58,33 +58,6 @@ IntroSceneJumper:
 	jumptable IntroScenes, wJumptableIndex
 
 IntroScenes:
-	dw IntroScene1
-	dw IntroScene2
-	dw IntroScene3
-	dw IntroScene4
-	dw IntroScene5
-	dw IntroScene6
-	dw IntroScene7
-	dw IntroScene8
-	dw IntroScene9
-	dw IntroScene10
-	dw IntroScene11
-	dw IntroScene12
-	dw IntroScene13
-	dw IntroScene14
-	dw IntroScene15
-	dw IntroScene16
-	dw IntroScene17
-	dw IntroScene18
-	dw IntroScene19
-	dw IntroScene20
-	dw IntroScene21
-	dw IntroScene22
-	dw IntroScene23
-	dw IntroScene24
-	dw IntroScene25
-	dw IntroScene26
-	dw IntroScene27
 	dw IntroScene28
 
 NextIntroScene:

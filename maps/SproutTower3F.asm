@@ -71,6 +71,7 @@ SageLiScript:
 	closetext
 	winlosstext SageLiBeatenText, 0
 	loadtrainer SAGE, LI
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	reloadmapafterbattle
 	opentext

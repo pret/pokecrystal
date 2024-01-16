@@ -17,6 +17,7 @@ OlivineGymJasmineScript:
 	closetext
 	winlosstext Jasmine_BetterTrainer, 0
 	loadtrainer JASMINE, JASMINE1
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_JASMINE
@@ -41,12 +42,58 @@ OlivineGymJasmineScript:
 	end
 
 .GotIronTail:
+    checkevent EVENT_BEAT_CHAMPION_LANCE
+    iftrue .OfferRematch
+; player hasn't beaten the champion yet
 	writetext Jasmine_GoodLuck
 	waitbutton
 .NoRoomForIronTail:
 	closetext
 	end
-
+	
+.OfferRematch:
+    writetext JasmineRematchText
+    yesorno
+    iftrue .DoRematch
+    ; keep going if false
+	
+.DontDoRematch:
+    writetext JasmineRematchRefuseText
+    waitbutton
+    closetext
+    end
+	
+.DoRematch:
+    writetext JasmineRematchAcceptText
+    waitbutton
+    closetext
+    winlosstext JasmineRematchLossText, 0
+	readvar VAR_BADGES
+	if_greater_than 15, .DoRematch2
+    loadtrainer JASMINE, JASMINE2
+    loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+    startbattle
+    reloadmapafterbattle
+    setevent EVENT_BEAT_JASMINE
+    opentext
+    writetext JasmineRematchAfterText
+    waitbutton
+    closetext
+    end
+	
+.DoRematch2:
+    winlosstext JasmineRematchLossText, 0
+	loadtrainer JASMINE, JASMINE3
+    loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+    startbattle
+    reloadmapafterbattle
+    setevent EVENT_BEAT_JASMINE
+    opentext
+    writetext JasmineRematchAfterText
+    waitbutton
+    closetext
+    end
+	
 OlivineGymActivateRockets:
 	ifequal 7, .RadioTowerRockets
 	ifequal 6, .GoldenrodRockets
@@ -137,10 +184,12 @@ Text_ReceivedMineralBadge:
 	done
 
 Jasmine_BadgeSpeech:
-	text "MINERALBADGE"
-	line "raises #MON's"
-	cont "DEFENSE."
+    text "…MINERALBADGE"
+	line "lets #MON use"
 
+	para "STRENGTH outside"
+	line "of battle."	
+	
 	para "…Um… Please take"
 	line "this too…"
 	done
@@ -161,6 +210,40 @@ Jasmine_GoodLuck:
 	line "how to say this,"
 	cont "but good luck…"
 	done
+	
+JasmineRematchText:
+    text "Um… hello again."
+	
+	para "AMPHY's doing"
+	line "better now, so"
+	cont "we had more"
+	cont "time to train."
+	
+	para "Can I ask you"
+	line "for a rematch?"
+	done 
+	
+JasmineRematchAcceptText:
+    text "…Thank you. May"
+	line "we get started?"
+	done 
+	
+JasmineRematchRefuseText:
+    text "Oh… I understand."
+	done 
+	
+JasmineRematchLossText:
+    text "Well done…"
+	done 
+	
+JasmineRematchAfterText:
+    text "You are truly"
+	line "remarkable."
+	
+	para "I'll have to"
+	line "try much"
+	cont "harder too."
+	done 
 
 OlivineGymGuideText:
 	text "JASMINE uses the"

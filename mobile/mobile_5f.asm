@@ -476,8 +476,8 @@ MenuHeader_17d26a:
 MenuData_17d272:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 4
-	db "ニュース¯よみこむ@"
-	db "ニュース¯みる@"
+	db "ニュース<WO>よみこむ@"
+	db "ニュース<WO>みる@"
 	db "せつめい@"
 	db "やめる@"
 

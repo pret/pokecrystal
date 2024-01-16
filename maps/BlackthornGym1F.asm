@@ -38,6 +38,7 @@ BlackthornGymClairScript:
 	closetext
 	winlosstext ClairWinText, 0
 	loadtrainer CLAIR, CLAIR1
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CLAIR
@@ -85,10 +86,56 @@ BlackthornGymClairScript:
 	end
 
 .GotTM24:
+    checkevent EVENT_BEAT_CHAMPION_LANCE
+    iftrue .OfferRematch
+; player hasn't beaten the champion yet
 	writetext BlackthornGymClairText_League
 	waitbutton
 	closetext
 	end
+	
+.OfferRematch:
+    writetext ClairRematchText
+    yesorno
+    iftrue .DoRematch
+    ; keep going if false
+	
+.DontDoRematch:
+    writetext ClairRematchRefuseText
+    waitbutton
+    closetext
+    end
+	
+.DoRematch:
+    writetext ClairRematchAcceptText
+    waitbutton
+    closetext
+    winlosstext ClairRematchLossText, 0
+	readvar VAR_BADGES
+	if_greater_than 15, .DoRematch2
+    loadtrainer CLAIR, CLAIR2
+    loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+    startbattle
+    reloadmapafterbattle
+    setevent EVENT_BEAT_CLAIR
+    opentext
+    writetext ClairRematchAfterText
+    waitbutton
+    closetext
+    end
+	
+.DoRematch2:
+    winlosstext ClairRematchLossText, 0
+	loadtrainer CLAIR, CLAIR3
+    loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+    startbattle
+    reloadmapafterbattle
+    setevent EVENT_BEAT_CLAIR
+    opentext
+    writetext ClairRematchAfterText
+    waitbutton
+    closetext
+    end
 
 TrainerCooltrainermPaul:
 	trainer COOLTRAINERM, PAUL, EVENT_BEAT_COOLTRAINERM_PAUL, CooltrainermPaulSeenText, CooltrainermPaulBeatenText, 0, .Script
@@ -231,7 +278,7 @@ BlackthornGymClairText_YouKeptMeWaiting:
 
 BlackthornGymText_ReceivedTM24:
 	text "<PLAYER> received"
-	line "TM24."
+	line "TM24 DRAGONBREATH."
 	done
 
 BlackthornGymClairText_DescribeTM24:
@@ -282,7 +329,54 @@ BlackthornGymClairText_League:
 	para "Give it every-"
 	line "thing you've got."
 	done
+	
+ClairRematchText:
+    text "So you've gone"
+	line "and beaten the"
+	cont "#MON LEAGUE."
+	
+	para "It looks like"
+	line "our first battle"
+	cont "was no fluke."
+	
+	para "But I haven't"
+	line "been slacking" 
+	cont "off either."
+	
+	para "I can hold my"
+	line "own even against"
+	cont "the CHAMPION now."
+	
+	para "Do you still wish"
+	line "to take me on?"
+	done 
+	
+ClairRematchAcceptText:
+    text "…Fine."
+	line "Let's do it!"
 
+	para "I will use my full"
+	line "power against any"
+	cont "opponent!"
+	done
+	
+ClairRematchRefuseText:
+    text "How disappointing."
+	done
+	
+ClairRematchLossText:
+    text "You're powerful."
+	line "This is"
+	cont "no mistake…"
+	done
+	
+ClairRematchAfterText:
+    text "I wonder just" 
+	line "how far you"
+	cont "can go with"
+	cont "your skill."
+	done 
+	
 CooltrainermPaulSeenText:
 	text "Your first battle"
 	line "against dragons?"

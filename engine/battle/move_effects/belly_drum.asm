@@ -1,13 +1,15 @@
 BattleCommand_BellyDrum:
-; BUG: Belly Drum sharply boosts Attack even with under 50% HP (see docs/bugs_and_glitches.md)
-	call BattleCommand_AttackUp2
-	ld a, [wAttackMissed]
-	and a
-	jr nz, .failed
 
 	callfar GetHalfMaxHP
 	callfar CheckUserHasEnoughHP
 	jr nc, .failed
+	
+	push bc
+	call BattleCommand_AttackUp2
+	pop bc
+	ld a, [wAttackMissed]
+	and a
+	jr nz, .failed
 
 	push bc
 	call AnimateCurrentMove

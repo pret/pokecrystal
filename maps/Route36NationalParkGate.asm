@@ -231,25 +231,34 @@ Route36OfficerScriptContest:
 	end
 
 Route36Officer_ContestHasConcluded:
-	checkevent EVENT_CONTEST_OFFICER_HAS_SUN_STONE
-	iftrue .Sunstone
+	checkevent EVENT_CONTEST_OFFICER_HAS_FOCUS_BAND
+	iftrue .FocusBand
+	checkevent EVENT_CONTEST_OFFICER_HAS_SILVERPOWDER
+	iftrue .Silverpowder
 	checkevent EVENT_CONTEST_OFFICER_HAS_EVERSTONE
 	iftrue .Everstone
 	checkevent EVENT_CONTEST_OFFICER_HAS_GOLD_BERRY
 	iftrue .GoldBerry
-	checkevent EVENT_CONTEST_OFFICER_HAS_BERRY
-	iftrue .Berry
 	writetext Route36NationalParkGateOfficer1ContestIsOverText
 	waitbutton
 	closetext
 	end
 
-.Sunstone:
+.FocusBand:
 	writetext Route36NationalParkGateOfficer1HeresThePrizeText
 	promptbutton
-	verbosegiveitem SUN_STONE
+	verbosegiveitem FOCUS_BAND
 	iffalse .BagFull
-	clearevent EVENT_CONTEST_OFFICER_HAS_SUN_STONE
+	clearevent EVENT_CONTEST_OFFICER_HAS_FOCUS_BAND
+	closetext
+	end
+
+.Silverpowder:
+	writetext Route36NationalParkGateOfficer1HeresThePrizeText
+	promptbutton
+	verbosegiveitem SILVERPOWDER
+	iffalse .BagFull
+	clearevent EVENT_CONTEST_OFFICER_HAS_SILVERPOWDER
 	closetext
 	end
 
@@ -268,15 +277,6 @@ Route36Officer_ContestHasConcluded:
 	verbosegiveitem GOLD_BERRY
 	iffalse .BagFull
 	clearevent EVENT_CONTEST_OFFICER_HAS_GOLD_BERRY
-	closetext
-	end
-
-.Berry:
-	writetext Route36NationalParkGateOfficer1HeresThePrizeText
-	promptbutton
-	verbosegiveitem BERRY
-	iffalse .BagFull
-	clearevent EVENT_CONTEST_OFFICER_HAS_BERRY
 	closetext
 	end
 

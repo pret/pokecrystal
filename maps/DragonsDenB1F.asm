@@ -175,7 +175,7 @@ DragonShrineSignpost:
 	jumptext DragonShrineSignpostText
 
 DragonsDenB1FCalcium:
-	itemball CALCIUM
+	itemball FULL_RESTORE
 
 DragonsDenB1FMaxElixer:
 	itemball MAX_ELIXER
@@ -217,7 +217,7 @@ ClairText_GiveDragonbreathDragonDen:
 
 Text_ReceivedTM24:
 	text "<PLAYER> received"
-	line "TM24."
+	line "TM24 DRAGONBREATH."
 	done
 
 ClairText_DescribeDragonbreathDragonDen:

@@ -1,6 +1,7 @@
 LoadOverworldMonIcon:
 	ld a, e
 	call ReadMonMenuIcon
+	ld [wCurIcon], a
 	ld l, a
 	ld h, 0
 	add hl, hl
@@ -9,9 +10,7 @@ LoadOverworldMonIcon:
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	ld b, BANK(Icons)
-	ld c, 8
-	ret
+	jp GetIconBank
 
 LoadMenuMonIcon:
 	push hl
@@ -256,10 +255,14 @@ GetSpeciesIcon:
 ; Load species icon into VRAM at tile a
 	push de
 	ld a, [wTempIconSpecies]
+	push hl
 	call ReadMonMenuIcon
+	pop hl
 	ld [wCurIcon], a
 	pop de
 	ld a, e
+	ld e, l
+	ld d, h
 	call GetIconGFX
 	ret
 
@@ -318,9 +321,10 @@ GetIcon:
 rept 4
 	add hl, hl
 endr
-
+    push de
 	ld de, vTiles0
 	add hl, de
+	pop de
 	push hl
 
 ; The icons are contiguous, in order and of the same
@@ -337,10 +341,19 @@ endr
 	ld d, [hl]
 	pop hl
 
-	lb bc, BANK(Icons), 8
+	call GetIconBank
+.continue
 	call GetGFXUnlessMobile
 
 	pop hl
+	ret
+	
+GetIconBank:
+	ld a, [wCurIcon]
+	cp ICON_MAGIKARP ; first icon in Icons2
+	lb bc, BANK("Mon Icons 1"), 8
+	ret c
+	ld b, BANK("Mon Icons 2")
 	ret
 
 GetGFXUnlessMobile:

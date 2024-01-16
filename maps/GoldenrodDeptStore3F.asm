@@ -29,29 +29,34 @@ GoldenrodDeptStore3FElevatorButton:
 
 GoldenrodDeptStore3FSuperNerdText:
 	text "I, I, I'm really"
-	line "impatient!"
+	line "sorry, RATTATA!"
 
-	para "I use X SPEED in"
-	line "battle to speed up"
-	cont "my #MON."
+	para "I gave her some"
+	line "bitter medicine."
+	
+	para "It's effective,"
+	line "but #MON"
+	cont "don't like it."
 	done
 
 GoldenrodDeptStore3FRockerText:
-	text "Hey! When you bat-"
-	line "tle, do you use X"
-	cont "SPECIAL?"
+	text "Hey! When you buy"
+	line "healing items,"
+	cont "do you buy"
+	cont "herbs?"
 
-	para "It's awesome. It"
-	line "really jacks up"
-	cont "SPECIAL ATTACK!"
+	para "They're awesome."
+	line "Cheap, but"
+	cont "just as good"
+	cont "as any potion."
 	done
 
 GoldenrodDeptStore3FDirectoryText:
-	text "For Victory"
-	line "Seekers"
+	text "Brutally"
+	line "Effective"
 
-	para "3F BATTLE"
-	line "   COLLECTION"
+	para "3F"
+	line "HERB SHOP"
 	done
 
 GoldenrodDeptStore3F_MapEvents:

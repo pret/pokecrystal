@@ -1,7 +1,7 @@
 	object_const_def
 	const VIOLETNICKNAMESPEECHHOUSE_TEACHER
 	const VIOLETNICKNAMESPEECHHOUSE_LASS
-	const VIOLETNICKNAMESPEECHHOUSE_BIRD
+	const VIOLETNICKNAMESPEECHHOUSE_PIDGEY
 
 VioletNicknameSpeechHouse_MapScripts:
 	def_scene_scripts
@@ -56,4 +56,4 @@ VioletNicknameSpeechHouse_MapEvents:
 	def_object_events
 	object_event  2,  3, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VioletNicknameSpeechHouseTeacherScript, -1
 	object_event  6,  4, SPRITE_LASS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, VioletNicknameSpeechHouseLassScript, -1
-	object_event  5,  2, SPRITE_BIRD, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, VioletNicknameSpeechHouseBirdScript, -1
+	object_event  5,  2, SPRITE_PIDGEY, SPRITEMOVEDATA_POKEMON, 1, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, VioletNicknameSpeechHouseBirdScript, -1

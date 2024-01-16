@@ -31,6 +31,7 @@ EcruteakGymMortyScript:
 	closetext
 	winlosstext MortyWinLossText, 0
 	loadtrainer MORTY, MORTY1
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_MORTY
@@ -62,11 +63,57 @@ EcruteakGymMortyScript:
 	end
 
 .GotShadowBall:
+    checkevent EVENT_BEAT_CHAMPION_LANCE
+    iftrue .OfferRematch
+; player hasn't beaten the champion yet
 	writetext MortyFightDoneText
 	waitbutton
 .NoRoomForShadowBall:
 	closetext
 	end
+	
+.OfferRematch:
+    writetext MortyRematchText
+    yesorno
+    iftrue .DoRematch
+    ; keep going if false
+	
+.DontDoRematch:
+    writetext MortyRematchRefuseText
+    waitbutton
+    closetext
+    end
+	
+.DoRematch:
+    writetext MortyRematchAcceptText
+    waitbutton
+    closetext
+    winlosstext MortyRematchLossText, 0
+	readvar VAR_BADGES
+	if_greater_than 15, .DoRematch2
+    loadtrainer MORTY, MORTY2
+    loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+    startbattle
+    reloadmapafterbattle
+    setevent EVENT_BEAT_MORTY
+    opentext
+    writetext MortyRematchAfterText
+    waitbutton
+    closetext
+    end
+	
+.DoRematch2:
+	winlosstext MortyRematchLossText, 0
+	loadtrainer MORTY, MORTY3
+    loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+    startbattle
+    reloadmapafterbattle
+    setevent EVENT_BEAT_MORTY
+    opentext
+    writetext MortyRematchAfterText
+    waitbutton
+    closetext
+    end
 
 EcruteakGymActivateRockets:
 	ifequal 7, .RadioTowerRockets
@@ -232,17 +279,12 @@ Text_ReceivedFogBadge:
 	done
 
 MortyText_FogBadgeSpeech:
-	text "By having FOG-"
-	line "BADGE, #MON up"
+	text "With FOGBADGE"
+	line "#MON that"
+	cont "know SURF will"
 
-	para "to L50 will obey"
-	line "you."
-
-	para "Also, #MON that"
-	line "know SURF will be"
-
-	para "able to use that"
-	line "move anytime."
+	para "be able to use it"
+	line "at anytime."
 
 	para "I want you to have"
 	line "this too."
@@ -272,6 +314,44 @@ MortyFightDoneText:
 
 	para "I envy you for"
 	line "that…"
+	done
+	
+MortyRematchText:
+    text "<PLAY_G>, I can"
+	line "sense that you"
+	cont "have grown."
+    
+	para "I strive to become"
+	line "worthy of HO-OH."
+	
+	para "I think it would"
+	line "benefit us both if"
+	cont "we fought again."
+	done 
+	
+MortyRematchAcceptText:
+    text "You can bear"
+	line "witness to the"
+	cont "fruits of my"
+	cont "training!"
+	done 
+	
+MortyRematchRefuseText:
+    text "Oh… that's"
+	line "a shame."
+	done 
+	
+MortyRematchLossText:
+    text "How is this"
+	line "possible…"
+	done
+	
+MortyRematchAfterText:
+    text "Not good"
+	line "enough."
+	
+	para "I have to redo"
+	line "my training."
 	done
 
 SageJeffreySeenText:

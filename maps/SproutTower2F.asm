@@ -33,8 +33,8 @@ TrainerSageEdmond:
 SproutTower2FStatue:
 	jumptext SproutTower2FStatueText
 
-SproutTower2FXAccuracy:
-	itemball X_ACCURACY
+SproutTower2FPOTION:
+	itemball POTION
 
 SageNicoSeenText:
 	text "However hard we"
@@ -99,4 +99,4 @@ SproutTower2F_MapEvents:
 	def_object_events
 	object_event 12,  3, SPRITE_SAGE, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerSageNico, -1
 	object_event  9, 14, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 5, TrainerSageEdmond, -1
-	object_event  3,  1, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SproutTower2FXAccuracy, EVENT_SPROUT_TOWER_2F_X_ACCURACY
+	object_event  3,  1, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SproutTower2FPOTION, EVENT_SPROUT_TOWER_2F_X_ACCURACY

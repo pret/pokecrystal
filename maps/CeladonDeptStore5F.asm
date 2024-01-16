@@ -40,12 +40,12 @@ CeladonDeptStore5FElevatorButton:
 	jumpstd ElevatorButtonScript
 
 CeladonDeptStore5FGentlemanText:
-	text "I want to buy some"
+	text "I wanted to buy"
 	line "items that raise"
 
 	para "#MON stats, but"
-	line "I don't have"
-	cont "enough money…"
+	line "they don't sell"
+	cont "them anymore…"
 	done
 
 CeladonDeptStore5FSailorText:
@@ -66,9 +66,10 @@ CeladonDeptStore5FTeacherText:
 	done
 
 CeladonDeptStore5FDirectoryText:
-	text "5F: DRUG STORE"
-	done
-
+	text "5F: HELD ITEM"
+	line "    STORE"
+	done 
+	
 CeladonDeptStore5F_MapEvents:
 	db 0, 0 ; filler
 

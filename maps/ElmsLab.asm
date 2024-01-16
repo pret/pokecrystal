@@ -340,7 +340,6 @@ ElmAfterTheftScript:
 	promptbutton
 	setevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	setflag ENGINE_MOBILE_SYSTEM
-	setmapscene ROUTE_29, SCENE_ROUTE29_CATCH_TUTORIAL
 	clearevent EVENT_ROUTE_30_YOUNGSTER_JOEY
 	setevent EVENT_ROUTE_30_BATTLE
 	writetext ElmAfterTheftText6
@@ -381,7 +380,7 @@ ShowElmTogepiScript:
 ElmGiveEverstoneScript:
 	writetext ElmGiveEverstoneText1
 	promptbutton
-	verbosegiveitem EVERSTONE
+	verbosegiveitem TM_RETURN
 	iffalse ElmScript_NoRoomForEverstone
 	writetext ElmGiveEverstoneText2
 	waitbutton
@@ -1108,22 +1107,20 @@ ElmGiveEverstoneText1:
 	done
 
 ElmGiveEverstoneText2:
-	text "That's an"
-	line "EVERSTONE."
-
-	para "Some species of"
-	line "#MON evolve"
-
-	para "when they grow to"
-	line "certain levels."
-
-	para "A #MON holding"
-	line "the EVERSTONE"
-	cont "won't evolve."
-
-	para "Give it to a #-"
-	line "MON you don't want"
-	cont "to evolve."
+	text "This is the"
+	line "TM RETURN."
+	
+	para "It gets stronger"
+	line "the more your"
+	cont "#MON like you."
+	
+	para "They're already"
+	line "attached to"
+	cont "you, <PLAY_G>."
+	
+	para "I think you'll"
+	line "be able to use"
+	cont "it well!"
 	done
 
 ElmText_CallYou:

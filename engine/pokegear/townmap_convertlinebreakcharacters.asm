@@ -4,9 +4,9 @@ TownMap_ConvertLineBreakCharacters:
 	ld a, [hl]
 	cp "@"
 	jr z, .end
-	cp "%"
+	cp "<WBR>"
 	jr z, .line_feed
-	cp "¯"
+	cp "<BSP>"
 	jr z, .line_feed
 	inc hl
 	jr .loop

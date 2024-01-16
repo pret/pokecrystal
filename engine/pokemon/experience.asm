@@ -5,8 +5,13 @@ CalcLevel:
 	ld d, 1
 .next_level
 	inc d
+	ld a, [wLevelCap]
+	inc a
+	push bc
+	ld b, a
 	ld a, d
-	cp LOW(MAX_LEVEL + 1)
+	cp b
+	pop bc
 	jr z, .got_level
 	call CalcExpAtLevel
 	push hl

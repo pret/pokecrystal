@@ -42,16 +42,28 @@ TrainerHouseReceptionistScript:
 	closetext
 	special TrainerHouse
 	iffalse .NoSpecialBattle
-	winlosstext TrainerHouseB1FCalBeatenText, 0
+	winlosstext CalWinLossText, CalWinLossText
 	setlasttalked TRAINERHOUSEB1F_CHRIS
 	loadtrainer CAL, CAL2
 	startbattle
 	reloadmapafterbattle
 	iffalse .End
 .NoSpecialBattle:
-	winlosstext TrainerHouseB1FCalBeatenText, 0
+    checkevent EVENT_BEAT_RED
+	iftrue .GoldBattle2
+; player hasn't beaten Red yet
+	winlosstext CalWinLossText, CalWinLossText
 	setlasttalked TRAINERHOUSEB1F_CHRIS
 	loadtrainer CAL, CAL3
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+	startbattle
+	reloadmapafterbattle
+	
+.GoldBattle2
+    winlosstext CalWinLossText, CalWinLossText
+	setlasttalked TRAINERHOUSEB1F_CHRIS
+	loadtrainer CAL, CAL4
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	reloadmapafterbattle
 .End:
@@ -156,15 +168,13 @@ TrainerHouseB1FSecondChallengeDeniedText:
 	line "a day."
 	done
 
-TrainerHouseB1FCalBeatenText:
-	text "I lost…"
-	line "Darn…"
+CalWinLossText:
+	text "…"
 	done
 
 TrainerHouseB1FCalBeforeText:
-	text "I traveled out"
-	line "here just so I"
-	cont "could battle you."
+	text "<……>"
+	line "<……>"
 	done
 
 TrainerHouseB1F_MapEvents:

@@ -90,7 +90,6 @@ TrainerCamperTodd1:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_CAMPER_TODD
-	endifjustbattled
 	opentext
 	checkflag ENGINE_TODD_READY_FOR_REMATCH
 	iftrue .Rematch
@@ -120,28 +119,17 @@ TrainerCamperTodd1:
 	scall .RematchStd
 	winlosstext CamperTodd1BeatenText, 0
 	readmem wToddFightCount
-	ifequal 4, .Fight4
-	ifequal 3, .Fight3
-	ifequal 2, .Fight2
-	ifequal 1, .Fight1
-	ifequal 0, .LoadFight0
-.Fight4:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight4
-.Fight3:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight3
-.Fight2:
 	checkflag ENGINE_FLYPOINT_BLACKTHORN
 	iftrue .LoadFight2
-.Fight1:
 	checkflag ENGINE_FLYPOINT_CIANWOOD
 	iftrue .LoadFight1
-.LoadFight0:
 	loadtrainer CAMPER, TODD1
 	startbattle
 	reloadmapafterbattle
-	loadmem wToddFightCount, 1
 	clearflag ENGINE_TODD_READY_FOR_REMATCH
 	end
 
@@ -215,7 +203,6 @@ TrainerPicnickerGina1:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_PICNICKER_GINA
-	endifjustbattled
 	opentext
 	checkflag ENGINE_GINA_READY_FOR_REMATCH
 	iftrue .Rematch
@@ -245,28 +232,17 @@ TrainerPicnickerGina1:
 	scall .RematchStd
 	winlosstext PicnickerGina1BeatenText, 0
 	readmem wGinaFightCount
-	ifequal 4, .Fight4
-	ifequal 3, .Fight3
-	ifequal 2, .Fight2
-	ifequal 1, .Fight1
-	ifequal 0, .LoadFight0
-.Fight4:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight4
-.Fight3:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight3
-.Fight2:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .LoadFight2
-.Fight1:
 	checkflag ENGINE_FLYPOINT_MAHOGANY
 	iftrue .LoadFight1
-.LoadFight0:
 	loadtrainer PICNICKER, GINA1
 	startbattle
 	reloadmapafterbattle
-	loadmem wGinaFightCount, 1
 	clearflag ENGINE_GINA_READY_FOR_REMATCH
 	end
 
@@ -778,8 +754,8 @@ Route34_MapEvents:
 	bg_event 17, 19, BGEVENT_ITEM, Route34HiddenSuperPotion
 
 	def_object_events
-	object_event 13,  7, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 5, TrainerCamperTodd1, -1
-	object_event 15, 32, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerYoungsterSamuel, -1
+	object_event 12,  4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 5, TrainerCamperTodd1, -1
+	object_event 14, 32, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerYoungsterSamuel, -1
 	object_event 11, 20, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerYoungsterIan, -1
 	object_event 10, 26, SPRITE_LASS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerPicnickerGina1, -1
 	object_event  9, 11, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OfficerKeithScript, -1

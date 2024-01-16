@@ -961,7 +961,7 @@ StrengthFunction:
 	ret
 
 .TryStrength:
-	ld de, ENGINE_PLAINBADGE
+	ld de, ENGINE_MINERALBADGE
 	call CheckBadge
 	jr c, .Failed
 	jr .UseStrength
@@ -1058,7 +1058,7 @@ TryStrengthOW:
 	call CheckPartyMove
 	jr c, .nope
 
-	ld de, ENGINE_PLAINBADGE
+	ld de, ENGINE_MINERALBADGE
 	call CheckEngineFlag
 	jr c, .nope
 
@@ -1370,11 +1370,19 @@ RockSmashScript:
 
 	callasm RockMonEncounter
 	readmem wTempWildMonSpecies
-	iffalse .done
+	iffalse .no_battle
 	randomwildmon
 	startbattle
 	reloadmapafterbattle
-.done
+	end
+	
+.no_battle
+	callasm RockItemEncounter
+	iffalse .no_item
+	opentext
+	verbosegiveitem ITEM_FROM_MEM
+	closetext
+.no_item
 	end
 
 MovementData_RockSmash:

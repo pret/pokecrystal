@@ -62,7 +62,7 @@ FishingSpotSign:
 	jumptext FishingSpotSignText
 
 Route12Calcium:
-	itemball CALCIUM
+	itemball ULTRA_BALL
 
 Route12Nugget:
 	itemball NUGGET

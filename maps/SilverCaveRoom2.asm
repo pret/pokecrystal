@@ -9,7 +9,7 @@ SilverCaveRoom2_MapScripts:
 	def_callbacks
 
 SilverCaveRoom2Calcium:
-	itemball CALCIUM
+	itemball MAX_ETHER
 
 SilverCaveRoom2UltraBall:
 	itemball ULTRA_BALL

@@ -389,11 +389,21 @@ HandleBerserkGene:
 	call GetPartyLocation
 	xor a
 	ld [hl], a
-; BUG: Berserk Gene's confusion lasts for 256 turns or the previous Pokémon's confusion count (see docs/bugs_and_glitches.md)
+
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
 	push af
 	set SUBSTATUS_CONFUSED, [hl]
+	ldh a, [hBattleTurn]
+	and a
+	ld hl, wPlayerConfuseCount
+	jr z, .set_confuse_count
+	ld hl, wEnemyConfuseCount
+.set_confuse_count
+	call BattleRandom
+	and %11
+	add 2
+	ld [hl], a
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVarAddr
 	push hl
@@ -2149,97 +2159,29 @@ UpdateBattleStateAndExperienceAfterEnemyFaint:
 	ld a, [wBattleResult]
 	and BATTLERESULT_BITMASK
 	ld [wBattleResult], a ; WIN
-	call IsAnyMonHoldingExpShare
-	jr z, .skip_exp
-	ld hl, wEnemyMonBaseStats
-	ld b, wEnemyMonEnd - wEnemyMonBaseStats
-.loop
-	srl [hl]
-	inc hl
-	dec b
-	jr nz, .loop
-
-.skip_exp
-	ld hl, wEnemyMonBaseStats
-	ld de, wBackupEnemyMonBaseStats
-	ld bc, wEnemyMonEnd - wEnemyMonBaseStats
-	call CopyBytes
-	xor a
-	ld [wGivingExperienceToExpShareHolders], a
+	ApplyExperienceAfterEnemyCaught:
+	; Preserve bits of non-fainted participants
+	ld a, [wBattleParticipantsNotFainted]
+	ld d, a
+	push de
 	call GiveExperiencePoints
-	call IsAnyMonHoldingExpShare
+	pop de
+	; If Exp. Share is ON, give 30% EXP to non-participants
+	ld a, [wExpShareToggle]
+	and a
 	ret z
-
+	ld hl, wEnemyMonBaseExp
+	srl [hl]
 	ld a, [wBattleParticipantsNotFainted]
 	push af
 	ld a, d
+	xor %00111111
 	ld [wBattleParticipantsNotFainted], a
-	ld hl, wBackupEnemyMonBaseStats
-	ld de, wEnemyMonBaseStats
-	ld bc, wEnemyMonEnd - wEnemyMonBaseStats
-	call CopyBytes
-	ld a, $1
-	ld [wGivingExperienceToExpShareHolders], a
 	call GiveExperiencePoints
 	pop af
 	ld [wBattleParticipantsNotFainted], a
 	ret
-
-IsAnyMonHoldingExpShare:
-	ld a, [wPartyCount]
-	ld b, a
-	ld hl, wPartyMon1
-	ld c, 1
-	ld d, 0
-.loop
-	push hl
-	push bc
-	ld bc, MON_HP
-	add hl, bc
-	ld a, [hli]
-	or [hl]
-	pop bc
-	pop hl
-	jr z, .next
-
-	push hl
-	push bc
-	ld bc, MON_ITEM
-	add hl, bc
-	pop bc
-	ld a, [hl]
-	pop hl
-
-	cp EXP_SHARE
-	jr nz, .next
-	ld a, d
-	or c
-	ld d, a
-
-.next
-	sla c
-	push de
-	ld de, PARTYMON_STRUCT_LENGTH
-	add hl, de
-	pop de
-	dec b
-	jr nz, .loop
-
-	ld a, d
-	ld e, 0
-	ld b, PARTY_LENGTH
-.loop2
-	srl a
-	jr nc, .okay
-	inc e
-
-.okay
-	dec b
-	jr nz, .loop2
-	ld a, e
-	and a
-	ret
-
+	
 StopDangerSound:
 	xor a
 	ld [wLowHealthAlarm], a
@@ -2261,8 +2203,10 @@ FaintYourPokemon:
 
 FaintEnemyPokemon:
 	call WaitSFX
-	ld de, SFX_KINESIS
-	call PlaySFX
+	ld a, $f1
+	ld [wCryTracks], a
+	ld a, [wEnemyMonSpecies]
+	call PlayStereoCry
 	call EnemyMonFaintedAnimation
 	ld de, SFX_FAINT
 	call PlaySFX
@@ -2556,10 +2500,6 @@ PlayVictoryMusic:
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .trainer_victory
-	push de
-	call IsAnyMonHoldingExpShare
-	pop de
-	jr nz, .play_music
 	ld hl, wPayDayMoney
 	ld a, [hli]
 	or [hl]
@@ -2914,9 +2854,15 @@ LostBattle:
 	bit 0, a
 	jr nz, .battle_tower
 
-	ld a, [wBattleType]
-	cp BATTLETYPE_CANLOSE
-	jr nz, .not_canlose
+	ld a, [wBattleMode]
+	dec a ; wild?
+	jr z, .no_loss_text
+
+	ld hl, wLossTextPointer
+	ld a, [hli]
+	ld h, [hl]
+	or h
+	jr z, .no_loss_text
 
 ; Remove the enemy from the screen.
 	hlcoord 0, 0
@@ -2952,7 +2898,7 @@ LostBattle:
 	call ClearBGPalettes
 	ret
 
-.not_canlose
+.no_loss_text
 	ld a, [wLinkMode]
 	and a
 	jr nz, .LostLinkBattle
@@ -3467,6 +3413,13 @@ CheckWhetherToAskSwitch:
 	ld a, [wOptions]
 	bit BATTLE_SHIFT, a
 	jr nz, .return_nc
+	
+	ld a, [wBattleType]
+    cp BATTLETYPE_SET
+    jr z, .return_nc
+	cp BATTLETYPE_SETNOITEMS
+    jr z, .return_nc
+
 	ld a, [wCurPartyMon]
 	push af
 	ld a, [wCurBattleMon]
@@ -3896,7 +3849,6 @@ InitBattleMon:
 	ld bc, PARTYMON_STRUCT_LENGTH - MON_ATK
 	call CopyBytes
 	call ApplyStatusEffectOnPlayerStats
-	call BadgeStatBoosts
 	ret
 
 BattleCheckPlayerShininess:
@@ -4952,6 +4904,10 @@ BattleMenu_Pack:
 	ld a, [wLinkMode]
 	and a
 	jp nz, .ItemsCantBeUsed
+	
+	ld a, [wBattleType]
+    cp BATTLETYPE_SETNOITEMS
+    jp z, .ItemsCantBeUsed
 
 	ld a, [wInBattleTowerBattle]
 	and a
@@ -6212,7 +6168,12 @@ LoadEnemyMon:
 
 .Happiness:
 ; Set happiness
+	ld a, [wBattleMode]
+	dec a
+	ld a, $ff ; Give the enemy mon max happiness...
+	jr nz, .load_happiness ; ...if it's a Trainer battle.
 	ld a, BASE_HAPPINESS
+.load_happiness
 	ld [wEnemyMonHappiness], a
 ; Set level
 	ld a, [wCurPartyLevel]
@@ -6408,6 +6369,7 @@ LoadEnemyMon:
 	call CopyBytes
 
 ; BUG: PRZ and BRN stat reductions don't apply to switched Pokémon (see docs/bugs_and_glitches.md)
+    call ApplyStatusEffectOnEnemyStats
 	ret
 
 CheckSleepingTreeMon:
@@ -6755,95 +6717,6 @@ ApplyStatLevelMultiplier:
 
 INCLUDE "data/battle/stat_multipliers_2.asm"
 
-BadgeStatBoosts:
-; Raise the stats of the battle mon in wBattleMon
-; depending on which badges have been obtained.
-
-; Every other badge boosts a stat, starting from the first.
-; GlacierBadge also boosts Special Defense, although the relevant code is buggy (see below).
-
-; 	ZephyrBadge:  Attack
-; 	PlainBadge:   Speed
-; 	MineralBadge: Defense
-; 	GlacierBadge: Special Attack and Special Defense
-
-; The boosted stats are in order, except PlainBadge and MineralBadge's boosts are swapped.
-
-	ld a, [wLinkMode]
-	and a
-	ret nz
-
-	ld a, [wInBattleTowerBattle]
-	and a
-	ret nz
-
-	ld a, [wJohtoBadges]
-
-; Swap badges 3 (PlainBadge) and 5 (MineralBadge).
-	ld d, a
-	and (1 << PLAINBADGE)
-	add a
-	add a
-	ld b, a
-	ld a, d
-	and (1 << MINERALBADGE)
-	rrca
-	rrca
-	ld c, a
-	ld a, d
-	and ((1 << ZEPHYRBADGE) | (1 << HIVEBADGE) | (1 << FOGBADGE) | (1 << STORMBADGE) | (1 << GLACIERBADGE) | (1 << RISINGBADGE))
-	or b
-	or c
-	ld b, a
-
-	ld hl, wBattleMonAttack
-	ld c, 4
-.CheckBadge:
-; BUG: Glacier Badge may not boost Special Defense depending on the value of Special Attack (see docs/bugs_and_glitches.md)
-	ld a, b
-	srl b
-	call c, BoostStat
-	inc hl
-	inc hl
-; Check every other badge.
-	srl b
-	dec c
-	jr nz, .CheckBadge
-	srl a
-	call c, BoostStat
-	ret
-
-BoostStat:
-; Raise stat at hl by 1/8.
-
-	ld a, [hli]
-	ld d, a
-	ld e, [hl]
-	srl d
-	rr e
-	srl d
-	rr e
-	srl d
-	rr e
-	ld a, [hl]
-	add e
-	ld [hld], a
-	ld a, [hl]
-	adc d
-	ld [hli], a
-
-; Cap at 999.
-	ld a, [hld]
-	sub LOW(MAX_STAT_VALUE)
-	ld a, [hl]
-	sbc HIGH(MAX_STAT_VALUE)
-	ret c
-	ld a, HIGH(MAX_STAT_VALUE)
-	ld [hli], a
-	ld a, LOW(MAX_STAT_VALUE)
-	ld [hld], a
-	ret
-
 _LoadBattleFontsHPBar:
 	callfar LoadBattleFontsHPBar
 	ret
@@ -6981,7 +6854,6 @@ GiveExperiencePoints:
 	bit 0, a
 	ret nz
 
-	call .EvenlyDivideExpAmongParticipants
 	xor a
 	ld [wCurPartyMon], a
 	ld bc, wPartyMon1Species
@@ -7148,7 +7020,8 @@ GiveExperiencePoints:
 	ld [wCurSpecies], a
 	call GetBaseData
 	push bc
-	ld d, MAX_LEVEL
+	ld a, [wLevelCap]
+	ld d, a
 	callfar CalcExpAtLevel
 	pop bc
 	ld hl, MON_EXP + 2
@@ -7183,8 +7056,12 @@ GiveExperiencePoints:
 	pop bc
 	ld hl, MON_LEVEL
 	add hl, bc
+	ld a, [wLevelCap]
+	push bc
+	ld b, a
 	ld a, [hl]
-	cp MAX_LEVEL
+	cp b
+	pop bc
 	jp nc, .next_mon
 	cp d
 	jp z, .next_mon
@@ -7267,7 +7144,6 @@ GiveExperiencePoints:
 	ld [wApplyStatLevelMultipliersToEnemy], a
 	call ApplyStatLevelMultiplierOnAllStats
 	callfar ApplyStatusEffectOnPlayerStats
-	callfar BadgeStatBoosts
 	callfar UpdatePlayerHUD
 	call EmptyBattleTextbox
 	call LoadTilemapToTempTilemap
@@ -7350,40 +7226,6 @@ GiveExperiencePoints:
 .done
 	jp ResetBattleParticipants
 
-.EvenlyDivideExpAmongParticipants:
-; count number of battle participants
-	ld a, [wBattleParticipantsNotFainted]
-	ld b, a
-	ld c, PARTY_LENGTH
-	ld d, 0
-.count_loop
-	xor a
-	srl b
-	adc d
-	ld d, a
-	dec c
-	jr nz, .count_loop
-	cp 2
-	ret c
-
-	ld [wTempByteValue], a
-	ld hl, wEnemyMonBaseStats
-	ld c, wEnemyMonEnd - wEnemyMonBaseStats
-.base_stat_division_loop
-	xor a
-	ldh [hDividend + 0], a
-	ld a, [hl]
-	ldh [hDividend + 1], a
-	ld a, [wTempByteValue]
-	ldh [hDivisor], a
-	ld b, 2
-	call Divide
-	ldh a, [hQuotient + 3]
-	ld [hli], a
-	dec c
-	jr nz, .base_stat_division_loop
-	ret
-
 BoostExp:
 ; Multiply experience by 1.5x
 	push bc
@@ -7430,9 +7272,13 @@ AnimateExpBar:
 	ld a, [wCurBattleMon]
 	cp [hl]
 	jp nz, .finish
-
+	
+    ld a, [wLevelCap]
+	push bc
+	ld b, a
 	ld a, [wBattleMonLevel]
-	cp MAX_LEVEL
+	cp b
+	pop bc
 	jp nc, .finish
 
 	ldh a, [hProduct + 3]
@@ -7469,7 +7315,8 @@ AnimateExpBar:
 	ld [hl], a
 
 .NoOverflow:
-	ld d, MAX_LEVEL
+	ld a, [wLevelCap]
+	ld d, a
 	callfar CalcExpAtLevel
 	ldh a, [hProduct + 1]
 	ld b, a
@@ -7504,8 +7351,12 @@ AnimateExpBar:
 	ld d, a
 
 .LoopLevels:
+    ld a, [wLevelCap]
+	push bc
+	ld b, a
 	ld a, e
-	cp MAX_LEVEL
+	cp b
+	pop bc
 	jr nc, .FinishExpBar
 	cp d
 	jr z, .FinishExpBar
@@ -8123,14 +7974,6 @@ InitEnemyTrainer:
 	callfar GetTrainerAttributes
 	callfar ReadTrainerParty
 
-	; RIVAL1's first mon has no held item
-	ld a, [wTrainerClass]
-	cp RIVAL1
-	jr nz, .ok
-	xor a
-	ld [wOTPartyMon1Item], a
-
-.ok
 	ld de, vTiles2
 	callfar GetTrainerPic
 	xor a

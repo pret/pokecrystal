@@ -68,19 +68,6 @@ CianwoodGymGuideText:
 
 	para "can use their"
 	line "physical strength."
-
-	para "And those boulders"
-	line "in the middle of"
-	cont "the GYM?"
-
-	para "If you don't move"
-	line "them correctly,"
-
-	para "you won't reach"
-	line "the GYM LEADER."
-
-	para "If you get stuck,"
-	line "go outside."
 	done
 
 CianwoodGymGuideWinText:

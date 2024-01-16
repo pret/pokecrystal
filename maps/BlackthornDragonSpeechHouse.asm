@@ -1,6 +1,6 @@
 	object_const_def
 	const BLACKTHORNDRAGONSPEECHHOUSE_GRANNY
-	const BLACKTHORNDRAGONSPEECHHOUSE_EKANS
+	const BLACKTHORNDRAGONSPEECHHOUSE_DRATINI
 
 BlackthornDragonSpeechHouse_MapScripts:
 	def_scene_scripts
@@ -56,4 +56,4 @@ BlackthornDragonSpeechHouse_MapEvents:
 
 	def_object_events
 	object_event  2,  3, SPRITE_GRANNY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BlackthornDragonSpeechHouseGrannyScript, -1
-	object_event  5,  5, SPRITE_EKANS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BlackthornDragonSpeechHouseDratiniScript, -1
+	object_event  5,  5, SPRITE_DRATINI, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BlackthornDragonSpeechHouseDratiniScript, -1

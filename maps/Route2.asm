@@ -53,13 +53,13 @@ Route2DiglettsCaveSign:
 	jumptext Route2DiglettsCaveSignText
 
 Route2DireHit:
-	itemball DIRE_HIT
+	itemball FULL_RESTORE
 
 Route2MaxPotion:
 	itemball MAX_POTION
 
 Route2Carbos:
-	itemball CARBOS
+	itemball NUGGET
 
 Route2Elixer:
 	itemball ELIXER

@@ -104,6 +104,14 @@
 	const SPRITE_ENTEI ; 64
 	const SPRITE_RAIKOU ; 65
 	const SPRITE_STANDING_YOUNGSTER ; 66
+	const SPRITE_TEAM_ROCKET ; 67
+	const SPRITE_ARIANA ; 68
+	const SPRITE_EUSINE ; 69
+    const SPRITE_GIOVANNI ; 70
+	const SPRITE_AGATHA ; 71
+	const SPRITE_LORELEI ; 72
+	const SPRITE_CHRIS_RUN ; 73
+ 	const SPRITE_KRIS_RUN ; 74
 DEF NUM_OVERWORLD_SPRITES EQU const_value - 1
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
@@ -144,6 +152,31 @@ DEF SPRITE_POKEMON EQU const_value
 	const SPRITE_GYARADOS ; a0
 	const SPRITE_LUGIA ; a1
 	const SPRITE_HO_OH ; a2
+	const SPRITE_MEW ; a3
+	const SPRITE_ARTICUNO ; a4
+	const SPRITE_ZAPDOS ; a5 
+	const SPRITE_MEWTWO ; a6
+	const SPRITE_AMPHAROS ; a7
+	const SPRITE_PIDGEY ; a8
+	const SPRITE_PERSIAN ; a9
+	const SPRITE_DRATINI ; aa
+	const SPRITE_ABRA ; ab
+	const SPRITE_BAYLEEF ; ac
+	const SPRITE_NIDORINO ; ad
+	const SPRITE_PSYDUCK ; ae
+	const SPRITE_NIDORAN_F ; af
+	const SPRITE_MEOWTH ; b0
+	const SPRITE_POLIWRATH ; b1
+	const SPRITE_BLISSEY ; b2
+	const SPRITE_DODRIO ; b3
+	const SPRITE_KANGASKHAN ; b4
+	const SPRITE_SLOWBRO ; b5
+	const SPRITE_NIDORAN_M ; b6
+	const SPRITE_RATTATA ; b7
+	const SPRITE_SPEAROW ; b8 
+	const SPRITE_FARFETCH_D ; b9
+	const SPRITE_MILTANK ; ba
+	const SPRITE_MURKROW ; bb
 DEF NUM_POKEMON_SPRITES EQU const_value - SPRITE_POKEMON
 
 ; special GetMonSprite values (see engine/overworld/overworld.asm)

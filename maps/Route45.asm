@@ -149,7 +149,6 @@ TrainerHikerParry:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_HIKER_PARRY
-	endifjustbattled
 	opentext
 	checkflag ENGINE_PARRY_READY_FOR_REMATCH
 	iftrue .WantsBattle

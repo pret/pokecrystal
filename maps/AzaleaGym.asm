@@ -22,6 +22,7 @@ AzaleaGymBugsyScript:
 	closetext
 	winlosstext BugsyText_ResearchIncomplete, 0
 	loadtrainer BUGSY, BUGSY1
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_BUGSY
@@ -47,14 +48,61 @@ AzaleaGymBugsyScript:
 	writetext BugsyText_FuryCutterSpeech
 	waitbutton
 	closetext
+	setevent EVENT_BEAT_BUGSY
 	end
 
 .GotFuryCutter:
+    checkevent EVENT_BEAT_CHAMPION_LANCE
+    iftrue .OfferRematch
+; player hasn't beaten the champion yet
 	writetext BugsyText_BugMonsAreDeep
 	waitbutton
 .NoRoomForFuryCutter:
 	closetext
 	end
+	
+.OfferRematch:
+    writetext BugsyRematchText
+    yesorno
+    iftrue .DoRematch
+    ; keep going if false
+	
+.DontDoRematch:
+    writetext BugsyRematchRefuseText
+    waitbutton
+    closetext
+    end
+	
+.DoRematch:
+    writetext BugsyRematchAcceptText
+    waitbutton
+    closetext
+    winlosstext BugsyRematchLossText, 0
+	readvar VAR_BADGES
+	if_greater_than 15, .DoRematch2
+    loadtrainer BUGSY, BUGSY2
+    loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+    startbattle
+    reloadmapafterbattle
+    setevent EVENT_BEAT_BUGSY
+    opentext
+    writetext BugsyRematchAfterText
+    waitbutton
+    closetext
+    end
+	
+.DoRematch2:
+	winlosstext BugsyRematchLossText, 0
+	loadtrainer BUGSY, BUGSY3
+    loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+    startbattle
+    reloadmapafterbattle
+    setevent EVENT_BEAT_BUGSY
+    opentext
+    writetext BugsyRematchAfterText
+    waitbutton
+    closetext
+    end
 
 AzaleaGymActivateRockets:
 	ifequal 7, .RadioTowerRockets
@@ -187,17 +235,11 @@ BugsyText_HiveBadgeSpeech:
 	line "benefits of HIVE-"
 	cont "BADGE?"
 
-	para "If you have it,"
-	line "#MON up to L30"
-
-	para "will obey you,"
-	line "even traded ones."
-
 	para "#MON that know"
 	line "CUT will be able"
 
 	para "to use it outside"
-	line "of battle too."
+	line "of battle.."
 
 	para "Here, I also want"
 	line "you to have this."
@@ -228,6 +270,42 @@ BugsyText_BugMonsAreDeep:
 
 	para "Study your favor-"
 	line "ites thoroughly."
+	done
+	
+BugsyRematchText:
+    text "Long time no see"
+	line "<PLAY_G>!"
+	
+	para "I'm doing great!"
+	line "My research has" 
+	cont "taken me far."
+	
+	para "Allow me to show"
+	line "you the fruits of"
+	cont "my labor!"
+	done
+
+BugsyRematchAcceptText:
+    text "Let me demonstrate"
+	line "what I've learned"
+	cont "from my studies!"
+	done
+
+BugsyRematchRefuseText:
+    text "Oh… alright. Let"
+	line "me know when you"
+	cont "change your mind."
+	done
+	
+BugsyRematchLossText:
+    text "Aw, that's the"
+	line "end of it…"
+	done
+	
+BugsyRematchAfterText:
+    text "Amazing <PLAY_G>!"
+	line "You're truly an"
+	cont "expert on #MON!"
 	done
 
 BugCatcherBennySeenText:

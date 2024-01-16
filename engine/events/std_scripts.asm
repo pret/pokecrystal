@@ -317,10 +317,10 @@ BugContestResultsWarpScript:
 BugContestResultsScript:
 	clearflag ENGINE_BUG_CONTEST_TIMER
 	clearevent EVENT_WARPED_FROM_ROUTE_35_NATIONAL_PARK_GATE
-	clearevent EVENT_CONTEST_OFFICER_HAS_SUN_STONE
+	clearevent EVENT_CONTEST_OFFICER_HAS_FOCUS_BAND
+	clearevent EVENT_CONTEST_OFFICER_HAS_SILVERPOWDER
 	clearevent EVENT_CONTEST_OFFICER_HAS_EVERSTONE
 	clearevent EVENT_CONTEST_OFFICER_HAS_GOLD_BERRY
-	clearevent EVENT_CONTEST_OFFICER_HAS_BERRY
 	opentext
 	farwritetext ContestResults_ReadyToJudgeText
 	waitbutton
@@ -332,8 +332,8 @@ BugContestResultsScript:
 	farwritetext ContestResults_ConsolationPrizeText
 	promptbutton
 	waitsfx
-	verbosegiveitem BERRY
-	iffalse BugContestResults_NoRoomForBerry
+	verbosegiveitem GOLD_BERRY
+	iffalse BugContestResults_NoRoomForGoldBerry
 
 BugContestResults_DidNotWin:
 	farwritetext ContestResults_DidNotWinText
@@ -387,14 +387,22 @@ BugContestResults_CleanUp:
 
 BugContestResults_FirstPlace:
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	getitemname STRING_BUFFER_4, SUN_STONE
+	getitemname STRING_BUFFER_4, FOCUS_BAND
 	farwritetext ContestResults_PlayerWonAPrizeText
 	waitbutton
-	verbosegiveitem SUN_STONE
-	iffalse BugContestResults_NoRoomForSunStone
+	verbosegiveitem FOCUS_BAND
+	iffalse BugContestResults_NoRoomForFocusBand
 	sjump BugContestResults_ReturnAfterWinnersPrize
 
 BugContestResults_SecondPlace:
+	getitemname STRING_BUFFER_4, SILVERPOWDER
+	farwritetext ContestResults_PlayerWonAPrizeText
+	waitbutton
+	verbosegiveitem SILVERPOWDER
+	iffalse BugContestResults_NoRoomForSilverpowder
+	sjump BugContestResults_ReturnAfterWinnersPrize
+
+BugContestResults_ThirdPlace:
 	getitemname STRING_BUFFER_4, EVERSTONE
 	farwritetext ContestResults_PlayerWonAPrizeText
 	waitbutton
@@ -402,18 +410,16 @@ BugContestResults_SecondPlace:
 	iffalse BugContestResults_NoRoomForEverstone
 	sjump BugContestResults_ReturnAfterWinnersPrize
 
-BugContestResults_ThirdPlace:
-	getitemname STRING_BUFFER_4, GOLD_BERRY
-	farwritetext ContestResults_PlayerWonAPrizeText
-	waitbutton
-	verbosegiveitem GOLD_BERRY
-	iffalse BugContestResults_NoRoomForGoldBerry
-	sjump BugContestResults_ReturnAfterWinnersPrize
-
-BugContestResults_NoRoomForSunStone:
+BugContestResults_NoRoomForFocusBand:
 	farwritetext BugContestPrizeNoRoomText
 	promptbutton
-	setevent EVENT_CONTEST_OFFICER_HAS_SUN_STONE
+	setevent EVENT_CONTEST_OFFICER_HAS_FOCUS_BAND
+	sjump BugContestResults_ReturnAfterWinnersPrize
+
+BugContestResults_NoRoomForSilverpowder:
+	farwritetext BugContestPrizeNoRoomText
+	promptbutton
+	setevent EVENT_CONTEST_OFFICER_HAS_SILVERPOWDER
 	sjump BugContestResults_ReturnAfterWinnersPrize
 
 BugContestResults_NoRoomForEverstone:
@@ -426,12 +432,6 @@ BugContestResults_NoRoomForGoldBerry:
 	farwritetext BugContestPrizeNoRoomText
 	promptbutton
 	setevent EVENT_CONTEST_OFFICER_HAS_GOLD_BERRY
-	sjump BugContestResults_ReturnAfterWinnersPrize
-
-BugContestResults_NoRoomForBerry:
-	farwritetext BugContestPrizeNoRoomText
-	promptbutton
-	setevent EVENT_CONTEST_OFFICER_HAS_BERRY
 	sjump BugContestResults_DidNotWin
 
 BugContestResults_CopyContestantsToResults:
@@ -602,6 +602,7 @@ InitializeEventsScript:
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_JANINE
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS
 	variablesprite SPRITE_JANINE_IMPERSONATOR, SPRITE_LASS
+	setevent EVENT_RADIO_TOWER_GIOVANNI
 	setevent EVENT_FOUND_MACHINE_PART_IN_CERULEAN_GYM
 	setevent EVENT_CERULEAN_GYM_ROCKET
 	setevent EVENT_ROUTE_24_ROCKET

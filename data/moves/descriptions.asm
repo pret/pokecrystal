@@ -316,16 +316,16 @@ GuillotineDescription:
 	next "pincer attack.@"
 
 RazorWindDescription:
-	db   "1st turn: Prepare"
-	next "2nd turn: Attack@"
+	db   "Has a high criti-"
+	next "cal hit ratio.@"
 
 SwordsDanceDescription:
 	db   "A dance that in-"
 	next "creases ATTACK.@"
 
 CutDescription:
-	db   "Cuts using claws,"
-	next "scythes, etc.@"
+	db   "Cuts trees. High"
+	next "crit rate.@"
 
 GustDescription:
 	db   "Whips up a strong"
@@ -584,9 +584,9 @@ SleepPowderDescription:
 	next "to fall asleep.@"
 
 PetalDanceDescription:
-	db   "Works 2-3 turns"
-	next "and confuses user.@"
-
+	db   "A powerful spe-"
+	next "cial attack.@"
+	
 StringShotDescription:
 	db   "A move that lowers"
 	next "the foe's SPEED.@"
@@ -772,8 +772,8 @@ FireBlastDescription:
 	next "may cause a burn.@"
 
 WaterfallDescription:
-	db   "An aquatic charge"
-	next "attack.@"
+	db   "An aquatic attack"
+	next "that may flinch.@"
 
 ClampDescription:
 	db   "Traps the foe for"
@@ -792,8 +792,8 @@ SpikeCannonDescription:
 	next "hit 2-5 times.@"
 
 ConstrictDescription:
-	db   "An attack that may"
-	next "lower SPEED.@"
+	db   "An attack that"
+	next "lowers SPEED.@"
 
 AmnesiaDescription:
 	db   "Sharply raises the"
@@ -836,8 +836,8 @@ LovelyKissDescription:
 	next "to fall asleep.@"
 
 SkyAttackDescription:
-	db   "1st turn: Prepare"
-	next "2nd turn: Attack@"
+    db   "An attack that al-"
+	next "so hurts the user.@"
 
 TransformDescription:
 	db   "The user assumes"
@@ -1260,8 +1260,8 @@ FutureSightDescription:
 	next "hits on 3rd turn.@"
 
 RockSmashDescription:
-	db   "An attack that may"
-	next "lower DEFENSE.@"
+	db   "An attack that"
+	next "lowerS DEFENSE.@"
 
 WhirlpoolDescription:
 	db   "Traps the foe for"

@@ -120,7 +120,117 @@ PrintTempMonStats:
 	next "SPCL.DEF"
 	next "SPEED"
 	next "@"
+	
+PrintTempMonDVs:
+	hlcoord 1, 11
+	ld de, .DVstring
+	call PlaceString
+	; we're using wPokedexStatus because why not, nobody using it atm lol
+	; ATK DV
+	ld a, [wTempMonDVs] ; only get the first byte of the word
+	and %11110000 ; most significant nybble of first byte in word-sized wTempMonDVs
+	swap a ; so we can print it properly
+	ld [wPokedexStatus], a
+	ld c, 0
+	; calc HP stat contribution
+	and 1 ; a still has the ATK DV
+	jr z, .atk_not_odd
+	ld a, 0
+	add 8
+	ld b, 0
+	ld c, a
 
+.atk_not_odd
+	push bc
+	ld de, wPokedexStatus
+	lb bc,  1, 2 ; bytes, digits
+	hlcoord 5, 13 ; 1, 5, 9, 13
+	call PrintNum
+
+	; DEF DV
+	ld a, [wTempMonDVs] ; only get the first byte of the word
+	and %00001111 ; least significant nybble, don't need to swap the bits of the byte
+	ld [wPokedexStatus], a ;DEF
+	; calc HP stat contribution
+	pop bc
+	and 1 ; a still has the DEF DV
+	jr z, .def_not_odd
+	ld a, c
+	add 4
+	ld b, 0
+	ld c, a
+
+.def_not_odd
+	push bc
+	ld de, wPokedexStatus
+	lb bc,  1, 2
+	hlcoord 9, 13 ; 1, 5, 9, 13
+	call PrintNum
+
+	; SPE DV
+	ld a, [wTempMonDVs + 1] ; second byte of word
+	and %11110000 ; most significant nybble of 2nd byte in word-sized wTempMonDVs
+	swap a ; so we can print it properly
+	ld [wPokedexStatus], a ;SPEED
+	; calc HP stat contribution
+	pop bc
+	and 1 ; a still has the SPEED DV
+	jr z, .speed_not_odd
+	ld a, c
+	add 2
+	ld b, 0
+	ld c, a
+
+.speed_not_odd
+	push bc
+	ld de, wPokedexStatus
+	lb bc,  1, 2 ; bytes, digits
+	hlcoord 13, 13 ; 1, 5, 9, 13
+	call PrintNum
+
+	; SPC DV
+	ld a, [wTempMonDVs + 1] ; second byte of word
+	and %00001111 ; least significant nybble, don't need to swap the bits of the byte
+	ld [wPokedexStatus], a ;SPC
+	; calc HP stat contribution
+	pop bc
+	and 1 ; a still has the DEF DV
+	jr z, .spc_not_odd
+	ld a, c
+	add 1
+	ld b, 0
+	ld c, a
+
+.spc_not_odd
+	push bc
+	ld de, wPokedexStatus
+	lb bc, 1, 2 ; bytes, digits
+	hlcoord 17, 13 ; 1, 4, 7, 10, 13 
+	call PrintNum
+	; HP
+	; HP DV is determined by the last bit of each of these four DVs
+	; odd Attack DV adds 8, Defense adds 4, Speed adds 2, and Special adds 1
+	; For example, a Lugia with the DVs 5 Atk, 15 Def, 13 Spe, and 13 Spc will have:
+	; 5 Attack = Odd, HP += 8
+	; 15 Defense = Odd, HP += 4
+	; 13 Speed = Odd, HP += 2
+	; 13 Special = Odd, HP += 1
+	; resulting in an HP stat of 15
+	; THANKS SMOGON
+	; going to "and 1" each final value and push a counter to stack to preserve it
+	pop bc
+	ld a, c
+	ld [wPokedexStatus], a
+	ld de, wPokedexStatus
+	lb bc,  1, 2 ; bytes, digits
+	hlcoord 1, 13 ; 1, 4, 7, 10, 13 
+	call PrintNum
+	ret
+
+.DVstring:
+	db "HP ATK DEF SPE SPC@"
+	;   123456789ABCDEF123
+	
 GetGender:
 ; Return the gender of a given monster (wCurPartyMon/wCurOTMon/wCurWildMon).
 ; When calling this function, a should be set to an appropriate wMonType value.

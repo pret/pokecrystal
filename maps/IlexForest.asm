@@ -403,7 +403,7 @@ IlexForestRevive:
 	itemball REVIVE
 
 IlexForestXAttack:
-	itemball X_ATTACK
+	itemball AWAKENING
 
 IlexForestAntidote:
 	itemball ANTIDOTE
@@ -463,7 +463,8 @@ IlexForestShrineScript:
 	pause 20
 	clearflag ENGINE_FOREST_IS_RESTLESS
 	special CelebiShrineEvent
-	loadwildmon CELEBI, 30
+	loadwildmon CELEBI, 70
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SUICUNE
 	startbattle
 	reloadmapafterbattle
 	pause 20

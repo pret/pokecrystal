@@ -4,6 +4,7 @@
 	const LAVRADIOTOWER1F_SUPER_NERD1
 	const LAVRADIOTOWER1F_GENTLEMAN
 	const LAVRADIOTOWER1F_SUPER_NERD2
+	const LAVRADIOTOWER1F_AGATHA
 
 LavRadioTower1F_MapScripts:
 	def_scene_scripts
@@ -65,6 +66,87 @@ LavRadioTower1FSuperNerd2Script:
 	waitbutton
 	closetext
 	end
+	
+AgathaScript:
+    faceplayer
+	opentext
+	writetext AgathaMatchText
+	yesorno
+    iftrue .DoMatch
+	; keep going if false
+	
+.DontDoMatch:
+    writetext AgathaMatchRefuseText
+    waitbutton
+    closetext
+    end
+	
+.DoMatch:
+    writetext AgathaMatchAcceptText
+    waitbutton
+    closetext
+    winlosstext AgathaMatchLossText, 0
+    loadtrainer AGATHA, AGATHA1
+    loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+    startbattle
+    reloadmapafterbattle
+    faceplayer
+    writetext AgathaMatchAfterText
+    waitbutton
+    closetext
+    end
+	
+AgathaMatchText:
+    text "AGATHA: That look"
+	line "in your eyes.."
+	
+	para "Ah, you must be" 
+	line "the child OAK was"
+	cont "talking about."
+	
+	para "My name is AGATHA."
+	line "I once was"
+	cont "a member of"
+	cont "KANTO's ELITE FOUR."
+	
+	para "But unlike that"
+	line "old duff, my"
+	cont "fighting spirit"
+	cont "has not dulled."
+	
+	para "Would you like" 
+	line "to battle me,"
+	cont "<PLAY_G>?"
+	done 
+	
+AgathaMatchAcceptText:
+    text "Let's see what you"
+	line "can do, child!"
+	done 
+	
+AgathaMatchRefuseText:
+    text "Talk to me when"
+	line "you change your"
+	cont "mind, child."
+	done 
+	
+AgathaMatchLossText:
+    text "Oh, my! You're"
+	line "something else!"
+	done 
+	
+AgathaMatchAfterText:
+    text "You win! I see"
+	line "what that old"
+	cont "duff sees in"
+	cont "you now."
+	
+	para "I haven't had a"
+	line "battle like this"
+	cont "since I fought"
+	cont "those boys"
+	cont "from PALLET."
+	done 
 
 LavRadioTower1FDirectory:
 	jumptext LavRadioTower1FDirectoryText
@@ -238,3 +320,4 @@ LavRadioTower1F_MapEvents:
 	object_event  1,  3, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FSuperNerd1Script, -1
 	object_event  9,  1, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FGentlemanScript, -1
 	object_event 14,  6, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FSuperNerd2Script, -1
+	object_event  4,  1, SPRITE_AGATHA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AgathaScript, -1

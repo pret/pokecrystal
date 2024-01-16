@@ -30,27 +30,43 @@ DEF NUM_NONTRAINER_PHONECONTACTS EQU const_value - 1
 DEF KRIS EQU __trainer_class__
 	trainerclass FALKNER ; 1
 	const FALKNER1
+	const FALKNER2
+	const FALKNER3
 
 	trainerclass WHITNEY ; 2
 	const WHITNEY1
+	const WHITNEY2
+	const WHITNEY3
 
 	trainerclass BUGSY ; 3
 	const BUGSY1
+	const BUGSY2
+	const BUGSY3
 
 	trainerclass MORTY ; 4
 	const MORTY1
+	const MORTY2
+	const MORTY3
 
 	trainerclass PRYCE ; 5
 	const PRYCE1
+	const PRYCE2
+	const PRYCE3
 
 	trainerclass JASMINE ; 6
 	const JASMINE1
+	const JASMINE2
+	const JASMINE3
 
 	trainerclass CHUCK ; 7
 	const CHUCK1
+	const CHUCK2
+	const CHUCK3
 
 	trainerclass CLAIR ; 8
 	const CLAIR1
+	const CLAIR2
+	const CLAIR3
 
 	trainerclass RIVAL1 ; 9
 	const RIVAL1_1_CHIKORITA
@@ -73,32 +89,40 @@ DEF KRIS EQU __trainer_class__
 
 	trainerclass WILL ; b
 	const WILL1
+	const WILL2
 
 	trainerclass CAL ; c
-	const CAL1 ; unused
 	const CAL2
 	const CAL3
+	const CAL4
 
 	trainerclass BRUNO ; d
 	const BRUNO1
+	const BRUNO2
 
 	trainerclass KAREN ; e
 	const KAREN1
+	const KAREN2
 
 	trainerclass KOGA ; f
 	const KOGA1
+	const KOGA2
 
-	trainerclass CHAMPION ; 10
-	const LANCE
+	trainerclass LANCE ; 10
+	const LANCE1
+	const LANCE2
 
 	trainerclass BROCK ; 11
 	const BROCK1
+	const BROCK2
 
 	trainerclass MISTY ; 12
 	const MISTY1
+	const MISTY2
 
 	trainerclass LT_SURGE ; 13
 	const LT_SURGE1
+	const LT_SURGE2
 
 	trainerclass SCIENTIST ; 14
 	const ROSS
@@ -109,6 +133,7 @@ DEF KRIS EQU __trainer_class__
 
 	trainerclass ERIKA ; 15
 	const ERIKA1
+	const ERIKA2
 
 	trainerclass YOUNGSTER ; 16
 	const JOEY1
@@ -185,8 +210,6 @@ DEF KRIS EQU __trainer_class__
 	const MICHELLE
 	const DANA1
 	const ELLEN
-	const CONNIE2 ; unused
-	const CONNIE3 ; unused
 	const DANA2
 	const DANA3
 	const DANA4
@@ -194,6 +217,7 @@ DEF KRIS EQU __trainer_class__
 
 	trainerclass JANINE ; 1a
 	const JANINE1
+	const JANINE2
 
 	trainerclass COOLTRAINERM ; 1b
 	const NICK
@@ -208,12 +232,8 @@ DEF KRIS EQU __trainer_class__
 	const GAVEN3
 	const BLAKE
 	const BRIAN
-	const ERICK ; unused
-	const ANDY ; unused
-	const TYLER ; unused
 	const SEAN
 	const KEVIN
-	const STEVE ; unused
 	const ALLEN
 	const DARIN
 
@@ -243,19 +263,8 @@ DEF KRIS EQU __trainer_class__
 	trainerclass BEAUTY ; 1d
 	const VICTORIA
 	const SAMANTHA
-	const JULIE ; unused
-	const JACLYN ; unused
-	const BRENDA ; unused
 	const CASSIE
-	const CAROLINE ; unused
-	const CARLENE ; unused
-	const JESSICA ; unused
-	const RACHAEL ; unused
-	const ANGELICA ; unused
-	const KENDRA ; unused
-	const VERONICA ; unused
 	const JULIA
-	const THERESA ; unused
 	const VALERIE
 	const OLIVIA
 
@@ -288,7 +297,6 @@ DEF KRIS EQU __trainer_class__
 	const GRUNTM_9
 	const GRUNTM_10
 	const GRUNTM_11
-	const GRUNTM_12 ; unused
 	const GRUNTM_13
 	const GRUNTM_14
 	const GRUNTM_15
@@ -298,22 +306,16 @@ DEF KRIS EQU __trainer_class__
 	const GRUNTM_19
 	const GRUNTM_20
 	const GRUNTM_21
-	const GRUNTM_22 ; unused
-	const GRUNTM_23 ; unused
 	const GRUNTM_24
 	const GRUNTM_25
-	const GRUNTM_26 ; unused
-	const GRUNTM_27 ; unused
 	const GRUNTM_28
 	const GRUNTM_29
-	const GRUNTM_30 ; unused
 	const GRUNTM_31
 
 	trainerclass GENTLEMAN ; 20
 	const PRESTON
 	const EDWARD
 	const GREGORY
-	const VIRGIL ; unused
 	const ALFRED
 
 	trainerclass SKIER ; 21
@@ -327,6 +329,7 @@ DEF KRIS EQU __trainer_class__
 
 	trainerclass SABRINA ; 23
 	const SABRINA1
+	const SABRINA2
 
 	trainerclass BUG_CATCHER ; 24
 	const DON
@@ -385,18 +388,10 @@ DEF KRIS EQU __trainer_class__
 	const BERKE
 	const KIRK
 	const MATHEW
-	const HAL ; unused
-	const PATON ; unused
-	const DARYL ; unused
-	const WALTER ; unused
-	const TONY ; unused
 	const JEROME
 	const TUCKER
-	const RICK ; unused
 	const CAMERON
 	const SETH
-	const JAMES ; unused
-	const LEWIS ; unused
 	const PARKER
 
 	trainerclass SWIMMERF ; 27
@@ -407,15 +402,9 @@ DEF KRIS EQU __trainer_class__
 	const DENISE
 	const KARA
 	const WENDY
-	const LISA ; unused
-	const JILL ; unused
-	const MARY ; unused
-	const KATIE ; unused
 	const DAWN
-	const TARA ; unused
 	const NICOLE
 	const LORI
-	const JODY ; unused
 	const NIKKI
 	const DIANA
 	const BRIANA
@@ -436,18 +425,12 @@ DEF KRIS EQU __trainer_class__
 	const HUEY4
 
 	trainerclass SUPER_NERD ; 29
-	const STAN
 	const ERIC
-	const GREGG ; unused
-	const JAY ; unused
-	const DAVE ; unused
 	const SAM
 	const TOM
 	const PAT
 	const SHAWN
 	const TERU
-	const RUSS ; unused
-	const NORTON ; unused
 	const HUGH
 	const MARKUS
 
@@ -488,8 +471,6 @@ DEF KRIS EQU __trainer_class__
 	const ANTHONY5
 
 	trainerclass BIKER ; 2d
-	const BIKER_BENNY ; unused
-	const KAZU ; unused
 	const DWAYNE
 	const HARRIS
 	const ZEKE
@@ -500,6 +481,7 @@ DEF KRIS EQU __trainer_class__
 
 	trainerclass BLAINE ; 2e
 	const BLAINE1
+	const BLAINE2
 
 	trainerclass BURGLAR ; 2f
 	const DUNCAN
@@ -508,8 +490,6 @@ DEF KRIS EQU __trainer_class__
 
 	trainerclass FIREBREATHER ; 30
 	const OTIS
-	const DICK ; unused
-	const NED ; unused
 	const BURT
 	const BILL
 	const WALT
@@ -520,14 +500,9 @@ DEF KRIS EQU __trainer_class__
 	const IRWIN1
 	const FRITZ
 	const HORTON
-	const IRWIN2 ; unused
-	const IRWIN3 ; unused
-	const IRWIN4 ; unused
 
 	trainerclass BLACKBELT_T ; 32
-	const KENJI1 ; unused
 	const YOSHI
-	const KENJI2 ; unused
 	const LAO
 	const NOB
 	const KIYO
@@ -536,7 +511,6 @@ DEF KRIS EQU __trainer_class__
 	const WAI
 
 	trainerclass EXECUTIVEM ; 33
-	const EXECUTIVEM_1
 	const EXECUTIVEM_2
 	const EXECUTIVEM_3
 	const EXECUTIVEM_4
@@ -592,15 +566,9 @@ DEF KRIS EQU __trainer_class__
 	const LLOYD
 	const DEAN
 	const SID
-	const HARVEY ; unused
-	const DALE ; unused
 	const TED
 	const TODD2
 	const TODD3
-	const THOMAS ; unused
-	const LEROY ; unused
-	const DAVID ; unused
-	const JOHN ; unused
 	const JERRY
 	const SPENCER
 	const TODD4
@@ -628,9 +596,6 @@ DEF KRIS EQU __trainer_class__
 	trainerclass MEDIUM ; 39
 	const MARTHA
 	const GRACE
-	const BETHANY ; unused
-	const MARGRET ; unused
-	const ETHEL ; unused
 	const REBECCA
 	const DORIS
 
@@ -649,14 +614,11 @@ DEF KRIS EQU __trainer_class__
 	const BRANDON
 	const JEREMY
 	const COLIN
-	const DEREK2 ; unused
-	const DEREK3 ; unused
 	const ALEX
 	const REX
 	const ALLAN
 
 	trainerclass KIMONO_GIRL ; 3c
-	const NAOKO_UNUSED ; unused
 	const NAOKO
 	const SAYO
 	const ZUKI
@@ -673,13 +635,10 @@ DEF KRIS EQU __trainer_class__
 	const MEGANDPEG1
 	const MEGANDPEG2
 	const LEAANDPIA1
-	const LEAANDPIA2 ; unused
 
 	trainerclass POKEFANF ; 3e
 	const BEVERLY1
 	const RUTH
-	const BEVERLY2 ; unused
-	const BEVERLY3 ; unused
 	const GEORGIA
 	const JAIME
 
@@ -688,6 +647,7 @@ DEF KRIS EQU __trainer_class__
 
 	trainerclass BLUE ; 40
 	const BLUE1
+	const BLUE2
 
 	trainerclass OFFICER ; 41
 	const KEITH
@@ -702,5 +662,20 @@ DEF KRIS EQU __trainer_class__
 
 	trainerclass MYSTICALMAN ; 43
 	const EUSINE
+	
+	trainerclass TEAM_ROCKET
+	const ARCHER
 
+    trainerclass GIOVANNI
+	const GIOVANNI1
+	
+	trainerclass AGATHA
+	const AGATHA1
+	
+	trainerclass LORELEI
+	const LORELEI1
+	
+	trainerclass OAK
+	const OAK1
+	
 DEF NUM_TRAINER_CLASSES EQU __trainer_class__ - 1

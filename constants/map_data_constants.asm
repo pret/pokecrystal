@@ -138,4 +138,4 @@ DEF KANTO_FLYPOINT EQU const_value
 	const FLY_INDIGO
 DEF NUM_FLYPOINTS EQU const_value
 
-DEF MAX_OUTDOOR_SPRITES EQU 23 ; see engine/overworld/overworld.asm
+

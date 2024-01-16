@@ -20,6 +20,7 @@ VermilionGymSurgeScript:
 	closetext
 	winlosstext LtSurgeWinLossText, 0
 	loadtrainer LT_SURGE, LT_SURGE1
+	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_LTSURGE
@@ -37,10 +38,39 @@ VermilionGymSurgeScript:
 	end
 
 .FightDone:
+    readvar VAR_BADGES
+	if_greater_than 15, .OfferRematch
 	writetext LtSurgeFightDoneText
 	waitbutton
 	closetext
 	end
+	
+.OfferRematch:
+    writetext SurgeRematchText
+    yesorno
+    iftrue .DoRematch
+    ; keep going if false
+	
+.DontDoRematch:
+    writetext SurgeRematchRefuseText
+    waitbutton
+    closetext
+    end
+	
+.DoRematch:
+    writetext SurgeRematchAcceptText
+    waitbutton
+    closetext
+    winlosstext SurgeRematchLossText, 0
+    loadtrainer LT_SURGE, LT_SURGE2
+    loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+    startbattle
+    reloadmapafterbattle
+    opentext
+    writetext SurgeRematchAfterText
+    waitbutton
+    closetext
+    end
 
 TrainerGentlemanGregory:
 	trainer GENTLEMAN, GREGORY, EVENT_BEAT_GENTLEMAN_GREGORY, GentlemanGregorySeenText, GentlemanGregoryBeatenText, 0, .Script
@@ -139,11 +169,7 @@ ReceivedThunderBadgeText:
 	done
 
 LtSurgeThunderBadgeText:
-	text "SURGE: THUNDER-"
-	line "BADGE increases"
-	cont "#MON's speed. "
-
-	para "Consider it proof"
+	text "Consider it proof"
 	line "that you defeated"
 
 	para "me. You wear it"
@@ -158,6 +184,44 @@ LtSurgeFightDoneText:
 	para "My #MON and I"
 	line "are still at it!"
 	done
+	
+SurgeRematchText:
+    text "SURGE: Hey kid!"
+	line "Pretty shocking"
+	cont "how far you've"
+	cont "made it!"
+	
+	para "How about you"
+	line "show me what"
+	cont "#MON you've"
+	cont "raised?"
+	done 
+	
+SurgeRematchAcceptText:
+    text "Let's go kid!"
+	
+	para "I'll shock you"
+	line "into surrender!"
+	done 
+	
+SurgeRematchRefuseText:
+    text "I see. You must"
+	line "be pretty busy."
+	done 
+	
+SurgeRematchLossText:
+    text "Whoa! You're"
+	line "the real deal!"
+	done 
+	
+SurgeRematchAfterText:
+    text "Looks like"
+	line "there's a gap"
+	cont "between us I"
+	cont "need to close!"
+	
+	para "Come again, kid!"
+	done 
 
 GentlemanGregorySeenText:
 	text "You're here to"

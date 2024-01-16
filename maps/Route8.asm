@@ -154,9 +154,9 @@ SupernerdTomBeatenText:
 	done
 
 SupernerdTomAfterBattleText:
-	text "GYM BADGES give"
-	line "you advantages in"
-	cont "battles."
+	text "GYM BADGES are"
+	line "proof of how"
+	cont "good you are."
 	done
 
 Route8LockedDoorText:

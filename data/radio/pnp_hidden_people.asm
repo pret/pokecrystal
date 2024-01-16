@@ -5,7 +5,7 @@ PnP_HiddenPeople:
 	db BRUNO
 	db KAREN
 	db KOGA
-	db CHAMPION
+	db LANCE
 	; fallthrough
 PnP_HiddenPeople_BeatE4:
 	db BROCK

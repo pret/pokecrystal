@@ -5,7 +5,7 @@ These instructions explain how to set up the tools required to build **pokecryst
 If you run into trouble, ask for help on IRC or Discord (see [README.md](README.md)).
 
 
-## Windows 10
+## Windows 10 and newer
 
 Download and install [**Windows Subsystem for Linux**](https://docs.microsoft.com/en-us/windows/wsl/install-win10). Then open the **WSL terminal**.
 
@@ -27,10 +27,10 @@ cd /mnt/c/Users/<user>/Desktop
 
 If this works, then follow [the instructions for **Linux**](#linux) below for whatever distribution you installed for WSL.
 
-Otherwise, continue reading below for [the older Windows instructions](#windows).
+Otherwise, continue reading below for [the older Windows instructions](#windows-any-version).
 
 
-## Windows
+## Windows (any version)
 
 Download [**Cygwin**](http://cygwin.com/install.html): **setup-x86_64.exe** for 64-bit Windows, **setup-x86.exe** for 32-bit.
 
@@ -103,8 +103,6 @@ To install the software required for **pokecrystal**:
 ```bash
 sudo pacman -S make gcc git rgbds
 ```
-
-Then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#pre-built) for Arch Linux to install **rgbds 0.6.1**.
 
 If you want to compile and install **rgbds** yourself instead, then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#building-from-source) to build **rgbds 0.6.1** from source.
 

@@ -1,9 +1,9 @@
 	db SLUGMA ; 218
 
-	db  40,  40,  40,  20,  70,  40
+	db  60,  40,  60,  20,  70,  60
 	;   hp  atk  def  spd  sat  sdf
 
-	db FIRE, FIRE ; type
+	db FIRE, ROCK ; type
 	db 190 ; catch rate
 	db 78 ; base exp
 	db NO_ITEM, NO_ITEM ; items

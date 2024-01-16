@@ -375,7 +375,6 @@ LoadStatsScreenPals:
 	ret z
 	ld hl, StatsScreenPals
 	ld b, 0
-	dec c
 	add hl, bc
 	add hl, bc
 	ldh a, [rSVBK]
@@ -729,7 +728,7 @@ CGBCopyBattleObjectPals: ; unreferenced
 	dec c
 	jr nz, .loop
 	ld hl, BattleObjectPals
-	ld de, wOBPals1 palette 2
+	ld de, wOBPals1 palette PAL_BATTLE_OB_GRAY
 	ld bc, 2 palettes
 	ld a, BANK(wOBPals1)
 	call FarCopyWRAM

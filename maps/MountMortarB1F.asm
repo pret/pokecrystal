@@ -37,7 +37,7 @@ MountMortarB1FKiyoScript:
 	writetext MountMortarB1FReceiveMonText
 	playsound SFX_CAUGHT_MON
 	waitsfx
-	givepoke TYROGUE, 10
+	givepoke TYROGUE, 60
 	setevent EVENT_GOT_TYROGUE_FROM_KIYO
 .GotTyrogue:
 	writetext MountMortarB1FKiyoGotTyrogueText
@@ -58,7 +58,7 @@ MountMortarB1FHyperPotion:
 	itemball HYPER_POTION
 
 MountMortarB1FCarbos:
-	itemball CARBOS
+	itemball RARE_CANDY
 
 MountMortarB1FFullRestore:
 	itemball FULL_RESTORE

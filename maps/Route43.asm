@@ -51,7 +51,6 @@ TrainerPokemaniacBrent:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_POKEMANIAC_BRENT
-	endifjustbattled
 	opentext
 	checkflag ENGINE_BRENT_READY_FOR_REMATCH
 	iftrue .WantsBattle
@@ -178,7 +177,6 @@ TrainerPicnickerTiffany:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_PICNICKER_TIFFANY
-	endifjustbattled
 	opentext
 	checkflag ENGINE_TIFFANY_READY_FOR_REMATCH
 	iftrue .WantsBattle

@@ -106,3 +106,14 @@ SuicuneSpriteGFX::             INCBIN "gfx/sprites/suicune.2bpp"
 EnteiSpriteGFX::               INCBIN "gfx/sprites/entei.2bpp"
 RaikouSpriteGFX::              INCBIN "gfx/sprites/raikou.2bpp"
 StandingYoungsterSpriteGFX::   INCBIN "gfx/sprites/standing_youngster.2bpp"
+
+SECTION "Sprites 3", ROMX
+
+TeamRocketSpriteGFX:: INCBIN "gfx/sprites/team_rocket.2bpp"
+ArianaSpriteGFX::     INCBIN "gfx/sprites/ariana.2bpp"
+EusineSpriteGFX::     INCBIN "gfx/sprites/eusine.2bpp"
+GiovanniSpriteGFX::   INCBIN "gfx/sprites/giovanni.2bpp"
+AgathaSpriteGFX::     INCBIN "gfx/sprites/agatha.2bpp"
+LoreleiSpriteGFX::    INCBIN "gfx/sprites/lorelei.2bpp"
+ChrisRunSpriteGFX::   INCBIN "gfx/sprites/chris_run.2bpp"
+KrisRunSpriteGFX::    INCBIN "gfx/sprites/kris_run.2bpp"

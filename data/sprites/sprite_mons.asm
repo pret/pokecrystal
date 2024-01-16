@@ -36,4 +36,29 @@ SpriteMons:
 	db GYARADOS
 	db LUGIA
 	db HO_OH
+	db MEW
+	db ARTICUNO
+	db ZAPDOS
+	db MEWTWO
+	db AMPHAROS
+	db PIDGEY
+	db PERSIAN
+	db DRATINI
+	db ABRA
+	db BAYLEEF
+	db NIDORINO
+	db PSYDUCK
+	db NIDORAN_F
+	db MEOWTH
+	db POLIWRATH
+	db BLISSEY
+	db DODRIO
+	db KANGASKHAN
+	db SLOWBRO
+	db NIDORAN_M
+	db RATTATA
+	db SPEAROW
+	db FARFETCH_D
+	db MILTANK
+	db MURKROW
 	assert_table_length NUM_POKEMON_SPRITES

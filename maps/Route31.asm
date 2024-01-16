@@ -27,7 +27,6 @@ TrainerBugCatcherWade1:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_BUG_CATCHER_WADE
-	endifjustbattled
 	opentext
 	checkflag ENGINE_WADE_READY_FOR_REMATCH
 	iftrue .WadeRematch
@@ -56,29 +55,17 @@ TrainerBugCatcherWade1:
 .WadeRematch:
 	scall .RematchSTD
 	winlosstext BugCatcherWade1BeatenText, 0
-	readmem wWadeFightCount
-	ifequal 4, .Fight4
-	ifequal 3, .Fight3
-	ifequal 2, .Fight2
-	ifequal 1, .Fight1
-	ifequal 0, .LoadFight0
-.Fight4:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight4
-.Fight3:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .LoadFight3
-.Fight2:
 	checkflag ENGINE_FLYPOINT_MAHOGANY
 	iftrue .LoadFight2
-.Fight1:
 	checkflag ENGINE_FLYPOINT_GOLDENROD
 	iftrue .LoadFight1
-.LoadFight0:
 	loadtrainer BUG_CATCHER, WADE1
 	startbattle
 	reloadmapafterbattle
-	loadmem wWadeFightCount, 1
 	clearflag ENGINE_WADE_READY_FOR_REMATCH
 	end
 
@@ -432,7 +419,7 @@ Route31_MapEvents:
 	def_object_events
 	object_event 17,  7, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31MailRecipientScript, -1
 	object_event  9,  5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31YoungsterScript, -1
-	object_event 21, 13, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 5, TrainerBugCatcherWade1, -1
+	object_event  9, 13, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 5, TrainerBugCatcherWade1, -1
 	object_event 33,  8, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31CooltrainerMScript, -1
 	object_event 16,  7, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31FruitTree, -1
 	object_event 29,  5, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route31Potion, EVENT_ROUTE_31_POTION

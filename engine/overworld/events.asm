@@ -284,6 +284,13 @@ PlayerEvents:
 	xor a
 	ld [wLandmarkSignTimer], a
 
+; Have player stand (resets running sprite to standing if event starts while running)
+	ld a, [wPlayerState]
+	cp PLAYER_RUN
+	jr nz, .ok2
+	ld a, PLAYER_NORMAL
+	ld [wPlayerState], a
+	farcall UpdatePlayerSprite
 .ok2
 	scf
 	ret
@@ -877,9 +884,6 @@ CountStep:
 	call DoRepelStep
 	jr c, .doscript
 
-	; Count the step for poison and total steps
-	ld hl, wPoisonStepCount
-	inc [hl]
 	ld hl, wStepCount
 	inc [hl]
 	; Every 256 steps, increase the happiness of all your Pokemon.
@@ -902,17 +906,6 @@ CountStep:
 	; Increase the EXP of (both) DayCare Pokemon by 1.
 	farcall DayCareStep
 
-	; Every 4 steps, deal damage to all poisoned Pokemon.
-	ld hl, wPoisonStepCount
-	ld a, [hl]
-	cp 4
-	jr c, .skip_poison
-	ld [hl], 0
-
-	farcall DoPoisonStep
-	jr c, .doscript
-
-.skip_poison
 	farcall DoBikeStep
 
 .done
@@ -943,8 +936,16 @@ DoRepelStep:
 	ld [wRepelEffect], a
 	ret nz
 
-	ld a, BANK(RepelWoreOffScript)
-	ld hl, RepelWoreOffScript
+	ld a, [wRepelType]
+	ld [wCurItem], a
+	ld hl, wNumItems
+	call CheckItem
+ 	ld a, BANK(RepelWoreOffScript)
+ 	ld hl, RepelWoreOffScript
+	jr nc, .got_script
+	ld a, BANK(UseAnotherRepelScript)
+	ld hl, UseAnotherRepelScript
+.got_script
 	call CallScript
 	scf
 	ret

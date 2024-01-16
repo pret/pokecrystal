@@ -4,9 +4,9 @@ BuenaPrizeItems:
 	db FULL_RESTORE, 2
 	db NUGGET,       3
 	db RARE_CANDY,   3
-	db PROTEIN,      5
-	db IRON,         5
-	db CARBOS,       5
-	db CALCIUM,      5
-	db HP_UP,        5
+	db FOCUS_BAND,   5
+	db SCOPE_LENS,   5
+	db BERSERK_GENE, 5
+	db LUCKY_EGG,    6
+	db LEFTOVERS,    7
 	assert_table_length NUM_BUENA_PRIZES
