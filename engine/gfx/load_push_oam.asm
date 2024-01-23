@@ -1,6 +1,6 @@
 WriteOAMDMACodeToHRAM::
 	ld c, LOW(hTransferShadowOAM)
-	ld b, OAMDMACodeEnd - OAMDMACode
+	ld b, OAMDMACode.End - OAMDMACode
 	ld hl, OAMDMACode
 .copy
 	ld a, [hli]
@@ -25,4 +25,4 @@ hTransferShadowOAM::
 	jr nz, .wait
 	ret
 ENDL
-OAMDMACodeEnd:
+.End:

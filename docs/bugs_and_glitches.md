@@ -78,11 +78,13 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Using a Park Ball in non-Contest battles has a corrupt animation](#using-a-park-ball-in-non-contest-battles-has-a-corrupt-animation)
   - [Battle transitions fail to account for the enemy's level](#battle-transitions-fail-to-account-for-the-enemys-level)
   - [Some trainer NPCs have inconsistent overworld sprites](#some-trainer-npcs-have-inconsistent-overworld-sprites)
+  - [Tackle is missing part of its hit animation](#tackle-is-missing-part-of-its-hit-animation)
 - [Audio](#audio)
   - [Slot machine payout sound effects cut each other off](#slot-machine-payout-sound-effects-cut-each-other-off)
   - [Team Rocket battle music is not used for Executives or Scientists](#team-rocket-battle-music-is-not-used-for-executives-or-scientists)
   - [No bump noise if standing on tile `$3E`](#no-bump-noise-if-standing-on-tile-3e)
   - [Playing Entei's Pokédex cry can distort Raikou's and Suicune's](#playing-enteis-pok%C3%A9dex-cry-can-distort-raikous-and-suicunes)
+  - [`SFX_RUN` does not play correctly when a wild Pokémon flees from battle](#sfx_run-does-not-play-correctly-when-a-wild-pok%C3%A9mon-flees-from-battle)
 - [Text](#text)
   - [Five-digit experience gain is printed incorrectly](#five-digit-experience-gain-is-printed-incorrectly)
   - [Only the first three evolution entries can have Stone compatibility reported correctly](#only-the-first-three-evolution-entries-can-have-stone-compatibility-reported-correctly)
@@ -2064,6 +2066,22 @@ Most of the NPCs in [maps/NationalParkBugContest.asm](https://github.com/pret/po
 (The use of `SPRITE_ROCKER` instead of `SPRITE_COOLTRAINER_M` for `COOLTRAINERM NICK` may also be an intentional reference to the player's brother from the [Space World '97 beta](https://github.com/pret/pokegold-spaceworld).)
 
 
+### Tackle is missing part of its hit animation
+
+Copying two rows causes `BATTLE_BG_EFFECT_TACKLE` to hit the horizontal sprite limit. This fix restores the animation to copy only one row like in Pokémon Gold and Silver.
+
+**Fix:** Edit `BattleAnim_Tackle` in [data/moves/animations.asm](https://github.com/pret/pokecrystal/blob/master/data/moves/animations.asm):
+
+```diff
+ BattleAnim_Tackle:
+-; BUG: Tackle is missing part of its hit animation (see docs/bugs_and_glitches.md)
+ 	anim_1gfx BATTLE_ANIM_GFX_HIT
+-	anim_call BattleAnim_TargetObj_2Row
++	anim_call BattleAnim_TargetObj_1Row
+ 	anim_bgeffect BATTLE_BG_EFFECT_TACKLE, $0, BG_EFFECT_USER, $0
+```
+
+
 ## Audio
 
 
@@ -2679,8 +2697,8 @@ If `IsInArray` returns `nc`, data at `bc` will be executed as code.
  	push af
  	ldh [rSVBK], a
  	xor a
- 	ld hl, WRAM1_Begin
- 	ld bc, WRAM1_End - WRAM1_Begin
+ 	ld hl, STARTOF(WRAMX)
+ 	ld bc, SIZEOF(WRAMX)
  	call ByteFill
  	pop af
  	inc a
@@ -2725,4 +2743,16 @@ This bug allows all the options to be updated at once if the left or right butto
  	ld hl, hInMenu
  	ld a, [hl]
  	push af
+```
+
+
+### `SFX_RUN` does not play correctly when a wild Pokémon flees from battle
+
+**Fix:** Edit `WildFled_EnemyFled_LinkBattleCanceled` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
+
+```diff
+-; BUG: SFX_RUN does not play correctly when a wild Pokemon flees from battle (see docs/bugs_and_glitches.md)
+ 	ld de, SFX_RUN
+-	call PlaySFX
++	call WaitPlaySFX
 ```
