@@ -3,7 +3,7 @@
 	const GREEN_PAGE  ; 1
 	const BLUE_PAGE   ; 2
 	const ORANGE_PAGE ; 3
-NUM_STAT_PAGES EQU const_value
+DEF NUM_STAT_PAGES EQU const_value
 
 DEF STAT_PAGE_MASK EQU %00000011
 

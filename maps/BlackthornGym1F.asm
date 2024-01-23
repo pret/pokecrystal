@@ -46,6 +46,7 @@ BlackthornGymClairScript:
 	writetext ClairText_GoToDragonsDen
 	waitbutton
 	closetext
+	loadmem wLevelCap, 75
 	setevent EVENT_BEAT_COOLTRAINERM_PAUL
 	setevent EVENT_BEAT_COOLTRAINERM_CODY
 	setevent EVENT_BEAT_COOLTRAINERM_MIKE

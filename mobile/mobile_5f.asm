@@ -2964,7 +2964,7 @@ MACRO inc_crash_check_pointer_farcall
 ENDM
 
 IncCrashCheckPointer_SaveGameData:
-	inc_crash_check_pointer_farcall _SaveGameData
+	inc_crash_check_pointer_farcall SaveGameData
 
 IncCrashCheckPointer_SaveAfterLinkTrade:
 	inc_crash_check_pointer_farcall SaveAfterLinkTrade

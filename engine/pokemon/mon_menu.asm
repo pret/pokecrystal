@@ -7,7 +7,7 @@ HasNoItems:
 	ret nz
 	ld a, [wNumBalls]
 	and a
-	ret nz
+	ret 
 	ld hl, wTMsHMs
 	ld b, NUM_TMS + NUM_HMS
 .loop

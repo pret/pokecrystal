@@ -33,6 +33,7 @@ GoldenrodGymWhitneyScript:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_WHITNEY
+	loadmem wLevelCap, 36
 	setevent EVENT_MADE_WHITNEY_CRY
 	setscene SCENE_GOLDENRODGYM_WHITNEY_STOPS_CRYING
 	setevent EVENT_BEAT_BEAUTY_VICTORIA
