@@ -112,7 +112,7 @@ VermilionPortWalkUpToShipScript:
 	end
 
 .NextShipWednesday:
-	writetext VermilionPortSailMondayText
+	writetext VermilionPortSailWednesdayText
 	waitbutton
 	closetext
 	applymovement PLAYER, VermilionPortCannotEnterFastShipMovement
@@ -173,7 +173,7 @@ VermilionPortSailorScript:
 	end
 
 .NextShipWednesday:
-	writetext VermilionPortSailMondayText
+	writetext VermilionPortSailWednesdayText
 	waitbutton
 	closetext
 	end
@@ -277,7 +277,7 @@ VermilionPortNoTicketText:
 	line "S.S.TICKET."
 	done
 
-VermilionPortSailMondayText:
+VermilionPortSailWednesdayText:
 	text "The FAST SHIP will"
 	line "sail on Wednesday."
 	done
