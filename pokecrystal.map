@@ -14684,7 +14684,7 @@ ROMX bank #29:
 	         $4fa7 = VermilionPortComeAgainText
 	         $4fc2 = VermilionPortSSTicketText
 	         $4ff2 = VermilionPortNoTicketText
-	         $5059 = VermilionPortSailMondayText
+	         $5059 = VermilionPortSailWednesdayText
 	         $5080 = VermilionPortSailSundayText
 	         $50a6 = VermilionPortSuperNerdText
 	         $50e3 = VermilionPort_MapEvents
