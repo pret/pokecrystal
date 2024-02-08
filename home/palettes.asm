@@ -293,8 +293,8 @@ ClearVBank1::
 	ld a, 1
 	ldh [rVBK], a
 
-	ld hl, VRAM_Begin
-	ld bc, VRAM_End - VRAM_Begin
+	ld hl, STARTOF(VRAM)
+	ld bc, SIZEOF(VRAM)
 	xor a
 	call ByteFill
 
@@ -324,8 +324,8 @@ ReloadSpritesNoPalettes::
 	call DelayFrame
 	ret
 
-SwapTextboxPalettes::
-	homecall _SwapTextboxPalettes
+LoadOverworldAttrmapPals::
+	homecall _LoadOverworldAttrmapPals
 	ret
 
 ScrollBGMapPalettes::

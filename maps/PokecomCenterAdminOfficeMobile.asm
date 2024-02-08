@@ -22,7 +22,7 @@ PokecomCenterAdminOfficeMobileComputer1:
 	writetext PokecomCenterAdminOfficeMobileComputer1Text
 	waitbutton
 .loop:
-	reloadmappart
+	refreshmap
 	loadmenu .Computer1MenuHeader
 	verticalmenu
 	closewindow
@@ -64,7 +64,7 @@ PokecomCenterAdminOfficeMobileComputer2:
 	writetext PokecomCenterAdminOfficeMobileComputer2Text
 	waitbutton
 .loop:
-	reloadmappart
+	refreshmap
 	loadmenu .Computer2MenuHeader
 	verticalmenu
 	closewindow

@@ -163,14 +163,14 @@ PlaceMapNameCenterAlign:
 	ld a, [hli]
 	cp "@"
 	jr z, .stop
-	cp "%"
+	cp "<WBR>"
 	jr z, .loop
 	cp "<1E>"
 	jr z, .loop
 	inc c
 	cp " "
 	jr z, .replace_char
-	cp "¯"
+	cp "<BSP>"
 	jr z, .replace_char
 	jr .loop
 

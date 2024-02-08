@@ -3,19 +3,6 @@
 ; https://github.com/gbdev/hardware.inc
 ; http://gameboy.mongenel.com/dmg/asmmemmap.html
 
-; memory map
-DEF VRAM_Begin  EQU $8000
-DEF VRAM_End    EQU $a000
-DEF SRAM_Begin  EQU $a000
-DEF SRAM_End    EQU $c000
-DEF WRAM0_Begin EQU $c000
-DEF WRAM0_End   EQU $d000
-DEF WRAM1_Begin EQU $d000
-DEF WRAM1_End   EQU $e000
-; hardware registers $ff00-$ff80 (see below)
-DEF HRAM_Begin  EQU $ff80
-DEF HRAM_End    EQU $ffff
-
 ; MBC3
 DEF MBC3SRamEnable EQU $0000
 DEF MBC3RomBank    EQU $2000

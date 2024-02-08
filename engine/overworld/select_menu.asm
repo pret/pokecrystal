@@ -139,7 +139,7 @@ UseRegisteredItem:
 	ret
 
 .Party:
-	call RefreshScreen
+	call ReanchorMap
 	call FadeToMenu
 	call DoItemEffect
 	call CloseSubmenu
@@ -148,7 +148,7 @@ UseRegisteredItem:
 	ret
 
 .Overworld:
-	call RefreshScreen
+	call ReanchorMap
 	ld a, 1
 	ld [wUsingItemWithSelect], a
 	call DoItemEffect
@@ -163,7 +163,7 @@ UseRegisteredItem:
 	ret
 
 .CantUse:
-	call RefreshScreen
+	call ReanchorMap
 
 ._cantuse
 	call CantUseItem

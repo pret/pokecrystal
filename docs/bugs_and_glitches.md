@@ -59,6 +59,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [AI makes a false assumption about `CheckTypeMatchup`](#ai-makes-a-false-assumption-about-checktypematchup)
   - [AI use of Full Heal or Full Restore does not cure Nightmare status](#ai-use-of-full-heal-or-full-restore-does-not-cure-nightmare-status)
   - [AI use of Full Heal does not cure confusion status](#ai-use-of-full-heal-does-not-cure-confusion-status)
+  - [AI might use its base reward value as an item](#ai-might-use-its-base-reward-value-as-an-item)
   - [Wild Pokémon can always Teleport regardless of level difference](#wild-pok%C3%A9mon-can-always-teleport-regardless-of-level-difference)
   - [`RIVAL2` has lower DVs than `RIVAL1`](#rival2-has-lower-dvs-than-rival1)
   - [`HELD_CATCH_CHANCE` has no effect](#held_catch_chance-has-no-effect)
@@ -77,11 +78,13 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Using a Park Ball in non-Contest battles has a corrupt animation](#using-a-park-ball-in-non-contest-battles-has-a-corrupt-animation)
   - [Battle transitions fail to account for the enemy's level](#battle-transitions-fail-to-account-for-the-enemys-level)
   - [Some trainer NPCs have inconsistent overworld sprites](#some-trainer-npcs-have-inconsistent-overworld-sprites)
+  - [Tackle is missing part of its hit animation](#tackle-is-missing-part-of-its-hit-animation)
 - [Audio](#audio)
   - [Slot machine payout sound effects cut each other off](#slot-machine-payout-sound-effects-cut-each-other-off)
   - [Team Rocket battle music is not used for Executives or Scientists](#team-rocket-battle-music-is-not-used-for-executives-or-scientists)
   - [No bump noise if standing on tile `$3E`](#no-bump-noise-if-standing-on-tile-3e)
   - [Playing Entei's Pokédex cry can distort Raikou's and Suicune's](#playing-enteis-pok%C3%A9dex-cry-can-distort-raikous-and-suicunes)
+  - [`SFX_RUN` does not play correctly when a wild Pokémon flees from battle](#sfx_run-does-not-play-correctly-when-a-wild-pok%C3%A9mon-flees-from-battle)
 - [Text](#text)
   - [Five-digit experience gain is printed incorrectly](#five-digit-experience-gain-is-printed-incorrectly)
   - [Only the first three evolution entries can have Stone compatibility reported correctly](#only-the-first-three-evolution-entries-can-have-stone-compatibility-reported-correctly)
@@ -1455,6 +1458,33 @@ Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") implies 
  	ret
 ```
 
+### AI might use its base reward value as an item
+
+In the `AI_TryItem` routine, an item pointer is set to `wEnemyTrainerItem1` and then increments to `wEnemyTrainerItem2` to see if either of the AI's items are in the `AI_Items` list. However, if the AI has used its first item (or its first one is `ITEM_NONE`) and hasn't used its second item, the item pointer can increment from `wEnemyTrainerItem2` to `wEnemyTrainerBaseReward`. If the value at this address then matches an item in the `AI_Items` list, the AI could mistakenly use it.
+
+**Fix:** Edit `AI_TryItem` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/items.asm):
+
+```diff
+ AI_TryItem:
+  	...
+ 	ld a, [wTrainerClass]
+ 	dec a
+ 	ld hl, TrainerClassAttributes + TRNATTR_AI_ITEM_SWITCH
+ 	ld bc, NUM_TRAINER_ATTRIBUTES
+ 	call AddNTimes
+ 	ld b, h
+ 	ld c, l
+ 	ld hl, AI_Items
+-; BUG: AI might use its base reward value as an item (see docs/bugs_and_glitches.md)
+-	ld de, wEnemyTrainerItem1
+ .loop
++	ld de, wEnemyTrainerItem1
+ 	ld a, [hl]
+ 	and a
+ 	inc a
+ 	ret z
+```
+
 
 ### Wild Pokémon can always Teleport regardless of level difference
 
@@ -1697,7 +1727,7 @@ This bug is why the Lapras in [maps/UnionCaveB2F.asm](https://github.com/pret/po
  	cp PLAYER_SURF_PIKA
  	jr z, .fail
  	call GetFacingTileCoord
- 	call GetTileCollision
+ 	call GetTilePermission
  	cp WATER_TILE
 -	jr z, .facingwater
 +	jr nz, .fail
@@ -2036,6 +2066,22 @@ Most of the NPCs in [maps/NationalParkBugContest.asm](https://github.com/pret/po
 (The use of `SPRITE_ROCKER` instead of `SPRITE_COOLTRAINER_M` for `COOLTRAINERM NICK` may also be an intentional reference to the player's brother from the [Space World '97 beta](https://github.com/pret/pokegold-spaceworld).)
 
 
+### Tackle is missing part of its hit animation
+
+Copying two rows causes `BATTLE_BG_EFFECT_TACKLE` to hit the horizontal sprite limit. This fix restores the animation to copy only one row like in Pokémon Gold and Silver.
+
+**Fix:** Edit `BattleAnim_Tackle` in [data/moves/animations.asm](https://github.com/pret/pokecrystal/blob/master/data/moves/animations.asm):
+
+```diff
+ BattleAnim_Tackle:
+-; BUG: Tackle is missing part of its hit animation (see docs/bugs_and_glitches.md)
+ 	anim_1gfx BATTLE_ANIM_GFX_HIT
+-	anim_call BattleAnim_TargetObj_2Row
++	anim_call BattleAnim_TargetObj_1Row
+ 	anim_bgeffect BATTLE_BG_EFFECT_TACKLE, $0, BG_EFFECT_USER, $0
+```
+
+
 ## Audio
 
 
@@ -2098,7 +2144,7 @@ If `[wWalkingDirection]` is `STANDING` (`$FF`), this will check `[.EdgeWarps + $
  	ld d, 0
  	ld hl, .EdgeWarps
  	add hl, de
- 	ld a, [wPlayerTile]
+ 	ld a, [wPlayerTileCollision]
  	cp [hl]
  	jr nz, .not_warp
 
@@ -2651,8 +2697,8 @@ If `IsInArray` returns `nc`, data at `bc` will be executed as code.
  	push af
  	ldh [rSVBK], a
  	xor a
- 	ld hl, WRAM1_Begin
- 	ld bc, WRAM1_End - WRAM1_Begin
+ 	ld hl, STARTOF(WRAMX)
+ 	ld bc, SIZEOF(WRAMX)
  	call ByteFill
  	pop af
  	inc a
@@ -2672,7 +2718,7 @@ If `IsInArray` returns `nc`, data at `bc` will be executed as code.
 -; BUG: BattleAnimCmd only clears the first 6⅔ objects (see docs/bugs_and_glitches.md)
  	ld hl, wActiveAnimObjects
 -	ld a, $a0
-+	ld a, NUM_ANIM_OBJECTS * BATTLEANIMSTRUCT_LENGTH
++	ld a, NUM_BATTLE_ANIM_STRUCTS * BATTLEANIMSTRUCT_LENGTH
  .loop
  	ld [hl], 0
  	inc hl
@@ -2697,4 +2743,16 @@ This bug allows all the options to be updated at once if the left or right butto
  	ld hl, hInMenu
  	ld a, [hl]
  	push af
+```
+
+
+### `SFX_RUN` does not play correctly when a wild Pokémon flees from battle
+
+**Fix:** Edit `WildFled_EnemyFled_LinkBattleCanceled` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
+
+```diff
+-; BUG: SFX_RUN does not play correctly when a wild Pokemon flees from battle (see docs/bugs_and_glitches.md)
+ 	ld de, SFX_RUN
+-	call PlaySFX
++	call WaitPlaySFX
 ```

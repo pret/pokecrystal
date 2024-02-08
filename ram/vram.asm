@@ -14,3 +14,5 @@ vTiles4:: ds $80 tiles
 vTiles5:: ds $80 tiles
 vBGMap2:: ds BG_MAP_WIDTH * BG_MAP_HEIGHT
 vBGMap3:: ds BG_MAP_WIDTH * BG_MAP_HEIGHT
+
+ENDSECTION

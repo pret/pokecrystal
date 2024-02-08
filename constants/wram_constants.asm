@@ -22,8 +22,8 @@ DEF AUTO_INPUT EQU $ff
 	const WILDMON    ; 4
 
 ; wGameTimerPaused::
-DEF GAME_TIMER_PAUSED_F EQU 0
-DEF GAME_TIMER_MOBILE_F EQU 7
+DEF GAME_TIMER_COUNTING_F EQU 0
+DEF GAME_TIMER_MOBILE_F   EQU 7
 
 ; wJoypadDisable::
 DEF JOYPAD_DISABLE_MON_FAINT_F    EQU 6
@@ -56,7 +56,7 @@ DEF NUM_FRAMES EQU const_value
 ; wTextboxFlags::
 	const_def
 	const FAST_TEXT_DELAY_F ; 0
-	const NO_TEXT_DELAY_F   ; 1
+	const TEXT_DELAY_F      ; 1
 
 ; wGBPrinterBrightness::
 DEF GBPRINTER_LIGHTEST EQU $00
@@ -90,6 +90,12 @@ DEF RIGHT_MASK EQU 1 << RIGHT
 	shift_const FACE_LEFT  ; 2
 	shift_const FACE_RIGHT ; 1
 DEF FACE_CURRENT EQU 0
+
+; wStateFlags
+DEF SPRITE_UPDATES_DISABLED_F             EQU 0
+DEF LAST_12_SPRITE_OAM_STRUCTS_RESERVED_F EQU 1
+DEF TEXT_STATE_F                          EQU 6
+DEF SCRIPTED_MOVEMENT_STATE_F             EQU 7
 
 ; wPokemonWithdrawDepositParameter::
 DEF PC_WITHDRAW       EQU 0

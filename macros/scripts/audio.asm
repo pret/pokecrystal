@@ -192,7 +192,7 @@ ENDM
 	const tempo_relative_cmd ; $e9
 MACRO tempo_relative
 	db tempo_relative_cmd
-	bigdw \1 ; tempo adjustment
+	db \1 ; tempo adjustment
 ENDM
 
 	const restart_channel_cmd ; $ea
@@ -204,7 +204,7 @@ ENDM
 	const new_song_cmd ; $eb
 MACRO new_song
 	db new_song_cmd
-	bigdw \1 ; id
+	dw \1 ; id
 ENDM
 
 	const sfx_priority_on_cmd ; $ec

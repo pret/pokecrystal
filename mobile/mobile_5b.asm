@@ -312,7 +312,7 @@ Function16c943:
 	cp $8
 	jr nz, .asm_16c969
 	farcall ApplyPals
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ldh a, [rSVBK]
 	push af
 	ld a, $1
@@ -413,7 +413,7 @@ Function16ca11:
 	cp $8
 	jr nz, .asm_16ca28
 	farcall ApplyPals
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ldh a, [rSVBK]
 	push af
 	ld a, $1
@@ -676,13 +676,13 @@ Function16cc18:
 
 Function16cc25:
 	ld hl, Unknown_16cfa9
-	ld de, wBGPals1 + 1 palettes
+	ld de, wBGPals1 palette 1
 	call .CopyPal
 	ld hl, Unknown_16cfb1
 	ld de, wOBPals1
 	call .CopyPal
 	ld hl, Unknown_16cfb9
-	ld de, wOBPals1 + 1 palettes
+	ld de, wOBPals1 palette 1
 	call .CopyPal
 	ret
 

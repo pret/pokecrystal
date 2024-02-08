@@ -42,7 +42,7 @@ Function8b35d: ; unreferenced
 
 Function8b363: ; unreferenced
 	push bc
-	farcall Mobile_AlwaysReturnNotCarry
+	farcall CheckMobileAdapterStatus
 	pop bc
 	ret
 
@@ -565,7 +565,7 @@ Function8b677:
 	call Function8b6ed
 	call EnableLCD
 	call Function891ab
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ret
 
 Function8b690:

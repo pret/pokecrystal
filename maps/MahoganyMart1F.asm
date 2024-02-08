@@ -88,7 +88,7 @@ MahoganyMart1FLanceUncoversStaircaseScript:
 	showemote EMOTE_SHOCK, MAHOGANYMART1F_PHARMACIST, 10
 	playsound SFX_FAINT
 	changeblock 6, 2, $1e ; stairs
-	reloadmappart
+	refreshmap
 	closetext
 	setevent EVENT_UNCOVERED_STAIRCASE_IN_MAHOGANY_MART
 	turnobject MAHOGANYMART1F_LANCE, LEFT

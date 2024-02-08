@@ -95,10 +95,10 @@ RunMobileTradeAnim_Frontpics:
 	push af
 	xor a
 	ldh [hMapAnims], a
-	ld hl, wVramState
+	ld hl, wStateFlags
 	ld a, [hl]
 	push af
-	res 0, [hl]
+	res SPRITE_UPDATES_DISABLED_F, [hl]
 	ld hl, wOptions
 	ld a, [hl]
 	push af
@@ -110,7 +110,7 @@ RunMobileTradeAnim_Frontpics:
 	pop af
 	ld [wOptions], a
 	pop af
-	ld [wVramState], a
+	ld [wStateFlags], a
 	pop af
 	ldh [hMapAnims], a
 	ret
@@ -124,7 +124,7 @@ RunMobileTradeAnim_NoFrontpics:
 	push af
 	xor a
 	ldh [hMapAnims], a
-	ld hl, wVramState
+	ld hl, wStateFlags
 	ld a, [hl]
 	push af
 	res 0, [hl]
@@ -139,7 +139,7 @@ RunMobileTradeAnim_NoFrontpics:
 	pop af
 	ld [wOptions], a
 	pop af
-	ld [wVramState], a
+	ld [wStateFlags], a
 	pop af
 	ldh [hMapAnims], a
 	ret
@@ -499,7 +499,7 @@ MobileTradeAnim_ShowPlayerMonToBeSent:
 	call DelayFrames
 	call Function108bec
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_SENT_BALL
+	ld a, SPRITE_ANIM_OBJ_MOBILE_TRADE_SENT_BALL
 	call InitSpriteAnimStruct
 	ld de, SFX_BALL_POOF
 	call PlaySFX
@@ -533,7 +533,7 @@ MobileTradeAnim_ShowOTMonFromTrade:
 	ld a, $90
 	ldh [hWY], a
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_OT_BALL
+	ld a, SPRITE_ANIM_OBJ_MOBILE_TRADE_OT_BALL
 	call InitSpriteAnimStruct
 	call Function108b45
 	ld a, $1
@@ -632,7 +632,7 @@ MobileTradeAnim_ShowPlayerMonForGTS:
 	call DelayFrames
 	call Function108c2b
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_SENT_BALL
+	ld a, SPRITE_ANIM_OBJ_MOBILE_TRADE_SENT_BALL
 	call InitSpriteAnimStruct
 	ld de, SFX_BALL_POOF
 	call PlaySFX
@@ -675,7 +675,7 @@ MobileTradeAnim_ShowOTMonFromGTS:
 	ld a, $90
 	ldh [hWY], a
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_OT_BALL
+	ld a, SPRITE_ANIM_OBJ_MOBILE_TRADE_OT_BALL
 	call InitSpriteAnimStruct
 	call Function108b45
 	ld a, $1
@@ -743,7 +743,7 @@ MobileTradeAnim_GetOddEgg:
 	ld a, $90
 	ldh [hWY], a
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_OT_BALL
+	ld a, SPRITE_ANIM_OBJ_MOBILE_TRADE_OT_BALL
 	call InitSpriteAnimStruct
 	call Function108b45
 	ld a, $1
@@ -925,7 +925,7 @@ MobileTradeAnim_GiveTrademon1:
 	cp $f8
 	jr nz, .next
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_CABLE_BULGE
+	ld a, SPRITE_ANIM_OBJ_MOBILE_TRADE_CABLE_BULGE
 	call InitSpriteAnimStruct
 
 .next
@@ -950,7 +950,7 @@ MobileTradeAnim_GiveTrademon1:
 
 .init
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_CABLE_BULGE
+	ld a, SPRITE_ANIM_OBJ_MOBILE_TRADE_CABLE_BULGE
 	call InitSpriteAnimStruct
 	xor a
 	call Function108ad4
@@ -975,12 +975,12 @@ MobileTradeAnim_GiveTrademon1:
 
 MobileTradeAnim_GiveTrademon2:
 	ld c, 40
-	ld hl, wBGPals2 + 1 palettes
+	ld hl, wBGPals2 palette 1
 	call Function1082f0
 	call Function108af4
 	call Function108b5a
 	depixel 9, 10, 2, 0
-	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_PING
+	ld a, SPRITE_ANIM_OBJ_MOBILE_TRADE_PING
 	call InitSpriteAnimStruct
 	ld de, SFX_FORESIGHT
 	call PlaySFX
@@ -989,7 +989,7 @@ MobileTradeAnim_GiveTrademon2:
 	xor a
 	ld [wcf64], a
 	depixel 9, 10, 2, 0
-	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_SENT_PULSE
+	ld a, SPRITE_ANIM_OBJ_MOBILE_TRADE_SENT_PULSE
 	call InitSpriteAnimStruct
 .loop
 	ldh a, [hSCY]
@@ -1015,7 +1015,7 @@ MobileTradeAnim_05:
 	ld c, 60
 	call WaitMobileTradeSpriteAnims
 	depixel 30, 10, 2, 0
-	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_OT_PULSE
+	ld a, SPRITE_ANIM_OBJ_MOBILE_TRADE_OT_PULSE
 	call InitSpriteAnimStruct
 	call GetMobileTradeAnimByte
 	ld de, SFX_THROW_BALL
@@ -1036,7 +1036,7 @@ MobileTradeAnim_07:
 	ld c, 80
 	call DelayFrames
 	depixel 30, 10, 2, 0
-	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_OT_PULSE
+	ld a, SPRITE_ANIM_OBJ_MOBILE_TRADE_OT_PULSE
 	call InitSpriteAnimStruct
 	call GetMobileTradeAnimByte
 	ld de, SFX_THROW_BALL
@@ -1059,7 +1059,7 @@ MobileTradeAnim_GetTrademon1:
 .done
 	farcall DeinitializeAllSprites
 	depixel 9, 10, 2, 0
-	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_PING
+	ld a, SPRITE_ANIM_OBJ_MOBILE_TRADE_PING
 	call InitSpriteAnimStruct
 	ld de, SFX_GLASS_TING_2
 	call PlaySFX
@@ -1069,12 +1069,12 @@ MobileTradeAnim_GetTrademon1:
 
 MobileTradeAnim_GetTrademon2:
 	ld c, 20
-	ld hl, wBGPals2 + 1 palettes
+	ld hl, wBGPals2 palette 1
 	call Function1082fa
 	ld de, SFX_GIVE_TRADEMON
 	call PlaySFX
 	ld c, 20
-	ld hl, wBGPals2 + 1 palettes
+	ld hl, wBGPals2 palette 1
 	call Function1082fa
 	call Function108af4
 .asm_1088ad
@@ -1094,13 +1094,13 @@ MobileTradeAnim_GetTrademon2:
 
 .asm_1088c5
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_CABLE_BULGE
+	ld a, SPRITE_ANIM_OBJ_MOBILE_TRADE_CABLE_BULGE
 	call InitSpriteAnimStruct
 	jr .asm_1088e7
 
 .asm_1088cf
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_CABLE_BULGE
+	ld a, SPRITE_ANIM_OBJ_MOBILE_TRADE_CABLE_BULGE
 	call InitSpriteAnimStruct
 	xor a
 	call Function108ad4
@@ -1439,8 +1439,8 @@ Function108b5a:
 	ld a, $5
 	ldh [rSVBK], a
 	ld de, palred 18 + palgreen 31 + palblue 15
-	ld hl, wBGPals2 + 4 palettes
-	ld c, $10
+	ld hl, wBGPals2 palette 4
+	ld c, 2 palettes
 .loop
 	ld a, e
 	ld [hli], a
@@ -1491,13 +1491,13 @@ Function108b98:
 	and $1
 	xor d
 	jr z, .asm_108bad
-	ld hl, Palette_108b98 + 1 palettes
+	ld hl, Palette_108b98 palette 1
 	jr .asm_108bb0
 
 .asm_108bad
 	ld hl, Palette_108b98
 .asm_108bb0
-	ld de, wBGPals1 + 7 palettes
+	ld de, wBGPals1 palette 7
 	ld bc, 8 palettes
 	call CopyBytes
 	pop af
@@ -1516,9 +1516,9 @@ MobileTradeAnim_AnimateSentPulse:
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld a, [hl]
-	cp -1 * 8 - 6
+	cp -1 * TILE_WIDTH - 6
 	jr z, .delete
-	sub 1 * 8
+	sub 1 * TILE_WIDTH
 	ld [hl], a
 	ret
 
@@ -1530,9 +1530,9 @@ MobileTradeAnim_AnimateOTPulse:
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld a, [hl]
-	cp 9 * 8 + 2
+	cp 9 * TILE_WIDTH + 2
 	ret z
-	add 1 * 8
+	add 1 * TILE_WIDTH
 	ld [hl], a
 	ret
 
@@ -1724,7 +1724,7 @@ LoadMobileAdapterPalette:
 	ld hl, MobileAdapterPalettes
 	call AddNTimes
 	ld a, BANK(wBGPals1)
-	ld de, wBGPals1 + 4 palettes
+	ld de, wBGPals1 palette 4
 	ld bc, 1 palettes
 	call FarCopyWRAM
 	ret

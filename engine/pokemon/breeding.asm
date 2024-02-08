@@ -196,7 +196,7 @@ DoEggStep::
 	jr .loop
 
 OverworldHatchEgg::
-	call RefreshScreen
+	call ReanchorMap
 	call LoadStandardMenuHeader
 	call HatchEggs
 	call ExitAllMenus
@@ -358,8 +358,8 @@ HatchEggs:
 	; Huh? @ @
 	text_far Text_BreedHuh
 	text_asm
-	ld hl, wVramState
-	res 0, [hl]
+	ld hl, wStateFlags
+	res SPRITE_UPDATES_DISABLED_F, [hl]
 	push hl
 	push de
 	push bc
@@ -659,7 +659,7 @@ Hatch_UpdateFrontpicBGMapCenter:
 	predef PlaceGraphic
 	pop af
 	call Hatch_LoadFrontpicPal
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	jp WaitBGMap
 
 EggHatch_DoAnimFrame:
@@ -779,10 +779,10 @@ EggHatch_CrackShell:
 	ret nc
 	swap a
 	srl a
-	add 9 * 8 + 4
+	add 9 * TILE_WIDTH + 4
 	ld d, a
-	ld e, 11 * 8
-	ld a, SPRITE_ANIM_INDEX_EGG_CRACK
+	ld e, 11 * TILE_WIDTH
+	ld a, SPRITE_ANIM_OBJ_EGG_CRACK
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
@@ -810,7 +810,7 @@ Hatch_InitShellFragments:
 	push hl
 	push bc
 
-	ld a, SPRITE_ANIM_INDEX_EGG_HATCH
+	ld a, SPRITE_ANIM_OBJ_EGG_HATCH
 	call InitSpriteAnimStruct
 
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
@@ -838,7 +838,7 @@ Hatch_InitShellFragments:
 
 MACRO shell_fragment
 ; y tile, y pxl, x tile, x pxl, frameset offset, ???
-	db (\1 * 8) % $100 + \2, (\3 * 8) % $100 + \4, \5 - SPRITE_ANIM_FRAMESET_EGG_HATCH_1, \6
+	db (\1 * TILE_WIDTH) % $100 + \2, (\3 * TILE_WIDTH) % $100 + \4, \5 - SPRITE_ANIM_FRAMESET_EGG_HATCH_1, \6
 ENDM
 
 .SpriteData:

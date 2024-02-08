@@ -326,7 +326,7 @@ Function1719ed:
 	call ClearBGPalettes
 	call ClearSprites
 	farcall Function171d2b
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	farcall ClearSpriteAnims
 	ret
 
@@ -338,7 +338,7 @@ Function171a11:
 	jr nz, .done
 	call Function171a36
 	farcall PlaySpriteAnimations
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	jr .loop
 .done
 	farcall ClearSpriteAnims
@@ -483,7 +483,7 @@ Function171b42:
 
 Function171b4b:
 	depixel 8, 2
-	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
+	ld a, SPRITE_ANIM_OBJ_EZCHAT_CURSOR
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
@@ -491,7 +491,7 @@ Function171b4b:
 	ld [hl], a
 
 	depixel 8, 19
-	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
+	ld a, SPRITE_ANIM_OBJ_EZCHAT_CURSOR
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
@@ -499,7 +499,7 @@ Function171b4b:
 	ld [hl], a
 
 	depixel 17, 14, 2, 0
-	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
+	ld a, SPRITE_ANIM_OBJ_EZCHAT_CURSOR
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
@@ -588,7 +588,7 @@ Function171beb:
 	call LoadMenuHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	hlcoord 1, 14
 	ld de, String_171c73
 	call PlaceString
@@ -688,7 +688,7 @@ Function171ccd:
 	ld [hli], a
 	ld a, HIGH(PALRGB_WHITE)
 	ld [hl], a
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	pop af
 	ldh [rSVBK], a
 	ret
@@ -823,7 +823,7 @@ Function172eb9:
 	ld de, wBGPals2
 	ld bc, 8 palettes
 	call CopyBytes
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	pop af
 	ldh [rSVBK], a
 	ret

@@ -257,7 +257,7 @@ If <code><i>item_id</i></code> = `USE_SCRIPT_VAR`, then it uses `[wScriptVar]` i
 ## `$47`: `opentext`
 
 
-## `$48`: <code>refreshscreen [<i>dummy</i>=0]</code>
+## `$48`: <code>reanchormap [<i>dummy</i>=0]</code>
 
 
 ## `$49`: `closetext`
@@ -419,7 +419,7 @@ If <code><i>item_id</i></code> = `USE_SCRIPT_VAR`, then it uses `[wScriptVar]` i
 ## `$7B`: `reloadmap`
 
 
-## `$7C`: `reloadmappart`
+## `$7C`: `refreshmap`
 
 
 ## `$7D`: <code>writecmdqueue <i>queue_pointer</i></code>

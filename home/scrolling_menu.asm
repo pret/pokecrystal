@@ -17,10 +17,10 @@ ScrollingMenu::
 	ret
 
 .UpdatePalettes:
-	ld hl, wVramState
-	bit 0, [hl]
+	ld hl, wStateFlags
+	bit SPRITE_UPDATES_DISABLED_F, [hl]
 	jp nz, UpdateTimePals
-	jp SetPalettes
+	jp SetDefaultBGPAndOBP
 
 InitScrollingMenu::
 	ld a, [wMenuBorderTopCoord]

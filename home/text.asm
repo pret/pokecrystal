@@ -149,7 +149,7 @@ BuenaPrintText::
 
 PrintTextboxText::
 	bccoord TEXTBOX_INNERX, TEXTBOX_INNERY
-	call PlaceHLTextAtBC
+	call PrintTextboxTextAt
 	ret
 
 SetUpTextbox::
@@ -232,8 +232,8 @@ ENDM
 	dict "<PROMPT>",  PromptText
 	dict "<PKMN>",    PlacePKMN
 	dict "<POKE>",    PlacePOKE
-	dict "%",         NextChar
-	dict "¯",         " "
+	dict "<WBR>",     NextChar
+	dict "<BSP>",     " "
 	dict "<1E>",      NextChar
 	dict "<1D>",      EndLineWithDash
 	dict "<DEXEND>",  PlaceDexEnd
@@ -625,10 +625,10 @@ PokeFluteTerminator::
 .stop:
 	text_end
 
-PlaceHLTextAtBC::
+PrintTextboxTextAt::
 	ld a, [wTextboxFlags]
 	push af
-	set NO_TEXT_DELAY_F, a
+	set TEXT_DELAY_F, a
 	ld [wTextboxFlags], a
 
 	call DoTextUntilTerminator

@@ -27,7 +27,7 @@ ItemFinder:
 	ret
 
 .Script_FoundSomething:
-	reloadmappart
+	refreshmap
 	special UpdateTimePals
 	callasm .ItemfinderSound
 	writetext .ItemfinderItemNearbyText
@@ -35,7 +35,7 @@ ItemFinder:
 	end
 
 .Script_FoundNothing:
-	reloadmappart
+	refreshmap
 	special UpdateTimePals
 	writetext .ItemfinderNopeText
 	closetext

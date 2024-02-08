@@ -198,7 +198,7 @@ PrintEZChatBattleMessage:
 	; now, let's place the string from wc618 to bc
 	pop bc
 	ld hl, wc618
-	call PlaceHLTextAtBC
+	call PrintTextboxTextAt
 	; restore the original values of [wJumptableIndex] and [wcf64]
 	pop hl
 	ld a, l
@@ -309,7 +309,7 @@ Function11c1b9:
 	call ClearSprites
 	call ClearScreen
 	call Function11d323
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call DisableLCD
 	ld hl, SelectStartGFX
 	ld de, vTiles2
@@ -319,7 +319,7 @@ Function11c1b9:
 	ld de, vTiles0
 	call Decompress
 	call EnableLCD
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	farcall ClearSpriteAnims
 	farcall LoadPokemonData
 	farcall Pokedex_ABCMode
@@ -374,7 +374,7 @@ EZChat_MasterLoop:
 	jr nz, .exit
 	call .DoJumptableFunction
 	farcall PlaySpriteAnimations
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	jr .loop
 
 .exit
@@ -412,11 +412,11 @@ EZChat_MasterLoop:
 
 .SpawnObjects:
 	depixel 3, 1, 2, 5
-	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
+	ld a, SPRITE_ANIM_OBJ_EZCHAT_CURSOR
 	call InitSpriteAnimStruct
 
 	depixel 8, 1, 2, 5
-	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
+	ld a, SPRITE_ANIM_OBJ_EZCHAT_CURSOR
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
@@ -424,7 +424,7 @@ EZChat_MasterLoop:
 	ld [hl], a
 
 	depixel 9, 2, 2, 0
-	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
+	ld a, SPRITE_ANIM_OBJ_EZCHAT_CURSOR
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
@@ -432,7 +432,7 @@ EZChat_MasterLoop:
 	ld [hl], a
 
 	depixel 10, 16
-	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
+	ld a, SPRITE_ANIM_OBJ_EZCHAT_CURSOR
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
@@ -440,7 +440,7 @@ EZChat_MasterLoop:
 	ld [hl], a
 
 	depixel 10, 4
-	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
+	ld a, SPRITE_ANIM_OBJ_EZCHAT_CURSOR
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
@@ -448,7 +448,7 @@ EZChat_MasterLoop:
 	ld [hl], a
 
 	depixel 10, 2
-	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
+	ld a, SPRITE_ANIM_OBJ_EZCHAT_CURSOR
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
@@ -703,14 +703,14 @@ Function11c4be:
 	hlcoord 0, 14, wAttrmap
 	ld bc, $28
 	call ByteFill
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ret
 
 String_11c4db:
-	db   "６つのことば¯くみあわせます"
-	next "かえたいところ¯えらぶと　でてくる"
+	db   "６つのことば<WO>くみあわせます"
+	next "かえたいところ<WO>えらぶと　でてくる"
 	next "ことばのグループから　いれかえたい"
-	next "たんご¯えらんでください"
+	next "たんご<WO>えらんでください"
 	db   "@"
 
 String_11c51b:
@@ -898,7 +898,7 @@ Function11c618:
 	hlcoord 0, 6, wAttrmap
 	ld bc, $c8
 	call ByteFill
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ret
 
 EZChatString_Stop_Mode_Cancel:
@@ -1498,7 +1498,7 @@ Function11c9ab:
 	hlcoord 0, 6, wAttrmap
 	ld bc, $c8
 	call ByteFill
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ret
 
 Function11c9bd:
@@ -1588,11 +1588,11 @@ Function11ca19:
 	add hl, de
 	dec c
 	jr nz, .asm_11ca22
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ret
 
 String_11ca38:
-	db   "とうろくちゅう<NO>あいさつ¯ぜんぶ"
+	db   "とうろくちゅう<NO>あいさつ<WO>ぜんぶ"
 	next "けしても　よろしいですか？@"
 
 String_11ca57:
@@ -1718,7 +1718,7 @@ Function11cab3:
 	ret
 
 String_11cb1c:
-	db   "あいさつ<NO>とうろく¯ちゅうし"
+	db   "あいさつ<NO>とうろく<WO>ちゅうし"
 	next "しますか？@"
 
 String_11cb31:
@@ -1874,19 +1874,19 @@ Unknown_11cc7e:
 
 String_11cc86:
 	db   "じこしょうかい　の"
-	next "あいさつ¯とうろくした！@"
+	next "あいさつ<WO>とうろくした！@"
 
 String_11cc9d:
 	db   "たいせん　<GA>はじまるとき　の"
-	next "あいさつ¯とうろくした！@"
+	next "あいさつ<WO>とうろくした！@"
 
 String_11ccb9:
 	db   "たいせん　<NI>かったとき　の"
-	next "あいさつ¯とうろくした！@"
+	next "あいさつ<WO>とうろくした！@"
 
 String_11ccd4:
 	db   "たいせん　<NI>まけたとき　の"
-	next "あいさつ¯とうろくした！@"
+	next "あいさつ<WO>とうろくした！@"
 
 Function11ccef:
 	ld de, Unknown_11cfc6
@@ -1907,7 +1907,7 @@ Function11cd04:
 	ret
 
 String_11cd10:
-	db "なにか　ことば¯いれてください@"
+	db "なにか　ことば<WO>いれてください@"
 
 Function11cd20:
 	call EZChat_ClearBottom12Rows
@@ -2000,17 +2000,17 @@ Function11cdaa:
 	hlcoord 0, 12, wAttrmap
 	ld bc, 4 * SCREEN_WIDTH
 	call ByteFill
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ret
 
 String_11cdc7:
 ; Words will be displayed by category
-	db   "ことば¯しゅるいべつに"
+	db   "ことば<WO>しゅるいべつに"
 	next "えらべます@"
 
 String_11cdd9:
 ; Words will be displayed in alphabetical order
-	db   "ことば¯アイウエオ　の"
+	db   "ことば<WO>アイウエオ　の"
 	next "じゅんばんで　ひょうじ　します@"
 
 String_11cdf5:
@@ -2623,12 +2623,12 @@ AnimateEZChatCursor:
 	ret
 
 .nine
-	ld d, -13 * 8
+	ld d, -13 * TILE_WIDTH
 	ld a, SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_7
 	jr .eight_nine_load
 
 .eight
-	ld d, 2 * 8
+	ld d, 2 * TILE_WIDTH
 	ld a, SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_6
 .eight_nine_load
 	push de
@@ -2640,7 +2640,7 @@ AnimateEZChatCursor:
 	ld e, a
 	sla a
 	add e
-	add 8 * 8
+	add 8 * TILE_WIDTH
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld [hld], a

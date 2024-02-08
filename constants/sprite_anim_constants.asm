@@ -33,93 +33,93 @@ DEF NUM_SPRITE_ANIM_GFX EQU const_value
 ; wSpriteAnimDict size (see wram.asm)
 DEF NUM_SPRITEANIMDICT_ENTRIES EQU 10
 
-; SpriteAnimSeqData indexes (see data/sprite_anims/sequences.asm)
+; SpriteAnimObjects indexes (see data/sprite_anims/objects.asm)
 	const_def
-	const SPRITE_ANIM_INDEX_PARTY_MON                 ; 00
-	const SPRITE_ANIM_INDEX_GS_TITLE_TRAIL            ; 01
-	const SPRITE_ANIM_INDEX_NAMING_SCREEN_CURSOR      ; 02
-	const SPRITE_ANIM_INDEX_GAMEFREAK_LOGO            ; 03
-	const SPRITE_ANIM_INDEX_GS_GAMEFREAK_LOGO_STAR    ; 04
-	const SPRITE_ANIM_INDEX_GS_GAMEFREAK_LOGO_SPARKLE ; 05
-	const SPRITE_ANIM_INDEX_SLOTS_GOLEM               ; 06
-	const SPRITE_ANIM_INDEX_SLOTS_CHANSEY             ; 07
-	const SPRITE_ANIM_INDEX_SLOTS_EGG                 ; 08
-	const SPRITE_ANIM_INDEX_COMPOSE_MAIL_CURSOR       ; 09
-	const SPRITE_ANIM_INDEX_RED_WALK                  ; 0a
-	const SPRITE_ANIM_INDEX_UNUSED_CURSOR             ; 0b
-	const SPRITE_ANIM_INDEX_MEMORY_GAME_CURSOR        ; 0c
-	const SPRITE_ANIM_INDEX_POKEGEAR_ARROW            ; 0d
-	const SPRITE_ANIM_INDEX_TRADE_POKE_BALL           ; 0e
-	const SPRITE_ANIM_INDEX_TRADE_POOF                ; 0f
-	const SPRITE_ANIM_INDEX_TRADE_TUBE_BULGE          ; 10
-	const SPRITE_ANIM_INDEX_TRADEMON_ICON             ; 11
-	const SPRITE_ANIM_INDEX_TRADEMON_BUBBLE           ; 12
-	const SPRITE_ANIM_INDEX_EVOLUTION_BALL_OF_LIGHT   ; 13
-	const SPRITE_ANIM_INDEX_RADIO_TUNING_KNOB         ; 14
-	const SPRITE_ANIM_INDEX_MAGNET_TRAIN_RED          ; 15
-	const SPRITE_ANIM_INDEX_LEAF                      ; 16
-	const SPRITE_ANIM_INDEX_CUT_TREE                  ; 17
-	const SPRITE_ANIM_INDEX_FLY_LEAF                  ; 18
-	const SPRITE_ANIM_INDEX_EGG_CRACK                 ; 19
-	const SPRITE_ANIM_INDEX_GS_INTRO_HO_OH_LUGIA      ; 1a
-	const SPRITE_ANIM_INDEX_HEADBUTT                  ; 1b
-	const SPRITE_ANIM_INDEX_EGG_HATCH                 ; 1c
-	const SPRITE_ANIM_INDEX_EZCHAT_CURSOR             ; 1d
-	const SPRITE_ANIM_INDEX_BLUE_WALK                 ; 1e
-	const SPRITE_ANIM_INDEX_MAGNET_TRAIN_BLUE         ; 1f
-	const SPRITE_ANIM_INDEX_MOBILE_TRADE_SENT_BALL    ; 20
-	const SPRITE_ANIM_INDEX_MOBILE_TRADE_OT_BALL      ; 21
-	const SPRITE_ANIM_INDEX_MOBILE_TRADE_CABLE_BULGE  ; 22
-	const SPRITE_ANIM_INDEX_MOBILE_TRADE_SENT_PULSE   ; 23
-	const SPRITE_ANIM_INDEX_MOBILE_TRADE_OT_PULSE     ; 24
-	const SPRITE_ANIM_INDEX_MOBILE_TRADE_PING         ; 25
-	const SPRITE_ANIM_INDEX_INTRO_SUICUNE             ; 26
-	const SPRITE_ANIM_INDEX_INTRO_PICHU               ; 27
-	const SPRITE_ANIM_INDEX_INTRO_WOOPER              ; 28
-	const SPRITE_ANIM_INDEX_INTRO_UNOWN               ; 29
-	const SPRITE_ANIM_INDEX_INTRO_UNOWN_F             ; 2a
-	const SPRITE_ANIM_INDEX_INTRO_SUICUNE_AWAY        ; 2b
-	const SPRITE_ANIM_INDEX_CELEBI                    ; 2c
-DEF NUM_SPRITE_ANIM_INDEXES EQU const_value
+	const SPRITE_ANIM_OBJ_PARTY_MON                 ; 00
+	const SPRITE_ANIM_OBJ_GS_TITLE_TRAIL            ; 01
+	const SPRITE_ANIM_OBJ_NAMING_SCREEN_CURSOR      ; 02
+	const SPRITE_ANIM_OBJ_GAMEFREAK_LOGO            ; 03
+	const SPRITE_ANIM_OBJ_GS_GAMEFREAK_LOGO_STAR    ; 04
+	const SPRITE_ANIM_OBJ_GS_GAMEFREAK_LOGO_SPARKLE ; 05
+	const SPRITE_ANIM_OBJ_SLOTS_GOLEM               ; 06
+	const SPRITE_ANIM_OBJ_SLOTS_CHANSEY             ; 07
+	const SPRITE_ANIM_OBJ_SLOTS_EGG                 ; 08
+	const SPRITE_ANIM_OBJ_COMPOSE_MAIL_CURSOR       ; 09
+	const SPRITE_ANIM_OBJ_RED_WALK                  ; 0a
+	const SPRITE_ANIM_OBJ_UNUSED_CURSOR             ; 0b
+	const SPRITE_ANIM_OBJ_MEMORY_GAME_CURSOR        ; 0c
+	const SPRITE_ANIM_OBJ_POKEGEAR_ARROW            ; 0d
+	const SPRITE_ANIM_OBJ_TRADE_POKE_BALL           ; 0e
+	const SPRITE_ANIM_OBJ_TRADE_POOF                ; 0f
+	const SPRITE_ANIM_OBJ_TRADE_TUBE_BULGE          ; 10
+	const SPRITE_ANIM_OBJ_TRADEMON_ICON             ; 11
+	const SPRITE_ANIM_OBJ_TRADEMON_BUBBLE           ; 12
+	const SPRITE_ANIM_OBJ_EVOLUTION_BALL_OF_LIGHT   ; 13
+	const SPRITE_ANIM_OBJ_RADIO_TUNING_KNOB         ; 14
+	const SPRITE_ANIM_OBJ_MAGNET_TRAIN_RED          ; 15
+	const SPRITE_ANIM_OBJ_LEAF                      ; 16
+	const SPRITE_ANIM_OBJ_CUT_TREE                  ; 17
+	const SPRITE_ANIM_OBJ_FLY_LEAF                  ; 18
+	const SPRITE_ANIM_OBJ_EGG_CRACK                 ; 19
+	const SPRITE_ANIM_OBJ_GS_INTRO_HO_OH_LUGIA      ; 1a
+	const SPRITE_ANIM_OBJ_HEADBUTT                  ; 1b
+	const SPRITE_ANIM_OBJ_EGG_HATCH                 ; 1c
+	const SPRITE_ANIM_OBJ_EZCHAT_CURSOR             ; 1d
+	const SPRITE_ANIM_OBJ_BLUE_WALK                 ; 1e
+	const SPRITE_ANIM_OBJ_MAGNET_TRAIN_BLUE         ; 1f
+	const SPRITE_ANIM_OBJ_MOBILE_TRADE_SENT_BALL    ; 20
+	const SPRITE_ANIM_OBJ_MOBILE_TRADE_OT_BALL      ; 21
+	const SPRITE_ANIM_OBJ_MOBILE_TRADE_CABLE_BULGE  ; 22
+	const SPRITE_ANIM_OBJ_MOBILE_TRADE_SENT_PULSE   ; 23
+	const SPRITE_ANIM_OBJ_MOBILE_TRADE_OT_PULSE     ; 24
+	const SPRITE_ANIM_OBJ_MOBILE_TRADE_PING         ; 25
+	const SPRITE_ANIM_OBJ_INTRO_SUICUNE             ; 26
+	const SPRITE_ANIM_OBJ_INTRO_PICHU               ; 27
+	const SPRITE_ANIM_OBJ_INTRO_WOOPER              ; 28
+	const SPRITE_ANIM_OBJ_INTRO_UNOWN               ; 29
+	const SPRITE_ANIM_OBJ_INTRO_UNOWN_F             ; 2a
+	const SPRITE_ANIM_OBJ_INTRO_SUICUNE_AWAY        ; 2b
+	const SPRITE_ANIM_OBJ_CELEBI                    ; 2c
+DEF NUM_SPRITE_ANIM_OBJS EQU const_value
 
-; DoAnimFrame.Jumptable indexes (see engine/gfx/sprite_anims.asm)
+; DoSpriteAnimFrame.Jumptable indexes (see engine/sprite_anims/functions.asm)
 	const_def
-	const SPRITE_ANIM_SEQ_NULL                      ; 00
-	const SPRITE_ANIM_SEQ_PARTY_MON                 ; 01
-	const SPRITE_ANIM_SEQ_PARTY_MON_SWITCH          ; 02
-	const SPRITE_ANIM_SEQ_PARTY_MON_SELECTED        ; 03
-	const SPRITE_ANIM_SEQ_GS_TITLE_TRAIL            ; 04
-	const SPRITE_ANIM_SEQ_NAMING_SCREEN_CURSOR      ; 05
-	const SPRITE_ANIM_SEQ_GAMEFREAK_LOGO            ; 06
-	const SPRITE_ANIM_SEQ_GS_GAMEFREAK_LOGO_STAR    ; 07
-	const SPRITE_ANIM_SEQ_GS_GAMEFREAK_LOGO_SPARKLE ; 08
-	const SPRITE_ANIM_SEQ_SLOTS_GOLEM               ; 09
-	const SPRITE_ANIM_SEQ_SLOTS_CHANSEY             ; 0a
-	const SPRITE_ANIM_SEQ_SLOTS_EGG                 ; 0b
-	const SPRITE_ANIM_SEQ_MAIL_CURSOR               ; 0c
-	const SPRITE_ANIM_SEQ_UNUSED_CURSOR             ; 0d
-	const SPRITE_ANIM_SEQ_MEMORY_GAME_CURSOR        ; 0e
-	const SPRITE_ANIM_SEQ_POKEGEAR_ARROW            ; 0f
-	const SPRITE_ANIM_SEQ_TRADE_POKE_BALL           ; 10
-	const SPRITE_ANIM_SEQ_TRADE_TUBE_BULGE          ; 11
-	const SPRITE_ANIM_SEQ_TRADEMON_IN_TUBE          ; 12
-	const SPRITE_ANIM_SEQ_REVEAL_NEW_MON            ; 13
-	const SPRITE_ANIM_SEQ_RADIO_TUNING_KNOB         ; 14
-	const SPRITE_ANIM_SEQ_CUT_LEAVES                ; 15
-	const SPRITE_ANIM_SEQ_FLY_FROM                  ; 16
-	const SPRITE_ANIM_SEQ_FLY_LEAF                  ; 17
-	const SPRITE_ANIM_SEQ_FLY_TO                    ; 18
-	const SPRITE_ANIM_SEQ_GS_INTRO_HO_OH_LUGIA      ; 19
-	const SPRITE_ANIM_SEQ_EZCHAT_CURSOR             ; 1a
-	const SPRITE_ANIM_SEQ_MOBILE_TRADE_SENT_PULSE   ; 1b
-	const SPRITE_ANIM_SEQ_MOBILE_TRADE_OT_PULSE     ; 1c
-	const SPRITE_ANIM_SEQ_INTRO_SUICUNE             ; 1d
-	const SPRITE_ANIM_SEQ_INTRO_PICHU_WOOPER        ; 1e
-	const SPRITE_ANIM_SEQ_CELEBI                    ; 1f
-	const SPRITE_ANIM_SEQ_INTRO_UNOWN               ; 20
-	const SPRITE_ANIM_SEQ_INTRO_UNOWN_F             ; 21
-	const SPRITE_ANIM_SEQ_INTRO_SUICUNE_AWAY        ; 22
-DEF NUM_SPRITE_ANIM_SEQS EQU const_value
+	const SPRITE_ANIM_FUNC_NULL                      ; 00
+	const SPRITE_ANIM_FUNC_PARTY_MON                 ; 01
+	const SPRITE_ANIM_FUNC_PARTY_MON_SWITCH          ; 02
+	const SPRITE_ANIM_FUNC_PARTY_MON_SELECTED        ; 03
+	const SPRITE_ANIM_FUNC_GS_TITLE_TRAIL            ; 04
+	const SPRITE_ANIM_FUNC_NAMING_SCREEN_CURSOR      ; 05
+	const SPRITE_ANIM_FUNC_GAMEFREAK_LOGO            ; 06
+	const SPRITE_ANIM_FUNC_GS_GAMEFREAK_LOGO_STAR    ; 07
+	const SPRITE_ANIM_FUNC_GS_GAMEFREAK_LOGO_SPARKLE ; 08
+	const SPRITE_ANIM_FUNC_SLOTS_GOLEM               ; 09
+	const SPRITE_ANIM_FUNC_SLOTS_CHANSEY             ; 0a
+	const SPRITE_ANIM_FUNC_SLOTS_EGG                 ; 0b
+	const SPRITE_ANIM_FUNC_MAIL_CURSOR               ; 0c
+	const SPRITE_ANIM_FUNC_UNUSED_CURSOR             ; 0d
+	const SPRITE_ANIM_FUNC_MEMORY_GAME_CURSOR        ; 0e
+	const SPRITE_ANIM_FUNC_POKEGEAR_ARROW            ; 0f
+	const SPRITE_ANIM_FUNC_TRADE_POKE_BALL           ; 10
+	const SPRITE_ANIM_FUNC_TRADE_TUBE_BULGE          ; 11
+	const SPRITE_ANIM_FUNC_TRADEMON_IN_TUBE          ; 12
+	const SPRITE_ANIM_FUNC_REVEAL_NEW_MON            ; 13
+	const SPRITE_ANIM_FUNC_RADIO_TUNING_KNOB         ; 14
+	const SPRITE_ANIM_FUNC_CUT_LEAVES                ; 15
+	const SPRITE_ANIM_FUNC_FLY_FROM                  ; 16
+	const SPRITE_ANIM_FUNC_FLY_LEAF                  ; 17
+	const SPRITE_ANIM_FUNC_FLY_TO                    ; 18
+	const SPRITE_ANIM_FUNC_GS_INTRO_HO_OH_LUGIA      ; 19
+	const SPRITE_ANIM_FUNC_EZCHAT_CURSOR             ; 1a
+	const SPRITE_ANIM_FUNC_MOBILE_TRADE_SENT_PULSE   ; 1b
+	const SPRITE_ANIM_FUNC_MOBILE_TRADE_OT_PULSE     ; 1c
+	const SPRITE_ANIM_FUNC_INTRO_SUICUNE             ; 1d
+	const SPRITE_ANIM_FUNC_INTRO_PICHU_WOOPER        ; 1e
+	const SPRITE_ANIM_FUNC_CELEBI                    ; 1f
+	const SPRITE_ANIM_FUNC_INTRO_UNOWN               ; 20
+	const SPRITE_ANIM_FUNC_INTRO_UNOWN_F             ; 21
+	const SPRITE_ANIM_FUNC_INTRO_SUICUNE_AWAY        ; 22
+DEF NUM_SPRITE_ANIM_FUNCS EQU const_value
 
 ; SpriteAnimFrameData indexes (see data/sprite_anims/framesets.asm)
 	const_def
@@ -334,3 +334,6 @@ DEF NUM_SPRITE_ANIM_FRAMESETS EQU const_value
 	const SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_10           ; 8a
 	const SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_11           ; 8b
 DEF NUM_SPRITE_ANIM_OAMSETS EQU const_value
+
+assert NUM_SPRITE_ANIM_OAMSETS <= FIRST_OAM_CMD, \
+	"SPRITE_ANIM_OAMSET_* constants overlap oam*_command constants"

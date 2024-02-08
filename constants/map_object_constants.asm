@@ -14,7 +14,7 @@ DEF OBJECT_STEP_DURATION    rb ; 0a
 DEF OBJECT_ACTION           rb ; 0b
 DEF OBJECT_STEP_FRAME       rb ; 0c
 DEF OBJECT_FACING           rb ; 0d
-DEF OBJECT_TILE             rb ; 0e
+DEF OBJECT_TILE_COLLISION   rb ; 0e
 DEF OBJECT_LAST_TILE        rb ; 0f
 DEF OBJECT_MAP_X            rb ; 10
 DEF OBJECT_MAP_Y            rb ; 11
@@ -97,6 +97,7 @@ DEF RELATIVE_ATTRIBUTES EQU 1 << RELATIVE_ATTRIBUTES_F
 DEF ABSOLUTE_TILE_ID    EQU 1 << ABSOLUTE_TILE_ID_F
 
 ; map_object struct members (see macros/ram.asm)
+; struct initialized by object_event macro (see macros/scripts/maps.asm)
 rsreset
 DEF MAPOBJECT_OBJECT_STRUCT_ID rb ; 0
 DEF MAPOBJECT_SPRITE           rb ; 1

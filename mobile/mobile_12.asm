@@ -113,7 +113,7 @@ InitMobileProfile:
 	call PlaceString
 	call Function48187
 	call WaitBGMap2
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call StaticMenuJoypad
 	ld hl, wMenuCursorY
 	ld b, [hl]
@@ -354,7 +354,7 @@ Function48304:
 	ld a, $29
 .asm_4833f
 	ld [wMenuScrollPosition], a
-	farcall Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
+	farcall Mobile_HDMATransferTilemapAndAttrmap_Menu
 .asm_48348
 	call ScrollingMenu
 	ld de, $629
@@ -380,7 +380,7 @@ Function48304:
 	ld [wd003], a
 .asm_48377
 	call Function48187
-	farcall Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
+	farcall Mobile_HDMATransferTilemapAndAttrmap_Menu
 	jp Function4840c
 
 Function48383:

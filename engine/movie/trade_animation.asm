@@ -128,10 +128,10 @@ RunTradeAnimScript:
 	push af
 	xor a
 	ldh [hMapAnims], a
-	ld hl, wVramState
+	ld hl, wStateFlags
 	ld a, [hl]
 	push af
-	res 0, [hl]
+	res SPRITE_UPDATES_DISABLED_F, [hl]
 	ld hl, wOptions
 	ld a, [hl]
 	push af
@@ -148,7 +148,7 @@ RunTradeAnimScript:
 	pop af
 	ld [wOptions], a
 	pop af
-	ld [wVramState], a
+	ld [wStateFlags], a
 	pop af
 	ldh [hMapAnims], a
 	ret
@@ -167,8 +167,8 @@ RunTradeAnimScript:
 	jr z, .NotCGB
 	ld a, $1
 	ldh [rVBK], a
-	ld hl, vTiles0
-	ld bc, VRAM_End - VRAM_Begin
+	ld hl, STARTOF(VRAM)
+	ld bc, SIZEOF(VRAM)
 	xor a
 	call ByteFill
 	ld a, $0
@@ -176,7 +176,7 @@ RunTradeAnimScript:
 
 .NotCGB:
 	hlbgcoord 0, 0
-	ld bc, VRAM_End - vBGMap0
+	ld bc, STARTOF(VRAM) + SIZEOF(VRAM) - vBGMap0
 	ld a, " "
 	call ByteFill
 	ld hl, TradeGameBoyLZ
@@ -357,7 +357,7 @@ TradeAnim_InitTubeAnim:
 	call LoadTradeBubbleGFX
 
 	pop de
-	ld a, SPRITE_ANIM_INDEX_TRADEMON_ICON
+	ld a, SPRITE_ANIM_OBJ_TRADEMON_ICON
 	call InitSpriteAnimStruct
 
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
@@ -366,7 +366,7 @@ TradeAnim_InitTubeAnim:
 	ld [hl], b
 
 	pop de
-	ld a, SPRITE_ANIM_INDEX_TRADEMON_BUBBLE
+	ld a, SPRITE_ANIM_OBJ_TRADEMON_BUBBLE
 	call InitSpriteAnimStruct
 
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
@@ -470,7 +470,7 @@ TradeAnim_TubeToPlayer8:
 	call DisableLCD
 	callfar ClearSpriteAnims
 	hlbgcoord 0, 0
-	ld bc, VRAM_End - vBGMap0
+	ld bc, STARTOF(VRAM) + SIZEOF(VRAM) - vBGMap0
 	ld a, " "
 	call ByteFill
 	xor a
@@ -1010,7 +1010,7 @@ TrademonStats_PrintTrademonID:
 
 TradeAnim_RockingBall:
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_TRADE_POKE_BALL
+	ld a, SPRITE_ANIM_OBJ_TRADE_POKE_BALL
 	call InitSpriteAnimStruct
 	call TradeAnim_AdvanceScriptPointer
 	ld a, 32
@@ -1019,7 +1019,7 @@ TradeAnim_RockingBall:
 
 TradeAnim_DropBall:
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_TRADE_POKE_BALL
+	ld a, SPRITE_ANIM_OBJ_TRADE_POKE_BALL
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
@@ -1034,7 +1034,7 @@ TradeAnim_DropBall:
 
 TradeAnim_Poof:
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_TRADE_POOF
+	ld a, SPRITE_ANIM_OBJ_TRADE_POOF
 	call InitSpriteAnimStruct
 	call TradeAnim_AdvanceScriptPointer
 	ld a, 16
@@ -1047,7 +1047,7 @@ TradeAnim_BulgeThroughTube:
 	ld a, %11100100 ; 3,2,1,0
 	call DmgToCgbObjPal0
 	depixel 5, 11
-	ld a, SPRITE_ANIM_INDEX_TRADE_TUBE_BULGE
+	ld a, SPRITE_ANIM_OBJ_TRADE_TUBE_BULGE
 	call InitSpriteAnimStruct
 	call TradeAnim_AdvanceScriptPointer
 	ld a, 64
