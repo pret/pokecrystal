@@ -406,9 +406,6 @@ DEF happinesschecknpc     EQUS "HappinessCheckScript"
 charmap "%", "<BSP>"
 charmap "¯", "<WBR>"
 
-; constants/pokemon_data_constants.asm
-DEF MON_ID EQUS "MON_TRAINER_ID"
-
 ; constants/sprite_constants.asm
 DEF SPRITE_BUENA EQUS "SPRITE_BEAUTY"
 
