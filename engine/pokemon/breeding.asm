@@ -296,7 +296,7 @@ HatchEggs:
 	ld [hli], a
 	ld a, [de]
 	ld [hl], a
-	ld hl, MON_ID
+	ld hl, MON_TRAINER_ID
 	add hl, bc
 	ld a, [wPlayerID]
 	ld [hli], a
