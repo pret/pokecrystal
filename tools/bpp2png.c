@@ -147,7 +147,7 @@ uint8_t *rearrange_tiles_to_scanlines(uint8_t *bpp_data, unsigned int width, uns
 void read_gbcpal(Palette palette, const char *filename) {
 	long filesize;
 	uint8_t *pal_data = read_u8(filename, &filesize);
-	if (filesize != 4 * 2) {
+	if (filesize < 4 * 2) {
 		error_exit("Invalid .gbcpal file: \"%s\"\n", filename);
 	}
 	for (int i = 0; i < 4; i++) {
@@ -160,10 +160,12 @@ void read_gbcpal(Palette palette, const char *filename) {
 	free(pal_data);
 }
 
-unsigned int write_png(const char *filename, uint8_t *bpp_data, unsigned int width, unsigned int height, Palette palette) {
+unsigned int write_png(const char *filename, uint8_t *bpp_data, unsigned int depth,
+		unsigned int width, unsigned int height, Palette palette) {
 	LodePNGState state;
 	lodepng_state_init(&state);
-	state.info_raw.bitdepth = state.info_png.color.bitdepth = 2;
+	state.encoder.auto_convert = 0; // Always use the colortype we specify
+	state.info_raw.bitdepth = state.info_png.color.bitdepth = depth;
 
 	if (palette) {
 		state.info_raw.colortype = state.info_png.color.colortype =  LCT_PALETTE;
@@ -230,7 +232,8 @@ int main(int argc, char *argv[]) {
 	bpp_data = rearrange_tiles_to_scanlines(bpp_data, options.width, height);
 
 	const char *png_filename = argv[1];
-	unsigned int error = write_png(png_filename, bpp_data, options.width, height, options.palette ? palette : NULL);
+	unsigned int error = write_png(png_filename, bpp_data, options.depth, options.width, height,
+		options.palette ? palette : NULL);
 	if (error) {
 		error_exit("Could not write to file \"%s\": %s\n", png_filename, lodepng_error_text(error));
 	}
