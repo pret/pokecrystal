@@ -93,7 +93,7 @@ GameFreakPresentsInit:
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
-	ld [hl], 160
+	ld [hl], SCREEN_HEIGHT_PX + (2 * TILE_WIDTH)
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld [hl], 96

@@ -31,7 +31,7 @@ _SwitchPartyMons:
 	ld de, SPRITEOAMSTRUCT_LENGTH
 	ld c, 4
 .gfx_loop
-	ld [hl], SCREEN_WIDTH_PX ; y (off-screen)
+	ld [hl], SCREEN_HEIGHT_PX + (2 * TILE_WIDTH)
 	add hl, de
 	dec c
 	jr nz, .gfx_loop
