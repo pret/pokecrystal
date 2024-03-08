@@ -655,9 +655,9 @@ BattleCommand_CheckObedience:
 	and a
 	ret nz
 
-	; If the monster's id doesn't match the player's,
+	; If the Pokémon's Trainer ID doesn't match the player's,
 	; some conditions need to be met.
-	ld a, MON_ID
+	ld a, MON_TRAINER_ID
 	call BattlePartyAttr
 
 	ld a, [wPlayerID]
