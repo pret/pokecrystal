@@ -1844,8 +1844,8 @@ BattleAnimFunc_Wrap:
 	ld hl, BATTLEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld a, [hl]
-	inc a ; BATTLE_ANIM_FRAMESET_BIND_2
-	      ; BATTLE_ANIM_FRAMESET_BIND_4
+	assert BATTLE_ANIM_FRAMESET_BIND_1 + 3 == BATTLE_ANIM_FRAMESET_BIND_2 + 2 == BATTLE_ANIM_FRAMESET_BIND_3 + 1 == BATTLE_ANIM_FRAMESET_BIND_4
+	inc a
 	call ReinitBattleAnimFrameset
 	call BattleAnim_IncAnonJumptableIndex
 	ld hl, BATTLEANIMSTRUCT_VAR1 ; Unused?
@@ -2490,8 +2490,9 @@ BattleAnimFunc_Dizzy:
 	rlca
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
-	add [hl] ; BATTLE_ANIM_FRAMESET_61 BATTLE_ANIM_FRAMESET_62
-	         ; BATTLE_ANIM_FRAMESET_9C BATTLE_ANIM_FRAMESET_9D
+	assert BATTLE_ANIM_FRAMESET_CHICK_1 + 1 ==  BATTLE_ANIM_FRAMESET_CHICK_2
+	assert BATTLE_ANIM_FRAMESET_IMP + 1 == BATTLE_ANIM_FRAMESET_IMP_FLIPPED
+	add [hl]
 	call ReinitBattleAnimFrameset
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
@@ -2528,15 +2529,16 @@ BattleAnimFunc_Dizzy:
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
-	inc a ; BATTLE_ANIM_FRAMESET_62
-	      ; BATTLE_ANIM_FRAMESET_9D
+	assert BATTLE_ANIM_FRAMESET_CHICK_1 + 1 ==  BATTLE_ANIM_FRAMESET_CHICK_2
+	assert BATTLE_ANIM_FRAMESET_IMP + 1 == BATTLE_ANIM_FRAMESET_IMP_FLIPPED
+	inc a
 	jr .got_frameset
 
 .not_flipped
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
-	ld a, [hl] ; BATTLE_ANIM_FRAMESET_61
-	           ; BATTLE_ANIM_FRAMESET_9C
+	ld a, [hl] ; BATTLE_ANIM_FRAMESET_CHICK_1
+	           ; BATTLE_ANIM_FRAMESET_IMP
 .got_frameset
 	call ReinitBattleAnimFrameset
 	ret
