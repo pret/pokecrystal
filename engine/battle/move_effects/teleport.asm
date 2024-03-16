@@ -19,6 +19,7 @@ BattleCommand_Teleport:
 
 	; Can't teleport from a trainer battle
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jr nz, .failed
 	; b = player level
@@ -51,6 +52,7 @@ BattleCommand_Teleport:
 .enemy_turn
 	; Can't teleport from a trainer battle
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jr nz, .failed
 	; b = enemy level

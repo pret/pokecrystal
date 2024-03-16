@@ -45,7 +45,8 @@ BattleCommand_BatonPass:
 .Enemy:
 ; Wildmons don't have anything to switch to
 	ld a, [wBattleMode]
-	dec a ; WILDMON
+	assert WILD_BATTLE == 1
+	dec a
 	jp z, FailedBatonPass
 
 	call CheckAnyOtherAliveEnemyMons

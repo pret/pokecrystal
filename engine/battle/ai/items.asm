@@ -2,6 +2,7 @@ AI_SwitchOrTryItem:
 	and a
 
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	ret z
 

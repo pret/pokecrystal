@@ -4,6 +4,7 @@ BattleStart_TrainerHuds:
 	call LoadBallIconGFX
 	call ShowPlayerMonsRemaining
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	ret z
 	jp ShowOTTrainerMonsRemaining
@@ -140,6 +141,7 @@ DrawEnemyHUDBorder:
 	ld de, 1 ; start on left
 	call PlaceHUDBorderTiles
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	ret nz
 	ld a, [wTempEnemyMonSpecies]

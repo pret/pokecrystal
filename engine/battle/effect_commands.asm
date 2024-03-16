@@ -1007,6 +1007,7 @@ BattleCommand_DoTurn:
 
 ; mimic this part entirely if wildbattle
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jr z, .wild
 
@@ -4975,6 +4976,7 @@ BattleCommand_ForceSwitch:
 	and a
 	jr nz, .missed
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jr nz, .trainer
 	ld a, [wCurPartyLevel]
@@ -5064,6 +5066,7 @@ BattleCommand_ForceSwitch:
 	jr nz, .player_miss
 
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jr nz, .vs_trainer
 
@@ -6329,6 +6332,7 @@ BattleCommand_Defrost:
 	jr z, .party
 
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jr z, .done
 

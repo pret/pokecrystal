@@ -212,6 +212,7 @@ ItemEffects:
 PokeBallEffect:
 ; BUG: The Dude's catching tutorial may crash if his Poké Ball can't be used (see docs/bugs_and_glitches.md)
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jp nz, UseBallInTrainerBattle
 
@@ -2094,7 +2095,8 @@ XAccuracyEffect:
 
 PokeDollEffect:
 	ld a, [wBattleMode]
-	dec a ; WILD_BATTLE?
+	assert WILD_BATTLE == 1
+	dec a
 	jr nz, .not_wild
 	inc a ; TRUE
 	ld [wForcedSwitch], a

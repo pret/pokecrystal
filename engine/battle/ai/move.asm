@@ -4,6 +4,7 @@ AIChooseMove:
 
 ; Wildmons attack at random.
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	ret z
 

@@ -329,6 +329,7 @@ endr
 
 .initstats
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jr nz, .generatestats
 	ld hl, wEnemyMonMaxHP

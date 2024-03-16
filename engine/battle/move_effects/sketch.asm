@@ -78,6 +78,7 @@ BattleCommand_Sketch:
 	and a
 	jr z, .user_trainer
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jr nz, .user_trainer
 ; wildmon

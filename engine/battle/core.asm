@@ -33,6 +33,7 @@ DoBattle:
 
 .not_linked
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jr z, .wild
 	xor a
@@ -763,6 +764,7 @@ HandleEncore:
 
 TryEnemyFlee:
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jr nz, .Stay
 
@@ -1201,6 +1203,7 @@ HandlePerishSong:
 	ld [hli], a
 	ld [hl], a
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	ret z
 	ld hl, wOTPartyMon1HP
@@ -1363,6 +1366,7 @@ HandleMysteryberry:
 	ld de, wWildMonPP
 	ld hl, wWildMonMoves
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jr z, .wild
 	ld hl, wOTPartyMon1PP
@@ -1452,6 +1456,7 @@ HandleMysteryberry:
 	and a
 	jr z, .consume_item
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jr z, .skip_consumption
 	call GetOTPartymonItem
@@ -1572,6 +1577,7 @@ HandleDefrost:
 	ld [wEnemyMonStatus], a
 
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jr z, .wild
 	ld a, [wCurOTMon]
@@ -2030,6 +2036,7 @@ HandleEnemyMonFaint:
 	call DelayFrames
 
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jr nz, .trainer
 
@@ -2105,6 +2112,7 @@ DoubleSwitch:
 UpdateBattleStateAndExperienceAfterEnemyFaint:
 	call UpdateBattleMonInParty
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jr z, .wild
 	ld a, [wCurOTMon]
@@ -2124,6 +2132,7 @@ UpdateBattleStateAndExperienceAfterEnemyFaint:
 	call NewEnemyMonStatus
 	call BreakAttraction
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jr z, .wild2
 	jr .trainer
@@ -2149,6 +2158,7 @@ UpdateBattleStateAndExperienceAfterEnemyFaint:
 	and a
 	ret z
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	call z, PlayVictoryMusic
 	call EmptyBattleTextbox
@@ -2564,6 +2574,7 @@ PlayVictoryMusic:
 	call DelayFrame
 	ld de, MUSIC_WILD_VICTORY
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jr nz, .trainer_victory
 	push de
@@ -2627,6 +2638,7 @@ HandlePlayerMonFaint:
 	jr nz, .notfainted
 	call UpdateBattleStateAndExperienceAfterEnemyFaint
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jr nz, .trainer
 	ld a, $1
@@ -2702,6 +2714,7 @@ AskUseNextPokemon:
 ; We don't need to be here if we're in a Trainer battle,
 ; as that decision is made for us.
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	and a
 	dec a
 	ret nz
@@ -3707,6 +3720,7 @@ TryToRunAwayFromBattle:
 	jp nz, .can_escape
 
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jp nz, .cant_run_from_trainer
 
@@ -3945,6 +3959,7 @@ GetEnemyMonDVs:
 	ret z
 	ld hl, wEnemyBackupDVs
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	ret z
 	ld hl, wOTPartyMon1DVs
@@ -4475,6 +4490,7 @@ UseConfusionHealingItem:
 	xor a
 	ld [bc], a
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	ret z
 	ld [hl], $0
@@ -5876,6 +5892,7 @@ ParseEnemyAction:
 
 .enough_pp
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jr nz, .skip_load
 ; wild
@@ -6010,6 +6027,7 @@ LoadEnemyMon:
 
 ; Is the item predetermined?
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jr z, .WildItem
 
@@ -6081,6 +6099,7 @@ LoadEnemyMon:
 	farcall GetTrainerDVs
 ; These are the DVs we'll use if we're actually in a trainer battle
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jr nz, .UpdateDVs
 
@@ -6154,6 +6173,7 @@ LoadEnemyMon:
 
 ; We've still got more to do if we're dealing with a wild monster
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jr nz, .Happiness
 
@@ -7118,6 +7138,7 @@ GiveExperiencePoints:
 ; Boost experience for a Trainer Battle
 	ld [wStringBuffer2 + 2], a
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	call nz, BoostExp
 ; Boost experience for Lucky Egg
@@ -9090,6 +9111,7 @@ CopyBackpic:
 
 BattleStartMessage:
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jr z, .wild
 

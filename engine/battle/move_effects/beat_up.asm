@@ -98,6 +98,7 @@ BattleCommand_BeatUp:
 
 .enemy_got_mon
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jr z, .wild
 

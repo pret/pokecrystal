@@ -65,6 +65,7 @@ BattleCommand_Spite:
 	and a
 	jr nz, .not_wildmon
 	ld a, [wBattleMode]
+	assert WILD_BATTLE == 1
 	dec a
 	jr nz, .not_wildmon
 	ld hl, wWildMonPP
