@@ -291,8 +291,8 @@ SetFacingGrassShake:
 	and 4
 	ld a, FACING_GRASS_1
 	jr z, .ok
-	inc a ; FACING_GRASS_2
-
+	inc a
+	assert FACING_GRASS_1 + 1 == FACING_GRASS_2
 .ok
 	ld [hl], a
 	ret
