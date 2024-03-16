@@ -23,6 +23,7 @@ DoBattle:
 	ld a, d
 	ld [wBattleAction], a
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr z, .not_linked
 
@@ -95,6 +96,7 @@ DoBattle:
 	call SetPlayerTurn
 	call SpikesDamage
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr z, .not_linked_2
 	ldh a, [hSerialConnectionStatus]
@@ -122,6 +124,7 @@ WildFled_EnemyFled_LinkBattleCanceled:
 	add DRAW
 	ld [wBattleResult], a
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	ld hl, BattleText_WildFled
 	jr z, .print_text
@@ -424,6 +427,7 @@ HandleBerserkGene:
 
 EnemyTriesToFlee:
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr z, .not_linked
 	ld a, [wBattleAction]
@@ -441,6 +445,7 @@ EnemyTriesToFlee:
 
 DetermineMoveOrder:
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr z, .use_move
 	ld a, [wBattleAction]
@@ -2300,6 +2305,7 @@ HandleEnemySwitch:
 	call WaitBGMap
 	farcall EnemySwitch_TrainerHud
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr z, .not_linked
 
@@ -2351,6 +2357,7 @@ WinTrainerBattle:
 	ld [wBattleLowHealthAlarm], a
 	ld [wBattleEnded], a
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	ld a, b
 	call z, PlayVictoryMusic
@@ -2361,6 +2368,7 @@ WinTrainerBattle:
 	call IsMobileBattle
 	jr z, .mobile
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	ret nz
 
@@ -2722,6 +2730,7 @@ ForcePlayerMonChoice:
 	call SetUpBattlePartyMenu
 	call ForcePickPartyMonInBattle
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr z, .skip_link
 	ld a, BATTLEPLAYERACTION_USEITEM
@@ -2956,6 +2965,7 @@ LostBattle:
 
 .not_canlose
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr nz, .LostLinkBattle
 
@@ -3171,6 +3181,7 @@ CheckWhetherSwitchmonIsPredetermined:
 ; returns the enemy switchmon index in b, or
 ; returns carry if the index is not yet determined.
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr z, .not_linked
 
@@ -3464,6 +3475,7 @@ CheckWhetherToAskSwitch:
 	dec a
 	jp z, .return_nc
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jp nz, .return_nc
 	ld a, [wOptions]
@@ -3690,6 +3702,7 @@ TryToRunAwayFromBattle:
 	jp z, .cant_escape
 
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jp nz, .can_escape
 
@@ -3807,6 +3820,7 @@ TryToRunAwayFromBattle:
 
 .can_escape
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	ld a, DRAW
 	jr z, .fled
@@ -4953,6 +4967,7 @@ LoadBattleMenu2:
 
 BattleMenu_Pack:
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jp nz, .ItemsCantBeUsed
 
@@ -5190,6 +5205,7 @@ PlayerSwitch:
 	ld a, 1
 	ld [wPlayerIsSwitching], a
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr z, .not_linked
 	call LoadStandardMenuHeader
@@ -5199,6 +5215,7 @@ PlayerSwitch:
 .not_linked
 	call ParseEnemyAction
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr nz, .linked
 
@@ -5410,6 +5427,7 @@ MoveSelectionScreen:
 	ld b, D_DOWN | D_UP | A_BUTTON | B_BUTTON
 	jr z, .okay
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr nz, .okay
 	ld b, D_DOWN | D_UP | A_BUTTON | B_BUTTON | SELECT
@@ -5783,6 +5801,7 @@ ParseEnemyAction:
 	and a
 	ret nz
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr z, .not_linked
 	call EmptyBattleTextbox
@@ -5969,6 +5988,7 @@ LoadEnemyMon:
 
 ; We don't need to be here if we're in a link battle
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jp nz, InitEnemyMon
 
@@ -6773,6 +6793,7 @@ BadgeStatBoosts:
 ; The boosted stats are in order, except PlainBadge and MineralBadge's boosts are swapped.
 
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	ret nz
 
@@ -6882,6 +6903,7 @@ _BattleRandom::
 
 ; But if we're in a non-link battle we're safe to use it
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jp z, Random
 
@@ -6977,6 +6999,7 @@ GiveExperiencePoints:
 ; Give experience.
 ; Don't give experience if linked or in the Battle Tower.
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	ret nz
 
@@ -7614,6 +7637,7 @@ AnimateExpBar:
 
 SendOutMonText:
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr z, .not_linked
 
@@ -8265,6 +8289,7 @@ ExitBattle:
 
 .HandleEndOfBattle:
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr z, .not_linked
 	call ShowLinkBattleParticipantsAfterEnd

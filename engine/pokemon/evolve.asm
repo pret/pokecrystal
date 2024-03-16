@@ -69,6 +69,7 @@ EvolveAfterBattle_MasterLoop:
 	jr z, .trade
 
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jp nz, .dont_evolve_2
 
@@ -143,6 +144,7 @@ EvolveAfterBattle_MasterLoop:
 
 .trade
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jp z, .dont_evolve_2
 
@@ -177,6 +179,7 @@ EvolveAfterBattle_MasterLoop:
 	and a
 	jp z, .dont_evolve_3
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jp nz, .dont_evolve_3
 	jr .proceed
@@ -334,6 +337,7 @@ EvolveAfterBattle_MasterLoop:
 	pop bc
 	pop hl
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	ret nz
 	ld a, [wBattleMode]

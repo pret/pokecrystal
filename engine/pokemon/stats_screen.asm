@@ -8,6 +8,7 @@ DEF STAT_PAGE_MASK EQU %00000011
 
 BattleStatsScreenInit:
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	cp LINK_MOBILE
 	jr nz, StatsScreenInit
 

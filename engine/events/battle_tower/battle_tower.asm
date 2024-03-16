@@ -222,6 +222,7 @@ RunBattleTowerTrainer:
 	or 1
 	ld [wInBattleTowerBattle], a
 
+	assert LINK_NULL == 0
 	xor a
 	ld [wLinkMode], a
 	farcall StubbedTrainerRankings_Healings

@@ -29,6 +29,7 @@ BattleCommand_Thief:
 	ret nz
 
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr z, .stealenemyitem
 

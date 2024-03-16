@@ -6,6 +6,7 @@ AI_SwitchOrTryItem:
 	ret z
 
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	ret nz
 
@@ -712,6 +713,7 @@ AI_Switch:
 	xor a
 	ld [wBattleHasJustStarted], a
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	ret nz
 	scf

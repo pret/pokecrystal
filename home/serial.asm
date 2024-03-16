@@ -409,6 +409,7 @@ LinkDataReceived::
 SetBitsForTimeCapsuleRequestIfNotLinked:: ; unreferenced
 ; Similar to SetBitsForTimeCapsuleRequest (see engine/link/link.asm).
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	ret nz
 	ld a, USING_INTERNAL_CLOCK

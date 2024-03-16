@@ -458,6 +458,7 @@ Continue_CheckRTC_RestartClock:
 
 FinishContinueFunction:
 .loop
+	assert LINK_NULL == 0
 	xor a
 	ld [wDontPlayMapMusicOnReload], a
 	ld [wLinkMode], a

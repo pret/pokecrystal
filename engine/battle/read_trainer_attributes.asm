@@ -22,6 +22,7 @@ GetTrainerClassName:
 GetOTName:
 	ld hl, wOTPlayerName
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr nz, .ok
 

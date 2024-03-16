@@ -349,6 +349,7 @@ PlaceEnemysName::
 	push de
 
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr nz, .linkbattle
 
@@ -502,6 +503,7 @@ Paragraph::
 
 _ContText::
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	or a
 	jr nz, .communication
 	call LoadBlinkingCursor
@@ -514,6 +516,7 @@ _ContText::
 	pop de
 
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	or a
 	call z, UnloadBlinkingCursor
 	; fallthrough

@@ -120,6 +120,7 @@ GetMonSubmenuItems:
 	cp EGG
 	jr z, .egg
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr nz, .skip_moves
 	ld a, MON_MOVES
@@ -154,6 +155,7 @@ GetMonSubmenuItems:
 	ld a, MONMENUITEM_MOVE
 	call AddMonMenuItem
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr nz, .skip2
 	push hl

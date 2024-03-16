@@ -2,6 +2,7 @@ ShowLinkBattleParticipants:
 ; If we're not in a communications room,
 ; we don't need to be here.
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	ret z
 
@@ -125,6 +126,7 @@ PlayBattleMusic:
 
 .othertrainer
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr nz, .johtotrainer
 

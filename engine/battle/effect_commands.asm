@@ -11,6 +11,7 @@ DoEnemyTurn:
 	call SetEnemyTurn
 
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr z, DoTurn
 
@@ -648,6 +649,7 @@ BattleCommand_CheckObedience:
 	; No obedience in link battles
 	; (since no handling exists for enemy)
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	ret nz
 
@@ -3645,6 +3647,7 @@ BattleCommand_SleepTarget:
 
 	; Not in link battle
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr nz, .dont_fail
 
@@ -3736,6 +3739,7 @@ BattleCommand_Poison:
 	jr z, .dont_sample_failure
 
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr nz, .dont_sample_failure
 
@@ -4355,6 +4359,7 @@ BattleCommand_StatDown:
 	jr z, .DidntMiss
 
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr nz, .DidntMiss
 
@@ -5852,6 +5857,7 @@ BattleCommand_Paralyze:
 	jr z, .dont_sample_failure
 
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr nz, .dont_sample_failure
 
@@ -6441,6 +6447,7 @@ BattleCommand_TimeBasedHealContinue:
 
 ; Don't factor in time of day in link battles.
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr nz, .Weather
 

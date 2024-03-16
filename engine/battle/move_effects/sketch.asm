@@ -2,6 +2,7 @@ BattleCommand_Sketch:
 	call ClearLastMove
 ; Don't sketch during a link battle
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr z, .not_linked
 	call AnimateFailedMove

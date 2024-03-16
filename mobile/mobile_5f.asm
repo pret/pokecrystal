@@ -298,6 +298,7 @@ Function17d0f3:
 	ld a, LINK_TRADECENTER
 	ld [wLinkMode], a
 	farcall EvolvePokemon
+	assert LINK_NULL == 0
 	xor a
 	ld [wLinkMode], a
 	farcall SaveAfterLinkTrade

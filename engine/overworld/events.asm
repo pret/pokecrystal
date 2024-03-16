@@ -448,6 +448,7 @@ endr
 
 CheckTimeEvents:
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr nz, .nothing
 
@@ -866,6 +867,7 @@ SelectMenuCallback:
 CountStep:
 	; Don't count steps in link communication rooms.
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr nz, .done
 

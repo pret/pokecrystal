@@ -8,6 +8,7 @@ AIChooseMove:
 	ret z
 
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	ret nz
 

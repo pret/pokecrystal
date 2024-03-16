@@ -102,6 +102,7 @@ BattleCommand_BeatUp:
 	jr z, .wild
 
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	jr nz, .link_or_tower
 

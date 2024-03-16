@@ -78,6 +78,7 @@ BattleCommand_BatonPass:
 
 BatonPass_LinkPlayerSwitch:
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	ret z
 
@@ -95,6 +96,7 @@ BatonPass_LinkPlayerSwitch:
 
 BatonPass_LinkEnemySwitch:
 	ld a, [wLinkMode]
+	assert LINK_NULL == 0
 	and a
 	ret z
 
