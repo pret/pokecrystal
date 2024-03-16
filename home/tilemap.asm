@@ -229,8 +229,10 @@ GetHPPal::
 	ld a, e
 	cp (HP_BAR_LENGTH_PX * 50 / 100) ; 24
 	ret nc
-	inc d ; HP_YELLOW
+	assert HP_GREEN + 1 == HP_YELLOW
+	inc d
 	cp (HP_BAR_LENGTH_PX * 21 / 100) ; 10
 	ret nc
-	inc d ; HP_RED
+	assert HP_YELLOW + 1 == HP_RED
+	inc d
 	ret
