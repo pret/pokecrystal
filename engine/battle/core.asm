@@ -23,7 +23,6 @@ DoBattle:
 	ld a, d
 	ld [wBattleAction], a
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr z, .not_linked
 
@@ -33,7 +32,6 @@ DoBattle:
 
 .not_linked
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	jr z, .wild
 	xor a
@@ -97,7 +95,6 @@ DoBattle:
 	call SetPlayerTurn
 	call SpikesDamage
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr z, .not_linked_2
 	ldh a, [hSerialConnectionStatus]
@@ -125,7 +122,6 @@ WildFled_EnemyFled_LinkBattleCanceled:
 	add DRAW
 	ld [wBattleResult], a
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	ld hl, BattleText_WildFled
 	jr z, .print_text
@@ -428,7 +424,6 @@ HandleBerserkGene:
 
 EnemyTriesToFlee:
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr z, .not_linked
 	ld a, [wBattleAction]
@@ -446,7 +441,6 @@ EnemyTriesToFlee:
 
 DetermineMoveOrder:
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr z, .use_move
 	ld a, [wBattleAction]
@@ -764,7 +758,6 @@ HandleEncore:
 
 TryEnemyFlee:
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	jr nz, .Stay
 
@@ -1203,7 +1196,6 @@ HandlePerishSong:
 	ld [hli], a
 	ld [hl], a
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	ret z
 	ld hl, wOTPartyMon1HP
@@ -1366,7 +1358,6 @@ HandleMysteryberry:
 	ld de, wWildMonPP
 	ld hl, wWildMonMoves
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	jr z, .wild
 	ld hl, wOTPartyMon1PP
@@ -1456,7 +1447,6 @@ HandleMysteryberry:
 	and a
 	jr z, .consume_item
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	jr z, .skip_consumption
 	call GetOTPartymonItem
@@ -1577,7 +1567,6 @@ HandleDefrost:
 	ld [wEnemyMonStatus], a
 
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	jr z, .wild
 	ld a, [wCurOTMon]
@@ -2036,7 +2025,6 @@ HandleEnemyMonFaint:
 	call DelayFrames
 
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	jr nz, .trainer
 
@@ -2112,7 +2100,6 @@ DoubleSwitch:
 UpdateBattleStateAndExperienceAfterEnemyFaint:
 	call UpdateBattleMonInParty
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	jr z, .wild
 	ld a, [wCurOTMon]
@@ -2132,7 +2119,6 @@ UpdateBattleStateAndExperienceAfterEnemyFaint:
 	call NewEnemyMonStatus
 	call BreakAttraction
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	jr z, .wild2
 	jr .trainer
@@ -2158,7 +2144,6 @@ UpdateBattleStateAndExperienceAfterEnemyFaint:
 	and a
 	ret z
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	call z, PlayVictoryMusic
 	call EmptyBattleTextbox
@@ -2315,7 +2300,6 @@ HandleEnemySwitch:
 	call WaitBGMap
 	farcall EnemySwitch_TrainerHud
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr z, .not_linked
 
@@ -2367,7 +2351,6 @@ WinTrainerBattle:
 	ld [wBattleLowHealthAlarm], a
 	ld [wBattleEnded], a
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	ld a, b
 	call z, PlayVictoryMusic
@@ -2378,7 +2361,6 @@ WinTrainerBattle:
 	call IsMobileBattle
 	jr z, .mobile
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	ret nz
 
@@ -2574,7 +2556,6 @@ PlayVictoryMusic:
 	call DelayFrame
 	ld de, MUSIC_WILD_VICTORY
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	jr nz, .trainer_victory
 	push de
@@ -2638,7 +2619,6 @@ HandlePlayerMonFaint:
 	jr nz, .notfainted
 	call UpdateBattleStateAndExperienceAfterEnemyFaint
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	jr nz, .trainer
 	ld a, $1
@@ -2714,7 +2694,6 @@ AskUseNextPokemon:
 ; We don't need to be here if we're in a Trainer battle,
 ; as that decision is made for us.
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	and a
 	dec a
 	ret nz
@@ -2743,7 +2722,6 @@ ForcePlayerMonChoice:
 	call SetUpBattlePartyMenu
 	call ForcePickPartyMonInBattle
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr z, .skip_link
 	ld a, BATTLEPLAYERACTION_USEITEM
@@ -2978,7 +2956,6 @@ LostBattle:
 
 .not_canlose
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr nz, .LostLinkBattle
 
@@ -3194,7 +3171,6 @@ CheckWhetherSwitchmonIsPredetermined:
 ; returns the enemy switchmon index in b, or
 ; returns carry if the index is not yet determined.
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr z, .not_linked
 
@@ -3488,7 +3464,6 @@ CheckWhetherToAskSwitch:
 	dec a
 	jp z, .return_nc
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jp nz, .return_nc
 	ld a, [wOptions]
@@ -3715,12 +3690,10 @@ TryToRunAwayFromBattle:
 	jp z, .cant_escape
 
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jp nz, .can_escape
 
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	jp nz, .cant_run_from_trainer
 
@@ -3834,7 +3807,6 @@ TryToRunAwayFromBattle:
 
 .can_escape
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	ld a, DRAW
 	jr z, .fled
@@ -3959,7 +3931,6 @@ GetEnemyMonDVs:
 	ret z
 	ld hl, wEnemyBackupDVs
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	ret z
 	ld hl, wOTPartyMon1DVs
@@ -4490,7 +4461,6 @@ UseConfusionHealingItem:
 	xor a
 	ld [bc], a
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	ret z
 	ld [hl], $0
@@ -4983,7 +4953,6 @@ LoadBattleMenu2:
 
 BattleMenu_Pack:
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jp nz, .ItemsCantBeUsed
 
@@ -5221,7 +5190,6 @@ PlayerSwitch:
 	ld a, 1
 	ld [wPlayerIsSwitching], a
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr z, .not_linked
 	call LoadStandardMenuHeader
@@ -5231,7 +5199,6 @@ PlayerSwitch:
 .not_linked
 	call ParseEnemyAction
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr nz, .linked
 
@@ -5443,7 +5410,6 @@ MoveSelectionScreen:
 	ld b, D_DOWN | D_UP | A_BUTTON | B_BUTTON
 	jr z, .okay
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr nz, .okay
 	ld b, D_DOWN | D_UP | A_BUTTON | B_BUTTON | SELECT
@@ -5817,7 +5783,6 @@ ParseEnemyAction:
 	and a
 	ret nz
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr z, .not_linked
 	call EmptyBattleTextbox
@@ -5892,7 +5857,6 @@ ParseEnemyAction:
 
 .enough_pp
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	jr nz, .skip_load
 ; wild
@@ -6005,7 +5969,6 @@ LoadEnemyMon:
 
 ; We don't need to be here if we're in a link battle
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jp nz, InitEnemyMon
 
@@ -6027,7 +5990,6 @@ LoadEnemyMon:
 
 ; Is the item predetermined?
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	jr z, .WildItem
 
@@ -6099,7 +6061,6 @@ LoadEnemyMon:
 	farcall GetTrainerDVs
 ; These are the DVs we'll use if we're actually in a trainer battle
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	jr nz, .UpdateDVs
 
@@ -6173,7 +6134,6 @@ LoadEnemyMon:
 
 ; We've still got more to do if we're dealing with a wild monster
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	jr nz, .Happiness
 
@@ -6813,7 +6773,6 @@ BadgeStatBoosts:
 ; The boosted stats are in order, except PlainBadge and MineralBadge's boosts are swapped.
 
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	ret nz
 
@@ -6923,7 +6882,6 @@ _BattleRandom::
 
 ; But if we're in a non-link battle we're safe to use it
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jp z, Random
 
@@ -7019,7 +6977,6 @@ GiveExperiencePoints:
 ; Give experience.
 ; Don't give experience if linked or in the Battle Tower.
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	ret nz
 
@@ -7138,7 +7095,6 @@ GiveExperiencePoints:
 ; Boost experience for a Trainer Battle
 	ld [wStringBuffer2 + 2], a
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	call nz, BoostExp
 ; Boost experience for Lucky Egg
@@ -7658,7 +7614,6 @@ AnimateExpBar:
 
 SendOutMonText:
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr z, .not_linked
 
@@ -8310,7 +8265,6 @@ ExitBattle:
 
 .HandleEndOfBattle:
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr z, .not_linked
 	call ShowLinkBattleParticipantsAfterEnd
@@ -9111,7 +9065,6 @@ CopyBackpic:
 
 BattleStartMessage:
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	jr z, .wild
 

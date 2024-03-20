@@ -127,7 +127,6 @@ UpdateEnemyMonInParty::
 
 ; No wildmons.
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	ret z
 

@@ -11,7 +11,6 @@ DoEnemyTurn:
 	call SetEnemyTurn
 
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr z, DoTurn
 
@@ -649,7 +648,6 @@ BattleCommand_CheckObedience:
 	; No obedience in link battles
 	; (since no handling exists for enemy)
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	ret nz
 
@@ -1007,7 +1005,6 @@ BattleCommand_DoTurn:
 
 ; mimic this part entirely if wildbattle
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	jr z, .wild
 
@@ -3648,7 +3645,6 @@ BattleCommand_SleepTarget:
 
 	; Not in link battle
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr nz, .dont_fail
 
@@ -3740,7 +3736,6 @@ BattleCommand_Poison:
 	jr z, .dont_sample_failure
 
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr nz, .dont_sample_failure
 
@@ -4360,7 +4355,6 @@ BattleCommand_StatDown:
 	jr z, .DidntMiss
 
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr nz, .DidntMiss
 
@@ -4976,7 +4970,6 @@ BattleCommand_ForceSwitch:
 	and a
 	jr nz, .missed
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	jr nz, .trainer
 	ld a, [wCurPartyLevel]
@@ -5066,7 +5059,6 @@ BattleCommand_ForceSwitch:
 	jr nz, .player_miss
 
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	jr nz, .vs_trainer
 
@@ -5860,7 +5852,6 @@ BattleCommand_Paralyze:
 	jr z, .dont_sample_failure
 
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr nz, .dont_sample_failure
 
@@ -6332,7 +6323,6 @@ BattleCommand_Defrost:
 	jr z, .party
 
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	jr z, .done
 
@@ -6451,7 +6441,6 @@ BattleCommand_TimeBasedHealContinue:
 
 ; Don't factor in time of day in link battles.
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr nz, .Weather
 

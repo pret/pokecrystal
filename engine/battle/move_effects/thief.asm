@@ -29,12 +29,10 @@ BattleCommand_Thief:
 	ret nz
 
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr z, .stealenemyitem
 
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	ret z
 

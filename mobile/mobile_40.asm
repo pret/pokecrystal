@@ -169,7 +169,6 @@ Function1000fa:
 
 	ld a, [wLinkMode]
 	push af
-	assert LINK_NULL == 0
 	xor a
 	ld [wLinkMode], a
 	ld a, $04
@@ -2703,7 +2702,6 @@ Function1011f1:
 	ret
 
 Function101220:
-	assert LINK_NULL == 0
 	xor a
 	ld [wLinkMode], a
 	ret

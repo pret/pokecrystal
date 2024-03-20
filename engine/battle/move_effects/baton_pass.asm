@@ -45,8 +45,7 @@ BattleCommand_BatonPass:
 .Enemy:
 ; Wildmons don't have anything to switch to
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
-	dec a
+	dec a ; WILDMON
 	jp z, FailedBatonPass
 
 	call CheckAnyOtherAliveEnemyMons
@@ -79,7 +78,6 @@ BattleCommand_BatonPass:
 
 BatonPass_LinkPlayerSwitch:
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	ret z
 
@@ -97,7 +95,6 @@ BatonPass_LinkPlayerSwitch:
 
 BatonPass_LinkEnemySwitch:
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	ret z
 

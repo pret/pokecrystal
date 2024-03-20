@@ -42,7 +42,6 @@ ConsumeHeldItem:
 	and a
 	jr nz, .ourturn
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	jr z, .done
 

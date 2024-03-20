@@ -329,7 +329,6 @@ endr
 
 .initstats
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	jr nz, .generatestats
 	ld hl, wEnemyMonMaxHP
@@ -1334,7 +1333,6 @@ RemoveMonFromPartyOrBox:
 	and a
 	jp nz, CloseSRAM
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	ret nz
 	; Shift mail

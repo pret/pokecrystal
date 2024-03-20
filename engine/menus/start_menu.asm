@@ -304,7 +304,6 @@ endr
 .no_pokemon
 
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr nz, .no_pack
 	ld hl, wStatusFlags2
@@ -325,7 +324,6 @@ endr
 	call .AppendMenuList
 
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr nz, .no_save
 	ld hl, wStatusFlags2

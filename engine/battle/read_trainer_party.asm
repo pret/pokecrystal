@@ -4,7 +4,6 @@ ReadTrainerParty:
 	ret nz
 
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	ret nz
 

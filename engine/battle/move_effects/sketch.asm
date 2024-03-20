@@ -2,7 +2,6 @@ BattleCommand_Sketch:
 	call ClearLastMove
 ; Don't sketch during a link battle
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr z, .not_linked
 	call AnimateFailedMove
@@ -78,7 +77,6 @@ BattleCommand_Sketch:
 	and a
 	jr z, .user_trainer
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	jr nz, .user_trainer
 ; wildmon

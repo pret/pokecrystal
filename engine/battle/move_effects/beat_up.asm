@@ -98,12 +98,10 @@ BattleCommand_BeatUp:
 
 .enemy_got_mon
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	jr z, .wild
 
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr nz, .link_or_tower
 

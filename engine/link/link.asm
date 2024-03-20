@@ -2257,7 +2257,6 @@ WaitForOtherPlayerToExit:
 	pop af
 	ldh [rIF], a
 	ld hl, wLinkTimeoutFrames
-	assert LINK_NULL == 0
 	xor a
 	ld [hli], a
 	ld [hl], a
@@ -2602,7 +2601,6 @@ Colosseum:
 	ret
 
 CloseLink:
-	assert LINK_NULL == 0
 	xor a
 	ld [wLinkMode], a
 	ld c, 3

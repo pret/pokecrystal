@@ -385,7 +385,6 @@ PromptButton::
 ; corner of a textbox and wait until A or B is
 ; pressed, afterwards, play a sound.
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	jr nz, .link
 	call .wait_input

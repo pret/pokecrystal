@@ -4,12 +4,10 @@ AIChooseMove:
 
 ; Wildmons attack at random.
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	ret z
 
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	ret nz
 

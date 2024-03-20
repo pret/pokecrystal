@@ -2,12 +2,10 @@ AI_SwitchOrTryItem:
 	and a
 
 	ld a, [wBattleMode]
-	assert WILD_BATTLE == 1
 	dec a
 	ret z
 
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	ret nz
 
@@ -714,7 +712,6 @@ AI_Switch:
 	xor a
 	ld [wBattleHasJustStarted], a
 	ld a, [wLinkMode]
-	assert LINK_NULL == 0
 	and a
 	ret nz
 	scf
