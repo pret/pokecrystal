@@ -2539,7 +2539,8 @@ Pokedex_GetArea:
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .male
-	inc c ; PAL_OW_BLUE
+	assert PAL_OW_RED + 1 == PAL_OW_BLUE
+	inc c
 .male
 	ld a, c
 	ld [hli], a ; attributes
