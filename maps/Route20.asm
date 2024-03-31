@@ -48,6 +48,8 @@ TrainerSwimmermCameron:
 	end
 	
 LoreleiScript:
+    checkevent EVENT_BEAT_LORELEI
+	iftrue .FightDone
     opentext
 	writetext LoreleiIntroText 
 	waitbutton
@@ -74,8 +76,58 @@ LoreleiScript:
     loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
     startbattle
 	reloadmapafterbattle
-    faceplayer
+	setevent EVENT_BEAT_LORELEI
+    opentext
     writetext LoreleiMatchAfterText
+    waitbutton
+    closetext
+    end
+	
+.FightDone:
+    faceplayer
+	opentext
+    writetext LoreleiRematchText
+	yesorno
+	iftrue .DoRematch
+	; keep going if false 
+	
+.DontDoRematch:
+    writetext LoreleiMatchRefuseText
+    waitbutton
+    closetext
+    end
+	
+.DoRematch:
+    checkevent EVENT_BEAT_RED
+	iftrue .DoReMatch2
+; player hasn't beaten Red yet
+    writetext LoreleiMatchAcceptText
+    waitbutton
+    closetext
+    winlosstext LoreleiMatchLossText, 0
+    loadtrainer LORELEI, LORELEI1
+    loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+    startbattle
+    reloadmapafterbattle
+    faceplayer
+	opentext 
+    writetext LoreleiRematchAfterText
+    waitbutton
+    closetext
+    end
+	
+.DoReMatch2:
+    writetext LoreleiMatchAcceptText
+    waitbutton
+    closetext
+    winlosstext LoreleiMatchLossText, 0
+    loadtrainer LORELEI, LORELEI2
+    loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+    startbattle
+    reloadmapafterbattle
+    faceplayer
+	opentext 
+    writetext LoreleiRematchAfterText
     waitbutton
     closetext
     end
@@ -160,15 +212,6 @@ LoreleiMatchText:
 	cont "ELITE FOUR in"
 	cont "in the past."
 	
-	para "However, 3"
-	line "years ago I"
-	cont "returned to"
-	cont "live in the"
-	cont "SEVII ISLANDS."
-	
-	para "Now I'm back in"
-	line "KANTO on vacation."
-	
 	para "I assume you're"
 	line "here to challenge"
 	cont "BLAINE?"
@@ -210,6 +253,26 @@ LoreleiMatchAfterText:
 	para "It's no wonder"
 	line "you've gotten"
 	cont "this far."
+	done 
+	
+LoreleiRematchText:
+    text "Hey! Fantastic"
+	line "timing!"
+	
+	para "I was thinking"
+	line "how much I'd"
+	cont "like to battle"
+	cont "you again."
+	
+	para "I hope you're"
+	line "ready."
+	done 
+	
+LoreleiRematchAfterText:
+    text "Looks like"
+	line "you've gotten"
+	cont "stronger since"
+	cont "we last fought!"
 	done 
 
 CinnabarGymSignText:

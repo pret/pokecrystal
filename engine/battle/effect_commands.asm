@@ -684,23 +684,23 @@ BattleCommand_CheckObedience:
 	ld a, 46
 	jr nz, .getlevel
 	
-	; plainbadge
-	bit PLAINBADGE, [hl]
-	ld a, 41
-	jr nz, .getlevel
-
-	; hivebadge
-	bit HIVEBADGE, [hl]
-	ld a, 34
-	jr nz, .getlevel
-	
 	; zephyrbadge
 	bit ZEPHYRBADGE, [hl]
-	ld a, 29
+	ld a, 39
+	jr nz, .getlevel
+
+	; plainbadge
+	bit PLAINBADGE, [hl]
+	ld a, 35
+	jr nz, .getlevel
+	
+	; hivebadge
+	bit HIVEBADGE, [hl]
+	ld a, 33
 	jr nz, .getlevel
 
 	; no badges
-	ld a, 20
+	ld a, 27
 
 .getlevel
 ; c = obedience level

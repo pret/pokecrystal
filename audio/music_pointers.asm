@@ -108,4 +108,6 @@ Music:
 	dba Music_BattleTowerLobby
 	dba Music_MobileCenter
 	dba Music_MaxieArchieBattle
+	dba Music_FinalBattle
+	dba Music_GymLeaderBattle
 	assert_table_length NUM_MUSIC_SONGS

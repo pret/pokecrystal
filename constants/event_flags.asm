@@ -65,8 +65,8 @@
 	const EVENT_LAKE_OF_RAGE_EXPLAINED_WEIRD_MAGIKARP
 	const EVENT_LAKE_OF_RAGE_ASKED_FOR_MAGIKARP
 	const EVENT_LAKE_OF_RAGE_ELIXIR_ON_STANDBY
-	const_skip ; unused
-	const_skip ; unused
+	const EVENT_BEAT_RED ;const_skip ; unused in Crystal
+	const EVENT_RADIO_TOWER_GIOVANNI ;const_skip ; unused in Crystal
 	const EVENT_HEALED_MOOMOO
 	const EVENT_GOT_TM13_SNORE_FROM_MOOMOO_FARM
 	const EVENT_TALKED_TO_FARMER_ABOUT_MOOMOO
@@ -136,9 +136,6 @@
 	const EVENT_TIN_TOWER_5F_HIDDEN_FULL_RESTORE
 	const EVENT_TIN_TOWER_5F_HIDDEN_CARBOS
 	const EVENT_BURNED_TOWER_1F_HIDDEN_ETHER
-	const EVENT_GAVE_SCIENTIST_OLD_AMBER
-	const EVENT_GAVE_SCIENTIST_DOME_FOSSIL
-	const EVENT_GAVE_SCIENTIST_HELIX_FOSSIL
 	const EVENT_NATIONAL_PARK_HIDDEN_FULL_HEAL
 	const EVENT_OLIVINE_LIGHTHOUSE_5F_HIDDEN_HYPER_POTION
 	const EVENT_TEAM_ROCKET_BASE_B1F_HIDDEN_REVIVE
@@ -202,7 +199,6 @@
 	const EVENT_GAVE_GS_BALL_TO_KURT
 	const EVENT_FOREST_IS_RESTLESS
 	const EVENT_ANSWERED_DRAGON_MASTER_QUIZ_WRONG
-	const EVENT_RADIO_TOWER_GIOVANNI
 ; Unused: next 6 events
 
 	const_next 200
@@ -282,11 +278,11 @@
 	const EVENT_GAVE_KURT_PNK_APRICORN
 ; Phone events
 	const EVENT_JACK_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused in Crystal
+	const EVENT_ICE_PATH_3BF_ARTICUNO ;const_skip ; unused in Crystal
 	const EVENT_BEVERLY_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused in Crystal
+	const EVENT_FOUGHT_ARTICUNO ;const_skip ; unused in Crystal
 	const EVENT_HUEY_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused in Crystal
+	const EVENT_VICTORY_ROAD_MOLTRES  ;const_skip ; unused in Crystal
 	const EVENT_GOT_PROTEIN_FROM_HUEY
 	const EVENT_GOT_HP_UP_FROM_JOEY
 	const EVENT_GOT_CARBOS_FROM_VANCE
@@ -294,41 +290,41 @@
 	const EVENT_GOT_CALCIUM_FROM_ERIN
 	const EVENT_KENJI_ON_BREAK
 	const EVENT_GAVEN_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused in Crystal
+	const EVENT_FOUGHT_MOLTRES ;const_skip ; unused in Crystal
 	const EVENT_BETH_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused in Crystal
+	const EVENT_ROUTE_10_NORTH_ZAPDOS ;const_skip ; unused in Crystal
 	const EVENT_JOSE_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused in Crystal
+	const EVENT_FOUGHT_ZAPDOS ;const_skip ; unused in Crystal
 	const EVENT_REENA_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused in Crystal
+	const EVENT_SILVER_CAVE_ROOM_3_MEWTWO ;const_skip ; unused in Crystal
 	const EVENT_JOEY_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused in Crystal
+	const EVENT_FOUGHT_MEWTWO ;const_skip ; unused in Crystal
 	const EVENT_WADE_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused in Crystal
+	const EVENT_SILVER_CAVE_ITEM_ROOMS_MEW ;const_skip ; unused in Crystal
 	const EVENT_RALPH_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused in Crystal
+	const EVENT_FOUGHT_MEW ;const_skip ; unused in Crystal
 	const EVENT_LIZ_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused in Crystal
+	const EVENT_GAVE_SCIENTIST_DOME_FOSSIL ;const_skip ; unused in Crystal
 	const EVENT_ANTHONY_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused in Crystal
+	const EVENT_GAVE_SCIENTIST_HELIX_FOSSIL ;const_skip ; unused in Crystal
 	const EVENT_TODD_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused in Crystal
+	const EVENT_GAVE_SCIENTIST_OLD_AMBER ;const_skip ; unused in Crystal
 	const EVENT_GINA_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused in Crystal
+	const EVENT_BEAT_CELADON_ARCHER ; unused in Crystal
 	const EVENT_IRWIN_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused in Crystal
+	const EVENT_BEAT_AGATHA ; unused in Crystal
 	const EVENT_ARNIE_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused in Crystal
+	const EVENT_BEAT_LORELEI ; unused in Crystal
 	const EVENT_ALAN_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused in Crystal
-	const_skip ; unused
-	const_skip ; unused
+	const EVENT_PEWTER_CITY_FISHER_BLOCKS_HOUSE ; unused in Crystal
+	const EVENT_TOHJO_FALLS_GIOVANNI ; unused
+	const EVENT_BEAT_GIOVANNI_IN_TOHJO_FALLS ; unused
 	const EVENT_DANA_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused in Crystal
+	const EVENT_VIOLET_CITY_SAGE_BLOCKS_GYM ; unused in Crystal
 	const EVENT_CHAD_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused in Crystal
+	const EVENT_ROUTE_37_SUPER_NERD_BLOCKS_PASSAGE ; unused in Crystal
 	const EVENT_DEREK_ASKED_FOR_PHONE_NUMBER
-	const_skip ; unused in Crystal
+	const EVENT_CIANWOOD_CITY_SAILOR_BLOCKS_GYM ; unused in Crystal
 	const EVENT_TULLY_ASKED_FOR_PHONE_NUMBER
 	const_skip ; unused in Crystal
 	const EVENT_BRENT_ASKED_FOR_PHONE_NUMBER
@@ -470,7 +466,7 @@
 	const EVENT_CONTEST_OFFICER_HAS_GOLD_BERRY
 	const EVENT_FOUGHT_HO_OH
 	const EVENT_FOUGHT_LUGIA
-	const EVENT_BEAT_RIVAL_IN_MT_MOON
+	const EVENT_BEAT_RIVAL_IN_MT_SILVER
 	const EVENT_MET_BILLS_GRANDPA
 	const EVENT_SHOWED_LICKITUNG_TO_BILLS_GRANDPA
 	const EVENT_SHOWED_ODDISH_TO_BILLS_GRANDPA
@@ -1043,7 +1039,6 @@
 	const EVENT_BEAT_SAGE_GAKU
 	const EVENT_BEAT_SAGE_MASA
 	const EVENT_BEAT_SAGE_KOJI
-	const EVENT_BEAT_OAK
 ; Unused: next 116 events
 
 	const_next 1600
@@ -1231,7 +1226,7 @@
 	const EVENT_COPYCAT_2
 	const EVENT_GOLDENROD_SALE_OFF
 	const EVENT_GOLDENROD_SALE_ON
-	const_skip ; unused in Crystal
+	const EVENT_BEAT_OAK ;const_skip ; unused in Crystal
 	const EVENT_ILEX_FOREST_APPRENTICE
 	const EVENT_ILEX_FOREST_CHARCOAL_MASTER
 	const EVENT_CHARCOAL_KILN_FARFETCH_D
@@ -1373,7 +1368,7 @@
 	const EVENT_SEAFOAM_GYM_GYM_GUIDE
 	const EVENT_MT_MOON_SQUARE_ROCK
 	const EVENT_MT_MOON_SQUARE_CLEFAIRY
-	const EVENT_MT_MOON_RIVAL
+	const EVENT_RIVAL_MT_SILVER
 	const EVENT_INDIGO_PLATEAU_POKECENTER_RIVAL
 	const EVENT_TELEPORT_GUY
 	const EVENT_MET_BLUE
@@ -1462,17 +1457,6 @@
 	const EVENT_RADIO_TOWER_5F_ULTRA_BALL
 	const EVENT_DARK_CAVE_VIOLET_ENTRANCE_DIRE_HIT
 	const EVENT_BATTLE_TOWER_OPEN_CIVILIANS
-	const EVENT_SILVER_CAVE_ITEM_ROOMS_MEW
-	const EVENT_FOUGHT_MEW
-	const EVENT_ICE_PATH_3BF_ARTICUNO
-	const EVENT_FOUGHT_ARTICUNO
-	const EVENT_VICTORY_ROAD_MOLTRES
-	const EVENT_FOUGHT_MOLTRES
-	const EVENT_ROUTE_10_NORTH_ZAPDOS
-	const EVENT_FOUGHT_ZAPDOS
-	const EVENT_BEAT_RED
-	const EVENT_SILVER_CAVE_ROOM_3_MEWTWO
-	const EVENT_FOUGHT_MEWTWO
 ; Unused: next 48 events
 
 	const_next 2048

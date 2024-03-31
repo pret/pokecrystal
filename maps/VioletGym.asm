@@ -12,6 +12,9 @@ VioletGym_MapScripts:
 VioletGymFalknerScript:
 	faceplayer
 	opentext
+	checkevent EVENT_BEAT_SAGE_LI
+	iffalse .GoSproutTower
+; player has beaten Sage Li 
 	checkevent EVENT_BEAT_FALKNER
 	iftrue .FightDone
 	writetext FalknerIntroText
@@ -22,6 +25,8 @@ VioletGymFalknerScript:
 	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	reloadmapafterbattle
+	setevent EVENT_ROUTE_37_SUPER_NERD_BLOCKS_PASSAGE
+	setmapscene ROUTE_37, SCENE_ROUTE37_NOOP_2
 	setevent EVENT_BEAT_FALKNER
 	opentext
 	writetext ReceivedZephyrBadgeText
@@ -33,18 +38,22 @@ VioletGymFalknerScript:
 .FightDone:
 	checkevent EVENT_GOT_TM31_MUD_SLAP
 	iftrue .SpeechAfterTM
-	loadmem wLevelCap, 24
+	loadmem wLevelCap, 36
 	setevent EVENT_BEAT_BIRD_KEEPER_ROD
 	setevent EVENT_BEAT_BIRD_KEEPER_ABE
-	setmapscene ELMS_LAB, SCENE_ELMSLAB_NOOP
-	specialphonecall SPECIALCALL_ASSISTANT
 	writetext FalknerZephyrBadgeText
 	promptbutton
-	verbosegiveitem TM_MUD_SLAP
+	verbosegiveitem TM_STEEL_WING
 	iffalse .NoRoomForMudSlap
 	setevent EVENT_GOT_TM31_MUD_SLAP
 	writetext FalknerTMMudSlapText
 	waitbutton
+	closetext
+	end 
+	
+.GoSproutTower:
+    writetext FaceSages
+	waitbutton 
 	closetext
 	end 
 
@@ -70,12 +79,13 @@ VioletGymFalknerScript:
     end
 	
 .DoRematch:
+    checkevent EVENT_BEAT_RED
+	iftrue .DoRematch2
+; player hasn't beaten Red yet 
     writetext FalknerRematchAcceptText
     waitbutton
     closetext
     winlosstext FalknerRematchLossText, 0
-	readvar VAR_BADGES
-	if_greater_than 15, .DoRematch2
     loadtrainer FALKNER, FALKNER2
     loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
     startbattle
@@ -88,6 +98,9 @@ VioletGymFalknerScript:
     end
 	
 .DoRematch2:
+    writetext FalknerRematchAcceptText
+	waitbutton
+    closetext
     winlosstext FalknerRematchLossText, 0
 	loadtrainer FALKNER, FALKNER3
     loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
@@ -160,6 +173,24 @@ VioletGymStatue:
 .Beaten:
 	gettrainername STRING_BUFFER_4, FALKNER, FALKNER1
 	jumpstd GymStatue2Script
+	
+FaceSages:
+    text "You're a rookie"
+	line "trainer, aren't"
+	cont "you?"
+	
+	para "If we were to"
+	line "fight you wouldn't"
+	cont "stand a chance."
+	
+	para "Go to the SPROUT"
+	line "TOWER and face the"
+	cont "SAGES there first."
+	
+	para "They will take a"
+	line "beginner like you"
+	cont "under their wing."
+	done 
 
 FalknerIntroText:
 	text "I'm FALKNER, the"
@@ -211,30 +242,21 @@ FalknerZephyrBadgeText:
 
 	para "Here--take this"
 	line "too."
+	
+	para "This is my"
+	line "favorite TM."
 	done
 
 FalknerTMMudSlapText:
-	text "By using a TM, a"
-	line "#MON will"
+	text "TM47 contains"
+	line "STEEL WING."
 
-	para "instantly learn a"
-	line "new move."
-
-	para "You'd be wise"
-	line "to use it."
-	
-	para "A TM can"
-	line "be taught"
-	cont "infinitely."
-	
-	para "TM31 contains"
-	line "MUD-SLAP."
-
-	para "It reduces the"
-	line "enemy's accuracy"
-
-	para "while it causes"
-	line "damage."
+	para "Not only does it"
+	line "deal damage, but"
+	cont "it also has a"
+	cont "chance to in-"
+	cont "-crease the user's"
+	cont "defense stat."
 
 	para "In other words, it"
 	line "is both defensive"
@@ -248,7 +270,8 @@ FalknerFightDoneText:
 
 	para "You should test"
 	line "your skills at"
-	cont "these GYMS."
+	cont "ECRUTEAK CITY"
+	cont "next."
 
 	para "I'm going to train"
 	line "harder to become"
@@ -349,32 +372,35 @@ BirdKeeperAbeAfterBattleText:
 	done
 
 VioletGymGuideText:
-	text "Hey! I'm no train-"
-	line "er but I can give"
-	cont "some advice!"
+	text "Yo! CHAMP in"
+	line "making!"
 
-	para "Believe me!"
-	line "If you believe, a"
-
-	para "championship dream"
-	line "can come true."
-
-	para "You believe?"
-	line "Then listen."
-
-	para "The grass-type is"
-	line "weak against the"
-
-	para "flying-type. Keep"
-	line "this in mind."
+	para "This GYM"
+	line "specializes in"
+	cont "flying-type"
+	cont "#MON."
+	
+	para "FALKNER may not"
+	line "like it, but"
+	cont "electric types"
+	cont "are sure to be"
+	cont "a shock to their"
+	cont "system!"
+	
+	para "Ice and Rock"
+	line "types work too!"
 	done
 
 VioletGymGuideWinText:
-	text "Nice battle! Keep"
-	line "it up, and you'll"
-
-	para "be the CHAMP in no"
-	line "time at all!"
+	text "Beating FALKNER"
+	line "is a big feat!"
+	
+	para "You sure are"
+	line "flying high!"
+	
+	para "Keep it up, and"
+	line "you'll be the"
+	cont "CHAMP in no time!"
 	done
 
 VioletGym_MapEvents:

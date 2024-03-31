@@ -70,7 +70,7 @@ SageLiScript:
 	waitbutton
 	closetext
 	winlosstext SageLiBeatenText, 0
-	loadtrainer SAGE, LI
+	loadtrainer ELDER, LI1
 	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	reloadmapafterbattle
@@ -80,16 +80,49 @@ SageLiScript:
 	verbosegiveitem HM_FLASH
 	setevent EVENT_GOT_HM05_FLASH
 	setevent EVENT_BEAT_SAGE_LI
+	loadmem wLevelCap, 24
+	setmapscene ELMS_LAB, SCENE_ELMSLAB_NOOP
+	specialphonecall SPECIALCALL_ASSISTANT
 	writetext SageLiFlashExplanationText
 	waitbutton
 	closetext
 	end
 
 .GotFlash:
+    checkevent EVENT_BEAT_RED
+	iftrue .OfferRematch
+; player hasn't beaten red yet
 	writetext SageLiAfterBattleText
 	waitbutton
 	closetext
 	end
+	
+.OfferRematch:
+    writetext LiRematchText
+    yesorno
+    iftrue .DoRematch
+    ; keep going if false
+	
+.DontDoRematch:
+    writetext LiRematchRefuseText
+    waitbutton
+    closetext
+    end
+	
+.DoRematch:
+    writetext LiRematchAcceptText
+    waitbutton
+    closetext
+    winlosstext LiRematchLossText, 0
+    loadtrainer ELDER, LI2
+    loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+    startbattle
+    reloadmapafterbattle
+    opentext
+    writetext LiRematchAfterText
+    waitbutton
+    closetext
+    end
 
 TrainerSageJin:
 	trainer SAGE, JIN, EVENT_BEAT_SAGE_JIN, SageJinSeenText, SageJinBeatenText, 0, .Script
@@ -259,6 +292,50 @@ SageLiAfterBattleText:
 	line "and grow from your"
 	cont "journey."
 	done
+	
+LiRematchText:
+    text "So good of you to"
+	line "return here!"
+	
+	para "I've heard all"
+	line "about what you've"
+	cont "accomplished on"
+	cont "your journey."
+	
+	para "With trainers"
+	line "like you, the"
+	cont "future is truly"
+	cont "bright."
+	
+	para "Now that you're"
+	line "here, would you"
+	cont "allow me to test"
+	cont "the ties between"
+	cont "you and your"
+	cont "#MON again?"
+	done 
+	
+LiRematchAcceptText:
+    text "Allow me to"
+	line "begin!"
+	done
+
+LiRematchRefuseText:
+    text "Oh… is that so?"
+    done 
+
+LiRematchLossText:
+    text "Ah, splendid!"
+    done 
+
+LiRematchAfterText:
+    text "Thank you for"
+    line "the battle."
+
+    para "The tightness of"
+    line "your bond is a"
+    cont "joy to watch!"
+    done 	
 
 SageJinSeenText:
 	text "I train to find"
@@ -348,7 +425,7 @@ SproutTower3F_MapEvents:
 	def_object_events
 	object_event  8, 13, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSageJin, -1
 	object_event  8,  8, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerSageTroy, -1
-	object_event 10,  2, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SageLiScript, -1
+	object_event 10,  2, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SageLiScript, -1
 	object_event 11, 11, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSageNeal, -1
 	object_event  6, 14, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SproutTower3FPotion, EVENT_SPROUT_TOWER_3F_POTION
 	object_event 14,  1, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SproutTower3FEscapeRope, EVENT_SPROUT_TOWER_3F_ESCAPE_ROPE

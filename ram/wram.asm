@@ -1807,7 +1807,7 @@ wGBPrinterBrightness::
 ;   darkest:  $7F
 	db
 wOptions2::
-; bit 1: menu account off/on
+; bit 1: menu clock off/on
 	db
 	ds 2
 wOptionsEnd::
@@ -2371,7 +2371,7 @@ wSpriteFlags:: db
 
 wHandlePlayerStep:: db
 
-	ds 1
+wCurIconMonHasItemOrMail:: db
 
 wPartyMenuActionText:: db
 
@@ -3007,11 +3007,11 @@ wItems:: ds MAX_ITEMS * 2 + 1
 wNumKeyItems:: db
 wKeyItems:: ds MAX_KEY_ITEMS + 1
 
-wNumBalls:: db
-wBalls:: ds MAX_BALLS * 2 + 1
+; wNumBalls:: db
+; wBalls:: ds MAX_BALLS * 2 + 1
 
-wNumPCItems:: db
-wPCItems:: ds MAX_PC_ITEMS * 2 + 1
+; wNumPCItems:: db
+; wPCItems:: ds MAX_PC_ITEMS * 2 + 1
 
 wPokegearFlags::
 ; bit 0: map
@@ -3118,8 +3118,13 @@ wFastShipB1FSceneID::                             db
 wMountMoonSquareSceneID::                         db
 wMobileTradeRoomSceneID::                         db
 wMobileBattleRoomSceneID::                        db
+wSilverCaveOutsideSceneID::                       db
+wTohjoFallsSceneID::                              db
+wRoute37SceneID::                                 db  
 
-	ds 49
+wNumBalls:: db
+wBalls:: ds MAX_BALLS * 2 + 1
+	ds 20
 
 ; fight counts
 wJackFightCount::    db
@@ -3151,7 +3156,8 @@ wKenjiFightCount::   db ; unreferenced
 wParryFightCount::   db
 wErinFightCount::    db
 
-	ds 100
+wNumPCItems:: db
+wPCItems:: ds MAX_PC_ITEMS * 2 + 1
 
 wEventFlags:: flag_array NUM_EVENTS
 

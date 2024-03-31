@@ -75,4 +75,7 @@ TrainerPicPointers::
 	dba_pic AgathaPic
 	dba_pic LoreleiPic
 	dba_pic OakPic
+	dba_pic ProtonPic
+	dba_pic PetrelPic
+	dba_pic ElderPic
 	assert_table_length NUM_TRAINER_CLASSES

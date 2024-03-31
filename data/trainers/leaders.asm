@@ -16,6 +16,7 @@ GymLeaders:
 	db LANCE
 	db RED
 	db CAL
+	db GIOVANNI
 ; fallthrough
 KantoGymLeaders:
     db WILL
@@ -24,12 +25,12 @@ KantoGymLeaders:
 	db KOGA
 	db AGATHA
 	db LORELEI
-	db BROCK
-	db MISTY
 	db LT_SURGE
 	db ERIKA
 	db JANINE
 	db SABRINA
+	db MISTY
+	db BROCK
 	db BLAINE
 	db BLUE
 	db -1

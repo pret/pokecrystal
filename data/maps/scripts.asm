@@ -230,7 +230,6 @@ INCLUDE "maps/CianwoodPokecenter1F.asm"
 INCLUDE "maps/CianwoodPharmacy.asm"
 INCLUDE "maps/CianwoodPhotoStudio.asm"
 INCLUDE "maps/CianwoodLugiaSpeechHouse.asm"
-INCLUDE "maps/PokeSeersHouse.asm"
 INCLUDE "maps/BattleTower1F.asm"
 INCLUDE "maps/BattleTowerBattleRoom.asm"
 INCLUDE "maps/BattleTowerElevator.asm"
@@ -484,5 +483,6 @@ SECTION "Map Scripts 25", ROMX
 
 INCLUDE "maps/SilverCaveOutside.asm"
 INCLUDE "maps/Route10North.asm"
+INCLUDE "maps/PokeSeersHouse.asm"
 
 ENDSECTION

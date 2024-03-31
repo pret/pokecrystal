@@ -21,7 +21,6 @@ ViridianGymBlueScript:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_BLUE
-	disappear SILVERCAVEROOM3_MEWTWO
 	opentext
 	writetext Text_ReceivedEarthBadge
 	playsound SFX_GET_BADGE
@@ -33,9 +32,9 @@ ViridianGymBlueScript:
 	end
 
 .FightDone:
-    checkevent EVENT_BEAT_OAK
+    checkevent EVENT_BEAT_RED
     iftrue .OfferRematch
-; player hasn't beaten oak yet
+; player hasn't beaten red yet
 	writetext LeaderBlueEpilogueText
 	waitbutton
 	closetext
@@ -62,7 +61,6 @@ ViridianGymBlueScript:
     loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
     startbattle
     reloadmapafterbattle
-	disappear SILVERCAVEROOM3_MEWTWO
     opentext
     writetext BlueRematchAfterText
     waitbutton
@@ -170,18 +168,30 @@ LeaderBlueEpilogueText:
 	done
 	
 BlueRematchText:
-    text "So you've gone and"
-	line "beaten gramps too."
+    text "You are quite"
+	line "something!"
 	
-	para "You're no joke. But"
-	line "I'm stronger than"
-	cont "you now."
+	para "I've heard about"
+	line "your battle with"
+	cont "RED."
 	
-	para "And I'll prove it"
-	line "right now."
+	para "I didn't think"
+	line "anyone could"
+	cont "defeat him!"
 	
-	para "How about it,"
-	line "JOHTO CHAMP?"
+	para "Seeing a tough"
+	line "trainer like you"
+	cont "gives me an urge"
+	cont "to battle I"
+	cont "haven't felt in"
+	cont "a while."
+	
+	para "How about a"
+	line "rematch, JOHTO"
+	cont "CHAMP?"
+	
+	para "I won't lose to you"
+	line "this time!"
 	done 
 	
 BlueRematchAcceptText:
@@ -209,7 +219,7 @@ BlueRematchAfterText:
 	line "I expected."
 	
 	para "No wonder you're"
-	line "the CHAMP…"
+	line "the CHAMPION…"
 	done 
 
 ViridianGymGuideText:

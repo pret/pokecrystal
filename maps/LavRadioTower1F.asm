@@ -70,6 +70,8 @@ LavRadioTower1FSuperNerd2Script:
 AgathaScript:
     faceplayer
 	opentext
+	checkevent EVENT_BEAT_AGATHA
+	iftrue .FightDone
 	writetext AgathaMatchText
 	yesorno
     iftrue .DoMatch
@@ -90,15 +92,64 @@ AgathaScript:
     loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
     startbattle
     reloadmapafterbattle
+	setevent EVENT_BEAT_AGATHA 
     faceplayer
+	opentext 
     writetext AgathaMatchAfterText
+    waitbutton
+    closetext
+    end
+	
+.FightDone:
+    writetext AgathaRematchText
+	yesorno
+	iftrue .DoRematch
+	; keep going if false 
+	
+.DontDoRematch:
+    writetext AgathaMatchRefuseText
+    waitbutton
+    closetext
+    end
+	
+.DoRematch:
+    checkevent EVENT_BEAT_RED
+	iftrue .DoReMatch2
+; player hasn't beaten Red yet
+    writetext AgathaMatchAcceptText
+    waitbutton
+    closetext
+    winlosstext AgathaMatchLossText, 0
+    loadtrainer AGATHA, AGATHA1
+    loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+    startbattle
+    reloadmapafterbattle
+    faceplayer
+	opentext 
+    writetext AgathaRematchAfterText
+    waitbutton
+    closetext
+    end
+	
+.DoReMatch2:
+    writetext AgathaMatchAcceptText
+    waitbutton
+    closetext
+    winlosstext AgathaMatchLossText, 0
+    loadtrainer AGATHA, AGATHA2
+    loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
+    startbattle
+    reloadmapafterbattle
+    faceplayer
+	opentext 
+    writetext AgathaRematchAfterText
     waitbutton
     closetext
     end
 	
 AgathaMatchText:
     text "AGATHA: That look"
-	line "in your eyes.."
+	line "in your eyes…"
 	
 	para "Ah, you must be" 
 	line "the child OAK was"
@@ -146,7 +197,27 @@ AgathaMatchAfterText:
 	cont "since I fought"
 	cont "those boys"
 	cont "from PALLET."
-	done 
+	done
+
+AgathaRematchText:
+    text "I see you're"
+    line "back again."
+
+    para "Would you like"
+    line "to battle me"
+    cont "once more?"
+    done
+
+AgathaRematchAfterText:
+    text "Small wonder"
+    line "that old-timer's"
+    cont "taken such an"
+    cont "interest in you."
+
+    para "Challenge me"
+    line "again any time,"
+    cont "child!"
+    done  	
 
 LavRadioTower1FDirectory:
 	jumptext LavRadioTower1FDirectoryText

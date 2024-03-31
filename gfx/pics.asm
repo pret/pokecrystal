@@ -715,6 +715,9 @@ GiovanniPic:         INCBIN "gfx/trainers/giovanni.2bpp.lz"
 AgathaPic:           INCBIN "gfx/trainers/agatha.2bpp.lz"
 LoreleiPic:          INCBIN "gfx/trainers/lorelei.2bpp.lz"
 OakPic:              INCBIN "gfx/trainers/oak.2bpp.lz"
+ProtonPic:           INCBIN "gfx/trainers/proton.2bpp.lz"
+PetrelPic:           INCBIN "gfx/trainers/petrel.2bpp.lz"
+ElderPic:            INCBIN "gfx/trainers/elder.2bpp.lz" 
 
 ; Sections "Pics 20" to "Pics 24" are not used for any graphics,
 ; but entries for their banks exist in FixPicBank (see engine/gfx/load_pics.asm).

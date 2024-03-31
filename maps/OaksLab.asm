@@ -44,6 +44,7 @@ Oak:
 	writetext OakOpenMtSilverText
 	waitbutton
 	closetext
+	setmapscene SILVER_CAVE_OUTSIDE, SCENE_MTSILVER_RIVAL_BATTLE
 	setevent EVENT_OPENED_MT_SILVER
 	end
 

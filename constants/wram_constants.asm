@@ -68,7 +68,7 @@ DEF GBPRINTER_DARKEST  EQU $7f
 
 ; wOptions2::
 	const_def
-	const MENU_ACCOUNT ; 0
+	const MENU_CLOCK ; 0
 
 ; wWalkingDirection::
 	const_def -1
@@ -217,9 +217,9 @@ DEF MOM_SAVING_MONEY_MASK EQU (1 << MOM_SAVING_SOME_MONEY_F) | (1 << MOM_SAVING_
 
 ; wJohtoBadges::
 	const_def
-	const ZEPHYRBADGE
 	const HIVEBADGE
 	const PLAINBADGE
+	const ZEPHYRBADGE
 	const FOGBADGE
 	const MINERALBADGE
 	const STORMBADGE
@@ -229,12 +229,12 @@ DEF NUM_JOHTO_BADGES EQU const_value
 
 ; wKantoBadges::
 	const_def
-	const BOULDERBADGE
-	const CASCADEBADGE
 	const THUNDERBADGE
 	const RAINBOWBADGE
 	const SOULBADGE
 	const MARSHBADGE
+	const CASCADEBADGE
+	const BOULDERBADGE
 	const VOLCANOBADGE
 	const EARTHBADGE
 DEF NUM_KANTO_BADGES EQU const_value

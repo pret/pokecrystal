@@ -33,9 +33,10 @@ GoldenrodGymWhitneyScript:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_WHITNEY
-	loadmem wLevelCap, 36
+	loadmem wLevelCap, 32
 	setevent EVENT_MADE_WHITNEY_CRY
 	setscene SCENE_GOLDENRODGYM_WHITNEY_STOPS_CRYING
+	setmapscene ROUTE_37, SCENE_ROUTE37_BADGE_CHECK
 	setevent EVENT_BEAT_BEAUTY_VICTORIA
 	setevent EVENT_BEAT_BEAUTY_SAMANTHA
 	setevent EVENT_BEAT_LASS_CARRIE
@@ -97,12 +98,13 @@ GoldenrodGymWhitneyScript:
     end
 	
 .DoRematch:
+    checkevent EVENT_BEAT_RED
+	iftrue .DoRematch2
+; player hasn't beaten Red yet 
     writetext WhitneyRematchAcceptText
     waitbutton
     closetext
     winlosstext WhitneyRematchLossText, 0
-	readvar VAR_BADGES
-	if_greater_than 15, .DoRematch2
     loadtrainer WHITNEY, WHITNEY2
     loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
     startbattle

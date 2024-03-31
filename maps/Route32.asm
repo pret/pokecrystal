@@ -48,8 +48,8 @@ Route32CooltrainerMContinueScene:
 	opentext
 	checkevent EVENT_GOT_MIRACLE_SEED_IN_ROUTE_32
 	iftrue .GotMiracleSeed
-	checkflag ENGINE_ZEPHYRBADGE
-	iffalse .DontHaveZephyrBadge
+	checkevent EVENT_BEAT_SAGE_LI
+	iffalse .BeatElderLi
 	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
 	iftrue .GiveMiracleSeed
 	writetext Route32CooltrainerMText_AideIsWaiting
@@ -71,8 +71,8 @@ Route32CooltrainerMContinueScene:
 	setevent EVENT_GOT_MIRACLE_SEED_IN_ROUTE_32
 	sjump .GotMiracleSeed
 
-.DontHaveZephyrBadge:
-	writetext Route32CooltrainerMText_VioletGym
+.BeatElderLi:
+	writetext Route32CooltrainerMText_SproutTower
 	waitbutton
 	closetext
 	end
@@ -463,7 +463,7 @@ Route32GreatBall:
 	itemball GREAT_BALL
 
 Route32Repel:
-	itemball REPEL
+	itemball SUPER_POTION 
 
 Route32Sign:
 	jumptext Route32SignText
@@ -530,17 +530,19 @@ Route32CooltrainerMText_UnusedSproutTower:
 	cont "SPROUT TOWER!"
 	done
 
-Route32CooltrainerMText_VioletGym:
+Route32CooltrainerMText_SproutTower:
 	text "Have you gone to"
-	line "the #MON GYM?"
+	line "SPROUT TOWER?"
 
-	para "You can test your"
-	line "#MON and your-"
-	cont "self there."
+	para "If you ever visit"
+	line "VIOLET CITY, "
 
-	para "It's a rite of"
-	line "passage for all"
-	cont "trainers!"
+	para "they'll expect you"
+	line "to train there."
+
+	para "That's basic for"
+	line "trainers. Go to"
+	cont "SPROUT TOWER!"
 	done
 
 Route32CooltrainerMText_HaveThisSeed:
@@ -552,12 +554,6 @@ Route32CooltrainerMText_HaveThisSeed:
 
 	para "gave them around"
 	line "VIOLET CITY."
-
-	para "The training at"
-	line "the GYM must have"
-
-	para "been especially"
-	line "helpful."
 
 	para "As a souvenir of"
 	line "VIOLET CITY, take"
@@ -787,10 +783,10 @@ PicnickerLiz1AfterText:
 	done
 
 BirdKeeperPeterSeenText:
-	text "That BADGE! It's"
-	line "from VIOLET CITY!"
+	text "Flying #MON"
+	line "are the best!"
 
-	para "You beat FALKNER?"
+	para "Let me show you!"
 	done
 
 BirdKeeperPeterBeatenText:

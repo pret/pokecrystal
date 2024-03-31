@@ -74,4 +74,7 @@ BTTrainerClassGenders:
 	db FEMALE ; AGATHA
 	db FEMALE ; LORELEI
 	db MALE   ; OAK
+	db MALE   ; PROTON
+	db MALE   ; PETREL
+	db MALE   ; ELDER
 	assert_table_length NUM_TRAINER_CLASSES - 1 ; exclude MYSTICALMAN

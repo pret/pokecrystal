@@ -41,6 +41,8 @@ BrunosRoomDoorLocksBehindYouScript:
 	end
 
 BrunoScript_Battle:
+    readvar VAR_BADGES
+	if_greater_than 15, .Rematch
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_ELITE_4_BRUNO
@@ -49,8 +51,6 @@ BrunoScript_Battle:
 	waitbutton
 	closetext
 	winlosstext BrunoScript_BrunoBeatenText, 0
-	readvar VAR_BADGES
-	if_greater_than 15, .Rematch
 	loadtrainer BRUNO, BRUNO1
 	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
@@ -69,13 +69,21 @@ BrunoScript_Battle:
 	end
 	
 .Rematch:
-    loadtrainer BRUNO, BRUNO2
+    faceplayer
+	opentext
+	checkevent EVENT_BEAT_ELITE_4_BRUNO
+	iftrue BrunoRematchAfterText
+	writetext BrunoRematchBeforeText
+	waitbutton
+	closetext
+	winlosstext BrunoRematchDefeatedText, 0
+	loadtrainer BRUNO, BRUNO2
 	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_ELITE_4_BRUNO
 	opentext
-	writetext BrunoScript_BrunoDefeatText
+	writetext BrunoRematchDefeatText
 	waitbutton
 	closetext
 	playsound SFX_ENTER_DOOR
@@ -91,6 +99,12 @@ BrunoScript_AfterBattle:
 	waitbutton
 	closetext
 	end
+	
+BrunoRematchAfterText:
+    writetext BrunoRematchDefeatText
+	waitbutton
+	closetext
+	end 
 
 BrunosRoom_EnterMovement:
 	step UP
@@ -142,7 +156,63 @@ BrunoScript_BrunoDefeatText:
 	para "Go face your next"
 	line "challenge!"
 	done
+	
+BrunoRematchBeforeText:
+    text "I could feel the"
+	line "intensity of your"
+	cont "battle with KOGA"
+	cont "even here!"
+	
+	para "It seems that"
+	line "your #MON"
+	cont "have been trained"
+	cont "to their absolute"
+	cont "limits."
+	
+	para "Through rigorous"
+	line "training, we also"
+	cont "have reached the"
+	cont "full extent of"
+	cont "our potential."
+	
+	para "This promises to"
+	line "be a good fight."
+	
+	para "Well then, are"
+	line "you ready,"
+	cont "CHAMPION?"
+	
+	para "We will grind"
+	line "you down with"
+	cont "our surperior"
+	cont "strength!"
+	
+	para "Hoo hah!"
+	done 
+	
+BrunoRematchDefeatedText:
+    text "Phew… That"
+	line "was a good bout!"
+	
+	para "It seems we"
+	line "still have more"
+	cont "training to do."
+	done 
+	
+BrunoRematchDefeatText:
+    text "Thank you for"
+	line "the battle,"
+	cont "<PLAYER>."
+	
+	para "Having lost, I"
+	line "have no right to"
+	cont "say anything"
+	cont "other than that."
 
+	para "Go and face your"
+	line "next challenge!"
+	done
+	
 BrunosRoom_MapEvents:
 	db 0, 0 ; filler
 

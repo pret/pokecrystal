@@ -290,7 +290,7 @@ JohtoGrassWildMons:
 	db 27, RATICATE
 	db 26, MISDREAVUS
 	db 26, MISDREAVUS
-	db 27, MAGMAR
+	db 27, MAGBY
 	db 27, MAGMAR
 	; day
 	db 25, RATICATE
@@ -298,7 +298,7 @@ JohtoGrassWildMons:
 	db 27, RATICATE
 	db 26, MISDREAVUS
 	db 26, MISDREAVUS
-	db 27, MAGMAR
+	db 27, MAGBY 
 	db 27, MAGMAR
 	; nite
 	db 27, RATICATE
@@ -317,7 +317,7 @@ JohtoGrassWildMons:
 	db 26, KOFFING
 	db 26, MISDREAVUS
 	db 27, MISDREAVUS
-	db 27, MAGMAR
+	db 27, MAGBY
 	db 28, MAGMAR
 	db 28, WEEZING
 	; day
@@ -325,7 +325,7 @@ JohtoGrassWildMons:
 	db 26, KOFFING
 	db 26, MISDREAVUS
 	db 27, MISDREAVUS
-	db 27, MAGMAR
+	db 27, MAGBY 
 	db 28, MAGMAR
 	db 28, WEEZING
 	; nite
@@ -1187,7 +1187,7 @@ JohtoGrassWildMons:
 	db 7, DUNSPARCE
 	db 6, ZUBAT
 	db 7, ZUBAT
-	db 7, DUNSPARCE
+	db 7, CLEFFA
 	; day
 	db 6, GEODUDE
 	db 6, TEDDIURSA
@@ -1195,7 +1195,7 @@ JohtoGrassWildMons:
 	db 7, DUNSPARCE
 	db 7, ZUBAT
 	db 6, ZUBAT
-	db 7, DUNSPARCE
+	db 7, CLEFFA
 	; nite
 	db 6, GEODUDE
 	db 6, SANDSHREW
@@ -1203,7 +1203,7 @@ JohtoGrassWildMons:
 	db 7, DUNSPARCE
 	db 6, ZUBAT
 	db 7, ZUBAT
-	db 7, DUNSPARCE
+	db 7, CLEFFA 
 	end_grass_wildmons
 
 	def_grass_wildmons DARK_CAVE_BLACKTHORN_ENTRANCE
@@ -1662,24 +1662,24 @@ JohtoGrassWildMons:
 	db 5, SLUGMA
 	db 4, GEODUDE
 	db 5, SPEAROW
-	db 5, JIGGLYPUFF
-	db 7, JIGGLYPUFF
+	db 5, PICHU
+	db 7, IGGLYBUFF
 	; day
 	db 5, GEODUDE
 	db 4, PHANPY
 	db 5, SLUGMA
 	db 4, GEODUDE
 	db 5, SPEAROW
-	db 5, JIGGLYPUFF
-	db 7, JIGGLYPUFF
+	db 5, PICHU
+	db 7, IGGLYBUFF
 	; nite
 	db 5, GEODUDE
 	db 5, RATTATA
 	db 4, RATTATA
 	db 5, SLUGMA
 	db 6, GEODUDE
-	db 5, JIGGLYPUFF
-	db 7, JIGGLYPUFF
+	db 5, PICHU
+	db 7, IGGLYBUFF
 	end_grass_wildmons
 
 	def_grass_wildmons SILVER_CAVE_OUTSIDE

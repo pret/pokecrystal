@@ -102,7 +102,7 @@ RocketBaseBoss:
 	applymovement TEAMROCKETBASEB3F_ROCKET1, RocketBaseBossApproachesPlayerMovement
 	winlosstext ExecutiveM4BeatenText, 0
 	setlasttalked TEAMROCKETBASEB3F_ROCKET1
-	loadtrainer EXECUTIVEM, EXECUTIVEM_4
+	loadtrainer PETREL, PETREL1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_4
@@ -252,7 +252,7 @@ RocketBasePlayerApproachesBossRightMovement:
 RocketBaseBossApproachesPlayerMovement:
 	step DOWN
 	step_end
-
+	
 RocketBaseBossHitsTableMovement:
 	big_step RIGHT
 	big_step RIGHT
@@ -288,7 +288,7 @@ RocketBaseBossLeavesMovement:
 	big_step LEFT
 	big_step LEFT
 	step_end
-
+	
 RocketBaseRivalEnterMovement:
 	step DOWN
 	step DOWN
@@ -384,26 +384,29 @@ RocketBaseRivalText:
 	done
 
 ExecutiveM4BeforeText:
-	text "What? Who are you?"
-	line "This is the office"
+	text "So you must be the"
+	line "kid that gave"
+	cont "PROTON so much"
+	cont "trouble!"
+	
+	para "I am a TEAM ROCKET"
+	line "EXECUTIVE."
 
-	para "of our leader,"
-	line "GIOVANNI."
+	para "You must be trying"
+	line "to sneak into the"
+	cont "radio-transmitter"
+	cont "room."
 
-	para "Since disbanding"
-	line "TEAM ROCKET three"
+	para "Well, that's not"
+	line "going to happen."
 
-	para "years ago, he has"
-	line "been in training."
-
-	para "But we're certain"
-	line "he will be back"
-
-	para "some day to assume"
-	line "command again."
-
-	para "That's why we're"
-	line "standing guard."
+	para "That room is"
+	line "protected by a"
+	cont "special password."
+	
+	para "Not that you'll"
+	line "ever get to"
+	cont "hear it."
 
 	para "I won't let any-"
 	line "one disturb this"
@@ -419,11 +422,27 @@ ExecutiveM4BeatenText:
 	done
 
 ExecutiveM4AfterText:
-	text "No, I can't let"
-	line "this affect me."
-
-	para "I have to inform"
-	line "the others…"
+	text "Since disbanding"
+	line "TEAM ROCKET"
+	cont "3 years ago, our"
+	cont "GIOVANNI has"
+	cont "been missing."
+	
+	para "But we're certain"
+	line "he's been waiting"
+	cont "for the right time"
+	cont "for our revival."
+	
+	para "You're good, but" 
+	line "losing to you"
+	cont "doesn't change a"
+	cont "thing."
+	
+	para "With no password,"
+	line "you're still not"
+	cont "going to enter the"
+	cont "radio-transmitter"
+	cont "room!"
 	done
 
 RocketBaseMurkrowText:
@@ -591,7 +610,7 @@ TeamRocketBaseB3F_MapEvents:
 
 	def_object_events
 	object_event 25, 14, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LanceGetPasswordScript, EVENT_TEAM_ROCKET_BASE_B3F_LANCE_PASSWORDS
-	object_event  8,  3, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B3F_EXECUTIVE
+	object_event  8,  3, SPRITE_PETREL, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B3F_EXECUTIVE
 	object_event  7,  2, SPRITE_MURKROW, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RocketBaseMurkrow, EVENT_TEAM_ROCKET_BASE_POPULATION
 	object_event 21,  7, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 0, SlowpokeTailGrunt, EVENT_TEAM_ROCKET_BASE_POPULATION
 	object_event  5, 14, SPRITE_ROCKET, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, RaticateTailGrunt, EVENT_TEAM_ROCKET_BASE_POPULATION

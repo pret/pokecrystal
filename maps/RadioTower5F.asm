@@ -31,6 +31,7 @@ FakeDirectorScript:
 	writetext FakeDirectorTextBefore1
 	waitbutton
 	closetext
+	applymovement PLAYER, PlayerStepDown
 	applymovement RADIOTOWER5F_DIRECTOR, FakeDirectorMovement
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	opentext
@@ -39,7 +40,7 @@ FakeDirectorScript:
 	closetext
 	winlosstext FakeDirectorWinText, 0
 	setlasttalked RADIOTOWER5F_DIRECTOR
-	loadtrainer EXECUTIVEM, EXECUTIVEM_3
+	loadtrainer PETREL, PETREL2
 	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	reloadmapafterbattle
@@ -72,7 +73,6 @@ TrainerExecutivef1:
 	trainer EXECUTIVEF, EXECUTIVEF_1, EVENT_BEAT_ROCKET_EXECUTIVEF_1, Executivef1SeenText, Executivef1BeatenText, 0, .Script
 
 .Script:
-	endifjustbattled
 	opentext
 	writetext Executivef1AfterBattleText
 	waitbutton
@@ -177,13 +177,17 @@ RadioTower5FStudio1Sign:
 
 RadioTower5FBookshelf:
 	jumpstd MagazineBookshelfScript
+	
+PlayerStepDown:
+    step DOWN
+	step_end
 
 FakeDirectorMovement:
-	step LEFT
+    step LEFT
 	step LEFT
 	step LEFT
 	step UP
-	step UP
+	step UP 
 	step_end
 
 RadioTower5FDirectorWalksIn:
@@ -239,23 +243,32 @@ FakeDirectorTextBefore2:
 	text "Is that what you"
 	line "were expecting?"
 
-	para "Wrong!"
+	para "Ha! Think again!"
 	line "I'm an imposter!"
 
-	para "I pretended to be"
-	line "the real thing to"
-
-	para "prepare for our"
-	line "takeover."
-
-	para "Do you want to"
-	line "know where we hid"
-	cont "the real DIRECTOR?"
-
-	para "Sure, I'll tell"
-	line "you. But only if"
-	cont "you can beat me!"
-	done
+	para "Quite a convincing"
+	line "disguise, wouldn't"
+	cont "you agree?"
+	
+	para "You want to know"
+	line "where the real"
+	cont "DIRECTOR is?"
+	
+	para "Fine, let's make"
+	line "it interesting!"
+	
+	para "I'll tell you if"
+	line "you can beat me."
+	
+	para "But I'm not going"
+	line "to make the same"
+	cont "blunder as I did"
+	cont "in MAHOGANY."
+	
+	para "This time,"
+	line "I'm not holding"
+	cont "anything back!"
+	done 
 
 FakeDirectorWinText:
 	text "OK, OK. I'll tell"
@@ -263,7 +276,9 @@ FakeDirectorWinText:
 	done
 
 FakeDirectorTextAfter:
-	text "We stashed the"
+    text "Listen carefully."
+	
+	para "We stashed the"
 	line "real DIRECTOR in"
 
 	para "the UNDERGROUND"
@@ -272,19 +287,40 @@ FakeDirectorTextAfter:
 	para "It's at the far"
 	line "end of the UNDER-"
 	cont "GROUND."
+	
+	para "I am a nice guy."
+	
+	para "I will give you a"
+	line "KEY to get to the"
+	cont "UNDERGROUND WARE-"
+	cont "-HOUSE."
+	
+	para "Take it with"
+	line "graditute!"
 
-	para "But I doubt you'll"
-	line "get that far."
+	para "Hahaha… but I"
+	line "doubt that a"
+	cont "child like you"
+	cont "will get that far."
 	done
 
 Executivef1SeenText:
-	text "Remember me from"
-	line "the HIDEOUT in"
+	text "Hey you… Remember"
+	line "me from the"
+	cont "HIDEOUT in"
 	cont "MAHOGANY TOWN?"
-
-	para "I lost then, but I"
-	line "won't this time."
-	done
+	
+	para "This time… it"
+	line "looks like you're"
+	cont "all alone."
+	
+	para "All alone… So it"
+	line "should be quite"
+	cont "easy."
+	
+	para "Bring it! Let's"
+	line "finish this!"
+	done 
 
 Executivef1BeatenText:
 	text "This can't be"
@@ -297,11 +333,15 @@ Executivef1BeatenText:
 Executivef1AfterBattleText:
 	text "<PLAYER>, isn't it?"
 
-	para "A brat like you"
-	line "won't appreciate"
-
-	para "the magnificence"
-	line "of TEAM ROCKET."
+	para "What a waste… not"
+	line "to use your"
+	cont "strength to do"
+	cont "bad things."
+	
+	para "Feh… People like"
+	line "you will never"
+	cont "understand our"
+	cont "brilliance!"
 
 	para "That's too bad."
 	line "I really admire"
@@ -357,7 +397,7 @@ RadioTower5FRocketBossAfterText:
 	para "disband TEAM"
 	line "ROCKET here today."
 
-	para "Farewell."
+	para "Farewell…"
 	
 	para "???: TEAM ROCKET"
 	line "is disbanded?"
@@ -371,9 +411,28 @@ GiovanniBeforeText:
 	line "sir, you've"
 	cont "returned!"
 	
-	para "GIOVANNI: An"
-	line "EXECUTIVE losing"
-	cont "losing to a child?"
+	para "GIOVANNI: When I"
+	line "heard news of the"
+	cont "takeover, I"
+	cont "decided to finish"
+	cont "my solo training"
+	cont "and take helm of"
+	cont "TEAM ROCKET once"
+	cont "more."
+	
+	para "I expected to see"
+	line "a strong"
+	cont "organization." 
+	
+	para "One that would"
+	line "allow me to seize"
+	cont "control of the"
+	cont "world."
+	
+	para "And yet, my return"
+	line "is marked by an"
+	cont "EXECUTIVE losing"
+	cont "to a child?"
 	
 	para "Disgraceful."
 	
@@ -415,7 +474,7 @@ GiovanniAferText:
 	line "ROCKET is finished"
 	cont "forever."
 	
-	para "...."
+	para "…"
 	done 
 
 RadioTower5FDirectorThankYouText:
@@ -524,7 +583,7 @@ RadioTower5F_MapEvents:
 	warp_event 12,  0, RADIO_TOWER_4F, 3
 
 	def_coord_events
-	coord_event  0,  3, SCENE_RADIOTOWER5F_FAKE_DIRECTOR, FakeDirectorScript
+	coord_event  0,  2, SCENE_RADIOTOWER5F_FAKE_DIRECTOR, FakeDirectorScript
 	coord_event 16,  5, SCENE_RADIOTOWER5F_ROCKET_BOSS, RadioTower5FRocketBossScript
 
 	def_bg_events

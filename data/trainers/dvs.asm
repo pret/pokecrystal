@@ -2,21 +2,21 @@ TrainerClassDVs:
 ; entries correspond to trainer classes (see constants/trainer_constants.asm)
 	table_width 2, TrainerClassDVs
 	;  atk,def,spd,spc
-	dn  9, 10,  7,  7 ; FALKNER
-	dn  8,  8,  8,  8 ; WHITNEY
-	dn  9,  8,  8,  8 ; BUGSY
-	dn  9,  8,  8,  8 ; MORTY
-	dn  9,  8,  8,  8 ; PRYCE
-	dn  9,  8,  8,  8 ; JASMINE
-	dn  9,  8,  8,  8 ; CHUCK
-	dn  7, 12, 13, 13 ; CLAIR
+	dn 10, 10, 13, 12 ; FALKNER
+	dn 12, 11, 11, 10 ; WHITNEY
+	dn 10,  9, 11, 10 ; BUGSY
+	dn 11, 11, 11, 13 ; MORTY
+	dn 14, 12, 12, 14 ; PRYCE
+	dn 11, 13, 12, 12 ; JASMINE
+	dn 13, 10, 13, 11 ; CHUCK
+	dn 14, 15, 12, 12 ; CLAIR
 	dn 15, 13, 13, 13 ; RIVAL1
 	dn 13, 11, 13, 11 ; POKEMON_PROF
-	dn 14, 12, 13, 13 ; WILL
+	dn 14, 12, 15, 15 ; WILL
 	dn 15, 15, 15, 15 ; CAL
-	dn 13, 12, 13, 13 ; BRUNO
-	dn  7, 15, 13, 15 ; KAREN
-	dn 13, 12, 13, 13 ; KOGA
+	dn 15, 15, 13, 13 ; BRUNO
+	dn 15, 13, 15, 15 ; KAREN
+	dn 15, 15, 13, 13 ; KOGA
 	dn 15, 15, 15, 15 ; LANCE
 	dn 14, 15, 13, 14 ; BROCK
 	dn 12, 13, 15, 15 ; MISTY
@@ -27,7 +27,7 @@ TrainerClassDVs:
 	dn  9,  8,  8,  8 ; SCHOOLBOY
 	dn  9,  8,  8,  8 ; BIRD_KEEPER
 	dn  5,  8,  8,  8 ; LASS
-	dn 15, 15, 12, 12 ; JANINE
+	dn 14, 13, 13, 14 ; JANINE
 	dn 13,  8, 12,  8 ; COOLTRAINERM
 	dn  7, 12, 12,  8 ; COOLTRAINERF
 	dn  6,  9, 12,  8 ; BEAUTY
@@ -56,7 +56,7 @@ TrainerClassDVs:
 	dn  9,  8,  8,  8 ; PSYCHIC_T
 	dn  6, 10, 10,  8 ; PICNICKER
 	dn  9,  8,  8,  8 ; CAMPER
-	dn  7, 14, 10,  8 ; EXECUTIVEF
+	dn 13, 13, 12, 12 ; EXECUTIVEF
 	dn  9,  8,  8,  8 ; SAGE
 	dn  7,  8,  8,  8 ; MEDIUM
 	dn  9,  8,  8,  8 ; BOARDER
@@ -68,10 +68,13 @@ TrainerClassDVs:
 	dn 14, 13, 15, 15 ; BLUE
 	dn  9,  8,  8,  8 ; OFFICER
 	dn  7, 14, 10,  8 ; GRUNTF
-	dn  9,  8,  8,  8 ; MYSTICALMAN
-	dn 13, 14, 14, 13 ; TEAM_ROCKET
+	dn 11, 13, 14, 12 ; MYSTICALMAN
+	dn 12, 13, 14, 14 ; TEAM_ROCKET
 	dn 14, 15, 14, 13 ; GIOVANNI
 	dn 13, 12, 15, 15 ; AGATHA
 	dn 14, 13, 13, 15 ; LORELEI
 	dn 12, 13, 15, 15 ; OAK
+	dn 13, 10, 10, 10 ; PROTON
+	dn 13, 14, 10, 11 ; PETREL
+	dn 11, 10,  9, 11 ; ELDER
 	assert_table_length NUM_TRAINER_CLASSES

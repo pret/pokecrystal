@@ -73,4 +73,7 @@ TrainerClassNames::
 	li "<PKMN> TRAINER"
 	li "<PKMN> TRAINER"
 	li "PROFESSOR"
+	li "TEAM ROCKET"
+	li "TEAM ROCKET"
+	li "ELDER"
 	assert_list_length NUM_TRAINER_CLASSES

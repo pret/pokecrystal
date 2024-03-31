@@ -86,39 +86,10 @@ ReadTrainerPartyPieces:
 	ld h, d
 	ld l, e
 
-; Variable?
-	bit TRAINERTYPE_VARIABLE_F, a
-	jr z, .not_variable
-	; get badge count in c
-	push hl
-    ld hl, wBadges
-	ld b, 2
-	call CountSetBits
-	pop hl
-	; Skip that many $fe delimiters
-.outerloop
-	ld a, c
-	and a
-	jr z, .continue
-.innerloop
-	call GetNextTrainerDataByte
-	cp $fe
-	jr nz, .innerloop
-	dec c
-	jr .outerloop
-
-.continue
-	; Get trainer type of variable stage
-	call GetNextTrainerDataByte
-	ld [wOtherTrainerType], a
-	; fallthrough
-.not_variable
 .loop
 ; end?
 	call GetNextTrainerDataByte
 	cp -1
-	ret z
-	cp $fe
 	ret z
 
 ; level

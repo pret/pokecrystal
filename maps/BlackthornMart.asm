@@ -35,14 +35,12 @@ BlackthornMartCooltrainerMText:
 	done
 
 BlackthornMartBlackBeltText:
-	text "MAX REPEL keeps"
+	text "REPEL keeps"
 	line "weak #MON away"
-	cont "from you."
-
-	para "It's the longest"
-	line "lasting of the"
-	cont "REPEL sprays."
-	done
+	cont "from you as"
+	cont "long as it's"
+	cont "turned on."
+	done 
 
 BlackthornMart_MapEvents:
 	db 0, 0 ; filler

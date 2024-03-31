@@ -75,4 +75,7 @@ TrainerGroups:
 	dba AgathaGroup
 	dba LoreleiGroup
 	dba OakGroup
+	dba ProtonGroup
+	dba PetrelGroup
+	dba ElderGroup
 	assert_table_length NUM_TRAINER_CLASSES

@@ -2,6 +2,7 @@
 	const CIANWOODCITY_STANDING_YOUNGSTER
 	const CIANWOODCITY_POKEFAN_M
 	const CIANWOODCITY_LASS
+	const CIANWOODCITY_SAILOR
 	const CIANWOODCITY_ROCK1
 	const CIANWOODCITY_ROCK2
 	const CIANWOODCITY_ROCK3
@@ -60,13 +61,14 @@ CianwoodCitySuicuneAndEusine:
 	writetext EusineSuicuneText
 	waitbutton
 	closetext
-	winlosstext EusineBeatenText, 0
+	winlosstext EusineBeatenText, EusineLossText
 	setlasttalked CIANWOODCITY_EUSINE
 	loadtrainer MYSTICALMAN, EUSINE
 	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
+	setevent EVENT_CIANWOOD_CITY_SAILOR_BLOCKS_GYM
 	playmusic MUSIC_MYSTICALMAN_ENCOUNTER
 	opentext
 	writetext EusineAfterText
@@ -118,6 +120,25 @@ CianwoodCityPokefanM:
 
 CianwoodCityLass:
 	jumptextfaceplayer CianwoodCityLassText
+	
+CianwoodCitySailorScript:
+    faceplayer
+	opentext
+	checkevent EVENT_FOUGHT_EUSINE
+	iftrue .BeatEusine
+	writetext CianwoodCitySailorText
+	waitbutton
+	closetext
+	end 
+	
+.BeatEusine
+    writetext SoItReallyWasSuicune
+	waitbutton
+	closetext
+	applymovement CIANWOODCITY_SAILOR, SailorOneStepUp
+	disappear CIANWOODCITY_SAILOR
+	playsound SFX_ENTER_DOOR
+	end 
 
 CianwoodCityUnusedScript: ; unreferenced
 	jumptextfaceplayer CianwoodCityUnusedText
@@ -179,6 +200,10 @@ CianwoodCityEusineDepartMovement:
 	step DOWN
 	step DOWN
 	step_end
+	
+SailorOneStepUp:
+    step UP
+	step_end 
 
 ChucksWifeEasierToFlyText:
 	text "You crossed the"
@@ -264,6 +289,39 @@ CianwoodCityLassText:
 	para "his fighting #-"
 	line "MON."
 	done
+	
+CianwoodCitySailorText:
+    text "There was a"
+	line "#MON racing"
+	cont "up north…"
+	
+	para "That speed, it"
+	line "was almost like a"
+	cont "blur."
+	
+	para "But that blue"
+	line "shape…"
+	
+	para "Could it be…"
+	line "SUICUNE?"
+	
+	para "But why would a"
+	line "legendary beast"
+	cont "be here?"
+	done 
+	
+SoItReallyWasSuicune:
+    text "I see, so it"
+	line "really was"
+	cont "SUICUNE."
+	
+	para "Oh! I'm sorry,"
+	line "you must want to"
+	cont "challenge CHUCK."
+	
+	para "I'll move out of"
+	line "the way now."
+	done 
 
 CianwoodCityUnusedText:
 	text "There are several"
@@ -336,6 +394,13 @@ EusineAfterText:
 
 	para "See you around!"
 	done
+	
+EusineLossText:
+    text "All right!"
+	
+	para "SUICUNE, were"
+	line "you watching us?"
+	done 
 
 CianwoodCitySignText:
 	text "CIANWOOD CITY"
@@ -374,8 +439,8 @@ CianwoodPhotoStudioSignText:
 	done
 
 CianwoodPokeSeerSignText:
-	text "THE # SEER"
-	line "AHEAD"
+	text "MOVE TUTOR'S"
+	line "HOUSE AHEAD"
 	done
 
 CianwoodCity_MapEvents:
@@ -407,6 +472,7 @@ CianwoodCity_MapEvents:
 	object_event 21, 37, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CianwoodCityYoungster, -1
 	object_event 17, 33, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityPokefanM, -1
 	object_event 14, 42, SPRITE_LASS, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityLass, -1
+	object_event  8, 44, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CianwoodCitySailorScript, EVENT_CIANWOOD_CITY_SAILOR_BLOCKS_GYM
 	object_event  8, 16, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
 	object_event  9, 17, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
 	object_event  4, 25, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1

@@ -86,12 +86,13 @@ EcruteakGymMortyScript:
     end
 	
 .DoRematch:
+    checkevent EVENT_BEAT_RED
+	iftrue .DoRematch2
+; player hasn't beaten Red yet 
     writetext MortyRematchAcceptText
     waitbutton
     closetext
     winlosstext MortyRematchLossText, 0
-	readvar VAR_BADGES
-	if_greater_than 15, .DoRematch2
     loadtrainer MORTY, MORTY2
     loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
     startbattle
@@ -104,6 +105,9 @@ EcruteakGymMortyScript:
     end
 	
 .DoRematch2:
+    writetext MortyRematchAcceptText
+	waitbutton
+    closetext
 	winlosstext MortyRematchLossText, 0
 	loadtrainer MORTY, MORTY3
     loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS

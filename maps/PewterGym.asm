@@ -34,8 +34,9 @@ PewterGymBrockScript:
 	end
 
 .FightDone:
-    readvar VAR_BADGES
-	if_greater_than 15, .OfferRematch
+    checkevent EVENT_BEAT_RED
+	iftrue .OfferRematch
+; player hasn't beaten red yet
 	writetext BrockFightDoneText
 	waitbutton
 	closetext
@@ -189,9 +190,11 @@ BrockRematchText:
 	done 
 	
 BrockRematchAcceptText:
-    text "When it comes to"
-	line "rock #MON",
-	cont "I'm the best!"
+    text "When it comes"
+	line "to true-grit"
+	cont "determination"
+	cont "nobody can match"
+	cont "us!"
 	
 	para "Come on!"
 	done 

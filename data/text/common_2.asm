@@ -1128,6 +1128,14 @@ _PokecenterPCCantUseText::
 	line "have a #MON to"
 	cont "use this!"
 	prompt
+	
+_PocketPCNoSignalText::
+    text "There is no"
+	line "signal!"
+	
+	para "The PC cannot be"
+	line "accessed!"
+	done 
 
 _PlayersPCTurnOnText::
 	text "<PLAYER> turned on"

@@ -65,10 +65,9 @@ TrainerGruntM10:
 	end
 
 TrainerExecutivem2:
-	trainer EXECUTIVEM, EXECUTIVEM_2, EVENT_BEAT_ROCKET_EXECUTIVEM_2, Executivem2SeenText, Executivem2BeatenText, 0, .Script
+	trainer PROTON, PROTON2, EVENT_BEAT_ROCKET_EXECUTIVEM_2, Executivem2SeenText, Executivem2BeatenText, 0, .Script
 
 .Script:
-	endifjustbattled
 	opentext
 	writetext Executivem2AfterBattleText
 	waitbutton
@@ -167,27 +166,45 @@ GruntM10AfterBattleText:
 	done
 
 Executivem2SeenText:
-	text "Stop! I'm known as"
-	line "the TEAM ROCKET"
-	cont "fortress!"
+	text "Now, wait just"
+	line "one second!"
 
-	para "You're not taking"
-	line "another step!"
-	done
-
+	para "Aren't you the one"
+	line "who got in our way"
+	cont "in SLOWPOKE WELL?"
+	
+	para "Even though I"
+	line "warned you, you're"
+	cont "doing everything"
+	cont "to make me angry."
+	
+	para "But so be it."
+	
+	para "Since you seem to"
+	line "to wish it, I'll"
+    cont "show you the full"
+    cont "extent of my"
+    cont "wrath!"
+    done 	
+	
 Executivem2BeatenText:
-	text "The fortress came"
-	line "down!"
-	done
+	text "Ugh… What are"
+	line "you?!"
+	done 
 
 Executivem2AfterBattleText:
-	text "You've earned my"
-	line "respect, so here's"
-	cont "some advice."
-
-	para "It's not too late."
-	line "You can still turn"
-	cont "back."
+	text "You may have"
+	line "beaten me again…"
+	
+	para "But you're too"
+	line "too late to"
+	cont "stop us."
+	
+	para "TEAM ROCKET will"
+	line "succeed… and all"
+	cont "that you've done"
+	cont "is make our wrath"
+	cont "grow."
 	done
 
 GruntF4SeenText:
@@ -263,6 +280,6 @@ RadioTower4F_MapEvents:
 	object_event 14,  6, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, RadioTower4FDJMaryScript, -1
 	object_event 12,  7, SPRITE_MEOWTH, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTowerMeowth, -1
 	object_event  5,  6, SPRITE_ROCKET, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM10, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event 14,  1, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_LEFT, 2, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 2, TrainerExecutivem2, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event 12,  4, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerGruntF4, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event 13,  1, SPRITE_PROTON, SPRITEMOVEDATA_STANDING_LEFT, 2, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 1, TrainerExecutivem2, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event 12,  4, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerGruntF4, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event  4,  2, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerScientistRich, EVENT_RADIO_TOWER_ROCKET_TAKEOVER

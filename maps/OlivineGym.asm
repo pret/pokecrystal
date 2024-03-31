@@ -74,12 +74,13 @@ OlivineGymJasmineScript:
     end
 	
 .DoRematch:
+    checkevent EVENT_BEAT_RED
+	iftrue .DoRematch2
+; player hasn't beaten Red yet
     writetext JasmineRematchAcceptText
     waitbutton
     closetext
     winlosstext JasmineRematchLossText, 0
-	readvar VAR_BADGES
-	if_greater_than 15, .DoRematch2
     loadtrainer JASMINE, JASMINE2
     loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
     startbattle

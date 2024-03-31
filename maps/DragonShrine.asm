@@ -198,7 +198,7 @@ DragonShrineElder1Script:
 	iftrue .ReceivedDratini
 	checkevent EVENT_GOT_DRATINI
 	iffalse .GiveDratini
-	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
+	checkevent EVENT_BEAT_RIVAL_IN_MT_SILVER
 	iftrue .BeatRivalInMtMoon
 	writetext DragonShrineClairsGrandfatherText
 	waitbutton

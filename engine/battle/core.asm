@@ -6075,10 +6075,10 @@ LoadEnemyMon:
 ; See GetTrainerDVs for more on that
 	farcall GetTrainerDVs
 ; These are the DVs we'll use if we're actually in a trainer battle
-	ld a, [wBattleMode]
-	dec a
+ 	ld a, [wBattleMode]
+ 	dec a
 	jr nz, .UpdateDVs
-
+	
 ; Wild DVs
 ; Here's where the fun starts
 

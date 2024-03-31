@@ -729,6 +729,10 @@ INCLUDE "gfx/overworld/trainer_battle_dark.pal"
 	ret z 
 	cp GIOVANNI
 	ret z 
+	cp PROTON
+	ret z
+    cp PETREL
+    ret z 	
 	ld de, PokeBallTransition
 	ret
 

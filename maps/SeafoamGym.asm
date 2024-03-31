@@ -39,8 +39,9 @@ SeafoamGymBlaineScript:
 	end
 
 .FightDone:
-    readvar VAR_BADGES
-	if_greater_than 15, .OfferRematch
+    checkevent EVENT_BEAT_RED
+	iftrue .OfferRematch
+; player hasn't beaten red yet
 	writetext BlaineFightDoneText
 	waitbutton
 	closetext
@@ -115,7 +116,8 @@ BlaineIntroText:
 	cont "a BADGE."
 
 	para "Ha! You'd better"
-	line "have BURN HEAL!"
+	line "have equipped an"
+	cont "ICE BERRY!"
 	done
 
 BlaineWinLossText:

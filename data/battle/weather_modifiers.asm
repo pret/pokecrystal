@@ -6,5 +6,5 @@ WeatherTypeModifiers:
 	db -1 ; end
 
 WeatherMoveModifiers:
-	db WEATHER_RAIN, EFFECT_SOLARBEAM, NOT_VERY_EFFECTIVE
+	db WEATHER_SUN, SOLARBEAM, MORE_EFFECTIVE
 	db -1 ; end

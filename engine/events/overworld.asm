@@ -623,6 +623,8 @@ FlyFunction:
 	end
 
 .ReturnFromFly:
+    ld e, PAL_OW_RED
+	farcall SetFirstOBJPalette
 	farcall RespawnPlayer
 	call DelayFrame
 	call UpdatePlayerSprite
@@ -1624,6 +1626,48 @@ RodNothingText:
 UnusedNothingHereText: ; unreferenced
 	text_far _UnusedNothingHereText
 	text_end
+	
+PocketPCFunction:
+    ld a, [wEnvironment]
+	cp INDOOR 
+	jr z, .noSignal
+	call .LoadPocketPC
+	and $7f
+	ld [wFieldMoveSucceeded], a
+	ret
+	
+.noSignal
+    ld hl, .PocketPCNoSignal
+    call CallScript
+    ret
+	
+.LoadPocketPC:
+	ld a, [wPlayerState]
+	ld hl, Script_LoadPocketPC
+	ld de, Script_LoadPocketPC_Register
+	call .CheckIfRegistered
+	call QueueScript
+	ld a, TRUE
+	ret
+	
+.CheckIfRegistered:
+	ld a, [wUsingItemWithSelect]
+	and a
+	ret z
+	ld h, d
+	ld l, e
+	ret
+	
+.PocketPCNoSignal
+    opentext
+    writetext NoSignalText
+    waitbutton
+    closetext
+    end
+
+NoSignalText:
+    text_far _PocketPCNoSignalText
+    text_end
 
 BikeFunction:
 	call .TryBike
@@ -1710,6 +1754,18 @@ BikeFunction:
 .nope
 	scf
 	ret
+	
+Script_LoadPocketPC:
+	reloadmappart
+	special UpdateTimePals
+	special PokemonCenterPC
+	reloadmappart
+	end
+
+Script_LoadPocketPC_Register:
+	special PokemonCenterPC
+	reloadmappart
+	end
 
 Script_GetOnBike:
 	reloadmappart

@@ -24,7 +24,7 @@ DragonsDenB1FNoop2Scene:
 	end
 
 DragonsDenB1FCheckRivalCallback:
-	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
+	checkevent EVENT_BEAT_RIVAL_IN_MT_SILVER
 	iftrue .CheckDay
 	disappear DRAGONSDENB1F_RIVAL
 	endcallback

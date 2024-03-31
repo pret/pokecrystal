@@ -41,6 +41,8 @@ KogasRoomDoorLocksBehindYouScript:
 	end
 
 KogaScript_Battle:
+    readvar VAR_BADGES
+	if_greater_than 15, .Rematch
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_ELITE_4_KOGA
@@ -49,8 +51,6 @@ KogaScript_Battle:
 	waitbutton
 	closetext
 	winlosstext KogaScript_KogaBeatenText, 0
-	readvar VAR_BADGES
-	if_greater_than 15, .Rematch
 	loadtrainer KOGA, KOGA1
 	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
@@ -69,13 +69,21 @@ KogaScript_Battle:
 	end
 	
 .Rematch
-    loadtrainer KOGA, KOGA2
+    faceplayer
+	opentext
+	checkevent EVENT_BEAT_ELITE_4_KOGA
+	iftrue KogaRematchAfterText
+	writetext KogaRematchBeforeText
+	waitbutton
+	closetext
+	winlosstext KogaRematchDefeatedText, 0
+	loadtrainer KOGA, KOGA2
 	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_ELITE_4_KOGA
 	opentext
-	writetext KogaScript_KogaDefeatText
+	writetext KogaRematchDefeatText
 	waitbutton
 	closetext
 	playsound SFX_ENTER_DOOR
@@ -88,6 +96,12 @@ KogaScript_Battle:
 
 KogaScript_AfterBattle:
 	writetext KogaScript_KogaDefeatText
+	waitbutton
+	closetext
+	end
+	
+KogaRematchAfterText:
+    writetext KogaRematchDefeatText
 	waitbutton
 	closetext
 	end
@@ -143,6 +157,54 @@ KogaScript_KogaDefeatText:
 	line "failed. I must"
 	cont "hone my skills."
 
+	para "Go on to the next"
+	line "room, and put your"
+	cont "abilities to test!"
+	done
+	
+KogaRematchBeforeText:
+    text "Fwahahahaha!"
+  
+	para "Why, if isn't our"
+	line "young CHAMPION!"
+	
+	para "It seems we are"
+	line "fated to meet"
+	cont "once again."
+	
+	para "The timing of"
+	line "your arrival is"
+	cont "most fortunate."
+	
+	para "This is a perfect"
+	line "opportunity to"
+	cont "test my newly"
+	cont "honed techniques."
+	
+	para "You shall soon"
+	line "learn to fear the"
+	cont "art of a ninja!"
+	done 
+	
+KogaRematchDefeatedText:
+    text "A splendid"
+	line "display!"
+	
+	para "Once more you"
+	line "have proven your"
+	cont "worth."
+	done 
+	
+KogaRematchDefeatText:
+    text "You have done"
+	line "well."
+	
+	para "If I cannot match"
+	line "you now, then I"
+	cont "must devote"
+	cont "myself further to"
+	cont "my training."
+	
 	para "Go on to the next"
 	line "room, and put your"
 	cont "abilities to test!"

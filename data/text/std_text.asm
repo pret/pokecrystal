@@ -70,7 +70,12 @@ NurseReturnPokemonText:
 	para "Your #MON are"
 	line "fully healed."
 	done
-
+	
+NurseReturnPokemonShortText:
+	text "Your #MON are"
+	line "fully healed."
+	done
+	
 NurseGoodbyeText:
 	text "We hope to see you"
 	line "again."

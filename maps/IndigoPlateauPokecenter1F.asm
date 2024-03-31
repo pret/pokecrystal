@@ -42,7 +42,7 @@ IndigoPlateauPokecenter1FPrepareElite4Callback:
 	endcallback
 
 PlateauRivalBattle1:
-	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
+	checkevent EVENT_BEAT_RIVAL_IN_MT_SILVER
 	iffalse PlateauRivalScriptDone
 	checkflag ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT
 	iftrue PlateauRivalScriptDone
@@ -64,7 +64,7 @@ PlateauRivalBattle1:
 	sjump PlateauRivalBattleCommon
 
 PlateauRivalBattle2:
-	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
+	checkevent EVENT_BEAT_RIVAL_IN_MT_SILVER
 	iffalse PlateauRivalScriptDone
 	checkflag ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT
 	iftrue PlateauRivalScriptDone
@@ -142,9 +142,16 @@ IndigoPlateauPokecenter1FNurseScript:
 
 IndigoPlateauPokecenter1FClerkScript:
 	opentext
+	checkevent EVENT_BEAT_BLUE
+	iftrue .RareCandiesInStock
 	pokemart MARTTYPE_STANDARD, MART_INDIGO_PLATEAU
 	closetext
 	end
+	
+.RareCandiesInStock:
+    pokemart MARTTYPE_STANDARD, MART_INDIGO_PLATEAU_CANDIES
+	closetext
+	end 
 
 IndigoPlateauPokecenter1FCooltrainerMScript:
 	jumptextfaceplayer IndigoPlateauPokecenter1FCooltrainerMText

@@ -16,6 +16,12 @@ NewBarkTownNoop1Scene:
 
 NewBarkTownNoop2Scene:
 	end
+	
+NewBarkTownNoop3Scene:
+    end 
+
+NewBarkTownNoop4Scene:
+    end 
 
 NewBarkTownFlypointCallback:
 	setflag ENGINE_FLYPOINT_NEW_BARK
@@ -185,7 +191,7 @@ NewBarkTown_RivalShovesYouOutMovement:
 NewBarkTown_RivalReturnsToTheShadowsMovement:
 	step RIGHT
 	step_end
-
+	
 Text_GearIsImpressive:
 	text "Wow, your #GEAR"
 	line "is impressive!"

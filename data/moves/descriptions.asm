@@ -568,8 +568,8 @@ RazorLeafDescription:
 	next "cal hit ratio.@"
 
 SolarbeamDescription:
-	db   "1st turn: Prepare"
-	next "2nd turn: Attack@"
+	db   "A powerful beam"
+	next "of light.@"
 
 PoisonpowderDescription:
 	db   "A move that may"
@@ -1212,7 +1212,7 @@ MoonlightDescription:
 	next "(varies by time).@"
 
 HiddenPowerDescription:
-	db   "The power varies"
+	db   "The type varies"
 	next "with the #MON.@"
 
 CrossChopDescription:

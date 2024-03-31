@@ -77,6 +77,7 @@ WateredWeirdTreeScript:: ; export (for when you use Squirtbottle from pack)
 	loadwildmon SUDOWOODO, 30
 	startbattle
 	setevent EVENT_FOUGHT_SUDOWOODO
+	setevent EVENT_VIOLET_CITY_SAGE_BLOCKS_GYM
 	ifequal DRAW, DidntCatchSudowoodo
 	disappear ROUTE36_WEIRD_TREE
 	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN

@@ -644,6 +644,7 @@ DEF KRIS EQU __trainer_class__
 
 	trainerclass RED ; 3f
 	const RED1
+	const RED2
 
 	trainerclass BLUE ; 40
 	const BLUE1
@@ -665,17 +666,35 @@ DEF KRIS EQU __trainer_class__
 	
 	trainerclass TEAM_ROCKET
 	const ARCHER
+	const ARCHER2
+	const ARCHER3
 
     trainerclass GIOVANNI
 	const GIOVANNI1
+	const GIOVANNI2
+	const GIOVANNI3
 	
 	trainerclass AGATHA
 	const AGATHA1
+	const AGATHA2
 	
 	trainerclass LORELEI
 	const LORELEI1
+	const LORELEI2
 	
 	trainerclass OAK
 	const OAK1
+	
+	trainerclass PROTON
+	const PROTON1
+	const PROTON2
+	
+	trainerclass PETREL
+	const PETREL1
+	const PETREL2
+	
+	trainerclass ELDER
+	const LI1
+	const LI2
 	
 DEF NUM_TRAINER_CLASSES EQU __trainer_class__ - 1

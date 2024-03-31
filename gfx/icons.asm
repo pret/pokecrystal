@@ -1,3 +1,5 @@
+SECTION "Mon Icons", ROMX
+
 SECTION "Mon Icons 1", ROMX
 
 NullIcon:

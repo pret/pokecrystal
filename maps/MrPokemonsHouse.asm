@@ -69,7 +69,7 @@ MrPokemonsHouse_MrPokemonScript:
 	writetext MrPokemonText_GimmeTheScale
 	yesorno
 	iffalse .refused
-	verbosegiveitem EXP_SHARE
+	verbosegiveitem TM_HYPER_BEAM
 	iffalse .full
 	takeitem RED_SCALE
 	sjump .AlwaysNewDiscoveries
@@ -337,9 +337,9 @@ MrPokemonText_GimmeTheScale:
 	para "<PLAY_G>, would you"
 	line "care to trade it?"
 
-	para "I can offer this"
-	line "EXP.SHARE I got"
-	cont "from PROF.OAK."
+	para "I can offer you"
+	line "a rare TM for the"
+	cont "move HYPER BEAM."
 	done
 
 MrPokemonText_Disappointed:

@@ -50,14 +50,14 @@ Script_ApproachLanceFromRight:
 	special FadeOutMusic
 	applymovement PLAYER, MovementData_ApproachLanceFromRight
 LancesRoomLanceScript:
+    readvar VAR_BADGES
+	if_greater_than 15, .Rematch
 	turnobject LANCESROOM_LANCE, LEFT
 	opentext
 	writetext LanceBattleIntroText
 	waitbutton
 	closetext
 	winlosstext LanceBattleWinText, 0
-	readvar VAR_BADGES
-	if_greater_than 15, .Rematch
 	setlasttalked LANCESROOM_LANCE
 	loadtrainer LANCE, LANCE1
 	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
@@ -133,6 +133,12 @@ LancesRoomLanceScript:
 	end
 	
 .Rematch:
+    turnobject LANCESROOM_LANCE, LEFT
+	opentext
+	writetext LanceRematchBeforeText
+	waitbutton
+	closetext
+	winlosstext LanceRematchDefeatedText, 0
     setlasttalked LANCESROOM_LANCE
 	loadtrainer LANCE, LANCE2
 	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
@@ -141,7 +147,7 @@ LancesRoomLanceScript:
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CHAMPION_LANCE
 	opentext
-	writetext LanceBattleAfterText
+	writetext LanceRematchDefeatText
 	waitbutton
 	closetext
 	playsound SFX_ENTER_DOOR
@@ -412,6 +418,65 @@ LancesRoomMaryNoInterviewText:
 	line "We haven't done"
 	cont "the interview!"
 	done
+	
+LanceRematchBeforeText:
+    text "So, you've"
+	line "returned once"
+	cont "again, <PLAY_G>!"
+	
+	para "I had full"
+	line "confidence that a"
+	cont "trainer of your"
+	cont "skill would make"
+	cont "it here again."
+	
+	para "As usual you are"
+	line "brimming with"
+	cont "love and trust"
+	cont "towards #MON."
+	
+	para "I think we will"
+	line "be able to have a"
+	cont "fantastic battle."
+	
+	para "Let us determine"
+	line "once more who is"
+	cont "the stronger"
+	cont "between the two"
+	cont "of us!"
+	
+	para "I, LANCE the drag-"
+	line "on master, accept"
+	cont "your challenge!"
+	done
+	
+LanceRematchDefeatedText:
+    text "That's it!"
+	
+	para "I have to admit,"
+	line "you truly are a"
+	cont "#MON master!"
+	done
+
+LanceRematchDefeatText:
+    text "…Whew."
+	
+	para "Your strength is"
+	line "incredible,"
+	cont "<PLAY_G>."
+	
+	para "The bond you"
+	line "share with your"
+	cont "#MON is"
+	cont "a joy to see."
+	
+	para "I'm confident"
+	line "that as a"
+	cont "trainer there"
+	cont "is no obstacle"
+	cont "too great for"
+	cont "you to overcome."
+	done 
 
 LancesRoom_MapEvents:
 	db 0, 0 ; filler

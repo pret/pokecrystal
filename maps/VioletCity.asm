@@ -4,6 +4,7 @@
 	const VIOLETCITY_SUPER_NERD
 	const VIOLETCITY_GRAMPS
 	const VIOLETCITY_YOUNGSTER
+	const VIOLETCITY_SAGE
 	const VIOLETCITY_FRUIT_TREE
 	const VIOLETCITY_POKE_BALL1
 	const VIOLETCITY_POKE_BALL2
@@ -67,6 +68,9 @@ VioletCityGrampsScript:
 
 VioletCityYoungsterScript:
 	jumptextfaceplayer VioletCityYoungsterText
+	
+VioletCitySageScript:
+    jumptextfaceplayer VioletCitySageText
 
 VioletCitySign:
 	jumptext VioletCitySignText
@@ -181,7 +185,7 @@ Text_EarlAsksIfYouBeatFalkner:
 	text "Hello!"
 	line "You are trainer?"
 
-	para "Battle GYM LEADER,"
+	para "Battle ELDER LI,"
 	line "win you did?"
 	done
 
@@ -247,6 +251,22 @@ VioletCityYoungsterText:
 	line "it squirms and"
 	cont "dances! Cool!"
 	done
+	
+VioletCitySageText:
+    text "I am sorry, but"
+	line "I cannot let"
+	cont "you enter."
+	
+	para "Our GYM LEADER,"
+	line "FALKNER has left"
+	cont "to do some"
+	cont "training."
+	
+	para "I'm afraid you"
+	line "will have to"
+	cont "wait until he"
+	cont "comes back."
+	done 
 
 VioletCitySignText:
 	text "VIOLET CITY"
@@ -307,6 +327,7 @@ VioletCity_MapEvents:
 	object_event 24, 14, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VioletCitySuperNerdScript, -1
 	object_event 17, 20, SPRITE_GRAMPS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VioletCityGrampsScript, -1
 	object_event  5, 18, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, VioletCityYoungsterScript, -1
+	object_event 18, 18, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, VioletCitySageScript, EVENT_VIOLET_CITY_SAGE_BLOCKS_GYM
 	object_event 14, 29, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VioletCityFruitTree, -1
 	object_event  4,  1, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VioletCityPPUp, EVENT_VIOLET_CITY_PP_UP
 	object_event 35,  5, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VioletCityRareCandy, EVENT_VIOLET_CITY_RARE_CANDY

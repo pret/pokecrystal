@@ -2,6 +2,7 @@
 	const ROUTE37_WEIRD_TREE1
 	const ROUTE37_WEIRD_TREE2
 	const ROUTE37_YOUNGSTER
+	const ROUTE37_SUPER_NERD
 	const ROUTE37_FRUIT_TREE1
 	const ROUTE37_SUNNY
 	const ROUTE37_FRUIT_TREE2
@@ -9,9 +10,21 @@
 
 Route37_MapScripts:
 	def_scene_scripts
+	scene_script Route37Noop1Scene, SCENE_ROUTE37_NOOP
+	scene_script Route37Noop2Scene, SCENE_ROUTE37_BADGE_CHECK
+	scene_script Route37Noop3Scene, SCENE_ROUTE37_NOOP_2
 
 	def_callbacks
 	callback MAPCALLBACK_OBJECTS, Route37SunnyCallback
+	
+Route37Noop1Scene:
+	end
+	
+Route37Noop2Scene:
+    end 
+
+Route37Noop3Scene:
+	end
 
 Route37SunnyCallback:
 	readvar VAR_WEEKDAY
@@ -56,6 +69,28 @@ TrainerPsychicGreg:
 	closetext
 	end
 
+Route37BadgeCheckScene:
+    faceplayer
+    opentext
+    writetext Route37SuperNerdIntro
+	waitbutton
+	closetext
+	showemote EMOTE_SHOCK, PLAYER, 15
+	turnobject PLAYER, LEFT
+	opentext
+	writetext Route37SuperNerdFightFalkner
+	waitbutton
+	closetext
+	applymovement PLAYER, PlayerOneStepDown
+	end
+	
+Route37SuperNerdScript:
+    jumptextfaceplayer Route37SuperNerdFightFalkner
+
+PlayerOneStepDown:
+    step DOWN
+    step_end	
+	
 SunnyScript:
 	faceplayer
 	opentext
@@ -170,6 +205,33 @@ PsychicGregAfterBattleText:
 	cont "ing them are good"
 	cont "battle techniques."
 	done
+	
+Route37SuperNerdIntro:
+    text "Wait up! What's"
+	line "the hurry?"
+	done 
+	
+Route37SuperNerdFightFalkner:
+    text "You're collecting"
+	line "GYM BADGES,"
+	cont "aren't you?"
+	
+	para "…"
+	
+	para "Thought so!"
+	line "Before you enter"
+	cont "ECRUTEAK, you'll"
+	cont "probably want to"
+	cont "track back to"
+	cont "VIOLET CITY."
+	
+	para "I've heard that"
+	line "FALKNER has"
+	cont "returned from his"
+	cont "training and is"
+	cont "ready to accept"
+	cont "all challengers."
+	done 
 
 MeetSunnyText:
 	text "SUNNY: Hi!"
@@ -241,6 +303,7 @@ Route37_MapEvents:
 	def_warp_events
 
 	def_coord_events
+	coord_event 8, 0, SCENE_ROUTE37_BADGE_CHECK, Route37BadgeCheckScene
 
 	def_bg_events
 	bg_event  5,  3, BGEVENT_READ, Route37Sign
@@ -250,6 +313,7 @@ Route37_MapEvents:
 	object_event  6, 12, SPRITE_WEIRD_TREE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsAnnandanne1, -1
 	object_event  7, 12, SPRITE_WEIRD_TREE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsAnnandanne2, -1
 	object_event  6,  6, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerPsychicGreg, -1
+	object_event  7,  0, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route37SuperNerdScript, EVENT_ROUTE_37_SUPER_NERD_BLOCKS_PASSAGE
 	object_event 13,  5, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route37FruitTree1, -1
 	object_event 16,  8, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SunnyScript, EVENT_ROUTE_37_SUNNY_OF_SUNDAY
 	object_event 16,  5, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route37FruitTree2, -1

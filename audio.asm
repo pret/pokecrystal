@@ -152,6 +152,8 @@ INCLUDE "audio/music/postcredits.asm"
 SECTION "New Songs", ROMX
 
 INCLUDE "audio/music/maxiearchiebattle.asm"
+INCLUDE "audio/music/finalbattle.asm"
+INCLUDE "audio/music/gymleaderbattle.asm"
 
 
 SECTION "Sound Effects", ROMX

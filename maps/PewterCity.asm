@@ -2,6 +2,7 @@
 	const PEWTERCITY_COOLTRAINER_F
 	const PEWTERCITY_BUG_CATCHER
 	const PEWTERCITY_GRAMPS
+	const PEWTERCITY_FISHER
 	const PEWTERCITY_FRUIT_TREE1
 	const PEWTERCITY_FRUIT_TREE2
 
@@ -38,6 +39,9 @@ PewterCityGrampsScript:
 	waitbutton
 	closetext
 	end
+	
+PewterCityGuardScript:
+    jumptextfaceplayer PewterCityGuardText
 
 PewterCitySign:
 	jumptext PewterCitySignText
@@ -113,6 +117,17 @@ PewterCityGrampsText_GotSilverWing:
 	para "Those are the joys"
 	line "of travel."
 	done
+	
+PewterCityGuardText:
+    text "Sorry kid, but I"
+	line "can't let you"
+	cont "through."
+	
+	para "The owner of this"
+	line "place is busy and"
+	cont "isn't accepting"
+	cont "any visitors."
+	done 
 
 PewterCitySignText:
 	text "PEWTER CITY"
@@ -175,5 +190,6 @@ PewterCity_MapEvents:
 	object_event 19, 11, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PewterCityCooltrainerFScript, -1
 	object_event 14, 29, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PewterCityBugCatcherScript, -1
 	object_event 29, 17, SPRITE_GRAMPS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PewterCityGrampsScript, -1
+	object_event  7, 30, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, PewterCityGuardScript, EVENT_PEWTER_CITY_FISHER_BLOCKS_HOUSE
 	object_event 32,  3, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PewterCityFruitTree1, -1
 	object_event 30,  3, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PewterCityFruitTree2, -1

@@ -43,8 +43,9 @@ CeladonGymErikaScript:
 	iffalse .GotGigaDrain
 	setevent EVENT_GOT_TM19_GIGA_DRAIN
 .GotGigaDrain:
-    readvar VAR_BADGES
-	if_greater_than 15, .OfferRematch
+    checkevent EVENT_BEAT_RED
+	iftrue .OfferRematch
+; player hasn't beaten red yet
 	writetext ErikaAfterBattleText
 	waitbutton
 	closetext

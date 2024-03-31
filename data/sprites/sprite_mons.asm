@@ -61,4 +61,5 @@ SpriteMons:
 	db FARFETCH_D
 	db MILTANK
 	db MURKROW
+	db FEAROW
 	assert_table_length NUM_POKEMON_SPRITES

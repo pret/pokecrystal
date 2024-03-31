@@ -75,12 +75,13 @@ AzaleaGymBugsyScript:
     end
 	
 .DoRematch:
+    checkevent EVENT_BEAT_RED
+	iftrue .DoRematch2
+; player hasn't beaten Red yet
     writetext BugsyRematchAcceptText
     waitbutton
     closetext
     winlosstext BugsyRematchLossText, 0
-	readvar VAR_BADGES
-	if_greater_than 15, .DoRematch2
     loadtrainer BUGSY, BUGSY2
     loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
     startbattle
@@ -93,6 +94,9 @@ AzaleaGymBugsyScript:
     end
 	
 .DoRematch2:
+    writetext BugsyRematchAcceptText
+	waitbutton
+    closetext
 	winlosstext BugsyRematchLossText, 0
 	loadtrainer BUGSY, BUGSY3
     loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
@@ -257,6 +261,13 @@ BugsyText_FuryCutterSpeech:
 	para "The longer your"
 	line "battle goes, the"
 	cont "better it gets."
+	
+	para "Don't be shy to"
+	line "use it!"
+	
+	para "A TM can be used"
+	line "as many times as"
+	cont "you want!"
 
 	para "Isn't that great?"
 	line "I discovered it!"
@@ -405,7 +416,9 @@ TwinsAmyandmay2AfterBattleText:
 	done
 
 AzaleaGymGuideText:
-	text "Yo, challenger!"
+	text "Hey! I'm no train-"
+	line "er but I can give"
+	cont "some advice!"
 
 	para "BUGSY's young, but"
 	line "his knowledge of"

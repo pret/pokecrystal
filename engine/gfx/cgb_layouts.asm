@@ -646,9 +646,10 @@ _CGB_TrainerCard:
 	ld a, PRYCE
 	call GetTrainerPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
-	ld a, PREDEFPAL_CGB_BADGE
-	call GetPredefPal
-	call LoadHLPaletteIntoDE
+	ld hl, .BadgePalettes
+	ld bc, 8 palettes
+	ld a, BANK(wOBPals1)
+	call FarCopyWRAM
 
 	; fill screen with opposite-gender palette for the card border
 	hlcoord 0, 0, wAttrmap
@@ -673,15 +674,15 @@ _CGB_TrainerCard:
 	; top-right corner still uses the border's palette
 	hlcoord 18, 1, wAttrmap
 	ld [hl], $1
-	hlcoord 2, 11, wAttrmap
+	hlcoord 10, 11, wAttrmap
 	lb bc, 2, 4
 	ld a, $1 ; falkner
 	call FillBoxCGB
-	hlcoord 6, 11, wAttrmap
+	hlcoord 2, 11, wAttrmap
 	lb bc, 2, 4
 	ld a, $2 ; bugsy
 	call FillBoxCGB
-	hlcoord 10, 11, wAttrmap
+	hlcoord 6, 11, wAttrmap
 	lb bc, 2, 4
 	ld a, $3 ; whitney
 	call FillBoxCGB
@@ -725,6 +726,9 @@ _CGB_TrainerCard:
 	ldh [hCGBPalUpdate], a
 	ret
 	
+.BadgePalettes:
+INCLUDE "gfx/trainer_card/badges.pal"
+	
 _CGB_TrainerCardKanto:
     ld de, wBGPals1
 	xor a ; CHRIS & MISTY
@@ -751,9 +755,10 @@ _CGB_TrainerCardKanto:
 	ld a, BLUE
 	call GetTrainerPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
-	ld a, PREDEFPAL_CGB_BADGE
-	call GetPredefPal
-	call LoadHLPaletteIntoDE
+	ld hl, .BadgePalettes
+	ld bc, 8 palettes
+	ld a, BANK(wOBPals1)
+	call FarCopyWRAM
 
 	; fill screen with opposite-gender palette for the card border
 	hlcoord 0, 0, wAttrmap
@@ -821,6 +826,9 @@ _CGB_TrainerCardKanto:
 	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
+	
+.BadgePalettes:
+INCLUDE "gfx/trainer_card/kanto_badges.pal"
      
 _CGB_MoveList:
 	ld de, wBGPals1

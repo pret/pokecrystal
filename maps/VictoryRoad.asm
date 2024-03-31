@@ -191,20 +191,38 @@ VictoryRoadRivalBeforeText:
 	line "take the #MON"
 	cont "LEAGUE challenge?"
 
-	para "…Don't make me"
-	line "laugh."
+	para "VICTORY ROAD is at"
+	line "its end, for sure."
 
-	para "You're so much"
-	line "weaker than I am."
-
-	para "I'm not like I was"
-	line "before."
-
-	para "I now have the"
-	line "best and strongest"
-
-	para "#MON with me."
-	line "I'm invincible!"
+	para "But did you"
+	line "notice…?"
+	
+	para "You didn't see any"
+	line "trainers on the"
+	cont "way, did you?"
+	
+	para "Man, they were all"
+	line "pathetic!"
+	
+	para "Well, I know for a"
+	line "a fact that you're"
+	cont "not one of them."
+	
+	para "As much I as I"
+	line "hate to admit it,"
+	cont "it wasn't luck"
+	cont "that got you"
+	cont "this far."
+	
+	para "But! Your journey"
+	line "ends here!"
+	
+	para "Because I now have"
+	line "the best and"
+	cont "strongest #MON"
+    cont "with me."
+	
+	para "I'm invincible!"
 
 	para "<PLAYER>!"
 	line "I challenge you!"

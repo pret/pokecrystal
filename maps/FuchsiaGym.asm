@@ -53,8 +53,9 @@ FuchsiaGymJanineScript:
 	iffalse .AfterTM
 	setevent EVENT_GOT_TM06_TOXIC
 .AfterTM:
-    readvar VAR_BADGES
-	if_greater_than 15, .OfferRematch
+    checkevent EVENT_BEAT_RED
+    iftrue .OfferRematch
+; player hasn't beaten red yet
 	writetext JanineText_ApplyMyself
 	waitbutton
 	closetext

@@ -72,4 +72,7 @@ BTTrainerClassSprites:
 	db SPRITE_AGATHA
 	db SPRITE_LORELEI
 	db SPRITE_OAK
+	db SPRITE_PROTON
+	db SPRITE_PETREL
+	db SPRITE_ELDER
 	assert_table_length NUM_TRAINER_CLASSES - 1 ; exclude MYSTICALMAN

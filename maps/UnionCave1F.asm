@@ -76,7 +76,7 @@ UnionCave1FXAttack:
 	itemball ANTIDOTE
 
 UnionCave1FPotion:
-	itemball POTION
+	itemball TM_MUD_SLAP
 
 UnionCave1FAwakening:
 	itemball AWAKENING

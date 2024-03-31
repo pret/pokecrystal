@@ -75,12 +75,13 @@ MahoganyGymPryceScript:
     end
 	
 .DoRematch:
+    checkevent EVENT_BEAT_RED
+	iftrue .DoRematch2
+; player hasn't beaten Red yet
     writetext PryceRematchAcceptText
     waitbutton
     closetext
     winlosstext PryceRematchLossText, 0
-	readvar VAR_BADGES
-	if_greater_than 15, .DoRematch2
     loadtrainer PRYCE, PRYCE2
     loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
     startbattle
@@ -93,6 +94,9 @@ MahoganyGymPryceScript:
     end
 	
 .DoRematch2:
+    writetext PryceRematchAcceptText
+	waitbutton
+    closetext
     winlosstext PryceRematchLossText, 0
 	loadtrainer PRYCE, PRYCE3
     loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS

@@ -9,6 +9,8 @@ CherrygroveCity_MapScripts:
 	def_scene_scripts
 	scene_script CherrygroveCityNoop1Scene, SCENE_CHERRYGROVECITY_NOOP
 	scene_script CherrygroveCityNoop2Scene, SCENE_CHERRYGROVECITY_MEET_RIVAL
+	scene_script CherrygroveCityNoop3Scene, SCENE_CHERRYGROVECITY_GUIDE_GENT
+	scene_script CherrygroveCityNoop4Scene, SCENE_CHERRYGROVECITY_NOOP_4
 
 	def_callbacks
 	callback MAPCALLBACK_NEWMAP, CherrygroveCityFlypointCallback
@@ -18,20 +20,21 @@ CherrygroveCityNoop1Scene:
 
 CherrygroveCityNoop2Scene:
 	end
+	
+CherrygroveCityNoop3Scene:
+    end
+
+CherrygroveCityNoop4Scene:
+    end
 
 CherrygroveCityFlypointCallback:
 	setflag ENGINE_FLYPOINT_CHERRYGROVE
 	endcallback
 
 CherrygroveCityGuideGent:
-	faceplayer
+	turnobject PLAYER, UP 
 	opentext
 	writetext GuideGentIntroText
-	yesorno
-	iffalse .No
-	sjump .Yes
-.Yes:
-	writetext GuideGentTourText1
 	waitbutton
 	closetext
 	playmusic MUSIC_SHOW_ME_AROUND
@@ -67,10 +70,7 @@ CherrygroveCityGuideGent:
 	opentext
 	writetext GuideGentGiftText
 	promptbutton
-	getstring STRING_BUFFER_4, .mapcardname
-	scall .JumpstdReceiveItem
-	setflag ENGINE_MAP_CARD
-	writetext GotMapCardText
+	verbosegiveitem REPEL 
 	promptbutton
 	writetext GuideGentPokegearText
 	waitbutton
@@ -81,6 +81,7 @@ CherrygroveCityGuideGent:
 	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement6
 	playsound SFX_ENTER_DOOR
 	disappear CHERRYGROVECITY_GRAMPS
+	setscene SCENE_CHERRYGROVECITY_NOOP_4
 	clearevent EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
 	waitsfx
 	end
@@ -91,12 +92,6 @@ CherrygroveCityGuideGent:
 
 .mapcardname
 	db "MAP CARD@"
-
-.No:
-	writetext GuideGentNoText
-	waitbutton
-	closetext
-	end
 
 CherrygroveRivalSceneSouth:
 	moveobject CHERRYGROVECITY_RIVAL, 39, 7
@@ -237,7 +232,6 @@ CherrygroveCityMartSign:
 
 GuideGentMovement1:
 	step LEFT
-	step LEFT
 	step UP
 	step LEFT
 	turn_head UP
@@ -345,10 +339,8 @@ GuideGentIntroText:
 	para "If you'd like, I"
 	line "can teach you a"
 	cont "few things."
-	done
 
-GuideGentTourText1:
-	text "OK, then!"
+	para "OK, then!"
 	line "Follow me!"
 	done
 
@@ -408,26 +400,18 @@ GuideGentGiftText:
 	line "small gift."
 	done
 
-GotMapCardText:
-	text "<PLAYER>'s #GEAR"
-	line "now has a MAP!"
-	done
-
 GuideGentPokegearText:
-	text "#GEAR becomes"
-	line "more useful as you"
-	cont "add CARDS."
+	text "When turned on,"
+	line "REPEL prevents"
+	cont "weak #MON"
+	cont "from appearing."
+	
+	para "It's useful if you"
+	line "want to get"
+	cont "somewhere quickly."
 
 	para "I wish you luck on"
 	line "your journey!"
-	done
-
-GuideGentNoText:
-	text "Oh… It's something"
-	line "I enjoy doing…"
-
-	para "Fine. Come see me"
-	line "when you like."
 	done
 
 CherrygroveRivalText_Seen:
@@ -484,19 +468,21 @@ CherrygroveRivalText_YouWon:
 	done
 
 CherrygroveTeacherText_NoMapCard:
-	text "Did you talk to"
-	line "the old man by the"
-	cont "#MON CENTER?"
-
-	para "He'll put a MAP of"
-	line "JOHTO on your"
-	cont "#GEAR."
+	text "I see that you've"
+	line "talked to"
+	cont "the guide."
+	
+	para "REPEL is great,"
+	line "isn't it?"
 	done
 
 CherrygroveTeacherText_HaveMapCard:
-	text "When you're with"
-	line "#MON, going"
-	cont "anywhere is fun."
+	text "I see that you've"
+	line "talked to"
+	cont "the guide."
+	
+	para "REPEL is great,"
+	line "isn't it?"
 	done
 
 CherrygroveYoungsterText_NoPokedex:
@@ -557,15 +543,16 @@ CherrygroveCity_MapEvents:
 	def_coord_events
 	coord_event 33,  6, SCENE_CHERRYGROVECITY_MEET_RIVAL, CherrygroveRivalSceneNorth
 	coord_event 33,  7, SCENE_CHERRYGROVECITY_MEET_RIVAL, CherrygroveRivalSceneSouth
+	coord_event 31,  7, SCENE_CHERRYGROVECITY_GUIDE_GENT, CherrygroveCityGuideGent
 
 	def_bg_events
-	bg_event 30,  8, BGEVENT_READ, CherrygroveCitySign
+	bg_event 32,  6, BGEVENT_READ, CherrygroveCitySign
 	bg_event 23,  9, BGEVENT_READ, GuideGentsHouseSign
 	bg_event 24,  3, BGEVENT_READ, CherrygroveCityMartSign
 	bg_event 30,  3, BGEVENT_READ, CherrygroveCityPokecenterSign
 
 	def_object_events
-	object_event 32,  6, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CherrygroveCityGuideGent, EVENT_GUIDE_GENT_IN_HIS_HOUSE
+	object_event 31,  6, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CherrygroveCityGuideGent, EVENT_GUIDE_GENT_IN_HIS_HOUSE
 	object_event 39,  6, SPRITE_RIVAL, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_CHERRYGROVE_CITY
 	object_event 27, 12, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CherrygroveTeacherScript, -1
 	object_event 23,  7, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CherrygroveYoungsterScript, -1

@@ -41,6 +41,8 @@ KarensRoomDoorLocksBehindYouScript:
 	end
 
 KarenScript_Battle:
+    readvar VAR_BADGES
+	if_greater_than 15, .Rematch
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_ELITE_4_KAREN
@@ -49,8 +51,6 @@ KarenScript_Battle:
 	waitbutton
 	closetext
 	winlosstext KarenScript_KarenBeatenText, 0
-	readvar VAR_BADGES
-	if_greater_than 15, .Rematch
 	loadtrainer KAREN, KAREN1
 	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
@@ -69,13 +69,21 @@ KarenScript_Battle:
 	end
 	
 .Rematch:
-    loadtrainer KAREN, KAREN2
+    faceplayer
+	opentext
+	checkevent EVENT_BEAT_ELITE_4_KAREN
+	iftrue KarenRematchAfterText
+	writetext KarenRematchBeforeText
+	waitbutton
+	closetext
+	winlosstext KarenRematchDefeatedText, 0
+	loadtrainer KAREN, KAREN2
 	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_ELITE_4_KAREN
 	opentext
-	writetext KarenScript_KarenDefeatText
+	writetext KarenRematchDefeatText
 	waitbutton
 	closetext
 	playsound SFX_ENTER_DOOR
@@ -88,6 +96,12 @@ KarenScript_Battle:
 
 KarenScript_AfterBattle:
 	writetext KarenScript_KarenDefeatText
+	waitbutton
+	closetext
+	end
+	
+KarenRematchAfterText:
+    writetext KarenRematchDefeatText
 	waitbutton
 	closetext
 	end
@@ -150,7 +164,55 @@ KarenScript_KarenDefeatText:
 	para "Go on--the CHAM-"
 	line "PION is waiting."
 	done
+	
+KarenRematchBeforeText:
+    text "It's good to see"
+	line "you again,"
+	cont "<PLAYER>."
+	
+	para "I've heard all"
+	line "about your"
+	cont "victories."
+	
+	para "Not only that,"
+	line "but you've"
+	cont "assembled quite"
+	cont "a charming team."
+	
+	para "But me and my"
+	line "#MON have"
+	cont "also improved"
+	cont "quite a bit since"
+	cont "you last saw them."
+	
+	para "Our battle should"
+	line "an entertaining"
+	cont "one."
+		
+	para "Shall we begin?"
+	done
+	
+KarenRematchDefeatedText:
+    text "That was"
+	line "marvelous."
 
+    para "You're as strong"
+	line "as I expected."
+	done 
+	
+KarenRematchDefeatText:
+    text "Terrific work,"
+	line "<PLAYER>."
+	
+	para "As you know, one"
+	line "final challenge"
+	cont "awaits you."
+	
+	para "Go on, LANCE is"
+	line "waiting for you."
+	done
+
+	
 KarensRoom_MapEvents:
 	db 0, 0 ; filler
 
