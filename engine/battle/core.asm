@@ -3827,7 +3827,7 @@ TryToRunAwayFromBattle:
 	cp BATTLEACTION_FORFEIT
 	ld a, DRAW
 	jr z, .fled
-	assert LOSE + 1 == DRAW
+	assert DRAW - 1 == LOSE
 	dec a
 .fled
 	ld b, a
