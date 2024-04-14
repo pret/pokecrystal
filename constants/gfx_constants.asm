@@ -55,3 +55,5 @@ DEF SPRITE_GFX_LIST_CAPACITY EQU 32 ; see wUsedSprites
 	const ANIM_MON_HOF
 	const ANIM_MON_EGG1
 	const ANIM_MON_EGG2
+
+DEF OAM_YCOORD_HIDDEN EQU 160 ; hides an OAM offscreen

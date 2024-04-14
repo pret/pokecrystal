@@ -2757,7 +2757,7 @@ _UpdateSprites::
 	ld h, HIGH(wShadowOAM)
 	ld de, SPRITEOAMSTRUCT_LENGTH
 	ld a, b
-	ld c, SCREEN_HEIGHT_PX + 2 * TILE_WIDTH
+	ld c, OAM_YCOORD_HIDDEN
 .loop
 	ld [hl], c ; y
 	add hl, de
