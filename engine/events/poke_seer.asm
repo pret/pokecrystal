@@ -107,7 +107,7 @@ ReadCaughtData:
 	ld a, SEERACTION_TRADED
 	ld [wSeerAction], a
 
-	ld a, MON_ID
+	ld a, MON_OT_ID
 	call GetPartyParamLocation
 	ld a, [wPlayerID]
 	cp [hl]

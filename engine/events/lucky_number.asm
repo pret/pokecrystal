@@ -149,7 +149,7 @@ CheckForLuckyNumberWinners:
 .done
 	pop hl
 	push hl
-	ld de, MON_SPECIES - MON_ID
+	ld de, MON_SPECIES - MON_OT_ID
 	add hl, de
 	ld a, [hl]
 	pop hl

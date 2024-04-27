@@ -11,7 +11,7 @@ CheckMagikarpLength:
 	cp MAGIKARP
 	jr nz, .not_magikarp
 
-	; Now let's compute its length based on its DVs and ID.
+	; Now let's compute its length based on its DVs and Trainer ID.
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -22,7 +22,7 @@ CheckMagikarpLength:
 	ld d, h
 	ld e, l
 	pop hl
-	ld bc, MON_ID
+	ld bc, MON_OT_ID
 	add hl, bc
 	ld b, h
 	ld c, l

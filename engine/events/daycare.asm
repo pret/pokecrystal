@@ -491,7 +491,7 @@ DayCare_GiveEgg:
 	call AddNTimes
 	ld b, h
 	ld c, l
-	ld hl, MON_ID + 1
+	ld hl, MON_OT_ID + 1
 	add hl, bc
 	push hl
 	ld hl, MON_MAXHP
