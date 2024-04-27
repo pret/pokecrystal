@@ -172,7 +172,7 @@ GetHallOfFameParty:
 	ld [de], a
 	inc de
 
-	ld hl, MON_TRAINER_ID
+	ld hl, MON_OT_ID
 	add hl, bc
 	ld a, [hli]
 	ld [de], a

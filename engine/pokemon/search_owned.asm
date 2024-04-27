@@ -208,7 +208,7 @@ CheckOwnMon:
 
 	; check Trainer ID number
 
-	ld bc, MON_TRAINER_ID
+	ld bc, MON_OT_ID
 	add hl, bc
 	ld a, [wPlayerID]
 	cp [hl]

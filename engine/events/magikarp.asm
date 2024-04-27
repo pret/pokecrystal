@@ -22,7 +22,7 @@ CheckMagikarpLength:
 	ld d, h
 	ld e, l
 	pop hl
-	ld bc, MON_TRAINER_ID
+	ld bc, MON_OT_ID
 	add hl, bc
 	ld b, h
 	ld c, l
