@@ -9,7 +9,7 @@
 	db BURNT_BERRY, BURNT_BERRY ; items
 	db GENDER_F25 ; gender ratio
 	db 100 ; unknown 1
-	db 25 ; step cycles to hatch
+	db HATCH_MEDIUM_SLOW ; 25 step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/magmar/front.dimensions"
 	dw NULL, NULL ; unused (beta front/back pics)
