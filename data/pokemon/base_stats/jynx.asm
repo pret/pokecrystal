@@ -9,7 +9,7 @@
 	db ICE_BERRY, ICE_BERRY ; items
 	db GENDER_F100 ; gender ratio
 	db 100 ; unknown 1
-	db HATCH_SLOW ; step cycles to hatch
+	db 25 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/jynx/front.dimensions"
 	dw NULL, NULL ; unused (beta front/back pics)

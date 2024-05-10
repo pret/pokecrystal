@@ -40,19 +40,6 @@ DEF GENDER_F75     EQU  75 percent
 DEF GENDER_F100    EQU 100 percent - 1
 DEF GENDER_UNKNOWN EQU -1
 
-; wBaseEggSteps values
-	const_def 5, 5
-	const HATCH_FASTEST    ; 5
-	const HATCH_FASTER     ; 10
-	const HATCH_FAST       ; 15
-	const HATCH_MEDIUM     ; 20
-	const HATCH_SLOW       ; 25
-	const HATCH_SLOWER     ; 30
-	const HATCH_SLOWEST    ; 35
-DEF HATCH_LEGENDARY1 EQU 80
-DEF HATCH_LEGENDARY2 EQU 120
-DEF NUM_HATCH_RATES EQU (const_value / const_inc) + 2
-
 ; wBaseGrowthRate values
 ; GrowthRates indexes (see data/growth_rates.asm)
 	const_def

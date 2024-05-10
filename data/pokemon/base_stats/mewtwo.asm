@@ -9,7 +9,7 @@
 	db NO_ITEM, BERSERK_GENE ; items
 	db GENDER_UNKNOWN ; gender ratio
 	db 100 ; unknown 1
-	db HATCH_LEGENDARY2 ; step cycles to hatch
+	db 120 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/mewtwo/front.dimensions"
 	dw NULL, NULL ; unused (beta front/back pics)

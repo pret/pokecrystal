@@ -9,7 +9,7 @@
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_UNKNOWN ; gender ratio
 	db 100 ; unknown 1
-	db HATCH_LEGENDARY1 ; step cycles to hatch
+	db 80 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/entei/front.dimensions"
 	dw NULL, NULL ; unused (beta front/back pics)
