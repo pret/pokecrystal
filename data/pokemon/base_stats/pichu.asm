@@ -9,7 +9,7 @@
 	db NO_ITEM, BERRY ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1
-	db HATCH_FASTER ; 10 step cycles to hatch
+	db HATCH_2560_STEPS ; 10 step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/pichu/front.dimensions"
 	dw NULL, NULL ; unused (beta front/back pics)

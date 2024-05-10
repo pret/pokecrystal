@@ -41,18 +41,20 @@ DEF GENDER_F100    EQU 100 percent - 1
 DEF GENDER_UNKNOWN EQU -1
 
 ; wBaseEggSteps values
+; Values are the number of step cycles needed to hatch from an egg
+; 256 steps = 1 step cycle
 	const_def 5, 5
-	const HATCH_FASTEST      ; 5
-	const HATCH_FASTER       ; 10
-	const HATCH_FAST         ; 15
-	const HATCH_MEDIUM_FAST  ; 20
-	const HATCH_MEDIUM_SLOW  ; 25
-	const HATCH_SLOW         ; 30
-	const HATCH_SLOWER       ; 35
-	const HATCH_SLOWEST      ; 40
-DEF HATCH_LEGENDARY1 EQU 80  ; for legendary birds & beasts
-DEF HATCH_LEGENDARY2 EQU 120 ; for box legendaries & mythicals
-DEF NUM_HATCH_RATES EQU (const_value / const_inc) + 2
+	const HATCH_1280_STEPS   ;  5
+	const HATCH_2560_STEPS   ; 10
+	const HATCH_3840_STEPS   ; 15
+	const HATCH_5120_STEPS   ; 20
+	const HATCH_6400_STEPS   ; 25
+	const HATCH_7680_STEPS   ; 30
+	const HATCH_8960_STEPS   ; 35
+	const HATCH_10240_STEPS  ; 40
+DEF HATCH_LEGENDARY1 EQU 80  ; step cycles for legendary birds & beasts
+DEF HATCH_LEGENDARY2 EQU 120 ; step cycles for box legendaries & mythicals
+DEF NUM_HATCH_RATES EQU (const_value / const_inc) + 1
 
 ; wBaseGrowthRate values
 ; GrowthRates indexes (see data/growth_rates.asm)

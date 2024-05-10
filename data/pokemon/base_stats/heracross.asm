@@ -9,7 +9,7 @@
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1
-	db HATCH_MEDIUM_SLOW ; 25 step cycles to hatch
+	db HATCH_6400_STEPS ; 25 step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/heracross/front.dimensions"
 	dw NULL, NULL ; unused (beta front/back pics)

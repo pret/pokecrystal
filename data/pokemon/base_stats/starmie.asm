@@ -9,7 +9,7 @@
 	db STARDUST, STAR_PIECE ; items
 	db GENDER_UNKNOWN ; gender ratio
 	db 100 ; unknown 1
-	db HATCH_MEDIUM_FAST ; 20 step cycles to hatch
+	db HATCH_5120_STEPS ; 20 step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/starmie/front.dimensions"
 	dw NULL, NULL ; unused (beta front/back pics)
