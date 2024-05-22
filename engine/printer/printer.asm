@@ -73,7 +73,7 @@ PrintDexEntry:
 	push af
 	ld [hl], VBLANK_SERIAL
 
-	ld a, 8 ; 16 rows
+	ld a, 16 / 2
 	ld [wPrinterQueueLength], a
 	call Printer_ResetJoypadRegisters
 	call SendScreenToPrinter
@@ -90,7 +90,7 @@ PrintDexEntry:
 	ld [wPrinterMargins], a
 	farcall PrintPage2
 	call Printer_ResetJoypadRegisters
-	ld a, 4
+	ld a, 8 / 2
 	ld [wPrinterQueueLength], a
 	call SendScreenToPrinter
 
