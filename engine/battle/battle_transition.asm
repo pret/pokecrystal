@@ -22,7 +22,7 @@ DoBattleTransition:
 	ld a, [hl]
 	push af
 	vc_hook Reduce_battle_transition_flashing
-	ld [hl], $1
+	ld [hl], VBLANK_CUTSCENE
 
 .loop
 	ld a, [wJumptableIndex]

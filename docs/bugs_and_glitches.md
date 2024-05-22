@@ -1556,7 +1556,7 @@ To select a move in battle, you have to press and release the Up or Down buttons
 -; BUG: Credits sequence changes move selection menu behavior (see docs/bugs_and_glitches.md)
  	ldh a, [hVBlank]
  	push af
- 	ld a, $5
+ 	ld a, VBLANK_CREDITS
  	ldh [hVBlank], a
 +	ldh a, [hInMenu]
 +	push af
