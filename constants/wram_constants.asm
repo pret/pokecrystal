@@ -324,3 +324,16 @@ DEF DAYCARELADY_ACTIVE_F         EQU 7
 	const UNLOCKED_UNOWNS_S_TO_W_F
 	const UNLOCKED_UNOWNS_X_TO_Z_F
 DEF NUM_UNLOCKED_UNOWN_SETS EQU const_value
+
+; hVBlank::
+; VBlankHandlers indexes (see home/vblank.asm)
+	const_def
+	const VBLANK_NORMAL       ; 0
+	const VBLANK_CUTSCENE     ; 1
+	const VBLANK_SOUND_ONLY   ; 2
+	const VBLANK_CUTSCENE_CGB ; 3
+	const VBLANK_SERIAL       ; 4
+	const VBLANK_CREDITS      ; 5
+	const VBLANK_DMA_TRANSFER ; 6
+	const VBLANK_UNUSED       ; 7
+DEF NUM_VBLANK_HANDLERS EQU const_value
