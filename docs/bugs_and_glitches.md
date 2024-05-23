@@ -408,7 +408,7 @@ This makes the Berserk Gene use the regular confusion duration (2–5 turns).
 
 **Fix:**
 
-First, edit [wram.asm](https://github.com/pret/pokecrystal/blob/master/wram.asm):
+First, edit [wram.asm](https://github.com/pret/pokecrystal/blob/master/ram/wram.asm):
 
 ```diff
  wTurnEnded:: db

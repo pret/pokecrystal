@@ -35,7 +35,7 @@ VBlank::
 	reti
 
 VBlankHandlers:
-; entries correspond to VBLANK_* constants (see constants/wram_constants.asm)
+; entries correspond to VBLANK_* constants (see constants/ram_constants.asm)
 	table_width 2, VBlankHandlers
 	dw VBlank_Normal
 	dw VBlank_Cutscene

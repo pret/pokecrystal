@@ -506,7 +506,7 @@ SetDayOfWeek:
 	ret
 
 .WeekdayStrings:
-; entries correspond to wCurDay constants (see constants/wram_constants.asm)
+; entries correspond to wCurDay constants (see constants/ram_constants.asm)
 	dw .Sunday
 	dw .Monday
 	dw .Tuesday
