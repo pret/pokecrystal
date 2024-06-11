@@ -837,8 +837,11 @@ Hatch_InitShellFragments:
 	ret
 
 MACRO shell_fragment
-; y tile, y pxl, x tile, x pxl, frameset offset, ???
-	db (\1 * TILE_WIDTH) % $100 + \2, (\3 * TILE_WIDTH) % $100 + \4, \5 - SPRITE_ANIM_FRAMESET_EGG_HATCH_1, \6
+; y tile, y pxl, x tile, x pxl, frameset, angle
+	db (\1) * TILE_WIDTH + (\2) ; y coord
+	db (\3) * TILE_WIDTH + (\4) ; x coord
+	db (\5) - SPRITE_ANIM_FRAMESET_EGG_HATCH_1 ; frameset offset
+	db \6 ; angle (6 bits)
 ENDM
 
 .SpriteData:

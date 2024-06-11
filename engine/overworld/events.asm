@@ -477,8 +477,8 @@ CheckTimeEvents:
 	scf
 	ret
 
-.unused ; unreferenced
-	ld a, $8 ; ???
+.hatch ; unreferenced
+	ld a, PLAYEREVENT_HATCH
 	scf
 	ret
 

@@ -647,7 +647,7 @@ endr
 
 ; Loop through all the patchable link data
 	ld hl, wLinkData + SERIAL_PREAMBLE_LENGTH + NAME_LENGTH + (1 + PARTY_LENGTH + 1) - 1
-	ld de, wPlayerPatchLists + SERIAL_RNS_LENGTH ; ???
+	ld de, wPlayerPatchLists + SERIAL_RNS_LENGTH
 	lb bc, 0, 0
 .patch_loop
 ; Check if we've gone over the entire area

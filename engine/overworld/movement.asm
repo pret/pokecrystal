@@ -73,10 +73,10 @@ MovementPointers:
 	dw Movement_step_sleep_8          ; 45
 	dw Movement_step_sleep            ; 46
 	dw Movement_step_end              ; 47
-	dw Movement_48                    ; 48
+	dw Movement_step_wait_end         ; 48
 	dw Movement_remove_object         ; 49
 	dw Movement_step_loop             ; 4a
-	dw Movement_4b                    ; 4b
+	dw Movement_stop                  ; 4b
 	dw Movement_teleport_from         ; 4c
 	dw Movement_teleport_to           ; 4d
 	dw Movement_skyfall               ; 4e
@@ -213,7 +213,7 @@ Movement_step_end:
 	ld [hl], STEP_TYPE_FROM_MOVEMENT
 	ret
 
-Movement_48:
+Movement_step_wait_end:
 	call RestoreDefaultMovement
 	ld hl, OBJECT_MOVEMENT_TYPE
 	add hl, bc
@@ -249,7 +249,7 @@ Movement_remove_object:
 	res SCRIPTED_MOVEMENT_STATE_F, [hl]
 	ret
 
-Movement_4b:
+Movement_stop:
 	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], OBJECT_ACTION_STAND
