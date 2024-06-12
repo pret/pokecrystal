@@ -239,7 +239,7 @@ Function10016f:
 	jr z, .asm_1001af
 	cp $f8
 	ret z
-	ret   ; ????????????????????????????
+	ret ; ???
 
 .asm_1001af
 	ld a, $d7
@@ -2445,9 +2445,8 @@ Unknown_10102c:
 Function101050:
 	call Function10107d
 	ld a, [wOTPartyCount]
-rept 2 ; ???
 	ld hl, wc608
-endr
+	ld hl, wc608 ; redundant
 	ld bc, wc7bb - wc608
 	call Function1010de
 	ld hl, wc7bb

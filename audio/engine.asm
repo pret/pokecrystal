@@ -733,7 +733,7 @@ LoadNote:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	; get direction of pitch slide
+	; subtract pitch slide from frequency
 	ld hl, CHANNEL_PITCH_SLIDE_TARGET
 	add hl, bc
 	ld a, e
@@ -755,7 +755,7 @@ LoadNote:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	; ????
+	; subtract frequency from pitch slide
 	ld hl, CHANNEL_PITCH_SLIDE_TARGET
 	add hl, bc
 	ld a, [hl]
@@ -764,7 +764,6 @@ LoadNote:
 	ld a, d
 	sbc 0
 	ld d, a
-	; ????
 	ld hl, CHANNEL_PITCH_SLIDE_TARGET + 1
 	add hl, bc
 	ld a, [hl]
@@ -906,7 +905,7 @@ HandleTrackVibrato:
 	swap [hl]
 	or [hl]
 	ld [hl], a
-	; ????
+	; get the frequency
 	ld a, [wCurTrackFrequency]
 	ld e, a
 	; toggle vibrato up/down
@@ -1190,7 +1189,7 @@ ParseMusic:
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	; ????
+	; set noise sampling
 	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
 	set NOTE_NOISE_SAMPLING, [hl]
@@ -1209,10 +1208,10 @@ ParseMusic:
 	add hl, bc
 	bit SOUND_SUBROUTINE, [hl] ; in a subroutine?
 	jr nz, .readcommand ; execute
+	; are we in a sfx channel right now?
 	ld a, [wCurChannel]
-	cp CHAN5
+	cp NUM_MUSIC_CHANS
 	jr nc, .chan_5to8
-	; ????
 	ld hl, CHANNEL_STRUCT_LENGTH * NUM_MUSIC_CHANS + CHANNEL_FLAGS1
 	add hl, bc
 	bit SOUND_CHANNEL_ON, [hl]
@@ -1226,9 +1225,9 @@ ParseMusic:
 	ld a, [wCurChannel]
 	cp CHAN5
 	jr nz, .ok
-	; ????
+	; sweep = 0
 	xor a
-	ldh [rNR10], a ; sweep = 0
+	ldh [rNR10], a
 .ok
 ; stop playing
 	; turn channel off
@@ -1348,7 +1347,7 @@ GetNoiseSample:
 	ld [wNoiseSampleAddress], a
 	ld a, [hl]
 	ld [wNoiseSampleAddress + 1], a
-	; clear ????
+	; clear noise sample delay
 	xor a
 	ld [wNoiseSampleDelay], a
 	ret
@@ -1629,7 +1628,7 @@ MusicEE:
 ; params: 2
 ;		ll hh ; pointer
 
-; if ????, jump
+; if condition is set, jump
 	; get channel
 	ld a, [wCurChannel]
 	maskbits NUM_MUSIC_CHANS
@@ -2206,7 +2205,7 @@ SetNoteDuration:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	; add ???? to the next result
+	; add ??? to the next result
 	ld hl, CHANNEL_FIELD16
 	add hl, bc
 	ld l, [hl]
@@ -2215,7 +2214,7 @@ SetNoteDuration:
 	; copy result to de
 	ld e, l
 	ld d, h
-	; store result in ????
+	; store result in ???
 	ld hl, CHANNEL_FIELD16
 	add hl, bc
 	ld [hl], e
@@ -2250,7 +2249,7 @@ SetGlobalTempo:
 	push bc ; save current channel
 	; are we dealing with music or sfx?
 	ld a, [wCurChannel]
-	cp CHAN5
+	cp NUM_MUSIC_CHANS
 	jr nc, .sfxchannels
 	ld bc, wChannel1
 	call Tempo
@@ -2284,7 +2283,7 @@ Tempo:
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	; clear ????
+	; clear ???
 	xor a
 	ld hl, CHANNEL_FIELD16
 	add hl, bc
