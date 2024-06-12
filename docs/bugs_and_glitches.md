@@ -10,7 +10,7 @@ Fixes are written in the `diff` format. If you've used Git before, this should l
 +add green + lines
 ```
 
-Fixes in the [multi-player battle engine](#multi-player-battle-engine) category will break compatibility with standard Pokémon Gold/Silver/Crystal for link battles, unless otherwise noted. This can be avoided by writing more complicated fixes that only apply if the value at `[wLinkMode]` is not `LINK_COLOSSEUM`. That's how Crystal itself fixed two bugs in Gold and Silver regarding the moves [Reflect and Light Screen](#reflect-and-light-screen-can-make-special-defense-wrap-around-above-1024) and [Present](#present-damage-is-incorrect-in-link-battles).
+Fixes in the [multi-player battle engine](#multi-player-battle-engine) category will break compatibility with standard Pokémon Gold/Silver/Crystal for link battles. This can be avoided by writing more complicated fixes that only apply if the value at `[wLinkMode]` is not `LINK_COLOSSEUM`. That's how Crystal itself fixed two bugs in Gold and Silver regarding the moves [Reflect and Light Screen](#reflect-and-light-screen-can-make-special-defense-wrap-around-above-1024) and [Present](#present-damage-is-incorrect-in-link-battles).
 
 
 ## Contents
@@ -31,15 +31,12 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Lock-On and Mind Reader don't always bypass Fly and Dig](#lock-on-and-mind-reader-dont-always-bypass-fly-and-dig)
   - [Beat Up can desynchronize link battles](#beat-up-can-desynchronize-link-battles)
   - [Beat Up works incorrectly with only one Pokémon in the party](#beat-up-works-incorrectly-with-only-one-pok%C3%A9mon-in-the-party)
-  - [Beat Up may fail to raise Substitute](#beat-up-may-fail-to-raise-substitute)
   - [Beat Up may trigger King's Rock even if it failed](#beat-up-may-trigger-kings-rock-even-if-it-failed)
   - [Present damage is incorrect in link battles](#present-damage-is-incorrect-in-link-battles)
   - [Return and Frustration deal no damage when the user's happiness is low or high, respectively](#return-and-frustration-deal-no-damage-when-the-users-happiness-is-low-or-high-respectively)
   - [Dragon Scale, not Dragon Fang, boosts Dragon-type moves](#dragon-scale-not-dragon-fang-boosts-dragon-type-moves)
   - [Switching out or switching against a Pokémon with max HP below 4 freezes the game](#switching-out-or-switching-against-a-pok%C3%A9mon-with-max-HP-below-4-freezes-the-game)
   - [Moves that do damage and increase your stats do not increase stats after a KO](#moves-that-do-damage-and-increase-your-stats-do-not-increase-stats-after-a-ko)
-  - [HP bar animation is slow for high HP](#hp-bar-animation-is-slow-for-high-hp)
-  - [HP bar animation off-by-one error for low HP](#hp-bar-animation-off-by-one-error-for-low-hp)
 - [Single-player battle engine](#single-player-battle-engine)
   - [A Transformed Pokémon can use Sketch and learn otherwise unobtainable moves](#a-transformed-pok%C3%A9mon-can-use-sketch-and-learn-otherwise-unobtainable-moves)
   - [Catching a Transformed Pokémon always catches a Ditto](#catching-a-transformed-pok%C3%A9mon-always-catches-a-ditto)
@@ -64,7 +61,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [`RIVAL2` has lower DVs than `RIVAL1`](#rival2-has-lower-dvs-than-rival1)
   - [`HELD_CATCH_CHANCE` has no effect](#held_catch_chance-has-no-effect)
   - [Credits sequence changes move selection menu behavior](#credits-sequence-changes-move-selection-menu-behavior)
-- [Game engine](#game-engine)
+- [Overworld engine](#overworld-engine)
   - [`LoadMetatiles` wraps around past 128 blocks](#loadmetatiles-wraps-around-past-128-blocks)
   - [Surfing directly across a map connection does not load the new map](#surfing-directly-across-a-map-connection-does-not-load-the-new-map)
   - [Swimming NPCs aren't limited by their movement radius](#swimming-npcs-arent-limited-by-their-movement-radius)
@@ -75,6 +72,9 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Two tiles in the `port` tileset are drawn incorrectly](#two-tiles-in-the-port-tileset-are-drawn-incorrectly)
   - [The Ruins of Alph research center's roof color at night looks wrong](#the-ruins-of-alph-research-centers-roof-color-at-night-looks-wrong)
   - [A hatching Unown egg would not show the right letter](#a-hatching-unown-egg-would-not-show-the-right-letter)
+  - [Beat Up may fail to raise Substitute](#beat-up-may-fail-to-raise-substitute)
+  - [HP bar animation is slow for high HP](#hp-bar-animation-is-slow-for-high-hp)
+  - [HP bar animation off-by-one error for low HP](#hp-bar-animation-off-by-one-error-for-low-hp)
   - [Using a Park Ball in non-Contest battles has a corrupt animation](#using-a-park-ball-in-non-contest-battles-has-a-corrupt-animation)
   - [Battle transitions fail to account for the enemy's level](#battle-transitions-fail-to-account-for-the-enemys-level)
   - [Some trainer NPCs have inconsistent overworld sprites](#some-trainer-npcs-have-inconsistent-overworld-sprites)
@@ -694,32 +694,6 @@ This bug prevents the rest of Beat Up's effect from being executed if the player
 ```
 
 
-### Beat Up may fail to raise Substitute
-
-*Fixing this cosmetic bug will* **not** *break link battle compatibility.*
-
-This bug prevents Substitute from being raised if Beat Up was blocked by Protect or Detect.
-
-**Fix:** Edit `BattleCommand_FailureText` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm).
-
-```diff
--; BUG: Beat Up may fail to raise Substitute (see docs/bugs_and_glitches.md)
- 	cp EFFECT_MULTI_HIT
- 	jr z, .multihit
- 	cp EFFECT_DOUBLE_HIT
- 	jr z, .multihit
- 	cp EFFECT_POISON_MULTI_HIT
- 	jr z, .multihit
-+	cp EFFECT_BEAT_UP
-+	jr z, .multihit
- 	jp EndMoveEffect
-
- .multihit
- 	call BattleCommand_RaiseSub
- 	jp EndMoveEffect
-```
-
-
 ### Beat Up may trigger King's Rock even if it failed
 
 **Fix:** Edit `BattleCommand_BeatUpFailText` in [engine/battle/move_effects/beat_up.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/beat_up.asm):
@@ -968,56 +942,6 @@ This changes both calculations to *HP* × (100 / *N*) / (*max HP* / *N*) for the
  	buildopponentrage
 -	allstatsup
  	endmove
-```
-
-
-### HP bar animation is slow for high HP
-
-*Fixing this cosmetic bug will* **not** *break link battle compatibility.*
-
-([Video](https://www.youtube.com/watch?v=SE-BfsFgZVM))
-
-**Fix:** Edit `LongAnim_UpdateVariables` in [engine/battle/anim_hp_bar.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/anim_hp_bar.asm):
-
-```diff
--; BUG: HP bar animation is slow for high HP (see docs/bugs_and_glitches.md)
- 	call ComputeHPBarPixels
-+	ld a, e
- 	pop bc
- 	pop de
- 	pop hl
--	ld a, e
- 	ld hl, wCurHPBarPixels
- 	cp [hl]
- 	jr z, .loop
- 	ld [hl], a
- 	and a
- 	ret
-```
-
-
-### HP bar animation off-by-one error for low HP
-
-*Fixing this cosmetic bug will* **not** *break link battle compatibility.*
-
-([Video](https://www.youtube.com/watch?v=9KyNVIZxJvI))
-
-**Fix:** Edit `ShortHPBar_CalcPixelFrame` in [engine/battle/anim_hp_bar.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/anim_hp_bar.asm):
-
-```diff
- 	ld b, 0
- .loop
--; BUG: HP bar animation off-by-one error for low HP (see docs/bugs_and_glitches.md)
- 	ld a, l
- 	sub HP_BAR_LENGTH_PX
- 	ld l, a
- 	ld a, h
- 	sbc $0
- 	ld h, a
-+	jr z, .done
- 	jr c, .done
- 	inc b
- 	jr .loop
 ```
 
 
@@ -1599,7 +1523,7 @@ The `[hInMenu]` value determines this button behavior. However, the battle moves
 ```
 
 
-## Game engine
+## Overworld engine
 
 
 ### `LoadMetatiles` wraps around past 128 blocks
@@ -1741,7 +1665,7 @@ This bug is why the Lapras in [maps/UnionCaveB2F.asm](https://github.com/pret/po
 
 ### Pokémon deposited in the Day-Care might lose experience
 
-When a Pokémon is withdrawn from the Day-Care, its Exp. Points are reset to the minimum required for its level. This means that if it hasn't gained any levels, it may lose experience.
+When a Pokémon is withdrawn from the Day-Care, its Exp. Points are reset to the minimum required for its level. This means that if it hadn't gained any levels while in the Day-Care, it may lose experience.
 
 **Fix:** Edit `RetrieveBreedmon` in [engine/pokemon/move_mon.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/move_mon.asm):
 
@@ -1862,6 +1786,76 @@ The dungeons' map group mostly has indoor maps that don't need roof colors, but 
  	predef GetUnownLetter
  	pop de
  	predef_jump GetAnimatedFrontpic
+```
+
+
+### Beat Up may fail to raise Substitute
+
+This bug prevents Substitute from being raised if Beat Up was blocked by Protect or Detect.
+
+**Fix:** Edit `BattleCommand_FailureText` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm).
+
+```diff
+-; BUG: Beat Up may fail to raise Substitute (see docs/bugs_and_glitches.md)
+ 	cp EFFECT_MULTI_HIT
+ 	jr z, .multihit
+ 	cp EFFECT_DOUBLE_HIT
+ 	jr z, .multihit
+ 	cp EFFECT_POISON_MULTI_HIT
+ 	jr z, .multihit
++	cp EFFECT_BEAT_UP
++	jr z, .multihit
+ 	jp EndMoveEffect
+
+ .multihit
+ 	call BattleCommand_RaiseSub
+ 	jp EndMoveEffect
+```
+
+
+### HP bar animation is slow for high HP
+
+([Video](https://www.youtube.com/watch?v=SE-BfsFgZVM))
+
+**Fix:** Edit `LongAnim_UpdateVariables` in [engine/battle/anim_hp_bar.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/anim_hp_bar.asm):
+
+```diff
+-; BUG: HP bar animation is slow for high HP (see docs/bugs_and_glitches.md)
+ 	call ComputeHPBarPixels
++	ld a, e
+ 	pop bc
+ 	pop de
+ 	pop hl
+-	ld a, e
+ 	ld hl, wCurHPBarPixels
+ 	cp [hl]
+ 	jr z, .loop
+ 	ld [hl], a
+ 	and a
+ 	ret
+```
+
+
+### HP bar animation off-by-one error for low HP
+
+([Video](https://www.youtube.com/watch?v=9KyNVIZxJvI))
+
+**Fix:** Edit `ShortHPBar_CalcPixelFrame` in [engine/battle/anim_hp_bar.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/anim_hp_bar.asm):
+
+```diff
+ 	ld b, 0
+ .loop
+-; BUG: HP bar animation off-by-one error for low HP (see docs/bugs_and_glitches.md)
+ 	ld a, l
+ 	sub HP_BAR_LENGTH_PX
+ 	ld l, a
+ 	ld a, h
+ 	sbc $0
+ 	ld h, a
++	jr z, .done
+ 	jr c, .done
+ 	inc b
+ 	jr .loop
 ```
 
 
