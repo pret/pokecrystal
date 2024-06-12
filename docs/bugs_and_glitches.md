@@ -71,6 +71,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [In-battle “`…`” ellipsis is too high](#in-battle--ellipsis-is-too-high)
   - [Two tiles in the `port` tileset are drawn incorrectly](#two-tiles-in-the-port-tileset-are-drawn-incorrectly)
   - [The Ruins of Alph research center's roof color at night looks wrong](#the-ruins-of-alph-research-centers-roof-color-at-night-looks-wrong)
+  - [Slowpoke Well's stones use the wrong corner tile](#slowpoke-wells-stones-use-the-wrong-corner-tile)
   - [A hatching Unown egg would not show the right letter](#a-hatching-unown-egg-would-not-show-the-right-letter)
   - [Beat Up may fail to raise Substitute](#beat-up-may-fail-to-raise-substitute)
   - [HP bar animation is slow for high HP](#hp-bar-animation-is-slow-for-high-hp)
@@ -1755,6 +1756,17 @@ The dungeons' map group mostly has indoor maps that don't need roof colors, but 
 ```
 
 ![image](https://raw.githubusercontent.com/pret/pokecrystal/master/docs/images/ruins_of_alph_outside_cinnabar.png)
+
+
+### Slowpoke Well's stones use the wrong corner tile
+
+This is a mistake with block $5B in the `johto_modern` tileset. The bottom-left corners of the three stones around Slowpoke Well use tile $4B, but should use tile $47.
+
+![image](https://raw.githubusercontent.com/pret/pokecrystal/master/docs/images/slowpoke_well.png)
+
+**Fix:** Edit block $5B with [Polished Map](https://github.com/Rangi42/polished-map) to use the same tiles as block $5C:
+
+![image](https://raw.githubusercontent.com/pret/pokecrystal/master/docs/images/slowpoke_well_fixed.png)
 
 
 ### A hatching Unown egg would not show the right letter
