@@ -6756,7 +6756,8 @@ ApplyStatLevelMultiplier:
 	pop bc
 	ret
 
-INCLUDE "data/battle/stat_multipliers_2.asm"
+StatLevelMultipliers_Applied:
+INCLUDE "data/battle/stat_multipliers.asm"
 
 BadgeStatBoosts:
 ; Raise the stats of the battle mon in wBattleMon

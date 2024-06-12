@@ -1,10 +1,10 @@
 ; Multiplier ratios for all stats from modifier -6 to +6
 ; (except accuracy, see data/battle/accuracy_multipliers.asm).
 
-; This table is identical to data/battle/stat_multipliers_2.asm.
-; This one is used by CalcBattleStats.
+; This table is INCLUDEd twice in different ROM banks:
+; once for CalcBattleStats (see engine/battle/effect_commands.asm),
+; and once for ApplyStatLevelMultiplier (see engine/battle/core.asm).
 
-StatLevelMultipliers:
 	db  25, 100 ; -6 =  25%
 	db  28, 100 ; -5 =  28%
 	db  33, 100 ; -4 =  33%
