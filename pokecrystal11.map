@@ -1545,10 +1545,10 @@ ROMX bank #1:
 	         $51ab = Movement_fish_cast_rod
 	         $51b8 = Movement_step_loop
 	         $51c1 = Movement_step_end
-	         $51db = Movement_48
+	         $51db = Movement_step_wait_end
 	         $51fd = Movement_remove_object
 	         $520a = Movement_remove_object.not_leading
-	         $5210 = Movement_4b
+	         $5210 = Movement_stop
 	         $5222 = Movement_step_sleep_1
 	         $5226 = Movement_step_sleep_2
 	         $522a = Movement_step_sleep_3
@@ -19144,7 +19144,7 @@ ROMX bank #37:
 	         $6951 = CheckTimeEvents.do_daily
 	         $6964 = CheckTimeEvents.nothing
 	         $6966 = CheckTimeEvents.end_bug_contest
-	         $6970 = CheckTimeEvents.unused
+	         $6970 = CheckTimeEvents.hatch
 	         $6974 = OWPlayerInput
 	         $698d = OWPlayerInput.NoAction
 	         $698f = OWPlayerInput.Action
