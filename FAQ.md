@@ -16,6 +16,7 @@
   - ["Syntax error"](#syntax-error)
 - [How do I edit maps?](#how-do-i-edit-maps)
 - [How do I edit the colors of an image?](#how-do-i-edit-the-colors-of-an-image)
+- [How do I find absolute ROM offsets?](#how-do-i-find-absolute-ROM-offsets)
 - [How do I write new features?](#how-do-i-write-new-features)
 - [How do I share code on Discord?](#how-do-i-share-code-on-discord)
 - [I need more help!](#i-need-more-help)
@@ -85,6 +86,24 @@ Some image `.png` files are grayscale. This indicates that even though these ima
 
 It really depends on what image you're trying to change the colors of, where these colors are specified. Try looking for related files or `.pal` files.
 
+## How do I find absolute ROM offsets?
+When building external tools, it is usually necessary to know where the data you need is stored. 
+
+The first step is to browse the directories of the project and check files that look related to what you're looking for.
+
+Once you've found what you need there, you'll likely end up finding a name in one of the .asm files (example: PokemonPicPointers)
+
+Now it's time to look at the `pokecrystal.map` file. You'll get this file after building the project with `make`. Search the name you found earlier in this file to find a hexadecimal offset. Wait! You're not done yet! 
+
+Now scroll upwards until you see a line like this:
+
+    ROMX bank #105:
+
+To get the ROM offset, you need to do this calculation:
+
+    romOffset = (bankNumber * 0x4000) + (offset - 0x4000)
+
+Let me explain: the offset you found earlier is the memory address of that "thing" you searched for AFTER it has been mapped to the bank 1 address space in the gameboys' memory. Bank 1 is always mapped to 0x4000-0x8000. So to calculate the actual offset inside the rom file, you need to subtract with 0x4000 and add the bank offset to get the absolute rom file offset.
 
 ## How do I write new features?
 
