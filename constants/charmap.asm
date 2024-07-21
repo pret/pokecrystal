@@ -418,6 +418,16 @@
 	charmap "８", $fe
 	charmap "９", $ff
 
+; Unown charmap, for Unown words (see gfx/tilesets/ruins_of_alph.png)
+pushc
+	newcharmap unown
+	DEF PRINTABLE_UNOWN EQUS "ABCDEFGHIJKLMNOPQRSTUVWXYZ-"
+	for i, STRLEN("{PRINTABLE_UNOWN}")
+		charmap STRSUB("{PRINTABLE_UNOWN}", i + 1, 1), $10 * (i / 8) + 2 * i
+	endr
+	charmap "@", $ff ; end
+popc
+
 ; ASCII charmap, for mobile functions
 pushc
 	newcharmap ascii
