@@ -16921,9 +16921,9 @@
 22:6f0b _DisplayUnownWords_CopyWord.word_loop
 22:6f19 _DisplayUnownWords_CopyWord.word_done
 22:6f1c _DisplayUnownWords_CopyWord.ConvertChar
-22:6f3b _DisplayUnownWords_CopyWord.Tile60
-22:6f4b _DisplayUnownWords_CopyWord.Tile62
-22:6f5b _DisplayUnownWords_CopyWord.Tile64
+22:6f3b _DisplayUnownWords_CopyWord.YChar
+22:6f4b _DisplayUnownWords_CopyWord.ZChar
+22:6f5b _DisplayUnownWords_CopyWord.DashChar
 22:6f6b BuenasPassword
 22:6fa4 BuenasPassword.wrong
 22:6fa9 BuenasPassword.MenuHeader

@@ -17092,9 +17092,9 @@ ROMX bank #34:
 	         $6f0b = _DisplayUnownWords_CopyWord.word_loop
 	         $6f19 = _DisplayUnownWords_CopyWord.word_done
 	         $6f1c = _DisplayUnownWords_CopyWord.ConvertChar
-	         $6f3b = _DisplayUnownWords_CopyWord.Tile60
-	         $6f4b = _DisplayUnownWords_CopyWord.Tile62
-	         $6f5b = _DisplayUnownWords_CopyWord.Tile64
+	         $6f3b = _DisplayUnownWords_CopyWord.YChar
+	         $6f4b = _DisplayUnownWords_CopyWord.ZChar
+	         $6f5b = _DisplayUnownWords_CopyWord.DashChar
 	         $6f6b = BuenasPassword
 	         $6fa4 = BuenasPassword.wrong
 	         $6fa9 = BuenasPassword.MenuHeader

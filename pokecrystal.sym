@@ -16878,9 +16878,9 @@
 22:6f0b _DisplayUnownWords_CopyWord.word_loop
 22:6f19 _DisplayUnownWords_CopyWord.word_done
 22:6f1c _DisplayUnownWords_CopyWord.ConvertChar
-22:6f3b _DisplayUnownWords_CopyWord.Tile60
-22:6f4b _DisplayUnownWords_CopyWord.Tile62
-22:6f5b _DisplayUnownWords_CopyWord.Tile64
+22:6f3b _DisplayUnownWords_CopyWord.YChar
+22:6f4b _DisplayUnownWords_CopyWord.ZChar
+22:6f5b _DisplayUnownWords_CopyWord.DashChar
 22:6f6b BuenasPassword
 22:6fa4 BuenasPassword.wrong
 22:6fa9 BuenasPassword.MenuHeader
@@ -46855,8 +46855,8 @@
 02:ae01 sBox4Mon8Happiness
 02:ae02 sBox4Mon8PokerusStatus
 02:ae03 sBox4Mon8CaughtTime
-02:ae03 sBox4Mon8CaughtLevel
 02:ae03 sBox4Mon8CaughtData
+02:ae03 sBox4Mon8CaughtLevel
 02:ae04 sBox4Mon8CaughtLocation
 02:ae04 sBox4Mon8CaughtGender
 02:ae05 sBox4Mon8Level
@@ -53540,8 +53540,8 @@
 00:c64f wHallOfFameTempMon5Nickname
 00:c64f wBT_OTTempMon2Item
 00:c64f wOfferMonPokerusStatus
-00:c650 wBT_OTTempMon2Moves
 00:c650 wEnemyTrainerItem1
+00:c650 wBT_OTTempMon2Moves
 00:c650 wOfferMonCaughtData
 00:c650 wOfferMonCaughtTime
 00:c650 wOfferMonCaughtLevel
