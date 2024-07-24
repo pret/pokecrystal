@@ -320,6 +320,8 @@ DEF NUM_UNOWN_PUZZLES EQU const_value
 	const UNOWNWORDS_LIGHT  ; 1
 	const UNOWNWORDS_WATER  ; 2
 	const UNOWNWORDS_HO_OH  ; 3
+DEF NUM_UNOWN_WALLS EQU const_value
+DEF UNOWN_WALL_MENU_HEADER_SIZE EQU 5
 
 ; MoveTutor setval arguments
 	const_def 1
