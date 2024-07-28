@@ -174,7 +174,7 @@ VermilionDiglettsCaveSpeechHouse_Blocks:
 BluesHouse_Blocks:
 PewterNidoranSpeechHouse_Blocks:
 PewterSnoozeSpeechHouse_Blocks:
-BillsBrothersHouse_Blocks:
+BillsOlderSistersHouse_Blocks:
 LavenderSpeechHouse_Blocks:
 LavenderNameRater_Blocks:
 Route12SuperRodHouse_Blocks:
