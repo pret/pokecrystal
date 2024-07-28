@@ -72,7 +72,7 @@ AIChooseMove:
 
 	ld a, [wTrainerClass]
 	dec a
-	ld bc, 7 ; Trainer2AI - Trainer1AI
+	ld bc, NUM_TRAINER_ATTRIBUTES
 	call AddNTimes
 
 .battle_tower_skip
