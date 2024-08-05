@@ -65,12 +65,12 @@ BillsMomScript:
 	closetext
 	end
 
-BillsSisterScript:
+BillsYoungerSisterScript:
 	faceplayer
 	opentext
 	checkcellnum PHONE_BILL
 	iftrue .GotBillsNumber
-	writetext BillsSisterUsefulNumberText
+	writetext BillsYoungerSisterUsefulNumberText
 	askforphonenumber PHONE_BILL
 	ifequal PHONE_CONTACTS_FULL, .NoRoom
 	ifequal PHONE_CONTACT_REFUSED, .Refused
@@ -81,19 +81,19 @@ BillsSisterScript:
 	waitsfx
 	promptbutton
 .GotBillsNumber:
-	writetext BillsSisterStorageSystemText
+	writetext BillsYoungerSisterStorageSystemText
 	waitbutton
 	closetext
 	end
 
 .Refused:
-	writetext BillsSisterRefusedNumberText
+	writetext BillsYoungerSisterRefusedNumberText
 	waitbutton
 	closetext
 	end
 
 .NoRoom:
-	writetext BillsSisterPhoneFullText
+	writetext BillsYoungerSisterPhoneFullText
 	promptbutton
 	sjump .Refused
 
@@ -204,7 +204,7 @@ BillsMomText_AfterEcruteak:
 	line "father."
 	done
 
-BillsSisterUsefulNumberText:
+BillsYoungerSisterUsefulNumberText:
 	text "Are you a trainer?"
 
 	para "I've got a useful"
@@ -217,7 +217,7 @@ RecordedBillsNumberText:
 	line "BILL's number."
 	done
 
-BillsSisterRefusedNumberText:
+BillsYoungerSisterRefusedNumberText:
 	text "My brother made"
 	line "the PC #MON"
 	cont "storage system."
@@ -227,12 +227,12 @@ BillsSisterRefusedNumberText:
 	cont "number…"
 	done
 
-BillsSisterPhoneFullText:
+BillsYoungerSisterPhoneFullText:
 	text "You can't record"
 	line "any more numbers."
 	done
 
-BillsSisterStorageSystemText:
+BillsYoungerSisterStorageSystemText:
 	text "My big brother"
 	line "BILL made the PC"
 
@@ -257,4 +257,4 @@ BillsFamilysHouse_MapEvents:
 	def_object_events
 	object_event  2,  3, SPRITE_BILL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BillScript, EVENT_MET_BILL
 	object_event  5,  3, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BillsMomScript, -1
-	object_event  5,  4, SPRITE_TWIN, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, BillsSisterScript, -1
+	object_event  5,  4, SPRITE_TWIN, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, BillsYoungerSisterScript, -1
