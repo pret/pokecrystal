@@ -207,12 +207,23 @@ gfx/pokemon/girafarig/front.animated.tilemap: gfx/pokemon/girafarig/front.2bpp g
 	tools/pokemon_animation_graphics --girafarig -t $@ $^
 
 
+### Pokemon and trainer sprite rules
+
+gfx/pokemon/%/back.2bpp: gfx/pokemon/%/back.png gfx/pokemon/%/palette.flags
+	$(RGBGFX) -Z @$(word 2,$^) -o $@ $<
+gfx/pokemon/%/front.2bpp: gfx/pokemon/%/front.png gfx/pokemon/%/palette.flags
+	$(RGBGFX) @$(word 2,$^) -o $@ $<
+gfx/pokemon/%/front.gbcpal: gfx/pokemon/%/front.png gfx/pokemon/%/palette.flags
+	$(RGBGFX) @$(word 2,$^) -p $@ $<
+
+gfx/trainers/%.2bpp: gfx/trainers/%.png gfx/trainers/%.flags
+	$(RGBGFX) -Z @$(word 2,$^) -o $@ $<
+gfx/trainers/%.gbcpal: gfx/trainers/%.png gfx/trainers/%.flags
+	$(RGBGFX) @$(word 2,$^) -p $@ $<
+
+
+
 ### Misc file-specific graphics rules
-
-gfx/pokemon/%/back.2bpp: rgbgfx += -Z -c embedded
-gfx/pokemon/%/front.2bpp: rgbgfx += -c embedded
-
-gfx/trainers/%.2bpp: rgbgfx += -Z -c embedded
 
 gfx/pokemon/egg/unused_front.2bpp: rgbgfx += -Z
 
@@ -313,9 +324,6 @@ gfx/mobile/stadium2_n64.2bpp: tools/gfx += --trim-whitespace
 	$(RGBGFX) $(rgbgfx) -d1 -o $@ $<
 	$(if $(tools/gfx),\
 		tools/gfx $(tools/gfx) -d1 -o $@ $@)
-
-%.gbcpal: %.png
-	$(RGBGFX) -c embedded -p $@ $<
 
 %.dimensions: %.png
 	tools/png_dimensions $< $@
