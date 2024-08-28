@@ -417,7 +417,7 @@ struct Buffer *process_template(const char *template_filename, const char *patch
 int compare_patch(const void *patch1, const void *patch2) {
 	unsigned int offset1 = ((const struct Patch *)patch1)->offset;
 	unsigned int offset2 = ((const struct Patch *)patch2)->offset;
-	return offset1 > offset2 ? 1 : offset1 < offset2 ? -1 : 0;
+	return (offset1 > offset2) - (offset1 < offset2);
 }
 
 bool verify_completeness(FILE *restrict orig_rom, FILE *restrict new_rom, struct Buffer *patches) {
