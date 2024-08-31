@@ -86,6 +86,19 @@ MACRO dba_pic ; dbw bank, address
 	dw \1
 ENDM
 
+MACRO dba_pics ; front, back
+	if _NARG == 2
+		dba_pic \1 ; front
+		dba_pic \2 ; back
+	elif _NARG == 1
+		dba_pic \1 ; front
+		dbw -1, -1 ; unused
+	else
+		dbw -1, -1 ; unused
+		dbw -1, -1 ; unused
+	endc
+ENDM
+
 MACRO bcd
 	rept _NARG
 		dn ((\1) % 100) / 10, (\1) % 10
