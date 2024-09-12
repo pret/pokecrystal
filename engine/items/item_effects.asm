@@ -156,7 +156,7 @@ ItemEffects:
 	dw NoEffect            ; SCOPE_LENS
 	dw NoEffect            ; ITEM_8D
 	dw NoEffect            ; ITEM_8E
-	dw NoEffect            ; METAL_COAT
+	dw EvoStoneEffect      ; METAL_COAT
 	dw NoEffect            ; DRAGON_FANG
 	dw NoEffect            ; ITEM_91
 	dw NoEffect            ; LEFTOVERS
@@ -175,7 +175,7 @@ ItemEffects:
 	dw PokeBallEffect      ; LEVEL_BALL
 	dw PokeBallEffect      ; LURE_BALL
 	dw PokeBallEffect      ; FAST_BALL
-	dw NoEffect            ; ITEM_A2
+	dw NoEffect            ; ITEM_A2F
 	dw NoEffect            ; LIGHT_BALL
 	dw PokeBallEffect      ; FRIEND_BALL
 	dw PokeBallEffect      ; MOON_BALL
