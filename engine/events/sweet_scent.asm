@@ -34,7 +34,7 @@ SweetScentEncounter:
 	jr nc, .no_battle
 	ld hl, wStatusFlags2
 	bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
-	jr nz, .not_in_bug_contest
+	jr nz, .in_bug_contest
 	farcall GetMapEncounterRate
 	ld a, b
 	and a
@@ -43,7 +43,7 @@ SweetScentEncounter:
 	jr nz, .no_battle
 	jr .start_battle
 
-.not_in_bug_contest
+.in_bug_contest
 	farcall ChooseWildEncounter_BugContest
 
 .start_battle
