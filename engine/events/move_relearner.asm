@@ -374,3 +374,73 @@ MoveRelearner:
         hlcoord 1, 14
         predef PrintMoveDescription
         ret
+
+        PrintMoveRelearnerText:
+            ld e, a
+            ld d, 0
+            ld hl, .TextPointers
+            add hl, de
+            add hl, de
+            ld a, [hli]
+            ld h, [hl]
+            ld l, a
+            call PrintText
+            ret
+        .TextPointers
+            dw .Intro
+            dw .WhichMon
+            dw .WhichMove
+            dw .ComeAgain
+            dw .Egg
+            dw .NotMon
+            dw .NotEnoughMoney
+            dw .NoMovesToLearn
+        
+        .Intro
+            text "Hello! I am the"
+            line "MOVE RELEARNER."
+        
+            para "I know all the"
+            line "moves that can be"
+        
+            para "learned for each"
+            line "#MON."
+        
+            para "For just ¥1000, I"
+            line "can share that"
+        
+            para "knowledge with"
+            line "you. How about it?"
+            done
+        .WhichMon
+            text "Excellent! Which"
+            line "#MON should"
+            cont "remember a move?"
+            done
+        .WhichMove
+            text "Which move should"
+            line "it remember?"
+            done
+        .ComeAgain
+            text "If you want your"
+            line "#MON to remem-"
+            cont "ber moves, come"
+            cont "back to me."
+            done
+        .Egg
+            text "An EGG can't learn"
+            line "moves."
+            done
+        .NotMon
+            text "What?! That's not"
+            line "a #MON!"
+            done
+        .NotEnoughMoney
+            text "You don't have"
+            line "enough money."
+            done
+        .NoMovesToLearn
+            text "This #MON can't"
+            line "learn any moves"
+            cont "from me."
+            done
