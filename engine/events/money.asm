@@ -23,7 +23,7 @@ GiveMoney::
 	ret
 
 MaxMoney:
-	dt MAX_MONEY
+	bigdt MAX_MONEY
 
 TakeMoney::
 	ld a, 3

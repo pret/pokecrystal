@@ -698,21 +698,21 @@ endr
 	ret
 
 ._9
-	dd 1000000000
+	bigdd 10**9
 ._8
-	dd 100000000
+	bigdd 10**8
 ._7
-	dd 10000000
+	bigdd 10**7
 ._6
-	dd 1000000
+	bigdd 10**6
 ._5
-	dd 100000
+	bigdd 10**5
 ._4
-	dd 10000
+	bigdd 10**4
 ._3
-	dd 1000
+	bigdd 10**3
 ._2
-	dd 100
+	bigdd 10**2
 
 .Function1062b2:
 	ld c, $0
