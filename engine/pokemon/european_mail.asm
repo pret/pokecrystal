@@ -38,8 +38,9 @@ SpanishItalianFont:
 INCBIN "gfx/font/spanish_italian.1bpp"
 
 ConvertFrenchGermanMailToEnglish:
-; Called if mail is French or German
-; Converts 's 't 'v from French/German character set to English
+; Called when sending French or German mail
+; Remaps 's from French/German character set to English 
+; Converts c' d' j' from French/German character set to unused values in English
 	ld b, sPartyMon1MailAuthor - sPartyMon1Mail
 	ld h, d
 	ld l, e
@@ -67,8 +68,9 @@ ConvertFrenchGermanMailToEnglish:
 	ret
 
 ConvertEnglishMailToFrenchGerman:
-; Called if mail is English and game is French or German
-; Converts 's 't 'v from English character set to French/German
+; Called when receiving French or German mail
+; Remaps 's from English character set to French/German 
+; Converts unused values from English character set back to c' d' j' in French/German
 	ld b, sPartyMon1MailAuthor - sPartyMon1Mail
 	ld h, d
 	ld l, e
@@ -96,11 +98,13 @@ ConvertEnglishMailToFrenchGerman:
 	ret
 
 ConvertSpanishItalianMailToEnglish:
-; Called if mail is Spanish or Italian
+; Called when sending Spanish or Italian mail
 ; Converts 'd 'l 'm 'r 's 't 'v from Spanish/Italian character set to English
+; Converts ì í ñ ò ó ú º from Spanish/Italian character set to unused values in English
 ConvertEnglishMailToSpanishItalian:
-; Called if mail is English and game is Spanish or Italian
+; Called when receiving Spanish or Italian mail
 ; Converts 'd 'l 'm 'r 's 't 'v from English character set to Spanish/Italian
+; Converts unused values from English character set back to ì í ñ ò ó ú º in Spanish/Italian
 	ld b, sPartyMon1MailAuthor - sPartyMon1Mail
 	ld h, d
 	ld l, e
