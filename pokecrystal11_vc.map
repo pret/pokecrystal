@@ -57555,6 +57555,7 @@ WRAMX bank #1:
 	         $dc1e = wDailyFlags1
 	         $dc1f = wDailyFlags2
 	         $dc20 = wSwarmFlags
+	         $dc21 = wUnusedDailyFlag
 	         $dc23 = wTimerEventStartDay
 	         $dc27 = wFruitTreeFlags
 	         $dc2d = wLuckyNumberDayTimer

@@ -47023,8 +47023,8 @@
 02:ada8 sBox4Mon6Moves
 02:adac sBox4Mon6ID
 02:adae sBox4Mon6Exp
-02:adb1 sBox4Mon6StatExp
 02:adb1 sBox4Mon6HPExp
+02:adb1 sBox4Mon6StatExp
 02:adb3 sBox4Mon6AtkExp
 02:adb5 sBox4Mon6DefExp
 02:adb7 sBox4Mon6SpdExp
@@ -56980,6 +56980,7 @@
 01:dc1e wDailyFlags1
 01:dc1f wDailyFlags2
 01:dc20 wSwarmFlags
+01:dc21 wUnusedDailyFlag
 01:dc23 wTimerEventStartDay
 01:dc27 wFruitTreeFlags
 01:dc2d wLuckyNumberDayTimer

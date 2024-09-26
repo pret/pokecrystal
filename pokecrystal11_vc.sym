@@ -56781,6 +56781,7 @@
 01:dc1e wDailyFlags1
 01:dc1f wDailyFlags2
 01:dc20 wSwarmFlags
+01:dc21 wUnusedDailyFlag
 01:dc23 wTimerEventStartDay
 01:dc27 wFruitTreeFlags
 01:dc2d wLuckyNumberDayTimer

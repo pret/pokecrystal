@@ -47749,8 +47749,8 @@ SRAM bank #2:
 	         $ada8 = sBox4Mon6Moves
 	         $adac = sBox4Mon6ID
 	         $adae = sBox4Mon6Exp
-	         $adb1 = sBox4Mon6StatExp
 	         $adb1 = sBox4Mon6HPExp
+	         $adb1 = sBox4Mon6StatExp
 	         $adb3 = sBox4Mon6AtkExp
 	         $adb5 = sBox4Mon6DefExp
 	         $adb7 = sBox4Mon6SpdExp
@@ -57754,6 +57754,7 @@ WRAMX bank #1:
 	         $dc1e = wDailyFlags1
 	         $dc1f = wDailyFlags2
 	         $dc20 = wSwarmFlags
+	         $dc21 = wUnusedDailyFlag
 	         $dc23 = wTimerEventStartDay
 	         $dc27 = wFruitTreeFlags
 	         $dc2d = wLuckyNumberDayTimer
