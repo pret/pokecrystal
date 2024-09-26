@@ -34,7 +34,7 @@ def main():
 		cur_label = None
 		for line in file:
 			line = line.rstrip()
-			if (m = re.match(sym_def_rx, line)):
+			if (m := re.match(sym_def_rx, line)):
 				sym, rest = m.group(1), m.group(2)
 				if sym is None and rest is None:
 					sym, rest = m.group(3), m.group(4)
