@@ -552,26 +552,15 @@ Mom_WithdrawDepositMenuJoypad:
 	ret
 
 .DigitQuantities:
-	dt 100000
-	dt 10000
-	dt 1000
-	dt 100
-	dt 10
-	dt 1
-
-	dt 100000
-	dt 10000
-	dt 1000
-	dt 100
-	dt 10
-	dt 1
-
-	dt 900000
-	dt 90000
-	dt 9000
-	dt 900
-	dt 90
-	dt 9
+	for x, 5, -1, -1
+		bigdt 10**x
+	endr
+	for x, 5, -1, -1
+		bigdt 10**x
+	endr
+	for x, 5, -1, -1
+		bigdt 9 * 10**x
+	endr
 
 MomLeavingText1:
 	text_far _MomLeavingText1

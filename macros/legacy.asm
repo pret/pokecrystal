@@ -13,6 +13,14 @@ ENDM
 
 ; macros/data.asm
 
+MACRO dt
+	bigdt \1
+ENDM
+
+MACRO dd
+	bigdd \1
+ENDM
+
 MACRO dbbw
 	db \1, \2
 	dw \3
