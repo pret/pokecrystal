@@ -44,15 +44,19 @@ struct Color unpack_color(uint16_t gbc_color) {
 	};
 }
 
+bool same_color(struct Color color1, struct Color color2) {
+	return color1.r == color2.r && color1.g == color2.g && color1.b == color2.b;
+}
+
 double luminance(struct Color color) {
 	return 0.299 * color.r + 0.587 * color.g + 0.114 * color.b;
 }
 
-int compare_colors(const void *color1, const void *color2) {
+int compare_luminance(const void *color1, const void *color2) {
 	double lum1 = luminance(*(const struct Color *)color1);
 	double lum2 = luminance(*(const struct Color *)color2);
 	// sort lightest to darkest, or darkest to lightest if reversed
-	return reverse ? (lum1 > lum2) - (lum1 < lum2) : (lum1 < lum2) - (lum1 > lum2);
+	return ((lum1 < lum2) - (lum1 > lum2)) * (reverse ? -1 : 1);
 }
 
 void read_gbcpal(const char *filename, struct Color **colors, size_t *num_colors) {
@@ -81,19 +85,10 @@ void filter_colors(struct Color *colors, size_t *num_colors) {
 	// filter out black, white, and duplicate colors
 	for (size_t i = 0; i < *num_colors; i++) {
 		struct Color color = colors[i];
-		if (color.r == BLACK.r && color.g == BLACK.g && color.b == BLACK.b) {
-			continue;
+		if (!same_color(color, BLACK) && !same_color(color, WHITE) &&
+			(num_filtered == 0 || !same_color(color, colors[num_filtered - 1]))) {
+			colors[num_filtered++] = color;
 		}
-		if (color.r == WHITE.r && color.g == WHITE.g && color.b == WHITE.b) {
-			continue;
-		}
-		if (num_filtered > 0) {
-			struct Color last = colors[num_filtered - 1];
-			if (color.r == last.r && color.g == last.g && color.b == last.b) {
-				continue;
-			}
-		}
-		colors[num_filtered++] = color;
 	}
 	*num_colors = num_filtered;
 }
@@ -115,7 +110,7 @@ int main(int argc, char *argv[]) {
 		read_gbcpal(argv[i], &colors, &num_colors);
 	}
 
-	qsort(colors, num_colors, sizeof(*colors), compare_colors);
+	qsort(colors, num_colors, sizeof(*colors), compare_luminance);
 	filter_colors(colors, &num_colors);
 
 	struct Color pal_colors[4] = {
