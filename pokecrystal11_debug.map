@@ -8723,9 +8723,9 @@ ROMX bank #14:
 	         $4e4a = AI_Smart_Nightmare
 	         $4e50 = AI_Smart_FlameWheel
 	         $4e5c = AI_Smart_Curse
-	         $4e90 = AI_Smart_Curse.approve
-	         $4e92 = AI_Smart_Curse.greatly_encourage
-	         $4e93 = AI_Smart_Curse.encourage
+	         $4e90 = AI_Smart_Curse.highly_discourage
+	         $4e92 = AI_Smart_Curse.greatly_discourage
+	         $4e93 = AI_Smart_Curse.discourage
 	         $4e95 = AI_Smart_Curse.ghost_curse
 	         $4eb0 = AI_Smart_Curse.notlastmon
 	         $4eb7 = AI_Smart_Curse.ghost_continue

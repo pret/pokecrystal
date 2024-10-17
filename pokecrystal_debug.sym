@@ -8613,9 +8613,9 @@
 0e:4e4a AI_Smart_Nightmare
 0e:4e50 AI_Smart_FlameWheel
 0e:4e5c AI_Smart_Curse
-0e:4e90 AI_Smart_Curse.approve
-0e:4e92 AI_Smart_Curse.greatly_encourage
-0e:4e93 AI_Smart_Curse.encourage
+0e:4e90 AI_Smart_Curse.highly_discourage
+0e:4e92 AI_Smart_Curse.greatly_discourage
+0e:4e93 AI_Smart_Curse.discourage
 0e:4e95 AI_Smart_Curse.ghost_curse
 0e:4eb0 AI_Smart_Curse.notlastmon
 0e:4eb7 AI_Smart_Curse.ghost_continue
