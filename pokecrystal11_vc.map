@@ -54933,8 +54933,8 @@ WRAM0 bank #0:
 	         $c830 = wLinkPlayerPartyMon1CaughtData
 	         $c830 = wTimeCapsulePartyMon1PP
 	         $c830 = wLinkPlayerPartyMon1CaughtLevel
-	         $c831 = wHallOfFamePokemonListMon4Species
 	         $c831 = wHallOfFamePokemonListMon3End
+	         $c831 = wHallOfFamePokemonListMon4Species
 	         $c831 = wHallOfFamePokemonListMon4
 	         $c831 = wLinkPlayerPartyMon1CaughtGender
 	         $c831 = wLinkPlayerPartyMon1CaughtLocation
