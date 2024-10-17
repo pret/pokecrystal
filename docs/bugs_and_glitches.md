@@ -1106,7 +1106,7 @@ The Moon Ball checks the wrong memory address for the wrong item ID, so no Poké
 
 ```diff
 -; BUG: Moon Ball does not boost catch rate (see docs/bugs_and_glitches.md)
-	inc hl
+ 	inc hl
 -	inc hl
 -	inc hl
 
@@ -1120,6 +1120,7 @@ The Moon Ball checks the wrong memory address for the wrong item ID, so no Poké
 ```
 
 Note that this fix only accounts for Pokémon that evolve via Moon Stone as their first evolution method. However, that is sufficient to cover all Pokémon in the game that can evolve by Moon Stone.
+
 
 ### Love Ball boosts catch rate for the wrong gender
 
