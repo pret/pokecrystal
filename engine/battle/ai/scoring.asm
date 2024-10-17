@@ -1831,17 +1831,17 @@ AI_Smart_Curse:
 	jr z, .ghost_curse
 
 	call AICheckEnemyHalfHP
-	jr nc, .encourage
+	jr nc, .discourage
 
 	ld a, [wEnemyAtkLevel]
 	cp BASE_STAT_LEVEL + 4
-	jr nc, .encourage
+	jr nc, .discourage
 	cp BASE_STAT_LEVEL + 2
 	ret nc
 
 	ld a, [wBattleMonType1]
 	cp GHOST
-	jr z, .greatly_encourage
+	jr z, .greatly_discourage
 	cp SPECIAL
 	ret nc
 	ld a, [wBattleMonType2]
@@ -1853,12 +1853,12 @@ AI_Smart_Curse:
 	dec [hl]
 	ret
 
-.approve
+.highly_discourage
 	inc [hl]
 	inc [hl]
-.greatly_encourage
+.greatly_discourage
 	inc [hl]
-.encourage
+.discourage
 	inc [hl]
 	ret
 
@@ -1875,7 +1875,7 @@ AI_Smart_Curse:
 	push hl
 	call AICheckLastPlayerMon
 	pop hl
-	jr nz, .approve
+	jr nz, .highly_discourage
 
 	jr .ghost_continue
 
@@ -1887,10 +1887,10 @@ AI_Smart_Curse:
 
 .ghost_continue
 	call AICheckEnemyQuarterHP
-	jp nc, .approve
+	jp nc, .highly_discourage
 
 	call AICheckEnemyHalfHP
-	jr nc, .greatly_encourage
+	jr nc, .greatly_discourage
 
 	call AICheckEnemyMaxHP
 	ret nc
