@@ -11647,7 +11647,7 @@ ROMX bank #20:
 	         $46e5 = SweetScentFromMenu.BugCatchingContest
 	         $46e9 = SweetScentNothing
 	         $46ef = SweetScentEncounter
-	         $4712 = SweetScentEncounter.not_in_bug_contest
+	         $4712 = SweetScentEncounter.in_bug_contest
 	         $4718 = SweetScentEncounter.start_battle
 	         $471e = SweetScentEncounter.no_battle
 	         $4726 = UseSweetScentText

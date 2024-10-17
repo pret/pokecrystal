@@ -11461,7 +11461,7 @@
 14:46e5 SweetScentFromMenu.BugCatchingContest
 14:46e9 SweetScentNothing
 14:46ef SweetScentEncounter
-14:4712 SweetScentEncounter.not_in_bug_contest
+14:4712 SweetScentEncounter.in_bug_contest
 14:4718 SweetScentEncounter.start_battle
 14:471e SweetScentEncounter.no_battle
 14:4726 UseSweetScentText
