@@ -225,10 +225,14 @@ gfx/trainers/%.2bpp: gfx/trainers/%.png gfx/trainers/%.gbcpal
 gfx/pokemon/egg/front.2bpp: gfx/pokemon/egg/front.png gfx/pokemon/egg/front.gbcpal
 gfx/pokemon/egg/front.2bpp: rgbgfx += --colors gbc:$(word 2,$^)
 
-# Unown letters share one normal.pal, so they don't already build each normal.gbcpal
-$(foreach png, $(wildcard gfx/pokemon/unown_*/front.png),\
-	$(eval $(png:.png=.2bpp): $(png) $(png:front.png=normal.gbcpal)))
-gfx/pokemon/unown_%/front.2bpp: rgbgfx += --colors gbc:$(@:front.2bpp=normal.gbcpal)
+# Unown letters share one normal.gbcpal
+unown_pngs := $(wildcard gfx/pokemon/unown_*/front.png) $(wildcard gfx/pokemon/unown_*/back.png)
+$(foreach png, $(unown_pngs),\
+	$(eval $(png:.png=.2bpp): $(png) gfx/pokemon/unown/normal.gbcpal))
+gfx/pokemon/unown_%/back.2bpp: rgbgfx += --colors gbc:$(word 2,$^)
+gfx/pokemon/unown_%/front.2bpp: rgbgfx += --colors gbc:$(word 2,$^)
+gfx/pokemon/unown/normal.gbcpal: $(subst .png,.gbcpal,$(unown_pngs))
+	tools/gbcpal $(tools/gbcpal) $@ $^
 
 
 ### Misc file-specific graphics rules
