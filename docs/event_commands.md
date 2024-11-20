@@ -12,7 +12,7 @@ A version of `scall` used to call scripts that are in different banks.
 
 
 ## `$02`: <code>memcall <i>script</i></code>
-Used in engine scripts to call a function via a 2byte pointer pointing to a 3byte pointer. Seldom used in [engine/phone/phone.asm](../blob/master/engine/phone/phone.asm#L384) as examples.
+Used in engine scripts to call a function via a 2byte pointer pointing to a 3byte pointer. Seldom used in [engine/phone/phone.asm](https://github.com/pret/pokecrystal/blob/master/engine/phone/phone.asm#L384) as examples.
 
 
 ## `$03`: <code>sjump <i>script</i></code>
@@ -24,7 +24,7 @@ A version of `sjump` used to jump to scripts that are in different banks.
 
 
 ## `$05`: <code>memjump <i>script</i></code>
-Used in engine scripts to jump to a function via a 2byte pointer pointing to a 3byte pointer. Seldom used in [engine/overworld/events.asm](../blob/master/engine/overworld/events.asm#L852).
+Used in engine scripts to jump to a function via a 2byte pointer pointing to a 3byte pointer. Seldom used in [engine/overworld/events.asm](https://github.com/pret/pokecrystal/blob/master/engine/overworld/events.asm#L852).
 
 
 ## `$06`: <code>ifequal <i>byte</i>, <i>script</i></code>
@@ -52,7 +52,7 @@ Used to compare if a value is lesser than another defined value.
 
 
 ## `$0C`: <code>jumpstd <i>std_script</i></code>
-Used in map scripts to jump to an `std_script`, like Pokémon Center/Mart signs, or Gym statues. Refers to [engine/events/std_scripts.asm](../blob/master/engine/events/std_scripts.asm).
+Used in map scripts to jump to an `std_script`, like Pokémon Center/Mart signs, or Gym statues. Refers to [engine/events/std_scripts.asm](https://github.com/pret/pokecrystal/blob/master/engine/events/std_scripts.asm).
 
 
 ## `$0D`: <code>callstd <i>std_script</i></code>
@@ -64,11 +64,11 @@ Used in engine scripts to call an asm function.
 
 
 ## `$0F`: <code>special <i>special_pointer</i></code>
-Used in scripts to call a `special` function. Refers to [data/events/special_pointers.asm](../blob/master/data/events/special_pointers.asm).
+Used in scripts to call a `special` function. Refers to [data/events/special_pointers.asm](https://github.com/pret/pokecrystal/blob/master/data/events/special_pointers.asm).
 
 
 ## `$10`: <code>memcallasm <i>asm</i></code>
-Used in engine scripts to call an asm function via a 2byte pointer pointing to a 3byte pointer. Seldom used in [engine/overworld/events.asm](../blob/master/engine/overworld/events.asm#L852).
+Used in engine scripts to call an asm function via a 2byte pointer pointing to a 3byte pointer. Seldom used in [engine/overworld/events.asm](https://github.com/pret/pokecrystal/blob/master/engine/overworld/events.asm#L852).
 
 
 ## `$11`: <code>checkmapscene <i>map</i></code>
@@ -80,7 +80,7 @@ Used to set a given scene as having been triggered, in a map other than the curr
 
 
 ## `$13`: `checkscene`
-Used to check whether or not a given scene from the current map has been triggered. See [maps/PlayersHouse1F.asm](../blob/master/maps/PlayersHouse1F.asm#L113) and [maps/RuinsOfAlphResearchCenter.asm](../blob/master/maps/RuinsOfAlphResearchCenter.asm#L21) as examples.
+Used to check whether or not a given scene from the current map has been triggered. See [maps/PlayersHouse1F.asm](https://github.com/pret/pokecrystal/blob/master/maps/PlayersHouse1F.asm#L113) and [maps/RuinsOfAlphResearchCenter.asm](https://github.com/pret/pokecrystal/blob/master/maps/RuinsOfAlphResearchCenter.asm#L21) as examples.
 
 
 ## `$14`: <code>setscene <i>scene_id</i></code>
@@ -102,7 +102,7 @@ Used in scripts to add a certain number to a given variable into RAM.
 
 
 ## `$17`: <code>random <i>value</i></code>
-Used to call a random number, in conjunction with a value check command like `ifequal `. See [maps/OlivineCity.asm](../blob/master/maps/OlivineCity.asm#L76) and [engine/phone/scripts/jack_gossip.asm](../blob/master/engine/phone/scripts/jack_gossip.asm#L4) as examples.
+Used to call a random number, in conjunction with a value check command like `ifequal `. See [maps/OlivineCity.asm](https://github.com/pret/pokecrystal/blob/master/maps/OlivineCity.asm#L76) and [engine/phone/scripts/jack_gossip.asm](https://github.com/pret/pokecrystal/blob/master/engine/phone/scripts/jack_gossip.asm#L4) as examples.
 
 
 ## `$18`: `checkver`
@@ -168,11 +168,11 @@ Used to give a certain sum of money to the player.
 
 
 ## `$23`: <code>takemoney <i>account</i>, <i>value</i></code>
-Used to take a given sum of money from the player. See [maps/Route39Farmhouse.asm](../blob/master/maps/Route39Farmhouse.asm#L23) as an example.
+Used to take a given sum of money from the player. See [maps/Route39Farmhouse.asm](https://github.com/pret/pokecrystal/blob/master/maps/Route39Farmhouse.asm#L23) as an example.
 
 
 ## `$24`: <code>checkmoney <i>account</i>, <i>value</i></code>
-Used to check whether or not the player has a given sum of money. See [maps/Route39Farmhouse.asm](../blob/master/maps/Route39Farmhouse.asm#L23) as an example.
+Used to check whether or not the player has a given sum of money. See [maps/Route39Farmhouse.asm](https://github.com/pret/pokecrystal/blob/master/maps/Route39Farmhouse.asm#L23) as an example.
 
 
 ## `$25`: <code>givecoins <i>value</i></code>
@@ -208,7 +208,7 @@ Used in map scripts to check if a given Pokémon is in the player's party.
 
 
 ## `$2D`: <code>givepoke <i>mon_id</i>, <i>level</i>[, <i>item</i>=0[, <i>nickname</i>, <i>ot_name</i>]]</code>
-Used in map scripts to gift the player a given Pokémon at a given level. Two extra parameters can also be set, namely the Pokémon's nickname, and its Original Trainer's name and gender (the latter is male/0 by default, but can be set to female/1). See [maps/Route35GoldenrodGate.asm](../blob/master/maps/Route35GoldenrodGate.asm#L31) as an example.
+Used in map scripts to gift the player a given Pokémon at a given level. Two extra parameters can also be set, namely the Pokémon's nickname, and its Original Trainer's name and gender (the latter is male/0 by default, but can be set to female/1). See [maps/Route35GoldenrodGate.asm](https://github.com/pret/pokecrystal/blob/master/maps/Route35GoldenrodGate.asm#L31) as an example.
 
 
 ## `$2E`: <code>giveegg <i>mon_id</i>, <i>level</i></code>
@@ -216,11 +216,11 @@ Used in map scripts to gift the player an egg of a specific Pokémon species. Th
 
 
 ## `$2F`: <code>givepokemail <i>pointer</i></code>
-Used in map scripts to give pokemail to an in-game gift Pokémon, specifying which type of mail and what message it will have. See [maps/Route35GoldenrodGate.asm](../blob/master/maps/Route35GoldenrodGate.asm#L32) as an example.
+Used in map scripts to give pokemail to an in-game gift Pokémon, specifying which type of mail and what message it will have. See [maps/Route35GoldenrodGate.asm](https://github.com/pret/pokecrystal/blob/master/maps/Route35GoldenrodGate.asm#L32) as an example.
 
 
 ## `$30`: <code>checkpokemail <i>pointer</i></code>
-Used as part of the Kenya side-quest, to check if the mail matches the one that was given to the player on Route 35. See [maps/Route31.asm](../blob/master/maps/Route31.asm#L198) as an example.
+Used as part of the Kenya side-quest, to check if the mail matches the one that was given to the player on Route 35. See [maps/Route31.asm](https://github.com/pret/pokecrystal/blob/master/maps/Route31.asm#L198) as an example.
 
 
 ## `$31`: <code>checkevent <i>event_flag</i></code>
@@ -234,7 +234,7 @@ Used to clear an event flag. A map object that is assigned a set event will be n
 ## `$33`: <code>setevent <i>event_flag</i></code>
 Used to set an event flag. An event that has been set may be used in conjunction with an `iftrue` or `iffalse` check. Moreover, a map object that is assigned a set event will no longer be visible nor interactable.
 
-Events may be set upon starting a new save by being defined as such in [engine/events/std_scripts.asm](../blob/master/maps/engine/events/std_scripts.asm#L480).
+Events may be set upon starting a new save by being defined as such in [engine/events/std_scripts.asm](https://github.com/pret/pokecrystal/blob/master/maps/engine/events/std_scripts.asm#L480).
 
 
 ## `$34`: <code>checkflag <i>engine_flag</i></code>
@@ -265,9 +265,9 @@ Unused in regular gameplay. This command compares the player's current X and Y c
 Unused in regular gameplay. Used in map callbacks to change the destination of a warp set to `-1`. Here's an example of `warpmod` from [Polished Crystal](https://github.com/Rangi42/polishedcrystal/blob/master/maps/LavRadioTower1F.asm#L25).
 
 ## `$3B`: <code>blackoutmod <i>map</i></code>
-Used in map scripts to change the destination the player will be warped to after blacking out. Refers to [data/maps/spawn_points.asm](../blob/master/data/maps/spawn_points.asm).
+Used in map scripts to change the destination the player will be warped to after blacking out. Refers to [data/maps/spawn_points.asm](https://github.com/pret/pokecrystal/blob/master/data/maps/spawn_points.asm).
 
-The point of this command is to avoid some story "desyncs". For example, a `blackoutmod` command set to Cherrygrove City is defined in the script for meeting Prof. Oak at [Mr Pokémon's house](../blob/master/maps/MrPokemonsHouse.asm#L37). If it weren't there, and the player hadn't visited Cherrygrove's Pokémon Center, then blacking out on Route 30 would warp them back to New Bark Town, thus skipping the first rival battle.
+The point of this command is to avoid some story "desyncs". For example, a `blackoutmod` command set to Cherrygrove City is defined in the script for meeting Prof. Oak at [Mr Pokémon's house](https://github.com/pret/pokecrystal/blob/master/maps/MrPokemonsHouse.asm#L37). If it weren't there, and the player hadn't visited Cherrygrove's Pokémon Center, then blacking out on Route 30 would warp them back to New Bark Town, thus skipping the first rival battle.
 
 
 ## `$3C`: <code>warp <i>map</i>, <i>x</i>, <i>y</i></code>
@@ -280,7 +280,7 @@ Also note that the player will always be warped facing down. If one wishes to wa
 
 <code>GetStringBuffer(<i>string_buffer</i>) = PrintNum(GetMoneyAccount(<i>account</i>))</code>
 
-Used by [engine/phone/scripts/mom.asm](../blob/master/engine/phone/scripts/mom.asm) to display the correct amount of money when calling mom to know how much money has been saved.
+Used by [engine/phone/scripts/mom.asm](https://github.com/pret/pokecrystal/blob/master/engine/phone/scripts/mom.asm) to display the correct amount of money when calling mom to know how much money has been saved.
 
 
 ## `$3E`: <code>getcoins <i>string_buffer</i></code>
@@ -294,7 +294,7 @@ Unused in regular gameplay. Identical to `getmoney`, only with the Game Corner c
 
 <code>GetStringBuffer(<i>string_buffer</i>) = PrintNum([wScriptVar])</code>
 
-Used in a script to display a given value in a dialogue box. See [maps/Route35NationalParkGate.asm](../blob/master/maps/Route35NationalParkGate.asm#L54) as an example.
+Used in a script to display a given value in a dialogue box. See [maps/Route35NationalParkGate.asm](https://github.com/pret/pokecrystal/blob/master/maps/Route35NationalParkGate.asm#L54) as an example.
 
 ## `$40`: <code>getmonname <i>string_buffer</i>, <i>mon_id</i></code>
 
@@ -302,7 +302,7 @@ Used in a script to display a given value in a dialogue box. See [maps/Route35Na
 
 If <code><i>mon_id</i></code> = `USE_SCRIPT_VAR`, then it uses `[wScriptVar]` instead.
 
-Used in a script to display a given Pokémon name in a dialogue box. See [maps/ElmsLab.asm](../blob/master/maps/ElmsLab.asm#L177) as an example.
+Used in a script to display a given Pokémon name in a dialogue box. See [maps/ElmsLab.asm](https://github.com/pret/pokecrystal/blob/master/maps/ElmsLab.asm#L177) as an example.
 
 
 ## `$41`: <code>getitemname <i>string_buffer</i>, <i>item_id</i></code>
@@ -311,36 +311,36 @@ Used in a script to display a given Pokémon name in a dialogue box. See [maps/E
 
 If <code><i>item_id</i></code> = `USE_SCRIPT_VAR`, then it uses `[wScriptVar]` instead.
 
-Used in a script to display a given item name in a dialogue box. See [maps/CeladonCafe.asm](../blob/master/maps/CeladonCafe.asm#L91) as an example.
+Used in a script to display a given item name in a dialogue box. See [maps/CeladonCafe.asm](https://github.com/pret/pokecrystal/blob/master/maps/CeladonCafe.asm#L91) as an example.
 
 
 ## `$42`: <code>getcurlandmarkname <i>string_buffer</i></code>
 
 <code>GetStringBuffer(<i>string_buffer</i>) = GetLandmarkName(GetWorldMapLocation())</code>
 
-Used in a script to display the current location name in a dialogue box. Used by both [engine/phone/scripts/mom.asm](../blob/master/engine/phone/scripts/mom.asm#L12) and [engine/events/std_scripts.asm](../blob/master/engine/events/std_scripts.asm#L1757).
+Used in a script to display the current location name in a dialogue box. Used by both [engine/phone/scripts/mom.asm](https://github.com/pret/pokecrystal/blob/master/engine/phone/scripts/mom.asm#L12) and [engine/events/std_scripts.asm](https://github.com/pret/pokecrystal/blob/master/engine/events/std_scripts.asm#L1757).
 
 
 ## `$43`: <code>gettrainername <i>string_buffer</i>, <i>trainer_group</i>, <i>trainer_id</i></code>
 
 <code>GetStringBuffer(<i>string_buffer</i>) = GetTrainerName(<i>trainer_group</i>, <i>trainer_id</i>)</code>
 
-Used in a script to display a given trainer name in a dialogue box. See [maps/VioletGym.asm](../blob/master/maps/VioletGym.asm#L105) as an example.
+Used in a script to display a given trainer name in a dialogue box. See [maps/VioletGym.asm](https://github.com/pret/pokecrystal/blob/master/maps/VioletGym.asm#L105) as an example.
 
 
 ## `$44`: <code>getstring <i>string_buffer</i>, <i>text_pointer</i></code>
 
 <code>GetStringBuffer(<i>string_buffer</i>) = CopyName1([wScriptBank], <i>text_pointer</i>)</code>
 
-Used in a script to display a given string in a dialogue box. See [maps/LavRadioTower1F.asm](../blob/master/maps/LavRadioTower1F.asm#L34) as an example.
+Used in a script to display a given string in a dialogue box. See [maps/LavRadioTower1F.asm](https://github.com/pret/pokecrystal/blob/master/maps/LavRadioTower1F.asm#L34) as an example.
 
 
 ## `$45`: `itemnotify`
-Used in map scripts alongside a `giveitem` command. Prints the "<PLAYER> put the <ITEM> in the <BAG POCKET>." message. See [maps/DragonsDenB1F.asm](../blob/master/maps/DragonsDenB1F.asm#L57) as an example.
+Used in map scripts alongside a `giveitem` command. Prints the "<PLAYER> put the <ITEM> in the <BAG POCKET>." message. See [maps/DragonsDenB1F.asm](https://github.com/pret/pokecrystal/blob/master/maps/DragonsDenB1F.asm#L57) as an example.
 
 
 ## `$46`: `pocketisfull`
-Seldom called by `GiveItemScript`, in [engine/overworld/scripting.asm](../blob/master/engine/overworld/scripting.asm#L467).
+Seldom called by `GiveItemScript`, in [engine/overworld/scripting.asm](https://github.com/pret/pokecrystal/blob/master/engine/overworld/scripting.asm#L467).
 
 
 ## `$47`: `opentext`
@@ -371,7 +371,7 @@ Used in map scripts after an `opentext` command, to load a given text pointer.
 
 
 ## `$4D`: <code>repeattext <i>byte1</i>, <i>byte2</i></code>
-Seldom called by `JumpTextFacePlayerScript`, in [engine/overworld/scripting.asm](../blob/master/engine/overworld/scripting.asm#L309).
+Seldom called by `JumpTextFacePlayerScript`, in [engine/overworld/scripting.asm](https://github.com/pret/pokecrystal/blob/master/engine/overworld/scripting.asm#L309).
 
 
 ## `$4E`: `yesorno`
@@ -379,7 +379,7 @@ Used in map scripts to load a "yes or no" prompt. To be used in conjunction with
 
 
 ## `$4F`: <code>loadmenu <i>menu_header</i></code>
-Used in map scripts to load menu data. See [maps/DragonShrine.asm](../blob/master/maps/DragonShrine.asm#L21) as an example.
+Used in map scripts to load menu data. See [maps/DragonShrine.asm](https://github.com/pret/pokecrystal/blob/master/maps/DragonShrine.asm#L21) as an example.
 
 
 ## `$50`: `closewindow`
@@ -391,7 +391,7 @@ Used to load the text of an `object_event`. Essentially combines `faceplayer`, `
 
 
 ## `$52`: <code>farjumptext <i>text_pointer</i></code>
-Seldom used in [engine/events/std_scripts.asm](../blob/master/engine/events/std_scripts.asm) to draw text from [data/text/std_text.asm](../blob/master/data/text/std_text.asm).
+Seldom used in [engine/events/std_scripts.asm](https://github.com/pret/pokecrystal/blob/master/engine/events/std_scripts.asm) to draw text from [data/text/std_text.asm](https://github.com/pret/pokecrystal/blob/master/data/text/std_text.asm).
 
 
 ## `$53`: <code>jumptext <i>text_pointer</i></code>
@@ -434,11 +434,11 @@ Used in engine scripts as part of the Sweet Scent, But Catching Contest, and wil
 
 `[wOtherTrainer] = [wTempTrainer]`
 
-Seldom used in [engine/events/trainer_scripts.asm](../blob/master/engine/events/trainer_scripts.asm), where it loads temporary trainer data.
+Seldom used in [engine/events/trainer_scripts.asm](https://github.com/pret/pokecrystal/blob/master/engine/events/trainer_scripts.asm), where it loads temporary trainer data.
 
 
 ## `$5D`: <code>loadwildmon <i>mon_id</i>, <i>level</i></code>
-Used in map scripts to load a battle against a specific Pokémon species at a given level. See [maps/UnionCaveB2F.asm](../blob/master/maps/UnionCaveB2F.asm#L28) as an example.
+Used in map scripts to load a battle against a specific Pokémon species at a given level. See [maps/UnionCaveB2F.asm](https://github.com/pret/pokecrystal/blob/master/maps/UnionCaveB2F.asm#L28) as an example.
 
 
 ## `$5E`: <code>loadtrainer <i>trainer_group</i>, <i>trainer_id</i></code>
@@ -458,11 +458,11 @@ Used to initiate the Pokémon catching tutorial on Route 29. Needs to be precede
 
 
 ## `$62`: <code>trainertext <i>text_id</i></code>
-Seldom used in [engine/events/trainer_scripts.asm](../blob/master/engine/events/trainer_scripts.asm), where it loads temporary trainer dialogue data.
+Seldom used in [engine/events/trainer_scripts.asm](https://github.com/pret/pokecrystal/blob/master/engine/events/trainer_scripts.asm), where it loads temporary trainer dialogue data.
 
 
 ## `$63`: <code>trainerflagaction <i>action</i></code>
-Seldom used in [engine/events/trainer_scripts.asm](../blob/master/engine/events/trainer_scripts.asm), where it handles the "trainer defeated" flag data.
+Seldom used in [engine/events/trainer_scripts.asm](https://github.com/pret/pokecrystal/blob/master/engine/events/trainer_scripts.asm), where it handles the "trainer defeated" flag data.
 
 
 ## `$64`: <code>winlosstext <i>win_text_pointer</i>, <i>loss_text_pointer</i></code>
@@ -470,7 +470,7 @@ Used in trainer battle scripts to print a given string when the player either wi
 
 
 ## `$65`: `scripttalkafter`
-Seldom used in [engine/events/trainer_scripts.asm](../blob/master/engine/events/trainer_scripts.asm), where it handles what happens when talking to a defeated trainer.
+Seldom used in [engine/events/trainer_scripts.asm](https://github.com/pret/pokecrystal/blob/master/engine/events/trainer_scripts.asm), where it handles what happens when talking to a defeated trainer.
 
 
 ## `$66`: `endifjustbattled`
@@ -526,7 +526,7 @@ Used in map scripts to move an object to a new location on the same map. Note th
 
 
 ## `$73`: <code>writeobjectxy <i>object_id</i></code>
-Writes the current x/y values of a trainer into RAM, and they will stand at their current location even when outside of the player's sight. They will not return to their old location until a new map loads. Seldom used in [engine/events/trainer_scripts.asm](../blob/master/engine/events/trainer_scripts.asm).
+Writes the current x/y values of a trainer into RAM, and they will stand at their current location even when outside of the player's sight. They will not return to their old location until a new map loads. Seldom used in [engine/events/trainer_scripts.asm](https://github.com/pret/pokecrystal/blob/master/engine/events/trainer_scripts.asm).
 
 
 ## `$74`: <code>loademote <i>emote_id</i></code>
@@ -569,7 +569,7 @@ Refreshed the part of the map that's currently on-screen.
 
 
 ## `$7D`: <code>writecmdqueue <i>queue_pointer</i></code>
-Writes to a command queue, namely used by maps which use Strength boulders that can fall through holes in the ground. See [maps/IcePathB1F.asm](../blob/master/maps/IcePathB1F.asm#L14) as an example.
+Writes to a command queue, namely used by maps which use Strength boulders that can fall through holes in the ground. See [maps/IcePathB1F.asm](https://github.com/pret/pokecrystal/blob/master/maps/IcePathB1F.asm#L14) as an example.
 
 
 ## `$7E`: <code>delcmdqueue <i>byte</i></code>
@@ -581,7 +581,7 @@ Used to call a given music track in a script.
 
 
 ## `$80`: `encountermusic`
-Seldom used in [engine/events/trainer_scripts.asm](../blob/master/engine/events/trainer_scripts.asm), where it loads the right encounter music.
+Seldom used in [engine/events/trainer_scripts.asm](https://github.com/pret/pokecrystal/blob/master/engine/events/trainer_scripts.asm), where it loads the right encounter music.
 
 
 ## `$81`: <code>musicfadeout <i>music_id</i>, <i>length</i></code>
@@ -621,7 +621,7 @@ Unused in regular gameplay. Calls `StartAutoInput`, which lets the game play a s
 
 
 ## `$8A`: <code>newloadmap <i>which_method</i></code>
-Used in scripts to call a new `MAPSETUP` type. Refers to [constants/map_setup_constants.asm](../blob/master/constants/map_setup_constants.asm).
+Used in scripts to call a new `MAPSETUP` type. Refers to [constants/map_setup_constants.asm](https://github.com/pret/pokecrystal/blob/master/constants/map_setup_constants.asm).
 
 
 ## `$8B`: <code>pause <i>length</i></code>
@@ -660,15 +660,15 @@ Seldom used to terminate `Script_Whiteout`.
 
 
 ## `$94`: <code>pokemart <i>mart_type</i>, <i>mart_id</i></code>
-Used to call the data of a sale clerk, as in what items they will propose, and what dialogue set they will use. Refers to [data/items/marts.asm](../blob/master/data/items/marts.asm).
+Used to call the data of a sale clerk, as in what items they will propose, and what dialogue set they will use. Refers to [data/items/marts.asm](https://github.com/pret/pokecrystal/blob/master/data/items/marts.asm).
 
 
 ## `$95`: <code>elevator <i>floor_list</i></code>
-Used to read what floors will appear as options in the elevator interface, and what maps the player will be warped to. Used in conjunction with a given data table, see [maps/GoldenrodDeptStoreElevator.asm](../blob/master/maps/GoldenrodDeptStoreElevator.asm#L8) as an example.
+Used to read what floors will appear as options in the elevator interface, and what maps the player will be warped to. Used in conjunction with a given data table, see [maps/GoldenrodDeptStoreElevator.asm](https://github.com/pret/pokecrystal/blob/master/maps/GoldenrodDeptStoreElevator.asm#L8) as an example.
 
 
 ## `$96`: <code>trade <i>trade_id</i></code>
-Used to call the data for an in-game trade NPC, as in what Pokémon they're looking for, which one they offer in return, as well as what dialogue set they will use. Refers to [data/events/npc_trades.asm](../blob/master/data/events/npc_trades.asm).
+Used to call the data for an in-game trade NPC, as in what Pokémon they're looking for, which one they offer in return, as well as what dialogue set they will use. Refers to [data/events/npc_trades.asm](https://github.com/pret/pokecrystal/blob/master/data/events/npc_trades.asm).
 
 
 ## `$97`: <code>askforphonenumber <i>contact_id</i></code>
@@ -708,15 +708,15 @@ Unused in regular gameplay. Used in map scripts to play the phonecall hangup ani
 
 
 ## `$9A`: <code>describedecoration <i>byte</i></code>
-Used by the room decorations to call a flavor text string based on what type of decor it is (poster, doll/console, or giant doll). Refers to [engine/overworld/decorations.asm](../blob/master/engine/overworld/decorations.asm#L971).
+Used by the room decorations to call a flavor text string based on what type of decor it is (poster, doll/console, or giant doll). Refers to [engine/overworld/decorations.asm](https://github.com/pret/pokecrystal/blob/master/engine/overworld/decorations.asm#L971).
 
 
 ## `$9B`: <code>fruittree <i>tree_id</i></code>
-Used by fruit trees to call what kind of berry or apricorn the player will receive from them. Refers to [data/items/fruit_trees.asm](../blob/master/data/items/fruit_trees.asm).
+Used by fruit trees to call what kind of berry or apricorn the player will receive from them. Refers to [data/items/fruit_trees.asm](https://github.com/pret/pokecrystal/blob/master/data/items/fruit_trees.asm).
 
 
 ## `$9C`: <code>specialphonecall <i>call_id</i></code>
-Used to trigger dedicated phonecalls upon warping to a new map. See [maps/VioletGym.asm](../blob/master/maps/VioletGym.asm) and [maps/Route31 .asm](../blob/master/maps/Route31.asm) as examples.
+Used to trigger dedicated phonecalls upon warping to a new map. See [maps/VioletGym.asm](https://github.com/pret/pokecrystal/blob/master/maps/VioletGym.asm) and [maps/Route31 .asm](https://github.com/pret/pokecrystal/blob/master/maps/Route31.asm) as examples.
 
 
 ## `$9D`: `checkphonecall`
@@ -732,7 +732,7 @@ A variant of the `verbosegiveitem` command used for Kurt's "get Apricorn Ball" s
 
 
 ## `$A0`: <code>swarm <i>swarm_id</i>, <i>map</i></code>
-Used in conjunction with a `setflag` command to instantly trigger a Pokémon swarm in a given map. See [engine/phone/scripts/anthony.asm](../blob/master/engine/phone/scripts/anthony.asm#L51) as an example.
+Used in conjunction with a `setflag` command to instantly trigger a Pokémon swarm in a given map. See [engine/phone/scripts/anthony.asm](https://github.com/pret/pokecrystal/blob/master/engine/phone/scripts/anthony.asm#L51) as an example.
 
 
 ## `$A1`: `halloffame`
@@ -748,7 +748,7 @@ Used to warp the player to a given location, at specified coordinates. Unlike th
 
 
 ## `$A4`: <code>battletowertext <i>bttext_id</i></code>
-Seldom used in [maps/BattleTowerBattleRoom.asm](../blob/master/maps/BattleTowerBattleRoom.asm) to load the enemy trainer's dialogue.
+Seldom used in [maps/BattleTowerBattleRoom.asm](https://github.com/pret/pokecrystal/blob/master/maps/BattleTowerBattleRoom.asm) to load the enemy trainer's dialogue.
 
 
 ## `$A5`: <code>getlandmarkname <i>string_buffer</i>, <i>landmark_id</i></code>
@@ -769,7 +769,7 @@ Used in engine scripts to save a trainer class name in a string buffer, for it t
 
 <code>GetStringBuffer(<i>string_buffer</i>) = GetName(<i>type</i>, <i>id</i>)</code>
 
-Used in the Pokémon stats and trainer attributes engine scripts, to draw a given name. Refers to [constants/text_constants.asm](../blob/master/constants/text_constants.asm).
+Used in the Pokémon stats and trainer attributes engine scripts, to draw a given name. Refers to [constants/text_constants.asm](https://github.com/pret/pokecrystal/blob/master/constants/text_constants.asm).
 
 
 ## `$A8`: <code>wait <i>duration</i></code>
