@@ -264,6 +264,7 @@ Unused in regular gameplay. This command compares the player's current X and Y c
 ## `$3A`: <code>warpmod <i>warp_id</i>, <i>map</i></code>
 Unused in regular gameplay. Used in map callbacks to change the destination of a warp set to `-1`. Here's an example of `warpmod` from [Polished Crystal](https://github.com/Rangi42/polishedcrystal/blob/master/maps/LavRadioTower1F.asm#L25).
 
+
 ## `$3B`: <code>blackoutmod <i>map</i></code>
 Used to change the destination the player will be warped to after blacking out. Refers to [data/maps/spawn_points.asm](https://github.com/pret/pokecrystal/blob/master/data/maps/spawn_points.asm).
 
@@ -355,7 +356,7 @@ Used to trigger a complete screen refresh.
 Used after either a `waitbutton` or `promptbutton` command, to close a dialogue box.
 
 
-## `$4A`: <code>writeUnusedbyte <i>byte</i></code>
+## `$4A`: <code>writeunusedbyte <i>byte</i></code>
 
 <code>[<i>wUnusedScriptByte</i>] = <i>byte</i></code>
 
@@ -634,6 +635,7 @@ Seldom used in `ChangeDirectionScript`.
 
 ## `$8D`: <code>sdefer <i>script</i></code>
 Used in a map scene to run a script.
+
 
 ## `$8E`: `warpcheck`
 If the player is under a movement script, and enters a warp (like a door), this command will trigger it and warp the player to the new map.
