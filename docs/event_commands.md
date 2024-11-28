@@ -467,7 +467,7 @@ Seldom used in [engine/events/trainer_scripts.asm](https://github.com/pret/pokec
 
 
 ## `$64`: <code>winlosstext <i>win_text_pointer</i>, <i>loss_text_pointer</i></code>
-Used in trainer battle scripts to print a given string when the player either wins or loses. Note that only the rival fight in Cherrygrove can be lost without skipping straight to the blackout message. The latter issue can be corrected with the [following fix](https://github.com/pret/pokecrystal/wiki/Print-text-when-you-lose-a-trainer-battle).
+Used in trainer battle scripts to print a given string when the player either wins or loses. Note that this command needs to be used in conjunction with `BATTLETYPE_CANLOSE`, otherwise the game will skip straight to the blackout message. See [CherrygroveCity.asm](https://github.com/pret/pokecrystal/blob/master/maps/CherrygroveCity.asm#L122) as an example.
 
 
 ## `$65`: `scripttalkafter`
