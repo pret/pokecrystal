@@ -79,6 +79,8 @@ HeadbuttTreeGFX:
 INCBIN "gfx/overworld/headbutt_tree.2bpp"
 
 HideHeadbuttTree:
+	; Replaces all four headbutted tree tiles with tile $05
+	; Assumes any tileset with headbutt trees has grass at tile $05
 	xor a
 	ldh [hBGMapMode], a
 	ld a, [wPlayerDirection]
@@ -92,7 +94,7 @@ HideHeadbuttTree:
 	ld h, [hl]
 	ld l, a
 
-	ld a, $05 ; grass block
+	ld a, $05 ; grass tile
 	ld [hli], a
 	ld [hld], a
 	ld bc, SCREEN_WIDTH
