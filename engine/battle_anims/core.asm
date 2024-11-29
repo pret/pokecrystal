@@ -236,7 +236,7 @@ InitBattleAnimBuffer:
 	add hl, bc
 	ld a, [hl]
 	ld [wBattleAnimTempOAMFlags], a
-	bit 0, [hl]
+	bit BATTLEANIMSTRUCT_OAMFLAGS_FIX_COORDS_F, [hl]
 	ret z
 
 	ld hl, BATTLEANIMSTRUCT_XCOORD

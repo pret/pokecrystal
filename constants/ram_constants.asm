@@ -29,6 +29,9 @@ DEF GAME_TIMER_MOBILE_F   EQU 7
 DEF JOYPAD_DISABLE_MON_FAINT_F    EQU 6
 DEF JOYPAD_DISABLE_SGB_TRANSFER_F EQU 7
 
+; wInBattleTowerBattle::
+DEF IN_BATTLE_TOWER_BATTLE_F EQU 0
+
 ; wOptions1::
 DEF TEXT_DELAY_MASK EQU %111
 	const_def 4
@@ -69,6 +72,9 @@ DEF GBPRINTER_DARKEST  EQU $7f
 	const_def
 	const MENU_ACCOUNT ; 0
 
+; wDST::
+DEF DST_F EQU 7
+
 ; wWalkingDirection::
 	const_def -1
 	const STANDING ; -1
@@ -97,6 +103,11 @@ DEF LAST_12_SPRITE_OAM_STRUCTS_RESERVED_F EQU 1
 DEF TEXT_STATE_F                          EQU 6
 DEF SCRIPTED_MOVEMENT_STATE_F             EQU 7
 
+; wSpriteFlags::
+DEF SPRITES_VRAM_BANK_0_F       EQU 5
+DEF SPRITES_SKIP_WALKING_GFX_F  EQU 6
+DEF SPRITES_SKIP_STANDING_GFX_F EQU 7
+
 ; wPokemonWithdrawDepositParameter::
 DEF PC_WITHDRAW       EQU 0
 DEF PC_DEPOSIT        EQU 1
@@ -119,20 +130,22 @@ DEF INIT_OTHER_ITEM_LIST EQU 3
 DEF INIT_PLAYEROT_LIST   EQU 4
 DEF INIT_MON_LIST        EQU 5
 
+; wMapNameSignFlags::
+	const_def 1
+	const SHOWN_MAP_NAME_SIGN ; 1
+
 ; wTimeOfDay::
 	const_def
-	const MORN_F     ; 0
-	const DAY_F      ; 1
-	const NITE_F     ; 2
-	const DARKNESS_F ; 3
+	shift_const MORN     ; 0
+	shift_const DAY      ; 1
+	shift_const NITE     ; 2
+	shift_const DARKNESS ; 3
 DEF NUM_DAYTIMES EQU const_value
 
-DEF MORN     EQU 1 << MORN_F
-DEF DAY      EQU 1 << DAY_F
-DEF NITE     EQU 1 << NITE_F
-DEF DARKNESS EQU 1 << DARKNESS_F
-
 DEF ANYTIME EQU MORN | DAY | NITE
+
+; wTimeOfDayPalFlags::
+DEF FORCED_PALSET_F EQU 7
 
 ; wTimeOfDayPalset::
 DEF DARKNESS_PALSET EQU (DARKNESS_F << 6) | (DARKNESS_F << 4) | (DARKNESS_F << 2) | DARKNESS_F
@@ -143,6 +156,10 @@ DEF DARKNESS_PALSET EQU (DARKNESS_F << 6) | (DARKNESS_F << 4) | (DARKNESS_F << 2
 	const BATTLEANIM_IN_SUBROUTINE_F ; 1
 	const BATTLEANIM_IN_LOOP_F       ; 2
 	const BATTLEANIM_KEEPSPRITES_F   ; 3
+
+; wBattleScriptFlags::
+DEF BATTLESCRIPT_WILD_F     EQU 0
+DEF BATTLESCRIPT_SCRIPTED_F EQU 7
 
 ; wPlayerSpriteSetupFlags::
 DEF PLAYERSPRITESETUP_FACING_MASK       EQU %11
@@ -167,7 +184,20 @@ DEF PLAYERGENDER_FEMALE_F EQU 0
 	const MAPEVENTS_OFF ; 1
 
 ; wScriptFlags::
-DEF SCRIPT_RUNNING EQU 2
+	const_def
+	const UNUSED_SCRIPT_FLAG_0 ; 0
+	const UNUSED_SCRIPT_FLAG_1 ; 1
+	const SCRIPT_RUNNING       ; 2
+	const RUN_DEFERRED_SCRIPT  ; 3
+
+; wEnabledPlayerEvents::
+	const_def
+	const PLAYEREVENTS_COUNT_STEPS           ; 0
+	const PLAYEREVENTS_COORD_EVENTS          ; 1
+	const PLAYEREVENTS_WARPS_AND_CONNECTIONS ; 2
+	const_skip
+	const PLAYEREVENTS_WILD_ENCOUNTERS       ; 4
+	const PLAYEREVENTS_UNUSED                ; 5
 
 ; wScriptMode::
 	const_def
@@ -179,6 +209,9 @@ DEF SCRIPT_RUNNING EQU 2
 ; wSpawnAfterChampion::
 DEF SPAWN_LANCE EQU 1
 DEF SPAWN_RED   EQU 2
+
+; wGameTimeCap::
+DEF GAME_TIME_CAPPED EQU 0
 
 ; wCurDay::
 	const_def
@@ -324,6 +357,12 @@ DEF DAYCARELADY_ACTIVE_F         EQU 7
 	const UNLOCKED_UNOWNS_S_TO_W_F
 	const UNLOCKED_UNOWNS_X_TO_Z_F
 DEF NUM_UNLOCKED_UNOWN_SETS EQU const_value
+
+; sRTCStatusFlags::
+	const_def 5
+	shift_const RTC_DAYS_EXCEED_139 ; 5
+	shift_const RTC_DAYS_EXCEED_255 ; 6
+	shift_const RTC_RESET           ; 7
 
 ; hVBlank::
 ; VBlankHandlers indexes (see home/vblank.asm)

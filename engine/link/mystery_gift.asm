@@ -1259,7 +1259,7 @@ ReceiveEmptyIRDataBlock:
 MysteryGift_UpdateJoypad:
 ; We can only get four inputs at a time.
 ; We take d-pad first for no particular reason.
-	ld a, R_DPAD
+	ld a, 1 << rJOYP_DPAD
 	ldh [rJOYP], a
 ; Read twice to give the request time to take.
 	ldh a, [rJOYP]
@@ -1276,7 +1276,7 @@ MysteryGift_UpdateJoypad:
 
 ; Buttons make 8 total inputs (A, B, Select, Start).
 ; We can fit this into one byte.
-	ld a, R_BUTTONS
+	ld a, 1 << rJOYP_BUTTONS
 	ldh [rJOYP], a
 ; Wait for input to stabilize.
 rept 6

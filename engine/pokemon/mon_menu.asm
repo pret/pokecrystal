@@ -177,7 +177,7 @@ SwitchPartyMons:
 	call DelayFrame
 
 	farcall PartyMenuSelect
-	bit 1, b
+	bit B_BUTTON_F, b
 	jr c, .DontSwitch
 
 	farcall _SwitchPartyMons
@@ -815,7 +815,7 @@ ChooseMoveToDelete:
 	call Load2DMenuData
 	call SetUpMoveList
 	ld hl, w2DMenuFlags1
-	set 6, [hl]
+	set _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
 	jr .enter_loop
 
 .loop
@@ -842,7 +842,7 @@ ChooseMoveToDelete:
 	xor a
 	ld [wSwitchMon], a
 	ld hl, w2DMenuFlags1
-	res 6, [hl]
+	res _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
 	call ClearSprites
 	call ClearTilemap
 	pop af
@@ -851,7 +851,8 @@ ChooseMoveToDelete:
 DeleteMoveScreen2DMenuData:
 	db 3, 1 ; cursor start y, x
 	db 3, 1 ; rows, columns
-	db $40, $00 ; flags
+	db _2DMENU_ENABLE_SPRITE_ANIMS ; flags 1
+	db 0 ; flags 2
 	dn 2, 0 ; cursor offset
 	db D_UP | D_DOWN | A_BUTTON | B_BUTTON ; accepted buttons
 
@@ -883,18 +884,18 @@ MoveScreenLoop:
 .loop
 	call SetUpMoveList
 	ld hl, w2DMenuFlags1
-	set 6, [hl]
+	set _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
 	jr .skip_joy
 
 .joy_loop
 	call ScrollingMenuJoypad
-	bit 1, a
+	bit B_BUTTON_F, a
 	jp nz, .b_button
-	bit 0, a
+	bit A_BUTTON_F, a
 	jp nz, .a_button
-	bit 4, a
+	bit D_RIGHT_F, a
 	jp nz, .d_right
-	bit 5, a
+	bit D_LEFT_F, a
 	jp nz, .d_left
 
 .skip_joy
@@ -1073,14 +1074,15 @@ MoveScreenLoop:
 	xor a
 	ld [wSwappingMove], a
 	ld hl, w2DMenuFlags1
-	res 6, [hl]
+	res _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
 	call ClearSprites
 	jp ClearTilemap
 
 MoveScreen2DMenuData:
 	db 3, 1 ; cursor start y, x
 	db 3, 1 ; rows, columns
-	db $40, $00 ; flags
+	db _2DMENU_ENABLE_SPRITE_ANIMS ; flags 1
+	db 0 ; flags 2
 	dn 2, 0 ; cursor offsets
 	db D_UP | D_DOWN | D_LEFT | D_RIGHT | A_BUTTON | B_BUTTON ; accepted buttons
 

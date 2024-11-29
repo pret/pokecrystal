@@ -46,7 +46,7 @@ BattleCommand_RolloutPower:
 
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVarAddr
-	res 6, [hl]
+	res SUBSTATUS_ROLLOUT, [hl]
 	ret
 
 .hit

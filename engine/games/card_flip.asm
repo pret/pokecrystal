@@ -72,7 +72,7 @@ _CardFlip:
 	call WaitSFX
 	call ClearBGPalettes
 	ld hl, wOptions
-	res 4, [hl]
+	res NO_TEXT_SCROLL, [hl]
 	ret
 
 .CardFlip:

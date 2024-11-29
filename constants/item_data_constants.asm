@@ -30,12 +30,11 @@ DEF NUM_ITEM_TYPES EQU const_value - 1
 	const ITEMMENU_CLOSE   ; 6
 
 ; item actions
-DEF CANT_SELECT_F EQU 6
-DEF CANT_TOSS_F   EQU 7
+	const_def 6
+	shift_const CANT_SELECT ; 6
+	shift_const CANT_TOSS   ; 7
 
-DEF NO_LIMITS   EQU 0
-DEF CANT_SELECT EQU 1 << CANT_SELECT_F
-DEF CANT_TOSS   EQU 1 << CANT_TOSS_F
+DEF NO_LIMITS EQU 0
 
 ; pack pockets
 	const_def

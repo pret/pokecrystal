@@ -39,13 +39,13 @@ MonSubmenu:
 
 MonMenuLoop:
 .loop
-	ld a, MENU_UNUSED_3 | MENU_BACKUP_TILES_2 ; flags
+	ld a, MENU_UNUSED | MENU_BACKUP_TILES_2 ; flags
 	ld [wMenuDataFlags], a
 	ld a, [wMonSubmenuCount]
 	ld [wMenuDataItems], a
 	call InitVerticalMenuCursor
 	ld hl, w2DMenuFlags1
-	set 6, [hl]
+	set _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
 	call StaticMenuJoypad
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
@@ -255,11 +255,11 @@ BattleMonMenu:
 	call WaitBGMap
 	call CopyMenuData
 	ld a, [wMenuDataFlags]
-	bit 7, a
+	bit STATICMENU_CURSOR_F, a
 	jr z, .set_carry
 	call InitVerticalMenuCursor
 	ld hl, w2DMenuFlags1
-	set 6, [hl]
+	set _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
 	call StaticMenuJoypad
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX

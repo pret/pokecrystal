@@ -1003,7 +1003,7 @@ ExecuteCallbackScript::
 	ld hl, wScriptFlags
 	ld a, [hl]
 	push af
-	set 1, [hl]
+	set UNUSED_SCRIPT_FLAG_1, [hl]
 	farcall EnableScriptMode
 	farcall ScriptEvents
 	pop af

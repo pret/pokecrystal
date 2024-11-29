@@ -390,7 +390,7 @@ CheckMovingOffEdgeOfMap::
 GetMapScreenCoords::
 	ld hl, wOverworldMapBlocks
 	ld a, [wXCoord]
-	bit 0, a
+	bit 0, a ; even or odd?
 	jr nz, .odd_x
 ; even x
 	srl a
@@ -408,7 +408,7 @@ GetMapScreenCoords::
 	ld c, a
 	ld b, 0
 	ld a, [wYCoord]
-	bit 0, a
+	bit 0, a ; even or odd?
 	jr nz, .odd_y
 ; even y
 	srl a

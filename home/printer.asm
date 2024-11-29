@@ -5,7 +5,7 @@ PrinterReceive::
 AskSerial::
 ; send out a handshake while serial int is off
 	ld a, [wPrinterConnectionOpen]
-	bit 0, a
+	bit PRINTER_CONNECTION_OPEN, a
 	ret z
 
 ; if we're still interpreting data, don't try to receive

@@ -37,7 +37,7 @@ _LoadOverworldAttrmapPals::
 .next
 	pop hl
 	ld [de], a
-	res 7, [hl]
+	res OAM_TILE_BANK + 4, [hl]
 	inc hl
 	inc de
 	dec c
@@ -81,7 +81,7 @@ _ScrollBGMapPalettes::
 .next
 	pop hl
 	ld [de], a
-	res 7, [hl]
+	res OAM_TILE_BANK + 4, [hl]
 	inc hl
 	inc de
 	dec c

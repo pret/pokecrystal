@@ -225,7 +225,7 @@ TMHM_JoypadLoop:
 	xor a
 	ldh [hBGMapMode], a
 	ld a, [w2DMenuFlags2]
-	bit 7, a
+	bit _2DMENU_EXITING_F, a
 	jp nz, TMHM_ScrollPocket
 	ld a, b
 	ld [wMenuJoypad], a
@@ -301,8 +301,8 @@ TMHM_ExitPocket:
 
 TMHM_ScrollPocket:
 	ld a, b
-	bit 7, a
-	jr nz, .skip
+	bit D_DOWN_F, a
+	jr nz, .down
 	ld hl, wTMHMPocketScrollPosition
 	ld a, [hl]
 	and a
@@ -311,7 +311,7 @@ TMHM_ScrollPocket:
 	call TMHM_DisplayPocketItems
 	jp TMHM_ShowTMMoveDescription
 
-.skip
+.down
 	call TMHM_GetCurrentPocketPosition
 	ld b, 5
 .loop

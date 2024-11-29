@@ -36,7 +36,7 @@ HandleObjectStep:
 CheckObjectStillVisible:
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	res OBJ_FLAGS2_6, [hl]
+	res OFF_SCREEN_F, [hl]
 	ld a, [wXCoord]
 	ld e, a
 	ld hl, OBJECT_MAP_X
@@ -62,7 +62,7 @@ CheckObjectStillVisible:
 .ok
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	set OBJ_FLAGS2_6, [hl]
+	set OFF_SCREEN_F, [hl]
 	ld a, [wXCoord]
 	ld e, a
 	ld hl, OBJECT_INIT_X
@@ -99,7 +99,7 @@ CheckObjectStillVisible:
 .yes2
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	set OBJ_FLAGS2_6, [hl]
+	set OFF_SCREEN_F, [hl]
 	and a
 	ret
 
@@ -147,7 +147,7 @@ HandleObjectAction:
 	jr nz, SetFacingStanding
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	bit OBJ_FLAGS2_6, [hl]
+	bit OFF_SCREEN_F, [hl]
 	jr nz, SetFacingStanding
 	bit FROZEN_F, [hl]
 	jr nz, _CallFrozenObjectAction
@@ -663,8 +663,8 @@ MovementFunction_Strength:
 	jr z, .on_pit
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	bit OBJ_FLAGS2_2, [hl]
-	res OBJ_FLAGS2_2, [hl]
+	bit BOULDER_MOVING_F, [hl]
+	res BOULDER_MOVING_F, [hl]
 	jr z, .ok
 	ld hl, OBJECT_RANGE
 	add hl, bc
@@ -1667,7 +1667,7 @@ StepFunction_StrengthBoulder:
 	pop bc
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	res OBJ_FLAGS2_2, [hl]
+	res BOULDER_MOVING_F, [hl]
 	call CopyCoordsTileToLastCoordsTile
 	ld hl, OBJECT_WALKING
 	add hl, bc
@@ -2194,7 +2194,7 @@ RespawnPlayerAndOpponent:
 	ld a, PLAYER
 	call RespawnObject
 	ld a, [wBattleScriptFlags]
-	bit 7, a
+	bit BATTLESCRIPT_SCRIPTED_F, a
 	jr z, .skip_opponent
 	ldh a, [hLastTalked]
 	and a
@@ -2905,7 +2905,7 @@ InitSprites:
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	ld e, [hl]
-	bit OBJ_FLAGS2_7, e
+	bit OBJ_FLAGS2_7_F, e
 	jr z, .not_priority
 	or PRIORITY
 .not_priority

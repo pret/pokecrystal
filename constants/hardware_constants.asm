@@ -20,9 +20,9 @@ DEF RTC_M  EQU $09 ; Minutes   0-59 (0-3Bh)
 DEF RTC_H  EQU $0a ; Hours     0-23 (0-17h)
 DEF RTC_DL EQU $0b ; Lower 8 bits of Day Counter (0-FFh)
 DEF RTC_DH EQU $0c ; Upper 1 bit of Day Counter, Carry Bit, Halt Flag
-                   ; Bit 0  Most significant bit of Day Counter (Bit 8)
-                   ; Bit 6  Halt (0=Active, 1=Stop Timer)
-                   ; Bit 7  Day Counter Carry Bit (1=Counter Overflow)
+DEF RTC_DH_HI       EQU 0 ; Most significant bit of Day Counter (Bit 8)
+DEF RTC_DH_HALT     EQU 6 ; Halt (0=Active, 1=Stop Timer)
+DEF RTC_DH_OVERFLOW EQU 7 ; Day Counter Carry Bit (1=Counter Overflow)
 
 ; interrupt flags
 DEF VBLANK     EQU 0
@@ -49,6 +49,8 @@ DEF PRIORITY     EQU 1 << OAM_PRIORITY  ; $80
 
 ; Hardware registers
 DEF rJOYP                EQU $ff00 ; Joypad (R/W)
+DEF rJOYP_BUTTONS        EQU 4
+DEF rJOYP_DPAD           EQU 5
 DEF rSB                  EQU $ff01 ; Serial transfer data (R/W)
 DEF rSC                  EQU $ff02 ; Serial Transfer Control (R/W)
 DEF rSC_ON               EQU 7
@@ -125,6 +127,8 @@ DEF rWY                  EQU $ff4a ; Window Y Position (R/W)
 DEF rWX                  EQU $ff4b ; Window X Position minus 7 (R/W)
 DEF rLCDMODE             EQU $ff4c
 DEF rKEY1                EQU $ff4d ; CGB Mode Only - Prepare Speed Switch
+DEF KEY1_PREPARE         EQU 0     ; 0=No, 1=Prepare (R/W)
+DEF KEY1_DBLSPEED        EQU 7     ; 0=Normal Speed, 1=Double Speed (R)
 DEF rVBK                 EQU $ff4f ; CGB Mode Only - VRAM Bank
 DEF rBLCK                EQU $ff50
 DEF rHDMA1               EQU $ff51 ; CGB Mode Only - New DMA Source, High

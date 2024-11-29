@@ -19,7 +19,7 @@ _ResetClock:
 	jr c, .wrongpassword
 	ld a, BANK(sRTCStatusFlags)
 	call OpenSRAM
-	ld a, $80
+	ld a, RTC_RESET
 	ld [sRTCStatusFlags], a
 	call CloseSRAM
 	ld hl, .PasswordAskResetText

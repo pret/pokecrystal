@@ -1918,6 +1918,10 @@ ReleasePKMN_ByePKMN:
 	call DelayFrames
 	ret
 
+; move pkmn w/o mail jumptable bits
+DEF MOVE_MON_FROM_PARTY_F EQU 0
+DEF MOVE_MON_TO_PARTY_F   EQU 1
+
 MovePKMNWithoutMail_InsertMon:
 	push hl
 	push de
@@ -1941,13 +1945,13 @@ MovePKMNWithoutMail_InsertMon:
 	ld a, [wBillsPC_BackupLoadedBox]
 	and a
 	jr nz, .moving_from_box
-	set 0, c
+	set MOVE_MON_FROM_PARTY_F, c
 
 .moving_from_box
 	ld a, [wBillsPC_LoadedBox]
 	and a
 	jr nz, .moving_to_box
-	set 1, c
+	set MOVE_MON_TO_PARTY_F, c
 
 .moving_to_box
 	ld hl, .Jumptable

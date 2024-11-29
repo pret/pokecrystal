@@ -18,6 +18,10 @@ MapSetupScripts:
 ; valid commands are listed in MapSetupCommands (see data/maps/setup_script_pointers.asm)
 MACRO mapsetup
 	db (\1_MapSetupCmd - MapSetupCommands) / 3
+	; `mapsetup` takes a parameter if `add_mapsetup` indicates taking one.
+	if _NARG == 2
+		db \2 ; param
+	endc
 ENDM
 
 MapSetupScript_Teleport:

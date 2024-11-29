@@ -1,10 +1,14 @@
+DEF ALLOW_SKIPPING_CREDITS_F EQU 6
+
+
 SECTION "Credits", ROMX
 
 Credits::
-	bit 6, b ; Hall Of Fame
-	ld a, $0
+	; Don't allow skipping credits the first time they're viewed in the Hall of Fame
+	bit STATUSFLAGS_HALL_OF_FAME_F, b
+	ld a, 0
 	jr z, .okay
-	ld a, $40
+	ld a, 1 << ALLOW_SKIPPING_CREDITS_F
 .okay
 	ld [wJumptableIndex], a
 
@@ -119,7 +123,7 @@ Credits_HandleBButton:
 	and B_BUTTON
 	ret z
 	ld a, [wJumptableIndex]
-	bit 6, a
+	bit ALLOW_SKIPPING_CREDITS_F, a
 	ret z
 	ld hl, wCreditsPos
 	ld a, [hli]

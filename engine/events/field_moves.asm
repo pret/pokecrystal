@@ -234,17 +234,21 @@ Cut_SpawnLeaf:
 	pop de
 	ret
 
+; cut leaf spawn coords table bits
+DEF CUT_LEAF_SPAWN_RIGHT_F  EQU 0
+DEF CUT_LEAF_SPAWN_BOTTOM_F EQU 1
+
 Cut_GetLeafSpawnCoords:
 	ld de, 0
 	ld a, [wPlayerMetatileX]
-	bit 0, a
+	bit 0, a ; even or odd?
 	jr z, .left_side
-	set 0, e
+	set CUT_LEAF_SPAWN_RIGHT_F, e
 .left_side
 	ld a, [wPlayerMetatileY]
-	bit 0, a
+	bit 0, a ; even or odd?
 	jr z, .top_side
-	set 1, e
+	set CUT_LEAF_SPAWN_BOTTOM_F, e
 .top_side
 	ld a, [wPlayerDirection]
 	and %00001100
