@@ -665,7 +665,7 @@ ENDM
 
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	set 2, [hl]
+	set BOULDER_MOVING_F, [hl]
 
 	ld a, [wWalkingDirection]
 	ld d, a

@@ -1297,7 +1297,7 @@ Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") implies 
  .FutureSight:
 -; BUG: AI does not discourage Future Sight when it's already been used (see docs/bugs_and_glitches.md)
 -	ld a, [wEnemyScreens]
--	bit 5, a
+-	bit SCREENS_UNUSED, a
 +	ld a, [wEnemyFutureSightCount]
 +	and a
  	ret
@@ -2008,7 +2008,7 @@ Finally, edit [engine/battle/read_trainer_party.asm](https://github.com/pret/pok
 +	ld [wCurPartyLevel], a
 +
 +	ld a, [wInBattleTowerBattle]
-+	bit 0, a
++	bit IN_BATTLE_TOWER_BATTLE_F, a
 +	ret nz
 +
 +	ld a, [wLinkMode]

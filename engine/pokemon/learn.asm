@@ -169,7 +169,7 @@ ForgetMove:
 	call SafeLoadTempTilemapToTilemap
 	pop af
 	pop hl
-	bit 1, a
+	bit B_BUTTON_F, a
 	jr nz, .cancel
 	push hl
 	ld a, [wMenuCursorY]

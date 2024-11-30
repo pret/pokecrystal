@@ -661,7 +661,8 @@ InitPartyMenuNoCancel:
 PartyMenu2DMenuData:
 	db 1, 0 ; cursor start y, x
 	db 0, 1 ; rows, columns
-	db $60, $00 ; flags
+	db _2DMENU_WRAP_UP_DOWN | _2DMENU_ENABLE_SPRITE_ANIMS ; flags 1
+	db 0 ; flags 2
 	dn 2, 0 ; cursor offset
 	db 0 ; accepted buttons
 

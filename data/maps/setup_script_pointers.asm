@@ -1,6 +1,14 @@
 MACRO add_mapsetup
 \1_MapSetupCmd:
-	dba \1
+	; A second argument of TRUE indicates taking a parameter.
+	if _NARG < 2
+		dba \1
+	elif \2
+		db (1 << MAPSETUPSCRIPT_HAS_PARAM_F) | BANK(\1)
+		dw \1
+	else
+		dba \1
+	endc
 ENDM
 
 MapSetupCommands:

@@ -45,56 +45,36 @@ DEF OW_RIGHT EQU RIGHT << 2
 
 ; object_struct OBJECT_FLAGS1 bit flags
 	const_def
-	const INVISIBLE_F     ; 0
-	const WONT_DELETE_F   ; 1
-	const FIXED_FACING_F  ; 2
-	const SLIDING_F       ; 3
-	const NOCLIP_TILES_F  ; 4
-	const MOVE_ANYWHERE_F ; 5
-	const NOCLIP_OBJS_F   ; 6
-	const EMOTE_OBJECT_F  ; 7
-
-DEF INVISIBLE     EQU 1 << INVISIBLE_F
-DEF WONT_DELETE   EQU 1 << WONT_DELETE_F
-DEF FIXED_FACING  EQU 1 << FIXED_FACING_F
-DEF SLIDING       EQU 1 << SLIDING_F
-DEF NOCLIP_TILES  EQU 1 << NOCLIP_TILES_F
-DEF MOVE_ANYWHERE EQU 1 << MOVE_ANYWHERE_F
-DEF NOCLIP_OBJS   EQU 1 << NOCLIP_OBJS_F
-DEF EMOTE_OBJECT  EQU 1 << EMOTE_OBJECT_F
+	shift_const INVISIBLE     ; 0
+	shift_const WONT_DELETE   ; 1
+	shift_const FIXED_FACING  ; 2
+	shift_const SLIDING       ; 3
+	shift_const NOCLIP_TILES  ; 4
+	shift_const MOVE_ANYWHERE ; 5
+	shift_const NOCLIP_OBJS   ; 6
+	shift_const EMOTE_OBJECT  ; 7
 
 ; object_struct OBJECT_FLAGS2 bit flags
 	const_def
-	const LOW_PRIORITY_F  ; 0
-	const HIGH_PRIORITY_F ; 1
-	const OBJ_FLAGS2_2    ; 2
-	const OVERHEAD_F      ; 3
-	const USE_OBP1_F      ; 4
-	const FROZEN_F        ; 5
-	const OBJ_FLAGS2_6    ; 6
-	const OBJ_FLAGS2_7    ; 7
-
-DEF LOW_PRIORITY  EQU 1 << LOW_PRIORITY_F
-DEF HIGH_PRIORITY EQU 1 << HIGH_PRIORITY_F
-DEF OVERHEAD      EQU 1 << OVERHEAD_F
-DEF USE_OBP1      EQU 1 << USE_OBP1_F
+	shift_const LOW_PRIORITY   ; 0
+	shift_const HIGH_PRIORITY  ; 1
+	shift_const BOULDER_MOVING ; 2
+	shift_const OVERHEAD       ; 3
+	shift_const USE_OBP1       ; 4
+	shift_const FROZEN         ; 5
+	shift_const OFF_SCREEN     ; 6
+	shift_const OBJ_FLAGS2_7   ; 7
 
 ; object_struct OBJECT_PALETTE bit flags
 	const_def 5
-	const SWIMMING_F         ; 5
-	const STRENGTH_BOULDER_F ; 6
-	const BIG_OBJECT_F       ; 7
-
-DEF SWIMMING         EQU 1 << SWIMMING_F
-DEF STRENGTH_BOULDER EQU 1 << STRENGTH_BOULDER_F
-DEF BIG_OBJECT       EQU 1 << BIG_OBJECT_F
+	shift_const SWIMMING         ; 5
+	shift_const STRENGTH_BOULDER ; 6
+	shift_const BIG_OBJECT       ; 7
 
 ; facing attribute bit flags
-DEF RELATIVE_ATTRIBUTES_F EQU 1
-DEF ABSOLUTE_TILE_ID_F    EQU 2
-
-DEF RELATIVE_ATTRIBUTES EQU 1 << RELATIVE_ATTRIBUTES_F
-DEF ABSOLUTE_TILE_ID    EQU 1 << ABSOLUTE_TILE_ID_F
+	const_def 1
+	shift_const RELATIVE_ATTRIBUTES ; 1
+	shift_const ABSOLUTE_TILE_ID    ; 2
 
 ; map_object struct members (see macros/ram.asm)
 ; struct initialized by object_event macro (see macros/scripts/maps.asm)

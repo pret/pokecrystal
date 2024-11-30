@@ -22,3 +22,6 @@ DEF NUM_MAPSETUP_SCRIPTS EQU const_value - $f1
 	const MAPCALLBACK_CMDQUEUE
 	const MAPCALLBACK_SPRITES
 	const MAPCALLBACK_NEWMAP
+
+; see data/maps/setup_script_pointers.asm
+DEF MAPSETUPSCRIPT_HAS_PARAM_F EQU 7

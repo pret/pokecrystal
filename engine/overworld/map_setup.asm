@@ -41,7 +41,7 @@ ReadMapSetupScript:
 
 	; Bit 7 of the bank indicates a parameter.
 	; This is left unused.
-	bit 7, b
+	bit MAPSETUPSCRIPT_HAS_PARAM_F, b
 	jr z, .go
 
 	pop de

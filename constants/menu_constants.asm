@@ -1,41 +1,56 @@
 ; MenuHeader flags
 	const_def
-	shift_const MENU_RESTORE_TILES ; Will be set if MENU_BACKUP_TILES(_2) is set.
-	shift_const MENU_UNUSED_1
-	shift_const MENU_UNUSED_2
-	shift_const MENU_NO_CLICK_SFX
-	shift_const MENU_SPRITE_ANIMS
-	shift_const MENU_UNUSED_3
-	shift_const MENU_BACKUP_TILES
-	shift_const MENU_BACKUP_TILES_2
+	shift_const MENU_RESTORE_TILES  ; 0
+	const_skip 2
+	shift_const MENU_NO_CLICK_SFX   ; 3
+	shift_const MENU_SPRITE_ANIMS   ; 4
+	shift_const MENU_UNUSED         ; 5
+	shift_const MENU_BACKUP_TILES   ; 6
+	shift_const MENU_BACKUP_TILES_2 ; 7
 
 ; VerticalMenu/DoNthMenu/SetUpMenu/_2DMenu MenuData flags
 ; Per flag the comment specifies which menus actually implement it
 	const_def
-	shift_const STATICMENU_DISABLE_B ; VerticalMenu/_2DMenu
-	shift_const STATICMENU_ENABLE_SELECT ; VerticalMenu/_2DMenu
-	shift_const STATICMENU_ENABLE_LEFT_RIGHT ; DoNthMenu/SetUpMenu
-	shift_const STATICMENU_ENABLE_START ; DoNthMenu/SetUpMenu
-	shift_const STATICMENU_PLACE_TITLE ; VerticalMenu
-	shift_const STATICMENU_WRAP ; All
-	shift_const STATICMENU_NO_TOP_SPACING ; VerticalMenu/_2DMenu
-	shift_const STATICMENU_CURSOR ; VerticalMenu/_2DMenu
+	shift_const STATICMENU_DISABLE_B         ; 0 ; VerticalMenu/_2DMenu
+	shift_const STATICMENU_ENABLE_SELECT     ; 1 ; VerticalMenu/_2DMenu
+	shift_const STATICMENU_ENABLE_LEFT_RIGHT ; 2 ; DoNthMenu/SetUpMenu
+	shift_const STATICMENU_ENABLE_START      ; 3 ; DoNthMenu/SetUpMenu
+	shift_const STATICMENU_PLACE_TITLE       ; 4 ; VerticalMenu
+	shift_const STATICMENU_WRAP              ; 5 ; All
+	shift_const STATICMENU_NO_TOP_SPACING    ; 6 ; VerticalMenu/_2DMenu
+	shift_const STATICMENU_CURSOR            ; 7 ; VerticalMenu/_2DMenu
 
 ; ScrollingMenu MenuData flags
 	const_def
-	shift_const SCROLLINGMENU_CALL_FUNCTION1_CANCEL
-	shift_const SCROLLINGMENU_CALL_FUNCTION3_NO_SWITCH
-	shift_const SCROLLINGMENU_ENABLE_LEFT
-	shift_const SCROLLINGMENU_ENABLE_RIGHT
-	shift_const SCROLLINGMENU_DISPLAY_ARROWS
-	shift_const SCROLLINGMENU_ENABLE_FUNCTION3
-	shift_const SCROLLINGMENU_ENABLE_START
-	shift_const SCROLLINGMENU_ENABLE_SELECT
+	shift_const SCROLLINGMENU_CALL_FUNCTION1_CANCEL    ; 0
+	shift_const SCROLLINGMENU_CALL_FUNCTION3_NO_SWITCH ; 1
+	shift_const SCROLLINGMENU_ENABLE_RIGHT             ; 2
+	shift_const SCROLLINGMENU_ENABLE_LEFT              ; 3
+	shift_const SCROLLINGMENU_DISPLAY_ARROWS           ; 4
+	shift_const SCROLLINGMENU_ENABLE_FUNCTION3         ; 5
+	shift_const SCROLLINGMENU_ENABLE_START             ; 6
+	shift_const SCROLLINGMENU_ENABLE_SELECT            ; 7
 
 ; ScrollingMenu items structure format
 	const_def 1
-	const SCROLLINGMENU_ITEMS_NORMAL
-	const SCROLLINGMENU_ITEMS_QUANTITY
+	const SCROLLINGMENU_ITEMS_NORMAL   ; 1
+	const SCROLLINGMENU_ITEMS_QUANTITY ; 2
+
+; _2DMenu more flags
+	const_def
+	shift_const _2DMENU_EXIT_RIGHT            ; 0
+	shift_const _2DMENU_EXIT_LEFT             ; 1
+	shift_const _2DMENU_EXIT_UP               ; 2
+	shift_const _2DMENU_EXIT_DOWN             ; 3
+	shift_const _2DMENU_WRAP_LEFT_RIGHT       ; 4
+	shift_const _2DMENU_WRAP_UP_DOWN          ; 5
+	shift_const _2DMENU_ENABLE_SPRITE_ANIMS   ; 6
+	shift_const _2DMENU_DISABLE_JOYPAD_FILTER ; 7
+
+; _2DMenu more flags 2
+	const_def
+	const_skip 7
+	shift_const _2DMENU_EXITING ; 7
 
 ; MonMenuOptions indexes (see data/mon_menu.asm)
 ; used by PokemonActionSubmenu (see engine/pokemon/mon_menu.asm)

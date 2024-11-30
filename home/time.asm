@@ -72,10 +72,10 @@ FixDays::
 
 ; check if day count > 255 (bit 8 set)
 	ldh a, [hRTCDayHi] ; DH
-	bit 0, a
+	bit RTC_DH_HI, a
 	jr z, .daylo
 ; reset dh (bit 8)
-	res 0, a
+	res RTC_DH_HI, a
 	ldh [hRTCDayHi], a
 
 ; mod 140
@@ -93,7 +93,7 @@ FixDays::
 	ldh [hRTCDayLo], a
 
 ; flag for sRTCStatusFlags
-	ld a, %01000000
+	ld a, RTC_DAYS_EXCEED_255
 	jr .set
 
 .daylo
@@ -112,7 +112,7 @@ FixDays::
 	ldh [hRTCDayLo], a
 
 ; flag for sRTCStatusFlags
-	ld a, %00100000
+	ld a, RTC_DAYS_EXCEED_139
 
 .set
 ; update clock with modded day value
@@ -227,7 +227,7 @@ SetClock::
 ; this block is totally pointless
 	ld [hl], RTC_DH
 	ld a, [de]
-	bit 6, a ; halt
+	bit RTC_DH_HALT, a
 	ld [de], a
 
 ; seconds
@@ -249,7 +249,7 @@ SetClock::
 ; day hi
 	ld [hl], RTC_DH
 	ldh a, [hRTCDayHi]
-	res 6, a ; make sure timer is active
+	res RTC_DH_HALT, a ; make sure timer is active
 	ld [de], a
 
 ; cleanup

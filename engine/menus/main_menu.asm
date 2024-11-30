@@ -242,7 +242,7 @@ MainMenuJoypadLoop:
 .loop
 	call MainMenu_PrintCurrentTimeAndDay
 	ld a, [w2DMenuFlags1]
-	set 5, a
+	set _2DMENU_WRAP_UP_DOWN_F, a
 	ld [w2DMenuFlags1], a
 	call GetScrollingMenuJoypad
 	ld a, [wMenuJoypad]
@@ -281,7 +281,7 @@ MainMenu_PrintCurrentTimeAndDay:
 
 .PlaceBox:
 	call CheckRTCStatus
-	and %10000000 ; Day count exceeded 16383
+	and RTC_RESET
 	jr nz, .TimeFail
 	hlcoord 0, 14
 	ld b, 2
@@ -298,7 +298,7 @@ MainMenu_PrintCurrentTimeAndDay:
 	and a
 	ret z
 	call CheckRTCStatus
-	and $80
+	and RTC_RESET
 	jp nz, .PrintTimeNotSet
 	call UpdateTime
 	call GetWeekday

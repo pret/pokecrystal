@@ -1281,7 +1281,7 @@ LinkTrade_OTPartyMenu:
 	ld [wMenuCursorX], a
 	ln a, 1, 0
 	ld [w2DMenuCursorOffsets], a
-	ld a, MENU_UNUSED_3
+	ld a, MENU_UNUSED
 	ld [w2DMenuFlags1], a
 	xor a
 	ld [w2DMenuFlags2], a
@@ -1345,7 +1345,7 @@ LinkTrade_PlayerPartyMenu:
 	ld [wMenuCursorX], a
 	ln a, 1, 0
 	ld [w2DMenuCursorOffsets], a
-	ld a, MENU_UNUSED_3
+	ld a, MENU_UNUSED
 	ld [w2DMenuFlags1], a
 	xor a
 	ld [w2DMenuFlags2], a
@@ -1755,7 +1755,7 @@ LinkTrade:
 	call Call_ExitMenu
 	call WaitBGMap2
 	pop af
-	bit 1, a
+	bit B_BUTTON_F, a
 	jr nz, .canceled
 	ld a, [wMenuCursorY]
 	dec a

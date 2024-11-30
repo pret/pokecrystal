@@ -516,6 +516,7 @@ wAlreadyFailed:: db
 wBattleParticipantsIncludingFainted:: db
 wBattleLowHealthAlarm:: db
 wPlayerMinimized:: db
+
 wPlayerScreens::
 ; bit
 ; 0 spikes
@@ -1762,10 +1763,7 @@ wJoypadDisable::
 
 	ds 1
 
-wInBattleTowerBattle::
-; 0 not in BattleTower-Battle
-; 1 BattleTower-Battle
-	db
+wInBattleTowerBattle:: db
 
 	ds 1
 
@@ -2803,6 +2801,7 @@ wMapStatus:: db
 wMapEventStatus:: db
 
 wScriptFlags::
+; bit 2: running script
 ; bit 3: run deferred script
 	db
 	ds 1
@@ -2951,7 +2950,7 @@ wObjectMasks:: ds NUM_OBJECTS
 
 wVariableSprites:: ds $100 - SPRITE_VARS
 
-wEnteredMapFromContinue:: db
+wMapNameSignFlags:: db
 	ds 2
 wTimeOfDayPal:: db
 	ds 4

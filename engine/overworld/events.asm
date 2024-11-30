@@ -32,67 +32,67 @@ EnableEvents::
 
 CheckEnabledMapEventsBit5:
 	ld hl, wEnabledPlayerEvents
-	bit 5, [hl]
+	bit PLAYEREVENTS_UNUSED, [hl]
 	ret
 
 DisableWarpsConnections: ; unreferenced
 	ld hl, wEnabledPlayerEvents
-	res 2, [hl]
+	res PLAYEREVENTS_WARPS_AND_CONNECTIONS, [hl]
 	ret
 
 DisableCoordEvents: ; unreferenced
 	ld hl, wEnabledPlayerEvents
-	res 1, [hl]
+	res PLAYEREVENTS_COORD_EVENTS, [hl]
 	ret
 
 DisableStepCount: ; unreferenced
 	ld hl, wEnabledPlayerEvents
-	res 0, [hl]
+	res PLAYEREVENTS_COUNT_STEPS, [hl]
 	ret
 
 DisableWildEncounters: ; unreferenced
 	ld hl, wEnabledPlayerEvents
-	res 4, [hl]
+	res PLAYEREVENTS_WILD_ENCOUNTERS, [hl]
 	ret
 
 EnableWarpsConnections: ; unreferenced
 	ld hl, wEnabledPlayerEvents
-	set 2, [hl]
+	set PLAYEREVENTS_WARPS_AND_CONNECTIONS, [hl]
 	ret
 
 EnableCoordEvents: ; unreferenced
 	ld hl, wEnabledPlayerEvents
-	set 1, [hl]
+	set PLAYEREVENTS_COORD_EVENTS, [hl]
 	ret
 
 EnableStepCount: ; unreferenced
 	ld hl, wEnabledPlayerEvents
-	set 0, [hl]
+	set PLAYEREVENTS_COUNT_STEPS, [hl]
 	ret
 
 EnableWildEncounters:
 	ld hl, wEnabledPlayerEvents
-	set 4, [hl]
+	set PLAYEREVENTS_WILD_ENCOUNTERS, [hl]
 	ret
 
 CheckWarpConnectionsEnabled:
 	ld hl, wEnabledPlayerEvents
-	bit 2, [hl]
+	bit PLAYEREVENTS_WARPS_AND_CONNECTIONS, [hl]
 	ret
 
 CheckCoordEventsEnabled:
 	ld hl, wEnabledPlayerEvents
-	bit 1, [hl]
+	bit PLAYEREVENTS_COORD_EVENTS, [hl]
 	ret
 
 CheckStepCountEnabled:
 	ld hl, wEnabledPlayerEvents
-	bit 0, [hl]
+	bit PLAYEREVENTS_COUNT_STEPS, [hl]
 	ret
 
 CheckWildEncountersEnabled:
 	ld hl, wEnabledPlayerEvents
-	bit 4, [hl]
+	bit PLAYEREVENTS_WILD_ENCOUNTERS, [hl]
 	ret
 
 StartMap:
@@ -424,13 +424,13 @@ endr
 	call CallScript
 
 	ld hl, wScriptFlags
-	res 3, [hl]
+	res RUN_DEFERRED_SCRIPT, [hl]
 
 	farcall EnableScriptMode
 	farcall ScriptEvents
 
 	ld hl, wScriptFlags
-	bit 3, [hl]
+	bit RUN_DEFERRED_SCRIPT, [hl]
 	jr z, .nope
 
 	ld hl, wDeferredScriptAddr

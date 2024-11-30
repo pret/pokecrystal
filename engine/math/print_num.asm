@@ -11,17 +11,17 @@ _PrintNum::
 
 	push bc
 
-	bit 5, b
+	bit PRINTNUM_MONEY_F, b
 	jr z, .main
-	bit 7, b
+	bit PRINTNUM_LEADINGZEROS_F, b
 	jr nz, .moneyflag
-	bit 6, b
+	bit PRINTNUM_LEFTALIGN_F, b
 	jr z, .main
 
 .moneyflag ; 101xxxxx or 011xxxxx
 	ld a, "¥"
 	ld [hli], a
-	res 5, b ; 100xxxxx or 010xxxxx
+	res PRINTNUM_MONEY_F, b ; 100xxxxx or 010xxxxx
 
 .main
 	xor a
@@ -184,11 +184,11 @@ _PrintNum::
 	ldh a, [hPrintNumBuffer + 0]
 	and a
 	jr nz, .stop
-	bit 5, d
+	bit PRINTNUM_MONEY_F, d
 	jr z, .stop
 	ld a, "¥"
 	ld [hli], a
-	res 5, d
+	res PRINTNUM_MONEY_F, d
 
 .stop
 	pop af
@@ -262,11 +262,11 @@ _PrintNum::
 	ldh a, [hPrintNumBuffer + 0]
 	and a
 	jr nz, .done
-	bit 5, d
+	bit PRINTNUM_MONEY_F, d
 	jr z, .done
 	ld a, "¥"
 	ld [hli], a
-	res 5, d
+	res PRINTNUM_MONEY_F, d
 .done
 	ld a, "0"
 	add c
@@ -281,7 +281,7 @@ _PrintNum::
 
 .PrintLeadingZero:
 ; prints a leading zero unless they are turned off in the flags
-	bit 7, d ; print leading zeroes?
+	bit PRINTNUM_LEADINGZEROS_F, d
 	ret z
 	ld [hl], "0"
 	ret
@@ -289,9 +289,9 @@ _PrintNum::
 .AdvancePointer:
 ; increments the pointer unless leading zeroes are not being printed,
 ; the number is left-aligned, and no nonzero digits have been printed yet
-	bit 7, d ; print leading zeroes?
+	bit PRINTNUM_LEADINGZEROS_F, d
 	jr nz, .inc
-	bit 6, d ; left alignment or right alignment?
+	bit PRINTNUM_LEFTALIGN_F, d
 	jr z, .inc
 	ldh a, [hPrintNumBuffer + 0]
 	and a

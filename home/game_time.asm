@@ -38,7 +38,7 @@ GameTimer::
 
 ; Is the timer already capped?
 	ld hl, wGameTimeCap
-	bit 0, [hl]
+	bit GAME_TIME_CAPPED, [hl]
 	ret nz
 
 ; +1 frame
@@ -103,7 +103,7 @@ GameTimer::
 	jr c, .ok
 
 	ld hl, wGameTimeCap
-	set 0, [hl]
+	set GAME_TIME_CAPPED, [hl]
 
 	ld a, 59 ; 999:59:59.00
 	ld [wGameTimeMinutes], a

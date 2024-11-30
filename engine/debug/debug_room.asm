@@ -372,7 +372,7 @@ DebugRoomMenu_TimerReset:
 	ld a, BANK(sRTCStatusFlags)
 	call OpenSRAM
 	ld hl, sRTCStatusFlags
-	set 7, [hl]
+	set RTC_RESET_F, [hl]
 	call CloseSRAM
 	ret
 
@@ -607,7 +607,7 @@ DebugRoom_EditPagedValues:
 	call DelayFrame
 	call JoyTextDelay
 	ldh a, [hJoyLast]
-	bit 1, a
+	bit B_BUTTON_F, a
 	jr nz, .done
 	ld hl, .continue
 	push hl
