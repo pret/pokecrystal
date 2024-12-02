@@ -123,7 +123,7 @@ SetUpPokeAnim:
 	pop af
 	ldh [rSVBK], a
 	ld a, c
-	and $80
+	and JUMPTABLE_EXIT
 	ret z
 	scf
 	ret
@@ -196,7 +196,7 @@ PokeAnim_Idle:
 PokeAnim_Play:
 	call PokeAnim_DoAnimScript
 	ld a, [wPokeAnimJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	ret z
 	call PokeAnim_PlaceGraphic
 	ld a, [wPokeAnimSceneIndex]
@@ -207,7 +207,7 @@ PokeAnim_Play:
 PokeAnim_Play2:
 	call PokeAnim_DoAnimScript
 	ld a, [wPokeAnimJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	ret z
 	ld a, [wPokeAnimSceneIndex]
 	inc a
@@ -224,7 +224,7 @@ PokeAnim_BasePic:
 PokeAnim_Finish:
 	call PokeAnim_DeinitFrames
 	ld hl, wPokeAnimSceneIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 PokeAnim_Cry:
@@ -358,7 +358,7 @@ PokeAnim_DoAnimScript:
 	ldh [hBGMapMode], a
 .loop
 	ld a, [wPokeAnimJumptableIndex]
-	and $7f
+	and JUMPTABLE_INDEX_MASK
 	ld hl, .Jumptable
 	rst JumpTable
 	ret
@@ -407,7 +407,7 @@ PokeAnim_DoAnimScript:
 
 PokeAnim_End:
 	ld hl, wPokeAnimJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 PokeAnim_GetDuration:
