@@ -370,7 +370,7 @@ EZChat_MasterLoop:
 	ldh a, [hJoyPressed]
 	ldh [hJoypadPressed], a
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .exit
 	call .DoJumptableFunction
 	farcall PlaySpriteAnimations
@@ -1686,7 +1686,7 @@ Function11cab3:
 
 .asm_11caf3
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 .asm_11caf9

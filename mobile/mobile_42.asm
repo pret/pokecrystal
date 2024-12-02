@@ -337,7 +337,7 @@ MobileTradeAnim_InitSpeciesName:
 
 MobileTradeAnim_JumptableLoop:
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .StopAnim
 	call .ExecuteMobileTradeAnimCommand
 	call DelayFrame
@@ -404,7 +404,7 @@ GetMobileTradeAnimByte:
 
 EndMobileTradeAnim:
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 WaitMobileTradeSpriteAnims:
