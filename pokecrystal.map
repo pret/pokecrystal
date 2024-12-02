@@ -47471,9 +47471,9 @@ SRAM bank #2:
 	         $ad64 = sBox4Mon3CaughtGender
 	         $ad64 = sBox4Mon3CaughtLocation
 	         $ad65 = sBox4Mon3Level
+	         $ad66 = sBox4Mon4
 	         $ad66 = sBox4Mon3BoxEnd
 	         $ad66 = sBox4Mon4Species
-	         $ad66 = sBox4Mon4
 	         $ad67 = sBox4Mon4Item
 	         $ad68 = sBox4Mon4Moves
 	         $ad6c = sBox4Mon4ID
@@ -54020,7 +54020,6 @@ WRAM0 bank #0:
 	SECTION: $c608-$c7e7 ($01e0 bytes) ["Miscellaneous"]
 	         $c608 = wOddEggSpecies
 	         $c608 = wBattle
-	         $c608 = wBoxPartialData
 	         $c608 = wTimeSetBuffer
 	         $c608 = wHallOfFameTemp
 	         $c608 = wBT_OTTempName
@@ -54028,6 +54027,7 @@ WRAM0 bank #0:
 	         $c608 = wUnknownGender
 	         $c608 = wDebugLightColor
 	         $c608 = wHallOfFameTempWinCount
+	         $c608 = wBoxPartialData
 	         $c608 = wMobileMonSender
 	         $c608 = wBT_OTTemp
 	         $c608 = wEnemyMoveStruct

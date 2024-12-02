@@ -46918,9 +46918,9 @@
 02:ad1d sBox4Mon1PP
 02:ad21 sBox4Mon1Happiness
 02:ad22 sBox4Mon1PokerusStatus
-02:ad23 sBox4Mon1CaughtData
 02:ad23 sBox4Mon1CaughtTime
 02:ad23 sBox4Mon1CaughtLevel
+02:ad23 sBox4Mon1CaughtData
 02:ad24 sBox4Mon1CaughtLocation
 02:ad24 sBox4Mon1CaughtGender
 02:ad25 sBox4Mon1Level
@@ -53483,7 +53483,6 @@
 00:c608 wTilemapEnd
 00:c608 wOddEggSpecies
 00:c608 wBattle
-00:c608 wBoxPartialData
 00:c608 wTimeSetBuffer
 00:c608 wHallOfFameTemp
 00:c608 wBT_OTTempName
@@ -53491,6 +53490,7 @@
 00:c608 wUnknownGender
 00:c608 wDebugLightColor
 00:c608 wHallOfFameTempWinCount
+00:c608 wBoxPartialData
 00:c608 wMobileMonSender
 00:c608 wBT_OTTemp
 00:c608 wEnemyMoveStruct

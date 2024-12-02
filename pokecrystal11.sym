@@ -46745,9 +46745,9 @@
 02:ad64 sBox4Mon3CaughtGender
 02:ad64 sBox4Mon3CaughtLocation
 02:ad65 sBox4Mon3Level
+02:ad66 sBox4Mon4
 02:ad66 sBox4Mon3BoxEnd
 02:ad66 sBox4Mon4Species
-02:ad66 sBox4Mon4
 02:ad67 sBox4Mon4Item
 02:ad68 sBox4Mon4Moves
 02:ad6c sBox4Mon4ID
@@ -53258,7 +53258,6 @@
 00:c608 wTilemapEnd
 00:c608 wOddEggSpecies
 00:c608 wBattle
-00:c608 wBoxPartialData
 00:c608 wTimeSetBuffer
 00:c608 wHallOfFameTemp
 00:c608 wBT_OTTempName
@@ -53266,6 +53265,7 @@
 00:c608 wUnknownGender
 00:c608 wDebugLightColor
 00:c608 wHallOfFameTempWinCount
+00:c608 wBoxPartialData
 00:c608 wMobileMonSender
 00:c608 wBT_OTTemp
 00:c608 wEnemyMoveStruct
