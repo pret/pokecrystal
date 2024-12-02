@@ -62,7 +62,7 @@ DebugColorPicker: ; unreferenced
 	ld [wDebugColorIsShiny], a
 .loop
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .exit
 	call DebugColorMain
 	call DebugColor_PlaceCursor
@@ -720,7 +720,7 @@ DebugColor_TMHMJoypad:
 
 .exit ; unreferenced
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 .scroll:

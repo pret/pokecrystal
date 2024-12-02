@@ -322,7 +322,7 @@ NamingScreen_ApplyTextInputMode:
 NamingScreenJoypadLoop:
 	call JoyTextDelay
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .quit
 	call .RunJumptable
 	farcall PlaySpriteAnimationsAndDelayFrame
@@ -444,7 +444,7 @@ NamingScreenJoypadLoop:
 .end
 	call NamingScreen_StoreEntry
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 .select
@@ -1008,7 +1008,7 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 .DoMailEntry:
 	call JoyTextDelay
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .exit_mail
 	call .DoJumptable
 	farcall PlaySpriteAnimationsAndDelayFrame
@@ -1134,7 +1134,7 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 .finished
 	call NamingScreen_StoreEntry
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 .select

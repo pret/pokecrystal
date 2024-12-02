@@ -56,7 +56,7 @@ Printer_Quit:
 	xor a
 	ld [wPrinterStatusFlags], a
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 Printer_NextSection:

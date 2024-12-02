@@ -21,6 +21,11 @@ DEF AUTO_INPUT EQU $ff
 	const TEMPMON    ; 3
 	const WILDMON    ; 4
 
+; wJumptableIndex::
+DEF JUMPTABLE_INDEX_MASK EQU %01111111
+	const_def 7
+	shift_const JUMPTABLE_EXIT
+
 ; wGameTimerPaused::
 DEF GAME_TIMER_COUNTING_F EQU 0
 DEF GAME_TIMER_MOBILE_F   EQU 7

@@ -19,7 +19,7 @@ Pack:
 .loop
 	call JoyTextDelay
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .done
 	call .RunJumptable
 	call DelayFrame
@@ -631,7 +631,7 @@ BattlePack:
 .loop
 	call JoyTextDelay
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .end
 	call .RunJumptable
 	call DelayFrame
@@ -1186,14 +1186,14 @@ Pack_GetJumptablePointer:
 
 Pack_QuitNoScript:
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	xor a ; FALSE
 	ld [wPackUsedItem], a
 	ret
 
 Pack_QuitRunScript:
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ld a, TRUE
 	ld [wPackUsedItem], a
 	ret

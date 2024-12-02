@@ -44,7 +44,7 @@ _MemoryGame:
 
 .JumptableLoop:
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .quit
 	call .ExecuteJumptable
 	callfar PlaySpriteAnimations
@@ -80,7 +80,7 @@ _MemoryGame:
 	call UnusedCursor_InterpretJoypad_AnimateCursor
 	jr nc, .proceed
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 .proceed
@@ -235,7 +235,7 @@ endr
 	call UnusedCursor_InterpretJoypad_AnimateCursor
 	jr nc, .restart
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 .restart

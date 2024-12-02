@@ -309,7 +309,7 @@ DEF LZ_LONG_HI   EQU %00000011
 .donerw
 	pop hl
 
-	bit 7, [hl]
+	bit 7, [hl] ; sign
 	jr nz, .next
 	inc hl ; positive offset is two bytes
 .next
