@@ -80,7 +80,7 @@ StatsScreenMain:
 	rst JumpTable
 	call StatsScreen_WaitAnim
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	jr z, .loop
 	ret
 
@@ -97,14 +97,14 @@ StatsScreenMobile:
 .loop
 	farcall Mobile_SetOverworldDelay
 	ld a, [wJumptableIndex]
-	and $7f
+	and JUMPTABLE_INDEX_MASK
 	ld hl, StatsScreenPointerTable
 	rst JumpTable
 	call StatsScreen_WaitAnim
 	farcall MobileComms_CheckInactivityTimer
 	jr c, .exit
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	jr z, .loop
 
 .exit
@@ -142,14 +142,14 @@ StatsScreen_WaitAnim:
 
 StatsScreen_SetJumptableIndex:
 	ld a, [wJumptableIndex]
-	and $80
+	and JUMPTABLE_EXIT
 	or h
 	ld [wJumptableIndex], a
 	ret
 
 StatsScreen_Exit:
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 MonStatsInit:
