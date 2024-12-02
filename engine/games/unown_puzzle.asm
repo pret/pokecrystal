@@ -60,7 +60,7 @@ _UnownPuzzle:
 .loop
 	call JoyTextDelay
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .quit
 	call UnownPuzzleJumptable
 	ld a, [wHoldingUnownPuzzlePiece]
@@ -332,7 +332,7 @@ UnownPuzzle_A:
 	ld [wSolvedUnownPuzzle], a
 UnownPuzzle_Quit:
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 UnownPuzzle_InvalidAction:

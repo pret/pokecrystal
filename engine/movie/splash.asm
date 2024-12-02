@@ -41,7 +41,7 @@ SplashScreen:
 	and BUTTONS
 	jr nz, .pressed_button
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .finish
 	call GameFreakPresentsScene
 	farcall PlaySpriteAnimations
@@ -195,7 +195,7 @@ GameFreakPresents_WaitForTimer:
 
 .finish
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 GameFreakLogoSpriteAnim:
