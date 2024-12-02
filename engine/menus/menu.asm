@@ -32,7 +32,7 @@ _InterpretMobileMenu::
 	call ApplyTilemap
 	call Init2DMenuCursorPosition
 	ld hl, w2DMenuFlags1
-	set 7, [hl]
+	set _2DMENU_DISABLE_JOYPAD_FILTER_F, [hl]
 .loop
 	call DelayFrame
 	farcall Function10032e
