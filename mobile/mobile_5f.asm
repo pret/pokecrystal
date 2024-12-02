@@ -4444,7 +4444,7 @@ DisplayMobileError:
 	call JoyTextDelay
 	call .RunJumptable
 	ld a, [wc303]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .quit
 	farcall HDMATransferAttrmapAndTilemapToWRAMBank3
 	jr .loop
@@ -5143,7 +5143,7 @@ Function17ff23:
 	xor a
 	ld [wMusicFadeID + 1], a
 	ld hl, wc303
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 Function17ff3c:

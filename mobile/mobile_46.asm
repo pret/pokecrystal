@@ -5555,7 +5555,7 @@ Function11ac51:
 .loop
 	call JoyTextDelay
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .asm_11aca8
 	call Function11b314
 	call Function11acb7
@@ -5686,7 +5686,7 @@ MobileIncJumptableIndex:
 
 Function11ad8f:
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 Function11ad95:

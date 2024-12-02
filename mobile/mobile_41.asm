@@ -853,7 +853,7 @@ CheckMobileAdapterStatus: ; unused
 
 Function10635c:
 	ld a, [wMobileCommsJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	ret nz
 	ld a, [wMobileCommsJumptableIndex]
 	ld hl, .Jumptable
@@ -1004,7 +1004,7 @@ Function106442:
 
 Function106453:
 	ld a, [wMobileCommsJumptableIndex]
-	set 7, a
+	set JUMPTABLE_EXIT_F, a
 	ld [wMobileCommsJumptableIndex], a
 	nop
 	ld a, $4
