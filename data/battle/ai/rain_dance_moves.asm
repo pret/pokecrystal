@@ -1,4 +1,4 @@
-; AI_SMART prefers these moves during rain.
+; AI_SMART encourages Rain Dance if it also knows these moves.
 
 RainDanceMoves:
 	db WATER_GUN

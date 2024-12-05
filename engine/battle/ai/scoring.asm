@@ -54,7 +54,7 @@ AI_Basic:
 	and a
 	jr nz, .discourage
 
-; Dismiss Safeguard if it's already active.
+; Dismiss status moves if the player is Safeguarded.
 	ld a, [wPlayerScreens]
 	bit SCREENS_SAFEGUARD, a
 	jr z, .checkmove
