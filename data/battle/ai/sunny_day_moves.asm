@@ -1,7 +1,7 @@
-; AI_SMART prefers these moves during harsh sunlight.
+; AI_SMART encourages Sunny Day if it also knows these moves.
 
 SunnyDayMoves:
-; BUG: "Smart" AI does not encourage Solar Beam, Flame Wheel, or Moonlight during Sunny Day (see docs/bugs_and_glitches.md)
+; BUG: Solar Beam, Flame Wheel, and Moonlight should be on this list (see docs/bugs_and_glitches.md)
 	db FIRE_PUNCH
 	db EMBER
 	db FLAMETHROWER

@@ -1267,13 +1267,13 @@ Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") implies 
 ```
 
 
-### "Smart" AI does not encourage Solar Beam, Flame Wheel, or Moonlight during Sunny Day
+### "Smart" AI does not encourage Sunny Day if it knows Solar Beam, Flame Wheel, or Moonlight
 
 **Fix:** Edit `SunnyDayMoves` in [data/battle/ai/sunny_day_moves.asm](https://github.com/pret/pokecrystal/blob/master/data/battle/ai/sunny_day_moves.asm):
 
 ```diff
  SunnyDayMoves:
--; BUG: "Smart" AI does not encourage Solar Beam, Flame Wheel, or Moonlight during Sunny Day (see docs/bugs_and_glitches.md)
+-; BUG: Solar Beam, Flame Wheel, and Moonlight should be on this list (see docs/bugs_and_glitches.md)
  	db FIRE_PUNCH
  	db EMBER
  	db FLAMETHROWER
