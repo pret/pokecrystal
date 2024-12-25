@@ -273,7 +273,7 @@ Defined in [macros/scripts/battle_commands.asm](https://github.com/pret/pokecrys
 ## `$5A`: `endure`
 
 
-## `$5B`: `checkcurl`
+## `$5B`: `checkrollout`
 
 
 ## `$5C`: `rolloutpower`

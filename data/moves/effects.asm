@@ -1536,7 +1536,7 @@ Endure:
 	endmove
 
 Rollout:
-	checkcurl
+	checkrollout
 	checkobedience
 	doturn
 	usedmovetext
