@@ -47468,8 +47468,8 @@ SRAM bank #2:
 	         $ad63 = sBox4Mon3CaughtLevel
 	         $ad63 = sBox4Mon3CaughtTime
 	         $ad63 = sBox4Mon3CaughtData
-	         $ad64 = sBox4Mon3CaughtGender
 	         $ad64 = sBox4Mon3CaughtLocation
+	         $ad64 = sBox4Mon3CaughtGender
 	         $ad65 = sBox4Mon3Level
 	         $ad66 = sBox4Mon4
 	         $ad66 = sBox4Mon3BoxEnd

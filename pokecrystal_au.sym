@@ -46742,8 +46742,8 @@
 02:ad63 sBox4Mon3CaughtLevel
 02:ad63 sBox4Mon3CaughtTime
 02:ad63 sBox4Mon3CaughtData
-02:ad64 sBox4Mon3CaughtGender
 02:ad64 sBox4Mon3CaughtLocation
+02:ad64 sBox4Mon3CaughtGender
 02:ad65 sBox4Mon3Level
 02:ad66 sBox4Mon4
 02:ad66 sBox4Mon3BoxEnd

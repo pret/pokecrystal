@@ -47644,9 +47644,9 @@ SRAM bank #2:
 	         $ad1d = sBox4Mon1PP
 	         $ad21 = sBox4Mon1Happiness
 	         $ad22 = sBox4Mon1PokerusStatus
+	         $ad23 = sBox4Mon1CaughtTime
 	         $ad23 = sBox4Mon1CaughtLevel
 	         $ad23 = sBox4Mon1CaughtData
-	         $ad23 = sBox4Mon1CaughtTime
 	         $ad24 = sBox4Mon1CaughtLocation
 	         $ad24 = sBox4Mon1CaughtGender
 	         $ad25 = sBox4Mon1Level
