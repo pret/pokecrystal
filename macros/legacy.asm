@@ -353,8 +353,11 @@ DEF anim_clearsprites  EQUS "anim_keepsprites"
 
 ; macros/scripts/oam_anims.asm
 DEF dorestart EQUS "oamrestart"
-DEF dowait EQUS "oamwait"
-DEF delanim EQUS "oamdel"
+DEF dowait    EQUS "oamwait"
+DEF delanim   EQUS "oamdel"
+
+; macros/scripts/battle_commands.asm
+DEF checkcurl EQUS "checkrollout"
 
 ; engine/events/std_scripts.asm
 DEF pokecenternurse       EQUS "PokecenterNurseScript"
