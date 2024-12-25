@@ -8225,9 +8225,9 @@
 0d:76f2 BattleCommand_PerishSong.failed
 0d:76f8 BattleCommand_StartSandstorm
 0d:7712 BattleCommand_StartSandstorm.failed
-0d:7718 BattleCommand_CheckCurl
-0d:7723 BattleCommand_CheckCurl.ok
-0d:7731 BattleCommand_CheckCurl.reset
+0d:7718 BattleCommand_CheckRollout
+0d:7723 BattleCommand_CheckRollout.ok
+0d:7731 BattleCommand_CheckRollout.reset
 0d:7734 BattleCommand_RolloutPower
 0d:7747 BattleCommand_RolloutPower.got_rollout_count
 0d:7750 BattleCommand_RolloutPower.skip_set_rampage
