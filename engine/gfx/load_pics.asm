@@ -247,8 +247,7 @@ GetMonBackpic:
 FixPicBank:
 ; This is a thing for some reason.
 
-DEF PICS_FIX EQU $36
-EXPORT PICS_FIX
+EXPORT DEF PICS_FIX EQU $36
 
 	push hl
 	push bc

@@ -1698,8 +1698,7 @@ Function100ae7:
 	ld [wcd2b], a
 	ret
 
-pushc
-setcharmap ascii
+pushc ascii
 
 Unknown_100b0a:
 	db "tetsuji", 0
@@ -3638,8 +3637,7 @@ Function101826:
 	ld [wcd2b], a
 	ret
 
-pushc
-setcharmap ascii
+pushc ascii
 
 Unknown_10186f:
 	db .end - @

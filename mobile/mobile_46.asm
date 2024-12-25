@@ -1482,8 +1482,7 @@ Function118b9a:
 	and a
 	ret
 
-pushc
-setcharmap ascii
+pushc ascii
 
 ExchangeDownloadURL:
 	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/exchange/index.txt", 0
@@ -2919,8 +2918,7 @@ Function119694:
 	jr nz, .asm_119699
 	ret
 
-pushc
-setcharmap ascii
+pushc ascii
 
 Unknown_1196b8:
 	db "Mon"
@@ -3524,8 +3522,7 @@ Function119ac9:
 	ld [wBattleTowerRoomMenuJumptableIndex], a
 	ret
 
-pushc
-setcharmap ascii
+pushc ascii
 
 XGameCode:
 	db "CGB-BXTJ-00", $0
@@ -3718,8 +3715,7 @@ Function119b6b:
 	call CopyBytes
 	jp BattleTowerRoomMenu_IncrementJumptable
 
-pushc
-setcharmap ascii
+pushc ascii
 
 .decodeBase64Character
 	cp "+"
@@ -4000,8 +3996,7 @@ BattleTowerRoomMenu_IncrementJumptable:
 	inc [hl]
 	ret
 
-pushc
-setcharmap ascii
+pushc ascii
 
 XGameCodePrefix:
 	db "X-Game-code:\n"
@@ -4038,8 +4033,7 @@ Function119e4f:
 .loop2
 	ld a, [de]
 	inc de
-pushc
-setcharmap ascii
+pushc ascii
 	cp "\n"
 popc
 	jr z, .newline
@@ -4066,8 +4060,7 @@ popc
 	ld a, [hli]
 	ld [de], a
 	inc de
-pushc
-setcharmap ascii
+pushc ascii
 	cp "\r"
 popc
 	jr z, .finish
