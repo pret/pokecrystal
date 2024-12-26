@@ -28,7 +28,7 @@ The `.patch.template` file is the basis for the `.patch` file. Many numeric valu
 
 ### vc/pokecrystal11.constants.asm
 
-The `.constants.asm` file is used to create a `.constants.sym` file. Typical `.sym` files only list the values of *labels* (ROM banks and addresses); this file is used to list *constants* that are needed by the `.patch.template`. Any constants that the `.patch.template` refers to must be explicitly printed here with the `vc_const` macro.
+The `.constants.asm` file is used to export the values of *constants* that are needed by `.patch.template`. Any constants that the `.patch.template` refers to must be explicitly exported with the `EXPORT` rgbasm directive, so their values may appear in the `.sym`.
 
 
 ### tools/make_patch.c
@@ -38,13 +38,13 @@ The program used to convert a `.patch.template` into a `.patch` file.
 To convert `vc.patch.template` into `vc.patch`:
 
 ```bash
-tools/make_patch labels.sym constants.sym patched.gbc original.gbc vc.patch.template vc.patch
+tools/make_patch labels.sym patched.gbc original.gbc vc.patch.template vc.patch
 ```
 
 For example, this is what `make crystal11_vc` does:
 
 ```bash
-tools/make_patch pokecrystal11_vc.sym vc/pokecrystal11.constants.sym pokecrystal11_vc.gbc pokecrystal11.gbc vc/pokecrystal11.patch.template pokecrystal11.patch
+tools/make_patch pokecrystal11_vc.sym pokecrystal11_vc.gbc pokecrystal11.gbc vc/pokecrystal11.patch.template pokecrystal11.patch
 ```
 
 
