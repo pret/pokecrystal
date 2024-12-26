@@ -148,8 +148,7 @@ DisplayUnownWords:
 	call CloseWindow
 	ret
 
-pushc
-setcharmap unown
+pushc unown
 
 INCLUDE "data/events/unown_walls.asm"
 

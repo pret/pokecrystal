@@ -477,8 +477,7 @@ MobilePassword_IncrementJumptable:
 	inc [hl]
 	ret
 
-pushc
-setcharmap ascii
+pushc ascii
 
 Unknown_117a0f:
 	db "ABCDEFGHIJKLMNOPQRSTUVWXYZ  "
@@ -489,6 +488,7 @@ Unknown_117a47:
 	db "!\"#$%&'()*+   "
 	db ",-./:;<=>?@   "
 	db "[\\]^_`\{|}~    "
+
 popc
 
 ; everything from here to the end of the bank is related to the
