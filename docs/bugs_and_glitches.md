@@ -1273,7 +1273,7 @@ Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") implies 
 
 ```diff
  SunnyDayMoves:
--; BUG: Solar Beam, Flame Wheel, and Moonlight should be on this list (see docs/bugs_and_glitches.md)
+-; BUG: "Smart" AI does not encourage Sunny Day when it knows Solar Beam, Flame Wheel, or Moonlight (see docs/bugs_and_glitches.md)
  	db FIRE_PUNCH
  	db EMBER
  	db FLAMETHROWER
