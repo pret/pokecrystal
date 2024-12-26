@@ -1,6 +1,6 @@
 TrainerClassDVs:
 ; entries correspond to trainer classes (see constants/trainer_constants.asm)
-	table_width 2, TrainerClassDVs
+	table_width 2
 	;  atk,def,spd,spc
 	dn  9, 10,  7,  7 ; FALKNER
 	dn  8,  8,  8,  8 ; WHITNEY

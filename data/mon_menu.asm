@@ -11,7 +11,7 @@ DEF NUM_MONMENUVALUES EQU const_value - 1
 
 MonMenuOptionStrings:
 ; entries correspond to MONMENUVALUE_* constants
-	list_start MonMenuOptionStrings
+	list_start
 	li "STATS"
 	li "SWITCH"
 	li "ITEM"
@@ -23,7 +23,7 @@ MonMenuOptionStrings:
 
 MonMenuOptions:
 ; category, item, value; actions are in PokemonActionSubmenu (see engine/pokemon/mon_menu.asm)
-	table_width 3, MonMenuOptions
+	table_width 3
 ; moves
 	db MONMENU_FIELD_MOVE, MONMENUITEM_CUT,        CUT
 	db MONMENU_FIELD_MOVE, MONMENUITEM_FLY,        FLY

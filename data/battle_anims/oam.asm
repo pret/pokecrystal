@@ -6,7 +6,7 @@ ENDM
 
 BattleAnimOAMData:
 ; entries correspond to BATTLE_ANIM_OAMSET_* constants
-	table_width 4, BattleAnimOAMData
+	table_width 4
 	battleanimoam $00, 16, .OAMData_00 ; BATTLE_ANIM_OAMSET_00
 	battleanimoam $04,  9, .OAMData_01 ; BATTLE_ANIM_OAMSET_01
 	battleanimoam $08,  4, .OAMData_02 ; BATTLE_ANIM_OAMSET_02

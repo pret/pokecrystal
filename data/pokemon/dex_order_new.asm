@@ -1,7 +1,7 @@
 ; Every Pokémon sorted in New Pokédex Order.
 
 NewPokedexOrder:
-	table_width 1, NewPokedexOrder
+	table_width 1
 	db CHIKORITA
 	db BAYLEEF
 	db MEGANIUM

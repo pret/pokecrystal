@@ -7,7 +7,7 @@ ENDM
 
 OddEggProbabilities:
 ; entries correspond to OddEggs (below)
-	table_width 2, OddEggProbabilities
+	table_width 2
 DEF prob_total = 0
 ; Pichu
 	prob 8
@@ -34,7 +34,7 @@ DEF prob_total = 0
 	assert prob_total == 100, "OddEggProbabilities do not sum to 100%!"
 
 OddEggs:
-	table_width NICKNAMED_MON_STRUCT_LENGTH, OddEggs
+	table_width NICKNAMED_MON_STRUCT_LENGTH
 
 	db PICHU
 	db NO_ITEM

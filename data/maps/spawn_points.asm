@@ -6,7 +6,7 @@ ENDM
 
 SpawnPoints:
 ; entries correspond to SPAWN_* constants
-	table_width 4, SpawnPoints
+	table_width 4
 
 	spawn PLAYERS_HOUSE_2F,            3,  3
 	spawn VIRIDIAN_POKECENTER_1F,      5,  3

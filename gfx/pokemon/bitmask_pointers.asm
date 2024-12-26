@@ -1,5 +1,5 @@
 BitmasksPointers:
-	table_width 2, BitmasksPointers
+	table_width 2
 	dw BulbasaurBitmasks
 	dw IvysaurBitmasks
 	dw VenusaurBitmasks

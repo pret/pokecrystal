@@ -1,6 +1,6 @@
 BattleAnimFrameData:
 ; entries correspond to BATTLE_ANIM_FRAMESET_* constants
-	table_width 2, BattleAnimFrameData
+	table_width 2
 	dw .Frameset_HitBig              ; BATTLE_ANIM_FRAMESET_HIT_BIG
 	dw .Frameset_Hit                 ; BATTLE_ANIM_FRAMESET_HIT
 	dw .Frameset_HitSmall            ; BATTLE_ANIM_FRAMESET_HIT_SMALL

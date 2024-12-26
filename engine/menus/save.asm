@@ -1077,7 +1077,7 @@ EraseBoxes:
 	ret
 
 BoxAddresses:
-	table_width 5, BoxAddresses
+	table_width 5
 for n, 1, NUM_BOXES + 1
 	db BANK(sBox{d:n}) ; aka BANK(sBox{d:n}End)
 	dw sBox{d:n}, sBox{d:n}End

@@ -1,6 +1,6 @@
 StatNames:
 ; entries correspond to stat ids
-	list_start StatNames
+	list_start
 	li "ATTACK"
 	li "DEFENSE"
 	li "SPEED"

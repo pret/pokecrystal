@@ -1,6 +1,6 @@
 TreeMons:
 ; entries correspond to TREEMON_SET_* constants
-	table_width 2, TreeMons
+	table_width 2
 	dw TreeMonSet_City
 	dw TreeMonSet_Canyon
 	dw TreeMonSet_Town

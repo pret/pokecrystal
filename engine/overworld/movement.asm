@@ -1,6 +1,6 @@
 MovementPointers:
 ; entries correspond to movement_* constants (see macros/scripts/movement.asm)
-	table_width 2, MovementPointers
+	table_width 2
 	dw Movement_turn_head_down        ; 00
 	dw Movement_turn_head_up          ; 01
 	dw Movement_turn_head_left        ; 02

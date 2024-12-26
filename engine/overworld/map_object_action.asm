@@ -1,6 +1,6 @@
 ObjectActionPairPointers:
 ; entries correspond to OBJECT_ACTION_* constants (see constants/map_object_constants.asm)
-	table_width 2 + 2, ObjectActionPairPointers
+	table_width 2 + 2
 	;  normal action,                  frozen action
 	dw SetFacingStanding,              SetFacingStanding
 	dw SetFacingStandAction,           SetFacingCurrent

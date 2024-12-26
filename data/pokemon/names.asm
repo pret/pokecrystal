@@ -1,5 +1,5 @@
 PokemonNames::
-	table_width NAME_LENGTH - 1, PokemonNames
+	table_width NAME_LENGTH - 1
 	db "BULBASAUR@"
 	db "IVYSAUR@@@"
 	db "VENUSAUR@@"

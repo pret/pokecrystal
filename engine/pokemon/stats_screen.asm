@@ -576,7 +576,7 @@ StatsScreen_LoadGFX:
 
 .Jumptable:
 ; entries correspond to *_PAGE constants
-	table_width 2, StatsScreen_LoadGFX.Jumptable
+	table_width 2
 	dw LoadPinkPage
 	dw LoadGreenPage
 	dw LoadBluePage

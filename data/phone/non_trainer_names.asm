@@ -1,6 +1,6 @@
 NonTrainerCallerNames:
 ; entries correspond to PHONECONTACT_* constants (see constants/trainer_constants.asm)
-	table_width 2, NonTrainerCallerNames
+	table_width 2
 	dw .none
 	dw .mom
 	dw .bikeshop

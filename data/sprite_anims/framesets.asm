@@ -1,6 +1,6 @@
 SpriteAnimFrameData:
 ; entries correspond to SPRITE_ANIM_FRAMESET_* constants (see constants/sprite_anim_constants.asm)
-	table_width 2, SpriteAnimFrameData
+	table_width 2
 	dw .Frameset_00
 	dw .Frameset_PartyMon
 	dw .Frameset_PartyMonWithMail

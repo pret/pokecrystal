@@ -1,6 +1,6 @@
 PokedexTypeSearchConversionTable:
 ; entries correspond with PokedexTypeSearchStrings (see data/types/search_strings.asm)
-	table_width 1, PokedexTypeSearchConversionTable
+	table_width 1
 	db NORMAL
 	db FIRE
 	db WATER

@@ -6,7 +6,7 @@ PokemonPalettes:
 ; Shiny palettes are defined directly, not generated.
 
 	; 2 middle palettes, normal and shiny, with 2 colors each
-	table_width PAL_COLOR_SIZE * 2 * 2, PokemonPalettes
+	table_width PAL_COLOR_SIZE * 2 * 2
 
 ; 000
 	RGB 30, 22, 17

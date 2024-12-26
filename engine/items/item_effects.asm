@@ -13,7 +13,7 @@ _DoItemEffect::
 
 ItemEffects:
 ; entries correspond to item ids (see constants/item_constants.asm)
-	table_width 2, ItemEffects
+	table_width 2
 	dw PokeBallEffect      ; MASTER_BALL
 	dw PokeBallEffect      ; ULTRA_BALL
 	dw NoEffect            ; BRIGHTPOWDER

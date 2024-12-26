@@ -1,6 +1,6 @@
 CollisionPermissionTable::
 ; entries correspond to COLL_* constants
-	table_width 1, CollisionPermissionTable
+	table_width 1
 	db LAND_TILE         ; COLL_FLOOR
 	db LAND_TILE         ; COLL_01
 	db LAND_TILE         ; 02

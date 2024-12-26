@@ -524,7 +524,7 @@ StepFunction_FromMovement:
 
 .Pointers:
 ; entries correspond to SPRITEMOVEFN_* constants (see constants/map_object_constants.asm)
-	table_width 2, StepFunction_FromMovement.Pointers
+	table_width 2
 	dw MovementFunction_Null                 ; 00
 	dw MovementFunction_RandomWalkY          ; 01
 	dw MovementFunction_RandomWalkX          ; 02
@@ -1088,7 +1088,7 @@ _SetRandomStepDuration:
 
 StepTypesJumptable:
 ; entries correspond to STEP_TYPE_* constants (see constants/map_object_constants.asm)
-	table_width 2, StepTypesJumptable
+	table_width 2
 	dw StepFunction_Reset           ; 00
 	dw StepFunction_FromMovement    ; 01
 	dw StepFunction_NPCWalk         ; 02

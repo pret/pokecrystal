@@ -8,7 +8,7 @@ FontBattleExtra:
 INCBIN "gfx/font/font_battle_extra.2bpp"
 
 Frames:
-	table_width TEXTBOX_FRAME_TILES * LEN_1BPP_TILE, Frames
+	table_width TEXTBOX_FRAME_TILES * LEN_1BPP_TILE
 INCBIN "gfx/frames/1.1bpp"
 INCBIN "gfx/frames/2.1bpp"
 INCBIN "gfx/frames/3.1bpp"

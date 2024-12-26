@@ -22,7 +22,7 @@ MACRO tmhm
 ENDM
 
 BaseData::
-	table_width BASE_DATA_SIZE, BaseData
+	table_width BASE_DATA_SIZE
 INCLUDE "data/pokemon/base_stats/bulbasaur.asm"
 INCLUDE "data/pokemon/base_stats/ivysaur.asm"
 INCLUDE "data/pokemon/base_stats/venusaur.asm"

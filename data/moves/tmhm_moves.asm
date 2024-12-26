@@ -3,7 +3,7 @@
 
 TMHMMoves:
 ; entries correspond to *_TMNUM constants (see constants/item_constants.asm)
-	table_width 1, TMHMMoves
+	table_width 1
 
 ; TMs
 for n, 1, NUM_TMS + 1
