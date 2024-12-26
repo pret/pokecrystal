@@ -1,4 +1,5 @@
-; AI_SMART knows these moves are usable all-around.
+; AI_SMART tries to use Mirror Move, Mimic, and Disable
+; after the player uses these moves.
 
 UsefulMoves:
 	db DOUBLE_EDGE
