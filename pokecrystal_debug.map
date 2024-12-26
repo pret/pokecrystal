@@ -7,7 +7,7 @@ SUMMARY:
 	HRAM: 127 bytes used / 0 free
 
 ROM0 bank #0:
-	SECTION: $0000 (0 bytes) ["NULL"]
+	SECTION: $0000 ($0000 bytes) ["NULL"]
 	         $0000 = NULL
 	SECTION: $0000-$0003 ($0004 bytes) ["rst0"]
 	EMPTY: $0004-$0007 ($0004 bytes)
@@ -35889,7 +35889,7 @@ ROMX bank #91:
 	         $57de = LinkTradeMenu.cursor_already_there
 	         $57e7 = LinkTradeMenu.TryAnims
 	         $57f4 = LinkTradeMenu.skip_anims
-	SECTION: $57fe (0 bytes) ["Pics 20"]
+	SECTION: $57fe ($0000 bytes) ["Pics 20"]
 	EMPTY: $57fe-$7fff ($2802 bytes)
 	TOTAL EMPTY: $2802 bytes
 
@@ -36139,7 +36139,7 @@ ROMX bank #92:
 	         $6f1f = Stadium2N64GFX
 	         $73af = Stadium2N64Tilemap
 	         $7517 = Stadium2N64Attrmap
-	SECTION: $767f (0 bytes) ["Pics 21"]
+	SECTION: $767f ($0000 bytes) ["Pics 21"]
 	EMPTY: $767f-$7fff ($0981 bytes)
 	TOTAL EMPTY: $0981 bytes
 
@@ -36277,7 +36277,7 @@ ROMX bank #93:
 	         $7465 = GinaHaventFoundAnythingYetText
 	         $74c1 = GinaReminderText
 	         $750e = GinaComePickUpText
-	SECTION: $7561 (0 bytes) ["Pics 22"]
+	SECTION: $7561 ($0000 bytes) ["Pics 22"]
 	EMPTY: $7561-$7fff ($0a9f bytes)
 	TOTAL EMPTY: $0a9f bytes
 
@@ -36524,7 +36524,7 @@ ROMX bank #94:
 	         $7465 = DialpadCursorGFX
 	         $74b5 = Palette_17b4b5
 	         $74b9 = MobileCardListGFX
-	SECTION: $7639 (0 bytes) ["Pics 23"]
+	SECTION: $7639 ($0000 bytes) ["Pics 23"]
 	EMPTY: $7639-$7fff ($09c7 bytes)
 	TOTAL EMPTY: $09c7 bytes
 
@@ -36993,7 +36993,7 @@ ROMX bank #95:
 	         $7f23 = Function17ff23
 	         $7f3c = Function17ff3c
 	         $7f68 = String_17ff68
-	SECTION: $7f6c (0 bytes) ["Pics 24"]
+	SECTION: $7f6c ($0000 bytes) ["Pics 24"]
 	EMPTY: $7f6c-$7fff ($0094 bytes)
 	TOTAL EMPTY: $0094 bytes
 
@@ -47644,9 +47644,9 @@ SRAM bank #2:
 	         $ad1d = sBox4Mon1PP
 	         $ad21 = sBox4Mon1Happiness
 	         $ad22 = sBox4Mon1PokerusStatus
+	         $ad23 = sBox4Mon1CaughtData
 	         $ad23 = sBox4Mon1CaughtTime
 	         $ad23 = sBox4Mon1CaughtLevel
-	         $ad23 = sBox4Mon1CaughtData
 	         $ad24 = sBox4Mon1CaughtLocation
 	         $ad24 = sBox4Mon1CaughtGender
 	         $ad25 = sBox4Mon1Level
@@ -48142,8 +48142,8 @@ SRAM bank #2:
 	         $b158 = sBox5Mon1Moves
 	         $b15c = sBox5Mon1ID
 	         $b15e = sBox5Mon1Exp
-	         $b161 = sBox5Mon1StatExp
 	         $b161 = sBox5Mon1HPExp
+	         $b161 = sBox5Mon1StatExp
 	         $b163 = sBox5Mon1AtkExp
 	         $b165 = sBox5Mon1DefExp
 	         $b167 = sBox5Mon1SpdExp
@@ -54593,8 +54593,8 @@ WRAM0 bank #0:
 	         $c66c = wBT_OTTempMon2CaughtGender
 	         $c66c = wPlayerSubStatus5
 	         $c66c = wUnknownMonMailAuthor
-	         $c66d = wEnemySubStatus1
 	         $c66d = wMobileMonMailAuthorID
+	         $c66d = wEnemySubStatus1
 	         $c66d = wBT_OTTempMon2Level
 	         $c66d = wOfferMonMail
 	         $c66d = wOfferMonMailMessage
@@ -56448,10 +56448,10 @@ WRAMX bank #1:
 	         $d1eb = wRestartClockPrevDivision
 	         $d1eb = wd1eb
 	         $d1eb = wSwitchMonTo
+	         $d1ec = wRestartClockUpArrowYCoord
 	         $d1ec = wd1ec
 	         $d1ec = wCurMailIndex
 	         $d1ec = wHealMachineAnimState
-	         $d1ec = wRestartClockUpArrowYCoord
 	         $d1ec = wEvolutionPicOffset
 	         $d1ec = wHPBuffer2
 	         $d1ec = wCurHPAnimOldHP
