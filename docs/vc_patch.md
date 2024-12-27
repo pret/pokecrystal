@@ -28,7 +28,7 @@ The `.patch.template` file is the basis for the `.patch` file. Many numeric valu
 
 ### vc/pokecrystal11.constants.asm
 
-The `.constants.asm` file is used to export the values of *constants* that are needed by `.patch.template`. Any constants that the `.patch.template` refers to must be explicitly exported with the `EXPORT` rgbasm directive, so their values may appear in the `.sym`.
+The `.constants.asm` file is used to export the values of *constants* that are needed by `.patch.template`, so their values will appear in the `.sym` file along with *labels* (ROM banks and addresses).
 
 
 ### tools/make_patch.c
