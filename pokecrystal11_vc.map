@@ -50688,8 +50688,8 @@ SRAM bank #3:
 	         $a994 = sBox10Mon7CaughtGender
 	         $a995 = sBox10Mon7Level
 	         $a996 = sBox10Mon8Species
-	         $a996 = sBox10Mon8
 	         $a996 = sBox10Mon7BoxEnd
+	         $a996 = sBox10Mon8
 	         $a997 = sBox10Mon8Item
 	         $a998 = sBox10Mon8Moves
 	         $a99c = sBox10Mon8ID
@@ -53274,7 +53274,7 @@ WRAM0 bank #0:
 	         $c114 = wChannel1Octave
 	         $c115 = wChannel1Transposition
 	         $c116 = wChannel1NoteDuration
-	         $c117 = wChannel1Field16
+	         $c117 = wChannel1NoteDurationModifier
 	         $c119 = wChannel1LoopCount
 	         $c11a = wChannel1Tempo
 	         $c11c = wChannel1Tracks
@@ -53312,7 +53312,7 @@ WRAM0 bank #0:
 	         $c146 = wChannel2Octave
 	         $c147 = wChannel2Transposition
 	         $c148 = wChannel2NoteDuration
-	         $c149 = wChannel2Field16
+	         $c149 = wChannel2NoteDurationModifier
 	         $c14b = wChannel2LoopCount
 	         $c14c = wChannel2Tempo
 	         $c14e = wChannel2Tracks
@@ -53350,7 +53350,7 @@ WRAM0 bank #0:
 	         $c178 = wChannel3Octave
 	         $c179 = wChannel3Transposition
 	         $c17a = wChannel3NoteDuration
-	         $c17b = wChannel3Field16
+	         $c17b = wChannel3NoteDurationModifier
 	         $c17d = wChannel3LoopCount
 	         $c17e = wChannel3Tempo
 	         $c180 = wChannel3Tracks
@@ -53388,7 +53388,7 @@ WRAM0 bank #0:
 	         $c1aa = wChannel4Octave
 	         $c1ab = wChannel4Transposition
 	         $c1ac = wChannel4NoteDuration
-	         $c1ad = wChannel4Field16
+	         $c1ad = wChannel4NoteDurationModifier
 	         $c1af = wChannel4LoopCount
 	         $c1b0 = wChannel4Tempo
 	         $c1b2 = wChannel4Tracks
@@ -53426,7 +53426,7 @@ WRAM0 bank #0:
 	         $c1dc = wChannel5Octave
 	         $c1dd = wChannel5Transposition
 	         $c1de = wChannel5NoteDuration
-	         $c1df = wChannel5Field16
+	         $c1df = wChannel5NoteDurationModifier
 	         $c1e1 = wChannel5LoopCount
 	         $c1e2 = wChannel5Tempo
 	         $c1e4 = wChannel5Tracks
@@ -53464,7 +53464,7 @@ WRAM0 bank #0:
 	         $c20e = wChannel6Octave
 	         $c20f = wChannel6Transposition
 	         $c210 = wChannel6NoteDuration
-	         $c211 = wChannel6Field16
+	         $c211 = wChannel6NoteDurationModifier
 	         $c213 = wChannel6LoopCount
 	         $c214 = wChannel6Tempo
 	         $c216 = wChannel6Tracks
@@ -53502,7 +53502,7 @@ WRAM0 bank #0:
 	         $c240 = wChannel7Octave
 	         $c241 = wChannel7Transposition
 	         $c242 = wChannel7NoteDuration
-	         $c243 = wChannel7Field16
+	         $c243 = wChannel7NoteDurationModifier
 	         $c245 = wChannel7LoopCount
 	         $c246 = wChannel7Tempo
 	         $c248 = wChannel7Tracks
@@ -53540,7 +53540,7 @@ WRAM0 bank #0:
 	         $c272 = wChannel8Octave
 	         $c273 = wChannel8Transposition
 	         $c274 = wChannel8NoteDuration
-	         $c275 = wChannel8Field16
+	         $c275 = wChannel8NoteDurationModifier
 	         $c277 = wChannel8LoopCount
 	         $c278 = wChannel8Tempo
 	         $c27a = wChannel8Tracks
