@@ -2205,8 +2205,8 @@ SetNoteDuration:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	; add ??? to the next result
-	ld hl, CHANNEL_FIELD16
+	; add duration modifier to the next result
+	ld hl, CHANNEL_NOTE_DURATION_MODIFIER
 	add hl, bc
 	ld l, [hl]
 	; multiply Tempo by last result (NoteLength * LOW(delay))
@@ -2214,11 +2214,10 @@ SetNoteDuration:
 	; copy result to de
 	ld e, l
 	ld d, h
-	; store result in ???
-	ld hl, CHANNEL_FIELD16
+	; store result in NoteDuration and NoteDurationModifier
+	ld hl, CHANNEL_NOTE_DURATION_MODIFIER
 	add hl, bc
 	ld [hl], e
-	; store result in NoteDuration
 	ld hl, CHANNEL_NOTE_DURATION
 	add hl, bc
 	ld [hl], d
@@ -2283,9 +2282,9 @@ Tempo:
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	; clear ???
+	; clear duration modifier
 	xor a
-	ld hl, CHANNEL_FIELD16
+	ld hl, CHANNEL_NOTE_DURATION_MODIFIER
 	add hl, bc
 	ld [hl], a
 	ret
