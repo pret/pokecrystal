@@ -1,6 +1,6 @@
 Facings:
 ; entries correspond to FACING_* constants (see constants/map_object_constants.asm)
-	table_width 2, Facings
+	table_width 2
 	dw FacingStepDown0
 	dw FacingStepDown1
 	dw FacingStepDown2

@@ -1,6 +1,6 @@
 FruitTreeItems:
 ; entries correspond to FRUITTREE_* constants
-	table_width 1, FruitTreeItems
+	table_width 1
 	db BERRY        ; ROUTE_29
 	db BERRY        ; ROUTE_30_1
 	db BERRY        ; ROUTE_38

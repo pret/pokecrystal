@@ -1,6 +1,6 @@
 CreditsStringsPointers:
 ; entries correspond to constants/credits_constants.asm
-	table_width 2, CreditsStringsPointers
+	table_width 2
 	dw .SatoshiTajiri
 	dw .JunichiMasuda
 	dw .TetsuyaWatanabe

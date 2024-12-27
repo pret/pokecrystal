@@ -1,5 +1,5 @@
 BuenasPasswordTable:
-	table_width 2, BuenasPasswordTable
+	table_width 2
 	dw .JohtoStarters
 	dw .Beverages
 	dw .HealingItems

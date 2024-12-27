@@ -1,6 +1,6 @@
 MapSetupScripts:
 ; entries correspond to MAPSETUP_* constants (see constants/map_setup_constants.asm)
-	table_width 2, MapSetupScripts
+	table_width 2
 	dw MapSetupScript_Warp
 	dw MapSetupScript_Continue
 	dw MapSetupScript_ReloadMap

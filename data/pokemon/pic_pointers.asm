@@ -2,7 +2,7 @@
 
 PokemonPicPointers::
 ; entries correspond to Pokémon species
-	table_width 3 * 2, PokemonPicPointers
+	table_width 3 * 2
 	dba_pics BulbasaurFrontpic, BulbasaurBackpic
 	dba_pics IvysaurFrontpic, IvysaurBackpic
 	dba_pics VenusaurFrontpic, VenusaurBackpic

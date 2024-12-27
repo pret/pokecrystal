@@ -7,7 +7,7 @@ ENDM
 
 UnownWords:
 ; entries correspond to UNOWN_* form constants
-	table_width 2, UnownWords
+	table_width 2
 	dw UnownWordA ; unused
 	dw UnownWordA
 	dw UnownWordB

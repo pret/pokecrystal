@@ -1,6 +1,6 @@
 SpriteMovementData::
 ; entries correspond to SPRITEMOVEDATA_* constants
-	table_width NUM_SPRITEMOVEDATA_FIELDS, SpriteMovementData
+	table_width NUM_SPRITEMOVEDATA_FIELDS
 
 ; SPRITEMOVEDATA_00
 	db SPRITEMOVEFN_00 ; movement function

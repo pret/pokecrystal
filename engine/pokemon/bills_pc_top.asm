@@ -365,7 +365,7 @@ LoadBoxMonListing: ; unreferenced
 	ret
 
 .BoxAddresses:
-	table_width 3, LoadBoxMonListing.BoxAddresses
+	table_width 3
 for n, 1, NUM_BOXES + 1
 	dba sBox{d:n}
 endr

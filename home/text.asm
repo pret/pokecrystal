@@ -697,7 +697,7 @@ DoTextUntilTerminator::
 
 TextCommands::
 ; entries correspond to TX_* constants (see macros/scripts/text.asm)
-	table_width 2, TextCommands
+	table_width 2
 	dw TextCommand_START         ; TX_START
 	dw TextCommand_RAM           ; TX_RAM
 	dw TextCommand_BCD           ; TX_BCD

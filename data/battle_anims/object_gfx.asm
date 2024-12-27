@@ -6,7 +6,7 @@ ENDM
 
 AnimObjGFX:
 ; entries correspond to BATTLE_ANIM_GFX_* constants
-	table_width 4, AnimObjGFX
+	table_width 4
 	anim_obj_gfx  0, AnimObj00GFX
 	anim_obj_gfx 21, AnimObjHitGFX
 	anim_obj_gfx  6, AnimObjCutGFX

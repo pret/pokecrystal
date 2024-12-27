@@ -6,7 +6,7 @@ ENDM
 
 UnusedSpriteAnimGFX:
 ; entries correspond to SPRITE_ANIM_DICT_* constants
-	table_width 4, UnusedSpriteAnimGFX
+	table_width 4
 	; # tiles, gfx bank, gfx pointer
 	; (all pointers were dummied out to .DeletedGFX)
 	sprite_anim_obj_gfx 128, $01, .DeletedGFX ; SPRITE_ANIM_DICT_DEFAULT

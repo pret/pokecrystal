@@ -867,7 +867,7 @@ GetUnknownSlotReelData: ; unreferenced
 	ret
 
 .data:
-	table_width 1, GetUnknownSlotReelData.data
+	table_width 1
 	db 0 ; SLOTS_SEVEN
 	db 1 ; SLOTS_POKEBALL
 	db 2 ; SLOTS_CHERRY
@@ -1843,7 +1843,7 @@ Slots_GetPayout:
 	ret
 
 .PayoutTable:
-	table_width 2, Slots_GetPayout.PayoutTable
+	table_width 2
 	dw 300 ; SLOTS_SEVEN
 	dw  50 ; SLOTS_POKEBALL
 	dw   6 ; SLOTS_CHERRY
@@ -1893,7 +1893,7 @@ Slots_PayoutText:
 	ret
 
 .PayoutStrings:
-	table_width 6, Slots_PayoutText.PayoutStrings
+	table_width 6
 	dbw "300@", .LinedUpSevens      ; SLOTS_SEVEN
 	dbw "50@@", .LinedUpPokeballs   ; SLOTS_POKEBALL
 	dbw "6@@@", .LinedUpMonOrCherry ; SLOTS_CHERRY

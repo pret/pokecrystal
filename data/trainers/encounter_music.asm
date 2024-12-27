@@ -2,7 +2,7 @@
 
 TrainerEncounterMusic::
 ; entries correspond to trainer classes (see constants/trainer_constants.asm)
-	table_width 1, TrainerEncounterMusic
+	table_width 1
 	db MUSIC_HIKER_ENCOUNTER       ; none
 	db MUSIC_YOUNGSTER_ENCOUNTER   ; falkner
 	db MUSIC_LASS_ENCOUNTER        ; whitney

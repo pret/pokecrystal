@@ -1,6 +1,6 @@
 BattleTowerMons:
 ; 10 groups (one per floor level) of 21 mons (BATTLETOWER_NUM_UNIQUE_MON).
-	table_width NICKNAMED_MON_STRUCT_LENGTH, BattleTowerMons
+	table_width NICKNAMED_MON_STRUCT_LENGTH
 
 ; BattleTowerMons group 1
 

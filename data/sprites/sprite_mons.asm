@@ -1,6 +1,6 @@
 SpriteMons:
 ; entries correspond to SPRITE_* constants past SPRITE_POKEMON
-	table_width 1, SpriteMons
+	table_width 1
 	db UNOWN
 	db GEODUDE
 	db GROWLITHE

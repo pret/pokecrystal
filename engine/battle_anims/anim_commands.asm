@@ -333,7 +333,7 @@ RunBattleAnimCommand:
 
 BattleAnimCommands::
 ; entries correspond to anim_* constants (see macros/scripts/battle_anims.asm)
-	table_width 2, BattleAnimCommands
+	table_width 2
 	dw BattleAnimCmd_Obj
 	dw BattleAnimCmd_1GFX
 	dw BattleAnimCmd_2GFX

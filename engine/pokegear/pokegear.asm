@@ -1984,7 +1984,7 @@ PlayRadio:
 
 PlayRadioStationPointers:
 ; entries correspond to MAPRADIO_* constants
-	table_width 2, PlayRadioStationPointers
+	table_width 2
 	dw LoadStation_PokemonChannel
 	dw LoadStation_OaksPokemonTalk
 	dw LoadStation_PokedexShow
