@@ -1,39 +1,34 @@
 ; These are all the asm constants needed to make the crystal11_vc patch.
 
-MACRO vc_const
-	DEF x = \1
-	println "{02x:x} \1" ; same format as rgblink's .sym file
-ENDM
-
 ; [fight begin]
-	vc_const SCREEN_HEIGHT_PX
+EXPORT SCREEN_HEIGHT_PX
 
 ; [print forbid 2]
-	vc_const A_BUTTON
+EXPORT A_BUTTON
 ; [print forbid 3]
-	vc_const MAPGROUP_CIANWOOD
-	vc_const MAP_CIANWOOD_PHOTO_STUDIO
+EXPORT MAPGROUP_CIANWOOD
+EXPORT MAP_CIANWOOD_PHOTO_STUDIO
 ; [print forbid 5]
-	vc_const NO_INPUT
-	vc_const B_BUTTON
-	vc_const D_UP
-	vc_const D_DOWN
+EXPORT NO_INPUT
+EXPORT B_BUTTON
+EXPORT D_UP
+EXPORT D_DOWN
 
 ; [FPA 001 Begin]
-	vc_const FISSURE
+EXPORT FISSURE
 ; [FPA 002 Begin]
-	vc_const SELFDESTRUCT
+EXPORT SELFDESTRUCT
 ; [FPA 003 Begin]
-	vc_const THUNDER
+EXPORT THUNDER
 ; [FPA 004 Begin]
-	vc_const FLASH
+EXPORT FLASH
 ; [FPA 005 Begin]
-	vc_const EXPLOSION
+EXPORT EXPLOSION
 ; [FPA 006 Begin]
-	vc_const HORN_DRILL
+EXPORT HORN_DRILL
 ; [FPA 007 Begin]
-	vc_const HYPER_BEAM
+EXPORT HYPER_BEAM
 
 ; [FPA 042801 Begin]
-	vc_const PRESENT
-	vc_const anim_1gfx_command
+EXPORT PRESENT
+EXPORT anim_1gfx_command
