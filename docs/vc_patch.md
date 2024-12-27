@@ -38,7 +38,7 @@ The program used to convert a `.patch.template` into a `.patch` file.
 To convert `vc.patch.template` into `vc.patch`:
 
 ```bash
-tools/make_patch labels.sym patched.gbc original.gbc vc.patch.template vc.patch
+tools/make_patch values.sym patched.gbc original.gbc vc.patch.template vc.patch
 ```
 
 For example, this is what `make crystal11_vc` does:
