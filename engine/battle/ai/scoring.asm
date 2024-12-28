@@ -1248,12 +1248,12 @@ AI_Smart_Rage:
 
 ; If enemy's Rage is building, 50% chance to encourage this move.
 	call AI_50_50
-	jr c, .skipencourage
+	jr c, .encourage
 
 	dec [hl]
 
 ; Encourage this move based on Rage's counter.
-.skipencourage
+.encourage
 	ld a, [wEnemyRageCounter]
 	cp 2
 	ret c
