@@ -1300,14 +1300,14 @@ AI_Smart_Mimic:
 	cp EFFECTIVE
 	pop hl
 	jr c, .discourage
-	jr z, .skip_encourage
+	jr z, .encourage
 
 	call AI_50_50
-	jr c, .skip_encourage
+	jr c, .encourage
 
 	dec [hl]
 
-.skip_encourage
+.encourage
 	ld a, [wLastPlayerCounterMove]
 	push hl
 	ld hl, UsefulMoves
