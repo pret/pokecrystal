@@ -1094,11 +1094,11 @@ AI_Smart_Confuse:
 	ret c
 	call Random
 	cp 10 percent
-	jr c, .skipdiscourage
+	jr c, .discourage
 	inc [hl]
 
-.skipdiscourage
-; Discourage again if player's HP is below 25%.
+.discourage
+; Discourage if player's HP is below 25%.
 	call AICheckPlayerQuarterHP
 	ret c
 	inc [hl]
