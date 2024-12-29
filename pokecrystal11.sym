@@ -8540,7 +8540,7 @@
 0e:4ad3 AI_Smart_Unused2B.discourage
 0e:4ad5 AI_Smart_Unused2B.dismiss
 0e:4adb AI_Smart_Confuse
-0e:4ae7 AI_Smart_Confuse.skipdiscourage
+0e:4ae7 AI_Smart_Confuse.discourage
 0e:4aed AI_Smart_SpDefenseUp2
 0e:4b09 AI_Smart_SpDefenseUp2.encourage
 0e:4b10 AI_Smart_SpDefenseUp2.discourage
@@ -8553,11 +8553,11 @@
 0e:4b63 AI_Smart_HyperBeam
 0e:4b72 AI_Smart_HyperBeam.discourage
 0e:4b7f AI_Smart_Rage
-0e:4b8c AI_Smart_Rage.skipencourage
+0e:4b8c AI_Smart_Rage.encourage
 0e:4b9b AI_Smart_Rage.notbuilding
 0e:4ba6 AI_Smart_Rage.discourage
 0e:4ba8 AI_Smart_Mimic
-0e:4bd4 AI_Smart_Mimic.skip_encourage
+0e:4bd4 AI_Smart_Mimic.encourage
 0e:4be9 AI_Smart_Mimic.dismiss
 0e:4bef AI_Smart_Mimic.discourage
 0e:4bf1 AI_Smart_Counter
