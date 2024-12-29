@@ -1094,10 +1094,10 @@ AI_Smart_Confuse:
 	ret c
 	call Random
 	cp 10 percent
-	jr c, .skipdiscourage
+	jr c, .discourage
 	inc [hl]
 
-.skipdiscourage
+.discourage
 ; Discourage again if player's HP is below 25%.
 	call AICheckPlayerQuarterHP
 	ret c
@@ -1248,12 +1248,12 @@ AI_Smart_Rage:
 
 ; If enemy's Rage is building, 50% chance to encourage this move.
 	call AI_50_50
-	jr c, .skipencourage
+	jr c, .encourage
 
 	dec [hl]
 
 ; Encourage this move based on Rage's counter.
-.skipencourage
+.encourage
 	ld a, [wEnemyRageCounter]
 	cp 2
 	ret c
@@ -1300,14 +1300,14 @@ AI_Smart_Mimic:
 	cp EFFECTIVE
 	pop hl
 	jr c, .discourage
-	jr z, .skip_encourage
+	jr z, .encourage
 
 	call AI_50_50
-	jr c, .skip_encourage
+	jr c, .encourage
 
 	dec [hl]
 
-.skip_encourage
+.encourage
 	ld a, [wLastPlayerCounterMove]
 	push hl
 	ld hl, UsefulMoves
