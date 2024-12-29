@@ -1098,7 +1098,7 @@ AI_Smart_Confuse:
 	inc [hl]
 
 .discourage
-; Discourage if player's HP is below 25%.
+; Discourage again if player's HP is below 25%.
 	call AICheckPlayerQuarterHP
 	ret c
 	inc [hl]
