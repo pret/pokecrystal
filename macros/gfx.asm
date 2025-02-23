@@ -42,6 +42,18 @@ MACRO dbpixel
 	endc
 ENDM
 
+MACRO hlpixel
+	ldpixel hl, \#
+ENDM
+
+MACRO bcpixel
+	ldpixel bc, \#
+ENDM
+
+MACRO depixel
+	ldpixel de, \#
+ENDM
+
 MACRO ldpixel
 	if _NARG >= 5
 	; register, x tile, y tile, x pixel, y pixel
@@ -51,9 +63,6 @@ MACRO ldpixel
 		lb \1, \2 * TILE_WIDTH, \3 * TILE_WIDTH
 	endc
 ENDM
-
-DEF depixel EQUS "ldpixel de,"
-DEF bcpixel EQUS "ldpixel bc,"
 
 MACRO dbsprite
 ; x tile, y tile, x pixel, y pixel, vtile offset, attributes

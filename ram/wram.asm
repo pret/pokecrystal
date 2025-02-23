@@ -809,12 +809,10 @@ wSlotsEnd::
 
 NEXTU
 ; card flip
-wDeck:: ds 4 * 6
-wDeckEnd::
+wDeck:: ds CARDFLIP_DECK_SIZE
 wCardFlipNumCardsPlayed:: db
 wCardFlipFaceUpCard:: db
-wDiscardPile:: ds 4 * 6
-wDiscardPileEnd::
+wDiscardPile:: ds CARDFLIP_DECK_SIZE
 
 ; beta poker game
 wBetaPokerSGBPals:: dw
