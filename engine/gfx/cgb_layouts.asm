@@ -509,7 +509,7 @@ _CGB_BetaPoker:
 _CGB_Diploma:
 	ld hl, DiplomaPalettes
 	ld de, wBGPals1
-	ld bc, 16 palettes
+	ld bc, 16 palettes ; also loads PartyMenuOBPals into wOBPals1
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 
