@@ -45941,8 +45941,8 @@ SRAM bank #2:
 	         $a06d = sBox1Mon3PP
 	         $a071 = sBox1Mon3Happiness
 	         $a072 = sBox1Mon3PokerusStatus
-	         $a073 = sBox1Mon3CaughtTime
 	         $a073 = sBox1Mon3CaughtLevel
+	         $a073 = sBox1Mon3CaughtTime
 	         $a073 = sBox1Mon3CaughtData
 	         $a074 = sBox1Mon3CaughtLocation
 	         $a074 = sBox1Mon3CaughtGender
@@ -54559,7 +54559,6 @@ WRAM0 bank #0:
 	         $c6e8 = wCardFlipNumCardsPlayed
 	         $c6e8 = wBT_OTTempTrainerEnd
 	         $c6e8 = wReel2XCoord
-	         $c6e8 = wDeckEnd
 	         $c6e9 = wCurEnemyMoveNum
 	         $c6e9 = wReel2ManipCounter
 	         $c6e9 = wCardFlipFaceUpCard
@@ -54615,7 +54614,6 @@ WRAM0 bank #0:
 	         $c701 = wPlayerSafeguardCount
 	         $c701 = wPlayerTrademonCaughtData
 	         $c701 = wMemoryGameCard2Location
-	         $c702 = wDiscardPileEnd
 	         $c702 = wPlayerLightScreenCount
 	         $c702 = wPlayerTrademonEnd
 	         $c702 = wBetaPokerSGBPals
@@ -55414,9 +55412,9 @@ WRAM0 bank #0:
 	EMPTY: $cd14-$cd1f ($000c bytes)
 	SECTION: $cd20-$cfd7 ($02b8 bytes) ["Video"]
 	         $cd20 = wMobileMonSpeciesPointer
+	         $cd20 = wcd20
 	         $cd20 = wCreditsPos
 	         $cd20 = wBGMapBuffer
-	         $cd20 = wcd20
 	         $cd21 = wcd21
 	         $cd22 = wCreditsTimer
 	         $cd22 = wMobileMonStructPointer

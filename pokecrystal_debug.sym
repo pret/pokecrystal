@@ -45440,8 +45440,8 @@
 02:a06d sBox1Mon3PP
 02:a071 sBox1Mon3Happiness
 02:a072 sBox1Mon3PokerusStatus
-02:a073 sBox1Mon3CaughtTime
 02:a073 sBox1Mon3CaughtLevel
+02:a073 sBox1Mon3CaughtTime
 02:a073 sBox1Mon3CaughtData
 02:a074 sBox1Mon3CaughtLocation
 02:a074 sBox1Mon3CaughtGender
@@ -54022,7 +54022,6 @@
 00:c6e8 wCardFlipNumCardsPlayed
 00:c6e8 wBT_OTTempTrainerEnd
 00:c6e8 wReel2XCoord
-00:c6e8 wDeckEnd
 00:c6e9 wCurEnemyMoveNum
 00:c6e9 wReel2ManipCounter
 00:c6e9 wCardFlipFaceUpCard
@@ -54078,7 +54077,6 @@
 00:c701 wPlayerSafeguardCount
 00:c701 wPlayerTrademonCaughtData
 00:c701 wMemoryGameCard2Location
-00:c702 wDiscardPileEnd
 00:c702 wPlayerLightScreenCount
 00:c702 wPlayerTrademonEnd
 00:c702 wBetaPokerSGBPals
@@ -54917,9 +54915,9 @@
 00:cd14 wOverworldMapBlocksEnd
 00:cd14 wLinkDataEnd
 00:cd20 wMobileMonSpeciesPointer
+00:cd20 wcd20
 00:cd20 wCreditsPos
 00:cd20 wBGMapBuffer
-00:cd20 wcd20
 00:cd21 wcd21
 00:cd22 wCreditsTimer
 00:cd22 wMobileMonStructPointer

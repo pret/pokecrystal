@@ -53628,8 +53628,8 @@
 00:c673 wPlayerConfuseCount
 00:c673 wUnknownMonMailSpecies
 00:c674 wUnknownMonMailType
-00:c674 wPlayerToxicCount
 00:c674 wBT_OTTempMon2Attack
+00:c674 wPlayerToxicCount
 00:c674 wBT_OTTempMon2Stats
 00:c675 wPlayerDisableCount
 00:c675 wUnknownMonMailEnd
@@ -53797,7 +53797,6 @@
 00:c6e8 wCardFlipNumCardsPlayed
 00:c6e8 wBT_OTTempTrainerEnd
 00:c6e8 wReel2XCoord
-00:c6e8 wDeckEnd
 00:c6e9 wCurEnemyMoveNum
 00:c6e9 wReel2ManipCounter
 00:c6e9 wCardFlipFaceUpCard
@@ -53853,7 +53852,6 @@
 00:c701 wPlayerSafeguardCount
 00:c701 wPlayerTrademonCaughtData
 00:c701 wMemoryGameCard2Location
-00:c702 wDiscardPileEnd
 00:c702 wPlayerLightScreenCount
 00:c702 wPlayerTrademonEnd
 00:c702 wBetaPokerSGBPals
@@ -54647,9 +54645,9 @@
 00:cd14 wOverworldMapBlocksEnd
 00:cd14 wLinkDataEnd
 00:cd20 wMobileMonSpeciesPointer
+00:cd20 wcd20
 00:cd20 wCreditsPos
 00:cd20 wBGMapBuffer
-00:cd20 wcd20
 00:cd21 wcd21
 00:cd22 wCreditsTimer
 00:cd22 wMobileMonStructPointer
