@@ -1,8 +1,16 @@
 ; Coordinate macros
 
-DEF hlcoord EQUS "coord hl,"
-DEF bccoord EQUS "coord bc,"
-DEF decoord EQUS "coord de,"
+MACRO hlcoord
+	coord hl, \#
+ENDM
+
+MACRO bccoord
+	coord bc, \#
+ENDM
+
+MACRO decoord
+	coord de, \#
+ENDM
 
 MACRO coord
 ; register, x, y[, origin]
@@ -13,9 +21,17 @@ MACRO coord
 	endc
 ENDM
 
-DEF hlbgcoord EQUS "bgcoord hl,"
-DEF bcbgcoord EQUS "bgcoord bc,"
-DEF debgcoord EQUS "bgcoord de,"
+MACRO hlbgcoord
+	bgcoord hl, \#
+ENDM
+
+MACRO bcbgcoord
+	bgcoord bc, \#
+ENDM
+
+MACRO debgcoord
+	bgcoord de, \#
+ENDM
 
 MACRO bgcoord
 ; register, x, y[, origin]
