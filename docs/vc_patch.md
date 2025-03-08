@@ -83,8 +83,10 @@ Some commands may output a **value series**, which is a series of two-digit hexa
 
 - Literal numbers in decimal (base 10, e.g. "`42`"), hexadecimal (base 16, e.g. "`0x2a`"), or octal (base 8, e.g. "`052`"). They may start with a plus sign "`+`". Numbers should not be negative.
 - Comparison operators: "`==`" is 0, "`>`" is 1, "`<`" is 2, "`>=`" is 3, "`<=`" is 4, "`!=`" is 5, and "`||`" is 0x11.
-- Symbol names from the two `.sym` files provided to `make_patch` may evaluate as their relative address or their absolute offset, depending on the command. (Addresses are relative to the symbol's bank for ROM addresses, or to 0x8000, the start of all RAM, for RAM addresses.) They may also be followed by a plus sign and a literal number that gets added to the value.
-- "`@`" evaluates as the address or absolute offset of the current patch/hook label, depending on the command.
+- Symbol names from the `.sym` file provided to `make_patch` may evaluate as their relative address or their absolute offset, depending on the command. (Addresses are relative to the symbol's bank for ROM addresses, or to 0x8000, the start of all RAM, for RAM addresses.)
+  - Symbol names may be preceded by a less-than sign "`<`" to take only the low byte, or a greater-than sign "`>`" to take only the high byte.
+  - Symbol names may be followed by a plus sign "`+`" and a literal number that gets added to the value.
+- "`@`" evaluates as the relative address or absolute offset of the current patch/hook label, depending on the command. It maybe be preceded by a "`<`" or "`>`", or followed by a "`+`" literal, like symbol names.
 
 Any other characters are output as-is.
 
