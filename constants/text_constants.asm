@@ -18,6 +18,7 @@ DEF NAME_LENGTH_JAPANESE      EQU 6
 	const ENEMY_OT_NAME         ; 6
 	const TRAINER_NAME          ; 7
 	const MOVE_DESC_NAME_BROKEN ; 8
+DEF NUM_NAME_TYPES EQU const_value - 1
 
 ; see home/text.asm
 DEF BORDER_WIDTH   EQU 2

@@ -1,5 +1,6 @@
 NamesPointers::
 ; entries correspond to GetName constants (see constants/text_constants.asm)
+	table_width 3
 	dba PokemonNames        ; MON_NAME (not used; jumps to GetPokemonName)
 	dba MoveNames           ; MOVE_NAME
 	dba NULL                ; DUMMY_NAME
@@ -8,6 +9,7 @@ NamesPointers::
 	dbw 0, wOTPartyMonOTs   ; ENEMY_OT_NAME
 	dba TrainerClassNames   ; TRAINER_NAME
 	dbw 4, MoveDescriptions ; MOVE_DESC_NAME_BROKEN (wrong bank)
+	assert_table_length NUM_NAME_TYPES
 
 GetName::
 ; Return name wCurSpecies from name list wNamedObjectType in wStringBuffer1.
