@@ -818,7 +818,7 @@ DEF NUM_BATTLE_BG_EFFECTS EQU const_value - 1
 	const BATTLE_ANIM_GFX_WAVE       ; 26
 	const BATTLE_ANIM_GFX_AEROBLAST  ; 27
 	const BATTLE_ANIM_GFX_PLAYERHEAD ; 28
-	const BATTLE_ANIM_GFX_ENEMYFEET   ; 29
+	const BATTLE_ANIM_GFX_ENEMYFEET  ; 29
 DEF NUM_BATTLE_ANIM_GFX EQU const_value - 1
 
 ; battle_bg_effect struct members (see macros/ram.asm)

@@ -100,6 +100,7 @@ GetTreeMons:
 	cp NUM_TREEMON_SETS
 	jr nc, .quit
 
+	assert TREEMON_SET_CITY == 0
 	and a
 	jr z, .quit
 
