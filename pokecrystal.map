@@ -45885,8 +45885,8 @@ SRAM bank #2:
 	         $a018 = sBox1Mon1Moves
 	         $a01c = sBox1Mon1ID
 	         $a01e = sBox1Mon1Exp
-	         $a021 = sBox1Mon1StatExp
 	         $a021 = sBox1Mon1HPExp
+	         $a021 = sBox1Mon1StatExp
 	         $a023 = sBox1Mon1AtkExp
 	         $a025 = sBox1Mon1DefExp
 	         $a027 = sBox1Mon1SpdExp
@@ -47285,9 +47285,9 @@ SRAM bank #2:
 	         $aad4 = sBox3Mon17CaughtLocation
 	         $aad4 = sBox3Mon17CaughtGender
 	         $aad5 = sBox3Mon17Level
+	         $aad6 = sBox3Mon18
 	         $aad6 = sBox3Mon18Species
 	         $aad6 = sBox3Mon17BoxEnd
-	         $aad6 = sBox3Mon18
 	         $aad7 = sBox3Mon18Item
 	         $aad8 = sBox3Mon18Moves
 	         $aadc = sBox3Mon18ID

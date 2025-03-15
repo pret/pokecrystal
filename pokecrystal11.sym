@@ -45159,8 +45159,8 @@
 02:a018 sBox1Mon1Moves
 02:a01c sBox1Mon1ID
 02:a01e sBox1Mon1Exp
-02:a021 sBox1Mon1StatExp
 02:a021 sBox1Mon1HPExp
+02:a021 sBox1Mon1StatExp
 02:a023 sBox1Mon1AtkExp
 02:a025 sBox1Mon1DefExp
 02:a027 sBox1Mon1SpdExp
@@ -46559,9 +46559,9 @@
 02:aad4 sBox3Mon17CaughtLocation
 02:aad4 sBox3Mon17CaughtGender
 02:aad5 sBox3Mon17Level
+02:aad6 sBox3Mon18
 02:aad6 sBox3Mon18Species
 02:aad6 sBox3Mon17BoxEnd
-02:aad6 sBox3Mon18
 02:aad7 sBox3Mon18Item
 02:aad8 sBox3Mon18Moves
 02:aadc sBox3Mon18ID
