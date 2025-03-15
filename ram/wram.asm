@@ -2976,7 +2976,7 @@ wStatusFlags2::
 ; bit 2: bug contest timer
 ; bit 3: unused
 ; bit 4: bike shop call
-; bit 5: can use sweet scent
+; bit 5: unused
 ; bit 6: reached goldenrod
 ; bit 7: rockets in mahogany
 	db
