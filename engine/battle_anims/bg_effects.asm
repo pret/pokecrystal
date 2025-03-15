@@ -79,6 +79,7 @@ DoBattleBGEffectFunction:
 
 BattleBGEffects:
 ; entries correspond to BATTLE_BG_EFFECT_* constants
+	table_width 2
 	dw BattleBGEffect_End
 	dw BattleBGEffect_FlashInverted
 	dw BattleBGEffect_FlashWhite
@@ -133,6 +134,7 @@ BattleBGEffects:
 	dw BattleBGEffect_VibrateMon
 	dw BattleBGEffect_WobblePlayer
 	dw BattleBGEffect_WobbleScreen
+	assert_table_length NUM_BATTLE_BG_EFFECTS
 
 BattleBGEffect_End:
 	call EndBattleBGEffect
