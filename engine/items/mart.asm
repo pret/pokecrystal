@@ -12,16 +12,19 @@ OpenMartDialog::
 	ld [wMartType], a
 	call LoadMartPointer
 	ld a, [wMartType]
-	ld hl, .dialogs
+	ld hl, MartTypeDialogs
 	rst JumpTable
 	ret
 
-.dialogs
+MartTypeDialogs:
+; entries correspond to MARTTYPE_* constants
+	table_width 2
 	dw MartDialog
 	dw HerbShop
 	dw BargainShop
 	dw Pharmacist
 	dw RooftopSale
+	assert_table_length NUM_MART_TYPES
 
 MartDialog:
 	ld a, MARTTYPE_STANDARD
