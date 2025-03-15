@@ -30,13 +30,6 @@ gfx/pokemon/*/frames.asm
 *.pyc
 *$py.class
 
-# compare.sh
-baserom.txt
-pokecrystal.txt
-
-# used_space.py
-used_space.png
-
 # save game files
 *.sgm
 *.sav
@@ -44,14 +37,3 @@ used_space.png
 *.sn*
 *.sa*
 *.sg1
-
-# vim configuration
-# http://www.vim.org/scripts/script.php?script_id=441
-.lvimrc
-
-# swap files for vim and gedit
-.*.swp
-*~
-
-# macos files
-.DS_STORE
