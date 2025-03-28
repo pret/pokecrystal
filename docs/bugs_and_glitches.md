@@ -52,6 +52,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - ["Smart" AI encourages Mean Look if its own Pokémon is badly poisoned](#smart-ai-encourages-mean-look-if-its-own-pok%C3%A9mon-is-badly-poisoned)
   - ["Smart" AI discourages Conversion2 after the first turn](#smart-ai-discourages-conversion2-after-the-first-turn)
   - ["Smart" AI does not encourage Solar Beam, Flame Wheel, or Moonlight during Sunny Day](#smart-ai-does-not-encourage-solar-beam-flame-wheel-or-moonlight-during-sunny-day)
+  - ["Cautious" AI may fail to discourage residual moves](#cautious-ai-may-fail-to-discourage-residual-moves)
   - [AI does not discourage Future Sight when it's already been used](#ai-does-not-discourage-future-sight-when-its-already-been-used)
   - [AI makes a false assumption about `CheckTypeMatchup`](#ai-makes-a-false-assumption-about-checktypematchup)
   - [AI use of Full Heal or Full Restore does not cure Nightmare status](#ai-use-of-full-heal-or-full-restore-does-not-cure-nightmare-status)
@@ -1286,6 +1287,31 @@ Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") implies 
  	db SYNTHESIS
 +	db MOONLIGHT
  	db -1 ; end
+```
+
+
+### "Cautious" AI may fail to discourage residual moves
+
+**Fix:** Edit `AI_Cautious` in [engine/battle/ai/scoring.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/scoring.asm):
+
+```diff
+AI_Cautious:
+; 90% chance to discourage moves with residual effects after the first turn.
+
+	...
+
+	pop bc
+	pop de
+	pop hl
+	jr nc, .loop
+
+	call Random
+	cp 90 percent + 1
+-	ret nc
++	jr nc, .loop
+
+	inc [hl]
+	jr .loop
 ```
 
 
