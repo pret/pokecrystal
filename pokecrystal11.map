@@ -21330,7 +21330,7 @@ ROMX bank #46:
 	         $42d2 = GetTreeMons
 	         $42e6 = GetTreeMons.quit
 	         $42e8 = TreeMons
-	         $42fa = TreeMonSet_City
+	         $42fa = TreeMonSet_None
 	         $42fa = TreeMonSet_Canyon
 	         $4320 = TreeMonSet_Town
 	         $4346 = TreeMonSet_Route

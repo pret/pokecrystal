@@ -21055,7 +21055,7 @@
 2e:42d2 GetTreeMons
 2e:42e6 GetTreeMons.quit
 2e:42e8 TreeMons
-2e:42fa TreeMonSet_City
+2e:42fa TreeMonSet_None
 2e:42fa TreeMonSet_Canyon
 2e:4320 TreeMonSet_Town
 2e:4346 TreeMonSet_Route
