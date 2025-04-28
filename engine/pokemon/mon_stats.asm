@@ -323,19 +323,17 @@ ListMovePP:
 	jr nz, .load_loop
 	ret
 
-BrokenPlacePPUnits: ; unreferenced
-; Probably would have these parameters:
-; hl = starting coordinate
-; de = SCREEN_WIDTH or SCREEN_WIDTH * 2
-; c = the number of moves (1-4)
-.loop
+; "AP" is german for "PP"
+; The german translation uses this instead of the loop above
+.load_ap_loop ; unreferenced
+	ld [hl], $32 ; A
 	ld [hl], $32 ; typo for P?
 	inc hl
 	ld [hl], $3e ; P
 	dec hl
 	add hl, de
 	dec c
-	jr nz, .loop
+	jr nz, .load_ap_loop
 	ret
 
 Unused_PlaceEnemyHPLevel:
