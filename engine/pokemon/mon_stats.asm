@@ -327,7 +327,6 @@ ListMovePP:
 ; The german translation uses this instead of the loop above
 .load_ap_loop ; unreferenced
 	ld [hl], $32 ; A
-	ld [hl], $32 ; typo for P?
 	inc hl
 	ld [hl], $3e ; P
 	dec hl
