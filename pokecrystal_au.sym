@@ -11572,8 +11572,7 @@
 14:4c7a ListMovePP.loop
 14:4cc8 ListMovePP.done
 14:4cc9 ListMovePP.load_loop
-14:4cd0 BrokenPlacePPUnits
-14:4cd0 BrokenPlacePPUnits.loop
+14:4cd0 ListMovePP.load_ap_loop
 14:4cdb Unused_PlaceEnemyHPLevel
 14:4d09 Unused_PlaceEnemyHPLevel.egg
 14:4d0a PlaceStatusString
