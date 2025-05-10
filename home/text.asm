@@ -198,7 +198,7 @@ MACRO dict
 		jr nz, .not\@
 		ld a, \2
 	.not\@:
-	elif !STRCMP(STRSUB("\2", 1, 1), ".")
+	elif STRFIND("\2", ".") == 0
 		; Locals can use a short jump
 		jr z, \2
 	else

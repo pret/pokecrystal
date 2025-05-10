@@ -187,7 +187,7 @@ ENDM
 
 	const loadvar_command ; $1e
 MACRO loadvar
-	if STRIN("\1", "VAR_") != 1
+	if STRFIND("\1", "VAR_") != 0
 	; LEGACY: Support for the old name of "loadmem"
 		loadmem \1, \2
 	else
