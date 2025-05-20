@@ -1115,10 +1115,10 @@ BillsPC_LoadMonStats:
 	add [hl]
 	ld e, a
 	ld d, 0
-	ld hl, wBillsPCPokemonList + 1 ; box number
+	ld hl, wBillsPCPokemonList + BOXLIST_BOXNUM
+rept BOXLIST_SIZE
 	add hl, de
-	add hl, de
-	add hl, de
+endr
 	ld a, [hl]
 	and a
 	jr z, .party
@@ -1229,10 +1229,10 @@ BillsPC_RefreshTextboxes:
 	ld a, [wBillsPC_ScrollPosition]
 	ld e, a
 	ld d, 0
-	ld hl, wBillsPCPokemonList
+	ld hl, wBillsPCPokemonList + BOXLIST_SPECIES
+rept BOXLIST_SIZE
 	add hl, de
-	add hl, de
-	add hl, de
+endr
 	ld e, l
 	ld d, h
 	hlcoord 9, 4
@@ -1246,9 +1246,9 @@ BillsPC_RefreshTextboxes:
 	ld de, 2 * SCREEN_WIDTH
 	add hl, de
 	pop de
+rept BOXLIST_SIZE
 	inc de
-	inc de
-	inc de
+endr
 	pop af
 	dec a
 	jr nz, .loop
@@ -1377,13 +1377,13 @@ MACRO copy_box_data
 	jr z, .done\@
 	and a
 	jr z, .done\@
-	ld [de], a ; species
+	ld [de], a ; BOXLIST_SPECIES
 	inc de
 	ld a, [wBillsPC_LoadedBox]
-	ld [de], a ; box number
+	ld [de], a ; BOXLIST_BOXNUM
 	inc de
 	ld a, [wBillsPCTempListIndex]
-	ld [de], a ; list index
+	ld [de], a ; BOXLIST_INDEX
 	inc a
 	ld [wBillsPCTempListIndex], a
 	inc de
@@ -1407,7 +1407,7 @@ ENDM
 CopyBoxmonSpecies:
 	xor a
 	ld hl, wBillsPCPokemonList
-	ld bc, 3 * 30
+	ld bc, BOXLIST_SIZE * MONS_PER_BOX_JP
 	call ByteFill
 	ld de, wBillsPCPokemonList
 	xor a
@@ -1444,10 +1444,10 @@ BillsPC_GetSelectedPokemonSpecies:
 	add [hl]
 	ld e, a
 	ld d, 0
-	ld hl, wBillsPCPokemonList
+	ld hl, wBillsPCPokemonList + BOXLIST_SPECIES
+rept BOXLIST_SIZE
 	add hl, de
-	add hl, de
-	add hl, de
+endr
 	ld a, [hl]
 	ret
 
