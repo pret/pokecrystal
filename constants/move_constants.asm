@@ -278,7 +278,9 @@ DEF CANNOT_MOVE EQU $ff
 	const ANIM_IN_SANDSTORM      ; 10b
 	const ANIM_IN_NIGHTMARE      ; 10c
 	const ANIM_IN_WHIRLPOOL      ; 10d
-; battle anims
+
+; wBattleAfterAnim uses offsets from BATTLE_AFTERANIMS
+DEF BATTLE_AFTERANIMS EQU const_value
 	const ANIM_MISS              ; 10e
 	const ANIM_ENEMY_DAMAGE      ; 10f
 	const ANIM_ENEMY_STAT_DOWN   ; 110
@@ -288,14 +290,3 @@ DEF CANNOT_MOVE EQU $ff
 	const ANIM_SHAKE             ; 114
 	const ANIM_HIT_CONFUSION     ; 115
 DEF NUM_BATTLE_ANIMS EQU const_value - 1
-
-; wNumHits uses offsets from ANIM_MISS
-	const_def
-	const BATTLEANIM_NONE
-	const BATTLEANIM_ENEMY_DAMAGE
-	const BATTLEANIM_ENEMY_STAT_DOWN
-	const BATTLEANIM_PLAYER_STAT_DOWN
-	const BATTLEANIM_PLAYER_DAMAGE
-	const BATTLEANIM_WOBBLE
-	const BATTLEANIM_SHAKE
-	const BATTLEANIM_HIT_CONFUSION
