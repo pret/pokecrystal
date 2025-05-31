@@ -921,9 +921,7 @@ SECTION UNION "Overworld Map", WRAM0
 
 ; bill's pc data
 wBillsPCData::
-wBillsPCPokemonList::
-; (species, box number, list index) x30
-	ds 3 * 30
+wBillsPCPokemonList:: ds BOXLIST_SIZE * MONS_PER_BOX_JP
 	ds 720
 wBillsPC_ScrollPosition:: db
 wBillsPC_CursorPosition:: db

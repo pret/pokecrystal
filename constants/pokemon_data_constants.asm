@@ -136,9 +136,16 @@ DEF PARTY_LENGTH EQU 6
 
 ; boxes
 DEF MONS_PER_BOX EQU 20
+DEF MONS_PER_BOX_JP EQU 30
 ; box: count, species, mons, OTs, nicknames, padding
 DEF BOX_LENGTH EQU 1 + MONS_PER_BOX + 1 + (BOXMON_STRUCT_LENGTH + NAME_LENGTH + MON_NAME_LENGTH) * MONS_PER_BOX + 2 ; $450
 DEF NUM_BOXES EQU 14
+
+rsreset
+DEF BOXLIST_SPECIES rb
+DEF BOXLIST_BOXNUM  rb
+DEF BOXLIST_INDEX   rb
+DEF BOXLIST_SIZE EQU _RS
 
 ; hall of fame
 ; hof_mon: species, id, dvs, level, nicknames
