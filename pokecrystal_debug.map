@@ -44430,8 +44430,8 @@ SRAM bank #1:
 	         $ae84 = sBoxMon11CaughtLocation
 	         $ae85 = sBoxMon11Level
 	         $ae86 = sBoxMon11BoxEnd
-	         $ae86 = sBoxMon12Species
 	         $ae86 = sBoxMon12
+	         $ae86 = sBoxMon12Species
 	         $ae87 = sBoxMon12Item
 	         $ae88 = sBoxMon12Moves
 	         $ae8c = sBoxMon12ID
@@ -45993,9 +45993,9 @@ SRAM bank #1:
 	         $bd7c = sHallOfFame29Mon1DVs
 	         $bd7e = sHallOfFame29Mon1Level
 	         $bd7f = sHallOfFame29Mon1Nickname
+	         $bd89 = sHallOfFame29Mon2Species
 	         $bd89 = sHallOfFame29Mon1End
 	         $bd89 = sHallOfFame29Mon2
-	         $bd89 = sHallOfFame29Mon2Species
 	         $bd8a = sHallOfFame29Mon2ID
 	         $bd8c = sHallOfFame29Mon2DVs
 	         $bd8e = sHallOfFame29Mon2Level
@@ -54860,9 +54860,9 @@ WRAM0 bank #0:
 	         $c709 = wc709
 	         $c709 = wSlotBias
 	         $c709 = wMemoryGameNumCardsMatched
+	         $c70a = wBattleWeather
 	         $c70a = wSlotBet
 	         $c70a = wc70a
-	         $c70a = wBattleWeather
 	         $c70b = wWeatherCount
 	         $c70b = wFirstTwoReelsMatching
 	         $c70b = wc70b
@@ -55134,10 +55134,10 @@ WRAM0 bank #0:
 	         $c834 = wTimeCapsulePartyMon1Level
 	         $c834 = wHallOfFamePokemonListMon4DVs
 	         $c835 = wLinkPlayerPartyMon1HP
+	         $c835 = wTimeCapsulePartyMon1Stats
 	         $c835 = wTimeCapsulePartyMon1MaxHP
 	         $c835 = wc835
 	         $c835 = wDebugRoomMonHappiness
-	         $c835 = wTimeCapsulePartyMon1Stats
 	         $c836 = wDebugRoomMonPokerusStatus
 	         $c836 = wHallOfFamePokemonListMon4Level
 	         $c836 = wc836
@@ -56203,8 +56203,8 @@ WRAMX bank #1:
 	         $d045 = wWalkingX
 	         $d045 = wPoisonStepDataEnd
 	         $d045 = wMenuCursorPositionBackup
-	         $d046 = wWalkingY
 	         $d046 = wMenuScrollPositionBackup
+	         $d046 = wWalkingY
 	         $d046 = wBufferMonSpclDef
 	         $d047 = wWinTextPointer
 	         $d047 = wWalkingTileCollision

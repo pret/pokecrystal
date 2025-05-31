@@ -44276,8 +44276,8 @@ SRAM bank #1:
 	         $ae84 = sBoxMon11CaughtLocation
 	         $ae85 = sBoxMon11Level
 	         $ae86 = sBoxMon11BoxEnd
-	         $ae86 = sBoxMon12Species
 	         $ae86 = sBoxMon12
+	         $ae86 = sBoxMon12Species
 	         $ae87 = sBoxMon12Item
 	         $ae88 = sBoxMon12Moves
 	         $ae8c = sBoxMon12ID
@@ -45839,9 +45839,9 @@ SRAM bank #1:
 	         $bd7c = sHallOfFame29Mon1DVs
 	         $bd7e = sHallOfFame29Mon1Level
 	         $bd7f = sHallOfFame29Mon1Nickname
+	         $bd89 = sHallOfFame29Mon2Species
 	         $bd89 = sHallOfFame29Mon1End
 	         $bd89 = sHallOfFame29Mon2
-	         $bd89 = sHallOfFame29Mon2Species
 	         $bd8a = sHallOfFame29Mon2ID
 	         $bd8c = sHallOfFame29Mon2DVs
 	         $bd8e = sHallOfFame29Mon2Level
@@ -47525,8 +47525,8 @@ SRAM bank #2:
 	         $ad48 = sBox4Mon3Moves
 	         $ad4c = sBox4Mon3ID
 	         $ad4e = sBox4Mon3Exp
-	         $ad51 = sBox4Mon3HPExp
 	         $ad51 = sBox4Mon3StatExp
+	         $ad51 = sBox4Mon3HPExp
 	         $ad53 = sBox4Mon3AtkExp
 	         $ad55 = sBox4Mon3DefExp
 	         $ad57 = sBox4Mon3SpdExp
@@ -56004,8 +56004,8 @@ WRAMX bank #1:
 	         $d045 = wWalkingX
 	         $d045 = wPoisonStepDataEnd
 	         $d045 = wMenuCursorPositionBackup
-	         $d046 = wWalkingY
 	         $d046 = wMenuScrollPositionBackup
+	         $d046 = wWalkingY
 	         $d046 = wBufferMonSpclDef
 	         $d047 = wWinTextPointer
 	         $d047 = wWalkingTileCollision

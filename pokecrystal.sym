@@ -43488,8 +43488,8 @@
 01:ae84 sBoxMon11CaughtLocation
 01:ae85 sBoxMon11Level
 01:ae86 sBoxMon11BoxEnd
-01:ae86 sBoxMon12Species
 01:ae86 sBoxMon12
+01:ae86 sBoxMon12Species
 01:ae87 sBoxMon12Item
 01:ae88 sBoxMon12Moves
 01:ae8c sBoxMon12ID
@@ -44689,9 +44689,9 @@
 01:ba6c sHallOfFame21Mon1DVs
 01:ba6e sHallOfFame21Mon1Level
 01:ba6f sHallOfFame21Mon1Nickname
+01:ba79 sHallOfFame21Mon2
 01:ba79 sHallOfFame21Mon1End
 01:ba79 sHallOfFame21Mon2Species
-01:ba79 sHallOfFame21Mon2
 01:ba7a sHallOfFame21Mon2ID
 01:ba7c sHallOfFame21Mon2DVs
 01:ba7e sHallOfFame21Mon2Level
@@ -45049,9 +45049,9 @@
 01:bd7c sHallOfFame29Mon1DVs
 01:bd7e sHallOfFame29Mon1Level
 01:bd7f sHallOfFame29Mon1Nickname
+01:bd89 sHallOfFame29Mon2Species
 01:bd89 sHallOfFame29Mon1End
 01:bd89 sHallOfFame29Mon2
-01:bd89 sHallOfFame29Mon2Species
 01:bd8a sHallOfFame29Mon2ID
 01:bd8c sHallOfFame29Mon2DVs
 01:bd8e sHallOfFame29Mon2Level
@@ -55161,8 +55161,8 @@
 01:d045 wWalkingX
 01:d045 wPoisonStepDataEnd
 01:d045 wMenuCursorPositionBackup
-01:d046 wWalkingY
 01:d046 wMenuScrollPositionBackup
+01:d046 wWalkingY
 01:d046 wBufferMonSpclDef
 01:d047 wWinTextPointer
 01:d047 wWalkingTileCollision
