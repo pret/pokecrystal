@@ -23630,7 +23630,7 @@ ROMX bank #51:
 	         $40ff = _PlayBattleAnim.got_speed
 	         $411c = BattleAnimRunScript
 	         $4141 = BattleAnimRunScript.disabled
-	         $4156 = BattleAnimRunScript.not_move
+	         $4156 = BattleAnimRunScript.hi_byte
 	         $415f = BattleAnimRunScript.done
 	         $4163 = RunBattleAnimScript
 	         $4166 = RunBattleAnimScript.playframe
@@ -44430,8 +44430,8 @@ SRAM bank #1:
 	         $ae84 = sBoxMon11CaughtLocation
 	         $ae85 = sBoxMon11Level
 	         $ae86 = sBoxMon11BoxEnd
-	         $ae86 = sBoxMon12
 	         $ae86 = sBoxMon12Species
+	         $ae86 = sBoxMon12
 	         $ae87 = sBoxMon12Item
 	         $ae88 = sBoxMon12Moves
 	         $ae8c = sBoxMon12ID
@@ -45993,9 +45993,9 @@ SRAM bank #1:
 	         $bd7c = sHallOfFame29Mon1DVs
 	         $bd7e = sHallOfFame29Mon1Level
 	         $bd7f = sHallOfFame29Mon1Nickname
-	         $bd89 = sHallOfFame29Mon2Species
 	         $bd89 = sHallOfFame29Mon1End
 	         $bd89 = sHallOfFame29Mon2
+	         $bd89 = sHallOfFame29Mon2Species
 	         $bd8a = sHallOfFame29Mon2ID
 	         $bd8c = sHallOfFame29Mon2DVs
 	         $bd8e = sHallOfFame29Mon2Level
@@ -55959,7 +55959,7 @@ WRAM0 bank #0:
 	         $cfc7 = wBGP
 	         $cfc8 = wOBP0
 	         $cfc9 = wOBP1
-	         $cfca = wBattleAfterAnim
+	         $cfca = wNumHits
 	         $cfcc = wOptions
 	         $cfcd = wSaveFileExists
 	         $cfce = wTextboxFrame
@@ -56718,8 +56718,8 @@ WRAMX bank #1:
 	         $d32f = wOTPartyMon4PP
 	         $d333 = wOTPartyMon4Happiness
 	         $d334 = wOTPartyMon4PokerusStatus
-	         $d335 = wOTPartyMon4CaughtTime
 	         $d335 = wOTPartyMon4CaughtLevel
+	         $d335 = wOTPartyMon4CaughtTime
 	         $d335 = wOTPartyMon4CaughtData
 	         $d336 = wOTPartyMon4CaughtLocation
 	         $d336 = wOTPartyMon4CaughtGender

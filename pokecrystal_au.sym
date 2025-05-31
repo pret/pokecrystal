@@ -23317,7 +23317,7 @@
 33:40ff _PlayBattleAnim.got_speed
 33:411c BattleAnimRunScript
 33:4141 BattleAnimRunScript.disabled
-33:4156 BattleAnimRunScript.not_move
+33:4156 BattleAnimRunScript.hi_byte
 33:415f BattleAnimRunScript.done
 33:4163 RunBattleAnimScript
 33:4166 RunBattleAnimScript.playframe
@@ -43488,8 +43488,8 @@
 01:ae84 sBoxMon11CaughtLocation
 01:ae85 sBoxMon11Level
 01:ae86 sBoxMon11BoxEnd
-01:ae86 sBoxMon12
 01:ae86 sBoxMon12Species
+01:ae86 sBoxMon12
 01:ae87 sBoxMon12Item
 01:ae88 sBoxMon12Moves
 01:ae8c sBoxMon12ID
@@ -44689,9 +44689,9 @@
 01:ba6c sHallOfFame21Mon1DVs
 01:ba6e sHallOfFame21Mon1Level
 01:ba6f sHallOfFame21Mon1Nickname
+01:ba79 sHallOfFame21Mon2
 01:ba79 sHallOfFame21Mon1End
 01:ba79 sHallOfFame21Mon2Species
-01:ba79 sHallOfFame21Mon2
 01:ba7a sHallOfFame21Mon2ID
 01:ba7c sHallOfFame21Mon2DVs
 01:ba7e sHallOfFame21Mon2Level
@@ -45049,9 +45049,9 @@
 01:bd7c sHallOfFame29Mon1DVs
 01:bd7e sHallOfFame29Mon1Level
 01:bd7f sHallOfFame29Mon1Nickname
-01:bd89 sHallOfFame29Mon2Species
 01:bd89 sHallOfFame29Mon1End
 01:bd89 sHallOfFame29Mon2
+01:bd89 sHallOfFame29Mon2Species
 01:bd8a sHallOfFame29Mon2ID
 01:bd8c sHallOfFame29Mon2DVs
 01:bd8e sHallOfFame29Mon2Level
@@ -54923,7 +54923,7 @@
 00:cfc7 wBGP
 00:cfc8 wOBP0
 00:cfc9 wOBP1
-00:cfca wBattleAfterAnim
+00:cfca wNumHits
 00:cfcc wOptions
 00:cfcd wSaveFileExists
 00:cfce wTextboxFrame
@@ -55674,8 +55674,8 @@
 01:d32f wOTPartyMon4PP
 01:d333 wOTPartyMon4Happiness
 01:d334 wOTPartyMon4PokerusStatus
-01:d335 wOTPartyMon4CaughtTime
 01:d335 wOTPartyMon4CaughtLevel
+01:d335 wOTPartyMon4CaughtTime
 01:d335 wOTPartyMon4CaughtData
 01:d336 wOTPartyMon4CaughtLocation
 01:d336 wOTPartyMon4CaughtGender
