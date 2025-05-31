@@ -259,6 +259,8 @@
 	const BEAT_UP      ; fb
 DEF NUM_ATTACKS EQU const_value - 1
 
+DEF CANNOT_MOVE EQU $ff
+
 ; Battle animations use the same constants as the moves up to this point
 	const_next $ff
 	const ANIM_SWEET_SCENT_2     ; ff
