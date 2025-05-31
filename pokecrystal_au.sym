@@ -23317,7 +23317,7 @@
 33:40ff _PlayBattleAnim.got_speed
 33:411c BattleAnimRunScript
 33:4141 BattleAnimRunScript.disabled
-33:4156 BattleAnimRunScript.hi_byte
+33:4156 BattleAnimRunScript.not_move
 33:415f BattleAnimRunScript.done
 33:4163 RunBattleAnimScript
 33:4166 RunBattleAnimScript.playframe
@@ -44689,9 +44689,9 @@
 01:ba6c sHallOfFame21Mon1DVs
 01:ba6e sHallOfFame21Mon1Level
 01:ba6f sHallOfFame21Mon1Nickname
-01:ba79 sHallOfFame21Mon2
 01:ba79 sHallOfFame21Mon1End
 01:ba79 sHallOfFame21Mon2Species
+01:ba79 sHallOfFame21Mon2
 01:ba7a sHallOfFame21Mon2ID
 01:ba7c sHallOfFame21Mon2DVs
 01:ba7e sHallOfFame21Mon2Level
@@ -46728,8 +46728,8 @@
 02:ad48 sBox4Mon3Moves
 02:ad4c sBox4Mon3ID
 02:ad4e sBox4Mon3Exp
-02:ad51 sBox4Mon3StatExp
 02:ad51 sBox4Mon3HPExp
+02:ad51 sBox4Mon3StatExp
 02:ad53 sBox4Mon3AtkExp
 02:ad55 sBox4Mon3DefExp
 02:ad57 sBox4Mon3SpdExp
@@ -54923,7 +54923,7 @@
 00:cfc7 wBGP
 00:cfc8 wOBP0
 00:cfc9 wOBP1
-00:cfca wNumHits
+00:cfca wBattleAfterAnim
 00:cfcc wOptions
 00:cfcd wSaveFileExists
 00:cfce wTextboxFrame
@@ -55161,8 +55161,8 @@
 01:d045 wWalkingX
 01:d045 wPoisonStepDataEnd
 01:d045 wMenuCursorPositionBackup
-01:d046 wMenuScrollPositionBackup
 01:d046 wWalkingY
+01:d046 wMenuScrollPositionBackup
 01:d046 wBufferMonSpclDef
 01:d047 wWinTextPointer
 01:d047 wWalkingTileCollision
@@ -55674,8 +55674,8 @@
 01:d32f wOTPartyMon4PP
 01:d333 wOTPartyMon4Happiness
 01:d334 wOTPartyMon4PokerusStatus
-01:d335 wOTPartyMon4CaughtLevel
 01:d335 wOTPartyMon4CaughtTime
+01:d335 wOTPartyMon4CaughtLevel
 01:d335 wOTPartyMon4CaughtData
 01:d336 wOTPartyMon4CaughtLocation
 01:d336 wOTPartyMon4CaughtGender

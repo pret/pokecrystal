@@ -23618,7 +23618,7 @@ ROMX bank #51:
 	         $40ff = _PlayBattleAnim.got_speed
 	         $411c = BattleAnimRunScript
 	         $4141 = BattleAnimRunScript.disabled
-	         $4156 = BattleAnimRunScript.hi_byte
+	         $4156 = BattleAnimRunScript.not_move
 	         $415f = BattleAnimRunScript.done
 	         $4163 = RunBattleAnimScript
 	         $4166 = RunBattleAnimScript.playframe
@@ -45408,9 +45408,9 @@ SRAM bank #1:
 	         $ba6c = sHallOfFame21Mon1DVs
 	         $ba6e = sHallOfFame21Mon1Level
 	         $ba6f = sHallOfFame21Mon1Nickname
-	         $ba79 = sHallOfFame21Mon2
 	         $ba79 = sHallOfFame21Mon1End
 	         $ba79 = sHallOfFame21Mon2Species
+	         $ba79 = sHallOfFame21Mon2
 	         $ba7a = sHallOfFame21Mon2ID
 	         $ba7c = sHallOfFame21Mon2DVs
 	         $ba7e = sHallOfFame21Mon2Level
@@ -47454,8 +47454,8 @@ SRAM bank #2:
 	         $ad48 = sBox4Mon3Moves
 	         $ad4c = sBox4Mon3ID
 	         $ad4e = sBox4Mon3Exp
-	         $ad51 = sBox4Mon3StatExp
 	         $ad51 = sBox4Mon3HPExp
+	         $ad51 = sBox4Mon3StatExp
 	         $ad53 = sBox4Mon3AtkExp
 	         $ad55 = sBox4Mon3DefExp
 	         $ad57 = sBox4Mon3SpdExp
@@ -55689,7 +55689,7 @@ WRAM0 bank #0:
 	         $cfc7 = wBGP
 	         $cfc8 = wOBP0
 	         $cfc9 = wOBP1
-	         $cfca = wNumHits
+	         $cfca = wBattleAfterAnim
 	         $cfcc = wOptions
 	         $cfcd = wSaveFileExists
 	         $cfce = wTextboxFrame
@@ -55933,8 +55933,8 @@ WRAMX bank #1:
 	         $d045 = wWalkingX
 	         $d045 = wPoisonStepDataEnd
 	         $d045 = wMenuCursorPositionBackup
-	         $d046 = wMenuScrollPositionBackup
 	         $d046 = wWalkingY
+	         $d046 = wMenuScrollPositionBackup
 	         $d046 = wBufferMonSpclDef
 	         $d047 = wWinTextPointer
 	         $d047 = wWalkingTileCollision
@@ -56448,8 +56448,8 @@ WRAMX bank #1:
 	         $d32f = wOTPartyMon4PP
 	         $d333 = wOTPartyMon4Happiness
 	         $d334 = wOTPartyMon4PokerusStatus
-	         $d335 = wOTPartyMon4CaughtLevel
 	         $d335 = wOTPartyMon4CaughtTime
+	         $d335 = wOTPartyMon4CaughtLevel
 	         $d335 = wOTPartyMon4CaughtData
 	         $d336 = wOTPartyMon4CaughtLocation
 	         $d336 = wOTPartyMon4CaughtGender

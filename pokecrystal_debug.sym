@@ -23329,7 +23329,7 @@
 33:40ff _PlayBattleAnim.got_speed
 33:411c BattleAnimRunScript
 33:4141 BattleAnimRunScript.disabled
-33:4156 BattleAnimRunScript.hi_byte
+33:4156 BattleAnimRunScript.not_move
 33:415f BattleAnimRunScript.done
 33:4163 RunBattleAnimScript
 33:4166 RunBattleAnimScript.playframe
@@ -54098,9 +54098,9 @@
 00:c709 wc709
 00:c709 wSlotBias
 00:c709 wMemoryGameNumCardsMatched
-00:c70a wBattleWeather
 00:c70a wSlotBet
 00:c70a wc70a
+00:c70a wBattleWeather
 00:c70b wWeatherCount
 00:c70b wFirstTwoReelsMatching
 00:c70b wc70b
@@ -54370,10 +54370,10 @@
 00:c834 wTimeCapsulePartyMon1Level
 00:c834 wHallOfFamePokemonListMon4DVs
 00:c835 wLinkPlayerPartyMon1HP
-00:c835 wTimeCapsulePartyMon1Stats
 00:c835 wTimeCapsulePartyMon1MaxHP
 00:c835 wc835
 00:c835 wDebugRoomMonHappiness
+00:c835 wTimeCapsulePartyMon1Stats
 00:c836 wDebugRoomMonPokerusStatus
 00:c836 wHallOfFamePokemonListMon4Level
 00:c836 wc836
@@ -55193,7 +55193,7 @@
 00:cfc7 wBGP
 00:cfc8 wOBP0
 00:cfc9 wOBP1
-00:cfca wNumHits
+00:cfca wBattleAfterAnim
 00:cfcc wOptions
 00:cfcd wSaveFileExists
 00:cfce wTextboxFrame
@@ -55431,8 +55431,8 @@
 01:d045 wWalkingX
 01:d045 wPoisonStepDataEnd
 01:d045 wMenuCursorPositionBackup
-01:d046 wMenuScrollPositionBackup
 01:d046 wWalkingY
+01:d046 wMenuScrollPositionBackup
 01:d046 wBufferMonSpclDef
 01:d047 wWinTextPointer
 01:d047 wWalkingTileCollision
@@ -55944,8 +55944,8 @@
 01:d32f wOTPartyMon4PP
 01:d333 wOTPartyMon4Happiness
 01:d334 wOTPartyMon4PokerusStatus
-01:d335 wOTPartyMon4CaughtLevel
 01:d335 wOTPartyMon4CaughtTime
+01:d335 wOTPartyMon4CaughtLevel
 01:d335 wOTPartyMon4CaughtData
 01:d336 wOTPartyMon4CaughtLocation
 01:d336 wOTPartyMon4CaughtGender
