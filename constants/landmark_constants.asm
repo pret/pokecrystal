@@ -1,7 +1,9 @@
 ; Landmarks indexes (see data/maps/landmarks.asm)
 	const_def
 	const LANDMARK_SPECIAL           ; 00
+
 ; Johto landmarks
+DEF JOHTO_LANDMARK EQU const_value ; New Bark Town is the first landmark on the Johto town map
 	const LANDMARK_NEW_BARK_TOWN     ; 01
 	const LANDMARK_ROUTE_29          ; 02
 	const LANDMARK_CHERRYGROVE_CITY  ; 03
@@ -48,7 +50,10 @@
 	const LANDMARK_DARK_CAVE         ; 2c
 	const LANDMARK_ROUTE_46          ; 2d
 	const LANDMARK_SILVER_CAVE       ; 2e
-DEF KANTO_LANDMARK EQU const_value
+DEF JOHTO_LANDMARK_LAST EQU const_value - 1 ; Silver Cave is the last landmark on the Johto town map
+
+; Kanto landmarks
+DEF KANTO_LANDMARK EQU const_value ; Pallet Town is the first landmark on the Kanto town map
 	const LANDMARK_PALLET_TOWN       ; 2f
 	const LANDMARK_ROUTE_1           ; 30
 	const LANDMARK_VIRIDIAN_CITY     ; 31
@@ -97,7 +102,13 @@ DEF KANTO_LANDMARK EQU const_value
 	const LANDMARK_ROUTE_27          ; 5c
 	const LANDMARK_TOHJO_FALLS       ; 5d
 	const LANDMARK_ROUTE_28          ; 5e
+DEF KANTO_LANDMARK_LAST EQU const_value - 1 ; Route 28 is the last landmark on the Kanto town map
+
+; Other landmarks
+DEF OTHER_LANDMARK EQU const_value
 	const LANDMARK_FAST_SHIP         ; 5f
+
+; Total number of landmarks
 DEF NUM_LANDMARKS EQU const_value
 
 ; used in CaughtData
