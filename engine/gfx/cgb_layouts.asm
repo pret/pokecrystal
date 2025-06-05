@@ -116,7 +116,7 @@ _CGB_BattleColors:
 _CGB_FinishBattleScreenLayout:
 	call InitPartyMenuBGPal7
 	hlcoord 0, 0, wAttrmap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 	ld a, PAL_BATTLE_BG_ENEMY_HP
 	call ByteFill
 	hlcoord 0, 4, wAttrmap
@@ -140,7 +140,7 @@ _CGB_FinishBattleScreenLayout:
 	ld a, PAL_BATTLE_BG_EXP
 	call FillBoxCGB
 	hlcoord 0, 12, wAttrmap
-	ld bc, 6 * SCREEN_WIDTH
+	ld bc, 6 * SCRN_X_B
 	ld a, PAL_BATTLE_BG_TEXT
 	call ByteFill
 	ld hl, BattleObjectPals
@@ -219,7 +219,7 @@ _CGB_StatsScreenHPPals:
 	call WipeAttrmap
 
 	hlcoord 0, 0, wAttrmap
-	lb bc, 8, SCREEN_WIDTH
+	lb bc, 8, SCRN_X_B
 	ld a, $1 ; mon palette
 	call FillBoxCGB
 
@@ -412,7 +412,7 @@ _CGB_SlotMachine:
 	ld a, $1 ; lights palette
 	call FillBoxCGB
 	hlcoord 0, 12, wAttrmap
-	ld bc, 6 * SCREEN_WIDTH
+	ld bc, 6 * SCRN_X_B
 	ld a, $7 ; text palette
 	call ByteFill
 	call ApplyAttrmap
@@ -430,7 +430,7 @@ _CGB_BetaTitleScreen:
 	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	hlcoord 0, 6, wAttrmap
-	lb bc, 12, SCREEN_WIDTH
+	lb bc, 12, SCRN_X_B
 	ld a, $1
 	call FillBoxCGB
 	call ApplyAttrmap
@@ -601,17 +601,17 @@ _CGB_UnownPuzzle:
 	ld a, PREDEFPAL_UNOWN_PUZZLE
 	call GetPredefPal
 	call LoadHLPaletteIntoDE
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wOBPals1)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, wOBPals1
 	ld a, LOW(palred 31 + palgreen 0 + palblue 0)
 	ld [hli], a
 	ld a, HIGH(palred 31 + palgreen 0 + palblue 0)
 	ld [hl], a
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call WipeAttrmap
 	call ApplyAttrmap
 	ret
@@ -648,7 +648,7 @@ _CGB_TrainerCard:
 
 	; fill screen with opposite-gender palette for the card border
 	hlcoord 0, 0, wAttrmap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 	ld a, [wPlayerGender]
 	and a
 	ld a, $1 ; kris
@@ -823,7 +823,7 @@ INCLUDE "gfx/pack/pack_f.pal"
 
 _CGB_Pokepic:
 	call _CGB_MapPals
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	hlcoord 0, 0, wAttrmap
 	ld a, [wMenuBorderTopCoord]
 .loop
@@ -860,11 +860,11 @@ _CGB_MagnetTrain: ; unused
 	call CopyFourPalettes
 	call WipeAttrmap
 	hlcoord 0, 4, wAttrmap
-	lb bc, 10, SCREEN_WIDTH
+	lb bc, 10, SCRN_X_B
 	ld a, PAL_BG_GREEN
 	call FillBoxCGB
 	hlcoord 0, 6, wAttrmap
-	lb bc, 6, SCREEN_WIDTH
+	lb bc, 6, SCRN_X_B
 	ld a, PAL_BG_RED
 	call FillBoxCGB
 	call ApplyAttrmap

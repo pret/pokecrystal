@@ -147,14 +147,14 @@ Kurt_SelectQuantity:
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 6, 9, SCREEN_WIDTH - 1, 12
+	menu_coords 6, 9, SCRN_X_B - 1, 12
 	dw NULL
 	db -1 ; default option
 	db 0
 
 .PlaceApricornName:
 	call MenuBoxCoord2Tile
-	ld de, SCREEN_WIDTH + 1
+	ld de, SCRN_X_B + 1
 	add hl, de
 	ld d, h
 	ld e, l
@@ -163,7 +163,7 @@ Kurt_SelectQuantity:
 
 PlaceApricornQuantity:
 	call MenuBoxCoord2Tile
-	ld de, 2 * SCREEN_WIDTH + 10
+	ld de, 2 * SCRN_X_B + 10
 	add hl, de
 	ld [hl], "×"
 	inc hl

@@ -45,7 +45,7 @@ PlaceMoneyAtTopLeftOfTextbox:
 PlaceMoneyTextbox:
 	call MenuBox
 	call MenuBoxCoord2Tile
-	ld de, SCREEN_WIDTH + 1
+	ld de, SCRN_X_B + 1
 	add hl, de
 	ld de, wMoney
 	lb bc, PRINTNUM_MONEY | 3, 6
@@ -54,7 +54,7 @@ PlaceMoneyTextbox:
 
 MoneyTopRightMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 11, 0, SCREEN_WIDTH - 1, 2
+	menu_coords 11, 0, SCRN_X_B - 1, 2
 	dw NULL
 	db 1 ; default option
 

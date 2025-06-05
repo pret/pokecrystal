@@ -24,7 +24,7 @@ _MemoryGame:
 	ld [hli], a
 	ld [hl], $00
 	hlcoord 0, 0
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
+	ld bc, SCRN_Y_B * SCRN_X_B
 	xor a
 	call ByteFill
 	xor a
@@ -424,7 +424,7 @@ MemoryGame_PlaceCard:
 	inc a
 	ld [hld], a
 	inc a
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	add hl, bc
 	ld [hli], a
 	inc a
@@ -437,7 +437,7 @@ MemoryGame_DeleteCard:
 	ld a, $1
 	ld [hli], a
 	ld [hld], a
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	add hl, bc
 	ld [hli], a
 	ld [hl], a
@@ -447,7 +447,7 @@ MemoryGame_DeleteCard:
 
 MemoryGame_InitStrings:
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 	ld a, $1
 	call ByteFill
 	hlcoord 0, 0
@@ -479,7 +479,7 @@ MemoryGame_Card2Coord:
 	add 9
 	ld e, a
 	hlcoord 1, 2
-	ld bc, 2 * SCREEN_WIDTH
+	ld bc, 2 * SCRN_X_B
 .loop2
 	ld a, d
 	and a

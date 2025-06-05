@@ -262,7 +262,7 @@ NamingScreen_IsTargetBox:
 NamingScreen_InitText:
 	call WaitTop
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 	ld a, NAMINGSCREEN_BORDER
 	call ByteFill
 	hlcoord 1, 1
@@ -314,7 +314,7 @@ NamingScreen_ApplyTextInputMode:
 	dec c
 	jr nz, .col
 	push de
-	ld de, 2 * SCREEN_WIDTH - $11
+	ld de, 2 * SCRN_X_B - $11
 	add hl, de
 	pop de
 	dec b
@@ -377,7 +377,7 @@ NamingScreenJoypadLoop:
 	depixel 10, 3
 	call NamingScreen_IsTargetBox
 	jr nz, .got_cursor_position
-	ld d, 8 * TILE_WIDTH
+	ld d, 8 * TILE_X
 .got_cursor_position
 	ld a, SPRITE_ANIM_OBJ_NAMING_SCREEN_CURSOR
 	call InitSpriteAnimStruct
@@ -815,7 +815,7 @@ NamingScreen_GetLastCharacter:
 	srl a
 	ld d, a
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 .loop
 	ld a, d
 	and a
@@ -976,15 +976,15 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 .InitCharset:
 	call WaitTop
 	hlcoord 0, 0
-	ld bc, 6 * SCREEN_WIDTH
+	ld bc, 6 * SCRN_X_B
 	ld a, NAMINGSCREEN_BORDER
 	call ByteFill
 	hlcoord 0, 6
-	ld bc, 12 * SCREEN_WIDTH
+	ld bc, 12 * SCRN_X_B
 	ld a, " "
 	call ByteFill
 	hlcoord 1, 1
-	lb bc, 4, SCREEN_WIDTH - 2
+	lb bc, 4, SCRN_X_B - 2
 	call ClearBox
 	ld de, MailEntry_Uppercase
 
@@ -992,7 +992,7 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 	hlcoord 1, 7
 	ld b, 6
 .next
-	ld c, SCREEN_WIDTH - 1
+	ld c, SCRN_X_B - 1
 .loop_
 	ld a, [de]
 	ld [hli], a
@@ -1000,7 +1000,7 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 	dec c
 	jr nz, .loop_
 	push de
-	ld de, SCREEN_WIDTH + 1
+	ld de, SCRN_X_B + 1
 	add hl, de
 	pop de
 	dec b

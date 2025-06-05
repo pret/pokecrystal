@@ -141,7 +141,7 @@ Place2DMenuItemStrings:
 	dec c
 	jr nz, .col
 	pop hl
-	ld bc, 2 * SCREEN_WIDTH
+	ld bc, 2 * SCRN_X_B
 	add hl, bc
 	pop bc
 	dec b
@@ -523,7 +523,7 @@ Place2DMenuCursor:
 	jr nz, .row_loop
 
 .got_row
-	ld c, SCREEN_WIDTH
+	ld c, SCRN_X_B
 	call AddNTimes
 	ld a, [w2DMenuCursorOffsets]
 	and $f
@@ -555,10 +555,10 @@ Place2DMenuCursor:
 	ret
 
 _PushWindow::
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wWindowStack)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld hl, wWindowStackPointer
 	ld e, [hl]
@@ -620,7 +620,7 @@ _PushWindow::
 	ld [hl], d
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, wWindowStackSize
 	inc [hl]
 	ret
@@ -643,7 +643,7 @@ _PushWindow::
 	jr nz, .col
 
 	pop hl
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	add hl, bc
 	pop bc
 	dec b
@@ -658,10 +658,10 @@ _ExitMenu::
 	xor a
 	ldh [hBGMapMode], a
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wWindowStack)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	call GetWindowStackTop
 	ld a, l
@@ -688,7 +688,7 @@ _ExitMenu::
 
 .done
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, wWindowStackSize
 	dec [hl]
 	ret
@@ -701,7 +701,7 @@ RestoreOverworldMapTiles: ; unreferenced
 	call OpenSRAM
 	hlcoord 0, 0
 	ld de, sScratch
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 	call CopyBytes
 	call CloseSRAM
 	call LoadOverworldTilemapAndAttrmapPals
@@ -709,7 +709,7 @@ RestoreOverworldMapTiles: ; unreferenced
 	call OpenSRAM
 	ld hl, sScratch
 	decoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 .loop
 	ld a, [hl]
 	cp $61

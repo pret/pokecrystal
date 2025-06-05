@@ -74,7 +74,7 @@ _DebugRoom:
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 0, 0, 15, SCREEN_HEIGHT - 1
+	menu_coords 0, 0, 15, SCRN_Y_B - 1
 	dw .MenuData
 	db 1 ; default option
 
@@ -582,8 +582,8 @@ DebugRoom_EditPagedValues:
 	ld [hl], TRUE
 	call ClearBGPalettes
 	hlcoord 0, 0
-	ld b, SCREEN_HEIGHT - 2
-	ld c, SCREEN_WIDTH - 2
+	ld b, SCRN_Y_B - 2
+	ld c, SCRN_X_B - 2
 	call Textbox
 	hlcoord 8, 17
 	ld de, DebugRoom_PageString
@@ -813,7 +813,7 @@ DebugRoom_GetCurPagedValuePointer:
 DebugRoom_ShowHideCursor:
 	push af
 	hlcoord 1, 1
-	ld bc, SCREEN_WIDTH * 2
+	ld bc, SCRN_X_B * 2
 	ld a, [wDebugRoomCurValue]
 	call AddNTimes
 	pop af
@@ -890,7 +890,7 @@ DebugRoom_PrintPage:
 	add "1"
 	ld [hl], a
 	hlcoord 1, 1
-	lb bc, SCREEN_HEIGHT - 2, SCREEN_WIDTH - 2
+	lb bc, SCRN_Y_B - 2, SCRN_X_B - 2
 	call ClearBox
 	pop af
 	ld b, a
@@ -956,12 +956,12 @@ DebugRoom_PrintPagedValue:
 	push hl
 	hlcoord 2, 1
 	ld a, c
-	ld bc, SCREEN_WIDTH * 2
+	ld bc, SCRN_X_B * 2
 	call AddNTimes
 	push hl
 	call PlaceString
 	pop hl
-	ld bc, SCREEN_WIDTH - 7
+	ld bc, SCRN_X_B - 7
 	add hl, bc
 	pop bc ; pushed hl
 	pop de
@@ -1419,18 +1419,18 @@ DebugRoom_DayHTimeString:
 	db "DAY     H<LF>TIME@"
 
 DebugRoom_GetClock:
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	ld a, CART_SRAM_ENABLE
+	ld [rRAMG], a
 	xor a
-	ld [MBC3LatchClock], a
+	ld [rRTCLATCH], a
 	inc a
-	ld [MBC3LatchClock], a
+	ld [rRTCLATCH], a
 	ld b, RTC_DH - RTC_S + 1
 	ld c, RTC_S
 .loop
 	ld a, c
-	ld [MBC3SRamBank], a
-	ld a, [MBC3RTC]
+	ld [rRAMB], a
+	ld a, [rRTCREG]
 	ld [hli], a
 	inc c
 	dec b
@@ -1439,15 +1439,15 @@ DebugRoom_GetClock:
 	ret
 
 DebugRoom_SetClock:
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	ld a, CART_SRAM_ENABLE
+	ld [rRAMG], a
 	ld b, RTC_DH - RTC_S + 1
 	ld c, RTC_S
 .loop
 	ld a, c
-	ld [MBC3SRamBank], a
+	ld [rRAMB], a
 	ld a, [hli]
-	ld [MBC3RTC], a
+	ld [rRTCREG], a
 	inc c
 	dec b
 	jr nz, .loop

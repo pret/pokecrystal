@@ -97,7 +97,7 @@ _SlotMachine:
 	ld hl, wOptions
 	res NO_TEXT_SCROLL, [hl]
 	ld hl, rLCDC
-	res rLCDC_SPRITE_SIZE, [hl] ; 8x8
+	res LCDCB_OBJ16, [hl] ; 8x8
 	ret
 
 .InitGFX:
@@ -138,11 +138,11 @@ _SlotMachine:
 
 	ld hl, SlotsTilemap
 	decoord 0, 0
-	ld bc, SCREEN_WIDTH * 12
+	ld bc, SCRN_X_B * 12
 	call CopyBytes
 
 	ld hl, rLCDC
-	set rLCDC_SPRITE_SIZE, [hl] ; 8x16
+	set LCDCB_OBJ16, [hl] ; 8x16
 	call EnableLCD
 	ld hl, wSlots
 	ld bc, wSlotsEnd - wSlots
@@ -261,12 +261,12 @@ AnimateSlotReelIcons: ; unreferenced
 	and $7
 	ret nz
 	ld hl, wShadowOAMSprite16TileID
-	ld c, NUM_SPRITE_OAM_STRUCTS - 16
+	ld c, OAM_COUNT - 16
 .loop
 	ld a, [hl]
 	xor $20 ; alternate between $00-$1f and $20-$3f
 	ld [hli], a ; tile id
-rept SPRITEOAMSTRUCT_LENGTH - 1
+rept OBJ_B - 1
 	inc hl
 endr
 	dec c
@@ -681,7 +681,7 @@ Slots_InitReelTiles:
 	ld [hl], d
 	ld hl, REEL_X_COORD
 	add hl, bc
-	ld [hl], 6 * TILE_WIDTH
+	ld [hl], 6 * TILE_X
 	call .OAM
 
 	ld bc, wReel2
@@ -699,7 +699,7 @@ Slots_InitReelTiles:
 	ld [hl], d
 	ld hl, REEL_X_COORD
 	add hl, bc
-	ld [hl], 10 * TILE_WIDTH
+	ld [hl], 10 * TILE_X
 	call .OAM
 
 	ld bc, wReel3
@@ -717,7 +717,7 @@ Slots_InitReelTiles:
 	ld [hl], d
 	ld hl, REEL_X_COORD
 	add hl, bc
-	ld [hl], 14 * TILE_WIDTH
+	ld [hl], 14 * TILE_X
 	call .OAM
 	ret
 
@@ -785,7 +785,7 @@ Slots_UpdateReelPositionAndOAM:
 	add hl, bc
 	ld a, [hl]
 	ld [wCurReelXCoord], a
-	ld a, 10 * TILE_WIDTH
+	ld a, 10 * TILE_X
 	ld [wCurReelYCoord], a
 	ld hl, REEL_POSITION
 	add hl, bc
@@ -827,13 +827,13 @@ Slots_UpdateReelPositionAndOAM:
 	ld [hli], a ; tile id
 	srl a
 	srl a
-	set OAM_PRIORITY, a
+	set OAMB_PRI, a
 	ld [hli], a ; attributes
 
 	ld a, [wCurReelYCoord]
 	ld [hli], a ; y
 	ld a, [wCurReelXCoord]
-	add 1 * TILE_WIDTH
+	add 1 * TILE_X
 	ld [hli], a ; x
 	ld a, [de]
 	inc a
@@ -841,13 +841,13 @@ Slots_UpdateReelPositionAndOAM:
 	ld [hli], a ; tile id
 	srl a
 	srl a
-	set OAM_PRIORITY, a
+	set OAMB_PRI, a
 	ld [hli], a ; attributes
 	inc de
 	ld a, [wCurReelYCoord]
-	sub 2 * TILE_WIDTH
+	sub 2 * TILE_X
 	ld [wCurReelYCoord], a
-	cp 2 * TILE_WIDTH
+	cp 2 * TILE_X
 	jr nz, .loop
 	ret
 
@@ -1708,14 +1708,14 @@ Slots_Lights1OnOff:
 Slots_TurnLightsOnOrOff:
 	ld a, b
 	ld [hl], a
-	ld de, SCREEN_WIDTH / 2 + 3
+	ld de, SCRN_X_B / 2 + 3
 	add hl, de
 	ld [hl], a
-	ld de, SCREEN_WIDTH / 2 - 3
+	ld de, SCRN_X_B / 2 - 3
 	add hl, de
 	inc a
 	ld [hl], a
-	ld de, SCREEN_WIDTH / 2 + 3
+	ld de, SCRN_X_B / 2 + 3
 	add hl, de
 	ld [hl], a
 	ret
@@ -1776,7 +1776,7 @@ Slots_AskBet:
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 14, 10, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 14, 10, SCRN_X_B - 1, SCRN_Y_B - 1
 	dw .MenuData
 	db 1 ; default option
 
@@ -2019,7 +2019,7 @@ Slots_AnimateGolem:
 	jr c, .play_sound
 	dec [hl]
 	ld e, a
-	ld d, 14 * TILE_WIDTH
+	ld d, 14 * TILE_X
 	farcall BattleAnim_Sine_e
 	ld a, e
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
@@ -2046,7 +2046,7 @@ Slots_AnimateGolem:
 	ld a, [hl]
 	inc [hl]
 	inc [hl]
-	cp 9 * TILE_WIDTH
+	cp 9 * TILE_X
 	jr nc, .restart
 	and $3
 	ret nz
@@ -2090,7 +2090,7 @@ Slots_AnimateChansey:
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
-	cp 13 * TILE_WIDTH
+	cp 13 * TILE_X
 	jr z, .limit
 	and $f
 	ret nz

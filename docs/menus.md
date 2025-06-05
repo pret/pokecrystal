@@ -19,7 +19,7 @@ Structure:
 ```asm
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 2, 4, SCREEN_WIDTH - 1, 13
+	menu_coords 2, 4, SCRN_X_B - 1, 13
 	dw .MenuData
 	db 1 ; default option
 
@@ -219,7 +219,7 @@ Structure:
 ```asm
 .MenuHeader:
 	db MENU_SPRITE_ANIMS | MENU_BACKUP_TILES ; flags
-	menu_coords 12, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 12, 12, SCRN_X_B - 1, SCRN_Y_B - 1
 	dw .MenuData
 	db 1 ; default option
 

@@ -270,9 +270,9 @@ Printer_WaitHandshake:
 	ld [wPrinterOpcode], a
 	ld a, $88
 	ldh [rSB], a
-	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_INTERNAL
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SCF_START | SC_INTERNAL
 	ldh [rSC], a
 	ret
 
@@ -353,7 +353,7 @@ Printer_StageHeaderForSend:
 	ret
 
 Printer_Convert2RowsTo2bpp:
-	; de = wPrinterTilemapBuffer + 2 * SCREEN_WIDTH * ([wPrinterQueueLength] - [wPrinterRowIndex])
+	; de = wPrinterTilemapBuffer + 2 * SCRN_X_B * ([wPrinterQueueLength] - [wPrinterRowIndex])
 	ld a, [wPrinterRowIndex]
 	xor $ff
 	ld d, a
@@ -361,7 +361,7 @@ Printer_Convert2RowsTo2bpp:
 	inc a
 	add d
 	ld hl, wPrinterTilemapBuffer
-	ld de, 2 * SCREEN_WIDTH
+	ld de, 2 * SCRN_X_B
 .loop1
 	and a
 	jr z, .okay1
@@ -372,7 +372,7 @@ Printer_Convert2RowsTo2bpp:
 	ld e, l
 	ld d, h
 	ld hl, wGameboyPrinter2bppSource
-	ld c, 2 * SCREEN_WIDTH
+	ld c, 2 * SCRN_X_B
 .loop2
 	ld a, [de]
 	inc de
@@ -613,9 +613,9 @@ Printer_Send0x08:
 
 Printer_SerialSend:
 	ldh [rSB], a
-	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_INTERNAL
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SCF_START | SC_INTERNAL
 	ldh [rSC], a
 	ret
 

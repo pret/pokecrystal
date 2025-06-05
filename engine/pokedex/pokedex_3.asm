@@ -51,7 +51,7 @@ DrawPokedexListWindow:
 	ld [hl], $50
 	ld a, $51
 	hlcoord 11, 1
-	ld b, SCREEN_HEIGHT - 3
+	ld b, SCRN_Y_B - 3
 	call Pokedex_FillColumn2
 	ld [hl], $52
 	jr .Done
@@ -62,7 +62,7 @@ DrawPokedexListWindow:
 	ld [hl], $66
 	ld a, $67
 	hlcoord 11, 1
-	ld b, SCREEN_HEIGHT - 3
+	ld b, SCRN_Y_B - 3
 	call Pokedex_FillColumn2
 	ld [hl], $68
 .Done:
@@ -85,7 +85,7 @@ DrawPokedexSearchResultsWindow:
 	ld [hl], $66
 	ld a, $67
 	hlcoord 11, 1
-	ld b, SCREEN_HEIGHT / 2
+	ld b, SCRN_Y_B / 2
 	call Pokedex_FillColumn2
 	ld [hl], $68
 	ld a, $34
@@ -139,7 +139,7 @@ DrawDexEntryScreenRightEdge:
 	hlcoord 19, 17
 	ld [hl], $3c
 	xor a
-	ld b, SCREEN_HEIGHT
+	ld b, SCRN_Y_B
 	hlcoord 19, 0, wAttrmap
 	call Pokedex_FillColumn2
 	call WaitBGMap2
@@ -153,7 +153,7 @@ DrawDexEntryScreenRightEdge:
 Pokedex_FillColumn2:
 ; A local duplicate of Pokedex_FillColumn.
 	push de
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 .loop
 	ld [hl], a
 	add hl, de

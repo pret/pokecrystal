@@ -159,7 +159,7 @@ Pack:
 
 .MenuHeader1:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 13, 7, SCRN_X_B - 1, TEXTBOX_Y - 1
 	dw .MenuData_1
 	db 1 ; default option
 
@@ -175,7 +175,7 @@ Pack:
 
 .MenuHeader2:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 5, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 13, 5, SCRN_X_B - 1, TEXTBOX_Y - 1
 	dw .MenuData_2
 	db 1 ; default option
 
@@ -310,7 +310,7 @@ Pack:
 
 MenuHeader_UsableKeyItem:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 13, 1, SCRN_X_B - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
@@ -332,7 +332,7 @@ Jumptable_UseGiveTossRegisterQuit:
 
 MenuHeader_UsableItem:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 3, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 13, 3, SCRN_X_B - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
@@ -352,7 +352,7 @@ Jumptable_UseGiveTossQuit:
 
 MenuHeader_UnusableItem:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 13, 7, SCRN_X_B - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
@@ -368,7 +368,7 @@ Jumptable_UseQuit:
 
 MenuHeader_UnusableKeyItem:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 5, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 13, 5, SCRN_X_B - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
@@ -386,7 +386,7 @@ Jumptable_UseRegisterQuit:
 
 MenuHeader_HoldableKeyItem:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 3, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 13, 3, SCRN_X_B - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
@@ -406,7 +406,7 @@ Jumptable_GiveTossRegisterQuit:
 
 MenuHeader_HoldableItem:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 5, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 13, 5, SCRN_X_B - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
@@ -807,7 +807,7 @@ TMHMSubmenu:
 
 .UsableMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 13, 7, SCRN_X_B - 1, TEXTBOX_Y - 1
 	dw .UsableMenuData
 	db 1 ; default option
 
@@ -823,7 +823,7 @@ TMHMSubmenu:
 
 .UnusableMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 9, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 13, 9, SCRN_X_B - 1, TEXTBOX_Y - 1
 	dw .UnusableMenuData
 	db 1 ; default option
 
@@ -1099,7 +1099,7 @@ TutorialPack:
 
 .ItemsMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 7, 1, SCRN_X_B - 1, TEXTBOX_Y - 1
 	dw .ItemsMenuData
 	db 1 ; default option
 
@@ -1119,7 +1119,7 @@ TutorialPack:
 
 .KeyItemsMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 7, 1, SCRN_X_B - 1, TEXTBOX_Y - 1
 	dw .KeyItemsMenuData
 	db 1 ; default option
 
@@ -1148,7 +1148,7 @@ TutorialPack:
 
 .BallsMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 7, 1, SCRN_X_B - 1, TEXTBOX_Y - 1
 	dw .BallsMenuData
 	db 1 ; default option
 
@@ -1339,7 +1339,7 @@ Pack_InitGFX:
 	call FarCopyBytes
 ; Background (blue if male, pink if female)
 	hlcoord 0, 1
-	ld bc, 11 * SCREEN_WIDTH
+	ld bc, 11 * SCRN_X_B
 	ld a, $24
 	call ByteFill
 ; This is where the items themselves will be listed.
@@ -1349,7 +1349,7 @@ Pack_InitGFX:
 ; ◀▶ POCKET       ▼▲ ITEMS
 	hlcoord 0, 0
 	ld a, $28
-	ld c, SCREEN_WIDTH
+	ld c, SCRN_X_B
 .loop
 	ld [hli], a
 	inc a
@@ -1358,8 +1358,8 @@ Pack_InitGFX:
 	call DrawPocketName
 	call PlacePackGFX
 ; Place the textbox for displaying the item description
-	hlcoord 0, SCREEN_HEIGHT - 4 - 2
-	lb bc, 4, SCREEN_WIDTH - 2
+	hlcoord 0, SCRN_Y_B - 4 - 2
+	lb bc, 4, SCRN_X_B - 2
 	call Textbox
 	call EnableLCD
 	call DrawPackGFX
@@ -1368,7 +1368,7 @@ Pack_InitGFX:
 PlacePackGFX:
 	hlcoord 0, 3
 	ld a, $50
-	ld de, SCREEN_WIDTH - 5
+	ld de, SCRN_X_B - 5
 	ld b, 3
 .row
 	ld c, 5
@@ -1405,7 +1405,7 @@ DrawPocketName:
 	dec b
 	jr nz, .col
 	ld a, c
-	ld c, SCREEN_WIDTH - 5
+	ld c, SCRN_X_B - 5
 	add hl, bc
 	ld c, a
 	dec c
@@ -1425,14 +1425,14 @@ Pack_GetItemName:
 
 Pack_ClearTilemap: ; unreferenced
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 	ld a, " "
 	call ByteFill
 	ret
 
 ClearPocketList:
 	hlcoord 5, 2
-	lb bc, 10, SCREEN_WIDTH - 5
+	lb bc, 10, SCRN_X_B - 5
 	call ClearBox
 	ret
 
@@ -1446,7 +1446,7 @@ Pack_InitColors:
 
 ItemsPocketMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 7, 1, SCRN_X_B - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
@@ -1461,7 +1461,7 @@ ItemsPocketMenuHeader:
 
 PC_Mart_ItemsPocketMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 7, 1, SCRN_X_B - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
@@ -1476,7 +1476,7 @@ PC_Mart_ItemsPocketMenuHeader:
 
 KeyItemsPocketMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 7, 1, SCRN_X_B - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
@@ -1491,7 +1491,7 @@ KeyItemsPocketMenuHeader:
 
 PC_Mart_KeyItemsPocketMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 7, 1, SCRN_X_B - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
@@ -1506,7 +1506,7 @@ PC_Mart_KeyItemsPocketMenuHeader:
 
 BallsPocketMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 7, 1, SCRN_X_B - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
@@ -1521,7 +1521,7 @@ BallsPocketMenuHeader:
 
 PC_Mart_BallsPocketMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 7, 1, SCRN_X_B - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 

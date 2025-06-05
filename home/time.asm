@@ -14,9 +14,9 @@ Timer:: ; unreferenced
 LatchClock::
 ; latch clock counter data
 	ld a, 0
-	ld [MBC3LatchClock], a
+	ld [rRTCLATCH], a
 	ld a, 1
-	ld [MBC3LatchClock], a
+	ld [rRTCLATCH], a
 	ret
 
 UpdateTime::
@@ -30,14 +30,14 @@ GetClock::
 ; store clock data in hRTCDayHi-hRTCSeconds
 
 ; enable clock r/w
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	ld a, CART_SRAM_ENABLE
+	ld [rRAMG], a
 
 ; clock data is 'backwards' in hram
 
 	call LatchClock
-	ld hl, MBC3SRamBank
-	ld de, MBC3RTC
+	ld hl, rRAMB
+	ld de, rRTCREG
 
 	ld [hl], RTC_S
 	ld a, [de]
@@ -72,10 +72,10 @@ FixDays::
 
 ; check if day count > 255 (bit 8 set)
 	ldh a, [hRTCDayHi] ; DH
-	bit RTC_DH_HI, a
+	bit RTC_DHB_HIGH, a
 	jr z, .daylo
 ; reset dh (bit 8)
-	res RTC_DH_HI, a
+	res RTC_DHB_HIGH, a
 	ldh [hRTCDayHi], a
 
 ; mod 140
@@ -213,21 +213,21 @@ SetClock::
 ; set clock data from hram
 
 ; enable clock r/w
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	ld a, CART_SRAM_ENABLE
+	ld [rRAMG], a
 
 ; set clock data
 ; stored 'backwards' in hram
 
 	call LatchClock
-	ld hl, MBC3SRamBank
-	ld de, MBC3RTC
+	ld hl, rRAMB
+	ld de, rRTCREG
 
 ; seems to be a halt check that got partially commented out
 ; this block is totally pointless
 	ld [hl], RTC_DH
 	ld a, [de]
-	bit RTC_DH_HALT, a
+	bit RTC_DHB_HALT, a
 	ld [de], a
 
 ; seconds
@@ -249,7 +249,7 @@ SetClock::
 ; day hi
 	ld [hl], RTC_DH
 	ldh a, [hRTCDayHi]
-	res RTC_DH_HALT, a ; make sure timer is active
+	res RTC_DHB_HALT, a ; make sure timer is active
 	ld [de], a
 
 ; cleanup

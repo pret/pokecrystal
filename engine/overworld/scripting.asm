@@ -941,7 +941,7 @@ ApplyObjectFacing:
 .DisableTextTiles:
 	call LoadOverworldTilemap
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 .loop
 	res 7, [hl]
 	inc hl

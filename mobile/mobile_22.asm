@@ -100,7 +100,7 @@ Function891b8:
 	call Mobile22_SetBGMapMode0
 	hlcoord 0, 0
 	ld a, " "
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 	call ByteFill
 	call DelayFrame
 	ret
@@ -125,11 +125,11 @@ Function891de:
 	call ClearPalettes
 	hlcoord 0, 0, wAttrmap
 	ld a, $7
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 	call ByteFill
 	hlcoord 0, 0
 	ld a, " "
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 	call ByteFill
 	call Function891ab
 	ret
@@ -164,7 +164,7 @@ Function89215:
 
 Function8921f:
 	push de
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	add hl, de
 	inc hl
 	ld a, $7f
@@ -534,7 +534,7 @@ Function89448:
 ; Clears the sprite array
 	push af
 	ld hl, wShadowOAM
-	ld d, 24 * SPRITEOAMSTRUCT_LENGTH
+	ld d, 24 * OBJ_B
 	xor a
 .loop
 	ld [hli], a
@@ -585,16 +585,16 @@ Function89492:
 	ret
 
 Function8949c:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, 5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, Palette_894b3
 	ld de, wBGPals1 palette 7
 	ld bc, 1 palettes
 	call CopyBytes
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 Palette_894b3:
@@ -624,10 +624,10 @@ Function894ca:
 
 Function894dc:
 	push bc
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, 5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld c, d
 	ld b, 0
@@ -646,7 +646,7 @@ Function894dc:
 	call CopyBytes
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	pop bc
 	ret
 
@@ -732,17 +732,17 @@ Function8956f:
 	farcall GetMobileOTTrainerClass
 	ld a, c
 	ld [wTrainerClass], a
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, 5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, wd030
 	ld a, -1
 	ld [hli], a
 	ld a, " "
 	ld [hl], a
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, [wTrainerClass]
 	ld h, 0
 	ld l, a
@@ -750,10 +750,10 @@ Function8956f:
 	add hl, hl
 	ld de, TrainerPalettes
 	add hl, de
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld de, wd032
 	ld c, 4
 .loop
@@ -769,21 +769,21 @@ Function8956f:
 	ld [hli], a
 	ld [hl], a
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	pop bc
 	ret
 
 Function895c7:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, 5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, Palette_895de
 	ld de, wd030
 	ld bc, 8
 	call CopyBytes
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 Palette_895de:
@@ -795,7 +795,7 @@ Palette_895de:
 Function895e6: ; unreferenced
 	ld a, 7
 	hlcoord 0, 0, wAttrmap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 	call ByteFill
 	ret
 
@@ -803,7 +803,7 @@ Function895f2:
 	push bc
 	xor a
 	hlcoord 0, 0, wAttrmap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 	call ByteFill
 	call Function89605
 	call Function89655
@@ -813,7 +813,7 @@ Function895f2:
 Function89605:
 	hlcoord 19, 2, wAttrmap
 	ld a, 1
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	ld c, 14
 .loop
 	ld [hl], a
@@ -850,7 +850,7 @@ Function89605:
 Function8963d:
 	hlcoord 12, 3, wAttrmap
 	ld a, 6
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	lb bc, 7, 7
 .loop
 	push hl
@@ -867,7 +867,7 @@ Function8963d:
 
 Function89655:
 	hlcoord 1, 12, wAttrmap
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	ld a, 5
 	ld b, 4
 .loop
@@ -904,15 +904,15 @@ Function8967a:
 Function89688:
 	hlcoord 0, 0
 	ld a, 1
-	ld e, SCREEN_WIDTH
+	ld e, SCRN_X_B
 	call Function896e1
 	ld a, 2
-	ld e, SCREEN_WIDTH
+	ld e, SCRN_X_B
 	call Function896eb
 	ld a, 3
 	ld [hli], a
 	ld a, 4
-	ld e, SCREEN_HEIGHT
+	ld e, SCRN_Y_B
 	call Function896e1
 	ld a, 6
 	ld [hli], a
@@ -931,17 +931,17 @@ Function89688:
 	ld a, 25
 	ld [hli], a
 	ld a, 26
-	ld e, SCREEN_HEIGHT
+	ld e, SCRN_Y_B
 	call Function896e1
 	ld a, 28
 	ld [hli], a
 	ld a, 2
-	ld e, SCREEN_WIDTH
+	ld e, SCRN_X_B
 	call Function896eb
 	ret
 
 Function896cb:
-	ld de, SCREEN_WIDTH - 1
+	ld de, SCRN_X_B - 1
 	ld a, 7
 	ld [hl], a
 	add hl, de
@@ -950,7 +950,7 @@ Function896cb:
 	ret
 
 Function896d6:
-	ld de, SCREEN_WIDTH - 1
+	ld de, SCRN_X_B - 1
 	ld a, 10
 	ld [hl], a
 	add hl, de
@@ -997,7 +997,7 @@ Function896ff: ; unreferenced
 
 ; clears an area of the screen
 	ld a, " "
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 .row_loop
 	push bc
 	push hl
@@ -1032,7 +1032,7 @@ Function8971f:
 	ld a, $2d
 	ld [hld], a
 	push hl
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	add hl, de
 	ld a, $31
 	ld [hli], a
@@ -1055,7 +1055,7 @@ Function89736:
 	ld [hli], a
 	ld a, $30
 	ld [hld], a
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	add hl, de
 	ld a, $33
 	ld [hli], a
@@ -1126,7 +1126,7 @@ Function89797:
 	push bc
 	ld a, $e
 	ld [hl], a
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	add hl, bc
 	ld a, $11
 	ld [hli], a
@@ -1167,7 +1167,7 @@ Function897d5:
 	jr nc, .asm_897f3
 	hlcoord 12, 3, wAttrmap
 	xor a
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	lb bc, 7, 7
 .asm_897e5
 	push hl
@@ -1390,7 +1390,7 @@ Unknown_8994a:
 Function8994e:
 	push hl
 	push de
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	ld a, l
 	sub e
 	ld l, a
@@ -1854,30 +1854,30 @@ Unknown_89bd8:
 
 Unknown_89be0:
 	db $01, $12, $4e, $01, 0
-	db $01, $19, $4e, $01, 0 | Y_FLIP
-	db $01, $12, $72, $01, 0 | X_FLIP
-	db $01, $19, $72, $01, 0 | X_FLIP | Y_FLIP
+	db $01, $19, $4e, $01, 0 | OAMF_YFLIP
+	db $01, $12, $72, $01, 0 | OAMF_XFLIP
+	db $01, $19, $72, $01, 0 | OAMF_XFLIP | OAMF_YFLIP
 	db -1 ; end
 
 Unknown_89bf5:
 	db $01, $60, $16, $01, 0
-	db $01, $62, $16, $01, 0 | Y_FLIP
-	db $01, $60, $92, $01, 0 | X_FLIP
-	db $01, $62, $92, $01, 0 | X_FLIP | Y_FLIP
+	db $01, $62, $16, $01, 0 | OAMF_YFLIP
+	db $01, $60, $92, $01, 0 | OAMF_XFLIP
+	db $01, $62, $92, $01, 0 | OAMF_XFLIP | OAMF_YFLIP
 	db -1 ; end
 
 Unknown_89c0a:
 	db $01, $78, $66, $01, 0
-	db $01, $78, $66, $01, 0 | Y_FLIP
-	db $01, $78, $92, $01, 0 | X_FLIP
-	db $01, $78, $92, $01, 0 | X_FLIP | Y_FLIP
+	db $01, $78, $66, $01, 0 | OAMF_YFLIP
+	db $01, $78, $92, $01, 0 | OAMF_XFLIP
+	db $01, $78, $92, $01, 0 | OAMF_XFLIP | OAMF_YFLIP
 	db -1 ; end
 
 Unknown_89c1f:
 	db $01, $80, $66, $01, 0
-	db $01, $80, $66, $01, 0 | Y_FLIP
-	db $01, $80, $92, $01, 0 | X_FLIP
-	db $01, $80, $92, $01, 0 | X_FLIP | Y_FLIP
+	db $01, $80, $66, $01, 0 | OAMF_YFLIP
+	db $01, $80, $92, $01, 0 | OAMF_XFLIP
+	db $01, $80, $92, $01, 0 | OAMF_XFLIP | OAMF_YFLIP
 	db -1 ; end
 
 Function89c34:
@@ -2039,10 +2039,10 @@ Function89cdf:
 
 Function89d0d:
 	call Mobile22_SetBGMapMode0
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld c, 8
 	ld de, wBGPals1
@@ -2061,7 +2061,7 @@ Function89d0d:
 	call CopyBytes
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	call SetDefaultBGPAndOBP
 	farcall PrintMail
@@ -2267,16 +2267,16 @@ Function89e6f:
 	jp Function89e36
 
 Function89e9a:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, Palette_89eb1
 	ld de, wBGPals1 palette 5
 	ld bc, 1 palettes
 	call CopyBytes
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 Palette_89eb1:
@@ -2699,7 +2699,7 @@ Function8a116:
 
 MenuHeader_0x8a176:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 14, 0, SCREEN_WIDTH - 1, 6
+	menu_coords 14, 0, SCRN_X_B - 1, 6
 
 Function8a17b:
 	decoord 14, 0
@@ -2719,7 +2719,7 @@ Function8a17b:
 
 MenuHeader_0x8a19a:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 14, 0, SCREEN_WIDTH - 1, 6
+	menu_coords 14, 0, SCRN_X_B - 1, 6
 	dw MenuData_0x8a1a2
 	db 1 ; default option
 
@@ -2865,7 +2865,7 @@ Function8a2aa:
 
 MenuHeader_0x8a2ef:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 0, 12, SCRN_X_B - 1, SCRN_Y_B - 1
 
 MobileCardFolderAskOpenOldText:
 	text_far _MobileCardFolderAskOpenOldText
@@ -3134,7 +3134,7 @@ asm_8a529:
 	ld [hli], a
 	ld hl, wShadowOAM
 	xor a
-	ld bc, 8 * SPRITEOAMSTRUCT_LENGTH
+	ld bc, 8 * OBJ_B
 	call ByteFill
 	ret
 
@@ -3227,10 +3227,10 @@ Function8a5a3:
 	ret
 
 Function8a5b6:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, Palette_8a5e5
 	ld de, wBGPals1 palette 4
 	ld bc, 3 palettes
@@ -3244,7 +3244,7 @@ Function8a5b6:
 	ld bc, 1 palettes
 	call CopyBytes
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 Palette_8a5e5:
@@ -3276,16 +3276,16 @@ Palette_8a605:
 	RGB 31, 31, 31
 
 Function8a60d:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, Palette_8a624
 	ld de, wOBPals1
 	ld bc, 1 palettes
 	call CopyBytes
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 Palette_8a624:

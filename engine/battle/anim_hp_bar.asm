@@ -233,7 +233,7 @@ HPBarAnim_RedrawHPBar:
 	ld a, [wWhichHPBar]
 	cp $2
 	jr nz, .skip
-	ld a, 2 * SCREEN_WIDTH
+	ld a, 2 * SCRN_X_B
 	add l
 	ld l, a
 	ld a, 0
@@ -249,11 +249,11 @@ HPBarAnim_UpdateHPRemaining:
 	ret z
 	cp $1
 	jr z, .load_15
-	ld de, SCREEN_WIDTH + 2
+	ld de, SCRN_X_B + 2
 	jr .loaded_de
 
 .load_15
-	ld de, SCREEN_WIDTH + 1
+	ld de, SCRN_X_B + 1
 .loaded_de
 	push hl
 	add hl, de

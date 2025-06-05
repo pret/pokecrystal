@@ -594,7 +594,7 @@ Phone_TextboxWithName:
 Phone_CallerTextbox:
 	hlcoord 0, 0
 	ld b, 2
-	ld c, SCREEN_WIDTH - 2
+	ld c, SCRN_X_B - 2
 	call Textbox
 	ret
 
@@ -644,7 +644,7 @@ GetCallerName:
 	ld [bc], a
 	pop bc
 	pop hl
-	ld de, SCREEN_WIDTH + 3
+	ld de, SCRN_X_B + 3
 	add hl, de
 	call Phone_GetTrainerClassName
 	call PlaceString

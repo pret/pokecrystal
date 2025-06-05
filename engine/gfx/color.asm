@@ -280,7 +280,7 @@ LoadBetaPokerPalettes: ; unreferenced
 	ld c, a
 	ld a, [wBetaPokerSGBRow]
 	hlcoord 0, 0, wAttrmap
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 .loop
 	and a
 	jr z, .done
@@ -355,7 +355,7 @@ ApplyHPBarPals:
 	ld e, c
 	inc e
 	hlcoord 11, 1, wAttrmap
-	ld bc, 2 * SCREEN_WIDTH
+	ld bc, 2 * SCRN_X_B
 	ld a, [wCurPartyMon]
 .loop
 	and a
@@ -378,10 +378,10 @@ LoadStatsScreenPals:
 	dec c
 	add hl, bc
 	add hl, bc
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wBGPals1)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, [hli]
 	ld [wBGPals1 palette 0], a
 	ld [wBGPals1 palette 2], a
@@ -389,7 +389,7 @@ LoadStatsScreenPals:
 	ld [wBGPals1 palette 0 + 1], a
 	ld [wBGPals1 palette 2 + 1], a
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call ApplyPals
 	ld a, $1
 	ret
@@ -470,10 +470,10 @@ GetPredefPal:
 	ret
 
 LoadHLPaletteIntoDE:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wOBPals1)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld c, 1 palettes
 .loop
 	ld a, [hli]
@@ -482,14 +482,14 @@ LoadHLPaletteIntoDE:
 	dec c
 	jr nz, .loop
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 LoadPalette_White_Col1_Col2_Black:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wBGPals1)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld a, LOW(PALRGB_WHITE)
 	ld [de], a
@@ -498,7 +498,7 @@ LoadPalette_White_Col1_Col2_Black:
 	ld [de], a
 	inc de
 
-	ld c, 2 * PAL_COLOR_SIZE
+	ld c, 2 * COLOR_B
 .loop
 	ld a, [hli]
 	ld [de], a
@@ -513,7 +513,7 @@ LoadPalette_White_Col1_Col2_Black:
 	inc de
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 FillBoxCGB:
@@ -525,7 +525,7 @@ FillBoxCGB:
 	dec c
 	jr nz, .col
 	pop hl
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	add hl, bc
 	pop bc
 	dec b
@@ -538,10 +538,10 @@ ResetBGPals:
 	push de
 	push hl
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wBGPals1)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld hl, wBGPals1
 	ld c, 1 palettes
@@ -560,7 +560,7 @@ ResetBGPals:
 	jr nz, .loop
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	pop hl
 	pop de
@@ -570,7 +570,7 @@ ResetBGPals:
 
 WipeAttrmap:
 	hlcoord 0, 0, wAttrmap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 	xor a
 	call ByteFill
 	ret
@@ -585,7 +585,7 @@ ApplyPals:
 
 ApplyAttrmap:
 	ldh a, [rLCDC]
-	bit rLCDC_ENABLE, a
+	bit LCDCB_ON, a
 	jr z, .UpdateVBank1
 	ldh a, [hBGMapMode]
 	push af
@@ -602,18 +602,18 @@ ApplyAttrmap:
 .UpdateVBank1:
 	hlcoord 0, 0, wAttrmap
 	debgcoord 0, 0
-	ld b, SCREEN_HEIGHT
+	ld b, SCRN_Y_B
 	ld a, $1
 	ldh [rVBK], a
 .row
-	ld c, SCREEN_WIDTH
+	ld c, SCRN_X_B
 .col
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
 	jr nz, .col
-	ld a, BG_MAP_WIDTH - SCREEN_WIDTH
+	ld a, SCRN_VX_B - SCRN_X_B
 	add e
 	jr nc, .okay
 	inc d
@@ -638,7 +638,7 @@ CGB_ApplyPartyMenuHPPals:
 	inc a
 	ld e, a
 	hlcoord 11, 2, wAttrmap
-	ld bc, 2 * SCREEN_WIDTH
+	ld bc, 2 * SCRN_X_B
 	ld a, [wSGBPals]
 .loop
 	and a
@@ -720,7 +720,7 @@ CGBCopyBattleObjectPals: ; unreferenced
 	call CheckCGB
 	ret z
 	ld hl, BattleObjectPals
-	ld a, (1 << rOBPI_AUTO_INCREMENT) | $10
+	ld a, OBPIF_AUTOINC | $10
 	ldh [rOBPI], a
 	ld c, 6 palettes
 .loop
@@ -741,7 +741,7 @@ INCLUDE "gfx/battle_anims/battle_anims.pal"
 CGBCopyTwoPredefObjectPals: ; unreferenced
 	call CheckCGB
 	ret z
-	ld a, (1 << rOBPI_AUTO_INCREMENT) | $10
+	ld a, OBPIF_AUTOINC | $10
 	ldh [rOBPI], a
 	ld a, PREDEFPAL_TRADE_TUBE
 	call GetPredefPal
@@ -880,9 +880,9 @@ InitCGBPals::
 	call ByteFill
 	ld a, BANK(vTiles0)
 	ldh [rVBK], a
-	ld a, 1 << rBGPI_AUTO_INCREMENT
+	ld a, BGPIF_AUTOINC
 	ldh [rBGPI], a
-	ld c, 4 * TILE_WIDTH
+	ld c, 4 * TILE_X
 .bgpals_loop
 	ld a, LOW(PALRGB_WHITE)
 	ldh [rBGPD], a
@@ -890,9 +890,9 @@ InitCGBPals::
 	ldh [rBGPD], a
 	dec c
 	jr nz, .bgpals_loop
-	ld a, 1 << rOBPI_AUTO_INCREMENT
+	ld a, OBPIF_AUTOINC
 	ldh [rOBPI], a
-	ld c, 4 * TILE_WIDTH
+	ld c, 4 * TILE_X
 .obpals_loop
 	ld a, LOW(PALRGB_WHITE)
 	ldh [rOBPD], a
@@ -900,16 +900,16 @@ InitCGBPals::
 	ldh [rOBPD], a
 	dec c
 	jr nz, .obpals_loop
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wBGPals1)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, wBGPals1
 	call .LoadWhitePals
 	ld hl, wBGPals2
 	call .LoadWhitePals
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 .LoadWhitePals:
@@ -1058,21 +1058,21 @@ SGBBorder_MorePalPushing:
 	ld a, $e4
 	ldh [rBGP], a
 	ld de, vTiles1
-	ld bc, (6 + SCREEN_WIDTH + 6) * 5 * 2
+	ld bc, (6 + SCRN_X_B + 6) * 5 * 2
 	call CopyData
-	ld b, SCREEN_HEIGHT
+	ld b, SCRN_Y_B
 .loop
 	push bc
 	ld bc, 6 * 2
 	call CopyData
-	ld bc, SCREEN_WIDTH * 2
+	ld bc, SCRN_X_B * 2
 	call ClearBytes
 	ld bc, 6 * 2
 	call CopyData
 	pop bc
 	dec b
 	jr nz, .loop
-	ld bc, (6 + SCREEN_WIDTH + 6) * 5 * 2
+	ld bc, (6 + SCRN_X_B + 6) * 5 * 2
 	call CopyData
 	ld bc, $100
 	call ClearBytes
@@ -1138,7 +1138,7 @@ ClearBytes:
 DrawDefaultTiles:
 ; Draw 240 tiles (2/3 of the screen) from tiles in VRAM
 	hlbgcoord 0, 0 ; BG Map 0
-	ld de, BG_MAP_WIDTH - SCREEN_WIDTH
+	ld de, SCRN_VX_B - SCRN_X_B
 	ld a, $80 ; starting tile
 	ld c, 12 + 1
 .line
@@ -1171,7 +1171,7 @@ INCLUDE "gfx/sgb/pal_packets.asm"
 INCLUDE "data/sgb_ctrl_packets.asm"
 
 PredefPals:
-	table_width PALETTE_SIZE
+	table_width PAL_B
 INCLUDE "gfx/sgb/predef.pal"
 	assert_table_length NUM_PREDEF_PALS
 
@@ -1220,10 +1220,10 @@ LoadMapPals:
 	add hl, de
 	ld e, l
 	ld d, h
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wBGPals1)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, wBGPals1
 	ld b, 8
 .outer_loop
@@ -1252,7 +1252,7 @@ LoadMapPals:
 	dec b
 	jr nz, .outer_loop
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 .got_pals
 	ld a, [wTimeOfDayPal]
@@ -1308,7 +1308,7 @@ MapObjectPals::
 INCLUDE "gfx/overworld/npc_sprites.pal"
 
 RoofPals:
-	table_width PAL_COLOR_SIZE * 2 * 2
+	table_width COLOR_B * 2 * 2
 INCLUDE "gfx/tilesets/roofs.pal"
 	assert_table_length NUM_MAP_GROUPS + 1
 

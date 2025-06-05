@@ -3035,7 +3035,7 @@ MonFaintedAnimation:
 	call CopyBytes
 	pop de
 	pop hl
-	ld bc, -SCREEN_WIDTH
+	ld bc, -SCRN_X_B
 	add hl, bc
 	push hl
 	ld h, d
@@ -3078,7 +3078,7 @@ SlideBattlePicOut:
 	push hl
 	call .DoFrame
 	pop hl
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	add hl, de
 	dec b
 	jr nz, .loop2
@@ -5370,7 +5370,7 @@ MoveSelectionScreen:
 	jr nz, .got_start_coord
 	hlcoord 6, 17 - NUM_MOVES - 4
 .got_start_coord
-	ld a, SCREEN_WIDTH
+	ld a, SCRN_X_B
 	ld [wListMovesLineSpacing], a
 	predef ListMoves
 
@@ -5440,7 +5440,7 @@ MoveSelectionScreen:
 	and a
 	jr z, .interpret_joypad
 	hlcoord 5, 13
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	dec a
 	call AddNTimes
 	ld [hl], "▷"
@@ -6553,7 +6553,7 @@ BattleWinSlideInEnemyTrainerFrontpic:
 
 .loop
 	ld [hl], d
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	add hl, bc
 	inc d
 	dec e
@@ -8057,11 +8057,11 @@ BattleIntro:
 	ld b, SCGB_BATTLE_GRAYSCALE
 	call GetSGBLayout
 	ld hl, rLCDC
-	res rLCDC_WINDOW_TILEMAP, [hl] ; select vBGMap0/vBGMap2
+	res LCDCB_WIN9C00, [hl] ; select vBGMap0/vBGMap2
 	call InitBattleDisplay
 	call BattleStartMessage
 	ld hl, rLCDC
-	set rLCDC_WINDOW_TILEMAP, [hl] ; select vBGMap1/vBGMap3
+	set LCDCB_WIN9C00, [hl] ; select vBGMap1/vBGMap3
 	xor a
 	ldh [hBGMapMode], a
 	call EmptyBattleTextbox
@@ -8097,10 +8097,10 @@ InitEnemy:
 	jp InitEnemyWildmon ; wild
 
 BackUpBGMap2:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wDecompressScratch)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, wDecompressScratch
 	ld bc, $40 tiles ; vBGMap3 - vBGMap2
 	ld a, $2
@@ -8116,7 +8116,7 @@ BackUpBGMap2:
 	pop af
 	ldh [rVBK], a
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 InitEnemyTrainer:
@@ -8457,7 +8457,7 @@ _DisplayLinkRecord:
 	call CloseSRAM
 	hlcoord 0, 0, wAttrmap
 	xor a
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 	call ByteFill
 	call WaitBGMap2
 	ld b, SCGB_DIPLOMA
@@ -8532,7 +8532,7 @@ ReadAndPrintLinkBattleRecord:
 	ld d, h
 	ld e, l
 	pop hl
-	ld bc, 2 * SCREEN_WIDTH
+	ld bc, 2 * SCRN_X_B
 	add hl, bc
 	pop bc
 	dec b
@@ -8951,23 +8951,23 @@ InitBattleDisplay:
 	ret
 
 .BlankBGMap:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wDecompressScratch)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld hl, wDecompressScratch
-	ld bc, BG_MAP_WIDTH * BG_MAP_HEIGHT
+	ld bc, SCRN_VX_B * SCRN_VY_B
 	ld a, " "
 	call ByteFill
 
 	ld de, wDecompressScratch
 	hlbgcoord 0, 0
-	lb bc, BANK(@), (BG_MAP_WIDTH * BG_MAP_HEIGHT) / LEN_2BPP_TILE
+	lb bc, BANK(@), (SCRN_VX_B * SCRN_VY_B) / TILE_B
 	call Request2bpp
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 .InitBackPic:
@@ -9009,10 +9009,10 @@ GetTrainerBackpic:
 	ret
 
 CopyBackpic:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wDecompressScratch)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, vTiles0
 	ld de, vTiles2 tile $31
 	ldh a, [hROMBank]
@@ -9020,7 +9020,7 @@ CopyBackpic:
 	ld c, 7 * 7
 	call Get2bpp
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call .LoadTrainerBackpicAsOAM
 	ld a, $31
 	ldh [hGraphicStartTile], a
@@ -9034,10 +9034,10 @@ CopyBackpic:
 	xor a
 	ldh [hMapObjectIndex], a
 	ld b, 6
-	ld e, (SCREEN_WIDTH + 1) * TILE_WIDTH
+	ld e, (SCRN_X_B + 1) * TILE_X
 .outer_loop
 	ld c, 3
-	ld d, 8 * TILE_WIDTH
+	ld d, 8 * TILE_X
 .inner_loop
 	ld [hl], d ; y
 	inc hl
@@ -9050,7 +9050,7 @@ CopyBackpic:
 	ld a, PAL_BATTLE_OB_PLAYER
 	ld [hli], a ; attributes
 	ld a, d
-	add 1 * TILE_WIDTH
+	add 1 * TILE_X
 	ld d, a
 	dec c
 	jr nz, .inner_loop
@@ -9058,7 +9058,7 @@ CopyBackpic:
 	add $3
 	ldh [hMapObjectIndex], a
 	ld a, e
-	add 1 * TILE_WIDTH
+	add 1 * TILE_X
 	ld e, a
 	dec b
 	jr nz, .outer_loop

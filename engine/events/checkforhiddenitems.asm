@@ -4,10 +4,10 @@ CheckForHiddenItems:
 	ld [wCurMapScriptBank], a
 ; Get the coordinate of the bottom right corner of the screen, and load it in wBottomRightYCoord/wBottomRightXCoord.
 	ld a, [wXCoord]
-	add SCREEN_WIDTH / 4
+	add SCRN_X_B / 4
 	ld [wBottomRightXCoord], a
 	ld a, [wYCoord]
-	add SCREEN_HEIGHT / 4
+	add SCRN_Y_B / 4
 	ld [wBottomRightYCoord], a
 ; Get the pointer for the first bg_event in the map...
 	ld hl, wCurMapBGEventsPointer
@@ -30,7 +30,7 @@ CheckForHiddenItems:
 	ld a, [wBottomRightYCoord]
 	sub e
 	jr c, .next
-	cp SCREEN_HEIGHT / 2
+	cp SCRN_Y_B / 2
 	jr nc, .next
 ; Is the X coordinate of the BG event on the screen?  If not, go to the next BG event.
 	call .GetFarByte
@@ -38,7 +38,7 @@ CheckForHiddenItems:
 	ld a, [wBottomRightXCoord]
 	sub d
 	jr c, .next
-	cp SCREEN_WIDTH / 2
+	cp SCRN_X_B / 2
 	jr nc, .next
 ; Is this BG event a hidden item?  If not, go to the next BG event.
 	call .GetFarByte
