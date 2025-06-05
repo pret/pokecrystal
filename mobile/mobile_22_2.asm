@@ -587,16 +587,16 @@ Function8b690:
 	ret
 
 Function8b6bb:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, Palette_8b6d5
 	ld de, wBGPals1
 	ld bc, 3 palettes
 	call CopyBytes
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call Function8949c
 	ret
 

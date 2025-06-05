@@ -28,9 +28,9 @@ Serial::
 	cp USING_INTERNAL_CLOCK
 	jr z, .player2
 
-	ld a, (0 << rSC_ON) | (0 << rSC_CLOCK)
+	ld a, SC_EXTERNAL
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (0 << rSC_CLOCK)
+	ld a, SC_START | SC_EXTERNAL
 	ldh [rSC], a
 	jr .player2
 
@@ -65,9 +65,9 @@ Serial::
 	bit 7, a ; wait until rDIV has incremented from 3 to $80 or more
 	jr nz, .delay_loop
 
-	ld a, (0 << rSC_ON) | (0 << rSC_CLOCK)
+	ld a, SC_EXTERNAL
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (0 << rSC_CLOCK)
+	ld a, SC_START | SC_EXTERNAL
 	ldh [rSC], a
 	jr .player2
 
@@ -134,9 +134,9 @@ Serial_ExchangeByte::
 	ldh a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
 	jr nz, .not_player_2
-	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_INTERNAL
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_START | SC_INTERNAL
 	ldh [rSC], a
 .not_player_2
 .loop
@@ -164,8 +164,8 @@ Serial_ExchangeByte::
 
 .not_player_1_or_timed_out
 	ldh a, [rIE]
-	and (1 << SERIAL) | (1 << TIMER) | (1 << LCD_STAT) | (1 << VBLANK)
-	cp 1 << SERIAL
+	and IE_SERIAL | IE_TIMER | IE_STAT | IE_VBLANK
+	cp IE_SERIAL
 	jr nz, .loop
 	ld a, [wLinkByteTimeout]
 	dec a
@@ -188,8 +188,8 @@ Serial_ExchangeByte::
 	xor a
 	ldh [hSerialReceivedNewData], a
 	ldh a, [rIE]
-	and (1 << SERIAL) | (1 << TIMER) | (1 << LCD_STAT) | (1 << VBLANK)
-	sub 1 << SERIAL
+	and IE_SERIAL | IE_TIMER | IE_STAT | IE_VBLANK
+	sub IE_SERIAL
 	jr nz, .non_serial_interrupts_enabled
 
 	; a == 0
@@ -220,8 +220,8 @@ Serial_ExchangeByte::
 
 .timed_out
 	ldh a, [rIE]
-	and (1 << SERIAL) | (1 << TIMER) | (1 << LCD_STAT) | (1 << VBLANK)
-	cp 1 << SERIAL
+	and IE_SERIAL | IE_TIMER | IE_STAT | IE_VBLANK
+	cp IE_SERIAL
 	ld a, SERIAL_NO_DATA_BYTE
 	ret z
 	ld a, [hl]
@@ -370,9 +370,9 @@ LinkTransfer::
 	ldh a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
 	jr nz, .player_1
-	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_INTERNAL
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_START | SC_INTERNAL
 	ldh [rSC], a
 
 .player_1
@@ -400,9 +400,9 @@ LinkDataReceived::
 	ldh a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
 	ret nz
-	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_INTERNAL
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_START | SC_INTERNAL
 	ldh [rSC], a
 	ret
 
@@ -415,8 +415,8 @@ SetBitsForTimeCapsuleRequestIfNotLinked:: ; unreferenced
 	ldh [rSB], a
 	xor a
 	ldh [hSerialReceive], a
-	ld a, (0 << rSC_ON) | (0 << rSC_CLOCK)
+	ld a, SC_EXTERNAL
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (0 << rSC_CLOCK)
+	ld a, SC_START | SC_EXTERNAL
 	ldh [rSC], a
 	ret

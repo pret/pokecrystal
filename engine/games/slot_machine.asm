@@ -97,7 +97,7 @@ _SlotMachine:
 	ld hl, wOptions
 	res NO_TEXT_SCROLL, [hl]
 	ld hl, rLCDC
-	res rLCDC_SPRITE_SIZE, [hl] ; 8x8
+	res B_LCDC_OBJ_SIZE, [hl] ; 8x8
 	ret
 
 .InitGFX:
@@ -142,7 +142,7 @@ _SlotMachine:
 	call CopyBytes
 
 	ld hl, rLCDC
-	set rLCDC_SPRITE_SIZE, [hl] ; 8x16
+	set B_LCDC_OBJ_SIZE, [hl] ; 8x16
 	call EnableLCD
 	ld hl, wSlots
 	ld bc, wSlotsEnd - wSlots
@@ -261,12 +261,12 @@ AnimateSlotReelIcons: ; unreferenced
 	and $7
 	ret nz
 	ld hl, wShadowOAMSprite16TileID
-	ld c, NUM_SPRITE_OAM_STRUCTS - 16
+	ld c, OAM_COUNT - 16
 .loop
 	ld a, [hl]
 	xor $20 ; alternate between $00-$1f and $20-$3f
 	ld [hli], a ; tile id
-rept SPRITEOAMSTRUCT_LENGTH - 1
+rept OBJ_SIZE - 1
 	inc hl
 endr
 	dec c
@@ -827,7 +827,7 @@ Slots_UpdateReelPositionAndOAM:
 	ld [hli], a ; tile id
 	srl a
 	srl a
-	set OAM_PRIORITY, a
+	set B_OAM_PRIO, a
 	ld [hli], a ; attributes
 
 	ld a, [wCurReelYCoord]
@@ -841,7 +841,7 @@ Slots_UpdateReelPositionAndOAM:
 	ld [hli], a ; tile id
 	srl a
 	srl a
-	set OAM_PRIORITY, a
+	set B_OAM_PRIO, a
 	ld [hli], a ; attributes
 	inc de
 	ld a, [wCurReelYCoord]

@@ -149,7 +149,7 @@ UpdateOverworldMap:
 
 .ScrollOverworldMapDown:
 	ld a, [wBGMapAnchor]
-	add 2 * BG_MAP_WIDTH
+	add 2 * TILEMAP_WIDTH
 	ld [wBGMapAnchor], a
 	jr nc, .not_overflowed
 	ld a, [wBGMapAnchor + 1]
@@ -180,7 +180,7 @@ UpdateOverworldMap:
 
 .ScrollOverworldMapUp:
 	ld a, [wBGMapAnchor]
-	sub 2 * BG_MAP_WIDTH
+	sub 2 * TILEMAP_WIDTH
 	ld [wBGMapAnchor], a
 	jr nc, .not_underflowed
 	ld a, [wBGMapAnchor + 1]

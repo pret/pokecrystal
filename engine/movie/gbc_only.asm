@@ -10,13 +10,13 @@ GBCOnlyScreen:
 
 	ld hl, GBCOnlyGFX
 	ld de, wGBCOnlyDecompressBuffer
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, 0 ; this has the same effect as selecting bank 1
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call Decompress
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld de, wGBCOnlyDecompressBuffer
 	ld hl, vTiles2

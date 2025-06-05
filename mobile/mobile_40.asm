@@ -2,10 +2,10 @@ Function100000:
 ; d: 1 or 2
 ; e: bank
 ; bc: addr
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, 1
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	call Function100022
 	call Function1000ba
@@ -19,7 +19,7 @@ Function100000:
 	pop bc
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 Function100022:
@@ -161,7 +161,7 @@ Function1000fa:
 	xor a
 	ldh [rIF], a
 	ldh a, [rIE]
-	and $1f ^ (1 << SERIAL | 1 << TIMER)
+	and IE_JOYPAD | IE_STAT | IE_VBLANK
 	ldh [rIE], a
 	xor a
 	ldh [hMobileReceive], a
@@ -310,15 +310,15 @@ Function10020b:
 	call HideSprites
 	call DelayFrame
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $01
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	farcall DisplayMobileError
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 Function100232:
@@ -1456,16 +1456,16 @@ Function100989:
 	ret
 
 Function1009a5:
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	ld a, $03
 	call FarCopyWRAM
 	ret
 
 Function1009ae:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $03
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld hl, w3_d800
 	decoord 0, 0, wAttrmap
@@ -1479,21 +1479,21 @@ Function1009ae:
 	inc de
 	dec c
 	jr nz, .loop_col
-	ld bc, BG_MAP_WIDTH - SCREEN_WIDTH
+	ld bc, TILEMAP_WIDTH - SCREEN_WIDTH
 	add hl, bc
 	pop bc
 	dec b
 	jr nz, .loop_row
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 Function1009d2:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $03
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ldh a, [rVBK]
 	push af
@@ -1509,7 +1509,7 @@ Function1009d2:
 	ldh [rVBK], a
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 Function1009f3:
@@ -3827,17 +3827,17 @@ _StartMobileBattle:
 	ret
 
 .CopyOTDetails:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(w5_dc0d)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld bc, w5_dc0d
 	ld de, w5_dc11
 	farcall GetMobileOTTrainerClass
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld a, c
 	ld [wOtherTrainerClass], a
@@ -6439,11 +6439,11 @@ Function102d48:
 Function102d9a:
 	ld a, " "
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	call ByteFill
 	ld a, $07
 	hlcoord 0, 0, wAttrmap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	call ByteFill
 	farcall HDMATransferAttrmapAndTilemapToWRAMBank3
 	ret

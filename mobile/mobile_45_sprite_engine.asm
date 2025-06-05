@@ -21,7 +21,7 @@ Function115dc3:
 	ld [wc305], a
 	ld a, $a0
 	ld hl, wShadowOAMSprite31
-	ld bc, 8 * SPRITEOAMSTRUCT_LENGTH
+	ld bc, 8 * OBJ_SIZE
 	call ByteFill
 	ret
 
@@ -31,7 +31,7 @@ Function115dd3:
 	ret z
 	ld a, $a0
 	ld hl, wShadowOAMSprite31
-	ld bc, 8 * SPRITEOAMSTRUCT_LENGTH
+	ld bc, 8 * OBJ_SIZE
 	call ByteFill
 	call Function115e22
 	ld a, [wc309]
@@ -346,7 +346,7 @@ Function11619d:
 	jr c, .asm_1161b4
 	ld a, $a0
 	ld hl, wShadowOAM
-	ld bc, 25 * SPRITEOAMSTRUCT_LENGTH
+	ld bc, 25 * OBJ_SIZE
 	call ByteFill
 
 .asm_1161b4
@@ -366,11 +366,11 @@ Function1161b8:
 	dw Function116441
 
 Function1161d5:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 
 	ld a, $6
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld hl, PichuBorderMobileTilemapAttrmap
 	ld de, wDecompressScratch
@@ -386,73 +386,73 @@ Function1161d5:
 	jr nz, .wait_for_vblank
 
 	ld a, $d0
-	ldh [rHDMA1], a
+	ldh [rVDMA_SRC_HIGH], a
 	ld a, $0
-	ldh [rHDMA2], a
+	ldh [rVDMA_SRC_LOW], a
 	ld a, $1c
-	ldh [rHDMA3], a
+	ldh [rVDMA_DEST_HIGH], a
 	xor a
-	ldh [rHDMA4], a
+	ldh [rVDMA_DEST_LOW], a
 	ld a, $8
-	ldh [rHDMA5], a
+	ldh [rVDMA_LEN], a
 
 	ld a, $d0
-	ldh [rHDMA1], a
+	ldh [rVDMA_SRC_HIGH], a
 	ld a, $80
-	ldh [rHDMA2], a
+	ldh [rVDMA_SRC_LOW], a
 	ld a, $1c
-	ldh [rHDMA3], a
+	ldh [rVDMA_DEST_HIGH], a
 	ld a, $80
-	ldh [rHDMA4], a
+	ldh [rVDMA_DEST_LOW], a
 	ld a, $8
-	ldh [rHDMA5], a
+	ldh [rVDMA_LEN], a
 
 	ld a, $d1
-	ldh [rHDMA1], a
+	ldh [rVDMA_SRC_HIGH], a
 	ld a, $0
-	ldh [rHDMA2], a
+	ldh [rVDMA_SRC_LOW], a
 	ld a, $1d
-	ldh [rHDMA3], a
+	ldh [rVDMA_DEST_HIGH], a
 	xor a
-	ldh [rHDMA4], a
+	ldh [rVDMA_DEST_LOW], a
 	ld a, $8
-	ldh [rHDMA5], a
+	ldh [rVDMA_LEN], a
 
 	ld a, $1
 	ldh [rVBK], a
 
 	ld a, $d1
-	ldh [rHDMA1], a
+	ldh [rVDMA_SRC_HIGH], a
 	ld a, $80
-	ldh [rHDMA2], a
+	ldh [rVDMA_SRC_LOW], a
 	ld a, $1c
-	ldh [rHDMA3], a
+	ldh [rVDMA_DEST_HIGH], a
 	xor a
-	ldh [rHDMA4], a
+	ldh [rVDMA_DEST_LOW], a
 	ld a, $8
-	ldh [rHDMA5], a
+	ldh [rVDMA_LEN], a
 
 	ld a, $d2
-	ldh [rHDMA1], a
+	ldh [rVDMA_SRC_HIGH], a
 	ld a, $0
-	ldh [rHDMA2], a
+	ldh [rVDMA_SRC_LOW], a
 	ld a, $1c
-	ldh [rHDMA3], a
+	ldh [rVDMA_DEST_HIGH], a
 	ld a, $80
-	ldh [rHDMA4], a
+	ldh [rVDMA_DEST_LOW], a
 	ld a, $8
-	ldh [rHDMA5], a
+	ldh [rVDMA_LEN], a
 
 	ld a, $d2
-	ldh [rHDMA1], a
+	ldh [rVDMA_SRC_HIGH], a
 	ld a, $80
-	ldh [rHDMA2], a
+	ldh [rVDMA_SRC_LOW], a
 	ld a, $1d
-	ldh [rHDMA3], a
+	ldh [rVDMA_DEST_HIGH], a
 	xor a
-	ldh [rHDMA4], a
+	ldh [rVDMA_DEST_LOW], a
 	ld a, $8
-	ldh [rHDMA5], a
+	ldh [rVDMA_LEN], a
 
 	xor a
 	ldh [rVBK], a
@@ -460,7 +460,7 @@ Function1161d5:
 	ei
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ld a, $8
@@ -486,10 +486,10 @@ Function116294:
 	ld a, [wc319]
 	inc a
 	ld [wc319], a
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, wBGPals1 palette 6
 	ld de, wc320
 	ld bc, 2 palettes
@@ -500,7 +500,7 @@ Function116294:
 	call CopyBytes
 	call SetDefaultBGPAndOBP
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, $30
 	ldh [hWY], a
 	ret
@@ -510,17 +510,17 @@ Function1162cb:
 	ld a, [wc319]
 	inc a
 	ld [wc319], a
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, PichuBorderMobileOBPalettes
 	ld de, wOBPals1 palette 2
 	ld bc, 6 palettes
 	call CopyBytes
 	call SetDefaultBGPAndOBP
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 Function1162f2:
@@ -613,30 +613,30 @@ Function1162f2:
 	ret
 
 Function11636e:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, wBGPals2
 	ld de, wBGPals1
 	ld bc, 8 palettes
 	call CopyBytes
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call SetDefaultBGPAndOBP
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $1
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, $a0
 	ld hl, wShadowOAM
-	ld bc, 16 * SPRITEOAMSTRUCT_LENGTH
+	ld bc, 16 * OBJ_SIZE
 	call ByteFill
 	ld a, $90
 	ldh [hWY], a
 	call UpdateSprites
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ld a, $8
 	ld [wMusicFade], a
@@ -650,28 +650,28 @@ Function11636e:
 	ret
 
 Function1163c0:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $1
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, $a0
 	ld hl, wShadowOAM
-	ld bc, 16 * SPRITEOAMSTRUCT_LENGTH
+	ld bc, 16 * OBJ_SIZE
 	call ByteFill
 	call DelayFrame
 	farcall LoadStandingSpritesGFX
 	ld b, SCGB_MAPPALS
 	call GetSGBLayout
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, wc320
 	ld de, wd030
 	ld bc, $0010
 	call CopyBytes
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call SetDefaultBGPAndOBP
 	call DelayFrame
 	ld a, $90
@@ -679,7 +679,7 @@ Function1163c0:
 	call UpdateSprites
 	farcall LoadWalkingSpritesGFX
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ld a, [wLinkMode]
 	cp LINK_MOBILE

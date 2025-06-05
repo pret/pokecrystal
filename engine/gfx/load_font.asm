@@ -20,22 +20,22 @@ _LoadStandardFont::
 	ld hl, vTiles1
 	lb bc, BANK(Font), 128 ; "A" to "9"
 	ldh a, [rLCDC]
-	bit rLCDC_ENABLE, a
+	bit B_LCDC_ENABLE, a
 	jp z, Copy1bpp
 
 	ld de, Font
 	ld hl, vTiles1
 	lb bc, BANK(Font), 32 ; "A" to "]"
 	call Get1bppViaHDMA
-	ld de, Font + 32 * LEN_1BPP_TILE
+	ld de, Font + 32 * TILE_1BPP_SIZE
 	ld hl, vTiles1 tile $20
 	lb bc, BANK(Font), 32 ; "a" to $bf
 	call Get1bppViaHDMA
-	ld de, Font + 64 * LEN_1BPP_TILE
+	ld de, Font + 64 * TILE_1BPP_SIZE
 	ld hl, vTiles1 tile $40
 	lb bc, BANK(Font), 32 ; "Ä" to "←"
 	call Get1bppViaHDMA
-	ld de, Font + 96 * LEN_1BPP_TILE
+	ld de, Font + 96 * TILE_1BPP_SIZE
 	ld hl, vTiles1 tile $60
 	lb bc, BANK(Font), 32 ; "'" to "9"
 	call Get1bppViaHDMA
@@ -74,7 +74,7 @@ _LoadFontsBattleExtra::
 LoadFrame:
 	ld a, [wTextboxFrame]
 	maskbits NUM_FRAMES
-	ld bc, TEXTBOX_FRAME_TILES * LEN_1BPP_TILE
+	ld bc, TEXTBOX_FRAME_TILES * TILE_1BPP_SIZE
 	ld hl, Frames
 	call AddNTimes
 	ld d, h
@@ -128,7 +128,7 @@ StatsScreen_LoadFont:
 	ld hl, vTiles2 tile $78
 	lb bc, BANK(HPExpBarBorderGFX), 1
 	call Get1bppViaHDMA
-	ld de, HPExpBarBorderGFX + 3 * LEN_1BPP_TILE
+	ld de, HPExpBarBorderGFX + 3 * TILE_1BPP_SIZE
 	ld hl, vTiles2 tile $76
 	lb bc, BANK(HPExpBarBorderGFX), 2
 	call Get1bppViaHDMA

@@ -116,7 +116,7 @@ _CGB_BattleColors:
 _CGB_FinishBattleScreenLayout:
 	call InitPartyMenuBGPal7
 	hlcoord 0, 0, wAttrmap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	ld a, PAL_BATTLE_BG_ENEMY_HP
 	call ByteFill
 	hlcoord 0, 4, wAttrmap
@@ -601,17 +601,17 @@ _CGB_UnownPuzzle:
 	ld a, PREDEFPAL_UNOWN_PUZZLE
 	call GetPredefPal
 	call LoadHLPaletteIntoDE
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wOBPals1)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, wOBPals1
 	ld a, LOW(palred 31 + palgreen 0 + palblue 0)
 	ld [hli], a
 	ld a, HIGH(palred 31 + palgreen 0 + palblue 0)
 	ld [hl], a
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call WipeAttrmap
 	call ApplyAttrmap
 	ret
@@ -648,7 +648,7 @@ _CGB_TrainerCard:
 
 	; fill screen with opposite-gender palette for the card border
 	hlcoord 0, 0, wAttrmap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	ld a, [wPlayerGender]
 	and a
 	ld a, $1 ; kris

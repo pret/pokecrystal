@@ -80,7 +80,7 @@ MobileTimer::
 
 ; Turn off timer interrupt
 	ldh a, [rIF]
-	and 1 << VBLANK | 1 << LCD_STAT | 1 << SERIAL | 1 << JOYPAD
+	and IF_VBLANK | IF_STAT | IF_SERIAL | IF_JOYPAD
 	ldh [rIF], a
 
 	ld a, [wc86a]
@@ -92,7 +92,7 @@ MobileTimer::
 	jr nz, .skip_timer
 
 	ldh a, [rSC]
-	and 1 << rSC_ON
+	and SC_START
 	jr nz, .skip_timer
 
 	ldh a, [hROMBank]
@@ -112,7 +112,7 @@ MobileTimer::
 	ldh a, [rTMA]
 	ldh [rTIMA], a
 
-	ld a, 1 << rTAC_ON | rTAC_65536_HZ
+	ld a, TAC_START | TAC_65KHZ
 	ldh [rTAC], a
 
 .pop_ret

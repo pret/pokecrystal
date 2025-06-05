@@ -19,15 +19,15 @@ UpdateCGBPals::
 	; fallthrough
 
 ForceUpdateCGBPals::
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wBGPals2)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld hl, wBGPals2
 
 ; copy 8 pals to bgpd
-	ld a, 1 << rBGPI_AUTO_INCREMENT
+	ld a, BGPI_AUTOINC
 	ldh [rBGPI], a
 	ld c, LOW(rBGPD)
 	ld b, 8 / 2
@@ -43,7 +43,7 @@ endr
 ; hl is now wOBPals2
 
 ; copy 8 pals to obpd
-	ld a, 1 << rOBPI_AUTO_INCREMENT
+	ld a, OBPI_AUTOINC
 	ldh [rOBPI], a
 	ld c, LOW(rOBPD)
 	ld b, 8 / 2
@@ -57,7 +57,7 @@ endr
 	jr nz, .obp
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 ; clear pal update queue
 	xor a
@@ -83,11 +83,11 @@ DmgToCgbBGPals::
 	push de
 	push bc
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 
 	ld a, BANK(wBGPals2)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 ; copy & reorder bg pal buffer
 	ld hl, wBGPals2 ; to
@@ -103,7 +103,7 @@ DmgToCgbBGPals::
 	ldh [hCGBPalUpdate], a
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	pop bc
 	pop de
@@ -131,11 +131,11 @@ DmgToCgbObjPals::
 	push de
 	push bc
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 
 	ld a, BANK(wOBPals2)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 ; copy & reorder obj pal buffer
 	ld hl, wOBPals2 ; to
@@ -151,7 +151,7 @@ DmgToCgbObjPals::
 	ldh [hCGBPalUpdate], a
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	pop bc
 	pop de
@@ -171,10 +171,10 @@ DmgToCgbObjPal0::
 	push de
 	push bc
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wOBPals2)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld hl, wOBPals2 palette 0
 	ld de, wOBPals1 palette 0
@@ -186,7 +186,7 @@ DmgToCgbObjPal0::
 	ldh [hCGBPalUpdate], a
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	pop bc
 	pop de
@@ -208,10 +208,10 @@ DmgToCgbObjPal1::
 	push de
 	push bc
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wOBPals2)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld hl, wOBPals2 palette 1
 	ld de, wOBPals1 palette 1
@@ -223,7 +223,7 @@ DmgToCgbObjPal1::
 	ldh [hCGBPalUpdate], a
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	pop bc
 	pop de
@@ -237,14 +237,14 @@ CopyPals::
 ; copy c palettes in order b from de to hl
 
 	push bc
-	ld c, NUM_PAL_COLORS
+	ld c, PAL_COLORS
 .loop
 	push de
 	push hl
 
 ; get pal color
 	ld a, b
-	maskbits 1 << PAL_COLOR_SIZE
+	maskbits 1 << COLOR_SIZE
 ; 2 bytes per color
 	add a
 	ld l, a
@@ -262,7 +262,7 @@ CopyPals::
 	ld [hl], d
 	inc hl
 ; next pal color
-rept PAL_COLOR_SIZE
+rept COLOR_SIZE
 	srl b
 endr
 ; source
@@ -272,7 +272,7 @@ endr
 	jr nz, .loop
 
 ; de += 8 (next pal)
-	ld a, PALETTE_SIZE
+	ld a, PAL_SIZE
 	add e
 	jr nc, .ok
 	inc d
@@ -309,16 +309,16 @@ ReloadSpritesNoPalettes::
 	ldh a, [hCGB]
 	and a
 	ret z
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wBGPals2)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, wBGPals2
 	ld bc, (8 palettes) + (2 palettes)
 	xor a
 	call ByteFill
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	call DelayFrame
