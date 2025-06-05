@@ -4,12 +4,12 @@ GetPokeBallWobble:
 
 	push de
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	ld d, a
 	push de
 
 	ld a, BANK(wThrownBallWobbleCount) ; aka BANK(wFinalCatchRate)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld a, [wThrownBallWobbleCount]
 	inc a
@@ -54,7 +54,7 @@ GetPokeBallWobble:
 	pop de
 	ld e, a
 	ld a, d
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, e
 	pop de
 	ret

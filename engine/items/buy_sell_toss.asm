@@ -126,7 +126,7 @@ BuySellToss_InterpretJoypad:
 BuySellToss_UpdateQuantityDisplay:
 	call MenuBox
 	call MenuBoxCoord2Tile
-	ld de, SCREEN_WIDTH + 1
+	ld de, SCRN_X_B + 1
 	add hl, de
 	ld [hl], "×"
 	inc hl
@@ -204,18 +204,18 @@ BuySell_DisplaySubtotal:
 
 TossItem_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 15, 9, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 15, 9, SCRN_X_B - 1, TEXTBOX_Y - 1
 	dw NoPriceToDisplay
 	db 0 ; default option
 
 BuyItem_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 7, 15, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 7, 15, SCRN_X_B - 1, SCRN_Y_B - 1
 	dw DisplayPurchasePrice
 	db -1 ; default option
 
 SellItem_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 7, 15, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 7, 15, SCRN_X_B - 1, SCRN_Y_B - 1
 	dw DisplaySellingPrice
 	db 0 ; default option

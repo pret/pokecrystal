@@ -27,7 +27,7 @@ _UnownPuzzle:
 	call Decompress
 	call LoadUnownPuzzlePiecesGFX
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_B
 	ld a, PUZZLE_BORDER
 	call ByteFill
 	hlcoord 4, 3
@@ -342,7 +342,7 @@ UnownPuzzle_InvalidAction:
 	ret
 
 UnownPuzzle_FillBox:
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 .row
 	push bc
 	push hl
@@ -390,7 +390,7 @@ PlaceUnownPuzzlePieceGFX:
 	push hl
 	call GetCurrentPuzzlePieceVTileCorner
 	pop hl
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	ld b, 3
 .row
 	ld c, 3
@@ -418,7 +418,7 @@ FillUnoccupiedPuzzleSpace:
 	call GetUnownPuzzleCoordData
 	ld a, [hl]
 	pop hl
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	ld b, 3
 .row
 	ld c, 3
@@ -557,13 +557,13 @@ RedrawUnownPuzzlePieces:
 .OAM_NotHoldingPiece:
 	dbsprite -1, -1, -4, -4, $00, 0
 	dbsprite  0, -1, -4, -4, $01, 0
-	dbsprite  0, -1,  4, -4, $00, 0 | X_FLIP
+	dbsprite  0, -1,  4, -4, $00, 0 | OAMF_XFLIP
 	dbsprite -1,  0, -4, -4, $02, 0
 	dbsprite  0,  0, -4, -4, $03, 0
-	dbsprite  0,  0,  4, -4, $02, 0 | X_FLIP
-	dbsprite -1,  0, -4,  4, $00, 0 | Y_FLIP
-	dbsprite  0,  0, -4,  4, $01, 0 | Y_FLIP
-	dbsprite  0,  0,  4,  4, $00, 0 | X_FLIP | Y_FLIP
+	dbsprite  0,  0,  4, -4, $02, 0 | OAMF_XFLIP
+	dbsprite -1,  0, -4,  4, $00, 0 | OAMF_YFLIP
+	dbsprite  0,  0, -4,  4, $01, 0 | OAMF_YFLIP
+	dbsprite  0,  0,  4,  4, $00, 0 | OAMF_XFLIP | OAMF_YFLIP
 	db -1
 
 UnownPuzzleCoordData:

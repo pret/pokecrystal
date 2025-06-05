@@ -430,16 +430,16 @@ BattleBGEffect_BattlerObj_1Row:
 	jr nz, .player_side
 	ld a, BATTLE_ANIM_OBJ_ENEMYFEET_1ROW
 	ld [wBattleObjectTempID], a
-	ld a, 16 * TILE_WIDTH + 4
+	ld a, 16 * TILE_X + 4
 	jr .okay
 
 .player_side
 	ld a, BATTLE_ANIM_OBJ_PLAYERHEAD_1ROW
 	ld [wBattleObjectTempID], a
-	ld a, 6 * TILE_WIDTH
+	ld a, 6 * TILE_X
 .okay
 	ld [wBattleObjectTempXCoord], a
-	ld a, 8 * TILE_WIDTH
+	ld a, 8 * TILE_X
 	ld [wBattleObjectTempYCoord], a
 	xor a
 	ld [wBattleObjectTempParam], a
@@ -497,16 +497,16 @@ BattleBGEffect_BattlerObj_2Row:
 	jr nz, .player_side
 	ld a, BATTLE_ANIM_OBJ_ENEMYFEET_2ROW
 	ld [wBattleObjectTempID], a
-	ld a, 16 * TILE_WIDTH + 4
+	ld a, 16 * TILE_X + 4
 	jr .okay
 
 .player_side
 	ld a, BATTLE_ANIM_OBJ_PLAYERHEAD_2ROW
 	ld [wBattleObjectTempID], a
-	ld a, 6 * TILE_WIDTH
+	ld a, 6 * TILE_X
 .okay
 	ld [wBattleObjectTempXCoord], a
-	ld a, 8 * TILE_WIDTH
+	ld a, 8 * TILE_X
 	ld [wBattleObjectTempYCoord], a
 	xor a
 	ld [wBattleObjectTempParam], a
@@ -591,7 +591,7 @@ BattleBGEffect_RemoveMon:
 	dec d
 	jr nz, .col1
 	pop hl
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	add hl, de
 	pop de
 	dec e
@@ -611,7 +611,7 @@ BattleBGEffect_RemoveMon:
 	dec d
 	jr nz, .col2
 	pop hl
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	add hl, de
 	pop de
 	dec e
@@ -837,7 +837,7 @@ BattleBGEffect_RunPicResizeScript:
 	dec c
 	jr nz, .col
 	pop hl
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	add hl, bc
 	pop bc
 	dec b
@@ -2557,10 +2557,10 @@ BGEffect_RapidCyclePals:
 
 BGEffects_LoadPlayerPals:
 	ld h, a
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wBGPals1)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, h
 	push bc
 	push af
@@ -2577,17 +2577,17 @@ BGEffects_LoadPlayerPals:
 	call CopyPals
 	pop bc
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
 BGEffects_LoadEnemyPals:
 	ld h, a
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wBGPals1)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, h
 	push bc
 	push af
@@ -2604,7 +2604,7 @@ BGEffects_LoadEnemyPals:
 	call CopyPals
 	pop bc
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret

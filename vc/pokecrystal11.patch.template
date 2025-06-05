@@ -232,7 +232,7 @@ Mode = 11
 Type = 0                        
 Index = 1                       
 Address = {HEx @}            
-Fixcode={db SCREEN_HEIGHT_PX}        
+Fixcode={db SCRN_Y}        
               
 ;12 1b 0b 79 b0  find next C9
 [BiographySave_ret@Enable_GS_Ball_mobile_event]

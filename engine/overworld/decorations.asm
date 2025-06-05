@@ -37,7 +37,7 @@ _PlayerDecorationMenu:
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 5, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 5, 0, SCRN_X_B - 1, SCRN_Y_B - 1
 	dw .MenuData
 	db 1 ; default option
 
@@ -395,7 +395,7 @@ PopulateDecoCategoryMenu:
 
 .NonscrollingMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 0, 0, SCRN_X_B - 1, SCRN_Y_B - 1
 	dw .NonscrollingMenuData
 	db 1 ; default option
 
@@ -408,7 +408,7 @@ PopulateDecoCategoryMenu:
 
 .ScrollingMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 1, 1, SCREEN_WIDTH - 2, SCREEN_HEIGHT - 2
+	menu_coords 1, 1, SCRN_X_B - 2, SCRN_Y_B - 2
 	dw .ScrollingMenuData
 	db 1 ; default option
 

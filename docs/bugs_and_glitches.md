@@ -1533,7 +1533,7 @@ To select a move in battle, you have to press and release the Up or Down buttons
  	pop af
  	ldh [hVBlank], a
  	pop af
- 	ldh [rSVBK], a
+ 	ldh [rWBK], a
 ```
 
 The `[hInMenu]` value determines this button behavior. However, the battle moves menu doesn't actually set `[hInMenu]` to anything, so either behavior *may* have been intentional. The default 0 prevents continuous scrolling; a value of 1 allows it. (The Japanese release sets it to 0.)
@@ -2749,7 +2749,7 @@ If `IsInArray` returns `nc`, data at `bc` will be executed as code.
  	ld a, 1
  .bank_loop
  	push af
- 	ldh [rSVBK], a
+ 	ldh [rWBK], a
  	xor a
  	ld hl, STARTOF(WRAMX)
  	ld bc, SIZEOF(WRAMX)

@@ -19,9 +19,9 @@ _LoadOverworldTilemap::
 
 .left_column
 	decoord 0, 0
-	ld b, SCREEN_HEIGHT
+	ld b, SCRN_Y_B
 .loop
-	ld c, SCREEN_WIDTH
+	ld c, SCRN_X_B
 .loop2
 	ld a, [hli]
 	ld [de], a

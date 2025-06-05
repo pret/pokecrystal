@@ -11,7 +11,7 @@ __LoadTradeScreenBorderGFX:
 LoadMobileTradeBorderTilemap:
 	ld hl, MobileTradeBorderTilemap
 	decoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_B
 	call CopyBytes
 	ret
 
@@ -66,7 +66,7 @@ _LinkTextbox:
 	dec c
 	jr nz, .col
 	pop hl
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	add hl, de
 	pop bc
 	dec b
@@ -82,7 +82,7 @@ _LinkTextbox:
 	inc a
 	ld [hl], a
 	pop hl
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	add hl, de
 .loop
 	push hl
@@ -92,7 +92,7 @@ _LinkTextbox:
 	call .PlaceRow
 	ld [hl], $34
 	pop hl
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	add hl, de
 	dec b
 	jr nz, .loop
@@ -144,11 +144,11 @@ LoadCableTradeBorderTilemap:
 	call LoadMobileTradeBorderTilemap
 	ld hl, CableTradeBorderTopTilemap
 	decoord 0, 0
-	ld bc, 2 * SCREEN_WIDTH
+	ld bc, 2 * SCRN_X_B
 	call CopyBytes
 	ld hl, CableTradeBorderBottomTilemap
 	decoord 0, 16
-	ld bc, 2 * SCREEN_WIDTH
+	ld bc, 2 * SCRN_X_B
 	call CopyBytes
 	ret
 
@@ -291,7 +291,7 @@ LinkTradeMenu:
 	jr nz, .loop3
 
 .skip
-	ld c, SCREEN_WIDTH
+	ld c, SCRN_X_B
 	call AddNTimes
 	ld a, [w2DMenuCursorOffsets]
 	and $f

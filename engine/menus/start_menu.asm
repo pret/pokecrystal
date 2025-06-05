@@ -157,13 +157,13 @@ StartMenu::
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 10, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 10, 0, SCRN_X_B - 1, SCRN_Y_B - 1
 	dw .MenuData
 	db 1 ; default selection
 
 .ContestMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 10, 2, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 10, 2, SCRN_X_B - 1, SCRN_Y_B - 1
 	dw .MenuData
 	db 1 ; default selection
 

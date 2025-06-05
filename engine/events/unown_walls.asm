@@ -122,7 +122,7 @@ DisplayUnownWords:
 	call MenuBoxCoord2Tile
 	inc hl
 	ld d, 0
-	ld e, SCREEN_WIDTH
+	ld e, SCRN_X_B
 	add hl, de
 	add hl, de
 	ld a, [wScriptVar]
@@ -157,7 +157,7 @@ _DisplayUnownWords_FillAttr:
 	cp "@"
 	ret z
 	cp "Y"
-	ld a, VRAM_BANK_1 | PAL_BG_BROWN
+	ld a, OAMF_BANK1 | PAL_BG_BROWN
 	jr c, .got_pal
 	ld a, PAL_BG_BROWN
 .got_pal
@@ -172,7 +172,7 @@ _DisplayUnownWords_FillAttr:
 	ld [hli], a
 	ld [hld], a
 	ld b, 0
-	ld c, SCREEN_WIDTH
+	ld c, SCRN_X_B
 	add hl, bc
 	ld [hli], a
 	ld [hl], a
@@ -212,7 +212,7 @@ _DisplayUnownWords_CopyWord:
 	ld [hld], a
 	dec a
 	ld b, 0
-	ld c, SCREEN_WIDTH
+	ld c, SCRN_X_B
 	add hl, bc
 	ld c, $10
 	add c
@@ -226,7 +226,7 @@ _DisplayUnownWords_CopyWord:
 	ld [hl], $5b
 	inc hl
 	ld [hl], $5c
-	ld bc, SCREEN_WIDTH - 1
+	ld bc, SCRN_X_B - 1
 	add hl, bc
 	ld [hl], $4d
 	inc hl
@@ -238,7 +238,7 @@ _DisplayUnownWords_CopyWord:
 	ld [hl], $4e
 	inc hl
 	ld [hl], $4f
-	ld bc, SCREEN_WIDTH - 1
+	ld bc, SCRN_X_B - 1
 	add hl, bc
 	ld [hl], $5e
 	inc hl
@@ -250,7 +250,7 @@ _DisplayUnownWords_CopyWord:
 	ld [hl], $2
 	inc hl
 	ld [hl], $3
-	ld bc, SCREEN_WIDTH - 1
+	ld bc, SCRN_X_B - 1
 	add hl, bc
 	ld [hl], $3
 	inc hl

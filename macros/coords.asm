@@ -15,9 +15,9 @@ ENDM
 MACRO coord
 ; register, x, y[, origin]
 	if _NARG < 4
-		ld \1, (\3) * SCREEN_WIDTH + (\2) + wTilemap
+		ld \1, (\3) * SCRN_X_B + (\2) + wTilemap
 	else
-		ld \1, (\3) * SCREEN_WIDTH + (\2) + \4
+		ld \1, (\3) * SCRN_X_B + (\2) + \4
 	endc
 ENDM
 
@@ -36,16 +36,16 @@ ENDM
 MACRO bgcoord
 ; register, x, y[, origin]
 	if _NARG < 4
-		ld \1, (\3) * BG_MAP_WIDTH + (\2) + vBGMap0
+		ld \1, (\3) * SCRN_VX_B + (\2) + vBGMap0
 	else
-		ld \1, (\3) * BG_MAP_WIDTH + (\2) + \4
+		ld \1, (\3) * SCRN_VX_B + (\2) + \4
 	endc
 ENDM
 
 MACRO dwcoord
 ; x, y
 	rept _NARG / 2
-		dw (\2) * SCREEN_WIDTH + (\1) + wTilemap
+		dw (\2) * SCRN_X_B + (\1) + wTilemap
 		shift 2
 	endr
 ENDM
@@ -53,18 +53,18 @@ ENDM
 MACRO ldcoord_a
 ; x, y[, origin]
 	if _NARG < 3
-		ld [(\2) * SCREEN_WIDTH + (\1) + wTilemap], a
+		ld [(\2) * SCRN_X_B + (\1) + wTilemap], a
 	else
-		ld [(\2) * SCREEN_WIDTH + (\1) + \3], a
+		ld [(\2) * SCRN_X_B + (\1) + \3], a
 	endc
 ENDM
 
 MACRO lda_coord
 ; x, y[, origin]
 	if _NARG < 3
-		ld a, [(\2) * SCREEN_WIDTH + (\1) + wTilemap]
+		ld a, [(\2) * SCRN_X_B + (\1) + wTilemap]
 	else
-		ld a, [(\2) * SCREEN_WIDTH + (\1) + \3]
+		ld a, [(\2) * SCRN_X_B + (\1) + \3]
 	endc
 ENDM
 

@@ -19,26 +19,26 @@ DEF palred   EQUS "(1 << 0) *"
 DEF palgreen EQUS "(1 << 5) *"
 DEF palblue  EQUS "(1 << 10) *"
 
-DEF palettes EQUS "* PALETTE_SIZE"
-DEF palette  EQUS "+ PALETTE_SIZE *"
-DEF color    EQUS "+ PAL_COLOR_SIZE *"
-DEF colors   EQUS "* PAL_COLOR_SIZE"
+DEF palettes EQUS "* PAL_B"
+DEF palette  EQUS "+ PAL_B *"
+DEF color    EQUS "+ COLOR_B *"
+DEF colors   EQUS "* COLOR_B"
 
-DEF tiles EQUS "* LEN_2BPP_TILE"
-DEF tile  EQUS "+ LEN_2BPP_TILE *"
+DEF tiles EQUS "* TILE_B"
+DEF tile  EQUS "+ TILE_B *"
 
 ; extracts the middle two colors from a 2bpp binary palette
 ; example usage:
 ; INCBIN "foo.gbcpal", middle_colors
-DEF middle_colors EQUS "PAL_COLOR_SIZE, PAL_COLOR_SIZE * 2"
+DEF middle_colors EQUS "COLOR_B, COLOR_B * 2"
 
 MACRO dbpixel
 	if _NARG >= 4
 	; x tile, y tile, x pixel, y pixel
-		db \1 * TILE_WIDTH + \3, \2 * TILE_WIDTH + \4
+		db \1 * TILE_X + \3, \2 * TILE_X + \4
 	else
 	; x tile, y tile
-		db \1 * TILE_WIDTH, \2 * TILE_WIDTH
+		db \1 * TILE_X, \2 * TILE_X
 	endc
 ENDM
 
@@ -57,14 +57,14 @@ ENDM
 MACRO ldpixel
 	if _NARG >= 5
 	; register, x tile, y tile, x pixel, y pixel
-		lb \1, \2 * TILE_WIDTH + \4, \3 * TILE_WIDTH + \5
+		lb \1, \2 * TILE_X + \4, \3 * TILE_X + \5
 	else
 	; register, x tile, y tile
-		lb \1, \2 * TILE_WIDTH, \3 * TILE_WIDTH
+		lb \1, \2 * TILE_X, \3 * TILE_X
 	endc
 ENDM
 
 MACRO dbsprite
 ; x tile, y tile, x pixel, y pixel, vtile offset, attributes
-	db (\2 * TILE_WIDTH) % $100 + \4, (\1 * TILE_WIDTH) % $100 + \3, \5, \6
+	db (\2 * TILE_X) % $100 + \4, (\1 * TILE_X) % $100 + \3, \5, \6
 ENDM

@@ -1684,7 +1684,7 @@ HealHP_SFX_GFX:
 	pop de
 	ld a, [wCurPartyMon]
 	hlcoord 11, 0
-	ld bc, SCREEN_WIDTH * 2
+	ld bc, SCRN_X_B * 2
 	call AddNTimes
 	ld a, $2
 	ld [wWhichHPBar], a

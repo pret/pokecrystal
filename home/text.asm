@@ -12,7 +12,7 @@ FillBoxWithByte::
 	dec c
 	jr nz, .col
 	pop hl
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	add hl, bc
 	pop bc
 	dec b
@@ -29,14 +29,14 @@ ClearTilemap::
 
 	; Update the BG Map.
 	ldh a, [rLCDC]
-	bit rLCDC_ENABLE, a
+	bit LCDCB_ON, a
 	ret z
 	jp WaitBGMap
 
 ClearScreen::
 	ld a, PAL_BG_TEXT
 	hlcoord 0, 0, wAttrmap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_B
 	call ByteFill
 	jr ClearTilemap
 
@@ -63,7 +63,7 @@ TextboxBorder::
 	pop hl
 
 	; Middle
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	add hl, de
 .row
 	push hl
@@ -74,7 +74,7 @@ TextboxBorder::
 	ld [hl], "│"
 	pop hl
 
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	add hl, de
 	dec b
 	jr nz, .row
@@ -114,7 +114,7 @@ TextboxPalette::
 	dec c
 	jr nz, .row
 	pop hl
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	add hl, de
 	pop bc
 	dec b
@@ -418,14 +418,14 @@ ChanSuffixText::  db "@"
 
 NextLineChar::
 	pop hl
-	ld bc, SCREEN_WIDTH * 2
+	ld bc, SCRN_X_B * 2
 	add hl, bc
 	push hl
 	jp NextChar
 
 LineFeedChar::
 	pop hl
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	add hl, bc
 	push hl
 	jp NextChar
@@ -435,14 +435,14 @@ CarriageReturnChar::
 	push de
 	ld bc, -wTilemap + $10000
 	add hl, bc
-	ld de, -SCREEN_WIDTH
+	ld de, -SCRN_X_B
 	ld c, 1
 .loop
 	ld a, h
 	and a
 	jr nz, .next
 	ld a, l
-	cp SCREEN_WIDTH
+	cp SCRN_X_B
 	jr c, .done
 
 .next
@@ -452,7 +452,7 @@ CarriageReturnChar::
 
 .done
 	hlcoord 0, 0
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	ld a, c
 .loop2
 	and a
@@ -760,7 +760,7 @@ TextCommand_FAR::
 	ld a, [hli]
 
 	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	ld [rROMB0], a
 
 	push hl
 	ld h, d
@@ -770,7 +770,7 @@ TextCommand_FAR::
 
 	pop af
 	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	ld [rROMB0], a
 	ret
 
 TextCommand_BCD::

@@ -1,7 +1,7 @@
 ; These are all the asm constants needed to make the crystal11_vc patch.
 
 ; [fight begin]
-EXPORT SCREEN_HEIGHT_PX
+EXPORT SCRN_Y
 
 ; [print forbid 2]
 EXPORT A_BUTTON

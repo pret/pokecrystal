@@ -68,7 +68,7 @@ _BillsPC:
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 0, 0, SCRN_X_B - 1, SCRN_Y_B - 1
 	dw .MenuData
 	db 1 ; default option
 
@@ -235,7 +235,7 @@ ClearPCItemScreen:
 	call ClearBGPalettes
 	call ClearSprites
 	hlcoord 0, 0
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
+	ld bc, SCRN_B
 	ld a, " "
 	call ByteFill
 	hlcoord 0, 0

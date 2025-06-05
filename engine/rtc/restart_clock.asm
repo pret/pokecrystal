@@ -229,7 +229,7 @@ RestartClock:
 	call Coord2Tile
 	pop de
 	ld [hl], d
-	ld bc, 2 * SCREEN_WIDTH
+	ld bc, 2 * SCRN_X_B
 	add hl, bc
 	ld [hl], e
 	ret

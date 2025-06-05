@@ -144,7 +144,7 @@ PlaceMapNameCenterAlign:
 	ld e, a
 	farcall GetLandmarkName
 	call .GetNameLength
-	ld a, SCREEN_WIDTH
+	ld a, SCRN_X_B
 	sub c
 	srl a
 	ld b, 0
@@ -178,7 +178,7 @@ InitMapSignAttrmap:
 	inc b
 	inc c
 	inc c
-	ld a, PAL_BG_TEXT | PRIORITY
+	ld a, PAL_BG_TEXT | OAMF_PRI
 .loop
 	push bc
 	push hl
@@ -187,7 +187,7 @@ InitMapSignAttrmap:
 	dec c
 	jr nz, .inner_loop
 	pop hl
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	add hl, de
 	pop bc
 	dec b
@@ -233,7 +233,7 @@ PlaceMapNameFrame:
 	ret
 
 .FillMiddle:
-	ld c, SCREEN_WIDTH - 2
+	ld c, SCRN_X_B - 2
 	ld a, MAP_NAME_SIGN_START + 13
 .loop
 	ld [hli], a
@@ -242,7 +242,7 @@ PlaceMapNameFrame:
 	ret
 
 .FillTopBottom:
-	ld c, (SCREEN_WIDTH - 2) / 4 + 1
+	ld c, (SCRN_X_B - 2) / 4 + 1
 	jr .enterloop
 
 .continueloop

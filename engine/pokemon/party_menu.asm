@@ -48,7 +48,7 @@ WritePartyMenuTilemap:
 	xor a
 	ldh [hBGMapMode], a
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_B
 	ld a, " "
 	call ByteFill ; blank the tilemap
 	call GetPartyMenuQualityIndexes
@@ -95,7 +95,7 @@ PlacePartyNicknames:
 	pop hl
 	call PlaceString
 	pop hl
-	ld de, 2 * SCREEN_WIDTH
+	ld de, 2 * SCRN_X_B
 	add hl, de
 	pop bc
 	inc b
@@ -144,7 +144,7 @@ PlacePartyHPBar:
 	ld hl, wSGBPals
 	inc [hl]
 	pop hl
-	ld de, 2 * SCREEN_WIDTH
+	ld de, 2 * SCRN_X_B
 	add hl, de
 	pop bc
 	inc b
@@ -213,7 +213,7 @@ PlacePartyMenuHPDigits:
 
 .next
 	pop hl
-	ld de, 2 * SCREEN_WIDTH
+	ld de, 2 * SCRN_X_B
 	add hl, de
 	pop bc
 	inc b
@@ -255,7 +255,7 @@ PlacePartyMonLevel:
 
 .next
 	pop hl
-	ld de, SCREEN_WIDTH * 2
+	ld de, SCRN_X_B * 2
 	add hl, de
 	pop bc
 	inc b
@@ -287,7 +287,7 @@ PlacePartyMonStatus:
 
 .next
 	pop hl
-	ld de, SCREEN_WIDTH * 2
+	ld de, SCRN_X_B * 2
 	add hl, de
 	pop bc
 	inc b
@@ -321,7 +321,7 @@ PlacePartyMonTMHMCompatibility:
 
 .next
 	pop hl
-	ld de, SCREEN_WIDTH * 2
+	ld de, SCRN_X_B * 2
 	add hl, de
 	pop bc
 	inc b
@@ -376,7 +376,7 @@ PlacePartyMonEvoStoneCompatibility:
 
 .next
 	pop hl
-	ld de, 2 * SCREEN_WIDTH
+	ld de, 2 * SCRN_X_B
 	add hl, de
 	pop bc
 	inc b
@@ -458,7 +458,7 @@ PlacePartyMonGender:
 
 .next
 	pop hl
-	ld de, 2 * SCREEN_WIDTH
+	ld de, 2 * SCRN_X_B
 	add hl, de
 	pop bc
 	inc b
@@ -488,7 +488,7 @@ PlacePartyMonMobileBattleSelection:
 	ld de, .String_Sanka_Shinai
 	call PlaceString
 	pop hl
-	ld de, 2 * SCREEN_WIDTH
+	ld de, 2 * SCRN_X_B
 	add hl, de
 	pop bc
 	inc b
@@ -514,7 +514,7 @@ PlacePartyMonMobileBattleSelection:
 .loop3
 	and a
 	jr z, .done
-	ld de, 2 * SCREEN_WIDTH
+	ld de, 2 * SCRN_X_B
 	add hl, de
 	dec a
 	jr .loop3
