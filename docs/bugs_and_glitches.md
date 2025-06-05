@@ -101,7 +101,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [`CheckOwnMon` only checks the first five letters of OT names](#checkownmon-only-checks-the-first-five-letters-of-ot-names)
   - [`CheckOwnMonAnywhere` does not check the Day-Care](#checkownmonanywhere-does-not-check-the-day-care)
   - [The unused `phonecall` script command may crash](#the-unused-phonecall-script-command-may-crash)
-  - [Mania uses wrong dialogue for trying to return Shuckie with no other Pokemon](#mania-uses-wrong-dialogue-for-trying-to-return-shuckie-with-no-other-pokemon)
+  - [Mania uses wrong dialogue for trying to return Shuckie with no other Pokémon](#mania-uses-wrong-dialogue-for-trying-to-return-shuckie-with-no-other-pok%C3%A9mon)
 - [Internal engine routines](#internal-engine-routines)
   - [Saves corrupted by mid-save shutoff are not handled](#saves-corrupted-by-mid-save-shutoff-are-not-handled)
   - [`ScriptCall` can overflow `wScriptStack` and crash](#scriptcall-can-overflow-wscriptstack-and-crash)
@@ -2563,14 +2563,13 @@ The `phonecall` script command calls the `PhoneCall` routine, which calls the `B
 
 You can also delete the now-unused `BrokenPlaceFarString` routine in the same file.
 
-### Mania uses wrong dialogue for trying to return Shuckie with no other Pokemon
+### Mania uses wrong dialogue for trying to return Shuckie with no other Pokémon
 
-Mania has a line for if you try to return his Shuckle with no other Pokémon in your party, but this mistakenly uses the string for after the player gives him back his Shuckle.
-
-**Fix**:  Edit ``ManiaScript.returnshuckie`` in [maps/ManiasHouse.asm](https://github.com/pret/pokecrystal/blob/master/maps/ManiasHouse.asm):
+**Fix**:  Edit `ManiaScript.returnshuckie` in [maps/ManiasHouse.asm](https://github.com/pret/pokecrystal/blob/master/maps/ManiasHouse.asm):
 
 
 ```diff
+-; BUG: Mania uses wrong dialogue for trying to return Shuckie with no other Pokémon (see docs/bugs_and_glitches.md)
 -	ifequal SHUCKIE_FAINTED, .default_postevent
 +	ifequal SHUCKIE_FAINTED, .nothingleft
 ```
