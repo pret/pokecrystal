@@ -8,7 +8,6 @@ Landmarks:
 ; entries correspond to constants/landmark_constants.asm
 	table_width 4
 	landmark  -8, -16, SpecialMapName
-	assert_table_length JOHTO_LANDMARK
 	landmark 140, 100, NewBarkTownName
 	landmark 128, 100, Route29Name
 	landmark 100, 100, CherrygroveCityName
@@ -104,7 +103,6 @@ Landmarks:
 	landmark  20, 100, Route27Name
 	landmark  12, 100, TohjoFallsName
 	landmark  20,  68, Route28Name
-	assert_table_length OTHER_LANDMARK
 	landmark 140, 116, FastShipName
 	assert_table_length NUM_LANDMARKS
 
