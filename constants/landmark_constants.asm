@@ -2,7 +2,6 @@
 	const_def
 	const LANDMARK_SPECIAL           ; 00
 
-; Johto landmarks
 DEF JOHTO_LANDMARK EQU const_value
 	const LANDMARK_NEW_BARK_TOWN     ; 01
 	const LANDMARK_ROUTE_29          ; 02
@@ -52,7 +51,6 @@ DEF JOHTO_LANDMARK EQU const_value
 	const LANDMARK_SILVER_CAVE       ; 2e
 DEF JOHTO_LANDMARK_LAST EQU const_value - 1
 
-; Kanto landmarks
 DEF KANTO_LANDMARK EQU const_value
 	const LANDMARK_PALLET_TOWN       ; 2f
 	const LANDMARK_ROUTE_1           ; 30
@@ -104,11 +102,9 @@ DEF KANTO_LANDMARK EQU const_value
 	const LANDMARK_ROUTE_28          ; 5e
 DEF KANTO_LANDMARK_LAST EQU const_value - 1
 
-; Other landmarks
 DEF OTHER_LANDMARK EQU const_value
 	const LANDMARK_FAST_SHIP         ; 5f
 
-; Total number of landmarks
 DEF NUM_LANDMARKS EQU const_value
 
 ; used in CaughtData
