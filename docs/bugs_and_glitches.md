@@ -2563,6 +2563,7 @@ The `phonecall` script command calls the `PhoneCall` routine, which calls the `B
 
 You can also delete the now-unused `BrokenPlaceFarString` routine in the same file.
 
+
 ### Mania uses wrong dialogue for trying to return Shuckie with no other Pokémon
 
 **Fix**:  Edit `ManiaScript.returnshuckie` in [maps/ManiasHouse.asm](https://github.com/pret/pokecrystal/blob/master/maps/ManiasHouse.asm):
