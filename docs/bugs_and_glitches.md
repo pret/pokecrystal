@@ -2575,6 +2575,7 @@ You can also delete the now-unused `BrokenPlaceFarString` routine in the same fi
 +	ifequal SHUCKIE_FAINTED, .nothingleft
 ```
 
+
 ## Internal engine routines
 
 
