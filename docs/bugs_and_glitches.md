@@ -2568,7 +2568,6 @@ You can also delete the now-unused `BrokenPlaceFarString` routine in the same fi
 
 **Fix**:  Edit `ManiaScript.returnshuckie` in [maps/ManiasHouse.asm](https://github.com/pret/pokecrystal/blob/master/maps/ManiasHouse.asm):
 
-
 ```diff
 -; BUG: Mania uses wrong dialogue for trying to return Shuckie with no other Pokémon (see docs/bugs_and_glitches.md)
 -	ifequal SHUCKIE_FAINTED, .default_postevent
