@@ -44949,8 +44949,8 @@
 01:babc sHallOfFame21Mon6DVs
 01:babe sHallOfFame21Mon6Level
 01:babf sHallOfFame21Mon6Nickname
-01:bac9 sHallOfFame21Mon6End
 01:bac9 sHallOfFame21End
+01:bac9 sHallOfFame21Mon6End
 01:baca sHallOfFame22WinCount
 01:baca sHallOfFame22
 01:bacb sHallOfFame22Mon1Species
@@ -54098,9 +54098,9 @@
 00:c709 wc709
 00:c709 wSlotBias
 00:c709 wMemoryGameNumCardsMatched
+00:c70a wBattleWeather
 00:c70a wSlotBet
 00:c70a wc70a
-00:c70a wBattleWeather
 00:c70b wWeatherCount
 00:c70b wFirstTwoReelsMatching
 00:c70b wc70b
@@ -55102,6 +55102,7 @@
 00:cf66 wMagnetTrainWaitCounter
 00:cf66 wUnusedPokegearByte
 00:cf66 wUnusedTradeAnimPlayEvolutionMusic
+00:cf66 wBattleTowerRoomMenuJumptableIndex
 00:cf66 wCardFlipWhichCard
 00:cf66 wDebugTilesetCurColor
 00:cf66 wUnownPuzzleHeldPiece
@@ -55111,7 +55112,6 @@
 00:cf66 wTrainerCardBadgeAttributes
 00:cf66 wUnusedSlotReelIconDelay
 00:cf66 wDebugColorCurMon
-00:cf66 wBattleTowerRoomMenuJumptableIndex
 00:cf66 wcf66
 00:cf67 wRequested2bppSize
 00:cf68 wRequested2bppSource

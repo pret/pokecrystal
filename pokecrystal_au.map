@@ -45408,9 +45408,9 @@ SRAM bank #1:
 	         $ba6c = sHallOfFame21Mon1DVs
 	         $ba6e = sHallOfFame21Mon1Level
 	         $ba6f = sHallOfFame21Mon1Nickname
+	         $ba79 = sHallOfFame21Mon2
 	         $ba79 = sHallOfFame21Mon1End
 	         $ba79 = sHallOfFame21Mon2Species
-	         $ba79 = sHallOfFame21Mon2
 	         $ba7a = sHallOfFame21Mon2ID
 	         $ba7c = sHallOfFame21Mon2DVs
 	         $ba7e = sHallOfFame21Mon2Level
@@ -45443,8 +45443,8 @@ SRAM bank #1:
 	         $babc = sHallOfFame21Mon6DVs
 	         $babe = sHallOfFame21Mon6Level
 	         $babf = sHallOfFame21Mon6Nickname
-	         $bac9 = sHallOfFame21Mon6End
 	         $bac9 = sHallOfFame21End
+	         $bac9 = sHallOfFame21Mon6End
 	         $baca = sHallOfFame22WinCount
 	         $baca = sHallOfFame22
 	         $bacb = sHallOfFame22Mon1Species
@@ -55598,6 +55598,7 @@ WRAM0 bank #0:
 	         $cf66 = wMagnetTrainWaitCounter
 	         $cf66 = wUnusedPokegearByte
 	         $cf66 = wUnusedTradeAnimPlayEvolutionMusic
+	         $cf66 = wBattleTowerRoomMenuJumptableIndex
 	         $cf66 = wCardFlipWhichCard
 	         $cf66 = wDebugTilesetCurColor
 	         $cf66 = wUnownPuzzleHeldPiece
@@ -55607,7 +55608,6 @@ WRAM0 bank #0:
 	         $cf66 = wTrainerCardBadgeAttributes
 	         $cf66 = wUnusedSlotReelIconDelay
 	         $cf66 = wDebugColorCurMon
-	         $cf66 = wBattleTowerRoomMenuJumptableIndex
 	         $cf66 = wcf66
 	         $cf67 = wRequested2bppSize
 	         $cf68 = wRequested2bppSource
