@@ -587,16 +587,16 @@ Function8b690:
 	ret
 
 Function8b6bb:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, Palette_8b6d5
 	ld de, wBGPals1
 	ld bc, 3 palettes
 	call CopyBytes
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call Function8949c
 	ret
 
@@ -637,7 +637,7 @@ Function8b703:
 	pop hl
 	push hl
 	push bc
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	add hl, de
 .asm_8b717
 	push hl
@@ -648,7 +648,7 @@ Function8b703:
 	ld a, $11
 	ld [hl], a
 	pop hl
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	add hl, de
 	dec b
 	jr nz, .asm_8b717
@@ -690,7 +690,7 @@ Function8b744:
 	dec c
 	jr nz, .asm_8b74f
 	pop hl
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	add hl, de
 	pop bc
 	dec b
@@ -701,7 +701,7 @@ Function8b75d:
 	call Mobile22_SetBGMapMode0
 	hlcoord 0, 0
 	ld a, $1
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	call ByteFill
 	hlcoord 0, 1
 	ld a, $2
@@ -1030,11 +1030,11 @@ Function8b9ab:
 
 MenuHeader_0x8b9ac:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 11, 0, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 11, 0, SCRN_X_B - 1, TEXTBOX_Y - 1
 
 MenuHeader_0x8b9b1:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 11, 0, SCREEN_WIDTH - 1, 7
+	menu_coords 11, 0, SCRN_X_B - 1, 7
 	dw MenuData_0x8b9b9
 	db 1 ; default option
 
@@ -1047,7 +1047,7 @@ MenuData_0x8b9b9:
 
 MenuHeader_0x8b9ca:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 11, 0, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 11, 0, SCRN_X_B - 1, TEXTBOX_Y - 1
 	dw MenuData_0x8b9d2
 	db 1 ; default option
 

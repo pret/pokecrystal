@@ -88,11 +88,11 @@ Mobile_InitAnimatedMonIcon:
 	ld [hl], a
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
-	ld a, 9 * TILE_WIDTH
+	ld a, 9 * TILE_X
 	ld [hl], a
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
-	ld a, 9 * TILE_WIDTH
+	ld a, 9 * TILE_X
 	ld [hl], a
 	ret
 
@@ -105,11 +105,11 @@ Mobile_InitPartyMenuBGPal71:
 	ld [hl], a
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
-	ld a, 3 * TILE_WIDTH
+	ld a, 3 * TILE_X
 	ld [hl], a
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
-	ld a, 12 * TILE_WIDTH
+	ld a, 12 * TILE_X
 	ld [hl], a
 	ld a, c
 	ld [wc608], a
@@ -234,8 +234,8 @@ MoveList_InitAnimatedMonIcon:
 	ld [wCurIcon], a
 	xor a
 	call GetIconGFX
-	ld d, 3 * TILE_WIDTH + 2 ; depixel 3, 4, 2, 4
-	ld e, 4 * TILE_WIDTH + 4
+	ld d, 3 * TILE_X + 2 ; depixel 3, 4, 2, 4
+	ld e, 4 * TILE_X + 4
 	ld a, SPRITE_ANIM_OBJ_PARTY_MON
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID

@@ -547,7 +547,7 @@ TradeAnim_TubeAnimJumptable:
 .One:
 	call TradeAnim_BlankTilemap
 	hlcoord 0, 3
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	ld a, $60
 	call ByteFill
 	ret
@@ -563,7 +563,7 @@ TradeAnim_TubeAnimJumptable:
 	ld [hl], a
 
 	ld a, $61
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	ld c, $3
 .loop
 	add hl, de
@@ -594,7 +594,7 @@ TradeAnim_PlaceTrademonStatsOnTubeAnim:
 	ldh [hBGMapAddress + 1], a
 	call ClearTilemap
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	ld a, "─"
 	call ByteFill
 	hlcoord 0, 1
@@ -1217,7 +1217,7 @@ TradeAnim_OTBidsFarewell:
 TradeAnim_TakeCareOfText:
 	call WaitTop
 	hlcoord 0, 10
-	ld bc, 8 * SCREEN_WIDTH
+	ld bc, 8 * SCRN_X_B
 	ld a, " "
 	call ByteFill
 	call WaitBGMap
@@ -1278,7 +1278,7 @@ TradeAnim_Wait80Frames:
 
 TradeAnim_BlankTilemap:
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 	ld a, " "
 	call ByteFill
 	ret
@@ -1294,7 +1294,7 @@ TradeAnim_CopyBoxFromDEtoHL:
 	dec c
 	jr nz, .col
 	pop hl
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	add hl, bc
 	pop bc
 	dec b

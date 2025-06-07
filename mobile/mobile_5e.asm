@@ -688,7 +688,7 @@ Function17aac3:
 	ld [hli], a
 	ld [hli], a
 	pop hl
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	add hl, de
 	ld [hli], a
 	ld [hli], a
@@ -765,10 +765,10 @@ Function17aba0:
 	ret
 
 Function17abcf:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wBGPals1)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld hl, Palette_17ac55
 	ld de, wBGPals1
@@ -792,7 +792,7 @@ Function17abcf:
 	call FarCopyBytes
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 Function17ac0c:
@@ -800,24 +800,24 @@ Function17ac0c:
 	call Function17ac2a
 	hlcoord 0, 0
 	ld b, 2
-	ld c, SCREEN_WIDTH - 2
+	ld c, SCRN_X_B - 2
 	call Function17ac46
 	ret
 
 Function17ac1d:
 	ld hl, DialpadTilemap
 	decoord 0, 4
-	ld bc, (SCREEN_HEIGHT - 4) * SCREEN_WIDTH
+	ld bc, (SCRN_Y_B - 4) * SCRN_X_B
 	call CopyBytes
 	ret
 
 Function17ac2a:
 	ld hl, DialpadAttrmap
 	decoord 0, 4, wAttrmap
-	ld bc, (SCREEN_HEIGHT - 4) * SCREEN_WIDTH
+	ld bc, (SCRN_Y_B - 4) * SCRN_X_B
 	call CopyBytes
 	hlcoord 0, 4, wAttrmap
-	ld bc, (SCREEN_HEIGHT - 4) * SCREEN_WIDTH
+	ld bc, (SCRN_Y_B - 4) * SCRN_X_B
 .loop
 	ld a, [hl]
 	or $8

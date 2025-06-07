@@ -135,7 +135,7 @@ PlaceTradePartnerNamesAndParty:
 	pop de
 	inc de
 	pop hl
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	add hl, bc
 	pop bc
 	inc c

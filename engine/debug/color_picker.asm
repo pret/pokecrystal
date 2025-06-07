@@ -142,12 +142,12 @@ DebugColor_InitVRAM:
 	call ByteFill
 
 	hlcoord 0, 0, wAttrmap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 	xor a
 	call ByteFill
 
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 	xor a
 	call ByteFill
 
@@ -184,17 +184,17 @@ DebugColor_InitPalettes:
 	and a
 	ret z
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wBGPals2)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld hl, Palette_DebugBG
 	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
 
-	ld a, 1 << rBGPI_AUTO_INCREMENT
+	ld a, BGPIF_AUTOINC
 	ldh [rBGPI], a
 	ld hl, Palette_DebugBG
 	ld c, 8 palettes
@@ -204,7 +204,7 @@ DebugColor_InitPalettes:
 	dec c
 	jr nz, .bg_loop
 
-	ld a, 1 << rOBPI_AUTO_INCREMENT
+	ld a, OBPIF_AUTOINC
 	ldh [rOBPI], a
 	ld hl, Palette_DebugOB
 	ld c, 8 palettes
@@ -224,7 +224,7 @@ DebugColor_InitPalettes:
 	ld [wDebugDarkColor + 1], a
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 Palette_DebugBG:
@@ -300,7 +300,7 @@ DebugColor_InitScreen:
 	xor a
 	ldh [hBGMapMode], a
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 	ld a, DEBUGTEST_BLACK
 	call ByteFill
 	hlcoord 1, 3
@@ -462,10 +462,10 @@ DebugColor_UpdatePalettes:
 	jr z, .sgb
 
 ; cgb
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wBGPals2)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld hl, wBGPals2
 	ld de, wDebugMiddleColors
@@ -486,7 +486,7 @@ DebugColor_UpdatePalettes:
 	ld [wJumptableIndex], a
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 .sgb
@@ -692,7 +692,7 @@ DebugColor_NextRGBColor:
 
 DebugColor_InitTMHM:
 	hlcoord 0, 10
-	ld bc, SCREEN_WIDTH * 8
+	ld bc, SCRN_X_B * 8
 	ld a, DEBUGTEST_BLACK
 	call ByteFill
 	hlcoord 2, 12
@@ -921,7 +921,7 @@ DebugColor_FillBoxWithByte:
 	dec c
 	jr nz, .col
 	pop hl
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	add hl, bc
 	pop bc
 	dec b
@@ -1008,7 +1008,7 @@ DebugColor_PlaceCursor:
 	jr z, .place_cursor
 	dec a
 	hlcoord 1, 11
-	ld bc, 2 * SCREEN_WIDTH
+	ld bc, 2 * SCRN_X_B
 	call AddNTimes
 	ld [hl], "▶"
 
@@ -1041,13 +1041,13 @@ DebugColor_PlaceCursor:
 	ld a, [de]
 	add a
 	add a
-	add 3 * TILE_WIDTH
+	add 3 * TILE_X
 	ld [hli], a ; x
 	xor a
 	ld [hli], a ; tile id
 	ld a, c
 	ld [hli], a ; attributes
-	ld a, 2 * TILE_WIDTH
+	ld a, 2 * TILE_X
 	add b
 	ld b, a
 	inc c
@@ -1096,11 +1096,11 @@ TilesetColorPicker: ; unreferenced
 	ld a, HIGH(vBGMap1)
 	ldh [hBGMapAddress + 1], a
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 	ld a, DEBUGTEST_BLACK
 	call ByteFill
 	hlcoord 0, 0, wAttrmap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 	ld a, PAL_BG_TEXT
 	call ByteFill
 	decoord 1, 1, 0
@@ -1139,7 +1139,7 @@ rept 4
 	ld [hli], a
 endr
 rept 2
-	ld bc, SCREEN_WIDTH - 4
+	ld bc, SCRN_X_B - 4
 	add hl, bc
 rept 4
 	ld [hli], a
@@ -1162,10 +1162,10 @@ DebugTileset_LoadRGBMeter:
 	ret
 
 DebugTileset_LoadPalettes:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wBGPals1)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld a, [wDebugTilesetCurPalette]
 	ld l, a
@@ -1182,7 +1182,7 @@ DebugTileset_LoadPalettes:
 	call DebugColor_CalculateRGB
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 DebugColorMain2: ; unreferenced
@@ -1200,7 +1200,7 @@ DebugColorMain2: ; unreferenced
 	ld hl, wDebugTilesetCurPalette
 	ld a, [hl]
 	inc a
-	and PALETTE_MASK
+	and OAMF_PALMASK
 	cp PAL_BG_TEXT
 	jr nz, .palette_ok
 	xor a ; PAL_BG_GRAY
@@ -1215,10 +1215,10 @@ DebugColorMain2: ; unreferenced
 	decoord 16, 1, 0
 	call DebugColor_DrawAttributeSwatch
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wBGPals2)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld hl, wBGPals2
 	ld a, [wDebugTilesetCurPalette]
@@ -1229,7 +1229,7 @@ DebugColorMain2: ; unreferenced
 	call CopyBytes
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld a, 2
 	ldh [hBGMapMode], a
@@ -1247,10 +1247,10 @@ DebugColorMain2: ; unreferenced
 	ret
 
 DebugTileset_UpdatePalettes:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wBGPals2)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld hl, wBGPals2
 	ld a, [wDebugTilesetCurPalette]
@@ -1276,7 +1276,7 @@ DebugTileset_UpdatePalettes:
 	call DebugColor_PrintHexColor
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld a, TRUE
 	ldh [hCGBPalUpdate], a
@@ -1326,7 +1326,7 @@ DebugTileset_SelectColorBox:
 	inc a
 
 .done
-	maskbits NUM_PAL_COLORS
+	maskbits PAL_COLORS
 	ld [wDebugTilesetCurColor], a
 	ld e, a
 	ld d, 0

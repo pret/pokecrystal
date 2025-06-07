@@ -3,7 +3,7 @@ DEF PRINTPARTY_HP EQU "◀" ; $71
 PrintPage1:
 	hlcoord 0, 0
 	decoord 0, 0, wPrinterTilemapBuffer
-	ld bc, 17 * SCREEN_WIDTH
+	ld bc, 17 * SCRN_X_B
 	call CopyBytes
 	hlcoord 17, 1, wPrinterTilemapBuffer
 	ld a, $62
@@ -40,7 +40,7 @@ PrintPage1:
 	call nz, PlaceFarString
 	hlcoord 19, 0, wPrinterTilemapBuffer
 	ld [hl], $35
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	add hl, de
 	ld b, $f
 .column_loop
@@ -53,7 +53,7 @@ PrintPage1:
 
 PrintPage2:
 	hlcoord 0, 0, wPrinterTilemapBuffer
-	ld bc, 8 * SCREEN_WIDTH
+	ld bc, 8 * SCRN_X_B
 	ld a, " "
 	call ByteFill
 	hlcoord 0, 0, wPrinterTilemapBuffer
@@ -68,11 +68,11 @@ PrintPage2:
 	ld [hl], $38
 	inc hl
 	ld a, $39
-	ld bc, SCREEN_HEIGHT
+	ld bc, SCRN_Y_B
 	call ByteFill
 	ld [hl], $3a
 	hlcoord 0, 7, wPrinterTilemapBuffer
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	ld a, $32
 	call ByteFill
 	ld a, [wTempSpecies]
@@ -91,7 +91,7 @@ PrintPage2:
 
 .FillColumn:
 	push de
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 .column_loop
 	ld [hl], a
 	add hl, de
@@ -242,7 +242,7 @@ PrintPartyMonPage2:
 	ld b, 15
 	ld c, 18
 	call Textbox
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	decoord 0, 0
 	hlcoord 0, 1
 	call CopyBytes

@@ -196,9 +196,9 @@ ScrollingMenu_GetCursorPosition:
 
 ScrollingMenu_ClearLeftColumn:
 	call MenuBoxCoord2Tile
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	add hl, de
-	ld de, 2 * SCREEN_WIDTH
+	ld de, 2 * SCRN_X_B
 	ld a, [wMenuData_ScrollingMenuHeight]
 .loop
 	ld [hl], " "
@@ -359,7 +359,7 @@ ScrollingMenu_UpdateDisplay:
 
 .okay
 	call MenuBoxCoord2Tile
-	ld bc, SCREEN_WIDTH + 1
+	ld bc, SCRN_X_B + 1
 	add hl, bc
 	ld a, [wMenuData_ScrollingMenuHeight]
 	ld b, a
@@ -377,7 +377,7 @@ ScrollingMenu_UpdateDisplay:
 	push hl
 	call ScrollingMenu_CallFunctions1and2
 	pop hl
-	ld bc, 2 * SCREEN_WIDTH
+	ld bc, 2 * SCRN_X_B
 	add hl, bc
 	pop bc
 	inc c

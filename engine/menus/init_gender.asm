@@ -69,11 +69,11 @@ InitGenderScreen:
 	call InitCrystalData
 	call LoadFontsExtra
 	hlcoord 0, 0
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
+	ld bc, SCRN_Y_B * SCRN_X_B
 	ld a, $0
 	call ByteFill
 	hlcoord 0, 0, wAttrmap
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
+	ld bc, SCRN_Y_B * SCRN_X_B
 	xor a
 	call ByteFill
 	ret

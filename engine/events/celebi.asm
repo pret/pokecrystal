@@ -37,7 +37,7 @@ CelebiShrineEvent:
 	call GetCelebiSpriteTile
 	inc d
 	push de
-	ld a, 36 * SPRITEOAMSTRUCT_LENGTH
+	ld a, 36 * OBJ_B
 	ld [wCurSpriteOAMAddr], a
 	farcall DoNextFrameForAllSprites
 	call CelebiEvent_CountDown
@@ -60,7 +60,7 @@ CelebiShrineEvent:
 	ld c, 4
 .OAMloop:
 	ld [hli], a ; tile id
-rept SPRITEOAMSTRUCT_LENGTH - 1
+rept OBJ_B - 1
 	inc hl
 endr
 	inc a
@@ -132,7 +132,7 @@ UpdateCelebiPosition:
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld a, [hl]
-	cp 10 * TILE_WIDTH + 2
+	cp 10 * TILE_X + 2
 	jp nc, .FreezeCelebiPosition
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
@@ -159,9 +159,9 @@ UpdateCelebiPosition:
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	add [hl]
-	cp 11 * TILE_WIDTH + 4
+	cp 11 * TILE_X + 4
 	jr nc, .ShiftY
-	cp 8 * TILE_WIDTH + 4
+	cp 8 * TILE_X + 4
 	jr nc, .ReinitSpriteAnimFrame
 .ShiftY:
 	pop af
@@ -171,7 +171,7 @@ UpdateCelebiPosition:
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	add [hl]
-	cp 10 * TILE_WIDTH
+	cp 10 * TILE_X
 	jr c, .float_up
 	jr .float_down
 
@@ -179,7 +179,7 @@ UpdateCelebiPosition:
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	add [hl]
-	cp 10 * TILE_WIDTH
+	cp 10 * TILE_X
 	jr nc, .float_up
 .float_down
 	ld hl, SPRITEANIMSTRUCT_YCOORD
@@ -200,9 +200,9 @@ UpdateCelebiPosition:
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	add [hl]
-	cp 10 * TILE_WIDTH
+	cp 10 * TILE_X
 	jr c, .left
-	cp -(3 * TILE_WIDTH + 2)
+	cp -(3 * TILE_X + 2)
 	jr nc, .left
 	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc

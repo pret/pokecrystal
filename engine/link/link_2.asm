@@ -46,7 +46,7 @@ LinkTextbox2:
 	dec c
 	jr nz, .col
 	pop hl
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	add hl, de
 	pop bc
 	dec b
@@ -62,7 +62,7 @@ LinkTextbox2:
 	inc a
 	ld [hl], a
 	pop hl
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	add hl, de
 .loop
 	push hl
@@ -72,7 +72,7 @@ LinkTextbox2:
 	call .PlaceRow
 	ld [hl], $7a
 	pop hl
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	add hl, de
 	dec b
 	jr nz, .loop

@@ -880,12 +880,12 @@ MovementFunction_Shadow:
 	add hl, de
 	ld a, [hl]
 	maskbits NUM_DIRECTIONS
-	ld d, 1 * TILE_WIDTH + 6
+	ld d, 1 * TILE_X + 6
 	cp DOWN
 	jr z, .ok
 	cp UP
 	jr z, .ok
-	ld d, 1 * TILE_WIDTH + 4
+	ld d, 1 * TILE_X + 4
 .ok
 	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
@@ -909,7 +909,7 @@ MovementFunction_Emote:
 	ld [hl], 0
 	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
-	ld [hl], -2 * TILE_WIDTH
+	ld [hl], -2 * TILE_X
 	ld hl, OBJECT_SPRITE_X_OFFSET
 	add hl, bc
 	ld [hl], 0
@@ -2331,13 +2331,13 @@ CheckObjectCoveredByTextbox:
 	add d
 	cp $f0
 	jr nc, .ok1
-	cp SCREEN_WIDTH_PX
+	cp SCRN_X
 	jp nc, .nope
 .ok1
 ; Account for objects currently moving left/right.
 	and %00000111
 	ld d, 2
-	cp TILE_WIDTH / 2
+	cp TILE_X / 2
 	jr c, .ok2
 	ld d, 3
 .ok2
@@ -2346,9 +2346,9 @@ CheckObjectCoveredByTextbox:
 	srl a
 	srl a
 	srl a
-	cp SCREEN_WIDTH
+	cp SCRN_X_B
 	jr c, .ok3
-	sub BG_MAP_WIDTH
+	sub SCRN_VX_B
 .ok3
 	ldh [hCurSpriteXCoord], a
 
@@ -2364,13 +2364,13 @@ CheckObjectCoveredByTextbox:
 	add e
 	cp $f0
 	jr nc, .ok4
-	cp SCREEN_HEIGHT_PX
+	cp SCRN_Y
 	jr nc, .nope
 .ok4
 ; Account for objects currently moving up/down.
 	and %00000111
 	ld e, 2
-	cp TILE_WIDTH / 2
+	cp TILE_X / 2
 	jr c, .ok5
 	ld e, 3
 .ok5
@@ -2379,9 +2379,9 @@ CheckObjectCoveredByTextbox:
 	srl a
 	srl a
 	srl a
-	cp SCREEN_HEIGHT
+	cp SCRN_Y_B
 	jr c, .ok6
-	sub BG_MAP_HEIGHT
+	sub SCRN_VY_B
 .ok6
 	ldh [hCurSpriteYCoord], a
 
@@ -2406,14 +2406,14 @@ CheckObjectCoveredByTextbox:
 	ldh a, [hCurSpriteYCoord]
 	add e
 	dec a
-	cp SCREEN_HEIGHT
+	cp SCRN_Y_B
 	jr nc, .ok9
 	ld b, a
 .next
 	ldh a, [hCurSpriteXCoord]
 	add d
 	dec a
-	cp SCREEN_WIDTH
+	cp SCRN_X_B
 	jr nc, .ok8
 	ld c, a
 	push bc
@@ -2524,13 +2524,13 @@ _SetPlayerPalette:
 	ld [hl], a
 	ld a, d
 	swap a
-	and PALETTE_MASK
+	and OAMF_PALMASK
 	ld d, a
 	ld bc, wPlayerStruct
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	ld a, [hl]
-	and ~PALETTE_MASK
+	and ~OAMF_PALMASK
 	or d
 	ld [hl], a
 	ret
@@ -2746,16 +2746,16 @@ _UpdateSprites::
 .fill
 	ld a, [wStateFlags]
 	bit LAST_12_SPRITE_OAM_STRUCTS_RESERVED_F, a
-	ld b, NUM_SPRITE_OAM_STRUCTS * SPRITEOAMSTRUCT_LENGTH
+	ld b, OAM_COUNT * OBJ_B
 	jr z, .ok
-	ld b, (NUM_SPRITE_OAM_STRUCTS - 12) * SPRITEOAMSTRUCT_LENGTH
+	ld b, (OAM_COUNT - 12) * OBJ_B
 .ok
 	ldh a, [hUsedSpriteIndex]
 	cp b
 	ret nc
 	ld l, a
 	ld h, HIGH(wShadowOAM)
-	ld de, SPRITEOAMSTRUCT_LENGTH
+	ld de, OBJ_B
 	ld a, b
 	ld c, OAM_YCOORD_HIDDEN
 .loop
@@ -2900,30 +2900,30 @@ InitSprites:
 	xor a
 	bit 7, [hl] ; tiles $80+ are in VRAM bank 0
 	jr nz, .not_vram1
-	or VRAM_BANK_1
+	or OAMF_BANK1
 .not_vram1
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	ld e, [hl]
 	bit OBJ_FLAGS2_7_F, e
 	jr z, .not_priority
-	or PRIORITY
+	or OAMF_PRI
 .not_priority
 	bit USE_OBP1_F, e
 	jr z, .not_obp_num
-	or OBP_NUM
+	or OAMF_PAL1
 .not_obp_num
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	ld d, a
 	ld a, [hl]
-	and PALETTE_MASK
+	and OAMF_PALMASK
 	or d
 	ld d, a
 	xor a
 	bit OVERHEAD_F, e
 	jr z, .not_overhead
-	or PRIORITY
+	or OAMF_PRI
 .not_overhead
 	ldh [hCurSpriteOAMFlags], a
 	ld hl, OBJECT_SPRITE_X
@@ -2999,7 +2999,7 @@ InitSprites:
 	ldh a, [hCurSpriteOAMFlags]
 	or e
 .nope2
-	and OBP_NUM | X_FLIP | Y_FLIP | PRIORITY
+	and OAMF_PAL1 | OAMF_XFLIP | OAMF_YFLIP | OAMF_PRI
 	or d
 	ld [bc], a ; attributes
 	inc c

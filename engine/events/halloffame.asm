@@ -237,7 +237,7 @@ AnimateHOFMonEntrance:
 	ld hl, wTempMonDVs
 	predef GetUnownLetter
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 	ld a, " "
 	call ByteFill
 	ld de, vTiles2 tile $31
@@ -261,7 +261,7 @@ AnimateHOFMonEntrance:
 	xor a
 	ld [wBoxAlignment], a
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 	ld a, " "
 	call ByteFill
 	hlcoord 6, 5
@@ -452,14 +452,14 @@ DisplayHOFMon:
 	ld a, "@"
 	ld [wStringBuffer2 + MON_NAME_LENGTH - 1], a
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 	ld a, " "
 	call ByteFill
 	hlcoord 0, 0
-	lb bc, 3, SCREEN_WIDTH - 2
+	lb bc, 3, SCRN_X_B - 2
 	call Textbox
 	hlcoord 0, 12
-	lb bc, 4, SCREEN_WIDTH - 2
+	lb bc, 4, SCRN_X_B - 2
 	call Textbox
 	ld a, [wTempMonSpecies]
 	ld [wCurPartySpecies], a
@@ -524,7 +524,7 @@ HOF_AnimatePlayerPic:
 	lb bc, BANK(FontExtra), 1
 	call Request2bpp
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 	ld a, " "
 	call ByteFill
 	farcall GetPlayerBackpic
@@ -548,7 +548,7 @@ HOF_AnimatePlayerPic:
 	xor a
 	ld [wBoxAlignment], a
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_X_B * SCRN_Y_B
 	ld a, " "
 	call ByteFill
 	farcall HOF_LoadTrainerFrontpic

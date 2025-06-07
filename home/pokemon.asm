@@ -53,7 +53,7 @@ DrawBattleHPBar::
 .fill
 ; Keep drawing tiles until pixel length is reached
 	ld a, e
-	sub TILE_WIDTH
+	sub TILE_X
 	jr c, .lastbar
 
 	ld e, a
