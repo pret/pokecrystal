@@ -565,8 +565,8 @@ PokegearMap_KantoMap:
 	jr PokegearMap_ContinueMap
 
 PokegearMap_JohtoMap:
-	ld d, LANDMARK_SILVER_CAVE
-	ld e, LANDMARK_NEW_BARK_TOWN
+	ld d, JOHTO_LANDMARK_LAST
+	ld e, JOHTO_LANDMARK
 PokegearMap_ContinueMap:
 	ld hl, hJoyLast
 	ld a, [hl]
@@ -728,8 +728,8 @@ TownMap_GetKantoLandmarkLimits:
 	ld a, [wStatusFlags]
 	bit STATUSFLAGS_HALL_OF_FAME_F, a
 	jr z, .not_hof
-	ld d, LANDMARK_ROUTE_28
-	ld e, LANDMARK_PALLET_TOWN
+	ld d, KANTO_LANDMARK_LAST
+	ld e, KANTO_LANDMARK
 	ret
 
 .not_hof
