@@ -242,7 +242,7 @@ TMHM_ShowTMMoveDescription:
 	jp nc, TMHM_ExitPocket
 	hlcoord 0, 12
 	ld b, 4
-	ld c, SCREEN_WIDTH - 2
+	ld c, SCRN_X_B - 2
 	call Textbox
 	ld a, [wCurItem]
 	cp NUM_TMS + NUM_HMS + 1
@@ -391,7 +391,7 @@ TMHM_DisplayPocketItems:
 	push bc
 	cp NUM_TMS + 1
 	jr nc, .hm2
-	ld bc, SCREEN_WIDTH + 9
+	ld bc, SCRN_X_B + 9
 	add hl, bc
 	ld [hl], "×"
 	inc hl
@@ -425,7 +425,7 @@ TMHM_DisplayPocketItems:
 
 TMHMPocket_GetCurrentLineCoord:
 	hlcoord 5, 0
-	ld bc, 2 * SCREEN_WIDTH
+	ld bc, 2 * SCRN_X_B
 	ld a, 6
 	sub d
 	ld e, a

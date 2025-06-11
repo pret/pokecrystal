@@ -18,8 +18,8 @@ _Option:
 	ld [hl], TRUE
 	call ClearBGPalettes
 	hlcoord 0, 0
-	ld b, SCREEN_HEIGHT - 2
-	ld c, SCREEN_WIDTH - 2
+	ld b, SCRN_Y_B - 2
+	ld c, SCRN_X_B - 2
 	call Textbox
 	hlcoord 2, 2
 	ld de, StringOptions
@@ -545,15 +545,15 @@ OptionsControl:
 
 Options_UpdateCursorPosition:
 	hlcoord 1, 1
-	ld de, SCREEN_WIDTH
-	ld c, SCREEN_HEIGHT - 2
+	ld de, SCRN_X_B
+	ld c, SCRN_Y_B - 2
 .loop
 	ld [hl], " "
 	add hl, de
 	dec c
 	jr nz, .loop
 	hlcoord 1, 2
-	ld bc, 2 * SCREEN_WIDTH
+	ld bc, 2 * SCRN_X_B
 	ld a, [wJumptableIndex]
 	call AddNTimes
 	ld [hl], "▶"

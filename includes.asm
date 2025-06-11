@@ -20,9 +20,7 @@ INCLUDE "macros/scripts/battle_anims.asm"
 INCLUDE "macros/scripts/oam_anims.asm"
 INCLUDE "macros/scripts/pic_anims.asm"
 
-INCLUDE "macros/legacy.asm"
-
-INCLUDE "constants/hardware_constants.asm"
+INCLUDE "constants/hardware.inc"
 INCLUDE "constants/deco_constants.asm"
 INCLUDE "constants/ram_constants.asm"
 INCLUDE "constants/misc_constants.asm"
@@ -69,6 +67,8 @@ INCLUDE "constants/trainer_constants.asm"
 INCLUDE "constants/trainer_data_constants.asm"
 INCLUDE "constants/type_constants.asm"
 INCLUDE "constants/battle_tower_constants.asm"
+
+INCLUDE "macros/legacy.asm"
 
 if DEF(_CRYSTAL11_VC)
 INCLUDE "vc/pokecrystal11.constants.asm"

@@ -30,7 +30,7 @@ CommonBattleMenu:
 
 BattleMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 8, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 8, 12, SCRN_X_B - 1, SCRN_Y_B - 1
 	dw .MenuData
 	db 1 ; default option
 
@@ -49,7 +49,7 @@ BattleMenuHeader:
 
 SafariBattleMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 0, 12, SCRN_X_B - 1, SCRN_Y_B - 1
 	dw .MenuData
 	db 1 ; default option
 
@@ -75,7 +75,7 @@ SafariBattleMenuHeader:
 
 ContestBattleMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 2, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 2, 12, SCRN_X_B - 1, SCRN_Y_B - 1
 	dw .MenuData
 	db 1 ; default option
 

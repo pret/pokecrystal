@@ -22,7 +22,7 @@ Function49f16:
 	call PlaceString
 	hlcoord 0, 12
 	ld b, 4
-	ld c, SCREEN_HEIGHT
+	ld c, SCRN_Y_B
 	call Textbox
 	xor a
 	ld de, String_0x49fe9
@@ -82,7 +82,7 @@ Function49f16:
 	ld e, l
 	hlcoord 1, 13
 	ld b, 4
-	ld c, SCREEN_HEIGHT
+	ld c, SCRN_Y_B
 	call ClearBox
 	hlcoord 1, 14
 	call PlaceString
@@ -444,7 +444,7 @@ Function4a28a:
 
 MenuHeader_0x4a346: ; unreferenced
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 12, 0, SCREEN_WIDTH - 1, 6
+	menu_coords 12, 0, SCRN_X_B - 1, 6
 
 String_4a34b:
 	db   "いれなおす"
@@ -461,7 +461,7 @@ DeletedTheLoginPasswordText:
 
 DeletePassword_YesNo_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 14, 7, SCRN_X_B - 1, TEXTBOX_Y - 1
 	dw MenuData_0x4a36a
 	db 2 ; default option
 
@@ -571,26 +571,26 @@ Function4a3aa:
 	ret
 
 Function4a449: ; unreferenced
-	ld bc, 3 * SCREEN_WIDTH
+	ld bc, 3 * SCRN_X_B
 	ld a, $0
 	hlcoord 0, 0
 	call ByteFill
-	ld bc, 2 * SCREEN_WIDTH
+	ld bc, 2 * SCRN_X_B
 	ld a, $1
 	call ByteFill
-	ld bc, 2 * SCREEN_WIDTH
+	ld bc, 2 * SCRN_X_B
 	ld a, $0
 	call ByteFill
-	ld bc, 2 * SCREEN_WIDTH
+	ld bc, 2 * SCRN_X_B
 	ld a, $1
 	call ByteFill
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	ld a, $2
 	call ByteFill
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	ld a, $3
 	call ByteFill
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	ld a, " "
 	call ByteFill
 	ret
@@ -834,7 +834,7 @@ Function4a6d8:
 	dec c
 	jr nz, .asm_4a6da
 	pop hl
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	add hl, bc
 	pop bc
 	dec b

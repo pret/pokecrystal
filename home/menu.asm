@@ -109,7 +109,7 @@ RestoreTileBackup::
 	jr nz, .col
 
 	pop hl
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	add hl, bc
 	pop bc
 	dec b
@@ -186,7 +186,7 @@ PlaceVerticalMenuItems::
 	push bc
 	call PlaceString
 	inc de
-	ld bc, 2 * SCREEN_WIDTH
+	ld bc, 2 * SCRN_X_B
 	add hl, bc
 	pop bc
 	dec b
@@ -236,7 +236,7 @@ GetMenuTextStartCoord::
 
 ClearMenuBoxInterior::
 	call MenuBoxCoord2Tile
-	ld bc, SCREEN_WIDTH + 1
+	ld bc, SCRN_X_B + 1
 	add hl, bc
 	call GetMenuBoxDims
 	dec b
@@ -341,7 +341,7 @@ LoadMenuTextbox::
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 0, 12, SCRN_X_B - 1, SCRN_Y_B - 1
 	dw vTiles0
 	db 0 ; default option
 
@@ -357,7 +357,7 @@ LoadStandardMenuHeader::
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 0, 0, SCRN_X_B - 1, SCRN_Y_B - 1
 	dw 0
 	db 1 ; default option
 
@@ -416,7 +416,7 @@ CopyNameFromMenu::
 	ret
 
 YesNoBox::
-	lb bc, SCREEN_WIDTH - 6, 7
+	lb bc, SCRN_X_B - 6, 7
 
 PlaceYesNoBox::
 	jr _YesNoBox
@@ -434,9 +434,9 @@ _YesNoBox::
 ; This seems to be an overflow prevention,
 ; but it was coded wrong.
 	ld a, b
-	cp SCREEN_WIDTH - 1 - 5
+	cp SCRN_X_B - 1 - 5
 	jr nz, .okay ; should this be "jr nc"?
-	ld a, SCREEN_WIDTH - 1 - 5
+	ld a, SCRN_X_B - 1 - 5
 	ld b, a
 
 .okay
@@ -591,7 +591,7 @@ GetMenuIndexSet::
 
 RunMenuItemPrintingFunction::
 	call MenuBoxCoord2Tile
-	ld bc, 2 * SCREEN_WIDTH + 2
+	ld bc, 2 * SCRN_X_B + 2
 	add hl, bc
 .loop
 	inc de
@@ -606,7 +606,7 @@ RunMenuItemPrintingFunction::
 	ld hl, wMenuDataDisplayFunctionPointer
 	call ._hl_
 	pop hl
-	ld de, 2 * SCREEN_WIDTH
+	ld de, 2 * SCRN_X_B
 	add hl, de
 	pop de
 	jr .loop
@@ -763,10 +763,10 @@ ClearWindowData::
 	ld hl, wMoreMenuData
 	call .ClearMenuData
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wWindowStack)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	xor a
 	ld hl, wWindowStackBottom
@@ -778,7 +778,7 @@ ClearWindowData::
 	ld [wWindowStackPointer + 1], a
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 .ClearMenuData:

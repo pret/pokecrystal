@@ -20,7 +20,7 @@ MonSubmenu:
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 6, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 6, 0, SCRN_X_B - 1, SCRN_Y_B - 1
 	dw 0
 	db 1 ; default option
 
@@ -72,7 +72,7 @@ MonMenuLoop:
 
 PopulateMonMenu:
 	call MenuBoxCoord2Tile
-	ld bc, 2 * SCREEN_WIDTH + 2
+	ld bc, 2 * SCRN_X_B + 2
 	add hl, bc
 	ld de, wMonSubmenuItems
 .loop
@@ -85,7 +85,7 @@ PopulateMonMenu:
 	call GetMonMenuString
 	pop hl
 	call PlaceString
-	ld bc, 2 * SCREEN_WIDTH
+	ld bc, 2 * SCRN_X_B
 	add hl, bc
 	pop de
 	jr .loop
@@ -278,7 +278,7 @@ BattleMonMenu:
 
 .MenuHeader:
 	db 0 ; flags
-	menu_coords 11, 11, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 11, 11, SCRN_X_B - 1, SCRN_Y_B - 1
 	dw .MenuData
 	db 1 ; default option
 

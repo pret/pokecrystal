@@ -187,7 +187,7 @@ PrintBlueCardBalance:
 	call MenuBox
 	call UpdateSprites
 	call MenuBoxCoord2Tile
-	ld bc, SCREEN_WIDTH + 1
+	ld bc, SCRN_X_B + 1
 	add hl, bc
 	ld de, .Points_string
 	call PlaceString

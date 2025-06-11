@@ -161,11 +161,11 @@ DisplayDexEntry:
 
 .skip_weight
 ; Page 1
-	lb bc, 5, SCREEN_WIDTH - 2
+	lb bc, 5, SCRN_X_B - 2
 	hlcoord 2, 11
 	call ClearBox
 	hlcoord 1, 10
-	ld bc, SCREEN_WIDTH - 1
+	ld bc, SCRN_X_B - 1
 	ld a, $61 ; horizontal divider
 	call ByteFill
 	; page number
@@ -191,11 +191,11 @@ DisplayDexEntry:
 ; Page 2
 	push bc
 	push de
-	lb bc, 5, SCREEN_WIDTH - 2
+	lb bc, 5, SCRN_X_B - 2
 	hlcoord 2, 11
 	call ClearBox
 	hlcoord 1, 10
-	ld bc, SCREEN_WIDTH - 1
+	ld bc, SCRN_X_B - 1
 	ld a, $61
 	call ByteFill
 	; page number

@@ -6,7 +6,7 @@ Reset::
 	call ClearPalettes
 	xor a
 	ldh [rIF], a
-	ld a, 1 << VBLANK
+	ld a, IEF_VBLANK
 	ldh [rIE], a
 	ei
 
@@ -92,7 +92,7 @@ Init::
 
 	call ClearWRAM
 	ld a, 1
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call ClearVRAM
 	call ClearSprites
 	call ClearsScratch
@@ -142,9 +142,9 @@ Init::
 
 	farcall StartClock
 
-	xor a ; SRAM_DISABLE
-	ld [MBC3LatchClock], a
-	ld [MBC3SRamEnable], a
+	xor a ; CART_SRAM_DISABLE
+	ld [rRTCLATCH], a
+	ld [rRAMG], a
 
 	ldh a, [hCGB]
 	and a
@@ -191,7 +191,7 @@ ClearWRAM::
 	ld a, 1
 .bank_loop
 	push af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	xor a
 	ld hl, STARTOF(WRAMX)
 	ld bc, SIZEOF(WRAMX)

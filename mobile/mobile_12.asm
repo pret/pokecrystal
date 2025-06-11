@@ -553,7 +553,7 @@ MobileDesc_ZipCode:          db "Your zip code?@"
 
 MenuHeader_0x484f1:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 11, 2, SCREEN_WIDTH - 1, 7
+	menu_coords 11, 2, SCRN_X_B - 1, 7
 	dw MenuData_0x484f9
 	db 1 ; default option
 
@@ -566,15 +566,15 @@ String_484ff: db "Girl@"
 
 MenuHeader_0x48504:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 10, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 10, 0, SCRN_X_B - 1, SCRN_Y_B - 1
 
 MenuHeader_0x48509:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 10, 5, SCREEN_WIDTH - 1, 7
+	menu_coords 10, 5, SCRN_X_B - 1, 7
 
 MenuHeader_0x4850e:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 10, 9, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 10, 9, SCRN_X_B - 1, TEXTBOX_Y - 1
 
 MenuHeader_0x48513:
 	db MENU_BACKUP_TILES ; flags
@@ -655,12 +655,12 @@ Function48689:
 	call ClearBGPalettes
 	hlcoord 0, 0
 	ld b, 4
-	ld c, SCREEN_WIDTH
+	ld c, SCRN_X_B
 	call ClearBox
 	hlcoord 0, 2
 	ld a, $c
 	ld [hl], a
-	ld bc, SCREEN_WIDTH - 1
+	ld bc, SCRN_X_B - 1
 	add hl, bc
 	ld [hl], a
 	ld de, MobileProfileString
@@ -1257,7 +1257,7 @@ Function48a9a:
 
 MenuHeader_0x48a9c:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 10, 8, SCREEN_WIDTH - 1, 13
+	menu_coords 10, 8, SCRN_X_B - 1, 13
 
 String_48aa1:
 	db   "Tell Now"

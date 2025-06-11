@@ -539,7 +539,7 @@ MailboxPC:
 
 .TopMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 8, 1, SCREEN_WIDTH - 2, 10
+	menu_coords 8, 1, SCRN_X_B - 2, 10
 	dw .TopMenuData
 	db 1 ; default option
 

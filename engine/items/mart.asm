@@ -595,7 +595,7 @@ MartFinalPriceText:
 
 MenuHeader_Buy:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 1, 3, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 1, 3, SCRN_X_B - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
@@ -620,7 +620,7 @@ MenuHeader_Buy:
 	ld d, h
 	ld e, l
 	pop hl
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	add hl, bc
 	ld c, PRINTNUM_LEADINGZEROS | PRINTNUM_MONEY | 3
 	call PrintBCDNumber

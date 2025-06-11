@@ -10,13 +10,13 @@ GBCOnlyScreen:
 
 	ld hl, GBCOnlyGFX
 	ld de, wGBCOnlyDecompressBuffer
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, 0 ; this has the same effect as selecting bank 1
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call Decompress
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld de, wGBCOnlyDecompressBuffer
 	ld hl, vTiles2
@@ -89,7 +89,7 @@ DrawGBCOnlyBorder:
 	ret
 
 .FillRow:
-	ld c, SCREEN_WIDTH - 2
+	ld c, SCRN_X_B - 2
 .next_column
 	ld [hli], a
 	dec c
@@ -97,8 +97,8 @@ DrawGBCOnlyBorder:
 	ret
 
 .FillColumn:
-	ld de, SCREEN_WIDTH
-	ld c, SCREEN_HEIGHT - 2
+	ld de, SCRN_X_B
+	ld c, SCRN_Y_B - 2
 .next_row
 	ld [hl], a
 	add hl, de
@@ -107,7 +107,7 @@ DrawGBCOnlyBorder:
 	ret
 
 DrawGBCOnlyGraphic:
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 .y
 	push bc
 	push hl

@@ -51,17 +51,17 @@ Gen2ToGen1LinkComms:
 	call DelayFrames
 	xor a
 	ldh [hSerialSend], a
-	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_INTERNAL
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SCF_START | SC_INTERNAL
 	ldh [rSC], a
 
 	call DelayFrame
 	xor a
 	ldh [hSerialSend], a
-	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_INTERNAL
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SCF_START | SC_INTERNAL
 	ldh [rSC], a
 
 .player_1
@@ -77,7 +77,7 @@ endc
 	call DelayFrames
 	xor a
 	ldh [rIF], a
-	ld a, 1 << SERIAL
+	ld a, IEF_SERIAL
 	ldh [rIE], a
 
 	ld hl, wLinkBattleRNPreamble
@@ -104,7 +104,7 @@ endc
 
 	xor a
 	ldh [rIF], a
-	ld a, (1 << JOYPAD) | (1 << SERIAL) | (1 << TIMER) | (1 << VBLANK)
+	ld a, IEF_JOYPAD | IEF_SERIAL | IEF_TIMER | IEF_VBLANK
 	ldh [rIE], a
 
 	call Link_CopyRandomNumbers
@@ -217,17 +217,17 @@ Gen2ToGen2LinkComms:
 	call DelayFrames
 	xor a
 	ldh [hSerialSend], a
-	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_INTERNAL
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SCF_START | SC_INTERNAL
 	ldh [rSC], a
 
 	call DelayFrame
 	xor a
 	ldh [hSerialSend], a
-	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_INTERNAL
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SCF_START | SC_INTERNAL
 	ldh [rSC], a
 
 .player_1
@@ -243,7 +243,7 @@ endc
 	call DelayFrames
 	xor a
 	ldh [rIF], a
-	ld a, 1 << SERIAL
+	ld a, IEF_SERIAL
 	ldh [rIE], a
 
 	ld hl, wLinkBattleRNPreamble
@@ -280,7 +280,7 @@ endc
 
 	xor a
 	ldh [rIF], a
-	ld a, (1 << JOYPAD) | (1 << SERIAL) | (1 << TIMER) | (1 << VBLANK)
+	ld a, IEF_JOYPAD | IEF_SERIAL | IEF_TIMER | IEF_VBLANK
 	ldh [rIE], a
 	ld de, MUSIC_NONE
 	call PlayMusic
@@ -497,7 +497,7 @@ endc
 	xor a
 	ldh [rIF], a
 	ldh a, [rIE]
-	set LCD_STAT, a
+	set IEB_STAT, a
 	ldh [rIE], a
 	pop af
 	ldh [rIF], a
@@ -1640,9 +1640,9 @@ ExitLinkCommunications:
 	xor a
 	ldh [rSB], a
 	ldh [hSerialSend], a
-	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_INTERNAL
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SCF_START | SC_INTERNAL
 	ldh [rSC], a
 	vc_hook ExitLinkCommunications_ret
 	ret
@@ -1651,12 +1651,12 @@ GSPlaceTradeScreenFooter: ; unreferenced
 ; Fill the screen footer with pattern tile
 	hlcoord 0, 16
 	ld a, $7e
-	ld bc, 2 * SCREEN_WIDTH
+	ld bc, 2 * SCRN_X_B
 	call ByteFill
 ; Clear out area for cancel string
 	hlcoord 1, 16
 	ld a, " "
-	ld bc, SCREEN_WIDTH - 2
+	ld bc, SCRN_X_B - 2
 	call ByteFill
 ; Place the string
 	hlcoord 2, 16
@@ -1670,7 +1670,7 @@ LinkTradePlaceArrow:
 ; Indicates which pokemon the other player has selected to trade
 	ld a, [wOtherPlayerLinkMode]
 	hlcoord 6, 9
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	call AddNTimes
 	ld [hl], "▷"
 	ret
@@ -1684,7 +1684,7 @@ LinkEngine_FillBox:
 	dec c
 	jr nz, .col
 	pop hl
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	add hl, bc
 	pop bc
 	dec b
@@ -2226,18 +2226,18 @@ WaitForOtherPlayerToExit:
 	xor a
 	ldh [rSB], a
 	ldh [hSerialReceive], a
-	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_INTERNAL
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SCF_START | SC_INTERNAL
 	ldh [rSC], a
 	ld c, 3
 	call DelayFrames
 	xor a
 	ldh [rSB], a
 	ldh [hSerialReceive], a
-	ld a, (0 << rSC_ON) | (0 << rSC_CLOCK)
+	ld a, SC_EXTERNAL
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (0 << rSC_CLOCK)
+	ld a, SCF_START | SC_EXTERNAL
 	ldh [rSC], a
 	ld c, 3
 	call DelayFrames
@@ -2283,9 +2283,9 @@ SetBitsForTimeCapsuleRequest:
 	ldh [rSB], a
 	xor a
 	ldh [hSerialReceive], a
-	ld a, (0 << rSC_ON) | (0 << rSC_CLOCK)
+	ld a, SC_EXTERNAL
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (0 << rSC_CLOCK)
+	ld a, SCF_START | SC_EXTERNAL
 	ldh [rSC], a
 	xor a ; LINK_NULL
 	ld [wPlayerLinkAction], a
@@ -2300,9 +2300,9 @@ WaitForLinkedFriend:
 	ldh [rSB], a
 	xor a
 	ldh [hSerialReceive], a
-	ld a, (0 << rSC_ON) | (0 << rSC_CLOCK)
+	ld a, SC_EXTERNAL
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (0 << rSC_CLOCK)
+	ld a, SCF_START | SC_EXTERNAL
 	ldh [rSC], a
 	call DelayFrame
 	call DelayFrame
@@ -2325,9 +2325,9 @@ WaitForLinkedFriend:
 	ldh [rSB], a
 	xor a
 	ldh [hSerialReceive], a
-	ld a, (0 << rSC_ON) | (0 << rSC_CLOCK)
+	ld a, SC_EXTERNAL
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (0 << rSC_CLOCK)
+	ld a, SCF_START | SC_EXTERNAL
 ; This vc_hook causes the Virtual Console to set [hSerialConnectionStatus] to
 ; USING_INTERNAL_CLOCK, which allows the player to proceed past the link
 ; receptionist's "Please wait." It assumes that hSerialConnectionStatus is at
@@ -2350,9 +2350,9 @@ WaitForLinkedFriend:
 .not_done
 	ld a, USING_EXTERNAL_CLOCK
 	ldh [rSB], a
-	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_INTERNAL
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SCF_START | SC_INTERNAL
 	ldh [rSC], a
 	call DelayFrame
 	jr .loop

@@ -2,7 +2,7 @@ PlaceGraphic:
 ; Fill wBoxAlignment-aligned box width b height c
 ; with iterating tile starting from hGraphicStartTile at hl.
 
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 
 	ld a, [wBoxAlignment]
 	and a

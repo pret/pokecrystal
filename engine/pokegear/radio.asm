@@ -146,7 +146,7 @@ PrintRadioLine:
 
 ReplacePeriodsWithSpaces: ; unreferenced
 	push hl
-	ld b, SCREEN_WIDTH * 2
+	ld b, SCRN_X_B * 2
 .loop
 	ld a, [hl]
 	cp "."
@@ -627,16 +627,16 @@ PlaceRadioString:
 CopyBottomLineToTopLine:
 	hlcoord 0, 15
 	decoord 0, 13
-	ld bc, SCREEN_WIDTH * 2
+	ld bc, SCRN_X_B * 2
 	jp CopyBytes
 
 ClearBottomLine:
 	hlcoord 1, 15
-	ld bc, SCREEN_WIDTH - 2
+	ld bc, SCRN_X_B - 2
 	ld a, " "
 	call ByteFill
 	hlcoord 1, 16
-	ld bc, SCREEN_WIDTH - 2
+	ld bc, SCRN_X_B - 2
 	ld a, " "
 	jp ByteFill
 
@@ -765,7 +765,7 @@ CopyDexEntry:
 
 CopyDexEntryPart1:
 	ld de, wPokedexShowPointerBank
-	ld bc, SCREEN_WIDTH - 1
+	ld bc, SCRN_X_B - 1
 	call FarCopyBytes
 	ld hl, wPokedexShowPointerAddr
 	ld [hl], TX_START
@@ -1790,7 +1790,7 @@ CopyRadioTextToRAM:
 	cp TX_FAR
 	jp z, FarCopyRadioText
 	ld de, wRadioText
-	ld bc, 2 * SCREEN_WIDTH
+	ld bc, 2 * SCRN_X_B
 	jp CopyBytes
 
 StartRadioStation:

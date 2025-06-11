@@ -348,7 +348,7 @@ TrainerCardSetup_PlaceTilemapString:
 	jr .loop
 
 TrainerCard_InitBorder:
-	ld e, SCREEN_WIDTH
+	ld e, SCRN_X_B
 .loop1
 	ld a, $23
 	ld [hli], a
@@ -358,7 +358,7 @@ TrainerCard_InitBorder:
 	ld a, $23
 	ld [hli], a
 
-	ld e, SCREEN_WIDTH - 3
+	ld e, SCRN_X_B - 3
 	ld a, " "
 .loop2
 	ld [hli], a
@@ -374,7 +374,7 @@ TrainerCard_InitBorder:
 	ld a, $23
 	ld [hli], a
 
-	ld e, SCREEN_WIDTH - 2
+	ld e, SCRN_X_B - 2
 	ld a, " "
 .loop4
 	ld [hli], a
@@ -392,7 +392,7 @@ TrainerCard_InitBorder:
 	ld a, $24
 	ld [hli], a
 
-	ld e, SCREEN_WIDTH - 3
+	ld e, SCRN_X_B - 3
 	ld a, " "
 .loop5
 	ld [hli], a
@@ -402,7 +402,7 @@ TrainerCard_InitBorder:
 	ld a, $23
 	ld [hli], a
 
-	ld e, SCREEN_WIDTH
+	ld e, SCRN_X_B
 .loop6
 	ld a, $23
 	ld [hli], a
@@ -421,7 +421,7 @@ TrainerCard_Page2_3_PlaceLeadersFaces:
 	inc a
 	ld [hli], a
 	inc a
-	ld de, SCREEN_WIDTH - 3
+	ld de, SCRN_X_B - 3
 	add hl, de
 	ld [hli], a
 	inc a
@@ -429,7 +429,7 @@ TrainerCard_Page2_3_PlaceLeadersFaces:
 	inc a
 	ld [hli], a
 	inc a
-	ld de, SCREEN_WIDTH - 3
+	ld de, SCRN_X_B - 3
 	add hl, de
 	ld [hli], a
 	inc a
@@ -553,10 +553,10 @@ TrainerCard_Page2_3_OAMUpdate:
 	db -1
 
 .facing2
-	dbsprite  0,  0,  0,  0, $01, 0 | X_FLIP
-	dbsprite  1,  0,  0,  0, $00, 0 | X_FLIP
-	dbsprite  0,  1,  0,  0, $03, 0 | X_FLIP
-	dbsprite  1,  1,  0,  0, $02, 0 | X_FLIP
+	dbsprite  0,  0,  0,  0, $01, 0 | OAMF_XFLIP
+	dbsprite  1,  0,  0,  0, $00, 0 | OAMF_XFLIP
+	dbsprite  0,  1,  0,  0, $03, 0 | OAMF_XFLIP
+	dbsprite  1,  1,  0,  0, $02, 0 | OAMF_XFLIP
 	db -1
 
 TrainerCard_JohtoBadgesOAM:

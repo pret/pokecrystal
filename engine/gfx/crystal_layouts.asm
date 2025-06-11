@@ -36,7 +36,7 @@ Crystal_FillBoxCGB:
 	dec c
 	jr nz, .col
 	pop hl
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	add hl, bc
 	pop bc
 	dec b
@@ -46,7 +46,7 @@ Crystal_FillBoxCGB:
 Crystal_WipeAttrmap:
 ; This is a copy of WipeAttrmap.
 	hlcoord 0, 0, wAttrmap
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
+	ld bc, SCRN_B
 	xor a
 	call ByteFill
 	ret
@@ -104,7 +104,7 @@ MG_Mobile_Layout_CreatePalBoxes:
 	ld a, $3
 	call Crystal_FillBoxCGB
 	hlcoord 0, 12, wAttrmap
-	ld bc, 6 * SCREEN_WIDTH
+	ld bc, 6 * SCRN_X_B
 	ld a, $7
 	call ByteFill
 	ret
@@ -140,11 +140,11 @@ _CrystalCGB_MobileLayout1:
 	call FarCopyWRAM
 	call Crystal_WipeAttrmap
 	hlcoord 0, 0, wAttrmap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_B
 	xor a
 	call ByteFill
 	hlcoord 0, 14, wAttrmap
-	ld bc, 4 * SCREEN_WIDTH
+	ld bc, 4 * SCRN_X_B
 	ld a, $7
 	call ByteFill
 	ld a, [wd002]
@@ -167,7 +167,7 @@ INCLUDE "gfx/mystery_gift/mobile_text.pal"
 
 .Function49480:
 	hlcoord 0, 0, wAttrmap
-	lb bc, 4, SCREEN_WIDTH
+	lb bc, 4, SCRN_X_B
 	ld a, $7
 	call Crystal_FillBoxCGB
 	hlcoord 0, 2, wAttrmap
@@ -179,7 +179,7 @@ INCLUDE "gfx/mystery_gift/mobile_text.pal"
 
 .Function49496:
 	hlcoord 0, 0, wAttrmap
-	lb bc, 2, SCREEN_WIDTH
+	lb bc, 2, SCRN_X_B
 	ld a, $7
 	call Crystal_FillBoxCGB
 	hlcoord 0, 1, wAttrmap
@@ -242,7 +242,7 @@ _InitMG_Mobile_LinkTradePalMap:
 	ld a, $6
 	call Crystal_FillBoxCGB
 	hlcoord 0, 16, wAttrmap
-	lb bc, 2, SCREEN_WIDTH
+	lb bc, 2, SCRN_X_B
 	ld a, $4
 	call Crystal_FillBoxCGB
 	ld a, $3

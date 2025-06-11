@@ -100,4 +100,4 @@ CheckCanLearnMoveTutorMove:
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 0, 12, SCRN_X_B - 1, SCRN_Y_B - 1

@@ -492,8 +492,8 @@ StatsScreen_InitUpperHalf:
 StatsScreen_PlaceVerticalDivider: ; unreferenced
 ; The Japanese stats screen has a vertical divider.
 	hlcoord 7, 0
-	ld bc, SCREEN_WIDTH
-	ld d, SCREEN_HEIGHT
+	ld bc, SCRN_X_B
+	ld d, SCRN_Y_B
 .loop
 	ld a, $31 ; vertical divider
 	ld [hl], a
@@ -504,7 +504,7 @@ StatsScreen_PlaceVerticalDivider: ; unreferenced
 
 StatsScreen_PlaceHorizontalDivider:
 	hlcoord 0, 7
-	ld b, SCREEN_WIDTH
+	ld b, SCRN_X_B
 	ld a, $62 ; horizontal divider (empty HP/exp bar)
 .loop
 	ld [hli], a
@@ -623,7 +623,7 @@ LoadPinkPage:
 	hlcoord 1, 15
 	predef PrintMonTypes
 	hlcoord 9, 8
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	ld b, 10
 	ld a, $31 ; vertical divider
 .vertical_divider
@@ -739,11 +739,11 @@ LoadGreenPage:
 	ld bc, NUM_MOVES
 	call CopyBytes
 	hlcoord 8, 10
-	ld a, SCREEN_WIDTH * 2
+	ld a, SCRN_X_B * 2
 	ld [wListMovesLineSpacing], a
 	predef ListMoves
 	hlcoord 12, 11
-	ld a, SCREEN_WIDTH * 2
+	ld a, SCRN_X_B * 2
 	ld [wListMovesLineSpacing], a
 	predef ListMovePP
 	ret
@@ -772,7 +772,7 @@ LoadGreenPage:
 LoadBluePage:
 	call .PlaceOTInfo
 	hlcoord 10, 8
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	ld b, 10
 	ld a, $31 ; vertical divider
 .vertical_divider
@@ -1134,7 +1134,7 @@ StatsScreen_LoadPageIndicators:
 	ld [hli], a
 	inc a
 	ld [hld], a
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	add hl, bc
 	inc a
 	ld [hli], a
