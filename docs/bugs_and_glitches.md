@@ -68,6 +68,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Swimming NPCs aren't limited by their movement radius](#swimming-npcs-arent-limited-by-their-movement-radius)
   - [You can fish on top of NPCs](#you-can-fish-on-top-of-npcs)
   - [Pokémon deposited in the Day-Care might lose experience](#pok%C3%A9mon-deposited-in-the-day-care-might-lose-experience)
+  - [Time Capsule glitch](#time-capsule-glitch)
 - [Graphics](#graphics)
   - [In-battle “`…`” ellipsis is too high](#in-battle--ellipsis-is-too-high)
   - [Two tiles in the `port` tileset are drawn incorrectly](#two-tiles-in-the-port-tileset-are-drawn-incorrectly)
@@ -1749,6 +1750,45 @@ When a Pokémon is withdrawn from the Day-Care, its Exp. Points are reset to the
  	ret
 ```
 
+### Time Capsule glitch
+
+Generation I Pokémon that evolve through trading (Graveler, Kadabra, Machoke, and Haunter) can sidestep the check that prevents Pokémon with Generation II moves from being sent back to Generation I.
+
+To do this, they must be traded at the exact level they would learn a move in Generation II after evolving (for example, a Level 34 Graveler sent to Generation II will evolve to Golem and then immediately learn Rollout). After sending the Pokémon to Generation II, they will evolve and learn the move. From there, they can be immediately sent back to Generation I, and that will not trigger the move check. Any Generation II-exclusive moves will become glitch moves in Generation I.
+
+**Fix:** Prevent learning of attacks that did not exist in Generation I when inside the Time Capsule. Edit `LearnLevelMoves` in [engine/pokemon/evolve.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/evolve.asm):
+
+```diff
+LearnLevelMoves:
+...
+.find_move
+-; BUG: Time Capsule glitch (see docs/bugs_and_glitches.md)
+	ld a, [hli]
+	and a
+	jr z, .done
+
+	ld b, a
+	ld a, [wCurPartyLevel]
+	cp b
+ 	ld a, [hli]
+ 	jr nz, .find_move
+ 
+-	push hl
+ 	ld d, a
++	cp STRUGGLE + 1
++	jr c, .old_move
++
++	ld a, [wLinkMode]
++	cp LINK_TIMECAPSULE
++	jr z, .done
++
++.old_move
++	push hl
+ 	ld hl, wPartyMon1Moves
+ 	ld a, [wCurPartyMon]
+ 	ld bc, PARTYMON_STRUCT_LENGTH
+...
+```
 
 ## Graphics
 
