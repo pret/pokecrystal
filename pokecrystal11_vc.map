@@ -28940,7 +28940,7 @@ ROMX bank #60:
 	         $49fb = Sfx_ElevatorEnd
 	         $49fe = Sfx_ThrowBall
 	         $4a04 = Sfx_BallPoof
-	         $4a0a = Sfx_Unknown3A
+	         $4a0a = Sfx_Faint
 	         $4a10 = Sfx_Run
 	         $4a13 = Sfx_SlotMachineStart
 	         $4a19 = Sfx_Call
@@ -29145,8 +29145,8 @@ ROMX bank #60:
 	         $54a5 = Sfx_BellyDrum
 	         $54ab = Sfx_BellyDrum_Ch5
 	         $54b6 = Sfx_BellyDrum_Ch8
-	         $54ba = Sfx_Unknown7F
-	         $54bd = Sfx_Unknown7F_Ch5
+	         $54ba = Sfx_Toxic
+	         $54bd = Sfx_Toxic_Ch5
 	         $54d0 = Sfx_SludgeBomb
 	         $54d6 = Sfx_SludgeBomb_Ch5
 	         $54eb = Sfx_SludgeBomb_Ch8
@@ -29319,8 +29319,8 @@ ROMX bank #60:
 	         $5fd9 = Sfx_Shine_Ch5
 	         $5ff4 = Sfx_BallPoof_Ch5
 	         $5fff = Sfx_BallPoof_Ch8
-	         $6003 = Sfx_Unknown3A_Ch5
-	         $600a = Sfx_Unknown3A_Ch8
+	         $6003 = Sfx_Faint_Ch5
+	         $600a = Sfx_Faint_Ch8
 	         $6014 = Sfx_Run_Ch8
 	         $6036 = Sfx_SlotMachineStart_Ch5
 	         $6047 = Sfx_SlotMachineStart_Ch6
