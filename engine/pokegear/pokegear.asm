@@ -65,7 +65,7 @@ PokeGear:
 	ldh [hBGMapAddress], a
 	ld a, HIGH(vBGMap0)
 	ldh [hBGMapAddress + 1], a
-	ld a, SCREEN_HEIGHT_PX
+	ld a, SCRN_Y
 	ldh [hWY], a
 	call ExitPokegearRadio_HandleMusic
 	ret
@@ -241,7 +241,7 @@ InitPokegearTilemap:
 	xor a
 	ldh [hBGMapMode], a
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_B
 	ld a, $4f
 	call ByteFill
 	ld a, [wPokegearCard]
@@ -269,7 +269,7 @@ InitPokegearTilemap:
 	ld a, HIGH(vBGMap0)
 	ldh [hBGMapAddress + 1], a
 	call .UpdateBGMap
-	ld a, SCREEN_HEIGHT_PX
+	ld a, SCRN_Y
 	jr .finish
 
 .kanto_0
@@ -337,7 +337,7 @@ InitPokegearTilemap:
 .ok
 	farcall PokegearMap
 	ld a, $07
-	ld bc, SCREEN_WIDTH - 2
+	ld bc, SCRN_X_B - 2
 	hlcoord 1, 2
 	call ByteFill
 	hlcoord 0, 2
@@ -871,7 +871,7 @@ PokegearPhone_Joypad:
 	ld [wPokegearPhoneSelectedPerson], a
 	hlcoord 1, 4
 	ld a, [wPokegearPhoneCursorPosition]
-	ld bc, SCREEN_WIDTH * 2
+	ld bc, SCRN_X_B * 2
 	call AddNTimes
 	ld [hl], "▷"
 	call PokegearPhoneContactSubmenu
@@ -1010,7 +1010,7 @@ for y, PHONE_DISPLAY_HEIGHT
 endr
 	hlcoord 1, 4
 	ld a, [wPokegearPhoneCursorPosition]
-	ld bc, 2 * SCREEN_WIDTH
+	ld bc, 2 * SCRN_X_B
 	call AddNTimes
 	ld [hl], "▶"
 	ret
@@ -1020,7 +1020,7 @@ PokegearPhone_UpdateDisplayList:
 	ld b, PHONE_DISPLAY_HEIGHT * 2 + 1
 	ld a, " "
 .row
-	ld c, SCREEN_WIDTH - 2
+	ld c, SCRN_X_B - 2
 .col
 	ld [hli], a
 	dec c
@@ -1042,7 +1042,7 @@ PokegearPhone_UpdateDisplayList:
 	push af
 	hlcoord 2, 4
 	ld a, [wPokegearPhoneDisplayPosition]
-	ld bc, 2 * SCREEN_WIDTH
+	ld bc, 2 * SCRN_X_B
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -1231,7 +1231,7 @@ PokegearPhoneContactSubmenu:
 	ld c, a
 	push hl
 	ld a, " "
-	ld de, SCREEN_WIDTH * 2
+	ld de, SCRN_X_B * 2
 .clear_column
 	ld [hl], a
 	add hl, de
@@ -1239,7 +1239,7 @@ PokegearPhoneContactSubmenu:
 	jr nz, .clear_column
 	pop hl
 	ld a, [wPokegearPhoneSubmenuCursor]
-	ld bc, SCREEN_WIDTH  * 2
+	ld bc, SCRN_X_B  * 2
 	call AddNTimes
 	ld [hl], "▶"
 	pop de
@@ -2075,7 +2075,7 @@ _FlyMap:
 	pop af
 	ldh [hInMenu], a
 	call ClearBGPalettes
-	ld a, SCREEN_HEIGHT_PX
+	ld a, SCRN_Y
 	ldh [hWY], a
 	xor a ; LOW(vBGMap0)
 	ldh [hBGMapAddress], a
@@ -2149,7 +2149,7 @@ TownMapBubble:
 	hlcoord 1, 1
 
 ; Middle row
-	ld bc, SCREEN_WIDTH - 2
+	ld bc, SCRN_X_B - 2
 	ld a, " "
 	call ByteFill
 
@@ -2406,10 +2406,10 @@ Pokedex_GetArea:
 
 .left
 	ldh a, [hWY]
-	cp SCREEN_HEIGHT_PX
+	cp SCRN_Y
 	ret z
 	call ClearSprites
-	ld a, SCREEN_HEIGHT_PX
+	ld a, SCRN_Y
 	ldh [hWY], a
 	xor a ; JOHTO_REGION
 	call .GetAndPlaceNest
@@ -2449,13 +2449,13 @@ Pokedex_GetArea:
 
 .PlaceString_MonsNest:
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	ld a, " "
 	call ByteFill
 	hlcoord 0, 1
 	ld a, $06
 	ld [hli], a
-	ld bc, SCREEN_WIDTH - 2
+	ld bc, SCRN_X_B - 2
 	ld a, $07
 	call ByteFill
 	ld [hl], $17
@@ -2556,10 +2556,10 @@ Pokedex_GetArea:
 
 .PlayerOAM:
 	; y pxl, x pxl, tile offset
-	db -1 * TILE_WIDTH, -1 * TILE_WIDTH, 0 ; top left
-	db -1 * TILE_WIDTH,  0 * TILE_WIDTH, 1 ; top right
-	db  0 * TILE_WIDTH, -1 * TILE_WIDTH, 2 ; bottom left
-	db  0 * TILE_WIDTH,  0 * TILE_WIDTH, 3 ; bottom right
+	db -1 * TILE_X, -1 * TILE_X, 0 ; top left
+	db -1 * TILE_X,  0 * TILE_X, 1 ; top right
+	db  0 * TILE_X, -1 * TILE_X, 2 ; bottom left
+	db  0 * TILE_X,  0 * TILE_X, 3 ; bottom right
 	db $80 ; terminator
 
 .CheckPlayerLocation:
@@ -2654,7 +2654,7 @@ TownMapPals:
 ; Assign palettes based on tile ids
 	hlcoord 0, 0
 	decoord 0, 0, wAttrmap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_B
 .loop
 ; Current tile
 	ld a, [hli]
@@ -2674,7 +2674,7 @@ TownMapPals:
 	adc 0
 	ld h, a
 	ld a, [hl]
-	and PALETTE_MASK
+	and OAMF_PALMASK
 	jr .update
 
 .odd
@@ -2686,7 +2686,7 @@ TownMapPals:
 	ld h, a
 	ld a, [hl]
 	swap a
-	and PALETTE_MASK
+	and OAMF_PALMASK
 	jr .update
 
 .pal0
@@ -2861,7 +2861,7 @@ EntireFlyMap: ; unreferenced
 	pop af
 	ldh [hInMenu], a
 	call ClearBGPalettes
-	ld a, SCREEN_HEIGHT_PX
+	ld a, SCRN_Y
 	ldh [hWY], a
 	xor a ; LOW(vBGMap0)
 	ldh [hBGMapAddress], a
@@ -2910,7 +2910,7 @@ EntireFlyMap: ; unreferenced
 
 .InJohto:
 	call FillJohtoMap
-	ld a, SCREEN_HEIGHT_PX
+	ld a, SCRN_Y
 	ld b, HIGH(vBGMap0)
 .Finally:
 	ldh [hWY], a

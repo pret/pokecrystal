@@ -11,10 +11,10 @@ Function1700ba:
 	ret
 
 Function1700c4:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(w3_d202TrainerData) ; aka BANK(w3_dffc) and BANK(w3_d202Name)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	call Function17042c
 
@@ -48,7 +48,7 @@ Function1700c4:
 	call CopyBytes
 	call CloseSRAM
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 Function170114:
@@ -548,10 +548,10 @@ INCLUDE "data/battle_tower/unknown_levels.asm"
 
 CopyBTTrainer_FromBT_OT_TowBT_OTTemp:
 ; copy the BattleTower-Trainer data that lies at 'wBT_OTTrainer' to 'wBT_OTTemp'
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wBT_OTTrainer)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld hl, wBT_OTTrainer
 	ld de, wBT_OTTemp
@@ -559,7 +559,7 @@ CopyBTTrainer_FromBT_OT_TowBT_OTTemp:
 	call CopyBytes
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld a, BANK(sBattleTowerChallengeState)
 	call OpenSRAM
@@ -705,7 +705,7 @@ Function1704e1:
 	hlcoord 0, 4
 	ld a, "┌"
 	ld [hli], a
-	ld c, SCREEN_WIDTH - 2
+	ld c, SCRN_X_B - 2
 .top_border_loop
 	ld a, "─"
 	ld [hli], a
@@ -713,7 +713,7 @@ Function1704e1:
 	jr nz, .top_border_loop
 	ld a, "┐"
 	ld [hli], a
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	ld c, 12
 .left_border_loop
 	ld a, "│"
@@ -723,7 +723,7 @@ Function1704e1:
 	jr nz, .left_border_loop
 	ld a, "└"
 	ld [hli], a
-	ld c, SCREEN_WIDTH - 2
+	ld c, SCRN_X_B - 2
 .bottom_border_loop
 	ld a, "─"
 	ld [hli], a
@@ -731,7 +731,7 @@ Function1704e1:
 	jr nz, .bottom_border_loop
 	ld a, "┘"
 	ld [hl], a
-	ld de, -SCREEN_WIDTH
+	ld de, -SCRN_X_B
 	add hl, de
 	ld c, 12
 .right_border_loop
@@ -815,7 +815,7 @@ Function1704e1:
 	xor a
 	ld b, 12
 .clearbox_row
-	ld c, SCREEN_WIDTH - 2
+	ld c, SCRN_X_B - 2
 .clearbox_column
 	ld [hli], a
 	dec c
@@ -1127,28 +1127,28 @@ BattleTowerAction_17:
 SaveBattleTowerLevelGroup:
 	ld a, BANK(sBTChoiceOfLevelGroup)
 	call OpenSRAM
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wBTChoiceOfLvlGroup)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, [wBTChoiceOfLvlGroup]
 	ld [sBTChoiceOfLevelGroup], a
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call CloseSRAM
 	ret
 
 LoadBattleTowerLevelGroup: ; Load level group choice
 	ld a, BANK(sBTChoiceOfLevelGroup)
 	call OpenSRAM
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wBTChoiceOfLvlGroup)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, [sBTChoiceOfLevelGroup]
 	ld [wBTChoiceOfLvlGroup], a
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call CloseSRAM
 	ret
 
@@ -1310,14 +1310,14 @@ String_MysteryJP:
 	db "なぞナゾ@@" ; MYSTERY
 
 BattleTowerAction_0F:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(w3_d090)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, [w3_d090]
 	ld [wScriptVar], a
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 BattleTowerAction_10:
@@ -1531,17 +1531,17 @@ BattleTowerAction_UbersCheck:
 
 LoadOpponentTrainerAndPokemonWithOTSprite:
 	farcall LoadOpponentTrainerAndPokemon
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wBT_OTTrainerClass)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, wBT_OTTrainerClass
 	ld a, [hl]
 	dec a
 	ld c, a
 	ld b, 0
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, BTTrainerClassSprites
 	add hl, bc
 	ld a, [hl]

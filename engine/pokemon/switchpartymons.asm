@@ -19,16 +19,16 @@ _SwitchPartyMons:
 .ClearSprite:
 	push af
 	hlcoord 0, 1
-	ld bc, 2 * SCREEN_WIDTH
+	ld bc, 2 * SCRN_X_B
 	call AddNTimes
-	ld bc, 2 * SCREEN_WIDTH
+	ld bc, 2 * SCRN_X_B
 	ld a, " "
 	call ByteFill
 	pop af
 	ld hl, wShadowOAMSprite00
-	ld bc, 4 * SPRITEOAMSTRUCT_LENGTH
+	ld bc, 4 * OBJ_B
 	call AddNTimes
-	ld de, SPRITEOAMSTRUCT_LENGTH
+	ld de, OBJ_B
 	ld c, 4
 .gfx_loop
 	ld [hl], OAM_YCOORD_HIDDEN

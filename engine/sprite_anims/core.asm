@@ -318,7 +318,7 @@ AddOrSubtractY:
 	push hl
 	ld a, [hl]
 	ld hl, wCurSpriteOAMFlags
-	bit OAM_Y_FLIP, [hl]
+	bit OAMB_YFLIP, [hl]
 	jr z, .ok
 	; -8 - a
 	add 8
@@ -333,7 +333,7 @@ AddOrSubtractX:
 	push hl
 	ld a, [hl]
 	ld hl, wCurSpriteOAMFlags
-	bit OAM_X_FLIP, [hl]
+	bit OAMB_XFLIP, [hl]
 	jr z, .ok
 	; -8 - a
 	add 8
@@ -349,10 +349,10 @@ GetSpriteOAMAttr:
 	ld b, a
 	ld a, [hl]
 	xor b
-	and PRIORITY | Y_FLIP | X_FLIP
+	and OAMF_PRI | OAMF_YFLIP | OAMF_XFLIP
 	ld b, a
 	ld a, [hl]
-	and ~(PRIORITY | Y_FLIP | X_FLIP)
+	and ~(OAMF_PRI | OAMF_YFLIP | OAMF_XFLIP)
 	or b
 	ret
 
@@ -437,7 +437,7 @@ GetSpriteAnimFrame:
 	push af
 	ld a, [hl]
 	push hl
-	and ~(Y_FLIP << 1 | X_FLIP << 1)
+	and ~(OAMF_YFLIP << 1 | OAMF_XFLIP << 1)
 	ld hl, SPRITEANIMSTRUCT_DURATIONOFFSET
 	add hl, bc
 	add [hl]
@@ -447,7 +447,7 @@ GetSpriteAnimFrame:
 	pop hl
 .okay
 	ld a, [hl]
-	and Y_FLIP << 1 | X_FLIP << 1 ; The << 1 is compensated in the "oamframe" macro
+	and OAMF_YFLIP << 1 | OAMF_XFLIP << 1 ; The << 1 is compensated in the "oamframe" macro
 	srl a
 	ld [wCurSpriteOAMFlags], a
 	pop af
@@ -589,7 +589,7 @@ AnimateEndOfExpBar:
 	call Sprites_Sine
 	pop hl
 	pop de
-	add 13 * TILE_WIDTH
+	add 13 * TILE_X
 	ld [hli], a ; y
 
 	pop af
@@ -598,7 +598,7 @@ AnimateEndOfExpBar:
 	call Sprites_Cosine
 	pop hl
 	pop de
-	add 10 * TILE_WIDTH + 4
+	add 10 * TILE_X + 4
 	ld [hli], a ; x
 
 	ld a, $0

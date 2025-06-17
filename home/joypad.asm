@@ -38,7 +38,7 @@ UpdateJoypad::
 
 ; We can only get four inputs at a time.
 ; We take d-pad first for no particular reason.
-	ld a, 1 << rJOYP_DPAD
+	ld a, JOYP_GET_DPAD
 	ldh [rJOYP], a
 ; Read twice to give the request time to take.
 	ldh a, [rJOYP]
@@ -55,7 +55,7 @@ UpdateJoypad::
 
 ; Buttons make 8 total inputs (A, B, Select, Start).
 ; We can fit this into one byte.
-	ld a, 1 << rJOYP_BUTTONS
+	ld a, JOYP_GET_BTN
 	ldh [rJOYP], a
 ; Wait for input to stabilize.
 rept 6
@@ -68,7 +68,7 @@ endr
 	ld b, a
 
 ; Reset the joypad register since we're done with it.
-	ld a, (1 << rJOYP_BUTTONS) | (1 << rJOYP_DPAD)
+	ld a, JOYP_GET_NONE
 	ldh [rJOYP], a
 
 ; To get the delta we xor the last frame's input with the new one.

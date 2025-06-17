@@ -3,21 +3,21 @@ MagnetTrain:
 	and a
 	jr nz, .ToGoldenrod
 	ld a, 1 ; forwards
-	lb bc, 8 * TILE_WIDTH, 12 * TILE_WIDTH
-	lb de, (11 * TILE_WIDTH) - (11 * TILE_WIDTH + 4), -12 * TILE_WIDTH
+	lb bc, 8 * TILE_X, 12 * TILE_X
+	lb de, (11 * TILE_X) - (11 * TILE_X + 4), -12 * TILE_X
 	jr .continue
 
 .ToGoldenrod:
 	ld a, -1 ; backwards
-	lb bc, -8 * TILE_WIDTH, -12 * TILE_WIDTH
-	lb de, (11 * TILE_WIDTH) + (11 * TILE_WIDTH + 4), 12 * TILE_WIDTH
+	lb bc, -8 * TILE_X, -12 * TILE_X
+	lb de, (11 * TILE_X) + (11 * TILE_X + 4), 12 * TILE_X
 
 .continue
 	ld h, a
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wMagnetTrain)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld a, h
 	ld [wMagnetTrainDirection], a
@@ -80,20 +80,20 @@ MagnetTrain:
 	ldh [hBGMapMode], a
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 MagnetTrain_UpdateLYOverrides:
 	ld hl, wLYOverridesBackup
-	ld c, 6 * TILE_WIDTH - 1
+	ld c, 6 * TILE_X - 1
 	ld a, [wMagnetTrainOffset]
 	add a
 	ldh [hSCX], a
 	call .loadloop
-	ld c, 6 * TILE_WIDTH
+	ld c, 6 * TILE_X
 	ld a, [wMagnetTrainPosition]
 	call .loadloop
-	ld c, 6 * TILE_WIDTH + 1
+	ld c, 6 * TILE_X + 1
 	ld a, [wMagnetTrainOffset]
 	add a
 	call .loadloop
@@ -120,7 +120,7 @@ MagnetTrain_LoadGFX_PlayMusic:
 	callfar ClearSpriteAnims
 	call SetMagnetTrainPals
 	call DrawMagnetTrain
-	ld a, SCREEN_HEIGHT_PX
+	ld a, SCRN_Y
 	ldh [hWY], a
 	call EnableLCD
 	xor a
@@ -129,13 +129,13 @@ MagnetTrain_LoadGFX_PlayMusic:
 	ldh [hSCY], a
 
 	; Load the player sprite's standing frames
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wPlayerGender)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	farcall GetPlayerIcon
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, vTiles0
 	ld c, 4
 	call Request2bpp
@@ -168,27 +168,27 @@ DrawMagnetTrain:
 	xor a
 .loop
 	call GetMagnetTrainBGTiles
-	ld b, BG_MAP_WIDTH / 2
+	ld b, SCRN_VX_B / 2
 	call .FillAlt
 	inc a
-	cp SCREEN_HEIGHT
+	cp SCRN_Y_B
 	jr c, .loop
 
 	hlbgcoord 0, 6
 	ld de, MagnetTrainTilemap
-	ld c, SCREEN_WIDTH
+	ld c, SCRN_X_B
 	call .FillLine
 	hlbgcoord 0, 7
-	ld de, MagnetTrainTilemap + SCREEN_WIDTH
-	ld c, SCREEN_WIDTH
+	ld de, MagnetTrainTilemap + SCRN_X_B
+	ld c, SCRN_X_B
 	call .FillLine
 	hlbgcoord 0, 8
-	ld de, MagnetTrainTilemap + (SCREEN_WIDTH * 2)
-	ld c, SCREEN_WIDTH
+	ld de, MagnetTrainTilemap + (SCRN_X_B * 2)
+	ld c, SCRN_X_B
 	call .FillLine
 	hlbgcoord 0, 9
-	ld de, MagnetTrainTilemap + (SCREEN_WIDTH * 3)
-	ld c, SCREEN_WIDTH
+	ld de, MagnetTrainTilemap + (SCRN_X_B * 3)
+	ld c, SCRN_X_B
 	call .FillLine
 	ret
 
@@ -245,19 +245,19 @@ SetMagnetTrainPals:
 
 	; bushes
 	hlbgcoord 0, 0
-	ld bc, 4 * BG_MAP_WIDTH
+	ld bc, 4 * SCRN_VX_B
 	ld a, PAL_BG_GREEN
 	call ByteFill
 
 	; train
 	hlbgcoord 0, 4
-	ld bc, 10 * BG_MAP_WIDTH
+	ld bc, 10 * SCRN_VX_B
 	xor a ; PAL_BG_GRAY
 	call ByteFill
 
 	; more bushes
 	hlbgcoord 0, 14
-	ld bc, 4 * BG_MAP_WIDTH
+	ld bc, 4 * SCRN_VX_B
 	ld a, PAL_BG_GREEN
 	call ByteFill
 
@@ -289,21 +289,21 @@ MagnetTrain_Jumptable:
 	ret
 
 .InitPlayerSpriteAnim:
-	ld d, (8 + 2) * TILE_WIDTH + 5
+	ld d, (8 + 2) * TILE_X + 5
 	ld a, [wMagnetTrainPlayerSpriteInitX]
 	ld e, a
 	ld b, SPRITE_ANIM_OBJ_MAGNET_TRAIN_RED
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wPlayerGender)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .got_gender
 	ld b, SPRITE_ANIM_OBJ_MAGNET_TRAIN_BLUE
 .got_gender
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, b
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
@@ -392,10 +392,10 @@ MagnetTrain_Jumptable_FirstRunThrough:
 	call PushLYOverrides
 	call DelayFrame
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wEnvironment)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, [wTimeOfDayPal]
 	push af
 	ld a, [wEnvironment]
@@ -422,7 +422,7 @@ MagnetTrain_Jumptable_FirstRunThrough:
 	pop af
 	ld [wTimeOfDayPal], a
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 MagnetTrainTilemap:

@@ -80,7 +80,7 @@ MobileTimer::
 
 ; Turn off timer interrupt
 	ldh a, [rIF]
-	and 1 << VBLANK | 1 << LCD_STAT | 1 << SERIAL | 1 << JOYPAD
+	and IFF_VBLANK | IFF_STAT | IFF_SERIAL | IFF_JOYPAD
 	ldh [rIF], a
 
 	ld a, [wc86a]
@@ -92,7 +92,7 @@ MobileTimer::
 	jr nz, .skip_timer
 
 	ldh a, [rSC]
-	and 1 << rSC_ON
+	and SCF_START
 	jr nz, .skip_timer
 
 	ldh a, [hROMBank]
@@ -112,7 +112,7 @@ MobileTimer::
 	ldh a, [rTMA]
 	ldh [rTIMA], a
 
-	ld a, 1 << rTAC_ON | rTAC_65536_HZ
+	ld a, TACF_START | TACF_65KHZ
 	ldh [rTAC], a
 
 .pop_ret
@@ -190,7 +190,7 @@ Function3f20::
 
 Function3f35::
 	ld a, 6
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 .row
 	push bc
 	push hl
@@ -245,7 +245,7 @@ MobileHome_PlaceBox:
 	jr nz, .FillLoop
 	ld [hl], e
 	pop hl
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 	add hl, de
 	ret
 

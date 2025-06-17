@@ -91,7 +91,7 @@ PrintTempMonStats:
 	pop hl
 	pop bc
 	add hl, bc
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	add hl, bc
 	ld de, wTempMonAttack
 	lb bc, 2, 3
@@ -109,7 +109,7 @@ PrintTempMonStats:
 	push hl
 	call PrintNum
 	pop hl
-	ld de, SCREEN_WIDTH * 2
+	ld de, SCRN_X_B * 2
 	add hl, de
 	ret
 

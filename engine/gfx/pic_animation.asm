@@ -103,10 +103,10 @@ LoadMonAnimation:
 	ret
 
 SetUpPokeAnim:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wPokeAnimStruct)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, [wPokeAnimSceneIndex]
 	ld c, a
 	ld b, 0
@@ -121,7 +121,7 @@ SetUpPokeAnim:
 	ld a, [wPokeAnimSceneIndex]
 	ld c, a
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, c
 	and JUMPTABLE_EXIT
 	ret z
@@ -254,16 +254,16 @@ PokeAnim_StereoCry:
 	ret
 
 PokeAnim_DeinitFrames:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wPokeAnimCoord)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call PokeAnim_PlaceGraphic
 	farcall HDMATransferTilemapToWRAMBank3
 	call PokeAnim_SetVBank0
 	farcall HDMATransferAttrmapToWRAMBank3
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 AnimateMon_CheckIfPokemon:
@@ -280,10 +280,10 @@ AnimateMon_CheckIfPokemon:
 	ret
 
 PokeAnim_InitPicAttributes:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wPokeAnimStruct)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	push bc
 	push de
@@ -328,14 +328,14 @@ PokeAnim_InitPicAttributes:
 	ld [wPokeAnimFrontpicHeight], a
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 PokeAnim_InitAnim:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wPokeAnimIdleFlag)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	push bc
 	ld hl, wPokeAnimIdleFlag
 	ld bc, wPokeAnimStructEnd - wPokeAnimIdleFlag
@@ -350,7 +350,7 @@ PokeAnim_InitAnim:
 	call GetMonFramesPointer
 	call GetMonBitmaskPointer
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 PokeAnim_DoAnimScript:
@@ -620,7 +620,7 @@ PokeAnim_ConvertAndApplyBitmask:
 .GetCoord:
 	call .GetStartCoord
 	ld a, [wPokeAnimBitmaskCurRow]
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	call AddNTimes
 	ld a, [wBoxAlignment]
 	and a
@@ -725,12 +725,12 @@ PokeAnim_ConvertAndApplyBitmask:
 	ld bc, 6
 	cp 7
 	jr z, .okay
-	ld de, SCREEN_WIDTH + 1
-	ld bc, SCREEN_WIDTH + 5
+	ld de, SCRN_X_B + 1
+	ld bc, SCRN_X_B + 5
 	cp 6
 	jr z, .okay
-	ld de, 2 * SCREEN_WIDTH + 1
-	ld bc, 2 * SCREEN_WIDTH + 5
+	ld de, 2 * SCRN_X_B + 1
+	ld bc, 2 * SCRN_X_B + 5
 .okay
 
 	ld a, [wBoxAlignment]
@@ -793,7 +793,7 @@ PokeAnim_PlaceGraphic:
 	push bc
 	push hl
 	push de
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 .loop2
 	ld [hl], a
 	inc a
@@ -819,23 +819,23 @@ PokeAnim_PlaceGraphic:
 	ret
 
 PokeAnim_SetVBank1:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wPokeAnimCoord)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	xor a
 	ldh [hBGMapMode], a
 	call .SetFlag
 	farcall HDMATransferAttrmapToWRAMBank3
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 .SetFlag:
 	call PokeAnim_GetAttrmapCoord
 	ld b, 7
 	ld c, 7
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 .row
 	push bc
 	push hl
@@ -857,7 +857,7 @@ PokeAnim_SetVBank0:
 	call PokeAnim_GetAttrmapCoord
 	ld b, 7
 	ld c, 7
-	ld de, SCREEN_WIDTH
+	ld de, SCRN_X_B
 .row
 	push bc
 	push hl
@@ -939,10 +939,10 @@ GetMonAnimPointer:
 	ret
 
 PokeAnim_GetFrontpicDims:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wCurPartySpecies)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
@@ -950,7 +950,7 @@ PokeAnim_GetFrontpicDims:
 	and $f
 	ld c, a
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 GetMonFramesPointer:

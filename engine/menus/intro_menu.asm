@@ -951,10 +951,10 @@ Intro_PlacePlayerSprite:
 .sprites
 	db 4
 	; y pxl, x pxl, tile offset
-	db  9 * TILE_WIDTH + 4,  9 * TILE_WIDTH, 0
-	db  9 * TILE_WIDTH + 4, 10 * TILE_WIDTH, 1
-	db 10 * TILE_WIDTH + 4,  9 * TILE_WIDTH, 2
-	db 10 * TILE_WIDTH + 4, 10 * TILE_WIDTH, 3
+	db  9 * TILE_X + 4,  9 * TILE_X, 0
+	db  9 * TILE_X + 4, 10 * TILE_X, 1
+	db 10 * TILE_X + 4,  9 * TILE_X, 2
+	db 10 * TILE_X + 4, 10 * TILE_X, 3
 
 
 	const_def
@@ -973,10 +973,10 @@ IntroSequence:
 	; fallthrough
 
 StartTitleScreen:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wLYOverrides)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	call .TitleScreen
 	call DelayFrame
@@ -988,10 +988,10 @@ StartTitleScreen:
 	call ClearBGPalettes
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld hl, rLCDC
-	res rLCDC_SPRITE_SIZE, [hl] ; 8x8
+	res LCDCB_OBJ16, [hl] ; 8x8
 	call ClearScreen
 	call WaitBGMap2
 	xor a
@@ -1053,7 +1053,7 @@ UnusedTitlePerspectiveScroll: ; unreferenced
 	ld hl, wLYOverrides + $5f
 	ld a, [hl]
 	dec a
-	ld bc, 2 * SCREEN_WIDTH
+	ld bc, 2 * SCRN_X_B
 	call ByteFill
 	ret
 

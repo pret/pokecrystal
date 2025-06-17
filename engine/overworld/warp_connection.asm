@@ -277,8 +277,8 @@ LoadMapTimeOfDay:
 	ldh [rVBK], a
 .copy
 	hlbgcoord 0, 0
-	ld c, SCREEN_WIDTH
-	ld b, SCREEN_HEIGHT
+	ld c, SCRN_X_B
+	ld b, SCRN_Y_B
 .row
 	push bc
 .column
@@ -287,7 +287,7 @@ LoadMapTimeOfDay:
 	ld [hli], a
 	dec c
 	jr nz, .column
-	ld bc, BG_MAP_WIDTH - SCREEN_WIDTH
+	ld bc, SCRN_VX_B - SCRN_X_B
 	add hl, bc
 	pop bc
 	dec b

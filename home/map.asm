@@ -106,7 +106,7 @@ LoadOverworldTilemap::
 
 	ld a, "■"
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCRN_B
 	call ByteFill
 
 	ld a, BANK(_LoadOverworldTilemap)
@@ -1172,7 +1172,7 @@ ScrollMapUp::
 	hlcoord 0, 0
 	ld de, wBGMapBuffer
 	call BackupBGMapRow
-	ld c, 2 * SCREEN_WIDTH
+	ld c, 2 * SCRN_X_B
 	call ScrollBGMapPalettes
 	ld a, [wBGMapAnchor]
 	ld e, a
@@ -1184,16 +1184,16 @@ ScrollMapUp::
 	ret
 
 ScrollMapDown::
-	hlcoord 0, SCREEN_HEIGHT - 2
+	hlcoord 0, SCRN_Y_B - 2
 	ld de, wBGMapBuffer
 	call BackupBGMapRow
-	ld c, 2 * SCREEN_WIDTH
+	ld c, 2 * SCRN_X_B
 	call ScrollBGMapPalettes
 	ld a, [wBGMapAnchor]
 	ld l, a
 	ld a, [wBGMapAnchor + 1]
 	ld h, a
-	ld bc, BG_MAP_WIDTH tiles
+	ld bc, SCRN_VX_B tiles
 	add hl, bc
 ; cap d at HIGH(vBGMap0)
 	ld a, h
@@ -1210,7 +1210,7 @@ ScrollMapLeft::
 	hlcoord 0, 0
 	ld de, wBGMapBuffer
 	call BackupBGMapColumn
-	ld c, 2 * SCREEN_HEIGHT
+	ld c, 2 * SCRN_Y_B
 	call ScrollBGMapPalettes
 	ld a, [wBGMapAnchor]
 	ld e, a
@@ -1222,17 +1222,17 @@ ScrollMapLeft::
 	ret
 
 ScrollMapRight::
-	hlcoord SCREEN_WIDTH - 2, 0
+	hlcoord SCRN_X_B - 2, 0
 	ld de, wBGMapBuffer
 	call BackupBGMapColumn
-	ld c, 2 * SCREEN_HEIGHT
+	ld c, 2 * SCRN_Y_B
 	call ScrollBGMapPalettes
 	ld a, [wBGMapAnchor]
 	ld e, a
 	and %11100000
 	ld b, a
 	ld a, e
-	add SCREEN_HEIGHT
+	add SCRN_Y_B
 	and %00011111
 	or b
 	ld e, a
@@ -1244,7 +1244,7 @@ ScrollMapRight::
 	ret
 
 BackupBGMapRow::
-	ld c, 2 * SCREEN_WIDTH
+	ld c, 2 * SCRN_X_B
 .loop
 	ld a, [hli]
 	ld [de], a
@@ -1254,7 +1254,7 @@ BackupBGMapRow::
 	ret
 
 BackupBGMapColumn::
-	ld c, SCREEN_HEIGHT
+	ld c, SCRN_Y_B
 .loop
 	ld a, [hli]
 	ld [de], a
@@ -1262,7 +1262,7 @@ BackupBGMapColumn::
 	ld a, [hl]
 	ld [de], a
 	inc de
-	ld a, SCREEN_WIDTH - 1
+	ld a, SCRN_X_B - 1
 	add l
 	ld l, a
 	jr nc, .skip
@@ -1278,7 +1278,7 @@ UpdateBGMapRow::
 	push de
 	call .iteration
 	pop de
-	ld a, BG_MAP_WIDTH
+	ld a, SCRN_VX_B
 	add e
 	ld e, a
 
@@ -1300,19 +1300,19 @@ UpdateBGMapRow::
 	ld e, a
 	dec c
 	jr nz, .loop
-	ld a, SCREEN_WIDTH
+	ld a, SCRN_X_B
 	ldh [hBGMapTileCount], a
 	ret
 
 UpdateBGMapColumn::
 	ld hl, wBGMapBufferPointers
-	ld c, SCREEN_HEIGHT
+	ld c, SCRN_Y_B
 .loop
 	ld a, e
 	ld [hli], a
 	ld a, d
 	ld [hli], a
-	ld a, BG_MAP_WIDTH
+	ld a, SCRN_VX_B
 	add e
 	ld e, a
 	jr nc, .skip
@@ -1326,7 +1326,7 @@ UpdateBGMapColumn::
 .skip
 	dec c
 	jr nz, .loop
-	ld a, SCREEN_HEIGHT
+	ld a, SCRN_Y_B
 	ldh [hBGMapTileCount], a
 	ret
 
@@ -1345,10 +1345,10 @@ LoadTilesetGFX::
 	ld a, [wTilesetBank]
 	ld e, a
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wDecompressScratch)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld a, e
 	ld de, wDecompressScratch
@@ -1373,7 +1373,7 @@ LoadTilesetGFX::
 	ldh [rVBK], a
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 ; These tilesets support dynamic per-mapgroup roof tiles.
 	ld a, [wMapTileset]

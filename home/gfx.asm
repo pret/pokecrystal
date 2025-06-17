@@ -3,7 +3,7 @@ DEF MOBILE_TILES_PER_CYCLE EQU 6
 
 Get2bppViaHDMA::
 	ldh a, [rLCDC]
-	bit rLCDC_ENABLE, a
+	bit LCDCB_ON, a
 	jp z, Copy2bpp
 
 	homecall HDMATransfer2bpp
@@ -12,7 +12,7 @@ Get2bppViaHDMA::
 
 Get1bppViaHDMA::
 	ldh a, [rLCDC]
-	bit rLCDC_ENABLE, a
+	bit LCDCB_ON, a
 	jp z, Copy1bpp
 
 	homecall HDMATransfer1bpp
@@ -46,16 +46,16 @@ SafeHDMATransfer: ; unreferenced
 .loop
 ; load the source and target MSB and LSB
 	ld a, d
-	ldh [rHDMA1], a ; source MSB
+	ldh [rVDMA_SRC_HIGH], a ; source MSB
 	ld a, e
 	and $f0
-	ldh [rHDMA2], a ; source LSB
+	ldh [rVDMA_SRC_LOW], a ; source LSB
 	ld a, h
 	and $1f
-	ldh [rHDMA3], a ; target MSB
+	ldh [rVDMA_DEST_HIGH], a ; target MSB
 	ld a, l
 	and $f0
-	ldh [rHDMA4], a ; target LSB
+	ldh [rVDMA_DEST_LOW], a ; target LSB
 ; stop when c < TILES_PER_CYCLE
 	ld a, c
 	cp TILES_PER_CYCLE
@@ -336,7 +336,7 @@ Request1bpp::
 Get2bpp::
 ; copy c 2bpp tiles from b:de to hl
 	ldh a, [rLCDC]
-	bit rLCDC_ENABLE, a
+	bit LCDCB_ON, a
 	jp nz, Request2bpp
 	; fallthrough
 
@@ -349,7 +349,7 @@ Copy2bpp:
 ; bank
 	ld a, b
 
-; bc = c * LEN_2BPP_TILE
+; bc = c * TILE_B
 	push af
 	swap c
 	ld a, $f
@@ -365,7 +365,7 @@ Copy2bpp:
 Get1bpp::
 ; copy c 1bpp tiles from b:de to hl
 	ldh a, [rLCDC]
-	bit rLCDC_ENABLE, a
+	bit LCDCB_ON, a
 	jp nz, Request1bpp
 	; fallthrough
 
@@ -377,7 +377,7 @@ Copy1bpp::
 ; bank
 	ld a, b
 
-; bc = c * LEN_1BPP_TILE
+; bc = c * TILE_1BPP_B
 	push af
 	ld h, 0
 	ld l, c

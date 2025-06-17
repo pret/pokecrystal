@@ -215,7 +215,7 @@ EvolutionAnimation:
 	ldh [hBGMapMode], a
 	hlcoord 7, 2
 	lb bc, 7, 7
-	ld de, SCREEN_WIDTH - 7
+	ld de, SCRN_X_B - 7
 .loop1
 	push bc
 .loop2
@@ -341,12 +341,12 @@ EvolutionAnimation:
 	and $7
 	ld b, a
 	ld hl, wShadowOAMSprite00Attributes
-	ld c, NUM_SPRITE_OAM_STRUCTS
+	ld c, OAM_COUNT
 .loop6
 	ld a, [hl]
 	or b
 	ld [hli], a ; attributes
-rept SPRITEOAMSTRUCT_LENGTH - 1
+rept OBJ_B - 1
 	inc hl
 endr
 	dec c

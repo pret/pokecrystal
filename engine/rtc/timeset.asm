@@ -124,7 +124,7 @@ InitClock:
 	xor a
 	ldh [hBGMapMode], a
 	hlcoord 0, 0
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
+	ld bc, SCRN_B
 	xor a
 	call ByteFill
 	ld a, $1
@@ -595,7 +595,7 @@ InitialClearDSTFlag:
 
 MrChrono: ; unreferenced
 	hlcoord 1, 14
-	lb bc, 3, SCREEN_WIDTH - 2
+	lb bc, 3, SCRN_X_B - 2
 	call ClearBox
 	ld hl, .Text
 	call PrintTextboxTextAt

@@ -380,7 +380,7 @@ SpriteAnimFunc_SlotsChanseyEgg:
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld a, [hl]
-	cp 15 * TILE_WIDTH
+	cp 15 * TILE_X
 	jr c, .move_right
 	call DeinitializeSprite
 	ld a, $4
@@ -682,7 +682,7 @@ SpriteAnimFunc_FlyLeaf:
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld a, [hl]
-	cp -9 * TILE_WIDTH
+	cp -9 * TILE_X
 	jr nc, .delete_leaf
 	inc [hl]
 	inc [hl]
@@ -711,7 +711,7 @@ SpriteAnimFunc_FlyTo:
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld a, [hl]
-	cp 10 * TILE_WIDTH + 4
+	cp 10 * TILE_X + 4
 	ret z
 
 	ld hl, SPRITEANIMSTRUCT_YCOORD

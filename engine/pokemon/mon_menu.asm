@@ -167,7 +167,7 @@ SwitchPartyMons:
 	farcall PlacePartyMenuText
 
 	hlcoord 0, 1
-	ld bc, SCREEN_WIDTH * 2
+	ld bc, SCRN_X_B * 2
 	ld a, [wSwitchMon]
 	dec a
 	call AddNTimes
@@ -376,7 +376,7 @@ TakePartyItem:
 
 GiveTakeItemMenuData:
 	db MENU_SPRITE_ANIMS | MENU_BACKUP_TILES ; flags
-	menu_coords 12, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 12, 12, SCRN_X_B - 1, SCRN_Y_B - 1
 	dw .Items
 	db 1 ; default option
 
@@ -545,7 +545,7 @@ MonMailAction:
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 12, 10, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 12, 10, SCRN_X_B - 1, SCRN_Y_B - 1
 	dw .MenuData
 	db 1 ; default option
 
@@ -912,7 +912,7 @@ MoveScreenLoop:
 	ld bc, 5
 	call ByteFill
 	hlcoord 1, 12
-	lb bc, 5, SCREEN_WIDTH - 2
+	lb bc, 5, SCRN_X_B - 2
 	call ClearBox
 	hlcoord 1, 12
 	ld de, String_MoveWhere
@@ -930,7 +930,7 @@ MoveScreenLoop:
 	xor a
 	ld [wSwappingMove], a
 	hlcoord 1, 2
-	lb bc, 8, SCREEN_WIDTH - 2
+	lb bc, 8, SCRN_X_B - 2
 	call ClearBox
 	jp .loop
 
@@ -1146,7 +1146,7 @@ SetUpMoveList:
 	ld de, wListMoves_MoveIndicesBuffer
 	ld bc, NUM_MOVES
 	call CopyBytes
-	ld a, SCREEN_WIDTH * 2
+	ld a, SCRN_X_B * 2
 	ld [wListMovesLineSpacing], a
 	hlcoord 2, 3
 	predef ListMoves

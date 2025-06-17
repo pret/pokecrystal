@@ -12,10 +12,10 @@ Credits::
 .okay
 	ld [wJumptableIndex], a
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wGBCPalettes)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	call ClearBGPalettes
 	call ClearTilemap
@@ -107,7 +107,7 @@ Credits::
 	pop af
 	ldh [hVBlank], a
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 Credits_HandleAButton:
@@ -247,7 +247,7 @@ ParseCredits:
 	xor a
 	ldh [hBGMapMode], a
 	hlcoord 0, 5
-	ld bc, SCREEN_WIDTH * 12
+	ld bc, SCRN_X_B * 12
 	ld a, " "
 	call ByteFill
 
@@ -308,7 +308,7 @@ ParseCredits:
 .print
 ; Print strings spaced every two lines.
 	call .get
-	ld bc, SCREEN_WIDTH * 2
+	ld bc, SCRN_X_B * 2
 	call AddNTimes
 	call PlaceString
 	jr .loop
@@ -405,12 +405,12 @@ ConstructCreditsTilemap:
 
 	ld a, $28
 	hlcoord 0, 0
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
+	ld bc, SCRN_B
 	call ByteFill
 
 	ld a, $7f
 	hlcoord 0, 4
-	ld bc, (SCREEN_HEIGHT - 4) * SCREEN_WIDTH
+	ld bc, (SCRN_Y_B - 4) * SCRN_X_B
 	call ByteFill
 
 	hlcoord 0, 4
@@ -422,22 +422,22 @@ ConstructCreditsTilemap:
 	call DrawCreditsBorder
 
 	hlcoord 0, 0, wAttrmap
-	ld bc, 4 * SCREEN_WIDTH
+	ld bc, 4 * SCRN_X_B
 	xor a
 	call ByteFill
 
 	hlcoord 0, 4, wAttrmap
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	ld a, $1
 	call ByteFill
 
 	hlcoord 0, 5, wAttrmap
-	ld bc, 12 * SCREEN_WIDTH
+	ld bc, 12 * SCRN_X_B
 	ld a, $2
 	call ByteFill
 
 	hlcoord 0, 17, wAttrmap
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	ld a, $1
 	call ByteFill
 
@@ -454,7 +454,7 @@ ConstructCreditsTilemap:
 	ld b, 5
 .outer_loop
 	push hl
-	ld de, SCREEN_WIDTH - 3
+	ld de, SCRN_X_B - 3
 	ld c, 4
 	xor a
 .inner_loop
@@ -476,7 +476,7 @@ endr
 	ret
 
 DrawCreditsBorder:
-	ld c, SCREEN_WIDTH / 4
+	ld c, SCRN_X_B / 4
 .loop
 	push af
 rept 3

@@ -20,11 +20,11 @@ ShowPlayerMonsRemaining:
 	ld de, wPartyCount
 	call StageBallTilesData
 	; ldpixel wPlaceBallsX, 12, 12
-	ld a, 12 * TILE_WIDTH
+	ld a, 12 * TILE_X
 	ld hl, wPlaceBallsX
 	ld [hli], a
 	ld [hl], a
-	ld a, TILE_WIDTH
+	ld a, TILE_X
 	ld [wPlaceBallsDirection], a
 	ld hl, wShadowOAMSprite00
 	jp LoadTrainerHudOAM
@@ -36,12 +36,12 @@ ShowOTTrainerMonsRemaining:
 	call StageBallTilesData
 	; ldpixel wPlaceBallsX, 9, 4
 	ld hl, wPlaceBallsX
-	ld a, 9 * TILE_WIDTH
+	ld a, 9 * TILE_X
 	ld [hli], a
-	ld [hl], 4 * TILE_WIDTH
-	ld a, -TILE_WIDTH
+	ld [hl], 4 * TILE_X
+	ld a, -TILE_X
 	ld [wPlaceBallsDirection], a
-	ld hl, wShadowOAMSprite00 + PARTY_LENGTH * SPRITEOAMSTRUCT_LENGTH
+	ld hl, wShadowOAMSprite00 + PARTY_LENGTH * OBJ_B
 	jp LoadTrainerHudOAM
 
 StageBallTilesData:
@@ -160,7 +160,7 @@ DrawEnemyHUDBorder:
 PlaceHUDBorderTiles:
 	ld a, [wTrainerHUDTiles + 0]
 	ld [hl], a
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	add hl, bc
 	ld a, [wTrainerHUDTiles + 1]
 	ld [hl], a
@@ -182,10 +182,10 @@ LinkBattle_TrainerHuds:
 	ld de, wPartyCount
 	call StageBallTilesData
 	ld hl, wPlaceBallsX
-	ld a, 10 * TILE_WIDTH
+	ld a, 10 * TILE_X
 	ld [hli], a
-	ld [hl], 8 * TILE_WIDTH
-	ld a, TILE_WIDTH
+	ld [hl], 8 * TILE_X
+	ld a, TILE_X
 	ld [wPlaceBallsDirection], a
 	ld hl, wShadowOAMSprite00
 	call LoadTrainerHudOAM
@@ -194,10 +194,10 @@ LinkBattle_TrainerHuds:
 	ld de, wOTPartyCount
 	call StageBallTilesData
 	ld hl, wPlaceBallsX
-	ld a, 10 * TILE_WIDTH
+	ld a, 10 * TILE_X
 	ld [hli], a
-	ld [hl], 13 * TILE_WIDTH
-	ld hl, wShadowOAMSprite00 + PARTY_LENGTH * SPRITEOAMSTRUCT_LENGTH
+	ld [hl], 13 * TILE_X
+	ld hl, wShadowOAMSprite00 + PARTY_LENGTH * OBJ_B
 	jp LoadTrainerHudOAM
 
 LoadTrainerHudOAM:

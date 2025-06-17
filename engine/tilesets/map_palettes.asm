@@ -4,10 +4,10 @@ _LoadOverworldAttrmapPals::
 ; loads while moving happen through ScrollBGMapPalettes.
 	hlcoord 0, 0
 	decoord 0, 0, wAttrmap
-	ld b, SCREEN_HEIGHT
+	ld b, SCRN_Y_B
 .loop
 	push bc
-	ld c, SCREEN_WIDTH
+	ld c, SCRN_X_B
 .innerloop
 	ld a, [hl]
 	push hl
@@ -37,7 +37,7 @@ _LoadOverworldAttrmapPals::
 .next
 	pop hl
 	ld [de], a
-	res OAM_TILE_BANK + 4, [hl]
+	res OAMB_BANK1 + 4, [hl]
 	inc hl
 	inc de
 	dec c
@@ -81,7 +81,7 @@ _ScrollBGMapPalettes::
 .next
 	pop hl
 	ld [de], a
-	res OAM_TILE_BANK + 4, [hl]
+	res OAMB_BANK1 + 4, [hl]
 	inc hl
 	inc de
 	dec c

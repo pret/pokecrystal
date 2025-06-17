@@ -19,7 +19,7 @@ PrintMonTypes:
 	pop hl
 	jr z, .hide_type_2
 
-	ld bc, SCREEN_WIDTH
+	ld bc, SCRN_X_B
 	add hl, bc
 
 .Print:
@@ -30,7 +30,7 @@ PrintMonTypes:
 	; Erase any type name that was here before.
 	; Seems to be pointless in localized versions.
 	ld a, " "
-	ld bc, SCREEN_WIDTH - 3
+	ld bc, SCRN_X_B - 3
 	add hl, bc
 	ld [hl], a
 	inc bc
