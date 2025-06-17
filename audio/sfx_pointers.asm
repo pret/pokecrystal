@@ -43,7 +43,7 @@ SFX:
 	dba Sfx_ElevatorEnd
 	dba Sfx_ThrowBall
 	dba Sfx_BallPoof
-	dba Sfx_Unknown3A
+	dba Sfx_Faint
 	dba Sfx_Run
 	dba Sfx_SlotMachineStart
 	dba Sfx_Fanfare
@@ -128,7 +128,7 @@ SFX:
 	dba Sfx_SweetKiss
 	dba Sfx_SweetKiss2
 	dba Sfx_BellyDrum
-	dba Sfx_Unknown7F
+	dba Sfx_Toxic
 	dba Sfx_SludgeBomb
 	dba Sfx_Foresight
 	dba Sfx_Spite

@@ -179,10 +179,10 @@ Sfx_BallPoof:
 	channel 5, Sfx_BallPoof_Ch5
 	channel 8, Sfx_BallPoof_Ch8
 
-Sfx_Unknown3A:
+Sfx_Faint:
 	channel_count 2
-	channel 5, Sfx_Unknown3A_Ch5
-	channel 8, Sfx_Unknown3A_Ch8
+	channel 5, Sfx_Faint_Ch5
+	channel 8, Sfx_Faint_Ch8
 
 Sfx_Run:
 	channel_count 1
@@ -2472,11 +2472,11 @@ Sfx_BellyDrum_Ch8:
 	noise_note 12, 11, 1, 108
 	sound_ret
 
-Sfx_Unknown7F:
+Sfx_Toxic:
 	channel_count 1
-	channel 5, Sfx_Unknown7F_Ch5
+	channel 5, Sfx_Toxic_Ch5
 
-Sfx_Unknown7F_Ch5:
+Sfx_Toxic_Ch5:
 	duty_cycle 2
 	pitch_sweep 9, 5
 	square_note 2, 12, -1, 947
@@ -4229,12 +4229,12 @@ Sfx_BallPoof_Ch8:
 	noise_note 15, 10, 2, 34
 	sound_ret
 
-Sfx_Unknown3A_Ch5:
+Sfx_Faint_Ch5:
 	square_note 15, 13, 1, 512
 	pitch_sweep 0, 8
 	sound_ret
 
-Sfx_Unknown3A_Ch8:
+Sfx_Faint_Ch8:
 	noise_note 4, 15, 5, 51
 	noise_note 8, 15, 4, 34
 	noise_note 15, 15, 2, 33
