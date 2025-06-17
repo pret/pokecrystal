@@ -1775,7 +1775,7 @@ LearnLevelMoves:
  
 -	push hl
  	ld d, a
-+	cp STRUGGLE + 1
++	cp GEN_2_MOVE
 +	jr c, .old_move
 +
 +	ld a, [wLinkMode]
