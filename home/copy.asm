@@ -92,6 +92,7 @@ GetFarWord::
 	ret
 
 FarCopyWRAM::
+; copy bc bytes from hl to a:de
 	ldh [hTempBank], a
 	ldh a, [rSVBK]
 	push af
@@ -105,6 +106,7 @@ FarCopyWRAM::
 	ret
 
 GetFarWRAMByte::
+; retrieve a single byte from a:hl, and return it in a.
 	ldh [hTempBank], a
 	ldh a, [rSVBK]
 	push af
@@ -118,6 +120,7 @@ GetFarWRAMByte::
 	ret
 
 GetFarWRAMWord:: ; unreferenced
+; retrieve a word from a:hl, and return it in hl.
 	ldh [hTempBank], a
 	ldh a, [rSVBK]
 	push af
