@@ -429,6 +429,7 @@ LearnLevelMoves:
 	jr nz, .skip_evos
 
 .find_move
+; BUG: Time Capsule glitch (see docs/bugs_and_glitches.md)
 	ld a, [hli]
 	and a
 	jr z, .done
