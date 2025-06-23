@@ -149,7 +149,7 @@ In [gfx/footprints.asm](https://github.com/pret/pokecrystal/blob/master/gfx/foot
 ; then a row of the bottom two tiles for those eight footprints.
 
 ; These macros help extract the first and the last two tiles, respectively.
-DEF footprint_top    EQUS "0,                 2 * TILE_1BPP_SIZE"
+DEF footprint_top    EQUS "0,                  2 * TILE_1BPP_SIZE"
 DEF footprint_bottom EQUS "2 * TILE_1BPP_SIZE, 2 * TILE_1BPP_SIZE"
 
 Footprints:
